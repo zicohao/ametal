@@ -93,9 +93,9 @@ static void __pfn_temprature (void *p_arg, uint32_t trigger_src)
     if (trigger_src & AM_SENSOR_TRIGGER_DATA_READY) {
         am_sensor_data_get(handle, &__lsm6dsl_id[3], 1, &__lsm6dsl_data[3]);
         am_sensor_val_unit_convert(&__lsm6dsl_data[3], 1, AM_SENSOR_UNIT_MICRO);
-        //TODO
+//TODO
 //        am_kprintf("The channel %d,type is temprature, value is: %d.%06d  ℃!\r\n",
-        am_kprintf("The channel %d,type is temprature, value is: %d.%06d  C!\r\n",
+        am_kprintf("The channel %d,type is temprature, value is: %d.%06d  °C!\r\n",
                    __lsm6dsl_id[3],
                    (__lsm6dsl_data[3].val)/1000000,
                    (uint32_t)(__lsm6dsl_data[3].val)%1000000);

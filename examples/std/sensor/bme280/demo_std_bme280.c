@@ -52,8 +52,8 @@ void demo_std_bme280_entry (am_sensor_handle_t handle)
      * 列出三个通道（压力、湿度和温度）数据的名字和单位字符串，便于打印
      */
     const char *data_name_string[] = {"pressure", "temperature", "humidity"};
-    const char *data_unit_string[] = {"Pa", "C", "%rH"};
-    //TODO:    
+    const char *data_unit_string[] = {"Pa", "°C", "%rH"};
+//TODO:    
     //const char *data_unit_string[] = {"Pa", "℃", "%rH"};
 
     am_sensor_enable(handle, id, 3, data);

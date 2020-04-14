@@ -59,9 +59,9 @@ static void __pfn_temprature (void *p_arg, uint32_t trigger_src)
     if (trigger_src & AM_SENSOR_TRIGGER_DATA_READY) {
         am_sensor_data_get(handle, &__lps22hb_id[1], 1, &__lps22hb_data[1]);
         am_sensor_val_unit_convert(&__lps22hb_data[1], 1, AM_SENSOR_UNIT_MICRO);
-        //TODO
+//TODO  ° == Alt + numKeyBoad 176
 //        am_kprintf("The channel %d,type is temprature, value is: %d.%06d  ℃!\r\n",
-        am_kprintf("The channel %d,type is temprature, value is: %d.%06d  C!\r\n",
+        am_kprintf("The channel %d,type is temprature, value is: %d.%06d  °C!\r\n",
                    __lps22hb_id[1],
                    (__lps22hb_data[1].val)/1000000,
                    (__lps22hb_data[1].val)%1000000);

@@ -52,9 +52,9 @@ void demo_std_lps22hb_entry (am_sensor_handle_t handle)
      * 列出两个通道（压力和温度）数据的名字和单位字符串，便于打印
      */
     const char *data_name_string[] = {"pressure", "temperature"};
-    //TODO:    
+//TODO:    
 //    const char *data_unit_string[] = {"Pa", "℃"};
-    const char *data_unit_string[] = {"Pa", "C"};
+    const char *data_unit_string[] = {"Pa", "°C"};
 
     am_sensor_enable(handle, id, 2, data);
 

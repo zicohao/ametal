@@ -54,9 +54,9 @@ void demo_std_shtc1_entry (am_sensor_handle_t handle)
      * 列出两个通道（湿度和温度）数据的名字和单位字符串，便于打印
      */
     const char *data_name_string[] = {"humidity", "temperature"};
-    //TODO
+//TODO
 //    const char *data_unit_string[] = {"%rH", "℃"};
-    const char *data_unit_string[] = {"%rH", "C"};
+    const char *data_unit_string[] = {"%rH", "°C"};
 
     am_sensor_enable(handle, id, 2, data);
 

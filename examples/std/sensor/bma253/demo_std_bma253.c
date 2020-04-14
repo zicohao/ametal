@@ -55,9 +55,9 @@ void demo_std_bma253_entry (am_sensor_handle_t handle)
      * 列出四个通道（加速度和温度）数据的名字和单位字符串，便于打印
      */
     const char *data_name_string[] = {"ACC_X", "ACC_Y", "ACC_Z", "temperature"};
-    //TODO
+//TODO
 //    const char *data_unit_string[] = {"m/s^2", "m/s^2", "m/s^2", "℃"};
-    const char *data_unit_string[] = {"m/s^2", "m/s^2", "m/s^2", "C"};
+    const char *data_unit_string[] = {"m/s^2", "m/s^2", "m/s^2", "°C"};
 
     am_sensor_enable(handle, id, 4, data);
 
