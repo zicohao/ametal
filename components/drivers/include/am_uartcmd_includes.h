@@ -6,13 +6,13 @@
 * @author     sky
 * @date       2015/12/23
 * @version    V1.00
-* @brief      (cd,coupling device, ñîºÏÉè±¸)°üº¬Í·ÎÄ¼ş£¬¸ÃÎÄ¼şºÍĞ¾Æ¬Ïà¹Ø
-*                    - V1.00    2015/12/23 sky ´´½¨ÎÄµµ(²ÉÓÃFM17550SµÄ´úÂë)
+* @brief      (cd,coupling device, è€¦åˆè®¾å¤‡)åŒ…å«å¤´æ–‡ä»¶ï¼Œè¯¥æ–‡ä»¶å’ŒèŠ¯ç‰‡ç›¸å…³
+*                    - V1.00    2015/12/23 sky åˆ›å»ºæ–‡æ¡£(é‡‡ç”¨FM17550Sçš„ä»£ç )
 *******************************************************************************/
 
 /**
  * \file
- * \brief coupling device ñîºÏÉè±¸Í·ÎÄ¼ş¶¨Òå
+ * \brief coupling device è€¦åˆè®¾å¤‡å¤´æ–‡ä»¶å®šä¹‰
  *
  * \internal
  * \par Modification history
@@ -34,16 +34,16 @@ extern "C" {
  */
     
 /**
- * \brief ¼ÆËãÊı×éÔªËØ¸öÊıµÄºê
- * \param[in] array : Êı×é
- * \return Êı×éÔªËØ¸öÊı
+ * \brief è®¡ç®—æ•°ç»„å…ƒç´ ä¸ªæ•°çš„å®
+ * \param[in] array : æ•°ç»„
+ * \return æ•°ç»„å…ƒç´ ä¸ªæ•°
  */
 #ifndef count_of
 #define count_of(array) (sizeof(array) / sizeof(array[0]))
 #endif
 
 /**
- * \brief ñîºÏÉè±¸Ñ¡Ôñ
+ * \brief è€¦åˆè®¾å¤‡é€‰æ‹©
  */
 #include "am_fm175xx.h"
 #include "am_fm175xx_reg.h"

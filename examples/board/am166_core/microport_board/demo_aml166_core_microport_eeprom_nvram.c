@@ -11,23 +11,23 @@
 *******************************************************************************/
 /**
  * \file
- * \brief MicroPort EEPROM ���̣�ͨ�� NVRAM �ӿ�ʵ��
+ * \brief MicroPort EEPROM 例程，通过 NVRAM 接口实现
  *
- * ���� FM24C02 �� EEPROM �ǵ��͵ķ���ʧ�Դ洢�������ʹ�� NVRAM����
- * ��ʧ�Դ洢������׼�ӿڶ�д���ݾ�������ľ���������ˡ�
+ * 由于 FM24C02 等 EEPROM 是典型的非易失性存储器，因此使用 NVRAM（非
+ * 易失性存储器）标准接口读写数据就无需关心具体的器件了。
  *
- * - �������裺
- *   1. �� MicroPort EEPROM ������ӵ� aml166-Core �� MicroPort �ӿڡ�
+ * - 操作步骤：
+ *   1. 将 MicroPort EEPROM 配板连接到 aml166-Core 的 MicroPort 接口。
  *
- * - ʵ������
- *   1. ����д���ݵ� EEPROM��
- *   2. ������ EEPROM ��ȡ���ݣ���ͨ�����ڴ�ӡ������
- *   3. ���ڴ�ӡ�����Խ����
+ * - 实验现象：
+ *   1. 主机写数据到 EEPROM；
+ *   2. 主机从 EEPROM 读取数据，并通过串口打印处理；
+ *   3. 串口打印出测试结果。
  *
  * \note
- *    ����۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIOA_9 �������� PC ���ڵ� RXD��
+ *    如需观察串口打印的调试信息，需要将 PIOA_9 引脚连接 PC 串口的 RXD。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_aml166_core_microport_eeprom_nvram.c src_aml166_core_microport_eeprom_nvram
  *
  * \internal
@@ -49,7 +49,7 @@
 #include "demo_aml166_core_entries.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_aml166_core_microport_eeprom_nvram_entry (void)
 {

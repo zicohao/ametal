@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥5.107
+ * \brief Â³ÃŒÄÃ²Ã‡Ã¥ÂµÂ¥5.107
  *
- * \note ¸ÃÀú³ÌĞèÒªÓÃµ½miniportÍØÕ¹°å,¿ÉÒÔÓÃLED¿´Ğ§¹û
+ * \note Â¸ÃƒÃ€ÃºÂ³ÃŒÄÃ¨Ã’ÂªÃ“ÃƒÂµÂ½miniportÃÃ˜Ã•Â¹Â°Ã¥,Â¿Ã‰Ã’Ã”Ã“ÃƒLEDÂ¿Â´ÄÂ§Â¹Ã»
  * 
  * \internal
  * \par Modification history
@@ -27,7 +27,7 @@
 #include "am_vdebug.h"
 static int __uart_rxchar_put (void *p_arg, char ch)
 {
-    // ½«½ÓÊÕµÄÊı¾İch±£´æÏÂÀ´£
+    // Â½Â«Â½Ã“ÃŠÃ•ÂµÃ„ÃŠÄ±Â¾Ä°chÂ±Â£Â´Ã¦ÃÃ‚Ã€Â´Â£
     return AM_OK;
 }
 

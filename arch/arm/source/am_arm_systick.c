@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief SYSTICK Çý¶¯£¬·þÎñ Timer ±ê×¼½Ó¿Ú
+ * \brief SYSTICK é©±åŠ¨ï¼ŒæœåŠ¡ Timer æ ‡å‡†æŽ¥å£
  *
- * \note Ê¹ÓÃ SYSTICK ·þÎñµÄ Timer ±ê×¼½Ó¿Ú£¬¾Í²»ÄÜÊ¹ÓÃ±ê×¼ÑÓÊ±½Ó¿Ú
- *       am_mdelay()ºÍam_udelay()
+ * \note ä½¿ç”¨ SYSTICK æœåŠ¡çš„ Timer æ ‡å‡†æŽ¥å£ï¼Œå°±ä¸èƒ½ä½¿ç”¨æ ‡å‡†å»¶æ—¶æŽ¥å£
+ *       am_mdelay()å’Œam_udelay()
  * \internal
  * \par Modification History
  * - 1.02 15-12-14  hgo, fix potential bug caused by incorrect p_arg on callback
@@ -31,7 +31,7 @@
 #include "am_clk.h"
 
 /*******************************************************************************
-  º¯ÊýÉùÃ÷
+  å‡½æ•°å£°æ˜Ž
 *******************************************************************************/
 static const am_timer_info_t * __systick_info_get (void *p_drv);
 
@@ -49,20 +49,20 @@ static int __systick_callback_set (void    *p_drv,
                                    void    *p_arg);
 
 /*******************************************************************************
-  È«¾Ö±äÁ¿
+  å…¨å±€å˜é‡
 *******************************************************************************/
 
-/* ¶¨Ê±Æ÷ÐÅÏ¢ */
+/* å®šæ—¶å™¨ä¿¡æ¯ */
 static const am_timer_info_t __g_systick_info = {
-    24,                                                   /* 24Î»¶¨Ê±Æ÷       */
-    1,                                                    /* µ¥Í¨µÀ           */
-    AM_TIMER_CAN_INTERRUPT      |                         /* ¿ÉÒÔ²úÉúÖÐ¶Ï     */
-    AM_TIMER_AUTO_RELOAD        |                         /* Ö§³Ö×Ô¶¯ÖØÔØ     */
-    AM_TIMER_INTERMEDIATE_COUNT,                          /* µ±Ç°¼ÆÊýÆ÷Öµ¿É¶Á */
-    0                                                     /* ²»Ö§³ÖÊ±ÖÓÔ¤·ÖÆµ */
+    24,                                                   /* 24ä½å®šæ—¶å™¨       */
+    1,                                                    /* å•é€šé“           */
+    AM_TIMER_CAN_INTERRUPT      |                         /* å¯ä»¥äº§ç”Ÿä¸­æ–­     */
+    AM_TIMER_AUTO_RELOAD        |                         /* æ”¯æŒè‡ªåŠ¨é‡è½½     */
+    AM_TIMER_INTERMEDIATE_COUNT,                          /* å½“å‰è®¡æ•°å™¨å€¼å¯è¯» */
+    0                                                     /* ä¸æ”¯æŒæ—¶é’Ÿé¢„åˆ†é¢‘ */
 };
 
-/* SYSTICK Çý¶¯º¯Êý  */
+/* SYSTICK é©±åŠ¨å‡½æ•°  */
 static const struct am_timer_drv_funcs __g_systick_drv_funcs = {
     __systick_info_get,
     __systick_clkin_freq_get,
@@ -76,19 +76,19 @@ static const struct am_timer_drv_funcs __g_systick_drv_funcs = {
 };
 
 /*
- * ¿¼ÂÇµ½ SYSTICK ÖÐ¶Ï´¦Àíº¯ÊýÎÞ·¨´«µÝ²ÎÊý£¬Ê¹ÓÃÒ»¸öÈ«¾Ö±äÁ¿Ö¸Õë£¬
- * ±£´æ SYSTICK Éè±¸½á¹¹ÌåµØÖ·
+ * è€ƒè™‘åˆ° SYSTICK ä¸­æ–­å¤„ç†å‡½æ•°æ— æ³•ä¼ é€’å‚æ•°ï¼Œä½¿ç”¨ä¸€ä¸ªå…¨å±€å˜é‡æŒ‡é’ˆï¼Œ
+ * ä¿å­˜ SYSTICK è®¾å¤‡ç»“æž„ä½“åœ°å€
  */
 static am_arm_systick_dev_t *__gp_systick_dev;
 
 /*******************************************************************************
-  ÖÐ¶Ï´¦Àí
+  ä¸­æ–­å¤„ç†
 *******************************************************************************/
 
 /**
- * \brief SYSTICK ÖÐ¶Ï´¦Àíº¯Êý
+ * \brief SYSTICK ä¸­æ–­å¤„ç†å‡½æ•°
  *
- * \return ÎÞ
+ * \return æ— 
  */
 void SysTick_Handler (void)
 {
@@ -98,10 +98,10 @@ void SysTick_Handler (void)
 }
 
 /*******************************************************************************
-  ±ê×¼¶¨Ê±Æ÷Çý¶¯ÊµÏÖ
+  æ ‡å‡†å®šæ—¶å™¨é©±åŠ¨å®žçŽ°
 *******************************************************************************/
 
-/* »ñÈ¡ SYSTICK ÐÅÏ¢ */
+/* èŽ·å– SYSTICK ä¿¡æ¯ */
 static const am_timer_info_t * __systick_info_get (void *p_drv)
 {
     return &__g_systick_info;
@@ -116,7 +116,7 @@ static int __systick_clkin_freq_get (void *p_drv, uint32_t *p_freq)
         return -AM_EINVAL;
     }
 
-    /* »ñÈ¡µ±Ç°ÏµÍ³Ê±ÖÓÆµÂÊ£¬systick Ê¹ÓÃµÄÊÇÏµÍ³Ê±ÖÓ */
+    /* èŽ·å–å½“å‰ç³»ç»Ÿæ—¶é’Ÿé¢‘çŽ‡ï¼Œsystick ä½¿ç”¨çš„æ˜¯ç³»ç»Ÿæ—¶é’Ÿ */
     *p_freq = am_clk_rate_get(p_dev->p_devinfo->clk_id);
 
     return AM_OK;
@@ -141,7 +141,7 @@ static int __systick_prescale_get (void *p_drv, uint8_t chan, uint32_t *p_presca
         return -AM_EINVAL;
     }
 
-    /* ÎÞ·ÖÆµÆ÷£¬·ÖÆµÖµÊ¼ÖÕÎª1  */
+    /* æ— åˆ†é¢‘å™¨ï¼Œåˆ†é¢‘å€¼å§‹ç»ˆä¸º1  */
     *p_prescale = 1;
 
     return AM_OK;
@@ -218,10 +218,10 @@ static int __systick_enable (void     *p_drv,
     p_dev        = (am_arm_systick_dev_t *)p_drv;
     p_hw_systick = (amhw_arm_systick_t   *)p_dev->p_devinfo->systick_regbase;
 
-    /* ÉèÖÃÖØÔØ¶¨Ê±¼Ä´æÆ÷ÖÐµÄÊýÖµ */
+    /* è®¾ç½®é‡è½½å®šæ—¶å¯„å­˜å™¨ä¸­çš„æ•°å€¼ */
     amhw_arm_systick_reload_val_set(p_hw_systick, *((uint32_t *)p_count));
 
-    /* Çå³ýµ±Ç°¶¨Ê±¼ÆÊýÆ÷ÖÐµÄÊýÖµ */
+    /* æ¸…é™¤å½“å‰å®šæ—¶è®¡æ•°å™¨ä¸­çš„æ•°å€¼ */
     amhw_arm_systick_val_set(p_hw_systick, 0x0);
 
     if (p_dev->pfn_callback == NULL) {
@@ -230,7 +230,7 @@ static int __systick_enable (void     *p_drv,
         amhw_arm_systick_int_enable(p_hw_systick);
     }
 
-    /* Ê¹ÄÜ SYSTICK */
+    /* ä½¿èƒ½ SYSTICK */
     amhw_arm_systick_enable(p_hw_systick);
 
     return AM_OK;
@@ -286,7 +286,7 @@ am_timer_handle_t  am_arm_systick_init (am_arm_systick_dev_t           *p_dev,
 
     __gp_systick_dev          = p_dev;
 
-    /* ÉèÖÃ¶¨Ê±Æ÷Ê±ÖÓÆµÂÊ */
+    /* è®¾ç½®å®šæ—¶å™¨æ—¶é’Ÿé¢‘çŽ‡ */
     if ((p_devinfo->clk_freq_src != AMHW_ARM_SYSTICK_CONFIG_CLKSRC_SYSTEM) &&
         (p_devinfo->clk_freq_src != AMHW_ARM_SYSTICK_CONFIG_CLKSRC_SYSTEM_HALF)) {
         return NULL;

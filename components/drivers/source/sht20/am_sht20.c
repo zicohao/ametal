@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief  SHT20 ÎÂÊª¶È´«¸ĞÆ÷Ó¦ÓÃ½Ó¿ÚÊµÏÖ
+ * \brief  SHT20 æ¸©æ¹¿åº¦ä¼ æ„Ÿå™¨åº”ç”¨æ¥å£å®ç°
  *
  * \internal
  * \par Modification History
@@ -22,12 +22,12 @@
 
 #include "am_sht20.h"
 
-#define SHT20_DEVICE_ADDR           0x40        /* SHT20 I2CµØÖ· */
-#define SHT20_TRIG_HUMIDITY         0           /* ²âÁ¿Êª¶È */
-#define SHT20_TRIG_TEMPERATURE      1           /* ²âÁ¿ÎÂ¶È */
+#define SHT20_DEVICE_ADDR           0x40        /* SHT20 I2Cåœ°å€ */
+#define SHT20_TRIG_HUMIDITY         0           /* æµ‹é‡æ¹¿åº¦ */
+#define SHT20_TRIG_TEMPERATURE      1           /* æµ‹é‡æ¸©åº¦ */
 
 /**
- * \brief SHT20´«¸ĞÆ÷ÃüÁî
+ * \brief SHT20ä¼ æ„Ÿå™¨å‘½ä»¤
  */
 typedef enum am_sht20_command {
     TRIG_T_MEASUREMENT_HM    = 0xE3,     // command trig. temp meas. hold master
@@ -40,12 +40,12 @@ typedef enum am_sht20_command {
 } am_sht20_command_t;
 
 /**
- * \brief SHT20´«¸ĞÆ÷ CRC ¶àÏîÊ½
+ * \brief SHT20ä¼ æ„Ÿå™¨ CRC å¤šé¡¹å¼
  */
 const uint16_t __g_polynomial = 0x131; //P(x)=x^8+x^5+x^4+1 = 100110001
 
 /**
- * \brief SHT20´«¸ĞÆ÷ CRCĞ£Ñé
+ * \brief SHT20ä¼ æ„Ÿå™¨ CRCæ ¡éªŒ
  */
 static int8_t __sht20_check_crc (uint8_t *p_data, uint8_t nb_bytes, uint8_t check_sum)
 {
@@ -73,7 +73,7 @@ static int8_t __sht20_check_crc (uint8_t *p_data, uint8_t nb_bytes, uint8_t chec
 }
 
 /**
- * \brief SHT20´«¸ĞÆ÷¼ÆËãÏà¶ÔÊª¶È
+ * \brief SHT20ä¼ æ„Ÿå™¨è®¡ç®—ç›¸å¯¹æ¹¿åº¦
  */
 static float __sht20_calc_rh (uint16_t s_rh)
 {
@@ -85,7 +85,7 @@ static float __sht20_calc_rh (uint16_t s_rh)
 }
 
 /**
- * \brief SHT20´«¸ĞÆ÷¼ÆËãÎÂ¶È[¡ãC]
+ * \brief SHT20ä¼ æ„Ÿå™¨è®¡ç®—æ¸©åº¦[Â°C]
  */
 static float __sht20_calc_temperature_c (uint16_t s_t)
 {
@@ -97,7 +97,7 @@ static float __sht20_calc_temperature_c (uint16_t s_t)
 }
 
 /**
- * \brief SHT20´«¸ĞÆ÷ÂÖÑ¯Ê½²âÁ¿
+ * \brief SHT20ä¼ æ„Ÿå™¨è½®è¯¢å¼æµ‹é‡
  * \note type : 0 for humidity, 1 for temperature
  */
 static int __sht20_measure_poll (am_sht20_handle_t handle, uint8_t type, uint16_t *p_measurand)
@@ -106,24 +106,24 @@ static int __sht20_measure_poll (am_sht20_handle_t handle, uint8_t type, uint16_
     uint8_t  temp_value[3] = {0, 0, 0};
     int      ret           = AM_OK;
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = &(handle->i2c_dev);
 
-    /* Ğ´²âÁ¿ÃüÁî */
+    /* å†™æµ‹é‡å‘½ä»¤ */
     switch (type) {
 
-    case SHT20_TRIG_HUMIDITY:       /* Êª¶È²âÁ¿ */
+    case SHT20_TRIG_HUMIDITY:       /* æ¹¿åº¦æµ‹é‡ */
         cmd = TRIG_RH_MEASUREMENT_POLL;
         ret = am_i2c_write(p_i2c_dev,
-                           0,              //ÎŞ×ÓµØÖ·
+                           0,              //æ— å­åœ°å€
                            &cmd,
                            1);
         break;
 
-    case SHT20_TRIG_TEMPERATURE:    /* ÎÂ¶È²âÁ¿ */
+    case SHT20_TRIG_TEMPERATURE:    /* æ¸©åº¦æµ‹é‡ */
         cmd = TRIG_T_MEASUREMENT_POLL;
         ret = am_i2c_write(p_i2c_dev,
-                           0,               //ÎŞ×ÓµØÖ·
+                           0,               //æ— å­åœ°å€
                            &cmd,
                            1);
         break;
@@ -132,43 +132,43 @@ static int __sht20_measure_poll (am_sht20_handle_t handle, uint8_t type, uint16_
         break;
     }
 
-    /* ¼ì²é·¢ËÍÊÇ·ñÊ§°Ü */
+    /* æ£€æŸ¥å‘é€æ˜¯å¦å¤±è´¥ */
     if (ret != AM_OK) {
         return ret;
     }
 
-    /* µÈ´ı²âÁ¿Íê³É */
+    /* ç­‰å¾…æµ‹é‡å®Œæˆ */
     am_mdelay(100);
 
-    /* ¶ÁÈ¡²âÁ¿Êı¾İ */
+    /* è¯»å–æµ‹é‡æ•°æ® */
     ret = am_i2c_read(p_i2c_dev,
-                      0,            //ÎŞ×ÓµØÖ·
+                      0,            //æ— å­åœ°å€
                       temp_value,
                       3);
 
-    /* ¼ì²é¶ÁÈ¡ÊÇ·ñÊ§°Ü */
+    /* æ£€æŸ¥è¯»å–æ˜¯å¦å¤±è´¥ */
     if (ret != AM_OK) {
         return ret;
     }
 
-    /* Êä³öÎÂ¶È */
+    /* è¾“å‡ºæ¸©åº¦ */
     *p_measurand = temp_value[0] * 256 + temp_value[1];
 
-    /* ÑéÖ¤Ğ£ÑéºÍ */
+    /* éªŒè¯æ ¡éªŒå’Œ */
     ret = __sht20_check_crc(temp_value, 2, temp_value[2]);
 
     return ret;
 }
 
 /**
- * \brief SHT20´«¸ĞÆ÷¶ÁÈ¡ÎÂ¶È
+ * \brief SHT20ä¼ æ„Ÿå™¨è¯»å–æ¸©åº¦
  */
 int am_sht20_temperature_read (am_sht20_handle_t handle, float *p_temperature)
 {
     int      ret = AM_OK;
     uint16_t s_t;
 
-    /* ÑéÖ¤²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* éªŒè¯å‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == handle) {
         return -AM_EINVAL;
     }
@@ -184,14 +184,14 @@ int am_sht20_temperature_read (am_sht20_handle_t handle, float *p_temperature)
 }
 
 /**
- * \brief SHT20´«¸ĞÆ÷¶ÁÈ¡Êª¶È
+ * \brief SHT20ä¼ æ„Ÿå™¨è¯»å–æ¹¿åº¦
  */
 int am_sht20_humidity_read (am_sht20_handle_t handle, float *p_humidity)
 {
     int      ret = AM_OK;
     uint16_t s_rh;
 
-    /* ÑéÖ¤²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* éªŒè¯å‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == handle) {
         return -AM_EINVAL;
     }
@@ -207,57 +207,57 @@ int am_sht20_humidity_read (am_sht20_handle_t handle, float *p_humidity)
 }
 
 /**
- * \brief SHT20´«¸ĞÆ÷Èí¼ş¸´Î»
+ * \brief SHT20ä¼ æ„Ÿå™¨è½¯ä»¶å¤ä½
  */
 int am_sht20_soft_reset (am_sht20_handle_t handle)
 {
     int     ret;
     uint8_t soft_reset_cmd = SOFT_RESET;
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = NULL;
 
-    /* ÑéÖ¤²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* éªŒè¯å‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == handle) {
         return -AM_EINVAL;
     }
 
-    /* ´ÓhandleÖĞ»ñÈ¡i2cÉè±¸Ö¸Õë */
+    /* ä»handleä¸­è·å–i2cè®¾å¤‡æŒ‡é’ˆ */
     p_i2c_dev = &(handle->i2c_dev);
 
-    /* Ğ´¸´Î»Ö¸Áî */
+    /* å†™å¤ä½æŒ‡ä»¤ */
     ret = am_i2c_write(p_i2c_dev,
-                       0,              //ÎŞ×ÓµØÖ·
+                       0,              //æ— å­åœ°å€
                        &soft_reset_cmd,
                        1);
 
-    /* ĞèÒª15ms´ïµ½¿ÕÏĞ×´Ì¬ */
+    /* éœ€è¦15msè¾¾åˆ°ç©ºé—²çŠ¶æ€ */
     am_mdelay(20);
 
     return ret;
 }
 
 /**
- * \brief SHT20´«¸ĞÆ÷³õÊ¼»¯
+ * \brief SHT20ä¼ æ„Ÿå™¨åˆå§‹åŒ–
  */
 am_sht20_handle_t am_sht20_init (am_sht20_dev_t *p_dev, am_i2c_handle_t i2c_handle)
 {
-    /* ÑéÖ¤²ÎÊıÓĞĞ§ĞÔ */
+    /* éªŒè¯å‚æ•°æœ‰æ•ˆæ€§ */
     if (NULL == p_dev || NULL == i2c_handle) {
         return NULL;
     }
 
-    /* ³õÊ¼ÅäÖÃºÃsht20Éè±¸ĞÅÏ¢ */
+    /* åˆå§‹é…ç½®å¥½sht20è®¾å¤‡ä¿¡æ¯ */
     am_i2c_mkdev(&(p_dev->i2c_dev),
                  i2c_handle,
                  SHT20_DEVICE_ADDR,
-                 AM_I2C_ADDR_7BIT | AM_I2C_SUBADDR_NONE);   //ÎŞ×ÓµØÖ·
+                 AM_I2C_ADDR_7BIT | AM_I2C_SUBADDR_NONE);   //æ— å­åœ°å€
 
     return p_dev;
 }
 
 /**
- * \brief SHT20 Éè±¸½â³õÊ¼»¯
+ * \brief SHT20 è®¾å¤‡è§£åˆå§‹åŒ–
  */
 void am_sht20_deinit (am_sht20_handle_t handle)
 {

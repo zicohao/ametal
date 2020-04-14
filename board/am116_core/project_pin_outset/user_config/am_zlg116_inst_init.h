@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief ZLG116 ÍâÉèÊµÀı³õÊ¼»¯º¯ÊıÉùÃ÷
+ * \brief ZLG116 å¤–è®¾å®ä¾‹åˆå§‹åŒ–å‡½æ•°å£°æ˜
  *
- * ËùÓĞÍâÉèÉè±¸£¨I2C¡¢SPI¡¢ADC...£©µÄÊµÀı³õÊ¼»¯º¯Êı¾ùÔÚ±¾Í·ÎÄ¼şÖĞÉùÃ÷£¬Ê¹ÓÃÊµÀı
- * ³õÊ¼»¯º¯Êı£¬¿ÉÒÔÇáËÉ»ñµÃÒ»¸öÍâÉèµÄ¾ä±ú£¬È»ºóÊ¹ÓÃÏà¹ØµÄ½Ó¿Úº¯Êı¶ÔÍâÉè½øĞĞ²Ù×÷¡£
+ * æ‰€æœ‰å¤–è®¾è®¾å¤‡ï¼ˆI2Cã€SPIã€ADC...ï¼‰çš„å®ä¾‹åˆå§‹åŒ–å‡½æ•°å‡åœ¨æœ¬å¤´æ–‡ä»¶ä¸­å£°æ˜ï¼Œä½¿ç”¨å®ä¾‹
+ * åˆå§‹åŒ–å‡½æ•°ï¼Œå¯ä»¥è½»æ¾è·å¾—ä¸€ä¸ªå¤–è®¾çš„å¥æŸ„ï¼Œç„¶åä½¿ç”¨ç›¸å…³çš„æ¥å£å‡½æ•°å¯¹å¤–è®¾è¿›è¡Œæ“ä½œã€‚
  *
  * \sa am_zlg116_inst_init.h
  * \internal
@@ -61,698 +61,698 @@
  */
 
 /**
- * \brief ÖĞ¶ÏÊµÀı³õÊ¼»¯£¬³õÊ¼»¯ÖĞ¶ÏÇı¶¯
+ * \brief ä¸­æ–­å®ä¾‹åˆå§‹åŒ–ï¼Œåˆå§‹åŒ–ä¸­æ–­é©±åŠ¨
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ·µ»Ø AW_OK Îª³õÊ¼»¯³É¹¦£¬ÆäËüÎª³õÊ¼»¯Ê§°Ü
+ * \return è¿”å› AW_OK ä¸ºåˆå§‹åŒ–æˆåŠŸï¼Œå…¶å®ƒä¸ºåˆå§‹åŒ–å¤±è´¥
  */
 int am_zlg116_nvic_inst_init (void);
 
 /**
- * \brief ÖĞ¶ÏÊµÀı½â³õÊ¼»¯
+ * \brief ä¸­æ–­å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg116_nvic_inst_deinit (void);
 
 /**
- * \brief ADC ÊµÀı³õÊ¼»¯£¬»ñµÃ ADC ±ê×¼·şÎñ¾ä±ú
+ * \brief ADC å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— ADC æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ADC ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return ADC æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_adc_handle_t am_zlg116_adc_inst_init (void);
 
 /**
- * \brief ADC ÊµÀı½â³õÊ¼»¯
+ * \brief ADC å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zlg116_adc_inst_init() º¯Êı»ñµÃµÄ ADC ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zlg116_adc_inst_init() å‡½æ•°è·å¾—çš„ ADC æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg116_adc_inst_deinit (am_adc_handle_t handle);
 
 /**
- * \brief CLK ÊµÀı³õÊ¼»¯£¬³õÊ¼»¯ÏµÍ³Ê±ÖÓ
+ * \brief CLK å®ä¾‹åˆå§‹åŒ–ï¼Œåˆå§‹åŒ–ç³»ç»Ÿæ—¶é’Ÿ
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ·µ»Ø AW_OK Îª³õÊ¼»¯³É¹¦£¬ÆäËüÎª³õÊ¼»¯Ê§°Ü
+ * \return è¿”å› AW_OK ä¸ºåˆå§‹åŒ–æˆåŠŸï¼Œå…¶å®ƒä¸ºåˆå§‹åŒ–å¤±è´¥
  */
 int am_zlg116_clk_inst_init (void);
 
 /**
- * \brief DMA ÊµÀı³õÊ¼»¯
+ * \brief DMA å®ä¾‹åˆå§‹åŒ–
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ·µ»Ø AW_OK Îª³õÊ¼»¯³É¹¦£¬ÆäËüÎª³õÊ¼»¯Ê§°Ü
+ * \return è¿”å› AW_OK ä¸ºåˆå§‹åŒ–æˆåŠŸï¼Œå…¶å®ƒä¸ºåˆå§‹åŒ–å¤±è´¥
  */
 int am_zlg116_dma_inst_init (void);
 
 /**
- * \brief DMA ÊµÀı½â³õÊ¼»¯
+ * \brief DMA å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg116_dma_inst_deinit (void);
 
 /**
- * \brief GPIO ÊµÀı³õÊ¼»¯
+ * \brief GPIO å®ä¾‹åˆå§‹åŒ–
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ·µ»Ø AW_OK Îª³õÊ¼»¯³É¹¦£¬ÆäËüÎª³õÊ¼»¯Ê§°Ü
+ * \return è¿”å› AW_OK ä¸ºåˆå§‹åŒ–æˆåŠŸï¼Œå…¶å®ƒä¸ºåˆå§‹åŒ–å¤±è´¥
  */
 int am_zlg116_gpio_inst_init (void);
 
 /**
- * \brief GPIO ÊµÀı½â³õÊ¼»¯
+ * \brief GPIO å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg116_gpio_inst_deinit (void);
 
 /**
- * \brief I2C1 ÊµÀı³õÊ¼»¯£¬»ñµÃ I2C ±ê×¼·şÎñ¾ä±ú
+ * \brief I2C1 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— I2C æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return I2C ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return I2C æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_i2c_handle_t am_zlg116_i2c1_inst_init (void);
 
 /**
- * \brief I2C1 ÊµÀı½â³õÊ¼»¯
+ * \brief I2C1 å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zlg116_i2c1_inst_init() º¯Êı»ñµÃµÄ I2C ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zlg116_i2c1_inst_init() å‡½æ•°è·å¾—çš„ I2C æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg116_i2c1_inst_deinit (am_i2c_handle_t handle);
 
 /**
- * \brief I2C1 ´Ó»úÊµÀı³õÊ¼»¯£¬»ñµÃ I2C ´Ó»ú±ê×¼·şÎñ¾ä±ú
+ * \brief I2C1 ä»æœºå®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— I2C ä»æœºæ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return I2C ´Ó»ú±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return I2C ä»æœºæ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_i2c_slv_handle_t  am_zlg116_i2c1_slv_inst_init (void);
 
 /**
- * \brief I2C1 ´Ó»úÊµÀı½â³õÊ¼»¯
+ * \brief I2C1 ä»æœºå®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zlg116_i2c1_slv_inst_init() º¯Êı
- *                   »ñµÃµÄ I2C ´Ó»ú±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zlg116_i2c1_slv_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ I2C ä»æœºæ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg116_i2c1_slv_inst_deinit (am_i2c_slv_handle_t handle);
 
 /**
- * \brief IWDT ÊµÀı³õÊ¼»¯£¬»ñµÃ WDT ±ê×¼·şÎñ¾ä±ú
+ * \brief IWDT å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— WDT æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return WDT ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return WDT æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_wdt_handle_t am_zlg116_iwdg_inst_init (void);
 
 /**
- * \brief IWDT ÊµÀı½â³õÊ¼»¯
+ * \brief IWDT å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zlg116_iwdg_inst_init() º¯Êı»ñµÃµÄ WDT ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zlg116_iwdg_inst_init() å‡½æ•°è·å¾—çš„ WDT æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg116_iwdg_inst_deinit (am_wdt_handle_t handle);
 
 /**
- * \brief PWR ÊµÀı³õÊ¼»¯
+ * \brief PWR å®ä¾‹åˆå§‹åŒ–
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return PWR ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return PWR æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_zlg116_pwr_handle_t am_zlg116_pwr_inst_init (void);
 
 /**
- * \brief PWR ÊµÀı½â³õÊ¼»¯
+ * \brief PWR å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg116_pwr_inst_deinit (void);
 
 /**
- * \brief SPI1 DMA ÊµÀı³õÊ¼»¯£¬»ñµÃ SPI ±ê×¼·şÎñ¾ä±ú
+ * \brief SPI1 DMA å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— SPI æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return SPI ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return SPI æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_spi_handle_t am_zlg116_spi1_dma_inst_init (void);
 
 /**
- * \brief SPI1 DMA ÊµÀı½â³õÊ¼»¯
+ * \brief SPI1 DMA å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zlg116_spi1_dma_inst_init() º¯Êı
- *                   »ñµÃµÄ SPI ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zlg116_spi1_dma_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ SPI æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg116_spi1_dma_inst_deinit (am_spi_handle_t handle);
 
 /**
- * \brief SPI2 DMA ÊµÀı³õÊ¼»¯£¬»ñµÃ SPI ±ê×¼·şÎñ¾ä±ú
+ * \brief SPI2 DMA å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— SPI æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return SPI ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return SPI æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_spi_handle_t am_zlg116_spi2_dma_inst_init (void);
 
 /**
- * \brief SPI2 DMA ÊµÀı½â³õÊ¼»¯
+ * \brief SPI2 DMA å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zlg116_spi2_dma_inst_init() º¯Êı
- *                   »ñµÃµÄ SPI ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zlg116_spi2_dma_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ SPI æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg116_spi2_dma_inst_deinit (am_spi_handle_t handle);
 
 /**
- * \brief SPI1 INT ÊµÀı³õÊ¼»¯£¬»ñµÃ SPI ±ê×¼·şÎñ¾ä±ú
+ * \brief SPI1 INT å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— SPI æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return SPI ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return SPI æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_spi_handle_t am_zlg116_spi1_int_inst_init (void);
 
 /**
- * \brief SPI1 INT ÊµÀı½â³õÊ¼»¯
+ * \brief SPI1 INT å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zlg116_spi1_int_inst_init() º¯Êı
- *                   »ñµÃµÄ SPI ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zlg116_spi1_int_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ SPI æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg116_spi1_int_inst_deinit (am_spi_handle_t handle);
 
 /**
- * \brief SPI2 INT ÊµÀı³õÊ¼»¯£¬»ñµÃ SPI ±ê×¼·şÎñ¾ä±ú
+ * \brief SPI2 INT å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— SPI æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return SPI ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return SPI æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_spi_handle_t am_zlg116_spi2_int_inst_init (void);
 
 /**
- * \brief SPI2 INT ÊµÀı½â³õÊ¼»¯
+ * \brief SPI2 INT å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zlg116_spi2_int_inst_init() º¯Êı
- *                   »ñµÃµÄ SPI ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zlg116_spi2_int_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ SPI æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg116_spi2_int_inst_deinit (am_spi_handle_t handle);
 
 /**
- * \brief SPI1 ´Ó»úÊµÀı³õÊ¼»¯£¬»ñµÃ SPI ´Ó»ú±ê×¼·şÎñ¾ä±ú
+ * \brief SPI1 ä»æœºå®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— SPI ä»æœºæ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return SPI ´Ó»ú±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return SPI ä»æœºæ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_spi_slv_handle_t am_zlg116_spi1_slv_dma_inst_init (void);
 
 /**
- * \brief SPI1 ´Ó»úÊµÀı½â³õÊ¼»¯
+ * \brief SPI1 ä»æœºå®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zlg116_spi1_slv_dma_inst_init() º¯Êı
- *                   »ñµÃµÄ SPI ´Ó»ú±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zlg116_spi1_slv_dma_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ SPI ä»æœºæ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg116_spi1_slv_dma_inst_deinit (am_spi_slv_handle_t handle);
 
 /**
- * \brief SPI1 ´Ó»úÊµÀı³õÊ¼»¯£¬»ñµÃ SPI ´Ó»ú±ê×¼·şÎñ¾ä±ú
+ * \brief SPI1 ä»æœºå®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— SPI ä»æœºæ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return SPI ´Ó»ú±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return SPI ä»æœºæ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_spi_slv_handle_t am_zlg116_spi2_slv_dma_inst_init (void);
 
 /**
- * \brief SPI1 ´Ó»úÊµÀı½â³õÊ¼»¯
+ * \brief SPI1 ä»æœºå®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zlg116_spi2_slv_dma_inst_init() º¯Êı
- *                   »ñµÃµÄ SPI ´Ó»ú±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zlg116_spi2_slv_dma_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ SPI ä»æœºæ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg116_spi2_slv_dma_inst_deinit (am_spi_slv_handle_t handle);
 
 /**
- * \brief SYSTICK ÊµÀı³õÊ¼»¯£¬»ñµÃ TIMER ±ê×¼·şÎñ¾ä±ú
+ * \brief SYSTICK å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— TIMER æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return TIMER ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return TIMER æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_timer_handle_t am_zlg116_systick_inst_init (void);
 
 /**
- * \brief SYSTICK ÊµÀı½â³õÊ¼»¯
+ * \brief SYSTICK å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zlg116_systick_inst_init() º¯Êı
- *                   »ñµÃµÄ TIMER ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zlg116_systick_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ TIMER æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg116_systick_inst_deinit (am_timer_handle_t handle);
 
 /**
- * \brief TIM1 CAP ÊµÀı³õÊ¼»¯£¬»ñµÃ CAP ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM1 CAP å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— CAP æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return CAP ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return CAP æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_cap_handle_t am_zlg116_tim1_cap_inst_init (void);
 
 /**
- * \brief TIM1 CAP ÊµÀı½â³õÊ¼»¯
+ * \brief TIM1 CAP å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zlg116_tim1_cap_inst_init() º¯Êı
- *                   »ñµÃµÄ CAP ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zlg116_tim1_cap_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ CAP æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg116_tim1_cap_inst_deinit (am_cap_handle_t handle);
 
 /**
- * \brief TIM2 CAP ÊµÀı³õÊ¼»¯£¬»ñµÃ CAP ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM2 CAP å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— CAP æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return CAP ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return CAP æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_cap_handle_t am_zlg116_tim2_cap_inst_init (void);
 
 /**
- * \brief TIM2 CAP ÊµÀı½â³õÊ¼»¯
+ * \brief TIM2 CAP å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zlg116_tim2_cap_inst_init() º¯Êı
- *                   »ñµÃµÄ CAP ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zlg116_tim2_cap_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ CAP æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg116_tim2_cap_inst_deinit (am_cap_handle_t handle);
 
 /**
- * \brief TIM3 CAP ÊµÀı³õÊ¼»¯£¬»ñµÃ CAP ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM3 CAP å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— CAP æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return CAP ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return CAP æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_cap_handle_t am_zlg116_tim3_cap_inst_init (void);
 
 /**
- * \brief TIM3 CAP ÊµÀı½â³õÊ¼»¯
+ * \brief TIM3 CAP å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zlg116_tim3_cap_inst_init() º¯Êı
- *                   »ñµÃµÄ CAP ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zlg116_tim3_cap_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ CAP æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg116_tim3_cap_inst_deinit (am_cap_handle_t handle);
 
 /**
- * \brief TIM14 CAP ÊµÀı³õÊ¼»¯£¬»ñµÃ CAP ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM14 CAP å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— CAP æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return CAP ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return CAP æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_cap_handle_t am_zlg116_tim14_cap_inst_init (void);
 
 /**
- * \brief TIM14 CAP ÊµÀı½â³õÊ¼»¯
+ * \brief TIM14 CAP å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zlg116_tim14_cap_inst_init() º¯Êı
- *                   »ñµÃµÄ CAP ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zlg116_tim14_cap_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ CAP æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg116_tim14_cap_inst_deinit (am_cap_handle_t handle);
 
 /**
- * \brief TIM16 CAP ÊµÀı³õÊ¼»¯£¬»ñµÃ CAP ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM16 CAP å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— CAP æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return CAP ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return CAP æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_cap_handle_t am_zlg116_tim16_cap_inst_init (void);
 
 /**
- * \brief TIM16 CAP ÊµÀı½â³õÊ¼»¯
+ * \brief TIM16 CAP å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zlg116_tim16_cap_inst_init() º¯Êı
- *                   »ñµÃµÄ CAP ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zlg116_tim16_cap_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ CAP æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg116_tim16_cap_inst_deinit (am_cap_handle_t handle);
 
 /**
- * \brief TIM17 CAP ÊµÀı³õÊ¼»¯£¬»ñµÃ CAP ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM17 CAP å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— CAP æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return CAP ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return CAP æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_cap_handle_t am_zlg116_tim17_cap_inst_init (void);
 
 /**
- * \brief TIM17 CAP ÊµÀı½â³õÊ¼»¯
+ * \brief TIM17 CAP å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zlg116_tim17_cap_inst_init() º¯Êı
- *                   »ñµÃµÄ CAP ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zlg116_tim17_cap_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ CAP æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg116_tim17_cap_inst_deinit (am_cap_handle_t handle);
 
 /**
- * \brief TIM1 PWM ÊµÀı³õÊ¼»¯£¬»ñµÃ PWM ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM1 PWM å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— PWM æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return PWM ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return PWM æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_pwm_handle_t am_zlg116_tim1_pwm_inst_init (void);
 
 /**
- * \brief TIM1 PWM ÊµÀı½â³õÊ¼»¯
+ * \brief TIM1 PWM å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zlg116_tim1_pwm_inst_init() º¯Êı
- *                   »ñµÃµÄ PWM ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zlg116_tim1_pwm_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ PWM æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg116_tim1_pwm_inst_deinit (am_pwm_handle_t handle);
 
 /**
- * \brief TIM2 PWM ÊµÀı³õÊ¼»¯£¬»ñµÃ PWM ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM2 PWM å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— PWM æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return PWM ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return PWM æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_pwm_handle_t am_zlg116_tim2_pwm_inst_init (void);
 
 /**
- * \brief TIM2 PWM ÊµÀı½â³õÊ¼»¯
+ * \brief TIM2 PWM å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zlg116_tim2_pwm_inst_init() º¯Êı
- *                   »ñµÃµÄ PWM ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zlg116_tim2_pwm_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ PWM æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg116_tim2_pwm_inst_deinit (am_pwm_handle_t handle);
 
 /**
- * \brief TIM3 PWM ÊµÀı³õÊ¼»¯£¬»ñµÃ PWM ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM3 PWM å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— PWM æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return PWM ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return PWM æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_pwm_handle_t am_zlg116_tim3_pwm_inst_init (void);
 
 /**
- * \brief TIM3 PWM ÊµÀı½â³õÊ¼»¯
+ * \brief TIM3 PWM å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zlg116_tim3_pwm_inst_init() º¯Êı
- *                   »ñµÃµÄ PWM ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zlg116_tim3_pwm_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ PWM æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg116_tim3_pwm_inst_deinit (am_pwm_handle_t handle);
 
 /**
- * \brief TIM14 PWM ÊµÀı³õÊ¼»¯£¬»ñµÃ PWM ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM14 PWM å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— PWM æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return PWM ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return PWM æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_pwm_handle_t am_zlg116_tim14_pwm_inst_init (void);
 
 /**
- * \brief TIM14 PWM ÊµÀı½â³õÊ¼»¯
+ * \brief TIM14 PWM å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zlg116_tim14_pwm_inst_init() º¯Êı
- *                   »ñµÃµÄ PWM ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zlg116_tim14_pwm_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ PWM æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg116_tim14_pwm_inst_deinit (am_pwm_handle_t handle);
 
 /**
- * \brief TIM16 PWM ÊµÀı³õÊ¼»¯£¬»ñµÃ PWM ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM16 PWM å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— PWM æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return PWM ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return PWM æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_pwm_handle_t am_zlg116_tim16_pwm_inst_init (void);
 
 /**
- * \brief TIM16 PWM ÊµÀı½â³õÊ¼»¯
+ * \brief TIM16 PWM å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zlg116_tim16_pwm_inst_init() º¯Êı
- *                   »ñµÃµÄ PWM ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zlg116_tim16_pwm_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ PWM æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg116_tim16_pwm_inst_deinit (am_pwm_handle_t handle);
 
 /**
- * \brief TIM17 PWM ÊµÀı³õÊ¼»¯£¬»ñµÃ PWM ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM17 PWM å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— PWM æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return PWM ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return PWM æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_pwm_handle_t am_zlg116_tim17_pwm_inst_init (void);
 
 /**
- * \brief TIM17 PWM ÊµÀı½â³õÊ¼»¯
+ * \brief TIM17 PWM å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zlg116_tim17_pwm_inst_init() º¯Êı
- *                   »ñµÃµÄ PWM ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zlg116_tim17_pwm_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ PWM æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg116_tim17_pwm_inst_deinit (am_pwm_handle_t handle);
 
 /**
- * \brief TIM1 TIMING ÊµÀı³õÊ¼»¯£¬»ñµÃ TIMER ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM1 TIMING å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— TIMER æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return PWM ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return PWM æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_timer_handle_t am_zlg116_tim1_timing_inst_init (void);
 
 /**
- * \brief TIM1 TIMING ÊµÀı½â³õÊ¼»¯
+ * \brief TIM1 TIMING å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zlg116_tim1_timing_inst_init() º¯Êı
- *                   »ñµÃµÄ TIMER ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zlg116_tim1_timing_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ TIMER æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg116_tim1_timing_inst_deinit (am_timer_handle_t handle);
 
 /**
- * \brief TIM2 TIMING ÊµÀı³õÊ¼»¯£¬»ñµÃ TIMER ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM2 TIMING å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— TIMER æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return PWM ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return PWM æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_timer_handle_t am_zlg116_tim2_timing_inst_init (void);
 
 /**
- * \brief TIM2 TIMING ÊµÀı½â³õÊ¼»¯
+ * \brief TIM2 TIMING å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zlg116_tim2_timing_inst_init() º¯Êı
- *                   »ñµÃµÄ TIMER ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zlg116_tim2_timing_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ TIMER æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg116_tim2_timing_inst_deinit (am_timer_handle_t handle);
 
 /**
- * \brief TIM3 TIMING ÊµÀı³õÊ¼»¯£¬»ñµÃ TIMER ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM3 TIMING å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— TIMER æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return PWM ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return PWM æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_timer_handle_t am_zlg116_tim3_timing_inst_init (void);
 
 /**
- * \brief TIM3 TIMING ÊµÀı½â³õÊ¼»¯
+ * \brief TIM3 TIMING å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zlg116_tim3_timing_inst_init() º¯Êı
- *                   »ñµÃµÄ TIMER ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zlg116_tim3_timing_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ TIMER æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg116_tim3_timing_inst_deinit (am_timer_handle_t handle);
 
 /**
- * \brief TIM14 TIMING ÊµÀı³õÊ¼»¯£¬»ñµÃ TIMER ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM14 TIMING å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— TIMER æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return PWM ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return PWM æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_timer_handle_t am_zlg116_tim14_timing_inst_init (void);
 
 /**
- * \brief TIM14 TIMING ÊµÀı½â³õÊ¼»¯
+ * \brief TIM14 TIMING å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zlg116_tim14_timing_inst_init() º¯Êı
- *                   »ñµÃµÄ TIMER ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zlg116_tim14_timing_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ TIMER æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg116_tim14_timing_inst_deinit (am_timer_handle_t handle);
 
 /**
- * \brief TIM16 TIMING ÊµÀı³õÊ¼»¯£¬»ñµÃ TIMER ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM16 TIMING å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— TIMER æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return PWM ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return PWM æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_timer_handle_t am_zlg116_tim16_timing_inst_init (void);
 
 /**
- * \brief TIM16 TIMING ÊµÀı½â³õÊ¼»¯
+ * \brief TIM16 TIMING å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zlg116_tim16_timing_inst_init() º¯Êı
- *                   »ñµÃµÄ TIMER ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zlg116_tim16_timing_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ TIMER æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg116_tim16_timing_inst_deinit (am_timer_handle_t handle);
 
 /**
- * \brief TIM17 TIMING ÊµÀı³õÊ¼»¯£¬»ñµÃ TIMER ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM17 TIMING å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— TIMER æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return PWM ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return PWM æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_timer_handle_t am_zlg116_tim17_timing_inst_init (void);
 
 /**
- * \brief TIM17 TIMING ÊµÀı½â³õÊ¼»¯
+ * \brief TIM17 TIMING å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zlg116_tim17_timing_inst_init() º¯Êı
- *                   »ñµÃµÄ TIMER ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zlg116_tim17_timing_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ TIMER æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg116_tim17_timing_inst_deinit (am_timer_handle_t handle);
 
 /**
- * \brief UART1 ÊµÀı³õÊ¼»¯£¬»ñµÃ UART ±ê×¼·şÎñ¾ä±ú
+ * \brief UART1 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— UART æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return UART ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return UART æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_uart_handle_t am_zlg116_uart1_inst_init (void);
 
 /**
- * \brief UART1 ÊµÀı½â³õÊ¼»¯
+ * \brief UART1 å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zlg116_uart1_inst_init() º¯Êı»ñµÃµÄ UART ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zlg116_uart1_inst_init() å‡½æ•°è·å¾—çš„ UART æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg116_uart1_inst_deinit (am_uart_handle_t handle);
 
 /**
- * \brief UART2 ÊµÀı³õÊ¼»¯£¬»ñµÃ UART ±ê×¼·şÎñ¾ä±ú
+ * \brief UART2 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— UART æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return UART ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return UART æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_uart_handle_t am_zlg116_uart2_inst_init (void);
 
 /**
- * \brief UART2 ÊµÀı½â³õÊ¼»¯
+ * \brief UART2 å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zlg116_uart2_inst_init() º¯Êı»ñµÃµÄ UART ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zlg116_uart2_inst_init() å‡½æ•°è·å¾—çš„ UART æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg116_uart2_inst_deinit (am_uart_handle_t handle);
 
 /**
- * \brief WWDG ÊµÀı³õÊ¼»¯£¬»ñµÃ WDT ±ê×¼·şÎñ¾ä±ú
+ * \brief WWDG å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— WDT æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return WDT ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return WDT æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_wdt_handle_t am_zlg116_wwdg_inst_init (void);
 
 /**
- * \brief WWDG ÊµÀı½â³õÊ¼»¯
+ * \brief WWDG å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zlg116_wwdg_inst_init() º¯Êı»ñµÃµÄ WDT ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zlg116_wwdg_inst_init() å‡½æ•°è·å¾—çš„ WDT æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg116_wwdg_inst_deinit (am_wdt_handle_t handle);
 
 /**
- * \brief SPI0 ÊµÀı³õÊ¼»¯£¬»ñµÃSPI±ê×¼·şÎñ¾ä±ú(POLL·½Ê½)
- * \return SPI0¾ä±úÖµ£¬ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief SPI0 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—SPIæ ‡å‡†æœåŠ¡å¥æŸ„(POLLæ–¹å¼)
+ * \return SPI0å¥æŸ„å€¼ï¼Œè‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_spi_handle_t am_zlg116_spi1_poll_inst_init (void);
 
 /**
- * \brief SPI0 ÊµÀı½â³õÊ¼»¯(POLL·½Ê½)
- * \param[in] handle : Í¨¹ı am_zlg116_spi0_poll_inst_init() º¯Êı»ñµÃµÄSPI0¾ä±ú
- * \retval ÎŞ
+ * \brief SPI0 å®ä¾‹è§£åˆå§‹åŒ–(POLLæ–¹å¼)
+ * \param[in] handle : é€šè¿‡ am_zlg116_spi0_poll_inst_init() å‡½æ•°è·å¾—çš„SPI0å¥æŸ„
+ * \retval æ— 
  */
 void am_zlg116_spi1_poll_inst_deinit (am_spi_handle_t handle);
 

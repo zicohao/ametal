@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief LPC82X SPI ÓÃ»§ÅäÖÃÊµÏÖ
+ * \brief LPC82X SPI ç”¨æˆ·é…ç½®å®ç°
  * \sa am_hwconf_lpc82x_spi1_dma.c
  *
  * \internal
@@ -36,55 +36,55 @@
  * @{
  */
 
-/** \brief SPI1 Æ½Ì¨³õÊ¼»¯ */
+/** \brief SPI1 å¹³å°åˆå§‹åŒ– */
 static void __lpc82x_spi1_plfm_init (void)
 {
 
-    /* SPI1 Òı½ÅÅäÖÃ */
+    /* SPI1 å¼•è„šé…ç½® */
     am_gpio_pin_cfg(PIO0_11, PIO_FUNC_SPI1_SCK);
     am_gpio_pin_cfg(PIO0_10, PIO_FUNC_SPI1_MOSI);
     am_gpio_pin_cfg(PIO0_9, PIO_FUNC_SPI1_MISO);
 
-    /* CS_Pin ÓÉÓÃ»§µ÷ÓÃSTDº¯ÊıÊ±×ÔĞĞ´«Èë£¬´Ë´¦²»ĞèÉèÖÃ */
+    /* CS_Pin ç”±ç”¨æˆ·è°ƒç”¨STDå‡½æ•°æ—¶è‡ªè¡Œä¼ å…¥ï¼Œæ­¤å¤„ä¸éœ€è®¾ç½® */
 
-    /* Ê¹ÄÜ SPI1 Ê±ÖÓ */
+    /* ä½¿èƒ½ SPI1 æ—¶é’Ÿ */
     amhw_lpc82x_clk_periph_enable(AMHW_LPC82X_CLK_SPI1);
     amhw_lpc82x_syscon_periph_reset(AMHW_LPC82X_RESET_SPI1);
 }
 
-/** \brief ½â³ıSPI1 Æ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤SPI1 å¹³å°åˆå§‹åŒ– */
 static void __lpc82x_spi1_plfm_deinit (void)
 {
-    /* ½ûÄÜ SPI1 Ê±ÖÓ */
+    /* ç¦èƒ½ SPI1 æ—¶é’Ÿ */
     amhw_lpc82x_syscon_periph_reset(AMHW_LPC82X_RESET_SPI1);
     amhw_lpc82x_clk_periph_disable(AMHW_LPC82X_CLK_SPI1);
 }
 
 /**
- * \brief SPI1 Éè±¸ĞÅÏ¢
+ * \brief SPI1 è®¾å¤‡ä¿¡æ¯
  */
 static const struct am_lpc82x_spi_dma_devinfo __g_spi1_devinfo = {
-    LPC82X_SPI1_BASE,               /**< \brief SPI1¼Ä´æÆ÷¿éµÄ»ùµØÖ· */
+    LPC82X_SPI1_BASE,               /**< \brief SPI1å¯„å­˜å™¨å—çš„åŸºåœ°å€ */
     CLK_SPI1,                       /**< \brief SPI0 clk id */
-    DMA_CHAN_SPI1_TX_REQ,           /**< \brief DMA·¢ËÍÍ¨µÀ */
-    DMA_CHAN_SPI1_RX_REQ,           /**< \brief DMA½ÓÊÕÍ¨µÀ */
-    AMHW_LPC82X_DMA_CHAN_PRIO_3,    /**< \brief ·¢ËÍÓÅÏÈ¼¶ */
-    AMHW_LPC82X_DMA_CHAN_PRIO_2,    /**< \brief ½ÓÊÕÓÅÏÈ¼¶ */
+    DMA_CHAN_SPI1_TX_REQ,           /**< \brief DMAå‘é€é€šé“ */
+    DMA_CHAN_SPI1_RX_REQ,           /**< \brief DMAæ¥æ”¶é€šé“ */
+    AMHW_LPC82X_DMA_CHAN_PRIO_3,    /**< \brief å‘é€ä¼˜å…ˆçº§ */
+    AMHW_LPC82X_DMA_CHAN_PRIO_2,    /**< \brief æ¥æ”¶ä¼˜å…ˆçº§ */
 
-    __lpc82x_spi1_plfm_init,        /**< \brief SPI1Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __lpc82x_spi1_plfm_deinit       /**< \brief SPI1Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    __lpc82x_spi1_plfm_init,        /**< \brief SPI1å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __lpc82x_spi1_plfm_deinit       /**< \brief SPI1å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 };
 
-/** \brief SPI1 Éè±¸ÊµÀı */
+/** \brief SPI1 è®¾å¤‡å®ä¾‹ */
 static am_lpc82x_spi_dma_dev_t __g_spi1_dev;
 
-/** \brief SPI1 ÊµÀı³õÊ¼»¯£¬»ñµÃSPI±ê×¼·şÎñ¾ä±ú */
+/** \brief SPI1 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—SPIæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_spi_handle_t am_lpc82x_spi1_dma_inst_init (void)
 {
     return am_lpc82x_spi_dma_init(&__g_spi1_dev, &__g_spi1_devinfo);
 }
 
-/** \brief SPI1 ÊµÀı½â³õÊ¼»¯ */
+/** \brief SPI1 å®ä¾‹è§£åˆå§‹åŒ– */
 void am_lpc82x_spi1_dma_inst_deinit (am_spi_handle_t handle)
 {
     am_lpc82x_spi_dma_deinit(handle);

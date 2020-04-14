@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief TIM ÓÃÓÚ²¶»ñ¹¦ÄÜµÄÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief TIM ç”¨äºæ•è·åŠŸèƒ½çš„ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_zlg217_tim_cap.c
  *
  * \internal
@@ -35,219 +35,219 @@
  */
 
 /*******************************************************************************
-  TIM1 ÅäÖÃ
+  TIM1 é…ç½®
 *******************************************************************************/
 
-/** \brief TIM1ÓÃÓÚ²¶»ñ¹¦ÄÜµÄÆ½Ì¨³õÊ¼»¯ */
+/** \brief TIM1ç”¨äºæ•è·åŠŸèƒ½çš„å¹³å°åˆå§‹åŒ– */
 void __zlg217_plfm_tim1_cap_init (void)
 {
     am_clk_enable(CLK_TIM1);
     am_zlg217_clk_reset(CLK_TIM1);
 }
 
-/** \brief ½â³ıTIM1Æ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤TIM1å¹³å°åˆå§‹åŒ– */
 void __zlg217_plfm_tim1_cap_deinit (void)
 {
     am_zlg217_clk_reset(CLK_TIM1);
     am_clk_disable(CLK_TIM1);
 }
 
-/** \brief TIM1ÓÃÓÚ²¶»ñ¹¦ÄÜµÄÒı½ÅÅäÖÃĞÅÏ¢ÁĞ±í */
+/** \brief TIM1ç”¨äºæ•è·åŠŸèƒ½çš„å¼•è„šé…ç½®ä¿¡æ¯åˆ—è¡¨ */
 am_zlg_tim_cap_ioinfo_t __g_tim1_cap_ioinfo_list[] = {
-    {PIOA_8,  PIOA_8_TIM1_CH1_REMAP0  | PIOA_8_INPUT_FLOAT,  PIOA_8_GPIO  | PIOA_8_INPUT_FLOAT},   /**< \brief Í¨µÀ1 */
-    {PIOA_9,  PIOA_9_TIM1_CH2_REMAP0  | PIOA_9_INPUT_FLOAT,  PIOA_9_GPIO  | PIOA_9_INPUT_FLOAT},   /**< \brief Í¨µÀ2 */
-    {PIOA_10, PIOA_10_TIM1_CH3_REMAP0 | PIOA_10_INPUT_FLOAT, PIOA_10_GPIO | PIOA_10_INPUT_FLOAT},  /**< \brief Í¨µÀ3 */
-    {PIOA_11, PIOA_11_TIM1_CH4_REMAP0 | PIOA_11_INPUT_FLOAT, PIOA_11_GPIO | PIOA_11_INPUT_FLOAT},  /**< \brief Í¨µÀ4 */
+    {PIOA_8,  PIOA_8_TIM1_CH1_REMAP0  | PIOA_8_INPUT_FLOAT,  PIOA_8_GPIO  | PIOA_8_INPUT_FLOAT},   /**< \brief é€šé“1 */
+    {PIOA_9,  PIOA_9_TIM1_CH2_REMAP0  | PIOA_9_INPUT_FLOAT,  PIOA_9_GPIO  | PIOA_9_INPUT_FLOAT},   /**< \brief é€šé“2 */
+    {PIOA_10, PIOA_10_TIM1_CH3_REMAP0 | PIOA_10_INPUT_FLOAT, PIOA_10_GPIO | PIOA_10_INPUT_FLOAT},  /**< \brief é€šé“3 */
+    {PIOA_11, PIOA_11_TIM1_CH4_REMAP0 | PIOA_11_INPUT_FLOAT, PIOA_11_GPIO | PIOA_11_INPUT_FLOAT},  /**< \brief é€šé“4 */
 };
 
-/** \brief TIM1ÓÃÓÚ²¶»ñ¹¦ÄÜµÄÉè±¸ĞÅÏ¢ */
+/** \brief TIM1ç”¨äºæ•è·åŠŸèƒ½çš„è®¾å¤‡ä¿¡æ¯ */
 const am_zlg_tim_cap_devinfo_t  __g_tim1_cap_devinfo = {
-    ZLG217_TIM1_BASE,                   /**< \brief TIM1¼Ä´æÆ÷¿éµÄ»ùµØÖ· */
-    INUM_TIM1_CC,                       /**< \brief TIM1ÖĞ¶Ï±àºÅ */
-    CLK_TIM1,                           /**< \brief TIM1Ê±ÖÓID */
-    4,                                  /**< \brief 4¸ö²¶»ñÍ¨µÀ */
+    ZLG217_TIM1_BASE,                   /**< \brief TIM1å¯„å­˜å™¨å—çš„åŸºåœ°å€ */
+    INUM_TIM1_CC,                       /**< \brief TIM1ä¸­æ–­ç¼–å· */
+    CLK_TIM1,                           /**< \brief TIM1æ—¶é’ŸID */
+    4,                                  /**< \brief 4ä¸ªæ•è·é€šé“ */
     &__g_tim1_cap_ioinfo_list[0],
-    AMHW_ZLG_TIM_TYPE0,              /**< \brief ¶¨Ê±Æ÷ÀàĞÍ */
-    __zlg217_plfm_tim1_cap_init,        /**< \brief Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __zlg217_plfm_tim1_cap_deinit       /**< \brief Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    AMHW_ZLG_TIM_TYPE0,              /**< \brief å®šæ—¶å™¨ç±»å‹ */
+    __zlg217_plfm_tim1_cap_init,        /**< \brief å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __zlg217_plfm_tim1_cap_deinit       /**< \brief å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 };
 
-/** \brief TIM1ÓÃÓÚ²¶»ñ¹¦ÄÜµÄÉè±¸¶¨Òå */
+/** \brief TIM1ç”¨äºæ•è·åŠŸèƒ½çš„è®¾å¤‡å®šä¹‰ */
 am_zlg_tim_cap_dev_t  __g_tim1_cap_dev;
 
-/** \brief tim1 capÊµÀı³õÊ¼»¯£¬»ñµÃcap±ê×¼·şÎñ¾ä±ú */
+/** \brief tim1 capå®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—capæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_cap_handle_t am_zlg217_tim1_cap_inst_init (void)
 {
     return am_zlg_tim_cap_init(&__g_tim1_cap_dev,
                                   &__g_tim1_cap_devinfo);
 }
 
-/** \brief tim1 capÊµÀı½â³õÊ¼»¯ */
+/** \brief tim1 capå®ä¾‹è§£åˆå§‹åŒ– */
 void am_zlg217_tim1_cap_inst_deinit (am_cap_handle_t handle)
 {
     am_zlg_tim_cap_deinit(handle);
 }
 
 /*******************************************************************************
-  TIM2 ÅäÖÃ
+  TIM2 é…ç½®
 *******************************************************************************/
 
-/** \brief TIM2ÓÃÓÚ²¶»ñ¹¦ÄÜµÄÆ½Ì¨³õÊ¼»¯ */
+/** \brief TIM2ç”¨äºæ•è·åŠŸèƒ½çš„å¹³å°åˆå§‹åŒ– */
 void __zlg217_plfm_tim2_cap_init (void)
 {
     am_clk_enable(CLK_TIM2);
     am_zlg217_clk_reset(CLK_TIM2);
 }
 
-/** \brief ½â³ıTIM2Æ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤TIM2å¹³å°åˆå§‹åŒ– */
 void __zlg217_plfm_tim2_cap_deinit (void)
 {
     am_zlg217_clk_reset(CLK_TIM2);
     am_clk_disable(CLK_TIM2);
 }
 
-/** \brief TIM2ÓÃÓÚ²¶»ñ¹¦ÄÜµÄÒı½ÅÅäÖÃĞÅÏ¢ÁĞ±í */
+/** \brief TIM2ç”¨äºæ•è·åŠŸèƒ½çš„å¼•è„šé…ç½®ä¿¡æ¯åˆ—è¡¨ */
 am_zlg_tim_cap_ioinfo_t __g_tim2_cap_ioinfo_list[] = {
-    {PIOA_15, PIOA_15_TIM2_CH1_ETR_REMAP1 | PIOA_15_INPUT_FLOAT, PIOA_15_GPIO | PIOA_15_INPUT_FLOAT},  /**< \brief Í¨µÀ1 */
-    {PIOB_3, PIOB_3_TIM2_CH2_REMAP1       | PIOB_3_INPUT_FLOAT, PIOB_3_GPIO   | PIOB_3_INPUT_FLOAT},   /**< \brief Í¨µÀ2 */
-    {PIOB_10, PIOB_10_TIM2_CH3_REMAP2     | PIOB_10_INPUT_FLOAT, PIOB_10_GPIO | PIOB_10_INPUT_FLOAT},  /**< \brief Í¨µÀ3 */
-    {PIOB_11, PIOB_11_TIM2_CH4_REMAP2     | PIOB_11_INPUT_FLOAT, PIOB_11_GPIO | PIOB_11_INPUT_FLOAT},  /**< \brief Í¨µÀ4 */
+    {PIOA_15, PIOA_15_TIM2_CH1_ETR_REMAP1 | PIOA_15_INPUT_FLOAT, PIOA_15_GPIO | PIOA_15_INPUT_FLOAT},  /**< \brief é€šé“1 */
+    {PIOB_3, PIOB_3_TIM2_CH2_REMAP1       | PIOB_3_INPUT_FLOAT, PIOB_3_GPIO   | PIOB_3_INPUT_FLOAT},   /**< \brief é€šé“2 */
+    {PIOB_10, PIOB_10_TIM2_CH3_REMAP2     | PIOB_10_INPUT_FLOAT, PIOB_10_GPIO | PIOB_10_INPUT_FLOAT},  /**< \brief é€šé“3 */
+    {PIOB_11, PIOB_11_TIM2_CH4_REMAP2     | PIOB_11_INPUT_FLOAT, PIOB_11_GPIO | PIOB_11_INPUT_FLOAT},  /**< \brief é€šé“4 */
 };
 
-/** \brief TIM2ÓÃÓÚ²¶»ñ¹¦ÄÜµÄÉè±¸ĞÅÏ¢ */
+/** \brief TIM2ç”¨äºæ•è·åŠŸèƒ½çš„è®¾å¤‡ä¿¡æ¯ */
 const am_zlg_tim_cap_devinfo_t  __g_tim2_cap_devinfo = {
-    ZLG217_TIM2_BASE,                   /**< \brief TIM2¼Ä´æÆ÷¿éµÄ»ùµØÖ· */
-    INUM_TIM2,                          /**< \brief TIM2ÖĞ¶Ï±àºÅ */
-    CLK_TIM2,                           /**< \brief TIM2Ê±ÖÓID */
-    4,                                  /**< \brief 4¸ö²¶»ñÍ¨µÀ */
+    ZLG217_TIM2_BASE,                   /**< \brief TIM2å¯„å­˜å™¨å—çš„åŸºåœ°å€ */
+    INUM_TIM2,                          /**< \brief TIM2ä¸­æ–­ç¼–å· */
+    CLK_TIM2,                           /**< \brief TIM2æ—¶é’ŸID */
+    4,                                  /**< \brief 4ä¸ªæ•è·é€šé“ */
     &__g_tim2_cap_ioinfo_list[0],
-    AMHW_ZLG_TIM_TYPE1,              /**< \brief ¶¨Ê±Æ÷ÀàĞÍ */
-    __zlg217_plfm_tim2_cap_init,        /**< \brief Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __zlg217_plfm_tim2_cap_deinit       /**< \brief Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    AMHW_ZLG_TIM_TYPE1,              /**< \brief å®šæ—¶å™¨ç±»å‹ */
+    __zlg217_plfm_tim2_cap_init,        /**< \brief å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __zlg217_plfm_tim2_cap_deinit       /**< \brief å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 
 };
 
-/** \brief TIM2ÓÃÓÚ²¶»ñ¹¦ÄÜµÄÉè±¸¶¨Òå */
+/** \brief TIM2ç”¨äºæ•è·åŠŸèƒ½çš„è®¾å¤‡å®šä¹‰ */
 am_zlg_tim_cap_dev_t  __g_tim2_cap_dev;
 
-/** \brief tim2 capÊµÀı³õÊ¼»¯£¬»ñµÃcap±ê×¼·şÎñ¾ä±ú */
+/** \brief tim2 capå®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—capæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_cap_handle_t am_zlg217_tim2_cap_inst_init (void)
 {
     return am_zlg_tim_cap_init(&__g_tim2_cap_dev,
                                   &__g_tim2_cap_devinfo);
 }
 
-/** \brief tim2 capÊµÀı½â³õÊ¼»¯ */
+/** \brief tim2 capå®ä¾‹è§£åˆå§‹åŒ– */
 void am_zlg217_tim2_cap_inst_deinit (am_cap_handle_t handle)
 {
     am_zlg_tim_cap_deinit(handle);
 }
 
 /*******************************************************************************
-  TIM3 ÅäÖÃ
+  TIM3 é…ç½®
 *******************************************************************************/
 
-/** \brief TIM3ÓÃÓÚ²¶»ñ¹¦ÄÜµÄÆ½Ì¨³õÊ¼»¯ */
+/** \brief TIM3ç”¨äºæ•è·åŠŸèƒ½çš„å¹³å°åˆå§‹åŒ– */
 void __zlg217_plfm_tim3_cap_init (void)
 {
     am_clk_enable(CLK_TIM3);
     am_zlg217_clk_reset(CLK_TIM3);
 }
 
-/** \brief ½â³ıTIM3Æ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤TIM3å¹³å°åˆå§‹åŒ– */
 void __zlg217_plfm_tim3_cap_deinit (void)
 {
     am_zlg217_clk_reset(CLK_TIM3);
     am_clk_disable(CLK_TIM3);
 }
 
-/** \brief TIM3ÓÃÓÚ²¶»ñ¹¦ÄÜµÄÒı½ÅÅäÖÃĞÅÏ¢ÁĞ±í */
+/** \brief TIM3ç”¨äºæ•è·åŠŸèƒ½çš„å¼•è„šé…ç½®ä¿¡æ¯åˆ—è¡¨ */
 am_zlg_tim_cap_ioinfo_t __g_tim3_cap_ioinfo_list[] = {
-    {PIOA_6, PIOA_6_TIM3_CH1_REMAP0 | PIOA_6_INPUT_FLOAT, PIOA_6_GPIO | PIOA_6_INPUT_FLOAT},  /**< \brief Í¨µÀ1 */
-    {PIOA_7, PIOA_7_TIM3_CH2_REMAP0 | PIOA_7_INPUT_FLOAT, PIOA_7_GPIO | PIOA_7_INPUT_FLOAT},  /**< \brief Í¨µÀ2 */
-    {PIOB_0, PIOB_0_TIM3_CH3_REMAP0 | PIOB_0_INPUT_FLOAT, PIOB_0_GPIO | PIOB_0_INPUT_FLOAT},  /**< \brief Í¨µÀ3 */
-    {PIOB_1, PIOB_1_TIM3_CH4_REMAP0 | PIOB_1_INPUT_FLOAT, PIOB_1_GPIO | PIOB_1_INPUT_FLOAT},  /**< \brief Í¨µÀ4 */
+    {PIOA_6, PIOA_6_TIM3_CH1_REMAP0 | PIOA_6_INPUT_FLOAT, PIOA_6_GPIO | PIOA_6_INPUT_FLOAT},  /**< \brief é€šé“1 */
+    {PIOA_7, PIOA_7_TIM3_CH2_REMAP0 | PIOA_7_INPUT_FLOAT, PIOA_7_GPIO | PIOA_7_INPUT_FLOAT},  /**< \brief é€šé“2 */
+    {PIOB_0, PIOB_0_TIM3_CH3_REMAP0 | PIOB_0_INPUT_FLOAT, PIOB_0_GPIO | PIOB_0_INPUT_FLOAT},  /**< \brief é€šé“3 */
+    {PIOB_1, PIOB_1_TIM3_CH4_REMAP0 | PIOB_1_INPUT_FLOAT, PIOB_1_GPIO | PIOB_1_INPUT_FLOAT},  /**< \brief é€šé“4 */
 };
 
-/** \brief TIM3ÓÃÓÚ²¶»ñ¹¦ÄÜµÄÉè±¸ĞÅÏ¢ */
+/** \brief TIM3ç”¨äºæ•è·åŠŸèƒ½çš„è®¾å¤‡ä¿¡æ¯ */
 const am_zlg_tim_cap_devinfo_t  __g_tim3_cap_devinfo = {
-    ZLG217_TIM3_BASE,                   /**< \brief TIM3¼Ä´æÆ÷¿éµÄ»ùµØÖ· */
-    INUM_TIM3,                          /**< \brief TIM3ÖĞ¶Ï±àºÅ */
-    CLK_TIM3,                           /**< \brief TIM3Ê±ÖÓID */
-    4,                                  /**< \brief 4¸ö²¶»ñÍ¨µÀ */
+    ZLG217_TIM3_BASE,                   /**< \brief TIM3å¯„å­˜å™¨å—çš„åŸºåœ°å€ */
+    INUM_TIM3,                          /**< \brief TIM3ä¸­æ–­ç¼–å· */
+    CLK_TIM3,                           /**< \brief TIM3æ—¶é’ŸID */
+    4,                                  /**< \brief 4ä¸ªæ•è·é€šé“ */
     &__g_tim3_cap_ioinfo_list[0],
-    AMHW_ZLG_TIM_TYPE1,              /**< \brief ¶¨Ê±Æ÷ÀàĞÍ */
-    __zlg217_plfm_tim3_cap_init,        /**< \brief Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __zlg217_plfm_tim3_cap_deinit       /**< \brief Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    AMHW_ZLG_TIM_TYPE1,              /**< \brief å®šæ—¶å™¨ç±»å‹ */
+    __zlg217_plfm_tim3_cap_init,        /**< \brief å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __zlg217_plfm_tim3_cap_deinit       /**< \brief å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 
 };
 
-/** \brief TIM3ÓÃÓÚ²¶»ñ¹¦ÄÜµÄÉè±¸¶¨Òå */
+/** \brief TIM3ç”¨äºæ•è·åŠŸèƒ½çš„è®¾å¤‡å®šä¹‰ */
 am_zlg_tim_cap_dev_t  __g_tim3_cap_dev;
 
-/** \brief tim3 capÊµÀı³õÊ¼»¯£¬»ñµÃcap±ê×¼·şÎñ¾ä±ú */
+/** \brief tim3 capå®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—capæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_cap_handle_t am_zlg217_tim3_cap_inst_init (void)
 {
     return am_zlg_tim_cap_init(&__g_tim3_cap_dev,
                                   &__g_tim3_cap_devinfo);
 }
 
-/** \brief tim3 capÊµÀı½â³õÊ¼»¯ */
+/** \brief tim3 capå®ä¾‹è§£åˆå§‹åŒ– */
 void am_zlg217_tim3_cap_inst_deinit (am_cap_handle_t handle)
 {
     am_zlg_tim_cap_deinit(handle);
 }
 
 /*******************************************************************************
-  TIM4 ÅäÖÃ
+  TIM4 é…ç½®
 *******************************************************************************/
 
-/** \brief TIM4ÓÃÓÚ²¶»ñ¹¦ÄÜµÄÆ½Ì¨³õÊ¼»¯ */
+/** \brief TIM4ç”¨äºæ•è·åŠŸèƒ½çš„å¹³å°åˆå§‹åŒ– */
 void __zlg217_plfm_tim4_cap_init (void)
 {
     am_clk_enable(CLK_TIM4);
     am_zlg217_clk_reset(CLK_TIM4);
 }
 
-/** \brief ½â³ıTIM4Æ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤TIM4å¹³å°åˆå§‹åŒ– */
 void __zlg217_plfm_tim4_cap_deinit (void)
 {
     am_zlg217_clk_reset(CLK_TIM4);
     am_clk_disable(CLK_TIM4);
 }
 
-/** \brief TIM4ÓÃÓÚ²¶»ñ¹¦ÄÜµÄÒı½ÅÅäÖÃĞÅÏ¢ÁĞ±í */
+/** \brief TIM4ç”¨äºæ•è·åŠŸèƒ½çš„å¼•è„šé…ç½®ä¿¡æ¯åˆ—è¡¨ */
 am_zlg_tim_cap_ioinfo_t __g_tim4_cap_ioinfo_list[] = {
-    {PIOB_6,  PIOB_6_TIM4_CH1 | PIOB_6_INPUT_FLOAT, PIOB_6_GPIO | PIOB_6_INPUT_FLOAT},  /**< \brief Í¨µÀ1 */
-    {PIOB_7,  PIOB_7_TIM4_CH2 | PIOB_7_INPUT_FLOAT, PIOB_7_GPIO | PIOB_7_INPUT_FLOAT},  /**< \brief Í¨µÀ2 */
-    {PIOB_8,  PIOB_8_TIM4_CH3 | PIOB_8_INPUT_FLOAT, PIOB_8_GPIO | PIOB_8_INPUT_FLOAT},  /**< \brief Í¨µÀ3 */
-    {PIOB_9,  PIOB_9_TIM4_CH4 | PIOB_9_INPUT_FLOAT, PIOB_9_GPIO | PIOB_9_INPUT_FLOAT},  /**< \brief Í¨µÀ4 */
+    {PIOB_6,  PIOB_6_TIM4_CH1 | PIOB_6_INPUT_FLOAT, PIOB_6_GPIO | PIOB_6_INPUT_FLOAT},  /**< \brief é€šé“1 */
+    {PIOB_7,  PIOB_7_TIM4_CH2 | PIOB_7_INPUT_FLOAT, PIOB_7_GPIO | PIOB_7_INPUT_FLOAT},  /**< \brief é€šé“2 */
+    {PIOB_8,  PIOB_8_TIM4_CH3 | PIOB_8_INPUT_FLOAT, PIOB_8_GPIO | PIOB_8_INPUT_FLOAT},  /**< \brief é€šé“3 */
+    {PIOB_9,  PIOB_9_TIM4_CH4 | PIOB_9_INPUT_FLOAT, PIOB_9_GPIO | PIOB_9_INPUT_FLOAT},  /**< \brief é€šé“4 */
 };
 
-/** \brief TIM4ÓÃÓÚ²¶»ñ¹¦ÄÜµÄÉè±¸ĞÅÏ¢ */
+/** \brief TIM4ç”¨äºæ•è·åŠŸèƒ½çš„è®¾å¤‡ä¿¡æ¯ */
 const am_zlg_tim_cap_devinfo_t  __g_tim4_cap_devinfo = {
-    ZLG217_TIM4_BASE,                   /**< \brief TIM4¼Ä´æÆ÷¿éµÄ»ùµØÖ· */
-    INUM_TIM4,                          /**< \brief TIM4ÖĞ¶Ï±àºÅ */
-    CLK_TIM4,                           /**< \brief TIM4Ê±ÖÓID */
-    4,                                  /**< \brief 4¸ö²¶»ñÍ¨µÀ */
+    ZLG217_TIM4_BASE,                   /**< \brief TIM4å¯„å­˜å™¨å—çš„åŸºåœ°å€ */
+    INUM_TIM4,                          /**< \brief TIM4ä¸­æ–­ç¼–å· */
+    CLK_TIM4,                           /**< \brief TIM4æ—¶é’ŸID */
+    4,                                  /**< \brief 4ä¸ªæ•è·é€šé“ */
     &__g_tim4_cap_ioinfo_list[0],
-    AMHW_ZLG_TIM_TYPE1,              /**< \brief ¶¨Ê±Æ÷ÀàĞÍ */
-    __zlg217_plfm_tim4_cap_init,        /**< \brief Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __zlg217_plfm_tim4_cap_deinit       /**< \brief Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    AMHW_ZLG_TIM_TYPE1,              /**< \brief å®šæ—¶å™¨ç±»å‹ */
+    __zlg217_plfm_tim4_cap_init,        /**< \brief å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __zlg217_plfm_tim4_cap_deinit       /**< \brief å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 
 };
 
-/** \brief TIM4ÓÃÓÚ²¶»ñ¹¦ÄÜµÄÉè±¸¶¨Òå */
+/** \brief TIM4ç”¨äºæ•è·åŠŸèƒ½çš„è®¾å¤‡å®šä¹‰ */
 am_zlg_tim_cap_dev_t  __g_tim4_cap_dev;
 
-/** \brief tim4 capÊµÀı³õÊ¼»¯£¬»ñµÃcap±ê×¼·şÎñ¾ä±ú */
+/** \brief tim4 capå®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—capæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_cap_handle_t am_zlg217_tim4_cap_inst_init (void)
 {
     return am_zlg_tim_cap_init(&__g_tim4_cap_dev,
                                   &__g_tim4_cap_devinfo);
 }
 
-/** \brief tim4 capÊµÀı½â³õÊ¼»¯ */
+/** \brief tim4 capå®ä¾‹è§£åˆå§‹åŒ– */
 void am_zlg217_tim4_cap_inst_deinit (am_cap_handle_t handle)
 {
     am_zlg_tim_cap_deinit(handle);

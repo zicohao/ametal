@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief LPC82X SCT0 ÓÃÓÚPWMÊä³öµÄÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief LPC82X SCT0 ç”¨äºPWMè¾“å‡ºçš„ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_lpc82x_sct0_pwm.c
  *
  * \internal
@@ -33,57 +33,57 @@
  * @{
  */
 
-/** \brief SCT0ÓÃÓÚPWMµÄÊä³öÒı½ÅÅäÖÃĞÅÏ¢ÁĞ±í  PWMµÄÊä³ö¸öÊıÎª6¸ö */
+/** \brief SCT0ç”¨äºPWMçš„è¾“å‡ºå¼•è„šé…ç½®ä¿¡æ¯åˆ—è¡¨  PWMçš„è¾“å‡ºä¸ªæ•°ä¸º6ä¸ª */
 static am_lpc_sct_pwm_ioinfo_t __g_sct0_pwm_ioinfo_list[] = {
-    /** \brief   Êä³ö0 */
+    /** \brief   è¾“å‡º0 */
     {PIO0_6,  PIO_FUNC_SCT_OUT0,  PIO0_6_GPIO  | PIO0_6_GPIO_INPUT},
-    /** \brief   Êä³ö1 */
+    /** \brief   è¾“å‡º1 */
     {PIO0_2,  PIO_FUNC_SCT_OUT1,  PIO0_2_GPIO  | PIO0_2_GPIO_INPUT},
-    /** \brief   Êä³ö2 */
+    /** \brief   è¾“å‡º2 */
     {PIO0_10,  PIO_FUNC_SCT_OUT2,  PIO0_10_GPIO  | PIO0_10_GPIO_INPUT},
-    /** \brief   Êä³ö3 */
+    /** \brief   è¾“å‡º3 */
     {PIO0_11,  PIO_FUNC_SCT_OUT3,  PIO0_11_GPIO  | PIO0_11_GPIO_INPUT},
-    /** \brief   Êä³ö4 */
+    /** \brief   è¾“å‡º4 */
     {PIO0_13,  PIO_FUNC_SCT_OUT4,  PIO0_13_GPIO  | PIO0_13_GPIO_INPUT},
-    /** \brief   Êä³ö5 */
+    /** \brief   è¾“å‡º5 */
     {PIO0_14,  PIO_FUNC_SCT_OUT5,  PIO0_14_GPIO  | PIO0_14_GPIO_INPUT},
 };
 
-/** \brief SCT0ÓÃÓÚPWMÊä³ö Æ½Ì¨³õÊ¼»¯ */
+/** \brief SCT0ç”¨äºPWMè¾“å‡º å¹³å°åˆå§‹åŒ– */
 static void __lpc82x_sct0_pwm_plfm_init ()
 {
     amhw_lpc82x_clk_periph_enable(AMHW_LPC82X_CLK_SCT);
     amhw_lpc82x_syscon_periph_reset(AMHW_LPC82X_RESET_SCT);
 }
 
-/** \brief ½â³ıSCT0Æ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤SCT0å¹³å°åˆå§‹åŒ– */
 static void __lpc82x_sct0_pwm_plfm_deinit (void)
 {
     amhw_lpc82x_syscon_periph_reset (AMHW_LPC82X_RESET_SCT);
     amhw_lpc82x_clk_periph_disable(AMHW_LPC82X_CLK_SCT);
 }
 
-/** \brief SCT0ÓÃÓÚPWMÉè±¸ĞÅÏ¢ */
+/** \brief SCT0ç”¨äºPWMè®¾å¤‡ä¿¡æ¯ */
 static const am_lpc_sct_pwm_devinfo_t __g_sct0_pwm_devinfo = {
-    LPC82X_SCT0_BASE,             /**< \brief SCT0¼Ä´æÆ÷¿éµÄ»ùµØÖ· */
-    CLK_SCT,                          /**< \brief SCT0Ê±ÖÓ±àºÅ */
-    6,                            /**< \brief 6¸öPWMÊä³öÍ¨µÀ */
-    &__g_sct0_pwm_ioinfo_list[0], /**< \brief ËùÓĞPWMÒı½ÅÅäÖÃĞÅÏ¢£¬ÓÃÊ×µØÖ·²ÎÊı´«µİ */
+    LPC82X_SCT0_BASE,             /**< \brief SCT0å¯„å­˜å™¨å—çš„åŸºåœ°å€ */
+    CLK_SCT,                          /**< \brief SCT0æ—¶é’Ÿç¼–å· */
+    6,                            /**< \brief 6ä¸ªPWMè¾“å‡ºé€šé“ */
+    &__g_sct0_pwm_ioinfo_list[0], /**< \brief æ‰€æœ‰PWMå¼•è„šé…ç½®ä¿¡æ¯ï¼Œç”¨é¦–åœ°å€å‚æ•°ä¼ é€’ */
 
-    __lpc82x_sct0_pwm_plfm_init,   /**< \brief Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __lpc82x_sct0_pwm_plfm_deinit, /**< \brief Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    __lpc82x_sct0_pwm_plfm_init,   /**< \brief å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __lpc82x_sct0_pwm_plfm_deinit, /**< \brief å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 };
 
-/** \brief SCT0ÓÃÓÚPWMÉè±¸¶¨Òå */
+/** \brief SCT0ç”¨äºPWMè®¾å¤‡å®šä¹‰ */
 static am_lpc_sct_pwm_dev_t  __g_sct0_pwm_dev;
 
-/** \brief SCT0 PWM ÊµÀı³õÊ¼»¯£¬»ñµÃPWM±ê×¼·şÎñ¾ä±ú */
+/** \brief SCT0 PWM å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—PWMæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_pwm_handle_t am_lpc82x_sct0_pwm_inst_init (void)
 {
     return am_lpc_sct_pwm_init(&__g_sct0_pwm_dev, &__g_sct0_pwm_devinfo);
 }
 
-/** \brief SCT0 PWM ÊµÀı½â³õÊ¼»¯ */
+/** \brief SCT0 PWM å®ä¾‹è§£åˆå§‹åŒ– */
 void am_lpc82x_sct0_pwm_inst_deinit (am_pwm_handle_t handle)
 {
     am_lpc_sct_pwm_deinit((am_lpc_sct_pwm_dev_t *)handle);

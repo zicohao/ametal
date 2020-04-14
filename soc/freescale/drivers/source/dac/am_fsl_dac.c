@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief DACÇı¶¯ÊµÏÖ
+ * \brief DACé©±åŠ¨å®ç°
  *
  * \internal
  * \par Modification history
@@ -24,7 +24,7 @@
 #include "am_int.h"
 
 /*******************************************************************************
-* Ë½ÓĞ¶¨Òå
+* ç§æœ‰å®šä¹‰
 *******************************************************************************/
 
 #define __FSL_DAC_HW_DECL(p_hw_dac, p_drv)    \
@@ -38,7 +38,7 @@
         (((am_fsl_dac_dev_t *)p_drv)->p_devinfo->vref)
 
 /*******************************************************************************
-* º¯ÊıÉùÃ÷
+* å‡½æ•°å£°æ˜
 *******************************************************************************/
 static uint32_t __fsl_dac_get_bits (void *p_drv);
 
@@ -51,7 +51,7 @@ static int __fsl_dac_enable (void *p_drv, int chan );
 static int __fsl_dac_disable (void *p_drv, int chan );
 
 /**
- * \brief DAC·şÎñº¯Êı
+ * \brief DACæœåŠ¡å‡½æ•°
  */
 static const struct am_dac_drv_funcs __g_dac_drvfuncs = {
        __fsl_dac_get_bits,
@@ -63,7 +63,7 @@ static const struct am_dac_drv_funcs __g_dac_drvfuncs = {
 
 /******************************************************************************/
 /**
- * \brief »ñÈ¡DAC×ª»»¾«¶È¡£
+ * \brief è·å–DACè½¬æ¢ç²¾åº¦ã€‚
  */
 static uint32_t __fsl_dac_get_bits (void *p_drv)
 {
@@ -71,7 +71,7 @@ static uint32_t __fsl_dac_get_bits (void *p_drv)
 }
 
 /**
- * \brief »ñÈ¡DAC²Î¿¼µçÑ¹¡£
+ * \brief è·å–DACå‚è€ƒç”µå‹ã€‚
  */
 static uint32_t __fsl_dac_get_vref (void *p_drv)
 {
@@ -79,7 +79,7 @@ static uint32_t __fsl_dac_get_vref (void *p_drv)
 }
 
 /**
- * \brief ÉèÖÃÍ¨µÀµÄDAC×ª»»Öµ¡£
+ * \brief è®¾ç½®é€šé“çš„DACè½¬æ¢å€¼ã€‚
  */
 int __fsl_dac_val_set (void *p_drv, int chan, uint32_t value)
 {
@@ -91,7 +91,7 @@ int __fsl_dac_val_set (void *p_drv, int chan, uint32_t value)
     }
 
     if (chan != 0) {
-        return -AM_ENXIO;       /* ÎŞĞ§µÄÍ¨µÀÖµ      */
+        return -AM_ENXIO;       /* æ— æ•ˆçš„é€šé“å€¼      */
     }
 
     p_dev->chan = chan;
@@ -101,7 +101,7 @@ int __fsl_dac_val_set (void *p_drv, int chan, uint32_t value)
 }
 
 /**
- * \brief Æô¶¯DAC×ª»»
+ * \brief å¯åŠ¨DACè½¬æ¢
  */
 static int __fsl_dac_enable (void *p_drv, int chan )
 {
@@ -113,18 +113,18 @@ static int __fsl_dac_enable (void *p_drv, int chan )
     }
 
     if (chan != 0) {
-        return -AM_ENXIO;       /* ÎŞĞ§µÄÍ¨µÀÖµ       */
+        return -AM_ENXIO;       /* æ— æ•ˆçš„é€šé“å€¼       */
     }
 
     p_dev->chan = chan;
 
-    amhw_fsl_dac_enable(p_hw_dac);  /* Ê¹ÄÜDAC     */
+    amhw_fsl_dac_enable(p_hw_dac);  /* ä½¿èƒ½DAC     */
 
     return AM_OK;
 }
 
 /**
- * \brief ½ûÖ¹DAC×ª»»
+ * \brief ç¦æ­¢DACè½¬æ¢
  */
 static int __fsl_dac_disable (void *p_drv, int chan )
 {
@@ -136,18 +136,18 @@ static int __fsl_dac_disable (void *p_drv, int chan )
     }
 
     if (chan != 0) {
-        return -AM_ENXIO;         /* ÎŞĞ§µÄÍ¨µÀÖµ */
+        return -AM_ENXIO;         /* æ— æ•ˆçš„é€šé“å€¼ */
     }
 
     p_dev->chan = chan;
 
-    amhw_fsl_dac_disable(p_hw_dac);  /* ½ûÄÜDAC        */
+    amhw_fsl_dac_disable(p_hw_dac);  /* ç¦èƒ½DAC        */
 
     return AM_OK;
 }
 
 /**
- * \brief DAC³õÊ¼»¯
+ * \brief DACåˆå§‹åŒ–
  */
 am_dac_handle_t am_fsl_dac_init (am_fsl_dac_dev_t           *p_dev,
                                   const am_fsl_dac_devinfo_t *p_devinfo)
@@ -168,7 +168,7 @@ am_dac_handle_t am_fsl_dac_init (am_fsl_dac_dev_t           *p_dev,
     }
 
     /*
-     * ÅäÖÃDACÏà¹Ø¹¦ÄÜ
+     * é…ç½®DACç›¸å…³åŠŸèƒ½
      */
     amhw_fsl_dac_c0_cfg(p_devinfo->p_hw_dac,
                          AMHW_FSL_DAC_C0_VREF_SEL(p_devinfo->vref_source) |
@@ -180,7 +180,7 @@ am_dac_handle_t am_fsl_dac_init (am_fsl_dac_dev_t           *p_dev,
 }
 
 /**
- * \brief DACÈ¥³õÊ¼»¯
+ * \brief DACå»åˆå§‹åŒ–
  */
 void am_fsl_dac_deinit (am_dac_handle_t handle)
 {

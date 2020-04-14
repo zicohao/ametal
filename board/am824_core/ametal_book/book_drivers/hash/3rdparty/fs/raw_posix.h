@@ -15,7 +15,7 @@ typedef struct _raw_file_t {
     size_t size;
 }file_t;
 
-/*³ıÁËraw_posix_initÖ®Íâ£¬Ò»°ã²»ÒªÖ±½Óµ÷ÓÃraw_¿ªÍ·µÄº¯Êı£¬¶øÊÇµ÷ÓÃ±ê×¼ÎÄ¼şAPI¡£*/
+/*é™¤äº†raw_posix_initä¹‹å¤–ï¼Œä¸€èˆ¬ä¸è¦ç›´æ¥è°ƒç”¨raw_å¼€å¤´çš„å‡½æ•°ï¼Œè€Œæ˜¯è°ƒç”¨æ ‡å‡†æ–‡ä»¶APIã€‚*/
 FILE*  raw_fopen(const char* path, const char* mode);
 size_t raw_fread(void *ptr, size_t size, size_t nitems, FILE *stream);
 size_t raw_fwrite(const void *ptr, size_t size, size_t nitems, FILE *stream);
@@ -31,15 +31,15 @@ am_bool_t raw_fexist(const char* path);
 size_t raw_get_size(FILE *stream);
 
 /**
- * \brief ÎªÁËÄ£ÄâPOSIX API£¬ÎÒÃÇĞèÒªÒ»¸öÈ«¾ÖµÄ¿éÉè±¸¶ÔÏó£¬±¾º¯ÊıÓÃÀ´³õÊ¼»¯Õâ¸öÈ«¾ÖµÄ¿éÉè±¸¶ÔÏó¡£
- * ÔÚµ÷ÓÃ±¾º¯ÊıÖ®ºó£¬²ÅÄÜµ÷ÓÃÆäËüÎÄ¼şAPI¡£
+ * \brief ä¸ºäº†æ¨¡æ‹ŸPOSIX APIï¼Œæˆ‘ä»¬éœ€è¦ä¸€ä¸ªå…¨å±€çš„å—è®¾å¤‡å¯¹è±¡ï¼Œæœ¬å‡½æ•°ç”¨æ¥åˆå§‹åŒ–è¿™ä¸ªå…¨å±€çš„å—è®¾å¤‡å¯¹è±¡ã€‚
+ * åœ¨è°ƒç”¨æœ¬å‡½æ•°ä¹‹åï¼Œæ‰èƒ½è°ƒç”¨å…¶å®ƒæ–‡ä»¶APIã€‚
  *
- * \param[in] dev       £º ¿éÉè±¸¶ÔÏó
+ * \param[in] dev       ï¼š å—è®¾å¤‡å¯¹è±¡
  */
 void raw_posix_init(block_dev_t* dev, file_t *p_files, size_t num);
 
 /**
- * \brief ~³õÊ¼»¯£¬¹Ø±Õ¿éÉè±¸¡£
+ * \brief ~åˆå§‹åŒ–ï¼Œå…³é—­å—è®¾å¤‡ã€‚
  */
 void raw_posix_deinit(void);
 

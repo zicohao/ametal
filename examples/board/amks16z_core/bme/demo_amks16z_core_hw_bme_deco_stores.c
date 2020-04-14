@@ -11,15 +11,15 @@
 *******************************************************************************/
 /**
  * \file
- * \brief BME��װʽ�洢ָ��ʵ������
+ * \brief BME封装式存储指令实现例子
  *
- * - ������
- *   1.PIOA_1 ��������PC���ڵ�TXD;
- *   2.PIOA_2 ��������PC���ڵ�RXD;
- *   3.������λ�����ڲ�����Ϊ115200��8λ���ݳ��� 1λֹͣλ ����żУ��;
+ * - 操作：
+ *   1.PIOA_1 引脚连接PC串口的TXD;
+ *   2.PIOA_2 引脚连接PC串口的RXD;
+ *   3.配置上位机串口波特率为115200，8位数据长度 1位停止位 无奇偶校验;
  *
- * -ʵ�����󣺴������δ�ӡ�������ַ���������C����ʵ����BMEָ��ִ��Ч���ϵĲ��
- *         ���Կ���BMEָ��ʵ�ֵ�ִ��Ч�ʸ���Ч
+ * -实现现象：串口依次打印出以下字符串，用于C语言实现与BME指令执行效率上的差别，
+ *         可以看出BME指令实现的执行效率更高效
  *
  *         systick start value: 0xff9d6a
  *
@@ -51,10 +51,10 @@
  *
  *         actual execution cycle for BFI operation with BME macro: 0xf
  *
- * \note BME ָ�����GPIOģ��ģ�Ӧ��ʹ��KL26_GPIO_BASE�ı�����ַΪ 0x4000_F000
+ * \note BME 指令操作GPIO模块的，应该使用KL26_GPIO_BASE的别名地址为 0x4000_F000
  *
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_amks16z_core_hw_bme_deco_stores.c src_amks16z_core_hw_bme_deco_stores
  *
  * \internal
@@ -80,7 +80,7 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_amks16z_core_hw_bme_deco_stores_entry (void)
 {

@@ -4,7 +4,7 @@
 #include "am_uart_rngbuf.h"
 #include "am_delay.h"
 
-/** \brief  ´®¿Ú´«Êäº¯Êı */
+/** \brief  ä¸²å£ä¼ è¾“å‡½æ•° */
 int zsn60x_platform_uart_tx(zsn60x_platform_uart_t *p_dev,
                             uint8_t                *p_data,
                             uint32_t                nbytes)
@@ -16,7 +16,7 @@ int zsn60x_platform_uart_tx(zsn60x_platform_uart_t *p_dev,
     }
 }
 
-/** \brief  ZSN60x Éè±¸UART·½Ê½Æ½Ì¨Ïà¹Ø³õÊ¼»¯ */
+/** \brief  ZSN60x è®¾å¤‡UARTæ–¹å¼å¹³å°ç›¸å…³åˆå§‹åŒ– */
 uint8_t  zsn60x_platform_uart_init(zsn60x_platform_uart_t                *p_dev,
                                    const zsn60x_platform_uart_devinfo_t  *p_info,
                                    zsn60x_uart_funcs_t                   *p_funcs,
@@ -30,7 +30,7 @@ uint8_t  zsn60x_platform_uart_init(zsn60x_platform_uart_t                *p_dev,
     p_dev->handle    = p_info->pfn_handle_get();
 
     if(p_info->rst_pin != -1){
-        //Èô´æÔÚ¸´Î»Òı½Å  Ôò¶ÔZSN60x½øĞĞÓ²¼ş¸´Î»
+        //è‹¥å­˜åœ¨å¤ä½å¼•è„š  åˆ™å¯¹ZSN60xè¿›è¡Œç¡¬ä»¶å¤ä½
         am_gpio_pin_cfg(p_info->rst_pin, AM_GPIO_OUTPUT_INIT_HIGH);
         am_mdelay(10);
         am_gpio_pin_cfg(p_info->rst_pin, AM_GPIO_OUTPUT_INIT_LOW);
@@ -41,17 +41,17 @@ uint8_t  zsn60x_platform_uart_init(zsn60x_platform_uart_t                *p_dev,
     am_uart_callback_set(p_dev->handle, AM_UART_CALLBACK_RXCHAR_PUT, p_funcs->zsn60x_uart_rx, p_arg);
     am_uart_ioctl(p_dev->handle, AM_UART_BAUD_SET, (void *)p_info->baud_rate);
 
-    /* Á¬½ÓÒı½ÅÖĞ¶Ï·şÎñº¯Êı */
+    /* è¿æ¥å¼•è„šä¸­æ–­æœåŠ¡å‡½æ•° */
     am_gpio_trigger_connect(p_info->int_pin, p_funcs->zsn60x_int_pin_cb, (void *)p_arg);
-    /* ÅäÖÃÒı½ÅÖĞ¶Ï´¥·¢·½Ê½ */
+    /* é…ç½®å¼•è„šä¸­æ–­è§¦å‘æ–¹å¼ */
     am_gpio_trigger_cfg(p_info->int_pin, AM_GPIO_TRIGGER_FALL);
-    /* Ê¹ÄÜÒı½Å´¥·¢ÖĞ¶Ï */
+    /* ä½¿èƒ½å¼•è„šè§¦å‘ä¸­æ–­ */
     am_gpio_trigger_on(p_info->int_pin);
 
     return 0;
 }
 
-/** \brief ZSN60xÆ½Ì¨Ïà¹ØÉè±¸(UARTÄ£Ê½)½â³õÊ¼»¯ */
+/** \brief ZSN60xå¹³å°ç›¸å…³è®¾å¤‡(UARTæ¨¡å¼)è§£åˆå§‹åŒ– */
 uint8_t  zsn60x_platform_uart_deinit(zsn60x_platform_uart_t    *p_dev)
 {
     if(p_dev == NULL){
@@ -63,7 +63,7 @@ uint8_t  zsn60x_platform_uart_deinit(zsn60x_platform_uart_t    *p_dev)
 }
 
 
-/** \brief  I2CĞ´º¯Êı */
+/** \brief  I2Cå†™å‡½æ•° */
 int zsn60x_platform_i2c_write(zsn60x_platform_i2c_t  *p_dev,
                               uint8_t                 slv_addr,
                               uint16_t                sub_addr,
@@ -83,7 +83,7 @@ int zsn60x_platform_i2c_write(zsn60x_platform_i2c_t  *p_dev,
                          nbytes);
 
 }
-/** \brief I2C¶Áº¯Êı */
+/** \brief I2Cè¯»å‡½æ•° */
 int zsn60x_platform_i2c_read(zsn60x_platform_i2c_t     *p_dev,
                              uint8_t                    slv_addr,
                              uint16_t                   sub_addr,
@@ -102,7 +102,7 @@ int zsn60x_platform_i2c_read(zsn60x_platform_i2c_t     *p_dev,
                        nbytes);
 }
 
-/** \brief  ZSN60x Éè±¸I2C·½Ê½Æ½Ì¨Ïà¹Ø³õÊ¼»¯ */
+/** \brief  ZSN60x è®¾å¤‡I2Cæ–¹å¼å¹³å°ç›¸å…³åˆå§‹åŒ– */
 uint8_t  zsn60x_platform_i2c_init(zsn60x_platform_i2c_t                *p_dev,
                                   const zsn60x_platform_i2c_devinfo_t  *p_info,
                                   void(*int_pin_callback_function)     (void *),
@@ -117,24 +117,24 @@ uint8_t  zsn60x_platform_i2c_init(zsn60x_platform_i2c_t                *p_dev,
     p_dev->handle = p_info->pfn_handle_get();
 
     if(p_info->rst_pin != -1){
-        //Èô´æÔÚ¸´Î»Òı½Å  Ôò¶ÔZSN60x½øĞĞÓ²¼ş¸´Î»
+        //è‹¥å­˜åœ¨å¤ä½å¼•è„š  åˆ™å¯¹ZSN60xè¿›è¡Œç¡¬ä»¶å¤ä½
         am_gpio_pin_cfg(p_info->rst_pin, AM_GPIO_OUTPUT_INIT_HIGH);
         am_mdelay(10);
         am_gpio_pin_cfg(p_info->rst_pin, AM_GPIO_OUTPUT_INIT_LOW);
         am_mdelay(50);
     }
 
-    /* Á¬½ÓÒı½ÅÖĞ¶Ï·şÎñº¯Êı */
+    /* è¿æ¥å¼•è„šä¸­æ–­æœåŠ¡å‡½æ•° */
     am_gpio_trigger_connect(p_info->int_pin, int_pin_callback_function, (void *)p_arg);
-    /* ÅäÖÃÒı½ÅÖĞ¶Ï´¥·¢·½Ê½ */
+    /* é…ç½®å¼•è„šä¸­æ–­è§¦å‘æ–¹å¼ */
     am_gpio_trigger_cfg(p_info->int_pin, AM_GPIO_TRIGGER_FALL);
-    /* Ê¹ÄÜÒı½Å´¥·¢ÖĞ¶Ï */
+    /* ä½¿èƒ½å¼•è„šè§¦å‘ä¸­æ–­ */
     am_gpio_trigger_on(p_info->int_pin);
 
     return 0;
 }
 
-/** \brief ZSN60xÆ½Ì¨Ïà¹ØÉè±¸(I2CÄ£Ê½)½â³õÊ¼»¯ */
+/** \brief ZSN60xå¹³å°ç›¸å…³è®¾å¤‡(I2Cæ¨¡å¼)è§£åˆå§‹åŒ– */
 uint8_t  zsn60x_platform_i2c_deinit(zsn60x_platform_i2c_t    *p_dev)
 {
     if(p_dev == NULL){

@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief ZLG52810 ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief ZLG52810 ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_zlg52810.c
  *
  * \internal
@@ -33,30 +33,30 @@
  * @{
  */
 
-am_local uint8_t __g_zlg52810_txbuf[128]; /**< \brief ·¢ËÍ»º³åÇø */
-am_local uint8_t __g_zlg52810_rxbuf[128]; /**< \brief ½ÓÊÕ»º³åÇø */
+am_local uint8_t __g_zlg52810_txbuf[128]; /**< \brief å‘é€ç¼“å†²åŒº */
+am_local uint8_t __g_zlg52810_rxbuf[128]; /**< \brief æ¥æ”¶ç¼“å†²åŒº */
 
-/** \brief Éè±¸ÊµÀı */
+/** \brief è®¾å¤‡å®ä¾‹ */
 am_local am_zlg52810_dev_t __g_zlg52810_dev;
 
-/** \brief Éè±¸ĞÅÏ¢ */
+/** \brief è®¾å¤‡ä¿¡æ¯ */
 am_local am_const am_zlg52810_devinfo_t __g_zlg52810_devinfo = {
-    -1,                    /**< \brief RTSÒı½Å   ÓÃ×÷Á÷¿Ø */
-    -1,                    /**< \brief CTSÒı½Å   ÓÃ×÷Á÷¿Ø */
-    PIO0_28,                    /**< \brief ¸´Î»Òı½Å */
-    -1,                         /**< \brief RESTORE Òı½Å£¬ÓÃÓÚ»Ö¸´³ö³§ÉèÖÃ */
-    -1,                         /**< \brief low power wakeup Òı½Å£¬ÓÃÓÚµÍ¹¦ºÄ»½ĞÑ */
-    9600,                       /**< \brief Ä£¿éµ±Ç°Ê¹ÓÃµÄ²¨ÌØÂÊ */
-    __g_zlg52810_rxbuf,         /**< \brief ½ÓÊÕ»º´æ */
-    __g_zlg52810_txbuf,         /**< \brief ·¢ËÍ»º´æ */
-    sizeof(__g_zlg52810_rxbuf), /**< \brief ½ÓÊÕ»º´æ³¤¶È */
-    sizeof(__g_zlg52810_txbuf)  /**< \brief ·¢ËÍ»º´æ³¤¶È */
+    -1,                    /**< \brief RTSå¼•è„š   ç”¨ä½œæµæ§ */
+    -1,                    /**< \brief CTSå¼•è„š   ç”¨ä½œæµæ§ */
+    PIO0_28,                    /**< \brief å¤ä½å¼•è„š */
+    -1,                         /**< \brief RESTORE å¼•è„šï¼Œç”¨äºæ¢å¤å‡ºå‚è®¾ç½® */
+    -1,                         /**< \brief low power wakeup å¼•è„šï¼Œç”¨äºä½åŠŸè€—å”¤é†’ */
+    9600,                       /**< \brief æ¨¡å—å½“å‰ä½¿ç”¨çš„æ³¢ç‰¹ç‡ */
+    __g_zlg52810_rxbuf,         /**< \brief æ¥æ”¶ç¼“å­˜ */
+    __g_zlg52810_txbuf,         /**< \brief å‘é€ç¼“å­˜ */
+    sizeof(__g_zlg52810_rxbuf), /**< \brief æ¥æ”¶ç¼“å­˜é•¿åº¦ */
+    sizeof(__g_zlg52810_txbuf)  /**< \brief å‘é€ç¼“å­˜é•¿åº¦ */
 };
 
 /**
- * \brief  ZLG52810 ÊµÀı³õÊ¼»¯£¬»ñµÃ ZLG52810 ±ê×¼·şÎñ²Ù×÷¾ä±ú
+ * \brief  ZLG52810 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— ZLG52810 æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  *
- * \return  ZLG52810 ±ê×¼·şÎñ²Ù×÷¾ä±ú
+ * \return  ZLG52810 æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  */
 am_zlg52810_handle_t am_zlg52810_inst_init (void)
 {

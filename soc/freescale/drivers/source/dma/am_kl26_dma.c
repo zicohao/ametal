@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief DMA Çı¶¯ÊµÏÖ
+ * \brief DMA é©±åŠ¨å®ç°
  *
  * \internal
  * \par Modification history
@@ -24,41 +24,41 @@
 #include "am_int.h"
 
 /*******************************************************************************
-  Ë½ÓĞ¶¨Òå
+  ç§æœ‰å®šä¹‰
 *******************************************************************************/
 
-/** \brief ÖĞ¶ÏÎ´Á¬½Ó±êÊ¶ */
+/** \brief ä¸­æ–­æœªè¿æ¥æ ‡è¯† */
 #define __INT_NOT_CONNECTED      0xFF
 
-/** \brief Í¨µÀÎ´Á¬½Ó±êÊ¶ */
+/** \brief é€šé“æœªè¿æ¥æ ‡è¯† */
 #define __CHAN_NOT_CONNECTED     0xFF
 
-/** \brief ¶¨ÒåÖ¸ÏòDMAÉè±¸ĞÅÏ¢µÄÖ¸Õë */
+/** \brief å®šä¹‰æŒ‡å‘DMAè®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ */
 #define __DMA_DEVINFO_DECL(p_dma_devinfo, p_dev)  \
         const am_kl26_dma_devinfo_t *p_dma_devinfo = p_dev->p_devinfo
 
 
 /*******************************************************************************
-  È«¾Ö±äÁ¿
+  å…¨å±€å˜é‡
 *******************************************************************************/
 
-/** \brief Ö¸ÏòDMAÉè±¸µÄÖ¸Õë */
+/** \brief æŒ‡å‘DMAè®¾å¤‡çš„æŒ‡é’ˆ */
 am_kl26_dma_dev_t *__gp_dma_dev;
 
-/** \brief DMAÖĞ¶Ï»Øµ÷º¯ÊıĞÅÏ¢Êı×é */
+/** \brief DMAä¸­æ–­å›è°ƒå‡½æ•°ä¿¡æ¯æ•°ç»„ */
 static struct am_kl26_dma_int_info __dma_int_info[KL26_DMA_CHAN_CNT];
 
-/** \brief DMAÖĞ¶Ï»Øµ÷º¯ÊıĞÅÏ¢Ó³Éä */
+/** \brief DMAä¸­æ–­å›è°ƒå‡½æ•°ä¿¡æ¯æ˜ å°„ */
 static uint8_t __dma_int_map[KL26_DMA_CHAN_CNT];
 
-/** \brief DMAÍ¨µÀĞÅÏ¢Ó³Éä */
+/** \brief DMAé€šé“ä¿¡æ¯æ˜ å°„ */
 static uint8_t __dma_chan_map[KL26_DMA_CHAN_CNT];
 
 /*******************************************************************************
-  ¹«¹²º¯Êı
+  å…¬å…±å‡½æ•°
 *******************************************************************************/
 
-/* ÅäÖÃDMA´«ÊäÍ¨µÀÒÔ¼°ÇëÇóÔ´ */
+/* é…ç½®DMAä¼ è¾“é€šé“ä»¥åŠè¯·æ±‚æº */
 int am_kl26_dma_chan_cfg (int chan , uint8_t flags)
 {
     __DMA_DEVINFO_DECL(p_dma_devinfo, __gp_dma_dev);
@@ -80,7 +80,7 @@ int am_kl26_dma_chan_cfg (int chan , uint8_t flags)
     }
 }
 
-/* ½¨Á¢´«ÊäÃèÊö·û */
+/* å»ºç«‹ä¼ è¾“æè¿°ç¬¦ */
 int am_kl26_dma_xfer_desc_build (amhw_kl26_dma_xfer_desc_t *p_desc,
                                  volatile uint32_t          src_addr,
                                  uint32_t                   dst_addr,
@@ -110,7 +110,7 @@ int am_kl26_dma_xfer_desc_build (amhw_kl26_dma_xfer_desc_t *p_desc,
     return AM_OK;
 }
 
-/* ÉèÖÃÔ´µØÖ·»º³åÇø */
+/* è®¾ç½®æºåœ°å€ç¼“å†²åŒº */
 void am_kl26_dma_xfer_source_buffer_set (amhw_kl26_dma_buffer_size_set_t size,
                                          uint8_t                         chan)
 {
@@ -120,7 +120,7 @@ void am_kl26_dma_xfer_source_buffer_set (amhw_kl26_dma_buffer_size_set_t size,
                                      chan);
 }
 
-/* ÉèÖÃÄ¿µÄµØÖ·»º³åÇø */
+/* è®¾ç½®ç›®çš„åœ°å€ç¼“å†²åŒº */
 void am_kl26_dma_xfer_desc_buffer_set (amhw_kl26_dma_buffer_size_set_t size,
                                        uint8_t                         chan)
 {
@@ -130,7 +130,7 @@ void am_kl26_dma_xfer_desc_buffer_set (amhw_kl26_dma_buffer_size_set_t size,
                                           chan);
 }
 
-/* ¿ªÊ¼DMA´«Êä */
+/* å¼€å§‹DMAä¼ è¾“ */
 int am_kl26_dma_chan_start (amhw_kl26_dma_xfer_desc_t     *p_desc,
                             amhw_kl26_dma_transfer_type_t  type,
                             uint8_t                        chan)
@@ -200,7 +200,7 @@ int am_kl26_dma_chan_start (amhw_kl26_dma_xfer_desc_t     *p_desc,
     return AM_OK;
 }
 
-/* Í£Ö¹Í¨µÀ´«Êä */
+/* åœæ­¢é€šé“ä¼ è¾“ */
 int am_kl26_dma_chan_stop (int chan)
 {
     __DMA_DEVINFO_DECL(p_dma_devinfo, __gp_dma_dev);
@@ -213,7 +213,7 @@ int am_kl26_dma_chan_stop (int chan)
     return AM_OK;
 }
 
-/* DMAÖĞ¶Ï´¦Àíº¯Êı */
+/* DMAä¸­æ–­å¤„ç†å‡½æ•° */
 static void __dma_int_handler (void *p_arg)
 {
     __DMA_DEVINFO_DECL(p_dma_devinfo, __gp_dma_dev);
@@ -255,7 +255,7 @@ static void __dma_int_handler (void *p_arg)
     }
 }
 
-/* Á¬½ÓDMAÖĞ¶Ï·şÎñº¯Êı */
+/* è¿æ¥DMAä¸­æ–­æœåŠ¡å‡½æ•° */
 int am_kl26_dma_isr_connect (int                    chan,
                              am_kl26_pfn_dma_isr_t  pfn_isr,
                              void                  *p_arg)
@@ -271,7 +271,7 @@ int am_kl26_dma_isr_connect (int                    chan,
     return AM_OK;
 }
 
-/* É¾³ıDMAÖĞ¶Ï·şÎñº¯ÊıÁ¬½Ó */
+/* åˆ é™¤DMAä¸­æ–­æœåŠ¡å‡½æ•°è¿æ¥ */
 int am_kl26_dma_isr_disconnect (int                    chan,
                                 am_kl26_pfn_dma_isr_t  pfn_isr,
                                 void                  *p_arg)
@@ -286,7 +286,7 @@ int am_kl26_dma_isr_disconnect (int                    chan,
     return AM_OK;
 }
 
-/* DMA³õÊ¼»¯ */
+/* DMAåˆå§‹åŒ– */
 int am_kl26_dma_init (am_kl26_dma_dev_t           *p_dev,
                       const am_kl26_dma_devinfo_t *p_devinfo)
 {
@@ -318,7 +318,7 @@ int am_kl26_dma_init (am_kl26_dma_dev_t           *p_dev,
     return AM_OK;
 }
 
-/* DMAÈ¥³õÊ¼»¯ */
+/* DMAå»åˆå§‹åŒ– */
 void am_kl26_dma_deinit (void)
 {
     am_kl26_dma_devinfo_t *p_dma_devinfo = NULL;

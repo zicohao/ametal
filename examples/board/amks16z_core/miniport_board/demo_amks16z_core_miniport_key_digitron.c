@@ -12,19 +12,19 @@
 
 /**
  * \file
- * \brief MiniPort-View + MiniPort-KEY Ê¾Àı³ÌĞò£¬½ö¹©²Î¿¼
+ * \brief MiniPort-View + MiniPort-KEY ç¤ºä¾‹ç¨‹åºï¼Œä»…ä¾›å‚è€ƒ
  *
- * - ²Ù×÷²½Öè
- *   1. ÏÈ½« MiniPort-KEY °å×ÓÖ±½ÓÓëµ×°å(AMKS16Z-Core)±êºÅÎªJ4µÄ MiniPort ÏàÁ¬½Ó£»
- *   2. ½« MiniPort-View °å×ÓÓë MiniPort-KEY ½Ó¿ÚÏàÁ¬½Ó£»
- *   3. ÔÚ am_prj_config.h ÀïÃæ½« AM_CFG_KEY_GPIO_ENABLE ºÍ AM_CFG_KEY_ENABLE
- *      ¶¨ÒåÎª1¡£
+ * - æ“ä½œæ­¥éª¤
+ *   1. å…ˆå°† MiniPort-KEY æ¿å­ç›´æ¥ä¸åº•æ¿(AMKS16Z-Core)æ ‡å·ä¸ºJ4çš„ MiniPort ç›¸è¿æ¥ï¼›
+ *   2. å°† MiniPort-View æ¿å­ä¸ MiniPort-KEY æ¥å£ç›¸è¿æ¥ï¼›
+ *   3. åœ¨ am_prj_config.h é‡Œé¢å°† AM_CFG_KEY_GPIO_ENABLE å’Œ AM_CFG_KEY_ENABLE
+ *      å®šä¹‰ä¸º1ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. °´ÏÂÒ»¸ö°´¼ü£¬Á½Î»ÊıÂë¹ÜÏÔÊ¾°´¼ü±àºÅµÄ¶ş½øÖÆ£»
- *   2. Å¼Êı±àºÅÊ±£¬ÊıÂë¹ÜÉÁË¸£¬ÆæÊı±àºÅÊ±£¬ÊıÂë¹Ü²»ÉÁË¸¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. æŒ‰ä¸‹ä¸€ä¸ªæŒ‰é”®ï¼Œä¸¤ä½æ•°ç ç®¡æ˜¾ç¤ºæŒ‰é”®ç¼–å·çš„äºŒè¿›åˆ¶ï¼›
+ *   2. å¶æ•°ç¼–å·æ—¶ï¼Œæ•°ç ç®¡é—ªçƒï¼Œå¥‡æ•°ç¼–å·æ—¶ï¼Œæ•°ç ç®¡ä¸é—ªçƒã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_miniport_key_digitron.c src_miniport_key_digitron
  *
  * \internal
@@ -47,7 +47,7 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_amks16z_core_miniport_key_digitron_entry (void)
 {

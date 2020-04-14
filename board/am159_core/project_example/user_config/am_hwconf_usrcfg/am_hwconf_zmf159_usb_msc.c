@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief zmf159 USB_MSC ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief zmf159 USB_MSC ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_zmf159_hwconfig_usb_msc.c
  *
  * \internal
@@ -41,7 +41,7 @@
  * @{
  */
 /*******************************************************************************
- * ÓÃ»§USBÃèÊö·ûÅäÖÃºê,ÓÃ»§ÅäÖÃÃèÊö·ûºê¼´¿É,ÎŞĞè¹ØĞÄUSBÃèÊö·û¡£
+ * ç”¨æˆ·USBæè¿°ç¬¦é…ç½®å®,ç”¨æˆ·é…ç½®æè¿°ç¬¦å®å³å¯,æ— éœ€å…³å¿ƒUSBæè¿°ç¬¦ã€‚
  ******************************************************************************/
 
 #define __USBD_MSC_SYS_WIN7         (0)
@@ -63,172 +63,172 @@
 #define __USBD_MSC_FILE_MODIFIED_DATE2 (11U)
 #define __USBD_MSC_FILE_MODIFIED_DATE3 (2U)
 
-/** \brief USBÉè±¸ÃèÊöÅäÖÃºê*/
-#define __USBD_MSC_VENDOR_ID                 (0x4195) /**< \brief ³§ÉÌ±àºÅ,×÷Îª²úÆ··¢²¼±ØĞëĞ´×Ô¼º¹«Ë¾µÄ³§ÉÌ±àºÅ£¬ÒÔÃâÇÖÈ¨£¬´Ë´¦ÌîÁËÒ»¸öÃ»ÓĞÔÚUSBĞ­»á×¢²áµÄ±àºÅ*/
-#define __USBD_MSC_PRODUCT_ID                (0x6515) /**< \brief ²úÆ·±àºÅ*/
-#define __USBD_MSC_DEVICE_ID                 (0x0101) /**< \brief Éè±¸±àºÅ*/
-#define __USBD_MSC_VENDOR_STRING_INDEX       (0x01)   /**< \brief ÃèÊö³§ÉÌµÄ×Ö·û´®Ë÷Òı*/
-#define __USBD_MSC_PRODUCT_STRING_INDEX      (0x02)   /**< \brief ÃèÊö²úÆ·µÄ×Ö·û´®Ë÷Òı */
-#define __USBD_MSC_DEVICE_STRING_INDEX       (0x03)   /**< \brief ÃèÊöÉè±¸ĞòÁĞºÅµÄ×Ö·û´®Ë÷Òı*/
-#define __USBD_CONFIGURATION_COUNT           (1U)     /**< \brief ÅäÖÃÊı£¬Ò»°ãÉèÖÃÖ»ÓĞÒ»¸öÅäÖÃ*/
+/** \brief USBè®¾å¤‡æè¿°é…ç½®å®*/
+#define __USBD_MSC_VENDOR_ID                 (0x4195) /**< \brief å‚å•†ç¼–å·,ä½œä¸ºäº§å“å‘å¸ƒå¿…é¡»å†™è‡ªå·±å…¬å¸çš„å‚å•†ç¼–å·ï¼Œä»¥å…ä¾µæƒï¼Œæ­¤å¤„å¡«äº†ä¸€ä¸ªæ²¡æœ‰åœ¨USBåä¼šæ³¨å†Œçš„ç¼–å·*/
+#define __USBD_MSC_PRODUCT_ID                (0x6515) /**< \brief äº§å“ç¼–å·*/
+#define __USBD_MSC_DEVICE_ID                 (0x0101) /**< \brief è®¾å¤‡ç¼–å·*/
+#define __USBD_MSC_VENDOR_STRING_INDEX       (0x01)   /**< \brief æè¿°å‚å•†çš„å­—ç¬¦ä¸²ç´¢å¼•*/
+#define __USBD_MSC_PRODUCT_STRING_INDEX      (0x02)   /**< \brief æè¿°äº§å“çš„å­—ç¬¦ä¸²ç´¢å¼• */
+#define __USBD_MSC_DEVICE_STRING_INDEX       (0x03)   /**< \brief æè¿°è®¾å¤‡åºåˆ—å·çš„å­—ç¬¦ä¸²ç´¢å¼•*/
+#define __USBD_CONFIGURATION_COUNT           (1U)     /**< \brief é…ç½®æ•°ï¼Œä¸€èˆ¬è®¾ç½®åªæœ‰ä¸€ä¸ªé…ç½®*/
 
-/** \brief USBÅäÖÃÃèÊö·ûÅäÖÃºê*/
-#define __USBD_MSC_INTERFACE_COUNT           (1U)     /**< \brief ½Ó¿ÚÊı*/
-#define __USBD_MSC_CONFIGURE_INDEX           (1U)     /**< \brief ÅäÖÃÃèÊö·ûË÷Òı*/
-#define __USBD_MSC_DEVICE_POWER               AM_USBD_MAX_POWER /**< \brief Éè±¸ÏòÖ÷»úÉêÇëµÄµçÁ÷£¬µ¥Î»2mA,×î´ó100mA*/
-/** \brief Éè±¸ÊôĞÔ£¬×Ô¹©µç£¬²»Ö§³ÖÔ¶³Ì»½ĞÑ*/
+/** \brief USBé…ç½®æè¿°ç¬¦é…ç½®å®*/
+#define __USBD_MSC_INTERFACE_COUNT           (1U)     /**< \brief æ¥å£æ•°*/
+#define __USBD_MSC_CONFIGURE_INDEX           (1U)     /**< \brief é…ç½®æè¿°ç¬¦ç´¢å¼•*/
+#define __USBD_MSC_DEVICE_POWER               AM_USBD_MAX_POWER /**< \brief è®¾å¤‡å‘ä¸»æœºç”³è¯·çš„ç”µæµï¼Œå•ä½2mA,æœ€å¤§100mA*/
+/** \brief è®¾å¤‡å±æ€§ï¼Œè‡ªä¾›ç”µï¼Œä¸æ”¯æŒè¿œç¨‹å”¤é†’*/
 #define __USBD_MSC_DEVICE_ATTRIBUTE          \
               (AM_USBD_CONFIG_SELF_POWER | AM_USBD_CONFIG_NOT_REMOTE_WAKEUP)
 
-/**\brief USB¶ËµãÃèÊö·ûÅäÖÃºê*/
-#define __USBD_MSC_ENDPOINT_IN                (1U)  /**< \brief ÊäÈë¶ËµãºÅ*/
-#define __USBD_MSC_ENDPOINT_IN_PACKSIZE       AM_USBD_MAX_EP_DATA_CNT       /**< \brief ¶Ëµã°ü´óĞ¡,ÉèÖÃÎª64*/
-#define __USBD_MSC_ENDPOINT_IN_ATTRIBUTE      AM_USB_ENDPOINT_BULK          /**< \brief ÉèÖÃ¶ËµãÊôĞÔÎªÅúÁ¿´«Êä*/
-#define __USBD_MSC_ENDPOINT_IN_QUERY_TIME    (0x01)                         /**< \brief ÉèÖÃ¶Ëµã²éÑ¯Ê±¼äÎª10ms,µ¥Î»Îª1ms*/
+/**\brief USBç«¯ç‚¹æè¿°ç¬¦é…ç½®å®*/
+#define __USBD_MSC_ENDPOINT_IN                (1U)  /**< \brief è¾“å…¥ç«¯ç‚¹å·*/
+#define __USBD_MSC_ENDPOINT_IN_PACKSIZE       AM_USBD_MAX_EP_DATA_CNT       /**< \brief ç«¯ç‚¹åŒ…å¤§å°,è®¾ç½®ä¸º64*/
+#define __USBD_MSC_ENDPOINT_IN_ATTRIBUTE      AM_USB_ENDPOINT_BULK          /**< \brief è®¾ç½®ç«¯ç‚¹å±æ€§ä¸ºæ‰¹é‡ä¼ è¾“*/
+#define __USBD_MSC_ENDPOINT_IN_QUERY_TIME    (0x01)                         /**< \brief è®¾ç½®ç«¯ç‚¹æŸ¥è¯¢æ—¶é—´ä¸º10ms,å•ä½ä¸º1ms*/
 
 #define __USBD_MSC_ENDPOINT_OUT               (2)
 #define __USBD_MSC_ENDPOINT_OUT_PACKSIZE      AM_USBD_MAX_EP_DATA_CNT
 #define __USBD_MSC_ENDPOINT_OUT_ATTRIBUTE     AM_USB_ENDPOINT_BULK
 #define __USBD_MSC_ENDPOINT_OUT_QUERY_TIME   (0x01)
 
-/**\brief USB½Ó¿ÚÃèÊö·ûÅäÖÃºê*/
-#define __USBD_MSC_ENDPOINT_COUNT            (2U)     /**< \brief ¶Ëµã¸öÊı,ÊäÈë¶ËµãÓëÊä³ö¶Ëµã(²»°üÀ¨¿ØÖÆ¶Ëµã)*/
+/**\brief USBæ¥å£æè¿°ç¬¦é…ç½®å®*/
+#define __USBD_MSC_ENDPOINT_COUNT            (2U)     /**< \brief ç«¯ç‚¹ä¸ªæ•°,è¾“å…¥ç«¯ç‚¹ä¸è¾“å‡ºç«¯ç‚¹(ä¸åŒ…æ‹¬æ§åˆ¶ç«¯ç‚¹)*/
 
 /*****************************************************************************
- * USBÃèÊö·û(Éè±¸ÃèÊö·û,ÅäÖÃÃèÊö·û£¬½Ó¿ÚÃèÊö·û,¶ËµãÃèÊö·û),¸Ã²¿·ÖÓÃ»§Ö»ĞèÅäÖÃÉÏÊöºê¼´¿É
+ * USBæè¿°ç¬¦(è®¾å¤‡æè¿°ç¬¦,é…ç½®æè¿°ç¬¦ï¼Œæ¥å£æè¿°ç¬¦,ç«¯ç‚¹æè¿°ç¬¦),è¯¥éƒ¨åˆ†ç”¨æˆ·åªéœ€é…ç½®ä¸Šè¿°å®å³å¯
  *****************************************************************************/
-/* Éè±¸ÃèÊö·û */
+/* è®¾å¤‡æè¿°ç¬¦ */
 static const uint8_t __g_usb_msc_desc_dev[AM_USB_DESC_LENGTH_DEVICE]  = {
-    AM_USB_DESC_LENGTH_DEVICE,       /* Éè±¸ÃèÊö·ûµÄ×Ö½ÚÊı */
-    AM_USB_DESC_TYPE_DEVICE,         /* Éè±¸ÃèÊö·ûÀàĞÍ±àºÅ£¬¹Ì¶¨Îª0x01 */
+    AM_USB_DESC_LENGTH_DEVICE,       /* è®¾å¤‡æè¿°ç¬¦çš„å­—èŠ‚æ•° */
+    AM_USB_DESC_TYPE_DEVICE,         /* è®¾å¤‡æè¿°ç¬¦ç±»å‹ç¼–å·ï¼Œå›ºå®šä¸º0x01 */
 
-    /* USB°æ±¾ USB2.0 */
+    /* USBç‰ˆæœ¬ USB2.0 */
     AM_USB_SHORT_GET_LOW(AM_USB_VERSION), AM_USB_SHORT_GET_HIGH(AM_USB_VERSION),
 
-    AM_USBD_CLASS,                         /* Í¨ĞÅÀà */
-    AM_USBD_SUBCLASS,                      /* Éè±¸×ÓÀà */
-    AM_USBD_PROTOCOL,                      /* Ğ­ÒéÂë */
-    AM_USBD_MAX_EP_DATA_CNT,               /* ¶Ëµã0µÄ×î´ó°ü´óĞ¡ */
+    AM_USBD_CLASS,                         /* é€šä¿¡ç±» */
+    AM_USBD_SUBCLASS,                      /* è®¾å¤‡å­ç±» */
+    AM_USBD_PROTOCOL,                      /* åè®®ç  */
+    AM_USBD_MAX_EP_DATA_CNT,               /* ç«¯ç‚¹0çš„æœ€å¤§åŒ…å¤§å° */
 
     /**
-     * ³§ÉÌ±àºÅ¡£ĞèÒªÏòUSBĞ­»áÉêÇë£¬Èç¹û×÷ÎªÑ§Ï°Ê¹ÓÃ¿ÉÒÔËæ±ãÑ¡Ò»¸öÒÑ¾­×¢²á¹ıµÄ£¬
-     * µ«ÊÇ×÷Îª²úÆ··¢²¼µÄ»°¾Í±ØĞëĞ´×Ô¼º¹«Ë¾µÄ³§ÉÌ±àºÅ£¬ÒÔÃâÇÖÈ¨£¬´Ë´¦ÌîÁËÒ»¸öÃ»ÓĞÔÚUSBĞ­»á×¢²áµÄ±àºÅ
+     * å‚å•†ç¼–å·ã€‚éœ€è¦å‘USBåä¼šç”³è¯·ï¼Œå¦‚æœä½œä¸ºå­¦ä¹ ä½¿ç”¨å¯ä»¥éšä¾¿é€‰ä¸€ä¸ªå·²ç»æ³¨å†Œè¿‡çš„ï¼Œ
+     * ä½†æ˜¯ä½œä¸ºäº§å“å‘å¸ƒçš„è¯å°±å¿…é¡»å†™è‡ªå·±å…¬å¸çš„å‚å•†ç¼–å·ï¼Œä»¥å…ä¾µæƒï¼Œæ­¤å¤„å¡«äº†ä¸€ä¸ªæ²¡æœ‰åœ¨USBåä¼šæ³¨å†Œçš„ç¼–å·
      */
     AM_USB_SHORT_GET_LOW(__USBD_MSC_VENDOR_ID), AM_USB_SHORT_GET_HIGH(__USBD_MSC_VENDOR_ID),
 
-    /* ²úÆ·±àºÅ */
+    /* äº§å“ç¼–å· */
     AM_USB_SHORT_GET_LOW(__USBD_MSC_PRODUCT_ID), AM_USB_SHORT_GET_HIGH(__USBD_MSC_PRODUCT_ID),
 
-    /* Éè±¸³ö³§±àºÅ */
+    /* è®¾å¤‡å‡ºå‚ç¼–å· */
     AM_USB_SHORT_GET_LOW(__USBD_MSC_DEVICE_ID), AM_USB_SHORT_GET_HIGH(__USBD_MSC_DEVICE_ID),
 
-    __USBD_MSC_VENDOR_STRING_INDEX,         /* ÃèÊö³§ÉÌµÄ×Ö·û´®Ë÷Òı */
-    __USBD_MSC_PRODUCT_STRING_INDEX,        /* ÃèÊö²úÆ·µÄ×Ö·û´®Ë÷Òı */
-    __USBD_MSC_DEVICE_STRING_INDEX,         /* ÃèÊöÉè±¸ĞòÁĞºÅµÄ×Ö·û´®Ë÷Òı */
-    __USBD_CONFIGURATION_COUNT,             /* ÅäÖÃµÄÊıÁ¿£¨Ö»ÄÜÓĞÒ»¸ö£© */
+    __USBD_MSC_VENDOR_STRING_INDEX,         /* æè¿°å‚å•†çš„å­—ç¬¦ä¸²ç´¢å¼• */
+    __USBD_MSC_PRODUCT_STRING_INDEX,        /* æè¿°äº§å“çš„å­—ç¬¦ä¸²ç´¢å¼• */
+    __USBD_MSC_DEVICE_STRING_INDEX,         /* æè¿°è®¾å¤‡åºåˆ—å·çš„å­—ç¬¦ä¸²ç´¢å¼• */
+    __USBD_CONFIGURATION_COUNT,             /* é…ç½®çš„æ•°é‡ï¼ˆåªèƒ½æœ‰ä¸€ä¸ªï¼‰ */
 };
 
-/* ÅäÖÃÃèÊö·û¼°ÆäÏÂ¼¶ÃèÊö·û£¨²»ÄÜÔ½¹ıÉÏ¼¶ÃèÊö·ûÖ±½ÓµÃµ½ÏÂ¼¶ÃèÊö·û£© */
+/* é…ç½®æè¿°ç¬¦åŠå…¶ä¸‹çº§æè¿°ç¬¦ï¼ˆä¸èƒ½è¶Šè¿‡ä¸Šçº§æè¿°ç¬¦ç›´æ¥å¾—åˆ°ä¸‹çº§æè¿°ç¬¦ï¼‰ */
 static uint8_t __g_usb_msc_desc_conf[AM_USB_DESC_LENGTH_ALL(__USBD_MSC_ENDPOINT_COUNT)] = {
-    /* ÅäÖÃÃèÊö·û */
-    AM_USB_DESC_LENGTH_CONFIGURE,     /* ÅäÖÃÃèÊö·û×Ö½ÚÊı */
-    AM_USB_DESC_TYPE_CONFIGURE,       /* ÅäÖÃÃèÊö·ûÀàĞÍ±àºÅ£¬¹Ì¶¨Îª0x02 */
+    /* é…ç½®æè¿°ç¬¦ */
+    AM_USB_DESC_LENGTH_CONFIGURE,     /* é…ç½®æè¿°ç¬¦å­—èŠ‚æ•° */
+    AM_USB_DESC_TYPE_CONFIGURE,       /* é…ç½®æè¿°ç¬¦ç±»å‹ç¼–å·ï¼Œå›ºå®šä¸º0x02 */
 
-    /* ÅäÖÃÃèÊö·û¼°ÏÂÊôÃèÊö·ûµÄ×Ü³¤¶È */
+    /* é…ç½®æè¿°ç¬¦åŠä¸‹å±æè¿°ç¬¦çš„æ€»é•¿åº¦ */
     AM_USB_SHORT_GET_LOW(AM_USB_DESC_LENGTH_ALL(__USBD_MSC_ENDPOINT_COUNT)),
     AM_USB_SHORT_GET_HIGH(AM_USB_DESC_LENGTH_ALL(__USBD_MSC_ENDPOINT_COUNT)),
-    __USBD_MSC_INTERFACE_COUNT,             /* ½Ó¿ÚÃèÊö·û¸öÊı */
-    __USBD_MSC_CONFIGURE_INDEX,             /* ÅäÖÃÖµ */
-    0x00,                                   /* ÃèÊö¸ÃÅäÖÃµÄ×Ö·û´®Ë÷Òı,0x00±íÊ¾Ã»ÓĞ */
+    __USBD_MSC_INTERFACE_COUNT,             /* æ¥å£æè¿°ç¬¦ä¸ªæ•° */
+    __USBD_MSC_CONFIGURE_INDEX,             /* é…ç½®å€¼ */
+    0x00,                                   /* æè¿°è¯¥é…ç½®çš„å­—ç¬¦ä¸²ç´¢å¼•,0x00è¡¨ç¤ºæ²¡æœ‰ */
 
-    /* Éè±¸ÊôĞÔ£º×ÜÏß¹©µç£¬²»Ö§³ÖÔ¶³Ì»½ĞÑ */
+    /* è®¾å¤‡å±æ€§ï¼šæ€»çº¿ä¾›ç”µï¼Œä¸æ”¯æŒè¿œç¨‹å”¤é†’ */
     __USBD_MSC_DEVICE_ATTRIBUTE,
-    __USBD_MSC_DEVICE_POWER,                /* ´Ó×ÜÏß»ñÈ¡µÄ×î´óµçÁ÷£º100mA£¬ 2mAÒ»¸öµ¥Î» */
+    __USBD_MSC_DEVICE_POWER,                /* ä»æ€»çº¿è·å–çš„æœ€å¤§ç”µæµï¼š100mAï¼Œ 2mAä¸€ä¸ªå•ä½ */
 
-    /* ½Ó¿ÚÃèÊö·û */
-    AM_USB_DESC_LENGTH_INTERFACE,     /* ½Ó¿ÚÃèÊö·û×Ö½ÚÊı */
-    AM_USB_DESC_TYPE_INTERFACE,       /* ½Ó¿ÚÃèÊö·ûÀàĞÍ±àºÅ£¬¹Ì¶¨Îª0x04 */
-    0x00,                                   /* ¸Ã½Ó¿Ú±àºÅ,½Ó¿ÚÃèÊö·û±ØĞë´Ó0¿ªÊ¼,ÒÔ´ËÀàÍÆ */
-    0x00,                                   /* ¿ÉÑ¡ÉèÖÃµÄË÷ÒıÖµ£¨¸Ã½Ó¿ÚµÄ±¸ÓÃ±àºÅ£© */
-    __USBD_MSC_ENDPOINT_COUNT,              /* ¸Ã½Ó¿ÚÊ¹ÓÃµÄ¶ËµãÊı£¨²»°üÀ¨¶Ëµã0£© */
-    AM_USBD_CONFIG_MSC_CLASS_CODE,          /* MSC_CLASSÀà */
-    AM_USBD_MSC_SUBCLASS,                   /* msc×ÓÀàĞÍ */
-    AM_USBD_MSC_PROTOCOL,                   /* mscĞ­ÒéÀàĞÍ */
-    0x00,                                   /* ÃèÊö¸Ã½Ó¿ÚµÄ×Ö·û´®Ë÷Òı, 0x00±íÊ¾Ã»ÓĞ */
+    /* æ¥å£æè¿°ç¬¦ */
+    AM_USB_DESC_LENGTH_INTERFACE,     /* æ¥å£æè¿°ç¬¦å­—èŠ‚æ•° */
+    AM_USB_DESC_TYPE_INTERFACE,       /* æ¥å£æè¿°ç¬¦ç±»å‹ç¼–å·ï¼Œå›ºå®šä¸º0x04 */
+    0x00,                                   /* è¯¥æ¥å£ç¼–å·,æ¥å£æè¿°ç¬¦å¿…é¡»ä»0å¼€å§‹,ä»¥æ­¤ç±»æ¨ */
+    0x00,                                   /* å¯é€‰è®¾ç½®çš„ç´¢å¼•å€¼ï¼ˆè¯¥æ¥å£çš„å¤‡ç”¨ç¼–å·ï¼‰ */
+    __USBD_MSC_ENDPOINT_COUNT,              /* è¯¥æ¥å£ä½¿ç”¨çš„ç«¯ç‚¹æ•°ï¼ˆä¸åŒ…æ‹¬ç«¯ç‚¹0ï¼‰ */
+    AM_USBD_CONFIG_MSC_CLASS_CODE,          /* MSC_CLASSç±» */
+    AM_USBD_MSC_SUBCLASS,                   /* mscå­ç±»å‹ */
+    AM_USBD_MSC_PROTOCOL,                   /* mscåè®®ç±»å‹ */
+    0x00,                                   /* æè¿°è¯¥æ¥å£çš„å­—ç¬¦ä¸²ç´¢å¼•, 0x00è¡¨ç¤ºæ²¡æœ‰ */
 
-    /* ÊäÈë¶ËµãÃèÊö·û */
-    AM_USB_DESC_LENGTH_ENDPOINT,            /* ¶ËµãÃèÊö·û×Ö½ÚÊı */
-    AM_USB_DESC_TYPE_ENDPOINT,        /* ¶ËµãÃèÊö·ûÀàĞÍ±àºÅ£¬¹Ì¶¨Îª0x05 */
+    /* è¾“å…¥ç«¯ç‚¹æè¿°ç¬¦ */
+    AM_USB_DESC_LENGTH_ENDPOINT,            /* ç«¯ç‚¹æè¿°ç¬¦å­—èŠ‚æ•° */
+    AM_USB_DESC_TYPE_ENDPOINT,        /* ç«¯ç‚¹æè¿°ç¬¦ç±»å‹ç¼–å·ï¼Œå›ºå®šä¸º0x05 */
     (__USBD_MSC_ENDPOINT_IN | (AM_USB_IN << AM_USB_REQ_TYPE_DIR_SHIFT)),
-    __USBD_MSC_ENDPOINT_IN_ATTRIBUTE,       /* ¶ËµãÊôĞÔ 02±íÊ¾ÅúÁ¿  */
+    __USBD_MSC_ENDPOINT_IN_ATTRIBUTE,       /* ç«¯ç‚¹å±æ€§ 02è¡¨ç¤ºæ‰¹é‡  */
 
     AM_USB_SHORT_GET_LOW(__USBD_MSC_ENDPOINT_IN_PACKSIZE),
-    AM_USB_SHORT_GET_HIGH(__USBD_MSC_ENDPOINT_IN_PACKSIZE), /* ¶ËµãÒ»´ÎĞÔÊÕ·¢µÄ×î´ó°ü´óĞ¡ */
+    AM_USB_SHORT_GET_HIGH(__USBD_MSC_ENDPOINT_IN_PACKSIZE), /* ç«¯ç‚¹ä¸€æ¬¡æ€§æ”¶å‘çš„æœ€å¤§åŒ…å¤§å° */
 
-    __USBD_MSC_ENDPOINT_IN_QUERY_TIME,      /* Ö÷»ú²éÑ¯¶ËµãÊ±µÄÊ±¼ä¼ä¸ô£º10ms  */
+    __USBD_MSC_ENDPOINT_IN_QUERY_TIME,      /* ä¸»æœºæŸ¥è¯¢ç«¯ç‚¹æ—¶çš„æ—¶é—´é—´éš”ï¼š10ms  */
 
-    /* Êä³ö¶ËµãÃèÊö·û */
-    AM_USB_DESC_LENGTH_ENDPOINT,            /* ¶ËµãÃèÊö·û×Ö½ÚÊı */
-    AM_USB_DESC_TYPE_ENDPOINT,        /* ¶ËµãÃèÊö·ûÀàĞÍ±àºÅ£¬¹Ì¶¨Îª0x05 */
+    /* è¾“å‡ºç«¯ç‚¹æè¿°ç¬¦ */
+    AM_USB_DESC_LENGTH_ENDPOINT,            /* ç«¯ç‚¹æè¿°ç¬¦å­—èŠ‚æ•° */
+    AM_USB_DESC_TYPE_ENDPOINT,        /* ç«¯ç‚¹æè¿°ç¬¦ç±»å‹ç¼–å·ï¼Œå›ºå®šä¸º0x05 */
 
-    /* ¶ËµãµØÖ·¼°Êä³öÊôĞÔ */
+    /* ç«¯ç‚¹åœ°å€åŠè¾“å‡ºå±æ€§ */
     (__USBD_MSC_ENDPOINT_OUT | (AM_USB_OUT << AM_USB_REQ_TYPE_DIR_SHIFT)),
 
-    __USBD_MSC_ENDPOINT_OUT_ATTRIBUTE,      /* ¶ËµãÊôĞÔ */
+    __USBD_MSC_ENDPOINT_OUT_ATTRIBUTE,      /* ç«¯ç‚¹å±æ€§ */
 
     AM_USB_SHORT_GET_LOW(__USBD_MSC_ENDPOINT_OUT_PACKSIZE),
-    AM_USB_SHORT_GET_HIGH(__USBD_MSC_ENDPOINT_OUT_PACKSIZE), /* ¶ËµãÒ»´ÎĞÔÊÕ·¢µÄ×î´ó°ü´óĞ¡ */
+    AM_USB_SHORT_GET_HIGH(__USBD_MSC_ENDPOINT_OUT_PACKSIZE), /* ç«¯ç‚¹ä¸€æ¬¡æ€§æ”¶å‘çš„æœ€å¤§åŒ…å¤§å° */
 
-    __USBD_MSC_ENDPOINT_OUT_QUERY_TIME,     /* Ö÷»ú²éÑ¯¶ËµãÊ±µÄÊ±¼ä¼ä¸ô 10ms */
+    __USBD_MSC_ENDPOINT_OUT_QUERY_TIME,     /* ä¸»æœºæŸ¥è¯¢ç«¯ç‚¹æ—¶çš„æ—¶é—´é—´éš” 10ms */
 };
 
 /*******************************************************************************
- * ×Ö·û´®ÃèÊö·û,Èç¹ûÓÃ»§ĞèÒªĞŞ¸ÄÃèÊö·ûĞÅÏ¢£¬×¢ÒâÊ¹ÓÃµÄÊÇUINCODEÂë(×¢Òâ´óĞ¡¶Ë)
+ * å­—ç¬¦ä¸²æè¿°ç¬¦,å¦‚æœç”¨æˆ·éœ€è¦ä¿®æ”¹æè¿°ç¬¦ä¿¡æ¯ï¼Œæ³¨æ„ä½¿ç”¨çš„æ˜¯UINCODEç (æ³¨æ„å¤§å°ç«¯)
  ******************************************************************************/
-/**< \brief ÃèÊö²úÆ·µÄ×Ö·û´®ÃèÊö·û */
+/**< \brief æè¿°äº§å“çš„å­—ç¬¦ä¸²æè¿°ç¬¦ */
 static const uint8_t __g_usb_msc_desc_str_iproduct[16] = {
-    sizeof(__g_usb_msc_desc_str_iproduct), /* ×Ö·û´®ÃèÊö·û×Ö½ÚÊı */
-    AM_USB_DESC_TYPE_STRING,         /* ×Ö·û´®ÃèÊö·ûÀàĞÍ±àºÅ£¬¹Ì¶¨Îª0x03 */
+    sizeof(__g_usb_msc_desc_str_iproduct), /* å­—ç¬¦ä¸²æè¿°ç¬¦å­—èŠ‚æ•° */
+    AM_USB_DESC_TYPE_STRING,         /* å­—ç¬¦ä¸²æè¿°ç¬¦ç±»å‹ç¼–å·ï¼Œå›ºå®šä¸º0x03 */
 
      0x55, 0x00, /* U */
      0x42, 0x00, /* S */
      0x53, 0x00, /* B */
-     0x21, 0x6a, /* Ä£ */
-     0xdf, 0x62, /* Äâ */
+     0x21, 0x6a, /* æ¨¡ */
+     0xdf, 0x62, /* æ‹Ÿ */
      0x55, 0x00, /* U */
-     0xd8, 0x76  /* ÅÌ */
+     0xd8, 0x76  /* ç›˜ */
 };
 
-/**< \brief ÓïÑÔID×Ö·û´®ÃèÊö·û */
-/**< \brief ÕâÀïÊ¹ÓÃÃÀÊ½Ó¢Óï£¬²»Ê¹ÓÃ¼òÌåÖĞÎÄµÄÔ­ÒòÊÇÈç¹ûÊ¹ÓÃ¼òÌåÖĞÎÄ£¬ÔòÖ÷»ú²»»áÏò´Ó»úÒª×Ö·û´®ÃèÊö·û */
-/**< \brief ÃÀÊ½Ó¢ÓïµÄÓïÑÔIDÎª0x0409£¬¼òÌåÖĞÎÄµÄÓïÑÔIDÎª0x0804£¬×¢Òâ´óĞ¡¶Ë¡£ */
+/**< \brief è¯­è¨€IDå­—ç¬¦ä¸²æè¿°ç¬¦ */
+/**< \brief è¿™é‡Œä½¿ç”¨ç¾å¼è‹±è¯­ï¼Œä¸ä½¿ç”¨ç®€ä½“ä¸­æ–‡çš„åŸå› æ˜¯å¦‚æœä½¿ç”¨ç®€ä½“ä¸­æ–‡ï¼Œåˆ™ä¸»æœºä¸ä¼šå‘ä»æœºè¦å­—ç¬¦ä¸²æè¿°ç¬¦ */
+/**< \brief ç¾å¼è‹±è¯­çš„è¯­è¨€IDä¸º0x0409ï¼Œç®€ä½“ä¸­æ–‡çš„è¯­è¨€IDä¸º0x0804ï¼Œæ³¨æ„å¤§å°ç«¯ã€‚ */
 static const uint8_t __g_usb_msc_desc_str_language_id[4] = {
-    sizeof(__g_usb_msc_desc_str_language_id),       /* ×Ö·û´®ÃèÊö·û×Ö½ÚÊı */
-    AM_USB_DESC_TYPE_STRING,       /* ×Ö·û´®ÃèÊö·ûÀàĞÍ±àºÅ£¬¹Ì¶¨Îª0x03 */
+    sizeof(__g_usb_msc_desc_str_language_id),       /* å­—ç¬¦ä¸²æè¿°ç¬¦å­—èŠ‚æ•° */
+    AM_USB_DESC_TYPE_STRING,       /* å­—ç¬¦ä¸²æè¿°ç¬¦ç±»å‹ç¼–å·ï¼Œå›ºå®šä¸º0x03 */
     0x04,
-    0x08,       /* ¼òÌåÖĞÎÄ */
+    0x08,       /* ç®€ä½“ä¸­æ–‡ */
 };
 
-/**< \brief ÃèÊö³§ÉÌµÄ×Ö·û´®ÃèÊö·û */
+/**< \brief æè¿°å‚å•†çš„å­—ç¬¦ä¸²æè¿°ç¬¦ */
 static const uint8_t __g_usb_msc_desc_str_imanufacturer[22] = {
-    sizeof(__g_usb_msc_desc_str_imanufacturer),       /* ×Ö·û´®ÃèÊö·û×Ö½ÚÊı */
-    AM_USB_DESC_TYPE_STRING,       /* ×Ö·û´®ÃèÊö·ûÀàĞÍ±àºÅ£¬¹Ì¶¨Îª0x03 */
-    0x7f, 0x5e, /* ¹ã */
-    0xde, 0x5d, /* Öİ */
-    0xf4, 0x81, /* ÖÂ */
-    0xdc, 0x8f, /* Ô¶ */
-    0x35, 0x75, /* µç */
-    0x50, 0x5b, /* ×Ó */
-    0x09, 0x67, /* ÓĞ */
-    0x50, 0x96, /* ÏŞ */
-    0x6c, 0x51, /* ¹« */
-    0xf8, 0x53, /* Ë¾ */
+    sizeof(__g_usb_msc_desc_str_imanufacturer),       /* å­—ç¬¦ä¸²æè¿°ç¬¦å­—èŠ‚æ•° */
+    AM_USB_DESC_TYPE_STRING,       /* å­—ç¬¦ä¸²æè¿°ç¬¦ç±»å‹ç¼–å·ï¼Œå›ºå®šä¸º0x03 */
+    0x7f, 0x5e, /* å¹¿ */
+    0xde, 0x5d, /* å· */
+    0xf4, 0x81, /* è‡´ */
+    0xdc, 0x8f, /* è¿œ */
+    0x35, 0x75, /* ç”µ */
+    0x50, 0x5b, /* å­ */
+    0x09, 0x67, /* æœ‰ */
+    0x50, 0x96, /* é™ */
+    0x6c, 0x51, /* å…¬ */
+    0xf8, 0x53, /* å¸ */
 };
 
-/**< \brief ÃèÊöÉè±¸ĞòÁĞºÅµÄ×Ö·û´®ÃèÊö·û */
+/**< \brief æè¿°è®¾å¤‡åºåˆ—å·çš„å­—ç¬¦ä¸²æè¿°ç¬¦ */
 static const uint8_t __g_usb_msc_desc_str_iserialnumber[22] = {
-    sizeof(__g_usb_msc_desc_str_iserialnumber),    /* ×Ö·û´®ÃèÊö·û×Ö½ÚÊı */
-    AM_USB_DESC_TYPE_STRING,                 /* ×Ö·û´®ÃèÊö·ûÀàĞÍ±àºÅ£¬¹Ì¶¨Îª0x03 */
+    sizeof(__g_usb_msc_desc_str_iserialnumber),    /* å­—ç¬¦ä¸²æè¿°ç¬¦å­—èŠ‚æ•° */
+    AM_USB_DESC_TYPE_STRING,                 /* å­—ç¬¦ä¸²æè¿°ç¬¦ç±»å‹ç¼–å·ï¼Œå›ºå®šä¸º0x03 */
     0x32, 0x00, /* 2 */
     0x30, 0x00, /* 0 */
     0x31, 0x00, /* 1 */
@@ -243,45 +243,45 @@ static const uint8_t __g_usb_msc_desc_str_iserialnumber[22] = {
 
 
 /******************************************************************************
- * ¸÷ÃèÊö·ûĞÅÏ¢
+ * å„æè¿°ç¬¦ä¿¡æ¯
  *****************************************************************************/
 static const am_usbd_descriptor_t __g_usb_msc_descriptor[] = {
-    /* Éè±¸ÃèÊö·û */
+    /* è®¾å¤‡æè¿°ç¬¦ */
     {
         (AM_USB_DESC_TYPE_DEVICE << 8) | (0x00),
         sizeof(__g_usb_msc_desc_dev),
         __g_usb_msc_desc_dev
     },
 
-    /* ÅäÖÃÃèÊö·û¼°ÆäÏÂ¼¶ÃèÊö·û */
+    /* é…ç½®æè¿°ç¬¦åŠå…¶ä¸‹çº§æè¿°ç¬¦ */
     {
         (AM_USB_DESC_TYPE_CONFIGURE << 8) | (0x00),
         sizeof(__g_usb_msc_desc_conf),
         __g_usb_msc_desc_conf
     },
 
-    /* ×Ö·û´®ÃèÊö·û£¬ÃèÊöÓïÑÔid */
+    /* å­—ç¬¦ä¸²æè¿°ç¬¦ï¼Œæè¿°è¯­è¨€id */
     {
         (AM_USB_DESC_TYPE_STRING << 8) | (0x00),
         sizeof(__g_usb_msc_desc_str_language_id),
         __g_usb_msc_desc_str_language_id
     },
 
-    /* ×Ö·û´®ÃèÊö·û£¬ÃèÊö³§ÉÌ */
+    /* å­—ç¬¦ä¸²æè¿°ç¬¦ï¼Œæè¿°å‚å•† */
     {
         (AM_USB_DESC_TYPE_STRING << 8) | __USBD_MSC_VENDOR_STRING_INDEX,
         sizeof(__g_usb_msc_desc_str_imanufacturer),
         __g_usb_msc_desc_str_imanufacturer
     },
 
-    /* ×Ö·û´®ÃèÊö·û£¬ÃèÊö²úÆ· */
+    /* å­—ç¬¦ä¸²æè¿°ç¬¦ï¼Œæè¿°äº§å“ */
     {
         (AM_USB_DESC_TYPE_STRING << 8) | __USBD_MSC_PRODUCT_STRING_INDEX,
         sizeof(__g_usb_msc_desc_str_iproduct),
         __g_usb_msc_desc_str_iproduct
     },
 
-    /* ×Ö·û´®ÃèÊö·û£¬ÃèÊöÉè±¸ĞòÁĞºÅ */
+    /* å­—ç¬¦ä¸²æè¿°ç¬¦ï¼Œæè¿°è®¾å¤‡åºåˆ—å· */
     {
         (AM_USB_DESC_TYPE_STRING << 8)| __USBD_MSC_DEVICE_STRING_INDEX,
         sizeof(__g_usb_msc_desc_str_iserialnumber),
@@ -290,120 +290,120 @@ static const am_usbd_descriptor_t __g_usb_msc_descriptor[] = {
 };
 
 static const uint8_t __g_readme_data[]= {
-    "**ZLGÄ£ÄâUÅÌÀı³Ì**\r\n"
-     "1.ÏÈÅĞ¶ÏÊ¹ÓÃPC»úµÄÏµÍ³£¬Èç¹ûÊ¹ÓÃWIN10,¼ÇµÃĞŞ¸Äam_hwconf_zmf159_usb_msc.cÎÄ¼şÖĞÏµÍ³ºêÅäÖÃÏî;\r\n"
-     "2.½ÓÉÏ´®¿Ú£¬½«ÎÄ¼şÍÏ¶¯µ½UÅÌÖĞ£¬»á´òÓ¡ÍÏ¶¯ÎÄ¼şµÄĞÅÏ¢;\r\n"
+    "**ZLGæ¨¡æ‹ŸUç›˜ä¾‹ç¨‹**\r\n"
+     "1.å…ˆåˆ¤æ–­ä½¿ç”¨PCæœºçš„ç³»ç»Ÿï¼Œå¦‚æœä½¿ç”¨WIN10,è®°å¾—ä¿®æ”¹am_hwconf_zmf159_usb_msc.cæ–‡ä»¶ä¸­ç³»ç»Ÿå®é…ç½®é¡¹;\r\n"
+     "2.æ¥ä¸Šä¸²å£ï¼Œå°†æ–‡ä»¶æ‹–åŠ¨åˆ°Uç›˜ä¸­ï¼Œä¼šæ‰“å°æ‹–åŠ¨æ–‡ä»¶çš„ä¿¡æ¯;\r\n"
 };
 
 
 static const uint8_t __g_fat_root_dir[64] = {
 
-    /* ´ÅÅÌ±ê¾í£ºzlgmcu µÄ¼ÙUÅÌ */
+    /* ç£ç›˜æ ‡å·ï¼šzlgmcu çš„å‡Uç›˜ */
      'Z', 'L', 'G', 'M', 'C', 'U', 0x20, 0x20, 0x55, 0xC5, 0xCC,
-    0x08,                  /* ÎÄ¼şÊôĞÔ£¬±íÊ¾´ÅÅÌ±ê¾í */
-    0x00,                  /* ±£Áô */
-    0x00,                  /* ´´½¨Ê±¼äºÁÃëÊ±¼ä´Á */
+    0x08,                  /* æ–‡ä»¶å±æ€§ï¼Œè¡¨ç¤ºç£ç›˜æ ‡å· */
+    0x00,                  /* ä¿ç•™ */
+    0x00,                  /* åˆ›å»ºæ—¶é—´æ¯«ç§’æ—¶é—´æˆ³ */
 
-    /* ÎÄ¼ş´´½¨Ê±¼ä£¬15µã48·Ö26Ãë */
+    /* æ–‡ä»¶åˆ›å»ºæ—¶é—´ï¼Œ15ç‚¹48åˆ†26ç§’ */
     (uint8_t)AM_TIME_LB(__USBD_MSC_FILE_CREAT_TIME1, __USBD_MSC_FILE_CREAT_TIME2, __USBD_MSC_FILE_CREAT_TIME3),
     (uint8_t)AM_TIME_HB(__USBD_MSC_FILE_CREAT_TIME1, __USBD_MSC_FILE_CREAT_TIME2, __USBD_MSC_FILE_CREAT_TIME3),
 
-     /* ÎÄ¼ş´´½¨ÈÕÆÚ£¬2018Äê10ÔÂ29ÈÕ */
+     /* æ–‡ä»¶åˆ›å»ºæ—¥æœŸï¼Œ2018å¹´10æœˆ29æ—¥ */
     (uint8_t)AM_DATE_LB(__USBD_MSC_FILE_CREAT_DATE1, __USBD_MSC_FILE_CREAT_DATE2, __USBD_MSC_FILE_CREAT_DATE3),
     (uint8_t)AM_DATE_HB(__USBD_MSC_FILE_CREAT_DATE1, __USBD_MSC_FILE_CREAT_DATE2, __USBD_MSC_FILE_CREAT_DATE3),
 
-    /* ×îºó·ÃÎÊÈÕÆÚ£¬2018Äê10ÔÂ29ÈÕ */
+    /* æœ€åè®¿é—®æ—¥æœŸï¼Œ2018å¹´10æœˆ29æ—¥ */
     (uint8_t)AM_DATE_LB(__USBD_MSC_FILE_CREAT_DATE1, __USBD_MSC_FILE_CREAT_DATE2, __USBD_MSC_FILE_CREAT_DATE3),
     (uint8_t)AM_DATE_HB(__USBD_MSC_FILE_CREAT_DATE1, __USBD_MSC_FILE_CREAT_DATE2, __USBD_MSC_FILE_CREAT_DATE3),
 
-    0x00, 0x00,            /* ÆğÊ¼´ØºÅ¸ßÎ»×Ö½Ú£¬FAT12/16±ØĞëÎª0 */
+    0x00, 0x00,            /* èµ·å§‹ç°‡å·é«˜ä½å­—èŠ‚ï¼ŒFAT12/16å¿…é¡»ä¸º0 */
 
-    /* ×îºóĞŞ¸ÄÊ±¼ä£¬15µã36·Ö47Ãë */
+    /* æœ€åä¿®æ”¹æ—¶é—´ï¼Œ15ç‚¹36åˆ†47ç§’ */
     (uint8_t)AM_TIME_LB(__USBD_MSC_FILE_MODIFIED_TIME1, __USBD_MSC_FILE_MODIFIED_TIME2, __USBD_MSC_FILE_MODIFIED_TIME3),
     (uint8_t)AM_TIME_HB(__USBD_MSC_FILE_MODIFIED_TIME1, __USBD_MSC_FILE_MODIFIED_TIME2, __USBD_MSC_FILE_MODIFIED_TIME3),
 
-    /* ×îºóĞŞ¸ÄÈÕÆÚ£¬2018Äê11ÔÂ2ÈÕ */
+    /* æœ€åä¿®æ”¹æ—¥æœŸï¼Œ2018å¹´11æœˆ2æ—¥ */
     (uint8_t)AM_DATE_LB(__USBD_MSC_FILE_MODIFIED_DATE1,__USBD_MSC_FILE_MODIFIED_DATE2, __USBD_MSC_FILE_MODIFIED_DATE3),
     (uint8_t)AM_DATE_HB(__USBD_MSC_FILE_MODIFIED_DATE1,__USBD_MSC_FILE_MODIFIED_DATE2, __USBD_MSC_FILE_MODIFIED_DATE3),
 
-    0x00, 0x00,               /* ÆğÊ¼´ØµÍ×Ö */
-    0x00, 0x00, 0x00, 0x00,   /* ÎÄ¼ş³¤¶È */
-    /* ¸ùÄ¿Â¼ÏÂµÄ²âÊÔÎÄ¼ş */
-    /* ÎÄ¼şÃû¡°README.TXT¡± */
+    0x00, 0x00,               /* èµ·å§‹ç°‡ä½å­— */
+    0x00, 0x00, 0x00, 0x00,   /* æ–‡ä»¶é•¿åº¦ */
+    /* æ ¹ç›®å½•ä¸‹çš„æµ‹è¯•æ–‡ä»¶ */
+    /* æ–‡ä»¶åâ€œREADME.TXTâ€ */
     'R',  'E',   'A',  'D', 'M', 'E', ' ', ' ',  'T', 'X', 'T',
-    0x01,                  /*  ÎÄ¼şÊôĞÔ£¬±íÊ¾Ö»¶ÁÎÄ¼ş  */
-    0x00,                  /*  ±£Áô */
-    0x00,                  /*  ´´½¨Ê±¼äºÁÃëÊ±¼ä´Á */
+    0x01,                  /*  æ–‡ä»¶å±æ€§ï¼Œè¡¨ç¤ºåªè¯»æ–‡ä»¶  */
+    0x00,                  /*  ä¿ç•™ */
+    0x00,                  /*  åˆ›å»ºæ—¶é—´æ¯«ç§’æ—¶é—´æˆ³ */
 
-    /* ÎÄ¼ş´´½¨Ê±¼ä£¬15µã48·Ö26Ãë */
+    /* æ–‡ä»¶åˆ›å»ºæ—¶é—´ï¼Œ15ç‚¹48åˆ†26ç§’ */
     (uint8_t)AM_TIME_LB(__USBD_MSC_FILE_CREAT_TIME1, __USBD_MSC_FILE_CREAT_TIME2, __USBD_MSC_FILE_CREAT_TIME3),
     (uint8_t)AM_TIME_HB(__USBD_MSC_FILE_CREAT_TIME1, __USBD_MSC_FILE_CREAT_TIME2, __USBD_MSC_FILE_CREAT_TIME3),
 
-    /* ÎÄ¼ş´´½¨ÈÕÆÚ,2018Äê10ÔÂ29ÈÕ */
+    /* æ–‡ä»¶åˆ›å»ºæ—¥æœŸ,2018å¹´10æœˆ29æ—¥ */
     (uint8_t)AM_DATE_LB(__USBD_MSC_FILE_CREAT_DATE1, __USBD_MSC_FILE_CREAT_DATE2, __USBD_MSC_FILE_CREAT_DATE3),
     (uint8_t)AM_DATE_HB(__USBD_MSC_FILE_CREAT_DATE1, __USBD_MSC_FILE_CREAT_DATE2, __USBD_MSC_FILE_CREAT_DATE3),
 
-    /* ×îºó·ÃÎÊÈÕÆÚ ,15µã36·Ö47Ãë */
+    /* æœ€åè®¿é—®æ—¥æœŸ ,15ç‚¹36åˆ†47ç§’ */
     (uint8_t)AM_DATE_LB(__USBD_MSC_FILE_MODIFIED_TIME1, __USBD_MSC_FILE_MODIFIED_TIME2, __USBD_MSC_FILE_MODIFIED_TIME3),
     (uint8_t)AM_DATE_HB(__USBD_MSC_FILE_MODIFIED_TIME1, __USBD_MSC_FILE_MODIFIED_TIME2, __USBD_MSC_FILE_MODIFIED_TIME3),
 
-    0x00, 0x00,            /* ÆğÊ¼´ØºÅ¸ßÎ»×Ö½Ú£¬FAT12/16±ØĞëÎª0 */
+    0x00, 0x00,            /* èµ·å§‹ç°‡å·é«˜ä½å­—èŠ‚ï¼ŒFAT12/16å¿…é¡»ä¸º0 */
 
-    /* ×îºóĞŞ¸ÄÊ±¼ä,15µã36·Ö47Ãë */
+    /* æœ€åä¿®æ”¹æ—¶é—´,15ç‚¹36åˆ†47ç§’ */
     (uint8_t)AM_TIME_LB(__USBD_MSC_FILE_MODIFIED_TIME1, __USBD_MSC_FILE_MODIFIED_TIME2, __USBD_MSC_FILE_MODIFIED_TIME3),
     (uint8_t)AM_TIME_HB(__USBD_MSC_FILE_MODIFIED_TIME1, __USBD_MSC_FILE_MODIFIED_TIME2, __USBD_MSC_FILE_MODIFIED_TIME3),
 
-    /* ×îºóĞŞ¸ÄÈÕÆÚ£¬2018Äê11ÔÂ2ÈÕ */
+    /* æœ€åä¿®æ”¹æ—¥æœŸï¼Œ2018å¹´11æœˆ2æ—¥ */
     (uint8_t)AM_DATE_LB(__USBD_MSC_FILE_MODIFIED_DATE1,__USBD_MSC_FILE_MODIFIED_DATE2, __USBD_MSC_FILE_MODIFIED_DATE3),
     (uint8_t)AM_DATE_HB(__USBD_MSC_FILE_MODIFIED_DATE1,__USBD_MSC_FILE_MODIFIED_DATE2, __USBD_MSC_FILE_MODIFIED_DATE3),
 
-    0x02, 0x00,            /* ÆğÊ¼´ØµÍ×Ö£¬´Ø2¡£(Êı¾İÇø) */
+    0x02, 0x00,            /* èµ·å§‹ç°‡ä½å­—ï¼Œç°‡2ã€‚(æ•°æ®åŒº) */
 
-    /* ÎÄ¼ş³¤¶È */
+    /* æ–‡ä»¶é•¿åº¦ */
     (sizeof(__g_readme_data) - 1), ((sizeof(__g_readme_data) - 1) >> 8), 0x00, 0x00,
 };
 /******************************************************************************
- * Æ½Ì¨³õÊ¼»¯º¯Êı¡¢½â³õÊ¼»¯º¯ÊıÒÑ¾­Éè±¸ĞÅÏ¢
+ * å¹³å°åˆå§‹åŒ–å‡½æ•°ã€è§£åˆå§‹åŒ–å‡½æ•°å·²ç»è®¾å¤‡ä¿¡æ¯
  ******************************************************************************/
 /**
- * \brief Æ½Ì¨³õÊ¼»¯
+ * \brief å¹³å°åˆå§‹åŒ–
  */
 static void __usb_msc_init (void) {
-    /* Ê¹ÄÜÊ±ÖÓ */
+    /* ä½¿èƒ½æ—¶é’Ÿ */
     am_clk_enable(CLK_USB);
     amhw_zmf159_rcc_ahb2_enable(AMHW_ZMF159_RCC_AHB2_USBFS);
 }
 
 /**
- * \brief Æ½Ì¨È¥³õÊ¼»¯
+ * \brief å¹³å°å»åˆå§‹åŒ–
  */
 static void __usb_msc_deinit (void) {
     am_clk_disable(CLK_USB);
     amhw_zmf159_rcc_ahb2_disable(AMHW_ZMF159_RCC_AHB2_USBFS);
 }
 
-/**< \brief Éè±¸ĞÅÏ¢*/
+/**< \brief è®¾å¤‡ä¿¡æ¯*/
 static const am_usbd_devinfo_t __g_usbd_msc_info = {
-        __g_usb_msc_descriptor,                                                 /* ÃèÊö·ûµØÖ· */
-        sizeof(__g_usb_msc_descriptor) / sizeof(__g_usb_msc_descriptor[0]),     /* ÃèÊö·û¸öÊı */
+        __g_usb_msc_descriptor,                                                 /* æè¿°ç¬¦åœ°å€ */
+        sizeof(__g_usb_msc_descriptor) / sizeof(__g_usb_msc_descriptor[0]),     /* æè¿°ç¬¦ä¸ªæ•° */
 };
 
-/**< \brief ¶¨ÒåUSBÉè±¸ĞÅÏ¢ */
+/**< \brief å®šä¹‰USBè®¾å¤‡ä¿¡æ¯ */
 static const am_zmf159_usbd_devinfo_t  __g_zmf159_usbd_msc_info = {
-    ZMF159_USB_BASE,                  /**< \brief ¼Ä´æÆ÷»ùµØÖ· */
-    INUM_USB_FS,                      /**< \brief ÖĞ¶ÏºÅ */
-    __usb_msc_init,                   /**< \brief Æ½Ì¨³õÊ¼»¯ */
-    __usb_msc_deinit,                 /**< \brief Æ½Ì¨È¥³õÊ¼»¯ */
+    ZMF159_USB_BASE,                  /**< \brief å¯„å­˜å™¨åŸºåœ°å€ */
+    INUM_USB_FS,                      /**< \brief ä¸­æ–­å· */
+    __usb_msc_init,                   /**< \brief å¹³å°åˆå§‹åŒ– */
+    __usb_msc_deinit,                 /**< \brief å¹³å°å»åˆå§‹åŒ– */
     &__g_usbd_msc_info,
 };
 
-/** \brief USB MSCÉè±¸ÊµÀı */
+/** \brief USB MSCè®¾å¤‡å®ä¾‹ */
 static am_usbd_msc_t      __g_usb_msc_dev;
 
-/** \brief ZMF159 USBÉè±¸ÊµÀı */
+/** \brief ZMF159 USBè®¾å¤‡å®ä¾‹ */
 static am_zmf159_usbd_dev_t  __g_zlg_usbd_msc;
 
-/**< \brief ½ÓÊÕSCSIÃüÁî»º³åÇø */
+/**< \brief æ¥æ”¶SCSIå‘½ä»¤ç¼“å†²åŒº */
 static uint8_t __g_sici_cmd_buff[AM_USBD_MAX_EP_DATA_CNT + 1] = {0};
 
 static const am_usbd_msc_diskinfo_t __g_usbd_msc_disk_info = {
@@ -417,19 +417,19 @@ static const am_usbd_msc_diskinfo_t __g_usbd_msc_disk_info = {
     (AM_USBD_MSC_DISD_SIZE / 256 / 1024 * 2 + 1) * 512,
     (AM_USBD_MSC_DISD_SIZE / 256 / 1024 * 2 + 17) * 512,
 
-    /* Ö¸Áî»º³åÇø  */
+    /* æŒ‡ä»¤ç¼“å†²åŒº  */
     __g_sici_cmd_buff,
 
-    /* FAT¸ùÄ¿Â¼ */
+    /* FATæ ¹ç›®å½• */
     __g_fat_root_dir,
     sizeof(__g_fat_root_dir),
 
-    /* READMEÎÄ¼şÊı¾İ */
+    /* READMEæ–‡ä»¶æ•°æ® */
     __g_readme_data,
     sizeof(__g_readme_data),
 };
 
-/** \brief usb_mscÊµÀı³õÊ¼»¯£¬»ñµÃusb_msc±ê×¼·şÎñ¾ä±ú */
+/** \brief usb_mscå®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—usb_mscæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_usbd_msc_handle am_zmf159_usbd_msc_inst_init (void)
 {
     return am_usbd_msc_init(&__g_usb_msc_dev,
@@ -437,7 +437,7 @@ am_usbd_msc_handle am_zmf159_usbd_msc_inst_init (void)
                             am_zmf159_usbd_init(&__g_zlg_usbd_msc, &__g_zmf159_usbd_msc_info));
 }
 
-/** \brief usb_msc½â³õÊ¼»¯£¬»ñµÃusb_msc±ê×¼·şÎñ¾ä±ú */
+/** \brief usb_mscè§£åˆå§‹åŒ–ï¼Œè·å¾—usb_mscæ ‡å‡†æœåŠ¡å¥æŸ„ */
 void am_zmf159_usbd_msc_inst_deinit (void)
 {
     am_usb_msc_deinit(&__g_usb_msc_dev);

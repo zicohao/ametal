@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief LPC82X WWDT ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief LPC82X WWDT ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_lpc82x_wwdt.c
  *
  * \internal
@@ -34,40 +34,40 @@
  */
 
 /**
- * \brief WWDT Æ½Ì¨³õÊ¼»¯
+ * \brief WWDT å¹³å°åˆå§‹åŒ–
  */
 am_local void __lpc82x_wwdt_plfm_init (void)
 {
     amhw_lpc82x_clk_periph_enable(AMHW_LPC82X_CLK_WWDT);
 
-    /* ÉèÖÃ WDT Ê±ÖÓ£¬0.6MHz£¬64 ·ÖÆµ£¬Ê±ÖÓÆµÂÊ 9.375KHz */
+    /* è®¾ç½® WDT æ—¶é’Ÿï¼Œ0.6MHzï¼Œ64 åˆ†é¢‘ï¼Œæ—¶é’Ÿé¢‘ç‡ 9.375KHz */
     amhw_lpc82x_clk_wdtoscc_cfg(AMHW_LPC82X_CLK_WDTOSC_RATE_0_6MHZ, 64);
 
-    /* Ê¹ÄÜ WDTOSC */
+    /* ä½¿èƒ½ WDTOSC */
     amhw_lpc82x_syscon_powerup(AMHW_LPC82X_SYSCON_PD_WDT_OSC);
 }
 
 /**
- * \brief WWDT Æ½Ì¨½â³õÊ¼»¯
+ * \brief WWDT å¹³å°è§£åˆå§‹åŒ–
  */
 am_local void __lpc82x_wwdt_plfm_deinit (void)
 {
     amhw_lpc82x_clk_periph_disable(AMHW_LPC82X_CLK_WWDT);
 }
 
-/** \brief WWDT Éè±¸ĞÅÏ¢ */
+/** \brief WWDT è®¾å¤‡ä¿¡æ¯ */
 am_local am_const am_lpc_wwdt_devinfo_t __g_lpc82x_wwdt_devinfo = {
-    LPC82X_WWDT_BASE,          /* WWDT ¼Ä´æÆ÷»ùÖ· */
-    CLK_WWDT,                  /* WWDT Ê±ÖÓºÅ */
-    __lpc82x_wwdt_plfm_init,   /* Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __lpc82x_wwdt_plfm_deinit, /* Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    LPC82X_WWDT_BASE,          /* WWDT å¯„å­˜å™¨åŸºå€ */
+    CLK_WWDT,                  /* WWDT æ—¶é’Ÿå· */
+    __lpc82x_wwdt_plfm_init,   /* å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __lpc82x_wwdt_plfm_deinit, /* å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 };
 
-/** \brief WWDT Éè±¸ÊµÀı */
+/** \brief WWDT è®¾å¤‡å®ä¾‹ */
 am_local am_lpc_wwdt_dev_t __g_lpc82x_wwdt_dev;
 
 /**
- * \brief WWDT ÊµÀı³õÊ¼»¯
+ * \brief WWDT å®ä¾‹åˆå§‹åŒ–
  */
 am_wdt_handle_t am_lpc82x_wwdt_inst_init (void)
 {
@@ -75,7 +75,7 @@ am_wdt_handle_t am_lpc82x_wwdt_inst_init (void)
 }
 
 /**
- * \brief WWDT ÊµÀı½â³õÊ¼»¯
+ * \brief WWDT å®ä¾‹è§£åˆå§‹åŒ–
  */
 void am_lpc82x_wwdt_inst_deinit (am_wdt_handle_t handle)
 {

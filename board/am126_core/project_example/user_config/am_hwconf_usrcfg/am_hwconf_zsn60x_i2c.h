@@ -11,7 +11,7 @@
 *******************************************************************************/
 /**
  * \file
- * \brief Miniport-595 ÅäÖÃÎÄ¼ş
+ * \brief Miniport-595 é…ç½®æ–‡ä»¶
  *
  * \internal
  * \par Modification history
@@ -29,10 +29,10 @@ extern "C" {
 #endif
 
 /**
- * \brief ZSN60x (I2C Ä£Ê½) ÊµÀı³õÊ¼»¯
+ * \brief ZSN60x (I2C æ¨¡å¼) å®ä¾‹åˆå§‹åŒ–
  *
- * \retval  handle  ³õÊ¼»¯³É¹¦
- * \retval  NULL    ³õÊ¼»¯Ê§°Ü
+ * \retval  handle  åˆå§‹åŒ–æˆåŠŸ
+ * \retval  NULL    åˆå§‹åŒ–å¤±è´¥
  */
 zsn60x_handle_t  am_zsn60x_i2c_inst_init (void);
 

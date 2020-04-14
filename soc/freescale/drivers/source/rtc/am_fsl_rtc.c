@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief RTC Ä£¿éµÄÇı¶¯²ã½Ó¿Ú
+ * \brief RTC æ¨¡å—çš„é©±åŠ¨å±‚æ¥å£
  *
  * \internal
  * \par Modification History
@@ -28,33 +28,33 @@
 #include <string.h>
 #endif /* USE_TIME_LIB */
 
-/** Æ½ÄêÃ¿ÔÂµÄÆğÊ¼ÌìÊı */
+/** å¹³å¹´æ¯æœˆçš„èµ·å§‹å¤©æ•° */
 static const uint32_t __non_leap_year[] =
 {0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334};
 
-/** ÈòÄêÃ¿ÔÂµÄÆğÊ¼ÌìÊı */
+/** é—°å¹´æ¯æœˆçš„èµ·å§‹å¤©æ•° */
 static const uint32_t __leap_year[] =
 {0, 31, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335};
 
 
-/** \brief Ê±¼ä»ñÈ¡º¯Êı */
+/** \brief æ—¶é—´è·å–å‡½æ•° */
 static int __fsl_rtc_time_get (void *p_drv, am_tm_t *p_tm);
 
-/** \brief Ê±¼äÉèÖÃº¯Êı */
+/** \brief æ—¶é—´è®¾ç½®å‡½æ•° */
 static int __fsl_rtc_time_set (void *p_drv, am_tm_t *p_tm);
 
-/** \brief RTC Çı¶¯º¯Êı */
+/** \brief RTC é©±åŠ¨å‡½æ•° */
 static const struct am_rtc_drv_funcs __g_rtc_drv_funcs = {
     __fsl_rtc_time_set,
     __fsl_rtc_time_get,
 };
 
 /**
- *  \brief Ãë×ª»¯ÎªtmÊ±¼äÊı¾İ
+ *  \brief ç§’è½¬åŒ–ä¸ºtmæ—¶é—´æ•°æ®
  *
- *  \param p_time Ö¸ÏòtmÊ±¼äÊı¾İµÄÖ¸Õë
- *  \param  seconds ÃëÊı¾İ
- *  \return ÎŞ
+ *  \param p_time æŒ‡å‘tmæ—¶é—´æ•°æ®çš„æŒ‡é’ˆ
+ *  \param  seconds ç§’æ•°æ®
+ *  \return æ— 
  */
 #ifdef USE_TIME_LIB
 static void __sec2tm (am_tm_t *p_time, uint32_t sec)
@@ -70,7 +70,7 @@ static void __sec2tm (am_tm_t *p_time, uint32_t sec)
 }
 #else
 
-/* Ò»ÄêÖĞÃ¿¸öÔÂµÄÌìÊı£¬·ÇÈòÄê */
+/* ä¸€å¹´ä¸­æ¯ä¸ªæœˆçš„å¤©æ•°ï¼Œéé—°å¹´ */
 const char __days[12] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
 static int __week_get (int year, int month, int day)
@@ -79,13 +79,13 @@ static int __week_get (int year, int month, int day)
     month++;
     year += 1900;
 
-    /* Èç¹ûÊÇÒ»ÔÂ»ò¶şÔÂ½øĞĞ»»Ëã */
+    /* å¦‚æœæ˜¯ä¸€æœˆæˆ–äºŒæœˆè¿›è¡Œæ¢ç®— */
     if ((month == 1) || (month == 2)) {
         month += 12;
         year--;
     }
 
-    /* µÃµ½µÄĞÇÆÚ¼¸µÄÕûÊı */
+    /* å¾—åˆ°çš„æ˜ŸæœŸå‡ çš„æ•´æ•° */
     return (day + 2 * month + 3 * (month + 1) / 5 + year + year / 4 -
             year / 100 + year / 400) % 7;
 }
@@ -101,33 +101,33 @@ static void __sec2tm (am_tm_t *p_time, uint32_t sec)
 
     p_time->tm_isdst = 0;
 
-    /* È¡ÃëÊ±¼ä */
+    /* å–ç§’æ—¶é—´ */
     p_time->tm_sec = (int)(sec % 60);
     sec /= 60;
 
-    /* È¡·ÖÖÓÊ±¼ä */
+    /* å–åˆ†é’Ÿæ—¶é—´ */
     p_time->tm_min = (int)(sec % 60);
     sec /= 60;
 
-    /* È¡¹ıÈ¥¶àÉÙ¸öËÄÄê£¬Ã¿ËÄÄêÓĞ 1461*24 Ğ¡Ê± */
+    /* å–è¿‡å»å¤šå°‘ä¸ªå››å¹´ï¼Œæ¯å››å¹´æœ‰ 1461*24 å°æ—¶ */
     four_year_pass = ((uint32_t)sec / (1461L * 24L));
 
-    /* ¼ÆËãÄê·İ */
+    /* è®¡ç®—å¹´ä»½ */
     p_time->tm_year = (four_year_pass << 2) + 70;
 
-    /* ËÄÄêÖĞÊ£ÏÂµÄĞ¡Ê±Êı */
+    /* å››å¹´ä¸­å‰©ä¸‹çš„å°æ—¶æ•° */
     sec %= 1461L * 24L;
 
-    /* Ğ£ÕıÈòÄêÓ°ÏìµÄÄê·İ£¬¼ÆËãÒ»ÄêÖĞÊ£ÏÂµÄĞ¡Ê±Êı */
+    /* æ ¡æ­£é—°å¹´å½±å“çš„å¹´ä»½ï¼Œè®¡ç®—ä¸€å¹´ä¸­å‰©ä¸‹çš„å°æ—¶æ•° */
     for (;;) {
 
-        /* Ò»ÄêµÄĞ¡Ê±Êı */
+        /* ä¸€å¹´çš„å°æ—¶æ•° */
         hour_num = 365 * 24;
 
-        /* ÅĞ¶ÏÈòÄê */
+        /* åˆ¤æ–­é—°å¹´ */
         if ((p_time->tm_year & 3) == 0) {
 
-            /* ÊÇÈòÄê£¬Ò»ÄêÔò¶à24Ğ¡Ê±£¬¼´Ò»Ìì */
+            /* æ˜¯é—°å¹´ï¼Œä¸€å¹´åˆ™å¤š24å°æ—¶ï¼Œå³ä¸€å¤© */
             hour_num += 24;
         }
         if (sec < hour_num) {
@@ -137,18 +137,18 @@ static void __sec2tm (am_tm_t *p_time, uint32_t sec)
         sec -= hour_num;
     }
 
-    /* Ğ¡Ê±Êı */
+    /* å°æ—¶æ•° */
     p_time->tm_hour = (int)(sec % 24);
 
-    /* Ò»ÄêÖĞÊ£ÏÂµÄÌìÊı */
+    /* ä¸€å¹´ä¸­å‰©ä¸‹çš„å¤©æ•° */
     sec /= 24;
 
-    /* ¼Ù¶¨ÎªÈòÄê */
+    /* å‡å®šä¸ºé—°å¹´ */
     sec++;
 
     p_time->tm_yday = sec - 1;
 
-    /* Ğ£ÕıÈóÄêµÄÎó²î£¬¼ÆËãÔÂ·İ£¬ÈÕÆÚ */
+    /* æ ¡æ­£æ¶¦å¹´çš„è¯¯å·®ï¼Œè®¡ç®—æœˆä»½ï¼Œæ—¥æœŸ */
     if ((p_time->tm_year & 3) == 0) {
         if (sec > 60) {
             sec--;
@@ -158,33 +158,33 @@ static void __sec2tm (am_tm_t *p_time, uint32_t sec)
                 p_time->tm_mon = 1;
                 p_time->tm_mday = 29;
 
-                /* ¼ÆËãĞÇÆÚ */
+                /* è®¡ç®—æ˜ŸæœŸ */
                 p_time->tm_wday = __week_get(p_time->tm_year, p_time->tm_mon, p_time->tm_mday);
                 return;
             }
         }
     }
 
-    /* ¼ÆËãÔÂÈÕ */
+    /* è®¡ç®—æœˆæ—¥ */
     for (p_time->tm_mon = 0; __days[p_time->tm_mon] < sec; p_time->tm_mon++) {
         sec -= __days[p_time->tm_mon];
     }
 
     p_time->tm_mday = (int)(sec);
 
-    /* ¼ÆËãĞÇÆÚ */
+    /* è®¡ç®—æ˜ŸæœŸ */
     p_time->tm_wday = __week_get(p_time->tm_year, p_time->tm_mon, p_time->tm_mday);
 }
 #endif /* USE_TIME_LIB */
 
 /**
- *  \brief tmÊ±¼äÊı¾İ×ª»¯ÎªÃë
+ *  \brief tmæ—¶é—´æ•°æ®è½¬åŒ–ä¸ºç§’
  *
- *  \param p_time Ö¸ÏòtmÊ±¼äÊı¾İµÄÖ¸Õë
+ *  \param p_time æŒ‡å‘tmæ—¶é—´æ•°æ®çš„æŒ‡é’ˆ
  *
- *  \return ÃëÊı¾İ
+ *  \return ç§’æ•°æ®
  *
- *  \note Ê±¼äÊÇ´Ó1900Äê¿ªÊ¼µÄ
+ *  \note æ—¶é—´æ˜¯ä»1900å¹´å¼€å§‹çš„
  */
 #ifdef USE_TIME_LIB
 static uint32_t __tm2sec (am_tm_t *p_time)
@@ -225,8 +225,8 @@ static uint32_t __tm2sec (am_tm_t *p_time)
 /**
  *  \brief Brief
  *
- *  \param[in] p_drv Ö¸ÏòRTCÉè±¸µÄÖ¸Õë
- *  \param[in,out] p_tm Ö¸ÏòÊ±¼äĞÅÏ¢½á¹¹ÌåµÄÖ¸Õë
+ *  \param[in] p_drv æŒ‡å‘RTCè®¾å¤‡çš„æŒ‡é’ˆ
+ *  \param[in,out] p_tm æŒ‡å‘æ—¶é—´ä¿¡æ¯ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
  *  \return AM_OK
  */
@@ -247,16 +247,16 @@ static int __fsl_rtc_time_set (void *p_drv, am_tm_t *p_tm)
     amhw_fsl_rtc_t *p_hw_rtc  = p_dev->p_devinfo->p_hw_rtc;
     sec                       = __tm2sec(p_tm);
 
-    /** ¹Ø±Õ¼ÆÊıÆ÷ */
+    /** å…³é—­è®¡æ•°å™¨ */
     amhw_fsl_rtc_time_counter_status_clr(p_hw_rtc);
 
-    /** ÉèÖÃÔ¤·ÖÆµ¼ÆÊıÆ÷ */
+    /** è®¾ç½®é¢„åˆ†é¢‘è®¡æ•°å™¨ */
     amhw_fsl_rtc_prescaler_set(p_hw_rtc, 0x00);
 
-    /** ÉèÖÃÃë¼ÆÊıÆ÷ */
+    /** è®¾ç½®ç§’è®¡æ•°å™¨ */
     amhw_fsl_rtc_second_set(p_hw_rtc, sec);
 
-    /** ¿ªÆô¼ÆÊıÆ÷ */
+    /** å¼€å¯è®¡æ•°å™¨ */
     amhw_fsl_rtc_time_counter_status_set(p_hw_rtc);
 
     return AM_OK;
@@ -264,12 +264,12 @@ static int __fsl_rtc_time_set (void *p_drv, am_tm_t *p_tm)
 
 
 /**
- * \brief ³õÊ¼»¯RTC
+ * \brief åˆå§‹åŒ–RTC
  *
- * \param[in] p_dev     : Ö¸ÏòRTCÉè±¸
- * \param[in] p_devinfo : Ö¸ÏòRTCÉè±¸ĞÅÏ¢
+ * \param[in] p_dev     : æŒ‡å‘RTCè®¾å¤‡
+ * \param[in] p_devinfo : æŒ‡å‘RTCè®¾å¤‡ä¿¡æ¯
  *
- * \return RTC±ê×¼·şÎñ²Ù×÷¾ä±ú¡£Èç¹ûÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü¡£
+ * \return RTCæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„ã€‚å¦‚æœä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥ã€‚
  */
 am_rtc_handle_t am_fsl_rtc_init (am_fsl_rtc_dev_t           *p_dev,
                                  const am_fsl_rtc_devinfo_t *p_devinfo)
@@ -290,18 +290,18 @@ am_rtc_handle_t am_fsl_rtc_init (am_fsl_rtc_dev_t           *p_dev,
     p_dev->rtc_serv.p_drv   = p_dev;
 
     /**
-     *  Éè±¸³õÊ¼»¯
+     *  è®¾å¤‡åˆå§‹åŒ–
      */
 
-    /* ½öµ±¼ÆÊıÆ÷Î´Ê¹ÄÜ¡¢Òç³ö¡¢ÎŞĞ§Ê±²Å³õÊ¼»¯ */
+    /* ä»…å½“è®¡æ•°å™¨æœªä½¿èƒ½ã€æº¢å‡ºã€æ— æ•ˆæ—¶æ‰åˆå§‹åŒ– */
     if ((0 == amhw_fsl_rtc_time_counter_status_get(p_hw_rtc)) ||
         (0 != amhw_fsl_rtc_count_over_status_get(p_hw_rtc))   ||
         (0 != amhw_fsl_rtc_is_time_invalid(p_hw_rtc))) {
 
-        /* ¹Ø±ÕÃë¼ÆÊıÆ÷ */
+        /* å…³é—­ç§’è®¡æ•°å™¨ */
         amhw_fsl_rtc_time_counter_status_clr(p_hw_rtc);
 
-        /* Èç¹û¼ÆÊıÆ÷ÎŞĞ§»òÒç³ö£¬ÇåÁã·ÖÆµ¼ÆÊıÆ÷¡¢Ãë¼ÆÊıÆ÷ */
+        /* å¦‚æœè®¡æ•°å™¨æ— æ•ˆæˆ–æº¢å‡ºï¼Œæ¸…é›¶åˆ†é¢‘è®¡æ•°å™¨ã€ç§’è®¡æ•°å™¨ */
         if (amhw_fsl_rtc_is_time_invalid(p_hw_rtc) ||
             amhw_fsl_rtc_count_over_status_get(p_hw_rtc)) {
 
@@ -309,14 +309,14 @@ am_rtc_handle_t am_fsl_rtc_init (am_fsl_rtc_dev_t           *p_dev,
             amhw_fsl_rtc_second_set(p_hw_rtc, 0x00);
         }
 
-        /* Ğ£×¼¼Ä´æÆ÷Çå0 */
+        /* æ ¡å‡†å¯„å­˜å™¨æ¸…0 */
         amhw_fsl_rtc_alarm_set(p_hw_rtc, 0x00);
         amhw_fsl_rtc_compensate_interval_set(p_hw_rtc, 0x00);
         amhw_fsl_rtc_compensate_value_set(p_hw_rtc, 0x00);
         amhw_fsl_rtc_current_compensate_counter_set(p_hw_rtc, 0x00);
         amhw_fsl_rtc_current_compensate_value_set(p_hw_rtc, 0x00);
 
-        /** Ê¹ÄÜÃë¼ÆÊıÆ÷ */
+        /** ä½¿èƒ½ç§’è®¡æ•°å™¨ */
         amhw_fsl_rtc_time_counter_status_set(p_hw_rtc);
     }
 
@@ -324,11 +324,11 @@ am_rtc_handle_t am_fsl_rtc_init (am_fsl_rtc_dev_t           *p_dev,
 }
 
 /**
- *  \brief ½â³ıRTC³õÊ¼»¯
+ *  \brief è§£é™¤RTCåˆå§‹åŒ–
  *
- *  \param p_dev Ö¸ÏòRTCÉè±¸µÄÖ¸Õë
+ *  \param p_dev æŒ‡å‘RTCè®¾å¤‡çš„æŒ‡é’ˆ
  *
- *  \return ÎŞ
+ *  \return æ— 
  */
 void am_fsl_rtc_deinit (am_rtc_handle_t handle)
 {
@@ -352,20 +352,20 @@ void am_fsl_rtc_deinit (am_rtc_handle_t handle)
 }
 
 /**
- *  \brief ÉèÖÃRTCµÄĞ£×¼ÅäÖÃ
+ *  \brief è®¾ç½®RTCçš„æ ¡å‡†é…ç½®
  *
- *  \param p_dev Ö¸ÏòRTCÉè±¸µÄÖ¸Õë
+ *  \param p_dev æŒ‡å‘RTCè®¾å¤‡çš„æŒ‡é’ˆ
  *
- *  \param frq RTCÊ±ÖÓµÄÊµ¼ÊÆµÂÊ£¬ÒÔHz¼Æ
+ *  \param frq RTCæ—¶é’Ÿçš„å®é™…é¢‘ç‡ï¼Œä»¥Hzè®¡
  *
- *  \return Êµ¼ÊĞ£×¼ºóµÄÆµÂÊ
+ *  \return å®é™…æ ¡å‡†åçš„é¢‘ç‡
  */
 int am_fsl_rtc_compensation_set (am_fsl_rtc_dev_t *p_dev, float frq)
 {
-    int i, j;             /** Ñ­»·¼ÆÊı         */
-    int m, n;             /** ×îÓÅÅäÖÃÔİ´æ     */
-    float err_aim;        /** Ä¿±êÆ«²î         */
-    float err, err_pre;   /** µ÷ÕûºóµÄ¾ö¶¨Æ«²î */
+    int i, j;             /** å¾ªç¯è®¡æ•°         */
+    int m, n;             /** æœ€ä¼˜é…ç½®æš‚å­˜     */
+    float err_aim;        /** ç›®æ ‡åå·®         */
+    float err, err_pre;   /** è°ƒæ•´åçš„å†³å®šåå·® */
     amhw_fsl_rtc_t *p_hw_rtc;
     p_hw_rtc = p_dev->p_devinfo->p_hw_rtc;
 
@@ -376,7 +376,7 @@ int am_fsl_rtc_compensation_set (am_fsl_rtc_dev_t *p_dev, float frq)
     err_aim = 32768.0f - frq;
     err_pre = err = err_aim > 0 ? err_aim : -err_aim;
 
-    /** ³¬¹ıµ÷ÕûÏÂÏŞ */
+    /** è¶…è¿‡è°ƒæ•´ä¸‹é™ */
     if (frq < (32768 - 127)) {
         m = -127;
         n = 1;
@@ -384,7 +384,7 @@ int am_fsl_rtc_compensation_set (am_fsl_rtc_dev_t *p_dev, float frq)
         return (32768.0f * frq) / (32768.0f - m * 1.0);
     }
 
-    /** ³¬¹ıµ÷ÕûÉÏÏŞ */
+    /** è¶…è¿‡è°ƒæ•´ä¸Šé™ */
     else if (frq > (32768 + 128)) {
         m = 128;
         n = 1;
@@ -392,20 +392,20 @@ int am_fsl_rtc_compensation_set (am_fsl_rtc_dev_t *p_dev, float frq)
         return (32768.0f * frq) / (32768.0f - m * 1.0);
     }
 
-    /** Ç¡ºÃÊÇÕûÊı */
+    /** æ°å¥½æ˜¯æ•´æ•° */
     else if (0 == (frq - (int)frq)) {
         m = 32768 - frq;
         n = 1;
     }
 
-    /** Ğ¡Êıµ÷Õû */
+    /** å°æ•°è°ƒæ•´ */
     else {
         m = (int)err_aim;
         n = 1;
 
         for (j = 1; j < 256; j ++) {
 
-            /** ¼Ó¿ì */
+            /** åŠ å¿« */
             if (err_aim > 0) {
                 for (i = (int)err_aim * j;
                      (i < 128) && (i < (int)(err_aim + 1)*j);
@@ -419,20 +419,20 @@ int am_fsl_rtc_compensation_set (am_fsl_rtc_dev_t *p_dev, float frq)
                         m = i;
                         n = j;
 
-                        /** µÃµ½ÎŞÆ«²î²ÎÊıÌø³öÑ­»· */
+                        /** å¾—åˆ°æ— åå·®å‚æ•°è·³å‡ºå¾ªç¯ */
                         if (0 == err_pre) {
                             goto out;
                         }
                     }
                 }
 
-                /** i³¬¹ıÉÏÏŞÌø³öÑ­»· */
+                /** iè¶…è¿‡ä¸Šé™è·³å‡ºå¾ªç¯ */
                 if (i > 127) {
                     break;
                 }
             }
 
-            /** ¼õÂı */
+            /** å‡æ…¢ */
             else {
                 for (i = (int)err_aim * j;
                      (i > -127) && (i > (int)(err_aim - 1)*j);
@@ -446,14 +446,14 @@ int am_fsl_rtc_compensation_set (am_fsl_rtc_dev_t *p_dev, float frq)
                         m = i;
                         n = j;
 
-                        /** µÃµ½ÎŞÆ«²î²ÎÊıÌø³öÑ­»· */
+                        /** å¾—åˆ°æ— åå·®å‚æ•°è·³å‡ºå¾ªç¯ */
                         if (0 == err_pre) {
                             goto out;
                         }
                     }
                 }
 
-                /** i³¬¹ıÏÂÏŞÌø³öÑ­»· */
+                /** iè¶…è¿‡ä¸‹é™è·³å‡ºå¾ªç¯ */
                 if (i < -128) {
                     break;
                 }
@@ -467,12 +467,12 @@ out:
 }
 
 /**
- *  \brief ÉèÖÃRTCÄÖÖÓÊ±¼ä
+ *  \brief è®¾ç½®RTCé—¹é’Ÿæ—¶é—´
  *
- *  \param p_dev Ö¸ÏòRTCÉè±¸µÄÖ¸Õë
- *  \param p_tm ĞèÒªÉèÖÃµÄÊ±¼ä
+ *  \param p_dev æŒ‡å‘RTCè®¾å¤‡çš„æŒ‡é’ˆ
+ *  \param p_tm éœ€è¦è®¾ç½®çš„æ—¶é—´
  *
- *  \return ÎŞ
+ *  \return æ— 
  */
 void am_fsl_rtc_alarm_set (am_fsl_rtc_dev_t *p_dev, am_tm_t *p_tm)
 {
@@ -483,13 +483,13 @@ void am_fsl_rtc_alarm_set (am_fsl_rtc_dev_t *p_dev, am_tm_t *p_tm)
 }
 
 /**
- *  \breif ¸ù¾İÈÕÆÚ¼ÆËãÒ»ÄêÖĞµÄµÚ¼¸Ìì
+ *  \breif æ ¹æ®æ—¥æœŸè®¡ç®—ä¸€å¹´ä¸­çš„ç¬¬å‡ å¤©
  *
  *  \param day
  *  \param month
  *  \param year
  *
- *  \return Ò»ÄêÖĞµÄµÚ¼¸Ìì (1ÔÂ1ÈÕ¼ÇÎªµÚ0Ìì)
+ *  \return ä¸€å¹´ä¸­çš„ç¬¬å‡ å¤© (1æœˆ1æ—¥è®°ä¸ºç¬¬0å¤©)
  */
 int am_fsl_rtc_date2yday (uint8_t day, uint8_t month, uint32_t year)
 {

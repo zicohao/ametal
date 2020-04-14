@@ -12,16 +12,16 @@
 
 /**
  * \file
- * \brief MiniPort-595 + MiniPort-LED Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MiniPort-595 + MiniPort-LED ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè
- *   1. ÏÈ½« MiniPort-595 À©Õ¹°åÖ±½ÓÓë AM824-Core µÄ MiniPort ÏàÁ¬½Ó£»
- *   2. ½« MiniPort-LED À©Õ¹°åÓë MiniPort-595 ½Ó¿ÚÏàÁ¬½Ó¡£
+ * - æ“ä½œæ­¥éª¤
+ *   1. å…ˆå°† MiniPort-595 æ‰©å±•æ¿ç›´æ¥ä¸ AM824-Core çš„ MiniPort ç›¸è¿æ¥ï¼›
+ *   2. å°† MiniPort-LED æ‰©å±•æ¿ä¸ MiniPort-595 æ¥å£ç›¸è¿æ¥ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Á÷Ë®µÆÏÖÏó¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. æµæ°´ç¯ç°è±¡ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am824_core_miniport_hc595_led.c src_am824_core_miniport_hc595_led
  *
  * \internal
@@ -43,7 +43,7 @@
 #include "demo_std_entries.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am824_core_miniport_hc595_led_entry (void)
 {

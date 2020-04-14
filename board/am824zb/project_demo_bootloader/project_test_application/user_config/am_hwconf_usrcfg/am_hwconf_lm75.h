@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief LM75 ÅäÖÃÎÄ¼ş
+ * \brief LM75 é…ç½®æ–‡ä»¶
  *
  * \internal
  * \par Modification history
@@ -31,8 +31,8 @@ extern "C" {
 #endif
 
 /**
- * \brief LM75ÊµÀı³õÊ¼»¯
- * \return ÎÂ¶È±ê×¼·şÎñ¾ä±ú£¬ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief LM75å®ä¾‹åˆå§‹åŒ–
+ * \return æ¸©åº¦æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_temp_handle_t am_temp_lm75_inst_init (void);
 

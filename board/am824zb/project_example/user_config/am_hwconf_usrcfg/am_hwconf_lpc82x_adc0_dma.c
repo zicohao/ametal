@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief LPC82X ADC ÓÃ»§ÅäÖÃÎÄ¼ş¡£
+ * \brief LPC82X ADC ç”¨æˆ·é…ç½®æ–‡ä»¶ã€‚
  * \sa am_hwconf_lpc82x_adc0_dma.c
  *
  * \internal
@@ -34,13 +34,13 @@
  * @{
  */
 
-/** \brief ADC0 Æ½Ì¨³õÊ¼»¯º¯Êı */
+/** \brief ADC0 å¹³å°åˆå§‹åŒ–å‡½æ•° */
 static void __lpc82x_adc0_plfm_init (void)
 {
     amhw_lpc82x_syscon_powerup(AMHW_LPC82X_SYSCON_PD_ADC0);
     amhw_lpc82x_clk_periph_enable(AMHW_LPC82X_CLK_ADC0);
 
-    /* ÅäÖÃÍ¨µÀ£¬Ê¹ÓÃÍ¨µÀ0ºÍÍ¨µÀ1,Òı½ÅÅäÖÃÎªÏû¼«Ä£Ê½INACTIVE */
+    /* é…ç½®é€šé“ï¼Œä½¿ç”¨é€šé“0å’Œé€šé“1,å¼•è„šé…ç½®ä¸ºæ¶ˆææ¨¡å¼INACTIVE */
     am_gpio_pin_cfg(PIO0_7,  PIO0_7_ADC_0   | PIO0_7_INACTIVE);
     am_gpio_pin_cfg(PIO0_6,  PIO0_6_ADC_1   | PIO0_6_INACTIVE);
 
@@ -55,39 +55,39 @@ static void __lpc82x_adc0_plfm_init (void)
 /*    am_gpio_pin_cfg(PIO0_13, PIO0_13_ADC_10 | PIO0_13_INACTIVE); */
 /*    am_gpio_pin_cfg(PIO0_4,  PIO0_4_ADC_11  | PIO0_4_INACTIVE);  */
 
-    /* ADC×Ô¶¯½ÃÕı */
+    /* ADCè‡ªåŠ¨çŸ«æ­£ */
     amhw_lpc82x_adc_calibrate(LPC82X_ADC0,
                               amhw_lpc82x_clk_system_clkrate_get());
 }
 
-/** \brief ADC0 Æ½Ì¨½â³õÊ¼»¯ */
+/** \brief ADC0 å¹³å°è§£åˆå§‹åŒ– */
 static void __lpc82x_adc0_plfm_deinit (void)
 {
     amhw_lpc82x_clk_periph_disable(AMHW_LPC82X_CLK_ADC0);
     amhw_lpc82x_syscon_powerdown(AMHW_LPC82X_SYSCON_PD_ADC0);
 }
 
-/** \brief ADC0 Éè±¸ĞÅÏ¢ */
+/** \brief ADC0 è®¾å¤‡ä¿¡æ¯ */
 static const am_lpc82x_adc_dma_devinfo_t __g_adc0_devinfo = {
-    LPC82X_ADC0_BASE,              /**< \brief ADC¼Ä´æÆ÷¿éµÄ»ùµØÖ·    */
-    CLK_ADC0,                      /**< \brief ADC0Ê±ÖÓID             */
-    2500,                          /**< \brief ADC²Î¿¼µçÑ¹£¬µ¥Î»£ºmV  */
-    INUM_ADC0_SEQA,                /**< \brief ADC0ĞòÁĞAÖĞ¶Ï          */
-    DMA_CHAN_0,                    /**< \brief ADC Ñ¡ÓÃDMAÍ¨µÀ0       */
-    __lpc82x_adc0_plfm_init,       /**< \brief Æ½Ì¨³õÊ¼»¯º¯Êı         */
-    __lpc82x_adc0_plfm_deinit,     /**< \brief Æ½Ì¨½â³õÊ¼»¯º¯Êı       */
+    LPC82X_ADC0_BASE,              /**< \brief ADCå¯„å­˜å™¨å—çš„åŸºåœ°å€    */
+    CLK_ADC0,                      /**< \brief ADC0æ—¶é’ŸID             */
+    2500,                          /**< \brief ADCå‚è€ƒç”µå‹ï¼Œå•ä½ï¼šmV  */
+    INUM_ADC0_SEQA,                /**< \brief ADC0åºåˆ—Aä¸­æ–­          */
+    DMA_CHAN_0,                    /**< \brief ADC é€‰ç”¨DMAé€šé“0       */
+    __lpc82x_adc0_plfm_init,       /**< \brief å¹³å°åˆå§‹åŒ–å‡½æ•°         */
+    __lpc82x_adc0_plfm_deinit,     /**< \brief å¹³å°è§£åˆå§‹åŒ–å‡½æ•°       */
 };
 
-/** \brief ADC0Éè±¸ÊµÀı */
+/** \brief ADC0è®¾å¤‡å®ä¾‹ */
 static am_lpc82x_adc_dma_dev_t __g_adc0_dev;
 
-/** \brief ADC0 ÊµÀı³õÊ¼»¯£¬»ñµÃADC±ê×¼·şÎñ¾ä±ú */
+/** \brief ADC0 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—ADCæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_adc_handle_t am_lpc82x_adc0_dma_inst_init (void)
 {
     return am_lpc82x_adc_dma_init(&__g_adc0_dev, &__g_adc0_devinfo);
 }
 
-/** \brief ADC0 ÊµÀı½â³õÊ¼»¯ */
+/** \brief ADC0 å®ä¾‹è§£åˆå§‹åŒ– */
 void am_lpc82x_adc0_dam_inst_deinit (am_adc_handle_t handle)
 {
     am_lpc82x_adc_dma_deinit(handle);

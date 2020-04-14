@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief bootloader ±ê×¼½Ó¿Ú
+ * \brief bootloader æ ‡å‡†æ¥å£
  *
  * \internal
  * \par modification history:
@@ -25,7 +25,7 @@ static am_boot_serv_t *__gp_boot_serv = NULL;
 
 
 /**
- * \brief Ìø×ªµ½Ó¦ÓÃ´úÂë
+ * \brief è·³è½¬åˆ°åº”ç”¨ä»£ç 
  */
 int am_boot_go_application(void)
 {
@@ -51,10 +51,10 @@ void am_boot_reset(void)
 }
 
 /**
- * \brief »ñÈ¡Ó¦ÓÃ´úÂë´æ·ÅµÄÆğÊ¼µØÖ·
+ * \brief è·å–åº”ç”¨ä»£ç å­˜æ”¾çš„èµ·å§‹åœ°å€
  *
- * \retval > 0 ·µ»ØÓ¦ÓÃ´úÂë´æ·ÅµÄÆğÊ¼µØÖ·
- * \retval < 0 ÎŞ·¨»ñÈ¡µØÖ·
+ * \retval > 0 è¿”å›åº”ç”¨ä»£ç å­˜æ”¾çš„èµ·å§‹åœ°å€
+ * \retval < 0 æ— æ³•è·å–åœ°å€
  */
 int am_boot_get_app_addr(void)
 {

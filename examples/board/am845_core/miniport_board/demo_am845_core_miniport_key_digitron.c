@@ -12,21 +12,21 @@
 
 /**
  * \file
- * \brief MiniPort-KEY + MiniPort-View Àý³Ì£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MiniPort-KEY + MiniPort-View ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè
- *   1. ÏÈ½« MiniPort-KEY À©Õ¹°åÖ±½ÓÓë AM845-Core µÄ MiniPort ÏàÁ¬½Ó£»
- *   2. ½« MiniPort-View À©Õ¹°åÓë MiniPort-KEY ½Ó¿ÚÏàÁ¬½Ó¡£
+ * - æ“ä½œæ­¥éª¤
+ *   1. å…ˆå°† MiniPort-KEY æ‰©å±•æ¿ç›´æŽ¥ä¸Ž AM845-Core çš„ MiniPort ç›¸è¿žæŽ¥ï¼›
+ *   2. å°† MiniPort-View æ‰©å±•æ¿ä¸Ž MiniPort-KEY æŽ¥å£ç›¸è¿žæŽ¥ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. °´ÏÂÒ»¸ö°´¼ü£¬Á½Î»ÊýÂë¹ÜÏÔÊ¾°´¼ü±àºÅµÄ¶þ½øÖÆ£»
- *   2. Å¼Êý±àºÅÊ±£¬ÊýÂë¹ÜÉÁË¸£¬ÆæÊý±àºÅÊ±£¬ÊýÂë¹Ü²»ÉÁË¸¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. æŒ‰ä¸‹ä¸€ä¸ªæŒ‰é”®ï¼Œä¸¤ä½æ•°ç ç®¡æ˜¾ç¤ºæŒ‰é”®ç¼–å·çš„äºŒè¿›åˆ¶ï¼›
+ *   2. å¶æ•°ç¼–å·æ—¶ï¼Œæ•°ç ç®¡é—ªçƒï¼Œå¥‡æ•°ç¼–å·æ—¶ï¼Œæ•°ç ç®¡ä¸é—ªçƒã€‚
  *
  * \note
- *    ²âÊÔ±¾ Demo ±ØÐëÔÚ am_prj_config.h ÄÚ½« AM_CFG_KEY_GPIO_ENABLE ¶¨ÒåÎª 1£¬
- *    µ«¸ÃºêÒÑ¾­Ä¬ÈÏÅäÖÃÎª 1£¬ ÓÃ»§²»±ØÔÙ´ÎÅäÖÃ¡£
+ *    æµ‹è¯•æœ¬ Demo å¿…é¡»åœ¨ am_prj_config.h å†…å°† AM_CFG_KEY_GPIO_ENABLE å®šä¹‰ä¸º 1ï¼Œ
+ *    ä½†è¯¥å®å·²ç»é»˜è®¤é…ç½®ä¸º 1ï¼Œ ç”¨æˆ·ä¸å¿…å†æ¬¡é…ç½®ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am845_core_miniport_key_digitron.c src_am845_core_miniport_key_digitron
  *
  * \internal
@@ -47,7 +47,7 @@
 #include "demo_std_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am845_core_miniport_key_digitron_entry (void)
 {

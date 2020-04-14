@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief bootloader Í¨ÓÃ»ù±¾±ê×¼½Ó¿Ú
+ * \brief bootloader é€šç”¨åŸºæœ¬æ ‡å‡†æ¥å£
  *
  * \internal
  * \par Modification History
@@ -30,13 +30,13 @@ extern "C" {
 #include "am_boot_memory.h"
 
 struct am_boot_drv_funcs{
-    /**< \brief ¼ì²éÓ¦ÓÃ³ÌĞòÊÇ·ñÓĞĞ§ */
+    /**< \brief æ£€æŸ¥åº”ç”¨ç¨‹åºæ˜¯å¦æœ‰æ•ˆ */
     am_bool_t (*pfn_app_is_ready)(void);
-    /**< \brief ÏµÍ³ÖØÆô */
+    /**< \brief ç³»ç»Ÿé‡å¯ */
     void      (*pfn_reset)(void);
-    /**< \brief Ìø×ª½øÈëÓ¦ÓÃ³ÌĞò */
+    /**< \brief è·³è½¬è¿›å…¥åº”ç”¨ç¨‹åº */
     int       (*pfn_go_application)(void);
-    /**< \brief »ñÈ¡Ó¦ÓÃ³ÌĞòÄÚ´æ´æ·ÅµÄÆğÊ¼µØÖ· */
+    /**< \brief è·å–åº”ç”¨ç¨‹åºå†…å­˜å­˜æ”¾çš„èµ·å§‹åœ°å€ */
     int       (*pfn_get_app_sta_addr)(void);
 };
 
@@ -48,32 +48,32 @@ typedef struct am_boot_serv {
 
 
 /**
- * \brief ÅĞ¶ÏÓ¦ÓÃ´úÂëÊÇ·ñÓĞĞ§
+ * \brief åˆ¤æ–­åº”ç”¨ä»£ç æ˜¯å¦æœ‰æ•ˆ
  * 
- * \retval AM_TRUE : ÓĞĞ§
- * \retval AM_TRUE : ÎŞĞ§
+ * \retval AM_TRUE : æœ‰æ•ˆ
+ * \retval AM_TRUE : æ— æ•ˆ
  */ 
 am_bool_t am_boot_app_is_ready(void);
 
 /**
- * \brief Ìø×ªµ½Ó¦ÓÃ´úÂë´úÂë
+ * \brief è·³è½¬åˆ°åº”ç”¨ä»£ç ä»£ç 
  *
- * \retval AM_ERROR Ìø×ª³ö´í»òÌø×ªÄ¿µÄµØÖ·ÓĞÎó
+ * \retval AM_ERROR è·³è½¬å‡ºé”™æˆ–è·³è½¬ç›®çš„åœ°å€æœ‰è¯¯
  */
 int am_boot_go_application(void);
 
 /**
- * \brief ÏµÍ³Èí¼şÖØÆô
+ * \brief ç³»ç»Ÿè½¯ä»¶é‡å¯
  *
- * \retval ÎŞ
+ * \retval æ— 
  */
 void am_boot_reset(void);
 
 /**
- * \brief »ñÈ¡Ó¦ÓÃ´úÂë´æ·ÅµÄÆğÊ¼µØÖ·
+ * \brief è·å–åº”ç”¨ä»£ç å­˜æ”¾çš„èµ·å§‹åœ°å€
  *
- * \retval > 0 ·µ»ØÓ¦ÓÃ´úÂë´æ·ÅµÄÆğÊ¼µØÖ·
- *         < 0 ÎŞ·¨»ñÈ¡µØÖ·
+ * \retval > 0 è¿”å›åº”ç”¨ä»£ç å­˜æ”¾çš„èµ·å§‹åœ°å€
+ *         < 0 æ— æ³•è·å–åœ°å€
  */
 int am_boot_get_app_addr(void);
 

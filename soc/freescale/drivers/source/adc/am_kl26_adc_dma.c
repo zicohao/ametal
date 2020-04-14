@@ -27,7 +27,7 @@
 static void __am_fsl_adc_dma_isr (void *p_arg , uint8_t flag);
 
 /**
- * \brief DMA´«ÊäÅäÖÃ
+ * \brief DMAä¼ è¾“é…ç½®
  */
 int am_fsl_adc_dma_tran_cfg (am_fsl_adc_dev_t *p_dev,
                              am_adc_buf_desc_t *p_desc)
@@ -41,51 +41,51 @@ int am_fsl_adc_dma_tran_cfg (am_fsl_adc_dev_t *p_dev,
         return -AM_EINVAL;
     }
 
-    /* DMA´«ÊäÅäÖÃ */
-    flags = KL26_DMA_DCR_PER_REQUEST_ENABLE      |  /* ÍâÉèÇëÇóÔ´Ê¹ÄÜ    */
-            KL26_DMA_DCR_SINGLE_TRANSFERS        |  /* µ¥´Î´«Êä          */
-            KL26_DMA_DCR_AUTO_ALIGN_DISABLE      |  /* ×Ô¶¯¶ÔÆë½ûÄÜ      */
-            KL26_DMA_DCR_REQUEST_AFFECTED        |  /* ÇëÇóÓÐÓ°Ïì        */
-            KL26_DMA_DCR_NO_LINKING              |  /* ÎÞÍ¨µÀÁ¬½Ó        */
-            KL26_DMA_DCR_INTERRUTP_ENABLE        |  /* DMAÖÐ¶ÏÊ¹ÄÜ       */
-            KL26_DMA_DCR_START_DISABLE    ;         /* DMA¿ªÊ¼´«Êä½ûÄÜ   */
+    /* DMAä¼ è¾“é…ç½® */
+    flags = KL26_DMA_DCR_PER_REQUEST_ENABLE      |  /* å¤–è®¾è¯·æ±‚æºä½¿èƒ½    */
+            KL26_DMA_DCR_SINGLE_TRANSFERS        |  /* å•æ¬¡ä¼ è¾“          */
+            KL26_DMA_DCR_AUTO_ALIGN_DISABLE      |  /* è‡ªåŠ¨å¯¹é½ç¦èƒ½      */
+            KL26_DMA_DCR_REQUEST_AFFECTED        |  /* è¯·æ±‚æœ‰å½±å“        */
+            KL26_DMA_DCR_NO_LINKING              |  /* æ— é€šé“è¿žæŽ¥        */
+            KL26_DMA_DCR_INTERRUTP_ENABLE        |  /* DMAä¸­æ–­ä½¿èƒ½       */
+            KL26_DMA_DCR_START_DISABLE    ;         /* DMAå¼€å§‹ä¼ è¾“ç¦èƒ½   */
 
-    /* Á¬½ÓDMAÖÐ¶Ï·þÎñº¯Êý */
+    /* è¿žæŽ¥DMAä¸­æ–­æœåŠ¡å‡½æ•° */
     am_kl26_dma_isr_connect(p_dev->p_devinfo->dma_chan, __am_fsl_adc_dma_isr, p_dev);
 
     am_kl26_dma_chan_cfg(p_dev->p_devinfo->dma_chan,
-                         KL26_DMA_TRIGGER_DISABLE | /**< \brief DMAÕý³£Ä£Ê½ */
-                         DMA_REQUEST_MUX0_ADC0);         /**< \brief ÇëÇóÔ´      */
+                         KL26_DMA_TRIGGER_DISABLE | /**< \brief DMAæ­£å¸¸æ¨¡å¼ */
+                         DMA_REQUEST_MUX0_ADC0);         /**< \brief è¯·æ±‚æº      */
 
     if ( p_dev->p_devinfo->is_diff == AM_TRUE ) {
-        /* 16Î»¡¢13Î»¡¢11Î»¡¢9Î»²î·ÖÊäÈë´æ·Åµ½  int16_t ÀàÐÍµÄbufÀï */
+        /* 16ä½ã€13ä½ã€11ä½ã€9ä½å·®åˆ†è¾“å…¥å­˜æ”¾åˆ°  int16_t ç±»åž‹çš„bufé‡Œ */
         flags |= KL26_DMA_DCR_SOURCE_SIZE_16_BIT |
                 KL26_DMA_DCR_DESTINATION_SIZE_16_BIT;
         length = (p_desc->length) << 1;
 
     } else if ( p_dev->p_devinfo->bits == 8 ) {
-        /* 8Î»µ¥¶ËÊäÈë ´æ·Åµ½uint8_tÀàÐÍµÄbufÀï */
+        /* 8ä½å•ç«¯è¾“å…¥ å­˜æ”¾åˆ°uint8_tç±»åž‹çš„bufé‡Œ */
         flags |= KL26_DMA_DCR_SOURCE_SIZE_8_BIT |
                 KL26_DMA_DCR_DESTINATION_SIZE_8_BIT;
         length = (p_desc->length) << 0;
     } else {
-        /* 16Î»¡¢12Î»¡¢10Î» µ¥¶ËÊäÈë ´æ·Åµ½ uint16_t ÀàÐÍµÄbufÀï */
+        /* 16ä½ã€12ä½ã€10ä½ å•ç«¯è¾“å…¥ å­˜æ”¾åˆ° uint16_t ç±»åž‹çš„bufé‡Œ */
         flags |= KL26_DMA_DCR_SOURCE_SIZE_16_BIT |
                 KL26_DMA_DCR_DESTINATION_SIZE_16_BIT;
         length = (p_desc->length) << 1;
     }
 
 
-    /* ½¨Á¢Í¨µÀÃèÊö·û */
-    am_kl26_dma_xfer_desc_build(&dma_desc,                      /* Í¨µÀÃèÊö·û   */
-                                (uint32_t)&(p_dev->p_devinfo->p_hw_adc->dat[p_dev->p_devinfo->seq]), /* Ô´¶ËÊý¾Ý»º³å */
-                                (uint32_t)(p_desc->p_buf),         /* Ä¿±êÊý¾Ý»º³å */
-                                (uint32_t)(length),                /* ´«Êä×Ö½ÚÊý   */
-                                flags);                            /* ´«ÊäÅäÖÃ     */
+    /* å»ºç«‹é€šé“æè¿°ç¬¦ */
+    am_kl26_dma_xfer_desc_build(&dma_desc,                      /* é€šé“æè¿°ç¬¦   */
+                                (uint32_t)&(p_dev->p_devinfo->p_hw_adc->dat[p_dev->p_devinfo->seq]), /* æºç«¯æ•°æ®ç¼“å†² */
+                                (uint32_t)(p_desc->p_buf),         /* ç›®æ ‡æ•°æ®ç¼“å†² */
+                                (uint32_t)(length),                /* ä¼ è¾“å­—èŠ‚æ•°   */
+                                flags);                            /* ä¼ è¾“é…ç½®     */
 
-    /* Æô¶¯DMA´«Êä£¬ÂíÉÏ¿ªÊ¼´«Êä */
+    /* å¯åŠ¨DMAä¼ è¾“ï¼Œé©¬ä¸Šå¼€å§‹ä¼ è¾“ */
     if (am_kl26_dma_chan_start(&dma_desc,
-                               KL26_DMA_PER_TO_MER,   /* ÍâÉèµ½ ÄÚ´æ   */
+                               KL26_DMA_PER_TO_MER,   /* å¤–è®¾åˆ° å†…å­˜   */
                                (uint8_t)p_dev->p_devinfo->dma_chan) == AM_ERROR) {
         return AM_ERROR;
     }
@@ -96,7 +96,7 @@ int am_fsl_adc_dma_tran_cfg (am_fsl_adc_dev_t *p_dev,
 
 
 /**
- * \brief ADC DMA´«ÊäÖÐ¶Ï·þÎñº¯Êý
+ * \brief ADC DMAä¼ è¾“ä¸­æ–­æœåŠ¡å‡½æ•°
  */
 static void __am_fsl_adc_dma_isr (void *p_arg , uint8_t flag)
 {
@@ -104,46 +104,46 @@ static void __am_fsl_adc_dma_isr (void *p_arg , uint8_t flag)
     am_fsl_adc_dev_t *p_dev = (am_fsl_adc_dev_t *)p_arg;
     uint32_t cfg = 0;
 
-    if (flag == AM_KL26_DMA_INT_NORMAL) { /* Í¨ÐÅÕý³£ */
+    if (flag == AM_KL26_DMA_INT_NORMAL) { /* é€šä¿¡æ­£å¸¸ */
 
         if (NULL != p_dev->p_desc[p_dev->desc_pos].pfn_complete) {
             p_dev->p_desc[p_dev->desc_pos].pfn_complete(p_dev->p_desc[p_dev->desc_pos].p_arg, AM_OK);
         }
 
         p_dev->desc_pos++;
-        if (p_dev->desc_pos == p_dev->desc_num) { /* ÒÑ¾­½ÓÊÕÍê³É */
+        if (p_dev->desc_pos == p_dev->desc_num) { /* å·²ç»æŽ¥æ”¶å®Œæˆ */
             p_dev->desc_pos = 0;
 
             if (NULL != p_dev->pfn_callback) {
                 p_dev->pfn_callback(p_dev->p_arg, AM_OK);
             }
-            p_dev->count_pos++; /* ×ª»»ÐòÁÐ±ê×¼ */
+            p_dev->count_pos++; /* è½¬æ¢åºåˆ—æ ‡å‡† */
             if (p_dev->count != 0 && p_dev->count_pos == p_dev->count) {
                 p_dev->count_pos = 0;
-                am_adc_stop((am_adc_handle_t)&(p_dev->adc_serv), p_dev->chan);  /* ¹Ø±ÕÄ£¿é */
-                amhw_fsl_adc_dma_disable(p_dev->p_devinfo->p_hw_adc); /* ¹Ø±ÕDMA´«Êä*/
+                am_adc_stop((am_adc_handle_t)&(p_dev->adc_serv), p_dev->chan);  /* å…³é—­æ¨¡å— */
+                amhw_fsl_adc_dma_disable(p_dev->p_devinfo->p_hw_adc); /* å…³é—­DMAä¼ è¾“*/
                 am_kl26_dma_chan_stop(p_dev->p_devinfo->dma_chan);
-                return ; /* ·µ»Ø */
+                return ; /* è¿”å›ž */
             }
         }
 
-        /* ·ñÔòÆô¶¯ÏÂÒ»¸ö´«Êä */
-        am_adc_stop((am_adc_handle_t)&(p_dev->adc_serv), p_dev->chan);                /* ¹Ø±ÕADCÄ£¿é */
-        am_kl26_dma_chan_stop(p_dev->p_devinfo->dma_chan);   /* Í£Ö¹Í¨µÀ´«Êä  */
+        /* å¦åˆ™å¯åŠ¨ä¸‹ä¸€ä¸ªä¼ è¾“ */
+        am_adc_stop((am_adc_handle_t)&(p_dev->adc_serv), p_dev->chan);                /* å…³é—­ADCæ¨¡å— */
+        am_kl26_dma_chan_stop(p_dev->p_devinfo->dma_chan);   /* åœæ­¢é€šé“ä¼ è¾“  */
         am_fsl_adc_dma_tran_cfg(p_dev, &(p_dev->p_desc[p_dev->desc_pos]));
-        amhw_fsl_adc_dma_enable(p_dev->p_devinfo->p_hw_adc);  /* Ê¹ÄÜDMA´«Êä*/
+        amhw_fsl_adc_dma_enable(p_dev->p_devinfo->p_hw_adc);  /* ä½¿èƒ½DMAä¼ è¾“*/
 
-        /* »ñÈ¡ADCÅäÖÃ×´Ì¬¿ØÖÆ¼Ä´æÆ÷1µÄÖµ */
+        /* èŽ·å–ADCé…ç½®çŠ¶æ€æŽ§åˆ¶å¯„å­˜å™¨1çš„å€¼ */
         cfg = amhw_fsl_adc_sc1_get(p_dev->p_devinfo->p_hw_adc,
                                     p_dev->p_devinfo->seq);
 
         cfg &= ~AMHW_FSL_ADC_SC1_CHAN_MASK;
         cfg |= AMHW_FSL_ADC_SC1_CHAN_SEL_CFG(p_dev->chan);
 
-        amhw_fsl_adc_sc1_cfg(p_dev->p_devinfo->p_hw_adc,      /* ¿ªÆôADCÍ¨µÀ´«Êä*/
+        amhw_fsl_adc_sc1_cfg(p_dev->p_devinfo->p_hw_adc,      /* å¼€å¯ADCé€šé“ä¼ è¾“*/
                               p_dev->p_devinfo->seq,
                               cfg);
-    } else { /* Í¨ÐÅ´íÎó */
+    } else { /* é€šä¿¡é”™è¯¯ */
 
     }
 

@@ -12,23 +12,23 @@
 
 /**
  * \file
- * \brief UART0ͨ��DMA��ʽ�������ݣ�ͨ��HW��Ľӿ�ʵ��
+ * \brief UART0通过DMA方式接收数据，通过HW层的接口实现
  *
- * - �������裺
- *   1. PIOA_1 ��������PC���ڵ�TXD;
- *   2. PIOA_2 ��������PC���ڵ�RXD;
- *   3. ������λ�����ڲ�����Ϊ115200��8λ���ݳ��� 1λֹͣλ ����żУ��;
+ * - 操作步骤：
+ *   1. PIOA_1 引脚连接PC串口的TXD;
+ *   2. PIOA_2 引脚连接PC串口的RXD;
+ *   3. 配置上位机串口波特率为115200，8位数据长度 1位停止位 无奇偶校验;
  *
- * - ʵ������
- *   1.���ڴ�ӡ��ʾ�ַ� DMA tx transfer start:
- *   2. Ȼ�󴮿ڽ����ӡһ���ڴ涨����ַ����ֱ�Ϊ��
+ * - 实验现象：
+ *   1.串口打印提示字符 DMA tx transfer start:
+ *   2. 然后串口交替打印一次内存定义的字符，分别为：
  *      uart tx dma test running
  *      uart tx dma test done
  *      
  *
- * \note ��DMA�����ڼ䲻Ҫ�Դ������ݼĴ���UART_D���в���
+ * \note 在DMA操作期间不要对串口数据寄存器UART_D进行操作
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_amks16z_core_hw_uart_tx_dma.c src_amks16z_core_hw_uart_tx_dma
  *
  *
@@ -51,7 +51,7 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_amks16z_core_hw_uart_tx_dma_entry (void)
 {

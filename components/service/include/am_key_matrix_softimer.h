@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ÔÚ±ê×¼¾ØÕó¼üÅÌµÄ»ù´¡ÉÏ£¬Ìí¼ÓÈí¼ş¶¨Ê±Æ÷£¬ÊµÏÖ×Ô¶¯É¨Ãè
+ * \brief åœ¨æ ‡å‡†çŸ©é˜µé”®ç›˜çš„åŸºç¡€ä¸Šï¼Œæ·»åŠ è½¯ä»¶å®šæ—¶å™¨ï¼Œå®ç°è‡ªåŠ¨æ‰«æ
  *
  * \internal
  * \par modification history:
@@ -38,7 +38,7 @@
 extern "C" {
 #endif
 
-/** \brief ¾ØÕó¼üÅÌÉè±¸  */
+/** \brief çŸ©é˜µé”®ç›˜è®¾å¤‡  */
 typedef struct am_key_matrix_softimer {
     am_key_matrix_t  *p_real;
     am_softimer_t     timer;
@@ -46,28 +46,28 @@ typedef struct am_key_matrix_softimer {
 } am_key_matrix_softimer_t;
 
 /**
- * \brief ³õÊ¼»¯£¬ÉèÖÃÈí¼ş¶¨Ê±Æ÷£¬ÊµÏÖ×Ô¶¯É¨Ãè
+ * \brief åˆå§‹åŒ–ï¼Œè®¾ç½®è½¯ä»¶å®šæ—¶å™¨ï¼Œå®ç°è‡ªåŠ¨æ‰«æ
  *
- * \param[in] p_dev            : °´¼üÉè±¸ÊµÀı
- * \param[in] p_timer          : Èí¼ş¶¨Ê±Æ÷ÊµÀı
- * \param[in] scan_interval_ms : É¨ÃèËùÓĞ¾ØÕó¼üÅÌµÄÊ±¼ä¼ä¸ô£¬ µ¥Î» ms
+ * \param[in] p_dev            : æŒ‰é”®è®¾å¤‡å®ä¾‹
+ * \param[in] p_timer          : è½¯ä»¶å®šæ—¶å™¨å®ä¾‹
+ * \param[in] scan_interval_ms : æ‰«ææ‰€æœ‰çŸ©é˜µé”®ç›˜çš„æ—¶é—´é—´éš”ï¼Œ å•ä½ ms
  *
- * \return  AM_OK£¬³õÊ¼»¯³É¹¦; ÆäËüÖµ£¬³õÊ¼»¯Ê§°Ü£¬Ê§°ÜÔ­ÒòÇë²é¿´´íÎóºÅ
- * \note É¨Ãè¸ÃĞĞ£¨ÁĞ£©Ç°£¬ĞèÈ·±£Êı¾İ¾ßÓĞÕıÈ·¶ÁÈ¡µÄÓĞĞ§»·¾³
+ * \return  AM_OKï¼Œåˆå§‹åŒ–æˆåŠŸ; å…¶å®ƒå€¼ï¼Œåˆå§‹åŒ–å¤±è´¥ï¼Œå¤±è´¥åŸå› è¯·æŸ¥çœ‹é”™è¯¯å·
+ * \note æ‰«æè¯¥è¡Œï¼ˆåˆ—ï¼‰å‰ï¼Œéœ€ç¡®ä¿æ•°æ®å…·æœ‰æ­£ç¡®è¯»å–çš„æœ‰æ•ˆç¯å¢ƒ
  */
 int am_key_matrix_softimer_init (am_key_matrix_softimer_t *p_dev,
                                  am_key_matrix_t          *p_key,
                                  int                       scan_interval_ms);
 
 /**
- * \brief ½â³õÊ¼»¯£¬Í£Ö¹Èí¼ş¶¨Ê±Æ÷£¬ÖÕÖ¹×Ô¶¯É¨Ãè
+ * \brief è§£åˆå§‹åŒ–ï¼Œåœæ­¢è½¯ä»¶å®šæ—¶å™¨ï¼Œç»ˆæ­¢è‡ªåŠ¨æ‰«æ
  *
- * \param[in] p_dev  : °´¼üÉè±¸ÊµÀı
+ * \param[in] p_dev  : æŒ‰é”®è®¾å¤‡å®ä¾‹
  *
- * \return  AM_OK£¬½â³õÊ¼»¯³É¹¦; ÆäËüÖµ£¬½â³õÊ¼»¯Ê§°Ü£¬Ê§°ÜÔ­ÒòÇë²é¿´´íÎóºÅ
+ * \return  AM_OKï¼Œè§£åˆå§‹åŒ–æˆåŠŸ; å…¶å®ƒå€¼ï¼Œè§£åˆå§‹åŒ–å¤±è´¥ï¼Œå¤±è´¥åŸå› è¯·æŸ¥çœ‹é”™è¯¯å·
  *
- * \note ÖÕÖ¹ºó£¬ÈçĞèÔÙ´ÎÊ¹ÓÃÈí¼ş¶¨Ê±Æ÷ÊµÏÖ×Ô¶¯É¨Ãè£¬ÔòĞèÒªÖØĞÂµ÷ÓÃ \sa
- * am_key_matrix_softimer_init()º¯Êı
+ * \note ç»ˆæ­¢åï¼Œå¦‚éœ€å†æ¬¡ä½¿ç”¨è½¯ä»¶å®šæ—¶å™¨å®ç°è‡ªåŠ¨æ‰«æï¼Œåˆ™éœ€è¦é‡æ–°è°ƒç”¨ \sa
+ * am_key_matrix_softimer_init()å‡½æ•°
  */
 int am_key_matrix_softimer_deinit (am_key_matrix_softimer_t *p_dev);
 

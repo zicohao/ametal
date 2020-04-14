@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief LPC84X ADC (ÖĞ¶Ï·½Ê½) ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief LPC84X ADC (ä¸­æ–­æ–¹å¼) ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_lpc84x_adc0_int.c
  *
  * \internal
@@ -37,7 +37,7 @@
  */
 
 /**
- * \brief ADC0 Æ½Ì¨³õÊ¼»¯
+ * \brief ADC0 å¹³å°åˆå§‹åŒ–
  */
 am_local void __lpc84x_adc0_int_plfm_init (void)
 {
@@ -45,7 +45,7 @@ am_local void __lpc84x_adc0_int_plfm_init (void)
     amhw_lpc84x_clk_periph_enable(AMHW_LPC84X_CLK_ADC);
     amhw_lpc84x_clk_adc_sel_set (AMHW_LPC84X_CLK_ADC_FRO, 1);
 
-    /* ÅäÖÃÍ¨µÀ£¬Òı½ÅÅäÖÃÎªÏû¼«Ä£Ê½ INACTIVE */
+    /* é…ç½®é€šé“ï¼Œå¼•è„šé…ç½®ä¸ºæ¶ˆææ¨¡å¼ INACTIVE */
     am_gpio_pin_cfg(PIO0_7,  PIO0_7_ADC_0   | PIO0_7_INACTIVE);
 //    am_gpio_pin_cfg(PIO0_6,  PIO0_6_ADC_1   | PIO0_6_INACTIVE);
 //    am_gpio_pin_cfg(PIO0_14, PIO0_14_ADC_2  | PIO0_14_INACTIVE);
@@ -59,13 +59,13 @@ am_local void __lpc84x_adc0_int_plfm_init (void)
 //    am_gpio_pin_cfg(PIO0_13, PIO0_13_ADC_10 | PIO0_13_INACTIVE);
 //    am_gpio_pin_cfg(PIO0_4,  PIO0_4_ADC_11  | PIO0_4_INACTIVE);
 
-    /* ADC ×Ô¶¯½ÃÕı */
+    /* ADC è‡ªåŠ¨çŸ«æ­£ */
     amhw_lpc84x_adc_calibrate(LPC84X_ADC0,
                               amhw_lpc84x_clk_system_clkrate_get());
 }
 
 /**
- * \brief ADC0 Æ½Ì¨½â³õÊ¼»¯
+ * \brief ADC0 å¹³å°è§£åˆå§‹åŒ–
  */
 am_local void __lpc84x_adc0_int_plfm_deinit (void)
 {
@@ -73,22 +73,22 @@ am_local void __lpc84x_adc0_int_plfm_deinit (void)
     amhw_lpc84x_syscon_powerdown(AMHW_LPC84X_SYSCON_PD_ADC0);
 }
 
-/** \brief ADC0 (ÖĞ¶Ï·½Ê½) Éè±¸ĞÅÏ¢ */
+/** \brief ADC0 (ä¸­æ–­æ–¹å¼) è®¾å¤‡ä¿¡æ¯ */
 am_local am_const am_lpc84x_adc_int_devinfo_t __g_lpc84x_adc0_int_devinfo = {
-    LPC84X_ADC0_BASE,                 /* ADC0 ¼Ä´æÆ÷¿é»ùµØÖ· */
-	CLK_ADC,                          /* ADC0 Ê±ÖÓºÅ */
-    2500,                             /* ADC ²Î¿¼µçÑ¹£¬µ¥Î»£ºmV */
-    INUM_ADC0_SEQA,                   /* ADC0 ĞòÁĞ A ÖĞ¶ÏºÅ */
-    INUM_ADC0_OVR,                    /* ADC0 overrun ÖĞ¶ÏºÅ */
-    __lpc84x_adc0_int_plfm_init,      /* Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __lpc84x_adc0_int_plfm_deinit,    /* Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    LPC84X_ADC0_BASE,                 /* ADC0 å¯„å­˜å™¨å—åŸºåœ°å€ */
+	CLK_ADC,                          /* ADC0 æ—¶é’Ÿå· */
+    2500,                             /* ADC å‚è€ƒç”µå‹ï¼Œå•ä½ï¼šmV */
+    INUM_ADC0_SEQA,                   /* ADC0 åºåˆ— A ä¸­æ–­å· */
+    INUM_ADC0_OVR,                    /* ADC0 overrun ä¸­æ–­å· */
+    __lpc84x_adc0_int_plfm_init,      /* å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __lpc84x_adc0_int_plfm_deinit,    /* å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 };
 
-/** \brief ADC0 (ÖĞ¶Ï·½Ê½) Éè±¸ÊµÀı */
+/** \brief ADC0 (ä¸­æ–­æ–¹å¼) è®¾å¤‡å®ä¾‹ */
 am_local am_lpc84x_adc_int_dev_t __g_lpc84x_adc0_int_dev;
 
 /**
- * \brief ADC0 (ÖĞ¶Ï·½Ê½) ÊµÀı³õÊ¼»¯
+ * \brief ADC0 (ä¸­æ–­æ–¹å¼) å®ä¾‹åˆå§‹åŒ–
  */
 am_adc_handle_t am_lpc84x_adc0_int_inst_init (void)
 {
@@ -97,7 +97,7 @@ am_adc_handle_t am_lpc84x_adc0_int_inst_init (void)
 }
 
 /**
- * \brief ADC0 (ÖĞ¶Ï·½Ê½) ÊµÀı½â³õÊ¼»¯
+ * \brief ADC0 (ä¸­æ–­æ–¹å¼) å®ä¾‹è§£åˆå§‹åŒ–
  */
 void am_lpc84x_adc0_int_inst_deinit (am_adc_handle_t handle)
 {

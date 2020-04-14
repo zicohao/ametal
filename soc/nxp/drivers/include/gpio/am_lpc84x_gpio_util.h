@@ -13,9 +13,9 @@
 
 /**
  * \file
- * \brief GPIOÆ½Ì¨Çý¶¯²ã¸¨Öú¹¤¾ßºê
+ * \brief GPIOå¹³å°é©±åŠ¨å±‚è¾…åŠ©å·¥å…·å®
  *
- * - ¸ÃÎÄ¼þ±»°üº¬ÓÚlpc8xx_pin.h \sa lpc84x_pin.h Æä¶¨ÒåÁËGPIOÆ½Ì¨Òý½ÅµÄ¸÷¸ö¹¦ÄÜ¡£
+ * - è¯¥æ–‡ä»¶è¢«åŒ…å«äºŽlpc8xx_pin.h \sa lpc84x_pin.h å…¶å®šä¹‰äº†GPIOå¹³å°å¼•è„šçš„å„ä¸ªåŠŸèƒ½ã€‚
  *
  * \internal
  * \par Modification History
@@ -42,38 +42,38 @@ extern "C" {
  */
  
 /* 
- * bit[31:12] Æ½Ì¨¶¨Òå
+ * bit[31:12] å¹³å°å®šä¹‰
  *
- * - bit[13:12] ÖÐ¼ÌÄ£Ê½ÅäÖÃ 
- * - bit[15:14] Òý½Å³ÙÖÍÅäÖÃ 
- * - bit[17:16] ÊäÈë·´×ªÅäÖÃ 
- * - bit[23:18] ¹¦ÄÜÅäÖÃ£¨SWM£©      
- * - bit[25:24] I2CÄ£Ê½ÅäÖÃ          
- * - bit[28:26] ÂË²¨ÖÜÆÚ            
- * - bit[31:29] ÂË²¨Æ÷·ÖÆµ
+ * - bit[13:12] ä¸­ç»§æ¨¡å¼é…ç½® 
+ * - bit[15:14] å¼•è„šè¿Ÿæ»žé…ç½® 
+ * - bit[17:16] è¾“å…¥åè½¬é…ç½® 
+ * - bit[23:18] åŠŸèƒ½é…ç½®ï¼ˆSWMï¼‰      
+ * - bit[25:24] I2Cæ¨¡å¼é…ç½®          
+ * - bit[28:26] æ»¤æ³¢å‘¨æœŸ            
+ * - bit[31:29] æ»¤æ³¢å™¨åˆ†é¢‘
  */
 
 /**
- * \name Òý½ÅÖÐ¼ÌÄ£Ê½ÅäÖÃ¹¤¾ßºê
+ * \name å¼•è„šä¸­ç»§æ¨¡å¼é…ç½®å·¥å…·å®
  *
  * @{
  */
  
-/** \brief ÖÐ¼ÌÄ£Ê½ÂëÆ«ÒÆ */
+/** \brief ä¸­ç»§æ¨¡å¼ç åç§» */
 #define AM_LPC84X_GPIO_REP_BITS_START   12
       
-/** \brief ÖÐ¼ÌÄ£Ê½Âë³¤¶È */             
+/** \brief ä¸­ç»§æ¨¡å¼ç é•¿åº¦ */             
 #define AM_LPC84X_GPIO_REP_BITS_LEN     2
       
-/** \brief ÉèÖÃÖÐ¼ÌÄ£Ê½±àÂë */             
+/** \brief è®¾ç½®ä¸­ç»§æ¨¡å¼ç¼–ç  */             
 #define AM_LPC84X_GPIO_REP_CODE(a)      AM_SBF(((a) +1), \
                                                AM_LPC84X_GPIO_REP_BITS_START)
 
-/** \brief ÖÐ¼ÌÄ£Ê½Î»ÓòÑÚÂë */             
+/** \brief ä¸­ç»§æ¨¡å¼ä½åŸŸæŽ©ç  */             
 #define AM_LPC84X_GPIO_REP_MASK         AM_SBF(0x03, \
                                                AM_LPC84X_GPIO_REP_BITS_START)
       
-/** \brief »ñÈ¡ÖÐ¼ÌÄ£Ê½Âë */                
+/** \brief èŽ·å–ä¸­ç»§æ¨¡å¼ç  */                
 #define AM_LPC84X_GPIO_REP_GET(data) \
                            (AM_BITS_GET((data), \
                                         AM_LPC84X_GPIO_REP_BITS_START, \
@@ -83,26 +83,26 @@ extern "C" {
 /** @} */
 
 /**
- * \name Òý½Å³ÙÖÍÅäÖÃ¹¤¾ßºê
+ * \name å¼•è„šè¿Ÿæ»žé…ç½®å·¥å…·å®
  *
  * @{
  */
  
-/** \brief ³ÙÖÍÂëÆ«ÒÆ */
+/** \brief è¿Ÿæ»žç åç§» */
 #define AM_LPC84X_GPIO_HYS_BITS_START   14
   
-/** \brief ³ÙÖÍÂë³¤¶È */               
+/** \brief è¿Ÿæ»žç é•¿åº¦ */               
 #define AM_LPC84X_GPIO_HYS_BITS_LEN     2
   
-/** \brief ÉèÖÃ³ÙÖÍ±àÂë */              
+/** \brief è®¾ç½®è¿Ÿæ»žç¼–ç  */              
 #define AM_LPC84X_GPIO_HYS_CODE(a)      AM_SBF(((a) + 1), \
                                                AM_LPC84X_GPIO_HYS_BITS_START)
 
-/** \brief ³ÙÖÍÎ»ÓòÑÚÂë */              
+/** \brief è¿Ÿæ»žä½åŸŸæŽ©ç  */              
 #define AM_LPC84X_GPIO_HYS_MASK         AM_SBF(0x03, \
                                                AM_LPC84X_GPIO_HYS_BITS_START)
   
-/** \brief »ñÈ¡³ÙÖÍÂë */               
+/** \brief èŽ·å–è¿Ÿæ»žç  */               
 #define AM_LPC84X_GPIO_HYS_GET(data) \
                            (AM_BITS_GET((data), \
                                         AM_LPC84X_GPIO_HYS_BITS_START, \
@@ -112,26 +112,26 @@ extern "C" {
 /** @} */
 
 /**
- * \name Òý½ÅÊäÈë·´×ªÅäÖÃ¹¤¾ßºê
+ * \name å¼•è„šè¾“å…¥åè½¬é…ç½®å·¥å…·å®
  *
  * @{
  */
  
-/** \brief ÊäÈë·´×ªÂëÆ«ÒÆ */
+/** \brief è¾“å…¥åè½¬ç åç§» */
 #define AM_LPC84X_GPIO_INV_BITS_START   16
 
-/** \brief ÊäÈë·´×ªÂë³¤¶È */
+/** \brief è¾“å…¥åè½¬ç é•¿åº¦ */
 #define AM_LPC84X_GPIO_INV_BITS_LEN     2
 
-/** \brief ÉèÖÃÊäÈë·´×ª±àÂë */
+/** \brief è®¾ç½®è¾“å…¥åè½¬ç¼–ç  */
 #define AM_LPC84X_GPIO_INV_CODE(a)      AM_SBF(((a) + 1), \
                                                AM_LPC84X_GPIO_INV_BITS_START)
 
-/** \brief ÊäÈë·´×ªÎ»ÓòÑÚÂë */            
+/** \brief è¾“å…¥åè½¬ä½åŸŸæŽ©ç  */            
 #define AM_LPC84X_GPIO_INV_MASK         AM_SBF(0x03, \
                                                AM_LPC84X_GPIO_INV_BITS_START)
 
-/** \brief »ñÈ¡ÊäÈë·´×ªÂë */
+/** \brief èŽ·å–è¾“å…¥åè½¬ç  */
 #define AM_LPC84X_GPIO_INV_GET(data) \
                            (AM_BITS_GET((data), \
                                         AM_LPC84X_GPIO_INV_BITS_START, \
@@ -141,26 +141,26 @@ extern "C" {
 /** @} */
 
 /**
- * \name Òý½Å¹¦ÄÜÅäÖÃ¹¤¾ßºê
+ * \name å¼•è„šåŠŸèƒ½é…ç½®å·¥å…·å®
  *
  * @{
  */
  
-/** \brief ¹¦ÄÜÂëÆ«ÒÆ */
+/** \brief åŠŸèƒ½ç åç§» */
 #define AM_LPC84X_GPIO_FUNC_BITS_START  18
   
-/** \brief ¹¦ÄÜÂë³¤¶È */               
+/** \brief åŠŸèƒ½ç é•¿åº¦ */               
 #define AM_LPC84X_GPIO_FUNC_BITS_LEN    6
   
-/** \brief ÉèÖÃ¹¦ÄÜ±àÂë */              
+/** \brief è®¾ç½®åŠŸèƒ½ç¼–ç  */              
 #define AM_LPC84X_GPIO_FUNC_CODE(a)     AM_SBF(((a) + 1), \
                                                AM_LPC84X_GPIO_FUNC_BITS_START)
 
-/** \brief ¹¦ÄÜÎ»ÓòÑÚÂë */              
+/** \brief åŠŸèƒ½ä½åŸŸæŽ©ç  */              
 #define AM_LPC84X_GPIO_FUNC_MASK        AM_SBF(0x3F, \
                                                AM_LPC84X_GPIO_FUNC_BITS_START)
                
-/** \brief »ñÈ¡¹¦ÄÜÂë */               
+/** \brief èŽ·å–åŠŸèƒ½ç  */               
 #define AM_LPC84X_GPIO_FUNC_GET(data) \
                            (AM_BITS_GET((data), \
                                         AM_LPC84X_GPIO_FUNC_BITS_START, \
@@ -170,26 +170,26 @@ extern "C" {
 /** @} */
 
 /**
- * \name Òý½ÅI2CÄ£Ê½ÅäÖÃ¹¤¾ßºê
+ * \name å¼•è„šI2Cæ¨¡å¼é…ç½®å·¥å…·å®
  *
  * @{
  */
 
-/** \brief I2CÄ£Ê½ÂëÆ«ÒÆ */
+/** \brief I2Cæ¨¡å¼ç åç§» */
 #define AM_LPC84X_GPIO_I2C_BITS_START   24
 
-/** \brief I2CÄ£Ê½Âë³¤¶È */
+/** \brief I2Cæ¨¡å¼ç é•¿åº¦ */
 #define AM_LPC84X_GPIO_I2C_BITS_LEN     2
 
-/** \brief ÉèÖÃI2CÄ£Ê½Âë±àÂë */
+/** \brief è®¾ç½®I2Cæ¨¡å¼ç ç¼–ç  */
 #define AM_LPC84X_GPIO_I2C_CODE(a)      AM_SBF(((a) + 1), \
                                                AM_LPC84X_GPIO_I2C_BITS_START)
 
-/** \brief I2CÄ£Ê½ÓòÑÚÂë */             
+/** \brief I2Cæ¨¡å¼åŸŸæŽ©ç  */             
 #define AM_LPC84X_GPIO_I2C_MASK         AM_SBF(0x03, \
                                                AM_LPC84X_GPIO_I2C_BITS_START)
 
-/** \brief I2CÄ£Ê½ÂëÉèÖÃ»ñÈ¡ */
+/** \brief I2Cæ¨¡å¼ç è®¾ç½®èŽ·å– */
 #define AM_LPC84X_GPIO_I2C_GET(data) \
                            (AM_BITS_GET((data), \
                                         AM_LPC84X_GPIO_I2C_BITS_START, \
@@ -199,26 +199,26 @@ extern "C" {
 /** @} */
 
 /**
- * \name Òý½ÅÂË²¨ÖÜÆÚÅäÖÃ¹¤¾ßºê
+ * \name å¼•è„šæ»¤æ³¢å‘¨æœŸé…ç½®å·¥å…·å®
  *
  * @{
  */
 
-/** \brief ÂË²¨ÖÜÆÚÂëÆ«ÒÆ */
+/** \brief æ»¤æ³¢å‘¨æœŸç åç§» */
 #define AM_LPC84X_GPIO_FIL_CYC_BITS_START  26
                                            
-/** \brief ÂË²¨ÖÜÆÚÂë³¤¶È */               
+/** \brief æ»¤æ³¢å‘¨æœŸç é•¿åº¦ */               
 #define AM_LPC84X_GPIO_FIL_CYC_BITS_LEN    3
                                            
-/** \brief ÉèÖÃÂË²¨ÖÜÆÚ±àÂë */             
+/** \brief è®¾ç½®æ»¤æ³¢å‘¨æœŸç¼–ç  */             
 #define AM_LPC84X_GPIO_FIL_CYC_CODE(a)     AM_SBF(((a) + 1), \
                                                   AM_LPC84X_GPIO_FIL_CYC_BITS_START)
                                            
-/** \brief ÂË²¨ÖÜÆÚÑÚÂë */                 
+/** \brief æ»¤æ³¢å‘¨æœŸæŽ©ç  */                 
 #define AM_LPC84X_GPIO_FIL_CYC_MASK        AM_SBF(0x07, \
                                                   AM_LPC84X_GPIO_FIL_CYC_BITS_START)
                                            
-/** \brief »ñÈ¡ÂË²¨ÖÜÆÚ */                 
+/** \brief èŽ·å–æ»¤æ³¢å‘¨æœŸ */                 
 #define AM_LPC84X_GPIO_FIL_CYC_GET(data)  \
                               (AM_BITS_GET((data), \
                                            AM_LPC84X_GPIO_FIL_CYC_BITS_START, \
@@ -228,26 +228,26 @@ extern "C" {
 /** @} */
 
 /**
- * \name Òý½ÅÂË²¨·ÖÆµÅäÖÃ¹¤¾ßºê
+ * \name å¼•è„šæ»¤æ³¢åˆ†é¢‘é…ç½®å·¥å…·å®
  *
  * @{
  */
 
-/** \brief ÂË²¨·ÖÆµÂëÆ«ÒÆ */
+/** \brief æ»¤æ³¢åˆ†é¢‘ç åç§» */
 #define AM_LPC84X_GPIO_FIL_DIV_BITS_START  29
   
-/** \brief ÂË²¨·ÖÆµÂë³¤¶È */           
+/** \brief æ»¤æ³¢åˆ†é¢‘ç é•¿åº¦ */           
 #define AM_LPC84X_GPIO_FIL_DIV_BITS_LEN    3
   
-/** \brief ÉèÖÃÂË²¨·ÖÆµ±àÂë */         
+/** \brief è®¾ç½®æ»¤æ³¢åˆ†é¢‘ç¼–ç  */         
 #define AM_LPC84X_GPIO_FIL_DIV_CODE(a)     AM_SBF(((a) + 1), \
                                                   AM_LPC84X_GPIO_FIL_DIV_BITS_START)
   
-/** \brief ÂË²¨·ÖÆµÑÚÂë */                
+/** \brief æ»¤æ³¢åˆ†é¢‘æŽ©ç  */                
 #define AM_LPC84X_GPIO_FIL_DIV_MASK        AM_SBF(0x07UL,\
                                                   AM_LPC84X_GPIO_FIL_DIV_BITS_START)
 
-/** \brief »ñÈ¡ÂË²¨·ÖÆµ */
+/** \brief èŽ·å–æ»¤æ³¢åˆ†é¢‘ */
 #define AM_LPC84X_GPIO_FIL_DIV_GET(data) \
                               (AM_BITS_GET((data), \
                                            AM_LPC84X_GPIO_FIL_DIV_BITS_START, \
@@ -256,332 +256,332 @@ extern "C" {
 
 /** @} */
 
-/*************************LPC8xxÒý½ÅÌØÐÔ***************************************/
+/*************************LPC8xxå¼•è„šç‰¹æ€§***************************************/
 
 /**
- * \name Òý½ÅÄ£Ê½
+ * \name å¼•è„šæ¨¡å¼
  *
  * @{
  */
 
-/** \brief Ïû¼«Ä£Ê½(ÎÞÉÏÀ­/ÏÂÀ­) */
+/** \brief æ¶ˆæžæ¨¡å¼(æ— ä¸Šæ‹‰/ä¸‹æ‹‰) */
 #define AM_LPC84X_GPIO_INACTIVE           AM_GPIO_FLOAT
 
-/** \brief ÏÂÀ­Ä£Ê½ */               
+/** \brief ä¸‹æ‹‰æ¨¡å¼ */               
 #define AM_LPC84X_GPIO_PULLDOWN           AM_GPIO_PULLDOWN
 
-/** \brief ÉÏÀ­Ä£Ê½ */               
+/** \brief ä¸Šæ‹‰æ¨¡å¼ */               
 #define AM_LPC84X_GPIO_PULLUP             AM_GPIO_PULLUP
 
-/** \brief ¿ªÂ©Ä£Ê½ */               
+/** \brief å¼€æ¼æ¨¡å¼ */               
 #define AM_LPC84X_GPIO_OPEN_DRAIN         AM_GPIO_OPEN_DRAIN
 
-/** \brief ÖÐ¼ÌÄ£Ê½ */               
+/** \brief ä¸­ç»§æ¨¡å¼ */               
 #define AM_LPC84X_GPIO_REPEATER           AM_LPC84X_GPIO_REP_CODE(0)
 
 /** @} */
 
 /**
- * \name Òý½Å·½Ïò
+ * \name å¼•è„šæ–¹å‘
  *
  * @{
  */
 
-/** \brief ÊäÈë  */
+/** \brief è¾“å…¥  */
 #define AM_LPC84X_GPIO_INPUT              AM_GPIO_INPUT
 
-/** \brief Êä³ö¸ß  */                  
+/** \brief è¾“å‡ºé«˜  */                  
 #define AM_LPC84X_GPIO_OUTPUT_HIGH        AM_GPIO_OUTPUT_INIT_HIGH
 
-/** \brief Êä³öµÍ  */                  
+/** \brief è¾“å‡ºä½Ž  */                  
 #define AM_LPC84X_GPIO_OUTPUT_LOW         AM_GPIO_OUTPUT_INIT_LOW
 
 /** @} */
 
 /**
- * \name Òý½Å³ÙÖÍÊ¹ÄÜºÍ½ûÄÜ
+ * \name å¼•è„šè¿Ÿæ»žä½¿èƒ½å’Œç¦èƒ½
  *
  * @{
  */
 
-/** \brief ²»¿ªÆô */
+/** \brief ä¸å¼€å¯ */
 #define AM_LPC84X_GPIO_HYS_DISABLE        AM_LPC84X_GPIO_HYS_CODE(0UL)
 
-/** \brief ¿ªÆô  */                  
+/** \brief å¼€å¯  */                  
 #define AM_LPC84X_GPIO_HYS_ENABLE         AM_LPC84X_GPIO_HYS_CODE(1UL)
 
 /** @} */
 
 /**
- * \name Òý½ÅÊäÈë·´×ªÊ¹ÄÜºÍ½ûÄÜ
+ * \name å¼•è„šè¾“å…¥åè½¬ä½¿èƒ½å’Œç¦èƒ½
  *
  * @{
  */
 
-/** \brief ÊäÈë²»·´×ª */
+/** \brief è¾“å…¥ä¸åè½¬ */
 #define AM_LPC84X_GPIO_INV_DISABLE        AM_LPC84X_GPIO_INV_CODE(0UL)
 
-/** \brief ÊäÈë·¢×ª  */              
+/** \brief è¾“å…¥å‘è½¬  */              
 #define AM_LPC84X_GPIO_INV_ENABLE         AM_LPC84X_GPIO_INV_CODE(1UL)
 
 /** @} */
 
 /**
- * \name Òý½ÅÂË²¨ÖÜÆÚ
+ * \name å¼•è„šæ»¤æ³¢å‘¨æœŸ
  *
  * @{
  */
 
-/** \brief ²»Ê¹ÓÃÂË²¨ */
+/** \brief ä¸ä½¿ç”¨æ»¤æ³¢ */
 #define AM_LPC84X_GPIO_FIL_DISABLE        AM_LPC84X_GPIO_FIL_CYC_CODE(0UL)
 
-/** \brief ÂË³ýÐ¡ÓÚÒ»¸öÖÜÆÚÐÅºÅ */   
+/** \brief æ»¤é™¤å°äºŽä¸€ä¸ªå‘¨æœŸä¿¡å· */   
 #define AM_LPC84X_GPIO_FIL_1CYCLE         AM_LPC84X_GPIO_FIL_CYC_CODE(1UL)
 
-/** \brief ÂË³ýÐ¡ÓÚÁ½¸öÖÜÆÚÐÅºÅ */   
+/** \brief æ»¤é™¤å°äºŽä¸¤ä¸ªå‘¨æœŸä¿¡å· */   
 #define AM_LPC84X_GPIO_FIL_2CYCLE         AM_LPC84X_GPIO_FIL_CYC_CODE(2UL)
 
-/** \brief ÂË³ýÐ¡ÓÚÈý¸öÖÜÆÚÐÅºÅ */   
+/** \brief æ»¤é™¤å°äºŽä¸‰ä¸ªå‘¨æœŸä¿¡å· */   
 #define AM_LPC84X_GPIO_FIL_3CYCLE         AM_LPC84X_GPIO_FIL_CYC_CODE(3UL)
 
 /** @} */
 
 /**
- * \name Òý½ÅÂË²¨·ÖÆµ
+ * \name å¼•è„šæ»¤æ³¢åˆ†é¢‘
  *
  * @{
  */
 
-/** \brief ·ÖÆµÏµÊýÎ»0 */
+/** \brief åˆ†é¢‘ç³»æ•°ä½0 */
 #define AM_LPC84X_GPIO_FIL_DIV0           AM_LPC84X_GPIO_FIL_DIV_CODE(0UL)
 
-/** \brief ·ÖÆµÏµÊýÎ»1 */            
+/** \brief åˆ†é¢‘ç³»æ•°ä½1 */            
 #define AM_LPC84X_GPIO_FIL_DIV1           AM_LPC84X_GPIO_FIL_DIV_CODE(1UL)
 
-/** \brief ·ÖÆµÏµÊýÎ»2 */            
+/** \brief åˆ†é¢‘ç³»æ•°ä½2 */            
 #define AM_LPC84X_GPIO_FIL_DIV2           AM_LPC84X_GPIO_FIL_DIV_CODE(2UL)
 
-/** \brief ·ÖÆµÏµÊýÎ»3 */            
+/** \brief åˆ†é¢‘ç³»æ•°ä½3 */            
 #define AM_LPC84X_GPIO_FIL_DIV3           AM_LPC84X_GPIO_FIL_DIV_CODE(3UL)
 
-/** \brief ·ÖÆµÏµÊýÎ»4 */            
+/** \brief åˆ†é¢‘ç³»æ•°ä½4 */            
 #define AM_LPC84X_GPIO_FIL_DIV4           AM_LPC84X_GPIO_FIL_DIV_CODE(4UL)
 
-/** \brief ·ÖÆµÏµÊýÎ»5 */            
+/** \brief åˆ†é¢‘ç³»æ•°ä½5 */            
 #define AM_LPC84X_GPIO_FIL_DIV5           AM_LPC84X_GPIO_FIL_DIV_CODE(5UL)
 
-/** \brief ·ÖÆµÏµÊýÎ»6 */            
+/** \brief åˆ†é¢‘ç³»æ•°ä½6 */            
 #define AM_LPC84X_GPIO_FIL_DIV6           AM_LPC84X_GPIO_FIL_DIV_CODE(6UL)
 
 /** @} */
 
 /** 
- * \name Òý½Å¿É×ªÒÆ¹¦ÄÜ
+ * \name å¼•è„šå¯è½¬ç§»åŠŸèƒ½
  * @{
  */
 
-/** \brief UART0_TXD  ¹¦ÄÜ */
+/** \brief UART0_TXD  åŠŸèƒ½ */
 #define AM_LPC84X_GPIO_FUNC_U0_TXD        AM_LPC84X_GPIO_FUNC_CODE(0UL)
 
-/** \brief UART0_RXD  ¹¦ÄÜ */        
+/** \brief UART0_RXD  åŠŸèƒ½ */        
 #define AM_LPC84X_GPIO_FUNC_U0_RXD        AM_LPC84X_GPIO_FUNC_CODE(1UL)
 
-/** \brief UART0_RTS  ¹¦ÄÜ */        
+/** \brief UART0_RTS  åŠŸèƒ½ */        
 #define AM_LPC84X_GPIO_FUNC_U0_RTS        AM_LPC84X_GPIO_FUNC_CODE(2UL)
 
-/** \brief UART0_CTS  ¹¦ÄÜ */        
+/** \brief UART0_CTS  åŠŸèƒ½ */        
 #define AM_LPC84X_GPIO_FUNC_U0_CTS        AM_LPC84X_GPIO_FUNC_CODE(3UL)
 
-/** \brief UART0_SCLK ¹¦ÄÜ */        
+/** \brief UART0_SCLK åŠŸèƒ½ */        
 #define AM_LPC84X_GPIO_FUNC_U0_SCLK       AM_LPC84X_GPIO_FUNC_CODE(4UL)
 
-/** \brief UART1_TXD  ¹¦ÄÜ */        
+/** \brief UART1_TXD  åŠŸèƒ½ */        
 #define AM_LPC84X_GPIO_FUNC_U1_TXD        AM_LPC84X_GPIO_FUNC_CODE(5UL)
 
-/** \brief UART1_RXD  ¹¦ÄÜ */        
+/** \brief UART1_RXD  åŠŸèƒ½ */        
 #define AM_LPC84X_GPIO_FUNC_U1_RXD        AM_LPC84X_GPIO_FUNC_CODE(6UL)
 
-/** \brief UART1_RTS  ¹¦ÄÜ */        
+/** \brief UART1_RTS  åŠŸèƒ½ */        
 #define AM_LPC84X_GPIO_FUNC_U1_RTS        AM_LPC84X_GPIO_FUNC_CODE(7UL)
 
-/** \brief UART1_CTS  ¹¦ÄÜ */        
+/** \brief UART1_CTS  åŠŸèƒ½ */        
 #define AM_LPC84X_GPIO_FUNC_U1_CTS        AM_LPC84X_GPIO_FUNC_CODE(8UL)
 
-/** \brief UART1_SCLK ¹¦ÄÜ */        
+/** \brief UART1_SCLK åŠŸèƒ½ */        
 #define AM_LPC84X_GPIO_FUNC_U1_SCLK       AM_LPC84X_GPIO_FUNC_CODE(9UL)
 
-/** \brief UART2_TXD  ¹¦ÄÜ */        
+/** \brief UART2_TXD  åŠŸèƒ½ */        
 #define AM_LPC84X_GPIO_FUNC_U2_TXD        AM_LPC84X_GPIO_FUNC_CODE(10UL)
 
-/** \brief UART2_RXD  ¹¦ÄÜ */        
+/** \brief UART2_RXD  åŠŸèƒ½ */        
 #define AM_LPC84X_GPIO_FUNC_U2_RXD        AM_LPC84X_GPIO_FUNC_CODE(11UL)
 
-/** \brief UART2_RTS  ¹¦ÄÜ */        
+/** \brief UART2_RTS  åŠŸèƒ½ */        
 #define AM_LPC84X_GPIO_FUNC_U2_RTS        AM_LPC84X_GPIO_FUNC_CODE(12UL)
 
-/** \brief UART2_CTS  ¹¦ÄÜ */        
+/** \brief UART2_CTS  åŠŸèƒ½ */        
 #define AM_LPC84X_GPIO_FUNC_U2_CTS        AM_LPC84X_GPIO_FUNC_CODE(13UL)
 
-/** \brief UART2_SCLK ¹¦ÄÜ */        
+/** \brief UART2_SCLK åŠŸèƒ½ */        
 #define AM_LPC84X_GPIO_FUNC_U2_SCLK       AM_LPC84X_GPIO_FUNC_CODE(14UL)
 
-/** \brief SPI0_SCK   ¹¦ÄÜ */        
+/** \brief SPI0_SCK   åŠŸèƒ½ */        
 #define AM_LPC84X_GPIO_FUNC_SPI0_SCK      AM_LPC84X_GPIO_FUNC_CODE(15UL)
 
-/** \brief SPI0_MOSI  ¹¦ÄÜ */        
+/** \brief SPI0_MOSI  åŠŸèƒ½ */        
 #define AM_LPC84X_GPIO_FUNC_SPI0_MOSI     AM_LPC84X_GPIO_FUNC_CODE(16UL)
 
-/** \brief SPI0_MISO  ¹¦ÄÜ */        
+/** \brief SPI0_MISO  åŠŸèƒ½ */        
 #define AM_LPC84X_GPIO_FUNC_SPI0_MISO     AM_LPC84X_GPIO_FUNC_CODE(17UL)
 
-/** \brief SPI0_SSEL0 ¹¦ÄÜ */        
+/** \brief SPI0_SSEL0 åŠŸèƒ½ */        
 #define AM_LPC84X_GPIO_FUNC_SPI0_SSEL0    AM_LPC84X_GPIO_FUNC_CODE(18UL)
 
-/** \brief SPI0_SSEL1 ¹¦ÄÜ */        
+/** \brief SPI0_SSEL1 åŠŸèƒ½ */        
 #define AM_LPC84X_GPIO_FUNC_SPI0_SSEL1    AM_LPC84X_GPIO_FUNC_CODE(19UL)
 
-/** \brief SPI0_SSEL2 ¹¦ÄÜ */        
+/** \brief SPI0_SSEL2 åŠŸèƒ½ */        
 #define AM_LPC84X_GPIO_FUNC_SPI0_SSEL2    AM_LPC84X_GPIO_FUNC_CODE(20UL)
 
-/** \brief SPI0_SSEL3 ¹¦ÄÜ */        
+/** \brief SPI0_SSEL3 åŠŸèƒ½ */        
 #define AM_LPC84X_GPIO_FUNC_SPI0_SSEL3    AM_LPC84X_GPIO_FUNC_CODE(21UL)
 
-/** \brief SPI1_SCK   ¹¦ÄÜ */        
+/** \brief SPI1_SCK   åŠŸèƒ½ */        
 #define AM_LPC84X_GPIO_FUNC_SPI1_SCK      AM_LPC84X_GPIO_FUNC_CODE(22UL)
 
-/** \brief SPI1_MOSI  ¹¦ÄÜ */        
+/** \brief SPI1_MOSI  åŠŸèƒ½ */        
 #define AM_LPC84X_GPIO_FUNC_SPI1_MOSI     AM_LPC84X_GPIO_FUNC_CODE(23UL)
 
-/** \brief SPI1_MISO  ¹¦ÄÜ */        
+/** \brief SPI1_MISO  åŠŸèƒ½ */        
 #define AM_LPC84X_GPIO_FUNC_SPI1_MISO     AM_LPC84X_GPIO_FUNC_CODE(24UL)
 
-/** \brief SPI1_SSEL0 ¹¦ÄÜ */        
+/** \brief SPI1_SSEL0 åŠŸèƒ½ */        
 #define AM_LPC84X_GPIO_FUNC_SPI1_SSEL0    AM_LPC84X_GPIO_FUNC_CODE(25UL)
 
-/** \brief SPI1_SSEL1 ¹¦ÄÜ */        
+/** \brief SPI1_SSEL1 åŠŸèƒ½ */        
 #define AM_LPC84X_GPIO_FUNC_SPI1_SSEL1    AM_LPC84X_GPIO_FUNC_CODE(26UL)
 
-/** \brief SCT_PIN_PIN0 ¹¦ÄÜ */      
+/** \brief SCT_PIN_PIN0 åŠŸèƒ½ */      
 #define AM_LPC84X_GPIO_FUNC_SCT_PIN0      AM_LPC84X_GPIO_FUNC_CODE(27UL)
 
-/** \brief SCT_PIN_PIN1 ¹¦ÄÜ */      
+/** \brief SCT_PIN_PIN1 åŠŸèƒ½ */      
 #define AM_LPC84X_GPIO_FUNC_SCT_PIN1      AM_LPC84X_GPIO_FUNC_CODE(28UL)
 
-/** \brief SCT_PIN_PIN2 ¹¦ÄÜ */      
+/** \brief SCT_PIN_PIN2 åŠŸèƒ½ */      
 #define AM_LPC84X_GPIO_FUNC_SCT_PIN2      AM_LPC84X_GPIO_FUNC_CODE(29UL)
 
-/** \brief SCT_PIN_PIN3 ¹¦ÄÜ */      
+/** \brief SCT_PIN_PIN3 åŠŸèƒ½ */      
 #define AM_LPC84X_GPIO_FUNC_SCT_PIN3      AM_LPC84X_GPIO_FUNC_CODE(30UL)
 
-/** \brief SCT_OUT0 ¹¦ÄÜ */          
+/** \brief SCT_OUT0 åŠŸèƒ½ */          
 #define AM_LPC84X_GPIO_FUNC_SCT_OUT0      AM_LPC84X_GPIO_FUNC_CODE(31UL)
 
-/** \brief SCT_OUT1 ¹¦ÄÜ */          
+/** \brief SCT_OUT1 åŠŸèƒ½ */          
 #define AM_LPC84X_GPIO_FUNC_SCT_OUT1      AM_LPC84X_GPIO_FUNC_CODE(32UL)
 
-/** \brief SCT_OUT2 ¹¦ÄÜ */          
+/** \brief SCT_OUT2 åŠŸèƒ½ */          
 #define AM_LPC84X_GPIO_FUNC_SCT_OUT2      AM_LPC84X_GPIO_FUNC_CODE(33UL)
 
-/** \brief SCT_OUT3 ¹¦ÄÜ */          
+/** \brief SCT_OUT3 åŠŸèƒ½ */          
 #define AM_LPC84X_GPIO_FUNC_SCT_OUT3      AM_LPC84X_GPIO_FUNC_CODE(34UL)
 
-/** \brief SCT_OUT4 ¹¦ÄÜ */          
+/** \brief SCT_OUT4 åŠŸèƒ½ */          
 #define AM_LPC84X_GPIO_FUNC_SCT_OUT4      AM_LPC84X_GPIO_FUNC_CODE(35UL)
 
-/** \brief SCT_OUT5 ¹¦ÄÜ */          
+/** \brief SCT_OUT5 åŠŸèƒ½ */          
 #define AM_LPC84X_GPIO_FUNC_SCT_OUT5      AM_LPC84X_GPIO_FUNC_CODE(36UL)
 
-/** \brief SCT_OUT5 ¹¦ÄÜ */
+/** \brief SCT_OUT5 åŠŸèƒ½ */
 #define AM_LPC84X_GPIO_FUNC_SCT_OUT6      AM_LPC84X_GPIO_FUNC_CODE(37UL)
 
-/** \brief I2C1_SDA ¹¦ÄÜ */          
+/** \brief I2C1_SDA åŠŸèƒ½ */          
 #define AM_LPC84X_GPIO_FUNC_I2C1_SDA      AM_LPC84X_GPIO_FUNC_CODE(38UL)
 
-/** \brief I2C1_SCL ¹¦ÄÜ */          
+/** \brief I2C1_SCL åŠŸèƒ½ */          
 #define AM_LPC84X_GPIO_FUNC_I2C1_SCL      AM_LPC84X_GPIO_FUNC_CODE(39UL)
 
-/** \brief I2C2_SDA ¹¦ÄÜ */          
+/** \brief I2C2_SDA åŠŸèƒ½ */          
 #define AM_LPC84X_GPIO_FUNC_I2C2_SDA      AM_LPC84X_GPIO_FUNC_CODE(40UL)
 
-/** \brief I2C2_SCL ¹¦ÄÜ */          
+/** \brief I2C2_SCL åŠŸèƒ½ */          
 #define AM_LPC84X_GPIO_FUNC_I2C2_SCL      AM_LPC84X_GPIO_FUNC_CODE(41UL)
 
-/** \brief I2C3_SDA ¹¦ÄÜ */          
+/** \brief I2C3_SDA åŠŸèƒ½ */          
 #define AM_LPC84X_GPIO_FUNC_I2C3_SDA      AM_LPC84X_GPIO_FUNC_CODE(42UL)
 
-/** \brief I2C3_SCL ¹¦ÄÜ */          
+/** \brief I2C3_SCL åŠŸèƒ½ */          
 #define AM_LPC84X_GPIO_FUNC_I2C3_SCL      AM_LPC84X_GPIO_FUNC_CODE(43UL)
 
-/** \brief COMP0_OUT ¹¦ÄÜ */
+/** \brief COMP0_OUT åŠŸèƒ½ */
 #define AM_LPC84X_GPIO_FUNC_COMP0_OUT     AM_LPC84X_GPIO_FUNC_CODE(44UL)
 
-/** \brief CLKOUT ¹¦ÄÜ */
+/** \brief CLKOUT åŠŸèƒ½ */
 #define AM_LPC84X_GPIO_FUNC_CLKOUT        AM_LPC84X_GPIO_FUNC_CODE(45UL)
 
-/** \brief GPIO_INT_BMAT ¹¦ÄÜ */
+/** \brief GPIO_INT_BMAT åŠŸèƒ½ */
 #define AM_LPC84X_GPIO_FUNC_GPIO_INT_BMAT AM_LPC84X_GPIO_FUNC_CODE(46UL)
 
-/** \brief UART3_TX ¹¦ÄÜ */
+/** \brief UART3_TX åŠŸèƒ½ */
 #define AM_LPC84X_GPIO_FUNC_UART3_TX      AM_LPC84X_GPIO_FUNC_CODE(47UL)
 
-/** \brief UART3_RD ¹¦ÄÜ */
+/** \brief UART3_RD åŠŸèƒ½ */
 #define AM_LPC84X_GPIO_FUNC_UART3_RD      AM_LPC84X_GPIO_FUNC_CODE(48UL)
 
-/** \brief UART3_SCLK ¹¦ÄÜ */
+/** \brief UART3_SCLK åŠŸèƒ½ */
 #define AM_LPC84X_GPIO_FUNC_UART3_SCLK    AM_LPC84X_GPIO_FUNC_CODE(49UL)
 
-/** \brief UART4_TX ¹¦ÄÜ */
+/** \brief UART4_TX åŠŸèƒ½ */
 #define AM_LPC84X_GPIO_FUNC_UART4_TX      AM_LPC84X_GPIO_FUNC_CODE(50UL)
 
-/** \brief UART4_RD ¹¦ÄÜ */
+/** \brief UART4_RD åŠŸèƒ½ */
 #define AM_LPC84X_GPIO_FUNC_UART4_RD      AM_LPC84X_GPIO_FUNC_CODE(51UL)
 
-/** \brief UART4_SCLK ¹¦ÄÜ */
+/** \brief UART4_SCLK åŠŸèƒ½ */
 #define AM_LPC84X_GPIO_FUNC_UART4_SCLK    AM_LPC84X_GPIO_FUNC_CODE(52UL)
 
-/** \brief T0_MAT0 ¹¦ÄÜ */
+/** \brief T0_MAT0 åŠŸèƒ½ */
 #define AM_LPC84X_GPIO_FUNC_T0_MAT0       AM_LPC84X_GPIO_FUNC_CODE(53UL)
 
-/** \brief T0_MAT1 ¹¦ÄÜ */
+/** \brief T0_MAT1 åŠŸèƒ½ */
 #define AM_LPC84X_GPIO_FUNC_T0_MAT1       AM_LPC84X_GPIO_FUNC_CODE(54UL)
 
-/** \brief T0_MAT2 ¹¦ÄÜ */
+/** \brief T0_MAT2 åŠŸèƒ½ */
 #define AM_LPC84X_GPIO_FUNC_T0_MAT2       AM_LPC84X_GPIO_FUNC_CODE(55UL)
 
-/** \brief T0_MAT3 ¹¦ÄÜ */
+/** \brief T0_MAT3 åŠŸèƒ½ */
 #define AM_LPC84X_GPIO_FUNC_T0_MAT3       AM_LPC84X_GPIO_FUNC_CODE(56UL)
 
-/** \brief T0_CAP0 ¹¦ÄÜ */
+/** \brief T0_CAP0 åŠŸèƒ½ */
 #define AM_LPC84X_GPIO_FUNC_T0_CAP0       AM_LPC84X_GPIO_FUNC_CODE(57UL)
 
-/** \brief T0_CAP1 ¹¦ÄÜ */
+/** \brief T0_CAP1 åŠŸèƒ½ */
 #define AM_LPC84X_GPIO_FUNC_T0_CAP1       AM_LPC84X_GPIO_FUNC_CODE(58UL)
 
-/** \brief T0_CAP2 ¹¦ÄÜ */
+/** \brief T0_CAP2 åŠŸèƒ½ */
 #define AM_LPC84X_GPIO_FUNC_T0_CAP2       AM_LPC84X_GPIO_FUNC_CODE(59UL)
 
 
 /** @} */                            
 
 /**  
- * \name Òý½Å GPIO¹¦ÄÜ             
+ * \name å¼•è„š GPIOåŠŸèƒ½             
  * @{
  */  
 
-/** \brief GPIO  ¹¦ÄÜ */             
+/** \brief GPIO  åŠŸèƒ½ */             
 #define AM_LPC84X_GPIO_FUNC_GPIO          AM_LPC84X_GPIO_FUNC_CODE(60UL)
 
 /** @} */                            
 
 /**  
- * \name Òý½Å ÌØÊâ¹¦ÄÜ             
+ * \name å¼•è„š ç‰¹æ®ŠåŠŸèƒ½             
  * @{
  */  
 
-/** \brief ÌØÊâ¹¦ÄÜ1 */         
+/** \brief ç‰¹æ®ŠåŠŸèƒ½1 */         
 #define AM_LPC84X_GPIO_FUNC_OTHER1        AM_LPC84X_GPIO_FUNC_CODE(61UL)
 
-/** \brief ÌØÊâ¹¦ÄÜ2 */         
+/** \brief ç‰¹æ®ŠåŠŸèƒ½2 */         
 #define AM_LPC84X_GPIO_FUNC_OTHER2        AM_LPC84X_GPIO_FUNC_CODE(62UL)
 
 /** @} */

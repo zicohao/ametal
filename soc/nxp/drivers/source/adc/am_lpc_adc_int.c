@@ -29,7 +29,7 @@
 
 
 /*******************************************************************************
-* Ë½ÓĞ¶¨Òå
+* ç§æœ‰å®šä¹‰
 *******************************************************************************/
 
 #define __ADC_HW_DECL(p_hw_adc, p_drv)    \
@@ -43,7 +43,7 @@
         (((am_lpc_adc_dev_t *)p_drv)->p_devinfo->vref)
 
 /*******************************************************************************
-* º¯ÊıÉùÃ÷
+* å‡½æ•°å£°æ˜
 *******************************************************************************/
 
 static int __adc_start (void                   *p_drv,
@@ -66,7 +66,7 @@ static uint32_t __adc_get_bits(void *p_drv, int chan);
 static uint32_t __adc_get_vref(void *p_drv, int chan);
 
 /**
- * \brief ADC·şÎñº¯Êı
+ * \brief ADCæœåŠ¡å‡½æ•°
  */
 static const struct am_adc_drv_funcs __g_adc_drvfuncs = {
     __adc_start,
@@ -88,7 +88,7 @@ static void __adc_int(void *p_arg)
 
     uint32_t dat;
 
-    /* »ñÈ¡´æ·ÅÊı¾İ»º³åÇøµÄÖ¸Õë */
+    /* è·å–å­˜æ”¾æ•°æ®ç¼“å†²åŒºçš„æŒ‡é’ˆ */
     p_buf = (uint16_t *)p_dev->p_desc[p_dev->desc_pos].p_buf;
     if (p_buf == NULL) {
         return;
@@ -96,14 +96,14 @@ static void __adc_int(void *p_arg)
 
     dat = amhw_lpc_adc_glo_data_get(p_hw_adc, AMHW_LPC_ADC_SEQ_A);
 
-    /* ¶ÔÆë¸ñÊ½ */
+    /* å¯¹é½æ ¼å¼ */
     if (AM_ADC_DATA_ALIGN_RIGHT != p_dev->flags) {
         p_buf[p_dev->index] = (dat & (0xFFF << (12 - __ADC_BITS_GET(p_arg))));
     } else {
         p_buf[p_dev->index] = (dat & 0xFFF0) >> (4 + (12 - __ADC_BITS_GET(p_arg)));
     }
     (p_dev->index)++;
-    /* Íê³ÉÒ»¸öÃèÊöÊı»º³åÇøµÄ½ÓÊÕ*/
+    /* å®Œæˆä¸€ä¸ªæè¿°æ•°ç¼“å†²åŒºçš„æ¥æ”¶*/
     if (p_dev->index >= p_dev->p_desc[p_dev->desc_pos].length) {
         p_dev->index = 0;
 
@@ -112,29 +112,29 @@ static void __adc_int(void *p_arg)
         }
 
         p_dev->desc_pos++;
-        if (p_dev->desc_pos == p_dev->desc_num) { /* ÒÑ¾­½ÓÊÕÍê³É */
+        if (p_dev->desc_pos == p_dev->desc_num) { /* å·²ç»æ¥æ”¶å®Œæˆ */
             p_dev->desc_pos = 0;
 
             if (NULL != p_dev->pfn_callback) {
                 p_dev->pfn_callback(p_dev->p_arg, AM_OK);
             }
 
-            p_dev->count_pos++; /* ×ª»»ĞòÁĞ±ê×¼ */
+            p_dev->count_pos++; /* è½¬æ¢åºåˆ—æ ‡å‡† */
 
             if (p_dev->count != 0 && p_dev->count_pos == p_dev->count) {
                 p_dev->count_pos = 0;
-                __adc_stop(p_dev, p_dev->chan);  /* ¹Ø±ÕÄ£¿é */
-                return ; /* ·µ»Ø */
+                __adc_stop(p_dev, p_dev->chan);  /* å…³é—­æ¨¡å— */
+                return ; /* è¿”å› */
             }
         }
     }
 
-    /* Æô¶¯ADCĞòÁĞ×ª»» */
+    /* å¯åŠ¨ADCåºåˆ—è½¬æ¢ */
     amhw_lpc_adc_seq_start(p_hw_adc, AMHW_LPC_ADC_SEQ_A);
 }
 
 /**
- * \brief ADC³õÊ¼»¯
+ * \brief ADCåˆå§‹åŒ–
  */
 am_adc_handle_t am_lpc_adc_int_init (am_lpc_adc_dev_t           *p_dev,
                                       const am_lpc_adc_devinfo_t *p_devinfo)
@@ -169,10 +169,10 @@ am_adc_handle_t am_lpc_adc_int_init (am_lpc_adc_dev_t           *p_dev,
                AMHW_LPC_ADC_CTRL_BYPASS_CALIB;
 
   
-    /* ADC¿ØÖÆ¼Ä´æÆ÷ÅäÖÃ */
+    /* ADCæ§åˆ¶å¯„å­˜å™¨é…ç½® */
     amhw_lpc_adc_config(p_hw_adc, cfg_ctrl);
     
-    /* Ê¹ÄÜĞòÁĞAÖĞ¶Ï */
+    /* ä½¿èƒ½åºåˆ—Aä¸­æ–­ */
     amhw_lpc_adc_int_enable(p_hw_adc, AMHW_LPC_ADC_INTEN_SEQA_ENABLE);
     
     am_int_connect(p_devinfo->intnums[0], __adc_int, p_dev);
@@ -182,7 +182,7 @@ am_adc_handle_t am_lpc_adc_int_init (am_lpc_adc_dev_t           *p_dev,
 }
 
 /**
- * \brief ADCÈ¥³õÊ¼»¯
+ * \brief ADCå»åˆå§‹åŒ–
  */
 void am_lpc_adc_int_deinit (am_adc_handle_t handle)
 {
@@ -210,7 +210,7 @@ void am_lpc_adc_int_deinit (am_adc_handle_t handle)
 }
 
 /**
- * \brief Æô¶¯ADC×ª»»
+ * \brief å¯åŠ¨ADCè½¬æ¢
  */
 static int __adc_start (void                   *p_drv,
                         int                     chan,
@@ -228,7 +228,7 @@ static int __adc_start (void                   *p_drv,
     }
 
     if (chan >= 12) {
-        return -AM_ENXIO;   /* ÎŞĞ§µÄÍ¨µÀÖµ */
+        return -AM_ENXIO;   /* æ— æ•ˆçš„é€šé“å€¼ */
     }
 
     p_dev = (am_lpc_adc_dev_t *)p_drv;
@@ -247,7 +247,7 @@ static int __adc_start (void                   *p_drv,
 
     amhw_lpc_adc_startup(p_hw_adc);
 
-    /* ĞòÁĞA½ûÄÜ */
+    /* åºåˆ—Aç¦èƒ½ */
     amhw_lpc_adc_seq_disable(p_hw_adc, AMHW_LPC_ADC_SEQ_A);
     amhw_lpc_adc_seq_config(p_hw_adc, AMHW_LPC_ADC_SEQ_A, 0);
 
@@ -297,7 +297,7 @@ static int __adc_get_rate (void *p_drv, int chan, uint32_t *p_rate)
     adc_pclk    = am_clk_rate_get(p_dev->p_devinfo->clk_id);
     adc_clk_div = amhw_lpc_adc_ctrl_get(p_hw_adc) & 0xFF;
 
-    /* LPC5411x ADC²ÉÑùÂÊ*/
+    /* LPC5411x ADCé‡‡æ ·ç‡*/
     *p_rate = adc_pclk / adc_clk_div;
 
     return AM_OK;
@@ -322,7 +322,7 @@ static int __adc_set_rate (void *p_drv, int chan, uint32_t rate)
 
     adc_clk_div = adc_pclk / rate;
 
-    /* ÊäÈëÊ±ÖÓÌ«¸ßÊ±£¬ÉèÖÃµ½¼«ÏŞ */
+    /* è¾“å…¥æ—¶é’Ÿå¤ªé«˜æ—¶ï¼Œè®¾ç½®åˆ°æé™ */
     if (adc_clk_div != 0) {
 
         if ((adc_pclk % rate) == 0) {
@@ -339,7 +339,7 @@ static int __adc_set_rate (void *p_drv, int chan, uint32_t rate)
 }
 
 /**
- * \brief »ñÈ¡ADC×ª»»¾«¶È¡£
+ * \brief è·å–ADCè½¬æ¢ç²¾åº¦ã€‚
  */
 static uint32_t __adc_get_bits (void *p_drv , int chan)
 {
@@ -347,12 +347,12 @@ static uint32_t __adc_get_bits (void *p_drv , int chan)
 }
 
 /**
- * \brief »ñÈ¡ADC²Î¿¼µçÑ¹¡£
+ * \brief è·å–ADCå‚è€ƒç”µå‹ã€‚
  */
 static uint32_t __adc_get_vref (void *p_drv , int chan)
 {
     if (NULL == p_drv) {
-        return 0;   /* ×ÊÔ´ÒÑ¾­ÊÍ·Å£¬²Î¿¼µçÑ¹Î´Öª */
+        return 0;   /* èµ„æºå·²ç»é‡Šæ”¾ï¼Œå‚è€ƒç”µå‹æœªçŸ¥ */
     }
 
     return (uint32_t)__ADC_VREF_GET(p_drv);

@@ -43,10 +43,10 @@ typedef struct _key_process {
 	  am_softimer_t          	 timer;
 } key_process_t;
 	
-int  key_process_set (key_process_t *p_this);  		// SET¼ü´¦Àí
-int  key_process_lr (key_process_t *p_this);   		// L/R¼ü´¦Àí
-int  key_process_inc (key_process_t *p_this);  		// ¼Ó¼ü´¦Àí
-int  key_process_dec (key_process_t *p_this);  		// ¼õ¼ü´¦Àí
+int  key_process_set (key_process_t *p_this);  		// SETé”®å¤„ç†
+int  key_process_lr (key_process_t *p_this);   		// L/Ré”®å¤„ç†
+int  key_process_inc (key_process_t *p_this);  		// åŠ é”®å¤„ç†
+int  key_process_dec (key_process_t *p_this);  		// å‡é”®å¤„ç†
 
 int key_process_init (key_process_t         	*p_this,
 	                    model_temp_monitor_t  	*p_model,

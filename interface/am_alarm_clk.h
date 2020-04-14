@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief  ALARM_CLK ±ê×¼½Ó¿Ú
+ * \brief  ALARM_CLK æ ‡å‡†æŽ¥å£
  *
  * \internal
  * \par Modification History
@@ -36,82 +36,82 @@ extern "C" {
  */
 
 /**
- * \name ÄÖÖÓÊ±¼äµÄÐÇÆÚÈ¡Öµ
+ * \name é—¹é’Ÿæ—¶é—´çš„æ˜ŸæœŸå–å€¼
  * \anchor grp_alarm_clk_week
  *
- * \note  Èç¹ûÒªÉèÖÃÐÇÆÚÈýºÍÐÇÆÚÐÇÆÚÌì µÄÄÖÖÓ   Ôò tm_wday µÄÖµÎª £º
+ * \note  å¦‚æžœè¦è®¾ç½®æ˜ŸæœŸä¸‰å’Œæ˜ŸæœŸæ˜ŸæœŸå¤© çš„é—¹é’Ÿ   åˆ™ tm_wday çš„å€¼ä¸º ï¼š
  *        AM_ALARM_CLK_WEDNESDAY | AM_ALARM_CLK_SUNDAY
  * @{
  */
 
-#define AM_ALARM_CLK_SUNDAY    0X01    /**< \brief ÐÇÆÚÈÕ */
-#define AM_ALARM_CLK_MONDAY    0X02    /**< \brief ÐÇÆÚÒ» */
-#define AM_ALARM_CLK_TUESDAY   0X04    /**< \brief ÐÇÆÚ¶þ */
-#define AM_ALARM_CLK_WEDNESDAY 0X08    /**< \brief ÐÇÆÚÈý */
-#define AM_ALARM_CLK_THURSDAY  0X10    /**< \brief ÐÇÆÚËÄ */
-#define AM_ALARM_CLK_FRIDAY    0X20    /**< \brief ÐÇÆÚÎå */
-#define AM_ALARM_CLK_SATURDAY  0X40    /**< \brief ÐÇÆÚÁù */
-#define AM_ALARM_CLK_WORKDAY   0X3E    /**< \brief ¹¤×÷ÈÕ£ºÐÇÆÚÒ» ~ ÐÇÆÚÎå */
-#define AM_ALARM_CLK_EVERYDAY  0X7F    /**< \brief Ã¿Ò»Ìì  */
+#define AM_ALARM_CLK_SUNDAY    0X01    /**< \brief æ˜ŸæœŸæ—¥ */
+#define AM_ALARM_CLK_MONDAY    0X02    /**< \brief æ˜ŸæœŸä¸€ */
+#define AM_ALARM_CLK_TUESDAY   0X04    /**< \brief æ˜ŸæœŸäºŒ */
+#define AM_ALARM_CLK_WEDNESDAY 0X08    /**< \brief æ˜ŸæœŸä¸‰ */
+#define AM_ALARM_CLK_THURSDAY  0X10    /**< \brief æ˜ŸæœŸå›› */
+#define AM_ALARM_CLK_FRIDAY    0X20    /**< \brief æ˜ŸæœŸäº” */
+#define AM_ALARM_CLK_SATURDAY  0X40    /**< \brief æ˜ŸæœŸå…­ */
+#define AM_ALARM_CLK_WORKDAY   0X3E    /**< \brief å·¥ä½œæ—¥ï¼šæ˜ŸæœŸä¸€ ~ æ˜ŸæœŸäº” */
+#define AM_ALARM_CLK_EVERYDAY  0X7F    /**< \brief æ¯ä¸€å¤©  */
 
  /** @} */
 
 /**
- * \brief ÄÖÖÓÊ±¼ä½á¹¹Ìå
+ * \brief é—¹é’Ÿæ—¶é—´ç»“æž„ä½“
  *
- * \note Ê±¼äÊÇ24Ð¡Ê±ÖÆ
+ * \note æ—¶é—´æ˜¯24å°æ—¶åˆ¶
  */
 typedef struct am_alarm_clk_tm {
-    int min;      /**< \brief ·Ö    Öµ·¶Î§£º [0, 59]  */
-    int hour;     /**< \brief Ð¡Ê±  Öµ·¶Î§£º[0, 23]  */
-    int wdays;    /**< \briefÐÇÆÚ   ÖµÇë²Î¿¼  \ref grp_alarm_clk_week */
+    int min;      /**< \brief åˆ†    å€¼èŒƒå›´ï¼š [0, 59]  */
+    int hour;     /**< \brief å°æ—¶  å€¼èŒƒå›´ï¼š[0, 23]  */
+    int wdays;    /**< \briefæ˜ŸæœŸ   å€¼è¯·å‚è€ƒ  \ref grp_alarm_clk_week */
 } am_alarm_clk_tm_t;
 
 /**
- * \brief ALARM_CLK Çý¶¯º¯Êý
+ * \brief ALARM_CLK é©±åŠ¨å‡½æ•°
  */
 struct am_alarm_clk_drv_funcs {
 
-    /** \brief ÉèÖÃÄÖÖÓÊ±¼ä */
+    /** \brief è®¾ç½®é—¹é’Ÿæ—¶é—´ */
     int (*pfn_alarm_clk_time_set)(void *p_drv, am_alarm_clk_tm_t *p_tm);
 
-    /** \brief ÉèÖÃÄÖÖÓ»Øµ÷º¯Êý */
+    /** \brief è®¾ç½®é—¹é’Ÿå›žè°ƒå‡½æ•° */
     int (*pfn_alarm_clk_callback_set)(void          *p_drv,
                                       am_pfnvoid_t   pfn_callback,
                                       void          *p_arg);
-    /** \brief ¿ªÆôÄÖÖÓ  */
+    /** \brief å¼€å¯é—¹é’Ÿ  */
     int (*pfn_alarm_clk_on)(void *p_drv);
 
-    /** \brief ¹Ø±ÕÄÖÖÓ  */
+    /** \brief å…³é—­é—¹é’Ÿ  */
     int (*pfn_alarm_clk_off)(void *p_drv);
 
 };
 
 
 /**
- * \brief ALARM_CLK ±ê×¼·þÎñ
+ * \brief ALARM_CLK æ ‡å‡†æœåŠ¡
  */
 typedef struct am_alarm_clk_serv {
 
-    /** \brief RTCÇý¶¯º¯Êý */
+    /** \brief RTCé©±åŠ¨å‡½æ•° */
     struct am_alarm_clk_drv_funcs *p_funcs;
 
-    /** \brief Çý¶¯º¯ÊýµÚÒ»¸öÈë¿Ú²ÎÊý */
+    /** \brief é©±åŠ¨å‡½æ•°ç¬¬ä¸€ä¸ªå…¥å£å‚æ•° */
     void                      *p_drv;
 } am_alarm_clk_serv_t;
 
-/** \brief ALARM_CLK ±ê×¼·þÎñ²Ù×÷¾ä±úÀàÐÍ */
+/** \brief ALARM_CLK æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„ç±»åž‹ */
 typedef am_alarm_clk_serv_t *am_alarm_clk_handle_t;
 
 
 /**
- * \brief ÉèÖÃÄÖÖÓÊ±¼ä
+ * \brief è®¾ç½®é—¹é’Ÿæ—¶é—´
  *
- * \param[in] handle : ALARM_CLK ±ê×¼·þÎñ²Ù×÷¾ä±ú
- * \param[in] p_tm   : ÒªÉèÖÃµÄÊ±¼ä
+ * \param[in] handle : ALARM_CLK æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] p_tm   : è¦è®¾ç½®çš„æ—¶é—´
  *
- * \return    AM_OK    : ÉèÖÃ³É¹¦
- * \retval  -AM_EINVAL : ²ÎÊý´íÎó
+ * \return    AM_OK    : è®¾ç½®æˆåŠŸ
+ * \retval  -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_alarm_clk_time_set (am_alarm_clk_handle_t handle, am_alarm_clk_tm_t *p_tm)
@@ -120,14 +120,14 @@ int am_alarm_clk_time_set (am_alarm_clk_handle_t handle, am_alarm_clk_tm_t *p_tm
 }
 
 /**
- * \brief ÉèÖÃÄÖÖÓÊ±¼ä
+ * \brief è®¾ç½®é—¹é’Ÿæ—¶é—´
  *
- * \param[in] handle         : ALARM_CLK ±ê×¼·þÎñ²Ù×÷¾ä±ú
- * \param[in] pfn_callback   : ÄÖÖÓÖÐ¶ÏµÄ»Øµ÷º¯Êý
- * \param[in] p_arg          : »Øµ÷º¯ÊýµÄ²ÎÊý
+ * \param[in] handle         : ALARM_CLK æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] pfn_callback   : é—¹é’Ÿä¸­æ–­çš„å›žè°ƒå‡½æ•°
+ * \param[in] p_arg          : å›žè°ƒå‡½æ•°çš„å‚æ•°
  *
- * \return    AM_OK    : ÉèÖÃ³É¹¦
- * \retval  -AM_EINVAL : ²ÎÊý´íÎó
+ * \return    AM_OK    : è®¾ç½®æˆåŠŸ
+ * \retval  -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_alarm_clk_callback_set (am_alarm_clk_handle_t handle,
@@ -138,12 +138,12 @@ int am_alarm_clk_callback_set (am_alarm_clk_handle_t handle,
 }
 
 /**
- * \brief ¿ªÆôÄÖÖÓ
+ * \brief å¼€å¯é—¹é’Ÿ
  *
- * \param[in]  handle  : ALARM_CLK±ê×¼·þÎñ²Ù×÷¾ä±ú
+ * \param[in]  handle  : ALARM_CLKæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  *
- * \return   AM_OK     : »ñÈ¡Ê±¼ä³É¹¦
- * \retval  -AM_EINVAL : ²ÎÊý´íÎó
+ * \return   AM_OK     : èŽ·å–æ—¶é—´æˆåŠŸ
+ * \retval  -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_alarm_clk_on (am_alarm_clk_handle_t handle)
@@ -152,12 +152,12 @@ int am_alarm_clk_on (am_alarm_clk_handle_t handle)
 }
 
 /**
- * \brief ¹Ø±ÕÄÖÖÓ
+ * \brief å…³é—­é—¹é’Ÿ
  *
- * \param[in]  handle  : ALARM_CLK±ê×¼·þÎñ²Ù×÷¾ä±ú
+ * \param[in]  handle  : ALARM_CLKæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  *
- * \return   AM_OK     : »ñÈ¡Ê±¼ä³É¹¦
- * \retval  -AM_EINVAL : ²ÎÊý´íÎó
+ * \return   AM_OK     : èŽ·å–æ—¶é—´æˆåŠŸ
+ * \retval  -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_alarm_clk_off (am_alarm_clk_handle_t handle)

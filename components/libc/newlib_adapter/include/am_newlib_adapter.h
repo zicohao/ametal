@@ -12,15 +12,15 @@
 
 /**
  * \file
- * \brief Newlib ÊÊÅäÆ÷
+ * \brief Newlib é€‚é…å™¨
  *
- * \par ËµÃ÷
- * 1. ½¨ÒéÊ¹ÓÃ newlib-nano¿â£¬ÔÚÁ´½ÓÆ÷²ÎÊıÖĞÔö¼Ó²ÎÊı£º--specs=nano.specs
- * 2. ÈôĞèÒªÊ¹ÓÃprintf´òÓ¡¸¡µãÊı£¬ÔòĞèÒªÔö¼Ó²ÎÊı£º -u _printf_float
- * 3. ÈôĞèÒªÊ¹ÓÃscanf½ÓÊÕ¸¡µãÊı£¬ÔòĞèÒªÔö¼Ó²ÎÊı£º  -u _scanf_float
- * 4. ÈôÊ¹ÓÃÁËprintf£¬½¨ÒéÕ»¿Õ¼ä²»Ğ¡ÓÚ 1K
+ * \par è¯´æ˜
+ * 1. å»ºè®®ä½¿ç”¨ newlib-nanoåº“ï¼Œåœ¨é“¾æ¥å™¨å‚æ•°ä¸­å¢åŠ å‚æ•°ï¼š--specs=nano.specs
+ * 2. è‹¥éœ€è¦ä½¿ç”¨printfæ‰“å°æµ®ç‚¹æ•°ï¼Œåˆ™éœ€è¦å¢åŠ å‚æ•°ï¼š -u _printf_float
+ * 3. è‹¥éœ€è¦ä½¿ç”¨scanfæ¥æ”¶æµ®ç‚¹æ•°ï¼Œåˆ™éœ€è¦å¢åŠ å‚æ•°ï¼š  -u _scanf_float
+ * 4. è‹¥ä½¿ç”¨äº†printfï¼Œå»ºè®®æ ˆç©ºé—´ä¸å°äº 1K
  *
- * ÔÚÊ¹ÓÃÇ°£¬±ØĞë³õÊ¼»¯ÊÊÅäÆ÷£¬ÈôÊ¹ÓÃUARTÊä³öĞÅÏ¢£¬Ôò³õÊ¼»¯º¯ÊıµÄµ÷ÓÃ·¶ÀıÈçÏÂ£º
+ * åœ¨ä½¿ç”¨å‰ï¼Œå¿…é¡»åˆå§‹åŒ–é€‚é…å™¨ï¼Œè‹¥ä½¿ç”¨UARTè¾“å‡ºä¿¡æ¯ï¼Œåˆ™åˆå§‹åŒ–å‡½æ•°çš„è°ƒç”¨èŒƒä¾‹å¦‚ä¸‹ï¼š
  *
  * \code
  * static int __console_send (void *p_cookie, void *p_buf, size_t cnt)
@@ -66,7 +66,7 @@ extern "C" {
  */
 
 /**
- * \brief ÅäÖÃÑ¡Ïî£¬¸ù¾İÊµ¼ÊÓ²¼şÆ½Ì¨Ìá¹©
+ * \brief é…ç½®é€‰é¡¹ï¼Œæ ¹æ®å®é™…ç¡¬ä»¶å¹³å°æä¾›
  */
 typedef struct am_newlib_adapter_ops {
     int (*pfn_console_send) (void *p_cookie, const void *p_buf, size_t cnt);
@@ -74,10 +74,10 @@ typedef struct am_newlib_adapter_ops {
 } am_newlib_adapter_ops_t;
 
 /**
- * \brief ÊÊÅäÆ÷³õÊ¼»¯
+ * \brief é€‚é…å™¨åˆå§‹åŒ–
  *
- * \param[in] p_ops     : Çı¶¯º¯Êı
- * \param[in] p_cookie  : Çı¶¯º¯Êı²ÎÊı
+ * \param[in] p_ops     : é©±åŠ¨å‡½æ•°
+ * \param[in] p_cookie  : é©±åŠ¨å‡½æ•°å‚æ•°
  *
  * \return AM_OK
  */

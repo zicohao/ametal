@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief 独立按键驱动实现
+ * \brief 鐙珛鎸夐敭椹卞姩瀹炵幇
  *
  * \internal
  * \par Modification history

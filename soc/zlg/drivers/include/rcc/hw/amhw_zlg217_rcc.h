@@ -31,7 +31,7 @@ extern "C" {
 #include "zlg217_periph_map.h"
 
 /*
- * \brief ÄäÃû½á¹¹Ìå¶ÎµÄ¿ªÊ¼
+ * \brief åŒ¿åç»“æ„ä½“æ®µçš„å¼€å§‹
  */
 #if defined(__CC_ARM)
   #pragma push
@@ -53,64 +53,64 @@ extern "C" {
  */
 
 /**
- * \brief CRC¼Ä´æÆ÷¿é½á¹¹Ìå
+ * \brief CRCå¯„å­˜å™¨å—ç»“æ„ä½“
  */
 typedef struct amhw_zlg217_rcc {
-  __IO uint32_t cr;        /**< \brief Ê±ÖÓ¿ØÖÆ¼Ä´æÆ÷ */
-  __IO uint32_t cfgr;      /**< \brief Ê±ÖÓÅäÖÃ¼Ä´æÆ÷ */
-  __IO uint32_t cir;       /**< \brief Ê±ÖÓÖĞ¶Ï¼Ä´æÆ÷ */
-  __IO uint32_t apb2rstr;  /**< \brief APB2ÍâÉè¸´Î»¼Ä´æÆ÷ */
-  __IO uint32_t apb1rstr;  /**< \brief APB1ÍâÉè¸´Î»¼Ä´æÆ÷ */
-  __IO uint32_t ahbenr;    /**< \brief AHBÍâÉèÊ±ÖÓÊ¹ÄÜ¼Ä´æÆ÷ */
-  __IO uint32_t apb2enr;   /**< \brief APB2ÍâÉèÊ±ÖÓÊ¹ÄÜ¼Ä´æÆ÷ */
-  __IO uint32_t apb1enr;   /**< \brief APB1ÍâÉèÊ±ÖÓÊ¹ÄÜ¼Ä´æÆ÷ */
-  __IO uint32_t bdcr;      /**< \brief ±¸·İ¿ØÖÆ¼Ä´æÆ÷ */
-  __IO uint32_t csr;       /**< \brief ¿ØÖÆ×´Ì¬¼Ä´æÆ÷ */
-  __I  uint32_t reserve[7];/**< \brief ±£Áô */
-  __IO uint32_t syscfg;    /**< \brief ÏµÍ³ÅäÖÃ¼Ä´æÆ÷ */
+  __IO uint32_t cr;        /**< \brief æ—¶é’Ÿæ§åˆ¶å¯„å­˜å™¨ */
+  __IO uint32_t cfgr;      /**< \brief æ—¶é’Ÿé…ç½®å¯„å­˜å™¨ */
+  __IO uint32_t cir;       /**< \brief æ—¶é’Ÿä¸­æ–­å¯„å­˜å™¨ */
+  __IO uint32_t apb2rstr;  /**< \brief APB2å¤–è®¾å¤ä½å¯„å­˜å™¨ */
+  __IO uint32_t apb1rstr;  /**< \brief APB1å¤–è®¾å¤ä½å¯„å­˜å™¨ */
+  __IO uint32_t ahbenr;    /**< \brief AHBå¤–è®¾æ—¶é’Ÿä½¿èƒ½å¯„å­˜å™¨ */
+  __IO uint32_t apb2enr;   /**< \brief APB2å¤–è®¾æ—¶é’Ÿä½¿èƒ½å¯„å­˜å™¨ */
+  __IO uint32_t apb1enr;   /**< \brief APB1å¤–è®¾æ—¶é’Ÿä½¿èƒ½å¯„å­˜å™¨ */
+  __IO uint32_t bdcr;      /**< \brief å¤‡ä»½æ§åˆ¶å¯„å­˜å™¨ */
+  __IO uint32_t csr;       /**< \brief æ§åˆ¶çŠ¶æ€å¯„å­˜å™¨ */
+  __I  uint32_t reserve[7];/**< \brief ä¿ç•™ */
+  __IO uint32_t syscfg;    /**< \brief ç³»ç»Ÿé…ç½®å¯„å­˜å™¨ */
 } amhw_zlg217_rcc_t;
 
 /**
- * \brief ÏµÍ³Ê±ÖÓÔ´
+ * \brief ç³»ç»Ÿæ—¶é’Ÿæº
  */
 typedef enum {
-    AMHW_ZLG217_SYSCLK_HSI_DIV6,  /**< \brief HSI Õñµ´Æ÷  6 ·ÖÆµ×÷ÎªÏµÍ³Ê±ÖÓ */
-    AMHW_ZLG217_SYSCLK_HSE,       /**< \brief HSE ×÷ÎªÏµÍ³Ê±ÖÓ */
-    AMHW_ZLG217_SYSCLK_PLL,       /**< \brief PLL Êä³ö×÷ÎªÏµÍ³Ê±ÖÓ */
-    AMHW_ZLG217_SYSCLK_LSI,       /**< \brief LSI Êä³ö×÷ÎªÏµÍ³Ê±ÖÓ */
+    AMHW_ZLG217_SYSCLK_HSI_DIV6,  /**< \brief HSI æŒ¯è¡å™¨  6 åˆ†é¢‘ä½œä¸ºç³»ç»Ÿæ—¶é’Ÿ */
+    AMHW_ZLG217_SYSCLK_HSE,       /**< \brief HSE ä½œä¸ºç³»ç»Ÿæ—¶é’Ÿ */
+    AMHW_ZLG217_SYSCLK_PLL,       /**< \brief PLL è¾“å‡ºä½œä¸ºç³»ç»Ÿæ—¶é’Ÿ */
+    AMHW_ZLG217_SYSCLK_LSI,       /**< \brief LSI è¾“å‡ºä½œä¸ºç³»ç»Ÿæ—¶é’Ÿ */
 }amhw_zlg217_sys_clk_src;
 
 /**
- * \brief RTCÊ±ÖÓÔ´
+ * \brief RTCæ—¶é’Ÿæº
  */
 typedef enum {
-    AMHW_ZLG217_RTCCLK_LSE = 1,       /**< \brief PLL Êä³ö×÷ÎªÏµÍ³Ê±ÖÓ */
-    AMHW_ZLG217_RTCCLK_LSI = 2,       /**< \brief HSI Õñµ´Æ÷  6 ·ÖÆµ×÷ÎªÏµÍ³Ê±ÖÓ */
-    AMHW_ZLG217_RTCCLK_HSE_DIV128 =3, /**< \brief HSE ×÷ÎªÏµÍ³Ê±ÖÓ */
+    AMHW_ZLG217_RTCCLK_LSE = 1,       /**< \brief PLL è¾“å‡ºä½œä¸ºç³»ç»Ÿæ—¶é’Ÿ */
+    AMHW_ZLG217_RTCCLK_LSI = 2,       /**< \brief HSI æŒ¯è¡å™¨  6 åˆ†é¢‘ä½œä¸ºç³»ç»Ÿæ—¶é’Ÿ */
+    AMHW_ZLG217_RTCCLK_HSE_DIV128 =3, /**< \brief HSE ä½œä¸ºç³»ç»Ÿæ—¶é’Ÿ */
 }amhw_zlg217_rtc_clk_src;
 
 /**
- * \brief PLLÊ±ÖÓÔ´
+ * \brief PLLæ—¶é’Ÿæº
  */
 typedef enum {
-    AMHW_ZLG217_PLLCLK_HSI_DIV4,  /**< \brief HSI Õñµ´Æ÷  4 ·ÖÆµ×÷ÎªPLLÊäÈëÊ±ÖÓ */
-    AMHW_ZLG217_PLLCLK_HSE,       /**< \brief HSE ×÷ÎªPLLÊäÈëÊ±ÖÓ */
+    AMHW_ZLG217_PLLCLK_HSI_DIV4,  /**< \brief HSI æŒ¯è¡å™¨  4 åˆ†é¢‘ä½œä¸ºPLLè¾“å…¥æ—¶é’Ÿ */
+    AMHW_ZLG217_PLLCLK_HSE,       /**< \brief HSE ä½œä¸ºPLLè¾“å…¥æ—¶é’Ÿ */
 }amhw_zlg217_pll_clk_src;
 
 /**
- * \brief Ê±ÖÓÖĞ¶Ï±êÖ¾
+ * \brief æ—¶é’Ÿä¸­æ–­æ ‡å¿—
  */
 typedef enum {
-    AMHW_ZLG217_CLKINT_INDEX_LSI = 0,  /**< \brief LSI±êÖ¾ */
-    AMHW_ZLG217_CLKINT_INDEX_LSE = 1,  /**< \brief LSE±êÖ¾ */
-    AMHW_ZLG217_CLKINT_INDEX_HSI,      /**< \brief HSI±êÖ¾ */
-    AMHW_ZLG217_CLKINT_INDEX_HSE,      /**< \brief HSE±êÖ¾ */
-    AMHW_ZLG217_CLKINT_INDEX_PLL,      /**< \brief PLL±êÖ¾ */
-    AMHW_ZLG217_CLKINT_INDEX_CSSF = 7, /**< \brief CSSF(Ê±ÖÓ°²È«ÏµÍ³ÖĞ¶Ï)±êÖ¾ */
+    AMHW_ZLG217_CLKINT_INDEX_LSI = 0,  /**< \brief LSIæ ‡å¿— */
+    AMHW_ZLG217_CLKINT_INDEX_LSE = 1,  /**< \brief LSEæ ‡å¿— */
+    AMHW_ZLG217_CLKINT_INDEX_HSI,      /**< \brief HSIæ ‡å¿— */
+    AMHW_ZLG217_CLKINT_INDEX_HSE,      /**< \brief HSEæ ‡å¿— */
+    AMHW_ZLG217_CLKINT_INDEX_PLL,      /**< \brief PLLæ ‡å¿— */
+    AMHW_ZLG217_CLKINT_INDEX_CSSF = 7, /**< \brief CSSF(æ—¶é’Ÿå®‰å…¨ç³»ç»Ÿä¸­æ–­)æ ‡å¿— */
 }amhw_zlg217_clk_int_index;
 
 /**
- * \brief APB2ÍâÉèÃ¶¾Ù
+ * \brief APB2å¤–è®¾æšä¸¾
  */
 typedef enum {
     AMHW_ZLG217_RCC_APB2_AFIO   = 0,  /**< \brief AFIO */
@@ -127,13 +127,13 @@ typedef enum {
 }amhw_zlg217_apb2_peripheral;
 
 /**
- * \brief APB1ÍâÉèÃ¶¾Ù
+ * \brief APB1å¤–è®¾æšä¸¾
  */
 typedef enum {
-    AMHW_ZLG217_RCC_APB1_TIM2   = 0,   /**< \brief TIM2¶¨Ê±Æ÷ */
-    AMHW_ZLG217_RCC_APB1_TIM3   = 1,   /**< \brief TIM3¶¨Ê±Æ÷ */
-    AMHW_ZLG217_RCC_APB1_TIM4   = 2,   /**< \brief TIM4¶¨Ê±Æ÷ */
-    AMHW_ZLG217_RCC_APB1_WWDG   = 11,  /**< \brief WWDG´°¿Ú¿´ÃÅ¹· */
+    AMHW_ZLG217_RCC_APB1_TIM2   = 0,   /**< \brief TIM2å®šæ—¶å™¨ */
+    AMHW_ZLG217_RCC_APB1_TIM3   = 1,   /**< \brief TIM3å®šæ—¶å™¨ */
+    AMHW_ZLG217_RCC_APB1_TIM4   = 2,   /**< \brief TIM4å®šæ—¶å™¨ */
+    AMHW_ZLG217_RCC_APB1_WWDG   = 11,  /**< \brief WWDGçª—å£çœ‹é—¨ç‹— */
     AMHW_ZLG217_RCC_APB1_SPI2   = 14,  /**< \brief SPI2 */
     AMHW_ZLG217_RCC_APB1_UART2  = 17,  /**< \brief UART2 */
     AMHW_ZLG217_RCC_APB1_UART3  = 18,  /**< \brief UART3 */
@@ -142,12 +142,12 @@ typedef enum {
     AMHW_ZLG217_RCC_APB1_USB    = 23,  /**< \brief USB */
     AMHW_ZLG217_RCC_APB1_CAN    = 25,  /**< \brief CAN */
     AMHW_ZLG217_RCC_APB1_BKP    = 27,  /**< \brief BKP */
-    AMHW_ZLG217_RCC_APB1_PWR    = 28,  /**< \brief µçÔ´½Ó¿Ú */
+    AMHW_ZLG217_RCC_APB1_PWR    = 28,  /**< \brief ç”µæºæ¥å£ */
     AMHW_ZLG217_RCC_APB1_DAC    = 29,  /**< \brief DAC */
 }amhw_zlg217_apb1_peripheral;
 
 /**
- * \brief AHBÍâÉèÃ¶¾Ù
+ * \brief AHBå¤–è®¾æšä¸¾
  */
 typedef enum {
     AMHW_ZLG217_RCC_AHB_DMA   = 0,   /**< \brief DMA */
@@ -158,19 +158,19 @@ typedef enum {
 }amhw_zlg217_ahb_peripheral;
 
 /**
- * \brief ¸´Î»±êÖ¾Ã¶¾Ù
+ * \brief å¤ä½æ ‡å¿—æšä¸¾
  */
 typedef enum {
-    AMHW_ZLG217_RCC_CSR_PINRSTF   = (1ul << 26), /**< \brief NRST¹Ü½Å¸´Î»±êÖ¾ */
-    AMHW_ZLG217_RCC_CSR_PORRSTF   = (1ul << 27), /**< \brief ÉÏµç/µôµç¸´Î»±êÖ¾ */
-    AMHW_ZLG217_RCC_CSR_SFTRSTF   = (1ul << 28), /**< \brief Èí¼ş¸´Î»±êÖ¾ */
-    AMHW_ZLG217_RCC_CSR_IWDGRSTF  = (1ul << 29), /**< \brief ¶ÀÁ¢¿´ÃÅ¹·¸´Î»±êÖ¾ */
-    AMHW_ZLG217_RCC_CSR_WWDGRSTF  = (1ul << 30), /**< \brief ´°¿Ú¿´ÃÅ¹·¸´Î»±êÖ¾ */
-    AMHW_ZLG217_RCC_CSR_LPWRRSTF  = (int)(1ul << 31), /**< \brief µÍ¹¦ºÄ¹ÜÀí¸´Î»±êÖ¾ */
+    AMHW_ZLG217_RCC_CSR_PINRSTF   = (1ul << 26), /**< \brief NRSTç®¡è„šå¤ä½æ ‡å¿— */
+    AMHW_ZLG217_RCC_CSR_PORRSTF   = (1ul << 27), /**< \brief ä¸Šç”µ/æ‰ç”µå¤ä½æ ‡å¿— */
+    AMHW_ZLG217_RCC_CSR_SFTRSTF   = (1ul << 28), /**< \brief è½¯ä»¶å¤ä½æ ‡å¿— */
+    AMHW_ZLG217_RCC_CSR_IWDGRSTF  = (1ul << 29), /**< \brief ç‹¬ç«‹çœ‹é—¨ç‹—å¤ä½æ ‡å¿— */
+    AMHW_ZLG217_RCC_CSR_WWDGRSTF  = (1ul << 30), /**< \brief çª—å£çœ‹é—¨ç‹—å¤ä½æ ‡å¿— */
+    AMHW_ZLG217_RCC_CSR_LPWRRSTF  = (int)(1ul << 31), /**< \brief ä½åŠŸè€—ç®¡ç†å¤ä½æ ‡å¿— */
 }amhw_zlg217_reset_flag_t;
 
 /**
- * \brief ÏµÍ³ÅäÖÃ¼Ä´æÆ÷Ã¶¾Ù
+ * \brief ç³»ç»Ÿé…ç½®å¯„å­˜å™¨æšä¸¾
  */
 typedef enum{
     AMHW_ZLG217_RCC_SYSCFG_0  =0,
@@ -178,9 +178,9 @@ typedef enum{
 }amhw_zlg217_syscfg_peripheral;
 
 /**
- * \brief ÄÚ²¿¸ßËÙÊ±ÖÓÊ¹ÄÜ
+ * \brief å†…éƒ¨é«˜é€Ÿæ—¶é’Ÿä½¿èƒ½
  *
- * \return ÎŞ
+ * \return æ— 
  *
  */
 am_static_inline
@@ -190,10 +190,10 @@ void amhw_zlg217_rcc_hsion_enable (void)
 }
 
 /**
- * \brief ÄÚ²¿¸ßËÙÊ±ÖÓ¾ÍĞ÷±êÖ¾¶ÁÈ¡
+ * \brief å†…éƒ¨é«˜é€Ÿæ—¶é’Ÿå°±ç»ªæ ‡å¿—è¯»å–
  *
- * \retval TRUE  : ÄÚ²¿ 8MHzÊ±ÖÓÃ»ÓĞ¾ÍĞ÷
- * \retval FALSE : ÄÚ²¿ 8MHzÊ±ÖÓ¾ÍĞ÷
+ * \retval TRUE  : å†…éƒ¨ 8MHzæ—¶é’Ÿæ²¡æœ‰å°±ç»ª
+ * \retval FALSE : å†…éƒ¨ 8MHzæ—¶é’Ÿå°±ç»ª
  */
 am_static_inline
 am_bool_t amhw_zlg217_rcc_hsirdy_read (void)
@@ -202,9 +202,9 @@ am_bool_t amhw_zlg217_rcc_hsirdy_read (void)
 }
 
 /**
- * \brief Íâ²¿¸ßËÙÊ±ÖÓ(HSE Õñµ´Æ÷)Ê¹ÄÜ
+ * \brief å¤–éƒ¨é«˜é€Ÿæ—¶é’Ÿ(HSE æŒ¯è¡å™¨)ä½¿èƒ½
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rcc_hseon_enable (void)
@@ -213,10 +213,10 @@ void amhw_zlg217_rcc_hseon_enable (void)
 }
 
 /**
- * \brief Íâ²¿¸ßËÙÊ±ÖÓ¾ÍĞ÷±êÖ¾¶ÁÈ¡
+ * \brief å¤–éƒ¨é«˜é€Ÿæ—¶é’Ÿå°±ç»ªæ ‡å¿—è¯»å–
  *
- * \retval TRUE  : Íâ²¿Ê±ÖÓÃ»ÓĞ¾ÍĞ÷
- * \retval FALSE : Íâ²¿Ê±ÖÓ¾ÍĞ÷
+ * \retval TRUE  : å¤–éƒ¨æ—¶é’Ÿæ²¡æœ‰å°±ç»ª
+ * \retval FALSE : å¤–éƒ¨æ—¶é’Ÿå°±ç»ª
  */
 am_static_inline
 am_bool_t amhw_zlg217_rcc_hserdy_read (void)
@@ -225,9 +225,9 @@ am_bool_t amhw_zlg217_rcc_hserdy_read (void)
 }
 
 /**
- * \brief Íâ²¿¸ßËÙÊ±ÖÓÅÔÂ·Ê¹ÄÜ
+ * \brief å¤–éƒ¨é«˜é€Ÿæ—¶é’Ÿæ—è·¯ä½¿èƒ½
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rcc_hsebyp_enable (void)
@@ -236,11 +236,11 @@ void amhw_zlg217_rcc_hsebyp_enable (void)
 }
 
 /**
- * \brief Ê±ÖÓ°²È«ÏµÍ³Ê¹ÄÜ
+ * \brief æ—¶é’Ÿå®‰å…¨ç³»ç»Ÿä½¿èƒ½
  *
- * \details Èç¹ûÍâ²¿ 8-24MHzÕñµ´Æ÷¾ÍĞ÷£¬Ê±ÖÓ¼à²âÆ÷¿ªÆô¡£
+ * \details å¦‚æœå¤–éƒ¨ 8-24MHzæŒ¯è¡å™¨å°±ç»ªï¼Œæ—¶é’Ÿç›‘æµ‹å™¨å¼€å¯ã€‚
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rcc_ccson_enable (void)
@@ -249,11 +249,11 @@ void amhw_zlg217_rcc_ccson_enable (void)
 }
 
 /**
- * \brief PLL·ÖÆµÏµÊıÉèÖÃ
+ * \brief PLLåˆ†é¢‘ç³»æ•°è®¾ç½®
  *
- * \param[in]  div £º·ÖÆµÖµ
+ * \param[in]  div ï¼šåˆ†é¢‘å€¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rcc_plldm_set (uint8_t div)
@@ -263,11 +263,11 @@ void amhw_zlg217_rcc_plldm_set (uint8_t div)
 }
 
 /**
- * \brief PLL±¶ÆµÏµÊıÉèÖÃ
+ * \brief PLLå€é¢‘ç³»æ•°è®¾ç½®
  *
- * \param[in]  mul £º±¶ÆµÖµ
+ * \param[in]  mul ï¼šå€é¢‘å€¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rcc_plldn_set (uint8_t mul)
@@ -278,13 +278,13 @@ void amhw_zlg217_rcc_plldn_set (uint8_t mul)
 }
 
 /**
- * \brief PLL Ê¹ÄÜ
+ * \brief PLL ä½¿èƒ½
  *
- * \details µ±½øÈë´ı»úºÍÍ£Ö¹Ä£Ê½Ê±£¬¸ÃÎ»ÓÉÓ²¼şÇåÁã¡£
- *          µ± PLL Ê±ÖÓ±»ÓÃ×÷»ò±»Ñ¡Ôñ½«Òª×÷ÎªÏµÍ³Ê±ÖÓÊ±,
- *          ¸ÃÎ»²»ÄÜ±»ÇåÁã¡£
+ * \details å½“è¿›å…¥å¾…æœºå’Œåœæ­¢æ¨¡å¼æ—¶ï¼Œè¯¥ä½ç”±ç¡¬ä»¶æ¸…é›¶ã€‚
+ *          å½“ PLL æ—¶é’Ÿè¢«ç”¨ä½œæˆ–è¢«é€‰æ‹©å°†è¦ä½œä¸ºç³»ç»Ÿæ—¶é’Ÿæ—¶,
+ *          è¯¥ä½ä¸èƒ½è¢«æ¸…é›¶ã€‚
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rcc_pll_enable (void)
@@ -293,13 +293,13 @@ void amhw_zlg217_rcc_pll_enable (void)
 }
 
 /**
- * \brief PLL ½ûÄÜ
+ * \brief PLL ç¦èƒ½
  *
- * \details µ±½øÈë´ı»úºÍÍ£Ö¹Ä£Ê½Ê±£¬¸ÃÎ»ÓÉÓ²¼şÇåÁã¡£
- *          µ± PLL Ê±ÖÓ±»ÓÃ×÷»ò±»Ñ¡Ôñ½«Òª×÷ÎªÏµÍ³Ê±ÖÓÊ±,
- *          ¸ÃÎ»²»ÄÜ±»ÇåÁã¡£
+ * \details å½“è¿›å…¥å¾…æœºå’Œåœæ­¢æ¨¡å¼æ—¶ï¼Œè¯¥ä½ç”±ç¡¬ä»¶æ¸…é›¶ã€‚
+ *          å½“ PLL æ—¶é’Ÿè¢«ç”¨ä½œæˆ–è¢«é€‰æ‹©å°†è¦ä½œä¸ºç³»ç»Ÿæ—¶é’Ÿæ—¶,
+ *          è¯¥ä½ä¸èƒ½è¢«æ¸…é›¶ã€‚
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rcc_pll_disable (void)
@@ -308,10 +308,10 @@ void amhw_zlg217_rcc_pll_disable (void)
 }
 
 /**
- * \brief PLL Ê±ÖÓ¾ÍĞ÷±êÖ¾¶ÁÈ¡
+ * \brief PLL æ—¶é’Ÿå°±ç»ªæ ‡å¿—è¯»å–
  *
- * \retval TRUE  : PLL Î´Ëø¶¨
- * \retval FALSE : PLL Ëø¶¨
+ * \retval TRUE  : PLL æœªé”å®š
+ * \retval FALSE : PLL é”å®š
  */
 am_static_inline
 am_bool_t amhw_zlg217_rcc_pllrdy_read (void)
@@ -320,11 +320,11 @@ am_bool_t amhw_zlg217_rcc_pllrdy_read (void)
 }
 
 /**
- * \brief ÏµÍ³Ê±ÖÓÇĞ»»
+ * \brief ç³»ç»Ÿæ—¶é’Ÿåˆ‡æ¢
  *
- * \param[in]  src £ºÏµÍ³Ê±ÖÓÔ´
+ * \param[in]  src ï¼šç³»ç»Ÿæ—¶é’Ÿæº
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rcc_sys_clk_set (amhw_zlg217_sys_clk_src src)
@@ -335,9 +335,9 @@ void amhw_zlg217_rcc_sys_clk_set (amhw_zlg217_sys_clk_src src)
 }
 
 /**
- * \brief µ±Ç°ÏµÍ³Ê±ÖÓ»ñÈ¡
+ * \brief å½“å‰ç³»ç»Ÿæ—¶é’Ÿè·å–
  *
- * \return µ±Ç°ÏµÍ³Ê±ÖÓÔ´
+ * \return å½“å‰ç³»ç»Ÿæ—¶é’Ÿæº
  */
 am_static_inline
 amhw_zlg217_sys_clk_src amhw_zlg217_rcc_sys_clk_get (void)
@@ -347,22 +347,22 @@ amhw_zlg217_sys_clk_src amhw_zlg217_rcc_sys_clk_get (void)
 }
 
 /**
- * \brief ÉèÖÃAHB Ô¤·ÖÆµ
+ * \brief è®¾ç½®AHB é¢„åˆ†é¢‘
  *
- * \param[in]  div £ºÔ¤·ÖÆµÖµ
+ * \param[in]  div ï¼šé¢„åˆ†é¢‘å€¼
  *
- *       - 0-7 £º ²»·ÖÆµ
- *       - 8   £º 2·ÖÆµ
- *       - 9   £º 4·ÖÆµ
- *       - 10  £º 8·ÖÆµ
- *       - 11  £º 16·ÖÆµ
- *       - 12  £º 64·ÖÆµ
- *       - 13  £º 128·ÖÆµ
- *       - 14  £º 256·ÖÆµ
- *       - 15  £º 512·ÖÆµ
+ *       - 0-7 ï¼š ä¸åˆ†é¢‘
+ *       - 8   ï¼š 2åˆ†é¢‘
+ *       - 9   ï¼š 4åˆ†é¢‘
+ *       - 10  ï¼š 8åˆ†é¢‘
+ *       - 11  ï¼š 16åˆ†é¢‘
+ *       - 12  ï¼š 64åˆ†é¢‘
+ *       - 13  ï¼š 128åˆ†é¢‘
+ *       - 14  ï¼š 256åˆ†é¢‘
+ *       - 15  ï¼š 512åˆ†é¢‘
  *
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rcc_ahb_div_set (uint8_t div)
@@ -373,17 +373,17 @@ void amhw_zlg217_rcc_ahb_div_set (uint8_t div)
 }
 
 /**
- * \brief ÉèÖÃ µÍËÙ APB Ô¤·ÖÆµ£¨APB1£©
+ * \brief è®¾ç½® ä½é€Ÿ APB é¢„åˆ†é¢‘ï¼ˆAPB1ï¼‰
  *
- * \param[in]  div £ºÔ¤·ÖÆµÖµ
+ * \param[in]  div ï¼šé¢„åˆ†é¢‘å€¼
  *
- *       - 0-3 £º ²»·ÖÆµ
- *       - 4   £º 2·ÖÆµ
- *       - 5   £º 4·ÖÆµ
- *       - 6   £º 8·ÖÆµ
- *       - 7   £º 16·ÖÆµ
+ *       - 0-3 ï¼š ä¸åˆ†é¢‘
+ *       - 4   ï¼š 2åˆ†é¢‘
+ *       - 5   ï¼š 4åˆ†é¢‘
+ *       - 6   ï¼š 8åˆ†é¢‘
+ *       - 7   ï¼š 16åˆ†é¢‘
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rcc_apb1_div_set (uint8_t div)
@@ -394,14 +394,14 @@ void amhw_zlg217_rcc_apb1_div_set (uint8_t div)
 }
 
 /**
- * \brief »ñÈ¡ µÍËÙ APB Ô¤·ÖÆµ£¨APB1£©
+ * \brief è·å– ä½é€Ÿ APB é¢„åˆ†é¢‘ï¼ˆAPB1ï¼‰
  *
- * \return Ô¤·ÖÆµÖµ
- *       - 0-3 £º ²»·ÖÆµ
- *       - 4   £º 2·ÖÆµ
- *       - 5   £º 4·ÖÆµ
- *       - 6   £º 8·ÖÆµ
- *       - 7   £º 16·ÖÆµ
+ * \return é¢„åˆ†é¢‘å€¼
+ *       - 0-3 ï¼š ä¸åˆ†é¢‘
+ *       - 4   ï¼š 2åˆ†é¢‘
+ *       - 5   ï¼š 4åˆ†é¢‘
+ *       - 6   ï¼š 8åˆ†é¢‘
+ *       - 7   ï¼š 16åˆ†é¢‘
  */
 am_static_inline
 uint8_t amhw_zlg217_rcc_apb1_div_get (void)
@@ -411,17 +411,17 @@ uint8_t amhw_zlg217_rcc_apb1_div_get (void)
 }
 
 /**
- * \brief ÉèÖÃ ¸ßËÙ APB Ô¤·ÖÆµ£¨APB2£©
+ * \brief è®¾ç½® é«˜é€Ÿ APB é¢„åˆ†é¢‘ï¼ˆAPB2ï¼‰
  *
- * \param[in]  div £ºÔ¤·ÖÆµÖµ
+ * \param[in]  div ï¼šé¢„åˆ†é¢‘å€¼
  *
- *       - 0-3 £º ²»·ÖÆµ
- *       - 4   £º 2·ÖÆµ
- *       - 5   £º 4·ÖÆµ
- *       - 6   £º 8·ÖÆµ
- *       - 7   £º 16·ÖÆµ
+ *       - 0-3 ï¼š ä¸åˆ†é¢‘
+ *       - 4   ï¼š 2åˆ†é¢‘
+ *       - 5   ï¼š 4åˆ†é¢‘
+ *       - 6   ï¼š 8åˆ†é¢‘
+ *       - 7   ï¼š 16åˆ†é¢‘
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rcc_apb2_div_set (uint8_t div)
@@ -432,14 +432,14 @@ void amhw_zlg217_rcc_apb2_div_set (uint8_t div)
 }
 
 /**
- * \brief »ñÈ¡ ¸ßËÙ APB Ô¤·ÖÆµ£¨APB2£©
+ * \brief è·å– é«˜é€Ÿ APB é¢„åˆ†é¢‘ï¼ˆAPB2ï¼‰
  *
- * \return Ô¤·ÖÆµÖµ
- *       - 0-3 £º ²»·ÖÆµ
- *       - 4   £º 2·ÖÆµ
- *       - 5   £º 4·ÖÆµ
- *       - 6   £º 8·ÖÆµ
- *       - 7   £º 16·ÖÆµ
+ * \return é¢„åˆ†é¢‘å€¼
+ *       - 0-3 ï¼š ä¸åˆ†é¢‘
+ *       - 4   ï¼š 2åˆ†é¢‘
+ *       - 5   ï¼š 4åˆ†é¢‘
+ *       - 6   ï¼š 8åˆ†é¢‘
+ *       - 7   ï¼š 16åˆ†é¢‘
  */
 am_static_inline
 uint8_t amhw_zlg217_rcc_apb2_div_get (void)
@@ -449,11 +449,11 @@ uint8_t amhw_zlg217_rcc_apb2_div_get (void)
 }
 
 /**
- * \brief PLLÊäÈëÊ±ÖÓÑ¡Ôñ
+ * \brief PLLè¾“å…¥æ—¶é’Ÿé€‰æ‹©
  *
- * \param[in]  src £ºPLLÊäÈëÊ±ÖÓÔ´
+ * \param[in]  src ï¼šPLLè¾“å…¥æ—¶é’Ÿæº
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rcc_pll_clk_set (amhw_zlg217_pll_clk_src src)
@@ -464,9 +464,9 @@ void amhw_zlg217_rcc_pll_clk_set (amhw_zlg217_pll_clk_src src)
 }
 
 /**
- * \brief µ±Ç°PLLÊäÈëÊ±ÖÓ»ñÈ¡
+ * \brief å½“å‰PLLè¾“å…¥æ—¶é’Ÿè·å–
  *
- * \return µ±Ç°PLLÊäÈëÊ±ÖÓÔ´
+ * \return å½“å‰PLLè¾“å…¥æ—¶é’Ÿæº
  */
 am_static_inline
 amhw_zlg217_pll_clk_src amhw_zlg217_rcc_pll_clk_get (void)
@@ -476,14 +476,14 @@ amhw_zlg217_pll_clk_src amhw_zlg217_rcc_pll_clk_get (void)
 }
 
 /**
- * \brief Ñ¡Ôñ HSE ·ÖÆµÆ÷×÷Îª PLL ÊäÈë
+ * \brief é€‰æ‹© HSE åˆ†é¢‘å™¨ä½œä¸º PLL è¾“å…¥
  *
- * \param[in]  div £º·ÖÆµÖµ
+ * \param[in]  div ï¼šåˆ†é¢‘å€¼
  *
- *      - 0  £º ²»·ÖÆµ
- *      - 1  £º 2·ÖÆµ
+ *      - 0  ï¼š ä¸åˆ†é¢‘
+ *      - 1  ï¼š 2åˆ†é¢‘
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rcc_hseforpll_set (uint8_t div)
@@ -494,16 +494,16 @@ void amhw_zlg217_rcc_hseforpll_set (uint8_t div)
 }
 
 /**
- * \brief Ñ¡Ôñ USB Ô¤·ÖÆµ
+ * \brief é€‰æ‹© USB é¢„åˆ†é¢‘
  *
- * \param[in]  div £º·ÖÆµÖµ
+ * \param[in]  div ï¼šåˆ†é¢‘å€¼
  *
- *      - 0  £º PLL Ê±ÖÓÖ±½Ó×÷Îª USB Ê±ÖÓ
- *      - 1  £º PLL Ê±ÖÓ2 ·ÖÆµ×÷Îª USBÊ±ÖÓ
- *      - 2  £º PLL Ê±ÖÓ3 ·ÖÆµ×÷Îª USBÊ±ÖÓ
- *      - 3  £º PLL Ê±ÖÓ4 ·ÖÆµ×÷Îª USBÊ±ÖÓ
+ *      - 0  ï¼š PLL æ—¶é’Ÿç›´æ¥ä½œä¸º USB æ—¶é’Ÿ
+ *      - 1  ï¼š PLL æ—¶é’Ÿ2 åˆ†é¢‘ä½œä¸º USBæ—¶é’Ÿ
+ *      - 2  ï¼š PLL æ—¶é’Ÿ3 åˆ†é¢‘ä½œä¸º USBæ—¶é’Ÿ
+ *      - 3  ï¼š PLL æ—¶é’Ÿ4 åˆ†é¢‘ä½œä¸º USBæ—¶é’Ÿ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rcc_pllforusb_set (uint8_t div)
@@ -514,12 +514,12 @@ void amhw_zlg217_rcc_pllforusb_set (uint8_t div)
 }
 
 /**
- * \brief USB Ô¤·ÖÆµ»ñÈ¡
+ * \brief USB é¢„åˆ†é¢‘è·å–
  *
- * \retval  0  £º PLL Ê±ÖÓÖ±½Ó×÷Îª USB Ê±ÖÓ
- * \retval  1  £º PLL Ê±ÖÓ2 ·ÖÆµ×÷Îª USBÊ±ÖÓ
- * \retval  2  £º PLL Ê±ÖÓ3 ·ÖÆµ×÷Îª USBÊ±ÖÓ
- * \retval  3  £º PLL Ê±ÖÓ4 ·ÖÆµ×÷Îª USBÊ±ÖÓ
+ * \retval  0  ï¼š PLL æ—¶é’Ÿç›´æ¥ä½œä¸º USB æ—¶é’Ÿ
+ * \retval  1  ï¼š PLL æ—¶é’Ÿ2 åˆ†é¢‘ä½œä¸º USBæ—¶é’Ÿ
+ * \retval  2  ï¼š PLL æ—¶é’Ÿ3 åˆ†é¢‘ä½œä¸º USBæ—¶é’Ÿ
+ * \retval  3  ï¼š PLL æ—¶é’Ÿ4 åˆ†é¢‘ä½œä¸º USBæ—¶é’Ÿ
  */
 am_static_inline
 uint8_t amhw_zlg217_rcc_pllforusb_get (void)
@@ -529,23 +529,23 @@ uint8_t amhw_zlg217_rcc_pllforusb_get (void)
 }
 
 /**
- * \brief Î¢¿ØÖÆÆ÷Ê±ÖÓÊä³öÑ¡Ôñ
+ * \brief å¾®æ§åˆ¶å™¨æ—¶é’Ÿè¾“å‡ºé€‰æ‹©
  *
- * \details 1.¸ÃÊ±ÖÓÊä³öÔÚÆô¶¯ºÍÇĞ»» MCO Ê±ÖÓÔ´Ê±¿ÉÄÜ»á±»½Ø¶Ï,
- *          2.ÔÚÏµÍ³Ê±ÖÓ×÷ÎªÊä³öÖÁ MCO ¹Ü½ÅÊ±£¬Çë±£Ö¤Êä³öÊ±ÖÓÆµ
- *            ÂÊ²»³¬¹ı 50MHz£¨IO¿Ú×î¸ßÆµÂÊ£©
+ * \details 1.è¯¥æ—¶é’Ÿè¾“å‡ºåœ¨å¯åŠ¨å’Œåˆ‡æ¢ MCO æ—¶é’Ÿæºæ—¶å¯èƒ½ä¼šè¢«æˆªæ–­,
+ *          2.åœ¨ç³»ç»Ÿæ—¶é’Ÿä½œä¸ºè¾“å‡ºè‡³ MCO ç®¡è„šæ—¶ï¼Œè¯·ä¿è¯è¾“å‡ºæ—¶é’Ÿé¢‘
+ *            ç‡ä¸è¶…è¿‡ 50MHzï¼ˆIOå£æœ€é«˜é¢‘ç‡ï¼‰
  *
- * \param[in]  src £ºÊ±ÖÓÔ´
+ * \param[in]  src ï¼šæ—¶é’Ÿæº
  *
- *      - 0-1 £º Ã»ÓĞÊ±ÖÓÊä³ö
- *      - 2   £º LSI Ê±ÖÓÊä³ö
- *      - 3   £º ±£Áô
- *      - 4   £º ÏµÍ³Ê±ÖÓ£¨SYSCLK£©Êä³ö
- *      - 5   £º HSI Ê±ÖÓÊä³ö
- *      - 6   £º HSE Ê±ÖÓÊä³ö
- *      - 7   £º PLL Ê±ÖÓ2 ·ÖÆµºóÊä³ö
+ *      - 0-1 ï¼š æ²¡æœ‰æ—¶é’Ÿè¾“å‡º
+ *      - 2   ï¼š LSI æ—¶é’Ÿè¾“å‡º
+ *      - 3   ï¼š ä¿ç•™
+ *      - 4   ï¼š ç³»ç»Ÿæ—¶é’Ÿï¼ˆSYSCLKï¼‰è¾“å‡º
+ *      - 5   ï¼š HSI æ—¶é’Ÿè¾“å‡º
+ *      - 6   ï¼š HSE æ—¶é’Ÿè¾“å‡º
+ *      - 7   ï¼š PLL æ—¶é’Ÿ2 åˆ†é¢‘åè¾“å‡º
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rcc_mco_src_set (uint8_t src)
@@ -556,11 +556,11 @@ void amhw_zlg217_rcc_mco_src_set (uint8_t src)
 }
 
 /**
- * \brief ¾ÍĞ÷ÖĞ¶ÏÊ¹ÄÜ
+ * \brief å°±ç»ªä¸­æ–­ä½¿èƒ½
  *
- * \param[in]  index £º¾ÍĞ÷±êÖ¾
+ * \param[in]  index ï¼šå°±ç»ªæ ‡å¿—
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rcc_clkint_enable (amhw_zlg217_clk_int_index index)
@@ -570,11 +570,11 @@ void amhw_zlg217_rcc_clkint_enable (amhw_zlg217_clk_int_index index)
 }
 
 /**
- * \brief ¾ÍĞ÷ÖĞ¶Ï½ûÄÜ
+ * \brief å°±ç»ªä¸­æ–­ç¦èƒ½
  *
- * \param[in]  index £º¾ÍĞ÷±êÖ¾
+ * \param[in]  index ï¼šå°±ç»ªæ ‡å¿—
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rcc_clkint_disable (amhw_zlg217_clk_int_index index)
@@ -584,9 +584,9 @@ void amhw_zlg217_rcc_clkint_disable (amhw_zlg217_clk_int_index index)
 }
 
 /**
- * \brief ¶ÁÈ¡ÖĞ¶Ï±êÖ¾
+ * \brief è¯»å–ä¸­æ–­æ ‡å¿—
  *
- * \return ÖĞ¶Ï±êÖ¾
+ * \return ä¸­æ–­æ ‡å¿—
  */
 am_static_inline
 amhw_zlg217_clk_int_index amhw_zlg217_rcc_clkint_flag_read (void)
@@ -596,9 +596,9 @@ amhw_zlg217_clk_int_index amhw_zlg217_rcc_clkint_flag_read (void)
 }
 
 /**
- * \brief Çå³ıÖĞ¶Ï±êÖ¾
+ * \brief æ¸…é™¤ä¸­æ–­æ ‡å¿—
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rcc_clkint_flag_clear (amhw_zlg217_clk_int_index index)
@@ -608,11 +608,11 @@ void amhw_zlg217_rcc_clkint_flag_clear (amhw_zlg217_clk_int_index index)
 }
 
 /**
- * \brief ¸´Î»APB2ÍâÉè
+ * \brief å¤ä½APB2å¤–è®¾
  *
- * \param[in]  reset £ºĞèÒª¸´Î»µÄÍâÉè
+ * \param[in]  reset ï¼šéœ€è¦å¤ä½çš„å¤–è®¾
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rcc_apb2_reset (amhw_zlg217_apb2_peripheral reset)
@@ -622,11 +622,11 @@ void amhw_zlg217_rcc_apb2_reset (amhw_zlg217_apb2_peripheral reset)
 }
 
 /**
- * \brief Í£Ö¹¸´Î»APB2ÍâÉè
+ * \brief åœæ­¢å¤ä½APB2å¤–è®¾
  *
- * \param[in]  reset £ºĞèÒª¸´Î»µÄÍâÉè
+ * \param[in]  reset ï¼šéœ€è¦å¤ä½çš„å¤–è®¾
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rcc_apb2_reset_stop (amhw_zlg217_apb2_peripheral reset)
@@ -636,11 +636,11 @@ void amhw_zlg217_rcc_apb2_reset_stop (amhw_zlg217_apb2_peripheral reset)
 }
 
 /**
- * \brief ¸´Î»APB1ÍâÉè
+ * \brief å¤ä½APB1å¤–è®¾
  *
- * \param[in]  reset £ºĞèÒª¸´Î»µÄÍâÉè
+ * \param[in]  reset ï¼šéœ€è¦å¤ä½çš„å¤–è®¾
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rcc_apb1_reset (amhw_zlg217_apb1_peripheral reset)
@@ -650,11 +650,11 @@ void amhw_zlg217_rcc_apb1_reset (amhw_zlg217_apb1_peripheral reset)
 }
 
 /**
- * \brief Í£Ö¹¸´Î»APB1ÍâÉè
+ * \brief åœæ­¢å¤ä½APB1å¤–è®¾
  *
- * \param[in]  reset £ºĞèÒª¸´Î»µÄÍâÉè
+ * \param[in]  reset ï¼šéœ€è¦å¤ä½çš„å¤–è®¾
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rcc_apb1_reset_stop (amhw_zlg217_apb1_peripheral reset)
@@ -664,11 +664,11 @@ void amhw_zlg217_rcc_apb1_reset_stop (amhw_zlg217_apb1_peripheral reset)
 }
 
 /**
- * \brief Ê¹ÄÜAPB1ÍâÉè
+ * \brief ä½¿èƒ½APB1å¤–è®¾
  *
- * \param[in]  peri £ºĞèÒªÊ¹ÄÜµÄÍâÉè
+ * \param[in]  peri ï¼šéœ€è¦ä½¿èƒ½çš„å¤–è®¾
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rcc_apb1_enable (amhw_zlg217_apb1_peripheral peri)
@@ -678,11 +678,11 @@ void amhw_zlg217_rcc_apb1_enable (amhw_zlg217_apb1_peripheral peri)
 }
 
 /**
- * \brief ½ûÄÜAPB1ÍâÉè
+ * \brief ç¦èƒ½APB1å¤–è®¾
  *
- * \param[in]  peri £ºĞèÒª½ûÄÜµÄÍâÉè
+ * \param[in]  peri ï¼šéœ€è¦ç¦èƒ½çš„å¤–è®¾
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rcc_apb1_disable (amhw_zlg217_apb1_peripheral peri)
@@ -692,11 +692,11 @@ void amhw_zlg217_rcc_apb1_disable (amhw_zlg217_apb1_peripheral peri)
 }
 
 /**
- * \brief Ê¹ÄÜAPB2ÍâÉè
+ * \brief ä½¿èƒ½APB2å¤–è®¾
  *
- * \param[in]  peri £ºĞèÒªÊ¹ÄÜµÄÍâÉè
+ * \param[in]  peri ï¼šéœ€è¦ä½¿èƒ½çš„å¤–è®¾
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rcc_apb2_enable (amhw_zlg217_apb2_peripheral peri)
@@ -706,11 +706,11 @@ void amhw_zlg217_rcc_apb2_enable (amhw_zlg217_apb2_peripheral peri)
 }
 
 /**
- * \brief ½ûÄÜAPB2ÍâÉè
+ * \brief ç¦èƒ½APB2å¤–è®¾
  *
- * \param[in]  peri £ºĞèÒª½ûÄÜµÄÍâÉè
+ * \param[in]  peri ï¼šéœ€è¦ç¦èƒ½çš„å¤–è®¾
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rcc_apb2_disable (amhw_zlg217_apb2_peripheral peri)
@@ -720,28 +720,28 @@ void amhw_zlg217_rcc_apb2_disable (amhw_zlg217_apb2_peripheral peri)
 }
 
 /**
- * \brief Ê¹ÄÜAHBÍâÉè
+ * \brief ä½¿èƒ½AHBå¤–è®¾
  *
- * \param[in]  peri £ºĞèÒªÊ¹ÄÜµÄÍâÉè
+ * \param[in]  peri ï¼šéœ€è¦ä½¿èƒ½çš„å¤–è®¾
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void amhw_zlg217_rcc_ahb_enable (amhw_zlg217_ahb_peripheral peri);
 
 /**
- * \brief ½ûÄÜAHBÍâÉè
+ * \brief ç¦èƒ½AHBå¤–è®¾
  *
- * \param[in]  peri £ºĞèÒª½ûÄÜµÄÍâÉè
+ * \param[in]  peri ï¼šéœ€è¦ç¦èƒ½çš„å¤–è®¾
  *
- * \return ÎŞ
+ * \return æ— 
  *
  */
 void amhw_zlg217_rcc_ahb_disable (amhw_zlg217_ahb_peripheral peri);
 
 /**
- * \brief Ê¹ÄÜLSI
+ * \brief ä½¿èƒ½LSI
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rcc_lsi_enable (void)
@@ -751,9 +751,9 @@ void amhw_zlg217_rcc_lsi_enable (void)
 }
 
 /**
- * \brief ½ûÄÜLSI
+ * \brief ç¦èƒ½LSI
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rcc_lsi_disable (void)
@@ -763,10 +763,10 @@ void amhw_zlg217_rcc_lsi_disable (void)
 }
 
 /**
- * \brief ÄÚ²¿µÍËÙÊ±ÖÓ¾ÍĞ÷±êÖ¾¶ÁÈ¡
+ * \brief å†…éƒ¨ä½é€Ÿæ—¶é’Ÿå°±ç»ªæ ‡å¿—è¯»å–
  *
- * \retval TRUE  : ÄÚ²¿ 40kHz Õñµ´Æ÷Ê±ÖÓ¾ÍĞ÷
- * \retval FALSE : ÄÚ²¿ 40kHz Õñµ´Æ÷Ê±ÖÓÎ´¾ÍĞ÷
+ * \retval TRUE  : å†…éƒ¨ 40kHz æŒ¯è¡å™¨æ—¶é’Ÿå°±ç»ª
+ * \retval FALSE : å†…éƒ¨ 40kHz æŒ¯è¡å™¨æ—¶é’Ÿæœªå°±ç»ª
  */
 am_static_inline
 am_bool_t amhw_zlg217_rcc_lsirdy_read (void)
@@ -775,9 +775,9 @@ am_bool_t amhw_zlg217_rcc_lsirdy_read (void)
 }
 
 /**
- * \brief »ñÈ¡¸´Î»±êÖ¾
+ * \brief è·å–å¤ä½æ ‡å¿—
  *
- * \return ¸´Î»±êÖ¾
+ * \return å¤ä½æ ‡å¿—
  */
 am_static_inline
 amhw_zlg217_reset_flag_t amhw_zlg217_rcc_reset_flag (void)
@@ -787,9 +787,9 @@ amhw_zlg217_reset_flag_t amhw_zlg217_rcc_reset_flag (void)
 }
 
 /**
- * \brief Çå³ı¸´Î»±êÖ¾
+ * \brief æ¸…é™¤å¤ä½æ ‡å¿—
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rcc_reset_flag_clear (void)
@@ -798,9 +798,9 @@ void amhw_zlg217_rcc_reset_flag_clear (void)
     ZLG217_RCC->csr |= (1ul << 24);
 }
 /**
- * \brief Íâ²¿µÍËÙÕñµ´Æ÷Ê¹ÄÜ
+ * \brief å¤–éƒ¨ä½é€ŸæŒ¯è¡å™¨ä½¿èƒ½
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rcc_bdcr_lseon_enable (void)
@@ -809,9 +809,9 @@ void amhw_zlg217_rcc_bdcr_lseon_enable (void)
     ZLG217_RCC->bdcr |= (1ul << 0);
 }
 /**
- * \brief Íâ²¿µÍËÙÕñµ´Æ÷½ûÄÜ
+ * \brief å¤–éƒ¨ä½é€ŸæŒ¯è¡å™¨ç¦èƒ½
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rcc_bdcr_lseon_disable (void)
@@ -819,10 +819,10 @@ void amhw_zlg217_rcc_bdcr_lseon_disable (void)
     ZLG217_RCC->bdcr &= ~(1ul << 0);
 }
 /**
- * \brief Íâ²¿µÍËÙÕñµ´Æ÷¾ÍĞ÷±êÖ¾¶ÁÈ¡
+ * \brief å¤–éƒ¨ä½é€ŸæŒ¯è¡å™¨å°±ç»ªæ ‡å¿—è¯»å–
  *
- * \retval TRUE  : ÄÚ²¿ 32MHzÊ±ÖÓÃ»ÓĞ¾ÍĞ÷
- * \retval FALSE : ÄÚ²¿ 32MHzÊ±ÖÓ¾ÍĞ÷
+ * \retval TRUE  : å†…éƒ¨ 32MHzæ—¶é’Ÿæ²¡æœ‰å°±ç»ª
+ * \retval FALSE : å†…éƒ¨ 32MHzæ—¶é’Ÿå°±ç»ª
  */
 am_static_inline
 am_bool_t amhw_zlg217_rcc_bdcr_lserdy_read (void)
@@ -831,9 +831,9 @@ am_bool_t amhw_zlg217_rcc_bdcr_lserdy_read (void)
 }
 
 /**
- * \brief Íâ²¿µÍËÙÊ±ÖÓÅÔÂ·×´Ì¬
+ * \brief å¤–éƒ¨ä½é€Ÿæ—¶é’Ÿæ—è·¯çŠ¶æ€
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rcc_bdcr_lsebyp_set (uint32_t lsebyp)
@@ -841,10 +841,10 @@ void amhw_zlg217_rcc_bdcr_lsebyp_set (uint32_t lsebyp)
     ZLG217_RCC->bdcr |= (lsebyp << 2);
 }
 /**
- * \brief Íâ²¿µÍËÙÊ±ÖÓÅÔÂ·×´Ì¬
+ * \brief å¤–éƒ¨ä½é€Ÿæ—¶é’Ÿæ—è·¯çŠ¶æ€
  *
- * \retval TRUE  : LSE Ê±ÖÓ±»ÅÔÂ·
- * \retval FALSE : LSE Ê±ÖÓÎ´±»ÅÔÂ·
+ * \retval TRUE  : LSE æ—¶é’Ÿè¢«æ—è·¯
+ * \retval FALSE : LSE æ—¶é’Ÿæœªè¢«æ—è·¯
  */
 am_static_inline
 am_bool_t amhw_zlg217_rcc_bdcr_lsebyp_get (void)
@@ -852,11 +852,11 @@ am_bool_t amhw_zlg217_rcc_bdcr_lsebyp_get (void)
     return (am_bool_t)((ZLG217_RCC->bdcr & 0x4ul) ? AM_TRUE : AM_FALSE);
 }
 /**
- * \brief RTCÊäÈëÊ±ÖÓÑ¡Ôñ
+ * \brief RTCè¾“å…¥æ—¶é’Ÿé€‰æ‹©
  *
- * \param[in]  src £ºRTCÊäÈëÊ±ÖÓÔ´
+ * \param[in]  src ï¼šRTCè¾“å…¥æ—¶é’Ÿæº
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rcc_bdcr_rtc_clk_set (amhw_zlg217_rtc_clk_src src)
@@ -867,9 +867,9 @@ void amhw_zlg217_rcc_bdcr_rtc_clk_set (amhw_zlg217_rtc_clk_src src)
 }
 
 /**
- * \brief RTCÊäÈëÊ±ÖÓ»ñÈ¡
+ * \brief RTCè¾“å…¥æ—¶é’Ÿè·å–
  *
- * \retval  rtcÊ±ÖÓÔ´»ñÈ¡
+ * \retval  rtcæ—¶é’Ÿæºè·å–
  */
 am_static_inline
 amhw_zlg217_rtc_clk_src amhw_zlg217_rcc_bdcr_rtc_clk_get (void)
@@ -878,9 +878,9 @@ amhw_zlg217_rtc_clk_src amhw_zlg217_rcc_bdcr_rtc_clk_get (void)
 }
 
 /**
- * \brief RTCÊ±ÖÓÊ¹ÄÜ
+ * \brief RTCæ—¶é’Ÿä½¿èƒ½
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rcc_bdcr_rtc_enable (void)
@@ -889,9 +889,9 @@ void amhw_zlg217_rcc_bdcr_rtc_enable (void)
     ZLG217_RCC->bdcr |= (1ul << 15);
 }
 /**
- * \brief RTCÊ±ÖÓ½ûÄÜ
+ * \brief RTCæ—¶é’Ÿç¦èƒ½
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rcc_bdcr_rtc_disable (void)
@@ -901,8 +901,8 @@ void amhw_zlg217_rcc_bdcr_rtc_disable (void)
 }
 
 /**
- * \brief ±¸·İÓòÈí¼ş¸´Î»
- * \return ÎŞ
+ * \brief å¤‡ä»½åŸŸè½¯ä»¶å¤ä½
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rcc_bdcr_bdrst_reset (void)
@@ -911,8 +911,8 @@ void amhw_zlg217_rcc_bdcr_bdrst_reset (void)
     ZLG217_RCC->bdcr |= (1ul << 16);
 }
 /**
- * \brief ±¸·İÓòÈí¼ş¸´Î»½áÊø
- * \return ÎŞ
+ * \brief å¤‡ä»½åŸŸè½¯ä»¶å¤ä½ç»“æŸ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rcc_bdcr_bdrst_reset_end (void)
@@ -921,10 +921,10 @@ void amhw_zlg217_rcc_bdcr_bdrst_reset_end (void)
     ZLG217_RCC->bdcr &= ~(1ul << 16);
 }
 /**
- * \brief ÏµÍ³ÅäÖÃ¼Ä´æÆ÷flash²Á³ı
+ * \brief ç³»ç»Ÿé…ç½®å¯„å­˜å™¨flashæ“¦é™¤
  *
- * \param[in] flag flashÒ³²Á³ıÊ±²Á³ıµÄ´óĞ¡ 1£º1K×Ö½Ú 0£º512×Ö½Ú
- * \return ÎŞ
+ * \param[in] flag flashé¡µæ“¦é™¤æ—¶æ“¦é™¤çš„å¤§å° 1ï¼š1Kå­—èŠ‚ 0ï¼š512å­—èŠ‚
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rcc_syscfg_erasure (uint32_t flag)
@@ -933,10 +933,10 @@ void amhw_zlg217_rcc_syscfg_erasure (uint32_t flag)
     ZLG217_RCC->syscfg &= (flag << 0);
 }
 /**
- * \brief ÏµÍ³ÅäÖÃ¼Ä´æÆ÷flash¼ì²é
+ * \brief ç³»ç»Ÿé…ç½®å¯„å­˜å™¨flashæ£€æŸ¥
  *
- * \param[in] flag flashÒ³²Á³ıÊ±ÊÇ·ñ¼ì²é 1£º¼ì²é 0£º²»¼ì²é
- * \return ÎŞ
+ * \param[in] flag flashé¡µæ“¦é™¤æ—¶æ˜¯å¦æ£€æŸ¥ 1ï¼šæ£€æŸ¥ 0ï¼šä¸æ£€æŸ¥
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rcc_syscfg_checkout (uint32_t flag)
@@ -949,7 +949,7 @@ void amhw_zlg217_rcc_syscfg_checkout (uint32_t flag)
  * @}
  */
 /*
- * \brief ÄäÃû½á¹¹Ìå¶ÎµÄ½áÊø
+ * \brief åŒ¿åç»“æ„ä½“æ®µçš„ç»“æŸ
  */
 
 #if defined(__CC_ARM)

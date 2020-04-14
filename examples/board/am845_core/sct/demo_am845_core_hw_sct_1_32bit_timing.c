@@ -12,18 +12,18 @@
 
 /**
  * \file
- * \brief SCT 32 Î»¶¨Ê±Àý³Ì£¬Í¨¹ý HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief SCT 32 ä½å®šæ—¶ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æŽ¥å£å®žçŽ°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. LED0 ÒÔ 10Hz µÄÆµÂÊÉÁË¸¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. LED0 ä»¥ 10Hz çš„é¢‘çŽ‡é—ªçƒã€‚
  *
  * \note
- *    1. ÓÉÓÚ SCT Ä¬ÈÏ×÷ÎªÇý¶¯·äÃùÆ÷£¬Ê¹ÓÃ²âÊÔ±¾ Demo Ç°ÐèÒª½« am_prj_config.h ÖÐ
- *       µÄ AM_CFG_BUZZER_ENABLE ¶¨ÒåÎª 0£¬²»Ê¹ÓÃ·äÃùÆ÷£»
- *    2. ±¾Àý³ÌÊ¹ÓÃÁË SCT ÊÂ¼þ 0£¬ÓÃÓÚ²úÉúÖÜÆÚÐÔÖÐ¶Ï£¬Ê¹ÓÃÆ¥ÅäÍ¨µÀ 0£¬ÊÂ¼þ·¢Éú¼ÆÊýÆ÷
- *       ÇåÁã¡£
+ *    1. ç”±äºŽ SCT é»˜è®¤ä½œä¸ºé©±åŠ¨èœ‚é¸£å™¨ï¼Œä½¿ç”¨æµ‹è¯•æœ¬ Demo å‰éœ€è¦å°† am_prj_config.h ä¸­
+ *       çš„ AM_CFG_BUZZER_ENABLE å®šä¹‰ä¸º 0ï¼Œä¸ä½¿ç”¨èœ‚é¸£å™¨ï¼›
+ *    2. æœ¬ä¾‹ç¨‹ä½¿ç”¨äº† SCT äº‹ä»¶ 0ï¼Œç”¨äºŽäº§ç”Ÿå‘¨æœŸæ€§ä¸­æ–­ï¼Œä½¿ç”¨åŒ¹é…é€šé“ 0ï¼Œäº‹ä»¶å‘ç”Ÿè®¡æ•°å™¨
+ *       æ¸…é›¶ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am845_core_hw_sct_1_32bit_timing.c src_am845_core_hw_sct_1_32bit_timing
  *
  * \internal
@@ -46,14 +46,14 @@
 #include "demo_nxp_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am845_core_hw_sct_1_32bit_timing_entry (void)
 {
     uint32_t frq = 0;
   
     AM_DBG_INFO("demo am845_core hw sct 1_32bit timing\r\n");
-    /* Æ½Ì¨³õÊ¼»¯ */
+    /* å¹³å°åˆå§‹åŒ– */
     amhw_lpc84x_clk_periph_enable(AMHW_LPC84X_CLK_SCT);
     amhw_lpc84x_syscon_periph_reset(AMHW_LPC84X_RESET_SCT);
 

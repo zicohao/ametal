@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ÈıÖá¼ÓËÙ¶È´«¸ĞÆ÷ LSM6DSL Í·ÎÄ¼ş
+ * \brief ä¸‰è½´åŠ é€Ÿåº¦ä¼ æ„Ÿå™¨ LSM6DSL å¤´æ–‡ä»¶
  *
  * \internal
  * \par modification history
@@ -32,60 +32,60 @@ extern "C" {
 #include "am_isr_defer.h"
 
 /**
- * \brief ´«¸ĞÆ÷LSM6DSLÌá¹©µÄËùÓĞÍ¨µÀID¶¨Òå
+ * \brief ä¼ æ„Ÿå™¨LSM6DSLæä¾›çš„æ‰€æœ‰é€šé“IDå®šä¹‰
  */
-#define AM_LSM6DSL_CHAN_1      0           /* LSM6DSL µÄÍ¨µÀ1£¬XÖá¼ÓËÙ¶È      */
-#define AM_LSM6DSL_CHAN_2      1           /* LSM6DSL µÄÍ¨µÀ2£¬YÖá¼ÓËÙ¶È      */
-#define AM_LSM6DSL_CHAN_3      2           /* LSM6DSL µÄÍ¨µÀ3£¬ZÖá¼ÓËÙ¶È      */
-#define AM_LSM6DSL_CHAN_4      3           /* LSM6DSL µÄÍ¨µÀ4£¬ÎÂ¶È           */
+#define AM_LSM6DSL_CHAN_1      0           /* LSM6DSL çš„é€šé“1ï¼ŒXè½´åŠ é€Ÿåº¦      */
+#define AM_LSM6DSL_CHAN_2      1           /* LSM6DSL çš„é€šé“2ï¼ŒYè½´åŠ é€Ÿåº¦      */
+#define AM_LSM6DSL_CHAN_3      2           /* LSM6DSL çš„é€šé“3ï¼ŒZè½´åŠ é€Ÿåº¦      */
+#define AM_LSM6DSL_CHAN_4      3           /* LSM6DSL çš„é€šé“4ï¼Œæ¸©åº¦           */
     
 /**
- * \brief ´«¸ĞÆ÷ LSM6DSL Éè±¸ĞÅÏ¢½á¹¹Ìå
+ * \brief ä¼ æ„Ÿå™¨ LSM6DSL è®¾å¤‡ä¿¡æ¯ç»“æ„ä½“
  */
 typedef struct am_sensor_lsm6dsl_devinfo {
     
     /**
-     * \brief Êı¾İ×¼±¸¾ÍĞ÷´¥·¢Òı½Å
+     * \brief æ•°æ®å‡†å¤‡å°±ç»ªè§¦å‘å¼•è„š
      */
     int     trigger_pin;
     
     /**
-     * \brief I2C 7Î» Éè±¸µØÖ·
+     * \brief I2C 7ä½ è®¾å¤‡åœ°å€
      *
-     * ¸ÃÉè±¸7Î»µØÖ·Îª 0x6B
+     * è¯¥è®¾å¤‡7ä½åœ°å€ä¸º 0x6B
      */
     uint8_t i2c_addr;
 
 } am_sensor_lsm6dsl_devinfo_t;
 
 /**
- * \breif ´«¸ĞÆ÷ LSM6DSL Éè±¸½á¹¹Ìå¶¨Òå
+ * \breif ä¼ æ„Ÿå™¨ LSM6DSL è®¾å¤‡ç»“æ„ä½“å®šä¹‰
  */
 typedef struct am_sensor_lsm6dsl_dev {
-    am_sensor_serv_t               lsm6dsl_dev;  /**< \breif ´«¸ĞÆ÷±ê×¼·şÎñ   */
-    am_i2c_device_t                i2c_dev;      /**< \brief i2cÉè±¸ÊµÀı      */
-    void                          *p_arg[4];     /**< \brief ´¥·¢»Øµ÷º¯Êı²ÎÊı */
-    uint8_t                        flags[4];     /**< \brief ´¥·¢±êÖ¾Î»       */
-    am_isr_defer_job_t             g_myjob;      /**< \brief ÖĞ¶ÏÑÓÊ±´¦ÀíÈÎÎñ */ 
-    uint16_t                       trigger;      /**< \brief ¼ÇÂ¼±êÖ¾Î»       */
-    am_sensor_val_t                data[4];      /**< \brief ÄÚ²¿Êı¾İ»º´æ     */
-    am_sensor_val_t                sam_range;    /**< \brief ²ÉÑù·¶Î§         */
-    /** \brief Êı¾İ×¼±¸¾ÍĞ÷´¥·¢»Øµ÷º¯Êı */
+    am_sensor_serv_t               lsm6dsl_dev;  /**< \breif ä¼ æ„Ÿå™¨æ ‡å‡†æœåŠ¡   */
+    am_i2c_device_t                i2c_dev;      /**< \brief i2cè®¾å¤‡å®ä¾‹      */
+    void                          *p_arg[4];     /**< \brief è§¦å‘å›è°ƒå‡½æ•°å‚æ•° */
+    uint8_t                        flags[4];     /**< \brief è§¦å‘æ ‡å¿—ä½       */
+    am_isr_defer_job_t             g_myjob;      /**< \brief ä¸­æ–­å»¶æ—¶å¤„ç†ä»»åŠ¡ */ 
+    uint16_t                       trigger;      /**< \brief è®°å½•æ ‡å¿—ä½       */
+    am_sensor_val_t                data[4];      /**< \brief å†…éƒ¨æ•°æ®ç¼“å­˜     */
+    am_sensor_val_t                sam_range;    /**< \brief é‡‡æ ·èŒƒå›´         */
+    /** \brief æ•°æ®å‡†å¤‡å°±ç»ªè§¦å‘å›è°ƒå‡½æ•° */
     am_sensor_trigger_cb_t         pfn_trigger_cb[4];
     
-    /** \brief Éè±¸ĞÅÏ¢ */
+    /** \brief è®¾å¤‡ä¿¡æ¯ */
     const am_sensor_lsm6dsl_devinfo_t *dev_info;
 
 } am_sensor_lsm6dsl_dev_t;
 
 /**
- * \brief ´«¸ĞÆ÷ LSM6DSL ³õÊ¼»¯
+ * \brief ä¼ æ„Ÿå™¨ LSM6DSL åˆå§‹åŒ–
  *
- * \param[in] p_dev     : Ö¸Ïò´«¸ĞÆ÷LSM6DSLÉè±¸µÄÖ¸Õë
- * \param[in] p_devinfo : Ö¸Ïò´«¸ĞÆ÷LSM6DSLÉè±¸ĞÅÏ¢µÄÖ¸Õë
- * \param[in] handle    : IIC±ê×¼·şÎñ¾ä±ú
+ * \param[in] p_dev     : æŒ‡å‘ä¼ æ„Ÿå™¨LSM6DSLè®¾å¤‡çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo : æŒ‡å‘ä¼ æ„Ÿå™¨LSM6DSLè®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ
+ * \param[in] handle    : IICæ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ´«¸ĞÆ÷±ê×¼·şÎñ²Ù×÷¾ä±úÈç¹ûÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return ä¼ æ„Ÿå™¨æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„å¦‚æœä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_sensor_handle_t am_sensor_lsm6dsl_init (
         am_sensor_lsm6dsl_dev_t           *p_dev,
@@ -93,11 +93,11 @@ am_sensor_handle_t am_sensor_lsm6dsl_init (
         am_i2c_handle_t                   handle);
 
 /**
- * \brief ´«¸ĞÆ÷ LSM6DSL È¥³õÊ¼»¯
+ * \brief ä¼ æ„Ÿå™¨ LSM6DSL å»åˆå§‹åŒ–
  *
- * \param[in] handle : am_sensor_lsm6dsl_init()³õÊ¼»¯º¯Êı»ñµÃµÄ´«¸ĞÆ÷±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle : am_sensor_lsm6dsl_init()åˆå§‹åŒ–å‡½æ•°è·å¾—çš„ä¼ æ„Ÿå™¨æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_err_t am_sensor_lsm6dsl_deinit (am_sensor_handle_t handle);
 

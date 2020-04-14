@@ -11,17 +11,17 @@
 *******************************************************************************/
 /**
  * \file
- * \brief SPI´Ó»úÆ¥ÅäÖĞ¶ÏÑİÊ¾Àı³Ì£¬Í¨¹ıHW²ãµÄ½Ó¿ÚÊµÏÖ
+ * \brief SPIä»æœºåŒ¹é…ä¸­æ–­æ¼”ç¤ºä¾‹ç¨‹ï¼Œé€šè¿‡HWå±‚çš„æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè:
- *   1. ½«SPI´Ó»ú½Ó¿ÚºÍÖ÷»ú½Ó¿Ú¶ÔÓ¦Á¬½ÓÆğÀ´(PIOC_4 == PIOD_4, PIOC_5 == PIOD_5,
- *      PIOC_6 == PIOD_6, PIOC_7 == PIOD_7)£»£»
+ * - æ“ä½œæ­¥éª¤:
+ *   1. å°†SPIä»æœºæ¥å£å’Œä¸»æœºæ¥å£å¯¹åº”è¿æ¥èµ·æ¥(PIOC_4 == PIOD_4, PIOC_5 == PIOD_5,
+ *      PIOC_6 == PIOD_6, PIOC_7 == PIOD_7)ï¼›ï¼›
  *
- * - ÊµÑéÏÖÏó:
- *   1. SPI0´Ó»ú½ÓÊÕSPI1Ö÷»úÊı¾İ£¬Èç¹ûÊı¾İ±»Æ¥Åä£¬Ôò·¢ËÍ´Ó»úÌØÕ÷Âë¸øÖ÷»ú£»
- *   2. SPI1Ö÷»ú¼ìÑéÊÕµ½µÄÌØÕ÷ÂëÊÇ·ñÕıÈ·£¬Èç¹ûÕıÈ·µãÁÁLED£¬·ñÔòLEDÉÁË¸±¨¾¯¡£
+ * - å®éªŒç°è±¡:
+ *   1. SPI0ä»æœºæ¥æ”¶SPI1ä¸»æœºæ•°æ®ï¼Œå¦‚æœæ•°æ®è¢«åŒ¹é…ï¼Œåˆ™å‘é€ä»æœºç‰¹å¾ç ç»™ä¸»æœºï¼›
+ *   2. SPI1ä¸»æœºæ£€éªŒæ”¶åˆ°çš„ç‰¹å¾ç æ˜¯å¦æ­£ç¡®ï¼Œå¦‚æœæ­£ç¡®ç‚¹äº®LEDï¼Œå¦åˆ™LEDé—ªçƒæŠ¥è­¦ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_fsl_hw_spi_slave_match.c src_fsl_hw_spi_slave_match
  *
  * \internal
@@ -42,48 +42,48 @@
 #include "am_board.h"
 #include "am_arm_nvic.h"
 
-#define __SLAVE_MATCH_DATA    0x55            /**< \brief Æ¥ÅäÊı¾İ      */
-#define __DATA_LENGTH         0x5             /**< \brief ÌØÕ÷Âë³¤¶È    */
+#define __SLAVE_MATCH_DATA    0x55            /**< \brief åŒ¹é…æ•°æ®      */
+#define __DATA_LENGTH         0x5             /**< \brief ç‰¹å¾ç é•¿åº¦    */
 
-/** \brief ´Ó»úÌØÕ÷Âë    */
+/** \brief ä»æœºç‰¹å¾ç     */
 const uint8_t __g_slv_data[__DATA_LENGTH] = {
    1, 2, 1, 3, 5
 };
 
 /**
- * \brief SPIÖĞ¶Ï´¦Àíº¯Êı
+ * \brief SPIä¸­æ–­å¤„ç†å‡½æ•°
  */
 void __spi_irq_handle (void *p_arg)
 {
-    static volatile uint8_t pos = 0;               /* Êı¾İÎ»ÖÃ          */
-    static volatile am_bool_t  match_irq  = AM_TRUE;     /* Æ¥ÅäÖĞ¶Ï´ò¿ª±êÖ¾   */
-    static volatile am_bool_t  send_irq   = AM_FALSE;    /* ·¢ËÍÖĞ¶Ï´ò¿ª±êÖ¾   */
+    static volatile uint8_t pos = 0;               /* æ•°æ®ä½ç½®          */
+    static volatile am_bool_t  match_irq  = AM_TRUE;     /* åŒ¹é…ä¸­æ–­æ‰“å¼€æ ‡å¿—   */
+    static volatile am_bool_t  send_irq   = AM_FALSE;    /* å‘é€ä¸­æ–­æ‰“å¼€æ ‡å¿—   */
 
     amhw_fsl_spi_t *p_hw_spi = (amhw_fsl_spi_t*)p_arg;
 
-    /* Æ¥ÅäÖĞ¶Ï */
+    /* åŒ¹é…ä¸­æ–­ */
     if (match_irq && ((amhw_fsl_spi_stat_get(p_hw_spi) & AMHW_FSL_SPI_STAT_MATCH) != 0 )) {
         
-        /* ¿ªÊ¼·¢ËÍÌØÕ÷ÂëÅäÖÃ */
+        /* å¼€å§‹å‘é€ç‰¹å¾ç é…ç½® */
         p_hw_spi->s = 0x40;
         pos = 0;
         
-        amhw_fsl_spi_int_disable(p_hw_spi, AMHW_FSL_SPI_IRQ_MATCH); /* ¹Ø±ÕÆ¥ÅäÖĞ¶Ï */
+        amhw_fsl_spi_int_disable(p_hw_spi, AMHW_FSL_SPI_IRQ_MATCH); /* å…³é—­åŒ¹é…ä¸­æ–­ */
         match_irq = AM_FALSE;
         
-        amhw_fsl_spi_int_enable(p_hw_spi, AMHW_FSL_SPI_IRQ_T);      /* ¿ªÆô·¢ËÍÖĞ¶Ï */
+        amhw_fsl_spi_int_enable(p_hw_spi, AMHW_FSL_SPI_IRQ_T);      /* å¼€å¯å‘é€ä¸­æ–­ */
         send_irq  = AM_TRUE;
     }
 
-    /* ·¢ËÍÖĞ¶Ï */
+    /* å‘é€ä¸­æ–­ */
     if (send_irq && (amhw_fsl_spi_stat_get(p_hw_spi) & AMHW_FSL_SPI_STAT_T_EMPTY) != 0 ) {
         
-        /* ·¢ËÍÊı¾İ */
+        /* å‘é€æ•°æ® */
         if (pos < __DATA_LENGTH) {
             amhw_fsl_spi_data8_read(p_hw_spi);
             amhw_fsl_spi_data8_wirte(p_hw_spi, __g_slv_data[pos++]);
             
-        /* »Øµ½×î³õ×´Ì¬ */
+        /* å›åˆ°æœ€åˆçŠ¶æ€ */
         } else {
             p_hw_spi->s = 0x40;
             amhw_fsl_spi_matchdata16_wirte(p_hw_spi, 0x55);
@@ -102,18 +102,18 @@ static void __spi_speed_cfg (amhw_fsl_spi_t *p_hw_spi,
                              uint32_t        spi_freq)
 {
 
-    uint32_t real_speed;              /* ¼ÆËã³öµÄËÙ¶È    */
-    uint32_t pdiv, best_pdiv;         /* Ô¤·ÖÆµÖµ        */
-    uint32_t div, best_div;           /* ·ÖÅäÖµ          */
-    uint32_t diff, min_diff;          /* ËÙ¶È²îÖµ        */
+    uint32_t real_speed;              /* è®¡ç®—å‡ºçš„é€Ÿåº¦    */
+    uint32_t pdiv, best_pdiv;         /* é¢„åˆ†é¢‘å€¼        */
+    uint32_t div, best_div;           /* åˆ†é…å€¼          */
+    uint32_t diff, min_diff;          /* é€Ÿåº¦å·®å€¼        */
 
    min_diff = 0xFFFFFFFFU;
 
-   /* ÉèÖÃÎª×î´óµÄ·ÖÆµÖµ,ËÙ¶ÈÎª×îĞ¡ */
+   /* è®¾ç½®ä¸ºæœ€å¤§çš„åˆ†é¢‘å€¼,é€Ÿåº¦ä¸ºæœ€å° */
    best_pdiv  = 7;
    best_div   = 8;
 
-   /* ²éÕÒ×îºÏÊÊµÄËÙ¶È */
+   /* æŸ¥æ‰¾æœ€åˆé€‚çš„é€Ÿåº¦ */
    for (pdiv = 0; (pdiv <= 7) && min_diff; pdiv++)
    {
        for (div = 0; (div <= 8) && min_diff; div++)
@@ -121,14 +121,14 @@ static void __spi_speed_cfg (amhw_fsl_spi_t *p_hw_spi,
            /* all_div = (pdiv+1) * 2^(div+1) */
            real_speed = (spi_freq / ((pdiv + 1) << (div+1)));
 
-           /* Êµ¼ÊËÙ¶ÈÓ¦Ğ¡ÓÚÄ¿±êËÙ¶È */
+           /* å®é™…é€Ÿåº¦åº”å°äºç›®æ ‡é€Ÿåº¦ */
            if (target_speed >= real_speed)
            {
                diff = target_speed-real_speed;
 
                if (min_diff > diff)
                {
-                   /* ×îºÏÊÊµÄËÙ¶È */
+                   /* æœ€åˆé€‚çš„é€Ÿåº¦ */
                    min_diff   = diff;
                    best_pdiv  = pdiv;
                    best_div   = div;
@@ -141,50 +141,50 @@ static void __spi_speed_cfg (amhw_fsl_spi_t *p_hw_spi,
 }
 
 /**
- * \brief SPI0´Ó»ú³õÊ¼»¯£¨8bitÊı¾İ¿í¶È SPI_MODE1£©
+ * \brief SPI0ä»æœºåˆå§‹åŒ–ï¼ˆ8bitæ•°æ®å®½åº¦ SPI_MODE1ï¼‰
  */
 static void __spi_slve_init (amhw_fsl_spi_t *p_hw_spi)
 {
-    /* ÅäÖÃSPIÎª´Ó»ú */
+    /* é…ç½®SPIä¸ºä»æœº */
     amhw_fsl_spi_workmode_cfg(p_hw_spi, AMHW_FSL_SPI_WMODE_SLAVE);
 
-    /* ÅäÖÃ8bitÊı¾İ¿í¶È */
+    /* é…ç½®8bitæ•°æ®å®½åº¦ */
     amhw_fsl_spi_feature_cfg(p_hw_spi, AMHW_FSL_SPI_CFG_8BIT_WIDTH);
 
-    /* ÅäÖÃÊ±ÖÓÏàÎ»ºÍ¼«ĞÔ */
+    /* é…ç½®æ—¶é’Ÿç›¸ä½å’Œææ€§ */
     amhw_fsl_spi_mode_cfg(p_hw_spi, AMHW_FSL_SPI_MODE_1);
 
-    /* Ê¹ÄÜSPIÄ£¿é */
+    /* ä½¿èƒ½SPIæ¨¡å— */
     amhw_fsl_spi_enable(p_hw_spi);
 }
 
 /**
- * \brief SPI1´Ó»ú³õÊ¼»¯£¨8bitÊı¾İ¿í¶È SPI_MODE1£©
+ * \brief SPI1ä»æœºåˆå§‹åŒ–ï¼ˆ8bitæ•°æ®å®½åº¦ SPI_MODE1ï¼‰
  */
 static void __spi_master_init (amhw_fsl_spi_t *p_hw_spi, uint32_t spi_freq)
 {
-    /* ÅäÖÃSPIÎª´Ó»ú */
+    /* é…ç½®SPIä¸ºä»æœº */
     amhw_fsl_spi_workmode_cfg(p_hw_spi, AMHW_FSL_SPI_WMODE_MASTER);
 
-    /* ÅäÖÃ8bitÊı¾İ¿í¶È */
+    /* é…ç½®8bitæ•°æ®å®½åº¦ */
     amhw_fsl_spi_feature_cfg(p_hw_spi, AMHW_FSL_SPI_CFG_8BIT_WIDTH);
 
-    /* ÅäÖÃÊ±ÖÓÏàÎ»ºÍ¼«ĞÔ */
+    /* é…ç½®æ—¶é’Ÿç›¸ä½å’Œææ€§ */
     amhw_fsl_spi_mode_cfg(p_hw_spi, AMHW_FSL_SPI_MODE_1);
     
-    /* ÅäÖÃCSÒı½ÅÎªÆ¬Ñ¡Êä³ö */
+    /* é…ç½®CSå¼•è„šä¸ºç‰‡é€‰è¾“å‡º */
     amhw_fsl_spi_cs_cfg(p_hw_spi, AMHW_FSL_SPI_CS_SPI_OUT);
 
-    /* ÅäÖÃ´«ÊäËÙ¶È */
+    /* é…ç½®ä¼ è¾“é€Ÿåº¦ */
     __spi_speed_cfg(p_hw_spi, 3000000, spi_freq);
 
-    /* Ê¹ÄÜSPIÄ£¿é */
+    /* ä½¿èƒ½SPIæ¨¡å— */
     amhw_fsl_spi_enable(p_hw_spi);
 }
 
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_fsl_hw_spi_slave_match_entry (amhw_fsl_spi_t *p_hw_spi0,
                                         amhw_fsl_spi_t *p_hw_spi1,
@@ -192,28 +192,28 @@ void demo_fsl_hw_spi_slave_match_entry (amhw_fsl_spi_t *p_hw_spi0,
                                         uint32_t        spi_freq)
 {
     uint8_t i;
-    /** \brief Ö÷»ú·¢ËÍ»º³åÇø */
+    /** \brief ä¸»æœºå‘é€ç¼“å†²åŒº */
     uint8_t master_tx_buf[6] = {__SLAVE_MATCH_DATA, 0, 0, 0, 0, 0};
-    /** \brief Ö÷»ú½ÓÊÕ»º³åÇø */
+    /** \brief ä¸»æœºæ¥æ”¶ç¼“å†²åŒº */
     uint8_t master_rx_buf[6] = {0};
     am_bool_t error_ocur = AM_FALSE;
 
-    /* SPI ´Ó»ú³õÊ¼»¯ */
+    /* SPI ä»æœºåˆå§‹åŒ– */
     __spi_slve_init(p_hw_spi0);
     __spi_master_init(p_hw_spi1, spi_freq);
 
-    /* ÅäÖÃÆ¥ÅäÊı¾İ(Èç¹ûÅäÖÃÁË8bitÊı¾İÔò£¬Ö»ÓĞµÍ8Î»ÓĞĞ§ ) */
+    /* é…ç½®åŒ¹é…æ•°æ®(å¦‚æœé…ç½®äº†8bitæ•°æ®åˆ™ï¼Œåªæœ‰ä½8ä½æœ‰æ•ˆ ) */
     amhw_fsl_spi_matchdata16_wirte(p_hw_spi0, __SLAVE_MATCH_DATA);
 
-    /* Çå³ıÆ¥Åä±êÖ¾ */
+    /* æ¸…é™¤åŒ¹é…æ ‡å¿— */
     p_hw_spi0->s = 0x40;
 
-    /* ¿ªÆôÆ¥ÅäÖĞ¶Ï */
+    /* å¼€å¯åŒ¹é…ä¸­æ–­ */
     amhw_fsl_spi_int_enable(p_hw_spi0, AMHW_FSL_SPI_IRQ_MATCH);
     am_int_connect(slave_inum, __spi_irq_handle, (void*)p_hw_spi0);
     am_int_enable(slave_inum);
 
-    /* Ö÷»ú·¢ËÍÇëÇóÂë£¬²¢½ÓÊÕÌØÕ÷Âë */
+    /* ä¸»æœºå‘é€è¯·æ±‚ç ï¼Œå¹¶æ¥æ”¶ç‰¹å¾ç  */
     for (i = 0; i < (__DATA_LENGTH + 1); i++) {
         while((amhw_fsl_spi_stat_get(p_hw_spi1) & AMHW_FSL_SPI_STAT_T_EMPTY) == 0);
         amhw_fsl_spi_data8_wirte(p_hw_spi1,master_tx_buf[i]);
@@ -224,7 +224,7 @@ void demo_fsl_hw_spi_slave_match_entry (amhw_fsl_spi_t *p_hw_spi0,
     
     am_mdelay(1000);
     
-    /* ¼ìÑéÊÕµ½µÄÌØÕ÷Âë */
+    /* æ£€éªŒæ”¶åˆ°çš„ç‰¹å¾ç  */
     for (i = 0; i < __DATA_LENGTH ; i++) {
         if (master_rx_buf[i+1] != __g_slv_data[i]) {
             error_ocur = AM_TRUE;
@@ -234,14 +234,14 @@ void demo_fsl_hw_spi_slave_match_entry (amhw_fsl_spi_t *p_hw_spi0,
 
     while (1) {
         
-        /* Êı¾İĞ£Ñé´íÎó£¬LEDÉÁË¸ÌáĞÑ */
+        /* æ•°æ®æ ¡éªŒé”™è¯¯ï¼ŒLEDé—ªçƒæé†’ */
         if(error_ocur) {
             am_led_on(LED1);
             am_mdelay(200);
             am_led_off(LED1);
             am_mdelay(200);
 
-        /* LEDµÆ³£ÁÁ */
+        /* LEDç¯å¸¸äº® */
         } else {
             am_led_on(LED1);
         }

@@ -12,21 +12,21 @@
 
 /**
  * \file
- * \brief PMU ���˯��ģʽ���̣�ͨ�� HW ��ӿ�ʵ��
+ * \brief PMU 深度睡眠模式例程，通过 HW 层接口实现
  *
- * - ʵ�鲽�裺
- *   1. �öŰ��߽� PIO0_23 �� GND ���ӣ��ѵ�ƽ���͡�
+ * - 实验步骤：
+ *   1. 用杜邦线将 PIO0_23 与 GND 连接，把电平拉低。
  *
- * - ʵ������
- *   1. ���г���һ��� LED0 ��˸һ�κ�������˯��ģʽ��
- *   2. �� PIO0_23 �� GND �����ӶϿ�ʱ��CPU �����ѣ�LED0 ������˸��
+ * - 实验现象：
+ *   1. 运行程序，一秒后 LED0 闪烁一次后进入深度睡眠模式；
+ *   2. 当 PIO0_23 与 GND 的连接断开时，CPU 被唤醒，LED0 不断闪烁。
  *
  * \note
- *    1. ʹ�øó���󣬻ᵼ���´γ�����д��ʱ���ⲻ��оƬ������оƬ�������˯��
- *       ģʽ�� SWD ����ģʽ�رգ����´�����ʱ�� P0_12 ���ͻ򰴶���λ��֮��һ����
- *       �����������ص��ԡ�
+ *    1. 使用该程序后，会导致下次程序烧写的时候检测不到芯片（由于芯片进入深度睡眠
+ *       模式将 SWD 调试模式关闭），下次下载时将 P0_12 拉低或按动复位键之后一秒内
+ *       即可正常下载调试。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_am845_core_hw_pmu_deepsleep.c src_am845_core_hw_pmu_deepsleep
  *
  * \internal
@@ -51,29 +51,29 @@
 #include "lpc84x_pin.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_am845_core_hw_pmu_deepsleep_entry (void)
 {
 
     am_kprintf("demo am845_core hw pmu deepsleep!\r\n");
-    /* ��ʱһ�룬�����´����س��� */
+    /* 延时一秒，方便下次下载程序 */
     am_mdelay(1000);
 
-    /* ���� PIO0_23 ����Ϊ���� */
+    /* 配置 PIO0_23 方向为输入 */
     amhw_lpc84x_gpio_pin_dir_input(LPC84X_GPIO, PIO0_23);
 
-    /* ���� PIO0_23 ���� */
+    /* 配置 PIO0_23 上拉 */
     amhw_lpc84x_iocon_mode_set(LPC84X_IOCON,
                                PIO0_23,
                                AMHW_LPC84X_IOCON_MODE_PULLUP);
 
-    /* LED0 ��˸һ�� */
+    /* LED0 闪烁一次 */
     am_led_on(LED0);
     am_mdelay(500);
     am_led_off(LED0);
 
-    /* �������˯��ģʽ */
+    /* 配置深度睡眠模式 */
     demo_lpc845_hw_pmu_deepsleep_entry(LPC84X_PMU, PIO0_23);
    
 }

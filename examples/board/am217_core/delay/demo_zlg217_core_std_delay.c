@@ -12,15 +12,15 @@
 
 /**
  * \file
- * \brief ÑÓÊ±Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief å»¶æ—¶ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó:
- *   1. LED0 ÉÁË¸ÆµÂÊ 10Hz¡£
+ * - å®éªŒç°è±¡:
+ *   1. LED0 é—ªçƒé¢‘ç‡ 10Hzã€‚
  *
  * \note
- *    LED0 ĞèÒª¶Ì½Ó J9 ÌøÏßÃ±£¬²ÅÄÜ±» PIOC_9 ¿ØÖÆ¡£
+ *    LED0 éœ€è¦çŸ­æ¥ J9 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIOC_9 æ§åˆ¶ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_zlg217_std_delay.c src_zlg217_std_delay
  *
  * \internal
@@ -42,7 +42,7 @@
 #include "demo_am217_core_entries.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_zlg217_core_std_delay_entry (void)
 {

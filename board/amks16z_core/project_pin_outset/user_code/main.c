@@ -11,13 +11,13 @@
 *******************************************************************************/
 /**
  * \file
- * \brief AMKS16 ���̹���
+ * \brief AMKS16 例程工程
  *
- * - �������裺
- *   1. ȡ��������Ҫʹ�õ����̡�
+ * - 操作步骤：
+ *   1. 取消屏蔽需要使用的例程。
  *
  * \note
- *    ͬһʱ��ֻ��ʹ��һ�����̡�
+ *    同一时刻只能使用一个例程。
  *	
  * \internal
  * \par Modification history
@@ -32,17 +32,17 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief AMetal Ӧ�ó������
+ * \brief AMetal 应用程序入口
  */
 int am_main (void)
 {
     AM_DBG_INFO("Start up successful!\r\n");
     /*
-     * ����Ϊ����demo����ں�������Ҫ�����ĸ� demo�� ��ȡ����Ӧ���������е�ע��
+     * 以下为所有demo的入口函数，需要运行哪个 demo， 就取消对应函数调用行的注释
      *
-     * Ĭ�����е���LED��˸ demo��
+     * 默认运行的是LED闪烁 demo。
      *
-     * ע�⣺ͬһʱ��ֻ������һ�� demo����ֻ��ʹĳһ�д���ȡ��ע��״̬��
+     * 注意：同一时刻只能运行一个 demo，即只能使某一行处于取消注释状态。
      */
     demo_amks16z_core_std_led_entry();
 //    demo_amks16z_core_hw_adc_int_entry();

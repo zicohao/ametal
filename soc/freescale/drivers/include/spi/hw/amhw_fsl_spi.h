@@ -12,16 +12,16 @@
 
 /**
  * \file
- * \brief SPI Ó²¼ş²Ù×÷½Ó¿Ú
+ * \brief SPI ç¡¬ä»¶æ“ä½œæ¥å£
  * 
- * 1. Ö§³ÖÖ÷»úºÍ´Ó»ú´«Êä£»
- * 2. Ö§³Öµ¥Êı¾İÏßÄ£Ê½£»
- * 3. Ö§³Ö64-bit FIFOÄ£Ê½´«Êä(½öSPI1)
- * 4. Ö§³ÖDMA´«Êä(·¢ËÍºÍ½ÓÊÕ)£»
- * 5. ²¨ÌØÂÊ¿ÉÅäÖÃ£»
- * 6. Ê±ÖÓÏàÎ»ºÍ¼«ĞÔ¿ÉÅäÖÃ£»
- * 7. Ö§³Ö8bits»òÕß16bits´«Êä,¿ÉÅäÖÃLSB»òÕßMSB´«Êä£»
- * 8. ¿ÉÒÔÉèÖÃÆ¥Åä½ÓÊÕÊı¾İ£¬Æ¥Åä³É¹¦Ê±²úÉúÖĞ¶Ï£»
+ * 1. æ”¯æŒä¸»æœºå’Œä»æœºä¼ è¾“ï¼›
+ * 2. æ”¯æŒå•æ•°æ®çº¿æ¨¡å¼ï¼›
+ * 3. æ”¯æŒ64-bit FIFOæ¨¡å¼ä¼ è¾“(ä»…SPI1)
+ * 4. æ”¯æŒDMAä¼ è¾“(å‘é€å’Œæ¥æ”¶)ï¼›
+ * 5. æ³¢ç‰¹ç‡å¯é…ç½®ï¼›
+ * 6. æ—¶é’Ÿç›¸ä½å’Œææ€§å¯é…ç½®ï¼›
+ * 7. æ”¯æŒ8bitsæˆ–è€…16bitsä¼ è¾“,å¯é…ç½®LSBæˆ–è€…MSBä¼ è¾“ï¼›
+ * 8. å¯ä»¥è®¾ç½®åŒ¹é…æ¥æ”¶æ•°æ®ï¼ŒåŒ¹é…æˆåŠŸæ—¶äº§ç”Ÿä¸­æ–­ï¼›
  *
  * \internal
  * \par Modification history
@@ -45,196 +45,196 @@ extern "C" {
  */
  
 /**
- * \brief SPI¼Ä´æÆ÷¿é½á¹¹Ìå
+ * \brief SPIå¯„å­˜å™¨å—ç»“æ„ä½“
  */
 typedef struct amhw_fsl_spi {
-    __IO uint8_t  s;             /**< \brief SPI ×´Ì¬¼Ä´æÆ÷       */
-    __IO uint8_t  br;            /**< \brief SPI ²¨ÌØÂÊÅäÖÃ¼Ä´æÆ÷ */
-    __IO uint8_t  c2;            /**< \brief SPI ¿ØÖÆ¼Ä´æÆ÷2      */
-    __IO uint8_t  c1;            /**< \brief SPI ¿ØÖÆ¼Ä´æÆ÷1      */
-    __IO uint8_t  ml;            /**< \brief SPI µÍ×Ö½ÚÆ¥Åä¼Ä´æÆ÷ */
-    __IO uint8_t  mh;            /**< \brief SPI ¸ß×Ö½ÚÆ¥Åä¼Ä´æÆ÷ */
-    __IO uint8_t  dl;            /**< \brief SPI µÍ×Ö½ÚÊı¾İ¼Ä´æÆ÷ */
-    __IO uint8_t  dh;            /**< \brief SPI ¸ß×Ö½ÚÊı¾İ¼Ä´æÆ÷ */
-    __I  uint8_t  reserved[2];   /**< \brief SPI ±£Áô¼Ä´æÆ÷       */
-    __IO uint8_t  ci;            /**< \brief SPI ÖĞ¶ÏÇå³ı¼Ä´æÆ÷   */
-    __IO uint8_t  c3;            /**< \brief SPI ¿ØÖÆ¼Ä´æÆ÷3      */
+    __IO uint8_t  s;             /**< \brief SPI çŠ¶æ€å¯„å­˜å™¨       */
+    __IO uint8_t  br;            /**< \brief SPI æ³¢ç‰¹ç‡é…ç½®å¯„å­˜å™¨ */
+    __IO uint8_t  c2;            /**< \brief SPI æ§åˆ¶å¯„å­˜å™¨2      */
+    __IO uint8_t  c1;            /**< \brief SPI æ§åˆ¶å¯„å­˜å™¨1      */
+    __IO uint8_t  ml;            /**< \brief SPI ä½å­—èŠ‚åŒ¹é…å¯„å­˜å™¨ */
+    __IO uint8_t  mh;            /**< \brief SPI é«˜å­—èŠ‚åŒ¹é…å¯„å­˜å™¨ */
+    __IO uint8_t  dl;            /**< \brief SPI ä½å­—èŠ‚æ•°æ®å¯„å­˜å™¨ */
+    __IO uint8_t  dh;            /**< \brief SPI é«˜å­—èŠ‚æ•°æ®å¯„å­˜å™¨ */
+    __I  uint8_t  reserved[2];   /**< \brief SPI ä¿ç•™å¯„å­˜å™¨       */
+    __IO uint8_t  ci;            /**< \brief SPI ä¸­æ–­æ¸…é™¤å¯„å­˜å™¨   */
+    __IO uint8_t  c3;            /**< \brief SPI æ§åˆ¶å¯„å­˜å™¨3      */
 } amhw_fsl_spi_t;
 
 
 /**
- * \name SPI ×´Ì¬±êÖ¾
+ * \name SPI çŠ¶æ€æ ‡å¿—
  * @{
  */
 
-#define AMHW_FSL_SPI_STAT_R_FULL        AM_BIT(7)  /**< \brief ½ÓÊÕÍê³É       */
-#define AMHW_FSL_SPI_STAT_MATCH         AM_BIT(6)  /**< \brief Êı¾İ·¢ÉúÆ¥Åä   */
-#define AMHW_FSL_SPI_STAT_T_EMPTY       AM_BIT(5)  /**< \brief ·¢ËÍÍê³É       */
-#define AMHW_FSL_SPI_STAT_MODF          AM_BIT(4)  /**< \brief ¶àÖ÷»ú         */
-#define AMHW_FSL_SPI_STAT_R_NEAR_FULL   AM_BIT(3)  /**< \brief ½ÓÊÕFIFO½Ó½üÂú */
-#define AMHW_FSL_SPI_STAT_T_NEAR_EMPTY  AM_BIT(2)  /**< \brief ·¢ËÍFIFO½Ó½ü¿Õ */
-#define AMHW_FSL_SPI_STAT_T_FIFO_FULL   AM_BIT(1)  /**< \brief ·¢ËÍFIFOÂú     */
-#define AMHW_FSL_SPI_STAT_R_FIFO_EMPTY  AM_BIT(0)  /**< \brief ½ÓÊÕFIFO¿Õ     */
+#define AMHW_FSL_SPI_STAT_R_FULL        AM_BIT(7)  /**< \brief æ¥æ”¶å®Œæˆ       */
+#define AMHW_FSL_SPI_STAT_MATCH         AM_BIT(6)  /**< \brief æ•°æ®å‘ç”ŸåŒ¹é…   */
+#define AMHW_FSL_SPI_STAT_T_EMPTY       AM_BIT(5)  /**< \brief å‘é€å®Œæˆ       */
+#define AMHW_FSL_SPI_STAT_MODF          AM_BIT(4)  /**< \brief å¤šä¸»æœº         */
+#define AMHW_FSL_SPI_STAT_R_NEAR_FULL   AM_BIT(3)  /**< \brief æ¥æ”¶FIFOæ¥è¿‘æ»¡ */
+#define AMHW_FSL_SPI_STAT_T_NEAR_EMPTY  AM_BIT(2)  /**< \brief å‘é€FIFOæ¥è¿‘ç©º */
+#define AMHW_FSL_SPI_STAT_T_FIFO_FULL   AM_BIT(1)  /**< \brief å‘é€FIFOæ»¡     */
+#define AMHW_FSL_SPI_STAT_R_FIFO_EMPTY  AM_BIT(0)  /**< \brief æ¥æ”¶FIFOç©º     */
 
 /** @} */
 
 /**
- * \name SPI FIFO´íÎó±êÖ¾
+ * \name SPI FIFOé”™è¯¯æ ‡å¿—
  * @{
  */
 
-#define AMHW_FSL_SPI_ERROR_T_FIFO   AM_BIT(7)     /**< \brief ·¢ËÍFIFO´íÎó    */
-#define AMHW_FSL_SPI_ERROR_R_FIFO   AM_BIT(6)     /**< \brief ½ÓÊÕFIFO´íÎó    */
-#define AMHW_FSL_SPI_OV_T_FIFO      AM_BIT(5)     /**< \brief ·¢ËÍFIFOÒç³ö    */
-#define AMHW_FSL_SPI_OV_R_FIFO      AM_BIT(4)     /**< \brief ½ÓÊÕFIFOÒç³ö    */
+#define AMHW_FSL_SPI_ERROR_T_FIFO   AM_BIT(7)     /**< \brief å‘é€FIFOé”™è¯¯    */
+#define AMHW_FSL_SPI_ERROR_R_FIFO   AM_BIT(6)     /**< \brief æ¥æ”¶FIFOé”™è¯¯    */
+#define AMHW_FSL_SPI_OV_T_FIFO      AM_BIT(5)     /**< \brief å‘é€FIFOæº¢å‡º    */
+#define AMHW_FSL_SPI_OV_R_FIFO      AM_BIT(4)     /**< \brief æ¥æ”¶FIFOæº¢å‡º    */
 
 /** @} */
 
 /**
- * \name SPI ÆÕÍ¨ÖĞ¶Ï
+ * \name SPI æ™®é€šä¸­æ–­
  * @{
  */
 
-#define AMHW_FSL_SPI_IRQ_MATCH       AM_BIT(7)  /**< \brief Êı¾İÆ¥ÅäÖĞ¶Ï      */
-#define AMHW_FSL_SPI_IRQ_R_MODDEF    AM_BIT(6)  /**< \brief ½ÓÊÕ»ò¶àÖ÷»úÖĞ¶Ï  */
-#define AMHW_FSL_SPI_IRQ_T           AM_BIT(5)  /**< \brief ·¢ËÍÍê³ÉÖĞ¶Ï      */
+#define AMHW_FSL_SPI_IRQ_MATCH       AM_BIT(7)  /**< \brief æ•°æ®åŒ¹é…ä¸­æ–­      */
+#define AMHW_FSL_SPI_IRQ_R_MODDEF    AM_BIT(6)  /**< \brief æ¥æ”¶æˆ–å¤šä¸»æœºä¸­æ–­  */
+#define AMHW_FSL_SPI_IRQ_T           AM_BIT(5)  /**< \brief å‘é€å®Œæˆä¸­æ–­      */
 
 /**
- * \name SPI FIFOÖĞ¶Ï
+ * \name SPI FIFOä¸­æ–­
  * @{
  */
 
-#define AMHW_FSL_SPI_FIFO_IRQ_T_NERAEMPTY AM_BIT(2) /**< \brief ·¢ËÍFIFO½ü¿ÕÖĞ¶Ï */
-#define AMHW_FSL_SPI_FIFO_IRQ_R_NERAFULL  AM_BIT(1) /**< \brief ½ÓÊÕFIFO½üÂúÖĞ¶Ï */
+#define AMHW_FSL_SPI_FIFO_IRQ_T_NERAEMPTY AM_BIT(2) /**< \brief å‘é€FIFOè¿‘ç©ºä¸­æ–­ */
+#define AMHW_FSL_SPI_FIFO_IRQ_R_NERAFULL  AM_BIT(1) /**< \brief æ¥æ”¶FIFOè¿‘æ»¡ä¸­æ–­ */
 
 /** @} */
 
 /**
- * \name SPI ¹¤×÷Ä£Ê½
+ * \name SPI å·¥ä½œæ¨¡å¼
  * @{
  */
 
-#define AMHW_FSL_SPI_WMODE_MASTER    (1 << 4)  /**< \brief Ö÷»úÄ£Ê½         */
-#define AMHW_FSL_SPI_WMODE_SLAVE     (0 << 4)  /**< \brief ´Ó»úÄ£Ê½         */
-#define AMHW_FSL_SPI_WMODE_M_SINGLE  ( 0x11 )  /**< \brief µ¥Êı¾İÏßÖ÷»úÄ£Ê½ */
-#define AMHW_FSL_SPI_WMODE_S_SINGLE  ( 0x01 )  /**< \brief µ¥Êı¾İÏß´Ó»úÄ£Ê½ */
+#define AMHW_FSL_SPI_WMODE_MASTER    (1 << 4)  /**< \brief ä¸»æœºæ¨¡å¼         */
+#define AMHW_FSL_SPI_WMODE_SLAVE     (0 << 4)  /**< \brief ä»æœºæ¨¡å¼         */
+#define AMHW_FSL_SPI_WMODE_M_SINGLE  ( 0x11 )  /**< \brief å•æ•°æ®çº¿ä¸»æœºæ¨¡å¼ */
+#define AMHW_FSL_SPI_WMODE_S_SINGLE  ( 0x01 )  /**< \brief å•æ•°æ®çº¿ä»æœºæ¨¡å¼ */
 
 /** @} */
 
 /**
- * \name SPI ÌØĞÔ
+ * \name SPI ç‰¹æ€§
  * @{
  */
 
-/** \brief ´«ÊäÊı¾İ¿í¶ÈÎª8Î» */
+/** \brief ä¼ è¾“æ•°æ®å®½åº¦ä¸º8ä½ */
 #define AMHW_FSL_SPI_CFG_8BIT_WIDTH     (AM_BIT(31) | AM_SBF(0,0))
 
-/** \brief ´«ÊäÊı¾İ¿í¶ÈÎª16Î» */
+/** \brief ä¼ è¾“æ•°æ®å®½åº¦ä¸º16ä½ */
 #define AMHW_FSL_SPI_CFG_16BIT_WIDTH    (AM_BIT(31) | AM_SBF(1,0))
 
-/** \brief ½ûÄÜDMA·¢ËÍ */
+/** \brief ç¦èƒ½DMAå‘é€ */
 #define AMHW_FSL_SPI_CFG_TDMA_DIS       (AM_BIT(30) | AM_SBF(0,1))
 
-/** \brief Ê¹ÄÜDMA·¢ËÍ */
+/** \brief ä½¿èƒ½DMAå‘é€ */
 #define AMHW_FSL_SPI_CFG_TDMA_EN        (AM_BIT(30) | AM_SBF(1,1))
 
-/** \brief ½ûÄÜDMA½ÓÊÕ */
+/** \brief ç¦èƒ½DMAæ¥æ”¶ */
 #define AMHW_FSL_SPI_CFG_RDMA_DIS       (AM_BIT(29) | AM_SBF(0,2))
 
-/** \brief Ê¹ÄÜDMA½ÓÊÕ */
+/** \brief ä½¿èƒ½DMAæ¥æ”¶ */
 #define AMHW_FSL_SPI_CFG_RDMA_EN        (AM_BIT(29) | AM_SBF(1,2))
 
-/** \brief Í£Ö¹Ä£Ê½SPI¼ÌĞø¹¤×÷ */
+/** \brief åœæ­¢æ¨¡å¼SPIç»§ç»­å·¥ä½œ */
 #define AMHW_FSL_SPI_CFG_WIAT_EN        (AM_BIT(28) | AM_SBF(0,3))
 
-/** \brief Í£Ö¹Ä£Ê½SPI²»¹¤×÷ */
+/** \brief åœæ­¢æ¨¡å¼SPIä¸å·¥ä½œ */
 #define AMHW_FSL_SPI_CFG_WIAT_DIS       (AM_BIT(28) | AM_SBF(1,3))
 
-/** \brief ¸ßÎ»ÓÅÏÈ·¢ËÍ */
+/** \brief é«˜ä½ä¼˜å…ˆå‘é€ */
 #define AMHW_FSL_SPI_CFG_MSB            (AM_BIT(27) | AM_SBF(0,4))
 
-/** \brief µÍÎ»ÓÅÏÈ·¢ËÍ */
+/** \brief ä½ä½ä¼˜å…ˆå‘é€ */
 #define AMHW_FSL_SPI_CFG_LSB            (AM_BIT(27) | AM_SBF(1,4))
 
 /** @} */
 
 /**
- * \name SPI Æ¬Ñ¡Òı½Å¹¦ÄÜ
+ * \name SPI ç‰‡é€‰å¼•è„šåŠŸèƒ½
  * @{
  */
 
-/** \brief SPIÊ¹ÓÃCSÒı½Å×÷ÎªÆ¬Ñ¡Êä³ö */
+/** \brief SPIä½¿ç”¨CSå¼•è„šä½œä¸ºç‰‡é€‰è¾“å‡º */
 #define AMHW_FSL_SPI_CS_SPI_OUT   ((1 << 4) | (1 << 1))
 
-/** \brief SPIÊ¹ÓÃCSÒı½Å×÷ÎªÊäÈë£¬¼ì²â¶àÖ÷»ú */
+/** \brief SPIä½¿ç”¨CSå¼•è„šä½œä¸ºè¾“å…¥ï¼Œæ£€æµ‹å¤šä¸»æœº */
 #define AMHW_FSL_SPI_CS_SPI_MODF  ((1 << 4) | (0 << 1))
 
-/** \brief SPI²»Ê¹ÓÃCSÒı½Å£¬CSÒı½ÅÎªGPIOÄ£Ê½ */
+/** \brief SPIä¸ä½¿ç”¨CSå¼•è„šï¼ŒCSå¼•è„šä¸ºGPIOæ¨¡å¼ */
 #define AMHW_FSL_SPI_CS_GPIO      ((0 << 4) | (0 << 1))
 
 /** @} */
 
 /**
- * \name SPI ´«ÊäÄ£Ê½
+ * \name SPI ä¼ è¾“æ¨¡å¼
  * @{
  */ 
 
-/** \brief SCKÄ¬ÈÏÎªµÍ£¬Êı¾İÏÂ½µÑØ¸Ä±ä£¬ÉÏÉıÑØ±£³Ö */
+/** \brief SCKé»˜è®¤ä¸ºä½ï¼Œæ•°æ®ä¸‹é™æ²¿æ”¹å˜ï¼Œä¸Šå‡æ²¿ä¿æŒ */
 #define AMHW_FSL_SPI_MODE_0     ((0 << 3) |(0 << 2))
  
-/** \brief SCKÄ¬ÈÏÎªµÍ£¬Êı¾İÉÏÉıÑØ¸Ä±ä£¬ÏÂ½µÑØ±£³Ö */
+/** \brief SCKé»˜è®¤ä¸ºä½ï¼Œæ•°æ®ä¸Šå‡æ²¿æ”¹å˜ï¼Œä¸‹é™æ²¿ä¿æŒ */
 #define AMHW_FSL_SPI_MODE_1     ((0 << 3) |(1 << 2))
 
-/** \brief SCKÄ¬ÈÏÎª¸ß£¬Êı¾İÉÏÉıÑØ¸Ä±ä£¬ÏÂ½µÑØ±£³Ö */
+/** \brief SCKé»˜è®¤ä¸ºé«˜ï¼Œæ•°æ®ä¸Šå‡æ²¿æ”¹å˜ï¼Œä¸‹é™æ²¿ä¿æŒ */
 #define AMHW_FSL_SPI_MODE_2     ((1 << 3) |(0 << 2))
      
-/** \brief SCKÄ¬ÈÏÎª¸ß£¬Êı¾İÏÂ½µÑØ¸Ä±ä£¬ÉÏÉı±£³Ö   */
+/** \brief SCKé»˜è®¤ä¸ºé«˜ï¼Œæ•°æ®ä¸‹é™æ²¿æ”¹å˜ï¼Œä¸Šå‡ä¿æŒ   */
 #define AMHW_FSL_SPI_MODE_3     ((1 << 3) |(1 << 2))
 
 /** @} */
 
 /**
- * \name SPI FIFOÖĞ¶ÏÇå³ıÑ¡Ïî
+ * \name SPI FIFOä¸­æ–­æ¸…é™¤é€‰é¡¹
  * @{
  */
 
-/** \brief Çå³ı·¢ËÍFIFO½Ó½ü¿ÕÖĞ¶Ï */
+/** \brief æ¸…é™¤å‘é€FIFOæ¥è¿‘ç©ºä¸­æ–­ */
 #define AMHW_FSL_SPI_FIFO_IRQ_CLR_TNE   (1 << 3)
 
-/** \brief Çå³ı½ÓÊÕFIFO½Ó½üÂúÖĞ¶Ï */
+/** \brief æ¸…é™¤æ¥æ”¶FIFOæ¥è¿‘æ»¡ä¸­æ–­ */
 #define AMHW_FSL_SPI_FIFO_IRQ_CLR_RNF   (1 << 2)
 
-/** \brief Çå³ı·¢ËÍÍê³ÉÖĞ¶Ï(·¢ËÍFIFO¿Õ) */
+/** \brief æ¸…é™¤å‘é€å®Œæˆä¸­æ–­(å‘é€FIFOç©º) */
 #define AMHW_FSL_SPI_FIFO_IRQ_CLR_TE    (1 << 1)
 
-/** \brief Çå³ı½ÓÊÕÍê³É(½ÓÊÕFIFOÂú) */
+/** \brief æ¸…é™¤æ¥æ”¶å®Œæˆ(æ¥æ”¶FIFOæ»¡) */
 #define AMHW_FSL_SPI_FIFO_IRQ_CLR_RF    (1 << 0)
 
 /** @} */
 
 /**
- * \name FIFO½Ó½ü³Ì¶ÈÑ¡Ïî
+ * \name FIFOæ¥è¿‘ç¨‹åº¦é€‰é¡¹
  * @{
  */
 
-/** \brief ·¢ËÍ»º³åÇøĞ¡ÓÚ16bit,½ÓÊÕ»º³åÇø¶àÓÚ48bit */
+/** \brief å‘é€ç¼“å†²åŒºå°äº16bit,æ¥æ”¶ç¼“å†²åŒºå¤šäº48bit */
 #define AMHW_FSL_SPI_FIFO_T_16BITS_R_48BITS ( (0 << 5) | (0 << 4))
 
-/** \brief ·¢ËÍ»º³åÇøĞ¡ÓÚ16bit,½ÓÊÕ»º³åÇø¶àÓÚ32bit */
+/** \brief å‘é€ç¼“å†²åŒºå°äº16bit,æ¥æ”¶ç¼“å†²åŒºå¤šäº32bit */
 #define AMHW_FSL_SPI_FIFO_T_16BITS_R_32BITS ( (0 << 5) | (1 << 4) )
 
-/** \brief ·¢ËÍ»º³åÇøĞ¡ÓÚ32bit,½ÓÊÕ»º³åÇø¶àÓÚ48bit */
+/** \brief å‘é€ç¼“å†²åŒºå°äº32bit,æ¥æ”¶ç¼“å†²åŒºå¤šäº48bit */
 #define AMHW_FSL_SPI_FIFO_T_32BITS_R_48BITS ( (1 << 5) | (0 << 4) )
 
-/** \brief ·¢ËÍ»º³åÇøĞ¡ÓÚ32bit,½ÓÊÕ»º³åÇø¶àÓÚ32bit */
+/** \brief å‘é€ç¼“å†²åŒºå°äº32bit,æ¥æ”¶ç¼“å†²åŒºå¤šäº32bit */
 #define AMHW_FSL_SPI_FIFO_T_32BITS_R_32BITS ( (1 << 5) | (1 << 4) )
 
 /** @} */
 
 /**
- * \brief Ê¹ÄÜSPIÄ£¿é
- * \param[in] p_hw_spi : Ö¸ÏòSPI¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ÎŞ
+ * \brief ä½¿èƒ½SPIæ¨¡å—
+ * \param[in] p_hw_spi : æŒ‡å‘SPIå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return æ— 
  */
 am_static_inline 
 void amhw_fsl_spi_enable (amhw_fsl_spi_t *p_hw_spi)
@@ -243,9 +243,9 @@ void amhw_fsl_spi_enable (amhw_fsl_spi_t *p_hw_spi)
 }
 
 /**
- * \brief ½ûÄÜSPIÄ£¿é
- * \param[in] p_hw_spi : Ö¸ÏòSPI¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return  ÎŞ
+ * \brief ç¦èƒ½SPIæ¨¡å—
+ * \param[in] p_hw_spi : æŒ‡å‘SPIå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return  æ— 
  */
 am_static_inline
 void amhw_fsl_spi_disable (amhw_fsl_spi_t *p_hw_spi)
@@ -254,9 +254,9 @@ void amhw_fsl_spi_disable (amhw_fsl_spi_t *p_hw_spi)
 }
 
 /**
- * \brief »ñÈ¡×´Ì¬±êÖ¾
- * \param[in] p_hw_spi : Ö¸ÏòSPI¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return  ×´Ì¬±êÖ¾(#AMHW_FSL_SPI_STAT_R_FULL)
+ * \brief è·å–çŠ¶æ€æ ‡å¿—
+ * \param[in] p_hw_spi : æŒ‡å‘SPIå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return  çŠ¶æ€æ ‡å¿—(#AMHW_FSL_SPI_STAT_R_FULL)
  */
 am_static_inline
 uint8_t amhw_fsl_spi_stat_get (amhw_fsl_spi_t *p_hw_spi)
@@ -265,15 +265,15 @@ uint8_t amhw_fsl_spi_stat_get (amhw_fsl_spi_t *p_hw_spi)
 }
 
 /**
- * \brief ÅäÖÃ·ÖÆµÏµÊı
+ * \brief é…ç½®åˆ†é¢‘ç³»æ•°
  *
- * \param[in] p_hw_spi : Ö¸ÏòSPI¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] pdiv     : Ô¤·ÖÆµÏµÊı(0-8)
- * \param[in] div      : ·ÖÅäÏµÊı(0-9)
+ * \param[in] p_hw_spi : æŒ‡å‘SPIå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] pdiv     : é¢„åˆ†é¢‘ç³»æ•°(0-8)
+ * \param[in] div      : åˆ†é…ç³»æ•°(0-9)
  *
- * \return  ÎŞ
+ * \return  æ— 
  *
- * \note ×Ü·ÖÆµÏµÊıDiv=(pdiv+1)*2^(div+1),SPI²¨ÌØÂÊ£ºBaud=ÊäÈëÊ±ÖÓ/×Ü·ÖÆµÏµÊı
+ * \note æ€»åˆ†é¢‘ç³»æ•°Div=(pdiv+1)*2^(div+1),SPIæ³¢ç‰¹ç‡ï¼šBaud=è¾“å…¥æ—¶é’Ÿ/æ€»åˆ†é¢‘ç³»æ•°
  */
 am_static_inline
 void amhw_fsl_spi_div_cfg (amhw_fsl_spi_t *p_hw_spi,
@@ -284,67 +284,67 @@ void amhw_fsl_spi_div_cfg (amhw_fsl_spi_t *p_hw_spi,
 }
 
 /**
- * \brief Ê¹ÄÜÆÕÍ¨ÖĞ¶Ï
+ * \brief ä½¿èƒ½æ™®é€šä¸­æ–­
  *
- * \param[in] p_hw_spi  : Ö¸ÏòSPI¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] irq_flags : ÖĞ¶Ï±êÊ¶£¬AMHW_FSL_SPI_IRQ_*ºêÖµ»ò¶à¸ö
+ * \param[in] p_hw_spi  : æŒ‡å‘SPIå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] irq_flags : ä¸­æ–­æ ‡è¯†ï¼ŒAMHW_FSL_SPI_IRQ_*å®å€¼æˆ–å¤šä¸ª
  *                        (#AMHW_FSL_SPI_IRQ_MATCH)
- * \return  ÎŞ
+ * \return  æ— 
  */
 void amhw_fsl_spi_int_enable (amhw_fsl_spi_t *p_hw_spi, uint8_t irq_flags);
 
 /**
- * \brief ½ûÄÜÆÕÍ¨ÖĞ¶Ï
+ * \brief ç¦èƒ½æ™®é€šä¸­æ–­
  *
- * \param[in] p_hw_spi  : Ö¸ÏòSPI¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] irq_flags : ÖĞ¶Ï±êÊ¶£¬AMHW_FSL_SPI_IRQ_*ºêÖµ»ò¶à¸ö
+ * \param[in] p_hw_spi  : æŒ‡å‘SPIå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] irq_flags : ä¸­æ–­æ ‡è¯†ï¼ŒAMHW_FSL_SPI_IRQ_*å®å€¼æˆ–å¤šä¸ª
  *                       (#AMHW_FSL_SPI_IRQ_MATCH)
- * \return  ÎŞ
+ * \return  æ— 
  */
 void amhw_fsl_spi_int_disable (amhw_fsl_spi_t *p_hw_spi, uint8_t irq_flags);
 
 /**
- * \brief ÅäÖÃSPI¹¤×÷Ä£Ê½(Ä¬ÈÏÎª´Ó»úÄ£Ê½)
+ * \brief é…ç½®SPIå·¥ä½œæ¨¡å¼(é»˜è®¤ä¸ºä»æœºæ¨¡å¼)
  *
- * \param[in] p_hw_spi  : Ö¸ÏòSPI¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] mode_flag : ¹¤×÷Ä£Ê½£¬AMHW_FSL_SPI_WMODE_*ºêÖµ
+ * \param[in] p_hw_spi  : æŒ‡å‘SPIå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] mode_flag : å·¥ä½œæ¨¡å¼ï¼ŒAMHW_FSL_SPI_WMODE_*å®å€¼
  *                        (#AMHW_FSL_SPI_WMODE_MASTER)
- * \return  ÎŞ
+ * \return  æ— 
  */
 void amhw_fsl_spi_workmode_cfg (amhw_fsl_spi_t *p_hw_spi, uint8_t mode_flag);
 
 /**
- * \brief ÅäÖÃSPIÌØĞÔ
+ * \brief é…ç½®SPIç‰¹æ€§
  *
- * \param[in] p_hw_spi : Ö¸ÏòSPI¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] flags    : ÌØĞÔ±êÊ¶£¬AMHW_FSL_SPI_CFG_*ºêÖµ»ò¶à¸ö
+ * \param[in] p_hw_spi : æŒ‡å‘SPIå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] flags    : ç‰¹æ€§æ ‡è¯†ï¼ŒAMHW_FSL_SPI_CFG_*å®å€¼æˆ–å¤šä¸ª
  *                      (#AMHW_FSL_SPI_CFG_8BIT_WIDTH)
  *
- * \return  ÎŞ
+ * \return  æ— 
  *
- * \note ÏÈÇ°ÅäÖÃµÄÌØĞÔ±»±£Áô£¬Ö»¸ü¸Äflags²ÎÊı°üº¬µÄÌØĞÔ
+ * \note å…ˆå‰é…ç½®çš„ç‰¹æ€§è¢«ä¿ç•™ï¼Œåªæ›´æ”¹flagså‚æ•°åŒ…å«çš„ç‰¹æ€§
  */
 void amhw_fsl_spi_feature_cfg (amhw_fsl_spi_t *p_hw_spi, uint32_t flags);
 
 /**
- * \brief ÅäÖÃCSÆ¬Ñ¡Òı½Å(Ä¬ÈÏÎªGPIO¹¦ÄÜ)
+ * \brief é…ç½®CSç‰‡é€‰å¼•è„š(é»˜è®¤ä¸ºGPIOåŠŸèƒ½)
  *
- * \param[in] p_hw_spi : Ö¸ÏòSPI¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] cs_flag  : ¹¦ÄÜ±êÊ¶£¬AMHW_FSL_SPI_CS_*ºêÖµ(#AMHW_FSL_SPI_CS_GPIO)
+ * \param[in] p_hw_spi : æŒ‡å‘SPIå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] cs_flag  : åŠŸèƒ½æ ‡è¯†ï¼ŒAMHW_FSL_SPI_CS_*å®å€¼(#AMHW_FSL_SPI_CS_GPIO)
  *
- * \return  ÎŞ
+ * \return  æ— 
  *
- * \note Ö»ÊÊÓÃÓÚÖ÷»ú¹¤×÷Ä£Ê½(´Ó»úÄ£Ê½£¬CSÖ»ÄÜÎªÆ¬Ñ¡ÊäÈë)
+ * \note åªé€‚ç”¨äºä¸»æœºå·¥ä½œæ¨¡å¼(ä»æœºæ¨¡å¼ï¼ŒCSåªèƒ½ä¸ºç‰‡é€‰è¾“å…¥)
  */
 void amhw_fsl_spi_cs_cfg (amhw_fsl_spi_t *p_hw_spi, uint8_t cs_flag);
 
 /**
- * \brief Ä£Ê½ÅäÖÃ(Ê±ÖÓÏàÎ»ºÍ¼«ĞÔ)
+ * \brief æ¨¡å¼é…ç½®(æ—¶é’Ÿç›¸ä½å’Œææ€§)
  *
- * \param[in] p_hw_spi  : Ö¸ÏòSPI¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] mode_flag : ¹¦ÄÜ±êÊ¶£¬AMHW_FSL_SPI_MODE*ºêÖµ(#AMHW_FSL_SPI_MODE_0)
+ * \param[in] p_hw_spi  : æŒ‡å‘SPIå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] mode_flag : åŠŸèƒ½æ ‡è¯†ï¼ŒAMHW_FSL_SPI_MODE*å®å€¼(#AMHW_FSL_SPI_MODE_0)
  *
- * \return  ÎŞ
+ * \return  æ— 
  */
 am_static_inline
 void amhw_fsl_spi_mode_cfg (amhw_fsl_spi_t *p_hw_spi, uint8_t mode_flag)
@@ -355,9 +355,9 @@ void amhw_fsl_spi_mode_cfg (amhw_fsl_spi_t *p_hw_spi, uint8_t mode_flag)
 }
 
 /**
- * \brief ¶ÁÈ¡½ÓÊÕµ½µÄÊı¾İ(¶Á16bits)
- * \param[in] p_hw_spi : Ö¸ÏòSPI¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return  ¶ÁÈ¡µ½µÄÊı¾İ
+ * \brief è¯»å–æ¥æ”¶åˆ°çš„æ•°æ®(è¯»16bits)
+ * \param[in] p_hw_spi : æŒ‡å‘SPIå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return  è¯»å–åˆ°çš„æ•°æ®
  */
 am_static_inline
 uint16_t amhw_fsl_spi_data16_read (amhw_fsl_spi_t *p_hw_spi)
@@ -371,9 +371,9 @@ uint16_t amhw_fsl_spi_data16_read (amhw_fsl_spi_t *p_hw_spi)
 }
 
 /**
- * \brief ¶ÁÈ¡½ÓÊÕµ½µÄÊı¾İ(¶Á8bits)
- * \param[in] p_hw_spi : Ö¸ÏòSPI¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return  ¶ÁÈ¡µ½µÄÊı¾İ
+ * \brief è¯»å–æ¥æ”¶åˆ°çš„æ•°æ®(è¯»8bits)
+ * \param[in] p_hw_spi : æŒ‡å‘SPIå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return  è¯»å–åˆ°çš„æ•°æ®
  */
 am_static_inline
 uint8_t amhw_fsl_spi_data8_read (amhw_fsl_spi_t *p_hw_spi)
@@ -382,12 +382,12 @@ uint8_t amhw_fsl_spi_data8_read (amhw_fsl_spi_t *p_hw_spi)
 }
 
 /**
- * \brief ·¢ËÍÊı¾İ(16bits)
+ * \brief å‘é€æ•°æ®(16bits)
  *
- * \param[in] p_hw_spi : Ö¸ÏòSPI¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] data     £º·¢ËÍµÄÊı¾İ
+ * \param[in] p_hw_spi : æŒ‡å‘SPIå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] data     ï¼šå‘é€çš„æ•°æ®
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_spi_data16_wirte (amhw_fsl_spi_t *p_hw_spi, uint16_t data)
@@ -397,12 +397,12 @@ void amhw_fsl_spi_data16_wirte (amhw_fsl_spi_t *p_hw_spi, uint16_t data)
 }
 
 /**
- * \brief ·¢ËÍÊı¾İ(8bits)
+ * \brief å‘é€æ•°æ®(8bits)
  *
- * \param[in] p_hw_spi : Ö¸ÏòSPI¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] data     £º·¢ËÍµÄÊı¾İ
+ * \param[in] p_hw_spi : æŒ‡å‘SPIå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] data     ï¼šå‘é€çš„æ•°æ®
  *
- * \return  ¶ÁÈ¡µ½µÄÊı¾İ
+ * \return  è¯»å–åˆ°çš„æ•°æ®
  */
 am_static_inline
 void amhw_fsl_spi_data8_wirte (amhw_fsl_spi_t *p_hw_spi, uint8_t data)
@@ -411,9 +411,9 @@ void amhw_fsl_spi_data8_wirte (amhw_fsl_spi_t *p_hw_spi, uint8_t data)
 }
 
 /**
- * \brief »ñÈ¡µ±Ç°ÉèÖÃµÄÆ¥ÅäÊı¾İ(16bit)
- * \param[in] p_hw_spi : Ö¸ÏòSPI¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return  ¶ÁÈ¡µ½µÄÊı¾İ
+ * \brief è·å–å½“å‰è®¾ç½®çš„åŒ¹é…æ•°æ®(16bit)
+ * \param[in] p_hw_spi : æŒ‡å‘SPIå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return  è¯»å–åˆ°çš„æ•°æ®
  */
 am_static_inline
 uint16_t amhw_fsl_spi_matchdata16_read (amhw_fsl_spi_t *p_hw_spi)
@@ -427,12 +427,12 @@ uint16_t amhw_fsl_spi_matchdata16_read (amhw_fsl_spi_t *p_hw_spi)
 }
 
 /**
- * \brief ÅäÖÃÆ¥ÅäÊı¾İ(16bit)
+ * \brief é…ç½®åŒ¹é…æ•°æ®(16bit)
  *
- * \param[in] p_hw_spi : Ö¸ÏòSPI¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] data     £ºĞèÒªÆ¥ÅäµÄÊı¾İ
+ * \param[in] p_hw_spi : æŒ‡å‘SPIå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] data     ï¼šéœ€è¦åŒ¹é…çš„æ•°æ®
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_spi_matchdata16_wirte (amhw_fsl_spi_t *p_hw_spi, uint16_t data)
@@ -442,16 +442,16 @@ void amhw_fsl_spi_matchdata16_wirte (amhw_fsl_spi_t *p_hw_spi, uint16_t data)
 }
 
 /**
- * \brief MOMI»òÕßSISOÊı¾İÏßµÄ·½ÏòÅäÖÃ
+ * \brief MOMIæˆ–è€…SISOæ•°æ®çº¿çš„æ–¹å‘é…ç½®
  *
- * \param[in] p_hw_spi : Ö¸ÏòSPI¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] dir      £º·½Ïò
- *      \arg 0   :  ÊäÈë
- *      \arg ·Ç0 £º Êä³ö
+ * \param[in] p_hw_spi : æŒ‡å‘SPIå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] dir      ï¼šæ–¹å‘
+ *      \arg 0   :  è¾“å…¥
+ *      \arg é0 ï¼š è¾“å‡º
  *
- * \return ÎŞ
+ * \return æ— 
  *
- * \note Ö÷»úÄ£Ê½Ê¹ÓÃMIMO,´Ó»úÄ£Ê½Ê¹ÓÃSISO£¬µ¥Êı¾İÏßÄ£Ê½ÓĞĞ§
+ * \note ä¸»æœºæ¨¡å¼ä½¿ç”¨MIMO,ä»æœºæ¨¡å¼ä½¿ç”¨SISOï¼Œå•æ•°æ®çº¿æ¨¡å¼æœ‰æ•ˆ
  */
 am_static_inline
 void amhw_fsl_spi_dataline_dir_cfg (amhw_fsl_spi_t *p_hw_spi, uint8_t dir)
@@ -464,25 +464,25 @@ void amhw_fsl_spi_dataline_dir_cfg (amhw_fsl_spi_t *p_hw_spi, uint8_t dir)
 }
 
 /******************************************************************************
- * ÒÔÏÂÎªFIFOÌØĞÔÅäÖÃ,Ö»ÓĞSPI1Ö§³ÖÏÂÃæÌØĞÔ                                    *
+ * ä»¥ä¸‹ä¸ºFIFOç‰¹æ€§é…ç½®,åªæœ‰SPI1æ”¯æŒä¸‹é¢ç‰¹æ€§                                    *
  * ***************************************************************************/
 
 /**
- * \brief FIFOÄ£Ê½Ê¹ÓÃÅäÖÃ
+ * \brief FIFOæ¨¡å¼ä½¿ç”¨é…ç½®
  *
- * \param[in] p_hw_spi : Ö¸ÏòSPI¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] use_fifo : ÊÇ·ñÊ¹ÓÃFIFO
- *      \arg AM_TRUE  : ÆôÓÃFIFOÄ£Ê½
- *      \arg AM_FALSE : ²»Ê¹ÓÃFIFOÄ£Ê½
+ * \param[in] p_hw_spi : æŒ‡å‘SPIå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] use_fifo : æ˜¯å¦ä½¿ç”¨FIFO
+ *      \arg AM_TRUE  : å¯ç”¨FIFOæ¨¡å¼
+ *      \arg AM_FALSE : ä¸ä½¿ç”¨FIFOæ¨¡å¼
  *
- * \return  ÎŞ
+ * \return  æ— 
  *
- * \note Ö»ÓĞSPI1¿ÉÒÔÊ¹ÓÃ´Ëº¯Êı
+ * \note åªæœ‰SPI1å¯ä»¥ä½¿ç”¨æ­¤å‡½æ•°
  */
 am_static_inline
 void amhw_fsl_spi_fifo_cfg (amhw_fsl_spi_t *p_hw_spi, am_bool_t use_fifo)
 {
-    /* Ê¹ÓÃFIFO */
+    /* ä½¿ç”¨FIFO */
     if (use_fifo) {
         p_hw_spi->c3 |= 0x01;
     } else {
@@ -491,10 +491,10 @@ void amhw_fsl_spi_fifo_cfg (amhw_fsl_spi_t *p_hw_spi, am_bool_t use_fifo)
 }
 
 /**
- * \brief »ñÈ¡FIFO´íÎó±êÖ¾
- * \param[in] p_hw_spi : Ö¸ÏòSPI¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return  ´íÎó±êÖ¾
- * \note ¶ÁÈ¡±êÖ¾ºóÓ²¼şÇå³ı£¬´Ëº¯ÊıÖ»ÄÜ±»SPI1µ÷ÓÃ
+ * \brief è·å–FIFOé”™è¯¯æ ‡å¿—
+ * \param[in] p_hw_spi : æŒ‡å‘SPIå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return  é”™è¯¯æ ‡å¿—
+ * \note è¯»å–æ ‡å¿—åç¡¬ä»¶æ¸…é™¤ï¼Œæ­¤å‡½æ•°åªèƒ½è¢«SPI1è°ƒç”¨
  */
 am_static_inline
 uint8_t amhw_fsl_spi_error_get (amhw_fsl_spi_t *p_hw_spi)
@@ -503,14 +503,14 @@ uint8_t amhw_fsl_spi_error_get (amhw_fsl_spi_t *p_hw_spi)
 }
 
 /**
- * \brief ÅäÖÃFIFO½Ó½ü³Ì¶È(Ä¬ÈÏT-16bit,R-48bit)
+ * \brief é…ç½®FIFOæ¥è¿‘ç¨‹åº¦(é»˜è®¤T-16bit,R-48bit)
  *
- * \param[in] p_hw_spi : Ö¸ÏòSPI¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] flags    : ½Ó½ü³Ì¶È±êÊ¶(#AMHW_FSL_SPI_FIFO_T_16BITS_R_48BITS)
+ * \param[in] p_hw_spi : æŒ‡å‘SPIå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] flags    : æ¥è¿‘ç¨‹åº¦æ ‡è¯†(#AMHW_FSL_SPI_FIFO_T_16BITS_R_48BITS)
  *
- * \return  ÎŞ
+ * \return  æ— 
  *
- * \note Ö»ÓĞSPI1¿ÉÒÔµ÷ÓÃ´Ëº¯Êı
+ * \note åªæœ‰SPI1å¯ä»¥è°ƒç”¨æ­¤å‡½æ•°
  */
 am_static_inline
 void amhw_fsl_spi_fifo_near_cfg (amhw_fsl_spi_t *p_hw_spi, uint8_t flags)
@@ -521,16 +521,16 @@ void amhw_fsl_spi_fifo_near_cfg (amhw_fsl_spi_t *p_hw_spi, uint8_t flags)
 }
 
 /**
- * \brief ÅäÖÃFIFOÖĞ¶Ï±êÖ¾Çå³ıÄ£Ê½(Ä¬ÈÏ×Ô¶¯Çå³ı±êÖ¾)
+ * \brief é…ç½®FIFOä¸­æ–­æ ‡å¿—æ¸…é™¤æ¨¡å¼(é»˜è®¤è‡ªåŠ¨æ¸…é™¤æ ‡å¿—)
  *
- * \param[in] p_hw_spi : Ö¸ÏòSPI¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] is_auto  : ÊÇ·ñ¸ù¾İFIFO×´Ì¬×Ô¶¯Çå³ı
- *      \arg AM_TRUE  : ¸ù¾İFIFO×´Ì¬×Ô¶¯Çå³ı
- *      \arg AM_FALSE £ºÊ¹ÓÃamhw_fsl_spi_fifo_flags_clrÇå³ı×´Ì¬±êÖ¾
+ * \param[in] p_hw_spi : æŒ‡å‘SPIå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] is_auto  : æ˜¯å¦æ ¹æ®FIFOçŠ¶æ€è‡ªåŠ¨æ¸…é™¤
+ *      \arg AM_TRUE  : æ ¹æ®FIFOçŠ¶æ€è‡ªåŠ¨æ¸…é™¤
+ *      \arg AM_FALSE ï¼šä½¿ç”¨amhw_fsl_spi_fifo_flags_clræ¸…é™¤çŠ¶æ€æ ‡å¿—
  *
- * \return  ÎŞ
+ * \return  æ— 
  *
- * \note Ö»ÓĞSPI1¿ÉÒÔµ÷ÓÃ´Ëº¯Êı
+ * \note åªæœ‰SPI1å¯ä»¥è°ƒç”¨æ­¤å‡½æ•°
  */
 am_static_inline
 void amhw_fsl_spi_fifo_irqs_clrmode_cfg (amhw_fsl_spi_t *p_hw_spi,
@@ -544,15 +544,15 @@ void amhw_fsl_spi_fifo_irqs_clrmode_cfg (amhw_fsl_spi_t *p_hw_spi,
 }
 
 /**
- * \brief Çå³ıFIFOÖĞ¶Ï±êÖ¾
+ * \brief æ¸…é™¤FIFOä¸­æ–­æ ‡å¿—
  *
- * \param[in] p_hw_spi : Ö¸ÏòSPI¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] flags    : FIFO±êÖ¾£¬AMHW_FSL_SPI_FIFO_IRQ_CLR_*ºêÖµ
+ * \param[in] p_hw_spi : æŒ‡å‘SPIå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] flags    : FIFOæ ‡å¿—ï¼ŒAMHW_FSL_SPI_FIFO_IRQ_CLR_*å®å€¼
  *                      (#AMHW_FSL_SPI_FIFO_IRQ_CLR_TNE)
  *
- * \return  ÎŞ
+ * \return  æ— 
  *
- * \note Ö»ÓĞSPI1¿ÉÒÔµ÷ÓÃ´Ëº¯Êı
+ * \note åªæœ‰SPI1å¯ä»¥è°ƒç”¨æ­¤å‡½æ•°
  */
 am_static_inline
 void amhw_fsl_spi_fifo_irqs_clr (amhw_fsl_spi_t *p_hw_spi, uint8_t flags)
@@ -561,15 +561,15 @@ void amhw_fsl_spi_fifo_irqs_clr (amhw_fsl_spi_t *p_hw_spi, uint8_t flags)
 }
 
 /**
- * \brief Ê¹ÄÜFIFOÖĞ¶Ï
+ * \brief ä½¿èƒ½FIFOä¸­æ–­
  *
- * \param[in] p_hw_spi       : Ö¸ÏòSPI¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] fifo_irq_flags : ÖĞ¶Ï±êÊ¶£¬AMHW_FSL_SPI_FIFO_IRQ_*ºêÖµ»ò¶à¸ö
+ * \param[in] p_hw_spi       : æŒ‡å‘SPIå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] fifo_irq_flags : ä¸­æ–­æ ‡è¯†ï¼ŒAMHW_FSL_SPI_FIFO_IRQ_*å®å€¼æˆ–å¤šä¸ª
  *                             (#AMHW_FSL_SPI_FIFO_IRQ_T_NERAEMPTY)
  *
- * \return  ÎŞ
+ * \return  æ— 
  *
- * \note ´Ëº¯ÊıÖ»ÄÜ±»SPI1µ÷ÓÃ
+ * \note æ­¤å‡½æ•°åªèƒ½è¢«SPI1è°ƒç”¨
  */
 am_static_inline
 void amhw_fsl_spi_fifo_int_enable (amhw_fsl_spi_t *p_hw_spi,
@@ -584,14 +584,14 @@ void amhw_fsl_spi_fifo_int_enable (amhw_fsl_spi_t *p_hw_spi,
 }
 
 /**
- * \brief ½ûÄÜFIFOÖĞ¶Ï
+ * \brief ç¦èƒ½FIFOä¸­æ–­
  *
- * \param[in] p_hw_spi       : Ö¸ÏòSPI¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] fifo_irq_flags : ÖĞ¶Ï±êÊ¶£¬AMHW_FSL_SPI_FIFO_IRQ_*ºêÖµ»ò¶à¸ö
+ * \param[in] p_hw_spi       : æŒ‡å‘SPIå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] fifo_irq_flags : ä¸­æ–­æ ‡è¯†ï¼ŒAMHW_FSL_SPI_FIFO_IRQ_*å®å€¼æˆ–å¤šä¸ª
  *                           (#AMHW_FSL_SPI_FIFO_IRQ_T_NERAEMPTY)
- * \return  ÎŞ
+ * \return  æ— 
  *
- * \note ´Ëº¯ÊıÖ»ÄÜ±»SPI1µ÷ÓÃ
+ * \note æ­¤å‡½æ•°åªèƒ½è¢«SPI1è°ƒç”¨
  */
 am_static_inline
 void amhw_fsl_spi_fifo_int_disable (amhw_fsl_spi_t *p_hw_spi,

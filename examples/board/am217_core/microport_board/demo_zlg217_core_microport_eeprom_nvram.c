@@ -12,24 +12,24 @@
 
 /**
  * \file
- * \brief MicroPort EEPROM Àý³Ì£¬Í¨¹ý NVRAM ½Ó¿ÚÊµÏÖ
+ * \brief MicroPort EEPROM ä¾‹ç¨‹ï¼Œé€šè¿‡ NVRAM æŽ¥å£å®žçŽ°
  *
- * ÓÉÓÚ FM24C02 µÈ EEPROM ÊÇµäÐÍµÄ·ÇÒ×Ê§ÐÔ´æ´¢Æ÷£¬Òò´ËÊ¹ÓÃ NVRAM£¨·Ç
- * Ò×Ê§ÐÔ´æ´¢Æ÷£©±ê×¼½Ó¿Ú¶ÁÐ´Êý¾Ý¾ÍÎÞÐè¹ØÐÄ¾ßÌåµÄÆ÷¼þÁË¡£
+ * ç”±äºŽ FM24C02 ç­‰ EEPROM æ˜¯å…¸åž‹çš„éžæ˜“å¤±æ€§å­˜å‚¨å™¨ï¼Œå› æ­¤ä½¿ç”¨ NVRAMï¼ˆéž
+ * æ˜“å¤±æ€§å­˜å‚¨å™¨ï¼‰æ ‡å‡†æŽ¥å£è¯»å†™æ•°æ®å°±æ— éœ€å…³å¿ƒå…·ä½“çš„å™¨ä»¶äº†ã€‚
  *
- * - ²Ù×÷²½Öè:
- *   1. ½« MicroPort EEPROM Åä°åÁ¬½Óµ½ AM217BLE µÄ MicroPort ½Ó¿Ú¡£
+ * - æ“ä½œæ­¥éª¤:
+ *   1. å°† MicroPort EEPROM é…æ¿è¿žæŽ¥åˆ° AM217BLE çš„ MicroPort æŽ¥å£ã€‚
  *
- * - ÊµÑéÏÖÏó:
- *   1. Ö÷»úÐ´Êý¾Ýµ½ EEPROM£»
- *   2. Ö÷»ú´Ó EEPROM ¶ÁÈ¡Êý¾Ý£¬²¢Í¨¹ý´®¿Ú´òÓ¡´¦Àí£»
- *   3. ´®¿Ú´òÓ¡³ö²âÊÔ½á¹û¡£
+ * - å®žéªŒçŽ°è±¡:
+ *   1. ä¸»æœºå†™æ•°æ®åˆ° EEPROMï¼›
+ *   2. ä¸»æœºä»Ž EEPROM è¯»å–æ•°æ®ï¼Œå¹¶é€šè¿‡ä¸²å£æ‰“å°å¤„ç†ï¼›
+ *   3. ä¸²å£æ‰“å°å‡ºæµ‹è¯•ç»“æžœã€‚
  *
  * \note
- *    ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIOA_10 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *    PIOA_9 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
+ *    å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIOA_10 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *    PIOA_9 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_microport_eeprom_nvram.c src_microport_eeprom_nvram
  *
  * \internal
@@ -52,16 +52,16 @@
 #include "demo_std_entries.h"
 #include "demo_am217_core_entries.h"
 
-#define __TEST_LENTH      16                  /**< \brief ¶ÁÐ´×Ö½ÚÊý */
-#define __NVRAM_SEG_NAME  "microport_eeprom"  /**< \brief NVRAM ´¢´æ¶ÎÃû³Æ */
-#define __NVRAM_SEG_UNIT  0                   /**< \brief NVRAM ´¢´æ¶Îµ¥ÔªºÅ */
+#define __TEST_LENTH      16                  /**< \brief è¯»å†™å­—èŠ‚æ•° */
+#define __NVRAM_SEG_NAME  "microport_eeprom"  /**< \brief NVRAM å‚¨å­˜æ®µåç§° */
+#define __NVRAM_SEG_UNIT  0                   /**< \brief NVRAM å‚¨å­˜æ®µå•å…ƒå· */
 
 /**
- * \brief MicroPort EEPROM Àý³Ì£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MicroPort EEPROM ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * \param ÎÞ
+ * \param æ— 
  *
- * \return ÎÞ
+ * \return æ— 
  */
 void demo_zlg217_core_microport_eeprom_nvram_entry (void)
 {

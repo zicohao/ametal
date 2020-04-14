@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ARM LIB ÊÊÅäÆ÷
+ * \brief ARM LIB é€‚é…å™¨
  *
  * \internal
  * \par Modification History
@@ -22,14 +22,14 @@
 
 #ifndef __MICROLIB
 
-/** \brief ·ÀÖ¹Ê¹ÓÃ°ëÖ÷»úÄ£Ê½ */
+/** \brief é˜²æ­¢ä½¿ç”¨åŠä¸»æœºæ¨¡å¼ */
 #pragma import(__use_no_semihosting)
 
-/** \brief Ê¹ÓÃheap2 */
+/** \brief ä½¿ç”¨heap2 */
 #pragma import(__use_realtime_heap)
 
 /*******************************************************************************
-  Í·ÎÄ¼ş°üº¬
+  å¤´æ–‡ä»¶åŒ…å«
 *******************************************************************************/
 #include "ametal.h"
 #include "am_mem.h"
@@ -42,36 +42,36 @@
 #include <time.h>
 
 /*******************************************************************************
-  ±¾µØÈ«¾Ö±äÁ¿ÉùÃ÷
+  æœ¬åœ°å…¨å±€å˜é‡å£°æ˜
 *******************************************************************************/
 
-/** \brief ARM LIBÊÊÅäÆ÷½á¹¹ */
+/** \brief ARM LIBé€‚é…å™¨ç»“æ„ */
 typedef struct am_armlib_adapter {
-    const am_armlib_adapter_ops_t *p_ops; /** < \brief Çı¶¯º¯Êı */
-    void                          *p_arg; /** < \brief Çı¶¯º¯Êı²ÎÊı */
+    const am_armlib_adapter_ops_t *p_ops; /** < \brief é©±åŠ¨å‡½æ•° */
+    void                          *p_arg; /** < \brief é©±åŠ¨å‡½æ•°å‚æ•° */
 } am_armlib_adapter_t;
 
 /*******************************************************************************
-  ±¾µØÈ«¾Ö±äÁ¿¶¨Òå
+  æœ¬åœ°å…¨å±€å˜é‡å®šä¹‰
 *******************************************************************************/
 
-static am_armlib_adapter_t __g_adapter; /**< \brief ARM LIBÊÊÅäÆ÷ */
+static am_armlib_adapter_t __g_adapter; /**< \brief ARM LIBé€‚é…å™¨ */
 
-const char __stdin_name[]  = ":tt";     /**< \brief ¶¨ÒåstdinµÄÎÄ¼şÃû */
-const char __stdout_name[] = ":tt";     /**< \brief ¶¨ÒåstdoutµÄÎÄ¼şÃû */
-const char __stderr_name[] = ":tt";     /**< \brief ¶¨ÒåstderrµÄÎÄ¼şÃû */
+const char __stdin_name[]  = ":tt";     /**< \brief å®šä¹‰stdinçš„æ–‡ä»¶å */
+const char __stdout_name[] = ":tt";     /**< \brief å®šä¹‰stdoutçš„æ–‡ä»¶å */
+const char __stderr_name[] = ":tt";     /**< \brief å®šä¹‰stderrçš„æ–‡ä»¶å */
 
 /*******************************************************************************
-  ±¾µØº¯Êı¶¨Òå
+  æœ¬åœ°å‡½æ•°å®šä¹‰
 *******************************************************************************/
 
 /** 
- * \brief Êä³öÒ»¸ö×Ö·û
+ * \brief è¾“å‡ºä¸€ä¸ªå­—ç¬¦
  *
- * \param[in] ch       ĞèÒªÊä³öµÄ×Ö·û
- * \param[in] p_stream Ö¸ÏòFILE¶ÔÏóµÄÖ¸Õë
+ * \param[in] ch       éœ€è¦è¾“å‡ºçš„å­—ç¬¦
+ * \param[in] p_stream æŒ‡å‘FILEå¯¹è±¡çš„æŒ‡é’ˆ
  *
- * \return Èç¹ûÃ»ÓĞ·¢Éú´íÎó£¬·µ»Ø±»Êä³öµÄ×Ö·û¡£·ñÔò·µ»ØEOF
+ * \return å¦‚æœæ²¡æœ‰å‘ç”Ÿé”™è¯¯ï¼Œè¿”å›è¢«è¾“å‡ºçš„å­—ç¬¦ã€‚å¦åˆ™è¿”å›EOF
  */
 int fputc (int ch, FILE *p_stream) 
 {
@@ -85,11 +85,11 @@ int fputc (int ch, FILE *p_stream)
 }
 
 /** 
- * \brief ÊäÈëÒ»¸ö×Ö·û
+ * \brief è¾“å…¥ä¸€ä¸ªå­—ç¬¦
  *
- * \param[in] p_stream Ö¸ÏòFILE¶ÔÏóµÄÖ¸Õë
+ * \param[in] p_stream æŒ‡å‘FILEå¯¹è±¡çš„æŒ‡é’ˆ
  *
- * \return Èç¹ûÃ»ÓĞ·¢Éú´íÎó£¬·µ»ØÊäÈëµÄ×Ö·û¡£·ñÔò·µ»ØEOF
+ * \return å¦‚æœæ²¡æœ‰å‘ç”Ÿé”™è¯¯ï¼Œè¿”å›è¾“å…¥çš„å­—ç¬¦ã€‚å¦åˆ™è¿”å›EOF
  */
 int fgetc (FILE *p_stream)
 {        
@@ -103,12 +103,12 @@ int fgetc (FILE *p_stream)
 };
 
 /** 
- * \brief ½«ÉÏ´Î¶ÁÈ¡µÄ×Ö·û·µ»Øµ½FILEÁ÷ÖĞ
+ * \brief å°†ä¸Šæ¬¡è¯»å–çš„å­—ç¬¦è¿”å›åˆ°FILEæµä¸­
  *
- * \param[in] p_stream Ö¸ÏòFILE¶ÔÏóµÄÖ¸Õë
+ * \param[in] p_stream æŒ‡å‘FILEå¯¹è±¡çš„æŒ‡é’ˆ
  *
- * \retval 0   ³É¹¦
- * \retval EOF Ê§°Ü
+ * \retval 0   æˆåŠŸ
+ * \retval EOF å¤±è´¥
  */
 int __backspace (FILE *p_stream)
 {
@@ -116,11 +116,11 @@ int __backspace (FILE *p_stream)
 }
 
 /** 
- * \brief ARM LIBÍË³öº¯Êı£¬²»¿É·µ»Ø
+ * \brief ARM LIBé€€å‡ºå‡½æ•°ï¼Œä¸å¯è¿”å›
  *
- * \param[in] return_code µ÷ÓÃ¸Ãº¯ÊıµÄ·µ»ØÖµ
+ * \param[in] return_code è°ƒç”¨è¯¥å‡½æ•°çš„è¿”å›å€¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void _sys_exit (int return_code)
 {
@@ -128,13 +128,13 @@ void _sys_exit (int return_code)
 }
 
 /** 
- * \brief ¶ÏÑÔÊ§°Ü´¦Àíº¯Êı
+ * \brief æ–­è¨€å¤±è´¥å¤„ç†å‡½æ•°
  *
- * \param[in] p_expr ±í´ïÊ½
- * \param[in] p_file ÎÄ¼şÃû
- * \param[in] line   ĞĞºÅ
+ * \param[in] p_expr è¡¨è¾¾å¼
+ * \param[in] p_file æ–‡ä»¶å
+ * \param[in] line   è¡Œå·
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void __aeabi_assert (const char *p_expr, const char *p_file, int line)
 {
@@ -144,12 +144,12 @@ void __aeabi_assert (const char *p_expr, const char *p_file, int line)
 }
 
 /** 
- * \brief ´ò¿ªÎÄ¼ş
+ * \brief æ‰“å¼€æ–‡ä»¶
  *
- * \param[in] p_name   ÎÄ¼şÃû
- * \param[in] openmode ´ò¿ªÄ£Ê½
+ * \param[in] p_name   æ–‡ä»¶å
+ * \param[in] openmode æ‰“å¼€æ¨¡å¼
  *
- * \return ³É¹¦·µ»ØÎÄ¼ş¾ä±ú£¬Ê§°Ü·µ»Ø-1
+ * \return æˆåŠŸè¿”å›æ–‡ä»¶å¥æŸ„ï¼Œå¤±è´¥è¿”å›-1
  */
 FILEHANDLE _sys_open (const char *p_name, int openmode)
 {
@@ -157,11 +157,11 @@ FILEHANDLE _sys_open (const char *p_name, int openmode)
 }
 
 /** 
- * \brief ¹Ø±ÕÎÄ¼ş
+ * \brief å…³é—­æ–‡ä»¶
  *
- * \param[in] fh ÎÄ¼ş¾ä±ú
+ * \param[in] fh æ–‡ä»¶å¥æŸ„
  *
- * \return ³É¹¦·µ»Ø0£¬Ê§°Ü·µ»Ø¸ºÖµ
+ * \return æˆåŠŸè¿”å›0ï¼Œå¤±è´¥è¿”å›è´Ÿå€¼
  */
 int _sys_close (FILEHANDLE fh)
 {
@@ -169,14 +169,14 @@ int _sys_close (FILEHANDLE fh)
 }
 
 /** 
- * \brief Ğ´ÎÄ¼ş
+ * \brief å†™æ–‡ä»¶
  *
- * \param[in] fh    ÎÄ¼ş¾ä±ú
- * \param[in] p_buf »º³åÇøµØÖ·
- * \param[in] len   ´ıĞ´Èë×Ö½ÚÊı
- * \param[in] mode  Ä£Ê½(ÒòÎªÀúÊ·Ô­Òò±£Áô£¬±ØĞëºöÂÔ)
+ * \param[in] fh    æ–‡ä»¶å¥æŸ„
+ * \param[in] p_buf ç¼“å†²åŒºåœ°å€
+ * \param[in] len   å¾…å†™å…¥å­—èŠ‚æ•°
+ * \param[in] mode  æ¨¡å¼(å› ä¸ºå†å²åŸå› ä¿ç•™ï¼Œå¿…é¡»å¿½ç•¥)
  *
- * \return ³É¹¦·µ»Ø0£¬Ê§°Ü·µ»Ø¸ºÖµÇÒ´óĞ¡ÎªĞ´ÈëÊ§°ÜµÄ×Ö½ÚÊı
+ * \return æˆåŠŸè¿”å›0ï¼Œå¤±è´¥è¿”å›è´Ÿå€¼ä¸”å¤§å°ä¸ºå†™å…¥å¤±è´¥çš„å­—èŠ‚æ•°
  */
 int _sys_write (FILEHANDLE           fh, 
                 const unsigned char *p_buf,
@@ -187,17 +187,17 @@ int _sys_write (FILEHANDLE           fh,
 }
 
 /** 
- * \brief ¶ÁÎÄ¼ş
+ * \brief è¯»æ–‡ä»¶
  *
- * \param[in]  fh    ÎÄ¼ş¾ä±ú
- * \param[out] p_buf »º³åÇøµØÖ·
- * \param[in]  len   ´ıĞ´Èë×Ö½ÚÊı
- * \param[in]  mode  Ä£Ê½(ÒòÎªÀúÊ·Ô­Òò±£Áô£¬±ØĞëºöÂÔ)
+ * \param[in]  fh    æ–‡ä»¶å¥æŸ„
+ * \param[out] p_buf ç¼“å†²åŒºåœ°å€
+ * \param[in]  len   å¾…å†™å…¥å­—èŠ‚æ•°
+ * \param[in]  mode  æ¨¡å¼(å› ä¸ºå†å²åŸå› ä¿ç•™ï¼Œå¿…é¡»å¿½ç•¥)
  *
- * \return ³É¹¦·µ»Ø0£¬µ«¶ÁÈ¡µ½ÎÄ¼şÄ©Î²Ê±·µ»ØEOF
- *         Ö»³É¹¦¶ÁÈ¡²¿·ÖÊı¾İÊ±£¬·µ»ØÎ´¶ÁÈ¡µÄ×Ö½ÚÊı
- *         ´ÓÎÄ¼şÄ©Î²¿ªÊ¼¶ÁÈ¡ÇÒÖ»³É¹¦¶ÁÈ¡²¿·ÖÊı¾İÊ±£¬·µ»ØÎ´¶ÁÈ¡µÄ×Ö½ÚÊıÇÒ½«×î¸ßÎ»ÖÃÎ»
- *         Ê§°Ü·µ»Ø-1
+ * \return æˆåŠŸè¿”å›0ï¼Œä½†è¯»å–åˆ°æ–‡ä»¶æœ«å°¾æ—¶è¿”å›EOF
+ *         åªæˆåŠŸè¯»å–éƒ¨åˆ†æ•°æ®æ—¶ï¼Œè¿”å›æœªè¯»å–çš„å­—èŠ‚æ•°
+ *         ä»æ–‡ä»¶æœ«å°¾å¼€å§‹è¯»å–ä¸”åªæˆåŠŸè¯»å–éƒ¨åˆ†æ•°æ®æ—¶ï¼Œè¿”å›æœªè¯»å–çš„å­—èŠ‚æ•°ä¸”å°†æœ€é«˜ä½ç½®ä½
+ *         å¤±è´¥è¿”å›-1
  */
 int _sys_read (FILEHANDLE     fh, 
                unsigned char *p_buf,
@@ -208,11 +208,11 @@ int _sys_read (FILEHANDLE     fh,
 }
 
 /** 
- * \brief ÏòÖÕ¶ËÊä³öÒ»¸ö×Ö·û
+ * \brief å‘ç»ˆç«¯è¾“å‡ºä¸€ä¸ªå­—ç¬¦
  *
- * \param[in] ch ´ıÊä³öµÄ×Ö·û
+ * \param[in] ch å¾…è¾“å‡ºçš„å­—ç¬¦
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void _ttywrch (int ch)
 {
@@ -220,11 +220,11 @@ void _ttywrch (int ch)
 }
 
 /** 
- * \brief ÅĞ¶ÏÒ»¸öÎÄ¼ş¾ä±úÊÇ·ñÎªÖÕ¶Ë
+ * \brief åˆ¤æ–­ä¸€ä¸ªæ–‡ä»¶å¥æŸ„æ˜¯å¦ä¸ºç»ˆç«¯
  *
- * \param[in] fh ÎÄ¼ş¾ä±ú
+ * \param[in] fh æ–‡ä»¶å¥æŸ„
  *
- * \return ÊÇÖÕ¶Ë·µ»Ø·Ç0£¬²»ÊÇÖÕ¶Ë·µ»Ø0
+ * \return æ˜¯ç»ˆç«¯è¿”å›é0ï¼Œä¸æ˜¯ç»ˆç«¯è¿”å›0
  */
 int _sys_istty (FILEHANDLE fh)
 {
@@ -232,12 +232,12 @@ int _sys_istty (FILEHANDLE fh)
 }
 
 /** 
- * \brief ÒÆ¶¯ÎÄ¼şÖ¸Õë
+ * \brief ç§»åŠ¨æ–‡ä»¶æŒ‡é’ˆ
  *
- * \param[in] fh  ÎÄ¼ş¾ä±ú
- * \param[in] pos ´ıÒÆ¶¯µ½µÄÎ»ÖÃ(Ïà¶Ô0µØÖ·Æ«ÒÆ)
+ * \param[in] fh  æ–‡ä»¶å¥æŸ„
+ * \param[in] pos å¾…ç§»åŠ¨åˆ°çš„ä½ç½®(ç›¸å¯¹0åœ°å€åç§»)
  *
- * \return ³É¹¦·µ»Ø>=0, Ê§°Ü·µ»Ø<0
+ * \return æˆåŠŸè¿”å›>=0, å¤±è´¥è¿”å›<0
  */
 int _sys_seek (FILEHANDLE fh, long pos)
 {
@@ -245,11 +245,11 @@ int _sys_seek (FILEHANDLE fh, long pos)
 }
 
 /** 
- * \brief Flush»º³åÇøÄÚÈİ
+ * \brief Flushç¼“å†²åŒºå†…å®¹
  *
- * \param[in] fh ÎÄ¼ş¾ä±ú
+ * \param[in] fh æ–‡ä»¶å¥æŸ„
  *
- * \return ³É¹¦·µ»Ø>=0, Ê§°Ü·µ»Ø<0
+ * \return æˆåŠŸè¿”å›>=0, å¤±è´¥è¿”å›<0
  */
 int _sys_ensure(FILEHANDLE fh)
 {
@@ -257,11 +257,11 @@ int _sys_ensure(FILEHANDLE fh)
 }
 
 /** 
- * \brief ·µ»ØÎÄ¼ş³¤¶È
+ * \brief è¿”å›æ–‡ä»¶é•¿åº¦
  *
- * \param[in] fh ÎÄ¼ş¾ä±ú
+ * \param[in] fh æ–‡ä»¶å¥æŸ„
  *
- * \return ³É¹¦·µ»ØÎÄ¼ş³¤¶È, Ê§°Ü·µ»Ø<0
+ * \return æˆåŠŸè¿”å›æ–‡ä»¶é•¿åº¦, å¤±è´¥è¿”å›<0
  */
 long _sys_flen (FILEHANDLE fh)
 {
@@ -269,11 +269,11 @@ long _sys_flen (FILEHANDLE fh)
 }
 
 /** 
- * \brief »ñÈ¡Ê±ÖÓ
+ * \brief è·å–æ—¶é’Ÿ
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return Ê±ÖÓÊı
+ * \return æ—¶é’Ÿæ•°
  */
 clock_t clock (void)
 {
@@ -281,7 +281,7 @@ clock_t clock (void)
 }
 
 /** 
- * \brief Ê±ÖÓ³õÊ¼»¯
+ * \brief æ—¶é’Ÿåˆå§‹åŒ–
  */
 void _clock_init (void)
 {
@@ -289,14 +289,14 @@ void _clock_init (void)
 }
 
 /**
- * \brief ·ÖÅäÒ»¶ÎÄÚ´æ¿Õ¼ä£¨ÄÚ´æ¿Õ¼ä»á±»³õÊ¼»¯Îª0£©
+ * \brief åˆ†é…ä¸€æ®µå†…å­˜ç©ºé—´ï¼ˆå†…å­˜ç©ºé—´ä¼šè¢«åˆå§‹åŒ–ä¸º0ï¼‰
  *
- * \param[in] nmemb ÔªËØ¸öÊı
- * \param[in] size  Ò»¸öÔªËØµÄ´óĞ¡£¬·ÖÅäÄÚ´æ¿Õ¼äµÄ´óĞ¡¼´Îª nmemb * size
+ * \param[in] nmemb å…ƒç´ ä¸ªæ•°
+ * \param[in] size  ä¸€ä¸ªå…ƒç´ çš„å¤§å°ï¼Œåˆ†é…å†…å­˜ç©ºé—´çš„å¤§å°å³ä¸º nmemb * size
  *
- * \return ·ÖÅä¿Õ¼äµÄÊ×µØÖ·£¬NULL±íÃ÷·ÖÅäÊ§°Ü
+ * \return åˆ†é…ç©ºé—´çš„é¦–åœ°å€ï¼ŒNULLè¡¨æ˜åˆ†é…å¤±è´¥
  *
- * \note ·ÖÅäµÄÄÚ´æ¿Õ¼ä»á±»³õÊ¼»¯Îª0
+ * \note åˆ†é…çš„å†…å­˜ç©ºé—´ä¼šè¢«åˆå§‹åŒ–ä¸º0
  */
 void *calloc (size_t nmemb, size_t size)
 {
@@ -304,11 +304,11 @@ void *calloc (size_t nmemb, size_t size)
 }
 
 /**
- * \brief ÊÍ·ÅÒÑ·ÖÅäµÄÄÚ´æ¿Õ¼ä
+ * \brief é‡Šæ”¾å·²åˆ†é…çš„å†…å­˜ç©ºé—´
  *
- * \param[in] ptr ÒÑ·ÖÅäµÄÄÚ´æ¿Õ¼äµÄÊ×µØÖ·
+ * \param[in] ptr å·²åˆ†é…çš„å†…å­˜ç©ºé—´çš„é¦–åœ°å€
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void free (void *ptr)
 {
@@ -316,11 +316,11 @@ void free (void *ptr)
 }
 
 /**
- * \brief ·ÖÅäÒ»¶ÎÄÚ´æ¿Õ¼ä
+ * \brief åˆ†é…ä¸€æ®µå†…å­˜ç©ºé—´
  *
- * \param[in] size ·ÖÅä¿Õ¼äµÄ´óĞ¡
+ * \param[in] size åˆ†é…ç©ºé—´çš„å¤§å°
  *
- * \return ·ÖÅä¿Õ¼äµÄÊ×µØÖ·£¬NULL±íÃ÷·ÖÅäÊ§°Ü
+ * \return åˆ†é…ç©ºé—´çš„é¦–åœ°å€ï¼ŒNULLè¡¨æ˜åˆ†é…å¤±è´¥
  */
 void *malloc (size_t size)
 {
@@ -328,17 +328,17 @@ void *malloc (size_t size)
 }
 
 /**
- * \brief ¶¯Ì¬ÄÚ´æµ÷Õû£¬¸Ä±äÒÑ·ÖÅä¿Õ¼äµÄ´óĞ¡
+ * \brief åŠ¨æ€å†…å­˜è°ƒæ•´ï¼Œæ”¹å˜å·²åˆ†é…ç©ºé—´çš„å¤§å°
  *
- * \param[in] ptr  ÒÑ·ÖÅä¿Õ¼äµÄÊ×µØÖ·
- * \param[in] size ÖØĞÂ·ÖÅäµÄ¿Õ¼äµÄ´óĞ¡
+ * \param[in] ptr  å·²åˆ†é…ç©ºé—´çš„é¦–åœ°å€
+ * \param[in] size é‡æ–°åˆ†é…çš„ç©ºé—´çš„å¤§å°
  *
- * \return ÖØĞÂ·ÖÅä¿Õ¼äµÄÊ×µØÖ·£¬NULL±íÃ÷·ÖÅäÊ§°Ü
+ * \return é‡æ–°åˆ†é…ç©ºé—´çš„é¦–åœ°å€ï¼ŒNULLè¡¨æ˜åˆ†é…å¤±è´¥
  *
- * \note º¯ÊıÏÈÅĞ¶Ïµ±Ç°µÄÖ¸ÕëÊÇ·ñÓĞ×ã¹»µÄÁ¬Ğø¿Õ¼ä£¬Èç¹ûÓĞ£¬À©´ó ptr Ö¸ÏòµØÖ·µÄ
- * ¿Õ¼ä£¬Ö±½Ó½«ptrµÄÖµ·µ»Ø¡£Èç¹û¿Õ¼ä²»¹»£¬ÏÈ°´ÕÕsizeÖ¸¶¨µÄ´óĞ¡·ÖÅä¿Õ¼ä£¬½«
- * Ô­ÓĞÊı¾İ´ÓÍ·µ½Î²¿½±´µ½ĞÂ·ÖÅäµÄÄÚ´æÇøÓò£¬¶øºóÊÍ·ÅÔ­À´ptrËùÖ¸ÄÚ´æÇøÓò£¨Ô­À´
- * Ö¸Õë×Ô¶¯ÊÍ·Å£¬²»ĞèÒª am_memheap_free()£©£¬Í¬Ê±·µ»ØĞÂ·ÖÅäµÄÄÚ´æÇøÓòµÄÊ×µØÖ·¡£
+ * \note å‡½æ•°å…ˆåˆ¤æ–­å½“å‰çš„æŒ‡é’ˆæ˜¯å¦æœ‰è¶³å¤Ÿçš„è¿ç»­ç©ºé—´ï¼Œå¦‚æœæœ‰ï¼Œæ‰©å¤§ ptr æŒ‡å‘åœ°å€çš„
+ * ç©ºé—´ï¼Œç›´æ¥å°†ptrçš„å€¼è¿”å›ã€‚å¦‚æœç©ºé—´ä¸å¤Ÿï¼Œå…ˆæŒ‰ç…§sizeæŒ‡å®šçš„å¤§å°åˆ†é…ç©ºé—´ï¼Œå°†
+ * åŸæœ‰æ•°æ®ä»å¤´åˆ°å°¾æ‹·è´åˆ°æ–°åˆ†é…çš„å†…å­˜åŒºåŸŸï¼Œè€Œåé‡Šæ”¾åŸæ¥ptræ‰€æŒ‡å†…å­˜åŒºåŸŸï¼ˆåŸæ¥
+ * æŒ‡é’ˆè‡ªåŠ¨é‡Šæ”¾ï¼Œä¸éœ€è¦ am_memheap_free()ï¼‰ï¼ŒåŒæ—¶è¿”å›æ–°åˆ†é…çš„å†…å­˜åŒºåŸŸçš„é¦–åœ°å€ã€‚
  */
 void *realloc (void *ptr, size_t size)
 {
@@ -346,14 +346,14 @@ void *realloc (void *ptr, size_t size)
 }
 
 /*******************************************************************************
-  Íâ²¿º¯Êı¶¨Òå
+  å¤–éƒ¨å‡½æ•°å®šä¹‰
 *******************************************************************************/
 
 /**
- * \brief ÊÊÅäÆ÷³õÊ¼»¯
+ * \brief é€‚é…å™¨åˆå§‹åŒ–
  *
- * \param[in] p_ops Çı¶¯º¯Êı
- * \param[in] p_arg Çı¶¯º¯Êı²ÎÊı
+ * \param[in] p_ops é©±åŠ¨å‡½æ•°
+ * \param[in] p_arg é©±åŠ¨å‡½æ•°å‚æ•°
  *
  * \return AM_OK
  */

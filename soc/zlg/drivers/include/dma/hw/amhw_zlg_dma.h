@@ -16,10 +16,10 @@
  *
  * 1. 5 independent programmable DMA channel.
  * 2. 8,16,32 bits data to transfer.
- * 3. support programmable source address,destination address and data size¡£
+ * 3. support programmable source address,destination address and data sizeã€‚
  *
- * ´æÔÚÒ»¸ö Ó²¼şÅäÖÃÏî£º AMHW_ZLG_DMA_CHAN_CNT¡£ÓÃÒÔÅäÖÃ DMAÍ¨µÀÊıÄ¿£¬Ê¹ÓÃ±¾ÎÄ¼şÊ±£¬
- * Ó¦ÔÚ soc_cfg.h ÎÄ¼şÖĞ¶¨Òå¸Ãºê¡£
+ * å­˜åœ¨ä¸€ä¸ª ç¡¬ä»¶é…ç½®é¡¹ï¼š AMHW_ZLG_DMA_CHAN_CNTã€‚ç”¨ä»¥é…ç½® DMAé€šé“æ•°ç›®ï¼Œä½¿ç”¨æœ¬æ–‡ä»¶æ—¶ï¼Œ
+ * åº”åœ¨ soc_cfg.h æ–‡ä»¶ä¸­å®šä¹‰è¯¥å®ã€‚
  *
  * \internal
  * \par Modification history
@@ -44,7 +44,7 @@ extern "C" {
  * @{
  */
 
-/** \brief DMA Í¨µÀÊıÄ¿  */
+/** \brief DMA é€šé“æ•°ç›®  */
 #define AMHW_ZLG_DMA_CHAN_CNT  SOC_CFG_ZLG_DMA_CHAN_CNT
 
 /**

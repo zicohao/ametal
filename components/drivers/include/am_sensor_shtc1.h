@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ÎÂÊª¶È´«¸ĞÆ÷ SHTC1 Í·ÎÄ¼ş
+ * \brief æ¸©æ¹¿åº¦ä¼ æ„Ÿå™¨ SHTC1 å¤´æ–‡ä»¶
  *
  * \internal
  * \par modification history
@@ -32,47 +32,47 @@ extern "C" {
 #include "am_isr_defer.h"
 
 /*
- * \brief ´«¸ĞÆ÷SHTC1Ìá¹©µÄËùÓĞÍ¨µÀID¶¨Òå
+ * \brief ä¼ æ„Ÿå™¨SHTC1æä¾›çš„æ‰€æœ‰é€šé“IDå®šä¹‰
  */
-#define AM_SHTC1_CHAN_1      0             /* SHTC1 µÄÍ¨µÀ1£¬Êª¶È´«¸ĞÆ÷Í¨µÀ */
-#define AM_SHTC1_CHAN_2      1             /* SHTC1 µÄÍ¨µÀ2£¬ÎÂ¶È´«¸ĞÆ÷Í¨µÀ */
+#define AM_SHTC1_CHAN_1      0             /* SHTC1 çš„é€šé“1ï¼Œæ¹¿åº¦ä¼ æ„Ÿå™¨é€šé“ */
+#define AM_SHTC1_CHAN_2      1             /* SHTC1 çš„é€šé“2ï¼Œæ¸©åº¦ä¼ æ„Ÿå™¨é€šé“ */
 
 /**
- * \brief ´«¸ĞÆ÷ SHTC1 Éè±¸ĞÅÏ¢½á¹¹Ìå
+ * \brief ä¼ æ„Ÿå™¨ SHTC1 è®¾å¤‡ä¿¡æ¯ç»“æ„ä½“
  */
 typedef struct am_sensor_shtc1_devinfo {
 
     /*
-     * \brief I2C 7Î» Éè±¸µØÖ·
+     * \brief I2C 7ä½ è®¾å¤‡åœ°å€
      *
-     * ¸ÃÉè±¸7Î»µØÖ·¹Ì¶¨Îª 0x70
+     * è¯¥è®¾å¤‡7ä½åœ°å€å›ºå®šä¸º 0x70
      */
     uint8_t i2c_addr;
 
 } am_sensor_shtc1_devinfo_t;
 
 /**
- * \breif ´«¸ĞÆ÷ SHTC1 Éè±¸½á¹¹Ìå¶¨Òå
+ * \breif ä¼ æ„Ÿå™¨ SHTC1 è®¾å¤‡ç»“æ„ä½“å®šä¹‰
  */
 typedef struct am_sensor_shtc1_dev {
-    am_sensor_serv_t                  shtc1_dev;  /*< \breif ´«¸ĞÆ÷±ê×¼·şÎñ   */
-    am_i2c_device_t                   i2c_dev;    /*< \brief i2cÉè±¸ÊµÀı      */
-    uint8_t                           trigger;    /*< \brief ¼ÇÂ¼±êÖ¾Î»       */
-    am_sensor_val_t                   data[2];    /*< \brief ÄÚ²¿Êı¾İ»º´æ     */
+    am_sensor_serv_t                  shtc1_dev;  /*< \breif ä¼ æ„Ÿå™¨æ ‡å‡†æœåŠ¡   */
+    am_i2c_device_t                   i2c_dev;    /*< \brief i2cè®¾å¤‡å®ä¾‹      */
+    uint8_t                           trigger;    /*< \brief è®°å½•æ ‡å¿—ä½       */
+    am_sensor_val_t                   data[2];    /*< \brief å†…éƒ¨æ•°æ®ç¼“å­˜     */
 
-    /** \brief Éè±¸ĞÅÏ¢ */
+    /** \brief è®¾å¤‡ä¿¡æ¯ */
     const am_sensor_shtc1_devinfo_t *dev_info;
 
 } am_sensor_shtc1_dev_t;
 
 /**
- * \brief ´«¸ĞÆ÷ SHTC1 ³õÊ¼»¯
+ * \brief ä¼ æ„Ÿå™¨ SHTC1 åˆå§‹åŒ–
  *
- * \param[in] p_dev     : Ö¸Ïò´«¸ĞÆ÷SHTC1Éè±¸µÄÖ¸Õë
- * \param[in] p_devinfo : Ö¸Ïò´«¸ĞÆ÷SHTC1Éè±¸ĞÅÏ¢µÄÖ¸Õë
- * \param[in] handle    : IIC±ê×¼·şÎñ¾ä±ú
+ * \param[in] p_dev     : æŒ‡å‘ä¼ æ„Ÿå™¨SHTC1è®¾å¤‡çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo : æŒ‡å‘ä¼ æ„Ÿå™¨SHTC1è®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ
+ * \param[in] handle    : IICæ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ´«¸ĞÆ÷±ê×¼·şÎñ²Ù×÷¾ä±úÈç¹ûÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return ä¼ æ„Ÿå™¨æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„å¦‚æœä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_sensor_handle_t am_sensor_shtc1_init (
         am_sensor_shtc1_dev_t            *p_dev,
@@ -80,11 +80,11 @@ am_sensor_handle_t am_sensor_shtc1_init (
         am_i2c_handle_t                   handle);
 
 /**
- * \brief ´«¸ĞÆ÷ SHTC1 È¥³õÊ¼»¯
+ * \brief ä¼ æ„Ÿå™¨ SHTC1 å»åˆå§‹åŒ–
  *
- * \param[in] handle : am_sensor_shtc1_init()³õÊ¼»¯º¯Êı»ñµÃµÄ´«¸ĞÆ÷±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle : am_sensor_shtc1_init()åˆå§‹åŒ–å‡½æ•°è·å¾—çš„ä¼ æ„Ÿå™¨æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_err_t am_sensor_shtc1_deinit (am_sensor_handle_t handle);
 

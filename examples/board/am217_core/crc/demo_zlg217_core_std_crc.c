@@ -12,21 +12,21 @@
 
 /**
  * \file
- * \brief CRC Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief CRC ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿Ú´òÓ¡¼ÆËã½á¹û £º The crc-16 init failed
+ * - å®éªŒç°è±¡ï¼š
+ *   1. ä¸²å£æ‰“å°è®¡ç®—ç»“æœ ï¼š The crc-16 init failed
  *
  *                          The crc-ccitt init failed
  *
  *                          CRC-32 result is          : 0x9ae0daaf
  *
  * \note
- *    1. Ö»Ö§³Ö 4 ×Ö½Ú¶ÔÆëµÄĞòÁĞ(CRC-32)£¬¼´£º×Ö½ÚÊı % 4 == 0£»
- *    2. ÈçĞè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔĞÅÏ¢£¬ĞèÒª½« PIOA_10 Òı½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *       PIOA_9 Òı½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
+ *    1. åªæ”¯æŒ 4 å­—èŠ‚å¯¹é½çš„åºåˆ—(CRC-32)ï¼Œå³ï¼šå­—èŠ‚æ•° % 4 == 0ï¼›
+ *    2. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIOA_10 å¼•è„šè¿æ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *       PIOA_9 å¼•è„šè¿æ¥ PC ä¸²å£çš„ RXDã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_zlg217_std_crc.c src_zlg217_std_crc
  *
  * \internal
@@ -49,7 +49,7 @@
 #include "demo_am217_core_entries.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_zlg217_core_std_crc_entry (void)
 {

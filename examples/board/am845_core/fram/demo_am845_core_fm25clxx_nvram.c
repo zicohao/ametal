@@ -12,13 +12,13 @@
 
 /**
  * \file
- * \brief F-RAM Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief F-RAM ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Ö÷»úĞ´Êı¾İµ½ F-RAM£»
- *   2. Ö÷»ú´Ó F-RAM ¶ÁÈ¡Êı¾İ£¬²¢Í¨¹ı´®¿Ú´òÓ¡´¦Àí£»
- *   3. ´®¿Ú´òÓ¡³ö²âÊÔ½á¹û¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. ä¸»æœºå†™æ•°æ®åˆ° F-RAMï¼›
+ *   2. ä¸»æœºä» F-RAM è¯»å–æ•°æ®ï¼Œå¹¶é€šè¿‡ä¸²å£æ‰“å°å¤„ç†ï¼›
+ *   3. ä¸²å£æ‰“å°å‡ºæµ‹è¯•ç»“æœã€‚
  *
  * \internal
  * \par Modification history
@@ -38,7 +38,7 @@
 #include "demo_components_entries.h"
 #include "demo_std_entries.h"
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am845_core_fm25clxx_nvram_entry (void)
 {

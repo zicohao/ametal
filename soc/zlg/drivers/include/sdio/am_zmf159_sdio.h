@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief SDIOÇı¶¯£¬·şÎñSDIO±ê×¼½Ó¿Ú
+ * \brief SDIOé©±åŠ¨ï¼ŒæœåŠ¡SDIOæ ‡å‡†æ¥å£
  *
  * \internal
  * \par Modification History
@@ -43,66 +43,66 @@ extern "C" {
  */
 
 /**
- * \brief SDIOÉè±¸ĞÅÏ¢²ÎÊı½á¹¹Ìå
+ * \brief SDIOè®¾å¤‡ä¿¡æ¯å‚æ•°ç»“æ„ä½“
  */
 typedef struct am_zmf159_sdio_devinfo {
 
-    /** \brief SDIO¼Ä´æÆ÷»ùµØÖ· */
+    /** \brief SDIOå¯„å­˜å™¨åŸºåœ°å€ */
     uint32_t              regbase;
 
-    /** \brief SDIOÖĞ¶ÏºÅ */
+    /** \brief SDIOä¸­æ–­å· */
     uint32_t              inum;
 
-    /** \brief SDIOÊ±ÖÓID */
+    /** \brief SDIOæ—¶é’ŸID */
     int                   clk_num;
 
-    /** \brief SDIOËÙÂÊÄ£Ê½ */
+    /** \brief SDIOé€Ÿç‡æ¨¡å¼ */
     uint8_t               speed_mode;
 
-    /** \brief Æ½Ì¨³õÊ¼»¯º¯Êı */
+    /** \brief å¹³å°åˆå§‹åŒ–å‡½æ•° */
     void    (*pfn_plfm_init)(void);
 
-    /** \brief Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    /** \brief å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
     void    (*pfn_plfm_deinit)(void);
 
 } am_zmf159_sdio_devinfo_t;
 
 /**
- * \brief SDIOÉè±¸½á¹¹Ìå
+ * \brief SDIOè®¾å¤‡ç»“æ„ä½“
  */
 typedef struct am_zmf159_sdio_dev {
 
-    /** \brief SDIO±ê×¼·şÎñ  */
+    /** \brief SDIOæ ‡å‡†æœåŠ¡  */
     am_sdio_serv_t                  sdio_serv;
 
-    /** \brief Ö¸ÏòSDIOÉè±¸ĞÅÏ¢  */
+    /** \brief æŒ‡å‘SDIOè®¾å¤‡ä¿¡æ¯  */
     const am_zmf159_sdio_devinfo_t *p_devinfo;
 
-    /** \brief waitµÈ´ı  */
+    /** \brief waitç­‰å¾…  */
     am_wait_t                       wait;
 
-    /** \brief ±£´æÖĞ¶Ï×´Ì¬  */
+    /** \brief ä¿å­˜ä¸­æ–­çŠ¶æ€  */
     uint16_t                        int_status;
 
 } am_zmf159_sdio_dev_t;
 
 /**
- * \brief SDIO³õÊ¼»¯
+ * \brief SDIOåˆå§‹åŒ–
  *
- * \param[in] p_dev     : Ö¸ÏòSDIOÉè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[in] p_devinfo : Ö¸ÏòSDIOÉè±¸ĞÅÏ¢½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] p_dev     : æŒ‡å‘SDIOè®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo : æŒ‡å‘SDIOè®¾å¤‡ä¿¡æ¯ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return SDIO±ê×¼·şÎñ²Ù×÷¾ä±ú
+ * \return SDIOæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  */
 am_sdio_handle_t am_zmf159_sdio_init (am_zmf159_sdio_dev_t           *p_dev,
                                      const am_zmf159_sdio_devinfo_t *p_devinfo);
 
 /**
- * \brief ½â³ıSDIO³õÊ¼»¯
+ * \brief è§£é™¤SDIOåˆå§‹åŒ–
  *
- * \param[in] handle : Óë´ÓÉè±¸¹ØÁªµÄSDIO±ê×¼·şÎñ²Ù×÷¾ä±ú
+ * \param[in] handle : ä¸ä»è®¾å¤‡å…³è”çš„SDIOæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_sdio_deinit (am_sdio_handle_t handle);
 

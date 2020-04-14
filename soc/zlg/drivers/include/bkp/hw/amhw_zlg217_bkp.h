@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ±¸·İ¼Ä´æÆ÷½Ó¿Ú
+ * \brief å¤‡ä»½å¯„å­˜å™¨æ¥å£
  *
  * \internal
  * \par History
@@ -37,7 +37,7 @@ extern "C" {
  */
 
 /**
- * \brief Ê¹ÓÃÄäÃûÁªºÏÌå¶Î¿ªÊ¼
+ * \brief ä½¿ç”¨åŒ¿åè”åˆä½“æ®µå¼€å§‹
  * @{
  */
 #if defined(__CC_ARM)
@@ -47,10 +47,10 @@ extern "C" {
   #pragma language=extended
 #elif defined(__GNUC__)
 
-  /* Ä¬ÈÏÊ¹ÄÜÄäÃûÁªºÏÌå */
+  /* é»˜è®¤ä½¿èƒ½åŒ¿åè”åˆä½“ */
 #elif defined(__TMS470__)
 
-  /* Ä¬ÈÏÊ¹ÄÜÄäÃûÁªºÏÌå */
+  /* é»˜è®¤ä½¿èƒ½åŒ¿åè”åˆä½“ */
 #elif defined(__TASKING__)
   #pragma warning 586
 #else
@@ -78,16 +78,16 @@ extern "C" {
 #define  AMHW_ZLG217_BKP_CSR_TIF_SET    (0x0200) /**< Tamper Interrupt Flag */
 
 /**
-  * \brief ±¸·İ¼Ä´æÆ÷¿é½á¹¹Ìå
+  * \brief å¤‡ä»½å¯„å­˜å™¨å—ç»“æ„ä½“
   */
 typedef struct amhw_zlg217_bkp {
-    __I  uint32_t reserve0;  /**< \brief ±£Áô */
-    __IO uint32_t dr[10];    /**< \brief ±¸·İÇøÓòÊı¾İ¼Ä´æÆ÷ */
-    __IO uint16_t rtc_cr;    /**< \brief RTC ¿ØÖÆ¼Ä´æÆ÷ */
-    __I  uint16_t reserve1;  /**< \brief ±£Áô */
-    __IO uint16_t cr;        /**< \brief BKP ¿ØÖÆ¼Ä´æÆ÷ */
-    __I  uint16_t reserve2;  /**< \brief ±£Áô */
-    __IO uint16_t csr;       /**< \brief Ê±ÖÓ¼à¿Ø×´Ì¬¼Ä´æÆ÷ */
+    __I  uint32_t reserve0;  /**< \brief ä¿ç•™ */
+    __IO uint32_t dr[10];    /**< \brief å¤‡ä»½åŒºåŸŸæ•°æ®å¯„å­˜å™¨ */
+    __IO uint16_t rtc_cr;    /**< \brief RTC æ§åˆ¶å¯„å­˜å™¨ */
+    __I  uint16_t reserve1;  /**< \brief ä¿ç•™ */
+    __IO uint16_t cr;        /**< \brief BKP æ§åˆ¶å¯„å­˜å™¨ */
+    __I  uint16_t reserve2;  /**< \brief ä¿ç•™ */
+    __IO uint16_t csr;       /**< \brief æ—¶é’Ÿç›‘æ§çŠ¶æ€å¯„å­˜å™¨ */
 } amhw_zlg217_bkp_t;
 
 /**
@@ -107,13 +107,13 @@ void amhw_zlg217_bkp_clear_flag (amhw_zlg217_bkp_t *p_hw_bkp, uint16_t flag)
 }
 
 /**
- * \brief Ğ´±¸·İÇøÓòÊı¾İ¼Ä´æÆ÷
+ * \brief å†™å¤‡ä»½åŒºåŸŸæ•°æ®å¯„å­˜å™¨
  *
- * \param[in] index    ±¸·İÇøÓòÊı¾İ¼Ä´æÆ÷Ë÷Òı£¬ÖµÎª 0 ~ 9
- * \param[in] value    Ğ´Èë±¸·İÇø»òÊı¾İ¼Ä´æÆ÷µÄÖµ£¬ÖµÎª 0 ~ 65536
- * \param[in] p_hw_bkp Ö¸ÏòÏµÍ³ÅäÖÃ¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] index    å¤‡ä»½åŒºåŸŸæ•°æ®å¯„å­˜å™¨ç´¢å¼•ï¼Œå€¼ä¸º 0 ~ 9
+ * \param[in] value    å†™å…¥å¤‡ä»½åŒºæˆ–æ•°æ®å¯„å­˜å™¨çš„å€¼ï¼Œå€¼ä¸º 0 ~ 65536
+ * \param[in] p_hw_bkp æŒ‡å‘ç³»ç»Ÿé…ç½®å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_bkp_dr_write (amhw_zlg217_bkp_t *p_hw_bkp,
@@ -124,12 +124,12 @@ void amhw_zlg217_bkp_dr_write (amhw_zlg217_bkp_t *p_hw_bkp,
 }
 
 /**
- * \brief ¶Á±¸·İÇøÓòÊı¾İ¼Ä´æÆ÷
+ * \brief è¯»å¤‡ä»½åŒºåŸŸæ•°æ®å¯„å­˜å™¨
  *
- * \param[in] index    ±¸·İÇøÓòÊı¾İ¼Ä´æÆ÷Ë÷Òı£¬ÖµÎª 0 ~ 9
- * \param[in] p_hw_bkp Ö¸ÏòÏµÍ³ÅäÖÃ¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] index    å¤‡ä»½åŒºåŸŸæ•°æ®å¯„å­˜å™¨ç´¢å¼•ï¼Œå€¼ä¸º 0 ~ 9
+ * \param[in] p_hw_bkp æŒ‡å‘ç³»ç»Ÿé…ç½®å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ·µ»Ø¶ÔÓ¦±¸·İ¼Ä´æÆ÷µÄÖµ
+ * \return è¿”å›å¯¹åº”å¤‡ä»½å¯„å­˜å™¨çš„å€¼
  */
 am_static_inline
 uint16_t amhw_zlg217_bkp_dr_read (amhw_zlg217_bkp_t *p_hw_bkp, uint8_t index)
@@ -138,12 +138,12 @@ uint16_t amhw_zlg217_bkp_dr_read (amhw_zlg217_bkp_t *p_hw_bkp, uint8_t index)
 }
 
 /**
- * \brief RTC Ê±ÖÓĞ£×¼ÉèÖÃ
+ * \brief RTC æ—¶é’Ÿæ ¡å‡†è®¾ç½®
  *
- * \param[in] p_hw_bkp Ö¸ÏòÏµÍ³ÅäÖÃ¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] index    Ğ£×¼Öµ
+ * \param[in] p_hw_bkp æŒ‡å‘ç³»ç»Ÿé…ç½®å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] index    æ ¡å‡†å€¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_bkp_rtccr_cal_set (amhw_zlg217_bkp_t *p_hw_bkp, uint8_t cal)
@@ -153,11 +153,11 @@ void amhw_zlg217_bkp_rtccr_cal_set (amhw_zlg217_bkp_t *p_hw_bkp, uint8_t cal)
 }
 
 /**
- * \brief RTC Ê±ÖÓĞ£×¼»ñÈ¡
+ * \brief RTC æ—¶é’Ÿæ ¡å‡†è·å–
  *
- * \param[in] p_hw_bkp Ö¸ÏòÏµÍ³ÅäÖÃ¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_bkp æŒ‡å‘ç³»ç»Ÿé…ç½®å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ·µ»Ø¶ÔÓ¦±¸·İ¼Ä´æÆ÷µÄÖµ
+ * \return è¿”å›å¯¹åº”å¤‡ä»½å¯„å­˜å™¨çš„å€¼
  */
 am_static_inline
 uint8_t amhw_zlg217_bkp_rtccr_cal_get (amhw_zlg217_bkp_t *p_hw_bkp)
@@ -166,11 +166,11 @@ uint8_t amhw_zlg217_bkp_rtccr_cal_get (amhw_zlg217_bkp_t *p_hw_bkp)
 }
 
 /**
- * \brief RTC Ê±ÖÓĞ£×¼Êä³öÊ¹ÄÜ
+ * \brief RTC æ—¶é’Ÿæ ¡å‡†è¾“å‡ºä½¿èƒ½
  *
- * \param[in] p_hw_bkp Ö¸ÏòÏµÍ³ÅäÖÃ¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_bkp æŒ‡å‘ç³»ç»Ÿé…ç½®å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_bkp_rtccr_cco_enable (amhw_zlg217_bkp_t *p_hw_bkp)
@@ -179,11 +179,11 @@ void amhw_zlg217_bkp_rtccr_cco_enable (amhw_zlg217_bkp_t *p_hw_bkp)
 }
 
 /**
- * \brief RTC Ê±ÖÓĞ£×¼Êä³öÊ§ÄÜ
+ * \brief RTC æ—¶é’Ÿæ ¡å‡†è¾“å‡ºå¤±èƒ½
  *
- * \param[in] p_hw_bkp Ö¸ÏòÏµÍ³ÅäÖÃ¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_bkp æŒ‡å‘ç³»ç»Ÿé…ç½®å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_bkp_rtccr_cco_disable (amhw_zlg217_bkp_t *p_hw_bkp)
@@ -192,11 +192,11 @@ void amhw_zlg217_bkp_rtccr_cco_disable (amhw_zlg217_bkp_t *p_hw_bkp)
 }
 
 /**
- * \brief RTC Ê±ÖÓĞ£×¼Êä³ö»ñÈ¡
+ * \brief RTC æ—¶é’Ÿæ ¡å‡†è¾“å‡ºè·å–
  *
- * \param[in] p_hw_bkp Ö¸ÏòÏµÍ³ÅäÖÃ¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_bkp æŒ‡å‘ç³»ç»Ÿé…ç½®å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ·µ»Ø¶ÔÓ¦±¸·İ¼Ä´æÆ÷µÄÖµ
+ * \return è¿”å›å¯¹åº”å¤‡ä»½å¯„å­˜å™¨çš„å€¼
  */
 am_static_inline
 am_bool_t amhw_zlg217_bkp_rtccr_cco_get (amhw_zlg217_bkp_t *p_hw_bkp)
@@ -205,11 +205,11 @@ am_bool_t amhw_zlg217_bkp_rtccr_cco_get (amhw_zlg217_bkp_t *p_hw_bkp)
 }
 
 /**
- * \brief RTC ÔÊĞíÊä³öÄÖÖÓ»òÃëÂö³åÊ¹ÄÜ
+ * \brief RTC å…è®¸è¾“å‡ºé—¹é’Ÿæˆ–ç§’è„‰å†²ä½¿èƒ½
  *
- * \param[in] p_hw_bkp Ö¸ÏòÏµÍ³ÅäÖÃ¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_bkp æŒ‡å‘ç³»ç»Ÿé…ç½®å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_bkp_rtccr_asoe_enable (amhw_zlg217_bkp_t *p_hw_bkp)
@@ -218,11 +218,11 @@ void amhw_zlg217_bkp_rtccr_asoe_enable (amhw_zlg217_bkp_t *p_hw_bkp)
 }
 
 /**
- * \brief RTC ÔÊĞíÊä³öÄÖÖÓ»òÃëÂö³åÊ§ÄÜ
+ * \brief RTC å…è®¸è¾“å‡ºé—¹é’Ÿæˆ–ç§’è„‰å†²å¤±èƒ½
  *
- * \param[in] p_hw_bkp Ö¸ÏòÏµÍ³ÅäÖÃ¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_bkp æŒ‡å‘ç³»ç»Ÿé…ç½®å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_bkp_rtccr_asoe_disable (amhw_zlg217_bkp_t *p_hw_bkp)
@@ -231,11 +231,11 @@ void amhw_zlg217_bkp_rtccr_asoe_disable (amhw_zlg217_bkp_t *p_hw_bkp)
 }
 
 /**
- * \brief RTC ÔÊĞíÊä³öÄÖÖÓ»òÃëÂö³å»ñÈ¡
+ * \brief RTC å…è®¸è¾“å‡ºé—¹é’Ÿæˆ–ç§’è„‰å†²è·å–
  *
- * \param[in] p_hw_bkp Ö¸ÏòÏµÍ³ÅäÖÃ¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_bkp æŒ‡å‘ç³»ç»Ÿé…ç½®å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ·µ»Ø¶ÔÓ¦±¸·İ¼Ä´æÆ÷µÄÖµ
+ * \return è¿”å›å¯¹åº”å¤‡ä»½å¯„å­˜å™¨çš„å€¼
  */
 am_static_inline
 am_bool_t amhw_zlg217_bkp_rtccr_asoe_get (amhw_zlg217_bkp_t *p_hw_bkp)
@@ -244,11 +244,11 @@ am_bool_t amhw_zlg217_bkp_rtccr_asoe_get (amhw_zlg217_bkp_t *p_hw_bkp)
 }
 
 /**
- * \brief RTC Êä³öÃëÂö³å
+ * \brief RTC è¾“å‡ºç§’è„‰å†²
  *
- * \param[in] p_hw_bkp Ö¸ÏòÏµÍ³ÅäÖÃ¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_bkp æŒ‡å‘ç³»ç»Ÿé…ç½®å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_bkp_rtccr_asos_second (amhw_zlg217_bkp_t *p_hw_bkp)
@@ -257,11 +257,11 @@ void amhw_zlg217_bkp_rtccr_asos_second (amhw_zlg217_bkp_t *p_hw_bkp)
 }
 
 /**
- * \brief RTC Êä³öÄÖÖÓÂö³å
+ * \brief RTC è¾“å‡ºé—¹é’Ÿè„‰å†²
  *
- * \param[in] p_hw_bkp Ö¸ÏòÏµÍ³ÅäÖÃ¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_bkp æŒ‡å‘ç³»ç»Ÿé…ç½®å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_bkp_rtccr_asos_alarm (amhw_zlg217_bkp_t *p_hw_bkp)
@@ -270,20 +270,20 @@ void amhw_zlg217_bkp_rtccr_asos_alarm (amhw_zlg217_bkp_t *p_hw_bkp)
 }
 
 /**
- * \brief Ê¹ÓÃÄäÃûÁªºÏÌå¶Î½áÊø
+ * \brief ä½¿ç”¨åŒ¿åè”åˆä½“æ®µç»“æŸ
  * @{
  */
 #if defined(__CC_ARM)
   #pragma pop
 #elif defined(__ICCARM__)
 
-  /* ÔÊĞíÄäÃûÁªºÏÌåÊ¹ÄÜ */
+  /* å…è®¸åŒ¿åè”åˆä½“ä½¿èƒ½ */
 #elif defined(__GNUC__)
 
-  /* Ä¬ÈÏÊ¹ÓÃÄäÃûÁªºÏÌå */
+  /* é»˜è®¤ä½¿ç”¨åŒ¿åè”åˆä½“ */
 #elif defined(__TMS470__)
 
-  /* Ä¬ÈÏÊ¹ÓÃÄäÃûÁªºÏÌå */
+  /* é»˜è®¤ä½¿ç”¨åŒ¿åè”åˆä½“ */
 #elif defined(__TASKING__)
   #pragma warning restore
 #else

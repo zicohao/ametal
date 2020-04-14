@@ -11,21 +11,21 @@
 *******************************************************************************/
 /**
  * \file
- * \brief SPI Ö÷»ú·¢ËÍÊý¾ÝÀý³Ì£¬Í¨¹ý HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief SPI ä¸»æœºå‘é€æ•°æ®ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. ½« SPI Ö÷»úÓë SPI ´Ó»ú½øÐÐÎïÀíÁ¬½Ó¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. å°† SPI ä¸»æœºä¸Ž SPI ä»Žæœºè¿›è¡Œç‰©ç†è¿žæŽ¥ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ±¾Àý³ÌÃ¿ 500 ºÁÃëÍ¨¹ý SPI£¬Ïò´Ó»ú·¢ËÍ "nihao" ×Ö·û´®£»
- *   2. ´Ó»ú½ÓÊÕµ½×Ö·û´®£¬Í¨¹ý´®¿Ú½«×Ö·û´®´òÓ¡³öÀ´£¬ÇÒ LED0 ÉÁË¸¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. æœ¬ä¾‹ç¨‹æ¯ 500 æ¯«ç§’é€šè¿‡ SPIï¼Œå‘ä»Žæœºå‘é€ "nihao" å­—ç¬¦ä¸²ï¼›
+ *   2. ä»ŽæœºæŽ¥æ”¶åˆ°å­—ç¬¦ä¸²ï¼Œé€šè¿‡ä¸²å£å°†å­—ç¬¦ä¸²æ‰“å°å‡ºæ¥ï¼Œä¸” LED0 é—ªçƒã€‚
  *
  * \note
- *    1. ±¾Àý³ÌÐèÒªÓë demo_am824_hw_spi_slave.c Ò»Í¬²âÊÔ£»
- *    2. ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIO0_0 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *       PIO0_4 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
+ *    1. æœ¬ä¾‹ç¨‹éœ€è¦ä¸Ž demo_am824_hw_spi_slave.c ä¸€åŒæµ‹è¯•ï¼›
+ *    2. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO0_0 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *       PIO0_4 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am824_hw_spi_master.c src_am824_hw_spi_master
  *
  * \internal
@@ -47,7 +47,7 @@
 #include "demo_nxp_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am824_core_hw_spi_master_entry (void)
 {
@@ -55,13 +55,13 @@ void demo_am824_core_hw_spi_master_entry (void)
   
     am_kprintf("demo824 hw spi master!\r\n");
   
-    /* SPI0 Òý½ÅÅäÖÃ */
+    /* SPI0 å¼•è„šé…ç½® */
     am_gpio_pin_cfg(PIO0_14, PIO_FUNC_SPI0_SSEL0);
     am_gpio_pin_cfg(PIO0_15, PIO_FUNC_SPI0_SCK);
     am_gpio_pin_cfg(PIO0_12, PIO_FUNC_SPI0_MOSI);
     am_gpio_pin_cfg(PIO0_13, PIO_FUNC_SPI0_MISO);
 
-    /* Ê¹ÄÜ SPI0 Ê±ÖÓ */
+    /* ä½¿èƒ½ SPI0 æ—¶é’Ÿ */
     amhw_lpc82x_clk_periph_enable(AMHW_LPC82X_CLK_SPI0);
     amhw_lpc82x_syscon_periph_reset(AMHW_LPC82X_RESET_SPI0);
   

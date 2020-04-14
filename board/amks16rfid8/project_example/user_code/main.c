@@ -11,13 +11,13 @@
 *******************************************************************************/
 /**
  * \file
- * \brief AMKS16RFID Àı³Ì¹¤³Ì
+ * \brief AMKS16RFID ä¾‹ç¨‹å·¥ç¨‹
  *
- * - ²Ù×÷²½Öè£º
- *   1. È¡ÏûÆÁ±ÎĞèÒªÊ¹ÓÃµÄÀı³Ì¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. å–æ¶ˆå±è”½éœ€è¦ä½¿ç”¨çš„ä¾‹ç¨‹ã€‚
  *
  * \note
- *    Í¬Ò»Ê±¿ÌÖ»ÄÜÊ¹ÓÃÒ»¸öÀı³Ì¡£
+ *    åŒä¸€æ—¶åˆ»åªèƒ½ä½¿ç”¨ä¸€ä¸ªä¾‹ç¨‹ã€‚
  *
  * \internal
  * \par Modification history
@@ -33,17 +33,17 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief AMetal Ó¦ÓÃ³ÌĞòÈë¿Ú
+ * \brief AMetal åº”ç”¨ç¨‹åºå…¥å£
  */
 int am_main (void)
 {
     AM_DBG_INFO("Start up successful!\r\n");
     /*
-     * ÒÔÏÂÎªËùÓĞdemoµÄÈë¿Úº¯Êı£¬ĞèÒªÔËĞĞÄÄ¸ö demo£¬ ¾ÍÈ¡Ïû¶ÔÓ¦º¯Êıµ÷ÓÃĞĞµÄ×¢ÊÍ
+     * ä»¥ä¸‹ä¸ºæ‰€æœ‰demoçš„å…¥å£å‡½æ•°ï¼Œéœ€è¦è¿è¡Œå“ªä¸ª demoï¼Œ å°±å–æ¶ˆå¯¹åº”å‡½æ•°è°ƒç”¨è¡Œçš„æ³¨é‡Š
      *
-     * Ä¬ÈÏÔËĞĞµÄÊÇLEDÉÁË¸ demo¡£
+     * é»˜è®¤è¿è¡Œçš„æ˜¯LEDé—ªçƒ demoã€‚
      *
-     * ×¢Òâ£ºÍ¬Ò»Ê±¿ÌÖ»ÄÜÔËĞĞÒ»¸ö demo£¬¼´Ö»ÄÜÊ¹Ä³Ò»ĞĞ´¦ÓÚÈ¡Ïû×¢ÊÍ×´Ì¬¡£
+     * æ³¨æ„ï¼šåŒä¸€æ—¶åˆ»åªèƒ½è¿è¡Œä¸€ä¸ª demoï¼Œå³åªèƒ½ä½¿æŸä¸€è¡Œå¤„äºå–æ¶ˆæ³¨é‡ŠçŠ¶æ€ã€‚
      */
     demo_amks16z_core_std_led_entry();
 //    demo_amks16z_core_hw_adc_int_entry();
@@ -128,7 +128,7 @@ int am_main (void)
 //    demo_amks16z_core_hw_wdt_entry();
 //    demo_amks16z_core_std_wdt_entry();
     /*
-     * ÒÔÏÂdemoÎªamks16rfid8°åÌØÓĞdemo
+     * ä»¥ä¸‹demoä¸ºamks16rfid8æ¿ç‰¹æœ‰demo
      */
 //    demo_amks16rfid8_fm175xx_cpu_card();
 //    demo_amks16rfid8_fm175xx_lpcd_read_id();

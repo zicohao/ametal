@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief MiniPort ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief MiniPort ç”¨æˆ·é…ç½®æ–‡ä»¶
  *
  * \internal
  * \par Modification history
@@ -32,43 +32,43 @@ extern "C" {
 #include "am_hc595.h"
 
 /*
- * \brief MiniPort-595 ÊµÀı³õÊ¼»¯
+ * \brief MiniPort-595 å®ä¾‹åˆå§‹åŒ–
  *
  */
 am_hc595_handle_t am_miniport_595_inst_init (void);
 
 /*
- * \brief MiniPort-595 ÊµÀı³õÊ¼»¯
+ * \brief MiniPort-595 å®ä¾‹åˆå§‹åŒ–
  */
 int am_miniport_view_595_inst_init (void);
 
 /*
- * \brief MiniPort-View µ¥¶ÀÊ¹ÓÃÊµÀı³õÊ¼»¯
+ * \brief MiniPort-View å•ç‹¬ä½¿ç”¨å®ä¾‹åˆå§‹åŒ–
  */
 int am_miniport_view_inst_init (void);
 
 /*
- * \brief MiniPort-Key µ¥¶ÀÊ¹ÓÃÊµÀı³õÊ¼»¯
+ * \brief MiniPort-Key å•ç‹¬ä½¿ç”¨å®ä¾‹åˆå§‹åŒ–
  */
 int am_miniport_key_inst_init (void);
 
 /*
- * \brief MiniPort-led µ¥¶ÀÊ¹ÓÃÊµÀı³õÊ¼»¯
+ * \brief MiniPort-led å•ç‹¬ä½¿ç”¨å®ä¾‹åˆå§‹åŒ–
  */
 int am_miniport_led_inst_init (void);
 
 /*
- * \brief MiniPort-view-key-595 µ¥¶ÀÊ¹ÓÃÊµÀı³õÊ¼»¯
+ * \brief MiniPort-view-key-595 å•ç‹¬ä½¿ç”¨å®ä¾‹åˆå§‹åŒ–
  */
 int am_miniport_view_key_595_inst_init (void);
 
 /*
- * \brief MiniPort-View ºÍ MiniPort-Key ÁªºÏÊ¹ÓÃÊµÀı³õÊ¼»¯
+ * \brief MiniPort-View å’Œ MiniPort-Key è”åˆä½¿ç”¨å®ä¾‹åˆå§‹åŒ–
  */
 int am_miniport_view_key_inst_init (void);
 
 /*
- * \brief MiniPort-ZLG72128 ÊµÀı³õÊ¼»¯
+ * \brief MiniPort-ZLG72128 å®ä¾‹åˆå§‹åŒ–
  */
 int am_miniport_zlg72128_inst_init (void);
 

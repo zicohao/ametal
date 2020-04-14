@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief STDËùÓĞÀı³Ìº¯ÊıÈë¿ÚÉùÃ÷
+ * \brief STDæ‰€æœ‰ä¾‹ç¨‹å‡½æ•°å…¥å£å£°æ˜
  * \sa    demo_std_entries.h
  *
  * \internal
@@ -36,17 +36,17 @@ extern "C" {
 #endif
 
 /**
- * \brief bootloader µ¥ÇøÀı³Ì
+ * \brief bootloader å•åŒºä¾‹ç¨‹
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_std_single_bootloader_entry(am_boot_firwa_recv_handle_t  firwa_recv_handle,
                                       am_boot_enter_check_handle_t enter_check_handle);
 
 /**
- * \brief bootloader »ùÓÚnxp KinetisFlashToolµÄÀı³Ì
+ * \brief bootloader åŸºäºnxp KinetisFlashToolçš„ä¾‹ç¨‹
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_std_bootloader_kft_entry(am_boot_flash_handle_t    flash_handle,
                                    am_boot_mem_handle_t      memory_handle,
@@ -56,18 +56,18 @@ void demo_std_bootloader_kft_entry(am_boot_flash_handle_t    flash_handle,
                                    uint32_t                  ram_size);
 
 /**
- * \brief bootloader Ë«ÇøµÄÀı³Ì
+ * \brief bootloader åŒåŒºçš„ä¾‹ç¨‹
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_std_double_bootloader_entry(am_boot_firwa_recv_handle_t  firwa_recv_handle,
                                       am_boot_enter_check_handle_t enter_check_handle,
                                       am_boot_msg_handle_t         msg_handle);
 
 /**
- * \brief bootloader Ë«ÇøÓ¦ÓÃµÄÀı³Ì
+ * \brief bootloader åŒåŒºåº”ç”¨çš„ä¾‹ç¨‹
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_std_double_application_entry(am_boot_firwa_recv_handle_t  firwa_recv_handle,
                                        am_boot_enter_check_handle_t check_handle,

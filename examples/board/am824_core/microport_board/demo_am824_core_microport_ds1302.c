@@ -12,19 +12,19 @@
 
 /**
  * \file
- * \brief MicroPort-DS1302 Àý³Ì£¬Í¨¹ý RTC ±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MicroPort-DS1302 ä¾‹ç¨‹ï¼Œé€šè¿‡ RTC æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. ½« MicroPort-DS1302 À©Õ¹°åÁ¬½Óµ½ AM824-Core µÄ MicroPort ½Ó¿Ú¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. å°† MicroPort-DS1302 æ‰©å±•æ¿è¿žæŽ¥åˆ° AM824-Core çš„ MicroPort æŽ¥å£ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿Ú½«Ã¿Ò»ÃëµÄÊ±¼äÐÅÏ¢´òÓ¡³öÀ´¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. ä¸²å£å°†æ¯ä¸€ç§’çš„æ—¶é—´ä¿¡æ¯æ‰“å°å‡ºæ¥ã€‚
  *
  * \note
- *    ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIO0_0 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *    PIO0_4 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
+ *    å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO0_0 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *    PIO0_4 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_microport_ds1302.c src_microport_ds1302
  *
  * \internal
@@ -45,7 +45,7 @@
 #include "demo_std_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am824_core_microport_ds1302_entry (void)
 {

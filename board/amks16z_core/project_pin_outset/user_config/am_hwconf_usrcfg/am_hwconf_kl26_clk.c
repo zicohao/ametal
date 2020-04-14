@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief KL26 CLK �û������ļ���
+ * \brief KL26 CLK 用户配置文件。
  * \sa am_kl26_hwconfig_clk.c
  *
  * \internal
@@ -36,29 +36,29 @@
  */
 
 /**
- * \brief ʱ�ӹ���ģʽ,
+ * \brief 时钟工作模式,
  *
- *   �ɶ���ΪAM_KL26_CLK_MODE_FEI��AM_KL26_CLK_MODE_PEE
+ *   可定义为AM_KL26_CLK_MODE_FEI或AM_KL26_CLK_MODE_PEE
  *
- *  - FEI mode: ʹ���ڲ����� IRC(32.768KHz)��FLL�ο�ʱ�� ����FLL��Ƶ��(47.972352MHz)����ʱ�ӣ�
- *              Core clock = 47.972352MHz��
+ *  - FEI mode: 使用内部慢速 IRC(32.768KHz)作FLL参考时钟 ，经FLL倍频后(47.972352MHz)作主时钟，
+ *              Core clock = 47.972352MHz，
  *              Bus clock  = 23.986171MHz
  *
- *  - PEE mode: ʹ���ⲿʱ��XTAL��PLL�ο�ʱ�� ����PLL��Ƶ��(96MHz)����ʱ�ӣ�
- *              Core clock = 48MHz��
+ *  - PEE mode: 使用外部时钟XTAL作PLL参考时钟 ，经PLL倍频后(96MHz)作主时钟，
+ *              Core clock = 48MHz，
  *              Bus clock  = 24Hz
  *
- * \note �ı�ʱ��ģʽʱ����ı������豸��Ϣ��core_clk_div��Ա, ��ΪAM_KL26_CLK_MODE_FEI����ֵΪ1����ΪAM_KL26_CLK_MODE_PEE����ֵΪ2
+ * \note 改变时钟模式时必面改变配置设备信息的core_clk_div成员, 当为AM_KL26_CLK_MODE_FEI，该值为1，当为AM_KL26_CLK_MODE_PEE，其值为2
  *
  */
 #define __CLK_MODE    AM_KL26_CLK_MODE_FEI
 
 /**
- * \brief CLK ƽ̨��ʼ��
+ * \brief CLK 平台初始化
  */
 static void __kl26_clk_plfm_init (void)
 {
-    /** \brief  �����ⲿ����OSC���Ź��� */
+    /** \brief  设置外部晶振OSC引脚功能 */
     amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_PORTA);
 
     amhw_kl26_port_pin_func_cfg(KL26_PORT, PIOA_18, PIOA_18_EXTAL0);
@@ -66,26 +66,26 @@ static void __kl26_clk_plfm_init (void)
 }
 
 /**
- * \brief CLK ƽ̨ȥ��ʼ��
+ * \brief CLK 平台去初始化
  */
 static void __kl26_clk_plfm_deinit (void)
 {
-    /* ʱ����ȥ��ʼ������*/
+    /* 时钟无去初始化操作*/
     return;
 }
 
 /**
- * \brief CLK �豸��Ϣ
+ * \brief CLK 设备信息
  */
 static const am_kl26_clk_devinfo_t __g_clk_devinfo = {
 
-    /* ʱ�ӹ���ģʽ */
+    /* 时钟工作模式 */
     __CLK_MODE,
 
-    /* AM_KL26_CLK_MODE_PEEģʽ���ⲿ����Ƶ�ʣ�����8-32MHz, 4�������� */
+    /* AM_KL26_CLK_MODE_PEE模式的外部晶振频率，可用8-32MHz, 4的整数倍 */
     (8 * 1000 * 1000),
 
-    /* �ں�ʱ��core_clk��Ƶϵ��(1-16),
+    /* 内核时钟core_clk分频系数(1-16),
      * CORE_CLK = MCGOUTCLK / core_clk_div
      * Core clock upto 48MHz
      **************************************************
@@ -96,21 +96,21 @@ static const am_kl26_clk_devinfo_t __g_clk_devinfo = {
      */
     1,
 
-    /* CLKƽ̨��ʼ�� */
+    /* CLK平台初始化 */
 	__kl26_clk_plfm_init,
 
-	/*  CLK ƽ̨ȥ��ʼ�� */
+	/*  CLK 平台去初始化 */
 	__kl26_clk_plfm_deinit,
 
 };
 
-/** \brief CLK�豸ʵ��   */
+/** \brief CLK设备实例   */
 static am_kl26_clk_dev_t __g_clk_dev;
 
 /**
- * \brief  CLK ʵ����ʼ������ʼ��ϵͳʱ��
+ * \brief  CLK 实例初始化，初始化系统时钟
  *
- * \retval AM_OK : ʱ�ӳɹ���ʼ��
+ * \retval AM_OK : 时钟成功初始化
  */
 int am_kl26_clk_inst_init (void)
 {

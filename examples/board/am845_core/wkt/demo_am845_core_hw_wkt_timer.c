@@ -12,15 +12,15 @@
 
 /**
  * \file
- * \brief WKT ¶¨Ê±Æ÷Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief WKT å®šæ—¶å™¨ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. LED0 ÒÔ 1s ¼ä¸ôÉÁË¸¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. LED0 ä»¥ 1s é—´éš”é—ªçƒã€‚
  *
  * \note
- *    LED0 ĞèÒª¶Ì½Ó J9 ÌøÏßÃ±£¬²ÅÄÜ±» PIO1_3 ¿ØÖÆ¡£
+ *    LED0 éœ€è¦çŸ­æ¥ J9 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIO1_3 æ§åˆ¶ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am845_core_hw_wkt_timer.c src_am845_core_hw_wkt_timer
  *
  * \internal
@@ -43,22 +43,22 @@
 #include "demo_nxp_entries.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am845_core_hw_wkt_timer_entry (void)
 {
     am_kprintf("demo am845 hw wkt timer!\r\n");
 
-    /* ³õÊ¼»¯ WKT AHB Ê±ÖÓ */
+    /* åˆå§‹åŒ– WKT AHB æ—¶é’Ÿ */
     amhw_lpc84x_clk_periph_enable(AMHW_LPC84X_CLK_WKT);
 
-    /* ¸´Î» WKT */
+    /* å¤ä½ WKT */
     amhw_lpc84x_syscon_periph_reset(AMHW_LPC84X_RESET_WKT);
 
-    /* Ê¹ÄÜµÍ¹¦ºÄÕñµ´Æ÷ */
+    /* ä½¿èƒ½ä½åŠŸè€—æŒ¯è¡å™¨ */
     amhw_lpc82x_pmu_lposcen_enable(LPC84X_PMU);
 
-    /* Ê¹ÓÃµÍ¹¦ºÄÊ±ÖÓ */
+    /* ä½¿ç”¨ä½åŠŸè€—æ—¶é’Ÿ */
     amhw_lpc_wkt_clksel_cfg(LPC84X_WKT, AMHW_LPC_WKT_LOW_POWER_CLOCK);
 
     demo_lpc_hw_wkt_timer(LPC84X_WKT, 1000);

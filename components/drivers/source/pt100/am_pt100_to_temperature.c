@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief PT100×èÖµÎÂ¶È×ª»»
+ * \brief PT100é˜»å€¼æ¸©åº¦è½¬æ¢
  *
  * \internal
  * \par Modification History
@@ -25,7 +25,7 @@
 #include "am_pt100_to_temperature.h"
 #include "am_pt100_temp_res_table.h"
  
-/* PT100µÄµç×è²âÁ¿Öµ¼ÆËãÎÂ¶ÈÖµ */
+/* PT100çš„ç”µé˜»æµ‹é‡å€¼è®¡ç®—æ¸©åº¦å€¼ */
 float pt100_to_temperature (float pt100)
 {
     const unsigned int table_size = sizeof(g_pt100_table) / sizeof(g_pt100_table[0]);
@@ -35,11 +35,11 @@ float pt100_to_temperature (float pt100)
     int            dif        = 0;
     float          dec        = 0;
  
-    int low, high, mid;                          /* ÓÃÓÚ¶ş·Ö·¨²éÕÒ            */
+    int low, high, mid;                          /* ç”¨äºäºŒåˆ†æ³•æŸ¥æ‰¾            */
  
-    pt100_x100 = (unsigned int)(pt100 * 100);    /* ×èÖµÀ©´ó100±¶ºóµÄÕûÊı²¿·Ö */
+    pt100_x100 = (unsigned int)(pt100 * 100);    /* é˜»å€¼æ‰©å¤§100å€åçš„æ•´æ•°éƒ¨åˆ† */
 
-    /* ÅĞ¶ÏÊÇ·ñ³¬³ö·¶Î§ */
+    /* åˆ¤æ–­æ˜¯å¦è¶…å‡ºèŒƒå›´ */
     if (pt100_x100 < g_pt100_table[0]) {
         return -200.0f;
     } else if (pt100_x100 >= g_pt100_table[table_size - 1]) {
@@ -51,7 +51,7 @@ float pt100_to_temperature (float pt100)
     low  = 0;
     high = table_size - 1;
  
-    while ((high - low) != 1) {                /* Ö±µ½ÎÂ¶È·¶Î§ËõĞ¡Îª1¶È  */
+    while ((high - low) != 1) {                /* ç›´åˆ°æ¸©åº¦èŒƒå›´ç¼©å°ä¸º1åº¦  */
 
         mid = (low + high) / 2;
 
@@ -72,10 +72,10 @@ float pt100_to_temperature (float pt100)
         dif   = pt100_x100 - g_pt100_table[low];
     }
 
-    /* ±í¸ñ·Ö±æÂÊÎª1¶È£¬¼ÆËãÂäÈëÇø¼äµÄ±ÈÀı */
+    /* è¡¨æ ¼åˆ†è¾¨ç‡ä¸º1åº¦ï¼Œè®¡ç®—è½å…¥åŒºé—´çš„æ¯”ä¾‹ */
     dec = 1.0f * (dif + dec) / (g_pt100_table[index + 1] - g_pt100_table[index]);
 
-    /* ÆğÊ¼ÎÂ¶ÈÎª -200 */
+    /* èµ·å§‹æ¸©åº¦ä¸º -200 */
     return index + dec - 200.0f;
 }
 

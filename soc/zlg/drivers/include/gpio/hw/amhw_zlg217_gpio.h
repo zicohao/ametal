@@ -36,32 +36,32 @@ extern "C" {
  * @{
  */
 
-#define AMHW_ZLG217_GPIO_PORT_MAX 5  /**< \brief GPIO ¶¨ÒåGPIO¶Ë¿ÚÊýÁ¿ */
+#define AMHW_ZLG217_GPIO_PORT_MAX 5  /**< \brief GPIO å®šä¹‰GPIOç«¯å£æ•°é‡ */
 
 /**
- * \brief GPIO ¶Ë¿Ú¼Ä´æÆ÷½á¹¹Ìå
+ * \brief GPIO ç«¯å£å¯„å­˜å™¨ç»“æž„ä½“
  */
 typedef struct gpio_reg {
-    __IO  uint32_t crl;               /**< \brief ¶Ë¿ÚÅäÖÃµÍ¼Ä´æÆ÷ */
-    __IO  uint32_t crh;               /**< \brief ¶Ë¿ÚÅäÖÃ¸ß¼Ä´æÆ÷ */
-    __I   uint32_t idr;               /**< \brief ¶Ë¿ÚÊäÈëÊý¾Ý¼Ä´æÆ÷ */
-    __IO  uint32_t odr;               /**< \brief ¶Ë¿ÚÊä³öÊý¾Ý¼Ä´æÆ÷ */
-    __O   uint32_t bsrr;              /**< \brief ¶Ë¿ÚÉèÖÃ/Çå³ý¼Ä´æÆ÷ */
-    __O   uint32_t brr;               /**< \brief ¶Ë¿ÚÎ»Çå³ý¼Ä´æÆ÷ */
-    __IO  uint32_t lckr;              /**< \brief ¶Ë¿ÚÅäÖÃËø¶¨¼Ä´æÆ÷ */
-          uint32_t reserve[249];      /**< \brief ±£Áô */
+    __IO  uint32_t crl;               /**< \brief ç«¯å£é…ç½®ä½Žå¯„å­˜å™¨ */
+    __IO  uint32_t crh;               /**< \brief ç«¯å£é…ç½®é«˜å¯„å­˜å™¨ */
+    __I   uint32_t idr;               /**< \brief ç«¯å£è¾“å…¥æ•°æ®å¯„å­˜å™¨ */
+    __IO  uint32_t odr;               /**< \brief ç«¯å£è¾“å‡ºæ•°æ®å¯„å­˜å™¨ */
+    __O   uint32_t bsrr;              /**< \brief ç«¯å£è®¾ç½®/æ¸…é™¤å¯„å­˜å™¨ */
+    __O   uint32_t brr;               /**< \brief ç«¯å£ä½æ¸…é™¤å¯„å­˜å™¨ */
+    __IO  uint32_t lckr;              /**< \brief ç«¯å£é…ç½®é”å®šå¯„å­˜å™¨ */
+          uint32_t reserve[249];      /**< \brief ä¿ç•™ */
 } amhw_zlg217_gpio_reg_t;
 
 /**
- * \brief GPIO ¼Ä´æÆ÷¿é½á¹¹Ìå
+ * \brief GPIO å¯„å­˜å™¨å—ç»“æž„ä½“
  */
 typedef struct amhw_zlg217_gpio {
-    amhw_zlg217_gpio_reg_t    gpio[AMHW_ZLG217_GPIO_PORT_MAX];    /**< \brief GPIO ¶Ë¿Ú */
+    amhw_zlg217_gpio_reg_t    gpio[AMHW_ZLG217_GPIO_PORT_MAX];    /**< \brief GPIO ç«¯å£ */
 } amhw_zlg217_gpio_t;
 
 /**
- * \brief GPIO×î´óÊä³öËÙ¶È
- * \note Ñ¡Ôñ¸ÃÃ¶¾ÙÉèÖÃGPIOÒý½ÅÇý¶¯µçÂ·ÏìÓ¦ËÙ¶ÈÊ±£¬GPIOÒý½ÅÒ²È·¶¨ÎªÊä³ö·½Ïò
+ * \brief GPIOæœ€å¤§è¾“å‡ºé€Ÿåº¦
+ * \note é€‰æ‹©è¯¥æžšä¸¾è®¾ç½®GPIOå¼•è„šé©±åŠ¨ç”µè·¯å“åº”é€Ÿåº¦æ—¶ï¼ŒGPIOå¼•è„šä¹Ÿç¡®å®šä¸ºè¾“å‡ºæ–¹å‘
  */
 typedef enum amhw_zlg217_gpio_speed_mode {
     AMHW_ZLG217_GPIO_SPEED_10MHz = 1UL,
@@ -70,35 +70,35 @@ typedef enum amhw_zlg217_gpio_speed_mode {
 }amhw_zlg217_gpio_speed_mode_t;
 
 /**
- * \brief GPIOÒý½ÅÄ£Ê½
+ * \brief GPIOå¼•è„šæ¨¡å¼
  *
- * \note Òý½Å×÷ÎªÊäÈëÓëÊä³öÊ±£¬¾ßÓÐ²»Í¬µÄÄ£Ê½
+ * \note å¼•è„šä½œä¸ºè¾“å…¥ä¸Žè¾“å‡ºæ—¶ï¼Œå…·æœ‰ä¸åŒçš„æ¨¡å¼
  */
 typedef enum amhw_zlg217_gpiomode
 {
-    /** \brief µ±GPIOÒý½ÅµÄ·½ÏòÎªÊäÈë·½Ïò£¬Òý½Å¾ßÓÐÒÔÏÂ¼¸ÖÖÄ£Ê½ */
-    AMHW_ZLG217_GPIO_MODE_AIN = 0x00,         /**< \brief Ä£ÄâÄ£Ê½ */
-    AMHW_ZLG217_GPIO_MODE_IN_FLOATING = 0x01, /**< \brief ¸¡¿ÕÄ£Ê½(¸ÃÄ£Ê½½öÏÞ¶¨ÓÚÊäÈë) */
-    AMHW_ZLG217_GPIO_MODE_IPD = 0x02,         /**< \brief ÏÂÀ­Ä£Ê½(¸ÃÄ£Ê½½öÏÞ¶¨ÓÚÊäÈë) */
-    AMHW_ZLG217_GPIO_MODE_IPU = 0x02,         /**< \brief ÉÏÀ­Ä£Ê½ (¸ÃÄ£Ê½½öÏÞ¶¨ÓÚÊäÈë) */
+    /** \brief å½“GPIOå¼•è„šçš„æ–¹å‘ä¸ºè¾“å…¥æ–¹å‘ï¼Œå¼•è„šå…·æœ‰ä»¥ä¸‹å‡ ç§æ¨¡å¼ */
+    AMHW_ZLG217_GPIO_MODE_AIN = 0x00,         /**< \brief æ¨¡æ‹Ÿæ¨¡å¼ */
+    AMHW_ZLG217_GPIO_MODE_IN_FLOATING = 0x01, /**< \brief æµ®ç©ºæ¨¡å¼(è¯¥æ¨¡å¼ä»…é™å®šäºŽè¾“å…¥) */
+    AMHW_ZLG217_GPIO_MODE_IPD = 0x02,         /**< \brief ä¸‹æ‹‰æ¨¡å¼(è¯¥æ¨¡å¼ä»…é™å®šäºŽè¾“å…¥) */
+    AMHW_ZLG217_GPIO_MODE_IPU = 0x02,         /**< \brief ä¸Šæ‹‰æ¨¡å¼ (è¯¥æ¨¡å¼ä»…é™å®šäºŽè¾“å…¥) */
 
-    /** \brief µ±GPIOÒý½ÅµÄ·½ÏòÎªÊä³ö·½Ïò£¬Òý½Å¾ßÓÐÒÔÏÂ¼¸ÖÖÄ£Ê½ */
-    AMHW_ZLG217_GPIO_MODE_OUT_PP = 0x00,      /**< \brief Í¨ÓÃÍÆÍìÄ£Ê½ (¸ÃÄ£Ê½½öÏÞ¶¨ÓÚÊä³ö) */
-    AMHW_ZLG217_GPIO_MODE_OUT_OD = 0x01,      /**< \brief Í¨ÓÃ¿ªÂ©Ä£Ê½ (¸ÃÄ£Ê½½öÏÞ¶¨ÓÚÊä³ö) */
-    AMHW_ZLG217_GPIO_MODE_AF_PP = 0x02,       /**< \brief ¸´ÓÃÍÆÃâÄ£Ê½(¸ÃÄ£Ê½½öÏÞ¶¨ÓÚÊä³ö) */
-    AMHW_ZLG217_GPIO_MODE_AF_OD = 0x03        /**< \brief ¸´ÓÃ¿ªÂ©Ä£Ê½(¸ÃÄ£Ê½½öÏÞ¶¨ÓÚÊä³ö) */
+    /** \brief å½“GPIOå¼•è„šçš„æ–¹å‘ä¸ºè¾“å‡ºæ–¹å‘ï¼Œå¼•è„šå…·æœ‰ä»¥ä¸‹å‡ ç§æ¨¡å¼ */
+    AMHW_ZLG217_GPIO_MODE_OUT_PP = 0x00,      /**< \brief é€šç”¨æŽ¨æŒ½æ¨¡å¼ (è¯¥æ¨¡å¼ä»…é™å®šäºŽè¾“å‡º) */
+    AMHW_ZLG217_GPIO_MODE_OUT_OD = 0x01,      /**< \brief é€šç”¨å¼€æ¼æ¨¡å¼ (è¯¥æ¨¡å¼ä»…é™å®šäºŽè¾“å‡º) */
+    AMHW_ZLG217_GPIO_MODE_AF_PP = 0x02,       /**< \brief å¤ç”¨æŽ¨å…æ¨¡å¼(è¯¥æ¨¡å¼ä»…é™å®šäºŽè¾“å‡º) */
+    AMHW_ZLG217_GPIO_MODE_AF_OD = 0x03        /**< \brief å¤ç”¨å¼€æ¼æ¨¡å¼(è¯¥æ¨¡å¼ä»…é™å®šäºŽè¾“å‡º) */
 
 }amhw_zlg217_gpiomode_t;
 
 /**
- * \brief ÉèÖÃGPIOÒý½Å·½ÏòÎªÊä³ö¼°Òý½ÅÇý¶¯µçÂ·ÏìÓ¦ËÙ¶È
+ * \brief è®¾ç½®GPIOå¼•è„šæ–¹å‘ä¸ºè¾“å‡ºåŠå¼•è„šé©±åŠ¨ç”µè·¯å“åº”é€Ÿåº¦
  *
- * \param[in] p_hw_gpio  : Ö¸ÏòGPIO¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] pin        : Òý½Å±àºÅ£¬ÖµÎª PIO* (#PIOA_0)
- * \param[in] speed_mode : Òý½ÅÎªÊäÏÖÊ±£¬ÆäÇý¶¯µçÂ·ÏìÓ¦ËÙ¶ÈÄ£Ê½£¬
- *                         ÖµÎª amhw_zlg217_gpio_speed_mode_t Õâ¸öÃ¶¾ÙÀàÐÍ
+ * \param[in] p_hw_gpio  : æŒ‡å‘GPIOå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] pin        : å¼•è„šç¼–å·ï¼Œå€¼ä¸º PIO* (#PIOA_0)
+ * \param[in] speed_mode : å¼•è„šä¸ºè¾“çŽ°æ—¶ï¼Œå…¶é©±åŠ¨ç”µè·¯å“åº”é€Ÿåº¦æ¨¡å¼ï¼Œ
+ *                         å€¼ä¸º amhw_zlg217_gpio_speed_mode_t è¿™ä¸ªæžšä¸¾ç±»åž‹
  *
- * \return ÎÞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_gpio_pin_dir_output (amhw_zlg217_gpio_t            *p_hw_gpio,
@@ -115,12 +115,12 @@ void amhw_zlg217_gpio_pin_dir_output (amhw_zlg217_gpio_t            *p_hw_gpio,
 }
 
 /**
- * \brief ÉèÖÃGPIOÒý½Å·½ÏòÎªÊäÈë
+ * \brief è®¾ç½®GPIOå¼•è„šæ–¹å‘ä¸ºè¾“å…¥
  *
- * \param[in] p_hw_gpio  : Ö¸ÏòGPIO¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] pin        : Òý½Å±àºÅ£¬ÖµÎª PIO* (#PIOA_0)
+ * \param[in] p_hw_gpio  : æŒ‡å‘GPIOå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] pin        : å¼•è„šç¼–å·ï¼Œå€¼ä¸º PIO* (#PIOA_0)
  *
- * \return ÎÞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_gpio_pin_dir_input (amhw_zlg217_gpio_t *p_hw_gpio, int pin)
@@ -133,13 +133,13 @@ void amhw_zlg217_gpio_pin_dir_input (amhw_zlg217_gpio_t *p_hw_gpio, int pin)
 }
 
 /**
- * \brief »ñÈ¡GPIOÒý½ÅÊäÈëÊä³ö·½Ïò
+ * \brief èŽ·å–GPIOå¼•è„šè¾“å…¥è¾“å‡ºæ–¹å‘
  *
- * \param[in] p_hw_gpio  : Ö¸ÏòGPIO¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] pin        : Òý½Å±àºÅ£¬ÖµÎª PIO* (#PIOA_0)
+ * \param[in] p_hw_gpio  : æŒ‡å‘GPIOå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] pin        : å¼•è„šç¼–å·ï¼Œå€¼ä¸º PIO* (#PIOA_0)
  *
- * \return 0 £º ÊäÈë
- *          1 £º Êä³ö
+ * \return 0 ï¼š è¾“å…¥
+ *          1 ï¼š è¾“å‡º
  */
 am_static_inline
 int amhw_zlg217_gpio_pin_dir_get (amhw_zlg217_gpio_t *p_hw_gpio, int pin)
@@ -152,13 +152,13 @@ int amhw_zlg217_gpio_pin_dir_get (amhw_zlg217_gpio_t *p_hw_gpio, int pin)
 }
 
 /**
- * \brief ÉèÖÃGPIOÒý½ÅµÄÄ£Ê½
+ * \brief è®¾ç½®GPIOå¼•è„šçš„æ¨¡å¼
  *
- * \param[in] p_hw_gpio : Ö¸ÏòGPIO¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] gpio_mode : Òý½ÅµÄÄ£Ê½£¬ÖµÎª amhw_zlg217_gpiomode_t Õâ¸öÃ¶¾ÙÀàÐÍ
- * \param[in] pin       : Òý½Å±àºÅ£¬ÖµÎª PIO* (#PIOA_0)
+ * \param[in] p_hw_gpio : æŒ‡å‘GPIOå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] gpio_mode : å¼•è„šçš„æ¨¡å¼ï¼Œå€¼ä¸º amhw_zlg217_gpiomode_t è¿™ä¸ªæžšä¸¾ç±»åž‹
+ * \param[in] pin       : å¼•è„šç¼–å·ï¼Œå€¼ä¸º PIO* (#PIOA_0)
  *
- * \return ÎÞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_gpio_pin_mode_set (amhw_zlg217_gpio_t     *p_hw_gpio,
@@ -175,13 +175,13 @@ void amhw_zlg217_gpio_pin_mode_set (amhw_zlg217_gpio_t     *p_hw_gpio,
 }
 
 /**
- * \brief ¶ÁGPIOÒý½ÅÊäÈëµçÆ½
+ * \brief è¯»GPIOå¼•è„šè¾“å…¥ç”µå¹³
  *
- * \param[in] p_hw_gpio : Ö¸ÏòGPIO¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] pin       : Òý½Å±àºÅ,ÖµÎª PIO* (#PIOA_0)
+ * \param[in] p_hw_gpio : æŒ‡å‘GPIOå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] pin       : å¼•è„šç¼–å·,å€¼ä¸º PIO* (#PIOA_0)
  *
- * \retval 0 : µÍµçÆ½
- * \retval 1 : ¸ßµçÆ½
+ * \retval 0 : ä½Žç”µå¹³
+ * \retval 1 : é«˜ç”µå¹³
  */
 am_static_inline
 int amhw_zlg217_gpio_pin_input_get(amhw_zlg217_gpio_t *p_hw_gpio, int pin)
@@ -190,13 +190,13 @@ int amhw_zlg217_gpio_pin_input_get(amhw_zlg217_gpio_t *p_hw_gpio, int pin)
 }
 
 /**
- * \brief ¶ÁGPIOÒý½ÅÊä³öµçÆ½
+ * \brief è¯»GPIOå¼•è„šè¾“å‡ºç”µå¹³
  *
- * \param[in] p_hw_gpio : Ö¸ÏòGPIO¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] pin       : Òý½Å±àºÅ,ÖµÎª PIO* (#PIOA_0)
+ * \param[in] p_hw_gpio : æŒ‡å‘GPIOå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] pin       : å¼•è„šç¼–å·,å€¼ä¸º PIO* (#PIOA_0)
  *
- * \retval 0 : µÍµçÆ½
- * \retval 1 : ¸ßµçÆ½
+ * \retval 0 : ä½Žç”µå¹³
+ * \retval 1 : é«˜ç”µå¹³
  */
 am_static_inline
 int amhw_zlg217_gpio_pin_output_get (amhw_zlg217_gpio_t *p_hw_gpio, int pin)
@@ -205,14 +205,14 @@ int amhw_zlg217_gpio_pin_output_get (amhw_zlg217_gpio_t *p_hw_gpio, int pin)
 }
 
 /**
- * \brief ÉèÖÃGPIOÒý½ÅµçÆ½Îª¸ß
+ * \brief è®¾ç½®GPIOå¼•è„šç”µå¹³ä¸ºé«˜
  *
- * \param[in] p_hw_gpio : Ö¸ÏòGPIO¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] pin       : Òý½Å±àºÅ,ÖµÎª PIO* (#PIOA_0)
+ * \param[in] p_hw_gpio : æŒ‡å‘GPIOå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] pin       : å¼•è„šç¼–å·,å€¼ä¸º PIO* (#PIOA_0)
  *
- * \return ÎÞ
+ * \return æ— 
  *
- * \note ¸Ã¹¦ÄÜÅäÖÃÊäÈëÒý½ÅµÄÊ±ºòÎªÊ¹ÄÜÉÏÀ­µç×è²¢Ê§ÄÜÏÂÀ­µç×è
+ * \note è¯¥åŠŸèƒ½é…ç½®è¾“å…¥å¼•è„šçš„æ—¶å€™ä¸ºä½¿èƒ½ä¸Šæ‹‰ç”µé˜»å¹¶å¤±èƒ½ä¸‹æ‹‰ç”µé˜»
  */
 am_static_inline
 void amhw_zlg217_gpio_pin_out_high (amhw_zlg217_gpio_t *p_hw_gpio, int pin)
@@ -221,14 +221,14 @@ void amhw_zlg217_gpio_pin_out_high (amhw_zlg217_gpio_t *p_hw_gpio, int pin)
 }
 
 /**
- * \brief ÉèÖÃGPIOÒý½ÅµçÆ½ÎªµÍ
+ * \brief è®¾ç½®GPIOå¼•è„šç”µå¹³ä¸ºä½Ž
  *
- * \param[in] p_hw_gpio : Ö¸ÏòGPIO¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] pin       : Òý½Å±àºÅ,ÖµÎª PIO* (#PIOA_0)
+ * \param[in] p_hw_gpio : æŒ‡å‘GPIOå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] pin       : å¼•è„šç¼–å·,å€¼ä¸º PIO* (#PIOA_0)
  *
- * \return ÎÞ
+ * \return æ— 
  *
- * \note ¸Ã¹¦ÄÜÅäÖÃÊäÈëÒý½ÅµÄÊ±ºòÎªÊ§ÄÜÉÏÀ­µç×è²¢Ê¹ÄÜÏÂÀ­µç×è
+ * \note è¯¥åŠŸèƒ½é…ç½®è¾“å…¥å¼•è„šçš„æ—¶å€™ä¸ºå¤±èƒ½ä¸Šæ‹‰ç”µé˜»å¹¶ä½¿èƒ½ä¸‹æ‹‰ç”µé˜»
  */
 am_static_inline
 void amhw_zlg217_gpio_pin_out_low (amhw_zlg217_gpio_t *p_hw_gpio, int pin)
@@ -237,14 +237,14 @@ void amhw_zlg217_gpio_pin_out_low (amhw_zlg217_gpio_t *p_hw_gpio, int pin)
 }
 
 /**
- * \brief ·­×ªGPIOÒý½ÅµçÆ½
+ * \brief ç¿»è½¬GPIOå¼•è„šç”µå¹³
  *
- * \param[in] p_hw_gpio : Ö¸ÏòGPIO¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] pin       : Òý½Å±àºÅ,ÖµÎª PIO* (#PIOA_0)
+ * \param[in] p_hw_gpio : æŒ‡å‘GPIOå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] pin       : å¼•è„šç¼–å·,å€¼ä¸º PIO* (#PIOA_0)
  *
- * \return ÎÞ
+ * \return æ— 
  *
- * \note ¸Ã¹¦ÄÜÅäÖÃÊäÈëÒý½ÅµÄÊ±ºòÎªÅäÖÃÉÏÀ­/ÏÂÀ­µç×è
+ * \note è¯¥åŠŸèƒ½é…ç½®è¾“å…¥å¼•è„šçš„æ—¶å€™ä¸ºé…ç½®ä¸Šæ‹‰/ä¸‹æ‹‰ç”µé˜»
  */
 am_static_inline
 void amhw_zlg217_gpio_pin_out_toggle (amhw_zlg217_gpio_t *p_hw_gpio, int pin)
@@ -257,14 +257,14 @@ void amhw_zlg217_gpio_pin_out_toggle (amhw_zlg217_gpio_t *p_hw_gpio, int pin)
 }
 
 /**
- * \brief ÉèÖÃGPIOÒý½ÅËø¶¨
+ * \brief è®¾ç½®GPIOå¼•è„šé”å®š
  *
- * \param[in] p_hw_gpio : Ö¸ÏòGPIO¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] pin       : Òý½Å±àºÅ£¬ÖµÎª PIO* (#PIOA_0)
+ * \param[in] p_hw_gpio : æŒ‡å‘GPIOå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] pin       : å¼•è„šç¼–å·ï¼Œå€¼ä¸º PIO* (#PIOA_0)
  *
- * \note ¸Ãº¯Êýµ÷ÓÃ¶à´ÎËø¶¨Í¬Ò»GPIO¶Ë¿Ú²»Í¬Òý½ÅµÄÅäÖÃ
+ * \note è¯¥å‡½æ•°è°ƒç”¨å¤šæ¬¡é”å®šåŒä¸€GPIOç«¯å£ä¸åŒå¼•è„šçš„é…ç½®
  *
- * \return ÎÞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_gpio_pinlock_set(amhw_zlg217_gpio_t *p_hw_gpio, int pin)
@@ -273,15 +273,15 @@ void amhw_zlg217_gpio_pinlock_set(amhw_zlg217_gpio_t *p_hw_gpio, int pin)
 }
 
 /**
- * \brief GPIO¶Ë¿ÚËø¼üÉèÖÃ
+ * \brief GPIOç«¯å£é”é”®è®¾ç½®
  *
- * \param[in] p_hw_gpio : Ö¸ÏòGPIO¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] port_num  : ¶Ë¿Ú±àºÅ£¬ÖµÎª PIO* (# PIOA)
+ * \param[in] p_hw_gpio : æŒ‡å‘GPIOå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] port_num  : ç«¯å£ç¼–å·ï¼Œå€¼ä¸º PIO* (# PIOA)
  *
- * \note ¸Ãº¯ÊýÒ»°ã ÔÚamhw_zlg217_gpio_pinlock_setµ÷ÓÃºó½ô½Ó×Åµ÷ÓÃ
+ * \note è¯¥å‡½æ•°ä¸€èˆ¬ åœ¨amhw_zlg217_gpio_pinlock_setè°ƒç”¨åŽç´§æŽ¥ç€è°ƒç”¨
  *
- * \return AM_OK    : ¼¤»î
- *         AM_ERROR : Ê§°Ü
+ * \return AM_OK    : æ¿€æ´»
+ *         AM_ERROR : å¤±è´¥
  */
 am_static_inline
 int amhw_zlg217_gpio_lckk_set(amhw_zlg217_gpio_t *p_hw_gpio, int port_num)

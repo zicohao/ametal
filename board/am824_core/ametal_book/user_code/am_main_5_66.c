@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥5.66 
+ * \brief ç¨‹åºæ¸…å•5.66 
  *
  * 
  * \internal
@@ -28,25 +28,25 @@
 
 static void __spi_msg_complete_callback (void *p_arg)
 {
-    *(uint8_t *) p_arg = 1;                        // ÉèÖÃÍê³É±êÖ¾Îª1
+    *(uint8_t *) p_arg = 1;                        // è®¾ç½®å®Œæˆæ ‡å¿—ä¸º1
 }
 
 int am_main (void)
 {
-    am_spi_message_t    spi_msg;                  // ¶¨ÒåÒ»¸öSPIÏûÏ¢½á¹¹Ìå
+    am_spi_message_t    spi_msg;                  // å®šä¹‰ä¸€ä¸ªSPIæ¶ˆæ¯ç»“æ„ä½“
     uint8_t             tx_buf[8];
     uint8_t             rx_buf[8];
-    am_spi_transfer_t   spi_trans;                // ¶¨ÒåÒ»¸öSPI´«Êä½á¹¹Ìå
-    volatile  uint8_t   complete_flag = 0;        // Íê³É±êÖ¾
+    am_spi_transfer_t   spi_trans;                // å®šä¹‰ä¸€ä¸ªSPIä¼ è¾“ç»“æ„ä½“
+    volatile  uint8_t   complete_flag = 0;        // å®Œæˆæ ‡å¿—
     am_spi_device_t     spi_dev; 
     am_spi_handle_t     spi0_handle   = am_lpc82x_spi0_dma_inst_init();
     am_spi_mkdev(&spi_dev, spi0_handle, 8, AM_SPI_MODE_0, 3000000, PIO0_13, NULL); 
-    am_spi_setup(&spi_dev);                       // ÉèÖÃSPI´ÓÉè±¸
+    am_spi_setup(&spi_dev);                       // è®¾ç½®SPIä»è®¾å¤‡
     am_spi_mktrans(&spi_trans, tx_buf, rx_buf, 8, 0, 0, 0, 0, 0);
     am_spi_msg_init (&spi_msg, __spi_msg_complete_callback, (void *)&complete_flag);
     am_spi_trans_add_tail(&spi_msg, &spi_trans);
     am_spi_msg_start(&spi_dev, &spi_msg);
-    while (complete_flag == 0);                   // µÈ´ıÏûÏ¢´¦Àí½áÊø
+    while (complete_flag == 0);                   // ç­‰å¾…æ¶ˆæ¯å¤„ç†ç»“æŸ
     while(1){
     }
 }

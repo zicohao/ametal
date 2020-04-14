@@ -12,15 +12,15 @@
 
 /**
  * \file
- * \brief ��ʱ��ͨ���Ƚ�ƥ�����ŷ�ת���̣�ͨ�� HW ��ӿ�ʵ��
+ * \brief 定时器通道比较匹配引脚翻转例程，通过 HW 层接口实现
  *
- * - ʵ������
- *   1. LED0 �� PIOB_11 ������ 10Hz ��Ƶ�ʽ��з�ת��
+ * - 实验现象：
+ *   1. LED0 和 PIOB_11 引脚以 10Hz 的频率进行翻转。
  *
  * \note
- *    LED0 ��Ҫ�̽� J9 ����ñ�����ܱ� PIOC_9 ���ơ�
+ *    LED0 需要短接 J9 跳线帽，才能被 PIOC_9 控制。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_zlg217_hw_tim_cmp_toggle.c src_zlg217_hw_tim_cmp_toggle
  *
  * \internal
@@ -44,19 +44,19 @@
 #include "demo_am217_core_entries.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_zlg217_core_hw_tim_cmp_toggle_entry (void)
 {
     AM_DBG_INFO("demo am217_core hw tim cmp toggle!\r\n");
 
-    /* ��ʼ������ */
+    /* 初始化引脚 */
     am_gpio_pin_cfg(PIOB_11, PIOB_11_TIM2_CH4_REMAP2 | PIOB_11_AF_PP);
 
-    /* ʹ�ܶ�ʱ��ʱ�� */
+    /* 使能定时器时钟 */
     am_clk_enable(CLK_TIM2);
 
-    /* ��λ��ʱ�� */
+    /* 复位定时器 */
     am_zlg217_clk_reset(CLK_TIM2);
 
     demo_zlg_hw_tim_cmp_toggle_entry(ZLG217_TIM2,

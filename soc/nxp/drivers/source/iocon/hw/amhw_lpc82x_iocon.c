@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief LPC82X IOCON (IOÅäÖÃ) Ó²¼ş²Ù×÷ÊµÏÖ
+ * \brief LPC82X IOCON (IOÃ…Ã¤Ã–Ãƒ) Ã“Â²Â¼Ã¾Â²Ã™Ã—Ã·ÃŠÂµÃÃ–
  * 
  * \internal
  * \par Modification History
@@ -26,7 +26,7 @@
 #include "hw/amhw_lpc82x_iocon.h"
 
 /**
- * \brief LPC82x IOCON[56] ¼Ä´æÆ÷ÖĞÒı½ÅPIO0_mÅÅÁĞË³Ğò
+ * \brief LPC82x IOCON[56] Â¼Ã„Â´Ã¦Ã†Ã·Ã–ÃÃ’Ã½Â½Ã…PIO0_mÃ…Ã…ÃÃÃ‹Â³ÃÃ²
  */
 typedef enum amhw_lpc82x_iocon_pio {
     AMHW_LPC82X_IOCON_PIO0_17 = 0,
@@ -63,10 +63,10 @@ typedef enum amhw_lpc82x_iocon_pio {
 } amhw_lpc82x_iocon_pio_t;
 
 /**
- * \brief LPC82x (PIO0_0~PIO0_28) Òı½ÅÅäÖÃ¼Ä´æÆ÷Æ«ÒÆ±í
+ * \brief LPC82x (PIO0_0~PIO0_28) Ã’Ã½Â½Ã…Ã…Ã¤Ã–ÃƒÂ¼Ã„Â´Ã¦Ã†Ã·Ã†Â«Ã’Ã†Â±Ã­
  *
- *        offset = amhw_lpc82x_iocon_offset_pin[PIO_15] : PIO_15Òı½Å¼Ä´æÆ÷Æ«ÒÆ
- *        pio[offset]                                   : ÅäÖÃPIO_15µÄ¼Ä´æÆ÷
+ *        offset = amhw_lpc82x_iocon_offset_pin[PIO_15] : PIO_15Ã’Ã½Â½Ã…Â¼Ã„Â´Ã¦Ã†Ã·Ã†Â«Ã’Ã†
+ *        pio[offset]                                   : Ã…Ã¤Ã–ÃƒPIO_15ÂµÃ„Â¼Ã„Â´Ã¦Ã†Ã·
  */
 const uint8_t amhw_lpc82x_iocon_offset_pin[] = {
     AMHW_LPC82X_IOCON_PIO0_0,

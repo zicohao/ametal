@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief 程序清单 9.67
+ * \brief 绋嬪簭娓呭崟 9.67
  * 
  * \internal
  * \par Modification history
@@ -21,7 +21,7 @@
  */
 #include "model_bool.h"
 
-//需要将value值设置为AM_TRUE
+//闇�瑕佸皢value鍊艰缃负AM_TRUE
 #define   SET_VALUE      AM_TRUE 
 
 void __view_update(observer_t *p_view, model_t *p_model)
@@ -29,9 +29,9 @@ void __view_update(observer_t *p_view, model_t *p_model)
 	am_bool_t		value;
 	model_bool_get((model_bool_t *)p_model, &value);
 	if (value) {
-		// value为AM_TRUE，进行相应的显示
+		// value涓篈M_TRUE锛岃繘琛岀浉搴旂殑鏄剧ず
 	} else {
-		// value为AM_FALSE，进行相应的显示
+		// value涓篈M_FALSE锛岃繘琛岀浉搴旂殑鏄剧ず
 	}
 }
 

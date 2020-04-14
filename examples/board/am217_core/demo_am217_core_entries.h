@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZLG217 ËùÓĞÀı³Ìº¯ÊıÈë¿ÚÉùÃ÷
+ * \brief ZLG217 æ‰€æœ‰ä¾‹ç¨‹å‡½æ•°å…¥å£å£°æ˜
  * \sa demo_am217ble_all_entries.h
  *
  * \internal
@@ -24,382 +24,382 @@
 #include "amhw_zlg_adc.h"
 
 /**
- * \brief ADC INT Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief ADC INT ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_zlg217_core_hw_adc_int_entry (void);
 
 /**
- * \brief ADC DMA Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief ADC DMA ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_zlg217_core_hw_adc_dma_entry (void);
 
 /**
- * \brief ADC Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief ADC ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_std_adc_entry (void);
 
 /**
- * \brief ¶àÍ¨µÀADC Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief å¤šé€šé“ADC ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_std_multichan_adc_entry (void);
 
 /**
- * \brief ·äÃùÆ÷Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief èœ‚é¸£å™¨ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_std_buzzer_entry (void);
 
 /**
- * \brief CLK Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief CLK ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_zlg217_core_hw_clk_entry (void);
 
 /**
- * \brief CRC Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief CRC ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_zlg217_hw_crc_entry (void);
 
 /**
- * \brief CRC Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief CRC ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_std_crc_entry (void);
 
 /**
- * \brief DAC Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief DAC ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_zlg217_core_hw_dac_entry (void);
 
 /**
- * \brief DAC Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief DAC ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_std_dac_entry (void);
 
 /**
- * \brief DMA ÄÚ´æµ½ÄÚ´æÀı³Ì£¬Í¨¹ıÇı¶¯²ã½Ó¿ÚÊµÏÖ
+ * \brief DMA å†…å­˜åˆ°å†…å­˜ä¾‹ç¨‹ï¼Œé€šè¿‡é©±åŠ¨å±‚æ¥å£å®ç°
  */
 void demo_zlg217_core_drv_dma_m2m_entry (void);
 
 /**
- * \brief FLASH Àı³Ì£¬Í¨¹ıÇı¶¯²ã½Ó¿ÚÊµÏÖ
+ * \brief FLASH ä¾‹ç¨‹ï¼Œé€šè¿‡é©±åŠ¨å±‚æ¥å£å®ç°
  */
 void demo_zlg217_core_drv_flash_entry (void);
 
 /**
- * \brief GPIO Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief GPIO ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_zlg217_core_hw_gpio_entry (void);
 
 /**
- * \brief GPIO Òı½ÅÖĞ¶ÏÀı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief GPIO å¼•è„šä¸­æ–­ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_zlg217_core_hw_gpio_trigger_entry (void);
 
 /**
- * \brief GPIO Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief GPIO ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_std_gpio_entry (void);
 
 /**
- * \brief GPIO Òı½ÅÖĞ¶ÏÀı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief GPIO å¼•è„šä¸­æ–­ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_std_gpio_trigger_entry (void);
 
 /**
- * \brief I2C ÂÖÑ¯Ä£Ê½ÏÂ²Ù×÷ EEPROM Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief I2C è½®è¯¢æ¨¡å¼ä¸‹æ“ä½œ EEPROM ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_zlg217_core_hw_i2c_master_poll_entry (void);
 
 /**
- * \brief I2C ´Ó»úÀı³Ì(´ËÀı³Ì¿ÉÒÔÓÃÀ´Ä£Äâ EEPROM)£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief I2C ä»æœºä¾‹ç¨‹(æ­¤ä¾‹ç¨‹å¯ä»¥ç”¨æ¥æ¨¡æ‹Ÿ EEPROM)ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_zlg217_core_hw_i2c_slave_poll_entry (void);
 
 /**
- * \brief I2C Ö÷»ú´Ó LM75 ´«¸ĞÆ÷¶ÁÈ¡ÎÂ¶ÈÖµÀı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief I2C ä¸»æœºä» LM75 ä¼ æ„Ÿå™¨è¯»å–æ¸©åº¦å€¼ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_std_i2c_lm75_entry (void);
 
 /**
- * \brief I2C Ö÷»ú·ÃÎÊ EEPROM Àı³Ì£¬Í¨¹ıÒì²½±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief I2C ä¸»æœºè®¿é—® EEPROM ä¾‹ç¨‹ï¼Œé€šè¿‡å¼‚æ­¥æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_std_i2c_master_async_entry (void);
 
 /**
- * \brief I2C Ö÷»ú·ÃÎÊ EEPROM Àı³Ì£¬Í¨¹ıÍ¬²½±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief I2C ä¸»æœºè®¿é—® EEPROM ä¾‹ç¨‹ï¼Œé€šè¿‡åŒæ­¥æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_std_i2c_master_sync_entry (void);
 
 /**
- * \brief °´¼üÊäÈë×ÓÏµÍ³Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief æŒ‰é”®è¾“å…¥å­ç³»ç»Ÿä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_std_key_input_event_entry (void);
 
 /**
- * \brief IWDG Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief IWDG ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_zlg217_core_hw_iwdg_entry (void);
 
 /**
- * \brief IWDG Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief IWDG ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_std_iwdg_entry (void);
 
 /**
- * \brief LED Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief LED ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_std_led_entry (void);
 
 /**
- * \brief RTC Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief RTC ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_zlg217_core_hw_rtc_sec_int_entry (void);
 
 /**
- * \brief RTC Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief RTC ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_std_rtc_entry (void);
 
 /**
- * \brief SPI Ö÷»úÀı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief SPI ä¸»æœºä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_zlg217_core_hw_spi_master_entry (void);
 
 /**
- * \brief SPI Ö÷»ú DMA ·½Ê½Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief SPI ä¸»æœº DMA æ–¹å¼ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_std_spi_master_dma_entry (void);
 
 /**
- * \brief SPI Ö÷»úÖĞ¶Ï·½Ê½Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief SPI ä¸»æœºä¸­æ–­æ–¹å¼ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_std_spi_master_int_entry (void);
 
 /**
- * \brief ÑÓÊ±Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief å»¶æ—¶ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_std_delay_entry (void);
 
 /**
- * \brief SYSTICK Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief SYSTICK ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_std_systick_timer_entry (void);
 
 /**
- * \brief ¶¨Ê±Æ÷ CAP ²¶»ñÀı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief å®šæ—¶å™¨ CAP æ•è·ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_zlg217_core_hw_tim_cap_entry (void);
 
 /**
- * \brief TIM1 ¶¨Ê±Æ÷ CAP Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief TIM1 å®šæ—¶å™¨ CAP ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_std_tim1_cap_entry (void);
 
 /**
- * \brief TIM2 ¶¨Ê±Æ÷ CAP Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief TIM2 å®šæ—¶å™¨ CAP ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_std_tim2_cap_entry (void);
 
 /**
- * \brief TIM3 ¶¨Ê±Æ÷ CAP Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief TIM3 å®šæ—¶å™¨ CAP ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_std_tim3_cap_entry (void);
 
 /**
- * \brief TIM4 ¶¨Ê±Æ÷ CAP Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief TIM4 å®šæ—¶å™¨ CAP ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_std_tim4_cap_entry (void);
 
 /**
- * \brief TIM ÊµÏÖ±È½ÏÆ¥Åä·­×ª£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief TIM å®ç°æ¯”è¾ƒåŒ¹é…ç¿»è½¬ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_zlg217_core_hw_tim_cmp_toggle_entry (void);
 
 /**
- * \brief ¶¨Ê±Æ÷ PWM Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief å®šæ—¶å™¨ PWM ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_zlg217_core_hw_tim_pwm_entry (void);
 
 /**
- * \brief TIM1 ¶¨Ê±Æ÷ PWM Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief TIM1 å®šæ—¶å™¨ PWM ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_std_tim1_pwm_entry (void);
 
 /**
- * \brief TIM2 ¶¨Ê±Æ÷ PWM Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief TIM2 å®šæ—¶å™¨ PWM ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_std_tim2_pwm_entry (void);
 
 /**
- * \brief TIM3 ¶¨Ê±Æ÷ PWM Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief TIM3 å®šæ—¶å™¨ PWM ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_std_tim3_pwm_entry (void);
 
 /**
- * \brief TIM4 ¶¨Ê±Æ÷ PWM Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief TIM4 å®šæ—¶å™¨ PWM ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_std_tim4_pwm_entry (void);
 
 /**
- * \brief ¶¨Ê±Æ÷ TIMING Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief å®šæ—¶å™¨ TIMING ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_zlg217_core_hw_tim_timing_entry (void);
 
 /**
- * \brief TIM1 ¶¨Ê±Æ÷ TIMING Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief TIM1 å®šæ—¶å™¨ TIMING ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_std_tim1_timing_entry (void);
 
 /**
- * \brief TIM2 ¶¨Ê±Æ÷ TIMING Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief TIM2 å®šæ—¶å™¨ TIMING ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_std_tim2_timing_entry (void);
 
 /**
- * \brief TIM3 ¶¨Ê±Æ÷ TIMING Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief TIM3 å®šæ—¶å™¨ TIMING ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_std_tim3_timing_entry (void);
 
 /**
- * \brief TIM4 ¶¨Ê±Æ÷ TIMING Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief TIM4 å®šæ—¶å™¨ TIMING ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_std_tim4_timing_entry (void);
 
 /**
- * \brief U_ID Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief U_ID ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_zlg217_core_hw_uid_entry (void);
 
 /**
- * \brief UART ÖĞ¶ÏÀı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief UART ä¸­æ–­ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_zlg217_core_hw_uart_int_entry (void);
 
 /**
- * \brief UART ÂÖÑ¯·½Ê½Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief UART è½®è¯¢æ–¹å¼ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_hw_uart_polling_entry (void);
 
 /**
- * \brief UART DMA ½ÓÊÕÀı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief UART DMA æ¥æ”¶ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_zlg217_core_hw_uart_rx_dma_entry (void);
 
 /**
- * \brief UART DMA ·¢ËÍÀı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief UART DMA å‘é€ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_zlg217_core_hw_uart_tx_dma_entry (void);
 
 /**
- * \brief UART ÂÖÑ¯·½Ê½Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief UART è½®è¯¢æ–¹å¼ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_std_uart_polling_entry (void);
 
 /**
- * \brief UART »·ĞÎ»º³åÇøÀı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief UART ç¯å½¢ç¼“å†²åŒºä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_std_uart_ringbuf_entry (void);
 
 /**
- * \brief Ë¯ÃßÄ£Ê½Àı³Ì£¬Ê¹ÓÃ¶¨Ê±Æ÷ÖÜÆÚ»½ĞÑ£¬Í¨¹ıÇı¶¯²ã½Ó¿ÚÊµÏÖ
+ * \brief ç¡çœ æ¨¡å¼ä¾‹ç¨‹ï¼Œä½¿ç”¨å®šæ—¶å™¨å‘¨æœŸå”¤é†’ï¼Œé€šè¿‡é©±åŠ¨å±‚æ¥å£å®ç°
  */
 void demo_zlg217_drv_sleepmode_timer_wake_up_entry (void);
 
 /**
- * \brief Ë¯ÃßÄ£Ê½Àı³Ì£¬Í¨¹ıÇı¶¯²ã½Ó¿ÚÊµÏÖ
+ * \brief ç¡çœ æ¨¡å¼ä¾‹ç¨‹ï¼Œé€šè¿‡é©±åŠ¨å±‚æ¥å£å®ç°
  */
 void demo_zlg217_drv_sleepmode_wake_up_entry (void);
 
 /**
- * \brief ´ı»úÄ£Ê½Àı³Ì£¬Í¨¹ıÇı¶¯²ã½Ó¿ÚÊµÏÖ
+ * \brief å¾…æœºæ¨¡å¼ä¾‹ç¨‹ï¼Œé€šè¿‡é©±åŠ¨å±‚æ¥å£å®ç°
  */
 void demo_zlg217_drv_standbymode_wake_up_entry (void);
 
 /**
- * \brief Í£Ö¹Ä£Ê½Àı³Ì£¬Í¨¹ıÇı¶¯²ã½Ó¿ÚÊµÏÖ
+ * \brief åœæ­¢æ¨¡å¼ä¾‹ç¨‹ï¼Œé€šè¿‡é©±åŠ¨å±‚æ¥å£å®ç°
  */
 void demo_zlg217_drv_stopmode_wake_up_entry (void);
 
 /**
- * \brief WWDG Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief WWDG ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_zlg217_core_hw_wwdg_entry (void);
 
 /**
- * \brief WWDG Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief WWDG ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_std_wwdg_entry (void);
 
 /**
- * \brief MicroPort DS1302 Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MicroPort DS1302 ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_microport_ds1302_entry (void);
 
 /**
- * \brief MicroPort EEPROM Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MicroPort EEPROM ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_microport_eeprom_entry (void);
 
 /**
- * \brief MicroPort EEPROM Àı³Ì£¬Í¨¹ı NVRAM ½Ó¿ÚÊµÏÖ
+ * \brief MicroPort EEPROM ä¾‹ç¨‹ï¼Œé€šè¿‡ NVRAM æ¥å£å®ç°
  */
 void demo_zlg217_core_microport_eeprom_nvram_entry (void);
 
 /**
- * \brief MicroPort FLASH Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MicroPort FLASH ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_microport_flash_entry (void);
 
 /**
- * \brief MicroPort FLASH Àı³Ì£¬Í¨¹ı MTD ½Ó¿ÚÊµÏÖ
+ * \brief MicroPort FLASH ä¾‹ç¨‹ï¼Œé€šè¿‡ MTD æ¥å£å®ç°
  */
 void demo_zlg217_core_microport_flash_mtd_entry (void);
 
 /**
- * \brief MicroPort FLASH Àı³Ì£¬Í¨¹ı FTL ½Ó¿ÚÊµÏÖ
+ * \brief MicroPort FLASH ä¾‹ç¨‹ï¼Œé€šè¿‡ FTL æ¥å£å®ç°
  */
 void demo_zlg217_core_microport_flash_ftl_entry (void);
 
 /**
- * \brief MicroPort RS485 Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MicroPort RS485 ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_microport_rs485_entry (void);
 
 /**
- * \brief MicroPort RTC Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MicroPort RTC ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_microport_rtc_entry (void);
 
 /**
- * \brief MicroPort RX8025T Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MicroPort RX8025T ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_microport_rx8025t_entry (void);
 
 /**
- * \brief MicroPort USB Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MicroPort USB ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_zlg217_core_microport_usb_entry (void);
 
 /**
- * \brief MiniPort-VIEW Àı³Ì
+ * \brief MiniPort-VIEW ä¾‹ç¨‹
  */
 void demo_zlg217_core_miniport_digitron_entry (void);
 
 /**
- * \brief MiniPort-595 + MiniPort-VIEW Àı³Ì
+ * \brief MiniPort-595 + MiniPort-VIEW ä¾‹ç¨‹
  */
 void demo_zlg217_core_miniport_hc595_digitron_entry (void);
 
 /**
- * \brief MiniPort-595 + MiniPort-KEY Àı³Ì
+ * \brief MiniPort-595 + MiniPort-KEY ä¾‹ç¨‹
  */
 void demo_zlg217_core_miniport_hc595_digitron_key_entry (void);
 
 /**
- * \brief MiniPort-595 + MiniPort-VIEW + LM75 Àı³Ì
+ * \brief MiniPort-595 + MiniPort-VIEW + LM75 ä¾‹ç¨‹
  */
 void demo_zlg217_core_miniport_hc595_digitron_temp_entry (void);
 
 /**
- * \brief MiniPort-595 + MiniPort-LED Àı³Ì
+ * \brief MiniPort-595 + MiniPort-LED ä¾‹ç¨‹
  */
 void demo_zlg217_core_miniport_hc595_led_entry (void);
 
@@ -409,121 +409,121 @@ void demo_zlg217_core_miniport_hc595_led_entry (void);
 void demo_zlg217_core_miniport_key_entry (void);
 
 /**
- * \brief MiniPort-KEY + MiniPort-DIGITORNÏÔÊ¾Àı³Ì
+ * \brief MiniPort-KEY + MiniPort-DIGITORNæ˜¾ç¤ºä¾‹ç¨‹
  */
 void demo_zlg217_core_miniport_key_digitron_entry (void);
 
 /**
- * \brief MiniPort-LED Àı³Ì
+ * \brief MiniPort-LED ä¾‹ç¨‹
  */
 void demo_zlg217_core_miniport_led_entry (void);
 
 /**
- * \brief MiniPort-ZLG72128ÏÔÊ¾Àı³Ì
+ * \brief MiniPort-ZLG72128æ˜¾ç¤ºä¾‹ç¨‹
  */
 void demo_zlg217_core_miniport_zlg72128_entry (void);
 
 /**
- * \brief adc Àı³Ì£¬Í¨¹ıÓ²¼şÊµÏÖ
+ * \brief adc ä¾‹ç¨‹ï¼Œé€šè¿‡ç¡¬ä»¶å®ç°
  */
 void demo_zlg_hw_adc_int_entry (amhw_zlg_adc_t *p_hw_adc,
                                 int             int_num,
                                 int             chan,
                                 uint32_t        vref_mv);
 /**
- * \brief gpio Àı³Ì
+ * \brief gpio ä¾‹ç¨‹
  */
 void demo_std_gpio_entry (int input_pin, int output_pin);
 
 /**
- * \brief ¶ÁCPU¿¨Àı³Ì
+ * \brief è¯»CPUå¡ä¾‹ç¨‹
  */
 void demo_zlg217_core_dr_fm175xx_cpu_card (void);
 /**
- * \brief AÀà¿¨¶Á¿¨ÀàĞÍºÍ¿¨ºÅÀı³Ì
+ * \brief Aç±»å¡è¯»å¡ç±»å‹å’Œå¡å·ä¾‹ç¨‹
  */
 void demo_zlg217_core_dr_fm175xx_picca_read_id(void);
 
 /**
- * \brief AÀà¿¨¶ÁĞİÃß¿¨Àı³Ì
+ * \brief Aç±»å¡è¯»ä¼‘çœ å¡ä¾‹ç¨‹
  */
 void demo_zlg217_core_dr_fm175xx_picca_halt (void);
 
 /**
- * \brief AÀà¿¨¶Á¿éÀı³Ì
+ * \brief Aç±»å¡è¯»å—ä¾‹ç¨‹
  */
 void demo_zlg217_core_dr_fm175xx_picca_read_block (void);
 
 /**
- * \brief AÀà¿¨Öµ²Ù×÷Àı³Ì
+ * \brief Aç±»å¡å€¼æ“ä½œä¾‹ç¨‹
  */
 void demo_zlg217_core_dr_fm175xx_picca_val_operate(void);
 
 /**
- * \brief AÀà¿¨Ğ´¿éÀı³Ì
+ * \brief Aç±»å¡å†™å—ä¾‹ç¨‹
  */
 void demo_zlg217_core_dr_fm175xx_picca_write_block(void);
 
 /**
- * \brief BÀà¿¨¶Á¿¨ºÅÀı³Ì
+ * \brief Bç±»å¡è¯»å¡å·ä¾‹ç¨‹
  */
 void demo_zlg217_core_dr_fm175xx_piccb_read_id(void);
 /**
- * \brief FM175XX LCPDÄ£Ê½ AÀà¿¨¶Á¿¨ÀàĞÍºÍ¿¨ºÅÀı³Ì
+ * \brief FM175XX LCPDæ¨¡å¼ Aç±»å¡è¯»å¡ç±»å‹å’Œå¡å·ä¾‹ç¨‹
  */
 void demo_zlg217_core_dr_fm175xx_picca_lpcd_read_id(void);
 
 /**
- * \brief »ùÓÚKinetisFlashToolÉÏÎ»»úµÄbootloader Àı³Ì
+ * \brief åŸºäºKinetisFlashToolä¸Šä½æœºçš„bootloader ä¾‹ç¨‹
  */
 void demo_zlg217_core_kft_bootloader_entry (void);
 
 /**
- * \brief »ùÓÚKinetisFlashToolÉÏÎ»»úµÄbootloaderµÄ²âÊÔÓ¦ÓÃÀı³Ì
+ * \brief åŸºäºKinetisFlashToolä¸Šä½æœºçš„bootloaderçš„æµ‹è¯•åº”ç”¨ä¾‹ç¨‹
  */
 void demo_zlg217_core_kft_application_entry (void);
 
 /**
 
- * \brief Ë«ÇøbootloaderµÄ²âÊÔÓ¦ÓÃ³ÌĞòÀı³Ì
+ * \brief åŒåŒºbootloaderçš„æµ‹è¯•åº”ç”¨ç¨‹åºä¾‹ç¨‹
  */
 
 void demo_zlg217_core_double_application_entry (void);
 
 /**
 
- * \brief µ¥ÇøbootloaderµÄ²âÊÔÓ¦ÓÃ³ÌĞòÀı³Ì
+ * \brief å•åŒºbootloaderçš„æµ‹è¯•åº”ç”¨ç¨‹åºä¾‹ç¨‹
  */
 
 void demo_zlg217_core_single_application_entry (void);
 
 /**
- * \brief »ùÓÚ´®¿ÚÖúÊÖµÄµ¥ÇøbootloaderÀı³Ì
+ * \brief åŸºäºä¸²å£åŠ©æ‰‹çš„å•åŒºbootloaderä¾‹ç¨‹
  */
 void demo_zlg217_core_single_bootloader_uart_entry (void);
 
 /**
- * \brief »ùÓÚ´®¿ÚÖúÊÖµÄË«ÇøbootloaderÀı³Ì
+ * \brief åŸºäºä¸²å£åŠ©æ‰‹çš„åŒåŒºbootloaderä¾‹ç¨‹
  */
 void demo_zlg217_core_double_bootloader_uart_entry(void);
 
 /**
- * \brief USBD¼üÅÌÀı³Ì
+ * \brief USBDé”®ç›˜ä¾‹ç¨‹
  */
 void demo_zlg227_usbd_keyboard_entry (void);
 
 /**
- * \brief USBD´òÓ¡»ú Àı³Ì
+ * \brief USBDæ‰“å°æœº ä¾‹ç¨‹
  */
 void demo_zlg227_usbd_printer_entry (void);
 
 /**
- * \brief USBD UÅÌ Àı³Ì
+ * \brief USBD Uç›˜ ä¾‹ç¨‹
  */
 void demo_zlg227_usbd_msc_entry (void);
 
 /**
- * \brief USBD ĞéÄâ´®¿Ú  Àı³Ì
+ * \brief USBD è™šæ‹Ÿä¸²å£  ä¾‹ç¨‹
  */
 void demo_zlg227_usbd_vcom_entry (void);
 /* end of file */

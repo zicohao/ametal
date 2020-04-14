@@ -13,28 +13,28 @@
 
 /**
  * \file
- * \brief ZM516X ģ���������̣�ͨ����׼�ӿ�ʵ��
+ * \brief ZM516X 模块搜索例程，通过标准接口实现
  *
- * - ʵ������
- *   1. ���ڴ�ӡ��ȡ���ı���ģ���������Ϣ��
- *   2. ZM516X ģ��� 11 ͨ���� 26 ͨ����������ģ�顣�������������ģ�飬��ȡ��ģ��
- *      ���ź�ǿ�Ⱥ�������Ϣ����ͨ�����ڴ�ӡ��
- *   3. ZM516X ģ���ʼ����������ɺ� LED0 ���������ʧ�ܣ�LED0 ��˸��
- *   4. ������ģ���ͨ���ָ�Ϊ����ǰ��ͨ���š�
+ * - 实验现象：
+ *   1. 串口打印读取到的本地模块的配置信息；
+ *   2. ZM516X 模块从 11 通道到 26 通道搜索其它模块。如果搜索到其它模块，获取该模块
+ *      的信号强度和配置信息，并通过串口打印；
+ *   3. ZM516X 模块初始化并搜索完成后 LED0 长亮，如果失败，LED0 闪烁；
+ *   4. 将本地模块的通道恢复为搜索前的通道号。
  *
  * \note
- *    1. LED0 ��Ҫ�̽� J9 ����ñ�����ܱ� PIO0_8 ���ƣ�
- *    2. ����۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIO0_0 �������� PC ���ڵ� TXD��
- *       PIO0_4 �������� PC ���ڵ� RXD��
- *    3. ZigBee ģ�������ӹ�ϵ���£�
+ *    1. LED0 需要短接 J9 跳线帽，才能被 PIO0_8 控制；
+ *    2. 如需观察串口打印的调试信息，需要将 PIO0_0 引脚连接 PC 串口的 TXD，
+ *       PIO0_4 引脚连接 PC 串口的 RXD；
+ *    3. ZigBee 模块内连接关系如下：
  * <pre>
  *           PIO0_26  <-->  ZigBee_TX
  *           PIO0_27  <-->  ZigBee_RX
  *           PIO0_28  <-->  ZigBee_RST
  * </pre>
- *        �����Ҫʹ�� ZigBee����Щ IO �ڲ�������������;��
+ *        如果需要使用 ZigBee，这些 IO 口不能用作其它用途。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_am824zb_std_zm516x_search.c src_am824zb_std_zm516x_search
  *
  * \internal
@@ -56,7 +56,7 @@
 #include "am_lpc82x_inst_init.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_am824zb_std_zm516x_search_entry (void)
 {

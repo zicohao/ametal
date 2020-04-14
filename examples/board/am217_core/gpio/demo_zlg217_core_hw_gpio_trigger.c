@@ -12,20 +12,20 @@
 
 /**
  * \file
- * \brief GPIO Òı½ÅÖĞ¶ÏÀı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief GPIO å¼•è„šä¸­æ–­ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè£º
- *   1. ½« J14 µÄ KEY ºÍ PIOC_7 ¶Ì½ÓÔÚÒ»Æğ¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. å°† J14 çš„ KEY å’Œ PIOC_7 çŸ­æ¥åœ¨ä¸€èµ·ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *    Ã¿´Î°´¼üÊ±´®¿Ú´òÓ¡ "the gpio interrupt happen!"¡£
+ * - å®éªŒç°è±¡ï¼š
+ *    æ¯æ¬¡æŒ‰é”®æ—¶ä¸²å£æ‰“å° "the gpio interrupt happen!"ã€‚
  *
  * \note
- *    1. LED0 ĞèÒª¶Ì½Ó J9 ÌøÏßÃ±£¬²ÅÄÜ±» PIOC_9 ¿ØÖÆ£»
- *    2. ÈçĞè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔĞÅÏ¢£¬ĞèÒª½« PIOA_10 Òı½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *       PIOA_9 Òı½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
+ *    1. LED0 éœ€è¦çŸ­æ¥ J9 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIOC_9 æ§åˆ¶ï¼›
+ *    2. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIOA_10 å¼•è„šè¿æ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *       PIOA_9 å¼•è„šè¿æ¥ PC ä¸²å£çš„ RXDã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_zlg217_hw_gpio_trigger.c src_zlg217_hw_gpio_trigger
  *
  * \internal
@@ -51,14 +51,14 @@
 #include "demo_am217_core_entries.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_zlg217_core_hw_gpio_trigger_entry (void)
 {
 
     AM_DBG_INFO("demo am217_core hw gpio trigger!\r\n");
 
-    /* ¿ªÆô GPIOC ¶Ë¿ÚÊ±ÖÓ */
+    /* å¼€å¯ GPIOC ç«¯å£æ—¶é’Ÿ */
     am_clk_enable(CLK_IOPC);
 
     am_clk_enable(CLK_AFIO);

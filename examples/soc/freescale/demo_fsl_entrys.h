@@ -11,7 +11,7 @@
 *******************************************************************************/
 /**
  * \file
- * \brief fslÏµÁĞÍâÉèÇı¶¯µÄËùÓĞÀı³Ìº¯ÊıÈë¿ÚÉùÃ÷
+ * \brief fslç³»åˆ—å¤–è®¾é©±åŠ¨çš„æ‰€æœ‰ä¾‹ç¨‹å‡½æ•°å…¥å£å£°æ˜
  * \sa    demo_fsl_entrys.h
  *
  * \internal
@@ -49,18 +49,18 @@
 #include "am_pwm.h"
 
 /**
- * \brief ADC Ó²¼ş²ã£¨Ê¹ÓÃÁËÖĞ¶Ï£©Àı³ÌÈë¿Ú
+ * \brief ADC ç¡¬ä»¶å±‚ï¼ˆä½¿ç”¨äº†ä¸­æ–­ï¼‰ä¾‹ç¨‹å…¥å£
  *
- * \param[in] p_hw_adc  : Ö¸Ïò ADC ÍâÉè¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] int_num   : ÖĞ¶ÏºÅ
- * \param[in] chan      : Òı½Å¶ÔÓ¦µÄ ADC Í¨µÀºÅ
- * \param[in] clk_bus   : ×ÜÏßÊ±ÖÓ
- * \param[in] vref_mv   : ADC²Î¿¼µçÑ¹£¬ÓÃÒÔ½«ADC²ÉÑù½á¹û×ª»»ÎªµçÑ¹ÖµÏÔÊ¾
+ * \param[in] p_hw_adc  : æŒ‡å‘ ADC å¤–è®¾å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] int_num   : ä¸­æ–­å·
+ * \param[in] chan      : å¼•è„šå¯¹åº”çš„ ADC é€šé“å·
+ * \param[in] clk_bus   : æ€»çº¿æ—¶é’Ÿ
+ * \param[in] vref_mv   : ADCå‚è€ƒç”µå‹ï¼Œç”¨ä»¥å°†ADCé‡‡æ ·ç»“æœè½¬æ¢ä¸ºç”µå‹å€¼æ˜¾ç¤º
  *
- * \note Ò»°ãÇé¿öÏÂ£¬ÔÚÊ¹ÓÃ±¾ demo Ç°£¬»¹Ğè´ò¿ª ADC Ä£¿éÏàÓ¦µÄÊ±ÖÓ£¬
- * ÅäÖÃ ADC Í¨µÀ¶ÔÓ¦µÄÒı½Å£¬ÕâĞ©ÅäÖÃ¶¼Óë¾ßÌåĞ¾Æ¬Ïà¹Ø¡£
+ * \note ä¸€èˆ¬æƒ…å†µä¸‹ï¼Œåœ¨ä½¿ç”¨æœ¬ demo å‰ï¼Œè¿˜éœ€æ‰“å¼€ ADC æ¨¡å—ç›¸åº”çš„æ—¶é’Ÿï¼Œ
+ * é…ç½® ADC é€šé“å¯¹åº”çš„å¼•è„šï¼Œè¿™äº›é…ç½®éƒ½ä¸å…·ä½“èŠ¯ç‰‡ç›¸å…³ã€‚
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_fsl_hw_adc_int_entry (amhw_fsl_adc_t     *p_hw_adc,
                                 int                 int_num,
@@ -69,18 +69,18 @@ void demo_fsl_hw_adc_int_entry (amhw_fsl_adc_t     *p_hw_adc,
                                 uint32_t            vref_mv);
 
 /**
- * \brief ADC²éÑ¯»ñÈ¡²ÉÑùÖµ£¬Ê¹ÓÃHW²ã½Ó¿Úº¯Êı
+ * \brief ADCæŸ¥è¯¢è·å–é‡‡æ ·å€¼ï¼Œä½¿ç”¨HWå±‚æ¥å£å‡½æ•°
  *
- * \param[in] p_hw_adc  : Ö¸Ïò ADC ÍâÉè¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] int_num   : ÖĞ¶ÏºÅ
- * \param[in] chan      : Òı½Å¶ÔÓ¦µÄ ADC Í¨µÀºÅ
- * \param[in] clk_bus   : ×ÜÏßÊ±ÖÓ
- * \param[in] vref_mv   : ADC²Î¿¼µçÑ¹£¬ÓÃÒÔ½«ADC²ÉÑù½á¹û×ª»»ÎªµçÑ¹ÖµÏÔÊ¾
+ * \param[in] p_hw_adc  : æŒ‡å‘ ADC å¤–è®¾å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] int_num   : ä¸­æ–­å·
+ * \param[in] chan      : å¼•è„šå¯¹åº”çš„ ADC é€šé“å·
+ * \param[in] clk_bus   : æ€»çº¿æ—¶é’Ÿ
+ * \param[in] vref_mv   : ADCå‚è€ƒç”µå‹ï¼Œç”¨ä»¥å°†ADCé‡‡æ ·ç»“æœè½¬æ¢ä¸ºç”µå‹å€¼æ˜¾ç¤º
  *
- * \note Ò»°ãÇé¿öÏÂ£¬ÔÚÊ¹ÓÃ±¾ demo Ç°£¬»¹Ğè´ò¿ª ADC Ä£¿éÏàÓ¦µÄÊ±ÖÓ£¬
- * ÅäÖÃ ADC Í¨µÀ¶ÔÓ¦µÄÒı½Å£¬ÕâĞ©ÅäÖÃ¶¼Óë¾ßÌåĞ¾Æ¬Ïà¹Ø¡£
+ * \note ä¸€èˆ¬æƒ…å†µä¸‹ï¼Œåœ¨ä½¿ç”¨æœ¬ demo å‰ï¼Œè¿˜éœ€æ‰“å¼€ ADC æ¨¡å—ç›¸åº”çš„æ—¶é’Ÿï¼Œ
+ * é…ç½® ADC é€šé“å¯¹åº”çš„å¼•è„šï¼Œè¿™äº›é…ç½®éƒ½ä¸å…·ä½“èŠ¯ç‰‡ç›¸å…³ã€‚
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_fsl_hw_adc_poll_entry (amhw_fsl_adc_t     *p_hw_adc,
                                  amhw_fsl_adc_chan_t chan,
@@ -88,261 +88,261 @@ void demo_fsl_hw_adc_poll_entry (amhw_fsl_adc_t     *p_hw_adc,
                                  uint32_t            vref_mv);
 
 /**
- * \brief adcÈí¼ş´¥·¢£¬DMA´«Êä½á¹û£¬Ò»´Î²ÉÑùÁ½¸öADCÃèÊö·û
+ * \brief adcè½¯ä»¶è§¦å‘ï¼ŒDMAä¼ è¾“ç»“æœï¼Œä¸€æ¬¡é‡‡æ ·ä¸¤ä¸ªADCæè¿°ç¬¦
  *
- * \param[in] adc0_handle  : ADC¾ä±ú
+ * \param[in] adc0_handle  : ADCå¥æŸ„
  *
- * \note Ò»°ãÇé¿öÏÂ£¬ÔÚÊ¹ÓÃ±¾ demo Ç°£¬»¹Ğè´ò¿ª ADC Ä£¿éÏàÓ¦µÄÊ±ÖÓ£¬
- * ÅäÖÃ ADC Í¨µÀ¶ÔÓ¦µÄÒı½Å£¬ÕâĞ©ÅäÖÃ¶¼Óë¾ßÌåĞ¾Æ¬Ïà¹Ø¡£
+ * \note ä¸€èˆ¬æƒ…å†µä¸‹ï¼Œåœ¨ä½¿ç”¨æœ¬ demo å‰ï¼Œè¿˜éœ€æ‰“å¼€ ADC æ¨¡å—ç›¸åº”çš„æ—¶é’Ÿï¼Œ
+ * é…ç½® ADC é€šé“å¯¹åº”çš„å¼•è„šï¼Œè¿™äº›é…ç½®éƒ½ä¸å…·ä½“èŠ¯ç‰‡ç›¸å…³ã€‚
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_fsl_std_adc_descs_st_entry(am_adc_handle_t adc0_handle);
 
 /**
- * \brief ADC²î·ÖÊäÈë£¬DMA´«Êä£¬Èí¼ş´¥·¢
+ * \brief ADCå·®åˆ†è¾“å…¥ï¼ŒDMAä¼ è¾“ï¼Œè½¯ä»¶è§¦å‘
  *
- * \param[in] adc0_handle  : ADC¾ä±ú
+ * \param[in] adc0_handle  : ADCå¥æŸ„
  *
- * \note Ò»°ãÇé¿öÏÂ£¬ÔÚÊ¹ÓÃ±¾ demo Ç°£¬»¹Ğè´ò¿ª ADC Ä£¿éÏàÓ¦µÄÊ±ÖÓ£¬
- * ÅäÖÃ ADC Í¨µÀ¶ÔÓ¦µÄÒı½Å£¬ÕâĞ©ÅäÖÃ¶¼Óë¾ßÌåĞ¾Æ¬Ïà¹Ø¡£
+ * \note ä¸€èˆ¬æƒ…å†µä¸‹ï¼Œåœ¨ä½¿ç”¨æœ¬ demo å‰ï¼Œè¿˜éœ€æ‰“å¼€ ADC æ¨¡å—ç›¸åº”çš„æ—¶é’Ÿï¼Œ
+ * é…ç½® ADC é€šé“å¯¹åº”çš„å¼•è„šï¼Œè¿™äº›é…ç½®éƒ½ä¸å…·ä½“èŠ¯ç‰‡ç›¸å…³ã€‚
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_fsl_std_adc_dif_st_entry (am_adc_handle_t adc0_handle);
 
 /**
- * \brief  BME HW²ã·â×°Ê½ÔØÈëÖ¸ÁîÀı³Ì
- * \return ÎŞ
+ * \brief  BME HWå±‚å°è£…å¼è½½å…¥æŒ‡ä»¤ä¾‹ç¨‹
+ * \return æ— 
  */
 void demo_kl26_hw_bme_deco_loads_entry (void);
 
 /**
- * \brief  BME HW²ã·â×°Ê½´æ´¢Ö¸Áî(gpio)Àı³Ì
- * \return ÎŞ
+ * \brief  BME HWå±‚å°è£…å¼å­˜å‚¨æŒ‡ä»¤(gpio)ä¾‹ç¨‹
+ * \return æ— 
  */
 void demo_kl26_hw_bme_deco_stores_gpio_entry (void);
 
 /**
- * \brief  BME HW²ã·â×°Ê½´æ´¢Ö¸ÁîÀı³Ì
- * \return ÎŞ
+ * \brief  BME HWå±‚å°è£…å¼å­˜å‚¨æŒ‡ä»¤ä¾‹ç¨‹
+ * \return æ— 
  */
 void demo_kl26_hw_bme_deco_stores_entry (void);
 
 /**
- * \brief CMP±È½ÏÆ÷HW²ãÖĞ¶ÏÀı³Ì
+ * \brief CMPæ¯”è¾ƒå™¨HWå±‚ä¸­æ–­ä¾‹ç¨‹
  *
- * \param[in] p_hw_cmp  : Ö¸Ïò cmp ¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] inum      : ÖĞ¶ÏºÅ
+ * \param[in] p_hw_cmp  : æŒ‡å‘ cmp å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] inum      : ä¸­æ–­å·
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_fsl_hw_cmp_int_entry (amhw_fsl_cmp_t *p_hw_cmp,
                                 int             inum);
 
 /**
- * \brief DAC Ê¹ÓÃ»º³åÇøÖĞ¶ÏÊä³öÕıÏÒ²¨ĞÅºÅ£¬HW²ãÊµÏÖ
+ * \brief DAC ä½¿ç”¨ç¼“å†²åŒºä¸­æ–­è¾“å‡ºæ­£å¼¦æ³¢ä¿¡å·ï¼ŒHWå±‚å®ç°
  *
- * \param[in] p_hw_dac  : Ö¸Ïò DAC ¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] inum      : ÖĞ¶ÏºÅ
+ * \param[in] p_hw_dac  : æŒ‡å‘ DAC å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] inum      : ä¸­æ–­å·
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_fsl_hw_dac_buf_int_entry (amhw_fsl_dac_t *p_hw_dac,
                                     int             inum);
 
 /**
- * \brief DACÊä³öµçÑ¹£¬DMA´«ÊäÊı¾İ£¬HW²ã½Ó¿ÚÊµÏÖ
- * \return ÎŞ
+ * \brief DACè¾“å‡ºç”µå‹ï¼ŒDMAä¼ è¾“æ•°æ®ï¼ŒHWå±‚æ¥å£å®ç°
+ * \return æ— 
  */
 void demo_kl26_hw_dac_dma_st_entry (void);
 
 /**
- * \brief DACÊä³öµçÑ¹Öµ£¬µ÷ÓÃHW²ãÊµÏÖ
+ * \brief DACè¾“å‡ºç”µå‹å€¼ï¼Œè°ƒç”¨HWå±‚å®ç°
  *
- * \param[in] p_hw_dac  : Ö¸Ïò DAC ¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] voltage_mv: Ê¹DACÊä³öµÄµçÑ¹Öµ(µ¥Î»:mv)
+ * \param[in] p_hw_dac  : æŒ‡å‘ DAC å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] voltage_mv: ä½¿DACè¾“å‡ºçš„ç”µå‹å€¼(å•ä½:mv)
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_fsl_hw_dac_entry (amhw_fsl_dac_t *p_hw_dac,
                             uint16_t        mv_out);
 
 /**
- * \brief DACÊä³öµçÑ¹£¬±ê×¼½Ó¿Ú²ãÊµÏÖ
+ * \brief DACè¾“å‡ºç”µå‹ï¼Œæ ‡å‡†æ¥å£å±‚å®ç°
  *
- * \param[in] p_hw_dac  : Ö¸Ïò DAC ¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] voltage_mv: Ê¹DACÊä³öµÄµçÑ¹Öµ(µ¥Î»:mv)
+ * \param[in] p_hw_dac  : æŒ‡å‘ DAC å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] voltage_mv: ä½¿DACè¾“å‡ºçš„ç”µå‹å€¼(å•ä½:mv)
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_fsl_std_dac_entry (am_dac_handle_t dac0_handle,
                              uint32_t        mv_out);
 
 /**
- * \brief DMAÄÚ´æµ½ÄÚ´æ
- * \return ÎŞ
+ * \brief DMAå†…å­˜åˆ°å†…å­˜
+ * \return æ— 
  */
 void demo_kl26_dr_dma_m2m_entry (void);
 
 /**
- * \brief FTFAÀı³Ì,Í¨¹ıÇı¶¯²ãµÄ½Ó¿ÚÊµÏÖ
+ * \brief FTFAä¾‹ç¨‹,é€šè¿‡é©±åŠ¨å±‚çš„æ¥å£å®ç°
  *
- * \param[in] p_hw_ftfa  : Ö¸Ïò FTFA ¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_ftfa  : æŒ‡å‘ FTFA å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_fsl_dr_ftfa_entry (amhw_fsl_ftfa_t *p_hw_ftfa);
 
 /**
- * \brief FTFAÀı³Ì,Í¨¹ıHW²ãµÄ½Ó¿ÚÊµÏÖ
+ * \brief FTFAä¾‹ç¨‹,é€šè¿‡HWå±‚çš„æ¥å£å®ç°
  *
- * \param[in] p_hw_ftfa  : Ö¸Ïò FTFA ¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_ftfa  : æŒ‡å‘ FTFA å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void deme_fsl_hw_ftfa_entry (amhw_fsl_ftfa_t *p_hw_ftfa);
 
 /**
- * \brief  FGPIOÓ²¼şHW²ãÀı³Ì
- * \return ÎŞ
+ * \brief  FGPIOç¡¬ä»¶HWå±‚ä¾‹ç¨‹
+ * \return æ— 
  */
 void demo_kl26_hw_fgpio_entry (void);
 
 /**
- * \brief  GPIOÓ²¼şHW²ãÖĞ¶ÏÀı³Ì
- * \return ÎŞ
+ * \brief  GPIOç¡¬ä»¶HWå±‚ä¸­æ–­ä¾‹ç¨‹
+ * \return æ— 
  */
 void demo_kl26_hw_gpio_int_entry (void);
 
 /**
- * \brief  GPIOÓ²¼şHW²ãÀı³Ì
- * \return ÎŞ
+ * \brief  GPIOç¡¬ä»¶HWå±‚ä¾‹ç¨‹
+ * \return æ— 
  */
 void demo_kl26_hw_gpio_entry (void);
 
 /**
- * \brief i2c¶ÁĞ´AM75Ê¾Àı£¬Í¨¹ıhw²ã½Ó¿ÚÊµÏÖ
+ * \brief i2cè¯»å†™AM75ç¤ºä¾‹ï¼Œé€šè¿‡hwå±‚æ¥å£å®ç°
  *
- * \param[in] p_hw_i2c  : Ö¸Ïò I2C ¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] i2c_clk   : I2CÊ±ÖÓÆµÂÊ
+ * \param[in] p_hw_i2c  : æŒ‡å‘ I2C å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] i2c_clk   : I2Cæ—¶é’Ÿé¢‘ç‡
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_fsl_hw_i2c_master_poll_entry (amhw_fsl_i2c_t *p_hw_i2c,
                                         uint32_t        i2c_clk);
 
 /**
- * \brief i2s dma·½Ê½Êı¾İ·¢ËÍ£¬µ÷ÓÃHW²ã½Ó¿Úº¯ÊıÊµÏÖ
- * \return ÎŞ
+ * \brief i2s dmaæ–¹å¼æ•°æ®å‘é€ï¼Œè°ƒç”¨HWå±‚æ¥å£å‡½æ•°å®ç°
+ * \return æ— 
  */
 void demo_kl26_hw_i2s_dma_entry (void);
 
 /**
- * \brief i2sÖĞ¶ÏÊı¾İ·¢ËÍ£¬µ÷ÓÃHW²ã½Ó¿Úº¯ÊıÊµÏÖ
+ * \brief i2sä¸­æ–­æ•°æ®å‘é€ï¼Œè°ƒç”¨HWå±‚æ¥å£å‡½æ•°å®ç°
  *
- * \param[in] p_hw_i2s    : Ö¸Ïò I2S ¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] inum_i2s    : ÖĞ¶ÏºÅ
- * \param[in] p_i2s0_clk  : I2SÍâÉèÊ±ÖÓ
+ * \param[in] p_hw_i2s    : æŒ‡å‘ I2S å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] inum_i2s    : ä¸­æ–­å·
+ * \param[in] p_i2s0_clk  : I2Så¤–è®¾æ—¶é’Ÿ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_fsl_hw_i2s_int_entry (amhw_fsl_i2s_t           *p_hw_i2s,
                                 int                       inum_i2s,
                                 amhw_fsl_i2s_clock_cfg_t *p_i2s0_clk);
 
 /**
- * \brief i2sÊı¾İ·¢ËÍ£¬µ÷ÓÃHW²ã½Ó¿Úº¯ÊıÊµÏÖ
+ * \brief i2sæ•°æ®å‘é€ï¼Œè°ƒç”¨HWå±‚æ¥å£å‡½æ•°å®ç°
  *
- * \param[in] p_hw_i2s    : Ö¸Ïò I2S ¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] p_i2s0_clk  : I2SÍâÉèÊ±ÖÓ
+ * \param[in] p_hw_i2s    : æŒ‡å‘ I2S å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] p_i2s0_clk  : I2Så¤–è®¾æ—¶é’Ÿ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_fsl_hw_i2s_polling_entry (amhw_fsl_i2s_t           *p_hw_i2s,
                                     amhw_fsl_i2s_clock_cfg_t *p_i2s0_clk);
 
 /**
- * \brief LPTMRÊµÏÖ¶¨Ê±Æ÷Àı³Ì£¬Í¨¹ıHW²ã½Ó¿ÚÊµÏÖ
+ * \brief LPTMRå®ç°å®šæ—¶å™¨ä¾‹ç¨‹ï¼Œé€šè¿‡HWå±‚æ¥å£å®ç°
  *
- * \param[in] p_hw_lptmr    : Ö¸Ïò lptmr ¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] inum        : ÖĞ¶ÏºÅ
- * \param[in] lptmr_clock : lptmrÊ±ÖÓÆµÂÊ
+ * \param[in] p_hw_lptmr    : æŒ‡å‘ lptmr å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] inum        : ä¸­æ–­å·
+ * \param[in] lptmr_clock : lptmræ—¶é’Ÿé¢‘ç‡
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_fsl_hw_lptmr_timing_entry (amhw_fsl_lptmr_t *p_hw_lptmr,
                                      int               inum,
                                      uint32_t          lptmr_clock);
 
 /**
- * \brief PIT ¶¨Ê±Æ÷ÊµÏÖ(32Î»)¶¨Ê±¹¦ÄÜµÄÀı³Ì£¬Í¨¹ıHW²ãµÄ½Ó¿ÚÊµÏÖ
+ * \brief PIT å®šæ—¶å™¨å®ç°(32ä½)å®šæ—¶åŠŸèƒ½çš„ä¾‹ç¨‹ï¼Œé€šè¿‡HWå±‚çš„æ¥å£å®ç°
  *
- * \param[in] p_hw_pit    : Ö¸Ïò pit ¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] inum        : ÖĞ¶ÏºÅ
- * \param[in] pit_clk     : pitÊ±ÖÓÆµÂÊ
+ * \param[in] p_hw_pit    : æŒ‡å‘ pit å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] inum        : ä¸­æ–­å·
+ * \param[in] pit_clk     : pitæ—¶é’Ÿé¢‘ç‡
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_fsl_hw_pit_1_32bit_timing_entry (amhw_fsl_pit_t *p_hw_pit,
                                            int             inum,
                                            uint32_t        pit_clk);
 
 /**
- * \brief PMUÊ¾Àı£¬HW²ãÊµÏÖ
+ * \brief PMUç¤ºä¾‹ï¼ŒHWå±‚å®ç°
  *
- * \note ²âÊÔ¿´ÃÅ¹·Àı³ÌÊ±Çë½«am_prj_config.hÎÄ¼şÖĞµÄºêAM_CFG_SIM_COPÖÃÎª1
+ * \note æµ‹è¯•çœ‹é—¨ç‹—ä¾‹ç¨‹æ—¶è¯·å°†am_prj_config.hæ–‡ä»¶ä¸­çš„å®AM_CFG_SIM_COPç½®ä¸º1
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_kl26_std_pmu_lowpower_entry (void);
 
 /**
- * \brief RTCÊ¾Àı£¬ HW²ãÊµÏÖ
+ * \brief RTCç¤ºä¾‹ï¼Œ HWå±‚å®ç°
  *
- * \param[in] p_hw_rtc    : Ö¸Ïò rtc ¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_rtc    : æŒ‡å‘ rtc å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_fsl_hw_rtc_sec_int_entry (amhw_fsl_rtc_t *p_hw_rtc);
 
 /**
- * \brief ºóÃæ°²È«ÃÜÔ¿Àı³ÌÈë¿Ú
+ * \brief åé¢å®‰å…¨å¯†é’¥ä¾‹ç¨‹å…¥å£
  *
- * \param[in] p_hw_ftfa    : Ö¸Ïò ftfa ¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] uart_handle  : uart ´®¿Ú¾ä±ú
+ * \param[in] p_hw_ftfa    : æŒ‡å‘ ftfa å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] uart_handle  : uart ä¸²å£å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_fsl_hw_backdoor_sec_entry (amhw_fsl_ftfa_t *p_hw_ftfa,
                                      am_uart_handle_t uart_handle);
 
 /**
- * \brief UIDÀı³ÌÈë¿Ú
+ * \brief UIDä¾‹ç¨‹å…¥å£
  */
 void demo_kl26_hw_sim_uid_entry (void);
 
 /**
- * \brief SPIÖ÷»úÑİÊ¾Àı³Ì£¬Í¨¹ıHW²ãµÄ½Ó¿ÚÊµÏÖ
+ * \brief SPIä¸»æœºæ¼”ç¤ºä¾‹ç¨‹ï¼Œé€šè¿‡HWå±‚çš„æ¥å£å®ç°
  *
- * \param[in] p_hw_spi    : Ö¸Ïò spi ¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] pin_cs      : spiÆ¬Ñ¡Òı½Å
- * \param[in] spi_freq    : spi ÍâÉèÊ±ÖÓÆµÂÊ
+ * \param[in] p_hw_spi    : æŒ‡å‘ spi å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] pin_cs      : spiç‰‡é€‰å¼•è„š
+ * \param[in] spi_freq    : spi å¤–è®¾æ—¶é’Ÿé¢‘ç‡
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_fsl_hw_spi_master_entry (amhw_fsl_spi_t *p_hw_spi,
                                    int             pin_cs,
                                    uint32_t        spi_freq);
 /**
- * \brief SPI´Ó»úÑİÊ¾Àı³Ì£¬Í¨¹ıHW²ãµÄ½Ó¿ÚÊµÏÖ
+ * \brief SPIä»æœºæ¼”ç¤ºä¾‹ç¨‹ï¼Œé€šè¿‡HWå±‚çš„æ¥å£å®ç°
  *
- * \param[in] p_hw_spi0    : Ö¸Ïò´Ó»ú spi0 ¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] p_hw_spi1    : Ö¸ÏòÖ÷»ú spi1 ¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] slave_inum   : ´Ó»úÖĞ¶ÏºÅ
- * \param[in] spi_freq     : spi Ö÷»úÍâÉèÊ±ÖÓÆµÂÊ
+ * \param[in] p_hw_spi0    : æŒ‡å‘ä»æœº spi0 å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] p_hw_spi1    : æŒ‡å‘ä¸»æœº spi1 å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] slave_inum   : ä»æœºä¸­æ–­å·
+ * \param[in] spi_freq     : spi ä¸»æœºå¤–è®¾æ—¶é’Ÿé¢‘ç‡
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_fsl_hw_spi_slave_irq_entry (amhw_fsl_spi_t *p_hw_spi0,
                                       amhw_fsl_spi_t *p_hw_spi1,
@@ -350,14 +350,14 @@ void demo_fsl_hw_spi_slave_irq_entry (amhw_fsl_spi_t *p_hw_spi0,
                                       uint32_t        spi_freq);
 
 /**
- * \brief SPI´Ó»úÆ¥ÅäÖĞ¶ÏÑİÊ¾Àı³Ì£¬Í¨¹ıHW²ãµÄ½Ó¿ÚÊµÏÖ
+ * \brief SPIä»æœºåŒ¹é…ä¸­æ–­æ¼”ç¤ºä¾‹ç¨‹ï¼Œé€šè¿‡HWå±‚çš„æ¥å£å®ç°
  *
- * \param[in] p_hw_spi0    : Ö¸Ïò´Ó»ú spi0 ¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] p_hw_spi1    : Ö¸ÏòÖ÷»ú spi1 ¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] slave_inum   : ´Ó»úÖĞ¶ÏºÅ
- * \param[in] spi_freq     : spi Ö÷»úÍâÉèÊ±ÖÓÆµÂÊ
+ * \param[in] p_hw_spi0    : æŒ‡å‘ä»æœº spi0 å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] p_hw_spi1    : æŒ‡å‘ä¸»æœº spi1 å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] slave_inum   : ä»æœºä¸­æ–­å·
+ * \param[in] spi_freq     : spi ä¸»æœºå¤–è®¾æ—¶é’Ÿé¢‘ç‡
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_fsl_hw_spi_slave_match_entry (amhw_fsl_spi_t *p_hw_spi0,
                                         amhw_fsl_spi_t *p_hw_spi1,
@@ -365,23 +365,23 @@ void demo_fsl_hw_spi_slave_match_entry (amhw_fsl_spi_t *p_hw_spi0,
                                         uint32_t        spi_freq);
 
 /**
- * \brief SPI´Ó»úÑİÊ¾Àı³Ì£¬Í¨¹ıHW²ãµÄ½Ó¿ÚÊµÏÖ
+ * \brief SPIä»æœºæ¼”ç¤ºä¾‹ç¨‹ï¼Œé€šè¿‡HWå±‚çš„æ¥å£å®ç°
  *
- * \param[in] p_hw_spi    : Ö¸Ïò´Ó»ú spi ¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_spi    : æŒ‡å‘ä»æœº spi å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_fsl_hw_spi_slave_entry (amhw_fsl_spi_t *p_hw_spi);
 
 /**
- * \brief TPMÊµÏÖ²¶»ñ¹¦ÄÜ£¬Í¨¹ıHW²ãµÄ½Ó¿ÚÊµÏÖ
+ * \brief TPMå®ç°æ•è·åŠŸèƒ½ï¼Œé€šè¿‡HWå±‚çš„æ¥å£å®ç°
  *
- * \param[in] tpm2_pwm_handle    : pwm±ê×¼¾ä±ú
- * \param[in] p_hw_tpm           : Ö¸Ïòtpm ¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] inum               : ÖĞ¶ÏºÅ
- * \param[in] tpm_clock          : tpm Ê±ÖÓÆµÂÊ
+ * \param[in] tpm2_pwm_handle    : pwmæ ‡å‡†å¥æŸ„
+ * \param[in] p_hw_tpm           : æŒ‡å‘tpm å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] inum               : ä¸­æ–­å·
+ * \param[in] tpm_clock          : tpm æ—¶é’Ÿé¢‘ç‡
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_fsl_hw_tpm_cap_entry (am_pwm_handle_t  tpm2_pwm_handle,
                                 amhw_fsl_tpm_t  *p_hw_tpm,
@@ -389,65 +389,65 @@ void demo_fsl_hw_tpm_cap_entry (am_pwm_handle_t  tpm2_pwm_handle,
                                 uint32_t         tpm_clock);
 
 /**
- * \brief TPMÊµÏÖPWM¹¦ÄÜ£¬Í¨¹ıHW²ãµÄ½Ó¿ÚÊµÏÖ
+ * \brief TPMå®ç°PWMåŠŸèƒ½ï¼Œé€šè¿‡HWå±‚çš„æ¥å£å®ç°
  *
- * \param[in] p_hw_tpm           : Ö¸Ïòtpm ¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] clkfreq            : tpm Ê±ÖÓÆµÂÊ
+ * \param[in] p_hw_tpm           : æŒ‡å‘tpm å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] clkfreq            : tpm æ—¶é’Ÿé¢‘ç‡
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_fsl_hw_tpm_pwm_entry (amhw_fsl_tpm_t *p_hw_tpm,
                                 uint32_t        clkfreq);
 
 /**
- * \brief TPMÊµÏÖ±ê×¼¶¨Ê±Æ÷Àı³Ì£¬Í¨¹ıHW²ãµÄ½Ó¿ÚÊµÏÖ
+ * \brief TPMå®ç°æ ‡å‡†å®šæ—¶å™¨ä¾‹ç¨‹ï¼Œé€šè¿‡HWå±‚çš„æ¥å£å®ç°
  *
- * \param[in] p_hw_tpm       : Ö¸Ïòtpm ¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] freq           : tpm¶¨Ê±Æ÷ÖĞ¶ÏÆµÂÊ
- * \param[in] inum           : ÖĞ¶ÏºÅ
- * \param[in] tpm_clock      : tpm Ê±ÖÓÆµÂÊ
+ * \param[in] p_hw_tpm       : æŒ‡å‘tpm å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] freq           : tpmå®šæ—¶å™¨ä¸­æ–­é¢‘ç‡
+ * \param[in] inum           : ä¸­æ–­å·
+ * \param[in] tpm_clock      : tpm æ—¶é’Ÿé¢‘ç‡
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_fsl_hw_tpm_timing_entry (amhw_fsl_tpm_t *p_hw_tpm,
                                    uint32_t        freq,
                                    int             inum,
                                    uint32_t        tpm_clk);
 /**
- * \brief  TSIÇı¶¯²ãÖĞ¶ÏÀı³Ì
- * \return ÎŞ
+ * \brief  TSIé©±åŠ¨å±‚ä¸­æ–­ä¾‹ç¨‹
+ * \return æ— 
  */
 void demo_fsl_dr_tsi_int_entry (void);
 
 /**
- * \brief  TSI HW²ãÖĞ¶ÏÀı³Ì
+ * \brief  TSI HWå±‚ä¸­æ–­ä¾‹ç¨‹
  *
- * \param[in] p_hw_tsi       : Ö¸Ïòtsi ¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] inum           : ÖĞ¶ÏºÅ
+ * \param[in] p_hw_tsi       : æŒ‡å‘tsi å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] inum           : ä¸­æ–­å·
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_fsl_hw_tsi_int_entry (amhw_fsl_tsi_t *p_hw_tsi,
                                 int             inum);
 
 /**
- * \brief  TSI HW²ãÀı³Ì
+ * \brief  TSI HWå±‚ä¾‹ç¨‹
  *
- * \param[in] p_hw_tsi       : Ö¸Ïòtsi ¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_tsi       : æŒ‡å‘tsi å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_fsl_hw_tsi_entry (amhw_fsl_tsi_t *p_hw_tsi);
 
 /**
- * \brief  ´®¿ÚÓ²¼şHW²ãÖĞ¶ÏÊÕ·¢Àı³Ì
+ * \brief  ä¸²å£ç¡¬ä»¶HWå±‚ä¸­æ–­æ”¶å‘ä¾‹ç¨‹
  *
- * \param[in] p_hw_uart   : Ö¸Ïò uart ¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] inum        : ÖĞ¶ÏºÅ
- * \param[in] uart_clk    : uartÍâÉèÊ±ÖÓ
- * \param[in] uart0_flog  : Èç¹ûÊ¹ÓÃUART0£¬Ôò¸ÃÖµÎª1£¬·ñÔòÎª0
+ * \param[in] p_hw_uart   : æŒ‡å‘ uart å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] inum        : ä¸­æ–­å·
+ * \param[in] uart_clk    : uartå¤–è®¾æ—¶é’Ÿ
+ * \param[in] uart0_flog  : å¦‚æœä½¿ç”¨UART0ï¼Œåˆ™è¯¥å€¼ä¸º1ï¼Œå¦åˆ™ä¸º0
  *
- * \retval ÎŞ
+ * \retval æ— 
  */
 void demo_fsl_hw_uart_int_entry (amhw_fsl_uart_t *p_hw_uart,
                                  int              inum,
@@ -455,213 +455,213 @@ void demo_fsl_hw_uart_int_entry (amhw_fsl_uart_t *p_hw_uart,
                                  am_bool_t        uart0_flog);
 
 /**
- * \brief  ´®¿ÚÓ²¼şHW²ã²éÑ¯ÊÕ·¢Àı³Ì
+ * \brief  ä¸²å£ç¡¬ä»¶HWå±‚æŸ¥è¯¢æ”¶å‘ä¾‹ç¨‹
  *
- * \param[in] p_hw_uart   : Ö¸Ïò uart ¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] uart_clk    : uartÍâÉèÊ±ÖÓ
- * \param[in] uart0_flog  : Èç¹ûÊ¹ÓÃUART0£¬Ôò¸ÃÖµÎª1£¬·ñÔòÎª0
+ * \param[in] p_hw_uart   : æŒ‡å‘ uart å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] uart_clk    : uartå¤–è®¾æ—¶é’Ÿ
+ * \param[in] uart0_flog  : å¦‚æœä½¿ç”¨UART0ï¼Œåˆ™è¯¥å€¼ä¸º1ï¼Œå¦åˆ™ä¸º0
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_fsl_hw_uart_polling_entry (amhw_fsl_uart_t *p_hw_uart,
                                      uint32_t         uart_clk,
                                      am_bool_t        uart0_flog);
 
 /**
- * \brief  ´®¿Ú½ÓÊÕÊ¹ÓÃDMAÀı³Ì
- * \return ÎŞ
+ * \brief  ä¸²å£æ¥æ”¶ä½¿ç”¨DMAä¾‹ç¨‹
+ * \return æ— 
  */
 void demo_kl26_hw_uart_rx_dma_entry (void);
 
 /**
- * \brief  ´®¿Ú·¢ËÍÊ¹ÓÃDMAÀı³Ì
- * \return ÎŞ
+ * \brief  ä¸²å£å‘é€ä½¿ç”¨DMAä¾‹ç¨‹
+ * \return æ— 
  */
 void demo_kl26_hw_uart_tx_dma_entry (void);
 
 /**
- * \brief WDTÈë¿Úº¯Êı£¬HW²ãÊµÏÖ
- * \return ÎŞ
+ * \brief WDTå…¥å£å‡½æ•°ï¼ŒHWå±‚å®ç°
+ * \return æ— 
  */
 void demo_kl26_hw_wdt_entry (void);
 
 /**
- * \brief MiniPort-View + MiniPort-595 ÎÂ¶ÈÏÔÊ¾Àı³Ì
+ * \brief MiniPort-View + MiniPort-595 æ¸©åº¦æ˜¾ç¤ºä¾‹ç¨‹
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_miniport_hc595_digitron_temp_interface_entry (void);
 
 /**
- * \brief MiniPort-LED Àı³Ì
+ * \brief MiniPort-LED ä¾‹ç¨‹
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_miniport_led_entry (void);
 
 /**
- * \brief MiniPort-VIEW Àı³Ì
+ * \brief MiniPort-VIEW ä¾‹ç¨‹
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_miniport_digitron_entry (void);
 
 /**
- * \brief MiniPort-595 + MiniPort-LED Àı³Ì
+ * \brief MiniPort-595 + MiniPort-LED ä¾‹ç¨‹
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_miniport_hc595_led_entry (void);
 
 /**
- * \brief MiniPort-595 + MiniPort-VIEW Àı³Ì
+ * \brief MiniPort-595 + MiniPort-VIEW ä¾‹ç¨‹
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_miniport_hc595_digitron_entry (void);
 
 /**
  * \brief MiniPort-KEY
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_miniport_key_entry (void);
 
 /**
- * \brief MiniPort-595 + MiniPort-KEY Àı³Ì
+ * \brief MiniPort-595 + MiniPort-KEY ä¾‹ç¨‹
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_miniport_hc595_digitron_key_entry (void);
 
 /**
- * \brief MiniPort-595 + MiniPort-VIEW + LM75 ÎÂ¶ÈÏÔÊ¾Àı³Ì
+ * \brief MiniPort-595 + MiniPort-VIEW + LM75 æ¸©åº¦æ˜¾ç¤ºä¾‹ç¨‹
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_miniport_hc595_digitron_temp_entry (void);
 
 /**
- * \brief MiniPort-ZLG72128ÏÔÊ¾Àı³Ì
+ * \brief MiniPort-ZLG72128æ˜¾ç¤ºä¾‹ç¨‹
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_miniport_zlg72128_entry (void);
 
 /**
- * \brief MiniPort-KEY + MiniPort-DIGITORNÏÔÊ¾Àı³Ì
+ * \brief MiniPort-KEY + MiniPort-DIGITORNæ˜¾ç¤ºä¾‹ç¨‹
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_miniport_key_digitron_entry (void);
 
 /**
- * \brief MicroPort DS1302 Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MicroPort DS1302 ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_microport_ds1302_entry (void);
 
 /**
- * \brief MicroPort EEPROM Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MicroPort EEPROM ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_microport_eeprom_entry (void);
 
 /**
- * \brief MicroPort EEPROM Àı³Ì£¬Í¨¹ı NVRAM ½Ó¿ÚÊµÏÖ
+ * \brief MicroPort EEPROM ä¾‹ç¨‹ï¼Œé€šè¿‡ NVRAM æ¥å£å®ç°
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_microport_eeprom_nvram_entry (void);
 
 /**
- * \brief MicroPort FLASH Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MicroPort FLASH ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_microport_flash_entry (void);
 
 /**
- * \brief MicroPort FLASH Àı³Ì£¬Í¨¹ı MTD ½Ó¿ÚÊµÏÖ
+ * \brief MicroPort FLASH ä¾‹ç¨‹ï¼Œé€šè¿‡ MTD æ¥å£å®ç°
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_microport_flash_mtd_entry (void);
 
 /**
- * \brief MicroPort FLASH Àı³Ì£¬Í¨¹ı FTL ½Ó¿ÚÊµÏÖ
+ * \brief MicroPort FLASH ä¾‹ç¨‹ï¼Œé€šè¿‡ FTL æ¥å£å®ç°
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_microport_flash_ftl_entry (void);
 
 /**
- * \brief MicroPort RS485 Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MicroPort RS485 ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_microport_rs485_entry (void);
 
 /**
- * \brief MicroPort RTC Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MicroPort RTC ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_microport_rtc_entry (void);
 
 /**
- * \brief MicroPort RX8025T Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MicroPort RX8025T ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_microport_rx8025t_entry (void);
 
 /**
- * \brief MicroPort USB Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MicroPort USB ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_microport_usb_entry (void);
 

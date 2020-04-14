@@ -12,22 +12,22 @@
 
 /**
  * \file
- * \brief SCT ×÷Îª 2 ¸ö 16 Î»¶¨Ê±Æ÷Êä³ö PWM Àý³Ì£¬Í¨¹ý HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief SCT ä½œä¸º 2 ä¸ª 16 ä½å®šæ—¶å™¨è¾“å‡º PWM ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æŽ¥å£å®žçŽ°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. PIO0_23(SCT_OUT0) Êä³ö 4KHz µÄ PWM£¬Õ¼¿Õ±ÈÎª 50%£»
- *   2. PIO0_27(SCT_OUT2) Êä³ö 1KHz µÄ PWM£¬Õ¼¿Õ±ÈÎª 25%¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. PIO0_23(SCT_OUT0) è¾“å‡º 4KHz çš„ PWMï¼Œå ç©ºæ¯”ä¸º 50%ï¼›
+ *   2. PIO0_27(SCT_OUT2) è¾“å‡º 1KHz çš„ PWMï¼Œå ç©ºæ¯”ä¸º 25%ã€‚
  *
  * \note
- *    1. LED0 ÐèÒª¶Ì½Ó J9 ÌøÏßÃ±£¬²ÅÄÜ±» PIO0_20 ¿ØÖÆ£»
- *    2. SCT Ê¹ÓÃ 32 Î»¼ÆÊýÆ÷£¬Ö»ÄÜ²úÉúÒ»×é¶ÀÁ¢µÄ PWM£¬ËùÓÐ PWM Êä³öÊ¹ÓÃÍ¬Ò»ÆµÂÊ£¬
- *       ¼ÆÊýÆ÷ºÍ×î´óÆ¥ÅäÖµÎª 0xFFFFFFFF£»
- *    3. SCT Ê¹ÓÃ 16 Î»¼ÆÊýÆ÷£¬¿ÉÒÔ²úÉú 2 ×é¶ÀÁ¢µÄ PWM£¬Ã¿Ò»×é PWM µÄÊä³öÊ¹ÓÃÍ¬Ò»
- *       ÆµÂÊ£¬¼ÆÊýÆ÷ºÍ×î´óÆ¥ÅäÖµÎª 0xFFFF£»
- *    4. ÓÉÓÚ SCT Ä¬ÈÏ×÷ÎªÇý¶¯·äÃùÆ÷£¬Ê¹ÓÃ²âÊÔ±¾ Demo Ç°ÐèÒª½« am_prj_config.h ÖÐ
- *       µÄ AM_CFG_BUZZER_ENABLE ¶¨ÒåÎª 0£¬²»Ê¹ÓÃ·äÃùÆ÷¡£
+ *    1. LED0 éœ€è¦çŸ­æŽ¥ J9 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIO0_20 æŽ§åˆ¶ï¼›
+ *    2. SCT ä½¿ç”¨ 32 ä½è®¡æ•°å™¨ï¼Œåªèƒ½äº§ç”Ÿä¸€ç»„ç‹¬ç«‹çš„ PWMï¼Œæ‰€æœ‰ PWM è¾“å‡ºä½¿ç”¨åŒä¸€é¢‘çŽ‡ï¼Œ
+ *       è®¡æ•°å™¨å’Œæœ€å¤§åŒ¹é…å€¼ä¸º 0xFFFFFFFFï¼›
+ *    3. SCT ä½¿ç”¨ 16 ä½è®¡æ•°å™¨ï¼Œå¯ä»¥äº§ç”Ÿ 2 ç»„ç‹¬ç«‹çš„ PWMï¼Œæ¯ä¸€ç»„ PWM çš„è¾“å‡ºä½¿ç”¨åŒä¸€
+ *       é¢‘çŽ‡ï¼Œè®¡æ•°å™¨å’Œæœ€å¤§åŒ¹é…å€¼ä¸º 0xFFFFï¼›
+ *    4. ç”±äºŽ SCT é»˜è®¤ä½œä¸ºé©±åŠ¨èœ‚é¸£å™¨ï¼Œä½¿ç”¨æµ‹è¯•æœ¬ Demo å‰éœ€è¦å°† am_prj_config.h ä¸­
+ *       çš„ AM_CFG_BUZZER_ENABLE å®šä¹‰ä¸º 0ï¼Œä¸ä½¿ç”¨èœ‚é¸£å™¨ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am824_hw_sct_2_16bit_pwm.c src_am824_hw_sct_2_16bit_pwm
  *
  * \internal
@@ -50,7 +50,7 @@
 #include "demo_nxp_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am824_core_hw_sct_2_16bit_pwm_entry (void)
 {
@@ -62,11 +62,11 @@ void demo_am824_core_hw_sct_2_16bit_pwm_entry (void)
     AM_DBG_INFO("The PIO0_27(SCT_OUT4) PWM: freq is 1kHz, "
                 "The duty ratio is 25%% \r\n");
 
-    /* Æ½Ì¨³õÊ¼»¯ */
+    /* å¹³å°åˆå§‹åŒ– */
     amhw_lpc82x_clk_periph_enable(AMHW_LPC82X_CLK_SCT);
     amhw_lpc82x_syscon_periph_reset(AMHW_LPC82X_RESET_SCT);
 
-    /* PIO0_23 ¹ØÁªµ½ SCT µÄÊä³öÍ¨µÀ 0¡¢PIO0_27 ¹ØÁªµ½ SCT µÄÊä³öÍ¨µÀ 2 */
+    /* PIO0_23 å…³è”åˆ° SCT çš„è¾“å‡ºé€šé“ 0ã€PIO0_27 å…³è”åˆ° SCT çš„è¾“å‡ºé€šé“ 2 */
     am_gpio_pin_cfg(PIO0_23, PIO_FUNC_SCT_OUT1);
     am_gpio_pin_cfg(PIO0_27, PIO_FUNC_SCT_OUT2);
 

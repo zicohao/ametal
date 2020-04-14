@@ -53,31 +53,31 @@ const am_arm_nvic_devinfo_t __g_nvic_devinfo =
 	AM_ARM_NVIC_CORE_M0PLUS,
 
 #ifdef AM_CORTEX_M4
-    /* ¥˙±Ì÷˜”≈œ»º∂”–3Œª£¨◊””≈œ»º∂”–0Œª */
-    3,                      /**< \brief ”≈œ»º∂Œª ˝ */
-    4,                      /**< \brief …Ë÷√◊È÷–∂œ */
+    /* ‰ª£Ë°®‰∏ª‰ºòÂÖàÁ∫ßÊúâ3‰ΩçÔºåÂ≠ê‰ºòÂÖàÁ∫ßÊúâ0‰Ωç */
+    3,                      /**< \brief ‰ºòÂÖàÁ∫ß‰ΩçÊï∞ */
+    4,                      /**< \brief ËÆæÁΩÆÁªÑ‰∏≠Êñ≠ */
 #endif
 
 #ifdef AM_CORTEX_M0
-    /*Ωˆ”–◊””≈œ»º∂£¨«“◊””≈œ»º∂”–2Œª */
-    2,                      /**< \brief ”≈œ»º∂Œª ˝ */
-    0,                      /**< \brief …Ë÷√◊È÷–∂œ */
+    /*‰ªÖÊúâÂ≠ê‰ºòÂÖàÁ∫ßÔºå‰∏îÂ≠ê‰ºòÂÖàÁ∫ßÊúâ2‰Ωç */
+    2,                      /**< \brief ‰ºòÂÖàÁ∫ß‰ΩçÊï∞ */
+    0,                      /**< \brief ËÆæÁΩÆÁªÑ‰∏≠Êñ≠ */
 #endif
 
-    INUM_INTERNAL_COUNT,    /**< \brief ◊‹÷–∂œ ˝¡ø */
+    INUM_INTERNAL_COUNT,    /**< \brief ÊÄª‰∏≠Êñ≠Êï∞Èáè */
     __nvic_isr_map,         /**< \brief ISR information map(size equal to input_cnt) */
     __ISRINFO_COUNT,        /**< \brief ISR information count */
     __nvic_isr_infor,       /**< \brief ISR information map memory(size equal to isrinfo_cnt) */
 
-    NULL,                   /**< \brief Œﬁ–Ë∆ΩÃ®≥ı ºªØ */
-    NULL                    /**< \brief Œﬁ–Ë∆ΩÃ®»•≥ı ºªØ */
+    NULL,                   /**< \brief Êó†ÈúÄÂπ≥Âè∞ÂàùÂßãÂåñ */
+    NULL                    /**< \brief Êó†ÈúÄÂπ≥Âè∞ÂéªÂàùÂßãÂåñ */
 };
 
 /** \brief Interrupt device */
 static am_arm_nvic_dev_t __g_nvic_dev;
 
 /**
- * \brief  ÷–∂œ µ¿˝≥ı ºªØ£¨≥ı ºªØ÷–∂œ«˝∂Ø
+ * \brief  ‰∏≠Êñ≠ÂÆû‰æãÂàùÂßãÂåñÔºåÂàùÂßãÂåñ‰∏≠Êñ≠È©±Âä®
  */
 int am_kl26_nvic_inst_init (void)
 {
@@ -85,7 +85,7 @@ int am_kl26_nvic_inst_init (void)
 }
 
 /**
- * \brief  ÷–∂œ µ¿˝Ω‚≥ı ºªØ
+ * \brief  ‰∏≠Êñ≠ÂÆû‰æãËß£ÂàùÂßãÂåñ
  */
 void am_kl26_nvic_inst_deinit (void)
 {

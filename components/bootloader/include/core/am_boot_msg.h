@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief  BootLoaderÏûÏ¢±ê×¼½Ó¿Ú
+ * \brief  BootLoaderæ¶ˆæ¯æ ‡å‡†æ¥å£
  *
  * \internal
  * \par Modification history
@@ -28,44 +28,44 @@
 extern "C" {
 #endif
 
-/** \brief Ë«ÇøÓÃ»§³ÌĞòÓĞĞ§ */
+/** \brief åŒåŒºç”¨æˆ·ç¨‹åºæœ‰æ•ˆ */
 #define AM_BOOTLOADER_FLAG_APP     (0x12345678)
-/** \brief Ë«ÇøÉı¼¶³ÌĞòÓĞĞ§ */
+/** \brief åŒåŒºå‡çº§ç¨‹åºæœ‰æ•ˆ */
 #define AM_BOOTLOADER_FLAG_UPDATE  (0x87654321)
-/** \brief Ë«ÇøÎŞ´úÂë */
+/** \brief åŒåŒºæ— ä»£ç  */
 #define AM_BOOTLOADER_FLAG_NO      (0xFFFFFFFF)
 /**
- * \brief bootloader ÏûÏ¢Çı¶¯º¯Êı½á¹¹Ìå
+ * \brief bootloader æ¶ˆæ¯é©±åŠ¨å‡½æ•°ç»“æ„ä½“
  */
 struct am_boot_msg_drv_funcs {
-    /** \brief ÏûÏ¢´¦Àí */
+    /** \brief æ¶ˆæ¯å¤„ç† */
     int (*pfn_msg_dispose) (void *p_drv);
 
-    /** \brief ÉèÖÃÏûÏ¢²Ù×÷ */
+    /** \brief è®¾ç½®æ¶ˆæ¯æ“ä½œ */
     int (*pfn_msg_set) (void *p_drv, void *par);
 };
 
 /**
- * \brief bootloader ÏûÏ¢±ê×¼·şÎñ½á¹¹Ìå
+ * \brief bootloader æ¶ˆæ¯æ ‡å‡†æœåŠ¡ç»“æ„ä½“
  */
 typedef struct am_boot_msg_serv {
-    const struct am_boot_msg_drv_funcs *p_funcs;  /**< \brief Éè±¸Çı¶¯º¯Êı½á¹¹ÌåÖ¸Õë    */
-    void                               *p_drv;    /**< \brief Éè±¸Çı¶¯º¯ÊıµÚÒ»¸ö²ÎÊı */
+    const struct am_boot_msg_drv_funcs *p_funcs;  /**< \brief è®¾å¤‡é©±åŠ¨å‡½æ•°ç»“æ„ä½“æŒ‡é’ˆ    */
+    void                               *p_drv;    /**< \brief è®¾å¤‡é©±åŠ¨å‡½æ•°ç¬¬ä¸€ä¸ªå‚æ•° */
 } am_boot_msg_serv_t;
 
-/** \brief bootloader ÏûÏ¢±ê×¼·şÎñ²Ù×÷¾ä±úÀàĞÍ¶¨Òå */
+/** \brief bootloader æ¶ˆæ¯æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„ç±»å‹å®šä¹‰ */
 typedef am_boot_msg_serv_t * am_boot_msg_handle_t;
 
 
 
 /**
- * \brief ÉèÖÃÓ¦ÓÃ³ÌĞòÓëBootLoader´«µİµÄĞÅÏ¢
+ * \brief è®¾ç½®åº”ç”¨ç¨‹åºä¸BootLoaderä¼ é€’çš„ä¿¡æ¯
  *
- * \param[in] handle : ÏûÏ¢²Ù×÷±ê×¼·şÎñ¾ä±ú
- * \param[in] par    : ÉèÖÃÏûÏ¢µÄÄÚÈİ
+ * \param[in] handle : æ¶ˆæ¯æ“ä½œæ ‡å‡†æœåŠ¡å¥æŸ„
+ * \param[in] par    : è®¾ç½®æ¶ˆæ¯çš„å†…å®¹
  *
- * \retval AM_OK    : ³É¹¦
- * \retval AM_ERROR : Ê§°Ü
+ * \retval AM_OK    : æˆåŠŸ
+ * \retval AM_ERROR : å¤±è´¥
  */
 am_static_inline
 int am_boot_msg_set(am_boot_msg_handle_t handle, void *par)
@@ -77,12 +77,12 @@ int am_boot_msg_set(am_boot_msg_handle_t handle, void *par)
 }
 
 /**
- * \brief ¶ÔÏûÏ¢×öÏàÓ¦µÄ»ØÓ¦´¦Àí
+ * \brief å¯¹æ¶ˆæ¯åšç›¸åº”çš„å›åº”å¤„ç†
  *
- * \param[in] handle : ÏûÏ¢²Ù×÷±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle : æ¶ˆæ¯æ“ä½œæ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \retval AM_OK    : ´¦Àí³É¹¦
- * \retval AM_ERROR : ´¦ÀíÊ§°Ü
+ * \retval AM_OK    : å¤„ç†æˆåŠŸ
+ * \retval AM_ERROR : å¤„ç†å¤±è´¥
  */
 am_static_inline
 int am_boot_msg_dispose(am_boot_msg_handle_t handle)

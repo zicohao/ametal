@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥4.38
+ * \brief ç¨‹åºæ¸…å•4.38
  *
- * \note ¸ÃÀú³ÌĞèÒªÓÃµ½miniportÍØÕ¹°å
+ * \note è¯¥å†ç¨‹éœ€è¦ç”¨åˆ°miniportæ‹“å±•æ¿
  *
  * \internal
  * \par Modification history
@@ -29,13 +29,13 @@
 
 int am_main(void)
 {
-    uint8_t key_return;            // key1_scan()·µ»ØÖµ±äÁ¿
+    uint8_t key_return;            // key1_scan()è¿”å›å€¼å˜é‡
 
     key1_init();
     led_init();
     buzzer_init();
     while(1) {
-        key_return = key1_scan();  // ¸ù¾İ·µ»ØÖµÅĞ¶Ï°´¼üÊÂ¼şµÄ²úÉú
+        key_return = key1_scan();  // æ ¹æ®è¿”å›å€¼åˆ¤æ–­æŒ‰é”®äº‹ä»¶çš„äº§ç”Ÿ
         if (key_return == 0) {
             buzzer_beep(100);
         }else if (key_return == 1) {

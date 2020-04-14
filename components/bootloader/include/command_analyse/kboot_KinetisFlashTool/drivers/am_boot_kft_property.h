@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief bootloader kboot KinetisFlashTool ÊôÐÔ
+ * \brief bootloader kboot KinetisFlashTool å±žæ€§
  *
  *
  * \internal
@@ -235,57 +235,57 @@ typedef struct am_boot_kft_property_store
 } am_boot_kft_property_store_t;
 
 typedef struct am_boot_kft_property_devinfo {
-    uint32_t  flash_start_addr;    /**< \brief flashµÄÆðÊ¼µØÖ·*/
-    uint32_t  flash_size;          /**< \brief flashµÄ´óÐ¡ */
+    uint32_t  flash_start_addr;    /**< \brief flashçš„èµ·å§‹åœ°å€*/
+    uint32_t  flash_size;          /**< \brief flashçš„å¤§å° */
 
-    uint32_t  ram_start_addr;      /**< \brief ramÆðÊ¼µØÖ· */
-    uint32_t  ram_size;            /**< \brief ramµÄ´óÐ¡ */
+    uint32_t  ram_start_addr;      /**< \brief ramèµ·å§‹åœ°å€ */
+    uint32_t  ram_size;            /**< \brief ramçš„å¤§å° */
 }am_boot_kft_property_devinfo_t;
 
 
 /**
- * \brief bootloader ÊôÐÔÇý¶¯º¯Êý
+ * \brief bootloader å±žæ€§é©±åŠ¨å‡½æ•°
  */
 struct am_boot_kft_property_funcs {
 
-    /** \brief »ñÈ¡ÊôÐÔ */
+    /** \brief èŽ·å–å±žæ€§ */
     int32_t (*pfn_get_property)(void       *p_arg,
                                uint8_t      tag,
                                uint8_t      id,
                                const void **value,
                                uint32_t    *valueSize);
 
-    /** \brief ÉèÖÃÊôÐÔ */
+    /** \brief è®¾ç½®å±žæ€§ */
     int32_t (*pfn_set_uint32_property)(void *p_arg, uint8_t tag, uint32_t value);
 };
 
-/** \brief ÊôÐÔ±ê×¼·þÎñ */
+/** \brief å±žæ€§æ ‡å‡†æœåŠ¡ */
 typedef struct am_boot_kft_property_serv {
     struct am_boot_kft_property_funcs *p_funcs;
     void                              *p_drv;
 }am_boot_kft_property_serv_t;
 
-/** \brief ·þÎñ¾ä±ú */
+/** \brief æœåŠ¡å¥æŸ„ */
 typedef am_boot_kft_property_serv_t *am_boot_kft_property_handle_t;
 
 typedef struct am_boot_kft_property_dev {
-    /** \brief ÊôÐÔ·þÎñ */
+    /** \brief å±žæ€§æœåŠ¡ */
     am_boot_kft_property_serv_t     property_serv;
 
-    /** \brief flash·þÎñ¾ä±ú */
+    /** \brief flashæœåŠ¡å¥æŸ„ */
     am_boot_flash_handle_t          flash_handle;
 
-    /** \brief °ü·þÎñ¾ä±ú */
+    /** \brief åŒ…æœåŠ¡å¥æŸ„ */
     am_boot_kft_packet_handle_t     packet_handle;
 
-    /** \brief ´æ·ÅÊôÐÔµÄ½á¹¹Ìå */
+    /** \brief å­˜æ”¾å±žæ€§çš„ç»“æž„ä½“ */
     am_boot_kft_property_store_t    property_store;
 
     am_boot_kft_property_devinfo_t  property_devinfo;
 }am_boot_kft_property_dev_t;
 
 /**
- * \brief ³õÊ¼»¯º¯Êý
+ * \brief åˆå§‹åŒ–å‡½æ•°
  */
 am_boot_kft_property_handle_t am_boot_kft_property_init(
     am_boot_flash_handle_t flash_handle, am_boot_kft_property_devinfo_t *p_property_devinfo);

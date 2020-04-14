@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ´«¸ĞÆ÷ BME280 Çı¶¯ÎÄ¼ş
+ * \brief ä¼ æ„Ÿå™¨ BME280 é©±åŠ¨æ–‡ä»¶
  *
  * \internal
  * \par Modification history
@@ -25,152 +25,152 @@
 #include "am_delay.h"
 
 /*******************************************************************************
- * ºê¶¨Òå
+ * å®å®šä¹‰
  ******************************************************************************/
-#define  __BME280_REG_H_LSB         0XFE    /**< \brief Êª¶ÈµÍ×Ö½ÚµØÖ·        */
-#define  __BME280_REG_H_MSB         0XFD    /**< \brief Êª¶È¸ß×Ö½ÚµØÖ·        */
-#define  __BME280_REG_T_XLSB        0XFC    /**< \brief ÎÂ¶ÈµÍ×Ö½ÚµØÖ·        */   
-#define  __BME280_REG_T_LSB         0XFB    /**< \brief ÎÂ¶È´ÎµÍ×Ö½ÚµØÖ·      */   
-#define  __BME280_REG_T_MSB         0XFA    /**< \brief ÎÂ¶È¸ß×Ö½ÚµØÖ·        */ 
-#define  __BME280_REG_P_XLSB        0XF9    /**< \brief ÆøÑ¹µÍ×Ö½ÚµØÖ·        */
-#define  __BME280_REG_P_LSB         0XF8    /**< \brief ÆøÑ¹´ÎµÍ×Ö½ÚµØÖ·      */
-#define  __BME280_REG_P_MSB         0XF7    /**< \brief ÆøÑ¹¸ß×Ö½ÚµØÖ·        */
-#define  __BME280_REG_CONFIG        0XF5    /**< \brief ÅäÖÃ¼Ä´æÆ÷µØÖ·        */
-#define  __BME280_REG_CTRL_MEAS     0XF4    /**< \brief ¿ØÖÆ²âÁ¿¼Ä´æÆ÷µØÖ·    */
-#define  __BME280_REG_STATUS        0XF3    /**< \brief ×´Ì¬¼Ä´æÆ÷µØÖ·        */
-#define  __BME280_REG_CTRL_HUM      0XF2    /**< \brief ¿ØÖÆÊª¶È²âÁ¿¼Ä´æÆ÷µØÖ·*/
-#define  __BME280_REG_RESET         0XE0    /**< \brief ¸´Î»¼Ä´æÆ÷µØÖ·        */
-#define  __BME280_REG_ID            0XD0    /**< \brief ID¼Ä´æÆ÷µØÖ·          */
-#define  __BME280_MY_ID             0x60    /**< \brief Éè±¸ID                */
-#define  __BME280_CMD_RESET        	0xB6    /**< \brief Éè±¸¸´Î»ÃüÁî          */
+#define  __BME280_REG_H_LSB         0XFE    /**< \brief æ¹¿åº¦ä½å­—èŠ‚åœ°å€        */
+#define  __BME280_REG_H_MSB         0XFD    /**< \brief æ¹¿åº¦é«˜å­—èŠ‚åœ°å€        */
+#define  __BME280_REG_T_XLSB        0XFC    /**< \brief æ¸©åº¦ä½å­—èŠ‚åœ°å€        */   
+#define  __BME280_REG_T_LSB         0XFB    /**< \brief æ¸©åº¦æ¬¡ä½å­—èŠ‚åœ°å€      */   
+#define  __BME280_REG_T_MSB         0XFA    /**< \brief æ¸©åº¦é«˜å­—èŠ‚åœ°å€        */ 
+#define  __BME280_REG_P_XLSB        0XF9    /**< \brief æ°”å‹ä½å­—èŠ‚åœ°å€        */
+#define  __BME280_REG_P_LSB         0XF8    /**< \brief æ°”å‹æ¬¡ä½å­—èŠ‚åœ°å€      */
+#define  __BME280_REG_P_MSB         0XF7    /**< \brief æ°”å‹é«˜å­—èŠ‚åœ°å€        */
+#define  __BME280_REG_CONFIG        0XF5    /**< \brief é…ç½®å¯„å­˜å™¨åœ°å€        */
+#define  __BME280_REG_CTRL_MEAS     0XF4    /**< \brief æ§åˆ¶æµ‹é‡å¯„å­˜å™¨åœ°å€    */
+#define  __BME280_REG_STATUS        0XF3    /**< \brief çŠ¶æ€å¯„å­˜å™¨åœ°å€        */
+#define  __BME280_REG_CTRL_HUM      0XF2    /**< \brief æ§åˆ¶æ¹¿åº¦æµ‹é‡å¯„å­˜å™¨åœ°å€*/
+#define  __BME280_REG_RESET         0XE0    /**< \brief å¤ä½å¯„å­˜å™¨åœ°å€        */
+#define  __BME280_REG_ID            0XD0    /**< \brief IDå¯„å­˜å™¨åœ°å€          */
+#define  __BME280_MY_ID             0x60    /**< \brief è®¾å¤‡ID                */
+#define  __BME280_CMD_RESET        	0xB6    /**< \brief è®¾å¤‡å¤ä½å‘½ä»¤          */
                                               
-#define  __BME280_REG_DIG_T1	    0x88    /**< \brief ÎÂ¶ÈĞ£×¼Öµ1µØÖ·       */
-#define  __BME280_REG_DIG_T1_LEN	2       /**< \brief ÎÂ¶ÈĞ£×¼Öµ1µØÖ·³¤¶È   */
-#define  __BME280_REG_DIG_T2        0x8A    /**< \brief ÎÂ¶ÈĞ£×¼Öµ2µØÖ·       */
-#define  __BME280_REG_DIG_T2_LEN    2       /**< \brief ÎÂ¶ÈĞ£×¼Öµ2µØÖ·³¤¶È   */
-#define  __BME280_REG_DIG_T3	    0x8C    /**< \brief ÎÂ¶ÈĞ£×¼Öµ3µØÖ·       */
-#define  __BME280_REG_DIG_T3_LEN    2       /**< \brief ÎÂ¶ÈĞ£×¼Öµ3µØÖ·³¤¶È   */
+#define  __BME280_REG_DIG_T1	    0x88    /**< \brief æ¸©åº¦æ ¡å‡†å€¼1åœ°å€       */
+#define  __BME280_REG_DIG_T1_LEN	2       /**< \brief æ¸©åº¦æ ¡å‡†å€¼1åœ°å€é•¿åº¦   */
+#define  __BME280_REG_DIG_T2        0x8A    /**< \brief æ¸©åº¦æ ¡å‡†å€¼2åœ°å€       */
+#define  __BME280_REG_DIG_T2_LEN    2       /**< \brief æ¸©åº¦æ ¡å‡†å€¼2åœ°å€é•¿åº¦   */
+#define  __BME280_REG_DIG_T3	    0x8C    /**< \brief æ¸©åº¦æ ¡å‡†å€¼3åœ°å€       */
+#define  __BME280_REG_DIG_T3_LEN    2       /**< \brief æ¸©åº¦æ ¡å‡†å€¼3åœ°å€é•¿åº¦   */
                                               
-#define  __BME280_REG_DIG_P1        0x8E    /**< \brief Ñ¹Á¦Ğ£×¼Öµ1µØÖ·       */
-#define  __BME280_REG_DIG_P1_LEN    2       /**< \brief Ñ¹Á¦Ğ£×¼Öµ1µØÖ·³¤¶È   */
-#define  __BME280_REG_DIG_P2	    0x90    /**< \brief Ñ¹Á¦Ğ£×¼Öµ2µØÖ·       */
-#define  __BME280_REG_DIG_P2_LEN    2       /**< \brief Ñ¹Á¦Ğ£×¼Öµ2µØÖ·³¤¶È   */
-#define  __BME280_REG_DIG_P3        0x92    /**< \brief Ñ¹Á¦Ğ£×¼Öµ3µØÖ·       */
-#define  __BME280_REG_DIG_P3_LEN    2       /**< \brief Ñ¹Á¦Ğ£×¼Öµ3µØÖ·³¤¶È   */
-#define  __BME280_REG_DIG_P4	    0x94    /**< \brief Ñ¹Á¦Ğ£×¼Öµ4µØÖ·       */
-#define  __BME280_REG_DIG_P4_LEN    2       /**< \brief Ñ¹Á¦Ğ£×¼Öµ4µØÖ·³¤¶È   */
-#define  __BME280_REG_DIG_P5        0x96    /**< \brief Ñ¹Á¦Ğ£×¼Öµ5µØÖ·       */
-#define  __BME280_REG_DIG_P5_LEN    2       /**< \brief Ñ¹Á¦Ğ£×¼Öµ5µØÖ·³¤¶È   */
-#define  __BME280_REG_DIG_P6	    0x98    /**< \brief Ñ¹Á¦Ğ£×¼Öµ6µØÖ·       */
-#define  __BME280_REG_DIG_P6_LEN    2       /**< \brief Ñ¹Á¦Ğ£×¼Öµ6µØÖ·³¤¶È   */
-#define  __BME280_REG_DIG_P7        0x9A    /**< \brief Ñ¹Á¦Ğ£×¼Öµ7µØÖ·       */
-#define  __BME280_REG_DIG_P7_LEN    2       /**< \brief Ñ¹Á¦Ğ£×¼Öµ7µØÖ·³¤¶È   */
-#define  __BME280_REG_DIG_P8	    0x9C    /**< \brief Ñ¹Á¦Ğ£×¼Öµ8µØÖ·       */
-#define  __BME280_REG_DIG_P8_LEN    2       /**< \brief Ñ¹Á¦Ğ£×¼Öµ8µØÖ·³¤¶È   */
-#define  __BME280_REG_DIG_P9        0x9E    /**< \brief Ñ¹Á¦Ğ£×¼Öµ9µØÖ·       */
-#define  __BME280_REG_DIG_P9_LEN    2       /**< \brief Ñ¹Á¦Ğ£×¼Öµ9µØÖ·³¤¶È   */
+#define  __BME280_REG_DIG_P1        0x8E    /**< \brief å‹åŠ›æ ¡å‡†å€¼1åœ°å€       */
+#define  __BME280_REG_DIG_P1_LEN    2       /**< \brief å‹åŠ›æ ¡å‡†å€¼1åœ°å€é•¿åº¦   */
+#define  __BME280_REG_DIG_P2	    0x90    /**< \brief å‹åŠ›æ ¡å‡†å€¼2åœ°å€       */
+#define  __BME280_REG_DIG_P2_LEN    2       /**< \brief å‹åŠ›æ ¡å‡†å€¼2åœ°å€é•¿åº¦   */
+#define  __BME280_REG_DIG_P3        0x92    /**< \brief å‹åŠ›æ ¡å‡†å€¼3åœ°å€       */
+#define  __BME280_REG_DIG_P3_LEN    2       /**< \brief å‹åŠ›æ ¡å‡†å€¼3åœ°å€é•¿åº¦   */
+#define  __BME280_REG_DIG_P4	    0x94    /**< \brief å‹åŠ›æ ¡å‡†å€¼4åœ°å€       */
+#define  __BME280_REG_DIG_P4_LEN    2       /**< \brief å‹åŠ›æ ¡å‡†å€¼4åœ°å€é•¿åº¦   */
+#define  __BME280_REG_DIG_P5        0x96    /**< \brief å‹åŠ›æ ¡å‡†å€¼5åœ°å€       */
+#define  __BME280_REG_DIG_P5_LEN    2       /**< \brief å‹åŠ›æ ¡å‡†å€¼5åœ°å€é•¿åº¦   */
+#define  __BME280_REG_DIG_P6	    0x98    /**< \brief å‹åŠ›æ ¡å‡†å€¼6åœ°å€       */
+#define  __BME280_REG_DIG_P6_LEN    2       /**< \brief å‹åŠ›æ ¡å‡†å€¼6åœ°å€é•¿åº¦   */
+#define  __BME280_REG_DIG_P7        0x9A    /**< \brief å‹åŠ›æ ¡å‡†å€¼7åœ°å€       */
+#define  __BME280_REG_DIG_P7_LEN    2       /**< \brief å‹åŠ›æ ¡å‡†å€¼7åœ°å€é•¿åº¦   */
+#define  __BME280_REG_DIG_P8	    0x9C    /**< \brief å‹åŠ›æ ¡å‡†å€¼8åœ°å€       */
+#define  __BME280_REG_DIG_P8_LEN    2       /**< \brief å‹åŠ›æ ¡å‡†å€¼8åœ°å€é•¿åº¦   */
+#define  __BME280_REG_DIG_P9        0x9E    /**< \brief å‹åŠ›æ ¡å‡†å€¼9åœ°å€       */
+#define  __BME280_REG_DIG_P9_LEN    2       /**< \brief å‹åŠ›æ ¡å‡†å€¼9åœ°å€é•¿åº¦   */
 
-#define  __BME280_REG_DIG_H1        0xA1    /**< \brief Êª¶ÈĞ£×¼Öµ1µØÖ·       */
-#define  __BME280_REG_DIG_H2_LSB    0xE1    /**< \brief Êª¶ÈĞ£×¼Öµ2µÍ×Ö½ÚµØÖ· */
-#define  __BME280_REG_DIG_H2_MSB    0xE2    /**< \brief Êª¶ÈĞ£×¼Öµ2¸ß×Ö½ÚµØÖ· */
-#define  __BME280_REG_DIG_H3        0xE3    /**< \brief Êª¶ÈĞ£×¼Öµ3µØÖ·       */
-#define  __BME280_REG_DIG_H4_LSB    0xE5    /**< \brief Êª¶ÈĞ£×¼Öµ4µÍ×Ö½ÚµØÖ· */
-#define  __BME280_REG_DIG_H4_MSB    0xE4    /**< \brief Êª¶ÈĞ£×¼Öµ4¸ß×Ö½ÚµØÖ· */
-#define  __BME280_REG_DIG_H5_LSB    0xE5    /**< \brief Êª¶ÈĞ£×¼Öµ5µÍ×Ö½ÚµØÖ· */
-#define  __BME280_REG_DIG_H5_MSB    0xE6    /**< \brief Êª¶ÈĞ£×¼Öµ5¸ß×Ö½ÚµØÖ· */
-#define  __BME280_REG_DIG_H6        0xE7    /**< \brief Êª¶ÈĞ£×¼Öµ6µØÖ·       */
+#define  __BME280_REG_DIG_H1        0xA1    /**< \brief æ¹¿åº¦æ ¡å‡†å€¼1åœ°å€       */
+#define  __BME280_REG_DIG_H2_LSB    0xE1    /**< \brief æ¹¿åº¦æ ¡å‡†å€¼2ä½å­—èŠ‚åœ°å€ */
+#define  __BME280_REG_DIG_H2_MSB    0xE2    /**< \brief æ¹¿åº¦æ ¡å‡†å€¼2é«˜å­—èŠ‚åœ°å€ */
+#define  __BME280_REG_DIG_H3        0xE3    /**< \brief æ¹¿åº¦æ ¡å‡†å€¼3åœ°å€       */
+#define  __BME280_REG_DIG_H4_LSB    0xE5    /**< \brief æ¹¿åº¦æ ¡å‡†å€¼4ä½å­—èŠ‚åœ°å€ */
+#define  __BME280_REG_DIG_H4_MSB    0xE4    /**< \brief æ¹¿åº¦æ ¡å‡†å€¼4é«˜å­—èŠ‚åœ°å€ */
+#define  __BME280_REG_DIG_H5_LSB    0xE5    /**< \brief æ¹¿åº¦æ ¡å‡†å€¼5ä½å­—èŠ‚åœ°å€ */
+#define  __BME280_REG_DIG_H5_MSB    0xE6    /**< \brief æ¹¿åº¦æ ¡å‡†å€¼5é«˜å­—èŠ‚åœ°å€ */
+#define  __BME280_REG_DIG_H6        0xE7    /**< \brief æ¹¿åº¦æ ¡å‡†å€¼6åœ°å€       */
 
 
-/** \brief »ñÈ¡DATA×´Ì¬Î» */
+/** \brief è·å–DATAçŠ¶æ€ä½ */
 #define __BME280_GET_DATA_STATUS(reg)   (((reg) >> 3) & 0x1)
 
-/** \brief ½«Á½¸öint8×ª»»ÎªÒ»¸öint16ÀàĞÍ */
+/** \brief å°†ä¸¤ä¸ªint8è½¬æ¢ä¸ºä¸€ä¸ªint16ç±»å‹ */
 #define __BME280_UINT8_TO_UINT16(buff) ((int16_t)((buff[1] << 8) | buff[0]))
 
-/** \brief ½«Èı¸öint8×ª»»ÎªÒ»¸ö20bitÀàĞÍ */
+/** \brief å°†ä¸‰ä¸ªint8è½¬æ¢ä¸ºä¸€ä¸ª20bitç±»å‹ */
 #define __BME280_UINT8_TO_UINT32(buff) \
                        (int32_t)(((int32_t)(buff[0]) << 12) \
                                | ((int32_t)(buff[1]) << 4)  \
                                | ((int32_t)(buff[2]) >> 4))
-/** \brief ÀûÓÃĞ£×¼Öµt1£¬t2£¬t3¼ÆËã³ö´«ÈëtµÄÎÂ¶ÈÊµ¼ÊÖµ ²¢À©´ó10^6±¶ */ 
+/** \brief åˆ©ç”¨æ ¡å‡†å€¼t1ï¼Œt2ï¼Œt3è®¡ç®—å‡ºä¼ å…¥tçš„æ¸©åº¦å®é™…å€¼ å¹¶æ‰©å¤§10^6å€ */ 
 #define __BME280_GET_TEM_VALUE(t, t1, t2, t3) \
                 (((((((double)t) / 16384.0 - ((double) t1) / 1024.0) * \
                   ((double) t2)) + (((((double)t) / 131072.0 - ((double) t1) / \
                   8192.0) * (((double)t) / 131072.0 - ((double) t1) / \
                   8192.0)) * ((double) t3))) * 1000000) / 5120)
-/** \brief ÀûÓÃĞ£×¼Öµt1£¬t2£¬t3¼ÆËã³öÆøÑ¹Ğ£×¼µÄ²ÎÊıt_define */ 
+/** \brief åˆ©ç”¨æ ¡å‡†å€¼t1ï¼Œt2ï¼Œt3è®¡ç®—å‡ºæ°”å‹æ ¡å‡†çš„å‚æ•°t_define */ 
 #define __BME280_GET_T_DEFINE(t, t1, t2, t3) \
                 (((((double)t) / 16384.0 - ((double) t1) / 1024.0) * \
                   ((double) t2)) + (((((double)t) / 131072.0 - ((double) t1) / \
                   8192.0) * (((double)t) / 131072.0 - ((double) t1) / \
                   8192.0)) * ((double) t3)))
  
-/** \brief Ä£¿é¹¤×÷ */
+/** \brief æ¨¡å—å·¥ä½œ */
 #define __BME280_NORMAL                   (0x3<<0)
-/** \brief Ä£¿éË¯Ãß */
+/** \brief æ¨¡å—ç¡çœ  */
 #define __BME280_SLEEP                    (~(0x3<<0))
-/** \brief ´ò¿ªÊª¶È²âÁ¿ */ 
+/** \brief æ‰“å¼€æ¹¿åº¦æµ‹é‡ */ 
 #define __BME280_HUM_START                (0x2<<0)
-/** \brief ¹Ø±ÕÊª¶È²âÁ¿ */ 
+/** \brief å…³é—­æ¹¿åº¦æµ‹é‡ */ 
 #define __BME280_HUM_CLOSE                (~(0x2<<0))  
-/** \brief ´ò¿ªÑ¹Ç¿²âÁ¿ */ 
+/** \brief æ‰“å¼€å‹å¼ºæµ‹é‡ */ 
 #define __BME280_PRESS_START              (0x2<<2)
-/** \brief ¹Ø±ÕÑ¹Ç¿²âÁ¿ */ 
+/** \brief å…³é—­å‹å¼ºæµ‹é‡ */ 
 #define __BME280_PRESS_CLOSE              (~(0x2<<2))
-/** \brief ´ò¿ªÎÂ¶È²âÁ¿ */ 
+/** \brief æ‰“å¼€æ¸©åº¦æµ‹é‡ */ 
 #define __BME280_TEMP_START               (0x2<<5)
-/** \brief ¹Ø±ÕÎÂ¶È²âÁ¿ */ 
+/** \brief å…³é—­æ¸©åº¦æµ‹é‡ */ 
 #define __BME280_TEMP_CLOSE               (~(0x2<<5))
 /*******************************************************************************
- * ±¾µØº¯ÊıÉùÃ÷
+ * æœ¬åœ°å‡½æ•°å£°æ˜
  ******************************************************************************/
-/** \brief »ñÈ¡¸Ã´«¸ĞÆ÷Ä³Ò»Í¨µÀµÄÀàĞÍ */
+/** \brief è·å–è¯¥ä¼ æ„Ÿå™¨æŸä¸€é€šé“çš„ç±»å‹ */
 am_local am_err_t __pfn_type_get (void *p_drv, int id);
 
-/** \brief »ñÈ¡´«¸ĞÆ÷Í¨µÀ²ÉÑùÊı¾İ */
+/** \brief è·å–ä¼ æ„Ÿå™¨é€šé“é‡‡æ ·æ•°æ® */
 am_local am_err_t __pfn_data_get (void            *p_drv,
                                   const int       *p_ids,
                                   int              num,
                                   am_sensor_val_t *p_buf);
 
-/** \brief Ê¹ÄÜ´«¸ĞÆ÷Í¨µÀ */
+/** \brief ä½¿èƒ½ä¼ æ„Ÿå™¨é€šé“ */
 am_local am_err_t __pfn_enable (void            *p_drv,
                                 const int       *p_ids,
                                 int              num,
                                 am_sensor_val_t *p_result);
 
-/** \brief ½ûÄÜ´«¸ĞÆ÷Í¨µÀ */
+/** \brief ç¦èƒ½ä¼ æ„Ÿå™¨é€šé“ */
 am_local am_err_t __pfn_disable (void            *p_drv,
                                  const int       *p_ids,
                                  int              num,
                                  am_sensor_val_t *p_result);
 
-/** \brief ÅäÖÃ´«¸ĞÆ÷Í¨µÀÊôĞÔ */
+/** \brief é…ç½®ä¼ æ„Ÿå™¨é€šé“å±æ€§ */
 am_local am_err_t __pfn_attr_set (void                  *p_drv,
                                   int                    id,
                                   int                    attr,
                                   const am_sensor_val_t *p_val);
 
-/** \brief »ñÈ¡´«¸ĞÆ÷Í¨µÀÊôĞÔ */
+/** \brief è·å–ä¼ æ„Ÿå™¨é€šé“å±æ€§ */
 am_local am_err_t __pfn_attr_get (void            *p_drv,
                                   int              id,
                                   int              attr,
                                   am_sensor_val_t *p_val);
 
-/** \brief ÉèÖÃ´¥·¢£¬Ò»¸öÍ¨µÀ½öÄÜÉèÖÃÒ»¸ö´¥·¢»Øµ÷º¯Êı */
+/** \brief è®¾ç½®è§¦å‘ï¼Œä¸€ä¸ªé€šé“ä»…èƒ½è®¾ç½®ä¸€ä¸ªè§¦å‘å›è°ƒå‡½æ•° */
 am_local am_err_t __pfn_trigger_cfg (void                   *p_drv,
                                      int                     id,
                                      uint32_t                flags,
                                      am_sensor_trigger_cb_t  pfn_cb,
                                      void                   *p_arg);
 
-/** \brief ´ò¿ª´¥·¢ */
+/** \brief æ‰“å¼€è§¦å‘ */
 am_local am_err_t __pfn_trigger_on (void *p_drv, int id);
 
-/** \brief ¹Ø±Õ´¥·¢ */
+/** \brief å…³é—­è§¦å‘ */
 am_local am_err_t __pfn_trigger_off (void *p_drv, int id);
 
-/** \brief ´«¸ĞÆ÷±ê×¼·şÎñ */
+/** \brief ä¼ æ„Ÿå™¨æ ‡å‡†æœåŠ¡ */
 am_local am_const struct am_sensor_drv_funcs __g_sensor_bme280_funcs = {
         __pfn_type_get,
         __pfn_data_get,
@@ -186,7 +186,7 @@ am_local am_const struct am_sensor_drv_funcs __g_sensor_bme280_funcs = {
   Local functions
 *******************************************************************************/
 /**
- * \brief BME280 Ğ´Êı¾İ
+ * \brief BME280 å†™æ•°æ®
  */
 am_local am_err_t __bme280_write (am_sensor_bme280_dev_t *p_this,
                                   uint32_t                subaddr,
@@ -197,7 +197,7 @@ am_local am_err_t __bme280_write (am_sensor_bme280_dev_t *p_this,
 }
 
 /**
- * \brief BME280 ¶ÁÊı¾İ
+ * \brief BME280 è¯»æ•°æ®
  */
 am_local am_err_t __bme280_read (am_sensor_bme280_dev_t *p_this,
                                  uint32_t                subaddr,
@@ -208,7 +208,7 @@ am_local am_err_t __bme280_read (am_sensor_bme280_dev_t *p_this,
 }
 
 /**
- * \brief »ñÈ¡Ñ¹Á¦Ğ£×¼Öµ
+ * \brief è·å–å‹åŠ›æ ¡å‡†å€¼
  */
 am_local am_err_t __bme280_get_press_cal (am_sensor_bme280_dev_t *p_this)
 {
@@ -217,7 +217,7 @@ am_local am_err_t __bme280_get_press_cal (am_sensor_bme280_dev_t *p_this)
     am_err_t ret = AM_OK;
 
     /**
-     * \brief ÒÔÏÂÎª»ñÈ¡Ñ¹Á¦Ğ£×¼µÄ9×éÊı¾İ
+     * \brief ä»¥ä¸‹ä¸ºè·å–å‹åŠ›æ ¡å‡†çš„9ç»„æ•°æ®
      */
     ret = __bme280_read(p_this,
                         __BME280_REG_DIG_P1,
@@ -304,7 +304,7 @@ am_local am_err_t __bme280_get_press_cal (am_sensor_bme280_dev_t *p_this)
 }
 
 /**
- * \brief »ñÈ¡ÎÂ¶ÈĞ£×¼Öµ
+ * \brief è·å–æ¸©åº¦æ ¡å‡†å€¼
  */
 am_local am_err_t __bme280_get_tem_cal (am_sensor_bme280_dev_t *p_this)
 {
@@ -313,7 +313,7 @@ am_local am_err_t __bme280_get_tem_cal (am_sensor_bme280_dev_t *p_this)
     am_err_t ret = AM_OK;
 
     /**
-     * \brief ÒÔÏÂÎª»ñÈ¡ÎÂ¶ÈĞ£×¼µÄ3×éÊı¾İ
+     * \brief ä»¥ä¸‹ä¸ºè·å–æ¸©åº¦æ ¡å‡†çš„3ç»„æ•°æ®
      */
     ret = __bme280_read(p_this,
                         __BME280_REG_DIG_T1,
@@ -346,7 +346,7 @@ am_local am_err_t __bme280_get_tem_cal (am_sensor_bme280_dev_t *p_this)
 }
 
 /**
- * \brief »ñÈ¡Êª¶ÈĞ£×¼Öµ
+ * \brief è·å–æ¹¿åº¦æ ¡å‡†å€¼
  */
 am_local am_err_t __bme280_get_hum_cal (am_sensor_bme280_dev_t *p_this)
 {
@@ -355,7 +355,7 @@ am_local am_err_t __bme280_get_hum_cal (am_sensor_bme280_dev_t *p_this)
     am_err_t ret = AM_OK;
 
     /**
-     * \brief ÒÔÏÂÎª»ñÈ¡ÎÂ¶ÈĞ£×¼µÄ6×éÊı¾İ
+     * \brief ä»¥ä¸‹ä¸ºè·å–æ¸©åº¦æ ¡å‡†çš„6ç»„æ•°æ®
      */
     ret = __bme280_read(p_this,
                         __BME280_REG_DIG_H1,
@@ -414,7 +414,7 @@ am_local am_err_t __bme280_get_hum_cal (am_sensor_bme280_dev_t *p_this)
     return ret;
 }
 
-/** \brief ¼ÆËãÆøÑ¹ */
+/** \brief è®¡ç®—æ°”å‹ */
 am_local int32_t __bme280_press_cal (am_sensor_bme280_dev_t *p_this,
                                      int32_t                 press)
 {
@@ -422,12 +422,12 @@ am_local int32_t __bme280_press_cal (am_sensor_bme280_dev_t *p_this,
     int32_t var2 = 0;
     int32_t  t_fine = 0;
 
-    /* Ğ£×¼²ÎÊıÖ¸Õë */
+    /* æ ¡å‡†å‚æ•°æŒ‡é’ˆ */
     am_bme280_calibration_data_t *p_cal = &(p_this->cal_val);
     
     t_fine = p_cal->t_fine; 
   
-    /* ×ª»»³ÉÊµ¼ÊÆøÑ¹Öµ */             
+    /* è½¬æ¢æˆå®é™…æ°”å‹å€¼ */             
     var1 = ((double)t_fine / 2.0) - 64000.0; 
     var2 = var1 * var1 * ((double)p_cal->dig_p6) / 32768.0;
     var2 = var2 + var1 * ((double)p_cal->dig_p5) * 2.0;
@@ -444,7 +444,7 @@ am_local int32_t __bme280_press_cal (am_sensor_bme280_dev_t *p_this,
     return  press;             
 }
 
-/** \brief ¼ÆËãÊª¶È */
+/** \brief è®¡ç®—æ¹¿åº¦ */
 am_local int32_t __bme280_hum_cal (am_sensor_bme280_dev_t *p_this,
                                    int32_t                 hum)
 {
@@ -452,12 +452,12 @@ am_local int32_t __bme280_hum_cal (am_sensor_bme280_dev_t *p_this,
     int32_t var2    = 0;
     int32_t t_fine  = 0;
 
-    /* Ğ£×¼²ÎÊıÖ¸Õë */
+    /* æ ¡å‡†å‚æ•°æŒ‡é’ˆ */
     am_bme280_calibration_data_t *p_cal = &(p_this->cal_val);
     
     t_fine = p_cal->t_fine;
     
-    /* ×ª»»³ÉÊª¶ÈÖµ */
+    /* è½¬æ¢æˆæ¹¿åº¦å€¼ */
     var1 = (t_fine - (int32_t)(76800));
     var1 = (((((hum << 14) - (((int32_t)p_cal->dig_h4) << 20)
          - (((int32_t)p_cal->dig_h5) * var1)) + ((int32_t)16384)) >> 15)
@@ -474,7 +474,7 @@ am_local int32_t __bme280_hum_cal (am_sensor_bme280_dev_t *p_this,
     return  hum;    
 }
 
-/** \brief »ñÈ¡¸Ã´«¸ĞÆ÷Ä³Ò»Í¨µÀµÄÀàĞÍ */
+/** \brief è·å–è¯¥ä¼ æ„Ÿå™¨æŸä¸€é€šé“çš„ç±»å‹ */
 am_local am_err_t __pfn_type_get (void *p_drv, int id)
 {
     if (p_drv == NULL) {
@@ -492,7 +492,7 @@ am_local am_err_t __pfn_type_get (void *p_drv, int id)
     }
 }
 
-/** \brief »ñÈ¡´«¸ĞÆ÷Í¨µÀ²ÉÑùÊı¾İ */
+/** \brief è·å–ä¼ æ„Ÿå™¨é€šé“é‡‡æ ·æ•°æ® */
 am_local am_err_t __pfn_data_get (void            *p_drv,
                                   const int       *p_ids,
                                   int              num,
@@ -522,7 +522,7 @@ am_local am_err_t __pfn_data_get (void            *p_drv,
         p_buf[i].unit = AM_SENSOR_UNIT_INVALID;
     }
 
-    /** \brief »ñÈ¡¿É¶Á×´Ì¬Öµ */
+    /** \brief è·å–å¯è¯»çŠ¶æ€å€¼ */
     do {
         ret = __bme280_read(p_this, __BME280_REG_STATUS, &status_val, 1);
         if (ret != AM_OK) {
@@ -536,48 +536,48 @@ am_local am_err_t __pfn_data_get (void            *p_drv,
 
         if (cur_id == 0) {
             
-            /** \brief »ñÈ¡ÎÂ¶È¼Ä´æÆ÷Öµ */
+            /** \brief è·å–æ¸©åº¦å¯„å­˜å™¨å€¼ */
             ret = __bme280_read(p_this, __BME280_REG_T_MSB, reg_data, 3);
             if (ret != AM_OK) {
                 return ret;
             }
             tem_data = __BME280_UINT8_TO_UINT32(reg_data);
            
-            /** \brief ¸ù¾İÎÂ¶ÈÖµ¼ÆËãÆøÑ¹Ğ£×¼²ÎÊı */
+            /** \brief æ ¹æ®æ¸©åº¦å€¼è®¡ç®—æ°”å‹æ ¡å‡†å‚æ•° */
             p_cal->t_fine = __BME280_GET_T_DEFINE(tem_data,
                                                   p_cal->dig_t1,
                                                   p_cal->dig_t2,
                                                   p_cal->dig_t3);
-            /** \brief »ñÈ¡Ñ¹Á¦Öµ */
+            /** \brief è·å–å‹åŠ›å€¼ */
             ret = __bme280_read(p_this, __BME280_REG_P_MSB, reg_data, 3);
             if (ret != AM_OK) {
                 return ret;
             }
             tem_data = __BME280_UINT8_TO_UINT32(reg_data);
 
-            /** \brief Ñ¹Á¦ */
+            /** \brief å‹åŠ› */
             p_buf[i].val = __bme280_press_cal(p_this, tem_data); 
-            p_buf[i].unit = AM_SENSOR_UNIT_BASE; /*< \brief µ¥Î»Ä¬ÈÏÎª0:10^(0)*/
+            p_buf[i].unit = AM_SENSOR_UNIT_BASE; /*< \brief å•ä½é»˜è®¤ä¸º0:10^(0)*/
 
         } else if (cur_id == 1) {
 
-            /** \brief »ñÈ¡ÎÂ¶È */
+            /** \brief è·å–æ¸©åº¦ */
             ret = __bme280_read(p_this, __BME280_REG_T_MSB, reg_data, 3);
             if (ret != AM_OK) {
                 return ret;
             }
             tem_data = __BME280_UINT8_TO_UINT32(reg_data);
            
-            /** \brief ÎÂ¶È */
+            /** \brief æ¸©åº¦ */
             p_buf[i].val = __BME280_GET_TEM_VALUE(tem_data,
                                                   p_cal->dig_t1,
                                                   p_cal->dig_t2,
                                                   p_cal->dig_t3); 
-            p_buf[i].unit = AM_SENSOR_UNIT_MICRO; /*< \brief µ¥Î»Ä¬ÈÏÎª-6:10^(-6)*/
+            p_buf[i].unit = AM_SENSOR_UNIT_MICRO; /*< \brief å•ä½é»˜è®¤ä¸º-6:10^(-6)*/
 
         } else if (cur_id == 2) {
 
-            /** \brief »ñÈ¡Êª¶È */
+            /** \brief è·å–æ¹¿åº¦ */
             ret = __bme280_read(p_this, __BME280_REG_H_MSB, reg_data, 2);
             if (ret != AM_OK) {
                 return ret;
@@ -586,17 +586,17 @@ am_local am_err_t __pfn_data_get (void            *p_drv,
            
             
             p_buf[i].val = __bme280_hum_cal(p_this, tem_data); 
-            p_buf[i].unit = AM_SENSOR_UNIT_MICRO; /*< \brief µ¥Î»Ä¬ÈÏÎª-6:10^(-6)*/
+            p_buf[i].unit = AM_SENSOR_UNIT_MICRO; /*< \brief å•ä½é»˜è®¤ä¸º-6:10^(-6)*/
 
         } else {
-            return -AM_ENODEV;  /*< \brief Èô´Ë´ÎÍ¨µÀ²»ÊôÓÚ¸Ã´«¸ĞÆ÷£¬Ö±½Ó·µ»Ø */
+            return -AM_ENODEV;  /*< \brief è‹¥æ­¤æ¬¡é€šé“ä¸å±äºè¯¥ä¼ æ„Ÿå™¨ï¼Œç›´æ¥è¿”å› */
         }
     }
     
     return ret;
 }
 
-/** \brief Ê¹ÄÜ´«¸ĞÆ÷Í¨µÀ */
+/** \brief ä½¿èƒ½ä¼ æ„Ÿå™¨é€šé“ */
 am_local am_err_t __pfn_enable (void            *p_drv,
                                 const int       *p_ids,
                                 int              num,
@@ -653,7 +653,7 @@ am_local am_err_t __pfn_enable (void            *p_drv,
         }
     }
 
-    if (ret != AM_OK) {    /**< \breif Èç¹û±¾´ÎÃ»ÓĞ¸Ã´«¸ĞÆ÷µÄÍ¨µÀ´«Èë£¬ÔòÍË³ö */
+    if (ret != AM_OK) {    /**< \breif å¦‚æœæœ¬æ¬¡æ²¡æœ‰è¯¥ä¼ æ„Ÿå™¨çš„é€šé“ä¼ å…¥ï¼Œåˆ™é€€å‡º */
         return cur_ret;
     }
 
@@ -665,7 +665,7 @@ am_local am_err_t __pfn_enable (void            *p_drv,
             cur_ret = ret;
         }
 
-        /** \brief ½øÈë¹¤×÷Ä£Ê½ */
+        /** \brief è¿›å…¥å·¥ä½œæ¨¡å¼ */
         ctrl_meas |= __BME280_NORMAL;
         ret = __bme280_write(p_this, __BME280_REG_CTRL_MEAS, &ctrl_meas, 1);
         if (ret != AM_OK) {
@@ -680,7 +680,7 @@ am_local am_err_t __pfn_enable (void            *p_drv,
             cur_ret = ret;
         }
         
-        /** \brief Ê¹ÄÜ¸ÃÍ¨µÀ */
+        /** \brief ä½¿èƒ½è¯¥é€šé“ */
         ctrl_hum |= __BME280_HUM_START;
         ret = __bme280_write(p_this, __BME280_REG_CTRL_HUM, &ctrl_hum, 1);
         if (ret != AM_OK) {
@@ -695,7 +695,7 @@ am_local am_err_t __pfn_enable (void            *p_drv,
             cur_ret = ret;
         }
 
-        /** \brief Ê¹ÄÜ¸ÃÍ¨µÀ */
+        /** \brief ä½¿èƒ½è¯¥é€šé“ */
         ctrl_meas |= __BME280_TEMP_START;
         ret = __bme280_write(p_this, __BME280_REG_CTRL_MEAS, &ctrl_meas, 1);
         if (ret != AM_OK) {
@@ -710,7 +710,7 @@ am_local am_err_t __pfn_enable (void            *p_drv,
             cur_ret = ret;
         }
 
-        /** \brief Ê¹ÄÜ¸ÃÍ¨µÀ */
+        /** \brief ä½¿èƒ½è¯¥é€šé“ */
         ctrl_meas |= __BME280_PRESS_START;
         ret = __bme280_write(p_this, __BME280_REG_CTRL_MEAS, &ctrl_meas, 1);
         if (ret != AM_OK) {
@@ -725,7 +725,7 @@ am_local am_err_t __pfn_enable (void            *p_drv,
     return cur_ret;
 }
 
-/** \brief ½ûÄÜ´«¸ĞÆ÷Í¨µÀ */
+/** \brief ç¦èƒ½ä¼ æ„Ÿå™¨é€šé“ */
 am_local am_err_t __pfn_disable (void            *p_drv,
                                  const int       *p_ids,
                                  int              num,
@@ -783,7 +783,7 @@ am_local am_err_t __pfn_disable (void            *p_drv,
             cur_ret = ret;
         }
         
-        /** \brief ¹Ø±Õ¸ÃÍ¨µÀ */
+        /** \brief å…³é—­è¯¥é€šé“ */
         ctrl_hum &= __BME280_HUM_CLOSE;
         ret = __bme280_write(p_this, __BME280_REG_CTRL_HUM, &ctrl_hum, 1);
         if (ret != AM_OK) {
@@ -795,7 +795,7 @@ am_local am_err_t __pfn_disable (void            *p_drv,
             cur_ret = ret;
         }
 
-        /** \brief ½øÈëË¯ÃßÄ£Ê½£¬¹Ø±ÕÍ¨µÀ */
+        /** \brief è¿›å…¥ç¡çœ æ¨¡å¼ï¼Œå…³é—­é€šé“ */
         ctrl_meas &= __BME280_SLEEP & __BME280_PRESS_CLOSE & __BME280_TEMP_CLOSE;
         ret = __bme280_write(p_this, __BME280_REG_CTRL_MEAS, &ctrl_meas, 1);
         if (ret != AM_OK){
@@ -814,7 +814,7 @@ am_local am_err_t __pfn_disable (void            *p_drv,
             cur_ret = ret;
         }
 
-        /** \brief ¹Ø±Õ¸ÃÍ¨µÀ */
+        /** \brief å…³é—­è¯¥é€šé“ */
         ctrl_meas &= __BME280_PRESS_CLOSE;
         ret = __bme280_write(p_this, __BME280_REG_CTRL_MEAS, &ctrl_meas, 1);
         if (ret != AM_OK){
@@ -829,7 +829,7 @@ am_local am_err_t __pfn_disable (void            *p_drv,
             cur_ret = ret;
         }
 
-        /** \brief ¹Ø±Õ¸ÃÍ¨µÀ */
+        /** \brief å…³é—­è¯¥é€šé“ */
         ctrl_meas &= __BME280_TEMP_CLOSE;
         ret = __bme280_write(p_this, __BME280_REG_CTRL_MEAS, &ctrl_meas, 1);
         if (ret != AM_OK){
@@ -844,7 +844,7 @@ am_local am_err_t __pfn_disable (void            *p_drv,
             cur_ret = ret;
         }
         
-        /** \brief ¹Ø±Õ¸ÃÍ¨µÀ */
+        /** \brief å…³é—­è¯¥é€šé“ */
         ctrl_hum &= __BME280_HUM_CLOSE;
         ret = __bme280_write(p_this, __BME280_REG_CTRL_HUM, &ctrl_hum, 1);
         if (ret != AM_OK){
@@ -855,7 +855,7 @@ am_local am_err_t __pfn_disable (void            *p_drv,
     return cur_ret;
 }
 
-/** \brief ÅäÖÃ´«¸ĞÆ÷Í¨µÀÊôĞÔ */
+/** \brief é…ç½®ä¼ æ„Ÿå™¨é€šé“å±æ€§ */
 am_local am_err_t __pfn_attr_set (void                  *p_drv,
                                   int                    id,
                                   int                    attr,
@@ -864,7 +864,7 @@ am_local am_err_t __pfn_attr_set (void                  *p_drv,
     return -AM_ENOTSUP;
 }
 
-/** \brief »ñÈ¡´«¸ĞÆ÷Í¨µÀÊôĞÔ */
+/** \brief è·å–ä¼ æ„Ÿå™¨é€šé“å±æ€§ */
 am_local am_err_t __pfn_attr_get (void            *p_drv,
                                   int              id,
                                   int              attr,
@@ -873,7 +873,7 @@ am_local am_err_t __pfn_attr_get (void            *p_drv,
     return -AM_ENOTSUP;
 }
 
-/** \brief ÉèÖÃ´¥·¢£¬Ò»¸öÍ¨µÀ½öÄÜÉèÖÃÒ»¸ö´¥·¢»Øµ÷º¯Êı */
+/** \brief è®¾ç½®è§¦å‘ï¼Œä¸€ä¸ªé€šé“ä»…èƒ½è®¾ç½®ä¸€ä¸ªè§¦å‘å›è°ƒå‡½æ•° */
 am_local am_err_t __pfn_trigger_cfg (void                   *p_drv,
                                      int                     id,
                                      uint32_t                flags,
@@ -883,13 +883,13 @@ am_local am_err_t __pfn_trigger_cfg (void                   *p_drv,
     return -AM_ENOTSUP;
 }
 
-/** \brief ´ò¿ª´¥·¢ */
+/** \brief æ‰“å¼€è§¦å‘ */
 am_local am_err_t __pfn_trigger_on (void *p_drv, int id)
 {
     return -AM_ENOTSUP;
 }
 
-/** \brief ¹Ø±Õ´¥·¢ */
+/** \brief å…³é—­è§¦å‘ */
 am_local am_err_t __pfn_trigger_off (void *p_drv, int id)
 {
     return -AM_ENOTSUP;
@@ -898,7 +898,7 @@ am_local am_err_t __pfn_trigger_off (void *p_drv, int id)
   Public functions
 *******************************************************************************/
 /**
- * \brief ´«¸ĞÆ÷ BME280 ³õÊ¼»¯
+ * \brief ä¼ æ„Ÿå™¨ BME280 åˆå§‹åŒ–
  */
 am_sensor_handle_t am_sensor_bme280_init (
         am_sensor_bme280_dev_t           *p_dev,
@@ -932,33 +932,33 @@ am_sensor_handle_t am_sensor_bme280_init (
     p_dev->data[2].val        = 0;
     p_dev->data[2].unit       = AM_SENSOR_UNIT_INVALID;    
 
-    /* ¸´Î»BME280 */
+    /* å¤ä½BME280 */
     ret = __bme280_write(p_dev, __BME280_REG_RESET, &reset, 1); 
     if (ret != AM_OK) {
         cur_ret = ret;
     }
-    /* µÈ´ı¸´Î»Íê³É */
+    /* ç­‰å¾…å¤ä½å®Œæˆ */
     am_mdelay(50);
     
-    /* ¶ÁÈ¡ID */
+    /* è¯»å–ID */
     ret = __bme280_read(p_dev, __BME280_REG_ID, &bme280_id, 1);
     if (ret != AM_OK || bme280_id != __BME280_MY_ID) {
         cur_ret = ret;
     } else {
 
-        /* »ñÈ¡Ñ¹Á¦Ğ£×¼Öµ */
+        /* è·å–å‹åŠ›æ ¡å‡†å€¼ */
         ret = __bme280_get_press_cal(p_dev);
         if (ret != AM_OK) {
             cur_ret = ret;
         }
 
-        /* »ñÈ¡ÎÂ¶ÈĞ£×¼Öµ */
+        /* è·å–æ¸©åº¦æ ¡å‡†å€¼ */
         ret = __bme280_get_tem_cal(p_dev);
         if (ret != AM_OK) {
             cur_ret = ret;
         }
         
-        /* »ñÈ¡Êª¶ÈĞ£×¼Öµ */
+        /* è·å–æ¹¿åº¦æ ¡å‡†å€¼ */
         ret = __bme280_get_hum_cal(p_dev);
         if (ret != AM_OK) {
             cur_ret = ret;
@@ -974,7 +974,7 @@ am_sensor_handle_t am_sensor_bme280_init (
 }
 
 /**
- * \brief ´«¸ĞÆ÷ BME280 È¥³õÊ¼»¯
+ * \brief ä¼ æ„Ÿå™¨ BME280 å»åˆå§‹åŒ–
  */
 am_err_t am_sensor_bme280_deinit (am_sensor_handle_t handle)
 {

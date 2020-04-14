@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief I2C´Ó»ú±ê×¼½Ó¿Ú
+ * \brief I2Cä»æœºæ ‡å‡†æ¥å£
  *
- * \note ÓÃ»§¿Éµ÷ÓÃ´Ë½Ó¿ÚÍ¨¹ıMCUÀ´Ä£ÄâÒ»¿îI2C´ÓÉè±¸
+ * \note ç”¨æˆ·å¯è°ƒç”¨æ­¤æ¥å£é€šè¿‡MCUæ¥æ¨¡æ‹Ÿä¸€æ¬¾I2Cä»è®¾å¤‡
  *
  * \internal
  * \par Modification History
@@ -38,33 +38,33 @@ extern "C" {
  */
 
 /**
- * \name I2C´Ó»úÉè±¸  ÊôĞÔ±êÖ¾£¬ÓÃÓÚ am_i2c_slv_device µÄ dev_flags ³ÉÔ±
+ * \name I2Cä»æœºè®¾å¤‡  å±æ€§æ ‡å¿—ï¼Œç”¨äº am_i2c_slv_device çš„ dev_flags æˆå‘˜
  * @{
  */
-#define AM_I2C_SLV_ADDR_7BIT          0x0000u            /**< \brief 7-bits Éè±¸µØÖ·(Ä¬ÈÏ) */
-#define AM_I2C_SLV_ADDR_10BIT         0x0001u            /**< \brief 10-bits Éè±¸µØÖ· */
+#define AM_I2C_SLV_ADDR_7BIT          0x0000u            /**< \brief 7-bits è®¾å¤‡åœ°å€(é»˜è®¤) */
+#define AM_I2C_SLV_ADDR_10BIT         0x0001u            /**< \brief 10-bits è®¾å¤‡åœ°å€ */
 
-#define AM_I2C_SLV_GEN_CALL_NACK      0X0000u             /**< \brief ²»ÏìÓ¦¹ã²¥µØÖ· (Ä¬ÈÏ) */
-#define AM_I2C_SLV_GEN_CALL_ACK       0X0002u             /**< \brief ÏìÓ¦¹ã²¥µØÖ·  */
+#define AM_I2C_SLV_GEN_CALL_NACK      0X0000u             /**< \brief ä¸å“åº”å¹¿æ’­åœ°å€ (é»˜è®¤) */
+#define AM_I2C_SLV_GEN_CALL_ACK       0X0002u             /**< \brief å“åº”å¹¿æ’­åœ°å€  */
 
-/* ÒÔÏÂÓÃÓÚº¬ÓĞ×ÓµØÖ·µÄÉè±¸ */
-#define AM_I2C_SLV_SUBADDR_1BYTE      0X0000u            /**< \brief ×ÓµØÖ·¿í¶È1×Ö½Ú(Ä¬ÈÏ) */
-#define AM_I2C_SLV_SUBADDR_2BYTE      0X0004u            /**< \brief ×ÓµØÖ·¿í¶È2×Ö½Ú */
+/* ä»¥ä¸‹ç”¨äºå«æœ‰å­åœ°å€çš„è®¾å¤‡ */
+#define AM_I2C_SLV_SUBADDR_1BYTE      0X0000u            /**< \brief å­åœ°å€å®½åº¦1å­—èŠ‚(é»˜è®¤) */
+#define AM_I2C_SLV_SUBADDR_2BYTE      0X0004u            /**< \brief å­åœ°å€å®½åº¦2å­—èŠ‚ */
 
 
-#define AM_I2C_SLV_SUBADDR_SELF_INCREASING       0X0000u   /**< \brief Ö§³Ö×ÓµØÖ·×ÔÔö  (Ä¬ÈÏ)*/
-#define AM_I2C_SLV_SUBADDR_NSELF_INCREASING      0X0100u   /**< \brief ²»Ö§³Ö×ÓµØÖ·×ÔÔö   */
+#define AM_I2C_SLV_SUBADDR_SELF_INCREASING       0X0000u   /**< \brief æ”¯æŒå­åœ°å€è‡ªå¢  (é»˜è®¤)*/
+#define AM_I2C_SLV_SUBADDR_NSELF_INCREASING      0X0100u   /**< \brief ä¸æ”¯æŒå­åœ°å€è‡ªå¢   */
 /** @} */
 
 
 /**
- * \name  »Øµ÷º¯ÊıµÄ·µ»ØÖµÀàĞÍ
+ * \name  å›è°ƒå‡½æ•°çš„è¿”å›å€¼ç±»å‹
  *
- * \ note Òª¿´¾ßÌåÓ²¼şÊÇ·ñÖ§³Ö¿ØÖÆ´Ó»úÏìÓ¦
+ * \ note è¦çœ‹å…·ä½“ç¡¬ä»¶æ˜¯å¦æ”¯æŒæ§åˆ¶ä»æœºå“åº”
  * @{
  */
-#define AM_I2C_SLV_ACK          0       /**< \brief ´Ó»úÏìÓ¦  */
-#define AM_I2C_SLV_NACK         1       /**< \brief ´Ó»ú²»ÏìÓ¦ */
+#define AM_I2C_SLV_ACK          0       /**< \brief ä»æœºå“åº”  */
+#define AM_I2C_SLV_NACK         1       /**< \brief ä»æœºä¸å“åº” */
 
 /** @} */
 
@@ -73,80 +73,80 @@ extern "C" {
 struct am_i2c_slv_device;
 
 /**
- * \brief I2C´Ó»úÇı¶¯º¯ÊıÌå
+ * \brief I2Cä»æœºé©±åŠ¨å‡½æ•°ä½“
  */
 struct am_i2c_slv_drv_funcs {
-    /** \brief Ê¹ÄÜI2C´Ó»úÉè±¸¿ªÊ¼¹¤×÷ */
+    /** \brief ä½¿èƒ½I2Cä»æœºè®¾å¤‡å¼€å§‹å·¥ä½œ */
     int (*pfn_i2c_slv_setup) (void *p_drv, struct am_i2c_slv_device *p_i2c_slv_dev);
 
-    /** \brief ¹Ø±ÕI2C´ÓÉè±¸ */
+    /** \brief å…³é—­I2Cä»è®¾å¤‡ */
     int (*pfn_i2c_slv_shutdown) (void *p_drv, struct am_i2c_slv_device *p_i2c_slv_dev);
 
-    /** \brief »ñÈ¡»¹¿ÉÉú³ÉµÄ´Ó»úÉè±¸¸öÊı */
+    /** \brief è·å–è¿˜å¯ç”Ÿæˆçš„ä»æœºè®¾å¤‡ä¸ªæ•° */
     int (*pfn_i2c_slv_num_get) (void *p_drv);
 };
 
 /**
- * \brief I2C´Ó»ú±ê×¼·şÎñ½á¹¹Ìå
+ * \brief I2Cä»æœºæ ‡å‡†æœåŠ¡ç»“æ„ä½“
  */
 
 typedef struct am_i2c_slv_serv {
-    struct am_i2c_slv_drv_funcs   *p_funcs;   /**< \brief I2C´ÓÇı¶¯º¯Êı         */
-    void                          *p_drv;     /**< \brief I2C´ÓÇı¶¯º¯ÊıÈë¿Ú²ÎÊı */
+    struct am_i2c_slv_drv_funcs   *p_funcs;   /**< \brief I2Cä»é©±åŠ¨å‡½æ•°         */
+    void                          *p_drv;     /**< \brief I2Cä»é©±åŠ¨å‡½æ•°å…¥å£å‚æ•° */
 } am_i2c_slv_serv_t;
 
-/** \brief I2C´Ó»ú±ê×¼·şÎñ²Ù×÷¾ä±ú¶¨Òå */
+/** \brief I2Cä»æœºæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„å®šä¹‰ */
 typedef am_i2c_slv_serv_t *am_i2c_slv_handle_t;
 
 /**
- * \brief »Øµ÷º¯Êı ÓÃÓÚ·ÖÎöÖ÷»úÏò´Ó»ú²Ù×÷µÄ×´Ì¬
+ * \brief å›è°ƒå‡½æ•° ç”¨äºåˆ†æä¸»æœºå‘ä»æœºæ“ä½œçš„çŠ¶æ€
  *
- * \note ·µ»ØÖµ²Î¿¼ £º¡°»Øµ÷º¯ÊıµÄ·µ»ØÖµÀàĞÍ¡±
+ * \note è¿”å›å€¼å‚è€ƒ ï¼šâ€œå›è°ƒå‡½æ•°çš„è¿”å›å€¼ç±»å‹â€
  */
 typedef struct am_i2c_slv_cb_funcs {
 
-    /** \brief ´Ó»úµØÖ·Æ¥ÅäÊ±»Øµ÷º¯Êı£¬µ± is_rx ÎªAM_TRUEÊ±±íÊ¾ ´Ó»ú½ÓÊÜÊı¾İÍê³É ,Îª AM_FALSEÊ±±íÊ¾´Ó»ú·¢ËÍÊı¾İÍê³É   */
+    /** \brief ä»æœºåœ°å€åŒ¹é…æ—¶å›è°ƒå‡½æ•°ï¼Œå½“ is_rx ä¸ºAM_TRUEæ—¶è¡¨ç¤º ä»æœºæ¥å—æ•°æ®å®Œæˆ ,ä¸º AM_FALSEæ—¶è¡¨ç¤ºä»æœºå‘é€æ•°æ®å®Œæˆ   */
     int (*pfn_addr_match)(void *p_arg, am_bool_t is_rx);
 
-    /** \brief »ñÈ¡Ò»¸ö·¢ËÍ×Ö½Ú»Øµ÷º¯Êı */
+    /** \brief è·å–ä¸€ä¸ªå‘é€å­—èŠ‚å›è°ƒå‡½æ•° */
     int (*pfn_txbyte_get)(void *p_arg, uint8_t *p_byte);
 
-    /** \brief Ìá½»Ò»¸ö½ÓÊÕµ½µÄ×Ö½Ú»Øµ÷º¯Êı  */
+    /** \brief æäº¤ä¸€ä¸ªæ¥æ”¶åˆ°çš„å­—èŠ‚å›è°ƒå‡½æ•°  */
     int (*pfn_rxbyte_put)(void *p_arg, uint8_t byte);
 
-    /** \brief Í£Ö¹´«Êä»Øµ÷º¯Êı */
+    /** \brief åœæ­¢ä¼ è¾“å›è°ƒå‡½æ•° */
     void (*pfn_tran_stop)(void *p_arg);
 
-    /** \brief ¹ã²¥»Øµ÷º¯Êı   */
+    /** \brief å¹¿æ’­å›è°ƒå‡½æ•°   */
     int (*pfn_gen_call)(void *p_arg, uint8_t byte);
 
 }am_i2c_slv_cb_funcs_t;
 
 
 /**
- * \brief I2C´Ó»úÉè±¸½á¹¹Ìå  (ÍÆ¼öÊ¹ÓÃ am_i2c_slv_mkdev() ÉèÖÃ±¾Êı¾İ½á¹¹)
+ * \brief I2Cä»æœºè®¾å¤‡ç»“æ„ä½“  (æ¨èä½¿ç”¨ am_i2c_slv_mkdev() è®¾ç½®æœ¬æ•°æ®ç»“æ„)
  */
 typedef struct am_i2c_slv_device {
-    am_i2c_slv_handle_t    handle;              /**< \brief Óë´ÓÉè±¸¹ØÁªµÄI2C·şÎñ±ê×¼handle    */
-    am_i2c_slv_cb_funcs_t *p_cb_funs;           /**< \brief »Øµ÷º¯Êı,ÓÃ»§²»ĞèÒªµÄ»Øµ÷º¯Êı¸³ÖµÎªNULL¼´¿É */
-    uint16_t               dev_addr;            /**< \brief ±¾Éè±¸µÄµØÖ· */
-    uint16_t               dev_flags;           /**< \brief Éè±¸µÄÌØĞÔ£¬¼û¡°I2C´ÓÉè±¸ÊôĞÔ±êÖ¾¡± */
-    void                  *p_arg;               /**< \brief »Øµ÷º¯Êı²ÎÊı */
+    am_i2c_slv_handle_t    handle;              /**< \brief ä¸ä»è®¾å¤‡å…³è”çš„I2CæœåŠ¡æ ‡å‡†handle    */
+    am_i2c_slv_cb_funcs_t *p_cb_funs;           /**< \brief å›è°ƒå‡½æ•°,ç”¨æˆ·ä¸éœ€è¦çš„å›è°ƒå‡½æ•°èµ‹å€¼ä¸ºNULLå³å¯ */
+    uint16_t               dev_addr;            /**< \brief æœ¬è®¾å¤‡çš„åœ°å€ */
+    uint16_t               dev_flags;           /**< \brief è®¾å¤‡çš„ç‰¹æ€§ï¼Œè§â€œI2Cä»è®¾å¤‡å±æ€§æ ‡å¿—â€ */
+    void                  *p_arg;               /**< \brief å›è°ƒå‡½æ•°å‚æ•° */
 }am_i2c_slv_device_t;
 
 /**
- * \brief I2C±¾´Ó»úÉè±¸ ÃèÊö½á¹¹Ìå²ÎÊıÉèÖÃ
+ * \brief I2Cæœ¬ä»æœºè®¾å¤‡ æè¿°ç»“æ„ä½“å‚æ•°è®¾ç½®
  *
- * \param[in] p_dev                 : Ö¸Ïò´Ó»úÉè±¸ÃèÊö½á¹¹ÌåµÄÖ¸Õë
- * \param[in] handle                : Óë´ÓÉè±¸¹ØÁªµÄI2C±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \param[in] p_cb_funs             : »Øµ÷º¯Êı
- * \param[in] dev_addr              : ´Ó»úÉè±¸µØÖ·
- * \param[in] dev_flags             : ´Ó»úÉè±¸ÌØĞÔ£¬¼û¡°I2C´ÓÉè±¸ÊôĞÔ±êÖ¾¡±
- * \param[in] p_arg                 : »Øµ÷º¯Êı²ÎÊı
+ * \param[in] p_dev                 : æŒ‡å‘ä»æœºè®¾å¤‡æè¿°ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] handle                : ä¸ä»è®¾å¤‡å…³è”çš„I2Cæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] p_cb_funs             : å›è°ƒå‡½æ•°
+ * \param[in] dev_addr              : ä»æœºè®¾å¤‡åœ°å€
+ * \param[in] dev_flags             : ä»æœºè®¾å¤‡ç‰¹æ€§ï¼Œè§â€œI2Cä»è®¾å¤‡å±æ€§æ ‡å¿—â€
+ * \param[in] p_arg                 : å›è°ƒå‡½æ•°å‚æ•°
  *
- * \return ÎŞ
+ * \return æ— 
  *
- * \par ·¶Àı
+ * \par èŒƒä¾‹
  * \code
  * #include "am_i2c_slv.h"
  *
@@ -177,15 +177,15 @@ void am_i2c_slv_mkdev (am_i2c_slv_device_t    *p_dev,
 }
 
 /**
- * \brief ¿ªÆôI2C´Ó»úÉè±¸
+ * \brief å¼€å¯I2Cä»æœºè®¾å¤‡
  *
- * \param[in] p_dev  : I2C´Ó»úÉè±¸
+ * \param[in] p_dev  : I2Cä»æœºè®¾å¤‡
  *
- * \retval  AM_OK      :¿ªÆô³É¹¦
- * \retval  AM_EINVAL  :²ÎÊı´íÎó
- * \retval  AM_EAGAIN  :ÎŞ¿ÉÓÃµÄ´Ó»ú¸öÊı
+ * \retval  AM_OK      :å¼€å¯æˆåŠŸ
+ * \retval  AM_EINVAL  :å‚æ•°é”™è¯¯
+ * \retval  AM_EAGAIN  :æ— å¯ç”¨çš„ä»æœºä¸ªæ•°
  *
- * \note  µ÷ÓÃam_i2c_slv_mkdevº¯ÊıÉú³ÉÒ»¸ö´Ó»úÉè±¸Ö®ºó£¬±ØĞëµ÷ÓÃ´Ëº¯Êı ¿ªÆô´Ó»ú
+ * \note  è°ƒç”¨am_i2c_slv_mkdevå‡½æ•°ç”Ÿæˆä¸€ä¸ªä»æœºè®¾å¤‡ä¹‹åï¼Œå¿…é¡»è°ƒç”¨æ­¤å‡½æ•° å¼€å¯ä»æœº
  *
  */
 am_static_inline
@@ -195,13 +195,13 @@ int am_i2c_slv_setup (am_i2c_slv_device_t *p_dev)
 }
 
 /**
- * \brief ¹Ø±ÕI2C´Ó»úÉè±¸
+ * \brief å…³é—­I2Cä»æœºè®¾å¤‡
  *
- * \param[in] p_dev  : I2C´Ó»úÉè±¸
+ * \param[in] p_dev  : I2Cä»æœºè®¾å¤‡
  *
- * \retval  AM_OK      : ¹Ø±Õ³É¹¦
+ * \retval  AM_OK      : å…³é—­æˆåŠŸ
  *
- * \note ¹Ø±ÕÖ®ºóÈôĞèÖØĞÂ¿ªÆôÔò µ÷ÓÃ am_i2c_slv_start ¼´¿É
+ * \note å…³é—­ä¹‹åè‹¥éœ€é‡æ–°å¼€å¯åˆ™ è°ƒç”¨ am_i2c_slv_start å³å¯
  */
 am_static_inline
 int am_i2c_slv_shutdown ( am_i2c_slv_device_t *p_dev)
@@ -210,15 +210,15 @@ int am_i2c_slv_shutdown ( am_i2c_slv_device_t *p_dev)
 }
 
 /**
- * \brief »ñÈ¡¿ÉÓÃµÄ´Ó»úÉè±¸¸öÊı
+ * \brief è·å–å¯ç”¨çš„ä»æœºè®¾å¤‡ä¸ªæ•°
  *
- * \param[in] handle   : I2C´Ó»ú±ê×¼·şÎñ²Ù×÷¾ä±ú
+ * \param[in] handle   : I2Cä»æœºæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  *
- * \retval  ·µ»ØÖµÎª¿ÉÓÃµÄ´Ó»ú¸öÊı
- *          ·µ»Ø 0 £ºÎŞ¿ÉÓÃ´Ó»ú¸öÊı £¬ ²»ÄÜÔÙµ÷ÓÃ am_i2c_slv_setup º¯Êı
- *          ·µ»Ø 1 £º¿ÉÓÃ´Ó»ú¸öÊıÎª 1£¬¿ÉÔÙµ÷ÓÃam_i2c_slv_setup º¯ÊıÒ»´Î£¬À´½«ĞÂÉú³ÉµÄÉè±¸¿ªÆô
+ * \retval  è¿”å›å€¼ä¸ºå¯ç”¨çš„ä»æœºä¸ªæ•°
+ *          è¿”å› 0 ï¼šæ— å¯ç”¨ä»æœºä¸ªæ•° ï¼Œ ä¸èƒ½å†è°ƒç”¨ am_i2c_slv_setup å‡½æ•°
+ *          è¿”å› 1 ï¼šå¯ç”¨ä»æœºä¸ªæ•°ä¸º 1ï¼Œå¯å†è°ƒç”¨am_i2c_slv_setup å‡½æ•°ä¸€æ¬¡ï¼Œæ¥å°†æ–°ç”Ÿæˆçš„è®¾å¤‡å¼€å¯
  *          ...
- *          ·µ»Ø n : ¿ÉÓÃ´Ó»ú¸öÊıÎª n,¿ÉÔÙµ÷ÓÃam_i2c_slv_setup º¯Êın´Î,À´½«ĞÂÉú³ÉµÄÉè±¸¿ªÆô .
+ *          è¿”å› n : å¯ç”¨ä»æœºä¸ªæ•°ä¸º n,å¯å†è°ƒç”¨am_i2c_slv_setup å‡½æ•°næ¬¡,æ¥å°†æ–°ç”Ÿæˆçš„è®¾å¤‡å¼€å¯ .
  */
 am_static_inline
 int am_i2c_slv_num_get (am_i2c_slv_handle_t handle)

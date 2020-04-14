@@ -12,24 +12,24 @@
 
 /**
  * \file
- * \brief I2C ¶ÁÐ´ EEPROM Àý³Ì£¨DMA ·½Ê½£©£¬Í¨¹ý HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief I2C è¯»å†™ EEPROM ä¾‹ç¨‹ï¼ˆDMA æ–¹å¼ï¼‰ï¼Œé€šè¿‡ HW å±‚æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. PIO0_10 Òý½ÅÁ¬½Ó EEPROM µÄ SCL Òý½Å£»
- *   2. PIO0_11 Òý½ÅÁ¬½Ó EEPROM µÄ SDA Òý½Å¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. PIO0_10 å¼•è„šè¿žæŽ¥ EEPROM çš„ SCL å¼•è„šï¼›
+ *   2. PIO0_11 å¼•è„šè¿žæŽ¥ EEPROM çš„ SDA å¼•è„šã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Ïò EEPROM Éè±¸Ð´Èë __TEST_LENTH ×Ö½ÚÊý¾Ý£»
- *   2. ¶ÁÈ¡ EEPROM ÖÐµÄÊý¾ÝÍ¨¹ý´®¿Ú´òÓ¡³öÀ´£»
- *   3. ÈôÐ´ÈëÊý¾ÝºÍ¶ÁÈ¡µÄÊý¾ÝÒ»ÖÂ£¬Ð£ÑéÍ¨¹ý£¬LED0 ÒÔ 200ms ¼ä¸ôÉÁË¸¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. å‘ EEPROM è®¾å¤‡å†™å…¥ __TEST_LENTH å­—èŠ‚æ•°æ®ï¼›
+ *   2. è¯»å– EEPROM ä¸­çš„æ•°æ®é€šè¿‡ä¸²å£æ‰“å°å‡ºæ¥ï¼›
+ *   3. è‹¥å†™å…¥æ•°æ®å’Œè¯»å–çš„æ•°æ®ä¸€è‡´ï¼Œæ ¡éªŒé€šè¿‡ï¼ŒLED0 ä»¥ 200ms é—´éš”é—ªçƒã€‚
  *
  * \note
- *    1. LED0 ÐèÒª¶Ì½Ó J9 ÌøÏßÃ±£¬²ÅÄÜ±» PIO0_20 ¿ØÖÆ£»
- *    2. ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIO0_0 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *       PIO0_4 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD£»
- *    3. DMA ³õÊ¼»¯¹¤×÷ÒÑ¾­ÔÚ am_prj_config.c ÎÄ¼þÄÚ²¿Íê³É¡£
+ *    1. LED0 éœ€è¦çŸ­æŽ¥ J9 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIO0_20 æŽ§åˆ¶ï¼›
+ *    2. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO0_0 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *       PIO0_4 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDï¼›
+ *    3. DMA åˆå§‹åŒ–å·¥ä½œå·²ç»åœ¨ am_prj_config.c æ–‡ä»¶å†…éƒ¨å®Œæˆã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_lpc824_hw_i2c_master_dma.c src_lpc824_hw_i2c_master_dma
  *
  * \internal
@@ -53,41 +53,41 @@
 #include "hw/amhw_lpc_i2c.h"
 
 /*******************************************************************************
-  ºê¶¨Òå
+  å®å®šä¹‰
 *******************************************************************************/
-#define __I2C_MASTER  LPC84X_I2C0      /**< \brief I2C Ö÷»ú¿ØÖÆÆ÷Í¨µÀºÅ¶¨Òå */
-#define __I2C_CLKDIV  15               /**< \brief I2C ¿ØÖÆÆ÷Ê±ÖÓ·ÖÆµ²ÎÊý¶¨Òå */
+#define __I2C_MASTER  LPC84X_I2C0      /**< \brief I2C ä¸»æœºæŽ§åˆ¶å™¨é€šé“å·å®šä¹‰ */
+#define __I2C_CLKDIV  15               /**< \brief I2C æŽ§åˆ¶å™¨æ—¶é’Ÿåˆ†é¢‘å‚æ•°å®šä¹‰ */
 
-#define __AM_I2C_RD   1                /**< \brief I2C ¶Á²Ù×÷ */
-#define __AM_I2C_WR   0                /**< \brief I2C Ð´²Ù×÷ */
+#define __AM_I2C_RD   1                /**< \brief I2C è¯»æ“ä½œ */
+#define __AM_I2C_WR   0                /**< \brief I2C å†™æ“ä½œ */
 
-#define __TX_DAM_ARG  0                /**< \brief I2C DMA ·¢ËÍÍê³É»Øµ÷º¯Êý²ÎÊý */
-#define __RX_DAM_ARG  1                /**< \brief I2C DMA ½ÓÊÕÍê³É»Øµ÷º¯Êý²ÎÊý */
+#define __TX_DAM_ARG  0                /**< \brief I2C DMA å‘é€å®Œæˆå›žè°ƒå‡½æ•°å‚æ•° */
+#define __RX_DAM_ARG  1                /**< \brief I2C DMA æŽ¥æ”¶å®Œæˆå›žè°ƒå‡½æ•°å‚æ•° */
 
-#define __TEST_LENTH  8                /**< \brief ²âÊÔ¶ÁÐ´µÄ×Ö½ÚÊý(²»ÄÜ´óÓÚÒ³´óÐ¡) */
+#define __TEST_LENTH  8                /**< \brief æµ‹è¯•è¯»å†™çš„å­—èŠ‚æ•°(ä¸èƒ½å¤§äºŽé¡µå¤§å°) */
 
 
 /*******************************************************************************
-  ±¾µØÈ«¾Ö±äÁ¿¶¨Òå
+  æœ¬åœ°å…¨å±€å˜é‡å®šä¹‰
 *******************************************************************************/
 
-am_local uint8_t __g_buf_srca[__TEST_LENTH];    /**< \brief A Ô´¶ËÊý¾Ý»º³åÇø */
-am_local uint8_t __g_buf_dstb[__TEST_LENTH];    /**< \brief B Ä¿±ê¶ËÊý¾Ý»º³åÇø */
+am_local uint8_t __g_buf_srca[__TEST_LENTH];    /**< \brief A æºç«¯æ•°æ®ç¼“å†²åŒº */
+am_local uint8_t __g_buf_dstb[__TEST_LENTH];    /**< \brief B ç›®æ ‡ç«¯æ•°æ®ç¼“å†²åŒº */
 
-am_local volatile am_bool_t __g_trans_done_tx;  /**< \brief ´«ÊäÍê³É±êÖ¾ */
-am_local volatile am_bool_t __g_trans_done_rx;  /**< \brief ½ÓÊÕÍê³É±êÖ¾ */
+am_local volatile am_bool_t __g_trans_done_tx;  /**< \brief ä¼ è¾“å®Œæˆæ ‡å¿— */
+am_local volatile am_bool_t __g_trans_done_rx;  /**< \brief æŽ¥æ”¶å®Œæˆæ ‡å¿— */
 
   
 /**
- * \brief DMA ÖÐ¶Ï·þÎñ³ÌÐò
+ * \brief DMA ä¸­æ–­æœåŠ¡ç¨‹åº
  *
- * \param[in] p_arg ÓÃ»§×Ô¶¨Òå²ÎÊý£¬Í¨¹ý am_lpc84x_dma_xfer_desc_startup() º¯Êý´«µÝ
- * \param[in] stat  DMA ÖÐ¶Ï×´Ì¬£¬ÓÉµ×²ãÇý¶¯´«Èë£¬¸Ã²ÎÊýµÄ¿ÉÄÜÈ¡Öµ£º
+ * \param[in] p_arg ç”¨æˆ·è‡ªå®šä¹‰å‚æ•°ï¼Œé€šè¿‡ am_lpc84x_dma_xfer_desc_startup() å‡½æ•°ä¼ é€’
+ * \param[in] stat  DMA ä¸­æ–­çŠ¶æ€ï¼Œç”±åº•å±‚é©±åŠ¨ä¼ å…¥ï¼Œè¯¥å‚æ•°çš„å¯èƒ½å–å€¼ï¼š
  *                      AM_LPC84X_DMA_STAT_INTA
  *                      AM_LPC84X_DMA_STAT_INTB
  *                      AM_LPC84X_DMA_STAT_INTERR
  *
- * \return ÎÞ
+ * \return æ— 
  */
 am_local void __i2c_dma_isr (void *p_arg, volatile int stat)
 {
@@ -111,18 +111,18 @@ am_local void __i2c_dma_isr (void *p_arg, volatile int stat)
 
     if (stat & AM_LPC84X_DMA_STAT_INTERR) {
 
-        /* ÓÃ»§×Ô¶¨ÒåÖ´ÐÐ´úÂë */
+        /* ç”¨æˆ·è‡ªå®šä¹‰æ‰§è¡Œä»£ç  */
     }
 }
 
 /**
- * \brief I2C Ö÷»ú³õÊ¼»¯ÅäÖÃ
+ * \brief I2C ä¸»æœºåˆå§‹åŒ–é…ç½®
  *
- * \param[in] p_hw_i2c Ö¸Ïò I2C ¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] clkdiv   I2C Ö÷»úÊ±ÖÓ·ÖÆµ²ÎÊý
+ * \param[in] p_hw_i2c æŒ‡å‘ I2C å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] clkdiv   I2C ä¸»æœºæ—¶é’Ÿåˆ†é¢‘å‚æ•°
  *
- * \retval  AM_OK     ÅäÖÃÍê³É
- * \retval -AM_EINVAL ²ÎÊýÎÞÐ§
+ * \retval  AM_OK     é…ç½®å®Œæˆ
+ * \retval -AM_EINVAL å‚æ•°æ— æ•ˆ
  */
 am_local int __i2c_mst_init (amhw_lpc_i2c_t *p_hw_i2c,
                              uint32_t        clkdiv)
@@ -131,29 +131,29 @@ am_local int __i2c_mst_init (amhw_lpc_i2c_t *p_hw_i2c,
         return -AM_EINVAL;
     }
 
-    /* ¹Ø±Õ I2C ¿ØÖÆÆ÷£¬ÅäÖÃ²ÎÊý */
+    /* å…³é—­ I2C æŽ§åˆ¶å™¨ï¼Œé…ç½®å‚æ•° */
     amhw_lpc_i2c_mode_disable(p_hw_i2c, AM_I2C_MASTER_MODE);
 
-    /* ÉèÖÃÊ±ÖÓ·ÖÆµ²ÎÊý */
+    /* è®¾ç½®æ—¶é’Ÿåˆ†é¢‘å‚æ•° */
     amhw_lpc_i2c_clkdiv_set(p_hw_i2c, clkdiv);
 
     amhw_lpc_i2c_msttime_set(p_hw_i2c, 9, 9);
 
-    /* ²ÎÊýÅäÖÃÍê³É£¬Æô¶¯ I2C ¿ØÖÆÆ÷ */
+    /* å‚æ•°é…ç½®å®Œæˆï¼Œå¯åŠ¨ I2C æŽ§åˆ¶å™¨ */
     amhw_lpc_i2c_mode_enable(p_hw_i2c, AM_I2C_MASTER_MODE);
 
     return AM_OK;
 }
 
 /**
- * \brief Æô¶¯ I2C, ·¢ËÍ´Ó»úµØÖ·ºÍ´Ó»ú×ÓµØÖ·
+ * \brief å¯åŠ¨ I2C, å‘é€ä»Žæœºåœ°å€å’Œä»Žæœºå­åœ°å€
  *
- * \param[in] p_hw_i2c Ö¸ÏòI2C¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] dev_addr ´Ó»úµØÖ·
- * \param[in] sub_addr ×ÓµØÖ·
- * \param[in] flags    ÖµÎ» __AM_I2C_RD »ò __AM_I2C_WR
+ * \param[in] p_hw_i2c æŒ‡å‘I2Cå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] dev_addr ä»Žæœºåœ°å€
+ * \param[in] sub_addr å­åœ°å€
+ * \param[in] flags    å€¼ä½ __AM_I2C_RD æˆ– __AM_I2C_WR
  *
- * \return ÎÞ
+ * \return æ— 
  */
 am_local void __i2c_mst_start (amhw_lpc_i2c_t *p_hw_i2c,
                                uint32_t        dev_addr,
@@ -162,9 +162,9 @@ am_local void __i2c_mst_start (amhw_lpc_i2c_t *p_hw_i2c,
 {
     dev_addr = dev_addr << 1;
 
-    /* ·¢ËÍÉè±¸µØÖ· */
+    /* å‘é€è®¾å¤‡åœ°å€ */
     amhw_lpc_i2c_mstdat_write(p_hw_i2c, dev_addr);
-    amhw_lpc_i2c_mst_start(p_hw_i2c);       /* I2C ¿ØÖÆÆ÷·¢ËÍÆô¶¯ÐÅºÅ */
+    amhw_lpc_i2c_mst_start(p_hw_i2c);       /* I2C æŽ§åˆ¶å™¨å‘é€å¯åŠ¨ä¿¡å· */
 
     while (!(p_hw_i2c->stat & AMHW_LPC_I2C_STAT_MSTPEND));
     while ((__I2C_MASTER->stat & AMHW_LPC_I2C_MASTER_STATE_MASK) !=
@@ -180,19 +180,19 @@ am_local void __i2c_mst_start (amhw_lpc_i2c_t *p_hw_i2c,
         while ((__I2C_MASTER->stat & AMHW_LPC_I2C_MASTER_STATE_MASK) !=
                 AMHW_LPC_I2C_STAT_MSTTX);
 
-        /* ·¢ËÍÉè±¸µØÖ· */
+        /* å‘é€è®¾å¤‡åœ°å€ */
         amhw_lpc_i2c_mstdat_write(p_hw_i2c, dev_addr);
-        amhw_lpc_i2c_mst_start(p_hw_i2c);       /* I2C ¿ØÖÆÆ÷·¢ËÍÆô¶¯ÐÅºÅ */
+        amhw_lpc_i2c_mst_start(p_hw_i2c);       /* I2C æŽ§åˆ¶å™¨å‘é€å¯åŠ¨ä¿¡å· */
     }
 
     while (!(p_hw_i2c->stat & AMHW_LPC_I2C_STAT_MSTPEND)) ;
 
-    /* Ê¹ÄÜ I2C DMA ÇëÇó */
+    /* ä½¿èƒ½ I2C DMA è¯·æ±‚ */
     amhw_lpc_i2c_mst_dma_enable(p_hw_i2c);
 }
 
 /**
- * \brief DMA I2C ²âÊÔº¯Êý
+ * \brief DMA I2C æµ‹è¯•å‡½æ•°
  */
 am_local void __i2c_dma_test (uint8_t addr, uint8_t sub_addr)
 {
@@ -263,7 +263,7 @@ void demo_lpc845_hw_i2c_master_dma_entry (amhw_lpc_i2c_t *p_hw_i2c,
                                           uint8_t         addr,
                                           uint8_t         sub_addr)
 {
-    /* I2C Ö÷»ú³õÊ¼»¯ÅäÖÃ */
+    /* I2C ä¸»æœºåˆå§‹åŒ–é…ç½® */
     __i2c_mst_init(p_hw_i2c, clkdiv);
 
     __i2c_dma_test(addr, sub_addr);

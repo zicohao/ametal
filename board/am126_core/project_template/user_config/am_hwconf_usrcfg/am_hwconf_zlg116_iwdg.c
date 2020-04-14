@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZLG116 WWDT ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief ZLG116 WWDT ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_zlg116_iwdg.c
  * 
  * \internal
@@ -31,11 +31,11 @@
  * @{
  */
 
-/** \brief WWDT Æ½Ì¨³õÊ¼»¯ */
+/** \brief WWDT å¹³å°åˆå§‹åŒ– */
 static void __zlg_iwdg_plfm_init (void)
 {
 
-    /* ¼ì²é¸´Î»ÊÇ·ñÓÉ¿´ÃÅ¹·Ôì³ÉµÄ */
+    /* æ£€æŸ¥å¤ä½æ˜¯å¦ç”±çœ‹é—¨ç‹—é€ æˆçš„ */
     if (amhw_zlg116_rcc_reset_flag() & AMHW_ZLG116_RCC_AHB_IWDGRSTF) {
         amhw_zlg116_rcc_reset_flag_clear();
     }
@@ -45,24 +45,24 @@ static void __zlg_iwdg_plfm_init (void)
     while (amhw_zlg116_rcc_lsirdy_read() == AM_FALSE);
 }
 
-/** \brief ½â³ıWWDT Æ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤WWDT å¹³å°åˆå§‹åŒ– */
 static void __zlg_iwdg_plfm_deinit (void)
 {
 
 }
 
-/** \brief WWDT Éè±¸ĞÅÏ¢ */
+/** \brief WWDT è®¾å¤‡ä¿¡æ¯ */
 static const am_zlg_iwdg_devinfo_t  __g_iwdg_devinfo = {
-    ZLG116_IWDG_BASE,       /**< \brief WWDT ¼Ä´æÆ÷»ùÖ· */
-    __zlg_iwdg_plfm_init,   /**< \brief WWDT Æ½Ì¨³õÊ¼»¯ */
-    __zlg_iwdg_plfm_deinit, /**< \brief ½â³ıWWDT Æ½Ì¨³õÊ¼»¯ */
+    ZLG116_IWDG_BASE,       /**< \brief WWDT å¯„å­˜å™¨åŸºå€ */
+    __zlg_iwdg_plfm_init,   /**< \brief WWDT å¹³å°åˆå§‹åŒ– */
+    __zlg_iwdg_plfm_deinit, /**< \brief è§£é™¤WWDT å¹³å°åˆå§‹åŒ– */
 };
 
-/** \brief WWDT Éè±¸ÊµÀı */
+/** \brief WWDT è®¾å¤‡å®ä¾‹ */
 static am_zlg_iwdg_dev_t __g_iwdg_dev;
 
 /**
- * \brief WWDT ÊµÀı³õÊ¼»¯£¬»ñµÃWDT±ê×¼·şÎñ¾ä±ú
+ * \brief WWDT å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—WDTæ ‡å‡†æœåŠ¡å¥æŸ„
  */
 am_wdt_handle_t am_zlg116_iwdg_inst_init (void)
 {
@@ -70,7 +70,7 @@ am_wdt_handle_t am_zlg116_iwdg_inst_init (void)
 }
 
 /**
- * \brief WWDT ÊµÀı½â³õÊ¼»¯
+ * \brief WWDT å®ä¾‹è§£åˆå§‹åŒ–
  */
 void am_zlg116_iwdg_inst_deinit (am_wdt_handle_t handle)
 {

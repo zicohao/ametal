@@ -11,16 +11,16 @@
 *******************************************************************************/
 /**
  * \file
- * \brief SPIÖ÷»úÑİÊ¾Àı³Ì£¬Í¨¹ıHW²ãµÄ½Ó¿ÚÊµÏÖ
+ * \brief SPIä¸»æœºæ¼”ç¤ºä¾‹ç¨‹ï¼Œé€šè¿‡HWå±‚çš„æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè:
- *   1. ½«SPIµÄPIOC_6ºÍPIOC_7ÓÃÏßÏàÁ¬£¬Ä£Äâ´Ó»úÉè±¸£¬»Ø»·²âÊÔ£»
+ * - æ“ä½œæ­¥éª¤:
+ *   1. å°†SPIçš„PIOC_6å’ŒPIOC_7ç”¨çº¿ç›¸è¿ï¼Œæ¨¡æ‹Ÿä»æœºè®¾å¤‡ï¼Œå›ç¯æµ‹è¯•ï¼›
  *
- * - ÊµÑéÏÖÏó:
- *   1. Ö÷»úÍ¨¹ıMOSI·¢ËÍÊı¾İ£¬·¢³öµÄÊı¾İ´ÓMOSI¶Á»Ø£»
- *   2. ±È½Ï·¢³öºÍ¶Á»ØµÄÊı¾İ£¬Èç¹ûÏàÍ¬LED0Ò»Ö±³£ÁÁ,·ñÔòÒÔ200msÊ±¼ä¼ä¸ôÉÁË¸£»
+ * - å®éªŒç°è±¡:
+ *   1. ä¸»æœºé€šè¿‡MOSIå‘é€æ•°æ®ï¼Œå‘å‡ºçš„æ•°æ®ä»MOSIè¯»å›ï¼›
+ *   2. æ¯”è¾ƒå‘å‡ºå’Œè¯»å›çš„æ•°æ®ï¼Œå¦‚æœç›¸åŒLED0ä¸€ç›´å¸¸äº®,å¦åˆ™ä»¥200msæ—¶é—´é—´éš”é—ªçƒï¼›
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_kl26_hw_spi_master.c src_kl26_hw_spi_master
  *
  * \internal
@@ -42,40 +42,40 @@
 #include "am_board.h"
 
 /**
- * \name SPI´«Êä½á¹¹ÌåÅäÖÃ²ÎÊı
+ * \name SPIä¼ è¾“ç»“æ„ä½“é…ç½®å‚æ•°
  */
 
-#define SPI_CFG_LSB         AM_BIT(0)   /**< \brief µÍÎ»ÓÅÏÈ·¢ËÍ         */
-#define SPI_CFG_16BIT       AM_BIT(1)   /**< \brief ´«ÊäÊı¾İ¿í¶ÈÎª16Î»   */
+#define SPI_CFG_LSB         AM_BIT(0)   /**< \brief ä½ä½ä¼˜å…ˆå‘é€         */
+#define SPI_CFG_16BIT       AM_BIT(1)   /**< \brief ä¼ è¾“æ•°æ®å®½åº¦ä¸º16ä½   */
 
-#define SPI_CFG_MODE_0      (0)                     /**< \brief Ä£Ê½0    */
-#define SPI_CFG_MODE_1      (0         | AM_BIT(2)) /**< \brief Ä£Ê½1    */
-#define SPI_CFG_MODE_2      (AM_BIT(3) | 0)         /**< \brief Ä£Ê½2    */
-#define SPI_CFG_MODE_3      (AM_BIT(2) | AM_BIT(3)) /**< \brief Ä£Ê½3    */
+#define SPI_CFG_MODE_0      (0)                     /**< \brief æ¨¡å¼0    */
+#define SPI_CFG_MODE_1      (0         | AM_BIT(2)) /**< \brief æ¨¡å¼1    */
+#define SPI_CFG_MODE_2      (AM_BIT(3) | 0)         /**< \brief æ¨¡å¼2    */
+#define SPI_CFG_MODE_3      (AM_BIT(2) | AM_BIT(3)) /**< \brief æ¨¡å¼3    */
 
 /** @} */
 
 /** 
- * \brief SPI´«Êä½á¹¹Ìå
+ * \brief SPIä¼ è¾“ç»“æ„ä½“
  */
 typedef struct spi_transfer {
-    const void  *p_txbuf;           /**< \brief Ö¸Ïò·¢ËÍÊı¾İ»º´æµÄÖ¸Õë   */
-    void        *p_rxbuf;           /**< \brief Ö¸Ïò½ÓÊÕÊı¾İ»º´æµÄÖ¸Õë    */
-    uint32_t     nbytes;            /**< \brief Êı¾İ³¤¶È                  */
-    uint32_t     flags;             /**< \brief SPI´«Êä¿ØÖÆ±êÖ¾Î»         */
+    const void  *p_txbuf;           /**< \brief æŒ‡å‘å‘é€æ•°æ®ç¼“å­˜çš„æŒ‡é’ˆ   */
+    void        *p_rxbuf;           /**< \brief æŒ‡å‘æ¥æ”¶æ•°æ®ç¼“å­˜çš„æŒ‡é’ˆ    */
+    uint32_t     nbytes;            /**< \brief æ•°æ®é•¿åº¦                  */
+    uint32_t     flags;             /**< \brief SPIä¼ è¾“æ§åˆ¶æ ‡å¿—ä½         */
 } spi_transfer_t;
 
 
 /**
- * \brief SPI´«Êä½á¹¹Ìå²ÎÊıÉèÖÃ
+ * \brief SPIä¼ è¾“ç»“æ„ä½“å‚æ•°è®¾ç½®
  *
- * \param[in] p_trans : Ö¸ÏòSPI´«Êä½á¹¹Ìå
- * \param[in] p_txbuf : Ö¸Ïò·¢ËÍÊı¾İ»º´æµÄÖ¸Õë
- * \param[in] p_rxbuf : Ö¸Ïò½ÓÊÕÊı¾İ»º´æµÄÖ¸Õë
- * \param[in] nbytes  : µ±Ç°´«ÊäÊı¾İ³¤¶È
- * \param[in] flags   : SPI´«Êä¿ØÖÆ±êÖ¾Î»
+ * \param[in] p_trans : æŒ‡å‘SPIä¼ è¾“ç»“æ„ä½“
+ * \param[in] p_txbuf : æŒ‡å‘å‘é€æ•°æ®ç¼“å­˜çš„æŒ‡é’ˆ
+ * \param[in] p_rxbuf : æŒ‡å‘æ¥æ”¶æ•°æ®ç¼“å­˜çš„æŒ‡é’ˆ
+ * \param[in] nbytes  : å½“å‰ä¼ è¾“æ•°æ®é•¿åº¦
+ * \param[in] flags   : SPIä¼ è¾“æ§åˆ¶æ ‡å¿—ä½
  *
- * \retval  AM_OK     : ÉèÖÃÍê³É
+ * \retval  AM_OK     : è®¾ç½®å®Œæˆ
  */
 static int __spi_mktrans (spi_transfer_t *p_trans, 
                           const void     *p_txbuf,
@@ -97,31 +97,31 @@ static int __spi_mktrans (spi_transfer_t *p_trans,
 }
 
 /**
- * \brief SPIËÙ¶ÈÅäÖÃ
+ * \brief SPIé€Ÿåº¦é…ç½®
  *
- * \param[in] p_hw_spi     : Ö¸ÏòSPI¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] target_speed : Ä¿±êËÙ¶È
- * \param[in] spi_freq     : SPIÊäÈëÊ±ÖÓÆµÂÊ
+ * \param[in] p_hw_spi     : æŒ‡å‘SPIå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] target_speed : ç›®æ ‡é€Ÿåº¦
+ * \param[in] spi_freq     : SPIè¾“å…¥æ—¶é’Ÿé¢‘ç‡
  *
- * \return  ÎŞ
+ * \return  æ— 
  */
 static void __spi_speed_cfg (amhw_fsl_spi_t *p_hw_spi,
                              uint32_t        target_speed,
                              uint32_t        spi_freq)
 {
 
-    uint32_t real_speed;              /* ¼ÆËã³öµÄËÙ¶È    */
-    uint32_t pdiv, best_pdiv;         /* Ô¤·ÖÆµÖµ        */
-    uint32_t div, best_div;           /* ·ÖÅäÖµ          */
-    uint32_t diff, min_diff;          /* ËÙ¶È²îÖµ        */
+    uint32_t real_speed;              /* è®¡ç®—å‡ºçš„é€Ÿåº¦    */
+    uint32_t pdiv, best_pdiv;         /* é¢„åˆ†é¢‘å€¼        */
+    uint32_t div, best_div;           /* åˆ†é…å€¼          */
+    uint32_t diff, min_diff;          /* é€Ÿåº¦å·®å€¼        */
 
     min_diff = 0xFFFFFFFFU;
 
-    /* ÉèÖÃÎª×î´óµÄ·ÖÆµÖµ,ËÙ¶ÈÎª×îĞ¡ */
+    /* è®¾ç½®ä¸ºæœ€å¤§çš„åˆ†é¢‘å€¼,é€Ÿåº¦ä¸ºæœ€å° */
     best_pdiv  = 7;
     best_div   = 8;
 
-    /* ²éÕÒ×îºÏÊÊµÄËÙ¶È */
+    /* æŸ¥æ‰¾æœ€åˆé€‚çš„é€Ÿåº¦ */
     for (pdiv = 0; (pdiv <= 7) && min_diff; pdiv++)
     {
        for (div = 0; (div <= 8) && min_diff; div++)
@@ -129,14 +129,14 @@ static void __spi_speed_cfg (amhw_fsl_spi_t *p_hw_spi,
            /* all_div = (pdiv+1) * 2^(div+1) */
            real_speed = (spi_freq / ((pdiv + 1) << (div+1)));
 
-           /* Êµ¼ÊËÙ¶ÈÓ¦Ğ¡ÓÚÄ¿±êËÙ¶È */
+           /* å®é™…é€Ÿåº¦åº”å°äºç›®æ ‡é€Ÿåº¦ */
            if (target_speed >= real_speed)
            {
                diff = target_speed-real_speed;
 
                if (min_diff > diff)
                {
-                   /* ×îºÏÊÊµÄËÙ¶È */
+                   /* æœ€åˆé€‚çš„é€Ÿåº¦ */
                    min_diff   = diff;
                    best_pdiv  = pdiv;
                    best_div   = div;
@@ -162,37 +162,37 @@ static void __spi_master_cfg (amhw_fsl_spi_t *p_hw_spi, uint32_t flags)
         amhw_fsl_spi_feature_cfg(p_hw_spi, AMHW_FSL_SPI_CFG_8BIT_WIDTH);
     }
 
-    /* ÅäÖÃÊ±ÖÓÏàÎ»ºÍ¼«ĞÔ */
+    /* é…ç½®æ—¶é’Ÿç›¸ä½å’Œææ€§ */
     amhw_fsl_spi_mode_cfg(p_hw_spi, flags);
 }
 
 /**
- * \brief SPIÆ¬Ñ¡¿ØÖÆ
+ * \brief SPIç‰‡é€‰æ§åˆ¶
  *
- * \param[in] p_hw_spi     : Ö¸ÏòSPI¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] pin          : CSÒı½ÅºÅ
- * \param[in] active_level : Òı½ÅÓĞĞ§×´Ì¬µçÆ½
- * \param[in] state        : ×´Ì¬
+ * \param[in] p_hw_spi     : æŒ‡å‘SPIå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] pin          : CSå¼•è„šå·
+ * \param[in] active_level : å¼•è„šæœ‰æ•ˆçŠ¶æ€ç”µå¹³
+ * \param[in] state        : çŠ¶æ€
  *
- * \return  ÎŞ
+ * \return  æ— 
  */
 static void __spi_master_cs_ctr (amhw_fsl_spi_t *p_hw_spi,
                                  int             pin,
                                  uint8_t         active_level,
                                  am_bool_t       state)
 {
-    /* Æ¬Ñ¡ÓĞĞ§ */
+    /* ç‰‡é€‰æœ‰æ•ˆ */
     if (state) {
         am_gpio_set(pin, active_level);
     
-    /* Æ¬Ñ¡ÎŞĞ§ */
+    /* ç‰‡é€‰æ— æ•ˆ */
     } else {
         am_gpio_set(pin, !active_level);
     }
 }
 
 /**
- * \brief SPI»Ø»·´«Êä²âÊÔ
+ * \brief SPIå›ç¯ä¼ è¾“æµ‹è¯•
  */
 static void __spi_loop_trans (amhw_fsl_spi_t  *p_hw_spi,
                               spi_transfer_t  *p_trans,
@@ -208,7 +208,7 @@ static void __spi_loop_trans (amhw_fsl_spi_t  *p_hw_spi,
 
     while(pos < p_trans->nbytes) {
 
-        /* µÈ´ı¿ÉÒÔ·¢ËÍ */
+        /* ç­‰å¾…å¯ä»¥å‘é€ */
         while ((amhw_fsl_spi_stat_get(p_hw_spi) & AMHW_FSL_SPI_STAT_T_EMPTY) == 0);
 
         if (width_16bit) {
@@ -217,7 +217,7 @@ static void __spi_loop_trans (amhw_fsl_spi_t  *p_hw_spi,
             amhw_fsl_spi_data8_wirte(p_hw_spi, *(uint8_t*)((uint32_t)p_trans->p_txbuf + pos));
         }
 
-        /* µÈ´ı¿ÉÒÔ½ÓÊÕ */
+        /* ç­‰å¾…å¯ä»¥æ¥æ”¶ */
         while ((amhw_fsl_spi_stat_get(p_hw_spi) & AMHW_FSL_SPI_STAT_R_FULL) == 0);
 
         if (width_16bit) {
@@ -229,18 +229,18 @@ static void __spi_loop_trans (amhw_fsl_spi_t  *p_hw_spi,
         }
     }
     
-    /* ´¦ÀíÆ¬Ñ¡ */
+    /* å¤„ç†ç‰‡é€‰ */
     __spi_master_cs_ctr(p_hw_spi, pin_cs, AM_GPIO_LEVEL_LOW, AM_FALSE);
 }
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_fsl_hw_spi_master_entry (amhw_fsl_spi_t *p_hw_spi,
                                    int             pin_cs,
                                    uint32_t        spi_freq)
 {
-    spi_transfer_t spi0_transfer;     /* ¶¨ÒåÒ»¸öSPI´«Êä½á¹¹ÌåÊµÀı          */
+    spi_transfer_t spi0_transfer;     /* å®šä¹‰ä¸€ä¸ªSPIä¼ è¾“ç»“æ„ä½“å®ä¾‹          */
 
     const uint32_t length =32;
     uint16_t       spi_send_buf[16];
@@ -254,7 +254,7 @@ void demo_fsl_hw_spi_master_entry (amhw_fsl_spi_t *p_hw_spi,
     __spi_speed_cfg(p_hw_spi, 3000000, spi_freq);
     amhw_fsl_spi_enable(p_hw_spi);
 
-    /* ¹¹ÔìÊı¾İ */
+    /* æ„é€ æ•°æ® */
     for (i = 0; i < (length / 2); i++) {
         spi_send_buf[i] = i;
     }
@@ -264,10 +264,10 @@ void demo_fsl_hw_spi_master_entry (amhw_fsl_spi_t *p_hw_spi,
                   length,
                   (SPI_CFG_MODE_0 | SPI_CFG_16BIT));
 
-    /* Êı¾İ´«Êä */
+    /* æ•°æ®ä¼ è¾“ */
     __spi_loop_trans(p_hw_spi, &spi0_transfer, pin_cs);
 
-    /* Êı¾İ¼ìÑé */
+    /* æ•°æ®æ£€éªŒ */
     for (i = 0; (i < length / 2); i++) {
         if (spi_recv_buf[i] != spi_send_buf[i]) {
             error_ocur = AM_TRUE;

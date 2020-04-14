@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief TSI Ó²¼ş²Ù×÷½Ó¿Ú
+ * \brief TSI ç¡¬ä»¶æ“ä½œæ¥å£
  *
  * \internal
  * \par Modification history
@@ -38,37 +38,37 @@ extern "C" {
  */
 
 /**
- * \brief TSI ¼Ä´æÆ÷¿é½á¹¹Ìå
+ * \brief TSI å¯„å­˜å™¨å—ç»“æ„ä½“
  */
 typedef struct amhw_fsl_tsi {
-    __IO uint32_t    gencs;         /**< \brief ¿ØÖÆ¡¢×´Ì¬¼Ä´æÆ÷ */
-    __IO uint32_t    data;          /**< \brief Êı¾İ¼Ä´æÆ÷ */
-    __IO uint32_t    tshd;          /**< \brief ·§Öµ¼Ä´æÆ÷*/
+    __IO uint32_t    gencs;         /**< \brief æ§åˆ¶ã€çŠ¶æ€å¯„å­˜å™¨ */
+    __IO uint32_t    data;          /**< \brief æ•°æ®å¯„å­˜å™¨ */
+    __IO uint32_t    tshd;          /**< \brief é˜€å€¼å¯„å­˜å™¨*/
 } amhw_fsl_tsi_t;
 
 /**
  * \anchor TSI INT MODE
- * \brief  TSI ÖĞ¶ÏÄ£Ê½¶¨Òå
+ * \brief  TSI ä¸­æ–­æ¨¡å¼å®šä¹‰
  */
 typedef enum amhw_fsl_tsi_irq_mode {
-    AMHW_FSL_TSI_OUT_RANGE = 0,         /**< \brief ³¬³ö·§ÖµÖĞ¶ÏÊ¹ÄÜ */
-    AMHW_FSL_TSI_END_SCAN,              /**< \brief É¨Ãè½áÊøÖĞ¶ÏÊ¹ÄÜ */
+    AMHW_FSL_TSI_OUT_RANGE = 0,         /**< \brief è¶…å‡ºé˜€å€¼ä¸­æ–­ä½¿èƒ½ */
+    AMHW_FSL_TSI_END_SCAN,              /**< \brief æ‰«æç»“æŸä¸­æ–­ä½¿èƒ½ */
 }amhw_fsl_tsi_irq_mode_t;
 
 /**
  * \anchor TSI MODE
- * \brief  TSI Ä£Ê½¶¨Òå
+ * \brief  TSI æ¨¡å¼å®šä¹‰
  */
 typedef enum amhw_fsl_tsi_mode {
-    AMHW_FSL_TSI_CAP_SENSING       = 0, /**< \brief µçÈİ¸ĞÓ¦Ä£Ê½£¬ÎŞÔëÉù¼ì²â */
-    AMHW_FSL_TSI_SINGLE_THR_FRQDIS = 4, /**< \brief µ¥·§ÖµÔëÉù¼ì²âÄ£Ê½£¬ÆµÂÊÏŞÖÆµçÂ·½ûÄÜ*/
-    AMHW_FSL_TSI_SINGLE_THR_FRQEN  = 8, /**< \brief µ¥·§ÖµÔëÉù¼ì²âÄ£Ê½£¬ÆµÂÊÏŞÖÆµçÂ·Ê¹ÄÜ*/
-    AMHW_FSL_TSI_AUTOMATIC_NOISE   = 12, /**< \brief ×Ô¶¯ÔëÉù¼ì²âÄ£Ê½ */
+    AMHW_FSL_TSI_CAP_SENSING       = 0, /**< \brief ç”µå®¹æ„Ÿåº”æ¨¡å¼ï¼Œæ— å™ªå£°æ£€æµ‹ */
+    AMHW_FSL_TSI_SINGLE_THR_FRQDIS = 4, /**< \brief å•é˜€å€¼å™ªå£°æ£€æµ‹æ¨¡å¼ï¼Œé¢‘ç‡é™åˆ¶ç”µè·¯ç¦èƒ½*/
+    AMHW_FSL_TSI_SINGLE_THR_FRQEN  = 8, /**< \brief å•é˜€å€¼å™ªå£°æ£€æµ‹æ¨¡å¼ï¼Œé¢‘ç‡é™åˆ¶ç”µè·¯ä½¿èƒ½*/
+    AMHW_FSL_TSI_AUTOMATIC_NOISE   = 12, /**< \brief è‡ªåŠ¨å™ªå£°æ£€æµ‹æ¨¡å¼ */
 }amhw_fsl_tsi_mode_t;
 
 /**
  * \anchor TSI REFCHRG
- * \brief  TSI ²Î¿¼Õñµ´Æ÷ºã¶¨µçÁ÷Ô´¶¨Òå
+ * \brief  TSI å‚è€ƒæŒ¯è¡å™¨æ’å®šç”µæµæºå®šä¹‰
  */
 typedef enum amhw_fsl_tsi_refchrg {
     AMHW_FSL_TSI_REFCHRG_500NA     = 0, /**< \brief 500nA */
@@ -83,7 +83,7 @@ typedef enum amhw_fsl_tsi_refchrg {
 
 /**
  * \anchor TSI EXTCHRG
- * \brief  TSI µç¼«Õñµ´Æ÷ºã¶¨µçÁ÷Ô´¶¨Òå
+ * \brief  TSI ç”µææŒ¯è¡å™¨æ’å®šç”µæµæºå®šä¹‰
  */
 typedef enum amhw_fsl_tsi_extchrg {
     AMHW_FSL_TSI_EXTCHRG_500NA     = 0, /**< \brief 500nA */
@@ -98,7 +98,7 @@ typedef enum amhw_fsl_tsi_extchrg {
 
 /**
  * \anchor TSI DVOLT
- * \brief  TSI Õñµ´Æ÷µçÑ¹¶¨Òå
+ * \brief  TSI æŒ¯è¡å™¨ç”µå‹å®šä¹‰
  */
 typedef enum amhw_fsl_tsi_dvolt {
     AMHW_FSL_TSI_DV103             = 0, /**< \brief DV = 1.03V */
@@ -109,77 +109,77 @@ typedef enum amhw_fsl_tsi_dvolt {
 
 /**
  * \anchor TSI TSICH
- * \brief  TSI µçÁ÷¼ì²âÍ¨µÀ
+ * \brief  TSI ç”µæµæ£€æµ‹é€šé“
  */
 typedef enum amhw_fsl_tsi_channel {
-    AMHW_FSL_TSI_CHAN0             = 0, /**< \brief Í¨µÀ0 */
-    AMHW_FSL_TSI_CHAN1,                 /**< \brief Í¨µÀ1 */
-    AMHW_FSL_TSI_CHAN2,                 /**< \brief Í¨µÀ2 */
-    AMHW_FSL_TSI_CHAN3,                 /**< \brief Í¨µÀ3 */
-    AMHW_FSL_TSI_CHAN4,                 /**< \brief Í¨µÀ4 */
-    AMHW_FSL_TSI_CHAN5,                 /**< \brief Í¨µÀ5 */
-    AMHW_FSL_TSI_CHAN6,                 /**< \brief Í¨µÀ6 */
-    AMHW_FSL_TSI_CHAN7,                 /**< \brief Í¨µÀ7 */
-    AMHW_FSL_TSI_CHAN8,                 /**< \brief Í¨µÀ8 */
-    AMHW_FSL_TSI_CHAN9,                 /**< \brief Í¨µÀ9 */
-    AMHW_FSL_TSI_CHAN10,                /**< \brief Í¨µÀ10 */
-    AMHW_FSL_TSI_CHAN11,                /**< \brief Í¨µÀ11 */
-    AMHW_FSL_TSI_CHAN12,                /**< \brief Í¨µÀ12 */
-    AMHW_FSL_TSI_CHAN13,                /**< \brief Í¨µÀ13 */
-    AMHW_FSL_TSI_CHAN14,                /**< \brief Í¨µÀ14 */
-    AMHW_FSL_TSI_CHAN15,                /**< \brief Í¨µÀ15 */
+    AMHW_FSL_TSI_CHAN0             = 0, /**< \brief é€šé“0 */
+    AMHW_FSL_TSI_CHAN1,                 /**< \brief é€šé“1 */
+    AMHW_FSL_TSI_CHAN2,                 /**< \brief é€šé“2 */
+    AMHW_FSL_TSI_CHAN3,                 /**< \brief é€šé“3 */
+    AMHW_FSL_TSI_CHAN4,                 /**< \brief é€šé“4 */
+    AMHW_FSL_TSI_CHAN5,                 /**< \brief é€šé“5 */
+    AMHW_FSL_TSI_CHAN6,                 /**< \brief é€šé“6 */
+    AMHW_FSL_TSI_CHAN7,                 /**< \brief é€šé“7 */
+    AMHW_FSL_TSI_CHAN8,                 /**< \brief é€šé“8 */
+    AMHW_FSL_TSI_CHAN9,                 /**< \brief é€šé“9 */
+    AMHW_FSL_TSI_CHAN10,                /**< \brief é€šé“10 */
+    AMHW_FSL_TSI_CHAN11,                /**< \brief é€šé“11 */
+    AMHW_FSL_TSI_CHAN12,                /**< \brief é€šé“12 */
+    AMHW_FSL_TSI_CHAN13,                /**< \brief é€šé“13 */
+    AMHW_FSL_TSI_CHAN14,                /**< \brief é€šé“14 */
+    AMHW_FSL_TSI_CHAN15,                /**< \brief é€šé“15 */
 }amhw_fsl_tsi_channel_t;
 
 /**
  * \anchor TSI FREQ_DIV
- * \brief  TSI µç¼«Õñµ´Æ÷·ÖÆµÆ÷¶¨Òå
+ * \brief  TSI ç”µææŒ¯è¡å™¨åˆ†é¢‘å™¨å®šä¹‰
  */
 typedef enum amhw_fsl_tsi_oscfreq_div {
-    AMHW_FSL_TSI_OSCFRQ_DIV_1      = 0, /**< \brief 1·ÖÆµ */
-    AMHW_FSL_TSI_OSCFRQ_DIV_2,          /**< \brief 2·ÖÆµ */
-    AMHW_FSL_TSI_OSCFRQ_DIV_4,          /**< \brief 4·ÖÆµ */
-    AMHW_FSL_TSI_OSCFRQ_DIV_8,          /**< \brief 8·ÖÆµ */
-    AMHW_FSL_TSI_OSCFRQ_DIV_16,         /**< \brief 16·ÖÆµ */
-    AMHW_FSL_TSI_OSCFRQ_DIV_32,         /**< \brief 32·ÖÆµ */
-    AMHW_FSL_TSI_OSCFRQ_DIV_64,         /**< \brief 64·ÖÆµ */
-    AMHW_FSL_TSI_OSCFRQ_DIV_128         /**< \brief 128·ÖÆµ */
+    AMHW_FSL_TSI_OSCFRQ_DIV_1      = 0, /**< \brief 1åˆ†é¢‘ */
+    AMHW_FSL_TSI_OSCFRQ_DIV_2,          /**< \brief 2åˆ†é¢‘ */
+    AMHW_FSL_TSI_OSCFRQ_DIV_4,          /**< \brief 4åˆ†é¢‘ */
+    AMHW_FSL_TSI_OSCFRQ_DIV_8,          /**< \brief 8åˆ†é¢‘ */
+    AMHW_FSL_TSI_OSCFRQ_DIV_16,         /**< \brief 16åˆ†é¢‘ */
+    AMHW_FSL_TSI_OSCFRQ_DIV_32,         /**< \brief 32åˆ†é¢‘ */
+    AMHW_FSL_TSI_OSCFRQ_DIV_64,         /**< \brief 64åˆ†é¢‘ */
+    AMHW_FSL_TSI_OSCFRQ_DIV_128         /**< \brief 128åˆ†é¢‘ */
 }amhw_fsl_tsi_oscfreq_div_t;
 
 /**
  * \anchor TSI scan tirgger mode
- * \brief  TSI É¨Ãè´¥·¢Ä£Ê½¶¨Òå
+ * \brief  TSI æ‰«æè§¦å‘æ¨¡å¼å®šä¹‰
  */
 typedef enum amhw_fsl_tsi_trig_mode {
-    AMHW_FSL_TSI_TRIG_SOFTWARE     = 0, /**< \brief Èí¼ş´¥·¢ */
-    AMHW_FSL_TSI_TRIG_HAEDWARE,         /**< \brief Ó²¼ş´¥·¢ */
+    AMHW_FSL_TSI_TRIG_SOFTWARE     = 0, /**< \brief è½¯ä»¶è§¦å‘ */
+    AMHW_FSL_TSI_TRIG_HAEDWARE,         /**< \brief ç¡¬ä»¶è§¦å‘ */
 }amhw_fsl_tsi_trig_mode_t;
 
 /**
- * \name  TSI ¼Ä´æÆ÷Î»¶¨Òå
+ * \name  TSI å¯„å­˜å™¨ä½å®šä¹‰
  * @{
  */
 
-#define AMHW_FSL_TSI_OUTRGF       (0x1UL << 31) /** \brief Êı¾İ³¬³ö·§Öµ±êÖ¾Î» */
-#define AMHW_FSL_TSI_ESOR         (0x1UL << 28) /** \brief ÖĞ¶ÏÄ£Ê½Ñ¡Ôñ */
-#define AMHW_FSL_TSI_TSIEN        (0x1UL << 7)  /** \brief TSIÊ¹ÄÜ */
-#define AMHW_FSL_TSI_TSIIEN       (0x1UL << 6)  /** \brief ÖĞ¶ÏÊ¹ÄÜ */
-#define AMHW_FSL_TSI_STPE         (0x1UL << 5)  /** \brief µÍ¹¦ºÄÄ£Ê½ÏÂTSIÊ¹ÄÜ */
-#define AMHW_FSL_TSI_STM          (0x1UL << 4)  /** \brief É¨Ãè´¥·¢·½Ê½Ñ¡Ôñ */
-#define AMHW_FSL_TSI_SCNIP        (0x1UL << 3)  /** \brief ½ø³ÌÖĞÉ¨Ãè */
-#define AMHW_FSL_TSI_EOSF         (0x1UL << 2)  /** \brief É¨Ãè½áÊø±êÖ¾ */
-#define AMHW_FSL_TSI_CURSW        (0x1UL << 1)  /** \brief µçÁ÷¶Ô½»»» */
-#define AMHW_FSL_TSI_DMAEN        (0x1UL << 23) /** \brief DMA´«ÊäÊ¹ÄÜ */
-#define AMHW_FSL_TSI_SWTS         (0x1UL << 22) /** \brief Í¨µÀÈí¼ş´¥·¢Æô¶¯ */
+#define AMHW_FSL_TSI_OUTRGF       (0x1UL << 31) /** \brief æ•°æ®è¶…å‡ºé˜€å€¼æ ‡å¿—ä½ */
+#define AMHW_FSL_TSI_ESOR         (0x1UL << 28) /** \brief ä¸­æ–­æ¨¡å¼é€‰æ‹© */
+#define AMHW_FSL_TSI_TSIEN        (0x1UL << 7)  /** \brief TSIä½¿èƒ½ */
+#define AMHW_FSL_TSI_TSIIEN       (0x1UL << 6)  /** \brief ä¸­æ–­ä½¿èƒ½ */
+#define AMHW_FSL_TSI_STPE         (0x1UL << 5)  /** \brief ä½åŠŸè€—æ¨¡å¼ä¸‹TSIä½¿èƒ½ */
+#define AMHW_FSL_TSI_STM          (0x1UL << 4)  /** \brief æ‰«æè§¦å‘æ–¹å¼é€‰æ‹© */
+#define AMHW_FSL_TSI_SCNIP        (0x1UL << 3)  /** \brief è¿›ç¨‹ä¸­æ‰«æ */
+#define AMHW_FSL_TSI_EOSF         (0x1UL << 2)  /** \brief æ‰«æç»“æŸæ ‡å¿— */
+#define AMHW_FSL_TSI_CURSW        (0x1UL << 1)  /** \brief ç”µæµå¯¹äº¤æ¢ */
+#define AMHW_FSL_TSI_DMAEN        (0x1UL << 23) /** \brief DMAä¼ è¾“ä½¿èƒ½ */
+#define AMHW_FSL_TSI_SWTS         (0x1UL << 22) /** \brief é€šé“è½¯ä»¶è§¦å‘å¯åŠ¨ */
 
 /** @} */
 
 /**
- * \brief ¶ÁÈ¡ TSI Êı¾İ³¬³ö·§Öµ±êÖ¾
+ * \brief è¯»å– TSI æ•°æ®è¶…å‡ºé˜€å€¼æ ‡å¿—
  *
- * \param[in] p_hw_tsi   : Ö¸ÏòTSI ÍâÉè¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_tsi   : æŒ‡å‘TSI å¤–è®¾å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \retval 0 : Êı¾İÃ»ÓĞ³¬³ö·¶Î§
- * \retval 1 : Êı¾İ³¬³ö·¶Î§
+ * \retval 0 : æ•°æ®æ²¡æœ‰è¶…å‡ºèŒƒå›´
+ * \retval 1 : æ•°æ®è¶…å‡ºèŒƒå›´
  */
 am_static_inline
 int amhw_fsl_tsi_outrgf_get (amhw_fsl_tsi_t *p_hw_tsi)
@@ -188,11 +188,11 @@ int amhw_fsl_tsi_outrgf_get (amhw_fsl_tsi_t *p_hw_tsi)
 }
 
 /**
- * \brief ÇåÁã TSI Êı¾İ³¬³ö·§Öµ±êÖ¾
+ * \brief æ¸…é›¶ TSI æ•°æ®è¶…å‡ºé˜€å€¼æ ‡å¿—
  *
- * \param[in] p_hw_tsi   : Ö¸ÏòTSI ÍâÉè¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_tsi   : æŒ‡å‘TSI å¤–è®¾å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_tsi_outrgf_clr (amhw_fsl_tsi_t *p_hw_tsi)
@@ -201,12 +201,12 @@ void amhw_fsl_tsi_outrgf_clr (amhw_fsl_tsi_t *p_hw_tsi)
 }
 
 /**
- * \brief TSI ÖĞ¶ÏÄ£Ê½ÉèÖÃ
+ * \brief TSI ä¸­æ–­æ¨¡å¼è®¾ç½®
  *
- * \param[in] p_hw_tsi  : Ö¸ÏòTSI ÍâÉè¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] irq       : ÖĞ¶ÏÄ£Ê½
+ * \param[in] p_hw_tsi  : æŒ‡å‘TSI å¤–è®¾å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] irq       : ä¸­æ–­æ¨¡å¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_tsi_int_mode_set (amhw_fsl_tsi_t *p_hw_tsi, amhw_fsl_tsi_irq_mode_t irq)
@@ -215,12 +215,12 @@ void amhw_fsl_tsi_int_mode_set (amhw_fsl_tsi_t *p_hw_tsi, amhw_fsl_tsi_irq_mode_
 }
 
 /**
- * \brief TSI ¹¤×÷Ä£Ê½ÉèÖÃ
+ * \brief TSI å·¥ä½œæ¨¡å¼è®¾ç½®
  *
- * \param[in] p_hw_tsi  : Ö¸Ïò TSI ÍâÉè¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] mode      : ÒªÉèÖÃµÄÄ£Ê½
+ * \param[in] p_hw_tsi  : æŒ‡å‘ TSI å¤–è®¾å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] mode      : è¦è®¾ç½®çš„æ¨¡å¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_tsi_mode_set (amhw_fsl_tsi_t *p_hw_tsi, amhw_fsl_tsi_mode_t mode)
@@ -229,12 +229,12 @@ void amhw_fsl_tsi_mode_set (amhw_fsl_tsi_t *p_hw_tsi, amhw_fsl_tsi_mode_t mode)
 }
 
 /**
- * \brief TSI ²Î¿¼Õñµ´Æ÷ºãÁ÷Ô´ÉèÖÃ
+ * \brief TSI å‚è€ƒæŒ¯è¡å™¨æ’æµæºè®¾ç½®
  *
- * \param[in] p_hw_tsi  : Ö¸ÏòTSI ÍâÉè¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] value     : ÉèÖÃµÄµçÁ÷Öµ
+ * \param[in] p_hw_tsi  : æŒ‡å‘TSI å¤–è®¾å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] value     : è®¾ç½®çš„ç”µæµå€¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_tsi_refchrg_val_set (amhw_fsl_tsi_t *p_hw_tsi,
@@ -244,12 +244,12 @@ void amhw_fsl_tsi_refchrg_val_set (amhw_fsl_tsi_t *p_hw_tsi,
 }
 
 /**
- * \brief Õñµ´Æ÷µçÑ¹ÉèÖÃ
+ * \brief æŒ¯è¡å™¨ç”µå‹è®¾ç½®
  *
- * \param[in] p_hw_tsi  : Ö¸ÏòTSI ÍâÉè¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] value     : ÉèÖÃµÄµçÑ¹Öµ
+ * \param[in] p_hw_tsi  : æŒ‡å‘TSI å¤–è®¾å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] value     : è®¾ç½®çš„ç”µå‹å€¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_tsi_dvolt_set (amhw_fsl_tsi_t *p_hw_tsi,
@@ -259,12 +259,12 @@ void amhw_fsl_tsi_dvolt_set (amhw_fsl_tsi_t *p_hw_tsi,
 }
 
 /**
- * \brief TSI µç¼«Õñµ´Æ÷ºãÁ÷Ô´ÉèÖÃ
+ * \brief TSI ç”µææŒ¯è¡å™¨æ’æµæºè®¾ç½®
  *
- * \param[in] p_hw_tsi  : Ö¸ÏòTSI ÍâÉè¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] value     : ÉèÖÃµÄµçÁ÷Öµ
+ * \param[in] p_hw_tsi  : æŒ‡å‘TSI å¤–è®¾å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] value     : è®¾ç½®çš„ç”µæµå€¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_tsi_extchrg_val_set (amhw_fsl_tsi_t *p_hw_tsi,
@@ -274,12 +274,12 @@ void amhw_fsl_tsi_extchrg_val_set (amhw_fsl_tsi_t *p_hw_tsi,
 }
 
 /**
- * \brief TSI µç¼«Õñµ´Æ÷·ÖÆµÉèÖÃ
+ * \brief TSI ç”µææŒ¯è¡å™¨åˆ†é¢‘è®¾ç½®
  *
- * \param[in] p_hw_tsi  : Ö¸ÏòTSI ÍâÉè¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] div_val   : ÉèÖÃµÄ·ÖÆµÖµ
+ * \param[in] p_hw_tsi  : æŒ‡å‘TSI å¤–è®¾å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] div_val   : è®¾ç½®çš„åˆ†é¢‘å€¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_tsi_oscfreq_div_set (amhw_fsl_tsi_t *p_hw_tsi,
@@ -289,12 +289,12 @@ void amhw_fsl_tsi_oscfreq_div_set (amhw_fsl_tsi_t *p_hw_tsi,
 }
 
 /**
- * \brief TSI µç¼«É¨Ãè´ÎÊıÉèÖÃ
+ * \brief TSI ç”µææ‰«ææ¬¡æ•°è®¾ç½®
  *
- * \param[in] p_hw_tsi  : Ö¸ÏòTSI ÍâÉè¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] num       : ÉèÖÃµÄÉ¨Ãè´ÎÊı
+ * \param[in] p_hw_tsi  : æŒ‡å‘TSI å¤–è®¾å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] num       : è®¾ç½®çš„æ‰«ææ¬¡æ•°
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_tsi_scan_num_set (amhw_fsl_tsi_t *p_hw_tsi, uint32_t num)
@@ -303,11 +303,11 @@ void amhw_fsl_tsi_scan_num_set (amhw_fsl_tsi_t *p_hw_tsi, uint32_t num)
 }
 
 /**
- * \brief TSI Ä£¿éÊ¹ÄÜ
+ * \brief TSI æ¨¡å—ä½¿èƒ½
  *
- * \param[in] p_hw_tsi  : Ö¸ÏòTSI ÍâÉè¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_tsi  : æŒ‡å‘TSI å¤–è®¾å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_tsi_mode_enable (amhw_fsl_tsi_t *p_hw_tsi)
@@ -316,11 +316,11 @@ void amhw_fsl_tsi_mode_enable (amhw_fsl_tsi_t *p_hw_tsi)
 }
 
 /**
- * \brief TSI Ä£¿é½ûÄÜ
+ * \brief TSI æ¨¡å—ç¦èƒ½
  *
- * \param[in] p_hw_tsi  : Ö¸ÏòTSI ÍâÉè¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_tsi  : æŒ‡å‘TSI å¤–è®¾å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_tsi_mode_disable (amhw_fsl_tsi_t *p_hw_tsi)
@@ -329,11 +329,11 @@ void amhw_fsl_tsi_mode_disable (amhw_fsl_tsi_t *p_hw_tsi)
 }
 
 /**
- * \brief TSI ÖĞ¶ÏÊ¹ÄÜ
+ * \brief TSI ä¸­æ–­ä½¿èƒ½
  *
- * \param[in] p_hw_tsi  : Ö¸ÏòTSI ÍâÉè¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_tsi  : æŒ‡å‘TSI å¤–è®¾å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_tsi_int_enable (amhw_fsl_tsi_t *p_hw_tsi)
@@ -342,11 +342,11 @@ void amhw_fsl_tsi_int_enable (amhw_fsl_tsi_t *p_hw_tsi)
 }
 
 /**
- * \brief TSI ÖĞ¶Ï½ûÄÜ
+ * \brief TSI ä¸­æ–­ç¦èƒ½
  *
- * \param[in] p_hw_tsi  : Ö¸ÏòTSI ÍâÉè¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_tsi  : æŒ‡å‘TSI å¤–è®¾å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_tsi_int_disable (amhw_fsl_tsi_t *p_hw_tsi)
@@ -355,11 +355,11 @@ void amhw_fsl_tsi_int_disable (amhw_fsl_tsi_t *p_hw_tsi)
 }
 
 /**
- * \brief TSI µÍ¹¦ºÄÄ£Ê½ÏÂ¹¤×÷Ê¹ÄÜ
+ * \brief TSI ä½åŠŸè€—æ¨¡å¼ä¸‹å·¥ä½œä½¿èƒ½
  *
- * \param[in] p_hw_tsi  : Ö¸ÏòTSI ÍâÉè¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_tsi  : æŒ‡å‘TSI å¤–è®¾å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_tsi_lowpower_enable (amhw_fsl_tsi_t *p_hw_tsi)
@@ -368,11 +368,11 @@ void amhw_fsl_tsi_lowpower_enable (amhw_fsl_tsi_t *p_hw_tsi)
 }
 
 /**
- * \brief TSI µÍ¹¦ºÄÄ£Ê½ÏÂ¹¤×÷½ûÄÜ
+ * \brief TSI ä½åŠŸè€—æ¨¡å¼ä¸‹å·¥ä½œç¦èƒ½
  *
- * \param[in] p_hw_tsi  : Ö¸ÏòTSI ÍâÉè¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_tsi  : æŒ‡å‘TSI å¤–è®¾å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_tsi_lowpower_disable (amhw_fsl_tsi_t *p_hw_tsi)
@@ -381,12 +381,12 @@ void amhw_fsl_tsi_lowpower_disable (amhw_fsl_tsi_t *p_hw_tsi)
 }
 
 /**
- * \brief TSI É¨Ãè´¥·¢Ä£Ê½ÉèÖÃ
+ * \brief TSI æ‰«æè§¦å‘æ¨¡å¼è®¾ç½®
  *
- * \param[in] p_hw_tsi  : Ö¸ÏòTSI ÍâÉè¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] mode      : ĞèÒªÉèÖÃµÄÉ¨ÃèÄ£Ê½
+ * \param[in] p_hw_tsi  : æŒ‡å‘TSI å¤–è®¾å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] mode      : éœ€è¦è®¾ç½®çš„æ‰«ææ¨¡å¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_tsi_scan_trig_set (amhw_fsl_tsi_t *p_hw_tsi,
@@ -396,12 +396,12 @@ void amhw_fsl_tsi_scan_trig_set (amhw_fsl_tsi_t *p_hw_tsi,
 }
 
 /**
- * \brief TSI ¶ÁÉ¨Ãè´¥·¢Ä£Ê½
+ * \brief TSI è¯»æ‰«æè§¦å‘æ¨¡å¼
  *
- * \param[in] p_hw_tsi  : Ö¸ÏòTSI ÍâÉè¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_tsi  : æŒ‡å‘TSI å¤–è®¾å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \retval 0 : Èí¼ş´¥·¢
- * \retval 1 : Ó²¼ş´¥·¢
+ * \retval 0 : è½¯ä»¶è§¦å‘
+ * \retval 1 : ç¡¬ä»¶è§¦å‘
  */
 am_static_inline
 int amhw_fsl_tsi_scan_trig_get (amhw_fsl_tsi_t *p_hw_tsi)
@@ -410,12 +410,12 @@ int amhw_fsl_tsi_scan_trig_get (amhw_fsl_tsi_t *p_hw_tsi)
 }
 
 /**
- * \brief TSI É¨Ãè×´Ì¬»ñÈ¡
+ * \brief TSI æ‰«æçŠ¶æ€è·å–
  *
- * \param[in] p_hw_tsi  : Ö¸ÏòTSI ÍâÉè¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_tsi  : æŒ‡å‘TSI å¤–è®¾å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \retval 0 : ½ø³ÌÖĞÃ»ÓĞÉ¨Ãè
- * \retval 1 : ½ø³ÌÖĞÓĞÉ¨Ãè
+ * \retval 0 : è¿›ç¨‹ä¸­æ²¡æœ‰æ‰«æ
+ * \retval 1 : è¿›ç¨‹ä¸­æœ‰æ‰«æ
  */
 am_static_inline
 int amhw_fsl_tsi_scnip_get (amhw_fsl_tsi_t *p_hw_tsi)
@@ -424,12 +424,12 @@ int amhw_fsl_tsi_scnip_get (amhw_fsl_tsi_t *p_hw_tsi)
 }
 
 /**
- * \brief TSI ¶ÁÉ¨Ãè½áÊø±êÖ¾
+ * \brief TSI è¯»æ‰«æç»“æŸæ ‡å¿—
  *
- * \param[in] p_hw_tsi  : Ö¸ÏòTSI ÍâÉè¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_tsi  : æŒ‡å‘TSI å¤–è®¾å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \retval 0 : É¨ÃèÃ»ÓĞ½áÊø
- * \retval 1 : É¨Ãè½áÊø
+ * \retval 0 : æ‰«ææ²¡æœ‰ç»“æŸ
+ * \retval 1 : æ‰«æç»“æŸ
  */
 am_static_inline
 int amhw_fsl_tsi_eosf_get (amhw_fsl_tsi_t *p_hw_tsi)
@@ -438,11 +438,11 @@ int amhw_fsl_tsi_eosf_get (amhw_fsl_tsi_t *p_hw_tsi)
 }
 
 /**
- * \brief TSI ÇåÉ¨Ãè½áÊø±êÖ¾
+ * \brief TSI æ¸…æ‰«æç»“æŸæ ‡å¿—
  *
- * \param[in] p_hw_tsi  : Ö¸ÏòTSI ÍâÉè¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_tsi  : æŒ‡å‘TSI å¤–è®¾å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_tsi_eosf_clr (amhw_fsl_tsi_t *p_hw_tsi)
@@ -451,11 +451,11 @@ void amhw_fsl_tsi_eosf_clr (amhw_fsl_tsi_t *p_hw_tsi)
 }
 
 /**
- * \brief TSI µç¼«Õñµ´Æ÷µçÁ÷Óë²Î¿¼Õñµ´Æ÷µçÁ÷½»»»Ê¹ÄÜ
+ * \brief TSI ç”µææŒ¯è¡å™¨ç”µæµä¸å‚è€ƒæŒ¯è¡å™¨ç”µæµäº¤æ¢ä½¿èƒ½
  *
- * \param[in] p_hw_tsi  : Ö¸ÏòTSI ÍâÉè¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_tsi  : æŒ‡å‘TSI å¤–è®¾å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_tsi_cursw_enable (amhw_fsl_tsi_t *p_hw_tsi)
@@ -464,11 +464,11 @@ void amhw_fsl_tsi_cursw_enable (amhw_fsl_tsi_t *p_hw_tsi)
 }
 
 /**
- * \brief TSI µç¼«Õñµ´Æ÷µçÁ÷Óë²Î¿¼Õñµ´Æ÷µçÁ÷½»»»½ûÄÜ
+ * \brief TSI ç”µææŒ¯è¡å™¨ç”µæµä¸å‚è€ƒæŒ¯è¡å™¨ç”µæµäº¤æ¢ç¦èƒ½
  *
- * \param[in] p_hw_tsi  : Ö¸ÏòTSI ÍâÉè¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_tsi  : æŒ‡å‘TSI å¤–è®¾å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_tsi_cursw_disable (amhw_fsl_tsi_t *p_hw_tsi)
@@ -477,12 +477,12 @@ void amhw_fsl_tsi_cursw_disable (amhw_fsl_tsi_t *p_hw_tsi)
 }
 
 /**
- * \brief TSI µçÁ÷¼ì²âÍ¨µÀÑ¡Ôñ
+ * \brief TSI ç”µæµæ£€æµ‹é€šé“é€‰æ‹©
  *
- * \param[in] p_hw_tsi  : Ö¸ÏòTSI ÍâÉè¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] chan      : ĞèÒªÑ¡ÔñµÄÍ¨µÀ
+ * \param[in] p_hw_tsi  : æŒ‡å‘TSI å¤–è®¾å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] chan      : éœ€è¦é€‰æ‹©çš„é€šé“
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_tsi_chan_set (amhw_fsl_tsi_t *p_hw_tsi, amhw_fsl_tsi_channel_t chan)
@@ -491,11 +491,11 @@ void amhw_fsl_tsi_chan_set (amhw_fsl_tsi_t *p_hw_tsi, amhw_fsl_tsi_channel_t cha
 }
 
 /**
- * \brief TSI DMA´«ÊäÇëÇóÊ¹ÄÜ
+ * \brief TSI DMAä¼ è¾“è¯·æ±‚ä½¿èƒ½
  *
- * \param[in] p_hw_tsi  : Ö¸ÏòTSI ÍâÉè¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_tsi  : æŒ‡å‘TSI å¤–è®¾å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_tsi_dma_enable (amhw_fsl_tsi_t *p_hw_tsi)
@@ -504,11 +504,11 @@ void amhw_fsl_tsi_dma_enable (amhw_fsl_tsi_t *p_hw_tsi)
 }
 
 /**
- * \brief TSI DMA´«ÊäÇëÇó½ûÄÜ
+ * \brief TSI DMAä¼ è¾“è¯·æ±‚ç¦èƒ½
  *
- * \param[in] p_hw_tsi  : Ö¸ÏòTSI ÍâÉè¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_tsi  : æŒ‡å‘TSI å¤–è®¾å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_tsi_dma_disable (amhw_fsl_tsi_t *p_hw_tsi)
@@ -517,11 +517,11 @@ void amhw_fsl_tsi_dma_disable (amhw_fsl_tsi_t *p_hw_tsi)
 }
 
 /**
- * \brief TSI Í¨µÀÈí¼ş´¥·¢Æô¶¯
+ * \brief TSI é€šé“è½¯ä»¶è§¦å‘å¯åŠ¨
  *
- * \param[in] p_hw_tsi  : Ö¸ÏòTSI ÍâÉè¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_tsi  : æŒ‡å‘TSI å¤–è®¾å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_tsi_soft_tirg_start (amhw_fsl_tsi_t *p_hw_tsi)
@@ -530,11 +530,11 @@ void amhw_fsl_tsi_soft_tirg_start (amhw_fsl_tsi_t *p_hw_tsi)
 }
 
 /**
- * \brief TSI ¶ÁÈ¡×ª»»½á¹ûÖµ
+ * \brief TSI è¯»å–è½¬æ¢ç»“æœå€¼
  *
- * \param[in] p_hw_tsi  : Ö¸ÏòTSI ÍâÉè¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_tsi  : æŒ‡å‘TSI å¤–è®¾å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ×ª»»ºóµÄÖµ
+ * \return è½¬æ¢åçš„å€¼
  */
 am_static_inline
 uint16_t amhw_fsl_tsi_convert_value_get (amhw_fsl_tsi_t *p_hw_tsi)
@@ -543,12 +543,12 @@ uint16_t amhw_fsl_tsi_convert_value_get (amhw_fsl_tsi_t *p_hw_tsi)
 }
 
 /**
- * \brief TSI Ğ´Í¨µÀ·§ÖµÉÏÏŞ
+ * \brief TSI å†™é€šé“é˜€å€¼ä¸Šé™
  *
- * \param[in] p_hw_tsi  : Ö¸ÏòTSI ÍâÉè¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] value     : ·§ÖµÉÏÏŞ
+ * \param[in] p_hw_tsi  : æŒ‡å‘TSI å¤–è®¾å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] value     : é˜€å€¼ä¸Šé™
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_tsi_wake_chan_thresholdh_write (amhw_fsl_tsi_t *p_hw_tsi, uint32_t value)
@@ -557,11 +557,11 @@ void amhw_fsl_tsi_wake_chan_thresholdh_write (amhw_fsl_tsi_t *p_hw_tsi, uint32_t
 }
 
 /**
- * \brief TSI ¶ÁÍ¨µÀ·§ÖµÉÏÏŞ
+ * \brief TSI è¯»é€šé“é˜€å€¼ä¸Šé™
  *
- * \param[in] p_hw_tsi  : Ö¸ÏòTSI ÍâÉè¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_tsi  : æŒ‡å‘TSI å¤–è®¾å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ·§ÖµÉÏÏŞ
+ * \return é˜€å€¼ä¸Šé™
  */
 am_static_inline
 uint16_t amhw_fsl_tsi_wake_chan_thresholdh_read (amhw_fsl_tsi_t *p_hw_tsi)
@@ -570,12 +570,12 @@ uint16_t amhw_fsl_tsi_wake_chan_thresholdh_read (amhw_fsl_tsi_t *p_hw_tsi)
 }
 
 /**
- * \brief TSI Ğ´Í¨µÀÏÂÏŞ·§Öµ
+ * \brief TSI å†™é€šé“ä¸‹é™é˜€å€¼
  *
- * \param[in] p_hw_tsi  : Ö¸ÏòTSI ÍâÉè¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] value     : ·§ÖµÏÂÏŞ
+ * \param[in] p_hw_tsi  : æŒ‡å‘TSI å¤–è®¾å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] value     : é˜€å€¼ä¸‹é™
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_tsi_wake_chan_thresholdl_write (amhw_fsl_tsi_t *p_hw_tsi, uint32_t value)
@@ -584,11 +584,11 @@ void amhw_fsl_tsi_wake_chan_thresholdl_write (amhw_fsl_tsi_t *p_hw_tsi, uint32_t
 }
 
 /**
- * \brief TSI ¶ÁÍ¨µÀ·§ÖµÏÂÏŞ
+ * \brief TSI è¯»é€šé“é˜€å€¼ä¸‹é™
  *
- * \param[in] p_hw_tsi  : Ö¸ÏòTSI ÍâÉè¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_tsi  : æŒ‡å‘TSI å¤–è®¾å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÏÂÏŞ·§Öµ
+ * \return ä¸‹é™é˜€å€¼
  */
 am_static_inline
 uint16_t amhw_fsl_tsi_wake_chan_thresholdl_read (amhw_fsl_tsi_t *p_hw_tsi)

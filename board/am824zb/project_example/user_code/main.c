@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief AM824ZB ģ�幤��
+ * \brief AM824ZB 模板工程
  *
  *
  * \internal
@@ -29,22 +29,22 @@
 #include "demo_am824zb_entries.h"
 #include "demo_am824_core_entries.h"
 /**
- * \brief AMetal Ӧ�ó������
+ * \brief AMetal 应用程序入口
  */
 void am_main (void)
 {
     AM_DBG_INFO("Start up successful!\r\n");
     /*
-     * am824zb��am824_core�����輸����ͬ����������Zigbeeģ�飬
-     * ����am824zb���I2C0��PIO10_10��PIO0_11��miniport�����ſ��ܻ���ɳ�ͻ��
-     * ����һЩdemoֻ����am824_core�����ж��޷���am824zb���������У����ͻ���������е�demo:
+     * am824zb与am824_core的外设几乎相同，仅仅多了Zigbee模块，
+     * 但是am824zb板的I2C0的PIO10_10和PIO0_11与miniport的引脚可能会造成冲突，
+     * 导致一些demo只能在am824_core上运行而无法在am824zb上正常运行，因冲突而不能运行的demo:
      *
      * demo_am824_core_miniport_hc595_digitron_temp_entry();
      *
-     * ���⣬�û�����Ƴ�ĳЩ��Ҫʹ�õ�PIO10_10��PIO10_11���ŵ�miniport��lm75ͬʱʹ�õĴ���Ҳ�޷��������С�
+     * 此外，用户若设计出某些需要使用到PIO10_10、PIO10_11引脚的miniport与lm75同时使用的代码也无法正常运行。
      *
-     * ����Ϊ���п���������demo����ں�������Ҫ�����ĸ� demo����ȡ����Ӧ���������е�ע�ͣ�Ĭ�����е���LED��˸ demo��
-     * ע�⣺ͬһʱ��ֻ������һ�� demo����ֻ��ʹĳһ�д���ȡ��ע��״̬��
+     * 以下为所有可正常运行demo的入口函数，需要运行哪个 demo，就取消对应函数调用行的注释，默认运行的是LED闪烁 demo。
+     * 注意：同一时刻只能运行一个 demo，即只能使某一行处于取消注释状态。
      */
 
     demo_am824_core_std_led_entry();
@@ -122,7 +122,7 @@ void am_main (void)
     //demo_am824_core_std_wkt_timer_entry();
 
     /*
-     * ����demoΪam824zb������demo
+     * 以下demo为am824zb板特有demo
      */
     //demo_am824zb_hw_adc_dma_entry();
     //demo_am824zb_hw_adc_thcmp_entry();

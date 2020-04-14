@@ -12,31 +12,31 @@
 struct _adjust_state;
 typedef struct _adjust_state adjust_state_t;
 		 
-// ¶¨Òå²ÎÊıµ÷½Ú×´Ì¬»ú
+// å®šä¹‰å‚æ•°è°ƒèŠ‚çŠ¶æ€æœº
 typedef struct _param_adjust_sm {
-	const struct _adjust_state 	*p_state;      			// µ±Ç°×´Ì¬
-	param_adjust_action_t     *p_action;        		// ¶¯×÷Àà
+	const struct _adjust_state 	*p_state;      			// å½“å‰çŠ¶æ€
+	param_adjust_action_t     *p_action;        		// åŠ¨ä½œç±»
 } param_adjust_sm_t;
 
 typedef void (*event_handle_t) (param_adjust_sm_t *p_this);
 
 typedef struct _adjust_state {
-	event_handle_t  pfn_entry;						  // ½øÈë¶¯×÷
-	event_handle_t  pfn_event_set;					// SETÊÂ¼ş´¦Àíº¯Êı
-	event_handle_t  pfn_event_inc;					// ¼Ó1ÊÂ¼ş´¦Àíº¯Êı
-	event_handle_t  pfn_event_lr;					  // ×óÒÆ/ÓÒÒÆÊÂ¼ş´¦Àíº¯Êı
-	event_handle_t  pfn_event_dec;					// ¼õ1ÊÂ¼ş´¦Àíº¯Êı
-	event_handle_t  pfn_exit;						    // ÍË³ö¶¯×÷
+	event_handle_t  pfn_entry;						  // è¿›å…¥åŠ¨ä½œ
+	event_handle_t  pfn_event_set;					// SETäº‹ä»¶å¤„ç†å‡½æ•°
+	event_handle_t  pfn_event_inc;					// åŠ 1äº‹ä»¶å¤„ç†å‡½æ•°
+	event_handle_t  pfn_event_lr;					  // å·¦ç§»/å³ç§»äº‹ä»¶å¤„ç†å‡½æ•°
+	event_handle_t  pfn_event_dec;					// å‡1äº‹ä»¶å¤„ç†å‡½æ•°
+	event_handle_t  pfn_exit;						    // é€€å‡ºåŠ¨ä½œ
 } adjust_state_t;
 
 
-// ×´Ì¬»ú³õÊ¼»¯
+// çŠ¶æ€æœºåˆå§‹åŒ–
 int param_adjust_sm_init (param_adjust_sm_t *p_this,param_adjust_action_t *p_action);
 
-int param_adjust_sm_event_key_set (param_adjust_sm_t *p_this);			// SET¼ü°´ÏÂ
-int param_adjust_sm_event_key_lr  (param_adjust_sm_t *p_this);			// L/R¼ü°´ÏÂ
-int param_adjust_sm_event_key_inc (param_adjust_sm_t *p_this);			// ¼Ó¼ü°´ÏÂ
-int param_adjust_sm_event_key_dec (param_adjust_sm_t *p_this);			// ¼õ¼ü°´ÏÂ
+int param_adjust_sm_event_key_set (param_adjust_sm_t *p_this);			// SETé”®æŒ‰ä¸‹
+int param_adjust_sm_event_key_lr  (param_adjust_sm_t *p_this);			// L/Ré”®æŒ‰ä¸‹
+int param_adjust_sm_event_key_inc (param_adjust_sm_t *p_this);			// åŠ é”®æŒ‰ä¸‹
+int param_adjust_sm_event_key_dec (param_adjust_sm_t *p_this);			// å‡é”®æŒ‰ä¸‹
 		 
 	 
 #endif

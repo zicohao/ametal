@@ -12,17 +12,17 @@
 
 /**
  * \file
- * \brief �ж��ӳٴ�����׼�ӿ�
+ * \brief 中断延迟处理标准接口
  *
- *     ʵ��Ӧ���У�����ϣ��Ӳ���жϺ��������ܿ�Ľ�������ˣ��������ж�ʵ����Ҫ���
- * �ıȽϺ�ʱ�Ĺ����ŵ��ж��ӳ��д�����
+ *     实际应用中，往往希望硬件中断函数尽可能快的结束，因此，往往将中断实际需要完成
+ * 的比较耗时的工作放到中断延迟中处理。
  *
- * ʹ�ñ�������Ҫ��������ͷ�ļ�:
+ * 使用本服务需要包含以下头文件:
  * \code
  * #include "am_isr_defer.h"
  * \endcode
  *
- * \attention ��isr_deferʵ�ֿ���֧�� Cortex-Mxϵ�� MCU��ʹ��PendSV�����ӳ���ҵ
+ * \attention 该isr_defer实现可以支持 Cortex-Mx系列 MCU，使用PendSV处理延迟作业
  *
  * \internal
  * \par modification history:

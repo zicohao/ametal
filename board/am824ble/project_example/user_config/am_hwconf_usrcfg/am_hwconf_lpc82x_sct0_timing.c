@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief LPC82X SCT0 TIMING ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief LPC82X SCT0 TIMING ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_lpc82x_sct0_timing.c
  *
  * \internal
@@ -35,7 +35,7 @@
  */
 
 /**
- * \brief SCT0 TIMING Æ½Ì¨³õÊ¼»¯
+ * \brief SCT0 TIMING å¹³å°åˆå§‹åŒ–
  */
 am_local void __lpc82x_sct0_timing_plfm_init (void)
 {
@@ -44,7 +44,7 @@ am_local void __lpc82x_sct0_timing_plfm_init (void)
 }
 
 /**
- * \brief SCT0 TIMING Æ½Ì¨½â³õÊ¼»¯
+ * \brief SCT0 TIMING å¹³å°è§£åˆå§‹åŒ–
  */
 am_local void __lpc82x_sct0_timing_plfm_deinit (void)
 {
@@ -52,21 +52,21 @@ am_local void __lpc82x_sct0_timing_plfm_deinit (void)
     amhw_lpc82x_clk_periph_disable(AMHW_LPC82X_CLK_SCT);
 }
 
-/** \brief SCT TIMING Éè±¸ĞÅÏ¢ */
+/** \brief SCT TIMING è®¾å¤‡ä¿¡æ¯ */
 am_local am_const am_lpc_sct_timing_devinfo_t __g_lpc82x_sct0_timing_devinfo = {
-    LPC82X_SCT0_BASE,                    /* SCT0 ¼Ä´æÆ÷¿é»ùµØÖ· */
-    INUM_SCT0,                           /* SCT0 ÖĞ¶ÏºÅ */
-    CLK_SCT,                             /* SCT0 Ê±ÖÓºÅ */
-    AM_LPC_SCT_TIMING_2_16BIT,           /* SCT ÓÃÓÚ 2 ¸ö 16 Î»¶¨Ê±Æ÷ */
-    __lpc82x_sct0_timing_plfm_init,      /* Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __lpc82x_sct0_timing_plfm_deinit,    /* Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    LPC82X_SCT0_BASE,                    /* SCT0 å¯„å­˜å™¨å—åŸºåœ°å€ */
+    INUM_SCT0,                           /* SCT0 ä¸­æ–­å· */
+    CLK_SCT,                             /* SCT0 æ—¶é’Ÿå· */
+    AM_LPC_SCT_TIMING_2_16BIT,           /* SCT ç”¨äº 2 ä¸ª 16 ä½å®šæ—¶å™¨ */
+    __lpc82x_sct0_timing_plfm_init,      /* å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __lpc82x_sct0_timing_plfm_deinit,    /* å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 };
 
-/** \brief SCT TIMING Éè±¸ÊµÀı */
+/** \brief SCT TIMING è®¾å¤‡å®ä¾‹ */
 am_local am_lpc_sct_timing_dev_t __g_lpc82x_sct0_timing_dev;
 
 /**
- * \brief SCT0 TIMING ÊµÀı³õÊ¼»¯
+ * \brief SCT0 TIMING å®ä¾‹åˆå§‹åŒ–
  */
 am_timer_handle_t am_lpc82x_sct0_timing_inst_init (void)
 {
@@ -75,7 +75,7 @@ am_timer_handle_t am_lpc82x_sct0_timing_inst_init (void)
 }
 
 /**
- * \brief SCT0 TIMING ÊµÀı½â³õÊ¼»¯
+ * \brief SCT0 TIMING å®ä¾‹è§£åˆå§‹åŒ–
  */
 void am_lpc82x_sct0_timing_inst_deinit (am_timer_handle_t handle)
 {

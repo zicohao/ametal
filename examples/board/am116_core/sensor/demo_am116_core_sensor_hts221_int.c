@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief ��ʪ�ȴ����� HTS221 ���̣�ͨ������ģʽʵ��
+ * \brief 温湿度传感器 HTS221 例程，通过触发模式实现
  *
- * - ʵ������
- *   1. �������õ�Ƶ�ʣ����ж��л�ȡ���ݣ���ͨ�����ڴ�ӡ
+ * - 实验现象：
+ *   1. 按照设置的频率，在中断中获取数据，并通过串口打印
  *
  * \internal
  * \par Modification history
@@ -29,7 +29,7 @@
 #include "demo_am116_core_entries.h"
 
 /**
- * \brief �������������
+ * \brief 传感器例程入口
  */
 void demo_am116_core_sensor_hts221_int_entry (void)
 {

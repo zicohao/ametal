@@ -12,21 +12,21 @@
 
 /**
  * \file
- * \brief SD������д����
+ * \brief SD卡多块读写例程
  *
- * - �������裺
- *   1. ��SD�����뿨��
+ * - 操作步骤：
+ *   1. 将SD卡插入卡槽
  *
- * - ʵ������
- *   1. ����SD��ָ���飻
- *   2. д������ݣ�
- *   2. �����ղ�д������ݣ�
- *   3. ���Դ��ڴ�ӡ���Խ��������ȡ��������д������ݲ�һ�£����ӡ"sd card test error"��ֹͣ��
+ * - 实验现象：
+ *   1. 擦除SD卡指定块；
+ *   2. 写入块数据；
+ *   2. 读出刚才写入的数据；
+ *   3. 调试串口打印测试结果，若读取的数据与写入的数据不一致，则打印"sd card test error"并停止。
  *
- * - ע�⣺
- *   1. ���д�demo���ܻ��ƻ�SD��ԭ�е��ļ�ϵͳ��ע�ⱸ�ݱ���SD����ԭ������Ҫ�ļ�
+ * - 注意：
+ *   1. 运行此demo可能会破坏SD卡原有的文件系统，注意备份保存SD卡中原本的重要文件
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_std_sdcard.c src_std_sdcard
  *
  * \internal
@@ -47,16 +47,16 @@
 #include "am_vdebug.h"
 #include "am_sdcard.h"
 
-#define __READ_BLOCKS  2       /* �����ݿ���� */
-#define __WRITE_BLOCKS 6       /* д���ݿ���� */
-#define __ERASE_BLOCKS 10      /* �������ݿ���� */
+#define __READ_BLOCKS  2       /* 读数据块个数 */
+#define __WRITE_BLOCKS 6       /* 写数据块个数 */
+#define __ERASE_BLOCKS 10      /* 擦除数据块个数 */
 
-#define __BLOCK_SIZE   512     /* ���ݿ��С */
+#define __BLOCK_SIZE   512     /* 数据块大小 */
 
-static uint8_t __g_wr_buf[__BLOCK_SIZE * __WRITE_BLOCKS] = {0}; /* д���ݻ��涨�� */
-static uint8_t __g_rd_buf[__BLOCK_SIZE * __READ_BLOCKS]  = {0}; /* �����ݻ��涨�� */
+static uint8_t __g_wr_buf[__BLOCK_SIZE * __WRITE_BLOCKS] = {0}; /* 写数据缓存定义 */
+static uint8_t __g_rd_buf[__BLOCK_SIZE * __READ_BLOCKS]  = {0}; /* 读数据缓存定义 */
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_std_sdcard_entry (am_sdcard_handle_t handle)
 {
@@ -69,18 +69,18 @@ void demo_std_sdcard_entry (am_sdcard_handle_t handle)
         while(1);
     }
 
-    /* д���ݻ��渳��ֵ */
+    /* 写数据缓存赋初值 */
     for (i = 0; i < sizeof(__g_wr_buf); i++) {
         __g_wr_buf[i] = i;
     }
 
-    /* ����ָ���� */
+    /* 擦除指定块 */
     ret = am_sdcard_blocks_erase(handle, 1000, __ERASE_BLOCKS);
     if (ret != AM_OK) {
         am_kprintf( "sdcard blocks erase failed\r\n");
     }
 
-    /* ָ����д������ */
+    /* 指定块写入数据 */
     ret = am_sdcard_blocks_write(handle, __g_wr_buf, 1000, __WRITE_BLOCKS);
     if (ret != AM_OK) {
         am_kprintf( "sdcard blocks write failed\r\n");
@@ -89,7 +89,7 @@ void demo_std_sdcard_entry (am_sdcard_handle_t handle)
     count = 0;
     while(1) {
 
-        /* ָ�����ȡ���� */
+        /* 指定块读取数据 */
         ret = am_sdcard_blocks_read(handle,
                                     __g_rd_buf,
                                     1000 + count,

@@ -13,15 +13,15 @@
 
 /**
  * \file
- * \brief LPC82X IOCON (IO����) Ӳ�������ӿ�
+ * \brief LPC82X IOCON (IO配置) 硬件操作接口
  * 
- *  1. ����ģʽ���������������������м�ģʽ����
- *  2. ʹ�ܺͽ������ų��ͣ�
- *  3. ʹ�ܺͽ����������뷴ת��
- *  4. ʹ�ܺͽ��ܿ�©ģʽ��
- *  5. ���������˲����ڣ�
- *  6. �����˲�����Ƶ��
- *  7. ����I2C���������ٶ�ģʽ( PIO0_10 �� PIO0_11)��
+ *  1. 设置模式（消极，下拉，上拉，中继模式）；
+ *  2. 使能和禁能引脚迟滞；
+ *  3. 使能和禁能引脚输入反转；
+ *  4. 使能和禁能开漏模式；
+ *  5. 设置引脚滤波周期；
+ *  6. 设置滤波器分频；
+ *  7. 设置I2C引脚总线速度模式( PIO0_10 和 PIO0_11)。
  *
  * \internal
  * \par Modification History
@@ -48,75 +48,75 @@ extern "C" {
 
 
 /**
- * \brief LPC82x IOCON �Ĵ�����ṹ��
+ * \brief LPC82x IOCON 寄存器块结构体
  */
 typedef struct amhw_lpc82x_iocon {
-    __IO uint32_t  pio[31];       /**< \brief ���Ź��ܺ͵������Կ��ƼĴ��� */
+    __IO uint32_t  pio[31];       /**< \brief 引脚功能和电气特性控制寄存器 */
 } amhw_lpc82x_iocon_t;
 
 
 /**
- * \brief LPC82x (PIO0_0~PIO0_28) �������üĴ���ƫ�Ʊ�
+ * \brief LPC82x (PIO0_0~PIO0_28) 引脚配置寄存器偏移表
  *
- *  offset = amhw_lpc82x_iocon_offset_pin[PIO_15] : PIO_15���żĴ���ƫ�� \n
- *  pio[offset]                                   : ����PIO_15�ļĴ���
+ *  offset = amhw_lpc82x_iocon_offset_pin[PIO_15] : PIO_15引脚寄存器偏移 \n
+ *  pio[offset]                                   : 配置PIO_15的寄存器
  */
 extern const uint8_t amhw_lpc82x_iocon_offset_pin[];
 
 /**
- * \brief PINT ����ģʽ
+ * \brief PINT 引脚模式
  */
 typedef enum amhw_lpc82x_iocon_mode {
-    AMHW_LPC82X_IOCON_MODE_INACTIVE = 0,  /**< \brief ����ģʽ(������������) */
-    AMHW_LPC82X_IOCON_MODE_PULLDOWN,      /**< \brief ����ģʽ               */
-    AMHW_LPC82X_IOCON_MODE_PULLUP,        /**< \brief ����ģʽ               */
-    AMHW_LPC82X_IOCON_MODE_REPEATER       /**< \brief �м�ģʽ               */
+    AMHW_LPC82X_IOCON_MODE_INACTIVE = 0,  /**< \brief 消极模式(无上拉和下拉) */
+    AMHW_LPC82X_IOCON_MODE_PULLDOWN,      /**< \brief 下拉模式               */
+    AMHW_LPC82X_IOCON_MODE_PULLUP,        /**< \brief 上拉模式               */
+    AMHW_LPC82X_IOCON_MODE_REPEATER       /**< \brief 中继模式               */
 } amhw_lpc82x_iocon_mode_t;
 
 /**
- *  \brief PINT �����˲�����
+ *  \brief PINT 引脚滤波周期
  */
 typedef enum amhw_lpc82x_iocon_filt_cycle {
-    AMHW_LPC82X_IOCON_FILT_CYCLE_0 = 0,   /**< \brief ��ʹ���˲�����         */
-    AMHW_LPC82X_IOCON_FILT_CYCLE_1,       /**< \brief ����С��һ�������ź�   */
-    AMHW_LPC82X_IOCON_FILT_CYCLE_2,       /**< \brief ����С�����������ź�   */
-    AMHW_LPC82X_IOCON_FILT_CYCLE_3        /**< \brief ����С�����������ź�   */
+    AMHW_LPC82X_IOCON_FILT_CYCLE_0 = 0,   /**< \brief 不使用滤波功能         */
+    AMHW_LPC82X_IOCON_FILT_CYCLE_1,       /**< \brief 过滤小于一个周期信号   */
+    AMHW_LPC82X_IOCON_FILT_CYCLE_2,       /**< \brief 过滤小于两个周期信号   */
+    AMHW_LPC82X_IOCON_FILT_CYCLE_3        /**< \brief 过滤小于三个周期信号   */
 } amhw_lpc82x_iocon_filt_cycle_t;
 
 /**
- * \brief PINT �����˲�����ʱ�ӷ�Ƶ
+ * \brief PINT 引脚滤波采样时钟分频
  */
 typedef enum amhw_lpc82x_iocon_filt_clkdiv {
-    AMHW_LPC82X_IOCON_FILT_CLKDIV_0 = 0,  /**< \brief �˲�������ʱ�ӷ�Ƶ0    */
-    AMHW_LPC82X_IOCON_FILT_CLKDIV_1,      /**< \brief �˲�������ʱ�ӷ�Ƶ1    */
-    AMHW_LPC82X_IOCON_FILT_CLKDIV_2,      /**< \brief �˲�������ʱ�ӷ�Ƶ2    */
-    AMHW_LPC82X_IOCON_FILT_CLKDIV_3,      /**< \brief �˲�������ʱ�ӷ�Ƶ3    */
-    AMHW_LPC82X_IOCON_FILT_CLKDIV_4,      /**< \brief �˲�������ʱ�ӷ�Ƶ4    */
-    AMHW_LPC82X_IOCON_FILT_CLKDIV_5,      /**< \brief �˲�������ʱ�ӷ�Ƶ5    */
-    AMHW_LPC82X_IOCON_FILT_CLKDIV_6       /**< \brief �˲�������ʱ�ӷ�Ƶ6    */
+    AMHW_LPC82X_IOCON_FILT_CLKDIV_0 = 0,  /**< \brief 滤波器采样时钟分频0    */
+    AMHW_LPC82X_IOCON_FILT_CLKDIV_1,      /**< \brief 滤波器采样时钟分频1    */
+    AMHW_LPC82X_IOCON_FILT_CLKDIV_2,      /**< \brief 滤波器采样时钟分频2    */
+    AMHW_LPC82X_IOCON_FILT_CLKDIV_3,      /**< \brief 滤波器采样时钟分频3    */
+    AMHW_LPC82X_IOCON_FILT_CLKDIV_4,      /**< \brief 滤波器采样时钟分频4    */
+    AMHW_LPC82X_IOCON_FILT_CLKDIV_5,      /**< \brief 滤波器采样时钟分频5    */
+    AMHW_LPC82X_IOCON_FILT_CLKDIV_6       /**< \brief 滤波器采样时钟分频6    */
 } amhw_lpc82x_iocon_filt_clkdiv_t;
 
 
 /**
- * \brief PINT ����I2Cģʽ��������PIO0_10��PIO0_11��
+ * \brief PINT 引脚I2C模式（仅用于PIO0_10和PIO0_11）
  */
 typedef enum amhw_lpc82x_iocon_i2c_mode {
-    AMHW_LPC82X_IOCON_I2C_MODE_STD  = 0,  /**< \brief I2C��׼ģʽ/����ģʽ   */
-    AMHW_LPC82X_IOCON_I2C_MODE_IO,        /**< \brief ��ͨIOģʽ             */
-    AMHW_LPC82X_IOCON_I2C_MODE_PLUS       /**< \brief ������ģʽ             */
+    AMHW_LPC82X_IOCON_I2C_MODE_STD  = 0,  /**< \brief I2C标准模式/快速模式   */
+    AMHW_LPC82X_IOCON_I2C_MODE_IO,        /**< \brief 普通IO模式             */
+    AMHW_LPC82X_IOCON_I2C_MODE_PLUS       /**< \brief 超快速模式             */
 } amhw_lpc82x_iocon_i2c_mode_t;
 
 
 /**
- * \brief ��������ģʽ
+ * \brief 配置引脚模式
  *
- * \param[in] p_hw_iocon : ָ��IOCON�Ĵ������ָ��
- * \param[in] pin        : ���ű�ţ�ֵΪ PIO* (#PIO0_0)
- * \param[in] mode       : ����ģʽ
+ * \param[in] p_hw_iocon : 指向IOCON寄存器块的指针
+ * \param[in] pin        : 引脚编号，值为 PIO* (#PIO0_0)
+ * \param[in] mode       : 引脚模式
  *
- * \return ��
+ * \return 无
  *
- * \note ��PIO0_10��PIO0_11��Ч���ڲ���©
+ * \note 对PIO0_10和PIO0_11无效，内部开漏
  */
 am_static_inline
 void amhw_lpc82x_iocon_mode_set (amhw_lpc82x_iocon_t      *p_hw_iocon,
@@ -133,14 +133,14 @@ void amhw_lpc82x_iocon_mode_set (amhw_lpc82x_iocon_t      *p_hw_iocon,
 
 
 /**
- * \brief ʹ�����ų���
+ * \brief 使能引脚迟滞
  *
- * \param[in] p_hw_iocon : ָ��IOCON�Ĵ������ָ��
- * \param[in] pin        : ���ű�ţ�ֵΪ PIO* (#PIO0_0)
+ * \param[in] p_hw_iocon : 指向IOCON寄存器块的指针
+ * \param[in] pin        : 引脚编号，值为 PIO* (#PIO0_0)
  *
- * \return ��
+ * \return 无
  *
- * \note ��PIO0_10��PIO0_11��Ч
+ * \note 对PIO0_10和PIO0_11无效
  */
 am_static_inline
 void amhw_lpc82x_iocon_hys_enable (amhw_lpc82x_iocon_t *p_hw_iocon, int pin)
@@ -151,14 +151,14 @@ void amhw_lpc82x_iocon_hys_enable (amhw_lpc82x_iocon_t *p_hw_iocon, int pin)
 
 
 /**
- * \brief �������ų���
+ * \brief 禁能引脚迟滞
  *
- * \param[in] p_hw_iocon : ָ��IOCON�Ĵ������ָ��
- * \param[in] pin        : ���ű�ţ�ֵΪ PIO* (#PIO0_0)
+ * \param[in] p_hw_iocon : 指向IOCON寄存器块的指针
+ * \param[in] pin        : 引脚编号，值为 PIO* (#PIO0_0)
  *
- * \return ��
+ * \return 无
  *
- * \note ��PIO0_10��PIO0_11��Ч
+ * \note 对PIO0_10和PIO0_11无效
  */
 am_static_inline
 void amhw_lpc82x_iocon_hys_disable (amhw_lpc82x_iocon_t *p_hw_iocon, int pin)
@@ -169,12 +169,12 @@ void amhw_lpc82x_iocon_hys_disable (amhw_lpc82x_iocon_t *p_hw_iocon, int pin)
 
 
 /**
- * \brief ʹ���������뷴ת
+ * \brief 使能引脚输入反转
  *
- * \param[in] p_hw_iocon : ָ��IOCON�Ĵ������ָ��
- * \param[in] pin        : ���ű�ţ�ֵΪ PIO* (#PIO0_0)
+ * \param[in] p_hw_iocon : 指向IOCON寄存器块的指针
+ * \param[in] pin        : 引脚编号，值为 PIO* (#PIO0_0)
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_lpc82x_iocon_inv_enable (amhw_lpc82x_iocon_t *p_hw_iocon, int pin)
@@ -185,12 +185,12 @@ void amhw_lpc82x_iocon_inv_enable (amhw_lpc82x_iocon_t *p_hw_iocon, int pin)
 
 
 /**
- * \brief �����������뷴ת
+ * \brief 禁能引脚输入反转
  *
- * \param[in] p_hw_iocon : ָ��IOCON�Ĵ������ָ��
- * \param[in] pin        : ���ű�ţ�ֵΪ PIO* (#PIO0_0)
+ * \param[in] p_hw_iocon : 指向IOCON寄存器块的指针
+ * \param[in] pin        : 引脚编号，值为 PIO* (#PIO0_0)
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_lpc82x_iocon_inv_disable (amhw_lpc82x_iocon_t *p_hw_iocon, int pin)
@@ -201,14 +201,14 @@ void amhw_lpc82x_iocon_inv_disable (amhw_lpc82x_iocon_t *p_hw_iocon, int pin)
 
 
 /**
- * \brief ʹ�����ſ�©
+ * \brief 使能引脚开漏
  *
- * \param[in] p_hw_iocon : ָ��IOCON�Ĵ������ָ��
- * \param[in] pin        : ���ű�ţ�ֵΪ PIO* (#PIO0_0)
+ * \param[in] p_hw_iocon : 指向IOCON寄存器块的指针
+ * \param[in] pin        : 引脚编号，值为 PIO* (#PIO0_0)
  *
- * \return ��
+ * \return 无
  *
- * \note ��PIO0_10��PIO0_11��Ч���ڲ���©
+ * \note 对PIO0_10和PIO0_11无效，内部开漏
  */
 am_static_inline
 void amhw_lpc82x_iocon_od_enable (amhw_lpc82x_iocon_t *p_hw_iocon, int pin)
@@ -219,14 +219,14 @@ void amhw_lpc82x_iocon_od_enable (amhw_lpc82x_iocon_t *p_hw_iocon, int pin)
 
 
 /**
- * \brief �������ſ�©
+ * \brief 禁能引脚开漏
  *
- * \param[in] p_hw_iocon : ָ��IOCON�Ĵ������ָ��
- * \param[in] pin        : ���ű�ţ�ֵΪ PIO* (#PIO0_0)
+ * \param[in] p_hw_iocon : 指向IOCON寄存器块的指针
+ * \param[in] pin        : 引脚编号，值为 PIO* (#PIO0_0)
  *
- * \return ��
+ * \return 无
  *
- * \note ��PIO0_10��PIO0_11��Ч���ڲ���©
+ * \note 对PIO0_10和PIO0_11无效，内部开漏
  */
 am_static_inline
 void amhw_lpc82x_iocon_od_disable (amhw_lpc82x_iocon_t *p_hw_iocon, int pin)
@@ -237,13 +237,13 @@ void amhw_lpc82x_iocon_od_disable (amhw_lpc82x_iocon_t *p_hw_iocon, int pin)
 
 
 /**
- * \brief �����˲���������
+ * \brief 配置滤波引脚周期
  *
- * \param[in] p_hw_iocon : ָ��IOCON�Ĵ������ָ��
- * \param[in] pin        : ���ű�ţ�ֵΪ PIO* (#PIO0_0)
- * \param[in] cycle      : �����˲�����
+ * \param[in] p_hw_iocon : 指向IOCON寄存器块的指针
+ * \param[in] pin        : 引脚编号，值为 PIO* (#PIO0_0)
+ * \param[in] cycle      : 引脚滤波周期
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_lpc82x_iocon_filt_cycle_set (amhw_lpc82x_iocon_t          *p_hw_iocon,
@@ -260,13 +260,13 @@ void amhw_lpc82x_iocon_filt_cycle_set (amhw_lpc82x_iocon_t          *p_hw_iocon,
 
 
 /**
- * \brief ���ò����˲�����Ƶ
+ * \brief 设置采样滤波器分频
  *
- * \param[in] p_hw_iocon : ָ��IOCON�Ĵ������ָ��
- * \param[in] pin        : ���ű�ţ�ֵΪ PIO* (#PIO0_0)
- * \param[in] div        : ���Ų����˲�����Ƶ����
+ * \param[in] p_hw_iocon : 指向IOCON寄存器块的指针
+ * \param[in] pin        : 引脚编号，值为 PIO* (#PIO0_0)
+ * \param[in] div        : 引脚采样滤波器分频参数
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_lpc82x_iocon_filt_clkdiv_set (amhw_lpc82x_iocon_t         *p_hw_iocon,
@@ -283,15 +283,15 @@ void amhw_lpc82x_iocon_filt_clkdiv_set (amhw_lpc82x_iocon_t         *p_hw_iocon,
 
 
 /**
- * \brief ����I2Cģʽ
+ * \brief 设置I2C模式
  *
- * \param[in] p_hw_iocon : ָ��IOCON�Ĵ������ָ��
- * \param[in] pin        : ���ű�ţ�ֵΪ #PIO0_10 �� #PIO0_11
- * \param[in] mode       : I2Cģʽ
+ * \param[in] p_hw_iocon : 指向IOCON寄存器块的指针
+ * \param[in] pin        : 引脚编号，值为 #PIO0_10 或 #PIO0_11
+ * \param[in] mode       : I2C模式
  *
- * \return ��
+ * \return 无
  *
- * \note ֻ��PIO0_10��PIO0_11��Ч
+ * \note 只对PIO0_10和PIO0_11有效
  */
 am_static_inline
 void amhw_lpc82x_iocon_i2c_mode_set (amhw_lpc82x_iocon_t         *p_hw_iocon,
@@ -309,13 +309,13 @@ void amhw_lpc82x_iocon_i2c_mode_set (amhw_lpc82x_iocon_t         *p_hw_iocon,
 
 
 /**
- * \brief ����PIO�Ĵ���
+ * \brief 配置PIO寄存器
  *
- * \param[in] p_hw_iocon : ָ��IOCON�Ĵ������ָ��
- * \param[in] pin        : ���ű�ţ�ֵΪ PIO* (#PIO0_0)
- * \param[in] data       : д�뵽�Ĵ���������
+ * \param[in] p_hw_iocon : 指向IOCON寄存器块的指针
+ * \param[in] pin        : 引脚编号，值为 PIO* (#PIO0_0)
+ * \param[in] data       : 写入到寄存器的数据
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_lpc82x_iocon_pio_cfg (amhw_lpc82x_iocon_t *p_hw_iocon, 
@@ -327,12 +327,12 @@ void amhw_lpc82x_iocon_pio_cfg (amhw_lpc82x_iocon_t *p_hw_iocon,
 
 
 /**
- * \brief ��ȡPIO�Ĵ��������� 
+ * \brief 获取PIO寄存器的数据 
  *
- * \param[in] p_hw_iocon : ָ��IOCON�Ĵ������ָ��
- * \param[in] pin        : ���ű�ţ�ֵΪ PIO* (#PIO0_0)
+ * \param[in] p_hw_iocon : 指向IOCON寄存器块的指针
+ * \param[in] pin        : 引脚编号，值为 PIO* (#PIO0_0)
  *
- * \return : ����PIO�Ĵ�����ֵ
+ * \return : 引脚PIO寄存器的值
  */
 am_static_inline
 uint32_t amhw_lpc82x_iocon_pio_get (amhw_lpc82x_iocon_t *p_hw_iocon, int pin)

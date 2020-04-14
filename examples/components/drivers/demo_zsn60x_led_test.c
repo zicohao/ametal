@@ -12,15 +12,15 @@
 
 /**
  * \file
- * \brief zsn60x LED²âÊÔ³ÌĞò
+ * \brief zsn60x LEDæµ‹è¯•ç¨‹åº
  *
- * - ²Ù×÷²½Öè£º
- *   1. ÕıÈ·Á¬½Ó²¢ÅäÖÃºÃ´®¿Ú£»
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. æ­£ç¡®è¿æ¥å¹¶é…ç½®å¥½ä¸²å£ï¼›
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ZSN600µÄLEDµÆ½«»áÉÁË¸£¬ÈôÖ´ĞĞ´íÎóÔò»á´òÓ¡ÏìÓ¦µÄ´íÎó±êÊ¶ºÅ £»
+ * - å®éªŒç°è±¡ï¼š
+ *   1. ZSN600çš„LEDç¯å°†ä¼šé—ªçƒï¼Œè‹¥æ‰§è¡Œé”™è¯¯åˆ™ä¼šæ‰“å°å“åº”çš„é”™è¯¯æ ‡è¯†å· ï¼›
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_zsn60x_led_test.c src_zsn60x_led_test
  *
  * \internal
@@ -38,7 +38,7 @@
 #include "zsn60x.h"
 #include "ametal.h"
 #include "am_vdebug.h"
-/* ZSN60x  LED²âÊÔ³ÌĞò */
+/* ZSN60x  LEDæµ‹è¯•ç¨‹åº */
 void demo_zsn60x_led_test_entry (zsn60x_handle_t handle)
 {
     unsigned char ret = 0;

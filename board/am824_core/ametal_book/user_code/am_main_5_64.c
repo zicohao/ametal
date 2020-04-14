@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥5.64   ¸Ã³ÌĞòÊÇÃ»ÓĞÈÎºÎĞ§¹ûµÄ
+ * \brief ç¨‹åºæ¸…å•5.64   è¯¥ç¨‹åºæ˜¯æ²¡æœ‰ä»»ä½•æ•ˆæœçš„
  *
  * 
  * \internal
@@ -25,17 +25,17 @@
 
 static void __spi_msg_complete_callback (void *p_arg)
 {
-    // ÏûÏ¢´¦ÀíÍê±Ï
+    // æ¶ˆæ¯å¤„ç†å®Œæ¯•
 }
 
 int am_main(void)
 {
-    am_spi_message_t   spi_msg;           // ¶¨ÒåÒ»¸öSPIÏûÏ¢½á¹¹Ìå
+    am_spi_message_t   spi_msg;           // å®šä¹‰ä¸€ä¸ªSPIæ¶ˆæ¯ç»“æ„ä½“
 
     am_spi_msg_init (                     
         &spi_msg,                         
-        __spi_msg_complete_callback,      // ÏûÏ¢´¦ÀíÍê³É»Øµ÷º¯Êı
-        NULL);                            // Î´Ê¹ÓÃ»Øµ÷º¯ÊıµÄ²ÎÊıp_arg£¬ÉèÖÃÎªNULL
+        __spi_msg_complete_callback,      // æ¶ˆæ¯å¤„ç†å®Œæˆå›è°ƒå‡½æ•°
+        NULL);                            // æœªä½¿ç”¨å›è°ƒå‡½æ•°çš„å‚æ•°p_argï¼Œè®¾ç½®ä¸ºNULL
     return 0;
 }
 

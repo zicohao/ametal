@@ -12,18 +12,18 @@
 
 /**
  * \file
- * \brief UART»·ĞÎ»º³åÇø·½Ê½ÏÂ½ÓÊÕ·¢ËÍÊı¾İÀı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief UARTç¯å½¢ç¼“å†²åŒºæ–¹å¼ä¸‹æ¥æ”¶å‘é€æ•°æ®ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè£º
- *   1. PIOC_3 Òı½ÅÁ¬½ÓPC´®¿ÚµÄTXD;
- *   2. PIOC_4 Òı½ÅÁ¬½ÓPC´®¿ÚµÄRXD¡£
- *   3. ÅäÖÃÉÏÎ»»ú´®¿Ú²¨ÌØÂÊÎª115200£¬8Î»Êı¾İ³¤¶È 1Î»Í£Ö¹Î» ÎŞÆæÅ¼Ğ£Ñé;
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. PIOC_3 å¼•è„šè¿æ¥PCä¸²å£çš„TXD;
+ *   2. PIOC_4 å¼•è„šè¿æ¥PCä¸²å£çš„RXDã€‚
+ *   3. é…ç½®ä¸Šä½æœºä¸²å£æ³¢ç‰¹ç‡ä¸º115200ï¼Œ8ä½æ•°æ®é•¿åº¦ 1ä½åœæ­¢ä½ æ— å¥‡å¶æ ¡éªŒ;
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿ÚÊä³ö"UART interrupt mode(Add ring buffer) test:"£»
- *   2. ´®¿ÚÊä³ö½ÓÊÕµ½µÄ×Ö·û´®¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. ä¸²å£è¾“å‡º"UART interrupt mode(Add ring buffer) test:"ï¼›
+ *   2. ä¸²å£è¾“å‡ºæ¥æ”¶åˆ°çš„å­—ç¬¦ä¸²ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_amks16z_core_std_uart_ringbuf.c src_amks16z_core_std_uart_ringbuf
  *
  * \internal
@@ -48,12 +48,12 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_amks16z_core_std_uart_ringbuf_entry (void)
 {
     am_uart_handle_t uart_handle;
-    /* UART³õÊ¼»¯ */
+    /* UARTåˆå§‹åŒ– */
     uart_handle = am_kl26_uart1_inst_init();
 
     demo_std_uart_ringbuf_entry(uart_handle);

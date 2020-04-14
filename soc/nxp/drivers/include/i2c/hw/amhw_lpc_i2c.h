@@ -55,7 +55,7 @@ extern "C" {
  * @{
  */
 
-/* Ê¹ÓÃÄäÃûÁªºÏÌå¶Î½áÊø */
+/* ä½¿ç”¨åŒ¿åè”åˆä½“æ®µç»“æŸ */
 #if defined(__CC_ARM)
   #pragma push
   #pragma anon_unions
@@ -63,10 +63,10 @@ extern "C" {
   #pragma language=extended
 #elif defined(__GNUC__)
     
-  /* Ä¬ÈÏÊ¹ÄÜÄäÃûÁªºÏÌå */
+  /* é»˜è®¤ä½¿èƒ½åŒ¿åè”åˆä½“ */
 #elif defined(__TMS470__)
 
-  /* Ä¬ÈÏÊ¹ÄÜÄäÃûÁªºÏÌå */
+  /* é»˜è®¤ä½¿èƒ½åŒ¿åè”åˆä½“ */
 #elif defined(__TASKING__)
   #pragma warning 586
 #else
@@ -94,10 +94,10 @@ typedef struct amhw_lpc_i2c {
     union {
         __IO uint32_t slvadr[4];
         struct {
-            __IO uint32_t  slvadr0;  /**< \brief ´Ó»úµØÖ·0                */
-            __IO uint32_t  slvadr1;  /**< \brief ´Ó»úµØÖ·1                */
-            __IO uint32_t  slvadr2;  /**< \brief ´Ó»úµØÖ·2                */
-            __IO uint32_t  slvadr3;  /**< \brief ´Ó»úµØÖ·3                */
+            __IO uint32_t  slvadr0;  /**< \brief ä»æœºåœ°å€0                */
+            __IO uint32_t  slvadr1;  /**< \brief ä»æœºåœ°å€1                */
+            __IO uint32_t  slvadr2;  /**< \brief ä»æœºåœ°å€2                */
+            __IO uint32_t  slvadr3;  /**< \brief ä»æœºåœ°å€3                */
         };
     };
     __IO uint32_t  slvqual0;      /**< \brief Slave Qualification                     */
@@ -107,15 +107,15 @@ typedef struct amhw_lpc_i2c {
 
 
 /**
- * \name I2C ´Ó»úµØÖ·±àºÅ
+ * \name I2C ä»æœºåœ°å€ç¼–å·
  * \anchor grp_amhw_lpc82x_i2c_addr_num
  * @{
  */
 
-#define AMHW_LPC_I2C_SLVADR_0   (0)    /**< \brief I2C ´Ó»úµØÖ·±àºÅ0 */
-#define AMHW_LPC_I2C_SLVADR_1   (1)    /**< \brief I2C ´Ó»úµØÖ·±àºÅ1 */
-#define AMHW_LPC_I2C_SLVADR_2   (2)    /**< \brief I2C ´Ó»úµØÖ·±àºÅ2 */
-#define AMHW_LPC_I2C_SLVADR_3   (3)    /**< \brief I2C ´Ó»úµØÖ·±àºÅ3 */
+#define AMHW_LPC_I2C_SLVADR_0   (0)    /**< \brief I2C ä»æœºåœ°å€ç¼–å·0 */
+#define AMHW_LPC_I2C_SLVADR_1   (1)    /**< \brief I2C ä»æœºåœ°å€ç¼–å·1 */
+#define AMHW_LPC_I2C_SLVADR_2   (2)    /**< \brief I2C ä»æœºåœ°å€ç¼–å·2 */
+#define AMHW_LPC_I2C_SLVADR_3   (3)    /**< \brief I2C ä»æœºåœ°å€ç¼–å·3 */
 
 /** @} */
 
@@ -143,7 +143,7 @@ typedef struct amhw_lpc_i2c {
 #define AMHW_LPC_I2C_STAT_SLVNOTSTR        (0x1 << 11)  /**< \brief I2C slave not Stretching  */
 #define AMHW_LPC_I2C_STAT_SLVSEL           (0x1 << 14)  /**< \brief I2C slave select    */
 #define AMHW_LPC_I2C_STAT_SLVDESEL         (0x1 << 15)  /**< \brief I2C slave deselect  */
-#define AMHW_LPC_I2C_STAT_SLVIDX_MASK      AM_SBF(0x3, 12) /** \brief I2C ´Ó»úµØÖ·Æ¥Åä×´Ì¬      */
+#define AMHW_LPC_I2C_STAT_SLVIDX_MASK      AM_SBF(0x3, 12) /** \brief I2C ä»æœºåœ°å€åŒ¹é…çŠ¶æ€      */
                                        
 #define AMHW_LPC_I2C_STAT_EVTIMEOUT        (0x1 << 24)  /**< \brief I2C event time out(start. stop. clock edges)    */
 #define AMHW_LPC_I2C_STAT_SCLTIMEOUT       (0x1 << 25)  /**< \brief I2C SCL timeout     */
@@ -284,14 +284,14 @@ uint32_t amhw_lpc_i2c_slvdat_read (amhw_lpc_i2c_t *p_hw_i2c)
 }
 
 /**
- * \brief I2C ³¬Ê±ÖµÉèÖÃ
+ * \brief I2C è¶…æ—¶å€¼è®¾ç½®
  *
- * \param[in] p_hw_i2c : Ö¸ÏòI2C¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] value    : I2CÊ±ÖÓ¾­¹ı((value + 1) * 16)´Î¼ÆÊıºó³¬Ê±Ò»´Î
+ * \param[in] p_hw_i2c : æŒ‡å‘I2Cå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] value    : I2Cæ—¶é’Ÿç»è¿‡((value + 1) * 16)æ¬¡è®¡æ•°åè¶…æ—¶ä¸€æ¬¡
  *
- * \return ÎŞ
- * \note ³¬³öÉè¶¨ÖµÍ¨¹ı×´Ì¬±êÖ¾ºÍ/»òÖĞ¶Ï½øĞĞÍ¨Öª¡£ÈôÒªÔÚI2C¹¤×÷Ê±¸Ä±ä¸Ã
- *       ÊıÖµ£¬ÔòĞè½ûÓÃËùÓĞ³¬Ê±²¢ÏòTIMEOUT¼Ä´æÆ÷Ğ´ÈëĞÂÖµ£¬ÖØĞÂÊ¹ÄÜ³¬Ê±¡£
+ * \return æ— 
+ * \note è¶…å‡ºè®¾å®šå€¼é€šè¿‡çŠ¶æ€æ ‡å¿—å’Œ/æˆ–ä¸­æ–­è¿›è¡Œé€šçŸ¥ã€‚è‹¥è¦åœ¨I2Cå·¥ä½œæ—¶æ”¹å˜è¯¥
+ *       æ•°å€¼ï¼Œåˆ™éœ€ç¦ç”¨æ‰€æœ‰è¶…æ—¶å¹¶å‘TIMEOUTå¯„å­˜å™¨å†™å…¥æ–°å€¼ï¼Œé‡æ–°ä½¿èƒ½è¶…æ—¶ã€‚
  */
 am_static_inline
 void amhw_lpc_i2c_timeout_set (amhw_lpc_i2c_t *p_hw_i2c, uint32_t value)
@@ -308,9 +308,9 @@ void amhw_lpc_i2c_timeout_set (amhw_lpc_i2c_t *p_hw_i2c, uint32_t value)
 }
 
 /**
- * \brief I2C ³¬Ê±Öµ»ñÈ¡
- * \param[in] p_hw_i2c : Ö¸ÏòI2C¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return I2C ³¬Ê±Öµ
+ * \brief I2C è¶…æ—¶å€¼è·å–
+ * \param[in] p_hw_i2c : æŒ‡å‘I2Cå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return I2C è¶…æ—¶å€¼
  */
 am_static_inline
 uint32_t amhw_lpc_i2c_timeout_get (amhw_lpc_i2c_t *p_hw_i2c)
@@ -353,14 +353,14 @@ void amhw_lpc_i2c_clkdiv_set (amhw_lpc_i2c_t *p_hw_i2c, uint32_t div)
 
 
 /**
- * \brief Éè¶¨MSTTIME£¨SCL¸ßµçÆ½ºÍSCLµÍµçÆ½Ê±¼ä£©
+ * \brief è®¾å®šMSTTIMEï¼ˆSCLé«˜ç”µå¹³å’ŒSCLä½ç”µå¹³æ—¶é—´ï¼‰
  *
- * \param[in] p_hw_i2c : Ö¸ÏòI2C¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] scl_h    : SCL¸ßµçÆ½Ê±¼äÎª scl_h ¸ö I2C Ô¤·ÖÆµÊ±ÖÓÖÜÆÚ
- * \param[in] scl_l    : SCLµÍµçÆ½Ê±¼äÎª scl_l ¸ö I2C Ô¤·ÖÆµÊ±ÖÓÖÜÆÚ
+ * \param[in] p_hw_i2c : æŒ‡å‘I2Cå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] scl_h    : SCLé«˜ç”µå¹³æ—¶é—´ä¸º scl_h ä¸ª I2C é¢„åˆ†é¢‘æ—¶é’Ÿå‘¨æœŸ
+ * \param[in] scl_l    : SCLä½ç”µå¹³æ—¶é—´ä¸º scl_l ä¸ª I2C é¢„åˆ†é¢‘æ—¶é’Ÿå‘¨æœŸ
  *
- * \return  ÎŞ
- * \note MSTTIME Ê±¼äÉèÖÃ·¶Î§Îª2 ~ 9 ¸ö I2C Ô¤·ÖÆµÊ±ÖÓÖÜÆÚ
+ * \return  æ— 
+ * \note MSTTIME æ—¶é—´è®¾ç½®èŒƒå›´ä¸º2 ~ 9 ä¸ª I2C é¢„åˆ†é¢‘æ—¶é’Ÿå‘¨æœŸ
  */
 am_static_inline 
 void amhw_lpc_i2c_msttime_set (amhw_lpc_i2c_t *p_hw_i2c,
@@ -465,9 +465,9 @@ void amhw_lpc_i2c_mst_stop (amhw_lpc_i2c_t *p_hw_i2c)
 }
 
 /**
- * \brief I2C Ö÷»ú DMA Ê¹ÄÜ
- * \param[in] p_hw_i2c : Ö¸ÏòI2C¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return  ÎŞ
+ * \brief I2C ä¸»æœº DMA ä½¿èƒ½
+ * \param[in] p_hw_i2c : æŒ‡å‘I2Cå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return  æ— 
  */
 am_static_inline
 void amhw_lpc_i2c_mst_dma_enable (amhw_lpc_i2c_t *p_hw_i2c)
@@ -476,9 +476,9 @@ void amhw_lpc_i2c_mst_dma_enable (amhw_lpc_i2c_t *p_hw_i2c)
 }
 
 /**
- * \brief I2C Ö÷»ú DMA ½ûÄÜ
- * \param[in] p_hw_i2c : Ö¸ÏòI2C¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return  ÎŞ
+ * \brief I2C ä¸»æœº DMA ç¦èƒ½
+ * \param[in] p_hw_i2c : æŒ‡å‘I2Cå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return  æ— 
  */
 am_static_inline
 void amhw_lpc_i2c_mst_dma_disable (amhw_lpc_i2c_t *p_hw_i2c)
@@ -498,9 +498,9 @@ void amhw_lpc_i2c_slv_continue (amhw_lpc_i2c_t *p_hw_i2c)
 }
 
 /**
- * \brief I2C ´Ó»úDAMÊ¹ÄÜ
- * \param[in] p_hw_i2c : Ö¸ÏòI2C¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return  ÎŞ
+ * \brief I2C ä»æœºDAMä½¿èƒ½
+ * \param[in] p_hw_i2c : æŒ‡å‘I2Cå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return  æ— 
  */
 am_static_inline
 void amhw_lpc_i2c_slv_dma_enable (amhw_lpc_i2c_t *p_hw_i2c)
@@ -509,9 +509,9 @@ void amhw_lpc_i2c_slv_dma_enable (amhw_lpc_i2c_t *p_hw_i2c)
 }
 
 /**
- * \brief I2C ´Ó»úDAM½ûÄÜ
- * \param[in] p_hw_i2c : Ö¸ÏòI2C¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return  ÎŞ
+ * \brief I2C ä»æœºDAMç¦èƒ½
+ * \param[in] p_hw_i2c : æŒ‡å‘I2Cå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return  æ— 
  */
 am_static_inline
 void amhw_lpc_i2c_slv_dma_disable (amhw_lpc_i2c_t *p_hw_i2c)
@@ -606,13 +606,13 @@ void amhw_lpc_i2c_slvadr0_set (amhw_lpc_i2c_t *p_hw_i2c, uint32_t sla_addr)
 
 
 /**
- * \brief I2C ´Ó»úµØÖ·ÉèÖÃ
+ * \brief I2C ä»æœºåœ°å€è®¾ç½®
  *
- * \param[in] p_hw_i2c : Ö¸ÏòI2C¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] addr_num : ´Ó»úµØÖ·±àºÅ£¬AMHW_LPC_I2C_SLVADR_*ºê
- * \param[in] sla_addr : 7Î»´Ó»úµØÖ·Öµ
+ * \param[in] p_hw_i2c : æŒ‡å‘I2Cå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] addr_num : ä»æœºåœ°å€ç¼–å·ï¼ŒAMHW_LPC_I2C_SLVADR_*å®
+ * \param[in] sla_addr : 7ä½ä»æœºåœ°å€å€¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_lpc_i2c_slv_addr_set (amhw_lpc_i2c_t *p_hw_i2c,
@@ -623,12 +623,12 @@ void amhw_lpc_i2c_slv_addr_set (amhw_lpc_i2c_t *p_hw_i2c,
 }
 
 /**
- * \brief ÉèÖÃ I2C ´Ó»úµØÖ·ÑéÖ¤¼Ä´æÆ÷0µÄÖµ
+ * \brief è®¾ç½® I2C ä»æœºåœ°å€éªŒè¯å¯„å­˜å™¨0çš„å€¼
  *
- * \param[in] p_hw_i2c : Ö¸ÏòI2C¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] flags    : ĞèÒªÉèÖÃµÄÖµ
+ * \param[in] p_hw_i2c : æŒ‡å‘I2Cå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] flags    : éœ€è¦è®¾ç½®çš„å€¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_lpc_i2c_slvqual_set (amhw_lpc_i2c_t *p_hw_i2c, uint32_t flags)
@@ -637,9 +637,9 @@ void amhw_lpc_i2c_slvqual_set (amhw_lpc_i2c_t *p_hw_i2c, uint32_t flags)
 }
 
 /**
- * \brief »ñÈ¡ I2C ´Ó»úµØÖ·ÑéÖ¤¼Ä´æÆ÷0µÄÖµ
- * \param[in] p_hw_i2c : Ö¸ÏòI2C¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ´Ó»úµØÖ·ÑéÖ¤¼Ä´æÆ÷0µÄÖµ
+ * \brief è·å– I2C ä»æœºåœ°å€éªŒè¯å¯„å­˜å™¨0çš„å€¼
+ * \param[in] p_hw_i2c : æŒ‡å‘I2Cå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return ä»æœºåœ°å€éªŒè¯å¯„å­˜å™¨0çš„å€¼
  */
 am_static_inline
 uint32_t amhw_lpc_i2c_slvqual_get (amhw_lpc_i2c_t *p_hw_i2c)
@@ -647,18 +647,18 @@ uint32_t amhw_lpc_i2c_slvqual_get (amhw_lpc_i2c_t *p_hw_i2c)
     return (p_hw_i2c->slvqual0);
 }
 
-/* Ê¹ÓÃÄäÃûÁªºÏÌå¶Î½áÊø */
+/* ä½¿ç”¨åŒ¿åè”åˆä½“æ®µç»“æŸ */
 #if defined(__CC_ARM)
   #pragma pop
 #elif defined(__ICCARM__)
  
-  /* ÔÊĞíÄäÃûÁªºÏÌåÊ¹ÄÜ */
+  /* å…è®¸åŒ¿åè”åˆä½“ä½¿èƒ½ */
 #elif defined(__GNUC__)
 
-  /* Ä¬ÈÏÊ¹ÓÃÄäÃûÁªºÏÌå */
+  /* é»˜è®¤ä½¿ç”¨åŒ¿åè”åˆä½“ */
 #elif defined(__TMS470__)
 
-  /* Ä¬ÈÏÊ¹ÓÃÄäÃûÁªºÏÌå */
+  /* é»˜è®¤ä½¿ç”¨åŒ¿åè”åˆä½“ */
 #elif defined(__TASKING__)
   #pragma warning restore
 #else

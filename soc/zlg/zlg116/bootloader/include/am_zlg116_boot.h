@@ -28,35 +28,35 @@
 #include "am_boot_flash.h"
 
 typedef struct am_zlg116_boot_devinfo {
-    uint32_t  app_start_addr;      /**< \brief Ó¦ÓÃ´úÂëÇøÆðÊ¼µØÖ·*/
-    uint32_t  update_start_addr;   /**< \brief Éý¼¶ÇøÆðÊ¼µØÖ·*/
-    uint32_t  update_flag_addr;    /**< \brief Éý¼¶±êÖ¾µÄ´æ·ÅµØÖ·£¬Ò»°ãÊÇ·ÅÔÚÓ¦ÓÃ´úÂëÇøÆðÊ¼µØÖ·µÄÇ°4×Ö½Ú*/
-    /**< \brief Ó¦ÓÃ´úÂëÕ¼ÓÃµÄÉÈÇøÊý£¬Éý¼¶ÇøÕ¼ÓÃµÄÉÈÇøÊýÏàÍ¬*/
+    uint32_t  app_start_addr;      /**< \brief åº”ç”¨ä»£ç åŒºèµ·å§‹åœ°å€*/
+    uint32_t  update_start_addr;   /**< \brief å‡çº§åŒºèµ·å§‹åœ°å€*/
+    uint32_t  update_flag_addr;    /**< \brief å‡çº§æ ‡å¿—çš„å­˜æ”¾åœ°å€ï¼Œä¸€èˆ¬æ˜¯æ”¾åœ¨åº”ç”¨ä»£ç åŒºèµ·å§‹åœ°å€çš„å‰4å­—èŠ‚*/
+    /**< \brief åº”ç”¨ä»£ç å ç”¨çš„æ‰‡åŒºæ•°ï¼Œå‡çº§åŒºå ç”¨çš„æ‰‡åŒºæ•°ç›¸åŒ*/
     uint32_t  app_region_sector_count;
-    uint32_t  flash_start_addr;    /**< \brief flashµÄÆðÊ¼µØÖ·*/
-    uint32_t  flash_size;          /**< \brief flashµÄ´óÐ¡ */
+    uint32_t  flash_start_addr;    /**< \brief flashçš„èµ·å§‹åœ°å€*/
+    uint32_t  flash_size;          /**< \brief flashçš„å¤§å° */
 
-    uint32_t  ram_start_addr;      /**< \brief ramÆðÊ¼µØÖ· */
-    uint32_t  ram_size;            /**< \brief ramµÄ´óÐ¡ */
+    uint32_t  ram_start_addr;      /**< \brief ramèµ·å§‹åœ°å€ */
+    uint32_t  ram_size;            /**< \brief ramçš„å¤§å° */
 
-    void (*pfn_plfm_init)(void);   /**< \brief Æ½Ì¨³õÊ¼»¯º¯Êý */
+    void (*pfn_plfm_init)(void);   /**< \brief å¹³å°åˆå§‹åŒ–å‡½æ•° */
 
-    void (*pfn_plfm_deinit)(void); /**< \brief Æ½Ì¨È¥³õÊ¼»¯º¯Êý */
+    void (*pfn_plfm_deinit)(void); /**< \brief å¹³å°åŽ»åˆå§‹åŒ–å‡½æ•° */
 }am_zlg116_boot_devinfo_t;
 
 typedef struct am_zlg116_boot_dev {
     am_zlg116_boot_devinfo_t *p_devinfo;
-    am_boot_flash_handle_t    flash_handle;   /**< \brief flash²Ù×÷¾ä±ú */
+    am_boot_flash_handle_t    flash_handle;   /**< \brief flashæ“ä½œå¥æŸ„ */
 
 }am_zlg116_boot_dev_t;
 
 /**
- * \brief ³õÊ¼»¯BootLoader£¬·µ»ØBootLoader±ê×¼·þÎñ²Ù×÷¾ä±ú
+ * \brief åˆå§‹åŒ–BootLoaderï¼Œè¿”å›žBootLoaderæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  *
- * \param[in] p_dev     : Ö¸ÏòBootLoaderÉè±¸µÄÖ¸Õë
- * \param[in] p_devinfo : Ö¸ÏòBootLoaderÉè±¸ÐÅÏ¢³£Á¿µÄÖ¸Õë
+ * \param[in] p_dev     : æŒ‡å‘BootLoaderè®¾å¤‡çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo : æŒ‡å‘BootLoaderè®¾å¤‡ä¿¡æ¯å¸¸é‡çš„æŒ‡é’ˆ
  *
- * \return BootLoader±ê×¼·þÎñ²Ù×÷¾ä±ú£¬ÖµÎªNULLÊ±±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return BootLoaderæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„ï¼Œå€¼ä¸ºNULLæ—¶è¡¨æ˜Žåˆå§‹åŒ–å¤±è´¥
  */
 int am_zlg116_boot_init(am_zlg116_boot_dev_t      *p_dev,
                         am_zlg116_boot_devinfo_t  *p_devinfo,

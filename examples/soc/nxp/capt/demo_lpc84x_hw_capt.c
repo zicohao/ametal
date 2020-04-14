@@ -15,16 +15,16 @@
  * \file
  * \brief lpc84x capacitive touch
  *
- * - ²Ù×÷²½Öè£º
- *   1. PIO0_31  Á¬½ÓµçÈÝ´¥ÃþÒý½Å CAPTX0£»
- *   2. PIO1_0   Á¬½ÓµçÈÝ´¥ÃþÒý½Å CAPTX1£»
- *   3. PIO1_1   Á¬½ÓµçÈÝ´¥ÃþÒý½Å CAPTX2£»
- *   3. PIO0_30  Á¬½ÓÄ£Äâ±È½ÏACMP¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. PIO0_31  è¿žæŽ¥ç”µå®¹è§¦æ‘¸å¼•è„š CAPTX0ï¼›
+ *   2. PIO1_0   è¿žæŽ¥ç”µå®¹è§¦æ‘¸å¼•è„š CAPTX1ï¼›
+ *   3. PIO1_1   è¿žæŽ¥ç”µå®¹è§¦æ‘¸å¼•è„š CAPTX2ï¼›
+ *   3. PIO0_30  è¿žæŽ¥æ¨¡æ‹Ÿæ¯”è¾ƒACMPã€‚
  *
- * * - ÊµÑéÏÖÏó£º
- *   1. ÓÃÊÖ´¥ÃþACMP ÓëCAPTX0Ê±£¬´òÓ¡X0µÄ´¥Ãþ¼ÆÊýÖµÎª4095£¬yestouch¿ªÊ¼¼ÆÊý£¬notouchÍ£Ö¹¼ÆÊý£»
- *   1. ÓÃÊÖ´¥ÃþACMP ÓëCAPTX1Ê±£¬´òÓ¡X1µÄ´¥Ãþ¼ÆÊýÖµÎª4095£¬yestouch¿ªÊ¼¼ÆÊý£¬notouchÍ£Ö¹¼ÆÊý£»
- *   1. ÓÃÊÖ´¥ÃþACMP ÓëCAPTX2Ê±£¬´òÓ¡X2µÄ´¥Ãþ¼ÆÊýÖµÎª4095£¬yestouch¿ªÊ¼¼ÆÊý£¬notouchÍ£Ö¹¼ÆÊý£»
+ * * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. ç”¨æ‰‹è§¦æ‘¸ACMP ä¸ŽCAPTX0æ—¶ï¼Œæ‰“å°X0çš„è§¦æ‘¸è®¡æ•°å€¼ä¸º4095ï¼Œyestouchå¼€å§‹è®¡æ•°ï¼Œnotouchåœæ­¢è®¡æ•°ï¼›
+ *   1. ç”¨æ‰‹è§¦æ‘¸ACMP ä¸ŽCAPTX1æ—¶ï¼Œæ‰“å°X1çš„è§¦æ‘¸è®¡æ•°å€¼ä¸º4095ï¼Œyestouchå¼€å§‹è®¡æ•°ï¼Œnotouchåœæ­¢è®¡æ•°ï¼›
+ *   1. ç”¨æ‰‹è§¦æ‘¸ACMP ä¸ŽCAPTX2æ—¶ï¼Œæ‰“å°X2çš„è§¦æ‘¸è®¡æ•°å€¼ä¸º4095ï¼Œyestouchå¼€å§‹è®¡æ•°ï¼Œnotouchåœæ­¢è®¡æ•°ï¼›
  *
  * \internal
  * \par Modification history
@@ -40,19 +40,19 @@
 #include "am_clk.h"
 #include <string.h>
 
-#define  __LPX84X_CAPT_CLK        (4000000)  /**< \brief CAPTÆµÂÊ*/
-#define  __USE_AVERAGED           1          /**< \brief ÊÇ·ñÈ¡¾ùÖµ */
-#define  __TOUCH_TRIGGERS_LOWER   0          /**< \brief ÊÇ·ñ¸ßÓÚãÐÖµ´¥·¢*/
-#define  __NUM_SENSORS            (3)        /**< \brief ´¥Ãþ°´¼ü¸öÊý */
-#define  __LOW_SENSOR             (0)        /**< \brief ×îµÍÎ»´¥ÃþÒý½ÅÎªX0 */
-#define  __NUM_CALIB_SAMPLES      (1000)     /**< \brief ¼ÆËã´¥·¢ãÐÖµÊ±µÄ²ÉÑù´ÎÊý */
+#define  __LPX84X_CAPT_CLK        (4000000)  /**< \brief CAPTé¢‘çŽ‡*/
+#define  __USE_AVERAGED           1          /**< \brief æ˜¯å¦å–å‡å€¼ */
+#define  __TOUCH_TRIGGERS_LOWER   0          /**< \brief æ˜¯å¦é«˜äºŽé˜ˆå€¼è§¦å‘*/
+#define  __NUM_SENSORS            (3)        /**< \brief è§¦æ‘¸æŒ‰é”®ä¸ªæ•° */
+#define  __LOW_SENSOR             (0)        /**< \brief æœ€ä½Žä½è§¦æ‘¸å¼•è„šä¸ºX0 */
+#define  __NUM_CALIB_SAMPLES      (1000)     /**< \brief è®¡ç®—è§¦å‘é˜ˆå€¼æ—¶çš„é‡‡æ ·æ¬¡æ•° */
 
-volatile uint32_t  x_data[__NUM_SENSORS];    /**< \brief ´¥Ãþ¼ÆÊýÖµ */
+volatile uint32_t  x_data[__NUM_SENSORS];    /**< \brief è§¦æ‘¸è®¡æ•°å€¼ */
 
 uint32_t timeout_cnt, overrun_cnt, yestouch_cnt, notouch_cnt;
 
 /**
- * \brief CAPTÖÐ¶Ïº¯Êý
+ * \brief CAPTä¸­æ–­å‡½æ•°
  */
 static void __capt_irq_handler (void *p_arg)
 {
@@ -88,7 +88,7 @@ static void __capt_irq_handler (void *p_arg)
 }
 
 /**
- * \brief ¼ÆËãtouchµÄ´¥·¢ãÐÖµ
+ * \brief è®¡ç®—touchçš„è§¦å‘é˜ˆå€¼
  */
 static uint32_t __compute_notouch_baseline(amhw_lpc84x_capt_t *p_hw_capt)
 {
@@ -199,7 +199,7 @@ static uint32_t __compute_notouch_baseline(amhw_lpc84x_capt_t *p_hw_capt)
 }
 
 /**
- * \brief ACMP³õÊ¼»¯
+ * \brief ACMPåˆå§‹åŒ–
  */
 static void lpc84x_acmp_init (amhw_lpc84x_acmp_t *p_hw_acmp)
 {
@@ -213,10 +213,10 @@ static void lpc84x_acmp_init (amhw_lpc84x_acmp_t *p_hw_acmp)
 
     amhw_lpc84x_syscon_periph_reset(AMHW_LPC84X_RESET_ACMP);
 
-    flags = AMHW_LPC84X_ACMP_CTRL_VP_BGAP   |   /* »ù×¼µçÑ¹ÕýÊäÈë */
-            AMHW_LPC84X_ACMP_CTRL_VM_LADOUT |   /* µçÑ¹½×ÌÝ¸ºÊäÈë */
-            AMHW_LPC84X_ACMP_CTRL_HYS_20MV  |   /* ³ÙÖÍµçÑ¹Îª 20mV */
-            (0 << 24)    ;                      /* ÖÐ¶Ï½ûÄÜ */
+    flags = AMHW_LPC84X_ACMP_CTRL_VP_BGAP   |   /* åŸºå‡†ç”µåŽ‹æ­£è¾“å…¥ */
+            AMHW_LPC84X_ACMP_CTRL_VM_LADOUT |   /* ç”µåŽ‹é˜¶æ¢¯è´Ÿè¾“å…¥ */
+            AMHW_LPC84X_ACMP_CTRL_HYS_20MV  |   /* è¿Ÿæ»žç”µåŽ‹ä¸º 20mV */
+            (0 << 24)    ;                      /* ä¸­æ–­ç¦èƒ½ */
 
     amhw_lpc84x_acmp_config(p_hw_acmp, flags);
 
@@ -228,7 +228,7 @@ static void lpc84x_acmp_init (amhw_lpc84x_acmp_t *p_hw_acmp)
 }
 
 /**
- * \brief CAPT³õÊ¼»¯
+ * \brief CAPTåˆå§‹åŒ–
  */
 static void lpc84x_capt_init(amhw_lpc84x_capt_t  *p_hw_capt)
 {
@@ -250,7 +250,7 @@ static void lpc84x_capt_init(amhw_lpc84x_capt_t  *p_hw_capt)
     amhw_lpc84x_capt_timeout_set(p_hw_capt, 12);
     amhw_lpc84x_capt_poll_delay_set(p_hw_capt, 0);
 
-    /* ÉèÖÃµÍÓÚãÐÖµ´¥·¢»ò¸ßÓÚãÐÖµ´¥·¢ */
+    /* è®¾ç½®ä½ŽäºŽé˜ˆå€¼è§¦å‘æˆ–é«˜äºŽé˜ˆå€¼è§¦å‘ */
 #if (__TOUCH_TRIGGERS_LOWER == 1)
     amhw_lpc84x_capt_tchlow_er_set(p_hw_capt, 1);
 #else
@@ -260,25 +260,25 @@ static void lpc84x_capt_init(amhw_lpc84x_capt_t  *p_hw_capt)
     amhw_lpc84x_capt_reset_delay_set(p_hw_capt, KCAPT_RESET_WAIT8FCLKS);
     amhw_lpc84x_capt_meas_delay_set(p_hw_capt, KCAPT_MEASURE_WAIT9FCLKS);
 
-    /* ¼ÆËã´¥ÃþµÄ´¥·¢ãÐÖµ */
+    /* è®¡ç®—è§¦æ‘¸çš„è§¦å‘é˜ˆå€¼ */
     touch_threshold = __compute_notouch_baseline(p_hw_capt);
     amhw_lpc84x_capt_threshold_set(p_hw_capt, touch_threshold);
 
-    /* Á¬½ÓCAPTÖÐ¶Ï»Øµ÷ */
+    /* è¿žæŽ¥CAPTä¸­æ–­å›žè°ƒ */
     am_int_connect(INUM_ACMP_CAPT, __capt_irq_handler, (void *)p_hw_capt);
 
-    /* Ê¹ÄÜCAPTÖÐ¶Ï*/
+    /* ä½¿èƒ½CAPTä¸­æ–­*/
     am_int_enable(INUM_ACMP_CAPT);
 
-    /* Ê¹ÄÜCAPT YESTOUCH ¡¢NOTOUCH¡¢TIMEOUT¡¢OVERRUNÖÐ¶Ï*/
+    /* ä½¿èƒ½CAPT YESTOUCH ã€NOTOUCHã€TIMEOUTã€OVERRUNä¸­æ–­*/
     amhw_lpc84x_capt_int_enable(p_hw_capt, KCAPT_YESTOUCH_INT |
                                            KCAPT_NOTOUCH_INT  |
                                            KCAPT_TIMEOUT_INT  |
                                            KCAPT_OVERRUN_INT);
-    /* ÉèÖÃÎªÁ¬Ðø²âÁ¿Ä£Ê½*/
+    /* è®¾ç½®ä¸ºè¿žç»­æµ‹é‡æ¨¡å¼*/
     amhw_lpc84x_capt_pollmode_set(p_hw_capt, KCAPT_CONTINUOUS);
 
-    /* Ê¹ÄÜCAPT XPINÒý½Å*/
+    /* ä½¿èƒ½CAPT XPINå¼•è„š*/
     amhw_lpc84x_capt_xpin_enable(p_hw_capt, KCAPT_X0PIN | KCAPT_X1PIN | KCAPT_X2PIN);
 }
 
@@ -287,10 +287,10 @@ void demo_lpc84x_hw_capt_entry (amhw_lpc84x_capt_t *p_hw_capt,
 {
     int                       x;
 
-    /* Ä£Äâ±È½Ï³õÊ¼»¯ */
+    /* æ¨¡æ‹Ÿæ¯”è¾ƒåˆå§‹åŒ– */
     lpc84x_acmp_init(p_hw_acmp);
 
-    /* CAPT³õÊ¼»¯ */
+    /* CAPTåˆå§‹åŒ– */
     lpc84x_capt_init(p_hw_capt);
 
     while (1) {

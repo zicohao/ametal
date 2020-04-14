@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ISO14443·şÎñ±ê×¼½Ó¿Ú
+ * \brief ISO14443æœåŠ¡æ ‡å‡†æ¥å£
  *
  * \internal
  * \par Modification History
@@ -30,56 +30,56 @@ extern "C" {
 #include "am_uartcmd_includes.h"
 
 /**
- * \brief tpcl_prot_para T=CLĞ­Òé²ÎÊı
+ * \brief tpcl_prot_para T=CLåè®®å‚æ•°
  */
 typedef struct tpcl_prot_para {
-    uint8_t pcb_num;                /**< \brief ·Ö°ü±êÊ¶ */
+    uint8_t pcb_num;                /**< \brief åˆ†åŒ…æ ‡è¯† */
     uint8_t cid;                    /**< \brief CID */
-    uint8_t fsdi;                   /**< \brief PCD  ÄÜ½ÓÊÕµÄ×î´óÖ¡ */
-    uint8_t fsci;                   /**< \brief PICC ÄÜ½ÓÊÕµÄ×î´óÖ¡ */
-    uint8_t ta1;                    /**< \brief º¬DR¡¢DS */
-    uint8_t bit_rate;               /**< \brief Î»ËÙÂÊ(Í¬TA1, º¬DR¡¢DS) */
-    uint8_t fwi;                    /**< \brief Ö¡µÈ´ıÊ±¼äÒò×Ó */
-    uint8_t sfgi;                   /**< \brief Ö¡±£»¤Ê±¼äÒò×Ó */
-    uint8_t tc1;                    /**< \brief º¬ÊÇ·ñÖ§³ÖCID¡¢NAD */
-    uint8_t fo;                     /**< \brief Ö¡Ñ¡ÔñÊÇ·ñÖ§³ÖCID¡¢NAD (Í¬TC1) */
+    uint8_t fsdi;                   /**< \brief PCD  èƒ½æ¥æ”¶çš„æœ€å¤§å¸§ */
+    uint8_t fsci;                   /**< \brief PICC èƒ½æ¥æ”¶çš„æœ€å¤§å¸§ */
+    uint8_t ta1;                    /**< \brief å«DRã€DS */
+    uint8_t bit_rate;               /**< \brief ä½é€Ÿç‡(åŒTA1, å«DRã€DS) */
+    uint8_t fwi;                    /**< \brief å¸§ç­‰å¾…æ—¶é—´å› å­ */
+    uint8_t sfgi;                   /**< \brief å¸§ä¿æŠ¤æ—¶é—´å› å­ */
+    uint8_t tc1;                    /**< \brief å«æ˜¯å¦æ”¯æŒCIDã€NAD */
+    uint8_t fo;                     /**< \brief å¸§é€‰æ‹©æ˜¯å¦æ”¯æŒCIDã€NAD (åŒTC1) */
 } tpcl_prot_para_t;
 
 /**
- * \brief ISO14443Éè±¸½á¹¹Ìå
+ * \brief ISO14443è®¾å¤‡ç»“æ„ä½“
  */
 typedef struct amdr_ic_iso14443_dev {
 
-    /** \brief ISO14443·şÎñ½á¹¹Ìå */
+    /** \brief ISO14443æœåŠ¡ç»“æ„ä½“ */
     am_ic_iso14443_serv_t serv;
 
-    /** \brief È«¾Ö±äÁ¿£¬ÓÃÓÚ±£´æAĞÍ¿¨UID */
+    /** \brief å…¨å±€å˜é‡ï¼Œç”¨äºä¿å­˜Aå‹å¡UID */
     uint8_t               uid_back[4];
 
-    /** \brief T=CLÍ¨ĞÅĞ­Òé²ÎÊı */
+    /** \brief T=CLé€šä¿¡åè®®å‚æ•° */
     tpcl_prot_para_t      cur_prot_para;
 
-    /** \brief ¶Á¿¨Ğ¾Æ¬Çı¶¯½á¹¹Ìå */
+    /** \brief è¯»å¡èŠ¯ç‰‡é©±åŠ¨ç»“æ„ä½“ */
     am_fm175xx_dev_t     *p_fm17550s_dev;
 
 } amdr_ic_iso14443_dev_t;
 
 /**
- * \brief ISO14443Çı¶¯²ã³õÊ¼»¯
+ * \brief ISO14443é©±åŠ¨å±‚åˆå§‹åŒ–
  *
- * \param[in] p_dev : ISO14443Éè±¸½á¹¹ÌåÖ¸Õë
+ * \param[in] p_dev : ISO14443è®¾å¤‡ç»“æ„ä½“æŒ‡é’ˆ
  *
- * \return ISO14443·şÎñ¾ä±ú
+ * \return ISO14443æœåŠ¡å¥æŸ„
  */
 am_ic_iso14443_handle_t amdr_ic_iso14443_init (amdr_ic_iso14443_dev_t *p_dev,
                                                am_fm175xx_dev_t       *p_fm17550s_dev);
 
 /**
- * \brief ISO14443Çı¶¯²ã½â³ı³õÊ¼»¯
+ * \brief ISO14443é©±åŠ¨å±‚è§£é™¤åˆå§‹åŒ–
  *
- * \param[in] p_dev : ISO14443Éè±¸½á¹¹ÌåÖ¸Õë
+ * \param[in] p_dev : ISO14443è®¾å¤‡ç»“æ„ä½“æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void amdr_ic_iso14443_deinit (amdr_ic_iso14443_dev_t *p_dev);
 

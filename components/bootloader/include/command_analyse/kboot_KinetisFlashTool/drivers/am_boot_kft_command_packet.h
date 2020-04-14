@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief bootloader kboot KinetisFlashTool ²»Í¬ÀàÐÍµÄÃüÁî°üÉùÃ÷
+ * \brief bootloader kboot KinetisFlashTool ä¸åŒç±»åž‹çš„å‘½ä»¤åŒ…å£°æ˜Ž
  *
  *
  * \internal
@@ -25,18 +25,18 @@
 #include "am_boot_kft_common.h"
 
 /**
- * \name ÃüÁî/Êý¾Ý °ü³£Á¿
+ * \name å‘½ä»¤/æ•°æ® åŒ…å¸¸é‡
  * @{
  */
 #define  AM_BOOT_KFT_MIN_PACKET_BUFFER_SIZE       32
 #define  AM_BOOT_KFT_DEFAULT_MAX_PACKET_SIZE      AM_BOOT_KFT_MIN_PACKET_BUFFER_SIZE
-/** \brief ÊôÐÔ¿É·µ»ØµÄ×î´ó×ÖÊý£¬Ò»¸ö×ÖÊÇ±êÌâ£¬Ò»¸ö²ÎÊý±£Áô¸ø×´Ì¬  */
+/** \brief å±žæ€§å¯è¿”å›žçš„æœ€å¤§å­—æ•°ï¼Œä¸€ä¸ªå­—æ˜¯æ ‡é¢˜ï¼Œä¸€ä¸ªå‚æ•°ä¿ç•™ç»™çŠ¶æ€  */
 #define  AM_BOOT_KFT_MAX_PROPERTY_RETURN_VALUES ((AM_BOOT_KFT_MIN_PACKET_BUFFER_SIZE \
                                                   / sizeof(uint32_t)) - 2)
-/** \brief ³ÌÐòÃüÁîÒ»´Î¿ÉÐ´Èë×î´ó×ÖÊý£¬Ò»¸ö×ÖÊÇÍ· */
+/** \brief ç¨‹åºå‘½ä»¤ä¸€æ¬¡å¯å†™å…¥æœ€å¤§å­—æ•°ï¼Œä¸€ä¸ªå­—æ˜¯å¤´ */
 #define  AM_BOOT_KFT_MAX_PROGRAM_ONCE_VALUES    ((AM_BOOT_KFT_MIN_PACKET_BUFFER_SIZE \
                                                   / sizeof(uint32_t)) - 3)
-/** \brief ·ÇÏìÓ¦ÃüÁî±ê¼ÇµÄÊýÁ¿ */
+/** \brief éžå“åº”å‘½ä»¤æ ‡è®°çš„æ•°é‡ */
 #define  AM_BOOT_KFT_COMMMAND_TAG_COUNT           12
 /** @} */
 

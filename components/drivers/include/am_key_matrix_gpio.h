@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief GPIO¾ØÕó¼üÅÌÇı¶¯½Ó¿Ú£¨¼üÖµ¶ÁÈ¡Í¨¹ıGPIOÍê³É£©
+ * \brief GPIOçŸ©é˜µé”®ç›˜é©±åŠ¨æ¥å£ï¼ˆé”®å€¼è¯»å–é€šè¿‡GPIOå®Œæˆï¼‰
  *
  * \internal
  * \par modification history:
@@ -40,15 +40,15 @@ extern "C" {
 #endif
 
 /**
- * \brief GPIOÇı¶¯ĞÍ¾ØÕó¼üÅÌĞÅÏ¢
+ * \brief GPIOé©±åŠ¨å‹çŸ©é˜µé”®ç›˜ä¿¡æ¯
  */
 typedef struct am_key_matrix_gpio_info {
-    am_key_matrix_base_info_t base_info;   /**< \brief ¾ØÕó¼üÅÌ»ù´¡ĞÅÏ¢  */
-    const int                *p_pins_row;  /**< \brief ĞĞÏßÒı½Å          */
-    const int                *p_pins_col;  /**< \brief ÁĞÏßÒı½Å          */
+    am_key_matrix_base_info_t base_info;   /**< \brief çŸ©é˜µé”®ç›˜åŸºç¡€ä¿¡æ¯  */
+    const int                *p_pins_row;  /**< \brief è¡Œçº¿å¼•è„š          */
+    const int                *p_pins_col;  /**< \brief åˆ—çº¿å¼•è„š          */
 } am_key_matrix_gpio_info_t;
 
-/** \brief ¾ØÕó¼üÅÌÉè±¸  */
+/** \brief çŸ©é˜µé”®ç›˜è®¾å¤‡  */
 typedef struct am_key_matrix_gpio {
     am_key_matrix_t                  isa;
     am_key_matrix_prepare_gpio_t     prepare;
@@ -57,38 +57,38 @@ typedef struct am_key_matrix_gpio {
 } am_key_matrix_gpio_t;
 
 /**
- * \brief °´¼ü³õÊ¼»¯
+ * \brief æŒ‰é”®åˆå§‹åŒ–
  *
- * \param[in] p_dev   : °´¼üÉè±¸ÊµÀı
- * \param[in] p_info  : °´¼üÉè±¸ÊµÀıĞÅÏ¢
+ * \param[in] p_dev   : æŒ‰é”®è®¾å¤‡å®ä¾‹
+ * \param[in] p_info  : æŒ‰é”®è®¾å¤‡å®ä¾‹ä¿¡æ¯
  *
- * \return Í¨ÓÃµÄ¾ØÕó¼üÅÌÉè±¸
+ * \return é€šç”¨çš„çŸ©é˜µé”®ç›˜è®¾å¤‡
  */
 am_key_matrix_t * am_key_matrix_gpio_init (
     am_key_matrix_gpio_t            *p_dev,
     const am_key_matrix_gpio_info_t *p_info);
  
 /**
- * \brief GPIOÇı¶¯ĞÍ¾ØÕó¼üÅÌĞÅÏ¢£¨´øÈí¼ş¶¨Ê±Æ÷×Ô¶¯É¨Ãè£©
+ * \brief GPIOé©±åŠ¨å‹çŸ©é˜µé”®ç›˜ä¿¡æ¯ï¼ˆå¸¦è½¯ä»¶å®šæ—¶å™¨è‡ªåŠ¨æ‰«æï¼‰
  */
 typedef struct am_key_matrix_gpio_softimer_info {
     am_key_matrix_gpio_info_t key_matrix_gpio_info;
     int                       scan_interval_ms;
 } am_key_matrix_gpio_softimer_info_t;
 
-/** \brief ¾ØÕó¼üÅÌÉè±¸  */
+/** \brief çŸ©é˜µé”®ç›˜è®¾å¤‡  */
 typedef struct am_key_matrix_gpio_softimer {
     am_key_matrix_softimer_t         isa;
     am_key_matrix_gpio_t             key;
 } am_key_matrix_gpio_softimer_t;
 
 /**
- * \brief °´¼ü³õÊ¼»¯£¨´øÈí¼ş¶¨Ê±Æ÷×Ô¶¯É¨Ãè£©
+ * \brief æŒ‰é”®åˆå§‹åŒ–ï¼ˆå¸¦è½¯ä»¶å®šæ—¶å™¨è‡ªåŠ¨æ‰«æï¼‰
  *
- * \param[in] p_dev  : °´¼üÉè±¸ÊµÀı
- * \param[in] p_info : °´¼üÉè±¸ÊµÀıĞÅÏ¢
+ * \param[in] p_dev  : æŒ‰é”®è®¾å¤‡å®ä¾‹
+ * \param[in] p_info : æŒ‰é”®è®¾å¤‡å®ä¾‹ä¿¡æ¯
  *
- * \return AM_OK, ³õÊ¼»¯³É¹¦£»ÆäËüÖµ£¬³õÊ¼»¯Ê§°Ü
+ * \return AM_OK, åˆå§‹åŒ–æˆåŠŸï¼›å…¶å®ƒå€¼ï¼Œåˆå§‹åŒ–å¤±è´¥
  */
 int am_key_matrix_gpio_softimer_init (
     am_key_matrix_gpio_softimer_t            *p_dev,

@@ -12,12 +12,12 @@
 
 /**
  * \file
- * \brief TIM¶¨Ê±¹¦ÄÜÇý¶¯²ãÊµÏÖ
+ * \brief TIMå®šæ—¶åŠŸèƒ½é©±åŠ¨å±‚å®žçŽ°
  *
- * \note µ±·¢ÉúÒ»¸ö¸üÐÂÊÂ¼þÊ±£¬ËùÓÐµÄ¼Ä´æÆ÷¶¼±»¸üÐÂ£¬Ó²¼þÍ¬Ê±£¨ÒÀ¾Ý URS Î»£©Éè
- * ÖÃ¸üÐÂ±êÖ¾Î»£¨TIMx_SR¼Ä´æÆ÷ÖÐµÄ UIF Î»£©¡£ÖØ¸´¼ÆÊýÆ÷±»ÖØÐÂ¼ÓÔØÎªTIMx_RCR ¼Ä´æ
- * Æ÷µÄÖµ,×Ô¶¯×°ÔØÓ°×Ó¼Ä´æÆ÷±»ÖØÐÂÖÃÈëÔ¤×°ÔØ¼Ä´æÆ÷µÄÖµ  Ô¤·ÖÆµÆ÷µÄ»º³åÇø±»ÖÃÈëÔ¤
- * ×°ÔØ¼Ä´æÆ÷µÄÖµ£¨TIMx_PSC ¼Ä´æÆ÷µÄÄÚÈÝ£©
+ * \note å½“å‘ç”Ÿä¸€ä¸ªæ›´æ–°äº‹ä»¶æ—¶ï¼Œæ‰€æœ‰çš„å¯„å­˜å™¨éƒ½è¢«æ›´æ–°ï¼Œç¡¬ä»¶åŒæ—¶ï¼ˆä¾æ® URS ä½ï¼‰è®¾
+ * ç½®æ›´æ–°æ ‡å¿—ä½ï¼ˆTIMx_SRå¯„å­˜å™¨ä¸­çš„ UIF ä½ï¼‰ã€‚é‡å¤è®¡æ•°å™¨è¢«é‡æ–°åŠ è½½ä¸ºTIMx_RCR å¯„å­˜
+ * å™¨çš„å€¼,è‡ªåŠ¨è£…è½½å½±å­å¯„å­˜å™¨è¢«é‡æ–°ç½®å…¥é¢„è£…è½½å¯„å­˜å™¨çš„å€¼  é¢„åˆ†é¢‘å™¨çš„ç¼“å†²åŒºè¢«ç½®å…¥é¢„
+ * è£…è½½å¯„å­˜å™¨çš„å€¼ï¼ˆTIMx_PSC å¯„å­˜å™¨çš„å†…å®¹ï¼‰
  *
  * \internal
  * \par Modification history
@@ -30,7 +30,7 @@
 #include "am_clk.h"
 
 /*******************************************************************************
-  ¶¨Ê±Æ÷Çý¶¯º¯ÊýÉùÃ÷
+  å®šæ—¶å™¨é©±åŠ¨å‡½æ•°å£°æ˜Ž
 *******************************************************************************/
 
 static const am_timer_info_t * __tim_timing_info_get (void *p_drv);
@@ -47,21 +47,21 @@ static int __tim_timing_callback_set (void *, uint8_t, void (*)(void *), void *)
 static void __tim_irq_handler (void *p_arg);
 
 /*******************************************************************************
-  È«¾Ö±äÁ¿
+  å…¨å±€å˜é‡
 *******************************************************************************/
 
-/* ¶¨Ê±Æ÷ÐÅÏ¢ */
+/* å®šæ—¶å™¨ä¿¡æ¯ */
 static const am_timer_info_t __g_tim_timing_info = {
-    16,                                      /* 16Î»¶¨Ê±Æ÷               */
-    1,                                       /* µ¥Í¨µÀ                   */
-    AM_TIMER_CAN_INTERRUPT      |            /* ¿ÉÒÔ²úÉúÖÐ¶Ï             */
-    AM_TIMER_AUTO_RELOAD        |            /* Ö§³Ö×Ô¶¯ÖØÔØ             */
-    AM_TIMER_INTERMEDIATE_COUNT |            /* µ±Ç°¼ÆÊýÆ÷Öµ¿É¶Á         */
-    AM_TIMER_SUPPORT_ALL_PRESCALE_1_TO_MAX,  /* Ô¤·ÖÆµ£º1 ~ 65536 ÈÎÒâÖµ */
-    65536                                    /* Ô¤·ÖÆµ×î´óÖµ£º65536      */
+    16,                                      /* 16ä½å®šæ—¶å™¨               */
+    1,                                       /* å•é€šé“                   */
+    AM_TIMER_CAN_INTERRUPT      |            /* å¯ä»¥äº§ç”Ÿä¸­æ–­             */
+    AM_TIMER_AUTO_RELOAD        |            /* æ”¯æŒè‡ªåŠ¨é‡è½½             */
+    AM_TIMER_INTERMEDIATE_COUNT |            /* å½“å‰è®¡æ•°å™¨å€¼å¯è¯»         */
+    AM_TIMER_SUPPORT_ALL_PRESCALE_1_TO_MAX,  /* é¢„åˆ†é¢‘ï¼š1 ~ 65536 ä»»æ„å€¼ */
+    65536                                    /* é¢„åˆ†é¢‘æœ€å¤§å€¼ï¼š65536      */
 };
 
-/* TIM¶¨Ê±Æ÷Çý¶¯º¯Êý */
+/* TIMå®šæ—¶å™¨é©±åŠ¨å‡½æ•° */
 static const struct am_timer_drv_funcs __g_tim_timing_drv_funcs = {
     __tim_timing_info_get,
     __tim_timing_clkin_freq_get,
@@ -75,7 +75,7 @@ static const struct am_timer_drv_funcs __g_tim_timing_drv_funcs = {
 };
 
 /*******************************************************************************
-  ÖÐ¶Ï´¦Àí
+  ä¸­æ–­å¤„ç†
 *******************************************************************************/
 
 void __tim_irq_handler (void *p_arg)
@@ -84,7 +84,7 @@ void __tim_irq_handler (void *p_arg)
     amhw_zlg_tim_t          *p_hw_tim = (amhw_zlg_tim_t *)p_dev->p_devinfo->tim_regbase;
 
     /*
-     * ÅÐ¶ÏÊÇ·ñÊÇ¶¨Ê±Æ÷Òç³öÖÐ¶Ï
+     * åˆ¤æ–­æ˜¯å¦æ˜¯å®šæ—¶å™¨æº¢å‡ºä¸­æ–­
      */
     if (amhw_zlg_tim_status_flg_get(p_hw_tim, AMHW_ZLG_TIM_UIF) != 0 ) {
 
@@ -92,13 +92,13 @@ void __tim_irq_handler (void *p_arg)
             p_dev->pfn_callback(p_dev->p_arg);
         }
 
-        /* Çå³ýÒç³ö±êÖ¾ */
+        /* æ¸…é™¤æº¢å‡ºæ ‡å¿— */
         amhw_zlg_tim_status_flg_clr(p_hw_tim, AMHW_ZLG_TIM_UIF);
     }
 }
 
 /*******************************************************************************
-  ±ê×¼¶¨Ê±Æ÷Çý¶¯ÊµÏÖ
+  æ ‡å‡†å®šæ—¶å™¨é©±åŠ¨å®žçŽ°
 *******************************************************************************/
 
 static const am_timer_info_t * __tim_timing_info_get (void *p_drv)
@@ -115,7 +115,7 @@ static int __tim_timing_clkin_freq_get (void *p_drv, uint32_t *p_freq)
         return -AM_EINVAL;
     }
 
-    /* »ñÈ¡µ±Ç°ÏµÍ³Ê±ÖÓÆµÂÊ£¬systick Ê¹ÓÃµÄÊÇÏµÍ³Ê±ÖÓ */
+    /* èŽ·å–å½“å‰ç³»ç»Ÿæ—¶é’Ÿé¢‘çŽ‡ï¼Œsystick ä½¿ç”¨çš„æ˜¯ç³»ç»Ÿæ—¶é’Ÿ */
     *p_freq =  am_clk_rate_get(p_dev->p_devinfo->clk_num);
 
     return AM_OK;
@@ -137,7 +137,7 @@ static int __tim_timing_prescale_set (void    *p_drv,
 
     if ((prescale != 0) && (prescale <= 65536)) {
  
-        amhw_zlg_tim_prescale_set(p_hw_tim, prescale - 1);  /* ÉèÖÃ·ÖÆµÖµ */
+        amhw_zlg_tim_prescale_set(p_hw_tim, prescale - 1);  /* è®¾ç½®åˆ†é¢‘å€¼ */
 
         return AM_OK;
     }
@@ -159,7 +159,7 @@ static int __tim_timing_prescale_get (void     *p_drv,
  
     p_hw_tim = (amhw_zlg_tim_t *)p_dev->p_devinfo->tim_regbase;
 
-    /* »ñÈ¡·ÖÆµÖµ */
+    /* èŽ·å–åˆ†é¢‘å€¼ */
     *p_prescale = amhw_zlg_tim_prescale_get(p_hw_tim);
 
     return AM_OK;
@@ -211,7 +211,7 @@ static int __tim_timing_disable (void *p_drv, uint8_t chan)
     
     p_hw_tim = (amhw_zlg_tim_t *)p_dev->p_devinfo->tim_regbase;
 
-    /* ½ûÄÜ¸üÐÂÖÐ¶Ï */
+    /* ç¦èƒ½æ›´æ–°ä¸­æ–­ */
     amhw_zlg_tim_int_disable(p_hw_tim, AMHW_ZLG_TIM_UIE);
 
     amhw_zlg_tim_disable(p_hw_tim);
@@ -231,28 +231,28 @@ static int __tim_timing_enable (void *p_drv, uint8_t chan, void *p_count)
 
     p_hw_tim = (amhw_zlg_tim_t *)p_dev->p_devinfo->tim_regbase;
 
-    /* ½ûÖ¹¶¨Ê±Æ÷²úÉúÖÐ¶Ï */
+    /* ç¦æ­¢å®šæ—¶å™¨äº§ç”Ÿä¸­æ–­ */
     amhw_zlg_tim_int_disable(p_hw_tim, AMHW_ZLG_TIM_UIE);
 
-    /* ÉèÖÃ×Ô¶¯ÖØ×°¼Ä´æÆ÷µÄÖµ */
+    /* è®¾ç½®è‡ªåŠ¨é‡è£…å¯„å­˜å™¨çš„å€¼ */
     amhw_zlg_tim_arr_set(p_hw_tim, *((uint32_t *)p_count));
 
-    /* ¼ÆÊýÆ÷Çå0 */
+    /* è®¡æ•°å™¨æ¸…0 */
     amhw_zlg_tim_count_set(p_hw_tim, 0);
 
-    /* ²úÉú¸üÐÂÊÂ¼þ£¬ÖØÐÂ³õÊ¼»¯Prescaler¼ÆÊýÆ÷ ¼°Repetition¼ÆÊýÆ÷ */
+    /* äº§ç”Ÿæ›´æ–°äº‹ä»¶ï¼Œé‡æ–°åˆå§‹åŒ–Prescalerè®¡æ•°å™¨ åŠRepetitionè®¡æ•°å™¨ */
     amhw_zlg_tim_egr_set(p_hw_tim, AMHW_ZLG_TIM_UG);
 
-    /* ¸üÐÂ¶¨Ê±Æ÷Ê±»á²úÉú¸üÐÂÊÂ¼þ,Çå³ý±êÖ¾Î» */
+    /* æ›´æ–°å®šæ—¶å™¨æ—¶ä¼šäº§ç”Ÿæ›´æ–°äº‹ä»¶,æ¸…é™¤æ ‡å¿—ä½ */
     amhw_zlg_tim_status_flg_clr(p_hw_tim, AMHW_ZLG_TIM_UG);
 
     if (p_dev->pfn_callback != NULL) {
 
-        /* ÔÊÐí¸üÐÂÖÐ¶Ï */
+        /* å…è®¸æ›´æ–°ä¸­æ–­ */
         amhw_zlg_tim_int_enable(p_hw_tim, AMHW_ZLG_TIM_UIE);
     }
 
-    /* Ê¹ÄÜ¶¨Ê±Æ÷TIMÔÊÐí¼ÆÊý */
+    /* ä½¿èƒ½å®šæ—¶å™¨TIMå…è®¸è®¡æ•° */
     amhw_zlg_tim_enable(p_hw_tim);
 
     return AM_OK;
@@ -273,7 +273,7 @@ static int __tim_timing_callback_set (void     *p_drv,
  
     p_hw_tim = (amhw_zlg_tim_t *)p_dev->p_devinfo->tim_regbase;
 
-    /* ²»ÐèÒª¿ªÆôÖÐ¶Ï */
+    /* ä¸éœ€è¦å¼€å¯ä¸­æ–­ */
     if (pfn_callback == NULL) {
         amhw_zlg_tim_int_disable(p_hw_tim, AMHW_ZLG_TIM_UIE);
     } else {
@@ -313,17 +313,17 @@ am_timer_handle_t am_zlg_tim_timing_init (
     if ((p_devinfo->tim_type == AMHW_ZLG_TIM_TYPE0) ||
         (p_devinfo->tim_type == AMHW_ZLG_TIM_TYPE1))  {
 
-        /* ±ßÑØ¶ÔÆëÄ£Ê½ */
+        /* è¾¹æ²¿å¯¹é½æ¨¡å¼ */
         amhw_zlg_tim_cms_set(p_hw_tim, 0);
 
-        /* ÏòÉÏ¼ÆÊý */
+        /* å‘ä¸Šè®¡æ•° */
         amhw_zlg_tim_dir_set(p_hw_tim, 0);
     }
 
-    /* ÉèÖÃÊ±ÖÓ·Ö¸î:TDTS = Tck_tin */
+    /* è®¾ç½®æ—¶é’Ÿåˆ†å‰²:TDTS = Tck_tin */
     amhw_zlg_tim_ckd_set(p_hw_tim, 0);
 
-    /* ÔÊÐí¸üÐÂÊÂ¼þ */
+    /* å…è®¸æ›´æ–°äº‹ä»¶ */
     amhw_zlg_tim_udis_enable(p_hw_tim);
 
     am_int_connect(p_dev->p_devinfo->inum, __tim_irq_handler, (void *)p_dev);
@@ -346,10 +346,10 @@ void am_zlg_tim_timing_deinit (am_timer_handle_t handle)
 
     p_hw_tim = (amhw_zlg_tim_t *)p_dev->p_devinfo->tim_regbase;
 
-    /* ¹Ø±Õ¸üÐÂÖÐ¶Ï */
+    /* å…³é—­æ›´æ–°ä¸­æ–­ */
     amhw_zlg_tim_int_disable(p_hw_tim, AMHW_ZLG_TIM_UIE);
 
-    /* ¹Ø±ÕÊ±ÖÓ£¬Í£Ö¹¼ÆÊý */
+    /* å…³é—­æ—¶é’Ÿï¼Œåœæ­¢è®¡æ•° */
     amhw_zlg_tim_disable(p_hw_tim);
 
     am_int_disconnect(p_dev->p_devinfo->inum, __tim_irq_handler, (void *)p_dev);

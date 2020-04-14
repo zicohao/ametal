@@ -12,19 +12,19 @@
 
 /**
  * \file
- * \brief PLL Àý³Ì£¬Í¨¹ý HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief PLL ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æŽ¥å£å®žçŽ°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´òÓ¡ PLL ÆÚÍûÆµÂÊ¡¢Êµ¼ÊÊä³öÆµÂÊºÍ CLKOUT Òý½ÅÊä³öÆµÂÊ£»
- *   2. CLKOUT Òý½Å(PIO0_27 Òý½Å)Êä³ö __CLKOUT_DIV ·ÖÆµºóµÄÖ÷Ê±ÖÓÆµÂÊ£»
- *   3. LED0 ÒÔ 0.5s µÄÊ±¼ä¼ä¸ôÉÁË¸¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. æ‰“å° PLL æœŸæœ›é¢‘çŽ‡ã€å®žé™…è¾“å‡ºé¢‘çŽ‡å’Œ CLKOUT å¼•è„šè¾“å‡ºé¢‘çŽ‡ï¼›
+ *   2. CLKOUT å¼•è„š(PIO0_27 å¼•è„š)è¾“å‡º __CLKOUT_DIV åˆ†é¢‘åŽçš„ä¸»æ—¶é’Ÿé¢‘çŽ‡ï¼›
+ *   3. LED0 ä»¥ 0.5s çš„æ—¶é—´é—´éš”é—ªçƒã€‚
  *
  * \note
- *    1. LED0 ÐèÒª¶Ì½Ó J9 ÌøÏßÃ±£¬²ÅÄÜ±» PIO0_20 ¿ØÖÆ£»
- *    2. ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIO0_0 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *       PIO0_4 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
+ *    1. LED0 éœ€è¦çŸ­æŽ¥ J9 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIO0_20 æŽ§åˆ¶ï¼›
+ *    2. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO0_0 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *       PIO0_4 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am824_hw_pll.c src_am824_hw_pll
  *
  * \internal
@@ -45,7 +45,7 @@
 
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am824_core_hw_pll_entry (void)
 {

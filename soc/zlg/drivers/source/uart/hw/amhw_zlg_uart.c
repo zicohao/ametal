@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief UART²Ù×÷½Ó¿Ú
+ * \brief UARTæ“ä½œæ¥å£
  *
  * \internal
  * \par Modification History
@@ -22,7 +22,7 @@
 #include "hw/amhw_zlg_uart.h"
 
 /**
- * \brief UARTÊı¾İ·¢ËÍ(²éÑ¯Ä£Ê½)
+ * \brief UARTæ•°æ®å‘é€(æŸ¥è¯¢æ¨¡å¼)
  */
 uint32_t amhw_zlg_uart_poll_send (amhw_zlg_uart_t     *p_hw_uart,
                                   const uint8_t       *p_txbuf,
@@ -43,7 +43,7 @@ uint32_t amhw_zlg_uart_poll_send (amhw_zlg_uart_t     *p_hw_uart,
 }
 
 /**
- * \brief UARTÊı¾İ½ÓÊÕ(²éÑ¯Ä£Ê½)
+ * \brief UARTæ•°æ®æ¥æ”¶(æŸ¥è¯¢æ¨¡å¼)
  */
 uint32_t amhw_zlg_uart_poll_receive (amhw_zlg_uart_t    *p_hw_uart,
                                      uint8_t            *p_rxbuf,
@@ -72,11 +72,11 @@ int amhw_zlg_uart_baudrate_set (amhw_zlg_uart_t    *p_hw_uart,
     uint32_t int_val   = 0;
     uint32_t deci_val  = 0;
 
-    /* È·±£ÓĞĞ§µÄ clock value */
+    /* ç¡®ä¿æœ‰æ•ˆçš„ clock value */
     if ((uart_clk > 96000000)) { //todo
         uart_clk = 0;
 
-        /* ³õÊ¼»¯Òì³££¬ÓÉÓÚÆÚÍûµÄÏµÍ³Ê±ÖÓÖµÎŞĞ§ */
+        /* åˆå§‹åŒ–å¼‚å¸¸ï¼Œç”±äºæœŸæœ›çš„ç³»ç»Ÿæ—¶é’Ÿå€¼æ— æ•ˆ */
         return AM_ERROR;
     }
 
@@ -86,7 +86,7 @@ int amhw_zlg_uart_baudrate_set (amhw_zlg_uart_t    *p_hw_uart,
     amhw_zlg_uart_br_div_mantissa_set(p_hw_uart, int_val);
     amhw_zlg_uart_br_div_fraction_set(p_hw_uart, deci_val);
 
-    /* FRA ¼Ä´æÆ÷ĞèÒªÖØĞÂÊ¹ÄÜ UART ²ÅÄÜÉúĞ§ */
+    /* FRA å¯„å­˜å™¨éœ€è¦é‡æ–°ä½¿èƒ½ UART æ‰èƒ½ç”Ÿæ•ˆ */
     if (amhw_zlg_uart_uarten_get(p_hw_uart)) {
         amhw_zlg_uart_disable(p_hw_uart);
         amhw_zlg_uart_enable(p_hw_uart);

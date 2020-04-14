@@ -12,16 +12,16 @@
 
 /**
  * \file
- * \brief MiniPort-View Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MiniPort-View ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè
- *   1. ½« MiniPort-View °å×ÓÖ±½ÓÓë AM217BLE µÄ MiniPort ½Ó¿ÚÏàÁ¬½Ó¡£
+ * - æ“ä½œæ­¥éª¤
+ *   1. å°† MiniPort-View æ¿å­ç›´æ¥ä¸ AM217BLE çš„ MiniPort æ¥å£ç›¸è¿æ¥ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ¿ÉÒÔ¿´µ½ÊıÖµ 0 ~ 59 µÄÃë¼ÆÊıÆ÷£»
- *   2. Êı×éĞ¡ÓÚ 30 Ê±£¬¸öÎ»ÉÁË¸£¬´óÓÚ 30 Ê±Ê®Î»ÉÁË¸¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. å¯ä»¥çœ‹åˆ°æ•°å€¼ 0 ~ 59 çš„ç§’è®¡æ•°å™¨ï¼›
+ *   2. æ•°ç»„å°äº 30 æ—¶ï¼Œä¸ªä½é—ªçƒï¼Œå¤§äº 30 æ—¶åä½é—ªçƒã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_miniport_digitron.c src_miniport_digitron
  *
  * \internal
@@ -45,7 +45,7 @@
 #include "demo_std_entries.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_zmf159_core_miniport_digitron_entry (void)
 {

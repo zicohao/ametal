@@ -12,18 +12,18 @@
 
 /**
  * \file
- * \brief IAP Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief IAP ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Êä³ö UID, PID, Boot ´úÂë°æ±¾ºÅºÍÇ©Ãû£»
- *   2. ¿½±´ RAM µ½ FLASH£¬Êä³öÏà¹ØÒ³Êı¾İ£»
- *   3. Èç¹û·äÃùÆ÷Ïì£¬ËµÃ÷ IAP Ö¸ÁîÔÚÖ´ĞĞ²úÉú´íÎó¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. è¾“å‡º UID, PID, Boot ä»£ç ç‰ˆæœ¬å·å’Œç­¾åï¼›
+ *   2. æ‹·è´ RAM åˆ° FLASHï¼Œè¾“å‡ºç›¸å…³é¡µæ•°æ®ï¼›
+ *   3. å¦‚æœèœ‚é¸£å™¨å“ï¼Œè¯´æ˜ IAP æŒ‡ä»¤åœ¨æ‰§è¡Œäº§ç”Ÿé”™è¯¯ã€‚
  *
- *       ÔÚÉÈÇøºÍÖ¸¶¨ÉÈÇøºÅ¿É½øĞĞ IAP ºÍ ISP Ö¸Áî²Ù×÷¡£ÁíÍâ£¬¿É½øĞĞÒ³²Á³ı¡£ÉÈÇø´óĞ¡
- *       Îª 1KB£¬Ò³´óĞ¡Îª 64 ×Ö½Ú£¬Ò»¸öÉÈÇø°üº¬ 16 Ò³£¬ÉÈÇø 0 ºÍÒ³ 0 Î»ÓÚ 0x0000 0000
- *       µØÖ·¡£16KB flash ½ö°üº¬ÉÈÇø 0-15£¬64KB flash °üº¬ÉÈÇø 0-63.
+ *       åœ¨æ‰‡åŒºå’ŒæŒ‡å®šæ‰‡åŒºå·å¯è¿›è¡Œ IAP å’Œ ISP æŒ‡ä»¤æ“ä½œã€‚å¦å¤–ï¼Œå¯è¿›è¡Œé¡µæ“¦é™¤ã€‚æ‰‡åŒºå¤§å°
+ *       ä¸º 1KBï¼Œé¡µå¤§å°ä¸º 64 å­—èŠ‚ï¼Œä¸€ä¸ªæ‰‡åŒºåŒ…å« 16 é¡µï¼Œæ‰‡åŒº 0 å’Œé¡µ 0 ä½äº 0x0000 0000
+ *       åœ°å€ã€‚16KB flash ä»…åŒ…å«æ‰‡åŒº 0-15ï¼Œ64KB flash åŒ…å«æ‰‡åŒº 0-63.
  *
- *       ÉÈÇø±àºÅ       |    ÉÈÇø´óĞ¡[kB]      |    Ò³±àºÅ      |         µØÖ··¶Î§
+ *       æ‰‡åŒºç¼–å·       |    æ‰‡åŒºå¤§å°[kB]      |    é¡µç¼–å·      |         åœ°å€èŒƒå›´
  *    ------------- | ---------------- | ----------- | -------------------------
  *           0      |        1         |    0 -  15  | 0x0000 0000 - 0x0000 03ff
  *           1      |        1         |   16 -  31  | 0x0000 0400 - 0x0000 07ff
@@ -91,10 +91,10 @@
  *          63      |        1         | 1008 - 1023 | 0x0000 fc00 - 0x0000 ffff
  *
  * \note
- *    1. ÈçĞè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔĞÅÏ¢£¬ĞèÒª½« PIO0_14 Òı½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *       PIO0_23 Òı½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
+ *    1. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO0_14 å¼•è„šè¿æ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *       PIO0_23 å¼•è„šè¿æ¥ PC ä¸²å£çš„ RXDã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_lpc845_hw_iap.c src_lpc845_hw_iap
  *
  * \internal
@@ -117,12 +117,12 @@
 #include "hw/amhw_lpc84x_iap.h"
 
 /**
- * \brief Êä³öÒ»Ò³Êı¾İ
+ * \brief è¾“å‡ºä¸€é¡µæ•°æ®
  *
- * \param[in] sector_num     ÉÈÇø±àºÅ£¬È¡Öµ·¶Î§£º0 ~ 63 (64KB flash)
- * \param[in] page_in_sector Ò³±àºÅ£¬È¡Öµ·¶Î§£º0 ~ 15
+ * \param[in] sector_num     æ‰‡åŒºç¼–å·ï¼Œå–å€¼èŒƒå›´ï¼š0 ~ 63 (64KB flash)
+ * \param[in] page_in_sector é¡µç¼–å·ï¼Œå–å€¼èŒƒå›´ï¼š0 ~ 15
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_local void __print_page_data (uint32_t sector_num, uint8_t page_in_sector)
 {
@@ -139,9 +139,9 @@ am_local void __print_page_data (uint32_t sector_num, uint8_t page_in_sector)
     AM_DBG_INFO("The page %d in sector %d data is : \r\n",
                page_in_sector, sector_num);
 
-    p_data = (uint8_t *)(64 * page_num); /* Ò³µÄÆğÊ¼µØÖ· */
+    p_data = (uint8_t *)(64 * page_num); /* é¡µçš„èµ·å§‹åœ°å€ */
 
-    /* Ò»Ò³µÄ´óĞ¡Îª 64 ×Ö½Ú */
+    /* ä¸€é¡µçš„å¤§å°ä¸º 64 å­—èŠ‚ */
     for (i = 0; i < 64; i++) {
         AM_DBG_INFO("%3d  ",*p_data++);
         if (((i+1) % 8) == 0) {
@@ -152,7 +152,7 @@ am_local void __print_page_data (uint32_t sector_num, uint8_t page_in_sector)
 }
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_lpc845_hw_iap_entry (void)
 {
@@ -164,17 +164,17 @@ void demo_lpc845_hw_iap_entry (void)
     uint32_t               key          = 0;
     amhw_lpc84x_iap_stat_t stat;
 
-    /* ½« RAM ÖĞµÄÊı¾İ¿½±´µ½ FLASH Ê±£¬RAM µØÖ·±ØĞëÊÇ×Ö¶ÔÆë */
+    /* å°† RAM ä¸­çš„æ•°æ®æ‹·è´åˆ° FLASH æ—¶ï¼ŒRAM åœ°å€å¿…é¡»æ˜¯å­—å¯¹é½ */
 #if defined(__CC_ARM)
     __align(4) unsigned char data[256];
 #elif defined(__GNUC__)
     __attribute__((aligned(4))) unsigned char data[256];
 #endif
 
-    /* FLASH ¸üĞÂÊı¾İÊ±£¬½ûÖ¹±»ÖĞ¶Ï´ò¶Ï£¬ĞèÒª¹ØÖĞ¶Ï */
+    /* FLASH æ›´æ–°æ•°æ®æ—¶ï¼Œç¦æ­¢è¢«ä¸­æ–­æ‰“æ–­ï¼Œéœ€è¦å…³ä¸­æ–­ */
     key = am_int_cpu_lock();
 
-    /* ¶ÁÈ¡ UID */
+    /* è¯»å– UID */
     stat = amhw_lpc84x_iap_unique_id_read(uid);
 
     if (stat != AMHW_LPC84X_IAP_STAT_SUCCESS) {
@@ -188,11 +188,11 @@ void demo_lpc845_hw_iap_entry (void)
                     uid[0]);
     }
 
-    /* ¶ÁÈ¡ PID */
+    /* è¯»å– PID */
     pid = amhw_lpc84x_iap_part_id_read();
     AM_DBG_INFO("PID = 0x%x\r\n", pid);
 
-    /* ¶ÁÈ¡ boot ´úÂë°æ±¾ºÅ */
+    /* è¯»å– boot ä»£ç ç‰ˆæœ¬å· */
     boot_ver_tmp = amhw_lpc84x_iap_boot_ver_read();
 
     boot_ver[1] = boot_ver_tmp >> 8;
@@ -201,20 +201,20 @@ void demo_lpc845_hw_iap_entry (void)
     AM_DBG_INFO("Boot Code version: %d.%d \r\n", boot_ver[1], boot_ver[0]);
 
     /*
-     * ½«Êı¾İ´Ó RAM ¿½±´µ½ FLASH¡£
-     * ÉÈÇø±àºÅ£º63£¬µØÖ··¶Î§£º0x0000 7C00 - 0x0000 7FFF¡£
+     * å°†æ•°æ®ä» RAM æ‹·è´åˆ° FLASHã€‚
+     * æ‰‡åŒºç¼–å·ï¼š63ï¼Œåœ°å€èŒƒå›´ï¼š0x0000 7C00 - 0x0000 7FFFã€‚
      */
     for (i = 0; i < 256; i++) {
         data[i] = i;
     }
 
-    /* ×¼±¸ÉÈÇø 63 */
+    /* å‡†å¤‡æ‰‡åŒº 63 */
     amhw_lpc84x_iap_prepare(63, 63);
 
-    /* ²Á³ıÉÈÇø 63 */
+    /* æ“¦é™¤æ‰‡åŒº 63 */
     amhw_lpc84x_iap_erase_sector(63, 63);
 
-    /* ¼ì²éÉÈÇøÊÇ·ñ¿Õ°× */
+    /* æ£€æŸ¥æ‰‡åŒºæ˜¯å¦ç©ºç™½ */
     stat = amhw_lpc84x_iap_blank_check(63, 63);
 
     if (stat != AMHW_LPC84X_IAP_STAT_SUCCESS) {
@@ -228,8 +228,8 @@ void demo_lpc845_hw_iap_entry (void)
     amhw_lpc84x_iap_prepare(63, 63);
 
     /*
-     * ½«Êı¾İ´Ó RAM ¿½±´µ½ FLASH¡£
-     * ÉÈÇø 63 µÄÆğÊ¼µØÖ·ÊÇ 0x0000 fC00¡£
+     * å°†æ•°æ®ä» RAM æ‹·è´åˆ° FLASHã€‚
+     * æ‰‡åŒº 63 çš„èµ·å§‹åœ°å€æ˜¯ 0x0000 fC00ã€‚
      */
     stat = amhw_lpc84x_iap_copy(0x0000FC00, (uint32_t)&data[0], 256);
 
@@ -255,9 +255,9 @@ void demo_lpc845_hw_iap_entry (void)
 
     amhw_lpc84x_iap_prepare(63, 63);
 
-    /* ²Á³ıÒ³ 1008 - 1011
-     * ÉÈÇø 63 µÄÆğÊ¼Ò³±à 1008(63 * 16)
-     * ÉÈÇø 63 Ç°4Ò³µÄÊı¾İ¶¼½«¸ÄÎª£º0xFF
+    /* æ“¦é™¤é¡µ 1008 - 1011
+     * æ‰‡åŒº 63 çš„èµ·å§‹é¡µç¼– 1008(63 * 16)
+     * æ‰‡åŒº 63 å‰4é¡µçš„æ•°æ®éƒ½å°†æ”¹ä¸ºï¼š0xFF
      */
     amhw_lpc84x_iap_erase_page(1008, 1008 + 3);
 
@@ -268,14 +268,14 @@ void demo_lpc845_hw_iap_entry (void)
     } else {
         AM_DBG_INFO("The page erase success,the data in flash as follow :\r\n");
 
-        /* ËùÓĞÊı¾İÓ¦Îª 255 */
+        /* æ‰€æœ‰æ•°æ®åº”ä¸º 255 */
         __print_page_data(63, 0);
         __print_page_data(63, 1);
         __print_page_data(63, 2);
         __print_page_data(63, 3);
     }
 
-    /* ÖØĞÂÊ¹ÄÜÖĞ¶Ï */
+    /* é‡æ–°ä½¿èƒ½ä¸­æ–­ */
     am_int_cpu_unlock(key);
 
     AM_FOREVER {

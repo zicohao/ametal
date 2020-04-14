@@ -12,8 +12,8 @@
 *******************************************************************************/
 /**
  * \file
- * \brief amks16rfid8 ËùÓĞÀı³Ìº¯ÊıÈë¿ÚÉùÃ÷£¬±¾ÎÄÖ»°üº¬fm175xxÏà¹Ødemo£¬
- *  ÆäËûdemoÇë²ÎÕÕam116_coreÖĞµÄdemo
+ * \brief amks16rfid8 æ‰€æœ‰ä¾‹ç¨‹å‡½æ•°å…¥å£å£°æ˜ï¼Œæœ¬æ–‡åªåŒ…å«fm175xxç›¸å…³demoï¼Œ
+ *  å…¶ä»–demoè¯·å‚ç…§am116_coreä¸­çš„demo
  * \sa demo_amks16rfid8_entries.h
  *
  * \internal
@@ -23,42 +23,42 @@
  */
 
 /**
- * \brief CPU¿¨²âÊÔÀı³Ì
+ * \brief CPUå¡æµ‹è¯•ä¾‹ç¨‹
  */
 void demo_amks16rfid8_fm175xx_cpu_card (void);
 
 /**
- * \brief LPCDÄ£Ê½
+ * \brief LPCDæ¨¡å¼
  */
 void demo_amks16rfid8_fm175xx_lpcd_read_id (void);
 
 /**
- * \brief 8ÌìÏß¶ÁÈ¡AÀà¿¨¿¨ºÅÀı³Ì
+ * \brief 8å¤©çº¿è¯»å–Aç±»å¡å¡å·ä¾‹ç¨‹
  */
 void demo_amks16rfid8_fm175xx_picca_8ante_read_id (void);
 
 /**
- * \brief AÀà¿¨¿é¶ÁĞ´Àı³Ì
+ * \brief Aç±»å¡å—è¯»å†™ä¾‹ç¨‹
  */
 void demo_amks16rfid8_fm175xx_picca_block (void);
 
 /**
- * \brief AÀà¿¨¶ÁĞİÃß¿¨Àı³Ì
+ * \brief Aç±»å¡è¯»ä¼‘çœ å¡ä¾‹ç¨‹
  */
 void demo_amks16rfid8_fm175xx_picca_halt (void);
 
 /**
- * \brief AÀà¿¨¶Á¿¨ÀàĞÍºÍ¿¨ºÅÀı³Ì
+ * \brief Aç±»å¡è¯»å¡ç±»å‹å’Œå¡å·ä¾‹ç¨‹
  */
 void demo_amks16rfid8_fm175xx_picca_read_id (void);
 
 /**
- * \brief AÀà¿¨Öµ²Ù×÷Àı³Ì
+ * \brief Aç±»å¡å€¼æ“ä½œä¾‹ç¨‹
  */
 void demo_amks16rfid8_fm175xx_picca_val_operate (void);
 
 /**
- * \brief LPCDÄ£Ê½  ÅäºÏMCUµÍ¹¦ºÄÄ£Ê½
+ * \brief LPCDæ¨¡å¼  é…åˆMCUä½åŠŸè€—æ¨¡å¼
  */
 void demo_amks16rfid8_dr_fm175xx_lpcd_vlps_read_id (void);
 
@@ -66,17 +66,17 @@ void demo_amks16rfid8_dr_fm175xx_lpcd_vlps_read_id (void);
 void demo_amks16rfid8_uartcmd_handle_entry (void);
 
 /**
- * \uartcmd 8ÌìÏß¶ÁÈ¡¿¨Æ¬ID
+ * \uartcmd 8å¤©çº¿è¯»å–å¡ç‰‡ID
  */
 void demo_amks16rfid8_uartcmd_picca_8ante_read_id_entry (void);
 
 /**
- * \uartcmd ×Ô¶¯¼ì²â²âÊÔÀı³Ì
+ * \uartcmd è‡ªåŠ¨æ£€æµ‹æµ‹è¯•ä¾‹ç¨‹
  */
 void demo_amks16rfid8_uartcmd_picca_auto_detect_entry (void);
 
 /**
- * \brief uartcmd ¶ÁÈ¡Ğ´ultralight¿é
+ * \brief uartcmd è¯»å–å†™ultralightå—
  */
 void demo_amks16rfid8_uartcmd_ultralight_write_block_entry (void);
 

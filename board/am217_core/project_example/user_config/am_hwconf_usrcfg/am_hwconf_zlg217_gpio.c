@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZLG217 GPIO ÓÃ»§ÅäÖÃÎÄ¼ş¡£
+ * \brief ZLG217 GPIO ç”¨æˆ·é…ç½®æ–‡ä»¶ã€‚
  * \sa am_hwconf_zlg217_gpio.c
  *
  * \internal
@@ -35,7 +35,7 @@
  * @{
  */
 
-/** \brief GPIOÆ½Ì¨³õÊ¼»¯ */
+/** \brief GPIOå¹³å°åˆå§‹åŒ– */
 void __zlg217_plfm_gpio_init (void)
 {
     am_clk_enable(CLK_IOPA);
@@ -52,7 +52,7 @@ void __zlg217_plfm_gpio_init (void)
     am_zlg217_clk_reset(CLK_AFIO);
 }
 
-/** \brief GPIOÆ½Ì¨½â³õÊ¼»¯ */
+/** \brief GPIOå¹³å°è§£åˆå§‹åŒ– */
 void __zlg217_plfm_gpio_deinit (void)
 {
     am_zlg217_clk_reset(CLK_IOPA);
@@ -69,20 +69,20 @@ void __zlg217_plfm_gpio_deinit (void)
     am_clk_disable(CLK_AFIO);
 }
 
-/** \brief Òı½ÅÖØÓ³ÏñĞÅÏ¢ */
+/** \brief å¼•è„šé‡æ˜ åƒä¿¡æ¯ */
 static amhw_zlg217_afio_remap_peripheral_t __g_pin_remap[PIN_NUM];
 
-/** \brief Òı½Å´¥·¢ĞÅÏ¢ÄÚ´æ */
+/** \brief å¼•è„šè§¦å‘ä¿¡æ¯å†…å­˜ */
 static struct am_zlg217_gpio_trigger_info __g_gpio_triginfos[PIN_INT_MAX];
 
-/** \brief Òı½Å´¥·¢ĞÅÏ¢Ó³Éä */
+/** \brief å¼•è„šè§¦å‘ä¿¡æ¯æ˜ å°„ */
 static uint8_t __g_gpio_infomap[PIN_INT_MAX];
 
-/** \brief GPIOÉè±¸ĞÅÏ¢ */
+/** \brief GPIOè®¾å¤‡ä¿¡æ¯ */
 const am_zlg217_gpio_devinfo_t __g_gpio_devinfo = {
-    ZLG217_GPIO_BASE,            /**< \brief GPIO¿ØÖÆÆ÷¼Ä´æÆ÷¿é»ùÖ· */
-    ZLG217_EXTI_BASE,            /**< \brief EXTI¿ØÖÆÆ÷¼Ä´æÆ÷¿é»ùÖ· */
-    ZLG217_AFIO_BASE,            /**< \brief AFIO¿ØÖÆÆ÷¼Ä´æÆ÷¿é»ùÖ· */
+    ZLG217_GPIO_BASE,            /**< \brief GPIOæ§åˆ¶å™¨å¯„å­˜å™¨å—åŸºå€ */
+    ZLG217_EXTI_BASE,            /**< \brief EXTIæ§åˆ¶å™¨å¯„å­˜å™¨å—åŸºå€ */
+    ZLG217_AFIO_BASE,            /**< \brief AFIOæ§åˆ¶å™¨å¯„å­˜å™¨å—åŸºå€ */
 
     {
         INUM_EXTI0,
@@ -94,27 +94,27 @@ const am_zlg217_gpio_devinfo_t __g_gpio_devinfo = {
         INUM_EXTI15_10,
     },
 
-    PIN_NUM,                       /**< \brief GPIO PINÊıÁ¿ */
-    PIN_INT_MAX,                   /**< \brief GPIOÊ¹ÓÃµÄ×î´óÍâ²¿ÖĞ¶ÏÏß±àºÅ+1 */
+    PIN_NUM,                       /**< \brief GPIO PINæ•°é‡ */
+    PIN_INT_MAX,                   /**< \brief GPIOä½¿ç”¨çš„æœ€å¤§å¤–éƒ¨ä¸­æ–­çº¿ç¼–å·+1 */
 
-    &__g_gpio_infomap[0],          /**< \brief GPIO Òı½ÅÍâ²¿ÊÂ¼şĞÅÏ¢ */
-    &__g_pin_remap[0],             /**< \brief GPIO PINÖØÓ³ÏñĞÅÏ¢ */
-    &__g_gpio_triginfos[0],        /**< \brief GPIO PIN´¥·¢ĞÅÏ¢ */
+    &__g_gpio_infomap[0],          /**< \brief GPIO å¼•è„šå¤–éƒ¨äº‹ä»¶ä¿¡æ¯ */
+    &__g_pin_remap[0],             /**< \brief GPIO PINé‡æ˜ åƒä¿¡æ¯ */
+    &__g_gpio_triginfos[0],        /**< \brief GPIO PINè§¦å‘ä¿¡æ¯ */
 
-    __zlg217_plfm_gpio_init,       /**< \brief GPIO Æ½Ì¨³õÊ¼»¯ */
-    __zlg217_plfm_gpio_deinit      /**< \brief GPIO Æ½Ì¨È¥³õÊ¼»¯ */
+    __zlg217_plfm_gpio_init,       /**< \brief GPIO å¹³å°åˆå§‹åŒ– */
+    __zlg217_plfm_gpio_deinit      /**< \brief GPIO å¹³å°å»åˆå§‹åŒ– */
 };
 
-/** \brief GPIOÉè±¸ÊµÀı */
+/** \brief GPIOè®¾å¤‡å®ä¾‹ */
 am_zlg217_gpio_dev_t __g_gpio_dev;
 
-/** \brief GPIO ÊµÀı³õÊ¼»¯ */
+/** \brief GPIO å®ä¾‹åˆå§‹åŒ– */
 int am_zlg217_gpio_inst_init (void)
 {
     return am_zlg217_gpio_init(&__g_gpio_dev, &__g_gpio_devinfo);
 }
 
-/** \brief GPIO ÊµÀı½â³õÊ¼»¯ */
+/** \brief GPIO å®ä¾‹è§£åˆå§‹åŒ– */
 void am_zlg217_gpio_inst_deinit (void)
 {
     am_zlg217_gpio_deinit();

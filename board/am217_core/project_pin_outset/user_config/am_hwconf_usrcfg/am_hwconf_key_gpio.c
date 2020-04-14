@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief GPIO °´¼üÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief GPIO æŒ‰é”®ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_key_gpio.c
  *
  * \internal
@@ -35,7 +35,7 @@
 static const int __g_key_pins[]  = {__KEY_KP0_GPIO};
 static const int __g_key_codes[] = {KEY_KP0};
 
-/** \brief Éè±¸ĞÅÏ¢ */
+/** \brief è®¾å¤‡ä¿¡æ¯ */
 static const am_key_gpio_info_t __g_key_gpio_info = {
     __g_key_pins,
     __g_key_codes,
@@ -44,10 +44,10 @@ static const am_key_gpio_info_t __g_key_gpio_info = {
     10
 };
 
-/** \brief Éè±¸ÊµÀı */
+/** \brief è®¾å¤‡å®ä¾‹ */
 static am_key_gpio_t __g_key_gpio;
 
-/** \brief ÊµÀı³õÊ¼»¯º¯Êı */
+/** \brief å®ä¾‹åˆå§‹åŒ–å‡½æ•° */
 int am_key_gpio_inst_init (void)
 {
     return am_key_gpio_init(&__g_key_gpio, &__g_key_gpio_info);

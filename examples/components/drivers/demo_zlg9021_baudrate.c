@@ -13,22 +13,22 @@
 
 /**
  * \file
- * \brief À¶ÑÀÄ£¿é×Ô¶¯²¨ÌØÂÊÀý³Ì£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief è“ç‰™æ¨¡å—è‡ªåŠ¨æ³¢ç‰¹çŽ‡ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. µ¥Æ¬»ú·Ö±ð³¢ÊÔÍ¨¹ý 4800¡¢9600¡¢19200¡¢38400¡¢57600 ºÍ 115200 µÄ²¨ÌØÂÊÁ¬½Ó
- *      ZLG7021£»
- *   2. Èç¹ûÁ¬½Ó³É¹¦£¬Í¨¹ý´®¿Ú´òÓ¡µ±Ç°µÄ²¨ÌØÂÊ²¢°´ 500 ms µÄ¼ä¸ôÂýÉÁË¸ LED0£¬·ñÔò
- *      LED0 °´ 100 ms µÄ¼ä¸ô¿ìÉÁË¸¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. å•ç‰‡æœºåˆ†åˆ«å°è¯•é€šè¿‡ 4800ã€9600ã€19200ã€38400ã€57600 å’Œ 115200 çš„æ³¢ç‰¹çŽ‡è¿žæŽ¥
+ *      ZLG7021ï¼›
+ *   2. å¦‚æžœè¿žæŽ¥æˆåŠŸï¼Œé€šè¿‡ä¸²å£æ‰“å°å½“å‰çš„æ³¢ç‰¹çŽ‡å¹¶æŒ‰ 500 ms çš„é—´éš”æ…¢é—ªçƒ LED0ï¼Œå¦åˆ™
+ *      LED0 æŒ‰ 100 ms çš„é—´éš”å¿«é—ªçƒã€‚
  *
  * \note
- *    1. LED0 ÐèÒª¶Ì½Ó J9 ÌøÏßÃ±£¬²ÅÄÜ±» PIO0_8 ¿ØÖÆ£»
- *    2. ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIO0_0 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *       PIO0_4 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD£»
- *    3. ²âÊÔ±¾ Demo ±ØÐëÔÚ am_prj_config.h ÄÚ½« AM_CFG_KEY_GPIO_ENABLE¡¢
- *       AM_CFG_KEY_ENABLE ºÍ AM_CFG_SOFTIMER_ENABLE ¶¨ÒåÎª 1¡£µ«ÕâÐ©ºê
- *       ÒÑ¾­Ä¬ÈÏÅäÖÃÎª 1£¬ ÓÃ»§²»±ØÔÙ´ÎÅäÖÃ£»
- *    4. ZLG9021 Ä£¿éÄÚÁ¬½Ó¹ØÏµÈçÏÂ£º
+ *    1. LED0 éœ€è¦çŸ­æŽ¥ J9 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIO0_8 æŽ§åˆ¶ï¼›
+ *    2. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO0_0 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *       PIO0_4 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDï¼›
+ *    3. æµ‹è¯•æœ¬ Demo å¿…é¡»åœ¨ am_prj_config.h å†…å°† AM_CFG_KEY_GPIO_ENABLEã€
+ *       AM_CFG_KEY_ENABLE å’Œ AM_CFG_SOFTIMER_ENABLE å®šä¹‰ä¸º 1ã€‚ä½†è¿™äº›å®
+ *       å·²ç»é»˜è®¤é…ç½®ä¸º 1ï¼Œ ç”¨æˆ·ä¸å¿…å†æ¬¡é…ç½®ï¼›
+ *    4. ZLG9021 æ¨¡å—å†…è¿žæŽ¥å…³ç³»å¦‚ä¸‹ï¼š
  * <pre>
  *           PIO0_26  <-->  ZLG9021_RX
  *           PIO0_27  <-->  ZLG9021_TX
@@ -36,9 +36,9 @@
  *           PIO0_25  <-->  ZLG9021_BRTS
  *           PIO0_28  <-->  ZLG9021_RESET
  * </pre>
- *       Èç¹ûÐèÒªÊ¹ÓÃ ZLG9021£¬ÕâÐ© IO ¿Ú²»ÄÜÓÃ×÷ÆäËüÓÃÍ¾¡£
+ *       å¦‚æžœéœ€è¦ä½¿ç”¨ ZLG9021ï¼Œè¿™äº› IO å£ä¸èƒ½ç”¨ä½œå…¶å®ƒç”¨é€”ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_zlg9021_baudrate.c src_zlg9021_baudrate
  *
  * \internal
@@ -60,7 +60,7 @@
 #include "am_led.h"
 
 /**
- * \brief ¿ìÉÁË¸ LED0
+ * \brief å¿«é—ªçƒ LED0
  */
 static void flash_led (void)
 {
@@ -73,7 +73,7 @@ static void flash_led (void)
 }
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_zlg9021_baudrate_entry (am_zlg9021_handle_t zlg9021_handle)
 {
@@ -81,18 +81,18 @@ void demo_zlg9021_baudrate_entry (am_zlg9021_handle_t zlg9021_handle)
     uint32_t  zlg9021_baudrate       = 0;
     uint32_t  zlg9021_baudrate_tab[] = {4800, 9600, 19200, 38400, 57600, 115200};
 
-    /* µÈ´ýÄ£¿é³õÊ¼»¯Íê³É(Ä£¿é³õÊ¼»¯Íê³ÉÖ®ºó»á·¢ËÍ "TTM:ZLG9021P0-1-TC") */
+    /* ç­‰å¾…æ¨¡å—åˆå§‹åŒ–å®Œæˆ(æ¨¡å—åˆå§‹åŒ–å®Œæˆä¹‹åŽä¼šå‘é€ "TTM:ZLG9021P0-1-TC") */
     am_mdelay(500);
 
-    /* ³¢ÊÔÁ¬½ÓÄ£¿é */
+    /* å°è¯•è¿žæŽ¥æ¨¡å— */
     for (i = 0; i < AM_NELEMENTS(zlg9021_baudrate_tab); i++) {
 
-        /* ÉèÖÃÓë ZLG9021 Í¨ÐÅµÄ´®¿ÚµÄ²¨ÌØÂÊ */
+        /* è®¾ç½®ä¸Ž ZLG9021 é€šä¿¡çš„ä¸²å£çš„æ³¢ç‰¹çŽ‡ */
         am_uart_ioctl(zlg9021_handle->uart_handle,
                       AM_UART_BAUD_SET,
                       (void *)zlg9021_baudrate_tab[i]);
 
-        /* ³¢ÊÔ»ñÈ¡ ZLG9021 µÄ²¨ÌØÂÊ */
+        /* å°è¯•èŽ·å– ZLG9021 çš„æ³¢ç‰¹çŽ‡ */
         am_zlg9021_ioctl(zlg9021_handle,
                          AM_ZLG9021_BAUD_GET,
                          (void *)&zlg9021_baudrate);

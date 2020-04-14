@@ -30,39 +30,39 @@ extern "C" {
 #include "am_uartcmd_frame.h"
 
 /**
- * \brief ĞÂÖ¡³õÊ¼»¯º¯Êı
+ * \brief æ–°å¸§åˆå§‹åŒ–å‡½æ•°
  *
- * \param[in] handle  : UARTCMD·şÎñ¾ä±ú
- * \param[in] p_frame : Í¨ÓÃÖ¡ÀàĞÍ½á¹¹Ìå
- * \param[in] type    : Ö¡µÄÀàĞÍ
+ * \param[in] handle  : UARTCMDæœåŠ¡å¥æŸ„
+ * \param[in] p_frame : é€šç”¨å¸§ç±»å‹ç»“æ„ä½“
+ * \param[in] type    : å¸§çš„ç±»å‹
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 int uartcmd_frame_new_init (am_uartcmd_handle_t  handle,
                             uartcmd_frame_t     *p_frame,
                             uint8_t              type);
 
 /**
- * \brief ĞÂÖ¡È¥³õÊ¼»¯º¯Êı
+ * \brief æ–°å¸§å»åˆå§‹åŒ–å‡½æ•°
  *
- * \param[in] handle  : UARTCMD·şÎñ¾ä±ú
- * \param[in] p_frame : Í¨ÓÃÖ¡ÀàĞÍ½á¹¹Ìå
- * \param[in] type    : Ö¡µÄÀàĞÍ
+ * \param[in] handle  : UARTCMDæœåŠ¡å¥æŸ„
+ * \param[in] p_frame : é€šç”¨å¸§ç±»å‹ç»“æ„ä½“
+ * \param[in] type    : å¸§çš„ç±»å‹
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 int uartcmd_frame_new_deinit (am_uartcmd_handle_t  handle,
                               uartcmd_frame_t     *p_frame);
 
 /**
- * \brief ĞÂÖ¡Ğ£ÑéºÍ¼ÆËã
+ * \brief æ–°å¸§æ ¡éªŒå’Œè®¡ç®—
  *
- * \param[in] p_buf : ´æ·ÅÖ¡µÄ»º³åÇø
- * \param[in] len   : ´ÓµØÖ·×Ö½Ú¿ªÊ¼µ½ĞÅÏ¢µÄ×îºó×Ö½Ú£¨²»°üÀ¨Ğ£ÑéºÍ×Ö½Ú£©
+ * \param[in] p_buf : å­˜æ”¾å¸§çš„ç¼“å†²åŒº
+ * \param[in] len   : ä»åœ°å€å­—èŠ‚å¼€å§‹åˆ°ä¿¡æ¯çš„æœ€åå­—èŠ‚ï¼ˆä¸åŒ…æ‹¬æ ¡éªŒå’Œå­—èŠ‚ï¼‰
  *
- * \return Ğ£ÑéºÍ
+ * \return æ ¡éªŒå’Œ
  */
 uint32_t uartcmd_frame_new_sum_cacl (const uint8_t *p_buf, uint32_t len);
 

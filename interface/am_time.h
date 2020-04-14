@@ -11,11 +11,11 @@
 *******************************************************************************/
 /**
  * \file
- * \brief Ê±¼ä±ê×¼·şÎñ
+ * \brief æ—¶é—´æ ‡å‡†æœåŠ¡
  *
- * Ê¹ÓÃ±¾·şÎñĞèÒª°üº¬Í·ÎÄ¼ş am_time.h
+ * ä½¿ç”¨æœ¬æœåŠ¡éœ€è¦åŒ…å«å¤´æ–‡ä»¶ am_time.h
  *
- * \par Ê¹ÓÃÊ¾Àı
+ * \par ä½¿ç”¨ç¤ºä¾‹
  * \code
  * \endcode
  *
@@ -41,18 +41,18 @@ extern "C" {
  * @{
  */
 
-/** \brief ÈÕÀúÊ±¼ä£¬×Ô1970 Äê 1 ÔÂ 1 ÈÕ 0 Ê± 0 ·Ö 0 Ãë ÒÔÀ´µÄÃëÊı */
+/** \brief æ—¥å†æ—¶é—´ï¼Œè‡ª1970 å¹´ 1 æœˆ 1 æ—¥ 0 æ—¶ 0 åˆ† 0 ç§’ ä»¥æ¥çš„ç§’æ•° */
 typedef time_t am_time_t;
 
-/** \brief ¾«È·ÈÕÀúÊ±¼ä£¬ÓÃÃëºÍÄÉÃë±íÊ¾µÄÈÕÀúÊ±¼ä */
+/** \brief ç²¾ç¡®æ—¥å†æ—¶é—´ï¼Œç”¨ç§’å’Œçº³ç§’è¡¨ç¤ºçš„æ—¥å†æ—¶é—´ */
 typedef struct am_timespec {
-    am_time_t       tv_sec;   /**< \brief Ãë¼ÆÊı   */
-    unsigned long   tv_nsec;  /**< \brief ÄÉÃë¼ÆÊı */
+    am_time_t       tv_sec;   /**< \brief ç§’è®¡æ•°   */
+    unsigned long   tv_nsec;  /**< \brief çº³ç§’è®¡æ•° */
 } am_timespec_t;
 
 /**
- * \brief Ï¸·ÖÊ±¼ä, ±¾½á¹¹ÌåÓë <time.h> ÖĞµÄ struct tm ÏàËÆ, ¿ÉÊ¹ÓÃ <time.h> ÖĞ
- * µÄ¸¨Öúº¯Êı½øĞĞÔËËã (Ê¹ÓÃÇ¿ÖÆ×ª»» (struct tm *)xx )
+ * \brief ç»†åˆ†æ—¶é—´, æœ¬ç»“æ„ä½“ä¸ <time.h> ä¸­çš„ struct tm ç›¸ä¼¼, å¯ä½¿ç”¨ <time.h> ä¸­
+ * çš„è¾…åŠ©å‡½æ•°è¿›è¡Œè¿ç®— (ä½¿ç”¨å¼ºåˆ¶è½¬æ¢ (struct tm *)xx )
  */
 typedef struct am_tm {
     int tm_sec;     /**< \brief seconds after the minute     - [0, 59]  */
@@ -67,85 +67,85 @@ typedef struct am_tm {
 } am_tm_t;
 
 /**
- * \brief »ñÈ¡µ±Ç°ÈÕÀúÊ±¼ä (Óë <time.h> ÖĞ time() ĞĞÎªÏàÍ¬)
+ * \brief è·å–å½“å‰æ—¥å†æ—¶é—´ (ä¸ <time.h> ä¸­ time() è¡Œä¸ºç›¸åŒ)
  *
- * \note ¿ÉÊ¹ÓÃ am_time_to_tm() ½«ÈÕÀúÊ±¼ä×ª»»ÎªÏ¸·ÖÊ±¼ä
+ * \note å¯ä½¿ç”¨ am_time_to_tm() å°†æ—¥å†æ—¶é—´è½¬æ¢ä¸ºç»†åˆ†æ—¶é—´
  *
- * \param[out] p_time   Èô²»ÎªNULL, Ôò·µ»ØÈÕÀúÊ±¼ä
+ * \param[out] p_time   è‹¥ä¸ä¸ºNULL, åˆ™è¿”å›æ—¥å†æ—¶é—´
  *
- * \return µ±Ç°ÈÕÀúÊ±¼ä
+ * \return å½“å‰æ—¥å†æ—¶é—´
  *
- * \par Ê¾Àı
+ * \par ç¤ºä¾‹
  * \code
  * #include "am_time.h"
  *
- * am_time_t time;      // ÈÕÀúÊ±¼ä
- * am_tm_t   tm;        // Ï¸·ÖÊ±¼ä
+ * am_time_t time;      // æ—¥å†æ—¶é—´
+ * am_tm_t   tm;        // ç»†åˆ†æ—¶é—´
  *
- * time = am_time(NULL);                            // µÃµ½ÈÕÀúÊ±¼ä
- * printf("%s\n", ctime(const time_t *)&time);      // ´òÓ¡ÈÕÀúÊ±¼ä
+ * time = am_time(NULL);                            // å¾—åˆ°æ—¥å†æ—¶é—´
+ * printf("%s\n", ctime(const time_t *)&time);      // æ‰“å°æ—¥å†æ—¶é—´
  *
- * am_time_to_tm(time, &tm);                        // ½«ÈÕÀúÊ±¼ä×ª»»ÎªÏ¸·ÖÊ±¼ä
- * printf("%s\n", asctime(const struct tm *)&tm);   // ´òÓ¡Ï¸·ÖÊ±¼ä
+ * am_time_to_tm(time, &tm);                        // å°†æ—¥å†æ—¶é—´è½¬æ¢ä¸ºç»†åˆ†æ—¶é—´
+ * printf("%s\n", asctime(const struct tm *)&tm);   // æ‰“å°ç»†åˆ†æ—¶é—´
  * \endcode
  */
 am_time_t am_time(am_time_t *p_time);
 
 /**
- * \brief »ñÈ¡µ±Ç°ÈÕÀúÊ±¼ä (Ãë¡¢ÄÉÃë±íÊ¾)
+ * \brief è·å–å½“å‰æ—¥å†æ—¶é—´ (ç§’ã€çº³ç§’è¡¨ç¤º)
  *
- * Ïà±È am_time(), am_tm_get(), ±¾º¯ÊıÄÜ¶à»ñÈ¡Ò»¸öÄÉÃëÖµ¡£
+ * ç›¸æ¯” am_time(), am_tm_get(), æœ¬å‡½æ•°èƒ½å¤šè·å–ä¸€ä¸ªçº³ç§’å€¼ã€‚
  *
- * \note ¿ÉÊ¹ÓÃ am_tm_get() Ö±½Ó»ñÈ¡µ±Ç°Ê±¼äµÄÏ¸·Ö±íÊ¾ĞÎÊ½
+ * \note å¯ä½¿ç”¨ am_tm_get() ç›´æ¥è·å–å½“å‰æ—¶é—´çš„ç»†åˆ†è¡¨ç¤ºå½¢å¼
  *
- * \param[out] p_tv  Ê±¼äÖµ
+ * \param[out] p_tv  æ—¶é—´å€¼
  *
- * \retval AM_OK    ³É¹¦
- * \retval -AM_EINVAL  ²ÎÊı´íÎó
+ * \retval AM_OK    æˆåŠŸ
+ * \retval -AM_EINVAL  å‚æ•°é”™è¯¯
  *
- * \par Ê¾Àı
+ * \par ç¤ºä¾‹
  * \code
  * #include "am_time.h"
  *
- * am_timespec_t timespec;      // ÈÕÀúÊ±¼ä
+ * am_timespec_t timespec;      // æ—¥å†æ—¶é—´
  *
- * am_timespec_get(&timespec);                            // µÃµ½ÈÕÀúÊ±¼ä
- * printf("%s", ctime((const time_t *)&timespec.tv_sec)); // ´òÓ¡ÈÕÀúÊ±¼ä
- * printf(" %d ms \n", timespec.tv_nsec / 1000000);       // ´òÓ¡ºÁÃë
+ * am_timespec_get(&timespec);                            // å¾—åˆ°æ—¥å†æ—¶é—´
+ * printf("%s", ctime((const time_t *)&timespec.tv_sec)); // æ‰“å°æ—¥å†æ—¶é—´
+ * printf(" %d ms \n", timespec.tv_nsec / 1000000);       // æ‰“å°æ¯«ç§’
  * \endcode
  * \sa am_time() am_timespec_set()
  */
 int am_timespec_get(am_timespec_t *p_tv);
 
 /**
- * \brief ÉèÖÃµ±Ç°ÈÕÀúÊ±¼ä
+ * \brief è®¾ç½®å½“å‰æ—¥å†æ—¶é—´
  *
- * \note ¿ÉÊ¹ÓÃ am_tm_set() ÒÔÏ¸·Ö±íÊ¾ĞÎÊ½À´ÉèÖÃµ±Ç°Ê±¼ä
+ * \note å¯ä½¿ç”¨ am_tm_set() ä»¥ç»†åˆ†è¡¨ç¤ºå½¢å¼æ¥è®¾ç½®å½“å‰æ—¶é—´
  *
- * \param[in] p_tv ÒªÉèÖÃµÄÊ±¼ä
+ * \param[in] p_tv è¦è®¾ç½®çš„æ—¶é—´
  *
- * \retval AM_OK    ³É¹¦
- * \retval -AM_EINVAL  ²ÎÊı´íÎó
+ * \retval AM_OK    æˆåŠŸ
+ * \retval -AM_EINVAL  å‚æ•°é”™è¯¯
  *
- * \par Ê¾Àı
+ * \par ç¤ºä¾‹
  * \code
  * #include "am_time.h"
  *
- * am_tm_t       tm;            // Ï¸·ÖÊ±¼ä
- * am_timespec_t timespec;      // ÈÕÀúÊ±¼ä
+ * am_tm_t       tm;            // ç»†åˆ†æ—¶é—´
+ * am_timespec_t timespec;      // æ—¥å†æ—¶é—´
  *
  * tm.tm_sec    = 6;
  * tm.tm_min    = 6;
  * tm.tm_hour   = 6;
  * tm.tm_mday   = 6;
- * tm.tm_mon    = 6 - 1;        // Êµ¼ÊÔÂ·İÒª¼õ1
- * tm.tm_year   = 2013 - 1900;  // ¾à1900µÄÄêÊı
- * tm.tm_isdst  = -1;           // ÏÄÁîÊ±²»¿ÉÓÃ
+ * tm.tm_mon    = 6 - 1;        // å®é™…æœˆä»½è¦å‡1
+ * tm.tm_year   = 2013 - 1900;  // è·1900çš„å¹´æ•°
+ * tm.tm_isdst  = -1;           // å¤ä»¤æ—¶ä¸å¯ç”¨
  *
- * am_tm_to_time(&tm, &timespec.tv_sec);    // ×ª»»ÎªÈÕÀúÊ±¼ä
- * timespec.tv_nsec = 0;                    // ÄÉÃë²¿·ÖÖÃ0
+ * am_tm_to_time(&tm, &timespec.tv_sec);    // è½¬æ¢ä¸ºæ—¥å†æ—¶é—´
+ * timespec.tv_nsec = 0;                    // çº³ç§’éƒ¨åˆ†ç½®0
  *
- * am_timespec_set(&timespec);              // ÉèÖÃÈÕÀúÊ±¼ä
+ * am_timespec_set(&timespec);              // è®¾ç½®æ—¥å†æ—¶é—´
  *
  * \endcode
 
@@ -154,27 +154,27 @@ int am_timespec_get(am_timespec_t *p_tv);
 int am_timespec_set(am_timespec_t *p_tv);
 
 /**
- * \brief »ñÈ¡µ±Ç°Ê±¼ä (Ï¸·ÖĞÎÊ½±íÊ¾)
+ * \brief è·å–å½“å‰æ—¶é—´ (ç»†åˆ†å½¢å¼è¡¨ç¤º)
  *
- * \note ¿ÉÊ¹ÓÃ am_tm_get() Ö±½Ó»ñÈ¡µ±Ç°Ê±¼äµÄÏ¸·Ö±íÊ¾ĞÎÊ½
+ * \note å¯ä½¿ç”¨ am_tm_get() ç›´æ¥è·å–å½“å‰æ—¶é—´çš„ç»†åˆ†è¡¨ç¤ºå½¢å¼
  *
- * \param[out] p_tm  Ê±¼äÖµ
+ * \param[out] p_tm  æ—¶é—´å€¼
  *
- * \retval AM_OK    ³É¹¦
- * \retval -AM_EINVAL  ²ÎÊı´íÎó
+ * \retval AM_OK    æˆåŠŸ
+ * \retval -AM_EINVAL  å‚æ•°é”™è¯¯
  *
- * \par Ê¾Àı
+ * \par ç¤ºä¾‹
  * \code
  * #include "am_time.h"
- * am_tm_t tm;          // Ï¸·ÖÊ±¼ä
+ * am_tm_t tm;          // ç»†åˆ†æ—¶é—´
  *
- * am_tm_get(&tm);      // µÃµ½µ±Ç°Ê±¼ä
- * printf("%s", asctime((const struct tm *)&tm)); // ´òÓ¡Ê±¼ä
+ * am_tm_get(&tm);      // å¾—åˆ°å½“å‰æ—¶é—´
+ * printf("%s", asctime((const struct tm *)&tm)); // æ‰“å°æ—¶é—´
  *
  * printf("%d-%d-%d %d:%d:%d wday:%d yday:%d\n",
  *        tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday,
  *        tm.tm_hour, tm.tm_min, tm.tm_sec,
- *        tm.tm_wday, tm.tm_yday);              // ´òÓ¡Ê±¼ä
+ *        tm.tm_wday, tm.tm_yday);              // æ‰“å°æ—¶é—´
  *
  * \endcode
  * \sa am_time() am_tm_set()
@@ -182,28 +182,28 @@ int am_timespec_set(am_timespec_t *p_tv);
 int am_tm_get (am_tm_t *p_tm);
 
 /**
- * \brief ÉèÖÃµ±Ç°Ê±¼ä(Ï¸·ÖĞÎÊ½±íÊ¾)
+ * \brief è®¾ç½®å½“å‰æ—¶é—´(ç»†åˆ†å½¢å¼è¡¨ç¤º)
  *
- * \param[in] p_tm ÒªÉèÖÃµÄÊ±¼ä
+ * \param[in] p_tm è¦è®¾ç½®çš„æ—¶é—´
  *
- * \retval AM_OK    ³É¹¦
- * \retval -AM_EINVAL  ²ÎÊı´íÎó
+ * \retval AM_OK    æˆåŠŸ
+ * \retval -AM_EINVAL  å‚æ•°é”™è¯¯
  *
- * \par Ê¾Àı
+ * \par ç¤ºä¾‹
  * \code
  * #include "am_time.h"
  *
- * am_tm_t       tm;            // Ï¸·ÖÊ±¼ä
+ * am_tm_t       tm;            // ç»†åˆ†æ—¶é—´
  *
  * tm.tm_sec    = 6;
  * tm.tm_min    = 6;
  * tm.tm_hour   = 6;
  * tm.tm_mday   = 6;
- * tm.tm_mon    = 6 - 1;        // Êµ¼ÊÔÂ·İÒª¼õ1
- * tm.tm_year   = 2013 - 1900;  // ¾à1900µÄÄêÊı
- * tm.tm_isdst  = -1;           // ÏÄÁîÊ±²»¿ÉÓÃ
+ * tm.tm_mon    = 6 - 1;        // å®é™…æœˆä»½è¦å‡1
+ * tm.tm_year   = 2013 - 1900;  // è·1900çš„å¹´æ•°
+ * tm.tm_isdst  = -1;           // å¤ä»¤æ—¶ä¸å¯ç”¨
  *
- * am_tm_set(&tm);              // ÉèÖÃÈÕÀúÊ±¼ä
+ * am_tm_set(&tm);              // è®¾ç½®æ—¥å†æ—¶é—´
  *
  * \endcode
  *
@@ -212,48 +212,48 @@ int am_tm_get (am_tm_t *p_tm);
 int am_tm_set (am_tm_t *p_tm);
 
 /**
- * \brief ½«Ï¸·ÖÊ±¼äĞÎÊ½×ª»»ÎªÈÕÀúÊ±¼äĞÎÊ½
+ * \brief å°†ç»†åˆ†æ—¶é—´å½¢å¼è½¬æ¢ä¸ºæ—¥å†æ—¶é—´å½¢å¼
  *
- * \param[in,out] p_tm    Ï¸·ÖÊ±¼ä, ³ÉÔ± tm_wday, tm_yday ÔÚµ÷ÓÃºó±»¸üĞÂ;
- *                        ÈçÏÄÁîÊ±ÓĞĞ§, tm_isdst ÎªÕı, ÈçÎŞĞ§ÔòÎª0, ÈôĞÅÏ¢²»¿ÉÓÃ
- *                        ÔòÎª¸º
- * \param[out]    p_time  ÈÕÀúÊ±¼ä
+ * \param[in,out] p_tm    ç»†åˆ†æ—¶é—´, æˆå‘˜ tm_wday, tm_yday åœ¨è°ƒç”¨åè¢«æ›´æ–°;
+ *                        å¦‚å¤ä»¤æ—¶æœ‰æ•ˆ, tm_isdst ä¸ºæ­£, å¦‚æ— æ•ˆåˆ™ä¸º0, è‹¥ä¿¡æ¯ä¸å¯ç”¨
+ *                        åˆ™ä¸ºè´Ÿ
+ * \param[out]    p_time  æ—¥å†æ—¶é—´
  *
- * \retval AM_OK       ³É¹¦
- * \retval -AM_EINVAL  ²ÎÊı´íÎó
- * \retval -EBADF      Ï¸·ÖÊ±¼ä´íÎó, Ï¸·ÖÊ±¼äµÄÓĞĞ§ÖµÇë²Î¿¼ am_tm_t
+ * \retval AM_OK       æˆåŠŸ
+ * \retval -AM_EINVAL  å‚æ•°é”™è¯¯
+ * \retval -EBADF      ç»†åˆ†æ—¶é—´é”™è¯¯, ç»†åˆ†æ—¶é—´çš„æœ‰æ•ˆå€¼è¯·å‚è€ƒ am_tm_t
  */
 int am_tm_to_time (am_tm_t *p_tm, am_time_t *p_time);
 
 /**
- * \brief ½«ÈÕÀúÊ±¼äĞÎÊ½×ª»»ÎªÏ¸·ÖÊ±¼äĞÎÊ½
+ * \brief å°†æ—¥å†æ—¶é—´å½¢å¼è½¬æ¢ä¸ºç»†åˆ†æ—¶é—´å½¢å¼
  *
- * \attention ±¾º¯Êı²»¿ÉÖØÈë
+ * \attention æœ¬å‡½æ•°ä¸å¯é‡å…¥
  *
- * \param[in]   p_time  ÈÕÀúÊ±¼ä
- * \param[out]  p_tm    Ï¸·ÖÊ±¼ä
+ * \param[in]   p_time  æ—¥å†æ—¶é—´
+ * \param[out]  p_tm    ç»†åˆ†æ—¶é—´
  *
- * \retval AM_OK       ³É¹¦
- * \retval -AM_EINVAL  ²ÎÊı´íÎó
+ * \retval AM_OK       æˆåŠŸ
+ * \retval -AM_EINVAL  å‚æ•°é”™è¯¯
  */
 int am_time_to_tm (am_time_t *p_time, am_tm_t *p_tm);
 
 /**
- * \brief ÏµÍ³Ê±¼ä³õÊ¼»¯
+ * \brief ç³»ç»Ÿæ—¶é—´åˆå§‹åŒ–
  *
- * \param[in] rtc_handle        : ÒÀÀµµÄRTCÊµÊ±Ê±ÖÓ¾ä±ú
- * \param[in] update_sysclk_ns  : Ê¹ÓÃÏµÍ³Ê±ÖÓ¸üĞÂµÄÊ±¼ä¼ä¸ô£¨µ¥Î»£ºÄÉÃë£©
- * \param[in] update_rtc_s      : Ê¹ÓÃRTC¸üĞÂµÄÊ±¼ä¼ä¸ô£¨µ¥Î»£ºÄÉÃë£©
+ * \param[in] rtc_handle        : ä¾èµ–çš„RTCå®æ—¶æ—¶é’Ÿå¥æŸ„
+ * \param[in] update_sysclk_ns  : ä½¿ç”¨ç³»ç»Ÿæ—¶é’Ÿæ›´æ–°çš„æ—¶é—´é—´éš”ï¼ˆå•ä½ï¼šçº³ç§’ï¼‰
+ * \param[in] update_rtc_s      : ä½¿ç”¨RTCæ›´æ–°çš„æ—¶é—´é—´éš”ï¼ˆå•ä½ï¼šçº³ç§’ï¼‰
  *
- * \retval AM_OK       ³É¹¦
- * \retval -AM_EINVAL  ²ÎÊı´íÎó
+ * \retval AM_OK       æˆåŠŸ
+ * \retval -AM_EINVAL  å‚æ•°é”™è¯¯
  */
 int am_time_init (void           *rtc_handle,
                   unsigned int    update_sysclk_ns,
                   unsigned int    update_rtc_s);
 
 /**
- * \brief ¸ù¾İRTC¸üĞÂÏµÍ³Ê±¼ä
+ * \brief æ ¹æ®RTCæ›´æ–°ç³»ç»Ÿæ—¶é—´
  */
 int am_time_update (void);
 

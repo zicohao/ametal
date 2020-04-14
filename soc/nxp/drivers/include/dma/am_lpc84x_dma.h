@@ -13,11 +13,11 @@
 
 /**
  * \file
- * \brief LPC82x DMA ²Ù×÷½Ó¿Ú
+ * \brief LPC82x DMA æ“ä½œæ¥å£
  *
- * DMA ´«ÊäµÄÊı¾İÍ¨¹ıÁ½ÖÖ½á¹¹ÃèÊö£º
- * - #am_lpc84x_dma_transfer_t  ¿ÉÒÔ½øĞĞ¼òµ¥µÄÄÚ´æµ½ÄÚ´æ£¬ÄÚ´æµ½ÍâÉè£¬ÍâÉèµ½ÄÚ´æ´«Êä£»
- * - #am_lpc84x_dma_xfer_desc_t ¿ÉÒÔÁé»îµÄÅäÖÃÁ´Ê½´«Êä£¬ÈçpingpongÄ£Ê½´«Êä¡£
+ * DMA ä¼ è¾“çš„æ•°æ®é€šè¿‡ä¸¤ç§ç»“æ„æè¿°ï¼š
+ * - #am_lpc84x_dma_transfer_t  å¯ä»¥è¿›è¡Œç®€å•çš„å†…å­˜åˆ°å†…å­˜ï¼Œå†…å­˜åˆ°å¤–è®¾ï¼Œå¤–è®¾åˆ°å†…å­˜ä¼ è¾“ï¼›
+ * - #am_lpc84x_dma_xfer_desc_t å¯ä»¥çµæ´»çš„é…ç½®é“¾å¼ä¼ è¾“ï¼Œå¦‚pingpongæ¨¡å¼ä¼ è¾“ã€‚
  * 
  * \internal
  * \par Modification History
@@ -42,274 +42,274 @@ extern "C" {
  */
 
 /**
- * \name DMA transfer½á¹¹Ìå´«Êä¿ØÖÆ²ÎÊı
+ * \name DMA transferç»“æ„ä½“ä¼ è¾“æ§åˆ¶å‚æ•°
  * \anchor grp_dma_trans_flags
  *
- *  ÓÃÓÚÅäÖÃ½á¹¹Ìå #am_lpc84x_dma_transfer_t ÖĞflags²ÎÊı
+ *  ç”¨äºé…ç½®ç»“æ„ä½“ #am_lpc84x_dma_transfer_t ä¸­flagså‚æ•°
  * @{
  */
 
-/** \brief ´«ÊäÊı¾İ¿í¶ÈÎª8 bit */
+/** \brief ä¼ è¾“æ•°æ®å®½åº¦ä¸º8 bit */
 #define AM_LPC84X_DMA_TRANS_WIDTH_8BIT   AM_SBF(0, 0)
 
-/** \brief ´«ÊäÊı¾İ¿í¶ÈÎª16 bit */
+/** \brief ä¼ è¾“æ•°æ®å®½åº¦ä¸º16 bit */
 #define AM_LPC84X_DMA_TRANS_WIDTH_16BIT  AM_SBF(1, 0)
 
-/** \brief ´«ÊäÊı¾İ¿í¶ÈÎª32 bit */
+/** \brief ä¼ è¾“æ•°æ®å®½åº¦ä¸º32 bit */
 #define AM_LPC84X_DMA_TRANS_WIDTH_32BIT  AM_SBF(2, 0)
 
-/** \brief Ô´µØÖ·²»Ôö¼Ó */
+/** \brief æºåœ°å€ä¸å¢åŠ  */
 #define AM_LPC84X_DMA_TRANS_SRCINC_NOINC AM_SBF(0, 2)
 
-/** \brief Ô´µØÖ·ÔöÁ¿Îª1¸öÊı¾İ¿í¶È */
+/** \brief æºåœ°å€å¢é‡ä¸º1ä¸ªæ•°æ®å®½åº¦ */
 #define AM_LPC84X_DMA_TRANS_SRCINC_1X    AM_SBF(1, 2)
 
-/** \brief Ô´µØÖ·ÔöÁ¿Îª2¸öÊı¾İ¿í¶È*/
+/** \brief æºåœ°å€å¢é‡ä¸º2ä¸ªæ•°æ®å®½åº¦*/
 #define AM_LPC84X_DMA_TRANS_SRCINC_2X    AM_SBF(2, 2)
 
-/** \brief Ô´µØÖ·ÔöÁ¿Îª4¸öÊı¾İ¿í¶È */
+/** \brief æºåœ°å€å¢é‡ä¸º4ä¸ªæ•°æ®å®½åº¦ */
 #define AM_LPC84X_DMA_TRANS_SRCINC_4X    AM_SBF(3, 2)
 
-/** \brief Ä¿±êµØÖ·²»±ä */
+/** \brief ç›®æ ‡åœ°å€ä¸å˜ */
 #define AM_LPC84X_DMA_TRANS_DSTINC_NOINC AM_SBF(0, 4)
 
-/** \brief Ä¿±êµØÖ·ÔöÁ¿Îª1¸öÊı¾İ¿í¶È */
+/** \brief ç›®æ ‡åœ°å€å¢é‡ä¸º1ä¸ªæ•°æ®å®½åº¦ */
 #define AM_LPC84X_DMA_TRANS_DSTINC_1X    AM_SBF(1, 4)
 
-/** \brief Ä¿±êµØÖ·ÔöÁ¿Îª2¸öÊı¾İ¿í¶È */
+/** \brief ç›®æ ‡åœ°å€å¢é‡ä¸º2ä¸ªæ•°æ®å®½åº¦ */
 #define AM_LPC84X_DMA_TRANS_DSTINC_2X    AM_SBF(2, 4)
 
-/** \brief Ä¿±êµØÖ·ÔöÁ¿Îª4¸öÊı¾İ¿í¶È */
+/** \brief ç›®æ ‡åœ°å€å¢é‡ä¸º4ä¸ªæ•°æ®å®½åº¦ */
 #define AM_LPC84X_DMA_TRANS_DSTINC_4X    AM_SBF(3, 4)
 
-/** \brief ´«ÊäÍê³ÉºóÖØ¸´´«Êä */
+/** \brief ä¼ è¾“å®Œæˆåé‡å¤ä¼ è¾“ */
 #define AM_LPC84X_DMA_TRANS_REPEAT       AM_BIT( 6 )
 
 /** @} */
 
-/** \brief DMA transfer½á¹¹Ìå */
+/** \brief DMA transferç»“æ„ä½“ */
 typedef struct am_lpc84x_dma_transfer {
-    uint32_t src_addr;            /**< \brief Ô´µØÖ·              */
-    uint32_t dst_addr;            /**< \brief Ä¿±êµØÖ·            */
-    uint16_t nbytes;              /**< \brief ×Ü¹²´«ÊäµÄ×Ö½ÚÊı    */
-    uint16_t flags;               /**< \brief ´«Êä¿ØÖÆ±êÖ¾        */
+    uint32_t src_addr;            /**< \brief æºåœ°å€              */
+    uint32_t dst_addr;            /**< \brief ç›®æ ‡åœ°å€            */
+    uint16_t nbytes;              /**< \brief æ€»å…±ä¼ è¾“çš„å­—èŠ‚æ•°    */
+    uint16_t flags;               /**< \brief ä¼ è¾“æ§åˆ¶æ ‡å¿—        */
 } am_lpc84x_dma_transfer_t;
 
 /**
- * \name DMA xfer_desc½á¹¹Ìå´«Êä¿ØÖÆ²ÎÊı
+ * \name DMA xfer_descç»“æ„ä½“ä¼ è¾“æ§åˆ¶å‚æ•°
  * \anchor grp_am_lpc84x_dma_xfer_flags
  *
- * ÓÃÓÚÅäÖÃ #am_lpc84x_dma_xfer_desc_t ÖĞµÄxfercfg²ÎÊı
+ * ç”¨äºé…ç½® #am_lpc84x_dma_xfer_desc_t ä¸­çš„xfercfgå‚æ•°
  *
  * @{
  */
 
-/** \brief ´«ÊäÃèÊö·ûÓĞĞ§ */
+/** \brief ä¼ è¾“æè¿°ç¬¦æœ‰æ•ˆ */
 #define AM_LPC84X_DMA_XFER_VALID           AM_BIT(0)
 
-/** \brief ÃèÊö·û´«ÊäÍê³ÉÊ±£¬×Ô¶¯ÖØÔØĞÂµÄÍ¨µÀÃèÊö·û */
+/** \brief æè¿°ç¬¦ä¼ è¾“å®Œæˆæ—¶ï¼Œè‡ªåŠ¨é‡è½½æ–°çš„é€šé“æè¿°ç¬¦ */
 #define AM_LPC84X_DMA_XFER_RELOAD           AM_BIT(1)
 
-/** \brief Á¢¼´´¥·¢DMA´«ÊäÆô¶¯ */
+/** \brief ç«‹å³è§¦å‘DMAä¼ è¾“å¯åŠ¨ */
 #define AM_LPC84X_DMA_XFER_SWTRIG           AM_BIT(2)
 
-/** \brief ÃèÊö·û´«ÊäÍê³ÉÊ±£¬Çå³ı´¥·¢±êÖ¾ */
+/** \brief æè¿°ç¬¦ä¼ è¾“å®Œæˆæ—¶ï¼Œæ¸…é™¤è§¦å‘æ ‡å¿— */
 #define AM_LPC84X_DMA_XFER_CLRTRIG          AM_BIT(3)
 
-/** \brief ÃèÊö·û´«ÊäÍê³ÉÊ±£¬²úÉúAÖĞ¶Ï */
+/** \brief æè¿°ç¬¦ä¼ è¾“å®Œæˆæ—¶ï¼Œäº§ç”ŸAä¸­æ–­ */
 #define AM_LPC84X_DMA_XFER_SETINTA          AM_BIT(4)
 
-/** \brief ÃèÊö·û´«ÊäÍê³ÉÊ±£¬²úÉúBÖĞ¶Ï */
+/** \brief æè¿°ç¬¦ä¼ è¾“å®Œæˆæ—¶ï¼Œäº§ç”ŸBä¸­æ–­ */
 #define AM_LPC84X_DMA_XFER_SETINTB          AM_BIT(5)
 
-/** \brief Ô´µØÖ·²»Ôö¼Ó */
+/** \brief æºåœ°å€ä¸å¢åŠ  */
 #define AM_LPC84X_DMA_XFER_WIDTH_8BIT       AM_SBF(0, 8)
 
-/** \brief ´«ÊäÊı¾İ¿í¶ÈÎª16 bit */
+/** \brief ä¼ è¾“æ•°æ®å®½åº¦ä¸º16 bit */
 #define AM_LPC84X_DMA_XFER_WIDTH_16BIT      AM_SBF(1, 8)
 
-/** \brief ´«ÊäÊı¾İ¿í¶ÈÎª32 bit */
+/** \brief ä¼ è¾“æ•°æ®å®½åº¦ä¸º32 bit */
 #define AM_LPC84X_DMA_XFER_WIDTH_32BIT      AM_SBF(2, 8)
 
-/** \brief Ã¿´Î´«ÊäÔ´µØÖ·²»Ôö¼Ó  */
+/** \brief æ¯æ¬¡ä¼ è¾“æºåœ°å€ä¸å¢åŠ   */
 #define AM_LPC84X_DMA_XFER_SRCINC_NOINC    AM_SBF(0, 12)
 
-/** \brief Ô´µØÖ·ÔöÁ¿Îª1¸öÊı¾İ¿í¶È */
+/** \brief æºåœ°å€å¢é‡ä¸º1ä¸ªæ•°æ®å®½åº¦ */
 #define AM_LPC84X_DMA_XFER_SRCINC_1X        AM_SBF(1, 12)
 
-/** \brief Ô´µØÖ·ÔöÁ¿Îª2¸öÊı¾İ¿í¶È */
+/** \brief æºåœ°å€å¢é‡ä¸º2ä¸ªæ•°æ®å®½åº¦ */
 #define AM_LPC84X_DMA_XFER_SRCINC_2X        AM_SBF(2, 12)
 
-/** \brief Ô´µØÖ·ÔöÁ¿Îª4¸öÊı¾İ¿í¶È */
+/** \brief æºåœ°å€å¢é‡ä¸º4ä¸ªæ•°æ®å®½åº¦ */
 #define AM_LPC84X_DMA_XFER_SRCINC_4X        AM_SBF(3, 12)
 
-/** \brief Ä¿±êµØÖ·²»±ä */
+/** \brief ç›®æ ‡åœ°å€ä¸å˜ */
 #define AM_LPC84X_DMA_XFER_DSTINC_NOINC     AM_SBF(0, 14)
 
-/** \brief Ä¿±êµØÖ·ÔöÁ¿Îª1¸öÊı¾İ¿í¶È */
+/** \brief ç›®æ ‡åœ°å€å¢é‡ä¸º1ä¸ªæ•°æ®å®½åº¦ */
 #define AM_LPC84X_DMA_XFER_DSTINC_1X        AM_SBF(1, 14)
 
-/** \brief Ä¿±êµØÖ·ÔöÁ¿Îª2¸öÊı¾İ¿í¶È */
+/** \brief ç›®æ ‡åœ°å€å¢é‡ä¸º2ä¸ªæ•°æ®å®½åº¦ */
 #define AM_LPC84X_DMA_XFER_DSTINC_2X        AM_SBF(2, 14)
 
-/** \brief Ä¿±êµØÖ·ÔöÁ¿Îª3¸öÊı¾İ¿í¶È */
+/** \brief ç›®æ ‡åœ°å€å¢é‡ä¸º3ä¸ªæ•°æ®å®½åº¦ */
 #define AM_LPC84X_DMA_XFER_DSTINC_4X        AM_SBF(3, 14)
 
 /**
- * \brief DMA xfer_desc½á¹¹Ìå
- * \attention xfer_descµÄµØÖ·±ØĞëÊÇ16×Ö½Ú¶ÔÆë
+ * \brief DMA xfer_descç»“æ„ä½“
+ * \attention xfer_descçš„åœ°å€å¿…é¡»æ˜¯16å­—èŠ‚å¯¹é½
  */
 typedef struct am_lpc84x_dma_xfer_desc {
-    volatile uint32_t xfercfg;           /**< \brief ´«ÊäÅäÖÃ         */
-    volatile uint32_t src_end_addr;      /**< \brief Ô´Êı¾İÄ©µØÖ·     */
-    volatile uint32_t dst_end_addr;      /**< \brief Ä¿±êÊı¾İÄ©µØÖ·   */
-    volatile uint32_t link;              /**< \brief Ö¸ÏòÏÂÒ»¸öÃèÊö·û */
+    volatile uint32_t xfercfg;           /**< \brief ä¼ è¾“é…ç½®         */
+    volatile uint32_t src_end_addr;      /**< \brief æºæ•°æ®æœ«åœ°å€     */
+    volatile uint32_t dst_end_addr;      /**< \brief ç›®æ ‡æ•°æ®æœ«åœ°å€   */
+    volatile uint32_t link;              /**< \brief æŒ‡å‘ä¸‹ä¸€ä¸ªæè¿°ç¬¦ */
 } am_lpc84x_dma_xfer_desc_t;
 
 /**
- * \name DMA ´«Êä½áÊø×´Ì¬±êÖ¾
+ * \name DMA ä¼ è¾“ç»“æŸçŠ¶æ€æ ‡å¿—
  * \anchor am_lpc84x_dma_complete_cb_stat
  *
- *  ÓÃÓÚDMA´«Êä½áÊøÊ±£¬´«Èë»Øµ÷º¯ÊıÖĞµÄstat²ÎÊı 
+ *  ç”¨äºDMAä¼ è¾“ç»“æŸæ—¶ï¼Œä¼ å…¥å›è°ƒå‡½æ•°ä¸­çš„statå‚æ•° 
  * @{
  */
 
-#define AM_LPC84X_DMA_STAT_INTA   AM_BIT(0) /**< \brief ÖĞ¶ÏA·¢Éú     */
-#define AM_LPC84X_DMA_STAT_INTB   AM_BIT(1) /**< \brief ÖĞ¶ÏB·¢Éú     */
-#define AM_LPC84X_DMA_STAT_INTERR AM_BIT(2) /**< \brief ´íÎóÖĞ¶Ï·¢Éú  */
+#define AM_LPC84X_DMA_STAT_INTA   AM_BIT(0) /**< \brief ä¸­æ–­Aå‘ç”Ÿ     */
+#define AM_LPC84X_DMA_STAT_INTB   AM_BIT(1) /**< \brief ä¸­æ–­Bå‘ç”Ÿ     */
+#define AM_LPC84X_DMA_STAT_INTERR AM_BIT(2) /**< \brief é”™è¯¯ä¸­æ–­å‘ç”Ÿ  */
 
 /** @} */
 
 /**
- * \brief DMA´«Êä½áÊø»Øµ÷º¯Êı¶¨Òå
+ * \brief DMAä¼ è¾“ç»“æŸå›è°ƒå‡½æ•°å®šä¹‰
  *
- * \param[in] p_arg : ´«Êä½á¹¹Ìå´«ÈëµÄ»Øµ÷º¯Êı²ÎÊı
- * \param[in] stat  : ´«Êä½áÊøµÄ×´Ì¬
- *      \arg AM_LPC84X_DMA_STAT_INTA   : ÖĞ¶ÏA·¢Éú
- *      \arg AM_LPC84X_DMA_STAT_INTB   : ÖĞ¶ÏB·¢Éú
- *      \arg AM_LPC84X_DMA_STAT_INTERR : ´íÎóÖĞ¶Ï·¢Éú
+ * \param[in] p_arg : ä¼ è¾“ç»“æ„ä½“ä¼ å…¥çš„å›è°ƒå‡½æ•°å‚æ•°
+ * \param[in] stat  : ä¼ è¾“ç»“æŸçš„çŠ¶æ€
+ *      \arg AM_LPC84X_DMA_STAT_INTA   : ä¸­æ–­Aå‘ç”Ÿ
+ *      \arg AM_LPC84X_DMA_STAT_INTB   : ä¸­æ–­Bå‘ç”Ÿ
+ *      \arg AM_LPC84X_DMA_STAT_INTERR : é”™è¯¯ä¸­æ–­å‘ç”Ÿ
  * 
- * \return ÎŞ
+ * \return æ— 
  *
- * \note #am_lpc84x_dma_transfer() ´«ÊäÊı¾İ²»»á²úÉúAM_LPC84X_DMA_STAT_INTBÖĞ¶Ï
+ * \note #am_lpc84x_dma_transfer() ä¼ è¾“æ•°æ®ä¸ä¼šäº§ç”ŸAM_LPC84X_DMA_STAT_INTBä¸­æ–­
  */
 typedef void (*am_lpc84x_dma_complete_cb_t)(void *p_arg, int stat);
 
 
-/** \brief DMAÍ¨µÀ¿ØÖÆÆ÷
+/** \brief DMAé€šé“æ§åˆ¶å™¨
  *
- * ËùÓĞ´«Êä»ùÓÚ¿ØÖÆÆ÷ \n
- * Í¨¹ı #am_lpc84x_dma_controller_get()     ³õÊ¼»¯Í¨µÀºÍ»ñÈ¡¿ØÖÆÆ÷
- * Í¨¹ı #am_lpc84x_dma_controller_abort()   ÖÕÖ¹¿ØÖÆÆ÷Êı¾İ´«Êä
- * Í¨¹ı #am_lpc84x_dma_controller_release() ÊÍ·Å¿ØÖÆÆ÷
+ * æ‰€æœ‰ä¼ è¾“åŸºäºæ§åˆ¶å™¨ \n
+ * é€šè¿‡ #am_lpc84x_dma_controller_get()     åˆå§‹åŒ–é€šé“å’Œè·å–æ§åˆ¶å™¨
+ * é€šè¿‡ #am_lpc84x_dma_controller_abort()   ç»ˆæ­¢æ§åˆ¶å™¨æ•°æ®ä¼ è¾“
+ * é€šè¿‡ #am_lpc84x_dma_controller_release() é‡Šæ”¾æ§åˆ¶å™¨
  */
 typedef struct am_lpc84x_dma_controller {
-    uint8_t                      chan;         /**< \brief Í¨µÀ               */
-    uint8_t                      state;        /**< \brief ¿ØÖÆÆ÷×´Ì¬         */
-    uint16_t                     ext_info;     /**< \brief ÆäËûĞÅÏ¢£¬ÄÚ²¿Ê¹ÓÃ */
-    am_lpc84x_dma_complete_cb_t  pfn_callback; /**< \brief »Øµ÷º¯Êı           */
-    void                        *p_arg;        /**< \brief »Øµ÷º¯²ÎÊı         */
+    uint8_t                      chan;         /**< \brief é€šé“               */
+    uint8_t                      state;        /**< \brief æ§åˆ¶å™¨çŠ¶æ€         */
+    uint16_t                     ext_info;     /**< \brief å…¶ä»–ä¿¡æ¯ï¼Œå†…éƒ¨ä½¿ç”¨ */
+    am_lpc84x_dma_complete_cb_t  pfn_callback; /**< \brief å›è°ƒå‡½æ•°           */
+    void                        *p_arg;        /**< \brief å›è°ƒå‡½å‚æ•°         */
 } am_lpc84x_dma_controller_t;
 
-/** \brief DMAÉè±¸ĞÅÏ¢ */
+/** \brief DMAè®¾å¤‡ä¿¡æ¯ */
 typedef struct am_lpc84x_dma_devinfo {
     
-    /** \brief DMA¼Ä´æÆ÷¿é»ùÖ· */
+    /** \brief DMAå¯„å­˜å™¨å—åŸºå€ */
     uint32_t    dma_regbase;
     
-    /** \brief INMUX¼Ä´æÆ÷¿é»ùÖ· */
+    /** \brief INMUXå¯„å­˜å™¨å—åŸºå€ */
     uint32_t    inmux_regbase;
     
-    /** \brief Ö¸Ïò¿ØÖÆÆ÷ÄÚ´æÓ³ÉäµÄÖ¸Õë */
+    /** \brief æŒ‡å‘æ§åˆ¶å™¨å†…å­˜æ˜ å°„çš„æŒ‡é’ˆ */
     uint8_t     *p_controller_map;
 
-    /** \brief Ö¸Ïò¿ØÖÆÆ÷ÄÚ´æµÄÖ¸Õë */
+    /** \brief æŒ‡å‘æ§åˆ¶å™¨å†…å­˜çš„æŒ‡é’ˆ */
     am_lpc84x_dma_controller_t *p_controller;
     
-    /** \brief Ö¸Ïò´«ÊäÃèÊö·û»ùµØÖ·µÄÖ¸Õë£¬±ØĞëÊÇ512×Ö½Ú¶ÔÆë */
+    /** \brief æŒ‡å‘ä¼ è¾“æè¿°ç¬¦åŸºåœ°å€çš„æŒ‡é’ˆï¼Œå¿…é¡»æ˜¯512å­—èŠ‚å¯¹é½ */
     am_lpc84x_dma_xfer_desc_t  *p_xfer_base;
     
-    /** \brief Ê¹ÓÃµÄÍ¨µÀÊıÁ¿   */
+    /** \brief ä½¿ç”¨çš„é€šé“æ•°é‡   */
     uint8_t     chan_count;
     
-    /** \brief DMAÖĞ¶ÏºÅ */
+    /** \brief DMAä¸­æ–­å· */
     uint8_t     inum;
     
-    /** \brief Æ½Ì¨³õÊ¼»¯º¯Êı */
+    /** \brief å¹³å°åˆå§‹åŒ–å‡½æ•° */
     void      (*pfn_plfm_init)(void);
 
-    /** \brief Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    /** \brief å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
     void      (*pfn_plfm_deinit)(void);
     
 } am_lpc84x_dma_devinfo_t;
 
 /**
- * \brief DMAÉè±¸
+ * \brief DMAè®¾å¤‡
  */
 typedef struct am_lpc84x_dma_dev {
     
-    /** \brief Ö¸ÏòDMAÉè±¸ĞÅÏ¢µÄÖ¸Õë */
+    /** \brief æŒ‡å‘DMAè®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ */
     const am_lpc84x_dma_devinfo_t *p_devinfo;
     
 } am_lpc84x_dma_dev_t;
 
 
 /**
- * \brief »ñÈ¡Í¨µÀ¿ØÖÆÆ÷ 
+ * \brief è·å–é€šé“æ§åˆ¶å™¨ 
  *
- * \param[in] chan : DMA Í¨µÀºÅ£¬ÖµÎª£ºDMA_CHAN_* (#DMA_CHAN_0)
- * \param[in] opts : ÅäÖÃ²ÎÊı£¬DMA_CHAN_OPT_*ºê»ò¶à¸ö \n   
-*                    \ref grp_dma_chan_opt_prio               : ÓÅÏÈ¼¶ \n
- *                   \ref grp_dma_chan_opt_periph_req_en      : ÍâÉèÇëÇóÊ¹ÄÜ \n
- *                   \ref grp_dma_chan_opt_hwtrig_mode        : Ó²¼ş´¥·¢Ìõ¼ş \n
- *                   \ref grp_dma_chan_opt_hwtrig_src         : Ó²¼ş´¥·¢Ô´ \n
- *                   \ref grp_dma_chan_opt_hwtrig_burst_en    : Í»·¢Ä£Ê½Ê¹ÄÜ \n
- *                   \ref grp_dma_chan_opt_hwtrig_burst_wrap  : Í»·¢Ä£Ê½µØÖ·»·ÈÆ \n
- *                   \ref grp_dma_chan_opt_hwtrig_burst_count : Í»·¢´«Êä´óĞ¡ \n
- *                   \ref grp_dma_chan_opt_trig_out           : ´¥·¢Êä³ö \n
+ * \param[in] chan : DMA é€šé“å·ï¼Œå€¼ä¸ºï¼šDMA_CHAN_* (#DMA_CHAN_0)
+ * \param[in] opts : é…ç½®å‚æ•°ï¼ŒDMA_CHAN_OPT_*å®æˆ–å¤šä¸ª \n   
+*                    \ref grp_dma_chan_opt_prio               : ä¼˜å…ˆçº§ \n
+ *                   \ref grp_dma_chan_opt_periph_req_en      : å¤–è®¾è¯·æ±‚ä½¿èƒ½ \n
+ *                   \ref grp_dma_chan_opt_hwtrig_mode        : ç¡¬ä»¶è§¦å‘æ¡ä»¶ \n
+ *                   \ref grp_dma_chan_opt_hwtrig_src         : ç¡¬ä»¶è§¦å‘æº \n
+ *                   \ref grp_dma_chan_opt_hwtrig_burst_en    : çªå‘æ¨¡å¼ä½¿èƒ½ \n
+ *                   \ref grp_dma_chan_opt_hwtrig_burst_wrap  : çªå‘æ¨¡å¼åœ°å€ç¯ç»• \n
+ *                   \ref grp_dma_chan_opt_hwtrig_burst_count : çªå‘ä¼ è¾“å¤§å° \n
+ *                   \ref grp_dma_chan_opt_trig_out           : è§¦å‘è¾“å‡º \n
  *                   \see lpc84x_dma_chan.h
  * 
- * \return Ö¸ÏòÍ¨µÀ¿ØÖÆÆ÷µÄÖ¸Õë
+ * \return æŒ‡å‘é€šé“æ§åˆ¶å™¨çš„æŒ‡é’ˆ
  *
- * \note Èç¹ûÍ¨µÀÒÑ¾­±»Ê¹ÓÃÇÒÃ»ÓĞÊÍ·Å£¬»òÃ»ÓĞ×ã¹»µÄ×ÊÔ´Ê¹ÓÃ£¬º¯Êı·µ»ØNULL
+ * \note å¦‚æœé€šé“å·²ç»è¢«ä½¿ç”¨ä¸”æ²¡æœ‰é‡Šæ”¾ï¼Œæˆ–æ²¡æœ‰è¶³å¤Ÿçš„èµ„æºä½¿ç”¨ï¼Œå‡½æ•°è¿”å›NULL
  */
 am_lpc84x_dma_controller_t* am_lpc84x_dma_controller_get (uint8_t  chan,
                                                           uint32_t opts);
 
 /**
- * \brief ÖÕÖ¹¿ØÖÆÆ÷Êı¾İ´«Êä 
+ * \brief ç»ˆæ­¢æ§åˆ¶å™¨æ•°æ®ä¼ è¾“ 
  *
- * \param[in] p_ctr : Ö¸ÏòÍ¨µÀ¿ØÖÆÆ÷µÄÖ¸Õë
+ * \param[in] p_ctr : æŒ‡å‘é€šé“æ§åˆ¶å™¨çš„æŒ‡é’ˆ
  *
- * \retval AM_OK      : ²Ù×÷³É¹¦
- * \retval -AM_EINVAL : ²ÎÊıÎŞĞ§
- * \retval -AM_ENXIO  : Éè±¸²»´æÔÚ
+ * \retval AM_OK      : æ“ä½œæˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°æ— æ•ˆ
+ * \retval -AM_ENXIO  : è®¾å¤‡ä¸å­˜åœ¨
  */
 int am_lpc84x_dma_controller_abort (am_lpc84x_dma_controller_t *p_ctr);
 
 /**
- * \brief ÊÍ·Å¿ØÖÆÆ÷ 
+ * \brief é‡Šæ”¾æ§åˆ¶å™¨ 
  *
- * \param[in] p_ctr   : Ö¸ÏòÍ¨µÀ¿ØÖÆÆ÷µÄÖ¸Õë
+ * \param[in] p_ctr   : æŒ‡å‘é€šé“æ§åˆ¶å™¨çš„æŒ‡é’ˆ
  *
- * \retval  AM_OK     : ²Ù×÷³É¹¦
- * \retval -AM_EINVAL : ²ÎÊıÎŞĞ§
- * \retval -AM_EPERM  : ²Ù×÷²»ÔÊĞí(ÕıÔÚ´«Êä)
- * \retval -AM_ENXIO  : Éè±¸²»´æÔÚ
+ * \retval  AM_OK     : æ“ä½œæˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°æ— æ•ˆ
+ * \retval -AM_EPERM  : æ“ä½œä¸å…è®¸(æ­£åœ¨ä¼ è¾“)
+ * \retval -AM_ENXIO  : è®¾å¤‡ä¸å­˜åœ¨
  */
 int am_lpc84x_dma_controller_release (am_lpc84x_dma_controller_t *p_ctr);
 
 /**
- * \brief ½¨Á¢transfer½á¹¹Ìå 
+ * \brief å»ºç«‹transferç»“æ„ä½“ 
  * 
- * \param[in] p_trans  : Ö¸Ïò´«Êä½á¹¹ÌåµÄÖ¸Õë 
- * \param[in] src_addr : Ô´¶ËÊ×µØÖ·
- * \param[in] dst_addr : Ä¿±ê¶ËÊ×µØÖ·
- * \param[in] nbytes   : ´«Êä×Ö½ÚÊı£¬×¢ÒâÒªÓë¡°flags¡±µÄ¿í¶È¶ÔÓ¦
- * \param[in] flags    : ´«Êä²ÎÊı ²Î¼û£º\ref grp_dma_trans_flags
+ * \param[in] p_trans  : æŒ‡å‘ä¼ è¾“ç»“æ„ä½“çš„æŒ‡é’ˆ 
+ * \param[in] src_addr : æºç«¯é¦–åœ°å€
+ * \param[in] dst_addr : ç›®æ ‡ç«¯é¦–åœ°å€
+ * \param[in] nbytes   : ä¼ è¾“å­—èŠ‚æ•°ï¼Œæ³¨æ„è¦ä¸â€œflagsâ€çš„å®½åº¦å¯¹åº”
+ * \param[in] flags    : ä¼ è¾“å‚æ•° å‚è§ï¼š\ref grp_dma_trans_flags
  *
- * \retval  AM_OK      : ½¨Á¢³É¹¦ 
- * \retval -AM_EINVAL  : ²ÎÊıÎŞĞ§
+ * \retval  AM_OK      : å»ºç«‹æˆåŠŸ 
+ * \retval -AM_EINVAL  : å‚æ•°æ— æ•ˆ
  */
 int am_lpc84x_dma_transfer_build (am_lpc84x_dma_transfer_t *p_trans,
                                   uint32_t                  src_addr,
@@ -318,19 +318,19 @@ int am_lpc84x_dma_transfer_build (am_lpc84x_dma_transfer_t *p_trans,
                                   uint16_t                  flags);
 
 /**
- * \brief Ê¹ÓÃtransfer·½Ê½´«ÊäÊı¾İ
+ * \brief ä½¿ç”¨transferæ–¹å¼ä¼ è¾“æ•°æ®
  *
- * ¸Ãº¯Êı»áÆô¶¯Ò»´ÎDMA´«Êä£¬·¢ËÍp_transÖ¸Ïò½á¹¹ÌåÃèÊöµÄÊı¾İ
+ * è¯¥å‡½æ•°ä¼šå¯åŠ¨ä¸€æ¬¡DMAä¼ è¾“ï¼Œå‘é€p_transæŒ‡å‘ç»“æ„ä½“æè¿°çš„æ•°æ®
  *
- * \param[in] p_ctr        : Ö¸ÏòÍ¨µÀ¿ØÖÆÆ÷µÄÖ¸Õë
- * \param[in] p_trans      : Ö¸Ïò´«Êä½á¹¹ÌåµÄÖ¸Õë
- * \param[in] pfn_callback : ´«Êä½áÊø»Øµ÷º¯Êı
- * \param[in] p_arg        : »Øµ÷º¯Êı²ÎÊı
+ * \param[in] p_ctr        : æŒ‡å‘é€šé“æ§åˆ¶å™¨çš„æŒ‡é’ˆ
+ * \param[in] p_trans      : æŒ‡å‘ä¼ è¾“ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] pfn_callback : ä¼ è¾“ç»“æŸå›è°ƒå‡½æ•°
+ * \param[in] p_arg        : å›è°ƒå‡½æ•°å‚æ•°
  *
- * \retval  AM_OK     : ²Ù×÷³É¹¦
- * \retval -AM_EINVAL : ²ÎÊıÎŞĞ§
- * \retval -AM_ENXIO  : Éè±¸²»´æÔÚ
- * \retval -AM_RBUSY  : Éè±¸Ã¦
+ * \retval  AM_OK     : æ“ä½œæˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°æ— æ•ˆ
+ * \retval -AM_ENXIO  : è®¾å¤‡ä¸å­˜åœ¨
+ * \retval -AM_RBUSY  : è®¾å¤‡å¿™
  */
 int am_lpc84x_dma_transfer (am_lpc84x_dma_controller_t  *p_ctr,
                             am_lpc84x_dma_transfer_t    *p_trans,
@@ -338,19 +338,19 @@ int am_lpc84x_dma_transfer (am_lpc84x_dma_controller_t  *p_ctr,
                             void                        *p_arg);
 
 /**
- * \brief ½¨Á¢xfer_desc½á¹¹Ìå 
+ * \brief å»ºç«‹xfer_descç»“æ„ä½“ 
  *
- * \attention ÈçÊ¹ÃèÊö·ûĞèÒª×Ô¶¯ÖØÔØ£¬ÖØÔØÃèÊö·ûµÄµØÖ·Ó¦¸Ã16×Ö½Ú¶ÔÆë  
+ * \attention å¦‚ä½¿æè¿°ç¬¦éœ€è¦è‡ªåŠ¨é‡è½½ï¼Œé‡è½½æè¿°ç¬¦çš„åœ°å€åº”è¯¥16å­—èŠ‚å¯¹é½  
  * 
- * \param[in] p_desc   : Ö¸ÏòDMA´«ÊäÃèÊö·ûµÄÖ¸Õë 
- * \param[in] src_addr : Ô´¶ËÊ×µØÖ· 
- * \param[in] dst_addr : Ä¿±ê¶ËÊ×µØÖ· 
- * \param[in] nbytes   : ´«Êä×Ö½ÚÊı£¬×¢ÒâÒªÓë¡°flags¡±µÄ¿í¶È¶ÔÓ¦ 
- * \param[in] flags    : ÅäÖÃ²ÎÊı£¬²Î¼û
+ * \param[in] p_desc   : æŒ‡å‘DMAä¼ è¾“æè¿°ç¬¦çš„æŒ‡é’ˆ 
+ * \param[in] src_addr : æºç«¯é¦–åœ°å€ 
+ * \param[in] dst_addr : ç›®æ ‡ç«¯é¦–åœ°å€ 
+ * \param[in] nbytes   : ä¼ è¾“å­—èŠ‚æ•°ï¼Œæ³¨æ„è¦ä¸â€œflagsâ€çš„å®½åº¦å¯¹åº” 
+ * \param[in] flags    : é…ç½®å‚æ•°ï¼Œå‚è§
  *                       \ref grp_am_lpc84x_dma_xfer_flags
  *
- * \retval  AM_OK      : ½¨Á¢³É¹¦ 
- * \retval -AM_EINVAL  : ²ÎÊıÎŞĞ§
+ * \retval  AM_OK      : å»ºç«‹æˆåŠŸ 
+ * \retval -AM_EINVAL  : å‚æ•°æ— æ•ˆ
  */
 int am_lpc84x_dma_xfer_desc_build (am_lpc84x_dma_xfer_desc_t *p_desc,
                                    uint32_t                   src_addr,
@@ -359,32 +359,32 @@ int am_lpc84x_dma_xfer_desc_build (am_lpc84x_dma_xfer_desc_t *p_desc,
                                    uint32_t                   flags);
                                    
 /**
- * \brief Á¬½ÓÁ½¸öxfer_desc´«ÊäÃèÊö·û 
+ * \brief è¿æ¥ä¸¤ä¸ªxfer_descä¼ è¾“æè¿°ç¬¦ 
  *
- * \param[in] p_desc : Ö¸Ïòµ±Ç°´«ÊäÃèÊö·ûµÄÖ¸Õë
- * \param[in] p_next : Ö¸ÏòÏÂÒ»¸ö´«ÊäÃèÊö·ûµÄÖ¸Õë£¬±ØĞë16×Ö½Ú¶ÔÆë 
+ * \param[in] p_desc : æŒ‡å‘å½“å‰ä¼ è¾“æè¿°ç¬¦çš„æŒ‡é’ˆ
+ * \param[in] p_next : æŒ‡å‘ä¸‹ä¸€ä¸ªä¼ è¾“æè¿°ç¬¦çš„æŒ‡é’ˆï¼Œå¿…é¡»16å­—èŠ‚å¯¹é½ 
  *
- * \retval  AM_OK    : Á¬½Ó³É¹¦ 
- * \retval -AM_EINVL : ²ÎÊıÎŞĞ§ 
+ * \retval  AM_OK    : è¿æ¥æˆåŠŸ 
+ * \retval -AM_EINVL : å‚æ•°æ— æ•ˆ 
  */
 int am_lpc84x_dma_xfer_desc_link (am_lpc84x_dma_xfer_desc_t *p_desc,
                                   am_lpc84x_dma_xfer_desc_t *p_next);
 
 /**
- * \brief Ê¹ÓÃxfer_describe·½Ê½´«ÊäÊı¾İ
+ * \brief ä½¿ç”¨xfer_describeæ–¹å¼ä¼ è¾“æ•°æ®
  *
- * ¸Ãº¯Êı»áÆô¶¯Ò»´ÎDMA´«Êä£¬·¢ËÍp_descÖ¸Ïò½á¹¹ÌåÃèÊöµÄÊı¾İ£¬Èç¹ûp_descÖ¸ÏòÒ»¸öÁ´±í£¬
- * DMA»á×Ô¶¯ÖØÔØÁ´±íÖĞµÄ´«ÊäÃèÊö·û
+ * è¯¥å‡½æ•°ä¼šå¯åŠ¨ä¸€æ¬¡DMAä¼ è¾“ï¼Œå‘é€p_descæŒ‡å‘ç»“æ„ä½“æè¿°çš„æ•°æ®ï¼Œå¦‚æœp_descæŒ‡å‘ä¸€ä¸ªé“¾è¡¨ï¼Œ
+ * DMAä¼šè‡ªåŠ¨é‡è½½é“¾è¡¨ä¸­çš„ä¼ è¾“æè¿°ç¬¦
  *
- * \param[in] p_ctr        : Ö¸ÏòÍ¨µÀ¿ØÖÆÆ÷µÄÖ¸Õë
- * \param[in] p_desc       : Ö¸ÏòµÚÒ»¸ö´«ÊäÃèÊö·ûµÄÖ¸Õë
- * \param[in] pfn_callback : ´«Êä½áÊø»Øµ÷º¯Êı
- * \param[in] p_arg        : »Øµ÷º¯Êı²ÎÊı
+ * \param[in] p_ctr        : æŒ‡å‘é€šé“æ§åˆ¶å™¨çš„æŒ‡é’ˆ
+ * \param[in] p_desc       : æŒ‡å‘ç¬¬ä¸€ä¸ªä¼ è¾“æè¿°ç¬¦çš„æŒ‡é’ˆ
+ * \param[in] pfn_callback : ä¼ è¾“ç»“æŸå›è°ƒå‡½æ•°
+ * \param[in] p_arg        : å›è°ƒå‡½æ•°å‚æ•°
  *
- * \retval  AM_OK     : ²Ù×÷³É¹¦
- * \retval -AM_EINVAL : ²ÎÊıÎŞĞ§
- * \retval -AM_ENXIO  : Éè±¸²»´æÔÚ
- * \retval -AM_RBUSY  : Éè±¸Ã¦
+ * \retval  AM_OK     : æ“ä½œæˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°æ— æ•ˆ
+ * \retval -AM_ENXIO  : è®¾å¤‡ä¸å­˜åœ¨
+ * \retval -AM_RBUSY  : è®¾å¤‡å¿™
  */
 int am_lpc84x_dma_xfer_desc_startup (am_lpc84x_dma_controller_t  *p_ctr,
                                      am_lpc84x_dma_xfer_desc_t   *p_desc,
@@ -392,22 +392,22 @@ int am_lpc84x_dma_xfer_desc_startup (am_lpc84x_dma_controller_t  *p_ctr,
                                      void                        *p_arg);
 
 /**
- * \brief DMA³õÊ¼»¯
+ * \brief DMAåˆå§‹åŒ–
  *
- * \param[in] p_dev     : Ö¸ÏòDMAÉè±¸µÄÖ¸Õë 
- * \param[in] p_devinfo : Ö¸ÏòDMAÉè±¸ĞÅÏ¢µÄÖ¸Õë 
+ * \param[in] p_dev     : æŒ‡å‘DMAè®¾å¤‡çš„æŒ‡é’ˆ 
+ * \param[in] p_devinfo : æŒ‡å‘DMAè®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ 
  *
- * \retval  AM_OK        : ³õÊ¼»¯³É¹¦ 
- * \retval -AM_EINVLA    : ²ÎÊıÎŞĞ§
- * \retval -AM_EPERM     : ²Ù×÷²»ÔÊĞí(Éè±¸ÒÑ¾­³õÊ¼»¯) 
+ * \retval  AM_OK        : åˆå§‹åŒ–æˆåŠŸ 
+ * \retval -AM_EINVLA    : å‚æ•°æ— æ•ˆ
+ * \retval -AM_EPERM     : æ“ä½œä¸å…è®¸(è®¾å¤‡å·²ç»åˆå§‹åŒ–) 
  */
 int am_lpc84x_dma_init (am_lpc84x_dma_dev_t           *p_dev,
                         const am_lpc84x_dma_devinfo_t *p_devinfo);
 
 
 /**
- * \brief DMAÈ¥³õÊ¼»¯ 
- * \return  ÎŞ
+ * \brief DMAå»åˆå§‹åŒ– 
+ * \return  æ— 
  */
 void am_lpc84x_dma_deinit (void);
 

@@ -12,14 +12,14 @@
 
 /**
  * \file
- * \brief FLASH Àı³Ì£¬Í¨¹ıÇı¶¯²ã½Ó¿ÚÊµÏÖ
+ * \brief FLASH ä¾‹ç¨‹ï¼Œé€šè¿‡é©±åŠ¨å±‚æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ²Á³ı³ö´í£º´®¿Ú´òÓ¡ "erase error!"£»
- *   2. Ğ´Èë³ö´í£º´®¿Ú´òÓ¡ "program error!"£»
- *   3. Ğ´Èë³É¹¦£º´®¿Ú´òÓ¡Ö¸¶¨ÉÈÇøµÄ(1024 / 4)¸ö 32bit Ê®Áù½øÖÆÊı¾İ¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. æ“¦é™¤å‡ºé”™ï¼šä¸²å£æ‰“å° "erase error!"ï¼›
+ *   2. å†™å…¥å‡ºé”™ï¼šä¸²å£æ‰“å° "program error!"ï¼›
+ *   3. å†™å…¥æˆåŠŸï¼šä¸²å£æ‰“å°æŒ‡å®šæ‰‡åŒºçš„(1024 / 4)ä¸ª 32bit åå…­è¿›åˆ¶æ•°æ®ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_zlg_drv_flash.c src_zlg_drv_flash
  *
  * \internal
@@ -40,51 +40,51 @@
 #include "am_zlg_flash.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_zlg_drv_flash_entry (amhw_zlg_flash_t *p_hw_flash, uint8_t sector)
 {
     int             i;
-    uint32_t        status;         /* FLASH ÃüÁîÖ´ĞĞ×´Ì¬ */
-    static uint32_t data[1024 / 4]; /* ÒªĞ´Èë FLASH µÄÊı¾İ */
-    static uint32_t temp[1024 / 4]; /* ´Ó FLASH ÖĞ¶Á³öµÄÊı¾İ */
+    uint32_t        status;         /* FLASH å‘½ä»¤æ‰§è¡ŒçŠ¶æ€ */
+    static uint32_t data[1024 / 4]; /* è¦å†™å…¥ FLASH çš„æ•°æ® */
+    static uint32_t temp[1024 / 4]; /* ä» FLASH ä¸­è¯»å‡ºçš„æ•°æ® */
 
-    /* Êı¾İ³õÊ¼»¯ */
+    /* æ•°æ®åˆå§‹åŒ– */
     for (i = 0; i < 1024 / 4; i++) {
         data[i] = i;
     }
 
-    /* FLASH ³õÊ¼»¯ */
+    /* FLASH åˆå§‹åŒ– */
     am_zlg_flash_init(p_hw_flash);
 
-    /* ²Á³ıÉÈÇø */
+    /* æ“¦é™¤æ‰‡åŒº */
     status = am_zlg_flash_sector_erase(p_hw_flash, sector * 1024);
 
-    /* ÉÈÇø²Á³ı³ö´í£¬ ³ÌĞòÍ£ÔÚ´Ë´¦ */
+    /* æ‰‡åŒºæ“¦é™¤å‡ºé”™ï¼Œ ç¨‹åºåœåœ¨æ­¤å¤„ */
     if (0 != status) {
         AM_DBG_INFO("erase error!\r\n");
 
         AM_FOREVER;
     }
 
-    /* ÏòÉÈÇøÖĞĞ´ÈëÊı¾İ */
+    /* å‘æ‰‡åŒºä¸­å†™å…¥æ•°æ® */
     status = am_zlg_flash_flash_program(p_hw_flash,
                                         sector * 1024,
                                         data,
                                         1024 / 4);
 
-    /* ÉÈÇøĞ´Èë³ö´í£¬³ÌĞòÍ£ÔÚ´Ë´¦ */
+    /* æ‰‡åŒºå†™å…¥å‡ºé”™ï¼Œç¨‹åºåœåœ¨æ­¤å¤„ */
     if ((1024 / 4) != status) {
         AM_DBG_INFO("program error!\r\n");
 
         AM_FOREVER;
     }
 
-    /* ´ÓÉÈÇø¶ÁÈ¡Êı¾İ */
+    /* ä»æ‰‡åŒºè¯»å–æ•°æ® */
     for (i = 0; i < 1024 / 4; i++) {
         temp[i] = *(uint32_t *)((i * 4) + (sector * 1024));
 
-        /* Ğ£ÑéÊı¾İ£¬Ğ£ÑéÊ§°Ü£¬³ÌĞòÍ£ÔÚ´Ë´¦ */
+        /* æ ¡éªŒæ•°æ®ï¼Œæ ¡éªŒå¤±è´¥ï¼Œç¨‹åºåœåœ¨æ­¤å¤„ */
         if (temp[i] != data[i]) {
             AM_DBG_INFO("verify error!\r\n");
             AM_FOREVER;

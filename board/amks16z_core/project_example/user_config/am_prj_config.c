@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief KL26¹¤³ÌÅäÖÃÎÄ¼ş
+ * \brief KL26å·¥ç¨‹é…ç½®æ–‡ä»¶
  * \sa am_prj_config.c
  * 
  * \internal
@@ -29,10 +29,10 @@
 #include "am_board.h"
 #include "am_service_inst_init.h"
 
-/** \brief am_mainÍâ²¿º¯Êı */
+/** \brief am_mainå¤–éƒ¨å‡½æ•° */
 extern int am_main (void);
 
-/** \brief mainº¯ÊıÈë¿Ú */
+/** \brief mainå‡½æ•°å…¥å£ */
 int main (void)
 {
 #if 0
@@ -40,24 +40,24 @@ int main (void)
     am_timer_info_t   tmp2_tmrinfo;
 #endif
 
-    /* ¹Ø±ÕCOP¿´ÃÅ¹· */
+    /* å…³é—­COPçœ‹é—¨ç‹— */
 #if (AM_CFG_SIM_COP == 0)
     amhw_kl26_sim_cop_cfg(KL26_SIM_COP_MODE_NORMAL,
                           KL26_SIM_COP_CLK_INTERNAL,
                           KL26_SIM_COP_DISABLED);
 #endif
 
-    /* ÏµÍ³Ê±ÖÓ³õÊ¼»¯ */
+    /* ç³»ç»Ÿæ—¶é’Ÿåˆå§‹åŒ– */
 #if (AM_CFG_CLK_ENABLE == 1)
     am_kl26_clk_inst_init();
 #endif
 
-    /* ÖĞ¶Ï³õÊ¼»¯ */
+    /* ä¸­æ–­åˆå§‹åŒ– */
 #if (AM_CFG_INT_ENABLE == 1)
     am_kl26_nvic_inst_init();
 #endif
 
-    /* GPIO³õÊ¼»¯ */
+    /* GPIOåˆå§‹åŒ– */
 #if (AM_CFG_GPIO_ENABLE == 1)
     am_kl26_gpio_inst_init();
 #endif
@@ -70,14 +70,14 @@ int main (void)
     am_nvram_inst_init();
 #endif /* (AM_CFG_NVRAM_ENABLE == 1) */
 
-    /* °å¼¶³õÊ¼»¯ */
+    /* æ¿çº§åˆå§‹åŒ– */
     am_board_init();
 #if 0
-    /* ADC Ó²¼ş´¥·¢Ê±ĞèÒª¿ªÆô¶¨Ê±Æ÷£¬Ä¬ÈÏÅäÖÃTMP2×÷ÎªADCÓ²¼ş´¥·¢Ô´ */
+    /* ADC ç¡¬ä»¶è§¦å‘æ—¶éœ€è¦å¼€å¯å®šæ—¶å™¨ï¼Œé»˜è®¤é…ç½®TMP2ä½œä¸ºADCç¡¬ä»¶è§¦å‘æº */
     tmp2_tmrhdl = am_kl26_tpm2_timing_inst_init();
     am_timer_info_get(tmp2_tmrhdl, &tmp2_tmrinfo);
 
-    /* 20HzÓ²¼ş´¥·¢²ÉÑù */
+    /* 20Hzç¡¬ä»¶è§¦å‘é‡‡æ · */
     am_timer_enable(tmp2_tmrhdl, 0, tmp2_tmrinfo.clk_frequency / 50);
 #endif
 

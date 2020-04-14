@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief CLKÇı¶¯£¬Ê±ÖÓ±ê×¼·şÎñ½Ó¿Ú
+ * \brief CLKé©±åŠ¨ï¼Œæ—¶é’Ÿæ ‡å‡†æœåŠ¡æ¥å£
  *
  * \internal
  * \par Modification history
@@ -39,48 +39,48 @@ extern "C" {
  */
 
 /**
- * \brief CLK Éè±¸ĞÅÏ¢²ÎÊı½á¹¹Ìå
+ * \brief CLK è®¾å¤‡ä¿¡æ¯å‚æ•°ç»“æ„ä½“
  */
 typedef struct am_zlg217_clk_devinfo {
 
     /**
-     * \brief HSEOSCÍâ²¿¾§ÕñÆµÂÊ
+     * \brief HSEOSCå¤–éƒ¨æ™¶æŒ¯é¢‘ç‡
      *
-     *  Èç¹ûpllin_srcÑ¡Ôñ AMHW_ZLG217_PLLCLK_HSE Ôò PLLIN = hse_osc£©
+     *  å¦‚æœpllin_srcé€‰æ‹© AMHW_ZLG217_PLLCLK_HSE åˆ™ PLLIN = hse_oscï¼‰
      */
     uint32_t hse_osc;
 
     /**
-     * \brief LSEOSCÍâ²¿¾§ÕñÆµÂÊ
+     * \brief LSEOSCå¤–éƒ¨æ™¶æŒ¯é¢‘ç‡
      *
-     *  Èç¹ûrtc_srcÑ¡Ôñ AMHW_ZLG217_RTCCLK_LSE Ôò rtcclk = lse_osc£©
+     *  å¦‚æœrtc_srcé€‰æ‹© AMHW_ZLG217_RTCCLK_LSE åˆ™ rtcclk = lse_oscï¼‰
      */
     uint32_t lse_osc;
 
     /** \brief
-     *    PLL Ê±ÖÓÔ´Ñ¡Ôñ
-     *    -# AMHW_ZLG217_PLLCLK_HSI_DIV4 : HSI Õñµ´Æ÷ 4 ·ÖÆµ×÷ÎªPLLÊäÈëÊ±ÖÓ
-     *    -# AMHW_ZLG217_PLLCLK_HSE      : HSE ×÷ÎªPLLÊäÈëÊ±ÖÓ
+     *    PLL æ—¶é’Ÿæºé€‰æ‹©
+     *    -# AMHW_ZLG217_PLLCLK_HSI_DIV4 : HSI æŒ¯è¡å™¨ 4 åˆ†é¢‘ä½œä¸ºPLLè¾“å…¥æ—¶é’Ÿ
+     *    -# AMHW_ZLG217_PLLCLK_HSE      : HSE ä½œä¸ºPLLè¾“å…¥æ—¶é’Ÿ
      */
     amhw_zlg217_pll_clk_src pllin_src;
 
     /**
-     * \brief PLL ±¶ÆµÏµÊı£¬¿ÉÑ¡1-64
+     * \brief PLL å€é¢‘ç³»æ•°ï¼Œå¯é€‰1-64
      *        PLLOUT = PLLIN * pll_mul / pll_div
      */
     uint8_t pll_mul;
 
     /**
-     * \brief PLL ·ÖÆµÏµÊı£¬¿ÉÑ¡1-8
+     * \brief PLL åˆ†é¢‘ç³»æ•°ï¼Œå¯é€‰1-8
      *        PLLOUT = PLLIN * pll_mul / pll_div
      */
     uint8_t pll_div;
 
-    /** \brief USB·ÖÆµÏµÊı£¬USBCLK = PLLOUT / (usb_div + 1),½¨ÒéÅäÖÃ³É48Mhz */
+    /** \brief USBåˆ†é¢‘ç³»æ•°ï¼ŒUSBCLK = PLLOUT / (usb_div + 1),å»ºè®®é…ç½®æˆ48Mhz */
     uint8_t usb_div;
 
     /**
-     * \brief AHB·ÖÆµÏµÊı£¬AHBCLK = PLLOUT / DIV,AHB×î´óÆµÂÊÎª96Mhz
+     * \brief AHBåˆ†é¢‘ç³»æ•°ï¼ŒAHBCLK = PLLOUT / DIV,AHBæœ€å¤§é¢‘ç‡ä¸º96Mhz
      *
      *    ahb_div |  DIV
      *   ---------------------
@@ -97,112 +97,112 @@ typedef struct am_zlg217_clk_devinfo {
     uint8_t ahb_div;
 
     /**
-     * \brief APB1·ÖÆµÏµÊı£¬APB1CLK = AHBCLK / (2 ^ apb1_div)
-     *        APB1×î´óÆµÂÊÎª96Mhz
+     * \brief APB1åˆ†é¢‘ç³»æ•°ï¼ŒAPB1CLK = AHBCLK / (2 ^ apb1_div)
+     *        APB1æœ€å¤§é¢‘ç‡ä¸º96Mhz
      */
     uint8_t apb1_div;
 
     /**
-     * \brief APB2·ÖÆµÏµÊı£¬APB2CLK = AHBCLK / (2 ^ apb2_div)
-     *        APB2×î´óÆµÂÊÎª96Mhz
+     * \brief APB2åˆ†é¢‘ç³»æ•°ï¼ŒAPB2CLK = AHBCLK / (2 ^ apb2_div)
+     *        APB2æœ€å¤§é¢‘ç‡ä¸º96Mhz
      */
     uint8_t apb2_div;
 
     /**
-     * \brief ADC·ÖÆµÏµÊı£¬ADCCLK = APB2 / (2 ^ adc_div)
-     *        ADC×î´óÆµÂÊÎª48Mhz
+     * \brief ADCåˆ†é¢‘ç³»æ•°ï¼ŒADCCLK = APB2 / (2 ^ adc_div)
+     *        ADCæœ€å¤§é¢‘ç‡ä¸º48Mhz
      */
     uint8_t adc_div;
 
-    /** \brief Æ½Ì¨³õÊ¼»¯º¯Êı£¬ÅäÖÃÒı½ÅµÈ¹¤×÷ */
+    /** \brief å¹³å°åˆå§‹åŒ–å‡½æ•°ï¼Œé…ç½®å¼•è„šç­‰å·¥ä½œ */
     void  (*pfn_plfm_init)(void);
 
-    /** \brief Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    /** \brief å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
     void  (*pfn_plfm_deinit)(void);
 
 } am_zlg217_clk_devinfo_t;
 
 /**
- * \brief CLK Éè±¸½á¹¹Ìå
+ * \brief CLK è®¾å¤‡ç»“æ„ä½“
  */
 typedef struct am_zlg217_clk_dev {
 
-    /** \brief Ö¸ÏòCLK Éè±¸ĞÅÏ¢µÄÖ¸Õë */
+    /** \brief æŒ‡å‘CLK è®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ */
     const am_zlg217_clk_devinfo_t *p_devinfo;
 
-    /** \brief PLLÊäÈëÆµÂÊ */
+    /** \brief PLLè¾“å…¥é¢‘ç‡ */
     uint32_t pllin_clk;
 
-    /** \brief PLLÊä³öÆµÂÊ */
+    /** \brief PLLè¾“å‡ºé¢‘ç‡ */
     uint32_t pllout_clk;
 
-    /** \brief AHBÊ±ÖÓÆµÂÊ */
+    /** \brief AHBæ—¶é’Ÿé¢‘ç‡ */
     uint32_t ahb_clk;
 
-    /** \brief APB1Ê±ÖÓÆµÂÊ */
+    /** \brief APB1æ—¶é’Ÿé¢‘ç‡ */
     uint32_t apb1_clk;
 
-    /** \brief APB2Ê±ÖÓÆµÂÊ */
+    /** \brief APB2æ—¶é’Ÿé¢‘ç‡ */
     uint32_t apb2_clk;
 
-    /** \brief USBÊ±ÖÓÆµÂÊ */
+    /** \brief USBæ—¶é’Ÿé¢‘ç‡ */
     uint32_t usb_clk;
 
-    /** \brief RTCÊ±ÖÓÆµÂÊ */
+    /** \brief RTCæ—¶é’Ÿé¢‘ç‡ */
     uint32_t rtc_clk;
 
 } am_zlg217_clk_dev_t;
 
 /**
- * \brief CLK ³õÊ¼»¯
+ * \brief CLK åˆå§‹åŒ–
  *
- * \param[in] p_dev     : Ö¸ÏòCLKÉè±¸µÄÖ¸Õë
- * \param[in] p_devinfo : Ö¸ÏòCLKÉè±¸ĞÅÏ¢µÄÖ¸Õë
+ * \param[in] p_dev     : æŒ‡å‘CLKè®¾å¤‡çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo : æŒ‡å‘CLKè®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ
  *
- * \retval AM_OK : ²Ù×÷³É¹¦
+ * \retval AM_OK : æ“ä½œæˆåŠŸ
  */
 int am_zlg217_clk_init (am_zlg217_clk_dev_t           *p_dev,
                         const am_zlg217_clk_devinfo_t *p_devinfo);
 
 /**
- * \brief CLK ÍâÉè¸´Î»
+ * \brief CLK å¤–è®¾å¤ä½
  *
- * \param[in] clk_id  Ê±ÖÓ ID (ÓÉÆ½Ì¨¶¨Òå), ²Î¼û \ref grp_clk_id
+ * \param[in] clk_id  æ—¶é’Ÿ ID (ç”±å¹³å°å®šä¹‰), å‚è§ \ref grp_clk_id
  *
- * \retval AM_OK : ²Ù×÷³É¹¦
+ * \retval AM_OK : æ“ä½œæˆåŠŸ
  */
 int am_zlg217_clk_reset (am_clk_id_t clk_id);
 
 /**
- * \brief ¸üĞÂ×ÜÏßÆµÂÊÖµ
+ * \brief æ›´æ–°æ€»çº¿é¢‘ç‡å€¼
  *
- *  µ±×ÜÏßÆµÂÊ±»ÖØĞÂÉèÖÃÊ±£¬ĞèÒªµ÷ÓÃ´Ëº¯Êı¸üĞÂÇı¶¯ÄÚ²¿´æ´¢µÄÆµÂÊÖµ
- *  ½ö¶ÔCLK_AHB£¬CLK_APB1£¬CLK_APB2ÓĞĞ§
+ *  å½“æ€»çº¿é¢‘ç‡è¢«é‡æ–°è®¾ç½®æ—¶ï¼Œéœ€è¦è°ƒç”¨æ­¤å‡½æ•°æ›´æ–°é©±åŠ¨å†…éƒ¨å­˜å‚¨çš„é¢‘ç‡å€¼
+ *  ä»…å¯¹CLK_AHBï¼ŒCLK_APB1ï¼ŒCLK_APB2æœ‰æ•ˆ
  *
- * \param[in] clk_id  Ê±ÖÓ ID (ÓÉÆ½Ì¨¶¨Òå), ²Î¼û \ref grp_clk_id
- * \param[in] clk     ¸üĞÂµÄÆµÂÊÖµ
+ * \param[in] clk_id  æ—¶é’Ÿ ID (ç”±å¹³å°å®šä¹‰), å‚è§ \ref grp_clk_id
+ * \param[in] clk     æ›´æ–°çš„é¢‘ç‡å€¼
  *
- * \retval AM_OK : ²Ù×÷³É¹¦
+ * \retval AM_OK : æ“ä½œæˆåŠŸ
  *
- * \note ×¢£º´Ëº¯ÊıÉ÷ÓÃ
+ * \note æ³¨ï¼šæ­¤å‡½æ•°æ…ç”¨
  */
 int am_zlg217_clk_update (am_clk_id_t clk_id, int clk);
 
 /**
- * \brief »ñÈ¡PLLµÄÊäÈëÊ±ÖÓÔ´
- *  ½ö¶ÔCLK_AHB£¬CLK_APB1£¬CLK_APB2ÓĞĞ§
+ * \brief è·å–PLLçš„è¾“å…¥æ—¶é’Ÿæº
+ *  ä»…å¯¹CLK_AHBï¼ŒCLK_APB1ï¼ŒCLK_APB2æœ‰æ•ˆ
  *
- * \return clkµÄÊ±ÖÓÅäÖÃĞÅÏ¢
+ * \return clkçš„æ—¶é’Ÿé…ç½®ä¿¡æ¯
  */
 const am_zlg217_clk_dev_t *am_zlg217_clk_devinfo_get (void);
 
 /**
- * \brief ·µ»Ø×ÜÏß»òÍâÉèµÄCLK·ÖÆµÖµ
+ * \brief è¿”å›æ€»çº¿æˆ–å¤–è®¾çš„CLKåˆ†é¢‘å€¼
  *
  *
- * \param[in] clk_id  Ê±ÖÓ ID (ÓÉÆ½Ì¨¶¨Òå), ²Î¼û \ref grp_clk_id
+ * \param[in] clk_id  æ—¶é’Ÿ ID (ç”±å¹³å°å®šä¹‰), å‚è§ \ref grp_clk_id
  *
- * \return: ·µ»Ø¶ÔÓ¦×ÜÏß»òÍâÉèµÄ·ÖÆµÖµ
+ * \return: è¿”å›å¯¹åº”æ€»çº¿æˆ–å¤–è®¾çš„åˆ†é¢‘å€¼
  *
  */
 int am_zlg217_div_get (am_clk_id_t clk_id);

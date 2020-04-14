@@ -13,21 +13,21 @@
 
 /**
  * \file
- * \brief USBÄ£ÄâUÅÌÀı³Ì£¬Í¨¹ıdriver²ãµÄ½Ó¿ÚÊµÏÖ
+ * \brief USBæ¨¡æ‹ŸUç›˜ä¾‹ç¨‹ï¼Œé€šè¿‡driverå±‚çš„æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè£º
- *   1. ½«USBÁ¬½ÓÉÏµçÄÔºóÏÂÔØ³ÌĞò£»
- *   2. ÔÚµçÄÔÉÏ»áÏÔÊ¾³öÒ»¸öÅÌ·û£»
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. å°†USBè¿æ¥ä¸Šç”µè„‘åä¸‹è½½ç¨‹åºï¼›
+ *   2. åœ¨ç”µè„‘ä¸Šä¼šæ˜¾ç¤ºå‡ºä¸€ä¸ªç›˜ç¬¦ï¼›
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´ò¿ªÅÌ·û£¬¿ÉÒÔ¿´µ½ÀïÃæÓĞÒ»¸öREADME.TXTÎÄ¼ş¡£
- *   2. ¿ÉÒÔÍùUÅÌÖĞÀïÃæÍÏ¶¯ÎÄ¼ş,´®¿Ú»áÏÔÊ¾ÄãÍÏ¶¯ÎÄ¼şµÄĞÅÏ¢¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. æ‰“å¼€ç›˜ç¬¦ï¼Œå¯ä»¥çœ‹åˆ°é‡Œé¢æœ‰ä¸€ä¸ªREADME.TXTæ–‡ä»¶ã€‚
+ *   2. å¯ä»¥å¾€Uç›˜ä¸­é‡Œé¢æ‹–åŠ¨æ–‡ä»¶,ä¸²å£ä¼šæ˜¾ç¤ºä½ æ‹–åŠ¨æ–‡ä»¶çš„ä¿¡æ¯ã€‚
  *
  * \note
  *
  *
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_usbd_msc.c src_usbd_msc
  *
  * \internal
@@ -36,7 +36,7 @@
  * \endinternal
  */
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 #include "ametal.h"
 #include "am_int.h"
@@ -49,11 +49,11 @@
 
 static void __rec_buffer_cb(void *p_arg, uint8_t *p_buff, uint16_t len)
 {
-    //±£´æĞ´Èë flashÊı¾İ
+    //ä¿å­˜å†™å…¥ flashæ•°æ®
 }
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_usbd_msc_entry (void* p_handle)
 {
@@ -61,7 +61,7 @@ void demo_usbd_msc_entry (void* p_handle)
     am_usbd_msc_handle handle = p_handle;
     am_usbd_msc_recv_callback(handle, __rec_buffer_cb, (void *)handle);
 
-    /* ¸´Î»ºóÑÓÊ±Ò»¶ÎÊ±¼ä£¬Ä£ÄâUSBÉè±¸°Î³öµÄ¶¯×÷ */
+    /* å¤ä½åå»¶æ—¶ä¸€æ®µæ—¶é—´ï¼Œæ¨¡æ‹ŸUSBè®¾å¤‡æ‹”å‡ºçš„åŠ¨ä½œ */
     am_mdelay(3000);
 
     while (1) {

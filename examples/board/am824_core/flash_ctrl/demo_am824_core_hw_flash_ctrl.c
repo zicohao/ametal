@@ -12,23 +12,23 @@
 
 /**
  * \file
- * \brief ������������̣�ͨ�� HW ��ӿ�ʵ��
+ * \brief 闪存控制器例程，通过 HW 层接口实现
  *
- * - ʵ������
- *   1. ������Ὣǩ����Ϣͨ�����ڴ�ӡ���ն��ϣ�
- *   2. ��ʾ��Ϊ�����֣��ֱ�Ϊ��������Ľ����Ӳ������Ľ����
- *   3. ������������Ӳ��������Ӧ����ͬ��
- *   4. LED �� 0.5s ��ʱ������˸��
- *
- * \note
- *    1. LED0 ��Ҫ�̽� J9 ����ñ�����ܱ� PIO0_20 ���ƣ�
- *    2. ����۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIO0_0 �������� PC ���ڵ� TXD��
- *       PIO0_4 �������� PC ���ڵ� RXD��
+ * - 实验现象：
+ *   1. 本程序会将签名信息通过串口打印到终端上；
+ *   2. 显示分为两部分，分别为软件计算的结果和硬件计算的结果；
+ *   3. 软件计算结果和硬件结算结果应该相同；
+ *   4. LED 以 0.5s 的时间间隔闪烁。
  *
  * \note
- *   �ɷ��ʵĵ�ַ��ΧΪ FLASH �ռ�(0x0000~0x8000)��
+ *    1. LED0 需要短接 J9 跳线帽，才能被 PIO0_20 控制；
+ *    2. 如需观察串口打印的调试信息，需要将 PIO0_0 引脚连接 PC 串口的 TXD，
+ *       PIO0_4 引脚连接 PC 串口的 RXD。
  *
- * \par Դ����
+ * \note
+ *   可访问的地址范围为 FLASH 空间(0x0000~0x8000)。
+ *
+ * \par 源代码
  * \snippet demo_am824_hw_flash_ctrl.c src_am824_hw_flash_ctrl
  *
  * \internal
@@ -51,13 +51,13 @@
 #include "demo_nxp_entries.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_am824_core_hw_flash_ctrl_entry (void)
 {
     AM_DBG_INFO("demo_am824_hw_flash_ctrl!\r\n");
 
-    /* �����������ʱ��Ϊ����ϵͳʱ�� */
+    /* 设置闪存访问时间为两个系统时钟 */
     demo_lpc824_hw_flash_ctrl_entry(AMHW_LPC_FMC_FLASHTIM_2);
 }
 /** [src_am824_hw_flash_ctrl] */

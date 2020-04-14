@@ -13,39 +13,39 @@
 
 /**
  * \file
- * \brief ZM516X ģ���������̣�ͨ����׼�ӿ�ʵ��
+ * \brief ZM516X 模块组网例程，通过标准接口实现
  *
- * - �������裺
- *   1. ���Ա� Demo ������Ҫʹ������ AM824ZB �壬����ֻ���� 1 �����ӻ������ж����
- *      �����ʹӻ���Ҫ���ز�ͬ�ĳ���
- *      ��Ϊ�����Ŀ�����򿪺� MASTER_BORD_USE���رպ� SLAVE_BORD_USE�����벢���أ�
- *      ��Ϊ�ӻ��Ŀ�����򿪺� SLAVE_BORD_USE���رպ� MASTER_BORD_USE�����벢���أ�
- *   2. ���ӻ��� JOIN ����ñ�̽� 3 �����£�ʹ�ӻ�������������׶Σ�
- *   3. ���������� KEY/RES ������ʹ�������� __JOIN_TIME �������ģʽ��
- *   4. �ȴ������˳�����ģʽ�󣬰��´ӻ��� KEY/RES ������
+ * - 操作步骤：
+ *   1. 测试本 Demo 最少需要使用两块 AM824ZB 板，主机只能有 1 个，从机可以有多个，
+ *      主机和从机需要下载不同的程序，
+ *      作为主机的开发板打开宏 MASTER_BORD_USE，关闭宏 SLAVE_BORD_USE，编译并下载，
+ *      作为从机的开发板打开宏 SLAVE_BORD_USE，关闭宏 MASTER_BORD_USE，编译并下载；
+ *   2. 将从机的 JOIN 跳线帽短接 3 秒以下，使从机进入入网申请阶段；
+ *   3. 按下主机的 KEY/RES 按键，使主机进入 __JOIN_TIME 秒的组网模式；
+ *   4. 等待主机退出组网模式后，按下从机的 KEY/RES 按键。
  *
- * - ʵ������
- *   1. ��� ZM516X ģ���ʼ��������ʧ�ܣ�LED0 ��˸��
- *   2. ���ڴ�ӡ��ȡ���ı���ģ��������Ϣ��
- *   3. ���ڴ�ӡ��ʾ��Ϣ��
- *   4. ������ӡ�ӻ��б���ӻ���Ϣ��
- *   5. ������ӻ����� "I'am Master\r\n";
- *   5. �ӻ����������� "I'am Slave x\r\n"������ x Ϊ�ӻ������ַ;
- *   3. �����ʹӻ��ֱ�ͨ�����Դ��ڴ�ӡ���յ������ݡ�
+ * - 实验现象：
+ *   1. 如果 ZM516X 模块初始化并配置失败，LED0 闪烁；
+ *   2. 串口打印读取到的本地模块配置信息；
+ *   3. 串口打印提示信息；
+ *   4. 主机打印从机列表与从机信息；
+ *   5. 主机向从机发送 "I'am Master\r\n";
+ *   5. 从机向主机发送 "I'am Slave x\r\n"，其中 x 为从机网络地址;
+ *   3. 主机和从机分别通过调试串口打印接收到的数据。
  *
  * \note
- *    1. LED0 ��Ҫ�̽� J9 ����ñ�����ܱ� PIO0_8 ���ƣ�
- *    2. ����۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIO0_0 �������� PC ���ڵ� TXD��
- *       PIO0_4 �������� PC ���ڵ� RXD��
- *    3. ZigBee ģ�������ӹ�ϵ���£�
+ *    1. LED0 需要短接 J9 跳线帽，才能被 PIO0_8 控制；
+ *    2. 如需观察串口打印的调试信息，需要将 PIO0_0 引脚连接 PC 串口的 TXD，
+ *       PIO0_4 引脚连接 PC 串口的 RXD；
+ *    3. ZigBee 模块内连接关系如下：
  * <pre>
  *           PIO0_26  <-->  ZigBee_TX
  *           PIO0_27  <-->  ZigBee_RX
  *           PIO0_28  <-->  ZigBee_RST
  * </pre>
- *        �����Ҫʹ�� ZigBee����Щ IO �ڲ�������������;��
+ *        如果需要使用 ZigBee，这些 IO 口不能用作其它用途。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_am824zb_std_zm516x_network.c src_am824zb_std_zm516x_network
  *
  * \internal
@@ -67,7 +67,7 @@
 #include "am_lpc82x_inst_init.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_am824zb_std_zm516x_network_entry (void)
 {

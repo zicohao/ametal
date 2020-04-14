@@ -12,16 +12,16 @@
 
 /**
  * \file
- * \brief Èí¼ş¶¨Ê±Æ÷Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief è½¯ä»¶å®šæ—¶å™¨ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Èí¼ş¶¨Ê±Æ÷²úÉú 100ms ÖÜĞÔÆÚÖĞ¶Ï£¬²¢ÔÚÖĞ¶ÏÊ±´òÓ¡µ÷ÊÔĞÅÏ¢¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. è½¯ä»¶å®šæ—¶å™¨äº§ç”Ÿ 100ms å‘¨æ€§æœŸä¸­æ–­ï¼Œå¹¶åœ¨ä¸­æ–­æ—¶æ‰“å°è°ƒè¯•ä¿¡æ¯ã€‚
  *
  * \note
- *    1. ²âÊÔ±¾ Demo ±ØĞëÔÚ am_prj_config.h ÄÚ½« AM_CFG_SOFTIMER_ENABLE ¶¨ÒåÎª 1¡£
- *       Í¨³£¸ÃºêÒÑ¾­Ä¬ÈÏÅäÖÃÎª 1£»
+ *    1. æµ‹è¯•æœ¬ Demo å¿…é¡»åœ¨ am_prj_config.h å†…å°† AM_CFG_SOFTIMER_ENABLE å®šä¹‰ä¸º 1ã€‚
+ *       é€šå¸¸è¯¥å®å·²ç»é»˜è®¤é…ç½®ä¸º 1ï¼›
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_std_softimer.c src_std_softimer
  *
  * \internal
@@ -41,7 +41,7 @@
 #include "am_softimer.h"
 
 /**
- * \brief ¶¨Ê±Æ÷»Øµ÷º¯Êı
+ * \brief å®šæ—¶å™¨å›è°ƒå‡½æ•°
  */
 static void softimer_callback (void *p_arg)
 {
@@ -49,14 +49,14 @@ static void softimer_callback (void *p_arg)
 }
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_std_softimer_entry (void)
 {
     am_softimer_t softimer;
 
     am_softimer_init(&softimer, softimer_callback, NULL);
-    am_softimer_start(&softimer, 100);                    /* ¶¨Ê±Ê±¼ä£º100ms  */
+    am_softimer_start(&softimer, 100);                    /* å®šæ—¶æ—¶é—´ï¼š100ms  */
 
     AM_FOREVER {
         ; /* VOID */

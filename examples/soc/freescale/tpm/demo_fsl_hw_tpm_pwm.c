@@ -12,13 +12,13 @@
 
 /**
  * \file
- * \brief TPMʵ��PWM���ܣ�ͨ��HW��Ľӿ�ʵ��
+ * \brief TPM实现PWM功能，通过HW层的接口实现
  *
- * - ʵ������
- *   1. PIOD_0(TPM_OUT0)���4kHz��PWM��ռ�ձ�Ϊ50%��
- *   2. PIOD_1(TPM_OUT1)���4kHz��PWM��ռ�ձ�Ϊ25%��
+ * - 实验现象：
+ *   1. PIOD_0(TPM_OUT0)输出4kHz的PWM，占空比为50%；
+ *   2. PIOD_1(TPM_OUT1)输出4kHz的PWM，占空比为25%。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_fsl_hw_tpm_pwm.c src_fsl_hw_tpm_pwm
  *
  * \internal
@@ -50,7 +50,7 @@ int tpm_pwm_config (amhw_fsl_tpm_t *p_hw_tpm,
     uint32_t period_c, duty_c;
     uint8_t  prescale, write_pre = 0, temp;
 
-    /* �������Ϸ� */
+    /* 参数不合法 */
     if ((period_ns == 0) || (duty_ns > period_ns)) {
         return -AM_EINVAL;
     }
@@ -58,23 +58,23 @@ int tpm_pwm_config (amhw_fsl_tpm_t *p_hw_tpm,
     period_c = (uint64_t)(period_ns) * (clkfreq) / (uint64_t)1000000000;
     duty_c   = (uint64_t)(duty_ns)   * (clkfreq) / (uint64_t)1000000000;
 
-    /* 16λ��ʱ�������128��Ƶ */
+    /* 16位定时器，最大128分频 */
     if (period_c > (0xffffu * 128)) {
         return -AM_EINVAL;
     }
 
-    temp = period_c / 0xffffu + 1;          /* �����Ƶ��С */
+    temp = period_c / 0xffffu + 1;          /* 计算分频大小 */
 
-    /* ֻ֧�ַ�Ƶ��С1,2,4,8...128����ô��ڷ�Ƶ������С����2^n */
+    /* 只支持分频大小1,2,4,8...128，求得大于分频数中最小的数2^n */
     for (prescale = 1; prescale < temp; ) {
-        write_pre++;                        /* ����д��Ĵ����ķ�Ƶֵ0,1,2,... */
-        prescale = prescale << 1;           /* ��Ƶ��2^n */
+        write_pre++;                        /* 计算写入寄存器的分频值0,1,2,... */
+        prescale = prescale << 1;           /* 分频数2^n */
     }
     amhw_fsl_tpm_prescale_set(p_hw_tpm, (amhw_fsl_tpm_prescale_t)write_pre);
 
     period_c = period_c / prescale;
 
-    /* ��������Ϊ1 */
+    /* 周期最少为1 */
     if (period_c == 0) {
         period_c = 1;
     }
@@ -91,18 +91,18 @@ int tpm_pwm_config (amhw_fsl_tpm_t *p_hw_tpm,
 
 void tpm_pwm_enable (amhw_fsl_tpm_t *p_hw_tpm, int chan)
 {
-    /* ѡ�����ϼ���,PWMģʽ */
+    /* 选择向上计数,PWM模式 */
     amhw_fsl_tpm_ch_mode(p_hw_tpm, chan, AMHW_FSL_TPM_COUNTING_UP,
                           AMHW_FSL_TPM_CHSC_MS(2) | AMHW_FSL_TPM_CHSC_EL_SEL(2));
 
-    /* ��ʼ���� */
+    /* 开始计数 */
     amhw_fsl_tpm_clock_mode(p_hw_tpm, AMHW_FSL_TPM_CLK_SRC_MODULE);
 
     return;
 }
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_fsl_hw_tpm_pwm_entry (amhw_fsl_tpm_t *p_hw_tpm,
                                 uint32_t        clkfreq)
@@ -113,15 +113,15 @@ void demo_fsl_hw_tpm_pwm_entry (amhw_fsl_tpm_t *p_hw_tpm,
     AM_DBG_INFO("The PIOD_1(TPM_OUT1) PWM: freq is 4kHz, The duty ratio is 25% \r\n");
 
     tpm_pwm_config(p_hw_tpm,
-                   AMHW_FSL_TPM_CH(0),      /* ͨ���� */
-                   250000 / 2,              /* ռ�ձ�(ns) */
-                   250000,                  /* ���ڣ�ns�� */
+                   AMHW_FSL_TPM_CH(0),      /* 通道号 */
+                   250000 / 2,              /* 占空比(ns) */
+                   250000,                  /* 周期（ns） */
                    clkfreq);
 
     tpm_pwm_config(p_hw_tpm,
-                   AMHW_FSL_TPM_CH(1),      /* ͨ���� */
-                   250000 / 4,              /* ռ�ձ�(ns) */
-                   250000,                  /* ���ڣ�ns�� */
+                   AMHW_FSL_TPM_CH(1),      /* 通道号 */
+                   250000 / 4,              /* 占空比(ns) */
+                   250000,                  /* 周期（ns） */
                    clkfreq);
 
     tpm_pwm_enable(p_hw_tpm, AMHW_FSL_TPM_CH(0));

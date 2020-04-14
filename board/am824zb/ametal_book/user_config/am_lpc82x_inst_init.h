@@ -13,10 +13,10 @@
 
 /**
  * \file
- * \brief LPC82x ÍâÉè ÊµÀı³õÊ¼»¯º¯ÊıÉùÃ÷
+ * \brief LPC82x å¤–è®¾ å®ä¾‹åˆå§‹åŒ–å‡½æ•°å£°æ˜
  *
- * ËùÓĞÍâÉèÉè±¸£¨I2C¡¢SPI¡¢ADC...£©µÄÊµÀı³õÊ¼»¯º¯Êı¾ùÔÚ±¾Í·ÎÄ¼şÖĞÉùÃ÷£¬Ê¹ÓÃÊµÀı
- * ³õÊ¼»¯º¯Êı£¬¿ÉÒÔÇáËÉ»ñµÃÒ»¸öÍâÉèµÄ¾ä±ú£¬È»ºóÊ¹ÓÃÏà¹ØµÄ½Ó¿Úº¯Êı¶ÔÍâÉè½øĞĞ²Ù×÷¡£
+ * æ‰€æœ‰å¤–è®¾è®¾å¤‡ï¼ˆI2Cã€SPIã€ADC...ï¼‰çš„å®ä¾‹åˆå§‹åŒ–å‡½æ•°å‡åœ¨æœ¬å¤´æ–‡ä»¶ä¸­å£°æ˜ï¼Œä½¿ç”¨å®ä¾‹
+ * åˆå§‹åŒ–å‡½æ•°ï¼Œå¯ä»¥è½»æ¾è·å¾—ä¸€ä¸ªå¤–è®¾çš„å¥æŸ„ï¼Œç„¶åä½¿ç”¨ç›¸å…³çš„æ¥å£å‡½æ•°å¯¹å¤–è®¾è¿›è¡Œæ“ä½œã€‚
  *
  * \sa am_lpc82x_inst_init.h
  * \internal
@@ -57,344 +57,344 @@
  */
 
 /**
- * \brief  CLK ÊµÀı³õÊ¼»¯£¬³õÊ¼»¯ÏµÍ³Ê±ÖÓ
- * \retval AM_OK : Ê±ÖÓ³É¹¦³õÊ¼»¯
- * \note Ê±ÖÓ½ÏÎªÌØÊâ£¬ÎŞ½â³õÊ¼»¯º¯Êı
+ * \brief  CLK å®ä¾‹åˆå§‹åŒ–ï¼Œåˆå§‹åŒ–ç³»ç»Ÿæ—¶é’Ÿ
+ * \retval AM_OK : æ—¶é’ŸæˆåŠŸåˆå§‹åŒ–
+ * \note æ—¶é’Ÿè¾ƒä¸ºç‰¹æ®Šï¼Œæ— è§£åˆå§‹åŒ–å‡½æ•°
  */
 int am_lpc82x_clk_inst_init (void);
 
 
 /**
- * \brief  ADC0 ÖĞ¶Ï·şÎñÊµÀı³õÊ¼»¯£¬»ñµÃADC±ê×¼·şÎñ¾ä±ú
- * \return ADC±ê×¼·şÎñ¾ä±ú£¬ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief  ADC0 ä¸­æ–­æœåŠ¡å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—ADCæ ‡å‡†æœåŠ¡å¥æŸ„
+ * \return ADCæ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_adc_handle_t am_lpc82x_adc0_int_inst_init (void);
 
 /**
- * \brief ADC0 ÖĞ¶ÏÊµÀı½â³õÊ¼»¯
- * \param[in] handle : Í¨¹ı am_lpc82x_adc0_inst_init() º¯Êı»ñµÃµÄADC¾ä±ú
- * \return ÎŞ
+ * \brief ADC0 ä¸­æ–­å®ä¾‹è§£åˆå§‹åŒ–
+ * \param[in] handle : é€šè¿‡ am_lpc82x_adc0_inst_init() å‡½æ•°è·å¾—çš„ADCå¥æŸ„
+ * \return æ— 
  */
 void am_lpc82x_adc0_int_inst_deinit (am_adc_handle_t handle);
 
 
 /**
- * \brief  ADC0 dma·şÎñÊµÀı³õÊ¼»¯£¬»ñµÃADC±ê×¼·şÎñ¾ä±ú
- * \return ADC±ê×¼·şÎñ¾ä±ú£¬ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief  ADC0 dmaæœåŠ¡å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—ADCæ ‡å‡†æœåŠ¡å¥æŸ„
+ * \return ADCæ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_adc_handle_t am_lpc82x_adc0_dma_inst_init (void);
 
 /**
- * \brief ADC0 dmaÊµÀı½â³õÊ¼»¯
- * \param[in] handle : Í¨¹ı am_lpc82x_adc0_inst_init() º¯Êı»ñµÃµÄADC¾ä±ú
- * \return ÎŞ
+ * \brief ADC0 dmaå®ä¾‹è§£åˆå§‹åŒ–
+ * \param[in] handle : é€šè¿‡ am_lpc82x_adc0_inst_init() å‡½æ•°è·å¾—çš„ADCå¥æŸ„
+ * \return æ— 
  */
 void am_lpc82x_adc0_dma_inst_deinit (am_adc_handle_t handle);
 
 
 /**
- * \brief  CRC ÊµÀı³õÊ¼»¯£¬»ñµÃCRC±ê×¼·şÎñ¾ä±ú
- * \return CRC±ê×¼·şÎñ¾ä±ú£¬ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief  CRC å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—CRCæ ‡å‡†æœåŠ¡å¥æŸ„
+ * \return CRCæ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_crc_handle_t am_lpc82x_crc_inst_init (void);
 
 /**
- * \brief CRC ÊµÀı½â³õÊ¼»¯
- * \param[in] handle : Í¨¹ı am_lpc82x_crc_inst_init() º¯Êı»ñµÃµÄCRC¾ä±ú
- * \return ÎŞ
+ * \brief CRC å®ä¾‹è§£åˆå§‹åŒ–
+ * \param[in] handle : é€šè¿‡ am_lpc82x_crc_inst_init() å‡½æ•°è·å¾—çš„CRCå¥æŸ„
+ * \return æ— 
  */
 void am_lpc82x_crc_inst_deinit (am_crc_handle_t handle);
 
 /**
- * \brief  DMA ÊµÀı³õÊ¼»¯
- * \retval AM_OK    : ³õÊ¼»¯³É¹¦
+ * \brief  DMA å®ä¾‹åˆå§‹åŒ–
+ * \retval AM_OK    : åˆå§‹åŒ–æˆåŠŸ
  */
 int am_lpc82x_dma_inst_init (void);
 
 /**
- * \brief DMA ÊµÀı½â³õÊ¼»¯
- * \return ÎŞ
+ * \brief DMA å®ä¾‹è§£åˆå§‹åŒ–
+ * \return æ— 
  */
 void am_lpc82x_dma_inst_deinit (void);
 
 /**
- * \brief  GPIO ÊµÀı³õÊ¼»¯
- * \retval AM_OK    : ³õÊ¼»¯³É¹¦
+ * \brief  GPIO å®ä¾‹åˆå§‹åŒ–
+ * \retval AM_OK    : åˆå§‹åŒ–æˆåŠŸ
  */
 int am_lpc82x_gpio_inst_init (void);
 
 /**
- * \brief GPIO ÊµÀı½â³õÊ¼»¯
- * \return ÎŞ
+ * \brief GPIO å®ä¾‹è§£åˆå§‹åŒ–
+ * \return æ— 
  */
 void am_lpc82x_gpio_inst_deinit (void);
 
 
 /**
- * \brief  I2C0 ÊµÀı³õÊ¼»¯£¬»ñµÃI2C±ê×¼·şÎñ¾ä±ú
- * \return I2C±ê×¼·şÎñ¾ä±ú£¬ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief  I2C0 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—I2Cæ ‡å‡†æœåŠ¡å¥æŸ„
+ * \return I2Cæ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_i2c_handle_t am_lpc82x_i2c0_inst_init (void);
 
 /**
- * \brief I2C0 ÊµÀı½â³õÊ¼»¯
- * \param[in] handle : Í¨¹ı am_lpc82x_i2c0_inst_init() º¯Êı»ñµÃµÄI2C¾ä±ú
- * \return ÎŞ
+ * \brief I2C0 å®ä¾‹è§£åˆå§‹åŒ–
+ * \param[in] handle : é€šè¿‡ am_lpc82x_i2c0_inst_init() å‡½æ•°è·å¾—çš„I2Cå¥æŸ„
+ * \return æ— 
  */
 void am_lpc82x_i2c0_inst_deinit (am_i2c_handle_t handle);
 
 /**
- * \brief  I2C1 ÊµÀı³õÊ¼»¯£¬»ñµÃI2C±ê×¼·şÎñ¾ä±ú
- * \return I2C±ê×¼·şÎñ¾ä±ú£¬ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief  I2C1 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—I2Cæ ‡å‡†æœåŠ¡å¥æŸ„
+ * \return I2Cæ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_i2c_handle_t am_lpc82x_i2c1_inst_init (void);
 
 /**
- * \brief I2C1 ÊµÀı½â³õÊ¼»¯
- * \param[in] handle : Í¨¹ı am_lpc82x_i2c1_inst_init() º¯Êı»ñµÃµÄI2C¾ä±ú
- * \return ÎŞ
+ * \brief I2C1 å®ä¾‹è§£åˆå§‹åŒ–
+ * \param[in] handle : é€šè¿‡ am_lpc82x_i2c1_inst_init() å‡½æ•°è·å¾—çš„I2Cå¥æŸ„
+ * \return æ— 
  */
 void am_lpc82x_i2c1_inst_deinit (am_i2c_handle_t handle);
 
 /**
- * \brief  I2C2 ÊµÀı³õÊ¼»¯£¬»ñµÃI2C±ê×¼·şÎñ¾ä±ú
- * \return I2C±ê×¼·şÎñ¾ä±ú£¬ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief  I2C2 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—I2Cæ ‡å‡†æœåŠ¡å¥æŸ„
+ * \return I2Cæ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_i2c_handle_t am_lpc82x_i2c2_inst_init (void);
 
 /**
- * \brief I2C2 ÊµÀı½â³õÊ¼»¯
- * \param[in] handle : Í¨¹ı am_lpc82x_i2c2_inst_init() º¯Êı»ñµÃµÄI2C¾ä±ú
- * \return ÎŞ
+ * \brief I2C2 å®ä¾‹è§£åˆå§‹åŒ–
+ * \param[in] handle : é€šè¿‡ am_lpc82x_i2c2_inst_init() å‡½æ•°è·å¾—çš„I2Cå¥æŸ„
+ * \return æ— 
  */
 void am_lpc82x_i2c2_inst_deinit (am_i2c_handle_t handle);
 
 
 /**
- * \brief  I2C3 ÊµÀı³õÊ¼»¯£¬»ñµÃI2C±ê×¼·şÎñ¾ä±ú
- * \return I2C±ê×¼·şÎñ¾ä±ú£¬ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief  I2C3 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—I2Cæ ‡å‡†æœåŠ¡å¥æŸ„
+ * \return I2Cæ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_i2c_handle_t am_lpc82x_i2c3_inst_init (void);
 
 /**
- * \brief I2C3 ÊµÀı½â³õÊ¼»¯
- * \param[in] handle : Í¨¹ı am_lpc82x_i2c3_inst_init() º¯Êı»ñµÃµÄI2C¾ä±ú
- * \return ÎŞ
+ * \brief I2C3 å®ä¾‹è§£åˆå§‹åŒ–
+ * \param[in] handle : é€šè¿‡ am_lpc82x_i2c3_inst_init() å‡½æ•°è·å¾—çš„I2Cå¥æŸ„
+ * \return æ— 
  */
 void am_lpc82x_i2c3_inst_deinit (am_i2c_handle_t handle);
 
 /**
- * \brief  ÖĞ¶ÏÊµÀı³õÊ¼»¯£¬³õÊ¼»¯ÖĞ¶ÏÇı¶¯
- * \retval AM_OKÎªÊµÀı»¯³É¹¦£¬ÆäËûÊ§°Ü
+ * \brief  ä¸­æ–­å®ä¾‹åˆå§‹åŒ–ï¼Œåˆå§‹åŒ–ä¸­æ–­é©±åŠ¨
+ * \retval AM_OKä¸ºå®ä¾‹åŒ–æˆåŠŸï¼Œå…¶ä»–å¤±è´¥
  */
 int am_lpc82x_nvic_inst_init (void);
 
 /**
- * \brief  ÖĞ¶ÏÊµÀı½â³õÊ¼»¯
+ * \brief  ä¸­æ–­å®ä¾‹è§£åˆå§‹åŒ–
  */
 void am_lpc82x_nvic_inst_deinit (void);
 
 /**
- * \brief  ÏµÍ³Systick³õÊ¼»¯
+ * \brief  ç³»ç»ŸSystickåˆå§‹åŒ–
  */
 am_timer_handle_t am_arm_systick_inst_init (void);
 
 /**
- * \brief  MRT ÊµÀı³õÊ¼»¯£¬»ñµÃMRT±ê×¼·şÎñ¾ä±ú
- * \return Timer±ê×¼·şÎñ¾ä±ú£¬ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief  MRT å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—MRTæ ‡å‡†æœåŠ¡å¥æŸ„
+ * \return Timeræ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_timer_handle_t am_lpc82x_mrt_inst_init (void);
 
 /**
- * \brief MRT ÊµÀı½â³õÊ¼»¯
- * \param[in] handle : Í¨¹ı am_lpc82x_mrt_inst_init() º¯Êı»ñµÃµÄTimer¾ä±ú
- * \return ÎŞ
+ * \brief MRT å®ä¾‹è§£åˆå§‹åŒ–
+ * \param[in] handle : é€šè¿‡ am_lpc82x_mrt_inst_init() å‡½æ•°è·å¾—çš„Timerå¥æŸ„
+ * \return æ— 
  */
 void am_lpc82x_mrt_inst_deinit (am_timer_handle_t handle);
 
 /**
- * \brief  SCT0 ÊµÀı³õÊ¼»¯£¬»ñµÃSCT±ê×¼·şÎñ¾ä±ú
- * \return SCT±ê×¼·şÎñ¾ä±ú£¬ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief  SCT0 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—SCTæ ‡å‡†æœåŠ¡å¥æŸ„
+ * \return SCTæ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_lpc_sct_handle_t am_lpc82x_sct0_inst_init (void);
 
 /**
- * \brief SCT0 ÊµÀı½â³õÊ¼»¯
- * \param[in] handle : Í¨¹ı am_lpc82x_sct0_inst_init() º¯Êı»ñµÃµÄSCT¾ä±ú
- * \return ÎŞ
+ * \brief SCT0 å®ä¾‹è§£åˆå§‹åŒ–
+ * \param[in] handle : é€šè¿‡ am_lpc82x_sct0_inst_init() å‡½æ•°è·å¾—çš„SCTå¥æŸ„
+ * \return æ— 
  */
 void am_lpc82x_sct0_inst_deinit (am_lpc_sct_handle_t handle);
 
 /**
- * \brief  SCT0 CAP ÊµÀı³õÊ¼»¯£¬»ñµÃCAP±ê×¼·şÎñ¾ä±ú
- * \return CAP±ê×¼·şÎñ¾ä±ú£¬ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief  SCT0 CAP å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—CAPæ ‡å‡†æœåŠ¡å¥æŸ„
+ * \return CAPæ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_cap_handle_t am_lpc82x_sct0_cap_inst_init (void);
 
 /**
- * \brief SCT0 CAP ÊµÀı½â³õÊ¼»¯
- * \param[in] handle : Í¨¹ı am_lpc82x_sct0_cap_inst_init() º¯Êı»ñµÃµÄCAP¾ä±ú
- * \return ÎŞ
+ * \brief SCT0 CAP å®ä¾‹è§£åˆå§‹åŒ–
+ * \param[in] handle : é€šè¿‡ am_lpc82x_sct0_cap_inst_init() å‡½æ•°è·å¾—çš„CAPå¥æŸ„
+ * \return æ— 
  */
 void am_lpc82x_sct0_cap_inst_deinit (am_cap_handle_t handle);
 
 /**
- * \brief  SCT0 PWM ÊµÀı³õÊ¼»¯£¬»ñµÃPWM±ê×¼·şÎñ¾ä±ú
- * \return PWM±ê×¼·şÎñ¾ä±ú£¬ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief  SCT0 PWM å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—PWMæ ‡å‡†æœåŠ¡å¥æŸ„
+ * \return PWMæ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_pwm_handle_t am_lpc82x_sct0_pwm_inst_init (void);
 
 /**
- * \brief SCT0 PWM ÊµÀı½â³õÊ¼»¯
- * \param[in] handle : Í¨¹ı am_lpc82x_sct0_pwm_inst_init() º¯Êı»ñµÃµÄPWM¾ä±ú
- * \return ÎŞ
+ * \brief SCT0 PWM å®ä¾‹è§£åˆå§‹åŒ–
+ * \param[in] handle : é€šè¿‡ am_lpc82x_sct0_pwm_inst_init() å‡½æ•°è·å¾—çš„PWMå¥æŸ„
+ * \return æ— 
  */
 void am_lpc82x_sct0_pwm_inst_deinit (am_pwm_handle_t handle);
 
 
 /**
- * \brief  SCT0 Timer ÊµÀı³õÊ¼»¯£¬»ñµÃTimer±ê×¼·şÎñ¾ä±ú
- * \return Timer±ê×¼·şÎñ¾ä±ú£¬ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief  SCT0 Timer å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—Timeræ ‡å‡†æœåŠ¡å¥æŸ„
+ * \return Timeræ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_timer_handle_t am_lpc82x_sct0_timing_inst_init (void);
 
 /**
- * \brief SCT0 Timer ÊµÀı½â³õÊ¼»¯
- * \param[in] handle : Í¨¹ı am_lpc82x_sct0_timing_inst_init() º¯Êı»ñµÃµÄTimer¾ä±ú
- * \return ÎŞ
+ * \brief SCT0 Timer å®ä¾‹è§£åˆå§‹åŒ–
+ * \param[in] handle : é€šè¿‡ am_lpc82x_sct0_timing_inst_init() å‡½æ•°è·å¾—çš„Timerå¥æŸ„
+ * \return æ— 
  */
 void am_lpc82x_sct0_timing_inst_deinit (am_timer_handle_t handle);
 
 /**
- * \brief  SPI0 ÖĞ¶Ï·½Ê½ÊµÀı³õÊ¼»¯£¬»ñµÃSPI±ê×¼·şÎñ¾ä±ú
- * \return SPI±ê×¼·şÎñ¾ä±ú£¬ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief  SPI0 ä¸­æ–­æ–¹å¼å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—SPIæ ‡å‡†æœåŠ¡å¥æŸ„
+ * \return SPIæ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_spi_handle_t am_lpc82x_spi0_int_inst_init (void);
 
 /**
- * \brief SPI0 ÖĞ¶Ï·½Ê½ÊµÀı½â³õÊ¼»¯
- * \param[in] handle : Í¨¹ı am_lpc82x_spi0_int_inst_init() º¯Êı»ñµÃµÄSPI¾ä±ú
- * \return ÎŞ
+ * \brief SPI0 ä¸­æ–­æ–¹å¼å®ä¾‹è§£åˆå§‹åŒ–
+ * \param[in] handle : é€šè¿‡ am_lpc82x_spi0_int_inst_init() å‡½æ•°è·å¾—çš„SPIå¥æŸ„
+ * \return æ— 
  */
 void am_lpc82x_spi0_int_inst_deinit (am_spi_handle_t handle);
 
 /**
- * \brief  SPI1 ÖĞ¶Ï·½Ê½ÊµÀı³õÊ¼»¯£¬»ñµÃSPI±ê×¼·şÎñ¾ä±ú
- * \return SPI±ê×¼·şÎñ¾ä±ú£¬ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief  SPI1 ä¸­æ–­æ–¹å¼å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—SPIæ ‡å‡†æœåŠ¡å¥æŸ„
+ * \return SPIæ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_spi_handle_t am_lpc82x_spi1_int_inst_init (void);
 
 /**
- * \brief SPI1 ÖĞ¶Ï·½Ê½ÊµÀı½â³õÊ¼»¯
- * \param[in] handle : Í¨¹ı am_lpc82x_spi1_int_inst_init() º¯Êı»ñµÃµÄSPI¾ä±ú
- * \return ÎŞ
+ * \brief SPI1 ä¸­æ–­æ–¹å¼å®ä¾‹è§£åˆå§‹åŒ–
+ * \param[in] handle : é€šè¿‡ am_lpc82x_spi1_int_inst_init() å‡½æ•°è·å¾—çš„SPIå¥æŸ„
+ * \return æ— 
  */
 void am_lpc82x_spi1_int_inst_deinit (am_spi_handle_t handle);
 
 /**
- * \brief  SPI0 DMA·½Ê½ÊµÀı³õÊ¼»¯£¬»ñµÃSPI±ê×¼·şÎñ¾ä±ú
- * \return SPI±ê×¼·şÎñ¾ä±ú£¬ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief  SPI0 DMAæ–¹å¼å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—SPIæ ‡å‡†æœåŠ¡å¥æŸ„
+ * \return SPIæ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_spi_handle_t am_lpc82x_spi0_dma_inst_init (void);
 
 /**
- * \brief SPI0 DMA·½Ê½ÊµÀı½â³õÊ¼»¯
- * \param[in] handle : Í¨¹ı am_lpc82x_spi0_dma_inst_init() º¯Êı»ñµÃµÄSPI¾ä±ú
- * \return ÎŞ
+ * \brief SPI0 DMAæ–¹å¼å®ä¾‹è§£åˆå§‹åŒ–
+ * \param[in] handle : é€šè¿‡ am_lpc82x_spi0_dma_inst_init() å‡½æ•°è·å¾—çš„SPIå¥æŸ„
+ * \return æ— 
  */
 void am_lpc82x_spi0_dma_inst_deinit (am_spi_handle_t handle);
 
 /**
- * \brief  SPI1 DMA·½Ê½ÊµÀı³õÊ¼»¯£¬»ñµÃSPI±ê×¼·şÎñ¾ä±ú
- * \return SPI±ê×¼·şÎñ¾ä±ú£¬ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief  SPI1 DMAæ–¹å¼å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—SPIæ ‡å‡†æœåŠ¡å¥æŸ„
+ * \return SPIæ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_spi_handle_t am_lpc82x_spi1_dma_inst_init (void);
 
 /**
- * \brief SPI1 DMA·½Ê½ÊµÀı½â³õÊ¼»¯
- * \param[in] handle : Í¨¹ı am_lpc82x_spi1_dma_inst_init() º¯Êı»ñµÃµÄSPI¾ä±ú
- * \return ÎŞ
+ * \brief SPI1 DMAæ–¹å¼å®ä¾‹è§£åˆå§‹åŒ–
+ * \param[in] handle : é€šè¿‡ am_lpc82x_spi1_dma_inst_init() å‡½æ•°è·å¾—çš„SPIå¥æŸ„
+ * \return æ— 
  */
 void am_lpc82x_spi1_dma_inst_deinit (am_spi_handle_t handle);
 
 
-/** \brief SYSTICK ÊµÀı³õÊ¼»¯£¬»ñµÃTimer±ê×¼·şÎñ¾ä±ú */
+/** \brief SYSTICK å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—Timeræ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_timer_handle_t am_lpc82x_systick_inst_init (void);
 
-/** \brief SYSTICK ÊµÀı½â³õÊ¼»¯ */
+/** \brief SYSTICK å®ä¾‹è§£åˆå§‹åŒ– */
 void am_lpc82x_systick_inst_deinit (am_timer_handle_t handle);
 
 /**
- * \brief  USART0 ÊµÀı³õÊ¼»¯£¬»ñµÃUART±ê×¼·şÎñ¾ä±ú
- * \return UART±ê×¼·şÎñ¾ä±ú£¬ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief  USART0 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—UARTæ ‡å‡†æœåŠ¡å¥æŸ„
+ * \return UARTæ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_uart_handle_t am_lpc82x_usart0_inst_init (void);
 
 /**
- * \brief USART0 ÊµÀı½â³õÊ¼»¯
- * \param[in] handle : Í¨¹ı am_lpc82x_usart0_inst_init() º¯Êı»ñµÃµÄUART¾ä±ú
- * \return ÎŞ
+ * \brief USART0 å®ä¾‹è§£åˆå§‹åŒ–
+ * \param[in] handle : é€šè¿‡ am_lpc82x_usart0_inst_init() å‡½æ•°è·å¾—çš„UARTå¥æŸ„
+ * \return æ— 
  */
 void am_lpc82x_usart0_inst_deinit (am_uart_handle_t handle);
 
 
 /**
- * \brief  USART1 ÊµÀı³õÊ¼»¯£¬»ñµÃUART±ê×¼·şÎñ¾ä±ú
- * \return UART±ê×¼·şÎñ¾ä±ú£¬ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief  USART1 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—UARTæ ‡å‡†æœåŠ¡å¥æŸ„
+ * \return UARTæ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_uart_handle_t am_lpc82x_usart1_inst_init (void);
 
 /**
- * \brief     USART1 ÊµÀı½â³õÊ¼»¯
- * \param[in] handle : Í¨¹ı am_lpc82x_usart1_inst_init() º¯Êı»ñµÃµÄUART¾ä±ú
- * \return ÎŞ
+ * \brief     USART1 å®ä¾‹è§£åˆå§‹åŒ–
+ * \param[in] handle : é€šè¿‡ am_lpc82x_usart1_inst_init() å‡½æ•°è·å¾—çš„UARTå¥æŸ„
+ * \return æ— 
  */
 void am_lpc82x_usart1_inst_deinit (am_uart_handle_t handle);
 
 /**
- * \brief  USART2 ÊµÀı³õÊ¼»¯£¬»ñµÃUART±ê×¼·şÎñ¾ä±ú
- * \return UART±ê×¼·şÎñ¾ä±ú£¬ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief  USART2 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—UARTæ ‡å‡†æœåŠ¡å¥æŸ„
+ * \return UARTæ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_uart_handle_t am_lpc82x_usart2_inst_init (void);
 
 /**
- * \brief USART2 ÊµÀı½â³õÊ¼»¯
- * \param[in] handle : Í¨¹ı am_lpc82x_usart2_inst_init() º¯Êı»ñµÃµÄUART¾ä±ú
- * \return ÎŞ
+ * \brief USART2 å®ä¾‹è§£åˆå§‹åŒ–
+ * \param[in] handle : é€šè¿‡ am_lpc82x_usart2_inst_init() å‡½æ•°è·å¾—çš„UARTå¥æŸ„
+ * \return æ— 
  */
 void am_lpc82x_usart2_inst_deinit (am_uart_handle_t handle);
 
 /**
- * \brief  WKT ÊµÀı³õÊ¼»¯£¬»ñµÃTimer±ê×¼·şÎñ¾ä±ú
- * \return Timer±ê×¼·şÎñ¾ä±ú£¬ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief  WKT å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—Timeræ ‡å‡†æœåŠ¡å¥æŸ„
+ * \return Timeræ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_timer_handle_t am_lpc82x_wkt_inst_init (void);
 
 /**
- * \brief WKT ÊµÀı½â³õÊ¼»¯
- * \param[in] handle : Í¨¹ı am_lpc82x_wkt_inst_init() º¯Êı»ñµÃµÄTimer¾ä±ú
- * \return ÎŞ
+ * \brief WKT å®ä¾‹è§£åˆå§‹åŒ–
+ * \param[in] handle : é€šè¿‡ am_lpc82x_wkt_inst_init() å‡½æ•°è·å¾—çš„Timerå¥æŸ„
+ * \return æ— 
  */
 void am_lpc82x_wkt_inst_deinit (am_timer_handle_t handle);
 
 
 /**
- * \brief  WWDT ÊµÀı³õÊ¼»¯£¬»ñµÃWDT±ê×¼·şÎñ¾ä±ú
- * \return WDT±ê×¼·şÎñ¾ä±ú£¬ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief  WWDT å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—WDTæ ‡å‡†æœåŠ¡å¥æŸ„
+ * \return WDTæ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_wdt_handle_t am_lpc82x_wwdt_inst_init (void);
 
 /**
- * \brief WWDT ÊµÀı½â³õÊ¼»¯
- * \param[in] handle : Í¨¹ı am_lpc82x_wwdt_inst_init() º¯Êı»ñµÃµÄWDT¾ä±ú
- * \return ÎŞ
+ * \brief WWDT å®ä¾‹è§£åˆå§‹åŒ–
+ * \param[in] handle : é€šè¿‡ am_lpc82x_wwdt_inst_init() å‡½æ•°è·å¾—çš„WDTå¥æŸ„
+ * \return æ— 
  */
 void am_lpc82x_wwdt_inst_deinit (am_wdt_handle_t handle);
 
 /**
- * \brief ZM516XÊµÀı³õÊ¼»¯£¬»ñµÃZM516XÄ£¿é±ê×¼·şÎñ²Ù×÷¾ä±ú
+ * \brief ZM516Xå®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—ZM516Xæ¨¡å—æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  *
- * \return ZM516XÄ£¿é±ê×¼·şÎñ²Ù×÷¾ä±ú
+ * \return ZM516Xæ¨¡å—æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  */
 am_zm516x_handle_t am_zm516x_inst_init (void);
 

@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief GPIO Ä£ÄâSPI Çý¶¯
+ * \brief GPIO æ¨¡æ‹ŸSPI é©±åŠ¨
  *
  * \internal
  * \par Modification history
@@ -26,37 +26,37 @@
 #include "am_delay.h"
 
 /*******************************************************************************
-  ºê¶¨Òå
+  å®å®šä¹‰
 *******************************************************************************/
 /**
- * \brief ×´Ì¬¶¨Òå
+ * \brief çŠ¶æ€å®šä¹‰
  */
-#define __SPI_GPIO_ST_IDLE             (0x10u)          /* ¿ÕÏÐ×´Ì¬ */
-#define __SPI_GPIO_ST_MSG_START        (0x11u)          /* ÏûÏ¢´«Êä¿ªÊ¼×´Ì¬ */
-#define __SPI_GPIO_ST_TRANS_START      (0x12u)          /* »ñÈ¡´«Êä¿ªÊ¼×´Ì¬ */
-#define __SPI_GPIO_ST_TX_RX_DATA       (0x13u)          /* ´«ÊäÊý¾Ý */
+#define __SPI_GPIO_ST_IDLE             (0x10u)          /* ç©ºé—²çŠ¶æ€ */
+#define __SPI_GPIO_ST_MSG_START        (0x11u)          /* æ¶ˆæ¯ä¼ è¾“å¼€å§‹çŠ¶æ€ */
+#define __SPI_GPIO_ST_TRANS_START      (0x12u)          /* èŽ·å–ä¼ è¾“å¼€å§‹çŠ¶æ€ */
+#define __SPI_GPIO_ST_TX_RX_DATA       (0x13u)          /* ä¼ è¾“æ•°æ® */
 
 /**
- * \brief ÊÂ¼þ¶¨Òå
+ * \brief äº‹ä»¶å®šä¹‰
  */
-#define __SPI_GPIO_EVT_NONE            (0xFFu)          /* ÎÞÊÂ¼þ */
-#define __SPI_GPIO_EVT_MSG_LAUNCH      (0xFEu)          /* ¿ªÊ¼´¦ÀíÒ»¸öÐÂµÄÏûÏ¢ */
-#define __SPI_GPIO_EVT_TRANS_LAUNCH    (0xFDu)          /* ¿ªÊ¼´¦ÀíÒ»¸öÐÂµÄ´«Êä */
+#define __SPI_GPIO_EVT_NONE            (0xFFu)          /* æ— äº‹ä»¶ */
+#define __SPI_GPIO_EVT_MSG_LAUNCH      (0xFEu)          /* å¼€å§‹å¤„ç†ä¸€ä¸ªæ–°çš„æ¶ˆæ¯ */
+#define __SPI_GPIO_EVT_TRANS_LAUNCH    (0xFDu)          /* å¼€å§‹å¤„ç†ä¸€ä¸ªæ–°çš„ä¼ è¾“ */
 
 /**
- * \brief ±äÁ¿Î´Ê¹ÓÃµ½
+ * \brief å˜é‡æœªä½¿ç”¨åˆ°
  */
 #define __VAR_NO_USE(a)      (void)(a)
 
-/* »ñÈ¡µ±Ç°ÏûÏ¢ */
+/* èŽ·å–å½“å‰æ¶ˆæ¯ */
 #define __spi_gpio_cur_msg(p_dev) \
     ((p_dev)->p_cur_msg)
 
-/* ÅÐ¶Ï´«ÊäÌåÊÇ·ñÎª¿Õ */
+/* åˆ¤æ–­ä¼ è¾“ä½“æ˜¯å¦ä¸ºç©º */
 #define __spi_gpio_trans_empty(p_dev) \
                   am_list_empty(&(p_cur_msg->transfers))
 
-/* »ñÈ¡µ±Ç°´«ÊäÌå */
+/* èŽ·å–å½“å‰ä¼ è¾“ä½“ */
 #define __spi_gpio_cur_trans(p_dev) \
     ((p_dev)->p_cur_trans)
 
@@ -78,11 +78,11 @@ am_local struct am_spi_drv_funcs   __g_spi_gpio_drv_funcs = {
 
 
 /******************************************************************************
- SPI Ð­ÒéÊµÏÖ
+ SPI åè®®å®žçŽ°
 *******************************************************************************/
 
 /**
- * \biref ÑÓÊ±
+ * \biref å»¶æ—¶
  */
 am_local
 void __spi_gpio_delay(am_spi_gpio_dev_t *p_this)
@@ -93,7 +93,7 @@ void __spi_gpio_delay(am_spi_gpio_dev_t *p_this)
 }
 
 /**
- * \brief ÉèÖÃSCKµÄ¿ÕÏÐ×´Ì¬
+ * \brief è®¾ç½®SCKçš„ç©ºé—²çŠ¶æ€
  */
 am_static_inline
 void __spi_gpio_sck_idle_state_set( am_spi_gpio_dev_t *p_this )
@@ -103,7 +103,7 @@ void __spi_gpio_sck_idle_state_set( am_spi_gpio_dev_t *p_this )
 }
 
 /**
- * \brief ·­×ªÊ±ÖÓSCK
+ * \brief ç¿»è½¬æ—¶é’ŸSCK
  */
 am_static_inline
 void __spi_gpio_sck_toggle(am_spi_gpio_dev_t *p_this)
@@ -114,7 +114,7 @@ void __spi_gpio_sck_toggle(am_spi_gpio_dev_t *p_this)
 
 
 /**
- * \brief SPI ¶ÁÐ´1~32Î»Êý¾Ý
+ * \brief SPI è¯»å†™1~32ä½æ•°æ®
  */
 am_local uint32_t __gpio_spi_rw_data (am_spi_gpio_dev_t *p_this,
                                       uint32_t           w_data,
@@ -133,7 +133,7 @@ am_local uint32_t __gpio_spi_rw_data (am_spi_gpio_dev_t *p_this,
         bit = bits_per_word - 1;
     }
 
-    /* ¸ù¾ÝÊ±ÖÓÏàÎ»ÊäÈëµÚÒ»¸öÖÜÆÚ */
+    /* æ ¹æ®æ—¶é’Ÿç›¸ä½è¾“å…¥ç¬¬ä¸€ä¸ªå‘¨æœŸ */
     am_gpio_set(p_devinfo->mosi_pin, AM_BIT_GET(w_data, bit));
 
     if (p_dev->mode & AM_SPI_CPHA) {
@@ -183,7 +183,7 @@ am_local uint32_t __gpio_spi_rw_data (am_spi_gpio_dev_t *p_this,
 }
 
 /*
- * \brief ´«ÊäÌåÊý¾Ý´¦Àí
+ * \brief ä¼ è¾“ä½“æ•°æ®å¤„ç†
  */
 am_local
 void __spi_gpio_trans_data_start(am_spi_gpio_dev_t *p_this,
@@ -200,7 +200,7 @@ void __spi_gpio_trans_data_start(am_spi_gpio_dev_t *p_this,
     }
     switch( AM_ROUND_UP(p_trans->bits_per_word,8)) {
 
-    /* ´¦Àí 1 ~ 8 Î»Êý¾Ý */
+    /* å¤„ç† 1 ~ 8 ä½æ•°æ® */
     case 8:
     {
         uint8_t  *p_tx    = NULL;
@@ -232,7 +232,7 @@ void __spi_gpio_trans_data_start(am_spi_gpio_dev_t *p_this,
         break;
     }
 
-    /* ´¦Àí 9 ~ 16 Î»Êý¾Ý */
+    /* å¤„ç† 9 ~ 16 ä½æ•°æ® */
     case 16:
     {
         uint16_t  *p_tx    = NULL;
@@ -264,7 +264,7 @@ void __spi_gpio_trans_data_start(am_spi_gpio_dev_t *p_this,
         break;
     }
 
-    /* ´¦Àí 17 ~ 32 Î»Êý¾Ý */
+    /* å¤„ç† 17 ~ 32 ä½æ•°æ® */
     case 24:
     case 32:
     {
@@ -305,7 +305,7 @@ void __spi_gpio_trans_data_start(am_spi_gpio_dev_t *p_this,
 /******************************************************************************/
 
 /**
- * \brief Ó²¼þ³õÊ¼»¯
+ * \brief ç¡¬ä»¶åˆå§‹åŒ–
  */
 am_local void __spi_gpio_hw_init(const am_spi_gpio_devinfo_t *p_devinfo)
 {
@@ -324,9 +324,9 @@ am_local void __spi_gpio_hw_init(const am_spi_gpio_devinfo_t *p_devinfo)
 }
 
 /**
-* \brief Ìí¼ÓÒ»Ìõ message µ½¿ØÖÆÆ÷´«ÊäÁÐ±íÄ©Î²
+* \brief æ·»åŠ ä¸€æ¡ message åˆ°æŽ§åˆ¶å™¨ä¼ è¾“åˆ—è¡¨æœ«å°¾
 *
-* \attention µ÷ÓÃ´Ëº¯Êý±ØÐëËø¶¨¿ØÖÆÆ÷
+* \attention è°ƒç”¨æ­¤å‡½æ•°å¿…é¡»é”å®šæŽ§åˆ¶å™¨
 */
 am_static_inline
 void __spi_gpio_msg_in (am_spi_gpio_dev_t *p_dev, struct am_spi_message *p_msg)
@@ -336,9 +336,9 @@ void __spi_gpio_msg_in (am_spi_gpio_dev_t *p_dev, struct am_spi_message *p_msg)
 }
 
 /**
-* \brief ´Ó¿ØÖÆÆ÷´«ÊäÁÐ±í±íÍ·È¡³öÒ»Ìõ message
+* \brief ä»ŽæŽ§åˆ¶å™¨ä¼ è¾“åˆ—è¡¨è¡¨å¤´å–å‡ºä¸€æ¡ message
 *
-* \attention µ÷ÓÃ´Ëº¯Êý±ØÐëËø¶¨¿ØÖÆÆ÷
+* \attention è°ƒç”¨æ­¤å‡½æ•°å¿…é¡»é”å®šæŽ§åˆ¶å™¨
 */
 am_static_inline
 struct am_spi_message *__spi_gpio_msg_out (am_spi_gpio_dev_t *p_dev)
@@ -353,8 +353,8 @@ struct am_spi_message *__spi_gpio_msg_out (am_spi_gpio_dev_t *p_dev)
 }
 
 /**
- * \brief ´ÓmessageÁÐ±í±íÍ·È¡³öÒ»Ìõ transfer
- * \attention µ÷ÓÃ´Ëº¯Êý±ØÐëËø¶¨¿ØÖÆÆ÷
+ * \brief ä»Žmessageåˆ—è¡¨è¡¨å¤´å–å‡ºä¸€æ¡ transfer
+ * \attention è°ƒç”¨æ­¤å‡½æ•°å¿…é¡»é”å®šæŽ§åˆ¶å™¨
  */
 am_static_inline
 struct am_spi_transfer *__spi_gpio_trans_out (am_spi_message_t *msg)
@@ -368,7 +368,7 @@ struct am_spi_transfer *__spi_gpio_trans_out (am_spi_message_t *msg)
     }
 }
 /**
-* \brief Ä¬ÈÏCS½Å¿ØÖÆº¯Êý£¬¸ßµçÆ½ÓÐÐ§
+* \brief é»˜è®¤CSè„šæŽ§åˆ¶å‡½æ•°ï¼Œé«˜ç”µå¹³æœ‰æ•ˆ
 */
 am_local
 void __spi_gpio_default_cs_ha (am_spi_device_t *p_dev, int state)
@@ -377,7 +377,7 @@ void __spi_gpio_default_cs_ha (am_spi_device_t *p_dev, int state)
 }
 
 /**
-* \brief Ä¬ÈÏCS½Å¿ØÖÆº¯Êý£¬µÍµçÆ½ÓÐÐ§
+* \brief é»˜è®¤CSè„šæŽ§åˆ¶å‡½æ•°ï¼Œä½Žç”µå¹³æœ‰æ•ˆ
 */
 am_local
 void __spi_gpio_default_cs_la (am_spi_device_t *p_dev, int state)
@@ -386,7 +386,7 @@ void __spi_gpio_default_cs_la (am_spi_device_t *p_dev, int state)
 }
 
 /**
-* \brief Ä¬ÈÏCS½Å¿ØÖÆº¯Êý£¬ÓÉÓ²¼þ×ÔÐÐ¿ØÖÆ
+* \brief é»˜è®¤CSè„šæŽ§åˆ¶å‡½æ•°ï¼Œç”±ç¡¬ä»¶è‡ªè¡ŒæŽ§åˆ¶
 */
 am_local
 void __spi_gpio_default_cs_dummy (am_spi_device_t *p_dev, int state)
@@ -395,7 +395,7 @@ void __spi_gpio_default_cs_dummy (am_spi_device_t *p_dev, int state)
 }
 
 /**
-* \brief CSÒý½Å¼¤»î
+* \brief CSå¼•è„šæ¿€æ´»
 */
 am_local
 void __spi_gpio_cs_on (am_spi_gpio_dev_t *p_this, am_spi_device_t *p_dev)
@@ -404,7 +404,7 @@ void __spi_gpio_cs_on (am_spi_gpio_dev_t *p_this, am_spi_device_t *p_dev)
 }
 
 /**
- * \brief CSÒý½ÅÈ¥»î
+ * \brief CSå¼•è„šåŽ»æ´»
  */
 am_local
 void __spi_gpio_cs_off (am_spi_gpio_dev_t *p_this, am_spi_device_t   *p_dev)
@@ -413,7 +413,7 @@ void __spi_gpio_cs_off (am_spi_gpio_dev_t *p_this, am_spi_device_t   *p_dev)
 }
 
 /**
- * \brief SPIÅäÖÃ
+ * \brief SPIé…ç½®
  */
 void __spi_gpio_config(am_spi_gpio_dev_t *p_this, am_spi_transfer_t *p_trans)
 {
@@ -424,7 +424,7 @@ void __spi_gpio_config(am_spi_gpio_dev_t *p_this, am_spi_transfer_t *p_trans)
 
 /******************************************************************************/
 /**
- * \brief »ñÈ¡SPI¿ØÖÆÆ÷ÐÅÏ¢
+ * \brief èŽ·å–SPIæŽ§åˆ¶å™¨ä¿¡æ¯
  */
 am_local int __spi_gpio_info_get(void *p_drv, am_spi_info_t *p_info)
 {
@@ -432,7 +432,7 @@ am_local int __spi_gpio_info_get(void *p_drv, am_spi_info_t *p_info)
         return -AM_EINVAL;
     }
 
-    /* ×î´óËÙÂÊµÈÓÚ PCLK */
+    /* æœ€å¤§é€ŸçŽ‡ç­‰äºŽ PCLK */
     p_info->max_speed = 0;
     p_info->min_speed = 0;
     p_info->features  = AM_SPI_CS_HIGH   |
@@ -447,7 +447,7 @@ am_local int __spi_gpio_info_get(void *p_drv, am_spi_info_t *p_info)
 }
 
 /**
- * \brief ÉèÖÃSPI´Ó»úÉè±¸
+ * \brief è®¾ç½®SPIä»Žæœºè®¾å¤‡
  */
 am_local int __spi_gpio_set_up(void *p_drv, struct am_spi_device *p_dev)
 {
@@ -457,29 +457,29 @@ am_local int __spi_gpio_set_up(void *p_drv, struct am_spi_device *p_dev)
         return -AM_EINVAL;
     }
 
-    /* Ä¬ÈÏÊý¾ÝÎª8Î»£¬×î´ó²»³¬¹ý16Î» */
+    /* é»˜è®¤æ•°æ®ä¸º8ä½ï¼Œæœ€å¤§ä¸è¶…è¿‡16ä½ */
     if (p_dev->bits_per_word == 0) {
         p_dev->bits_per_word = 8;
     } else if (p_dev->bits_per_word > 32) {
         return -AM_ENOTSUP;
     }
 
-    /* ÎÞÆ¬Ñ¡º¯Êý */
+    /* æ— ç‰‡é€‰å‡½æ•° */
     if (p_dev->mode & AM_SPI_NO_CS) {
         p_dev->pfunc_cs = __spi_gpio_default_cs_dummy;
 
-    /* ÓÐÆ¬Ñ¡º¯Êý */
+    /* æœ‰ç‰‡é€‰å‡½æ•° */
     }  else {
 
-        /* ²»Ìá¹©ÔòÄ¬ÈÏÆ¬Ñ¡º¯Êý */
+        /* ä¸æä¾›åˆ™é»˜è®¤ç‰‡é€‰å‡½æ•° */
         if (p_dev->pfunc_cs == NULL) {
 
-            /* Æ¬Ñ¡¸ßµçÆ½ÓÐÐ§ */
+            /* ç‰‡é€‰é«˜ç”µå¹³æœ‰æ•ˆ */
             if (p_dev->mode & AM_SPI_CS_HIGH) {
                 am_gpio_pin_cfg(p_dev->cs_pin, AM_GPIO_OUTPUT_INIT_LOW);
                 p_dev->pfunc_cs = __spi_gpio_default_cs_ha;
 
-            /* Æ¬Ñ¡µÍµçÆ½ÓÐÐ§ */
+            /* ç‰‡é€‰ä½Žç”µå¹³æœ‰æ•ˆ */
             } else {
                 am_gpio_pin_cfg(p_dev->cs_pin, AM_GPIO_OUTPUT_INIT_HIGH);
                 p_dev->pfunc_cs = __spi_gpio_default_cs_la;
@@ -487,14 +487,14 @@ am_local int __spi_gpio_set_up(void *p_drv, struct am_spi_device *p_dev)
         }
     }
 
-    /* ½â³ýÆ¬Ñ¡ÐÅºÅ */
+    /* è§£é™¤ç‰‡é€‰ä¿¡å· */
     __spi_gpio_cs_off(p_this, p_dev);
 
     return AM_OK;
 }
 
 /**
- * \brief ÏûÏ¢¿ªÊ¼
+ * \brief æ¶ˆæ¯å¼€å§‹
  */
 am_local int __spi_gpio_msg_start (void              *p_drv,
                                    am_spi_device_t   *p_dev,
@@ -510,11 +510,11 @@ am_local int __spi_gpio_msg_start (void              *p_drv,
         return -AM_EINVAL;
     }
 
-    p_msg->p_spi_dev = p_dev; /* ±£´æÏûÏ¢¶ÔÓ¦µÄÉè±¸*/
+    p_msg->p_spi_dev = p_dev; /* ä¿å­˜æ¶ˆæ¯å¯¹åº”çš„è®¾å¤‡*/
 
     key = am_int_cpu_lock();
 
-    /* µ±Ç°ÕýÔÚ´¦ÀíÏûÏ¢£¬Ö»ÐèÒª½«ÐÂµÄÏûÏ¢¼ÓÈëÁ´±í¼´¿É */
+    /* å½“å‰æ­£åœ¨å¤„ç†æ¶ˆæ¯ï¼Œåªéœ€è¦å°†æ–°çš„æ¶ˆæ¯åŠ å…¥é“¾è¡¨å³å¯ */
     if (p_this->busy == AM_TRUE) {
 
         __spi_gpio_msg_in(p_this, p_msg);
@@ -526,7 +526,7 @@ am_local int __spi_gpio_msg_start (void              *p_drv,
     } else {
         p_this->busy = AM_TRUE;
         __spi_gpio_msg_in(p_this, p_msg);
-        p_msg->status = -AM_EISCONN; /* ÕýÔÚÅÅ¶ÓÖÐ */
+        p_msg->status = -AM_EISCONN; /* æ­£åœ¨æŽ’é˜Ÿä¸­ */
         am_int_cpu_unlock(key);
 
         return __spi_mst_sm_event(p_this, __SPI_GPIO_EVT_MSG_LAUNCH);
@@ -542,7 +542,7 @@ am_local int __spi_gpio_msg_start (void              *p_drv,
     } while(0)
 
 /**
- * \brief  SPI_GPIO ×´Ì¬»ú´¦Àí
+ * \brief  SPI_GPIO çŠ¶æ€æœºå¤„ç†
  */
 am_local int __spi_mst_sm_event(am_spi_gpio_dev_t *p_dev, uint32_t event)
 {
@@ -552,7 +552,7 @@ am_local int __spi_mst_sm_event(am_spi_gpio_dev_t *p_dev, uint32_t event)
  
     while (1) {
 
-        /* ¼ì²éÊÇ·ñÓÐÐÂµÄÊÂ¼þÔÚ×´Ì¬»úÄÚ²¿²úÉú */
+        /* æ£€æŸ¥æ˜¯å¦æœ‰æ–°çš„äº‹ä»¶åœ¨çŠ¶æ€æœºå†…éƒ¨äº§ç”Ÿ */
         if (new_event != __SPI_GPIO_EVT_NONE) {
             event     = new_event;
             new_event = __SPI_GPIO_EVT_NONE;
@@ -561,7 +561,7 @@ am_local int __spi_mst_sm_event(am_spi_gpio_dev_t *p_dev, uint32_t event)
         switch (p_dev->state) {
 
         /*
-         * ¿ÕÏÐ×´Ì¬ºÍ¿ªÊ¼ÏûÏ¢´«Êä×´Ì¬Òª´¦ÀíµÄÊÂÇéÊÇÒ»Ñù£¬ÊÂ¼þÖ»Ó¦ÊÇ£º
+         * ç©ºé—²çŠ¶æ€å’Œå¼€å§‹æ¶ˆæ¯ä¼ è¾“çŠ¶æ€è¦å¤„ç†çš„äº‹æƒ…æ˜¯ä¸€æ ·ï¼Œäº‹ä»¶åªåº”æ˜¯ï¼š
          * __SPI_EVT_TRANS_LAUNCH
          */
         case __SPI_GPIO_ST_IDLE:
@@ -583,7 +583,7 @@ am_local int __spi_mst_sm_event(am_spi_gpio_dev_t *p_dev, uint32_t event)
 
             am_int_cpu_unlock(key);
 
-            /* ÎÞÐèÒª´¦ÀíµÄÏûÏ¢ */
+            /* æ— éœ€è¦å¤„ç†çš„æ¶ˆæ¯ */
             if (p_cur_msg == NULL) {
 
                 __spi_gpio_next_state(__SPI_GPIO_ST_IDLE, __SPI_GPIO_EVT_NONE);
@@ -598,7 +598,7 @@ am_local int __spi_mst_sm_event(am_spi_gpio_dev_t *p_dev, uint32_t event)
                 __spi_gpio_next_state(__SPI_GPIO_ST_TRANS_START,
                                       __SPI_GPIO_EVT_TRANS_LAUNCH);
 
-                /* Ö±½Ó½øÈëÏÂÒ»¸ö×´Ì¬£¬¿ªÊ¼Ò»¸ö´«Êä£¬´Ë´¦ÎÞÐèbreak */
+                /* ç›´æŽ¥è¿›å…¥ä¸‹ä¸€ä¸ªçŠ¶æ€ï¼Œå¼€å§‹ä¸€ä¸ªä¼ è¾“ï¼Œæ­¤å¤„æ— éœ€break */
                 event     = new_event;
                 new_event = __SPI_GPIO_EVT_NONE;
 
@@ -606,40 +606,40 @@ am_local int __spi_mst_sm_event(am_spi_gpio_dev_t *p_dev, uint32_t event)
         }
         /* no break */
 
-        /*¡¡´«Êä¿ªÊ¼ */
+        /*ã€€ä¼ è¾“å¼€å§‹ */
         case __SPI_GPIO_ST_TRANS_START:
         {
             struct am_spi_message *p_cur_msg =  __spi_gpio_cur_msg(p_dev);
 
-            /* µ±Ç°ÏûÏ¢´«ÊäÍê³É */
+            /* å½“å‰æ¶ˆæ¯ä¼ è¾“å®Œæˆ */
             if (__spi_gpio_trans_empty(p_dev)) {
 
 
-                /* ÏûÏ¢ÕýÔÚ´¦ÀíÖÐ */
+                /* æ¶ˆæ¯æ­£åœ¨å¤„ç†ä¸­ */
                 if (p_cur_msg->status == -AM_EINPROGRESS) {
                     p_cur_msg->status = AM_OK;
                 }
 
-                /* »Øµ÷ÏûÏ¢Íê³Éº¯Êý  */
+                /* å›žè°ƒæ¶ˆæ¯å®Œæˆå‡½æ•°  */
                 if (p_cur_msg->pfn_complete != NULL) {
                     p_cur_msg->pfn_complete(p_cur_msg->p_arg);
                 }
 
-                /* Æ¬Ñ¡¹Ø±Õ */
+                /* ç‰‡é€‰å…³é—­ */
                 __spi_gpio_cs_off(p_dev, p_dev->p_cur_spi_dev);
 
                 __spi_gpio_next_state(__SPI_GPIO_ST_MSG_START,
                                             __SPI_GPIO_EVT_MSG_LAUNCH);
 
-            } else {                    /* »ñÈ¡µ½Ò»¸ö´«Êä£¬ÕýÈ·´¦Àí¸Ã´«Êä¼´¿É */
+            } else {                    /* èŽ·å–åˆ°ä¸€ä¸ªä¼ è¾“ï¼Œæ­£ç¡®å¤„ç†è¯¥ä¼ è¾“å³å¯ */
 
                 am_spi_transfer_t *p_cur_trans = __spi_gpio_trans_out(p_cur_msg);
                 p_dev->p_cur_trans              = p_cur_trans;
 
-                /* ÅäÖÃSPI ´«Êä²ÎÊý */
+                /* é…ç½®SPI ä¼ è¾“å‚æ•° */
                 __spi_gpio_config(p_dev, p_dev->p_cur_trans);
 
-                /* CSÑ¡Í¨ */
+                /* CSé€‰é€š */
                 __spi_gpio_cs_on(p_dev, p_dev->p_cur_spi_dev);
 
                 __spi_gpio_next_state(__SPI_GPIO_ST_TX_RX_DATA, __SPI_GPIO_EVT_TRANS_LAUNCH);
@@ -648,19 +648,19 @@ am_local int __spi_mst_sm_event(am_spi_gpio_dev_t *p_dev, uint32_t event)
             break;
         }
 
-        /* ·¢ËÍ²¢½ÓÊÜÊý¾Ý×´Ì¬ */
+        /* å‘é€å¹¶æŽ¥å—æ•°æ®çŠ¶æ€ */
         case __SPI_GPIO_ST_TX_RX_DATA:
         {
             struct am_spi_transfer *p_cur_trans = __spi_gpio_cur_trans(p_dev);
 
-            /* ¿ªÊ¼´«ÊäÊý¾Ý */
+            /* å¼€å§‹ä¼ è¾“æ•°æ® */
             __spi_gpio_trans_data_start(p_dev, p_cur_trans);
 
             if( p_cur_trans->delay_usecs != 0) {
                 am_udelay(p_cur_trans->delay_usecs);
             }
 
-            /* Ó°ÏìÆ¬Ñ¡ */
+            /* å½±å“ç‰‡é€‰ */
             if( 1 == p_cur_trans->cs_change) {
                 __spi_gpio_cs_off(p_dev, p_dev->p_cur_spi_dev);
             }
@@ -677,7 +677,7 @@ am_local int __spi_mst_sm_event(am_spi_gpio_dev_t *p_dev, uint32_t event)
             break;
         }
 
-        /* ÎÞÊÂ¼þÍË³ö */
+        /* æ— äº‹ä»¶é€€å‡º */
         if (new_event == __SPI_GPIO_EVT_NONE) {
             break;
         }

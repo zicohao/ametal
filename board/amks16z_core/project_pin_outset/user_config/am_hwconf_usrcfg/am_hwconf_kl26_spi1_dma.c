@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief KL16 SPI ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief KL16 SPI ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_kl26_hwconfig_spi1_dma.c
  *
  * \internal
@@ -34,7 +34,7 @@
  * @{
  */
 
-/** \brief SPI1 Æ½Ì¨³õÊ¼»¯ */
+/** \brief SPI1 å¹³å°åˆå§‹åŒ– */
 static void __kl26_plfm_spi1_dma_init (void)
 {
     am_gpio_pin_cfg(__SPI1_SCK, __GPIO_SPI1_SCK);
@@ -44,7 +44,7 @@ static void __kl26_plfm_spi1_dma_init (void)
     amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_SPI1);
 }
 
-/** \brief ½â³ıSPI1 Æ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤SPI1 å¹³å°åˆå§‹åŒ– */
 static void __kl26_plfm_spi1_dma_deinit (void)
 {
     am_gpio_pin_cfg(__SPI1_SCK, AM_GPIO_INPUT);
@@ -54,30 +54,30 @@ static void __kl26_plfm_spi1_dma_deinit (void)
     amhw_kl26_sim_periph_clock_disable(KL26_SIM_SCGC_SPI1);
 }
 /**
- * \brief SPI1 Éè±¸ĞÅÏ¢
+ * \brief SPI1 è®¾å¤‡ä¿¡æ¯
  */
 static const struct am_kl26_spi_dma_devinfo  __g_spi1_devinfo = {
-    KL26_SPI1_BASE,                /**< \brief SPI1¼Ä´æÆ÷Ö¸Õë   */
-    AM_KL26_SPI_DMA_CFG_WIAT_EN,       /**< \brief SPI ÅäÖÃ±êÊ¶   */
+    KL26_SPI1_BASE,                /**< \brief SPI1å¯„å­˜å™¨æŒ‡é’ˆ   */
+    AM_KL26_SPI_DMA_CFG_WIAT_EN,       /**< \brief SPI é…ç½®æ ‡è¯†   */
 
     DMA_CHAN_1,
     DMA_CHAN_0,
     DMA_REQUEST_MUX0_SPI1TX,
     DMA_REQUEST_MUX0_SPI1RX,
-    __kl26_plfm_spi1_dma_init,         /**< \brief SPI1Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __kl26_plfm_spi1_dma_deinit        /**< \brief SPI1Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    __kl26_plfm_spi1_dma_init,         /**< \brief SPI1å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __kl26_plfm_spi1_dma_deinit        /**< \brief SPI1å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 };
 
-/** \brief SPI1 Éè±¸ÊµÀı */
+/** \brief SPI1 è®¾å¤‡å®ä¾‹ */
 static am_kl26_spi_dma_dev_t __g_spi1_dev;
 
-/** \brief SPI1 ÊµÀı³õÊ¼»¯£¬»ñµÃSPI±ê×¼·şÎñ¾ä±ú */
+/** \brief SPI1 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—SPIæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_spi_handle_t am_kl26_spi1_dma_inst_init (void)
 {
     return am_kl26_spi_dma_init(&__g_spi1_dev, &__g_spi1_devinfo);
 }
 
-/** \brief SPI1 ÊµÀı½â³õÊ¼»¯ */
+/** \brief SPI1 å®ä¾‹è§£åˆå§‹åŒ– */
 void am_kl26_spi1_dma_inst_deinit (am_spi_handle_t handle)
 {
     am_kl26_spi_dma_deinit(handle);

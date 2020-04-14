@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief CPU ϵͳ�δ�ʱ��(SYSTICK) �����ӿ�
+ * \brief CPU 系统滴答定时器(SYSTICK) 操作接口
  *
- * 1. �򵥵�24λ�ݼ���ʱ����
- * 2. ʹ��ר�õ��쳣�����š�
+ * 1. 简单的24位递减定时器；
+ * 2. 使用专用的异常向量号。
  *
  * \internal
  * \par Modification history
@@ -39,51 +39,51 @@ extern "C" {
  */
 
 /**
- * \brief SYSTICK �Ĵ�����ṹ��
+ * \brief SYSTICK 寄存器块结构体
  */
 typedef struct amhw_arm_systick {
-    __IO uint32_t ctrl;       /**< \brief SysTick ���ƺ�״̬�Ĵ��� */
-    __IO uint32_t load;       /**< \brief SysTick ��װ��ֵ�Ĵ��� */
-    __IO uint32_t val;        /**< \brief SysTick ��ǰ��ʱ��ֵ�Ĵ��� */
-    __I  uint32_t calib;      /**< \brief SysTick У׼�Ĵ��� */
+    __IO uint32_t ctrl;       /**< \brief SysTick 控制和状态寄存器 */
+    __IO uint32_t load;       /**< \brief SysTick 重装载值寄存器 */
+    __IO uint32_t val;        /**< \brief SysTick 当前定时器值寄存器 */
+    __I  uint32_t calib;      /**< \brief SysTick 校准寄存器 */
 } amhw_arm_systick_t;
 
 #ifndef AMHW_ARM_SYSTICK
-#define AMHW_ARM_SYSTICK  ((amhw_arm_systick_t *)0xE000E010UL)    /**< SCB  SysTick����ַ */
+#define AMHW_ARM_SYSTICK  ((amhw_arm_systick_t *)0xE000E010UL)    /**< SCB  SysTick基地址 */
 #endif
 
 
 /**
- * \name Systick���ƼĴ����ĺ궨��
+ * \name Systick控制寄存器的宏定义
  * @{
  */
 
-/** \brief Systick���ֵ */
+/** \brief Systick最大值 */
 #define AMHW_ARM_SYSTICK_INVAL_MAX                     (0xFFFFFFUL)
 
-/** \brief Systickʹ�� */
+/** \brief Systick使能 */
 #define AMHW_ARM_SYSTICK_CONFIG_ENABLE                 (1 << 0)
 
-/** \brief Systick�ж�ʹ�� */
+/** \brief Systick中断使能 */
 #define AMHW_ARM_SYSTICK_CONFIG_TICKINT                (1 << 1)
 
-/** \brief Systickʱ��ԴΪϵͳʱ�� */
+/** \brief Systick时钟源为系统时钟 */
 #define AMHW_ARM_SYSTICK_CONFIG_CLKSRC_SYSTEM          (1 << 2)
 
-/** \brief Systickʱ��Դ��Ϊϵͳʱ�ӵ�1/2 */
+/** \brief Systick时钟源的为系统时钟的1/2 */
 #define AMHW_ARM_SYSTICK_CONFIG_CLKSRC_SYSTEM_HALF     (0 << 2)
 
 /**
- * \brief Systickʱ��ԴΪSystickʱ�ӷ�Ƶ�������ʱ��
+ * \brief Systick时钟源为Systick时钟分频器的输出时钟
  */
 #define AMHW_ARM_SYSTICK_CONFIG_CLKSRC_MAINCLK_BY_DIV  (0 << 2)
 
 /** @} */
 
 /**
- * \brief ʹ��Systick����ʼ���¼�����
- * \param[in] p_hw_systick : ָ��Systick�Ĵ������ָ��
- * \return ��
+ * \brief 使能Systick（开始向下计数）
+ * \param[in] p_hw_systick : 指向Systick寄存器块的指针
+ * \return 无
  */
 am_static_inline
 void amhw_arm_systick_enable (amhw_arm_systick_t *p_hw_systick)
@@ -92,9 +92,9 @@ void amhw_arm_systick_enable (amhw_arm_systick_t *p_hw_systick)
 }
 
 /**
- * \brief ����Systick��ֹͣ���¼�����
- * \param[in] p_hw_systick : ָ��Systick�Ĵ������ָ��
- * \return ��
+ * \brief 禁能Systick（停止向下计数）
+ * \param[in] p_hw_systick : 指向Systick寄存器块的指针
+ * \return 无
  */
 am_static_inline
 void amhw_arm_systick_disable (amhw_arm_systick_t *p_hw_systick)
@@ -103,9 +103,9 @@ void amhw_arm_systick_disable (amhw_arm_systick_t *p_hw_systick)
 }
 
 /**
- * \brief ʹ��Systick�ж�
- * \param[in] p_hw_systick : ָ��Systick�Ĵ������ָ��
- * \return ��
+ * \brief 使能Systick中断
+ * \param[in] p_hw_systick : 指向Systick寄存器块的指针
+ * \return 无
  */
 am_static_inline
 void amhw_arm_systick_int_enable (amhw_arm_systick_t *p_hw_systick)
@@ -114,9 +114,9 @@ void amhw_arm_systick_int_enable (amhw_arm_systick_t *p_hw_systick)
 }
 
 /**
- * \brief ����Systick�ж�
- * \param[in] p_hw_systick : ָ��Systick�Ĵ������ָ��
- * \return ��
+ * \brief 禁能Systick中断
+ * \param[in] p_hw_systick : 指向Systick寄存器块的指针
+ * \return 无
  */
 am_static_inline
 void amhw_arm_systick_int_disable (amhw_arm_systick_t *p_hw_systick)
@@ -125,10 +125,10 @@ void amhw_arm_systick_int_disable (amhw_arm_systick_t *p_hw_systick)
 }
 
 /**
- * \brief ���Systick����ֵ�Ƿ�ݼ���0
- * \param[in] p_hw_systick : ָ��Systick�Ĵ������ָ��
- * \retval AM_TRUE  : Systick����ֵ�ݼ���0
- * \retval AM_FALSE : Systick����ֵδ�ݼ���0
+ * \brief 检测Systick计数值是否递减至0
+ * \param[in] p_hw_systick : 指向Systick寄存器块的指针
+ * \retval AM_TRUE  : Systick计数值递减至0
+ * \retval AM_FALSE : Systick计数值未递减至0
  */
 am_static_inline
 am_bool_t amhw_arm_systick_flag_check (amhw_arm_systick_t *p_hw_systick)
@@ -137,15 +137,15 @@ am_bool_t amhw_arm_systick_flag_check (amhw_arm_systick_t *p_hw_systick)
 }
 
 /**
- * \brief ����Systick
+ * \brief 配置Systick
  *
- * \param[in] p_hw_systick : ָ��Systick�Ĵ������ָ��
- * \param[in] flags        : ���������е�����ֵ�����ж����Ļ�ֵ
+ * \param[in] p_hw_systick : 指向Systick寄存器块的指针
+ * \param[in] flags        : 可以是下列单个宏值或下列多个宏的或值
  *                            - AMHW_ARM_SYSTICK_CONFIG_ENABLE
  *                            - AMHW_ARM_SYSTICK_CONFIG_TICKINT
  *                            - AMHW_ARM_SYSTICK_CONFIG_CLKSRC_SYSTEM
  *                            - AMHW_ARM_SYSTICK_CONFIG_CLKSRC_MAINCLK_BY_DIV
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_arm_systick_config (amhw_arm_systick_t *p_hw_systick, uint32_t flags)
@@ -154,10 +154,10 @@ void amhw_arm_systick_config (amhw_arm_systick_t *p_hw_systick, uint32_t flags)
 }
 
 /**
- * \brief ����Systick���Զ���װ��ֵ
- * \param[in] p_hw_systick : ָ��Systick�Ĵ������ָ��
- * \param[in] value        : �Զ���װ��ֵ(���Ϊ0xFFFFFF)
- * \return ��
+ * \brief 设置Systick的自动重装载值
+ * \param[in] p_hw_systick : 指向Systick寄存器块的指针
+ * \param[in] value        : 自动重装载值(最大为0xFFFFFF)
+ * \return 无
  */
 am_static_inline
 void amhw_arm_systick_reload_val_set (amhw_arm_systick_t *p_hw_systick, uint32_t value)
@@ -166,9 +166,9 @@ void amhw_arm_systick_reload_val_set (amhw_arm_systick_t *p_hw_systick, uint32_t
 }
 
 /**
- * \brief ��ȡSystick���Զ���װ��ֵ
- * \param[in] p_hw_systick : ָ��Systick�Ĵ������ָ��
- * \return �Զ�װ��ֵ
+ * \brief 获取Systick的自动重装载值
+ * \param[in] p_hw_systick : 指向Systick寄存器块的指针
+ * \return 自动装载值
  */
 am_static_inline
 uint32_t amhw_arm_systick_reload_val_get (amhw_arm_systick_t *p_hw_systick)
@@ -177,14 +177,14 @@ uint32_t amhw_arm_systick_reload_val_get (amhw_arm_systick_t *p_hw_systick)
 }
 
 /**
- * \brief ����Systick��ǰ�ļ���ֵ
+ * \brief 设置Systick当前的计数值
  *
- * \param[in] p_hw_systick : ָ��Systick�Ĵ������ָ��
- * \param[in] value        : Systick��ǰ�ļ���ֵ
+ * \param[in] p_hw_systick : 指向Systick寄存器块的指针
+ * \param[in] value        : Systick当前的计数值
  *
- * \return ��
+ * \return 无
  *
- * \note д�κ�ֵ��������Systick��ǰ�ļ���ֵ����������ƼĴ����е�COUNTFLAG��־��
+ * \note 写任何值都将清零Systick当前的计数值，并清除控制寄存器中的COUNTFLAG标志。
  */
 am_static_inline
 void amhw_arm_systick_val_set (amhw_arm_systick_t *p_hw_systick, uint32_t value)
@@ -193,9 +193,9 @@ void amhw_arm_systick_val_set (amhw_arm_systick_t *p_hw_systick, uint32_t value)
 }
 
 /**
- * \brief ��ȡSystick��ǰ�ļ���ֵ
- * \param[in] p_hw_systick : ָ��Systick�Ĵ������ָ��
- * \return Systick��ǰ�ļ���ֵ
+ * \brief 获取Systick当前的计数值
+ * \param[in] p_hw_systick : 指向Systick寄存器块的指针
+ * \return Systick当前的计数值
  */
 am_static_inline
 uint32_t amhw_arm_systick_val_get (amhw_arm_systick_t *p_hw_systick)
@@ -204,9 +204,9 @@ uint32_t amhw_arm_systick_val_get (amhw_arm_systick_t *p_hw_systick)
 }
 
 /**
- * \brief ��ȡSystick��У׼ֵ
- * \param[in] p_hw_systick : ָ��Systick�Ĵ������ָ��
- * \return Systick��У׼ֵ
+ * \brief 获取Systick的校准值
+ * \param[in] p_hw_systick : 指向Systick寄存器块的指针
+ * \return Systick的校准值
  */
 am_static_inline
 uint32_t amhw_arm_systick_calib_val_get (amhw_arm_systick_t *p_hw_systick)

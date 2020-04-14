@@ -7,9 +7,9 @@ static size_t       __g_files_num = 0;
 
 void raw_posix_init(block_dev_t* dev, file_t *p_files, size_t num)
 {
-    s_dev         = dev;  // ¿éÉè±¸ ÐÅÏ¢
-	__gp_files    = p_files; // ÎÄ¼þÐÅÏ¢
-    __g_files_num = num; // ÎÄ¼þÊýÁ¿
+    s_dev         = dev;  // å—è®¾å¤‡ ä¿¡æ¯
+	__gp_files    = p_files; // æ–‡ä»¶ä¿¡æ¯
+    __g_files_num = num; // æ–‡ä»¶æ•°é‡
 }
 
 void raw_posix_deinit(void) {
@@ -35,7 +35,7 @@ typedef struct _file_header_t {
 }file_header_t;
 
 
-// »ñÈ¡¿éÉè±¸ÊýÁ¿
+// èŽ·å–å—è®¾å¤‡æ•°é‡
 static inline block_num_t block_num_of(size_t size) {
 	return (block_num_t)(size/BLOCK_SIZE);
 }
@@ -64,7 +64,7 @@ static am_bool_t file_header_write(file_t*file, file_header_t* header) {
 	return ret;
 }
 
-// Çå¿Õ¿éÉè±¸
+// æ¸…ç©ºå—è®¾å¤‡
 static am_bool_t file_header_reset(file_t*file) {
 	block_dev_t* dev = dev_get();
 	memset(block_buff, 0x00, BLOCK_SIZE);
@@ -187,7 +187,7 @@ FILE* raw_fopen(const char* path, const char* mode) {
 			file->size = header.size;
 			file->cursor = header.size;
 		}else{
-		    file->size = header.size;    /* ÎÄ¼þÄÚÈÝ±£³Ö  */
+		    file->size = header.size;    /* æ–‡ä»¶å†…å®¹ä¿æŒ  */
 			file->cursor = 0;
 		}
 	}

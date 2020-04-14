@@ -2,21 +2,21 @@
 #include "stdio.h"
 #include "string.h"
 
-/**\brief  ÖĞ¶ÏÒı½Å»Øµ÷º¯Êı*/
+/**\brief  ä¸­æ–­å¼•è„šå›è°ƒå‡½æ•°*/
 void zsn60x_uart_data_rx_callback(void *p_arg, char data)
 {
     zsn60x_uart_dev_t *p_dev   = (zsn60x_uart_dev_t *)p_arg;
 
     p_dev->buffer[p_dev->rx_count ++] = data;
 
-    /*Èô½ÓÊÕÊı¾İ´óÓÚ×î´ó»º³åÇø´óĞ¡£¬ÔòÇå¿Õ»º³åÇø*/
+    /*è‹¥æ¥æ”¶æ•°æ®å¤§äºæœ€å¤§ç¼“å†²åŒºå¤§å°ï¼Œåˆ™æ¸…ç©ºç¼“å†²åŒº*/
     if(p_dev->rx_count >= ZSN60X_BUFFER_SIZE_MAX){
         p_dev->rx_count = 0;
     }
 
     if((p_dev->rx_count >= p_dev->is_wait) && (p_dev->is_wait != 0)){
         if(p_dev->zsn60x_dev.status == ZSN60X_NORMAL_MODE){
-            /*ÈôÎªÕı³£ÃüÁîÏìÓ¦Ä£Ê½   Ôò ÊÍ·ÅµÈ´ı´®¿ÚÊı¾İĞÅºÅÁ¿ ,²¢½«µÈ´ı×Ö½ÚÊıÇå0*/
+            /*è‹¥ä¸ºæ­£å¸¸å‘½ä»¤å“åº”æ¨¡å¼   åˆ™ é‡Šæ”¾ç­‰å¾…ä¸²å£æ•°æ®ä¿¡å·é‡ ,å¹¶å°†ç­‰å¾…å­—èŠ‚æ•°æ¸…0*/
             p_dev->is_wait = 0;
             ZSN60X_SEMB_GIVE(p_dev->uart_semb);
             return;
@@ -26,11 +26,11 @@ void zsn60x_uart_data_rx_callback(void *p_arg, char data)
 
             if(p_dev->is_wait == ZSN60X_FRAME_HEAD_LENGHT){
                 if(p_dev->buffer[3] == 0x02){
-                    /*Èç¹û½ÓÊÕµ±Ç°Êı¾İÎªÍê³ÉµÄ×Ô¶¯¼ì²âÊı¾İ»ØÓ¦Ö¡Ö¡Í·,Ôò¼ÌĞøµÈ´ıÖ¡½ÓÊÕÍê³É*/
+                    /*å¦‚æœæ¥æ”¶å½“å‰æ•°æ®ä¸ºå®Œæˆçš„è‡ªåŠ¨æ£€æµ‹æ•°æ®å›åº”å¸§å¸§å¤´,åˆ™ç»§ç»­ç­‰å¾…å¸§æ¥æ”¶å®Œæˆ*/
                     p_dev->is_wait = ZSN60X_FRAME_FRAME_MIN_LENGHT +
                                    ((p_dev->buffer[7] << 8) | p_dev->buffer[6]);
                 }else{
-                    /*Èç¹û½ÓÊÕµ±Ç°Êı¾İÎª´íÎóÊı¾İ,Ôò¶ªÆú¸ÃÊı¾İ*/
+                    /*å¦‚æœæ¥æ”¶å½“å‰æ•°æ®ä¸ºé”™è¯¯æ•°æ®,åˆ™ä¸¢å¼ƒè¯¥æ•°æ®*/
                     p_dev->rx_count = 0;
                     p_dev->is_wait  = 0;
                 }
@@ -48,7 +48,7 @@ void zsn60x_uart_data_rx_callback(void *p_arg, char data)
     if(((p_dev->zsn60x_dev.status == ZSN60X_AUTO_MODE_NO_INT) ||
             (p_dev->zsn60x_dev.status == ZSN60X_AUTO_MODE_INT_MESSAGE)) &&
             (p_dev->buffer[p_dev->rx_count - 1] == 0xb3)){
-        /* ÈôÔÚZSN60X_AUTO_MODE_NO_INT Ä£Ê½ÏÂ  ¼ì²âµ½µ±Ç°Êı¾İÎª0xb3 Ôò´ËÖ¡ĞÅÏ¢¿ÉÄÜÎª×Ô¶¯¼ì²âÊı¾İ*/
+        /* è‹¥åœ¨ZSN60X_AUTO_MODE_NO_INT æ¨¡å¼ä¸‹  æ£€æµ‹åˆ°å½“å‰æ•°æ®ä¸º0xb3 åˆ™æ­¤å¸§ä¿¡æ¯å¯èƒ½ä¸ºè‡ªåŠ¨æ£€æµ‹æ•°æ®*/
         p_dev->rx_count = 0;
         p_dev->buffer[p_dev->rx_count ++] = data;
         p_dev->is_wait = ZSN60X_FRAME_HEAD_LENGHT;
@@ -66,7 +66,7 @@ static int __zsn60x_uart_wait_data(zsn60x_uart_dev_t *p_dev, uint32_t nbytes, ui
     }
 }
 
-/**\brief  ´®¿ÚÃüÁî´«Êäº¯Êı */
+/**\brief  ä¸²å£å‘½ä»¤ä¼ è¾“å‡½æ•° */
 static uint8_t __zsn60x_uart_cmd_tx(void      *p_drv,
                                     uint8_t   *p_cmd_data,
                                     uint32_t   cmd_lenght)
@@ -77,7 +77,7 @@ static uint8_t __zsn60x_uart_cmd_tx(void      *p_drv,
     p_dev->rx_count = 0;
     return ret;
 }
-/**\brief  I2CÃüÁî´«Êäº¯Êı */
+/**\brief  I2Cå‘½ä»¤ä¼ è¾“å‡½æ•° */
 static uint8_t __zsn60x_i2c_cmd_tx(void      *p_drv,
                                    uint8_t   *p_cmd_data,
                                    uint32_t   cmd_lenght)
@@ -86,7 +86,7 @@ static uint8_t __zsn60x_i2c_cmd_tx(void      *p_drv,
     uint8_t           buffer[2]   = {0};
     zsn60x_i2c_dev_t *p_dev       = (zsn60x_i2c_dev_t *)p_drv;
 
-    /* Íù 0x0102 ¼Ä´æÆ÷µØÖ··¢ËÍ  ×ÜÖ¡³¤¶ÈĞÅÏ¢ */
+    /* å¾€ 0x0102 å¯„å­˜å™¨åœ°å€å‘é€  æ€»å¸§é•¿åº¦ä¿¡æ¯ */
     buffer[0] = (uint8_t)(cmd_lenght & 0xff);
     buffer[1] = (uint8_t)((cmd_lenght >> 8) & 0xff);
 
@@ -98,7 +98,7 @@ static uint8_t __zsn60x_i2c_cmd_tx(void      *p_drv,
 
     if(ret == ZSN60X_EXECUTE_SUCCESS){
 
-        /* Íù 0x0104 ¼Ä´æÆ÷µØÖ··¢ËÍ  ÃüÁîÖ¡ */
+        /* å¾€ 0x0104 å¯„å­˜å™¨åœ°å€å‘é€  å‘½ä»¤å¸§ */
         ret = zsn60x_platform_i2c_write(&p_dev->platform_dev,
                                (p_dev->zsn60x_dev.local_addr >> 1),
                                 0x0104,
@@ -107,7 +107,7 @@ static uint8_t __zsn60x_i2c_cmd_tx(void      *p_drv,
 
         if(ret == ZSN60X_EXECUTE_SUCCESS){
 
-            /* Íù 0x0101 ¼Ä´æÆ÷µØÖ··¢ËÍ  0x8D  ¿ªÊ¼Ö´ĞĞÃüÁî */
+            /* å¾€ 0x0101 å¯„å­˜å™¨åœ°å€å‘é€  0x8D  å¼€å§‹æ‰§è¡Œå‘½ä»¤ */
             buffer[0] = 0x8D;
             return zsn60x_platform_i2c_write(&p_dev->platform_dev,
                                     (p_dev->zsn60x_dev.local_addr >> 1),
@@ -121,7 +121,7 @@ static uint8_t __zsn60x_i2c_cmd_tx(void      *p_drv,
     return ZSN60X_IIC_TRANS_ERR;
 }
 
-/**\brief  ´«ÊäÃüÁîÖ¡¹¹½¨º¯Êı*/
+/**\brief  ä¼ è¾“å‘½ä»¤å¸§æ„å»ºå‡½æ•°*/
 static uint8_t __zsn60x_cmd_execute(zsn60x_dev_t  *p_dev,
                                     uint8_t        local_addr,
                                     uint8_t        cmd_class,
@@ -146,7 +146,7 @@ static uint8_t __zsn60x_cmd_execute(zsn60x_dev_t  *p_dev,
     org_status    = p_dev->status;
     p_dev->status = ZSN60X_NORMAL_MODE;
 
-    /* ¹¹½¨ĞèÒª½øĞĞ·¢ËÍµÄÃüÁîÖ¡  */
+    /* æ„å»ºéœ€è¦è¿›è¡Œå‘é€çš„å‘½ä»¤å¸§  */
     temp[length++] = local_addr;
     temp[length++] = 0x00;
     temp[length++] = 0x00;
@@ -167,13 +167,13 @@ static uint8_t __zsn60x_cmd_execute(zsn60x_dev_t  *p_dev,
     temp[length++] = (uint8_t)(check_sum & 0xff);
     temp[length++] = (uint8_t)((check_sum >> 8) & 0xff);
 
-    /* µ÷ÓÃÃüÁî·¢ËÍ´«Êäº¯Êı */
+    /* è°ƒç”¨å‘½ä»¤å‘é€ä¼ è¾“å‡½æ•° */
     ret = p_dev->pfn_cmd_tx((void *)p_dev, temp, length);
 
     if(ret != ZSN60X_EXECUTE_SUCCESS){
         return ret;
     }else{
-        /* µ÷ÓÃ½ÓÊÕ½âÎöÊı¾İº¯Êı */
+        /* è°ƒç”¨æ¥æ”¶è§£ææ•°æ®å‡½æ•° */
         ret =  p_dev->pfn_cmd_rx_analysis((void *)p_dev,
                                                   buffer_len,
                                                   p_rx_data,
@@ -191,7 +191,7 @@ static uint8_t __zsn60x_cmd_execute(zsn60x_dev_t  *p_dev,
     }
 }
 
-/**\brief  I2CµÈ´ı½ÓÊÕ»ØÓ¦Ö¡*/
+/**\brief  I2Cç­‰å¾…æ¥æ”¶å›åº”å¸§*/
 uint8_t __zsn60x_iic_message_recv(void      *p_drv,
                                   uint8_t   *p_data,
                                   uint32_t  *p_lenght)
@@ -209,7 +209,7 @@ uint8_t __zsn60x_iic_message_recv(void      *p_drv,
         return ZSN60X_I2C_SEMB_TIMEOUT;
     }
 
-    /* ¶Á 0x0102 ¼Ä´æÆ÷    »ñÈ¡×ÜÖ¡³¤¶ÈĞÅÏ¢ */
+    /* è¯» 0x0102 å¯„å­˜å™¨    è·å–æ€»å¸§é•¿åº¦ä¿¡æ¯ */
     ret = zsn60x_platform_i2c_read(&p_dev->platform_dev,
                           (p_dev->zsn60x_dev.local_addr >> 1),
                            0x0102,
@@ -218,7 +218,7 @@ uint8_t __zsn60x_iic_message_recv(void      *p_drv,
 
     if(ret == ZSN60X_EXECUTE_SUCCESS){
 
-        /* ¶Á 0x0104 ¼Ä´æÆ÷    »ñÈ¡Ö¡ĞÅÏ¢ */
+        /* è¯» 0x0104 å¯„å­˜å™¨    è·å–å¸§ä¿¡æ¯ */
         frame_lenght = buffer[0] + buffer[1] * 256;
         ret = zsn60x_platform_i2c_read(&p_dev->platform_dev,
                                        (p_dev->zsn60x_dev.local_addr >> 1),
@@ -237,7 +237,7 @@ uint8_t __zsn60x_iic_message_recv(void      *p_drv,
     }
 }
 
-/**\brief  I2C½ÓÊÕ½âÎö»ØÓ¦Ö¡*/
+/**\brief  I2Cæ¥æ”¶è§£æå›åº”å¸§*/
 static int __zsn60x_i2c_message_rx_analysis(void           *p_drv,
                                             uint32_t        buffer_len,
                                             uint8_t        *p_data,
@@ -250,20 +250,20 @@ static int __zsn60x_i2c_message_rx_analysis(void           *p_drv,
     uint32_t  frame_length     =  0;
     uint8_t   rx_data[282]     = {0};
     uint32_t  rx_data_length   =  0;
-    uint32_t  status;                      /** \brief Ö´ĞĞ×´Ì¬ */
-    uint32_t  info_lenght;                 /** \brief ĞÅÏ¢³¤¶È */
+    uint32_t  status;                      /** \brief æ‰§è¡ŒçŠ¶æ€ */
+    uint32_t  info_lenght;                 /** \brief ä¿¡æ¯é•¿åº¦ */
     zsn60x_dev_t *p_dev = (zsn60x_dev_t *)p_drv;
     if(p_dev == NULL){
         return ZSN60X_DEV_SERVER_ERR;
     }
-    /* IIC ½ÓÊÕ»ØÓ¦Ö¡Êı¾İ */
+    /* IIC æ¥æ”¶å›åº”å¸§æ•°æ® */
     ret = __zsn60x_iic_message_recv((void *)p_dev, rx_data, &rx_data_length);
 
     if(ret != ZSN60X_EXECUTE_SUCCESS){
         return ret;
     }
 
-    /* ½âÎö»ØÓ¦Ö¡Êı¾İ */
+    /* è§£æå›åº”å¸§æ•°æ® */
     if(rx_data_length < 10){
         return  ZSN60X_FRAME_LENGHT_ERR;
     }
@@ -316,7 +316,7 @@ static int __zsn60x_i2c_message_rx_analysis(void           *p_drv,
     }
 }
 
-/**\brief  UART½ÓÊÕ½âÎö»ØÓ¦Ö¡*/
+/**\brief  UARTæ¥æ”¶è§£æå›åº”å¸§*/
 static int __zsn60x_uart_message_rx_analysis(void      *p_drv,
                                              uint32_t   buffer_len,
                                              uint8_t   *p_data,
@@ -404,7 +404,7 @@ static int __zsn60x_uart_message_rx_analysis(void      *p_drv,
     }
 }
 
-/**\brief I2CÄ£Ê½  ÖĞ¶ÏÒı½Å»Øµ÷º¯Êı*/
+/**\brief I2Cæ¨¡å¼  ä¸­æ–­å¼•è„šå›è°ƒå‡½æ•°*/
 void zsn60x_i2c_int_pin_hander(void *p_arg)
 {
     zsn60x_i2c_dev_t *p_dev   = (zsn60x_i2c_dev_t *)p_arg;
@@ -417,7 +417,7 @@ void zsn60x_i2c_int_pin_hander(void *p_arg)
     }
 }
 
-/**\brief UARTÄ£Ê½  ÖĞ¶ÏÒı½Å»Øµ÷º¯Êı*/
+/**\brief UARTæ¨¡å¼  ä¸­æ–­å¼•è„šå›è°ƒå‡½æ•°*/
 void zsn60x_uart_int_pin_hander(void *p_arg)
 {
     zsn60x_uart_dev_t *p_dev   = (zsn60x_uart_dev_t *)p_arg;
@@ -428,13 +428,13 @@ void zsn60x_uart_int_pin_hander(void *p_arg)
    }
 }
 
-/**\brief  ´®¿Ú»Øµ÷º¯Êı½á¹¹Ìå */
+/**\brief  ä¸²å£å›è°ƒå‡½æ•°ç»“æ„ä½“ */
 zsn60x_uart_funcs_t __g_uart_func = {
     zsn60x_uart_data_rx_callback,
     zsn60x_uart_int_pin_hander
 };
 
-/**\brief  ZSN60xÉè±¸³õÊ¼»¯ UARTÄ£Ê½*/
+/**\brief  ZSN60xè®¾å¤‡åˆå§‹åŒ– UARTæ¨¡å¼*/
 zsn60x_handle_t  zsn60x_uart_init(zsn60x_uart_dev_t            *p_dev,
                                   const zsn60x_uart_devinfo_t  *p_devinfo)
 {
@@ -465,7 +465,7 @@ zsn60x_handle_t  zsn60x_uart_init(zsn60x_uart_dev_t            *p_dev,
     }
 }
 
-/**\brief  ZSN60xÉè±¸³õÊ¼»¯I2CÄ£Ê½*/
+/**\brief  ZSN60xè®¾å¤‡åˆå§‹åŒ–I2Cæ¨¡å¼*/
 zsn60x_handle_t  zsn60x_i2c_init(zsn60x_i2c_dev_t           *p_dev,
                                  const zsn60x_i2c_devinfo_t *p_devinfo)
 {
@@ -493,7 +493,7 @@ zsn60x_handle_t  zsn60x_i2c_init(zsn60x_i2c_dev_t           *p_dev,
     }
 }
 
-/** \brief »ñÈ¡Éè±¸ĞÅÏ¢ */
+/** \brief è·å–è®¾å¤‡ä¿¡æ¯ */
 uint8_t zsn60x_get_device_info(zsn60x_handle_t      handle,
                                uint32_t             buffer_len,
                                uint8_t             *p_rx_data,
@@ -506,7 +506,7 @@ uint8_t zsn60x_get_device_info(zsn60x_handle_t      handle,
                                 NULL, 0,
                                 buffer_len, p_rx_data, p_rx_data_count);
 }
-/** \brief ÅäÖÃIC¿¨½Ó¿Ú */
+/** \brief é…ç½®ICå¡æ¥å£ */
 uint8_t zsn60x_config_icc_interface(zsn60x_handle_t  handle)
 {
     return __zsn60x_cmd_execute(handle,
@@ -516,7 +516,7 @@ uint8_t zsn60x_config_icc_interface(zsn60x_handle_t  handle)
                                 NULL, 0,
                                 0, NULL, NULL);
 }
-/** \brief ¹Ø±ÕIC¿¨½Ó¿Ú */
+/** \brief å…³é—­ICå¡æ¥å£ */
 uint8_t zsn60x_close_icc_interface(zsn60x_handle_t  handle)
 {
     return __zsn60x_cmd_execute(handle,
@@ -526,7 +526,7 @@ uint8_t zsn60x_close_icc_interface(zsn60x_handle_t  handle)
                                 NULL, 0,
                                 0, NULL, NULL);
 }
-/** \brief ÉèÖÃĞ­ÒéÀàĞÍ */
+/** \brief è®¾ç½®åè®®ç±»å‹ */
 uint8_t zsn60x_set_ios_type(zsn60x_handle_t  handle,
                             uint8_t          isotype)
 {
@@ -537,7 +537,7 @@ uint8_t zsn60x_set_ios_type(zsn60x_handle_t  handle,
                                 &isotype, 1,
                                 0, NULL, NULL);
 }
-/** \brief ×°ÔØIC¿¨ÃÜÔ¿ */
+/** \brief è£…è½½ICå¡å¯†é’¥ */
 uint8_t zsn60x_load_icc_key(zsn60x_handle_t  handle,
                             uint8_t          key_type,
                             uint8_t          key_block,
@@ -555,7 +555,7 @@ uint8_t zsn60x_load_icc_key(zsn60x_handle_t  handle,
                                 temp, key_length + 2,
                                 0, NULL, NULL);
 }
-/** \brief ÉèÖÃIC¿¨½Ó¿ÚµÄ¼Ä´æÆ÷Öµ */
+/** \brief è®¾ç½®ICå¡æ¥å£çš„å¯„å­˜å™¨å€¼ */
 uint8_t zsn60x_set_icc_reg(zsn60x_handle_t  handle,
                            uint8_t          reg_addr,
                            uint8_t          reg_val)
@@ -570,7 +570,7 @@ uint8_t zsn60x_set_icc_reg(zsn60x_handle_t  handle,
                                 temp, 2,
                                 0, NULL, NULL);
 }
-/** \brief »ñÈ¡IC¿¨½Ó¿ÚµÄ¼Ä´æÆ÷Öµ */
+/** \brief è·å–ICå¡æ¥å£çš„å¯„å­˜å™¨å€¼ */
 uint8_t zsn60x_get_icc_reg(zsn60x_handle_t  handle,
                            uint8_t          reg_addr,
                            uint8_t         *p_val)
@@ -582,7 +582,7 @@ uint8_t zsn60x_get_icc_reg(zsn60x_handle_t  handle,
                                 &reg_addr, 1,
                                 1, p_val, NULL);
 }
-/** \brief ÉèÖÃ²¨ÌØÂÊ */
+/** \brief è®¾ç½®æ³¢ç‰¹ç‡ */
 uint8_t zsn60x_set_baud_rate(zsn60x_handle_t  handle,
                              uint8_t          baudrate_flag)
 {
@@ -593,7 +593,7 @@ uint8_t zsn60x_set_baud_rate(zsn60x_handle_t  handle,
                                 &baudrate_flag, 1,
                                 0, NULL, NULL);
 }
-/** \brief ÉèÖÃÌìÏßÄ£Ê½ */
+/** \brief è®¾ç½®å¤©çº¿æ¨¡å¼ */
 uint8_t zsn60x_set_ant_mode(zsn60x_handle_t  handle,
                             uint8_t          antmode_flag)
 {
@@ -604,7 +604,7 @@ uint8_t zsn60x_set_ant_mode(zsn60x_handle_t  handle,
                                 &antmode_flag, 1,
                                 0, NULL, NULL);
 }
-/** \brief ÉèÖÃÌìÏßÍ¨µÀ */
+/** \brief è®¾ç½®å¤©çº¿é€šé“ */
 uint8_t zsn60x_set_ant_channel(zsn60x_handle_t  handle,
                                uint8_t          ant_channel)
 {
@@ -615,7 +615,7 @@ uint8_t zsn60x_set_ant_channel(zsn60x_handle_t  handle,
                                 &ant_channel, 1,
                                 0, NULL, NULL);
 }
-/** \brief ÉèÖÃlocal address */
+/** \brief è®¾ç½®local address */
 uint8_t zsn60x_set_local_addr(zsn60x_handle_t  handle,
                               uint8_t          local_addr)
 {
@@ -633,7 +633,7 @@ uint8_t zsn60x_set_local_addr(zsn60x_handle_t  handle,
 
      return ret;
 }
-/** \brief LEDµÆ¿ØÖÆ */
+/** \brief LEDç¯æ§åˆ¶ */
 uint8_t zsn60x_control_led(zsn60x_handle_t  handle,
                            uint8_t          control_led)
 {
@@ -644,7 +644,7 @@ uint8_t zsn60x_control_led(zsn60x_handle_t  handle,
                                &control_led, 1,
                                 0, NULL, NULL);
 }
-/** \brief ·äÃùÆ÷µÆ¿ØÖÆ */
+/** \brief èœ‚é¸£å™¨ç¯æ§åˆ¶ */
 uint8_t zsn60x_control_buzzer(zsn60x_handle_t  handle,
                               uint8_t           control_byte)
 {
@@ -655,7 +655,7 @@ uint8_t zsn60x_control_buzzer(zsn60x_handle_t  handle,
                                &control_byte, 1,
                                 0, NULL, NULL);
 }
-/** \brief ¶ÁEEPROM */
+/** \brief è¯»EEPROM */
 uint8_t zsn60x_read_eeprom(zsn60x_handle_t  handle,
                            uint8_t          eeprom_addr,
                            uint8_t          nbytes,
@@ -672,7 +672,7 @@ uint8_t zsn60x_read_eeprom(zsn60x_handle_t  handle,
                                 temp, 2,
                                 buffer_len, p_buf, NULL);
 }
-/** \brief Ğ´EEPROM */
+/** \brief å†™EEPROM */
 uint8_t zsn60x_write_eeprom(zsn60x_handle_t  handle,
                             uint8_t          eeprom_addr,
                             uint8_t          nbytes,
@@ -689,7 +689,7 @@ uint8_t zsn60x_write_eeprom(zsn60x_handle_t  handle,
                                 temp, nbytes + 2,
                                 0, NULL, NULL);
 }
-/** \brief Mifare¿¨µÄÇëÇó */
+/** \brief Mifareå¡çš„è¯·æ±‚ */
 uint8_t zsn60x_mifare_request(zsn60x_handle_t  handle,
                               uint8_t          req_mode,
                               uint16_t        *p_atq)
@@ -701,7 +701,7 @@ uint8_t zsn60x_mifare_request(zsn60x_handle_t  handle,
                                &req_mode, 1,
                                 1, (uint8_t *)p_atq, NULL);
 }
-/** \brief Mifare¿¨µÄ·ÀÅö×² */
+/** \brief Mifareå¡çš„é˜²ç¢°æ’ */
 uint8_t zsn60x_mifare_anticoll(zsn60x_handle_t  handle,
                                uint8_t          anticoll_level,
                                uint8_t         *p_know_uid,
@@ -720,7 +720,7 @@ uint8_t zsn60x_mifare_anticoll(zsn60x_handle_t  handle,
                                 temp, nbit_cnt + 2,
                                 10, p_uid, p_uid_cnt);
 }
-/** \brief Mifare¿¨µÄÑ¡Ôñ*/
+/** \brief Mifareå¡çš„é€‰æ‹©*/
 uint8_t zsn60x_mifare_select(zsn60x_handle_t  handle,
                              uint8_t          anticoll_level,
                              uint8_t         *p_uid,
@@ -736,7 +736,7 @@ uint8_t zsn60x_mifare_select(zsn60x_handle_t  handle,
                                 temp, 5,
                                 1, p_sak, NULL);
 }
-/** \brief Mifare¿¨¹ÒÆğ */
+/** \brief Mifareå¡æŒ‚èµ· */
 uint8_t zsn60x_mifare_halt(zsn60x_handle_t     handle)
 {
     return __zsn60x_cmd_execute(handle,
@@ -746,7 +746,7 @@ uint8_t zsn60x_mifare_halt(zsn60x_handle_t     handle)
                                 NULL, 0,
                                 0, NULL, NULL);
 }
-/** \brief EEPROMÃÜÔ¿ÑéÖ¤ */
+/** \brief EEPROMå¯†é’¥éªŒè¯ */
 uint8_t zsn60x_eeprom_auth(zsn60x_handle_t  handle,
                            uint8_t          key_type,
                            uint8_t         *p_uid,
@@ -766,7 +766,7 @@ uint8_t zsn60x_eeprom_auth(zsn60x_handle_t  handle,
                                 temp, 7,
                                 0, NULL, NULL);
 }
-/** \brief Ö±½ÓÃÜÔ¿ÑéÖ¤ */
+/** \brief ç›´æ¥å¯†é’¥éªŒè¯ */
 uint8_t zsn60x_key_auth(zsn60x_handle_t   handle,
                         uint8_t           key_type,
                         uint8_t          *p_uid,
@@ -788,7 +788,7 @@ uint8_t zsn60x_key_auth(zsn60x_handle_t   handle,
                                 0, NULL, NULL);
 }
 
-/** \brief Mifare¿¨¶Á²Ù×÷ */
+/** \brief Mifareå¡è¯»æ“ä½œ */
 uint8_t zsn60x_mifare_read(zsn60x_handle_t  handle,
                            uint8_t          nblock,
                            uint32_t         buffer_len,
@@ -801,7 +801,7 @@ uint8_t zsn60x_mifare_read(zsn60x_handle_t  handle,
                                &nblock, 1,
                                 buffer_len, p_buf, NULL);
 }
-/** \brief Mifare¿¨Ğ´²Ù×÷ */
+/** \brief Mifareå¡å†™æ“ä½œ */
 uint8_t zsn60x_mifare_write(zsn60x_handle_t   handle,
                             uint8_t           nblock,
                             uint8_t          *p_buf)
@@ -816,7 +816,7 @@ uint8_t zsn60x_mifare_write(zsn60x_handle_t   handle,
                                 temp, 17,
                                 0, NULL, NULL);
 }
-/** \brief UltraLight¿¨Ğ´²Ù×÷ */
+/** \brief UltraLightå¡å†™æ“ä½œ */
 uint8_t zsn60x_ultralight_write(zsn60x_handle_t   handle,
                                 uint8_t           nblock,
                                 uint8_t          *p_buf)
@@ -832,7 +832,7 @@ uint8_t zsn60x_ultralight_write(zsn60x_handle_t   handle,
                                 0, NULL, NULL);
 }
 
-/** \brief Mifare¿¨µÄÖµ¿é²Ù×÷ */
+/** \brief Mifareå¡çš„å€¼å—æ“ä½œ */
 uint8_t zsn60x_mifare_value(zsn60x_handle_t  handle,
                             uint8_t          mode,
                             uint8_t          nblock,
@@ -851,7 +851,7 @@ uint8_t zsn60x_mifare_value(zsn60x_handle_t  handle,
                                 temp, 7,
                                 0, NULL, NULL);
 }
-/** \brief ¿¨Æ¬¸´Î» */
+/** \brief å¡ç‰‡å¤ä½ */
 uint8_t zsn60x_card_reset(zsn60x_handle_t  handle,
                           uint8_t          time_ms)
 {
@@ -862,7 +862,7 @@ uint8_t zsn60x_card_reset(zsn60x_handle_t  handle,
                                &time_ms, 1,
                                 0, NULL, NULL);
 }
-/** \brief Mifare¿¨¼¤»î²Ù×÷ */
+/** \brief Mifareå¡æ¿€æ´»æ“ä½œ */
 uint8_t zsn60x_mifare_card_active(zsn60x_handle_t   handle,
                                   uint8_t           req_mode,
                                   uint16_t         *p_atq,
@@ -890,7 +890,7 @@ uint8_t zsn60x_mifare_card_active(zsn60x_handle_t   handle,
     }
     return ret;
 }
-/** \brief ½øÈë×Ô¶¯¼ì²âÄ£Ê½ */
+/** \brief è¿›å…¥è‡ªåŠ¨æ£€æµ‹æ¨¡å¼ */
 uint8_t zsn60x_auto_detect(zsn60x_handle_t              handle,
                            zsn60x_auto_detect_ctrl_t   *p_ctrl)
 {
@@ -947,7 +947,7 @@ uint8_t zsn60x_auto_detect(zsn60x_handle_t              handle,
     }
     return ret;
 }
-/** \brief »ñÈ¡×Ô¶¯¼ì²âÊı¾İÄ£Ê½ */
+/** \brief è·å–è‡ªåŠ¨æ£€æµ‹æ•°æ®æ¨¡å¼ */
 uint8_t zsn60x_get_auto_detect(zsn60x_handle_t             handle,
                                uint8_t                     ctrl_mode,
                                zsn60x_auto_detect_data_t  *p_data)
@@ -988,7 +988,7 @@ uint8_t zsn60x_get_auto_detect(zsn60x_handle_t             handle,
 
     return ret;
 }
-/** \brief ÉèÖÃMifare¿¨Öµ¿éµÄÖµ */
+/** \brief è®¾ç½®Mifareå¡å€¼å—çš„å€¼ */
 uint8_t zsn60x_mifare_set_value(zsn60x_handle_t  handle,
                                 uint8_t          block,
                                 int              data)
@@ -1003,7 +1003,7 @@ uint8_t zsn60x_mifare_set_value(zsn60x_handle_t  handle,
                                 temp, 5,
                                 0, NULL, NULL);
 }
-/** \brief »ñÈ¡Mifare¿¨Öµ¿éµÄÖµ */
+/** \brief è·å–Mifareå¡å€¼å—çš„å€¼ */
 uint8_t zsn60x_mifare_get_value(zsn60x_handle_t  handle,
                                 uint8_t          block,
                                 int             *p_value)
@@ -1015,7 +1015,7 @@ uint8_t zsn60x_mifare_get_value(zsn60x_handle_t  handle,
                                &block, 1,
                                4, (uint8_t *)p_value, NULL);
 }
-/** \brief »ñÈ¡Mifare¿¨Êı¾İ½»»» */
+/** \brief è·å–Mifareå¡æ•°æ®äº¤æ¢ */
 uint8_t zsn60x_mifare_exchange_block(zsn60x_dev_t  *handle,
                                      uint8_t       *p_data_buf,
                                      uint8_t        len,
@@ -1036,7 +1036,7 @@ uint8_t zsn60x_mifare_exchange_block(zsn60x_dev_t  *handle,
                                 temp ,len + 2 ,
                                 buffer_len, p_rx_buf, p_len);
 }
-/** \brief »ñÈ¡Mifare¿¨ÃüÁî´«Êä */
+/** \brief è·å–Mifareå¡å‘½ä»¤ä¼ è¾“ */
 uint8_t zsn60x_mifare_cmd_trans(zsn60x_handle_t   handle,
                                 uint8_t          *p_tx_buf,
                                 uint8_t           tx_nbytes,
@@ -1051,7 +1051,7 @@ uint8_t zsn60x_mifare_cmd_trans(zsn60x_handle_t   handle,
                                 p_tx_buf,tx_nbytes,
                                 buffer_len, p_rx_buf, p_rx_nbytes);
 }
-/** \brief ´«ÊäAPDUÊı¾İÁ÷ */
+/** \brief ä¼ è¾“APDUæ•°æ®æµ */
 uint8_t zsn60x_cicc_tpdu(zsn60x_handle_t   handle,
                          uint8_t          *p_tx_buf,
                          uint32_t          tx_bufsize,
@@ -1066,7 +1066,7 @@ uint8_t zsn60x_cicc_tpdu(zsn60x_handle_t   handle,
                                 p_tx_buf, tx_bufsize,
                                 buffer_len, p_rx_buf, p_rx_len);
 }
-/** \brief Àä¸´Î» */
+/** \brief å†·å¤ä½ */
 uint8_t zsn60x_cicc_cold_reset(zsn60x_handle_t   handle,
                                uint32_t          buffer_len,
                                uint8_t          *p_rx_buf,
@@ -1079,7 +1079,7 @@ uint8_t zsn60x_cicc_cold_reset(zsn60x_handle_t   handle,
                                 NULL, 0,
                                 buffer_len, p_rx_buf, p_rx_len);
 }
-/** \brief ÈÈ¸´Î» */
+/** \brief çƒ­å¤ä½ */
 uint8_t zsn60x_cicc_warm_reset(zsn60x_handle_t    handle,
                                uint32_t           buffer_len,
                                uint8_t           *p_rx_buf,
@@ -1092,7 +1092,7 @@ uint8_t zsn60x_cicc_warm_reset(zsn60x_handle_t    handle,
                                 NULL, 0,
                                 buffer_len, p_rx_buf, p_rx_len);
 }
-/** \brief ¹Ø±Õ½Ó´¥Ê½IC¿¨µÄµçÔ´ºÍÊ±ÖÓ */
+/** \brief å…³é—­æ¥è§¦å¼ICå¡çš„ç”µæºå’Œæ—¶é’Ÿ */
 uint8_t zsn60x_cicc_deactivation(zsn60x_handle_t      handle)
 {
     return __zsn60x_cmd_execute(handle,
@@ -1103,7 +1103,7 @@ uint8_t zsn60x_cicc_deactivation(zsn60x_handle_t      handle)
                                 0, NULL, NULL);
 }
 
-/** \brief T = 0´«ÊäĞ­Òé */
+/** \brief T = 0ä¼ è¾“åè®® */
 uint8_t zsn60x_cicc_tp0(zsn60x_handle_t    handle,
                         uint8_t           *p_tx_buf,
                         uint32_t           tx_bufsize,
@@ -1118,7 +1118,7 @@ uint8_t zsn60x_cicc_tp0(zsn60x_handle_t    handle,
                                 p_tx_buf, tx_bufsize,
                                 buffer_len, p_rx_buf, p_rx_len);
 }
-/** \brief T = 1´«ÊäĞ­Òé */
+/** \brief T = 1ä¼ è¾“åè®® */
 uint8_t zsn60x_cicc_tp1(zsn60x_handle_t   handle,
                         uint8_t          *p_tx_buf,
                         uint32_t          tx_bufsize,
@@ -1133,7 +1133,7 @@ uint8_t zsn60x_cicc_tp1(zsn60x_handle_t   handle,
                                 p_tx_buf, tx_bufsize,
                                 buffer_len, p_rx_buf, p_rx_len);
 }
-/** \brief AĞÍ¿¨ÇëÇó */
+/** \brief Aå‹å¡è¯·æ±‚ */
 uint8_t zsn60x_picca_request(zsn60x_handle_t   handle,
                              uint8_t           req_mode,
                              uint16_t         *p_atq)
@@ -1146,7 +1146,7 @@ uint8_t zsn60x_picca_request(zsn60x_handle_t   handle,
                                 2, (uint8_t *) p_atq, NULL);
 }
 
-/** \brief AĞÍ¿¨·ÀÅö×² */
+/** \brief Aå‹å¡é˜²ç¢°æ’ */
 uint8_t zsn60x_picca_anticoll(zsn60x_handle_t   handle,
                               uint8_t           anticoll_level,
                               uint8_t          *p_know_uid,
@@ -1166,7 +1166,7 @@ uint8_t zsn60x_picca_anticoll(zsn60x_handle_t   handle,
                                 temp, nbit_cnt + 2,
                                 buffer_len, p_uid, p_uid_cnt);
 }
-/** \brief AĞÍ¿¨Ñ¡Ôñ */
+/** \brief Aå‹å¡é€‰æ‹© */
 uint8_t zsn60x_picca_select(zsn60x_handle_t   handle,
                             uint8_t           anticoll_level,
                             uint8_t          *p_uid,
@@ -1184,7 +1184,7 @@ uint8_t zsn60x_picca_select(zsn60x_handle_t   handle,
                                 uid_cnt + 1,
                                 1, p_sak, NULL);
 }
-/** \brief AĞÍ¿¨¹ÒÆğ */
+/** \brief Aå‹å¡æŒ‚èµ· */
 uint8_t zsn60x_picca_halt(zsn60x_handle_t      handle)
 {
     return __zsn60x_cmd_execute(handle,
@@ -1194,7 +1194,7 @@ uint8_t zsn60x_picca_halt(zsn60x_handle_t      handle)
                                 NULL, 0,
                                 0, NULL, NULL);
 }
-/** \brief AĞÍ¿¨ RATS */
+/** \brief Aå‹å¡ RATS */
 uint8_t zsn60x_picca_rats(zsn60x_handle_t   handle,
                           uint8_t           cid,
                           uint32_t          buffer_len,
@@ -1208,7 +1208,7 @@ uint8_t zsn60x_picca_rats(zsn60x_handle_t   handle,
                                &cid, 1,
                                 buffer_len, p_ats_buf, p_rx_len);
 }
-/** \brief AĞÍ¿¨ PPS */
+/** \brief Aå‹å¡ PPS */
 uint8_t zsn60x_picca_pps(zsn60x_handle_t  handle,
                          uint8_t          dsi_dri)
 {
@@ -1219,7 +1219,7 @@ uint8_t zsn60x_picca_pps(zsn60x_handle_t  handle,
                                &dsi_dri, 1,
                                 0, NULL, NULL);
 }
-/** \brief AĞÍ¿¨È¡ÏûÑ¡Ôñ */
+/** \brief Aå‹å¡å–æ¶ˆé€‰æ‹© */
 uint8_t zsn60x_picca_deselect(zsn60x_handle_t     handle)
 {
     return __zsn60x_cmd_execute(handle,
@@ -1229,7 +1229,7 @@ uint8_t zsn60x_picca_deselect(zsn60x_handle_t     handle)
                                 NULL, 0,
                                 0, NULL, NULL);
 }
-/** \brief AĞÍ¿¨T=CL */
+/** \brief Aå‹å¡T=CL */
 uint8_t zsn60x_picca_tpcl(zsn60x_handle_t   handle,
                           uint8_t          *p_cos_buf,
                           uint8_t           cos_bufsize,
@@ -1247,7 +1247,7 @@ uint8_t zsn60x_picca_tpcl(zsn60x_handle_t   handle,
                                 p_res_buf,
                                 p_rx_len);
 }
-/** \brief AĞÍ¿¨½»»»Êı¾İ */
+/** \brief Aå‹å¡äº¤æ¢æ•°æ® */
 uint8_t zsn60x_picca_exchange_block(zsn60x_handle_t   handle,
                                     uint8_t          *p_data_buf,
                                     uint8_t           len,
@@ -1269,7 +1269,7 @@ uint8_t zsn60x_picca_exchange_block(zsn60x_handle_t   handle,
                                 len + 2,
                                 buffer_len, p_rx_buf, p_rx_len);
 }
-/** \brief AĞÍ¿¨¸´Î» */
+/** \brief Aå‹å¡å¤ä½ */
 uint8_t zsn60x_picca_reset(zsn60x_handle_t  handle,
                            uint8_t          time_ms)
 {
@@ -1280,7 +1280,7 @@ uint8_t zsn60x_picca_reset(zsn60x_handle_t  handle,
                                &time_ms, 1,
                                 0, NULL, NULL);
 }
-/** \brief AĞÍ¿¨¼¤»î */
+/** \brief Aå‹å¡æ¿€æ´» */
 uint8_t zsn60x_picca_active(zsn60x_handle_t   handle,
                             uint8_t           req_mode,
                             uint16_t         *p_atq,
@@ -1309,7 +1309,7 @@ uint8_t zsn60x_picca_active(zsn60x_handle_t   handle,
     }
     return ret;
 }
-/** \brief BĞÍ¿¨¼¤»î */
+/** \brief Bå‹å¡æ¿€æ´» */
 uint8_t zsn60x_piccb_active(zsn60x_handle_t   handle,
                             uint8_t           req_mode,
                             uint8_t          *p_info)
@@ -1321,7 +1321,7 @@ uint8_t zsn60x_piccb_active(zsn60x_handle_t   handle,
                                &req_mode, 1,
                                 0, p_info, NULL);
 }
-/** \brief BĞÍ¿¨¸´Î» */
+/** \brief Bå‹å¡å¤ä½ */
 uint8_t zsn60x_piccb_reset(zsn60x_handle_t handle,
                            uint8_t         time_ms)
 {
@@ -1332,7 +1332,7 @@ uint8_t zsn60x_piccb_reset(zsn60x_handle_t handle,
                                &time_ms, 1,
                                 0, NULL, NULL);
 }
-/** \brief BĞÍ¿¨ÇëÇó */
+/** \brief Bå‹å¡è¯·æ±‚ */
 uint8_t zsn60x_piccb_request(zsn60x_handle_t   handle,
                              uint8_t           req_mode,
                              uint8_t           slot_time,
@@ -1351,7 +1351,7 @@ uint8_t zsn60x_piccb_request(zsn60x_handle_t   handle,
                                 3,
                                 buffer_len, p_uid, NULL);
 }
-/** \brief BĞÍ¿¨ĞŞ¸Ä´«ÊäÊôĞÔ(¿¨Ñ¡Ôñ) */
+/** \brief Bå‹å¡ä¿®æ”¹ä¼ è¾“å±æ€§(å¡é€‰æ‹©) */
 uint8_t zsn60x_piccb_attrib(zsn60x_handle_t   handle,
                             uint8_t          *p_pupi,
                             uint8_t           cid,
@@ -1368,7 +1368,7 @@ uint8_t zsn60x_piccb_attrib(zsn60x_handle_t   handle,
                                 temp, 6,
                                 0, NULL, NULL);
 }
-/** \brief BĞÍ¿¨¹ÒÆğ */
+/** \brief Bå‹å¡æŒ‚èµ· */
 uint8_t zsn60x_piccb_halt(zsn60x_handle_t  handle,
                           uint8_t         *p_pupi)
 {
@@ -1379,7 +1379,7 @@ uint8_t zsn60x_piccb_halt(zsn60x_handle_t  handle,
                                 p_pupi, 4,
                                 0, NULL, NULL);
 }
-/** \brief BĞÍ¿¨»ñÈ¡ID */
+/** \brief Bå‹å¡è·å–ID */
 uint8_t zsn60x_piccb_getid(zsn60x_handle_t   handle,
                            uint8_t           req_mode,
                            uint8_t          *p_uid)
@@ -1395,7 +1395,7 @@ uint8_t zsn60x_piccb_getid(zsn60x_handle_t   handle,
                                 0, NULL, NULL);
 }
 
-/** \brief SL0¸üĞÂ¸öÈË»¯Êı¾İ */
+/** \brief SL0æ›´æ–°ä¸ªäººåŒ–æ•°æ® */
 uint8_t zsn60x_plus_cpu_write_perso(zsn60x_handle_t   handle,
                                     uint16_t          addr,
                                     uint8_t          *p_data)
@@ -1412,7 +1412,7 @@ uint8_t zsn60x_plus_cpu_write_perso(zsn60x_handle_t   handle,
                                 0, NULL, NULL);
 }
 
-/** \brief SL0µÄPLUS CPU¿¨Ìá½»¸öÈË»¯Êı¾İ */
+/** \brief SL0çš„PLUS CPUå¡æäº¤ä¸ªäººåŒ–æ•°æ® */
 uint8_t zsn60x_plus_cpu_commit_perso(zsn60x_handle_t      handle)
 {
     return __zsn60x_cmd_execute(handle,
@@ -1422,7 +1422,7 @@ uint8_t zsn60x_plus_cpu_commit_perso(zsn60x_handle_t      handle)
                                 NULL, 0,
                                 0, NULL, NULL);
 }
-/** \brief SL3µÄPLUS CPU¿¨µÄÊ×´ÎÃÜÔ¿ÑéÖ¤*/
+/** \brief SL3çš„PLUS CPUå¡çš„é¦–æ¬¡å¯†é’¥éªŒè¯*/
 uint8_t zsn60x_plus_cpu_first_auth(zsn60x_handle_t   handle,
                                    uint16_t          addr,
                                    uint8_t          *p_data)
@@ -1438,7 +1438,7 @@ uint8_t zsn60x_plus_cpu_first_auth(zsn60x_handle_t   handle,
                                 NULL, 0,
                                 0, NULL, NULL);
 }
-/** \brief SL3 PLUS CPU¿¨µÄÊ×´ÎÃÜÔ¿ÑéÖ¤   ÃÜÔ¿À´×ÔĞ¾Æ¬EEPROM*/
+/** \brief SL3 PLUS CPUå¡çš„é¦–æ¬¡å¯†é’¥éªŒè¯   å¯†é’¥æ¥è‡ªèŠ¯ç‰‡EEPROM*/
 uint8_t zsn60x_plus_cpu_first_auth_e2(zsn60x_handle_t  handle,
                                       uint16_t         addr,
                                       uint8_t          key_block)
@@ -1454,7 +1454,7 @@ uint8_t zsn60x_plus_cpu_first_auth_e2(zsn60x_handle_t  handle,
                                 temp, 3,
                                 0, NULL, NULL);
 }
-/** \brief SL3 PLUS CPU¿¨µÄ¸úËæÃÜÔ¿ÑéÖ¤*/
+/** \brief SL3 PLUS CPUå¡çš„è·Ÿéšå¯†é’¥éªŒè¯*/
 uint8_t zsn60x_plus_cpu_follow_auth(zsn60x_handle_t   handle,
                                     uint16_t          addr,
                                     uint8_t          *p_data)
@@ -1470,7 +1470,7 @@ uint8_t zsn60x_plus_cpu_follow_auth(zsn60x_handle_t   handle,
                                 NULL, 0,
                                 0, NULL, NULL);
 }
-/** \brief SL3 PLUS CPU¿¨µÄ¸úËæÃÜÔ¿ÑéÖ¤    ÃÜÔ¿À´×ÔĞ¾Æ¬EEPROM*/
+/** \brief SL3 PLUS CPUå¡çš„è·Ÿéšå¯†é’¥éªŒè¯    å¯†é’¥æ¥è‡ªèŠ¯ç‰‡EEPROM*/
 uint8_t zsn60x_plus_cpu_follow_auth_e2(zsn60x_handle_t  handle,
                                        uint16_t         addr,
                                        uint8_t          key_block)
@@ -1487,7 +1487,7 @@ uint8_t zsn60x_plus_cpu_follow_auth_e2(zsn60x_handle_t  handle,
                                 0, NULL, NULL);
 }
 
-/** \brief SL3 PLUS CPU¿¨µÄ¸´Î»ÑéÖ¤*/
+/** \brief SL3 PLUS CPUå¡çš„å¤ä½éªŒè¯*/
 uint8_t zsn60x_plus_cpu_sl3_reset_auth(zsn60x_handle_t  handle)
 {
     return __zsn60x_cmd_execute(handle,
@@ -1497,7 +1497,7 @@ uint8_t zsn60x_plus_cpu_sl3_reset_auth(zsn60x_handle_t  handle)
                                 NULL, 0,
                                 0, NULL, NULL);
 }
-/** \brief SL3 PLUS CPU¿¨ ¶ÁÈ¡Êı¾İ¿é*/
+/** \brief SL3 PLUS CPUå¡ è¯»å–æ•°æ®å—*/
 uint8_t zsn60x_plus_cpu_sl3_read(zsn60x_handle_t   handle,
                                  uint8_t           read_mode,
                                  uint16_t          start_addr,
@@ -1519,7 +1519,7 @@ uint8_t zsn60x_plus_cpu_sl3_read(zsn60x_handle_t   handle,
                                 buffer_len, p_rx_data, p_rx_lenght);
 }
 
-/** \brief SL3 PLUS CPU¿¨ Ğ´Êı¾İ¿é*/
+/** \brief SL3 PLUS CPUå¡ å†™æ•°æ®å—*/
 uint8_t zsn60x_plus_cpu_sl3_write(zsn60x_handle_t   handle,
                                   uint8_t           write_mode,
                                   uint16_t          start_addr,
@@ -1543,7 +1543,7 @@ uint8_t zsn60x_plus_cpu_sl3_write(zsn60x_handle_t   handle,
 
 }
 
-/** \brief SL3 PLUS CPU¿¨ Öµ²Ù×÷*/
+/** \brief SL3 PLUS CPUå¡ å€¼æ“ä½œ*/
 uint8_t zsn60x_plus_cpu_sl3_value_opr(zsn60x_handle_t  handle,
                                       uint8_t          write_mode,
                                       uint16_t         src_addr,
@@ -1567,7 +1567,7 @@ uint8_t zsn60x_plus_cpu_sl3_value_opr(zsn60x_handle_t  handle,
 
 }
 /********************************************************************
- * ÒÔÏÂÃüÁîÎªÒş²ØÖ¸Áî£¬²»¿ª·Å¸øÓÃ»§½øĞĞÊ¹ÓÃ
+ * ä»¥ä¸‹å‘½ä»¤ä¸ºéšè—æŒ‡ä»¤ï¼Œä¸å¼€æ”¾ç»™ç”¨æˆ·è¿›è¡Œä½¿ç”¨
  ********************************************************************/
 uint8_t zsn60x_auto_test(zsn60x_handle_t      handle)
 {

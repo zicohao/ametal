@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief    ´«¸ĞÆ÷ MMC5883MA Çı¶¯ÎÄ¼ş
+ * \brief    ä¼ æ„Ÿå™¨ MMC5883MA é©±åŠ¨æ–‡ä»¶
  *
  * \internal
  * \par Modification History
@@ -25,37 +25,37 @@
 #include "am_vdebug.h"
 
 /*******************************************************************************
- * ºê¶¨Òå
+ * å®å®šä¹‰
  ******************************************************************************/
-#define __MMC5883MA_PRODUCT_ID_ADDR        (0x2F)   /**< \brief Éè±¸IDµØÖ· */
-#define __MMC5883MA_MY_ID                  (0x0C)   /**< \brief Éè±¸ID */
-#define __MMC5883MA_XOUT_LOW               (0x00)   /**< \brief XÍ¨µÀ¶ÁÊıÖµµÄµÍÓĞĞ§Î» */
-#define __MMC5883MA_XOUT_HIGH              (0x01)   /**< \brief XÍ¨µÀ¶ÁÊıÖµµÄ¸ßÓĞĞ§Î» */
-#define __MMC5883MA_YOUT_LOW               (0x02)   /**< \brief YÍ¨µÀ¶ÁÊıÖµµÄµÍÓĞĞ§Î» */
-#define __MMC5883MA_YOUT_HIGH              (0x03)   /**< \brief YÍ¨µÀ¶ÁÊıÖµµÄ¸ßÓĞĞ§Î» */
-#define __MMC5883MA_ZOUT_LOW               (0x04)   /**< \brief ZÍ¨µÀ¶ÁÊıÖµµÄµÍÓĞĞ§Î» */
-#define __MMC5883MA_ZOUT_HIGH              (0x05)   /**< \brief ZÍ¨µÀ¶ÁÊıÖµµÄ¸ßÓĞĞ§Î» */
-#define __MMC5883MA_TEMPERATURE            (0x06)   /**< \brief ÎÂ¶ÈÊä³ö */
-#define __MMC5883MA_STATUS                 (0x07)   /**< \brief Éè±¸×´Ì¬ */
-#define __MMC5883MA_INTERNAL_CONTROL_0     (0x08)   /**< \brief ¿ØÖÆ¼Ä´æÆ÷0 */
-#define __MMC5883MA_INTERNAL_CONTROL_1     (0x09)   /**< \brief ¿ØÖÆ¼Ä´æÆ÷1 */
-#define __MMC5883MA_INTERNAL_CONTROL_2     (0x0A)   /**< \brief ¿ØÖÆ¼Ä´æÆ÷2 */
-#define __MMC5883MA_X_THRESHOLD            (0x0B)   /**< \brief XµÄÔË¶¯¼ì²âãĞÖµ */
-#define __MMC5883MA_Y_THRESHOLD            (0x0C)   /**< \brief YµÄÔË¶¯¼ì²âãĞÖµ */
-#define __MMC5883MA_Z_THRESHOLD            (0x0D)   /**< \brief ZµÄÔË¶¯¼ì²âãĞÖµ */
+#define __MMC5883MA_PRODUCT_ID_ADDR        (0x2F)   /**< \brief è®¾å¤‡IDåœ°å€ */
+#define __MMC5883MA_MY_ID                  (0x0C)   /**< \brief è®¾å¤‡ID */
+#define __MMC5883MA_XOUT_LOW               (0x00)   /**< \brief Xé€šé“è¯»æ•°å€¼çš„ä½æœ‰æ•ˆä½ */
+#define __MMC5883MA_XOUT_HIGH              (0x01)   /**< \brief Xé€šé“è¯»æ•°å€¼çš„é«˜æœ‰æ•ˆä½ */
+#define __MMC5883MA_YOUT_LOW               (0x02)   /**< \brief Yé€šé“è¯»æ•°å€¼çš„ä½æœ‰æ•ˆä½ */
+#define __MMC5883MA_YOUT_HIGH              (0x03)   /**< \brief Yé€šé“è¯»æ•°å€¼çš„é«˜æœ‰æ•ˆä½ */
+#define __MMC5883MA_ZOUT_LOW               (0x04)   /**< \brief Zé€šé“è¯»æ•°å€¼çš„ä½æœ‰æ•ˆä½ */
+#define __MMC5883MA_ZOUT_HIGH              (0x05)   /**< \brief Zé€šé“è¯»æ•°å€¼çš„é«˜æœ‰æ•ˆä½ */
+#define __MMC5883MA_TEMPERATURE            (0x06)   /**< \brief æ¸©åº¦è¾“å‡º */
+#define __MMC5883MA_STATUS                 (0x07)   /**< \brief è®¾å¤‡çŠ¶æ€ */
+#define __MMC5883MA_INTERNAL_CONTROL_0     (0x08)   /**< \brief æ§åˆ¶å¯„å­˜å™¨0 */
+#define __MMC5883MA_INTERNAL_CONTROL_1     (0x09)   /**< \brief æ§åˆ¶å¯„å­˜å™¨1 */
+#define __MMC5883MA_INTERNAL_CONTROL_2     (0x0A)   /**< \brief æ§åˆ¶å¯„å­˜å™¨2 */
+#define __MMC5883MA_X_THRESHOLD            (0x0B)   /**< \brief Xçš„è¿åŠ¨æ£€æµ‹é˜ˆå€¼ */
+#define __MMC5883MA_Y_THRESHOLD            (0x0C)   /**< \brief Yçš„è¿åŠ¨æ£€æµ‹é˜ˆå€¼ */
+#define __MMC5883MA_Z_THRESHOLD            (0x0D)   /**< \brief Zçš„è¿åŠ¨æ£€æµ‹é˜ˆå€¼ */
 
-/** \brief ½«Á½¸öint8×ª»»ÎªÒ»¸öint16ÀàĞÍ */
+/** \brief å°†ä¸¤ä¸ªint8è½¬æ¢ä¸ºä¸€ä¸ªint16ç±»å‹ */
 #define __MMC5883MA_UINT8_TO_UINT16(buff) ((int16_t)((buff[1] << 8) | buff[0]))
 
-/** \brief XÖá´Å¸ĞÓ¦Ç¿¶È²âÁ¿ */ 
+/** \brief Xè½´ç£æ„Ÿåº”å¼ºåº¦æµ‹é‡ */ 
 #define __MMC5883MA_X_START       (0x2<<0)  
-/** \brief YÖá´Å¸ĞÓ¦Ç¿¶È²âÁ¿ */ 
+/** \brief Yè½´ç£æ„Ÿåº”å¼ºåº¦æµ‹é‡ */ 
 #define __MMC5883MA_Y_START       (0x2<<2)                   
-/** \brief ZÖá´Å¸ĞÓ¦Ç¿¶È²âÁ¿ */ 
+/** \brief Zè½´ç£æ„Ÿåº”å¼ºåº¦æµ‹é‡ */ 
 #define __MMC5883MA_Z_START       (0x2<<5) 
 
 
-/** \brief ¿ªÊ¼Ò»´ÎÊı¾İ²É¼¯ */
+/** \brief å¼€å§‹ä¸€æ¬¡æ•°æ®é‡‡é›† */
 #define __MMC5883MA_ONE_SHOT_START        (0x57)
 
 #define MMC5883MA_ODR_100 (100)
@@ -69,36 +69,36 @@
 #define MMC5883MA_ODR_600_REG (0x03)
 
 /*******************************************************************************
- * ±¾µØº¯ÊıÉùÃ÷
+ * æœ¬åœ°å‡½æ•°å£°æ˜
  ******************************************************************************/
-/** \brief »ñÈ¡¸Ã´«¸ĞÆ÷Ä³Ò»Í¨µÀµÄÀàĞÍ */
+/** \brief è·å–è¯¥ä¼ æ„Ÿå™¨æŸä¸€é€šé“çš„ç±»å‹ */
 am_local am_err_t __pfn_type_get (void *p_drv, int id);
 
-/** \brief »ñÈ¡´«¸ĞÆ÷Í¨µÀ²ÉÑùÊı¾İ */
+/** \brief è·å–ä¼ æ„Ÿå™¨é€šé“é‡‡æ ·æ•°æ® */
 am_local am_err_t __pfn_data_get (void            *p_drv,
                                   const int       *p_ids,
                                   int              num,
                                   am_sensor_val_t *p_buf);
 
-/** \brief Ê¹ÄÜ´«¸ĞÆ÷Í¨µÀ */
+/** \brief ä½¿èƒ½ä¼ æ„Ÿå™¨é€šé“ */
 am_local am_err_t __pfn_enable (void            *p_drv,
                                 const int       *p_ids,
                                 int              num,
                                 am_sensor_val_t *p_result);
 
-/** \brief ½ûÄÜ´«¸ĞÆ÷Í¨µÀ */
+/** \brief ç¦èƒ½ä¼ æ„Ÿå™¨é€šé“ */
 am_local am_err_t __pfn_disable (void            *p_drv,
                                  const int       *p_ids,
                                  int              num,
                                  am_sensor_val_t *p_result);
 
-/** \brief ÅäÖÃ´«¸ĞÆ÷Í¨µÀÊôĞÔ */
+/** \brief é…ç½®ä¼ æ„Ÿå™¨é€šé“å±æ€§ */
 am_local am_err_t __pfn_attr_set (void                  *p_drv,
                                   int                    id,
                                   int                    attr,
                                   const am_sensor_val_t *p_val);
 
-/** \brief »ñÈ¡´«¸ĞÆ÷Í¨µÀÊôĞÔ */
+/** \brief è·å–ä¼ æ„Ÿå™¨é€šé“å±æ€§ */
 am_local am_err_t __pfn_attr_get (void            *p_drv,
                                   int              id,
                                   int              attr,
@@ -106,20 +106,20 @@ am_local am_err_t __pfn_attr_get (void            *p_drv,
                                   
 
                                   
-/** \brief ÉèÖÃ´¥·¢£¬Ò»¸öÍ¨µÀ½öÄÜÉèÖÃÒ»¸ö´¥·¢»Øµ÷º¯Êı */
+/** \brief è®¾ç½®è§¦å‘ï¼Œä¸€ä¸ªé€šé“ä»…èƒ½è®¾ç½®ä¸€ä¸ªè§¦å‘å›è°ƒå‡½æ•° */
 am_local am_err_t __pfn_trigger_cfg (void                   *p_drv,
                                      int                     id,
                                      uint32_t                flags,
                                      am_sensor_trigger_cb_t  pfn_cb,
                                      void                   *p_arg);
 
-/** \brief ´ò¿ª´¥·¢ */
+/** \brief æ‰“å¼€è§¦å‘ */
 am_local am_err_t __pfn_trigger_on (void *p_drv, int id);
 
-/** \brief ¹Ø±Õ´¥·¢ */
+/** \brief å…³é—­è§¦å‘ */
 am_local am_err_t __pfn_trigger_off (void *p_drv, int id);
                                 
-/** \brief ´«¸ĞÆ÷±ê×¼·şÎñ */
+/** \brief ä¼ æ„Ÿå™¨æ ‡å‡†æœåŠ¡ */
 am_local am_const struct am_sensor_drv_funcs __g_sensor_mmc5883ma_funcs = {
         __pfn_type_get,
         __pfn_data_get,
@@ -136,7 +136,7 @@ am_local am_const struct am_sensor_drv_funcs __g_sensor_mmc5883ma_funcs = {
   Local functions
 *******************************************************************************/
 /*
- * \brief mmc5883ma Ğ´Êı¾İ
+ * \brief mmc5883ma å†™æ•°æ®
  */
 am_local am_err_t __mmc5883ma_write(am_sensor_mmc5883ma_dev_t *p_this,
                                     uint32_t                   subaddr,
@@ -147,7 +147,7 @@ am_local am_err_t __mmc5883ma_write(am_sensor_mmc5883ma_dev_t *p_this,
 }
 
 /*
- * \brief mmc5883ma ¶ÁÊı¾İ
+ * \brief mmc5883ma è¯»æ•°æ®
  */
 am_local am_err_t __mmc5883ma_read(am_sensor_mmc5883ma_dev_t *p_this,
                                    uint32_t                   subaddr,
@@ -157,15 +157,15 @@ am_local am_err_t __mmc5883ma_read(am_sensor_mmc5883ma_dev_t *p_this,
     return am_i2c_read(&p_this->i2c_dev, subaddr, p_buf, nbytes);
 }
 
-/** \breif ÖĞ¶Ï»Øµ÷º¯Êı */
+/** \breif ä¸­æ–­å›è°ƒå‡½æ•° */
 am_local void __mmc5883ma_alarm_callback (void *p_arg)
 {
     am_sensor_mmc5883ma_dev_t* p_this = (am_sensor_mmc5883ma_dev_t*)p_arg;
 
-    am_isr_defer_job_add(&p_this->g_myjob);   /*< \brief Ìí¼ÓÖĞ¶ÏÑÓ³Ù´¦ÀíÈÎÎñ */
+    am_isr_defer_job_add(&p_this->g_myjob);   /*< \brief æ·»åŠ ä¸­æ–­å»¶è¿Ÿå¤„ç†ä»»åŠ¡ */
 }
 
-/** \breif ÖĞ¶ÏÑÓ³Ùº¯Êı */
+/** \breif ä¸­æ–­å»¶è¿Ÿå‡½æ•° */
 am_local void __am_pfnvoid_t (void *p_arg)
 {
     am_sensor_mmc5883ma_dev_t* p_this = (am_sensor_mmc5883ma_dev_t*)p_arg;
@@ -176,20 +176,20 @@ am_local void __am_pfnvoid_t (void *p_arg)
     int16_t y_axis_data = 0;
     int16_t z_axis_data = 0;
 
-  /** \brief »ñÈ¡X¡¢Y¡¢ZÖá´Å¸ĞÓ¦Ç¿¶ÈÖµ */
+  /** \brief è·å–Xã€Yã€Zè½´ç£æ„Ÿåº”å¼ºåº¦å€¼ */
     __mmc5883ma_read(p_this, __MMC5883MA_XOUT_LOW, current_data, 6);
 
-    /* »ñÈ¡xÖá´Å¸ĞÓ¦Ç¿¶È */
+    /* è·å–xè½´ç£æ„Ÿåº”å¼ºåº¦ */
     x_axis_data = __MMC5883MA_UINT8_TO_UINT16(current_data);
     p_this->data[0].val = x_axis_data;
     p_this->data[0].unit = AM_SENSOR_UNIT_MICRO;
 
-    /* »ñÈ¡yÖá´Å¸ĞÓ¦Ç¿¶È */
+    /* è·å–yè½´ç£æ„Ÿåº”å¼ºåº¦ */
     y_axis_data = __MMC5883MA_UINT8_TO_UINT16((current_data+2));
     p_this->data[1].val = y_axis_data;
     p_this->data[1].unit = AM_SENSOR_UNIT_MICRO;
     
-    /* »ñÈ¡zÖá´Å¸ĞÓ¦Ç¿¶È */
+    /* è·å–zè½´ç£æ„Ÿåº”å¼ºåº¦ */
     z_axis_data = __MMC5883MA_UINT8_TO_UINT16((current_data+4));
     p_this->data[2].val = z_axis_data;
     p_this->data[2].unit = AM_SENSOR_UNIT_MICRO;
@@ -215,7 +215,7 @@ am_local void __am_pfnvoid_t (void *p_arg)
 }
 
 /*
- * \brief ÅäÖÃÑ¡Ôñ
+ * \brief é…ç½®é€‰æ‹©
  */
 am_local am_err_t  __reg_attr_set (am_sensor_mmc5883ma_dev_t *p_this, uint8_t rate)
 {
@@ -251,9 +251,9 @@ am_local am_err_t  __reg_attr_set (am_sensor_mmc5883ma_dev_t *p_this, uint8_t ra
 }
                                
 /*******************************************************************************
- * ±¾µØº¯Êı¶¨Òå
+ * æœ¬åœ°å‡½æ•°å®šä¹‰
  ******************************************************************************/                                  
-/** \brief »ñÈ¡¸Ã´«¸ĞÆ÷Ä³Ò»Í¨µÀµÄÀàĞÍ */
+/** \brief è·å–è¯¥ä¼ æ„Ÿå™¨æŸä¸€é€šé“çš„ç±»å‹ */
 am_local am_err_t __pfn_type_get (void *p_drv, int id)
 {
     if (p_drv == NULL) {
@@ -269,7 +269,7 @@ am_local am_err_t __pfn_type_get (void *p_drv, int id)
     }
 }
 
-/** \brief »ñÈ¡´«¸ĞÆ÷Í¨µÀ²ÉÑùÊı¾İ */
+/** \brief è·å–ä¼ æ„Ÿå™¨é€šé“é‡‡æ ·æ•°æ® */
 am_local am_err_t __pfn_data_get (void            *p_drv,
                                   const int       *p_ids,
                                   int              num,
@@ -302,10 +302,10 @@ am_local am_err_t __pfn_data_get (void            *p_drv,
         p_buf[i].unit = AM_SENSOR_UNIT_INVALID;
     }
     
-     /* ÈôÎª1£¬Ôò¿ÉÄÜÔÚÊı¾İ×¼±¸¾ÍĞ÷´¥·¢»Øµ÷º¯ÊıÖĞÊ¹ÓÃ */
+     /* è‹¥ä¸º1ï¼Œåˆ™å¯èƒ½åœ¨æ•°æ®å‡†å¤‡å°±ç»ªè§¦å‘å›è°ƒå‡½æ•°ä¸­ä½¿ç”¨ */
     if (num == 1) {
         cur_id = p_ids[0];
-        /* Èô´ò¿ªÊı¾İ×¼±¸¾ÍĞ÷´¥·¢·½Ê½£¬ÔòÖ±½Ó¸³Öµ */
+        /* è‹¥æ‰“å¼€æ•°æ®å‡†å¤‡å°±ç»ªè§¦å‘æ–¹å¼ï¼Œåˆ™ç›´æ¥èµ‹å€¼ */
         if ((AM_BIT_GET(p_this->trigger, 2)) &&
                 ((p_this->flags[0] & AM_SENSOR_TRIGGER_DATA_READY) ||
                  (p_this->flags[1] & AM_SENSOR_TRIGGER_DATA_READY))) {
@@ -315,7 +315,7 @@ am_local am_err_t __pfn_data_get (void            *p_drv,
         }
     }
 
-    /** \brief »ñÈ¡¿É¶Á×´Ì¬Öµ£¨ÎŞ´Ë²Ù×÷£© */
+    /** \brief è·å–å¯è¯»çŠ¶æ€å€¼ï¼ˆæ— æ­¤æ“ä½œï¼‰ */
     
     for (i = 0; i < num; i++) {
 
@@ -323,44 +323,44 @@ am_local am_err_t __pfn_data_get (void            *p_drv,
 
         if (cur_id == 0) {
 
-            /** \brief »ñÈ¡xÖá´Å¸ĞÓ¦Ç¿¶È */
+            /** \brief è·å–xè½´ç£æ„Ÿåº”å¼ºåº¦ */
             ret = __mmc5883ma_read(p_this,__MMC5883MA_XOUT_LOW, reg_data, 2);
             if (ret != AM_OK) {
                 return ret;
             }
             x_axis_data = __MMC5883MA_UINT8_TO_UINT16(reg_data);
-            p_buf[i].val  = x_axis_data; /*< \brief xÖá´Å¸ĞÓ¦Ç¿¶È */
-            p_buf[i].unit = AM_SENSOR_UNIT_MICRO; /*< \brief µ¥Î»Ä¬ÈÏÎª-6:10^(-6)*/
+            p_buf[i].val  = x_axis_data; /*< \brief xè½´ç£æ„Ÿåº”å¼ºåº¦ */
+            p_buf[i].unit = AM_SENSOR_UNIT_MICRO; /*< \brief å•ä½é»˜è®¤ä¸º-6:10^(-6)*/
 
         } else if (cur_id == 1) {
 
-            /** \brief »ñÈ¡yÖá´Å¸ĞÓ¦Ç¿¶È */
+            /** \brief è·å–yè½´ç£æ„Ÿåº”å¼ºåº¦ */
             ret = __mmc5883ma_read(p_this, __MMC5883MA_YOUT_LOW, reg_data+2, 2);
             if (ret != AM_OK) {
                 return ret;
             }
             y_axis_data = __MMC5883MA_UINT8_TO_UINT16((reg_data+2));
-            p_buf[i].val  = y_axis_data; /*< \brief yÖá´Å¸ĞÓ¦Ç¿¶È */
-            p_buf[i].unit = AM_SENSOR_UNIT_MICRO; /*< \brief µ¥Î»Ä¬ÈÏÎª-6:10^(-6)*/
+            p_buf[i].val  = y_axis_data; /*< \brief yè½´ç£æ„Ÿåº”å¼ºåº¦ */
+            p_buf[i].unit = AM_SENSOR_UNIT_MICRO; /*< \brief å•ä½é»˜è®¤ä¸º-6:10^(-6)*/
 
         } else if(cur_id == 2){
             
-            /** \brief »ñÈ¡zÖá´Å¸ĞÓ¦Ç¿¶È */
+            /** \brief è·å–zè½´ç£æ„Ÿåº”å¼ºåº¦ */
             ret = __mmc5883ma_read(p_this, __MMC5883MA_ZOUT_LOW, reg_data+4, 2);
             if (ret != AM_OK) {
                 return ret;
             }
             z_axis_data = __MMC5883MA_UINT8_TO_UINT16((reg_data+4));
-            p_buf[i].val  = z_axis_data; /*< \brief zÖá´Å¸ĞÓ¦Ç¿¶È */
-            p_buf[i].unit = AM_SENSOR_UNIT_MICRO; /*< \brief µ¥Î»Ä¬ÈÏÎª-6:10^(-6)*/   
+            p_buf[i].val  = z_axis_data; /*< \brief zè½´ç£æ„Ÿåº”å¼ºåº¦ */
+            p_buf[i].unit = AM_SENSOR_UNIT_MICRO; /*< \brief å•ä½é»˜è®¤ä¸º-6:10^(-6)*/   
         } else {
-            return -AM_ENODEV;  /*< \brief Èô´Ë´ÎÍ¨µÀ²»ÊôÓÚ¸Ã´«¸ĞÆ÷£¬Ö±½Ó·µ»Ø */
+            return -AM_ENODEV;  /*< \brief è‹¥æ­¤æ¬¡é€šé“ä¸å±äºè¯¥ä¼ æ„Ÿå™¨ï¼Œç›´æ¥è¿”å› */
         }
     }
     return ret;
 }
 
-/** \brief Ê¹ÄÜ´«¸ĞÆ÷Í¨µÀ */
+/** \brief ä½¿èƒ½ä¼ æ„Ÿå™¨é€šé“ */
 am_local am_err_t __pfn_enable (void            *p_drv,
                                 const int       *p_ids,
                                 int              num,
@@ -400,7 +400,7 @@ am_local am_err_t __pfn_enable (void            *p_drv,
         }
     }
 
-    if (ret != AM_OK) {     /*< \breif Èç¹û±¾´ÎÃ»ÓĞ¸Ã´«¸ĞÆ÷µÄÍ¨µÀ´«Èë£¬ÔòÍË³ö */
+    if (ret != AM_OK) {     /*< \breif å¦‚æœæœ¬æ¬¡æ²¡æœ‰è¯¥ä¼ æ„Ÿå™¨çš„é€šé“ä¼ å…¥ï¼Œåˆ™é€€å‡º */
         return curent_ret;
     }
 
@@ -433,7 +433,7 @@ am_local am_err_t __pfn_enable (void            *p_drv,
     return curent_ret;
 }
 
-/** \brief ½ûÄÜ´«¸ĞÆ÷Í¨µÀ */
+/** \brief ç¦èƒ½ä¼ æ„Ÿå™¨é€šé“ */
 am_local am_err_t __pfn_disable (void            *p_drv,
                                  const int       *p_ids,
                                  int              num,
@@ -495,7 +495,7 @@ am_local am_err_t __pfn_disable (void            *p_drv,
     return cur_ret;
 }
 
-/** \brief ÅäÖÃ´«¸ĞÆ÷Í¨µÀÊôĞÔ */
+/** \brief é…ç½®ä¼ æ„Ÿå™¨é€šé“å±æ€§ */
 am_local am_err_t __pfn_attr_set (void                  *p_drv,
                                   int                    id,
                                   int                    attr,
@@ -523,7 +523,7 @@ am_sensor_mmc5883ma_dev_t* p_this = (am_sensor_mmc5883ma_dev_t*)p_drv;
     }
 
     switch (attr) {
-      /* ĞŞ¸ÄÆµÂÊ */
+      /* ä¿®æ”¹é¢‘ç‡ */
       case AM_SENSOR_ATTR_SAMPLING_RATE:
 
         if (sensor_val.val < 0 || sensor_val.val > 600) {
@@ -567,7 +567,7 @@ am_sensor_mmc5883ma_dev_t* p_this = (am_sensor_mmc5883ma_dev_t*)p_drv;
     return cur_ret;
 }
 
-/** \brief »ñÈ¡´«¸ĞÆ÷Í¨µÀÊôĞÔ */
+/** \brief è·å–ä¼ æ„Ÿå™¨é€šé“å±æ€§ */
 am_local am_err_t __pfn_attr_get (void            *p_drv,
                                   int              id,
                                   int              attr,
@@ -589,7 +589,7 @@ am_sensor_mmc5883ma_dev_t* p_this = (am_sensor_mmc5883ma_dev_t*)p_drv;
 
     switch (attr) {
 
-    /* »ñÈ¡²ÉÑùÆµÂÊ */
+    /* è·å–é‡‡æ ·é¢‘ç‡ */
     case AM_SENSOR_ATTR_SAMPLING_RATE:
 
         p_val->val  = p_this->sam_rate.val;
@@ -605,7 +605,7 @@ am_sensor_mmc5883ma_dev_t* p_this = (am_sensor_mmc5883ma_dev_t*)p_drv;
     return ret;
 }
 
-/** \brief ÉèÖÃ´¥·¢£¬Ò»¸öÍ¨µÀ½öÄÜÉèÖÃÒ»¸ö´¥·¢»Øµ÷º¯Êı */
+/** \brief è®¾ç½®è§¦å‘ï¼Œä¸€ä¸ªé€šé“ä»…èƒ½è®¾ç½®ä¸€ä¸ªè§¦å‘å›è°ƒå‡½æ•° */
 am_local am_err_t __pfn_trigger_cfg (void                   *p_drv,
                                      int                     id,
                                      uint32_t                flags,
@@ -636,7 +636,7 @@ am_local am_err_t __pfn_trigger_cfg (void                   *p_drv,
     return AM_OK;
 }
 
-/** \brief ´ò¿ª´¥·¢ */
+/** \brief æ‰“å¼€è§¦å‘ */
 am_local am_err_t __pfn_trigger_on (void *p_drv, int id)
 {
     am_sensor_mmc5883ma_dev_t* p_this = (am_sensor_mmc5883ma_dev_t*)p_drv;
@@ -679,7 +679,7 @@ am_local am_err_t __pfn_trigger_on (void *p_drv, int id)
     return cur_ret;
 }
 
-/** \brief ¹Ø±Õ´¥·¢ */
+/** \brief å…³é—­è§¦å‘ */
 am_local am_err_t __pfn_trigger_off (void *p_drv, int id)
 {
     am_sensor_mmc5883ma_dev_t* p_this = (am_sensor_mmc5883ma_dev_t*)p_drv;
@@ -738,7 +738,7 @@ am_local am_err_t __pfn_trigger_off (void *p_drv, int id)
   Public functions
 *******************************************************************************/
 /**
- * \brief ´«¸ĞÆ÷ MMC5883MA ³õÊ¼»¯
+ * \brief ä¼ æ„Ÿå™¨ MMC5883MA åˆå§‹åŒ–
  */
 am_sensor_handle_t am_sensor_mmc5883ma_init (
         am_sensor_mmc5883ma_dev_t           *p_dev,
@@ -782,7 +782,7 @@ am_sensor_handle_t am_sensor_mmc5883ma_init (
     p_dev->data[2].val           = 0;
     p_dev->data[2].unit          = AM_SENSOR_UNIT_INVALID;
 
-    /* Íâ²¿ÖĞ¶ÏÁ¬½Ó */
+    /* å¤–éƒ¨ä¸­æ–­è¿æ¥ */
     if (p_devinfo->trigger_pin != -1) {
         am_gpio_trigger_connect(p_devinfo->trigger_pin,
                                 __mmc5883ma_alarm_callback,
@@ -792,7 +792,7 @@ am_sensor_handle_t am_sensor_mmc5883ma_init (
 
     am_isr_defer_job_init(&p_dev->g_myjob, __am_pfnvoid_t, p_dev, 1);
     
-    /* ¶ÁÈ¡ID */
+    /* è¯»å–ID */
     ret = __mmc5883ma_read(p_dev, __MMC5883MA_PRODUCT_ID_ADDR, &mmc5883ma_id, 1);
     if (ret != AM_OK || mmc5883ma_id != __MMC5883MA_MY_ID) {
         cur_ret = ret;
@@ -807,7 +807,7 @@ am_sensor_handle_t am_sensor_mmc5883ma_init (
 }
 
 /**
- * \brief ´«¸ĞÆ÷ MMC5883MA ½â³õÊ¼»¯
+ * \brief ä¼ æ„Ÿå™¨ MMC5883MA è§£åˆå§‹åŒ–
  */
 am_err_t am_sensor_mmc5883ma_deinit (am_sensor_handle_t handle)
 {

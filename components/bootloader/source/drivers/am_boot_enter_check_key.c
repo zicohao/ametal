@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief 进入应用程序标准接口实现（按键驱动）
+ * \brief 杩涘叆搴旂敤绋嬪簭鏍囧噯鎺ュ彛瀹炵幇锛堟寜閿┍鍔級
  *
  * \internal
  * \par Modification history

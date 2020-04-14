@@ -12,27 +12,27 @@
 
 /**
  * \file
- * \brief ADC ��ֵ�Ƚ����̣�ͨ�� HW ��ӿ�ʵ��
+ * \brief ADC 阈值比较例程，通过 HW 层接口实现
  *
- * - ������չʾ�� 2 ����ֵ�Ƚϣ�
- *   1. ��ֵ�Ƚ� 0: ��Χ�Ƚϣ�
- *   2. ��ֵ�Ƚ� 1: ��Խ�Ƚϡ�
+ * - 本例程展示了 2 种阈值比较：
+ *   1. 阈值比较 0: 范围比较；
+ *   2. 阈值比较 1: 穿越比较。
  *
- * - �������裺
- *   1. PIO0_7(ADC ͨ�� 0) ����ģ������ 1��
- *   2. PIO0_6(ADC ͨ�� 1) ����ģ������ 2��
- *   3. �̽� J12 ����ñ��ʹ�òο���ѹΪ 2.5V��
- *   4. ������ͨ����ģ�������ѹ�ֱ�� 0 ���� 2500mV��
+ * - 操作步骤：
+ *   1. PIO0_7(ADC 通道 0) 连接模拟输入 1；
+ *   2. PIO0_6(ADC 通道 1) 连接模拟输入 2；
+ *   3. 短接 J12 跳线帽，使得参考电压为 2.5V；
+ *   4. 将两个通道的模拟输入电压分别从 0 调到 2500mV。
  *
- * - ʵ������
- *   1. ģ������ 1 �ĵ�ѹ���� 1100mV ����� 2000mV ʱ�����ڻ������ѹֵ���ȽϽ����
- *   2. ģ������ 2 �ĵ�ѹ�仯���� 1100mV ʱ�����ڻ������ѹֵ���ȽϽ����
+ * - 实验现象：
+ *   1. 模拟输入 1 的电压低于 1100mV 或高于 2000mV 时，串口会输出电压值及比较结果；
+ *   2. 模拟输入 2 的电压变化经过 1100mV 时，串口会输出电压值及比较结果。
  *
  * \note
- *    ����۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIO0_0 �������� PC ���ڵ� TXD��
- *    PIO0_4 �������� PC ���ڵ� RXD��
+ *    如需观察串口打印的调试信息，需要将 PIO0_0 引脚连接 PC 串口的 TXD，
+ *    PIO0_4 引脚连接 PC 串口的 RXD。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_am824_hw_adc_thcmp.c src_am824_hw_adc_thcmp
  *
  * \internal
@@ -56,18 +56,18 @@
 #include "demo_nxp_entries.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_am824_core_hw_adc_thcmp_entry (void)
 {
 
     am_kprintf("demo am824_core hw adc thcmp!\r\n");
 
-    /* ƽ̨��ʼ�� */
+    /* 平台初始化 */
     amhw_lpc82x_syscon_powerup(AMHW_LPC82X_SYSCON_PD_ADC0);
     amhw_lpc82x_clk_periph_enable(AMHW_LPC82X_CLK_ADC0);
 
-    /* ����ͨ����ʹ��ͨ�� 0 ��ͨ�� 1����������Ϊ����ģʽ INACTIVE */
+    /* 配置通道，使用通道 0 和通道 1，引脚配置为消极模式 INACTIVE */
     am_gpio_pin_cfg(PIO0_7, PIO0_7_ADC_0 | PIO0_7_INACTIVE);
     am_gpio_pin_cfg(PIO0_6, PIO0_6_ADC_1 | PIO0_6_INACTIVE);
 

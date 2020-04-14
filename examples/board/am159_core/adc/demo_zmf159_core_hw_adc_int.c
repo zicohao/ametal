@@ -12,20 +12,20 @@
 
 /**
  * \file
- * \brief ADC INT ���̣�ͨ�� HW ��ӿ�ʵ��
+ * \brief ADC INT 例程，通过 HW 层接口实现
  *
- * - �������裺
- *   1. PIOA_4 (ADC ͨ�� 4) ����ģ�����롣
+ * - 操作步骤：
+ *   1. PIOA_4 (ADC 通道 4) 连接模拟输入。
  *
- * - ʵ������
- *   1. ���������ѹ����ֵ��
+ * - 实验现象：
+ *   1. 串口输出电压采样值。
  *
  * \note
- *    1. ʹ�� ADC ģ�鹦�ܣ����뱣֤ ADC ģ���ϵ磻
- *    2. ����۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIOA_10 �������� PC ���ڵ� TXD��
- *       PIOA_9 �������� PC ���ڵ� RXD��
+ *    1. 使用 ADC 模块功能，必须保证 ADC 模块上电；
+ *    2. 如需观察串口打印的调试信息，需要将 PIOA_10 引脚连接 PC 串口的 TXD，
+ *       PIOA_9 引脚连接 PC 串口的 RXD。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_zmf159_hw_adc_int.c src_zmf159_hw_adc_int
  *
  * \internal
@@ -49,13 +49,13 @@
 #include "demo_zmf159_core_entries.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_zmf159_core_hw_adc_int_entry (void)
 {
     AM_DBG_INFO("demo zmf159_core hw adc int!\r\n");
 
-    /* ����Ӳ��������ǰ�Ļ������� ���������ţ�ʹ��ʱ�ӵ� */
+    /* 运行硬件层例程前的环境设置 ，配置引脚，使能时钟等 */
     am_gpio_pin_cfg(PIOA_4, PIOA_4_AIN);
     am_clk_enable(CLK_ADC1);
 

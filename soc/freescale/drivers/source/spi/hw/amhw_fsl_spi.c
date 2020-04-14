@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief  SPIÓ²¼ş²ãÊµÏÖÎÄ¼ş
+ * \brief  SPIç¡¬ä»¶å±‚å®ç°æ–‡ä»¶
  *
  * \internal
  * \par Modification history
@@ -23,83 +23,83 @@
 #include "hw/amhw_fsl_spi.h"
 
 /**
- * \brief Ê¹ÄÜSPIÆÕÍ¨ÖĞ¶Ï
+ * \brief ä½¿èƒ½SPIæ™®é€šä¸­æ–­
  */
 void amhw_fsl_spi_int_enable (amhw_fsl_spi_t *p_hw_spi, uint8_t irq_flags)
 {
-    if ( irq_flags & AMHW_FSL_SPI_IRQ_MATCH) {       /* Êı¾İÆ¥ÅäÖĞ¶Ï       */
+    if ( irq_flags & AMHW_FSL_SPI_IRQ_MATCH) {       /* æ•°æ®åŒ¹é…ä¸­æ–­       */
         p_hw_spi->c2 |= 0x80;
     }
-    if ( irq_flags & AMHW_FSL_SPI_IRQ_R_MODDEF) {    /* ½ÓÊÕ»ò¶àÖ÷»úÖĞ¶Ï   */
+    if ( irq_flags & AMHW_FSL_SPI_IRQ_R_MODDEF) {    /* æ¥æ”¶æˆ–å¤šä¸»æœºä¸­æ–­   */
         p_hw_spi->c1 |= 0x80;
     }
-    if ( irq_flags & AMHW_FSL_SPI_IRQ_T) {           /* ·¢ËÍÍê³ÉÖĞ¶Ï       */
+    if ( irq_flags & AMHW_FSL_SPI_IRQ_T) {           /* å‘é€å®Œæˆä¸­æ–­       */
         p_hw_spi->c1 |= 0x20;
     }
 }
 
 /**
- * \brief ½ûÄÜSPIÆÕÍ¨ÖĞ¶Ï
+ * \brief ç¦èƒ½SPIæ™®é€šä¸­æ–­
  */
 void amhw_fsl_spi_int_disable (amhw_fsl_spi_t *p_hw_spi, uint8_t irq_flags)
 {
-    if ( irq_flags & AMHW_FSL_SPI_IRQ_MATCH) {       /* Êı¾İÆ¥ÅäÖĞ¶Ï       */
+    if ( irq_flags & AMHW_FSL_SPI_IRQ_MATCH) {       /* æ•°æ®åŒ¹é…ä¸­æ–­       */
         p_hw_spi->c2 &= (~0x80);
     }
-    if ( irq_flags & AMHW_FSL_SPI_IRQ_R_MODDEF) {    /* ½ÓÊÕ»ò¶àÖ÷»úÖĞ¶Ï   */
+    if ( irq_flags & AMHW_FSL_SPI_IRQ_R_MODDEF) {    /* æ¥æ”¶æˆ–å¤šä¸»æœºä¸­æ–­   */
         p_hw_spi->c1 &= (~0x80);
     }
-    if ( irq_flags & AMHW_FSL_SPI_IRQ_T) {           /* ·¢ËÍÍê³ÉÖĞ¶Ï       */
+    if ( irq_flags & AMHW_FSL_SPI_IRQ_T) {           /* å‘é€å®Œæˆä¸­æ–­       */
         p_hw_spi->c1 &= (~0x20);
     }
 }
 
 /**
- * \brief ÅäÖÃSPI¹¤×÷Ä£Ê½
+ * \brief é…ç½®SPIå·¥ä½œæ¨¡å¼
  */
 void amhw_fsl_spi_workmode_cfg (amhw_fsl_spi_t *p_hw_spi, uint8_t mode_flag)
 {
     uint8_t tmp  = mode_flag & 0x10;
 
-    p_hw_spi->c1 = (tmp | ( p_hw_spi->c1 & (~0x10)));   /* Ö÷´Ó»úÑ¡Ôñ     */
+    p_hw_spi->c1 = (tmp | ( p_hw_spi->c1 & (~0x10)));   /* ä¸»ä»æœºé€‰æ‹©     */
 
     tmp          =  mode_flag & 0x01;
-    p_hw_spi->c2 = (tmp | ( p_hw_spi->c2 & (~0x01)));   /* µ¥Ë«Êı¾İÏßÑ¡Ôñ */
+    p_hw_spi->c2 = (tmp | ( p_hw_spi->c2 & (~0x01)));   /* å•åŒæ•°æ®çº¿é€‰æ‹© */
 }
 
 /**
- * \brief ÅäÖÃSPI¹¤×÷ÌØĞÔ
+ * \brief é…ç½®SPIå·¥ä½œç‰¹æ€§
  */
 void amhw_fsl_spi_feature_cfg (amhw_fsl_spi_t *p_hw_spi, uint32_t flags)
 {
-    if (flags & AM_BIT(31)) { /* ´«ÊäÊı¾İ¿í¶È£¨8bit/16bit£© */
+    if (flags & AM_BIT(31)) { /* ä¼ è¾“æ•°æ®å®½åº¦ï¼ˆ8bit/16bitï¼‰ */
         p_hw_spi->c2 = (((flags & 0x01) << 6) | (p_hw_spi->c2 & (~AM_BIT(6))));
     }
-    if (flags & AM_BIT(30)) {   /* ÊÇ·ñÊ¹ÄÜ·¢ËÍDMA          */
+    if (flags & AM_BIT(30)) {   /* æ˜¯å¦ä½¿èƒ½å‘é€DMA          */
         p_hw_spi->c2 = (((flags & 0x02) << 4) | (p_hw_spi->c2 & (~AM_BIT(5))));
     }
-    if (flags & AM_BIT(29)) {   /* ÊÇ·ñÊ¹ÄÜ½ÓÊÕDMA          */
+    if (flags & AM_BIT(29)) {   /* æ˜¯å¦ä½¿èƒ½æ¥æ”¶DMA          */
         p_hw_spi->c2 = (((flags & 0x04) << 0) | (p_hw_spi->c2 & (~AM_BIT(2))));
     }
-    if (flags & AM_BIT(28)) {   /* ÊÇ·ñÔÚwaitÄ£Ê½ÏÂ¹¤×÷     */
+    if (flags & AM_BIT(28)) {   /* æ˜¯å¦åœ¨waitæ¨¡å¼ä¸‹å·¥ä½œ     */
         p_hw_spi->c2 = (((flags & 0x08) >> 2) | (p_hw_spi->c2 & (~AM_BIT(1))));
     }
-    if (flags & AM_BIT(27)) {   /* ¸ßÎ»ÏÈ·¢ËÍ»¹ÊÇµÍÎ»ÏÈ·¢ËÍ */
+    if (flags & AM_BIT(27)) {   /* é«˜ä½å…ˆå‘é€è¿˜æ˜¯ä½ä½å…ˆå‘é€ */
         p_hw_spi->c1 = (((flags & 0x10) >> 4) | (p_hw_spi->c1 & (~AM_BIT(0))));
     }
 }
 
 /**
- * \brief ÅäÖÃSPIÆ¬Ñ¡Òı½ÅCS¹¦ÄÜ
+ * \brief é…ç½®SPIç‰‡é€‰å¼•è„šCSåŠŸèƒ½
  */
 void amhw_fsl_spi_cs_cfg (amhw_fsl_spi_t *p_hw_spi, uint8_t cs_flag)
 {
     uint8_t tmp  = cs_flag & 0x10;
 
-    p_hw_spi->c2 = (tmp | (p_hw_spi->c2 & (~0x10))); /*  ÅäÖÃÊÇ·ñÎªGPIO     */
+    p_hw_spi->c2 = (tmp | (p_hw_spi->c2 & (~0x10))); /*  é…ç½®æ˜¯å¦ä¸ºGPIO     */
 
     tmp = cs_flag & 0x02;
-    p_hw_spi->c1 = (tmp | (p_hw_spi->c1 & (~0x02))); /*  ÅäÖÃÎªÊäÈë»¹ÊÇÊä³ö */
+    p_hw_spi->c1 = (tmp | (p_hw_spi->c1 & (~0x02))); /*  é…ç½®ä¸ºè¾“å…¥è¿˜æ˜¯è¾“å‡º */
 }
 
 /* end of file */

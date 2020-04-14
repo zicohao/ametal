@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ×Ô¶¯²¨ÌØÂÊ·şÎñ£¬¿ÉÒÔÊµÏÖÓëÎ´Öª²¨ÌØÂÊµÄ´®¿ÚÉè±¸×Ô¶¯Æ¥Åä²¨ÌØÂÊ(Ä£ÄâÊµÏÖ)
+ * \brief è‡ªåŠ¨æ³¢ç‰¹ç‡æœåŠ¡ï¼Œå¯ä»¥å®ç°ä¸æœªçŸ¥æ³¢ç‰¹ç‡çš„ä¸²å£è®¾å¤‡è‡ªåŠ¨åŒ¹é…æ³¢ç‰¹ç‡(æ¨¡æ‹Ÿå®ç°)
  *
  *
  * \internal
@@ -31,83 +31,83 @@
 #include "am_softimer.h"
 
 /**
- * \brief ´®¿Ú×Ô¶¯²¨ÌØÂÊÉè±¸ĞÅÏ¢
+ * \brief ä¸²å£è‡ªåŠ¨æ³¢ç‰¹ç‡è®¾å¤‡ä¿¡æ¯
  */
 typedef struct am_baudrate_detect_devinfo {
-    int        cap_pin;                /**< \brief ±»¼ì²âÒı½Å */
-    uint8_t    cap_chanel;             /**< \brief CAP²¶»ñÍ¨µÀ */
-    uint8_t    timer_width;            /**< \brief TIMER¶¨Ê±Æ÷Î»Êı */
-    uint16_t   timer_out;              /**< \brief ½ÓÊÕÒ»´ÎÊı¾İµÄ³¬Ê±Ê±¼ä£¬µ¥Î»ms*/
-    uint32_t   cap_trigger;            /**< \brief CAP²¶»ñ±ßÑØ·½Ê½Ñ¡ÔñÑ¡Ôñ */
-    void     (*pfn_plfm_init)(void);   /**< \brief Æ½Ì¨³õÊ¼»¯º¯Êı */
-    void     (*pfn_plfm_deinit)(void); /**< \brief Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    int        cap_pin;                /**< \brief è¢«æ£€æµ‹å¼•è„š */
+    uint8_t    cap_chanel;             /**< \brief CAPæ•è·é€šé“ */
+    uint8_t    timer_width;            /**< \brief TIMERå®šæ—¶å™¨ä½æ•° */
+    uint16_t   timer_out;              /**< \brief æ¥æ”¶ä¸€æ¬¡æ•°æ®çš„è¶…æ—¶æ—¶é—´ï¼Œå•ä½ms*/
+    uint32_t   cap_trigger;            /**< \brief CAPæ•è·è¾¹æ²¿æ–¹å¼é€‰æ‹©é€‰æ‹© */
+    void     (*pfn_plfm_init)(void);   /**< \brief å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    void     (*pfn_plfm_deinit)(void); /**< \brief å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 } am_baudrate_detect_devinfo_t;
 
 /**
- * \brief ×Ô¶¯²¨ÌØÂÊÉè±¸½á¹¹Ìå
+ * \brief è‡ªåŠ¨æ³¢ç‰¹ç‡è®¾å¤‡ç»“æ„ä½“
  */
 typedef struct am_baudrate_detect_dev {
 
-    /** \brief CAP²¶»ñ¾ä±ú*/
+    /** \brief CAPæ•è·å¥æŸ„*/
     am_cap_handle_t         cap_handle;
 
-    /** \brief softimerÈí¼ş¶¨Ê±Æ÷½á¹¹Ìå*/
+    /** \brief softimerè½¯ä»¶å®šæ—¶å™¨ç»“æ„ä½“*/
     am_softimer_t           softimer;
 
-    /** \brief ²¶»ñÒı½Å*/
+    /** \brief æ•è·å¼•è„š*/
     int                     cap_pin;
 
-    /** \brief ²¶»ñÖĞ¶Ï±êÖ¾*/
+    /** \brief æ•è·ä¸­æ–­æ ‡å¿—*/
     volatile am_bool_t      cap_flag;
 
-    /** \brief ´®¿Ú½ÓÊÕÊı¾İ*/
+    /** \brief ä¸²å£æ¥æ”¶æ•°æ®*/
     uint16_t                uart_data;
 
-    /** \brief ½ÓÊÕÊı¾İµÄË«±ßÑØ¼ÆÊı*/
+    /** \brief æ¥æ”¶æ•°æ®çš„åŒè¾¹æ²¿è®¡æ•°*/
     uint32_t                data_edge;
 
-    /** \brief ½ÓÊÕÊı¾İµÄÂö³åÊı*/
+    /** \brief æ¥æ”¶æ•°æ®çš„è„‰å†²æ•°*/
     uint32_t                data_pulses;
 
-    /** \brief ½ÓÊÕÊı¾İ³¬Ê±Ê±¼ä¼ÆÊı*/
+    /** \brief æ¥æ”¶æ•°æ®è¶…æ—¶æ—¶é—´è®¡æ•°*/
     uint16_t                time_out_ms;
 
-    /** \brief ½ÓÊÕÊı¾İµÄÂö³å¿í¶È*/
+    /** \brief æ¥æ”¶æ•°æ®çš„è„‰å†²å®½åº¦*/
     uint32_t                data_pulse_width[32];
 
-    /** \brief ×Ô¶¯²¨ÌØÂÊÉè±¸ĞÅÏ¢*/
+    /** \brief è‡ªåŠ¨æ³¢ç‰¹ç‡è®¾å¤‡ä¿¡æ¯*/
     am_baudrate_detect_devinfo_t  *p_devinfo;
 } am_baudrate_detect_dev_t;
 
-/** \brief ×Ô¶¯²¨ÌØÂÊ ±ê×¼·şÎñ²Ù×÷¾ä±úÀàĞÍ¶¨Òå */
+/** \brief è‡ªåŠ¨æ³¢ç‰¹ç‡ æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„ç±»å‹å®šä¹‰ */
 typedef am_baudrate_detect_dev_t  *am_baudrate_detect_handle_t;
 
 
 /**
- * \brief »ñÈ¡²¨ÌØÂÊº¯Êı½Ó¿Ú
+ * \brief è·å–æ³¢ç‰¹ç‡å‡½æ•°æ¥å£
  */
 int am_baudrate_get (am_baudrate_detect_handle_t handle, uint32_t *p_baudrate);
 
 /**
- * \brief ×Ô¶¯²¨ÌØÂÊ³õÊ¼»¯º¯Êı
+ * \brief è‡ªåŠ¨æ³¢ç‰¹ç‡åˆå§‹åŒ–å‡½æ•°
  *
- * \param[in] p_dev        : Ö¸Ïò×Ô¶¯²¨ÌØÂÊ·şÎñµÄÖ¸Õë
- * \param[in] p_devinfo    : Ö¸Ïò×Ô¶¯²¨ÌØÂÊ·şÎñĞÅÏ¢³£Á¿µÄÖ¸Õë
- * \param[in] cap_handle   : CAP²¶»ñ±ê×¼·şÎñ¾ä±ú
- * \param[in] uart_handle  : UART´®¿Ú±ê×¼·şÎñ¾ä±ú
+ * \param[in] p_dev        : æŒ‡å‘è‡ªåŠ¨æ³¢ç‰¹ç‡æœåŠ¡çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo    : æŒ‡å‘è‡ªåŠ¨æ³¢ç‰¹ç‡æœåŠ¡ä¿¡æ¯å¸¸é‡çš„æŒ‡é’ˆ
+ * \param[in] cap_handle   : CAPæ•è·æ ‡å‡†æœåŠ¡å¥æŸ„
+ * \param[in] uart_handle  : UARTä¸²å£æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ×Ô¶¯²¨ÌØÂÊ·şÎñ²Ù×÷¾ä±ú
+ * \return è‡ªåŠ¨æ³¢ç‰¹ç‡æœåŠ¡æ“ä½œå¥æŸ„
  */
 am_baudrate_detect_handle_t am_baudrate_detect_init (am_baudrate_detect_dev_t     *p_dev,
                                                      am_baudrate_detect_devinfo_t *p_devinfo,
                                                      am_cap_handle_t               cap_handle);
 
 /**
- * \brief ×Ô¶¯²¨ÌØÂÊ½â³õÊ¼»¯º¯Êı
+ * \brief è‡ªåŠ¨æ³¢ç‰¹ç‡è§£åˆå§‹åŒ–å‡½æ•°
  *
- * \param[in] handle        : ×Ô¶¯²¨ÌØÂÊ·şÎñ¾ä±ú
+ * \param[in] handle        : è‡ªåŠ¨æ³¢ç‰¹ç‡æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_baudrate_detect_deinit (am_baudrate_detect_handle_t handle);
 

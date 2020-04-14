@@ -11,10 +11,10 @@
 *******************************************************************************/
 /**
  * \file
- * \brief RCM Ó²¼ş²Ù×÷½Ó¿Ú
+ * \brief RCM ç¡¬ä»¶æ“ä½œæ¥å£
  * 
- * 1. »ñÈ¡¸´Î»Ô­Òò£»
- * 2. ÅäÖÃ¸´Î»Òı½ÅÂË²¨²ÎÊı¡£
+ * 1. è·å–å¤ä½åŸå› ï¼›
+ * 2. é…ç½®å¤ä½å¼•è„šæ»¤æ³¢å‚æ•°ã€‚
  *
  * \internal
  * \par Modification history
@@ -38,66 +38,66 @@ extern "C" {
  */
 
 /**
- * \brief RCM¼Ä´æÆ÷¿é½á¹¹Ìå
+ * \brief RCMå¯„å­˜å™¨å—ç»“æ„ä½“
  */
 typedef struct amhw_fsl_rcm {
-    __I  uint16_t srs;            /**< \brief RCM ¸´Î»×´Ì¬¼Ä´æÆ÷0        */
-    __IO uint8_t  rpfc;           /**< \brief RCM ¸´Î»ÂË²¨¿ØÖÆ¼Ä´æÆ÷     */
-    __IO uint8_t  rpfw;           /**< \brief RCM ¸´Î»ÂË²¨¿í¶È¼Ä´æÆ÷     */
+    __I  uint16_t srs;            /**< \brief RCM å¤ä½çŠ¶æ€å¯„å­˜å™¨0        */
+    __IO uint8_t  rpfc;           /**< \brief RCM å¤ä½æ»¤æ³¢æ§åˆ¶å¯„å­˜å™¨     */
+    __IO uint8_t  rpfw;           /**< \brief RCM å¤ä½æ»¤æ³¢å®½åº¦å¯„å­˜å™¨     */
 } amhw_fsl_rcm_t;
 
 /**
- * \name ¸´Î»Ô­Òò±êÖ¾
+ * \name å¤ä½åŸå› æ ‡å¿—
  * @{
  */
 
-#define AMHW_FSL_RCM_RESTFLAG_SACKERR AM_BIT(13)  /**< \brief Í£Ö¹Ä£Ê½½øÈë´íÎó¸´Î» */
-#define AMHW_FSL_RCM_RESTFLAG_MDM_AP  AM_BIT(11)  /**< \brief µ÷ÊÔ¸´Î»             */
-#define AMHW_FSL_RCM_RESTFLAG_SW      AM_BIT(10)  /**< \brief Èí¼ş¸´Î»             */
-#define AMHW_FSL_RCM_RESTFLAG_LOCKUP  AM_BIT(9)   /**< \brief ÄÚºËLockupÊÂ¼ş¸´Î»   */
-#define AMHW_FSL_RCM_RESTFLAG_POR     AM_BIT(7)   /**< \brief ÉÏµç¸´Î»             */
-#define AMHW_FSL_RCM_RESTFLAG_PIN     AM_BIT(6)   /**< \brief RESTÒı½Å¸´Î»         */
-#define AMHW_FSL_RCM_RESTFLAG_WDOG    AM_BIT(5)   /**< \brief ¿´ÃÅ¹·¸´Î»           */
-#define AMHW_FSL_RCM_RESTFLAG_LOL     AM_BIT(3)   /**< \brief ËøÏà»·Òì³£           */
-#define AMHW_FSL_RCM_RESTFLAG_LOC     AM_BIT(2)   /**< \brief Ê±ÖÓ¶ªÊ§¸´Î»         */
-#define AMHW_FSL_RCM_RESTFLAG_LVD     AM_BIT(1)   /**< \brief µÍµçÑ¹¼ì²â¸´Î»       */
-#define AMHW_FSL_RCM_RESTFLAG_WAKEUP  AM_BIT(0)   /**< \brief »½ĞÑ¸´Î»             */
+#define AMHW_FSL_RCM_RESTFLAG_SACKERR AM_BIT(13)  /**< \brief åœæ­¢æ¨¡å¼è¿›å…¥é”™è¯¯å¤ä½ */
+#define AMHW_FSL_RCM_RESTFLAG_MDM_AP  AM_BIT(11)  /**< \brief è°ƒè¯•å¤ä½             */
+#define AMHW_FSL_RCM_RESTFLAG_SW      AM_BIT(10)  /**< \brief è½¯ä»¶å¤ä½             */
+#define AMHW_FSL_RCM_RESTFLAG_LOCKUP  AM_BIT(9)   /**< \brief å†…æ ¸Lockupäº‹ä»¶å¤ä½   */
+#define AMHW_FSL_RCM_RESTFLAG_POR     AM_BIT(7)   /**< \brief ä¸Šç”µå¤ä½             */
+#define AMHW_FSL_RCM_RESTFLAG_PIN     AM_BIT(6)   /**< \brief RESTå¼•è„šå¤ä½         */
+#define AMHW_FSL_RCM_RESTFLAG_WDOG    AM_BIT(5)   /**< \brief çœ‹é—¨ç‹—å¤ä½           */
+#define AMHW_FSL_RCM_RESTFLAG_LOL     AM_BIT(3)   /**< \brief é”ç›¸ç¯å¼‚å¸¸           */
+#define AMHW_FSL_RCM_RESTFLAG_LOC     AM_BIT(2)   /**< \brief æ—¶é’Ÿä¸¢å¤±å¤ä½         */
+#define AMHW_FSL_RCM_RESTFLAG_LVD     AM_BIT(1)   /**< \brief ä½ç”µå‹æ£€æµ‹å¤ä½       */
+#define AMHW_FSL_RCM_RESTFLAG_WAKEUP  AM_BIT(0)   /**< \brief å”¤é†’å¤ä½             */
 
 /** @} */
 
 /**
- * \name Í£Ö¹Ä£Ê½£¬¸´Î»Òı½ÅµÄÂË²¨Ê±ÖÓÑ¡Ïî
+ * \name åœæ­¢æ¨¡å¼ï¼Œå¤ä½å¼•è„šçš„æ»¤æ³¢æ—¶é’Ÿé€‰é¡¹
  * @{
  */
 
-/** \brief Í£Ö¹Ä£Ê½²»¶Ô¸´Î»Òı½ÅÂË²¨ */
+/** \brief åœæ­¢æ¨¡å¼ä¸å¯¹å¤ä½å¼•è„šæ»¤æ³¢ */
 #define AMHW_FSL_RCM_RESPIN_FILT_STOP_DISABLE    0
 
- /** \brief Í£Ö¹Ä£Ê½Ê¹ÓÃ¸ù¾İLPOÊ±ÖÓ¶Ô¸´Î»Òı½ÅÂË²¨ */
+ /** \brief åœæ­¢æ¨¡å¼ä½¿ç”¨æ ¹æ®LPOæ—¶é’Ÿå¯¹å¤ä½å¼•è„šæ»¤æ³¢ */
 #define AMHW_FSL_RCM_RESPIN_FILT_STOP_LPO     AM_BIT(2)
 
 /** @} */
 
 /**
- * \name ÔËĞĞºÍµÈ´ıÄ£Ê½£¬¸´Î»Òı½ÅÂË²¨Ê±ÖÓÑ¡Ïî
+ * \name è¿è¡Œå’Œç­‰å¾…æ¨¡å¼ï¼Œå¤ä½å¼•è„šæ»¤æ³¢æ—¶é’Ÿé€‰é¡¹
  * @{
  */
  
-/** \brief ÔËĞĞºÍµÈ´ıÄ£Ê½²»¶Ô¸´Î»Òı½ÅÂË²¨ */
+/** \brief è¿è¡Œå’Œç­‰å¾…æ¨¡å¼ä¸å¯¹å¤ä½å¼•è„šæ»¤æ³¢ */
 #define AMHW_FSL_RCM_RESPIN_FILT_RUNW_DISABLE   00
 
-/** \brief ÔËĞĞºÍµÈ´ıÄ£Ê½Ê¹ÓÃLPOÊ±ÖÓ¶Ô¸´Î»Òı½ÅÂË²¨ */
+/** \brief è¿è¡Œå’Œç­‰å¾…æ¨¡å¼ä½¿ç”¨LPOæ—¶é’Ÿå¯¹å¤ä½å¼•è„šæ»¤æ³¢ */
 #define AMHW_FSL_RCM_RESPIN_FILT_RUNW_LPO      0x01
 
-/** \brief ÔËĞĞºÍµÈ´ıÄ£Ê½Ê¹ÓÃBUSÊ±ÖÓ¸´Î»Òı½ÅÂË²¨ */
+/** \brief è¿è¡Œå’Œç­‰å¾…æ¨¡å¼ä½¿ç”¨BUSæ—¶é’Ÿå¤ä½å¼•è„šæ»¤æ³¢ */
 #define AMHW_FSL_RCM_RESPIN_FILT_RUNW_BUS      0x10
 
 /** @} */
 
 /**
- * \brief »ñÈ¡¸´Î»Ô­Òò±êÖ¾
- * \param[in] p_hw_rcm : Ö¸ÏòPMC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ¸´Î»Ô­Òò±êÖ¾
+ * \brief è·å–å¤ä½åŸå› æ ‡å¿—
+ * \param[in] p_hw_rcm : æŒ‡å‘PMCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return å¤ä½åŸå› æ ‡å¿—
  */
 am_static_inline
 uint16_t amhw_fsl_rcm_rest_flags_get (amhw_fsl_rcm_t *p_hw_rcm)
@@ -106,14 +106,14 @@ uint16_t amhw_fsl_rcm_rest_flags_get (amhw_fsl_rcm_t *p_hw_rcm)
 }
 
 /**
- * \brief ÅäÖÃ¸´Î»Òı½ÅÍ£Ö¹Ä£Ê½ÂË²¨Ê±ÖÓÑ¡Ïî
+ * \brief é…ç½®å¤ä½å¼•è„šåœæ­¢æ¨¡å¼æ»¤æ³¢æ—¶é’Ÿé€‰é¡¹
  *
- * \param[in] p_hw_rcm : Ö¸ÏòPMC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] flag     : ÂË²¨Ê±ÖÓÅäÖÃÑ¡Ïî£¬AMHW_FSL_RCM_RESPIN_FILT_STOP_*ºêÖµ
+ * \param[in] p_hw_rcm : æŒ‡å‘PMCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] flag     : æ»¤æ³¢æ—¶é’Ÿé…ç½®é€‰é¡¹ï¼ŒAMHW_FSL_RCM_RESPIN_FILT_STOP_*å®å€¼
  *                       (#AMHW_FSL_RCM_RESPIN_FILT_STOP_LPO)
- * \return ÎŞ
+ * \return æ— 
  *
- * \note Èç¹ûLPOÊ±ÖÓÃ»ÓĞ¿ªÆô£¬ÄÇÃ´ÂË²¨½ûÄÜ
+ * \note å¦‚æœLPOæ—¶é’Ÿæ²¡æœ‰å¼€å¯ï¼Œé‚£ä¹ˆæ»¤æ³¢ç¦èƒ½
  */
 am_static_inline
 void amhw_fsl_rcm_respin_filt_stop_cfg (amhw_fsl_rcm_t *p_hw_rcm, uint8_t flag)
@@ -122,13 +122,13 @@ void amhw_fsl_rcm_respin_filt_stop_cfg (amhw_fsl_rcm_t *p_hw_rcm, uint8_t flag)
 }
 
 /**
- * \brief ÅäÖÃ¸´Î»Òı½ÅÔËĞĞºÍµÈ´ıÄ£Ê½ÂË²¨Ê±ÖÓÑ¡Ïî
+ * \brief é…ç½®å¤ä½å¼•è„šè¿è¡Œå’Œç­‰å¾…æ¨¡å¼æ»¤æ³¢æ—¶é’Ÿé€‰é¡¹
  *
- * \param[in] p_hw_rcm : Ö¸ÏòPMC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] flag     : ÂË²¨Ê±ÖÓÅäÖÃÑ¡Ïî£¬AMHW_FSL_RCM_RESPIN_FILT_RUNW_*ºêÖµ
+ * \param[in] p_hw_rcm : æŒ‡å‘PMCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] flag     : æ»¤æ³¢æ—¶é’Ÿé…ç½®é€‰é¡¹ï¼ŒAMHW_FSL_RCM_RESPIN_FILT_RUNW_*å®å€¼
  *                      (#AMHW_FSL_RCM_RESPIN_FILT_RUNW_BUS)
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_rcm_respin_filt_runw_cfg (amhw_fsl_rcm_t *p_hw_rcm, uint8_t flag)
@@ -137,12 +137,12 @@ void amhw_fsl_rcm_respin_filt_runw_cfg (amhw_fsl_rcm_t *p_hw_rcm, uint8_t flag)
 }
 
 /**
- * \brief ÅäÖÃ¸´Î»Òı½ÅÔËĞĞÄ£Ê½ÂË²¨BUSÊ±ÖÓ¸öÊı
+ * \brief é…ç½®å¤ä½å¼•è„šè¿è¡Œæ¨¡å¼æ»¤æ³¢BUSæ—¶é’Ÿä¸ªæ•°
  *
- * \param[in] p_hw_rcm : Ö¸ÏòPMC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] count    : BUSÊ±ÖÓµÄ¸öÊı(1-32)
+ * \param[in] p_hw_rcm : æŒ‡å‘PMCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] count    : BUSæ—¶é’Ÿçš„ä¸ªæ•°(1-32)
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_rcm_respin_filt_busc_cfg (amhw_fsl_rcm_t *p_hw_rcm, uint8_t count)

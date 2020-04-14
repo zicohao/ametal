@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief PWR Çı¶¯½Ó¿ÚÉùÃ÷
+ * \brief PWR é©±åŠ¨æ¥å£å£°æ˜
  *
  *
  * \internal
@@ -39,150 +39,150 @@ extern "C" {
  */
 
 /**
- * \brief PWR Ä£Ê½
+ * \brief PWR æ¨¡å¼
  */
 typedef enum am_zlg217_pwr_mode {
-    AM_ZLG217_PWR_MODE_RUN = 0,      /**< \brief ÔËĞĞÄ£Ê½ */
-    AM_ZLG217_PWR_MODE_SLEEP,        /**< \brief Ë¯ÃßÄ£Ê½ */
-    AM_ZLG217_PWR_MODE_STOP,         /**< \brief Í£Ö¹Ä£Ê½ */
-    AM_ZLG217_PWR_MODE_STANBY,       /**< \brief ´ı»úÄ£Ê½ */
+    AM_ZLG217_PWR_MODE_RUN = 0,      /**< \brief è¿è¡Œæ¨¡å¼ */
+    AM_ZLG217_PWR_MODE_SLEEP,        /**< \brief ç¡çœ æ¨¡å¼ */
+    AM_ZLG217_PWR_MODE_STOP,         /**< \brief åœæ­¢æ¨¡å¼ */
+    AM_ZLG217_PWR_MODE_STANBY,       /**< \brief å¾…æœºæ¨¡å¼ */
 } am_zlg217_pwr_mode_t;
 
-/** \brief PWR PVD ¼à²âµçÑ¹ĞÅÏ¢ÅäÖÃ */
+/** \brief PWR PVD ç›‘æµ‹ç”µå‹ä¿¡æ¯é…ç½® */
 typedef struct am_zlg217_pwr_pvd_info {
-	amhw_zlg_pvd_lever_set_t pvd_v_level; /**< \brief PVD ¼à²âµçÑ¹Ñ¡Ôñ */
+	amhw_zlg_pvd_lever_set_t pvd_v_level; /**< \brief PVD ç›‘æµ‹ç”µå‹é€‰æ‹© */
 
     /**
-     *  \brief PVD ¼à²âµçÑ¹Ä£Ê½ÏÈÔñ.
-     *   0£º±íÊ¾µçÑ¹´Ó¸ßÏÂ½µµ½µÍÓÚÉè¶¨·§ÖµÊ±²úÉúÖĞ¶Ï
-     *   1£º±íÊ¾µçÑ¹´ÓµÍÉÏÉıµ½¸ßÓÚÉè¶¨·§ÖµÊ±²úÉúÖĞ¶Ï£»
-     *   2£º±íÊ¾µçÑ¹ÉÏÉı»òÏÂ½µÔ½¹ıÉè¶¨·§ÖµÊ±¶¼²úÉúÖĞ¶Ï
+     *  \brief PVD ç›‘æµ‹ç”µå‹æ¨¡å¼å…ˆæ‹©.
+     *   0ï¼šè¡¨ç¤ºç”µå‹ä»é«˜ä¸‹é™åˆ°ä½äºè®¾å®šé˜€å€¼æ—¶äº§ç”Ÿä¸­æ–­
+     *   1ï¼šè¡¨ç¤ºç”µå‹ä»ä½ä¸Šå‡åˆ°é«˜äºè®¾å®šé˜€å€¼æ—¶äº§ç”Ÿä¸­æ–­ï¼›
+     *   2ï¼šè¡¨ç¤ºç”µå‹ä¸Šå‡æˆ–ä¸‹é™è¶Šè¿‡è®¾å®šé˜€å€¼æ—¶éƒ½äº§ç”Ÿä¸­æ–­
      */
     uint8_t                     pvd_mode;
 
-    am_bool_t                   enable;      /**< \brief ÊÇ·ñÊ¹ÄÜ PVD µçÑ¹¼à²â */
+    am_bool_t                   enable;      /**< \brief æ˜¯å¦ä½¿èƒ½ PVD ç”µå‹ç›‘æµ‹ */
 } am_zlg217_pwr_pvd_info_t;
 
 /**
- * \brief PWR Ä£Ê½¼°»½ĞÑÒı½Å
+ * \brief PWR æ¨¡å¼åŠå”¤é†’å¼•è„š
  */
 typedef struct am_zlg217_pwr_mode_init {
-    am_zlg217_pwr_mode_t  pwr_mode; /**< \brief Ö¸Ïò PWR ¼Ä´æÆ÷¿éµÄÖ¸Õë */
-    int                   pin;      /**< \brief »½ĞÑÒı½Å */
+    am_zlg217_pwr_mode_t  pwr_mode; /**< \brief æŒ‡å‘ PWR å¯„å­˜å™¨å—çš„æŒ‡é’ˆ */
+    int                   pin;      /**< \brief å”¤é†’å¼•è„š */
 } am_zlg217_pwr_mode_init_t;
 
 /**
- * \brief PWR Éè±¸ĞÅÏ¢½á¹¹Ìå
+ * \brief PWR è®¾å¤‡ä¿¡æ¯ç»“æ„ä½“
  */
 typedef struct am_zlg217_pwr_devinfo {
 
-    uint32_t  pwr_regbase;                   /**< \brief PWR ¼Ä´æÆ÷¿é»ùÖ· */
+    uint32_t  pwr_regbase;                   /**< \brief PWR å¯„å­˜å™¨å—åŸºå€ */
 
-    uint32_t  bkp_regbase;                   /**< \brief BKP ¼Ä´æÆ÷¿é»ùÖ· */
+    uint32_t  bkp_regbase;                   /**< \brief BKP å¯„å­˜å™¨å—åŸºå€ */
 
-    int       ahb_clk_num;                   /**< \brief AHB Ê±ÖÓ ID */
-    int       apb1_clk_num;                  /**< \brief APB1 Ê±ÖÓ ID */
-    int       apb2_clk_num;                  /**< \brief APB2 Ê±ÖÓ ID */
+    int       ahb_clk_num;                   /**< \brief AHB æ—¶é’Ÿ ID */
+    int       apb1_clk_num;                  /**< \brief APB1 æ—¶é’Ÿ ID */
+    int       apb2_clk_num;                  /**< \brief APB2 æ—¶é’Ÿ ID */
 
-    uint8_t   inum;                          /**< \brief PVD ÖĞ¶ÏºÅ */
+    uint8_t   inum;                          /**< \brief PVD ä¸­æ–­å· */
 
-    am_zlg217_pwr_mode_init_t *p_pwr_mode;   /**< \brief Ö¸Ïò PWR Ä£Ê½Êı×éµÄÖ¸Õë */
+    am_zlg217_pwr_mode_init_t *p_pwr_mode;   /**< \brief æŒ‡å‘ PWR æ¨¡å¼æ•°ç»„çš„æŒ‡é’ˆ */
 
-    am_zlg217_pwr_pvd_info_t  *p_pvd_info;   /**< \brief Ö¸Ïò PVD µçÑ¹¼à¿ØĞÅÏ¢µÄÖ¸Õë */
+    am_zlg217_pwr_pvd_info_t  *p_pvd_info;   /**< \brief æŒ‡å‘ PVD ç”µå‹ç›‘æ§ä¿¡æ¯çš„æŒ‡é’ˆ */
 
-    void (*pfn_plfm_init)(void);             /**< \brief Æ½Ì¨³õÊ¼»¯º¯Êı */
+    void (*pfn_plfm_init)(void);             /**< \brief å¹³å°åˆå§‹åŒ–å‡½æ•° */
 
-    void (*pfn_plfm_deinit)(void);           /**< \brief Æ½Ì¨È¥³õÊ¼»¯º¯Êı */
+    void (*pfn_plfm_deinit)(void);           /**< \brief å¹³å°å»åˆå§‹åŒ–å‡½æ•° */
 
 } am_zlg217_pwr_devinfo_t;
 
 /**
- * \brief PWR Éè±¸½á¹¹Ìå
+ * \brief PWR è®¾å¤‡ç»“æ„ä½“
  */
 typedef struct am_zlg217_pwr_dev {
 
-    /** \brief Ö¸Ïò PWR Éè±¸ĞÅÏ¢Ö¸Õë */
+    /** \brief æŒ‡å‘ PWR è®¾å¤‡ä¿¡æ¯æŒ‡é’ˆ */
     const am_zlg217_pwr_devinfo_t *p_pwrdevinfo;
 
-    /** \brief PWR Ä£Ê½ */
+    /** \brief PWR æ¨¡å¼ */
     am_zlg217_pwr_mode_t           pwr_mode;
 
 } am_zlg217_pwr_dev_t;
 
-/** \brief PWR Éè±¸²Ù×÷¾ä±úÀàĞÍ¶¨Òå */
+/** \brief PWR è®¾å¤‡æ“ä½œå¥æŸ„ç±»å‹å®šä¹‰ */
 typedef am_zlg217_pwr_dev_t *am_zlg217_pwr_handle_t;
 
 /**
- * \brief PWR ³õÊ¼»¯
+ * \brief PWR åˆå§‹åŒ–
  *
- * \param[in] p_dev     Ö¸Ïò PWR Éè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[in] p_devinfo Ö¸Ïò PWR Éè±¸ĞÅÏ¢½á¹¹Ìå³£Á¿µÄÖ¸Õë
+ * \param[in] p_dev     æŒ‡å‘ PWR è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo æŒ‡å‘ PWR è®¾å¤‡ä¿¡æ¯ç»“æ„ä½“å¸¸é‡çš„æŒ‡é’ˆ
  *
- * \return ·µ»Ø am_zlg217_pwr_handle_t ÀàĞÍµÄ¾ä±ú
+ * \return è¿”å› am_zlg217_pwr_handle_t ç±»å‹çš„å¥æŸ„
  */
 am_zlg217_pwr_handle_t
 am_zlg217_pwr_init (am_zlg217_pwr_dev_t           *p_dev,
                     const am_zlg217_pwr_devinfo_t *p_devinfo);
 
 /**
- * \brief PWR È¥³õÊ¼»¯
+ * \brief PWR å»åˆå§‹åŒ–
  *
- * \param[in] ÎŞ
+ * \param[in] æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg217_pwr_deinit (void);
 
 /**
- * \brief »ñÈ¡ÏµÍ³Ä£Ê½
+ * \brief è·å–ç³»ç»Ÿæ¨¡å¼
  *
- * \param[in] mode         PWR Ä£Ê½¶¨Òå£¬ÖµÎª am_zlg217_pwr_mode_t ÕâÒ»Ã¶¾ÙÀàĞÍ
- * \param[in] pfn_callback »½ĞÑ»Øµ÷º¯Êı
- * \param[in] p_arg        »½ĞÑ»Øµ÷º¯Êı ²ÎÊı
+ * \param[in] mode         PWR æ¨¡å¼å®šä¹‰ï¼Œå€¼ä¸º am_zlg217_pwr_mode_t è¿™ä¸€æšä¸¾ç±»å‹
+ * \param[in] pfn_callback å”¤é†’å›è°ƒå‡½æ•°
+ * \param[in] p_arg        å”¤é†’å›è°ƒå‡½æ•° å‚æ•°
  *
- * \return ÎŞ
+ * \return æ— 
  *
- * \note Õâ¸ö»½ĞÑµÄÅäÖÃµÄ PWR Ä£Ê½±ØĞëÓë am_zlg217_pwr_mode_into º¯ÊıµÄÑ¡Ôñ PWR
- *       Ä£Ê½ÏàÍ¬£¬ÔÚ AM_ZLG217_PWR_MODE_STANBY Ä£Ê½ÏÂ£¬»½ĞÑ»á¸´Î»£¬×¢²áÖĞ¶Ï»½ĞÑ
- *       º¯Êı»Øµ÷º¯Êı²»Æğ×÷ÓÃ
+ * \note è¿™ä¸ªå”¤é†’çš„é…ç½®çš„ PWR æ¨¡å¼å¿…é¡»ä¸ am_zlg217_pwr_mode_into å‡½æ•°çš„é€‰æ‹© PWR
+ *       æ¨¡å¼ç›¸åŒï¼Œåœ¨ AM_ZLG217_PWR_MODE_STANBY æ¨¡å¼ä¸‹ï¼Œå”¤é†’ä¼šå¤ä½ï¼Œæ³¨å†Œä¸­æ–­å”¤é†’
+ *       å‡½æ•°å›è°ƒå‡½æ•°ä¸èµ·ä½œç”¨
  */
 void am_zlg217_wake_up_cfg (am_zlg217_pwr_mode_t mode,
                             am_pfnvoid_t         pfn_callback,
                             void                *p_arg);
 
 /**
- * \brief ÅäÖÃ PWR Ä£Ê½
+ * \brief é…ç½® PWR æ¨¡å¼
  *
- * \param[in] mode PWR Ä£Ê½¶¨Òå
+ * \param[in] mode PWR æ¨¡å¼å®šä¹‰
  *
- * \retval  AM_OK      Ä£Ê½ÇĞ»»ÓĞĞ§
- * \retval  AM_ERROR   Ä£Ê½ÇĞ»»´íÎó
- * \retval -AM_EINVAL  Ê½²ÎÊı´íÎó
- * \retval -AM_ENOTSUP WAKE_UP Îª¸ßµçÆ½£¬²»ÄÜ½øÈë´ı»úÄ£Ê½
+ * \retval  AM_OK      æ¨¡å¼åˆ‡æ¢æœ‰æ•ˆ
+ * \retval  AM_ERROR   æ¨¡å¼åˆ‡æ¢é”™è¯¯
+ * \retval -AM_EINVAL  å¼å‚æ•°é”™è¯¯
+ * \retval -AM_ENOTSUP WAKE_UP ä¸ºé«˜ç”µå¹³ï¼Œä¸èƒ½è¿›å…¥å¾…æœºæ¨¡å¼
  *
- * \note 1. Ö»ÓĞÔÚ WKUP ÎªµÍµçÆ½µÄÊ±ºò²ÅÄÜ½øÈë´ı»úÄ£Ê½£¬ ÇÒ´ı»úÄ£Ê½»½ĞÑºó½«Ö´ĞĞ¸´Î»²Ù×÷
- *       2. ÅäÖÃ PWR Ä£Ê½Îª AM_ZLG217_PWR_MODE_STANBY Ê§°Üºó£¬WKUP Òı½Å»á±»ÅäÖÃÎªÏÂÀ­
- *          ÊäÈëÄ£Ê½
+ * \note 1. åªæœ‰åœ¨ WKUP ä¸ºä½ç”µå¹³çš„æ—¶å€™æ‰èƒ½è¿›å…¥å¾…æœºæ¨¡å¼ï¼Œ ä¸”å¾…æœºæ¨¡å¼å”¤é†’åå°†æ‰§è¡Œå¤ä½æ“ä½œ
+ *       2. é…ç½® PWR æ¨¡å¼ä¸º AM_ZLG217_PWR_MODE_STANBY å¤±è´¥åï¼ŒWKUP å¼•è„šä¼šè¢«é…ç½®ä¸ºä¸‹æ‹‰
+ *          è¾“å…¥æ¨¡å¼
  */
 int am_zlg217_pwr_mode_into (am_zlg217_pwr_mode_t mode);
 
 /**
- * \brief »ñÈ¡ PWR Ä£Ê½
+ * \brief è·å– PWR æ¨¡å¼
  *
- * \param[in] ÎŞ
+ * \param[in] æ— 
  *
- * \return am_zlg217_pwr_mode_t ÕâÒ»Ã¶¾ÙÀàĞÍµÄÖµ
+ * \return am_zlg217_pwr_mode_t è¿™ä¸€æšä¸¾ç±»å‹çš„å€¼
  */
 am_zlg217_pwr_mode_t am_zlg217_pwr_mode_get (void);
 
 /**
- * \brief ÅäÖÃ PVD µçÑ¹¼ì²âĞÅÏ¢
+ * \brief é…ç½® PVD ç”µå‹æ£€æµ‹ä¿¡æ¯
  *
- * \param[in] pwr_handle   PWR µçÔ´¹ÜÀíÉè±¸¾ä±ú
- * \param[in] pfn_callback µçÑ¹¼à²â»Øµ÷º¯Êı
- * \param[in] p_arg        µçÑ¹¼à²â»Øµ÷º¯Êı²ÎÊı
+ * \param[in] pwr_handle   PWR ç”µæºç®¡ç†è®¾å¤‡å¥æŸ„
+ * \param[in] pfn_callback ç”µå‹ç›‘æµ‹å›è°ƒå‡½æ•°
+ * \param[in] p_arg        ç”µå‹ç›‘æµ‹å›è°ƒå‡½æ•°å‚æ•°
  *
- * \retval AM_OK ÅäÖÃÉèÖÃ³É¹¦
+ * \retval AM_OK é…ç½®è®¾ç½®æˆåŠŸ
  */
 int am_zlg217_pwr_pvd_cfg (am_zlg217_pwr_handle_t pwr_handle,
                            am_pfnvoid_t           pfn_callback,

@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief bootloader Ë«Çøbootloader Í¨¹ı´®¿Ú´«Êä£¬´®¿ÚÖúÊÖ·¢ËÍ¹Ì¼şµÄÀı³Ì
+ * \brief bootloader åŒåŒºbootloader é€šè¿‡ä¸²å£ä¼ è¾“ï¼Œä¸²å£åŠ©æ‰‹å‘é€å›ºä»¶çš„ä¾‹ç¨‹
  *
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_std_double_bootloader.c src_std_double_bootloader
  *
  * \internal
@@ -42,28 +42,28 @@ void demo_std_double_bootloader_entry(am_boot_firwa_recv_handle_t  firwa_recv_ha
                                       am_boot_msg_handle_t         msg_handle)
 {
     int ret;
-    /* ÊÇ·ñ½øÈëÓ¦ÓÃ³ÌĞò¼ì²â  */
+    /* æ˜¯å¦è¿›å…¥åº”ç”¨ç¨‹åºæ£€æµ‹  */
     if(am_boot_enter_check(enter_check_handle)) {
-        /* ÏûÏ¢´¦Àí */
+        /* æ¶ˆæ¯å¤„ç† */
         ret = am_boot_msg_dispose(msg_handle);
         if(ret == AM_OK) {
-            /* ÅĞ¶ÏÓ¦ÓÃ³ÌĞòÊÇ·ñÓĞĞ§ */
+            /* åˆ¤æ–­åº”ç”¨ç¨‹åºæ˜¯å¦æœ‰æ•ˆ */
             if(am_boot_app_is_ready()) {
-                /* Ìø×ªµ½Ó¦ÓÃ³ÌĞò */
+                /* è·³è½¬åˆ°åº”ç”¨ç¨‹åº */
                 am_boot_go_application();
             }
         }
     }
 
     while(1) {
-        /* ¹Ì¼ş½ÓÊÕ */
+        /* å›ºä»¶æ¥æ”¶ */
         ret = am_boot_firmware_recv(firwa_recv_handle);
         if(ret == AM_OK) {
-            /* ¹Ì¼ş½ÓÊÕ³É¹¦£¬ÉèÖÃ±êÖ¾ÎªÓ¦ÓÃ³ÌĞòÇø´úÂëÓĞĞ§ */
+            /* å›ºä»¶æ¥æ”¶æˆåŠŸï¼Œè®¾ç½®æ ‡å¿—ä¸ºåº”ç”¨ç¨‹åºåŒºä»£ç æœ‰æ•ˆ */
             am_boot_msg_set(msg_handle, (void *)AM_BOOTLOADER_FLAG_APP);
             break;
         } else {
-            /* Èç¹û¹Ì¼ş½ÓÊÕÊ§°Ü£¬ÖØĞÂ½ÓÊÕ¹Ì¼ş */
+            /* å¦‚æœå›ºä»¶æ¥æ”¶å¤±è´¥ï¼Œé‡æ–°æ¥æ”¶å›ºä»¶ */
             am_kprintf("boot : firmware receive fail,restart receive firmware\r\n");
         }
     }

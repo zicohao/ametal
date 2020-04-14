@@ -12,23 +12,23 @@
 
 /**
  * \file
- * \brief °´¼üÊäÈëÑÝÊ¾Àý³Ì£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief æŒ‰é”®è¾“å…¥æ¼”ç¤ºä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. ½« J14 µÄ KEY ºÍ PIOC_7 ¶Ì½ÓÔÚÒ»Æð¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. å°† J14 çš„ KEY å’Œ PIOC_7 çŸ­æŽ¥åœ¨ä¸€èµ·ã€‚
  *
- * - ÊµÑéÏÖÏó:
- *   1. °´ÏÂ°´¼üÊ± LED0 ÁÁ£¬ËÉ¿ª°´¼üÊ± LED0 Ãð¡£
+ * - å®žéªŒçŽ°è±¡:
+ *   1. æŒ‰ä¸‹æŒ‰é”®æ—¶ LED0 äº®ï¼Œæ¾å¼€æŒ‰é”®æ—¶ LED0 ç­ã€‚
  *
  * \note
- *    1. LED0 ÐèÒª¶Ì½Ó J9 ÌøÏßÃ±£¬²ÅÄÜ±» PIOC_9 ¿ØÖÆ£»
- *    2. ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIOA_10 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *       PIOA_9 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
- *    3. ²âÊÔ±¾ Demo ±ØÐëÔÚ am_prj_config.h ÄÚ½« AM_CFG_KEY_GPIO_ENABLE¡¢
- *       AM_CFG_KEY_ENABLE ºÍ AM_CFG_SOFTIMER_ENABLE ¶¨ÒåÎª 1¡£µ«ÕâÐ©ºê
- *       ÒÑ¾­Ä¬ÈÏÅäÖÃÎª 1£¬ ÓÃ»§²»±ØÔÙ´ÎÅäÖÃ£»
+ *    1. LED0 éœ€è¦çŸ­æŽ¥ J9 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIOC_9 æŽ§åˆ¶ï¼›
+ *    2. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIOA_10 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *       PIOA_9 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDã€‚
+ *    3. æµ‹è¯•æœ¬ Demo å¿…é¡»åœ¨ am_prj_config.h å†…å°† AM_CFG_KEY_GPIO_ENABLEã€
+ *       AM_CFG_KEY_ENABLE å’Œ AM_CFG_SOFTIMER_ENABLE å®šä¹‰ä¸º 1ã€‚ä½†è¿™äº›å®
+ *       å·²ç»é»˜è®¤é…ç½®ä¸º 1ï¼Œ ç”¨æˆ·ä¸å¿…å†æ¬¡é…ç½®ï¼›
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_zlg217_std_key_input_event.c src_zlg217_std_key_input_event
  *
  * \internal
@@ -49,7 +49,7 @@
 #include "demo_am217_core_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_zlg217_core_std_key_input_event_entry (void)
 {

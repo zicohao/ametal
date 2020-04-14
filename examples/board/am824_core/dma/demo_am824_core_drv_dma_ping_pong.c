@@ -12,16 +12,16 @@
 
 /**
  * \file
- * \brief DMA Æ¹ÅÒ´«ÊäÀý³Ì£¬Í¨¹ýÇý¶¯²ã½Ó¿ÚÊµÏÖ
+ * \brief DMA ä¹’ä¹“ä¼ è¾“ä¾‹ç¨‹ï¼Œé€šè¿‡é©±åŠ¨å±‚æŽ¥å£å®žçŽ°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Èç¹û DMA ´«Êä³É¹¦£¬LED0 ³¤ÁÁ£»
- *   2. Èç¹û DMA ´«ÊäÊ§°Ü£¬LED0 ÉÁË¸¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. å¦‚æžœ DMA ä¼ è¾“æˆåŠŸï¼ŒLED0 é•¿äº®ï¼›
+ *   2. å¦‚æžœ DMA ä¼ è¾“å¤±è´¥ï¼ŒLED0 é—ªçƒã€‚
  *
  * \note
- *    LED0 ÐèÒª¶Ì½Ó J9 ÌøÏßÃ±£¬²ÅÄÜ±» PIO0_20 ¿ØÖÆ¡£
+ *    LED0 éœ€è¦çŸ­æŽ¥ J9 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIO0_20 æŽ§åˆ¶ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am824_drv_dma_ping_pong.c src_am824_drv_dma_ping_pong
  *
  * \internal
@@ -44,13 +44,13 @@
 #include "lpc82x_dma_chan.h"
 #include "demo_nxp_entries.h"
 
-#define  BUF_LEN              16         /**< \brief buffer Êý¾Ý³¤¶È */
+#define  BUF_LEN              16         /**< \brief buffer æ•°æ®é•¿åº¦ */
 
-am_local uint8_t __g_buf_src[BUF_LEN];   /**< \brief Ô´¶ËÊý¾Ý»º³åÇø */
+am_local uint8_t __g_buf_src[BUF_LEN];   /**< \brief æºç«¯æ•°æ®ç¼“å†²åŒº */
 
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am824_core_drv_dma_ping_pong_entry (void)
 {
@@ -58,7 +58,7 @@ void demo_am824_core_drv_dma_ping_pong_entry (void)
     
     am_kprintf("demo am824 drv dma ping pong!\r\n");
 
-    /* ¹Ø±Õ LED0 */
+    /* å…³é—­ LED0 */
     am_led_off(LED0);
   
     for (i = 0; i < BUF_LEN; i++) {

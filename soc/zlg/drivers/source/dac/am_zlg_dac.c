@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief DACÇı¶¯ÊµÏÖ
+ * \brief DACé©±åŠ¨å®ç°
  *
  * \internal
  * \par Modification history
@@ -25,7 +25,7 @@
 #include "hw/amhw_zlg_dac.h"
 
 /*******************************************************************************
-* Ë½ÓĞ¶¨Òå
+* ç§æœ‰å®šä¹‰
 *******************************************************************************/
 
 #define __ZLG_DAC_BITS_GET(p_drv)             \
@@ -35,7 +35,7 @@
         (((am_zlg_dac_dev_t *)p_drv)->p_devinfo->vref)
 
 /*******************************************************************************
-* º¯ÊıÉùÃ÷
+* å‡½æ•°å£°æ˜
 *******************************************************************************/
 static uint32_t __zlg_dac_get_bits (void *p_drv);
 
@@ -48,7 +48,7 @@ static int __zlg_dac_enable (void *p_drv, int chan );
 static int __zlg_dac_disable (void *p_drv, int chan );
 
 /**
- * \brief DAC·şÎñº¯Êı
+ * \brief DACæœåŠ¡å‡½æ•°
  */
 static const struct am_dac_drv_funcs __g_dac_drvfuncs = {
        __zlg_dac_get_bits,
@@ -61,7 +61,7 @@ static const struct am_dac_drv_funcs __g_dac_drvfuncs = {
 /******************************************************************************/
 
 /**
- * \brief »ñÈ¡DAC×ª»»¾«¶È¡£
+ * \brief è·å–DACè½¬æ¢ç²¾åº¦ã€‚
  */
 static uint32_t __zlg_dac_get_bits (void *p_drv)
 {
@@ -69,7 +69,7 @@ static uint32_t __zlg_dac_get_bits (void *p_drv)
 }
 
 /**
- * \brief »ñÈ¡DAC²Î¿¼µçÑ¹¡£
+ * \brief è·å–DACå‚è€ƒç”µå‹ã€‚
  */
 static uint32_t __zlg_dac_get_vref (void *p_drv)
 {
@@ -77,7 +77,7 @@ static uint32_t __zlg_dac_get_vref (void *p_drv)
 }
 
 /**
- * \brief ÉèÖÃÍ¨µÀµÄDAC×ª»»Öµ¡£
+ * \brief è®¾ç½®é€šé“çš„DACè½¬æ¢å€¼ã€‚
  */
 static int __zlg_dac_val_set (void *p_drv, int chan, uint32_t value)
 {
@@ -89,7 +89,7 @@ static int __zlg_dac_val_set (void *p_drv, int chan, uint32_t value)
     }
 
     if ((chan != AMHW_ZLG_DAC_CHAN_1) && (chan != AMHW_ZLG_DAC_CHAN_2)) {
-        return -AM_ENXIO;       /* ÎŞĞ§µÄÍ¨µÀÖµ */
+        return -AM_ENXIO;       /* æ— æ•ˆçš„é€šé“å€¼ */
     }
 
     p_dev->chan = chan;
@@ -113,7 +113,7 @@ static int __zlg_dac_val_set (void *p_drv, int chan, uint32_t value)
 }
 
 /**
- * \brief Æô¶¯DAC×ª»»
+ * \brief å¯åŠ¨DACè½¬æ¢
  */
 static int __zlg_dac_enable (void *p_drv, int chan)
 {
@@ -126,7 +126,7 @@ static int __zlg_dac_enable (void *p_drv, int chan)
     }
 
     if ((chan != AMHW_ZLG_DAC_CHAN_1) && (chan != AMHW_ZLG_DAC_CHAN_2)) {
-        return -AM_ENXIO;       /* ÎŞĞ§µÄÍ¨µÀÖµ */
+        return -AM_ENXIO;       /* æ— æ•ˆçš„é€šé“å€¼ */
     }
 
     p_dev->chan = chan;
@@ -141,7 +141,7 @@ static int __zlg_dac_enable (void *p_drv, int chan)
 }
 
 /**
- * \brief ½ûÖ¹DAC×ª»»
+ * \brief ç¦æ­¢DACè½¬æ¢
  */
 static int __zlg_dac_disable (void *p_drv, int chan )
 {
@@ -154,7 +154,7 @@ static int __zlg_dac_disable (void *p_drv, int chan )
     }
 
     if ((chan != AMHW_ZLG_DAC_CHAN_1) && (chan != AMHW_ZLG_DAC_CHAN_2)) {
-        return -AM_ENXIO;       /* ÎŞĞ§µÄÍ¨µÀÖµ */
+        return -AM_ENXIO;       /* æ— æ•ˆçš„é€šé“å€¼ */
     }
 
     p_dev->chan = chan;
@@ -169,7 +169,7 @@ static int __zlg_dac_disable (void *p_drv, int chan )
 }
 
 /**
- * \brief DAC³õÊ¼»¯
+ * \brief DACåˆå§‹åŒ–
  */
 am_dac_handle_t am_zlg_dac_init (am_zlg_dac_dev_t           *p_dev,
                                  const am_zlg_dac_devinfo_t *p_devinfo)
@@ -196,7 +196,7 @@ am_dac_handle_t am_zlg_dac_init (am_zlg_dac_dev_t           *p_dev,
 }
 
 /**
- * \brief DACÈ¥³õÊ¼»¯
+ * \brief DACå»åˆå§‹åŒ–
  */
 void am_zlg_dac_deinit (am_dac_handle_t handle)
 {

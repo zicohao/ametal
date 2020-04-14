@@ -12,15 +12,15 @@
 
 /**
  * \file
- * \brief MiniPort-LED Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MiniPort-LED ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè£º
- *   1. ½« MiniPort-LED À©Õ¹°åÖ±½ÓÓë AM824-Core µÄ MiniPort ½Ó¿ÚÏàÁ¬½Ó¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. å°† MiniPort-LED æ‰©å±•æ¿ç›´æ¥ä¸ AM824-Core çš„ MiniPort æ¥å£ç›¸è¿æ¥ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Á÷Ë®µÆÏÖÏó¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. æµæ°´ç¯ç°è±¡ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am824_core_miniport_led.c src_am824_core_miniport_led
  *
  * \internal
@@ -41,7 +41,7 @@
 #include "demo_std_entries.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am824_core_miniport_led_entry (void)
 {

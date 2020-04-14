@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief USART Ó²¼ş²Ù×÷½Ó¿ÚÊµÏÖ
+ * \brief USART ç¡¬ä»¶æ“ä½œæ¥å£å®ç°
  *
  * \internal
  * \par Modification History
@@ -28,7 +28,7 @@
 *******************************************************************************/
 
 /**
- * \brief ¼ÆËãÎó²îÖµ
+ * \brief è®¡ç®—è¯¯å·®å€¼
  */
 static int32_t __err_cal (uint32_t  u_clk, 
                           uint32_t  baudrate, 
@@ -46,7 +46,7 @@ static int32_t __err_cal (uint32_t  u_clk,
         err = herr;
     }
     
-    /* Èç¹ûÒÔÇ°µÄÎó²îĞ¡ÓÚµ±Ç°Îó²î */
+    /* å¦‚æœä»¥å‰çš„è¯¯å·®å°äºå½“å‰è¯¯å·® */
     if (*p_prev_err <= err) {  
         return 0;
     }
@@ -62,7 +62,7 @@ static int32_t __err_cal (uint32_t  u_clk,
 
 /******************************************************************************/
 /**
- * \brief È·¶¨·ÖÆµÖµºÍ¹ı²ÉÑùÖµ
+ * \brief ç¡®å®šåˆ†é¢‘å€¼å’Œè¿‡é‡‡æ ·å€¼
  */
 static int __usart_div_cal (uint32_t  u_clk,
                             uint32_t *p_baudrate,
@@ -70,7 +70,7 @@ static int __usart_div_cal (uint32_t  u_clk,
                             uint32_t *p_oversamples)
 {
     uint32_t ovr         = 0;
-    uint32_t pre_err     = ~0UL; /* ³õÊ¼Îó²îÉèÖÃºÜ´óµÄÖµ */
+    uint32_t pre_err     = ~0UL; /* åˆå§‹è¯¯å·®è®¾ç½®å¾ˆå¤§çš„å€¼ */
     uint32_t div         = 0;
     uint32_t oversamples = 0;
   
@@ -82,12 +82,12 @@ static int __usart_div_cal (uint32_t  u_clk,
     
     oversamples = *p_oversamples;
 
-    /* ¼ÆËã×îºÏÊÊµÄ¹ı²ÉÑùÂÊ */
+    /* è®¡ç®—æœ€åˆé€‚çš„è¿‡é‡‡æ ·ç‡ */
     if (oversamples == 0) {
         for (ovr = 16; ovr > 4; ovr--) {
             int32_t tmp = __err_cal(u_clk, *p_baudrate * ovr, &pre_err);
 
-            /* Èç¹ûµ±Ç°Îó²îÃ»ÓĞ½øÒ»²½¼õĞ¡¾ÍÌø¹ıÏÂÃæ³ÌĞò */
+            /* å¦‚æœå½“å‰è¯¯å·®æ²¡æœ‰è¿›ä¸€æ­¥å‡å°å°±è·³è¿‡ä¸‹é¢ç¨‹åº */
             if (!tmp) {
                 continue;
             }
@@ -107,7 +107,7 @@ static int __usart_div_cal (uint32_t  u_clk,
         return -AM_EINVAL;
     }
 
-    /* ¼ÆËã³ö×îºÏÊÊµÄ¹ı²ÉÑùÓë·ÖÆµÖµºÍÆä¶ÔÓ¦µÄÕæÊµ²¨ÌØÂÊ */
+    /* è®¡ç®—å‡ºæœ€åˆé€‚çš„è¿‡é‡‡æ ·ä¸åˆ†é¢‘å€¼å’Œå…¶å¯¹åº”çš„çœŸå®æ³¢ç‰¹ç‡ */
     *p_div         = div;
     *p_baudrate    = u_clk / (div * oversamples);         
     *p_oversamples = oversamples;
@@ -167,7 +167,7 @@ int amhw_lpc_usart_baudrate_set (amhw_lpc_usart_t *p_hw_usart,
 
 /******************************************************************************/
 /**
- * \brief ´®¿Ú²¨ÌØÂÊ»ñÈ¡
+ * \brief ä¸²å£æ³¢ç‰¹ç‡è·å–
  */
 uint32_t amhw_lpc_usart_baudrate_get (amhw_lpc_usart_t *p_hw_usart,
                                       uint32_t          u_clk)
@@ -194,7 +194,7 @@ uint32_t amhw_lpc_usart_baudrate_get (amhw_lpc_usart_t *p_hw_usart,
 
 /******************************************************************************/
 /**
- * \brief USARTÊı¾İ·¢ËÍ(²éÑ¯Ä£Ê½)
+ * \brief USARTæ•°æ®å‘é€(æŸ¥è¯¢æ¨¡å¼)
  */
 int amhw_lpc_usart_poll_send (amhw_lpc_usart_t *p_hw_usart,
                               const uint8_t    *p_txbuf,
@@ -216,7 +216,7 @@ int amhw_lpc_usart_poll_send (amhw_lpc_usart_t *p_hw_usart,
 
 /******************************************************************************/
 /**
- * \brief USARTÊı¾İ½ÓÊÕ(²éÑ¯Ä£Ê½)
+ * \brief USARTæ•°æ®æ¥æ”¶(æŸ¥è¯¢æ¨¡å¼)
  */
 int amhw_lpc_usart_poll_receive (amhw_lpc_usart_t *p_hw_usart,
                                  uint8_t          *p_rxbuf,

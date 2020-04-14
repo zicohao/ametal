@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief MicroPort-EEPROM ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief MicroPort-EEPROM ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_microport_eeprom.c
  *
  * \internal
@@ -34,20 +34,20 @@
  */
 
 /*******************************************************************************
-  MicroPort-EEPROM ÊµÀı³õÊ¼»¯£¨Ê¹ÓÃĞ¾Æ¬¹¦ÄÜ£©
+  MicroPort-EEPROM å®ä¾‹åˆå§‹åŒ–ï¼ˆä½¿ç”¨èŠ¯ç‰‡åŠŸèƒ½ï¼‰
 *******************************************************************************/
 
-/** \brief MicroPort-EEPROM Éè±¸ĞÅÏ¢ */
+/** \brief MicroPort-EEPROM è®¾å¤‡ä¿¡æ¯ */
 am_local am_const am_ep24cxx_devinfo_t __g_microport_eeprom_devinfo = {
-    0x50,                  /* Éè±¸ 7 Î»´Ó»úµØÖ· */
-    AM_EP24CXX_FM24C02,    /* Æ÷¼şĞÍºÅ */
+    0x50,                  /* è®¾å¤‡ 7 ä½ä»æœºåœ°å€ */
+    AM_EP24CXX_FM24C02,    /* å™¨ä»¶å‹å· */
 };
 
-/** \brief MicroPort-EEPROM Éè±¸ÊµÀı */
+/** \brief MicroPort-EEPROM è®¾å¤‡å®ä¾‹ */
 am_local  am_ep24cxx_dev_t __g_microport_eeprom_dev;
 
 /**
- * \brief MicroPort-EEPROM ÊµÀı³õÊ¼»¯£¨Ê¹ÓÃĞ¾Æ¬¹¦ÄÜ£©
+ * \brief MicroPort-EEPROM å®ä¾‹åˆå§‹åŒ–ï¼ˆä½¿ç”¨èŠ¯ç‰‡åŠŸèƒ½ï¼‰
  */
 am_ep24cxx_handle_t am_microport_eeprom_inst_init (void)
 {
@@ -59,14 +59,14 @@ am_ep24cxx_handle_t am_microport_eeprom_inst_init (void)
 }
 
 /*******************************************************************************
-  MicroPort-EEPROM ÊµÀı³õÊ¼»¯£¨½« FM24C02 ÓÃ×÷±ê×¼µÄ NVRAM Éè±¸£©
+  MicroPort-EEPROM å®ä¾‹åˆå§‹åŒ–ï¼ˆå°† FM24C02 ç”¨ä½œæ ‡å‡†çš„ NVRAM è®¾å¤‡ï¼‰
 *******************************************************************************/
 
-/** \brief MicroPort-EEPROM Éè±¸ÊµÀı */
+/** \brief MicroPort-EEPROM è®¾å¤‡å®ä¾‹ */
 am_local am_nvram_dev_t __g_microport_eeprom_nvram_dev;
 
 /**
- * \brief MicroPort-EEPROM ÊµÀı³õÊ¼»¯£¨½« FM24C02 ÓÃ×÷±ê×¼µÄ NVRAM Éè±¸£©
+ * \brief MicroPort-EEPROM å®ä¾‹åˆå§‹åŒ–ï¼ˆå°† FM24C02 ç”¨ä½œæ ‡å‡†çš„ NVRAM è®¾å¤‡ï¼‰
  */
 int am_microport_eeprom_nvram_inst_init (void)
 {

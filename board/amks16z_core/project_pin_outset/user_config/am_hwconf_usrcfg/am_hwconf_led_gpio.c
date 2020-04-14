@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief GPIO LED配置文件
+ * \brief GPIO LED閰嶇疆鏂囦欢
  *
  * \internal
  * \par Modification history
@@ -32,20 +32,20 @@
  */
 
 /*******************************************************************************
-  板上LED相关信息
+  鏉夸笂LED鐩稿叧淇℃伅
 *******************************************************************************/
 
-/** \brief 板上LED对应的led引脚  */
+/** \brief 鏉夸笂LED瀵瑰簲鐨刲ed寮曡剼  */
 static const int __g_led_pin[ ] = {__LED0_GPIO, __LED1_GPIO};
 
-/** \brief 板上LED的GPIO管脚和是否低电平点亮 */
+/** \brief 鏉夸笂LED鐨凣PIO绠¤剼鍜屾槸鍚︿綆鐢靛钩鐐逛寒 */
 static const am_led_gpio_info_t __g_led_gpio_info = {
      {LED0, LED1},
 	 __g_led_pin,
      AM_TRUE
 };
 
-/* 定义GPIO LED 实例        */
+/* 瀹氫箟GPIO LED 瀹炰緥        */
 static am_led_gpio_dev_t __g_led_gpio_dev;
 
 /** \brief GPIO LED instance init */

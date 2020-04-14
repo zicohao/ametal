@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief MiniPort-ZLG72128 ÅäÖÃÎÄ¼ş
+ * \brief MiniPort-ZLG72128 é…ç½®æ–‡ä»¶
  *
  * \internal
  * \par Modification history
@@ -30,10 +30,10 @@ extern "C" {
 #include "ametal.h"
 
 /**
- * \brief MiniPort-ZLG72128 ÊµÀı³õÊ¼»¯
+ * \brief MiniPort-ZLG72128 å®ä¾‹åˆå§‹åŒ–
  *
- * \retval  AW_OK  ³õÊ¼»¯³É¹¦£¬¿ÉÒÔÊ¹ÓÃÍ¨ÓÃÊıÂë¹Ü½Ó¿ÚºÍ°´¼ü½Ó¿Ú²Ù×÷ZLG72128
- * \retval   < 0   ³õÊ¼»¯Ê§°Ü£¬Çë¼ì²éCÎÄ¼şÖĞ¸÷ÅäÖÃÏîÊÇ·ñºÏ·¨
+ * \retval  AW_OK  åˆå§‹åŒ–æˆåŠŸï¼Œå¯ä»¥ä½¿ç”¨é€šç”¨æ•°ç ç®¡æ¥å£å’ŒæŒ‰é”®æ¥å£æ“ä½œZLG72128
+ * \retval   < 0   åˆå§‹åŒ–å¤±è´¥ï¼Œè¯·æ£€æŸ¥Cæ–‡ä»¶ä¸­å„é…ç½®é¡¹æ˜¯å¦åˆæ³•
  */
 int am_miniport_zlg72128_inst_init (void);
 

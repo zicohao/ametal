@@ -12,27 +12,27 @@
 
 /**
  * \file
- * \brief ��ͨ��ADC�ɼ� ���̣�ͨ����׼�ӿ�ʵ��
+ * \brief 多通道ADC采集 例程，通过标准接口实现
  *
- * - �������裺
- *   1. PIOA_0 (ADC ͨ�� 0) ����ģ�����롣
- *   2. PIOA_1 (ADC ͨ�� 1) ����ģ�����롣
- *   3. PIOA_2 (ADC ͨ�� 2) ����ģ�����롣
- *   4. PIOA_3 (ADC ͨ�� 3) ����ģ�����롣
+ * - 操作步骤：
+ *   1. PIOA_0 (ADC 通道 0) 连接模拟输入。
+ *   2. PIOA_1 (ADC 通道 1) 连接模拟输入。
+ *   3. PIOA_2 (ADC 通道 2) 连接模拟输入。
+ *   4. PIOA_3 (ADC 通道 3) 连接模拟输入。
  *
- * - ʵ������
- *   1. ���������ѹ����ֵ��
+ * - 实验现象：
+ *   1. 串口输出电压采样值。
  *
  * \note
- *    1. ʹ�� ADC ģ�鹦�ܣ����뱣֤ ADC ģ���ϵ磻
- *    2. ��Ҫ��֤am_hwconf_zlg217_adc.c�ļ��еĶ�Ӧͨ�����ŵĳ�ʼ��ע�ʹ򿪣�
- *    3. ����۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIOA_10 �������� PC ���ڵ� TXD��
- *       PIOA_9 �������� PC ���ڵ� RXD��
- *    4. ���û��û���Ҫ����ADC��ѯ��ȡͨ������Ŀ�����߱����ȡͨ����˳��ֻ���޸�
- *       adc_chan[]�����е�ͨ��ֵ���ɣ�ע����Ҫ��am_hwconf_zlg217_adc.c
- *       �ļ��н�ͨ�����ŵĳ�ʼ��ע�ʹ򿪡�
+ *    1. 使用 ADC 模块功能，必须保证 ADC 模块上电；
+ *    2. 需要保证am_hwconf_zlg217_adc.c文件中的对应通道引脚的初始化注释打开；
+ *    3. 如需观察串口打印的调试信息，需要将 PIOA_10 引脚连接 PC 串口的 TXD，
+ *       PIOA_9 引脚连接 PC 串口的 RXD。
+ *    4. 若用户用户需要添加ADC轮询读取通道的数目，或者变更读取通道的顺序，只需修改
+ *       adc_chan[]数组中的通道值即可，注意需要在am_hwconf_zlg217_adc.c
+ *       文件中将通道引脚的初始化注释打开。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_zlg217_core_std_multichan_adc.c src_zlg217_core_std_multichan_adc
  *
  * \internal
@@ -56,11 +56,11 @@
 #include "demo_am217_core_entries.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_zlg217_core_std_multichan_adc_entry (void)
 {
-    /* ADCͨ��0,1,2,3 */
+    /* ADC通道0,1,2,3 */
     int adc_chan[] = {0, 1, 2, 3};
 
     AM_DBG_INFO("demo am217_core std adc int!\r\n");

@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZMF159 SPI ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief ZMF159 SPI ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_zmf159_spi_int.c
  *
  * \internal
@@ -34,7 +34,7 @@
  * @{
  */
 
-/** \brief SPI1 Æ½Ì¨³õÊ¼»¯ */
+/** \brief SPI1 å¹³å°åˆå§‹åŒ– */
 static void __zlg_plfm_spi1_int_init (void)
 {
     am_gpio_pin_cfg(PIOB_3, PIOB_3_SPI1_SCK | PIOB_3_AF_PP);
@@ -46,11 +46,11 @@ static void __zlg_plfm_spi1_int_init (void)
     am_clk_enable(CLK_SPI1);
 }
 
-/** \brief ½â³ıSPI1 Æ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤SPI1 å¹³å°åˆå§‹åŒ– */
 static void __zlg_plfm_spi1_int_deinit (void)
 {
 
-    /* ÊÍ·ÅÒı½ÅÎªÊäÈëÄ£Ê½ */
+    /* é‡Šæ”¾å¼•è„šä¸ºè¾“å…¥æ¨¡å¼ */
     am_gpio_pin_cfg(PIOB_3, AM_GPIO_INPUT);
     am_gpio_pin_cfg(PIOB_4, AM_GPIO_INPUT);
     am_gpio_pin_cfg(PIOB_5, AM_GPIO_INPUT);
@@ -59,28 +59,28 @@ static void __zlg_plfm_spi1_int_deinit (void)
 }
 
 /**
- * \brief SPI1 Éè±¸ĞÅÏ¢
+ * \brief SPI1 è®¾å¤‡ä¿¡æ¯
  */
 const  struct am_zlg_spi_int_devinfo  __g_spi1_int_devinfo = {
-    ZMF159_SPI1_BASE,                   /**< \brief SPI1¼Ä´æÆ÷Ö¸Õë */
-    CLK_SPI1,                           /**< \brief Ê±ÖÓIDºÅ */
-    INUM_SPI1,                          /**< \brief SPI1ÖĞ¶ÏºÅ */
-    PIOB_5_SPI1_MOSI | PIOB_5_AF_PP,    /**< \brief SPI1ÅäÖÃ±êÊ¶ */
-    PIOB_5,                             /**< \brief MOSIÒı½ÅºÅ */
-    __zlg_plfm_spi1_int_init,           /**< \brief SPI1Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __zlg_plfm_spi1_int_deinit          /**< \brief SPI1Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    ZMF159_SPI1_BASE,                   /**< \brief SPI1å¯„å­˜å™¨æŒ‡é’ˆ */
+    CLK_SPI1,                           /**< \brief æ—¶é’ŸIDå· */
+    INUM_SPI1,                          /**< \brief SPI1ä¸­æ–­å· */
+    PIOB_5_SPI1_MOSI | PIOB_5_AF_PP,    /**< \brief SPI1é…ç½®æ ‡è¯† */
+    PIOB_5,                             /**< \brief MOSIå¼•è„šå· */
+    __zlg_plfm_spi1_int_init,           /**< \brief SPI1å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __zlg_plfm_spi1_int_deinit          /**< \brief SPI1å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 };
 
-/** \brief SPI1 Éè±¸ÊµÀı */
+/** \brief SPI1 è®¾å¤‡å®ä¾‹ */
 static am_zlg_spi_int_dev_t __g_spi1_int_dev;
 
-/** \brief SPI1 ÊµÀı³õÊ¼»¯£¬»ñµÃSPI±ê×¼·şÎñ¾ä±ú */
+/** \brief SPI1 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—SPIæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_spi_handle_t am_zmf159_spi1_int_inst_init (void)
 {
     return am_zlg_spi_int_init(&__g_spi1_int_dev, &__g_spi1_int_devinfo);
 }
 
-/** \brief SPI1 ÊµÀı½â³õÊ¼»¯ */
+/** \brief SPI1 å®ä¾‹è§£åˆå§‹åŒ– */
 void am_zmf159_spi1_int_inst_deinit (am_spi_handle_t handle)
 {
     am_zlg_spi_int_deinit(handle);
@@ -88,7 +88,7 @@ void am_zmf159_spi1_int_inst_deinit (am_spi_handle_t handle)
 
 /*******************************************************************************/
 
-/** \brief SPI2 Æ½Ì¨³õÊ¼»¯ */
+/** \brief SPI2 å¹³å°åˆå§‹åŒ– */
 static void __zlg_plfm_spi2_int_init (void)
 {
     am_gpio_pin_cfg(PIOB_13, PIOB_13_SPI2_SCK | PIOB_13_INPUT_FLOAT);
@@ -98,7 +98,7 @@ static void __zlg_plfm_spi2_int_init (void)
     am_clk_enable(CLK_SPI2);
 }
 
-/** \brief ½â³ı SPI2 Æ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤ SPI2 å¹³å°åˆå§‹åŒ– */
 static void __zlg_plfm_spi2_int_deinit (void)
 {
     am_gpio_pin_cfg(PIOB_13, AM_GPIO_INPUT);
@@ -108,28 +108,28 @@ static void __zlg_plfm_spi2_int_deinit (void)
     am_clk_disable(CLK_SPI2);
 }
 /**
- * \brief SPI2 Éè±¸ĞÅÏ¢
+ * \brief SPI2 è®¾å¤‡ä¿¡æ¯
  */
 const  struct am_zlg_spi_int_devinfo  __g_spi2_int_devinfo = {
-    ZMF159_SPI2_BASE,                      /**< \brief SPI2 ¼Ä´æÆ÷Ö¸Õë */
-    CLK_SPI2,                              /**< \brief Ê±ÖÓ ID ºÅ */
-    INUM_SPI2,                             /**< \brief SPI2 ÖĞ¶ÏºÅ */
-    PIOB_14_SPI2_MISO | PIOB_14_AF_PP,     /**< \brief SPI2 ÅäÖÃ±êÊ¶ */
-    PIOB_14,                               /**< \brief MOSI Òı½ÅºÅ */
-    __zlg_plfm_spi2_int_init,              /**< \brief SPI2 Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __zlg_plfm_spi2_int_deinit             /**< \brief SPI2 Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    ZMF159_SPI2_BASE,                      /**< \brief SPI2 å¯„å­˜å™¨æŒ‡é’ˆ */
+    CLK_SPI2,                              /**< \brief æ—¶é’Ÿ ID å· */
+    INUM_SPI2,                             /**< \brief SPI2 ä¸­æ–­å· */
+    PIOB_14_SPI2_MISO | PIOB_14_AF_PP,     /**< \brief SPI2 é…ç½®æ ‡è¯† */
+    PIOB_14,                               /**< \brief MOSI å¼•è„šå· */
+    __zlg_plfm_spi2_int_init,              /**< \brief SPI2 å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __zlg_plfm_spi2_int_deinit             /**< \brief SPI2 å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 };
 
-/** \brief SPI2 Éè±¸ÊµÀı */
+/** \brief SPI2 è®¾å¤‡å®ä¾‹ */
 static am_zlg_spi_int_dev_t __g_spi2_int_dev;
 
-/** \brief SPI2 ÊµÀı³õÊ¼»¯£¬»ñµÃ SPI ±ê×¼·şÎñ¾ä±ú */
+/** \brief SPI2 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— SPI æ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_spi_handle_t am_zmf159_spi2_int_inst_init (void)
 {
     return am_zlg_spi_int_init(&__g_spi2_int_dev, &__g_spi2_int_devinfo);
 }
 
-/** \brief SPI2 ÊµÀı½â³õÊ¼»¯ */
+/** \brief SPI2 å®ä¾‹è§£åˆå§‹åŒ– */
 void am_zmf159_spi2_int_inst_deinit (am_spi_handle_t handle)
 {
     am_zlg_spi_int_deinit(handle);
@@ -137,7 +137,7 @@ void am_zmf159_spi2_int_inst_deinit (am_spi_handle_t handle)
 
 /*******************************************************************************/
 
-/** \brief SPI3 Æ½Ì¨³õÊ¼»¯ */
+/** \brief SPI3 å¹³å°åˆå§‹åŒ– */
 static void __zlg_plfm_spi3_int_init (void)
 {
 
@@ -148,7 +148,7 @@ static void __zlg_plfm_spi3_int_init (void)
     am_clk_enable(CLK_SPI3);
 }
 
-/** \brief ½â³ı SPI2 Æ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤ SPI2 å¹³å°åˆå§‹åŒ– */
 static void __zlg_plfm_spi3_int_deinit (void)
 {
     am_gpio_pin_cfg(PIOC_10, AM_GPIO_INPUT);
@@ -158,28 +158,28 @@ static void __zlg_plfm_spi3_int_deinit (void)
     am_clk_disable(CLK_SPI3);
 }
 /**
- * \brief SPI3 Éè±¸ĞÅÏ¢
+ * \brief SPI3 è®¾å¤‡ä¿¡æ¯
  */
 const  struct am_zlg_spi_int_devinfo  __g_spi3_int_devinfo = {
-    ZMF159_SPI3_BASE,                      /**< \brief SPI2 ¼Ä´æÆ÷Ö¸Õë */
-    CLK_SPI3,                              /**< \brief Ê±ÖÓ ID ºÅ */
-    INUM_SPI3,                             /**< \brief SPI3 ÖĞ¶ÏºÅ */
-    PIOC_11_SPI3_MISO | PIOC_11_AF_PP,       /**< \brief SPI3 ÅäÖÃ±êÊ¶ */
-    PIOC_11,                                /**< \brief MOSI Òı½ÅºÅ */
-    __zlg_plfm_spi3_int_init,              /**< \brief SPI3 Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __zlg_plfm_spi3_int_deinit             /**< \brief SPI3 Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    ZMF159_SPI3_BASE,                      /**< \brief SPI2 å¯„å­˜å™¨æŒ‡é’ˆ */
+    CLK_SPI3,                              /**< \brief æ—¶é’Ÿ ID å· */
+    INUM_SPI3,                             /**< \brief SPI3 ä¸­æ–­å· */
+    PIOC_11_SPI3_MISO | PIOC_11_AF_PP,       /**< \brief SPI3 é…ç½®æ ‡è¯† */
+    PIOC_11,                                /**< \brief MOSI å¼•è„šå· */
+    __zlg_plfm_spi3_int_init,              /**< \brief SPI3 å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __zlg_plfm_spi3_int_deinit             /**< \brief SPI3 å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 };
 
-/** \brief SPI3 Éè±¸ÊµÀı */
+/** \brief SPI3 è®¾å¤‡å®ä¾‹ */
 static am_zlg_spi_int_dev_t __g_spi3_int_dev;
 
-/** \brief SPI3 ÊµÀı³õÊ¼»¯£¬»ñµÃ SPI ±ê×¼·şÎñ¾ä±ú */
+/** \brief SPI3 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— SPI æ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_spi_handle_t am_zmf159_spi3_int_inst_init (void)
 {
     return am_zlg_spi_int_init(&__g_spi3_int_dev, &__g_spi3_int_devinfo);
 }
 
-/** \brief SPI3 ÊµÀı½â³õÊ¼»¯ */
+/** \brief SPI3 å®ä¾‹è§£åˆå§‹åŒ– */
 void am_zmf159_spi3_int_inst_deinit (am_spi_handle_t handle)
 {
     am_zlg_spi_int_deinit(handle);

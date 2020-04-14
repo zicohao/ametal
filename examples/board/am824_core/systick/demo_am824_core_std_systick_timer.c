@@ -12,17 +12,17 @@
 
 /**
  * \file
- * \brief Systick ���̣�ͨ����׼�ӿ�ʵ��
+ * \brief Systick 例程，通过标准接口实现
  *
- * - ʵ������
- *   1. ���� �� 10Hz ��Ƶ�ʴ�ӡ��
+ * - 实验现象：
+ *   1. 串口 以 10Hz 的频率打印。
  *
  * \note
- *    1. LED0 ��Ҫ�̽� J9 ����ñ�����ܱ� PIO0_20 ���ƣ�
- *    2. ���� Systick Ĭ����Ϊϵͳ��ʱʹ�ã�ʹ�ò��Ա� Demo ǰ��Ҫ��
- *       am_prj_config.h �е� AM_CFG_DELAY_ENABLE ����Ϊ 0����ʹ��ϵͳ��ʱ��
+ *    1. LED0 需要短接 J9 跳线帽，才能被 PIO0_20 控制；
+ *    2. 由于 Systick 默认作为系统延时使用，使用测试本 Demo 前需要将
+ *       am_prj_config.h 中的 AM_CFG_DELAY_ENABLE 定义为 0，不使用系统延时。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_am824_std_systick_timer.c src_am824_std_systick_timer
  *
  * \internal
@@ -44,7 +44,7 @@
 #include "demo_std_entries.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_am824_core_std_systick_timer_entry (void)
 {

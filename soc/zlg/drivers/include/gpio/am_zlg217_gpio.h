@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief GPIOÇı¶¯£¬·şÎñGPIO±ê×¼½Ó¿Ú
+ * \brief GPIOé©±åŠ¨ï¼ŒæœåŠ¡GPIOæ ‡å‡†æ¥å£
  *
  * \internal
  * \par Modification history
@@ -40,85 +40,85 @@ extern "C" {
  */
 
 /**
- * \brief Òı½ÅµÄ´¥·¢ĞÅÏ¢
+ * \brief å¼•è„šçš„è§¦å‘ä¿¡æ¯
  */
 struct am_zlg217_gpio_trigger_info {
 
-    /** \brief ´¥·¢»Øµ÷º¯Êı */
+    /** \brief è§¦å‘å›è°ƒå‡½æ•° */
     am_pfnvoid_t  pfn_callback;
 
-    /** \brief »Øµ÷º¯ÊıµÄ²ÎÊı */
+    /** \brief å›è°ƒå‡½æ•°çš„å‚æ•° */
     void         *p_arg;
 };
 
 /**
- * \brief GPIO Éè±¸ĞÅÏ¢
+ * \brief GPIO è®¾å¤‡ä¿¡æ¯
  */
 typedef struct am_zlg217_gpio_devinfo {
 
-    /** \brief GPIO¼Ä´æÆ÷¿é»ùÖ· */
+    /** \brief GPIOå¯„å­˜å™¨å—åŸºå€ */
     uint32_t      gpio_regbase;
 
-    /** \brief EXTI¼Ä´æÆ÷¿é»ùÖ· */
+    /** \brief EXTIå¯„å­˜å™¨å—åŸºå€ */
     uint32_t      exti_regbase;
 
-    /** \brief AFIO¼Ä´æÆ÷¿é»ùÖ· */
+    /** \brief AFIOå¯„å­˜å™¨å—åŸºå€ */
     uint32_t      afio_regbase;
 
-    /** \brief EXITÖĞ¶ÏºÅÁĞ±í */
+    /** \brief EXITä¸­æ–­å·åˆ—è¡¨ */
     const int8_t  inum_pin[7];
 
-    /** \brief GPIOÒı½ÅÊıÁ¿ */
+    /** \brief GPIOå¼•è„šæ•°é‡ */
     const uint8_t pin_count;
 
-    /** \brief GPIOÊ¹ÓÃµÄ×î´óÍâ²¿ÖĞ¶ÏÏß±àºÅ+1 */
+    /** \brief GPIOä½¿ç”¨çš„æœ€å¤§å¤–éƒ¨ä¸­æ–­çº¿ç¼–å·+1 */
     const uint8_t exti_num_max;
 
-    /** \brief ´¥·¢ĞÅÏ¢Ó³Éä */
+    /** \brief è§¦å‘ä¿¡æ¯æ˜ å°„ */
     uint8_t      *p_infomap;
 
-    /** \brief Òı½ÅÖØÓ³ÏñÍâÉèĞÅÏ¢ */
+    /** \brief å¼•è„šé‡æ˜ åƒå¤–è®¾ä¿¡æ¯ */
     amhw_zlg217_afio_remap_peripheral_t  *p_remap;
 
-    /** \brief Ö¸ÏòÒı½Å´¥·¢ĞÅÏ¢µÄÖ¸Õë */
+    /** \brief æŒ‡å‘å¼•è„šè§¦å‘ä¿¡æ¯çš„æŒ‡é’ˆ */
     struct am_zlg217_gpio_trigger_info   *p_triginfo;
 
-    void (*pfn_plfm_init)(void);   /**< \brief Æ½Ì¨³õÊ¼»¯º¯Êı */
+    void (*pfn_plfm_init)(void);   /**< \brief å¹³å°åˆå§‹åŒ–å‡½æ•° */
 
-    void (*pfn_plfm_deinit)(void); /**< \brief Æ½Ì¨È¥³õÊ¼»¯º¯Êı */
+    void (*pfn_plfm_deinit)(void); /**< \brief å¹³å°å»åˆå§‹åŒ–å‡½æ•° */
 
 } am_zlg217_gpio_devinfo_t;
 
 /**
- * \brief GPIOÉè±¸ÊµÀı
+ * \brief GPIOè®¾å¤‡å®ä¾‹
  */
 typedef struct am_zlg217_gpio_dev {
 
-    /** \brief Ö¸ÏòGPIOÉè±¸ĞÅÏ¢µÄÖ¸Õë */
+    /** \brief æŒ‡å‘GPIOè®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ */
     const am_zlg217_gpio_devinfo_t *p_devinfo;
 
-    /** \brief ²ÎÊıÓĞĞ§±êÖ¾ */
+    /** \brief å‚æ•°æœ‰æ•ˆæ ‡å¿— */
     am_bool_t                         valid_flg;
 
 } am_zlg217_gpio_dev_t;
 
 /**
- * \brief GPIO³õÊ¼»¯
+ * \brief GPIOåˆå§‹åŒ–
  *
- * \param[in] p_dev     : Ö¸ÏòGPIOÉè±¸µÄÖ¸Õë
- * \param[in] p_devinfo : Ö¸ÏòGPIOÉè±¸ĞÅÏ¢µÄÖ¸Õë
+ * \param[in] p_dev     : æŒ‡å‘GPIOè®¾å¤‡çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo : æŒ‡å‘GPIOè®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ
  *
- * \retval AM_OK : ²Ù×÷³É¹¦
+ * \retval AM_OK : æ“ä½œæˆåŠŸ
  */
 int am_zlg217_gpio_init (am_zlg217_gpio_dev_t           *p_dev,
                          const am_zlg217_gpio_devinfo_t *p_devinfo);
 
 /**
- * \brief GPIO½â³õÊ¼»¯
+ * \brief GPIOè§£åˆå§‹åŒ–
  *
- * \param[in] ÎŞ
+ * \param[in] æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg217_gpio_deinit (void);
 

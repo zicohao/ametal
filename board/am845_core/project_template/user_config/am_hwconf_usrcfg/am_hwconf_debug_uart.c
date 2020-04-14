@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief µ÷ÊÔ´®¿ÚÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief è°ƒè¯•ä¸²å£ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_debug_uart.c
  *
  * \internal
@@ -32,34 +32,34 @@
  * @{
  */
 
-/** \brief Ê¹ÓÃµÄµ÷ÊÔ´®¿Ú 0: UART0  1: UART1  2: UART2 */
+/** \brief ä½¿ç”¨çš„è°ƒè¯•ä¸²å£ 0: UART0  1: UART1  2: UART2 */
 #define __DEBUG_UART            0
 
-/** \brief ÅäÖÃµ÷ÊÔ´®¿ÚÊä³öµÄ²¨ÌØÂÊ */
+/** \brief é…ç½®è°ƒè¯•ä¸²å£è¾“å‡ºçš„æ³¢ç‰¹ç‡ */
 #define __DEBUG_BAUDRATE        115200
 
 /**
- * \brief µ÷ÊÔ´®¿ÚÊµÀı³õÊ¼»¯
+ * \brief è°ƒè¯•ä¸²å£å®ä¾‹åˆå§‹åŒ–
  */
 am_uart_handle_t am_debug_uart_inst_init (void)
 {
     am_uart_handle_t handle = NULL;
 
 #if (__DEBUG_UART == 0)
-    handle = am_lpc84x_usart0_inst_init();   /* ´®¿Ú³õÊ¼»¯ */
-    am_debug_init(handle, __DEBUG_BAUDRATE); /* µ÷ÊÔ³õÊ¼»¯ */
+    handle = am_lpc84x_usart0_inst_init();   /* ä¸²å£åˆå§‹åŒ– */
+    am_debug_init(handle, __DEBUG_BAUDRATE); /* è°ƒè¯•åˆå§‹åŒ– */
 #elif (__DEBUG_UART == 1)
-    handle = am_lpc84x_usart1_inst_init();   /* ´®¿Ú³õÊ¼»¯ */
-    am_debug_init(handle, __DEBUG_BAUDRATE); /* µ÷ÊÔ³õÊ¼»¯ */
+    handle = am_lpc84x_usart1_inst_init();   /* ä¸²å£åˆå§‹åŒ– */
+    am_debug_init(handle, __DEBUG_BAUDRATE); /* è°ƒè¯•åˆå§‹åŒ– */
 #elif (__DEBUG_UART == 2)
-    handle = am_lpc84x_usart2_inst_init();   /* ´®¿Ú³õÊ¼»¯ */
-    am_debug_init(handle, __DEBUG_BAUDRATE); /* µ÷ÊÔ³õÊ¼»¯ */
+    handle = am_lpc84x_usart2_inst_init();   /* ä¸²å£åˆå§‹åŒ– */
+    am_debug_init(handle, __DEBUG_BAUDRATE); /* è°ƒè¯•åˆå§‹åŒ– */
 #elif (__DEBUG_UART == 3)
-    handle = am_lpc84x_usart3_inst_init();   /* ´®¿Ú³õÊ¼»¯ */
-    am_debug_init(handle, __DEBUG_BAUDRATE); /* µ÷ÊÔ³õÊ¼»¯ */
+    handle = am_lpc84x_usart3_inst_init();   /* ä¸²å£åˆå§‹åŒ– */
+    am_debug_init(handle, __DEBUG_BAUDRATE); /* è°ƒè¯•åˆå§‹åŒ– */
 #elif (__DEBUG_UART == 4)
-    handle = am_lpc84x_usart4_inst_init();   /* ´®¿Ú³õÊ¼»¯ */
-    am_debug_init(handle, __DEBUG_BAUDRATE); /* µ÷ÊÔ³õÊ¼»¯ */
+    handle = am_lpc84x_usart4_inst_init();   /* ä¸²å£åˆå§‹åŒ– */
+    am_debug_init(handle, __DEBUG_BAUDRATE); /* è°ƒè¯•åˆå§‹åŒ– */
 #endif
     return handle;
 }

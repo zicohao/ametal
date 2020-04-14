@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZLG116 ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief ZLG116 ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_prj_config.c
  *
  * \internal
@@ -57,7 +57,7 @@ int main (void)
     am_nvram_inst_init();
 #endif /* (AM_CFG_NVRAM_ENABLE == 1) */
 
-    /* °å¼¶³õÊ¼»¯ */
+    /* æ¿çº§åˆå§‹åŒ– */
     am_board_init();
 #if (AM_CFG_MEM_MODE_RAM_ENABLE == 1)
     memcpy((void*)RAM_START_ADDR,

@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ½ø½øÈëÌõ¼şÅĞ¶Ï¼ì²â±ê×¼½Ó¿Ú
+ * \brief è¿›è¿›å…¥æ¡ä»¶åˆ¤æ–­æ£€æµ‹æ ‡å‡†æ¥å£
  *
  * \internal
  * \par Modification history
@@ -26,36 +26,36 @@
 #include "am_common.h"
 
 /**
- * \brief bootloader ½øÈëÌõ¼şÅĞ¶Ï¼ì²âÇı¶¯º¯Êı½á¹¹Ìå
+ * \brief bootloader è¿›å…¥æ¡ä»¶åˆ¤æ–­æ£€æµ‹é©±åŠ¨å‡½æ•°ç»“æ„ä½“
  */
 struct am_boot_enter_check_drv_funcs {
 
-    /** \brief ½øÈëÌõ¼şÅĞ¶Ï¼ì²â */
+    /** \brief è¿›å…¥æ¡ä»¶åˆ¤æ–­æ£€æµ‹ */
     am_bool_t (*pfn_startup_check) (void *p_drv);
 
-    /** \brief ÖØĞÂ³õÊ¼»¯½øÈëÌõ¼şÅĞ¶Ï¼ì²â */
+    /** \brief é‡æ–°åˆå§‹åŒ–è¿›å…¥æ¡ä»¶åˆ¤æ–­æ£€æµ‹ */
     void      (*pfn_reinit)(void *p_drv);
 };
 
 /**
- * \brief ½øÈëÌõ¼şÅĞ¶Ï¼ì²â±ê×¼·şÎñ½á¹¹Ìå
+ * \brief è¿›å…¥æ¡ä»¶åˆ¤æ–­æ£€æµ‹æ ‡å‡†æœåŠ¡ç»“æ„ä½“
  */
 typedef struct am_boot_enter_check_serv {
-    /**< \brief Éè±¸Çı¶¯º¯Êı½á¹¹ÌåÖ¸Õë */
+    /**< \brief è®¾å¤‡é©±åŠ¨å‡½æ•°ç»“æ„ä½“æŒ‡é’ˆ */
     const struct am_boot_enter_check_drv_funcs *p_funcs;
 
-    /**< \brief Éè±¸Çı¶¯º¯ÊıµÚÒ»¸ö²ÎÊı */
+    /**< \brief è®¾å¤‡é©±åŠ¨å‡½æ•°ç¬¬ä¸€ä¸ªå‚æ•° */
     void                                       *p_drv;
 } am_boot_enter_check_serv_t;
 
-/** \brief ½øÈëÌõ¼şÅĞ¶Ï¼ì²â±ê×¼·şÎñ²Ù×÷¾ä±úÀàĞÍ¶¨Òå */
+/** \brief è¿›å…¥æ¡ä»¶åˆ¤æ–­æ£€æµ‹æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„ç±»å‹å®šä¹‰ */
 typedef am_boot_enter_check_serv_t  *am_boot_enter_check_handle_t;
 
 /**
- * \brief  ½øÈëÌõ¼şÅĞ¶Ï¼ì²â
+ * \brief  è¿›å…¥æ¡ä»¶åˆ¤æ–­æ£€æµ‹
  *
- * \retval AM_TRUE  Ìõ¼şÔÊĞí½øÈë
- * \retval AM_FALSE Ìõ¼ş²»ÔÊĞí½øÈë
+ * \retval AM_TRUE  æ¡ä»¶å…è®¸è¿›å…¥
+ * \retval AM_FALSE æ¡ä»¶ä¸å…è®¸è¿›å…¥
  */
 am_static_inline
 am_bool_t am_boot_enter_check(am_boot_enter_check_handle_t handle)
@@ -67,7 +67,7 @@ am_bool_t am_boot_enter_check(am_boot_enter_check_handle_t handle)
 }
 
 /**
- * \brief ÖØĞÂ³õÊ¼»¯ ½øÈëÌõ¼şÅĞ¶Ï¼ì²â
+ * \brief é‡æ–°åˆå§‹åŒ– è¿›å…¥æ¡ä»¶åˆ¤æ–­æ£€æµ‹
  *
  *
  */

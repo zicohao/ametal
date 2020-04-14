@@ -40,65 +40,65 @@ extern "C" {
  */
  
 /**
- * \brief SPI Éè±¸ĞÅÏ¢½á¹¹Ìå
+ * \brief SPI è®¾å¤‡ä¿¡æ¯ç»“æ„ä½“
  */
 typedef struct am_lpc_spi_poll_devinfo {
-    uint32_t           spi_regbase;       /**< \brief SPI¼Ä´æÆ÷¿éµÄ»ùµØÖ· */
-    uint16_t           inum;              /**< \brief SPI ÖĞ¶Ï±àºÅ    */
+    uint32_t           spi_regbase;       /**< \brief SPIå¯„å­˜å™¨å—çš„åŸºåœ°å€ */
+    uint16_t           inum;              /**< \brief SPI ä¸­æ–­ç¼–å·    */
     uint32_t           clk_id;            /**< \brief SPI clk id */
 
-    /** \brief SPIÆ½Ì¨³õÊ¼»¯º¯Êı£¬Èç´ò¿ªÊ±ÖÓ£¬ÅäÖÃÒı½ÅµÈ¹¤×÷ */
+    /** \brief SPIå¹³å°åˆå§‹åŒ–å‡½æ•°ï¼Œå¦‚æ‰“å¼€æ—¶é’Ÿï¼Œé…ç½®å¼•è„šç­‰å·¥ä½œ */
     void     (*pfn_plfm_init)(void);
 
-    /** \brief SPIÆ½Ì¨½â³õÊ¼»¯º¯Êı */
+    /** \brief SPIå¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
     void     (*pfn_plfm_deinit)(void);
 
 } am_lpc_spi_poll_devinfo_t;
 
 /**
- * \brief SPI Éè±¸
+ * \brief SPI è®¾å¤‡
  */
 typedef struct am_lpc_spi_poll_dev {
 
-    am_spi_serv_t                    spi_serve;       /**< \brief SPI±ê×¼·şÎñ¾ä±ú.   */
-    const am_lpc_spi_poll_devinfo_t *p_devinfo;  /**< \brief SPIÉè±¸ĞÅÏ¢µÄÖ¸Õë. */
+    am_spi_serv_t                    spi_serve;       /**< \brief SPIæ ‡å‡†æœåŠ¡å¥æŸ„.   */
+    const am_lpc_spi_poll_devinfo_t *p_devinfo;  /**< \brief SPIè®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ. */
 
-    struct am_list_head        msg_list;        /**< \brief SPI¿ØÖÆÆ÷ÏûÏ¢¶ÓÁĞ . */
+    struct am_list_head        msg_list;        /**< \brief SPIæ§åˆ¶å™¨æ¶ˆæ¯é˜Ÿåˆ— . */
 
-    /** \brief Ö¸ÏòSPIÏûÏ¢½á¹¹ÌåµÄÖ¸Õë,Í¬Ò»Ê±¼äÖ»ÄÜ´¦ÀíÒ»¸öÏûÏ¢ */
+    /** \brief æŒ‡å‘SPIæ¶ˆæ¯ç»“æ„ä½“çš„æŒ‡é’ˆ,åŒä¸€æ—¶é—´åªèƒ½å¤„ç†ä¸€ä¸ªæ¶ˆæ¯ */
     am_spi_message_t          *p_cur_msg;
 
-    /** \brief Ö¸ÏòSPI´«Êä½á¹¹ÌåµÄÖ¸Õë,Í¬Ò»Ê±¼äÖ»ÄÜ´¦ÀíÒ»¸ö´«Êä */
+    /** \brief æŒ‡å‘SPIä¼ è¾“ç»“æ„ä½“çš„æŒ‡é’ˆ,åŒä¸€æ—¶é—´åªèƒ½å¤„ç†ä¸€ä¸ªä¼ è¾“ */
     am_spi_transfer_t         *p_cur_trans;
 
-    am_spi_device_t           *p_cur_spi_dev;   /**< \brief µ±Ç°´«ÊäµÄSPIÉè±¸. */
-    am_spi_device_t           *p_tgl_dev;       /**< \brief µ±Ç°×ÔËøµÄSPIÉè±¸. */
+    am_spi_device_t           *p_cur_spi_dev;   /**< \brief å½“å‰ä¼ è¾“çš„SPIè®¾å¤‡. */
+    am_spi_device_t           *p_tgl_dev;       /**< \brief å½“å‰è‡ªé”çš„SPIè®¾å¤‡. */
 
-    uint32_t                   nbytes_to_recv;  /**< \brief ´ı½ÓÊÕµÄ×Ö½ÚÊı.    */
-    uint32_t                   data_ptr;        /**< \brief Êı¾İ´«Êä¼ÆÊı.      */
+    uint32_t                   nbytes_to_recv;  /**< \brief å¾…æ¥æ”¶çš„å­—èŠ‚æ•°.    */
+    uint32_t                   data_ptr;        /**< \brief æ•°æ®ä¼ è¾“è®¡æ•°.      */
 
-    am_bool_t                  busy;            /**< \brief SPIÃ¦±êÊ¶.        */
-    uint32_t                   state;           /**< \brief SPI¿ØÖÆÆ÷×´Ì¬»ú×´Ì¬. */
+    am_bool_t                  busy;            /**< \brief SPIå¿™æ ‡è¯†.        */
+    uint32_t                   state;           /**< \brief SPIæ§åˆ¶å™¨çŠ¶æ€æœºçŠ¶æ€. */
 
-    uint32_t                   bef_speed_hz;    /**< \brief SPIÉÏ´Î´«ÊäµÄËÙÂÊ£¨ÈôÓë±¾´ÎÏàÍ¬Ôò²»ĞèÒª½øĞĞÖØĞÂÅäÖÃ£©. */
-    uint8_t                    bef_bits_per_word; /**< \brief SPIÉÏ´Î´«ÊäµÄÎ»¿í. */
+    uint32_t                   bef_speed_hz;    /**< \brief SPIä¸Šæ¬¡ä¼ è¾“çš„é€Ÿç‡ï¼ˆè‹¥ä¸æœ¬æ¬¡ç›¸åŒåˆ™ä¸éœ€è¦è¿›è¡Œé‡æ–°é…ç½®ï¼‰. */
+    uint8_t                    bef_bits_per_word; /**< \brief SPIä¸Šæ¬¡ä¼ è¾“çš„ä½å®½. */
 } am_lpc_spi_poll_dev_t;
 
 /**
- * \brief SPI ³õÊ¼»¯
+ * \brief SPI åˆå§‹åŒ–
  *
- * \param[in] p_dev     : Ö¸ÏòSPIÉè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[in] p_devinfo : Ö¸ÏòSPIÉè±¸ĞÅÏ¢½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] p_dev     : æŒ‡å‘SPIè®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo : æŒ‡å‘SPIè®¾å¤‡ä¿¡æ¯ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return SPI±ê×¼·şÎñ²Ù×÷¾ä±ú
+ * \return SPIæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  */
 am_spi_handle_t am_lpc_spi_poll_init (am_lpc_spi_poll_dev_t            *p_dev,
                                       const am_lpc_spi_poll_devinfo_t  *p_devinfo);
 
 /**
- * \brief ½â³ıSPI³õÊ¼»¯
- * \param[in] handle : SPI±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \return ÎŞ
+ * \brief è§£é™¤SPIåˆå§‹åŒ–
+ * \param[in] handle : SPIæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \return æ— 
  */
 void am_lpc_spi_poll_deinit (am_spi_handle_t handle);
 

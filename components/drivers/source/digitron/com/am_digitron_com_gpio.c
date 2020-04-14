@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief Î»ÂëÇý¶¯£¨GPIO£©
+ * \brief ÃŽÂ»Ã‚Ã«Ã‡Ã½Â¶Â¯Â£Â¨GPIOÂ£Â©
  *
  * \internal
  * \par modification history:

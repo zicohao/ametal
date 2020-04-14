@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief  DS1302 Ó¦ÓÃ½Ó¿ÚÎÄ¼þ
+ * \brief  DS1302 åº”ç”¨æŽ¥å£æ–‡ä»¶
  *
  * \internal
  * \par Modification History
@@ -39,158 +39,158 @@ extern "C" {
 #include "am_spi.h"
  
 /**
- * \brief DS1302spiÄ£Ê½Éè±¸ÐÅÏ¢½á¹¹Ìå
+ * \brief DS1302spiæ¨¡å¼è®¾å¤‡ä¿¡æ¯ç»“æž„ä½“
  *
- * ÈýÏßÖÆSPIÄ£Ê½£¬Õë¶ÔMOSIÓëMISO½Óµ½Ò»ÆðµÄÐ¾Æ¬
- * ÐèÒªÇý¶¯µ×²ãÖ§³ÖSPIÈýÏßÖÆ´«Êä,ÈôÇý¶¯µ×²ã²»Ö§³Ö
- * ÈýÏßÖÆ´«Êä£¬Ôò»á±¨´í£¬ÄÇÃ´ÇëÑ¡ÔñgpioÄ£Ê½²Ù×÷
+ * ä¸‰çº¿åˆ¶SPIæ¨¡å¼ï¼Œé’ˆå¯¹MOSIä¸ŽMISOæŽ¥åˆ°ä¸€èµ·çš„èŠ¯ç‰‡
+ * éœ€è¦é©±åŠ¨åº•å±‚æ”¯æŒSPIä¸‰çº¿åˆ¶ä¼ è¾“,è‹¥é©±åŠ¨åº•å±‚ä¸æ”¯æŒ
+ * ä¸‰çº¿åˆ¶ä¼ è¾“ï¼Œåˆ™ä¼šæŠ¥é”™ï¼Œé‚£ä¹ˆè¯·é€‰æ‹©gpioæ¨¡å¼æ“ä½œ
  */
 typedef struct am_ds1302_spi_devinfo {
 
-    /**< \brief Æ¬Ñ¡Òý½Å  */
+    /**< \brief ç‰‡é€‰å¼•è„š  */
     uint16_t          ce_pin;
 
 } am_ds1302_spi_devinfo_t;
 
 /**
- * \brief DS1302gpioÄ£Ê½Éè±¸ÐÅÏ¢½á¹¹Ìå
+ * \brief DS1302gpioæ¨¡å¼è®¾å¤‡ä¿¡æ¯ç»“æž„ä½“
  */
 typedef struct am_ds1302_gpio_devinfo {
 
-    uint16_t          sclk_pin;              /**< \brief SCLKÒý½Å¶ÔÓ¦µÄIO¹Ü½ÅºÅ */
-    uint16_t          ce_pin;                /**< \brief ceÒý½Å¶ÔÓ¦µÄIO¹Ü½ÅºÅ */
-    uint16_t          io_pin;                /**< \brief IOÒý½Å¶ÔÓ¦µÄIO¹Ü½ÅºÅ */
+    uint16_t          sclk_pin;              /**< \brief SCLKå¼•è„šå¯¹åº”çš„IOç®¡è„šå· */
+    uint16_t          ce_pin;                /**< \brief ceå¼•è„šå¯¹åº”çš„IOç®¡è„šå· */
+    uint16_t          io_pin;                /**< \brief IOå¼•è„šå¯¹åº”çš„IOç®¡è„šå· */
 
 } am_ds1302_gpio_devinfo_t;
 
 /**
- * \brief DS1302Éè±¸½á¹¹Ìå
+ * \brief DS1302è®¾å¤‡ç»“æž„ä½“
  */
 typedef struct am_ds1302_dev {
 
-    void              *pfn;          /**< \brief DS1302Çý¶¯º¯Êý */
-    void              *p_drv;        /**< \brief Çý¶¯º¯ÊýµÄµÚÒ»¸öÈë¿Ú²ÎÊý */
+    void              *pfn;          /**< \brief DS1302é©±åŠ¨å‡½æ•° */
+    void              *p_drv;        /**< \brief é©±åŠ¨å‡½æ•°çš„ç¬¬ä¸€ä¸ªå…¥å£å‚æ•° */
 
 } am_ds1302_dev_t;
 
-/** \brief DS1302²Ù×÷¾ä±ú¶¨Òå  */
+/** \brief DS1302æ“ä½œå¥æŸ„å®šä¹‰  */
 typedef am_ds1302_dev_t  *am_ds1302_handle_t;
 
 /**
- * \brief DS1302spiÄ£Ê½ÏÂÉè±¸½á¹¹Ìå
+ * \brief DS1302spiæ¨¡å¼ä¸‹è®¾å¤‡ç»“æž„ä½“
  */
 typedef struct am_ds1302_spi_dev {
 
-    /** \brief spi·þÎñÉè±¸ */
+    /** \brief spiæœåŠ¡è®¾å¤‡ */
     am_spi_device_t                     spi_dev;
 
-    /** \brief DS1302spiÄ£Ê½Éè±¸ÐÅÏ¢ */
+    /** \brief DS1302spiæ¨¡å¼è®¾å¤‡ä¿¡æ¯ */
     const am_ds1302_spi_devinfo_t      *p_spi_devinfo;
 
-    /** \brief DS1302±ê×¼·þÎñ */
+    /** \brief DS1302æ ‡å‡†æœåŠ¡ */
     am_ds1302_dev_t                     common;
 
 } am_ds1302_spi_dev_t;
 
 /**
- * \brief DS1302gpioÄ£Ê½ÏÂÉè±¸½á¹¹Ìå
+ * \brief DS1302gpioæ¨¡å¼ä¸‹è®¾å¤‡ç»“æž„ä½“
  */
 typedef struct am_ds1302_gpio_dev {
 
-    /** \brief DS1302gpioÄ£Ê½Éè±¸ÐÅÏ¢ */
+    /** \brief DS1302gpioæ¨¡å¼è®¾å¤‡ä¿¡æ¯ */
     const am_ds1302_gpio_devinfo_t      *p_gpio_devinfo;
 
-    /** \brief DS1302±ê×¼·þÎñ */
+    /** \brief DS1302æ ‡å‡†æœåŠ¡ */
     am_ds1302_dev_t                      common;
 
 } am_ds1302_gpio_dev_t;
 
 /**
- * \brief DS1302 Éè±¸³õÊ¼»¯£¬spiÇý¶¯·½Ê½
+ * \brief DS1302 è®¾å¤‡åˆå§‹åŒ–ï¼Œspié©±åŠ¨æ–¹å¼
  *
- * \param[in] p_dev          : Ö¸ÏòDS1302Éè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[in] p_devinfo      : Ö¸ÏòDS1302Éè±¸ÐÅÏ¢½á¹¹ÌåµÄÖ¸Õë
- * \param[in] spi_handle     : spi²Ù×÷¾ä±ú
+ * \param[in] p_dev          : æŒ‡å‘DS1302è®¾å¤‡ç»“æž„ä½“çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo      : æŒ‡å‘DS1302è®¾å¤‡ä¿¡æ¯ç»“æž„ä½“çš„æŒ‡é’ˆ
+ * \param[in] spi_handle     : spiæ“ä½œå¥æŸ„
  *
- * \return DS1302·þÎñ²Ù×÷¾ä±ú,Èç¹ûÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return DS1302æœåŠ¡æ“ä½œå¥æŸ„,å¦‚æžœä¸º NULLï¼Œè¡¨æ˜Žåˆå§‹åŒ–å¤±è´¥
  */
 am_ds1302_handle_t am_ds1302_spi_init (am_ds1302_spi_dev_t            *p_dev,
                                        const am_ds1302_spi_devinfo_t  *p_devinfo,
                                        am_spi_handle_t                 spi_handle);
 
 /**
- * \brief DS1302 Éè±¸³õÊ¼»¯£¬gpioÇý¶¯·½Ê½
+ * \brief DS1302 è®¾å¤‡åˆå§‹åŒ–ï¼Œgpioé©±åŠ¨æ–¹å¼
  *
- * \param[in] p_dev          : Ö¸ÏòDS1302Éè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[in] p_devinfo      : Ö¸ÏòDS1302Éè±¸ÐÅÏ¢½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] p_dev          : æŒ‡å‘DS1302è®¾å¤‡ç»“æž„ä½“çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo      : æŒ‡å‘DS1302è®¾å¤‡ä¿¡æ¯ç»“æž„ä½“çš„æŒ‡é’ˆ
  *
- * \return DS1302·þÎñ²Ù×÷¾ä±ú,Èç¹ûÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return DS1302æœåŠ¡æ“ä½œå¥æŸ„,å¦‚æžœä¸º NULLï¼Œè¡¨æ˜Žåˆå§‹åŒ–å¤±è´¥
  */
 am_ds1302_handle_t am_ds1302_gpio_init (am_ds1302_gpio_dev_t            *p_dev,
                                         const am_ds1302_gpio_devinfo_t  *p_devinfo);
 
 /**
- * \brief DS1302 Éè±¸½â³õÊ¼»¯
+ * \brief DS1302 è®¾å¤‡è§£åˆå§‹åŒ–
  *
- * \param[in] handle : ds1302²Ù×÷¾ä±ú
+ * \param[in] handle : ds1302æ“ä½œå¥æŸ„
  *
- * \return ÎÞ
+ * \return æ— 
  */
 void am_ds1302_deinit (am_ds1302_handle_t handle);
 
 /**
- * \brief »ñÈ¡RTC±ê×¼·þÎñ¾ä±ú
+ * \brief èŽ·å–RTCæ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param[in] handle     : DS1302²Ù×÷¾ä±ú
- * \param[in] p_rtc      : Ö¸ÏòRTC±ê×¼·þÎñ
+ * \param[in] handle     : DS1302æ“ä½œå¥æŸ„
+ * \param[in] p_rtc      : æŒ‡å‘RTCæ ‡å‡†æœåŠ¡
  *
- * return RTC±ê×¼·þÎñ²Ù×÷¾ä±ú
+ * return RTCæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  */
 am_rtc_handle_t am_ds1302_rtc_init (am_ds1302_handle_t    handle,
                                     am_rtc_serv_t        *p_rtc);
 
 /**
- * \brief DS1302Ê±¼äÈÕÆÚÉèÖÃº¯Êý
+ * \brief DS1302æ—¶é—´æ—¥æœŸè®¾ç½®å‡½æ•°
  *
- * \param[in] handle : DS1302·þÎñ²Ù×÷¾ä±ú
- * \param[in] p_tm   : Ö¸ÏòÊ±¼ä½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] handle : DS1302æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] p_tm   : æŒ‡å‘æ—¶é—´ç»“æž„ä½“çš„æŒ‡é’ˆ
  *
- * \retval AM_OK      : ÉèÖÃ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊý´íÎó
+ * \retval AM_OK      : è®¾ç½®æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 int am_ds1302_time_set (am_ds1302_handle_t handle, am_tm_t *p_tm);
 
 /**
- * \brief DS1302Ê±¼äÈÕÆÚ»ñÈ¡º¯Êý
+ * \brief DS1302æ—¶é—´æ—¥æœŸèŽ·å–å‡½æ•°
  *
- * \param[in]  handle : ds1302·þÎñ²Ù×÷¾ä±ú
- * \param[out] p_tm   : Ö¸ÏòÊ±¼ä½á¹¹ÌåµÄÖ¸Õë
+ * \param[in]  handle : ds1302æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[out] p_tm   : æŒ‡å‘æ—¶é—´ç»“æž„ä½“çš„æŒ‡é’ˆ
  *
- * \retval AM_OK      : ÉèÖÃ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊý´íÎó
+ * \retval AM_OK      : è®¾ç½®æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 int am_ds1302_time_get (am_ds1302_handle_t handle, am_tm_t *p_tm);
 
 /**
- * \brief DS1302ÖÕÖ¹º¯Êý
+ * \brief DS1302ç»ˆæ­¢å‡½æ•°
  *
- * \param[in]  handle : ds1302·þÎñ²Ù×÷¾ä±ú
+ * \param[in]  handle : ds1302æœåŠ¡æ“ä½œå¥æŸ„
  *
- * \retval AM_OK      : ²Ù×÷³É¹¦
- * \retval -AM_EINVAL : ²ÎÊý´íÎó
+ * \retval AM_OK      : æ“ä½œæˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 int am_ds1302_stop (am_ds1302_handle_t handle);
 
 /**
- * \brief DS1302Ð´RAMº¯Êý
+ * \brief DS1302å†™RAMå‡½æ•°
  *
- * \param[in]  handle  : ds1302·þÎñ²Ù×÷¾ä±ú
- * \param[in]  p_data  : Ö¸ÏòÐ´ÈëRAMµÄÊý¾Ý»º³åÇøµÄÖ¸Õë,Êý¾ÝµÄ´óÐ¡²»³¬¹ý31×Ö½Ú
- * \param[in]  data_len: ´«ÈëÊý¾ÝµÄ³¤¶È
- * \param[in]  position: Ð´ÈëRAMÖÐµÄÆðÊ¼Î»ÖÃ(0~30)
+ * \param[in]  handle  : ds1302æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in]  p_data  : æŒ‡å‘å†™å…¥RAMçš„æ•°æ®ç¼“å†²åŒºçš„æŒ‡é’ˆ,æ•°æ®çš„å¤§å°ä¸è¶…è¿‡31å­—èŠ‚
+ * \param[in]  data_len: ä¼ å…¥æ•°æ®çš„é•¿åº¦
+ * \param[in]  position: å†™å…¥RAMä¸­çš„èµ·å§‹ä½ç½®(0~30)
  *
- * \retval AM_OK       : ²Ù×÷³É¹¦
- * \retval -AM_EINVAL  : ²ÎÊý´íÎó
+ * \retval AM_OK       : æ“ä½œæˆåŠŸ
+ * \retval -AM_EINVAL  : å‚æ•°é”™è¯¯
  */
 int am_ds1302_ram_write (am_ds1302_handle_t handle,
                          uint8_t           *p_data,
@@ -198,15 +198,15 @@ int am_ds1302_ram_write (am_ds1302_handle_t handle,
                          uint8_t            position);
 
 /**
- * \brief DS1302¶ÁRAMº¯Êý
+ * \brief DS1302è¯»RAMå‡½æ•°
  *
- * \param[in]  handle  : ds1302·þÎñ²Ù×÷¾ä±ú
- * \param[out] p_data  : ¶Á³öµÄRAMÖÐµÄÊý¾Ý
- * \param[in]  data_len: ´«ÈëÊý¾ÝµÄ³¤¶È
- * \param[in]  position: ¶ÁRAMµÄÆðÊ¼Î»ÖÃ(0~30)
+ * \param[in]  handle  : ds1302æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[out] p_data  : è¯»å‡ºçš„RAMä¸­çš„æ•°æ®
+ * \param[in]  data_len: ä¼ å…¥æ•°æ®çš„é•¿åº¦
+ * \param[in]  position: è¯»RAMçš„èµ·å§‹ä½ç½®(0~30)
  *
- * \retval AM_OK       : ²Ù×÷³É¹¦
- * \retval -AM_EINVAL  : ²ÎÊý´íÎó
+ * \retval AM_OK       : æ“ä½œæˆåŠŸ
+ * \retval -AM_EINVAL  : å‚æ•°é”™è¯¯
  */
 int am_ds1302_ram_read (am_ds1302_handle_t handle,
                         uint8_t           *p_data,
@@ -215,22 +215,22 @@ int am_ds1302_ram_read (am_ds1302_handle_t handle,
 
 
 /**
- * \name¶þ¼«¹ÜÊýÄ¿Óëµç×è×èÖµ
+ * \nameäºŒæžç®¡æ•°ç›®ä¸Žç”µé˜»é˜»å€¼
  * @{
  */
-#define   AM_DS1302_TRICKLE_1D_2K      0xa5  /**< \brief Ò»¸ö¶þ¼«¹Ü£¬µç×è2K */
-#define   AM_DS1302_TRICKLE_1D_4K      0xa6  /**< \brief Ò»¸ö¶þ¼«¹Ü£¬µç×è4K */
-#define   AM_DS1302_TRICKLE_1D_8K      0xa7  /**< \brief Ò»¸ö¶þ¼«¹Ü£¬µç×è8K */
-#define   AM_DS1302_TRICKLE_2D_2K      0xa9  /**< \brief Á½¸ö¶þ¼«¹Ü£¬µç×è2K */
-#define   AM_DS1302_TRICKLE_2D_4K      0xaa  /**< \brief Á½¸ö¶þ¼«¹Ü£¬µç×è4K */
-#define   AM_DS1302_TRICKLE_2D_8K      0xab  /**< \brief Á½¸ö¶þ¼«¹Ü£¬µç×è8K */
+#define   AM_DS1302_TRICKLE_1D_2K      0xa5  /**< \brief ä¸€ä¸ªäºŒæžç®¡ï¼Œç”µé˜»2K */
+#define   AM_DS1302_TRICKLE_1D_4K      0xa6  /**< \brief ä¸€ä¸ªäºŒæžç®¡ï¼Œç”µé˜»4K */
+#define   AM_DS1302_TRICKLE_1D_8K      0xa7  /**< \brief ä¸€ä¸ªäºŒæžç®¡ï¼Œç”µé˜»8K */
+#define   AM_DS1302_TRICKLE_2D_2K      0xa9  /**< \brief ä¸¤ä¸ªäºŒæžç®¡ï¼Œç”µé˜»2K */
+#define   AM_DS1302_TRICKLE_2D_4K      0xaa  /**< \brief ä¸¤ä¸ªäºŒæžç®¡ï¼Œç”µé˜»4K */
+#define   AM_DS1302_TRICKLE_2D_8K      0xab  /**< \brief ä¸¤ä¸ªäºŒæžç®¡ï¼Œç”µé˜»8K */
 /** @}*/
 
 /**
- * \brief DS1302³äµç²Ù×÷
+ * \brief DS1302å……ç”µæ“ä½œ
  *
- * \param[in]  handle  : ds1302·þÎñ²Ù×÷¾ä±ú
- * \param[in]  set_val : ¶þ¼«¹ÜÊýÄ¿Óëµç×è×èÖµµÄ×éºÏ£¬¿ÉÑ¡ÒÔÏÂµÄºê
+ * \param[in]  handle  : ds1302æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in]  set_val : äºŒæžç®¡æ•°ç›®ä¸Žç”µé˜»é˜»å€¼çš„ç»„åˆï¼Œå¯é€‰ä»¥ä¸‹çš„å®
  *                       -#AM_DS1302_TRICKLE_1D_2K
  *                       -#AM_DS1302_TRICKLE_1D_4K
  *                       -#AM_DS1302_TRICKLE_1D_8K
@@ -238,26 +238,26 @@ int am_ds1302_ram_read (am_ds1302_handle_t handle,
  *                       -#AM_DS1302_TRICKLE_2D_4K
  *                       -#AM_DS1302_TRICKLE_2D_8K
  *
- *                       -xD±íÊ¾¶þ¼«¹ÜÊýÄ¿£¬yK±íÊ¾µç×è×èÖµ
- *                       -³äµçµçÁ÷µÄ¼ÆËã¿ÉÒÔÈçÏÂ:
- *                       IMAX = (VCC - ¶þ¼«¹ÜÑ¹²î)/R, Èô3.3VÏµÍ³µçÑ¹¼ÓÔÚVCCÉÏ£¬
- *                       Ñ¡ÔñÁËÒ»¸ö¶þ¼«¹Ü£¬µç×èÑ¡Ôñ2K
- *                       ÄÇÃ´IMAX = (3.3- 0.7) / 2k = 1.3mA£¬×î´ó³äµçµçÁ÷
- *                       ²»ÄÜ³¬¹ýËùÑ¡³äµçµç³ØËùÔÊÐíµÄ×î´ó³äµçµçÁ÷
- *                       ÓÃ»§¿É¸ù¾ÝËùÑ¡µç³ØµÄ³äµçµçÁ÷µÄ´óÐ¡À´Ñ¡ÔñÏàÓ¦µÄºê
+ *                       -xDè¡¨ç¤ºäºŒæžç®¡æ•°ç›®ï¼ŒyKè¡¨ç¤ºç”µé˜»é˜»å€¼
+ *                       -å……ç”µç”µæµçš„è®¡ç®—å¯ä»¥å¦‚ä¸‹:
+ *                       IMAX = (VCC - äºŒæžç®¡åŽ‹å·®)/R, è‹¥3.3Vç³»ç»Ÿç”µåŽ‹åŠ åœ¨VCCä¸Šï¼Œ
+ *                       é€‰æ‹©äº†ä¸€ä¸ªäºŒæžç®¡ï¼Œç”µé˜»é€‰æ‹©2K
+ *                       é‚£ä¹ˆIMAX = (3.3- 0.7) / 2k = 1.3mAï¼Œæœ€å¤§å……ç”µç”µæµ
+ *                       ä¸èƒ½è¶…è¿‡æ‰€é€‰å……ç”µç”µæ± æ‰€å…è®¸çš„æœ€å¤§å……ç”µç”µæµ
+ *                       ç”¨æˆ·å¯æ ¹æ®æ‰€é€‰ç”µæ± çš„å……ç”µç”µæµçš„å¤§å°æ¥é€‰æ‹©ç›¸åº”çš„å®
  *
- * \retval AM_OK      : ²Ù×÷³É¹¦
- * \retval -AM_EINVAL : ²Ù×÷Ê§°Ü
+ * \retval AM_OK      : æ“ä½œæˆåŠŸ
+ * \retval -AM_EINVAL : æ“ä½œå¤±è´¥
  */
 int am_ds1302_trickle_enable(am_ds1302_handle_t handle, uint8_t set_val);
 
 /**
- * \brief DS1302½ûÄÜ³äµçº¯Êý
+ * \brief DS1302ç¦èƒ½å……ç”µå‡½æ•°
  *
- * \param[in]  handle : ds1302·þÎñ²Ù×÷¾ä±ú
+ * \param[in]  handle : ds1302æœåŠ¡æ“ä½œå¥æŸ„
  *
- * \retval AM_OK      : ²Ù×÷³É¹¦
- * \retval -AM_EINVAL : ²Ù×÷Ê§°Ü
+ * \retval AM_OK      : æ“ä½œæˆåŠŸ
+ * \retval -AM_EINVAL : æ“ä½œå¤±è´¥
  */
 int am_ds1302_trickle_disable(am_ds1302_handle_t handle);
 

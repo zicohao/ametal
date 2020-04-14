@@ -26,12 +26,12 @@
   Local struct type define
 *******************************************************************************/
 struct __prescale_and_count_cal_ctx {
-    uint64_t   desired_ticks;           /* Ä¿±ê ticks                         */
-    uint64_t   count_max;               /* ¶¨Ê±Æ÷×î´ó count Öµ                */
-    uint64_t   error;                   /* µ±Ç°Ô¤·ÖÆµºÍ¼ÆÊıÖµËù¶ÔÓ¦µÄÎó²îÖµ   */
-    uint64_t   count;                   /* µ±Ç°¼ÆËã½á¹û: count Öµ             */
-    uint32_t   prescale;                /* µ±Ç°¼ÆËã½á¹û: Ô¤·ÖÆµÖµ             */
-    am_bool_t  update;                  /* ÊÇ·ñ¸üĞÂ¹ıÔ¤·ÖÆµÖµ                 */
+    uint64_t   desired_ticks;           /* ç›®æ ‡ ticks                         */
+    uint64_t   count_max;               /* å®šæ—¶å™¨æœ€å¤§ count å€¼                */
+    uint64_t   error;                   /* å½“å‰é¢„åˆ†é¢‘å’Œè®¡æ•°å€¼æ‰€å¯¹åº”çš„è¯¯å·®å€¼   */
+    uint64_t   count;                   /* å½“å‰è®¡ç®—ç»“æœ: count å€¼             */
+    uint32_t   prescale;                /* å½“å‰è®¡ç®—ç»“æœ: é¢„åˆ†é¢‘å€¼             */
+    am_bool_t  update;                  /* æ˜¯å¦æ›´æ–°è¿‡é¢„åˆ†é¢‘å€¼                 */
 };
 
 /*******************************************************************************
@@ -44,14 +44,14 @@ static void __error_check_with_new_prescale (
     uint64_t count = p_ctx->desired_ticks / prescale_new;
     uint64_t error;
 
-    /* ±ÜÃâ count Öµ³¬¹ı count_max */
+    /* é¿å… count å€¼è¶…è¿‡ count_max */
     if (count > p_ctx->count_max) {
         count = p_ctx->count_max;
     }
 
     error = p_ctx->desired_ticks - count * prescale_new;
 
-    if (p_ctx->error > error) {        /* ·¢ÏÖ¸üĞ¡Îó²îµÄ×éºÏÖµ */
+    if (p_ctx->error > error) {        /* å‘ç°æ›´å°è¯¯å·®çš„ç»„åˆå€¼ */
         p_ctx->error    = error;
         p_ctx->count    = count;
         p_ctx->prescale = prescale_new;
@@ -75,7 +75,7 @@ static int __prescale_and_count_cal (const am_timer_info_t *p_info,
 
     count_max = ( (uint64_t)1ull << (p_info->counter_width) ) - 1;
 
-    /* ÎŞĞè·ÖÆµ */
+    /* æ— éœ€åˆ†é¢‘ */
     if (ticks <= count_max) {
 
          *p_prescale = 1;
@@ -84,16 +84,16 @@ static int __prescale_and_count_cal (const am_timer_info_t *p_info,
          return AM_OK;
     }
 
-    /* ĞèÒª·ÖÆµ£¬µ«²»Ö§³ÖÈÎºÎ·ÖÆµÖµ */
+    /* éœ€è¦åˆ†é¢‘ï¼Œä½†ä¸æ”¯æŒä»»ä½•åˆ†é¢‘å€¼ */
     if (p_info->prescaler == 0) {
         return -AM_ENOTSUP;
     }
 
-    prescale_min = ticks / count_max;        /* Âú×ã Ticks µÄ×îĞ¡·ÖÆµ  */
+    prescale_min = ticks / count_max;        /* æ»¡è¶³ Ticks çš„æœ€å°åˆ†é¢‘  */
 
     ctx.count_max     = count_max;
     ctx.desired_ticks = ticks;
-    ctx.error         = ticks;              /* ³õÊ¼ÉèÖÃÎª×î´óÎó²î      */
+    ctx.error         = ticks;              /* åˆå§‹è®¾ç½®ä¸ºæœ€å¤§è¯¯å·®      */
     ctx.count         = count_max;
     ctx.prescale      = 1;
     ctx.update        = AM_FALSE;
@@ -102,11 +102,11 @@ static int __prescale_and_count_cal (const am_timer_info_t *p_info,
 
         prescale_max = p_info->prescaler;
 
-        if (prescale_max < prescale_min) {   /* ÎŞ·¨Âú×ã */
+        if (prescale_max < prescale_min) {   /* æ— æ³•æ»¡è¶³ */
             return -AM_ENOTSUP;
         }
 
-        /* ±éÀúËùÓĞ·ÖÆµÖµ£¬Ñ°ÕÒ×î¼Ñ·ÖÆµÖµ£¨Îó²î×îĞ¡£©*/
+        /* éå†æ‰€æœ‰åˆ†é¢‘å€¼ï¼Œå¯»æ‰¾æœ€ä½³åˆ†é¢‘å€¼ï¼ˆè¯¯å·®æœ€å°ï¼‰*/
         for (prescale = prescale_min; prescale <= prescale_max; prescale++) {
             __error_check_with_new_prescale(&ctx, prescale);
             if (ctx.error == 0) {
@@ -118,7 +118,7 @@ static int __prescale_and_count_cal (const am_timer_info_t *p_info,
 
         for (prescale = 1; prescale != 0; prescale <<= 1) {
 
-            /* Ö§³Ö¸Ã·ÖÆµ£¬ ÇÒÂú×ã×îĞ¡ÖµÒªÇó  */
+            /* æ”¯æŒè¯¥åˆ†é¢‘ï¼Œ ä¸”æ»¡è¶³æœ€å°å€¼è¦æ±‚  */
             if ((prescale & p_info->prescaler) && (prescale >= prescale_min)) {
                 __error_check_with_new_prescale(&ctx, prescale);
                 if (ctx.error == 0) {
@@ -143,7 +143,7 @@ static int __prescale_and_count_cal (const am_timer_info_t *p_info,
   Public Functions
 *******************************************************************************/
 
-/* »ñÈ¡¶¨Ê±Æ÷µÄµ±Ç°¼ÆÊıÆµÂÊ */
+/* è·å–å®šæ—¶å™¨çš„å½“å‰è®¡æ•°é¢‘ç‡ */
 int am_timer_count_freq_get (am_timer_handle_t handle,
                              uint8_t           chan,
                              uint32_t         *p_freq)
@@ -182,7 +182,7 @@ int am_timer_enable_us (am_timer_handle_t handle, uint8_t chan, uint32_t nus)
 
     am_timer_clkin_freq_get(handle, &clkin);
 
-    /* ¼ÆËãÔÚÊäÈëÆµÂÊÏÂ£¬Ó¦¸Ã¼ÇÂ¼µÄcount Öµ */
+    /* è®¡ç®—åœ¨è¾“å…¥é¢‘ç‡ä¸‹ï¼Œåº”è¯¥è®°å½•çš„count å€¼ */
     ticks = (uint64_t)nus *  clkin / 1000000;
 
     if (__prescale_and_count_cal(p_info, ticks, &prescale, &count) != AM_OK) {

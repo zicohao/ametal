@@ -11,19 +11,19 @@
 *******************************************************************************/
 /**
  * \file
- * \brief SPI Ö÷»úÀý³Ì£¬Í¨¹ý HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief SPI ä¸»æœºä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. ½« SPI µÄ MOSI(PIOA_7) Òý½ÅºÍ MISO(PIOA_6) Òý½ÅÓÃÏßÏàÁ¬£¬Ä£Äâ´Ó»úÉè±¸£¬»Ø»·²âÊÔ¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. å°† SPI çš„ MOSI(PIOA_7) å¼•è„šå’Œ MISO(PIOA_6) å¼•è„šç”¨çº¿ç›¸è¿žï¼Œæ¨¡æ‹Ÿä»Žæœºè®¾å¤‡ï¼Œå›žçŽ¯æµ‹è¯•ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Ö÷»úÍ¨¹ý MISO ·¢ËÍÊý¾Ý£¬·¢³öµÄÊý¾Ý´Ó MOSI ¶Á»Ø£»
- *   2. µ÷ÊÔ´®¿Ú´òÓ¡²âÊÔ½á¹û¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. ä¸»æœºé€šè¿‡ MISO å‘é€æ•°æ®ï¼Œå‘å‡ºçš„æ•°æ®ä»Ž MOSI è¯»å›žï¼›
+ *   2. è°ƒè¯•ä¸²å£æ‰“å°æµ‹è¯•ç»“æžœã€‚
  *
  * \note
- *    ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIOA_9 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
+ *    å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIOA_9 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_aml166_core_hw_spi_master.c src_aml166_core_hw_spi_master
  *
  * \internal
@@ -47,16 +47,16 @@
 #include "demo_aml166_core_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_aml166_core_hw_spi_master_entry (void)
 {
     am_kprintf("demo aml166_core hw spi master!\r\n");
 
-    /* ¿ªÆôÊ±ÖÓ */
+    /* å¼€å¯æ—¶é’Ÿ */
     am_clk_enable(CLK_SPI1);
 
-    /* ÅäÖÃÒý½Å */
+    /* é…ç½®å¼•è„š */
     am_gpio_pin_cfg(PIOA_4, PIOA_4_SPI1_NSS | PIOA_4_AF_PP);
     am_gpio_pin_cfg(PIOA_5, PIOA_5_SPI1_SCK | PIOA_5_AF_PP);
     am_gpio_pin_cfg(PIOA_6, PIOA_6_SPI1_MISO | PIOA_6_INPUT_FLOAT);

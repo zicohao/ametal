@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief µ÷ÊÔ´®¿ÚÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief è°ƒè¯•ä¸²å£ç”¨æˆ·é…ç½®æ–‡ä»¶
  *
  * \internal
  * \par Modification history
@@ -30,11 +30,11 @@ extern "C" {
 #include "am_uart.h"
 
 /**
- * \brief µ÷ÊÔ´®¿ÚÊµÀı³õÊ¼»¯
+ * \brief è°ƒè¯•ä¸²å£å®ä¾‹åˆå§‹åŒ–
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return UART ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return UART æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_uart_handle_t am_debug_uart_inst_init (void);
 

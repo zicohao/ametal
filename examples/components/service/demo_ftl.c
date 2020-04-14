@@ -11,12 +11,12 @@
 *******************************************************************************/
 /**
  * \file
- * \brief FTL£¨Flash Translation Layer£©Àı³Ì
+ * \brief FTLï¼ˆFlash Translation Layerï¼‰ä¾‹ç¨‹
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿Ú´òÓ¡³ö²âÊÔ½á¹û¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. ä¸²å£æ‰“å°å‡ºæµ‹è¯•ç»“æœã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_ftl.c src_ftl
  *
  * \internal
@@ -36,14 +36,14 @@
 #include "am_delay.h"
 #include "am_vdebug.h"
 
-#define __BUF_SIZE 16 /**< \brief »º³åÇø´óĞ¡ */
+#define __BUF_SIZE 16 /**< \brief ç¼“å†²åŒºå¤§å° */
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_ftl_entry (am_ftl_handle_t ftl_handle, int32_t test_lenth)
 {
-    uint8_t  buf[__BUF_SIZE] = {0};    /* Êı¾İ»º´æ */
+    uint8_t  buf[__BUF_SIZE] = {0};    /* æ•°æ®ç¼“å­˜ */
     uint16_t i;
     int      ret;
 
@@ -51,12 +51,12 @@ void demo_ftl_entry (am_ftl_handle_t ftl_handle, int32_t test_lenth)
         test_lenth = __BUF_SIZE;
     }
 
-    /* Ìî³ä·¢ËÍ»º³åÇø */
+    /* å¡«å……å‘é€ç¼“å†²åŒº */
     for (i = 0;i < test_lenth; i++) {
         buf[i] = i;
     }
 
-    /* Ğ´Êı¾İ */
+    /* å†™æ•°æ® */
     ret = am_ftl_write(ftl_handle, 0, &buf[0]);
 
     if (ret != AM_OK) {
@@ -65,7 +65,7 @@ void demo_ftl_entry (am_ftl_handle_t ftl_handle, int32_t test_lenth)
     }
     am_mdelay(5);
 
-    /* ¶ÁÊı¾İ */
+    /* è¯»æ•°æ® */
     ret = am_ftl_read(ftl_handle, 0, &buf[0]);
 
     if (ret != AM_OK) {
@@ -73,11 +73,11 @@ void demo_ftl_entry (am_ftl_handle_t ftl_handle, int32_t test_lenth)
         return;
     }
 
-    /* Ğ£ÑéĞ´ÈëºÍ¶ÁÈ¡µÄÊı¾İÊÇ·ñÒ»ÖÂ */
+    /* æ ¡éªŒå†™å…¥å’Œè¯»å–çš„æ•°æ®æ˜¯å¦ä¸€è‡´ */
     for (i = 0; i < test_lenth; i++) {
         AM_DBG_INFO("Read FLASH the %2dth data is %2x\r\n", i ,buf[i]);
 
-        /* Ğ£ÑéÊ§°Ü */
+        /* æ ¡éªŒå¤±è´¥ */
         if(buf[i] != i) {
             AM_DBG_INFO("verify failed at index %d.\r\n", i);
             break;

@@ -12,15 +12,15 @@
 
 /**
  * \file
- * \brief DACÊıÄ£×ª»»Àı³Ì£¬Í¨¹ıHW½Ó¿ÚÊµÏÖ
+ * \brief DACæ•°æ¨¡è½¬æ¢ä¾‹ç¨‹ï¼Œé€šè¿‡HWæ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ÅäÖÃPIOE_30ÎªDACÄ£ÄâÊä³ö
- *   2. ÓÃÊ¾²¨Æ÷²É¼¯ÊıÄ£×ª»»µÄÊä³ö¿ÚPE30µÄĞÅºÅÊä³ö
- *   3. Ê¾²¨Æ÷ÏÔÊ¾PIOE_30µÄÄ£ÄâÊä³öÖÜÆÚ´ó¸ÅÎª7ÃëµÄÕıÏÒ²¨¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. é…ç½®PIOE_30ä¸ºDACæ¨¡æ‹Ÿè¾“å‡º
+ *   2. ç”¨ç¤ºæ³¢å™¨é‡‡é›†æ•°æ¨¡è½¬æ¢çš„è¾“å‡ºå£PE30çš„ä¿¡å·è¾“å‡º
+ *   3. ç¤ºæ³¢å™¨æ˜¾ç¤ºPIOE_30çš„æ¨¡æ‹Ÿè¾“å‡ºå‘¨æœŸå¤§æ¦‚ä¸º7ç§’çš„æ­£å¼¦æ³¢ã€‚
  *
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_amks16z_core_hw_dac_buf_int.c src_amks16z_core_hw_dac_buf_int
  *
  * \internal
@@ -46,17 +46,17 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief DAC Ê¹ÓÃ»º³åÇøÖĞ¶ÏÊä³öÕıÏÒ²¨ĞÅºÅ£¬HW²ãÊµÏÖ
- * \return ÎŞ
+ * \brief DAC ä½¿ç”¨ç¼“å†²åŒºä¸­æ–­è¾“å‡ºæ­£å¼¦æ³¢ä¿¡å·ï¼ŒHWå±‚å®ç°
+ * \return æ— 
  */
 void demo_amks16z_core_hw_dac_buf_int_entry (void)
 {
     AM_DBG_INFO("demo amks16z_core hw dac buf int!\r\n");
 
-    /* ÅäÖÃPIOE_30ÎªDAC0_OUT¹¦ÄÜ                 */
+    /* é…ç½®PIOE_30ä¸ºDAC0_OUTåŠŸèƒ½                 */
     am_gpio_pin_cfg (PIOE_30, PIOE_30_DAC0_OUT);
 
-    /* ¿ªÆôDACÊ±ÖÓ                               */
+    /* å¼€å¯DACæ—¶é’Ÿ                               */
     amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_DAC0);
 
     demo_fsl_hw_dac_buf_int_entry(KL26_DAC0, INUM_DAC0);

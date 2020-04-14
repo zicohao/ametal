@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZLG217 SPI INT ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief ZLG217 SPI INT ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_zlg217_spi.c
  *
  * \internal
@@ -35,7 +35,7 @@
  * @{
  */
 
-/** \brief SPI1 Æ½Ì¨³õÊ¼»¯ */
+/** \brief SPI1 å¹³å°åˆå§‹åŒ– */
 static void __zlg_plfm_spi1_int_init (void)
 {
     am_gpio_pin_cfg(PIOA_5, PIOA_5_SPI1_SCK_REMAP0  | PIOA_5_AF_PP);
@@ -45,7 +45,7 @@ static void __zlg_plfm_spi1_int_init (void)
     am_clk_enable(CLK_SPI1);
 }
 
-/** \brief ½â³ıSPI1 Æ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤SPI1 å¹³å°åˆå§‹åŒ– */
 static void __zlg_plfm_spi1_int_deinit (void)
 {
     am_gpio_pin_cfg(PIOA_5, AM_GPIO_INPUT );
@@ -55,33 +55,33 @@ static void __zlg_plfm_spi1_int_deinit (void)
     am_clk_disable(CLK_SPI1);
 }
 
-/** \brief SPI1 Éè±¸ĞÅÏ¢ */
+/** \brief SPI1 è®¾å¤‡ä¿¡æ¯ */
 const  struct am_zlg_spi_int_devinfo  __g_spi1_int_devinfo = {
-    ZLG217_SPI1_BASE,                        /**< \brief SPI1¼Ä´æÆ÷Ö¸Õë */
-    CLK_SPI1,                                /**< \brief Ê±ÖÓIDºÅ */
-    INUM_SPI1,                               /**< \brief SPI1ÖĞ¶ÏºÅ */
-    PIOA_7_SPI1_MOSI_REMAP0 | PIOA_7_AF_PP,  /**< \brief SPI1ÅäÖÃ±êÊ¶ */
-    PIOA_7,                                  /**< \brief MOSIÒı½ÅºÅ */
-    __zlg_plfm_spi1_int_init,                /**< \brief SPI1Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __zlg_plfm_spi1_int_deinit               /**< \brief SPI1Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    ZLG217_SPI1_BASE,                        /**< \brief SPI1å¯„å­˜å™¨æŒ‡é’ˆ */
+    CLK_SPI1,                                /**< \brief æ—¶é’ŸIDå· */
+    INUM_SPI1,                               /**< \brief SPI1ä¸­æ–­å· */
+    PIOA_7_SPI1_MOSI_REMAP0 | PIOA_7_AF_PP,  /**< \brief SPI1é…ç½®æ ‡è¯† */
+    PIOA_7,                                  /**< \brief MOSIå¼•è„šå· */
+    __zlg_plfm_spi1_int_init,                /**< \brief SPI1å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __zlg_plfm_spi1_int_deinit               /**< \brief SPI1å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 };
 
-/** \brief SPI1 Éè±¸ÊµÀı */
+/** \brief SPI1 è®¾å¤‡å®ä¾‹ */
 static am_zlg_spi_int_dev_t __g_spi1_int_dev;
 
-/** \brief SPI1 ÊµÀı³õÊ¼»¯£¬»ñµÃSPI±ê×¼·şÎñ¾ä±ú */
+/** \brief SPI1 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—SPIæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_spi_handle_t am_zlg217_spi1_int_inst_init (void)
 {
     return am_zlg_spi_int_init(&__g_spi1_int_dev, &__g_spi1_int_devinfo);
 }
 
-/** \brief SPI1 ÊµÀı½â³õÊ¼»¯ */
+/** \brief SPI1 å®ä¾‹è§£åˆå§‹åŒ– */
 void am_zlg217_spi1_int_inst_deinit (am_spi_handle_t handle)
 {
     am_zlg_spi_int_deinit(handle);
 }
 
-/** \brief SPI2 Æ½Ì¨³õÊ¼»¯ */
+/** \brief SPI2 å¹³å°åˆå§‹åŒ– */
 static void __zlg_plfm_spi2_int_init (void)
 {
     am_gpio_pin_cfg(PIOB_14, PIOB_14_SPI2_MISO | PIOB_14_INPUT_FLOAT);
@@ -91,7 +91,7 @@ static void __zlg_plfm_spi2_int_init (void)
     am_clk_enable(CLK_SPI2);
 }
 
-/** \brief ½â³ıSPI2 Æ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤SPI2 å¹³å°åˆå§‹åŒ– */
 static void __zlg_plfm_spi2_int_deinit (void)
 {
     am_gpio_pin_cfg(PIOB_13, AM_GPIO_INPUT);
@@ -101,28 +101,28 @@ static void __zlg_plfm_spi2_int_deinit (void)
     am_clk_disable(CLK_SPI2);
 }
 /**
- * \brief SPI2 Éè±¸ĞÅÏ¢
+ * \brief SPI2 è®¾å¤‡ä¿¡æ¯
  */
 const  struct am_zlg_spi_int_devinfo  __g_spi2_int_devinfo = {
-    ZLG217_SPI2_BASE,                      /**< \brief SPI2¼Ä´æÆ÷Ö¸Õë */
-    CLK_SPI2,                              /**< \brief Ê±ÖÓIDºÅ */
-    INUM_SPI2,                             /**< \brief SPI2ÖĞ¶ÏºÅ */
-    PIOB_15_SPI2_MOSI | PIOB_15_AF_PP,     /**< \brief SPI2ÅäÖÃ±êÊ¶ */
-    PIOB_15,                               /**< \brief mosiÒı½ÅºÅ */
-    __zlg_plfm_spi2_int_init,              /**< \brief SPI2Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __zlg_plfm_spi2_int_deinit             /**< \brief SPI2Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    ZLG217_SPI2_BASE,                      /**< \brief SPI2å¯„å­˜å™¨æŒ‡é’ˆ */
+    CLK_SPI2,                              /**< \brief æ—¶é’ŸIDå· */
+    INUM_SPI2,                             /**< \brief SPI2ä¸­æ–­å· */
+    PIOB_15_SPI2_MOSI | PIOB_15_AF_PP,     /**< \brief SPI2é…ç½®æ ‡è¯† */
+    PIOB_15,                               /**< \brief mosiå¼•è„šå· */
+    __zlg_plfm_spi2_int_init,              /**< \brief SPI2å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __zlg_plfm_spi2_int_deinit             /**< \brief SPI2å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 };
 
-/** \brief SPI2 Éè±¸ÊµÀı */
+/** \brief SPI2 è®¾å¤‡å®ä¾‹ */
 static am_zlg_spi_int_dev_t __g_spi2_int_dev;
 
-/** \brief SPI2 ÊµÀı³õÊ¼»¯£¬»ñµÃSPI±ê×¼·şÎñ¾ä±ú */
+/** \brief SPI2 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—SPIæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_spi_handle_t am_zlg217_spi2_int_inst_init (void)
 {
     return am_zlg_spi_int_init(&__g_spi2_int_dev, &__g_spi2_int_devinfo);
 }
 
-/** \brief SPI2 ÊµÀı½â³õÊ¼»¯ */
+/** \brief SPI2 å®ä¾‹è§£åˆå§‹åŒ– */
 void am_zlg217_spi2_int_inst_deinit (am_spi_handle_t handle)
 {
     am_zlg_spi_int_deinit(handle);

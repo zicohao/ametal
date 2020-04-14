@@ -12,23 +12,23 @@
 
 /**
  * \file
- * \brief bootloader Àı³Ì£¬±¾demoÊÇ×÷Îªbootloader£¬¸ÃdemoĞèÒªÅäºÏkbootµÄÉÏÎ»»úKinetiesFlashTools¡£
+ * \brief bootloader ä¾‹ç¨‹ï¼Œæœ¬demoæ˜¯ä½œä¸ºbootloaderï¼Œè¯¥demoéœ€è¦é…åˆkbootçš„ä¸Šä½æœºKinetiesFlashToolsã€‚
  *
- * - ²Ù×÷²½Öè£¨±¾µØÉı¼¶£©£º
- *   1. eclipse¹¤³Ì´ò¿ªdemo_am217_core_bootloader.ldÎÄ¼ş£¬´ò¿ª:
+ * - æ“ä½œæ­¥éª¤ï¼ˆæœ¬åœ°å‡çº§ï¼‰ï¼š
+ *   1. eclipseå·¥ç¨‹æ‰“å¼€demo_am217_core_bootloader.ldæ–‡ä»¶ï¼Œæ‰“å¼€:
  *
  *       FLASH (rx)  : ORIGIN = 0x08000000, LENGTH = 28K   // kft
  *
- *      µÄÅäÖÃ, ÆÁ±ÎÆäËûflashÅäÖÃ¡£
+ *      çš„é…ç½®, å±è”½å…¶ä»–flashé…ç½®ã€‚
  *
- *      keil¹¤³Ì´ò¿ªdemo_am217_core_application.sctÎÄ¼ş£¬´ò¿ªÉÏÎ»»úµÄÅäÖÃ£¬ÆÁ±ÎÆäËûÅäÖÃ
+ *      keilå·¥ç¨‹æ‰“å¼€demo_am217_core_application.sctæ–‡ä»¶ï¼Œæ‰“å¼€ä¸Šä½æœºçš„é…ç½®ï¼Œå±è”½å…¶ä»–é…ç½®
  *
- *   2. ´ò¿ªÉÏÎ»»úKinetiesFlashTools : ÔÚport setÀ¸ÖĞÑ¡Ôñuart;
- *   3. ÏÂÔØ±¾³ÌĞòµ½¿ª·¢°åÔËĞĞ
- *   4. µã»÷ÉÏÎ»»úµÄconnect£¬Èç¹ûÕıÈ·Á¬½Ó£¬»áÓĞ´òÓ¡ĞÅÏ¢ÌáÊ¾
- *   5. ´ò¿ªUpdateÑ¡ÏîÀ¸
- *   6. Ñ¡ÔñÉı¼¶µÄ¹Ì¼ş£¬²¢ÉèÖÃÄ¿±êµØÖ·£¬Ò²¾ÍÊÇ¹Ì¼şÔÚÄ¿±ê°åflashÖĞ´æ·ÅµÄÆğÊ¼µØÖ·
- *   7. µã»÷update°´¼ü£¬²é¿´´òÓ¡ĞÅÏ¢ÊÇ·ñÉı¼¶³É¹¦
+ *   2. æ‰“å¼€ä¸Šä½æœºKinetiesFlashTools : åœ¨port setæ ä¸­é€‰æ‹©uart;
+ *   3. ä¸‹è½½æœ¬ç¨‹åºåˆ°å¼€å‘æ¿è¿è¡Œ
+ *   4. ç‚¹å‡»ä¸Šä½æœºçš„connectï¼Œå¦‚æœæ­£ç¡®è¿æ¥ï¼Œä¼šæœ‰æ‰“å°ä¿¡æ¯æç¤º
+ *   5. æ‰“å¼€Updateé€‰é¡¹æ 
+ *   6. é€‰æ‹©å‡çº§çš„å›ºä»¶ï¼Œå¹¶è®¾ç½®ç›®æ ‡åœ°å€ï¼Œä¹Ÿå°±æ˜¯å›ºä»¶åœ¨ç›®æ ‡æ¿flashä¸­å­˜æ”¾çš„èµ·å§‹åœ°å€
+ *   7. ç‚¹å‡»updateæŒ‰é”®ï¼ŒæŸ¥çœ‹æ‰“å°ä¿¡æ¯æ˜¯å¦å‡çº§æˆåŠŸ
  *
  * \internal
  * \par Modification History
@@ -88,7 +88,7 @@ void demo_zlg217_core_bootloader_kft_entry (void)
     }
 
     am_zlg217_baudrate_detect_inst_deinit(autobaud_handle);
-    /* ´®¿Ú³õÊ¼»¯Ó¦¸ÃÔÚ»ñÈ¡²¨ÌØÂÊÖ®ºó */
+    /* ä¸²å£åˆå§‹åŒ–åº”è¯¥åœ¨è·å–æ³¢ç‰¹ç‡ä¹‹å */
     uart_handle = am_zlg217_uart1_inst_init();
 
     demo_std_bootloader_kft_entry(flash_handle,

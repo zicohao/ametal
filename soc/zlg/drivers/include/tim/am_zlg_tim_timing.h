@@ -12,13 +12,13 @@
 
 /**
  * \file
- * \brief ��ʱ��TIM����������Timer������ʵ��
+ * \brief 定时器TIM驱动，服务Timer驱动层实现
  *
- * 1. TIM֧���ṩ�������ֱ�׼���񣬱������ṩ���Ƿ���Timer��׼�����������
- *     - ��ʱ
- *     - PWM���
- *     - ����
- * 2. һ��TIMģ�飬ֻ��һ����ʱͨ��
+ * 1. TIM支持提供如下三种标准服务，本驱动提供的是服务Timer标准服务的驱动。
+ *     - 定时
+ *     - PWM输出
+ *     - 捕获
+ * 2. 一个TIM模块，只有一个定时通道
  *
  * \internal
  * \par Modification history
@@ -43,59 +43,59 @@ extern "C" {
  */
 
 /**
- * \brief TIM��ʱ������ص��豸��Ϣ
+ * \brief TIM定时功能相关的设备信息
  */
 typedef struct am_zlg_tim_timing_devinfo {
 
-    uint32_t               tim_regbase; /**< \brief TIM�Ĵ������ַ */
+    uint32_t               tim_regbase; /**< \brief TIM寄存器块基址 */
 
-    uint8_t                inum;        /**< \brief TIM�жϺ� */
+    uint8_t                inum;        /**< \brief TIM中断号 */
 
-    int                    clk_num;     /**< \brief ʱ��ID */
+    int                    clk_num;     /**< \brief 时钟ID */
 
-    amhw_zlg_tim_type_t    tim_type;    /**< \brief ��ʱ������ */
+    amhw_zlg_tim_type_t    tim_type;    /**< \brief 定时器类型 */
 
-    /** \brief ƽ̨��ʼ�����������ʱ�ӣ��������ŵȹ��� */
+    /** \brief 平台初始化函数，如打开时钟，配置引脚等工作 */
     void                 (*pfn_plfm_init)(void);
 
-    /** \brief ƽ̨���ʼ������ */
+    /** \brief 平台解初始化函数 */
     void                 (*pfn_plfm_deinit)(void);
 
 } am_zlg_tim_timing_devinfo_t;
 
 /**
- * \brief TIM��ʱ�����豸
+ * \brief TIM定时功能设备
  */
 typedef struct am_zlg_tim_timing_dev {
 
-    am_timer_serv_t timer_serv;         /**< \brief ��׼��ʱ(Timer)���� */
+    am_timer_serv_t timer_serv;         /**< \brief 标准定时(Timer)服务 */
 
-    void (*pfn_callback)(void *);       /**< \brief �ص����� */
-    void  *p_arg;                       /**< \brief �ص��������û����� */
+    void (*pfn_callback)(void *);       /**< \brief 回调函数 */
+    void  *p_arg;                       /**< \brief 回调函数的用户参数 */
 
-    /** \brief ָ��TIM(��ʱ����)�豸��Ϣ������ָ�� */
+    /** \brief 指向TIM(定时功能)设备信息常量的指针 */
     const am_zlg_tim_timing_devinfo_t  *p_devinfo;
 
 } am_zlg_tim_timing_dev_t;
 
 /**
- * \brief ��ʼ��TIMΪ��ʱ����
+ * \brief 初始化TIM为定时功能
  *
- * \param[in] p_dev     : ָ��TIM(��ʱ����)�豸��ָ��
- * \param[in] p_devinfo : ָ��TIM(��ʱ����)�豸��Ϣ������ָ��
+ * \param[in] p_dev     : 指向TIM(定时功能)设备的指针
+ * \param[in] p_devinfo : 指向TIM(定时功能)设备信息常量的指针
  *
- * \return Timer��׼������������ֵΪNULLʱ������ʼ��ʧ��
+ * \return Timer标准服务操作句柄，值为NULL时表明初始化失败
  */
 am_timer_handle_t
 am_zlg_tim_timing_init (am_zlg_tim_timing_dev_t              *p_dev,
                            const am_zlg_tim_timing_devinfo_t *p_devinfo);
 
 /**
- * \brief ��ʹ��TIM��ʱ����ʱ�����ʼ��TIM��ʱ���ܣ��ͷ������Դ
+ * \brief 不使用TIM定时功能时，解初始化TIM定时功能，释放相关资源
  *
- * \param[in] handle : am_zlg_tim_timing_init() ��ʼ��������õ�Timer������
+ * \param[in] handle : am_zlg_tim_timing_init() 初始化函数获得的Timer服务句柄
  *
- * \return ��
+ * \return 无
  */
 void am_zlg_tim_timing_deinit (am_timer_handle_t handle);
 

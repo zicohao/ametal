@@ -34,80 +34,80 @@ extern "C" {
 struct uartcmd_cmd_info;
 
 /**
- * \brief ÃüÁîÀàĞÍ½á¹¹Ìå 
+ * \brief å‘½ä»¤ç±»å‹ç»“æ„ä½“ 
  */
 typedef struct uartcmd_cmd {
     
-    /** \brief ÃüÁîÀàĞÍ */
+    /** \brief å‘½ä»¤ç±»å‹ */
     uint8_t cmd_class;
     
-    /** \brief ÃüÁîÖ´ĞĞº¯Êı */
+    /** \brief å‘½ä»¤æ‰§è¡Œå‡½æ•° */
     int (*pfn_cmd_execute)(am_uartcmd_handle_t      handle,
                            struct uartcmd_cmd_info *p_cmd_info);
     
-    /** \brief ISOĞ­Òé±ê×¼¾ä±ú */
+    /** \brief ISOåè®®æ ‡å‡†å¥æŸ„ */
     void     *p_iso_handle; 
     
-    /** \brief Á´±í½áµã */
+    /** \brief é“¾è¡¨ç»“ç‚¹ */
     struct am_list_head node;
     
-    /** \brief Ö¸ÏòÖ»Ö§³Öµ¥Ò»ÃüÁîµÄ¾ä±ú */
+    /** \brief æŒ‡å‘åªæ”¯æŒå•ä¸€å‘½ä»¤çš„å¥æŸ„ */
     void     *p_other_handle;
 
-    /** \brief ÓÃÓÚÀ©Õ¹ÅäÖÃĞÅÏ¢ */
+    /** \brief ç”¨äºæ‰©å±•é…ç½®ä¿¡æ¯ */
     void     *p_arg;
 
 } uartcmd_cmd_t;
 
 /**
- * \brief ÃüÁîĞÅÏ¢½á¹¹Ìå
+ * \brief å‘½ä»¤ä¿¡æ¯ç»“æ„ä½“
  */
 typedef struct uartcmd_cmd_info {
-    uartcmd_cmd_t *p_cmd;       /**< \brief ÓëÃüÁîÏà¹ØÁªµÄÃüÁîÀàĞÍ */
-    uint32_t       cmd_code;    /**< \brief ÃüÁî´úÂë */
-    uint8_t        slot_index;  /**< \brief ¿¨×ùË÷ÒıºÅ */
-    uint8_t       *p_rx_buf;    /**< \brief ´æ·ÅÃüÁîÖ¡Êı¾İĞÅÏ¢µÄ»º³åÇø */
-    uint32_t       rx_nbytes;   /**< \brief Êı¾İĞÅÏ¢µÄ×Ö½ÚÊı */
-    uint8_t       *p_tx_buf;    /**< \brief ´æ·Å»ØÓ¦Ö¡Êı¾İĞÅÏ¢µÄ»º³åÇø */
-    uint32_t      *p_tx_nbytes; /**< \brief Êı¾İĞÅÏ¢µÄ×Ö½ÚÊı */
+    uartcmd_cmd_t *p_cmd;       /**< \brief ä¸å‘½ä»¤ç›¸å…³è”çš„å‘½ä»¤ç±»å‹ */
+    uint32_t       cmd_code;    /**< \brief å‘½ä»¤ä»£ç  */
+    uint8_t        slot_index;  /**< \brief å¡åº§ç´¢å¼•å· */
+    uint8_t       *p_rx_buf;    /**< \brief å­˜æ”¾å‘½ä»¤å¸§æ•°æ®ä¿¡æ¯çš„ç¼“å†²åŒº */
+    uint32_t       rx_nbytes;   /**< \brief æ•°æ®ä¿¡æ¯çš„å­—èŠ‚æ•° */
+    uint8_t       *p_tx_buf;    /**< \brief å­˜æ”¾å›åº”å¸§æ•°æ®ä¿¡æ¯çš„ç¼“å†²åŒº */
+    uint32_t      *p_tx_nbytes; /**< \brief æ•°æ®ä¿¡æ¯çš„å­—èŠ‚æ•° */
 } uartcmd_cmd_info_t;
 
 /**
- * \brief ×¢²áÒ»¸öĞÂµÄÃüÁîÀàĞÍ
+ * \brief æ³¨å†Œä¸€ä¸ªæ–°çš„å‘½ä»¤ç±»å‹
  *
- * \param[in] handle : UARTCMD·şÎñ¾ä±ú
- * \param[in] p_cmd  : ÃüÁîÀàĞÍ½á¹¹ÌåÖ¸Õë
+ * \param[in] handle : UARTCMDæœåŠ¡å¥æŸ„
+ * \param[in] p_cmd  : å‘½ä»¤ç±»å‹ç»“æ„ä½“æŒ‡é’ˆ
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 int uartcmd_cmd_class_register (am_uartcmd_handle_t handle, uartcmd_cmd_t *p_cmd);
 
 /**
- * \brief ×¢ÏúÒ»¸öĞÂµÄÃüÁîÀàĞÍ
+ * \brief æ³¨é”€ä¸€ä¸ªæ–°çš„å‘½ä»¤ç±»å‹
  *
- * \param[in] handle : UARTCMD·şÎñ¾ä±ú
- * \param[in] p_cmd  : ÃüÁîÀàĞÍ½á¹¹ÌåÖ¸Õë
+ * \param[in] handle : UARTCMDæœåŠ¡å¥æŸ„
+ * \param[in] p_cmd  : å‘½ä»¤ç±»å‹ç»“æ„ä½“æŒ‡é’ˆ
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 int uartcmd_cmd_class_unregister (am_uartcmd_handle_t handle, uartcmd_cmd_t *p_cmd);
 
 /**
- * \brief ÃüÁîÖ´ĞĞº¯Êı
+ * \brief å‘½ä»¤æ‰§è¡Œå‡½æ•°
  *
- * \param[in] handle      : UARTCMD·şÎñ¾ä±ú
- * \param[in] cmd_class   : ÃüÁîÀà±ğ
- * \param[in] cmd_code    : ÃüÁî´úÂë
- * \param[in] slot_index  : ¿¨²ÛË÷Òı 
- * \param[in] p_rx_buf    : ½ÓÊÕÊı¾İ»º´æÇø
- * \param[in] rx_nbytes   : ½ÓÊÕÊı¾İµÄ×Ö½ÚÊı
- * \param[in] p_tx_buf    : ´æ·Å·µ»ØĞÅÏ¢µÄ»º³åÇø
- * \param[in] p_tx_nbytes : ·µ»ØĞÅÏ¢µÄ×Ö½ÚÊı
+ * \param[in] handle      : UARTCMDæœåŠ¡å¥æŸ„
+ * \param[in] cmd_class   : å‘½ä»¤ç±»åˆ«
+ * \param[in] cmd_code    : å‘½ä»¤ä»£ç 
+ * \param[in] slot_index  : å¡æ§½ç´¢å¼• 
+ * \param[in] p_rx_buf    : æ¥æ”¶æ•°æ®ç¼“å­˜åŒº
+ * \param[in] rx_nbytes   : æ¥æ”¶æ•°æ®çš„å­—èŠ‚æ•°
+ * \param[in] p_tx_buf    : å­˜æ”¾è¿”å›ä¿¡æ¯çš„ç¼“å†²åŒº
+ * \param[in] p_tx_nbytes : è¿”å›ä¿¡æ¯çš„å­—èŠ‚æ•°
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊıĞÅÏ¢
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°ä¿¡æ¯
  */
 int uartcmd_cmd_execute (am_uartcmd_handle_t  handle,
                          uint32_t             cmd_class,

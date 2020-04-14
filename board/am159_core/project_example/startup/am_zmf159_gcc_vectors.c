@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ÖĞ¶ÏÏòÁ¿±í
+ * \brief ä¸­æ–­å‘é‡è¡¨
  *
  * \internal
  * \par modification history
@@ -22,17 +22,17 @@
  */
 
 /***************************************************************************
-  Íâ²¿±äÁ¿ÉùÃ÷
+  å¤–éƒ¨å˜é‡å£°æ˜
 ***************************************************************************/
 extern unsigned long _estack;
 
 /***************************************************************************
-  Íâ²¿º¯ÊıÉùÃ÷
+  å¤–éƒ¨å‡½æ•°å£°æ˜
 ***************************************************************************/
 extern void am_exc_eint_handler (void);
 extern void ResetHandler(void);
 /***************************************************************************
-  ±¾µØº¯ÊıÉùÃ÷
+  æœ¬åœ°å‡½æ•°å£°æ˜
 ***************************************************************************/
 
 
@@ -48,10 +48,10 @@ void SysTick_Handler (void) __attribute__((weak));
 void am_exc_eint_handler (void) __attribute__((weak));
 
 /***************************************************************************
-  ±¾µØÈ«¾Ö±äÁ¿¶¨Òå
+  æœ¬åœ°å…¨å±€å˜é‡å®šä¹‰
 ***************************************************************************/
 
-/** \brief ÖĞ¶ÏÏòÁ¿±í */
+/** \brief ä¸­æ–­å‘é‡è¡¨ */
 __attribute__ ((section(".vectors"), used))
 void (* const gVectors[])(void) =
 {
@@ -124,11 +124,11 @@ void (* const gVectors[])(void) =
     am_exc_eint_handler,         /* 53 - UART5 */
     am_exc_eint_handler,         /* 54 - TIM6 */
     am_exc_eint_handler,         /* 55 - TIM7 */
-    am_exc_eint_handler,         /* 56 - DMA2Í¨µÀ1 */
-    am_exc_eint_handler,         /* 57 - DMA2Í¨µÀ2 */
-    am_exc_eint_handler,         /* 58 - DMA2Í¨µÀ3 */
-    am_exc_eint_handler,         /* 59 - DMA2Í¨µÀ4 */
-    am_exc_eint_handler,         /* 60 - DMA2Í¨µÀ5 */
+    am_exc_eint_handler,         /* 56 - DMA2é€šé“1 */
+    am_exc_eint_handler,         /* 57 - DMA2é€šé“2 */
+    am_exc_eint_handler,         /* 58 - DMA2é€šé“3 */
+    am_exc_eint_handler,         /* 59 - DMA2é€šé“4 */
+    am_exc_eint_handler,         /* 60 - DMA2é€šé“5 */
     0, 0, 0,
     am_exc_eint_handler,         /* 64 - COMP1_2 */
     0, 0,
@@ -143,7 +143,7 @@ void (* const gVectors[])(void) =
 };
 
 /***************************************************************************
-  ±¾µØº¯Êı¶¨Òå
+  æœ¬åœ°å‡½æ•°å®šä¹‰
 ***************************************************************************/
 void NMI_Handler (void) { while(1); }
 void HardFault_Handler (void) { while(1); }

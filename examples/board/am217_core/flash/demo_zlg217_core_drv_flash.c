@@ -12,18 +12,18 @@
 
 /**
  * \file
- * \brief FLASH Àý³Ì£¬Í¨¹ýÇý¶¯²ã½Ó¿ÚÊµÏÖ
+ * \brief FLASH ä¾‹ç¨‹ï¼Œé€šè¿‡é©±åŠ¨å±‚æŽ¥å£å®žçŽ°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ²Á³ý³ö´í£º´®¿Ú´òÓ¡"erase error!"£»
- *   2. Ð´Èë³ö´í£º´®¿Ú´òÓ¡"program error!"£»
- *   3. Ð´Èë³É¹¦£º´®¿Ú´òÓ¡ 55 ÉÈÇøµÄ(1024/4)¸ö 32bit Ê®Áù½øÖÆÊý¾Ý¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. æ“¦é™¤å‡ºé”™ï¼šä¸²å£æ‰“å°"erase error!"ï¼›
+ *   2. å†™å…¥å‡ºé”™ï¼šä¸²å£æ‰“å°"program error!"ï¼›
+ *   3. å†™å…¥æˆåŠŸï¼šä¸²å£æ‰“å° 55 æ‰‡åŒºçš„(1024/4)ä¸ª 32bit åå…­è¿›åˆ¶æ•°æ®ã€‚
  *
  * \note
- *    ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIOA_10 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *    PIOA_9 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
+ *    å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIOA_10 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *    PIOA_9 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_zlg217_drv_flash.c src_zlg217_drv_flash
  *
  * \internal
@@ -46,10 +46,10 @@
 #include "demo_zlg_entries.h"
 #include "demo_am217_core_entries.h"
 
-#define FLASH_SECTOR 55    /**< \brief ÉÈÇø */
+#define FLASH_SECTOR 55    /**< \brief æ‰‡åŒº */
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_zlg217_core_drv_flash_entry (void)
 {

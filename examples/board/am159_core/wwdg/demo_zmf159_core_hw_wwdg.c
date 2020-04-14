@@ -12,13 +12,13 @@
 
 /**
  * \file
- * \brief WWDG ���̣�ͨ�� HW ��ӿ�ʵ��
+ * \brief WWDG 例程，通过 HW 层接口实现
  *
- * - ʵ������
- *   1. �޸ĺ궨�� __WWDG_FEED_TIME_MS ��ֵ������ __WWDG_TIMEOUT_MS��оƬ��λ��
- *   2. �޸ĺ궨�� __WWDG_FEED_TIME_MS ��ֵ��С�� __WWDG_TIMEOUT_MS�������������С�
+ * - 实验现象：
+ *   1. 修改宏定义 __WWDG_FEED_TIME_MS 的值，超过 __WWDG_TIMEOUT_MS，芯片复位；
+ *   2. 修改宏定义 __WWDG_FEED_TIME_MS 的值，小于 __WWDG_TIMEOUT_MS，程序正常运行。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_zmf159_hw_wwdg.c src_zmf159_hw_wwdg
  *
  * \internal
@@ -41,18 +41,18 @@
 #include "demo_zlg_entries.h"
 
 /**
- * \brief ���Ź���ʱʱ��
+ * \brief 看门狗超时时间
  */
 #define __WWDG_TIMEOUT_MS       25
 
 /**
- * \brief ���Ź�ι��ʱ�䣬��ι��ʱ�䳬��WWDG_TIMEOUT_MS��ֵоƬ�������λ
+ * \brief 看门狗喂狗时间，若喂狗时间超过WWDG_TIMEOUT_MS的值芯片会产生复位
  */
 #define __WWDG_FEED_TIME_MS     100
 
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_zmf159_core_hw_wwdg_entry (void)
 {

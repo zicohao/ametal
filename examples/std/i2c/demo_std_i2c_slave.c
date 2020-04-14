@@ -12,12 +12,12 @@
 
 /**
  * \file
- * \brief I2C ´Ó»úÀı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief I2C ä»æœºä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè£º
- *   1. Á¬½Ó¶ÔÓ¦Òı½Å¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. è¿æ¥å¯¹åº”å¼•è„šã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_std_i2c_slave.c src_std_i2c_slave
  *
  * \internal
@@ -35,7 +35,7 @@
 #include "ametal.h"
 #include "am_i2c_slv.h"
 
-/** \breif ¼Ä´æÆ÷ÊıÁ¿ */
+/** \breif å¯„å­˜å™¨æ•°é‡ */
 #define __REG_SIZE  20
 
 static uint8_t __g_reg_buf[__REG_SIZE];
@@ -43,7 +43,7 @@ static uint8_t __g_reg_buf[__REG_SIZE];
 static uint8_t __g_subaddr;
 
 /**
- * \brief µØÖ·Æ¥Åä»Øµ÷º¯Êı
+ * \brief åœ°å€åŒ¹é…å›è°ƒå‡½æ•°
  */
 static uint8_t __g_count = 0;
 static int __addr_matching ( void * p_arg, am_bool_t is_rx)
@@ -55,7 +55,7 @@ static int __addr_matching ( void * p_arg, am_bool_t is_rx)
 }
 
 /**
- * \brief »ñÈ¡·¢ËÍÒ»¸ö×Ö½Ú»Øµ÷
+ * \brief è·å–å‘é€ä¸€ä¸ªå­—èŠ‚å›è°ƒ
  */
 static int __txbyte_get (void *p_arg, uint8_t *p_byte)
 {
@@ -65,7 +65,7 @@ static int __txbyte_get (void *p_arg, uint8_t *p_byte)
 }
 
 /**
- * \brief ½ÓÊÜÒ»¸ö×Ö½Ú»Øµ÷
+ * \brief æ¥å—ä¸€ä¸ªå­—èŠ‚å›è°ƒ
  */
 static int __rxbyte_put(void *p_arg, uint8_t byte)
 {
@@ -75,7 +75,7 @@ static int __rxbyte_put(void *p_arg, uint8_t byte)
 }
 
 /**
- * \brief Í£Ö¹´«Êä»Øµ÷
+ * \brief åœæ­¢ä¼ è¾“å›è°ƒ
  */
 static void  __tran_stop(void *p_arg)
 {
@@ -90,7 +90,7 @@ static am_i2c_slv_cb_funcs_t __g_i2c_slv_cb_funs = {
 };
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_std_i2c_slave_entry (am_i2c_slv_handle_t handle, uint16_t dev_addr)
 {
@@ -104,11 +104,11 @@ void demo_std_i2c_slave_entry (am_i2c_slv_handle_t handle, uint16_t dev_addr)
                       AM_I2C_SLV_ADDR_7BIT,
                       NULL);
 
-    /* ¿ªÊ¼ÔËĞĞ´Ó»úÉè±¸ */
+    /* å¼€å§‹è¿è¡Œä»æœºè®¾å¤‡ */
     am_i2c_slv_setup (&i2c_slv_dev);
 
     /**
-     * \brief ³õÊ¼»¯´Ó»ú»º´æÇø
+     * \brief åˆå§‹åŒ–ä»æœºç¼“å­˜åŒº
      */
     for ( i = 0; i < __REG_SIZE; i++) {
         __g_reg_buf[i] = 5+i;

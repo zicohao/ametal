@@ -12,12 +12,12 @@
 
 /**
  * \file
- * \brief TPMÊµÏÖ±ê×¼¶¨Ê±Æ÷Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief TPMå®ç°æ ‡å‡†å®šæ—¶å™¨ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. LEDÒÔ10HzµÄÆµÂÊÉÁË¸¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. LEDä»¥10Hzçš„é¢‘ç‡é—ªçƒã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_amks16z_core_std_tpm_timing.c src_amks16z_core_std_tpm_timing
  *
  * \internal
@@ -41,7 +41,7 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_amks16z_core_std_tpm_timing_entry (void)
 {

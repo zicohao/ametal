@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZMF159 CRC ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief ZMF159 CRC ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_zmf159_crc.c
  *
  * \internal
@@ -32,37 +32,37 @@
  * @{
  */
 
-/** \brief CRCÆ½Ì¨³õÊ¼»¯ */
+/** \brief CRCå¹³å°åˆå§‹åŒ– */
 void __zmf159_crc_plfm_init (void)
 {
 
-    /* Ê¹ÄÜCRCÊ±ÖÓ */
+    /* ä½¿èƒ½CRCæ—¶é’Ÿ */
     am_clk_enable(CLK_CRC);
 }
 
-/** \brief ½â³ıCRCÆ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤CRCå¹³å°åˆå§‹åŒ– */
 void __zmf159_crc_plfm_deinit (void)
 {
     am_clk_disable(CLK_CRC);
 }
 
-/** \brief CRC Éè±¸ĞÅÏ¢ */
+/** \brief CRC è®¾å¤‡ä¿¡æ¯ */
 static const am_zlg_crc_devinfo_t __g_crc_devinfo = {
-     ZMF159_CRC_BASE,               /**< \brief CRC¼Ä´æÆ÷¿é»ùÖ· */
-    __zmf159_crc_plfm_init,         /**< \brief Æ½Ì¨³õÊ¼»¯ */
-    __zmf159_crc_plfm_deinit        /**< \brief Æ½Ì¨È¥³õÊ¼»¯ */
+     ZMF159_CRC_BASE,               /**< \brief CRCå¯„å­˜å™¨å—åŸºå€ */
+    __zmf159_crc_plfm_init,         /**< \brief å¹³å°åˆå§‹åŒ– */
+    __zmf159_crc_plfm_deinit        /**< \brief å¹³å°å»åˆå§‹åŒ– */
 };
 
-/** \brief CRCÉè±¸¶¨Òå */
+/** \brief CRCè®¾å¤‡å®šä¹‰ */
 static am_zlg_crc_dev_t __g_crc_dev;
 
-/** \brief CRC ÊµÀı³õÊ¼»¯£¬»ñµÃCRC±ê×¼·şÎñ¾ä±ú */
+/** \brief CRC å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—CRCæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_crc_handle_t am_zmf159_crc_inst_init (void)
 {
     return am_zlg_crc_init(&__g_crc_dev, &__g_crc_devinfo);
 }
 
-/** \brief CRC ÊµÀı½â³õÊ¼»¯ */
+/** \brief CRC å®ä¾‹è§£åˆå§‹åŒ– */
 void am_zmf159_crc_inst_deinit (am_crc_handle_t handle)
 {
     am_zlg_crc_deinit(handle);

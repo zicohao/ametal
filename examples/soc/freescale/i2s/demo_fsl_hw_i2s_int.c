@@ -12,17 +12,17 @@
 
 /**
  * \file
- * \brief I2S ·¢ËÍ£¨ÖĞ¶Ï·½Ê½£©Àı³Ì£¬Í¨¹ıHW²ã½Ó¿ÚÊµÏÖ
+ * \brief I2S å‘é€ï¼ˆä¸­æ–­æ–¹å¼ï¼‰ä¾‹ç¨‹ï¼Œé€šè¿‡HWå±‚æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè£º
- *   1. °´ÕÕI2S Ïà¹ØÒı½Å½ÓÏßTX_D0¡¢TX_FS¡¢TX_BCLKµ½Âß¼­·ÖÎöÒÇ¡£
- *   2. µ÷ÊÔ³ÌĞò¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. æŒ‰ç…§I2S ç›¸å…³å¼•è„šæ¥çº¿TX_D0ã€TX_FSã€TX_BCLKåˆ°é€»è¾‘åˆ†æä»ªã€‚
+ *   2. è°ƒè¯•ç¨‹åºã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ¿ÉÒÔÔÚÂß¼­·ÖÎöÒÇÉÏ¿´µ½TX_D0¡¢TX_FS¡¢TX_BCLKµÄÊı¾İ£»
- *   2. ÆäÖĞTX_D0Îª·¢ËÍÊı¾İµÄ²¹Âë£¬TX_FSÊÇÖ¡Ê±ÖÓ£¬TX_BCLKÊÇÎ»Ê±ÖÓ¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. å¯ä»¥åœ¨é€»è¾‘åˆ†æä»ªä¸Šçœ‹åˆ°TX_D0ã€TX_FSã€TX_BCLKçš„æ•°æ®ï¼›
+ *   2. å…¶ä¸­TX_D0ä¸ºå‘é€æ•°æ®çš„è¡¥ç ï¼ŒTX_FSæ˜¯å¸§æ—¶é’Ÿï¼ŒTX_BCLKæ˜¯ä½æ—¶é’Ÿã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_fsl_hw_i2s_int.c src_fsl_hw_i2s_int
  *
  * \internal
@@ -49,20 +49,20 @@ static uint8_t __g_kl26_fifo_err_flag  = 0;
 static uint8_t __g_kl26_fifo_warn_flag = 0;
 
 /**
- * \brief I2S Éè±¸³õÊ¼»¯
+ * \brief I2S è®¾å¤‡åˆå§‹åŒ–
  */
 static void __i2s_init (amhw_fsl_i2s_t           *p_hw_i2s,
                         amhw_fsl_i2s_clock_cfg_t *p_i2s0_clk)
 {
 
-    /** \brief ÅäÖÃI2SÊ±ÖÓ */
+    /** \brief é…ç½®I2Sæ—¶é’Ÿ */
     p_i2s0_clk->bclk          = 256000UL ;
     p_i2s0_clk->bclk_src      = AMHW_FSL_I2S_BCLK_SRC_MCLK;
     p_i2s0_clk->bclk_src_freq = 4096000UL;
     p_i2s0_clk->mclk          = 4096000UL;
     p_i2s0_clk->mclk_src      = AMHW_FSL_I2S_MCLK_SRC_SYSCLK;
 
-    /* ·¢ËÍ¼Ä´æÆ÷³õÊ¼»¯ */
+    /* å‘é€å¯„å­˜å™¨åˆå§‹åŒ– */
     amhw_fsl_i2s_tx_init(p_hw_i2s);
     amhw_fsl_i2s_tx_clock_setup(p_hw_i2s, p_i2s0_clk);
     amhw_fsl_i2s_tx_sync_mode_set(p_hw_i2s, AMHW_FSL_I2S_SYNC_DISABLED);
@@ -78,7 +78,7 @@ static void __i2s_init (amhw_fsl_i2s_t           *p_hw_i2s,
     amhw_fsl_i2s_tx_enable(p_hw_i2s);
 
 #if 0
-    /* ½ÓÊÕ¼Ä´æÆ÷³õÊ¼»¯ */
+    /* æ¥æ”¶å¯„å­˜å™¨åˆå§‹åŒ– */
     amhw_fsl_i2s_rx_init(p_hw_i2s);
     amhw_fsl_i2s_rx_clock_setup(p_hw_i2s, p_i2s0_clk);
     amhw_fsl_i2s_rx_int_disable(p_hw_i2s, AMHW_FSL_I2S_INT_REQ_ALL);
@@ -93,14 +93,14 @@ static void __i2s_init (amhw_fsl_i2s_t           *p_hw_i2s,
 #endif
 }
 
-/** \brief I2SÖĞ¶Ï·şÎñº¯Êı */
+/** \brief I2Sä¸­æ–­æœåŠ¡å‡½æ•° */
 static void __i2s_isr_handler (void *p_var)
 {
-    /** \brief Òª·¢ËÍµÄÊı¾İ   */
+    /** \brief è¦å‘é€çš„æ•°æ®   */
     static uint32_t dat = 0;
     amhw_fsl_i2s_t *p_hw_i2s = (amhw_fsl_i2s_t *)(p_var);
 
-    /* FIFO´íÎó£¬ÇåÁã¸ÃÎ» */
+    /* FIFOé”™è¯¯ï¼Œæ¸…é›¶è¯¥ä½ */
     if ((amhw_fsl_i2s_tcsr_get(p_hw_i2s) & AMHW_FSL_I2S_TCSR_FEF_MASK)) {
         amhw_fsl_i2s_tx_state_flag_clr(p_hw_i2s, AMHW_FSL_I2S_STATE_FLAG_FIFO_ERROR);
         amhw_fsl_i2s_tx_reset_set(p_hw_i2s, AMHW_FSL_I2S_RESET_TYPE_FIFO);
@@ -108,22 +108,22 @@ static void __i2s_isr_handler (void *p_var)
         __g_kl26_fifo_err_flag = 1;
     }
 
-    /* FIFO¿Õ£¬Ìî³äÊı¾İ·¢ËÍ */
+    /* FIFOç©ºï¼Œå¡«å……æ•°æ®å‘é€ */
     if ((amhw_fsl_i2s_tcsr_get(p_hw_i2s) & AMHW_FSL_I2S_TCSR_FWF_MASK)) {
-        /* ·¢ËÍÊı¾İ */
+        /* å‘é€æ•°æ® */
         amhw_fsl_i2s_txdata_write (p_hw_i2s, dat);
         dat  = dat + 1;
         dat %= 127;
         __g_kl26_fifo_warn_flag = 1;
     }
 
-    /* ½ÓÊÕÖĞ¶Ï´¦Àí */
+    /* æ¥æ”¶ä¸­æ–­å¤„ç† */
 
 }
 
 /**
- * \brief i2sÖĞ¶ÏÊı¾İ·¢ËÍ£¬µ÷ÓÃHW²ã½Ó¿Úº¯ÊıÊµÏÖ
- * \return ÎŞ
+ * \brief i2sä¸­æ–­æ•°æ®å‘é€ï¼Œè°ƒç”¨HWå±‚æ¥å£å‡½æ•°å®ç°
+ * \return æ— 
  */
 void demo_fsl_hw_i2s_int_entry (amhw_fsl_i2s_t           *p_hw_i2s,
                                 int                       inum_i2s,

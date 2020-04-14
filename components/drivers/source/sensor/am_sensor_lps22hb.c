@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ´«¸ĞÆ÷ LPS22HB Çı¶¯ÎÄ¼ş
+ * \brief ä¼ æ„Ÿå™¨ LPS22HB é©±åŠ¨æ–‡ä»¶
  *
  * \internal
  * \par Modification history
@@ -25,133 +25,133 @@
 #include "am_vdebug.h"
 
 /*******************************************************************************
- * ºê¶¨Òå
+ * å®å®šä¹‰
  ******************************************************************************/
-#define  __LPS22HB_REG_INTERRUPT_CFG    0X0B  /**< \brief ÖĞ¶Ï¼Ä´æÆ÷µØÖ·      */   
-#define  __LPS22HB_REG_THS_P_L          0X0C  /**< \brief Ñ¹Á¦ãĞÖµµÍ×Ö½ÚµØÖ·  */
-#define  __LPS22HB_REG_THS_P_H          0X0D  /**< \brief Ñ¹Á¦ãĞÖµ¸ß×Ö½ÚµØÖ·  */
-#define  __LPS22HB_REG_WHO_AM_I         0X0F  /**< \brief ID¼Ä´æÆ÷µØÖ·        */
-#define  __LPS22HB_REG_CTRL_REG1        0X10  /**< \brief ¿ØÖÆ¼Ä´æÆ÷1µØÖ·     */
-#define  __LPS22HB_REG_CTRL_REG2        0X11  /**< \brief ¿ØÖÆ¼Ä´æÆ÷2µØÖ·     */
-#define  __LPS22HB_REG_CTRL_REG3        0X12  /**< \brief ¿ØÖÆ¼Ä´æÆ÷3µØÖ·     */
-#define  __LPS22HB_REG_FIFO_CTRL        0X14  /**< \brief FIFOÅäÖÃ¼Ä´æÆ÷µØÖ·  */
-#define  __LPS22HB_REG_REF_P_XL         0X15  /**< \brief ²Î¿¼Ñ¹Á¦µÍ×Ö½ÚµØÖ·  */
-#define  __LPS22HB_REG_REF_P_L          0X16  /**< \brief ²Î¿¼Ñ¹Á¦´ÎµÍ×Ö½ÚµØÖ·*/
-#define  __LPS22HB_REG_REF_P_H          0X17  /**< \brief ²Î¿¼Ñ¹Á¦¸ß×Ö½ÚµØÖ·  */
-#define  __LPS22HB_REG_RPDS_L           0X18  /**< \brief Ñ¹Á¦²¹³¥µÍ×Ö½ÚµØÖ·  */
-#define  __LPS22HB_REG_RPDS_H           0X19  /**< \brief Ñ¹Á¦²¹³¥¸ß×Ö½ÚµØÖ·  */                                       
-#define  __LPS22HB_REG_RES_CONF         0X1A  /**< \brief ·Ö±æÂÊ¼Ä´æÆ÷µØÖ·    */
-#define  __LPS22HB_REG_INT_SOURCE       0X25  /**< \brief ÖĞ¶ÏÔ´¼Ä´æÆ÷µØÖ·    */
-#define  __LPS22HB_REG_FIFO_STATUS      0X26  /**< \brief FIFO×´Ì¬¼Ä´æÆ÷µØÖ·  */
-#define  __LPS22HB_REG_STATUS           0X27  /**< \brief ×´Ì¬¼Ä´æÆ÷µØÖ·      */
-#define  __LPS22HB_REG_PRESS_OUT_XL     0X28  /**< \brief Ñ¹Á¦µÍ×Ö½ÚµØÖ·      */
-#define  __LPS22HB_REG_PRESS_OUT_L      0X29  /**< \brief Ñ¹Á¦´ÎµÍ×Ö½ÚµØÖ·    */
-#define  __LPS22HB_REG_PRESS_OUT_H      0X2A  /**< \brief Ñ¹Á¦¸ß×Ö½ÚµØÖ·      */
-#define  __LPS22HB_REG_TEMP_OUT_L       0X2B  /**< \brief ÎÂ¶ÈµÍ×Ö½ÚµØÖ·      */
-#define  __LPS22HB_REG_TEMP_OUT_H       0X2C  /**< \brief ÎÂ¶È¸ß×Ö½ÚµØÖ·      */
-#define  __LPS22HB_REG_LPFP_RES         0X33  /**< \brief ÂË²¨Æ÷¸´Î»µØÖ·      */
+#define  __LPS22HB_REG_INTERRUPT_CFG    0X0B  /**< \brief ä¸­æ–­å¯„å­˜å™¨åœ°å€      */   
+#define  __LPS22HB_REG_THS_P_L          0X0C  /**< \brief å‹åŠ›é˜ˆå€¼ä½å­—èŠ‚åœ°å€  */
+#define  __LPS22HB_REG_THS_P_H          0X0D  /**< \brief å‹åŠ›é˜ˆå€¼é«˜å­—èŠ‚åœ°å€  */
+#define  __LPS22HB_REG_WHO_AM_I         0X0F  /**< \brief IDå¯„å­˜å™¨åœ°å€        */
+#define  __LPS22HB_REG_CTRL_REG1        0X10  /**< \brief æ§åˆ¶å¯„å­˜å™¨1åœ°å€     */
+#define  __LPS22HB_REG_CTRL_REG2        0X11  /**< \brief æ§åˆ¶å¯„å­˜å™¨2åœ°å€     */
+#define  __LPS22HB_REG_CTRL_REG3        0X12  /**< \brief æ§åˆ¶å¯„å­˜å™¨3åœ°å€     */
+#define  __LPS22HB_REG_FIFO_CTRL        0X14  /**< \brief FIFOé…ç½®å¯„å­˜å™¨åœ°å€  */
+#define  __LPS22HB_REG_REF_P_XL         0X15  /**< \brief å‚è€ƒå‹åŠ›ä½å­—èŠ‚åœ°å€  */
+#define  __LPS22HB_REG_REF_P_L          0X16  /**< \brief å‚è€ƒå‹åŠ›æ¬¡ä½å­—èŠ‚åœ°å€*/
+#define  __LPS22HB_REG_REF_P_H          0X17  /**< \brief å‚è€ƒå‹åŠ›é«˜å­—èŠ‚åœ°å€  */
+#define  __LPS22HB_REG_RPDS_L           0X18  /**< \brief å‹åŠ›è¡¥å¿ä½å­—èŠ‚åœ°å€  */
+#define  __LPS22HB_REG_RPDS_H           0X19  /**< \brief å‹åŠ›è¡¥å¿é«˜å­—èŠ‚åœ°å€  */                                       
+#define  __LPS22HB_REG_RES_CONF         0X1A  /**< \brief åˆ†è¾¨ç‡å¯„å­˜å™¨åœ°å€    */
+#define  __LPS22HB_REG_INT_SOURCE       0X25  /**< \brief ä¸­æ–­æºå¯„å­˜å™¨åœ°å€    */
+#define  __LPS22HB_REG_FIFO_STATUS      0X26  /**< \brief FIFOçŠ¶æ€å¯„å­˜å™¨åœ°å€  */
+#define  __LPS22HB_REG_STATUS           0X27  /**< \brief çŠ¶æ€å¯„å­˜å™¨åœ°å€      */
+#define  __LPS22HB_REG_PRESS_OUT_XL     0X28  /**< \brief å‹åŠ›ä½å­—èŠ‚åœ°å€      */
+#define  __LPS22HB_REG_PRESS_OUT_L      0X29  /**< \brief å‹åŠ›æ¬¡ä½å­—èŠ‚åœ°å€    */
+#define  __LPS22HB_REG_PRESS_OUT_H      0X2A  /**< \brief å‹åŠ›é«˜å­—èŠ‚åœ°å€      */
+#define  __LPS22HB_REG_TEMP_OUT_L       0X2B  /**< \brief æ¸©åº¦ä½å­—èŠ‚åœ°å€      */
+#define  __LPS22HB_REG_TEMP_OUT_H       0X2C  /**< \brief æ¸©åº¦é«˜å­—èŠ‚åœ°å€      */
+#define  __LPS22HB_REG_LPFP_RES         0X33  /**< \brief æ»¤æ³¢å™¨å¤ä½åœ°å€      */
 
-#define  __LPS22HB_CMD_RESET            0X04  /**< \brief ¸´Î»ÃüÁî            */
-#define  __LPS22HB_MY_ID                0XB1  /**< \brief IDÖµ                */
+#define  __LPS22HB_CMD_RESET            0X04  /**< \brief å¤ä½å‘½ä»¤            */
+#define  __LPS22HB_MY_ID                0XB1  /**< \brief IDå€¼                */
 
-#define  __LPS22HB_DIFF_EN       (0x01<<3)    /**< \brief Ê¹ÄÜÖĞ¶Ï            */
-#define  __LPS22HB_TRIGGER_READ  (0x01<<2)    /**< \brief Ê¹ÄÜÊı¾İ¿É¶Á´¥·¢    */
-#define  __LPS22HB_TRIGGER_CLOSE (~(0x01<<2)) /**< \brief ¹Ø±ÕÊı¾İ¿É¶Á´¥·¢    */
+#define  __LPS22HB_DIFF_EN       (0x01<<3)    /**< \brief ä½¿èƒ½ä¸­æ–­            */
+#define  __LPS22HB_TRIGGER_READ  (0x01<<2)    /**< \brief ä½¿èƒ½æ•°æ®å¯è¯»è§¦å‘    */
+#define  __LPS22HB_TRIGGER_CLOSE (~(0x01<<2)) /**< \brief å…³é—­æ•°æ®å¯è¯»è§¦å‘    */
 
-/** \brief ÉèÖÃÆµÂÊÎªÒ»´Î */
+/** \brief è®¾ç½®é¢‘ç‡ä¸ºä¸€æ¬¡ */
 #define __LPS22HB_RATE_SET_ONE(data) (((data) & (~(0x7 << 4))) | (0x0 << 4))
 
-/** \brief ÉèÖÃÆµÂÊÎª1 */
+/** \brief è®¾ç½®é¢‘ç‡ä¸º1 */
 #define __LPS22HB_RATE_SET_1S(data)  (((data) & (~(0x7 << 4))) | (0x1 << 4))
 
-/** \brief ÉèÖÃÆµÂÊÎª10 */
+/** \brief è®¾ç½®é¢‘ç‡ä¸º10 */
 #define __LPS22HB_RATE_SET_10S(data) (((data) & (~(0x7 << 4))) | (0x2 << 4))
 
-/** \brief ÉèÖÃÆµÂÊÎª25 */
+/** \brief è®¾ç½®é¢‘ç‡ä¸º25 */
 #define __LPS22HB_RATE_SET_25S(data) (((data) & (~(0x7 << 4))) | (0x3 << 4))
 
-/** \brief ÉèÖÃÆµÂÊÎª50 */
+/** \brief è®¾ç½®é¢‘ç‡ä¸º50 */
 #define __LPS22HB_RATE_SET_50S(data) (((data) & (~(0x7 << 4))) | (0x4 << 4))
 
-/** \brief ÉèÖÃÆµÂÊÎª75 */
+/** \brief è®¾ç½®é¢‘ç‡ä¸º75 */
 #define __LPS22HB_RATE_SET_75S(data) (((data) & (~(0x7 << 4))) | (0x5 << 4))
 
-/** \brief ¿ªÊ¼Ò»´ÎÊı¾İ²É¼¯ */
+/** \brief å¼€å§‹ä¸€æ¬¡æ•°æ®é‡‡é›† */
 #define __LPS22HB_ONE_SHOT_START     (0x1)
 
-/** \brief »ñÈ¡PRESS×´Ì¬Î» */
+/** \brief è·å–PRESSçŠ¶æ€ä½ */
 #define __LPS22HB_GET_PRESS_STATUS(reg) (reg & 0x1)
 
-/** \brief »ñÈ¡TEM×´Ì¬Î» */
+/** \brief è·å–TEMçŠ¶æ€ä½ */
 #define __LPS22HB_GET_TEM_STATUS(reg)   ((reg >> 1) & 0x1)
 
-/** \brief ½«Á½¸öint8×ª»»ÎªÒ»¸öint16_tÀàĞÍ */
+/** \brief å°†ä¸¤ä¸ªint8è½¬æ¢ä¸ºä¸€ä¸ªint16_tç±»å‹ */
 #define __LPS22HB_UINT8_TO_UINT16(buff) \
                        (int16_t)(((uint16_t)(buff[1]) << 8) \
                                | ((uint16_t)(buff[0])))
 
-/** \brief ½«Èı¸öint8×ª»»ÎªÒ»¸öint32_tÀàĞÍ */
+/** \brief å°†ä¸‰ä¸ªint8è½¬æ¢ä¸ºä¸€ä¸ªint32_tç±»å‹ */
 #define __LPS22HB_UINT8_TO_UINT32(buff) \
                        (uint32_t)(((uint32_t)(buff[2]) << 16) \
                                | ((uint32_t)(buff[1]) << 8)  \
                                | ((uint32_t)(buff[0])))
 
-/** \brief ¼ÆËãÑ¹Ç¿ */
+/** \brief è®¡ç®—å‹å¼º */
 #define __LPS22HB_GET_PRESS_VALUE(data)  ((double)(data) * 100 / 4096)
  
-/** \brief ¼ÆËãÎÂ¶È,²¢À©´ó10^6±¶ */
+/** \brief è®¡ç®—æ¸©åº¦,å¹¶æ‰©å¤§10^6å€ */
 #define __LPS22HB_GET_TEM_VALUE(data)    (data *1000000 / 100)
 
 /*******************************************************************************
- * ±¾µØº¯ÊıÉùÃ÷
+ * æœ¬åœ°å‡½æ•°å£°æ˜
  ******************************************************************************/
-/** \brief »ñÈ¡¸Ã´«¸ĞÆ÷Ä³Ò»Í¨µÀµÄÀàĞÍ */
+/** \brief è·å–è¯¥ä¼ æ„Ÿå™¨æŸä¸€é€šé“çš„ç±»å‹ */
 am_local am_err_t __pfn_type_get (void *p_drv, int id);
 
-/** \brief »ñÈ¡´«¸ĞÆ÷Í¨µÀ²ÉÑùÊı¾İ */
+/** \brief è·å–ä¼ æ„Ÿå™¨é€šé“é‡‡æ ·æ•°æ® */
 am_local am_err_t __pfn_data_get (void            *p_drv,
                                   const int       *p_ids,
                                   int              num,
                                   am_sensor_val_t *p_buf);
 
-/** \brief Ê¹ÄÜ´«¸ĞÆ÷Í¨µÀ */
+/** \brief ä½¿èƒ½ä¼ æ„Ÿå™¨é€šé“ */
 am_local am_err_t __pfn_enable (void            *p_drv,
                                 const int       *p_ids,
                                 int              num,
                                 am_sensor_val_t *p_result);
 
-/** \brief ½ûÄÜ´«¸ĞÆ÷Í¨µÀ */
+/** \brief ç¦èƒ½ä¼ æ„Ÿå™¨é€šé“ */
 am_local am_err_t __pfn_disable (void            *p_drv,
                                  const int       *p_ids,
                                  int              num,
                                  am_sensor_val_t *p_result);
 
-/** \brief ÅäÖÃ´«¸ĞÆ÷Í¨µÀÊôĞÔ */
+/** \brief é…ç½®ä¼ æ„Ÿå™¨é€šé“å±æ€§ */
 am_local am_err_t __pfn_attr_set (void                  *p_drv,
                                   int                    id,
                                   int                    attr,
                                   const am_sensor_val_t *p_val);
 
-/** \brief »ñÈ¡´«¸ĞÆ÷Í¨µÀÊôĞÔ */
+/** \brief è·å–ä¼ æ„Ÿå™¨é€šé“å±æ€§ */
 am_local am_err_t __pfn_attr_get (void            *p_drv,
                                   int              id,
                                   int              attr,
                                   am_sensor_val_t *p_val);
 
-/** \brief ÉèÖÃ´¥·¢£¬Ò»¸öÍ¨µÀ½öÄÜÉèÖÃÒ»¸ö´¥·¢»Øµ÷º¯Êı */
+/** \brief è®¾ç½®è§¦å‘ï¼Œä¸€ä¸ªé€šé“ä»…èƒ½è®¾ç½®ä¸€ä¸ªè§¦å‘å›è°ƒå‡½æ•° */
 am_local am_err_t __pfn_trigger_cfg (void                   *p_drv,
                                      int                     id,
                                      uint32_t                flags,
                                      am_sensor_trigger_cb_t  pfn_cb,
                                      void                   *p_arg);
 
-/** \brief ´ò¿ª´¥·¢ */
+/** \brief æ‰“å¼€è§¦å‘ */
 am_local am_err_t __pfn_trigger_on (void *p_drv, int id);
 
-/** \brief ¹Ø±Õ´¥·¢ */
+/** \brief å…³é—­è§¦å‘ */
 am_local am_err_t __pfn_trigger_off (void *p_drv, int id);
                                   
-/** \brief ´«¸ĞÆ÷±ê×¼·şÎñ */
+/** \brief ä¼ æ„Ÿå™¨æ ‡å‡†æœåŠ¡ */
 am_local am_const struct am_sensor_drv_funcs __g_sensor_lps22hb_funcs = {
         __pfn_type_get,
         __pfn_data_get,
@@ -167,7 +167,7 @@ am_local am_const struct am_sensor_drv_funcs __g_sensor_lps22hb_funcs = {
   Local functions
 *******************************************************************************/
 /**
- * \brief LPS22HB Ğ´Êı¾İ
+ * \brief LPS22HB å†™æ•°æ®
  */
 am_local am_err_t __lps22hb_write (am_sensor_lps22hb_dev_t *p_this,
                                   uint32_t                subaddr,
@@ -178,7 +178,7 @@ am_local am_err_t __lps22hb_write (am_sensor_lps22hb_dev_t *p_this,
 }
 
 /**
- * \brief LPS22HB ¶ÁÊı¾İ
+ * \brief LPS22HB è¯»æ•°æ®
  */
 am_local am_err_t __lps22hb_read (am_sensor_lps22hb_dev_t *p_this,
                                  uint32_t                subaddr,
@@ -188,15 +188,15 @@ am_local am_err_t __lps22hb_read (am_sensor_lps22hb_dev_t *p_this,
     return am_i2c_read(&p_this->i2c_dev, subaddr, p_buf, nbytes);
 }
 
-/** \breif ÖĞ¶Ï»Øµ÷º¯Êı */
+/** \breif ä¸­æ–­å›è°ƒå‡½æ•° */
 am_local void __lps22hb_alarm_callback (void *p_arg)
 {
     am_sensor_lps22hb_dev_t* p_this = (am_sensor_lps22hb_dev_t*)p_arg;
 
-    am_isr_defer_job_add(&p_this->g_myjob);   /*< \brief Ìí¼ÓÖĞ¶ÏÑÓ³Ù´¦ÀíÈÎÎñ */
+    am_isr_defer_job_add(&p_this->g_myjob);   /*< \brief æ·»åŠ ä¸­æ–­å»¶è¿Ÿå¤„ç†ä»»åŠ¡ */
 }
 
-/** \breif ÖĞ¶ÏÑÓ³Ùº¯Êı */
+/** \breif ä¸­æ–­å»¶è¿Ÿå‡½æ•° */
 am_local void __am_pfnvoid_t (void *p_arg)
 {
     am_sensor_lps22hb_dev_t* p_this = (am_sensor_lps22hb_dev_t*)p_arg;
@@ -204,23 +204,23 @@ am_local void __am_pfnvoid_t (void *p_arg)
     uint8_t reg_data[3];
     int32_t tem_data   = 0;
 
-    /** \brief »ñÈ¡Ñ¹Á¦Öµ */
+    /** \brief è·å–å‹åŠ›å€¼ */
     __lps22hb_read(p_this, __LPS22HB_REG_PRESS_OUT_XL, reg_data, 3);
 
     tem_data = __LPS22HB_UINT8_TO_UINT32(reg_data);
    
-    /** \brief Ñ¹Á¦ */
+    /** \brief å‹åŠ› */
     p_this->data[0].val = __LPS22HB_GET_PRESS_VALUE(tem_data); 
-    p_this->data[0].unit = AM_SENSOR_UNIT_BASE; /*< \brief µ¥Î»Ä¬ÈÏÎª0:10^(0)*/
+    p_this->data[0].unit = AM_SENSOR_UNIT_BASE; /*< \brief å•ä½é»˜è®¤ä¸º0:10^(0)*/
 
-    /** \brief »ñÈ¡ÎÂ¶È */
+    /** \brief è·å–æ¸©åº¦ */
     __lps22hb_read(p_this, __LPS22HB_REG_TEMP_OUT_L, reg_data, 2);
 
     tem_data = __LPS22HB_UINT8_TO_UINT16(reg_data);
    
-    /** \brief ÎÂ¶È */
+    /** \brief æ¸©åº¦ */
     p_this->data[1].val  = __LPS22HB_GET_TEM_VALUE(tem_data); 
-    p_this->data[1].unit = AM_SENSOR_UNIT_MICRO; /*< \brief µ¥Î»Ä¬ÈÏÎª-6:10^(-6)*/
+    p_this->data[1].unit = AM_SENSOR_UNIT_MICRO; /*< \brief å•ä½é»˜è®¤ä¸º-6:10^(-6)*/
     
     if (p_this->pfn_trigger_cb[0] &&
             (p_this->flags[0] & AM_SENSOR_TRIGGER_DATA_READY)) {
@@ -236,7 +236,7 @@ am_local void __am_pfnvoid_t (void *p_arg)
 }
 
 /**
- * \brief ÅäÖÃÑ¡Ôñ
+ * \brief é…ç½®é€‰æ‹©
  */
 am_local am_err_t __reg_attr_set (am_sensor_lps22hb_dev_t *p_this, uint8_t rate)
 {
@@ -275,7 +275,7 @@ am_local am_err_t __reg_attr_set (am_sensor_lps22hb_dev_t *p_this, uint8_t rate)
      return __lps22hb_write(p_this, __LPS22HB_REG_CTRL_REG1, &rate_cfg, 1);
 }
 
-/** \brief »ñÈ¡¸Ã´«¸ĞÆ÷Ä³Ò»Í¨µÀµÄÀàĞÍ */
+/** \brief è·å–è¯¥ä¼ æ„Ÿå™¨æŸä¸€é€šé“çš„ç±»å‹ */
 am_local am_err_t __pfn_type_get (void *p_drv, int id)
 {
     if (p_drv == NULL) {
@@ -291,7 +291,7 @@ am_local am_err_t __pfn_type_get (void *p_drv, int id)
     }
 }
 
-/** \brief »ñÈ¡´«¸ĞÆ÷Í¨µÀ²ÉÑùÊı¾İ */
+/** \brief è·å–ä¼ æ„Ÿå™¨é€šé“é‡‡æ ·æ•°æ® */
 am_local am_err_t __pfn_data_get (void            *p_drv,
                                   const int       *p_ids,
                                   int              num,
@@ -319,10 +319,10 @@ am_local am_err_t __pfn_data_get (void            *p_drv,
         p_buf[i].unit = AM_SENSOR_UNIT_INVALID;
     }
 
-    /* ÈôÎª1£¬Ôò¿ÉÄÜÔÚÊı¾İ×¼±¸¾ÍĞ÷´¥·¢»Øµ÷º¯ÊıÖĞÊ¹ÓÃ */
+    /* è‹¥ä¸º1ï¼Œåˆ™å¯èƒ½åœ¨æ•°æ®å‡†å¤‡å°±ç»ªè§¦å‘å›è°ƒå‡½æ•°ä¸­ä½¿ç”¨ */
     if (num == 1) {
         cur_id = p_ids[0];
-        /* Èô´ò¿ªÊı¾İ×¼±¸¾ÍĞ÷´¥·¢·½Ê½£¬ÔòÖ±½Ó¸³Öµ */
+        /* è‹¥æ‰“å¼€æ•°æ®å‡†å¤‡å°±ç»ªè§¦å‘æ–¹å¼ï¼Œåˆ™ç›´æ¥èµ‹å€¼ */
         if ((AM_BIT_GET(p_this->trigger, 2)) &&
                 ((p_this->flags[0] & AM_SENSOR_TRIGGER_DATA_READY) ||
                  (p_this->flags[1] & AM_SENSOR_TRIGGER_DATA_READY))) {
@@ -332,7 +332,7 @@ am_local am_err_t __pfn_data_get (void            *p_drv,
         }
     }    
     
-    /** \brief »ñÈ¡¿É¶Á×´Ì¬Öµ */
+    /** \brief è·å–å¯è¯»çŠ¶æ€å€¼ */
     do {
         ret = __lps22hb_read(p_this, __LPS22HB_REG_STATUS, &status_val, 1);
         if (ret != AM_OK) {
@@ -347,32 +347,32 @@ am_local am_err_t __pfn_data_get (void            *p_drv,
 
         if (cur_id == 0) {
 
-            /** \brief »ñÈ¡Ñ¹Á¦Öµ */
+            /** \brief è·å–å‹åŠ›å€¼ */
             ret = __lps22hb_read(p_this, __LPS22HB_REG_PRESS_OUT_XL, reg_data, 3);
             if (ret != AM_OK) {
                 return ret;
             }
             tem_data = __LPS22HB_UINT8_TO_UINT32(reg_data);
            
-            /** \brief Ñ¹Á¦ */
+            /** \brief å‹åŠ› */
             p_buf[i].val = __LPS22HB_GET_PRESS_VALUE(tem_data); 
-            p_buf[i].unit = AM_SENSOR_UNIT_BASE; /*< \brief µ¥Î»Ä¬ÈÏÎª0:10^(0)*/
+            p_buf[i].unit = AM_SENSOR_UNIT_BASE; /*< \brief å•ä½é»˜è®¤ä¸º0:10^(0)*/
 
         } else if (cur_id == 1) {
 
-            /** \brief »ñÈ¡ÎÂ¶È */
+            /** \brief è·å–æ¸©åº¦ */
             ret = __lps22hb_read(p_this, __LPS22HB_REG_TEMP_OUT_L, reg_data, 2);
             if (ret != AM_OK) {
                 return ret;
             }
             tem_data = __LPS22HB_UINT8_TO_UINT16(reg_data);
            
-            /** \brief ÎÂ¶È */
+            /** \brief æ¸©åº¦ */
             p_buf[i].val = __LPS22HB_GET_TEM_VALUE(tem_data); 
-            p_buf[i].unit = AM_SENSOR_UNIT_MICRO; /*< \brief µ¥Î»Ä¬ÈÏÎª-6:10^(-6)*/
+            p_buf[i].unit = AM_SENSOR_UNIT_MICRO; /*< \brief å•ä½é»˜è®¤ä¸º-6:10^(-6)*/
 
         }else {
-            return -AM_ENODEV;  /*< \brief Èô´Ë´ÎÍ¨µÀ²»ÊôÓÚ¸Ã´«¸ĞÆ÷£¬Ö±½Ó·µ»Ø */
+            return -AM_ENODEV;  /*< \brief è‹¥æ­¤æ¬¡é€šé“ä¸å±äºè¯¥ä¼ æ„Ÿå™¨ï¼Œç›´æ¥è¿”å› */
         }
     }
     
@@ -389,7 +389,7 @@ am_local am_err_t __pfn_data_get (void            *p_drv,
     return ret;
 }
 
-/** \brief Ê¹ÄÜ´«¸ĞÆ÷Í¨µÀ */
+/** \brief ä½¿èƒ½ä¼ æ„Ÿå™¨é€šé“ */
 am_local am_err_t __pfn_enable (void            *p_drv,
                                 const int       *p_ids,
                                 int              num,
@@ -426,7 +426,7 @@ am_local am_err_t __pfn_enable (void            *p_drv,
         }
     }
 
-    if (ret != AM_OK) {    /**< \breif Èç¹û±¾´ÎÃ»ÓĞ¸Ã´«¸ĞÆ÷µÄÍ¨µÀ´«Èë£¬ÔòÍË³ö */
+    if (ret != AM_OK) {    /**< \breif å¦‚æœæœ¬æ¬¡æ²¡æœ‰è¯¥ä¼ æ„Ÿå™¨çš„é€šé“ä¼ å…¥ï¼Œåˆ™é€€å‡º */
         return curent_ret;
     }
 
@@ -450,7 +450,7 @@ am_local am_err_t __pfn_enable (void            *p_drv,
     return curent_ret;
 }
 
-/** \brief ½ûÄÜ´«¸ĞÆ÷Í¨µÀ */
+/** \brief ç¦èƒ½ä¼ æ„Ÿå™¨é€šé“ */
 am_local am_err_t __pfn_disable (void            *p_drv,
                                  const int       *p_ids,
                                  int              num,
@@ -502,7 +502,7 @@ am_local am_err_t __pfn_disable (void            *p_drv,
     return cur_ret;
 }
 
-/** \brief ÅäÖÃ´«¸ĞÆ÷Í¨µÀÊôĞÔ */
+/** \brief é…ç½®ä¼ æ„Ÿå™¨é€šé“å±æ€§ */
 am_local am_err_t __pfn_attr_set (void                  *p_drv,
                                   int                    id,
                                   int                    attr,
@@ -529,7 +529,7 @@ am_local am_err_t __pfn_attr_set (void                  *p_drv,
 
     switch (attr) {
 
-    /* ĞŞ¸ÄÆµÂÊ */
+    /* ä¿®æ”¹é¢‘ç‡ */
     case AM_SENSOR_ATTR_SAMPLING_RATE:
 
         if (p_val->val < 0 || p_val->val > 75) {
@@ -578,7 +578,7 @@ am_local am_err_t __pfn_attr_set (void                  *p_drv,
     return cur_ret;
 }
 
-/** \brief »ñÈ¡´«¸ĞÆ÷Í¨µÀÊôĞÔ */
+/** \brief è·å–ä¼ æ„Ÿå™¨é€šé“å±æ€§ */
 am_local am_err_t __pfn_attr_get (void            *p_drv,
                                   int              id,
                                   int              attr,
@@ -598,7 +598,7 @@ am_local am_err_t __pfn_attr_get (void            *p_drv,
 
     switch (attr) {
 
-    /* »ñÈ¡²ÉÑùÆµÂÊ */
+    /* è·å–é‡‡æ ·é¢‘ç‡ */
     case AM_SENSOR_ATTR_SAMPLING_RATE:
 
         p_val->val  = p_this->sam_rate.val;
@@ -614,7 +614,7 @@ am_local am_err_t __pfn_attr_get (void            *p_drv,
     return ret;
 }
 
-/** \brief ÉèÖÃ´¥·¢£¬Ò»¸öÍ¨µÀ½öÄÜÉèÖÃÒ»¸ö´¥·¢»Øµ÷º¯Êı */
+/** \brief è®¾ç½®è§¦å‘ï¼Œä¸€ä¸ªé€šé“ä»…èƒ½è®¾ç½®ä¸€ä¸ªè§¦å‘å›è°ƒå‡½æ•° */
 am_local am_err_t __pfn_trigger_cfg (void                   *p_drv,
                                      int                     id,
                                      uint32_t                flags,
@@ -645,7 +645,7 @@ am_local am_err_t __pfn_trigger_cfg (void                   *p_drv,
     return AM_OK;
 }
 
-/** \brief ´ò¿ª´¥·¢ */
+/** \brief æ‰“å¼€è§¦å‘ */
 am_local am_err_t __pfn_trigger_on (void *p_drv, int id)
 {
     am_sensor_lps22hb_dev_t* p_this = (am_sensor_lps22hb_dev_t*)p_drv;
@@ -673,7 +673,7 @@ am_local am_err_t __pfn_trigger_on (void *p_drv, int id)
         cur_ret = ret;
     }
     
-    /** \brief Ê¹ÄÜÖĞ¶ÏÉú³É */
+    /** \brief ä½¿èƒ½ä¸­æ–­ç”Ÿæˆ */
     reg_data |= __LPS22HB_DIFF_EN;
     ret = __lps22hb_write(p_this, __LPS22HB_REG_INTERRUPT_CFG, &reg_data, 1);
     if ( ret != AM_OK) {
@@ -685,14 +685,14 @@ am_local am_err_t __pfn_trigger_on (void *p_drv, int id)
         cur_ret = ret;
     }
     
-    /** \brief Ê¹ÄÜÊı¾İ¿É¶Á´¥·¢ */
+    /** \brief ä½¿èƒ½æ•°æ®å¯è¯»è§¦å‘ */
     reg_data |= __LPS22HB_TRIGGER_READ;
     ret = __lps22hb_write(p_this, __LPS22HB_REG_CTRL_REG3, &reg_data, 1);
     if ( ret != AM_OK) {
         cur_ret = ret;
     }
 
-    /* ÅäÖÃ´¥·¢Òı½Å */
+    /* é…ç½®è§¦å‘å¼•è„š */
     if (p_this->dev_info->trigger_pin != -1) {    
         __lps22hb_read(p_this, __LPS22HB_REG_PRESS_OUT_XL, reg_clear, 5);
         ret = am_gpio_trigger_on(p_this->dev_info->trigger_pin);
@@ -713,7 +713,7 @@ am_local am_err_t __pfn_trigger_on (void *p_drv, int id)
     return cur_ret;
 }
 
-/** \brief ¹Ø±Õ´¥·¢ */
+/** \brief å…³é—­è§¦å‘ */
 am_local am_err_t __pfn_trigger_off (void *p_drv, int id)
 {
     am_sensor_lps22hb_dev_t* p_this = (am_sensor_lps22hb_dev_t*)p_drv;
@@ -746,7 +746,7 @@ am_local am_err_t __pfn_trigger_off (void *p_drv, int id)
             cur_ret = ret;
         }
 
-        /** \brief ½ûÄÜÊı¾İ¿É¶Á´¥·¢ */
+        /** \brief ç¦èƒ½æ•°æ®å¯è¯»è§¦å‘ */
         reg_data &= __LPS22HB_TRIGGER_CLOSE;
         ret = __lps22hb_write(p_this, __LPS22HB_REG_CTRL_REG3, &reg_data, 1);
         if (ret != AM_OK) {
@@ -777,7 +777,7 @@ am_local am_err_t __pfn_trigger_off (void *p_drv, int id)
   Public functions
 *******************************************************************************/
 /**
- * \brief ´«¸ĞÆ÷ LPS22HB ³õÊ¼»¯
+ * \brief ä¼ æ„Ÿå™¨ LPS22HB åˆå§‹åŒ–
  */
 am_sensor_handle_t am_sensor_lps22hb_init (
         am_sensor_lps22hb_dev_t           *p_dev,
@@ -816,7 +816,7 @@ am_sensor_handle_t am_sensor_lps22hb_init (
     p_dev->data[1].val         = 0;
     p_dev->data[1].unit        = AM_SENSOR_UNIT_INVALID;
 
-    /* Íâ²¿ÖĞ¶ÏÁ¬½Ó */
+    /* å¤–éƒ¨ä¸­æ–­è¿æ¥ */
     if (p_devinfo->trigger_pin != -1) {
         am_gpio_pin_cfg(p_devinfo->trigger_pin, AM_GPIO_INPUT);
         am_gpio_trigger_connect(p_devinfo->trigger_pin,
@@ -831,14 +831,14 @@ am_sensor_handle_t am_sensor_lps22hb_init (
     if (ret != AM_OK) {
         cur_ret = ret;
     }
-    /* ¸´Î»LPS22HB */ 
+    /* å¤ä½LPS22HB */ 
     ctrl_reg2 |= __LPS22HB_CMD_RESET; 
     ret = __lps22hb_write(p_dev, __LPS22HB_REG_CTRL_REG2, &ctrl_reg2, 1); 
     if (ret != AM_OK) {
         cur_ret = ret;
     }
     
-    /* ¶ÁÈ¡ID */
+    /* è¯»å–ID */
     ret = __lps22hb_read(p_dev, __LPS22HB_REG_WHO_AM_I, &lps22hb_id, 1);
     if (ret != AM_OK || lps22hb_id != __LPS22HB_MY_ID) {
         cur_ret = ret;
@@ -853,7 +853,7 @@ am_sensor_handle_t am_sensor_lps22hb_init (
 }
 
 /**
- * \brief ´«¸ĞÆ÷ LPS22HB È¥³õÊ¼»¯
+ * \brief ä¼ æ„Ÿå™¨ LPS22HB å»åˆå§‹åŒ–
  */
 am_err_t am_sensor_lps22hb_deinit (am_sensor_handle_t handle)
 {

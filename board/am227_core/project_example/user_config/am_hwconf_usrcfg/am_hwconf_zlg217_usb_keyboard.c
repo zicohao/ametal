@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief zlg227 USB_keyboard ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief zlg227 USB_keyboard ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_zlg227_hwconfig_usb_keyboard.c
  *
  * \internal
@@ -37,341 +37,341 @@
  */
 
 /*******************************************************************************
- * ÓÃ»§USBÃèÊö·ûÅäÖÃºê,ÓÃ»§ÅäÖÃÃèÊö·ûºê¼´¿É,ÎŞĞè¹ØĞÄUSBÃèÊö·û¡£
+ * ç”¨æˆ·USBæè¿°ç¬¦é…ç½®å®,ç”¨æˆ·é…ç½®æè¿°ç¬¦å®å³å¯,æ— éœ€å…³å¿ƒUSBæè¿°ç¬¦ã€‚
  ******************************************************************************/
 
-/** \brief USBÉè±¸ÃèÊöÅäÖÃºê*/
-#define __USBD_KEYBOARD_VENDOR_ID                 (0x1FC9) /**< \brief ³§ÉÌ±àºÅ,×÷Îª²úÆ··¢²¼±ØĞëĞ´×Ô¼º¹«Ë¾µÄ³§ÉÌ±àºÅ£¬ÒÔÃâÇÖÈ¨£¬´Ë´¦ÌîÁËÒ»¸öÃ»ÓĞÔÚUSBĞ­»á×¢²áµÄ±àºÅ*/
-#define __USBD_KEYBOARD_PRODUCT_ID                (0x7C03) /**< \brief ²úÆ·±àºÅ*/
-#define __USBD_KEYBOARD_DEVICE_ID                 (0x0002) /**< \brief Éè±¸±àºÅ*/
-#define __USBD_KEYBOARD_VENDOR_STRING_INDEX       (0x01)   /**< \brief ÃèÊö³§ÉÌµÄ×Ö·û´®Ë÷Òı*/
-#define __USBD_KEYBOARD_PRODUCT_STRING_INDEX      (0x02)   /**< \brief ÃèÊö²úÆ·µÄ×Ö·û´®Ë÷Òı */
-#define __USBD_KEYBOARD_CONFIG_COUNT              (1U)     /**< \brief ÅäÖÃÊı£¬Ò»°ãÉèÖÃÖ»ÓĞÒ»¸öÅäÖÃ*/
+/** \brief USBè®¾å¤‡æè¿°é…ç½®å®*/
+#define __USBD_KEYBOARD_VENDOR_ID                 (0x1FC9) /**< \brief å‚å•†ç¼–å·,ä½œä¸ºäº§å“å‘å¸ƒå¿…é¡»å†™è‡ªå·±å…¬å¸çš„å‚å•†ç¼–å·ï¼Œä»¥å…ä¾µæƒï¼Œæ­¤å¤„å¡«äº†ä¸€ä¸ªæ²¡æœ‰åœ¨USBåä¼šæ³¨å†Œçš„ç¼–å·*/
+#define __USBD_KEYBOARD_PRODUCT_ID                (0x7C03) /**< \brief äº§å“ç¼–å·*/
+#define __USBD_KEYBOARD_DEVICE_ID                 (0x0002) /**< \brief è®¾å¤‡ç¼–å·*/
+#define __USBD_KEYBOARD_VENDOR_STRING_INDEX       (0x01)   /**< \brief æè¿°å‚å•†çš„å­—ç¬¦ä¸²ç´¢å¼•*/
+#define __USBD_KEYBOARD_PRODUCT_STRING_INDEX      (0x02)   /**< \brief æè¿°äº§å“çš„å­—ç¬¦ä¸²ç´¢å¼• */
+#define __USBD_KEYBOARD_CONFIG_COUNT              (1U)     /**< \brief é…ç½®æ•°ï¼Œä¸€èˆ¬è®¾ç½®åªæœ‰ä¸€ä¸ªé…ç½®*/
 
-/** \brief USBÅäÖÃÃèÊö·ûÅäÖÃºê*/
-#define __USBD_KEYBOARD_INTERFACE_COUNT           (1U)     /**< \brief ½Ó¿ÚÊı*/
-#define __USBD_KEYBOARD_CONFIGURE_INDEX           (1U)     /**< \brief ÅäÖÃÃèÊö·ûË÷Òı*/
-#define __USBD_KEYBOARD_DEVICE_POWER               AM_USBD_MAX_POWER /**< \brief Éè±¸ÏòÖ÷»úÉêÇëµÄµçÁ÷£¬µ¥Î»2mA,×î´ó100mA*/
-/** \brief Éè±¸ÊôĞÔ£¬×Ô¹©µç£¬²»Ö§³ÖÔ¶³Ì»½ĞÑ*/
+/** \brief USBé…ç½®æè¿°ç¬¦é…ç½®å®*/
+#define __USBD_KEYBOARD_INTERFACE_COUNT           (1U)     /**< \brief æ¥å£æ•°*/
+#define __USBD_KEYBOARD_CONFIGURE_INDEX           (1U)     /**< \brief é…ç½®æè¿°ç¬¦ç´¢å¼•*/
+#define __USBD_KEYBOARD_DEVICE_POWER               AM_USBD_MAX_POWER /**< \brief è®¾å¤‡å‘ä¸»æœºç”³è¯·çš„ç”µæµï¼Œå•ä½2mA,æœ€å¤§100mA*/
+/** \brief è®¾å¤‡å±æ€§ï¼Œè‡ªä¾›ç”µï¼Œä¸æ”¯æŒè¿œç¨‹å”¤é†’*/
 #define __USBD_KEYBOARD_DEVICE_ATTRIBUTE          \
               (AM_USBD_CONFIG_SELF_POWER | AM_USBD_CONFIG_NOT_REMOTE_WAKEUP)
 
-#define __USBD_KEYBOARD_COUNTRYCODE                (0x21U) /**< \brief ¹ú¼Ò\µØÇø´úÂë£¬0x21±íÊ¾ÃÀ¹ú£¨ÒòÎª¼üÅÌÒ»°ãÊÇÃÀÊ½¼üÅÌ£© */
-#define __USBD_KEYBOARD_DESC_NUMBER                (1U)    /**< \brief ÏÂ¼¶ÃèÊö·ûÊıÁ¿*/
+#define __USBD_KEYBOARD_COUNTRYCODE                (0x21U) /**< \brief å›½å®¶\åœ°åŒºä»£ç ï¼Œ0x21è¡¨ç¤ºç¾å›½ï¼ˆå› ä¸ºé”®ç›˜ä¸€èˆ¬æ˜¯ç¾å¼é”®ç›˜ï¼‰ */
+#define __USBD_KEYBOARD_DESC_NUMBER                (1U)    /**< \brief ä¸‹çº§æè¿°ç¬¦æ•°é‡*/
 
 
-/**\brief USB¶ËµãÃèÊö·ûÅäÖÃºê*/
-#define __USBD_KEYBOARD_ENDPOINT_IN                1       /**< \brief ÊäÈë¶ËµãºÅ*/
-#define __USBD_KEYBOARD_ENDPOINT_IN_PACKSIZE       AM_USBD_MAX_EP_DATA_CNT       /**< \brief ¶Ëµã°ü´óĞ¡,ÉèÖÃÎª64*/
-#define __USBD_KEYBOARD_ENDPOINT_IN_ATTRIBUTE      AM_USB_ENDPOINT_INTERRUPT     /**< \brief ÉèÖÃ¶ËµãÊôĞÔÎªÅúÁ¿´«Êä*/
-#define __USBD_KEYBOARD_ENDPOINT_IN_QUERY_TIME    (0x0A)                         /**< \brief ÉèÖÃ¶Ëµã²éÑ¯Ê±¼äÎª10ms,µ¥Î»Îª1ms*/
+/**\brief USBç«¯ç‚¹æè¿°ç¬¦é…ç½®å®*/
+#define __USBD_KEYBOARD_ENDPOINT_IN                1       /**< \brief è¾“å…¥ç«¯ç‚¹å·*/
+#define __USBD_KEYBOARD_ENDPOINT_IN_PACKSIZE       AM_USBD_MAX_EP_DATA_CNT       /**< \brief ç«¯ç‚¹åŒ…å¤§å°,è®¾ç½®ä¸º64*/
+#define __USBD_KEYBOARD_ENDPOINT_IN_ATTRIBUTE      AM_USB_ENDPOINT_INTERRUPT     /**< \brief è®¾ç½®ç«¯ç‚¹å±æ€§ä¸ºæ‰¹é‡ä¼ è¾“*/
+#define __USBD_KEYBOARD_ENDPOINT_IN_QUERY_TIME    (0x0A)                         /**< \brief è®¾ç½®ç«¯ç‚¹æŸ¥è¯¢æ—¶é—´ä¸º10ms,å•ä½ä¸º1ms*/
 
 #define __USBD_KEYBOARD_ENDPOINT_OUT               2
 #define __USBD_KEYBOARD_ENDPOINT_OUT_PACKSIZE      AM_USBD_MAX_EP_DATA_CNT
 #define __USBD_KEYBOARD_ENDPOINT_OUT_ATTRIBUTE     AM_USB_ENDPOINT_INTERRUPT
 #define __USBD_KEYBOARD_ENDPOINT_OUT_QUERY_TIME   (0x0A)
 
-/**\brief USB½Ó¿ÚÃèÊö·ûÅäÖÃºê*/
-#define __USBD_KEYBOARD_ENDPOINT_COUNT            (2U)     /**< \brief ¶Ëµã¸öÊı,ÊäÈë¶ËµãÓëÊä³ö¶Ëµã(²»°üÀ¨¿ØÖÆ¶Ëµã)*/
+/**\brief USBæ¥å£æè¿°ç¬¦é…ç½®å®*/
+#define __USBD_KEYBOARD_ENDPOINT_COUNT            (2U)     /**< \brief ç«¯ç‚¹ä¸ªæ•°,è¾“å…¥ç«¯ç‚¹ä¸è¾“å‡ºç«¯ç‚¹(ä¸åŒ…æ‹¬æ§åˆ¶ç«¯ç‚¹)*/
 
 /*****************************************************************************
- * USBÃèÊö·û(Éè±¸ÃèÊö·û,ÅäÖÃÃèÊö·û£¬½Ó¿ÚÃèÊö·û,¶ËµãÃèÊö·û),¸Ã²¿·ÖÓÃ»§Ö»ĞèÅäÖÃÉÏÊöºê¼´¿É
+ * USBæè¿°ç¬¦(è®¾å¤‡æè¿°ç¬¦,é…ç½®æè¿°ç¬¦ï¼Œæ¥å£æè¿°ç¬¦,ç«¯ç‚¹æè¿°ç¬¦),è¯¥éƒ¨åˆ†ç”¨æˆ·åªéœ€é…ç½®ä¸Šè¿°å®å³å¯
  *****************************************************************************/
 
-/* USB Éè±¸ÃèÊö·û */
+/* USB è®¾å¤‡æè¿°ç¬¦ */
 static const uint8_t __g_am_usbd_keyboard_desc_dev[AM_USB_DESC_LENGTH_DEVICE]  = {
-    AM_USB_DESC_LENGTH_DEVICE,        /* Éè±¸ÃèÊö·ûµÄ×Ö½ÚÊı */
-    AM_USB_DESC_TYPE_DEVICE,          /* Éè±¸ÃèÊö·ûÀàĞÍ±àºÅ£¬¹Ì¶¨Îª0x01 */
+    AM_USB_DESC_LENGTH_DEVICE,        /* è®¾å¤‡æè¿°ç¬¦çš„å­—èŠ‚æ•° */
+    AM_USB_DESC_TYPE_DEVICE,          /* è®¾å¤‡æè¿°ç¬¦ç±»å‹ç¼–å·ï¼Œå›ºå®šä¸º0x01 */
 
-    /* USB°æ±¾  */
+    /* USBç‰ˆæœ¬  */
     AM_USB_SHORT_GET_LOW(AM_USB_VERSION), AM_USB_SHORT_GET_HIGH(AM_USB_VERSION),
-    AM_USBD_CLASS,                          /* Í¨ĞÅÀà */
-    AM_USBD_SUBCLASS,                       /* Éè±¸×ÓÀà */
-    AM_USBD_PROTOCOL,                       /* Ğ­ÒéÂë */
-    AM_USBD_MAX_EP_DATA_CNT,                /* ¶Ëµã0µÄ×î´ó°ü´óĞ¡ */
+    AM_USBD_CLASS,                          /* é€šä¿¡ç±» */
+    AM_USBD_SUBCLASS,                       /* è®¾å¤‡å­ç±» */
+    AM_USBD_PROTOCOL,                       /* åè®®ç  */
+    AM_USBD_MAX_EP_DATA_CNT,                /* ç«¯ç‚¹0çš„æœ€å¤§åŒ…å¤§å° */
 
     /**
-     * ³§ÉÌ±àºÅ¡£ĞèÒªÏòUSBĞ­»áÉêÇë£¬Èç¹û×÷ÎªÑ§Ï°Ê¹ÓÃ¿ÉÒÔËæ±ãÑ¡Ò»¸öÒÑ¾­×¢²á¹ıµÄ£¬
-     * µ«ÊÇ×÷Îª²úÆ··¢²¼µÄ»°¾Í±ØĞëĞ´×Ô¼º¹«Ë¾µÄ³§ÉÌ±àºÅ£¬ÒÔÃâÇÖÈ¨£¬´Ë´¦ÌîÁËÒ»¸öÃ»ÓĞÔÚUSBĞ­»á×¢²áµÄ±àºÅ
+     * å‚å•†ç¼–å·ã€‚éœ€è¦å‘USBåä¼šç”³è¯·ï¼Œå¦‚æœä½œä¸ºå­¦ä¹ ä½¿ç”¨å¯ä»¥éšä¾¿é€‰ä¸€ä¸ªå·²ç»æ³¨å†Œè¿‡çš„ï¼Œ
+     * ä½†æ˜¯ä½œä¸ºäº§å“å‘å¸ƒçš„è¯å°±å¿…é¡»å†™è‡ªå·±å…¬å¸çš„å‚å•†ç¼–å·ï¼Œä»¥å…ä¾µæƒï¼Œæ­¤å¤„å¡«äº†ä¸€ä¸ªæ²¡æœ‰åœ¨USBåä¼šæ³¨å†Œçš„ç¼–å·
      */
     AM_USB_SHORT_GET_LOW(__USBD_KEYBOARD_VENDOR_ID), AM_USB_SHORT_GET_HIGH(__USBD_KEYBOARD_VENDOR_ID),
 
-    /* ²úÆ·±àºÅ */
+    /* äº§å“ç¼–å· */
     AM_USB_SHORT_GET_LOW(__USBD_KEYBOARD_PRODUCT_ID), AM_USB_SHORT_GET_HIGH(__USBD_KEYBOARD_PRODUCT_ID),
 
-    /* Éè±¸³ö³§±àºÅ */
+    /* è®¾å¤‡å‡ºå‚ç¼–å· */
     AM_USB_SHORT_GET_LOW(__USBD_KEYBOARD_DEVICE_ID), AM_USB_SHORT_GET_HIGH(__USBD_KEYBOARD_DEVICE_ID),
-    __USBD_KEYBOARD_VENDOR_STRING_INDEX,     /* ÃèÊö³§ÉÌµÄ×Ö·û´®Ë÷Òı */
-    __USBD_KEYBOARD_PRODUCT_STRING_INDEX,    /* ÃèÊö²úÆ·µÄ×Ö·û´®Ë÷Òı */
-    0x00,                                   /* ÃèÊöÉè±¸ĞòÁĞºÅµÄ×Ö·û´®Ë÷Òı */
-    __USBD_KEYBOARD_CONFIG_COUNT,            /* ÅäÖÃµÄÊıÁ¿£¨Ö»ÄÜÓĞÒ»¸ö£© */
+    __USBD_KEYBOARD_VENDOR_STRING_INDEX,     /* æè¿°å‚å•†çš„å­—ç¬¦ä¸²ç´¢å¼• */
+    __USBD_KEYBOARD_PRODUCT_STRING_INDEX,    /* æè¿°äº§å“çš„å­—ç¬¦ä¸²ç´¢å¼• */
+    0x00,                                   /* æè¿°è®¾å¤‡åºåˆ—å·çš„å­—ç¬¦ä¸²ç´¢å¼• */
+    __USBD_KEYBOARD_CONFIG_COUNT,            /* é…ç½®çš„æ•°é‡ï¼ˆåªèƒ½æœ‰ä¸€ä¸ªï¼‰ */
 };
 
-/** \brief HIDÉè±¸±¨¸æÃèÊö·û,ÓÃUSB_HID ¹¤¾ßÑ¡ÔñÉú³É */
-/** \brief °Ñ¸ÃÃèÊö·ûĞ´ÔÚÅäÖÃÃèÊö·ûÖ®Ç°£¬ÊÇÒòÎªÔÚÅäÖÃÃèÊö·ûÖĞĞèÒªÖªµÀ±¨¸æÃèÊö·ûÖĞµÄ³¤¶È */
+/** \brief HIDè®¾å¤‡æŠ¥å‘Šæè¿°ç¬¦,ç”¨USB_HID å·¥å…·é€‰æ‹©ç”Ÿæˆ */
+/** \brief æŠŠè¯¥æè¿°ç¬¦å†™åœ¨é…ç½®æè¿°ç¬¦ä¹‹å‰ï¼Œæ˜¯å› ä¸ºåœ¨é…ç½®æè¿°ç¬¦ä¸­éœ€è¦çŸ¥é“æŠ¥å‘Šæè¿°ç¬¦ä¸­çš„é•¿åº¦ */
 static const uint8_t __g_keyboard_hid_report[] = {
-    /* Ã¿ĞĞ¿ªÊ¼µÚÒ»¸ö×Ö½ÚÎª¸ÃÌõÄ¿µÄÇ°×º£¬[D7:D4]£ºbTag [D3:D2]£ºbType [D1:D0]£ºbSize */
+    /* æ¯è¡Œå¼€å§‹ç¬¬ä¸€ä¸ªå­—èŠ‚ä¸ºè¯¥æ¡ç›®çš„å‰ç¼€ï¼Œ[D7:D4]ï¼šbTag [D3:D2]ï¼šbType [D1:D0]ï¼šbSize */
 
-    /* È«¾ÖÌõÄ¿£¬ÓÃÍ¾Ò³Ñ¡ÔñÎªÆÕÍ¨×ÀÃæÒ³ */
+    /* å…¨å±€æ¡ç›®ï¼Œç”¨é€”é¡µé€‰æ‹©ä¸ºæ™®é€šæ¡Œé¢é¡µ */
     0x05, 0x01, /* Usage Page (Generic Desktop) */
 
-    /* ¾Ö²¿ÌõÄ¿£¬ÓÃÍ¾Ñ¡ÔñÎª¼üÅÌ */
+    /* å±€éƒ¨æ¡ç›®ï¼Œç”¨é€”é€‰æ‹©ä¸ºé”®ç›˜ */
     0x09, 0x06, /* Usage (Keyboard) */
 
-    /* Ö÷ÌõÄ¿£¬¿ª¼¯ºÏ£¬±íÊ¾ÎªÓ¦ÓÃ¼¯ºÏ£¬ËüµÄĞÔÖÊÓÉÓÃÍ¾Ò³ºÍÓÃÍ¾¶¨ÒåÎªÁËÆÕÍ¨×ÀÃæµÄ¼üÅÌ */
+    /* ä¸»æ¡ç›®ï¼Œå¼€é›†åˆï¼Œè¡¨ç¤ºä¸ºåº”ç”¨é›†åˆï¼Œå®ƒçš„æ€§è´¨ç”±ç”¨é€”é¡µå’Œç”¨é€”å®šä¹‰ä¸ºäº†æ™®é€šæ¡Œé¢çš„é”®ç›˜ */
     0xa1, 0x01, /* Collection (Application) */
 
-    /* È«¾ÖÌõÄ¿£¬Ñ¡ÔñÓÃÍ¾Ò³Îª¼üÅÌ */
+    /* å…¨å±€æ¡ç›®ï¼Œé€‰æ‹©ç”¨é€”é¡µä¸ºé”®ç›˜ */
     0x05, 0x07, /* Usage Page (Keyboard/Keypad) */
 
-    /* ¾Ö²¿ÌõÄ¿£¬ÓÃÍ¾µÄ×îĞ¡ÖµÎª0xe0£¬ÆäÊµÊÇ¼üÅÌÉÏ×óctrl¼ü¡£¾ßÌåµÄÓÃÍ¾Öµ¿ÉÔÚHIDÓÃÍ¾±íÖĞ²é¿´ */
+    /* å±€éƒ¨æ¡ç›®ï¼Œç”¨é€”çš„æœ€å°å€¼ä¸º0xe0ï¼Œå…¶å®æ˜¯é”®ç›˜ä¸Šå·¦ctrlé”®ã€‚å…·ä½“çš„ç”¨é€”å€¼å¯åœ¨HIDç”¨é€”è¡¨ä¸­æŸ¥çœ‹ */
     0x19, 0xe0, /* Usage Minimum (Keyboard LeftControl) */
 
-    /* ¾Ö²¿ÌõÄ¿£¬ÓÃÍ¾µÄ×î´óÖµÎª0xe7£¬ÆäÊµÊÇ¼üÅÌÓÒGUI(windows)¼ü */
+    /* å±€éƒ¨æ¡ç›®ï¼Œç”¨é€”çš„æœ€å¤§å€¼ä¸º0xe7ï¼Œå…¶å®æ˜¯é”®ç›˜å³GUI(windows)é”® */
     0x29, 0xe7, /* Usage Maximum (Keyboard Right GUI) */
 
-    /* È«¾ÖÌõÄ¿£¬ËµÃ÷·µ»ØÊı¾İµÄÂß¼­Öµ£¨¾ÍÊÇÎÒÃÇ·µ»ØÊı¾İÓòÖĞµÄÖµ£©µÄ×îĞ¡Öµ */
+    /* å…¨å±€æ¡ç›®ï¼Œè¯´æ˜è¿”å›æ•°æ®çš„é€»è¾‘å€¼ï¼ˆå°±æ˜¯æˆ‘ä»¬è¿”å›æ•°æ®åŸŸä¸­çš„å€¼ï¼‰çš„æœ€å°å€¼ */
     0x15, 0x00, /* Logical Mimimum (0) */
 
-    /* È«¾ÖÌõÄ¿£¬ËµÃ÷·µ»ØÊı¾İµÄÂß¼­ÖµµÄ×î´óÖµ */
+    /* å…¨å±€æ¡ç›®ï¼Œè¯´æ˜è¿”å›æ•°æ®çš„é€»è¾‘å€¼çš„æœ€å¤§å€¼ */
     0x25, 0x01, /* Logical Maximum (1) */
 
-    /* È«¾ÖÌõÄ¿£¬ËµÃ÷Êı¾İÓòµÄÊıÁ¿Îª8¸ö */
+    /* å…¨å±€æ¡ç›®ï¼Œè¯´æ˜æ•°æ®åŸŸçš„æ•°é‡ä¸º8ä¸ª */
     0x95, 0x08, /* Report Count (8) */
 
-    /* È«¾ÖÌõÄ¿£¬ËµÃ÷Ã¿¸öÊı¾İÓòµÄ³¤¶ÈÎªÒ»¸öÎ» */
+    /* å…¨å±€æ¡ç›®ï¼Œè¯´æ˜æ¯ä¸ªæ•°æ®åŸŸçš„é•¿åº¦ä¸ºä¸€ä¸ªä½ */
     0x75, 0x01, /* Report Size (1) */
 
-    /* Ö÷ÌõÄ¿£¬ËµÃ÷ÓĞ8¸ö³¤¶ÈÎª1Î»µÄÊı¾İÓò£¨ÊıÁ¿ºÍ³¤¶ÈÓÉÇ°Á½¸öÈ«¾ÖÌõÄ¿Ëù¶¨Òå£©ÓÃÀ´×÷ÎªÊäÈë */
-    0x81, 0x02, /* Input (Data,Var,Abs) £¬Data±íÊ¾ÕâĞ©Êı¾İ¿ÉÒÔ±ä¶¯£»Var±íÊ¾ÕâĞ©Êı¾İÓòÊÇ¶ÀÁ¢µÄ£¬Ã¿¸öÓò±íÊ¾Ò»¸öÒâË¼£»Abs±íÊ¾¾ø¶ÔÖµ¡£*/
-    /* ÕâÑù¶¨ÒåµÄ½á¹û¾ÍÊÇ£¬µ±Ä³¸öÓòµÄÖµÎª1Ê±£¬¾Í±íÊ¾¶ÔÓ¦µÄ°´¼ü±»°´ÏÂ£¬Î»0¶ÔÓ¦×ÅÓÃÍ¾×îĞ¡Öµ0xe0£¬Î»7¶ÔÓ¦×ÅÓÃÍ¾×î´óÖµ0xe7 */
+    /* ä¸»æ¡ç›®ï¼Œè¯´æ˜æœ‰8ä¸ªé•¿åº¦ä¸º1ä½çš„æ•°æ®åŸŸï¼ˆæ•°é‡å’Œé•¿åº¦ç”±å‰ä¸¤ä¸ªå…¨å±€æ¡ç›®æ‰€å®šä¹‰ï¼‰ç”¨æ¥ä½œä¸ºè¾“å…¥ */
+    0x81, 0x02, /* Input (Data,Var,Abs) ï¼ŒDataè¡¨ç¤ºè¿™äº›æ•°æ®å¯ä»¥å˜åŠ¨ï¼›Varè¡¨ç¤ºè¿™äº›æ•°æ®åŸŸæ˜¯ç‹¬ç«‹çš„ï¼Œæ¯ä¸ªåŸŸè¡¨ç¤ºä¸€ä¸ªæ„æ€ï¼›Absè¡¨ç¤ºç»å¯¹å€¼ã€‚*/
+    /* è¿™æ ·å®šä¹‰çš„ç»“æœå°±æ˜¯ï¼Œå½“æŸä¸ªåŸŸçš„å€¼ä¸º1æ—¶ï¼Œå°±è¡¨ç¤ºå¯¹åº”çš„æŒ‰é”®è¢«æŒ‰ä¸‹ï¼Œä½0å¯¹åº”ç€ç”¨é€”æœ€å°å€¼0xe0ï¼Œä½7å¯¹åº”ç€ç”¨é€”æœ€å¤§å€¼0xe7 */
 
-    /* È«¾ÖÌõÄ¿£¬ËµÃ÷Êı¾İÓòµÄÊıÁ¿Îª1¸ö */
+    /* å…¨å±€æ¡ç›®ï¼Œè¯´æ˜æ•°æ®åŸŸçš„æ•°é‡ä¸º1ä¸ª */
     0x95, 0x01, /* Report Count (1)*/
 
-    /* È«¾ÖÌõÄ¿£¬ËµÃ÷Ã¿¸öÊı¾İÓòµÄ³¤¶ÈÎª8Î» */
+    /* å…¨å±€æ¡ç›®ï¼Œè¯´æ˜æ¯ä¸ªæ•°æ®åŸŸçš„é•¿åº¦ä¸º8ä½ */
     0x75, 0x08, /* Report Size (8) */
 
-    /* Ö÷ÌõÄ¿£¬ÊäÈëÓÃ¡£ÓÉÇ°ÃæÁ½¸öÈ«¾ÖÌõÄ¿¿ÉÖª£¬³¤¶ÈÎª8Î»£¬ÊıÁ¿Îª1¸ö */
-    /* ËüµÄÊôĞÔÎª³£Á¿£¬·µ»ØµÄÊı¾İÒ»Ö±ÊÇ0£¨±£Áô¸øOEMÊ¹ÓÃ£© */
+    /* ä¸»æ¡ç›®ï¼Œè¾“å…¥ç”¨ã€‚ç”±å‰é¢ä¸¤ä¸ªå…¨å±€æ¡ç›®å¯çŸ¥ï¼Œé•¿åº¦ä¸º8ä½ï¼Œæ•°é‡ä¸º1ä¸ª */
+    /* å®ƒçš„å±æ€§ä¸ºå¸¸é‡ï¼Œè¿”å›çš„æ•°æ®ä¸€ç›´æ˜¯0ï¼ˆä¿ç•™ç»™OEMä½¿ç”¨ï¼‰ */
     0x81, 0x03, /* INPUT (Cnst,Var,Abs) */
 
-    /* È«¾ÖÌõÄ¿£¬ËµÃ÷Êı¾İÓòµÄÊıÁ¿Îª6¸ö */
+    /* å…¨å±€æ¡ç›®ï¼Œè¯´æ˜æ•°æ®åŸŸçš„æ•°é‡ä¸º6ä¸ª */
     0x95, 0x06, /* Report Count (6)*/
 
-    /* È«¾ÖÌõÄ¿£¬ËµÃ÷Ã¿¸öÊı¾İÓòµÄ³¤¶ÈÎª8Î» */
-    /* ÆäÊµÕâ¸öÌõÄ¿²»ÒªÒ²ÊÇ¿ÉÒÔµÄ£¬ÒòÎªÇ°ÃæÒÑ¾­ÓĞÒ»¸ö¶¨Òå³¤¶ÈÎª8ÎÒµÄÈ«¾ÖÌõÄ¿ÁË */
+    /* å…¨å±€æ¡ç›®ï¼Œè¯´æ˜æ¯ä¸ªæ•°æ®åŸŸçš„é•¿åº¦ä¸º8ä½ */
+    /* å…¶å®è¿™ä¸ªæ¡ç›®ä¸è¦ä¹Ÿæ˜¯å¯ä»¥çš„ï¼Œå› ä¸ºå‰é¢å·²ç»æœ‰ä¸€ä¸ªå®šä¹‰é•¿åº¦ä¸º8æˆ‘çš„å…¨å±€æ¡ç›®äº† */
     0x75, 0x08, /* Report Size (8) */
 
-    /* È«¾ÖÌõÄ¿£¬¶¨ÒåÂß¼­×îĞ¡ÖµÎª0 */
-    /* Õâ¸öÌõÄ¿Ò²¿ÉÒÔ²»Òª£¬ÒòÎªÇ°ÃæÒÑ¾­ÓĞÒ»¸ö¶¨ÒåÂß¼­×îĞ¡ÖµÎª0µÄÌõÄ¿ÁË */
+    /* å…¨å±€æ¡ç›®ï¼Œå®šä¹‰é€»è¾‘æœ€å°å€¼ä¸º0 */
+    /* è¿™ä¸ªæ¡ç›®ä¹Ÿå¯ä»¥ä¸è¦ï¼Œå› ä¸ºå‰é¢å·²ç»æœ‰ä¸€ä¸ªå®šä¹‰é€»è¾‘æœ€å°å€¼ä¸º0çš„æ¡ç›®äº† */
     0x15, 0x00, /* Logical Mimimum (0) */
 
-    /* È«¾ÖÌõÄ¿£¬¶¨ÒåÂß¼­×î´óÖµÎª255 */
+    /* å…¨å±€æ¡ç›®ï¼Œå®šä¹‰é€»è¾‘æœ€å¤§å€¼ä¸º255 */
     0x25, 0xff, /* Logical Maximum (255) */
 
-    /* È«¾ÖÌõÄ¿£¬¶¨ÒåÓÃÍ¾Ò³Îª¼üÅÌ */
-    /* Ç°ÃæÒÑ¾­ÓĞÁË£¬Òò´Ë¸ÃÌõÄ¿²»ÒªÒ²¿ÉÒÔ */
+    /* å…¨å±€æ¡ç›®ï¼Œå®šä¹‰ç”¨é€”é¡µä¸ºé”®ç›˜ */
+    /* å‰é¢å·²ç»æœ‰äº†ï¼Œå› æ­¤è¯¥æ¡ç›®ä¸è¦ä¹Ÿå¯ä»¥ */
     0x05, 0x07, /* Usage Page (Keyboard/Keypad) */
 
-    /* ¾Ö²¿ÌõÄ¿£¬¶¨ÒåÓÃÍ¾×îĞ¡ÖµÎª0£¬0±íÊ¾Ã»ÓĞ¼ü°´ÏÂ */
+    /* å±€éƒ¨æ¡ç›®ï¼Œå®šä¹‰ç”¨é€”æœ€å°å€¼ä¸º0ï¼Œ0è¡¨ç¤ºæ²¡æœ‰é”®æŒ‰ä¸‹ */
     0x19, 0x00, /* Usage Mimimum (Reserved(no event indicated)) */
 
-    /* ¾Ö²¿ÌõÄ¿£¬¶¨ÒåÓÃÍ¾×î´óÖµÎª0x65 */
+    /* å±€éƒ¨æ¡ç›®ï¼Œå®šä¹‰ç”¨é€”æœ€å¤§å€¼ä¸º0x65 */
     0x29, 0x65, /* Usage Maximum */
 
-    /* Ö÷ÌõÄ¿£¬ËµÃ÷Õâ6¸ö8Î»µÄÊı¾İÊÇÊäÈëÓÃµÄ£¬ÊôĞÔÎªData,Ary,Abs */
-    /* Èç¹û°´ÏÂµÄ¼üÌ«¶à£¨ÀıÈç³¬¹ıÕâÀï¶¨ÒåµÄ³¤¶È£¬»òÕß¼üÅÌ±¾ÉíÎŞ·¨É¨Ãè³ö°´¼üµÄÇé¿öÊ±£©£¬ÔòÕâĞ©Êı¾İÈ«²¿·µ»ØÈ«0xff£¬±íÊ¾°´¼üÎŞĞ§ */
+    /* ä¸»æ¡ç›®ï¼Œè¯´æ˜è¿™6ä¸ª8ä½çš„æ•°æ®æ˜¯è¾“å…¥ç”¨çš„ï¼Œå±æ€§ä¸ºData,Ary,Abs */
+    /* å¦‚æœæŒ‰ä¸‹çš„é”®å¤ªå¤šï¼ˆä¾‹å¦‚è¶…è¿‡è¿™é‡Œå®šä¹‰çš„é•¿åº¦ï¼Œæˆ–è€…é”®ç›˜æœ¬èº«æ— æ³•æ‰«æå‡ºæŒ‰é”®çš„æƒ…å†µæ—¶ï¼‰ï¼Œåˆ™è¿™äº›æ•°æ®å…¨éƒ¨è¿”å›å…¨0xffï¼Œè¡¨ç¤ºæŒ‰é”®æ— æ•ˆ */
     0x81, 0x00, /* Input(Data,Ary,Abs) */
 
-    /* ÒÔÏÂÎªÊä³ö±¨¸æµÄÃèÊö */
+    /* ä»¥ä¸‹ä¸ºè¾“å‡ºæŠ¥å‘Šçš„æè¿° */
 
-    /* Âß¼­×îĞ¡ÖµÇ°ÃæÒÑ¾­¶¨Òå¹ıÁË£¬ÕâÀïÊ¡ÂÔ */
-    /* È«¾ÖÌõÄ¿£¬Âß¼­×î´óÖµÎª1 */
+    /* é€»è¾‘æœ€å°å€¼å‰é¢å·²ç»å®šä¹‰è¿‡äº†ï¼Œè¿™é‡Œçœç•¥ */
+    /* å…¨å±€æ¡ç›®ï¼Œé€»è¾‘æœ€å¤§å€¼ä¸º1 */
     0x25, 0x01, /* Logical Maximum (1) */
 
-    /* È«¾ÖÌõÄ¿£¬ËµÃ÷Êı¾İÓòµÄÊıÁ¿ÓĞ5¸ö */
+    /* å…¨å±€æ¡ç›®ï¼Œè¯´æ˜æ•°æ®åŸŸçš„æ•°é‡æœ‰5ä¸ª */
     0x95, 0x05, /* Report Count (5) */
 
-    /* È«¾ÖÌõÄ¿£¬ËµÃ÷Êı¾İÓòµÄ³¤¶ÈÎª1Î» */
+    /* å…¨å±€æ¡ç›®ï¼Œè¯´æ˜æ•°æ®åŸŸçš„é•¿åº¦ä¸º1ä½ */
     0x75, 0x01, /* Report Size (1) */
 
-    /* È«¾ÖÌõÄ¿£¬ËµÃ÷Ê¹ÓÃµÄÓÃÍ¾Ò³ÎªLEDµÆ */
+    /* å…¨å±€æ¡ç›®ï¼Œè¯´æ˜ä½¿ç”¨çš„ç”¨é€”é¡µä¸ºLEDç¯ */
     0x05, 0x08, /* Usage Page (LEDs) */
 
-    /* ¾Ö²¿ÌõÄ¿£¬ËµÃ÷ÓÃÍ¾×îĞ¡ÖµÎªÊı×Ö¼üÅÌµÆ */
+    /* å±€éƒ¨æ¡ç›®ï¼Œè¯´æ˜ç”¨é€”æœ€å°å€¼ä¸ºæ•°å­—é”®ç›˜ç¯ */
     0x19, 0x01, /* Usage Minimum (Num Lock) */
 
-    /* ¾Ö²¿ÌõÄ¿£¬ËµÃ÷ÓÃÍ¾×î´óÖµÎªKanaµÆ */
+    /* å±€éƒ¨æ¡ç›®ï¼Œè¯´æ˜ç”¨é€”æœ€å¤§å€¼ä¸ºKanaç¯ */
     0x29, 0x05, /* Usage Maximum (Kana) */
 
-    /* Ö÷ÌõÄ¿£¬¶¨ÒåÊä³öÊı¾İ */
+    /* ä¸»æ¡ç›®ï¼Œå®šä¹‰è¾“å‡ºæ•°æ® */
     0x91, 0x02, /* Output (Data,Var,Abs) */
 
-    /* È«¾ÖÌõÄ¿£¬¶¨ÒåÎ»ÓòÊıÁ¿Îª1¸ö */
+    /* å…¨å±€æ¡ç›®ï¼Œå®šä¹‰ä½åŸŸæ•°é‡ä¸º1ä¸ª */
     0x95, 0x01, /* Report Count (1) */
 
-    /* È«¾ÖÌõÄ¿£¬¶¨ÒåÎ»Óò³¤¶ÈÎª3Î» */
+    /* å…¨å±€æ¡ç›®ï¼Œå®šä¹‰ä½åŸŸé•¿åº¦ä¸º3ä½ */
     0x75, 0x03, /* Report Size (3) */
 
-    /* Ö÷ÌõÄ¿£¬¶¨ÒåÊä³ö³£Á¿£¬Ç°ÃæÓÃÁË5¸öÎ»£¬ËùÒÔÕâÀïÒªÓÃÈı¸öÎ»´Õ³É1¸ö×Ö½Ú */
+    /* ä¸»æ¡ç›®ï¼Œå®šä¹‰è¾“å‡ºå¸¸é‡ï¼Œå‰é¢ç”¨äº†5ä¸ªä½ï¼Œæ‰€ä»¥è¿™é‡Œè¦ç”¨ä¸‰ä¸ªä½å‡‘æˆ1ä¸ªå­—èŠ‚ */
     0x91, 0x03, /* Output (Cnst,Var,Abs) */
 
-    /* Ö÷ÌõÄ¿£¬ÓÃÀ´¹Ø±ÕÇ°ÃæµÄ¼¯ºÏ£¬bSizeÎª0£¬±íÊ¾ºóÃæÃ»ÓĞÊı¾İ */
+    /* ä¸»æ¡ç›®ï¼Œç”¨æ¥å…³é—­å‰é¢çš„é›†åˆï¼ŒbSizeä¸º0ï¼Œè¡¨ç¤ºåé¢æ²¡æœ‰æ•°æ® */
     0xc0        /* END Collection */
 };
 
-/* ÅäÖÃÃèÊö·û¼°ÆäÏÂ¼¶ÃèÊö·û£¨²»ÄÜÔ½¹ıÉÏ¼¶ÃèÊö·ûÖ±½ÓµÃµ½ÏÂ¼¶ÃèÊö·û£© */
+/* é…ç½®æè¿°ç¬¦åŠå…¶ä¸‹çº§æè¿°ç¬¦ï¼ˆä¸èƒ½è¶Šè¿‡ä¸Šçº§æè¿°ç¬¦ç›´æ¥å¾—åˆ°ä¸‹çº§æè¿°ç¬¦ï¼‰ */
 static uint8_t __g_am_usbd_keyboard_desc_conf[AM_USB_DESC_LENGTH_ALL(__USBD_KEYBOARD_ENDPOINT_COUNT)
                                              + sizeof(am_usb_hid_descriptor_t)] = {
-    /* ÅäÖÃÃèÊö·û */
-    AM_USB_DESC_LENGTH_CONFIGURE,     /* ÅäÖÃÃèÊö·û×Ö½ÚÊı */
-    AM_USB_DESC_TYPE_CONFIGURE,       /* ÅäÖÃÃèÊö·ûÀàĞÍ±àºÅ£¬¹Ì¶¨Îª0x02 */
+    /* é…ç½®æè¿°ç¬¦ */
+    AM_USB_DESC_LENGTH_CONFIGURE,     /* é…ç½®æè¿°ç¬¦å­—èŠ‚æ•° */
+    AM_USB_DESC_TYPE_CONFIGURE,       /* é…ç½®æè¿°ç¬¦ç±»å‹ç¼–å·ï¼Œå›ºå®šä¸º0x02 */
 
-    /* ÅäÖÃÃèÊö·û¼°ÏÂÊôÃèÊö·ûµÄ×Ü³¤¶È(ÅäÖÃÃèÊö·û£¬½Ó¿ÚÃèÊö·ûºÅ£¬ºÍÁ½¸ö¶ËµãÃèÊö·û) */
+    /* é…ç½®æè¿°ç¬¦åŠä¸‹å±æè¿°ç¬¦çš„æ€»é•¿åº¦(é…ç½®æè¿°ç¬¦ï¼Œæ¥å£æè¿°ç¬¦å·ï¼Œå’Œä¸¤ä¸ªç«¯ç‚¹æè¿°ç¬¦) */
     AM_USB_SHORT_GET_LOW(sizeof(__g_am_usbd_keyboard_desc_conf)),
     AM_USB_SHORT_GET_HIGH(sizeof(__g_am_usbd_keyboard_desc_conf)),
-    __USBD_KEYBOARD_INTERFACE_COUNT,        /* ½Ó¿ÚÃèÊö·û¸öÊı */
-    __USBD_KEYBOARD_CONFIGURE_INDEX,        /* ÅäÖÃÖµ */
-    0x00,                                   /* ÃèÊö¸ÃÅäÖÃµÄ×Ö·û´®Ë÷Òı */
+    __USBD_KEYBOARD_INTERFACE_COUNT,        /* æ¥å£æè¿°ç¬¦ä¸ªæ•° */
+    __USBD_KEYBOARD_CONFIGURE_INDEX,        /* é…ç½®å€¼ */
+    0x00,                                   /* æè¿°è¯¥é…ç½®çš„å­—ç¬¦ä¸²ç´¢å¼• */
 
-    /* Éè±¸ÊôĞÔ£º×ÜÏß¹©µç£¬²»Ö§³ÖÔ¶³Ì»½ĞÑ */
+    /* è®¾å¤‡å±æ€§ï¼šæ€»çº¿ä¾›ç”µï¼Œä¸æ”¯æŒè¿œç¨‹å”¤é†’ */
     __USBD_KEYBOARD_DEVICE_ATTRIBUTE,
-    __USBD_KEYBOARD_DEVICE_POWER,           /* ´Ó×ÜÏß»ñÈ¡µÄ×î´óµçÁ÷£º100mA£¬ 2mAÒ»¸öµ¥Î» */
+    __USBD_KEYBOARD_DEVICE_POWER,           /* ä»æ€»çº¿è·å–çš„æœ€å¤§ç”µæµï¼š100mAï¼Œ 2mAä¸€ä¸ªå•ä½ */
 
-    /* ½Ó¿ÚÃèÊö·û */
-    AM_USB_DESC_LENGTH_INTERFACE,           /* ½Ó¿ÚÃèÊö·û×Ö½ÚÊı */
-    AM_USB_DESC_TYPE_INTERFACE,             /* ½Ó¿ÚÃèÊö·ûÀàĞÍ±àºÅ£¬¹Ì¶¨Îª0x04 */
-    0x00,                                   /* ¸Ã½Ó¿Ú±àºÅ */
-    0x00,                                   /* ¿ÉÑ¡ÉèÖÃµÄË÷ÒıÖµ£¨¸Ã½Ó¿ÚµÄ±¸ÓÃ±àºÅ£© */
-    __USBD_KEYBOARD_ENDPOINT_COUNT,         /* ¸Ã½Ó¿ÚÊ¹ÓÃµÄ¶ËµãÊı£¨²»°üÀ¨¶Ëµã0£© */
-    AM_USBD_CONFIG_KEYBOARD_CLASS_CODE,     /* HIDÉè±¸µÄÀà */
-    AM_USBD_KEYBOARD_SUBCLASS,              /* HID×ÓÀàĞÍ, 1£º¼üÅÌ 2£ºÊó±ê*/
-    AM_USBD_KEYBOARD_PROTOCOL,              /* 1±íÊ¾¼üÅÌ */
-    0x00,                                   /* ÃèÊö¸Ã½Ó¿ÚµÄ×Ö·û´®Ë÷Òı */
+    /* æ¥å£æè¿°ç¬¦ */
+    AM_USB_DESC_LENGTH_INTERFACE,           /* æ¥å£æè¿°ç¬¦å­—èŠ‚æ•° */
+    AM_USB_DESC_TYPE_INTERFACE,             /* æ¥å£æè¿°ç¬¦ç±»å‹ç¼–å·ï¼Œå›ºå®šä¸º0x04 */
+    0x00,                                   /* è¯¥æ¥å£ç¼–å· */
+    0x00,                                   /* å¯é€‰è®¾ç½®çš„ç´¢å¼•å€¼ï¼ˆè¯¥æ¥å£çš„å¤‡ç”¨ç¼–å·ï¼‰ */
+    __USBD_KEYBOARD_ENDPOINT_COUNT,         /* è¯¥æ¥å£ä½¿ç”¨çš„ç«¯ç‚¹æ•°ï¼ˆä¸åŒ…æ‹¬ç«¯ç‚¹0ï¼‰ */
+    AM_USBD_CONFIG_KEYBOARD_CLASS_CODE,     /* HIDè®¾å¤‡çš„ç±» */
+    AM_USBD_KEYBOARD_SUBCLASS,              /* HIDå­ç±»å‹, 1ï¼šé”®ç›˜ 2ï¼šé¼ æ ‡*/
+    AM_USBD_KEYBOARD_PROTOCOL,              /* 1è¡¨ç¤ºé”®ç›˜ */
+    0x00,                                   /* æè¿°è¯¥æ¥å£çš„å­—ç¬¦ä¸²ç´¢å¼• */
 
-    /* HIDÃèÊö·û */
-    AM_USB_DESC_LENGTH_HID,                 /* HIDÃèÊö·û×Ö½ÚÊı */
-    AM_USB_DESC_TYPE_HID,       /* HIDÃèÊö·ûÀàĞÍ±àºÅ£¬¹Ì¶¨Îª0x21 */
-    0x10, 0x01,  /* HIDĞ­Òé°æ±¾ºÅ */
-    __USBD_KEYBOARD_COUNTRYCODE,       /* ¹ú¼Ò\µØÇø´úÂë */
-    __USBD_KEYBOARD_DESC_NUMBER,       /* ÏÂ¼¶ÃèÊö·ûµÄÊıÁ¿ */
-    AM_USB_DESC_TYPE_HID_REPORT,       /* ÏÂ¼¶ÃèÊö·ûµÄÀàĞÍ£º±¨¸æÃèÊö·ûÎª0x22 */
-    AM_USB_SHORT_GET_LOW(sizeof(__g_keyboard_hid_report)), /* ÏÂ¼¶ÃèÊö·ûµÄ³¤¶È */
+    /* HIDæè¿°ç¬¦ */
+    AM_USB_DESC_LENGTH_HID,                 /* HIDæè¿°ç¬¦å­—èŠ‚æ•° */
+    AM_USB_DESC_TYPE_HID,       /* HIDæè¿°ç¬¦ç±»å‹ç¼–å·ï¼Œå›ºå®šä¸º0x21 */
+    0x10, 0x01,  /* HIDåè®®ç‰ˆæœ¬å· */
+    __USBD_KEYBOARD_COUNTRYCODE,       /* å›½å®¶\åœ°åŒºä»£ç  */
+    __USBD_KEYBOARD_DESC_NUMBER,       /* ä¸‹çº§æè¿°ç¬¦çš„æ•°é‡ */
+    AM_USB_DESC_TYPE_HID_REPORT,       /* ä¸‹çº§æè¿°ç¬¦çš„ç±»å‹ï¼šæŠ¥å‘Šæè¿°ç¬¦ä¸º0x22 */
+    AM_USB_SHORT_GET_LOW(sizeof(__g_keyboard_hid_report)), /* ä¸‹çº§æè¿°ç¬¦çš„é•¿åº¦ */
     AM_USB_SHORT_GET_HIGH(sizeof(__g_keyboard_hid_report)),
 
-    /* ÊäÈë¶ËµãÃèÊö·û */
-    AM_USB_DESC_LENGTH_ENDPOINT,      /* ¶ËµãÃèÊö·û×Ö½ÚÊı */
-    AM_USB_DESC_TYPE_ENDPOINT,        /* ¶ËµãÃèÊö·ûÀàĞÍ±àºÅ£¬¹Ì¶¨Îª0x05 */
+    /* è¾“å…¥ç«¯ç‚¹æè¿°ç¬¦ */
+    AM_USB_DESC_LENGTH_ENDPOINT,      /* ç«¯ç‚¹æè¿°ç¬¦å­—èŠ‚æ•° */
+    AM_USB_DESC_TYPE_ENDPOINT,        /* ç«¯ç‚¹æè¿°ç¬¦ç±»å‹ç¼–å·ï¼Œå›ºå®šä¸º0x05 */
 
-    /* D7 1:USB_IN  0:USB_OUT D3:D0 ¶ËµãºÅ */
+    /* D7 1:USB_IN  0:USB_OUT D3:D0 ç«¯ç‚¹å· */
     (__USBD_KEYBOARD_ENDPOINT_IN | (AM_USB_IN << AM_USB_REQ_TYPE_DIR_SHIFT)),
-    __USBD_KEYBOARD_ENDPOINT_IN_ATTRIBUTE,   /* ¶ËµãÊôĞÔ 02±íÊ¾ÅúÁ¿  */
+    __USBD_KEYBOARD_ENDPOINT_IN_ATTRIBUTE,   /* ç«¯ç‚¹å±æ€§ 02è¡¨ç¤ºæ‰¹é‡  */
 
     AM_USB_SHORT_GET_LOW(__USBD_KEYBOARD_ENDPOINT_IN_PACKSIZE),
-    AM_USB_SHORT_GET_HIGH(__USBD_KEYBOARD_ENDPOINT_IN_PACKSIZE), /* ¶ËµãÒ»´ÎĞÔÊÕ·¢µÄ×î´ó°ü´óĞ¡ */
+    AM_USB_SHORT_GET_HIGH(__USBD_KEYBOARD_ENDPOINT_IN_PACKSIZE), /* ç«¯ç‚¹ä¸€æ¬¡æ€§æ”¶å‘çš„æœ€å¤§åŒ…å¤§å° */
 
-    __USBD_KEYBOARD_ENDPOINT_IN_QUERY_TIME,  /* Ö÷»ú²éÑ¯¶ËµãÊ±µÄÊ±¼ä¼ä¸ô£º10ms  */
+    __USBD_KEYBOARD_ENDPOINT_IN_QUERY_TIME,  /* ä¸»æœºæŸ¥è¯¢ç«¯ç‚¹æ—¶çš„æ—¶é—´é—´éš”ï¼š10ms  */
 
-    /* Êä³ö¶ËµãÃèÊö·û */
-    AM_USB_DESC_LENGTH_ENDPOINT,            /* ¶ËµãÃèÊö·û×Ö½ÚÊı */
-    AM_USB_DESC_TYPE_ENDPOINT,        /* ¶ËµãÃèÊö·ûÀàĞÍ±àºÅ£¬¹Ì¶¨Îª0x05 */
+    /* è¾“å‡ºç«¯ç‚¹æè¿°ç¬¦ */
+    AM_USB_DESC_LENGTH_ENDPOINT,            /* ç«¯ç‚¹æè¿°ç¬¦å­—èŠ‚æ•° */
+    AM_USB_DESC_TYPE_ENDPOINT,        /* ç«¯ç‚¹æè¿°ç¬¦ç±»å‹ç¼–å·ï¼Œå›ºå®šä¸º0x05 */
 
-    /* ¶ËµãµØÖ·¼°Êä³öÊôĞÔ */
+    /* ç«¯ç‚¹åœ°å€åŠè¾“å‡ºå±æ€§ */
     (__USBD_KEYBOARD_ENDPOINT_OUT | (AM_USB_OUT << AM_USB_REQ_TYPE_DIR_SHIFT)),
 
-    __USBD_KEYBOARD_ENDPOINT_OUT_ATTRIBUTE,  /* ¶ËµãÊôĞÔ */
+    __USBD_KEYBOARD_ENDPOINT_OUT_ATTRIBUTE,  /* ç«¯ç‚¹å±æ€§ */
 
     AM_USB_SHORT_GET_LOW(__USBD_KEYBOARD_ENDPOINT_OUT_PACKSIZE),
-    AM_USB_SHORT_GET_HIGH(__USBD_KEYBOARD_ENDPOINT_OUT_PACKSIZE), /* ¶ËµãÒ»´ÎĞÔÊÕ·¢µÄ×î´ó°ü´óĞ¡ */
+    AM_USB_SHORT_GET_HIGH(__USBD_KEYBOARD_ENDPOINT_OUT_PACKSIZE), /* ç«¯ç‚¹ä¸€æ¬¡æ€§æ”¶å‘çš„æœ€å¤§åŒ…å¤§å° */
 
-    __USBD_KEYBOARD_ENDPOINT_OUT_QUERY_TIME  /* Ö÷»ú²éÑ¯¶ËµãÊ±µÄÊ±¼ä¼ä¸ô 10ms */
+    __USBD_KEYBOARD_ENDPOINT_OUT_QUERY_TIME  /* ä¸»æœºæŸ¥è¯¢ç«¯ç‚¹æ—¶çš„æ—¶é—´é—´éš” 10ms */
 };
 
 /*******************************************************************************
- * ×Ö·û´®ÃèÊö·û,Èç¹ûÓÃ»§ĞèÒªĞŞ¸ÄÃèÊö·ûĞÅÏ¢£¬×¢ÒâÊ¹ÓÃµÄÊÇUINCODEÂë(×¢Òâ´óĞ¡¶Ë)
+ * å­—ç¬¦ä¸²æè¿°ç¬¦,å¦‚æœç”¨æˆ·éœ€è¦ä¿®æ”¹æè¿°ç¬¦ä¿¡æ¯ï¼Œæ³¨æ„ä½¿ç”¨çš„æ˜¯UINCODEç (æ³¨æ„å¤§å°ç«¯)
  ******************************************************************************/
-/**< \brief ÃèÊö²úÆ·µÄ×Ö·û´®ÃèÊö·û */
+/**< \brief æè¿°äº§å“çš„å­—ç¬¦ä¸²æè¿°ç¬¦ */
 static const uint8_t __g_am_usbd_keyboard_desc_str_iproduct[16] = {
-    sizeof(__g_am_usbd_keyboard_desc_str_iproduct),       /* ×Ö·û´®ÃèÊö·û×Ö½ÚÊı */
-    AM_USB_DESC_TYPE_STRING,          /* ×Ö·û´®ÃèÊö·ûÀàĞÍ±àºÅ£¬¹Ì¶¨Îª0x03 */
+    sizeof(__g_am_usbd_keyboard_desc_str_iproduct),       /* å­—ç¬¦ä¸²æè¿°ç¬¦å­—èŠ‚æ•° */
+    AM_USB_DESC_TYPE_STRING,          /* å­—ç¬¦ä¸²æè¿°ç¬¦ç±»å‹ç¼–å·ï¼Œå›ºå®šä¸º0x03 */
 
      0x55, 0x00, /* U */
      0x42, 0x00, /* S */
      0x53, 0x00, /* B */
-     0x21, 0x6a, /* Ä£ */
-     0xdf, 0x62, /* Äâ */
-     0x2e, 0x95, /* ¼ü */
-     0xd8, 0x76, /* ÅÌ */
+     0x21, 0x6a, /* æ¨¡ */
+     0xdf, 0x62, /* æ‹Ÿ */
+     0x2e, 0x95, /* é”® */
+     0xd8, 0x76, /* ç›˜ */
 };
 
-/**< \brief ÓïÑÔID×Ö·û´®ÃèÊö·û */
-/**< \brief ÕâÀïÊ¹ÓÃÃÀÊ½Ó¢Óï£¬²»Ê¹ÓÃ¼òÌåÖĞÎÄµÄÔ­ÒòÊÇÈç¹ûÊ¹ÓÃ¼òÌåÖĞÎÄ£¬ÔòÖ÷»ú²»»áÏò´Ó»úÒª×Ö·û´®ÃèÊö·û */
-/**< \brief ÃÀÊ½Ó¢ÓïµÄÓïÑÔIDÎª0x0409£¬¼òÌåÖĞÎÄµÄÓïÑÔIDÎª0x0804£¬×¢Òâ´óĞ¡¶Ë¡£ */
+/**< \brief è¯­è¨€IDå­—ç¬¦ä¸²æè¿°ç¬¦ */
+/**< \brief è¿™é‡Œä½¿ç”¨ç¾å¼è‹±è¯­ï¼Œä¸ä½¿ç”¨ç®€ä½“ä¸­æ–‡çš„åŸå› æ˜¯å¦‚æœä½¿ç”¨ç®€ä½“ä¸­æ–‡ï¼Œåˆ™ä¸»æœºä¸ä¼šå‘ä»æœºè¦å­—ç¬¦ä¸²æè¿°ç¬¦ */
+/**< \brief ç¾å¼è‹±è¯­çš„è¯­è¨€IDä¸º0x0409ï¼Œç®€ä½“ä¸­æ–‡çš„è¯­è¨€IDä¸º0x0804ï¼Œæ³¨æ„å¤§å°ç«¯ã€‚ */
 static const uint8_t __g_am_usbd_keyboard_desc_str_language_id[4] = {
-    sizeof(__g_am_usbd_keyboard_desc_str_language_id),       /* ×Ö·û´®ÃèÊö·û×Ö½ÚÊı */
-    AM_USB_DESC_TYPE_STRING,          /* ×Ö·û´®ÃèÊö·ûÀàĞÍ±àºÅ£¬¹Ì¶¨Îª0x03 */
+    sizeof(__g_am_usbd_keyboard_desc_str_language_id),       /* å­—ç¬¦ä¸²æè¿°ç¬¦å­—èŠ‚æ•° */
+    AM_USB_DESC_TYPE_STRING,          /* å­—ç¬¦ä¸²æè¿°ç¬¦ç±»å‹ç¼–å·ï¼Œå›ºå®šä¸º0x03 */
     0x04,
-    0x08,       /* ¼òÌåÖĞÎÄ */
+    0x08,       /* ç®€ä½“ä¸­æ–‡ */
 };
 
-/**< \brief ÃèÊö³§ÉÌµÄ×Ö·û´®ÃèÊö·û */
+/**< \brief æè¿°å‚å•†çš„å­—ç¬¦ä¸²æè¿°ç¬¦ */
 static uint8_t __g_am_usbd_keyboard_desc_str_imanufacturer[22] = {
-    sizeof(__g_am_usbd_keyboard_desc_str_imanufacturer),       /* ×Ö·û´®ÃèÊö·û×Ö½ÚÊı */
-    AM_USB_DESC_TYPE_STRING,          /* ×Ö·û´®ÃèÊö·ûÀàĞÍ±àºÅ£¬¹Ì¶¨Îª0x03 */
-    0x7f, 0x5e, /* ¹ã */
-    0xde, 0x5d, /* Öİ */
-    0xf4, 0x81, /* ÖÂ */
-    0xdc, 0x8f, /* Ô¶ */
-    0x35, 0x75, /* µç */
-    0x50, 0x5b, /* ×Ó */
-    0x09, 0x67, /* ÓĞ */
-    0x50, 0x96, /* ÏŞ */
-    0x6c, 0x51, /* ¹« */
-    0xf8, 0x53, /* Ë¾ */
+    sizeof(__g_am_usbd_keyboard_desc_str_imanufacturer),       /* å­—ç¬¦ä¸²æè¿°ç¬¦å­—èŠ‚æ•° */
+    AM_USB_DESC_TYPE_STRING,          /* å­—ç¬¦ä¸²æè¿°ç¬¦ç±»å‹ç¼–å·ï¼Œå›ºå®šä¸º0x03 */
+    0x7f, 0x5e, /* å¹¿ */
+    0xde, 0x5d, /* å· */
+    0xf4, 0x81, /* è‡´ */
+    0xdc, 0x8f, /* è¿œ */
+    0x35, 0x75, /* ç”µ */
+    0x50, 0x5b, /* å­ */
+    0x09, 0x67, /* æœ‰ */
+    0x50, 0x96, /* é™ */
+    0x6c, 0x51, /* å…¬ */
+    0xf8, 0x53, /* å¸ */
 };
 
 
 /******************************************************************************
- * ¸÷ÃèÊö·ûĞÅÏ¢
+ * å„æè¿°ç¬¦ä¿¡æ¯
  *****************************************************************************/
 static const am_usbd_descriptor_t __g_am_usbd_keyboard_descriptor[] = {
-    /* Éè±¸ÃèÊö·û */
+    /* è®¾å¤‡æè¿°ç¬¦ */
     {
         (AM_USB_DESC_TYPE_DEVICE << 8) | (0x00),
         sizeof(__g_am_usbd_keyboard_desc_dev),
         __g_am_usbd_keyboard_desc_dev
     },
 
-    /* ÅäÖÃÃèÊö·û¼°ÆäÏÂ¼¶ÃèÊö·û */
+    /* é…ç½®æè¿°ç¬¦åŠå…¶ä¸‹çº§æè¿°ç¬¦ */
     {
         (AM_USB_DESC_TYPE_CONFIGURE << 8) | (0x00),
         sizeof(__g_am_usbd_keyboard_desc_conf),
         __g_am_usbd_keyboard_desc_conf
     },
 
-    /* ×Ö·û´®ÃèÊö·û0£¬ÃèÊöÓïÑÔid */
+    /* å­—ç¬¦ä¸²æè¿°ç¬¦0ï¼Œæè¿°è¯­è¨€id */
     {
         (AM_USB_DESC_TYPE_STRING << 8) | (0x00),
         sizeof(__g_am_usbd_keyboard_desc_str_language_id),
         __g_am_usbd_keyboard_desc_str_language_id
     },
 
-    /* ×Ö·û´®ÃèÊö·û1£¬ÃèÊö³§ÉÌ */
+    /* å­—ç¬¦ä¸²æè¿°ç¬¦1ï¼Œæè¿°å‚å•† */
     {
         (AM_USB_DESC_TYPE_STRING << 8) | __USBD_KEYBOARD_VENDOR_STRING_INDEX,
         sizeof(__g_am_usbd_keyboard_desc_str_imanufacturer),
         __g_am_usbd_keyboard_desc_str_imanufacturer
     },
 
-    /* ×Ö·û´®ÃèÊö·û2£¬ÃèÊö²úÆ· */
+    /* å­—ç¬¦ä¸²æè¿°ç¬¦2ï¼Œæè¿°äº§å“ */
     {
         (AM_USB_DESC_TYPE_STRING << 8) | __USBD_KEYBOARD_PRODUCT_STRING_INDEX,
         sizeof(__g_am_usbd_keyboard_desc_str_iproduct),
         __g_am_usbd_keyboard_desc_str_iproduct
     },
 
-    /* HID ±¨±íÃèÊö·û */
+    /* HID æŠ¥è¡¨æè¿°ç¬¦ */
     {
         (AM_USB_DESC_TYPE_HID_REPORT << 8) | (0x00),
         sizeof(__g_keyboard_hid_report),
@@ -380,58 +380,58 @@ static const am_usbd_descriptor_t __g_am_usbd_keyboard_descriptor[] = {
 };
 
 /******************************************************************************
- * Æ½Ì¨³õÊ¼»¯º¯Êı¡¢½â³õÊ¼»¯º¯ÊıÒÑ¾­Éè±¸ĞÅÏ¢
+ * å¹³å°åˆå§‹åŒ–å‡½æ•°ã€è§£åˆå§‹åŒ–å‡½æ•°å·²ç»è®¾å¤‡ä¿¡æ¯
  ******************************************************************************/
 /**
- * \brief Æ½Ì¨³õÊ¼»¯
+ * \brief å¹³å°åˆå§‹åŒ–
  */
 static void __am_usbd_keyboard_init (void) {
-    /* Ê¹ÄÜÊ±ÖÓ */
+    /* ä½¿èƒ½æ—¶é’Ÿ */
     am_clk_enable(CLK_USB);
     am_clk_enable(CLK_IOPA);
     am_clk_enable(CLK_AFIO);
 
-    /* ÅäÖÃPIOA_11 PIOA_12ÎªUSB¹¦ÄÜ   */
+    /* é…ç½®PIOA_11 PIOA_12ä¸ºUSBåŠŸèƒ½   */
     am_gpio_pin_cfg(PIOA_11, PIOA_11_USBDM);
     am_gpio_pin_cfg(PIOA_12, PIOA_12_USBDP);
 }
 
 /**
- * \brief Æ½Ì¨È¥³õÊ¼»¯
+ * \brief å¹³å°å»åˆå§‹åŒ–
  */
 static void __am_usbd_keyboard_deinit (void) {
-    amhw_zlg217_usbd_connect_set((amhw_zlg217_usbd_t *)ZLG217_USB_BASE, ZLG217_USB_DISCONNECT);   /* ¶Ï¿ªÁ¬½Ó */
-    am_clk_disable(CLK_USB);                               /* ½ûÄÜUSBÊ±ÖÓ */
+    amhw_zlg217_usbd_connect_set((amhw_zlg217_usbd_t *)ZLG217_USB_BASE, ZLG217_USB_DISCONNECT);   /* æ–­å¼€è¿æ¥ */
+    am_clk_disable(CLK_USB);                               /* ç¦èƒ½USBæ—¶é’Ÿ */
 }
 
 static const am_usbd_devinfo_t __g_usbd_info = {
-        __g_am_usbd_keyboard_descriptor,                                                         /* ÃèÊö·ûµØÖ· */
-        sizeof(__g_am_usbd_keyboard_descriptor) / sizeof(__g_am_usbd_keyboard_descriptor[0]),     /* ÃèÊö·û¸öÊı */
+        __g_am_usbd_keyboard_descriptor,                                                         /* æè¿°ç¬¦åœ°å€ */
+        sizeof(__g_am_usbd_keyboard_descriptor) / sizeof(__g_am_usbd_keyboard_descriptor[0]),     /* æè¿°ç¬¦ä¸ªæ•° */
 };
 
-/**< \brief ¶¨ÒåUSBÉè±¸ĞÅÏ¢ */
+/**< \brief å®šä¹‰USBè®¾å¤‡ä¿¡æ¯ */
 static const am_zlg227_usbd_devinfo_t  __g_zlg227_usbd_keyboard_info = {
-    ZLG217_USB_BASE,                  /**< \brief ¼Ä´æÆ÷»ùµØÖ· */
-    INUM_USB,                         /**< \brief ÖĞ¶ÏºÅ */
-    __am_usbd_keyboard_init,          /**< \brief Æ½Ì¨³õÊ¼»¯ */
-    __am_usbd_keyboard_deinit,        /**< \brief Æ½Ì¨È¥³õÊ¼»¯ */
+    ZLG217_USB_BASE,                  /**< \brief å¯„å­˜å™¨åŸºåœ°å€ */
+    INUM_USB,                         /**< \brief ä¸­æ–­å· */
+    __am_usbd_keyboard_init,          /**< \brief å¹³å°åˆå§‹åŒ– */
+    __am_usbd_keyboard_deinit,        /**< \brief å¹³å°å»åˆå§‹åŒ– */
     &__g_usbd_info,
 };
 
-/** \brief USB´òÓ¡»úĞÅÏ¢½á¹¹Ìå*/
+/** \brief USBæ‰“å°æœºä¿¡æ¯ç»“æ„ä½“*/
 static am_usbd_keyboard_info_t __g_usbd_keyboard_info = {
 	__USBD_KEYBOARD_ENDPOINT_IN,
 	__USBD_KEYBOARD_ENDPOINT_OUT
 };
 
-/** \brief USB keyboard Éè±¸ÊµÀı */
+/** \brief USB keyboard è®¾å¤‡å®ä¾‹ */
 static am_usbd_keyboard_t __g_usbd_keyboard_dev;
 
-/** \brief AM227 USBÉè±¸ÊµÀı */
+/** \brief AM227 USBè®¾å¤‡å®ä¾‹ */
 static am_zlg227_usbd_dev_t  __g_zlg_usbd_keyboard;
 
 
-/** \brief usb_keyboardÊµÀı³õÊ¼»¯£¬»ñµÃusb_keyboard±ê×¼·şÎñ¾ä±ú */
+/** \brief usb_keyboardå®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—usb_keyboardæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_usbd_keyboard_handle am_zlg227_usbd_keyboard_inst_init (void)
 {
     return am_usbd_keyboard_init (&__g_usbd_keyboard_dev,
@@ -439,7 +439,7 @@ am_usbd_keyboard_handle am_zlg227_usbd_keyboard_inst_init (void)
                                   am_zlg227_usbd_init(&__g_zlg_usbd_keyboard, &__g_zlg227_usbd_keyboard_info));
 }
 
-/** \brief usb_keyboard½â³õÊ¼»¯£¬»ñµÃusb_keyboard±ê×¼·şÎñ¾ä±ú */
+/** \brief usb_keyboardè§£åˆå§‹åŒ–ï¼Œè·å¾—usb_keyboardæ ‡å‡†æœåŠ¡å¥æŸ„ */
 void am_zlg227_usbd_keyboard_inst_deinit (void)
 {
     am_usbd_keyboard_deinit (&__g_usbd_keyboard_dev);

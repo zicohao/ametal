@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief FM175XX¼Ä´æÆ÷¶¨Òå
+ * \brief FM175XXå¯„å­˜å™¨å®šä¹‰
  *
  * \internal
  * \par Modification history
@@ -36,67 +36,67 @@ extern "C" {
  */
 
 /**
- * \name FM175XX_REG FM175XX¼Ä´æÆ÷¶¨Òå
+ * \name FM175XX_REG FM175XXå¯„å­˜å™¨å®šä¹‰
  * @{
  */
-#define AM_FM175XX_COMMAND_REG           0x01   /**< \brief Æô¶¯ºÍÍ£Ö¹ÃüÁîÖ´ĞĞ */
-#define AM_FM175XX_COMIEN_REG            0x02   /**< \brief ÖĞ¶ÏÇëÇóÊ¹ÄÜÓë½ûÖ¹Î» */
-#define AM_FM175XX_DIVIEN_REG            0x03   /**< \brief ÖĞ¶ÏÇëÇóÊ¹ÄÜÓë½ûÖ¹Î» */
-#define AM_FM175XX_COMIRQ_REG            0x04   /**< \brief ¿ØÖÆÖĞ¶ÏÇëÇóÎ» */
-#define AM_FM175XX_DIVIRQ_REG            0x05   /**< \brief ¿ØÖÆÖĞ¶ÏÇëÇóÎ» */
-#define AM_FM175XX_ERROR_REG             0x06   /**< \brief ÏÔÊ¾ÉÏÒ»ÌõÖ´ĞĞÖ¸ÁîµÄ´íÎó×´Ì¬ */
-#define AM_FM175XX_STATUS1_REG           0x07   /**< \brief Í¨Ñ¶¿ØÖÆ×´Ì¬Î» */
-#define AM_FM175XX_STATUS2_REG           0x08   /**< \brief ½ÓÊÕ»úºÍ·¢ÉäÆ÷µÄ¿ØÖÆ×´Ì¬Î» */
-#define AM_FM175XX_FIFODATA_REG          0x09   /**< \brief 64Î»fifoµÄÊäÈëÊä³ö */
-#define AM_FM175XX_FIFOLEVEL_REG         0x0a   /**< \brief fifoÄÚÓĞĞ§Êı¾İÉî¶È */
-#define AM_FM175XX_WATERLEVEL_REG        0x0b   /**< \brief fifoÉÏÒçÏÂÒç¾¯¸æµÄ¼¶±ğ */
-#define AM_FM175XX_CONTROL_REG           0x0c   /**< \brief ¿ØÖÆ¼Ä´æÆ÷ */
-#define AM_FM175XX_BITFRAMING_REG        0x0d   /**< \brief ÃæÏòÎ»µÄÖ¡¸ñÊ½µ÷Õû */
-#define AM_FM175XX_COLL_REG              0x0e   /**< \brief RF½Ó¿Ú¼ì²âµ½µÚÒ»¸ö³åÍ»Î»µÄÎ»ÖÃ */
-#define AM_FM175XX_EX_REG                0x0f   /**< \brief À©Õ¹¼Ä´æÆ÷ */
-#define AM_FM175XX_MODE_REG              0x11   /**< \brief ½ÓÊÕ·¢ÉäÄ£Ê½ */
-#define AM_FM175XX_TXMODE_REG            0x12   /**< \brief ·¢ÉäÊı¾İËÙÂÊºÍÖ¡¸ñÊ½*/
-#define AM_FM175XX_RXMODE_REG            0x13   /**< \brief ½ÓÊÕÊı¾İËÙÂÊºÍÖ¡¸ñÊ½ */
-#define AM_FM175XX_TXCONTROL_REG         0x14   /**< \brief ÌìÏßÇı¶¯Òı½ÅTX1ºÍTX2¿ØÖÆ */
-#define AM_FM175XX_TXASK_REG             0x15   /**< \brief ÌìÏßÇı¶¯ÉèÖÃ */
-#define AM_FM175XX_TXSEL_REG             0x16   /**< \brief ÌìÏßÇı¶¯ĞÅºÅÔ´Ñ¡Ôñ */
-#define AM_FM175XX_RXSEL_REG             0x17   /**< \brief ÄÚ²¿½ÓÊÕÆ÷ÉèÖÃ */
-#define AM_FM175XX_RXTHRESHOLD_REG       0x18   /**< \brief ½ÓÊÕÒëÂëÆ÷ãĞÖµÑ¡Ôñ */
-#define AM_FM175XX_DEMOD_REG             0x19   /**< \brief ½âµ÷Æ÷ÉèÖÃ */
-#define AM_FM175XX_TX_REG                0x1c   /**< \brief ¿ØÖÆ²¿·ÖISO/IEC 14443·¢Éä²ÎÊı */
-#define AM_FM175XX_RX_REG                0x1d   /**< \brief ¿ØÖÆ²¿·ÖISO/IEC 14443½ÓÊÕ²ÎÊı */
-#define AM_FM175XX_TYPEB_REG             0x1e   /**< \brief ISO/IEC 14443B ¿ØÖÆ£¨FM17510¸Ã¼Ä´æÆ÷Î´Ê¹ÓÃ£© */
-#define AM_FM175XX_SERIALSPEED_REG       0x1f   /**< \brief Ñ¡Ôñ´®ĞĞUART½Ó¿ÚËÙ¶È£¨FM17510¸Ã¼Ä´æÆ÷Î´Ê¹ÓÃ£© */
-#define AM_FM175XX_CRCMSB_REG            0x21   /**< \brief CRC¼ÆËã½á¹û¸ß¶Î */
-#define AM_FM175XX_CRCLSB_REG            0x22   /**< \brief CRC¼ÆËã½á¹ûµÍ¶Î */
-#define AM_FM175XX_MODWIDTH_REG          0x24   /**< \brief µ÷ÖÆ¿í¶È¿ØÖÆ */
-#define AM_FM175XX_RFCFG_REG             0x26   /**< \brief ÅäÖÃ½ÓÊÕÆ÷ÔöÒæºÍRFµçÆ½ */
-#define AM_FM175XX_GSN_REG               0x27   /**< \brief Ñ¡ÔñÌìÏßÇı¶¯Òı½ÅTX1ºÍTX2µÄµçµ¼ÂÊ */
-#define AM_FM175XX_CWGSP_REG             0x28   /**< \brief Ñ¡ÔñÌìÏßÇı¶¯Òı½ÅTX1ºÍTX2µÄµçµ¼ÂÊ */
-#define AM_FM175XX_MODGSP_REG            0x29   /**< \brief Ñ¡ÔñÌìÏßÇı¶¯Òı½ÅTX1ºÍTX2µÄµçµ¼ÂÊ */
-#define AM_FM175XX_TMODE_REG             0x2a   /**< \brief ÄÚ²¿¶¨Ê±Æ÷Ä£Ê½ÉèÖÃ */
-#define AM_FM175XX_TPRESCALER_REG        0x2b   /**< \brief ÄÚ²¿¶¨Ê±Æ÷Ô¤¶¨±êÉèÖÃ */
-#define AM_FM175XX_TRELOADMSB_REG        0x2c   /**< \brief ÄÚ²¿¶¨Ê±Æ÷16Î»ÖØÔØÖµ¸ßÎ» */
-#define AM_FM175XX_TRELOADLSB_REG        0x2d   /**< \brief ÄÚ²¿¶¨Ê±Æ÷16Î»ÖØÔØÖµµÍÎ» */
-#define AM_FM175XX_TCOUNTERVALMSB_REG    0x2e   /**< \brief ÄÚ²¿¶¨Ê±Æ÷16Î»¼ÆÊıÖµ¸ßÎ» */
-#define AM_FM175XX_TCOUNTERVALLSB_REG    0x2f   /**< \brief ÄÚ²¿¶¨Ê±Æ÷16Î»¼ÆÊıÖµµÍÎ» */
-#define AM_FM175XX_TESTSEL1_REG          0x31   /**< \brief ²âÊÔĞÅºÅÅäÖÃ */
-#define AM_FM175XX_TESTSEL2_REG          0x32   /**< \brief ²âÊÔĞÅºÅÅäÖÃ¼°PRBS¿ØÖÆ */
-#define AM_FM175XX_TESTPINEN_REG         0x33   /**< \brief D1-D7Òı½ÅÊä³öÇı¶¯Ê¹ÄÜ£¨FM17510¸Ã¼Ä´æÆ÷Î´Ê¹ÓÃ£© */
-#define AM_FM175XX_TESTPINVALUE_REG      0x34   /**< \brief µ±±»ÓÃÓÚI/O×ÜÏßÊ±,¶¨ÒåD1-D7Òı½ÅµÄÖµ£¨FM17510¸Ã¼Ä´æÆ÷Î´Ê¹ÓÃ£© */
-#define AM_FM175XX_TESTBUS_REG           0x35   /**< \brief ÏÔÊ¾ÄÚ²¿²âÊÔ×ÜÏßµÄ×´Ì¬ */
-#define AM_FM175XX_TESTCTRL_REG          0x36   /**< \brief ²âÊÔ¿ØÖÆ */
-#define AM_FM175XX_VERSION_REG           0x37   /**< \brief Ğ¾Æ¬°æ±¾*/
-#define AM_FM175XX_ANALOGTEST_REG        0x38   /**< \brief ¿ØÖÆÒı½ÅAUX1ºÍAUX2 */
-#define AM_FM175XX_TESTDAC1_REG          0x39   /**< \brief ÎªTestDAC1¶¨Òå²âÊÔÖµ */
-#define AM_FM175XX_TESTDAC2_REG          0x3a   /**< \brief ÎªTestDAC2¶¨Òå²âÊÔÖµ£¨FM17510¸Ã¼Ä´æÆ÷Î´Ê¹ÓÃ£© */
-#define AM_FM175XX_TESTADC_REG           0x3b   /**< \brief ÏÔÊ¾ADC IºÍQµÄÊµ¼ÊÖµ */
+#define AM_FM175XX_COMMAND_REG           0x01   /**< \brief å¯åŠ¨å’Œåœæ­¢å‘½ä»¤æ‰§è¡Œ */
+#define AM_FM175XX_COMIEN_REG            0x02   /**< \brief ä¸­æ–­è¯·æ±‚ä½¿èƒ½ä¸ç¦æ­¢ä½ */
+#define AM_FM175XX_DIVIEN_REG            0x03   /**< \brief ä¸­æ–­è¯·æ±‚ä½¿èƒ½ä¸ç¦æ­¢ä½ */
+#define AM_FM175XX_COMIRQ_REG            0x04   /**< \brief æ§åˆ¶ä¸­æ–­è¯·æ±‚ä½ */
+#define AM_FM175XX_DIVIRQ_REG            0x05   /**< \brief æ§åˆ¶ä¸­æ–­è¯·æ±‚ä½ */
+#define AM_FM175XX_ERROR_REG             0x06   /**< \brief æ˜¾ç¤ºä¸Šä¸€æ¡æ‰§è¡ŒæŒ‡ä»¤çš„é”™è¯¯çŠ¶æ€ */
+#define AM_FM175XX_STATUS1_REG           0x07   /**< \brief é€šè®¯æ§åˆ¶çŠ¶æ€ä½ */
+#define AM_FM175XX_STATUS2_REG           0x08   /**< \brief æ¥æ”¶æœºå’Œå‘å°„å™¨çš„æ§åˆ¶çŠ¶æ€ä½ */
+#define AM_FM175XX_FIFODATA_REG          0x09   /**< \brief 64ä½fifoçš„è¾“å…¥è¾“å‡º */
+#define AM_FM175XX_FIFOLEVEL_REG         0x0a   /**< \brief fifoå†…æœ‰æ•ˆæ•°æ®æ·±åº¦ */
+#define AM_FM175XX_WATERLEVEL_REG        0x0b   /**< \brief fifoä¸Šæº¢ä¸‹æº¢è­¦å‘Šçš„çº§åˆ« */
+#define AM_FM175XX_CONTROL_REG           0x0c   /**< \brief æ§åˆ¶å¯„å­˜å™¨ */
+#define AM_FM175XX_BITFRAMING_REG        0x0d   /**< \brief é¢å‘ä½çš„å¸§æ ¼å¼è°ƒæ•´ */
+#define AM_FM175XX_COLL_REG              0x0e   /**< \brief RFæ¥å£æ£€æµ‹åˆ°ç¬¬ä¸€ä¸ªå†²çªä½çš„ä½ç½® */
+#define AM_FM175XX_EX_REG                0x0f   /**< \brief æ‰©å±•å¯„å­˜å™¨ */
+#define AM_FM175XX_MODE_REG              0x11   /**< \brief æ¥æ”¶å‘å°„æ¨¡å¼ */
+#define AM_FM175XX_TXMODE_REG            0x12   /**< \brief å‘å°„æ•°æ®é€Ÿç‡å’Œå¸§æ ¼å¼*/
+#define AM_FM175XX_RXMODE_REG            0x13   /**< \brief æ¥æ”¶æ•°æ®é€Ÿç‡å’Œå¸§æ ¼å¼ */
+#define AM_FM175XX_TXCONTROL_REG         0x14   /**< \brief å¤©çº¿é©±åŠ¨å¼•è„šTX1å’ŒTX2æ§åˆ¶ */
+#define AM_FM175XX_TXASK_REG             0x15   /**< \brief å¤©çº¿é©±åŠ¨è®¾ç½® */
+#define AM_FM175XX_TXSEL_REG             0x16   /**< \brief å¤©çº¿é©±åŠ¨ä¿¡å·æºé€‰æ‹© */
+#define AM_FM175XX_RXSEL_REG             0x17   /**< \brief å†…éƒ¨æ¥æ”¶å™¨è®¾ç½® */
+#define AM_FM175XX_RXTHRESHOLD_REG       0x18   /**< \brief æ¥æ”¶è¯‘ç å™¨é˜ˆå€¼é€‰æ‹© */
+#define AM_FM175XX_DEMOD_REG             0x19   /**< \brief è§£è°ƒå™¨è®¾ç½® */
+#define AM_FM175XX_TX_REG                0x1c   /**< \brief æ§åˆ¶éƒ¨åˆ†ISO/IEC 14443å‘å°„å‚æ•° */
+#define AM_FM175XX_RX_REG                0x1d   /**< \brief æ§åˆ¶éƒ¨åˆ†ISO/IEC 14443æ¥æ”¶å‚æ•° */
+#define AM_FM175XX_TYPEB_REG             0x1e   /**< \brief ISO/IEC 14443B æ§åˆ¶ï¼ˆFM17510è¯¥å¯„å­˜å™¨æœªä½¿ç”¨ï¼‰ */
+#define AM_FM175XX_SERIALSPEED_REG       0x1f   /**< \brief é€‰æ‹©ä¸²è¡ŒUARTæ¥å£é€Ÿåº¦ï¼ˆFM17510è¯¥å¯„å­˜å™¨æœªä½¿ç”¨ï¼‰ */
+#define AM_FM175XX_CRCMSB_REG            0x21   /**< \brief CRCè®¡ç®—ç»“æœé«˜æ®µ */
+#define AM_FM175XX_CRCLSB_REG            0x22   /**< \brief CRCè®¡ç®—ç»“æœä½æ®µ */
+#define AM_FM175XX_MODWIDTH_REG          0x24   /**< \brief è°ƒåˆ¶å®½åº¦æ§åˆ¶ */
+#define AM_FM175XX_RFCFG_REG             0x26   /**< \brief é…ç½®æ¥æ”¶å™¨å¢ç›Šå’ŒRFç”µå¹³ */
+#define AM_FM175XX_GSN_REG               0x27   /**< \brief é€‰æ‹©å¤©çº¿é©±åŠ¨å¼•è„šTX1å’ŒTX2çš„ç”µå¯¼ç‡ */
+#define AM_FM175XX_CWGSP_REG             0x28   /**< \brief é€‰æ‹©å¤©çº¿é©±åŠ¨å¼•è„šTX1å’ŒTX2çš„ç”µå¯¼ç‡ */
+#define AM_FM175XX_MODGSP_REG            0x29   /**< \brief é€‰æ‹©å¤©çº¿é©±åŠ¨å¼•è„šTX1å’ŒTX2çš„ç”µå¯¼ç‡ */
+#define AM_FM175XX_TMODE_REG             0x2a   /**< \brief å†…éƒ¨å®šæ—¶å™¨æ¨¡å¼è®¾ç½® */
+#define AM_FM175XX_TPRESCALER_REG        0x2b   /**< \brief å†…éƒ¨å®šæ—¶å™¨é¢„å®šæ ‡è®¾ç½® */
+#define AM_FM175XX_TRELOADMSB_REG        0x2c   /**< \brief å†…éƒ¨å®šæ—¶å™¨16ä½é‡è½½å€¼é«˜ä½ */
+#define AM_FM175XX_TRELOADLSB_REG        0x2d   /**< \brief å†…éƒ¨å®šæ—¶å™¨16ä½é‡è½½å€¼ä½ä½ */
+#define AM_FM175XX_TCOUNTERVALMSB_REG    0x2e   /**< \brief å†…éƒ¨å®šæ—¶å™¨16ä½è®¡æ•°å€¼é«˜ä½ */
+#define AM_FM175XX_TCOUNTERVALLSB_REG    0x2f   /**< \brief å†…éƒ¨å®šæ—¶å™¨16ä½è®¡æ•°å€¼ä½ä½ */
+#define AM_FM175XX_TESTSEL1_REG          0x31   /**< \brief æµ‹è¯•ä¿¡å·é…ç½® */
+#define AM_FM175XX_TESTSEL2_REG          0x32   /**< \brief æµ‹è¯•ä¿¡å·é…ç½®åŠPRBSæ§åˆ¶ */
+#define AM_FM175XX_TESTPINEN_REG         0x33   /**< \brief D1-D7å¼•è„šè¾“å‡ºé©±åŠ¨ä½¿èƒ½ï¼ˆFM17510è¯¥å¯„å­˜å™¨æœªä½¿ç”¨ï¼‰ */
+#define AM_FM175XX_TESTPINVALUE_REG      0x34   /**< \brief å½“è¢«ç”¨äºI/Oæ€»çº¿æ—¶,å®šä¹‰D1-D7å¼•è„šçš„å€¼ï¼ˆFM17510è¯¥å¯„å­˜å™¨æœªä½¿ç”¨ï¼‰ */
+#define AM_FM175XX_TESTBUS_REG           0x35   /**< \brief æ˜¾ç¤ºå†…éƒ¨æµ‹è¯•æ€»çº¿çš„çŠ¶æ€ */
+#define AM_FM175XX_TESTCTRL_REG          0x36   /**< \brief æµ‹è¯•æ§åˆ¶ */
+#define AM_FM175XX_VERSION_REG           0x37   /**< \brief èŠ¯ç‰‡ç‰ˆæœ¬*/
+#define AM_FM175XX_ANALOGTEST_REG        0x38   /**< \brief æ§åˆ¶å¼•è„šAUX1å’ŒAUX2 */
+#define AM_FM175XX_TESTDAC1_REG          0x39   /**< \brief ä¸ºTestDAC1å®šä¹‰æµ‹è¯•å€¼ */
+#define AM_FM175XX_TESTDAC2_REG          0x3a   /**< \brief ä¸ºTestDAC2å®šä¹‰æµ‹è¯•å€¼ï¼ˆFM17510è¯¥å¯„å­˜å™¨æœªä½¿ç”¨ï¼‰ */
+#define AM_FM175XX_TESTADC_REG           0x3b   /**< \brief æ˜¾ç¤ºADC Iå’ŒQçš„å®é™…å€¼ */
 
 /** @} */
 
 
 /**
- * \name FM175XX_REG FM175XXÍØÕ¹¼Ä´æÆ÷¶¨Òå
+ * \name FM175XX_REG FM175XXæ‹“å±•å¯„å­˜å™¨å®šä¹‰
  * @{
  */
 #define AM_FM175XX_LPCD_CTRL1            0x01
@@ -129,304 +129,304 @@ extern "C" {
 
 
 /**
- * \name CommandÃüÁî¼Ä´æÆ÷ÑÚÂë (0x01)
+ * \name Commandå‘½ä»¤å¯„å­˜å™¨æ©ç  (0x01)
  * @{
  */
 
-#define AM_FM175XX_COMMAND_RCV_OFF         0x20        /**< \brief ÉäÆµÄ£Äâ½ÓÊÕÆ÷¹Ø±Õ */
-#define AM_FM175XX_COMMAND_POWER_DOWN      0x10        /**< \brief ½øÈëÈí¼şµôµçÄ£Ê½ */
-#define AM_FM175XX_COMMAND_MASK            0x0F        /**< \brief Ö¸Áî¼Ä´æÆ÷ÑÚÂë */
+#define AM_FM175XX_COMMAND_RCV_OFF         0x20        /**< \brief å°„é¢‘æ¨¡æ‹Ÿæ¥æ”¶å™¨å…³é—­ */
+#define AM_FM175XX_COMMAND_POWER_DOWN      0x10        /**< \brief è¿›å…¥è½¯ä»¶æ‰ç”µæ¨¡å¼ */
+#define AM_FM175XX_COMMAND_MASK            0x0F        /**< \brief æŒ‡ä»¤å¯„å­˜å™¨æ©ç  */
 
 /** @} */
 
 
 /**
- * \name CommIENÖĞ¶ÏÇëÇóÊ¹ÄÜÓë½ûÖ¹¿ØÖÆ¼Ä´æÆ÷ÑÚÂë (0x02)
+ * \name CommIENä¸­æ–­è¯·æ±‚ä½¿èƒ½ä¸ç¦æ­¢æ§åˆ¶å¯„å­˜å™¨æ©ç  (0x02)
  * @{
  */
 
-#define AM_FM175XX_COMMIEN_IRQ_INV         0x80    /**< \brief IRQĞÅºÅÈ¡·´ È±Ê¡Îª1 */
-#define AM_FM175XX_COMMIEN_TX_IEN          0x40    /**< \brief ÔÊĞíTXIRQ·¢ÉäÖĞ¶ÏÇëÇó´«µİµ½IRQ */
-#define AM_FM175XX_COMMIEN_RX_IEN          0x20    /**< \brief ÔÊĞíRXIRQ½ÓÊÕÖĞ¶ÏÇëÇó´«µİµ½IRQ */
-#define AM_FM175XX_COMMIEN_IDLE_IEN        0x10    /**< \brief ÔÊĞíIDLEIRQ¿ÕÏĞÖĞ¶ÏÇëÇó´«µİµ½IRQ */
-#define AM_FM175XX_COMMIEN_HIALERT_IEN     0x08    /**< \brief ÔÊĞíHIALERTIRQ½¥ÂúÖĞ¶ÏÇëÇó´«µİµ½IRQ */
-#define AM_FM175XX_COMMIEN_LOALERT_IEN     0x04    /**< \brief ÔÊĞíHIALERTIRQ½¥¿ÕÖĞ¶ÏÇëÇó´«µİµ½IRQ */
-#define AM_FM175XX_COMMIEN_ERR_IEN         0x02    /**< \brief ÔÊĞíERRIRQ´íÎóÖĞ¶ÏÇëÇó´«µİµ½IRQ */
-#define AM_FM175XX_COMMIEN_TIMER_IEN       0x01    /**< \brief ÔÊĞíTIMERIRQ¶¨Ê±Æ÷ÖĞ¶ÏÇëÇó´«µİµ½IRQ */
+#define AM_FM175XX_COMMIEN_IRQ_INV         0x80    /**< \brief IRQä¿¡å·å–å ç¼ºçœä¸º1 */
+#define AM_FM175XX_COMMIEN_TX_IEN          0x40    /**< \brief å…è®¸TXIRQå‘å°„ä¸­æ–­è¯·æ±‚ä¼ é€’åˆ°IRQ */
+#define AM_FM175XX_COMMIEN_RX_IEN          0x20    /**< \brief å…è®¸RXIRQæ¥æ”¶ä¸­æ–­è¯·æ±‚ä¼ é€’åˆ°IRQ */
+#define AM_FM175XX_COMMIEN_IDLE_IEN        0x10    /**< \brief å…è®¸IDLEIRQç©ºé—²ä¸­æ–­è¯·æ±‚ä¼ é€’åˆ°IRQ */
+#define AM_FM175XX_COMMIEN_HIALERT_IEN     0x08    /**< \brief å…è®¸HIALERTIRQæ¸æ»¡ä¸­æ–­è¯·æ±‚ä¼ é€’åˆ°IRQ */
+#define AM_FM175XX_COMMIEN_LOALERT_IEN     0x04    /**< \brief å…è®¸HIALERTIRQæ¸ç©ºä¸­æ–­è¯·æ±‚ä¼ é€’åˆ°IRQ */
+#define AM_FM175XX_COMMIEN_ERR_IEN         0x02    /**< \brief å…è®¸ERRIRQé”™è¯¯ä¸­æ–­è¯·æ±‚ä¼ é€’åˆ°IRQ */
+#define AM_FM175XX_COMMIEN_TIMER_IEN       0x01    /**< \brief å…è®¸TIMERIRQå®šæ—¶å™¨ä¸­æ–­è¯·æ±‚ä¼ é€’åˆ°IRQ */
 
 /** @} */
 
 
 /**
- * \name DivIENÖĞ¶ÏÇëÇóÊ¹ÄÜÓë½ûÖ¹¿ØÖÆ¼Ä´æÆ÷ÑÚÂë (0x03)
+ * \name DivIENä¸­æ–­è¯·æ±‚ä½¿èƒ½ä¸ç¦æ­¢æ§åˆ¶å¯„å­˜å™¨æ©ç  (0x03)
  * @{
  */
  
-#define AM_FM175XX_DIVIEN_IRQ_PUSHPULL     0x80    /**< \brief IRQÒı½Å¹¤×÷Ä£Ê½ 1CMOS 0¿ªÂ©Êä³ö */
-#define AM_FM175XX_DIVIEN_TINACT_IEN       0x10    /**< \brief ÔÊĞíTINÖĞ¶ÏÇëÇó´«µİµ½IRQ£¨FM17510²»Ö§³Ö£© */
-#define AM_FM175XX_DIVIEN_CRC_IEN          0x04    /**< \brief ÔÊĞíCRCÖĞ¶ÏÇëÇó´«µİµ½IRQ */
+#define AM_FM175XX_DIVIEN_IRQ_PUSHPULL     0x80    /**< \brief IRQå¼•è„šå·¥ä½œæ¨¡å¼ 1CMOS 0å¼€æ¼è¾“å‡º */
+#define AM_FM175XX_DIVIEN_TINACT_IEN       0x10    /**< \brief å…è®¸TINä¸­æ–­è¯·æ±‚ä¼ é€’åˆ°IRQï¼ˆFM17510ä¸æ”¯æŒï¼‰ */
+#define AM_FM175XX_DIVIEN_CRC_IEN          0x04    /**< \brief å…è®¸CRCä¸­æ–­è¯·æ±‚ä¼ é€’åˆ°IRQ */
 
 /** @} */
 
 
 /**
- * \name CommIRqÖĞ¶Ï¿ØÖÆÇëÇó¼Ä´æÆ÷ÑÚÂë (0x04)
+ * \name CommIRqä¸­æ–­æ§åˆ¶è¯·æ±‚å¯„å­˜å™¨æ©ç  (0x04)
  * @{
  */
  
-#define AM_FM175XX_COMMIRQ_SET1            0x80    /**< \brief COMMIRQÖĞ¶Ï±ê¼Ç Ğ´0Çå0¼Ä´æÆ÷ÄÚËùÓĞ±ê¼Ç */
-#define AM_FM175XX_COMMIRQ_TX_IRQ          0x40    /**< \brief ·¢ÉäÊı¾İµÄ×îºóÒ»Î»·¢³öºóÁ¢¿ÌÖÃ1 */
-#define AM_FM175XX_COMMIRQ_RX_IRQ          0x20    /**< \brief ½ÓÊÕµ½Êı¾İÄ©Î²Ê±ÖÃ1 */
-#define AM_FM175XX_COMMIRQ_IDLE_IRQ        0x10    /**< \brief Ö´ĞĞµ½Î´ÖªÖ¸ÁîÊ±ÖÃ1 */
-#define AM_FM175XX_COMMIRQ_HIALERT_IRQ     0x08    /**< \brief STATUS1¼Ä´æÆ÷µÄHIALERTÖÃ1Ê±ÖÃ1 */
-#define AM_FM175XX_COMMIRQ_LOALERT_IRQ     0x04    /**< \brief STATUS1¼Ä´æÆ÷µÄLOALERTÖÃ1Ê±ÖÃ1 */
-#define AM_FM175XX_COMMIRQ_ERR_IRQ         0x02    /**< \brief ERR¼Ä´æÆ÷ÖĞÓĞÈÎºÎerrÎ»Ê±ÖÃ1 */
-#define AM_FM175XX_COMMIRQ_TIMER_IRQ       0x01    /**< \brief TimerValue¼ÆÊı¹é0Ê±ÖÃ1 */
+#define AM_FM175XX_COMMIRQ_SET1            0x80    /**< \brief COMMIRQä¸­æ–­æ ‡è®° å†™0æ¸…0å¯„å­˜å™¨å†…æ‰€æœ‰æ ‡è®° */
+#define AM_FM175XX_COMMIRQ_TX_IRQ          0x40    /**< \brief å‘å°„æ•°æ®çš„æœ€åä¸€ä½å‘å‡ºåç«‹åˆ»ç½®1 */
+#define AM_FM175XX_COMMIRQ_RX_IRQ          0x20    /**< \brief æ¥æ”¶åˆ°æ•°æ®æœ«å°¾æ—¶ç½®1 */
+#define AM_FM175XX_COMMIRQ_IDLE_IRQ        0x10    /**< \brief æ‰§è¡Œåˆ°æœªçŸ¥æŒ‡ä»¤æ—¶ç½®1 */
+#define AM_FM175XX_COMMIRQ_HIALERT_IRQ     0x08    /**< \brief STATUS1å¯„å­˜å™¨çš„HIALERTç½®1æ—¶ç½®1 */
+#define AM_FM175XX_COMMIRQ_LOALERT_IRQ     0x04    /**< \brief STATUS1å¯„å­˜å™¨çš„LOALERTç½®1æ—¶ç½®1 */
+#define AM_FM175XX_COMMIRQ_ERR_IRQ         0x02    /**< \brief ERRå¯„å­˜å™¨ä¸­æœ‰ä»»ä½•errä½æ—¶ç½®1 */
+#define AM_FM175XX_COMMIRQ_TIMER_IRQ       0x01    /**< \brief TimerValueè®¡æ•°å½’0æ—¶ç½®1 */
 
 /** @} */
 
 
 /**
- * \name DivIRqÖĞ¶Ï¿ØÖÆÇëÇó¼Ä´æÆ÷ÑÚÂë (0x05)
+ * \name DivIRqä¸­æ–­æ§åˆ¶è¯·æ±‚å¯„å­˜å™¨æ©ç  (0x05)
  * @{
  */
  
-#define AM_FM175XX_DIVIRQ_SET2             0x80    /**< \brief DIVIRQÖĞ¶Ï±ê¼Ç Ğ´1Çå0¼Ä´æÆ÷ÄÚËùÓĞ±ê¼Ç */
-#define AM_FM175XX_DIVIRQ_TINACT_IRQ       0x10    /**< \brief TIN¼¤»îÊ± ÖÃ1£¨FM17510²»Ö§³Ö£© */
-#define AM_FM175XX_DIVIRQ_CRC_IRQ          0x04    /**< \brief CRCÖ¸Áî¼¤»îÇÒËùÓĞÊı¾İ´¦ÀíÍê³ÉºóÖÃ1 */
+#define AM_FM175XX_DIVIRQ_SET2             0x80    /**< \brief DIVIRQä¸­æ–­æ ‡è®° å†™1æ¸…0å¯„å­˜å™¨å†…æ‰€æœ‰æ ‡è®° */
+#define AM_FM175XX_DIVIRQ_TINACT_IRQ       0x10    /**< \brief TINæ¿€æ´»æ—¶ ç½®1ï¼ˆFM17510ä¸æ”¯æŒï¼‰ */
+#define AM_FM175XX_DIVIRQ_CRC_IRQ          0x04    /**< \brief CRCæŒ‡ä»¤æ¿€æ´»ä¸”æ‰€æœ‰æ•°æ®å¤„ç†å®Œæˆåç½®1 */
 
 /** @} */
 
 
 /**
- * \name Error´íÎó¼Ä´æÆ÷ÑÚÂë (0x06)
+ * \name Erroré”™è¯¯å¯„å­˜å™¨æ©ç  (0x06)
  * @{
  */
  
-#define AM_FM175XX_ERROR_WR_ERR            0x80    /**< \brief ´«Êä¹ı³ÌÖĞÊı¾İ±»Ö÷¿ØĞ´ÈëfifoÊ±ÖÃÎ» */
-#define AM_FM175XX_ERROR_TEMP_ERR          0x40    /**< \brief ÄÚ²¿ÎÂ¶È´«¸ĞÆ÷¼ì²â¹ıÈÈÊ±ÖÃ1 */
-#define AM_FM175XX_ERROR_BUFFER_ERR        0x10    /**< \brief fifoÒÑÂúÊ±ÊÔÍ¼Ğ´fifoÖÃ1 */
-#define AM_FM175XX_ERROR_COLL_ERR          0x08    /**< \brief ¼ì²âµ½³åÍ»ÖÃ1(½öAĞ­ÒéÖĞ106kbitÊ±ÓĞĞ§),½ÓÊÕÆ÷Æô¶¯Ê±×Ô¶¯ÇåÁã */
-#define AM_FM175XX_ERROR_CRC_ERR           0x04    /**< \brief RxMode¼Ä´æÆ÷µÄRxCRCENÖÃ1ÇÒCRC¼ÆËãÊ§°ÜÊ±ÖÃ1,½ÓÊÕÆ÷Æô¶¯Ê±×Ô¶¯ÇåÁã */
-#define AM_FM175XX_ERROR_PARITY_ERR        0x02    /**< \brief ÆæÅ¼Ğ£ÑéÊ§°ÜÊ±ÖÃ1(½öAĞ­ÒéÖĞ106kbitÊ±ÓĞĞ§),½ÓÊÕÆ÷Æô¶¯Ê±×Ô¶¯ÇåÁã */
-#define AM_FM175XX_ERROR_PROTOCOL_ERR      0x01    /**< \brief SOF´íÎó»òAuthentÊı¾İÁ÷×Ö½ÚÊı²»ÕıÈ·Ê±ÖÃ1 */
+#define AM_FM175XX_ERROR_WR_ERR            0x80    /**< \brief ä¼ è¾“è¿‡ç¨‹ä¸­æ•°æ®è¢«ä¸»æ§å†™å…¥fifoæ—¶ç½®ä½ */
+#define AM_FM175XX_ERROR_TEMP_ERR          0x40    /**< \brief å†…éƒ¨æ¸©åº¦ä¼ æ„Ÿå™¨æ£€æµ‹è¿‡çƒ­æ—¶ç½®1 */
+#define AM_FM175XX_ERROR_BUFFER_ERR        0x10    /**< \brief fifoå·²æ»¡æ—¶è¯•å›¾å†™fifoç½®1 */
+#define AM_FM175XX_ERROR_COLL_ERR          0x08    /**< \brief æ£€æµ‹åˆ°å†²çªç½®1(ä»…Aåè®®ä¸­106kbitæ—¶æœ‰æ•ˆ),æ¥æ”¶å™¨å¯åŠ¨æ—¶è‡ªåŠ¨æ¸…é›¶ */
+#define AM_FM175XX_ERROR_CRC_ERR           0x04    /**< \brief RxModeå¯„å­˜å™¨çš„RxCRCENç½®1ä¸”CRCè®¡ç®—å¤±è´¥æ—¶ç½®1,æ¥æ”¶å™¨å¯åŠ¨æ—¶è‡ªåŠ¨æ¸…é›¶ */
+#define AM_FM175XX_ERROR_PARITY_ERR        0x02    /**< \brief å¥‡å¶æ ¡éªŒå¤±è´¥æ—¶ç½®1(ä»…Aåè®®ä¸­106kbitæ—¶æœ‰æ•ˆ),æ¥æ”¶å™¨å¯åŠ¨æ—¶è‡ªåŠ¨æ¸…é›¶ */
+#define AM_FM175XX_ERROR_PROTOCOL_ERR      0x01    /**< \brief SOFé”™è¯¯æˆ–Authentæ•°æ®æµå­—èŠ‚æ•°ä¸æ­£ç¡®æ—¶ç½®1 */
 
 /** @} */
 
 
 /**
- * \name Status1×´Ì¬¼Ä´æÆ÷1ÑÚÂë (0x07)
+ * \name Status1çŠ¶æ€å¯„å­˜å™¨1æ©ç  (0x07)
  * @{
  */
  
-#define AM_FM175XX_STATUS1_CRC_OK          0x40    /**< \brief CRC¼ÆËã½á¹ûÎª0 */
-#define AM_FM175XX_STATUS1_CRC_READY       0x20    /**< \brief CRC¼ÆËã½áÊø */
-#define AM_FM175XX_STATUS1_IRQ             0x10    /**< \brief ÓĞÖĞ¶Ï */
-#define AM_FM175XX_STATUS1_TRUNING         0x08    /**< \brief ¶¨Ê±Æ÷ÕıÔÚÔËĞĞ */
-#define AM_FM175XX_STATUS1_HIALERT         0x02    /**< \brief fifoÖĞµÄHIALERT ×Ö½ÚÊıĞ¡ÓÚWaterLevel */
-#define AM_FM175XX_STATUS1_LOALERT         0x01    /**< \brief fifoÖĞµÄLOALERT ×Ö½ÚÊıĞ¡ÓÚWaterLevel */
+#define AM_FM175XX_STATUS1_CRC_OK          0x40    /**< \brief CRCè®¡ç®—ç»“æœä¸º0 */
+#define AM_FM175XX_STATUS1_CRC_READY       0x20    /**< \brief CRCè®¡ç®—ç»“æŸ */
+#define AM_FM175XX_STATUS1_IRQ             0x10    /**< \brief æœ‰ä¸­æ–­ */
+#define AM_FM175XX_STATUS1_TRUNING         0x08    /**< \brief å®šæ—¶å™¨æ­£åœ¨è¿è¡Œ */
+#define AM_FM175XX_STATUS1_HIALERT         0x02    /**< \brief fifoä¸­çš„HIALERT å­—èŠ‚æ•°å°äºWaterLevel */
+#define AM_FM175XX_STATUS1_LOALERT         0x01    /**< \brief fifoä¸­çš„LOALERT å­—èŠ‚æ•°å°äºWaterLevel */
 
 /** @} */
 
 
 /**
- * \name Status2×´Ì¬¼Ä´æÆ÷2ÑÚÂë (0x08)
+ * \name Status2çŠ¶æ€å¯„å­˜å™¨2æ©ç  (0x08)
  * @{
  */
  
-#define AM_FM175XX_STATUS2_TEMP_SENS_CLEAR     0x80    /**< \brief ÎÂ¶ÈÔÚ125¡æ¾¯±¨ÏÂÊ±,ÖÃ¸ÃÎ»¿ÉÒÔÇå³ıÎÂ¶È´íÎó */
-#define AM_FM175XX_STATUS2_I2C_FORCE_HS        0x40    /**< \brief I2CÊäÈëÂË²¨Æ÷ÉèÖÃ.ÖÃ1Îª¸ßËÙÄ£Ê½,ÖÃ0Ôò¸ù¾İÓ¦ÓÃµÄI2CĞ­Òéµ÷Õû. */
-#define AM_FM175XX_STATUS2_CRYPTO1_ON          0x08    /**< \brief M1 Crypto1µ¥Ôª¿ªÆô.M1¿¨ÓĞĞ§,ÔÚ³É¹¦Ö´ĞĞAuthentÖ¸ÁîºóÖÃ1,¿ÉÈí¼şÇå³ı */
-#define AM_FM175XX_STATUS2_MODEM_STATE_MASK    0x07    /**< \brief ·¢ÊÕ×´Ì¬»ú×´Ì¬ÑÚÂë */
-#define AM_FM175XX_STATUS2_MODEM_STATE_IDLE    0x00    /**< \brief ·¢ÊÕ×´Ì¬»ú¿ÕÏĞ */
-#define AM_FM175XX_STATUS2_MODEM_STATE_SS      0x01    /**< \brief ·¢ÊÕ×´Ì¬»úµÈ´ıStartSendÓĞĞ§ */
-#define AM_FM175XX_STATUS2_MODEM_STATE_TW      0x02    /**< \brief ·¢ÊÕ×´Ì¬»úTxWait,Ö±µ½RF³¡³öÏÖ */
-#define AM_FM175XX_STATUS2_MODEM_STATE_SEND    0x03    /**< \brief ·¢ÊÕ×´Ì¬»ú·¢ËÍÖĞ */
-#define AM_FM175XX_STATUS2_MODEM_STATE_RW      0x04    /**< \brief ·¢ÊÕ×´Ì¬»úRxWait,Ö±µ½RF³¡³öÏÖ */
-#define AM_FM175XX_STATUS2_MODEM_STATE_DW      0x05    /**< \brief ·¢ÊÕ×´Ì¬»úDataWait */
-#define AM_FM175XX_STATUS2_MODEM_STATE_RECV    0x06    /**< \brief ·¢ÊÕ×´Ì¬»ú½ÓÊÕÖĞ */
+#define AM_FM175XX_STATUS2_TEMP_SENS_CLEAR     0x80    /**< \brief æ¸©åº¦åœ¨125â„ƒè­¦æŠ¥ä¸‹æ—¶,ç½®è¯¥ä½å¯ä»¥æ¸…é™¤æ¸©åº¦é”™è¯¯ */
+#define AM_FM175XX_STATUS2_I2C_FORCE_HS        0x40    /**< \brief I2Cè¾“å…¥æ»¤æ³¢å™¨è®¾ç½®.ç½®1ä¸ºé«˜é€Ÿæ¨¡å¼,ç½®0åˆ™æ ¹æ®åº”ç”¨çš„I2Cåè®®è°ƒæ•´. */
+#define AM_FM175XX_STATUS2_CRYPTO1_ON          0x08    /**< \brief M1 Crypto1å•å…ƒå¼€å¯.M1å¡æœ‰æ•ˆ,åœ¨æˆåŠŸæ‰§è¡ŒAuthentæŒ‡ä»¤åç½®1,å¯è½¯ä»¶æ¸…é™¤ */
+#define AM_FM175XX_STATUS2_MODEM_STATE_MASK    0x07    /**< \brief å‘æ”¶çŠ¶æ€æœºçŠ¶æ€æ©ç  */
+#define AM_FM175XX_STATUS2_MODEM_STATE_IDLE    0x00    /**< \brief å‘æ”¶çŠ¶æ€æœºç©ºé—² */
+#define AM_FM175XX_STATUS2_MODEM_STATE_SS      0x01    /**< \brief å‘æ”¶çŠ¶æ€æœºç­‰å¾…StartSendæœ‰æ•ˆ */
+#define AM_FM175XX_STATUS2_MODEM_STATE_TW      0x02    /**< \brief å‘æ”¶çŠ¶æ€æœºTxWait,ç›´åˆ°RFåœºå‡ºç° */
+#define AM_FM175XX_STATUS2_MODEM_STATE_SEND    0x03    /**< \brief å‘æ”¶çŠ¶æ€æœºå‘é€ä¸­ */
+#define AM_FM175XX_STATUS2_MODEM_STATE_RW      0x04    /**< \brief å‘æ”¶çŠ¶æ€æœºRxWait,ç›´åˆ°RFåœºå‡ºç° */
+#define AM_FM175XX_STATUS2_MODEM_STATE_DW      0x05    /**< \brief å‘æ”¶çŠ¶æ€æœºDataWait */
+#define AM_FM175XX_STATUS2_MODEM_STATE_RECV    0x06    /**< \brief å‘æ”¶çŠ¶æ€æœºæ¥æ”¶ä¸­ */
 
 /** @} */
 
 
 /**
- * \name FIFOLevel¼Ä´æÆ÷ÑÚÂë (0x0a)
+ * \name FIFOLevelå¯„å­˜å™¨æ©ç  (0x0a)
  * @{
  */
  
-#define AM_FM175XX_FIFOLEVEL_FLUSH_BUFFER      0x80    /**< \brief ÖÃ1Çå³ıÄÚ²¿fifo»º³åÆ÷µÄ¶ÁĞ´Ö¸ÕëºÍERR¼Ä´æÆ÷ÖĞµÄBufferOvflÎ»,¶Á×ÜÎª0 */
-#define AM_FM175XX_FIFOLEVEL_MASK              0x7f    /**< \brief fifo»º³åÇøÖĞµÄ×Ö½ÚÊı,Ğ´Èë+1,¶ÁÈ¡-1 */
+#define AM_FM175XX_FIFOLEVEL_FLUSH_BUFFER      0x80    /**< \brief ç½®1æ¸…é™¤å†…éƒ¨fifoç¼“å†²å™¨çš„è¯»å†™æŒ‡é’ˆå’ŒERRå¯„å­˜å™¨ä¸­çš„BufferOvflä½,è¯»æ€»ä¸º0 */
+#define AM_FM175XX_FIFOLEVEL_MASK              0x7f    /**< \brief fifoç¼“å†²åŒºä¸­çš„å­—èŠ‚æ•°,å†™å…¥+1,è¯»å–-1 */
 
 /** @} */
 
 
 /**
- * \name WaterLevel¼Ä´æÆ÷ÑÚÂë (0x0b)
+ * \name WaterLevelå¯„å­˜å™¨æ©ç  (0x0b)
  * @{
  */
  
-#define AM_FM175XX_WATERLEVEL_MASK         0x3F    /**< \brief fifo·ÖË®Áë,ÉÏÒçÏÂÒç·Ö½ç */
+#define AM_FM175XX_WATERLEVEL_MASK         0x3F    /**< \brief fifoåˆ†æ°´å²­,ä¸Šæº¢ä¸‹æº¢åˆ†ç•Œ */
 
 /** @} */
 
 
 /**
- * \name ControlÆäËû¿ØÖÆ¼Ä´æÆ÷ÑÚÂë (0x0c)
+ * \name Controlå…¶ä»–æ§åˆ¶å¯„å­˜å™¨æ©ç  (0x0c)
  * @{
  */
  
-#define AM_FM175XX_CONTROL_TSTOPNOW        0x80    /**< \brief ¶¨Ê±Æ÷Á¢¿ÌÍ£Ö¹ */
-#define AM_FM175XX_CONTROL_TSTARTNOW       0x40    /**< \brief ¶¨Ê±Æ÷Á¢¿ÌÆô¶¯ */
-#define AM_FM175XX_CONTROL_RX_LAST_BITS    0x07    /**< \brief ×îºó½ÓÊÕ×Ö½ÚµÄÓĞĞ§Î»Êı,Îª0ÔòÈ«²¿ÓĞĞ§ */
+#define AM_FM175XX_CONTROL_TSTOPNOW        0x80    /**< \brief å®šæ—¶å™¨ç«‹åˆ»åœæ­¢ */
+#define AM_FM175XX_CONTROL_TSTARTNOW       0x40    /**< \brief å®šæ—¶å™¨ç«‹åˆ»å¯åŠ¨ */
+#define AM_FM175XX_CONTROL_RX_LAST_BITS    0x07    /**< \brief æœ€åæ¥æ”¶å­—èŠ‚çš„æœ‰æ•ˆä½æ•°,ä¸º0åˆ™å…¨éƒ¨æœ‰æ•ˆ */
 
 /** @} */
 
 
 /**
- * \name BitFraming¼Ä´æÆ÷ÑÚÂë,ÃæÏòÎ»µÄÖ¡¸ñÊ½µ÷Õû (0x0d)
+ * \name BitFramingå¯„å­˜å™¨æ©ç ,é¢å‘ä½çš„å¸§æ ¼å¼è°ƒæ•´ (0x0d)
  * @{
  */
  
-#define AM_FM175XX_BITFRAMING_STARTSEND    0x80    /**< \brief Êı¾İ·¢Éä¿ªÊ¼,¸ÃÎ»Ö»ÔÚTransceiverÖ´ĞĞÊ±ÓĞĞ§ */
-#define AM_FM175XX_BITFRAMING_RXALIGN_0    0x00    /**< \brief ×îµÍÎ»´æÔÚµÚ0Î»,ºóĞøÎ»Ë³ÑÓ */
-#define AM_FM175XX_BITFRAMING_RXALIGN_1    0x10    /**< \brief ×îµÍÎ»´æÔÚµÚ1Î»,ºóĞøÎ»Ë³ÑÓ */
-#define AM_FM175XX_BITFRAMING_RXALIGN_7    0x70    /**< \brief ×îµÍÎ»´æÔÚµÚ7Î»,ºóĞøÎ»Ë³ÑÓ */
-#define AM_FM175XX_BITFRAMING_TXLASTBITS   0x07    /**< \brief ×îºó·¢ËÍ×Ö½ÚµÄĞè·¢ËÍµÄÎ»Êı,Îª0ÔòÈ«²¿ĞèÒª·¢ËÍ */
+#define AM_FM175XX_BITFRAMING_STARTSEND    0x80    /**< \brief æ•°æ®å‘å°„å¼€å§‹,è¯¥ä½åªåœ¨Transceiveræ‰§è¡Œæ—¶æœ‰æ•ˆ */
+#define AM_FM175XX_BITFRAMING_RXALIGN_0    0x00    /**< \brief æœ€ä½ä½å­˜åœ¨ç¬¬0ä½,åç»­ä½é¡ºå»¶ */
+#define AM_FM175XX_BITFRAMING_RXALIGN_1    0x10    /**< \brief æœ€ä½ä½å­˜åœ¨ç¬¬1ä½,åç»­ä½é¡ºå»¶ */
+#define AM_FM175XX_BITFRAMING_RXALIGN_7    0x70    /**< \brief æœ€ä½ä½å­˜åœ¨ç¬¬7ä½,åç»­ä½é¡ºå»¶ */
+#define AM_FM175XX_BITFRAMING_TXLASTBITS   0x07    /**< \brief æœ€åå‘é€å­—èŠ‚çš„éœ€å‘é€çš„ä½æ•°,ä¸º0åˆ™å…¨éƒ¨éœ€è¦å‘é€ */
 
 /** @} */
 
 
 /**
- * \name CollIRq¼Ä´æÆ÷ÑÚÂë,RF½Ó¿Ú¼ì²âµ½µÄµÚÒ»¸ö³åÍ»Î» (0x0e)
+ * \name CollIRqå¯„å­˜å™¨æ©ç ,RFæ¥å£æ£€æµ‹åˆ°çš„ç¬¬ä¸€ä¸ªå†²çªä½ (0x0e)
  * @{
  */
 
-/** \brief ÖÃ0Ôò·¢Éú³åÍ»Î»Ö®ºóµÄËùÓĞ½ÓÊÕÎ»±»Çå³ı(106kbitÓĞĞ§,·ñÔòÖÃ1) */
+/** \brief ç½®0åˆ™å‘ç”Ÿå†²çªä½ä¹‹åçš„æ‰€æœ‰æ¥æ”¶ä½è¢«æ¸…é™¤(106kbitæœ‰æ•ˆ,å¦åˆ™ç½®1) */
 #define AM_FM175XX_COLLIRQ_VALUES_AFTERCOLL    0x80
 
-/** \brief Ã»¼ì²âµ½³åÍ»»ò³åÍ»ÔÚCollPos·¶Î§ÍâÊ±ÖÃ1(¸ÃÎ»Ö»ÔÚ14443A¶ÁĞ´Æ÷Ä£Ê½ÏÂ±»½â¶Á) */
+/** \brief æ²¡æ£€æµ‹åˆ°å†²çªæˆ–å†²çªåœ¨CollPosèŒƒå›´å¤–æ—¶ç½®1(è¯¥ä½åªåœ¨14443Aè¯»å†™å™¨æ¨¡å¼ä¸‹è¢«è§£è¯») */
 #define AM_FM175XX_COLLIRQ_COLLPOS_NOTVALID    0x20
 
-/** \brief µÚÒ»¸ö³åÍ»Î»Î»ÖÃ,00±íÊ¾32Î»,01±íÊ¾1Î»(¸ÃÎ»Ö»ÔÚ14443A¶ÁĞ´Æ÷Ä£Ê½ÏÂ,ÇÒCOLLPOS_NOTVALIDÎª0Ê±±»½â¶Á) */
+/** \brief ç¬¬ä¸€ä¸ªå†²çªä½ä½ç½®,00è¡¨ç¤º32ä½,01è¡¨ç¤º1ä½(è¯¥ä½åªåœ¨14443Aè¯»å†™å™¨æ¨¡å¼ä¸‹,ä¸”COLLPOS_NOTVALIDä¸º0æ—¶è¢«è§£è¯») */
 #define AM_FM175XX_COLLIRQ_COLLPOS             0x1f
 
 /** @} */
 
 
 /**
- * \name EXÀ©Õ¹¼Ä´æÆ÷ÑÚÂë (0x0f)
+ * \name EXæ‰©å±•å¯„å­˜å™¨æ©ç  (0x0f)
  * @{
  */
 
-#define AM_FM175XX_EX_MODE                 0xc0    /**< \brief À©Õ¹¼Ä´æÆ÷·ÃÎÊÄ£Ê½ */
-#define AM_FM175XX_EX_MODE_W_ADDR          0x40    /**< \brief À©Õ¹¼Ä´æÆ÷Ğ´Èë¶ş¼¶µØÖ· */
-#define AM_FM175XX_EX_MODE_R_ADDR          0x80    /**< \brief À©Õ¹¼Ä´æÆ÷¶Á³ö¶ş¼¶µØÖ· */
-#define AM_FM175XX_EX_MODE_W_DATA          0xc0    /**< \brief À©Õ¹¼Ä´æÆ÷Ğ´ÈëÀ©Õ¹Êı¾İ */
-#define AM_FM175XX_EX_MODE_R_DATA          0x00    /**< \brief À©Õ¹¼Ä´æÆ÷¶Á³öÀ©Õ¹Êı¾İ */
-#define AM_FM175XX_EX_MODE_ADDR_DATA       0x3f    /**< \brief ¶ş¼¶µØÖ·»òÊı¾İ */
+#define AM_FM175XX_EX_MODE                 0xc0    /**< \brief æ‰©å±•å¯„å­˜å™¨è®¿é—®æ¨¡å¼ */
+#define AM_FM175XX_EX_MODE_W_ADDR          0x40    /**< \brief æ‰©å±•å¯„å­˜å™¨å†™å…¥äºŒçº§åœ°å€ */
+#define AM_FM175XX_EX_MODE_R_ADDR          0x80    /**< \brief æ‰©å±•å¯„å­˜å™¨è¯»å‡ºäºŒçº§åœ°å€ */
+#define AM_FM175XX_EX_MODE_W_DATA          0xc0    /**< \brief æ‰©å±•å¯„å­˜å™¨å†™å…¥æ‰©å±•æ•°æ® */
+#define AM_FM175XX_EX_MODE_R_DATA          0x00    /**< \brief æ‰©å±•å¯„å­˜å™¨è¯»å‡ºæ‰©å±•æ•°æ® */
+#define AM_FM175XX_EX_MODE_ADDR_DATA       0x3f    /**< \brief äºŒçº§åœ°å€æˆ–æ•°æ® */
 
 /** @} */
 
 /**
- * \name Mode¼Ä´æÆ÷ÑÚÂë,¶¨Òå·¢ÉäºÍ½ÓÊÕÄ£Ê½ (0x11)
+ * \name Modeå¯„å­˜å™¨æ©ç ,å®šä¹‰å‘å°„å’Œæ¥æ”¶æ¨¡å¼ (0x11)
  * @{
  */
 
-#define AM_FM175XX_MODE_MSB_FIRST          0x80    /**< \brief CRCĞ­´¦ÀíÆ÷ÒÔMSBÎ»ÓÅÏÈ¼ÆËãCRC,CRCResult¼Ä´æÆ÷ÖĞ¶ÏMSBºÍLSBÒ²°´Î»·­×ª */
-#define AM_FM175XX_MODE_TXWAIT_RF          0x20    /**< \brief ¶ÁĞ´Æ÷µÄÄ£Ê½Ê±Ö»ÓĞRF³¡½¨Á¢ºó·¢ÉäµçÂ·²ÅÆô¶¯ */
-#define AM_FM175XX_MODE_POLTIN             0x08    /**< \brief TINÒı½ÅµÄ¼«ĞÔ,1¸ßµçÆ½ÓĞĞ§,0µÍµçÆ½ÓĞĞ§£¨FM17510²»Ö§³Ö£© */
-#define AM_FM175XX_MODE_CRC_PRESET_MASK    0x03    /**< \brief CRCĞ£ÑéÔ¤ÉèÖµ */
-#define AM_FM175XX_MODE_CRC_PRESET_0000    0x00    /**< \brief CRCĞ£ÑéÔ¤ÉèÖµ0000 */
-#define AM_FM175XX_MODE_CRC_PRESET_6363    0x01    /**< \brief CRCĞ£ÑéÔ¤ÉèÖµ6363 */
-#define AM_FM175XX_MODE_CRC_PRESET_a671    0x02    /**< \brief CRCĞ£ÑéÔ¤ÉèÖµa671 */
-#define AM_FM175XX_MODE_CRC_PRESET_ffff    0x03    /**< \brief CRCĞ£ÑéÔ¤ÉèÖµffff */
-
-/** @} */
-
-
-/**
- * \name TxMode¼Ä´æÆ÷ÑÚÂë,¶¨Òå·¢ÉäÊı¾İËÙÂÊºÍÖ¡¸ñÊ½ (0x12)
- * @{
- */
- 
-#define AM_FM175XX_TXMODE_TXCRC_EN         0x80    /**< \brief ÖÃ1Êı¾İ·¢ÉäÊ±Ê¹ÄÜCRCĞ£ÑéÉú³É(½ö106kbitÏÂÄÜÖÃ0) */
-#define AM_FM175XX_TXMODE_TXSPEED_MASK     0x70    /**< \brief ·¢ËÍËÙÂÊÑÚÂë */
-#define AM_FM175XX_TXMODE_TXSPEED_106KBIT  0x00    /**< \brief ·¢ËÍËÙÂÊ106kbit */
-#define AM_FM175XX_TXMODE_TXSPEED_212KBIT  0x10    /**< \brief ·¢ËÍËÙÂÊ212kbit */
-#define AM_FM175XX_TXMODE_TXSPEED_424KBIT  0x20    /**< \brief ·¢ËÍËÙÂÊ424kbit */
-#define AM_FM175XX_TXMODE_TXSPEED_848KBIT  0x30    /**< \brief ·¢ËÍËÙÂÊ848kbit */
-#define AM_FM175XX_TXMODE_INV_MOD          0x08    /**< \brief ÖÃ1,·¢ËÍÊı¾İµÄµ÷ÖÆ·´Ïà */
+#define AM_FM175XX_MODE_MSB_FIRST          0x80    /**< \brief CRCåå¤„ç†å™¨ä»¥MSBä½ä¼˜å…ˆè®¡ç®—CRC,CRCResultå¯„å­˜å™¨ä¸­æ–­MSBå’ŒLSBä¹ŸæŒ‰ä½ç¿»è½¬ */
+#define AM_FM175XX_MODE_TXWAIT_RF          0x20    /**< \brief è¯»å†™å™¨çš„æ¨¡å¼æ—¶åªæœ‰RFåœºå»ºç«‹åå‘å°„ç”µè·¯æ‰å¯åŠ¨ */
+#define AM_FM175XX_MODE_POLTIN             0x08    /**< \brief TINå¼•è„šçš„ææ€§,1é«˜ç”µå¹³æœ‰æ•ˆ,0ä½ç”µå¹³æœ‰æ•ˆï¼ˆFM17510ä¸æ”¯æŒï¼‰ */
+#define AM_FM175XX_MODE_CRC_PRESET_MASK    0x03    /**< \brief CRCæ ¡éªŒé¢„è®¾å€¼ */
+#define AM_FM175XX_MODE_CRC_PRESET_0000    0x00    /**< \brief CRCæ ¡éªŒé¢„è®¾å€¼0000 */
+#define AM_FM175XX_MODE_CRC_PRESET_6363    0x01    /**< \brief CRCæ ¡éªŒé¢„è®¾å€¼6363 */
+#define AM_FM175XX_MODE_CRC_PRESET_a671    0x02    /**< \brief CRCæ ¡éªŒé¢„è®¾å€¼a671 */
+#define AM_FM175XX_MODE_CRC_PRESET_ffff    0x03    /**< \brief CRCæ ¡éªŒé¢„è®¾å€¼ffff */
 
 /** @} */
 
 
 /**
- * \name RxMode¼Ä´æÆ÷ÑÚÂë,¶¨Òå½ÓÊÕÊı¾İËÙÂÊºÍÖ¡¸ñÊ½ (0x13)
+ * \name TxModeå¯„å­˜å™¨æ©ç ,å®šä¹‰å‘å°„æ•°æ®é€Ÿç‡å’Œå¸§æ ¼å¼ (0x12)
  * @{
  */
  
-#define AM_FM175XX_RXMODE_RXCRC_EN         0x80    /**< \brief ÖÃ1Êı¾İ½ÓÊÕÊ±Ê¹ÄÜCRCĞ£ÑéÉú³É(½ö106kbitÏÂÄÜÖÃ0) */
-#define AM_FM175XX_RXMODE_RXSPEED_MASK     0x70    /**< \brief ·¢ËÍËÙÂÊÑÚÂë */
-#define AM_FM175XX_RXMODE_RXSPEED_106KBIT  0x00    /**< \brief ·¢ËÍËÙÂÊ106kbit */
-#define AM_FM175XX_RXMODE_RXSPEED_212KBIT  0x10    /**< \brief ·¢ËÍËÙÂÊ212kbit */
-#define AM_FM175XX_RXMODE_RXSPEED_424KBIT  0x20    /**< \brief ·¢ËÍËÙÂÊ424kbit */
-#define AM_FM175XX_RXMODE_RXSPEED_848KBIT  0x30    /**< \brief ·¢ËÍËÙÂÊ848kbit */
-#define AM_FM175XX_RXMODE_RXNOERR          0x08    /**< \brief ÖÃ1,ºöÂÔÎŞĞ§Êı¾İÁ÷,½ÓÊÕÆ÷±£³Ö¼¤»î.¶ÔÓÚ14443B,»¹ĞèRxSOFReqÉèÎª1 */
-#define AM_FM175XX_RXMODE_RXMULTIPLE       0x04    /**< \brief ÖÃ0,½ÓÊÕÆ÷½ÓÊÕµ½Ò»¸öÊı¾İÖ¡Ö®ºó²»ÔÙ½ÓÊÕ.ÖÃ1,ÔÊĞí½ÓÊÕ¶à¸öÊı¾İÖ¡ */
+#define AM_FM175XX_TXMODE_TXCRC_EN         0x80    /**< \brief ç½®1æ•°æ®å‘å°„æ—¶ä½¿èƒ½CRCæ ¡éªŒç”Ÿæˆ(ä»…106kbitä¸‹èƒ½ç½®0) */
+#define AM_FM175XX_TXMODE_TXSPEED_MASK     0x70    /**< \brief å‘é€é€Ÿç‡æ©ç  */
+#define AM_FM175XX_TXMODE_TXSPEED_106KBIT  0x00    /**< \brief å‘é€é€Ÿç‡106kbit */
+#define AM_FM175XX_TXMODE_TXSPEED_212KBIT  0x10    /**< \brief å‘é€é€Ÿç‡212kbit */
+#define AM_FM175XX_TXMODE_TXSPEED_424KBIT  0x20    /**< \brief å‘é€é€Ÿç‡424kbit */
+#define AM_FM175XX_TXMODE_TXSPEED_848KBIT  0x30    /**< \brief å‘é€é€Ÿç‡848kbit */
+#define AM_FM175XX_TXMODE_INV_MOD          0x08    /**< \brief ç½®1,å‘é€æ•°æ®çš„è°ƒåˆ¶åç›¸ */
 
 /** @} */
 
 
 /**
- * \name TxControl¼Ä´æÆ÷ÑÚÂë,ÌìÏßÇı¶¯Òı½ÅTx1ºÍTx2¿ØÖÆ (0x14)
+ * \name RxModeå¯„å­˜å™¨æ©ç ,å®šä¹‰æ¥æ”¶æ•°æ®é€Ÿç‡å’Œå¸§æ ¼å¼ (0x13)
+ * @{
+ */
+ 
+#define AM_FM175XX_RXMODE_RXCRC_EN         0x80    /**< \brief ç½®1æ•°æ®æ¥æ”¶æ—¶ä½¿èƒ½CRCæ ¡éªŒç”Ÿæˆ(ä»…106kbitä¸‹èƒ½ç½®0) */
+#define AM_FM175XX_RXMODE_RXSPEED_MASK     0x70    /**< \brief å‘é€é€Ÿç‡æ©ç  */
+#define AM_FM175XX_RXMODE_RXSPEED_106KBIT  0x00    /**< \brief å‘é€é€Ÿç‡106kbit */
+#define AM_FM175XX_RXMODE_RXSPEED_212KBIT  0x10    /**< \brief å‘é€é€Ÿç‡212kbit */
+#define AM_FM175XX_RXMODE_RXSPEED_424KBIT  0x20    /**< \brief å‘é€é€Ÿç‡424kbit */
+#define AM_FM175XX_RXMODE_RXSPEED_848KBIT  0x30    /**< \brief å‘é€é€Ÿç‡848kbit */
+#define AM_FM175XX_RXMODE_RXNOERR          0x08    /**< \brief ç½®1,å¿½ç•¥æ— æ•ˆæ•°æ®æµ,æ¥æ”¶å™¨ä¿æŒæ¿€æ´».å¯¹äº14443B,è¿˜éœ€RxSOFReqè®¾ä¸º1 */
+#define AM_FM175XX_RXMODE_RXMULTIPLE       0x04    /**< \brief ç½®0,æ¥æ”¶å™¨æ¥æ”¶åˆ°ä¸€ä¸ªæ•°æ®å¸§ä¹‹åä¸å†æ¥æ”¶.ç½®1,å…è®¸æ¥æ”¶å¤šä¸ªæ•°æ®å¸§ */
+
+/** @} */
+
+
+/**
+ * \name TxControlå¯„å­˜å™¨æ©ç ,å¤©çº¿é©±åŠ¨å¼•è„šTx1å’ŒTx2æ§åˆ¶ (0x14)
  *
- * \note FM17510Ã»ÓĞTX2Ïà¹ØµÄ¶¨Òå
+ * \note FM17510æ²¡æœ‰TX2ç›¸å…³çš„å®šä¹‰
  * @{
  */
-#define AM_FM175XX_TXCONTROL_INV_TX2RF_ON  0x80    /**< \brief ÖÃ1,ÈôTX2Çı¶¯Ê¹ÄÜ,ÔòÒı½ÅTX2µÄÊä³öĞÅºÅÈ¡·´ */
-#define AM_FM175XX_TXCONTROL_INV_TX1RF_ON  0x40    /**< \brief ÖÃ1,ÈôTX1Çı¶¯Ê¹ÄÜ,ÔòÒı½ÅTX2µÄÊä³öĞÅºÅÈ¡·´ */
-#define AM_FM175XX_TXCONTROL_INV_TX2RF_OFF 0x20    /**< \brief ÖÃ1,ÈôTX2Çı¶¯¹Ø±Õ,ÔòÒı½ÅTX2µÄÊä³öĞÅºÅÈ¡·´ */
-#define AM_FM175XX_TXCONTROL_INV_TX1RF_OFF 0x10    /**< \brief ÖÃ1,ÈôTX1Çı¶¯¹Ø±Õ,ÔòÒı½ÅTX2µÄÊä³öĞÅºÅÈ¡·´ */
-#define AM_FM175XX_TXCONTROL_TX2_CW        0x08    /**< \brief ÖÃ1,TX2½«³ÖĞøÊä³öÎ´µ÷ÖÆµÄ13.56MHzµÄÄÜÁ¿ÔØ²¨;ÖÃ0,Ôòµ÷ÖÆ */
-#define AM_FM175XX_TXCONTROL_TX2RF_EN      0x02    /**< \brief ÖÃ1,TX2Êä³ö¾­ÓÉ·¢ËÍÊı¾İµ÷ÖÆµÄ13.56MHzÄÜÁ¿ÔØ²¨ */
-#define AM_FM175XX_TXCONTROL_TX1RF_EN      0x01    /**< \brief ÖÃ1,TX1Êä³ö¾­ÓÉ·¢ËÍÊı¾İµ÷ÖÆµÄ13.56MHzÄÜÁ¿ÔØ²¨ */
+#define AM_FM175XX_TXCONTROL_INV_TX2RF_ON  0x80    /**< \brief ç½®1,è‹¥TX2é©±åŠ¨ä½¿èƒ½,åˆ™å¼•è„šTX2çš„è¾“å‡ºä¿¡å·å–å */
+#define AM_FM175XX_TXCONTROL_INV_TX1RF_ON  0x40    /**< \brief ç½®1,è‹¥TX1é©±åŠ¨ä½¿èƒ½,åˆ™å¼•è„šTX2çš„è¾“å‡ºä¿¡å·å–å */
+#define AM_FM175XX_TXCONTROL_INV_TX2RF_OFF 0x20    /**< \brief ç½®1,è‹¥TX2é©±åŠ¨å…³é—­,åˆ™å¼•è„šTX2çš„è¾“å‡ºä¿¡å·å–å */
+#define AM_FM175XX_TXCONTROL_INV_TX1RF_OFF 0x10    /**< \brief ç½®1,è‹¥TX1é©±åŠ¨å…³é—­,åˆ™å¼•è„šTX2çš„è¾“å‡ºä¿¡å·å–å */
+#define AM_FM175XX_TXCONTROL_TX2_CW        0x08    /**< \brief ç½®1,TX2å°†æŒç»­è¾“å‡ºæœªè°ƒåˆ¶çš„13.56MHzçš„èƒ½é‡è½½æ³¢;ç½®0,åˆ™è°ƒåˆ¶ */
+#define AM_FM175XX_TXCONTROL_TX2RF_EN      0x02    /**< \brief ç½®1,TX2è¾“å‡ºç»ç”±å‘é€æ•°æ®è°ƒåˆ¶çš„13.56MHzèƒ½é‡è½½æ³¢ */
+#define AM_FM175XX_TXCONTROL_TX1RF_EN      0x01    /**< \brief ç½®1,TX1è¾“å‡ºç»ç”±å‘é€æ•°æ®è°ƒåˆ¶çš„13.56MHzèƒ½é‡è½½æ³¢ */
 
 /** @} */
 
 
 /**
- * \name TxASK¼Ä´æÆ÷ÑÚÂë,ÌìÏßÇı¶¯ÉèÖÃ (0x15)
+ * \name TxASKå¯„å­˜å™¨æ©ç ,å¤©çº¿é©±åŠ¨è®¾ç½® (0x15)
  * @{
  */
 
-#define AM_FM175XX_TXASK_FORCE_100ASK      0x40    /**< \brief ÖÃ1,Force100ASKÇ¿ÖÆÉú³ÉÒ»¸ö100%ASKµ÷ÖÆ */
+#define AM_FM175XX_TXASK_FORCE_100ASK      0x40    /**< \brief ç½®1,Force100ASKå¼ºåˆ¶ç”Ÿæˆä¸€ä¸ª100%ASKè°ƒåˆ¶ */
 
 /** @} */
 
 
 /**
- * \name TxSel¼Ä´æÆ÷ÑÚÂë,ÌìÏßÇı¶¯ĞÅºÅÔ´Ñ¡Ôñ (0x16)
+ * \name TxSelå¯„å­˜å™¨æ©ç ,å¤©çº¿é©±åŠ¨ä¿¡å·æºé€‰æ‹© (0x16)
  * @{
  */
  
-#define AM_FM175XX_TXSEL_DRIVER_SEL_MASK       0x30    /**< \brief Çı¶¯Tx1ºÍTx2µÄÊäÈëÑÚÂë */
-#define AM_FM175XX_TXSEL_DRIVER_SEL_TRISTATE   0x00    /**< \brief Çı¶¯Tx1ºÍTx2µÄÊäÈëÑ¡ÔñÈıÌ¬ */
-#define AM_FM175XX_TXSEL_DRIVER_SEL_IN         0x10    /**< \brief Çı¶¯Tx1ºÍTx2µÄÊäÈëÑ¡ÔñÄÚ²¿±àÂëÆ÷µÄµ÷ÖÆĞÅºÅ */
-#define AM_FM175XX_TXSEL_DRIVER_SEL_TIN        0x20    /**< \brief Çı¶¯Tx1ºÍTx2µÄÊäÈëÑ¡ÔñTINµÄµ÷ÖÆĞÅºÅ */
-#define AM_FM175XX_TXSEL_DRIVER_SEL_HIGH       0x30    /**< \brief Çı¶¯Tx1ºÍTx2µÄÊäÑ¡Ôñ¸ßµçÆ½ */
-#define AM_FM175XX_TXSEL_TOUT_SEL_MASK         0x0f    /**< \brief Çı¶¯Tx1ºÍTx2µÄÊäÑ¡Ôñ¸ßµçÆ½ */
+#define AM_FM175XX_TXSEL_DRIVER_SEL_MASK       0x30    /**< \brief é©±åŠ¨Tx1å’ŒTx2çš„è¾“å…¥æ©ç  */
+#define AM_FM175XX_TXSEL_DRIVER_SEL_TRISTATE   0x00    /**< \brief é©±åŠ¨Tx1å’ŒTx2çš„è¾“å…¥é€‰æ‹©ä¸‰æ€ */
+#define AM_FM175XX_TXSEL_DRIVER_SEL_IN         0x10    /**< \brief é©±åŠ¨Tx1å’ŒTx2çš„è¾“å…¥é€‰æ‹©å†…éƒ¨ç¼–ç å™¨çš„è°ƒåˆ¶ä¿¡å· */
+#define AM_FM175XX_TXSEL_DRIVER_SEL_TIN        0x20    /**< \brief é©±åŠ¨Tx1å’ŒTx2çš„è¾“å…¥é€‰æ‹©TINçš„è°ƒåˆ¶ä¿¡å· */
+#define AM_FM175XX_TXSEL_DRIVER_SEL_HIGH       0x30    /**< \brief é©±åŠ¨Tx1å’ŒTx2çš„è¾“é€‰æ‹©é«˜ç”µå¹³ */
+#define AM_FM175XX_TXSEL_TOUT_SEL_MASK         0x0f    /**< \brief é©±åŠ¨Tx1å’ŒTx2çš„è¾“é€‰æ‹©é«˜ç”µå¹³ */
 
 /**
- * \name TOUTÒı½ÅµÄÊäÈëÑ¡Ôñ£¨FM17510²»Ö§³Ö£©
+ * \name TOUTå¼•è„šçš„è¾“å…¥é€‰æ‹©ï¼ˆFM17510ä¸æ”¯æŒï¼‰
  * @{
  */
-#define AM_FM175XX_TXSEL_TOUT_SEL_TRISTATE     0x00    /**< \brief TOUTÒı½ÅµÄÊäÈëÑ¡ÔñÈıÌ¬ */
-#define AM_FM175XX_TXSEL_TOUT_SEL_LOW          0x01    /**< \brief TOUTÒı½ÅµÄÊäÈëÑ¡ÔñµÍµçÆ½ */
-#define AM_FM175XX_TXSEL_TOUT_SEL_HIGH         0x02    /**< \brief TOUTÒı½ÅµÄÊäÈëÑ¡Ôñ¸ßµçÆ½ */
-#define AM_FM175XX_TXSEL_TOUT_SEL_Testbus      0x03    /**< \brief TOUTÒı½ÅµÄÊäÈëÑ¡ÔñTestBus */
-#define AM_FM175XX_TXSEL_TOUT_SEL_in           0x04    /**< \brief TOUTÒı½ÅµÄÊäÈëÑ¡ÔñÄÚ²¿±àÂëÆ÷µÄµ÷ÖÆĞÅºÅ */
-#define AM_FM175XX_TXSEL_TOUT_SEL_rcevs        0x05    /**< \brief TOUTÒı½ÅµÄÊäÈëÑ¡Ôñ´ı·¢ËÍµÄ´®ĞĞÊı¾İÁ÷ */
-#define AM_FM175XX_TXSEL_TOUT_SEL_sends        0x07    /**< \brief TOUTÒı½ÅµÄÊäÈëÑ¡Ôñ½ÓÊÕµ½µÄ´®ĞĞÊı¾İÁ÷(²»ÒªÔÚM1Ä£Ê½ÏÂÊ¹ÓÃ) */
+#define AM_FM175XX_TXSEL_TOUT_SEL_TRISTATE     0x00    /**< \brief TOUTå¼•è„šçš„è¾“å…¥é€‰æ‹©ä¸‰æ€ */
+#define AM_FM175XX_TXSEL_TOUT_SEL_LOW          0x01    /**< \brief TOUTå¼•è„šçš„è¾“å…¥é€‰æ‹©ä½ç”µå¹³ */
+#define AM_FM175XX_TXSEL_TOUT_SEL_HIGH         0x02    /**< \brief TOUTå¼•è„šçš„è¾“å…¥é€‰æ‹©é«˜ç”µå¹³ */
+#define AM_FM175XX_TXSEL_TOUT_SEL_Testbus      0x03    /**< \brief TOUTå¼•è„šçš„è¾“å…¥é€‰æ‹©TestBus */
+#define AM_FM175XX_TXSEL_TOUT_SEL_in           0x04    /**< \brief TOUTå¼•è„šçš„è¾“å…¥é€‰æ‹©å†…éƒ¨ç¼–ç å™¨çš„è°ƒåˆ¶ä¿¡å· */
+#define AM_FM175XX_TXSEL_TOUT_SEL_rcevs        0x05    /**< \brief TOUTå¼•è„šçš„è¾“å…¥é€‰æ‹©å¾…å‘é€çš„ä¸²è¡Œæ•°æ®æµ */
+#define AM_FM175XX_TXSEL_TOUT_SEL_sends        0x07    /**< \brief TOUTå¼•è„šçš„è¾“å…¥é€‰æ‹©æ¥æ”¶åˆ°çš„ä¸²è¡Œæ•°æ®æµ(ä¸è¦åœ¨M1æ¨¡å¼ä¸‹ä½¿ç”¨) */
 
 /** @} */
 
@@ -434,133 +434,133 @@ extern "C" {
 
 
 /**
- * \name RxSel¼Ä´æÆ÷ÑÚÂë,ÄÚ²¿½ÓÊÕÆ÷ÉèÖÃ (0x17)
+ * \name RxSelå¯„å­˜å™¨æ©ç ,å†…éƒ¨æ¥æ”¶å™¨è®¾ç½® (0x17)
  * @{
  */
  
-#define AM_FM175XX_RXSEL_UARTSEL_MASK          0xc0    /**< \brief Ñ¡Ôñ·Ç½Ó´¥UARTµÄÊäÈëÑÚÂë */
-#define AM_FM175XX_RXSEL_UARTSEL_LOW           0x00    /**< \brief ·Ç½Ó´¥UARTÊäÈë¹Ì¶¨µÍµçÆ½ */
-#define AM_FM175XX_RXSEL_UARTSEL_TIN           0x40    /**< \brief TINµÄ°üÂçĞÅºÅ£¨FM17510²»Ö§³Ö£© */
-#define AM_FM175XX_RXSEL_UARTSEL_IN            0x80    /**< \brief À´×ÔÄÚ²¿Ä£ÄâµçÂ·µÄµ÷ÖÆĞÅºÅ */
-#define AM_FM175XX_RXSEL_UARTSEL_TIN_M         0xc0    /**< \brief À´×ÔÒı½ÅTINµÄµ÷ÖÆĞÅºÅ£¨ËÙ¶È¸ßÓÚ424kbitµÄÊ±ºòÓĞĞ§£©£¨FM17510²»Ö§³Ö£© */
-#define AM_FM175XX_RXSEL_RXWAIT                0x3f    /**< \brief Êı¾İÍê³É·¢Éäºó,½ÓÊÕÆ÷»áÔÚRxwait¶¨ÒåµÄÊ±ÖÓÑÓ³Ùºó±»¼¤»î */
+#define AM_FM175XX_RXSEL_UARTSEL_MASK          0xc0    /**< \brief é€‰æ‹©éæ¥è§¦UARTçš„è¾“å…¥æ©ç  */
+#define AM_FM175XX_RXSEL_UARTSEL_LOW           0x00    /**< \brief éæ¥è§¦UARTè¾“å…¥å›ºå®šä½ç”µå¹³ */
+#define AM_FM175XX_RXSEL_UARTSEL_TIN           0x40    /**< \brief TINçš„åŒ…ç»œä¿¡å·ï¼ˆFM17510ä¸æ”¯æŒï¼‰ */
+#define AM_FM175XX_RXSEL_UARTSEL_IN            0x80    /**< \brief æ¥è‡ªå†…éƒ¨æ¨¡æ‹Ÿç”µè·¯çš„è°ƒåˆ¶ä¿¡å· */
+#define AM_FM175XX_RXSEL_UARTSEL_TIN_M         0xc0    /**< \brief æ¥è‡ªå¼•è„šTINçš„è°ƒåˆ¶ä¿¡å·ï¼ˆé€Ÿåº¦é«˜äº424kbitçš„æ—¶å€™æœ‰æ•ˆï¼‰ï¼ˆFM17510ä¸æ”¯æŒï¼‰ */
+#define AM_FM175XX_RXSEL_RXWAIT                0x3f    /**< \brief æ•°æ®å®Œæˆå‘å°„å,æ¥æ”¶å™¨ä¼šåœ¨Rxwaitå®šä¹‰çš„æ—¶é’Ÿå»¶è¿Ÿåè¢«æ¿€æ´» */
 
 /** @} */
 
 
 /**
- * \name RxThreshold¼Ä´æÆ÷ÑÚÂë,½ÓÊÕÒëÂëÆ÷ãĞÖµÑ¡Ôñ (0x18)
+ * \name RxThresholdå¯„å­˜å™¨æ©ç ,æ¥æ”¶è¯‘ç å™¨é˜ˆå€¼é€‰æ‹© (0x18)
  * @{
  */
 
-/** \brief ÒëÂëÆ÷ÄÜ½ÓÊÕµÄ×îĞ¡ĞÅºÅÇ¿¶È(µÍÓÚÕâ¸öË®Æ½²»±»´¦Àí) */
+/** \brief è¯‘ç å™¨èƒ½æ¥æ”¶çš„æœ€å°ä¿¡å·å¼ºåº¦(ä½äºè¿™ä¸ªæ°´å¹³ä¸è¢«å¤„ç†) */
 #define AM_FM175XX_RXTHRESHOLD_MINLEVEL   0xf0
 
-/** \brief ÊäÈëµ½ÒëÂëÆ÷µÄÂüÇĞË¹ÌØ±àÂëµÄÈõ°ëbitÏà¶ÔÇ¿°ëbit²úÉú³åÍ»Î»µÄ×îĞ¡ĞÅºÅÇ¿¶È */
+/** \brief è¾“å…¥åˆ°è¯‘ç å™¨çš„æ›¼åˆ‡æ–¯ç‰¹ç¼–ç çš„å¼±åŠbitç›¸å¯¹å¼ºåŠbitäº§ç”Ÿå†²çªä½çš„æœ€å°ä¿¡å·å¼ºåº¦ */
 #define AM_FM175XX_RXTHRESHOLD_COLLLEVEL  0x07    
 
 /** @} */
 
 
 /**
- * \name Demod¼Ä´æÆ÷ÑÚÂë,½âµ÷Æ÷ÉèÖÃ (0x19)
+ * \name Demodå¯„å­˜å™¨æ©ç ,è§£è°ƒå™¨è®¾ç½® (0x19)
  * @{
  */
  
-#define AM_FM175XX_DEMOD_ADDIQ_MASK        0xc0    /**< \brief ½ÓÊÕ¹ı³ÌÖĞIºÍQÍ¨µÀµÄÊ¹ÓÃÑÚÂë */
-#define AM_FM175XX_DEMOD_ADDIQ_S           0x00    /**< \brief Ñ¡Ôñ½ÏÇ¿Í¨µÀ */
-#define AM_FM175XX_DEMOD_ADDIQ_KEEP_S      0x40    /**< \brief Ñ¡Ôñ½ÏÇ¿Í¨µÀ,²¢ÇÒÔÚÍ¨Ñ¶¹ı³ÌÖĞ±£³Ö²»±ä */
-#define AM_FM175XX_DEMOD_ADDIQ_IQ          0x80    /**< \brief ºÏ²¢IºÍQÍ¨µÀ */
-#define AM_FM175XX_DEMOD_FIXIQ             0x20    /**< \brief ÖÃ1Ê±ADDIQÎªX0Ôò½ÓÊÕ¹Ì¶¨IÍ¨µÀ,ÎªX1Ôò½ÓÊÕ¹Ì¶¨QÍ¨µÀ  */
-#define AM_FM175XX_DEMOD_TYPEB_EOF_MODE    0x10    /**< \brief 0:Âß¼­0+ºÍ1+ÎŞ¸±ÔØ²¨µ÷ÖÆ 1:Âß¼­0+ÎŞ¸±ÔØ²¨µ÷ÖÆ£¨FM17510²»Ö§³Ö£© */
-#define AM_FM175XX_DEMOD_TAU_RCV           0x0c    /**< \brief Êı¾İ½ÓÊÕ¹ı³ÌÖĞ¸Ä±äÄÚ²¿Ê±¼ä³£Êı(×¢:ÈôÉèÎª00,PLLÔÚÊı¾İ½ÓÊÕÖĞ¶³½á) */
-#define AM_FM175XX_DEMOD_TAU_SYNC          0x03    /**< \brief ÔÚburstÖĞ¸Ä±äÄÚ²¿PLLµÄÊ±¼ä³£Êı */
+#define AM_FM175XX_DEMOD_ADDIQ_MASK        0xc0    /**< \brief æ¥æ”¶è¿‡ç¨‹ä¸­Iå’ŒQé€šé“çš„ä½¿ç”¨æ©ç  */
+#define AM_FM175XX_DEMOD_ADDIQ_S           0x00    /**< \brief é€‰æ‹©è¾ƒå¼ºé€šé“ */
+#define AM_FM175XX_DEMOD_ADDIQ_KEEP_S      0x40    /**< \brief é€‰æ‹©è¾ƒå¼ºé€šé“,å¹¶ä¸”åœ¨é€šè®¯è¿‡ç¨‹ä¸­ä¿æŒä¸å˜ */
+#define AM_FM175XX_DEMOD_ADDIQ_IQ          0x80    /**< \brief åˆå¹¶Iå’ŒQé€šé“ */
+#define AM_FM175XX_DEMOD_FIXIQ             0x20    /**< \brief ç½®1æ—¶ADDIQä¸ºX0åˆ™æ¥æ”¶å›ºå®šIé€šé“,ä¸ºX1åˆ™æ¥æ”¶å›ºå®šQé€šé“  */
+#define AM_FM175XX_DEMOD_TYPEB_EOF_MODE    0x10    /**< \brief 0:é€»è¾‘0+å’Œ1+æ— å‰¯è½½æ³¢è°ƒåˆ¶ 1:é€»è¾‘0+æ— å‰¯è½½æ³¢è°ƒåˆ¶ï¼ˆFM17510ä¸æ”¯æŒï¼‰ */
+#define AM_FM175XX_DEMOD_TAU_RCV           0x0c    /**< \brief æ•°æ®æ¥æ”¶è¿‡ç¨‹ä¸­æ”¹å˜å†…éƒ¨æ—¶é—´å¸¸æ•°(æ³¨:è‹¥è®¾ä¸º00,PLLåœ¨æ•°æ®æ¥æ”¶ä¸­å†»ç»“) */
+#define AM_FM175XX_DEMOD_TAU_SYNC          0x03    /**< \brief åœ¨burstä¸­æ”¹å˜å†…éƒ¨PLLçš„æ—¶é—´å¸¸æ•° */
 
 /** @} */
 
 
 /**
- * \name Tx¼Ä´æÆ÷ÑÚÂë,¿ØÖÆ²¿·ÖISO/IEC 14443A·¢Éä²ÎÊı (0x1c)
+ * \name Txå¯„å­˜å™¨æ©ç ,æ§åˆ¶éƒ¨åˆ†ISO/IEC 14443Aå‘å°„å‚æ•° (0x1c)
  * @{
  */
  
-#define AM_FM175XX_TX_WAIT         0x03    /**< \brief ¸ÃÎ»¶¨ÒåÁË¸½¼ÓÏàÓ¦Ê±¼ä.È±Ê¡ÖµÎª¸ÃÎ»Öµ¼Ó7bit */
+#define AM_FM175XX_TX_WAIT         0x03    /**< \brief è¯¥ä½å®šä¹‰äº†é™„åŠ ç›¸åº”æ—¶é—´.ç¼ºçœå€¼ä¸ºè¯¥ä½å€¼åŠ 7bit */
 
 /** @} */
 
 
 /**
- * \name Rx¼Ä´æÆ÷ÑÚÂë (0x1d)
+ * \name Rxå¯„å­˜å™¨æ©ç  (0x1d)
  * @{
  */
  
-#define AM_FM175XX_RX_PARITY_DIS   0x10    /**< \brief Èô¸ÃÎ»ÖÃ1,ÊÕ·¢ÆæÅ¼Ğ£Ñé¶¼¹Ø±Õ,Ğ£ÑéÎ»×÷ÎªÆÕÍ¨Êı¾İÎ»´¦Àí */
+#define AM_FM175XX_RX_PARITY_DIS   0x10    /**< \brief è‹¥è¯¥ä½ç½®1,æ”¶å‘å¥‡å¶æ ¡éªŒéƒ½å…³é—­,æ ¡éªŒä½ä½œä¸ºæ™®é€šæ•°æ®ä½å¤„ç† */
 
 /** @} */
 
 
 /**
- * \name TypeB¼Ä´æÆ÷ÑÚÂë,ISO/IEC 14443B¿ØÖÆ (0x1e)£¨FM17510²»Ö§³Ö£©
+ * \name TypeBå¯„å­˜å™¨æ©ç ,ISO/IEC 14443Bæ§åˆ¶ (0x1e)ï¼ˆFM17510ä¸æ”¯æŒï¼‰
  * @{
  */
 
-#define AM_FM175XX_TYPEB_RXSOF_REQ         0x80    /**< \brief ¸ÃÎ»ÖÃ1,²»ÒÔSOFÆğÊ¼µÄÊı¾İÁ÷»á±»ºöÂÔ */
-#define AM_FM175XX_TYPEB_RXEOF_REQ         0x40    /**< \brief ¸ÃÎ»ÖÃ1,²»ÒÔEOF½áÊøµÄÊı¾İÁ÷»á´¥·¢Ğ­Òé´íÎó */
-#define AM_FM175XX_TYPEB_EOFSOF_WIDTH      0x10    /**< \brief ÖÃ1,SOFºÍEOF»áÓĞISO/IEC 14443BÖĞ¶¨ÒåµÄ×î´ó³¤¶È;ÖÃ0,»áÓĞ×îĞ¡³¤¶È */
-#define AM_FM175XX_TYPEB_NO_TXSOF          0x08    /**< \brief ÖÃ1,²»²úÉúSOF */
-#define AM_FM175XX_TYPEB_NO_TXEOF          0x04    /**< \brief ÖÃ1,²»²úÉúEOF */
-#define AM_FM175XX_TYPEB_TX_EGT            0x03    /**< \brief EGT³¤¶È,¿ÉÒÔÎª0,1,2ºÍ3 */
+#define AM_FM175XX_TYPEB_RXSOF_REQ         0x80    /**< \brief è¯¥ä½ç½®1,ä¸ä»¥SOFèµ·å§‹çš„æ•°æ®æµä¼šè¢«å¿½ç•¥ */
+#define AM_FM175XX_TYPEB_RXEOF_REQ         0x40    /**< \brief è¯¥ä½ç½®1,ä¸ä»¥EOFç»“æŸçš„æ•°æ®æµä¼šè§¦å‘åè®®é”™è¯¯ */
+#define AM_FM175XX_TYPEB_EOFSOF_WIDTH      0x10    /**< \brief ç½®1,SOFå’ŒEOFä¼šæœ‰ISO/IEC 14443Bä¸­å®šä¹‰çš„æœ€å¤§é•¿åº¦;ç½®0,ä¼šæœ‰æœ€å°é•¿åº¦ */
+#define AM_FM175XX_TYPEB_NO_TXSOF          0x08    /**< \brief ç½®1,ä¸äº§ç”ŸSOF */
+#define AM_FM175XX_TYPEB_NO_TXEOF          0x04    /**< \brief ç½®1,ä¸äº§ç”ŸEOF */
+#define AM_FM175XX_TYPEB_TX_EGT            0x03    /**< \brief EGTé•¿åº¦,å¯ä»¥ä¸º0,1,2å’Œ3 */
 
 /** @} */
 
 
 /**
- * \name SerialSpeed¼Ä´æÆ÷ÑÚÂë,Ñ¡Ôñ´®ĞĞUART½Ó¿ÚµÄËÙ¶È£¨FM17510²»Ö§³Ö£© (0x1f)
+ * \name SerialSpeedå¯„å­˜å™¨æ©ç ,é€‰æ‹©ä¸²è¡ŒUARTæ¥å£çš„é€Ÿåº¦ï¼ˆFM17510ä¸æ”¯æŒï¼‰ (0x1f)
  * @{
  */
 
-#define AM_FM175XX_SERIALSPEED_BR_T0       0xe0    /**< \brief BR_T0Òò×ÓÓÃÓÚµ÷½Ú´«ÊäËÙ¶È */
-#define AM_FM175XX_SERIALSPEED_BR_T1       0x0f    /**< \brief BR_T1Òò×ÓÓÃÓÚµ÷½Ú´«ÊäËÙ¶È */
+#define AM_FM175XX_SERIALSPEED_BR_T0       0xe0    /**< \brief BR_T0å› å­ç”¨äºè°ƒèŠ‚ä¼ è¾“é€Ÿåº¦ */
+#define AM_FM175XX_SERIALSPEED_BR_T1       0x0f    /**< \brief BR_T1å› å­ç”¨äºè°ƒèŠ‚ä¼ è¾“é€Ÿåº¦ */
 
 /** @} */
 
 
 /**
- * \name RFCfg¼Ä´æÆ÷ÑÚÂë,ÅäÖÃ½ÓÊÕÆ÷ÔöÒæ (0x26)
+ * \name RFCfgå¯„å­˜å™¨æ©ç ,é…ç½®æ¥æ”¶å™¨å¢ç›Š (0x26)
  * @{
  */
  
-#define AM_FM175XX_RFCFG_RXGAIN_MASK       0x70    /**< \brief ½ÓÊÕÆ÷µçÑ¹ÔöÒæÖ¸ÊıÑÚÂë */
-#define AM_FM175XX_RFCFG_RXGAIN_18DB       0x00    /**< \brief ½ÓÊÕÆ÷µçÑ¹ÔöÒæÖ¸Êı18dB */
-#define AM_FM175XX_RFCFG_RXGAIN_23DB       0x10    /**< \brief ½ÓÊÕÆ÷µçÑ¹ÔöÒæÖ¸Êı23dB */
-#define AM_FM175XX_RFCFG_RXGAIN_18DB_TOO   0x20    /**< \brief ½ÓÊÕÆ÷µçÑ¹ÔöÒæÖ¸Êı18dB */
-#define AM_FM175XX_RFCFG_RXGAIN_23DB_TOO   0x30    /**< \brief ½ÓÊÕÆ÷µçÑ¹ÔöÒæÖ¸Êı23dB */
-#define AM_FM175XX_RFCFG_RXGAIN_33DB       0x40    /**< \brief ½ÓÊÕÆ÷µçÑ¹ÔöÒæÖ¸Êı33dB */
-#define AM_FM175XX_RFCFG_RXGAIN_38DB       0x50    /**< \brief ½ÓÊÕÆ÷µçÑ¹ÔöÒæÖ¸Êı38dB */
-#define AM_FM175XX_RFCFG_RXGAIN_43DB       0x60    /**< \brief ½ÓÊÕÆ÷µçÑ¹ÔöÒæÖ¸Êı43dB */
-#define AM_FM175XX_RFCFG_RXGAIN_48DB       0x70    /**< \brief ½ÓÊÕÆ÷µçÑ¹ÔöÒæÖ¸Êı48dB */
+#define AM_FM175XX_RFCFG_RXGAIN_MASK       0x70    /**< \brief æ¥æ”¶å™¨ç”µå‹å¢ç›ŠæŒ‡æ•°æ©ç  */
+#define AM_FM175XX_RFCFG_RXGAIN_18DB       0x00    /**< \brief æ¥æ”¶å™¨ç”µå‹å¢ç›ŠæŒ‡æ•°18dB */
+#define AM_FM175XX_RFCFG_RXGAIN_23DB       0x10    /**< \brief æ¥æ”¶å™¨ç”µå‹å¢ç›ŠæŒ‡æ•°23dB */
+#define AM_FM175XX_RFCFG_RXGAIN_18DB_TOO   0x20    /**< \brief æ¥æ”¶å™¨ç”µå‹å¢ç›ŠæŒ‡æ•°18dB */
+#define AM_FM175XX_RFCFG_RXGAIN_23DB_TOO   0x30    /**< \brief æ¥æ”¶å™¨ç”µå‹å¢ç›ŠæŒ‡æ•°23dB */
+#define AM_FM175XX_RFCFG_RXGAIN_33DB       0x40    /**< \brief æ¥æ”¶å™¨ç”µå‹å¢ç›ŠæŒ‡æ•°33dB */
+#define AM_FM175XX_RFCFG_RXGAIN_38DB       0x50    /**< \brief æ¥æ”¶å™¨ç”µå‹å¢ç›ŠæŒ‡æ•°38dB */
+#define AM_FM175XX_RFCFG_RXGAIN_43DB       0x60    /**< \brief æ¥æ”¶å™¨ç”µå‹å¢ç›ŠæŒ‡æ•°43dB */
+#define AM_FM175XX_RFCFG_RXGAIN_48DB       0x70    /**< \brief æ¥æ”¶å™¨ç”µå‹å¢ç›ŠæŒ‡æ•°48dB */
 
 /** @} */
 
 
 /**
- * \name GsN¼Ä´æÆ÷ÑÚÂë,Çı¶¯¿ªÆôÊ±,Ñ¡ÔñÌìÏßÇı¶¯Òı½ÅTX1ºÍTX2µÄNÇı¶¯µÄµçµ¼ (0x27)
+ * \name GsNå¯„å­˜å™¨æ©ç ,é©±åŠ¨å¼€å¯æ—¶,é€‰æ‹©å¤©çº¿é©±åŠ¨å¼•è„šTX1å’ŒTX2çš„Né©±åŠ¨çš„ç”µå¯¼ (0x27)
  * @{
  */
 
 /**
- * \brief ÎŞµ÷ÖÆÊ±¶ÎÊä³öNÇı¶¯µÄµçµ¼,¿ÉÉèÖÃÊä³ö¹¦ÂÊ,µçÁ÷Çı¶¯¼°²Ù×÷¾àÀë:
- *        1.µçµ¼ÖµÎ»¶ş½øÖÆ¼ÓÈ¨
- *        2.soft Power-downÄ£Ê½ÏÂ×î¸ßÎ»Ç¿ÖÆÖÃÎ» 
- *        3.¸Ã¼Ä´æÆ÷µÄÖµÖ»ÔÚTX1,TX2Çı¶¯¿ªÆôÊ±Ê¹ÓÃ
+ * \brief æ— è°ƒåˆ¶æ—¶æ®µè¾“å‡ºNé©±åŠ¨çš„ç”µå¯¼,å¯è®¾ç½®è¾“å‡ºåŠŸç‡,ç”µæµé©±åŠ¨åŠæ“ä½œè·ç¦»:
+ *        1.ç”µå¯¼å€¼ä½äºŒè¿›åˆ¶åŠ æƒ
+ *        2.soft Power-downæ¨¡å¼ä¸‹æœ€é«˜ä½å¼ºåˆ¶ç½®ä½ 
+ *        3.è¯¥å¯„å­˜å™¨çš„å€¼åªåœ¨TX1,TX2é©±åŠ¨å¼€å¯æ—¶ä½¿ç”¨
  */
 #define AM_FM175XX_CWGSN                   0xf0
 
 /**
- * \brief µ÷ÖÆÊ±¶ÎÊä³öNÇı¶¯µÄµçµ¼,¿É¿ØÖÆµ÷ÖÆÉî¶È:
- *        1.µçµ¼ÖµÎ»¶ş½øÖÆ¼ÓÈ¨
- *        2.soft Power-downÄ£Ê½ÏÂ×î¸ßÎ»Ç¿ÖÆÖÃÎ» 
- *        3.¸Ã¼Ä´æÆ÷µÄÖµÖ»ÔÚTX1,TX2Çı¶¯¿ªÆôÊ±Ê¹ÓÃ
+ * \brief è°ƒåˆ¶æ—¶æ®µè¾“å‡ºNé©±åŠ¨çš„ç”µå¯¼,å¯æ§åˆ¶è°ƒåˆ¶æ·±åº¦:
+ *        1.ç”µå¯¼å€¼ä½äºŒè¿›åˆ¶åŠ æƒ
+ *        2.soft Power-downæ¨¡å¼ä¸‹æœ€é«˜ä½å¼ºåˆ¶ç½®ä½ 
+ *        3.è¯¥å¯„å­˜å™¨çš„å€¼åªåœ¨TX1,TX2é©±åŠ¨å¼€å¯æ—¶ä½¿ç”¨
  */
 #define AM_FM175XX_MODGSN                  0x0f
 
@@ -568,14 +568,14 @@ extern "C" {
 
 
 /**
- * \name CWGsP¼Ä´æÆ÷ÑÚÂë,¶¨ÒåÁËÎŞµ÷ÖÆÊ±¶ÎPÇı¶¯µÄµçµ¼ (0x28)
+ * \name CWGsPå¯„å­˜å™¨æ©ç ,å®šä¹‰äº†æ— è°ƒåˆ¶æ—¶æ®µPé©±åŠ¨çš„ç”µå¯¼ (0x28)
  * @{
  */
 
 /**
- * \brief ÎŞµ÷ÖÆÊ±¶ÎÊä³öPÇı¶¯µÄµçµ¼,¿ÉÉèÖÃÊä³ö¹¦ÂÊ,µçÁ÷¹¦ºÄ¼°²Ù×÷¾àÀë:
- *        1.µçµ¼ÖµÎ»¶ş½øÖÆ¼ÓÈ¨
- *        2.soft Power-downÄ£Ê½ÏÂ×î¸ßÎ»Ç¿ÖÆÖÃÎ» 
+ * \brief æ— è°ƒåˆ¶æ—¶æ®µè¾“å‡ºPé©±åŠ¨çš„ç”µå¯¼,å¯è®¾ç½®è¾“å‡ºåŠŸç‡,ç”µæµåŠŸè€—åŠæ“ä½œè·ç¦»:
+ *        1.ç”µå¯¼å€¼ä½äºŒè¿›åˆ¶åŠ æƒ
+ *        2.soft Power-downæ¨¡å¼ä¸‹æœ€é«˜ä½å¼ºåˆ¶ç½®ä½ 
  */
 #define AM_FM175XX_CWGSP                   0x3f
 
@@ -583,14 +583,14 @@ extern "C" {
 
 
 /**
- * \name ModGsP¼Ä´æÆ÷ÑÚÂë (0x29)
+ * \name ModGsPå¯„å­˜å™¨æ©ç  (0x29)
  * @{
  */
 
 /**
- * \brief µ÷ÖÆÊ±¶ÎÊä³öPÇı¶¯µÄµçµ¼,¿ÉÉèÖÃÊä³ö¹¦ÂÊ,µçÁ÷¹¦ºÄ¼°²Ù×÷¾àÀë:
- *        1.µçµ¼ÖµÎ»¶ş½øÖÆ¼ÓÈ¨
- *        2.soft Power-downÄ£Ê½ÏÂ×î¸ßÎ»Ç¿ÖÆÖÃÎ» 
+ * \brief è°ƒåˆ¶æ—¶æ®µè¾“å‡ºPé©±åŠ¨çš„ç”µå¯¼,å¯è®¾ç½®è¾“å‡ºåŠŸç‡,ç”µæµåŠŸè€—åŠæ“ä½œè·ç¦»:
+ *        1.ç”µå¯¼å€¼ä½äºŒè¿›åˆ¶åŠ æƒ
+ *        2.soft Power-downæ¨¡å¼ä¸‹æœ€é«˜ä½å¼ºåˆ¶ç½®ä½ 
  */
 #define AM_FM175XX_MODGSP                  0x3f
 
@@ -598,60 +598,60 @@ extern "C" {
 
 
 /**
- * \name TMode¼Ä´æÆ÷,TPrescaler¼Ä´æÆ÷ÑÚÂë,¶¨ÒåÁË¶¨Ê±Æ÷ÉèÖÃ (0x2A)
+ * \name TModeå¯„å­˜å™¨,TPrescalerå¯„å­˜å™¨æ©ç ,å®šä¹‰äº†å®šæ—¶å™¨è®¾ç½® (0x2A)
  * @{
  */
  
-#define AM_FM175XX_T_AUTO                  0x80    /**< \brief 0¶¨Ê±Æ÷²»ÊÜĞ­ÒéÓ°Ïì 1¶¨Ê±Æ÷×Ô¶¯¼ÆÊı */
-#define AM_FM175XX_T_GATE_MASK             0x60    /**< \brief ¶¨Ê±Æ÷ÃÅ¿ØÑÚÂë */
-#define AM_FM175XX_T_GATE_NONE             0x00    /**< \brief ¶¨Ê±Æ÷ÎŞÃÅ¿Ø */
-#define AM_FM175XX_T_GATE_TIN              0x20    /**< \brief ¶¨Ê±Æ÷ÓÉTIN×öÃÅ¿Ø */
-#define AM_FM175XX_T_GATE_AUX1             0x40    /**< \brief ¶¨Ê±Æ÷ÓÉAUX1×öÃÅ¿Ø */
-#define AM_FM175XX_T_AUTO_RESTART          0x10    /**< \brief 1¶¨Ê±Æ÷ÓÉÖØ×°ÔØÖµ×Ô¶¯ÖØÆôµ¹¼ÆÊı,0¼ÆÊıÆ÷¼õµ½0Ê±Í£Ö¹ */
+#define AM_FM175XX_T_AUTO                  0x80    /**< \brief 0å®šæ—¶å™¨ä¸å—åè®®å½±å“ 1å®šæ—¶å™¨è‡ªåŠ¨è®¡æ•° */
+#define AM_FM175XX_T_GATE_MASK             0x60    /**< \brief å®šæ—¶å™¨é—¨æ§æ©ç  */
+#define AM_FM175XX_T_GATE_NONE             0x00    /**< \brief å®šæ—¶å™¨æ— é—¨æ§ */
+#define AM_FM175XX_T_GATE_TIN              0x20    /**< \brief å®šæ—¶å™¨ç”±TINåšé—¨æ§ */
+#define AM_FM175XX_T_GATE_AUX1             0x40    /**< \brief å®šæ—¶å™¨ç”±AUX1åšé—¨æ§ */
+#define AM_FM175XX_T_AUTO_RESTART          0x10    /**< \brief 1å®šæ—¶å™¨ç”±é‡è£…è½½å€¼è‡ªåŠ¨é‡å¯å€’è®¡æ•°,0è®¡æ•°å™¨å‡åˆ°0æ—¶åœæ­¢ */
 
 /**
- * \brief TPrescalerµÄ¸ßËÄÎ»
- *        ¶¨Ê±Æ÷ÆµÂÊ f=13.56Mhz/(2*TPrescaler+1)
+ * \brief TPrescalerçš„é«˜å››ä½
+ *        å®šæ—¶å™¨é¢‘ç‡ f=13.56Mhz/(2*TPrescaler+1)
  *        TPrescaler=[TPrescaler_HI:TPrescaler_Lo]
  */
-#define AM_FM175XX_T_PRESCALER_HI          0x0f    /**< \brief TPrescalerµÄ¸ßËÄÎ» */
+#define AM_FM175XX_T_PRESCALER_HI          0x0f    /**< \brief TPrescalerçš„é«˜å››ä½ */
 
 /** @} */
 
 
 /**
- * \name TestSel1¼Ä´æÆ÷ÑÚÂë,²âÊÔĞÅºÅÅäÖÃ (0x31)
+ * \name TestSel1å¯„å­˜å™¨æ©ç ,æµ‹è¯•ä¿¡å·é…ç½® (0x31)
  * @{
  */
  
-#define AM_FM175XX_TSTBUS_BITSEL           0x07    /**< \brief ´Ó²âÊÔ×ÜÏßÑ¡ÔñÎ»´«µ½TOUT */
+#define AM_FM175XX_TSTBUS_BITSEL           0x07    /**< \brief ä»æµ‹è¯•æ€»çº¿é€‰æ‹©ä½ä¼ åˆ°TOUT */
 
 /** @} */
 
 
 /**
- * \name TestSel2¼Ä´æÆ÷ÑÚÂë,²âÊÔĞÅºÅÅäÖÃºÍPRBS¿ØÖÆ (0x32)
+ * \name TestSel2å¯„å­˜å™¨æ©ç ,æµ‹è¯•ä¿¡å·é…ç½®å’ŒPRBSæ§åˆ¶ (0x32)
  * @{
  */
  
-#define AM_FM175XX_TSTBUS_FLIP             0x80    /**< \brief ÖÃ1 ²âÊÔ×ÜÏß°´D432651Ë³ĞòÓ³Éäµ½²¢ĞĞ¶Ë¿Ú */
-#define AM_FM175XX_PRBS9                   0x40    /**< \brief ¸ù¾İITU-TO150¿ªÆô²¢Ê¹ÄÜPRBS9ĞòÁĞ */
-#define AM_FM175XX_PRBS15                  0x20    /**< \brief ¸ù¾İITU-TO150¿ªÆô²¢Ê¹ÄÜPRBS15ĞòÁĞ */
-#define AM_FM175XX_TSTBUS_SEL              0x1f    /**< \brief Ñ¡Ôñ²âÊÔ×ÜÏß */
+#define AM_FM175XX_TSTBUS_FLIP             0x80    /**< \brief ç½®1 æµ‹è¯•æ€»çº¿æŒ‰D432651é¡ºåºæ˜ å°„åˆ°å¹¶è¡Œç«¯å£ */
+#define AM_FM175XX_PRBS9                   0x40    /**< \brief æ ¹æ®ITU-TO150å¼€å¯å¹¶ä½¿èƒ½PRBS9åºåˆ— */
+#define AM_FM175XX_PRBS15                  0x20    /**< \brief æ ¹æ®ITU-TO150å¼€å¯å¹¶ä½¿èƒ½PRBS15åºåˆ— */
+#define AM_FM175XX_TSTBUS_SEL              0x1f    /**< \brief é€‰æ‹©æµ‹è¯•æ€»çº¿ */
 
 /** @} */
 
 
 /**
- * \name TestPinEn¼Ä´æÆ÷ÑÚÂë,D1~D6Òı½ÅÊä³öÇı¶¯Ê¹ÄÜ £¨FM17510²»Ö§³Ö£©(0x33)
+ * \name TestPinEnå¯„å­˜å™¨æ©ç ,D1~D6å¼•è„šè¾“å‡ºé©±åŠ¨ä½¿èƒ½ ï¼ˆFM17510ä¸æ”¯æŒï¼‰(0x33)
  * @{
  */
-#define AM_FM175XX_RS232LINE_EN            0x80    /**< \brief ÖÃ0 ´®ĞĞUARTµÄMXºÍDTRQÏßÎŞĞ§ */
+#define AM_FM175XX_RS232LINE_EN            0x80    /**< \brief ç½®0 ä¸²è¡ŒUARTçš„MXå’ŒDTRQçº¿æ— æ•ˆ */
 
 /**
- * \brief Ê¹ÄÜD1~D6Òı½ÅÊä³öÇı¶¯
- *        Èçbit1ÖÃ1,Ê¹ÄÜD1Òı½ÅÊä³ö;bit5ÖÃ1,Ê¹ÄÜD5Òı½ÅÊä³ö
- *        Ö»ÔÚÊ¹ÄÜ´®ĞĞ½Ó¿ÚÊ±ÓĞĞ§.SPI=>D1~D4 UARTÇÒRS232LineEnÖÃ1Ê±=>D1~D4
+ * \brief ä½¿èƒ½D1~D6å¼•è„šè¾“å‡ºé©±åŠ¨
+ *        å¦‚bit1ç½®1,ä½¿èƒ½D1å¼•è„šè¾“å‡º;bit5ç½®1,ä½¿èƒ½D5å¼•è„šè¾“å‡º
+ *        åªåœ¨ä½¿èƒ½ä¸²è¡Œæ¥å£æ—¶æœ‰æ•ˆ.SPI=>D1~D4 UARTä¸”RS232LineEnç½®1æ—¶=>D1~D4
  */
 #define AM_FM175XX_TESTPIN_EN              0x7e
 
@@ -659,17 +659,17 @@ extern "C" {
 
 
 /**
- * \name TestPinValue¼Ä´æÆ÷ÑÚÂë,ÓÃ×÷I/OÊ±,¶¨ÒåÁË7Î»²¢ĞĞ¶Ë¿ÚµÄÖµ£¨FM17510²»Ö§³Ö£© (0x34)
+ * \name TestPinValueå¯„å­˜å™¨æ©ç ,ç”¨ä½œI/Oæ—¶,å®šä¹‰äº†7ä½å¹¶è¡Œç«¯å£çš„å€¼ï¼ˆFM17510ä¸æ”¯æŒï¼‰ (0x34)
  * @{
  */
  
-#define AM_FM175XX_U_SEL_O                 0x80    /**< \brief ÖÃ1 Í¨¹ı¸ÃÎ»¿ØÖÆ7¸ö²¢ĞĞ¶Ë¿ÚµÄI/O¹¦ÄÜ */
+#define AM_FM175XX_U_SEL_O                 0x80    /**< \brief ç½®1 é€šè¿‡è¯¥ä½æ§åˆ¶7ä¸ªå¹¶è¡Œç«¯å£çš„I/OåŠŸèƒ½ */
 
 /**
- * \brief ÓÃ×÷I/OÊ±,¶¨ÒåÁË7Î»²¢ĞĞ¶Ë¿ÚµÄÖµ.Ã¿¸ö¶Ë¿Ú¶¼±ØĞëÓÉ¼Ä´æÆ÷TestPinEn¼Ä´æÆ÷
- *        ÖĞµÄTestPinEnÎ»À´Ê¹ÄÜ.
- *        ×¢:ÈôUselOÖÃ1,¶Á¼Ä´æÆ÷±íÊ¾ÁËÒı½ÅD6~D1µÄÊµ¼Ê×´Ì¬
- *           ÈôUselOÖÃ0,¶Á¼Ä´æÆ÷µÃµ½µÄÊÇTestPinValue¼Ä´æÆ÷µÄÖµ
+ * \brief ç”¨ä½œI/Oæ—¶,å®šä¹‰äº†7ä½å¹¶è¡Œç«¯å£çš„å€¼.æ¯ä¸ªç«¯å£éƒ½å¿…é¡»ç”±å¯„å­˜å™¨TestPinEnå¯„å­˜å™¨
+ *        ä¸­çš„TestPinEnä½æ¥ä½¿èƒ½.
+ *        æ³¨:è‹¥UselOç½®1,è¯»å¯„å­˜å™¨è¡¨ç¤ºäº†å¼•è„šD6~D1çš„å®é™…çŠ¶æ€
+ *           è‹¥UselOç½®0,è¯»å¯„å­˜å™¨å¾—åˆ°çš„æ˜¯TestPinValueå¯„å­˜å™¨çš„å€¼
  */
 #define AM_FM175XX_TEST_PIN_VALUE          0x7e
 
@@ -677,168 +677,168 @@ extern "C" {
 
 
 /**
- * \name TestCtrl¼Ä´æÆ÷ÑÚÂë,²âÊÔ¿ØÖÆ (0x36)
+ * \name TestCtrlå¯„å­˜å™¨æ©ç ,æµ‹è¯•æ§åˆ¶ (0x36)
  * @{
  */
  
-/** \brief ÖÃ1 ½ÓÊÕÁ´µÄÄÚ²¿ĞÅºÅ´¦Àí±»·ÇÏßĞÔµÄÖ´ĞĞ,¿ÉÒÔÔö¼Ó106kbitÍ¨Ñ¶Ä£Ê½ÏÂµÄ²Ù×÷¾àÀë */
+/** \brief ç½®1 æ¥æ”¶é“¾çš„å†…éƒ¨ä¿¡å·å¤„ç†è¢«éçº¿æ€§çš„æ‰§è¡Œ,å¯ä»¥å¢åŠ 106kbité€šè®¯æ¨¡å¼ä¸‹çš„æ“ä½œè·ç¦» */
 #define AM_FM175XX_AMP_RCV                 0x40
 
 /** @} */
 
 
 /**
- * \name AnalogTest¼Ä´æÆ÷ÑÚÂë,¿ØÖÆÒı½ÅAUX1ºÍAUX2£¨FM17510²»Ö§³ÖAUX2£© (0x38)
+ * \name AnalogTestå¯„å­˜å™¨æ©ç ,æ§åˆ¶å¼•è„šAUX1å’ŒAUX2ï¼ˆFM17510ä¸æ”¯æŒAUX2ï¼‰ (0x38)
  * @{
  */
  
-#define AM_FM175XX_ANALOG_SEL_AUX1_MASK        0xf0    /**< \brief ¿ØÖÆAUX1ÑÚÂë */
-#define AM_FM175XX_ANALOG_SEL_AUX1_TRISTATE    0x00    /**< \brief AUX1ÈıÌ¬ */
-#define AM_FM175XX_ANALOG_SEL_AUX1_DAC1        0x10    /**< \brief TestDAC1(AUX1)Êä³ö */
-#define AM_FM175XX_ANALOG_SEL_AUX1_CORR1       0x20    /**< \brief ²âÊÔĞÅºÅCorr1 */
-#define AM_FM175XX_ANALOG_SEL_AUX1_CORR2       0x30    /**< \brief ²âÊÔĞÅºÅCorr2 */
-#define AM_FM175XX_ANALOG_SEL_AUX1_MINLEVEL    0x40    /**< \brief ²âÊÔĞÅºÅMINLEVEL */
-#define AM_FM175XX_ANALOG_SEL_AUX1_ADC_I       0x50    /**< \brief ²âÊÔĞÅºÅADCÍ¨µÀI */
-#define AM_FM175XX_ANALOG_SEL_AUX1_ADC_Q       0x60    /**< \brief ²âÊÔĞÅºÅADCÍ¨µÀQ */
-#define AM_FM175XX_ANALOG_SEL_AUX1_ADC_IQ      0x70    /**< \brief ²âÊÔĞÅºÅADCÍ¨µÀIQºÏ²¢ */
+#define AM_FM175XX_ANALOG_SEL_AUX1_MASK        0xf0    /**< \brief æ§åˆ¶AUX1æ©ç  */
+#define AM_FM175XX_ANALOG_SEL_AUX1_TRISTATE    0x00    /**< \brief AUX1ä¸‰æ€ */
+#define AM_FM175XX_ANALOG_SEL_AUX1_DAC1        0x10    /**< \brief TestDAC1(AUX1)è¾“å‡º */
+#define AM_FM175XX_ANALOG_SEL_AUX1_CORR1       0x20    /**< \brief æµ‹è¯•ä¿¡å·Corr1 */
+#define AM_FM175XX_ANALOG_SEL_AUX1_CORR2       0x30    /**< \brief æµ‹è¯•ä¿¡å·Corr2 */
+#define AM_FM175XX_ANALOG_SEL_AUX1_MINLEVEL    0x40    /**< \brief æµ‹è¯•ä¿¡å·MINLEVEL */
+#define AM_FM175XX_ANALOG_SEL_AUX1_ADC_I       0x50    /**< \brief æµ‹è¯•ä¿¡å·ADCé€šé“I */
+#define AM_FM175XX_ANALOG_SEL_AUX1_ADC_Q       0x60    /**< \brief æµ‹è¯•ä¿¡å·ADCé€šé“Q */
+#define AM_FM175XX_ANALOG_SEL_AUX1_ADC_IQ      0x70    /**< \brief æµ‹è¯•ä¿¡å·ADCé€šé“IQåˆå¹¶ */
 #define AM_FM175XX_ANALOG_SEL_AUX1_HIGH        0xa0    /**< \brief HIGH */
 #define AM_FM175XX_ANALOG_SEL_AUX1_LOW         0xb0    /**< \brief LOW */
-#define AM_FM175XX_ANALOG_SEL_AUX1_T           0xc0    /**< \brief ·¢ÉäÓĞĞ§×´Ì¬ */
-#define AM_FM175XX_ANALOG_SEL_AUX1_R           0xd0    /**< \brief ½ÓÊÕÓĞĞ§×´Ì¬ */
-#define AM_FM175XX_ANALOG_SEL_AUX1_SC          0xe0    /**< \brief ¼ì²âµ½¸±ÔØ²¨ */
-#define AM_FM175XX_ANALOG_SEL_AUX1_TESTBUS_BIT 0xf0    /**< \brief TestSel1¼Ä´æÆ÷ÖĞTstBusBitSelÎ»¶¨ÒåµÄ */
+#define AM_FM175XX_ANALOG_SEL_AUX1_T           0xc0    /**< \brief å‘å°„æœ‰æ•ˆçŠ¶æ€ */
+#define AM_FM175XX_ANALOG_SEL_AUX1_R           0xd0    /**< \brief æ¥æ”¶æœ‰æ•ˆçŠ¶æ€ */
+#define AM_FM175XX_ANALOG_SEL_AUX1_SC          0xe0    /**< \brief æ£€æµ‹åˆ°å‰¯è½½æ³¢ */
+#define AM_FM175XX_ANALOG_SEL_AUX1_TESTBUS_BIT 0xf0    /**< \brief TestSel1å¯„å­˜å™¨ä¸­TstBusBitSelä½å®šä¹‰çš„ */
 
-#define AM_FM175XX_ANALOG_SEL_AUX2_MASK        0x0f    /**< \brief ¿ØÖÆAUX2ÑÚÂë */
-#define AM_FM175XX_ANALOG_SEL_AUX2_TRISTATE    0x00    /**< \brief AUX1ÈıÌ¬ */
-#define AM_FM175XX_ANALOG_SEL_AUX2_DAC1        0x01    /**< \brief TestDAC2(AUX2)Êä³ö */
-#define AM_FM175XX_ANALOG_SEL_AUX2_CORR1       0x02    /**< \brief ²âÊÔĞÅºÅCorr1 */
-#define AM_FM175XX_ANALOG_SEL_AUX2_CORR2       0x03    /**< \brief ²âÊÔĞÅºÅCorr2 */
-#define AM_FM175XX_ANALOG_SEL_AUX2_MINLEVEL    0x04    /**< \brief ²âÊÔĞÅºÅMINLEVEL */
-#define AM_FM175XX_ANALOG_SEL_AUX2_ADC_I       0x05    /**< \brief ²âÊÔĞÅºÅADCÍ¨µÀI */
-#define AM_FM175XX_ANALOG_SEL_AUX2_ADC_Q       0x06    /**< \brief ²âÊÔĞÅºÅADCÍ¨µÀQ */
-#define AM_FM175XX_ANALOG_SEL_AUX2_ADC_IQ      0x07    /**< \brief ²âÊÔĞÅºÅADCÍ¨µÀIQºÏ²¢ */
+#define AM_FM175XX_ANALOG_SEL_AUX2_MASK        0x0f    /**< \brief æ§åˆ¶AUX2æ©ç  */
+#define AM_FM175XX_ANALOG_SEL_AUX2_TRISTATE    0x00    /**< \brief AUX1ä¸‰æ€ */
+#define AM_FM175XX_ANALOG_SEL_AUX2_DAC1        0x01    /**< \brief TestDAC2(AUX2)è¾“å‡º */
+#define AM_FM175XX_ANALOG_SEL_AUX2_CORR1       0x02    /**< \brief æµ‹è¯•ä¿¡å·Corr1 */
+#define AM_FM175XX_ANALOG_SEL_AUX2_CORR2       0x03    /**< \brief æµ‹è¯•ä¿¡å·Corr2 */
+#define AM_FM175XX_ANALOG_SEL_AUX2_MINLEVEL    0x04    /**< \brief æµ‹è¯•ä¿¡å·MINLEVEL */
+#define AM_FM175XX_ANALOG_SEL_AUX2_ADC_I       0x05    /**< \brief æµ‹è¯•ä¿¡å·ADCé€šé“I */
+#define AM_FM175XX_ANALOG_SEL_AUX2_ADC_Q       0x06    /**< \brief æµ‹è¯•ä¿¡å·ADCé€šé“Q */
+#define AM_FM175XX_ANALOG_SEL_AUX2_ADC_IQ      0x07    /**< \brief æµ‹è¯•ä¿¡å·ADCé€šé“IQåˆå¹¶ */
 #define AM_FM175XX_ANALOG_SEL_AUX2_HIGH        0x0a    /**< \brief HIGH */
 #define AM_FM175XX_ANALOG_SEL_AUX2_LOW         0x0b    /**< \brief LOW */
-#define AM_FM175XX_ANALOG_SEL_AUX2_T           0x0c    /**< \brief ·¢ÉäÓĞĞ§×´Ì¬ */
-#define AM_FM175XX_ANALOG_SEL_AUX2_R           0x0d    /**< \brief ½ÓÊÕÓĞĞ§×´Ì¬ */
-#define AM_FM175XX_ANALOG_SEL_AUX2_SC          0x0e    /**< \brief ¼ì²âµ½¸±ÔØ²¨ */
-#define AM_FM175XX_ANALOG_SEL_AUX2_TESTBUS_BIT 0x0f    /**< \brief TestSel1¼Ä´æÆ÷ÖĞTstBusBitSelÎ»¶¨ÒåµÄ */
+#define AM_FM175XX_ANALOG_SEL_AUX2_T           0x0c    /**< \brief å‘å°„æœ‰æ•ˆçŠ¶æ€ */
+#define AM_FM175XX_ANALOG_SEL_AUX2_R           0x0d    /**< \brief æ¥æ”¶æœ‰æ•ˆçŠ¶æ€ */
+#define AM_FM175XX_ANALOG_SEL_AUX2_SC          0x0e    /**< \brief æ£€æµ‹åˆ°å‰¯è½½æ³¢ */
+#define AM_FM175XX_ANALOG_SEL_AUX2_TESTBUS_BIT 0x0f    /**< \brief TestSel1å¯„å­˜å™¨ä¸­TstBusBitSelä½å®šä¹‰çš„ */
 
 /** @} */
 
 
 /**
- * \name TestDAC1¼Ä´æÆ÷ÑÚÂë,¶¨ÒåTestDAC1µÄ²âÊÔÖµ (0x39)
+ * \name TestDAC1å¯„å­˜å™¨æ©ç ,å®šä¹‰TestDAC1çš„æµ‹è¯•å€¼ (0x39)
  * @{
  */
  
-/** \brief ¶¨ÒåTestDAC1µÄ²âÊÔÖµ.DAC1µÄÊä³ö¿ÉÒÔÍ¨¹ıÉèÖÃ¼Ä´æÆ÷AnalogTestÖĞAUX1µ½0001À´ÇĞ»»µ½AUX1 */
+/** \brief å®šä¹‰TestDAC1çš„æµ‹è¯•å€¼.DAC1çš„è¾“å‡ºå¯ä»¥é€šè¿‡è®¾ç½®å¯„å­˜å™¨AnalogTestä¸­AUX1åˆ°0001æ¥åˆ‡æ¢åˆ°AUX1 */
 #define AM_FM175XX_TESTDAC1        0x3f
 
 /** @} */
 
 
 /**
- * \name TestDAC2¼Ä´æÆ÷ÑÚÂë,¶¨ÒåTestDAC2µÄ²âÊÔÖµ (0x3a)
+ * \name TestDAC2å¯„å­˜å™¨æ©ç ,å®šä¹‰TestDAC2çš„æµ‹è¯•å€¼ (0x3a)
  * @{
  */
  
-/** \brief ¶¨ÒåTestDAC2µÄ²âÊÔÖµ.DAC2µÄÊä³ö¿ÉÒÔÍ¨¹ıÉèÖÃ¼Ä´æÆ÷AnalogTestÖĞAUX2µ½0001À´ÇĞ»»µ½AUX2 */
+/** \brief å®šä¹‰TestDAC2çš„æµ‹è¯•å€¼.DAC2çš„è¾“å‡ºå¯ä»¥é€šè¿‡è®¾ç½®å¯„å­˜å™¨AnalogTestä¸­AUX2åˆ°0001æ¥åˆ‡æ¢åˆ°AUX2 */
 #define AM_FM175XX_TESTDAC2        0x3f
 
 /** @} */
 
 
 /**
- * \name TestADC¼Ä´æÆ÷ÑÚÂë,ÏÔÊ¾ÁËADC IºÍQÍ¨µÀµÄÊµ¼ÊÖµ (0x3b)
+ * \name TestADCå¯„å­˜å™¨æ©ç ,æ˜¾ç¤ºäº†ADC Iå’ŒQé€šé“çš„å®é™…å€¼ (0x3b)
  * @{
  */
  
-#define AM_FM175XX_ADC_I           0xf0    /**< \brief ÏÔÊ¾ÁËADC IÍ¨µÀµÄÊµ¼ÊÖµ */
-#define AM_FM175XX_ADC_Q           0x0f    /**< \brief ÏÔÊ¾ÁËADC QÍ¨µÀµÄÊµ¼ÊÖµ */
+#define AM_FM175XX_ADC_I           0xf0    /**< \brief æ˜¾ç¤ºäº†ADC Ié€šé“çš„å®é™…å€¼ */
+#define AM_FM175XX_ADC_Q           0x0f    /**< \brief æ˜¾ç¤ºäº†ADC Qé€šé“çš„å®é™…å€¼ */
 
 /** @} */
 
 
 /**
- * \name LpcdCtrlÀ©Õ¹¼Ä´æÆ÷ÑÚÂë (0x0f/0x01)
+ * \name LpcdCtrlæ‰©å±•å¯„å­˜å™¨æ©ç  (0x0f/0x01)
  * @{
  */
 #define AM_
-#define AM_FM175XX_LPCD_EN          0x01    /**< \brief Ê¹ÄÜ LPCDÄ£Ê½  */
-#define AM_FM175XX_LPCD_RSTN        0x02    /**< \brief LPCD¸´Î»   */
-#define AM_FM175XX_LPCD_CALIBRA_EN  0x04    /**< \brief LPCD ¼ÆËãÄ£Ê½Ê¹ÄÜ   */
-#define AM_FM175XX_LPCD_CMP_1       0x08    /**< \brief ±È½Ï´ÎÊı 1´Î   */
-#define AM_FM175XX_LPCD_CMP_3       0x13    /**< \brief ±È½Ï´ÎÊı3´Î    */
-#define AM_FM175XX_LPCD_IE          0x10    /**< \brief Ê¹ÄÜLPCDÖĞ¶Ï  */
-#define AM_FM175XX_CTRL_SET         0x20    /**< \brief LPCD ¼Ä´æÆ÷Î»¿ØÖÆÉèÖÃ   */
-#define AM_FM175XX_CTRL_CLR         0x00    /**< \brief LPCD ¼Ä´æÆ÷Î»¿ØÖÆÇå³ı  */
+#define AM_FM175XX_LPCD_EN          0x01    /**< \brief ä½¿èƒ½ LPCDæ¨¡å¼  */
+#define AM_FM175XX_LPCD_RSTN        0x02    /**< \brief LPCDå¤ä½   */
+#define AM_FM175XX_LPCD_CALIBRA_EN  0x04    /**< \brief LPCD è®¡ç®—æ¨¡å¼ä½¿èƒ½   */
+#define AM_FM175XX_LPCD_CMP_1       0x08    /**< \brief æ¯”è¾ƒæ¬¡æ•° 1æ¬¡   */
+#define AM_FM175XX_LPCD_CMP_3       0x13    /**< \brief æ¯”è¾ƒæ¬¡æ•°3æ¬¡    */
+#define AM_FM175XX_LPCD_IE          0x10    /**< \brief ä½¿èƒ½LPCDä¸­æ–­  */
+#define AM_FM175XX_CTRL_SET         0x20    /**< \brief LPCD å¯„å­˜å™¨ä½æ§åˆ¶è®¾ç½®   */
+#define AM_FM175XX_CTRL_CLR         0x00    /**< \brief LPCD å¯„å­˜å™¨ä½æ§åˆ¶æ¸…é™¤  */
 /** @} */
 
 
 /**
- * \name HpdCtrlÀ©Õ¹¼Ä´æÆ÷ÑÚÂë (0x0f/0x03)
+ * \name HpdCtrlæ‰©å±•å¯„å­˜å™¨æ©ç  (0x0f/0x03)
  * @{
  */
 
-#define AM_FM175XX_EXMODE          0xc0    /**< \brief À©Õ¹¼Ä´æÆ÷Ä£Ê½×Ö,¶Á»ØÊ¼ÖÕ0 */
+#define AM_FM175XX_EXMODE          0xc0    /**< \brief æ‰©å±•å¯„å­˜å™¨æ¨¡å¼å­—,è¯»å›å§‹ç»ˆ0 */
 
 /**
- * \brief µÍ¹¦ºÄÄ£Ê½¿ØÖÆ
- *        ÖÃ0 µ±pin NPD=0ÇÒLPCDEn=0(È±Ê¡)Ê±,Ğ¾Æ¬½øÈëDPDÄ£Ê½
- *        ÖÃ1 µ±pin NPD=0ÇÒLPCDEn=0(È±Ê¡)Ê±,Ğ¾Æ¬½øÈëHPDÄ£Ê½
+ * \brief ä½åŠŸè€—æ¨¡å¼æ§åˆ¶
+ *        ç½®0 å½“pin NPD=0ä¸”LPCDEn=0(ç¼ºçœ)æ—¶,èŠ¯ç‰‡è¿›å…¥DPDæ¨¡å¼
+ *        ç½®1 å½“pin NPD=0ä¸”LPCDEn=0(ç¼ºçœ)æ—¶,èŠ¯ç‰‡è¿›å…¥HPDæ¨¡å¼
  */
 #define AM_FM175XX_HPDEN           0x20
 
 /** @} */
 
 /**
- * \name Lpcd IrqÀ©Õ¹¼Ä´æÆ÷ÑÚÂë (0x0f/0x12)
+ * \name Lpcd Irqæ‰©å±•å¯„å­˜å™¨æ©ç  (0x0f/0x12)
  * @{
  */
-#define AM_FM175XX_LPCD_INT_IDLE          0x00  /**< \brief ÎŞÖĞ¶Ï*/
-#define AM_FM175XX_LPCD_CARD_IRQ          0x01  /**< \brief ¿¨½ø³¡ÖĞ¶Ï*/
-#define AM_FM175XX_LPCD_CALIB_IRQ         0x04  /**< \brief µ÷Ğ£Íê³ÉÖĞ¶Ï */
-#define AM_FM175XX_LPCD_WUP_IRQ           0x10  /**< \brief ×Ô¶¯»½ĞÑÖĞ¶Ï */
+#define AM_FM175XX_LPCD_INT_IDLE          0x00  /**< \brief æ— ä¸­æ–­*/
+#define AM_FM175XX_LPCD_CARD_IRQ          0x01  /**< \brief å¡è¿›åœºä¸­æ–­*/
+#define AM_FM175XX_LPCD_CALIB_IRQ         0x04  /**< \brief è°ƒæ ¡å®Œæˆä¸­æ–­ */
+#define AM_FM175XX_LPCD_WUP_IRQ           0x10  /**< \brief è‡ªåŠ¨å”¤é†’ä¸­æ–­ */
 /** @} */
 
 /**
- * \name UseRetÀ©Õ¹¼Ä´æÆ÷ÑÚÂë (0x0f/0x1b)
+ * \name UseRetæ‰©å±•å¯„å­˜å™¨æ©ç  (0x0f/0x1b)
  * @{
  */
 
 /**
- * \brief µÍ¹¦ºÄÄ£Ê½¿ØÖÆ
- *        ÖÃ0 ²»Ìá¹©¹Ø¼üÊı¾İµÄ±£´æ¹¦ÄÜ
- *        ÖÃ1 ±íÊ¾ÔÚHPDÄ£Ê½»òLPCDÄ£Ê½ÏÂ±£´æ¹Ø¼ü¼Ä´æÆ÷µÄÉèÖÃ,¼ò»¯ÍË³öÊ±µÄ³õÊ¼»¯¹¤×÷
+ * \brief ä½åŠŸè€—æ¨¡å¼æ§åˆ¶
+ *        ç½®0 ä¸æä¾›å…³é”®æ•°æ®çš„ä¿å­˜åŠŸèƒ½
+ *        ç½®1 è¡¨ç¤ºåœ¨HPDæ¨¡å¼æˆ–LPCDæ¨¡å¼ä¸‹ä¿å­˜å…³é”®å¯„å­˜å™¨çš„è®¾ç½®,ç®€åŒ–é€€å‡ºæ—¶çš„åˆå§‹åŒ–å·¥ä½œ
  */
 #define AM_FM175XX_USERET          0x10
 
 /** @} */
 
 /**
- * \name LPCD MISCÀ©Õ¹¼Ä´æÆ÷ÑÚÂë (0x0f/0x1c)
+ * \name LPCD MISCæ‰©å±•å¯„å­˜å™¨æ©ç  (0x0f/0x1c)
  * @{
  */
 
-#define AM_FM175XX_LCPD_CALIB_VMID_EN  0x01    /**< \brief LPCD ¿ªÆôµ÷½ÌÄ£Ê½ÖĞµÄVmindÊ¹ÄÜ*/
+#define AM_FM175XX_LCPD_CALIB_VMID_EN  0x01    /**< \brief LPCD å¼€å¯è°ƒæ•™æ¨¡å¼ä¸­çš„Vmindä½¿èƒ½*/
 
 /** @} */
 
 
 /**
- * \name LVDctrlÀ©Õ¹¼Ä´æÆ÷ÑÚÂë,µÍµçÑ¹±¨¾¯ÉèÖÃ (0x0f/0x1d)
+ * \name LVDctrlæ‰©å±•å¯„å­˜å™¨æ©ç ,ä½ç”µå‹æŠ¥è­¦è®¾ç½® (0x0f/0x1d)
  * @{
  */
 
-#define AM_FM175XX_LVD_IRQ         0x10    /**< \brief 1±íÊ¾·¢ÉúµÍµçÑ¹±¨¾¯,Ğ´0Çå³ı´Ë¼Ä´æÆ÷ */
-#define AM_FM175XX_LVD_EFF         0x08    /**< \brief ·¢ÉúµÍµçÑ¹±¨¾¯Ê±1Êı×ÖµçÂ·¸´Î»,0²úÉúÖĞ¶Ï±êÖ¾ */
-#define AM_FM175XX_LVD_LE          0x04    /**< \brief 1µÍµçÑ¹±¨¾¯ÖĞ¶ÏÊ¹ÄÜ,È±Ê¡²»Ê¹ÄÜ */
-#define AM_FM175XX_LVD_CTRL_MASK   0x03    /**< \brief µÍÑ¹±¨¾¯¿ØÖÆ */
-#define AM_FM175XX_LVD_CTRL_NONE   0x00    /**< \brief ²»Ê¹ÄÜLVD¹¦ÄÜ */
-#define AM_FM175XX_LVD_CTRL_1_9V   0x01    /**< \brief µÍÓÚ1.9V±¨¾¯ */
-#define AM_FM175XX_LVD_CTRL_2_1V   0x02    /**< \brief µÍÓÚ2.1V±¨¾¯(È±Ê¡) */
-#define AM_FM175XX_LVD_CTRL_2_4V   0x03    /**< \brief µÍÓÚ2.4V±¨¾¯ */
+#define AM_FM175XX_LVD_IRQ         0x10    /**< \brief 1è¡¨ç¤ºå‘ç”Ÿä½ç”µå‹æŠ¥è­¦,å†™0æ¸…é™¤æ­¤å¯„å­˜å™¨ */
+#define AM_FM175XX_LVD_EFF         0x08    /**< \brief å‘ç”Ÿä½ç”µå‹æŠ¥è­¦æ—¶1æ•°å­—ç”µè·¯å¤ä½,0äº§ç”Ÿä¸­æ–­æ ‡å¿— */
+#define AM_FM175XX_LVD_LE          0x04    /**< \brief 1ä½ç”µå‹æŠ¥è­¦ä¸­æ–­ä½¿èƒ½,ç¼ºçœä¸ä½¿èƒ½ */
+#define AM_FM175XX_LVD_CTRL_MASK   0x03    /**< \brief ä½å‹æŠ¥è­¦æ§åˆ¶ */
+#define AM_FM175XX_LVD_CTRL_NONE   0x00    /**< \brief ä¸ä½¿èƒ½LVDåŠŸèƒ½ */
+#define AM_FM175XX_LVD_CTRL_1_9V   0x01    /**< \brief ä½äº1.9VæŠ¥è­¦ */
+#define AM_FM175XX_LVD_CTRL_2_1V   0x02    /**< \brief ä½äº2.1VæŠ¥è­¦(ç¼ºçœ) */
+#define AM_FM175XX_LVD_CTRL_2_4V   0x03    /**< \brief ä½äº2.4VæŠ¥è­¦ */
 
 /** @} */
 

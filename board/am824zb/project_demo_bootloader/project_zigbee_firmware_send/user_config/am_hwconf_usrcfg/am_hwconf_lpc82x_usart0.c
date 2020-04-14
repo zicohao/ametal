@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief LPC82X USART0 ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief LPC82X USART0 ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_lpc82x_usart0.c
  *
  * \internal
@@ -34,12 +34,12 @@
  */
 
 /**
- * \brief »ù±¾ÊäÈëÆµÂÊÉèÖÃ£¨»ù±¾ÊäÈëÆµÂÊ±ØĞëĞ¡ÓÚÏµÍ³Ê±ÖÓÆµÂÊÇÒÓ¦Îª²¨ÌØÂÊµÄÕûÊı±¶£©
+ * \brief åŸºæœ¬è¾“å…¥é¢‘ç‡è®¾ç½®ï¼ˆåŸºæœ¬è¾“å…¥é¢‘ç‡å¿…é¡»å°äºç³»ç»Ÿæ—¶é’Ÿé¢‘ç‡ä¸”åº”ä¸ºæ³¢ç‰¹ç‡çš„æ•´æ•°å€ï¼‰
  *
- * ÎªÁËÉèÖÃ²¨ÌØÂÊÎª115200,¹ÊÉèÖÃ´®¿Ú»ù±¾ÊäÈëÆµÂÊÎª£º
- * 11059200Hz(11059200 = 115200 * 96)¡£
- * ´®¿Ú»ù±¾ÊäÈëÆµÂÊÉèÖÃÎª11.059200MHz£¬¿ÉÂú×ã´ó¶àÊı²¨ÌØÂÊµÄÉèÖÃ(9600,4800,115200)
- * \note  USART0\1\2¹²ÓÃÒ»¸ö»ù±¾ÊäÈëÆµÂÊ,²»ÒªËæÒâ¸Ä¶¯¡£
+ * ä¸ºäº†è®¾ç½®æ³¢ç‰¹ç‡ä¸º115200,æ•…è®¾ç½®ä¸²å£åŸºæœ¬è¾“å…¥é¢‘ç‡ä¸ºï¼š
+ * 11059200Hz(11059200 = 115200 * 96)ã€‚
+ * ä¸²å£åŸºæœ¬è¾“å…¥é¢‘ç‡è®¾ç½®ä¸º11.059200MHzï¼Œå¯æ»¡è¶³å¤§å¤šæ•°æ³¢ç‰¹ç‡çš„è®¾ç½®(9600,4800,115200)
+ * \note  USART0\1\2å…±ç”¨ä¸€ä¸ªåŸºæœ¬è¾“å…¥é¢‘ç‡,ä¸è¦éšæ„æ”¹åŠ¨ã€‚
  *
  */
 #ifndef  __LPC82X_UASART_BASE_RATE
@@ -48,13 +48,13 @@
 
 #endif
 
-/** \brief USART0Æ½Ì¨³õÊ¼»¯ */
+/** \brief USART0å¹³å°åˆå§‹åŒ– */
 static void __lpc82x_plfm_usart0_init (void)
 {
-    /* ÉèÖÃ´®¿Ú»ù´¡Ê±ÖÓ */
+    /* è®¾ç½®ä¸²å£åŸºç¡€æ—¶é’Ÿ */
     amhw_lpc82x_clk_usart_baseclkrate_set(__LPC82X_UASART_BASE_RATE);
 
-    /* Ê¹ÄÜUSART0Ê±ÖÓ²¢¸´Î» */
+    /* ä½¿èƒ½USART0æ—¶é’Ÿå¹¶å¤ä½ */
     amhw_lpc82x_clk_periph_enable(AMHW_LPC82X_CLK_UART0);
     amhw_lpc82x_syscon_periph_reset(AMHW_LPC82X_RESET_UART0);
 
@@ -62,7 +62,7 @@ static void __lpc82x_plfm_usart0_init (void)
     am_gpio_pin_cfg(PIO0_0, PIO_FUNC_U0_RXD);
 }
 
-/** \brief ½â³ıUSART0 Æ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤USART0 å¹³å°åˆå§‹åŒ– */
 static void __lpc82x_plfm_usart0_deinit (void)
 {
     amhw_lpc82x_syscon_periph_reset(AMHW_LPC82X_RESET_UART0);
@@ -72,25 +72,25 @@ static void __lpc82x_plfm_usart0_deinit (void)
     am_gpio_pin_cfg(PIO0_0, PIO0_0_GPIO);
 }
 
-/** \brief USART0 Éè±¸ĞÅÏ¢ */
+/** \brief USART0 è®¾å¤‡ä¿¡æ¯ */
 static const am_lpc_usart_devinfo_t __g_usart0_devinfo = {
-    LPC82X_USART0_BASE,                 /**< \brief USART0¼Ä´æÆ÷»ùÖ· */
-    INUM_USART0,                        /**< \brief USART0µÄÖĞ¶Ï±àºÅ */
-    CLK_UART0,                          /**< \brief USART0µÄÊ±ÖÓ±àºÅ */
-    __lpc82x_plfm_usart0_init,          /**< \brief USART0µÄÆ½Ì¨³õÊ¼»¯ */
-    __lpc82x_plfm_usart0_deinit,        /**< \brief USART0µÄÆ½Ì¨È¥³õÊ¼»¯ */
-    NULL                                /**< \brief USART1µÄÆ½Ì¨ÎŞRS485¹Ü½Å */
+    LPC82X_USART0_BASE,                 /**< \brief USART0å¯„å­˜å™¨åŸºå€ */
+    INUM_USART0,                        /**< \brief USART0çš„ä¸­æ–­ç¼–å· */
+    CLK_UART0,                          /**< \brief USART0çš„æ—¶é’Ÿç¼–å· */
+    __lpc82x_plfm_usart0_init,          /**< \brief USART0çš„å¹³å°åˆå§‹åŒ– */
+    __lpc82x_plfm_usart0_deinit,        /**< \brief USART0çš„å¹³å°å»åˆå§‹åŒ– */
+    NULL                                /**< \brief USART1çš„å¹³å°æ— RS485ç®¡è„š */
 };
 
-static am_lpc_usart_dev_t  __g_usart0_dev;    /**< \brief ¶¨ÒåUSART0 Éè±¸ */
+static am_lpc_usart_dev_t  __g_usart0_dev;    /**< \brief å®šä¹‰USART0 è®¾å¤‡ */
 
-/** \brief USART0 ÊµÀı³õÊ¼»¯£¬»ñµÃUSART0±ê×¼·şÎñ¾ä±ú */
+/** \brief USART0 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—USART0æ ‡å‡†æœåŠ¡å¥æŸ„ */
     am_uart_handle_t am_lpc82x_usart0_inst_init (void)
 {
     return am_lpc_usart_init(&__g_usart0_dev, &__g_usart0_devinfo);
 }
 
-/** \brief USART0 ÊµÀı½â³õÊ¼»¯ */
+/** \brief USART0 å®ä¾‹è§£åˆå§‹åŒ– */
 void am_lpc82x_usart0_inst_deinit (am_uart_handle_t handle)
 {
     am_lpc_usart_deinit(handle);

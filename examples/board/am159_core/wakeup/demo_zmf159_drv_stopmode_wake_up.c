@@ -11,13 +11,13 @@
 *******************************************************************************/
 /**
  * \file
- * \brief Í£Ö¹Ä£Ê½Àı³Ì£¬Í¨¹ıÇı¶¯²ã½Ó¿ÚÊµÏÖ
+ * \brief åœæ­¢æ¨¡å¼ä¾‹ç¨‹ï¼Œé€šè¿‡é©±åŠ¨å±‚æ¥å£å®ç°
  *
- * - ÊµÏÖÏÖÏó
- *   1. MCU ½øÈëÍ£Ö¹Ä£Ê½Ê±£¬ J-Link µ÷ÊÔ¶Ï¿ª£»
- *   2. °´ÏÂ KEY/RES ¼ü»½ĞÑ MCU£¬´®¿ÚÊä³ö wake_up£¬³ÌĞò¼ÌĞøÔËĞĞ¡£
+ * - å®ç°ç°è±¡
+ *   1. MCU è¿›å…¥åœæ­¢æ¨¡å¼æ—¶ï¼Œ J-Link è°ƒè¯•æ–­å¼€ï¼›
+ *   2. æŒ‰ä¸‹ KEY/RES é”®å”¤é†’ MCUï¼Œä¸²å£è¾“å‡º wake_upï¼Œç¨‹åºç»§ç»­è¿è¡Œã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_zmf159_drv_stopmode_wake_up.c src_zmf159_drv_stopmode_wake_up
  *
  * \internal
@@ -44,7 +44,7 @@
 #include "am_zmf159_inst_init.h"
 
 /**
- * \brief Òı½ÅÖĞ¶Ï·şÎñº¯Êı
+ * \brief å¼•è„šä¸­æ–­æœåŠ¡å‡½æ•°
  */
 static void gpio_isr (void *p_arg)
 {
@@ -52,7 +52,7 @@ static void gpio_isr (void *p_arg)
 }
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_zmf159_drv_stopmode_wake_up_entry (void)
 {
@@ -62,21 +62,21 @@ void demo_zmf159_drv_stopmode_wake_up_entry (void)
 
     am_zmf159_pwr_inst_init();
 
-    /* »½ĞÑÅäÖÃ */
+    /* å”¤é†’é…ç½® */
     am_zmf159_wake_up_cfg(AM_ZMF159_PWR_MODE_STOP, gpio_isr, (void *)0);
 
     for (i = 0; i < 5; i++) {
         am_mdelay(1000);
     }
 
-    /* ½øÈëÍ£»úÄ£Ê½ */
+    /* è¿›å…¥åœæœºæ¨¡å¼ */
     am_zmf159_pwr_mode_into(AM_ZMF159_PWR_MODE_STOP);
 
     AM_DBG_INFO("wake_up!\r\n");
 
     while (1) {
 
-        /* Ö¸Ê¾µÆÖ¸Ê¾Ê±ÖÓÊÇ·ñ»Ö¸´Õı³£ */
+        /* æŒ‡ç¤ºç¯æŒ‡ç¤ºæ—¶é’Ÿæ˜¯å¦æ¢å¤æ­£å¸¸ */
         am_led_on(LED0);
         am_mdelay(500);
         am_led_off(LED0);

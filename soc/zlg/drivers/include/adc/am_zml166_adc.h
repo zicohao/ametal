@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief AM_ZML166_ADC Ó¦ÓÃ½Ó¿ÚÎÄ¼ş
+ * \brief AM_ZML166_ADC åº”ç”¨æ¥å£æ–‡ä»¶
  *
  * \internal
  * \par Modification History
@@ -37,354 +37,354 @@ extern "C" {
 #include "am_adc.h"
 #include "am_wait.h"
 
-#define  AM_ZML166_ADC_CFG_NUM   7 /**< \brief ÏµÍ³ÅäÖÃ¼Ä´æÆ÷ÊıÁ¿ */
-/** \brief µçÑ¹Ğ£×¼ÏµÊı±£´æµØÖ·¿é  */
+#define  AM_ZML166_ADC_CFG_NUM   7 /**< \brief ç³»ç»Ÿé…ç½®å¯„å­˜å™¨æ•°é‡ */
+/** \brief ç”µå‹æ ¡å‡†ç³»æ•°ä¿å­˜åœ°å€å—  */
 #define  FLASH_BLOCK_NUM         63
-/** \brief PT100Ğ£×¼ÏµÊı±£´æµØÖ·  */
+/** \brief PT100æ ¡å‡†ç³»æ•°ä¿å­˜åœ°å€  */
 #define  PT100_PARA_SAVE_ADDRESS  (((FLASH_BLOCK_NUM * 1024)) + 4 * 16)
 /*******************************************************************************
-  AM_ZML166_ADC ¼Ä´æÆ÷µØÖ·
+  AM_ZML166_ADC å¯„å­˜å™¨åœ°å€
 *******************************************************************************/
 /**
- * \name AM_ZML166_ADC ¼Ä´æÆ÷µØÖ·
+ * \name AM_ZML166_ADC å¯„å­˜å™¨åœ°å€
  * @{
  */
-#define AM_ZML166_ADC_SYS_ADDR         (0x00) /**< \brief ÏµÍ³ÅäÖÃ¼Ä´æÆ÷µØÖ· */
-#define AM_ZML166_ADC_ADC0_ADDR        (0x01) /**< \brief ADC ÅäÖÃ¼Ä´æÆ÷ 0 µØÖ· */
-#define AM_ZML166_ADC_ADC1_ADDR        (0x02) /**< \brief ADC ÅäÖÃ¼Ä´æÆ÷ 1 µØÖ· */
-#define AM_ZML166_ADC_ADC2_ADDR        (0x03) /**< \brief ADC ÅäÖÃ¼Ä´æÆ÷ 2 µØÖ· */
-#define AM_ZML166_ADC_ADC3_ADDR        (0x04) /**< \brief ADC ÅäÖÃ¼Ä´æÆ÷ 3 µØÖ· */
-#define AM_ZML166_ADC_ADC4_ADDR        (0x05) /**< \brief ADC ÅäÖÃ¼Ä´æÆ÷ 4 µØÖ· */
-#define AM_ZML166_ADC_ADC5_ADDR        (0x06) /**< \brief ADC ÅäÖÃ¼Ä´æÆ÷ 5 µØÖ· */
-#define AM_ZML166_ADC_ADO_ADDR         (0x09) /**< \brief ADC ×ª»»Êı¾İ¼Ä´æÆ÷µØÖ· */
-#define AM_ZML166_ADC_ADS_ADDR         (0x0A) /**< \brief ADC ×ª»»Êı¾İ¶ÁÈ¡±ê×¼¼Ä´æÆ÷µØÖ· */
+#define AM_ZML166_ADC_SYS_ADDR         (0x00) /**< \brief ç³»ç»Ÿé…ç½®å¯„å­˜å™¨åœ°å€ */
+#define AM_ZML166_ADC_ADC0_ADDR        (0x01) /**< \brief ADC é…ç½®å¯„å­˜å™¨ 0 åœ°å€ */
+#define AM_ZML166_ADC_ADC1_ADDR        (0x02) /**< \brief ADC é…ç½®å¯„å­˜å™¨ 1 åœ°å€ */
+#define AM_ZML166_ADC_ADC2_ADDR        (0x03) /**< \brief ADC é…ç½®å¯„å­˜å™¨ 2 åœ°å€ */
+#define AM_ZML166_ADC_ADC3_ADDR        (0x04) /**< \brief ADC é…ç½®å¯„å­˜å™¨ 3 åœ°å€ */
+#define AM_ZML166_ADC_ADC4_ADDR        (0x05) /**< \brief ADC é…ç½®å¯„å­˜å™¨ 4 åœ°å€ */
+#define AM_ZML166_ADC_ADC5_ADDR        (0x06) /**< \brief ADC é…ç½®å¯„å­˜å™¨ 5 åœ°å€ */
+#define AM_ZML166_ADC_ADO_ADDR         (0x09) /**< \brief ADC è½¬æ¢æ•°æ®å¯„å­˜å™¨åœ°å€ */
+#define AM_ZML166_ADC_ADS_ADDR         (0x0A) /**< \brief ADC è½¬æ¢æ•°æ®è¯»å–æ ‡å‡†å¯„å­˜å™¨åœ°å€ */
 /**
  * @}
  */
 
 /*******************************************************************************
-  AM_ZML166_ADC SYS ¼Ä´æÆ÷
+  AM_ZML166_ADC SYS å¯„å­˜å™¨
 *******************************************************************************/
 
-#define AM_ZML166_ADC_TMODE_MASK       (3 << 6) /**< \brief ²âÁ¿Ä£Ê½ÑÚÂë */
-#define AM_ZML166_ADC_TMODE_MANUAL     (0 << 6) /**< \brief ÊÖ¶¯²âÁ¿Ä£Ê½£¨×ÔÓÉÅäÖÃ£© */
+#define AM_ZML166_ADC_TMODE_MASK       (3 << 6) /**< \brief æµ‹é‡æ¨¡å¼æ©ç  */
+#define AM_ZML166_ADC_TMODE_MANUAL     (0 << 6) /**< \brief æ‰‹åŠ¨æµ‹é‡æ¨¡å¼ï¼ˆè‡ªç”±é…ç½®ï¼‰ */
 
-#define AM_ZML166_ADC_PMODE_MASK       (3 << 4) /**< \brief ¹¤×÷Ä£Ê½ÑÚÂë */
-#define AM_ZML166_ADC_PMODE_MANUAL     (3 << 4) /**< \brief ×ÔÓÉÄ£Ê½(ADC ×ÔÓÉÅäÖÃ) */
+#define AM_ZML166_ADC_PMODE_MASK       (3 << 4) /**< \brief å·¥ä½œæ¨¡å¼æ©ç  */
+#define AM_ZML166_ADC_PMODE_MANUAL     (3 << 4) /**< \brief è‡ªç”±æ¨¡å¼(ADC è‡ªç”±é…ç½®) */
 
-#define AM_ZML166_ADC_ENREF_ENABLE     (1 << 3) /**< \brief VREF Ê¹ÄÜ */
-#define AM_ZML166_ADC_ENREF_DISABLE    (0 << 3) /**< \brief VREF ¹Ø±Õ */
+#define AM_ZML166_ADC_ENREF_ENABLE     (1 << 3) /**< \brief VREF ä½¿èƒ½ */
+#define AM_ZML166_ADC_ENREF_DISABLE    (0 << 3) /**< \brief VREF å…³é—­ */
 
-#define AM_ZML166_ADC_ENADC_ENABLE     (1 << 2) /**< \brief ADC Ê¹ÄÜ */
-#define AM_ZML166_ADC_ENADC_DISABLE    (0 << 2) /**< \brief ADC ¹Ø±Õ */
+#define AM_ZML166_ADC_ENADC_ENABLE     (1 << 2) /**< \brief ADC ä½¿èƒ½ */
+#define AM_ZML166_ADC_ENADC_DISABLE    (0 << 2) /**< \brief ADC å…³é—­ */
 
-#define AM_ZML166_ADC_ENLDO_ENABLE     (1 << 1) /**< \brief LDO Ê¹ÄÜ */
-#define AM_ZML166_ADC_ENLDO_DISABLE    (0 << 1) /**< \brief LDO ¹Ø±Õ */
+#define AM_ZML166_ADC_ENLDO_ENABLE     (1 << 1) /**< \brief LDO ä½¿èƒ½ */
+#define AM_ZML166_ADC_ENLDO_DISABLE    (0 << 1) /**< \brief LDO å…³é—­ */
 
 /*******************************************************************************
-  AM_ZML166_ADC ADC0 ¼Ä´æÆ÷
+  AM_ZML166_ADC ADC0 å¯„å­˜å™¨
 *******************************************************************************/
 
-#define AM_ZML166_ADC_IMODE_PER        (1 << 7)    /**< \brief µ÷ÖÆÆ÷ĞÔÄÜÄ£Ê½µçÁ÷(ÆÕÍ¨Ä£Ê½µçÁ÷x2) */
-#define AM_ZML166_ADC_IMODE_NORMAL     (0 << 7)    /**< \brief µ÷ÖÆÆ÷ÆÕÍ¨Ä£Ê½µçÁ÷ */
+#define AM_ZML166_ADC_IMODE_PER        (1 << 7)    /**< \brief è°ƒåˆ¶å™¨æ€§èƒ½æ¨¡å¼ç”µæµ(æ™®é€šæ¨¡å¼ç”µæµx2) */
+#define AM_ZML166_ADC_IMODE_NORMAL     (0 << 7)    /**< \brief è°ƒåˆ¶å™¨æ™®é€šæ¨¡å¼ç”µæµ */
 
-#define AM_ZML166_ADC_FS_662_22        (1 << 6)    /**< \brief ²ÉÑùÆµÂÊÎª 662.22KHz */
-#define AM_ZML166_ADC_FS_331_11        (0 << 6)    /**< \brief ²ÉÑùÆµÂÊÎª 331.11KHz */
+#define AM_ZML166_ADC_FS_662_22        (1 << 6)    /**< \brief é‡‡æ ·é¢‘ç‡ä¸º 662.22KHz */
+#define AM_ZML166_ADC_FS_331_11        (0 << 6)    /**< \brief é‡‡æ ·é¢‘ç‡ä¸º 331.11KHz */
 
-#define AM_ZML166_ADC_INNS_AIN(ch)     ((ch) << 3) /**< \brief PGA ¸º¶ËÊäÈëĞÅºÅ£ºAIN4~AIN1 */
-#define AM_ZML166_ADC_INNS_MASK        (7 << 3)    /**< \brief PGA ¸º¶ËÊäÈëĞÅºÅÑÚÂë */
-#define AM_ZML166_ADC_INNS_1_2_VS      (5 << 3)    /**< \brief PGA ¸º¶ËÊäÈëĞÅºÅ£º1/2 VS£¨¹²Ä£µçÑ¹£© */
-#define AM_ZML166_ADC_INNS_GND         (4 << 3)    /**< \brief PGA ¸º¶ËÊäÈëĞÅºÅ£ºGND£¨½öÔÚ TMODE=10 ÓĞĞ§£© */
-#define AM_ZML166_ADC_INNS_AIN4        (3 << 3)    /**< \brief PGA ¸º¶ËÊäÈëĞÅºÅ£ºAIN4 */
-#define AM_ZML166_ADC_INNS_AIN3        (2 << 3)    /**< \brief PGA ¸º¶ËÊäÈëĞÅºÅ£ºAIN3 */
-#define AM_ZML166_ADC_INNS_AIN2        (1 << 3)    /**< \brief PGA ¸º¶ËÊäÈëĞÅºÅ£ºAIN2 */
-#define AM_ZML166_ADC_INNS_AIN1        (0 << 3)    /**< \brief PGA ¸º¶ËÊäÈëĞÅºÅ£ºAIN1 */
+#define AM_ZML166_ADC_INNS_AIN(ch)     ((ch) << 3) /**< \brief PGA è´Ÿç«¯è¾“å…¥ä¿¡å·ï¼šAIN4~AIN1 */
+#define AM_ZML166_ADC_INNS_MASK        (7 << 3)    /**< \brief PGA è´Ÿç«¯è¾“å…¥ä¿¡å·æ©ç  */
+#define AM_ZML166_ADC_INNS_1_2_VS      (5 << 3)    /**< \brief PGA è´Ÿç«¯è¾“å…¥ä¿¡å·ï¼š1/2 VSï¼ˆå…±æ¨¡ç”µå‹ï¼‰ */
+#define AM_ZML166_ADC_INNS_GND         (4 << 3)    /**< \brief PGA è´Ÿç«¯è¾“å…¥ä¿¡å·ï¼šGNDï¼ˆä»…åœ¨ TMODE=10 æœ‰æ•ˆï¼‰ */
+#define AM_ZML166_ADC_INNS_AIN4        (3 << 3)    /**< \brief PGA è´Ÿç«¯è¾“å…¥ä¿¡å·ï¼šAIN4 */
+#define AM_ZML166_ADC_INNS_AIN3        (2 << 3)    /**< \brief PGA è´Ÿç«¯è¾“å…¥ä¿¡å·ï¼šAIN3 */
+#define AM_ZML166_ADC_INNS_AIN2        (1 << 3)    /**< \brief PGA è´Ÿç«¯è¾“å…¥ä¿¡å·ï¼šAIN2 */
+#define AM_ZML166_ADC_INNS_AIN1        (0 << 3)    /**< \brief PGA è´Ÿç«¯è¾“å…¥ä¿¡å·ï¼šAIN1 */
 
-#define AM_ZML166_ADC_INPS_AIN(ch)     ((ch) << 0) /**< \brief PGA Õı¶ËÊäÈëĞÅºÅ£ºAIN3~AIN0 */
-#define AM_ZML166_ADC_INPS_MASK        (7 << 0)    /**< \brief PGA Õı¶ËÊäÈëĞÅºÅÑÚÂë */
-#define AM_ZML166_ADC_INPS_1_2_VS      (5 << 0)    /**< \brief PGA Õı¶ËÊäÈëĞÅºÅ£º1/2 VS£¨¹²Ä£µçÑ¹£© */
-#define AM_ZML166_ADC_INPS_AIN3        (3 << 0)    /**< \brief PGA Õı¶ËÊäÈëĞÅºÅ£ºAIN3 */
-#define AM_ZML166_ADC_INPS_AIN2        (2 << 0)    /**< \brief PGA Õı¶ËÊäÈëĞÅºÅ£ºAIN2 */
-#define AM_ZML166_ADC_INPS_AIN1        (1 << 0)    /**< \brief PGA Õı¶ËÊäÈëĞÅºÅ£ºAIN1 */
-#define AM_ZML166_ADC_INPS_AIN0        (0 << 0)    /**< \brief PGA Õı¶ËÊäÈëĞÅºÅ£ºAIN0 */
+#define AM_ZML166_ADC_INPS_AIN(ch)     ((ch) << 0) /**< \brief PGA æ­£ç«¯è¾“å…¥ä¿¡å·ï¼šAIN3~AIN0 */
+#define AM_ZML166_ADC_INPS_MASK        (7 << 0)    /**< \brief PGA æ­£ç«¯è¾“å…¥ä¿¡å·æ©ç  */
+#define AM_ZML166_ADC_INPS_1_2_VS      (5 << 0)    /**< \brief PGA æ­£ç«¯è¾“å…¥ä¿¡å·ï¼š1/2 VSï¼ˆå…±æ¨¡ç”µå‹ï¼‰ */
+#define AM_ZML166_ADC_INPS_AIN3        (3 << 0)    /**< \brief PGA æ­£ç«¯è¾“å…¥ä¿¡å·ï¼šAIN3 */
+#define AM_ZML166_ADC_INPS_AIN2        (2 << 0)    /**< \brief PGA æ­£ç«¯è¾“å…¥ä¿¡å·ï¼šAIN2 */
+#define AM_ZML166_ADC_INPS_AIN1        (1 << 0)    /**< \brief PGA æ­£ç«¯è¾“å…¥ä¿¡å·ï¼šAIN1 */
+#define AM_ZML166_ADC_INPS_AIN0        (0 << 0)    /**< \brief PGA æ­£ç«¯è¾“å…¥ä¿¡å·ï¼šAIN0 */
 /*******************************************************************************
-  AM_ZML166_ADC ADC1 ¼Ä´æÆ÷
+  AM_ZML166_ADC ADC1 å¯„å­˜å™¨
 *******************************************************************************/
 
-#define AM_ZML166_ADC_DR_MASK          (7 << 5)   /**< \brief ADC Êä³öËÙÂÊÑÚÂë */
-#define AM_ZML166_ADC_DR_200           (4 << 5)   /**< \brief ADC Êä³öËÙÂÊÎª 200 Hz */
-#define AM_ZML166_ADC_DR_100           (3 << 5)   /**< \brief ADC Êä³öËÙÂÊÎª 100 Hz */
-#define AM_ZML166_ADC_DR_50            (2 << 5)   /**< \brief ADC Êä³öËÙÂÊÎª 50 Hz */
-#define AM_ZML166_ADC_DR_25            (1 << 5)   /**< \brief ADC Êä³öËÙÂÊÎª 25 Hz */
-#define AM_ZML166_ADC_DR_12_5          (0 << 5)   /**< \brief ADC Êä³öËÙÂÊÎª 12.5 Hz */
+#define AM_ZML166_ADC_DR_MASK          (7 << 5)   /**< \brief ADC è¾“å‡ºé€Ÿç‡æ©ç  */
+#define AM_ZML166_ADC_DR_200           (4 << 5)   /**< \brief ADC è¾“å‡ºé€Ÿç‡ä¸º 200 Hz */
+#define AM_ZML166_ADC_DR_100           (3 << 5)   /**< \brief ADC è¾“å‡ºé€Ÿç‡ä¸º 100 Hz */
+#define AM_ZML166_ADC_DR_50            (2 << 5)   /**< \brief ADC è¾“å‡ºé€Ÿç‡ä¸º 50 Hz */
+#define AM_ZML166_ADC_DR_25            (1 << 5)   /**< \brief ADC è¾“å‡ºé€Ÿç‡ä¸º 25 Hz */
+#define AM_ZML166_ADC_DR_12_5          (0 << 5)   /**< \brief ADC è¾“å‡ºé€Ÿç‡ä¸º 12.5 Hz */
 
-#define AM_ZML166_ADC_BUFBP_MASK       (1 << 4)   /**< \brief Buffer ¿ØÖÆÎ»ÑÚÂë */
-#define AM_ZML166_ADC_BUFBP_DISABLE    (1 << 4)   /**< \brief Buffer ¿ªÆô */
-#define AM_ZML166_ADC_BUFBP_ENABLE     (0 << 4)   /**< \brief Buffer ¿ªÆô */
+#define AM_ZML166_ADC_BUFBP_MASK       (1 << 4)   /**< \brief Buffer æ§åˆ¶ä½æ©ç  */
+#define AM_ZML166_ADC_BUFBP_DISABLE    (1 << 4)   /**< \brief Buffer å¼€å¯ */
+#define AM_ZML166_ADC_BUFBP_ENABLE     (0 << 4)   /**< \brief Buffer å¼€å¯ */
 
-#define AM_ZML166_ADC_PGA_MASK         (3 << 2)   /**< \brief PGA ÔöÒæÑÚÂë */
-#define AM_ZML166_ADC_PGA_32           (3 << 2)   /**< \brief PGA ÔöÒæÎª 32 */
-#define AM_ZML166_ADC_PGA_16           (2 << 2)   /**< \brief PGA ÔöÒæÎª 16 */
-#define AM_ZML166_ADC_PGA_1            (0 << 2)   /**< \brief PGA ÔöÒæÎª 1 */
+#define AM_ZML166_ADC_PGA_MASK         (3 << 2)   /**< \brief PGA å¢ç›Šæ©ç  */
+#define AM_ZML166_ADC_PGA_32           (3 << 2)   /**< \brief PGA å¢ç›Šä¸º 32 */
+#define AM_ZML166_ADC_PGA_16           (2 << 2)   /**< \brief PGA å¢ç›Šä¸º 16 */
+#define AM_ZML166_ADC_PGA_1            (0 << 2)   /**< \brief PGA å¢ç›Šä¸º 1 */
 
-#define AM_ZML166_ADC_ADGN_MASK        (3 << 0)   /**< \brief µ÷ÖÆÆ÷ÔöÒæÑÚÂë */
-#define AM_ZML166_ADC_ADGN_8           (3 << 0)   /**< \brief µ÷ÖÆÆ÷ÔöÒæÎª 8£¬DR ÏÂ½µÎª 1/4 */
-#define AM_ZML166_ADC_ADGN_4           (2 << 0)   /**< \brief µ÷ÖÆÆ÷ÔöÒæÎª 4£¬DR ÏÂ½µÎª 1/2 */
-#define AM_ZML166_ADC_ADGN_2           (1 << 0)   /**< \brief µ÷ÖÆÆ÷ÔöÒæÎª 2 */
-#define AM_ZML166_ADC_ADGN_1           (0 << 0)   /**< \brief µ÷ÖÆÆ÷ÔöÒæÎª 1 */
-
-/*******************************************************************************
-  AM_ZML166_ADC ADC3 ¼Ä´æÆ÷
-*******************************************************************************/
-
-#define AM_ZML166_ADC_GTCSL_COARSE     (1 << 7) /**< \brief ÔöÒæÎÂÆ¯²¹³¥´Öµ÷£¬Îª¾«µ÷x6£¬ÓÃÓÚ²¹³¥´«¸ĞÆ÷ÎÂÆ¯ */
-#define AM_ZML166_ADC_GTCSL_FINE       (0 << 7) /**< \brief ¾«µ÷£¬ÓÃÓÚµ÷ÕûĞ¾Æ¬×ÔÉíÎÂÆ¯ */
-
-#define AM_ZML166_ADC_LVSCP_ENABLE     (1 << 3) /**< \brief µçÆ½ÒÆÎ»Ä£¿éÕ¶²¨Ê¹ÄÜ£¬Õ¶²¨ÆµÂÊ Fs/128 */
-#define AM_ZML166_ADC_LVSCP_DISABLE    (0 << 3) /**< \brief µçÆ½ÒÆÎ»Ä£¿éÕ¶²¨²»Ê¹ÄÜ */
-
-#define AM_ZML166_ADC_LVSHIFT_ENABLE   (1 << 2) /**< \brief µçÆ½ÒÆÎ»Ê¹ÄÜ */
-#define AM_ZML166_ADC_LVSHIFT_DISABLE  (0 << 2) /**< \brief µçÆ½ÒÆÎ»²»Ê¹ÄÜ */
+#define AM_ZML166_ADC_ADGN_MASK        (3 << 0)   /**< \brief è°ƒåˆ¶å™¨å¢ç›Šæ©ç  */
+#define AM_ZML166_ADC_ADGN_8           (3 << 0)   /**< \brief è°ƒåˆ¶å™¨å¢ç›Šä¸º 8ï¼ŒDR ä¸‹é™ä¸º 1/4 */
+#define AM_ZML166_ADC_ADGN_4           (2 << 0)   /**< \brief è°ƒåˆ¶å™¨å¢ç›Šä¸º 4ï¼ŒDR ä¸‹é™ä¸º 1/2 */
+#define AM_ZML166_ADC_ADGN_2           (1 << 0)   /**< \brief è°ƒåˆ¶å™¨å¢ç›Šä¸º 2 */
+#define AM_ZML166_ADC_ADGN_1           (0 << 0)   /**< \brief è°ƒåˆ¶å™¨å¢ç›Šä¸º 1 */
 
 /*******************************************************************************
-  AM_ZML166_ADC ADC4 ¼Ä´æÆ÷
+  AM_ZML166_ADC ADC3 å¯„å­˜å™¨
 *******************************************************************************/
 
-#define AM_ZML166_ADC_CHOPM_MASK       (3 << 6) /**< \brief Õ¶²¨ÆµÂÊÑÚÂë */
+#define AM_ZML166_ADC_GTCSL_COARSE     (1 << 7) /**< \brief å¢ç›Šæ¸©æ¼‚è¡¥å¿ç²—è°ƒï¼Œä¸ºç²¾è°ƒx6ï¼Œç”¨äºè¡¥å¿ä¼ æ„Ÿå™¨æ¸©æ¼‚ */
+#define AM_ZML166_ADC_GTCSL_FINE       (0 << 7) /**< \brief ç²¾è°ƒï¼Œç”¨äºè°ƒæ•´èŠ¯ç‰‡è‡ªèº«æ¸©æ¼‚ */
 
-#define AM_ZML166_ADC_CHOPM_32_128     (2 << 6) /**< \brief ÒÇ·ÅÕ¶²¨ÆµÂÊÎª fs_clk/32£¬µ÷ÖÆÆ÷Õ¶²¨ÆµÂÊÎª fs_clk/128 */
-#define AM_ZML166_ADC_CHOPM_DISABLE    (0 << 6) /**< \brief ²»¿ªÕ¶²¨ fs_clk Îª MOD ²ÉÑùÆµÂÊ */
+#define AM_ZML166_ADC_LVSCP_ENABLE     (1 << 3) /**< \brief ç”µå¹³ç§»ä½æ¨¡å—æ–©æ³¢ä½¿èƒ½ï¼Œæ–©æ³¢é¢‘ç‡ Fs/128 */
+#define AM_ZML166_ADC_LVSCP_DISABLE    (0 << 3) /**< \brief ç”µå¹³ç§»ä½æ¨¡å—æ–©æ³¢ä¸ä½¿èƒ½ */
 
-#define AM_ZML166_ADC_ADREFS_MASK      (3 << 2) /**< \brief ADC ²Î¿¼µçÑ¹ÑÚÂë */
-#define AM_ZML166_ADC_ADREFS_VREF_GND  (3 << 2) /**< \brief Õı²Î¿¼=ÄÚ²¿ VREF£¬¸º²Î¿¼=GND */
-#define AM_ZML166_ADC_ADREFS_REFP_REFN (0 << 2) /**< \brief Õı²Î¿¼=Íâ²¿ REFP£¬¸º²Î¿¼=Íâ²¿ REFN */
-
-#define AM_ZML166_ADC_LDOS_MASK        (3 << 0) /**< \brief ÄÚ²¿ LDO Êä³ö VS µçÑ¹ÑÚÂë */
-#define AM_ZML166_ADC_LDOS_3_0         (3 << 0) /**< \brief ÄÚ²¿ LDO Êä³ö VS µçÑ¹Îª 3.0V */
+#define AM_ZML166_ADC_LVSHIFT_ENABLE   (1 << 2) /**< \brief ç”µå¹³ç§»ä½ä½¿èƒ½ */
+#define AM_ZML166_ADC_LVSHIFT_DISABLE  (0 << 2) /**< \brief ç”µå¹³ç§»ä½ä¸ä½¿èƒ½ */
 
 /*******************************************************************************
-  AM_ZML166_ADC ADC5 ¼Ä´æÆ÷
+  AM_ZML166_ADC ADC4 å¯„å­˜å™¨
 *******************************************************************************/
-#define AM_ZML166_ADC_FIL_EN_ENABLE    (1 << 2) /**< \brief Comb Ö®ºóµÄµÍÍ¨ÂË²¨Æ÷Ê¹ÄÜ */
-#define AM_ZML166_ADC_FIL_EN_DISABLE   (0 << 2) /**< \brief Comb Ö®ºóµÄµÍÍ¨ÂË²¨Æ÷Ê§ÄÜ */
 
-#define AM_ZML166_ADC_FIL_CON1_DISABLE (1 << 1) /**< \brief ÂË²¨Æ÷²»Ê¹ÓÃ¼¶Áª½á¹¹ */
-#define AM_ZML166_ADC_FIL_CON1_ENABLE  (0 << 1) /**< \brief ÂË²¨Æ÷Ê¹ÓÃ¼¶Áª½á¹¹ */
+#define AM_ZML166_ADC_CHOPM_MASK       (3 << 6) /**< \brief æ–©æ³¢é¢‘ç‡æ©ç  */
 
-#define AM_ZML166_ADC_FIL_CON2_2       (1 << 0) /**< \brief Ê¹ÓÃÂË²¨Æ÷ÏµÊı 2 */
-#define AM_ZML166_ADC_FIL_CON2_1       (0 << 0) /**< \brief Ê¹ÓÃÂË²¨Æ÷ÏµÊı 1 */
+#define AM_ZML166_ADC_CHOPM_32_128     (2 << 6) /**< \brief ä»ªæ”¾æ–©æ³¢é¢‘ç‡ä¸º fs_clk/32ï¼Œè°ƒåˆ¶å™¨æ–©æ³¢é¢‘ç‡ä¸º fs_clk/128 */
+#define AM_ZML166_ADC_CHOPM_DISABLE    (0 << 6) /**< \brief ä¸å¼€æ–©æ³¢ fs_clk ä¸º MOD é‡‡æ ·é¢‘ç‡ */
+
+#define AM_ZML166_ADC_ADREFS_MASK      (3 << 2) /**< \brief ADC å‚è€ƒç”µå‹æ©ç  */
+#define AM_ZML166_ADC_ADREFS_VREF_GND  (3 << 2) /**< \brief æ­£å‚è€ƒ=å†…éƒ¨ VREFï¼Œè´Ÿå‚è€ƒ=GND */
+#define AM_ZML166_ADC_ADREFS_REFP_REFN (0 << 2) /**< \brief æ­£å‚è€ƒ=å¤–éƒ¨ REFPï¼Œè´Ÿå‚è€ƒ=å¤–éƒ¨ REFN */
+
+#define AM_ZML166_ADC_LDOS_MASK        (3 << 0) /**< \brief å†…éƒ¨ LDO è¾“å‡º VS ç”µå‹æ©ç  */
+#define AM_ZML166_ADC_LDOS_3_0         (3 << 0) /**< \brief å†…éƒ¨ LDO è¾“å‡º VS ç”µå‹ä¸º 3.0V */
+
+/*******************************************************************************
+  AM_ZML166_ADC ADC5 å¯„å­˜å™¨
+*******************************************************************************/
+#define AM_ZML166_ADC_FIL_EN_ENABLE    (1 << 2) /**< \brief Comb ä¹‹åçš„ä½é€šæ»¤æ³¢å™¨ä½¿èƒ½ */
+#define AM_ZML166_ADC_FIL_EN_DISABLE   (0 << 2) /**< \brief Comb ä¹‹åçš„ä½é€šæ»¤æ³¢å™¨å¤±èƒ½ */
+
+#define AM_ZML166_ADC_FIL_CON1_DISABLE (1 << 1) /**< \brief æ»¤æ³¢å™¨ä¸ä½¿ç”¨çº§è”ç»“æ„ */
+#define AM_ZML166_ADC_FIL_CON1_ENABLE  (0 << 1) /**< \brief æ»¤æ³¢å™¨ä½¿ç”¨çº§è”ç»“æ„ */
+
+#define AM_ZML166_ADC_FIL_CON2_2       (1 << 0) /**< \brief ä½¿ç”¨æ»¤æ³¢å™¨ç³»æ•° 2 */
+#define AM_ZML166_ADC_FIL_CON2_1       (0 << 0) /**< \brief ä½¿ç”¨æ»¤æ³¢å™¨ç³»æ•° 1 */
 
 
-/** \brief ADC×ª»»½á¹ûÖµ */
+/** \brief ADCè½¬æ¢ç»“æœå€¼ */
 typedef uint32_t am_adc_val_t;
 /**
 
- * \brief AM_ZML166_ADC Éè±¸ĞÅÏ¢½á¹¹Ìå
+ * \brief AM_ZML166_ADC è®¾å¤‡ä¿¡æ¯ç»“æ„ä½“
  */
 typedef struct am_zml166_adc_devinfo {
 
-    uint32_t  vref;                             /**< \brief ADC ²Î¿¼µçÑ¹£¬µ¥Î»£ºmV */
-    uint32_t  timeout;                          /**< \brief ³¬Ê±Ê±¼ä£¬µ¥Î»ÎªºÁÃë */
+    uint32_t  vref;                             /**< \brief ADC å‚è€ƒç”µå‹ï¼Œå•ä½ï¼šmV */
+    uint32_t  timeout;                          /**< \brief è¶…æ—¶æ—¶é—´ï¼Œå•ä½ä¸ºæ¯«ç§’ */
 
 } am_zml166_adc_devinfo_t;
 
 /**
- * \brief zml166_adc Éè±¸½á¹¹Ìå
+ * \brief zml166_adc è®¾å¤‡ç»“æ„ä½“
  */
 typedef struct am_zml166_adc_dev {
 
-    /** \brief ADC ±ê×¼·şÎñ */
+    /** \brief ADC æ ‡å‡†æœåŠ¡ */
     am_adc_serv_t                   adc_serve;
     
-    /** \brief ADC Êä³öËÙÂÊ */
+    /** \brief ADC è¾“å‡ºé€Ÿç‡ */
     uint8_t                         speed;
 
-    /** \brief ADC ÔöÒæ±¶Êı */
+    /** \brief ADC å¢ç›Šå€æ•° */
     uint8_t                         gain;
 
-    /** \brief ÖĞ¶ÏÊÇ·ñÊ¹ÄÜ */
+    /** \brief ä¸­æ–­æ˜¯å¦ä½¿èƒ½ */
     am_bool_t                       irq_en;
     
-    /** \brief Êı¾İ×ª»»Íê³ÉµÈ´ı */
+    /** \brief æ•°æ®è½¬æ¢å®Œæˆç­‰å¾… */
     am_wait_t                       ready_wait;
 
-    /** \brief ADC ×´Ì¬ 0: ¿ÕÏĞ 1:ÕıÔÚ×ª»»ĞòÁĞÖĞ */
+    /** \brief ADC çŠ¶æ€ 0: ç©ºé—² 1:æ­£åœ¨è½¬æ¢åºåˆ—ä¸­ */
     uint8_t                         adc_state;
 
-    /** \brief Í¨µÀ */
+    /** \brief é€šé“ */
     uint8_t                         chan;
 
-    /** \brief µ±Ç°×ª»»µÄĞòÁĞÃèÊö·ûÊı×éÊ×µØÖ· */
+    /** \brief å½“å‰è½¬æ¢çš„åºåˆ—æè¿°ç¬¦æ•°ç»„é¦–åœ°å€ */
     am_adc_buf_desc_t              *p_desc;
 
-    /** \brief µ±Ç°×ª»»µÄĞòÁĞÃèÊö·ûÊıÁ¿ */
+    /** \brief å½“å‰è½¬æ¢çš„åºåˆ—æè¿°ç¬¦æ•°é‡ */
     uint32_t                        desc_num;
 
-    /** \brief ×ª»»µÄ´ÎÊı */
+    /** \brief è½¬æ¢çš„æ¬¡æ•° */
     uint32_t                        count;
 
-    /** \brief ×ª»»±êÖ¾ */
+    /** \brief è½¬æ¢æ ‡å¿— */
     uint32_t                        flags;
 
-    /** \brief ´æ·ÅÓÃ»§Æô¶¯×ª»»ºóµÄ»Øµ÷º¯Êı */
+    /** \brief å­˜æ”¾ç”¨æˆ·å¯åŠ¨è½¬æ¢åçš„å›è°ƒå‡½æ•° */
     am_adc_seq_cb_t                 pfn_callback;
 
-    /** \brief ÓÃ»§Æô¶¯»Øµ÷º¯ÊıµÄ»Øµ÷º¯Êı²ÎÊı */
+    /** \brief ç”¨æˆ·å¯åŠ¨å›è°ƒå‡½æ•°çš„å›è°ƒå‡½æ•°å‚æ•° */
     void                           *p_arg;
 
-    /** \brief ¶Ôµ±Ç°ĞòÁĞÃèÊö·ûÒÑ¾­²ÉÑùµÄ´ÎÊı */
+    /** \brief å¯¹å½“å‰åºåˆ—æè¿°ç¬¦å·²ç»é‡‡æ ·çš„æ¬¡æ•° */
     uint32_t                        conv_cnt;
 
-    /** \brief ÕıÔÚÖ´ĞĞµ±Ç°ĞòÁĞÃèÊö·ûµÄË÷Òı */
+    /** \brief æ­£åœ¨æ‰§è¡Œå½“å‰åºåˆ—æè¿°ç¬¦çš„ç´¢å¼• */
     uint32_t                        desc_index;
 
-    /** \brief ¶ÔÕû¸öĞòÁĞ×ª»»Íê³ÉµÄ´ÎÊı */
+    /** \brief å¯¹æ•´ä¸ªåºåˆ—è½¬æ¢å®Œæˆçš„æ¬¡æ•° */
     uint32_t                        seq_cnt;
 
-    /** \brief Éè±¸ĞÅÏ¢ */
+    /** \brief è®¾å¤‡ä¿¡æ¯ */
     const am_zml166_adc_devinfo_t  *p_devinfo;
 
-    /**< \brief Ğ£ÑéADS¼Ä´æÆ÷Ê¹ÄÜ¿ª¹Ø*/
+    /**< \brief æ ¡éªŒADSå¯„å­˜å™¨ä½¿èƒ½å¼€å…³*/
     int                             verify_flag;
 } am_zml166_adc_dev_t;
 
 /**
- * \brief AM_ZML166_ADC ¾ä±ú¶¨Òå
+ * \brief AM_ZML166_ADC å¥æŸ„å®šä¹‰
  */
 typedef am_zml166_adc_dev_t *am_zml166_adc_handle_t;
 
 /**
- * \brief AM_ZML166_ADC ¼Ä´æÆ÷ÉèÖÃ
+ * \brief AM_ZML166_ADC å¯„å­˜å™¨è®¾ç½®
  *
- * \param[in] p_dev   :Ö¸Ïò AM_ZML166_ADC Éè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[in] addr    :¼Ä´æÆ÷µØÖ·£¬Ö»ÓĞ SYS ºÍ ADC ¼Ä´æÆ÷¿ÉĞ´
- * \param[in] data    :´ıĞ´ÈëµÄÊı¾İ
+ * \param[in] p_dev   :æŒ‡å‘ AM_ZML166_ADC è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] addr    :å¯„å­˜å™¨åœ°å€ï¼Œåªæœ‰ SYS å’Œ ADC å¯„å­˜å™¨å¯å†™
+ * \param[in] data    :å¾…å†™å…¥çš„æ•°æ®
  *
- * \retval  AM_OK     :Ğ´Èë³É¹¦
- * \retval -AM_EINVAL :ÎŞĞ§²ÎÊı
- * \retval -AM_EBUSY  :Éè±¸Ã¦
+ * \retval  AM_OK     :å†™å…¥æˆåŠŸ
+ * \retval -AM_EINVAL :æ— æ•ˆå‚æ•°
+ * \retval -AM_EBUSY  :è®¾å¤‡å¿™
  */
 am_err_t am_zml166_adc_reg_set (am_zml166_adc_dev_t *p_dev,
                                 uint8_t              addr,
                                 uint32_t             data);
 
 /**
- * \brief ZML166 ADC ¼Ä´æÆ÷¶ÁÈ¡
+ * \brief ZML166 ADC å¯„å­˜å™¨è¯»å–
  *
- * \param[in]  p_dev  :Ö¸Ïò AM_ZML166_ADC Éè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[in]  addr   :´ı¶ÁÈ¡µÄ¼Ä´æÆ÷µØÖ·
- * \param[out] p_data :Ö¸Ïò½ÓÊÕ»º³åÇøµÄÖ¸Õë£¬´óĞ¡²»ÄÜĞ¡ÓÚ±»¶ÁÈ¡µÄ¼Ä´æÆ÷´óĞ¡
+ * \param[in]  p_dev  :æŒ‡å‘ AM_ZML166_ADC è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in]  addr   :å¾…è¯»å–çš„å¯„å­˜å™¨åœ°å€
+ * \param[out] p_data :æŒ‡å‘æ¥æ”¶ç¼“å†²åŒºçš„æŒ‡é’ˆï¼Œå¤§å°ä¸èƒ½å°äºè¢«è¯»å–çš„å¯„å­˜å™¨å¤§å°
  *
- * \retval  AM_OK     :¶ÁÈ¡³É¹¦
- * \retval -AM_EINVAL :ÎŞĞ§²ÎÊı
- * \retval -AM_EBUSY  :Éè±¸Ã¦
+ * \retval  AM_OK     :è¯»å–æˆåŠŸ
+ * \retval -AM_EINVAL :æ— æ•ˆå‚æ•°
+ * \retval -AM_EBUSY  :è®¾å¤‡å¿™
  */
 am_err_t am_zml166_adc_reg_get (am_zml166_adc_dev_t *p_dev,
                                 uint8_t              addr,
                                 void                *p_data);
 
 /**
- * \brief ZML166 ADC Ç°ÖÃ·Å´óÆ÷ÔöÒæÉèÖÃ
+ * \brief ZML166 ADC å‰ç½®æ”¾å¤§å™¨å¢ç›Šè®¾ç½®
  *
- * \param[in] p_dev   :Ö¸Ïò AM_ZML166_ADC Éè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[in] gain    :ÔöÒæ£¬¿ÉÉèÖÃÎª 1¡¢2¡¢4¡¢8¡¢16¡¢32¡¢64¡¢128¡¢256
+ * \param[in] p_dev   :æŒ‡å‘ AM_ZML166_ADC è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] gain    :å¢ç›Šï¼Œå¯è®¾ç½®ä¸º 1ã€2ã€4ã€8ã€16ã€32ã€64ã€128ã€256
  *
- * \retval  AM_OK     :ÉèÖÃ³É¹¦
- * \retval -AM_EINVAL :ÎŞĞ§²ÎÊı
- * \retval -AM_EBUSY  :Éè±¸Ã¦
+ * \retval  AM_OK     :è®¾ç½®æˆåŠŸ
+ * \retval -AM_EINVAL :æ— æ•ˆå‚æ•°
+ * \retval -AM_EBUSY  :è®¾å¤‡å¿™
  */
 am_err_t am_zml166_adc_gain_set (am_zml166_adc_dev_t *p_dev,
                                  uint16_t             gain);
 
 /**
- * \brief ZML166 ADC Ç°ÖÃ·Å´óÆ÷ÔöÒæ»ñÈ¡
+ * \brief ZML166 ADC å‰ç½®æ”¾å¤§å™¨å¢ç›Šè·å–
  *
- * \param[in]  p_dev  :Ö¸Ïò AM_ZML166_ADC Éè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[out] p_gain :Ö¸Ïò±£´æ»ñÈ¡µ½µÄÔöÒæµÄÖ¸Õë
+ * \param[in]  p_dev  :æŒ‡å‘ AM_ZML166_ADC è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[out] p_gain :æŒ‡å‘ä¿å­˜è·å–åˆ°çš„å¢ç›Šçš„æŒ‡é’ˆ
  *
- * \retval  AM_OK     :»ñÈ¡³É¹¦
- * \retval -AM_EINVAL :ÎŞĞ§²ÎÊı
+ * \retval  AM_OK     :è·å–æˆåŠŸ
+ * \retval -AM_EINVAL :æ— æ•ˆå‚æ•°
  */
 am_err_t am_zml166_adc_gain_get (am_zml166_adc_dev_t *p_dev,
                                  uint8_t             *p_gain);
 
 /**
- * \brief ZML166 ADC Êı¾İÊä³öËÙÂÊÉèÖÃ
+ * \brief ZML166 ADC æ•°æ®è¾“å‡ºé€Ÿç‡è®¾ç½®
  *
- * \param[in]  p_dev  :Ö¸Ïò AM_ZML166_ADC Éè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[out] speed  :ÉèÖÃËÙÂÊÖµ    ²ÎÊı¿ÉÑ¡ : AM_ZML166_ADC_DR_200
+ * \param[in]  p_dev  :æŒ‡å‘ AM_ZML166_ADC è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[out] speed  :è®¾ç½®é€Ÿç‡å€¼    å‚æ•°å¯é€‰ : AM_ZML166_ADC_DR_200
  *                                     AM_ZML166_ADC_DR_100
  *                                     AM_ZML166_ADC_DR_50
  *                                     AM_ZML166_ADC_DR_25
  *                                     AM_ZML166_ADC_DR_12_5
  *
- * \retval  AM_OK     :»ñÈ¡³É¹¦
- * \retval -AM_EINVAL :ÎŞĞ§²ÎÊı
+ * \retval  AM_OK     :è·å–æˆåŠŸ
+ * \retval -AM_EINVAL :æ— æ•ˆå‚æ•°
  */
 am_err_t am_zml166_adc_speed_set(am_zml166_adc_dev_t *p_dev,
                                  uint8_t              speed);
 
 /**
- * \brief ZML166 ADC Êı¾İÊä³öËÙÂÊÉèÖÃ
+ * \brief ZML166 ADC æ•°æ®è¾“å‡ºé€Ÿç‡è®¾ç½®
  *
- * \param[in]  p_dev    :Ö¸Ïò AM_ZML166_ADC Éè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[out] p_speed  :·µ»ØµÄËÙÂÊÉèÖÃÖµ£¬¾ßÌåÒâÒå¼û¸ÃÍ·ÎÄ¼ş
- * \retval  AM_OK     :»ñÈ¡³É¹¦
+ * \param[in]  p_dev    :æŒ‡å‘ AM_ZML166_ADC è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[out] p_speed  :è¿”å›çš„é€Ÿç‡è®¾ç½®å€¼ï¼Œå…·ä½“æ„ä¹‰è§è¯¥å¤´æ–‡ä»¶
+ * \retval  AM_OK     :è·å–æˆåŠŸ
  */
 am_err_t am_zml166_adc_speed_get(am_zml166_adc_dev_t *p_dev,
                                  uint8_t             *p_speed);
 /**
- * \brief zml166_adc  ½øÈëpowerdownÄ£Ê½
- * \param[in]  p_dev  :Ö¸Ïò AM_ZML166_ADC Éè±¸½á¹¹ÌåµÄÖ¸Õë
+ * \brief zml166_adc  è¿›å…¥powerdownæ¨¡å¼
+ * \param[in]  p_dev  :æŒ‡å‘ AM_ZML166_ADC è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \retval  AM_OK     :½øÈë³É¹¦
+ * \retval  AM_OK     :è¿›å…¥æˆåŠŸ
  */
 am_err_t am_zml166_adc_power_down_entry(am_zml166_adc_dev_t *p_dev);
 
 /**
- * \brief ZML166 ADC ÍË³öpowerdownÄ£Ê½
- * \param[in]  p_dev  :Ö¸Ïò AM_ZML166_ADC Éè±¸½á¹¹ÌåµÄÖ¸Õë
- * \retval  AM_OK     :ÍË³ö³É¹¦
+ * \brief ZML166 ADC é€€å‡ºpowerdownæ¨¡å¼
+ * \param[in]  p_dev  :æŒ‡å‘ AM_ZML166_ADC è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \retval  AM_OK     :é€€å‡ºæˆåŠŸ
  */
 am_err_t am_zml166_adc_power_down_exit(am_zml166_adc_dev_t *p_dev);
 
 /**
- * \brief ZML166 ADC Ê¹ÄÜbuffer
- * \param[in]  p_dev  :Ö¸Ïò AM_ZML166_ADC Éè±¸½á¹¹ÌåµÄÖ¸Õë
+ * \brief ZML166 ADC ä½¿èƒ½buffer
+ * \param[in]  p_dev  :æŒ‡å‘ AM_ZML166_ADC è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \retval  AM_OK     :Ê¹ÄÜ³É¹¦
+ * \retval  AM_OK     :ä½¿èƒ½æˆåŠŸ
  */
 am_err_t am_zml166_adc_buffer_enable(am_zml166_adc_dev_t *p_dev);
 
 /**
- * \brief ZML166 ADC ½ûÄÜBuffer
- * \param[in]  p_dev  :Ö¸Ïò AM_ZML166_ADC Éè±¸½á¹¹ÌåµÄÖ¸Õë
+ * \brief ZML166 ADC ç¦èƒ½Buffer
+ * \param[in]  p_dev  :æŒ‡å‘ AM_ZML166_ADC è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \retval  AM_OK     :½ûÄÜ³É¹¦
+ * \retval  AM_OK     :ç¦èƒ½æˆåŠŸ
  */
 am_err_t am_zml166_adc_buffer_disable(am_zml166_adc_dev_t *p_dev);
 
 /**
- * \brief ZML166 ADC MUX Í¨µÀ»ñÈ¡
+ * \brief ZML166 ADC MUX é€šé“è·å–
  *
- * \param[in]  p_dev  :Ö¸Ïò AM_ZML166_ADC Éè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[out] p_chan :Ö¸Ïò±£´æ»ñÈ¡µ½µÄ MUX Í¨µÀµÄÖ¸Õë
- * \retval  AM_OK     :»ñÈ¡³É¹¦
- * \retval -AM_EINVAL :ÎŞĞ§²ÎÊı
+ * \param[in]  p_dev  :æŒ‡å‘ AM_ZML166_ADC è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[out] p_chan :æŒ‡å‘ä¿å­˜è·å–åˆ°çš„ MUX é€šé“çš„æŒ‡é’ˆ
+ * \retval  AM_OK     :è·å–æˆåŠŸ
+ * \retval -AM_EINVAL :æ— æ•ˆå‚æ•°
  */
 am_err_t am_zml166_adc_mux_get (am_zml166_adc_dev_t *p_dev,
                                 uint8_t             *p_chan);
 
 /**
- * \brief AM_ZML166_ADC MUX Í¨µÀÉèÖÃ
+ * \brief AM_ZML166_ADC MUX é€šé“è®¾ç½®
  *
- * \param[in] p_dev :Ö¸Ïò AM_ZML166_ADC Éè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[in] chan  :MUX Í¨µÀ£¬ 0~2 Î»Îª MUXP   ¿ÉÑ¡²ÎÊıÎª   AM_ZML166_ADC_INPS_1_2_VS
+ * \param[in] p_dev :æŒ‡å‘ AM_ZML166_ADC è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] chan  :MUX é€šé“ï¼Œ 0~2 ä½ä¸º MUXP   å¯é€‰å‚æ•°ä¸º   AM_ZML166_ADC_INPS_1_2_VS
  *                                                AM_ZML166_ADC_INPS_AIN3
  *                                                AM_ZML166_ADC_INPS_AIN2
  *                                                AM_ZML166_ADC_INPS_AIN1
  *                                                AM_ZML166_ADC_INPS_AIN0
- *                          3~5 Î»Îª MUXN   ¿ÉÑ¡²ÎÊıÎª    AM_ZML166_ADC_INNS_1_2_VS
+ *                          3~5 ä½ä¸º MUXN   å¯é€‰å‚æ•°ä¸º    AM_ZML166_ADC_INNS_1_2_VS
  *                                                AM_ZML166_ADC_INNS_GND
  *                                                AM_ZML166_ADC_INNS_AIN4
  *                                                AM_ZML166_ADC_INNS_AIN3
@@ -393,41 +393,41 @@ am_err_t am_zml166_adc_mux_get (am_zml166_adc_dev_t *p_dev,
  *
  *ex:  am_zml166_adc_mux_set(p_dev, AM_ZML166_ADC_INPS_AIN3 | AM_ZML166_ADC_INNS_AIN4);
  *
- * \retval  AM_OK     :ÉèÖÃ³É¹¦
- * \retval -AM_EINVAL :ÎŞĞ§²ÎÊı
- * \retval -AM_EBUSY  :Éè±¸Ã¦
+ * \retval  AM_OK     :è®¾ç½®æˆåŠŸ
+ * \retval -AM_EINVAL :æ— æ•ˆå‚æ•°
+ * \retval -AM_EBUSY  :è®¾å¤‡å¿™
  */
 am_err_t am_zml166_adc_mux_set (am_zml166_adc_dev_t *p_dev,
                                 uint8_t              chan);
 
 
 /**
- * \brief ZML166 ADC  ³õÊ¼»¯¼Ä´æÆ÷º¯Êı
+ * \brief ZML166 ADC  åˆå§‹åŒ–å¯„å­˜å™¨å‡½æ•°
  *
- * \param[in] p_dev   :Ö¸Ïò AM_ZML166_ADC Éè±¸½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] p_dev   :æŒ‡å‘ AM_ZML166_ADC è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \retval  AM_OK     :³õÊ¼»¯³É¹¦
- * \retval  AM_ERROR  :³õÊ¼»¯Ê§°Ü
+ * \retval  AM_OK     :åˆå§‹åŒ–æˆåŠŸ
+ * \retval  AM_ERROR  :åˆå§‹åŒ–å¤±è´¥
  */
 am_err_t am_zml166_adc_reg_init(am_zml166_adc_dev_t           *p_dev);
 
 /**
- * \brief ZML166 ADC ³õÊ¼»¯º¯Êı
+ * \brief ZML166 ADC åˆå§‹åŒ–å‡½æ•°
  *
- * \param[in] p_dev     :Ö¸Ïò AM_ZML166_ADC Éè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[in] p_devinfo :Ö¸Ïò AM_ZML166_ADC Éè±¸ĞÅÏ¢½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] p_dev     :æŒ‡å‘ AM_ZML166_ADC è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo :æŒ‡å‘ AM_ZML166_ADC è®¾å¤‡ä¿¡æ¯ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return AM_ZML166_ADC ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return AM_ZML166_ADC å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_zml166_adc_handle_t am_zml166_adc_init (am_zml166_adc_dev_t           *p_dev,
                                            const am_zml166_adc_devinfo_t *p_devinfo);
 
 /**
- * \brief ZML166 ADC ½â³õÊ¼»¯º¯Êı
+ * \brief ZML166 ADC è§£åˆå§‹åŒ–å‡½æ•°
  *
- * \param[in] handle :ZML166 ADC  ¾ä±ú
+ * \param[in] handle :ZML166 ADC  å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zml166_adc_deinit (am_zml166_adc_handle_t handle);
 

@@ -32,13 +32,13 @@
  * Definitions
  ******************************************************************************/
 
-/** \brief ´òÓ¡»úÀàÉè±¸´úÂë±êÊ¶  */
+/** \brief æ‰“å°æœºç±»è®¾å¤‡ä»£ç æ ‡è¯†  */
 #define AM_USBD_CONFIG_KEYBOARD_CLASS_CODE             (0x03U)
 
-/** \brief USB keyboard Éè±¸×ÓÀàÂë*/
+/** \brief USB keyboard è®¾å¤‡å­ç±»ç */
 #define AM_USBD_KEYBOARD_SUBCLASS                      (0x01U)
 
-/** \brief usb keyboardĞ­ÒéÂë*/
+/** \brief usb keyboardåè®®ç */
 #define AM_USBD_KEYBOARD_PROTOCOL                      (0x01U)
 
 /** \brief usb keyboard specific class codes */
@@ -50,7 +50,7 @@
 #define AM_USBD_KEYBOARD_PROTOCOL_SET                  (0x0BU)
 
 
-/*Key Code,¼üÅÌ¼üÖµ*/
+/*Key Code,é”®ç›˜é”®å€¼*/
 #define AM_USBD_KEY_ERRORROLLOVER                       0x01U
 #define AM_USBD_KEY_POSTFAIL                            0x02U
 #define AM_USBD_KEY_ERRORUNDEFINED                      0x03U
@@ -279,7 +279,7 @@
 #define AM_USBD_KEY_MODIFERKEYS_RIGHT_ALT               0x40U
 #define AM_USBD_KEY_MODIFERKEYS_RIGHT_GUI               0x80U
 
-/*¼üÖµ·µ»Ø*/
+/*é”®å€¼è¿”å›*/
 #define AM_USBD_NUM_LOCK_LIGHT                          0x01U
 #define AM_USBD_CAP_LOCK_LIGHT                          0x02U
 #define AM_USBD_SCROLL_LOCK_LIGHT                       0x04U
@@ -294,38 +294,38 @@ extern "C" {
 #endif
 
 
-/** \brief USB¼üÅÌĞÅÏ¢½á¹¹Ìå */
+/** \brief USBé”®ç›˜ä¿¡æ¯ç»“æ„ä½“ */
 typedef struct am_usbd_keyboard_info {
     uint8_t ep_in;
     uint8_t ep_out;
 } am_usbd_keyboard_info_t;
 
 
-/** \brief ´òÓ¡»ú½ÓÊÕÇëÇó»Øµ÷º¯ÊıÀàĞÍ */
+/** \brief æ‰“å°æœºæ¥æ”¶è¯·æ±‚å›è°ƒå‡½æ•°ç±»å‹ */
 typedef void (*am_keyboard_recv_cb_t)(void *p_arg, uint8_t *p_buf, uint8_t len);
 
 /** \brief usb device keyboard struct */
 typedef struct am_usbd_keyboard {
-    am_usbd_dev_t                 *p_dev;      /**< \brief ±£´æusbÉè±¸ÀàÖ¸Õë*/
-    const am_usbd_keyboard_info_t *p_info;     /**< \brief ´òÓ¡»úÉè±¸ĞÅÏ¢*/
+    am_usbd_dev_t                 *p_dev;      /**< \brief ä¿å­˜usbè®¾å¤‡ç±»æŒ‡é’ˆ*/
+    const am_usbd_keyboard_info_t *p_info;     /**< \brief æ‰“å°æœºè®¾å¤‡ä¿¡æ¯*/
     am_bool_t                      is_ready;
     uint8_t                        rec_buffer;
     am_keyboard_recv_cb_t          pfn_rec_cb;
     void                          *p_arg;
 } am_usbd_keyboard_t;
 
-/*USBD keyboard Í¨ÓÃ¾ä±ú*/
+/*USBD keyboard é€šç”¨å¥æŸ„*/
 typedef am_usbd_keyboard_t  *am_usbd_keyboard_handle;
 
 
 
 /**
- * \brief ³õÊ¼»¯USB
+ * \brief åˆå§‹åŒ–USB
  *
- * \param[in] p_dev     : Ö¸ÏòUSBÉè±¸
- * \param[in] p_info    : Ö¸ÏòUSBÉè±¸ĞÅÏ¢
+ * \param[in] p_dev     : æŒ‡å‘USBè®¾å¤‡
+ * \param[in] p_info    : æŒ‡å‘USBè®¾å¤‡ä¿¡æ¯
  *
- * \return USB±ê×¼·şÎñ²Ù×÷¾ä±ú¡£Èç¹ûÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü¡£
+ * \return USBæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„ã€‚å¦‚æœä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥ã€‚
  */
 am_usbd_keyboard_handle am_usbd_keyboard_init (am_usbd_keyboard_t            *p_dev,
                                                const am_usbd_keyboard_info_t *p_info,
@@ -333,14 +333,14 @@ am_usbd_keyboard_handle am_usbd_keyboard_init (am_usbd_keyboard_t            *p_
 
 
 /**
- * \brief USB Device È¥³õÊ¼»¯
+ * \brief USB Device å»åˆå§‹åŒ–
  *
- * \param[in] p_dev : Ö¸ÏòUSBÉè±¸ĞÅÏ¢
+ * \param[in] p_dev : æŒ‡å‘USBè®¾å¤‡ä¿¡æ¯
  */
 void am_usbd_keyboard_deinit (am_usbd_keyboard_t *p_dev);
 
 /**
- * \brief ¼üÅÌ·¢ËÍº¯Êı
+ * \brief é”®ç›˜å‘é€å‡½æ•°
  */
 am_usb_status_t am_usbd_keyboard_send(am_usbd_keyboard_handle   handle,
                                       uint8_t                  *p_buff,
@@ -350,11 +350,11 @@ am_usb_status_t am_usbd_keyboard_recv_cb_set(am_usbd_keyboard_handle  handle,
                                              am_keyboard_recv_cb_t    pfn,
                                              void                    *p_arg);
 /**
- * \brief USB Device keyboard ³§ÉÌÇëÇó
+ * \brief USB Device keyboard å‚å•†è¯·æ±‚
  *
- * \param[in] handle : Éè±¸¾ä±ú
- * \param[in] pfn_cb : »Øµ÷º¯Êı
- * \param[in] p_arg  : »Øµ÷º¯Êı²ÎÊı
+ * \param[in] handle : è®¾å¤‡å¥æŸ„
+ * \param[in] pfn_cb : å›è°ƒå‡½æ•°
+ * \param[in] p_arg  : å›è°ƒå‡½æ•°å‚æ•°
  */
 am_usb_status_t am_usbd_keyboard_vendor_request_callback(am_usbd_keyboard_handle handle,
                                                          am_vendor_request_t     pfn_cb,

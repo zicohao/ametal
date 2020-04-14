@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief LPC82X SPI (DMA ·½Ê½) ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief LPC82X SPI (DMA æ–¹å¼) ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_lpc82x_spi0_dma.c
  *
  * \internal
@@ -38,7 +38,7 @@
  */
 
 /**
- * \brief SPI0 Æ½Ì¨³õÊ¼»¯
+ * \brief SPI0 å¹³å°åˆå§‹åŒ–
  */
 am_local void __lpc82x_spi0_dma_plfm_init (void)
 {
@@ -46,14 +46,14 @@ am_local void __lpc82x_spi0_dma_plfm_init (void)
     am_gpio_pin_cfg(PIO0_12, PIO_FUNC_SPI0_MOSI);
     am_gpio_pin_cfg(PIO0_13, PIO_FUNC_SPI0_MISO);
 
-    /* CS_Pin ÓÉÓÃ»§µ÷ÓÃ STD º¯ÊıÊ±×ÔĞĞ´«Èë£¬´Ë´¦²»ĞèÅäÖÃ */
+    /* CS_Pin ç”±ç”¨æˆ·è°ƒç”¨ STD å‡½æ•°æ—¶è‡ªè¡Œä¼ å…¥ï¼Œæ­¤å¤„ä¸éœ€é…ç½® */
 
     amhw_lpc82x_clk_periph_enable(AMHW_LPC82X_CLK_SPI0);
     amhw_lpc82x_syscon_periph_reset(AMHW_LPC82X_RESET_SPI0);
 }
 
 /**
- * \brief SPI0 Æ½Ì¨½â³õÊ¼»¯
+ * \brief SPI0 å¹³å°è§£åˆå§‹åŒ–
  */
 am_local void __lpc82x_spi0_dma_plfm_deinit (void)
 {
@@ -65,24 +65,24 @@ am_local void __lpc82x_spi0_dma_plfm_deinit (void)
     am_gpio_pin_cfg(PIO0_13, AM_GPIO_PULLUP | AM_GPIO_INPUT);
 }
 
-/** \brief SPI0 (DMA ·½Ê½) Éè±¸ĞÅÏ¢ */
+/** \brief SPI0 (DMA æ–¹å¼) è®¾å¤‡ä¿¡æ¯ */
 am_local am_const
 struct am_lpc82x_spi_dma_devinfo __g_lpc82x_spi0_dma_devinfo = {
-    LPC82X_SPI0_BASE,                /* SPI0 ¼Ä´æÆ÷¿é»ùµØÖ· */
-    CLK_SPI0,                        /* SPI0 Ê±ÖÓºÅ */
-    DMA_CHAN_SPI0_TX_REQ,            /* DMA ·¢ËÍÍ¨µÀ */
-    DMA_CHAN_SPI0_RX_REQ,            /* DMA ½ÓÊÕÍ¨µÀ */
-    AMHW_LPC82X_DMA_CHAN_PRIO_1,     /* ·¢ËÍÓÅÏÈ¼¶ */
-    AMHW_LPC82X_DMA_CHAN_PRIO_0,     /* ½ÓÊÕÓÅÏÈ¼¶ */
-    __lpc82x_spi0_dma_plfm_init,     /* Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __lpc82x_spi0_dma_plfm_deinit    /* Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    LPC82X_SPI0_BASE,                /* SPI0 å¯„å­˜å™¨å—åŸºåœ°å€ */
+    CLK_SPI0,                        /* SPI0 æ—¶é’Ÿå· */
+    DMA_CHAN_SPI0_TX_REQ,            /* DMA å‘é€é€šé“ */
+    DMA_CHAN_SPI0_RX_REQ,            /* DMA æ¥æ”¶é€šé“ */
+    AMHW_LPC82X_DMA_CHAN_PRIO_1,     /* å‘é€ä¼˜å…ˆçº§ */
+    AMHW_LPC82X_DMA_CHAN_PRIO_0,     /* æ¥æ”¶ä¼˜å…ˆçº§ */
+    __lpc82x_spi0_dma_plfm_init,     /* å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __lpc82x_spi0_dma_plfm_deinit    /* å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 };
 
-/** \brief SPI0 (DMA ·½Ê½) Éè±¸ÊµÀı */
+/** \brief SPI0 (DMA æ–¹å¼) è®¾å¤‡å®ä¾‹ */
 am_local am_lpc82x_spi_dma_dev_t __g_lpc82x_spi0_dma_dev;
 
 /**
- * \brief SPI0 (DMA ·½Ê½) ÊµÀı³õÊ¼»¯
+ * \brief SPI0 (DMA æ–¹å¼) å®ä¾‹åˆå§‹åŒ–
  */
 am_spi_handle_t am_lpc82x_spi0_dma_inst_init (void)
 {
@@ -91,7 +91,7 @@ am_spi_handle_t am_lpc82x_spi0_dma_inst_init (void)
 }
 
 /**
- * \brief SPI0 (DMA ·½Ê½) ÊµÀı½â³õÊ¼»¯
+ * \brief SPI0 (DMA æ–¹å¼) å®ä¾‹è§£åˆå§‹åŒ–
  */
 void am_lpc82x_spi0_dma_inst_deinit (am_spi_handle_t handle)
 {

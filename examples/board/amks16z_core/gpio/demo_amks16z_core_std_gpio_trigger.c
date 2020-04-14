@@ -11,15 +11,15 @@
 *******************************************************************************/
 /**
  * \file
- * \brief GPIO Òı½ÅÖĞ¶ÏÀı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief GPIO å¼•è„šä¸­æ–­ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè£º
- *   1. Ê¹¶ÔÓ¦µÄÖĞ¶ÏÒı½ÅÉÏ²úÉúÏÂ½µÑØ¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. ä½¿å¯¹åº”çš„ä¸­æ–­å¼•è„šä¸Šäº§ç”Ÿä¸‹é™æ²¿ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ÖĞ¶Ï²úÉúÊ±µ÷ÊÔ´®¿ÚÊä³ö "the gpio interrupt happen!"¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. ä¸­æ–­äº§ç”Ÿæ—¶è°ƒè¯•ä¸²å£è¾“å‡º "the gpio interrupt happen!"ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_amks16z_core_std_gpio_trigger.c src_amks16z_core_std_gpio_trigger
  *
  * \internal
@@ -46,7 +46,7 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_amks16z_core_std_gpio_trigger_entry (void)
 {

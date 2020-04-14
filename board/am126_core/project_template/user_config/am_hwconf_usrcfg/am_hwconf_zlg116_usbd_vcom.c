@@ -200,45 +200,45 @@ static const uint8_t Virtual_Com_Port_StringSerial[VIRTUAL_COM_PORT_SIZ_STRING_S
 
 
 /******************************************************************************
- * ¸÷ÃèÊö·ûĞÅÏ¢
+ * å„æè¿°ç¬¦ä¿¡æ¯
  *****************************************************************************/
 static const am_usbd_descriptor_t __g_am_usbd_vcom_descriptor[] = {
-    /* Éè±¸ÃèÊö·û */
+    /* è®¾å¤‡æè¿°ç¬¦ */
     {
         (AM_USB_DESC_TYPE_DEVICE << 8) | (0x00),
         sizeof(Virtual_Com_Port_DeviceDescriptor),
         Virtual_Com_Port_DeviceDescriptor
     },
 
-    /* ÅäÖÃÃèÊö·û¼°ÆäÏÂ¼¶ÃèÊö·û */
+    /* é…ç½®æè¿°ç¬¦åŠå…¶ä¸‹çº§æè¿°ç¬¦ */
     {
         (AM_USB_DESC_TYPE_CONFIGURE << 8) | (0x00),
         sizeof(Virtual_Com_Port_ConfigDescriptor),
         Virtual_Com_Port_ConfigDescriptor
     },
 
-    /* ×Ö·û´®ÃèÊö·û0£¬ÃèÊöÓïÑÔid */
+    /* å­—ç¬¦ä¸²æè¿°ç¬¦0ï¼Œæè¿°è¯­è¨€id */
     {
         (AM_USB_DESC_TYPE_STRING << 8) | (0x00),
         sizeof(Virtual_Com_Port_StringLangID),
         Virtual_Com_Port_StringLangID
     },
 
-    /* ×Ö·û´®ÃèÊö·û1£¬ÃèÊö³§ÉÌ */
+    /* å­—ç¬¦ä¸²æè¿°ç¬¦1ï¼Œæè¿°å‚å•† */
     {
         (AM_USB_DESC_TYPE_STRING << 8) | 0x01,
         sizeof(Virtual_Com_Port_StringVendor),
         Virtual_Com_Port_StringVendor
     },
 
-    /* ×Ö·û´®ÃèÊö·û2£¬ÃèÊö²úÆ· */
+    /* å­—ç¬¦ä¸²æè¿°ç¬¦2ï¼Œæè¿°äº§å“ */
     {
         (AM_USB_DESC_TYPE_STRING << 8) | 0x02,
         sizeof(Virtual_Com_Port_StringProduct),
         Virtual_Com_Port_StringProduct
     },
 
-    /* ×Ö·û´®ÃèÊö·û3£¬ÃèÊöÉè±¸ */
+    /* å­—ç¬¦ä¸²æè¿°ç¬¦3ï¼Œæè¿°è®¾å¤‡ */
     {
         (AM_USB_DESC_TYPE_STRING << 8) | 0x03,
         sizeof(Virtual_Com_Port_StringSerial),
@@ -248,38 +248,38 @@ static const am_usbd_descriptor_t __g_am_usbd_vcom_descriptor[] = {
 
 
 /**
- * \brief Æ½Ì¨³õÊ¼»¯
+ * \brief å¹³å°åˆå§‹åŒ–
  */
 static void __am_usbd_vcom_init (void) {
-    /* Ê¹ÄÜÊ±ÖÓ */
+    /* ä½¿èƒ½æ—¶é’Ÿ */
     am_clk_enable(CLK_USB);
     am_clk_enable(CLK_GPIOA);
 //    am_clk_enable(CLK_AFIO);
 
-    /* ÅäÖÃPIOA_11 PIOA_12ÎªUSB¹¦ÄÜ   */
+    /* é…ç½®PIOA_11 PIOA_12ä¸ºUSBåŠŸèƒ½   */
     am_gpio_pin_cfg(PIOA_11, PIOA_11_AIN);//am_gpio_pin_cfg(PIOA_11, PIOA_11_USBDM);
     am_gpio_pin_cfg(PIOA_12, PIOA_12_AIN);//am_gpio_pin_cfg(PIOA_12, PIOA_12_USBDP);
 }
 
 /**
- * \brief Æ½Ì¨È¥³õÊ¼»¯
+ * \brief å¹³å°å»åˆå§‹åŒ–
  */
 static void __am_usbd_vcom_deinit (void) {
-    amhw_zlg116_usbd_connect_set((amhw_zlg116_usbd_t *)ZLG116_USB_BASE, ZLG116_USB_DISCONNECT);   /* ¶Ï¿ªÁ¬½Ó */
-    am_clk_disable(CLK_USB);                               /* ½ûÄÜUSBÊ±ÖÓ */
+    amhw_zlg116_usbd_connect_set((amhw_zlg116_usbd_t *)ZLG116_USB_BASE, ZLG116_USB_DISCONNECT);   /* æ–­å¼€è¿æ¥ */
+    am_clk_disable(CLK_USB);                               /* ç¦èƒ½USBæ—¶é’Ÿ */
 }
 
 static const am_usbd_devinfo_t __g_usbd_info = {
-        __g_am_usbd_vcom_descriptor,                                                         /* ÃèÊö·ûµØÖ· */
-        sizeof(__g_am_usbd_vcom_descriptor) / sizeof(__g_am_usbd_vcom_descriptor[0]),     /* ÃèÊö·û¸öÊı */
+        __g_am_usbd_vcom_descriptor,                                                         /* æè¿°ç¬¦åœ°å€ */
+        sizeof(__g_am_usbd_vcom_descriptor) / sizeof(__g_am_usbd_vcom_descriptor[0]),     /* æè¿°ç¬¦ä¸ªæ•° */
 };
 
-/**< \brief ¶¨ÒåUSBÉè±¸ĞÅÏ¢ */
+/**< \brief å®šä¹‰USBè®¾å¤‡ä¿¡æ¯ */
 static const am_zlg126_usbd_devinfo_t  __g_zlg126_usbd_vcom_info = {
-    ZLG116_USB_BASE,                  /* ¼Ä´æÆ÷»ùµØÖ· */
-    INUM_USB,                         /* ÖĞ¶ÏºÅ */
-    __am_usbd_vcom_init,              /**< \brief Æ½Ì¨³õÊ¼»¯ */
-    __am_usbd_vcom_deinit,            /**< \brief Æ½Ì¨È¥³õÊ¼»¯ */
+    ZLG116_USB_BASE,                  /* å¯„å­˜å™¨åŸºåœ°å€ */
+    INUM_USB,                         /* ä¸­æ–­å· */
+    __am_usbd_vcom_init,              /**< \brief å¹³å°åˆå§‹åŒ– */
+    __am_usbd_vcom_deinit,            /**< \brief å¹³å°å»åˆå§‹åŒ– */
     &__g_usbd_info,
 };
 
@@ -297,7 +297,7 @@ am_zlg126_usbd_dev_t  __g_zlg126_dev;
 am_usbd_cdc_vcom_t    __g_vcom_dev;
 
 
-/** \brief usb_vcomÊµÀı³õÊ¼»¯£¬»ñµÃusb_vcom±ê×¼·şÎñ¾ä±ú */
+/** \brief usb_vcomå®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—usb_vcomæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_usbd_cdc_vcom_handle am_zlg126_usbd_vcom_inst_init (void)
 {
     return am_usbd_cdc_vcom_init(&__g_vcom_dev,
@@ -306,7 +306,7 @@ am_usbd_cdc_vcom_handle am_zlg126_usbd_vcom_inst_init (void)
 }
 
 
-/** \brief usb_printer½â³õÊ¼»¯£¬»ñµÃusb_printer±ê×¼·şÎñ¾ä±ú */
+/** \brief usb_printerè§£åˆå§‹åŒ–ï¼Œè·å¾—usb_printeræ ‡å‡†æœåŠ¡å¥æŸ„ */
 void am_zlg126_usbd_vcom_inst_deinit (void)
 {
 	am_usbd_cdc_vcom_deinit(&__g_vcom_dev);

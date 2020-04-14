@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief LCDÏÔÊ¾Èí¼ş°üÊµÏÖ
+ * \brief LCDæ˜¾ç¤ºè½¯ä»¶åŒ…å®ç°
  *
  * \internal
  * \par Modification history
@@ -26,15 +26,15 @@
 #include "am_font.h"
 
 /**
- * \brief ³£ÓÃµÄÖ¸Áî
+ * \brief å¸¸ç”¨çš„æŒ‡ä»¤
  */
-#define __ili9341_SET_X_CMD             0X2A      /**< \brief ÉèÖÃX×ø±êÃüÁî  */
-#define __ili9341_SET_Y_CMD             0X2B      /**< \brief ÉèÖÃY×ø±êÃüÁî  */
-#define __ili9341_WRITE_GRAM_CMD        0X2C      /**< \brief Ğ´GRAMÃüÁî  */
+#define __ili9341_SET_X_CMD             0X2A      /**< \brief è®¾ç½®Xåæ ‡å‘½ä»¤  */
+#define __ili9341_SET_Y_CMD             0X2B      /**< \brief è®¾ç½®Yåæ ‡å‘½ä»¤  */
+#define __ili9341_WRITE_GRAM_CMD        0X2C      /**< \brief å†™GRAMå‘½ä»¤  */
 
 
 /**
- * \brief Ïòili9341 LCD·¢ËÍÃüÁî
+ * \brief å‘ili9341 LCDå‘é€å‘½ä»¤
  */
 am_static_inline
 void __ili9341_cmd_sent(am_ili9341_dev_t *p_dev, uint8_t cmd)
@@ -45,7 +45,7 @@ void __ili9341_cmd_sent(am_ili9341_dev_t *p_dev, uint8_t cmd)
 }
 
 /**
- * \brief Ïòili9341 LCD·¢ËÍÒ»×Ö½ÚµÄÊı¾İ
+ * \brief å‘ili9341 LCDå‘é€ä¸€å­—èŠ‚çš„æ•°æ®
  */
 am_static_inline
 void __ili9341_data_u8_sent(am_ili9341_dev_t *p_dev, uint8_t data)
@@ -56,7 +56,7 @@ void __ili9341_data_u8_sent(am_ili9341_dev_t *p_dev, uint8_t data)
 }
 
 /**
- * \brief Ïòili9341 LCD·¢ËÍÁ½×Ö½ÚµÄÊı¾İ
+ * \brief å‘ili9341 LCDå‘é€ä¸¤å­—èŠ‚çš„æ•°æ®
  */
 static void __ili9341_data_u16_sent(am_ili9341_dev_t *p_dev, uint16_t data)
 {
@@ -68,25 +68,25 @@ static void __ili9341_data_u16_sent(am_ili9341_dev_t *p_dev, uint16_t data)
 
 
 /**
- * ÉèÖÃ¹â±êÎ»ÖÃ
+ * è®¾ç½®å…‰æ ‡ä½ç½®
  */
 static void __ili9341_cursor_set( am_ili9341_dev_t *p_dev, uint16_t x_pos, uint16_t y_pos )
 {
-    /*¡¡ÉèÖÃ£Ø */
+    /*ã€€è®¾ç½®ï¼¸ */
     __ili9341_cmd_sent( p_dev,__ili9341_SET_X_CMD);
     __ili9341_data_u16_sent( p_dev, x_pos);
 
-    /*¡¡ÉèÖÃY */
+    /*ã€€è®¾ç½®Y */
     __ili9341_cmd_sent( p_dev,__ili9341_SET_Y_CMD);
     __ili9341_data_u16_sent( p_dev, y_pos);
 }
 
 /**
- * \brief ÉèÖÃ´°¿Ú
+ * \brief è®¾ç½®çª—å£
  *
- * \note (x,y)Îª´°¿ÚµÄÆğÊ¼×ø±êµã
- *        w Îª´°¿ÚµÄ¿í
- *        h Îª´°¿ÚµÄ¸ß
+ * \note (x,y)ä¸ºçª—å£çš„èµ·å§‹åæ ‡ç‚¹
+ *        w ä¸ºçª—å£çš„å®½
+ *        h ä¸ºçª—å£çš„é«˜
  */
 static void __ili9341_window_set(am_ili9341_dev_t *p_dev,
                      uint32_t x, uint32_t y, uint32_t w ,uint32_t h)
@@ -101,7 +101,7 @@ static void __ili9341_window_set(am_ili9341_dev_t *p_dev,
 }
 
 /**
- * \biref »­µã
+ * \biref ç”»ç‚¹
  */
 static void __ili9341_draw_point (am_ili9341_handle_t handle, uint16_t x, uint16_t y)
 {
@@ -111,7 +111,7 @@ static void __ili9341_draw_point (am_ili9341_handle_t handle, uint16_t x, uint16
 
 }
 /**
- * \brief mµÄn´Î·½
+ * \brief mçš„næ¬¡æ–¹
  */
 static uint32_t __ili9341_power(uint8_t m, uint8_t n)
 {
@@ -121,7 +121,7 @@ static uint32_t __ili9341_power(uint8_t m, uint8_t n)
 }
 
 /**
- * \biref ili9341µÄ³õÊ¼»¯
+ * \biref ili9341çš„åˆå§‹åŒ–
  */
 static int __ili9341_init (am_ili9341_dev_t *p_dev)
 {
@@ -129,7 +129,7 @@ static int __ili9341_init (am_ili9341_dev_t *p_dev)
         return -AM_EINVAL;
     }
 
-    __ili9341_cmd_sent( p_dev, 0x28); /* ¹Ø±ÕÏÔÊ¾ */
+    __ili9341_cmd_sent( p_dev, 0x28); /* å…³é—­æ˜¾ç¤º */
 
     /* Power control A */
     __ili9341_cmd_sent( p_dev,    0xCB);
@@ -256,11 +256,11 @@ static int __ili9341_init (am_ili9341_dev_t *p_dev)
 
 
 /*****************************************************************************
- * Íâ²¿º¯ÊıÊµÏÖ
+ * å¤–éƒ¨å‡½æ•°å®ç°
  ****************************************************************************/
 
 /**
- * \brief ili9341Èí¼ş¸´Î»
+ * \brief ili9341è½¯ä»¶å¤ä½
  */
 int am_ili9341_reset(am_ili9341_handle_t handle)
 {
@@ -275,7 +275,7 @@ int am_ili9341_reset(am_ili9341_handle_t handle)
     return AM_OK;
 }
 /**
- * \brief ili9341³õÊ¼»¯
+ * \brief ili9341åˆå§‹åŒ–
  */
 am_ili9341_handle_t am_ili9341_init(am_ili9341_dev_t                   *p_dev,
                                     const am_ili9341_devinfo_t         *p_devinfo,
@@ -284,7 +284,7 @@ am_ili9341_handle_t am_ili9341_init(am_ili9341_dev_t                   *p_dev,
     int ret = AM_OK;
     uint8_t reg_val = 0;
 
-    /* ÑéÖ¤²ÎÊıÓĞĞ§ĞÔ */
+    /* éªŒè¯å‚æ•°æœ‰æ•ˆæ€§ */
     if ( NULL == p_dev || NULL == p_devinfo || NULL == p_serv) {
         return NULL;
     }
@@ -296,14 +296,14 @@ am_ili9341_handle_t am_ili9341_init(am_ili9341_dev_t                   *p_dev,
     p_dev->point_color = AM_ILI9341_COLOR_BLACK;
 
 
-    /* ³õÊ¼»¯GPIO¿Ú */
+    /* åˆå§‹åŒ–GPIOå£ */
     am_gpio_pin_cfg(p_devinfo->bl_pin,
-            AM_GPIO_OUTPUT_INIT_LOW | AM_GPIO_PUSH_PULL);   /* ÅäÖÃblÎªÍÆÍìÊä³ö */
+            AM_GPIO_OUTPUT_INIT_LOW | AM_GPIO_PUSH_PULL);   /* é…ç½®blä¸ºæ¨æŒ½è¾“å‡º */
     am_gpio_pin_cfg(p_devinfo->rst_pin,
-            AM_GPIO_OUTPUT_INIT_HIGH | AM_GPIO_PUSH_PULL);  /* ÅäÖÃrstÎªÍÆÍìÊä³ö */
+            AM_GPIO_OUTPUT_INIT_HIGH | AM_GPIO_PUSH_PULL);  /* é…ç½®rstä¸ºæ¨æŒ½è¾“å‡º */
 
 
-    /* ¸´Î»ili9341Éè±¸ */
+    /* å¤ä½ili9341è®¾å¤‡ */
     ret = am_ili9341_reset(p_dev);
     if(AM_OK != ret) {
         return NULL;
@@ -314,7 +314,7 @@ am_ili9341_handle_t am_ili9341_init(am_ili9341_dev_t                   *p_dev,
     }
 
     if( 0 == p_devinfo->lcd_dir ) {
-        /* ÊúÆÁ´¦Àí */
+        /* ç«–å±å¤„ç† */
         p_dev->heigh = 320;
         p_dev->width =240;
 
@@ -324,7 +324,7 @@ am_ili9341_handle_t am_ili9341_init(am_ili9341_dev_t                   *p_dev,
         __ili9341_cmd_sent(p_dev,0x36);
         __ili9341_data_u8_sent(p_dev, reg_val);
     } else {
-        /* ºáÆÁ´¦Àí */
+        /* æ¨ªå±å¤„ç† */
         p_dev->heigh = 240;
         p_dev->width =320;
         reg_val =(1<<7)|(1<<6)|(1<<5);
@@ -333,12 +333,12 @@ am_ili9341_handle_t am_ili9341_init(am_ili9341_dev_t                   *p_dev,
         __ili9341_data_u8_sent(p_dev, reg_val);
     }
 
-    am_gpio_set(p_devinfo->bl_pin, AM_GPIO_LEVEL_HIGH); /* ¿ªÆô±³¹â */
+    am_gpio_set(p_devinfo->bl_pin, AM_GPIO_LEVEL_HIGH); /* å¼€å¯èƒŒå…‰ */
     return p_dev;
 }
 
 /**
- * \brief ili9341½â³õÊ¼»¯
+ * \brief ili9341è§£åˆå§‹åŒ–
  */
 void am_ili9341_deinit (am_ili9341_handle_t handle)
 {
@@ -346,7 +346,7 @@ void am_ili9341_deinit (am_ili9341_handle_t handle)
 }
 
 /**
- * \brief ÉèÖÃ»­±ÊµÄÑÕÉ«
+ * \brief è®¾ç½®ç”»ç¬”çš„é¢œè‰²
  */
 int am_ili9341_point_color_set(am_ili9341_handle_t handle, uint16_t color)
 {
@@ -358,7 +358,7 @@ int am_ili9341_point_color_set(am_ili9341_handle_t handle, uint16_t color)
 }
 
 /**
- * \brief ÉèÖÃ±³¾°ÑÕÉ«
+ * \brief è®¾ç½®èƒŒæ™¯é¢œè‰²
  */
 int am_ili9341_back_color_set(am_ili9341_handle_t handle, uint16_t color)
 {
@@ -370,7 +370,7 @@ int am_ili9341_back_color_set(am_ili9341_handle_t handle, uint16_t color)
 }
 
 /**
- * \brief LCDÑÕÉ«Ìî³ä
+ * \brief LCDé¢œè‰²å¡«å……
  */
 int am_ili9341_clear (am_ili9341_handle_t handle)
 {
@@ -399,10 +399,10 @@ int am_ili9341_clear (am_ili9341_handle_t handle)
 }
 
 /**
- * \brief »­Ö±Ïß
+ * \brief ç”»ç›´çº¿
  *
- * \note (x1,y1) ÆğÊ¼×ø±ê
- *       (x2,y2) ÖÕµã×ø±ê
+ * \note (x1,y1) èµ·å§‹åæ ‡
+ *       (x2,y2) ç»ˆç‚¹åæ ‡
  */
 int am_ili9341_draw_line(am_ili9341_handle_t handle,
         uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2)
@@ -448,7 +448,7 @@ int am_ili9341_draw_line(am_ili9341_handle_t handle,
 
     for( t=0; t <= distance + 1; t++ ) {
 
-        __ili9341_draw_point( handle, uRow, uCol);  /* »­µã */
+        __ili9341_draw_point( handle, uRow, uCol);  /* ç”»ç‚¹ */
 
         xerr += delta_x;
         yerr += delta_y;
@@ -466,7 +466,7 @@ int am_ili9341_draw_line(am_ili9341_handle_t handle,
 }
 
 /**
- * \brief »­¾ØĞÎ
+ * \brief ç”»çŸ©å½¢
  *
  */
 int am_ili9341_draw_rectangle(am_ili9341_handle_t handle,
@@ -485,7 +485,7 @@ int am_ili9341_draw_rectangle(am_ili9341_handle_t handle,
     return AM_OK;
 }
 /**
- * \brief »­Ô²
+ * \brief ç”»åœ†
  *
  */
 int am_ili9341_draw_circle(am_ili9341_handle_t handle,
@@ -524,12 +524,12 @@ int am_ili9341_draw_circle(am_ili9341_handle_t handle,
 }
 
 /**
- * \brief ÏÔÊ¾Ò»¸ö×Ö·û
+ * \brief æ˜¾ç¤ºä¸€ä¸ªå­—ç¬¦
  *
- * \note  num £ºÒªÏÔÊ¾µÄ×Ö·û
- *        size£º×ÖÌå´óĞ¡ 12/ 16 /24
- *        mode: µş¼Ó·½Ê½ mode =1
- *              ·Çµş¼Ó·½Ê½ mode =0
+ * \note  num ï¼šè¦æ˜¾ç¤ºçš„å­—ç¬¦
+ *        sizeï¼šå­—ä½“å¤§å° 12/ 16 /24
+ *        mode: å åŠ æ–¹å¼ mode =1
+ *              éå åŠ æ–¹å¼ mode =0
  */
 int am_ili9341_show_char(am_ili9341_handle_t handle,
         uint16_t x, uint16_t y, uint8_t num, uint8_t size, uint8_t mode)
@@ -546,7 +546,7 @@ int am_ili9341_show_char(am_ili9341_handle_t handle,
 
     for(t = 0; t < csize; t++){
 
-        /* ÅĞ¶Ï×ÖÌå´óĞ¡ */
+        /* åˆ¤æ–­å­—ä½“å¤§å° */
         if( size == 12) {
             temp = asc2_1206[num][t];
         } else if (size == 16) {
@@ -582,11 +582,11 @@ int am_ili9341_show_char(am_ili9341_handle_t handle,
     return AM_OK;
 }
 /**
- * \brief ÏÔÊ¾Êı×Ö£¬
+ * \brief æ˜¾ç¤ºæ•°å­—ï¼Œ
  *
- * \note num ÒªÏÔÊ¾µÄÊı×Ö
- *       lenÎªÊı×ÖµÄÎ»Êı
- *       sizeÎªÊı×Ö×ÖÌå´óĞ¡  12/ 16 /24
+ * \note num è¦æ˜¾ç¤ºçš„æ•°å­—
+ *       lenä¸ºæ•°å­—çš„ä½æ•°
+ *       sizeä¸ºæ•°å­—å­—ä½“å¤§å°  12/ 16 /24
  */
 int am_ili9341_show_num(am_ili9341_handle_t handle,
        uint16_t x, uint16_t y, uint32_t num, uint8_t len, uint8_t size)
@@ -616,9 +616,9 @@ int am_ili9341_show_num(am_ili9341_handle_t handle,
 }
 
 /**
- * \brief ÏÔÊ¾×Ö·û´®
+ * \brief æ˜¾ç¤ºå­—ç¬¦ä¸²
  *
- * \note  width,height ÇøÓòµÄ´óĞ¡
+ * \note  width,height åŒºåŸŸçš„å¤§å°
  */
 int am_ili9341_show_string (am_ili9341_handle_t handle,
         uint16_t x, uint16_t y, uint8_t size, uint16_t width, uint16_t height,char *p_str)
@@ -649,9 +649,9 @@ int am_ili9341_show_string (am_ili9341_handle_t handle,
 }
 
 
-/******************************** ÒÆÖ²EMWINËùĞè **********************************************/
+/******************************** ç§»æ¤EMWINæ‰€éœ€ **********************************************/
 /**
- * \brief »­µã
+ * \brief ç”»ç‚¹
  */
 
 void am_ili9341_draw_point (am_ili9341_handle_t handle, uint16_t x, uint16_t y, uint16_t color)
@@ -663,7 +663,7 @@ void am_ili9341_draw_point (am_ili9341_handle_t handle, uint16_t x, uint16_t y, 
 }
 
 /**
- * \brief Ö¸¶¨µÄÇøÓòÌî³äÑÕÉ«
+ * \brief æŒ‡å®šçš„åŒºåŸŸå¡«å……é¢œè‰²
  */
 void am_ili9341_color_fill(am_ili9341_handle_t handle,
         uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2, uint16_t color)
@@ -683,7 +683,7 @@ void am_ili9341_color_fill(am_ili9341_handle_t handle,
 }
 
 /**
- * \brief ¸øÒ»Æ¬ÇøÓòÌî³äÌØ¶¨µÄÑÕÉ«
+ * \brief ç»™ä¸€ç‰‡åŒºåŸŸå¡«å……ç‰¹å®šçš„é¢œè‰²
  */
 
 void am_ili9341_area_draw_color(am_ili9341_handle_t handle,
@@ -693,12 +693,12 @@ void am_ili9341_area_draw_color(am_ili9341_handle_t handle,
     int8_t addr_step = 0;
     int val = 0;
 
-    /*¡¡ÉèÖÃ£Ø */
+    /*ã€€è®¾ç½®ï¼¸ */
     __ili9341_cmd_sent( handle,__ili9341_SET_X_CMD);
     __ili9341_data_u16_sent( handle, x0);
     __ili9341_data_u16_sent( handle, x1);
 
-    /*¡¡ÉèÖÃY */
+    /*ã€€è®¾ç½®Y */
     __ili9341_cmd_sent( handle,__ili9341_SET_Y_CMD);
     __ili9341_data_u16_sent( handle, y0);
     __ili9341_data_u16_sent( handle, y1);
@@ -706,8 +706,8 @@ void am_ili9341_area_draw_color(am_ili9341_handle_t handle,
     __ili9341_cmd_sent( handle,__ili9341_WRITE_GRAM_CMD);
 
     /*
-     * addr_step ´ú±íµØÖ·µÄ½¨Á¢µÄ·½Ê½£¬ÏñËØµÄÊı¾İÔÚÄÚ´æ
-     * ÖĞ±£´æ·½Ê½ÎªÏòÉÏµİÔö£¬²»Îª0¾ÍÏòÏÂµİ¼õ
+     * addr_step ä»£è¡¨åœ°å€çš„å»ºç«‹çš„æ–¹å¼ï¼Œåƒç´ çš„æ•°æ®åœ¨å†…å­˜
+     * ä¸­ä¿å­˜æ–¹å¼ä¸ºå‘ä¸Šé€’å¢ï¼Œä¸ä¸º0å°±å‘ä¸‹é€’å‡
      */
     if (reverse) {
         addr_step = -data_len;
@@ -734,23 +734,23 @@ void am_ili9341_area_draw_color(am_ili9341_handle_t handle,
         }
 
         buf += addr_step;
-        __ili9341_data_u16_sent(handle, val); /* ½«ÑÕÉ«µÄÊı¾İĞ´½øÈ¥ */
+        __ili9341_data_u16_sent(handle, val); /* å°†é¢œè‰²çš„æ•°æ®å†™è¿›å» */
     }
 }
 
 /**
- * \brief ¿ªÆôÆÁÄ»
+ * \brief å¼€å¯å±å¹•
  */
 void am_ili9341_on(am_ili9341_handle_t handle)
 {
-    am_gpio_set(handle->p_devinfo->bl_pin, AM_GPIO_LEVEL_HIGH); /* ¿ªÆô±³¹â */
+    am_gpio_set(handle->p_devinfo->bl_pin, AM_GPIO_LEVEL_HIGH); /* å¼€å¯èƒŒå…‰ */
 }
 /**
- * \brief ¹Ø±ÕÆÁÄ»
+ * \brief å…³é—­å±å¹•
  */
 void am_ili9341_off(am_ili9341_handle_t handle)
 {
-    am_gpio_set(handle->p_devinfo->bl_pin, AM_GPIO_LEVEL_LOW); /* ¿ªÆô±³¹â */
+    am_gpio_set(handle->p_devinfo->bl_pin, AM_GPIO_LEVEL_LOW); /* å¼€å¯èƒŒå…‰ */
 }
 
 

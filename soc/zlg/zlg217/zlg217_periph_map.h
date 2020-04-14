@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZLG217 ÍâÉèÓ³Éä
+ * \brief ZLG217 å¤–è®¾æ˜ å°„
  *
  * \internal
  * \par Modification history
@@ -55,107 +55,107 @@ extern "C" {
  */
 
 /**
- * \name ÍâÉè¶¨Òå
+ * \name å¤–è®¾å®šä¹‰
  * @{
  */
 
-/** \brief GPIO¶Ë¿ÚA¼Ä´æÆ÷¿éÖ¸Õë */
+/** \brief GPIOç«¯å£Aå¯„å­˜å™¨å—æŒ‡é’ˆ */
 #define ZLG217_GPIOA   ((amhw_zlg217_gpio_reg_t  *)ZLG217_GPIOA_BASE)
 
-/** \brief GPIO¶Ë¿ÚB¼Ä´æÆ÷¿éÖ¸Õë */
+/** \brief GPIOç«¯å£Bå¯„å­˜å™¨å—æŒ‡é’ˆ */
 #define ZLG217_GPIOB   ((amhw_zlg217_gpio_reg_t  *)ZLG217_GPIOB_BASE)
 
-/** \brief GPIO¶Ë¿ÚC¼Ä´æÆ÷¿éÖ¸Õë */
+/** \brief GPIOç«¯å£Cå¯„å­˜å™¨å—æŒ‡é’ˆ */
 #define ZLG217_GPIOC   ((amhw_zlg217_gpio_reg_t  *)ZLG217_GPIOC_BASE)
 
-/** \brief GPIO¶Ë¿ÚD¼Ä´æÆ÷¿éÖ¸Õë */
+/** \brief GPIOç«¯å£Då¯„å­˜å™¨å—æŒ‡é’ˆ */
 #define ZLG217_GPIOD   ((amhw_zlg217_gpio_reg_t  *)ZLG217_GPIOD_BASE)
 
-/** \brief GPIO¶Ë¿ÚE¼Ä´æÆ÷¿éÖ¸Õë */
+/** \brief GPIOç«¯å£Eå¯„å­˜å™¨å—æŒ‡é’ˆ */
 #define ZLG217_GPIOE   ((amhw_zlg217_gpio_reg_t  *)ZLG217_GPIOE_BASE)
 
-/** \brief GPIO¼Ä´æÆ÷¿éÖ¸Õë */
+/** \brief GPIOå¯„å­˜å™¨å—æŒ‡é’ˆ */
 #define ZLG217_GPIO    ((amhw_zlg217_gpio_t      *)ZLG217_GPIO_BASE)
 
-/** \brief AFIO¼Ä´æÆ÷¿éÖ¸Õë */
+/** \brief AFIOå¯„å­˜å™¨å—æŒ‡é’ˆ */
 #define ZLG217_AFIO    ((amhw_zlg217_afio_t      *)ZLG217_AFIO_BASE)
 
-/** \brief TIM1¼Ä´æÆ÷¿éÖ¸Õë */
+/** \brief TIM1å¯„å­˜å™¨å—æŒ‡é’ˆ */
 #define ZLG217_TIM1    ((amhw_zlg_tim_t          *)ZLG217_TIM1_BASE)
 
-/** \brief Í¨ÓÃ¶¨Ê±Æ÷2¼Ä´æÆ÷¿éÖ¸Õë */
+/** \brief é€šç”¨å®šæ—¶å™¨2å¯„å­˜å™¨å—æŒ‡é’ˆ */
 #define ZLG217_TIM2    ((amhw_zlg_tim_t          *)ZLG217_TIM2_BASE)
 
-/** \brief Í¨ÓÃ¶¨Ê±Æ÷3¼Ä´æÆ÷¿éÖ¸Õë */
+/** \brief é€šç”¨å®šæ—¶å™¨3å¯„å­˜å™¨å—æŒ‡é’ˆ */
 #define ZLG217_TIM3    ((amhw_zlg_tim_t          *)ZLG217_TIM3_BASE)
 
-/** \brief Í¨ÓÃ¶¨Ê±Æ÷4¼Ä´æÆ÷¿éÖ¸Õë */
+/** \brief é€šç”¨å®šæ—¶å™¨4å¯„å­˜å™¨å—æŒ‡é’ˆ */
 #define ZLG217_TIM4    ((amhw_zlg_tim_t          *)ZLG217_TIM4_BASE)
 
-/** \brief RTC¼Ä´æÆ÷¿éÖ¸Õë */
+/** \brief RTCå¯„å­˜å™¨å—æŒ‡é’ˆ */
 #define ZLG217_RTC     ((amhw_zlg217_rtc_t       *)ZLG217_RTC_BASE)
 
-/** \brief µçÔ´¿ØÖÆPWR¼Ä´æÆ÷¿éÖ¸Õë */
+/** \brief ç”µæºæ§åˆ¶PWRå¯„å­˜å™¨å—æŒ‡é’ˆ */
 #define ZLG217_PWR     ((amhw_zlg_pwr_t          *)ZLG217_PWR_BASE)
 
-/** \brief ±¸·İ¿ØÖÆBKP¼Ä´æÆ÷¿éÖ¸Õë */
+/** \brief å¤‡ä»½æ§åˆ¶BKPå¯„å­˜å™¨å—æŒ‡é’ˆ */
 #define ZLG217_BKP     ((amhw_zlg217_bkp_t       *)ZLG217_BKP_BASE)
 
-/** \brief UART1 ¼Ä´æÆ÷¿éÖ¸Õë */
+/** \brief UART1 å¯„å­˜å™¨å—æŒ‡é’ˆ */
 #define ZLG217_UART1   ((amhw_zlg_uart_t         *)ZLG217_UART1_BASE)
 
-/** \brief UART2 ¼Ä´æÆ÷¿éÖ¸Õë */
+/** \brief UART2 å¯„å­˜å™¨å—æŒ‡é’ˆ */
 #define ZLG217_UART2   ((amhw_zlg_uart_t         *)ZLG217_UART2_BASE)
 
-/** \brief UART3 ¼Ä´æÆ÷¿éÖ¸Õë */
+/** \brief UART3 å¯„å­˜å™¨å—æŒ‡é’ˆ */
 #define ZLG217_UART3   ((amhw_zlg_uart_t         *)ZLG217_UART3_BASE)
 
-/** \brief ADC1 ¼Ä´æÆ÷¿éÖ¸Õë */
+/** \brief ADC1 å¯„å­˜å™¨å—æŒ‡é’ˆ */
 #define ZLG217_ADC1    ((amhw_zlg_adc_t          *)ZLG217_ADC1_BASE)
 
-/** \brief ADC2 ¼Ä´æÆ÷¿éÖ¸Õë */
+/** \brief ADC2 å¯„å­˜å™¨å—æŒ‡é’ˆ */
 #define ZLG217_ADC2    ((amhw_zlg_adc_t          *)ZLG217_ADC2_BASE)
 
-/** \brief DAC ¼Ä´æÆ÷¿éÖ¸Õë */
+/** \brief DAC å¯„å­˜å™¨å—æŒ‡é’ˆ */
 #define ZLG217_DAC     ((amhw_zlg_dac_t          *)ZLG217_DAC_BASE)
 
-/** \brief DMA ¼Ä´æÆ÷¿éÖ¸Õë */
+/** \brief DMA å¯„å­˜å™¨å—æŒ‡é’ˆ */
 #define ZLG217_DMA     ((amhw_zlg217_dma_t       *)ZLG217_DMA_BASE)
 
-/** \brief RCC¿ØÖÆÆ÷¼Ä´æÆ÷¿éÖ¸Õë */
+/** \brief RCCæ§åˆ¶å™¨å¯„å­˜å™¨å—æŒ‡é’ˆ */
 #define ZLG217_RCC     ((amhw_zlg217_rcc_t       *)ZLG217_RCC_BASE)
 
-/** \brief SPI1¿ØÖÆÆ÷¼Ä´æÆ÷¿éÖ¸Õë */
+/** \brief SPI1æ§åˆ¶å™¨å¯„å­˜å™¨å—æŒ‡é’ˆ */
 #define ZLG217_SPI1    ((amhw_zlg_spi_t          *)ZLG217_SPI1_BASE)
 
-/** \brief SPI2¿ØÖÆÆ÷¼Ä´æÆ÷¿éÖ¸Õë */
+/** \brief SPI2æ§åˆ¶å™¨å¯„å­˜å™¨å—æŒ‡é’ˆ */
 #define ZLG217_SPI2    ((amhw_zlg_spi_t          *)ZLG217_SPI2_BASE)
 
-/** \brief I2C1¼Ä´æÆ÷¿éÖ¸Õë */
+/** \brief I2C1å¯„å­˜å™¨å—æŒ‡é’ˆ */
 #define ZLG217_I2C1    ((amhw_zlg_i2c_t          *)ZLG217_I2C1_BASE)
 
-/** \brief I2C2¼Ä´æÆ÷¿éÖ¸Õë */
+/** \brief I2C2å¯„å­˜å™¨å—æŒ‡é’ˆ */
 #define ZLG217_I2C2    ((amhw_zlg_i2c_t          *)ZLG217_I2C2_BASE)
 
-/** \brief IWDG¿ØÖÆÆ÷¼Ä´æÆ÷¿éÖ¸Õë */
+/** \brief IWDGæ§åˆ¶å™¨å¯„å­˜å™¨å—æŒ‡é’ˆ */
 #define ZLG217_IWDG    ((amhw_zlg_iwdg_t         *)ZLG217_IWDG_BASE)
 
-/** \brief WWDG¿ØÖÆÆ÷¼Ä´æÆ÷¿éÖ¸Õë */
+/** \brief WWDGæ§åˆ¶å™¨å¯„å­˜å™¨å—æŒ‡é’ˆ */
 #define ZLG217_WWDG    ((amhw_zlg_wwdg_t         *)ZLG217_WWDG_BASE)
 
-/** \brief CAN¿ØÖÆÆ÷¼Ä´æÆ÷¿éÖ¸Õë */
+/** \brief CANæ§åˆ¶å™¨å¯„å­˜å™¨å—æŒ‡é’ˆ */
 #define ZLG217_CAN     ((amhw_zlg217_can_t       *)ZLG217_CAN_BASE)
 
-/** \brief USB¿ØÖÆÆ÷¼Ä´æÆ÷¿éÖ¸Õë */
+/** \brief USBæ§åˆ¶å™¨å¯„å­˜å™¨å—æŒ‡é’ˆ */
 #define ZLG217_USB     ((amhw_zlg217_usb_t       *)ZLG217_USB_BASE)
 
-/** \brief Íâ²¿ÖĞ¶Ï(ÊÂ¼ş)¿ØÖÆÆ÷EXTI¼Ä´æÆ÷¿éÖ¸Õë */
+/** \brief å¤–éƒ¨ä¸­æ–­(äº‹ä»¶)æ§åˆ¶å™¨EXTIå¯„å­˜å™¨å—æŒ‡é’ˆ */
 #define ZLG217_EXTI    ((amhw_zlg217_exti_t      *)ZLG217_EXTI_BASE)
 
-/** \brief FLASH¼Ä´æÆ÷¿éÖ¸Õë */
+/** \brief FLASHå¯„å­˜å™¨å—æŒ‡é’ˆ */
 #define ZLG217_FLASH   ((amhw_zlg_flash_t        *)ZLG217_FLASH_BASE)
 
-/** \brief CRC¼Ä´æÆ÷¿éÖ¸Õë */
+/** \brief CRCå¯„å­˜å™¨å—æŒ‡é’ˆ */
 #define ZLG217_CRC     (amhw_zlg_crc_t           *)(ZLG217_CRC_BASE)
 
 /** @} */

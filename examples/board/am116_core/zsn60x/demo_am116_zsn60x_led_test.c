@@ -12,15 +12,15 @@
 
 /**
  * \file
- * \brief zsn60x LED���Գ���
+ * \brief zsn60x LED测试程序
  *
- * - �������裺
- *   1. ��ȷ���Ӳ����úô��ڣ�
+ * - 操作步骤：
+ *   1. 正确连接并配置好串口；
  *
- * - ʵ������
- *   1. ZSN600��LED�ƽ�����˸����ִ�д�������ӡ��Ӧ�Ĵ����ʶ�� ��
+ * - 实验现象：
+ *   1. ZSN600的LED灯将会闪烁，若执行错误则会打印响应的错误标识号 ；
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_am116_zsn60x_led_test.c src_am116_zsn60x_led_test
  *
  * \internal

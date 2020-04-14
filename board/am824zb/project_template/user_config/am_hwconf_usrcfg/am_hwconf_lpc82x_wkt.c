@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief LPC82X WKT ÓÃ»§ÅäÖÃÊµÏÖ
+ * \brief LPC82X WKT ç”¨æˆ·é…ç½®å®ç°
  * \sa am_hwconf_lpc82x_wkt.c
  *
  * \internal
@@ -35,28 +35,28 @@
  * @{
  */
 
-/** \brief WKTÆ½Ì¨³õÊ¼»¯ */
+/** \brief WKTå¹³å°åˆå§‹åŒ– */
 static void __lpc82x_wkt_plfm_init (void)
 {
-    /* Ê¹ÄÜWKTÊ±ÖÓ */
+    /* ä½¿èƒ½WKTæ—¶é’Ÿ */
     amhw_lpc82x_clk_periph_enable(AMHW_LPC82X_CLK_WKT);
 
-    /* ¸´Î»WKT */
+    /* å¤ä½WKT */
     amhw_lpc82x_syscon_periph_reset(AMHW_LPC82X_RESET_WKT);
 }
 
-/** \brief ½â³ıWKTÆ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤WKTå¹³å°åˆå§‹åŒ– */
 static void __lpc82x_wkt_plfm_deinit (void)
 
-{    /* ¸´Î»WKT */
+{    /* å¤ä½WKT */
     amhw_lpc82x_syscon_periph_reset(AMHW_LPC82X_RESET_WKT);
 
-    /* ½ûÄÜWKTÊ±ÖÓ */
+    /* ç¦èƒ½WKTæ—¶é’Ÿ */
     amhw_lpc82x_clk_periph_disable(AMHW_LPC82X_CLK_WKT);
 
 }
 
-/** \brief WKTÆ½Ì¨Ê±ÖÓ½â³õÊ¼»¯ */
+/** \brief WKTå¹³å°æ—¶é’Ÿè§£åˆå§‹åŒ– */
 static void __lpc82x_wkt_plfm_clk_init (const am_lpc_wkt_devinfo_t *p_devinfo)
 {
     amhw_lpc_wkt_t  *p_hw_wkt  = (amhw_lpc_wkt_t *)(p_devinfo->wkt_regbase);
@@ -68,28 +68,28 @@ static void __lpc82x_wkt_plfm_clk_init (const am_lpc_wkt_devinfo_t *p_devinfo)
     switch (p_devinfo->clksel_str) {
     case AMHW_LPC_WKT_IRC_CLOCK:
 
-        /* ÉèÖÃWKTÊ±ÖÓÔ´ÎªÄÚ²¿Ê±ÖÓ */
+        /* è®¾ç½®WKTæ—¶é’Ÿæºä¸ºå†…éƒ¨æ—¶é’Ÿ */
         amhw_lpc_wkt_clksel_cfg(p_hw_wkt, AMHW_LPC_WKT_IRC_CLOCK);
 
         break;
     case AMHW_LPC_WKT_LOW_POWER_CLOCK:
 
-        /* Ê¹ÄÜµÍ¹¦ºÄÕñµ´Æ÷ */
+        /* ä½¿èƒ½ä½åŠŸè€—æŒ¯è¡å™¨ */
         amhw_lpc82x_pmu_lposcen_enable(LPC82X_PMU);
 
-        /* ÉèÖÃWKTÊ±ÖÓÔ´ÎªµÍ¹¦ºÄÕñµ´Æ÷ */
+        /* è®¾ç½®WKTæ—¶é’Ÿæºä¸ºä½åŠŸè€—æŒ¯è¡å™¨ */
         amhw_lpc_wkt_clksel_cfg(p_hw_wkt, AMHW_LPC_WKT_LOW_POWER_CLOCK);
 
         break;
 
     case AMHW_LPC_WKT_EXT_CLOCK:
-        /* WAKEUPCLKHYS Òı½Å³ÙÖÍÊ¹ÄÜ */
+        /* WAKEUPCLKHYS å¼•è„šè¿Ÿæ»ä½¿èƒ½ */
         amhw_lpc82x_pmu_wakeupclkhys_enable(LPC82X_PMU);
 
-        /* WAKECLKPADÒı½ÅÊ¹ÄÜ(Ê¹ÄÜPIO0_28Íâ²¿Ê±ÖÓ¹¦ÄÜ) */
+        /* WAKECLKPADå¼•è„šä½¿èƒ½(ä½¿èƒ½PIO0_28å¤–éƒ¨æ—¶é’ŸåŠŸèƒ½) */
         amhw_lpc82x_pmu_wakeclkpad_enable(LPC82X_PMU);
 
-        /* ÉèÖÃWKTÊ±ÖÓÔ´ÎªÍâ²¿Ê±ÖÓ */
+        /* è®¾ç½®WKTæ—¶é’Ÿæºä¸ºå¤–éƒ¨æ—¶é’Ÿ */
         amhw_lpc_wkt_clksel_cfg(p_hw_wkt, AMHW_LPC_WKT_EXT_CLOCK);
 
         break;
@@ -98,30 +98,30 @@ static void __lpc82x_wkt_plfm_clk_init (const am_lpc_wkt_devinfo_t *p_devinfo)
 
 }
 
-/** \brief WKTÉè±¸ĞÅÏ¢ */
+/** \brief WKTè®¾å¤‡ä¿¡æ¯ */
 static const am_lpc_wkt_devinfo_t __g_wkt_devinfo = {
-    LPC82X_WKT_BASE,                /**< \brief WKT¼Ä´æÆ÷¿éµÄ»ùµØÖ· */
-    INUM_WKT,                       /**< \brief WKT ÖĞ¶Ï±àºÅ */
-    1,                              /**< \brief Ö§³Ö1¸öÍ¨µÀ */
-    AMHW_LPC_WKT_LOW_POWER_CLOCK,   /**< \brief Ñ¡ÔñIRCÊ±ÖÓ */
-    0,                              /**< \brief Ê¹ÓÃÍâ²¿Ê±ÖÓÊ±µÄÆµÂÊÉèÖÃ */
+    LPC82X_WKT_BASE,                /**< \brief WKTå¯„å­˜å™¨å—çš„åŸºåœ°å€ */
+    INUM_WKT,                       /**< \brief WKT ä¸­æ–­ç¼–å· */
+    1,                              /**< \brief æ”¯æŒ1ä¸ªé€šé“ */
+    AMHW_LPC_WKT_LOW_POWER_CLOCK,   /**< \brief é€‰æ‹©IRCæ—¶é’Ÿ */
+    0,                              /**< \brief ä½¿ç”¨å¤–éƒ¨æ—¶é’Ÿæ—¶çš„é¢‘ç‡è®¾ç½® */
 
-    __lpc82x_wkt_plfm_clk_init,     /**< \brief Æ½Ì¨Ê±ÖÓ³õÊ¼»¯º¯Êı */
+    __lpc82x_wkt_plfm_clk_init,     /**< \brief å¹³å°æ—¶é’Ÿåˆå§‹åŒ–å‡½æ•° */
 
-    __lpc82x_wkt_plfm_init,         /**< \brief WKTÆ½Ì¨³õÊ¼»¯º¯Êı */
-    __lpc82x_wkt_plfm_deinit        /**< \brief WKTÆ½Ì¨½â³õÊ¼»¯º¯Êı */
+    __lpc82x_wkt_plfm_init,         /**< \brief WKTå¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __lpc82x_wkt_plfm_deinit        /**< \brief WKTå¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 };
 
-static am_lpc_wkt_dev_t __g_wkt_dev;     /**< \brief WKT Éè±¸¶¨Òå */
+static am_lpc_wkt_dev_t __g_wkt_dev;     /**< \brief WKT è®¾å¤‡å®šä¹‰ */
 
 
-/** \brief WKT ÊµÀı³õÊ¼»¯£¬»ñµÃTimer±ê×¼·şÎñ¾ä±ú */
+/** \brief WKT å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—Timeræ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_timer_handle_t am_lpc82x_wkt_inst_init (void)
 {
     return am_lpc_wkt_init(&__g_wkt_dev, &__g_wkt_devinfo);
 }
 
-/** \brief WKT ÊµÀı½â³õÊ¼»¯ */
+/** \brief WKT å®ä¾‹è§£åˆå§‹åŒ– */
 void am_lpc82x_wkt_inst_deinit (am_timer_handle_t handle)
 {
     am_lpc_wkt_deinit(handle);

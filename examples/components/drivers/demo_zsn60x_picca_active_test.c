@@ -12,16 +12,16 @@
 
 /**
  * \file
- * \brief zsn60x AÀà¿¨²âÊÔ³ÌĞò
+ * \brief zsn60x Aç±»å¡æµ‹è¯•ç¨‹åº
  *
- * - ²Ù×÷²½Öè£º
- *   1. ÕıÈ·Á¬½Ó²¢ÅäÖÃºÃ´®¿Ú£»
- *   2. ½«AÀà¿¨·ÅÖÃÓÚÌìÏß¸ĞÓ¦Çø¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. æ­£ç¡®è¿æ¥å¹¶é…ç½®å¥½ä¸²å£ï¼›
+ *   2. å°†Aç±»å¡æ”¾ç½®äºå¤©çº¿æ„Ÿåº”åŒºã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. MCU½«»á´òÓ¡³öAÀà¿¨µÄÏà¹ØĞÅÏ¢
+ * - å®éªŒç°è±¡ï¼š
+ *   1. MCUå°†ä¼šæ‰“å°å‡ºAç±»å¡çš„ç›¸å…³ä¿¡æ¯
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_zsn60x_picca_test.c src_zsn60x_picca_test
  *
  * \internal
@@ -40,7 +40,7 @@
 #include "zsn60x.h"
 #include "am_vdebug.h"
 
-/* ZSN60x  AÀà¿¨¼¤»î²âÊÔ³ÌĞò */
+/* ZSN60x  Aç±»å¡æ¿€æ´»æµ‹è¯•ç¨‹åº */
 void demo_zsn60x_picca_active_test_entry (zsn60x_handle_t handle)
 {
     unsigned short  atq[2] = {0};
@@ -48,7 +48,7 @@ void demo_zsn60x_picca_active_test_entry (zsn60x_handle_t handle)
     unsigned char   len = 0;
     unsigned char   uid[10] = {0};
     unsigned char   ret = 0;
-    //A¿¨ÇëÇó½Ó¿Úº¯Êı  ÇëÇóÄ£Ê½Îª 0x26  IDLE
+    //Aå¡è¯·æ±‚æ¥å£å‡½æ•°  è¯·æ±‚æ¨¡å¼ä¸º 0x26  IDLE
     ret = zsn60x_picca_active(handle, 0x26, atq, &saq, &len, uid);
     if(ret == 0){
         unsigned char i = 0;

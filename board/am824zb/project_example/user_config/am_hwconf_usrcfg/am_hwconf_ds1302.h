@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief DS1302 �����ļ�
+ * \brief DS1302 配置文件
  *
  * \internal
  * \par Modification history
@@ -32,24 +32,24 @@ extern "C" {
 #endif
 
 /**
- * \brief DS1302 ʵ����ʼ����ʹ��оƬ���⹦�ܣ�
- * \return DS1302оƬ�������ΪNULL��������ʼ��ʧ��
- * \note ��ʹ��оƬ���⹦��ʱ��ʹ�øú�����ȡоƬ�ľ��
+ * \brief DS1302 实例初始化（使用芯片特殊功能）
+ * \return DS1302芯片句柄，若为NULL，表明初始化失败
+ * \note 当使用芯片特殊功能时，使用该函数获取芯片的句柄
  */
 am_ds1302_handle_t am_ds1302_inst_init (void);
 
 /**
- * \brief DS1302 ʵ����ʼ�� ��ʹ��ͨ�õ�RTC���ܣ�
- * \return RTC��׼����������ΪNULL��������ʼ��ʧ��
- * \note ��ʹ��ͨ�õ�RTC����ʱ��ʹ�øú�����ȡRTC��׼������
+ * \brief DS1302 实例初始化 （使用通用的RTC功能）
+ * \return RTC标准服务句柄，若为NULL，表明初始化失败
+ * \note 当使用通用的RTC功能时，使用该函数获取RTC标准服务句柄
  */
 am_rtc_handle_t am_ds1302_rtc_inst_init(void);
 
 /**
- * \brief DS1302 ʵ����ʼ�� ����DS1302����ϵͳʱ�䣩
+ * \brief DS1302 实例初始化 （将DS1302用作系统时间）
  *
- * \retval  AW_OK  ��ʼ���ɹ�
- * \retval   < 0   ��ʼ��ʧ�ܣ����C�ļ��и��������Ƿ�Ϸ�
+ * \retval  AW_OK  初始化成功
+ * \retval   < 0   初始化失败，请检C文件中各配置项是否合法
  */
 int am_ds1302_time_inst_init(void);
 

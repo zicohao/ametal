@@ -12,17 +12,17 @@
 
 /**
  * \file
- * \brief TPMʵ�ֲ����ܣ�ͨ��HW��Ľӿ�ʵ��
+ * \brief TPM实现捕获功能，通过HW层的接口实现
  *
- * - ʵ������
- *   1. ������ò����ܵõ���PWM�źŵ����ں�Ƶ�ʡ�
+ * - 实验现象：
+ *   1. 输出利用捕获功能得到的PWM信号的周期和频率。
  *
- * - ע�⣺
- *   1. TPM1ͨ��PIOE_23�������PWM��
- *   2. TPM1��������ͨ��0ʹ��PIOE_20���ţ�
- *   3. ����PIOE_23���ź�PIOE_20���ţ�ʹ�ò������PWMƵ�ʡ�
+ * - 注意：
+ *   1. TPM1通过PIOE_23引脚输出PWM；
+ *   2. TPM1捕获输入通道0使用PIOE_20引脚；
+ *   3. 关联PIOE_23引脚和PIOE_20引脚，使用捕获测量PWM频率。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_amks16z_core_hw_tpm_cap.c src_amks16z_core_hw_tpm_cap
  *
  * \internal
@@ -53,18 +53,18 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_amks16z_core_hw_tpm_cap_entry (void)
 {
     am_pwm_handle_t tpm2_pwm_handle;
     uint32_t        tpm_clock;
 
-    /* ƽ̨��ʼ�� */
+    /* 平台初始化 */
     amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_TPM1);
     amhw_kl26_sim_tpm_src_set(KL26_SIM_TPMSRC_PLLFLLCLK);
 
-    /* ������������ */
+    /* 捕获引脚设置 */
     am_gpio_pin_cfg(PIOE_20, PIOE_20_TPM1_CH0 | AM_GPIO_INPUT);
 
     tpm_clock = am_kl26_clk_periph_rate_get(KL26_TPM1);

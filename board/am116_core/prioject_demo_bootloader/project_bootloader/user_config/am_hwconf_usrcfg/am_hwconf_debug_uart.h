@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief µ÷ÊÔ´®¿ÚÅäÖÃÎÄ¼ş
+ * \brief è°ƒè¯•ä¸²å£é…ç½®æ–‡ä»¶
  *
  * \internal
  * \par Modification history
@@ -30,9 +30,9 @@ extern "C" {
 #endif
 
 /**
- * \brief µ÷ÊÔ´®¿ÚÊµÀı³õÊ¼»¯
- * \param ÎŞ
- * \return µ÷ÊÔ´®¿ÚÊ¹ÓÃµÄ UART ¾ä±ú
+ * \brief è°ƒè¯•ä¸²å£å®ä¾‹åˆå§‹åŒ–
+ * \param æ— 
+ * \return è°ƒè¯•ä¸²å£ä½¿ç”¨çš„ UART å¥æŸ„
  */
 am_uart_handle_t am_debug_uart_inst_init (void);
 

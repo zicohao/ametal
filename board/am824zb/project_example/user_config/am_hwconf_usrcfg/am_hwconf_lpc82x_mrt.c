@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief LPC82X MRT ÓÃÓÚ¶¨Ê±¹¦ÄÜµÄÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief LPC82X MRT ç”¨äºå®šæ—¶åŠŸèƒ½çš„ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_lpc82x_mrt.c
  *
  * \internal
@@ -34,40 +34,40 @@
  * @{
  */
 
-/** \brief MRT Æ½Ì¨³õÊ¼»¯ */
+/** \brief MRT å¹³å°åˆå§‹åŒ– */
 static void __lpc82x_mrt_plfm_init (void)
 {
     amhw_lpc82x_clk_periph_enable(AMHW_LPC82X_CLK_MRT);
     amhw_lpc82x_syscon_periph_reset(AMHW_LPC82X_RESET_MRT);
 }
 
-/** \brief MRTÆ½Ì¨½â³õÊ¼»¯ */
+/** \brief MRTå¹³å°è§£åˆå§‹åŒ– */
 static void __lpc82x_mrt_plfm_deinit (void)
 {
     amhw_lpc82x_syscon_periph_reset(AMHW_LPC82X_RESET_MRT);
     amhw_lpc82x_clk_periph_disable(AMHW_LPC82X_CLK_MRT);
 }
 
-/** \brief MRT Éè±¸ĞÅÏ¢ */
+/** \brief MRT è®¾å¤‡ä¿¡æ¯ */
 static const am_lpc_mrt_devinfo_t  __g_mrt_devinfo = {
 
-    LPC82X_MRT_BASE,             /**< \brief MRT¼Ä´æÆ÷¿é»ùÖ·       */
-    INUM_MRT,                    /**< \brief MRT ÖĞ¶Ï±àºÅ          */
-    CLK_MRT,                     /**< \brief MRT Ê±ÖÓ±àºÅ          */
-    4,                           /**< \brief Ê¹ÓÃµÄÍ¨µÀÊı          */
-    __lpc82x_mrt_plfm_init,      /**< \brief Æ½Ì¨³õÊ¼»¯º¯Êı        */
-    __lpc82x_mrt_plfm_deinit,    /**< \brief Æ½Ì¨½â³õÊ¼»¯º¯Êı      */
+    LPC82X_MRT_BASE,             /**< \brief MRTå¯„å­˜å™¨å—åŸºå€       */
+    INUM_MRT,                    /**< \brief MRT ä¸­æ–­ç¼–å·          */
+    CLK_MRT,                     /**< \brief MRT æ—¶é’Ÿç¼–å·          */
+    4,                           /**< \brief ä½¿ç”¨çš„é€šé“æ•°          */
+    __lpc82x_mrt_plfm_init,      /**< \brief å¹³å°åˆå§‹åŒ–å‡½æ•°        */
+    __lpc82x_mrt_plfm_deinit,    /**< \brief å¹³å°è§£åˆå§‹åŒ–å‡½æ•°      */
 };
 
-static am_lpc_mrt_dev_t  __g_mrt_dev; /**< \brief  MRT Éè±¸¶¨Òå */
+static am_lpc_mrt_dev_t  __g_mrt_dev; /**< \brief  MRT è®¾å¤‡å®šä¹‰ */
 
-/** \brief MRT ÊµÀı³õÊ¼»¯£¬»ñµÃ±ê×¼¶¨Ê±Æ÷·şÎñ¾ä±ú */
+/** \brief MRT å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—æ ‡å‡†å®šæ—¶å™¨æœåŠ¡å¥æŸ„ */
 am_timer_handle_t am_lpc82x_mrt_inst_init (void)
 {
     return am_lpc_mrt_init(&__g_mrt_dev, &__g_mrt_devinfo);
 }
 
-/** \brief MRT ÊµÀı½â³õÊ¼»¯ */
+/** \brief MRT å®ä¾‹è§£åˆå§‹åŒ– */
 void am_lpc82x_mrt_inst_deinit (am_timer_handle_t handle)
 {
     am_lpc_mrt_deinit((am_lpc_mrt_dev_t *)handle);

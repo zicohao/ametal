@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥4.20
+ * \brief ç¨‹åºæ¸…å•4.20
  *
- * \note ¸ÃÀú³ÌĞèÒªÓÃµ½miniportÍØÕ¹°å
+ * \note è¯¥å†ç¨‹éœ€è¦ç”¨åˆ°miniportæ‹“å±•æ¿
  *
  * \internal
  * \par Modification history
@@ -26,28 +26,28 @@
 #include "digitron1.h"
 int am_main (void)
 {
-    int sec = 0;                                 // Ãë¼ÆÊıÆ÷Çå0
+    int sec = 0;                                 // ç§’è®¡æ•°å™¨æ¸…0
     int i   = 0;
     int j   = 0;
-    digitron1_init();                            // ³õÊ¼»¯¶¨Ê±Æ÷£¬ÊµÏÖ×Ô¶¯É¨ÃèÏÔÊ¾
-    digitron1_disp_num_set(0, 0);                // ÏÔÊ¾Æ÷µÄÊ®Î»Çå0
-    digitron1_disp_num_set(1, 0);                // ÏÔÊ¾Æ÷µÄ¸öÎ»Çå0
+    digitron1_init();                            // åˆå§‹åŒ–å®šæ—¶å™¨ï¼Œå®ç°è‡ªåŠ¨æ‰«ææ˜¾ç¤º
+    digitron1_disp_num_set(0, 0);                // æ˜¾ç¤ºå™¨çš„åä½æ¸…0
+    digitron1_disp_num_set(1, 0);                // æ˜¾ç¤ºå™¨çš„ä¸ªä½æ¸…0
     while(1) {
         for (i = 0; i < 2; i++) {
-            digitron1_disp_num_set(1, sec % 10); // ¸öÎ»ÏÔÊ¾
-            for (j = 0; j < 50; j++) {           // É¨Ãè50´Î£¬ºÄÊ±250ms
+            digitron1_disp_num_set(1, sec % 10); // ä¸ªä½æ˜¾ç¤º
+            for (j = 0; j < 50; j++) {           // æ‰«æ50æ¬¡ï¼Œè€—æ—¶250ms
                      digitron1_disp_scan();
                      am_mdelay(5);
             }
-            digitron1_disp_code_set(1, 0xFF);    // ºó250ms¸öÎ»Ï¨Ãğ
-            for (j = 0; j < 50; j++) {           // É¨Ãè50´Î£¬ºÄÊ±250ms
+            digitron1_disp_code_set(1, 0xFF);    // å250msä¸ªä½ç†„ç­
+            for (j = 0; j < 50; j++) {           // æ‰«æ50æ¬¡ï¼Œè€—æ—¶250ms
                      digitron1_disp_scan();
                      am_mdelay(5);
             }
         }
-        sec = (sec + 1) % 60;                    // Ãë¼ÆÊıÆ÷+1
-        digitron1_disp_num_set(0, sec / 10);     // ¸üĞÂÏÔÊ¾Æ÷µÄÊ®Î»
-        digitron1_disp_num_set(1, sec % 10);     // ¸üĞÂÏÔÊ¾Æ÷µÄ¸öÎ»
+        sec = (sec + 1) % 60;                    // ç§’è®¡æ•°å™¨+1
+        digitron1_disp_num_set(0, sec / 10);     // æ›´æ–°æ˜¾ç¤ºå™¨çš„åä½
+        digitron1_disp_num_set(1, sec % 10);     // æ›´æ–°æ˜¾ç¤ºå™¨çš„ä¸ªä½
     }
 }
 

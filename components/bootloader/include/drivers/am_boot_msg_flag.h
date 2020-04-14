@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief bootloaderÏûÏ¢£¨Í¨¹ı±êÖ¾´«´ïÇı¶¯£©
+ * \brief bootloaderæ¶ˆæ¯ï¼ˆé€šè¿‡æ ‡å¿—ä¼ è¾¾é©±åŠ¨ï¼‰
  *
  * \internal
  * \par modification history:
@@ -33,36 +33,36 @@ extern "C" {
 
 
 /**
- * \brief ÏûÏ¢Éè±¸ĞÅÏ¢£¨±êÖ¾ÊµÏÖ£©
+ * \brief æ¶ˆæ¯è®¾å¤‡ä¿¡æ¯ï¼ˆæ ‡å¿—å®ç°ï¼‰
  */
 typedef struct am_boot_msg_flag_devinfo {
-    /**< \brief ¹Ì¼ş±¸·İÇøÆğÊ¼µØÖ·  */
+    /**< \brief å›ºä»¶å¤‡ä»½åŒºèµ·å§‹åœ°å€  */
     uint32_t  upt_sta_addr;
-    /** \brief Ó¦ÓÃÇø´óĞ¡ */
+    /** \brief åº”ç”¨åŒºå¤§å° */
     uint32_t  app_area_size;
-    /** \brief ±êÖ¾´æ·ÅÆğÊ¼µØÖ· */
+    /** \brief æ ‡å¿—å­˜æ”¾èµ·å§‹åœ°å€ */
     uint32_t  flag_addr;
-    /** \brief ±êÖ¾Õ¼ÓÃµÄÊµ¼Ê´óĞ¡£¬Ò»°ãÎªÄÚ´æ×îĞ¡µÄĞ´Èëµ¥Ôª£¬Èç¹ûÊ¹ÓÃflashÄÚ´æ£¬ÔòÎª×îĞ¡µÄ²Á³ıµ¥Ôª*/
+    /** \brief æ ‡å¿—å ç”¨çš„å®é™…å¤§å°ï¼Œä¸€èˆ¬ä¸ºå†…å­˜æœ€å°çš„å†™å…¥å•å…ƒï¼Œå¦‚æœä½¿ç”¨flashå†…å­˜ï¼Œåˆ™ä¸ºæœ€å°çš„æ“¦é™¤å•å…ƒ*/
     uint32_t  flag_occupy_size;
-    /** \brief ¹Ì¼ş¿½±´£¬Ö÷Òª´Ó¹Ì¼şµÄ±¸·İÇø£¬¿½±´µ½Ó¦ÓÃ³ÌĞòµÄÖ´ĞĞÇø*/
+    /** \brief å›ºä»¶æ‹·è´ï¼Œä¸»è¦ä»å›ºä»¶çš„å¤‡ä»½åŒºï¼Œæ‹·è´åˆ°åº”ç”¨ç¨‹åºçš„æ‰§è¡ŒåŒº*/
     int     (*pfn_firwa_cpy)(uint32_t dst_addr, uint32_t src_addr);
 }am_boot_msg_flag_devinfo_t;
 
 /**
- * \brief Í¨¹ı±êÖ¾´«µİÏûÏ¢µÄÉè±¸
+ * \brief é€šè¿‡æ ‡å¿—ä¼ é€’æ¶ˆæ¯çš„è®¾å¤‡
  */
 typedef struct am_boot_msg_flag_dev {
-    am_boot_msg_serv_t            isa;          /**< \brief ±ê×¼µÄÏûÏ¢·şÎñ  */
-    am_boot_msg_flag_devinfo_t   *p_devinfo;    /**< \brief Éè±¸ĞÅÏ¢½á¹¹Ìå */
-    am_boot_mem_handle_t          mem_handle;   /**< \brief memoryµÄ±ê×¼·şÎñ²Ù×÷¾ä±ú  */
-    uint32_t                      app_sta_addr; /**< \brief Ó¦ÓÃ³ÌĞòÄÚ´æ´æ·ÅµÄÆğÊ¼µØÖ·  */
+    am_boot_msg_serv_t            isa;          /**< \brief æ ‡å‡†çš„æ¶ˆæ¯æœåŠ¡  */
+    am_boot_msg_flag_devinfo_t   *p_devinfo;    /**< \brief è®¾å¤‡ä¿¡æ¯ç»“æ„ä½“ */
+    am_boot_mem_handle_t          mem_handle;   /**< \brief memoryçš„æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„  */
+    uint32_t                      app_sta_addr; /**< \brief åº”ç”¨ç¨‹åºå†…å­˜å­˜æ”¾çš„èµ·å§‹åœ°å€  */
 } am_boot_msg_flag_dev_t;
 
 
 /**
- * \brief ÏûÏ¢Éè±¸³õÊ¼»¯£¨±êÖ¾ÊµÏÖ£©
+ * \brief æ¶ˆæ¯è®¾å¤‡åˆå§‹åŒ–ï¼ˆæ ‡å¿—å®ç°ï¼‰
  *
- * \return flash ±ê×¼·şÎñ²Ù×÷¾ä±ú
+ * \return flash æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  */
 am_boot_msg_handle_t am_boot_msg_flag_init(am_boot_msg_flag_devinfo_t *p_devinfo,
                                            am_boot_mem_handle_t        mem_handle);

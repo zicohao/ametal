@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief I2C´Ó»úÇý¶¯£¬·þÎñI2C´Ó»ú±ê×¼½Ó¿Ú
+ * \brief I2Cä»Žæœºé©±åŠ¨ï¼ŒæœåŠ¡I2Cä»Žæœºæ ‡å‡†æŽ¥å£
  *
  * \internal
  * \par Modification History
@@ -25,24 +25,24 @@
 #include "hw/amhw_zlg_i2c.h"
 
 /*******************************************************************************
-  º¯ÊýÉùÃ÷
+  å‡½æ•°å£°æ˜Ž
 *******************************************************************************/
 
-/** \brief I2CÓ²¼þ³õÊ¼»¯ */
+/** \brief I2Cç¡¬ä»¶åˆå§‹åŒ– */
 static int __i2c_slv_hard_init(am_zlg_i2c_slv_dev_t *p_dev);
 
-/** \brief I2CÖÐ¶Ï´¦Àíº¯Êý */
+/** \brief I2Cä¸­æ–­å¤„ç†å‡½æ•° */
 static void __i2c_slv_irq_handler (void *p_arg);
 
-/** \brief ¿ªÆôI2C´Ó»úÉè±¸ */
+/** \brief å¼€å¯I2Cä»Žæœºè®¾å¤‡ */
 static int __i2c_slv_setup (void *p_drv, am_i2c_slv_device_t *p_i2c_slv_dev);
-/** \brief ¹Ø±Õ I2C´Ó»úÉè±¸ */
+/** \brief å…³é—­ I2Cä»Žæœºè®¾å¤‡ */
 static int __i2c_slv_shutdown (void *p_drv, am_i2c_slv_device_t *p_i2c_slv_dev);
-/** \brief »ñÈ¡¿ÉÓÃµÄ´Ó»úÉè±¸¸öÊý */
+/** \brief èŽ·å–å¯ç”¨çš„ä»Žæœºè®¾å¤‡ä¸ªæ•° */
 static int __i2c_slv_num_get(void *p_drv);
 
 /**
- * \brief I2C´ÓÉè±¸ Çý¶¯º¯Êý¶¨Òå
+ * \brief I2Cä»Žè®¾å¤‡ é©±åŠ¨å‡½æ•°å®šä¹‰
  */
 static am_const struct am_i2c_slv_drv_funcs __g_i2c_slv_drv_funcs = {
     __i2c_slv_setup,
@@ -51,9 +51,9 @@ static am_const struct am_i2c_slv_drv_funcs __g_i2c_slv_drv_funcs = {
 };
 
 /**
- *  \brief I2CÓ²¼þ³õÊ¼»¯
- *  \note  1: ÉèÖÃ´ÓÉè±¸µÄµØÖ· ¼°µØÖ·Î»Êý
- *         2£º¿ªÆôÖÐ¶Ï
+ *  \brief I2Cç¡¬ä»¶åˆå§‹åŒ–
+ *  \note  1: è®¾ç½®ä»Žè®¾å¤‡çš„åœ°å€ åŠåœ°å€ä½æ•°
+ *         2ï¼šå¼€å¯ä¸­æ–­
  */
 static int __i2c_slv_hard_init (am_zlg_i2c_slv_dev_t *p_dev)
 {
@@ -65,21 +65,21 @@ static int __i2c_slv_hard_init (am_zlg_i2c_slv_dev_t *p_dev)
 
     p_hw_i2c = (amhw_zlg_i2c_t *) (p_dev->p_devinfo->i2c_regbase);
 
-    /* ¹Ø±ÕI2C¿ØÖÆÆ÷£¬ÅäÖÃ²ÎÊý */
+    /* å…³é—­I2CæŽ§åˆ¶å™¨ï¼Œé…ç½®å‚æ•° */
     amhw_zlg_i2c_disable(p_hw_i2c);
 
     amhw_zlg_i2c_rx_tl_set(p_hw_i2c,0 );
     amhw_zlg_i2c_tx_tl_set(p_hw_i2c, 1);
 
     /*
-     * Ò»Ð©ÖÐ¶ÏµÄÉèÖÃ
+     * ä¸€äº›ä¸­æ–­çš„è®¾ç½®
      */
 
-    /** Ö»¿ªÆôÆðÊ¼Ìõ¼þ¼ì²âÖÐ¶Ï */
+    /** åªå¼€å¯èµ·å§‹æ¡ä»¶æ£€æµ‹ä¸­æ–­ */
     amhw_zlg_i2c_intr_mask_clear(p_hw_i2c,0XFFF);
     amhw_zlg_i2c_intr_mask_set(p_hw_i2c, AMHW_ZLG_INT_FLAG_START_DET);
 
-    /* Çå³ýÖÐ¶Ï×´Ì¬ */
+    /* æ¸…é™¤ä¸­æ–­çŠ¶æ€ */
     amhw_zlg_i2c_clr_intr_get (p_hw_i2c);
     amhw_zlg_i2c_enable(p_hw_i2c);
 
@@ -87,7 +87,7 @@ static int __i2c_slv_hard_init (am_zlg_i2c_slv_dev_t *p_dev)
 }
 
 /**
- * \brief ¿ªÊ¼´Ó»úÉè±¸
+ * \brief å¼€å§‹ä»Žæœºè®¾å¤‡
  */
 static int __i2c_slv_setup (void *p_drv, am_i2c_slv_device_t *p_i2c_slv_dev)
 {
@@ -104,7 +104,7 @@ static int __i2c_slv_setup (void *p_drv, am_i2c_slv_device_t *p_i2c_slv_dev)
     p_dev    = (am_zlg_i2c_slv_dev_t *)p_drv;
     p_hw_i2c = (amhw_zlg_i2c_t *) (p_dev->p_devinfo->i2c_regbase);
 
-    /* »ñÈ¡×ÜµÄ´ÓÉè±¸¸öÊý */
+    /* èŽ·å–æ€»çš„ä»Žè®¾å¤‡ä¸ªæ•° */
     zlg_i2c_slv_dev_num = p_dev->zlg_i2c_slv_dev_num;
 
     for ( i = 0; i < zlg_i2c_slv_dev_num; i++) {
@@ -114,15 +114,15 @@ static int __i2c_slv_setup (void *p_drv, am_i2c_slv_device_t *p_i2c_slv_dev)
         }
     }
 
-    /* ´Ó»úÉè±¸¶¼ÓÃ¹ØÁË£¬ÎÞ·¨¿ªÆô¸Ã´Ó»úÉè±¸ */
+    /* ä»Žæœºè®¾å¤‡éƒ½ç”¨å…³äº†ï¼Œæ— æ³•å¼€å¯è¯¥ä»Žæœºè®¾å¤‡ */
     if ( i == zlg_i2c_slv_dev_num) {
         return -AM_EAGAIN;
     }
 
-    /* ¹Ø±ÕI2C¿ØÖÆÆ÷£¬ÅäÖÃ²ÎÊý */
+    /* å…³é—­I2CæŽ§åˆ¶å™¨ï¼Œé…ç½®å‚æ•° */
     amhw_zlg_i2c_disable (p_hw_i2c);
 
-    /* ÅÐ¶ÏÊÇ·ñ ÐèÒªÏìÓ¦ ¹ã²¥µØÖ· */
+    /* åˆ¤æ–­æ˜¯å¦ éœ€è¦å“åº” å¹¿æ’­åœ°å€ */
     if ( p_i2c_slv_dev->dev_flags & AM_I2C_SLV_GEN_CALL_ACK) {
         amhw_zlg_i2c_gen_call_ack(p_hw_i2c);
         amhw_zlg_i2c_intr_mask_set(p_hw_i2c,AMHW_ZLG_INT_FLAG_GEN_CALL);
@@ -131,15 +131,15 @@ static int __i2c_slv_setup (void *p_drv, am_i2c_slv_device_t *p_i2c_slv_dev)
     }
 
     /**
-     * \brief ¸ù¾Ý  i ´æ·Å´Ó»úÉè±¸µØÖ·¡£
-     *         i = 0 ,´æ·Åµ½µÚ1¸ö´ÓµØÖ·
-     *         i = 1 ,´æ·Åµ½µÚ2´ÓµØÖ· £¬ÒÔ´ËÀàÍÆ
+     * \brief æ ¹æ®  i å­˜æ”¾ä»Žæœºè®¾å¤‡åœ°å€ã€‚
+     *         i = 0 ,å­˜æ”¾åˆ°ç¬¬1ä¸ªä»Žåœ°å€
+     *         i = 1 ,å­˜æ”¾åˆ°ç¬¬2ä»Žåœ°å€ ï¼Œä»¥æ­¤ç±»æŽ¨
      *
-     * \note ZLGÖ»ÓÐÒ»¸ö´Ó»úµØÖ· ,Ö±½Ó´æ·Å¼´¿É ¡£
+     * \note ZLGåªæœ‰ä¸€ä¸ªä»Žæœºåœ°å€ ,ç›´æŽ¥å­˜æ”¾å³å¯ ã€‚
      */
     amhw_zlg_i2c_slave_addr_set (p_hw_i2c, p_i2c_slv_dev->dev_addr);
 
-    /* ÉèÖÃ´Ó»úÉè±¸µÄµØÖ·Î»Êý */
+    /* è®¾ç½®ä»Žæœºè®¾å¤‡çš„åœ°å€ä½æ•° */
     if ( p_i2c_slv_dev->dev_flags  &  AM_I2C_SLV_ADDR_10BIT) {
         p_hw_i2c->ic_con = AMHW_ZLG_I2C_SLAVE  |
                        AMHW_ZLG_I2C_10BITADDR_SLAVE;
@@ -153,7 +153,7 @@ static int __i2c_slv_setup (void *p_drv, am_i2c_slv_device_t *p_i2c_slv_dev)
 }
 
 /**
- * \brief ¹Ø±Õ ´Ó»úÉè±¸
+ * \brief å…³é—­ ä»Žæœºè®¾å¤‡
  */
 static int __i2c_slv_shutdown (void *p_drv, am_i2c_slv_device_t *p_i2c_slv_dev)
 {
@@ -167,9 +167,9 @@ static int __i2c_slv_shutdown (void *p_drv, am_i2c_slv_device_t *p_i2c_slv_dev)
     p_hw_i2c_slv = (amhw_zlg_i2c_t *) p_dev->p_devinfo->i2c_regbase;
 
     /**
-     * \brief Ê§ÄÜ¶ÔÓ¦´ÓµØÖ· ,¸ù¾Ý´Ó»úµØÖ·¿ÉÒÔÈ·¶¨¸Ã¹Ø±ÕÄÄÒ»¸ö´Ó»úÉè±¸
+     * \brief å¤±èƒ½å¯¹åº”ä»Žåœ°å€ ,æ ¹æ®ä»Žæœºåœ°å€å¯ä»¥ç¡®å®šè¯¥å…³é—­å“ªä¸€ä¸ªä»Žæœºè®¾å¤‡
      *
-     * \note ZLGÖ»ÄÜÉú³ÉÒ»¸ö´ÓÉè±¸ £¬Ö±½Ó¹Ø±ÕÊ§ÄÜI2C¼´¿É
+     * \note ZLGåªèƒ½ç”Ÿæˆä¸€ä¸ªä»Žè®¾å¤‡ ï¼Œç›´æŽ¥å…³é—­å¤±èƒ½I2Cå³å¯
      */
     p_dev->p_i2c_slv_dev[0] = NULL;
     amhw_zlg_i2c_disable (p_hw_i2c_slv);
@@ -178,7 +178,7 @@ static int __i2c_slv_shutdown (void *p_drv, am_i2c_slv_device_t *p_i2c_slv_dev)
 }
 
 /**
- * \brief »ñÈ¡¿ÉÓÃ´Ó»úÉè±¸¸öÊý
+ * \brief èŽ·å–å¯ç”¨ä»Žæœºè®¾å¤‡ä¸ªæ•°
  */
 static int __i2c_slv_num_get (void *p_drv)
 {
@@ -190,7 +190,7 @@ static int __i2c_slv_num_get (void *p_drv)
     if ((p_dev == NULL)) {
         return -AM_EINVAL;
     }
-    /* »ñÈ¡×ÜµÄ´ÓÉè±¸¸öÊý */
+    /* èŽ·å–æ€»çš„ä»Žè®¾å¤‡ä¸ªæ•° */
     zlg_i2c_slv_dev_num = p_dev->zlg_i2c_slv_dev_num;
 
     for (i = 0; i < zlg_i2c_slv_dev_num; i++) {
@@ -202,9 +202,9 @@ static int __i2c_slv_num_get (void *p_drv)
 }
 
 /**
- * \brief Èí¼þ¶¨Ê±Æ÷»Øµ÷º¯Êý
+ * \brief è½¯ä»¶å®šæ—¶å™¨å›žè°ƒå‡½æ•°
  *
- * \note ÔÚ¿ªÊ¼ÐÅºÅÖ®ºó £¬ÈôÖ÷»ú³¬¹ý1Ãë»¹Î´·¢Í£Ö¹ÐÅºÅ £¬Ôò½«´Ó»ú½øÐÐ¸´Î»
+ * \note åœ¨å¼€å§‹ä¿¡å·ä¹‹åŽ ï¼Œè‹¥ä¸»æœºè¶…è¿‡1ç§’è¿˜æœªå‘åœæ­¢ä¿¡å· ï¼Œåˆ™å°†ä»Žæœºè¿›è¡Œå¤ä½
  */
 static void __i2c_slv_timing_callback (void *p_arg)
 {
@@ -214,15 +214,15 @@ static void __i2c_slv_timing_callback (void *p_arg)
     amhw_zlg_i2c_t     *p_hw_i2c  = NULL;
     p_hw_i2c  = (amhw_zlg_i2c_t *) (p_dev->p_devinfo->i2c_regbase);
 
-    /* Æ½Ì¨³õÊ¼»¯Ö®ºó½« ¼Ä´æÆ÷µÄÖµ¸´Î» */
+    /* å¹³å°åˆå§‹åŒ–ä¹‹åŽå°† å¯„å­˜å™¨çš„å€¼å¤ä½ */
     if (p_dev->p_devinfo->pfn_plfm_init) {
         p_dev->p_devinfo->pfn_plfm_init();
     }
 
-    /* ¹Ø±ÕI2C¿ØÖÆÆ÷£¬ÅäÖÃ²ÎÊý */
+    /* å…³é—­I2CæŽ§åˆ¶å™¨ï¼Œé…ç½®å‚æ•° */
     amhw_zlg_i2c_disable (p_hw_i2c);
 
-    /** ÅÐ¶ÏÊÇ·ñ ÐèÒªÏìÓ¦ ¹ã²¥µØÖ· */
+    /** åˆ¤æ–­æ˜¯å¦ éœ€è¦å“åº” å¹¿æ’­åœ°å€ */
     if ( p_dev->p_i2c_slv_dev[0]->dev_flags & AM_I2C_SLV_GEN_CALL_ACK) {
         amhw_zlg_i2c_gen_call_ack(p_hw_i2c);
         amhw_zlg_i2c_intr_mask_set(p_hw_i2c,AMHW_ZLG_INT_FLAG_GEN_CALL);
@@ -232,7 +232,7 @@ static void __i2c_slv_timing_callback (void *p_arg)
 
     amhw_zlg_i2c_slave_addr_set (p_hw_i2c, p_dev->p_i2c_slv_dev[0]->dev_addr);
 
-    /* ÉèÖÃ´Ó»úÉè±¸µÄµØÖ·Î»Êý */
+    /* è®¾ç½®ä»Žæœºè®¾å¤‡çš„åœ°å€ä½æ•° */
     if ( p_dev->p_i2c_slv_dev[0]->dev_flags  &  AM_I2C_SLV_ADDR_10BIT) {
         p_hw_i2c->ic_con = AMHW_ZLG_I2C_SLAVE  |
                        AMHW_ZLG_I2C_10BITADDR_SLAVE;
@@ -246,24 +246,24 @@ static void __i2c_slv_timing_callback (void *p_arg)
 
     __i2c_slv_hard_init(p_dev);
 
-    /** Í£Ö¹¶¨Ê± */
+    /** åœæ­¢å®šæ—¶ */
     am_softimer_stop(&p_dev->softimer);
 }
 
 /**
- * \brief ´Ó»ú½ÓÊÜÊý¾Ý
+ * \brief ä»ŽæœºæŽ¥å—æ•°æ®
  */
 void __i2c_slv_irq_rx_handler (am_zlg_i2c_slv_dev_t *p_dev)
 {
     amhw_zlg_i2c_t *p_hw_i2c      = (amhw_zlg_i2c_t *)p_dev->p_devinfo->i2c_regbase;
     am_i2c_slv_device_t *p_i2c_slv = p_dev->p_i2c_slv_dev[0];
 
-    /* ½ÓÊÜÊý¾Ý */
+    /* æŽ¥å—æ•°æ® */
     uint8_t rx_data = amhw_zlg_i2c_dat_read (p_hw_i2c);
 
-    /* ½ÓÊÜ»Øµ÷ */
+    /* æŽ¥å—å›žè°ƒ */
     if ( p_dev->is_gen_call == AM_TRUE) {
-        /** Èç¹ûÊÇ¹ã²¥ºô½Ð */
+        /** å¦‚æžœæ˜¯å¹¿æ’­å‘¼å« */
         if( p_i2c_slv->p_cb_funs->pfn_gen_call) {
             p_i2c_slv->p_cb_funs->pfn_gen_call(p_i2c_slv->p_arg, rx_data);
         }
@@ -276,7 +276,7 @@ void __i2c_slv_irq_rx_handler (am_zlg_i2c_slv_dev_t *p_dev)
 }
 
 /**
- * \brief ´Ó»ú·¢ËÍÊý¾Ý
+ * \brief ä»Žæœºå‘é€æ•°æ®
  */
 void __i2c_slv_irq_tx_handler (am_zlg_i2c_slv_dev_t *p_dev)
 {
@@ -286,24 +286,24 @@ void __i2c_slv_irq_tx_handler (am_zlg_i2c_slv_dev_t *p_dev)
     uint8_t  tx_data = 0;
 
     /**
-     * \brief Í¨¹ý·¢ËÍ»Øµ÷À´»ñÈ¡Êý¾Ý £¬
-     *        ´ËFIFOÓÐÁ½¸ö×Ö½Ú + ÒÆÎ»¼Ä´æÆ÷·ÅÒ»¸ö×Ö½Ú £¬Òò´Ë¿ÉÒÔÁ¬ÐøÈ¡Èý¸ö×Ö½Ú
+     * \brief é€šè¿‡å‘é€å›žè°ƒæ¥èŽ·å–æ•°æ® ï¼Œ
+     *        æ­¤FIFOæœ‰ä¸¤ä¸ªå­—èŠ‚ + ç§»ä½å¯„å­˜å™¨æ”¾ä¸€ä¸ªå­—èŠ‚ ï¼Œå› æ­¤å¯ä»¥è¿žç»­å–ä¸‰ä¸ªå­—èŠ‚
      */
     if (NULL != p_i2c_slv->p_cb_funs->pfn_txbyte_get) {
          p_i2c_slv->p_cb_funs->pfn_txbyte_get( p_i2c_slv->p_arg, &tx_data);
     }
     amhw_zlg_i2c_dat_write(p_hw_i2c, tx_data);
 
-    /* Çå³ý¶ÁÇëÇó */
+    /* æ¸…é™¤è¯»è¯·æ±‚ */
     amhw_zlg_i2c_clr_rd_req_get(p_hw_i2c);
 }
 
 /**
- * \brief I2C ÖÐ¶Ï´¦Àíº¯Êý
+ * \brief I2C ä¸­æ–­å¤„ç†å‡½æ•°
  *
- * \param[in] p_arg : Ö¸ÏòI2CÉè±¸½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] p_arg : æŒ‡å‘I2Cè®¾å¤‡ç»“æž„ä½“çš„æŒ‡é’ˆ
  *
- * \return ÎÞ
+ * \return æ— 
  */
 static void __i2c_slv_irq_handler (void *p_arg)
 {
@@ -314,15 +314,15 @@ static void __i2c_slv_irq_handler (void *p_arg)
     amhw_zlg_int_flag_t    i2c_slv_int_status = amhw_zlg_i2c_intr_stat_get(p_hw_i2c_slv);
 
     /**
-     * \brief ¿ªÊ¼ÐÅºÅ
+     * \brief å¼€å§‹ä¿¡å·
      *
-     * \note  Ö»Òª×ÜÏßÉÏÓÐ¿ªÊ¼ÐÅºÅ¾Í»á´¥·¢¸ÃÖÐ¶Ï
+     * \note  åªè¦æ€»çº¿ä¸Šæœ‰å¼€å§‹ä¿¡å·å°±ä¼šè§¦å‘è¯¥ä¸­æ–­
      */
     if ( i2c_slv_int_status & AMHW_ZLG_INT_FLAG_START_DET) {
-        /** Çå³ý¿ªÊ¼ÖÐ¶Ï */
+        /** æ¸…é™¤å¼€å§‹ä¸­æ–­ */
         amhw_zlg_i2c_clr_start_det_get(p_hw_i2c_slv);
 
-        /* ÅÐ¶ÏI2C´Ó»úÉè±¸ÊÇ·ñÖ§³Ö¹ã²¥¹¦ÄÜ */
+        /* åˆ¤æ–­I2Cä»Žæœºè®¾å¤‡æ˜¯å¦æ”¯æŒå¹¿æ’­åŠŸèƒ½ */
         if(p_dev->p_i2c_slv_dev[0]->dev_flags  & AM_I2C_SLV_GEN_CALL_ACK){
             amhw_zlg_i2c_gen_call_ack(p_hw_i2c_slv);
             amhw_zlg_i2c_intr_mask_set(p_hw_i2c_slv, AMHW_ZLG_INT_FLAG_GEN_CALL);
@@ -330,93 +330,93 @@ static void __i2c_slv_irq_handler (void *p_arg)
             amhw_zlg_i2c_gen_call_nack(p_hw_i2c_slv);
         }
         /**
-         *  \brief ÅÐ¶ÏÊÇ²»ÊÇ Óë±¾Éè±¸½øÐÐÍ¨ÐÅ
+         *  \brief åˆ¤æ–­æ˜¯ä¸æ˜¯ ä¸Žæœ¬è®¾å¤‡è¿›è¡Œé€šä¿¡
          *
-         *  \note Ö»ÓÐ´Ó»úµØÖ·Æ¥ÅäÁË  ´Ó»ú×´Ì¬»ú»î¶¯×´Ì¬Î» ²Å»áÖÃ1
+         *  \note åªæœ‰ä»Žæœºåœ°å€åŒ¹é…äº†  ä»ŽæœºçŠ¶æ€æœºæ´»åŠ¨çŠ¶æ€ä½ æ‰ä¼šç½®1
          */
         if ( p_hw_i2c_slv->ic_status & AMHW_ZLG_STATUS_FLAG_SLV_ACTIVITY ) {
-            /* µØÖ·Æ¥Åä»Øµ÷, ÊÇ¶Á»¹ÊÇÐ´¸ÃMCUÎÞ·¨È·¶¨ */
+            /* åœ°å€åŒ¹é…å›žè°ƒ, æ˜¯è¯»è¿˜æ˜¯å†™è¯¥MCUæ— æ³•ç¡®å®š */
             if( NULL != p_i2c_slv_dev->p_cb_funs->pfn_addr_match) {
                 p_i2c_slv_dev->p_cb_funs->pfn_addr_match(p_i2c_slv_dev->p_arg, AM_TRUE);
             }
 
-            /** ½ÓÊÕµ½´Ó»úµØÖ·»î¶¯×´Ì¬ÎªÖ®ºó²ÅÄÜ´ò¿ªÍ£Ö¹¼ì²âÖÐ¶ÏÒÔ¼°½ÓÊÕ´«ÊäÖÐ¶Ï */
+            /** æŽ¥æ”¶åˆ°ä»Žæœºåœ°å€æ´»åŠ¨çŠ¶æ€ä¸ºä¹‹åŽæ‰èƒ½æ‰“å¼€åœæ­¢æ£€æµ‹ä¸­æ–­ä»¥åŠæŽ¥æ”¶ä¼ è¾“ä¸­æ–­ */
             amhw_zlg_i2c_intr_mask_set (p_hw_i2c_slv, AMHW_ZLG_INT_FLAG_STOP_DET|
                                                       AMHW_ZLG_INT_FLAG_RX_FULL |
                                                       AMHW_ZLG_INT_FLAG_RD_REQ);
 
-            /* Ê¹ÓÃÈí¼þ¶¨Ê±Æ÷¶Ô´«Êä¹ý³Ì½øÐÐ³ö´íÅÐ¶Ï£¬ Èô¸Ã´Î´«ÊäÊ±¼ä´óÓÚ1s£¬Ôò±íÊ¾¸Ã´«Êä³ö´í */
+            /* ä½¿ç”¨è½¯ä»¶å®šæ—¶å™¨å¯¹ä¼ è¾“è¿‡ç¨‹è¿›è¡Œå‡ºé”™åˆ¤æ–­ï¼Œ è‹¥è¯¥æ¬¡ä¼ è¾“æ—¶é—´å¤§äºŽ1sï¼Œåˆ™è¡¨ç¤ºè¯¥ä¼ è¾“å‡ºé”™ */
             am_softimer_start(&p_dev->softimer, 1000);
         }
     }
 
-    /* ÅÐ¶ÏÊÇ·ñÊÇ¹ã²¥ºô½Ð */
+    /* åˆ¤æ–­æ˜¯å¦æ˜¯å¹¿æ’­å‘¼å« */
     if( i2c_slv_int_status & AMHW_ZLG_INT_FLAG_GEN_CALL ) {
         amhw_zlg_i2c_clr_gen_call_get(p_hw_i2c_slv );
         p_dev->is_gen_call = AM_TRUE;
     }
 
     /**
-     * \brief ½ÓÊÜ»º´æ·Ç¿ÕÊ± £¬´Ó»ú×¼±¸½ÓÊÜÊý¾Ý
+     * \brief æŽ¥å—ç¼“å­˜éžç©ºæ—¶ ï¼Œä»Žæœºå‡†å¤‡æŽ¥å—æ•°æ®
      */
     if ( i2c_slv_int_status & AMHW_ZLG_INT_FLAG_RX_FULL) {
-        /* ¿ªÊ¼½ÓÊÕÊý¾Ý */
+        /* å¼€å§‹æŽ¥æ”¶æ•°æ® */
         __i2c_slv_irq_rx_handler (p_dev);
     }
 
     /**
-     * \brief ·¢ËÍÊý¾Ý
+     * \brief å‘é€æ•°æ®
      */
-    /** µ±ÓÐ¶ÁÇëÇóÊ± */
+    /** å½“æœ‰è¯»è¯·æ±‚æ—¶ */
     if ( i2c_slv_int_status & AMHW_ZLG_INT_FLAG_RD_REQ) {
-        /* ¿ªÊ¼´¦ÀíÊý¾Ý */
+        /* å¼€å§‹å¤„ç†æ•°æ® */
         __i2c_slv_irq_tx_handler (p_dev);
         /**
          * \brief
-         * \note ·¢ËÍãÐÖµÉè¶¨µÄÎª1Ê±£¬    FIFOº¬ÓÐµÄ×Ö½ÚÊý Ð¡ÓÚµÈÓÚ 1¾Í¾Í»á´¥·¢·¢ËÍ¿ÕÖÐ¶Ï
-         *       ·¢ËÍãÐÖµÉè¶¨µÄÎª0Ê±£¬    FIFOº¬ÓÐµÄ×Ö½ÚÊý Ð¡ÓÚµÈÓÚ 0¾Í¾Í»á´¥·¢·¢ËÍ¿ÕÖÐ¶Ï
+         * \note å‘é€é˜ˆå€¼è®¾å®šçš„ä¸º1æ—¶ï¼Œ    FIFOå«æœ‰çš„å­—èŠ‚æ•° å°äºŽç­‰äºŽ 1å°±å°±ä¼šè§¦å‘å‘é€ç©ºä¸­æ–­
+         *       å‘é€é˜ˆå€¼è®¾å®šçš„ä¸º0æ—¶ï¼Œ    FIFOå«æœ‰çš„å­—èŠ‚æ•° å°äºŽç­‰äºŽ 0å°±å°±ä¼šè§¦å‘å‘é€ç©ºä¸­æ–­
          */
         amhw_zlg_i2c_intr_mask_set(p_hw_i2c_slv, AMHW_ZLG_INT_FLAG_TX_EMPTY);
     }
-    /* »º´æÇøÓÐ¿ÕÔò·¢ËÍÊý¾Ý */
+    /* ç¼“å­˜åŒºæœ‰ç©ºåˆ™å‘é€æ•°æ® */
     if (i2c_slv_int_status & AMHW_ZLG_INT_FLAG_TX_EMPTY ) {
         __i2c_slv_irq_tx_handler (p_dev);
     }
 
     /**
-     * \brief ´«ÊäÊý¾Ý½áÊøÊ±
+     * \brief ä¼ è¾“æ•°æ®ç»“æŸæ—¶
      */
     if( i2c_slv_int_status & AMHW_ZLG_INT_FLAG_STOP_DET) {
 
-        /** ÈôÖ÷»ú²»Ðè½ÓÊÜÊý¾ÝÊ± £¬»º´æÇø¿ÉÄÜ»¹ÓÐÊý¾Ý£¬·¢ËÍÖÕÖ¹½«ÖÃ1,¼°Ê±Çå³ý */
+        /** è‹¥ä¸»æœºä¸éœ€æŽ¥å—æ•°æ®æ—¶ ï¼Œç¼“å­˜åŒºå¯èƒ½è¿˜æœ‰æ•°æ®ï¼Œå‘é€ç»ˆæ­¢å°†ç½®1,åŠæ—¶æ¸…é™¤ */
         if ( p_hw_i2c_slv->ic_raw_intr_stat & AMHW_ZLG_INT_FLAG_TX_ABRT ) {
             amhw_zlg_i2c_clr_tx_abrt_get(p_hw_i2c_slv);
         }
 
-        /** Çå³ýÍ£Ö¹ÖÐ¶Ï */
+        /** æ¸…é™¤åœæ­¢ä¸­æ–­ */
         amhw_zlg_i2c_clr_stop_det_get(p_hw_i2c_slv);
-        /** ¹Ø±ÕÍ£Ö¹ÖÐ¶Ï */
+        /** å…³é—­åœæ­¢ä¸­æ–­ */
         amhw_zlg_i2c_intr_mask_clear(p_hw_i2c_slv,AMHW_ZLG_INT_FLAG_STOP_DET);
         p_dev->is_gen_call = AM_FALSE;
 
-        /* Ö´ÐÐ´«ÊäÍ£Ö¹»Øµ÷ */
+        /* æ‰§è¡Œä¼ è¾“åœæ­¢å›žè°ƒ */
         if ( NULL != p_i2c_slv_dev->p_cb_funs->pfn_tran_stop) {
             p_i2c_slv_dev->p_cb_funs->pfn_tran_stop(p_i2c_slv_dev->p_arg);
         }
 
-        /**Íê³ÉI2C´«Êä½áÊøÖ®ºó,Ö»¿ªÆôÆðÊ¼Ìõ¼þ¼ì²âÖÐ¶Ï,µÈ´ýÏÂÒ»´Î´«ÊäµÄµ½À´ */
+        /**å®ŒæˆI2Cä¼ è¾“ç»“æŸä¹‹åŽ,åªå¼€å¯èµ·å§‹æ¡ä»¶æ£€æµ‹ä¸­æ–­,ç­‰å¾…ä¸‹ä¸€æ¬¡ä¼ è¾“çš„åˆ°æ¥ */
         amhw_zlg_i2c_intr_mask_clear(p_hw_i2c_slv,0XFFF);
         amhw_zlg_i2c_intr_mask_set (p_hw_i2c_slv, AMHW_ZLG_INT_FLAG_START_DET);
 
-        /* ´«Êä½áÊøÍ£Ö¹¼ÆÊ± */
+        /* ä¼ è¾“ç»“æŸåœæ­¢è®¡æ—¶ */
         am_softimer_stop(&p_dev->softimer);
     }
 }
 
 /**
- * \brief I2C³õÊ¼»¯
+ * \brief I2Cåˆå§‹åŒ–
  *
- * \note Ó²¼þ³õÊ¼»¯ Í¨¹ýÓÃ»§µ÷ÓÃ¿ªÊ¼´ÓÉè±¸À´³õÊ¼»¯
+ * \note ç¡¬ä»¶åˆå§‹åŒ– é€šè¿‡ç”¨æˆ·è°ƒç”¨å¼€å§‹ä»Žè®¾å¤‡æ¥åˆå§‹åŒ–
  */
 am_i2c_slv_handle_t am_zlg_i2c_slv_init (am_zlg_i2c_slv_dev_t           *p_dev,
                                          const am_zlg_i2c_slv_devinfo_t *p_devinfo)
@@ -429,9 +429,9 @@ am_i2c_slv_handle_t am_zlg_i2c_slv_init (am_zlg_i2c_slv_dev_t           *p_dev,
     p_dev->i2c_slv_serv.p_drv   = p_dev;
 
     p_dev->p_devinfo   = p_devinfo;
-    p_dev->zlg_i2c_slv_dev_num =1;  /* Ö»ÄÜÉú³ÉÒ»¸ö´Ó»úÉè±¸ */
+    p_dev->zlg_i2c_slv_dev_num =1;  /* åªèƒ½ç”Ÿæˆä¸€ä¸ªä»Žæœºè®¾å¤‡ */
 
-    /* p_dev->current_matching_num =0; Ä¬ÈÏµ±Ç°Æ¥ÅäÎª 0 */
+    /* p_dev->current_matching_num =0; é»˜è®¤å½“å‰åŒ¹é…ä¸º 0 */
 
     p_dev->is_gen_call = AM_FALSE;
 
@@ -441,12 +441,12 @@ am_i2c_slv_handle_t am_zlg_i2c_slv_init (am_zlg_i2c_slv_dev_t           *p_dev,
         p_devinfo->pfn_plfm_init();
     }
 
-    /* ³õÊ¼»¯Èí¼þ¶¨Ê±Æ÷ */
+    /* åˆå§‹åŒ–è½¯ä»¶å®šæ—¶å™¨ */
     am_softimer_init(&p_dev->softimer, __i2c_slv_timing_callback, p_dev);
 
     __i2c_slv_hard_init(p_dev);
 
-    /* Á¬½ÓÖÐ¶Ï */
+    /* è¿žæŽ¥ä¸­æ–­ */
     am_int_connect(p_dev->p_devinfo->inum, __i2c_slv_irq_handler, (void *)p_dev);
     am_int_enable(p_dev->p_devinfo->inum);
 
@@ -454,7 +454,7 @@ am_i2c_slv_handle_t am_zlg_i2c_slv_init (am_zlg_i2c_slv_dev_t           *p_dev,
 }
 
 /**
- * \brief I2C½â³õÊ¼»¯
+ * \brief I2Cè§£åˆå§‹åŒ–
  */
 void am_zlg_i2c_slv_deinit (am_i2c_slv_handle_t handle)
 {
@@ -470,7 +470,7 @@ void am_zlg_i2c_slv_deinit (am_i2c_slv_handle_t handle)
 
     amhw_zlg_i2c_disable (p_hw_i2c_slv);
 
-    /* È¥³ýÖÐ¶ÏÁ¬½Ó */
+    /* åŽ»é™¤ä¸­æ–­è¿žæŽ¥ */
     am_int_disable(p_dev->p_devinfo->inum);
     am_int_disconnect(p_dev->p_devinfo->inum, __i2c_slv_irq_handler, (void *)p_dev);
 

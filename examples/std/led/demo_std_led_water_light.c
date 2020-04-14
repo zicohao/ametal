@@ -12,12 +12,12 @@
 
 /**
  * \file
- * \brief LED Á÷Ë®µÆ
+ * \brief LED æµæ°´ç¯
  *
- * - ÊµÑéÏÖÏó£º
- *   1. LEDÒÀ´ÎµãÁÁ£¬ĞÎ³ÉÁ÷Ë®µÆĞ§¹û
+ * - å®éªŒç°è±¡ï¼š
+ *   1. LEDä¾æ¬¡ç‚¹äº®ï¼Œå½¢æˆæµæ°´ç¯æ•ˆæœ
  * 
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_std_led_water_light.c src_std_led_water_light
  * 
  * \internal
@@ -37,7 +37,7 @@
 #include "am_delay.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_std_led_water_light_entry (int led_id_start, int num)
 {
@@ -46,7 +46,7 @@ void demo_std_led_water_light_entry (int led_id_start, int num)
     while(1) {
         for (i = led_id_start; i < (led_id_start + num); i++) {
              am_led_on(i);
-             am_mdelay(150);        /* ÑÓÊ±150ms */
+             am_mdelay(150);        /* å»¶æ—¶150ms */
              am_led_off(i);
         }
     }

@@ -12,12 +12,12 @@
 
 /**
  * \file
- * \brief CLK Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief CLK ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿Ú´òÓ¡Ö¸¶¨µÄ×ÜÏßÆµÂÊ¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. ä¸²å£æ‰“å°æŒ‡å®šçš„æ€»çº¿é¢‘ç‡ã€‚
  * 
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_zlg_hw_clk.c src_zlg_hw_clk
  * 
  * \internal
@@ -37,7 +37,7 @@
 #include "am_vdebug.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_zlg_hw_clk_entry (am_clk_id_t *p_clk_id_buf, uint8_t buf_lenth)
 {

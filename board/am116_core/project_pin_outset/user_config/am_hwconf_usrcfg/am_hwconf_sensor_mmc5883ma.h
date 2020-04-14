@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief MMC5883MA ÅäÖÃÎÄ¼ş
+ * \brief MMC5883MA é…ç½®æ–‡ä»¶
  *
  * \internal
  * \par Modification history
@@ -31,12 +31,12 @@ extern "C" {
 #endif
 
 /** 
- * \brief ´«¸ĞÆ÷ MMC5883MA ÊµÀı³õÊ¼»¯ 
+ * \brief ä¼ æ„Ÿå™¨ MMC5883MA å®ä¾‹åˆå§‹åŒ– 
  */
 am_sensor_handle_t am_sensor_mmc5883ma_inst_init (void);
 
 /** 
- * \brief ´«¸ĞÆ÷ MMC5883MA ÊµÀı½â³õÊ¼»¯ 
+ * \brief ä¼ æ„Ÿå™¨ MMC5883MA å®ä¾‹è§£åˆå§‹åŒ– 
  */
 am_err_t am_sensor_mmc5883ma_inst_deinit (am_sensor_handle_t handle);   
        

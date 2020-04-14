@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief LPC82X DMA ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief LPC82X DMA ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_lpc82x_dma.c
  *
  * \internal
@@ -35,16 +35,16 @@
  */
 
 /**
- * \brief Ê¹ÓÃµÄDMAÍ¨µÀÊıÁ¿
+ * \brief ä½¿ç”¨çš„DMAé€šé“æ•°é‡
  *
- *        Ä¬ÈÏÊ¹ÓÃËùÓĞµÄDMAÍ¨µÀ£¬ÓÃ»§¿ÉÒÔ¸ù¾İÊµ¼ÊÊ¹ÓÃÍ¨µÀÊı£¬
- *        ¸ü¸Ä´ËÖµ£¬¼õÉÙDMAÄÚ´æµÄÕ¼ÓÃ
- * \note  Èç¹ûĞèÒªÊ¹ÓÃDMA,Ôò´ËÖµÖÁÉÙÓ¦¸ÃÎª1£¬·ñÔòDMA³õÊ¼»¯²»³É¹¦
+ *        é»˜è®¤ä½¿ç”¨æ‰€æœ‰çš„DMAé€šé“ï¼Œç”¨æˆ·å¯ä»¥æ ¹æ®å®é™…ä½¿ç”¨é€šé“æ•°ï¼Œ
+ *        æ›´æ”¹æ­¤å€¼ï¼Œå‡å°‘DMAå†…å­˜çš„å ç”¨
+ * \note  å¦‚æœéœ€è¦ä½¿ç”¨DMA,åˆ™æ­¤å€¼è‡³å°‘åº”è¯¥ä¸º1ï¼Œå¦åˆ™DMAåˆå§‹åŒ–ä¸æˆåŠŸ
  */
 #define __DMA_CHAN_USE_COUNT    AMHW_LPC82X_DMA_CHAN_CNT
 
  /**
- * \brief DMA Æ½Ì¨³õÊ¼»¯
+ * \brief DMA å¹³å°åˆå§‹åŒ–
  */
 static void __lpc82x_dma_plfm_init (void)
 {
@@ -52,48 +52,48 @@ static void __lpc82x_dma_plfm_init (void)
 }
 
 /**
- * \brief DMA Æ½Ì¨½â³õÊ¼»¯
+ * \brief DMA å¹³å°è§£åˆå§‹åŒ–
  */
 static void __lpc82x_dma_plfm_deinit (void)
 {
     amhw_lpc82x_clk_periph_disable(AMHW_LPC82X_CLK_DMA);
 }
 
-/** \brief ¿ØÖÆÆ÷Ó³Éä±í */
+/** \brief æ§åˆ¶å™¨æ˜ å°„è¡¨ */
 static uint8_t __g_dam_controller_map[AMHW_LPC82X_DMA_CHAN_CNT];
 
-/** \brief ¿ØÖÆÆ÷ÄÚ´æ */
+/** \brief æ§åˆ¶å™¨å†…å­˜ */
 static am_lpc82x_dma_controller_t __g_dma_controller[__DMA_CHAN_USE_COUNT];
 
 
-/** \brief DMA Í¨µÀÃèÊö·ûÁĞ±í£¬±ØĞë512×Ö½Ú¶ÔÆë */
+/** \brief DMA é€šé“æè¿°ç¬¦åˆ—è¡¨ï¼Œå¿…é¡»512å­—èŠ‚å¯¹é½ */
 static __attribute__((aligned(512))) am_lpc82x_dma_xfer_desc_t \
                                 __g_dma_xfer_tab[AMHW_LPC82X_DMA_CHAN_CNT];
 
-/** \brief DMA Éè±¸ĞÅÏ¢ */
+/** \brief DMA è®¾å¤‡ä¿¡æ¯ */
 static const am_lpc82x_dma_devinfo_t __g_dma_devinfo = {
-    LPC82X_DMA_BASE,               /**< \brief DMA¼Ä´æÆ÷¿éµÄ»ùÖ·             */
-    LPC82X_INMUX_BASE,             /**< \brief INMUX¼Ä´æÆ÷¿éµÄ»ùÖ·           */
-    &__g_dam_controller_map[0],    /**< \brief Ö¸Ïò¿ØÖÆÆ÷Ó³Éä±íµÄÖ¸Õë        */
-    &__g_dma_controller[0],        /**< \brief Ö¸Ïò¿ØÖÆÆ÷ÄÚ´æµÄÖ¸Õë          */
-    &__g_dma_xfer_tab[0],          /**< \brief ´«ÊäÃèÊö·û»ùµØÖ·£¬512×Ö½Ú¶ÔÆë */
-    __DMA_CHAN_USE_COUNT,          /**< \brief Ê¹ÓÃµÄDMAÍ¨µÀÊıÁ¿             */
-    INUM_DMA,                      /**< \brief DMAÖĞ¶ÏºÅ                     */
+    LPC82X_DMA_BASE,               /**< \brief DMAå¯„å­˜å™¨å—çš„åŸºå€             */
+    LPC82X_INMUX_BASE,             /**< \brief INMUXå¯„å­˜å™¨å—çš„åŸºå€           */
+    &__g_dam_controller_map[0],    /**< \brief æŒ‡å‘æ§åˆ¶å™¨æ˜ å°„è¡¨çš„æŒ‡é’ˆ        */
+    &__g_dma_controller[0],        /**< \brief æŒ‡å‘æ§åˆ¶å™¨å†…å­˜çš„æŒ‡é’ˆ          */
+    &__g_dma_xfer_tab[0],          /**< \brief ä¼ è¾“æè¿°ç¬¦åŸºåœ°å€ï¼Œ512å­—èŠ‚å¯¹é½ */
+    __DMA_CHAN_USE_COUNT,          /**< \brief ä½¿ç”¨çš„DMAé€šé“æ•°é‡             */
+    INUM_DMA,                      /**< \brief DMAä¸­æ–­å·                     */
 
-    __lpc82x_dma_plfm_init,        /**< \brief Æ½Ì¨³õÊ¼»¯º¯Êı                */
-    __lpc82x_dma_plfm_deinit,      /**< \brief Æ½Ì¨½â³õÊ¼»¯º¯Êı              */
+    __lpc82x_dma_plfm_init,        /**< \brief å¹³å°åˆå§‹åŒ–å‡½æ•°                */
+    __lpc82x_dma_plfm_deinit,      /**< \brief å¹³å°è§£åˆå§‹åŒ–å‡½æ•°              */
 };
 
-/** \brief DMAÉè±¸ÊµÀı */
+/** \brief DMAè®¾å¤‡å®ä¾‹ */
 static am_lpc82x_dma_dev_t __g_dma_dev;
 
-/** \brief DMA ÊµÀı³õÊ¼»¯ */
+/** \brief DMA å®ä¾‹åˆå§‹åŒ– */
 int am_lpc82x_dma_inst_init (void)
 {
     return am_lpc82x_dma_init(&__g_dma_dev, &__g_dma_devinfo);
 }
 
-/** \brief DMA ÊµÀı½â³õÊ¼»¯ */
+/** \brief DMA å®ä¾‹è§£åˆå§‹åŒ– */
 void am_lpc82x_dma_inst_deinit (void)
 {
     am_lpc82x_dma_deinit();

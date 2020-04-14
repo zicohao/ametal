@@ -12,17 +12,17 @@
 
 /**
  * \file
- * \brief I2C ´Ó»úÀı³Ì(´ËÀı³Ì¿ÉÒÔÓÃÀ´Ä£Äâ EEPROM)£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief I2C ä»æœºä¾‹ç¨‹(æ­¤ä¾‹ç¨‹å¯ä»¥ç”¨æ¥æ¨¡æ‹Ÿ EEPROM)ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè£º
- *   1. PIOB_6 Òı½ÅÁ¬½Ó I2C Ö÷»úµÄ SCL Òı½Å£»
- *   2. PIOB_7 Òı½ÅÁ¬½Ó I2C Ö÷»úµÄ SDA Òı½Å¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. PIOB_6 å¼•è„šè¿æ¥ I2C ä¸»æœºçš„ SCL å¼•è„šï¼›
+ *   2. PIOB_7 å¼•è„šè¿æ¥ I2C ä¸»æœºçš„ SDA å¼•è„šã€‚
  *
  * \note
- *    µ±Ç° I2C µÄ SCL Òı½ÅÊ¹ÓÃµÄÊÇ PIOB_6£¬SDA Òı½ÅÊ¹ÓÃµÄÊÇ PIOB_7£¬
- *    ¿É¸ù¾İÊµ¼ÊÇé¿ö¸ü»»Òı½Å¡£
+ *    å½“å‰ I2C çš„ SCL å¼•è„šä½¿ç”¨çš„æ˜¯ PIOB_6ï¼ŒSDA å¼•è„šä½¿ç”¨çš„æ˜¯ PIOB_7ï¼Œ
+ *    å¯æ ¹æ®å®é™…æƒ…å†µæ›´æ¢å¼•è„šã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_zlg116_hw_i2c_slave_poll.c src_zlg116_hw_i2c_slave_poll
  *
  * \internal
@@ -42,36 +42,36 @@
 #include "hw/amhw_zlg_i2c.h"
 
 /*******************************************************************************
-  ºê¶¨Òå
+  å®å®šä¹‰
 *******************************************************************************/
 
-/** Ö÷»ú²Ù×÷´Ó»úµØÖ·¶¨Òå */
+/** ä¸»æœºæ“ä½œä»æœºåœ°å€å®šä¹‰ */
 #define OPERATE_ADDR      0x50
 
 #define EEPROM_BUFFER_LEN (0x20)
 
-#define __I2C_SLV_ST_IDLE         0      /*< \brief ¿ÕÏĞ×´Ì¬ */
-#define __I2C_SLV_ST_ADDR_MATCH   1      /*< \brief µØÖ·Æ¥Åä×´Ì¬ */
-#define __I2C_SLV_ST_SUBADDR_GET  2      /*< \brief »ñÈ¡×ÓµØÖ·×´Ì¬ */
-#define __I2C_SLV_ST_TXBYTE_GET   3      /*< \brief »ñÈ¡·¢ËÍµÄÊı¾İ×´Ì¬ */
-#define __I2C_SLV_ST_RXBYTE_PUT   4      /*< \brief ½ÓÊÜÊı¾İ ×´Ì¬*/
-#define __I2C_SLV_ST_STOP         5      /*< \brief Í£Ö¹×´Ì¬ */
+#define __I2C_SLV_ST_IDLE         0      /*< \brief ç©ºé—²çŠ¶æ€ */
+#define __I2C_SLV_ST_ADDR_MATCH   1      /*< \brief åœ°å€åŒ¹é…çŠ¶æ€ */
+#define __I2C_SLV_ST_SUBADDR_GET  2      /*< \brief è·å–å­åœ°å€çŠ¶æ€ */
+#define __I2C_SLV_ST_TXBYTE_GET   3      /*< \brief è·å–å‘é€çš„æ•°æ®çŠ¶æ€ */
+#define __I2C_SLV_ST_RXBYTE_PUT   4      /*< \brief æ¥å—æ•°æ® çŠ¶æ€*/
+#define __I2C_SLV_ST_STOP         5      /*< \brief åœæ­¢çŠ¶æ€ */
 
 /*******************************************************************************
-  È«¾Ö±äÁ¿
+  å…¨å±€å˜é‡
 *******************************************************************************/
 
-static am_bool_t is_sub_addr = AM_FALSE;      /**< I2C ´Ó»úµØÖ·±êÖ¾ */
-static uint8_t   sub_addr;                    /**< I2C ´Ó»úµØÖ· */
-static uint8_t   eeprom[EEPROM_BUFFER_LEN];   /**< »º³åÇø */
+static am_bool_t is_sub_addr = AM_FALSE;      /**< I2C ä»æœºåœ°å€æ ‡å¿— */
+static uint8_t   sub_addr;                    /**< I2C ä»æœºåœ°å€ */
+static uint8_t   eeprom[EEPROM_BUFFER_LEN];   /**< ç¼“å†²åŒº */
 
 /**
- * \brief I2C ´Ó»ú³õÊ¼»¯ÅäÖÃº¯Êı
+ * \brief I2C ä»æœºåˆå§‹åŒ–é…ç½®å‡½æ•°
  *
- * \param[in] p_hw_i2c Ö¸Ïò I2C ¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] dev_addr Ö÷»ú²Ù×÷´Ó»úµÄµØÖ·²ÎÊı
+ * \param[in] p_hw_i2c æŒ‡å‘ I2C å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] dev_addr ä¸»æœºæ“ä½œä»æœºçš„åœ°å€å‚æ•°
  *
- * \retval AM_OK ³õÊ¼»¯ÅäÖÃÍê³É
+ * \retval AM_OK åˆå§‹åŒ–é…ç½®å®Œæˆ
  */
 static int __i2c_slave_init (amhw_zlg_i2c_t *p_hw_i2c, uint8_t dev_addr)
 {
@@ -79,7 +79,7 @@ static int __i2c_slave_init (amhw_zlg_i2c_t *p_hw_i2c, uint8_t dev_addr)
         return -AM_EINVAL;
     }
 
-    /* ¹Ø±Õ I2C ¿ØÖÆÆ÷£¬ÅäÖÃ²ÎÊı */
+    /* å…³é—­ I2C æ§åˆ¶å™¨ï¼Œé…ç½®å‚æ•° */
     amhw_zlg_i2c_disable(p_hw_i2c);
 
     amhw_zlg_i2c_rx_tl_set(p_hw_i2c, 0);
@@ -98,11 +98,11 @@ static int __i2c_slave_init (amhw_zlg_i2c_t *p_hw_i2c, uint8_t dev_addr)
 }
 
 /**
- * \brief I2C ×´Ì¬»úº¯Êı
+ * \brief I2C çŠ¶æ€æœºå‡½æ•°
  *
- * \param[in] p_hw_i2c Ö¸Ïò I2C ¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_i2c æŒ‡å‘ I2C å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 
 static void __i2c_slave_event (amhw_zlg_i2c_t *p_hw_i2c)
@@ -111,7 +111,7 @@ static void __i2c_slave_event (amhw_zlg_i2c_t *p_hw_i2c)
 
     switch (status) {
 
-    /* ¿ÕÏĞ×´Ì¬ */
+    /* ç©ºé—²çŠ¶æ€ */
     case __I2C_SLV_ST_IDLE:
         if (p_hw_i2c->ic_raw_intr_stat & AMHW_ZLG_INT_FLAG_START_DET) {
             amhw_zlg_i2c_clr_start_det_get(p_hw_i2c);
@@ -120,7 +120,7 @@ static void __i2c_slave_event (amhw_zlg_i2c_t *p_hw_i2c)
         }
         /* no break */
 
-     /* µØÖ·Æ¥Åä×´Ì¬ */
+     /* åœ°å€åŒ¹é…çŠ¶æ€ */
     case __I2C_SLV_ST_ADDR_MATCH:
 
         if( p_hw_i2c->ic_status & AMHW_ZLG_STATUS_FLAG_SLV_ACTIVITY) {
@@ -131,7 +131,7 @@ static void __i2c_slave_event (amhw_zlg_i2c_t *p_hw_i2c)
         }
         break;
 
-    /* »ñÈ¡×ÓµØÖ·×´Ì¬  */
+    /* è·å–å­åœ°å€çŠ¶æ€  */
     case __I2C_SLV_ST_SUBADDR_GET:
         if ( is_sub_addr ==  AM_TRUE ) {
             if( p_hw_i2c->ic_raw_intr_stat & AMHW_ZLG_INT_FLAG_RX_FULL ) {
@@ -150,7 +150,7 @@ static void __i2c_slave_event (amhw_zlg_i2c_t *p_hw_i2c)
         }
         break;
 
-    /* »ñÈ¡·¢ËÍµÄÊı¾İ×´Ì¬  */
+    /* è·å–å‘é€çš„æ•°æ®çŠ¶æ€  */
     case __I2C_SLV_ST_TXBYTE_GET:
         if (p_hw_i2c->ic_raw_intr_stat & AMHW_ZLG_INT_FLAG_TX_EMPTY ) {
             amhw_zlg_i2c_dat_write (p_hw_i2c, eeprom[sub_addr++]);
@@ -164,7 +164,7 @@ static void __i2c_slave_event (amhw_zlg_i2c_t *p_hw_i2c)
 
         break;
 
-    /* ½ÓÊÜÊı¾İ ×´Ì¬  */
+    /* æ¥å—æ•°æ® çŠ¶æ€  */
     case __I2C_SLV_ST_RXBYTE_PUT:
         if ( p_hw_i2c->ic_raw_intr_stat & AMHW_ZLG_INT_FLAG_RX_FULL ) {
             eeprom[sub_addr++] = amhw_zlg_i2c_dat_read (p_hw_i2c);
@@ -176,10 +176,10 @@ static void __i2c_slave_event (amhw_zlg_i2c_t *p_hw_i2c)
         }
         break;
 
-    /* Í£Ö¹×´Ì¬ */
+    /* åœæ­¢çŠ¶æ€ */
     case __I2C_SLV_ST_STOP:
 
-        /** ÈôÖ÷»ú²»Ğè½ÓÊÜÊı¾İÊ± £¬»º´æÇø¿ÉÄÜ»¹ÓĞÊı¾İ£¬·¢ËÍÖÕÖ¹½«ÖÃ1,¼°Ê±Çå³ı */
+        /** è‹¥ä¸»æœºä¸éœ€æ¥å—æ•°æ®æ—¶ ï¼Œç¼“å­˜åŒºå¯èƒ½è¿˜æœ‰æ•°æ®ï¼Œå‘é€ç»ˆæ­¢å°†ç½®1,åŠæ—¶æ¸…é™¤ */
         if ( p_hw_i2c->ic_raw_intr_stat & AMHW_ZLG_INT_FLAG_TX_ABRT ) {
             amhw_zlg_i2c_clr_tx_abrt_get(p_hw_i2c);
         }
@@ -194,12 +194,12 @@ static void __i2c_slave_event (amhw_zlg_i2c_t *p_hw_i2c)
 }
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_zlg_hw_i2c_slave_poll_entry (amhw_zlg_i2c_t *p_hw_i2c)
 {
 
-    __i2c_slave_init(p_hw_i2c, OPERATE_ADDR); /* I2C ´Ó»ú³õÊ¼»¯ÅäÖÃ */
+    __i2c_slave_init(p_hw_i2c, OPERATE_ADDR); /* I2C ä»æœºåˆå§‹åŒ–é…ç½® */
 
     while(1) {
         __i2c_slave_event(p_hw_i2c);

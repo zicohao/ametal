@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief LPC82X ÍâÉèÓ³Éä
+ * \brief LPC82X å¤–è®¾æ˜ å°„
  *
  * \internal
  * \par Modification history
@@ -62,86 +62,86 @@ extern "C" {
  */
 
 /**
- * \name ÍâÉè¶¨Òå
+ * \name å¤–è®¾å®šä¹‰
  * @{
  */
 
-/** \brief  ÏµÍ³µÎ´ðÊ±ÖÓ(SYSTICK)¼Ä´æÆ÷¿éÖ¸Õë   */
+/** \brief  ç³»ç»Ÿæ»´ç­”æ—¶é’Ÿ(SYSTICK)å¯„å­˜å™¨å—æŒ‡é’ˆ   */
 #define LPC82X_SYSTICK     ((amhw_arm_systick_t    *)LPC82X_SYSTICK_BASE)
                                                         
-/** \brief  IO¿ØÖÆ(IOCON)¼Ä´æÆ÷¿éÖ¸Õë           */                               
+/** \brief  IOæŽ§åˆ¶(IOCON)å¯„å­˜å™¨å—æŒ‡é’ˆ           */                               
 #define LPC82X_IOCON       ((amhw_lpc82x_iocon_t   *)LPC82X_IOCON_BASE  )     
                                                         
-/** \brief  Í¨ÓÃÊäÈëÊä³ö(GPIO)¼Ä´æÆ÷¿éÖ¸Õë      */                               
+/** \brief  é€šç”¨è¾“å…¥è¾“å‡º(GPIO)å¯„å­˜å™¨å—æŒ‡é’ˆ      */                               
 #define LPC82X_GPIO        ((amhw_lpc82x_gpio_t    *)LPC82X_GPIO_BASE   )     
                                                         
-/** \brief  Òý½ÅÖÐ¶Ï(PINT)¼Ä´æÆ÷¿éÖ¸Õë          */                               
+/** \brief  å¼•è„šä¸­æ–­(PINT)å¯„å­˜å™¨å—æŒ‡é’ˆ          */                               
 #define LPC82X_PINT        ((amhw_lpc82x_pint_t    *)LPC82X_PINT_BASE   )       
                                                         
-/** \brief  ¿ª¹Ø¾ØÕó(SWM)¼Ä´æÆ÷¿éÖ¸Õë           */                               
+/** \brief  å¼€å…³çŸ©é˜µ(SWM)å¯„å­˜å™¨å—æŒ‡é’ˆ           */                               
 #define LPC82X_SWM         ((amhw_lpc82x_swm_t     *)LPC82X_SWM_BASE    )       
                                                         
-/** \brief  ÊäÈë¸´ÓÃ¿ØÖÆ(INMUX)¼Ä´æÆ÷¿éÖ¸Õë     */                               
+/** \brief  è¾“å…¥å¤ç”¨æŽ§åˆ¶(INMUX)å¯„å­˜å™¨å—æŒ‡é’ˆ     */                               
 #define LPC82X_INMUX       ((amhw_lpc82x_inmux_t   *)LPC82X_INMUX_BASE  )     
                                                         
-/** \brief  DMA¿ØÖÆÆ÷(DMA)¼Ä´æÆ÷¿éÖ¸Õë          */                               
+/** \brief  DMAæŽ§åˆ¶å™¨(DMA)å¯„å­˜å™¨å—æŒ‡é’ˆ          */                               
 #define LPC82X_DMA         ((amhw_lpc82x_dma_t     *)LPC82X_DMA_BASE    )     
                                                         
-/** \brief  ¶àÆµÂÊ¶¨Ê±Æ÷(MRT)¼Ä´æÆ÷¿éÖ¸Õë       */                               
+/** \brief  å¤šé¢‘çŽ‡å®šæ—¶å™¨(MRT)å¯„å­˜å™¨å—æŒ‡é’ˆ       */                               
 #define LPC82X_MRT         ((amhw_lpc_mrt_t     *)LPC82X_MRT_BASE       )
                                                         
-/** \brief ×´Ì¬¿ÉÅäÖÃ¶¨Ê±Æ÷(SCT0)¼Ä´æÆ÷¿éÖ¸Õë   */                              
+/** \brief çŠ¶æ€å¯é…ç½®å®šæ—¶å™¨(SCT0)å¯„å­˜å™¨å—æŒ‡é’ˆ   */                              
 #define LPC82X_SCT0        ((amhw_lpc_sct_t     *)LPC82X_SCT0_BASE      )
 
-/** \brief ÏµÍ³ÅäÖÃ(SYSCON)¼Ä´æÆ÷¿éÖ¸Õë         */
+/** \brief ç³»ç»Ÿé…ç½®(SYSCON)å¯„å­˜å™¨å—æŒ‡é’ˆ         */
 #define LPC82X_SYSCON      ((amhw_lpc82x_syscon_t  *)LPC82X_SYSCON_BASE )      
                                                         
-/** \brief ´®ÐÐÍâÉè½Ó¿Ú(SPI0)¼Ä´æÆ÷¿éÖ¸Õë       */                               
+/** \brief ä¸²è¡Œå¤–è®¾æŽ¥å£(SPI0)å¯„å­˜å™¨å—æŒ‡é’ˆ       */                               
 #define LPC82X_SPI0        ((amhw_lpc_spi_t     *)LPC82X_SPI0_BASE   )
                                                                                
-/** \brief ´®ÐÐÍâÉè½Ó¿Ú(SPI1)¼Ä´æÆ÷¿éÖ¸Õë       */                                                      
+/** \brief ä¸²è¡Œå¤–è®¾æŽ¥å£(SPI1)å¯„å­˜å™¨å—æŒ‡é’ˆ       */                                                      
 #define LPC82X_SPI1        ((amhw_lpc_spi_t     *)LPC82X_SPI1_BASE   )
                                                         
-/** \brief I2C×ÜÏß¿ØÖÆÆ÷(I2C0)¼Ä´æÆ÷¿éÖ¸Õë      */                               
+/** \brief I2Cæ€»çº¿æŽ§åˆ¶å™¨(I2C0)å¯„å­˜å™¨å—æŒ‡é’ˆ      */                               
 #define LPC82X_I2C0        ((amhw_lpc_i2c_t     *)LPC82X_I2C0_BASE   )
                                                                              
-/** \brief I2C×ÜÏß¿ØÖÆÆ÷(I2C1)¼Ä´æÆ÷¿éÖ¸Õë      */                                                    
+/** \brief I2Cæ€»çº¿æŽ§åˆ¶å™¨(I2C1)å¯„å­˜å™¨å—æŒ‡é’ˆ      */                                                    
 #define LPC82X_I2C1        ((amhw_lpc_i2c_t     *)LPC82X_I2C1_BASE   )
                                                                              
-/** \brief I2C×ÜÏß¿ØÖÆÆ÷(I2C2)¼Ä´æÆ÷¿éÖ¸Õë      */                                                    
+/** \brief I2Cæ€»çº¿æŽ§åˆ¶å™¨(I2C2)å¯„å­˜å™¨å—æŒ‡é’ˆ      */                                                    
 #define LPC82X_I2C2        ((amhw_lpc_i2c_t     *)LPC82X_I2C2_BASE   )
                                                         
-/** \brief I2C×ÜÏß¿ØÖÆÆ÷(I2C3)¼Ä´æÆ÷¿éÖ¸Õë      */                                                      
+/** \brief I2Cæ€»çº¿æŽ§åˆ¶å™¨(I2C3)å¯„å­˜å™¨å—æŒ‡é’ˆ      */                                                      
 #define LPC82X_I2C3        ((amhw_lpc_i2c_t     *)LPC82X_I2C3_BASE   )
    
-/** \brief ´®¿Ú(UART0)¼Ä´æÆ÷¿éÖ¸Õë              */
+/** \brief ä¸²å£(UART0)å¯„å­˜å™¨å—æŒ‡é’ˆ              */
 #define LPC82X_USART0      ((amhw_lpc_usart_t   *)LPC82X_USART0_BASE )
                                                         
-/** \brief ´®¿Ú(UART1)¼Ä´æÆ÷¿éÖ¸Õë              */                               
+/** \brief ä¸²å£(UART1)å¯„å­˜å™¨å—æŒ‡é’ˆ              */                               
 #define LPC82X_USART1      ((amhw_lpc_usart_t   *)LPC82X_USART1_BASE )
                                                         
-/** \brief ´®¿Ú(UART2)¼Ä´æÆ÷¿éÖ¸Õë              */                               
+/** \brief ä¸²å£(UART2)å¯„å­˜å™¨å—æŒ‡é’ˆ              */                               
 #define LPC82X_USART2      ((amhw_lpc_usart_t   *)LPC82X_USART2_BASE )
                                                       
-/** \brief Ñ­»·ÈßÓàÐ£Ñé(CRC)¼Ä´æÆ÷¿éÖ¸Õë        */                             
+/** \brief å¾ªçŽ¯å†—ä½™æ ¡éªŒ(CRC)å¯„å­˜å™¨å—æŒ‡é’ˆ        */                             
 #define LPC82X_CRC         ((amhw_lpc_crc_t     *)LPC82X_CRC_BASE    )
                                                         
-/** \brief ×Ô»½ÐÑ¶¨Ê±Æ÷(WKT)¼Ä´æÆ÷¿éÖ¸Õë        */                               
+/** \brief è‡ªå”¤é†’å®šæ—¶å™¨(WKT)å¯„å­˜å™¨å—æŒ‡é’ˆ        */                               
 #define LPC82X_WKT         ((amhw_lpc_wkt_t     *)LPC82X_WKT_BASE    )
                                                         
-/** \brief µçÔ´¹ÜÀíµ¥Ôª(PMU)¼Ä´æÆ÷¿éÖ¸Õë        */                               
+/** \brief ç”µæºç®¡ç†å•å…ƒ(PMU)å¯„å­˜å™¨å—æŒ‡é’ˆ        */                               
 #define LPC82X_PMU         ((amhw_lpc82x_pmu_t  *)LPC82X_PMU_BASE    )      
                                                        
-/** \brief FLASH¿ØÖÆÆ÷(FMC)¼Ä´æÆ÷¿éÖ¸Õë         */                              
+/** \brief FLASHæŽ§åˆ¶å™¨(FMC)å¯„å­˜å™¨å—æŒ‡é’ˆ         */                              
 #define LPC82X_FMC         ((amhw_lpc_fmc_t  *)LPC82X_FMC_BASE       )
   
-/** \brief Ä£Êý×ª»»(ADC)¼Ä´æÆ÷¿éÖ¸Õë            */                              
+/** \brief æ¨¡æ•°è½¬æ¢(ADC)å¯„å­˜å™¨å—æŒ‡é’ˆ            */                              
 #define LPC82X_ADC0        ((amhw_lpc82x_adc_t  *)LPC82X_ADC0_BASE   )
 
-/** \brief Ä£Äâ±È½ÏÆ÷(ACMP)¼Ä´æÆ÷¿éÖ¸Õë         */                     
+/** \brief æ¨¡æ‹Ÿæ¯”è¾ƒå™¨(ACMP)å¯„å­˜å™¨å—æŒ‡é’ˆ         */                     
 #define LPC82X_ACMP        ((amhw_lpc82x_acmp_t *)LPC82X_ACMP_BASE   )
 
-/** \brief ´°¿Ú¿´ÃÅ¹·(WWDT)¼Ä´æÆ÷¿éÖ¸Õë         */
+/** \brief çª—å£çœ‹é—¨ç‹—(WWDT)å¯„å­˜å™¨å—æŒ‡é’ˆ         */
 #define LPC82X_WWDT        ((amhw_lpc_wwdt_t    *)LPC82X_WWDT_BASE   )
 
 /** @} */

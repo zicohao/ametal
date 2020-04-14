@@ -12,19 +12,19 @@
 
 /**
  * \file
- * \brief MiniPort-View + MiniPort-595 �¶���ʾ��ʹ�õװ�LM75BD��ȡ�¶ȣ� 
- *        ���̣�ͨ����׼�ӿ�ʵ��
+ * \brief MiniPort-View + MiniPort-595 温度显示（使用底板LM75BD读取温度） 
+ *        例程，通过标准接口实现
  *
- * - ��������
- *   1. Ҫʹ�õװ壨AM217BLE���ϵ� LM75 �¶ȴ���������Ҫ�̽� J11 �� J13��
- *   2. �Ƚ� MiniPort-595 ����ֱ���� AM217BLE �� MiniPort �����ӣ�
- *   3. �� MiniPort-View ������ MiniPort-595 �ӿ������ӡ�
+ * - 操作步骤
+ *   1. 要使用底板（AM217BLE）上的 LM75 温度传感器，需要短接 J11 和 J13；
+ *   2. 先将 MiniPort-595 板子直接与 AM217BLE 的 MiniPort 相连接；
+ *   3. 将 MiniPort-View 板子与 MiniPort-595 接口相连接。
  *
- * - ʵ������
- *   1. ���Կ����������ʾ��ǰ�¶ȣ���J14��ðѡ��̽� KEY �� RES�����µװ��ϵ�
- *      KEY/RES �������ʵ���ᷢ�ȣ������¶ȴ������ɼ������¶����ߡ�
+ * - 实验现象：
+ *   1. 可以看到数码管显示当前温度，若J14跳冒选择短接 KEY 和 RES，则按下底板上的
+ *      KEY/RES 按键功率电阻会发热，导致温度传感器采集到的温度升高。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_miniport_hc595_digitron_temp.c src_miniport_hc595_digitron_temp
  *
  * \internal
@@ -48,7 +48,7 @@
 #include "am_hwconf_miniport.h"
 
 /**
- * \brief ������� 
+ * \brief 例程入口 
  */
 void demo_zmf159_core_miniport_hc595_digitron_temp_entry (void)
 {

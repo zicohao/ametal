@@ -11,7 +11,7 @@
 *******************************************************************************/
 /**
  * \file
- * \brief     USBD±ê×¼½Ó¿Ú
+ * \brief     USBDæ ‡å‡†æ¥å£
  *
  * \internal
  * \par Modification History
@@ -38,118 +38,118 @@ extern "C" {
 
 /** \brief Control type for controller */
 typedef enum am_usbd_control_type {
-    AM_USBD_CONTROL_RUN = 0U,            /**< \brief Ê¹ÓÃÉè±¸ */
-    AM_USBD_CONTROL_STOP,                /**< \brief Í£Ö¹Éè±¸ */
-    AM_USBD_CONTROL_ENDPOINT_INIT,       /**< \brief ³õÊ¼»¯Éè±¸ */
-    AM_USBD_CONTROL_ENDPOINT_DEINIT,     /**< \brief ½â³õÊ¼»¯ */
-    AM_USBD_CONTROL_ENDPOINT_STALL,      /**< \brief ¶Ëµã×èÈû */
-    AM_USBD_CONTROL_ENDPOINT_UNSTALL,    /**< \brief ¶Ëµã·Ç×èÈû */
-    AM_USBD_CONTROL_GET_DEVICE_STATUS,   /**< \brief »ñÈ¡Éè±¸×´Ì¬ */
-    AM_USBD_CONTROL_GET_ENDPOINT_STATUS, /**< \brief »ñÈ¡¶Ëµã×´Ì¬ */
-	AM_USBD_CONTROL_SET_ENDPOINT_STATUS, /**< \brief ÉèÖÃ¶Ëµã×´Ì¬ */
-    AM_USBD_CONTROL_SET_DEVICE_ADDRESS,  /**< \brief ÉèÖÃÉè±¸µØÖ· */
-    AM_USBD_CONTROL_GET_SYNCH_FRAME,     /**< \brief »ñÈ¡Í¬²½Ö¡ */
-    AM_USBD_CONTROL_RESUME,              /**< \brief Éè±¸»½ĞÑ */
-    AM_USBD_CONTROL_SET_DEFAULT_STATUS,  /**< \brief ÉèÖÃ¿ØÖÆÆ÷Ä¬ÈÏÖµ */
-    AM_USBD_CONTROL_GET_SPEED,           /**< \brief »ñÈ¡µ±Ç°ËÙ¶È */
-    AM_USBD_CONTROL_GET_OTG_STATUS,      /**< \brief »ñÈ¡OTG×´Ì¬ */
-    AM_USBD_CONTROL_SET_OTG_STATUS,      /**< \brief ÉèÖÃOUG×´Ì¬ */
-    AM_USBD_CONTROL_SET_TEST_MODE,       /**< \brief ²âÊÔÄ£Ê½ */
+    AM_USBD_CONTROL_RUN = 0U,            /**< \brief ä½¿ç”¨è®¾å¤‡ */
+    AM_USBD_CONTROL_STOP,                /**< \brief åœæ­¢è®¾å¤‡ */
+    AM_USBD_CONTROL_ENDPOINT_INIT,       /**< \brief åˆå§‹åŒ–è®¾å¤‡ */
+    AM_USBD_CONTROL_ENDPOINT_DEINIT,     /**< \brief è§£åˆå§‹åŒ– */
+    AM_USBD_CONTROL_ENDPOINT_STALL,      /**< \brief ç«¯ç‚¹é˜»å¡ */
+    AM_USBD_CONTROL_ENDPOINT_UNSTALL,    /**< \brief ç«¯ç‚¹éé˜»å¡ */
+    AM_USBD_CONTROL_GET_DEVICE_STATUS,   /**< \brief è·å–è®¾å¤‡çŠ¶æ€ */
+    AM_USBD_CONTROL_GET_ENDPOINT_STATUS, /**< \brief è·å–ç«¯ç‚¹çŠ¶æ€ */
+	AM_USBD_CONTROL_SET_ENDPOINT_STATUS, /**< \brief è®¾ç½®ç«¯ç‚¹çŠ¶æ€ */
+    AM_USBD_CONTROL_SET_DEVICE_ADDRESS,  /**< \brief è®¾ç½®è®¾å¤‡åœ°å€ */
+    AM_USBD_CONTROL_GET_SYNCH_FRAME,     /**< \brief è·å–åŒæ­¥å¸§ */
+    AM_USBD_CONTROL_RESUME,              /**< \brief è®¾å¤‡å”¤é†’ */
+    AM_USBD_CONTROL_SET_DEFAULT_STATUS,  /**< \brief è®¾ç½®æ§åˆ¶å™¨é»˜è®¤å€¼ */
+    AM_USBD_CONTROL_GET_SPEED,           /**< \brief è·å–å½“å‰é€Ÿåº¦ */
+    AM_USBD_CONTROL_GET_OTG_STATUS,      /**< \brief è·å–OTGçŠ¶æ€ */
+    AM_USBD_CONTROL_SET_OTG_STATUS,      /**< \brief è®¾ç½®OUGçŠ¶æ€ */
+    AM_USBD_CONTROL_SET_TEST_MODE,       /**< \brief æµ‹è¯•æ¨¡å¼ */
 } am_usbd_control_type_t;
 
-/** \brief ³õÊ¼»¯ */
+/** \brief åˆå§‹åŒ– */
 typedef am_usb_status_t (*am_usbd_init_t)(am_usbd_handle_t handle);
 
-/** \brief ½â³õÊ¼»¯ */
+/** \brief è§£åˆå§‹åŒ– */
 typedef am_usb_status_t (*am_usbd_deinit_t)(am_usbd_handle_t handle);
 
-/** \brief ·¢ËÍº¯Êı */
+/** \brief å‘é€å‡½æ•° */
 typedef am_usb_status_t (*am_usbd_send_t)(am_usbd_handle_t handle,
                                          uint8_t           endpoint,
                                          uint8_t          *p_buffer,
                                          uint32_t          length);
 
-/** \brief ½ÓÊÕº¯Êı */
+/** \brief æ¥æ”¶å‡½æ•° */
 typedef uint8_t (*am_usbd_recv_t)(am_usbd_handle_t  handle,
                                   uint8_t           endpoint,
                                   uint8_t          *p_buffer,
                                   uint32_t          length);
 
-/** \brief È¡Ïû */
+/** \brief å–æ¶ˆ */
 typedef am_usb_status_t (*am_usbd_cancel_t)(am_usbd_handle_t handle,
                                            uint8_t           endpoint);
 
-/** \brief ¿ØÖÆ */
+/** \brief æ§åˆ¶ */
 typedef am_usb_status_t (*am_usbd_control_t)(am_usbd_handle_t       handle,
                                              am_usbd_control_type_t command,
                                              void                  *p_param);
 
-/** \brief ¶Ëµã»Øµ÷º¯ÊıÀàĞÍ*/
+/** \brief ç«¯ç‚¹å›è°ƒå‡½æ•°ç±»å‹*/
 typedef void (*am_usbd_ep_callback_t)(void *p_arg);
 
-/* ³§ÉÌÇëÇó»Øµ÷º¯ÊıÀàĞÍ.*/
+/* å‚å•†è¯·æ±‚å›è°ƒå‡½æ•°ç±»å‹.*/
 typedef uint8_t (*am_vendor_request_t)(void *p_arg, uint8_t b_requrest);
 
-/* ÀàÇëÇó»Øµ÷º¯ÊıÀàĞÍ.*/
+/* ç±»è¯·æ±‚å›è°ƒå‡½æ•°ç±»å‹.*/
 typedef uint8_t (*am_class_request_t)(void *p_arg, uint8_t b_requrest);
 
-/** \brief usb device ¿ØÖÆ½Ó¿Ú½á¹¹Ìå */
+/** \brief usb device æ§åˆ¶æ¥å£ç»“æ„ä½“ */
 typedef struct am_usbd_interface {
-    am_usbd_init_t    pfn_device_init;      /**< \brief Éè±¸³õÊ¼»¯ */
-    am_usbd_deinit_t  pfn_device_deinit;    /**< \brief Éè±¸³õÊ¼»¯ */
-    am_usbd_send_t    pfn_device_send;      /**< \brief Éè±¸·¢ËÍÊı¾İ */
-    am_usbd_recv_t    pfn_device_recv;      /**< \brief Éè±¸½ÓÊÕÊı¾İ */
-    am_usbd_cancel_t  pfn_device_cancel;    /**< \brief È¡Ïû¶Ëµã´«Êä */
-    am_usbd_control_t pfn_device_control;   /**< \brief Éè±¸¿ØÖÆº¯Êı */
+    am_usbd_init_t    pfn_device_init;      /**< \brief è®¾å¤‡åˆå§‹åŒ– */
+    am_usbd_deinit_t  pfn_device_deinit;    /**< \brief è®¾å¤‡åˆå§‹åŒ– */
+    am_usbd_send_t    pfn_device_send;      /**< \brief è®¾å¤‡å‘é€æ•°æ® */
+    am_usbd_recv_t    pfn_device_recv;      /**< \brief è®¾å¤‡æ¥æ”¶æ•°æ® */
+    am_usbd_cancel_t  pfn_device_cancel;    /**< \brief å–æ¶ˆç«¯ç‚¹ä¼ è¾“ */
+    am_usbd_control_t pfn_device_control;   /**< \brief è®¾å¤‡æ§åˆ¶å‡½æ•° */
 } am_usbd_interface_t;
 
 
-/** \brief ¶Ëµã×´Ì¬½á¹¹ */
+/** \brief ç«¯ç‚¹çŠ¶æ€ç»“æ„ */
 typedef struct am_usbd_ep_info {
-    uint8_t                inuse;           /**< \brief ¶ËµãÊÇ·ñ»á±»Ê¹ÓÃ */
-    uint8_t                stalled;         /**< \brief ¶ËµãÊÇ·ñ×èÈû */
-    uint8_t                ep_address;      /**< \brief ¶ËµãµØÖ·£¨·½Ïò + ¶ËµãºÅ£©*/
+    uint8_t                inuse;           /**< \brief ç«¯ç‚¹æ˜¯å¦ä¼šè¢«ä½¿ç”¨ */
+    uint8_t                stalled;         /**< \brief ç«¯ç‚¹æ˜¯å¦é˜»å¡ */
+    uint8_t                ep_address;      /**< \brief ç«¯ç‚¹åœ°å€ï¼ˆæ–¹å‘ + ç«¯ç‚¹å·ï¼‰*/
 
-    /** \brief ¶Ëµã´«ÊäÀà ĞÍ (¿ØÖÆ´«Êä, Í¬²½´«Êä, ÅúÁ¿´«Êä, ÖĞ¶Ï´«Êä)*/
-    uint8_t                transfer_type;   /**< \brief ¶ËµãÊı¾İÀàĞÍ*/
-    uint8_t                val_length;      /**< \brief ¶ËµãÓĞĞ§Êı¾İ³¤¶È*/
-    uint16_t               max_packet_size; /**< \brief ¶ËµãÒ»´ÎĞÔ´«ÊäµÄ×î´ó°ü´óĞ¡ */
-    am_usbd_ep_callback_t  pfn_callback;    /**< \brief ¶Ëµã»Øµ÷º¯ÊıÖ¸Õë */
-    void                  *p_arg;           /**< \brief ¶Ëµã»Øµ÷²ÎÊı */
+    /** \brief ç«¯ç‚¹ä¼ è¾“ç±» å‹ (æ§åˆ¶ä¼ è¾“, åŒæ­¥ä¼ è¾“, æ‰¹é‡ä¼ è¾“, ä¸­æ–­ä¼ è¾“)*/
+    uint8_t                transfer_type;   /**< \brief ç«¯ç‚¹æ•°æ®ç±»å‹*/
+    uint8_t                val_length;      /**< \brief ç«¯ç‚¹æœ‰æ•ˆæ•°æ®é•¿åº¦*/
+    uint16_t               max_packet_size; /**< \brief ç«¯ç‚¹ä¸€æ¬¡æ€§ä¼ è¾“çš„æœ€å¤§åŒ…å¤§å° */
+    am_usbd_ep_callback_t  pfn_callback;    /**< \brief ç«¯ç‚¹å›è°ƒå‡½æ•°æŒ‡é’ˆ */
+    void                  *p_arg;           /**< \brief ç«¯ç‚¹å›è°ƒå‚æ•° */
 } am_usbd_ep_info_t;
 
 
-/** \brief USBÉè±¸ĞÅÏ¢½á¹¹Ìå*/
+/** \brief USBè®¾å¤‡ä¿¡æ¯ç»“æ„ä½“*/
 typedef struct am_usbd_devinfo {
-    const am_usbd_descriptor_t *p_descriptor;       /**< \brief ÃèÊö·ûÊ×µØÖ· */
-    uint8_t                     descriptor_num;     /**< \brief ÃèÊö·û¸öÊı */
+    const am_usbd_descriptor_t *p_descriptor;       /**< \brief æè¿°ç¬¦é¦–åœ°å€ */
+    uint8_t                     descriptor_num;     /**< \brief æè¿°ç¬¦ä¸ªæ•° */
 }am_usbd_devinfo_t ;
 
-/* ÀàÇëÇó»Øµ÷º¯Êı½á¹¹Ìå¶¨Òå*/
+/* ç±»è¯·æ±‚å›è°ƒå‡½æ•°ç»“æ„ä½“å®šä¹‰*/
 typedef struct am_usbd_class_req_callback {
-    am_class_request_t   pfn_class;   /**< \brief ÀàÇëÇó»Øµ÷º¯Êı*/
-    void                *p_arg;       /**< \brief ÀàÇëÇó»Øµ÷º¯Êı²ÎÊı*/
+    am_class_request_t   pfn_class;   /**< \brief ç±»è¯·æ±‚å›è°ƒå‡½æ•°*/
+    void                *p_arg;       /**< \brief ç±»è¯·æ±‚å›è°ƒå‡½æ•°å‚æ•°*/
 }am_usbd_class_req_cb_t;
 
-/* ³§ÉÌÇëÇó»Øµ÷º¯Êı½á¹¹Ìå¶¨Òå*/
+/* å‚å•†è¯·æ±‚å›è°ƒå‡½æ•°ç»“æ„ä½“å®šä¹‰*/
 typedef struct am_vendor_req_callback {
-	am_vendor_request_t  pfn_vendor;  /**< \brief ³§ÉÌÇëÇó»Øµ÷º¯Êı*/
-	void                *p_arg;       /**< \brief ³§ÉÌÇëÇó»Øµ÷º¯Êı²ÎÊı*/
+	am_vendor_request_t  pfn_vendor;  /**< \brief å‚å•†è¯·æ±‚å›è°ƒå‡½æ•°*/
+	void                *p_arg;       /**< \brief å‚å•†è¯·æ±‚å›è°ƒå‡½æ•°å‚æ•°*/
 }am_usbd_vendor_req_cb_t;
 
 
-/** \brief ¶¨Òåusb device*/
+/** \brief å®šä¹‰usb device*/
 typedef struct am_usbd_dev am_usbd_dev_t;
 
-/** \brief ¶¨Òå±ê×¼Éè±¸ÇëÇóº¯ÊıÀàĞÍ*/
+/** \brief å®šä¹‰æ ‡å‡†è®¾å¤‡è¯·æ±‚å‡½æ•°ç±»å‹*/
 typedef void (*am_std_request_t)(am_usbd_dev_t *p_dev);
 
 
 typedef struct __endpoint_info
 {
-  uint16_t   length;               /**< \brief ĞèÒª½ÓÊÕ»òÕß·¢ËÍµÄ×Ö½ÚÊı  */
-  uint16_t   offset;               /**< \brief ½ÓÊÕ»òÕß·¢ËÍÊı¾İµÄÆ«ÒÆÁ¿  */
-  uint16_t   packet_size;          /**< \brief USBÉè±¸°üÔÊĞíµÄ×î´ó×Ö½ÚÊı  */
+  uint16_t   length;               /**< \brief éœ€è¦æ¥æ”¶æˆ–è€…å‘é€çš„å­—èŠ‚æ•°  */
+  uint16_t   offset;               /**< \brief æ¥æ”¶æˆ–è€…å‘é€æ•°æ®çš„åç§»é‡  */
+  uint16_t   packet_size;          /**< \brief USBè®¾å¤‡åŒ…å…è®¸çš„æœ€å¤§å­—èŠ‚æ•°  */
 //  uint8_t   *(*pfn_copy_data)(void *p_arg, uint16_t *p_length);
   uint8_t   *p_buf;
 }am_data_info_t;
@@ -158,16 +158,16 @@ typedef struct __endpoint_info
 /** \brief USB device struct  */
 struct am_usbd_dev {
 	/**
-	 *  \brief ¿ØÖÆÆ÷handle
+	 *  \brief æ§åˆ¶å™¨handle
 	 *
-	 *  ±£Áôµ×²ã¿ØÖÆÆ÷handle ÎªÁËÉÏ²ã½Ó¿Úµ÷ÓÃ£¬ÀıÈçan_usbd_sendº¯Êı
+	 *  ä¿ç•™åº•å±‚æ§åˆ¶å™¨handle ä¸ºäº†ä¸Šå±‚æ¥å£è°ƒç”¨ï¼Œä¾‹å¦‚an_usbd_sendå‡½æ•°
 	 */
 	am_usbd_handle_t      ctrl_handle;
 
-    uint8_t               device_address;   /**< \brief Éè±¸µØÖ· */
-    uint8_t               state;            /**< \brief Éè±¸×´Ì¬ */
+    uint8_t               device_address;   /**< \brief è®¾å¤‡åœ°å€ */
+    uint8_t               state;            /**< \brief è®¾å¤‡çŠ¶æ€ */
 
-    uint8_t               cur_feature;      /**< \brief Éè±¸ÊôĞÔ*/
+    uint8_t               cur_feature;      /**< \brief è®¾å¤‡å±æ€§*/
     uint8_t               cur_config;       /* Selected configuration */
     uint8_t               cur_interface;    /* Selected interface of current configuration */
     uint8_t               cur_alt;          /* Selected Alternate Setting of current
@@ -175,26 +175,26 @@ struct am_usbd_dev {
 
     uint16_t               sta_info;
 
-    const am_usbd_interface_t *p_interface;    /**< \brief ¿ØÖÆÆ÷½Ó¿Ú */
+    const am_usbd_interface_t *p_interface;    /**< \brief æ§åˆ¶å™¨æ¥å£ */
 
-    /** \brief ±ê×¼Éè±¸ÇëÇóº¯ÊıÖ¸ÕëÊı×éµÄÖ¸Õë*/
+    /** \brief æ ‡å‡†è®¾å¤‡è¯·æ±‚å‡½æ•°æŒ‡é’ˆæ•°ç»„çš„æŒ‡é’ˆ*/
     const am_std_request_t    *pfn_std_request;
 
     am_usb_request_funcs_t    *p_funcs;
 
-    /** \brief USB device ĞÅÏ¢½á¹¹Ìå, ´æ·ÅÃèÊö·ûĞÅÏ¢*/
+    /** \brief USB device ä¿¡æ¯ç»“æ„ä½“, å­˜æ”¾æè¿°ç¬¦ä¿¡æ¯*/
     const am_usbd_devinfo_t   *p_info;
 
-    /**< \brief ÀàÇëÇó»Øµ÷º¯Êı, ÔÚUSBÀàÖĞ±»¸³Öµ*/
+    /**< \brief ç±»è¯·æ±‚å›è°ƒå‡½æ•°, åœ¨USBç±»ä¸­è¢«èµ‹å€¼*/
     am_usbd_class_req_cb_t    class_req;
 
-    /**< \brief ³§ÉÌÇëÇó»Øµ÷º¯Êı£¬ÓÉ¾ßÌåµÄ²úÉÌ¶¨Òå¹¦ÄÜ£¬ÔÚÖ§³ÖµÄÀàÖĞÓĞ¶ÔÓ¦½Ó¿Ú */
+    /**< \brief å‚å•†è¯·æ±‚å›è°ƒå‡½æ•°ï¼Œç”±å…·ä½“çš„äº§å•†å®šä¹‰åŠŸèƒ½ï¼Œåœ¨æ”¯æŒçš„ç±»ä¸­æœ‰å¯¹åº”æ¥å£ */
     am_usbd_vendor_req_cb_t   vendor_req;
 
-    /** \brief ½ÓÊÕµ½µÄsetup°üÖĞµÄÊı¾İUSB±ê×¼Éè±¸ÇëÇó½á¹¹ */
+    /** \brief æ¥æ”¶åˆ°çš„setupåŒ…ä¸­çš„æ•°æ®USBæ ‡å‡†è®¾å¤‡è¯·æ±‚ç»“æ„ */
     am_usb_setup_t            setup_data;
 
-    /** \brief ¶Ëµã×´Ì¬ */
+    /** \brief ç«¯ç‚¹çŠ¶æ€ */
     am_usbd_ep_info_t         endpoint_info[AM_USBD_MAX_EP_CNT];
 
     am_data_info_t            ctrl_info;
@@ -211,15 +211,15 @@ am_usb_status_t am_usbd_init(am_usbd_dev_t  *p_dev)
 }
 
 /**
- * \brief ³õÊ¼»¯ USB
+ * \brief åˆå§‹åŒ– USB
  *
- * \param[in] handle                  usbÉè±¸¾ä±ú
+ * \param[in] handle                  usbè®¾å¤‡å¥æŸ„
  *
- * \retval  AM_USB_STATUS_SUCCESS               Í¨Öª³É¹¦
- * \retval  AM_USB_STATUS_ERROR                 Í¨ÖªÊ§°Ü
- * \retval  AM_USB_STATUS_INVALID_REQUEST       USB ÏìÓ¦´íÎó
- * \retval  AM_USB_STATUS_INVALID_HANDLE        ÎŞĞ§µÄ¾ä±ú
- * \retval  AM_USB_STATUS_INVALID_PARAMETER     ²ÎÊı´íÎó
+ * \retval  AM_USB_STATUS_SUCCESS               é€šçŸ¥æˆåŠŸ
+ * \retval  AM_USB_STATUS_ERROR                 é€šçŸ¥å¤±è´¥
+ * \retval  AM_USB_STATUS_INVALID_REQUEST       USB å“åº”é”™è¯¯
+ * \retval  AM_USB_STATUS_INVALID_HANDLE        æ— æ•ˆçš„å¥æŸ„
+ * \retval  AM_USB_STATUS_INVALID_PARAMETER     å‚æ•°é”™è¯¯
  */
 am_static_inline
 am_usb_status_t am_usbd_send(am_usbd_dev_t   *p_dev,
@@ -234,7 +234,7 @@ am_usb_status_t am_usbd_send(am_usbd_dev_t   *p_dev,
 }
 
 /**
- * \brief USB½ÓÊÕÊı¾İ
+ * \brief USBæ¥æ”¶æ•°æ®
  *
  */
 am_static_inline
@@ -250,7 +250,7 @@ uint8_t am_usbd_recv(am_usbd_dev_t   *p_dev,
 }
 
 /**
- * \brief USBÉèÖÃ¿ØÖÆÀàĞÍ
+ * \brief USBè®¾ç½®æ§åˆ¶ç±»å‹
  *
  */
 am_static_inline
@@ -265,7 +265,7 @@ am_usb_status_t am_usbd_control(am_usbd_dev_t         *p_dev,
 
 
 /**
- * \brief USBÈ¡Ïû²Ù×÷
+ * \brief USBå–æ¶ˆæ“ä½œ
  *
  */
 am_static_inline
@@ -276,7 +276,7 @@ am_usb_status_t am_usbd_cancel(am_usbd_dev_t   *p_dev,
 }
 
 /**
- * \brief USB½â³õÊ¼»¯²Ù×÷
+ * \brief USBè§£åˆå§‹åŒ–æ“ä½œ
  *
  */
 am_static_inline

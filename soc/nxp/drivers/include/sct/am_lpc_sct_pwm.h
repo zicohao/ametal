@@ -70,7 +70,7 @@ typedef struct am_lpc_sct_pwm_ioinfo {
  * \brief LPC5410x SCT for PWM initialize parameter structure
  */
 typedef struct am_lpc_sct_pwm_devinfo {
-    uint32_t                   sct_regbase;   /**< \brief SCT¼Ä´æÆ÷»ùµØÖ·.                             */
+    uint32_t                   sct_regbase;   /**< \brief SCTÂ¼Ã„Â´Ã¦Ã†Ã·Â»Ã¹ÂµÃ˜Ã–Â·.                             */
     uint32_t                   clk_id;        /**< \brief SCT clk id                                */
     uint8_t                    channels_num;  /**< \brief Total support channels(maximum value is 8) */
     am_lpc_sct_pwm_ioinfo_t   *p_ioinfo;      /**< \brief Pointer to the GPIO information            */

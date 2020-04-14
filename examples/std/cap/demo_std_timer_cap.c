@@ -12,15 +12,15 @@
 
 /**
  * \file
- * \brief ¶¨Ê±Æ÷ÊµÏÖ²¶»ñ¹¦ÄÜ£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief å®šæ—¶å™¨å®žçŽ°æ•èŽ·åŠŸèƒ½ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. ½« PWM Êä³öÁ¬½Óµ½²¶»ñÊäÈëÒý½Å¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. å°† PWM è¾“å‡ºè¿žæŽ¥åˆ°æ•èŽ·è¾“å…¥å¼•è„šã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. µ÷ÊÔ´®¿ÚÊä³ö²¶»ñµ½µÄ PWM ÐÅºÅµÄÖÜÆÚºÍÆµÂÊ¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. è°ƒè¯•ä¸²å£è¾“å‡ºæ•èŽ·åˆ°çš„ PWM ä¿¡å·çš„å‘¨æœŸå’Œé¢‘çŽ‡ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_std_timer_cap.c src_std_timer_cap
  *
  * \internal
@@ -39,11 +39,11 @@
 #include "am_cap.h"
 #include "am_vdebug.h"
 
-static volatile am_bool_t __g_flag    = AM_FALSE;    /**< \brief ²¶»ñ±êÖ¾ */
-static volatile uint32_t  __g_time_ns = 0;           /**< \brief ²¶»ñ¼ÆÊýÖµ */
+static volatile am_bool_t __g_flag    = AM_FALSE;    /**< \brief æ•èŽ·æ ‡å¿— */
+static volatile uint32_t  __g_time_ns = 0;           /**< \brief æ•èŽ·è®¡æ•°å€¼ */
 
 /**
- * \brief ²¶»ñ»Øµ÷º¯Êý
+ * \brief æ•èŽ·å›žè°ƒå‡½æ•°
  */
 static void __cap_callback (void *p_arg, unsigned int cap_val)
 {
@@ -58,7 +58,7 @@ static void __cap_callback (void *p_arg, unsigned int cap_val)
             s_first  = AM_FALSE;
         } else {
 
-            /* ¶¨Ê±Æ÷TIM²»ÊÇ32Î»¼ÆÊýÆ÷Ê±, ±ÜÃâÒç³öÊ±Êý¾Ý´íÎó */
+            /* å®šæ—¶å™¨TIMä¸æ˜¯32ä½è®¡æ•°å™¨æ—¶, é¿å…æº¢å‡ºæ—¶æ•°æ®é”™è¯¯ */
             if(s_count < cap_val) {
                am_cap_count_to_time(cap_handle,
                                     0,
@@ -69,20 +69,20 @@ static void __cap_callback (void *p_arg, unsigned int cap_val)
 
             s_first = AM_TRUE;
 
-            /* ÖÃ±êÖ¾ÎªÕæ£¬±íÃ÷²¶»ñÍê³É */
+            /* ç½®æ ‡å¿—ä¸ºçœŸï¼Œè¡¨æ˜Žæ•èŽ·å®Œæˆ */
             __g_flag = AM_TRUE;
         }
     }
 }
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_std_timer_cap_entry (am_cap_handle_t cap_handle, int cap_chan)
 {
     uint32_t freq = 0;
 
-    /* ²¶»ñÊäÈëÅäÖÃ */
+    /* æ•èŽ·è¾“å…¥é…ç½® */
     am_cap_config(cap_handle,
                   cap_chan,
                   AM_CAP_TRIGGER_RISE,

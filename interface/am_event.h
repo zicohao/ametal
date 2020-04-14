@@ -12,18 +12,18 @@
 
 /**
  * \file
- * \brief ÊÂ¼ş±¨¸æ¿ò¼Ü
+ * \brief äº‹ä»¶æŠ¥å‘Šæ¡†æ¶
  *
- * Èı¼¶¸ÅÄî£º
- * 1. event category £ºÆä¶ÔÓ¦¶à¸öevent type ºÍ¶à¸ö event handler
- * 2. event type     £ºÆä¶ÔÓ¦¶à¸öevent handler
- * 3. event handler  £ºÆä¶ÔÓ¦Ò»¸öÊÂ¼ş´¦Àíº¯Êı
+ * ä¸‰çº§æ¦‚å¿µï¼š
+ * 1. event category ï¼šå…¶å¯¹åº”å¤šä¸ªevent type å’Œå¤šä¸ª event handler
+ * 2. event type     ï¼šå…¶å¯¹åº”å¤šä¸ªevent handler
+ * 3. event handler  ï¼šå…¶å¯¹åº”ä¸€ä¸ªäº‹ä»¶å¤„ç†å‡½æ•°
  *
- * ÊÂ¼ş´¥·¢£º
- * ÊÂ¼ş´¥·¢µÄ×îĞ¡µ¥Î»ÊÇ event type£¬ÊÂ¼ş´¥·¢Ê±£º
- * 1. ´¥·¢¸Ã event type ËùÊô event category ÖĞµÄËùÓĞ event handler Ö´ĞĞÒ»±é¡£
- * 2. Èç¹ûÊÂ¼ş±êÖ¾²»º¬ AM_EVENT_PROC_FLAG_CAT_ONLY£¬Ôò¸Ã event typeÖĞËùÓĞµÄ
- *    event handler Ò²»áÖ´ĞĞÒ»±é¡£
+ * äº‹ä»¶è§¦å‘ï¼š
+ * äº‹ä»¶è§¦å‘çš„æœ€å°å•ä½æ˜¯ event typeï¼Œäº‹ä»¶è§¦å‘æ—¶ï¼š
+ * 1. è§¦å‘è¯¥ event type æ‰€å± event category ä¸­çš„æ‰€æœ‰ event handler æ‰§è¡Œä¸€éã€‚
+ * 2. å¦‚æœäº‹ä»¶æ ‡å¿—ä¸å« AM_EVENT_PROC_FLAG_CAT_ONLYï¼Œåˆ™è¯¥ event typeä¸­æ‰€æœ‰çš„
+ *    event handler ä¹Ÿä¼šæ‰§è¡Œä¸€éã€‚
  *
  * \internal
  * \par modification history:
@@ -47,61 +47,61 @@ extern "C" {
 #endif
 
 /**
- * \name ÊÂ¼ş´¦ÀíÆ÷±êÖ¾£¬ÓÃÓÚam_event_handler_tµÄ  flags ³ÉÔ±£¬¶à¸ö±êÖ¾¿ÉÊ¹ÓÃ»òÁ¬½Ó
+ * \name äº‹ä»¶å¤„ç†å™¨æ ‡å¿—ï¼Œç”¨äºam_event_handler_tçš„  flags æˆå‘˜ï¼Œå¤šä¸ªæ ‡å¿—å¯ä½¿ç”¨æˆ–è¿æ¥
  * @{
  */
 
-/** \brief ÊÂ¼ş´¦Àíºó£¬¸ÃÊÂ¼ş´¦ÀíÆ÷½«×Ô¶¯×¢Ïú   */
+/** \brief äº‹ä»¶å¤„ç†åï¼Œè¯¥äº‹ä»¶å¤„ç†å™¨å°†è‡ªåŠ¨æ³¨é”€   */
 #define AM_EVENT_HANDLER_FLAG_AUTO_UNREG     (1u << 0)
 
 /** @} */
 
 /**
- * \name ÊÂ¼ş±êÖ¾£¬¶à¸ö±êÖ¾¿ÉÊ¹ÓÃ»òÁ¬½Ó
+ * \name äº‹ä»¶æ ‡å¿—ï¼Œå¤šä¸ªæ ‡å¿—å¯ä½¿ç”¨æˆ–è¿æ¥
  * @{
  */
 
-/* \brief ¸ÃÊÂ¼şÖ»»á´¥·¢ ÆäËùÊô event category ÖĞµÄ event handler  */
+/* \brief è¯¥äº‹ä»¶åªä¼šè§¦å‘ å…¶æ‰€å± event category ä¸­çš„ event handler  */
 #define AM_EVENT_PROC_FLAG_CAT_ONLY         (1u << 0)
 
 /** @} */
 
-/** \breif event_category ½á¹¹ÌåÀàĞÍÉùÃ÷ */
+/** \breif event_category ç»“æ„ä½“ç±»å‹å£°æ˜ */
 struct am_event_category;
 typedef struct am_event_category am_event_category_t;
 
-/** \breif event_type ½á¹¹ÌåÀàĞÍÉùÃ÷ */
+/** \breif event_type ç»“æ„ä½“ç±»å‹å£°æ˜ */
 struct am_event_type;
 typedef struct am_event_type am_event_type_t;
 
-/** \breif event_handler ½á¹¹ÌåÀàĞÍÉùÃ÷ */
+/** \breif event_handler ç»“æ„ä½“ç±»å‹å£°æ˜ */
 struct am_event_handler;
 typedef struct am_event_handler am_event_handler_t;
 
 /**
- * \brief ÊÂ¼ş´¦Àíº¯ÊıÀàĞÍ¶¨Òå
+ * \brief äº‹ä»¶å¤„ç†å‡½æ•°ç±»å‹å®šä¹‰
  *
- * \param[in]  p_evt_type : Ö¸ÏòÊÂ¼ş
- * \param[in]  p_evt_data : ÊÂ¼şµÄÊı¾İ
- * \param[in]  p_hdl_data £º ÊÂ¼ş´¦ÀíÆ÷µÄË½ÓĞÊı¾İ
+ * \param[in]  p_evt_type : æŒ‡å‘äº‹ä»¶
+ * \param[in]  p_evt_data : äº‹ä»¶çš„æ•°æ®
+ * \param[in]  p_hdl_data ï¼š äº‹ä»¶å¤„ç†å™¨çš„ç§æœ‰æ•°æ®
  *
- * \return ÎŞ
+ * \return æ— 
  */
 typedef void am_event_function_t (am_event_type_t   *p_evt_type,
                                   void              *p_evt_data,
                                   void              *p_hdl_data);
 
 /**
- * \brief ÊÂ¼ş´¦ÀíÆ÷½á¹¹Ìå¶¨Òå
+ * \brief äº‹ä»¶å¤„ç†å™¨ç»“æ„ä½“å®šä¹‰
  */
 struct am_event_handler {
-    uint16_t                 flags;     /**< \brief ±êÖ¾£ºAM_EVENT_HANDLER_FLAG_*  */
-    am_event_function_t     *pfn_proc;  /**< \brief ´¦Àíº¯Êı  */
-    void                    *p_data;    /**< \brief ÊÂ¼ş´¦ÀíÆ÷Ë½ÓĞÊı¾İ      */
-    struct am_event_handler *p_next;    /**< \brief Ö¸ÏòÏÂÒ»¸öÊÂ¼ş´¦ÀíÆ÷  */
+    uint16_t                 flags;     /**< \brief æ ‡å¿—ï¼šAM_EVENT_HANDLER_FLAG_*  */
+    am_event_function_t     *pfn_proc;  /**< \brief å¤„ç†å‡½æ•°  */
+    void                    *p_data;    /**< \brief äº‹ä»¶å¤„ç†å™¨ç§æœ‰æ•°æ®      */
+    struct am_event_handler *p_next;    /**< \brief æŒ‡å‘ä¸‹ä¸€ä¸ªäº‹ä»¶å¤„ç†å™¨  */
 };
 
-/** \brief ³õÊ¼»¯ÊÂ¼ş´¦ÀíÆ÷ */
+/** \brief åˆå§‹åŒ–äº‹ä»¶å¤„ç†å™¨ */
 am_static_inline
 void am_event_handler_init (am_event_handler_t  *p_handler,
                             am_event_function_t *pfn_proc,
@@ -115,15 +115,15 @@ void am_event_handler_init (am_event_handler_t  *p_handler,
 }
 
 
-/** \brief ÊÂ¼şÀàĞÍ½á¹¹¶¨Òå */
+/** \brief äº‹ä»¶ç±»å‹ç»“æ„å®šä¹‰ */
 struct am_event_type {
-    am_event_handler_t  *p_handler;   /**< \brief ¸ÃÊÂ¼şµÄËùÓĞ´¦ÀíÆ÷£¨Á´±í£© */
-    am_event_category_t *p_category;  /**< \brief ¸ÃÊÂ¼şËùÊôµÄÊÂ¼şÖÖÀà  */
-    am_event_type_t     *p_next;      /**< \brief Ö¸ÏòÏÂÒ»¸öÊÂ¼ş  */
+    am_event_handler_t  *p_handler;   /**< \brief è¯¥äº‹ä»¶çš„æ‰€æœ‰å¤„ç†å™¨ï¼ˆé“¾è¡¨ï¼‰ */
+    am_event_category_t *p_category;  /**< \brief è¯¥äº‹ä»¶æ‰€å±çš„äº‹ä»¶ç§ç±»  */
+    am_event_type_t     *p_next;      /**< \brief æŒ‡å‘ä¸‹ä¸€ä¸ªäº‹ä»¶  */
 };
 
 
-/** \brief ³õÊ¼»¯ÊÂ¼ş  */
+/** \brief åˆå§‹åŒ–äº‹ä»¶  */
 am_static_inline
 void am_event_init (am_event_type_t *p_event)
 {
@@ -132,41 +132,41 @@ void am_event_init (am_event_type_t *p_event)
     p_event->p_next     = NULL;
 }
 
-/** \brief ×¢²áÊÂ¼ş´¦ÀíÆ÷µ½ÊÂ¼şÖĞ */
+/** \brief æ³¨å†Œäº‹ä»¶å¤„ç†å™¨åˆ°äº‹ä»¶ä¸­ */
 int am_event_handler_register (am_event_type_t     *p_event,
                                am_event_handler_t  *p_handler);
 
-/** \brief ´ÓÊÂ¼şÖĞ×¢ÏúÊÂ¼ş´¦ÀíÆ÷ */
+/** \brief ä»äº‹ä»¶ä¸­æ³¨é”€äº‹ä»¶å¤„ç†å™¨ */
 int am_event_handler_unregister (am_event_type_t     *p_event,
                                  am_event_handler_t  *p_handler);
 
 /**
- * \brief ´¥·¢Ò»¸öÊÂ¼ş
+ * \brief è§¦å‘ä¸€ä¸ªäº‹ä»¶
  *
- * »á´¥·¢¸Ã event type ËùÊô event category ÖĞµÄËùÓĞ event handler Ö´ĞĞÒ»±é¡£
- * Èç¹ûÊÂ¼ş±êÖ¾²»º¬ AM_EVENT_PROC_FLAG_CAT_ONLY£¬Ôò¸Ã event typeÖĞËùÓĞµÄ
- * event handler Ò²»áÖ´ĞĞÒ»±é¡£
+ * ä¼šè§¦å‘è¯¥ event type æ‰€å± event category ä¸­çš„æ‰€æœ‰ event handler æ‰§è¡Œä¸€éã€‚
+ * å¦‚æœäº‹ä»¶æ ‡å¿—ä¸å« AM_EVENT_PROC_FLAG_CAT_ONLYï¼Œåˆ™è¯¥ event typeä¸­æ‰€æœ‰çš„
+ * event handler ä¹Ÿä¼šæ‰§è¡Œä¸€éã€‚
  *
- * \param p_event     £º ÊÂ¼ş
- * \param p_evt_data  £º ÊÂ¼şÊı¾İ
- * \param flags       £º ´¦Àí±êÖ¾, 0 »ò AM_EVENT_PROC_FLAG_*
+ * \param p_event     ï¼š äº‹ä»¶
+ * \param p_evt_data  ï¼š äº‹ä»¶æ•°æ®
+ * \param flags       ï¼š å¤„ç†æ ‡å¿—, 0 æˆ– AM_EVENT_PROC_FLAG_*
  *
- * \return ±ê×¼´íÎóºÅ
+ * \return æ ‡å‡†é”™è¯¯å·
  */
 int am_event_raise (am_event_type_t *p_event, void *p_evt_data, int flags);
 
 /**
- * \brief ÊÂ¼şÖÖÀà½á¹¹Ìå¶¨Òå£¬Æä°üº¬¶à¸öÊÂ¼ş»òÊÂ¼ş´¦ÀíÆ÷
+ * \brief äº‹ä»¶ç§ç±»ç»“æ„ä½“å®šä¹‰ï¼Œå…¶åŒ…å«å¤šä¸ªäº‹ä»¶æˆ–äº‹ä»¶å¤„ç†å™¨
  *
- * ¸ÃÖÖÀàÏÂµÄÈÎÒâÊÂ¼ş·¢ÉúÊ±£¬¶¼½«´¥·¢¸ÃÖÖÀàÏÂµÄËùÓĞÊÂ¼ş´¦ÀíÆ÷
+ * è¯¥ç§ç±»ä¸‹çš„ä»»æ„äº‹ä»¶å‘ç”Ÿæ—¶ï¼Œéƒ½å°†è§¦å‘è¯¥ç§ç±»ä¸‹çš„æ‰€æœ‰äº‹ä»¶å¤„ç†å™¨
  */
 struct am_event_category {
-    am_event_type_t    *p_event;    /**< \brief ÊÂ¼şÁ´±í  */
-    am_event_handler_t *p_handler;  /**< \brief ÊÂ¼ş´¦ÀíÆ÷Á´±í */
+    am_event_type_t    *p_event;    /**< \brief äº‹ä»¶é“¾è¡¨  */
+    am_event_handler_t *p_handler;  /**< \brief äº‹ä»¶å¤„ç†å™¨é“¾è¡¨ */
 };
 
 
-/** \brief ³õÊ¼»¯ÊÂ¼şÊÂ¼şÖÖÀà */
+/** \brief åˆå§‹åŒ–äº‹ä»¶äº‹ä»¶ç§ç±» */
 am_static_inline
 void am_event_category_init (am_event_category_t *p_category)
 {
@@ -174,19 +174,19 @@ void am_event_category_init (am_event_category_t *p_category)
     p_category->p_handler = NULL;
 }
 
-/** \brief ×¢²áÊÂ¼ş´¦ÀíÆ÷µ½ÊÂ¼şÖÖÀàÖĞ */
+/** \brief æ³¨å†Œäº‹ä»¶å¤„ç†å™¨åˆ°äº‹ä»¶ç§ç±»ä¸­ */
 int am_event_category_handler_register (am_event_category_t *p_category,
                                         am_event_handler_t  *p_handler);
 
-/** \brief ´ÓÊÂ¼şÖÖÀàÖĞ×¢ÏúÊÂ¼ş´¦ÀíÆ÷ */
+/** \brief ä»äº‹ä»¶ç§ç±»ä¸­æ³¨é”€äº‹ä»¶å¤„ç†å™¨ */
 int am_event_category_handler_unregister (am_event_category_t *p_category,
                                           am_event_handler_t  *p_handler);
 
-/** \brief ×¢²áÊÂ¼şµ½ÊÂ¼şÖÖÀàÖĞ  */
+/** \brief æ³¨å†Œäº‹ä»¶åˆ°äº‹ä»¶ç§ç±»ä¸­  */
 int am_event_category_event_register (am_event_category_t *p_category,
                                       am_event_type_t     *p_event);
 
-/** \brief ´ÓÊÂ¼şÖÖÀàÖĞ×¢ÏúÊÂ¼şÀàĞÍ  */
+/** \brief ä»äº‹ä»¶ç§ç±»ä¸­æ³¨é”€äº‹ä»¶ç±»å‹  */
 int am_event_category_event_unregister (am_event_category_t *p_category,
                                         am_event_type_t     *p_event);
 

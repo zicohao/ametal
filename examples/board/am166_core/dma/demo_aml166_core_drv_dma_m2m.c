@@ -11,16 +11,16 @@
 *******************************************************************************/
 /**
  * \file
- * \brief DMA ÄÚ´æµ½ÄÚ´æÀı³Ì£¬Í¨¹ıÇı¶¯²ã½Ó¿ÚÊµÏÖ
+ * \brief DMA å†…å­˜åˆ°å†…å­˜ä¾‹ç¨‹ï¼Œé€šè¿‡é©±åŠ¨å±‚æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. DMA ´«Êä³É¹¦£¬´òÓ¡ "transfer success";
- *   2. DMA ´«Êä³ö´í£¬´òÓ¡ "transfer failure";
+ * - å®éªŒç°è±¡ï¼š
+ *   1. DMA ä¼ è¾“æˆåŠŸï¼Œæ‰“å° "transfer success";
+ *   2. DMA ä¼ è¾“å‡ºé”™ï¼Œæ‰“å° "transfer failure";
  *
  * \note
- *    ÈçĞè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔĞÅÏ¢£¬ĞèÒª½« PIOA_9 Òı½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
+ *    å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIOA_9 å¼•è„šè¿æ¥ PC ä¸²å£çš„ RXDã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_aml166_core_drv_dma_m2m.c src_aml166_core_drv_dma_m2m
  *
  * \internal
@@ -41,10 +41,10 @@
 #include "demo_zlg_entries.h"
 #include "demo_aml166_core_entries.h"
 
-#define DMA_M2M_CH DMA_CHAN_1 /**< \brief DMA Í¨µÀºÅ */
+#define DMA_M2M_CH DMA_CHAN_1 /**< \brief DMA é€šé“å· */
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_aml166_core_drv_dma_m2m_entry (void)
 {

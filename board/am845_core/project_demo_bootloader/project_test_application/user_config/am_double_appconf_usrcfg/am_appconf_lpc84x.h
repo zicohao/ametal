@@ -5,22 +5,22 @@
 #include "am_boot_enter_check.h"
 
 /**
- * \brief bootloader flashÊµÀı³õÊ¼»¯£¬»ñµÃÆä±ê×¼·şÎñ¾ä±ú
+ * \brief bootloader flashå®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—å…¶æ ‡å‡†æœåŠ¡å¥æŸ„
  */
 am_boot_flash_handle_t am_lpc84x_boot_flash_inst_init(void);
 
 /**
- * \brief bootloader Í¨¹ı±êÖ¾´«µİÏûÏ¢ ÊµÀı³õÊ¼»¯
+ * \brief bootloader é€šè¿‡æ ‡å¿—ä¼ é€’æ¶ˆæ¯ å®ä¾‹åˆå§‹åŒ–
  */
 am_boot_msg_handle_t am_lpc84x_boot_msg_flag_inst_init(void);
 
 /**
- * \brief bootloader ¹Ì¼ş´æ·Åµ½flash ÊµÀı³õÊ¼»¯
+ * \brief bootloader å›ºä»¶å­˜æ”¾åˆ°flash å®ä¾‹åˆå§‹åŒ–
  */
 am_boot_firmware_handle_t am_lpc84x_boot_firmware_flash_inst_init(void);
 
 /**
- * \brief bootloader ±ê×¼½Ó¿ÚÊµÀı³õÊ¼»¯
+ * \brief bootloader æ ‡å‡†æ¥å£å®ä¾‹åˆå§‹åŒ–
  */
 int am_lpc84x_boot_inst_init(void);
 

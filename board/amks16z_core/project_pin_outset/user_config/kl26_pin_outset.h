@@ -13,17 +13,17 @@
 
 /**
  * \file
- * \brief KL26 Òý½Å¼°ÅäÖÃ
+ * \brief KL26 å¼•è„šåŠé…ç½®
  * 
- * \note 1. ¿É×ªÒÆ¹¦ÄÜ¿ÉÒÔÅäÖÃËùÓÐI/OÒý½Å£»
- *          GPIO¹¦ÄÜºÍÌØÊâ¹¦ÄÜÊôÓÚ¹Ì¶¨¹¦ÄÜ£¬Ö»ÄÜ´îÅä¶ÔÓ¦µÄÒý½ÅÊ¹ÓÃ \n
- *          Ê¾Àý£ºPIO0_0Òý½Å¹¦ÄÜÅäÖÃ£º \n 
- *          - ÅäÖÃÎªGPIO¹¦ÄÜÊ¹ÓÃºê£º      PIO0_0_GPIO \n
- *          - ÅäÖÃÎª±È½ÏÆ÷ÊäÈë¹¦ÄÜÊ¹ÓÃºê£ºPIO0_0_ACMP_I1 \n
- *          - ÅäÖÃ´®¿Ú·¢ËÍÒý½Å¹¦ÄÜÊ¹ÓÃºê£ºPIO_FUNC_U0_TXD
+ * \note 1. å¯è½¬ç§»åŠŸèƒ½å¯ä»¥é…ç½®æ‰€æœ‰I/Oå¼•è„šï¼›
+ *          GPIOåŠŸèƒ½å’Œç‰¹æ®ŠåŠŸèƒ½å±žäºŽå›ºå®šåŠŸèƒ½ï¼Œåªèƒ½æ­é…å¯¹åº”çš„å¼•è„šä½¿ç”¨ \n
+ *          ç¤ºä¾‹ï¼šPIO0_0å¼•è„šåŠŸèƒ½é…ç½®ï¼š \n 
+ *          - é…ç½®ä¸ºGPIOåŠŸèƒ½ä½¿ç”¨å®ï¼š      PIO0_0_GPIO \n
+ *          - é…ç½®ä¸ºæ¯”è¾ƒå™¨è¾“å…¥åŠŸèƒ½ä½¿ç”¨å®ï¼šPIO0_0_ACMP_I1 \n
+ *          - é…ç½®ä¸²å£å‘é€å¼•è„šåŠŸèƒ½ä½¿ç”¨å®ï¼šPIO_FUNC_U0_TXD
  *
- * \note 2. ¸´ÓÃ¹¦ÄÜ·½ÏòÓÉ×ÔÉí¾ö¶¨£¬PIOx_x_GPIO_INPUT»òPIOx_x_GPIO_OUTPUT
- *          »á½«Òý½ÅÅäÖÃÎªÆÕÍ¨IOÊäÈëÊä³ö¹¦ÄÜ 
+ * \note 2. å¤ç”¨åŠŸèƒ½æ–¹å‘ç”±è‡ªèº«å†³å®šï¼ŒPIOx_x_GPIO_INPUTæˆ–PIOx_x_GPIO_OUTPUT
+ *          ä¼šå°†å¼•è„šé…ç½®ä¸ºæ™®é€šIOè¾“å…¥è¾“å‡ºåŠŸèƒ½ 
  *
  * \internal
  * \par Modification History
@@ -42,7 +42,7 @@ extern "C" {
 #include "../../../../../soc/freescale/kl26/kl26_pin.h"
 
 /** 
- * \name I2C0Òý½ÅÅäÖÃ
+ * \name I2C0å¼•è„šé…ç½®
  * @{
  */
 #define __I2C0_SCL PIOE_24    //PIOB_0 PIOB_2 PIOC_8 PIOE_19 PIOE_24
@@ -50,7 +50,7 @@ extern "C" {
 /** @} */
 
 /** 
- * \name I2C1Òý½ÅÅäÖÃ
+ * \name I2C1å¼•è„šé…ç½®
  * @{
  */
 #define __I2C1_SCL PIOA_3    //PIOA_3  PIOC_1  PIOC_10  PIOE_1
@@ -58,7 +58,7 @@ extern "C" {
 /** @} */
 
 /** 
- * \name SPI0Òý½ÅÅäÖÃ
+ * \name SPI0å¼•è„šé…ç½®
  * @{
  */
 #define __SPI0_SCK  PIOC_5     //PIOC_5  PIOD_1  PIOE_17
@@ -67,7 +67,7 @@ extern "C" {
 /** @} */
 
 /** 
- * \name SPI1Òý½ÅÅäÖÃ
+ * \name SPI1å¼•è„šé…ç½®
  * @{
  */
 #define __SPI1_SCK  PIOD_5
@@ -76,7 +76,7 @@ extern "C" {
 /** @} */
 
 /** 
- * \name UART0Òý½ÅÅäÖÃ
+ * \name UART0å¼•è„šé…ç½®
  * @{
  */
 #define __UART0_RX PIOA_1    //PIOA_1  PIOB_16 PIOD_6 PIOE_21
@@ -84,7 +84,7 @@ extern "C" {
 /** @} */
 
 /** 
- * \name UART1Òý½ÅÅäÖÃ
+ * \name UART1å¼•è„šé…ç½®
  * @{
  */
 #define __UART1_RX PIOA_18    //PIOC_3 PIOE_1 PIOA_18 
@@ -92,7 +92,7 @@ extern "C" {
 /** @} */
 
 /** 
- * \name UART2Òý½ÅÅäÖÃ
+ * \name UART2å¼•è„šé…ç½®
  * @{
  */
 #define __UART2_RX PIOD_2    //PIOD_2  PIOD_4  PIOE_17  PIOE_23
@@ -100,7 +100,7 @@ extern "C" {
 /** @} */
 
 /** 
- * \name DACÒý½ÅÅäÖÃ
+ * \name DACå¼•è„šé…ç½®
  * @{
  */
 #define __DAC0_OUT  PIOE_30 
@@ -108,7 +108,7 @@ extern "C" {
 /** @} */
 
 /** 
- * \name TPM0Òý½ÅÅäÖÃ
+ * \name TPM0å¼•è„šé…ç½®
  * @{
  */
 #define __TPM0_CH0  PIOD_0  //PIOD_0  PIOA_3  PIOC_1  PIOE_24
@@ -122,7 +122,7 @@ extern "C" {
 /** @} */
 
 /** 
- * \name TPM1Òý½ÅÅäÖÃ
+ * \name TPM1å¼•è„šé…ç½®
  * @{
  */
 #define __TPM1_CH0  PIOE_20  //PIOA_12  PIOB_0  PIOE_20
@@ -130,7 +130,7 @@ extern "C" {
 /** @} */
 
 /** 
- * \name TPM2Òý½ÅÅäÖÃ
+ * \name TPM2å¼•è„šé…ç½®
  * @{
  */
 #define __TPM2_CH0  PIOE_22  //PIOA_1  PIOB_2  PIOB_18  PIOE_22
@@ -138,7 +138,7 @@ extern "C" {
 /** @} */
 
 /** 
- * \name TSI0Òý½ÅÅäÖÃ
+ * \name TSI0å¼•è„šé…ç½®
  * @{
  */
 #define __TSI0_CH0  PIOB_0 
@@ -160,7 +160,7 @@ extern "C" {
 /** @} */
 
 /** 
- * \name LEDÒý½ÅÅäÖÃ
+ * \name LEDå¼•è„šé…ç½®
  * @{
  */
 #define __LED0_GPIO PIOC_4
@@ -168,14 +168,14 @@ extern "C" {
 /** @} */
 
 /** 
- * \name KEYÒý½ÅÅäÖÃ
+ * \name KEYå¼•è„šé…ç½®
  * @{
  */
 #define __KEY_KP0_GPIO PIOC_0
 /** @} */
 
 /** 
- * \name ADCÒý½ÅÅäÖÃ
+ * \name ADCå¼•è„šé…ç½®
  * @{
  */
 #define __ADC_SE0_GPIO  PIOE_20

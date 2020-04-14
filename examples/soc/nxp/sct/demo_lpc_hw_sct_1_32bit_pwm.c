@@ -12,23 +12,23 @@
 
 /**
  * \file
- * \brief SCT 32 λ PWM ���̣�ͨ�� HW ��ӿ�ʵ��
+ * \brief SCT 32 位 PWM 例程，通过 HW 层接口实现
  *
- * - ʵ������
- *   1. PIO0_23(SCT_OUT0) ��� 4kHz �� PWM��ռ�ձ�Ϊ 50%��
- *   2. PIO0_27(SCT_OUT4) ��� 4kHz �� PWM��ռ�ձ�Ϊ 25%��
- *   3. LED0 �� 0.2s ��ʱ������˸��
+ * - 实验现象：
+ *   1. PIO0_23(SCT_OUT0) 输出 4kHz 的 PWM，占空比为 50%；
+ *   2. PIO0_27(SCT_OUT4) 输出 4kHz 的 PWM，占空比为 25%；
+ *   3. LED0 以 0.2s 的时间间隔闪烁。
  *
  * \note
- *    1. LED0 ��Ҫ�̽� J9 ����ñ�����ܱ� PIO0_20 ���ƣ�
- *    2. SCT ʹ�� 32 λ��������ֻ�ܲ���һ������� PWM������ PWM ���ʹ��ͬһƵ�ʣ�
- *       �����������ƥ��ֵΪ 0xFFFFFFFF��
- *    3. SCT ʹ�� 16 λ�����������Բ��� 2 ������� PWM��ÿһ�� PWM �����ʹ��ͬһ
- *       Ƶ�ʣ������������ƥ��ֵΪ 0xFFFF��
- *    4. ���� SCT Ĭ����Ϊ������������ʹ�ò��Ա� Demo ǰ��Ҫ�� am_prj_config.h ��
- *       �� AM_CFG_BUZZER_ENABLE ����Ϊ 0����ʹ�÷�������
+ *    1. LED0 需要短接 J9 跳线帽，才能被 PIO0_20 控制；
+ *    2. SCT 使用 32 位计数器，只能产生一组独立的 PWM，所有 PWM 输出使用同一频率，
+ *       计数器和最大匹配值为 0xFFFFFFFF；
+ *    3. SCT 使用 16 位计数器，可以产生 2 组独立的 PWM，每一组 PWM 的输出使用同一
+ *       频率，计数器和最大匹配值为 0xFFFF；
+ *    4. 由于 SCT 默认作为驱动蜂鸣器，使用测试本 Demo 前需要将 am_prj_config.h 中
+ *       的 AM_CFG_BUZZER_ENABLE 定义为 0，不使用蜂鸣器。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_lpc_hw_sct_1_32bit_pwm.c src_lpc_hw_sct_1_32bit_pwm
  *
  * \internal
@@ -50,102 +50,102 @@
 #include "hw/amhw_lpc_sct.h"
 
 /*******************************************************************************
-  �궨��
+  宏定义
 *******************************************************************************/
 
 /**
- * \brief ������ʹ�������� SCT �¼�
+ * \brief 本例程使用了三个 SCT 事件
  *
- * 1. �¼� 0�����ڲ��� 2 · PWM �Ĺ�ͬ���ڣ�ʹ��ƥ��ͨ�� 0�������Կ���
- *           __PWM0_OUT_NUM��__PWM0_OUT_NUM ��λ���¼��������������㣻
- * 2. �¼� 1�����ڿ��Ƶ� 1 · PWM ��ռ�ձȣ�ʹ��ƥ��ͨ�� __PWM0_MAT_NUM�������Կ���
- *           __PWM0_OUT_NUM ���㣻
- * 3. �¼� 2�����ڿ��Ƶ� 2 · PWM ��ռ�ձȣ�ʹ��ƥ��ͨ�� __PWM1_MAT_NUM�������Կ���
- *           __PWM1_OUT_NUM ���㣻
- * �����¼��� SCT ״̬ 0 ����Ч���¼������� SCT ״̬�������ı䣻
+ * 1. 事件 0：用于产生 2 路 PWM 的共同周期，使用匹配通道 0，周期性控制
+ *           __PWM0_OUT_NUM、__PWM0_OUT_NUM 置位，事件发生计数器清零；
+ * 2. 事件 1：用于控制第 1 路 PWM 的占空比，使用匹配通道 __PWM0_MAT_NUM，周期性控制
+ *           __PWM0_OUT_NUM 清零；
+ * 3. 事件 2：用于控制第 2 路 PWM 的占空比，使用匹配通道 __PWM1_MAT_NUM，周期性控制
+ *           __PWM1_OUT_NUM 清零；
+ * 所有事件在 SCT 状态 0 下有效，事件发生后 SCT 状态不发生改变；
  */
-#define __PWM0_MAT_NUM   AMHW_LPC_SCT_MAT(1)   /**< \brief PWM0��ʹ��ƥ�� 1 */
+#define __PWM0_MAT_NUM   AMHW_LPC_SCT_MAT(1)   /**< \brief PWM0，使用匹配 1 */
 #define __PWM0_OUT_NUM   (0)                   /**< \brief PWM0, SCT_OUT0 */
 
-#define __PWM1_MAT_NUM   AMHW_LPC_SCT_MAT(2)   /**< \brief PWM1��ʹ��ƥ�� 2 */
+#define __PWM1_MAT_NUM   AMHW_LPC_SCT_MAT(2)   /**< \brief PWM1，使用匹配 2 */
 #define __PWM1_OUT_NUM   (4)                   /**< \brief PWM1, SCT_OUT4 */
 
 /**
- * \brief ��ʼ�� SCT Ϊ 32bit ��ʱ����ʹ�� MATCH0 ����� PWM
+ * \brief 初始化 SCT 为 32bit 定时器，使能 MATCH0 以输出 PWM
  *
- * \param[in] p_hw_sct ָ��SCT�Ĵ������ָ��
+ * \param[in] p_hw_sct 指向SCT寄存器块的指针
  *
- * \return ��
+ * \return 无
  */
 am_local void __sct_pwm_init (amhw_lpc_sct_t *p_hw_sct)
 {
 
-    /* ��ʼ��ƥ�� 0 Ϊ�Զ��޶�����ȷ�� PWM ������ */
+    /* 初始化匹配 0 为自动限定，以确定 PWM 的周期 */
     amhw_lpc_sct_config(p_hw_sct,
 
-                        /* ʹ�� 32-bit ��ʱ�� */
+                        /* 使用 32-bit 定时器 */
                         AMHW_LPC_SCT_CONFIG_32BIT_COUNTER  |
 
-                        /* SCT ʱ��ʹ��ϵͳʱ�� */
+                        /* SCT 时钟使用系统时钟 */
                         AMHW_LPC_SCT_CONFIG_CLKMODE_SYSCLK |
 
-                        /* ƥ�� 0 Ϊ�Զ��޶� */
+                        /* 匹配 0 为自动限定 */
                         AMHW_LPC_SCT_CONFIG_AUTOLIMIT_L );
 
-    /* ��ƥ�䲶׽�Ĵ�������Ϊƥ�书�� */
+    /* 将匹配捕捉寄存器配置为匹配功能 */
     amhw_lpc_sct_regmode_config(p_hw_sct,
                                 AMHW_LPC_SCT_MODE_UNIFY,
                                 AMHW_LPC_SCT_MAT(0),
                                 AMHW_LPC_SCT_MATCAP_MATCH);
 
-    /* ����ƥ��Ĵ�����ƥ��ֵ */
+    /* 设置匹配寄存器的匹配值 */
     amhw_lpc_sct_mat_val_set(p_hw_sct,
                              AMHW_LPC_SCT_MODE_UNIFY,
                              AMHW_LPC_SCT_MAT(0), 0);
 
-    /* �����¼� 0 Ϊ PWM0 */
+    /* 设置事件 0 为 PWM0 */
     amhw_lpc_sct_event_ctrl(p_hw_sct,
 
-                            /* �¼� 0 */
+                            /* 事件 0 */
                             AMHW_LPC_SCT_EVT(0),
 
-                            /* �¼�������ƥ�� 0 */
+                            /* 事件关联到匹配 0 */
                             AMHW_LPC_SCT_EV_CTRL_MATCHSEL(0)    |
 
-                            /* ֻ��ʹ��ָ����ƥ��Ĵ��� */
+                            /* 只能使用指定的匹配寄存器 */
                             AMHW_LPC_SCT_EV_CTRL_COMBMODE_MATCH |
 
-                            /* STATEV ֵ���� STATE */
+                            /* STATEV 值加上 STATE */
                             AMHW_LPC_SCT_EV_CTRL_STATELD_ADD    |
 
-                            /* �� 0��STATE û�иı� */
+                            /* 加 0，STATE 没有改变 */
                             AMHW_LPC_SCT_EV_CTRL_STATEV(0));
 
-    /* ʹ��״̬ 0 ���¼� 0 ���� */
+    /* 使能状态 0 中事件 0 产生 */
     amhw_lpc_sct_event_state_enable(p_hw_sct,
                                     AMHW_LPC_SCT_EVT(0),
                                     AMHW_LPC_SCT_STATE(0));
 
-    /* �� CLRCTR λ�����������Ϊ 0 */
+    /* 置 CLRCTR 位，以清计数器为 0 */
     amhw_lpc_sct_ctrl_set(p_hw_sct, AMHW_LPC_SCT_CTRL_CLRCTR_L);
 
-    /* �õ�ǰ״ֵ̬Ϊ 0 */
+    /* 置当前状态值为 0 */
     amhw_lpc_sct_state_set(p_hw_sct,
                            AMHW_LPC_SCT_MODE_UNIFY,
                            AMHW_LPC_SCT_STATE(0));
 
-    /* Ԥ��ƵΪ 0��ʹ��ϵͳʱ�� */
+    /* 预分频为 0，使用系统时钟 */
     amhw_lpc_sct_prescale_set(p_hw_sct, AMHW_LPC_SCT_MODE_UNIFY, 0);
 }
 
 /**
- * \brief ��ʼ��һ· PWM
+ * \brief 初始化一路 PWM
  *
- * \param[in] p_hw_sct ָ�� SCT �Ĵ������ָ��
- * \param[in] mat_num  ƥ����
- * \param[in] out_num  ���ͨ�� 0~5
+ * \param[in] p_hw_sct 指向 SCT 寄存器块的指针
+ * \param[in] mat_num  匹配编号
+ * \param[in] out_num  输出通道 0~5
  *
- * \note ƥ�� 0 ����ȷ�� PWM ���ڣ��� mat_num ����Ϊ AMHW_LPC_SCT_MAT(0)��
+ * \note 匹配 0 用于确定 PWM 周期，故 mat_num 不能为 AMHW_LPC_SCT_MAT(0)。
  */
 am_local void __sct_pwm_out_init (amhw_lpc_sct_t *p_hw_sct,
                                   uint32_t        mat_num,
@@ -157,65 +157,65 @@ am_local void __sct_pwm_out_init (amhw_lpc_sct_t *p_hw_sct,
         return;
     }
 
-    /* ��ƥ�䲶׽�Ĵ�������Ϊƥ�书�� */
+    /* 将匹配捕捉寄存器配置为匹配功能 */
     amhw_lpc_sct_regmode_config(p_hw_sct,
 
-                                /* SCT ģʽΪ UNIFY(1 32-bit ������) */
+                                /* SCT 模式为 UNIFY(1 32-bit 计数器) */
                                 AMHW_LPC_SCT_MODE_UNIFY,
 
-                                /* ƥ��ͨ�� */
+                                /* 匹配通道 */
                                 mat_num,
 
-                                /* ����ƥ��Ĵ��� */
+                                /* 操作匹配寄存器 */
                                 AMHW_LPC_SCT_MATCAP_MATCH);
 
-    /* ʹ���¼���ͬ��ƥ��� */
+    /* 使用事件号同于匹配号 */
     amhw_lpc_sct_event_ctrl(p_hw_sct,
                             evt_num,
                             AMHW_LPC_SCT_EV_CTRL_MATCHSEL(mat_num) |
 
-                            /* ֻ��ʹ��ָ����ƥ��Ĵ��� */
+                            /* 只能使用指定的匹配寄存器 */
                             AMHW_LPC_SCT_EV_CTRL_COMBMODE_MATCH    |
 
-                            /*  STATEV ֵ���� STATE */
+                            /*  STATEV 值加上 STATE */
                             AMHW_LPC_SCT_EV_CTRL_STATELD_ADD       |
 
-                            /* �� 0��STATE û�иı� */
+                            /* 加 0，STATE 没有改变 */
                             AMHW_LPC_SCT_EV_CTRL_STATEV(0));
 
-    /* ʹ��״̬ 0 ���¼� 0 ���� */
+    /* 使能状态 0 中事件 0 产生 */
     amhw_lpc_sct_event_state_enable(p_hw_sct, evt_num, AMHW_LPC_SCT_STATE(0));
 
-    /* �¼� 0 ��� PWM */
+    /* 事件 0 输出 PWM */
     amhw_lpc_sct_out_set_enable(p_hw_sct, out_num, AMHW_LPC_SCT_EVT(0));
 
-    /* �� PWM ��� */
+    /* 清 PWM 输出 */
     amhw_lpc_sct_out_clr_enable(p_hw_sct, out_num, evt_num);
 
     /**
-     * ����Чʱ��������ڽ��������ͻ���ڸ�������£�ռ�ձ�Ϊ 100%��
-     * �ʴ�ʱҪ��λ�����
+     * 当有效时间等于周期将会产生冲突。在该种情况下，占空比为 100%，
+     * 故此时要置位输出。
      */
     amhw_lpc_sct_conflict_res_config(p_hw_sct, out_num,
                                      AMHW_LPC_SCT_RES_SET_OUTPUT);
 
-    /* ��λ�����㲻�����ڷ��� */
+    /* 置位和清零不依赖于方向 */
     amhw_lpc_sct_output_dir_ctrl(p_hw_sct, out_num,
                                  AMHW_LPC_SCT_OUTPUTDIRCTRL_INDEPENDENT);
 }
 
 /**
- * \brief ���� PWM ռ�ձ�ʱ��
+ * \brief 配置 PWM 占空比时间
  *
- * \param[in] p_hw_sct ָ�� SCT �Ĵ������ָ��
- * \param[in] num      ƥ���
- * \param[in] duty_ns  ��Чʱ�䣬��λΪ ns
+ * \param[in] p_hw_sct 指向 SCT 寄存器块的指针
+ * \param[in] num      匹配号
+ * \param[in] duty_ns  有效时间，单位为 ns
  *
- * \return ��
+ * \return 无
  *
- * \note ������ø�����������Ч��Ӧ�ڵ��øú���ǰ��ֹ SCT ��
- *       PWM(__sct_pwm_disable())�����øú�������ʹ�� (__sct_pwm_enable())
- *       ��� SCT û����ֹ����ֵ����д������ƥ��ֵ��������һ������Ч
+ * \note 如果想让该配置马上生效，应在调用该函数前禁止 SCT 的
+ *       PWM(__sct_pwm_disable())，调用该函数后，再使能 (__sct_pwm_enable())
+ *       如果 SCT 没有终止，该值将会写入重载匹配值，并在下一周期生效
  */
 am_local void __sct_pwm_duty_config (amhw_lpc_sct_t *p_hw_sct,
                                      uint32_t        num,
@@ -223,17 +223,17 @@ am_local void __sct_pwm_duty_config (amhw_lpc_sct_t *p_hw_sct,
                                      uint32_t        frq)
 {
 
-    /* ��ʱ��ת��Ϊռ����Чʱ�� */
+    /* 将时间转换为占空有效时间 */
     uint32_t duty_c = (uint64_t)(duty_ns) *
                       frq /
                       (uint64_t)1000000000;
 
-    /* ռ����Чʱ������Ϊ 1 */
+    /* 占空有效时间至少为 1 */
     if (duty_c == 0) {
         duty_c = 1;
     }
 
-    /* ֻ�д��� HALT ״̬��ʱ����������ƥ��Ĵ���ʱ */
+    /* 只有处于 HALT 状态下时，才能设置匹配寄存器时 */
     if (amhw_lpc_sct_halt_check(p_hw_sct,
                                 AMHW_LPC_SCT_MODE_UNIFY) == AM_TRUE ) {
 
@@ -243,7 +243,7 @@ am_local void __sct_pwm_duty_config (amhw_lpc_sct_t *p_hw_sct,
                                  duty_c - 1);
     }
 
-    /* ��������ƥ��ֵ */
+    /* 设置重载匹配值 */
     amhw_lpc_sct_mat_reload_val_set(p_hw_sct,
                                     AMHW_LPC_SCT_MODE_UNIFY,
                                     num,
@@ -252,62 +252,62 @@ am_local void __sct_pwm_duty_config (amhw_lpc_sct_t *p_hw_sct,
 }
 
 /**
- * \brief ʹ�� SCT �� PWM ���
+ * \brief 使能 SCT 的 PWM 输出
  *
- * \param[in] p_hw_sct ָ�� SCT �Ĵ������ָ��
+ * \param[in] p_hw_sct 指向 SCT 寄存器块的指针
  *
- * \return ��
+ * \return 无
  */
 am_local void __sct_pwm_enable (amhw_lpc_sct_t *p_hw_sct)
 {
 
-    /* �����ֹλ��SCT ��ʼ���� */
+    /* 清除终止位，SCT 开始运行 */
     amhw_lpc_sct_ctrl_clr(p_hw_sct,
                           AMHW_LPC_SCT_CTRL_STOP_L | AMHW_LPC_SCT_CTRL_HALT_L);
 }
 
 /**
- * \brief ���� SCT �� PWM ���
+ * \brief 禁能 SCT 的 PWM 输出
  *
- * \param[in] p_hw_sct ָ�� SCT �Ĵ������ָ��
+ * \param[in] p_hw_sct 指向 SCT 寄存器块的指针
  *
- * \return ��
+ * \return 无
  */
 am_local void __sct_pwm_disable (amhw_lpc_sct_t *p_hw_sct)
 {
 
-    /* ����ֹλ��SCT ��ֹ���� */
+    /* 置终止位，SCT 终止运行 */
     amhw_lpc_sct_ctrl_set(p_hw_sct,
                           AMHW_LPC_SCT_CTRL_STOP_L | AMHW_LPC_SCT_CTRL_HALT_L);
 }
 
 /**
- * \brief ���� PWM ����
+ * \brief 配置 PWM 周期
  *
- * \param[in] p_hw_sct  ָ�� SCT �Ĵ������ָ��
- * \param[in] period_ns ���ڣ���λΪ ns
+ * \param[in] p_hw_sct  指向 SCT 寄存器块的指针
+ * \param[in] period_ns 周期，单位为 ns
  *
- * \return ��
+ * \return 无
  *
- * \note ������ø�����������Ч��Ӧ�ڵ��øú���ǰ��ֹ SCT ��
- *       PWM(__sct_pwm_disable())�����øú�������ʹ�� (__sct_pwm_enable())
+ * \note 如果想让该配置马上生效，应在调用该函数前禁止 SCT 的
+ *       PWM(__sct_pwm_disable())，调用该函数后，再使能 (__sct_pwm_enable())
  */
 am_local void __sct_pwm_period_config (amhw_lpc_sct_t *p_hw_sct,
                                        uint32_t        period_ns,
                                        uint32_t        frq)
 {
 
-    /* ��ʱ��ת��Ϊ���� */
+    /* 将时间转变为周期 */
     uint32_t period_c = (uint64_t)(period_ns) *
                         frq /
                         (uint64_t)1000000000;
 
-    /* ��������Ϊ 1 */
+    /* 周期至少为 1 */
     if (period_c == 0) {
         period_c = 1;
     }
 
-    /* ֻ�д��� HALT ״̬��ʱ����������ƥ��Ĵ���ʱ */
+    /* 只有处于 HALT 状态下时，才能设置匹配寄存器时 */
     if (amhw_lpc_sct_halt_check(p_hw_sct, AMHW_LPC_SCT_MODE_UNIFY) == AM_TRUE ) {
 
         amhw_lpc_sct_mat_val_set(p_hw_sct,
@@ -316,7 +316,7 @@ am_local void __sct_pwm_period_config (amhw_lpc_sct_t *p_hw_sct,
                                  period_c - 1);
     }
 
-    /* ��������ƥ��ֵ */
+    /* 设置重载匹配值 */
     amhw_lpc_sct_mat_reload_val_set(p_hw_sct,
                                     AMHW_LPC_SCT_MODE_UNIFY,
                                     AMHW_LPC_SCT_MAT(0),
@@ -325,28 +325,28 @@ am_local void __sct_pwm_period_config (amhw_lpc_sct_t *p_hw_sct,
 
 void demo_lpc_hw_sct_1_32bit_pwm_entry (amhw_lpc_sct_t *p_hw_sct, uint32_t frq)
 {
-    /* �ȹر� PWM ��� */
+    /* 先关闭 PWM 输出 */
     __sct_pwm_disable(p_hw_sct);
 
-    /* ��ʼ�� SCT ����� PWM */
+    /* 初始化 SCT 以输出 PWM */
     __sct_pwm_init(p_hw_sct);
 
-    /* PWM0 ��ʼ�� */
+    /* PWM0 初始化 */
     __sct_pwm_out_init(p_hw_sct, __PWM0_MAT_NUM, __PWM0_OUT_NUM);
 
-    /* PWM1 ��ʼ�� */
+    /* PWM1 初始化 */
     __sct_pwm_out_init(p_hw_sct, __PWM1_MAT_NUM, __PWM1_OUT_NUM);
 
-    /* ��������Ϊ 250000ns(4KHz) */
+    /* 设置周期为 250000ns(4KHz) */
     __sct_pwm_period_config(p_hw_sct, 250000, frq);
 
-    /* ���� PWM0 ռ�ձ� */
+    /* 设置 PWM0 占空比 */
     __sct_pwm_duty_config(p_hw_sct, __PWM0_MAT_NUM, 125000, frq);
 
-    /* ���� PWM1 ռ�ձ� */
+    /* 设置 PWM1 占空比 */
     __sct_pwm_duty_config(p_hw_sct, __PWM1_MAT_NUM, 62500, frq);
 
-    /* ʹ�� SCT0����� PWM */
+    /* 使能 SCT0，输出 PWM */
     __sct_pwm_enable(p_hw_sct);
 
     AM_FOREVER {

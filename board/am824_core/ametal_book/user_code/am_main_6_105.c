@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥6.1105
+ * \brief ç¨‹åºæ¸…å•6.1105
  *
- * \note ¸ÃÀú³ÌĞèÒªÓÃµ½miniportÍØÕ¹°å,¿ÉÒÔÓÃLED¿´Ğ§¹û
+ * \note è¯¥å†ç¨‹éœ€è¦ç”¨åˆ°miniportæ‹“å±•æ¿,å¯ä»¥ç”¨LEDçœ‹æ•ˆæœ
  * 
  * \internal
  * \par Modification history
@@ -26,21 +26,21 @@
 #include "am_delay.h"
 #include "am_hwconf_zlg72128.h"
 
-struct key_event_info {                        // °´¼üÊÂ¼şĞÅÏ¢½á¹¹ÌåÀàĞÍ¶¨Òå
-    am_bool_t    key_event;                    // ÊÇ·ñÓĞ°´¼üÊÂ¼ş
-    uint8_t      key_val;                      // ÆÕÍ¨°´¼ü¼üÖµ
-    uint8_t      repeat_cnt;                   // ÆÕÍ¨°´¼üÖØ¸´¼ÆÊı
-    uint8_t      funkey_val;                   // ¹¦ÄÜ¼ü¼üÖµ
+struct key_event_info {                        // æŒ‰é”®äº‹ä»¶ä¿¡æ¯ç»“æ„ä½“ç±»å‹å®šä¹‰
+    am_bool_t    key_event;                    // æ˜¯å¦æœ‰æŒ‰é”®äº‹ä»¶
+    uint8_t      key_val;                      // æ™®é€šæŒ‰é”®é”®å€¼
+    uint8_t      repeat_cnt;                   // æ™®é€šæŒ‰é”®é‡å¤è®¡æ•°
+    uint8_t      funkey_val;                   // åŠŸèƒ½é”®é”®å€¼
 };
-struct key_event_info g_key_event_info;        // ½á¹¹Ìå±äÁ¿£¬ÓÃÒÔ±£´æ°´¼üĞÅÏ¢
+struct key_event_info g_key_event_info;        // ç»“æ„ä½“å˜é‡ï¼Œç”¨ä»¥ä¿å­˜æŒ‰é”®ä¿¡æ¯
 
-// ×Ô¶¨Òå°´¼ü´¦Àí»Øµ÷º¯Êı
-static void zlg72128_key_callback(void      *p_arg,      // ÓÃ»§²ÎÊı£¬×¢²á»Øµ÷º¯ÊıÊ±Ö¸¶¨
-                                  uint8_t    key_val,    // ÆÕÍ¨°´¼ü¼üÖµ
-                                  uint8_t    repeat_cnt, // Á¬»÷¼ÆÊıÆ÷
-                                  uint8_t    funkey_val) // ¹¦ÄÜ¼ü¼üÖµ
+// è‡ªå®šä¹‰æŒ‰é”®å¤„ç†å›è°ƒå‡½æ•°
+static void zlg72128_key_callback(void      *p_arg,      // ç”¨æˆ·å‚æ•°ï¼Œæ³¨å†Œå›è°ƒå‡½æ•°æ—¶æŒ‡å®š
+                                  uint8_t    key_val,    // æ™®é€šæŒ‰é”®é”®å€¼
+                                  uint8_t    repeat_cnt, // è¿å‡»è®¡æ•°å™¨
+                                  uint8_t    funkey_val) // åŠŸèƒ½é”®é”®å€¼
 {                                                        
-    if (g_key_event_info.key_event == AM_FALSE)  {       // ÎŞ°´¼üÊÂ¼ş´ı´¦Àí£¬Ìî³äĞÂµÄ¼üÖµ
+    if (g_key_event_info.key_event == AM_FALSE)  {       // æ— æŒ‰é”®äº‹ä»¶å¾…å¤„ç†ï¼Œå¡«å……æ–°çš„é”®å€¼
         g_key_event_info.key_val     =  key_val;
         g_key_event_info.repeat_cnt  =  repeat_cnt;
         g_key_event_info.funkey_val  =  funkey_val;
@@ -51,47 +51,47 @@ static void zlg72128_key_callback(void      *p_arg,      // ÓÃ»§²ÎÊı£¬×¢²á»Øµ÷º¯
 
 static void digitron_test_process (am_zlg72128_handle_t handle)
 {
-    am_zlg72128_digitron_disp_test(handle);    // ²âÊÔÃüÁî
-    am_mdelay(3000);                           // ÑÓÊ±3s,Ê¹ÄÜ²âÊÔÃüÁî±£´æ3s
-    am_zlg72128_digitron_disp_reset(handle);   // ¸´Î»ÊıÂë¹ÜÏÔÊ¾
+    am_zlg72128_digitron_disp_test(handle);    // æµ‹è¯•å‘½ä»¤
+    am_mdelay(3000);                           // å»¶æ—¶3s,ä½¿èƒ½æµ‹è¯•å‘½ä»¤ä¿å­˜3s
+    am_zlg72128_digitron_disp_reset(handle);   // å¤ä½æ•°ç ç®¡æ˜¾ç¤º
 }
 
-static void normal_key_test_process (am_zlg72128_handle_t   handle, // ZLG72128²Ù×÷¾ä±ú
-                                     uint8_t               key_val) // ÆÕÍ¨¼ü¼üÖµ
+static void normal_key_test_process (am_zlg72128_handle_t   handle, // ZLG72128æ“ä½œå¥æŸ„
+                                     uint8_t               key_val) // æ™®é€šé”®é”®å€¼
 {
-    // ÊıÂë¹Ü1ÏÔÊ¾Ê®Î»£¬Ê®Î»Îª0Ê±²»ÏÔÊ¾£¨ÏÔÊ¾¿Õ¸ñ£©£¬²»ÏÔÊ¾Ğ¡Êıµã£¬²»ÉÁË¸
+    // æ•°ç ç®¡1æ˜¾ç¤ºåä½ï¼Œåä½ä¸º0æ—¶ä¸æ˜¾ç¤ºï¼ˆæ˜¾ç¤ºç©ºæ ¼ï¼‰ï¼Œä¸æ˜¾ç¤ºå°æ•°ç‚¹ï¼Œä¸é—ªçƒ
     if (g_key_event_info.key_val / 10 != 0) {
         am_zlg72128_digitron_disp_num(handle, 1,key_val / 10, AM_FALSE,AM_FALSE );
     } else {
         am_zlg72128_digitron_disp_char(handle, 1, ' ',AM_FALSE,AM_FALSE );
     }
-    // ÔÚÊıÂë¹Ü0ÏÔÊ¾¸öÎ»£¬²»ÏÔÊ¾Ğ¡Êıµã£¬²»ÉÁË¸
+    // åœ¨æ•°ç ç®¡0æ˜¾ç¤ºä¸ªä½ï¼Œä¸æ˜¾ç¤ºå°æ•°ç‚¹ï¼Œä¸é—ªçƒ
     am_zlg72128_digitron_disp_num(handle, 0, key_val % 10, AM_FALSE,AM_FALSE );   
 }
 
-static void combination_key_process(am_zlg72128_handle_t   handle,       // ZLG72128²Ù×÷¾ä±ú
-                                    uint8_t                key_val,      // ÆÕÍ¨¼ü¼üÖµ
-                                    uint8_t                funckey_val)  // ¹¦ÄÜ¼ü¼üÖµ
+static void combination_key_process(am_zlg72128_handle_t   handle,       // ZLG72128æ“ä½œå¥æŸ„
+                                    uint8_t                key_val,      // æ™®é€šé”®é”®å€¼
+                                    uint8_t                funckey_val)  // åŠŸèƒ½é”®é”®å€¼
 {
-    static uint16_t flash = 0x0000;               // ³õÊ¼Ê±£¬ËùÓĞÎ´¾ù²»ÉÁË¸
-    if ((funckey_val & (1 << 0)) == 0) {          // F0 °´ÏÂ
+    static uint16_t flash = 0x0000;               // åˆå§‹æ—¶ï¼Œæ‰€æœ‰æœªå‡ä¸é—ªçƒ
+    if ((funckey_val & (1 << 0)) == 0) {          // F0 æŒ‰ä¸‹
         switch (key_val) {
-           case 1:                // Ñ­»·×óÒÆ¶¯  
+           case 1:                // å¾ªç¯å·¦ç§»åŠ¨  
                  am_zlg72128_digitron_shift(
                      handle,
                      AM_ZLG72128_DIGITRON_SHIFT_LEFT,
                      AM_TRUE, 
                      1);
            break;
-         case 2:                // Ñ­»·ÓÒÒÆ¶¯
+         case 2:                // å¾ªç¯å³ç§»åŠ¨
              am_zlg72128_digitron_shift(
                  handle, 
                  AM_ZLG72128_DIGITRON_SHIFT_RIGHT,
                  AM_TRUE, 
                  1);
              break;
-         case 3:                // ´ò¿ª/¹Ø±ÕÉÁË¸
-           flash = ~flash;      // È¡·´£¬ËùÓĞÎªÉÁË¸×´Ì¬¸Ä±ä
+         case 3:                // æ‰“å¼€/å…³é—­é—ªçƒ
+           flash = ~flash;      // å–åï¼Œæ‰€æœ‰ä¸ºé—ªçƒçŠ¶æ€æ”¹å˜
            am_zlg72128_digitron_flash_ctrl(handle, flash);
             break;
          default:
@@ -103,15 +103,15 @@ static void combination_key_process(am_zlg72128_handle_t   handle,       // ZLG7
 int am_main (void)
 {
     am_zlg72128_handle_t zlg72128_handle = am_zlg72128_inst_init();
-    am_zlg72128_key_cb_set(zlg72128_handle, zlg72128_key_callback, NULL);// ×¢²á°´¼ü»Øµ÷º¯Êı
-    digitron_test_process(zlg72128_handle);                              // ÊıÂë¹ÜÏÔÊ¾²âÊÔ
+    am_zlg72128_key_cb_set(zlg72128_handle, zlg72128_key_callback, NULL);// æ³¨å†ŒæŒ‰é”®å›è°ƒå‡½æ•°
+    digitron_test_process(zlg72128_handle);                              // æ•°ç ç®¡æ˜¾ç¤ºæµ‹è¯•
     while (1) {
         if (g_key_event_info.key_event == AM_TRUE) {
-                 // ½öÆÕÍ¨°´¼ü°´ÏÂ£¬°´¼ü²âÊÔ³ÌĞò
+                 // ä»…æ™®é€šæŒ‰é”®æŒ‰ä¸‹ï¼ŒæŒ‰é”®æµ‹è¯•ç¨‹åº
             if ((g_key_event_info.funkey_val == 0xFF) && (g_key_event_info.key_val != 0)) {
                 normal_key_test_process(zlg72128_handle, g_key_event_info.key_val);
             }
-              // ×éºÏ¼ü°´ÏÂ
+              // ç»„åˆé”®æŒ‰ä¸‹
             if ((g_key_event_info.funkey_val != 0xFF) && (g_key_event_info.key_val != 0)) {
                 combination_key_process(
                     zlg72128_handle, g_key_event_info.key_val, g_key_event_info.funkey_val);

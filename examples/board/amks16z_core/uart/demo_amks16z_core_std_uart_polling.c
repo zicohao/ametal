@@ -12,21 +12,21 @@
 
 /**
  * \file
- * \brief USART²éÑ¯·½Ê½ÏÂ½ÓÊÕ·¢ËÍÊı¾İÀı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief USARTæŸ¥è¯¢æ–¹å¼ä¸‹æ¥æ”¶å‘é€æ•°æ®ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè£º
- *   1. PIOC_3 Òı½ÅÁ¬½ÓPC´®¿ÚµÄTXD;
- *   2. PIOC_4 Òı½ÅÁ¬½ÓPC´®¿ÚµÄRXD¡£
- *   3. ÅäÖÃÉÏÎ»»ú´®¿Ú²¨ÌØÂÊÎª115200£¬8Î»Êı¾İ³¤¶È 1Î»Í£Ö¹Î» ÎŞÆæÅ¼Ğ£Ñé;
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. PIOC_3 å¼•è„šè¿æ¥PCä¸²å£çš„TXD;
+ *   2. PIOC_4 å¼•è„šè¿æ¥PCä¸²å£çš„RXDã€‚
+ *   3. é…ç½®ä¸Šä½æœºä¸²å£æ³¢ç‰¹ç‡ä¸º115200ï¼Œ8ä½æ•°æ®é•¿åº¦ 1ä½åœæ­¢ä½ æ— å¥‡å¶æ ¡éªŒ;
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿ÚÊä³ö"HW example---UART test in polling mode:"£»
- *   2. ´®¿ÚÊä³ö½ÓÊÕµ½µÄ×Ö·û´®¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. ä¸²å£è¾“å‡º"HW example---UART test in polling mode:"ï¼›
+ *   2. ä¸²å£è¾“å‡ºæ¥æ”¶åˆ°çš„å­—ç¬¦ä¸²ã€‚
  *
- * \note Èç¹ûµ÷ÊÔ´®¿ÚÊ¹ÓÃÓë±¾Àı³ÌÏàÍ¬£¬Ôò²»Ó¦ÔÚºóĞø¼ÌĞøÊ¹ÓÃµ÷ÊÔĞÅÏ¢Êä³öº¯Êı
- *      £¨Èç£ºAM_DBG_INFO()£©
+ * \note å¦‚æœè°ƒè¯•ä¸²å£ä½¿ç”¨ä¸æœ¬ä¾‹ç¨‹ç›¸åŒï¼Œåˆ™ä¸åº”åœ¨åç»­ç»§ç»­ä½¿ç”¨è°ƒè¯•ä¿¡æ¯è¾“å‡ºå‡½æ•°
+ *      ï¼ˆå¦‚ï¼šAM_DBG_INFO()ï¼‰
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_amks16z_core_std_uart_polling.c src_amks16z_core_std_uart_polling
  *
  * \internal
@@ -49,13 +49,13 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_amks16z_core_std_uart_polling_entry (void)
 {
     am_uart_handle_t handle;
 
-    /* UART³õÊ¼»¯  */
+    /* UARTåˆå§‹åŒ–  */
     handle = am_kl26_uart1_inst_init();
 
     demo_std_uart_polling_entry(handle);

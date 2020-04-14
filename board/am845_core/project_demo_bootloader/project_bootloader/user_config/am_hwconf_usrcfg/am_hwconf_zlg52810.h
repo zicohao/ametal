@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief ZLG52810 配置文件
+ * \brief ZLG52810 閰嶇疆鏂囦欢
  *
  * \internal
  * \par Modification history
@@ -32,9 +32,9 @@ extern "C" {
 #endif
 
 /**
- * \brief  ZLG52810 实例初始化，获得 ZLG52810 标准服务操作句柄
+ * \brief  ZLG52810 瀹炰緥鍒濆鍖栵紝鑾峰緱 ZLG52810 鏍囧噯鏈嶅姟鎿嶄綔鍙ユ焺
  *
- * \return  ZLG52810 标准服务操作句柄
+ * \return  ZLG52810 鏍囧噯鏈嶅姟鎿嶄綔鍙ユ焺
  */
 am_zlg52810_handle_t am_zlg52810_inst_init (void);
 

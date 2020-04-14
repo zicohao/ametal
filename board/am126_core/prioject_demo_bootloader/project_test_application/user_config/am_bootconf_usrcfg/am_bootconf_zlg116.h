@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZLG116 kboot KinetisFlashTool ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief ZLG116 kboot KinetisFlashTool ç”¨æˆ·é…ç½®æ–‡ä»¶
  *
  *
  *
@@ -29,10 +29,10 @@ am_boot_flash_handle_t am_zlg116_boot_flash_inst_init(void);
 
 am_boot_firmware_handle_t am_zlg116_boot_firmware_flash(am_boot_flash_handle_t flash_handle);
 /**
- * \brief bootloader ±ê×¼ÊµÀı³õÊ¼»¯
+ * \brief bootloader æ ‡å‡†å®ä¾‹åˆå§‹åŒ–
  *
  *
- * \return ÈôÎª AM_OK£¬±íÃ÷³õÊ¼»¯³É¹¦
+ * \return è‹¥ä¸º AM_OKï¼Œè¡¨æ˜åˆå§‹åŒ–æˆåŠŸ
  */
 int am_zlg116_std_boot_inst_init(am_boot_flash_handle_t flash_handle);
 

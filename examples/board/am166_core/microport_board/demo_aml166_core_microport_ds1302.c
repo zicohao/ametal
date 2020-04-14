@@ -12,18 +12,18 @@
 
 /**
  * \file
- * \brief MicroPort DS1302 ���̣�ͨ�� RTC ��׼�ӿ�ʵ��
+ * \brief MicroPort DS1302 例程，通过 RTC 标准接口实现
  *
- * - �������裺
- *   1. �� MicroPort DS1302 ������ӵ� aml166-Core �� MicroPort �ӿڡ�
+ * - 操作步骤：
+ *   1. 将 MicroPort DS1302 配板连接到 aml166-Core 的 MicroPort 接口。
  *
- * - ʵ������
- *   1. ���ڽ�ÿһ���ʱ����Ϣ��ӡ������
+ * - 实验现象：
+ *   1. 串口将每一秒的时间信息打印出来。
  *
  * \note
- *    ����۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIOA_9 �������� PC ���ڵ� RXD��
+ *    如需观察串口打印的调试信息，需要将 PIOA_9 引脚连接 PC 串口的 RXD。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_aml166_core_microport_ds1302.c src_aml166_core_microport_ds1302
  *
  * \internal
@@ -45,7 +45,7 @@
 #include "demo_aml166_core_entries.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_aml166_core_microport_ds1302_entry (void)
 {

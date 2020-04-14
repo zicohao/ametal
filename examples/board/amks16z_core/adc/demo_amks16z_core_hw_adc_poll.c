@@ -12,19 +12,19 @@
 
 /**
  * \file
- * \brief ADC���̣����ò�ѯ��ʽ��ȡ����������ADCת�������ͨ��HW��ӿ�ʵ��
+ * \brief ADC例程，利用查询方式获取软件触发的ADC转换结果，通过HW层接口实现
  *
- * - �������裺
- *   1. PIOA_1��������PC���ڵ�TXD��
- *   2. PIOA_2��������PC���ڵ�RXD��
- *   3. J12����ñ�̽ӣ��ο���ѹ�Ĵ�С��оƬVREF�ܽ����ӵĵ�ƽ�йأ��˴��Ĳο���ѹΪ2.5V����
- *   4. PIOE_20(ADCͨ��0����ͨ������) ����ģ�����롣
+ * - 操作步骤：
+ *   1. PIOA_1引脚连接PC串口的TXD；
+ *   2. PIOA_2引脚连接PC串口的RXD；
+ *   3. J12跳线帽短接（参考电压的大小和芯片VREF管脚连接的电平有关，此处的参考电压为2.5V）；
+ *   4. PIOE_20(ADC通道0，单通道输入) 连接模拟输入。
  *
- * - ʵ������
- *   1. ADCģ����444.44kHz������(����ʱ��Ϊ24MHz)������16λ����;
- *   2. ���������ѹ����ֵ��
+ * - 实验现象：
+ *   1. ADC模块以444.44kHz采样率(总线时钟为24MHz)，进行16位采样;
+ *   2. 串口输出电压采样值。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_amks16z_core_hw_adc_poll.c src_amks16z_core_hw_adc_poll
  *
  * \internal
@@ -49,17 +49,17 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief ADC��ѯ��ȡ����ֵ��ʹ��HW��ӿں���
- * \return ��
+ * \brief ADC查询获取采样值，使用HW层接口函数
+ * \return 无
  */
 void demo_amks16z_core_hw_adc_poll_entry (void)
 {
     AM_DBG_INFO("demo amks16z_core hw adc poll!\r\n");
 
-    /* ����ADC ͨ��0ģ���������� */
+    /* 配置ADC 通道0模拟输入引脚 */
     am_gpio_pin_cfg(PIOE_20, PIOE_20_ADC0_SE0);
 
-    /* ʹ��ADCʱ��                  */
+    /* 使能ADC时钟                  */
     amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_ADC0);
 
     demo_fsl_hw_adc_poll_entry(KL26_ADC0,

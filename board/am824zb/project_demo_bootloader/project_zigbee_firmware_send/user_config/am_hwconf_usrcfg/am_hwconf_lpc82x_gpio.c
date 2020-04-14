@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief LPC82X GPIO �û������ļ�
+ * \brief LPC82X GPIO 用户配置文件
  * \sa am_hwconf_lpc82x_gpio.c
  *
  * \internal
@@ -34,82 +34,82 @@
  * @{
  */
 
- /** \brief GPIOƽ̨��ʼ�� */
+ /** \brief GPIO平台初始化 */
 static void __lpc82x_gpio_plfm_init (void)
 {
-    /* ��λGPIO������� */
+    /* 复位GPIO相关外设 */
     amhw_lpc82x_syscon_periph_reset(AMHW_LPC82X_RESET_GPIO);
 
-    /* ʹ��GPIO�������ʱ�� */
+    /* 使能GPIO相关外设时钟 */
     amhw_lpc82x_clk_periph_enable(AMHW_LPC82X_CLK_GPIO);
     amhw_lpc82x_clk_periph_enable(AMHW_LPC82X_CLK_IOCON);
     amhw_lpc82x_clk_periph_enable(AMHW_LPC82X_CLK_SWM);
 }
 
-/** \brief GPIOƽ̨���ʼ�� */
+/** \brief GPIO平台解初始化 */
 static void __lpc82x_gpio_plfm_deinit (void)
 {
-    /* ��λGPIO������� */
+    /* 复位GPIO相关外设 */
     amhw_lpc82x_syscon_periph_reset(AMHW_LPC82X_RESET_GPIO);
 
-    /* ����GPIO�������ʱ�� */
+    /* 禁能GPIO相关外设时钟 */
     amhw_lpc82x_clk_periph_disable(AMHW_LPC82X_CLK_GPIO);
     amhw_lpc82x_clk_periph_disable(AMHW_LPC82X_CLK_IOCON);
     amhw_lpc82x_clk_periph_disable(AMHW_LPC82X_CLK_SWM);
 }
 
 /**
- * \brief ʹ�õ��ж�ͨ������
+ * \brief 使用的中断通道数量
  *
- *        Ĭ��ʹ�����е��ж�ͨ�����û����Ը���ʵ��ʹ��ͨ������
- *        ���Ĵ�ֵ�������ڴ��ռ��
+ *        默认使用所有的中断通道，用户可以根据实际使用通道数，
+ *        更改此值，减少内存的占用
  *
- * \note �����ֵΪ0�����޷�ʹ��GPIO�жϹ��ܣ����ǿ���ʹ������GPIO����
+ * \note 如果此值为0，将无法使用GPIO中断功能，但是可以使用其他GPIO功能
  */
 #define __GPIO_PINT_USE_COUNT   AMHW_LPC82X_PINT_CHAN_NUM
 
-/** \brief ���Ŵ�����Ϣ�ڴ� */
+/** \brief 引脚触发信息内存 */
 static
 struct am_lpc82x_gpio_trigger_info __g_gpio_triginfos[__GPIO_PINT_USE_COUNT];
 
-/** \brief ���Ŵ�����Ϣӳ�� */
+/** \brief 引脚触发信息映射 */
 static uint8_t                     __g_gpio_infomap[__GPIO_PINT_USE_COUNT];
 
-/** \brief GPIO�豸��Ϣ */
+/** \brief GPIO设备信息 */
 static const am_lpc82x_gpio_devinfo_t __g_gpio_devinfo = {
 
-    LPC82X_SWM_BASE,           /**< \brief SWM�Ĵ������ַ          */
-    LPC82X_GPIO_BASE,          /**< \brief GPIO�Ĵ������ַ         */
-    LPC82X_IOCON_BASE,         /**< \brief IOCON�Ĵ������ַ        */
-    LPC82X_PINT_BASE,          /**< \brief PINT�Ĵ������ַ         */
+    LPC82X_SWM_BASE,           /**< \brief SWM寄存器块基址          */
+    LPC82X_GPIO_BASE,          /**< \brief GPIO寄存器块基址         */
+    LPC82X_IOCON_BASE,         /**< \brief IOCON寄存器块基址        */
+    LPC82X_PINT_BASE,          /**< \brief PINT寄存器块基址         */
     {
-        INUM_PIN_INT0,         /**< \brief PINT0�жϺ�              */
-        INUM_PIN_INT1,         /**< \brief PINT1�жϺ�              */
-        INUM_PIN_INT2,         /**< \brief PINT2�жϺ�              */
-        INUM_PIN_INT3,         /**< \brief PINT3�жϺ�              */
-        INUM_PIN_INT4,         /**< \brief PINT4�жϺ�              */
-        INUM_PIN_INT5,         /**< \brief PINT5�жϺ�              */
-        INUM_PIN_INT6,         /**< \brief PINT6�жϺ�              */
-        INUM_PIN_INT7,         /**< \brief PINT7�жϺ�              */
+        INUM_PIN_INT0,         /**< \brief PINT0中断号              */
+        INUM_PIN_INT1,         /**< \brief PINT1中断号              */
+        INUM_PIN_INT2,         /**< \brief PINT2中断号              */
+        INUM_PIN_INT3,         /**< \brief PINT3中断号              */
+        INUM_PIN_INT4,         /**< \brief PINT4中断号              */
+        INUM_PIN_INT5,         /**< \brief PINT5中断号              */
+        INUM_PIN_INT6,         /**< \brief PINT6中断号              */
+        INUM_PIN_INT7,         /**< \brief PINT7中断号              */
     },
-    __GPIO_PINT_USE_COUNT,     /**< \brief GPIO֧�ֵ������жϺ����� */
-    &__g_gpio_infomap[0],      /**< \brief ���Ŵ�����Ϣӳ��         */
-    &__g_gpio_triginfos[0],    /**< \brief ���Ŵ�����Ϣ�ڴ�         */
+    __GPIO_PINT_USE_COUNT,     /**< \brief GPIO支持的引脚中断号数量 */
+    &__g_gpio_infomap[0],      /**< \brief 引脚触发信息映射         */
+    &__g_gpio_triginfos[0],    /**< \brief 引脚触发信息内存         */
 
-    __lpc82x_gpio_plfm_init,   /**< \brief ƽ̨��ʼ������           */
-    __lpc82x_gpio_plfm_deinit  /**< \brief ƽ̨���ʼ������         */
+    __lpc82x_gpio_plfm_init,   /**< \brief 平台初始化函数           */
+    __lpc82x_gpio_plfm_deinit  /**< \brief 平台解初始化函数         */
 };
 
-/** \brief GPIO�豸ʵ�� */
+/** \brief GPIO设备实例 */
 static am_lpc82x_gpio_dev_t __g_gpio_dev;
 
-/** \brief GPIO ʵ����ʼ�� */
+/** \brief GPIO 实例初始化 */
 int am_lpc82x_gpio_inst_init (void)
 {
     return am_lpc82x_gpio_init(&__g_gpio_dev, &__g_gpio_devinfo);
 }
 
-/** \brief GPIO ʵ�����ʼ�� */
+/** \brief GPIO 实例解初始化 */
 void am_lpc82x_gpio_inst_deinit (void)
 {
     am_lpc82x_gpio_deinit();

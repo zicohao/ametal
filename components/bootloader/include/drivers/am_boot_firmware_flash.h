@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief bootloader ¹Ì¼þ´æ´¢£¨flashÇý¶¯£©
+ * \brief bootloader å›ºä»¶å­˜å‚¨ï¼ˆflashé©±åŠ¨ï¼‰
  *
  * \internal
  * \par Modification history
@@ -27,43 +27,43 @@
 #include "am_boot_firmware.h"
 
 typedef struct am_boot_firmware_flash_devinfo {
-    uint32_t firmware_dst_addr;      /**< \brief ¹Ì¼þÔÚflash´æ·ÅµÄÄ¿µÄµØÖ· */
-    uint32_t app_area_size;          /**< \brief ¹Ì¼þ´æ·ÅÇøµÄ×Ü´óÐ¡ */
-    uint32_t buf_size;               /**< \brief ¹Ì¼þ´æ·Å»º³åÇøµÄ´óÐ¡ */
-    void   (*pfn_plfm_init)(void);   /**< \brief Æ½Ì¨³õÊ¼»¯º¯Êý */
-    void   (*pfn_plfm_deinit)(void); /**< \brief Æ½Ì¨È¥³õÊ¼»¯º¯Êý */
+    uint32_t firmware_dst_addr;      /**< \brief å›ºä»¶åœ¨flashå­˜æ”¾çš„ç›®çš„åœ°å€ */
+    uint32_t app_area_size;          /**< \brief å›ºä»¶å­˜æ”¾åŒºçš„æ€»å¤§å° */
+    uint32_t buf_size;               /**< \brief å›ºä»¶å­˜æ”¾ç¼“å†²åŒºçš„å¤§å° */
+    void   (*pfn_plfm_init)(void);   /**< \brief å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    void   (*pfn_plfm_deinit)(void); /**< \brief å¹³å°åŽ»åˆå§‹åŒ–å‡½æ•° */
 }am_boot_firmware_flash_devinfo_t;
 
 typedef struct am_boot_firmware_flash_dev {
-    /**< \brief ¹Ì¼þ´æ·ÅµÄ±ê×¼·þÎñ */
+    /**< \brief å›ºä»¶å­˜æ”¾çš„æ ‡å‡†æœåŠ¡ */
     am_boot_firmware_serv_t           firmware_flash_serv;
-    /**< \brief flashµÄ²Ù×÷¾ä±ú*/
+    /**< \brief flashçš„æ“ä½œå¥æŸ„*/
     am_boot_flash_handle_t            flash_handle;
-    /**< \brief Éè±¸ÐÅÏ¢ */
+    /**< \brief è®¾å¤‡ä¿¡æ¯ */
     am_boot_firmware_flash_devinfo_t *p_devinfo;
-    /**< \brief Êý¾Ý»º³åÇø */
+    /**< \brief æ•°æ®ç¼“å†²åŒº */
     uint8_t                           buf_data[1024];
-    /**< \brief »º³åÇøµÄ´óÐ¡ */
+    /**< \brief ç¼“å†²åŒºçš„å¤§å° */
     uint32_t                          buf_data_size;
-    /**< \brief µ±Ç°»º³åÇøÖÐµÄÊý¾Ý´óÐ¡ */
+    /**< \brief å½“å‰ç¼“å†²åŒºä¸­çš„æ•°æ®å¤§å° */
     uint32_t                          curr_buf_data_size;
-    /**< \brief ×î½ü±»²Á³ýÉÈÇøµÄÆðÊ¼µØÖ· */
+    /**< \brief æœ€è¿‘è¢«æ“¦é™¤æ‰‡åŒºçš„èµ·å§‹åœ°å€ */
     uint32_t                          erase_sector_start_addr;
-    /**< \brief µ±Ç°Ð´flashµÄµØÖ· */
+    /**< \brief å½“å‰å†™flashçš„åœ°å€ */
     uint32_t                          curr_program_flash_addr;
-    /**< \brief ¹Ì¼þ´æ·ÅµÄÄ¿µØµØÖ· */
+    /**< \brief å›ºä»¶å­˜æ”¾çš„ç›®åœ°åœ°å€ */
     uint32_t                          firmware_dst_addr;
-    /**< \brief ¹Ì¼þ×ÜµÄ´óÐ¡ */
+    /**< \brief å›ºä»¶æ€»çš„å¤§å° */
     uint32_t                          firmware_total_size;
 } am_boot_firmware_flash_dev_t;
 
 /**
- * \brief ³õÊ¼»¯¹Ì¼þ´æ·Åº¯Êý£¬·µ»Ø±ê×¼·þÎñ²Ù×÷¾ä±ú
+ * \brief åˆå§‹åŒ–å›ºä»¶å­˜æ”¾å‡½æ•°ï¼Œè¿”å›žæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  *
- * \param[in] p_dev     : Ö¸Ïò¹Ì¼þ´æ·ÅÉè±¸µÄÖ¸Õë
- * \param[in] p_devinfo : Ö¸Ïò¹Ì¼þ´æ·ÅÉè±¸ÐÅÏ¢³£Á¿µÄÖ¸Õë
+ * \param[in] p_dev     : æŒ‡å‘å›ºä»¶å­˜æ”¾è®¾å¤‡çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo : æŒ‡å‘å›ºä»¶å­˜æ”¾è®¾å¤‡ä¿¡æ¯å¸¸é‡çš„æŒ‡é’ˆ
  *
- * \return ¹Ì¼þ´æ·Å±ê×¼·þÎñ²Ù×÷¾ä±ú£¬ÖµÎªNULLÊ±±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return å›ºä»¶å­˜æ”¾æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„ï¼Œå€¼ä¸ºNULLæ—¶è¡¨æ˜Žåˆå§‹åŒ–å¤±è´¥
  */
 am_boot_firmware_handle_t am_boot_firmware_flash_init (
     am_boot_firmware_flash_dev_t     *p_dev,
@@ -72,7 +72,7 @@ am_boot_firmware_handle_t am_boot_firmware_flash_init (
 
 
 /**
- * \brief ¹Ì¼þflash´æ´¢½â³õÊ¼»¯
+ * \brief å›ºä»¶flashå­˜å‚¨è§£åˆå§‹åŒ–
  */
 void am_boot_firmware_flash_deint(void);
 

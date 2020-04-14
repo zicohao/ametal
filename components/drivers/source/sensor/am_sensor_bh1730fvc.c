@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ´«¸ĞÆ÷ BH1730FVC Çı¶¯ÎÄ¼ş
+ * \brief ä¼ æ„Ÿå™¨ BH1730FVC é©±åŠ¨æ–‡ä»¶
  *
  * \internal
  * \par Modification history
@@ -25,88 +25,88 @@
 #include "am_vdebug.h"
 
 /*******************************************************************************
- * ºê¶¨Òå
+ * å®å®šä¹‰
  ******************************************************************************/
-#define  __BH1730FVC_REG_CONTROL        0x00  /**< \brief ¿ØÖÆ¼Ä´æÆ÷µØÖ·      */ 
-#define  __BH1730FVC_REG_TIMING         0x01  /**< \brief Ê±¼ä¼Ä´æÆ÷µØÖ·      */
-#define  __BH1730FVC_REG_INTERRUPT      0x02  /**< \brief ÖĞ¶Ï¼Ä´æÆ÷µØÖ·      */
-#define  __BH1730FVC_REG_THLLOW         0x03  /**< \brief ÖĞ¶ÏãĞÖµ¼Ä´æÆ÷µØÖ·  */
-#define  __BH1730FVC_REG_THLHIGH        0x04  /**< \brief ÖĞ¶ÏãĞÖµ¼Ä´æÆ÷µØÖ·  */
-#define  __BH1730FVC_REG_THHLOW         0x05  /**< \brief ÖĞ¶ÏãĞÖµ¼Ä´æÆ÷µØÖ·  */
-#define  __BH1730FVC_REG_THHHIGH        0x06  /**< \brief ÖĞ¶ÏãĞÖµ¼Ä´æÆ÷µØÖ·  */
-#define  __BH1730FVC_REG_GAIN           0x07  /**< \brief ÔöÒæ¼Ä´æÆ÷µØÖ·      */
-#define  __BH1730FVC_REG_ID             0x12  /**< \brief ID¼Ä´æÆ÷µØÖ·        */
-#define  __BH1730FVC_REG_DATA0LOW       0x14  /**< \brief Êı¾İ0¼Ä´æÆ÷µØÖ·     */
-#define  __BH1730FVC_REG_DATA0HIGH      0x15  /**< \brief Êı¾İ0¼Ä´æÆ÷µØÖ·     */
-#define  __BH1730FVC_REG_DATA1LOW       0x16  /**< \brief Êı¾İ1¼Ä´æÆ÷µØÖ·     */
-#define  __BH1730FVC_REG_DATA1HIGH      0x17  /**< \brief Êı¾İ1¼Ä´æÆ÷µØÖ·     */
+#define  __BH1730FVC_REG_CONTROL        0x00  /**< \brief æ§åˆ¶å¯„å­˜å™¨åœ°å€      */ 
+#define  __BH1730FVC_REG_TIMING         0x01  /**< \brief æ—¶é—´å¯„å­˜å™¨åœ°å€      */
+#define  __BH1730FVC_REG_INTERRUPT      0x02  /**< \brief ä¸­æ–­å¯„å­˜å™¨åœ°å€      */
+#define  __BH1730FVC_REG_THLLOW         0x03  /**< \brief ä¸­æ–­é˜ˆå€¼å¯„å­˜å™¨åœ°å€  */
+#define  __BH1730FVC_REG_THLHIGH        0x04  /**< \brief ä¸­æ–­é˜ˆå€¼å¯„å­˜å™¨åœ°å€  */
+#define  __BH1730FVC_REG_THHLOW         0x05  /**< \brief ä¸­æ–­é˜ˆå€¼å¯„å­˜å™¨åœ°å€  */
+#define  __BH1730FVC_REG_THHHIGH        0x06  /**< \brief ä¸­æ–­é˜ˆå€¼å¯„å­˜å™¨åœ°å€  */
+#define  __BH1730FVC_REG_GAIN           0x07  /**< \brief å¢ç›Šå¯„å­˜å™¨åœ°å€      */
+#define  __BH1730FVC_REG_ID             0x12  /**< \brief IDå¯„å­˜å™¨åœ°å€        */
+#define  __BH1730FVC_REG_DATA0LOW       0x14  /**< \brief æ•°æ®0å¯„å­˜å™¨åœ°å€     */
+#define  __BH1730FVC_REG_DATA0HIGH      0x15  /**< \brief æ•°æ®0å¯„å­˜å™¨åœ°å€     */
+#define  __BH1730FVC_REG_DATA1LOW       0x16  /**< \brief æ•°æ®1å¯„å­˜å™¨åœ°å€     */
+#define  __BH1730FVC_REG_DATA1HIGH      0x17  /**< \brief æ•°æ®1å¯„å­˜å™¨åœ°å€     */
 
-#define  __BH1730FVC_MY_ID              0x70  /**< \brief IDÖµ                */
+#define  __BH1730FVC_MY_ID              0x70  /**< \brief IDå€¼                */
 
-/** \brief Ê¹ÄÜÊı¾İ¿É¶Á´¥·¢ */
+/** \brief ä½¿èƒ½æ•°æ®å¯è¯»è§¦å‘ */
 #define  __BH1730FVC_TRIGGER_READ       0x11
 
-/** \brief ½ûÄÜÊı¾İ¿É¶Á´¥·¢ */
+/** \brief ç¦èƒ½æ•°æ®å¯è¯»è§¦å‘ */
 #define  __BH1730FVC_TRIGGER_CLOSE      (~(0X01 << 4))
 
-/** \brief Èí¼ş¸´Î» */
+/** \brief è½¯ä»¶å¤ä½ */
 #define  __BH1730FVC_SOFT_RESET         0x04
 
-/** \brief Çå³ıÖĞ¶Ï */
+/** \brief æ¸…é™¤ä¸­æ–­ */
 #define  __BH1730FVC_INT_CLEAR          0x01
 
-/** \brief ½«Á½¸öuint8×ª»»ÎªÒ»¸öuint16_tÀàĞÍ */
+/** \brief å°†ä¸¤ä¸ªuint8è½¬æ¢ä¸ºä¸€ä¸ªuint16_tç±»å‹ */
 #define  __BH1730FVC_UINT8_TO_UINT16(data)  ((uint16_t)(data[1] << 8 | data[0]))
 /*******************************************************************************
- * ±¾µØº¯ÊıÉùÃ÷
+ * æœ¬åœ°å‡½æ•°å£°æ˜
  ******************************************************************************/
-/** \brief »ñÈ¡¸Ã´«¸ĞÆ÷Ä³Ò»Í¨µÀµÄÀàĞÍ */
+/** \brief è·å–è¯¥ä¼ æ„Ÿå™¨æŸä¸€é€šé“çš„ç±»å‹ */
 am_local am_err_t __pfn_type_get (void *p_drv, int id);
 
-/** \brief »ñÈ¡´«¸ĞÆ÷Í¨µÀ²ÉÑùÊı¾İ */
+/** \brief è·å–ä¼ æ„Ÿå™¨é€šé“é‡‡æ ·æ•°æ® */
 am_local am_err_t __pfn_data_get (void            *p_drv,
                                   const int       *p_ids,
                                   int              num,
                                   am_sensor_val_t *p_buf);
 
-/** \brief Ê¹ÄÜ´«¸ĞÆ÷Í¨µÀ */
+/** \brief ä½¿èƒ½ä¼ æ„Ÿå™¨é€šé“ */
 am_local am_err_t __pfn_enable (void            *p_drv,
                                 const int       *p_ids,
                                 int              num,
                                 am_sensor_val_t *p_result);
 
-/** \brief ½ûÄÜ´«¸ĞÆ÷Í¨µÀ */
+/** \brief ç¦èƒ½ä¼ æ„Ÿå™¨é€šé“ */
 am_local am_err_t __pfn_disable (void            *p_drv,
                                  const int       *p_ids,
                                  int              num,
                                  am_sensor_val_t *p_result);
 
-/** \brief ÅäÖÃ´«¸ĞÆ÷Í¨µÀÊôĞÔ */
+/** \brief é…ç½®ä¼ æ„Ÿå™¨é€šé“å±æ€§ */
 am_local am_err_t __pfn_attr_set (void                  *p_drv,
                                   int                    id,
                                   int                    attr,
                                   const am_sensor_val_t *p_val);
 
-/** \brief »ñÈ¡´«¸ĞÆ÷Í¨µÀÊôĞÔ */
+/** \brief è·å–ä¼ æ„Ÿå™¨é€šé“å±æ€§ */
 am_local am_err_t __pfn_attr_get (void            *p_drv,
                                   int              id,
                                   int              attr,
                                   am_sensor_val_t *p_val);
 
-/** \brief ÉèÖÃ´¥·¢£¬Ò»¸öÍ¨µÀ½öÄÜÉèÖÃÒ»¸ö´¥·¢»Øµ÷º¯Êı */
+/** \brief è®¾ç½®è§¦å‘ï¼Œä¸€ä¸ªé€šé“ä»…èƒ½è®¾ç½®ä¸€ä¸ªè§¦å‘å›è°ƒå‡½æ•° */
 am_local am_err_t __pfn_trigger_cfg (void                   *p_drv,
                                      int                     id,
                                      uint32_t                flags,
                                      am_sensor_trigger_cb_t  pfn_cb,
                                      void                   *p_arg);
 
-/** \brief ´ò¿ª´¥·¢ */
+/** \brief æ‰“å¼€è§¦å‘ */
 am_local am_err_t __pfn_trigger_on (void *p_drv, int id);
 
-/** \brief ¹Ø±Õ´¥·¢ */
+/** \brief å…³é—­è§¦å‘ */
 am_local am_err_t __pfn_trigger_off (void *p_drv, int id);
                                   
-/** \brief ´«¸ĞÆ÷±ê×¼·şÎñ */
+/** \brief ä¼ æ„Ÿå™¨æ ‡å‡†æœåŠ¡ */
 am_local am_const struct am_sensor_drv_funcs __g_sensor_bh1730fvc_funcs = {
         __pfn_type_get,
         __pfn_data_get,
@@ -122,7 +122,7 @@ am_local am_const struct am_sensor_drv_funcs __g_sensor_bh1730fvc_funcs = {
   Local functions
 *******************************************************************************/
 /**
- * \brief BH1730FVC Ğ´Êı¾İ
+ * \brief BH1730FVC å†™æ•°æ®
  */
 am_local am_err_t __bh1730fvc_write (am_sensor_bh1730fvc_dev_t *p_this,
                                      uint32_t                   subaddr,
@@ -133,7 +133,7 @@ am_local am_err_t __bh1730fvc_write (am_sensor_bh1730fvc_dev_t *p_this,
 }
 
 /**
- * \brief BH1730FVC ¶ÁÊı¾İ
+ * \brief BH1730FVC è¯»æ•°æ®
  */
 am_local am_err_t __bh1730fvc_read (am_sensor_bh1730fvc_dev_t *p_this,
                                     uint32_t                   subaddr,
@@ -144,7 +144,7 @@ am_local am_err_t __bh1730fvc_read (am_sensor_bh1730fvc_dev_t *p_this,
 }
 
 /**
- * \brief BH1730FVC Çå³ıÖĞ¶Ï
+ * \brief BH1730FVC æ¸…é™¤ä¸­æ–­
  */
 am_local am_err_t __bh1730fvc_send_cmd (am_sensor_bh1730fvc_dev_t *p_this, 
                                    uint8_t                    cmd)
@@ -153,7 +153,7 @@ am_local am_err_t __bh1730fvc_send_cmd (am_sensor_bh1730fvc_dev_t *p_this,
 }
 
 /**
- * \brief ¸ù¾İÁ½¸ö¹âÕÕÖµ¼ÆËã¹âÇ¿Êµ¼ÊÖµ
+ * \brief æ ¹æ®ä¸¤ä¸ªå…‰ç…§å€¼è®¡ç®—å…‰å¼ºå®é™…å€¼
  */
 am_local uint32_t __bh1730fvc_get_light_value (uint32_t *p_data)
 {
@@ -181,15 +181,15 @@ am_local uint32_t __bh1730fvc_get_light_value (uint32_t *p_data)
     return real_data;
 }
 
-/** \breif ÖĞ¶Ï»Øµ÷º¯Êı */
+/** \breif ä¸­æ–­å›è°ƒå‡½æ•° */
 am_local void __bh1730fvc_alarm_callback (void *p_arg)
 {
     am_sensor_bh1730fvc_dev_t* p_this = (am_sensor_bh1730fvc_dev_t*)p_arg;
 
-    am_isr_defer_job_add(&p_this->g_myjob);   /*< \brief Ìí¼ÓÖĞ¶ÏÑÓ³Ù´¦ÀíÈÎÎñ */
+    am_isr_defer_job_add(&p_this->g_myjob);   /*< \brief æ·»åŠ ä¸­æ–­å»¶è¿Ÿå¤„ç†ä»»åŠ¡ */
 }
 
-/** \breif ÖĞ¶ÏÑÓ³Ùº¯Êı */
+/** \breif ä¸­æ–­å»¶è¿Ÿå‡½æ•° */
 am_local void __am_pfnvoid_t (void *p_arg)
 {
     am_sensor_bh1730fvc_dev_t* p_this = (am_sensor_bh1730fvc_dev_t*)p_arg;
@@ -197,30 +197,30 @@ am_local void __am_pfnvoid_t (void *p_arg)
     uint8_t reg_data[2];
     uint32_t tem_data[2];
     
-    /** \brief »ñÈ¡¹âÇ¿Öµ1 */
+    /** \brief è·å–å…‰å¼ºå€¼1 */
     __bh1730fvc_read(p_this, __BH1730FVC_REG_DATA0LOW, reg_data, 2);
 
     tem_data[0] = __BH1730FVC_UINT8_TO_UINT16(reg_data);
    
-    /** \brief »ñÈ¡¹âÇ¿Öµ2 */
+    /** \brief è·å–å…‰å¼ºå€¼2 */
     __bh1730fvc_read(p_this, __BH1730FVC_REG_DATA1LOW, reg_data, 2);
 
     tem_data[1] = __BH1730FVC_UINT8_TO_UINT16(reg_data);
     
-    /** \brief ¹âÇ¿ */
+    /** \brief å…‰å¼º */
     p_this->data[0].val  = __bh1730fvc_get_light_value(tem_data); 
-    p_this->data[0].unit = AM_SENSOR_UNIT_BASE; /*< \brief µ¥Î»Ä¬ÈÏÎª0:10^(0) */
+    p_this->data[0].unit = AM_SENSOR_UNIT_BASE; /*< \brief å•ä½é»˜è®¤ä¸º0:10^(0) */
  
     if (p_this->pfn_trigger_cb[0] &&
             (p_this->flags[0] & AM_SENSOR_TRIGGER_DATA_READY)) {
         p_this->pfn_trigger_cb[0](p_this->p_arg[0],
                                   AM_SENSOR_TRIGGER_DATA_READY);
     }
-    /* Çå³ıÖĞ¶Ï */
+    /* æ¸…é™¤ä¸­æ–­ */
     __bh1730fvc_send_cmd(p_this, __BH1730FVC_INT_CLEAR);
 }
 
-/** \brief »ñÈ¡¸Ã´«¸ĞÆ÷Ä³Ò»Í¨µÀµÄÀàĞÍ */
+/** \brief è·å–è¯¥ä¼ æ„Ÿå™¨æŸä¸€é€šé“çš„ç±»å‹ */
 am_local am_err_t __pfn_type_get (void *p_drv, int id)
 {
     if (p_drv == NULL) {
@@ -234,7 +234,7 @@ am_local am_err_t __pfn_type_get (void *p_drv, int id)
     }
 }
 
-/** \brief »ñÈ¡´«¸ĞÆ÷Í¨µÀ²ÉÑùÊı¾İ */
+/** \brief è·å–ä¼ æ„Ÿå™¨é€šé“é‡‡æ ·æ•°æ® */
 am_local am_err_t __pfn_data_get (void            *p_drv,
                                   const int       *p_ids,
                                   int              num,
@@ -261,10 +261,10 @@ am_local am_err_t __pfn_data_get (void            *p_drv,
         p_buf[i].unit = AM_SENSOR_UNIT_INVALID;
     }
 
-    /* ÈôÎª1£¬Ôò¿ÉÄÜÔÚÊı¾İ×¼±¸¾ÍĞ÷´¥·¢»Øµ÷º¯ÊıÖĞÊ¹ÓÃ */
+    /* è‹¥ä¸º1ï¼Œåˆ™å¯èƒ½åœ¨æ•°æ®å‡†å¤‡å°±ç»ªè§¦å‘å›è°ƒå‡½æ•°ä¸­ä½¿ç”¨ */
     if (num == 1) { 
         cur_id = p_ids[0];
-        /* Èô´ò¿ªÊı¾İ×¼±¸¾ÍĞ÷´¥·¢·½Ê½£¬ÔòÖ±½Ó¸³Öµ */
+        /* è‹¥æ‰“å¼€æ•°æ®å‡†å¤‡å°±ç»ªè§¦å‘æ–¹å¼ï¼Œåˆ™ç›´æ¥èµ‹å€¼ */
         if ((AM_BIT_GET(p_this->trigger, 1)) &&
                 (p_this->flags[0] & AM_SENSOR_TRIGGER_DATA_READY)) {
             p_buf[0].val = p_this->data[cur_id].val;
@@ -279,33 +279,33 @@ am_local am_err_t __pfn_data_get (void            *p_drv,
 
         if (cur_id == 0) {
 
-            /** \brief »ñÈ¡¹âÇ¿Öµ1 */
+            /** \brief è·å–å…‰å¼ºå€¼1 */
             ret = __bh1730fvc_read(p_this, __BH1730FVC_REG_DATA0LOW, reg_data, 2);
             if (ret != AM_OK) {
                 return ret;
             }
             tem_data[0] = __BH1730FVC_UINT8_TO_UINT16(reg_data);
 
-            /** \brief »ñÈ¡¹âÇ¿Öµ2 */
+            /** \brief è·å–å…‰å¼ºå€¼2 */
             ret = __bh1730fvc_read(p_this, __BH1730FVC_REG_DATA1LOW, reg_data, 2);
             if (ret != AM_OK) {
                 return ret;
             }
             tem_data[1] = __BH1730FVC_UINT8_TO_UINT16(reg_data);
 
-            /** \brief ¹âÇ¿ */
+            /** \brief å…‰å¼º */
             p_buf[i].val = __bh1730fvc_get_light_value(tem_data); 
-            p_buf[i].unit = AM_SENSOR_UNIT_BASE; /*< \brief µ¥Î»Ä¬ÈÏÎª0:10^(0)*/
+            p_buf[i].unit = AM_SENSOR_UNIT_BASE; /*< \brief å•ä½é»˜è®¤ä¸º0:10^(0)*/
             
         } else {
-            return -AM_ENODEV;  /*< \brief Èô´Ë´ÎÍ¨µÀ²»ÊôÓÚ¸Ã´«¸ĞÆ÷£¬Ö±½Ó·µ»Ø */
+            return -AM_ENODEV;  /*< \brief è‹¥æ­¤æ¬¡é€šé“ä¸å±äºè¯¥ä¼ æ„Ÿå™¨ï¼Œç›´æ¥è¿”å› */
         }
     }
      
     return ret;
 }
 
-/** \brief Ê¹ÄÜ´«¸ĞÆ÷Í¨µÀ */
+/** \brief ä½¿èƒ½ä¼ æ„Ÿå™¨é€šé“ */
 am_local am_err_t __pfn_enable (void            *p_drv,
                                 const int       *p_ids,
                                 int              num,
@@ -341,7 +341,7 @@ am_local am_err_t __pfn_enable (void            *p_drv,
         }
     }
 
-    if (ret != AM_OK) {    /**< \breif Èç¹û±¾´ÎÃ»ÓĞ¸Ã´«¸ĞÆ÷µÄÍ¨µÀ´«Èë£¬ÔòÍË³ö */
+    if (ret != AM_OK) {    /**< \breif å¦‚æœæœ¬æ¬¡æ²¡æœ‰è¯¥ä¼ æ„Ÿå™¨çš„é€šé“ä¼ å…¥ï¼Œåˆ™é€€å‡º */
         return curent_ret;
     }
 
@@ -350,7 +350,7 @@ am_local am_err_t __pfn_enable (void            *p_drv,
         AM_BIT_SET(p_this->trigger, 6);
     } 
     
-    /* ÅäÖÃÎª¹¤×÷Ä£Ê½ */
+    /* é…ç½®ä¸ºå·¥ä½œæ¨¡å¼ */
     ret = __bh1730fvc_write (p_this, __BH1730FVC_REG_CONTROL, &ctrl_reg, 1);
     if (ret != AM_OK) {
         curent_ret = ret;
@@ -359,7 +359,7 @@ am_local am_err_t __pfn_enable (void            *p_drv,
     return curent_ret;
 }
 
-/** \brief ½ûÄÜ´«¸ĞÆ÷Í¨µÀ */
+/** \brief ç¦èƒ½ä¼ æ„Ÿå™¨é€šé“ */
 am_local am_err_t __pfn_disable (void            *p_drv,
                                  const int       *p_ids,
                                  int              num,
@@ -398,7 +398,7 @@ am_local am_err_t __pfn_disable (void            *p_drv,
 
     if (AM_BIT_GET(p_this->trigger, 6) == 0) {
 
-        /* ÅäÖÃÎªµôµçÄ£Ê½ */
+        /* é…ç½®ä¸ºæ‰ç”µæ¨¡å¼ */
         ret = __bh1730fvc_write (p_this, __BH1730FVC_REG_CONTROL, &ctrl_reg, 1);
         if (ret != AM_OK){
             cur_ret = ret;
@@ -412,7 +412,7 @@ am_local am_err_t __pfn_disable (void            *p_drv,
     return cur_ret;
 }
 
-/** \brief ÅäÖÃ´«¸ĞÆ÷Í¨µÀÊôĞÔ */
+/** \brief é…ç½®ä¼ æ„Ÿå™¨é€šé“å±æ€§ */
 am_local am_err_t __pfn_attr_set (void                  *p_drv,
                                   int                    id,
                                   int                    attr,
@@ -421,7 +421,7 @@ am_local am_err_t __pfn_attr_set (void                  *p_drv,
     return -AM_ENOTSUP;
 }
 
-/** \brief »ñÈ¡´«¸ĞÆ÷Í¨µÀÊôĞÔ */
+/** \brief è·å–ä¼ æ„Ÿå™¨é€šé“å±æ€§ */
 am_local am_err_t __pfn_attr_get (void            *p_drv,
                                   int              id,
                                   int              attr,
@@ -430,7 +430,7 @@ am_local am_err_t __pfn_attr_get (void            *p_drv,
     return -AM_ENOTSUP;
 }
 
-/** \brief ÉèÖÃ´¥·¢£¬Ò»¸öÍ¨µÀ½öÄÜÉèÖÃÒ»¸ö´¥·¢»Øµ÷º¯Êı */
+/** \brief è®¾ç½®è§¦å‘ï¼Œä¸€ä¸ªé€šé“ä»…èƒ½è®¾ç½®ä¸€ä¸ªè§¦å‘å›è°ƒå‡½æ•° */
 am_local am_err_t __pfn_trigger_cfg (void                   *p_drv,
                                      int                     id,
                                      uint32_t                flags,
@@ -461,7 +461,7 @@ am_local am_err_t __pfn_trigger_cfg (void                   *p_drv,
     return AM_OK;
 }
 
-/** \brief ´ò¿ª´¥·¢ */
+/** \brief æ‰“å¼€è§¦å‘ */
 am_local am_err_t __pfn_trigger_on (void *p_drv, int id)
 {
     am_sensor_bh1730fvc_dev_t* p_this = (am_sensor_bh1730fvc_dev_t*)p_drv;
@@ -482,7 +482,7 @@ am_local am_err_t __pfn_trigger_on (void *p_drv, int id)
         return AM_OK;
     }
 
-    /** \brief Ê¹ÄÜÊı¾İ¿É¶Á´¥·¢ */
+    /** \brief ä½¿èƒ½æ•°æ®å¯è¯»è§¦å‘ */
     reg_data[0] = __BH1730FVC_TRIGGER_READ;
     reg_data[1] = 0xff;
     reg_data[2] = 0xff;
@@ -510,7 +510,7 @@ am_local am_err_t __pfn_trigger_on (void *p_drv, int id)
     return cur_ret;
 }
 
-/** \brief ¹Ø±Õ´¥·¢ */
+/** \brief å…³é—­è§¦å‘ */
 am_local am_err_t __pfn_trigger_off (void *p_drv, int id)
 {
     am_sensor_bh1730fvc_dev_t* p_this = (am_sensor_bh1730fvc_dev_t*)p_drv;
@@ -546,7 +546,7 @@ am_local am_err_t __pfn_trigger_off (void *p_drv, int id)
         if (ret != AM_OK) {
             cur_ret = ret;
         }
-        /** \brief ½ûÄÜÊı¾İ¿É¶Á´¥·¢ */
+        /** \brief ç¦èƒ½æ•°æ®å¯è¯»è§¦å‘ */
         reg_data &= __BH1730FVC_TRIGGER_CLOSE;
         ret = __bh1730fvc_write(p_this, __BH1730FVC_REG_INTERRUPT, &reg_data, 1);
         if (ret != AM_OK) {
@@ -565,7 +565,7 @@ am_local am_err_t __pfn_trigger_off (void *p_drv, int id)
   Public functions
 *******************************************************************************/
 /**
- * \brief ´«¸ĞÆ÷ BH1730FVC ³õÊ¼»¯
+ * \brief ä¼ æ„Ÿå™¨ BH1730FVC åˆå§‹åŒ–
  */
 am_sensor_handle_t am_sensor_bh1730fvc_init (
         am_sensor_bh1730fvc_dev_t           *p_dev,
@@ -596,7 +596,7 @@ am_sensor_handle_t am_sensor_bh1730fvc_init (
     p_dev->data[0].val         = 0;
     p_dev->data[0].unit        = AM_SENSOR_UNIT_INVALID;
   
-    /* Íâ²¿ÖĞ¶ÏÁ¬½Ó */
+    /* å¤–éƒ¨ä¸­æ–­è¿æ¥ */
     if (p_devinfo->trigger_pin != -1) {
         am_gpio_pin_cfg(p_devinfo->trigger_pin, AM_GPIO_INPUT | AM_GPIO_PULLUP);
         am_gpio_trigger_connect(p_devinfo->trigger_pin,
@@ -607,7 +607,7 @@ am_sensor_handle_t am_sensor_bh1730fvc_init (
 
     am_isr_defer_job_init(&p_dev->g_myjob, __am_pfnvoid_t, p_dev, 1);
    
-    /* ¶ÁÈ¡ID */
+    /* è¯»å–ID */
     ret = __bh1730fvc_read(p_dev, __BH1730FVC_REG_ID, &bh1730fvc_id, 1);
     if (ret != AM_OK || (bh1730fvc_id & 0xF0) != __BH1730FVC_MY_ID) {
         cur_ret = ret;
@@ -622,7 +622,7 @@ am_sensor_handle_t am_sensor_bh1730fvc_init (
 }
 
 /**
- * \brief ´«¸ĞÆ÷ BH1730FVC È¥³õÊ¼»¯
+ * \brief ä¼ æ„Ÿå™¨ BH1730FVC å»åˆå§‹åŒ–
  */
 am_err_t am_sensor_bh1730fvc_deinit (am_sensor_handle_t handle)
 {

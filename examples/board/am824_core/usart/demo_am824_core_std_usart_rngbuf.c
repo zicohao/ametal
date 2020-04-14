@@ -11,18 +11,18 @@
 *******************************************************************************/
 /**
  * \file
- * \brief USART »·ÐÎ»º³åÇøÀý³Ì£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief USART çŽ¯å½¢ç¼“å†²åŒºä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿ÚÊä³ö "USART ring buffer test:\r\n"£»
- *   2. ´®¿ÚÊä³ö½ÓÊÕµ½µÄ×Ö·û´®¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. ä¸²å£è¾“å‡º "USART ring buffer test:\r\n"ï¼›
+ *   2. ä¸²å£è¾“å‡ºæŽ¥æ”¶åˆ°çš„å­—ç¬¦ä¸²ã€‚
  *
  * \note
- *    1. Àý³ÌÊ¹ÓÃ USART0£¬Óë DEBUG µ÷ÊÔÊ¹ÓÃ´®¿ÚÏàÍ¬£»
- *    2. ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIO0_0 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *       PIO0_4 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
+ *    1. ä¾‹ç¨‹ä½¿ç”¨ USART0ï¼Œä¸Ž DEBUG è°ƒè¯•ä½¿ç”¨ä¸²å£ç›¸åŒï¼›
+ *    2. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO0_0 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *       PIO0_4 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am824_std_usart_rngbuf.c src_am824_std_usart_rngbuf
  *
  * \internal
@@ -44,7 +44,7 @@
 #include "am_vdebug.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am824_core_std_usart_rngbuf_entry (void)
 {

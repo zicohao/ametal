@@ -12,16 +12,16 @@
 
 /**
  * \file
- * \brief zsn60x BÀà¿¨²âÊÔ³ÌĞò
+ * \brief zsn60x Bç±»å¡æµ‹è¯•ç¨‹åº
  *
- * - ²Ù×÷²½Öè£º
- *   1. ÕıÈ·Á¬½Ó²¢ÅäÖÃºÃ´®¿Ú£»
- *   2. ½«BÀà¿¨·ÅÖÃÓÚÌìÏß¸ĞÓ¦Çø¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. æ­£ç¡®è¿æ¥å¹¶é…ç½®å¥½ä¸²å£ï¼›
+ *   2. å°†Bç±»å¡æ”¾ç½®äºå¤©çº¿æ„Ÿåº”åŒºã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. MCU½«»á´òÓ¡³öBÀà¿¨µÄÏà¹ØĞÅÏ¢
+ * - å®éªŒç°è±¡ï¼š
+ *   1. MCUå°†ä¼šæ‰“å°å‡ºBç±»å¡çš„ç›¸å…³ä¿¡æ¯
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_zsn60x_piccb_test.c src_zsn60x_piccb_test
  *
  * \internal
@@ -39,18 +39,18 @@
 #include "ametal.h"
 #include "zsn60x.h"
 #include "am_vdebug.h"
-/* ZSN60x  BÀà¿¨¼¤»î²âÊÔ³ÌĞò */
+/* ZSN60x  Bç±»å¡æ¿€æ´»æµ‹è¯•ç¨‹åº */
 void demo_zsn60x_piccb_active_test_entry (zsn60x_handle_t handle)
 {
     unsigned char  info[12] = {0};
     unsigned char  ret = 0;
-    /* ÔÚÊ¹ÓÃB¿¨Ïà¹ØµÄº¯ÊıÇ°£¬ĞèÉèÖÃĞ­ÒéÎªBÀà¿¨ */
+    /* åœ¨ä½¿ç”¨Bå¡ç›¸å…³çš„å‡½æ•°å‰ï¼Œéœ€è®¾ç½®åè®®ä¸ºBç±»å¡ */
     ret = zsn60x_set_ios_type (handle, ZSN60X_ICC_ISO_TYPE_B);
     if(ret  !=  0 ){
         am_kprintf("ios set fail beacuse %0x2", ret);
         return;
     }
-    //B¿¨ÇëÇó½Ó¿Úº¯Êı  ÇëÇóÄ£Ê½Îª 0x00  IDLE
+    //Bå¡è¯·æ±‚æ¥å£å‡½æ•°  è¯·æ±‚æ¨¡å¼ä¸º 0x00  IDLE
     ret = zsn60x_piccb_active(handle, 0x00, info);
     if(ret == 0){
         unsigned char i = 0;

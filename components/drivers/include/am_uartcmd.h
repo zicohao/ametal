@@ -35,90 +35,90 @@ extern "C" {
 struct uartcmd_cmd_mifare_var;
 
 /**
- * \brief ĞÂÖ¡¸ñÊ½½á¹¹Ìå
+ * \brief æ–°å¸§æ ¼å¼ç»“æ„ä½“
  */
 struct am_uartcmd_frame {
-    uint8_t   local_addr;   /**< \brief ±¾»úµØÖ·£¬Í¬I2C */
-    uint8_t   slot_index;   /**< \brief IC¿¨²ÛË÷Òı±àºÅ */
-    uint8_t   smc_seq;      /**< \brief SMCĞòÁĞºÅ */
-    uint8_t   cmd_class;    /**< \brief ÃüÁîÀàĞÍ */
+    uint8_t   local_addr;   /**< \brief æœ¬æœºåœ°å€ï¼ŒåŒI2C */
+    uint8_t   slot_index;   /**< \brief ICå¡æ§½ç´¢å¼•ç¼–å· */
+    uint8_t   smc_seq;      /**< \brief SMCåºåˆ—å· */
+    uint8_t   cmd_class;    /**< \brief å‘½ä»¤ç±»å‹ */
 };
 
 /**
- * \brief UARTCMD Éè±¸ĞÅÏ¢½á¹¹Ìå
+ * \brief UARTCMD è®¾å¤‡ä¿¡æ¯ç»“æ„ä½“
  */
 typedef struct am_uartcmd_devinfo {
-    uint32_t  int_pin;         /**< \brief ÖĞ¶ÏÒı½ÅºÅ */
-//    uint32_t  sbr_pin;         /**< \brief SBRÒı½ÅºÅ  */
-//    uint32_t  dbr_pin;         /**< \brief DBRÒı½ÅºÅ  */
-    uint32_t  rxd_pin;        /**< \brief ADR1Òı½ÅºÅ */
-    uint32_t  txd_pin;        /**< \brief ADR0Òı½ÅºÅ */
-//    uint32_t  sadr_pin;        /**< \brief SADRÒı½ÅºÅ */
-//    uint32_t  restore1;        /**< \brief »Ø¸´³ö³§ÉèÖÃ¿ØÖÆÒı½Å1 */
-//    uint32_t  restore2;        /**< \brief »Ø¸´³ö³§ÉèÖÃ¿ØÖÆÒı½Å2 */                         
-    uint32_t  led_num;         /**< \brief LEDÒı½ÅºÅ  */
+    uint32_t  int_pin;         /**< \brief ä¸­æ–­å¼•è„šå· */
+//    uint32_t  sbr_pin;         /**< \brief SBRå¼•è„šå·  */
+//    uint32_t  dbr_pin;         /**< \brief DBRå¼•è„šå·  */
+    uint32_t  rxd_pin;        /**< \brief ADR1å¼•è„šå· */
+    uint32_t  txd_pin;        /**< \brief ADR0å¼•è„šå· */
+//    uint32_t  sadr_pin;        /**< \brief SADRå¼•è„šå· */
+//    uint32_t  restore1;        /**< \brief å›å¤å‡ºå‚è®¾ç½®æ§åˆ¶å¼•è„š1 */
+//    uint32_t  restore2;        /**< \brief å›å¤å‡ºå‚è®¾ç½®æ§åˆ¶å¼•è„š2 */                         
+    uint32_t  led_num;         /**< \brief LEDå¼•è„šå·  */
 
-    uint32_t  frame_max;       /**< \brief Ö¡µÄ×î´ó³¤¶È */
-    void     *p_frame_buf;     /**< \brief ´æ·ÅÖ¡µÄ»º³åÇø£¨ÓÃ»§´«Èë£© */
+    uint32_t  frame_max;       /**< \brief å¸§çš„æœ€å¤§é•¿åº¦ */
+    void     *p_frame_buf;     /**< \brief å­˜æ”¾å¸§çš„ç¼“å†²åŒºï¼ˆç”¨æˆ·ä¼ å…¥ï¼‰ */
 
-    /** \brief ´æ·ÅÔÚFLASHÖĞµÄ¹Ì¼şÅäÖÃĞÅÏ¢£¬ÓÃÓÚ»¹Ô­³ö³§ÅäÖÃ */
+    /** \brief å­˜æ”¾åœ¨FLASHä¸­çš„å›ºä»¶é…ç½®ä¿¡æ¯ï¼Œç”¨äºè¿˜åŸå‡ºå‚é…ç½® */
     const uartcmd_flash_devinfo_t *p_flash_devinfo;
 
-    /** \brief ´æ·ÅÓÃ»§ĞŞ¸ÄºóÅäÖÃ */
+    /** \brief å­˜æ”¾ç”¨æˆ·ä¿®æ”¹åé…ç½® */
     const uartcmd_flash_devinfo_t *p_flash_usr_devinfo;
 
-    void     *p_iap_buf;       /**< \brief Ä£¿éÄÚ²¿IAP²Ù×÷Ê¹ÓÃµÄ»º³åÇø£¬´óĞ¡Îª512B */
-    uint32_t  iap_buf_size;    /**< \brief Ä£¿éÄÚ²¿IAP²Ù×÷»º³åÇø´óĞ¡ */
+    void     *p_iap_buf;       /**< \brief æ¨¡å—å†…éƒ¨IAPæ“ä½œä½¿ç”¨çš„ç¼“å†²åŒºï¼Œå¤§å°ä¸º512B */
+    uint32_t  iap_buf_size;    /**< \brief æ¨¡å—å†…éƒ¨IAPæ“ä½œç¼“å†²åŒºå¤§å° */
 
-    /** \brief ÍË³ö×Ô¶¯¼ì²âÄ£Ê½µÄÃüÁî£¬ÆäĞÅÏ¢³¤¶ÈµÄÏŞÖÆÖµ£¬×î´ó²»ÄÜ³¬¹ı¸ÃÖµ */
+    /** \brief é€€å‡ºè‡ªåŠ¨æ£€æµ‹æ¨¡å¼çš„å‘½ä»¤ï¼Œå…¶ä¿¡æ¯é•¿åº¦çš„é™åˆ¶å€¼ï¼Œæœ€å¤§ä¸èƒ½è¶…è¿‡è¯¥å€¼ */
     uint32_t  info_len_limit;
 
 } am_uartcmd_devinfo_t;
 
 /**
- * \brief UARTCMD Éè±¸½á¹¹Ìå
+ * \brief UARTCMD è®¾å¤‡ç»“æ„ä½“
  */
 typedef struct am_uartcmd_dev {
     
-    /** \brief UARTCMD Éè±¸ĞÅÏ¢½á¹¹Ìå */
+    /** \brief UARTCMD è®¾å¤‡ä¿¡æ¯ç»“æ„ä½“ */
     const am_uartcmd_devinfo_t *p_devinfo;
     
-    uint8_t               status;           /**< \brief µ±Ç°UARTCMD ¹¤×÷×´Ì¬ */
-    uint8_t               frame_type;       /**< \brief ±êÃ÷µ±Ç°Ö¡µÄÀàĞÍ */
-    uint8_t               antenna;          /**< \brief ÌìÏßÇı¶¯Ä£Ê½ */
-    uint8_t               comm_mode;        /**< \brief µ±Ç°Í¨Ñ¶Ä£Ê½ */
-    uint8_t               work_mode;        /**< \brief ¹¤×÷Ä£Ê½ */
-    int                   result;           /**< \brief ÃüÁîÖ´ĞĞ½á¹û */
-    am_bool_t             wait_send;        /**< \brief ×Ô¶¯¼ì²âµ½ÁËÊı¾İ£¬µÈ´ıÓÃ»§¶ÁÈ¡ */
-    am_bool_t             update_addr;      /**< \breif ÊÇ·ñ¸üĞÂµØÖ· */
-    am_bool_t             update_speed;     /**< \brief ÊÇ·ñ¸üĞÂËÙÂÊ */
+    uint8_t               status;           /**< \brief å½“å‰UARTCMD å·¥ä½œçŠ¶æ€ */
+    uint8_t               frame_type;       /**< \brief æ ‡æ˜å½“å‰å¸§çš„ç±»å‹ */
+    uint8_t               antenna;          /**< \brief å¤©çº¿é©±åŠ¨æ¨¡å¼ */
+    uint8_t               comm_mode;        /**< \brief å½“å‰é€šè®¯æ¨¡å¼ */
+    uint8_t               work_mode;        /**< \brief å·¥ä½œæ¨¡å¼ */
+    int                   result;           /**< \brief å‘½ä»¤æ‰§è¡Œç»“æœ */
+    am_bool_t             wait_send;        /**< \brief è‡ªåŠ¨æ£€æµ‹åˆ°äº†æ•°æ®ï¼Œç­‰å¾…ç”¨æˆ·è¯»å– */
+    am_bool_t             update_addr;      /**< \breif æ˜¯å¦æ›´æ–°åœ°å€ */
+    am_bool_t             update_speed;     /**< \brief æ˜¯å¦æ›´æ–°é€Ÿç‡ */
    
-    uint32_t              rx_count;         /**< \brief ½ÓÊÕ¼ÆÊı */
-    uint32_t              tx_count;         /**< \brief ·¢ËÍ¼ÆÊı */
-    uint32_t              temp_count;       /**< \brief ÓÃÓÚÅäºÏ·¢ËÍ¼ÆÊı */
+    uint32_t              rx_count;         /**< \brief æ¥æ”¶è®¡æ•° */
+    uint32_t              tx_count;         /**< \brief å‘é€è®¡æ•° */
+    uint32_t              temp_count;       /**< \brief ç”¨äºé…åˆå‘é€è®¡æ•° */
 
-    struct am_list_head   frame_head;       /**< \brief Ö¡ÀàĞÍµÄÍ·½áµã */
-    struct am_list_head   cmd_head;         /**< \brief ÃüÁîÀàĞÍµÄÍ·½áµã */
-    struct am_list_head   serial_head;      /**< \brief ´®ĞĞÉè±¸µÄÍ·½áµã */
+    struct am_list_head   frame_head;       /**< \brief å¸§ç±»å‹çš„å¤´ç»“ç‚¹ */
+    struct am_list_head   cmd_head;         /**< \brief å‘½ä»¤ç±»å‹çš„å¤´ç»“ç‚¹ */
+    struct am_list_head   serial_head;      /**< \brief ä¸²è¡Œè®¾å¤‡çš„å¤´ç»“ç‚¹ */
 
     struct uartcmd_cmd_mifare_var *p_var;
     struct am_uartcmd_frame        frame;
 
 } am_uartcmd_dev_t;
 
-/** \brief ÉùÃ÷´®¿ÚÃüÁî·şÎñ¾ä±ú */
+/** \brief å£°æ˜ä¸²å£å‘½ä»¤æœåŠ¡å¥æŸ„ */
 typedef am_uartcmd_dev_t *am_uartcmd_handle_t;
 
 /**
- * \brief UARTCMD ³õÊ¼»¯º¯Êı
+ * \brief UARTCMD åˆå§‹åŒ–å‡½æ•°
  *
- * \param[in] p_dev      : UARTCMD Éè±¸½á¹¹Ìå
- * \param[in] p_devinfo  : UARTCMD Éè±¸ĞÅÏ¢½á¹¹Ìå 
- * \param[in] comm_mode  : Í¨ĞÅÄ£Ê½
- * \param[in] work_mode  : ¹¤×÷Ä£Ê½
- * \param[in] frame_type : Ö¡ÀàĞÍ
+ * \param[in] p_dev      : UARTCMD è®¾å¤‡ç»“æ„ä½“
+ * \param[in] p_devinfo  : UARTCMD è®¾å¤‡ä¿¡æ¯ç»“æ„ä½“ 
+ * \param[in] comm_mode  : é€šä¿¡æ¨¡å¼
+ * \param[in] work_mode  : å·¥ä½œæ¨¡å¼
+ * \param[in] frame_type : å¸§ç±»å‹
  *
- * \return UARTCMD·şÎñ¾ä±ú£¬Èç¹ûÎªNULL£¬Ôò³õÊ¼»¯Ê§°Ü
+ * \return UARTCMDæœåŠ¡å¥æŸ„ï¼Œå¦‚æœä¸ºNULLï¼Œåˆ™åˆå§‹åŒ–å¤±è´¥
  */
 am_uartcmd_handle_t am_uartcmd_init (am_uartcmd_dev_t           *p_dev,
                                      const am_uartcmd_devinfo_t *p_devinfo,
@@ -127,47 +127,47 @@ am_uartcmd_handle_t am_uartcmd_init (am_uartcmd_dev_t           *p_dev,
                                      uint8_t                     frame_type);
                                      
 /**
- * \brief ´ÓUARTCMD »º³åÇøÖĞ¶ÁÊı¾İ
+ * \brief ä»UARTCMD ç¼“å†²åŒºä¸­è¯»æ•°æ®
  * 
- * \param[in] handle   : UARTCMD ·şÎñ¾ä±ú
- * \param[in] p_rx_buf : ¶Á³öµÄÊı¾İ´æ·ÅµÄ»º³åÇø
- * \param[in] nbytes   : ¶Á³öµÄ×Ö½ÚÊı
+ * \param[in] handle   : UARTCMD æœåŠ¡å¥æŸ„
+ * \param[in] p_rx_buf : è¯»å‡ºçš„æ•°æ®å­˜æ”¾çš„ç¼“å†²åŒº
+ * \param[in] nbytes   : è¯»å‡ºçš„å­—èŠ‚æ•°
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó  
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯  
  */
 int am_uartcmd_buf_read (am_uartcmd_handle_t handle, void *p_rx_buf, uint32_t nbytes);
 
 /**
- * \brief ÍùUARTCMD »º³åÇøÖĞĞ´Êı¾İ
+ * \brief å¾€UARTCMD ç¼“å†²åŒºä¸­å†™æ•°æ®
  * 
- * \param[in] handle   : UARTCMD ·şÎñ¾ä±ú
- * \param[in] p_tx_buf : Ğ´ÈëµÄÊı¾İ´æ·ÅµÄ»º³åÇø
- * \param[in] nbytes   : Ğ´ÈëµÄ×Ö½ÚÊı
+ * \param[in] handle   : UARTCMD æœåŠ¡å¥æŸ„
+ * \param[in] p_tx_buf : å†™å…¥çš„æ•°æ®å­˜æ”¾çš„ç¼“å†²åŒº
+ * \param[in] nbytes   : å†™å…¥çš„å­—èŠ‚æ•°
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó  
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯  
  */
 int am_uartcmd_buf_write (am_uartcmd_handle_t handle, void *p_tx_buf, uint32_t nbytes);
 
 /**
- * \brief Í¨Öª UARTCMD Ä£¿éÊı¾İÒÑÈ«²¿Ğ´Èë»º³åÇø
+ * \brief é€šçŸ¥ UARTCMD æ¨¡å—æ•°æ®å·²å…¨éƒ¨å†™å…¥ç¼“å†²åŒº
  *
- * \param[in] handle : UARTCMD·şÎñ¾ä±ú
+ * \param[in] handle : UARTCMDæœåŠ¡å¥æŸ„
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 int am_uartcmd_recv_finished (am_uartcmd_handle_t handle);
 
 /**
- * \brief UARTCMD Ö´ĞĞº¯Êı
- *        UARTCMD Ä£¿éµÄÂß¼­ÓÉ¸Ãº¯ÊıÊµÏÖ
+ * \brief UARTCMD æ‰§è¡Œå‡½æ•°
+ *        UARTCMD æ¨¡å—çš„é€»è¾‘ç”±è¯¥å‡½æ•°å®ç°
  *
- * \param[in] handle : UARTCMD ·şÎñ¾ä±ú
+ * \param[in] handle : UARTCMD æœåŠ¡å¥æŸ„
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó 
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯ 
  */
 int am_uartcmd_execute (am_uartcmd_handle_t handle);
 

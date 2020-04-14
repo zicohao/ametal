@@ -12,22 +12,22 @@
 
 /**
  * \file
- * \brief UART DMA �������̣�ͨ�� HW ��ӿ�ʵ��
+ * \brief UART DMA 发送例程，通过 HW 层接口实现
  *
- * - ʵ������
- *   1.���ڴ�ӡ��ʾ�ַ� "DMA tx transfer start:"��
- *   2. Ȼ�󴮿ڴ�ӡһ���ڴ涨����ַ����ֱ�Ϊ��
+ * - 实验现象：
+ *   1.串口打印提示字符 "DMA tx transfer start:"；
+ *   2. 然后串口打印一次内存定义的字符，分别为：
  *      uart tx dma test running
  *      uart tx dma test done
  *
  * \note
- *    1. ����۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIOA_10 �������� PC ���ڵ� TXD��
- *       PIOA_9 �������� PC ���ڵ� RXD��
- *    2. ������Դ���ʹ���뱾������ͬ����Ӧ�ں�������ʹ�õ�����Ϣ�������
- *      ���磺AM_DBG_INFO()����
- *    3. �� DMA �����ڼ䲻Ҫ�Դ������ݼĴ������в�����
+ *    1. 如需观察串口打印的调试信息，需要将 PIOA_10 引脚连接 PC 串口的 TXD，
+ *       PIOA_9 引脚连接 PC 串口的 RXD；
+ *    2. 如果调试串口使用与本例程相同，则不应在后续继续使用调试信息输出函数
+ *      （如：AM_DBG_INFO()）；
+ *    3. 在 DMA 操作期间不要对串口数据寄存器进行操作。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_zlg217_hw_uart_tx_dma.c src_zlg217_hw_uart_tx_dma
  *
  *
@@ -50,13 +50,13 @@
 #include "demo_am217_core_entries.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_zlg217_core_hw_uart_tx_dma_entry (void)
 {
     AM_DBG_INFO("demo am217_core hw uart tx dma!\r\n");
 
-    /* �ȴ������������ */
+    /* 等待发送数据完成 */
     am_mdelay(100);
 
     demo_zlg_hw_uart_tx_dma_entry(ZLG217_UART1,

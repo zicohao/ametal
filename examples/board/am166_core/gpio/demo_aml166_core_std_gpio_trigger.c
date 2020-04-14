@@ -11,18 +11,18 @@
 *******************************************************************************/
 /**
  * \file
- * \brief GPIO Òı½ÅÖĞ¶ÏÀı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief GPIO å¼•è„šä¸­æ–­ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè£º
- *   1. ½« J14 µÄ KEY ºÍ PIOA_8 ¶Ì½ÓÔÚÒ»Æğ¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. å°† J14 çš„ KEY å’Œ PIOA_8 çŸ­æ¥åœ¨ä¸€èµ·ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. °´ÏÂ°´¼ü KEY/RES£¬´®¿ÚÊä³ö "the gpio interrupt happen!"¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. æŒ‰ä¸‹æŒ‰é”® KEY/RESï¼Œä¸²å£è¾“å‡º "the gpio interrupt happen!"ã€‚
  *
  * \note
- *    ÈçĞè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔĞÅÏ¢£¬ĞèÒª½« PIOA_9 Òı½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
+ *    å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIOA_9 å¼•è„šè¿æ¥ PC ä¸²å£çš„ RXDã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_aml166_core_std_gpio_trigger.c src_aml166_core_std_gpio_trigger
  *
  * \internal
@@ -44,7 +44,7 @@
 #include "demo_aml166_core_entries.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_aml166_core_std_gpio_trigger_entry (void)
 {

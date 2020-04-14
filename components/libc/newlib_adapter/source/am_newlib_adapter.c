@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief NEW LIB ÊÊÅäÆ÷
+ * \brief NEW LIB é€‚é…å™¨
  *
  * \internal
  * \par Modification History
@@ -35,8 +35,8 @@
    Global Variables
 *******************************************************************************/
 typedef struct am_newlib_adapter {
-    const am_newlib_adapter_ops_t *p_ops;    /** < \brief Çı¶¯º¯Êı*/
-    void                          *p_cookie; /** < \brief Çı¶¯º¯Êı²ÎÊı  */
+    const am_newlib_adapter_ops_t *p_ops;    /** < \brief é©±åŠ¨å‡½æ•°*/
+    void                          *p_cookie; /** < \brief é©±åŠ¨å‡½æ•°å‚æ•°  */
 } am_newlib_adapter_t;
 
 static am_newlib_adapter_t  __g_adapter;
@@ -195,7 +195,7 @@ _CLOCK_T_ _times_r(struct _reent *ptr, struct tms *ptms)
 }
 
 /******************************************************************************/
-/* Remove a file¡¯s directory entry */
+/* Remove a fileâ€™s directory entry */
 int _unlink_r(struct _reent *ptr, const char *file)
 {
     ptr->_errno = ENOENT;

@@ -28,32 +28,32 @@
 #include "am_kl26_gpio_util.h"
 
 /*******************************************************************************
-* Ë½ÓĞ¶¨Òå
+* ç§æœ‰å®šä¹‰
 *******************************************************************************/
 
-/** \brief ÖĞ¶ÏÎ´Á¬½Ó±êÊ¶             */
+/** \brief ä¸­æ–­æœªè¿æ¥æ ‡è¯†             */
 #define AM_KL26_GPIO_INVALID_PIN_MAP    0xFF
 
-/** \brief Î´ÅäÖÃÆäËû¹¦ÄÜ±êÊ¶         */
+/** \brief æœªé…ç½®å…¶ä»–åŠŸèƒ½æ ‡è¯†         */
 #define AM_KL26_GPIO_NO_FUNC            0xFF
 
-/** \brief ¶¨ÒåÖ¸ÏòGPIOÉè±¸ĞÅÏ¢µÄÖ¸Õë */
+/** \brief å®šä¹‰æŒ‡å‘GPIOè®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ */
 #define __GPIO_DEVINFO_DECL(p_gpio_devinfo, p_dev)  \
         const am_kl26_gpio_devinfo_t *p_gpio_devinfo = p_dev->p_devinfo
 
 /******************************************************************************
-  È«¾Ö±äÁ¿
+  å…¨å±€å˜é‡
 ******************************************************************************/
 
-/** \brief Ö¸ÏòGPIOÉè±¸µÄÖ¸Õë */
+/** \brief æŒ‡å‘GPIOè®¾å¤‡çš„æŒ‡é’ˆ */
 am_kl26_gpio_dev_t *__gp_gpio_dev = NULL;
 
 /*******************************************************************************
-  ¹«¹²º¯Êı
+  å…¬å…±å‡½æ•°
 *******************************************************************************/
 
 /**
- * \brief Òı½ÅÅäÖÃ
+ * \brief å¼•è„šé…ç½®
  */
 int am_gpio_pin_cfg (int pin, uint32_t flags)
 {
@@ -64,18 +64,18 @@ int am_gpio_pin_cfg (int pin, uint32_t flags)
 
     uint32_t func, mode;
 
-    /* ¶ÁÈ¡±ê×¼²ã¶¨ÒåµÄĞÅÏ¢ */
+    /* è¯»å–æ ‡å‡†å±‚å®šä¹‰çš„ä¿¡æ¯ */
     func = AM_GPIO_COM_FUNC_GET(flags);
     mode = AM_GPIO_COM_MODE_GET(flags);
 
     /*
-     * ¹²ÓĞ¹¦ÄÜÅäÖÃ£¨ÓÅÏÈ¼¶¸ß£©
+     * å…±æœ‰åŠŸèƒ½é…ç½®ï¼ˆä¼˜å…ˆçº§é«˜ï¼‰
      */
     if (func != 0x00) {
 
         switch (func) {
 
-        /* Ä¬ÈÏ¹Ü½ÅÎªGPIO¹¦ÄÜ */
+        /* é»˜è®¤ç®¡è„šä¸ºGPIOåŠŸèƒ½ */
         case AM_GPIO_INPUT:           
             amhw_kl26_gpio_pin_dir_input(p_hw_gpio, pin);
             break;
@@ -95,19 +95,19 @@ int am_gpio_pin_cfg (int pin, uint32_t flags)
         }
     }
 	
-    /* ¹Ü½ÅÄ¬ÈÏÎªGPIO¹¦ÄÜ */
+    /* ç®¡è„šé»˜è®¤ä¸ºGPIOåŠŸèƒ½ */
     amhw_kl26_port_pin_func_cfg(p_hw_port, pin, KL26_PORT_GPIO);	
 
     if (mode != 0x00) {
 
-        if (mode == AM_GPIO_FLOAT_VAL) {                    /* ÎŞÉÏ/ÏÂÀ­ */
+        if (mode == AM_GPIO_FLOAT_VAL) {                    /* æ— ä¸Š/ä¸‹æ‹‰ */
             amhw_kl26_port_pin_pull_disable(p_hw_port, pin);
 
-        } else if (mode == AM_GPIO_PULL_UP_VAL) {           /* ÉèÖÃÉÏÀ­Ä£Ê½ */
+        } else if (mode == AM_GPIO_PULL_UP_VAL) {           /* è®¾ç½®ä¸Šæ‹‰æ¨¡å¼ */
             amhw_kl26_port_pin_pull_enable(p_hw_port, pin);
             amhw_kl26_port_pin_pull_up(p_hw_port, pin);
 
-        } else if (mode == AM_GPIO_PULL_DOWN_VAL) {         /* ÉèÖÃÏÂÀ­Ä£Ê½ */
+        } else if (mode == AM_GPIO_PULL_DOWN_VAL) {         /* è®¾ç½®ä¸‹æ‹‰æ¨¡å¼ */
             amhw_kl26_port_pin_pull_enable(p_hw_port, pin);
             amhw_kl26_port_pin_pull_down(p_hw_port, pin);
 
@@ -116,65 +116,65 @@ int am_gpio_pin_cfg (int pin, uint32_t flags)
         }
     }
 
-    /* Æ½Ì¨¹¦ÄÜÅäÖÃ */
+    /* å¹³å°åŠŸèƒ½é…ç½® */
 
-    /* ĞèÒªÉèÖÃÒı½Å¹¦ÄÜ */
+    /* éœ€è¦è®¾ç½®å¼•è„šåŠŸèƒ½ */
     if ((flags & AM_KL26_PORT_FUNEN) != 0) {
         amhw_kl26_port_pin_func_cfg(p_hw_port, pin, AM_KL26_GPIO_FUNC_GET(flags));
     }
 
-    /* ½ûÄÜÒı½ÅµÄÉÏÏÂÀ­Ä£Ê½ */
+    /* ç¦èƒ½å¼•è„šçš„ä¸Šä¸‹æ‹‰æ¨¡å¼ */
     if ((flags & AM_KL26_PORT_PULLEN) != 0) {
         if (AM_KL26_GPIO_PE_GET(flags) == 0) {
             amhw_kl26_port_pin_pull_disable(p_hw_port, pin);
         }
     }
 
-    /* ÉèÖÃÒı½ÅµÄÉÏÀ­Ä£Ê½ */
+    /* è®¾ç½®å¼•è„šçš„ä¸Šæ‹‰æ¨¡å¼ */
     if ((flags & AM_KL26_PORT_PULLUP) != 0) {
-        /* Ê¹ÄÜÒı½ÅµÄÉÏÀ­Ä£Ê½ */
+        /* ä½¿èƒ½å¼•è„šçš„ä¸Šæ‹‰æ¨¡å¼ */
         if (AM_KL26_GPIO_PULL_GET(flags) == 1) {
             amhw_kl26_port_pin_pull_enable(p_hw_port, pin);
             amhw_kl26_port_pin_pull_up(p_hw_port, pin);
 
-        } else {        /* ½ûÄÜÒı½ÅµÄÉÏÀ­Ä£Ê½ */
+        } else {        /* ç¦èƒ½å¼•è„šçš„ä¸Šæ‹‰æ¨¡å¼ */
             amhw_kl26_port_pin_pull_disable(p_hw_port, pin);
             amhw_kl26_port_pin_pull_down(p_hw_port, pin);
 
         }
     }
 
-    /* ĞèÒªÉèÖÃÒı½ÅµÍ×ª»»ËÙÂÊ     */
+    /* éœ€è¦è®¾ç½®å¼•è„šä½è½¬æ¢é€Ÿç‡     */
     if ((flags & AM_KL26_PORT_SLEWSLOW) != 0) {
-        /* Òı½Å×ª»»ËÙÂÊµÍ */
+        /* å¼•è„šè½¬æ¢é€Ÿç‡ä½ */
         if (AM_KL26_GPIO_SRE_GET(flags) == 1) {
             amhw_kl26_port_pin_slew_slow(p_hw_port, pin);
 
-        } else {      /* Òı½Å×ª»»ËÙÂÊ¸ß */
+        } else {      /* å¼•è„šè½¬æ¢é€Ÿç‡é«˜ */
             amhw_kl26_port_pin_slew_fast(p_hw_port, pin);
 
         }
     }
 
-    /* ĞèÒªÉèÖÃÂË²¨Æ÷ */
+    /* éœ€è¦è®¾ç½®æ»¤æ³¢å™¨ */
     if ((flags & AM_KL26_PORT_FILTEREN) != 0) {
-        /* Ê¹ÄÜÎŞÔ´ÂË²¨Æ÷ */
+        /* ä½¿èƒ½æ— æºæ»¤æ³¢å™¨ */
         if (AM_KL26_GPIO_PFE_GET(flags) == 1) {
             amhw_kl26_port_pin_filter_enable(p_hw_port, pin);
 
-        } else {     /* ½ûÄÜÎŞÔ´ÂË²¨Æ÷ */
+        } else {     /* ç¦èƒ½æ— æºæ»¤æ³¢å™¨ */
             amhw_kl26_port_pin_filter_disable(p_hw_port, pin);
 
         }
     }
 
-    /* ĞèÒªÉèÖÃÒı½ÅÇı¶¯Á¦  */
+    /* éœ€è¦è®¾ç½®å¼•è„šé©±åŠ¨åŠ›  */
     if ((flags & AM_KL26_PORT_DRIVERHIGH) != 0) {
-        /* ÉèÖÃÒı½Å¸ßÇı¶¯ÄÜÁ¦ */
+        /* è®¾ç½®å¼•è„šé«˜é©±åŠ¨èƒ½åŠ› */
         if (AM_KL26_GPIO_DSE_GET(flags) == 1) {
             amhw_kl26_port_pin_drive_high(p_hw_port, pin);
 
-        } else {     /* ÉèÖÃÒı½ÅÕı³£Çı¶¯ÄÜÁ¦ */
+        } else {     /* è®¾ç½®å¼•è„šæ­£å¸¸é©±åŠ¨èƒ½åŠ› */
             amhw_kl26_port_pin_drive_low(p_hw_port, pin);
         }
     }
@@ -183,7 +183,7 @@ int am_gpio_pin_cfg (int pin, uint32_t flags)
 }
 
 /**
- * \brief »ñÈ¡Òı½Å×´Ì¬
+ * \brief è·å–å¼•è„šçŠ¶æ€
  */
 int am_gpio_get (int pin)
 {
@@ -194,7 +194,7 @@ int am_gpio_get (int pin)
 }
 
 /**
- * \brief ÉèÖÃÒı½ÅÊä³ö×´Ì¬
+ * \brief è®¾ç½®å¼•è„šè¾“å‡ºçŠ¶æ€
  */
 int am_gpio_set (int pin, int value)
 {
@@ -211,7 +211,7 @@ int am_gpio_set (int pin, int value)
 }
 
 /**
- * \brief Òı½ÅÊä³ö·­×ª
+ * \brief å¼•è„šè¾“å‡ºç¿»è½¬
  */
 int am_gpio_toggle (int pin)
 {
@@ -224,7 +224,7 @@ int am_gpio_toggle (int pin)
 }
 
 /**
- * \brief Òı½Å´¥·¢ĞÎÊ½ÉèÖÃ
+ * \brief å¼•è„šè§¦å‘å½¢å¼è®¾ç½®
  */
 int am_gpio_trigger_cfg (int pin, uint32_t flag)
 {
@@ -245,41 +245,41 @@ int am_gpio_trigger_cfg (int pin, uint32_t flag)
         slot = pin - 32;
     }
 
-    /* ¿ÉÒÔÌí¼Ó¸ÃÖĞ¶ÏÒı½ÅÅäÖÃÎªGPIO¹¦ÄÜµÄº¯Êı´úÂë */
+    /* å¯ä»¥æ·»åŠ è¯¥ä¸­æ–­å¼•è„šé…ç½®ä¸ºGPIOåŠŸèƒ½çš„å‡½æ•°ä»£ç  */
     amhw_kl26_port_pin_func_cfg(p_hw_port, pin, KL26_PORT_GPIO);
 //
-//    /* ÉèÖÃ¹Ü½ÅÎªÊäÈë·½Ïò */
+//    /* è®¾ç½®ç®¡è„šä¸ºè¾“å…¥æ–¹å‘ */
 //    amhw_kl26_gpio_pin_dir_input(p_hw_gpio, pin);
 //
-//    /* ¹Ü½ÅÉÏ/ÏÂÀ­Ê¹ÄÜ */
+//    /* ç®¡è„šä¸Š/ä¸‹æ‹‰ä½¿èƒ½ */
 //    amhw_kl26_port_pin_pull_enable(p_hw_port, pin);
 //
-//    /* Òı½ÅÊäÈëÉÏÀ­ */
+//    /* å¼•è„šè¾“å…¥ä¸Šæ‹‰ */
 //    amhw_kl26_port_pin_pull_up(p_hw_port, pin);
 
     switch (flag) {
 
-    case AM_GPIO_TRIGGER_OFF:           /* ¹Ø±Õ´¥·¢ */
+    case AM_GPIO_TRIGGER_OFF:           /* å…³é—­è§¦å‘ */
         amhw_kl26_port_pin_irq_disable(p_hw_port, pin);
         break;
 
-    case AM_GPIO_TRIGGER_HIGH:          /* ¸ßµçÆ½´¥·¢ */
+    case AM_GPIO_TRIGGER_HIGH:          /* é«˜ç”µå¹³è§¦å‘ */
         p_gpio_devinfo->p_infomap[slot] = AMHW_KL26_INT_HIGH;
         break;
 
-    case AM_GPIO_TRIGGER_LOW:           /* µÍµçÆ½´¥·¢ */
+    case AM_GPIO_TRIGGER_LOW:           /* ä½ç”µå¹³è§¦å‘ */
         p_gpio_devinfo->p_infomap[slot] = AMHW_KL26_INT_LOW;
         break;
 
-    case AM_GPIO_TRIGGER_RISE:          /* ÉÏÉıÑØ´¥·¢ */
+    case AM_GPIO_TRIGGER_RISE:          /* ä¸Šå‡æ²¿è§¦å‘ */
         p_gpio_devinfo->p_infomap[slot] = AMHW_KL26_INT_RISING;
         break;
 
-    case AM_GPIO_TRIGGER_FALL:          /* ÏÂ½µÑØ´¥·¢ */
+    case AM_GPIO_TRIGGER_FALL:          /* ä¸‹é™æ²¿è§¦å‘ */
         p_gpio_devinfo->p_infomap[slot] = AMHW_KL26_INT_FALLING;
         break;
 
-    case AM_GPIO_TRIGGER_BOTH_EDGES:    /* Ë«±ßÑØ´¥·¢ */
+    case AM_GPIO_TRIGGER_BOTH_EDGES:    /* åŒè¾¹æ²¿è§¦å‘ */
         p_gpio_devinfo->p_infomap[slot] = AMHW_KL26_PINT_EITHER;
         break;
 
@@ -287,14 +287,14 @@ int am_gpio_trigger_cfg (int pin, uint32_t flag)
         break;
     }
 
-    /* ÇåÒı½ÅÖĞ¶Ï±êÖ¾Î» */
+    /* æ¸…å¼•è„šä¸­æ–­æ ‡å¿—ä½ */
     amhw_kl26_port_pin_isf_clr(p_hw_port, pin);
 
     return AM_OK;
 }
 
 /**
- * \brief ¸ù¾İ×´Ì¬¼Ä´æÆ÷×ª»»ÎªÖĞ¶ÏºÅ
+ * \brief æ ¹æ®çŠ¶æ€å¯„å­˜å™¨è½¬æ¢ä¸ºä¸­æ–­å·
  */
 static int __get_inum (uint32_t int_status)
 {
@@ -313,9 +313,9 @@ static int __get_inum (uint32_t int_status)
 }
 
 /**
- * \brief GPIO ÖĞ¶Ï·şÎñÏìÓ¦º¯Êı¡£
- * \param[in] p_arg : µ±Ç°ÖĞ¶ÏÓ³Éä±àºÅ¡£
- * \return ÎŞ
+ * \brief GPIO ä¸­æ–­æœåŠ¡å“åº”å‡½æ•°ã€‚
+ * \param[in] p_arg : å½“å‰ä¸­æ–­æ˜ å°„ç¼–å·ã€‚
+ * \return æ— 
  */
 static void __port_a_int_isr (void *p_arg)
 {
@@ -326,14 +326,14 @@ static void __port_a_int_isr (void *p_arg)
 
     int         pin_inum=0;
 
-    /* »ñµÃÖĞ¶ÏÒı½ÅºÅ */
+    /* è·å¾—ä¸­æ–­å¼•è„šå· */
     pin_inum = __get_inum(p_hw_port->port[0].port_isfr);
 
-    /* »ñÈ¡ÓĞ¹Ø»Øµ÷º¯Êı¼°²ÎÊı */
+    /* è·å–æœ‰å…³å›è°ƒå‡½æ•°åŠå‚æ•° */
     pfn_isr = p_gpio_devinfo->p_triginfo[pin_inum].pfn_callback;
     p_arg_tmp = p_gpio_devinfo->p_triginfo[pin_inum].p_arg;
 
-    /* ÇåÖĞ¶Ï±êÖ¾ */
+    /* æ¸…ä¸­æ–­æ ‡å¿— */
     amhw_kl26_port_pin_isf_clr(p_hw_port, pin_inum);
 
     if (pfn_isr != NULL) {
@@ -357,11 +357,11 @@ static void __port_cd_int_isr (void *p_arg)
         pin_inum += 32;
     }
     pin_inum += 32;
-    /* »ñÈ¡ÓĞ¹Ø»Øµ÷º¯Êı¼°²ÎÊı */
+    /* è·å–æœ‰å…³å›è°ƒå‡½æ•°åŠå‚æ•° */
     pfn_isr = p_gpio_devinfo->p_triginfo[pin_inum].pfn_callback;
     p_arg_tmp   = p_gpio_devinfo->p_triginfo[pin_inum].p_arg;
 
-    /* ÇåÖĞ¶Ï±êÖ¾ */
+    /* æ¸…ä¸­æ–­æ ‡å¿— */
     amhw_kl26_port_pin_isf_clr(p_hw_port, pin_inum + 32);
 
     if (pfn_isr != NULL) {
@@ -370,7 +370,7 @@ static void __port_cd_int_isr (void *p_arg)
 }
 
 /**
- * \brief Á¬½ÓÒı½ÅÖĞ¶Ï»Øµ÷º¯Êı
+ * \brief è¿æ¥å¼•è„šä¸­æ–­å›è°ƒå‡½æ•°
  */
 int am_gpio_trigger_connect (int           pin,
                              am_pfnvoid_t  pfn_callback,
@@ -382,9 +382,9 @@ int am_gpio_trigger_connect (int           pin,
     int          key;
     int          slot      = -1;
 
-    /** \brief »ñµÃÒı½Å¶ÔÓ¦µÄÒı½Å¶ËºÅ */
+    /** \brief è·å¾—å¼•è„šå¯¹åº”çš„å¼•è„šç«¯å· */
     port = pin >> 5;
-    if ((port == 1) || (port > 3)) {        /*ÖĞ¶Ï¹Ü½Å²»´æÔÚ*/
+    if ((port == 1) || (port > 3)) {        /*ä¸­æ–­ç®¡è„šä¸å­˜åœ¨*/
         return -AM_EINVAL;
     }
 
@@ -393,21 +393,21 @@ int am_gpio_trigger_connect (int           pin,
     } else {
         slot = pin - 32;
     }
-    /* ¹Ø±ÕCPUÖĞ¶Ï */
+    /* å…³é—­CPUä¸­æ–­ */
     key = am_int_cpu_lock();
 
-    /*  ±£´æ´¥·¢Òı½Å¼°»Øµ÷º¯Êı */
+    /*  ä¿å­˜è§¦å‘å¼•è„šåŠå›è°ƒå‡½æ•° */
     (p_gpio_devinfo->p_triginfo)[slot].pfn_callback = pfn_callback;
     (p_gpio_devinfo->p_triginfo)[slot].p_arg        = p_arg;
 
-    /* ´ò¿ªÖĞ¶Ï */
+    /* æ‰“å¼€ä¸­æ–­ */
     am_int_cpu_unlock(key);
     return AM_OK;
 }
 
 
 /**
- * \brief É¾³ıÒı½ÅÖĞ¶Ï»Øµ÷º¯ÊıÁ¬½Ó
+ * \brief åˆ é™¤å¼•è„šä¸­æ–­å›è°ƒå‡½æ•°è¿æ¥
  */
 int am_gpio_trigger_disconnect (int           pin,
                                 am_pfnvoid_t  pfn_callback,
@@ -421,7 +421,7 @@ int am_gpio_trigger_disconnect (int           pin,
 
     port = pin >> 5;
 
-    if ((port == 1) || (port > 3)) {        /*ÖĞ¶Ï¹Ü½Å²»´æÔÚ*/
+    if ((port == 1) || (port > 3)) {        /*ä¸­æ–­ç®¡è„šä¸å­˜åœ¨*/
         return -AM_EINVAL;
     }
 
@@ -431,19 +431,19 @@ int am_gpio_trigger_disconnect (int           pin,
         slot = pin - 32;
     }
 
-    /* ¹Ø±ÕCPUÖĞ¶Ï */
+    /* å…³é—­CPUä¸­æ–­ */
     key = am_int_cpu_lock();
 
     (p_gpio_devinfo->p_triginfo)[slot].pfn_callback = NULL;
 
-    /* ´ò¿ªCPUÖĞ¶Ï */
+    /* æ‰“å¼€CPUä¸­æ–­ */
     am_int_cpu_unlock(key);
 
     return AM_OK;
 }
 
 /**
- * \brief Ê¹ÄÜÒı½ÅÖĞ¶Ï¡£
+ * \brief ä½¿èƒ½å¼•è„šä¸­æ–­ã€‚
  */
 int am_gpio_trigger_on (int pin)
 {
@@ -452,10 +452,10 @@ int am_gpio_trigger_on (int pin)
 
     uint32_t port;
 
-    /** \brief »ñµÃÒı½Å¶ÔÓ¦µÄÒı½Å¶ËºÅ */
+    /** \brief è·å¾—å¼•è„šå¯¹åº”çš„å¼•è„šç«¯å· */
     port = pin >> 5;
 
-    if ((port == 1) || (port > 3)) {    /*ÖĞ¶Ï¹Ü½Å²»´æÔÚ*/
+    if ((port == 1) || (port > 3)) {    /*ä¸­æ–­ç®¡è„šä¸å­˜åœ¨*/
         return -AM_EINVAL;
     }
 
@@ -471,7 +471,7 @@ int am_gpio_trigger_on (int pin)
 }
 
 /**
- * \brief ½ûÄÜÒı½ÅÖĞ¶Ï¡£
+ * \brief ç¦èƒ½å¼•è„šä¸­æ–­ã€‚
  */
 int am_gpio_trigger_off (int pin)
 {
@@ -483,7 +483,7 @@ int am_gpio_trigger_off (int pin)
 }
 
 /**
- * \brief GPIO³õÊ¼»¯
+ * \brief GPIOåˆå§‹åŒ–
  */
 int am_kl26_gpio_init (am_kl26_gpio_dev_t           *p_dev,
                        const am_kl26_gpio_devinfo_t *p_devinfo)
@@ -507,7 +507,7 @@ int am_kl26_gpio_init (am_kl26_gpio_dev_t           *p_dev,
         p_devinfo->pfn_plfm_init();
     }
 
-    /* ÖĞ¶Ï±í¿ÉÓÃ */
+    /* ä¸­æ–­è¡¨å¯ç”¨ */
     if (p_dev->valid_flg) {
         for (i = 0; i < p_devinfo->pint_count; i++) {
             (p_devinfo->p_infomap)[i]               = AM_KL26_GPIO_INVALID_PIN_MAP;
@@ -515,10 +515,10 @@ int am_kl26_gpio_init (am_kl26_gpio_dev_t           *p_dev,
         }
     }
 
-    am_int_connect((p_devinfo->inum_pin)[0], /* Ğ´ÈëÖĞ¶ÏºÅ */
+    am_int_connect((p_devinfo->inum_pin)[0], /* å†™å…¥ä¸­æ–­å· */
                    (am_pfnvoid_t)__port_a_int_isr,
                    (void *)p_devinfo);
-    am_int_connect((p_devinfo->inum_pin)[1], /* Ğ´ÈëÖĞ¶ÏºÅ */
+    am_int_connect((p_devinfo->inum_pin)[1], /* å†™å…¥ä¸­æ–­å· */
                    (am_pfnvoid_t)__port_cd_int_isr,
                    (void *)p_devinfo);
 
@@ -529,7 +529,7 @@ int am_kl26_gpio_init (am_kl26_gpio_dev_t           *p_dev,
 }
 
 /**
- * \brief GPIOÈ¥³õÊ¼»¯
+ * \brief GPIOå»åˆå§‹åŒ–
  */
 void am_kl26_gpio_deinit (void)
 {
@@ -554,10 +554,10 @@ void am_kl26_gpio_deinit (void)
         am_int_disable((p_gpio_devinfo->inum_pin)[i]);
     }
 
-    am_int_disconnect((p_gpio_devinfo->inum_pin)[0], /* Ğ´ÈëÖĞ¶ÏºÅ */
+    am_int_disconnect((p_gpio_devinfo->inum_pin)[0], /* å†™å…¥ä¸­æ–­å· */
                    (am_pfnvoid_t)__port_a_int_isr,
                    (void *)p_gpio_devinfo);
-    am_int_disconnect((p_gpio_devinfo->inum_pin)[1], /* Ğ´ÈëÖĞ¶ÏºÅ */
+    am_int_disconnect((p_gpio_devinfo->inum_pin)[1], /* å†™å…¥ä¸­æ–­å· */
                    (am_pfnvoid_t)__port_cd_int_isr,
                    (void *)p_gpio_devinfo);
 

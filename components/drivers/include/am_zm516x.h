@@ -13,11 +13,11 @@
 
 /**
  * \file
- * \brief ZigBee Ä£¿é ZM516X ²Ù×÷½Ó¿Ú
+ * \brief ZigBee æ¨¡å— ZM516X æ“ä½œæ¥å£
  *
- * Ê¹ÓÃ±¾·şÎñĞèÒª°üº¬Í·ÎÄ¼ş am_zm516x.h
+ * ä½¿ç”¨æœ¬æœåŠ¡éœ€è¦åŒ…å«å¤´æ–‡ä»¶ am_zm516x.h
  *
- * \par Ê¹ÓÃÊ¾Àı
+ * \par ä½¿ç”¨ç¤ºä¾‹
  * \code
  * #include "am_zm516x.h"
  * \endcode
@@ -46,81 +46,81 @@ extern "C" {
 #include "am_wait.h"
 #include "am_uart_rngbuf.h"
 
-/** \brief ZM516X Ä£¿éÊµÀıĞÅÏ¢ */
+/** \brief ZM516X æ¨¡å—å®ä¾‹ä¿¡æ¯ */
 typedef struct am_zm516x_dev_info {
-    int      rst_pin;       /**< \brief ¸´Î»Òı½Å */
-    int      ack_pin;       /**< \brief ACK Òı½Å */
-    uint16_t ack_timeout;   /**< \brief ACK ³¬Ê±Ê±¼ä */
-    uint8_t *p_txbuf;       /**< \brief ·¢ËÍ»º³åÇø */
-    uint32_t txbuf_size;    /**< \brief ·¢ËÍ»º³åÇø´óĞ¡£¨×Ö½ÚÊı£© */
-    uint8_t *p_rxbuf;       /**< \brief ½ÓÊÕ»º³åÇø */
-    uint32_t rxbuf_size;    /**< \brief ½ÓÊÕ»º³åÇø´óĞ¡£¨×Ö½ÚÊı£© */
+    int      rst_pin;       /**< \brief å¤ä½å¼•è„š */
+    int      ack_pin;       /**< \brief ACK å¼•è„š */
+    uint16_t ack_timeout;   /**< \brief ACK è¶…æ—¶æ—¶é—´ */
+    uint8_t *p_txbuf;       /**< \brief å‘é€ç¼“å†²åŒº */
+    uint32_t txbuf_size;    /**< \brief å‘é€ç¼“å†²åŒºå¤§å°ï¼ˆå­—èŠ‚æ•°ï¼‰ */
+    uint8_t *p_rxbuf;       /**< \brief æ¥æ”¶ç¼“å†²åŒº */
+    uint32_t rxbuf_size;    /**< \brief æ¥æ”¶ç¼“å†²åŒºå¤§å°ï¼ˆå­—èŠ‚æ•°ï¼‰ */
 } am_zm516x_dev_info_t;
 
-/** \brief ZM516X Ä£¿é²Ù×÷¾ä±ú */
+/** \brief ZM516X æ¨¡å—æ“ä½œå¥æŸ„ */
 typedef struct am_zm516x_dev {
-    am_uart_rngbuf_handle_t uart_handle;     /**< \brief UART ¾ä±ú(»·ĞÎ»º³åÇø) */
-    am_uart_rngbuf_dev_t    uart_rngbuf_dev; /**< \brief UART Éè±¸(»·ĞÎ»º³åÇø) */
-    am_wait_t               ack_wait;        /**< \brief ACK µÈ´ıĞÅºÅ */
-    am_zm516x_dev_info_t   *p_devinfo;       /**< \brief Éè±¸ÊµÀıĞÅÏ¢ */
-    uint8_t                 dev_type[2];     /**< \brief Éè±¸ÀàĞÍ */
+    am_uart_rngbuf_handle_t uart_handle;     /**< \brief UART å¥æŸ„(ç¯å½¢ç¼“å†²åŒº) */
+    am_uart_rngbuf_dev_t    uart_rngbuf_dev; /**< \brief UART è®¾å¤‡(ç¯å½¢ç¼“å†²åŒº) */
+    am_wait_t               ack_wait;        /**< \brief ACK ç­‰å¾…ä¿¡å· */
+    am_zm516x_dev_info_t   *p_devinfo;       /**< \brief è®¾å¤‡å®ä¾‹ä¿¡æ¯ */
+    uint8_t                 dev_type[2];     /**< \brief è®¾å¤‡ç±»å‹ */
 } am_zm516x_dev_t;
 
-/** \brief ZM516X Ä£¿é±ê×¼·şÎñ²Ù×÷¾ä±úÀàĞÍ¶¨Òå */
+/** \brief ZM516X æ¨¡å—æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„ç±»å‹å®šä¹‰ */
 typedef struct am_zm516x_dev *am_zm516x_handle_t;
 
-/** \brief ZM516X Ä£¿éµÄÅäÖÃĞÅÏ¢ */
+/** \brief ZM516X æ¨¡å—çš„é…ç½®ä¿¡æ¯ */
 typedef struct am_zm516x_cfg_info {
-    char    dev_name[16];     /**< \brief Éè±¸Ãû³Æ */
-    char    dev_pwd[16];      /**< \brief Éè±¸ÃÜÂë */
-    uint8_t dev_mode;         /**< \brief Éè±¸ÀàĞÍ£¬0: ÖÕ¶ËÉè±¸ 1: Â·ÓÉÉè±¸ */
-    uint8_t chan;             /**< \brief Í¨µÀºÅ */
-    uint8_t panid[2];         /**< \brief ÍøÂç ID (PanID) */
-    uint8_t my_addr[2];       /**< \brief ±¾µØÍøÂçµØÖ· */
-    uint8_t my_mac[8];        /**< \brief ±¾µØÎïÀíµØÖ·(MAC) */
-    uint8_t dst_addr[2];      /**< \brief Ä¿±êÍøÂçµØÖ· */
-    uint8_t dst_mac[8];       /**< \brief Ä¿±êÎïÀíµØÖ·(±£Áô) */
-    uint8_t reserve;          /**< \brief ±£Áô */
+    char    dev_name[16];     /**< \brief è®¾å¤‡åç§° */
+    char    dev_pwd[16];      /**< \brief è®¾å¤‡å¯†ç  */
+    uint8_t dev_mode;         /**< \brief è®¾å¤‡ç±»å‹ï¼Œ0: ç»ˆç«¯è®¾å¤‡ 1: è·¯ç”±è®¾å¤‡ */
+    uint8_t chan;             /**< \brief é€šé“å· */
+    uint8_t panid[2];         /**< \brief ç½‘ç»œ ID (PanID) */
+    uint8_t my_addr[2];       /**< \brief æœ¬åœ°ç½‘ç»œåœ°å€ */
+    uint8_t my_mac[8];        /**< \brief æœ¬åœ°ç‰©ç†åœ°å€(MAC) */
+    uint8_t dst_addr[2];      /**< \brief ç›®æ ‡ç½‘ç»œåœ°å€ */
+    uint8_t dst_mac[8];       /**< \brief ç›®æ ‡ç‰©ç†åœ°å€(ä¿ç•™) */
+    uint8_t reserve;          /**< \brief ä¿ç•™ */
 
     /**
-     * \brief ·¢Éä¹¦ÂÊ£¬ÖµÎª 0~3£¬·Ö±ğ¶ÔÓ¦·¢Éä¹¦ÂÊ£º
-     *        -32dBm¡¢-20.5dBm¡¢-9dBm¡¢+2.5dBm
+     * \brief å‘å°„åŠŸç‡ï¼Œå€¼ä¸º 0~3ï¼Œåˆ†åˆ«å¯¹åº”å‘å°„åŠŸç‡ï¼š
+     *        -32dBmã€-20.5dBmã€-9dBmã€+2.5dBm
      */
     uint8_t power_level;
-    uint8_t retry_num;        /**< \brief ·¢ËÍÊı¾İÖØÊÔ´ÎÊı */
-    uint8_t tran_timeout;     /**< \brief ·¢ËÍÊı¾İÖØÊÔÊ±¼ä¼ä¸ô(10ms) */
+    uint8_t retry_num;        /**< \brief å‘é€æ•°æ®é‡è¯•æ¬¡æ•° */
+    uint8_t tran_timeout;     /**< \brief å‘é€æ•°æ®é‡è¯•æ—¶é—´é—´éš”(10ms) */
 
     /**
-     * \brief ´®¿Ú²¨ÌØÂÊ£¬ÖµÎª 1~7£¬·Ö±ğ¶ÔÓ¦²¨ÌØÂÊ£º
-     *        2400¡¢4800¡¢9600¡¢19200¡¢38400¡¢57600¡¢115200
+     * \brief ä¸²å£æ³¢ç‰¹ç‡ï¼Œå€¼ä¸º 1~7ï¼Œåˆ†åˆ«å¯¹åº”æ³¢ç‰¹ç‡ï¼š
+     *        2400ã€4800ã€9600ã€19200ã€38400ã€57600ã€115200
      */
     uint8_t serial_rate;
-    uint8_t serial_data;      /**< \brief ´®¿ÚÊı¾İÎ»£¬ÖµÎª 5~8 */
-    uint8_t serial_stop;      /**< \brief ´®¿ÚÍ£Ö¹Î»£¬ÖµÎª 1~2 */
-    uint8_t serial_parity;    /**< \brief ´®¿ÚĞ£ÑéÎ» 0: ÎŞĞ£Ñé 1: ÆæĞ£Ñé 2: Å¼Ğ£Ñé */
-    uint8_t send_mode;        /**< \brief ·¢ËÍÄ£Ê½ 0: µ¥²¥  1: ¹ã²¥ */
+    uint8_t serial_data;      /**< \brief ä¸²å£æ•°æ®ä½ï¼Œå€¼ä¸º 5~8 */
+    uint8_t serial_stop;      /**< \brief ä¸²å£åœæ­¢ä½ï¼Œå€¼ä¸º 1~2 */
+    uint8_t serial_parity;    /**< \brief ä¸²å£æ ¡éªŒä½ 0: æ— æ ¡éªŒ 1: å¥‡æ ¡éªŒ 2: å¶æ ¡éªŒ */
+    uint8_t send_mode;        /**< \brief å‘é€æ¨¡å¼ 0: å•æ’­  1: å¹¿æ’­ */
 } am_zm516x_cfg_info_t;
 
-/** \brief ZM516X Ä£¿éµÄ»ù±¾ĞÅÏ¢(Í¨¹ıËÑË÷ÃüÁî D4 »ñµÃ) */
+/** \brief ZM516X æ¨¡å—çš„åŸºæœ¬ä¿¡æ¯(é€šè¿‡æœç´¢å‘½ä»¤ D4 è·å¾—) */
 typedef struct am_zm516x_base_info {
-    uint8_t dev_mode[2];      /**< \brief Éè±¸ÀàĞÍ */
-    uint8_t chan;             /**< \brief Í¨µÀºÅ */
-    uint8_t data_rate;        /**< \brief RFÍ¨Ñ¶ËÙÂÊ  */
-    uint8_t panid[2];         /**< \brief ÍøÂç ID (PanID) */
-    uint8_t addr[2];          /**< \brief ÍøÂçµØÖ· */
-    uint8_t state;            /**< \brief ÔËĞĞ×´Ì¬ */
+    uint8_t dev_mode[2];      /**< \brief è®¾å¤‡ç±»å‹ */
+    uint8_t chan;             /**< \brief é€šé“å· */
+    uint8_t data_rate;        /**< \brief RFé€šè®¯é€Ÿç‡  */
+    uint8_t panid[2];         /**< \brief ç½‘ç»œ ID (PanID) */
+    uint8_t addr[2];          /**< \brief ç½‘ç»œåœ°å€ */
+    uint8_t state;            /**< \brief è¿è¡ŒçŠ¶æ€ */
 } am_zm516x_base_info_t;
 
-/** \brief ZM516X Ô¶³ÌÄ£¿éµÄÅäÖÃĞÅÏ¢(Í¨¹ı»ñÈ¡Ô¶³ÌÅäÖÃĞÅÏ¢ÃüÁî D5 »ñµÃ) */
+/** \brief ZM516X è¿œç¨‹æ¨¡å—çš„é…ç½®ä¿¡æ¯(é€šè¿‡è·å–è¿œç¨‹é…ç½®ä¿¡æ¯å‘½ä»¤ D5 è·å¾—) */
 typedef struct am_zm516x_remote_info {
-    am_zm516x_cfg_info_t cfg_info;       /**< \brief ÅäÖÃĞÅÏ¢ */
-    uint8_t              state;          /**< \brief ÔËĞĞ×´Ì¬ */
-    uint8_t              dev_mode[2];    /**< \brief Éè±¸ÀàĞÍ */
-    uint8_t              version[2];     /**< \brief ¹Ì¼ş°æ±¾ */
+    am_zm516x_cfg_info_t cfg_info;       /**< \brief é…ç½®ä¿¡æ¯ */
+    uint8_t              state;          /**< \brief è¿è¡ŒçŠ¶æ€ */
+    uint8_t              dev_mode[2];    /**< \brief è®¾å¤‡ç±»å‹ */
+    uint8_t              version[2];     /**< \brief å›ºä»¶ç‰ˆæœ¬ */
 } am_zm516x_remote_info_t;
 
 /**
- * \name ZM516X Ä£¿éµÄ AD Í¨µÀºÅ
+ * \name ZM516X æ¨¡å—çš„ AD é€šé“å·
  * @{
  */
 #define AM_ZM516X_AD_CHANNEL0         0
@@ -129,156 +129,156 @@ typedef struct am_zm516x_remote_info {
 #define AM_ZM516X_AD_CHANNEL3         3
 /** @} */
 
-/** \brief ZM516X Ä£¿éµÄÍ¨Ñ¶Ä£Ê½ */
+/** \brief ZM516X æ¨¡å—çš„é€šè®¯æ¨¡å¼ */
 typedef enum am_zm516x_comm_mode {
-    AM_ZM516X_COMM_UNICAST = 0,    /**< \brief µ¥²¥ */
-    AM_ZM516X_COMM_BROADCAST,      /**< \brief ¹ã²¥ */
+    AM_ZM516X_COMM_UNICAST = 0,    /**< \brief å•æ’­ */
+    AM_ZM516X_COMM_BROADCAST,      /**< \brief å¹¿æ’­ */
 } am_zm516x_comm_mode_t;
 
-/** \brief ZM516X Ä£¿éµÄ MAC µØÖ· */
+/** \brief ZM516X æ¨¡å—çš„ MAC åœ°å€ */
 typedef struct am_zm516x_mac_addr {
-    uint8_t mac[8];                /**< \brief MAC µØÖ· */
+    uint8_t mac[8];                /**< \brief MAC åœ°å€ */
 }am_zm516x_mac_addr_t;
 
-/** \brief ZM516X ´Ó»úÄ£¿éĞÅÏ¢(Í¨¹ı²éÑ¯Ö÷»úÄ£¿é´æ´¢µÄ´Ó»úĞÅÏ¢ÃüÁî E7 »ñµÃ) */
+/** \brief ZM516X ä»æœºæ¨¡å—ä¿¡æ¯(é€šè¿‡æŸ¥è¯¢ä¸»æœºæ¨¡å—å­˜å‚¨çš„ä»æœºä¿¡æ¯å‘½ä»¤ E7 è·å¾—) */
 typedef struct am_zm516x_slave_info {
-    uint8_t mac[8];                /**< \brief MAC µØÖ· */
-    uint8_t addr[2];               /**< \brief ÍøÂçµØÖ· */
+    uint8_t mac[8];                /**< \brief MAC åœ°å€ */
+    uint8_t addr[2];               /**< \brief ç½‘ç»œåœ°å€ */
 }am_zm516x_slave_info_t;
 
 /**
- * \brief ZM516X Ä£¿éµÄµØÖ·
+ * \brief ZM516X æ¨¡å—çš„åœ°å€
  *
- * µØÖ··ÖÎª 2 ×Ö½ÚµÄÍøÂçµØÖ·ºÍ 8 ×Ö½ÚµÄ MAC µØÖ·£¬Ê¹ÓÃ addr_size
- * µØÖ·³¤¶ÈÀ´Çø·ÖµØÖ·ÀàĞÍ
+ * åœ°å€åˆ†ä¸º 2 å­—èŠ‚çš„ç½‘ç»œåœ°å€å’Œ 8 å­—èŠ‚çš„ MAC åœ°å€ï¼Œä½¿ç”¨ addr_size
+ * åœ°å€é•¿åº¦æ¥åŒºåˆ†åœ°å€ç±»å‹
  */
 typedef struct am_zm516x_addr {
-    uint8_t *p_addr;               /**< \brief µØÖ· */
-    uint8_t  addr_size;            /**< \brief µØÖ·³¤¶È£¨×Ö½ÚÊı£© */
+    uint8_t *p_addr;               /**< \brief åœ°å€ */
+    uint8_t  addr_size;            /**< \brief åœ°å€é•¿åº¦ï¼ˆå­—èŠ‚æ•°ï¼‰ */
 }am_zm516x_addr_t;
 
 /**
- * \brief ZM516X Ä£¿éµÄ PWM ĞÅÏ¢
+ * \brief ZM516X æ¨¡å—çš„ PWM ä¿¡æ¯
  */
 typedef struct am_zm516x_pwm {
 
     /**
-     * \brief PWM ÆµÂÊ£¬ËÄ¸ö×Ö½Ú×éºÏÎªÒ»¸ö 32 Î»±äÁ¿£¬Ğ¡¶ËÄ£Ê½£¬µ¥Î»Îª Hz£¬Í¨µÀ
-     *        1¡¢2¡¢4 µÄÆµÂÊ·¶Î§¿ÉÉè¶¨´Ó 62Hz~800000Hz£¬Í¨µÀ 3 µÄÆµÂÊ·¶Î§¿ÉÉè¶¨
-     *        ´Ó 62Hz~60000Hz¡£µ± PWM ĞÅºÅµÄÆµÂÊÎª 0 Ê±£¬±íÊ¾²»Êä³ö PWM ĞÅºÅ
+     * \brief PWM é¢‘ç‡ï¼Œå››ä¸ªå­—èŠ‚ç»„åˆä¸ºä¸€ä¸ª 32 ä½å˜é‡ï¼Œå°ç«¯æ¨¡å¼ï¼Œå•ä½ä¸º Hzï¼Œé€šé“
+     *        1ã€2ã€4 çš„é¢‘ç‡èŒƒå›´å¯è®¾å®šä» 62Hz~800000Hzï¼Œé€šé“ 3 çš„é¢‘ç‡èŒƒå›´å¯è®¾å®š
+     *        ä» 62Hz~60000Hzã€‚å½“ PWM ä¿¡å·çš„é¢‘ç‡ä¸º 0 æ—¶ï¼Œè¡¨ç¤ºä¸è¾“å‡º PWM ä¿¡å·
      */
     uint8_t freq[4];
 
     /**
-     * \brief PWM Õ¼¿Õ±È£¬Õ¼¿Õ±ÈµÄÖµ¿ÉÉè¶¨´Ó 1~99£¬±íÊ¾Õ¼¿Õ±ÈµÄ°Ù·Ö±È
+     * \brief PWM å ç©ºæ¯”ï¼Œå ç©ºæ¯”çš„å€¼å¯è®¾å®šä» 1~99ï¼Œè¡¨ç¤ºå ç©ºæ¯”çš„ç™¾åˆ†æ¯”
      */
     uint8_t duty_cycle;
 }am_zm516x_pwm_t;
 
 /**
- * \brief Ïò ZM516X Ä£¿é·¢ËÍ nbytes ¸ö×Ö½ÚÊı¾İ
+ * \brief å‘ ZM516X æ¨¡å—å‘é€ nbytes ä¸ªå­—èŠ‚æ•°æ®
  *
- * Õâ¸ö½Ó¿ÚÏò ZM516X Ä£¿é·¢ËÍ nbytes ¸ö×Ö½ÚÊı¾İ¡£ÈôÉè±¸µÄÄÚ²¿»º³å²»¹»£¬½«×öÈçÏÂ´¦Àí£º
- * Ê£ÓàµÄÊı¾İ²»»á±»Ğ´Èë£¬·µ»ØÖµÎªÒÑ¾­·¢ËÍµÄÊı¾İ¸öÊı
+ * è¿™ä¸ªæ¥å£å‘ ZM516X æ¨¡å—å‘é€ nbytes ä¸ªå­—èŠ‚æ•°æ®ã€‚è‹¥è®¾å¤‡çš„å†…éƒ¨ç¼“å†²ä¸å¤Ÿï¼Œå°†åšå¦‚ä¸‹å¤„ç†ï¼š
+ * å‰©ä½™çš„æ•°æ®ä¸ä¼šè¢«å†™å…¥ï¼Œè¿”å›å€¼ä¸ºå·²ç»å‘é€çš„æ•°æ®ä¸ªæ•°
  *
- * \param[in] handle ZM516X Ä£¿é²Ù×÷¾ä±ú
- * \param[in] p_buf  ÒªĞ´ÈëÄ£¿éµÄÊı¾İ»º³åÇøÖ¸Õë
- * \param[in] nbytes ÒªĞ´ÈëµÄ×Ö½Ú¸öÊı
+ * \param[in] handle ZM516X æ¨¡å—æ“ä½œå¥æŸ„
+ * \param[in] p_buf  è¦å†™å…¥æ¨¡å—çš„æ•°æ®ç¼“å†²åŒºæŒ‡é’ˆ
+ * \param[in] nbytes è¦å†™å…¥çš„å­—èŠ‚ä¸ªæ•°
  *
- * \return ³É¹¦·¢ËÍµÄÊı¾İ¸öÊı£¬Ğ¡ÓÚ 0 ÎªÊ§°Ü£¬Ê§°ÜÔ­Òò¿É²é¿´ errno
+ * \return æˆåŠŸå‘é€çš„æ•°æ®ä¸ªæ•°ï¼Œå°äº 0 ä¸ºå¤±è´¥ï¼Œå¤±è´¥åŸå› å¯æŸ¥çœ‹ errno
  *
- * \attention ¸Ã·¢ËÍº¯ÊıÎªÒì²½²Ù×÷º¯Êı£¬ZM516X µÄÅäÖÃÃüÁîÊÇ¸ù¾İ´®¿Ú×Ö·ûÖ¡¼ä¸ôÊ±¼ä
- *            À´ÅĞ¶ÏÅäÖÃÃüÁîµÄ½áÊø£¬Èç¹ûÔÚµ÷ÓÃÁË am_zm516x_send ·¢ËÍº¯Êıºó£¬Òª½ô
- *            ½Ó×Åµ÷ÓÃ ZM516X µÄÅäÖÃÃüÁî£¬ĞèÒªÑÓÊ±µÈ´ı·¢ËÍ»º´æÊı¾İÍêÈ«·¢ËÍµÄÊ±¼ä
- *            ¼ÓÉÏ ZM516X µÄÖ¡¼ä¸ôÊ±¼äºó£¬²ÅÄÜµ÷ÓÃ ZM516X µÄÅäÖÃÃüÁî£¬·ñÔò ZM516X
- *            µÄÅäÖÃÃüÁî»áµ±×÷ÊÇÊı¾İ·¢µ½ ZM516X ÍøÂçÉÏ£¬ÑÓÊ±µÈ´ıÊ±¼ä½¨ÒéÊÇ£º
- *            T(s) = (1 / ²¨ÌØÂÊ) * 10 * ×Ö½ÚÊı + 0.05
+ * \attention è¯¥å‘é€å‡½æ•°ä¸ºå¼‚æ­¥æ“ä½œå‡½æ•°ï¼ŒZM516X çš„é…ç½®å‘½ä»¤æ˜¯æ ¹æ®ä¸²å£å­—ç¬¦å¸§é—´éš”æ—¶é—´
+ *            æ¥åˆ¤æ–­é…ç½®å‘½ä»¤çš„ç»“æŸï¼Œå¦‚æœåœ¨è°ƒç”¨äº† am_zm516x_send å‘é€å‡½æ•°åï¼Œè¦ç´§
+ *            æ¥ç€è°ƒç”¨ ZM516X çš„é…ç½®å‘½ä»¤ï¼Œéœ€è¦å»¶æ—¶ç­‰å¾…å‘é€ç¼“å­˜æ•°æ®å®Œå…¨å‘é€çš„æ—¶é—´
+ *            åŠ ä¸Š ZM516X çš„å¸§é—´éš”æ—¶é—´åï¼Œæ‰èƒ½è°ƒç”¨ ZM516X çš„é…ç½®å‘½ä»¤ï¼Œå¦åˆ™ ZM516X
+ *            çš„é…ç½®å‘½ä»¤ä¼šå½“ä½œæ˜¯æ•°æ®å‘åˆ° ZM516X ç½‘ç»œä¸Šï¼Œå»¶æ—¶ç­‰å¾…æ—¶é—´å»ºè®®æ˜¯ï¼š
+ *            T(s) = (1 / æ³¢ç‰¹ç‡) * 10 * å­—èŠ‚æ•° + 0.05
  */
 am_err_t am_zm516x_send (am_zm516x_handle_t handle,
                          const void        *p_buf,
                          size_t             nbytes);
 
 /**
- * \brief Ïò ZigBee Ä£¿é·¢ËÍ nbytes ¸ö×Ö½ÚÊı¾İ£¬²¢µÈ´ı ACK
+ * \brief å‘ ZigBee æ¨¡å—å‘é€ nbytes ä¸ªå­—èŠ‚æ•°æ®ï¼Œå¹¶ç­‰å¾… ACK
  *
- * Õâ¸ö½Ó¿ÚÏò ZM516X Ä£¿é·¢ËÍ nbytes ¸ö×Ö½ÚÊı¾İ¡£ÈôÉè±¸µÄÄÚ²¿»º³å²»¹»£¬½«×öÈçÏÂ´¦Àí£º
- * Ê£ÓàµÄÊı¾İ²»»á±»Ğ´Èë£¬·µ»ØÖµÎªÒÑ¾­·¢ËÍµÄÊı¾İ¸öÊı
+ * è¿™ä¸ªæ¥å£å‘ ZM516X æ¨¡å—å‘é€ nbytes ä¸ªå­—èŠ‚æ•°æ®ã€‚è‹¥è®¾å¤‡çš„å†…éƒ¨ç¼“å†²ä¸å¤Ÿï¼Œå°†åšå¦‚ä¸‹å¤„ç†ï¼š
+ * å‰©ä½™çš„æ•°æ®ä¸ä¼šè¢«å†™å…¥ï¼Œè¿”å›å€¼ä¸ºå·²ç»å‘é€çš„æ•°æ®ä¸ªæ•°
  *
- * \param[in] handle ZM516X Ä£¿é²Ù×÷¾ä±ú
- * \param[in] p_buf  ÒªĞ´ÈëÄ£¿éµÄÊı¾İ»º³åÇøÖ¸Õë
- * \param[in] nbytes ÒªĞ´ÈëµÄ×Ö½Ú¸öÊı
+ * \param[in] handle ZM516X æ¨¡å—æ“ä½œå¥æŸ„
+ * \param[in] p_buf  è¦å†™å…¥æ¨¡å—çš„æ•°æ®ç¼“å†²åŒºæŒ‡é’ˆ
+ * \param[in] nbytes è¦å†™å…¥çš„å­—èŠ‚ä¸ªæ•°
  *
- * \retval  > 0          ³É¹¦·¢ËÍµÄÊı¾İ¸öÊı
- * \retval -AM_ENOTSUP   Ã»ÓĞÅäÖÃ ACK Òı½Å
- * \retval -AM_ETIMEDOUT ·¢ËÍÎŞÓ¦´ğ
+ * \retval  > 0          æˆåŠŸå‘é€çš„æ•°æ®ä¸ªæ•°
+ * \retval -AM_ENOTSUP   æ²¡æœ‰é…ç½® ACK å¼•è„š
+ * \retval -AM_ETIMEDOUT å‘é€æ— åº”ç­”
  *
- * \attention 1. ¸Ã·¢ËÍº¯ÊıÎªÍ¬²½²Ù×÷º¯Êı£¬·¢ËÍÊı¾İºó½«µÈ´ı ACK£¬µ±ÊÕµ½ ACK »òÕß
- *               ³¬Ê±Ê±²Å»á·µ»Ø£»
- *            2. ·¢ËÍÄ£Ê½Îª¹ã²¥Ä£Ê½Ê±²»»á²úÉú ACK¡£
+ * \attention 1. è¯¥å‘é€å‡½æ•°ä¸ºåŒæ­¥æ“ä½œå‡½æ•°ï¼Œå‘é€æ•°æ®åå°†ç­‰å¾… ACKï¼Œå½“æ”¶åˆ° ACK æˆ–è€…
+ *               è¶…æ—¶æ—¶æ‰ä¼šè¿”å›ï¼›
+ *            2. å‘é€æ¨¡å¼ä¸ºå¹¿æ’­æ¨¡å¼æ—¶ä¸ä¼šäº§ç”Ÿ ACKã€‚
  */
 am_err_t am_zm516x_send_with_ack (am_zm516x_handle_t handle,
                                   const void        *p_buf,
                                   size_t             nbytes);
 
 /**
- * \brief ´Ó ZM516X Ä£¿é½ÓÊÕ maxbytes ¸ö×Ö½ÚÊı¾İ
+ * \brief ä» ZM516X æ¨¡å—æ¥æ”¶ maxbytes ä¸ªå­—èŠ‚æ•°æ®
  *
- * - Õâ¸ö½Ó¿Ú´Ó ZM516X Ä£¿é½ÓÊÕ×î¶à maxbytes ¸ö×Ö½ÚÊı¾İ
- * - ÈôÉè±¸¿É½ÓÊÕÊı¾İ¸öÊıÎª 0£¬½«Á¢¼´·µ»Ø
+ * - è¿™ä¸ªæ¥å£ä» ZM516X æ¨¡å—æ¥æ”¶æœ€å¤š maxbytes ä¸ªå­—èŠ‚æ•°æ®
+ * - è‹¥è®¾å¤‡å¯æ¥æ”¶æ•°æ®ä¸ªæ•°ä¸º 0ï¼Œå°†ç«‹å³è¿”å›
  *
- * \param[in]  handle   ZM516X Ä£¿é²Ù×÷¾ä±ú
- * \param[out] p_buf    ´æ·Å¶ÁÈ¡Êı¾İµÄ»º³åÇøÖ¸Õë
- * \param[in]  maxbytes ×î¶àÒª¶ÁÈ¡µÄ×Ö½Ú¸öÊı
+ * \param[in]  handle   ZM516X æ¨¡å—æ“ä½œå¥æŸ„
+ * \param[out] p_buf    å­˜æ”¾è¯»å–æ•°æ®çš„ç¼“å†²åŒºæŒ‡é’ˆ
+ * \param[in]  maxbytes æœ€å¤šè¦è¯»å–çš„å­—èŠ‚ä¸ªæ•°
  *
- * \return ³É¹¦½ÓÊÕµÄÊı¾İ¸öÊı£¬Ğ¡ÓÚ 0 ÎªÊ§°Ü£¬Ê§°ÜÔ­Òò¿É²é¿´ errno
+ * \return æˆåŠŸæ¥æ”¶çš„æ•°æ®ä¸ªæ•°ï¼Œå°äº 0 ä¸ºå¤±è´¥ï¼Œå¤±è´¥åŸå› å¯æŸ¥çœ‹ errno
  */
 am_err_t am_zm516x_receive (am_zm516x_handle_t handle,
                             void              *p_buf,
                             size_t             maxbytes);
 
 /**
- * \brief »ñÈ¡ ZM516X Ä£¿éµÄÅäÖÃĞÅÏ¢£¨ÓÀ¾ÃÃüÁî£ºD1£©
+ * \brief è·å– ZM516X æ¨¡å—çš„é…ç½®ä¿¡æ¯ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šD1ï¼‰
  *
- * \param[in]  handle ZM516X Ä£¿é²Ù×÷¾ä±ú
- * \param[out] p_info ¶ÁÈ¡ ZM516X Ä£¿éµÄÅäÖÃĞÅÏ¢
+ * \param[in]  handle ZM516X æ¨¡å—æ“ä½œå¥æŸ„
+ * \param[out] p_info è¯»å– ZM516X æ¨¡å—çš„é…ç½®ä¿¡æ¯
  *
- * \retval  AM_OK    ¶ÁÈ¡³É¹¦
- * \retval -AM_EPERM ¶ÁÈ¡Ê§°Ü
+ * \retval  AM_OK    è¯»å–æˆåŠŸ
+ * \retval -AM_EPERM è¯»å–å¤±è´¥
  */
 am_err_t am_zm516x_cfg_info_get (am_zm516x_handle_t    handle,
                                  am_zm516x_cfg_info_t *p_info);
 
 /**
- * \brief ÉèÖÃ ZigBee Ä£¿éÍ¨µÀºÅ£¨ÓÀ¾ÃÃüÁî£ºD2£©
+ * \brief è®¾ç½® ZigBee æ¨¡å—é€šé“å·ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šD2ï¼‰
  *
- * Ä£¿é¿É¹¤×÷ÔÚ 16 ¸öÎïÀíÍ¨µÀÉÏ£¬¸ù¾İÄ£¿éµÄÔØ²¨ÆµÂÊ²»Í¬£¬²»Í¬Í¨µÀµÄÄ£¿é±Ë´Ë¼äÎï
- * ÀíÍ¨µÀ²»Í¨£¬Òò´ËÔÚÉè¼ÆÉÏ¿ÉÒÔÊµÏÖÎïÀíÉÏ»®·ÖÍø¶ÎµÄĞ§¹û
+ * æ¨¡å—å¯å·¥ä½œåœ¨ 16 ä¸ªç‰©ç†é€šé“ä¸Šï¼Œæ ¹æ®æ¨¡å—çš„è½½æ³¢é¢‘ç‡ä¸åŒï¼Œä¸åŒé€šé“çš„æ¨¡å—å½¼æ­¤é—´ç‰©
+ * ç†é€šé“ä¸é€šï¼Œå› æ­¤åœ¨è®¾è®¡ä¸Šå¯ä»¥å®ç°ç‰©ç†ä¸Šåˆ’åˆ†ç½‘æ®µçš„æ•ˆæœ
  *
- * \param[in] handle ZM516X Ä£¿é²Ù×÷¾ä±ú
- * \param[in] chan   Í¨µÀºÅ 11~26
+ * \param[in] handle ZM516X æ¨¡å—æ“ä½œå¥æŸ„
+ * \param[in] chan   é€šé“å· 11~26
  *
- * \retval  AM_OK     ÉèÖÃ³É¹¦
- * \retval -AM_EPERM  ÉèÖÃÊ§°Ü
- * \retval -AM_EINVAL ÎŞĞ§²ÎÊı
+ * \retval  AM_OK     è®¾ç½®æˆåŠŸ
+ * \retval -AM_EPERM  è®¾ç½®å¤±è´¥
+ * \retval -AM_EINVAL æ— æ•ˆå‚æ•°
  */
 am_err_t am_zm516x_cfg_channel_set (am_zm516x_handle_t handle, uint8_t chan);
 
 /**
- * \brief ËÑË÷ÆäËüÄ£¿é£¨ÓÀ¾ÃÃüÁî£ºD4£©
+ * \brief æœç´¢å…¶å®ƒæ¨¡å—ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šD4ï¼‰
  *
- * Ä£¿é½ÓÊÕµ½±¾ÃüÁîºó£¬»áÏò±¾Íø¶ÎÄÚµÄÏàÍ¬Í¨µÀµÄÆäËûÄ£¿é·¢³ö¹ã²¥ËÑË÷°ü£¬ÔËĞĞ±¾¹«
- * Ë¾¹Ì¼şµÄ ZigBee Ä£¿é¶¼»áÓ¦´ğ´Ë¹ã²¥£¬Ó¦´ğÄÚÈİ»á½«×Ô¼ºµÄÏà¹Ø»ù±¾ĞÅÏ¢·µ»Øµ½ËÑË÷
- * ·¢ÆğÄ¿±ê½Úµã¡£ËùÒÔËÑË÷Ç°ĞèÒªÉèÖÃÍ¨µÀºÅ²ÅÄÜËÑË÷µ½¶ÔÓ¦Í¨µÀµÄÄ£¿é
+ * æ¨¡å—æ¥æ”¶åˆ°æœ¬å‘½ä»¤åï¼Œä¼šå‘æœ¬ç½‘æ®µå†…çš„ç›¸åŒé€šé“çš„å…¶ä»–æ¨¡å—å‘å‡ºå¹¿æ’­æœç´¢åŒ…ï¼Œè¿è¡Œæœ¬å…¬
+ * å¸å›ºä»¶çš„ ZigBee æ¨¡å—éƒ½ä¼šåº”ç­”æ­¤å¹¿æ’­ï¼Œåº”ç­”å†…å®¹ä¼šå°†è‡ªå·±çš„ç›¸å…³åŸºæœ¬ä¿¡æ¯è¿”å›åˆ°æœç´¢
+ * å‘èµ·ç›®æ ‡èŠ‚ç‚¹ã€‚æ‰€ä»¥æœç´¢å‰éœ€è¦è®¾ç½®é€šé“å·æ‰èƒ½æœç´¢åˆ°å¯¹åº”é€šé“çš„æ¨¡å—
  *
- * \param[in]  handle      ZM516X Ä£¿é²Ù×÷¾ä±ú
- * \param[in]  buf_size    p_base_info Ö¸ÏòµÄ»º³åÇø´óĞ¡£¬µ¥Î»Îª
+ * \param[in]  handle      ZM516X æ¨¡å—æ“ä½œå¥æŸ„
+ * \param[in]  buf_size    p_base_info æŒ‡å‘çš„ç¼“å†²åŒºå¤§å°ï¼Œå•ä½ä¸º
  *                         sizeof(am_zm516x_base_info_t)
- * \param[out] p_base_info ´æ´¢½ÓÊÕµ½µÄ´Ó»úĞÅÏ¢µÄ»º³åÇø
- * \param[out] p_get_size  Êµ¼ÊËÑË÷µ½µÄÄ£¿éÊıÁ¿
+ * \param[out] p_base_info å­˜å‚¨æ¥æ”¶åˆ°çš„ä»æœºä¿¡æ¯çš„ç¼“å†²åŒº
+ * \param[out] p_get_size  å®é™…æœç´¢åˆ°çš„æ¨¡å—æ•°é‡
  *
- * \retval  AM_OK     ¶ÁÈ¡³É¹¦
- * \retval -AM_EPERM  ¶ÁÈ¡Ê§°Ü
- * \retval -AM_EINVAL ÎŞĞ§²ÎÊı
+ * \retval  AM_OK     è¯»å–æˆåŠŸ
+ * \retval -AM_EPERM  è¯»å–å¤±è´¥
+ * \retval -AM_EINVAL æ— æ•ˆå‚æ•°
  */
 am_err_t am_zm516x_discover (am_zm516x_handle_t     handle,
                              uint8_t                buf_size,
@@ -286,134 +286,134 @@ am_err_t am_zm516x_discover (am_zm516x_handle_t     handle,
                              uint8_t               *p_get_size);
 
 /**
- * \brief »ñÈ¡Ô¶³ÌÅäÖÃĞÅÏ¢£¨ÓÀ¾ÃÃüÁî£ºD5£©
+ * \brief è·å–è¿œç¨‹é…ç½®ä¿¡æ¯ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šD5ï¼‰
  *
- * \param[in]  handle        ZM516X Ä£¿é²Ù×÷¾ä±ú
- * \param[in]  p_zb_addr     Ä¿±êµØÖ·
- * \param[out] p_remote_info ËÑË÷µ½µÄ ZM516X Ä£¿éµÄÅäÖÃĞÅÏ¢
+ * \param[in]  handle        ZM516X æ¨¡å—æ“ä½œå¥æŸ„
+ * \param[in]  p_zb_addr     ç›®æ ‡åœ°å€
+ * \param[out] p_remote_info æœç´¢åˆ°çš„ ZM516X æ¨¡å—çš„é…ç½®ä¿¡æ¯
  *
- * \retval  AM_OK     ¶ÁÈ¡³É¹¦
- * \retval -AM_EPERM  ¶ÁÈ¡Ê§°Ü
- * \retval -AM_EINVAL ÎŞĞ§²ÎÊı
- * \retval -AM_EFAULT µØÖ·´íÎó
+ * \retval  AM_OK     è¯»å–æˆåŠŸ
+ * \retval -AM_EPERM  è¯»å–å¤±è´¥
+ * \retval -AM_EINVAL æ— æ•ˆå‚æ•°
+ * \retval -AM_EFAULT åœ°å€é”™è¯¯
  *
- * \attention ´®¿ÚÊı¾İÎ»£º5¡«8£¬Êı¾İÎ»Èç¹ûÉèÖÃÎª 5¡¢6¡¢7 Î»£¬Ôò²»¿ÉÒÔ»ñÈ¡ÅäÖÃĞÅÏ¢
+ * \attention ä¸²å£æ•°æ®ä½ï¼š5ï½8ï¼Œæ•°æ®ä½å¦‚æœè®¾ç½®ä¸º 5ã€6ã€7 ä½ï¼Œåˆ™ä¸å¯ä»¥è·å–é…ç½®ä¿¡æ¯
  */
 am_err_t am_zm516x_remote_info_get (am_zm516x_handle_t       handle,
                                     am_zm516x_addr_t        *p_zb_addr,
                                     am_zm516x_remote_info_t *p_remote_info);
 
 /**
- * \brief ĞŞ¸Ä ZM516X Ä£¿éµÄÅäÖÃĞÅÏ¢£¨ÓÀ¾ÃÃüÁî£ºD6£©£¬ÉèÖÃ³É¹¦Ğè¸´Î»
+ * \brief ä¿®æ”¹ ZM516X æ¨¡å—çš„é…ç½®ä¿¡æ¯ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šD6ï¼‰ï¼Œè®¾ç½®æˆåŠŸéœ€å¤ä½
  *
- * \param[in] handle ZM516X Ä£¿é²Ù×÷¾ä±ú
- * \param[in] p_info ZM516X Ä£¿éµÄÅäÖÃĞÅÏ¢
+ * \param[in] handle ZM516X æ¨¡å—æ“ä½œå¥æŸ„
+ * \param[in] p_info ZM516X æ¨¡å—çš„é…ç½®ä¿¡æ¯
  *
- * \retval  AM_OK    ĞŞ¸Ä³É¹¦
- * \retval -AM_EPERM ĞŞ¸ÄÊ§°Ü
+ * \retval  AM_OK    ä¿®æ”¹æˆåŠŸ
+ * \retval -AM_EPERM ä¿®æ”¹å¤±è´¥
  *
- * \attention AMetal Æ½Ì¨²Ù×÷ ZM516X Ä£¿éµÄ´®¿Ú²ÎÊıÖ»Ö§³Ö²¨ÌØÂÊÅäÖÃ£¬Êı¾İÎ»¹Ì¶¨Îª
- *            8 Î»£¬Ğ£ÑéÎªÎŞĞ£Ñé£¬Í£Ö¹Î»Îª 1 Î»£¬ÔÚ¸ü¸ÄÄ£¿éµÄÊı¾İÎ»£¬Ğ£ÑéÎ»£¬Í£Ö¹
- *            Î»Ê±ĞèÒª×¢Òâ£¬Èç¹û²»Ğ¡ĞÄ¸ü¸ÄÁË£¬ĞèÒª°ÑÄ£¿é»Ö¸´³ö³§Ä¬ÈÏ²ÅÄÜ²Ù×÷
+ * \attention AMetal å¹³å°æ“ä½œ ZM516X æ¨¡å—çš„ä¸²å£å‚æ•°åªæ”¯æŒæ³¢ç‰¹ç‡é…ç½®ï¼Œæ•°æ®ä½å›ºå®šä¸º
+ *            8 ä½ï¼Œæ ¡éªŒä¸ºæ— æ ¡éªŒï¼Œåœæ­¢ä½ä¸º 1 ä½ï¼Œåœ¨æ›´æ”¹æ¨¡å—çš„æ•°æ®ä½ï¼Œæ ¡éªŒä½ï¼Œåœæ­¢
+ *            ä½æ—¶éœ€è¦æ³¨æ„ï¼Œå¦‚æœä¸å°å¿ƒæ›´æ”¹äº†ï¼Œéœ€è¦æŠŠæ¨¡å—æ¢å¤å‡ºå‚é»˜è®¤æ‰èƒ½æ“ä½œ
  */
 am_err_t am_zm516x_cfg_info_set (am_zm516x_handle_t    handle,
                                  am_zm516x_cfg_info_t *p_info);
 
 /**
- * \brief Ê¹ ZM516X Ä£¿é¸´Î»£¨ÓÀ¾ÃÃüÁî£ºD9£©
+ * \brief ä½¿ ZM516X æ¨¡å—å¤ä½ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šD9ï¼‰
  *
- * ¸´Î»Ö¡ÎŞÓ¦´ğ
+ * å¤ä½å¸§æ— åº”ç­”
  *
- * \param[in] handle ZM516X Ä£¿é²Ù×÷¾ä±ú
+ * \param[in] handle ZM516X æ¨¡å—æ“ä½œå¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zm516x_reset (am_zm516x_handle_t handle);
 
 /**
- * \brief »Ö¸´ ZM516X Ä£¿é³ö³§ÉèÖÃ£¨ÓÀ¾ÃÃüÁî£ºDA£©£¬ÉèÖÃ³É¹¦Ğè¸´Î»
+ * \brief æ¢å¤ ZM516X æ¨¡å—å‡ºå‚è®¾ç½®ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šDAï¼‰ï¼Œè®¾ç½®æˆåŠŸéœ€å¤ä½
  *
- * \param[in] handle ZM516X Ä£¿é²Ù×÷¾ä±ú
+ * \param[in] handle ZM516X æ¨¡å—æ“ä½œå¥æŸ„
  *
- * \retval  AM_OK    ÉèÖÃ³É¹¦
- * \retval -AM_EPERM ÉèÖÃÊ§°Ü
+ * \retval  AM_OK    è®¾ç½®æˆåŠŸ
+ * \retval -AM_EPERM è®¾ç½®å¤±è´¥
  */
 am_err_t am_zm516x_default_set (am_zm516x_handle_t handle);
 
 /**
- * \brief ÉèÖÃ ZigBee Ä£¿é½ÓÊÕµÄÊı¾İ°ü°üÍ·ÊÇ·ñÏÔÊ¾Ô´µØÖ·£¨ÓÀ¾ÃÃüÁî£ºDC£©£¬
- *        ÉèÖÃ³É¹¦Ğè¸´Î»
+ * \brief è®¾ç½® ZigBee æ¨¡å—æ¥æ”¶çš„æ•°æ®åŒ…åŒ…å¤´æ˜¯å¦æ˜¾ç¤ºæºåœ°å€ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šDCï¼‰ï¼Œ
+ *        è®¾ç½®æˆåŠŸéœ€å¤ä½
  *
- * \param[in] handle    ZM516X Ä£¿é²Ù×÷¾ä±ú
- * \param[in] p_zb_addr Ä¿±êµØÖ·
- * \param[in] flag      °üÍ·ÊÇ·ñÏÔÊ¾Ô´µØÖ· AM_TRUE: ÏÔÊ¾£¬AM_FALSE: ²»ÏÔÊ¾
+ * \param[in] handle    ZM516X æ¨¡å—æ“ä½œå¥æŸ„
+ * \param[in] p_zb_addr ç›®æ ‡åœ°å€
+ * \param[in] flag      åŒ…å¤´æ˜¯å¦æ˜¾ç¤ºæºåœ°å€ AM_TRUE: æ˜¾ç¤ºï¼ŒAM_FALSE: ä¸æ˜¾ç¤º
  *
- * \retval  AM_OK     ÉèÖÃ³É¹¦
- * \retval -AM_EPERM  ÉèÖÃÊ§°Ü
- * \retval -AM_EINVAL ÎŞĞ§²ÎÊı
- * \retval -AM_EFAULT µØÖ·´íÎó
+ * \retval  AM_OK     è®¾ç½®æˆåŠŸ
+ * \retval -AM_EPERM  è®¾ç½®å¤±è´¥
+ * \retval -AM_EINVAL æ— æ•ˆå‚æ•°
+ * \retval -AM_EFAULT åœ°å€é”™è¯¯
  */
 am_err_t am_zm516x_cfg_display_head_set (am_zm516x_handle_t handle,
                                          am_zm516x_addr_t  *p_zb_addr,
                                          am_bool_t          flag);
 
 /**
- * \brief ÉèÖÃÖ¸¶¨µØÖ· ZigBee Ä£¿éµÄ GPIO ÊäÈëÊä³ö·½Ïò£¨ÓÀ¾ÃÃüÁî£ºE1£©
+ * \brief è®¾ç½®æŒ‡å®šåœ°å€ ZigBee æ¨¡å—çš„ GPIO è¾“å…¥è¾“å‡ºæ–¹å‘ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šE1ï¼‰
  *
- * \param[in] handle    ZM516X Ä£¿é²Ù×÷¾ä±ú
- * \param[in] p_zb_addr Ä¿±êµØÖ·
- * \param[in] dir       ¹Ü½Å·½Ïò£¬¸Ã×Ö½Ú¸÷¸öÎ» 1 ÎªÊä³ö£¬0 ÎªÊäÈë£»
- *                      bit0 ¶ÔÓ¦ GPIO1£¬bit3 ¶ÔÓ¦ GPIO4
+ * \param[in] handle    ZM516X æ¨¡å—æ“ä½œå¥æŸ„
+ * \param[in] p_zb_addr ç›®æ ‡åœ°å€
+ * \param[in] dir       ç®¡è„šæ–¹å‘ï¼Œè¯¥å­—èŠ‚å„ä¸ªä½ 1 ä¸ºè¾“å‡ºï¼Œ0 ä¸ºè¾“å…¥ï¼›
+ *                      bit0 å¯¹åº” GPIO1ï¼Œbit3 å¯¹åº” GPIO4
  *
- * \retval  AM_OK     ÉèÖÃ³É¹¦
- * \retval -AM_EPERM  ÉèÖÃÊ§°Ü
- * \retval -AM_EINVAL ÎŞĞ§²ÎÊı
- * \retval -AM_EFAULT µØÖ·´íÎó
+ * \retval  AM_OK     è®¾ç½®æˆåŠŸ
+ * \retval -AM_EPERM  è®¾ç½®å¤±è´¥
+ * \retval -AM_EINVAL æ— æ•ˆå‚æ•°
+ * \retval -AM_EFAULT åœ°å€é”™è¯¯
  */
 am_err_t am_zm516x_cfg_gpio_dir_set (am_zm516x_handle_t handle,
                                      am_zm516x_addr_t  *p_zb_addr,
                                      uint8_t            dir);
 
 /**
- * \brief »ñÈ¡Ö¸¶¨µØÖ· ZigBee Ä£¿éµÄ GPIO ÊäÈëÊä³ö·½Ïò£¨ÓÀ¾ÃÃüÁî£ºE1£©
+ * \brief è·å–æŒ‡å®šåœ°å€ ZigBee æ¨¡å—çš„ GPIO è¾“å…¥è¾“å‡ºæ–¹å‘ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šE1ï¼‰
  *
- * \param[in]  handle    ZM516X Ä£¿é²Ù×÷¾ä±ú
- * \param[in]  p_zb_addr Ä¿±êµØÖ·
- * \param[out] p_dir     »ñÈ¡µ½µÄ¹Ü½Å·½Ïò£¬¸Ã×Ö½Ú¸÷¸öÎ» 1 ÎªÊä³ö£¬0 ÎªÊäÈë£»
- *                       bit0 ¶ÔÓ¦ GPIO1£¬bit3 ¶ÔÓ¦ GPIO4
+ * \param[in]  handle    ZM516X æ¨¡å—æ“ä½œå¥æŸ„
+ * \param[in]  p_zb_addr ç›®æ ‡åœ°å€
+ * \param[out] p_dir     è·å–åˆ°çš„ç®¡è„šæ–¹å‘ï¼Œè¯¥å­—èŠ‚å„ä¸ªä½ 1 ä¸ºè¾“å‡ºï¼Œ0 ä¸ºè¾“å…¥ï¼›
+ *                       bit0 å¯¹åº” GPIO1ï¼Œbit3 å¯¹åº” GPIO4
  *
- * \retval  AM_OK     »ñÈ¡³É¹¦
- * \retval -AM_EPERM  »ñÈ¡Ê§°Ü
- * \retval -AM_EINVAL ÎŞĞ§²ÎÊı
- * \retval -AM_EFAULT µØÖ·´íÎó
+ * \retval  AM_OK     è·å–æˆåŠŸ
+ * \retval -AM_EPERM  è·å–å¤±è´¥
+ * \retval -AM_EINVAL æ— æ•ˆå‚æ•°
+ * \retval -AM_EFAULT åœ°å€é”™è¯¯
  */
 am_err_t am_zm516x_cfg_gpio_dir_get (am_zm516x_handle_t handle,
                                      am_zm516x_addr_t  *p_zb_addr,
                                      uint8_t           *p_dir);
 
 /**
- * \brief IO/AD ²É¼¯ÉèÖÃ£¨ÓÀ¾ÃÃüÁî£ºE2£©£¬ÉèÖÃ³É¹¦Ğè¸´Î»
+ * \brief IO/AD é‡‡é›†è®¾ç½®ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šE2ï¼‰ï¼Œè®¾ç½®æˆåŠŸéœ€å¤ä½
  *
- * AW516x ÏµÁĞ ZigBee Ä£¿éÓĞ 4 Â·µÄ IO ºÍ 4 Â·µÄ AD£¬IO/AD ²É¼¯ÉèÖÃÃüÁî¿ÉÉè¶¨Ä£¿é
- * IO ´¥·¢ÉÏ´« IO ºÍ AD ×´Ì¬¼°¸ù¾İÅäÖÃµÄÖÜÆÚÊ±¼ä¶¨Ê±ÉÏ´« IO ºÍ AD ×´Ì¬
+ * AW516x ç³»åˆ— ZigBee æ¨¡å—æœ‰ 4 è·¯çš„ IO å’Œ 4 è·¯çš„ ADï¼ŒIO/AD é‡‡é›†è®¾ç½®å‘½ä»¤å¯è®¾å®šæ¨¡å—
+ * IO è§¦å‘ä¸Šä¼  IO å’Œ AD çŠ¶æ€åŠæ ¹æ®é…ç½®çš„å‘¨æœŸæ—¶é—´å®šæ—¶ä¸Šä¼  IO å’Œ AD çŠ¶æ€
  *
- * \param[in] handle     ZM516X Ä£¿é²Ù×÷¾ä±ú
- * \param[in] p_zb_addr  Ä¿±êµØÖ·
- * \param[in] dir        IO ´¥·¢±ßÑØ£¬bit0~bit3 ¶ÔÓ¦ IO1~IO4£¬µ±ÕâĞ©Î»Îª 1 Ê±£¬
- *                       ±íÊ¾ÉÏÉıÑØ´¥·¢£¬Îª 0 Ê±£¬±íÊ¾ÏÂ½µÑØ´¥·¢
- * \param[in] period     ÉÏ´«ÖÜÆÚ£¬µ¥Î»Îª 10ms£¬×î´ó¿ÉÉèÖÃµÄÖµÎª 65535£¬
- *                       ¼´ÉèÖÃµÄ×î´óÖÜÆÚÎª 655350ms
- * \param[in] is_dormant ÊÇ·ñĞİÃß£¬Ö¸Ê¾Ä£¿éÊÇ·ñ´¦ÓÚĞİÃß×´Ì¬£¬¸Ã×Ö½ÚÎª 1 ±íÊ¾Ä£¿é´¦
- *                       ÓÚĞİÃß×´Ì¬£¬IO ¸ù¾İÅäÖÃµÄ×´Ì¬·¢Éú±ä»¯Ê±»½ĞÑÄ£¿é£¬²¢ÏòÄ¿±ê
- *                       ½ÚµãµØÖ··¢ËÍ IO/AD ²É¼¯Ö¡£¬Èç¹ûÖÜÆÚ´óÓÚ 0£¬Ä£¿é³ıÁË¿ÉÒÔ IO
- *                       »½ĞÑÍâ£¬»¹»á¸ù¾İÖÜÆÚ¶¨Ê±¶¨Ê±»½ĞÑ£¬È»ºóÏòÄ¿±ê½ÚµãµØÖ··¢ËÍ
- *                       IO/AD ²É¼¯Ö¡£¬µ±·¢ËÍÍê IO/AD ²É¼¯Ö¡ºó£¬Ä£¿é½øÈëĞİÃß×´Ì¬£¬
- *                       ¸Ã×Ö½ÚÎª 0 ±íÊ¾Ä£¿é²»ĞİÃß
+ * \param[in] handle     ZM516X æ¨¡å—æ“ä½œå¥æŸ„
+ * \param[in] p_zb_addr  ç›®æ ‡åœ°å€
+ * \param[in] dir        IO è§¦å‘è¾¹æ²¿ï¼Œbit0~bit3 å¯¹åº” IO1~IO4ï¼Œå½“è¿™äº›ä½ä¸º 1 æ—¶ï¼Œ
+ *                       è¡¨ç¤ºä¸Šå‡æ²¿è§¦å‘ï¼Œä¸º 0 æ—¶ï¼Œè¡¨ç¤ºä¸‹é™æ²¿è§¦å‘
+ * \param[in] period     ä¸Šä¼ å‘¨æœŸï¼Œå•ä½ä¸º 10msï¼Œæœ€å¤§å¯è®¾ç½®çš„å€¼ä¸º 65535ï¼Œ
+ *                       å³è®¾ç½®çš„æœ€å¤§å‘¨æœŸä¸º 655350ms
+ * \param[in] is_dormant æ˜¯å¦ä¼‘çœ ï¼ŒæŒ‡ç¤ºæ¨¡å—æ˜¯å¦å¤„äºä¼‘çœ çŠ¶æ€ï¼Œè¯¥å­—èŠ‚ä¸º 1 è¡¨ç¤ºæ¨¡å—å¤„
+ *                       äºä¼‘çœ çŠ¶æ€ï¼ŒIO æ ¹æ®é…ç½®çš„çŠ¶æ€å‘ç”Ÿå˜åŒ–æ—¶å”¤é†’æ¨¡å—ï¼Œå¹¶å‘ç›®æ ‡
+ *                       èŠ‚ç‚¹åœ°å€å‘é€ IO/AD é‡‡é›†å¸§ï¼Œå¦‚æœå‘¨æœŸå¤§äº 0ï¼Œæ¨¡å—é™¤äº†å¯ä»¥ IO
+ *                       å”¤é†’å¤–ï¼Œè¿˜ä¼šæ ¹æ®å‘¨æœŸå®šæ—¶å®šæ—¶å”¤é†’ï¼Œç„¶åå‘ç›®æ ‡èŠ‚ç‚¹åœ°å€å‘é€
+ *                       IO/AD é‡‡é›†å¸§ï¼Œå½“å‘é€å®Œ IO/AD é‡‡é›†å¸§åï¼Œæ¨¡å—è¿›å…¥ä¼‘çœ çŠ¶æ€ï¼Œ
+ *                       è¯¥å­—èŠ‚ä¸º 0 è¡¨ç¤ºæ¨¡å—ä¸ä¼‘çœ 
  *
- * \retval  AM_OK     ÉèÖÃ³É¹¦
- * \retval -AM_EPERM  ÉèÖÃÊ§°Ü
- * \retval -AM_EINVAL ÎŞĞ§²ÎÊı
- * \retval -AM_EFAULT µØÖ·´íÎó
+ * \retval  AM_OK     è®¾ç½®æˆåŠŸ
+ * \retval -AM_EPERM  è®¾ç½®å¤±è´¥
+ * \retval -AM_EINVAL æ— æ•ˆå‚æ•°
+ * \retval -AM_EFAULT åœ°å€é”™è¯¯
  */
 am_err_t am_zm516x_cfg_io_adc_upload_set (am_zm516x_handle_t handle,
                                           am_zm516x_addr_t  *p_zb_addr,
@@ -422,26 +422,26 @@ am_err_t am_zm516x_cfg_io_adc_upload_set (am_zm516x_handle_t handle,
                                           am_bool_t          is_dormant);
 
 /**
- * \brief IO/AD ²É¼¯ÅäÖÃ»ñÈ¡£¨ÓÀ¾ÃÃüÁî£ºE2£©
- * \param[in] handle        ZM516X Ä£¿é²Ù×÷¾ä±ú
- * \param[in] p_zb_addr     Ä¿±êµØÖ·
- * \param[out] p_dir        »ñÈ¡µ½µÄ IO ´¥·¢±ßÑØÅäÖÃ£¬Èç¹û²»ĞèÒª»ñÈ¡£¬´«Èë NULL ¼´
- *                          ¿É¡£bit0~bit3 ¶ÔÓ¦ IO1~IO4£¬µ±ÕâĞ©Î»Îª 1 Ê±£¬±íÊ¾ÉÏÉıÑØ
- *                          ´¥·¢£¬Îª 0 Ê±£¬±íÊ¾ÏÂ½µÑØ´¥·¢
- * \param[out] p_period     »ñÈ¡µ½µÄÉÏ´«ÖÜÆÚÅäÖÃ£¬µ¥Î»Îª 10ms£¬Èç¹û²»ĞèÒª»ñÈ¡£¬´«
- *                          Èë NULL ¼´¿É
- * \param[out] p_is_dormant »ñÈ¡µ½µÄÊÇ·ñĞİÃßÅäÖÃ£¬Èç¹û²»ĞèÒª»ñÈ¡£¬´«Èë NULL ¼´¿É¡£
- *                          Ö¸Ê¾Ä£¿éÊÇ·ñ´¦ÓÚĞİÃß×´Ì¬£¬¸Ã×Ö½ÚÎª 1 ±íÊ¾Ä£¿é´¦ÓÚĞİÃß×´
- *                          Ì¬£¬IO ¸ù¾İÅäÖÃµÄ×´Ì¬·¢Éú±ä»¯Ê±»½ĞÑÄ£¿é£¬²¢ÏòÄ¿±ê½ÚµãµØ
- *                          Ö··¢ËÍ IO/AD ²É¼¯Ö¡£¬Èç¹ûÖÜÆÚ´óÓÚ 0£¬Ä£¿é³ıÁË¿ÉÒÔ IO»½ĞÑ
- *                          Íâ£¬»¹»á¸ù¾İÖÜÆÚ¶¨Ê±¶¨Ê±»½ĞÑ£¬È»ºóÏòÄ¿±ê½ÚµãµØÖ··¢ËÍ
- *                          IO/AD ²É¼¯Ö¡£¬µ±·¢ËÍÍê IO/AD ²É¼¯Ö¡ºó£¬Ä£¿é½øÈëĞİÃß×´
- *                          Ì¬£¬¸Ã×Ö½ÚÎª 0 ±íÊ¾Ä£¿é²»ĞİÃß
+ * \brief IO/AD é‡‡é›†é…ç½®è·å–ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šE2ï¼‰
+ * \param[in] handle        ZM516X æ¨¡å—æ“ä½œå¥æŸ„
+ * \param[in] p_zb_addr     ç›®æ ‡åœ°å€
+ * \param[out] p_dir        è·å–åˆ°çš„ IO è§¦å‘è¾¹æ²¿é…ç½®ï¼Œå¦‚æœä¸éœ€è¦è·å–ï¼Œä¼ å…¥ NULL å³
+ *                          å¯ã€‚bit0~bit3 å¯¹åº” IO1~IO4ï¼Œå½“è¿™äº›ä½ä¸º 1 æ—¶ï¼Œè¡¨ç¤ºä¸Šå‡æ²¿
+ *                          è§¦å‘ï¼Œä¸º 0 æ—¶ï¼Œè¡¨ç¤ºä¸‹é™æ²¿è§¦å‘
+ * \param[out] p_period     è·å–åˆ°çš„ä¸Šä¼ å‘¨æœŸé…ç½®ï¼Œå•ä½ä¸º 10msï¼Œå¦‚æœä¸éœ€è¦è·å–ï¼Œä¼ 
+ *                          å…¥ NULL å³å¯
+ * \param[out] p_is_dormant è·å–åˆ°çš„æ˜¯å¦ä¼‘çœ é…ç½®ï¼Œå¦‚æœä¸éœ€è¦è·å–ï¼Œä¼ å…¥ NULL å³å¯ã€‚
+ *                          æŒ‡ç¤ºæ¨¡å—æ˜¯å¦å¤„äºä¼‘çœ çŠ¶æ€ï¼Œè¯¥å­—èŠ‚ä¸º 1 è¡¨ç¤ºæ¨¡å—å¤„äºä¼‘çœ çŠ¶
+ *                          æ€ï¼ŒIO æ ¹æ®é…ç½®çš„çŠ¶æ€å‘ç”Ÿå˜åŒ–æ—¶å”¤é†’æ¨¡å—ï¼Œå¹¶å‘ç›®æ ‡èŠ‚ç‚¹åœ°
+ *                          å€å‘é€ IO/AD é‡‡é›†å¸§ï¼Œå¦‚æœå‘¨æœŸå¤§äº 0ï¼Œæ¨¡å—é™¤äº†å¯ä»¥ IOå”¤é†’
+ *                          å¤–ï¼Œè¿˜ä¼šæ ¹æ®å‘¨æœŸå®šæ—¶å®šæ—¶å”¤é†’ï¼Œç„¶åå‘ç›®æ ‡èŠ‚ç‚¹åœ°å€å‘é€
+ *                          IO/AD é‡‡é›†å¸§ï¼Œå½“å‘é€å®Œ IO/AD é‡‡é›†å¸§åï¼Œæ¨¡å—è¿›å…¥ä¼‘çœ çŠ¶
+ *                          æ€ï¼Œè¯¥å­—èŠ‚ä¸º 0 è¡¨ç¤ºæ¨¡å—ä¸ä¼‘çœ 
  *
- * \retval  AM_OK     »ñÈ¡³É¹¦
- * \retval -AM_EPERM  »ñÈ¡Ê§°Ü
- * \retval -AM_EINVAL ÎŞĞ§²ÎÊı
- * \retval -AM_EFAULT µØÖ·´íÎó
+ * \retval  AM_OK     è·å–æˆåŠŸ
+ * \retval -AM_EPERM  è·å–å¤±è´¥
+ * \retval -AM_EINVAL æ— æ•ˆå‚æ•°
+ * \retval -AM_EFAULT åœ°å€é”™è¯¯
  */
 am_err_t am_zm516x_cfg_io_adc_upload_get (am_zm516x_handle_t handle,
                                           am_zm516x_addr_t  *p_zb_addr,
@@ -450,19 +450,19 @@ am_err_t am_zm516x_cfg_io_adc_upload_get (am_zm516x_handle_t handle,
                                           uint8_t           *p_is_dormant);
 
 /**
- * \brief ÉèÖÃÖ¸¶¨µØÖ· ZigBee Ä£¿éµÄ GPIO Êä³öÖµ£¨ÓÀ¾ÃÃüÁî£ºE3£©
+ * \brief è®¾ç½®æŒ‡å®šåœ°å€ ZigBee æ¨¡å—çš„ GPIO è¾“å‡ºå€¼ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šE3ï¼‰
  *
- * ÔÚµ÷ÓÃ¸ÃÃüÁîÇ°ĞèÒªÏÈµ÷ÓÃ I/O ·½ÏòÉèÖÃÃüÁî°ÑÏàÓ¦µÄ IO ÉèÖÃÎªÊä³ö
+ * åœ¨è°ƒç”¨è¯¥å‘½ä»¤å‰éœ€è¦å…ˆè°ƒç”¨ I/O æ–¹å‘è®¾ç½®å‘½ä»¤æŠŠç›¸åº”çš„ IO è®¾ç½®ä¸ºè¾“å‡º
  *
- * \param[in] handle    ZM516X Ä£¿é²Ù×÷¾ä±ú
- * \param[in] p_zb_addr ÒªÉèÖÃµÄ ZM516X Ä£¿éµÄÄ¿±êµØÖ·
- * \param[in] value     GPIO Êä³öÖµ£¬IO ×Ö½ÚµÄ bit0~bit3 ¶ÔÓ¦ IO1~IO4£¬ÆäÏàÓ¦Î»Îª
- *                      1£¬±íÊ¾ I/O Êä³ö¸ßµçÆ½£»ÆäÏàÓ¦Î»Îª 0£¬±íÊ¾ I/O Êä³öµÍµçÆ½
+ * \param[in] handle    ZM516X æ¨¡å—æ“ä½œå¥æŸ„
+ * \param[in] p_zb_addr è¦è®¾ç½®çš„ ZM516X æ¨¡å—çš„ç›®æ ‡åœ°å€
+ * \param[in] value     GPIO è¾“å‡ºå€¼ï¼ŒIO å­—èŠ‚çš„ bit0~bit3 å¯¹åº” IO1~IO4ï¼Œå…¶ç›¸åº”ä½ä¸º
+ *                      1ï¼Œè¡¨ç¤º I/O è¾“å‡ºé«˜ç”µå¹³ï¼›å…¶ç›¸åº”ä½ä¸º 0ï¼Œè¡¨ç¤º I/O è¾“å‡ºä½ç”µå¹³
  *
- * \retval  AM_OK     ÉèÖÃ³É¹¦
- * \retval -AM_EPERM  ÉèÖÃÊ§°Ü
- * \retval -AM_EINVAL ÎŞĞ§²ÎÊı
- * \retval -AM_EFAULT µØÖ·´íÎó
+ * \retval  AM_OK     è®¾ç½®æˆåŠŸ
+ * \retval -AM_EPERM  è®¾ç½®å¤±è´¥
+ * \retval -AM_EINVAL æ— æ•ˆå‚æ•°
+ * \retval -AM_EFAULT åœ°å€é”™è¯¯
  */
 am_err_t am_zm516x_cfg_gpio_set (am_zm516x_handle_t handle,
                                  am_zm516x_addr_t  *p_zb_addr,
@@ -470,37 +470,37 @@ am_err_t am_zm516x_cfg_gpio_set (am_zm516x_handle_t handle,
 
 
 /**
- * \brief »ñÈ¡Ö¸¶¨µØÖ· ZigBee Ä£¿éµÄ GPIO ÊäÈëÖµ£¨ÓÀ¾ÃÃüÁî£ºE3£©
+ * \brief è·å–æŒ‡å®šåœ°å€ ZigBee æ¨¡å—çš„ GPIO è¾“å…¥å€¼ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šE3ï¼‰
  *
- * ÔÚµ÷ÓÃ¸ÃÃüÁîÇ°ĞèÒªÏÈµ÷ÓÃ I/O ·½ÏòÉèÖÃÃüÁî°ÑÏàÓ¦µÄ IO ÉèÖÃÎªÊäÈë
+ * åœ¨è°ƒç”¨è¯¥å‘½ä»¤å‰éœ€è¦å…ˆè°ƒç”¨ I/O æ–¹å‘è®¾ç½®å‘½ä»¤æŠŠç›¸åº”çš„ IO è®¾ç½®ä¸ºè¾“å…¥
  *
- * \param[in]  handle    ZM516X Ä£¿é²Ù×÷¾ä±ú
- * \param[in]  p_zb_addr ÒªÉèÖÃµÄ ZM516X Ä£¿éµÄÄ¿±êµØÖ·
- * \param[out] p_value   »ñÈ¡µ½µÄ GPIO ÊäÈëÖµ£¬IO ×Ö½ÚµÄ bit0~bit3 ¶ÔÓ¦ IO1~IO4£¬
- *                       ÆäÏàÓ¦Î»Îª 1£¬±íÊ¾ I/O ÊäÈë¸ßµçÆ½£»ÆäÏàÓ¦Î»Îª 0£¬±íÊ¾ I/O
- *                       ÊäÈëµÍµçÆ½
+ * \param[in]  handle    ZM516X æ¨¡å—æ“ä½œå¥æŸ„
+ * \param[in]  p_zb_addr è¦è®¾ç½®çš„ ZM516X æ¨¡å—çš„ç›®æ ‡åœ°å€
+ * \param[out] p_value   è·å–åˆ°çš„ GPIO è¾“å…¥å€¼ï¼ŒIO å­—èŠ‚çš„ bit0~bit3 å¯¹åº” IO1~IO4ï¼Œ
+ *                       å…¶ç›¸åº”ä½ä¸º 1ï¼Œè¡¨ç¤º I/O è¾“å…¥é«˜ç”µå¹³ï¼›å…¶ç›¸åº”ä½ä¸º 0ï¼Œè¡¨ç¤º I/O
+ *                       è¾“å…¥ä½ç”µå¹³
  *
- * \retval  AM_OK     »ñÈ¡³É¹¦
- * \retval -AM_EPERM  »ñÈ¡Ê§°Ü
- * \retval -AM_EINVAL ÎŞĞ§²ÎÊı
- * \retval -AM_EFAULT µØÖ·´íÎó
+ * \retval  AM_OK     è·å–æˆåŠŸ
+ * \retval -AM_EPERM  è·å–å¤±è´¥
+ * \retval -AM_EINVAL æ— æ•ˆå‚æ•°
+ * \retval -AM_EFAULT åœ°å€é”™è¯¯
  */
 am_err_t am_zm516x_cfg_gpio_get (am_zm516x_handle_t handle,
                                  am_zm516x_addr_t  *p_zb_addr,
                                  uint8_t           *p_value);
 
 /**
- * \brief ÉèÖÃÖ¸¶¨µØÖ· ZigBee Ä£¿éµÄ PWM Êä³öÖµ£¨ÓÀ¾ÃÃüÁî£ºE4£©
+ * \brief è®¾ç½®æŒ‡å®šåœ°å€ ZigBee æ¨¡å—çš„ PWM è¾“å‡ºå€¼ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šE4ï¼‰
  *
- * \param[in] handle    ZM516X Ä£¿é²Ù×÷¾ä±ú
- * \param[in] p_zb_addr ÒªÉèÖÃµÄ ZM516X Ä£¿éµÄÄ¿±êµØÖ·
- * \param[in] p_pwm     PWM ²ÎÊıÖ¸Õë£¬Ö¸ÕëÖ¸ÏòµÄÄÚ´æ±ØĞëÎª sizeof(am_zm516x_pwm_t)
- *                      µÄ 4 ±¶´óĞ¡£¬ÕâÑù²ÅÄÜ´æ´¢ÏÂ 4 ¸ö PWM Í¨µÀµÄ²ÎÊı
+ * \param[in] handle    ZM516X æ¨¡å—æ“ä½œå¥æŸ„
+ * \param[in] p_zb_addr è¦è®¾ç½®çš„ ZM516X æ¨¡å—çš„ç›®æ ‡åœ°å€
+ * \param[in] p_pwm     PWM å‚æ•°æŒ‡é’ˆï¼ŒæŒ‡é’ˆæŒ‡å‘çš„å†…å­˜å¿…é¡»ä¸º sizeof(am_zm516x_pwm_t)
+ *                      çš„ 4 å€å¤§å°ï¼Œè¿™æ ·æ‰èƒ½å­˜å‚¨ä¸‹ 4 ä¸ª PWM é€šé“çš„å‚æ•°
  *
- * \retval  AM_OK     ÉèÖÃ³É¹¦
- * \retval -AM_EPERM  ÉèÖÃÊ§°Ü
- * \retval -AM_EINVAL ÎŞĞ§²ÎÊı
- * \retval -AM_EFAULT µØÖ·´íÎó
+ * \retval  AM_OK     è®¾ç½®æˆåŠŸ
+ * \retval -AM_EPERM  è®¾ç½®å¤±è´¥
+ * \retval -AM_EINVAL æ— æ•ˆå‚æ•°
+ * \retval -AM_EFAULT åœ°å€é”™è¯¯
  */
 am_err_t am_zm516x_cfg_pwm_set (am_zm516x_handle_t handle,
                                 am_zm516x_addr_t  *p_zb_addr,
@@ -508,73 +508,73 @@ am_err_t am_zm516x_cfg_pwm_set (am_zm516x_handle_t handle,
 
 
 /**
- * \brief »ñÈ¡Ö¸¶¨µØÖ· ZigBee Ä£¿éµÄ PWM Êä³öÖµÅäÖÃ£¨ÓÀ¾ÃÃüÁî£ºE4£©
+ * \brief è·å–æŒ‡å®šåœ°å€ ZigBee æ¨¡å—çš„ PWM è¾“å‡ºå€¼é…ç½®ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šE4ï¼‰
  *
- * \param[in]  handle    ZM516X Ä£¿é²Ù×÷¾ä±ú
- * \param[in]  p_zb_addr ÒªÉèÖÃµÄ ZM516X Ä£¿éµÄÄ¿±êµØÖ·
- * \param[out] p_pwm     PWM ²ÎÊıÖ¸Õë£¬Ö¸ÕëÖ¸ÏòµÄÄÚ´æ±ØĞëÎª sizeof(am_zm516x_pwm_t)
- *                       µÄ 4 ±¶´óĞ¡£¬ÕâÑù²ÅÄÜ´æ´¢ÏÂ 4 ¸ö PWM Í¨µÀµÄ²ÎÊı
+ * \param[in]  handle    ZM516X æ¨¡å—æ“ä½œå¥æŸ„
+ * \param[in]  p_zb_addr è¦è®¾ç½®çš„ ZM516X æ¨¡å—çš„ç›®æ ‡åœ°å€
+ * \param[out] p_pwm     PWM å‚æ•°æŒ‡é’ˆï¼ŒæŒ‡é’ˆæŒ‡å‘çš„å†…å­˜å¿…é¡»ä¸º sizeof(am_zm516x_pwm_t)
+ *                       çš„ 4 å€å¤§å°ï¼Œè¿™æ ·æ‰èƒ½å­˜å‚¨ä¸‹ 4 ä¸ª PWM é€šé“çš„å‚æ•°
  *
- * \retval  AM_OK     »ñÈ¡³É¹¦
- * \retval -AM_EPERM  »ñÈ¡Ê§°Ü
- * \retval -AM_EINVAL ÎŞĞ§²ÎÊı
- * \retval -AM_EFAULT µØÖ·´íÎó
+ * \retval  AM_OK     è·å–æˆåŠŸ
+ * \retval -AM_EPERM  è·å–å¤±è´¥
+ * \retval -AM_EINVAL æ— æ•ˆå‚æ•°
+ * \retval -AM_EFAULT åœ°å€é”™è¯¯
  */
 am_err_t am_zm516x_cfg_pwm_get (am_zm516x_handle_t handle,
                                 am_zm516x_addr_t  *p_zb_addr,
                                 am_zm516x_pwm_t   *p_pwm);
 
 /**
- * \brief ÉèÖÃ×Ô×éÍø¹¦ÄÜ£¨ÓÀ¾ÃÃüÁî£ºE5£©£¬ÉèÖÃ³É¹¦Ğè¸´Î»
+ * \brief è®¾ç½®è‡ªç»„ç½‘åŠŸèƒ½ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šE5ï¼‰ï¼Œè®¾ç½®æˆåŠŸéœ€å¤ä½
  *
- * ×Ô×éÍø¹¦ÄÜÎªÒ»Ö÷¶à´ÓµÄĞÇĞÎÍøÂçÍØÆË½á¹¹£¬ÔÚÖ÷»úµ½´Ó»úĞÅºÅ²»¿É´ïÊ±£¬¿É¼ÓÈëÖĞ¼Ì½Úµã
- * ½øĞĞĞÅºÅ´«µİ¡£Ä£¿éÔÚ×Ô×éÍøÄ£Ê½ÏÂ£¬Ö÷»úÄ£¿é»á×Ô¶¯Ñ¡ÔñÖÜÎ§Ã»ÓĞ±»Ê¹ÓÃµÄ PANID ºÍÍ¨
- * µÀºÅĞÎ³ÉÒ»¸ö¶ÀÁ¢µÄÍøÂç£¬²¢ÄÜ×Ô¶¯·ÖÅäÒ»¸öÎ¨Ò»µÄ±¾µØÍøÂçµØÖ·¸ø´Ó»úÄ£¿é£¬´Ó»úÄ£¿éÊ¹
- * ÓÃÊ±ÔÚÊ¹ÄÜÁË×Ô×éÍø¹¦ÄÜºó¾Í²»ĞèÒª½øĞĞÈÎºÎµÄÅäÖÃ²Ù×÷£¬´Ó»úÄ£¿éÔÚ¼ÓÈëÍøÂçºó¾ÍÄÜ¸úÖ÷
- * »ú½øĞĞÍ¨Ñ¶¡£Ò»¸öÖ÷»úÄ£¿é×î¶à¿ÉÁ¬ 200 ¸ö´Ó»úÄ£¿é¡£ÏêÏ¸Á÷³ÌÇë²Î¿¼ÎÄµµ
+ * è‡ªç»„ç½‘åŠŸèƒ½ä¸ºä¸€ä¸»å¤šä»çš„æ˜Ÿå½¢ç½‘ç»œæ‹“æ‰‘ç»“æ„ï¼Œåœ¨ä¸»æœºåˆ°ä»æœºä¿¡å·ä¸å¯è¾¾æ—¶ï¼Œå¯åŠ å…¥ä¸­ç»§èŠ‚ç‚¹
+ * è¿›è¡Œä¿¡å·ä¼ é€’ã€‚æ¨¡å—åœ¨è‡ªç»„ç½‘æ¨¡å¼ä¸‹ï¼Œä¸»æœºæ¨¡å—ä¼šè‡ªåŠ¨é€‰æ‹©å‘¨å›´æ²¡æœ‰è¢«ä½¿ç”¨çš„ PANID å’Œé€š
+ * é“å·å½¢æˆä¸€ä¸ªç‹¬ç«‹çš„ç½‘ç»œï¼Œå¹¶èƒ½è‡ªåŠ¨åˆ†é…ä¸€ä¸ªå”¯ä¸€çš„æœ¬åœ°ç½‘ç»œåœ°å€ç»™ä»æœºæ¨¡å—ï¼Œä»æœºæ¨¡å—ä½¿
+ * ç”¨æ—¶åœ¨ä½¿èƒ½äº†è‡ªç»„ç½‘åŠŸèƒ½åå°±ä¸éœ€è¦è¿›è¡Œä»»ä½•çš„é…ç½®æ“ä½œï¼Œä»æœºæ¨¡å—åœ¨åŠ å…¥ç½‘ç»œåå°±èƒ½è·Ÿä¸»
+ * æœºè¿›è¡Œé€šè®¯ã€‚ä¸€ä¸ªä¸»æœºæ¨¡å—æœ€å¤šå¯è¿ 200 ä¸ªä»æœºæ¨¡å—ã€‚è¯¦ç»†æµç¨‹è¯·å‚è€ƒæ–‡æ¡£
  * AW516x_ZigBee.pdf
  *
- * \param[in] handle ZM516X Ä£¿é²Ù×÷¾ä±ú
- * \param[in] state  ×Ô×éÍøÊ¹ÄÜ£¬0: Ê§ÄÜ 1: Ê¹ÄÜ
- * \param[in] type   ½ÚµãÀàĞÍ£¬0: Ö÷»ú½Úµã 1: ´Ó»ú½Úµã
+ * \param[in] handle ZM516X æ¨¡å—æ“ä½œå¥æŸ„
+ * \param[in] state  è‡ªç»„ç½‘ä½¿èƒ½ï¼Œ0: å¤±èƒ½ 1: ä½¿èƒ½
+ * \param[in] type   èŠ‚ç‚¹ç±»å‹ï¼Œ0: ä¸»æœºèŠ‚ç‚¹ 1: ä»æœºèŠ‚ç‚¹
  *
- * \retval  AM_OK     ÉèÖÃ³É¹¦
- * \retval -AM_EPERM  ÉèÖÃÊ§°Ü
- * \retval -AM_EINVAL ÎŞĞ§²ÎÊı
+ * \retval  AM_OK     è®¾ç½®æˆåŠŸ
+ * \retval -AM_EPERM  è®¾ç½®å¤±è´¥
+ * \retval -AM_EINVAL æ— æ•ˆå‚æ•°
  */
 am_err_t am_zm516x_cfg_network_set (am_zm516x_handle_t handle,
                                     am_bool_t          state,
                                     uint8_t            type);
 
 /**
- * \brief Ö÷»úÔÊĞí´Ó»ú¼ÓÈëÍøÂç£¨ÓÀ¾ÃÃüÁî£ºE6£©
+ * \brief ä¸»æœºå…è®¸ä»æœºåŠ å…¥ç½‘ç»œï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šE6ï¼‰
  *
- * ÔÊĞí¼ÓÈëÍøÂç¿ªÆôµÄ´°¿ÚÊ±¼äÎªµ±¸øÖ÷»ú·¢ËÍÁËÔÊĞí¼ÓÈëÍøÂçÃüÁîºó£¬Ö÷»ú¿ªÊ¼½ÓÊÜ´Ó»úµÄ
- * ÈëÍøÇëÇó£¬µ½´ïÕâ¸ö´°¿ÚÊ±¼äºó£¬Ö÷»ú²»ÔÙ½ÓÊÜ´Ó»úµÄÈëÍøÇëÇó£¬´°¿ÚÊ±¼ä½áÊøºó£¬Ö÷»ú½ø
- * ÈëÕı³£µÄ¹¤×÷×´Ì¬
+ * å…è®¸åŠ å…¥ç½‘ç»œå¼€å¯çš„çª—å£æ—¶é—´ä¸ºå½“ç»™ä¸»æœºå‘é€äº†å…è®¸åŠ å…¥ç½‘ç»œå‘½ä»¤åï¼Œä¸»æœºå¼€å§‹æ¥å—ä»æœºçš„
+ * å…¥ç½‘è¯·æ±‚ï¼Œåˆ°è¾¾è¿™ä¸ªçª—å£æ—¶é—´åï¼Œä¸»æœºä¸å†æ¥å—ä»æœºçš„å…¥ç½‘è¯·æ±‚ï¼Œçª—å£æ—¶é—´ç»“æŸåï¼Œä¸»æœºè¿›
+ * å…¥æ­£å¸¸çš„å·¥ä½œçŠ¶æ€
  *
- * \param[in] handle ZM516X Ä£¿é²Ù×÷¾ä±ú
- * \param[in] time   ÔÊĞí¼ÓÈëÍøÂç¿ªÆôµÄ´°¿ÚÊ±¼ä£¬µ¥Î»ÎªÃë
+ * \param[in] handle ZM516X æ¨¡å—æ“ä½œå¥æŸ„
+ * \param[in] time   å…è®¸åŠ å…¥ç½‘ç»œå¼€å¯çš„çª—å£æ—¶é—´ï¼Œå•ä½ä¸ºç§’
  *
- * \retval  AM_OK     ÉèÖÃ³É¹¦
- * \retval -AM_EPERM  ÉèÖÃÊ§°Ü
- * \retval -AM_EINVAL ÎŞĞ§²ÎÊı
+ * \retval  AM_OK     è®¾ç½®æˆåŠŸ
+ * \retval -AM_EPERM  è®¾ç½®å¤±è´¥
+ * \retval -AM_EINVAL æ— æ•ˆå‚æ•°
  */
 am_err_t am_zm516x_cfg_join_enable (am_zm516x_handle_t handle,
                                     uint16_t           time);
 
 /**
- * \brief ²éÑ¯Ö÷»úÄ£¿é´æ´¢µÄ´Ó»úĞÅÏ¢£¨ÓÀ¾ÃÃüÁî£ºE7£©
+ * \brief æŸ¥è¯¢ä¸»æœºæ¨¡å—å­˜å‚¨çš„ä»æœºä¿¡æ¯ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šE7ï¼‰
  *
- * \param[in]  handle       ZM516X Ä£¿é²Ù×÷¾ä±ú
- * \param[in]  buf_size     p_slave_info Ö¸ÏòµÄ»º³åÇø´óĞ¡£¬µ¥Î»Îª
+ * \param[in]  handle       ZM516X æ¨¡å—æ“ä½œå¥æŸ„
+ * \param[in]  buf_size     p_slave_info æŒ‡å‘çš„ç¼“å†²åŒºå¤§å°ï¼Œå•ä½ä¸º
  *                          sizeof(am_zm516x_slave_info_t)
- * \param[out] p_slave_info ´æ´¢½ÓÊÕµ½µÄ´Ó»úĞÅÏ¢µÄ»º³åÇø
- * \param[out] p_get_size   Êµ¼Ê»ñÈ¡µ½µÄ´Ó»úĞÅÏ¢ÊıÁ¿
+ * \param[out] p_slave_info å­˜å‚¨æ¥æ”¶åˆ°çš„ä»æœºä¿¡æ¯çš„ç¼“å†²åŒº
+ * \param[out] p_get_size   å®é™…è·å–åˆ°çš„ä»æœºä¿¡æ¯æ•°é‡
  *
- * \retval  AM_OK     ²éÑ¯³É¹¦
- * \retval -AM_EPERM  ²éÑ¯Ê§°Ü
- * \retval -AM_EINVAL ÎŞĞ§²ÎÊı
+ * \retval  AM_OK     æŸ¥è¯¢æˆåŠŸ
+ * \retval -AM_EPERM  æŸ¥è¯¢å¤±è´¥
+ * \retval -AM_EINVAL æ— æ•ˆå‚æ•°
  */
 am_err_t am_zm516x_cfg_slave_get (am_zm516x_handle_t      handle,
                                   uint8_t                 buf_size,
@@ -582,121 +582,121 @@ am_err_t am_zm516x_cfg_slave_get (am_zm516x_handle_t      handle,
                                   uint8_t                *p_get_size);
 
 /**
- * \brief ²éÑ¯Ö÷´Ó»ú×´Ì¬£¨ÓÀ¾ÃÃüÁî£ºE8£©
+ * \brief æŸ¥è¯¢ä¸»ä»æœºçŠ¶æ€ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šE8ï¼‰
  *
- * \param[in]  handle           ZM516X Ä£¿é²Ù×÷¾ä±ú
- * \param[out] p_state          »ñÈ¡µ½µÄ×´Ì¬£¬0: Ö÷»ú½Úµã 1: ´Ó»ú½Úµã£¬Èç²»ĞèÒª»ñ
- *                              È¡¸Ã²ÎÊı£¬´«Èë NULL ¼´¿É
- * \param[out] p_response_state »ñÈ¡µ½µÄÏìÓ¦×´Ì¬£¬µ±Ä£¿éÅäÖÃÎªÖ÷»úÊ±£¬
- *                                  0: Ö÷»ú¿ÕÏĞ
- *                                  1: Ö÷»úÕıÔÚ¼ì²âÍøÂç
- *                                  2: Ö÷»úÔÊĞí´Ó»ú¼ÓÈëÍøÂç
- *                              µ±Ä£¿éÅäÖÃÎª´Ó»úÊ±£¬
- *                                  0: ´Ó»úÕıÔÚ¼ÓÈëÍø
- *                                  1: ´Ó»úÒÑ¼ÓÈëÍøÂç
- *                                  2: ´Ó»úÒÑÍË³öÍøÂç
- *                              Èç²»ĞèÒª»ñÈ¡¸Ã²ÎÊı£¬´«Èë NULL ¼´¿É
+ * \param[in]  handle           ZM516X æ¨¡å—æ“ä½œå¥æŸ„
+ * \param[out] p_state          è·å–åˆ°çš„çŠ¶æ€ï¼Œ0: ä¸»æœºèŠ‚ç‚¹ 1: ä»æœºèŠ‚ç‚¹ï¼Œå¦‚ä¸éœ€è¦è·
+ *                              å–è¯¥å‚æ•°ï¼Œä¼ å…¥ NULL å³å¯
+ * \param[out] p_response_state è·å–åˆ°çš„å“åº”çŠ¶æ€ï¼Œå½“æ¨¡å—é…ç½®ä¸ºä¸»æœºæ—¶ï¼Œ
+ *                                  0: ä¸»æœºç©ºé—²
+ *                                  1: ä¸»æœºæ­£åœ¨æ£€æµ‹ç½‘ç»œ
+ *                                  2: ä¸»æœºå…è®¸ä»æœºåŠ å…¥ç½‘ç»œ
+ *                              å½“æ¨¡å—é…ç½®ä¸ºä»æœºæ—¶ï¼Œ
+ *                                  0: ä»æœºæ­£åœ¨åŠ å…¥ç½‘
+ *                                  1: ä»æœºå·²åŠ å…¥ç½‘ç»œ
+ *                                  2: ä»æœºå·²é€€å‡ºç½‘ç»œ
+ *                              å¦‚ä¸éœ€è¦è·å–è¯¥å‚æ•°ï¼Œä¼ å…¥ NULL å³å¯
  *
- * \retval  AM_OK     ²éÑ¯³É¹¦
- * \retval -AM_EPERM  ²éÑ¯Ê§°Ü
- * \retval -AM_EINVAL ÎŞĞ§²ÎÊı
+ * \retval  AM_OK     æŸ¥è¯¢æˆåŠŸ
+ * \retval -AM_EPERM  æŸ¥è¯¢å¤±è´¥
+ * \retval -AM_EINVAL æ— æ•ˆå‚æ•°
  */
 am_err_t am_zm516x_cfg_state_get (am_zm516x_handle_t handle,
                                   uint8_t           *p_state,
                                   uint8_t           *p_response_state);
 
 /**
- * \brief ÉèÖÃ ZM516X Ä£¿éÍ¨µÀºÅ£¨ÁÙÊ±ÃüÁî£ºD1£©
+ * \brief è®¾ç½® ZM516X æ¨¡å—é€šé“å·ï¼ˆä¸´æ—¶å‘½ä»¤ï¼šD1ï¼‰
  *
- * \param[in] handle ZM516X Ä£¿é²Ù×÷¾ä±ú
- * \param[in] chan   Í¨µÀºÅ
+ * \param[in] handle ZM516X æ¨¡å—æ“ä½œå¥æŸ„
+ * \param[in] chan   é€šé“å·
  *
- * \retval  AM_OK    ÉèÖÃ³É¹¦
- * \retval -AM_EPERM ÉèÖÃÊ§°Ü
+ * \retval  AM_OK    è®¾ç½®æˆåŠŸ
+ * \retval -AM_EPERM è®¾ç½®å¤±è´¥
  */
 am_err_t am_zm516x_channel_set (am_zm516x_handle_t handle, uint8_t chan);
 
 /**
- * \brief ÉèÖÃ ZM516X Ä£¿éÄ¿±êµØÖ·£¨ÁÙÊ±ÃüÁî£ºD2£©
+ * \brief è®¾ç½® ZM516X æ¨¡å—ç›®æ ‡åœ°å€ï¼ˆä¸´æ—¶å‘½ä»¤ï¼šD2ï¼‰
  *
- * \param[in] handle    ZM516X Ä£¿é²Ù×÷¾ä±ú
- * \param[in] p_zb_addr Ä¿±êµØÖ·
+ * \param[in] handle    ZM516X æ¨¡å—æ“ä½œå¥æŸ„
+ * \param[in] p_zb_addr ç›®æ ‡åœ°å€
  *
- * \retval  AM_OK    ÉèÖÃ³É¹¦
- * \retval -AM_EPERM ÉèÖÃÊ§°Ü
+ * \retval  AM_OK    è®¾ç½®æˆåŠŸ
+ * \retval -AM_EPERM è®¾ç½®å¤±è´¥
  */
 am_err_t am_zm516x_dest_addr_set (am_zm516x_handle_t handle,
                                   am_zm516x_addr_t  *p_zb_addr);
 
 /**
- * \brief ÉèÖÃ ZM516X Ä£¿é½ÓÊÕµÄÊı¾İ°ü°üÍ·ÊÇ·ñÏÔÊ¾Ô´µØÖ·£¨ÁÙÊ±ÃüÁî£ºD3£©
+ * \brief è®¾ç½® ZM516X æ¨¡å—æ¥æ”¶çš„æ•°æ®åŒ…åŒ…å¤´æ˜¯å¦æ˜¾ç¤ºæºåœ°å€ï¼ˆä¸´æ—¶å‘½ä»¤ï¼šD3ï¼‰
  *
- * \param[in] handle ZM516X Ä£¿é²Ù×÷¾ä±ú
- * \param[in] flag   °üÍ·ÊÇ·ñÏÔÊ¾Ô´µØÖ· AM_TRUE: ÏÔÊ¾£¬AM_FALSE: ²»ÏÔÊ¾
+ * \param[in] handle ZM516X æ¨¡å—æ“ä½œå¥æŸ„
+ * \param[in] flag   åŒ…å¤´æ˜¯å¦æ˜¾ç¤ºæºåœ°å€ AM_TRUE: æ˜¾ç¤ºï¼ŒAM_FALSE: ä¸æ˜¾ç¤º
  *
- * \retval  AM_OK    ÉèÖÃ³É¹¦
- * \retval -AM_EPERM ÉèÖÃÊ§°Ü
+ * \retval  AM_OK    è®¾ç½®æˆåŠŸ
+ * \retval -AM_EPERM è®¾ç½®å¤±è´¥
  */
 am_err_t am_zm516x_display_head_set (am_zm516x_handle_t handle, am_bool_t flag);
 
 /**
- * \brief ÉèÖÃÖ¸¶¨µØÖ· ZM516X Ä£¿éµÄ GPIO ÊäÈëÊä³ö·½Ïò£¨ÁÙÊ±ÃüÁî£ºD4£©
+ * \brief è®¾ç½®æŒ‡å®šåœ°å€ ZM516X æ¨¡å—çš„ GPIO è¾“å…¥è¾“å‡ºæ–¹å‘ï¼ˆä¸´æ—¶å‘½ä»¤ï¼šD4ï¼‰
  *
- * \param[in] handle    ZM516X Ä£¿é²Ù×÷¾ä±ú
- * \param[in] p_zb_addr ÒªÉèÖÃµÄ ZM516X Ä£¿éµÄÄ¿±êµØÖ·
- * \param[in] dir       ¹Ü½Å·½Ïò£¬¸Ã×Ö½Ú¸÷¸öÎ» 1 ÎªÊä³ö£¬0 ÎªÊäÈë£»
- *                      bit0 ¶ÔÓ¦ GPIO0£¬bit7 ¶ÔÓ¦ GPIO7
+ * \param[in] handle    ZM516X æ¨¡å—æ“ä½œå¥æŸ„
+ * \param[in] p_zb_addr è¦è®¾ç½®çš„ ZM516X æ¨¡å—çš„ç›®æ ‡åœ°å€
+ * \param[in] dir       ç®¡è„šæ–¹å‘ï¼Œè¯¥å­—èŠ‚å„ä¸ªä½ 1 ä¸ºè¾“å‡ºï¼Œ0 ä¸ºè¾“å…¥ï¼›
+ *                      bit0 å¯¹åº” GPIO0ï¼Œbit7 å¯¹åº” GPIO7
  *
- * \retval  AM_OK    ÉèÖÃ³É¹¦
- * \retval -AM_EPERM ÉèÖÃÊ§°Ü
+ * \retval  AM_OK    è®¾ç½®æˆåŠŸ
+ * \retval -AM_EPERM è®¾ç½®å¤±è´¥
  */
 am_err_t am_zm516x_gpio_dir (am_zm516x_handle_t handle,
                              am_zm516x_addr_t  *p_zb_addr,
                              uint8_t            dir);
 
 /**
- * \brief ¶ÁÈ¡Ö¸¶¨µØÖ· ZM516X Ä£¿éµÄ GPIO ÊäÈëÖµ£¨ÁÙÊ±ÃüÁî£ºD5£©
+ * \brief è¯»å–æŒ‡å®šåœ°å€ ZM516X æ¨¡å—çš„ GPIO è¾“å…¥å€¼ï¼ˆä¸´æ—¶å‘½ä»¤ï¼šD5ï¼‰
  *
- * \param[in]  handle    ZM516X Ä£¿é²Ù×÷¾ä±ú
- * \param[in]  p_zb_addr Òª¶ÁÈ¡µÄ ZM516X Ä£¿éµÄÄ¿±êµØÖ·
- * \param[out] p_value   ¶ÁÈ¡µ½µÄ¹Ü½ÅÊäÈëÖµ£¬¸Ã×Ö½Ú¸÷¸öÎ» 1 Îª¸ßµçÆ½£¬0 ÎªµÍµçÆ½£»
- *                       bit0 ¶ÔÓ¦ GPIO0£¬bit7 ¶ÔÓ¦ GPIO7
+ * \param[in]  handle    ZM516X æ¨¡å—æ“ä½œå¥æŸ„
+ * \param[in]  p_zb_addr è¦è¯»å–çš„ ZM516X æ¨¡å—çš„ç›®æ ‡åœ°å€
+ * \param[out] p_value   è¯»å–åˆ°çš„ç®¡è„šè¾“å…¥å€¼ï¼Œè¯¥å­—èŠ‚å„ä¸ªä½ 1 ä¸ºé«˜ç”µå¹³ï¼Œ0 ä¸ºä½ç”µå¹³ï¼›
+ *                       bit0 å¯¹åº” GPIO0ï¼Œbit7 å¯¹åº” GPIO7
  *
- * \retval  AM_OK    ¶ÁÈ¡³É¹¦
- * \retval -AM_EPERM ¶ÁÈ¡Ê§°Ü
+ * \retval  AM_OK    è¯»å–æˆåŠŸ
+ * \retval -AM_EPERM è¯»å–å¤±è´¥
  */
 am_err_t am_zm516x_gpio_get (am_zm516x_handle_t handle,
                              am_zm516x_addr_t  *p_zb_addr,
                              uint8_t           *p_value);
 
 /**
- * \brief ÉèÖÃÖ¸¶¨µØÖ· ZM516X Ä£¿éµÄ GPIO Êä³öÖµ£¨ÁÙÊ±ÃüÁî£ºD6£©
+ * \brief è®¾ç½®æŒ‡å®šåœ°å€ ZM516X æ¨¡å—çš„ GPIO è¾“å‡ºå€¼ï¼ˆä¸´æ—¶å‘½ä»¤ï¼šD6ï¼‰
  *
- * \param[in] handle    ZM516X Ä£¿é²Ù×÷¾ä±ú
- * \param[in] p_zb_addr ÒªÉèÖÃµÄ ZM516X Ä£¿éµÄÄ¿±êµØÖ·
- * \param[in] value     ¹Ü½ÅÊä³öÖµ£¬¸Ã×Ö½Ú¸÷¸öÎ» 1 Îª¸ßµçÆ½£¬0 ÎªµÍµçÆ½£»
- *                      bit0 ¶ÔÓ¦ GPIO0£¬bit7 ¶ÔÓ¦ GPIO7
+ * \param[in] handle    ZM516X æ¨¡å—æ“ä½œå¥æŸ„
+ * \param[in] p_zb_addr è¦è®¾ç½®çš„ ZM516X æ¨¡å—çš„ç›®æ ‡åœ°å€
+ * \param[in] value     ç®¡è„šè¾“å‡ºå€¼ï¼Œè¯¥å­—èŠ‚å„ä¸ªä½ 1 ä¸ºé«˜ç”µå¹³ï¼Œ0 ä¸ºä½ç”µå¹³ï¼›
+ *                      bit0 å¯¹åº” GPIO0ï¼Œbit7 å¯¹åº” GPIO7
  *
- * \retval  AM_OK    ÉèÖÃ³É¹¦
- * \retval -AM_EPERM ÉèÖÃÊ§°Ü
+ * \retval  AM_OK    è®¾ç½®æˆåŠŸ
+ * \retval -AM_EPERM è®¾ç½®å¤±è´¥
  */
 am_err_t am_zm516x_gpio_set (am_zm516x_handle_t handle,
                              am_zm516x_addr_t  *p_zb_addr,
                              uint8_t            value);
 
 /**
- * \brief ¶ÁÈ¡Ö¸¶¨µØÖ· ZM516X Ä£¿éµÄ AD ×ª»»Öµ£¨ÁÙÊ±ÃüÁî£ºD7£©
+ * \brief è¯»å–æŒ‡å®šåœ°å€ ZM516X æ¨¡å—çš„ AD è½¬æ¢å€¼ï¼ˆä¸´æ—¶å‘½ä»¤ï¼šD7ï¼‰
  *
- * ¶ÁÈ¡µ½µÄ AD ÖµÎª AD µÄ×ª»»Öµ£¬ĞèÒª²Î¿¼ ZM516X Ä£¿éÓÃ»§ÊÖ²á
- * ¸ù¾İ ZM516X Ä£¿é AD µÄÎ»Êı¼°²Î¿¼µçÑ¹×ª»»ÎªµçÑ¹Öµ
+ * è¯»å–åˆ°çš„ AD å€¼ä¸º AD çš„è½¬æ¢å€¼ï¼Œéœ€è¦å‚è€ƒ ZM516X æ¨¡å—ç”¨æˆ·æ‰‹å†Œ
+ * æ ¹æ® ZM516X æ¨¡å— AD çš„ä½æ•°åŠå‚è€ƒç”µå‹è½¬æ¢ä¸ºç”µå‹å€¼
  *
- * \param[in]  handle    ZM516X Ä£¿é²Ù×÷¾ä±ú
- * \param[in]  p_zb_addr Òª¶ÁÈ¡µÄ ZM516X Ä£¿éµÄÄ¿±êµØÖ·
- * \param[in]  chan      AD µÄÍ¨µÀºÅ
- * \param[out] p_value   AD µÄ×ª»»Öµ
+ * \param[in]  handle    ZM516X æ¨¡å—æ“ä½œå¥æŸ„
+ * \param[in]  p_zb_addr è¦è¯»å–çš„ ZM516X æ¨¡å—çš„ç›®æ ‡åœ°å€
+ * \param[in]  chan      AD çš„é€šé“å·
+ * \param[out] p_value   AD çš„è½¬æ¢å€¼
  *
- * \retval  AM_OK    ¶ÁÈ¡³É¹¦
- * \retval -AM_EPERM ¶ÁÈ¡Ê§°Ü
+ * \retval  AM_OK    è¯»å–æˆåŠŸ
+ * \retval -AM_EPERM è¯»å–å¤±è´¥
  */
 am_err_t am_zm516x_ad_get (am_zm516x_handle_t handle,
                            am_zm516x_addr_t  *p_zb_addr,
@@ -704,60 +704,60 @@ am_err_t am_zm516x_ad_get (am_zm516x_handle_t handle,
                            uint16_t          *p_value);
 
 /**
- * \brief ÉèÖÃ ZM516X Ä£¿é½øÈëË¯ÃßÄ£Ê½£¨ÁÙÊ±ÃüÁî£ºD8£©
+ * \brief è®¾ç½® ZM516X æ¨¡å—è¿›å…¥ç¡çœ æ¨¡å¼ï¼ˆä¸´æ—¶å‘½ä»¤ï¼šD8ï¼‰
  *
- * \param[in] handle ZM516X Ä£¿é²Ù×÷¾ä±ú
+ * \param[in] handle ZM516X æ¨¡å—æ“ä½œå¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zm516x_enter_sleep (am_zm516x_handle_t handle);
 
 /**
- * \brief ÉèÖÃZM516XÄ£¿éµÄÍ¨Ñ¶Ä£Ê½£¨ÁÙÊ±ÃüÁî£ºD9£©
+ * \brief è®¾ç½®ZM516Xæ¨¡å—çš„é€šè®¯æ¨¡å¼ï¼ˆä¸´æ—¶å‘½ä»¤ï¼šD9ï¼‰
  *
- * \param[in] handle ZM516XÄ£¿é²Ù×÷¾ä±ú
- * \param[in] mode   Ä£¿éµÄÍ¨Ñ¶Ä£Ê½
+ * \param[in] handle ZM516Xæ¨¡å—æ“ä½œå¥æŸ„
+ * \param[in] mode   æ¨¡å—çš„é€šè®¯æ¨¡å¼
  *
- * \retval  AM_OK    ÉèÖÃ³É¹¦
- * \retval -AM_EPERM ÉèÖÃÊ§°Ü
+ * \retval  AM_OK    è®¾ç½®æˆåŠŸ
+ * \retval -AM_EPERM è®¾ç½®å¤±è´¥
  */
 am_err_t am_zm516x_mode_set (am_zm516x_handle_t    handle,
                              am_zm516x_comm_mode_t mode);
 
 /**
- * \brief ¶ÁÈ¡Ö¸¶¨µØÖ· ZM516X Ä£¿éµÄĞÅºÅÇ¿¶È£¨ÁÙÊ±ÃüÁî£ºDA£©
+ * \brief è¯»å–æŒ‡å®šåœ°å€ ZM516X æ¨¡å—çš„ä¿¡å·å¼ºåº¦ï¼ˆä¸´æ—¶å‘½ä»¤ï¼šDAï¼‰
  *
- * \param[in]  handle    ZM516X Ä£¿é²Ù×÷¾ä±ú
- * \param[in]  p_zb_addr Òª¶ÁÈ¡µÄ±¾»ú ZM516X Ä£¿éÓëÄ¿±êµØÖ·Ö®¼äµÄĞÅºÅÇ¿¶È
- * \param[out] p_signal  ĞÅºÅÇ¿¶È
+ * \param[in]  handle    ZM516X æ¨¡å—æ“ä½œå¥æŸ„
+ * \param[in]  p_zb_addr è¦è¯»å–çš„æœ¬æœº ZM516X æ¨¡å—ä¸ç›®æ ‡åœ°å€ä¹‹é—´çš„ä¿¡å·å¼ºåº¦
+ * \param[out] p_signal  ä¿¡å·å¼ºåº¦
  *
- * \retval  AM_OK    ¶ÁÈ¡³É¹¦
- * \retval -AM_EPERM ¶ÁÈ¡Ê§°Ü
+ * \retval  AM_OK    è¯»å–æˆåŠŸ
+ * \retval -AM_EPERM è¯»å–å¤±è´¥
  */
 am_err_t am_zm516x_sigal_get (am_zm516x_handle_t handle,
                               am_zm516x_addr_t  *p_zb_addr,
                               uint8_t           *p_signal);
 
 /**
- * \brief ³õÊ¼»¯ ZM516X Ä£¿éÇı¶¯
+ * \brief åˆå§‹åŒ– ZM516X æ¨¡å—é©±åŠ¨
  *
- * \param[in] p_dev       ZM516X Ä£¿éÉè±¸½á¹¹Ìå
- * \param[in] p_info      ZM516X Ä£¿éÊµÀıĞÅÏ¢
- * \param[in] uart_handle ²Ù×÷ ZM516X Ä£¿éµÄ´®¿Ú¾ä±ú
+ * \param[in] p_dev       ZM516X æ¨¡å—è®¾å¤‡ç»“æ„ä½“
+ * \param[in] p_info      ZM516X æ¨¡å—å®ä¾‹ä¿¡æ¯
+ * \param[in] uart_handle æ“ä½œ ZM516X æ¨¡å—çš„ä¸²å£å¥æŸ„
  *
- * \return ZM516X ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return ZM516X æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_zm516x_handle_t am_zm516x_init (am_zm516x_dev_t            *p_dev,
                                    const am_zm516x_dev_info_t *p_info,
                                    am_uart_handle_t            uart_handle);
 
 /**
- * \brief ½â³õÊ¼»¯ ZM516X Ä£¿éÇı¶¯
+ * \brief è§£åˆå§‹åŒ– ZM516X æ¨¡å—é©±åŠ¨
  *
- * \param[in] handle Í¨¹ıam_zm516x_initº¯Êı»ñÈ¡µÄZM516X¾ä±ú
+ * \param[in] handle é€šè¿‡am_zm516x_initå‡½æ•°è·å–çš„ZM516Xå¥æŸ„
  *
- * \retval  AM_OK     ½â³õÊ¼»¯³É¹¦
- * \retval -AM_EINVAL ÎŞĞ§²ÎÊı
+ * \retval  AM_OK     è§£åˆå§‹åŒ–æˆåŠŸ
+ * \retval -AM_EINVAL æ— æ•ˆå‚æ•°
  */
 am_err_t am_zm516x_deinit (am_zm516x_handle_t handle);
 

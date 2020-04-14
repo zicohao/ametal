@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief ÎŞÔ´·äÃùÆ÷±ê×¼½Ó¿Ú
+ * \brief æ— æºèœ‚é¸£å™¨æ ‡å‡†æ¥å£
  *
- * ÎŞÔ´·äÃùÆ÷Ê¹ÓÃPWMÇı¶¯ 
+ * æ— æºèœ‚é¸£å™¨ä½¿ç”¨PWMé©±åŠ¨ 
  *
  * \internal
  * \par Modification history
@@ -39,14 +39,14 @@ extern "C" {
  */
 
 /**
- * \brief ³õÊ¼»¯ÎŞÔ´·äÃùÆ÷
+ * \brief åˆå§‹åŒ–æ— æºèœ‚é¸£å™¨
   *
- * \param[in] pwm_handle : PWM±ê×¼½Ó¿Ú²Ù×÷¾ä±ú
- * \param[in] chan       : PWMÍ¨µÀºÅ
- * \param[in] duty_ns    : PWMÂö¿íÊ±¼ä£¨µ¥Î»£ºÄÉÃë£©
- * \param[in] period_ns  : PWMÖÜÆÚÊ±¼ä£¨µ¥Î»£ºÄÉÃë£©
+ * \param[in] pwm_handle : PWMæ ‡å‡†æ¥å£æ“ä½œå¥æŸ„
+ * \param[in] chan       : PWMé€šé“å·
+ * \param[in] duty_ns    : PWMè„‰å®½æ—¶é—´ï¼ˆå•ä½ï¼šçº³ç§’ï¼‰
+ * \param[in] period_ns  : PWMå‘¨æœŸæ—¶é—´ï¼ˆå•ä½ï¼šçº³ç§’ï¼‰
  *
- * \return ´íÎóºÅ
+ * \return é”™è¯¯å·
  */ 
 int am_buzzer_pwm_init (am_pwm_handle_t pwm_handle,
                         int             chan,

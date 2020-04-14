@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZLG600µ×²ãÇı¶¯³ÌĞò
+ * \brief ZLG600åº•å±‚é©±åŠ¨ç¨‹åº
  * 
  * \internal
  * \par Modification history
@@ -35,331 +35,331 @@
  */
  
 /** 
- * \name ZLG600µÄÍ¨ĞÅÄ£Ê½ÓëÖ÷´ÓÄ£Ê½
+ * \name ZLG600çš„é€šä¿¡æ¨¡å¼ä¸ä¸»ä»æ¨¡å¼
  * @{
  */
 
-#define AM_ZLG600_MODE_AUTO_CHECK         0         /**< \brief ×Ô¶¯¼ì²âÄ£Ê½  */
-#define AM_ZLG600_MODE_I2C                1         /**< \brief I2CÄ£Ê½       */
-#define AM_ZLG600_MODE_UART               2         /**< \brief ´®¿ÚÄ£Ê½      */
-#define AM_ZLG600_MODE_MASTER       (1 << 4)        /**< \brief Ö÷»úÄ£Ê½£¨±£Áô¹¦ÄÜ£© */
-#define AM_ZLG600_MODE_SLAVE        (0 << 4)        /**< \brief ´Ó»úÄ£Ê½£¨Ä¬ÈÏ£© */
+#define AM_ZLG600_MODE_AUTO_CHECK         0         /**< \brief è‡ªåŠ¨æ£€æµ‹æ¨¡å¼  */
+#define AM_ZLG600_MODE_I2C                1         /**< \brief I2Cæ¨¡å¼       */
+#define AM_ZLG600_MODE_UART               2         /**< \brief ä¸²å£æ¨¡å¼      */
+#define AM_ZLG600_MODE_MASTER       (1 << 4)        /**< \brief ä¸»æœºæ¨¡å¼ï¼ˆä¿ç•™åŠŸèƒ½ï¼‰ */
+#define AM_ZLG600_MODE_SLAVE        (0 << 4)        /**< \brief ä»æœºæ¨¡å¼ï¼ˆé»˜è®¤ï¼‰ */
 
 /** @}*/
 
 /**
- * \name ZLG600µÄÁ¬½Ó·½Ê½
+ * \name ZLG600çš„è¿æ¥æ–¹å¼
  * @{
  */
 
-#define AM_ZLG600_CMNT_UART        0            /**< \brief UARTÁ¬½Ó */
-#define AM_ZLG600_CMNT_I2C         1            /**< \brief I2CÁ¬½Ó */
+#define AM_ZLG600_CMNT_UART        0            /**< \brief UARTè¿æ¥ */
+#define AM_ZLG600_CMNT_I2C         1            /**< \brief I2Cè¿æ¥ */
 
 /** @} */
 
  /** 
- * \name ZLG600µÄÖ¡¸ñÊ½
+ * \name ZLG600çš„å¸§æ ¼å¼
  * @{
  */
 
-#define AM_ZLG600_FRAME_FMT_OLD  0             /**< \brief  ¾ÉÖ¡¸ñÊ½      */
-#define AM_ZLG600_FRAME_FMT_NEW  1             /**< \brief  ĞÂÖ¡¸ñÊ½      */
+#define AM_ZLG600_FRAME_FMT_OLD  0             /**< \brief  æ—§å¸§æ ¼å¼      */
+#define AM_ZLG600_FRAME_FMT_NEW  1             /**< \brief  æ–°å¸§æ ¼å¼      */
 
  /** @} */
  
 /**
- * \name Ö§³ÖµÄ²¨ÌØÂÊ
+ * \name æ”¯æŒçš„æ³¢ç‰¹ç‡
  * @{
  */
 
-#define  AM_ZLG600_BAUDRATE_9600      9600     /**< \brief ²¨ÌØÂÊ 9600   */
-#define  AM_ZLG600_BAUDRATE_19200     19200    /**< \brief ²¨ÌØÂÊ 19200  */
-#define  AM_ZLG600_BAUDRATE_28800     28800    /**< \brief ²¨ÌØÂÊ 28800  */
-#define  AM_ZLG600_BAUDRATE_38400     38400    /**< \brief ²¨ÌØÂÊ 38400  */
-#define  AM_ZLG600_BAUDRATE_57600     57600    /**< \brief ²¨ÌØÂÊ 57600  */
-#define  AM_ZLG600_BAUDRATE_115200    115200   /**< \brief ²¨ÌØÂÊ 115200 */
-#define  AM_ZLG600_BAUDRATE_172800    172800   /**< \brief ²¨ÌØÂÊ 172800 */
-#define  AM_ZLG600_BAUDRATE_230400    230400   /**< \brief ²¨ÌØÂÊ 230400 */
+#define  AM_ZLG600_BAUDRATE_9600      9600     /**< \brief æ³¢ç‰¹ç‡ 9600   */
+#define  AM_ZLG600_BAUDRATE_19200     19200    /**< \brief æ³¢ç‰¹ç‡ 19200  */
+#define  AM_ZLG600_BAUDRATE_28800     28800    /**< \brief æ³¢ç‰¹ç‡ 28800  */
+#define  AM_ZLG600_BAUDRATE_38400     38400    /**< \brief æ³¢ç‰¹ç‡ 38400  */
+#define  AM_ZLG600_BAUDRATE_57600     57600    /**< \brief æ³¢ç‰¹ç‡ 57600  */
+#define  AM_ZLG600_BAUDRATE_115200    115200   /**< \brief æ³¢ç‰¹ç‡ 115200 */
+#define  AM_ZLG600_BAUDRATE_172800    172800   /**< \brief æ³¢ç‰¹ç‡ 172800 */
+#define  AM_ZLG600_BAUDRATE_230400    230400   /**< \brief æ³¢ç‰¹ç‡ 230400 */
 
 /** @}*/
 
 /**
- * \brief ZLG600×Ô¶¯¼ì²âĞÅÏ¢½á¹¹Ìå
+ * \brief ZLG600è‡ªåŠ¨æ£€æµ‹ä¿¡æ¯ç»“æ„ä½“
  */
 typedef struct am_zlg600_auto_detect_info {
 
     /**
-     * \brief ¼ì²âÄ£Ê½£¬ÅäÖÃ¼ì²â¶¯×÷£¬ÊÇ·ñ²úÉúÖĞ¶Ï¡¢¼ÌĞø¼ì²â¡¢Íê³É¶¯×÷µÈ #AM_ZLG600_MIFARE_CARD_AD_HALT
+     * \brief æ£€æµ‹æ¨¡å¼ï¼Œé…ç½®æ£€æµ‹åŠ¨ä½œï¼Œæ˜¯å¦äº§ç”Ÿä¸­æ–­ã€ç»§ç»­æ£€æµ‹ã€å®ŒæˆåŠ¨ä½œç­‰ #AM_ZLG600_MIFARE_CARD_AD_HALT
      */
     uint8_t        ad_mode;
 
     /**
-     * \brief ÌìÏßÇı¶¯Ä£Ê½£¬½»ÌæÇı¶¯¡¢½öÆäÖĞÒ»ÖÖÇı¶¯¡¢Í¬Ê±Çı¶¯ #AM_ZLG600_MIFARE_CARD_TX_TX1
+     * \brief å¤©çº¿é©±åŠ¨æ¨¡å¼ï¼Œäº¤æ›¿é©±åŠ¨ã€ä»…å…¶ä¸­ä¸€ç§é©±åŠ¨ã€åŒæ—¶é©±åŠ¨ #AM_ZLG600_MIFARE_CARD_TX_TX1
      */
     uint8_t        tx_mode;
 
     /**
-     * \brief ÇëÇóÄ£Ê½£¬ÇëÇó¿ÕÏĞ¿¨»òËùÓĞ¿¨ #AM_ZLG600_MIFARE_CARD_REQ_IDLE
+     * \brief è¯·æ±‚æ¨¡å¼ï¼Œè¯·æ±‚ç©ºé—²å¡æˆ–æ‰€æœ‰å¡ #AM_ZLG600_MIFARE_CARD_REQ_IDLE
      */
     uint8_t        req_mode;
 
     /**
-     * \brief ÑéÖ¤Ä£Ê½£¬E2ÃØÔ¿ÑéÖ¤¡¢Ö±½ÓÑéÖ¤»ò²»ÑéÖ¤ #AM_ZLG600_MIFARE_CARD_AUTH_E2
+     * \brief éªŒè¯æ¨¡å¼ï¼ŒE2ç§˜é’¥éªŒè¯ã€ç›´æ¥éªŒè¯æˆ–ä¸éªŒè¯ #AM_ZLG600_MIFARE_CARD_AUTH_E2
      */
-    uint8_t        auth_mode;           /**< \brief ÑéÖ¤Ä£Ê½ */
+    uint8_t        auth_mode;           /**< \brief éªŒè¯æ¨¡å¼ */
 
     /**
-     * \brief ÃÜÔ¿ÀàĞÍ£¬#AM_ZLG600_IC_KEY_TYPE_A »ò #AM_ZLG600_IC_KEY_TYPE_B
-     *        Èç¹ûauth_modeÑ¡ÔñµÄÊÇAM_ZLG600_MIFARE_CARD_AUTH_NO£¬
-     *        Ôòkey_type¿ÉÒÔÎªÈÎÒâÖµ
+     * \brief å¯†é’¥ç±»å‹ï¼Œ#AM_ZLG600_IC_KEY_TYPE_A æˆ– #AM_ZLG600_IC_KEY_TYPE_B
+     *        å¦‚æœauth_modeé€‰æ‹©çš„æ˜¯AM_ZLG600_MIFARE_CARD_AUTH_NOï¼Œ
+     *        åˆ™key_typeå¯ä»¥ä¸ºä»»æ„å€¼
      */
     uint8_t        key_type;
 
-    /** \brief ÃÜÔ¿ */
+    /** \brief å¯†é’¥ */
     uint8_t        key[16];
 
-    /** \brief ÃÜÔ¿³¤¶È */
+    /** \brief å¯†é’¥é•¿åº¦ */
     uint8_t        key_len;
 
     /**
-     * \brief ÑéÖ¤¿éºÅ
-     *          S50£¨ 0¡«63£©
-     *          S70£¨ 0¡«255£©
-     *          PLUS CPU 2K£¨ 0¡«127£©
-     *          PLUS CPU 4K£¨ 0¡«255£©
+     * \brief éªŒè¯å—å·
+     *          S50ï¼ˆ 0ï½63ï¼‰
+     *          S70ï¼ˆ 0ï½255ï¼‰
+     *          PLUS CPU 2Kï¼ˆ 0ï½127ï¼‰
+     *          PLUS CPU 4Kï¼ˆ 0ï½255ï¼‰
      */
     uint8_t        nblock;
 
 } am_zlg600_auto_detect_info_t;
 
 /**
- * \brief ±ê×¼µÄZLG600Éè±¸·şÎñ½á¹¹Ìå¶¨Òå
+ * \brief æ ‡å‡†çš„ZLG600è®¾å¤‡æœåŠ¡ç»“æ„ä½“å®šä¹‰
  */
 typedef struct am_zlg600_serv {
 
-    void          *p_cookie;            /**< \brief ²ÎÊı£¬½ö¹©ÄÚ²¿Ê¹ÓÃ */
+    void          *p_cookie;            /**< \brief å‚æ•°ï¼Œä»…ä¾›å†…éƒ¨ä½¿ç”¨ */
 
-    uint32_t       timeout_ms;          /**< \brief ÃüÁîµÈ´ıÊ±¼ä(ºÁÃë) */
+    uint32_t       timeout_ms;          /**< \brief å‘½ä»¤ç­‰å¾…æ—¶é—´(æ¯«ç§’) */
 
-    uint8_t        frame_seq;           /**< \brief ¼ÇÂ¼°üºÅ */
-    uint8_t        work_mode;           /**< \brief µ±Ç°Ê¹ÓÃµÄ¹¤×÷Ä£Ê½(Ö÷´ÓÄ£Ê½) */
-    uint8_t        cur_addr;            /**< \brief µ±Ç°´«ÊäµÄµØÖ·(7bit) */
+    uint8_t        frame_seq;           /**< \brief è®°å½•åŒ…å· */
+    uint8_t        work_mode;           /**< \brief å½“å‰ä½¿ç”¨çš„å·¥ä½œæ¨¡å¼(ä¸»ä»æ¨¡å¼) */
+    uint8_t        cur_addr;            /**< \brief å½“å‰ä¼ è¾“çš„åœ°å€(7bit) */
 
-    uint8_t        auto_detect;         /**< \brief ×Ô¶¯¼ì²âÄ£Ê½ */
-    uint8_t        auto_detect_read;    /**< \brief ×Ô¶¯¼ì²â¶Á±êÖ¾ */
-    am_pfnvoid_t   pfn_callback;        /**< \brief »Øµ÷º¯Êı */
-    void          *p_arg;               /**< \brief »Øµ÷º¯ÊıµÄ²ÎÊı */
+    uint8_t        auto_detect;         /**< \brief è‡ªåŠ¨æ£€æµ‹æ¨¡å¼ */
+    uint8_t        auto_detect_read;    /**< \brief è‡ªåŠ¨æ£€æµ‹è¯»æ ‡å¿— */
+    am_pfnvoid_t   pfn_callback;        /**< \brief å›è°ƒå‡½æ•° */
+    void          *p_arg;               /**< \brief å›è°ƒå‡½æ•°çš„å‚æ•° */
 
-    am_pfnvoid_t                  pfn_cmd_timeout_set;          /**< \brief Ö¸Áî³¬Ê±Ê±¼äÉèÖÃ */
-    am_pfnvoid_t                  pfn_frame_proc;               /**< \brief Ö¡´¦Àíº¯Êı */
-    am_pfnvoid_t                  pfn_auto_detect_trigger_set;  /**< \brief ×Ô¶¯¼ì²â´¥·¢ÉèÖÃ */
-    am_zlg600_auto_detect_info_t *p_auto_detect_info;           /**< \brief ×Ô¶¯¼ì²âĞÅÏ¢ */
+    am_pfnvoid_t                  pfn_cmd_timeout_set;          /**< \brief æŒ‡ä»¤è¶…æ—¶æ—¶é—´è®¾ç½® */
+    am_pfnvoid_t                  pfn_frame_proc;               /**< \brief å¸§å¤„ç†å‡½æ•° */
+    am_pfnvoid_t                  pfn_auto_detect_trigger_set;  /**< \brief è‡ªåŠ¨æ£€æµ‹è§¦å‘è®¾ç½® */
+    am_zlg600_auto_detect_info_t *p_auto_detect_info;           /**< \brief è‡ªåŠ¨æ£€æµ‹ä¿¡æ¯ */
 
 } am_zlg600_serv_t;
 
 /**
- * \brief ZLG600±ê×¼·şÎñhandle¶¨Òå
+ * \brief ZLG600æ ‡å‡†æœåŠ¡handleå®šä¹‰
  */
 typedef am_zlg600_serv_t *am_zlg600_handle_t;
 
 /** 
- * \brief ZLG600£¨´®¿ÚÍ¨ĞÅ£©Éè±¸¶¨Òå
+ * \brief ZLG600ï¼ˆä¸²å£é€šä¿¡ï¼‰è®¾å¤‡å®šä¹‰
  */
 typedef struct am_zlg600_uart_dev {
 
-    /** \brief ZLG600 ±ê×¼·şÎñ */
+    /** \brief ZLG600 æ ‡å‡†æœåŠ¡ */
     am_zlg600_serv_t         zlg600_serv;
 
-    /** \brief ´®¿Ú£¨´ø»º³åÇø£©Éè±¸           */
+    /** \brief ä¸²å£ï¼ˆå¸¦ç¼“å†²åŒºï¼‰è®¾å¤‡           */
     am_uart_rngbuf_dev_t     uart_ringbuf_dev;
     
-    /** \brief ´®¿Ú£¨´ø»º³åÇø£©±ê×¼·şÎñhandle */
+    /** \brief ä¸²å£ï¼ˆå¸¦ç¼“å†²åŒºï¼‰æ ‡å‡†æœåŠ¡handle */
     am_uart_rngbuf_handle_t  uart_ringbuf_handle;
 
-    /** \brief Ö¡´¦Àíº¯Êı */
+    /** \brief å¸§å¤„ç†å‡½æ•° */
     am_pfnvoid_t   pfn_frame_proc;
 
 } am_zlg600_uart_dev_t;
 
 /** 
- * \brief ZLG600 (UARTÍ¨ĞÅÄ£Ê½) ĞÅÏ¢¶¨Òå
+ * \brief ZLG600 (UARTé€šä¿¡æ¨¡å¼) ä¿¡æ¯å®šä¹‰
  */
 typedef struct am_zlg600_uart_dev_info {
 
-    /** \brief ÓÃÓÚ´®¿Ú½ÓÊÕµÄ»º³åÇø£¬½¨Òé´óĞ¡ÔÚ64ÒÔÉÏ     */
+    /** \brief ç”¨äºä¸²å£æ¥æ”¶çš„ç¼“å†²åŒºï¼Œå»ºè®®å¤§å°åœ¨64ä»¥ä¸Š     */
     uint8_t     *p_uart_rxbuf;
 
-    /** \brief ÓÃÓÚ´®¿Ú·¢ËÍµÄ»º³åÇø£¬½¨Òé´óĞ¡ÔÚ64ÒÔÉÏ     */
+    /** \brief ç”¨äºä¸²å£å‘é€çš„ç¼“å†²åŒºï¼Œå»ºè®®å¤§å°åœ¨64ä»¥ä¸Š     */
     uint8_t     *p_uart_txbuf;
 
-    /** \brief ÓÃÓÚ´®¿Ú½ÓÊÕµÄ»º³åÇø´óĞ¡ */
+    /** \brief ç”¨äºä¸²å£æ¥æ”¶çš„ç¼“å†²åŒºå¤§å° */
     uint16_t     rxbuf_size;
 
-    /** \brief ÓÃÓÚ´®¿Ú·¢ËÍµÄ»º³åÇø´óĞ¡ */
+    /** \brief ç”¨äºä¸²å£å‘é€çš„ç¼“å†²åŒºå¤§å° */
     uint16_t     txbuf_size;
 
-    /** \brief ÓëZLG600Í¨ĞÅµÄ²¨ÌØÂÊ(UARTÄ£Ê½ÏÂÊ¹ÓÃ) */
+    /** \brief ä¸ZLG600é€šä¿¡çš„æ³¢ç‰¹ç‡(UARTæ¨¡å¼ä¸‹ä½¿ç”¨) */
     uint32_t     baudrate;
 
-    /** \brief ³õÊ¼»¯Ê±Ê¹ÓÃµÄÄ£Ê½ #AM_ZLG600_MODE_AUTO_CHECK */
+    /** \brief åˆå§‹åŒ–æ—¶ä½¿ç”¨çš„æ¨¡å¼ #AM_ZLG600_MODE_AUTO_CHECK */
     uint8_t      now_mode;
 
-    /** \brief ZLG600µÄ´Ó»úµØÖ·(7bit) */
+    /** \brief ZLG600çš„ä»æœºåœ°å€(7bit) */
     uint8_t      local_addr;
 
 } am_zlg600_uart_dev_info_t;
 
 /**
- * \brief ZLG600£¨I2CÍ¨ĞÅ£©Éè±¸¶¨Òå
+ * \brief ZLG600ï¼ˆI2Cé€šä¿¡ï¼‰è®¾å¤‡å®šä¹‰
  */
 typedef struct am_zlg600_i2c_dev {
     
-    /** \brief ZLG600 ±ê×¼·şÎñ */
+    /** \brief ZLG600 æ ‡å‡†æœåŠ¡ */
     am_zlg600_serv_t          zlg600_serv;
  
-    /** \brief I2C±ê×¼·şÎñ¾ä±ú */
+    /** \brief I2Cæ ‡å‡†æœåŠ¡å¥æŸ„ */
     am_i2c_handle_t           i2c_handle;
     
-    /** \brief ÖĞ¶ÏÒı½Å           */
+    /** \brief ä¸­æ–­å¼•è„š           */
     int                       pin;
     
-    /** \brief I2C transfer »º´æµØÖ· */
+    /** \brief I2C transfer ç¼“å­˜åœ°å€ */
     am_i2c_transfer_t        *p_trans;
 
-    /** \brief I2C transfer »º´æ³¤¶È */
+    /** \brief I2C transfer ç¼“å­˜é•¿åº¦ */
     uint8_t                   trans_len;
 
-    /** \brief ÓÃÓÚµÈ´ıI2C´«Êä½áÊø */
+    /** \brief ç”¨äºç­‰å¾…I2Cä¼ è¾“ç»“æŸ */
     am_wait_t                 wait;
 
-    /** \brief Ö¡´¦Àíº¯Êı */
+    /** \brief å¸§å¤„ç†å‡½æ•° */
     am_pfnvoid_t   pfn_frame_proc;
  
 } am_zlg600_i2c_dev_t;
 
 /**
- * \brief ZLG600 (I2CÍ¨ĞÅÄ£Ê½) ĞÅÏ¢¶¨Òå
+ * \brief ZLG600 (I2Cé€šä¿¡æ¨¡å¼) ä¿¡æ¯å®šä¹‰
  */
 typedef struct am_zlg600_i2c_dev_info {
 
-    /** \brief ÖĞ¶ÏÒı½Å£¬Ê¹ÓÃI2CÍ¨ĞÅÊ±£¬ĞèÒªÊ¹ÓÃµ½Ò»¸öÖĞ¶ÏÒı½Å */
+    /** \brief ä¸­æ–­å¼•è„šï¼Œä½¿ç”¨I2Cé€šä¿¡æ—¶ï¼Œéœ€è¦ä½¿ç”¨åˆ°ä¸€ä¸ªä¸­æ–­å¼•è„š */
     int                pin;
 
-    /** \brief ZLG600µÄ´Ó»úµØÖ·(7bit) */
+    /** \brief ZLG600çš„ä»æœºåœ°å€(7bit) */
     uint8_t            local_addr;
 
-    /** \brief ³õÊ¼»¯Ê±Ê¹ÓÃµÄÄ£Ê½ #AM_ZLG600_MODE_AUTO_CHECK */
+    /** \brief åˆå§‹åŒ–æ—¶ä½¿ç”¨çš„æ¨¡å¼ #AM_ZLG600_MODE_AUTO_CHECK */
     uint8_t            now_mode;
 
-    /** \brief I2C transfer »º´æµØÖ· */
+    /** \brief I2C transfer ç¼“å­˜åœ°å€ */
     am_i2c_transfer_t *p_trans;
 
-    /** \brief I2C transfer »º´æ³¤¶È(Ä¿Ç°×î´óÖ¸Áî³¤ĞèÒª9¸ötrans) */
+    /** \brief I2C transfer ç¼“å­˜é•¿åº¦(ç›®å‰æœ€å¤§æŒ‡ä»¤é•¿éœ€è¦9ä¸ªtrans) */
     uint8_t            trans_len;
 
 } am_zlg600_i2c_dev_info_t;
 
 /**
- * \brief ³õÊ¼»¯ZLG600£¨Ê¹ÓÃUART¾ÉÖ¡Í¨ĞÅÄ£Ê½£©£¬»ñÈ¡µ½²Ù×÷ZLG600µÄ±ê×¼·şÎñhandle
+ * \brief åˆå§‹åŒ–ZLG600ï¼ˆä½¿ç”¨UARTæ—§å¸§é€šä¿¡æ¨¡å¼ï¼‰ï¼Œè·å–åˆ°æ“ä½œZLG600çš„æ ‡å‡†æœåŠ¡handle
  *
- * Îñ±Ø¸ù¾İÊµ¼ÊÓ²¼şÊ¹ÓÃºÎÖÖÍ¨ĞÅÁ¬½Ó·½Ê½Ñ¡Ôñ£¬ÈçÊ¹ÓÃUART£¬ÔòÊ¹ÓÃ¸Ãº¯Êı³õÊ¼»¯
- * ÒÔ»ñµÃhandle£¬·ñÔò£¬ÇëÊ¹ÓÃam_zlg600_i2c_init()º¯Êı»ñµÃhandle¡£
+ * åŠ¡å¿…æ ¹æ®å®é™…ç¡¬ä»¶ä½¿ç”¨ä½•ç§é€šä¿¡è¿æ¥æ–¹å¼é€‰æ‹©ï¼Œå¦‚ä½¿ç”¨UARTï¼Œåˆ™ä½¿ç”¨è¯¥å‡½æ•°åˆå§‹åŒ–
+ * ä»¥è·å¾—handleï¼Œå¦åˆ™ï¼Œè¯·ä½¿ç”¨am_zlg600_i2c_init()å‡½æ•°è·å¾—handleã€‚
  *
- * \param[in] p_dev        : Ö¸ÏòZLG600Éè±¸µÄÖ¸Õë
- * \param[in] uart_handle  : ÓëZLG600¹ØÁªµÄUART£¬ºóĞøÊ¹ÓÃ¸Ãhandle½øĞĞUARTÍ¨ĞÅ
- * \param[in] p_uart_info  : UARTÍ¨ĞÅÄ£Ê½Ïà¹ØĞÅÏ¢
+ * \param[in] p_dev        : æŒ‡å‘ZLG600è®¾å¤‡çš„æŒ‡é’ˆ
+ * \param[in] uart_handle  : ä¸ZLG600å…³è”çš„UARTï¼Œåç»­ä½¿ç”¨è¯¥handleè¿›è¡ŒUARTé€šä¿¡
+ * \param[in] p_uart_info  : UARTé€šä¿¡æ¨¡å¼ç›¸å…³ä¿¡æ¯
  *
- * \return ²Ù×÷ ZLG600 µÄ²Ù×÷¾ä±ú£¬Èç¹û³õÊ¼»¯Ê§°Ü£¬Ôò·µ»ØNULL
+ * \return æ“ä½œ ZLG600 çš„æ“ä½œå¥æŸ„ï¼Œå¦‚æœåˆå§‹åŒ–å¤±è´¥ï¼Œåˆ™è¿”å›NULL
  */ 
 am_zlg600_handle_t am_zlg600_uart_old_init (am_zlg600_uart_dev_t            *p_dev,
                                             am_uart_handle_t                 uart_handle,
                                             const am_zlg600_uart_dev_info_t *p_uart_info);
 
 /**
- * \brief ³õÊ¼»¯ZLG600£¨Ê¹ÓÃUARTĞÂÖ¡Í¨ĞÅÄ£Ê½£©£¬»ñÈ¡µ½²Ù×÷ZLG600µÄ±ê×¼·şÎñhandle
+ * \brief åˆå§‹åŒ–ZLG600ï¼ˆä½¿ç”¨UARTæ–°å¸§é€šä¿¡æ¨¡å¼ï¼‰ï¼Œè·å–åˆ°æ“ä½œZLG600çš„æ ‡å‡†æœåŠ¡handle
  *
- * Îñ±Ø¸ù¾İÊµ¼ÊÓ²¼şÊ¹ÓÃºÎÖÖÍ¨ĞÅÁ¬½Ó·½Ê½Ñ¡Ôñ£¬ÈçÊ¹ÓÃUART£¬ÔòÊ¹ÓÃ¸Ãº¯Êı³õÊ¼»¯
- * ÒÔ»ñµÃhandle£¬·ñÔò£¬ÇëÊ¹ÓÃam_zlg600_i2c_init()º¯Êı»ñµÃhandle¡£
+ * åŠ¡å¿…æ ¹æ®å®é™…ç¡¬ä»¶ä½¿ç”¨ä½•ç§é€šä¿¡è¿æ¥æ–¹å¼é€‰æ‹©ï¼Œå¦‚ä½¿ç”¨UARTï¼Œåˆ™ä½¿ç”¨è¯¥å‡½æ•°åˆå§‹åŒ–
+ * ä»¥è·å¾—handleï¼Œå¦åˆ™ï¼Œè¯·ä½¿ç”¨am_zlg600_i2c_init()å‡½æ•°è·å¾—handleã€‚
  *
- * \param[in] p_dev        : Ö¸ÏòZLG600Éè±¸µÄÖ¸Õë
- * \param[in] uart_handle  : ÓëZLG600¹ØÁªµÄUART£¬ºóĞøÊ¹ÓÃ¸Ãhandle½øĞĞUARTÍ¨ĞÅ
- * \param[in] p_uart_info  : UARTÍ¨ĞÅÄ£Ê½Ïà¹ØĞÅÏ¢
+ * \param[in] p_dev        : æŒ‡å‘ZLG600è®¾å¤‡çš„æŒ‡é’ˆ
+ * \param[in] uart_handle  : ä¸ZLG600å…³è”çš„UARTï¼Œåç»­ä½¿ç”¨è¯¥handleè¿›è¡ŒUARTé€šä¿¡
+ * \param[in] p_uart_info  : UARTé€šä¿¡æ¨¡å¼ç›¸å…³ä¿¡æ¯
  *
- * \return ²Ù×÷ ZLG600 µÄ²Ù×÷¾ä±ú£¬Èç¹û³õÊ¼»¯Ê§°Ü£¬Ôò·µ»ØNULL
+ * \return æ“ä½œ ZLG600 çš„æ“ä½œå¥æŸ„ï¼Œå¦‚æœåˆå§‹åŒ–å¤±è´¥ï¼Œåˆ™è¿”å›NULL
  */
 am_zlg600_handle_t am_zlg600_uart_new_init (am_zlg600_uart_dev_t            *p_dev,
                                             am_uart_handle_t                 uart_handle,
                                             const am_zlg600_uart_dev_info_t *p_uart_info);
 
 /**
- * \brief ³õÊ¼»¯ZLG600£¨Ê¹ÓÃI2C¾ÉÖ¡Í¨ĞÅÄ£Ê½£©£¬»ñÈ¡µ½²Ù×÷ZLG600µÄ±ê×¼·şÎñhandle
+ * \brief åˆå§‹åŒ–ZLG600ï¼ˆä½¿ç”¨I2Cæ—§å¸§é€šä¿¡æ¨¡å¼ï¼‰ï¼Œè·å–åˆ°æ“ä½œZLG600çš„æ ‡å‡†æœåŠ¡handle
  *
- * Îñ±Ø¸ù¾İÊµ¼ÊÓ²¼şÊ¹ÓÃºÎÖÖÍ¨ĞÅÁ¬½Ó·½Ê½Ñ¡Ôñ£¬ÈçÊ¹ÓÃI2C£¬ÔòÊ¹ÓÃ¸Ãº¯Êı³õÊ¼»¯
- * ÒÔ»ñµÃhandle£¬·ñÔò£¬ÇëÊ¹ÓÃam_zlg600_uart_init()º¯Êı»ñµÃhandle¡£
+ * åŠ¡å¿…æ ¹æ®å®é™…ç¡¬ä»¶ä½¿ç”¨ä½•ç§é€šä¿¡è¿æ¥æ–¹å¼é€‰æ‹©ï¼Œå¦‚ä½¿ç”¨I2Cï¼Œåˆ™ä½¿ç”¨è¯¥å‡½æ•°åˆå§‹åŒ–
+ * ä»¥è·å¾—handleï¼Œå¦åˆ™ï¼Œè¯·ä½¿ç”¨am_zlg600_uart_init()å‡½æ•°è·å¾—handleã€‚
  *
- * \param[in] p_dev        : Ö¸ÏòZLG600Éè±¸µÄÖ¸Õë
- * \param[in] i2c_handle   : ÓëZLG600¹ØÁªµÄI2C£¬ºóĞøÊ¹ÓÃ¸Ãhandle½øĞĞI2CÍ¨ĞÅ
- * \param[in] p_i2c_info   : I2CÍ¨ĞÅÄ£Ê½Ïà¹ØĞÅÏ¢
+ * \param[in] p_dev        : æŒ‡å‘ZLG600è®¾å¤‡çš„æŒ‡é’ˆ
+ * \param[in] i2c_handle   : ä¸ZLG600å…³è”çš„I2Cï¼Œåç»­ä½¿ç”¨è¯¥handleè¿›è¡ŒI2Cé€šä¿¡
+ * \param[in] p_i2c_info   : I2Cé€šä¿¡æ¨¡å¼ç›¸å…³ä¿¡æ¯
  *
- * \return ²Ù×÷ ZLG600 µÄ²Ù×÷¾ä±ú£¬Èç¹û³õÊ¼»¯Ê§°Ü£¬Ôò·µ»ØNULL
+ * \return æ“ä½œ ZLG600 çš„æ“ä½œå¥æŸ„ï¼Œå¦‚æœåˆå§‹åŒ–å¤±è´¥ï¼Œåˆ™è¿”å›NULL
  */ 
 am_zlg600_handle_t am_zlg600_i2c_old_init (am_zlg600_i2c_dev_t            *p_dev,
                                            am_i2c_handle_t                 i2c_handle,
                                            const am_zlg600_i2c_dev_info_t *p_i2c_info);
 
 /**
- * \brief ³õÊ¼»¯ZLG600£¨Ê¹ÓÃI2CĞÂÖ¡Í¨ĞÅÄ£Ê½£©£¬»ñÈ¡µ½²Ù×÷ZLG600µÄ±ê×¼·şÎñhandle
+ * \brief åˆå§‹åŒ–ZLG600ï¼ˆä½¿ç”¨I2Cæ–°å¸§é€šä¿¡æ¨¡å¼ï¼‰ï¼Œè·å–åˆ°æ“ä½œZLG600çš„æ ‡å‡†æœåŠ¡handle
  *
- * Îñ±Ø¸ù¾İÊµ¼ÊÓ²¼şÊ¹ÓÃºÎÖÖÍ¨ĞÅÁ¬½Ó·½Ê½Ñ¡Ôñ£¬ÈçÊ¹ÓÃI2C£¬ÔòÊ¹ÓÃ¸Ãº¯Êı³õÊ¼»¯
- * ÒÔ»ñµÃhandle£¬·ñÔò£¬ÇëÊ¹ÓÃam_zlg600_uart_init()º¯Êı»ñµÃhandle¡£
+ * åŠ¡å¿…æ ¹æ®å®é™…ç¡¬ä»¶ä½¿ç”¨ä½•ç§é€šä¿¡è¿æ¥æ–¹å¼é€‰æ‹©ï¼Œå¦‚ä½¿ç”¨I2Cï¼Œåˆ™ä½¿ç”¨è¯¥å‡½æ•°åˆå§‹åŒ–
+ * ä»¥è·å¾—handleï¼Œå¦åˆ™ï¼Œè¯·ä½¿ç”¨am_zlg600_uart_init()å‡½æ•°è·å¾—handleã€‚
  *
- * \param[in] p_dev        : Ö¸ÏòZLG600Éè±¸µÄÖ¸Õë
- * \param[in] i2c_handle   : ÓëZLG600¹ØÁªµÄI2C£¬ºóĞøÊ¹ÓÃ¸Ãhandle½øĞĞI2CÍ¨ĞÅ
- * \param[in] p_i2c_info   : I2CÍ¨ĞÅÄ£Ê½Ïà¹ØĞÅÏ¢
+ * \param[in] p_dev        : æŒ‡å‘ZLG600è®¾å¤‡çš„æŒ‡é’ˆ
+ * \param[in] i2c_handle   : ä¸ZLG600å…³è”çš„I2Cï¼Œåç»­ä½¿ç”¨è¯¥handleè¿›è¡ŒI2Cé€šä¿¡
+ * \param[in] p_i2c_info   : I2Cé€šä¿¡æ¨¡å¼ç›¸å…³ä¿¡æ¯
  *
- * \return ²Ù×÷ ZLG600 µÄ²Ù×÷¾ä±ú£¬Èç¹û³õÊ¼»¯Ê§°Ü£¬Ôò·µ»ØNULL
+ * \return æ“ä½œ ZLG600 çš„æ“ä½œå¥æŸ„ï¼Œå¦‚æœåˆå§‹åŒ–å¤±è´¥ï¼Œåˆ™è¿”å›NULL
  */
 am_zlg600_handle_t am_zlg600_i2c_new_init (am_zlg600_i2c_dev_t            *p_dev,
                                            am_i2c_handle_t                 i2c_handle,
                                            const am_zlg600_i2c_dev_info_t *p_i2c_info);
 
 /**
- * \brief ¶ÁZLG600µÄ²úÆ·¡¢°æ±¾ĞÅÏ¢£¬Èç£º¡°ZLG600SP/T V1.00¡±
+ * \brief è¯»ZLG600çš„äº§å“ã€ç‰ˆæœ¬ä¿¡æ¯ï¼Œå¦‚ï¼šâ€œZLG600SP/T V1.00â€
  *
- * \param[in] handle     : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] p_info     : ÓÃÓÚ×°ÔØ»ñÈ¡ĞÅÏ¢µÄ»º³åÇø£¬´óĞ¡Ó¦Îª 20 ×Ö½Ú
+ * \param[in] handle     : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] p_info     : ç”¨äºè£…è½½è·å–ä¿¡æ¯çš„ç¼“å†²åŒºï¼Œå¤§å°åº”ä¸º 20 å­—èŠ‚
  *
- * \retval AM_OK      : ¶ÁÈ¡ĞÅÏ¢³É¹¦
- * \retval -AM_EINVAL : ¶ÁÈ¡ĞÅÏ¢Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : ¶ÁÈ¡ĞÅÏ¢Ê§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : è¯»å–ä¿¡æ¯æˆåŠŸ
+ * \retval -AM_EINVAL : è¯»å–ä¿¡æ¯å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : è¯»å–ä¿¡æ¯å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */ 
 int am_zlg600_info_get (am_zlg600_handle_t handle,
                         uint8_t           *p_info);
 
 /**
- * \brief ÅäÖÃIC¿¨½Ó¿Ú£¬Ö´ĞĞ³É¹¦ºó£¬Æô¶¯IC¿¨½Ó¿Ú£¬Æô¶¯ºóÄ¬ÈÏÖ§³ÖTypeA¿¨
+ * \brief é…ç½®ICå¡æ¥å£ï¼Œæ‰§è¡ŒæˆåŠŸåï¼Œå¯åŠ¨ICå¡æ¥å£ï¼Œå¯åŠ¨åé»˜è®¤æ”¯æŒTypeAå¡
  *
- * \param[in] handle     : ZLG600µÄ²Ù×÷¾ä±ú
+ * \param[in] handle     : ZLG600çš„æ“ä½œå¥æŸ„
  *
- * \retval AM_OK      : ÅäÖÃ³É¹¦
- * \retval -AM_EINVAL : ÅäÖÃÊ§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : ÅäÖÃÊ§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : é…ç½®æˆåŠŸ
+ * \retval -AM_EINVAL : é…ç½®å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : é…ç½®å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */ 
 int am_zlg600_ic_port_config (am_zlg600_handle_t handle);
 
 /**
- * \brief ¹Ø±ÕIC¿¨½Ó¿Ú
+ * \brief å…³é—­ICå¡æ¥å£
  *
- * \param[in] handle     : ZLG600µÄ²Ù×÷¾ä±ú
+ * \param[in] handle     : ZLG600çš„æ“ä½œå¥æŸ„
  *
- * \retval AM_OK      : ¹Ø±Õ³É¹¦
- * \retval -AM_EINVAL : ¹Ø±ÕÊ§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : ¹Ø±ÕÊ§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : å…³é—­æˆåŠŸ
+ * \retval -AM_EINVAL : å…³é—­å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å…³é—­å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */ 
 int am_zlg600_ic_port_close (am_zlg600_handle_t handle);
                             
 /**
- * \name IC¿¨½Ó¿ÚµÄĞ­Òé£¨¹¤×÷Ä£Ê½£©
+ * \name ICå¡æ¥å£çš„åè®®ï¼ˆå·¥ä½œæ¨¡å¼ï¼‰
  * @{
  */
 #define  AM_ZLG600_IC_ISOTYPE_A      0x00    /**< \brief ISO14443-3A */
@@ -367,47 +367,47 @@ int am_zlg600_ic_port_close (am_zlg600_handle_t handle);
 /** @}*/
 
 /**
- * \brief ÉèÖÃIC¿¨½Ó¿ÚĞ­Òé£¨¹¤×÷Ä£Ê½£©TypeA »òÕß TypeB
+ * \brief è®¾ç½®ICå¡æ¥å£åè®®ï¼ˆå·¥ä½œæ¨¡å¼ï¼‰TypeA æˆ–è€… TypeB
  *
- * \param[in] handle     : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] isotype    : IC¿¨½Ó¿ÚµÄĞ­ÒéÀàĞÍ£¬Ê¹ÓÃÏÂÁĞºê £º
+ * \param[in] handle     : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] isotype    : ICå¡æ¥å£çš„åè®®ç±»å‹ï¼Œä½¿ç”¨ä¸‹åˆ—å® ï¼š
  *                          - #AM_ZLG600_IC_ISOTYPE_A
  *                          - #AM_ZLG600_IC_ISOTYPE_B
  *
- * \retval AM_OK      : ÉèÖÃ³É¹¦
- * \retval -AM_EINVAL : ÉèÖÃÊ§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : ÉèÖÃÊ§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : è®¾ç½®æˆåŠŸ
+ * \retval -AM_EINVAL : è®¾ç½®å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : è®¾ç½®å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */ 
 int am_zlg600_ic_isotype_set (am_zlg600_handle_t handle,
                               uint8_t            isotype);
                              
 /**
- * \name IC¿¨ÃÜ³×ÀàĞÍ
+ * \name ICå¡å¯†åŒ™ç±»å‹
  * @{
  */
 
-#define  AM_ZLG600_IC_KEY_TYPE_A      0x60    /**< \brief ÀàĞÍ A  */
-#define  AM_ZLG600_IC_KEY_TYPE_B      0x61    /**< \brief ÀàĞÍ B  */
+#define  AM_ZLG600_IC_KEY_TYPE_A      0x60    /**< \brief ç±»å‹ A  */
+#define  AM_ZLG600_IC_KEY_TYPE_B      0x61    /**< \brief ç±»å‹ B  */
 
 /** @}*/
 
 /**
- * \brief ×°ÔØIC¿¨ÃÜÔ¿
+ * \brief è£…è½½ICå¡å¯†é’¥
  *
- * ½«ÊäÈëµÄÃÜÔ¿±£´æÔÚÄ£¿éÄÚ²¿£¬Ä£¿éµôµçºó¸ÃÃÜÔ¿²»¶ªÊ§£¬ZLG600SP/TÄ£¿é¹²ÄÜ±£´æ
- * AÃÜÔ¿16×é¡¢BÃÜÔ¿16×é¡£
+ * å°†è¾“å…¥çš„å¯†é’¥ä¿å­˜åœ¨æ¨¡å—å†…éƒ¨ï¼Œæ¨¡å—æ‰ç”µåè¯¥å¯†é’¥ä¸ä¸¢å¤±ï¼ŒZLG600SP/Tæ¨¡å—å…±èƒ½ä¿å­˜
+ * Aå¯†é’¥16ç»„ã€Bå¯†é’¥16ç»„ã€‚
  *
- * \param[in] handle     : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] key_type   : ÃÜÔ¿ÀàĞÍ£¬¿ÉÒÔÊ¹ÓÃÏÂÁĞÖµ£º
+ * \param[in] handle     : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] key_type   : å¯†é’¥ç±»å‹ï¼Œå¯ä»¥ä½¿ç”¨ä¸‹åˆ—å€¼ï¼š
  *                          - #AM_ZLG600_IC_KEY_TYPE_A
  *                          - #AM_ZLG600_IC_KEY_TYPE_B
- * \param[in] key_sec    : ÃÜÔ¿±£´æµÄÇøºÅ£¬¹²¿É±£´æ16×éÃÜÔ¿£¬ÇøºÅ£º0 ~ 15
- * \param[in] p_key      : ÃÜÔ¿»º³åÇø
- * \param[in] key_length : ÃÜÔ¿µÄ³¤¶È£¬Ö»ÄÜÎª6£¨6×Ö½ÚÃÜÔ¿£©»ò16£¨16×Ö½ÚÃÜÔ¿£©
+ * \param[in] key_sec    : å¯†é’¥ä¿å­˜çš„åŒºå·ï¼Œå…±å¯ä¿å­˜16ç»„å¯†é’¥ï¼ŒåŒºå·ï¼š0 ~ 15
+ * \param[in] p_key      : å¯†é’¥ç¼“å†²åŒº
+ * \param[in] key_length : å¯†é’¥çš„é•¿åº¦ï¼Œåªèƒ½ä¸º6ï¼ˆ6å­—èŠ‚å¯†é’¥ï¼‰æˆ–16ï¼ˆ16å­—èŠ‚å¯†é’¥ï¼‰
  *
- * \retval AM_OK      : ×°ÔØÃÜÔ¿³É¹¦
- * \retval -AM_EINVAL : ×°ÔØÊ§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : ×°ÔØÊ§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : è£…è½½å¯†é’¥æˆåŠŸ
+ * \retval -AM_EINVAL : è£…è½½å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : è£…è½½å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */ 
 int am_zlg600_ic_key_load (am_zlg600_handle_t  handle,
                            uint8_t             key_type,
@@ -416,164 +416,164 @@ int am_zlg600_ic_key_load (am_zlg600_handle_t  handle,
                            uint8_t             key_length);
 
 /**
- * \brief ÉèÖÃIC¿¨½Ó¿ÚµÄ¼Ä´æÆ÷Öµ
+ * \brief è®¾ç½®ICå¡æ¥å£çš„å¯„å­˜å™¨å€¼
  *
- * ÓÃÓÚÉèÖÃÄ£¿éÉÏ¶ÁĞ´¿¨Ğ¾Æ¬ÄÚ²¿µÄ¼Ä´æÆ÷Öµ£¬Í¨¹ı¸ÃÃüÁî£¬¿ÉÒÔÊµÏÖºÜ¶àÏÖÓĞÃüÁî
- * ²»ÄÜÍê³ÉµÄ¹¤×÷¡£
+ * ç”¨äºè®¾ç½®æ¨¡å—ä¸Šè¯»å†™å¡èŠ¯ç‰‡å†…éƒ¨çš„å¯„å­˜å™¨å€¼ï¼Œé€šè¿‡è¯¥å‘½ä»¤ï¼Œå¯ä»¥å®ç°å¾ˆå¤šç°æœ‰å‘½ä»¤
+ * ä¸èƒ½å®Œæˆçš„å·¥ä½œã€‚
  *
- * \param[in] handle     : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] reg_addr   : ¼Ä´æÆ÷µØÖ·£¬·¶Î§£º0x00 ~ 0x3F
- * \param[in] reg_val    : ÉèÖÃµÄ¼Ä´æÆ÷Öµ
+ * \param[in] handle     : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] reg_addr   : å¯„å­˜å™¨åœ°å€ï¼ŒèŒƒå›´ï¼š0x00 ~ 0x3F
+ * \param[in] reg_val    : è®¾ç½®çš„å¯„å­˜å™¨å€¼
  *
- * \retval AM_OK      : ÉèÖÃ³É¹¦
- * \retval -AM_EINVAL : ÉèÖÃÊ§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : ÉèÖÃÊ§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : è®¾ç½®æˆåŠŸ
+ * \retval -AM_EINVAL : è®¾ç½®å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : è®¾ç½®å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */ 
 int am_zlg600_ic_reg_set (am_zlg600_handle_t handle,
                           uint8_t            reg_addr,
                           uint8_t            reg_val);
 
 /**
- * \brief »ñÈ¡IC¿¨½Ó¿ÚµÄ¼Ä´æÆ÷Öµ
+ * \brief è·å–ICå¡æ¥å£çš„å¯„å­˜å™¨å€¼
  *
- * ¸ÃÃüÁîÓÃÓÚÉèÖÃÄ£¿éÉÏ¶ÁĞ´¿¨Ğ¾Æ¬ÄÚ²¿µÄ¼Ä´æÆ÷Öµ£¬
- * Í¨¹ı¸ÃÃüÁî£¬¿ÉÒÔÊµÏÖºÜ¶àÏÖÓĞÃüÁî²»ÄÜÍê³ÉµÄ¹¤×÷¡£
+ * è¯¥å‘½ä»¤ç”¨äºè®¾ç½®æ¨¡å—ä¸Šè¯»å†™å¡èŠ¯ç‰‡å†…éƒ¨çš„å¯„å­˜å™¨å€¼ï¼Œ
+ * é€šè¿‡è¯¥å‘½ä»¤ï¼Œå¯ä»¥å®ç°å¾ˆå¤šç°æœ‰å‘½ä»¤ä¸èƒ½å®Œæˆçš„å·¥ä½œã€‚
  *
- * \param[in]  handle     : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in]  reg_addr   : ¼Ä´æÆ÷µØÖ·£¬·¶Î§£º0x00 ~ 0x3F
- * \param[out] p_val      : »ñÈ¡¼Ä´æÆ÷ÖµµÄÖ¸Õë
+ * \param[in]  handle     : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in]  reg_addr   : å¯„å­˜å™¨åœ°å€ï¼ŒèŒƒå›´ï¼š0x00 ~ 0x3F
+ * \param[out] p_val      : è·å–å¯„å­˜å™¨å€¼çš„æŒ‡é’ˆ
  *
- * \retval AM_OK      : »ñÈ¡³É¹¦
- * \retval -AM_EINVAL : »ñÈ¡Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : »ñÈ¡Ê§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : è·å–æˆåŠŸ
+ * \retval -AM_EINVAL : è·å–å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : è·å–å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */ 
 int am_zlg600_ic_reg_get (am_zlg600_handle_t  handle,
                           uint8_t             reg_addr,
                           uint8_t            *p_val);
 
 /**
- * \brief ÉèÖÃ²¨ÌØÂÊ
+ * \brief è®¾ç½®æ³¢ç‰¹ç‡
  *
- * ÓÃÓÚÔÚUARTÍ¨ĞÅ¹ı³ÌÖĞ¸Ä±äÍ¨ĞÅµÄ²¨ÌØÂÊ£¬µôµçºó¸ÃÉèÖÃÖµ±£Áô¡£
+ * ç”¨äºåœ¨UARTé€šä¿¡è¿‡ç¨‹ä¸­æ”¹å˜é€šä¿¡çš„æ³¢ç‰¹ç‡ï¼Œæ‰ç”µåè¯¥è®¾ç½®å€¼ä¿ç•™ã€‚
  *
- * \param[in] handle        : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] baudrate_flag : ²¨ÌØÂÊ±êÖ¾£¬²¢²»Ö§³ÖËùÓĞµÄ²¨ÌØÂÊ£¬Ó¦Ê¹ÓÃºê
- *                            AM_ZLG600_BAUDRATE_* £¬ÈçÉèÖÃ²¨ÌØÂÊÎª115200£¬
- *                            ÔòÊ¹ÓÃºê #AM_ZLG600_BAUDRATE_115200
+ * \param[in] handle        : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] baudrate_flag : æ³¢ç‰¹ç‡æ ‡å¿—ï¼Œå¹¶ä¸æ”¯æŒæ‰€æœ‰çš„æ³¢ç‰¹ç‡ï¼Œåº”ä½¿ç”¨å®
+ *                            AM_ZLG600_BAUDRATE_* ï¼Œå¦‚è®¾ç½®æ³¢ç‰¹ç‡ä¸º115200ï¼Œ
+ *                            åˆ™ä½¿ç”¨å® #AM_ZLG600_BAUDRATE_115200
  *
- * \retval AM_OK      : ÉèÖÃ³É¹¦
- * \retval -AM_EINVAL : ÉèÖÃÊ§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : ÉèÖÃÊ§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : è®¾ç½®æˆåŠŸ
+ * \retval -AM_EINVAL : è®¾ç½®å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : è®¾ç½®å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */ 
 int am_zlg600_baudrate_set (am_zlg600_handle_t handle,
                             uint32_t           baudrate_flag);
 
 /**
- * \name ÌìÏßÇı¶¯·½Ê½
+ * \name å¤©çº¿é©±åŠ¨æ–¹å¼
  * @{
  */
 
-#define  AM_ZLG600_ANT_TX1_ONLY      1    /**< \brief ½öTX1Çı¶¯ÌìÏß         */
-#define  AM_ZLG600_ANT_TX2_ONLY      2    /**< \brief ½öTX2Çı¶¯ÌìÏß         */
-#define  AM_ZLG600_ANT_TX1_AND_TX2   3    /**< \brief TX1¡¢TX2Í¬Ê±Çı¶¯ÌìÏß  */
-#define  AM_ZLG600_ANT_NONE          0    /**< \brief Í¬Ê±¹Ø±ÕTX1¡¢TX2      */
+#define  AM_ZLG600_ANT_TX1_ONLY      1    /**< \brief ä»…TX1é©±åŠ¨å¤©çº¿         */
+#define  AM_ZLG600_ANT_TX2_ONLY      2    /**< \brief ä»…TX2é©±åŠ¨å¤©çº¿         */
+#define  AM_ZLG600_ANT_TX1_AND_TX2   3    /**< \brief TX1ã€TX2åŒæ—¶é©±åŠ¨å¤©çº¿  */
+#define  AM_ZLG600_ANT_NONE          0    /**< \brief åŒæ—¶å…³é—­TX1ã€TX2      */
 
 /** @}*/
       
 /**
- * \brief ÉèÖÃÌìÏßÇı¶¯·½Ê½£¬¿ÉÒÔÈÎÒâ´ò¿ª¡¢¹Ø±ÕÄ³¸öÌìÏßÇı¶¯Òı½Å
+ * \brief è®¾ç½®å¤©çº¿é©±åŠ¨æ–¹å¼ï¼Œå¯ä»¥ä»»æ„æ‰“å¼€ã€å…³é—­æŸä¸ªå¤©çº¿é©±åŠ¨å¼•è„š
  *
- * \param[in] handle       : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] antmode_flag : Ê¹ÓÃºê AM_ZLG600_ANT_*£¬Èç#AM_ZLG600_ANT_TX1_ONLY
+ * \param[in] handle       : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] antmode_flag : ä½¿ç”¨å® AM_ZLG600_ANT_*ï¼Œå¦‚#AM_ZLG600_ANT_TX1_ONLY
  *
- * \retval AM_OK      : ÉèÖÃ³É¹¦
- * \retval -AM_EINVAL : ÉèÖÃÊ§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : ÉèÖÃÊ§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : è®¾ç½®æˆåŠŸ
+ * \retval -AM_EINVAL : è®¾ç½®å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : è®¾ç½®å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */ 
 int am_zlg600_ant_mode_set (am_zlg600_handle_t handle,
                             uint8_t            antmode_flag);
 
 /**
- * \brief ÉèÖÃÖ¡¸ñÊ½£¬ÓÃÓÚÇĞ»»ĞÂ¡¢¾ÉÖ¡¸ñÊ½£¬ÉèÖÃ³É¹¦ºóµôµç²»¶ªÊ§
+ * \brief è®¾ç½®å¸§æ ¼å¼ï¼Œç”¨äºåˆ‡æ¢æ–°ã€æ—§å¸§æ ¼å¼ï¼Œè®¾ç½®æˆåŠŸåæ‰ç”µä¸ä¸¢å¤±
  *
- * \param[in] handle     : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] flag       : Ö¡¸ñÊ½ºê±êÖ¾£¬¿ÉÊ¹ÓÃÏÂÁĞºê£º
+ * \param[in] handle     : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] flag       : å¸§æ ¼å¼å®æ ‡å¿—ï¼Œå¯ä½¿ç”¨ä¸‹åˆ—å®ï¼š
  *                           - #AM_ZLG600_FRAME_FMT_NEW
  *                           - #AM_ZLG600_FRAME_FMT_OLD
  *
- * \retval AM_OK      : ÉèÖÃ³É¹¦
- * \retval -AM_EINVAL : ÉèÖÃÊ§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : ÉèÖÃÊ§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : è®¾ç½®æˆåŠŸ
+ * \retval -AM_EINVAL : è®¾ç½®å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : è®¾ç½®å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  *
- * \note Ö¡ÇĞ»»³É¹¦ºóĞèÒªÖØĞÂµ÷ÓÃÄ¿±êÖ¡¸ñÊ½µÄ³õÊ¼»¯º¯Êı¡£
+ * \note å¸§åˆ‡æ¢æˆåŠŸåéœ€è¦é‡æ–°è°ƒç”¨ç›®æ ‡å¸§æ ¼å¼çš„åˆå§‹åŒ–å‡½æ•°ã€‚
  */ 
 int am_zlg600_frame_fmt_set (am_zlg600_handle_t handle,
                              uint8_t            flag);
 
 /**
- * \brief ÉèÖÃÉè±¸¹¤×÷Ä£Ê½ºÍ´Ó»úµØÖ·
+ * \brief è®¾ç½®è®¾å¤‡å·¥ä½œæ¨¡å¼å’Œä»æœºåœ°å€
  *
- * \param[in] handle     : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] mode       : Ä£¿éµÄ¹¤×÷Ä£Ê½£¬¿ÉÒÔÊ¹ÓÃÏÂÁĞºêÖµ£º
- *                         - #AM_ZLG600_MODE_MASTER      Ö÷»úÄ£Ê½
- *                         - #AM_ZLG600_MODE_SLAVE       ´Ó»úÄ£Ê½ £¨Ä¬ÈÏ£©
- *                         - #AM_ZLG600_MODE_AUTO_CHECK  ×Ô¶¯Õì²âÄ£Ê½
- *                         - #AM_ZLG600_MODE_I2C         I2CÄ£Ê½
- *                         - #AM_ZLG600_MODE_UART        UARTÄ£Ê½
+ * \param[in] handle     : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] mode       : æ¨¡å—çš„å·¥ä½œæ¨¡å¼ï¼Œå¯ä»¥ä½¿ç”¨ä¸‹åˆ—å®å€¼ï¼š
+ *                         - #AM_ZLG600_MODE_MASTER      ä¸»æœºæ¨¡å¼
+ *                         - #AM_ZLG600_MODE_SLAVE       ä»æœºæ¨¡å¼ ï¼ˆé»˜è®¤ï¼‰
+ *                         - #AM_ZLG600_MODE_AUTO_CHECK  è‡ªåŠ¨ä¾¦æµ‹æ¨¡å¼
+ *                         - #AM_ZLG600_MODE_I2C         I2Cæ¨¡å¼
+ *                         - #AM_ZLG600_MODE_UART        UARTæ¨¡å¼
  *
- * \param[in] new_addr   : ÉèÖÃµÄZLG600´Ó»úµØÖ·£¬×îºóÒ»Î»Îª0£¬ÓĞĞ§Öµ0x02 ~ 0xFE
+ * \param[in] new_addr   : è®¾ç½®çš„ZLG600ä»æœºåœ°å€ï¼Œæœ€åä¸€ä½ä¸º0ï¼Œæœ‰æ•ˆå€¼0x02 ~ 0xFE
  *
- * \retval AM_OK      : ÉèÖÃ³É¹¦,ÉèÖÃ³É¹¦ºó£¬ºóĞøÓ¦¸ÃÊ¹ÓÃĞÂµÄµØÖ·Í¨ĞÅ
- * \retval -AM_EINVAL : ÉèÖÃÊ§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : ÉèÖÃÊ§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : è®¾ç½®æˆåŠŸ,è®¾ç½®æˆåŠŸåï¼Œåç»­åº”è¯¥ä½¿ç”¨æ–°çš„åœ°å€é€šä¿¡
+ * \retval -AM_EINVAL : è®¾ç½®å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : è®¾ç½®å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */ 
 int am_zlg600_mode_addr_set (am_zlg600_handle_t handle,
                              uint8_t            mode,
                              uint8_t            new_addr);
       
 /**
- * \brief »ñÈ¡Éè±¸¹¤×÷Ä£Ê½ºÍ´Ó»úµØÖ·
+ * \brief è·å–è®¾å¤‡å·¥ä½œæ¨¡å¼å’Œä»æœºåœ°å€
  *
- * \param[in]  handle     : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[out] p_mode     : ÓÃÓÚ»ñÈ¡Ä£¿é¹¤×÷Ä£Ê½µÄÖ¸Õë£¬»ñÈ¡µÄÖµ¸÷Î»º¬ÒåÈçÏÂ£º
- *                          - bit7 ~ 4£º0,´Ó»úÄ£Ê½; 1,×Ô¶¯¼ì²â¿¨Æ¬Ä£Ê½£¨Ö÷»úÄ£Ê½£©
- *                          - bit3 ~ 0£º0,×Ô¶¯Õì²âÄ£Ê½; 1,I2CÍ¨ĞÅÄ£Ê½; 2,UARTÄ£Ê½ 
- * \param[out] p_addr     : ÓÃÓÚ»ñÈ¡µ±Ç°µÄZLG600µÄ´Ó»úµØÖ·µÄÖ¸Õë
+ * \param[in]  handle     : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[out] p_mode     : ç”¨äºè·å–æ¨¡å—å·¥ä½œæ¨¡å¼çš„æŒ‡é’ˆï¼Œè·å–çš„å€¼å„ä½å«ä¹‰å¦‚ä¸‹ï¼š
+ *                          - bit7 ~ 4ï¼š0,ä»æœºæ¨¡å¼; 1,è‡ªåŠ¨æ£€æµ‹å¡ç‰‡æ¨¡å¼ï¼ˆä¸»æœºæ¨¡å¼ï¼‰
+ *                          - bit3 ~ 0ï¼š0,è‡ªåŠ¨ä¾¦æµ‹æ¨¡å¼; 1,I2Cé€šä¿¡æ¨¡å¼; 2,UARTæ¨¡å¼ 
+ * \param[out] p_addr     : ç”¨äºè·å–å½“å‰çš„ZLG600çš„ä»æœºåœ°å€çš„æŒ‡é’ˆ
  *
- * \retval AM_OK      : »ñÈ¡³É¹¦
- * \retval -AM_EINVAL : »ñÈ¡Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : »ñÈ¡Ê§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : è·å–æˆåŠŸ
+ * \retval -AM_EINVAL : è·å–å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : è·å–å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */ 
 int am_zlg600_mode_addr_get (am_zlg600_handle_t  handle,
                              uint8_t            *p_mode,
                              uint8_t            *p_addr);
                              
 /**
- * \brief ×°ÔØÓÃ»§ÃÜÔ¿£¬Ä£¿éÀïÃæÌá¹©ÁË2¸ö16×Ö½ÚµÄ´æ´¢¿Õ¼äÓÃÓÚ±£´æÓÃ»§ÃÜÔ¿¡£
+ * \brief è£…è½½ç”¨æˆ·å¯†é’¥ï¼Œæ¨¡å—é‡Œé¢æä¾›äº†2ä¸ª16å­—èŠ‚çš„å­˜å‚¨ç©ºé—´ç”¨äºä¿å­˜ç”¨æˆ·å¯†é’¥ã€‚
  *
- * \param[in] handle     : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] key_sec    : ÃÜÔ¿±£´æµÄÇøºÅ£¬¹²¿É±£´æ2×éÓÃ»§ÃÜÔ¿£¬ÇøºÅ£º0 ~ 1
- * \param[in] p_key      : ÃÜÔ¿»º³åÇø£¬ÃÜÔ¿µÄ³¤¶È¹Ì¶¨Îª16×Ö½Ú
+ * \param[in] handle     : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] key_sec    : å¯†é’¥ä¿å­˜çš„åŒºå·ï¼Œå…±å¯ä¿å­˜2ç»„ç”¨æˆ·å¯†é’¥ï¼ŒåŒºå·ï¼š0 ~ 1
+ * \param[in] p_key      : å¯†é’¥ç¼“å†²åŒºï¼Œå¯†é’¥çš„é•¿åº¦å›ºå®šä¸º16å­—èŠ‚
  *
- * \retval AM_OK      : ×°ÔØÃÜÔ¿³É¹¦
- * \retval -AM_EINVAL : ×°ÔØÊ§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : ×°ÔØÊ§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : è£…è½½å¯†é’¥æˆåŠŸ
+ * \retval -AM_EINVAL : è£…è½½å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : è£…è½½å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */ 
 int am_zlg600_user_key_load (am_zlg600_handle_t handle,
                              uint8_t            key_sec,
                              uint8_t           *p_key);
                               
 /**
- * \brief Ğ´EEPROM£¬Ä£¿éÄÚ²¿ÓµÓĞÒ»¸ö256ByteµÄEEPROM
+ * \brief å†™EEPROMï¼Œæ¨¡å—å†…éƒ¨æ‹¥æœ‰ä¸€ä¸ª256Byteçš„EEPROM
  *
- * \param[in] handle      : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] eeprom_addr : EEPROMµÄÆ¬ÄÚµØÖ·£¬0 ~ 255
- * \param[in] p_buf       : Ğ´ÈëÊı¾İµÄ»º³åÇø
- * \param[in] nbytes      : Ğ´ÈëÊı¾İµÄ×Ö½ÚÊı£¬×î´ó247×Ö½Ú
+ * \param[in] handle      : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] eeprom_addr : EEPROMçš„ç‰‡å†…åœ°å€ï¼Œ0 ~ 255
+ * \param[in] p_buf       : å†™å…¥æ•°æ®çš„ç¼“å†²åŒº
+ * \param[in] nbytes      : å†™å…¥æ•°æ®çš„å­—èŠ‚æ•°ï¼Œæœ€å¤§247å­—èŠ‚
  *
- * \retval AM_OK      : Ğ´ÈëÊı¾İ³É¹¦
- * \retval -AM_EINVAL : Ğ´ÈëÊ§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ğ´ÈëÊ§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : å†™å…¥æ•°æ®æˆåŠŸ
+ * \retval -AM_EINVAL : å†™å…¥å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å†™å…¥å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */ 
 int am_zlg600_eeprom_write (am_zlg600_handle_t handle,
                             uint8_t            eeprom_addr,
@@ -581,16 +581,16 @@ int am_zlg600_eeprom_write (am_zlg600_handle_t handle,
                             uint8_t            nbytes);
 
 /**
- * \brief ¶ÁEEPROM£¬Ä£¿éÄÚ²¿ÓµÓĞÒ»¸ö256ByteµÄEEPROM
+ * \brief è¯»EEPROMï¼Œæ¨¡å—å†…éƒ¨æ‹¥æœ‰ä¸€ä¸ª256Byteçš„EEPROM
  *
- * \param[in]  handle      : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in]  eeprom_addr : EEPROMµÄÆ¬ÄÚµØÖ·£¬0 ~ 255
- * \param[out] p_buf       : ¶Á³öÊı¾İµÄ»º³åÇø
- * \param[in]  nbytes      : ¶Á³öÊı¾İµÄ×Ö½ÚÊı£¬×î´ó249×Ö½Ú
+ * \param[in]  handle      : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in]  eeprom_addr : EEPROMçš„ç‰‡å†…åœ°å€ï¼Œ0 ~ 255
+ * \param[out] p_buf       : è¯»å‡ºæ•°æ®çš„ç¼“å†²åŒº
+ * \param[in]  nbytes      : è¯»å‡ºæ•°æ®çš„å­—èŠ‚æ•°ï¼Œæœ€å¤§249å­—èŠ‚
  *
- * \retval AM_OK      : ¶ÁÈ¡Êı¾İ³É¹¦
- * \retval -AM_EINVAL : ¶ÁÈ¡Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : ¶ÁÈ¡Ê§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : è¯»å–æ•°æ®æˆåŠŸ
+ * \retval -AM_EINVAL : è¯»å–å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : è¯»å–å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */ 
 int am_zlg600_eeprom_read (am_zlg600_handle_t handle,
                            uint8_t            eeprom_addr,
@@ -598,26 +598,26 @@ int am_zlg600_eeprom_read (am_zlg600_handle_t handle,
                            uint8_t            nbytes);
 
 /**
- * \name Mifare¿¨ÇëÇóÄ£Ê½
+ * \name Mifareå¡è¯·æ±‚æ¨¡å¼
  * @{
  */
 
-#define AM_ZLG600_MIFARE_CARD_REQ_IDLE 0x26 /**< \brief IDLEÄ£Ê½,ÇëÇó¿ÕÏĞµÄ¿¨ */
-#define AM_ZLG600_MIFARE_CARD_REQ_ALL  0x52 /**< \brief ALLÄ£Ê½,ÇëÇóËùÓĞµÄ¿¨  */
+#define AM_ZLG600_MIFARE_CARD_REQ_IDLE 0x26 /**< \brief IDLEæ¨¡å¼,è¯·æ±‚ç©ºé—²çš„å¡ */
+#define AM_ZLG600_MIFARE_CARD_REQ_ALL  0x52 /**< \brief ALLæ¨¡å¼,è¯·æ±‚æ‰€æœ‰çš„å¡  */
 
 /** @}*/ 
 
 /**
- * \brief Mifare¿¨ÇëÇó²Ù×÷
+ * \brief Mifareå¡è¯·æ±‚æ“ä½œ
  *
- *  ¸Ãº¯Êı×÷Îª¿¨µÄÇëÇó²Ù×÷£¬Ö»Òª·ûºÏISO14443A±ê×¼µÄ¿¨¶¼Ó¦ÄÜ·¢³öÏìÓ¦¡£
+ *  è¯¥å‡½æ•°ä½œä¸ºå¡çš„è¯·æ±‚æ“ä½œï¼Œåªè¦ç¬¦åˆISO14443Aæ ‡å‡†çš„å¡éƒ½åº”èƒ½å‘å‡ºå“åº”ã€‚
  *
- * \param[in] handle      : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] req_mode    : ÇëÇóÄ£Ê½£¬¿ÉÊ¹ÓÃÏÂÁĞºê£º
+ * \param[in] handle      : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] req_mode    : è¯·æ±‚æ¨¡å¼ï¼Œå¯ä½¿ç”¨ä¸‹åˆ—å®ï¼š
  *                           - #AM_ZLG600_MIFARE_CARD_REQ_IDLE
  *                           - #AM_ZLG600_MIFARE_CARD_REQ_ALL
- * \param[in] p_atq       : »ñÈ¡ÇëÇóÓ¦´ğĞÅÏ¢£¨ATQ£©µÄÖ¸Õë£¬ÆäÖµÎª16Î»£¬²»Í¬¿¨
- *                          ÀàĞÍ·µ»ØµÄĞÅÏ¢²»Í¬,³£¼ûÀàĞÍ·µ»ØµÄATQÈçÏÂ£º
+ * \param[in] p_atq       : è·å–è¯·æ±‚åº”ç­”ä¿¡æ¯ï¼ˆATQï¼‰çš„æŒ‡é’ˆï¼Œå…¶å€¼ä¸º16ä½ï¼Œä¸åŒå¡
+ *                          ç±»å‹è¿”å›çš„ä¿¡æ¯ä¸åŒ,å¸¸è§ç±»å‹è¿”å›çš„ATQå¦‚ä¸‹ï¼š
  *
  *            Mifare1 S50    | Mifare1 S70 | Mifare1 Light | Mifare0 UltraLight 
  *       --------------------|-------------|---------------|-------------------
@@ -627,55 +627,55 @@ int am_zlg600_eeprom_read (am_zlg600_handle_t handle,
  *       --------------------|-------------|---------------|-------------------
  *               0x0344      |    0x0004   |    0x3300     |      0x0004
  *
- * \retval AM_OK      : ÇëÇó³É¹¦
- * \retval -AM_EINVAL : ÇëÇóÊ§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : ÇëÇóÊ§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : è¯·æ±‚æˆåŠŸ
+ * \retval -AM_EINVAL : è¯·æ±‚å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : è¯·æ±‚å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  *
- * \note ¿¨½øÈëÌìÏßºó£¬´ÓÉäÆµ³¡ÖĞ»ñÈ¡ÄÜÁ¿£¬´Ó¶øµÃµç¸´Î»£¬¸´Î»ºó¿¨´¦ÓÚIDLEÄ£Ê½£¬
- * ÓÃÁ½ÖÖÇëÇóÄ£Ê½µÄÈÎÒ»ÖÖÇëÇóÊ±£¬´ËÊ±µÄ¿¨¾ùÄÜÏìÓ¦£»Èô¶ÔÄ³Ò»ÕÅ¿¨³É¹¦½øĞĞÁË¹ÒÆğ
- * ²Ù×÷£¨HaltÃüÁî»òDeSelectÃüÁî£©£¬Ôò½øÈëÁËHaltÄ£Ê½£¬´ËÊ±µÄ¿¨Ö»ÏìÓ¦ALL£¨0x52£©
- * Ä£Ê½µÄÇëÇó£¬³ı·Ç½«¿¨Àë¿ªÌìÏß¸ĞÓ¦ÇøºóÔÙ½øÈë¡£
+ * \note å¡è¿›å…¥å¤©çº¿åï¼Œä»å°„é¢‘åœºä¸­è·å–èƒ½é‡ï¼Œä»è€Œå¾—ç”µå¤ä½ï¼Œå¤ä½åå¡å¤„äºIDLEæ¨¡å¼ï¼Œ
+ * ç”¨ä¸¤ç§è¯·æ±‚æ¨¡å¼çš„ä»»ä¸€ç§è¯·æ±‚æ—¶ï¼Œæ­¤æ—¶çš„å¡å‡èƒ½å“åº”ï¼›è‹¥å¯¹æŸä¸€å¼ å¡æˆåŠŸè¿›è¡Œäº†æŒ‚èµ·
+ * æ“ä½œï¼ˆHaltå‘½ä»¤æˆ–DeSelectå‘½ä»¤ï¼‰ï¼Œåˆ™è¿›å…¥äº†Haltæ¨¡å¼ï¼Œæ­¤æ—¶çš„å¡åªå“åº”ALLï¼ˆ0x52ï¼‰
+ * æ¨¡å¼çš„è¯·æ±‚ï¼Œé™¤éå°†å¡ç¦»å¼€å¤©çº¿æ„Ÿåº”åŒºåå†è¿›å…¥ã€‚
  */ 
 int am_zlg600_mifare_card_request (am_zlg600_handle_t handle,
                                    uint8_t            req_mode,
                                    uint16_t          *p_atq);
 
 /**
- * \name Mifare¿¨·ÀÅö×²µÈ¼¶
+ * \name Mifareå¡é˜²ç¢°æ’ç­‰çº§
  * @{
  */
-#define AM_ZLG600_MIFARE_CARD_ANTICOLL_1  0x93  /**< \brief µÚÒ»¼¶·ÀÅö×²  */
-#define AM_ZLG600_MIFARE_CARD_ANTICOLL_2  0x95  /**< \brief µÚ¶ş¼¶·ÀÅö×²  */
-#define AM_ZLG600_MIFARE_CARD_ANTICOLL_3  0x97  /**< \brief µÚÈı¼¶·ÀÅö×²  */
+#define AM_ZLG600_MIFARE_CARD_ANTICOLL_1  0x93  /**< \brief ç¬¬ä¸€çº§é˜²ç¢°æ’  */
+#define AM_ZLG600_MIFARE_CARD_ANTICOLL_2  0x95  /**< \brief ç¬¬äºŒçº§é˜²ç¢°æ’  */
+#define AM_ZLG600_MIFARE_CARD_ANTICOLL_3  0x97  /**< \brief ç¬¬ä¸‰çº§é˜²ç¢°æ’  */
 /** @}*/ 
 
 /**
- * \brief Mifare¿¨µÄ·ÀÅö×²²Ù×÷
+ * \brief Mifareå¡çš„é˜²ç¢°æ’æ“ä½œ
  *
- *  ĞèÒª³É¹¦Ö´ĞĞÒ»´ÎÇëÇóÃüÁî£¬²¢·µ»ØÇëÇó³É¹¦£¬²ÅÄÜ½øĞĞ·ÀÅö×²²Ù×÷£¬·ñÔò·µ»Ø´íÎó¡£
+ *  éœ€è¦æˆåŠŸæ‰§è¡Œä¸€æ¬¡è¯·æ±‚å‘½ä»¤ï¼Œå¹¶è¿”å›è¯·æ±‚æˆåŠŸï¼Œæ‰èƒ½è¿›è¡Œé˜²ç¢°æ’æ“ä½œï¼Œå¦åˆ™è¿”å›é”™è¯¯ã€‚
  *
- * \param[in] handle         : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] anticoll_level : ·ÀÅö×²µÈ¼¶£¬¿ÉÊ¹ÓÃÏÂÁĞºê£º
+ * \param[in] handle         : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] anticoll_level : é˜²ç¢°æ’ç­‰çº§ï¼Œå¯ä½¿ç”¨ä¸‹åˆ—å®ï¼š
  *                             - #AM_ZLG600_MIFARE_CARD_ANTICOLL_1
  *                             - #AM_ZLG600_MIFARE_CARD_ANTICOLL_2
  *                             - #AM_ZLG600_MIFARE_CARD_ANTICOLL_3
  *
- * \param[in] know_uid : ÒÑÖªµÄ¿¨ĞòÁĞºÅ
- * \param[in] nbit_cnt : Î»¼ÆÊı£¬±íÃ÷ÒÑÖªµÄĞòÁĞºÅuidµÄÎ»Êı¡£ÆäÖµĞ¡ÓÚ32¡£
- *                       - Èônbit_cntÖµÎª0,Ôò±íÃ÷Ã»ÓĞÒÑÖªĞòÁĞºÅ£¬ĞòÁĞºÅµÄËùÓĞÎ»
- *                         ¶¼Òª´Ó±¾º¯Êı»ñµÃ¡£
- *                       - Èônbit_cnt²»Îª0£¬ÔòĞòÁĞºÅÖĞÓĞÒÑÖªµÄĞòÁĞºÅµÄÖµ£¬±íÊ¾
- *                         ĞòÁĞºÅµÄÇ°nbit_cntÎ»ÎªÒÑÖªĞòÁĞºÅÖĞËùÊ¾Ç°nbit_cntÎ»µÄ
- *                         Öµ£¬ÆäÓàÎ»ĞèÒª±¾º¯Êı»ñµÃ¡£
- * \param[in] *p_uid   : ·ÀÅö×²ºó»ñÈ¡µ½µÄ¿¨ĞòÁĞºÅ
+ * \param[in] know_uid : å·²çŸ¥çš„å¡åºåˆ—å·
+ * \param[in] nbit_cnt : ä½è®¡æ•°ï¼Œè¡¨æ˜å·²çŸ¥çš„åºåˆ—å·uidçš„ä½æ•°ã€‚å…¶å€¼å°äº32ã€‚
+ *                       - è‹¥nbit_cntå€¼ä¸º0,åˆ™è¡¨æ˜æ²¡æœ‰å·²çŸ¥åºåˆ—å·ï¼Œåºåˆ—å·çš„æ‰€æœ‰ä½
+ *                         éƒ½è¦ä»æœ¬å‡½æ•°è·å¾—ã€‚
+ *                       - è‹¥nbit_cntä¸ä¸º0ï¼Œåˆ™åºåˆ—å·ä¸­æœ‰å·²çŸ¥çš„åºåˆ—å·çš„å€¼ï¼Œè¡¨ç¤º
+ *                         åºåˆ—å·çš„å‰nbit_cntä½ä¸ºå·²çŸ¥åºåˆ—å·ä¸­æ‰€ç¤ºå‰nbit_cntä½çš„
+ *                         å€¼ï¼Œå…¶ä½™ä½éœ€è¦æœ¬å‡½æ•°è·å¾—ã€‚
+ * \param[in] *p_uid   : é˜²ç¢°æ’åè·å–åˆ°çš„å¡åºåˆ—å·
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ê§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  *
- * \note  ·ûºÏISO14443A±ê×¼¿¨µÄĞòÁĞºÅ¶¼ÊÇÈ«ÇòÎ¨Ò»µÄ£¬ÕıÊÇÕâÖÖÎ¨Ò»ĞÔ£¬²ÅÄÜÊµÏÖ·À
- * Åö×²µÄËã·¨Âß¼­£¬ÈôÓĞÈô¸ÉÕÅ¿¨Í¬Ê±ÔÚÌìÏß¸ĞÓ¦ÇøÄÚÔòÕâ¸öº¯ÊıÄÜ¹»ÕÒµ½Ò»ÕÅĞòÁĞºÅ½Ï
- * ´óµÄ¿¨À´²Ù×÷¡£
+ * \note  ç¬¦åˆISO14443Aæ ‡å‡†å¡çš„åºåˆ—å·éƒ½æ˜¯å…¨çƒå”¯ä¸€çš„ï¼Œæ­£æ˜¯è¿™ç§å”¯ä¸€æ€§ï¼Œæ‰èƒ½å®ç°é˜²
+ * ç¢°æ’çš„ç®—æ³•é€»è¾‘ï¼Œè‹¥æœ‰è‹¥å¹²å¼ å¡åŒæ—¶åœ¨å¤©çº¿æ„Ÿåº”åŒºå†…åˆ™è¿™ä¸ªå‡½æ•°èƒ½å¤Ÿæ‰¾åˆ°ä¸€å¼ åºåˆ—å·è¾ƒ
+ * å¤§çš„å¡æ¥æ“ä½œã€‚
  */ 
 int am_zlg600_mifare_card_anticoll (am_zlg600_handle_t handle,
                                     uint8_t            anticoll_level,
@@ -684,27 +684,27 @@ int am_zlg600_mifare_card_anticoll (am_zlg600_handle_t handle,
                                     uint32_t          *p_uid);
                        
 /**
- * \brief Mifare¿¨µÄÑ¡Ôñ²Ù×÷
+ * \brief Mifareå¡çš„é€‰æ‹©æ“ä½œ
  *
- *  ĞèÒª³É¹¦Ö´ĞĞÒ»´Î·ÀÅö×²ÃüÁî£¬²¢·µ»Ø³É¹¦£¬²ÅÄÜ½øĞĞ¿¨Ñ¡Ôñ²Ù×÷£¬·ñÔò·µ»Ø´íÎó¡£
+ *  éœ€è¦æˆåŠŸæ‰§è¡Œä¸€æ¬¡é˜²ç¢°æ’å‘½ä»¤ï¼Œå¹¶è¿”å›æˆåŠŸï¼Œæ‰èƒ½è¿›è¡Œå¡é€‰æ‹©æ“ä½œï¼Œå¦åˆ™è¿”å›é”™è¯¯ã€‚
  *
- * \param[in] handle         : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] anticoll_level : ·ÀÅö×²µÈ¼¶£¬¿ÉÊ¹ÓÃÏÂÁĞºê£º
+ * \param[in] handle         : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] anticoll_level : é˜²ç¢°æ’ç­‰çº§ï¼Œå¯ä½¿ç”¨ä¸‹åˆ—å®ï¼š
  *                             - #AM_ZLG600_MIFARE_CARD_ANTICOLL_1
  *                             - #AM_ZLG600_MIFARE_CARD_ANTICOLL_2
  *                             - #AM_ZLG600_MIFARE_CARD_ANTICOLL_3
- * \param[in] uid   : Ç°Ò»¸ö·ÀÅö×²º¯Êı»ñÈ¡µÄUID
- * \param[in] p_sak : ·µ»ØµÄĞÅÏ¢£¬Èôbit2Îª1£¬Ôò±íÃ÷UID²»ÍêÕû
+ * \param[in] uid   : å‰ä¸€ä¸ªé˜²ç¢°æ’å‡½æ•°è·å–çš„UID
+ * \param[in] p_sak : è¿”å›çš„ä¿¡æ¯ï¼Œè‹¥bit2ä¸º1ï¼Œåˆ™è¡¨æ˜UIDä¸å®Œæ•´
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ê§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  *
- * \note  ¿¨µÄĞòÁĞºÅ³¤¶ÈÓĞÈıÖÖ£º4×Ö½Ú¡¢7×Ö½ÚºÍ10×Ö½Ú¡£ 4×Ö½ÚµÄÖ»ÒªÓÃÒ»¼¶Ñ¡Ôñ¼´¿É
- * µÃµ½ÍêÕûµÄĞòÁĞºÅ£¬ÈçMifare1 S50/S70µÈ£»7×Ö½ÚµÄÒªÓÃ¶ş¼¶Ñ¡Ôñ²ÅÄÜµÃµ½ÍêÕûµÄĞòÁĞ
- * ºÅ£¬Ç°Ò»¼¶ËùµÃµ½µÄĞòÁĞºÅµÄ×îµÍ×Ö½ÚÎª¼¶Áª±êÖ¾0x88£¬ÔÚĞòÁĞºÅÄÚÖ»ÓĞºó3×Ö½Ú¿ÉÓÃ£¬
- * ºóÒ»¼¶Ñ¡ÔñÄÜµÃµ½4×Ö½ÚĞòÁĞºÅ£¬Á½Õß°´Ë³ĞòÁ¬½Ó¼´Îª7×Ö½ÚĞòÁĞºÅ£¬ÈçUltraLight
- * ºÍDesFireµÈ£»10×Ö½ÚµÄÒÔ´ËÀàÍÆ£¬µ«ÖÁ½ñ»¹Î´·¢ÏÖ´ËÀà¿¨¡£
+ * \note  å¡çš„åºåˆ—å·é•¿åº¦æœ‰ä¸‰ç§ï¼š4å­—èŠ‚ã€7å­—èŠ‚å’Œ10å­—èŠ‚ã€‚ 4å­—èŠ‚çš„åªè¦ç”¨ä¸€çº§é€‰æ‹©å³å¯
+ * å¾—åˆ°å®Œæ•´çš„åºåˆ—å·ï¼Œå¦‚Mifare1 S50/S70ç­‰ï¼›7å­—èŠ‚çš„è¦ç”¨äºŒçº§é€‰æ‹©æ‰èƒ½å¾—åˆ°å®Œæ•´çš„åºåˆ—
+ * å·ï¼Œå‰ä¸€çº§æ‰€å¾—åˆ°çš„åºåˆ—å·çš„æœ€ä½å­—èŠ‚ä¸ºçº§è”æ ‡å¿—0x88ï¼Œåœ¨åºåˆ—å·å†…åªæœ‰å3å­—èŠ‚å¯ç”¨ï¼Œ
+ * åä¸€çº§é€‰æ‹©èƒ½å¾—åˆ°4å­—èŠ‚åºåˆ—å·ï¼Œä¸¤è€…æŒ‰é¡ºåºè¿æ¥å³ä¸º7å­—èŠ‚åºåˆ—å·ï¼Œå¦‚UltraLight
+ * å’ŒDesFireç­‰ï¼›10å­—èŠ‚çš„ä»¥æ­¤ç±»æ¨ï¼Œä½†è‡³ä»Šè¿˜æœªå‘ç°æ­¤ç±»å¡ã€‚
  */ 
 int am_zlg600_mifare_card_select (am_zlg600_handle_t handle,
                                   uint8_t            anticoll_level,
@@ -712,44 +712,44 @@ int am_zlg600_mifare_card_select (am_zlg600_handle_t handle,
                                   uint8_t           *p_sak);
 
 /**
- * \brief Mifare¿¨µÄ¹ÒÆğ²Ù×÷£¬Ê¹ËùÑ¡ÔñµÄ¿¨½øÈëHALT×´Ì¬
+ * \brief Mifareå¡çš„æŒ‚èµ·æ“ä½œï¼Œä½¿æ‰€é€‰æ‹©çš„å¡è¿›å…¥HALTçŠ¶æ€
  *
- *  ÔÚHALT×´Ì¬ÏÂ£¬¿¨½«²»ÏìÓ¦¶Á¿¨Æ÷·¢³öµÄIDLEÄ£Ê½µÄÇëÇó£¬³ı·Ç½«¿¨¸´Î»»òÀë¿ªÌìÏß¸Ğ
- *  Ó¦ÇøºóÔÙ½øÈë¡£µ«Ëü»áÏìÓ¦¶Á¿¨Æ÷·¢³öµÄALLÇëÇó¡£
+ *  åœ¨HALTçŠ¶æ€ä¸‹ï¼Œå¡å°†ä¸å“åº”è¯»å¡å™¨å‘å‡ºçš„IDLEæ¨¡å¼çš„è¯·æ±‚ï¼Œé™¤éå°†å¡å¤ä½æˆ–ç¦»å¼€å¤©çº¿æ„Ÿ
+ *  åº”åŒºåå†è¿›å…¥ã€‚ä½†å®ƒä¼šå“åº”è¯»å¡å™¨å‘å‡ºçš„ALLè¯·æ±‚ã€‚
  *
- * \param[in] handle         : ZLG600µÄ²Ù×÷¾ä±ú
+ * \param[in] handle         : ZLG600çš„æ“ä½œå¥æŸ„
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ê§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */ 
 int am_zlg600_mifare_card_halt (am_zlg600_handle_t handle);
 
                                
 /**
- * \brief Mifare¿¨E2ÃÜÔ¿ÑéÖ¤
+ * \brief Mifareå¡E2å¯†é’¥éªŒè¯
  *
- *     ÓÃÄ£¿éÄÚ²¿ÒÑ´æÈëµÄÃÜÔ¿Óë¿¨µÄÃÜÔ¿½øĞĞÑéÖ¤£¬Ê¹ÓÃ¸ÃÃüÁîÇ°Ó¦ÏÈÓÃ¡°×°ÔØIC¿¨ÃÜÔ¿¡±
- * º¯Êı°ÑÃÜÔ¿³É¹¦ÔØÈëÄ£¿éÄÚ¡£ÁíÍâ£¬ĞèÒªÑéÖ¤µÄ¿¨µÄÉÈÇøºÅ²»±ØÓëÄ£¿éÄÚÃÜÔ¿ÇøºÅÏàµÈ¡£
+ *     ç”¨æ¨¡å—å†…éƒ¨å·²å­˜å…¥çš„å¯†é’¥ä¸å¡çš„å¯†é’¥è¿›è¡ŒéªŒè¯ï¼Œä½¿ç”¨è¯¥å‘½ä»¤å‰åº”å…ˆç”¨â€œè£…è½½ICå¡å¯†é’¥â€
+ * å‡½æ•°æŠŠå¯†é’¥æˆåŠŸè½½å…¥æ¨¡å—å†…ã€‚å¦å¤–ï¼Œéœ€è¦éªŒè¯çš„å¡çš„æ‰‡åŒºå·ä¸å¿…ä¸æ¨¡å—å†…å¯†é’¥åŒºå·ç›¸ç­‰ã€‚
  *
- * \param[in] handle     : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] key_type   : ÃÜÔ¿ÀàĞÍ£¬¿ÉÒÔÊ¹ÓÃÏÂÁĞÖµ£º
+ * \param[in] handle     : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] key_type   : å¯†é’¥ç±»å‹ï¼Œå¯ä»¥ä½¿ç”¨ä¸‹åˆ—å€¼ï¼š
  *                          - #AM_ZLG600_IC_KEY_TYPE_A
  *                          - #AM_ZLG600_IC_KEY_TYPE_B
- * \param[in] p_uid      : ¿¨ĞòÁĞºÅ£¬4×Ö½Ú
- * \param[in] key_sec    : ÃÜÔ¿ÇøºÅ£º0 ~ 7
- * \param[in] nblock     : ĞèÒªÑéÖ¤µÄ¿¨¿éºÅ£¬È¡Öµ·¶Î§Óë¿¨ÀàĞÍÓĞ¹Ø£¬
- *                         - S50£º0 ~ 63
- *                         - S70£º0 ~ 255
- *                         - PLUS CPU 2K£º0 ~ 127
- *                         - PLUS CPU 4K£º0 ~ 255
+ * \param[in] p_uid      : å¡åºåˆ—å·ï¼Œ4å­—èŠ‚
+ * \param[in] key_sec    : å¯†é’¥åŒºå·ï¼š0 ~ 7
+ * \param[in] nblock     : éœ€è¦éªŒè¯çš„å¡å—å·ï¼Œå–å€¼èŒƒå›´ä¸å¡ç±»å‹æœ‰å…³ï¼Œ
+ *                         - S50ï¼š0 ~ 63
+ *                         - S70ï¼š0 ~ 255
+ *                         - PLUS CPU 2Kï¼š0 ~ 127
+ *                         - PLUS CPU 4Kï¼š0 ~ 255
  *
- * \retval AM_OK      : ÑéÖ¤³É¹¦
- * \retval -AM_EINVAL : ÑéÖ¤Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : ÑéÖ¤Ê§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : éªŒè¯æˆåŠŸ
+ * \retval -AM_EINVAL : éªŒè¯å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : éªŒè¯å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  * 
- * \note PLUS CPUÏµÁĞµÄ¿¨µÄ¿¨ºÅÓĞ4×Ö½ÚºÍ7×Ö½ÚÖ®·Ö£¬¶ÔÓÚ7×Ö½Ú¿¨ºÅµÄ¿¨£¬
- *       Ö»ĞèÒª½«¿¨ºÅµÄ¸ß4×Ö½Ú£¨µÈ¼¶2·ÀÅö×²µÃµ½µÄ¿¨ºÅ£©×÷ÎªÑéÖ¤µÄ¿¨ºÅ¼´¿É¡£
+ * \note PLUS CPUç³»åˆ—çš„å¡çš„å¡å·æœ‰4å­—èŠ‚å’Œ7å­—èŠ‚ä¹‹åˆ†ï¼Œå¯¹äº7å­—èŠ‚å¡å·çš„å¡ï¼Œ
+ *       åªéœ€è¦å°†å¡å·çš„é«˜4å­—èŠ‚ï¼ˆç­‰çº§2é˜²ç¢°æ’å¾—åˆ°çš„å¡å·ï¼‰ä½œä¸ºéªŒè¯çš„å¡å·å³å¯ã€‚
  */
 int am_zlg600_mifare_card_e2_authent (am_zlg600_handle_t  handle,
                                       uint8_t             key_type,
@@ -758,31 +758,31 @@ int am_zlg600_mifare_card_e2_authent (am_zlg600_handle_t  handle,
                                       uint8_t             nblock);
 
 /**
- * \brief Mifare¿¨Ö±½ÓÃÜÔ¿ÑéÖ¤
+ * \brief Mifareå¡ç›´æ¥å¯†é’¥éªŒè¯
  *
- *    ¸ÃÃüÁî½«ÃÜÂë×÷Îª²ÎÊı´«µİ£¬Òò´ËÔÚ´ËÖ®Ç°²»ĞèÓÃ¡°×°ÔØIC¿¨ÃÜÔ¿¡±ÃüÁî¡£Èôµ±Ç°¿¨
- * ÎªPLUS CPU¿¨µÄµÈ¼¶2»òµÈ¼¶3£¬ÇÒÊäÈëµÄÃÜÂëÖ»ÓĞ6×Ö½Ú£¬ÔòÄ£¿é×Ô¶¯½«ÊäÈëµÄÃÜÂë
- * ¸´ÖÆ2´Î£¬È¡Ç°16×Ö½Ú×÷Îªµ±Ç°ÑéÖ¤ÃÜÔ¿¡£
+ *    è¯¥å‘½ä»¤å°†å¯†ç ä½œä¸ºå‚æ•°ä¼ é€’ï¼Œå› æ­¤åœ¨æ­¤ä¹‹å‰ä¸éœ€ç”¨â€œè£…è½½ICå¡å¯†é’¥â€å‘½ä»¤ã€‚è‹¥å½“å‰å¡
+ * ä¸ºPLUS CPUå¡çš„ç­‰çº§2æˆ–ç­‰çº§3ï¼Œä¸”è¾“å…¥çš„å¯†ç åªæœ‰6å­—èŠ‚ï¼Œåˆ™æ¨¡å—è‡ªåŠ¨å°†è¾“å…¥çš„å¯†ç 
+ * å¤åˆ¶2æ¬¡ï¼Œå–å‰16å­—èŠ‚ä½œä¸ºå½“å‰éªŒè¯å¯†é’¥ã€‚
  *
- * \param[in] handle     : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] key_type   : ÃÜÔ¿ÀàĞÍ£¬¿ÉÒÔÊ¹ÓÃÏÂÁĞÖµ£º
+ * \param[in] handle     : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] key_type   : å¯†é’¥ç±»å‹ï¼Œå¯ä»¥ä½¿ç”¨ä¸‹åˆ—å€¼ï¼š
  *                          - #AM_ZLG600_IC_KEY_TYPE_A
  *                          - #AM_ZLG600_IC_KEY_TYPE_B
- * \param[in] p_uid      : ¿¨ĞòÁĞºÅ£¬4×Ö½Ú
- * \param[in] p_key      : ÃÜÔ¿»º³åÇø
- * \param[in] key_len    : ÃÜÔ¿µÄ³¤¶È£¬Ö»ÄÜÎª6£¨6×Ö½ÚÃÜÔ¿£©»ò16£¨16×Ö½ÚÃÜÔ¿£©
- * \param[in] nblock     : ĞèÒªÑéÖ¤µÄ¿¨¿éºÅ£¬È¡Öµ·¶Î§Óë¿¨ÀàĞÍÓĞ¹Ø£¬
- *                         - S50£º0 ~ 63
- *                         - S70£º0 ~ 255
- *                         - PLUS CPU 2K£º0 ~ 127
- *                         - PLUS CPU 4K£º0 ~ 255
+ * \param[in] p_uid      : å¡åºåˆ—å·ï¼Œ4å­—èŠ‚
+ * \param[in] p_key      : å¯†é’¥ç¼“å†²åŒº
+ * \param[in] key_len    : å¯†é’¥çš„é•¿åº¦ï¼Œåªèƒ½ä¸º6ï¼ˆ6å­—èŠ‚å¯†é’¥ï¼‰æˆ–16ï¼ˆ16å­—èŠ‚å¯†é’¥ï¼‰
+ * \param[in] nblock     : éœ€è¦éªŒè¯çš„å¡å—å·ï¼Œå–å€¼èŒƒå›´ä¸å¡ç±»å‹æœ‰å…³ï¼Œ
+ *                         - S50ï¼š0 ~ 63
+ *                         - S70ï¼š0 ~ 255
+ *                         - PLUS CPU 2Kï¼š0 ~ 127
+ *                         - PLUS CPU 4Kï¼š0 ~ 255
  *
- * \retval AM_OK      : ÑéÖ¤³É¹¦
- * \retval -AM_EINVAL : ÑéÖ¤Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : ÑéÖ¤Ê§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : éªŒè¯æˆåŠŸ
+ * \retval -AM_EINVAL : éªŒè¯å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : éªŒè¯å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  * 
- * \note PLUS CPUÏµÁĞµÄ¿¨µÄ¿¨ºÅÓĞ4×Ö½ÚºÍ7×Ö½ÚÖ®·Ö£¬¶ÔÓÚ7×Ö½Ú¿¨ºÅµÄ¿¨£¬
- *       Ö»ĞèÒª½«¿¨ºÅµÄ¸ß4×Ö½Ú£¨µÈ¼¶2·ÀÅö×²µÃµ½µÄ¿¨ºÅ£©×÷ÎªÑéÖ¤µÄ¿¨ºÅ¼´¿É¡£
+ * \note PLUS CPUç³»åˆ—çš„å¡çš„å¡å·æœ‰4å­—èŠ‚å’Œ7å­—èŠ‚ä¹‹åˆ†ï¼Œå¯¹äº7å­—èŠ‚å¡å·çš„å¡ï¼Œ
+ *       åªéœ€è¦å°†å¡å·çš„é«˜4å­—èŠ‚ï¼ˆç­‰çº§2é˜²ç¢°æ’å¾—åˆ°çš„å¡å·ï¼‰ä½œä¸ºéªŒè¯çš„å¡å·å³å¯ã€‚
  */
 int am_zlg600_mifare_card_direct_authent (am_zlg600_handle_t  handle,
                                           uint8_t             key_type,
@@ -792,103 +792,103 @@ int am_zlg600_mifare_card_direct_authent (am_zlg600_handle_t  handle,
                                           uint8_t             nblock);
           
 /**
- * \brief Mifare¿¨Êı¾İ¶ÁÈ¡
+ * \brief Mifareå¡æ•°æ®è¯»å–
  *
- *     ÔÚÑéÖ¤³É¹¦Ö®ºó£¬²ÅÄÜ¶ÁÏàÓ¦µÄ¿éÊı¾İ£¬ËùÑéÖ¤µÄ¿éºÅÓë¶Á¿éºÅ±ØĞëÔÚÍ¬Ò»¸öÉÈÇøÄÚ£¬
- * Mifare1¿¨´Ó¿éºÅ0¿ªÊ¼°´Ë³ĞòÃ¿4¸ö¿é1¸öÉÈÇø£¬ÈôÒª¶ÔÒ»ÕÅ¿¨ÖĞµÄ¶à¸öÉÈÇø½øĞĞ²Ù×÷£¬ÔÚ
- * ¶ÔÄ³Ò»ÉÈÇø²Ù×÷Íê±Ïºó£¬±ØĞë½øĞĞÒ»Ìõ¶ÁÃüÁî²ÅÄÜ¶ÔÁíÒ»¸öÉÈÇøÖ±½Ó½øĞĞÑéÖ¤ÃüÁî£¬·ñÔò
- * ±ØĞë´ÓÇëÇó¿ªÊ¼²Ù×÷¡£¶ÔÓÚPLUS CPU¿¨£¬ÈôÏÂÒ»¸ö¶ÁÉÈÇøµÄÃÜÔ¿ºÍµ±Ç°ÉÈÇøµÄÃÜÔ¿ÏàÍ¬£¬
- * Ôò²»ĞèÒªÔÙ´ÎÑéÖ¤ÃÜÔ¿£¬Ö±½Ó¶Á¼´¿É¡£
+ *     åœ¨éªŒè¯æˆåŠŸä¹‹åï¼Œæ‰èƒ½è¯»ç›¸åº”çš„å—æ•°æ®ï¼Œæ‰€éªŒè¯çš„å—å·ä¸è¯»å—å·å¿…é¡»åœ¨åŒä¸€ä¸ªæ‰‡åŒºå†…ï¼Œ
+ * Mifare1å¡ä»å—å·0å¼€å§‹æŒ‰é¡ºåºæ¯4ä¸ªå—1ä¸ªæ‰‡åŒºï¼Œè‹¥è¦å¯¹ä¸€å¼ å¡ä¸­çš„å¤šä¸ªæ‰‡åŒºè¿›è¡Œæ“ä½œï¼Œåœ¨
+ * å¯¹æŸä¸€æ‰‡åŒºæ“ä½œå®Œæ¯•åï¼Œå¿…é¡»è¿›è¡Œä¸€æ¡è¯»å‘½ä»¤æ‰èƒ½å¯¹å¦ä¸€ä¸ªæ‰‡åŒºç›´æ¥è¿›è¡ŒéªŒè¯å‘½ä»¤ï¼Œå¦åˆ™
+ * å¿…é¡»ä»è¯·æ±‚å¼€å§‹æ“ä½œã€‚å¯¹äºPLUS CPUå¡ï¼Œè‹¥ä¸‹ä¸€ä¸ªè¯»æ‰‡åŒºçš„å¯†é’¥å’Œå½“å‰æ‰‡åŒºçš„å¯†é’¥ç›¸åŒï¼Œ
+ * åˆ™ä¸éœ€è¦å†æ¬¡éªŒè¯å¯†é’¥ï¼Œç›´æ¥è¯»å³å¯ã€‚
  *
- * \param[in]  handle     : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in]  nblock     : ¶ÁÈ¡Êı¾İµÄ¿éºÅ
- *                          - S50£º0 ~ 63
- *                          - S70£º0 ~ 255
- *                          - PLUS CPU 2K£º0 ~ 127
- *                          - PLUS CPU 4K£º0 ~ 255
- * \param[out] p_buf      : ´æ·Å¶ÁÈ¡µÄÊı¾İ£¬´óĞ¡Îª 16
+ * \param[in]  handle     : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in]  nblock     : è¯»å–æ•°æ®çš„å—å·
+ *                          - S50ï¼š0 ~ 63
+ *                          - S70ï¼š0 ~ 255
+ *                          - PLUS CPU 2Kï¼š0 ~ 127
+ *                          - PLUS CPU 4Kï¼š0 ~ 255
+ * \param[out] p_buf      : å­˜æ”¾è¯»å–çš„æ•°æ®ï¼Œå¤§å°ä¸º 16
  *
- * \retval AM_OK      : ¶ÁÈ¡³É¹¦
- * \retval -AM_EINVAL : ¶ÁÈ¡Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : ¶ÁÈ¡Ê§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : è¯»å–æˆåŠŸ
+ * \retval -AM_EINVAL : è¯»å–å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : è¯»å–å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */
 int am_zlg600_mifare_card_read (am_zlg600_handle_t  handle,
                                 uint8_t             nblock,
                                 uint8_t            *p_buf);
 
 /**
- * \brief Mifare¿¨Ğ´Êı¾İ,Ğ´Ö®Ç°±ØĞè³É¹¦½øĞĞÃÜÔ¿ÑéÖ¤¡£
+ * \brief Mifareå¡å†™æ•°æ®,å†™ä¹‹å‰å¿…éœ€æˆåŠŸè¿›è¡Œå¯†é’¥éªŒè¯ã€‚
  *
- *      ¶Ô¿¨ÄÚÄ³Ò»¿é½øĞĞÑéÖ¤³É¹¦ºó£¬¼´¿É¶ÔÍ¬Ò»ÉÈÇøµÄ¸÷¸ö½øĞĞĞ´²Ù×÷£¨Ö»Òª·ÃÎÊÌõ¼şÔÊĞí£©£¬
- *  ÆäÖĞ°üÀ¨Î»ÓÚÉÈÇøÎ²µÄÃÜÂë¿é£¬ÕâÊÇ¸ü¸ÄÃÜÂëµÄÎ¨Ò»·½·¨¡£¶ÔÓÚPLUS CPU¿¨µÈ¼¶2¡¢3µÄAESÃÜ
- *  Ô¿ÔòÊÇÔÚÆäËûÎ»ÖÃĞŞ¸ÄÃÜÔ¿¡£
+ *      å¯¹å¡å†…æŸä¸€å—è¿›è¡ŒéªŒè¯æˆåŠŸåï¼Œå³å¯å¯¹åŒä¸€æ‰‡åŒºçš„å„ä¸ªè¿›è¡Œå†™æ“ä½œï¼ˆåªè¦è®¿é—®æ¡ä»¶å…è®¸ï¼‰ï¼Œ
+ *  å…¶ä¸­åŒ…æ‹¬ä½äºæ‰‡åŒºå°¾çš„å¯†ç å—ï¼Œè¿™æ˜¯æ›´æ”¹å¯†ç çš„å”¯ä¸€æ–¹æ³•ã€‚å¯¹äºPLUS CPUå¡ç­‰çº§2ã€3çš„AESå¯†
+ *  é’¥åˆ™æ˜¯åœ¨å…¶ä»–ä½ç½®ä¿®æ”¹å¯†é’¥ã€‚
  *
- * \param[in] handle     : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] nblock     : ¶ÁÈ¡Êı¾İµÄ¿éºÅ
- *                         - S50£º0 ~ 63
- *                         - S70£º0 ~ 255
- *                         - PLUS CPU 2K£º0 ~ 127
- *                         - PLUS CPU 4K£º0 ~ 255
- * \param[in] p_buf      : Ğ´ÈëÊı¾İ»º³åÇø£¬´óĞ¡±ØĞëÎª 16
+ * \param[in] handle     : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] nblock     : è¯»å–æ•°æ®çš„å—å·
+ *                         - S50ï¼š0 ~ 63
+ *                         - S70ï¼š0 ~ 255
+ *                         - PLUS CPU 2Kï¼š0 ~ 127
+ *                         - PLUS CPU 4Kï¼š0 ~ 255
+ * \param[in] p_buf      : å†™å…¥æ•°æ®ç¼“å†²åŒºï¼Œå¤§å°å¿…é¡»ä¸º 16
  *
- * \retval AM_OK      : Ğ´Èë³É¹¦
- * \retval -AM_EINVAL : Ğ´ÈëÊ§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ğ´ÈëÊ§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : å†™å…¥æˆåŠŸ
+ * \retval -AM_EINVAL : å†™å…¥å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å†™å…¥å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */
 int am_zlg600_mifare_card_write (am_zlg600_handle_t  handle,
                                  uint8_t             nblock,
                                  uint8_t            *p_buf);
                                 
 /**
- * \brief Mifare¿¨Ğ´Êı¾İ
+ * \brief Mifareå¡å†™æ•°æ®
  *
- * \param[in] handle     : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] nblock     : ¶ÁÈ¡Êı¾İµÄ¿éºÅ, 1 ~ 15
- * \param[in] p_buf      : Ğ´ÈëÊı¾İ»º³åÇø£¬´óĞ¡±ØĞëÎª 4
+ * \param[in] handle     : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] nblock     : è¯»å–æ•°æ®çš„å—å·, 1 ~ 15
+ * \param[in] p_buf      : å†™å…¥æ•°æ®ç¼“å†²åŒºï¼Œå¤§å°å¿…é¡»ä¸º 4
  *
- * \retval AM_OK      : Ğ´Èë³É¹¦
- * \retval -AM_EINVAL : Ğ´ÈëÊ§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ğ´ÈëÊ§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : å†™å…¥æˆåŠŸ
+ * \retval -AM_EINVAL : å†™å…¥å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å†™å…¥å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  *
- * ´ËÃüÁîÖ»¶ÔUltraLight¿¨ÓĞĞ§£¬¶ÔUltraLight¿¨½øĞĞ¶Á²Ù×÷ÓëMifare1¿¨Ò»Ñù¡£
+ * æ­¤å‘½ä»¤åªå¯¹UltraLightå¡æœ‰æ•ˆï¼Œå¯¹UltraLightå¡è¿›è¡Œè¯»æ“ä½œä¸Mifare1å¡ä¸€æ ·ã€‚
  */
 int am_zlg600_ultralight_card_write (am_zlg600_handle_t  handle,
                                      uint8_t             nblock,
                                      uint8_t            *p_buf);
 
 /**
- * \name Mifare¿¨Öµ²Ù×÷Ä£Ê½
+ * \name Mifareå¡å€¼æ“ä½œæ¨¡å¼
  * @{
  */
 
-#define AM_ZLG600_MIFARE_CARD_VALUE_ADD  0xC1  /**< \brief ¼Ó  */
-#define AM_ZLG600_MIFARE_CARD_VALUE_SUB  0xC0  /**< \brief ¼õ  */
+#define AM_ZLG600_MIFARE_CARD_VALUE_ADD  0xC1  /**< \brief åŠ   */
+#define AM_ZLG600_MIFARE_CARD_VALUE_SUB  0xC0  /**< \brief å‡  */
 
 /** @}*/
 
 /**
- * \brief MifareÖµ²Ù×÷£¬¶ÔMifare¿¨µÄÖµ¿é½øĞĞ¼Ó¼õ²Ù×÷
+ * \brief Mifareå€¼æ“ä½œï¼Œå¯¹Mifareå¡çš„å€¼å—è¿›è¡ŒåŠ å‡æ“ä½œ
  *
- * \param[in] handle     : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] mode       : Öµ²Ù×÷µÄÄ£Ê½£¬¿ÉÒÔÊÇ¼Ó»ò¼õ£¬Ê¹ÓÃÏÂÁĞºê£º
+ * \param[in] handle     : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] mode       : å€¼æ“ä½œçš„æ¨¡å¼ï¼Œå¯ä»¥æ˜¯åŠ æˆ–å‡ï¼Œä½¿ç”¨ä¸‹åˆ—å®ï¼š
  *                          - AM_ZLG600_MIFARE_CARD_VALUE_ADD
  *                          - AM_ZLG600_MIFARE_CARD_VALUE_SUB
- * \param[in] nblock     : ½øĞĞÖµ²Ù×÷µÄ¿éºÅ
- *                           - S50£º0 ~ 63
- *                            - S70£º0 ~ 255
- *                            - PLUS CPU 2K£º0 ~ 127
- *                            - PLUS CPU 4K£º0 ~ 255
- * \param[in] ntransblk  : ´«Êä¿éºÅ£¬¼ÆËã½á¹ûÖµ´æ·ÅµÄ¿éºÅ
- * \param[in] value      : 4×Ö½ÚÓĞ·ûºÅÊı
+ * \param[in] nblock     : è¿›è¡Œå€¼æ“ä½œçš„å—å·
+ *                           - S50ï¼š0 ~ 63
+ *                            - S70ï¼š0 ~ 255
+ *                            - PLUS CPU 2Kï¼š0 ~ 127
+ *                            - PLUS CPU 4Kï¼š0 ~ 255
+ * \param[in] ntransblk  : ä¼ è¾“å—å·ï¼Œè®¡ç®—ç»“æœå€¼å­˜æ”¾çš„å—å·
+ * \param[in] value      : 4å­—èŠ‚æœ‰ç¬¦å·æ•°
  *
- * \retval AM_OK      : Ğ´Èë³É¹¦
- * \retval -AM_EINVAL : Ğ´ÈëÊ§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ğ´ÈëÊ§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : å†™å…¥æˆåŠŸ
+ * \retval -AM_EINVAL : å†™å…¥å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å†™å…¥å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  *
- * \note Òª½øĞĞ´ËÀà²Ù×÷£¬¿éÊı¾İ±ØĞëÒªÓĞÖµ¿éµÄ¸ñÊ½£¬¿É²Î¿¼NXPµÄÏà¹ØÎÄµµ¡£Èô¿¨¿é
- * ºÅÓë´«Êä¿éºÅÏàÍ¬£¬Ôò½«²Ù×÷ºóµÄ½á¹ûĞ´ÈëÔ­À´µÄ¿éÄÚ£»Èô¿¨¿éºÅÓë´«Êä¿éºÅ²»ÏàÍ¬£¬
- * Ôò½«²Ù×÷ºóµÄ½á¹ûĞ´Èë´«Êä¿éÄÚ£¬½á¹û´«Êä¿éÄÚµÄÊı¾İ±»¸²¸Ç£¬Ô­¿éÄÚµÄÖµ²»±ä¡£
- * ´¦ÓÚµÈ¼¶2µÄPLUS CPU¿¨²»Ö§³ÖÖµ¿é²Ù×÷£¬µÈ¼¶1¡¢3Ö§³Ö¡£
+ * \note è¦è¿›è¡Œæ­¤ç±»æ“ä½œï¼Œå—æ•°æ®å¿…é¡»è¦æœ‰å€¼å—çš„æ ¼å¼ï¼Œå¯å‚è€ƒNXPçš„ç›¸å…³æ–‡æ¡£ã€‚è‹¥å¡å—
+ * å·ä¸ä¼ è¾“å—å·ç›¸åŒï¼Œåˆ™å°†æ“ä½œåçš„ç»“æœå†™å…¥åŸæ¥çš„å—å†…ï¼›è‹¥å¡å—å·ä¸ä¼ è¾“å—å·ä¸ç›¸åŒï¼Œ
+ * åˆ™å°†æ“ä½œåçš„ç»“æœå†™å…¥ä¼ è¾“å—å†…ï¼Œç»“æœä¼ è¾“å—å†…çš„æ•°æ®è¢«è¦†ç›–ï¼ŒåŸå—å†…çš„å€¼ä¸å˜ã€‚
+ * å¤„äºç­‰çº§2çš„PLUS CPUå¡ä¸æ”¯æŒå€¼å—æ“ä½œï¼Œç­‰çº§1ã€3æ”¯æŒã€‚
  */
 int am_zlg600_mifare_card_val_operate (am_zlg600_handle_t  handle,
                                        uint8_t             mode,
@@ -897,37 +897,37 @@ int am_zlg600_mifare_card_val_operate (am_zlg600_handle_t  handle,
                                        int32_t             value);
 
 /**
- * \brief Mifare¿¨¸´Î»£¬Í¨¹ı½«ÔØ²¨ĞÅºÅ¹Ø±ÕÖ¸¶¨µÄÊ±¼ä£¬ÔÙ¿ªÆôÀ´ÊµÏÖ¿¨Æ¬¸´Î»¡£
+ * \brief Mifareå¡å¤ä½ï¼Œé€šè¿‡å°†è½½æ³¢ä¿¡å·å…³é—­æŒ‡å®šçš„æ—¶é—´ï¼Œå†å¼€å¯æ¥å®ç°å¡ç‰‡å¤ä½ã€‚
  * 
- * \param[in] handle     : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] time_ms    : ¹Ø±ÕµÄÊ±¼ä£¨µ¥Î»:ms£©£¬0ÎªÒ»Ö±¹Ø±Õ
+ * \param[in] handle     : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] time_ms    : å…³é—­çš„æ—¶é—´ï¼ˆå•ä½:msï¼‰ï¼Œ0ä¸ºä¸€ç›´å…³é—­
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ê§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  *
- * \note ¸Ãº¯Êı½«ÌìÏßĞÅºÅ¹Ø±ÕÊıºÁÃë£¬ÈôÒ»Ö±¹Ø±Õ£¬ÔòµÈµ½Ö´ĞĞÒ»¸öÇëÇóÃüÁîÊ±´ò¿ª¡£
+ * \note è¯¥å‡½æ•°å°†å¤©çº¿ä¿¡å·å…³é—­æ•°æ¯«ç§’ï¼Œè‹¥ä¸€ç›´å…³é—­ï¼Œåˆ™ç­‰åˆ°æ‰§è¡Œä¸€ä¸ªè¯·æ±‚å‘½ä»¤æ—¶æ‰“å¼€ã€‚
  */
 int am_zlg600_mifare_card_reset (am_zlg600_handle_t  handle,
                                  uint8_t             time_ms);
 
 /**
- * \brief Mifare¿¨¼¤»î£¬¸Ãº¯ÊıÓÃÓÚ¼¤»î¿¨Æ¬£¬ÊÇÇëÇó¡¢·ÀÅö×²ºÍÑ¡ÔñÈıÌõÃüÁîµÄ×éºÏ¡£
+ * \brief Mifareå¡æ¿€æ´»ï¼Œè¯¥å‡½æ•°ç”¨äºæ¿€æ´»å¡ç‰‡ï¼Œæ˜¯è¯·æ±‚ã€é˜²ç¢°æ’å’Œé€‰æ‹©ä¸‰æ¡å‘½ä»¤çš„ç»„åˆã€‚
  *
- * \param[in] handle     : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] req_mode   : ÇëÇóÄ£Ê½£¬¿ÉÊ¹ÓÃÏÂÁĞºê£º
+ * \param[in] handle     : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] req_mode   : è¯·æ±‚æ¨¡å¼ï¼Œå¯ä½¿ç”¨ä¸‹åˆ—å®ï¼š
  *                           - #AM_ZLG600_MIFARE_CARD_REQ_IDLE
  *                           - #AM_ZLG600_MIFARE_CARD_REQ_ALL
- * \param[in] p_atq      : ÇëÇóÓ¦´ğ
- * \param[in] p_saq      : ×îºóÒ»¼¶Ñ¡ÔñÓ¦´ğSAK
- * \param[in] p_len      : ĞòÁĞºÅµÄÊµ¼Ê³¤¶È£¬4×Ö½Ú¡¢7×Ö½Ú»ò10×Ö½Ú
- * \param[in] p_uid      : ĞòÁĞºÅ»º³åÇø£¬³¤¶ÈÓ¦¸ÃÓëĞòÁĞºÅ³¤¶È±£³ÖÒ»ÖÂ£¬
- *                         Èç²»È·¶¨£¬½¨ÒéÏÈÊ¹ÓÃ×î´ó³¤¶È10¡£
- * \param[in]  uid_len   £º p_uid ËùÖ¸»º³åÇøµÄ³¤¶È
+ * \param[in] p_atq      : è¯·æ±‚åº”ç­”
+ * \param[in] p_saq      : æœ€åä¸€çº§é€‰æ‹©åº”ç­”SAK
+ * \param[in] p_len      : åºåˆ—å·çš„å®é™…é•¿åº¦ï¼Œ4å­—èŠ‚ã€7å­—èŠ‚æˆ–10å­—èŠ‚
+ * \param[in] p_uid      : åºåˆ—å·ç¼“å†²åŒºï¼Œé•¿åº¦åº”è¯¥ä¸åºåˆ—å·é•¿åº¦ä¿æŒä¸€è‡´ï¼Œ
+ *                         å¦‚ä¸ç¡®å®šï¼Œå»ºè®®å…ˆä½¿ç”¨æœ€å¤§é•¿åº¦10ã€‚
+ * \param[in]  uid_len   ï¼š p_uid æ‰€æŒ‡ç¼“å†²åŒºçš„é•¿åº¦
  *
- * \retval AM_OK      : Ğ´Èë³É¹¦
- * \retval -AM_EINVAL : Ğ´ÈëÊ§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ğ´ÈëÊ§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : å†™å…¥æˆåŠŸ
+ * \retval -AM_EINVAL : å†™å…¥å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å†™å…¥å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */
 int am_zlg600_mifare_card_active (am_zlg600_handle_t  handle,
                                   uint8_t             req_mode,
@@ -938,51 +938,51 @@ int am_zlg600_mifare_card_active (am_zlg600_handle_t  handle,
                                   uint8_t             uid_len);
 
 /**
- * \brief MifareÖµ²Ù×÷£¬ÉèÖÃÖµ¿éµÄÖµ
+ * \brief Mifareå€¼æ“ä½œï¼Œè®¾ç½®å€¼å—çš„å€¼
  *
- * \param[in] handle     : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] nblock     : ¶ÁÈ¡Êı¾İµÄÖµ¿éµØÖ·
- * \param[in] value      : ÉèÖÃµÄÖµ
+ * \param[in] handle     : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] nblock     : è¯»å–æ•°æ®çš„å€¼å—åœ°å€
+ * \param[in] value      : è®¾ç½®çš„å€¼
  *
- * \retval AM_OK      : ÉèÖÃ³É¹¦
- * \retval -AM_EINVAL : ÉèÖÃÊ§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : ÉèÖÃÊ§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : è®¾ç½®æˆåŠŸ
+ * \retval -AM_EINVAL : è®¾ç½®å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : è®¾ç½®å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */
 int am_zlg600_mifare_card_val_set (am_zlg600_handle_t  handle,
                                    uint8_t             nblock,
                                    int32_t             value);
                
 /**
- * \brief MifareÖµ²Ù×÷£¬»ñÈ¡Öµ¿éµÄÖµ
+ * \brief Mifareå€¼æ“ä½œï¼Œè·å–å€¼å—çš„å€¼
  *
- * \param[in] handle     : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] nblock     : ¶ÁÈ¡Êı¾İµÄÖµ¿éµØÖ·
- * \param[in] p_value    : »ñÈ¡ÖµµÄÖ¸Õë
+ * \param[in] handle     : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] nblock     : è¯»å–æ•°æ®çš„å€¼å—åœ°å€
+ * \param[in] p_value    : è·å–å€¼çš„æŒ‡é’ˆ
  *
- * \retval AM_OK      : ¶ÁÈ¡³É¹¦
- * \retval -AM_EINVAL : ¶ÁÈ¡Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : ¶ÁÈ¡Ê§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : è¯»å–æˆåŠŸ
+ * \retval -AM_EINVAL : è¯»å–å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : è¯»å–å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */
 int am_zlg600_mifare_card_val_get (am_zlg600_handle_t  handle,
                                    uint8_t             nblock,
                                    int32_t            *p_value);
 
 /**
- * \brief ÃüÁî´«Êä
+ * \brief å‘½ä»¤ä¼ è¾“
  *
- *     ¸Ãº¯ÊıÊôÓÚÄ£¿éÀ©Õ¹¹¦ÄÜ£¬ÓÃÓÚÄ£¿éÏò¿¨Æ¬·¢ËÍÈÎÒâ³¤¶È×éºÏµÄÊı¾İ´®£¬ÀıÈçÕë¶Ô
- * NXPĞÂÍÆ³öµÄNTAG213FÊÇÊôÓÚUltralight CÏµÁĞ¿¨Æ¬£¬µ«ÊÇ¸Ã¿¨Æ¬ÓÖĞÂÌí¼ÓÁËÉÈÇøÊı¾İ
- * ¶ÁĞ´ÃÜÔ¿±£»¤¹¦ÄÜ¡£¶øÕâ¸öÃÜÔ¿ÑéÖ¤ÃüÁî¼´¿ÉÀûÓÃ´ËÃüÃû´«Êäº¯ÊıÀ´ÊµÏÖ¡£
+ *     è¯¥å‡½æ•°å±äºæ¨¡å—æ‰©å±•åŠŸèƒ½ï¼Œç”¨äºæ¨¡å—å‘å¡ç‰‡å‘é€ä»»æ„é•¿åº¦ç»„åˆçš„æ•°æ®ä¸²ï¼Œä¾‹å¦‚é’ˆå¯¹
+ * NXPæ–°æ¨å‡ºçš„NTAG213Fæ˜¯å±äºUltralight Cç³»åˆ—å¡ç‰‡ï¼Œä½†æ˜¯è¯¥å¡ç‰‡åˆæ–°æ·»åŠ äº†æ‰‡åŒºæ•°æ®
+ * è¯»å†™å¯†é’¥ä¿æŠ¤åŠŸèƒ½ã€‚è€Œè¿™ä¸ªå¯†é’¥éªŒè¯å‘½ä»¤å³å¯åˆ©ç”¨æ­¤å‘½åä¼ è¾“å‡½æ•°æ¥å®ç°ã€‚
  *
- * \param[in] handle     : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] p_tx_buf   : ·¢ËÍÊı¾İµÄ»º³åÇø
- * \param[in] tx_nbytes  : ·¢ËÍ×Ö½ÚÊı
- * \param[in] p_rx_buf   : ½ÓÊÕÊı¾İµÄ»º³åÇø
- * \param[in] rx_nbytes  : ½ÓÊÕ×Ö½ÚÊı
+ * \param[in] handle     : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] p_tx_buf   : å‘é€æ•°æ®çš„ç¼“å†²åŒº
+ * \param[in] tx_nbytes  : å‘é€å­—èŠ‚æ•°
+ * \param[in] p_rx_buf   : æ¥æ”¶æ•°æ®çš„ç¼“å†²åŒº
+ * \param[in] rx_nbytes  : æ¥æ”¶å­—èŠ‚æ•°
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ê§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */
 int am_zlg600_mifare_card_cmd_trans (am_zlg600_handle_t  handle,
                                      uint8_t            *p_tx_buf,
@@ -991,23 +991,23 @@ int am_zlg600_mifare_card_cmd_trans (am_zlg600_handle_t  handle,
                                      uint8_t             rx_nbytes);
 
 /**
- * \brief Êı¾İ½»»¥
+ * \brief æ•°æ®äº¤äº’
  *
- * ¸ÃÃüÁîÓÃ¶ÁĞ´Æ÷Óë¿¨Æ¬µÄÊı¾İ½»»¥£¬Í¨¹ı¸Ãº¯Êı¿ÉÒÔÊµÏÖ¶ÁĞ´¿¨Æ÷µÄËùÓĞ¹¦ÄÜ¡£
+ * è¯¥å‘½ä»¤ç”¨è¯»å†™å™¨ä¸å¡ç‰‡çš„æ•°æ®äº¤äº’ï¼Œé€šè¿‡è¯¥å‡½æ•°å¯ä»¥å®ç°è¯»å†™å¡å™¨çš„æ‰€æœ‰åŠŸèƒ½ã€‚
  *
- * \param[in]  handle     : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in]  p_data_buf : ĞèÒª½»»¥·¢ËÍµÄÊı¾İ
- * \param[in]  len        : ½»»¥Êı¾İµÄ³¤¶È
- * \param[in]  wtxm_crc   : b7~b2,wtxm£»b1,RFU(0); b0,0,CRC½ûÖ¹ÄÜ£¬1,CRCÊ¹ÄÜ¡£
- * \param[in]  fwi        : ³¬Ê±µÈ´ıÊ±¼ä±àÂë, ³¬Ê±Ê±¼ä=£¨£¨0x01 << fwi*302us£©
- * \param[out] p_rx_buf   : Êı¾İ½»»¥»ØÓ¦Ö¡ĞÅÏ¢
- * \param[in]  buf_size   : ½ÓÊÕ»ØÓ¦ĞÅÏ¢µÄ»º³åÇø´óĞ¡
- * \param[in]  p_real_len : ÓÃÓÚ»ñÈ¡Êµ¼Ê½ÓÊÕµÄĞÅÏ¢³¤¶È£¬Èç¹û»º³åÇø´óĞ¡Ğ¡ÓÚÊµ¼ÊĞÅ
- *                         Ï¢³¤¶È£¬Ôò¶àÓà²¿·Ö½«¶ªÆú
+ * \param[in]  handle     : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in]  p_data_buf : éœ€è¦äº¤äº’å‘é€çš„æ•°æ®
+ * \param[in]  len        : äº¤äº’æ•°æ®çš„é•¿åº¦
+ * \param[in]  wtxm_crc   : b7~b2,wtxmï¼›b1,RFU(0); b0,0,CRCç¦æ­¢èƒ½ï¼Œ1,CRCä½¿èƒ½ã€‚
+ * \param[in]  fwi        : è¶…æ—¶ç­‰å¾…æ—¶é—´ç¼–ç , è¶…æ—¶æ—¶é—´=ï¼ˆï¼ˆ0x01 << fwi*302usï¼‰
+ * \param[out] p_rx_buf   : æ•°æ®äº¤äº’å›åº”å¸§ä¿¡æ¯
+ * \param[in]  buf_size   : æ¥æ”¶å›åº”ä¿¡æ¯çš„ç¼“å†²åŒºå¤§å°
+ * \param[in]  p_real_len : ç”¨äºè·å–å®é™…æ¥æ”¶çš„ä¿¡æ¯é•¿åº¦ï¼Œå¦‚æœç¼“å†²åŒºå¤§å°å°äºå®é™…ä¿¡
+ *                         æ¯é•¿åº¦ï¼Œåˆ™å¤šä½™éƒ¨åˆ†å°†ä¸¢å¼ƒ
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ê§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */
 int am_zlg600_mifare_card_data_exchange (am_zlg600_handle_t  handle,
                                          uint8_t            *p_data_buf,
@@ -1019,144 +1019,144 @@ int am_zlg600_mifare_card_data_exchange (am_zlg600_handle_t  handle,
                                          uint16_t           *p_real_len);
 
 /**
- * \name Mifare¿¨¼ì²âÄ£Ê½
+ * \name Mifareå¡æ£€æµ‹æ¨¡å¼
  * @{
  */
 
-/** \brief Ö´ĞĞÍêÒ»´Î×Ô¶¯¼ì²âºóÖ´ĞĞHaltÃüÁî  */
+/** \brief æ‰§è¡Œå®Œä¸€æ¬¡è‡ªåŠ¨æ£€æµ‹åæ‰§è¡ŒHaltå‘½ä»¤  */
 #define AM_ZLG600_MIFARE_CARD_AD_HALT  0x08
 
 /** @}*/
 
 /**
- * \name Mifare¿¨ÌìÏßÇı¶¯Ä£Ê½
+ * \name Mifareå¡å¤©çº¿é©±åŠ¨æ¨¡å¼
  * @{
  */
 
-#define AM_ZLG600_MIFARE_CARD_TX_IN_TURN   0x00 /**< \brief TX1¡¢TX2½»ÌæÔËĞĞ */
-#define AM_ZLG600_MIFARE_CARD_TX_TX1       0x01 /**< \brief ½öTX1Çı¶¯ */
-#define AM_ZLG600_MIFARE_CARD_TX_TX2       0x02 /**< \brief ½öTX2Çı¶¯ */
-#define AM_ZLG600_MIFARE_CARD_TX_ALL       0x03 /**< \brief TX1ºÍTX2Í¬Ê±Çı¶¯ */
+#define AM_ZLG600_MIFARE_CARD_TX_IN_TURN   0x00 /**< \brief TX1ã€TX2äº¤æ›¿è¿è¡Œ */
+#define AM_ZLG600_MIFARE_CARD_TX_TX1       0x01 /**< \brief ä»…TX1é©±åŠ¨ */
+#define AM_ZLG600_MIFARE_CARD_TX_TX2       0x02 /**< \brief ä»…TX2é©±åŠ¨ */
+#define AM_ZLG600_MIFARE_CARD_TX_ALL       0x03 /**< \brief TX1å’ŒTX2åŒæ—¶é©±åŠ¨ */
 
 /** @}*/
 
 /**
- * \name Mifare¿¨ÃØÔ¿ÑéÖ¤Ä£Ê½
+ * \name Mifareå¡ç§˜é’¥éªŒè¯æ¨¡å¼
  * @{
  */
 
-#define AM_ZLG600_MIFARE_CARD_AUTH_E2      0x45 /**< \brief E2ÃÜÔ¿ÑéÖ¤(E) */
-#define AM_ZLG600_MIFARE_CARD_AUTH_DIRECT  0x46 /**< \brief Ö±½ÓÃÜÔ¿ÑéÖ¤(F) */
-#define AM_ZLG600_MIFARE_CARD_AUTH_NO      0x00 /**< \brief ²»ÑéÖ¤ */
+#define AM_ZLG600_MIFARE_CARD_AUTH_E2      0x45 /**< \brief E2å¯†é’¥éªŒè¯(E) */
+#define AM_ZLG600_MIFARE_CARD_AUTH_DIRECT  0x46 /**< \brief ç›´æ¥å¯†é’¥éªŒè¯(F) */
+#define AM_ZLG600_MIFARE_CARD_AUTH_NO      0x00 /**< \brief ä¸éªŒè¯ */
 
 /** @}*/
 
 /**
- * \brief Æô¶¯Mifare¿¨×Ô¶¯¼ì²â
- * \note ÔÚ×Ô¶¯¼ì²âÆÚ¼ä£¬ÈôÖ÷»ú·¢ËÍÈÎºÎ³ı¶Á×Ô¶¯¼ì²âÊı¾İÍâµÄ£¬ÇÒÊı¾İ³¤¶ÈĞ¡ÓÚ3
- *       µÄÃüÁî£¬½«ÍË³ö×Ô¶¯¼ì²âÄ£Ê½£¬ÈçÇëÇóam_zlg600_mifare_card_active()
- *       ÃüÁî£¬ÔÚ´ËÆÚ¼ä£¬Ä£¿é½«²»½ÓÊÕÊı¾İ³¤¶È´óÓÚ2µÄÃüÁî
+ * \brief å¯åŠ¨Mifareå¡è‡ªåŠ¨æ£€æµ‹
+ * \note åœ¨è‡ªåŠ¨æ£€æµ‹æœŸé—´ï¼Œè‹¥ä¸»æœºå‘é€ä»»ä½•é™¤è¯»è‡ªåŠ¨æ£€æµ‹æ•°æ®å¤–çš„ï¼Œä¸”æ•°æ®é•¿åº¦å°äº3
+ *       çš„å‘½ä»¤ï¼Œå°†é€€å‡ºè‡ªåŠ¨æ£€æµ‹æ¨¡å¼ï¼Œå¦‚è¯·æ±‚am_zlg600_mifare_card_active()
+ *       å‘½ä»¤ï¼Œåœ¨æ­¤æœŸé—´ï¼Œæ¨¡å—å°†ä¸æ¥æ”¶æ•°æ®é•¿åº¦å¤§äº2çš„å‘½ä»¤
  *
- * \param[in] handle    : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] p_adinfo  : ×Ô¶¯¼ì²âĞÅÏ¢
+ * \param[in] handle    : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] p_adinfo  : è‡ªåŠ¨æ£€æµ‹ä¿¡æ¯
  *
- * \retval AM_OK      : Ğ´Èë³É¹¦
- * \retval -AM_EINVAL : Ğ´ÈëÊ§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ğ´ÈëÊ§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : å†™å…¥æˆåŠŸ
+ * \retval -AM_EINVAL : å†™å…¥å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å†™å…¥å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */
 int am_zlg600_mifare_card_auto_detect_start (am_zlg600_handle_t                  handle,
                                              const am_zlg600_auto_detect_info_t *p_adinfo);
 
 /**
- * \brief ¹Ø±ÕMifare¿¨×Ô¶¯¼ì²â
+ * \brief å…³é—­Mifareå¡è‡ªåŠ¨æ£€æµ‹
  *
- * \param[in] handle  : ZLG600µÄ²Ù×÷¾ä±ú
+ * \param[in] handle  : ZLG600çš„æ“ä½œå¥æŸ„
  *
- * \retval AM_OK      : Ğ´Èë³É¹¦
- * \retval -AM_EINVAL : Ğ´ÈëÊ§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ğ´ÈëÊ§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : å†™å…¥æˆåŠŸ
+ * \retval -AM_EINVAL : å†™å…¥å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å†™å…¥å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */
 int am_zlg600_mifare_card_auto_detect_stop (am_zlg600_handle_t handle);
 
 /**
- * \brief Mifare¿¨×Ô¶¯¼ì²â»Øµ÷º¯ÊıÉèÖÃ
+ * \brief Mifareå¡è‡ªåŠ¨æ£€æµ‹å›è°ƒå‡½æ•°è®¾ç½®
  *
- * \param[in] handle       : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] pfn_callback : »Øµ÷º¯ÊıÖ¸Õë
- * \param[in] p_arg        : »Øµ÷º¯ÊıÈë¿Ú²ÎÊı
+ * \param[in] handle       : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] pfn_callback : å›è°ƒå‡½æ•°æŒ‡é’ˆ
+ * \param[in] p_arg        : å›è°ƒå‡½æ•°å…¥å£å‚æ•°
  *
- * \retval AM_OK      : Ğ´Èë³É¹¦
- * \retval -AM_EINVAL : Ğ´ÈëÊ§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ğ´ÈëÊ§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : å†™å…¥æˆåŠŸ
+ * \retval -AM_EINVAL : å†™å…¥å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å†™å…¥å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */
 int am_zlg600_mifare_card_auto_detect_cb_set (am_zlg600_handle_t  handle,
                                               am_pfnvoid_t        pfn_callback,
                                               void               *p_arg);
 
 /**
- * \name Mifare¿¨¶Á×Ô¶¯¼ì²â±êÊ¶
+ * \name Mifareå¡è¯»è‡ªåŠ¨æ£€æµ‹æ ‡è¯†
  * @{
  */
 
-#define AM_ZLG600_MIFARE_CARD_AD_READ_CANCEL    0x00  /**< \brief È¡Ïû¼ì²â */
-#define AM_ZLG600_MIFARE_CARD_AD_READ_CONTINUE  0x01  /**< \brief ¼ÌĞø¼ì²â */
+#define AM_ZLG600_MIFARE_CARD_AD_READ_CANCEL    0x00  /**< \brief å–æ¶ˆæ£€æµ‹ */
+#define AM_ZLG600_MIFARE_CARD_AD_READ_CONTINUE  0x01  /**< \brief ç»§ç»­æ£€æµ‹ */
 
 /** @} */
 
 /**
- * \brief Mifare¿¨Æ¬ĞÅÏ¢
+ * \brief Mifareå¡ç‰‡ä¿¡æ¯
  */
 typedef struct am_zlg600_mifare_card_info {
-    uint8_t     tx_mode;        /**< \brief ÌìÏßÇı¶¯Ä£Ê½ */
-    uint8_t     uid_len;        /**< \brief UID(¿¨Î¨Ò»ĞòÁĞºÅ)³¤¶È£¬4¡¢7¡¢10 */
+    uint8_t     tx_mode;        /**< \brief å¤©çº¿é©±åŠ¨æ¨¡å¼ */
+    uint8_t     uid_len;        /**< \brief UID(å¡å”¯ä¸€åºåˆ—å·)é•¿åº¦ï¼Œ4ã€7ã€10 */
     uint8_t     uid[10];        /**< \brief UID */
-    uint8_t     card_data[16];  /**< \brief ¿¨Æ¬Êı¾İ */
+    uint8_t     card_data[16];  /**< \brief å¡ç‰‡æ•°æ® */
 } am_zlg600_mifare_card_info_t;
 
 /**
- * \brief Mifare¿¨¶ÁÈ¡×Ô¶¯¼ì²âÊı¾İÃüÁî
+ * \brief Mifareå¡è¯»å–è‡ªåŠ¨æ£€æµ‹æ•°æ®å‘½ä»¤
  *
- * \param[in]  handle      : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[out] p_card_info : Ö¸Ïò´æ·Å¿¨Æ¬Êı¾İµÄÖ¸Õë
+ * \param[in]  handle      : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[out] p_card_info : æŒ‡å‘å­˜æ”¾å¡ç‰‡æ•°æ®çš„æŒ‡é’ˆ
  *
- * \retval AM_OK      : Ğ´Èë³É¹¦
- * \retval -AM_EINVAL : Ğ´ÈëÊ§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ğ´ÈëÊ§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : å†™å…¥æˆåŠŸ
+ * \retval -AM_EINVAL : å†™å…¥å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å†™å…¥å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */
 int am_zlg600_mifare_card_auto_detect_read (am_zlg600_handle_t            handle,
                                             am_zlg600_mifare_card_info_t *p_card_info);
 
 /**
- * \name IC¿¨¸´Î»ºóµÄ²¨ÌØÂÊ
+ * \name ICå¡å¤ä½åçš„æ³¢ç‰¹ç‡
  *
- *      ×¢Òâ£¬¸Ã²¨ÌØÂÊ²¢·ÇÖ÷»úÓëZLG600µÄÍ¨ĞÅ²¨ÌØÂÊ£¬¶øÊÇÖ¸ZLG600Ä£¿éÓë½Ó´¥Ê½IC
- *  ¿¨µÄÍ¨ĞÅ²¨ÌØÂÊ¡£
+ *      æ³¨æ„ï¼Œè¯¥æ³¢ç‰¹ç‡å¹¶éä¸»æœºä¸ZLG600çš„é€šä¿¡æ³¢ç‰¹ç‡ï¼Œè€Œæ˜¯æŒ‡ZLG600æ¨¡å—ä¸æ¥è§¦å¼IC
+ *  å¡çš„é€šä¿¡æ³¢ç‰¹ç‡ã€‚
  *
  * @{
  */
-#define  AM_ZLG600_CICC_RST_BAUDRATE_9600   0x11  /**< \brief ²¨ÌØÂÊ 9600   */
-#define  AM_ZLG600_CICC_RST_BAUDRATE_38400  0x13  /**< \brief ²¨ÌØÂÊ 38400  */
+#define  AM_ZLG600_CICC_RST_BAUDRATE_9600   0x11  /**< \brief æ³¢ç‰¹ç‡ 9600   */
+#define  AM_ZLG600_CICC_RST_BAUDRATE_38400  0x13  /**< \brief æ³¢ç‰¹ç‡ 38400  */
 
 /** @}*/
 
 /**
- * \brief ½Ó´¥Ê½IC¿¨¸´Î»£¨×Ô¶¯´¦ÀíPPS£©
+ * \brief æ¥è§¦å¼ICå¡å¤ä½ï¼ˆè‡ªåŠ¨å¤„ç†PPSï¼‰
  *
- *     ¸Ãº¯ÊıÊÇÀä¸´Î»£¬Ö´ĞĞ³É¹¦ºó»á×Ô¶¯¸ù¾İIC¿¨µÄ¸´Î»ĞÅÏ¢À´Ö´ĞĞPPSÃüÁî£¬È»ºóÔÙ
- * Ñ¡Ôñam_zlg600_cicc_tpdu()º¯ÊıÊ¹ÓÃµÄ´«ÊäĞ­Òé£¨T = 0 »òT = 1£©¡£
+ *     è¯¥å‡½æ•°æ˜¯å†·å¤ä½ï¼Œæ‰§è¡ŒæˆåŠŸåä¼šè‡ªåŠ¨æ ¹æ®ICå¡çš„å¤ä½ä¿¡æ¯æ¥æ‰§è¡ŒPPSå‘½ä»¤ï¼Œç„¶åå†
+ * é€‰æ‹©am_zlg600_cicc_tpdu()å‡½æ•°ä½¿ç”¨çš„ä¼ è¾“åè®®ï¼ˆT = 0 æˆ–T = 1ï¼‰ã€‚
  * 
- * \param[in]  handle        : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in]  baudrate_flag : IC¿¨¸´Î»ºóµÄ²¨ÌØÂÊ£¬Ê¹ÓÃÏÂÁĞºê£º
+ * \param[in]  handle        : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in]  baudrate_flag : ICå¡å¤ä½åçš„æ³¢ç‰¹ç‡ï¼Œä½¿ç”¨ä¸‹åˆ—å®ï¼š
  *                             - AM_ZLG600_CICC_RST_BAUDRATE_9600
  *                             - AM_ZLG600_CICC_RST_BAUDRATE_38400
- * \param[out] p_rx_buf      : ´æ·Å¸´Î»ĞÅÏ¢µÄ»º³åÇø
- * \param[in]  rx_bufsize    : »º³åÇøµÄ³¤¶È
- * \param[out] p_rx_len      : »ñÈ¡¸´Î»ĞÅÏ¢³¤¶ÈµÄÖ¸Õë£¬Èç¹û½ÓÊÕ»º³åÇøµÄ³¤¶ÈĞ¡ÓÚ
- *                            Êµ¼Ê³¤¶È£¬Ôò¶àÓà²¿·Ö¶ªÆú¡£
+ * \param[out] p_rx_buf      : å­˜æ”¾å¤ä½ä¿¡æ¯çš„ç¼“å†²åŒº
+ * \param[in]  rx_bufsize    : ç¼“å†²åŒºçš„é•¿åº¦
+ * \param[out] p_rx_len      : è·å–å¤ä½ä¿¡æ¯é•¿åº¦çš„æŒ‡é’ˆï¼Œå¦‚æœæ¥æ”¶ç¼“å†²åŒºçš„é•¿åº¦å°äº
+ *                            å®é™…é•¿åº¦ï¼Œåˆ™å¤šä½™éƒ¨åˆ†ä¸¢å¼ƒã€‚
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ê§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */
 int am_zlg600_cicc_reset (am_zlg600_handle_t  handle,
                           uint8_t             baudrate_flag,
@@ -1165,22 +1165,22 @@ int am_zlg600_cicc_reset (am_zlg600_handle_t  handle,
                           uint16_t           *p_rx_len);
 
 /**
- * \brief ½Ó´¥Ê½IC¿¨´«ÊäĞ­Òé
+ * \brief æ¥è§¦å¼ICå¡ä¼ è¾“åè®®
  *
- *     ¸ÃÃüÁî¸ù¾İ½Ó´¥Ê½IC¿¨µÄ¸´Î»ĞÅÏ¢£¬×Ô¶¯Ñ¡ÔñT = 0»òT = 1´«ÊäĞ­Òé£¬Õû¸ö¹ı³Ì
- * ²»ĞèÒªÊ¹ÓÃÕß¸ÉÔ¤¡£¸ÃÃüÁîÓÃÓÚ´«ÊäAPDUÊı¾İÁ÷¡£
+ *     è¯¥å‘½ä»¤æ ¹æ®æ¥è§¦å¼ICå¡çš„å¤ä½ä¿¡æ¯ï¼Œè‡ªåŠ¨é€‰æ‹©T = 0æˆ–T = 1ä¼ è¾“åè®®ï¼Œæ•´ä¸ªè¿‡ç¨‹
+ * ä¸éœ€è¦ä½¿ç”¨è€…å¹²é¢„ã€‚è¯¥å‘½ä»¤ç”¨äºä¼ è¾“APDUæ•°æ®æµã€‚
  *
- * \param[in] handle        : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] p_tx_buf      : ·¢ËÍ»º³åÇø
- * \param[in] tx_bufsize    : ·¢ËÍ»º³åÇøµÄ³¤¶È£¬ 1 ~ 272
- * \param[in] p_rx_buf      : ½ÓÊÕ»º³åÇø
- * \param[in] rx_bufsize    : ½ÓÊÕ»º³åÇøµÄ³¤¶È
- * \param[in] p_rx_len      : ÓÃÓÚ»ñÈ¡Êµ¼Ê½ÓÊÕĞÅÏ¢³¤¶ÈµÄÖ¸Õë£¬Èç¹û½ÓÊÕ»º³åÇø
- *                            µÄ³¤¶ÈĞ¡ÓÚÊµ¼Ê³¤¶È£¬Ôò¶àÓà²¿·Ö¶ªÆú¡£
+ * \param[in] handle        : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] p_tx_buf      : å‘é€ç¼“å†²åŒº
+ * \param[in] tx_bufsize    : å‘é€ç¼“å†²åŒºçš„é•¿åº¦ï¼Œ 1 ~ 272
+ * \param[in] p_rx_buf      : æ¥æ”¶ç¼“å†²åŒº
+ * \param[in] rx_bufsize    : æ¥æ”¶ç¼“å†²åŒºçš„é•¿åº¦
+ * \param[in] p_rx_len      : ç”¨äºè·å–å®é™…æ¥æ”¶ä¿¡æ¯é•¿åº¦çš„æŒ‡é’ˆï¼Œå¦‚æœæ¥æ”¶ç¼“å†²åŒº
+ *                            çš„é•¿åº¦å°äºå®é™…é•¿åº¦ï¼Œåˆ™å¤šä½™éƒ¨åˆ†ä¸¢å¼ƒã€‚
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ê§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */
 int am_zlg600_cicc_tpdu (am_zlg600_handle_t  handle,
                          uint8_t            *p_tx_buf,
@@ -1190,25 +1190,25 @@ int am_zlg600_cicc_tpdu (am_zlg600_handle_t  handle,
                          uint16_t           *p_rx_len);
                         
 /**
- * \brief ½Ó´¥Ê½IC¿¨Àä¸´Î»
+ * \brief æ¥è§¦å¼ICå¡å†·å¤ä½
  *
- *     ¸Ãº¯ÊıÊÇÀä¸´Î»£¬Ö´ĞĞÁË½Ó´¥Ê½IC¿¨ÉÏµçÊ±Ğò£¬Ö´ĞĞ³É¹¦ºó»á×Ô¶¯¸ù¾İIC¿¨µÄ¸´Î»
- * ĞÅÏ¢À´Ñ¡Ôñam_zlg600_cicc_tpdu()º¯ÊıÊ¹ÓÃµÄ´«ÊäĞ­Òé£¨T = 0 »òT = 1£©¡£¸Ãº¯ÊıÃ»
- * ÓĞ×Ô¶¯Ö´ĞĞPPSÃüÁî£¬ĞèÒªÓÃ»§¸ù¾İ¸´Î»ĞÅÏ¢À´ÅĞ¶ÏÊÇ·ñÊ¹ÓÃam_zlg600_cicc_pps()À´
- * ĞŞ¸ÄĞ­ÒéºÍ²ÎÊı¡£
+ *     è¯¥å‡½æ•°æ˜¯å†·å¤ä½ï¼Œæ‰§è¡Œäº†æ¥è§¦å¼ICå¡ä¸Šç”µæ—¶åºï¼Œæ‰§è¡ŒæˆåŠŸåä¼šè‡ªåŠ¨æ ¹æ®ICå¡çš„å¤ä½
+ * ä¿¡æ¯æ¥é€‰æ‹©am_zlg600_cicc_tpdu()å‡½æ•°ä½¿ç”¨çš„ä¼ è¾“åè®®ï¼ˆT = 0 æˆ–T = 1ï¼‰ã€‚è¯¥å‡½æ•°æ²¡
+ * æœ‰è‡ªåŠ¨æ‰§è¡ŒPPSå‘½ä»¤ï¼Œéœ€è¦ç”¨æˆ·æ ¹æ®å¤ä½ä¿¡æ¯æ¥åˆ¤æ–­æ˜¯å¦ä½¿ç”¨am_zlg600_cicc_pps()æ¥
+ * ä¿®æ”¹åè®®å’Œå‚æ•°ã€‚
  *
- * \param[in] handle        : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] baudrate_flag : IC¿¨¸´Î»ºóµÄ²¨ÌØÂÊ£¬Ê¹ÓÃÏÂÁĞºê£º
+ * \param[in] handle        : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] baudrate_flag : ICå¡å¤ä½åçš„æ³¢ç‰¹ç‡ï¼Œä½¿ç”¨ä¸‹åˆ—å®ï¼š
  *                             - AM_ZLG600_CICC_RST_BAUDRATE_9600
  *                             - AM_ZLG600_CICC_RST_BAUDRATE_38400
- * \param[in] p_rx_buf      : ´æ·Å¸´Î»ĞÅÏ¢µÄ»º³åÇø
- * \param[in] rx_bufsize    : »º³åÇøµÄ³¤¶È
- * \param[in] p_rx_len      : »ñÈ¡¸´Î»ĞÅÏ¢³¤¶ÈµÄÖ¸Õë£¬Èç¹û½ÓÊÕ»º³åÇøµÄ³¤¶ÈĞ¡ÓÚ
- *                            Êµ¼Ê³¤¶È£¬Ôò¶àÓà²¿·Ö¶ªÆú¡£
+ * \param[in] p_rx_buf      : å­˜æ”¾å¤ä½ä¿¡æ¯çš„ç¼“å†²åŒº
+ * \param[in] rx_bufsize    : ç¼“å†²åŒºçš„é•¿åº¦
+ * \param[in] p_rx_len      : è·å–å¤ä½ä¿¡æ¯é•¿åº¦çš„æŒ‡é’ˆï¼Œå¦‚æœæ¥æ”¶ç¼“å†²åŒºçš„é•¿åº¦å°äº
+ *                            å®é™…é•¿åº¦ï¼Œåˆ™å¤šä½™éƒ¨åˆ†ä¸¢å¼ƒã€‚
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ê§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */
 int am_zlg600_cicc_coldreset (am_zlg600_handle_t  handle,
                               uint8_t             baudrate_flag,
@@ -1217,26 +1217,26 @@ int am_zlg600_cicc_coldreset (am_zlg600_handle_t  handle,
                               uint16_t           *p_rx_len);
                         
 /**
- * \brief ½Ó´¥Ê½IC¿¨ÈÈ¸´Î»
+ * \brief æ¥è§¦å¼ICå¡çƒ­å¤ä½
  *
- *    ¸Ãº¯ÊıÊÇÈÈ¸´Î»£¬Ã»ÓĞÖ´ĞĞÁË½Ó´¥Ê½IC¿¨ÉÏµçÊ±Ğò£¬Ö´ĞĞ³É¹¦ºó»á×Ô¶¯¸ù¾İIC¿¨µÄ
- * ¸´Î»ĞÅÏ¢À´Ñ¡Ôñam_zlg600_cicc_tpdu()º¯ÊıÊ¹ÓÃµÄ´«ÊäĞ­Òé£¨T = 0 »òT = 1£©¡£
- * ÈÈ¸´Î»ÓëÀä¸´Î»Î¨Ò»µÄÇø±ğÊÇÃ»ÓĞÖ´ĞĞIC¿¨ÉÏµç²Ù×÷¡£ĞèÒªÓÃ»§¸ù¾İ¸´Î»ĞÅÏ¢À´ÅĞ¶Ï
- * ÊÇ·ñÊ¹ÓÃam_zlg600_cicc_pps()À´ĞŞ¸ÄĞ­ÒéºÍ²ÎÊı¡£¸Ãº¯Êı±ØĞëÔÚIC¿¨Ê±ÖÓºÍµçÔ´¾ù
- * ÓĞĞ§µÄÇé¿öÏÂ²ÅÄÜÖ´ĞĞ¡£
+ *    è¯¥å‡½æ•°æ˜¯çƒ­å¤ä½ï¼Œæ²¡æœ‰æ‰§è¡Œäº†æ¥è§¦å¼ICå¡ä¸Šç”µæ—¶åºï¼Œæ‰§è¡ŒæˆåŠŸåä¼šè‡ªåŠ¨æ ¹æ®ICå¡çš„
+ * å¤ä½ä¿¡æ¯æ¥é€‰æ‹©am_zlg600_cicc_tpdu()å‡½æ•°ä½¿ç”¨çš„ä¼ è¾“åè®®ï¼ˆT = 0 æˆ–T = 1ï¼‰ã€‚
+ * çƒ­å¤ä½ä¸å†·å¤ä½å”¯ä¸€çš„åŒºåˆ«æ˜¯æ²¡æœ‰æ‰§è¡ŒICå¡ä¸Šç”µæ“ä½œã€‚éœ€è¦ç”¨æˆ·æ ¹æ®å¤ä½ä¿¡æ¯æ¥åˆ¤æ–­
+ * æ˜¯å¦ä½¿ç”¨am_zlg600_cicc_pps()æ¥ä¿®æ”¹åè®®å’Œå‚æ•°ã€‚è¯¥å‡½æ•°å¿…é¡»åœ¨ICå¡æ—¶é’Ÿå’Œç”µæºå‡
+ * æœ‰æ•ˆçš„æƒ…å†µä¸‹æ‰èƒ½æ‰§è¡Œã€‚
  *
- * \param[in] handle        : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] baudrate_flag : IC¿¨¸´Î»ºóµÄ²¨ÌØÂÊ£¬Ê¹ÓÃÏÂÁĞºê£º
+ * \param[in] handle        : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] baudrate_flag : ICå¡å¤ä½åçš„æ³¢ç‰¹ç‡ï¼Œä½¿ç”¨ä¸‹åˆ—å®ï¼š
  *                             - AM_ZLG600_CICC_RST_BAUDRATE_9600
  *                             - AM_ZLG600_CICC_RST_BAUDRATE_38400
- * \param[in] p_rx_buf      : ´æ·Å¸´Î»ĞÅÏ¢µÄ»º³åÇø
- * \param[in] rx_bufsize    : »º³åÇøµÄ³¤¶È
- * \param[in] p_rx_len      : »ñÈ¡¸´Î»ĞÅÏ¢³¤¶ÈµÄÖ¸Õë£¬Èç¹û½ÓÊÕ»º³åÇøµÄ³¤¶ÈĞ¡ÓÚ
- *                            Êµ¼Ê³¤¶È£¬Ôò¶àÓà²¿·Ö¶ªÆú¡£
+ * \param[in] p_rx_buf      : å­˜æ”¾å¤ä½ä¿¡æ¯çš„ç¼“å†²åŒº
+ * \param[in] rx_bufsize    : ç¼“å†²åŒºçš„é•¿åº¦
+ * \param[in] p_rx_len      : è·å–å¤ä½ä¿¡æ¯é•¿åº¦çš„æŒ‡é’ˆï¼Œå¦‚æœæ¥æ”¶ç¼“å†²åŒºçš„é•¿åº¦å°äº
+ *                            å®é™…é•¿åº¦ï¼Œåˆ™å¤šä½™éƒ¨åˆ†ä¸¢å¼ƒã€‚
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ê§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */
 int am_zlg600_cicc_warmreset (am_zlg600_handle_t  handle,
                               uint8_t             baudrate_flag,
@@ -1245,56 +1245,56 @@ int am_zlg600_cicc_warmreset (am_zlg600_handle_t  handle,
                               uint16_t           *p_rx_len);
 
 /**
- * \brief ½Ó´¥Ê½IC¿¨Í£»î£¬¹Ø±Õ½Ó´¥Ê½IC¿¨µÄµçÔ´ºÍÊ±ÖÓ
+ * \brief æ¥è§¦å¼ICå¡åœæ´»ï¼Œå…³é—­æ¥è§¦å¼ICå¡çš„ç”µæºå’Œæ—¶é’Ÿ
  *
- * \param[in] handle        : ZLG600µÄ²Ù×÷¾ä±ú
+ * \param[in] handle        : ZLG600çš„æ“ä½œå¥æŸ„
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ê§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */
 int am_zlg600_cicc_deactive (am_zlg600_handle_t  handle);
 
 /**
- * \brief ½Ó´¥Ê½IC¿¨Ğ­ÒéºÍ²ÎÊıÑ¡Ôñ
+ * \brief æ¥è§¦å¼ICå¡åè®®å’Œå‚æ•°é€‰æ‹©
  *
- *     ¸Ãº¯ÊıÊÇÀä¸´Î»»òÈÈ¸´Î»Ö®ºóÇÒ±ØĞëÊ×ÏÈÖ´ĞĞ£¨Ğ­ÉÌÄ£Ê½ÏÂĞèÒªÖ´ĞĞ£¬×¨ÓÃÄ£Ê½
- * ²»ĞèÒªÖ´ĞĞ£©¡£Èô¶Ô½Ó´¥Ê½IC¿¨²»ÁË½â£¬½¨ÒéÊ¹ÓÃam_zlg600_cicc_reset()½øĞĞ¸´Î»¡£
+ *     è¯¥å‡½æ•°æ˜¯å†·å¤ä½æˆ–çƒ­å¤ä½ä¹‹åä¸”å¿…é¡»é¦–å…ˆæ‰§è¡Œï¼ˆåå•†æ¨¡å¼ä¸‹éœ€è¦æ‰§è¡Œï¼Œä¸“ç”¨æ¨¡å¼
+ * ä¸éœ€è¦æ‰§è¡Œï¼‰ã€‚è‹¥å¯¹æ¥è§¦å¼ICå¡ä¸äº†è§£ï¼Œå»ºè®®ä½¿ç”¨am_zlg600_cicc_reset()è¿›è¡Œå¤ä½ã€‚
  *
- * \param[in] handle     : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] p_pps      : PPS²ÎÊı»º³åÇø£¬´óĞ¡Ò»¶¨Îª4×Ö½Ú
- *                         - PPS[0] bit 3 ~ bit0 ºÍ bit7±£Áô
- *                         - PPS[0] bit 4£º1 ¡ª PPS1´æÔÚ£»0 ¡ª PPS1²»´æÔÚ
- *                         - PPS[0] bit 5£º1 ¡ª PPS2´æÔÚ£»0 ¡ª PPS2²»´æÔÚ
- *                         - PPS[0] bit 6£º1 ¡ª PPS3´æÔÚ£»0 ¡ª PPS3²»´æÔÚ
-                           - PPS[1] £ºF/D
-                           - PPS[2] £ºN
-                           - PPS[3] £º´ı¶¨
+ * \param[in] handle     : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] p_pps      : PPSå‚æ•°ç¼“å†²åŒºï¼Œå¤§å°ä¸€å®šä¸º4å­—èŠ‚
+ *                         - PPS[0] bit 3 ~ bit0 å’Œ bit7ä¿ç•™
+ *                         - PPS[0] bit 4ï¼š1 â€• PPS1å­˜åœ¨ï¼›0 â€• PPS1ä¸å­˜åœ¨
+ *                         - PPS[0] bit 5ï¼š1 â€• PPS2å­˜åœ¨ï¼›0 â€• PPS2ä¸å­˜åœ¨
+ *                         - PPS[0] bit 6ï¼š1 â€• PPS3å­˜åœ¨ï¼›0 â€• PPS3ä¸å­˜åœ¨
+                           - PPS[1] ï¼šF/D
+                           - PPS[2] ï¼šN
+                           - PPS[3] ï¼šå¾…å®š
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ê§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */
 int am_zlg600_cicc_pps (am_zlg600_handle_t  handle,
                         uint8_t            *p_pps);
 
 /**
- * \brief ½Ó´¥Ê½IC¿¨´«ÊäĞ­Òé£¨T = 0£©
+ * \brief æ¥è§¦å¼ICå¡ä¼ è¾“åè®®ï¼ˆT = 0ï¼‰
  *
- *     ¸ÃÃüÁîÓÃÓÚT = 0´«ÊäĞ­Òé¡£Èô½Ó´¥Ê½IC¿¨µÄ´«ÊäĞ­ÒéÎªT = 0£¬¸Ãº¯ÊıµÈÍ¬ÓÚ
- * am_zlg600_cicc_tpdu()¡£
+ *     è¯¥å‘½ä»¤ç”¨äºT = 0ä¼ è¾“åè®®ã€‚è‹¥æ¥è§¦å¼ICå¡çš„ä¼ è¾“åè®®ä¸ºT = 0ï¼Œè¯¥å‡½æ•°ç­‰åŒäº
+ * am_zlg600_cicc_tpdu()ã€‚
  *
- * \param[in] handle        : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] p_tx_buf      : ·¢ËÍ»º³åÇø
- * \param[in] tx_bufsize    : ·¢ËÍ»º³åÇøµÄ³¤¶È£¬ 1 ~ 272
- * \param[in] p_rx_buf      : ½ÓÊÕ»º³åÇø
- * \param[in] rx_bufsize    : ½ÓÊÕ»º³åÇøµÄ³¤¶È
- * \param[in] p_rx_len      : ÓÃÓÚ»ñÈ¡Êµ¼Ê½ÓÊÕĞÅÏ¢³¤¶ÈµÄÖ¸Õë£¬Èç¹û½ÓÊÕ»º³åÇø
- *                            µÄ³¤¶ÈĞ¡ÓÚÊµ¼Ê³¤¶È£¬Ôò¶àÓà²¿·Ö¶ªÆú¡£
+ * \param[in] handle        : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] p_tx_buf      : å‘é€ç¼“å†²åŒº
+ * \param[in] tx_bufsize    : å‘é€ç¼“å†²åŒºçš„é•¿åº¦ï¼Œ 1 ~ 272
+ * \param[in] p_rx_buf      : æ¥æ”¶ç¼“å†²åŒº
+ * \param[in] rx_bufsize    : æ¥æ”¶ç¼“å†²åŒºçš„é•¿åº¦
+ * \param[in] p_rx_len      : ç”¨äºè·å–å®é™…æ¥æ”¶ä¿¡æ¯é•¿åº¦çš„æŒ‡é’ˆï¼Œå¦‚æœæ¥æ”¶ç¼“å†²åŒº
+ *                            çš„é•¿åº¦å°äºå®é™…é•¿åº¦ï¼Œåˆ™å¤šä½™éƒ¨åˆ†ä¸¢å¼ƒã€‚
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ê§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */
 int am_zlg600_cicc_tpdu_tp0 (am_zlg600_handle_t  handle,
                              uint8_t            *p_tx_buf,
@@ -1304,22 +1304,22 @@ int am_zlg600_cicc_tpdu_tp0 (am_zlg600_handle_t  handle,
                              uint16_t           *p_rx_len);
 
 /**
- * \brief ½Ó´¥Ê½IC¿¨´«ÊäĞ­Òé£¨T = 1£©
+ * \brief æ¥è§¦å¼ICå¡ä¼ è¾“åè®®ï¼ˆT = 1ï¼‰
  *
- *     ¸ÃÃüÁîÓÃÓÚT = 1´«ÊäĞ­Òé¡£Èô½Ó´¥Ê½IC¿¨µÄ´«ÊäĞ­ÒéÎªT = 1£¬¸Ãº¯ÊıµÈÍ¬ÓÚ
- * am_zlg600_cicc_tpdu()¡£
+ *     è¯¥å‘½ä»¤ç”¨äºT = 1ä¼ è¾“åè®®ã€‚è‹¥æ¥è§¦å¼ICå¡çš„ä¼ è¾“åè®®ä¸ºT = 1ï¼Œè¯¥å‡½æ•°ç­‰åŒäº
+ * am_zlg600_cicc_tpdu()ã€‚
  *
- * \param[in] handle        : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] p_tx_buf      : ·¢ËÍ»º³åÇø
- * \param[in] tx_bufsize    : ·¢ËÍ»º³åÇøµÄ³¤¶È£¬ 1 ~ 272
- * \param[in] p_rx_buf      : ½ÓÊÕ»º³åÇø
- * \param[in] rx_bufsize    : ½ÓÊÕ»º³åÇøµÄ³¤¶È
- * \param[in] p_rx_len      : ÓÃÓÚ»ñÈ¡Êµ¼Ê½ÓÊÕĞÅÏ¢³¤¶ÈµÄÖ¸Õë£¬Èç¹û½ÓÊÕ»º³åÇø
- *                            µÄ³¤¶ÈĞ¡ÓÚÊµ¼Ê³¤¶È£¬Ôò¶àÓà²¿·Ö¶ªÆú¡£
+ * \param[in] handle        : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] p_tx_buf      : å‘é€ç¼“å†²åŒº
+ * \param[in] tx_bufsize    : å‘é€ç¼“å†²åŒºçš„é•¿åº¦ï¼Œ 1 ~ 272
+ * \param[in] p_rx_buf      : æ¥æ”¶ç¼“å†²åŒº
+ * \param[in] rx_bufsize    : æ¥æ”¶ç¼“å†²åŒºçš„é•¿åº¦
+ * \param[in] p_rx_len      : ç”¨äºè·å–å®é™…æ¥æ”¶ä¿¡æ¯é•¿åº¦çš„æŒ‡é’ˆï¼Œå¦‚æœæ¥æ”¶ç¼“å†²åŒº
+ *                            çš„é•¿åº¦å°äºå®é™…é•¿åº¦ï¼Œåˆ™å¤šä½™éƒ¨åˆ†ä¸¢å¼ƒã€‚
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ê§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */
 int am_zlg600_cicc_tpdu_tp1 (am_zlg600_handle_t  handle,
                              uint8_t            *p_tx_buf,
@@ -1329,24 +1329,24 @@ int am_zlg600_cicc_tpdu_tp1 (am_zlg600_handle_t  handle,
                              uint16_t           *p_rx_len);
 
 /**
- * \name PICCA¿¨ÇëÇóÄ£Ê½
+ * \name PICCAå¡è¯·æ±‚æ¨¡å¼
  * @{
  */
-#define AM_ZLG600_PICCA_REQ_IDLE 0x26 /**< \brief IDLEÄ£Ê½,ÇëÇó¿ÕÏĞµÄ¿¨ */
-#define AM_ZLG600_PICCA_REQ_ALL  0x52 /**< \brief ALLÄ£Ê½,ÇëÇóËùÓĞµÄ¿¨  */
+#define AM_ZLG600_PICCA_REQ_IDLE 0x26 /**< \brief IDLEæ¨¡å¼,è¯·æ±‚ç©ºé—²çš„å¡ */
+#define AM_ZLG600_PICCA_REQ_ALL  0x52 /**< \brief ALLæ¨¡å¼,è¯·æ±‚æ‰€æœ‰çš„å¡  */
 /** @}*/ 
 
 /**
- * \brief PICCA¿¨ÇëÇó²Ù×÷
+ * \brief PICCAå¡è¯·æ±‚æ“ä½œ
  *
- *  ¸Ãº¯Êı×÷Îª¿¨µÄÇëÇó²Ù×÷£¬Ö»Òª·ûºÏISO14443A±ê×¼µÄ¿¨¶¼Ó¦ÄÜ·¢³öÏìÓ¦¡£
+ *  è¯¥å‡½æ•°ä½œä¸ºå¡çš„è¯·æ±‚æ“ä½œï¼Œåªè¦ç¬¦åˆISO14443Aæ ‡å‡†çš„å¡éƒ½åº”èƒ½å‘å‡ºå“åº”ã€‚
  *
- * \param[in] handle      : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] req_mode    : ÇëÇóÄ£Ê½£¬¿ÉÊ¹ÓÃÏÂÁĞºê£º
+ * \param[in] handle      : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] req_mode    : è¯·æ±‚æ¨¡å¼ï¼Œå¯ä½¿ç”¨ä¸‹åˆ—å®ï¼š
  *                           - #AM_ZLG600_PICCA_REQ_IDLE
  *                           - #AM_ZLG600_PICCA_REQ_ALL
- * \param[in] p_atq       : »ñÈ¡ÇëÇóÓ¦´ğĞÅÏ¢£¨ATQ£©µÄÖ¸Õë£¬ÆäÖµÎª16Î»£¬²»Í¬¿¨
- *                          ÀàĞÍ·µ»ØµÄĞÅÏ¢²»Í¬,³£¼ûÀàĞÍ·µ»ØµÄATQÈçÏÂ£º
+ * \param[in] p_atq       : è·å–è¯·æ±‚åº”ç­”ä¿¡æ¯ï¼ˆATQï¼‰çš„æŒ‡é’ˆï¼Œå…¶å€¼ä¸º16ä½ï¼Œä¸åŒå¡
+ *                          ç±»å‹è¿”å›çš„ä¿¡æ¯ä¸åŒ,å¸¸è§ç±»å‹è¿”å›çš„ATQå¦‚ä¸‹ï¼š
  *
  *            Mifare1 S50    | Mifare1 S70 | Mifare1 Light | Mifare0 UltraLight 
  *       --------------------|-------------|---------------|-------------------
@@ -1356,55 +1356,55 @@ int am_zlg600_cicc_tpdu_tp1 (am_zlg600_handle_t  handle,
  *       --------------------|-------------|---------------|-------------------
  *               0x0344      |    0x0004   |    0x3300     |      0x0004
  *
- * \retval AM_OK      : ÇëÇó³É¹¦
- * \retval -AM_EINVAL : ÇëÇóÊ§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : ÇëÇóÊ§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : è¯·æ±‚æˆåŠŸ
+ * \retval -AM_EINVAL : è¯·æ±‚å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : è¯·æ±‚å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  *
- * \note ¿¨½øÈëÌìÏßºó£¬´ÓÉäÆµ³¡ÖĞ»ñÈ¡ÄÜÁ¿£¬´Ó¶øµÃµç¸´Î»£¬¸´Î»ºó¿¨´¦ÓÚIDLEÄ£Ê½£¬
- * ÓÃÁ½ÖÖÇëÇóÄ£Ê½µÄÈÎÒ»ÖÖÇëÇóÊ±£¬´ËÊ±µÄ¿¨¾ùÄÜÏìÓ¦£»Èô¶ÔÄ³Ò»ÕÅ¿¨³É¹¦½øĞĞÁË¹ÒÆğ
- * ²Ù×÷£¨HaltÃüÁî»òDeSelectÃüÁî£©£¬Ôò½øÈëÁËHaltÄ£Ê½£¬´ËÊ±µÄ¿¨Ö»ÏìÓ¦ALL£¨0x52£©
- * Ä£Ê½µÄÇëÇó£¬³ı·Ç½«¿¨Àë¿ªÌìÏß¸ĞÓ¦ÇøºóÔÙ½øÈë¡£
+ * \note å¡è¿›å…¥å¤©çº¿åï¼Œä»å°„é¢‘åœºä¸­è·å–èƒ½é‡ï¼Œä»è€Œå¾—ç”µå¤ä½ï¼Œå¤ä½åå¡å¤„äºIDLEæ¨¡å¼ï¼Œ
+ * ç”¨ä¸¤ç§è¯·æ±‚æ¨¡å¼çš„ä»»ä¸€ç§è¯·æ±‚æ—¶ï¼Œæ­¤æ—¶çš„å¡å‡èƒ½å“åº”ï¼›è‹¥å¯¹æŸä¸€å¼ å¡æˆåŠŸè¿›è¡Œäº†æŒ‚èµ·
+ * æ“ä½œï¼ˆHaltå‘½ä»¤æˆ–DeSelectå‘½ä»¤ï¼‰ï¼Œåˆ™è¿›å…¥äº†Haltæ¨¡å¼ï¼Œæ­¤æ—¶çš„å¡åªå“åº”ALLï¼ˆ0x52ï¼‰
+ * æ¨¡å¼çš„è¯·æ±‚ï¼Œé™¤éå°†å¡ç¦»å¼€å¤©çº¿æ„Ÿåº”åŒºåå†è¿›å…¥ã€‚
  */ 
 int am_zlg600_picca_request (am_zlg600_handle_t handle,
                              uint8_t            req_mode,
                              uint16_t          *p_atq);
 
 /**
- * \name PICCA¿¨·ÀÅö×²µÈ¼¶
+ * \name PICCAå¡é˜²ç¢°æ’ç­‰çº§
  * @{
  */
-#define AM_ZLG600_PICCA_ANTICOLL_1  0x93  /**< \brief µÚÒ»¼¶·ÀÅö×²  */
-#define AM_ZLG600_PICCA_ANTICOLL_2  0x95  /**< \brief µÚ¶ş¼¶·ÀÅö×²  */
-#define AM_ZLG600_PICCA_ANTICOLL_3  0x97  /**< \brief µÚÈı¼¶·ÀÅö×²  */
+#define AM_ZLG600_PICCA_ANTICOLL_1  0x93  /**< \brief ç¬¬ä¸€çº§é˜²ç¢°æ’  */
+#define AM_ZLG600_PICCA_ANTICOLL_2  0x95  /**< \brief ç¬¬äºŒçº§é˜²ç¢°æ’  */
+#define AM_ZLG600_PICCA_ANTICOLL_3  0x97  /**< \brief ç¬¬ä¸‰çº§é˜²ç¢°æ’  */
 /** @}*/ 
 
 /**
- * \brief PICCA¿¨µÄ·ÀÅö×²²Ù×÷
+ * \brief PICCAå¡çš„é˜²ç¢°æ’æ“ä½œ
  *
- *  ĞèÒª³É¹¦Ö´ĞĞÒ»´ÎÇëÇóÃüÁî£¬²¢·µ»ØÇëÇó³É¹¦£¬²ÅÄÜ½øĞĞ·ÀÅö×²²Ù×÷£¬·ñÔò·µ»Ø´íÎó¡£
+ *  éœ€è¦æˆåŠŸæ‰§è¡Œä¸€æ¬¡è¯·æ±‚å‘½ä»¤ï¼Œå¹¶è¿”å›è¯·æ±‚æˆåŠŸï¼Œæ‰èƒ½è¿›è¡Œé˜²ç¢°æ’æ“ä½œï¼Œå¦åˆ™è¿”å›é”™è¯¯ã€‚
  *
- * \param[in] handle         : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] anticoll_level : ·ÀÅö×²µÈ¼¶£¬¿ÉÊ¹ÓÃÏÂÁĞºê£º
+ * \param[in] handle         : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] anticoll_level : é˜²ç¢°æ’ç­‰çº§ï¼Œå¯ä½¿ç”¨ä¸‹åˆ—å®ï¼š
  *                             - #AM_ZLG600_MIFARE_CARD_ANTICOLL_1
  *                             - #AM_ZLG600_MIFARE_CARD_ANTICOLL_2
  *                             - #AM_ZLG600_MIFARE_CARD_ANTICOLL_3
  *
- * \param[in] know_uid : ÒÑÖªµÄ¿¨ĞòÁĞºÅ
- * \param[in] nbit_cnt : Î»¼ÆÊı£¬±íÃ÷ÒÑÖªµÄĞòÁĞºÅuidµÄÎ»Êı¡£ÆäÖµĞ¡ÓÚ32¡£
- *                       - Èônbit_cntÖµÎª0,Ôò±íÃ÷Ã»ÓĞÒÑÖªĞòÁĞºÅ£¬ĞòÁĞºÅµÄËùÓĞÎ»
- *                         ¶¼Òª´Ó±¾º¯Êı»ñµÃ¡£
- *                       - Èônbit_cnt²»Îª0£¬ÔòĞòÁĞºÅÖĞÓĞÒÑÖªµÄĞòÁĞºÅµÄÖµ£¬±íÊ¾
- *                         ĞòÁĞºÅµÄÇ°nbit_cntÎ»ÎªÒÑÖªĞòÁĞºÅÖĞËùÊ¾Ç°nbit_cntÎ»µÄ
- *                         Öµ£¬ÆäÓàÎ»ĞèÒª±¾º¯Êı»ñµÃ¡£
- * \param[in] *p_uid   : ·ÀÅö×²ºó»ñÈ¡µ½µÄ¿¨ĞòÁĞºÅ
+ * \param[in] know_uid : å·²çŸ¥çš„å¡åºåˆ—å·
+ * \param[in] nbit_cnt : ä½è®¡æ•°ï¼Œè¡¨æ˜å·²çŸ¥çš„åºåˆ—å·uidçš„ä½æ•°ã€‚å…¶å€¼å°äº32ã€‚
+ *                       - è‹¥nbit_cntå€¼ä¸º0,åˆ™è¡¨æ˜æ²¡æœ‰å·²çŸ¥åºåˆ—å·ï¼Œåºåˆ—å·çš„æ‰€æœ‰ä½
+ *                         éƒ½è¦ä»æœ¬å‡½æ•°è·å¾—ã€‚
+ *                       - è‹¥nbit_cntä¸ä¸º0ï¼Œåˆ™åºåˆ—å·ä¸­æœ‰å·²çŸ¥çš„åºåˆ—å·çš„å€¼ï¼Œè¡¨ç¤º
+ *                         åºåˆ—å·çš„å‰nbit_cntä½ä¸ºå·²çŸ¥åºåˆ—å·ä¸­æ‰€ç¤ºå‰nbit_cntä½çš„
+ *                         å€¼ï¼Œå…¶ä½™ä½éœ€è¦æœ¬å‡½æ•°è·å¾—ã€‚
+ * \param[in] *p_uid   : é˜²ç¢°æ’åè·å–åˆ°çš„å¡åºåˆ—å·
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ê§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  *
- * \note  ·ûºÏISO14443A±ê×¼¿¨µÄĞòÁĞºÅ¶¼ÊÇÈ«ÇòÎ¨Ò»µÄ£¬ÕıÊÇÕâÖÖÎ¨Ò»ĞÔ£¬²ÅÄÜÊµÏÖ·À
- * Åö×²µÄËã·¨Âß¼­£¬ÈôÓĞÈô¸ÉÕÅ¿¨Í¬Ê±ÔÚÌìÏß¸ĞÓ¦ÇøÄÚÔòÕâ¸öº¯ÊıÄÜ¹»ÕÒµ½Ò»ÕÅĞòÁĞºÅ½Ï
- * ´óµÄ¿¨À´²Ù×÷¡£
+ * \note  ç¬¦åˆISO14443Aæ ‡å‡†å¡çš„åºåˆ—å·éƒ½æ˜¯å…¨çƒå”¯ä¸€çš„ï¼Œæ­£æ˜¯è¿™ç§å”¯ä¸€æ€§ï¼Œæ‰èƒ½å®ç°é˜²
+ * ç¢°æ’çš„ç®—æ³•é€»è¾‘ï¼Œè‹¥æœ‰è‹¥å¹²å¼ å¡åŒæ—¶åœ¨å¤©çº¿æ„Ÿåº”åŒºå†…åˆ™è¿™ä¸ªå‡½æ•°èƒ½å¤Ÿæ‰¾åˆ°ä¸€å¼ åºåˆ—å·è¾ƒ
+ * å¤§çš„å¡æ¥æ“ä½œã€‚
  */ 
 int am_zlg600_picca_anticoll (am_zlg600_handle_t handle,
                               uint8_t            anticoll_level,
@@ -1413,27 +1413,27 @@ int am_zlg600_picca_anticoll (am_zlg600_handle_t handle,
                               uint32_t          *p_uid);
                        
 /**
- * \brief PICC A¿¨µÄÑ¡Ôñ²Ù×÷
+ * \brief PICC Aå¡çš„é€‰æ‹©æ“ä½œ
  *
- *  ĞèÒª³É¹¦Ö´ĞĞÒ»´Î·ÀÅö×²ÃüÁî£¬²¢·µ»Ø³É¹¦£¬²ÅÄÜ½øĞĞ¿¨Ñ¡Ôñ²Ù×÷£¬·ñÔò·µ»Ø´íÎó¡£
+ *  éœ€è¦æˆåŠŸæ‰§è¡Œä¸€æ¬¡é˜²ç¢°æ’å‘½ä»¤ï¼Œå¹¶è¿”å›æˆåŠŸï¼Œæ‰èƒ½è¿›è¡Œå¡é€‰æ‹©æ“ä½œï¼Œå¦åˆ™è¿”å›é”™è¯¯ã€‚
  *
- * \param[in] handle         : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] anticoll_level : ·ÀÅö×²µÈ¼¶£¬¿ÉÊ¹ÓÃÏÂÁĞºê£º
+ * \param[in] handle         : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] anticoll_level : é˜²ç¢°æ’ç­‰çº§ï¼Œå¯ä½¿ç”¨ä¸‹åˆ—å®ï¼š
  *                             - #AM_ZLG600_MIFARE_CARD_ANTICOLL_1
  *                             - #AM_ZLG600_MIFARE_CARD_ANTICOLL_2
  *                             - #AM_ZLG600_MIFARE_CARD_ANTICOLL_3
- * \param[in] uid   : Ç°Ò»¸ö·ÀÅö×²º¯Êı»ñÈ¡µÄUID
- * \param[in] p_sak : ·µ»ØµÄĞÅÏ¢£¬Èôbit2Îª1£¬Ôò±íÃ÷UID²»ÍêÕû
+ * \param[in] uid   : å‰ä¸€ä¸ªé˜²ç¢°æ’å‡½æ•°è·å–çš„UID
+ * \param[in] p_sak : è¿”å›çš„ä¿¡æ¯ï¼Œè‹¥bit2ä¸º1ï¼Œåˆ™è¡¨æ˜UIDä¸å®Œæ•´
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ê§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  *
- * \note  ¿¨µÄĞòÁĞºÅ³¤¶ÈÓĞÈıÖÖ£º4×Ö½Ú¡¢7×Ö½ÚºÍ10×Ö½Ú¡£ 4×Ö½ÚµÄÖ»ÒªÓÃÒ»¼¶Ñ¡Ôñ¼´¿É
- * µÃµ½ÍêÕûµÄĞòÁĞºÅ£¬ÈçMifare1 S50/S70µÈ£»7×Ö½ÚµÄÒªÓÃ¶ş¼¶Ñ¡Ôñ²ÅÄÜµÃµ½ÍêÕûµÄĞòÁĞ
- * ºÅ£¬Ç°Ò»¼¶ËùµÃµ½µÄĞòÁĞºÅµÄ×îµÍ×Ö½ÚÎª¼¶Áª±êÖ¾0x88£¬ÔÚĞòÁĞºÅÄÚÖ»ÓĞºó3×Ö½Ú¿ÉÓÃ£¬
- * ºóÒ»¼¶Ñ¡ÔñÄÜµÃµ½4×Ö½ÚĞòÁĞºÅ£¬Á½Õß°´Ë³ĞòÁ¬½Ó¼´Îª7×Ö½ÚĞòÁĞºÅ£¬ÈçUltraLight
- * ºÍDesFireµÈ£»10×Ö½ÚµÄÒÔ´ËÀàÍÆ£¬µ«ÖÁ½ñ»¹Î´·¢ÏÖ´ËÀà¿¨¡£
+ * \note  å¡çš„åºåˆ—å·é•¿åº¦æœ‰ä¸‰ç§ï¼š4å­—èŠ‚ã€7å­—èŠ‚å’Œ10å­—èŠ‚ã€‚ 4å­—èŠ‚çš„åªè¦ç”¨ä¸€çº§é€‰æ‹©å³å¯
+ * å¾—åˆ°å®Œæ•´çš„åºåˆ—å·ï¼Œå¦‚Mifare1 S50/S70ç­‰ï¼›7å­—èŠ‚çš„è¦ç”¨äºŒçº§é€‰æ‹©æ‰èƒ½å¾—åˆ°å®Œæ•´çš„åºåˆ—
+ * å·ï¼Œå‰ä¸€çº§æ‰€å¾—åˆ°çš„åºåˆ—å·çš„æœ€ä½å­—èŠ‚ä¸ºçº§è”æ ‡å¿—0x88ï¼Œåœ¨åºåˆ—å·å†…åªæœ‰å3å­—èŠ‚å¯ç”¨ï¼Œ
+ * åä¸€çº§é€‰æ‹©èƒ½å¾—åˆ°4å­—èŠ‚åºåˆ—å·ï¼Œä¸¤è€…æŒ‰é¡ºåºè¿æ¥å³ä¸º7å­—èŠ‚åºåˆ—å·ï¼Œå¦‚UltraLight
+ * å’ŒDesFireç­‰ï¼›10å­—èŠ‚çš„ä»¥æ­¤ç±»æ¨ï¼Œä½†è‡³ä»Šè¿˜æœªå‘ç°æ­¤ç±»å¡ã€‚
  */ 
 int am_zlg600_picca_select (am_zlg600_handle_t handle,
                             uint8_t            anticoll_level,
@@ -1441,36 +1441,36 @@ int am_zlg600_picca_select (am_zlg600_handle_t handle,
                             uint8_t           *p_sak);
 
 /**
- * \brief PICCA¿¨µÄ¹ÒÆğ²Ù×÷£¬Ê¹ËùÑ¡ÔñµÄ¿¨½øÈëHALT×´Ì¬
+ * \brief PICCAå¡çš„æŒ‚èµ·æ“ä½œï¼Œä½¿æ‰€é€‰æ‹©çš„å¡è¿›å…¥HALTçŠ¶æ€
  *
- *  ÔÚHALT×´Ì¬ÏÂ£¬¿¨½«²»ÏìÓ¦¶Á¿¨Æ÷·¢³öµÄIDLEÄ£Ê½µÄÇëÇó£¬³ı·Ç½«¿¨¸´Î»»òÀë¿ªÌìÏß¸Ğ
- *  Ó¦ÇøºóÔÙ½øÈë¡£µ«Ëü»áÏìÓ¦¶Á¿¨Æ÷·¢³öµÄALLÇëÇó¡£
+ *  åœ¨HALTçŠ¶æ€ä¸‹ï¼Œå¡å°†ä¸å“åº”è¯»å¡å™¨å‘å‡ºçš„IDLEæ¨¡å¼çš„è¯·æ±‚ï¼Œé™¤éå°†å¡å¤ä½æˆ–ç¦»å¼€å¤©çº¿æ„Ÿ
+ *  åº”åŒºåå†è¿›å…¥ã€‚ä½†å®ƒä¼šå“åº”è¯»å¡å™¨å‘å‡ºçš„ALLè¯·æ±‚ã€‚
  *
- * \param[in] handle         : ZLG600µÄ²Ù×÷¾ä±ú
+ * \param[in] handle         : ZLG600çš„æ“ä½œå¥æŸ„
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ê§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */ 
 int am_zlg600_picca_halt (am_zlg600_handle_t handle);
 
 /**
- * \brief PICC TypeA¿¨RATS£¨request for answer to select£©
+ * \brief PICC TypeAå¡RATSï¼ˆrequest for answer to selectï¼‰
  *
- *     RATS£¨request for answer to select£©ÊÇISO14443-4Ğ­ÒéµÄÃüÁî£¬Ä£¿é·¢ËÍRATS£¬
- * ¿¨Æ¬·¢³öATS£¨answer to select£©×÷ÎªRATSµÄÓ¦´ğ£¬ÔÚÖ´ĞĞ¸ÃÃüÁîÇ°£¬±ØĞèÏÈ½øĞĞÒ»´Î
- * ¿¨Ñ¡Ôñ²Ù×÷£¬ÇÒÖ´ĞĞ¹ıÒ»´ÎRATSÃüÁîºó£¬ÏëÔÙ´ÎÖ´ĞĞRATSÃüÁî£¬±ØĞèÏÈ½â³ı¼¤»î¡£
+ *     RATSï¼ˆrequest for answer to selectï¼‰æ˜¯ISO14443-4åè®®çš„å‘½ä»¤ï¼Œæ¨¡å—å‘é€RATSï¼Œ
+ * å¡ç‰‡å‘å‡ºATSï¼ˆanswer to selectï¼‰ä½œä¸ºRATSçš„åº”ç­”ï¼Œåœ¨æ‰§è¡Œè¯¥å‘½ä»¤å‰ï¼Œå¿…éœ€å…ˆè¿›è¡Œä¸€æ¬¡
+ * å¡é€‰æ‹©æ“ä½œï¼Œä¸”æ‰§è¡Œè¿‡ä¸€æ¬¡RATSå‘½ä»¤åï¼Œæƒ³å†æ¬¡æ‰§è¡ŒRATSå‘½ä»¤ï¼Œå¿…éœ€å…ˆè§£é™¤æ¿€æ´»ã€‚
  *
- * \param[in] handle     : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] cid        : ¿¨±êÊ¶·û£¨card IDentifier£¬È¡Öµ·¶Î§0x00¡«0x0E£©
- * \param[in] p_ats_buf  : ÓÃÓÚ½ÓÊÕ»ØÓ¦µÄĞÅÏ¢£¬²»Í¬¿¨£¬×Ö½ÚÊı»áÓĞ²»Í¬
- * \param[in] bufsize    : »º³åÇø´óĞ¡
- * \param[in] p_rx_len   : ÓÃÓÚ»ñÈ¡Êµ¼Ê½ÓÊÕµÄĞÅÏ¢³¤¶È£¬Èç¹û»º³åÇø´óĞ¡Ğ¡ÓÚÊµ¼ÊĞÅ
- *                         Ï¢³¤¶È£¬Ôò¶àÓà²¿·Ö½«¶ªÆú
+ * \param[in] handle     : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] cid        : å¡æ ‡è¯†ç¬¦ï¼ˆcard IDentifierï¼Œå–å€¼èŒƒå›´0x00ï½0x0Eï¼‰
+ * \param[in] p_ats_buf  : ç”¨äºæ¥æ”¶å›åº”çš„ä¿¡æ¯ï¼Œä¸åŒå¡ï¼Œå­—èŠ‚æ•°ä¼šæœ‰ä¸åŒ
+ * \param[in] bufsize    : ç¼“å†²åŒºå¤§å°
+ * \param[in] p_rx_len   : ç”¨äºè·å–å®é™…æ¥æ”¶çš„ä¿¡æ¯é•¿åº¦ï¼Œå¦‚æœç¼“å†²åŒºå¤§å°å°äºå®é™…ä¿¡
+ *                         æ¯é•¿åº¦ï¼Œåˆ™å¤šä½™éƒ¨åˆ†å°†ä¸¢å¼ƒ
  *
- * \retval AM_OK      : Ğ´Èë³É¹¦
- * \retval -AM_EINVAL : Ğ´ÈëÊ§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ğ´ÈëÊ§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : å†™å…¥æˆåŠŸ
+ * \retval -AM_EINVAL : å†™å…¥å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å†™å…¥å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */
 int am_zlg600_picca_rats (am_zlg600_handle_t  handle,
                           uint8_t             cid,
@@ -1479,57 +1479,57 @@ int am_zlg600_picca_rats (am_zlg600_handle_t  handle,
                           uint16_t           *p_rx_len);
 
 /**
- * \brief PICC TypeA¿¨PPS£¨request for answer to select£©
+ * \brief PICC TypeAå¡PPSï¼ˆrequest for answer to selectï¼‰
  *
- *     PPS£¨protocal and parameter selection£©ÊÇISO14443-4Ğ­ÒéµÄÃüÁî£¬ÓÃÓÚ¸Ä±äÓĞ
- * ¹ØµÄ×¨ÓÃĞ­Òé²ÎÊı£¬¸ÃÃüÁî²»ÊÇ±ØĞèµÄ£¬ÃüÁîÖ»Ö§³ÖÄ¬ÈÏ²ÎÊı£¬¼´¸ÃÃüÁîµÄ²ÎÊıÉèÖÃÎª
- * 0¼´¿É¡£ÔÚÖ´ĞĞ¸ÃÃüÁîÇ°£¬±ØĞèÏÈ³É¹¦Ö´ĞĞÒ»´ÎRATSÃüÁî¡£
+ *     PPSï¼ˆprotocal and parameter selectionï¼‰æ˜¯ISO14443-4åè®®çš„å‘½ä»¤ï¼Œç”¨äºæ”¹å˜æœ‰
+ * å…³çš„ä¸“ç”¨åè®®å‚æ•°ï¼Œè¯¥å‘½ä»¤ä¸æ˜¯å¿…éœ€çš„ï¼Œå‘½ä»¤åªæ”¯æŒé»˜è®¤å‚æ•°ï¼Œå³è¯¥å‘½ä»¤çš„å‚æ•°è®¾ç½®ä¸º
+ * 0å³å¯ã€‚åœ¨æ‰§è¡Œè¯¥å‘½ä»¤å‰ï¼Œå¿…éœ€å…ˆæˆåŠŸæ‰§è¡Œä¸€æ¬¡RATSå‘½ä»¤ã€‚
  *
- * \param[in] handle     : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] dsi_dri    : Ä£¿éÓë¿¨Í¨ĞÅ²¨ÌØÂÊ,ÉèÖÃÎª0£¨Ä¬ÈÏ£©¼´¿É
+ * \param[in] handle     : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] dsi_dri    : æ¨¡å—ä¸å¡é€šä¿¡æ³¢ç‰¹ç‡,è®¾ç½®ä¸º0ï¼ˆé»˜è®¤ï¼‰å³å¯
  *
- * \retval AM_OK      : Ğ´Èë³É¹¦
- * \retval -AM_EINVAL : Ğ´ÈëÊ§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ğ´ÈëÊ§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : å†™å…¥æˆåŠŸ
+ * \retval -AM_EINVAL : å†™å…¥å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å†™å…¥å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */
 int am_zlg600_picca_pps (am_zlg600_handle_t  handle,
                          uint8_t             dsi_dri);
                          
 /**
- * \brief PICC TypeA¿¨½â³ı¼¤»î
+ * \brief PICC TypeAå¡è§£é™¤æ¿€æ´»
  *
- *   ¸ÃÃüÁîÊÇISO14443-4Ğ­ÒéµÄÃüÁî£¬ÓÃÓÚ½«¿¨Æ¬ÖÃÎª¹ÒÆğ£¨HALT£©×´Ì¬£¬´¦ÓÚ¹ÒÆğ
- *£¨HALT£©×´Ì¬µÄ¿¨¿ÉÒÔÓÃ¡°ÇëÇó¡±ÃüÁî£¨ÇëÇó´úÂëÎªALL£©À´ÖØĞÂ¼¤»î¿¨£¬Ö»ÓĞÖ´ĞĞ¡°RATS¡±
- * ÃüÁîµÄ¿¨²ÅÓÃ¸ÃÃüÁî¡£
+ *   è¯¥å‘½ä»¤æ˜¯ISO14443-4åè®®çš„å‘½ä»¤ï¼Œç”¨äºå°†å¡ç‰‡ç½®ä¸ºæŒ‚èµ·ï¼ˆHALTï¼‰çŠ¶æ€ï¼Œå¤„äºæŒ‚èµ·
+ *ï¼ˆHALTï¼‰çŠ¶æ€çš„å¡å¯ä»¥ç”¨â€œè¯·æ±‚â€å‘½ä»¤ï¼ˆè¯·æ±‚ä»£ç ä¸ºALLï¼‰æ¥é‡æ–°æ¿€æ´»å¡ï¼Œåªæœ‰æ‰§è¡Œâ€œRATSâ€
+ * å‘½ä»¤çš„å¡æ‰ç”¨è¯¥å‘½ä»¤ã€‚
  *
- * \param[in] handle     : ZLG600µÄ²Ù×÷¾ä±ú
+ * \param[in] handle     : ZLG600çš„æ“ä½œå¥æŸ„
  *
- * \retval AM_OK      : Ğ´Èë³É¹¦
- * \retval -AM_EINVAL : Ğ´ÈëÊ§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ğ´ÈëÊ§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : å†™å…¥æˆåŠŸ
+ * \retval -AM_EINVAL : å†™å…¥å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å†™å…¥å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */
 int am_zlg600_picca_deselect (am_zlg600_handle_t  handle);
                              
 /**
- * \brief PICC¿¨T=CL
+ * \brief PICCå¡T=CL
  *
- *     T=CLÊÇ°ëË«¹¤·Ö×é´«ÊäĞ­Òé£¬ISO14443-4Ğ­ÒéÃüÁî£¬ÓÃÓÚ¶ÁĞ´Æ÷Óë¿¨Æ¬Ö®¼äµÄÊı¾İ
- * ½»»¥£¬Ò»°ã·ûºÏISO14443Ğ­ÒéµÄCPU¿¨¾ùÓÃ¸ÃĞ­ÒéÓë¶ÁĞ´Æ÷Í¨ĞÅ¡£µ÷ÓÃ¸ÃÃüÁîÊ±Ö»ĞèÒª
- * ½«CPU¿¨COSÃüÁîµÄÊı¾İ×÷ÎªÊäÈë¼´¿É£¬ÆäËûµÄÈç·Ö×éÀàĞÍ¡¢¿¨±êÊ¶·ûCID¡¢Ö¡µÈ´ıÊ±¼ä
- * FWT¡¢µÈ´ıÊ±¼äÀ©Õ¹±¶ÔöÒò×ÓWTXM£¨waiting time extensionmultiplier£©£¬µÈµÈÓÉ¸Ã
- * ÃüÁî×Ô¶¯Íê³É¡£
+ *     T=CLæ˜¯åŠåŒå·¥åˆ†ç»„ä¼ è¾“åè®®ï¼ŒISO14443-4åè®®å‘½ä»¤ï¼Œç”¨äºè¯»å†™å™¨ä¸å¡ç‰‡ä¹‹é—´çš„æ•°æ®
+ * äº¤äº’ï¼Œä¸€èˆ¬ç¬¦åˆISO14443åè®®çš„CPUå¡å‡ç”¨è¯¥åè®®ä¸è¯»å†™å™¨é€šä¿¡ã€‚è°ƒç”¨è¯¥å‘½ä»¤æ—¶åªéœ€è¦
+ * å°†CPUå¡COSå‘½ä»¤çš„æ•°æ®ä½œä¸ºè¾“å…¥å³å¯ï¼Œå…¶ä»–çš„å¦‚åˆ†ç»„ç±»å‹ã€å¡æ ‡è¯†ç¬¦CIDã€å¸§ç­‰å¾…æ—¶é—´
+ * FWTã€ç­‰å¾…æ—¶é—´æ‰©å±•å€å¢å› å­WTXMï¼ˆwaiting time extensionmultiplierï¼‰ï¼Œç­‰ç­‰ç”±è¯¥
+ * å‘½ä»¤è‡ªåŠ¨å®Œæˆã€‚
  *
- * \param[in] handle      : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] p_cos_buf   : COSÃüÁî
- * \param[in] cos_bufsize £ºCOSÃüÁîµÄ³¤¶È
- * \param[in] p_res_buf   : ÓÃÓÚ½ÓÊÕ»ØÓ¦µÄĞÅÏ¢£¬²»Í¬COSÃüÁî£¬×Ö½ÚÊı»áÓĞ²»Í¬
- * \param[in] res_bufsize : ½ÓÊÕ»ØÓ¦ĞÅÏ¢µÄ»º³åÇø´óĞ¡
- * \param[in] p_rx_len    : ÓÃÓÚ»ñÈ¡Êµ¼Ê½ÓÊÕµÄĞÅÏ¢³¤¶È£¬Èç¹û»º³åÇø´óĞ¡Ğ¡ÓÚÊµ¼ÊĞÅ
- *                          Ï¢³¤¶È£¬Ôò¶àÓà²¿·Ö½«¶ªÆú
+ * \param[in] handle      : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] p_cos_buf   : COSå‘½ä»¤
+ * \param[in] cos_bufsize ï¼šCOSå‘½ä»¤çš„é•¿åº¦
+ * \param[in] p_res_buf   : ç”¨äºæ¥æ”¶å›åº”çš„ä¿¡æ¯ï¼Œä¸åŒCOSå‘½ä»¤ï¼Œå­—èŠ‚æ•°ä¼šæœ‰ä¸åŒ
+ * \param[in] res_bufsize : æ¥æ”¶å›åº”ä¿¡æ¯çš„ç¼“å†²åŒºå¤§å°
+ * \param[in] p_rx_len    : ç”¨äºè·å–å®é™…æ¥æ”¶çš„ä¿¡æ¯é•¿åº¦ï¼Œå¦‚æœç¼“å†²åŒºå¤§å°å°äºå®é™…ä¿¡
+ *                          æ¯é•¿åº¦ï¼Œåˆ™å¤šä½™éƒ¨åˆ†å°†ä¸¢å¼ƒ
  *
- * \retval AM_OK      : Ğ´Èë³É¹¦
- * \retval -AM_EINVAL : Ğ´ÈëÊ§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ğ´ÈëÊ§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : å†™å…¥æˆåŠŸ
+ * \retval -AM_EINVAL : å†™å…¥å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å†™å…¥å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */
 int am_zlg600_picc_tpcl (am_zlg600_handle_t  handle,
                          uint8_t            *p_cos_buf,
@@ -1539,23 +1539,23 @@ int am_zlg600_picc_tpcl (am_zlg600_handle_t  handle,
                          uint16_t           *p_rx_len);
 
 /**
- * \brief Êı¾İ½»»»
+ * \brief æ•°æ®äº¤æ¢
  *
- * ¸ÃÃüÁîÓÃ¶ÁĞ´Æ÷Óë¿¨Æ¬µÄÊı¾İ½»»¥£¬Í¨¹ı¸Ãº¯Êı¿ÉÒÔÊµÏÖ¶ÁĞ´¿¨Æ÷µÄËùÓĞ¹¦ÄÜ¡£
+ * è¯¥å‘½ä»¤ç”¨è¯»å†™å™¨ä¸å¡ç‰‡çš„æ•°æ®äº¤äº’ï¼Œé€šè¿‡è¯¥å‡½æ•°å¯ä»¥å®ç°è¯»å†™å¡å™¨çš„æ‰€æœ‰åŠŸèƒ½ã€‚
  *
- * \param[in] handle     : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] p_data_buf : ĞèÒª½»»¥·¢ËÍµÄÊı¾İ£¨ÆäÄÚÈİÓëÊµ¼ÊÊ¹ÓÃµÄ¿¨ÓĞ¹Ø£©
- * \param[in] len        : ½»»¥Êı¾İµÄ³¤¶È
- * \param[in] wtxm_crc   : b7~b2,wtxm£»b1,RFU(0); b0,0-CRC½ûÖ¹ÄÜ£¬1-CRCÊ¹ÄÜ¡£
- * \param[in] fwi        : ³¬Ê±µÈ´ıÊ±¼ä±àÂë, ³¬Ê±Ê±¼ä=£¨£¨0x01 << fwi*302us£©
- * \param[in] p_rx_buf   : Êı¾İ½»»¥»ØÓ¦Ö¡ĞÅÏ¢
- * \param[in] bufsize    : ½ÓÊÕ»ØÓ¦ĞÅÏ¢µÄ»º³åÇø´óĞ¡
- * \param[in] p_rx_len   : ÓÃÓÚ»ñÈ¡Êµ¼Ê½ÓÊÕµÄĞÅÏ¢³¤¶È£¬Èç¹û»º³åÇø´óĞ¡Ğ¡ÓÚÊµ¼ÊĞÅ
- *                         Ï¢³¤¶È£¬Ôò¶àÓà²¿·Ö½«¶ªÆú
+ * \param[in] handle     : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] p_data_buf : éœ€è¦äº¤äº’å‘é€çš„æ•°æ®ï¼ˆå…¶å†…å®¹ä¸å®é™…ä½¿ç”¨çš„å¡æœ‰å…³ï¼‰
+ * \param[in] len        : äº¤äº’æ•°æ®çš„é•¿åº¦
+ * \param[in] wtxm_crc   : b7~b2,wtxmï¼›b1,RFU(0); b0,0-CRCç¦æ­¢èƒ½ï¼Œ1-CRCä½¿èƒ½ã€‚
+ * \param[in] fwi        : è¶…æ—¶ç­‰å¾…æ—¶é—´ç¼–ç , è¶…æ—¶æ—¶é—´=ï¼ˆï¼ˆ0x01 << fwi*302usï¼‰
+ * \param[in] p_rx_buf   : æ•°æ®äº¤äº’å›åº”å¸§ä¿¡æ¯
+ * \param[in] bufsize    : æ¥æ”¶å›åº”ä¿¡æ¯çš„ç¼“å†²åŒºå¤§å°
+ * \param[in] p_rx_len   : ç”¨äºè·å–å®é™…æ¥æ”¶çš„ä¿¡æ¯é•¿åº¦ï¼Œå¦‚æœç¼“å†²åŒºå¤§å°å°äºå®é™…ä¿¡
+ *                         æ¯é•¿åº¦ï¼Œåˆ™å¤šä½™éƒ¨åˆ†å°†ä¸¢å¼ƒ
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ê§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */
 int am_zlg600_picc_data_exchange (am_zlg600_handle_t  handle,
                                   uint8_t            *p_data_buf,
@@ -1567,36 +1567,36 @@ int am_zlg600_picc_data_exchange (am_zlg600_handle_t  handle,
                                   uint16_t           *p_rx_len);
 
 /**
- * \brief PICC A¿¨¸´Î»£¬Í¨¹ı½«ÔØ²¨ĞÅºÅ¹Ø±ÕÖ¸¶¨µÄÊ±¼ä£¬ÔÙ¿ªÆôÀ´ÊµÏÖ¿¨Æ¬¸´Î»¡£
+ * \brief PICC Aå¡å¤ä½ï¼Œé€šè¿‡å°†è½½æ³¢ä¿¡å·å…³é—­æŒ‡å®šçš„æ—¶é—´ï¼Œå†å¼€å¯æ¥å®ç°å¡ç‰‡å¤ä½ã€‚
  * 
- * \param[in] handle     : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] time_ms    : ¹Ø±ÕµÄÊ±¼ä£¨µ¥Î»:ms£©£¬0ÎªÒ»Ö±¹Ø±Õ
+ * \param[in] handle     : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] time_ms    : å…³é—­çš„æ—¶é—´ï¼ˆå•ä½:msï¼‰ï¼Œ0ä¸ºä¸€ç›´å…³é—­
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ê§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  *
- * \note ¸Ãº¯Êı½«ÌìÏßĞÅºÅ¹Ø±ÕÊıºÁÃë£¬ÈôÒ»Ö±¹Ø±Õ£¬ÔòµÈµ½Ö´ĞĞÒ»¸öÇëÇóÃüÁîÊ±´ò¿ª¡£
+ * \note è¯¥å‡½æ•°å°†å¤©çº¿ä¿¡å·å…³é—­æ•°æ¯«ç§’ï¼Œè‹¥ä¸€ç›´å…³é—­ï¼Œåˆ™ç­‰åˆ°æ‰§è¡Œä¸€ä¸ªè¯·æ±‚å‘½ä»¤æ—¶æ‰“å¼€ã€‚
  */
 int am_zlg600_picca_reset(am_zlg600_handle_t  handle,
                           uint8_t             time_ms);
                           
 /**
- * \brief PICC A¿¨¼¤»î£¬¸Ãº¯ÊıÓÃÓÚ¼¤»î¿¨Æ¬£¬ÊÇÇëÇó¡¢·ÀÅö×²ºÍÑ¡ÔñÈıÌõÃüÁîµÄ×éºÏ¡£
+ * \brief PICC Aå¡æ¿€æ´»ï¼Œè¯¥å‡½æ•°ç”¨äºæ¿€æ´»å¡ç‰‡ï¼Œæ˜¯è¯·æ±‚ã€é˜²ç¢°æ’å’Œé€‰æ‹©ä¸‰æ¡å‘½ä»¤çš„ç»„åˆã€‚
  *
- * \param[in] handle     : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] req_mode   : ÇëÇóÄ£Ê½£¬¿ÉÊ¹ÓÃÏÂÁĞºê£º
+ * \param[in] handle     : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] req_mode   : è¯·æ±‚æ¨¡å¼ï¼Œå¯ä½¿ç”¨ä¸‹åˆ—å®ï¼š
  *                           - #AM_ZLG600_PICCA_REQ_IDLE
  *                           - #AM_ZLG600_PICCA_REQ_ALL
- * \param[in] p_atq      : ÇëÇóÓ¦´ğ
- * \param[in] p_saq      : ×îºóÒ»¼¶Ñ¡ÔñÓ¦´ğSAK
- * \param[in] p_len      : ĞòÁĞºÅ³¤¶È£¬4×Ö½Ú»ò7×Ö½Ú
- * \param[in] p_uid      : ĞòÁĞºÅ»º³åÇø£¬³¤¶ÈÓ¦¸ÃÓëĞòÁĞºÅ³¤¶È±£³ÖÒ»ÖÂ
- * \param[in] uid_len    : p_uid ËùÖ¸»º³åÇøµÄ³¤¶È
+ * \param[in] p_atq      : è¯·æ±‚åº”ç­”
+ * \param[in] p_saq      : æœ€åä¸€çº§é€‰æ‹©åº”ç­”SAK
+ * \param[in] p_len      : åºåˆ—å·é•¿åº¦ï¼Œ4å­—èŠ‚æˆ–7å­—èŠ‚
+ * \param[in] p_uid      : åºåˆ—å·ç¼“å†²åŒºï¼Œé•¿åº¦åº”è¯¥ä¸åºåˆ—å·é•¿åº¦ä¿æŒä¸€è‡´
+ * \param[in] uid_len    : p_uid æ‰€æŒ‡ç¼“å†²åŒºçš„é•¿åº¦
  *
- * \retval AM_OK      : Ğ´Èë³É¹¦
- * \retval -AM_EINVAL : Ğ´ÈëÊ§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ğ´ÈëÊ§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : å†™å…¥æˆåŠŸ
+ * \retval -AM_EINVAL : å†™å…¥å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å†™å…¥å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */
 int am_zlg600_picca_active (am_zlg600_handle_t  handle,
                             uint8_t             req_mode,
@@ -1607,64 +1607,64 @@ int am_zlg600_picca_active (am_zlg600_handle_t  handle,
                             uint8_t             uid_len);
 
 /**
- * \name PICCB¿¨ÇëÇóÄ£Ê½
+ * \name PICCBå¡è¯·æ±‚æ¨¡å¼
  * @{
  */
 
-#define AM_ZLG600_PICCB_REQ_IDLE 0x00 /**< \brief IDLEÄ£Ê½,ÇëÇó¿ÕÏĞµÄ¿¨ */
-#define AM_ZLG600_PICCB_REQ_ALL  0x08 /**< \brief ALLÄ£Ê½,ÇëÇóËùÓĞµÄ¿¨  */
+#define AM_ZLG600_PICCB_REQ_IDLE 0x00 /**< \brief IDLEæ¨¡å¼,è¯·æ±‚ç©ºé—²çš„å¡ */
+#define AM_ZLG600_PICCB_REQ_ALL  0x08 /**< \brief ALLæ¨¡å¼,è¯·æ±‚æ‰€æœ‰çš„å¡  */
 
 /** @}*/ 
 
 /**
- * \brief PICC B¿¨¼¤»î
+ * \brief PICC Bå¡æ¿€æ´»
  *
- *    ÔÚµ÷ÓÃ¸Ãº¯ÊıÇ°£¬ĞèÒªÈ·±£IC¹¤×÷Ä£Ê½ÒÑ¾­ÅäÖÃÎªTypeBÄ£Ê½¡£
+ *    åœ¨è°ƒç”¨è¯¥å‡½æ•°å‰ï¼Œéœ€è¦ç¡®ä¿ICå·¥ä½œæ¨¡å¼å·²ç»é…ç½®ä¸ºTypeBæ¨¡å¼ã€‚
  *
- * \param[in] handle     : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] req_mode   : ÇëÇóÄ£Ê½£¬¿ÉÊ¹ÓÃÏÂÁĞºê£º
+ * \param[in] handle     : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] req_mode   : è¯·æ±‚æ¨¡å¼ï¼Œå¯ä½¿ç”¨ä¸‹åˆ—å®ï¼š
  *                           - #AM_ZLG600_PICCB_REQ_IDLE
  *                           - #AM_ZLG600_PICCB_REQ_ALL
- * \param[in] p_uid      : UIDÏà¹ØĞÅÏ¢£¬³¤¶ÈÎª12
+ * \param[in] p_uid      : UIDç›¸å…³ä¿¡æ¯ï¼Œé•¿åº¦ä¸º12
  *
- * \retval AM_OK      : Ğ´Èë³É¹¦
- * \retval -AM_EINVAL : Ğ´ÈëÊ§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ğ´ÈëÊ§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : å†™å…¥æˆåŠŸ
+ * \retval -AM_EINVAL : å†™å…¥å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å†™å…¥å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */
 int am_zlg600_piccb_active (am_zlg600_handle_t  handle,
                             uint8_t             req_mode,
                             uint8_t            *p_uid);
 
 /**
- * \brief PICC B¿¨¸´Î»£¬Í¨¹ı½«ÔØ²¨ĞÅºÅ¹Ø±ÕÖ¸¶¨µÄÊ±¼ä£¬ÔÙ¿ªÆôÀ´ÊµÏÖ¿¨Æ¬¸´Î»¡£
+ * \brief PICC Bå¡å¤ä½ï¼Œé€šè¿‡å°†è½½æ³¢ä¿¡å·å…³é—­æŒ‡å®šçš„æ—¶é—´ï¼Œå†å¼€å¯æ¥å®ç°å¡ç‰‡å¤ä½ã€‚
  * 
- * \param[in] handle     : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] time_ms    : ¹Ø±ÕµÄÊ±¼ä£¨µ¥Î»:ms£©£¬0ÎªÒ»Ö±¹Ø±Õ
+ * \param[in] handle     : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] time_ms    : å…³é—­çš„æ—¶é—´ï¼ˆå•ä½:msï¼‰ï¼Œ0ä¸ºä¸€ç›´å…³é—­
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ê§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  *
- * \note ¸Ãº¯Êı½«ÌìÏßĞÅºÅ¹Ø±ÕÊıºÁÃë£¬ÈôÒ»Ö±¹Ø±Õ£¬ÔòµÈµ½Ö´ĞĞÒ»¸öÇëÇóÃüÁîÊ±´ò¿ª¡£
+ * \note è¯¥å‡½æ•°å°†å¤©çº¿ä¿¡å·å…³é—­æ•°æ¯«ç§’ï¼Œè‹¥ä¸€ç›´å…³é—­ï¼Œåˆ™ç­‰åˆ°æ‰§è¡Œä¸€ä¸ªè¯·æ±‚å‘½ä»¤æ—¶æ‰“å¼€ã€‚
  */
 int am_zlg600_piccb_reset (am_zlg600_handle_t  handle,
                            uint8_t             time_ms);
 
 /**
- * \brief PICCA¿¨ÇëÇó²Ù×÷
+ * \brief PICCAå¡è¯·æ±‚æ“ä½œ
  *
- *  ¸Ãº¯Êı×÷Îª¿¨µÄÇëÇó²Ù×÷£¬Ö»Òª·ûºÏISO14443A±ê×¼µÄ¿¨¶¼Ó¦ÄÜ·¢³öÏìÓ¦¡£
+ *  è¯¥å‡½æ•°ä½œä¸ºå¡çš„è¯·æ±‚æ“ä½œï¼Œåªè¦ç¬¦åˆISO14443Aæ ‡å‡†çš„å¡éƒ½åº”èƒ½å‘å‡ºå“åº”ã€‚
  *
- * \param[in] handle      : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] req_mode    : ÇëÇóÄ£Ê½£¬¿ÉÊ¹ÓÃÏÂÁĞºê£º
+ * \param[in] handle      : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] req_mode    : è¯·æ±‚æ¨¡å¼ï¼Œå¯ä½¿ç”¨ä¸‹åˆ—å®ï¼š
  *                           - #AM_ZLG600_PICCB_REQ_IDLE
  *                           - #AM_ZLG600_PICCB_REQ_ALL
- * \param[in] slot_time   : Ê±Ï¶×ÜÊı£¬0 ~ 4
- * \param[in] p_uid       : ·µ»ØµÄUIDÏà¹ØĞÅÏ¢£¬³¤¶ÈÎª12
+ * \param[in] slot_time   : æ—¶éš™æ€»æ•°ï¼Œ0 ~ 4
+ * \param[in] p_uid       : è¿”å›çš„UIDç›¸å…³ä¿¡æ¯ï¼Œé•¿åº¦ä¸º12
  *
- * \retval AM_OK      : ÇëÇó³É¹¦
- * \retval -AM_EINVAL : ÇëÇóÊ§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : ÇëÇóÊ§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : è¯·æ±‚æˆåŠŸ
+ * \retval -AM_EINVAL : è¯·æ±‚å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : è¯·æ±‚å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */ 
 int am_zlg600_piccb_request (am_zlg600_handle_t  handle,
                              uint8_t             req_mode,
@@ -1672,61 +1672,61 @@ int am_zlg600_piccb_request (am_zlg600_handle_t  handle,
                              uint8_t            *p_uid);
 
 /**
- * \brief PICC B ¿¨µÄ·ÀÅö×²²Ù×÷
+ * \brief PICC B å¡çš„é˜²ç¢°æ’æ“ä½œ
  *
- * \param[in] handle      : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] slot_flag   : Ê±Ï¶±ê¼Ç£¬2 ~ 16£¬¸Ã²ÎÊıÖµÓëÇëÇóÃüÁîµÄÊ±Ï¶×ÜÊıÓĞ¹Ø
- *                          Ïµ£¬¼ÙÈçÇëÇóÃüÁîµÄÊ±Ï¶×ÜÊıÎªn£¬²à¸ÃÊ±Ï¶±ê¼ÇN < 2^n
- * \param[in] p_uid       : ·µ»ØµÄUIDÏà¹ØĞÅÏ¢£¬³¤¶ÈÎª12
+ * \param[in] handle      : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] slot_flag   : æ—¶éš™æ ‡è®°ï¼Œ2 ~ 16ï¼Œè¯¥å‚æ•°å€¼ä¸è¯·æ±‚å‘½ä»¤çš„æ—¶éš™æ€»æ•°æœ‰å…³
+ *                          ç³»ï¼Œå‡å¦‚è¯·æ±‚å‘½ä»¤çš„æ—¶éš™æ€»æ•°ä¸ºnï¼Œä¾§è¯¥æ—¶éš™æ ‡è®°N < 2^n
+ * \param[in] p_uid       : è¿”å›çš„UIDç›¸å…³ä¿¡æ¯ï¼Œé•¿åº¦ä¸º12
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ê§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */
 int am_zlg600_piccb_anticoll (am_zlg600_handle_t  handle,
                               uint8_t             slot_flag,
                               uint8_t            *p_uid);
                              
 /**
- * \brief PICC B¿¨µÄ¹ÒÆğ²Ù×÷£¬Ê¹ËùÑ¡ÔñµÄ¿¨½øÈëHALT×´Ì¬
+ * \brief PICC Bå¡çš„æŒ‚èµ·æ“ä½œï¼Œä½¿æ‰€é€‰æ‹©çš„å¡è¿›å…¥HALTçŠ¶æ€
  *
- *     ¸Ãº¯ÊıÓÃÓÚBĞÍ¿¨¹ÒÆğ£¬ÔÚÖ´ĞĞ¹ÒÆğÃüÁîÇ°£¬±ØĞèÏÈÖ´ĞĞ³É¹¦¹ıÒ»´ÎÇëÇóÃüÁî¡£Ö´ĞĞ
- * ¹ÒÆğÃüÁî³É¹¦ºó£¬¿¨Æ¬´¦ÓÚ¹ÒÆğ×´Ì¬£¬Ä£¿é±ØĞèÍ¨¹ıALL·½Ê½ÇëÇó¿¨Æ¬£¬¶ø²»ÄÜÓÃIDLE·½
- * Ê½ÇëÇó¡£
+ *     è¯¥å‡½æ•°ç”¨äºBå‹å¡æŒ‚èµ·ï¼Œåœ¨æ‰§è¡ŒæŒ‚èµ·å‘½ä»¤å‰ï¼Œå¿…éœ€å…ˆæ‰§è¡ŒæˆåŠŸè¿‡ä¸€æ¬¡è¯·æ±‚å‘½ä»¤ã€‚æ‰§è¡Œ
+ * æŒ‚èµ·å‘½ä»¤æˆåŠŸåï¼Œå¡ç‰‡å¤„äºæŒ‚èµ·çŠ¶æ€ï¼Œæ¨¡å—å¿…éœ€é€šè¿‡ALLæ–¹å¼è¯·æ±‚å¡ç‰‡ï¼Œè€Œä¸èƒ½ç”¨IDLEæ–¹
+ * å¼è¯·æ±‚ã€‚
  *
- * \param[in] handle     : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] p_pupi     : PUPI,´óĞ¡Îª4×Ö½ÚµÄ±êÊ¶·û
+ * \param[in] handle     : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] p_pupi     : PUPI,å¤§å°ä¸º4å­—èŠ‚çš„æ ‡è¯†ç¬¦
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ê§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */ 
 int am_zlg600_piccb_halt (am_zlg600_handle_t handle,
                           uint8_t            *p_pupi);
  
 /**
- * \brief ĞŞ¸ÄB¿¨µÄ´«ÊäÊôĞÔ
+ * \brief ä¿®æ”¹Bå¡çš„ä¼ è¾“å±æ€§
  *
- *     ¸Ãº¯ÊıÓÃÓÚBĞÍ¿¨¹ÒÆğ£¬ÔÚÖ´ĞĞ¹ÒÆğÃüÁîÇ°£¬±ØĞèÏÈÖ´ĞĞ³É¹¦¹ıÒ»´ÎÇëÇóÃüÁî¡£Ö´ĞĞ
- * ¹ÒÆğÃüÁî³É¹¦ºó£¬¿¨Æ¬´¦ÓÚ¹ÒÆğ×´Ì¬£¬Ä£¿é±ØĞèÍ¨¹ıALL·½Ê½ÇëÇó¿¨Æ¬£¬¶ø²»ÄÜÓÃIDLE·½
- * Ê½ÇëÇó¡£
+ *     è¯¥å‡½æ•°ç”¨äºBå‹å¡æŒ‚èµ·ï¼Œåœ¨æ‰§è¡ŒæŒ‚èµ·å‘½ä»¤å‰ï¼Œå¿…éœ€å…ˆæ‰§è¡ŒæˆåŠŸè¿‡ä¸€æ¬¡è¯·æ±‚å‘½ä»¤ã€‚æ‰§è¡Œ
+ * æŒ‚èµ·å‘½ä»¤æˆåŠŸåï¼Œå¡ç‰‡å¤„äºæŒ‚èµ·çŠ¶æ€ï¼Œæ¨¡å—å¿…éœ€é€šè¿‡ALLæ–¹å¼è¯·æ±‚å¡ç‰‡ï¼Œè€Œä¸èƒ½ç”¨IDLEæ–¹
+ * å¼è¯·æ±‚ã€‚
  *
- * \param[in] handle     : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] p_pupi     : PUPI,´óĞ¡Îª4×Ö½ÚµÄ±êÊ¶·û
- * \param[in] cid        : È¡Öµ·¶Î§Îª 0 - 14, Èô²»Ö§³ÖCID£¬ÔòÉèÖÃÎª0
- * \param[in] protype    : Ö§³ÖµÄĞ­Òé
- *                          - bit3 : 1-PCDÖĞÖ¹ÓëPICC¼ÌĞøÍ¨ĞÅ,0-PCDÓëPICC¼ÌĞøÍ¨ĞÅ
+ * \param[in] handle     : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] p_pupi     : PUPI,å¤§å°ä¸º4å­—èŠ‚çš„æ ‡è¯†ç¬¦
+ * \param[in] cid        : å–å€¼èŒƒå›´ä¸º 0 - 14, è‹¥ä¸æ”¯æŒCIDï¼Œåˆ™è®¾ç½®ä¸º0
+ * \param[in] protype    : æ”¯æŒçš„åè®®
+ *                          - bit3 : 1-PCDä¸­æ­¢ä¸PICCç»§ç»­é€šä¿¡,0-PCDä¸PICCç»§ç»­é€šä¿¡
  *                          - bit2 ~ bit1 : 
  *                              - 11 : 10 etu + 512 / fs
  *                              - 10 : 10 etu + 256 / fs
  *                              - 01 : 10 etu + 128 / fs
  *                              - 00 : 10 etu + 32 / fs
- *                          - bit0 : 1-×ñÑ­ISO14443-4,0-²»×ñÑ­ISO14443-4
- *                                   (¶ş´úÉí·İÖ¤±ØĞë¸ÃÎ»±ØĞëÎª1)
+ *                          - bit0 : 1-éµå¾ªISO14443-4,0-ä¸éµå¾ªISO14443-4
+ *                                   (äºŒä»£èº«ä»½è¯å¿…é¡»è¯¥ä½å¿…é¡»ä¸º1)
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ê§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */ 
 int am_zlg600_piccb_attrib_set (am_zlg600_handle_t handle,
                                 uint8_t           *p_pupi,
@@ -1734,99 +1734,99 @@ int am_zlg600_piccb_attrib_set (am_zlg600_handle_t handle,
                                 uint8_t            protype);
 
 /**
- * \brief PLUS CPU¿¨¸öÈË»¯¸üĞÂÊı¾İ
+ * \brief PLUS CPUå¡ä¸ªäººåŒ–æ›´æ–°æ•°æ®
  *
- *     ¸ÃÃüÁîÓÃÓÚSL0£¨Security Level 0£¬°²È«µÈ¼¶0£©µÄPLUS CPU¿¨¸öÈË»¯£¬PLUS CPU
- * ¿¨³ö³§Ê±µÄ°²È«µÈ¼¶ÎªSL0£¬¸ÃµÈ¼¶ÏÂ£¬²»ĞèÒªÈÎºÎÑéÖ¤¾Í¿ÉÒÔÏò¿¨ÀïĞ´Êı¾İ£¬Ğ´ÈëµÄÊı
- * ¾İÊÇ×÷ÎªÆäËü°²È«µÈ¼¶µÄ³õÊ¼Öµ£¬ÀıÈç£ºÏòSL0µÄ0x0003¿éĞ´Èë£º0xA0 0xA1 0xA2 0xA3 
- * 0xA4 0xA5 0xFF 0x07 0x80 0x69 0xFF 0xFF 0xFF 0xFF 0xFF 0xFF£¬µ±¿¨Æ¬Éı¼¶µ½SL1
- * ºó£¬ÉÈÇø0µÄAÃÜÔ¿Îª0xA0 0xA1 0xA2 0xA3 0xA4 0xA5£¬¶ø²»ÊÇÄ¬ÈÏµÄ0xFF 0xFF 0xFF 
- * 0xFF 0xFF 0xFF£¬¼´¿ÉÒÔÔÚSL0ĞŞ¸Ä¿¨Æ¬µÄÄ¬ÈÏÊı¾İºÍÃÜÔ¿¡£
+ *     è¯¥å‘½ä»¤ç”¨äºSL0ï¼ˆSecurity Level 0ï¼Œå®‰å…¨ç­‰çº§0ï¼‰çš„PLUS CPUå¡ä¸ªäººåŒ–ï¼ŒPLUS CPU
+ * å¡å‡ºå‚æ—¶çš„å®‰å…¨ç­‰çº§ä¸ºSL0ï¼Œè¯¥ç­‰çº§ä¸‹ï¼Œä¸éœ€è¦ä»»ä½•éªŒè¯å°±å¯ä»¥å‘å¡é‡Œå†™æ•°æ®ï¼Œå†™å…¥çš„æ•°
+ * æ®æ˜¯ä½œä¸ºå…¶å®ƒå®‰å…¨ç­‰çº§çš„åˆå§‹å€¼ï¼Œä¾‹å¦‚ï¼šå‘SL0çš„0x0003å—å†™å…¥ï¼š0xA0 0xA1 0xA2 0xA3 
+ * 0xA4 0xA5 0xFF 0x07 0x80 0x69 0xFF 0xFF 0xFF 0xFF 0xFF 0xFFï¼Œå½“å¡ç‰‡å‡çº§åˆ°SL1
+ * åï¼Œæ‰‡åŒº0çš„Aå¯†é’¥ä¸º0xA0 0xA1 0xA2 0xA3 0xA4 0xA5ï¼Œè€Œä¸æ˜¯é»˜è®¤çš„0xFF 0xFF 0xFF 
+ * 0xFF 0xFF 0xFFï¼Œå³å¯ä»¥åœ¨SL0ä¿®æ”¹å¡ç‰‡çš„é»˜è®¤æ•°æ®å’Œå¯†é’¥ã€‚
  *
- * \param[in] handle        : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] sector_addr   : PLUS CPU¿¨´æ´¢Æ÷µØÖ·
- * \param[in] p_buf         : ·¢ËÍ»º³åÇø,Êı¾İ¸öÊıÎªÈ·¶¨16¸ö
+ * \param[in] handle        : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] sector_addr   : PLUS CPUå¡å­˜å‚¨å™¨åœ°å€
+ * \param[in] p_buf         : å‘é€ç¼“å†²åŒº,æ•°æ®ä¸ªæ•°ä¸ºç¡®å®š16ä¸ª
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ê§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */
 int am_zlg600_pluscpu_persotcl_write (am_zlg600_handle_t  handle,
                                       uint16_t            sector_addr,
                                       uint8_t            *p_buf);
 
 /**
- * \brief PLUS CPU¿¨Ìá½»¸öÈË»¯
+ * \brief PLUS CPUå¡æäº¤ä¸ªäººåŒ–
  *
- *  am_zlg600_pluscpu_persotcl_write()º¯ÊıÖ»ÊÇ¸üĞÂ¿¨ÖĞµÄÊı¾İ£¬µ«Êı¾İ»¹Î´ÉúĞ§¡£
- * Ìá½»ºóÊı¾İ²ÅÉúĞ§¡£Ö´ĞĞ¸ÃÃüÁîºó£¬PLUS CPU¿¨µÄ°²È«µÈ¼¶Ìá¸ßµ½SL1»òÕßSL3
- * £¨ÈôÊÇÖ§³ÖSL1µÄ¿¨£¬ÔòÖ´ĞĞ¸ÃÃüÁîºó¿¨Æ¬°²È«µÈ¼¶Ìá¸ßµ½SL1£»ÈôÊÇÖ»Ö§³ÖSL0ºÍSL3µÄ
- * ¿¨£¬ÔòÖ´ĞĞ¸ÃÃüÁîºó¿¨Æ¬°²È«µÈ¼¶Ìá¸ßµ½SL3£©¡£
- * ×¢Òâ£ºÔÚSL0ÖĞ£¬Ö»ÓĞĞŞ¸ÄÁËÒÔÏÂµØÖ·²ÅÄÜÖ´ĞĞÌá½»²Ù×÷£º
- * ?- 0x9000£¨Ö÷¿ØÃÜÔ¿£©
- *   - 0x9001£¨ÅäÖÃ¿éÃÜÔ¿£©
- *   - 0x9002£¨SL2ÌáÉıÃÜÔ¿£¬Ö»ÓĞÖ§³ÖSL2µÄ¿¨²ÅÓĞ¸ÃÃÜÔ¿£©
- *   - 0x9003£¨SL3Ö÷¿ØÃÜÔ¿£¬Ö»ÓĞÖ§³ÖSL3µÄ¿¨²ÅÓĞ¸ÃÃÜÔ¿£©
+ *  am_zlg600_pluscpu_persotcl_write()å‡½æ•°åªæ˜¯æ›´æ–°å¡ä¸­çš„æ•°æ®ï¼Œä½†æ•°æ®è¿˜æœªç”Ÿæ•ˆã€‚
+ * æäº¤åæ•°æ®æ‰ç”Ÿæ•ˆã€‚æ‰§è¡Œè¯¥å‘½ä»¤åï¼ŒPLUS CPUå¡çš„å®‰å…¨ç­‰çº§æé«˜åˆ°SL1æˆ–è€…SL3
+ * ï¼ˆè‹¥æ˜¯æ”¯æŒSL1çš„å¡ï¼Œåˆ™æ‰§è¡Œè¯¥å‘½ä»¤åå¡ç‰‡å®‰å…¨ç­‰çº§æé«˜åˆ°SL1ï¼›è‹¥æ˜¯åªæ”¯æŒSL0å’ŒSL3çš„
+ * å¡ï¼Œåˆ™æ‰§è¡Œè¯¥å‘½ä»¤åå¡ç‰‡å®‰å…¨ç­‰çº§æé«˜åˆ°SL3ï¼‰ã€‚
+ * æ³¨æ„ï¼šåœ¨SL0ä¸­ï¼Œåªæœ‰ä¿®æ”¹äº†ä»¥ä¸‹åœ°å€æ‰èƒ½æ‰§è¡Œæäº¤æ“ä½œï¼š
+ * ?- 0x9000ï¼ˆä¸»æ§å¯†é’¥ï¼‰
+ *   - 0x9001ï¼ˆé…ç½®å—å¯†é’¥ï¼‰
+ *   - 0x9002ï¼ˆSL2æå‡å¯†é’¥ï¼Œåªæœ‰æ”¯æŒSL2çš„å¡æ‰æœ‰è¯¥å¯†é’¥ï¼‰
+ *   - 0x9003ï¼ˆSL3ä¸»æ§å¯†é’¥ï¼Œåªæœ‰æ”¯æŒSL3çš„å¡æ‰æœ‰è¯¥å¯†é’¥ï¼‰
  *
- * \param[in] handle        : ZLG600µÄ²Ù×÷¾ä±ú
+ * \param[in] handle        : ZLG600çš„æ“ä½œå¥æŸ„
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ê§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */
 int am_zlg600_pluscpu_persotcl_commit (am_zlg600_handle_t  handle);
 
 
 /**
- * \brief PLUS CPU¿¨Ê×´ÎÑéÖ¤£¨Ö±½ÓÃÜÔ¿ÑéÖ¤£©
+ * \brief PLUS CPUå¡é¦–æ¬¡éªŒè¯ï¼ˆç›´æ¥å¯†é’¥éªŒè¯ï¼‰
  *
- * \param[in] handle       : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] authent_addr : ´ıÑéÖ¤µÄ16Î»ÃÜÔ¿µØÖ·
- * \param[in] p_key        : ÃÜÔ¿»º³åÇø£¬´óĞ¡Îª16×Ö½Ú
+ * \param[in] handle       : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] authent_addr : å¾…éªŒè¯çš„16ä½å¯†é’¥åœ°å€
+ * \param[in] p_key        : å¯†é’¥ç¼“å†²åŒºï¼Œå¤§å°ä¸º16å­—èŠ‚
  *
- * \retval AM_OK      : ÑéÖ¤³É¹¦
- * \retval -AM_EINVAL : ÑéÖ¤Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : ÑéÖ¤Ê§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : éªŒè¯æˆåŠŸ
+ * \retval -AM_EINVAL : éªŒè¯å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : éªŒè¯å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  *
- * \note PLUS CPU¿¨µÄÃÜÔ¿A/BÊÇÍ¨¹ıµØÖ·µÄÆæÅ¼ÊıÀ´Çø·Ö£¬AESµÄÃÜÔ¿µØÖ·ÓëÊı¾İ¿éµÄ
- * ÉÈÇø¹ØÏµ¶ÔÓ¦ÈçÏÂ:
- * ÃÜÔ¿AµØÖ·=0x4000 + ÉÈÇø ¡Á 2
- * ÃÜÔ¿BµØÖ·=0x4000 + ÉÈÇø ¡Á 2 + 1
- * Òò´Ë£¬ÈçÑéÖ¤1ÉÈÇøµÄÃÜÔ¿A£¬ÔòÃÜÔ¿µØÖ·Îª£º0x4002
+ * \note PLUS CPUå¡çš„å¯†é’¥A/Bæ˜¯é€šè¿‡åœ°å€çš„å¥‡å¶æ•°æ¥åŒºåˆ†ï¼ŒAESçš„å¯†é’¥åœ°å€ä¸æ•°æ®å—çš„
+ * æ‰‡åŒºå…³ç³»å¯¹åº”å¦‚ä¸‹:
+ * å¯†é’¥Aåœ°å€=0x4000 + æ‰‡åŒº Ã— 2
+ * å¯†é’¥Båœ°å€=0x4000 + æ‰‡åŒº Ã— 2 + 1
+ * å› æ­¤ï¼Œå¦‚éªŒè¯1æ‰‡åŒºçš„å¯†é’¥Aï¼Œåˆ™å¯†é’¥åœ°å€ä¸ºï¼š0x4002
  */
 int am_zlg600_pluscpu_sl3_first_direct_authent (am_zlg600_handle_t  handle,
                                                 uint16_t            authent_addr,
                                                 uint8_t            *p_key);
 
 /**
- * \brief PLUS CPU¿¨Ê×´ÎÑéÖ¤£¨E2ÃÜÔ¿ÑéÖ¤£©£¬ÑéÖ¤µÄÃÜÔ¿À´×ÔÄ£¿éÄÚ²¿£¬µôµç²»¶ªÊ§
+ * \brief PLUS CPUå¡é¦–æ¬¡éªŒè¯ï¼ˆE2å¯†é’¥éªŒè¯ï¼‰ï¼ŒéªŒè¯çš„å¯†é’¥æ¥è‡ªæ¨¡å—å†…éƒ¨ï¼Œæ‰ç”µä¸ä¸¢å¤±
  *
- * \param[in] handle        : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] authent_addr  : ´ıÑéÖ¤µÄ16Î»ÃÜÔ¿µØÖ·
- * \param[in] key_sector    : ÃÜÔ¿ËùÔÚÉÈÇø
+ * \param[in] handle        : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] authent_addr  : å¾…éªŒè¯çš„16ä½å¯†é’¥åœ°å€
+ * \param[in] key_sector    : å¯†é’¥æ‰€åœ¨æ‰‡åŒº
  *
- * \retval AM_OK      : ÑéÖ¤³É¹¦
- * \retval -AM_EINVAL : ÑéÖ¤Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : ÑéÖ¤Ê§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : éªŒè¯æˆåŠŸ
+ * \retval -AM_EINVAL : éªŒè¯å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : éªŒè¯å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */
 int am_zlg600_pluscpu_sl3_first_e2_authent (am_zlg600_handle_t  handle,
                                             uint16_t            authent_addr,
                                             uint8_t             key_sector);
 
 /**
- * \brief PLUS CPU¿¨¸úËæÑéÖ¤£¨Ö±½ÓÃÜÔ¿ÑéÖ¤£©
+ * \brief PLUS CPUå¡è·ŸéšéªŒè¯ï¼ˆç›´æ¥å¯†é’¥éªŒè¯ï¼‰
  *
- *     ¸Ãº¯ÊıÓÃÓÚSL3 PLUS CPU¿¨µÄ¸úËæÃÜÔ¿ÑéÖ¤£¬ÑéÖ¤µÄÃÜÔ¿À´×ÔÃüÁî²ÎÊı£¬Ö»ÓĞÖ´ĞĞ
- * ¹ı¡°Ê×´ÎÑéÖ¤¡±ÃüÁî³É¹¦ºó²ÅÄÜÊ¹ÓÃ¸ÃÃüÁî¡£Á½ÖÖÑéÖ¤µÄÇø±ğÔÚÓÚÊ¹ÓÃµÄÊ±¼ä²»Í¬£¬
- * ¡°Ê×´ÎÑéÖ¤¡±ËùĞèÒªµÄÊ±¼ä±È¡°¸úËæÑéÖ¤¡±µÄÊ±¼äÒª³¤Ğ©¡£
+ *     è¯¥å‡½æ•°ç”¨äºSL3 PLUS CPUå¡çš„è·Ÿéšå¯†é’¥éªŒè¯ï¼ŒéªŒè¯çš„å¯†é’¥æ¥è‡ªå‘½ä»¤å‚æ•°ï¼Œåªæœ‰æ‰§è¡Œ
+ * è¿‡â€œé¦–æ¬¡éªŒè¯â€å‘½ä»¤æˆåŠŸåæ‰èƒ½ä½¿ç”¨è¯¥å‘½ä»¤ã€‚ä¸¤ç§éªŒè¯çš„åŒºåˆ«åœ¨äºä½¿ç”¨çš„æ—¶é—´ä¸åŒï¼Œ
+ * â€œé¦–æ¬¡éªŒè¯â€æ‰€éœ€è¦çš„æ—¶é—´æ¯”â€œè·ŸéšéªŒè¯â€çš„æ—¶é—´è¦é•¿äº›ã€‚
  *
- * \param[in] handle       : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] authent_addr : ´ıÑéÖ¤µÄ16Î»ÃÜÔ¿µØÖ·
- * \param[in] p_key        : ÃÜÔ¿»º³åÇø£¬´óĞ¡Îª16×Ö½Ú
+ * \param[in] handle       : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] authent_addr : å¾…éªŒè¯çš„16ä½å¯†é’¥åœ°å€
+ * \param[in] p_key        : å¯†é’¥ç¼“å†²åŒºï¼Œå¤§å°ä¸º16å­—èŠ‚
  *
- * \retval AM_OK      : ÑéÖ¤³É¹¦
- * \retval -AM_EINVAL : ÑéÖ¤Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : ÑéÖ¤Ê§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : éªŒè¯æˆåŠŸ
+ * \retval -AM_EINVAL : éªŒè¯å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : éªŒè¯å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  *
  */
 int am_zlg600_pluscpu_sl3_follow_direct_authent (am_zlg600_handle_t  handle,
@@ -1834,79 +1834,79 @@ int am_zlg600_pluscpu_sl3_follow_direct_authent (am_zlg600_handle_t  handle,
                                                  uint8_t            *p_key);
 
 /**
- * \brief PLUS CPU¿¨¸úËæÑéÖ¤£¨E2ÃÜÔ¿ÑéÖ¤£©,ÑéÖ¤µÄÃÜÔ¿À´×ÔÄ£¿éÄÚ²¿£¬µôµç²»¶ªÊ§
+ * \brief PLUS CPUå¡è·ŸéšéªŒè¯ï¼ˆE2å¯†é’¥éªŒè¯ï¼‰,éªŒè¯çš„å¯†é’¥æ¥è‡ªæ¨¡å—å†…éƒ¨ï¼Œæ‰ç”µä¸ä¸¢å¤±
  *
- * \param[in] handle        : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] authent_addr  : ´ıÑéÖ¤µÄ16Î»ÃÜÔ¿µØÖ·
- * \param[in] key_sector    : ÃÜÔ¿ËùÔÚÉÈÇø
+ * \param[in] handle        : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] authent_addr  : å¾…éªŒè¯çš„16ä½å¯†é’¥åœ°å€
+ * \param[in] key_sector    : å¯†é’¥æ‰€åœ¨æ‰‡åŒº
  *
- * \retval AM_OK      : ÑéÖ¤³É¹¦
- * \retval -AM_EINVAL : ÑéÖ¤Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : ÑéÖ¤Ê§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : éªŒè¯æˆåŠŸ
+ * \retval -AM_EINVAL : éªŒè¯å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : éªŒè¯å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */
 int am_zlg600_pluscpu_sl3_follow_e2_authent (am_zlg600_handle_t  handle,
                                              uint16_t            authent_addr,
                                              uint8_t             key_sector);
 
 /**
- * \brief PLUS CPU¿¨SL3¸´Î»ÑéÖ¤£¨E2ÃÜÔ¿ÑéÖ¤£©,ÑéÖ¤µÄÃÜÔ¿À´×ÔÄ£¿éÄÚ²¿£¬µôµç²»¶ªÊ§
+ * \brief PLUS CPUå¡SL3å¤ä½éªŒè¯ï¼ˆE2å¯†é’¥éªŒè¯ï¼‰,éªŒè¯çš„å¯†é’¥æ¥è‡ªæ¨¡å—å†…éƒ¨ï¼Œæ‰ç”µä¸ä¸¢å¤±
  *
- *  ¸ÃÃüÁîÓÃÓÚPLUS CPU¿¨Í¨¹ıÊ×´ÎÑéÖ¤ºóµÄÊ¹ÓÃ¹ı³ÌÖĞ£¬¸´Î»¶ÁĞ´¼ÆÊıÆ÷ºÍÑéÖ¤µÈĞÅÏ¢¡£
+ *  è¯¥å‘½ä»¤ç”¨äºPLUS CPUå¡é€šè¿‡é¦–æ¬¡éªŒè¯åçš„ä½¿ç”¨è¿‡ç¨‹ä¸­ï¼Œå¤ä½è¯»å†™è®¡æ•°å™¨å’ŒéªŒè¯ç­‰ä¿¡æ¯ã€‚
  *
- * \param[in] handle        : ZLG600µÄ²Ù×÷¾ä±ú
+ * \param[in] handle        : ZLG600çš„æ“ä½œå¥æŸ„
  *
- * \retval AM_OK      : ÑéÖ¤³É¹¦
- * \retval -AM_EINVAL : ÑéÖ¤Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : ÑéÖ¤Ê§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : éªŒè¯æˆåŠŸ
+ * \retval -AM_EINVAL : éªŒè¯å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : éªŒè¯å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */
 int am_zlg600_pluscpu_sl3_reset_authent (am_zlg600_handle_t  handle);
 
 /**
- * \name PLUS CPU¿¨¶ÁÊı¾İµÄÄ£Ê½
+ * \name PLUS CPUå¡è¯»æ•°æ®çš„æ¨¡å¼
  * @{
  */
  
-/** \brief ÃüÁîÓĞMAC£»Êı¾İÃÜÎÄ(CIPHER)£»»ØÓ¦ÎŞMAC */
+/** \brief å‘½ä»¤æœ‰MACï¼›æ•°æ®å¯†æ–‡(CIPHER)ï¼›å›åº”æ— MAC */
 #define  AM_ZLG600_PLUSCPU_SL3_READMODE_M_C_NM    0x30
 
-/** \brief ÃüÁîÓĞMAC£»Êı¾İÃÜÎÄ(CIPHER)£»»ØÓ¦ÓĞMAC */
+/** \brief å‘½ä»¤æœ‰MACï¼›æ•°æ®å¯†æ–‡(CIPHER)ï¼›å›åº”æœ‰MAC */
 #define  AM_ZLG600_PLUSCPU_SL3_READMODE_M_C_M     0x31
 
-/** \brief ÃüÁîÓĞMAC£»Êı¾İÃ÷ÎÄ£»»ØÓ¦ÎŞMAC */
+/** \brief å‘½ä»¤æœ‰MACï¼›æ•°æ®æ˜æ–‡ï¼›å›åº”æ— MAC */
 #define  AM_ZLG600_PLUSCPU_SL3_READMODE_M_NC_NM   0x32
 
-/** \brief ÃüÁîÓĞMAC£»Êı¾İÃ÷ÎÄ£»»ØÓ¦ÓĞMAC */
+/** \brief å‘½ä»¤æœ‰MACï¼›æ•°æ®æ˜æ–‡ï¼›å›åº”æœ‰MAC */
 #define  AM_ZLG600_PLUSCPU_SL3_READMODE_M_NC_M    0x33
 
-/** \brief ÃüÁîÎŞMAC£»Êı¾İÃÜÎÄ£»»ØÓ¦ÎŞMAC */
+/** \brief å‘½ä»¤æ— MACï¼›æ•°æ®å¯†æ–‡ï¼›å›åº”æ— MAC */
 #define  AM_ZLG600_PLUSCPU_SL3_READMODE_NM_C_NM   0x34
 
-/** \brief ÃüÁîÎŞMAC£»Êı¾İÃÜÎÄ£»»ØÓ¦ÓĞMAC */
+/** \brief å‘½ä»¤æ— MACï¼›æ•°æ®å¯†æ–‡ï¼›å›åº”æœ‰MAC */
 #define  AM_ZLG600_PLUSCPU_SL3_READMODE_NM_C_M    0x35
 
-/** \brief ÃüÁîÎŞMAC£»Êı¾İÃ÷ÎÄ£»»ØÓ¦ÎŞMAC */
+/** \brief å‘½ä»¤æ— MACï¼›æ•°æ®æ˜æ–‡ï¼›å›åº”æ— MAC */
 #define  AM_ZLG600_PLUSCPU_SL3_READMODE_NM_NC_NM  0x36
 
-/** \brief ÃüÁîÎŞMAC£»Êı¾İÃ÷ÎÄ£»»ØÓ¦ÓĞMAC */
+/** \brief å‘½ä»¤æ— MACï¼›æ•°æ®æ˜æ–‡ï¼›å›åº”æœ‰MAC */
 #define  AM_ZLG600_PLUSCPU_SL3_READMODE_NM_NC_M   0x37
 
 /** @}*/
 
 /**
- * \brief PLUS CPU¿¨SL3¶ÁÊı¾İ¿é
+ * \brief PLUS CPUå¡SL3è¯»æ•°æ®å—
  *
- *  ¸Ãº¯ÊıÓÃÓÚ¶ÁÈ¡SL3µÄÊı¾İ¿é£¬ÔÚ¶ÁÊı¾İ¿éÖ®Ç°±ØĞè³É¹¦Ö´ĞĞÒ»´ÎÃÜÔ¿ÑéÖ¤¡£
+ *  è¯¥å‡½æ•°ç”¨äºè¯»å–SL3çš„æ•°æ®å—ï¼Œåœ¨è¯»æ•°æ®å—ä¹‹å‰å¿…éœ€æˆåŠŸæ‰§è¡Œä¸€æ¬¡å¯†é’¥éªŒè¯ã€‚
  *
- * \param[in]  handle        : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in]  read_mode     : ¶ÁÊı¾İÄ£Ê½£¬Ê¹ÓÃºê AM_ZLG600_PLUSCPU_SL3_READMODE_*
+ * \param[in]  handle        : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in]  read_mode     : è¯»æ•°æ®æ¨¡å¼ï¼Œä½¿ç”¨å® AM_ZLG600_PLUSCPU_SL3_READMODE_*
  *                             (#AM_ZLG600_PLUSCPU_SL3_READMODE_M_C_M)
- * \param[in]  start_block   : ¶ÁÊı¾İµÄÆğÊ¼¿éºÅ
- * \param[in]  block_num     : ¶ÁµÄ¿éÊı£¬1 ~ 3
- * \param[out] p_buf         : ¶ÁÈ¡µÄÊı¾İ´æ·Å»º³åÇø£¬´óĞ¡Ó¦¸ÃÎª£ºblock_num * 16
+ * \param[in]  start_block   : è¯»æ•°æ®çš„èµ·å§‹å—å·
+ * \param[in]  block_num     : è¯»çš„å—æ•°ï¼Œ1 ~ 3
+ * \param[out] p_buf         : è¯»å–çš„æ•°æ®å­˜æ”¾ç¼“å†²åŒºï¼Œå¤§å°åº”è¯¥ä¸ºï¼šblock_num * 16
  *
- * \retval AM_OK      : ÑéÖ¤³É¹¦
- * \retval -AM_EINVAL : ÑéÖ¤Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : ÑéÖ¤Ê§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : éªŒè¯æˆåŠŸ
+ * \retval -AM_EINVAL : éªŒè¯å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : éªŒè¯å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */
 int am_zlg600_pluscpu_sl3_read (am_zlg600_handle_t  handle,
                                 uint8_t             read_mode,
@@ -1915,39 +1915,39 @@ int am_zlg600_pluscpu_sl3_read (am_zlg600_handle_t  handle,
                                 uint8_t            *p_buf);
 
 /**
- * \name PLUS CPU¿¨Ğ´Êı¾İµÄÄ£Ê½
+ * \name PLUS CPUå¡å†™æ•°æ®çš„æ¨¡å¼
  * @{
  */
  
-/** \brief ÃüÁîÓĞMAC£»Êı¾İÃÜÎÄ(CIPHER)£»»ØÓ¦ÎŞMAC */
+/** \brief å‘½ä»¤æœ‰MACï¼›æ•°æ®å¯†æ–‡(CIPHER)ï¼›å›åº”æ— MAC */
 #define  AM_ZLG600_PLUSCPU_SL3_WRITEMODE_M_C_NM     0xA0
 
-/** \brief ÃüÁîÓĞMAC£»Êı¾İÃÜÎÄ(CIPHER)£»»ØÓ¦ÓĞMAC */
+/** \brief å‘½ä»¤æœ‰MACï¼›æ•°æ®å¯†æ–‡(CIPHER)ï¼›å›åº”æœ‰MAC */
 #define  AM_ZLG600_PLUSCPU_SL3_WRITEMODE_M_C_M      0xA1
 
-/** \brief ÃüÁîÓĞMAC£»Êı¾İÃ÷ÎÄ£»»ØÓ¦ÎŞMAC */
+/** \brief å‘½ä»¤æœ‰MACï¼›æ•°æ®æ˜æ–‡ï¼›å›åº”æ— MAC */
 #define  AM_ZLG600_PLUSCPU_SL3_WRITEMODE_M_NC_NM    0xA2
 
-/** \brief ÃüÁîÓĞMAC£»Êı¾İÃ÷ÎÄ£»»ØÓ¦ÓĞMAC */
+/** \brief å‘½ä»¤æœ‰MACï¼›æ•°æ®æ˜æ–‡ï¼›å›åº”æœ‰MAC */
 #define  AM_ZLG600_PLUSCPU_SL3_WRITEMODE_M_NC_M     0xA3
 
 /** @}*/
 
 /**
- * \brief PLUS CPU¿¨SL3Ğ´Êı¾İ¿é
+ * \brief PLUS CPUå¡SL3å†™æ•°æ®å—
  *
- *  ¸Ãº¯ÊıÓÃÓÚĞ´SL3µÄÊı¾İ¿é£¬ÔÚĞ´Êı¾İ¿éÖ®Ç°±ØĞè³É¹¦Ö´ĞĞÒ»´ÎÃÜÔ¿ÑéÖ¤¡£
+ *  è¯¥å‡½æ•°ç”¨äºå†™SL3çš„æ•°æ®å—ï¼Œåœ¨å†™æ•°æ®å—ä¹‹å‰å¿…éœ€æˆåŠŸæ‰§è¡Œä¸€æ¬¡å¯†é’¥éªŒè¯ã€‚
  *
- * \param[in] handle        : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] write_mode    : Ğ´Êı¾İÄ£Ê½£¬Ê¹ÓÃºêAM_ZLG600_PLUSCPU_SL3_WRITEMODE_*
+ * \param[in] handle        : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] write_mode    : å†™æ•°æ®æ¨¡å¼ï¼Œä½¿ç”¨å®AM_ZLG600_PLUSCPU_SL3_WRITEMODE_*
  *                            (#AM_ZLG600_PLUSCPU_SL3_WRITEMODE_M_C_NM)
- * \param[in] start_block   : Ğ´Êı¾İµÄÆğÊ¼¿éºÅ
- * \param[in] block_num     : Ğ´µÄ¿éÊı£¬1 ~ 3
- * \param[in] p_buf         : Ğ´ÈëÊı¾İ´æ·Å»º³åÇø£¬´óĞ¡Ó¦¸ÃÎª£ºblock_num * 16
+ * \param[in] start_block   : å†™æ•°æ®çš„èµ·å§‹å—å·
+ * \param[in] block_num     : å†™çš„å—æ•°ï¼Œ1 ~ 3
+ * \param[in] p_buf         : å†™å…¥æ•°æ®å­˜æ”¾ç¼“å†²åŒºï¼Œå¤§å°åº”è¯¥ä¸ºï¼šblock_num * 16
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ê§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  */
 int am_zlg600_pluscpu_sl3_write (am_zlg600_handle_t  handle,
                                  uint8_t             write_mode,
@@ -1956,32 +1956,32 @@ int am_zlg600_pluscpu_sl3_write (am_zlg600_handle_t  handle,
                                  uint8_t            *p_buf);
 
 /**
- * \name PLUS CPU ¿¨Öµ²Ù×÷Ä£Ê½
+ * \name PLUS CPU å¡å€¼æ“ä½œæ¨¡å¼
  * @{
  */
-#define AM_ZLG600_PLUSCPU_VALUE_ADD  0xB7  /**< \brief ¼Ó  */
-#define AM_ZLG600_PLUSCPU_VALUE_SUB  0xB9  /**< \brief ¼õ  */
+#define AM_ZLG600_PLUSCPU_VALUE_ADD  0xB7  /**< \brief åŠ   */
+#define AM_ZLG600_PLUSCPU_VALUE_SUB  0xB9  /**< \brief å‡  */
 /** @}*/     
                                 
 /**
- * \brief PLUS CPU¿¨Öµ¿é²Ù×÷
+ * \brief PLUS CPUå¡å€¼å—æ“ä½œ
  *
- * \param[in] handle     : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in] mode       : Öµ²Ù×÷µÄÄ£Ê½£¬¿ÉÒÔÊÇ¼Ó»ò¼õ£¬Ê¹ÓÃÏÂÁĞºê£º
+ * \param[in] handle     : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in] mode       : å€¼æ“ä½œçš„æ¨¡å¼ï¼Œå¯ä»¥æ˜¯åŠ æˆ–å‡ï¼Œä½¿ç”¨ä¸‹åˆ—å®ï¼š
  *                          - AM_ZLG600_PLUSCPU_VALUE_ADD
  *                          - AM_ZLG600_PLUSCPU_VALUE_SUB
- * \param[in] src_block  : ½øĞĞÖµ¿é²Ù×÷µÄÊı¾İÔ´¿éºÅ
- * \param[in] dst_block  : Öµ¿é²Ù×÷½áÊøºóÊı¾İ´æ·ÅµÄÄ¿µÄ¿éºÅ
- * \param[in] value      : 4×Ö½ÚÓĞ·ûºÅÊı
+ * \param[in] src_block  : è¿›è¡Œå€¼å—æ“ä½œçš„æ•°æ®æºå—å·
+ * \param[in] dst_block  : å€¼å—æ“ä½œç»“æŸåæ•°æ®å­˜æ”¾çš„ç›®çš„å—å·
+ * \param[in] value      : 4å­—èŠ‚æœ‰ç¬¦å·æ•°
  *
- * \retval AM_OK      : Ğ´Èë³É¹¦
- * \retval -AM_EINVAL : Ğ´ÈëÊ§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ğ´ÈëÊ§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : å†™å…¥æˆåŠŸ
+ * \retval -AM_EINVAL : å†™å…¥å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å†™å…¥å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  *
- * \note Òª½øĞĞ´ËÀà²Ù×÷£¬¿éÊı¾İ±ØĞëÒªÓĞÖµ¿éµÄ¸ñÊ½£¬¿É²Î¿¼NXPµÄÏà¹ØÎÄµµ¡£Èô¿¨¿é
- * ºÅÓë´«Êä¿éºÅÏàÍ¬£¬Ôò½«²Ù×÷ºóµÄ½á¹ûĞ´ÈëÔ­À´µÄ¿éÄÚ£»Èô¿¨¿éºÅÓë´«Êä¿éºÅ²»ÏàÍ¬£¬
- * Ôò½«²Ù×÷ºóµÄ½á¹ûĞ´Èë´«Êä¿éÄÚ£¬½á¹û´«Êä¿éÄÚµÄÊı¾İ±»¸²¸Ç£¬Ô­¿éÄÚµÄÖµ²»±ä¡£
- * ´¦ÓÚµÈ¼¶2µÄPLUS CPU¿¨²»Ö§³ÖÖµ¿é²Ù×÷£¬µÈ¼¶1¡¢3Ö§³Ö¡£
+ * \note è¦è¿›è¡Œæ­¤ç±»æ“ä½œï¼Œå—æ•°æ®å¿…é¡»è¦æœ‰å€¼å—çš„æ ¼å¼ï¼Œå¯å‚è€ƒNXPçš„ç›¸å…³æ–‡æ¡£ã€‚è‹¥å¡å—
+ * å·ä¸ä¼ è¾“å—å·ç›¸åŒï¼Œåˆ™å°†æ“ä½œåçš„ç»“æœå†™å…¥åŸæ¥çš„å—å†…ï¼›è‹¥å¡å—å·ä¸ä¼ è¾“å—å·ä¸ç›¸åŒï¼Œ
+ * åˆ™å°†æ“ä½œåçš„ç»“æœå†™å…¥ä¼ è¾“å—å†…ï¼Œç»“æœä¼ è¾“å—å†…çš„æ•°æ®è¢«è¦†ç›–ï¼ŒåŸå—å†…çš„å€¼ä¸å˜ã€‚
+ * å¤„äºç­‰çº§2çš„PLUS CPUå¡ä¸æ”¯æŒå€¼å—æ“ä½œï¼Œç­‰çº§1ã€3æ”¯æŒã€‚
  */
 int am_zlg600_pluscpu_val_operate (am_zlg600_handle_t  handle,
                                    uint8_t             mode,
@@ -1990,31 +1990,31 @@ int am_zlg600_pluscpu_val_operate (am_zlg600_handle_t  handle,
                                    int32_t             value);
 
 /**
- * \brief ¶ÁÈ¡Éí·İÖ¤ĞÅÏ¢
+ * \brief è¯»å–èº«ä»½è¯ä¿¡æ¯
  *
- * \param[in]  handle   : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in]  req_mode : ÇëÇóÄ£Ê½£¬¿ÉÊ¹ÓÃÏÂÁĞºê£º
+ * \param[in]  handle   : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in]  req_mode : è¯·æ±‚æ¨¡å¼ï¼Œå¯ä½¿ç”¨ä¸‹åˆ—å®ï¼š
  *                           - #AM_ZLG600_PICCB_REQ_IDLE
  *                           - #AM_ZLG600_PICCB_REQ_ALL
- * \param[out] p_info : Éí·İÖ¤ĞÅÏ¢»º³åÇø£¨´óĞ¡Ó¦Îª8×Ö½Ú£©
+ * \param[out] p_info : èº«ä»½è¯ä¿¡æ¯ç¼“å†²åŒºï¼ˆå¤§å°åº”ä¸º8å­—èŠ‚ï¼‰
  *
- * \retval AM_OK      : Ğ´Èë³É¹¦
- * \retval -AM_EINVAL : Ğ´ÈëÊ§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Ğ´ÈëÊ§°Ü£¬Êı¾İÍ¨ĞÅ³ö´í
+ * \retval AM_OK      : å†™å…¥æˆåŠŸ
+ * \retval -AM_EINVAL : å†™å…¥å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å†™å…¥å¤±è´¥ï¼Œæ•°æ®é€šä¿¡å‡ºé”™
  *
- * \note Òª½øĞĞ¶ÁÉí·İÖ¤ĞÅÏ¢²Ù×÷£¬ĞèÏÈµ÷ÓÃ am_zlg600_ic_isotype_set ½Ó¿Ú½«¿¨ÀàĞÍÉèÖÃÎªB¿¨,
- *       ¶ÁÈ¡Íê³ÉÖ®ºóÓ¦¸ÃÊÓÇé¿öµ÷ÓÃ am_zlg600_ic_isotype_set ½«¿¨ÀàĞÍ»¹Ô­»ò²»»¹Ô­¡£
+ * \note è¦è¿›è¡Œè¯»èº«ä»½è¯ä¿¡æ¯æ“ä½œï¼Œéœ€å…ˆè°ƒç”¨ am_zlg600_ic_isotype_set æ¥å£å°†å¡ç±»å‹è®¾ç½®ä¸ºBå¡,
+ *       è¯»å–å®Œæˆä¹‹ååº”è¯¥è§†æƒ…å†µè°ƒç”¨ am_zlg600_ic_isotype_set å°†å¡ç±»å‹è¿˜åŸæˆ–ä¸è¿˜åŸã€‚
  */
 int am_zlg600_id_card_info_get (am_zlg600_handle_t handle, uint8_t req_mode, uint8_t *p_info);
 
 /**
- * \brief Ö¸Áî³¬Ê±Ê±¼äÉèÖÃ
+ * \brief æŒ‡ä»¤è¶…æ—¶æ—¶é—´è®¾ç½®
  *
- * \param[in]  handle     : ZLG600µÄ²Ù×÷¾ä±ú
- * \param[in]  timeout_ms : Ö¸Áî³¬Ê±Ê±¼ä£¨ºÁÃë£©
+ * \param[in]  handle     : ZLG600çš„æ“ä½œå¥æŸ„
+ * \param[in]  timeout_ms : æŒ‡ä»¤è¶…æ—¶æ—¶é—´ï¼ˆæ¯«ç§’ï¼‰
  *
- * \retval AM_OK : ÉèÖÃ³É¹¦
- * \retval ÆäËû     : ÉèÖÃÊ§°Ü
+ * \retval AM_OK : è®¾ç½®æˆåŠŸ
+ * \retval å…¶ä»–     : è®¾ç½®å¤±è´¥
  */
 int am_zlg600_cmd_timeout_set (am_zlg600_handle_t handle, uint32_t timeout_ms);
 

@@ -12,13 +12,13 @@
 
 /**
  * \file
- * \brief MiniPort-View ¡¢ MiniPort-Key ºÍ  MiniPort-595 ÁªºÏÊ¹ÓÃ
+ * \brief MiniPort-View ã€ MiniPort-Key å’Œ  MiniPort-595 è”åˆä½¿ç”¨
  *
- * ±¾Çý¶¯ÊÊºÏÒÔÏÂÇé¿ö£º
- * 1. ÊýÂë¹Ü¶ÎÂëÊ¹ÓÃGPIOÇý¶¯
- * 2. ÊýÂë¹ÜÎ»ÂëÊ¹ÓÃHC595Çý¶¯
- * 3. ¾ØÕó¼üÅÌ²ÉÓÃÁÐÉ¨Ãè·½Ê½£¬ÁÐÏßÓëÊýÂë¹ÜÎ»Ñ¡Ïß¸´ÓÃ
- * 4. ¾ØÕó¼üÅÌµÄ¼üÖµ¶ÁÈ¡Ê¹ÓÃGPIO¶ÁÈ¡£¨¸ÃGPIOÓëÊýÂë¹Ü¶ÀÁ¢£©
+ * æœ¬é©±åŠ¨é€‚åˆä»¥ä¸‹æƒ…å†µï¼š
+ * 1. æ•°ç ç®¡æ®µç ä½¿ç”¨GPIOé©±åŠ¨
+ * 2. æ•°ç ç®¡ä½ç ä½¿ç”¨HC595é©±åŠ¨
+ * 3. çŸ©é˜µé”®ç›˜é‡‡ç”¨åˆ—æ‰«ææ–¹å¼ï¼Œåˆ—çº¿ä¸Žæ•°ç ç®¡ä½é€‰çº¿å¤ç”¨
+ * 4. çŸ©é˜µé”®ç›˜çš„é”®å€¼è¯»å–ä½¿ç”¨GPIOè¯»å–ï¼ˆè¯¥GPIOä¸Žæ•°ç ç®¡ç‹¬ç«‹ï¼‰
  *
  * \internal
  * \par modification history:
@@ -89,7 +89,7 @@ int am_miniport_view_key_595_deinit (am_miniport_view_key_595_dev_t *p_dev)
         return -AM_EINVAL;
     }
 
-    /* É¾³ý±ê×¼µÄÊýÂë¹ÜÉè±¸  */
+    /* åˆ é™¤æ ‡å‡†çš„æ•°ç ç®¡è®¾å¤‡  */
     return am_digitron_scan_hc595_gpio_deinit(&p_dev->scan_hc595_gpio_dev);
 }
 

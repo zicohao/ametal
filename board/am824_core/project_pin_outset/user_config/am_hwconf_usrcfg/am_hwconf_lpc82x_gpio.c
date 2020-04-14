@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief LPC82X GPIO �û������ļ�
+ * \brief LPC82X GPIO 用户配置文件
  * \sa am_hwconf_lpc82x_gpio.c
  *
  * \internal
@@ -35,7 +35,7 @@
  */
 
 /**
- * \brief GPIO ƽ̨��ʼ��
+ * \brief GPIO 平台初始化
  */
 am_local void __lpc82x_gpio_plfm_init (void)
 {
@@ -47,7 +47,7 @@ am_local void __lpc82x_gpio_plfm_init (void)
 }
 
 /**
- * \brief GPIO ƽ̨���ʼ��
+ * \brief GPIO 平台解初始化
  */
 am_local void __lpc82x_gpio_plfm_deinit (void)
 {
@@ -59,50 +59,50 @@ am_local void __lpc82x_gpio_plfm_deinit (void)
 }
 
 /**
- * \brief ʹ�õ��ж�ͨ������
+ * \brief 使用的中断通道数量
  *
- * Ĭ��ʹ�����е��ж�ͨ�����û����Ը���ʵ��ʹ��ͨ���������Ĵ�ֵ�������ڴ��ռ��
+ * 默认使用所有的中断通道，用户可以根据实际使用通道数，更改此值，减少内存的占用
  *
- * \note �����ֵΪ 0�����޷�ʹ�� GPIO �жϹ��ܣ����ǿ���ʹ������ GPIO ����
+ * \note 如果此值为 0，将无法使用 GPIO 中断功能，但是可以使用其他 GPIO 功能
  */
 #define __GPIO_PINT_USE_COUNT    AMHW_LPC82X_PINT_CHAN_NUM
 
-/** \brief ���Ŵ�����Ϣ�ڴ� */
+/** \brief 引脚触发信息内存 */
 am_local
 struct am_lpc82x_gpio_trigger_info __g_gpio_triginfos[__GPIO_PINT_USE_COUNT];
 
-/** \brief ���Ŵ�����Ϣӳ�� */
+/** \brief 引脚触发信息映射 */
 am_local uint8_t                   __g_gpio_infomap[__GPIO_PINT_USE_COUNT];
 
-/** \brief GPIO �豸��Ϣ */
+/** \brief GPIO 设备信息 */
 am_local am_const am_lpc82x_gpio_devinfo_t __g_lpc82x_gpio_devinfo = {
 
-    LPC82X_SWM_BASE,             /* SWM �Ĵ������ַ */
-    LPC82X_GPIO_BASE,            /* GPIO �Ĵ������ַ */
-    LPC82X_IOCON_BASE,           /* IOCON �Ĵ������ַ */
-    LPC82X_PINT_BASE,            /* PINT �Ĵ������ַ */
+    LPC82X_SWM_BASE,             /* SWM 寄存器块基址 */
+    LPC82X_GPIO_BASE,            /* GPIO 寄存器块基址 */
+    LPC82X_IOCON_BASE,           /* IOCON 寄存器块基址 */
+    LPC82X_PINT_BASE,            /* PINT 寄存器块基址 */
     {
-        INUM_PIN_INT0,           /* PINT0 �жϺ� */
-        INUM_PIN_INT1,           /* PINT1 �жϺ� */
-        INUM_PIN_INT2,           /* PINT2 �жϺ� */
-        INUM_PIN_INT3,           /* PINT3 �жϺ� */
-        INUM_PIN_INT4,           /* PINT4 �жϺ� */
-        INUM_PIN_INT5,           /* PINT5 �жϺ� */
-        INUM_PIN_INT6,           /* PINT6 �жϺ� */
-        INUM_PIN_INT7,           /* PINT7 �жϺ� */
+        INUM_PIN_INT0,           /* PINT0 中断号 */
+        INUM_PIN_INT1,           /* PINT1 中断号 */
+        INUM_PIN_INT2,           /* PINT2 中断号 */
+        INUM_PIN_INT3,           /* PINT3 中断号 */
+        INUM_PIN_INT4,           /* PINT4 中断号 */
+        INUM_PIN_INT5,           /* PINT5 中断号 */
+        INUM_PIN_INT6,           /* PINT6 中断号 */
+        INUM_PIN_INT7,           /* PINT7 中断号 */
     },
-    __GPIO_PINT_USE_COUNT,       /* GPIO ֧�ֵ������жϺ����� */
-    &__g_gpio_infomap[0],        /* ���Ŵ�����Ϣӳ�� */
-    &__g_gpio_triginfos[0],      /* ���Ŵ�����Ϣ�ڴ� */
-    __lpc82x_gpio_plfm_init,     /* ƽ̨��ʼ������ */
-    __lpc82x_gpio_plfm_deinit    /* ƽ̨���ʼ������ */
+    __GPIO_PINT_USE_COUNT,       /* GPIO 支持的引脚中断号数量 */
+    &__g_gpio_infomap[0],        /* 引脚触发信息映射 */
+    &__g_gpio_triginfos[0],      /* 引脚触发信息内存 */
+    __lpc82x_gpio_plfm_init,     /* 平台初始化函数 */
+    __lpc82x_gpio_plfm_deinit    /* 平台解初始化函数 */
 };
 
-/** \brief GPIO �豸ʵ�� */
+/** \brief GPIO 设备实例 */
 am_local am_lpc82x_gpio_dev_t __g_lpc82x_gpio_dev;
 
 /**
- * \brief GPIO ʵ����ʼ��
+ * \brief GPIO 实例初始化
  */
 int am_lpc82x_gpio_inst_init (void)
 {
@@ -110,7 +110,7 @@ int am_lpc82x_gpio_inst_init (void)
 }
 
 /**
- * \brief GPIO ʵ�����ʼ��
+ * \brief GPIO 实例解初始化
  */
 void am_lpc82x_gpio_inst_deinit (void)
 {

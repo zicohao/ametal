@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief DS1302Èí¼ş°üÊµÏÖ
+ * \brief DS1302è½¯ä»¶åŒ…å®ç°
  *
  * \internal
  * \par Modification history
@@ -29,11 +29,11 @@
 
 
 /*****************************************************************************
- * ºê¶¨Òå
+ * å®å®šä¹‰
  ****************************************************************************/
 
 /*
- * \brief ¼Ä´æÆ÷µØÖ·
+ * \brief å¯„å­˜å™¨åœ°å€
  */
 #define __DS1302_REG_SECOND_WD               0X80
 #define __DS1302_REG_SECOND_RD               0X81
@@ -61,16 +61,16 @@
 #define __DS1302_REG_CLOCK_BURST_RD          0XBF
 
 /**
- * \brief ÆäËûºê¶¨Òå
+ * \brief å…¶ä»–å®å®šä¹‰
  */
 #define __DS1302_YEAR_OFFS    100
 
 /*****************************************************************************
- * DS1302Çı¶¯º¯ÊıÀàĞÍ¶¨Òå
+ * DS1302é©±åŠ¨å‡½æ•°ç±»å‹å®šä¹‰
  ****************************************************************************/
 
 /**
- * \brief DS1302Çı¶¯º¯Êı
+ * \brief DS1302é©±åŠ¨å‡½æ•°
  */
 struct __am_ds1302_drv_funcs {
 
@@ -81,18 +81,18 @@ struct __am_ds1302_drv_funcs {
 
 
 /*****************************************************************************
- * ¾²Ì¬ÉùÃ÷
+ * é™æ€å£°æ˜
  ****************************************************************************/
 
 /* RTC driver function implementation */
 static int __ds1302_time_set (void *p_drv, am_tm_t *p_tm);
 static int __ds1302_time_get (void *p_drv, am_tm_t *p_tm);
 
-/* DS1302 SPIÇı¶¯º¯ÊıÉùÃ÷*/
+/* DS1302 SPIé©±åŠ¨å‡½æ•°å£°æ˜*/
 static int __ds1302_spi_write(void *p_drv, uint8_t addr, uint8_t *p_buf, size_t nbytes);
 static int __ds1302_spi_read (void *p_drv, uint8_t addr, uint8_t *p_buf, size_t nbytes);
 
-/* DS1302 GPIOÇı¶¯º¯ÊıÉùÃ÷*/
+/* DS1302 GPIOé©±åŠ¨å‡½æ•°å£°æ˜*/
 static int __ds1302_gpio_write(void *p_drv, uint8_t addr, uint8_t *p_buf, size_t nbytes);
 static int __ds1302_gpio_read(void *p_drv, uint8_t addr, uint8_t *p_buf, size_t nbytes);
 
@@ -105,7 +105,7 @@ static struct am_rtc_drv_funcs __g_rtc_drv_funcs = {
 };
 
 /**
- * \brief DS1302 SPI·½Ê½Çı¶¯º¯Êı¶¨Òå
+ * \brief DS1302 SPIæ–¹å¼é©±åŠ¨å‡½æ•°å®šä¹‰
  */
 static struct __am_ds1302_drv_funcs __g_ds1302_spi_drv_funcs = {
     __ds1302_spi_write,
@@ -113,7 +113,7 @@ static struct __am_ds1302_drv_funcs __g_ds1302_spi_drv_funcs = {
 };
 
 /**
- * \brief DS1302 gpio·½Ê½Çı¶¯º¯Êı¶¨Òå
+ * \brief DS1302 gpioæ–¹å¼é©±åŠ¨å‡½æ•°å®šä¹‰
  */
 static struct __am_ds1302_drv_funcs __g_ds1302_gpio_drv_funcs = {
     __ds1302_gpio_write,
@@ -123,27 +123,27 @@ static struct __am_ds1302_drv_funcs __g_ds1302_gpio_drv_funcs = {
 
 
 /**
- * \brief ÈòÄêºÍÆ½ÄêÃ¿¸öÔÂ¶ÔÓ¦µÄÌìÊı
+ * \brief é—°å¹´å’Œå¹³å¹´æ¯ä¸ªæœˆå¯¹åº”çš„å¤©æ•°
  */
 static const uint8_t __mdays[2][12] = {
-    /* Æ½Äê */
+    /* å¹³å¹´ */
     {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31},
-    /* ÈòÄê */
+    /* é—°å¹´ */
     {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}
 };
 
 
 /*****************************************************************************
- * ÄÚ²¿º¯ÊıÊµÏÖ
+ * å†…éƒ¨å‡½æ•°å®ç°
  ****************************************************************************/
 
 /**
- * \brief ÅĞ¶ÏÄê·İÊÇ·ñÎªÈòÄê
+ * \brief åˆ¤æ–­å¹´ä»½æ˜¯å¦ä¸ºé—°å¹´
  *
- * \param[in] year : Äê·İ
+ * \param[in] year : å¹´ä»½
  *
- * \retval 1 : ÈòÄê
- * \retval 0 : Æ½Äê
+ * \retval 1 : é—°å¹´
+ * \retval 0 : å¹³å¹´
  */
 static uint8_t __ds1302_leap_year_check (uint16_t year)
 {
@@ -151,14 +151,14 @@ static uint8_t __ds1302_leap_year_check (uint16_t year)
 }
 
 /**
- * \brief ¼ÆËãÕâÊÇÒ»ÄêÖĞµÄµÚ¼¸Ìì
+ * \brief è®¡ç®—è¿™æ˜¯ä¸€å¹´ä¸­çš„ç¬¬å‡ å¤©
  *
- * \param[in] year  : Äê·İ
- * \param[in] month : ÔÂ·İ
- * \param[in] day   : Ìì
+ * \param[in] year  : å¹´ä»½
+ * \param[in] month : æœˆä»½
+ * \param[in] day   : å¤©
  *
- * \retval 1 : ÈòÄê
- * \retval 0 : Æ½Äê
+ * \retval 1 : é—°å¹´
+ * \retval 0 : å¹³å¹´
  */
 static uint8_t __ds1302_day_of_year (uint16_t year, uint8_t month, uint8_t day)
 {
@@ -178,12 +178,12 @@ static uint8_t __ds1302_day_of_year (uint16_t year, uint8_t month, uint8_t day)
 }
 
 /**
- * \brief ¼ìÑéÊ±¼äĞÅÏ¢µÄÓĞĞ§ĞÔ
+ * \brief æ£€éªŒæ—¶é—´ä¿¡æ¯çš„æœ‰æ•ˆæ€§
  *
- * \param[in] p_tm : Ö¸ÏòÊ±¼ä½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] p_tm : æŒ‡å‘æ—¶é—´ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \retval AM_OK      : ÉèÖÃ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : è®¾ç½®æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 static int __ds1302_time_validator (am_tm_t *p_tm)
 {
@@ -203,23 +203,23 @@ static int __ds1302_time_validator (am_tm_t *p_tm)
 }
 
 /**
- * \brief DS1302Éè±¸Ğ´Ò»¸ö×Ö½Ú
+ * \brief DS1302è®¾å¤‡å†™ä¸€ä¸ªå­—èŠ‚
  *
- * \param[in] p_dev : Ö¸ÏòDS1302Éè±¸½á¹¹Ìå
- * \param[in] data  : Ğ´ÈëµÄÒ»×Ö½ÚÊı¾İ
+ * \param[in] p_dev : æŒ‡å‘DS1302è®¾å¤‡ç»“æ„ä½“
+ * \param[in] data  : å†™å…¥çš„ä¸€å­—èŠ‚æ•°æ®
  *
- * \return AM_OK±íÊ¾³õÊ¼»¯³É¹¦, ÆäËûÊ§°Ü
+ * \return AM_OKè¡¨ç¤ºåˆå§‹åŒ–æˆåŠŸ, å…¶ä»–å¤±è´¥
  */
 static int __ds1302_write_byte (am_ds1302_gpio_dev_t *p_dev, uint8_t data)
 {
     uint8_t i = 0;
 
-    /* ²ÎÊıÅĞ¶Ï */
+    /* å‚æ•°åˆ¤æ–­ */
     if (NULL == p_dev){
         return AM_ERROR;
     }
 
-    /* ÇåÁãÊ±ÖÓ */
+    /* æ¸…é›¶æ—¶é’Ÿ */
     am_gpio_set(p_dev->p_gpio_devinfo->sclk_pin, 0);
     am_udelay(2);
     for (i = 0; i < 8; i++) {
@@ -240,11 +240,11 @@ static int __ds1302_write_byte (am_ds1302_gpio_dev_t *p_dev, uint8_t data)
 
 
 /**
- * \brief DS1302Éè±¸¶ÁÒ»¸ö×Ö½Ú
+ * \brief DS1302è®¾å¤‡è¯»ä¸€ä¸ªå­—èŠ‚
  *
- * \param[in] p_dev   :  Ö¸ÏòDS1302Éè±¸½á¹¹Ìå
+ * \param[in] p_dev   :  æŒ‡å‘DS1302è®¾å¤‡ç»“æ„ä½“
  *
- * \return    ret_val :  ·µ»Ø¶Áµ½µÄÖµ
+ * \return    ret_val :  è¿”å›è¯»åˆ°çš„å€¼
  */
 static uint8_t __ds1302_read_byte (am_ds1302_gpio_dev_t *p_dev)
 {
@@ -269,35 +269,35 @@ static uint8_t __ds1302_read_byte (am_ds1302_gpio_dev_t *p_dev)
 }
 
 /**
- * \brief DS1302Éè±¸Ğ´²Ù×÷, GPIOÄ£Ê½
+ * \brief DS1302è®¾å¤‡å†™æ“ä½œ, GPIOæ¨¡å¼
  *
- * \param[in] p_dev : Ö¸ÏòDS1302Éè±¸½á¹¹Ìå
- * \param[in] data  : Ğ´ÈëµÄÒ»×Ö½ÚÊı¾İ
- * \param[in] addr  : Ğ´ÈëµÄµØÖ·
+ * \param[in] p_dev : æŒ‡å‘DS1302è®¾å¤‡ç»“æ„ä½“
+ * \param[in] data  : å†™å…¥çš„ä¸€å­—èŠ‚æ•°æ®
+ * \param[in] addr  : å†™å…¥çš„åœ°å€
  *
- * \return AM_OK±íÊ¾³õÊ¼»¯³É¹¦, ÆäËûÊ§°Ü
+ * \return AM_OKè¡¨ç¤ºåˆå§‹åŒ–æˆåŠŸ, å…¶ä»–å¤±è´¥
  */
 static int __ds1302_gpio_write(void *p_drv, uint8_t addr, uint8_t *p_buf, size_t nbytes)
 {
     int i = 0;
     am_ds1302_gpio_dev_t * p_dev = (am_ds1302_gpio_dev_t *)p_drv;
 
-    /* ²ÎÊıÅĞ¶Ï */
+    /* å‚æ•°åˆ¤æ–­ */
     if (NULL == p_dev){
         return AM_ERROR;
     }
-    /* ½ûÖ¹·¢ËÍ */
+    /* ç¦æ­¢å‘é€ */
     am_gpio_set(p_dev->p_gpio_devinfo->ce_pin, 0);
 
-    /* ÇåÁãÊ±ÖÓ */
+    /* æ¸…é›¶æ—¶é’Ÿ */
     am_gpio_set(p_dev->p_gpio_devinfo->sclk_pin, 0);
 
-    /* À­¸ßce£¬¿ªÊ¼´«ÊäÊı¾İ*/
+    /* æ‹‰é«˜ceï¼Œå¼€å§‹ä¼ è¾“æ•°æ®*/
     am_gpio_set(p_dev->p_gpio_devinfo->ce_pin, 1);
 
     am_udelay(2);
 
-    /* °ÑIOÉèÖÃÎªÊä³ö */
+    /* æŠŠIOè®¾ç½®ä¸ºè¾“å‡º */
     am_gpio_pin_cfg(p_dev->p_gpio_devinfo->io_pin, AM_GPIO_PUSH_PULL | AM_GPIO_OUTPUT_INIT_LOW);
 
     __ds1302_write_byte(p_dev, addr);
@@ -306,23 +306,23 @@ static int __ds1302_gpio_write(void *p_drv, uint8_t addr, uint8_t *p_buf, size_t
         __ds1302_write_byte(p_dev, *p_buf++);
     }
 
-    /* ÇåÁãÊ±ÖÓ */
+    /* æ¸…é›¶æ—¶é’Ÿ */
     am_gpio_set(p_dev->p_gpio_devinfo->sclk_pin, 0);
 
-    /* ½ûÖ¹·¢ËÍ */
+    /* ç¦æ­¢å‘é€ */
     am_gpio_set(p_dev->p_gpio_devinfo->ce_pin, 0);
 
     return AM_OK;
 }
 
 /**
- * \brief DS1302Éè±¸Ğ´²Ù×÷,SPIÄ£Ê½
+ * \brief DS1302è®¾å¤‡å†™æ“ä½œ,SPIæ¨¡å¼
  *
- * \param[in] p_dev : Ö¸ÏòDS1302Éè±¸½á¹¹Ìå
- * \param[in] data  : Ğ´ÈëµÄÒ»×Ö½ÚÊı¾İ
- * \param[in] addr  : Ğ´ÈëµÄµØÖ·
+ * \param[in] p_dev : æŒ‡å‘DS1302è®¾å¤‡ç»“æ„ä½“
+ * \param[in] data  : å†™å…¥çš„ä¸€å­—èŠ‚æ•°æ®
+ * \param[in] addr  : å†™å…¥çš„åœ°å€
  *
- * \return AM_OK±íÊ¾³õÊ¼»¯³É¹¦, ÆäËûÊ§°Ü
+ * \return AM_OKè¡¨ç¤ºåˆå§‹åŒ–æˆåŠŸ, å…¶ä»–å¤±è´¥
  */
 static int __ds1302_spi_write(void *p_drv, uint8_t addr, uint8_t *p_buf, size_t nbytes)
 {
@@ -331,63 +331,63 @@ static int __ds1302_spi_write(void *p_drv, uint8_t addr, uint8_t *p_buf, size_t 
 
     uint8_t com = addr;
 
-    /* Ğ´ÈëµØÖ·ºÍÊı¾İ */
+    /* å†™å…¥åœ°å€å’Œæ•°æ® */
     return am_spi_write_then_write(&p_dev->spi_dev, &com,1, p_buf, nbytes);
 }
 
 
 /**
- * \brief DS1302Éè±¸¶Á²Ù×÷£¬GPIOÄ£Ê½
+ * \brief DS1302è®¾å¤‡è¯»æ“ä½œï¼ŒGPIOæ¨¡å¼
  *
- * \param[in] p_dev : Ö¸ÏòDS1302Éè±¸½á¹¹Ìå
- * \param[in] addr  : ¶ÁÊı¾İµÄµØÖ·
+ * \param[in] p_dev : æŒ‡å‘DS1302è®¾å¤‡ç»“æ„ä½“
+ * \param[in] addr  : è¯»æ•°æ®çš„åœ°å€
  *
- * \return AM_OK±íÊ¾³õÊ¼»¯³É¹¦, ÆäËûÊ§°Ü
+ * \return AM_OKè¡¨ç¤ºåˆå§‹åŒ–æˆåŠŸ, å…¶ä»–å¤±è´¥
  */
 static int __ds1302_gpio_read(void *p_drv, uint8_t addr, uint8_t *p_buf, size_t nbytes)
 {
     int i = 0;
     am_ds1302_gpio_dev_t * p_dev = (am_ds1302_gpio_dev_t *)p_drv;
 
-    /* ½ûÖ¹·¢ËÍ */
+    /* ç¦æ­¢å‘é€ */
     am_gpio_set(p_dev->p_gpio_devinfo->ce_pin, 0);
 
-    /* ÇåÁãÊ±ÖÓ */
+    /* æ¸…é›¶æ—¶é’Ÿ */
     am_gpio_set(p_dev->p_gpio_devinfo->sclk_pin, 0);
 
-    /* À­¸ßce£¬¿ªÊ¼´«ÊäÊı¾İ*/
+    /* æ‹‰é«˜ceï¼Œå¼€å§‹ä¼ è¾“æ•°æ®*/
     am_gpio_set(p_dev->p_gpio_devinfo->ce_pin, 1);
 
-    /* °ÑIOÉèÖÃÎªÊä³ö */
+    /* æŠŠIOè®¾ç½®ä¸ºè¾“å‡º */
     am_gpio_pin_cfg(p_dev->p_gpio_devinfo->io_pin, AM_GPIO_PUSH_PULL | AM_GPIO_OUTPUT_INIT_LOW);
 
-    /* Ğ´ÈëµØÖ· */
+    /* å†™å…¥åœ°å€ */
     __ds1302_write_byte(p_dev, addr);
 
-    /* °ÑIOÉèÖÃÎªÊäÈë */
+    /* æŠŠIOè®¾ç½®ä¸ºè¾“å…¥ */
     am_gpio_pin_cfg(p_dev->p_gpio_devinfo->io_pin, AM_GPIO_PULLUP | AM_GPIO_INPUT);
 
-    /* ¶Á³öÊı¾İ */
+    /* è¯»å‡ºæ•°æ® */
     for ( i = 0; i < nbytes; i++) {
         *p_buf++= __ds1302_read_byte(p_dev);
     }
 
-    /* À­µÍÊ±ÖÓ */
+    /* æ‹‰ä½æ—¶é’Ÿ */
     am_gpio_set(p_dev->p_gpio_devinfo->sclk_pin, 0);
 
-    /* ½ûÖ¹·¢ËÍ */
+    /* ç¦æ­¢å‘é€ */
     am_gpio_set(p_dev->p_gpio_devinfo->ce_pin, 0);
 
     return AM_OK;
 }
 
 /**
- * \brief DS1302Éè±¸¶Á²Ù×÷£¬SPIÄ£Ê½
+ * \brief DS1302è®¾å¤‡è¯»æ“ä½œï¼ŒSPIæ¨¡å¼
  *
- * \param[in] p_dev  : Ö¸ÏòDS1302Éè±¸½á¹¹Ìå
- * \param[in] addr   : ¶ÁÊı¾İµÄµØÖ·
+ * \param[in] p_dev  : æŒ‡å‘DS1302è®¾å¤‡ç»“æ„ä½“
+ * \param[in] addr   : è¯»æ•°æ®çš„åœ°å€
  *
- * \return   ret_val : ¶Áµ½µÄÖµ
+ * \return   ret_val : è¯»åˆ°çš„å€¼
  */
 static int __ds1302_spi_read(void *p_drv, uint8_t addr, uint8_t *p_buf, size_t nbytes)
 {
@@ -396,39 +396,39 @@ static int __ds1302_spi_read(void *p_drv, uint8_t addr, uint8_t *p_buf, size_t n
 
     uint8_t com = addr;
 
-    /* ÏÈ·¢µØÖ·ÔÚ·¢Êı¾İ */
+    /* å…ˆå‘åœ°å€åœ¨å‘æ•°æ® */
     return am_spi_write_then_read(&(p_dev->spi_dev), &com, 1, p_buf, nbytes);
 }
 
 /**
- * \brief DS1302Éè±¸³õÊ¼»¯
+ * \brief DS1302è®¾å¤‡åˆå§‹åŒ–
  *
- * \param[in] p_dev : Ö¸ÏòDS1302Éè±¸½á¹¹Ìå
+ * \param[in] p_dev : æŒ‡å‘DS1302è®¾å¤‡ç»“æ„ä½“
  *
- * \return AM_OK±íÊ¾³õÊ¼»¯³É¹¦, ÆäËûÊ§°Ü
+ * \return AM_OKè¡¨ç¤ºåˆå§‹åŒ–æˆåŠŸ, å…¶ä»–å¤±è´¥
  */
 static int __ds1302_init (am_ds1302_dev_t *p_dev)
 {
     uint8_t data = 0;
     struct __am_ds1302_drv_funcs *p_funcs = (struct __am_ds1302_drv_funcs *)(p_dev->pfn);
 
-    /* ²ÎÊıÅĞ¶Ï */
+    /* å‚æ•°åˆ¤æ–­ */
     if (NULL == p_dev) {
         return -AM_EINVAL;
     }
 
     data = 0x00;
 
-    /* ½ûÖ¹Ğ´±£»¤ */
+    /* ç¦æ­¢å†™ä¿æŠ¤ */
     p_funcs->pfn_ds1302_write(p_dev->p_drv, __DS1302_REG_CONTROL_WD, &data,1);
 
-    /* Æô¶¯Ê±ÖÓ */
+    /* å¯åŠ¨æ—¶é’Ÿ */
     p_funcs->pfn_ds1302_write(p_dev->p_drv, __DS1302_REG_SECOND_WD, &data, 1);
 
-    /* Ñ¡Ôñ24Ğ¡Ê±ÖÆ */
+    /* é€‰æ‹©24å°æ—¶åˆ¶ */
     p_funcs->pfn_ds1302_write(p_dev->p_drv, __DS1302_REG_HR_WD, &data, 1);
 
-    /* ÔÊĞíĞ´±£»¤ */
+    /* å…è®¸å†™ä¿æŠ¤ */
     data = 0x80;
     p_funcs->pfn_ds1302_write(p_dev->p_drv, __DS1302_REG_CONTROL_WD, &data, 1);
 
@@ -436,13 +436,13 @@ static int __ds1302_init (am_ds1302_dev_t *p_dev)
 }
 
 /**
- * \brief RTC±ê×¼²Ù×÷º¯Êı-Ê±¼äÉèÖÃÇı¶¯º¯Êı
+ * \brief RTCæ ‡å‡†æ“ä½œå‡½æ•°-æ—¶é—´è®¾ç½®é©±åŠ¨å‡½æ•°
  *
- * \param[in] p_drv : Ö¸ÏòÉè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[in] p_tm  : Ö¸ÏòÊ±¼ä½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] p_drv : æŒ‡å‘è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] p_tm  : æŒ‡å‘æ—¶é—´ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \retval AM_OK      : ÉèÖÃ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : è®¾ç½®æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 static int __ds1302_time_set (void *p_drv, am_tm_t *p_tm)
 {
@@ -452,25 +452,25 @@ static int __ds1302_time_set (void *p_drv, am_tm_t *p_tm)
     am_ds1302_dev_t              *p_dev      = (am_ds1302_dev_t *)p_drv;
     struct __am_ds1302_drv_funcs *p_funcs    = (struct __am_ds1302_drv_funcs *)(p_dev->pfn);
 
-    /* ÅĞ¶Ï²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* åˆ¤æ–­å‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == p_dev || NULL == p_tm) {
         return -AM_EINVAL;
     }
 
-    /* ÑéÖ¤Ê±¼äĞÅÏ¢µÄÓĞĞ§ĞÔ */
+    /* éªŒè¯æ—¶é—´ä¿¡æ¯çš„æœ‰æ•ˆæ€§ */
     if ((AM_OK != __ds1302_time_validator(p_tm)) ||
         (p_tm->tm_hour > 23) || (p_tm->tm_hour < 0)) {
         return -AM_EINVAL;
     }
 
-    /* ÅĞ¶ÏDS1302ÊÇ·ñÍ£Ö¹ */
+    /* åˆ¤æ–­DS1302æ˜¯å¦åœæ­¢ */
     p_funcs->pfn_ds1302_read(p_dev->p_drv, __DS1302_REG_SECOND_RD, &data, 1);
     data = AM_BCD_TO_HEX(data);
     if ( data & (1 << 7) ) {
         return -AM_EINVAL;
     }
 
-    /* ½ûÖ¹Ğ´±£»¤ */
+    /* ç¦æ­¢å†™ä¿æŠ¤ */
     data = 0;
     p_funcs->pfn_ds1302_write(p_dev->p_drv, __DS1302_REG_CONTROL_WD, &data, 1);
 
@@ -483,10 +483,10 @@ static int __ds1302_time_set (void *p_drv, am_tm_t *p_tm)
     buf[6] = AM_HEX_TO_BCD((p_tm->tm_year - __DS1302_YEAR_OFFS) % 100);
     buf[7] = 0;
 
-    /* ²ÉÓÃÍ»·¢Ä£Ê½,Á¬ĞøĞ´8¸ö×Ö½Ú */
+    /* é‡‡ç”¨çªå‘æ¨¡å¼,è¿ç»­å†™8ä¸ªå­—èŠ‚ */
     ret = p_funcs->pfn_ds1302_write(p_dev->p_drv, __DS1302_REG_CLOCK_BURST_WD, buf, sizeof(buf));
 
-    /* ÔÊĞíĞ´±£»¤ */
+    /* å…è®¸å†™ä¿æŠ¤ */
     data = 0x80;
     p_funcs->pfn_ds1302_write(p_dev->p_drv, __DS1302_REG_CONTROL_WD, &data, 1);
 
@@ -494,13 +494,13 @@ static int __ds1302_time_set (void *p_drv, am_tm_t *p_tm)
 }
 
 /**
- * \brief RTC±ê×¼²Ù×÷º¯Êı-Ê±¼ä»ñÈ¡Çı¶¯º¯Êı
+ * \brief RTCæ ‡å‡†æ“ä½œå‡½æ•°-æ—¶é—´è·å–é©±åŠ¨å‡½æ•°
  *
- * \param[in] p_drv : Ö¸ÏòÉè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[in] p_tm  : Ö¸ÏòÊ±¼ä½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] p_drv : æŒ‡å‘è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] p_tm  : æŒ‡å‘æ—¶é—´ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \retval AM_OK      : ÉèÖÃ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : è®¾ç½®æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 static int __ds1302_time_get (void *p_drv, am_tm_t *p_tm)
 {
@@ -510,19 +510,19 @@ static int __ds1302_time_get (void *p_drv, am_tm_t *p_tm)
     am_ds1302_dev_t              *p_dev         = (am_ds1302_dev_t *)p_drv;
     struct __am_ds1302_drv_funcs *p_funcs       = (struct __am_ds1302_drv_funcs *)(p_dev->pfn);
 
-    /* ÅĞ¶Ï²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* åˆ¤æ–­å‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == p_drv || NULL == p_tm) {
         return -AM_EINVAL;
     }
 
-    /* ÅĞ¶ÏDS1302ÊÇ·ñÍ£Ö¹ */
+    /* åˆ¤æ–­DS1302æ˜¯å¦åœæ­¢ */
     p_funcs->pfn_ds1302_read(p_dev->p_drv, __DS1302_REG_SECOND_RD, &data, 1);
     data = AM_BCD_TO_HEX(data);
     if ( data & (1 << 7) ) {
         return -AM_EINVAL;
     }
 
-    /* ²ÉÓÃÍ»·¢Ä£Ê½,Á¬Ğø¶Á8¸ö×Ö½Ú */
+    /* é‡‡ç”¨çªå‘æ¨¡å¼,è¿ç»­è¯»8ä¸ªå­—èŠ‚ */
     ret = p_funcs->pfn_ds1302_read(p_dev->p_drv, __DS1302_REG_CLOCK_BURST_RD, buf, sizeof(buf));
 
     p_tm->tm_sec  = AM_BCD_TO_HEX(buf[0] & ~0X80);
@@ -540,11 +540,11 @@ static int __ds1302_time_get (void *p_drv, am_tm_t *p_tm)
 
 
 /*****************************************************************************
- * Íâ²¿º¯ÊıÊµÏÖ
+ * å¤–éƒ¨å‡½æ•°å®ç°
  ****************************************************************************/
 
 /**
- * \brief DS1302 Éè±¸³õÊ¼»¯,SPIÇı¶¯
+ * \brief DS1302 è®¾å¤‡åˆå§‹åŒ–,SPIé©±åŠ¨
  */
 am_ds1302_handle_t am_ds1302_spi_init (am_ds1302_spi_dev_t                   *p_dev,
                                        const am_ds1302_spi_devinfo_t         *p_spi_devinfo,
@@ -553,21 +553,21 @@ am_ds1302_handle_t am_ds1302_spi_init (am_ds1302_spi_dev_t                   *p_
 
     am_ds1302_handle_t ret_handle = NULL;
 
-    /* ÑéÖ¤²ÎÊıÓĞĞ§ĞÔ */
+    /* éªŒè¯å‚æ•°æœ‰æ•ˆæ€§ */
     if ((p_dev == NULL) || (spi_handle == NULL)) {
         return NULL;
     }
 
-     /* ³õÊ¼»¯Éè±¸ĞÅÏ¢ */
+     /* åˆå§‹åŒ–è®¾å¤‡ä¿¡æ¯ */
      p_dev->p_spi_devinfo = p_spi_devinfo;
 
-     /* Çı¶¯º¯Êı¸³Öµ */
+     /* é©±åŠ¨å‡½æ•°èµ‹å€¼ */
      p_dev->common.pfn = &__g_ds1302_spi_drv_funcs;
 
-     /* µÚÒ»¸öÈë¿Ú²ÎÊı¸³Öµ*/
+     /* ç¬¬ä¸€ä¸ªå…¥å£å‚æ•°èµ‹å€¼*/
      p_dev->common.p_drv = p_dev;
 
-     /* ³õÊ¼»¯CSÒı½Å */
+     /* åˆå§‹åŒ–CSå¼•è„š */
      am_gpio_pin_cfg(p_spi_devinfo->ce_pin, AM_GPIO_OUTPUT_INIT_HIGH | AM_GPIO_PUSH_PULL);
 
      am_spi_mkdev(&(p_dev->spi_dev),
@@ -582,7 +582,7 @@ am_ds1302_handle_t am_ds1302_spi_init (am_ds1302_spi_dev_t                   *p_
          return NULL;
      }
 
-     /* ³õÊ¼»¯1302Éè±¸ */
+     /* åˆå§‹åŒ–1302è®¾å¤‡ */
      __ds1302_init(&(p_dev->common));
 
      ret_handle = &(p_dev->common);
@@ -593,32 +593,32 @@ am_ds1302_handle_t am_ds1302_spi_init (am_ds1302_spi_dev_t                   *p_
 
 
 /**
- * \brief DS1302 Éè±¸³õÊ¼»¯£¬GPIOÇı¶¯
+ * \brief DS1302 è®¾å¤‡åˆå§‹åŒ–ï¼ŒGPIOé©±åŠ¨
  */
 am_ds1302_handle_t am_ds1302_gpio_init (am_ds1302_gpio_dev_t                   *p_dev,
                                         const am_ds1302_gpio_devinfo_t         *p_gpio_devinfo)
 {
     am_ds1302_handle_t ret_handle = NULL;
 
-    /* ÑéÖ¤²ÎÊıÓĞĞ§ĞÔ */
+    /* éªŒè¯å‚æ•°æœ‰æ•ˆæ€§ */
      if (NULL == p_dev) {
          return NULL;
      }
 
-     /* ³õÊ¼»¯Éè±¸ĞÅÏ¢ */
+     /* åˆå§‹åŒ–è®¾å¤‡ä¿¡æ¯ */
      p_dev->p_gpio_devinfo = p_gpio_devinfo;
 
-     /* Çı¶¯º¯Êı¸³Öµ */
+     /* é©±åŠ¨å‡½æ•°èµ‹å€¼ */
      p_dev->common.pfn = &__g_ds1302_gpio_drv_funcs;
 
-     /* µÚÒ»¸öÈë¿Ú²ÎÊı¸³Öµ*/
+     /* ç¬¬ä¸€ä¸ªå…¥å£å‚æ•°èµ‹å€¼*/
      p_dev->common.p_drv = p_dev;
 
      am_gpio_pin_cfg(p_dev->p_gpio_devinfo->ce_pin, AM_GPIO_PUSH_PULL | AM_GPIO_OUTPUT_INIT_LOW);
      am_gpio_pin_cfg(p_dev->p_gpio_devinfo->sclk_pin, AM_GPIO_PUSH_PULL | AM_GPIO_OUTPUT_INIT_LOW);
 
 
-     /* ³õÊ¼»¯1302Éè±¸ */
+     /* åˆå§‹åŒ–1302è®¾å¤‡ */
      __ds1302_init(&(p_dev->common));
 
      ret_handle = &(p_dev->common);
@@ -629,7 +629,7 @@ am_ds1302_handle_t am_ds1302_gpio_init (am_ds1302_gpio_dev_t                   *
 
 
 /**
- * \brief DS1302 Éè±¸½â³õÊ¼»¯
+ * \brief DS1302 è®¾å¤‡è§£åˆå§‹åŒ–
  */
 void am_ds1302_deinit (am_ds1302_handle_t handle)
 {
@@ -638,7 +638,7 @@ void am_ds1302_deinit (am_ds1302_handle_t handle)
 
 
 /**
- * \brief »ñÈ¡DS1302 RTC±ê×¼·şÎñ
+ * \brief è·å–DS1302 RTCæ ‡å‡†æœåŠ¡
  */
 am_rtc_handle_t am_ds1302_rtc_init (am_ds1302_handle_t  handle,
                                     am_rtc_serv_t      *p_rtc)
@@ -651,30 +651,30 @@ am_rtc_handle_t am_ds1302_rtc_init (am_ds1302_handle_t  handle,
 
 
 /**
- * \brief ÖÕÖ¹DS1302
+ * \brief ç»ˆæ­¢DS1302
  */
 int am_ds1302_stop (am_ds1302_handle_t handle)
 {
     uint8_t data = 0;
     struct __am_ds1302_drv_funcs *p_funcs    = (struct __am_ds1302_drv_funcs *)(handle->pfn);
 
-    /* ÑéÖ¤²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* éªŒè¯å‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == handle) {
         return -AM_EINVAL;
     }
 
-    /* ½ûÖ¹Ğ´±£»¤ */
+    /* ç¦æ­¢å†™ä¿æŠ¤ */
     p_funcs->pfn_ds1302_write(handle->p_drv, __DS1302_REG_CONTROL_WD, &data, 1);
 
-    /* ¶Á³öÃë¼Ä´æÆ÷µ±ÖĞµÄÖµ*/
+    /* è¯»å‡ºç§’å¯„å­˜å™¨å½“ä¸­çš„å€¼*/
 
     p_funcs->pfn_ds1302_read(handle->p_drv, __DS1302_REG_SECOND_RD, &data, 1);
 
-    /* ÔÙĞ´ÈëÃë¼Ä´æÆ÷*/
+    /* å†å†™å…¥ç§’å¯„å­˜å™¨*/
     data |= 0X80;
     p_funcs->pfn_ds1302_write(handle->p_drv, __DS1302_REG_SECOND_WD, &data, 1);
 
-    /* ÔÊĞíĞ´±£»¤ */
+    /* å…è®¸å†™ä¿æŠ¤ */
     data = 0X80;
     p_funcs->pfn_ds1302_write(handle->p_drv, __DS1302_REG_CONTROL_WD, &data, 1);
 
@@ -682,7 +682,7 @@ int am_ds1302_stop (am_ds1302_handle_t handle)
 }
 
 /**
- * \brief Ğ´ DS1302 RAM ¼Ä´æÆ÷
+ * \brief å†™ DS1302 RAM å¯„å­˜å™¨
  */
 int am_ds1302_ram_write (am_ds1302_handle_t handle,
                          uint8_t           *p_data,
@@ -694,20 +694,20 @@ int am_ds1302_ram_write (am_ds1302_handle_t handle,
     uint8_t data    = 0;
     struct __am_ds1302_drv_funcs *p_funcs = (struct __am_ds1302_drv_funcs *)(handle->pfn);
 
-    /* ÑéÖ¤²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* éªŒè¯å‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == handle || NULL == p_data) {
         return -AM_EINVAL;
     }
 
-    /* Ğ´ÈëÊı¾İµÄ´óĞ¡ÓëÎ»ÖÃ²»ºÏ·¨*/
+    /* å†™å…¥æ•°æ®çš„å¤§å°ä¸ä½ç½®ä¸åˆæ³•*/
     if ((data_len + position) > 31) {
         return -AM_EINVAL;
     }
 
-    /* ¼ÆËãÆğÊ¼µØÖ· */
+    /* è®¡ç®—èµ·å§‹åœ°å€ */
     regaddr = __DS1302_REG_RAM_WD + position * 2;
 
-    /* ½ûÖ¹Ğ´±£»¤ */
+    /* ç¦æ­¢å†™ä¿æŠ¤ */
     p_funcs->pfn_ds1302_write(handle->p_drv, __DS1302_REG_CONTROL_WD, &data, 1);
 
     for (i = 0; i < data_len; i++) {
@@ -715,7 +715,7 @@ int am_ds1302_ram_write (am_ds1302_handle_t handle,
         regaddr += 2;
     }
 
-    /* ÔÊĞíĞ´±£»¤ */
+    /* å…è®¸å†™ä¿æŠ¤ */
     data = 0X80;
     p_funcs->pfn_ds1302_write(handle->p_drv, __DS1302_REG_CONTROL_WD, &data, 1);
 
@@ -724,7 +724,7 @@ int am_ds1302_ram_write (am_ds1302_handle_t handle,
 }
 
 /**
- * \brief ¶Á DS1302 RAM ¼Ä´æÆ÷
+ * \brief è¯» DS1302 RAM å¯„å­˜å™¨
  */
 int am_ds1302_ram_read (am_ds1302_handle_t handle,
                         uint8_t           *p_data,
@@ -736,20 +736,20 @@ int am_ds1302_ram_read (am_ds1302_handle_t handle,
     uint8_t data    = 0;
     struct __am_ds1302_drv_funcs *p_funcs = (struct __am_ds1302_drv_funcs *)(handle->pfn);
 
-    /* ÑéÖ¤²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* éªŒè¯å‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == handle || NULL == p_data) {
         return -AM_EINVAL;
     }
 
-    /* Ğ´ÈëÊı¾İµÄ´óĞ¡ÓëÎ»ÖÃ²»ºÏ·¨*/
+    /* å†™å…¥æ•°æ®çš„å¤§å°ä¸ä½ç½®ä¸åˆæ³•*/
     if ((data_len + position) > 31) {
         return -AM_EINVAL;
     }
 
-    /* ¼ÆËãÆğÊ¼µØÖ· */
+    /* è®¡ç®—èµ·å§‹åœ°å€ */
     regaddr = __DS1302_REG_RAM_RD + position * 2;
 
-    /* ½ûÖ¹Ğ´±£»¤ */
+    /* ç¦æ­¢å†™ä¿æŠ¤ */
     p_funcs->pfn_ds1302_write(handle->p_drv, __DS1302_REG_CONTROL_WD, &data, 1);
 
     for (i = 0; i < data_len; i++) {
@@ -757,7 +757,7 @@ int am_ds1302_ram_read (am_ds1302_handle_t handle,
         regaddr += 2;
     }
 
-    /* ÔÊĞíĞ´±£»¤ */
+    /* å…è®¸å†™ä¿æŠ¤ */
     data = 0X80;
     p_funcs->pfn_ds1302_write(handle->p_drv, __DS1302_REG_CONTROL_WD, &data, 1);
 
@@ -765,24 +765,24 @@ int am_ds1302_ram_read (am_ds1302_handle_t handle,
 }
 
 /**
- * \brief Ê¹ÄÜ³äµç
+ * \brief ä½¿èƒ½å……ç”µ
  */
 int am_ds1302_trickle_enable(am_ds1302_handle_t handle, uint8_t set_val)
 {
     uint8_t data = 0;
     struct __am_ds1302_drv_funcs *p_funcs = (struct __am_ds1302_drv_funcs *)(handle->pfn);
 
-    /* ÑéÖ¤²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* éªŒè¯å‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == handle) {
         return -AM_EINVAL;
     }
 
-    /* ½ûÖ¹Ğ´±£»¤ */
+    /* ç¦æ­¢å†™ä¿æŠ¤ */
     p_funcs->pfn_ds1302_write(handle->p_drv, __DS1302_REG_CONTROL_WD, &data, 1);
 
     p_funcs->pfn_ds1302_write(handle->p_drv, __DS1302_REG_TRICKLE_WR, &set_val,1);
 
-    /* ÔÊĞíĞ´±£»¤ */
+    /* å…è®¸å†™ä¿æŠ¤ */
     data = 0X80;
     p_funcs->pfn_ds1302_write(handle->p_drv, __DS1302_REG_CONTROL_WD, &data,1);
 
@@ -791,24 +791,24 @@ int am_ds1302_trickle_enable(am_ds1302_handle_t handle, uint8_t set_val)
 }
 
 /**
- * \brief ½ûÄÜ³äµç
+ * \brief ç¦èƒ½å……ç”µ
  */
 int am_ds1302_trickle_disable(am_ds1302_handle_t handle)
 {
     uint8_t data = 0;
     struct __am_ds1302_drv_funcs *p_funcs = (struct __am_ds1302_drv_funcs *)(handle->pfn);
 
-    /* ÑéÖ¤²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* éªŒè¯å‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == handle) {
         return -AM_EINVAL;
     }
 
-    /* ½ûÖ¹Ğ´±£»¤ */
+    /* ç¦æ­¢å†™ä¿æŠ¤ */
     p_funcs->pfn_ds1302_write(handle->p_drv, __DS1302_REG_CONTROL_WD, &data, 1);
 
     p_funcs->pfn_ds1302_write(handle->p_drv, __DS1302_REG_TRICKLE_WR, &data, 1);
 
-    /* ÔÊĞíĞ´±£»¤ */
+    /* å…è®¸å†™ä¿æŠ¤ */
     data = 0X80;
     p_funcs->pfn_ds1302_write(handle->p_drv, __DS1302_REG_CONTROL_WD, &data,1);
 
@@ -816,7 +816,7 @@ int am_ds1302_trickle_disable(am_ds1302_handle_t handle)
 }
 
 /**
- * \brief ÉèÖÃÊ±¼ä
+ * \brief è®¾ç½®æ—¶é—´
  */
 int am_ds1302_time_set (am_ds1302_handle_t handle, am_tm_t *p_tm)
 {
@@ -825,7 +825,7 @@ int am_ds1302_time_set (am_ds1302_handle_t handle, am_tm_t *p_tm)
 
 
 /**
- * \brief »ñÈ¡Ê±¼ä
+ * \brief è·å–æ—¶é—´
  */
 
 int am_ds1302_time_get (am_ds1302_handle_t handle, am_tm_t *p_tm)

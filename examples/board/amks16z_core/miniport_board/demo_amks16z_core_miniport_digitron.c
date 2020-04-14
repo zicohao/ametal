@@ -12,16 +12,16 @@
 
 /**
  * \file
- * \brief MiniPort-View Ê¾Àı³ÌĞò£¬½ö¹©²Î¿¼
+ * \brief MiniPort-View ç¤ºä¾‹ç¨‹åºï¼Œä»…ä¾›å‚è€ƒ
  *
- * - ²Ù×÷²½Öè
- *   1. ½« MiniPort-View °å×ÓÖ±½ÓÓëµ×°å(AMKS16Z-Core) ±êºÅÎªJ4µÄ MiniPort ½Ó¿ÚÏàÁ¬½Ó¡£
+ * - æ“ä½œæ­¥éª¤
+ *   1. å°† MiniPort-View æ¿å­ç›´æ¥ä¸åº•æ¿(AMKS16Z-Core) æ ‡å·ä¸ºJ4çš„ MiniPort æ¥å£ç›¸è¿æ¥ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ¿ÉÒÔ¿´µ½ÊıÖµ 0 ~ 59 µÄÃë¼ÆÊıÆ÷£»
- *   2. Êı×éĞ¡ÓÚ30Ê±£¬¸öÎ»ÉÁË¸£¬´óÓÚ30Ê±Ê®Î»ÉÁË¸¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. å¯ä»¥çœ‹åˆ°æ•°å€¼ 0 ~ 59 çš„ç§’è®¡æ•°å™¨ï¼›
+ *   2. æ•°ç»„å°äº30æ—¶ï¼Œä¸ªä½é—ªçƒï¼Œå¤§äº30æ—¶åä½é—ªçƒã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_miniport_digitron.c src_miniport_digitron
  *
  * \internal
@@ -42,7 +42,7 @@
 #include "am_hwconf_miniport_view.h"
 #include "demo_amks16z_core_all_entries.h"
 
-/* Àı³ÌÈë¿Ú */
+/* ä¾‹ç¨‹å…¥å£ */
 void demo_amks16z_core_miniport_digitron_entry (void)
 {
     AM_DBG_INFO("demo amks16z_core miniport digitron!\r\n");

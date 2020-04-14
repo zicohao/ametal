@@ -88,8 +88,8 @@ am_local const int __g_max_val[] = {
 #define __ZLG9021_PIN_EN_ACTIVE        0  /* active zlg9021 while low  */
 #define __ZLG9021_PIN_EN_INACTIVE      1  /* active zlg9021 while high */
 
-#define __ZLG9021_BRTS_DELAY_FORWARD   20 /* À­µÍ BRTS Òý½Åµ½´®¿Ú·¢ËÍÊý¾ÝµÄÑÓÊ± */
-#define __ZLG9021_BRTS_DELAY_AFTER     4  /* ´®¿Ú·¢ËÍÊý¾Ýµ½À­¸ß BRTS Òý½ÅµÄÑÓÊ± */
+#define __ZLG9021_BRTS_DELAY_FORWARD   20 /* æ‹‰ä½Ž BRTS å¼•è„šåˆ°ä¸²å£å‘é€æ•°æ®çš„å»¶æ—¶ */
+#define __ZLG9021_BRTS_DELAY_AFTER     4  /* ä¸²å£å‘é€æ•°æ®åˆ°æ‹‰é«˜ BRTS å¼•è„šçš„å»¶æ—¶ */
 
 /*******************************************************************************
     Local functions
@@ -129,9 +129,9 @@ am_local void __zlg9021_timeout_brts_cb (void *p_arg)
     am_zlg9021_dev_t *p_this = (am_zlg9021_dev_t *)p_arg;
 
     /**
-     * ´ÓÈí¼þ¶¨Ê±Æ÷»Øµ÷ÔËÐÐµ½ÕâÀï£¬ÖÐÍ¾±»ÆäËüÖÐ¶Ï´ò¶Ï²¢µ÷ÓÃÁË __zlg9021_cmd_send()
-     * µ¼ÖÂ¶¨Ê±Æ÷±»¹Ø±Õ£¬ÕâËµÃ÷È¡ÏûÁËµ±Ç°À­¸ß brts µÄÐÐÎª£¬²¢ÖØÐÂÆô¶¯ÁË´®¿Ú·¢ËÍ
-     * ËùÒÔÔÚÕâÀïÖ±½Ó·µ»Ø¼´¿É
+     * ä»Žè½¯ä»¶å®šæ—¶å™¨å›žè°ƒè¿è¡Œåˆ°è¿™é‡Œï¼Œä¸­é€”è¢«å…¶å®ƒä¸­æ–­æ‰“æ–­å¹¶è°ƒç”¨äº† __zlg9021_cmd_send()
+     * å¯¼è‡´å®šæ—¶å™¨è¢«å…³é—­ï¼Œè¿™è¯´æ˜Žå–æ¶ˆäº†å½“å‰æ‹‰é«˜ brts çš„è¡Œä¸ºï¼Œå¹¶é‡æ–°å¯åŠ¨äº†ä¸²å£å‘é€
+     * æ‰€ä»¥åœ¨è¿™é‡Œç›´æŽ¥è¿”å›žå³å¯
      */
     if (am_list_empty(&p_this->timer_brts.node)) {
         return;
@@ -569,8 +569,8 @@ am_local int __zlg9021_data_send (am_zlg9021_dev_t    *p_this,
     } else {
 
         /**
-         * Èç¹û½ÚµãÔÚÁ´±íÖÐ£¬ÄÇÃ´ÈÏÎª¶¨Ê±Æ÷»¹ÔÚÔËÐÐ£¬
-         * Èç¹ûÕýÔÚµÈ´ýÀ­¸ß brts£¬¾Í¿ÉÒÔÏÈ·¢ËÍÊý¾Ý£¬ÔÙÀ­¸ß brts£¬Ìá¸ß·¢ËÍÐ§ÂÊ
+         * å¦‚æžœèŠ‚ç‚¹åœ¨é“¾è¡¨ä¸­ï¼Œé‚£ä¹ˆè®¤ä¸ºå®šæ—¶å™¨è¿˜åœ¨è¿è¡Œï¼Œ
+         * å¦‚æžœæ­£åœ¨ç­‰å¾…æ‹‰é«˜ brtsï¼Œå°±å¯ä»¥å…ˆå‘é€æ•°æ®ï¼Œå†æ‹‰é«˜ brtsï¼Œæé«˜å‘é€æ•ˆçŽ‡
          */
         if ((p_this->p_devinfo->pin_brts != -1) &&
             (AM_FALSE != p_this->is_brts) &&
@@ -890,7 +890,7 @@ am_local int __zlg9021_cmd_result (am_zlg9021_dev_t    *p_this,
 {
     int          key;
 
-    /* µÈ´ý·¢ËÍÍê³É */
+    /* ç­‰å¾…å‘é€å®Œæˆ */
     am_wait_on(&p_this->ack_wait);
 
     am_rngbuf_init(&(p_this->tx_rngbuf),
@@ -987,26 +987,26 @@ am_zlg9021_handle_t am_zlg9021_init (am_zlg9021_dev_t           *p_dev,
     am_wait_init(&(p_dev->rx_wait));
     am_wait_init(&(p_dev->ack_wait));
 
-    /* Ä£¿éÊ¹ÄÜÒý½Å  0£ºÊ¹ÄÜÄ£¿éÀ¶ÑÀ¹¦ÄÜ 1£ºÄ£¿é½ûÓÃ£¬²¢½øÈë¼«µÍ¹¦ºÄÄ£Ê½ */
+    /* æ¨¡å—ä½¿èƒ½å¼•è„š  0ï¼šä½¿èƒ½æ¨¡å—è“ç‰™åŠŸèƒ½ 1ï¼šæ¨¡å—ç¦ç”¨ï¼Œå¹¶è¿›å…¥æžä½ŽåŠŸè€—æ¨¡å¼ */
     if (p_devinfo->pin_en != -1) {
         am_gpio_pin_cfg(p_dev->p_devinfo->pin_en,
                         AM_GPIO_PUSH_PULL | AM_GPIO_OUTPUT_INIT_LOW);
     }
 
-    /* ´®¿Ú·¢ËÍÊý¾ÝÖ®Ç°À­µÍ´ËÒý½Å */
+    /* ä¸²å£å‘é€æ•°æ®ä¹‹å‰æ‹‰ä½Žæ­¤å¼•è„š */
     if (p_devinfo->pin_brts != -1) {
         am_gpio_pin_cfg(p_dev->p_devinfo->pin_brts,
                         AM_GPIO_PUSH_PULL | AM_GPIO_OUTPUT_INIT_HIGH);
         p_dev->is_brts = AM_FALSE;
     }
 
-    /* »Ö¸´³ö³§ÉèÖÃÒý½Å */
+    /* æ¢å¤å‡ºåŽ‚è®¾ç½®å¼•è„š */
     if (p_devinfo->pin_restore != -1) {
         am_gpio_pin_cfg(p_dev->p_devinfo->pin_restore,
                         AM_GPIO_PUSH_PULL | AM_GPIO_OUTPUT_INIT_HIGH);
     }
 
-    /* µÍµçÆ½¸´Î»Òý½Å */
+    /* ä½Žç”µå¹³å¤ä½å¼•è„š */
     if (p_devinfo->pin_rst != -1) {
         am_gpio_pin_cfg(p_dev->p_devinfo->pin_rst,
                         AM_GPIO_PUSH_PULL | AM_GPIO_OUTPUT_INIT_HIGH);
@@ -1436,7 +1436,7 @@ int am_zlg9021_ioctl (am_zlg9021_handle_t  handle,
              am_gpio_pin_cfg(handle->p_devinfo->pin_restore,
                              AM_GPIO_OUTPUT_INIT_LOW);
 
-             /* µÍµçÆ½³ÖÐø10s */
+             /* ä½Žç”µå¹³æŒç»­10s */
              am_mdelay((10 + 1) * 000);
 
              am_gpio_set(handle->p_devinfo->pin_restore, 1);

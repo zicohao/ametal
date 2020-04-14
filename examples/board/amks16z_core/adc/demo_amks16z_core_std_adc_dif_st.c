@@ -12,20 +12,20 @@
 
 /**
  * \file
- * \brief ADCÀı³Ì£¬Èí¼ş´¥·¢×ª»»£¬DMA´«Êä²î·Ö×ª»»½á¹û£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief ADCä¾‹ç¨‹ï¼Œè½¯ä»¶è§¦å‘è½¬æ¢ï¼ŒDMAä¼ è¾“å·®åˆ†è½¬æ¢ç»“æœï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * \note Ê¹ÓÃ´ËdemoĞèÒªÅäÖÃÊ¹ÄÜam_kl26_hwconfig_adc0.cÎÄ¼şÖĞµÄAM_FSL_ADC_DIF_ENºê
+ * \note ä½¿ç”¨æ­¤demoéœ€è¦é…ç½®ä½¿èƒ½am_kl26_hwconfig_adc0.cæ–‡ä»¶ä¸­çš„AM_FSL_ADC_DIF_ENå®
  *
- * - ²Ù×÷²½Öè£º
- *   1. PIOA_1Òı½ÅÁ¬½ÓPC´®¿ÚµÄTXD£»
- *   2. PIOA_2Òı½ÅÁ¬½ÓPC´®¿ÚµÄRXD£»
- *   3. J12ÌøÏßÃ±¶Ì½Ó£¨´ËÊ±²Î¿¼µçÑ¹Îª2.5v£©£»
- *   4. PIOE_20(ADC_DP0)ºÍPIOE_21(ADC_DM0)Á¬½ÓÄ£ÄâÊäÈë¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. PIOA_1å¼•è„šè¿æ¥PCä¸²å£çš„TXDï¼›
+ *   2. PIOA_2å¼•è„šè¿æ¥PCä¸²å£çš„RXDï¼›
+ *   3. J12è·³çº¿å¸½çŸ­æ¥ï¼ˆæ­¤æ—¶å‚è€ƒç”µå‹ä¸º2.5vï¼‰ï¼›
+ *   4. PIOE_20(ADC_DP0)å’ŒPIOE_21(ADC_DM0)è¿æ¥æ¨¡æ‹Ÿè¾“å…¥ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿ÚÊä³öµçÑ¹²ÉÑùÖµ¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. ä¸²å£è¾“å‡ºç”µå‹é‡‡æ ·å€¼ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_amks16z_core_std_adc_dif_st.c src_amks16z_core_std_adc_dif_st
  *
  * \internal
@@ -49,8 +49,8 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief ADC²î·ÖÊäÈë£¬DMA´«Êä£¬Èí¼ş´¥·¢
- * \return ÎŞ
+ * \brief ADCå·®åˆ†è¾“å…¥ï¼ŒDMAä¼ è¾“ï¼Œè½¯ä»¶è§¦å‘
+ * \return æ— 
  */
 void demo_amks16z_core_std_adc_dif_st_entry (void)
 {
@@ -58,8 +58,8 @@ void demo_amks16z_core_std_adc_dif_st_entry (void)
 
     AM_DBG_INFO("demo amks16z_core std adc dif!\r\n");
 
-    am_kl26_dma_inst_init();        /* DMAÊµÀı³õÊ¼»¯ */
-    adc0_handle = am_kl26_adc0_inst_init(); /* ADCÊµÀı³õÊ¼»¯ */
+    am_kl26_dma_inst_init();        /* DMAå®ä¾‹åˆå§‹åŒ– */
+    adc0_handle = am_kl26_adc0_inst_init(); /* ADCå®ä¾‹åˆå§‹åŒ– */
 
     demo_fsl_std_adc_dif_st_entry(adc0_handle);
 }

@@ -12,17 +12,17 @@
 
 /**
  * \file
- * \brief LED Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief LED ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. LED0 ºÍ LED1 ÒÔ 0.5s µÄÊ±¼ä¼ä¸ôÉÁË¸¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. LED0 å’Œ LED1 ä»¥ 0.5s çš„æ—¶é—´é—´éš”é—ªçƒã€‚
  *
  * \note
- *    1. LED0/LED1 ĞèÒª¶Ì½Ó J9/J10 ÌøÏßÃ±£¬²ÅÄÜ·Ö±ğ±» PIO0_20/PIO0_21 ¿ØÖÆ£»
- *    2. ²âÊÔ±¾Àı³Ì±ØĞëÔÚ am_prj_config.h ÄÚ½« AM_CFG_LED_ENABLE ¶¨ÒåÎª 1£¬µ«¸Ãºê
- *       ÒÑ¾­Ä¬ÈÏÅäÖÃÎª 1£¬ ÓÃ»§²»±ØÔÙ´ÎÅäÖÃ¡£
+ *    1. LED0/LED1 éœ€è¦çŸ­æ¥ J9/J10 è·³çº¿å¸½ï¼Œæ‰èƒ½åˆ†åˆ«è¢« PIO0_20/PIO0_21 æ§åˆ¶ï¼›
+ *    2. æµ‹è¯•æœ¬ä¾‹ç¨‹å¿…é¡»åœ¨ am_prj_config.h å†…å°† AM_CFG_LED_ENABLE å®šä¹‰ä¸º 1ï¼Œä½†è¯¥å®
+ *       å·²ç»é»˜è®¤é…ç½®ä¸º 1ï¼Œ ç”¨æˆ·ä¸å¿…å†æ¬¡é…ç½®ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am845_core_std_led.c src_am845_core_std_led
  *
  * \internal
@@ -53,13 +53,13 @@ extern void demo_std_dac_entry (am_dac_handle_t dac0_handle,
                                 uint32_t        mv_out);
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am845_core_std_dac_entry (void)
 {
     am_kprintf("demo am845_core std adc!\r\n");
 
-      /* DACÊµÀı³õÊ¼»¯£¬²¢»ñÈ¡DAC¾ä±úÖµ */
+      /* DACå®ä¾‹åˆå§‹åŒ–ï¼Œå¹¶è·å–DACå¥æŸ„å€¼ */
     am_dac_handle_t dac0_handle = (am_dac_handle_t)am_lpc84x_dac0_inst_init();
 
     demo_std_dac_entry (dac0_handle, AMHW_LPC_DAC0_CHAN_0,__MV_OUT);

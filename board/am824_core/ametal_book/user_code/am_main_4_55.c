@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥4.55
+ * \brief ç¨‹åºæ¸…å•4.55
  *
- * \note ¸ÃÀú³ÌĞèÒªÓÃµ½miniportÍØÕ¹°å
+ * \note è¯¥å†ç¨‹éœ€è¦ç”¨åˆ°miniportæ‹“å±•æ¿
  *
  * \internal
  * \par Modification history
@@ -28,90 +28,90 @@
 #include "digitron1.h"
 #include "lm75.h"
 #include "am_delay.h"
-static uint8_t g_temp_high  = 30;          // ÎÂ¶ÈÉÏÏŞÖµ£¬³õÊ¼Îª30¶È
-static uint8_t g_temp_low   = 28;          // ÎÂ¶ÈÏÂÏŞÖµ£¬³õÊ¼Îª28¶È
-static uint8_t adj_state    = 0;           // 0-Õı³£×´Ì¬£¬1-µ÷½ÚÉÏÏŞ×´Ì¬, 2-µ÷½ÚÏÂÏŞ×´Ì¬
-static uint8_t adj_pos;                    // µ±Ç°µ÷½ÚµÄÎ»£¬ÇĞ»»Îªµ÷½ÚÄ£Ê½Ê±£¬³õÊ¼Îªµ÷½Ú¸öÎ»
+static uint8_t g_temp_high  = 30;          // æ¸©åº¦ä¸Šé™å€¼ï¼Œåˆå§‹ä¸º30åº¦
+static uint8_t g_temp_low   = 28;          // æ¸©åº¦ä¸‹é™å€¼ï¼Œåˆå§‹ä¸º28åº¦
+static uint8_t adj_state    = 0;           // 0-æ­£å¸¸çŠ¶æ€ï¼Œ1-è°ƒèŠ‚ä¸Šé™çŠ¶æ€, 2-è°ƒèŠ‚ä¸‹é™çŠ¶æ€
+static uint8_t adj_pos;                    // å½“å‰è°ƒèŠ‚çš„ä½ï¼Œåˆ‡æ¢ä¸ºè°ƒèŠ‚æ¨¡å¼æ—¶ï¼Œåˆå§‹ä¸ºè°ƒèŠ‚ä¸ªä½
 
-static void key_state_process (void)       // ×´Ì¬´¦Àíº¯Êı£¬KEY0
+static void key_state_process (void)       // çŠ¶æ€å¤„ç†å‡½æ•°ï¼ŒKEY0
 {
-    adj_state = (adj_state + 1) % 3;       // ×´Ì¬ÇĞ»»£¬0 ~ 2
+    adj_state = (adj_state + 1) % 3;       // çŠ¶æ€åˆ‡æ¢ï¼Œ0 ~ 2
     if (adj_state == 1) {
-        // ×´Ì¬ÇĞ»»µ½µ÷½ÚÉÏÏŞ×´Ì¬
+        // çŠ¶æ€åˆ‡æ¢åˆ°è°ƒèŠ‚ä¸Šé™çŠ¶æ€
         led_on(0);        led_off(1);
         adj_pos = 1;
-        digitron1_disp_blink_set(adj_pos,AM_TRUE);     // µ÷½ÚÎ»¸öÎ»ÉÁË¸
-        digitron1_disp_num_set(0, g_temp_high / 10);   // ÏÔÊ¾ÎÂ¶ÈÉÏÏŞÖµÊ®Î»
-        digitron1_disp_num_set(1, g_temp_high % 10);   // ÏÔÊ¾ÎÂ¶ÈÉÏÏŞÖµ¸öÎ»
+        digitron1_disp_blink_set(adj_pos,AM_TRUE);     // è°ƒèŠ‚ä½ä¸ªä½é—ªçƒ
+        digitron1_disp_num_set(0, g_temp_high / 10);   // æ˜¾ç¤ºæ¸©åº¦ä¸Šé™å€¼åä½
+        digitron1_disp_num_set(1, g_temp_high % 10);   // æ˜¾ç¤ºæ¸©åº¦ä¸Šé™å€¼ä¸ªä½
     } else if (adj_state == 2) {
-        // ×´Ì¬ÇĞ»»µ½µ÷½ÚÏÂÏŞ×´Ì¬
+        // çŠ¶æ€åˆ‡æ¢åˆ°è°ƒèŠ‚ä¸‹é™çŠ¶æ€
         led_on(1);        led_off(0);
-        digitron1_disp_blink_set(adj_pos, AM_FALSE);   // µ±Ç°µ÷½ÚÎ»Í£Ö¹ÉÁË¸
-        adj_pos = 1;                                  // µ÷½ÚÎ»»Ö¸´Îª¸öÎ»
+        digitron1_disp_blink_set(adj_pos, AM_FALSE);   // å½“å‰è°ƒèŠ‚ä½åœæ­¢é—ªçƒ
+        adj_pos = 1;                                  // è°ƒèŠ‚ä½æ¢å¤ä¸ºä¸ªä½
         digitron1_disp_blink_set(adj_pos, AM_TRUE);
         digitron1_disp_num_set(0,g_temp_low / 10);
         digitron1_disp_num_set(1,g_temp_low % 10);
     } else {
-        // ÇĞ»»ÎªÕı³£×´Ì¬
+        // åˆ‡æ¢ä¸ºæ­£å¸¸çŠ¶æ€
         led_off(0);        led_off(1);    
-        digitron1_disp_blink_set(adj_pos, AM_FALSE);  // µ±Ç°µ÷½ÚÎ»Í£Ö¹ÉÁË¸
-        adj_pos = 1;                                 // µ÷½ÚÎ»»Ö¸´Îª¸öÎ»
+        digitron1_disp_blink_set(adj_pos, AM_FALSE);  // å½“å‰è°ƒèŠ‚ä½åœæ­¢é—ªçƒ
+        adj_pos = 1;                                 // è°ƒèŠ‚ä½æ¢å¤ä¸ºä¸ªä½
     }
 }
 
 #define VAL_ADJ_TYPE_ADD        1
 #define VAL_ADJ_TYPE_SUB        0
 
-static void key_val_process(uint8_t type)            // µ÷½ÚÖµÉèÖÃº¯Êı£¨1-¼Ó£¬0-¼õ£©
+static void key_val_process(uint8_t type)            // è°ƒèŠ‚å€¼è®¾ç½®å‡½æ•°ï¼ˆ1-åŠ ï¼Œ0-å‡ï¼‰
 {                                                   
-    uint8_t num_single;                              // µ÷½ÚÊıÖµÊ±£¬ÁÙÊ±¼ÇÂ¼¸öÎ»µ÷½Ú
-    uint8_t num_ten;                                 // µ÷½ÚÊıÖµÊ±£¬ÁÙÊ±¼ÇÂ¼Ê®Î»µ÷½Ú
+    uint8_t num_single;                              // è°ƒèŠ‚æ•°å€¼æ—¶ï¼Œä¸´æ—¶è®°å½•ä¸ªä½è°ƒèŠ‚
+    uint8_t num_ten;                                 // è°ƒèŠ‚æ•°å€¼æ—¶ï¼Œä¸´æ—¶è®°å½•åä½è°ƒèŠ‚
 
-    if (adj_state == 0)                              // Õı³£×´Ì¬£¬²»ÔÊĞíµ÷½Ú
+    if (adj_state == 0)                              // æ­£å¸¸çŠ¶æ€ï¼Œä¸å…è®¸è°ƒèŠ‚
         return;
     if (adj_state == 1) {
-        num_single = g_temp_high % 10;               // µ÷½ÚÉÏÏŞÖµ
+        num_single = g_temp_high % 10;               // è°ƒèŠ‚ä¸Šé™å€¼
         num_ten   = g_temp_high / 10;
     } else if (adj_state == 2){
-        num_single = g_temp_low % 10;                // µ÷½ÚÏÂÏŞÖµ
+        num_single = g_temp_low % 10;                // è°ƒèŠ‚ä¸‹é™å€¼
         num_ten   = g_temp_low / 10;
     }
-    if (type == 1) {                                 // ¼Ó1²Ù×÷
+    if (type == 1) {                                 // åŠ 1æ“ä½œ
         if (adj_pos == 1) {
-            num_single = (num_single + 1) % 10;      // ¸öÎ»¼Ó1£¬0 ~ 9
+            num_single = (num_single + 1) % 10;      // ä¸ªä½åŠ 1ï¼Œ0 ~ 9
         } else {
-            num_ten   = (num_ten + 1) % 10;          // Ê®Î»¼Ó1£¬0 ~ 9
+            num_ten   = (num_ten + 1) % 10;          // åä½åŠ 1ï¼Œ0 ~ 9
         }
-        } else {                                     // ¼õ1²Ù×÷
+        } else {                                     // å‡1æ“ä½œ
         if (adj_pos == 1) {
-            num_single = (num_single - 1 + 10) % 10; // ¸öÎ»¼õ1£¬0 ~ 9
+            num_single = (num_single - 1 + 10) % 10; // ä¸ªä½å‡1ï¼Œ0 ~ 9
         } else {
-            num_ten   = (num_ten - 1 + 10) % 10;     // Ê®Î»¼õ1£¬0 ~ 9
+            num_ten   = (num_ten - 1 + 10) % 10;     // åä½å‡1ï¼Œ0 ~ 9
         }
     }
     if (adj_state == 1) {
         if (num_ten * 10 + num_single >= g_temp_low) {
-            g_temp_high = num_ten * 10 + num_single;    // È·±£ÊÇÓĞĞ§µÄÉèÖÃ
+            g_temp_high = num_ten * 10 + num_single;    // ç¡®ä¿æ˜¯æœ‰æ•ˆçš„è®¾ç½®
         } else {
-            num_ten   = g_temp_high / 10;               // ÎŞĞ§µÄÉèÖÃ£¬Öµ²»±ä
+            num_ten   = g_temp_high / 10;               // æ— æ•ˆçš„è®¾ç½®ï¼Œå€¼ä¸å˜
             num_single = g_temp_high % 10; 
         }
     } else if (adj_state == 2){
         if (num_ten * 10 + num_single <= g_temp_high) {
-            g_temp_low = num_ten * 10 + num_single;     // È·±£ÊÇÓĞĞ§µÄÉèÖÃ
+            g_temp_low = num_ten * 10 + num_single;     // ç¡®ä¿æ˜¯æœ‰æ•ˆçš„è®¾ç½®
         } else {
-            num_ten   = g_temp_low / 10;                // ÎŞĞ§µÄÉèÖÃ£¬Öµ²»±ä
+            num_ten   = g_temp_low / 10;                // æ— æ•ˆçš„è®¾ç½®ï¼Œå€¼ä¸å˜
             num_single = g_temp_low % 10;
         }
     }
-    digitron1_disp_num_set(0, num_ten);                  // ¸üĞÂÏÔÊ¾Æ÷µÄÊ®Î»
-    digitron1_disp_num_set(1, num_single);               // ¸üĞÂÏÔÊ¾Æ÷µÄ¸öÎ»
+    digitron1_disp_num_set(0, num_ten);                  // æ›´æ–°æ˜¾ç¤ºå™¨çš„åä½
+    digitron1_disp_num_set(1, num_single);               // æ›´æ–°æ˜¾ç¤ºå™¨çš„ä¸ªä½
 }
 
-static void key_pos_process(void)                       // µ÷½ÚÎ»ÇĞ»»
+static void key_pos_process(void)                       // è°ƒèŠ‚ä½åˆ‡æ¢
 {
     if (adj_state != 0) {
-        // µ±Ç°ÊÇÔÚµ÷½ÚÄ£Ê½ÖĞ²ÅÔÊĞíÇĞ»»µ÷½ÚÎ»
+        // å½“å‰æ˜¯åœ¨è°ƒèŠ‚æ¨¡å¼ä¸­æ‰å…è®¸åˆ‡æ¢è°ƒèŠ‚ä½
         digitron1_disp_blink_set(adj_pos, AM_FALSE);
         adj_pos = !adj_pos;
         digitron1_disp_blink_set(adj_pos, AM_TRUE);
@@ -122,15 +122,15 @@ static void key_process (uint8_t code)
 {
     switch (code) {
     case 0: 
-        key_state_process();                          // µ÷½Ú×´Ì¬ÇĞ»»
+        key_state_process();                          // è°ƒèŠ‚çŠ¶æ€åˆ‡æ¢
         break;
-        case 1:                                       // µ±Ç°µ÷½ÚÎ»¼Ó1
+        case 1:                                       // å½“å‰è°ƒèŠ‚ä½åŠ 1
         key_val_process(VAL_ADJ_TYPE_ADD);
         break;
-        case 2:                                       // ÇĞ»»µ±Ç°µ÷½ÚÎ»
+        case 2:                                       // åˆ‡æ¢å½“å‰è°ƒèŠ‚ä½
         key_pos_process();
         break;
-    case 3:                                           // µ±Ç°µ÷½ÚÎ»¼õ1
+    case 3:                                           // å½“å‰è°ƒèŠ‚ä½å‡1
         key_val_process(VAL_ADJ_TYPE_SUB);
         break;
         default:
@@ -141,22 +141,22 @@ static void key_process (uint8_t code)
 int am_main(void)
 {
     uint8_t key_code;
-    int16_t temp;                                     // ±£´æÎÂ¶ÈÖµ
+    int16_t temp;                                     // ä¿å­˜æ¸©åº¦å€¼
     int i = 0;
-    // Èç¹ûÓÃGPIOÇı¶¯ÊıÂë¹Ü£¬ÔòÖ»ÒªÓÃdigitron_init()Óëdigitron_disp_scan()Ìæ»»ÏàÓ¦µÄº¯Êı¼´¿É
+    // å¦‚æœç”¨GPIOé©±åŠ¨æ•°ç ç®¡ï¼Œåˆ™åªè¦ç”¨digitron_init()ä¸digitron_disp_scan()æ›¿æ¢ç›¸åº”çš„å‡½æ•°å³å¯
     buzzer_init();
     led_init();
     matrixkey_init();
     digitron1_hc595_init();                            // digitron_init();
     lm75_init();
     while(1) {
-        // ÎÂ¶È¶ÁÈ¡Ä£¿é,Õı³£Ä£Ê½ÏÂ£¬ÏÔÊ¾ÎÂ¶ÈÖµ£¬500msÖ´ĞĞÒ»´Î
+        // æ¸©åº¦è¯»å–æ¨¡å—,æ­£å¸¸æ¨¡å¼ä¸‹ï¼Œæ˜¾ç¤ºæ¸©åº¦å€¼ï¼Œ500msæ‰§è¡Œä¸€æ¬¡
             if (adj_state == 0) {
                 temp = lm75_read();
                 if (temp < 0) {
-                temp = -1 * temp;                     // ÎÂ¶ÈÎª¸ºÊ±£¬Ò²Ö»ÏÔÊ¾ÎÂ¶ÈÊıÖµ
+                temp = -1 * temp;                     // æ¸©åº¦ä¸ºè´Ÿæ—¶ï¼Œä¹Ÿåªæ˜¾ç¤ºæ¸©åº¦æ•°å€¼
                 }
-                temp = temp >> 8;                     //  tempÖ»±£ÁôÎÂ¶ÈÕûÊı²¿·Ö
+                temp = temp >> 8;                     //  tempåªä¿ç•™æ¸©åº¦æ•´æ•°éƒ¨åˆ†
                 digitron1_disp_num_set(0, temp / 10);
                 digitron1_disp_num_set(1, temp % 10);
                 if (temp > g_temp_high || temp < g_temp_low) {
@@ -166,15 +166,15 @@ int am_main(void)
                 }
             }
             for (i = 0; i < 100; i++) {
-            // ¾ØÕó¼üÅÌÃ¿¸ô5msÉ¨ÃèÒ»´Î£¬100´Î¼´Îª500ms
+            // çŸ©é˜µé”®ç›˜æ¯éš”5msæ‰«æä¸€æ¬¡ï¼Œ100æ¬¡å³ä¸º500ms
             key_code = matrixkey_scan_with_digitron(digitron1_hc595_disp_scan);
             if (key_code != 0xFF) {
-                if ((key_code & 0x80) == 0) {      // °´¼ü°´ÏÂÊ±£¬·äÃùÆ÷¡°àÖ¡±Ò»Éù
-                    buzzer_beep_async(100);        // Òì²½·½Ê½
-                    key_process(key_code);         // ÓĞ°´¼üÊÂ¼ş²úÉú
+                if ((key_code & 0x80) == 0) {      // æŒ‰é”®æŒ‰ä¸‹æ—¶ï¼Œèœ‚é¸£å™¨â€œå˜€â€ä¸€å£°
+                    buzzer_beep_async(100);        // å¼‚æ­¥æ–¹å¼
+                    key_process(key_code);         // æœ‰æŒ‰é”®äº‹ä»¶äº§ç”Ÿ
                 }
             }
-						// ¾ØÕó¼üÅÌºÍÊıÂë¹ÜÃ¿¸ô5msÉ¨ÃèÒ»´Î 100 ´Î ¼´Îª 500ms
+						// çŸ©é˜µé”®ç›˜å’Œæ•°ç ç®¡æ¯éš”5msæ‰«æä¸€æ¬¡ 100 æ¬¡ å³ä¸º 500ms
             if ((adj_state == 0) && (((i + 1) % 50) == 0)) {
                 led_toggle(0);    led_toggle(1);
             }

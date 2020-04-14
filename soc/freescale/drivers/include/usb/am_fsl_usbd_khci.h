@@ -11,7 +11,7 @@
 *******************************************************************************/
 /**
  * \file
- * \brief     USBD标准接口
+ * \brief     USBD鏍囧噯鎺ュ彛
  *
  * \internal
  * \par Modification History

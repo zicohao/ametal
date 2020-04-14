@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief SYSTICK Çı¶¯£¬·şÎñ Timer ±ê×¼½Ó¿Ú
+ * \brief SYSTICK é©±åŠ¨ï¼ŒæœåŠ¡ Timer æ ‡å‡†æ¥å£
  *
- * \note Ê¹ÓÃ SYSTICK ·şÎñµÄ Timer ±ê×¼½Ó¿Ú£¬¾Í²»ÄÜÊ¹ÓÃ±ê×¼ÑÓÊ±½Ó¿Ú
- *       am_mdelay()ºÍam_udelay()
+ * \note ä½¿ç”¨ SYSTICK æœåŠ¡çš„ Timer æ ‡å‡†æ¥å£ï¼Œå°±ä¸èƒ½ä½¿ç”¨æ ‡å‡†å»¶æ—¶æ¥å£
+ *       am_mdelay()å’Œam_udelay()
  * \internal
  * \par Modification History
  * - 1.00 15-09-22  win, first implementation.
@@ -39,52 +39,52 @@ extern "C" {
  */
 
 /**
- * \brief SYSTICK Éè±¸ĞÅÏ¢½á¹¹Ìå
+ * \brief SYSTICK è®¾å¤‡ä¿¡æ¯ç»“æ„ä½“
  */
 typedef struct am_arm_systick_devinfo {
-    uint32_t     systick_regbase;  /**< \brief SYSTICK ¼Ä´æÆ÷¿é»ùÖ· */
-    uint32_t     clk_id;           /**< \brief SYSTICK Ê±ÖÓID */
-    uint32_t     clk_freq_src;     /**< \brief Ê±ÖÓÔ´ */
+    uint32_t     systick_regbase;  /**< \brief SYSTICK å¯„å­˜å™¨å—åŸºå€ */
+    uint32_t     clk_id;           /**< \brief SYSTICK æ—¶é’ŸID */
+    uint32_t     clk_freq_src;     /**< \brief æ—¶é’Ÿæº */
     
-    /** \brief Æ½Ì¨³õÊ¼»¯º¯Êı */
+    /** \brief å¹³å°åˆå§‹åŒ–å‡½æ•° */
     void     (*pfn_plfm_init)(void);
 
-    /** \brief Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    /** \brief å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
     void     (*pfn_plfm_deinit)(void);
 } am_arm_systick_devinfo_t;
 
 /**
- * \brief SYSTICK Éè±¸
+ * \brief SYSTICK è®¾å¤‡
  */
 typedef struct am_arm_systick_dev {
 
-    am_timer_serv_t timer_serv;    /**< \brief ±ê×¼¶¨Ê±(Timer)·şÎñ */
-    am_pfnvoid_t    pfn_callback;  /**< \brief »Øµ÷º¯Êı */
-    void           *p_arg;         /**< \brief »Øµ÷º¯ÊıµÄÓÃ»§²ÎÊı */
+    am_timer_serv_t timer_serv;    /**< \brief æ ‡å‡†å®šæ—¶(Timer)æœåŠ¡ */
+    am_pfnvoid_t    pfn_callback;  /**< \brief å›è°ƒå‡½æ•° */
+    void           *p_arg;         /**< \brief å›è°ƒå‡½æ•°çš„ç”¨æˆ·å‚æ•° */
 
-    /** \brief Ö¸Ïò SYSTICK Éè±¸ĞÅÏ¢³£Á¿µÄÖ¸Õë */
+    /** \brief æŒ‡å‘ SYSTICK è®¾å¤‡ä¿¡æ¯å¸¸é‡çš„æŒ‡é’ˆ */
     const am_arm_systick_devinfo_t  *p_devinfo;
 
 } am_arm_systick_dev_t;
 
 /**
- * \brief ³õÊ¼»¯ SYSTICK Îª¶¨Ê±¹¦ÄÜ
+ * \brief åˆå§‹åŒ– SYSTICK ä¸ºå®šæ—¶åŠŸèƒ½
  *
- * \param[in] p_dev     : Ö¸Ïò SYSTICK Éè±¸µÄÖ¸Õë
- * \param[in] p_devinfo : Ö¸Ïò SYSTICK Éè±¸ĞÅÏ¢³£Á¿µÄÖ¸Õë
+ * \param[in] p_dev     : æŒ‡å‘ SYSTICK è®¾å¤‡çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo : æŒ‡å‘ SYSTICK è®¾å¤‡ä¿¡æ¯å¸¸é‡çš„æŒ‡é’ˆ
  *
- * \return Timer±ê×¼·şÎñ²Ù×÷¾ä±ú£¬ÖµÎªNULLÊ±±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return Timeræ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„ï¼Œå€¼ä¸ºNULLæ—¶è¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_timer_handle_t 
 am_arm_systick_init(am_arm_systick_dev_t           *p_dev,
                     const am_arm_systick_devinfo_t *p_devinfo);
 
 /**
- * \brief ²»Ê¹ÓÃ SYSTICK Ê±£¬½â³õÊ¼»¯ SYSTICK£¬ÊÍ·ÅÏà¹Ø×ÊÔ´
+ * \brief ä¸ä½¿ç”¨ SYSTICK æ—¶ï¼Œè§£åˆå§‹åŒ– SYSTICKï¼Œé‡Šæ”¾ç›¸å…³èµ„æº
  *
- * \param[in] handle  : ¶¨Ê±Æ÷±ê×¼·şÎñ²Ù×÷¾ä±ú
+ * \param[in] handle  : å®šæ—¶å™¨æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_arm_systick_deinit(am_timer_handle_t handle);
 

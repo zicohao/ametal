@@ -13,28 +13,28 @@
 
 /**
  * \file
- * \brief ZM516X Ä£¿éËÑË÷Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief ZM516X æ¨¡å—æœç´¢ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿Ú´òÓ¡¶ÁÈ¡µ½µÄ±¾µØÄ£¿éµÄÅäÖÃĞÅÏ¢£»
- *   2. ZM516X Ä£¿é´Ó 11 Í¨µÀµ½ 26 Í¨µÀËÑË÷ÆäËüÄ£¿é¡£Èç¹ûËÑË÷µ½ÆäËüÄ£¿é£¬»ñÈ¡¸ÃÄ£¿é
- *      µÄĞÅºÅÇ¿¶ÈºÍÅäÖÃĞÅÏ¢£¬²¢Í¨¹ı´®¿Ú´òÓ¡£»
- *   3. ZM516X Ä£¿é³õÊ¼»¯²¢ËÑË÷Íê³Éºó LED0 ³¤ÁÁ£¬Èç¹ûÊ§°Ü£¬LED0 ÉÁË¸£»
- *   4. ½«±¾µØÄ£¿éµÄÍ¨µÀ»Ö¸´ÎªËÑË÷Ç°µÄÍ¨µÀºÅ¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. ä¸²å£æ‰“å°è¯»å–åˆ°çš„æœ¬åœ°æ¨¡å—çš„é…ç½®ä¿¡æ¯ï¼›
+ *   2. ZM516X æ¨¡å—ä» 11 é€šé“åˆ° 26 é€šé“æœç´¢å…¶å®ƒæ¨¡å—ã€‚å¦‚æœæœç´¢åˆ°å…¶å®ƒæ¨¡å—ï¼Œè·å–è¯¥æ¨¡å—
+ *      çš„ä¿¡å·å¼ºåº¦å’Œé…ç½®ä¿¡æ¯ï¼Œå¹¶é€šè¿‡ä¸²å£æ‰“å°ï¼›
+ *   3. ZM516X æ¨¡å—åˆå§‹åŒ–å¹¶æœç´¢å®Œæˆå LED0 é•¿äº®ï¼Œå¦‚æœå¤±è´¥ï¼ŒLED0 é—ªçƒï¼›
+ *   4. å°†æœ¬åœ°æ¨¡å—çš„é€šé“æ¢å¤ä¸ºæœç´¢å‰çš„é€šé“å·ã€‚
  *
  * \note
- *    1. LED0 ĞèÒª¶Ì½Ó J9 ÌøÏßÃ±£¬²ÅÄÜ±» PIO0_8 ¿ØÖÆ£»
- *    2. ÈçĞè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔĞÅÏ¢£¬ĞèÒª½« PIO0_0 Òı½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *       PIO0_4 Òı½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD£»
- *    3. ZigBee Ä£¿éÄÚÁ¬½Ó¹ØÏµÈçÏÂ£º
+ *    1. LED0 éœ€è¦çŸ­æ¥ J9 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIO0_8 æ§åˆ¶ï¼›
+ *    2. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO0_0 å¼•è„šè¿æ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *       PIO0_4 å¼•è„šè¿æ¥ PC ä¸²å£çš„ RXDï¼›
+ *    3. ZigBee æ¨¡å—å†…è¿æ¥å…³ç³»å¦‚ä¸‹ï¼š
  * <pre>
  *           PIO0_26  <-->  ZigBee_TX
  *           PIO0_27  <-->  ZigBee_RX
  *           PIO0_28  <-->  ZigBee_RST
  * </pre>
- *        Èç¹ûĞèÒªÊ¹ÓÃ ZigBee£¬ÕâĞ© IO ¿Ú²»ÄÜÓÃ×÷ÆäËüÓÃÍ¾¡£
+ *        å¦‚æœéœ€è¦ä½¿ç”¨ ZigBeeï¼Œè¿™äº› IO å£ä¸èƒ½ç”¨ä½œå…¶å®ƒç”¨é€”ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_zm516x_search.c src_zm516x_search
  *
  * \internal
@@ -57,7 +57,7 @@
 #include "am_board.h"
 
 /**
- * \brief ÉÁË¸ LED0
+ * \brief é—ªçƒ LED0
  */
 am_local void flash_led (void)
 {
@@ -71,7 +71,7 @@ am_local void flash_led (void)
 }
 
 /**
- * \brief ´òÓ¡ ZM516X Ä£¿éµÄÅäÖÃĞÅÏ¢
+ * \brief æ‰“å° ZM516X æ¨¡å—çš„é…ç½®ä¿¡æ¯
  */
 am_local void __cfg_info_print (am_zm516x_cfg_info_t *p_zm516x_cfg_info)
 {
@@ -105,7 +105,7 @@ am_local void __cfg_info_print (am_zm516x_cfg_info_t *p_zm516x_cfg_info)
 }
 
 /**
- * \brief ´òÓ¡ ZM516X Ä£¿éµÄ»ù±¾ĞÅÏ¢(Í¨¹ıËÑË÷ÃüÁî D4 »ñµÃ)
+ * \brief æ‰“å° ZM516X æ¨¡å—çš„åŸºæœ¬ä¿¡æ¯(é€šè¿‡æœç´¢å‘½ä»¤ D4 è·å¾—)
  */
 am_local
 void __base_info_print (am_zm516x_base_info_t *p_zm516x_base_info, uint8_t num)
@@ -135,7 +135,7 @@ void __base_info_print (am_zm516x_base_info_t *p_zm516x_base_info, uint8_t num)
 }
 
 /**
- * \brief ´òÓ¡ ZM516X Ô¶³ÌÄ£¿éµÄÅäÖÃĞÅÏ¢(Í¨¹ı»ñÈ¡Ô¶³ÌÅäÖÃĞÅÏ¢ D5 »ñµÃ)
+ * \brief æ‰“å° ZM516X è¿œç¨‹æ¨¡å—çš„é…ç½®ä¿¡æ¯(é€šè¿‡è·å–è¿œç¨‹é…ç½®ä¿¡æ¯ D5 è·å¾—)
  */
 am_local
 void __remote_info_print (am_zm516x_remote_info_t *p_zm516x_remote_info)
@@ -179,7 +179,7 @@ void __remote_info_print (am_zm516x_remote_info_t *p_zm516x_remote_info)
 }
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_zm516x_search_entry (am_zm516x_handle_t zm516x_handle)
 {
@@ -192,52 +192,52 @@ void demo_zm516x_search_entry (am_zm516x_handle_t zm516x_handle)
     am_zm516x_remote_info_t remote_info;
     am_zm516x_addr_t        zb_addr;
 
-    /* »Ö¸´ ZM516X Ä£¿é³ö³§ÉèÖÃ£¨ÓÀ¾ÃÃüÁî£ºDA£©£¬ÉèÖÃ³É¹¦Ğè¸´Î» */
+    /* æ¢å¤ ZM516X æ¨¡å—å‡ºå‚è®¾ç½®ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šDAï¼‰ï¼Œè®¾ç½®æˆåŠŸéœ€å¤ä½ */
     if (am_zm516x_default_set(zm516x_handle) != AM_OK) {
         AM_DBG_INFO("am_zm516x_default_set failed\r\n");
         flash_led();
     }
 
-    /* ÉèÖÃ³É¹¦£¬¸´Î» ZM516X Ä£¿é£¨ÓÀ¾ÃÃüÁî£ºD9£© */
+    /* è®¾ç½®æˆåŠŸï¼Œå¤ä½ ZM516X æ¨¡å—ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šD9ï¼‰ */
     am_zm516x_reset(zm516x_handle);
     am_mdelay(10);
 
-    /* »ñÈ¡ ZigBee Ä£¿éµÄÅäÖÃĞÅÏ¢£¨ÓÀ¾ÃÃüÁî£ºD1£© */
+    /* è·å– ZigBee æ¨¡å—çš„é…ç½®ä¿¡æ¯ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šD1ï¼‰ */
     if (am_zm516x_cfg_info_get(zm516x_handle, &zm516x_cfg_info) != AM_OK) {
         AM_DBG_INFO("am_zm516x_cfg_info_get failed\r\n");
         flash_led();
     }
 
-    /* ÉèÖÃ±¾µØµØÖ·£¬±¾µØµØÖ·²»¿ÉÓëÆäËû±»ËÑË÷µÄÄ£¿éµØÖ·ÏàÍ¬ */
+    /* è®¾ç½®æœ¬åœ°åœ°å€ï¼Œæœ¬åœ°åœ°å€ä¸å¯ä¸å…¶ä»–è¢«æœç´¢çš„æ¨¡å—åœ°å€ç›¸åŒ */
     uint8_t              src_addr[2] = {0x20, 0x02};
 
     zm516x_cfg_info.my_addr[0] = src_addr[0];
     zm516x_cfg_info.my_addr[1] = src_addr[1];
 
-    /* ĞŞ¸Ä ZigBee Ä£¿éµÄÅäÖÃĞÅÏ¢£¨ÓÀ¾ÃÃüÁî£ºD6£©£¬ÉèÖÃ³É¹¦Ğè¸´Î» */
+    /* ä¿®æ”¹ ZigBee æ¨¡å—çš„é…ç½®ä¿¡æ¯ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šD6ï¼‰ï¼Œè®¾ç½®æˆåŠŸéœ€å¤ä½ */
     if (am_zm516x_cfg_info_set(zm516x_handle, &zm516x_cfg_info) != AM_OK) {
         AM_DBG_INFO("am_zm516x_cfg_info_set failed\r\n");
         flash_led();
     }
-    /* ÉèÖÃ³É¹¦£¬¸´Î» ZM516X Ä£¿é£¨ÓÀ¾ÃÃüÁî£ºD9£© */
+    /* è®¾ç½®æˆåŠŸï¼Œå¤ä½ ZM516X æ¨¡å—ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šD9ï¼‰ */
     am_zm516x_reset(zm516x_handle);
     am_mdelay(10);
     __cfg_info_print(&zm516x_cfg_info);
 
-    /* ÉèÖÃÄ¿±êµØÖ· */
+    /* è®¾ç½®ç›®æ ‡åœ°å€ */
     zb_addr.p_addr    = zm516x_cfg_info.my_addr;
     zb_addr.addr_size = 2;
 
-    /* ±éÀúËùÓĞÍ¨µÀ */
+    /* éå†æ‰€æœ‰é€šé“ */
     for (i = 11; i <= 26; i++) {
 
-        /* ÉèÖÃ ZM516X Ä£¿éÍ¨µÀºÅ£¨ÁÙÊ±ÃüÁî£ºD1£© */
+        /* è®¾ç½® ZM516X æ¨¡å—é€šé“å·ï¼ˆä¸´æ—¶å‘½ä»¤ï¼šD1ï¼‰ */
         if (am_zm516x_channel_set(zm516x_handle, i) != AM_OK) {
             AM_DBG_INFO("am_zm516x_channel_set failed\r\n");
             flash_led();
         }
 
-        /* ËÑË÷ÆäËüÄ£¿é£¨ÓÀ¾ÃÃüÁî£ºD4£© */
+        /* æœç´¢å…¶å®ƒæ¨¡å—ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šD4ï¼‰ */
         if (am_zm516x_discover(zm516x_handle,
                                5,
                                base_info,
@@ -250,11 +250,11 @@ void demo_zm516x_search_entry (am_zm516x_handle_t zm516x_handle)
                 AM_DBG_INFO("-------------the %d-------------\r\n", j);
                 __base_info_print(&base_info[j], 1);
 
-                /* ÉèÖÃÄ¿±êµØÖ· */
+                /* è®¾ç½®ç›®æ ‡åœ°å€ */
                 zb_addr.p_addr    = base_info[j].addr;
                 zb_addr.addr_size = 2;
 
-                /* ¶ÁÈ¡Ö¸¶¨µØÖ· ZM516X Ä£¿éµÄĞÅºÅÇ¿¶È£¨ÁÙÊ±ÃüÁî£ºDA£© */
+                /* è¯»å–æŒ‡å®šåœ°å€ ZM516X æ¨¡å—çš„ä¿¡å·å¼ºåº¦ï¼ˆä¸´æ—¶å‘½ä»¤ï¼šDAï¼‰ */
                 if (am_zm516x_sigal_get(zm516x_handle,
                                        &zb_addr,
                                        &signal) != AM_OK) {
@@ -263,7 +263,7 @@ void demo_zm516x_search_entry (am_zm516x_handle_t zm516x_handle)
                     AM_DBG_INFO("signal: %ddBm\r\n", signal / 3 - 95);
                 }
 
-                /* »ñÈ¡Ô¶³ÌÅäÖÃĞÅÏ¢£¨ÓÀ¾ÃÃüÁî£ºD5£© */
+                /* è·å–è¿œç¨‹é…ç½®ä¿¡æ¯ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šD5ï¼‰ */
                 if (am_zm516x_remote_info_get(zm516x_handle,
                                              &zb_addr,
                                              &remote_info) != AM_OK) {
@@ -280,14 +280,14 @@ void demo_zm516x_search_entry (am_zm516x_handle_t zm516x_handle)
     AM_DBG_INFO("\r\nsearch complete, recovery the channal to %d\r\n",
                 zm516x_cfg_info.chan);
 
-    /* ÉèÖÃ ZigBee Ä£¿éÍ¨µÀºÅ£¨ÓÀ¾ÃÃüÁî£ºD2£© */
+    /* è®¾ç½® ZigBee æ¨¡å—é€šé“å·ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šD2ï¼‰ */
     if (am_zm516x_cfg_channel_set(zm516x_handle,
                                   zm516x_cfg_info.chan) != AM_OK) {
         AM_DBG_INFO("am_zm516x_cfg_channel_set failed\r\n");
         flash_led();
     }
 
-    /* ÅäÖÃÍê³É£¬µãÁÁ LED0 */
+    /* é…ç½®å®Œæˆï¼Œç‚¹äº® LED0 */
     am_led_on(LED0);
 
     AM_FOREVER {

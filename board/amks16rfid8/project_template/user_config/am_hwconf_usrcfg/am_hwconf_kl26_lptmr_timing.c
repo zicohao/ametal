@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief KL26 LPTMR ¶¨Ê±¹¦ÄÜÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief KL26 LPTMR å®šæ—¶åŠŸèƒ½ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_kl26_hwconfig_lptmr_timing.c
  * 
- * \note LPTMÖ»ÓĞÒ»¸ö¶¨Ê±Í¨µÀ£¬±ê×¼½Ó¿Ú²ã²ÎÊıÍ¨µÀºÅÎŞÒâÒå¡£
+ * \note LPTMåªæœ‰ä¸€ä¸ªå®šæ—¶é€šé“ï¼Œæ ‡å‡†æ¥å£å±‚å‚æ•°é€šé“å·æ— æ„ä¹‰ã€‚
  *
  * \internal
  * \par Modification history
@@ -34,44 +34,44 @@
  * @{
  */
 
-/** \brief LPTMR Æ½Ì¨³õÊ¼»¯ */
+/** \brief LPTMR å¹³å°åˆå§‹åŒ– */
 void __kl26_plfm_lptmr_timing_init (void)
 {
     amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_LPTMR);
     
-    /* ¹Ø±ÕLPTMRÄ£¿é */
+    /* å…³é—­LPTMRæ¨¡å— */
     amhw_fsl_lptmr_ctl_clear(KL26_LPTMR, AMHW_FSL_LPTMR_CSR_TEN);
 
-    /* Ê±ÖÓÔ´Ñ¡Ôñ */
+    /* æ—¶é’Ÿæºé€‰æ‹© */
     amhw_fsl_lptmr_clock_set(KL26_LPTMR, AMHW_FSL_LPTMR_CLOCK_SRC_LPOCLK);
 }
 
-/** \brief ½â³ı LPTMR Æ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤ LPTMR å¹³å°åˆå§‹åŒ– */
 void __kl26_plfm_lptmr_timing_deinit (void)
 {
     amhw_kl26_sim_periph_clock_disable(KL26_SIM_SCGC_LPTMR);
 }
 
-/** \brief LPTMR Éè±¸ĞÅÏ¢ */
+/** \brief LPTMR è®¾å¤‡ä¿¡æ¯ */
 const am_fsl_lptmr_timing_devinfo_t  __g_lptmr_timing_devinfo = {
-    KL26_LPTMR,                  /**< \brief Ö¸ÏòLPTMR¼Ä´æÆ÷¿éµÄÖ¸Õë */
-    INUM_LPTMR0,                      /**< \brief LPTMR0ÖĞ¶Ï±àºÅ */
-    CLK_LPTMR,                        /**< \brief LPTMRÊ±ÖÓºÅ */
+    KL26_LPTMR,                  /**< \brief æŒ‡å‘LPTMRå¯„å­˜å™¨å—çš„æŒ‡é’ˆ */
+    INUM_LPTMR0,                      /**< \brief LPTMR0ä¸­æ–­ç¼–å· */
+    CLK_LPTMR,                        /**< \brief LPTMRæ—¶é’Ÿå· */
     __kl26_plfm_lptmr_timing_init,
     __kl26_plfm_lptmr_timing_deinit
 };
 
-/** \brief LPTMR Éè±¸¶¨Òå  */
+/** \brief LPTMR è®¾å¤‡å®šä¹‰  */
 am_fsl_lptmr_timing_dev_t  __g_lptmr_timing_dev;
 
-/** \brief LPTMR Timer ÊµÀı³õÊ¼»¯£¬»ñµÃTimer±ê×¼·şÎñ¾ä±ú */
+/** \brief LPTMR Timer å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—Timeræ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_timer_handle_t am_kl26_lptmr_timing_inst_init (void)
 {
     return am_fsl_lptmr_timing_init(&__g_lptmr_timing_dev,
                                     &__g_lptmr_timing_devinfo);
 }
 
-/** \brief LPTMR Timer ÊµÀı½â³õÊ¼»¯ */
+/** \brief LPTMR Timer å®ä¾‹è§£åˆå§‹åŒ– */
 void am_kl26_lptmr_timing_inst_deinit (am_timer_handle_t handle)
 {
     am_fsl_lptmr_timing_deinit(handle);

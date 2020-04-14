@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief USB 硬件操作接口
+ * \brief USB 纭欢鎿嶄綔鎺ュ彛
  *
  *
  * \internal

@@ -12,16 +12,16 @@
 
 /**
  * \file
- * \brief SPI Ö÷»úÀı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief SPI ä¸»æœºä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè£º
- *   1. ½« SPI µÄ MOSI Òı½ÅºÍ MISO Òı½ÅÓÃÏßÏàÁ¬£¬Ä£Äâ´Ó»úÉè±¸£¬»Ø»·²âÊÔ¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. å°† SPI çš„ MOSI å¼•è„šå’Œ MISO å¼•è„šç”¨çº¿ç›¸è¿ï¼Œæ¨¡æ‹Ÿä»æœºè®¾å¤‡ï¼Œå›ç¯æµ‹è¯•ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Ö÷»úÍ¨¹ı MISO ·¢ËÍÊı¾İ£¬·¢³öµÄÊı¾İ´Ó MOSI ¶Á»Ø£»
- *   2. µ÷ÊÔ´®¿Ú´òÓ¡²âÊÔ½á¹û¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. ä¸»æœºé€šè¿‡ MISO å‘é€æ•°æ®ï¼Œå‘å‡ºçš„æ•°æ®ä» MOSI è¯»å›ï¼›
+ *   2. è°ƒè¯•ä¸²å£æ‰“å°æµ‹è¯•ç»“æœã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_zlg_hw_spi_master.c src_zlg_hw_spi_master
  *
  * \internal
@@ -43,35 +43,35 @@
 #include "hw/amhw_zlg_spi.h"
 
 /**
- * \name SPI´«Êä½á¹¹ÌåÅäÖÃ²ÎÊı
+ * \name SPIä¼ è¾“ç»“æ„ä½“é…ç½®å‚æ•°
  */
-#define SPI_CFG_LSB         AM_BIT(0)   /**< \brief µÍÎ»ÓÅÏÈ·¢ËÍ */
-#define SPI_CFG_16BIT       AM_BIT(1)   /**< \brief ´«ÊäÊı¾İ¿í¶ÈÎª16Î» */
+#define SPI_CFG_LSB         AM_BIT(0)   /**< \brief ä½ä½ä¼˜å…ˆå‘é€ */
+#define SPI_CFG_16BIT       AM_BIT(1)   /**< \brief ä¼ è¾“æ•°æ®å®½åº¦ä¸º16ä½ */
 
-#define SPI_CFG_MODE_0      0           /**< \brief Ä£Ê½0 */
-#define SPI_CFG_MODE_1      1           /**< \brief Ä£Ê½1 */
-#define SPI_CFG_MODE_2      2           /**< \brief Ä£Ê½2 */
-#define SPI_CFG_MODE_3      3           /**< \brief Ä£Ê½3 */
+#define SPI_CFG_MODE_0      0           /**< \brief æ¨¡å¼0 */
+#define SPI_CFG_MODE_1      1           /**< \brief æ¨¡å¼1 */
+#define SPI_CFG_MODE_2      2           /**< \brief æ¨¡å¼2 */
+#define SPI_CFG_MODE_3      3           /**< \brief æ¨¡å¼3 */
 
 /** @} */
 
 /** 
- * \brief SPI´«Êä½á¹¹Ìå
+ * \brief SPIä¼ è¾“ç»“æ„ä½“
  */
 typedef struct spi_transfer {
-    const void  *p_txbuf;           /**< \brief Ö¸Ïò·¢ËÍÊı¾İ»º´æµÄÖ¸Õë */
-    void        *p_rxbuf;           /**< \brief Ö¸Ïò½ÓÊÕÊı¾İ»º´æµÄÖ¸Õë */
-    uint32_t     nbytes;            /**< \brief Êı¾İ³¤¶È */
-    uint32_t     flags;             /**< \brief SPI´«Êä¿ØÖÆ±êÖ¾Î» */
+    const void  *p_txbuf;           /**< \brief æŒ‡å‘å‘é€æ•°æ®ç¼“å­˜çš„æŒ‡é’ˆ */
+    void        *p_rxbuf;           /**< \brief æŒ‡å‘æ¥æ”¶æ•°æ®ç¼“å­˜çš„æŒ‡é’ˆ */
+    uint32_t     nbytes;            /**< \brief æ•°æ®é•¿åº¦ */
+    uint32_t     flags;             /**< \brief SPIä¼ è¾“æ§åˆ¶æ ‡å¿—ä½ */
 } spi_transfer_t;
 
-spi_transfer_t g_spi_transfer;      /* ¶¨ÒåÒ»¸öSPI´«Êä½á¹¹ÌåÊµÀı */
+spi_transfer_t g_spi_transfer;      /* å®šä¹‰ä¸€ä¸ªSPIä¼ è¾“ç»“æ„ä½“å®ä¾‹ */
 
 static void spi_speed_cfg (amhw_zlg_spi_t *p_hw_spi,
                            uint32_t        target_speed,
                            uint32_t        clk_rate)
 {
-    uint32_t best_pdiv;              /* ¼ÆËã³öµÄËÙ¶È */
+    uint32_t best_pdiv;              /* è®¡ç®—å‡ºçš„é€Ÿåº¦ */
 
     best_pdiv = clk_rate / target_speed;
 
@@ -84,7 +84,7 @@ static void spi_master_cfg (amhw_zlg_spi_t *p_hw_spi)
     amhw_zlg_spi_data_len_sel(p_hw_spi, AMHW_ZLG_SPI_DATA_LEN_8BIT);
     amhw_zlg_spi_valid_data_sel(p_hw_spi,AMHW_ZLG_SPI_VALID_DATA_8BIT);
 
-    /* ÅäÖÃÊ±ÖÓÏàÎ»ºÍ¼«ĞÔ */
+    /* é…ç½®æ—¶é’Ÿç›¸ä½å’Œææ€§ */
     amhw_zlg_spi_clk_mode_set(p_hw_spi, SPI_CFG_MODE_1 ^ 0x01);
 }
 
@@ -94,18 +94,18 @@ static void spi_master_cs_ctr (amhw_zlg_spi_t *p_hw_spi,
                                am_bool_t          state)
 {
 
-    /* Æ¬Ñ¡ÓĞĞ§ */
+    /* ç‰‡é€‰æœ‰æ•ˆ */
     if (state) {
         amhw_zlg_spi_cs_sel(p_hw_spi,AM_TRUE);
 
-    /* Æ¬Ñ¡ÎŞĞ§ */
+    /* ç‰‡é€‰æ— æ•ˆ */
     } else {
         amhw_zlg_spi_cs_sel(p_hw_spi, AM_FALSE);
     }
 }
 
 /**
- * \brief SPI»Ø»·´«Êä²âÊÔ
+ * \brief SPIå›ç¯ä¼ è¾“æµ‹è¯•
  */
 void spi_loop_trans (amhw_zlg_spi_t *p_hw_spi,
                      spi_transfer_t *p_trans,
@@ -119,14 +119,14 @@ void spi_loop_trans (amhw_zlg_spi_t *p_hw_spi,
 
     while(pos < p_trans->nbytes) {
 
-        /* µÈ´ı¿ÉÒÔ·¢ËÍ */
+        /* ç­‰å¾…å¯ä»¥å‘é€ */
         while ((amhw_zlg_spi_reg_cstat_get(p_hw_spi) &
                 AMHW_ZLG_SPI_CSTAT_TX_EMPTY) == 0);
 
             amhw_zlg_spi_tx_data8_put(p_hw_spi,
                                         *((uint8_t*)(p_trans->p_txbuf) + pos));
 
-        /* µÈ´ı¿ÉÒÔ½ÓÊÕ */
+        /* ç­‰å¾…å¯ä»¥æ¥æ”¶ */
         while ((amhw_zlg_spi_reg_cstat_get(p_hw_spi) &
                 AMHW_ZLG_SPI_CSTAT_RXVAL) == 0);
 
@@ -135,12 +135,12 @@ void spi_loop_trans (amhw_zlg_spi_t *p_hw_spi,
             pos += 1;
     }
 
-    /* ´¦ÀíÆ¬Ñ¡ */
+    /* å¤„ç†ç‰‡é€‰ */
     spi_master_cs_ctr(p_hw_spi, cs_pin, AM_GPIO_LEVEL_LOW, AM_FALSE);
 }
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_zlg_hw_spi_master_entry (amhw_zlg_spi_t *p_hw_spi,
                                    int32_t         cs_pin,
@@ -163,15 +163,15 @@ void demo_zlg_hw_spi_master_entry (amhw_zlg_spi_t *p_hw_spi,
     amhw_zlg_spi_rx_enable(p_hw_spi, AM_TRUE);
     amhw_zlg_spi_module_enable(p_hw_spi, AM_TRUE);
 
-    /* ¹¹ÔìÊı¾İ */
+    /* æ„é€ æ•°æ® */
     for (i = 0; i < length; i++) {
         spi_send_buf[i] = i;
     }
 
-    /* Êı¾İ´«Êä */
+    /* æ•°æ®ä¼ è¾“ */
     spi_loop_trans(p_hw_spi, p_trans, cs_pin);
 
-    /* Êı¾İ¼ìÑé */
+    /* æ•°æ®æ£€éªŒ */
     for (i = 0; i < length; i++) {
         if (spi_recv_buf[i] != spi_send_buf[i]) {
             error_ocur = AM_TRUE;

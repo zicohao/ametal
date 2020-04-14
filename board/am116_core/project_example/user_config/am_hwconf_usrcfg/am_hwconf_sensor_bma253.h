@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ´«¸ĞÆ÷ BMA253 ÅäÖÃÎÄ¼ş
+ * \brief ä¼ æ„Ÿå™¨ BMA253 é…ç½®æ–‡ä»¶
  *
  * \internal
  * \par Modification history
@@ -31,12 +31,12 @@ extern "C" {
 #endif
 
 /**
- * \brief ´«¸ĞÆ÷ BMA253 Éè±¸ÊµÀı»¯
+ * \brief ä¼ æ„Ÿå™¨ BMA253 è®¾å¤‡å®ä¾‹åŒ–
  */
 am_sensor_handle_t am_sensor_bma253_inst_init (void);
 
 /**
- * \brief ´«¸ĞÆ÷ BMA253 ÊµÀı½â³õÊ¼»¯
+ * \brief ä¼ æ„Ÿå™¨ BMA253 å®ä¾‹è§£åˆå§‹åŒ–
  */
 am_err_t am_sensor_bma253_inst_deinit (am_sensor_handle_t handle);
 

@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥ 9.61
+ * \brief ç¨‹åºæ¸…å• 9.61
  * 
  * \internal
  * \par Modification history
@@ -21,7 +21,7 @@
  */
 #include "mvc.h"
 
-static void view_update(observer_t *p_view, struct _model *p_model)	// ÊÓÍ¼ÏÔÊ¾º¯Êı
+static void view_update(observer_t *p_view, struct _model *p_model)	// è§†å›¾æ˜¾ç¤ºå‡½æ•°
 {
 	// ...
 }
@@ -36,7 +36,7 @@ int am_main(void)
 	model_attach(&model, &view); 
 	
   while (1){
-  // ×´Ì¬±ä»¯£¬Í¨ÖªËùÓĞÊÓÍ¼
+  // çŠ¶æ€å˜åŒ–ï¼Œé€šçŸ¥æ‰€æœ‰è§†å›¾
   	model_notify(&model);
   // ...
   }

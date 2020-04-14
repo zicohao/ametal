@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief Í¨ÓÃ¶¯Ì¬É¨ÃèÀàÊıÂë¹Ü
+ * \brief é€šç”¨åŠ¨æ€æ‰«æç±»æ•°ç ç®¡
  *
  * \internal
  * \par modification history:
@@ -178,13 +178,13 @@ static void __digitron_dynamic_scan_timer_cb (void *p_arg)
         }
 
         if (p_dev->blink_cnt >= p_dev->p_info->blink_on_time) {
-            turn_on = AM_FALSE;          /* ÉÁË¸Ï¨Ãğ½×¶Î */
+            turn_on = AM_FALSE;          /* é—ªçƒç†„ç­é˜¶æ®µ */
         } else {
-            turn_on = AM_TRUE;           /* ÉÁË¸µãÁÁ½×¶Î */
+            turn_on = AM_TRUE;           /* é—ªçƒç‚¹äº®é˜¶æ®µ */
         }
     }
 
-    /* ĞèÒªÏûÓ°  */
+    /* éœ€è¦æ¶ˆå½±  */
     if (p_dev->is_separate) {
 
         code = am_digitron_seg_active_low_get(p_dev->p_baseinfo) ?
@@ -197,7 +197,7 @@ static void __digitron_dynamic_scan_timer_cb (void *p_arg)
         __scan_seg_send(p_dev);
     }
 
-    /* ÉèÖÃÉ¨Ãè¶ÎÂë */
+    /* è®¾ç½®æ‰«ææ®µç  */
     for (i = 0; i < p_dev->num_scan; i++) {
 
         if (scan_mode == AM_DIGITRON_SCAN_MODE_ROW) {
@@ -206,7 +206,7 @@ static void __digitron_dynamic_scan_timer_cb (void *p_arg)
             index = i * num_cols + p_dev->scan_idx;
         }
 
-        /* ²»ÊÇÉÁË¸Î» »òÕß ´¦ÓÚÉÁË¸Î»µÄµãÁÁ½×¶Î */
+        /* ä¸æ˜¯é—ªçƒä½ æˆ–è€… å¤„äºé—ªçƒä½çš„ç‚¹äº®é˜¶æ®µ */
         if ((!(p_dev->blink_flags & AM_BIT(index))) || (turn_on == AM_TRUE)) {
             code = __seg_disp_buf_get(p_dev, index);
         } else {
@@ -218,7 +218,7 @@ static void __digitron_dynamic_scan_timer_cb (void *p_arg)
         __seg_scan_buf_set(p_dev, i, code);
     }
 
-    /* Ö´ĞĞÉ¨Ãè£¬·¢ËÍĞÂµÄÎ»ÂëºÍ¶ÎÂë */
+    /* æ‰§è¡Œæ‰«æï¼Œå‘é€æ–°çš„ä½ç å’Œæ®µç  */
     if (p_dev->is_separate) {
 
         __scan_com_send(p_dev);
@@ -239,7 +239,7 @@ static void __digitron_dynamic_scan_timer_cb (void *p_arg)
 }
 
 /******************************************************************************/
-/* ÏÔÊ¾¶ÎÂëÉèÖÃ */
+/* æ˜¾ç¤ºæ®µç è®¾ç½® */
 static void __digitron_disp_buf_set (am_digitron_scan_dev_t *p_dev,
                                      int                     index,
                                      uint16_t                data)
@@ -252,7 +252,7 @@ static void __digitron_disp_buf_set (am_digitron_scan_dev_t *p_dev,
 }
 
 /******************************************************************************/
-/* ÏÔÊ¾¶ÎÂëµş¼Ó£¨»ò£© */
+/* æ˜¾ç¤ºæ®µç å åŠ ï¼ˆæˆ–ï¼‰ */
 static void __digitron_disp_buf_xor (am_digitron_scan_dev_t *p_dev,
                                      int                     index,
                                      uint16_t                data)
@@ -364,7 +364,7 @@ static int __digitron_disp_str (void       *p_cookie,
     str_len = strlen(p_str);
 
     if (len > str_len) {
-        len = str_len;               /* ×î´ó³¤¶È²»»á³¬¹ıÊıÂë¹Ü³¤¶È  */
+        len = str_len;               /* æœ€å¤§é•¿åº¦ä¸ä¼šè¶…è¿‡æ•°ç ç®¡é•¿åº¦  */
     }
 
     if ((index + len) > p_dev->num_digitron) {
@@ -375,7 +375,7 @@ static int __digitron_disp_str (void       *p_cookie,
 
         if (('.' == ch) && ('.' != last_ch)) {
 
-            /* Ğ¡ÊıµãÏÔÊ¾ÔÚÆğÊ¼Î»ÖÃ£¬ÒªÕ¼ÓÃÎ»ÖÃ£¬·ñÔò£¬²»µ¥¶ÀÕ¼ÓÃÎ»ÖÃ  */
+            /* å°æ•°ç‚¹æ˜¾ç¤ºåœ¨èµ·å§‹ä½ç½®ï¼Œè¦å ç”¨ä½ç½®ï¼Œå¦åˆ™ï¼Œä¸å•ç‹¬å ç”¨ä½ç½®  */
             if (idx < 0) {
                 len--;
                 ++idx;
@@ -490,12 +490,12 @@ int am_digitron_scan_init (am_digitron_scan_dev_t           *p_dev,
 
     if (am_digitron_scan_mode_get(p_baseinfo) == AM_DIGITRON_SCAN_MODE_ROW) {
 
-        /* Ò»´ÎÉ¨ÃèÒ»ĞĞ£¬Ò»ĞĞµÄÊıÂë¹Ü¸öÊıÓëÁĞÊıÏàµÈ */
+        /* ä¸€æ¬¡æ‰«æä¸€è¡Œï¼Œä¸€è¡Œçš„æ•°ç ç®¡ä¸ªæ•°ä¸åˆ—æ•°ç›¸ç­‰ */
         p_dev->num_scan = am_digitron_num_col_get(p_baseinfo);
 
     } else {
 
-        /* Ò»´ÎÉ¨ÃèÒ»ÁĞ£¬Ò»ÁĞµÄÊıÂë¹Ü¸öÊıÓëĞĞÊıÏàµÈ */
+        /* ä¸€æ¬¡æ‰«æä¸€åˆ—ï¼Œä¸€åˆ—çš„æ•°ç ç®¡ä¸ªæ•°ä¸è¡Œæ•°ç›¸ç­‰ */
         p_dev->num_scan = am_digitron_num_row_get(p_baseinfo);
     }
 
@@ -504,7 +504,7 @@ int am_digitron_scan_init (am_digitron_scan_dev_t           *p_dev,
     am_softimer_init(&p_dev->timer, __digitron_dynamic_scan_timer_cb, p_dev);
     am_softimer_start(&p_dev->timer, p_dev->scan_interval);
 
-    /* Ìí¼Ó±ê×¼µÄÊıÂë¹ÜÉè±¸  */
+    /* æ·»åŠ æ ‡å‡†çš„æ•°ç ç®¡è®¾å¤‡  */
     return am_digitron_dev_add(&p_dev->isa,
                                &p_info->devinfo,
                                &__g_digitron_dev_ops,
@@ -541,7 +541,7 @@ int am_digitron_scan_deinit (am_digitron_scan_dev_t *p_dev)
 
     am_softimer_stop(&p_dev->timer);
 
-    /* É¾³ı±ê×¼µÄÊıÂë¹ÜÉè±¸  */
+    /* åˆ é™¤æ ‡å‡†çš„æ•°ç ç®¡è®¾å¤‡  */
     return am_digitron_dev_del(&p_dev->isa);
 }
 

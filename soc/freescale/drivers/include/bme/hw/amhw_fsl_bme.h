@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief BME Î»²Ù×÷ÒýÇæÓ²¼þ²Ù×÷½Ó¿Ú
+ * \brief BME ä½æ“ä½œå¼•æ“Žç¡¬ä»¶æ“ä½œæŽ¥å£
  *
- * \note BMEËü´ÓÓ²¼þÉÏÌá¹©ÁË¶ÔÍâÉèµØÖ·¿Õ¼äÓÃ¶Á-ÐÞ¸Ä-Ð´µÄ·½Ê½À´ÊµÏÖÎ»²Ù×÷
- *       BMEÖ§³Ö·ÃÎÊ´Ó0x40000000¿ªÊ¼µÄ£¬´óÐ¡Îª512KµÄÍâÉèµØÖ·¿Õ¼ä
+ * \note BMEå®ƒä»Žç¡¬ä»¶ä¸Šæä¾›äº†å¯¹å¤–è®¾åœ°å€ç©ºé—´ç”¨è¯»-ä¿®æ”¹-å†™çš„æ–¹å¼æ¥å®žçŽ°ä½æ“ä½œ
+ *       BMEæ”¯æŒè®¿é—®ä»Ž0x40000000å¼€å§‹çš„ï¼Œå¤§å°ä¸º512Kçš„å¤–è®¾åœ°å€ç©ºé—´
  *
  * \internal
  * \par Modification history
@@ -42,37 +42,37 @@ extern "C" {
  */
 
 /**
- * \name  bmeÖ¸ÁîÑÚÂëºê¶¨Òå
+ * \name  bmeæŒ‡ä»¤æŽ©ç å®å®šä¹‰
  * @{
  */
 
-#define AMHW_KL26_BME_AND_MASK               (1<<26)   /**< \brief ÓëÃüÁîÑÚÂë.  */
-#define AMHW_KL26_BME_OR_MASK                (1<<27)   /**< \brief »òÃüÁîÑÚÂë.  */
-#define AMHW_KL26_BME_XOR_MASK               (3<<26)   /**< \brief Òì»òÃüÁîÑÚÂë. */
+#define AMHW_KL26_BME_AND_MASK               (1<<26)   /**< \brief ä¸Žå‘½ä»¤æŽ©ç .  */
+#define AMHW_KL26_BME_OR_MASK                (1<<27)   /**< \brief æˆ–å‘½ä»¤æŽ©ç .  */
+#define AMHW_KL26_BME_XOR_MASK               (3<<26)   /**< \brief å¼‚æˆ–å‘½ä»¤æŽ©ç . */
 
-/** \brief BFIÃüÁîÑÚÂë  */
+/** \brief BFIå‘½ä»¤æŽ©ç   */
 #define AMHW_KL26_BME_BFI_MASK(BIT,WIDTH)    (1<<28) | (BIT<<23) | ((WIDTH-1)<<19)
 
-/** \brief ¶Á²Ù×÷ÇåÁãÃüÁîÑÚÂë  */
+/** \brief è¯»æ“ä½œæ¸…é›¶å‘½ä»¤æŽ©ç   */
 #define AMHW_KL26_BME_LAC1_MASK(BIT)         (1<<27) | (BIT<<21)
 
-/** \brief ¶Á²Ù×÷ÖÃÎ»ÃüÁîÑÚÂë  */
+/** \brief è¯»æ“ä½œç½®ä½å‘½ä»¤æŽ©ç   */
 #define AMHW_KL26_BME_LAS1_MASK(BIT)         (3<<26) | (BIT<<21)
 
-/** \brief ÌáÈ¡Î»¶ÎÃüÁîÑÚÂë  */
+/** \brief æå–ä½æ®µå‘½ä»¤æŽ©ç   */
 #define AMHW_KL26_BME_UBFX_MASK(BIT,WIDTH)   (1<<28) | (BIT<<23) | ((WIDTH-1)<<19)
 
 /** @} */
 
 /**
- * \name  bme·â×°Ê½´æ´¢Ö¸Áîºê¶¨Òå
+ * \name  bmeå°è£…å¼å­˜å‚¨æŒ‡ä»¤å®å®šä¹‰
  * @{
  */
 
-/* \brief  BME Âß¼­Ö¸Áî,ÓÃÓÚ¶ÔaddrµØÖ·ÉÏµÄÄÚÈÝ½øÐÐÂß¼­²Ù×÷£¬ÁíÍâÁ½¸öµÄÓÃ·¨ÓëÖ®ÏàËÆ
- * \par Ê¾Àý
+/* \brief  BME é€»è¾‘æŒ‡ä»¤,ç”¨äºŽå¯¹addråœ°å€ä¸Šçš„å†…å®¹è¿›è¡Œé€»è¾‘æ“ä½œï¼Œå¦å¤–ä¸¤ä¸ªçš„ç”¨æ³•ä¸Žä¹‹ç›¸ä¼¼
+ * \par ç¤ºä¾‹
  * \code
- *  AMHW_KL26_BME_AND_*(ÍâÉè¼Ä´æÆ÷µØÖ·, Êý¾Ý);
+ *  AMHW_KL26_BME_AND_*(å¤–è®¾å¯„å­˜å™¨åœ°å€, æ•°æ®);
  * \endcode
  */
 
@@ -112,10 +112,10 @@ extern "C" {
 #define  AMHW_KL26_BME_XOR_W(addr, wdata)    \
           *(volatile uint32_t*)((uint32_t)addr | AMHW_KL26_BME_XOR_MASK) = wdata;
 
-/* \brief  BME Î»²åÈëÂß¼­Ìæ»»Ö¸Áî,ÓÃÓÚ¶ÔaddrµØÖ·ÉÏµÄÄÚÈÝÖ¸¶¨Î»¿ªÊ¼´¦½øÐÐwidth³¤¶È¸öÎ»Ìæ»»
- * \par Ê¾Àý
+/* \brief  BME ä½æ’å…¥é€»è¾‘æ›¿æ¢æŒ‡ä»¤,ç”¨äºŽå¯¹addråœ°å€ä¸Šçš„å†…å®¹æŒ‡å®šä½å¼€å§‹å¤„è¿›è¡Œwidthé•¿åº¦ä¸ªä½æ›¿æ¢
+ * \par ç¤ºä¾‹
  * \code
- *  AMHW_KL26_BME_BFI_*(ÍâÉè¼Ä´æÆ÷µØÖ·, Êý¾Ý, bit, Ìæ»»Î»µÄ³¤¶È);
+ *  AMHW_KL26_BME_BFI_*(å¤–è®¾å¯„å­˜å™¨åœ°å€, æ•°æ®, bit, æ›¿æ¢ä½çš„é•¿åº¦);
  * \endcode
  */
 
@@ -134,7 +134,7 @@ extern "C" {
 /** @} */
 
 /**
- * \name  bme·â×°Ê½ÔØÈëÖ¸Áîºê¶¨Òå
+ * \name  bmeå°è£…å¼è½½å…¥æŒ‡ä»¤å®å®šä¹‰
  * @{
  */
 

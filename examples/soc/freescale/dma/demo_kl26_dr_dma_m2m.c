@@ -11,12 +11,12 @@
 *******************************************************************************/
 /**
  * \file
- * \brief DMAÄÚ´æµ½ÄÚ´æÀı³Ì£¬ÓÉDMAÇı¶¯²ãÊµÏÖ
+ * \brief DMAå†…å­˜åˆ°å†…å­˜ä¾‹ç¨‹ï¼Œç”±DMAé©±åŠ¨å±‚å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´«Êä³É¹¦Ôò´®¿Ú´òÓ¡"transfer success"£¬·ñÔò´òÓ¡"transfer failure"¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. ä¼ è¾“æˆåŠŸåˆ™ä¸²å£æ‰“å°"transfer success"ï¼Œå¦åˆ™æ‰“å°"transfer failure"ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_kl26_dr_dma_m2m.c src_kl26_dr_dma_m2m
  *
  * \internal
@@ -39,28 +39,28 @@
 #include "demo_fsl_entrys.h"
 #include "../../../../soc/freescale/kl26/am_kl26.h"
 
-am_bool_t volatile __g_trans_done;           /**< \brief ´«ÊäÍê³É±êÖ¾     */
+am_bool_t volatile __g_trans_done;           /**< \brief ä¼ è¾“å®Œæˆæ ‡å¿—     */
 
 /**
- * \brief ·ÇÆ¹ÅÒ´«ÊäÊ±£¬ÃèÊö·ûµÄµØÖ·²»ÒªÇó16×Ö½Ú¶ÔÆë¡£
+ * \brief éä¹’ä¹“ä¼ è¾“æ—¶ï¼Œæè¿°ç¬¦çš„åœ°å€ä¸è¦æ±‚16å­—èŠ‚å¯¹é½ã€‚
  */
 amhw_kl26_dma_xfer_desc_t g_desc;
 
 /**
- * \brief DMAÖĞ¶Ï·şÎñ³ÌĞò¡£
+ * \brief DMAä¸­æ–­æœåŠ¡ç¨‹åºã€‚
  *
- * \param[in] p_arg : ÓÃ»§×Ô¶¨Òå²ÎÊı£¬Í¨¹ı am_kl26_dma_isr_connect() º¯Êı´«µİ¡£
- * \param[in] flag  : DMAÖĞ¶Ï±êÖ¾£¬ÓÉµ×²ãÇı¶¯´«Èë£¬¸Ã²ÎÊıµÄ¿ÉÄÜÈ¡Öµ£º
- *                    (#AM_KL26_DMA_INT_ERROR) »ò (#AM_KL26_DMA_INT_NORMAL)¡£
+ * \param[in] p_arg : ç”¨æˆ·è‡ªå®šä¹‰å‚æ•°ï¼Œé€šè¿‡ am_kl26_dma_isr_connect() å‡½æ•°ä¼ é€’ã€‚
+ * \param[in] flag  : DMAä¸­æ–­æ ‡å¿—ï¼Œç”±åº•å±‚é©±åŠ¨ä¼ å…¥ï¼Œè¯¥å‚æ•°çš„å¯èƒ½å–å€¼ï¼š
+ *                    (#AM_KL26_DMA_INT_ERROR) æˆ– (#AM_KL26_DMA_INT_NORMAL)ã€‚
 
- * \return    ÎŞ¡£
+ * \return    æ— ã€‚
  */
 static void dma_isr (void *p_arg , uint8_t flag)
 {
     int flag_chan  = (int)p_arg;
     if (flag == AM_KL26_DMA_INT_NORMAL) {
 
-        /* DMA´«ÊäÍê³É */
+        /* DMAä¼ è¾“å®Œæˆ */
         switch(flag_chan) {
 
         case DMA_CHAN_0:
@@ -80,7 +80,7 @@ static void dma_isr (void *p_arg , uint8_t flag)
             break;
         }
     } else  {
-        // ÓÃ»§×Ô¶¨ÒåÖ´ĞĞ´úÂë
+        // ç”¨æˆ·è‡ªå®šä¹‰æ‰§è¡Œä»£ç 
         switch(flag_chan) {
 
         case DMA_CHAN_0:
@@ -102,56 +102,56 @@ static void dma_isr (void *p_arg , uint8_t flag)
 }
 
 /**
- * \brief DMA m2mÄ£Ê½²âÊÔ³ÌĞò¡£
+ * \brief DMA m2mæ¨¡å¼æµ‹è¯•ç¨‹åºã€‚
  *
- * \retval  AM_OK     : ´«Êä³É¹¦
- * \retval  AM_ERROR  : ´«ÊäÊ§°Ü
+ * \retval  AM_OK     : ä¼ è¾“æˆåŠŸ
+ * \retval  AM_ERROR  : ä¼ è¾“å¤±è´¥
  */
 static int dma_m2m_test (void)
 {
     uint32_t flags;
     uint32_t i;
-    uint8_t buf_src[50];          /**< \brief Ô´¶ËÊı¾İ»º³åÇø   */
-    uint8_t buf_dst[50];          /**< \brief Ä¿±ê¶ËÊı¾İ»º³åÇø */
+    uint8_t buf_src[50];          /**< \brief æºç«¯æ•°æ®ç¼“å†²åŒº   */
+    uint8_t buf_dst[50];          /**< \brief ç›®æ ‡ç«¯æ•°æ®ç¼“å†²åŒº */
 
     am_kl26_dma_chan_cfg(DMA_CHAN_0,
-                         KL26_DMA_TRIGGER_DISABLE |  /**< \brief DMAÕı³£Ä£Ê½  */
-                         DMA_REQUEST_MUX0_ALWAYSON0);     /**< \brief ÇëÇóÔ´                */
+                         KL26_DMA_TRIGGER_DISABLE |  /**< \brief DMAæ­£å¸¸æ¨¡å¼  */
+                         DMA_REQUEST_MUX0_ALWAYSON0);     /**< \brief è¯·æ±‚æº                */
 
     for (i = 0; i < 50; i++) {
         buf_src[i] = i;
         buf_dst[i] = 0;
     }
 
-    /* Á¬½ÓDMAÖĞ¶Ï·şÎñº¯Êı */
+    /* è¿æ¥DMAä¸­æ–­æœåŠ¡å‡½æ•° */
     am_kl26_dma_isr_connect(DMA_CHAN_0, dma_isr, (void *)0);
 
-    /* DMA´«ÊäÅäÖÃ */
-    flags = KL26_DMA_DCR_PER_REQUEST_DISABLE    |  /* ÍâÉèÇëÇóÔ´½ûÄÜ   */
-            KL26_DMA_DCR_CYCLE_TRANSFERS        |  /* Ñ­»·´«Êä         */
-            KL26_DMA_DCR_AUTO_ALIGN_DISABLE     |  /* ×Ô¶¯¶ÔÆë½ûÄÜ     */
-            KL26_DMA_DCR_SOURCE_SIZE_8_BIT      |  /* Ô´µØÖ·1×Ö½Ú      */
-            KL26_DMA_DCR_DESTINATION_SIZE_8_BIT |  /* Ä¿µÄµØÖ·1×Ö½ÚĞ´Èë*/
-            KL26_DMA_DCR_REQUEST_AFFECTED       |  /* ÇëÇóÓĞÓ°Ïì       */
-            KL26_DMA_DCR_NO_LINKING             |  /* ÎŞÍ¨µÀÁ¬½Ó       */
-            KL26_DMA_DCR_INTERRUTP_ENABLE       |  /* DMAÖĞ¶ÏÊ¹ÄÜ      */
-            KL26_DMA_DCR_START_ENABLE    ;         /* DMA¿ªÊ¼´«ÊäÊ¹ÄÜ  */
+    /* DMAä¼ è¾“é…ç½® */
+    flags = KL26_DMA_DCR_PER_REQUEST_DISABLE    |  /* å¤–è®¾è¯·æ±‚æºç¦èƒ½   */
+            KL26_DMA_DCR_CYCLE_TRANSFERS        |  /* å¾ªç¯ä¼ è¾“         */
+            KL26_DMA_DCR_AUTO_ALIGN_DISABLE     |  /* è‡ªåŠ¨å¯¹é½ç¦èƒ½     */
+            KL26_DMA_DCR_SOURCE_SIZE_8_BIT      |  /* æºåœ°å€1å­—èŠ‚      */
+            KL26_DMA_DCR_DESTINATION_SIZE_8_BIT |  /* ç›®çš„åœ°å€1å­—èŠ‚å†™å…¥*/
+            KL26_DMA_DCR_REQUEST_AFFECTED       |  /* è¯·æ±‚æœ‰å½±å“       */
+            KL26_DMA_DCR_NO_LINKING             |  /* æ— é€šé“è¿æ¥       */
+            KL26_DMA_DCR_INTERRUTP_ENABLE       |  /* DMAä¸­æ–­ä½¿èƒ½      */
+            KL26_DMA_DCR_START_ENABLE    ;         /* DMAå¼€å§‹ä¼ è¾“ä½¿èƒ½  */
 
-    /* ½¨Á¢Í¨µÀÃèÊö·û */
-    am_kl26_dma_xfer_desc_build(&g_desc,               /* Í¨µÀÃèÊö·û       */
-                                (uint32_t)(buf_src),   /* Ô´¶ËÊı¾İ»º³åÇø   */
-                                (uint32_t)(buf_dst),   /* Ä¿±ê¶ËÊı¾İ»º³åÇø */
-                                50,                    /* ´«Êä×Ö½ÚÊı       */
-                                flags);                /* ´«ÊäÅäÖÃ         */
+    /* å»ºç«‹é€šé“æè¿°ç¬¦ */
+    am_kl26_dma_xfer_desc_build(&g_desc,               /* é€šé“æè¿°ç¬¦       */
+                                (uint32_t)(buf_src),   /* æºç«¯æ•°æ®ç¼“å†²åŒº   */
+                                (uint32_t)(buf_dst),   /* ç›®æ ‡ç«¯æ•°æ®ç¼“å†²åŒº */
+                                50,                    /* ä¼ è¾“å­—èŠ‚æ•°       */
+                                flags);                /* ä¼ è¾“é…ç½®         */
 
-    /* Æô¶¯DMA´«Êä£¬ÂíÉÏ¿ªÊ¼´«Êä */
+    /* å¯åŠ¨DMAä¼ è¾“ï¼Œé©¬ä¸Šå¼€å§‹ä¼ è¾“ */
     if (am_kl26_dma_chan_start(&g_desc,
-                               KL26_DMA_MER_TO_MER,  /* ÄÚ´æµ½ÄÚ´æ   */
+                               KL26_DMA_MER_TO_MER,  /* å†…å­˜åˆ°å†…å­˜   */
                                DMA_CHAN_0) == AM_ERROR) {
         return AM_ERROR;
     }
 
-    while(__g_trans_done == AM_FALSE);                   /* µÈ´ı´«ÊäÍê³É  */
+    while(__g_trans_done == AM_FALSE);                   /* ç­‰å¾…ä¼ è¾“å®Œæˆ  */
 
     for (i = 0; i < 50; i++) {
         if (buf_src[i] != buf_dst[i]) {
@@ -162,8 +162,8 @@ static int dma_m2m_test (void)
 }
 
 /**
- * \brief DMAÄÚ´æµ½ÄÚ´æ
- * \return ÎŞ
+ * \brief DMAå†…å­˜åˆ°å†…å­˜
+ * \return æ— 
  */
 void demo_kl26_dr_dma_m2m_entry (void)
 {

@@ -12,15 +12,15 @@
 
 /**
  * \file
- * \brief LPTMRÊµÏÖ¶¨Ê±Æ÷Àı³Ì£¬Í¨¹ıHW²ã½Ó¿ÚÊµÏÖ
+ * \brief LPTMRå®ç°å®šæ—¶å™¨ä¾‹ç¨‹ï¼Œé€šè¿‡HWå±‚æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. LED0ÒÔ10HzµÄÆµÂÊÉÁË¸¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. LED0ä»¥10Hzçš„é¢‘ç‡é—ªçƒã€‚
  *
- * \note LPTMRÊ±ÖÓÔ´ÓĞ4ÖÖÑ¡Ôñ£¬ÔÚamdr_hwconfig_lptmr_timing.cÖĞ½øĞĞÅäÖÃ£¬Ñ¡Ôñ²»Í¬´óĞ¡
- *       µÄÊ±ÖÓÔ´£¬¶¨Ê±µÄ·¶Î§ºÍ¾«¶È´æÔÚ²î±ğ¡£
+ * \note LPTMRæ—¶é’Ÿæºæœ‰4ç§é€‰æ‹©ï¼Œåœ¨amdr_hwconfig_lptmr_timing.cä¸­è¿›è¡Œé…ç½®ï¼Œé€‰æ‹©ä¸åŒå¤§å°
+ *       çš„æ—¶é’Ÿæºï¼Œå®šæ—¶çš„èŒƒå›´å’Œç²¾åº¦å­˜åœ¨å·®åˆ«ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_fsl_hw_lptmr_timing.c src_fsl_hw_lptmr_timing
  *
  * \internal
@@ -43,9 +43,9 @@
 #include "demo_fsl_entrys.h"
 
 /**
- * \brief  ¶¨Ê±Æ÷0»Øµ÷º¯Êı
- * \param[in] p_arg : ÓÃ»§×Ô¶¨Òå²ÎÊı£¬ÓÉam_timer_callback_set() º¯Êı´«µİ¡£
- * \return  ÎŞ
+ * \brief  å®šæ—¶å™¨0å›è°ƒå‡½æ•°
+ * \param[in] p_arg : ç”¨æˆ·è‡ªå®šä¹‰å‚æ•°ï¼Œç”±am_timer_callback_set() å‡½æ•°ä¼ é€’ã€‚
+ * \return  æ— 
  */
 void hw_lptmr_timing_callback (void *p_arg)
 {
@@ -54,19 +54,19 @@ void hw_lptmr_timing_callback (void *p_arg)
     if (amhw_fsl_lptmr_flag_check(p_hw_lptmr)) {
         am_led_toggle(LED0);
 
-        /* Çå³ıÒç³ö±êÖ¾£¬Ğ´1ÇåÁã */
+        /* æ¸…é™¤æº¢å‡ºæ ‡å¿—ï¼Œå†™1æ¸…é›¶ */
         amhw_fsl_lptmr_ctl_set(p_hw_lptmr, AMHW_FSL_LPTMR_CSR_TCF);
     }
 }
 
 /**
- * \brief ³õÊ¼»¯LPTMR
+ * \brief åˆå§‹åŒ–LPTMR
  *
- * \param[in] p_hw_lptmr : Ö¸ÏòLPTMR¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] freq       : ÖĞ¶ÏÆµÂÊ¡£
+ * \param[in] p_hw_lptmr : æŒ‡å‘LPTMRå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] freq       : ä¸­æ–­é¢‘ç‡ã€‚
  *
- * \retval  AM_OK      : ³õÊ¼»¯³É¹¦
- * \retval -AM_EINVAL  : ²ÎÊıÓĞÎó
+ * \retval  AM_OK      : åˆå§‹åŒ–æˆåŠŸ
+ * \retval -AM_EINVAL  : å‚æ•°æœ‰è¯¯
  */
 int lptmr_timer_init(amhw_fsl_lptmr_t *p_hw_lptmr,
                      uint32_t          count,
@@ -79,32 +79,32 @@ int lptmr_timer_init(amhw_fsl_lptmr_t *p_hw_lptmr,
         return -AM_EINVAL;
     }
 
-    /* ²»ĞèÒª·ÖÆµ£¬½ûÄÜ·ÖÆµÆ÷ */
+    /* ä¸éœ€è¦åˆ†é¢‘ï¼Œç¦èƒ½åˆ†é¢‘å™¨ */
     if (count < 0xFFFF) {
         pre_real = 1;
         amhw_fsl_lptmr_prescaler_filter_set(p_hw_lptmr, AM_TRUE);
     } else {
         temp = count / 0xFFFFu + 1;
 
-        /* ¼ÆËã·ÖÆµÖµ 2^n */
+        /* è®¡ç®—åˆ†é¢‘å€¼ 2^n */
         for (pre_real = 2; pre_real < temp;) {
             pre_reg++;
             pre_real = pre_real << 1;
         }
 
-        /* ·ÖÆµÆ÷ÓĞĞ§ */
+        /* åˆ†é¢‘å™¨æœ‰æ•ˆ */
         amhw_fsl_lptmr_prescaler_filter_set(p_hw_lptmr, AM_FALSE);
 
-        /* ÉèÖÃÔ¤·ÖÆµÖµ */
+        /* è®¾ç½®é¢„åˆ†é¢‘å€¼ */
         amhw_fsl_lptmr_prescaler_set(p_hw_lptmr, (amhw_fsl_lptmr_ps_t)pre_reg);
     }
 
     count = count / pre_real;
 
-    /* ÉèÖÃ×°ÔØÖµ */
+    /* è®¾ç½®è£…è½½å€¼ */
     amhw_fsl_lptmr_compare_set(p_hw_lptmr, count - 1);
 
-    amhw_fsl_lptmr_ctl_set(p_hw_lptmr, AMHW_FSL_LPTMR_CSR_TIE);        /* ¿ªÖĞ¶Ï */
+    amhw_fsl_lptmr_ctl_set(p_hw_lptmr, AMHW_FSL_LPTMR_CSR_TIE);        /* å¼€ä¸­æ–­ */
     am_int_connect(inum, hw_lptmr_timing_callback, p_hw_lptmr);
     am_int_enable(inum);
 
@@ -112,48 +112,48 @@ int lptmr_timer_init(amhw_fsl_lptmr_t *p_hw_lptmr,
 }
 
 /**
- * \brief Ê¹ÄÜLPTMR¶¨Ê±Æ÷(¿ªÊ¼¼ÆÊı)
- * \param[in] p_hw_lptmr : Ö¸ÏòLPTMR¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ÎŞ
+ * \brief ä½¿èƒ½LPTMRå®šæ—¶å™¨(å¼€å§‹è®¡æ•°)
+ * \param[in] p_hw_lptmr : æŒ‡å‘LPTMRå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return æ— 
  */
 void lptmr_timer_enable (amhw_fsl_lptmr_t *p_hw_lptmr)
 {
-    /* ¹Ø±ÕÊ±ÖÓ£¬LPTMR¿ªÊ¼ÔËĞĞ */
+    /* å…³é—­æ—¶é’Ÿï¼ŒLPTMRå¼€å§‹è¿è¡Œ */
     amhw_fsl_lptmr_ctl_set(p_hw_lptmr, AMHW_FSL_LPTMR_CSR_TEN);
 }
 
 /**
- * \brief  ½ûÖ¹LPTMR¶¨Ê±Æ÷(Í£Ö¹¼ÆÊı)
- * \param[in] p_hw_lptmr : Ö¸ÏòLPTMR¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return  ÎŞ
+ * \brief  ç¦æ­¢LPTMRå®šæ—¶å™¨(åœæ­¢è®¡æ•°)
+ * \param[in] p_hw_lptmr : æŒ‡å‘LPTMRå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return  æ— 
  */
 void lptmr_timer_disable (amhw_fsl_lptmr_t *p_hw_lptmr)
 {
-    /* ¹Ø±ÕÊ±ÖÓ£¬TPMÍ£Ö¹ÔËĞĞ */
+    /* å…³é—­æ—¶é’Ÿï¼ŒTPMåœæ­¢è¿è¡Œ */
     amhw_fsl_lptmr_ctl_clear(p_hw_lptmr, AMHW_FSL_LPTMR_CSR_TEN);
 }
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_fsl_hw_lptmr_timing_entry (amhw_fsl_lptmr_t *p_hw_lptmr,
                                      int               inum,
                                      uint32_t          lptmr_clock)
 {
 
-    /* ¹Ø±ÕLPTMRÄ£¿é */
+    /* å…³é—­LPTMRæ¨¡å— */
     amhw_fsl_lptmr_ctl_clear(p_hw_lptmr, AMHW_FSL_LPTMR_CSR_TEN);
 
-    /* Ê±ÖÓÔ´Ñ¡Ôñ */
+    /* æ—¶é’Ÿæºé€‰æ‹© */
     amhw_fsl_lptmr_clock_set(p_hw_lptmr, AMHW_FSL_LPTMR_CLOCK_SRC_MCGIRCLK);
 
     AM_DBG_INFO("The LPTMR demo for standard timing service\r\n");
     AM_DBG_INFO("The led toggle in 10Hz \r\n");
 
-    /* ÖĞ¶ÏÆµÂÊ10Hz */
+    /* ä¸­æ–­é¢‘ç‡10Hz */
     lptmr_timer_init(p_hw_lptmr, lptmr_clock / 10, inum);
 
-    /* Ê¹ÄÜLPTMR,¿ªÊ¼¼ÆÊı */
+    /* ä½¿èƒ½LPTMR,å¼€å§‹è®¡æ•° */
     lptmr_timer_enable(p_hw_lptmr);
 
     while (1) {

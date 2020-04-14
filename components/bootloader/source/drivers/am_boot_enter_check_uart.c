@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ½øÈëÓ¦ÓÃ³ÌĞò±ê×¼½Ó¿ÚÊµÏÖ£¨´®¿ÚÈÎÒâÊı¾İÇı¶¯£©
+ * \brief è¿›å…¥åº”ç”¨ç¨‹åºæ ‡å‡†æ¥å£å®ç°ï¼ˆä¸²å£ä»»æ„æ•°æ®é©±åŠ¨ï¼‰
  *
  * \internal
  * \par Modification history
@@ -27,14 +27,14 @@
 #define OPTION_APP                0
 #define OPTION_BOOT               1
 
-/** \brief Ò»Ãë³¬Ê±±êÖ¾ */
+/** \brief ä¸€ç§’è¶…æ—¶æ ‡å¿— */
 static uint8_t second_timeout   = 0;
 static uint8_t user_option      = OPTION_APP;
 static uint8_t time_count       = 5;
 
 static am_softimer_t timer;
 /**
- * \brief ´®¿Ú½ÓÊÕ»Øµ÷º¯Êı
+ * \brief ä¸²å£æ¥æ”¶å›è°ƒå‡½æ•°
  */
 static void __uart_rec_callback(void *p_arg, char inchar)
 {
@@ -42,7 +42,7 @@ static void __uart_rec_callback(void *p_arg, char inchar)
 }
 
 /**
- * \brief ´®¿Ú½ÓÊÕÊı¾İÈí¼ş¶¨Ê±Æ÷»Øµ÷º¯Êı
+ * \brief ä¸²å£æ¥æ”¶æ•°æ®è½¯ä»¶å®šæ—¶å™¨å›è°ƒå‡½æ•°
  */
 static void __receive_callback_timer_handle(void *p_arg)
 {
@@ -55,9 +55,9 @@ static void __receive_callback_timer_handle(void *p_arg)
 am_bool_t  __boot_enter_check_uart(void *p_drv)
 {
     am_boot_enter_check_uart_dev_t *p_dev = (am_boot_enter_check_uart_dev_t *)p_drv;
-    /* Ê¹ÄÜ´®¿ÚÖĞ¶ÏÄ£Ê½ */
+    /* ä½¿èƒ½ä¸²å£ä¸­æ–­æ¨¡å¼ */
     am_uart_ioctl(p_dev->uart_handle, AM_UART_MODE_SET, (void *)AM_UART_MODE_INT);
-    /* ×¢²á·¢ËÍ»Øµ÷º¯Êı */
+    /* æ³¨å†Œå‘é€å›è°ƒå‡½æ•° */
     am_uart_callback_set(p_dev->uart_handle, AM_UART_CALLBACK_RXCHAR_PUT, __uart_rec_callback, NULL);
 
     am_softimer_init(&timer, __receive_callback_timer_handle, NULL);
@@ -65,7 +65,7 @@ am_bool_t  __boot_enter_check_uart(void *p_drv)
     am_kprintf("if don't input anything,Device will enter application after %ds\r\n",time_count);
     am_softimer_start(&timer, 1000);
 
-    /* ÑÓÊ±µÈ´ı£¬Èç¹ûÓÃ»§ÓĞÊı¾İ·¢À´£¬¾Í½øÈëbootloader£¬·ñÕßÌø×ªµ½Ó¦ÓÃ³ÌĞò */
+    /* å»¶æ—¶ç­‰å¾…ï¼Œå¦‚æœç”¨æˆ·æœ‰æ•°æ®å‘æ¥ï¼Œå°±è¿›å…¥bootloaderï¼Œå¦è€…è·³è½¬åˆ°åº”ç”¨ç¨‹åº */
     while(1) {
         if(second_timeout == 1) {
             am_kprintf("if don't input anything,Device will enter application after %ds\r\n",time_count);

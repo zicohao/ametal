@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief newlibÊÊÅäÆ÷°å¼¶Ö§³Ö
+ * \brief newlibé€‚é…å™¨æ¿çº§æ”¯æŒ
  *
  * \internal
  * \par modification history
@@ -30,7 +30,7 @@ extern "C" {
 #endif
 
 /**
- * \brief newlib ³õÊ¼»¯£¬Ê¹ÓÃ±ê×¼¿âº¯ÊıÇ°£¬±ØĞëµ÷ÓÃ¸Ãº¯Êı
+ * \brief newlib åˆå§‹åŒ–ï¼Œä½¿ç”¨æ ‡å‡†åº“å‡½æ•°å‰ï¼Œå¿…é¡»è°ƒç”¨è¯¥å‡½æ•°
  */
 void am_bsp_newlib_init (am_uart_handle_t handle);
 

@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief ZLG217 ģ�幤��
+ * \brief ZLG217 模板工程
  *
- * - ʵ������:
- *   ģ������:LED0��1���Ƶ����˸; demo�������:���demo��ں����ļ�����
+ * - 实验现象:
+ *   模板例程:LED0以1秒的频率闪烁; demo例程入口:详见demo入口函数文件介绍
  *
  * \internal
  * \par Modification history
@@ -24,7 +24,7 @@
  */
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 #include "ametal.h"
 #include "am_board.h"
@@ -37,11 +37,11 @@ int am_main (void)
 {
     AM_DBG_INFO("Start up successful!\r\n");
     /*
-     * ����Ϊ����demo����ں�������Ҫ�����ĸ�demo����ȡ����Ӧ���������е�ע��
+     * 以下为所有demo的入口函数，需要运行哪个demo，就取消对应函数调用行的注释
      *
-     * Ĭ�����е���LED��˸ demo
+     * 默认运行的是LED闪烁 demo
      *
-     * ע�⣺ͬһʱ��ֻ������һ�� demo����ֻ��ʹĳһ�д���ȡ��ע��״̬
+     * 注意：同一时刻只能运行一个 demo，即只能使某一行处于取消注释状态
      */
 
     demo_zlg217_core_std_led_entry();

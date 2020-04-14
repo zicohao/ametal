@@ -77,17 +77,17 @@ static int  __sct_timing_connect(void *p_drv);
 
 static void __sct_irq_handler(void *p_arg);
  
-// ÓÃ»§ÅäÖÃ¶¨Ê±Æ÷Ä£Ê½
+// ç”¨æˆ·é…ç½®å®šæ—¶å™¨æ¨¡å¼
 static amhw_lpc_sct_mode_t __g_mode = AMHW_LPC_SCT_MODE_SEPARATE_L;
 
-/* ¶¨Ê±Æ÷ÐÅÏ¢ */
+/* å®šæ—¶å™¨ä¿¡æ¯ */
 static const am_timer_info_t __g_sct_timing_info = {
-    16,                                      /* 16Î»¶¨Ê±Æ÷               */
-    2,                                       /* 2Í¨µÀ                   */
-    AM_TIMER_CAN_INTERRUPT      |            /* ¿ÉÒÔ²úÉúÖÐ¶Ï             */
-    AM_TIMER_AUTO_RELOAD        |            /* Ö§³Ö×Ô¶¯ÖØÔØ             */
-    AM_TIMER_INTERMEDIATE_COUNT ,            /* µ±Ç°¼ÆÊýÆ÷Öµ¿É¶Á         */
-    256                                      /* Ô¤·ÖÆµ×î´óÖµ£º256      */
+    16,                                      /* 16ä½å®šæ—¶å™¨               */
+    2,                                       /* 2é€šé“                   */
+    AM_TIMER_CAN_INTERRUPT      |            /* å¯ä»¥äº§ç”Ÿä¸­æ–­             */
+    AM_TIMER_AUTO_RELOAD        |            /* æ”¯æŒè‡ªåŠ¨é‡è½½             */
+    AM_TIMER_INTERMEDIATE_COUNT ,            /* å½“å‰è®¡æ•°å™¨å€¼å¯è¯»         */
+    256                                      /* é¢„åˆ†é¢‘æœ€å¤§å€¼ï¼š256      */
 };
 
 
@@ -219,7 +219,7 @@ static int __sct_timing_clkin_freq_get (void *p_drv, uint32_t *p_freq)
         return -AM_EINVAL;
     }
 
-    /* »ñÈ¡µ±Ç°ÏµÍ³Ê±ÖÓÆµÂÊ£¬systick Ê¹ÓÃµÄÊÇÏµÍ³Ê±ÖÓ */
+    /* èŽ·å–å½“å‰ç³»ç»Ÿæ—¶é’Ÿé¢‘çŽ‡ï¼Œsystick ä½¿ç”¨çš„æ˜¯ç³»ç»Ÿæ—¶é’Ÿ */
     *p_freq =  am_clk_rate_get(p_dev->p_devinfo->clk_id);
 
     return AM_OK;
@@ -240,7 +240,7 @@ static int __sct_timing_prescale_set (void    *p_drv,
     
     if ((prescale != 0) && (prescale <= 65536)) {
  
-        amhw_lpc_sct_prescale_set(p_hw_sct, __g_mode,  prescale);  /* ÉèÖÃ·ÖÆµÖµ */
+        amhw_lpc_sct_prescale_set(p_hw_sct, __g_mode,  prescale);  /* è®¾ç½®åˆ†é¢‘å€¼ */
 
         return AM_OK;
     }

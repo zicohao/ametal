@@ -12,16 +12,16 @@
 
 /**
  * \file
- * \brief ÄÚ´æµ½ÄÚ´æµÄ DMA ´«ÊäÀı³Ì£¬Í¨¹ıÇı¶¯²ã½Ó¿ÚÊµÏÖ
+ * \brief å†…å­˜åˆ°å†…å­˜çš„ DMA ä¼ è¾“ä¾‹ç¨‹ï¼Œé€šè¿‡é©±åŠ¨å±‚æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Èç¹û DMA ´«Êä³É¹¦£¬LED0 ³¤ÁÁ£»
- *   2. Èç¹û DMA ´«ÊäÊ§°Ü£¬LED0 ÉÁË¸¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. å¦‚æœ DMA ä¼ è¾“æˆåŠŸï¼ŒLED0 é•¿äº®ï¼›
+ *   2. å¦‚æœ DMA ä¼ è¾“å¤±è´¥ï¼ŒLED0 é—ªçƒã€‚
  *
  * \note
- *    LED0 ĞèÒª¶Ì½Ó J9 ÌøÏßÃ±£¬²ÅÄÜ±» PIO0_20 ¿ØÖÆ¡£
+ *    LED0 éœ€è¦çŸ­æ¥ J9 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIO0_20 æ§åˆ¶ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_lpc824_drv_dma_m2m.c src_lpc824_drv_dma_m2m
  *
  * \internal
@@ -46,7 +46,7 @@
 #include "am_lpc82x_dma.h"
 
 /**
- * \name ÄÚ´æ¿½±´×´Ì¬±êÖ¾,ÓÃÓÚÉèÖÃ m2m_result_t ÖĞµÄ result ³ÉÔ±
+ * \name å†…å­˜æ‹·è´çŠ¶æ€æ ‡å¿—,ç”¨äºè®¾ç½® m2m_result_t ä¸­çš„ result æˆå‘˜
  * \anchor grp_dam_m2m_result
  * @{
  */
@@ -57,40 +57,40 @@
  * @}
  */
 
-/** \brief ÄÚ´æ¿½±´½á¹û */
+/** \brief å†…å­˜æ‹·è´ç»“æœ */
 typedef struct m2m_result {
-    am_lpc82x_dma_controller_t *p_ctr;  /**< \brief Í¨µÀ¿ØÖÆÆ÷ */
-    volatile int                result; /**< \brief ´«Êä½á¹û */
+    am_lpc82x_dma_controller_t *p_ctr;  /**< \brief é€šé“æ§åˆ¶å™¨ */
+    volatile int                result; /**< \brief ä¼ è¾“ç»“æœ */
 } m2m_result_t;
 
 /**
- * \brief DMA ÖĞ¶Ï·şÎñ³ÌĞò
+ * \brief DMA ä¸­æ–­æœåŠ¡ç¨‹åº
  *
- * \param[in] p_arg ÓÃ»§×Ô¶¨Òå²ÎÊı
- * \param[in] stat  DMA ´«ÊäÍê³É×´Ì¬±êÖ¾£¬¸Ã²ÎÊıµÄ¿ÉÄÜÈ¡Öµ£º
- *                      AM_LPC82X_DMA_STAT_INTA    A ÖĞ¶Ï·¢Éú
- *                      AM_LPC82X_DMA_STAT_INTB    B ÖĞ¶Ï·¢Éú
- *                      AM_LPC82X_DMA_STAT_INTERR  ´íÎó·¢Éú
+ * \param[in] p_arg ç”¨æˆ·è‡ªå®šä¹‰å‚æ•°
+ * \param[in] stat  DMA ä¼ è¾“å®ŒæˆçŠ¶æ€æ ‡å¿—ï¼Œè¯¥å‚æ•°çš„å¯èƒ½å–å€¼ï¼š
+ *                      AM_LPC82X_DMA_STAT_INTA    A ä¸­æ–­å‘ç”Ÿ
+ *                      AM_LPC82X_DMA_STAT_INTB    B ä¸­æ–­å‘ç”Ÿ
+ *                      AM_LPC82X_DMA_STAT_INTERR  é”™è¯¯å‘ç”Ÿ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_local void __dma_m2m_isr (void *p_arg, int stat)
 {
     m2m_result_t *p_reslut = (m2m_result_t*)p_arg;
 
-    /* DAM ´«ÊäÍê³É */
+    /* DAM ä¼ è¾“å®Œæˆ */
     if (stat & AM_LPC82X_DMA_STAT_INTERR) {
         p_reslut->result = __TRANS_ERROR;
     } else if (stat == AM_LPC82X_DMA_STAT_INTA) {
         p_reslut->result = __TRANS_OK;
     }
 
-    /* ÊÍ·Å¿ØÖÆÆ÷ */
+    /* é‡Šæ”¾æ§åˆ¶å™¨ */
     am_lpc82x_dma_controller_release(p_reslut->p_ctr);
 }
 
 /**
- * \brief DMA ÄÚ´æ¿½±´
+ * \brief DMA å†…å­˜æ‹·è´
  */
 am_local int __dma_memory_copy (uint32_t      dst,
                                 uint32_t      src,
@@ -101,7 +101,7 @@ am_local int __dma_memory_copy (uint32_t      dst,
     am_lpc82x_dma_controller_t *p_ctr    = NULL;
     am_lpc82x_dma_transfer_t    transfer;
 
-    /* »ñÈ¡Í¨µÀ¿ØÖÆÆ÷ */
+    /* è·å–é€šé“æ§åˆ¶å™¨ */
     do {
         p_ctr = am_lpc82x_dma_controller_get(dma_chan++, DMA_CHAN_OPT_PRIO_1);
     } while (p_ctr == NULL && dma_chan <= 17);
@@ -110,17 +110,17 @@ am_local int __dma_memory_copy (uint32_t      dst,
         return AM_ERROR;
     }
 
-    /* ¹¹Ôì´«Êä½á¹¹Ìå */
+    /* æ„é€ ä¼ è¾“ç»“æ„ä½“ */
     am_lpc82x_dma_transfer_build(
-       &transfer,                           /* ´«Êä½á¹¹ */
-        src,                                /* Ô´µØÖ· */
-        dst,                                /* Ä¿±êµØÖ· */
-        nbytes,                             /* ´«Êä´óĞ¡ */
-        AM_LPC82X_DMA_TRANS_WIDTH_8BIT  |   /* ´«Êä¿í¶È */
-        AM_LPC82X_DMA_TRANS_SRCINC_1X   |   /* Ô´µØÖ·ÔöÁ¿ */
-        AM_LPC82X_DMA_TRANS_DSTINC_1X);     /* Ä¿±êµØÖ·ÔöÁ¿ */
+       &transfer,                           /* ä¼ è¾“ç»“æ„ */
+        src,                                /* æºåœ°å€ */
+        dst,                                /* ç›®æ ‡åœ°å€ */
+        nbytes,                             /* ä¼ è¾“å¤§å° */
+        AM_LPC82X_DMA_TRANS_WIDTH_8BIT  |   /* ä¼ è¾“å®½åº¦ */
+        AM_LPC82X_DMA_TRANS_SRCINC_1X   |   /* æºåœ°å€å¢é‡ */
+        AM_LPC82X_DMA_TRANS_DSTINC_1X);     /* ç›®æ ‡åœ°å€å¢é‡ */
 
-    /* ´«ÊäÊı¾İ */
+    /* ä¼ è¾“æ•°æ® */
     p_result->p_ctr  = p_ctr;
     p_result->result = __TRANS_INIT;
 
@@ -134,24 +134,24 @@ void demo_lpc824_drv_dma_m2m_entry(uint8_t *p_src, int len)
     int i = 0;
     m2m_result_t trans_result;
   
-    /* ÉêÇë¿Õ¼ä */
+    /* ç”³è¯·ç©ºé—´ */
     uint8_t *p_dst = calloc(len, sizeof(uint8_t));
 
     
     
-    /* ÄÚ´æ¿½±´ */
+    /* å†…å­˜æ‹·è´ */
     __dma_memory_copy((uint32_t)p_dst,
                       (uint32_t)p_src,
                       len,
                      &trans_result);
 
-    /* µÈ´ı´«ÊäÍê³É */
+    /* ç­‰å¾…ä¼ è¾“å®Œæˆ */
     while (trans_result.result == __TRANS_INIT) {};
 
-    /* Êı¾İĞ£Ñé */
+    /* æ•°æ®æ ¡éªŒ */
     for (i = 0; i < len; i++) {
 
-        /* ´«ÊäÊ§°Ü */
+        /* ä¼ è¾“å¤±è´¥ */
         if (p_src[i] != p_dst[i]) {
             AM_FOREVER {
                 am_led_on(LED0);
@@ -164,7 +164,7 @@ void demo_lpc824_drv_dma_m2m_entry(uint8_t *p_src, int len)
 
     am_led_on(LED0);
     
-    /* ÊÍ·ÅÄÚ´æ¿Õ¼ä */
+    /* é‡Šæ”¾å†…å­˜ç©ºé—´ */
     free(p_dst);
     AM_FOREVER {
         ; /* VOID */

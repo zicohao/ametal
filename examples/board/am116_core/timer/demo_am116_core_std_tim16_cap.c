@@ -12,22 +12,22 @@
 
 /**
  * \file
- * \brief TIM16 ��ʱ�� CAP ���̣�ͨ����׼�ӿ�ʵ��
+ * \brief TIM16 定时器 CAP 例程，通过标准接口实现
  *
- * - �������裺
- *   1. ʹ�öŰ��ߣ��� PIOA_0 �� PIOA_6 ���ӡ�
+ * - 操作步骤：
+ *   1. 使用杜邦线，将 PIOA_0 与 PIOA_6 连接。
  *
- * - ʵ������
- *   1. TIM2 ͨ�� PIOA_0 ������� 2KHz �� PWM��
- *   2. TIM16 ��������ͨ�� 1 ʹ�� PIOA_6 ���Ų���
- *   3. ���ڴ�ӡ�����ò����ܵõ��� PWM �źŵ����ں�Ƶ�ʡ�
+ * - 实验现象：
+ *   1. TIM2 通过 PIOA_0 引脚输出 2KHz 的 PWM；
+ *   2. TIM16 捕获输入通道 1 使用 PIOA_6 引脚捕获；
+ *   3. 串口打印出利用捕获功能得到的 PWM 信号的周期和频率。
  *
  * \note
- *    1. ����۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIOA_9 �������� PC ���ڵ� RXD��
- *    2. ���� TIM16 Ĭ�ϳ�ʼ������Ϊ������ PWM ʹ�ã�ʹ�ñ� Demo ֮ǰ������
- *       am_prj_config.h �ڽ� AM_CFG_BUZZER_ENABLE ����Ϊ 0��
+ *    1. 如需观察串口打印的调试信息，需要将 PIOA_9 引脚连接 PC 串口的 RXD；
+ *    2. 由于 TIM16 默认初始化并作为蜂鸣器 PWM 使用，使用本 Demo 之前必须在
+ *       am_prj_config.h 内将 AM_CFG_BUZZER_ENABLE 定义为 0。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_am116_core_std_tim16_cap.c src_am116_core_std_tim16_cap
  *
  * \internal
@@ -50,7 +50,7 @@
 #include "demo_am116_core_entries.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_am116_core_std_tim16_cap_entry (void)
 {
@@ -58,7 +58,7 @@ void demo_am116_core_std_tim16_cap_entry (void)
 
     AM_DBG_INFO("demo am116_core std tim16 cap!\r\n");
 
-    /* TIM2 ���Ƶ��Ϊ 2KHz �� PWM */
+    /* TIM2 输出频率为 2KHz 的 PWM */
     am_pwm_config(pwm_handle, 0, 500000 / 2, 500000);
     am_pwm_enable(pwm_handle, 0);
 

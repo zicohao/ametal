@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief Ñ¹Á¦ÎÂ¶È´«¸ĞÆ÷ LPS22HB Àı³Ì£¬Í¨¹ı´¥·¢Ä£Ê½ÊµÏÖ
+ * \brief å‹åŠ›æ¸©åº¦ä¼ æ„Ÿå™¨ LPS22HB ä¾‹ç¨‹ï¼Œé€šè¿‡è§¦å‘æ¨¡å¼å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. °´ÕÕÉèÖÃµÄÆµÂÊ£¬ÔÚÖĞ¶ÏÖĞ»ñÈ¡Êı¾İ£¬²¢Í¨¹ı´®¿Ú´òÓ¡
+ * - å®éªŒç°è±¡ï¼š
+ *   1. æŒ‰ç…§è®¾ç½®çš„é¢‘ç‡ï¼Œåœ¨ä¸­æ–­ä¸­è·å–æ•°æ®ï¼Œå¹¶é€šè¿‡ä¸²å£æ‰“å°
  *
  * \internal
  * \par Modification history
@@ -29,14 +29,14 @@
 #include "am_sensor_lps22hb.h"
 #include "am_delay.h"
 
-/** \brief LPS22HB´«¸ĞÆ÷µÄID */
+/** \brief LPS22HBä¼ æ„Ÿå™¨çš„ID */
 const static int __lps22hb_id[2] = {AM_LPS22HB_CHAN_1, AM_LPS22HB_CHAN_2};
 
-/* \breif LPS22HB´«¸ĞÆ÷Êı¾İ */
+/* \breif LPS22HBä¼ æ„Ÿå™¨æ•°æ® */
 static am_sensor_val_t __lps22hb_data[2];
 
 /**
- * \brief Í¨µÀ1£¬Êª¶ÈµÄ»Øµ÷º¯Êı
+ * \brief é€šé“1ï¼Œæ¹¿åº¦çš„å›è°ƒå‡½æ•°
  */
 static void __pfn_pressure (void *p_arg, uint32_t trigger_src)
 {
@@ -51,7 +51,7 @@ static void __pfn_pressure (void *p_arg, uint32_t trigger_src)
 }
 
 /**
- * \brief Í¨µÀ2£¬ÎÂ¶ÈµÄ»Øµ÷º¯Êı
+ * \brief é€šé“2ï¼Œæ¸©åº¦çš„å›è°ƒå‡½æ•°
  */
 static void __pfn_temprature (void *p_arg, uint32_t trigger_src)
 {
@@ -59,7 +59,9 @@ static void __pfn_temprature (void *p_arg, uint32_t trigger_src)
     if (trigger_src & AM_SENSOR_TRIGGER_DATA_READY) {
         am_sensor_data_get(handle, &__lps22hb_id[1], 1, &__lps22hb_data[1]);
         am_sensor_val_unit_convert(&__lps22hb_data[1], 1, AM_SENSOR_UNIT_MICRO);
-        am_kprintf("The channel %d,type is temprature, value is: %d.%06d  ¡æ!\r\n",
+        //TODO
+//        am_kprintf("The channel %d,type is temprature, value is: %d.%06d  â„ƒ!\r\n",
+        am_kprintf("The channel %d,type is temprature, value is: %d.%06d  C!\r\n",
                    __lps22hb_id[1],
                    (__lps22hb_data[1].val)/1000000,
                    (__lps22hb_data[1].val)%1000000);
@@ -67,11 +69,11 @@ static void __pfn_temprature (void *p_arg, uint32_t trigger_src)
 }
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_std_lps22hb_int_entry (am_sensor_handle_t handle)
 {
-    /* ÉèÖÃ¸Ã´«¸ĞÆ÷µÄÊı¾İÊä³öÆµÂÊÎª10Hz£¨Á½Â·Í¨µÀÍ¬²½£© */
+    /* è®¾ç½®è¯¥ä¼ æ„Ÿå™¨çš„æ•°æ®è¾“å‡ºé¢‘ç‡ä¸º10Hzï¼ˆä¸¤è·¯é€šé“åŒæ­¥ï¼‰ */
     am_sensor_val_t lps22hb_rate = {10, AM_SENSOR_UNIT_BASE};
     
     am_err_t ret = AM_OK;
@@ -84,10 +86,10 @@ void demo_std_lps22hb_int_entry (am_sensor_handle_t handle)
         am_kprintf("sensor_attr_set faild!\r\n");
     }
 
-    /* Ê¹ÄÜÁ½Â·Í¨µÀ */
+    /* ä½¿èƒ½ä¸¤è·¯é€šé“ */
     am_sensor_enable(handle, __lps22hb_id, 2, __lps22hb_data);
 
-    /* ÉèÖÃÍ¨µÀ0£¬1µÄ´¥·¢»Øµ÷º¯Êı */
+    /* è®¾ç½®é€šé“0ï¼Œ1çš„è§¦å‘å›è°ƒå‡½æ•° */
     am_sensor_trigger_cfg(handle,
                           __lps22hb_id[0],
                           AM_SENSOR_TRIGGER_DATA_READY,
@@ -99,7 +101,7 @@ void demo_std_lps22hb_int_entry (am_sensor_handle_t handle)
                           __pfn_temprature,
                           (void*)handle);
 
-    /* ´ò¿ªÍ¨µÀ0£¬1µÄ´¥·¢Ä£Ê½ */
+    /* æ‰“å¼€é€šé“0ï¼Œ1çš„è§¦å‘æ¨¡å¼ */
     am_sensor_trigger_on(handle, __lps22hb_id[0]);
     am_sensor_trigger_on(handle, __lps22hb_id[1]);
 }

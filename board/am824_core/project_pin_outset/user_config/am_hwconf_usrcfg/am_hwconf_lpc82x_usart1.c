@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief LPC82X USART1 ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief LPC82X USART1 ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_lpc82x_usart1.c
  *
  * \internal
@@ -34,25 +34,25 @@
  */
 
 /**
- * \brief »ù±¾ÊäÈëÆµÂÊÉèÖÃ£¨»ù±¾ÊäÈëÆµÂÊ±ØĞëĞ¡ÓÚÏµÍ³Ê±ÖÓÆµÂÊÇÒÓ¦Îª²¨ÌØÂÊµÄÕûÊı±¶£©
+ * \brief åŸºæœ¬è¾“å…¥é¢‘ç‡è®¾ç½®ï¼ˆåŸºæœ¬è¾“å…¥é¢‘ç‡å¿…é¡»å°äºç³»ç»Ÿæ—¶é’Ÿé¢‘ç‡ä¸”åº”ä¸ºæ³¢ç‰¹ç‡çš„æ•´æ•°å€ï¼‰
  *
- * ÎªÁËÉèÖÃ²¨ÌØÂÊÎª 115200£¬¹ÊÉèÖÃ´®¿Ú»ù±¾ÊäÈëÆµÂÊÎª£º
+ * ä¸ºäº†è®¾ç½®æ³¢ç‰¹ç‡ä¸º 115200ï¼Œæ•…è®¾ç½®ä¸²å£åŸºæœ¬è¾“å…¥é¢‘ç‡ä¸ºï¼š
  * 11059200Hz(11059200 = 115200 * 96)
- * ´®¿Ú»ù±¾ÊäÈëÆµÂÊÉèÖÃÎª 11.059200MHz£¬¿ÉÂú×ã´ó¶àÊı²¨ÌØÂÊµÄÉèÖÃ (9600,4800,115200)
+ * ä¸²å£åŸºæœ¬è¾“å…¥é¢‘ç‡è®¾ç½®ä¸º 11.059200MHzï¼Œå¯æ»¡è¶³å¤§å¤šæ•°æ³¢ç‰¹ç‡çš„è®¾ç½® (9600,4800,115200)
  *
- * \note USART1/1/2 ¹²ÓÃÒ»¸ö»ù±¾ÊäÈëÆµÂÊ£¬²»ÒªËæÒâ¸Ä¶¯
+ * \note USART1/1/2 å…±ç”¨ä¸€ä¸ªåŸºæœ¬è¾“å…¥é¢‘ç‡ï¼Œä¸è¦éšæ„æ”¹åŠ¨
  */
 #ifndef  __LPC82X_UASART_BASE_RATE
 #define  __LPC82X_UASART_BASE_RATE  11059200
 #endif
 
 /**
- * \brief USART1 Æ½Ì¨³õÊ¼»¯
+ * \brief USART1 å¹³å°åˆå§‹åŒ–
  */
 am_local void __lpc82x_usart1_plfm_init (void)
 {
 
-    /* ÉèÖÃ´®¿Ú»ù´¡Ê±ÖÓ */
+    /* è®¾ç½®ä¸²å£åŸºç¡€æ—¶é’Ÿ */
     amhw_lpc82x_clk_usart_baseclkrate_set(__LPC82X_UASART_BASE_RATE);
 
     amhw_lpc82x_clk_periph_enable(AMHW_LPC82X_CLK_UART1);
@@ -63,7 +63,7 @@ am_local void __lpc82x_usart1_plfm_init (void)
 }
 
 /**
- * \brief USART1 Æ½Ì¨½â³õÊ¼»¯
+ * \brief USART1 å¹³å°è§£åˆå§‹åŒ–
  */
 am_local void __lpc82x_usart1_plfm_deinit (void)
 {
@@ -74,21 +74,21 @@ am_local void __lpc82x_usart1_plfm_deinit (void)
     am_gpio_pin_cfg(__U1_RXD_PIN, AM_LPC82X_GPIO_FUNC_GPIO);
 }
 
-/** \brief USART1 Éè±¸ĞÅÏ¢ */
+/** \brief USART1 è®¾å¤‡ä¿¡æ¯ */
 am_local am_const am_lpc_usart_devinfo_t __g_lpc82x_usart1_devinfo = {
-    LPC82X_USART1_BASE,             /* USART1 ¼Ä´æÆ÷¿é»ùµØÖ· */
-    INUM_USART1,                    /* USART1 ÖĞ¶ÏºÅ */
-    CLK_UART1,                      /* USART1 Ê±ÖÓºÅ */
-    __lpc82x_usart1_plfm_init,      /* Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __lpc82x_usart1_plfm_deinit,    /* Æ½Ì¨½â³õÊ¼»¯º¯Êı */
-    NULL                            /* ÎŞ RS485 ·½Ïò¿ØÖÆº¯Êı */
+    LPC82X_USART1_BASE,             /* USART1 å¯„å­˜å™¨å—åŸºåœ°å€ */
+    INUM_USART1,                    /* USART1 ä¸­æ–­å· */
+    CLK_UART1,                      /* USART1 æ—¶é’Ÿå· */
+    __lpc82x_usart1_plfm_init,      /* å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __lpc82x_usart1_plfm_deinit,    /* å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
+    NULL                            /* æ—  RS485 æ–¹å‘æ§åˆ¶å‡½æ•° */
 };
 
-/** \brief USART1 Éè±¸ÊµÀı */
+/** \brief USART1 è®¾å¤‡å®ä¾‹ */
 am_local am_lpc_usart_dev_t __g_lpc82x_usart1_dev;
 
 /**
- * \brief USART1 ÊµÀı³õÊ¼»¯
+ * \brief USART1 å®ä¾‹åˆå§‹åŒ–
  */
 am_uart_handle_t am_lpc82x_usart1_inst_init (void)
 {
@@ -97,7 +97,7 @@ am_uart_handle_t am_lpc82x_usart1_inst_init (void)
 }
 
 /**
- * \brief USART1 ÊµÀı½â³õÊ¼»¯
+ * \brief USART1 å®ä¾‹è§£åˆå§‹åŒ–
  */
 void am_lpc82x_usart1_inst_deinit (am_uart_handle_t handle)
 {

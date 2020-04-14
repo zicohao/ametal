@@ -12,22 +12,22 @@
 
 /**
  * \file
- * \brief bootloader Àý³Ì£¬±¾demoÊÇ×÷Îªµ¥ÇøµÄÓ¦ÓÃ³ÌÐò£¨ÎÞ·¨ÔÚÓ¦ÓÃ³ÌÐòÖÐÉý¼¶£©¡£
+ * \brief bootloader ä¾‹ç¨‹ï¼Œæœ¬demoæ˜¯ä½œä¸ºå•åŒºçš„åº”ç”¨ç¨‹åºï¼ˆæ— æ³•åœ¨åº”ç”¨ç¨‹åºä¸­å‡çº§ï¼‰ã€‚
  *
- * - ²Ù×÷²½Öè:
- *   1.eclipse¹¤³Ì´ò¿ªdemo_am217_core_boot_application.ldÎÄ¼þ£¬´ò¿ª:
+ * - æ“ä½œæ­¥éª¤:
+ *   1.eclipseå·¥ç¨‹æ‰“å¼€demo_am217_core_boot_application.ldæ–‡ä»¶ï¼Œæ‰“å¼€:
  *
  *       FLASH (rx)  : ORIGIN = 0x08007000, LENGTH = 100K     // kft
  *
- *     µÄÅäÖÃ, ÆÁ±ÎÆäËûflashÅäÖÃ¡£
+ *     çš„é…ç½®, å±è”½å…¶ä»–flashé…ç½®ã€‚
  *
- *     keil¹¤³Ì´ò¿ªdemo_am217_core_application.sctÎÄ¼þ£¬´ò¿ªÉÏÎ»»úµÄÅäÖÃ£¬ÆÁ±ÎÆäËûÅäÖÃ
+ *     keilå·¥ç¨‹æ‰“å¼€demo_am217_core_application.sctæ–‡ä»¶ï¼Œæ‰“å¼€ä¸Šä½æœºçš„é…ç½®ï¼Œå±è”½å…¶ä»–é…ç½®
  *
- *   2.±àÒë¹¤³Ì
- *   3.¹¤³Ì³öµÄbinÎÄ¼þ×÷Îª¹Ì¼þ
+ *   2.ç¼–è¯‘å·¥ç¨‹
+ *   3.å·¥ç¨‹å‡ºçš„binæ–‡ä»¶ä½œä¸ºå›ºä»¶
  *
- * - Àý³ÌÏÖÏó£º
- *   1. LEDµÆÉÁË¸£¬´®¿ÚÑ­»·´òÓ¡¡£
+ * - ä¾‹ç¨‹çŽ°è±¡ï¼š
+ *   1. LEDç¯é—ªçƒï¼Œä¸²å£å¾ªçŽ¯æ‰“å°ã€‚
  *   
  *
  * \internal

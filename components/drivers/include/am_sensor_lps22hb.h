@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief Ñ¹Á¦ÎÂ¶È´«¸ĞÆ÷ LPS22HB Í·ÎÄ¼ş
+ * \brief å‹åŠ›æ¸©åº¦ä¼ æ„Ÿå™¨ LPS22HB å¤´æ–‡ä»¶
  *
  * \internal
  * \par modification history
@@ -32,58 +32,58 @@ extern "C" {
 #include "am_isr_defer.h"
 
 /**
- * \brief ´«¸ĞÆ÷LPS22HBÌá¹©µÄËùÓĞÍ¨µÀID¶¨Òå
+ * \brief ä¼ æ„Ÿå™¨LPS22HBæä¾›çš„æ‰€æœ‰é€šé“IDå®šä¹‰
  */
-#define AM_LPS22HB_CHAN_1      0           /* LPS22HB µÄÍ¨µÀ1£¬Ñ¹Á¦´«¸ĞÆ÷Í¨µÀ */
-#define AM_LPS22HB_CHAN_2      1           /* LPS22HB µÄÍ¨µÀ2£¬ÎÂ¶È´«¸ĞÆ÷Í¨µÀ */
+#define AM_LPS22HB_CHAN_1      0           /* LPS22HB çš„é€šé“1ï¼Œå‹åŠ›ä¼ æ„Ÿå™¨é€šé“ */
+#define AM_LPS22HB_CHAN_2      1           /* LPS22HB çš„é€šé“2ï¼Œæ¸©åº¦ä¼ æ„Ÿå™¨é€šé“ */
 
 /**
- * \brief ´«¸ĞÆ÷ LPS22HB Éè±¸ĞÅÏ¢½á¹¹Ìå
+ * \brief ä¼ æ„Ÿå™¨ LPS22HB è®¾å¤‡ä¿¡æ¯ç»“æ„ä½“
  */
 typedef struct am_sensor_lps22hb_devinfo {
     
     /**
-     * \brief Êı¾İ×¼±¸¾ÍĞ÷´¥·¢Òı½Å
+     * \brief æ•°æ®å‡†å¤‡å°±ç»ªè§¦å‘å¼•è„š
      */
     int     trigger_pin;
     
     /**
-     * \brief I2C 7Î» Éè±¸µØÖ·
+     * \brief I2C 7ä½ è®¾å¤‡åœ°å€
      *
-     * ¸ÃÉè±¸7Î»µØÖ·Îª 0x5C »ò 0x5D
+     * è¯¥è®¾å¤‡7ä½åœ°å€ä¸º 0x5C æˆ– 0x5D
      */
     uint8_t i2c_addr;
 
 } am_sensor_lps22hb_devinfo_t;
 
 /**
- * \breif ´«¸ĞÆ÷ LPS22HB Éè±¸½á¹¹Ìå¶¨Òå
+ * \breif ä¼ æ„Ÿå™¨ LPS22HB è®¾å¤‡ç»“æ„ä½“å®šä¹‰
  */
 typedef struct am_sensor_lps22hb_dev {
-    am_sensor_serv_t               lps22hb_dev;  /**< \breif ´«¸ĞÆ÷±ê×¼·şÎñ   */
-    am_i2c_device_t                i2c_dev;      /**< \brief i2cÉè±¸ÊµÀı      */
-    void                          *p_arg[2];     /**< \brief ´¥·¢»Øµ÷º¯Êı²ÎÊı */
-    uint8_t                        flags[2];     /**< \brief ´¥·¢±êÖ¾Î»       */
-    am_isr_defer_job_t             g_myjob;      /**< \brief ÖĞ¶ÏÑÓÊ±´¦ÀíÈÎÎñ */
-    am_sensor_val_t                sam_rate;     /**< \brief ²ÉÑùÆµÂÊ         */    
-    uint8_t                        trigger;      /**< \brief ¼ÇÂ¼±êÖ¾Î»       */
-    am_sensor_val_t                data[2];      /**< \brief ÄÚ²¿Êı¾İ»º´æ     */
-    /** \brief Êı¾İ×¼±¸¾ÍĞ÷´¥·¢»Øµ÷º¯Êı */
+    am_sensor_serv_t               lps22hb_dev;  /**< \breif ä¼ æ„Ÿå™¨æ ‡å‡†æœåŠ¡   */
+    am_i2c_device_t                i2c_dev;      /**< \brief i2cè®¾å¤‡å®ä¾‹      */
+    void                          *p_arg[2];     /**< \brief è§¦å‘å›è°ƒå‡½æ•°å‚æ•° */
+    uint8_t                        flags[2];     /**< \brief è§¦å‘æ ‡å¿—ä½       */
+    am_isr_defer_job_t             g_myjob;      /**< \brief ä¸­æ–­å»¶æ—¶å¤„ç†ä»»åŠ¡ */
+    am_sensor_val_t                sam_rate;     /**< \brief é‡‡æ ·é¢‘ç‡         */    
+    uint8_t                        trigger;      /**< \brief è®°å½•æ ‡å¿—ä½       */
+    am_sensor_val_t                data[2];      /**< \brief å†…éƒ¨æ•°æ®ç¼“å­˜     */
+    /** \brief æ•°æ®å‡†å¤‡å°±ç»ªè§¦å‘å›è°ƒå‡½æ•° */
     am_sensor_trigger_cb_t         pfn_trigger_cb[2];
     
-    /** \brief Éè±¸ĞÅÏ¢ */
+    /** \brief è®¾å¤‡ä¿¡æ¯ */
     const am_sensor_lps22hb_devinfo_t *dev_info;
 
 } am_sensor_lps22hb_dev_t;
 
 /**
- * \brief ´«¸ĞÆ÷ LPS22HB ³õÊ¼»¯
+ * \brief ä¼ æ„Ÿå™¨ LPS22HB åˆå§‹åŒ–
  *
- * \param[in] p_dev     : Ö¸Ïò´«¸ĞÆ÷LPS22HBÉè±¸µÄÖ¸Õë
- * \param[in] p_devinfo : Ö¸Ïò´«¸ĞÆ÷LPS22HBÉè±¸ĞÅÏ¢µÄÖ¸Õë
- * \param[in] handle    : IIC±ê×¼·şÎñ¾ä±ú
+ * \param[in] p_dev     : æŒ‡å‘ä¼ æ„Ÿå™¨LPS22HBè®¾å¤‡çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo : æŒ‡å‘ä¼ æ„Ÿå™¨LPS22HBè®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ
+ * \param[in] handle    : IICæ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ´«¸ĞÆ÷±ê×¼·şÎñ²Ù×÷¾ä±úÈç¹ûÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return ä¼ æ„Ÿå™¨æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„å¦‚æœä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_sensor_handle_t am_sensor_lps22hb_init (
         am_sensor_lps22hb_dev_t           *p_dev,
@@ -91,11 +91,11 @@ am_sensor_handle_t am_sensor_lps22hb_init (
         am_i2c_handle_t                   handle);
 
 /**
- * \brief ´«¸ĞÆ÷ LPS22HB È¥³õÊ¼»¯
+ * \brief ä¼ æ„Ÿå™¨ LPS22HB å»åˆå§‹åŒ–
  *
- * \param[in] handle : am_sensor_lps22hb_init()³õÊ¼»¯º¯Êı»ñµÃµÄ´«¸ĞÆ÷±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle : am_sensor_lps22hb_init()åˆå§‹åŒ–å‡½æ•°è·å¾—çš„ä¼ æ„Ÿå™¨æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_err_t am_sensor_lps22hb_deinit (am_sensor_handle_t handle);
 

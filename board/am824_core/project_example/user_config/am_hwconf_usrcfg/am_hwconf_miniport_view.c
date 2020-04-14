@@ -12,12 +12,12 @@
 
 /**
  * \file
- * \brief MiniPort-View ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief MiniPort-View ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_miniport_view.c
  *
- * MiniPort-View ¿ÉÒÔµ¥¶ÀÊ¹ÓÃ£¬Ò²¿ÉÒÔºÍ MiniPort-595 ÁªºÏÊ¹ÓÃ£¬ÒÔ½ÚÊ¡¿ØÖÆÒı½Å
+ * MiniPort-View å¯ä»¥å•ç‹¬ä½¿ç”¨ï¼Œä¹Ÿå¯ä»¥å’Œ MiniPort-595 è”åˆä½¿ç”¨ï¼Œä»¥èŠ‚çœæ§åˆ¶å¼•è„š
  *
- * µ±Ç°Ö§³ÖµÄÓÃ·¨ÓĞ£º
+ * å½“å‰æ”¯æŒçš„ç”¨æ³•æœ‰ï¼š
  * 1. MiniPort-View                : am_miniport_view_inst_init();
  * 2. MiniPort-View + MiniPort-595 : am_miniport_view_595_inst_init();
  *
@@ -44,63 +44,63 @@
  * @{
  */
 
-/** \brief ÏÔÊ¾»º´æ£¬´óĞ¡ÎªÊıÂë¹Ü¸öÊı£¬¼´ 2 */
+/** \brief æ˜¾ç¤ºç¼“å­˜ï¼Œå¤§å°ä¸ºæ•°ç ç®¡ä¸ªæ•°ï¼Œå³ 2 */
 am_local uint8_t __g_miniport_view_disp_buf[2];
 
-/** \brief É¨Ãè»º´æ£¬Ã¿´Î½ö¿ÉÉ¨ÃèÒ»¸öÊıÂë¹Ü£¬Òò´Ë´óĞ¡Îª 1 */
+/** \brief æ‰«æç¼“å­˜ï¼Œæ¯æ¬¡ä»…å¯æ‰«æä¸€ä¸ªæ•°ç ç®¡ï¼Œå› æ­¤å¤§å°ä¸º 1 */
 am_local uint8_t __g_miniport_view_scan_buf[1];
 
-/** \brief MiniPort-View ÊıÂë¹Ü¶ÎÑ¡Òı½Å */
+/** \brief MiniPort-View æ•°ç ç®¡æ®µé€‰å¼•è„š */
 am_local am_const int __g_miniport_view_seg_pins[] = {
-    PIO0_8,     /* SEG A Òı½Å */
-    PIO0_9,     /* SEG B Òı½Å */
-    PIO0_10,    /* SEG C Òı½Å */
-    PIO0_11,    /* SEG D Òı½Å */
-    PIO0_12,    /* SEG E Òı½Å */
-    PIO0_13,    /* SEG F Òı½Å */
-    PIO0_14,    /* SEG G Òı½Å */
-    PIO0_15     /* SEG DP Òı½Å */
+    PIO0_8,     /* SEG A å¼•è„š */
+    PIO0_9,     /* SEG B å¼•è„š */
+    PIO0_10,    /* SEG C å¼•è„š */
+    PIO0_11,    /* SEG D å¼•è„š */
+    PIO0_12,    /* SEG E å¼•è„š */
+    PIO0_13,    /* SEG F å¼•è„š */
+    PIO0_14,    /* SEG G å¼•è„š */
+    PIO0_15     /* SEG DP å¼•è„š */
 };
 
-/** \brief MiniPort-View ÊıÂë¹ÜÎ»Ñ¡Òı½Å */
+/** \brief MiniPort-View æ•°ç ç®¡ä½é€‰å¼•è„š */
 am_local am_const int __g_miniport_view_com_pins[] = {
-    PIO0_17,    /* COM 0 Òı½Å */
-    PIO0_23     /* COM 1 Òı½Å */
+    PIO0_17,    /* COM 0 å¼•è„š */
+    PIO0_23     /* COM 1 å¼•è„š */
 };
 
 /*******************************************************************************
-  MiniPort-View µ¥¶ÀÊ¹ÓÃ
+  MiniPort-View å•ç‹¬ä½¿ç”¨
 *******************************************************************************/
 
-/** \brief MiniPort-View Éè±¸ĞÅÏ¢ */
+/** \brief MiniPort-View è®¾å¤‡ä¿¡æ¯ */
 am_local am_const am_digitron_scan_gpio_info_t __g_miniport_view_devinfo = {
     {
         {
-            0,                         /* ÊıÂë¹Ü¶ÔÓ¦µÄÊıÂë¹ÜÏÔÊ¾Æ÷ ID Îª 0 */
+            0,                         /* æ•°ç ç®¡å¯¹åº”çš„æ•°ç ç®¡æ˜¾ç¤ºå™¨ ID ä¸º 0 */
         },
-        50,                            /* É¨ÃèÆµÂÊ£¬ 50Hz */
-        500,                           /* ÉÁË¸Ê±ÁÁµÄÊ±³¤£º500ms */
-        500,                           /* ÉÁË¸Ê±ÃğµÄÊ±³¤£º500ms */
-        __g_miniport_view_disp_buf,    /* ÏÔÊ¾»º´æ */
-        __g_miniport_view_scan_buf,    /* É¨Ãè»º´æ */
+        50,                            /* æ‰«æé¢‘ç‡ï¼Œ 50Hz */
+        500,                           /* é—ªçƒæ—¶äº®çš„æ—¶é•¿ï¼š500ms */
+        500,                           /* é—ªçƒæ—¶ç­çš„æ—¶é•¿ï¼š500ms */
+        __g_miniport_view_disp_buf,    /* æ˜¾ç¤ºç¼“å­˜ */
+        __g_miniport_view_scan_buf,    /* æ‰«æç¼“å­˜ */
     },
     {
-        8,                             /* 8 ¶ÎÊıÂë¹Ü */
-        1,                             /* ½öµ¥ĞĞÊıÂë¹Ü */
-        2,                             /* Á½ÁĞÊıÂë¹Ü */
-        AM_DIGITRON_SCAN_MODE_COL,     /* É¨Ãè·½Ê½£¬°´ÁĞÉ¨Ãè */
-        AM_TRUE,                       /* ¶ÎÂëµÍµçÆ½ÓĞĞ§ */
-        AM_TRUE,                       /* Î»Ñ¡µÍµçÆ½ÓĞĞ§ */
+        8,                             /* 8 æ®µæ•°ç ç®¡ */
+        1,                             /* ä»…å•è¡Œæ•°ç ç®¡ */
+        2,                             /* ä¸¤åˆ—æ•°ç ç®¡ */
+        AM_DIGITRON_SCAN_MODE_COL,     /* æ‰«ææ–¹å¼ï¼ŒæŒ‰åˆ—æ‰«æ */
+        AM_TRUE,                       /* æ®µç ä½ç”µå¹³æœ‰æ•ˆ */
+        AM_TRUE,                       /* ä½é€‰ä½ç”µå¹³æœ‰æ•ˆ */
     },
-    __g_miniport_view_seg_pins,        /* ÊıÂë¹Ü¶ÎÑ¡Òı½Å */
-    __g_miniport_view_com_pins,        /* ÊıÂë¹ÜÎ»Ñ¡Òı½Å */
+    __g_miniport_view_seg_pins,        /* æ•°ç ç®¡æ®µé€‰å¼•è„š */
+    __g_miniport_view_com_pins,        /* æ•°ç ç®¡ä½é€‰å¼•è„š */
 };
 
-/** \brief MiniPort-View Éè±¸ÊµÀı */
+/** \brief MiniPort-View è®¾å¤‡å®ä¾‹ */
 am_local am_digitron_scan_gpio_dev_t __g_miniport_view_dev;
 
 /**
- * \brief MiniPort-View ÊµÀı³õÊ¼»¯£¨µ¥¶ÀÊ¹ÓÃ£©
+ * \brief MiniPort-View å®ä¾‹åˆå§‹åŒ–ï¼ˆå•ç‹¬ä½¿ç”¨ï¼‰
  */
 int am_miniport_view_inst_init (void)
 {
@@ -109,38 +109,38 @@ int am_miniport_view_inst_init (void)
 }
 
 /*******************************************************************************
-  MiniPort-View ºÍ MiniPort-595 ÁªºÏÊ¹ÓÃ
+  MiniPort-View å’Œ MiniPort-595 è”åˆä½¿ç”¨
 *******************************************************************************/
 
-/** \brief MiniPort-595 + MiniPort-View Éè±¸ĞÅÏ¢ */
+/** \brief MiniPort-595 + MiniPort-View è®¾å¤‡ä¿¡æ¯ */
 am_local am_const
 am_digitron_scan_hc595_gpio_info_t __g_miniport_view_595_devinfo = {
     {
         {
-            0,                         /* ÊıÂë¹Ü¶ÔÓ¦µÄÊıÂë¹ÜÏÔÊ¾Æ÷ ID Îª 0 */
+            0,                         /* æ•°ç ç®¡å¯¹åº”çš„æ•°ç ç®¡æ˜¾ç¤ºå™¨ ID ä¸º 0 */
         },
-        50,                            /* É¨ÃèÆµÂÊ£¬ 50Hz */
-        500,                           /* ÉÁË¸Ê±ÁÁµÄÊ±³¤£º500ms */
-        500,                           /* ÉÁË¸Ê±ÃğµÄÊ±³¤£º500ms */
-        __g_miniport_view_disp_buf,    /* ÏÔÊ¾»º´æ */
-        __g_miniport_view_scan_buf,    /* É¨Ãè»º´æ */
+        50,                            /* æ‰«æé¢‘ç‡ï¼Œ 50Hz */
+        500,                           /* é—ªçƒæ—¶äº®çš„æ—¶é•¿ï¼š500ms */
+        500,                           /* é—ªçƒæ—¶ç­çš„æ—¶é•¿ï¼š500ms */
+        __g_miniport_view_disp_buf,    /* æ˜¾ç¤ºç¼“å­˜ */
+        __g_miniport_view_scan_buf,    /* æ‰«æç¼“å­˜ */
     },
     {
-        8,                             /* 8 ¶ÎÊıÂë¹Ü */
-        1,                             /* ½öµ¥ĞĞÊıÂë¹Ü */
-        2,                             /* Á½ÁĞÊıÂë¹Ü */
-        AM_DIGITRON_SCAN_MODE_COL,     /* É¨Ãè·½Ê½£¬°´ÁĞÉ¨Ãè */
-        AM_TRUE,                       /* ¶ÎÂëµÍµçÆ½ÓĞĞ§ */
-        AM_TRUE,                       /* Î»Ñ¡µÍµçÆ½ÓĞĞ§ */
+        8,                             /* 8 æ®µæ•°ç ç®¡ */
+        1,                             /* ä»…å•è¡Œæ•°ç ç®¡ */
+        2,                             /* ä¸¤åˆ—æ•°ç ç®¡ */
+        AM_DIGITRON_SCAN_MODE_COL,     /* æ‰«ææ–¹å¼ï¼ŒæŒ‰åˆ—æ‰«æ */
+        AM_TRUE,                       /* æ®µç ä½ç”µå¹³æœ‰æ•ˆ */
+        AM_TRUE,                       /* ä½é€‰ä½ç”µå¹³æœ‰æ•ˆ */
     },
-    __g_miniport_view_com_pins,        /* ÊıÂë¹ÜÎ»Ñ¡Òı½Å */
+    __g_miniport_view_com_pins,        /* æ•°ç ç®¡ä½é€‰å¼•è„š */
 };
 
-/** \brief MiniPort-595 + MiniPort-View Éè±¸ÊµÀı */
+/** \brief MiniPort-595 + MiniPort-View è®¾å¤‡å®ä¾‹ */
 am_local am_digitron_scan_hc595_gpio_dev_t __g_miniport_view_595_dev;
 
 /**
- * \brief MiniPort-595 + MiniPort-View ÊµÀı³õÊ¼»¯
+ * \brief MiniPort-595 + MiniPort-View å®ä¾‹åˆå§‹åŒ–
  */
 int am_miniport_view_595_inst_init (void)
 {

@@ -11,25 +11,25 @@
 *******************************************************************************/
 /**
  * \file
- * \brief I2C Ö÷»ú·ÃÎÊ EEPROM Àý³Ì£¬Í¨¹ýÍ¬²½±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief I2C ä¸»æœºè®¿é—® EEPROM ä¾‹ç¨‹ï¼Œé€šè¿‡åŒæ­¥æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. PIOB_6 Òý½ÅÁ¬½Ó EEPROM µÄ SCL Òý½Å£»
- *   2. PIOB_7 Òý½ÅÁ¬½Ó EEPROM µÄ SDA Òý½Å¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. PIOB_6 å¼•è„šè¿žæŽ¥ EEPROM çš„ SCL å¼•è„šï¼›
+ *   2. PIOB_7 å¼•è„šè¿žæŽ¥ EEPROM çš„ SDA å¼•è„šã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Ö÷»úÐ´µØÖ·ºÍÊý¾Ýµ½´Ó»ú£»
- *   2. Ö÷»ú½ÓÊÕ´Ó»úÊý¾Ý£¬²¢Í¨¹ý´®¿Ú´òÓ¡´¦Àí£»
- *   3. Ö÷»úÐ´ÈëµÄÊý¾ÝºÍ½ÓÊÕµ½µÄ´Ó»ú´Ó»úÊý¾ÝÒ»ÖÂ£»
- *   4. LED0 ÒÔ 200ms Ê±¼ä¼ä¸ôÉÁË¸¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. ä¸»æœºå†™åœ°å€å’Œæ•°æ®åˆ°ä»Žæœºï¼›
+ *   2. ä¸»æœºæŽ¥æ”¶ä»Žæœºæ•°æ®ï¼Œå¹¶é€šè¿‡ä¸²å£æ‰“å°å¤„ç†ï¼›
+ *   3. ä¸»æœºå†™å…¥çš„æ•°æ®å’ŒæŽ¥æ”¶åˆ°çš„ä»Žæœºä»Žæœºæ•°æ®ä¸€è‡´ï¼›
+ *   4. LED0 ä»¥ 200ms æ—¶é—´é—´éš”é—ªçƒã€‚
  *
  * \note
- *    1. LED0 ÐèÒª¶Ì½Ó J9 ÌøÏßÃ±£¬²ÅÄÜ±» PIOB_1 ¿ØÖÆ£»
- *    2. ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIOA_9 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
- *    3. µ±Ç° I2C µÄ SCL Òý½ÅÊ¹ÓÃµÄÊÇ PIOB_6£¬SDA Òý½ÅÊ¹ÓÃµÄÊÇ PIOB_7£¬
- *       ¿É¸ù¾ÝÊµ¼ÊÇé¿ö¸ü»»Òý½Å¡£
+ *    1. LED0 éœ€è¦çŸ­æŽ¥ J9 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIOB_1 æŽ§åˆ¶ï¼›
+ *    2. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIOA_9 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDã€‚
+ *    3. å½“å‰ I2C çš„ SCL å¼•è„šä½¿ç”¨çš„æ˜¯ PIOB_6ï¼ŒSDA å¼•è„šä½¿ç”¨çš„æ˜¯ PIOB_7ï¼Œ
+ *       å¯æ ¹æ®å®žé™…æƒ…å†µæ›´æ¢å¼•è„šã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am116_core_std_i2c_master_sync.c src_am116_core_std_i2c_master_sync
  *
  * \internal
@@ -50,11 +50,11 @@
 #include "demo_std_entries.h"
 #include "demo_am116_core_entries.h"
 
-#define EEPROM_ADDR 0x50 /**< \brief EEPROM Éè±¸µÄµØÖ· */
-#define TEST_LEN    8    /**< \brief ²Ù×÷ EEPROM µÄÒ³´óÐ¡ */
+#define EEPROM_ADDR 0x50 /**< \brief EEPROM è®¾å¤‡çš„åœ°å€ */
+#define TEST_LEN    8    /**< \brief æ“ä½œ EEPROM çš„é¡µå¤§å° */
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am116_core_std_i2c_master_sync_entry (void)
 {

@@ -12,20 +12,20 @@
 
 /**
  * \file
- * \brief SPI Ö÷»ú DMA ·½Ê½Àý³Ì£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief SPI ä¸»æœº DMA æ–¹å¼ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. ½« SPI µÄ MOSI Òý½ÅºÍ MISO Òý½ÅÓÃÏßÏàÁ¬£¬Ä£Äâ´Ó»úÉè±¸£¬»Ø»·²âÊÔ£»¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. å°† SPI çš„ MOSI å¼•è„šå’Œ MISO å¼•è„šç”¨çº¿ç›¸è¿žï¼Œæ¨¡æ‹Ÿä»Žæœºè®¾å¤‡ï¼Œå›žçŽ¯æµ‹è¯•ï¼›ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Ö÷»úÍ¨¹ý MOSI ·¢ËÍÊý¾Ý£¬·¢³öµÄÊý¾Ý´Ó MOSI ¶Á»Ø£»
- *   2. ´®¿Ú´òÓ¡³ö²âÊÔ½á¹û¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. ä¸»æœºé€šè¿‡ MOSI å‘é€æ•°æ®ï¼Œå‘å‡ºçš„æ•°æ®ä»Ž MOSI è¯»å›žï¼›
+ *   2. ä¸²å£æ‰“å°å‡ºæµ‹è¯•ç»“æžœã€‚
  *
  * \note
- *    ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIOA_10 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *    PIOA_9 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
+ *    å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIOA_10 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *    PIOA_9 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_zlg217_std_spi_master_dma.c src_zlg217_std_spi_master_dma
  *
  * \internal
@@ -47,10 +47,10 @@
 #include "demo_std_entries.h"
 #include "demo_am217_core_entries.h"
 
-#define KEY_PIN     PIOC_7               /**< \brief °´¼üÒý½Å */
+#define KEY_PIN     PIOC_7               /**< \brief æŒ‰é”®å¼•è„š */
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_zlg217_core_std_spi_master_dma_entry (void)
 {

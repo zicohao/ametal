@@ -11,9 +11,9 @@
 *******************************************************************************/
 /**
  * \file
- * \brief Íúºê¹«Ë¾µÄMX25ÏµÁĞMX25XXĞ¾Æ¬Çı¶¯ 
+ * \brief æ—ºå®å…¬å¸çš„MX25ç³»åˆ—MX25XXèŠ¯ç‰‡é©±åŠ¨ 
  * 
- * ÒÑÖª¼æÈİĞ¾Æ¬£º 
+ * å·²çŸ¥å…¼å®¹èŠ¯ç‰‡ï¼š 
  *   - MX25L1606E
  *   - MX25L8006E
  * 
@@ -43,15 +43,15 @@ extern "C" {
  */
 
 /**
- * \brief ¶¨ÒåÒ»¸öĞ¾Æ¬ĞÍºÅ
+ * \brief å®šä¹‰ä¸€ä¸ªèŠ¯ç‰‡å‹å·
  *
- * \param[in] page_size        : Ò³´óĞ¡£¬Ê¹ÓÃ2µÄÃİ±íÊ¾£¬ÈçÒ³´óĞ¡Îª256£¬Ôò¸ÃÖµÎª8
- * \param[in] pages_in_sector  : µ¥¸öÉÈÇøÖĞ°üº¬µÄÒ³ÊıÄ¿£¬Ê¹ÓÃ2µÄÃİ±íÊ¾
- * \param[in] sectors_in_block : µ¥¸ö¿éÖĞ°üº¬µÄÉÈÇøÊıÄ¿£¬Ê¹ÓÃ2µÄÃİ±íÊ¾
- * \param[in] nblocks          : Ğ¾Æ¬µÄ×Ü¿éÊı
- * \param[in] id               : Ğ¾Æ¬ID
+ * \param[in] page_size        : é¡µå¤§å°ï¼Œä½¿ç”¨2çš„å¹‚è¡¨ç¤ºï¼Œå¦‚é¡µå¤§å°ä¸º256ï¼Œåˆ™è¯¥å€¼ä¸º8
+ * \param[in] pages_in_sector  : å•ä¸ªæ‰‡åŒºä¸­åŒ…å«çš„é¡µæ•°ç›®ï¼Œä½¿ç”¨2çš„å¹‚è¡¨ç¤º
+ * \param[in] sectors_in_block : å•ä¸ªå—ä¸­åŒ…å«çš„æ‰‡åŒºæ•°ç›®ï¼Œä½¿ç”¨2çš„å¹‚è¡¨ç¤º
+ * \param[in] nblocks          : èŠ¯ç‰‡çš„æ€»å—æ•°
+ * \param[in] id               : èŠ¯ç‰‡ID
  *
- * \return Ğ¾Æ¬ĞÍºÅ£¬¿ÉÒÔÖ±½Ó×÷ÎªÊµÀıĞÅÏ¢ÖĞ type ³ÉÔ±µÄÖµ
+ * \return èŠ¯ç‰‡å‹å·ï¼Œå¯ä»¥ç›´æ¥ä½œä¸ºå®ä¾‹ä¿¡æ¯ä¸­ type æˆå‘˜çš„å€¼
  */
 #define AM_MX25XX_TYPE_DEF(page_size,         \
                            pages_in_sector,   \
@@ -61,10 +61,10 @@ extern "C" {
         {page_size, pages_in_sector, sectors_in_block, nblocks, id},
 
 /**
- * \name ÒÑÖªµÄÒ»Ğ©Ğ¾Æ¬ĞÍºÅ¶¨Òå
+ * \name å·²çŸ¥çš„ä¸€äº›èŠ¯ç‰‡å‹å·å®šä¹‰
  *
- *     ÈôÊ¹ÓÃµÄĞ¾Æ¬ĞÍºÅ´Ë´¦Î´¶¨Òå£¬¿ÉÒÔÊ¹ÓÃ \sa AM_MX25XX_TYPE_DEF() ºê¶¨ÒåÒ»
- * ¸öĞÂµÄĞ¾Æ¬¡£ ÕâĞ©ºê¿ÉÒÔÖ±½Ó×÷ÎªÊµÀıĞÅÏ¢ÖĞ type ³ÉÔ±µÄÖµ¡£
+ *     è‹¥ä½¿ç”¨çš„èŠ¯ç‰‡å‹å·æ­¤å¤„æœªå®šä¹‰ï¼Œå¯ä»¥ä½¿ç”¨ \sa AM_MX25XX_TYPE_DEF() å®å®šä¹‰ä¸€
+ * ä¸ªæ–°çš„èŠ¯ç‰‡ã€‚ è¿™äº›å®å¯ä»¥ç›´æ¥ä½œä¸ºå®ä¾‹ä¿¡æ¯ä¸­ type æˆå‘˜çš„å€¼ã€‚
  * 
  * @{
  */
@@ -74,72 +74,72 @@ extern "C" {
 /** @} */
 
 /**
- * \brief Æ÷¼şĞÍºÅ£¨°üº¬Ò³´óĞ¡µÈĞÅÏ¢£©
+ * \brief å™¨ä»¶å‹å·ï¼ˆåŒ…å«é¡µå¤§å°ç­‰ä¿¡æ¯ï¼‰
  */
 typedef struct am_mx25xx_type {
 
-    uint8_t   page_size;         /**< \brief Ò³´óĞ¡£¬Ê¹ÓÃ2µÄÃİ±íÊ¾  */
-    uint8_t   pages_in_sector;   /**< \brief µ¥¸öÉÈÇø°üº¬µÄÒ³Êı£¬Ê¹ÓÃ2µÄÃİ±íÊ¾  */
-    uint8_t   sectors_in_block;  /**< \brief µ¥¸öÉÈÇø°üº¬µÄÒ³Êı£¬Ê¹ÓÃ2µÄÃİ±íÊ¾  */
-    uint8_t   nblocks;           /**< \brief Ğ¾Æ¬×Ü¿éÊı£¬Ê¹ÓÃ2µÄÃİ±íÊ¾  */
+    uint8_t   page_size;         /**< \brief é¡µå¤§å°ï¼Œä½¿ç”¨2çš„å¹‚è¡¨ç¤º  */
+    uint8_t   pages_in_sector;   /**< \brief å•ä¸ªæ‰‡åŒºåŒ…å«çš„é¡µæ•°ï¼Œä½¿ç”¨2çš„å¹‚è¡¨ç¤º  */
+    uint8_t   sectors_in_block;  /**< \brief å•ä¸ªæ‰‡åŒºåŒ…å«çš„é¡µæ•°ï¼Œä½¿ç”¨2çš„å¹‚è¡¨ç¤º  */
+    uint8_t   nblocks;           /**< \brief èŠ¯ç‰‡æ€»å—æ•°ï¼Œä½¿ç”¨2çš„å¹‚è¡¨ç¤º  */
 
     /**
-     * ¸ÃIDÓÉ£ºmanufacture_id + memory type + memory density¹¹³É
-     * Èç£ºMX25L1606 manufacture_id¡¢ memory type¡¢ memory density·Ö±ğÎª
-     * 0xC2¡¢0x20¡¢0x15£¬Ôò¸ÃÖµÎª£º0x1520C2
+     * è¯¥IDç”±ï¼šmanufacture_id + memory type + memory densityæ„æˆ
+     * å¦‚ï¼šMX25L1606 manufacture_idã€ memory typeã€ memory densityåˆ†åˆ«ä¸º
+     * 0xC2ã€0x20ã€0x15ï¼Œåˆ™è¯¥å€¼ä¸ºï¼š0x1520C2
      */
     uint32_t  id;
  
 } am_mx25xx_type_t;
  
 /**
- * \brief MX25XX ÊµÀıĞÅÏ¢
+ * \brief MX25XX å®ä¾‹ä¿¡æ¯
  */
 typedef struct am_mx25xx_devinfo {
  
-    uint16_t          spi_mode;      /**< \brief Æ÷¼şÊ¹ÓÃµÄSPIÄ£Ê½ */
-    int               spi_cs_pin;    /**< \brief SPIÆ¬Ñ¡Òı½Å                */
-    uint32_t          spi_speed;     /**< \brief Ê¹ÓÃµÄSPIËÙÂÊ           */
-    am_mx25xx_type_t  type;          /**< \brief Æ÷¼şĞÍºÅ                        */
+    uint16_t          spi_mode;      /**< \brief å™¨ä»¶ä½¿ç”¨çš„SPIæ¨¡å¼ */
+    int               spi_cs_pin;    /**< \brief SPIç‰‡é€‰å¼•è„š                */
+    uint32_t          spi_speed;     /**< \brief ä½¿ç”¨çš„SPIé€Ÿç‡           */
+    am_mx25xx_type_t  type;          /**< \brief å™¨ä»¶å‹å·                        */
  
 } am_mx25xx_devinfo_t;
      
 /**
- * \brief MX25XX ÊµÀı
+ * \brief MX25XX å®ä¾‹
  */
 typedef struct am_mx25xx_dev {
-    am_spi_device_t            spi_dev;        /**< \brief SPIÉè±¸              */
-    uint32_t                   addr_offset;    /**< \brief ±£ÁôµØÖ·¿Õ¼ä  */
-    const am_mx25xx_devinfo_t *p_devinfo;      /**< \brief ÊµÀıĞÅÏ¢            */
+    am_spi_device_t            spi_dev;        /**< \brief SPIè®¾å¤‡              */
+    uint32_t                   addr_offset;    /**< \brief ä¿ç•™åœ°å€ç©ºé—´  */
+    const am_mx25xx_devinfo_t *p_devinfo;      /**< \brief å®ä¾‹ä¿¡æ¯            */
 } am_mx25xx_dev_t;
 
-/** \brief ¶¨Òå MX25XX µÄÊµÀı¾ä±úÀàĞÍ */
+/** \brief å®šä¹‰ MX25XX çš„å®ä¾‹å¥æŸ„ç±»å‹ */
 typedef struct am_mx25xx_dev *am_mx25xx_handle_t;
 
 
 /** 
- * \brief ³õÊ¼»¯ MX25XX£¬»ñÈ¡²Ù×÷ MX25XX µÄ handle
+ * \brief åˆå§‹åŒ– MX25XXï¼Œè·å–æ“ä½œ MX25XX çš„ handle
  * 
- * \param[in] p_dev      : Ö¸Ïò MX25XX ÊµÀıµÄÖ¸Õë
- * \param[in] p_devinfo  : Ö¸Ïò MX25XX ÊµÀıĞÅÏ¢µÄÖ¸Õë
- * \param[in] handle     : SPI±ê×¼·şÎñhandle,Ê¹ÓÃ¸Ã handle Óë MX25XX ½øĞĞÍ¨ĞÅ
+ * \param[in] p_dev      : æŒ‡å‘ MX25XX å®ä¾‹çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo  : æŒ‡å‘ MX25XX å®ä¾‹ä¿¡æ¯çš„æŒ‡é’ˆ
+ * \param[in] handle     : SPIæ ‡å‡†æœåŠ¡handle,ä½¿ç”¨è¯¥ handle ä¸ MX25XX è¿›è¡Œé€šä¿¡
  *
- * \return MX25XX ²Ù×÷¾ä±ú£¬Èç¹û³õÊ¼»¯Ê§°Ü£¬Ôò·µ»ØÖµÎªNULL
+ * \return MX25XX æ“ä½œå¥æŸ„ï¼Œå¦‚æœåˆå§‹åŒ–å¤±è´¥ï¼Œåˆ™è¿”å›å€¼ä¸ºNULL
  */
 am_mx25xx_handle_t am_mx25xx_init(am_mx25xx_dev_t            *p_dev,
                                   const am_mx25xx_devinfo_t  *p_devinfo,
                                   am_spi_handle_t             handle);
 
 /**
- * \brief MX25xxµÄ MTD ¹¦ÄÜ³õÊ¼»¯
+ * \brief MX25xxçš„ MTD åŠŸèƒ½åˆå§‹åŒ–
  *
- * ³õÊ¼»¯ºó£¬¼´¿ÉÊ¹ÓÃMTD±ê×¼½Ó¿Ú¶Ô MX25xx½øĞĞ²Ù×÷
+ * åˆå§‹åŒ–åï¼Œå³å¯ä½¿ç”¨MTDæ ‡å‡†æ¥å£å¯¹ MX25xxè¿›è¡Œæ“ä½œ
  *
- * \param[in] handle         : MX25XX ²Ù×÷¾ä±ú
- * \param[in] p_mtd          : Ö¸Ïò MTD ÊµÀıµÄÖ¸Õë
- * \param[in] reserved_nblks : ±£ÁôµÄ¿éÊı£¬ÆğÊ¼µÄ reserved_nblks ¿é²»»á±»MTDÊ¹ÓÃ¡£
+ * \param[in] handle         : MX25XX æ“ä½œå¥æŸ„
+ * \param[in] p_mtd          : æŒ‡å‘ MTD å®ä¾‹çš„æŒ‡é’ˆ
+ * \param[in] reserved_nblks : ä¿ç•™çš„å—æ•°ï¼Œèµ·å§‹çš„ reserved_nblks å—ä¸ä¼šè¢«MTDä½¿ç”¨ã€‚
  *
- * \return MTDÊµÀı¾ä±ú
+ * \return MTDå®ä¾‹å¥æŸ„
  *
  */
 am_mtd_handle_t am_mx25xx_mtd_init(am_mx25xx_handle_t  handle,
@@ -148,20 +148,20 @@ am_mtd_handle_t am_mx25xx_mtd_init(am_mx25xx_handle_t  handle,
 
 
 /**
- * \brief ²Á³ı
+ * \brief æ“¦é™¤
  *
- *    ²Á³ıµÄÖ÷Òª×÷ÓÃÊÇ½«Êı¾İÈ«²¿ÖØÖÃÎª0xFF£¨¼´ËùÓĞ´æ´¢µ¥ÔªµÄÎ»ÉèÖÃÎª1£©¡£²Á³ı²Ù×÷
- * ²¢²»ÄÜÖ±½Ó²Á³ıÄ³¸öµ¥Ò»µØÖ·µ¥Ôª£¬²Á³ıµÄ×îĞ¡µ¥ÔªÎªÉÈÇø£¬¼´Ã¿´ÎÖ»ÄÜ²Á³ıµ¥¸ö»ò¶à¸ö
- * ÉÈÇø¡£ÓÉÓÚ²Á³ıµÄ×îĞ¡µ¥ÔªÎªÉÈÇø£¬Òò´Ë£¬²Á³ıÇøÓòµÄÆğÊ¼µØÖ·±ØĞëÎªÄ³ÉÈÇøµÄÆğÊ¼µØÖ·¡¢
- * ²Á³ı³¤¶È±ØĞëÎªÉÈÇø´óĞ¡µÄÕûÊı±¶¡£
+ *    æ“¦é™¤çš„ä¸»è¦ä½œç”¨æ˜¯å°†æ•°æ®å…¨éƒ¨é‡ç½®ä¸º0xFFï¼ˆå³æ‰€æœ‰å­˜å‚¨å•å…ƒçš„ä½è®¾ç½®ä¸º1ï¼‰ã€‚æ“¦é™¤æ“ä½œ
+ * å¹¶ä¸èƒ½ç›´æ¥æ“¦é™¤æŸä¸ªå•ä¸€åœ°å€å•å…ƒï¼Œæ“¦é™¤çš„æœ€å°å•å…ƒä¸ºæ‰‡åŒºï¼Œå³æ¯æ¬¡åªèƒ½æ“¦é™¤å•ä¸ªæˆ–å¤šä¸ª
+ * æ‰‡åŒºã€‚ç”±äºæ“¦é™¤çš„æœ€å°å•å…ƒä¸ºæ‰‡åŒºï¼Œå› æ­¤ï¼Œæ“¦é™¤åŒºåŸŸçš„èµ·å§‹åœ°å€å¿…é¡»ä¸ºæŸæ‰‡åŒºçš„èµ·å§‹åœ°å€ã€
+ * æ“¦é™¤é•¿åº¦å¿…é¡»ä¸ºæ‰‡åŒºå¤§å°çš„æ•´æ•°å€ã€‚
  *
- * \param[in] handle : MX25XX ²Ù×÷¾ä±ú
- * \param[in] addr   : ²Á³ıÇøÓòµÄÊ×µØÖ·£¬±ØĞëÎªÄ³ÉÈÇøµÄÆğÊ¼µØÖ·
- * \param[in] len    : ²Á³ıÇøÓòµÄ³¤¶È£¬±ØĞëÎªÉÈÇø´óĞ¡µÄÕûÊı±¶
+ * \param[in] handle : MX25XX æ“ä½œå¥æŸ„
+ * \param[in] addr   : æ“¦é™¤åŒºåŸŸçš„é¦–åœ°å€ï¼Œå¿…é¡»ä¸ºæŸæ‰‡åŒºçš„èµ·å§‹åœ°å€
+ * \param[in] len    : æ“¦é™¤åŒºåŸŸçš„é•¿åº¦ï¼Œå¿…é¡»ä¸ºæ‰‡åŒºå¤§å°çš„æ•´æ•°å€
  *
- * \retval  AM_OK     : ²Á³ı³É¹¦
- * \retval -AM_EINVAL : ²Á³ıÊ§°Ü, ²ÎÊı´íÎó
- * \retval -AM_EIO    : ²Á³ıÊ§°Ü, SPIÍ¨ĞÅ³ö´í
+ * \retval  AM_OK     : æ“¦é™¤æˆåŠŸ
+ * \retval -AM_EINVAL : æ“¦é™¤å¤±è´¥, å‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : æ“¦é™¤å¤±è´¥, SPIé€šä¿¡å‡ºé”™
  */
 int am_mx25xx_erase(am_mx25xx_handle_t  handle,
                     uint32_t            addr,
@@ -169,16 +169,16 @@ int am_mx25xx_erase(am_mx25xx_handle_t  handle,
 
 
 /**
- * \brief ¶ÁÈ¡Êı¾İ
+ * \brief è¯»å–æ•°æ®
  *
- * \param[in] handle : MX25XX ²Ù×÷¾ä±ú
- * \param[in] addr   : ¶ÁÈ¡Êı¾İµÄÊ×µØÖ·
- * \param[in] p_buf  : ¶ÁÈ¡Êı¾İ´æ·ÅµÄ»º³åÇø
- * \param[in] len    : Êı¾İ¶ÁÈ¡µÄ³¤¶È
+ * \param[in] handle : MX25XX æ“ä½œå¥æŸ„
+ * \param[in] addr   : è¯»å–æ•°æ®çš„é¦–åœ°å€
+ * \param[in] p_buf  : è¯»å–æ•°æ®å­˜æ”¾çš„ç¼“å†²åŒº
+ * \param[in] len    : æ•°æ®è¯»å–çš„é•¿åº¦
  *
- * \retval  AM_OK     : ¶ÁÈ¡Êı¾İ³É¹¦
- * \retval -AM_EINVAL : ¶ÁÈ¡Êı¾İÊ§°Ü, ²ÎÊı´íÎó
- * \retval -AM_EIO    : ¶ÁÈ¡Êı¾İÊ§°Ü, SPIÍ¨ĞÅ³ö´í
+ * \retval  AM_OK     : è¯»å–æ•°æ®æˆåŠŸ
+ * \retval -AM_EINVAL : è¯»å–æ•°æ®å¤±è´¥, å‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : è¯»å–æ•°æ®å¤±è´¥, SPIé€šä¿¡å‡ºé”™
  */
 int am_mx25xx_read(am_mx25xx_handle_t  handle,
                    uint32_t            addr,
@@ -187,16 +187,16 @@ int am_mx25xx_read(am_mx25xx_handle_t  handle,
 
 
 /** 
- * \brief Ğ´ÈëÊı¾İ
+ * \brief å†™å…¥æ•°æ®
  *
- * \param[in] handle : MX25XX ²Ù×÷¾ä±ú
- * \param[in] addr   : Ğ´ÈëÊı¾İµÄÊ×µØÖ·
- * \param[in] p_buf  : Ğ´ÈëÊı¾İ´æ·ÅµÄ»º³åÇø
- * \param[in] len    : Êı¾İ¶ÁÈ¡µÄ³¤¶È
+ * \param[in] handle : MX25XX æ“ä½œå¥æŸ„
+ * \param[in] addr   : å†™å…¥æ•°æ®çš„é¦–åœ°å€
+ * \param[in] p_buf  : å†™å…¥æ•°æ®å­˜æ”¾çš„ç¼“å†²åŒº
+ * \param[in] len    : æ•°æ®è¯»å–çš„é•¿åº¦
  *
- * \retval  AM_OK     : ¶ÁÈ¡Êı¾İ³É¹¦
- * \retval -AM_EINVAL : ¶ÁÈ¡Êı¾İÊ§°Ü, ²ÎÊı´íÎó
- * \retval -AM_EIO    : ¶ÁÈ¡Êı¾İÊ§°Ü, SPIÍ¨ĞÅ³ö´í
+ * \retval  AM_OK     : è¯»å–æ•°æ®æˆåŠŸ
+ * \retval -AM_EINVAL : è¯»å–æ•°æ®å¤±è´¥, å‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : è¯»å–æ•°æ®å¤±è´¥, SPIé€šä¿¡å‡ºé”™
  */
 int am_mx25xx_write(am_mx25xx_handle_t  handle,
                     uint32_t            addr,
@@ -204,142 +204,142 @@ int am_mx25xx_write(am_mx25xx_handle_t  handle,
                     uint32_t            len);
 
 /**
- * \brief ¶ÁÈ¡ JEDEC ID
+ * \brief è¯»å– JEDEC ID
  *
- * ¸ÃIDÓÉ£ºmanufacture_id + memory type + memory density¹¹³É
+ * è¯¥IDç”±ï¼šmanufacture_id + memory type + memory densityæ„æˆ
  * 
- * \param[in]  handle   : MX25XX ²Ù×÷¾ä±ú
+ * \param[in]  handle   : MX25XX æ“ä½œå¥æŸ„
  * \param[out] p_id     : JEDEC ID
  *
- * \retval  AM_OK     : ¶ÁÈ¡³É¹¦
- * \retval -AM_EINVAL : ¶ÁÈ¡Ê§°Ü, ²ÎÊı´íÎó
- * \retval -AM_EIO    : ¶ÁÈ¡Ê§°Ü, SPIÍ¨ĞÅ³ö´í
+ * \retval  AM_OK     : è¯»å–æˆåŠŸ
+ * \retval -AM_EINVAL : è¯»å–å¤±è´¥, å‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : è¯»å–å¤±è´¥, SPIé€šä¿¡å‡ºé”™
  */ 
 int am_mx25xx_id_read(am_mx25xx_handle_t handle, uint32_t *p_id);
                                         
 /** 
- * \brief Ê¹ÓÃREMSÃüÁî¶ÁÈ¡ ³§¼ÒID£¨1×Ö½Ú£©ºÍÆ÷¼şID£¨1×Ö½Ú£©
+ * \brief ä½¿ç”¨REMSå‘½ä»¤è¯»å– å‚å®¶IDï¼ˆ1å­—èŠ‚ï¼‰å’Œå™¨ä»¶IDï¼ˆ1å­—èŠ‚ï¼‰
  * 
- * \param[in]  handle           : MX25XX ²Ù×÷¾ä±ú
- * \param[out] p_manufacture_id : ³§¼ÒID£¨1×Ö½Ú£©
- * \param[out] p_device_id      : Éè±¸ID£¨1×Ö½Ú£©
+ * \param[in]  handle           : MX25XX æ“ä½œå¥æŸ„
+ * \param[out] p_manufacture_id : å‚å®¶IDï¼ˆ1å­—èŠ‚ï¼‰
+ * \param[out] p_device_id      : è®¾å¤‡IDï¼ˆ1å­—èŠ‚ï¼‰
  *
- * \retval  AM_OK     : ¶ÁÈ¡³É¹¦
- * \retval -AM_EINVAL : ¶ÁÈ¡Ê§°Ü, ²ÎÊı´íÎó
- * \retval -AM_EIO    : ¶ÁÈ¡Ê§°Ü, SPIÍ¨ĞÅ³ö´í
+ * \retval  AM_OK     : è¯»å–æˆåŠŸ
+ * \retval -AM_EINVAL : è¯»å–å¤±è´¥, å‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : è¯»å–å¤±è´¥, SPIé€šä¿¡å‡ºé”™
  */                                        
 int am_mx25xx_id_rems_read(am_mx25xx_handle_t  handle, 
                            uint8_t            *p_manufacture_id,
                            uint8_t            *p_device_id);
                             
 /** 
- * \brief ¶ÁÈ¡MX25XX×´Ì¬¼Ä´æÆ÷µÄÖµ
+ * \brief è¯»å–MX25XXçŠ¶æ€å¯„å­˜å™¨çš„å€¼
  * 
- * \param[in]  handle : MX25XX ²Ù×÷¾ä±ú
- * \param[out] p_stat : »ñÈ¡µ½µÄ×´Ì¬¼Ä´æÆ÷µÄÖµ
+ * \param[in]  handle : MX25XX æ“ä½œå¥æŸ„
+ * \param[out] p_stat : è·å–åˆ°çš„çŠ¶æ€å¯„å­˜å™¨çš„å€¼
  *
- * \retval  AM_OK     : ¶ÁÈ¡×´Ì¬¼Ä´æÆ÷³É¹¦
- * \retval -AM_EINVAL : ¶ÁÈ¡Ê§°Ü, ²ÎÊı´íÎó
- * \retval -AM_EIO    : ¶ÁÈ¡Ê§°Ü, SPIÍ¨ĞÅ³ö´í
+ * \retval  AM_OK     : è¯»å–çŠ¶æ€å¯„å­˜å™¨æˆåŠŸ
+ * \retval -AM_EINVAL : è¯»å–å¤±è´¥, å‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : è¯»å–å¤±è´¥, SPIé€šä¿¡å‡ºé”™
  */
 int am_mx25xx_status_read(am_mx25xx_handle_t  handle,
                           uint8_t            *p_stat);
 
 /** 
- * \brief ÉèÖÃMX25XX×´Ì¬¼Ä´æÆ÷µÄÖµ
+ * \brief è®¾ç½®MX25XXçŠ¶æ€å¯„å­˜å™¨çš„å€¼
  * 
- * \param[in] handle : MX25XX ²Ù×÷¾ä±ú
- * \param[in] val    : Ğ´Èë×´Ì¬¼Ä´æÆ÷µÄÖµ
+ * \param[in] handle : MX25XX æ“ä½œå¥æŸ„
+ * \param[in] val    : å†™å…¥çŠ¶æ€å¯„å­˜å™¨çš„å€¼
  *
- * \retval  AM_OK     : Ğ´Èë×´Ì¬¼Ä´æÆ÷³É¹¦
- * \retval -AM_EINVAL : Ğ´ÈëÊ§°Ü, ²ÎÊı´íÎó
- * \retval -AM_EIO    : Ğ´ÈëÊ§°Ü, SPIÍ¨ĞÅ³ö´í
+ * \retval  AM_OK     : å†™å…¥çŠ¶æ€å¯„å­˜å™¨æˆåŠŸ
+ * \retval -AM_EINVAL : å†™å…¥å¤±è´¥, å‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å†™å…¥å¤±è´¥, SPIé€šä¿¡å‡ºé”™
  *
- * \note ³ı·ÇÌØÊâÓ¦ÓÃ£¬·ñÔò²»½¨ÒéÊ¹ÓÃ¸Ãº¯ÊıÖ±½ÓĞ´×´Ì¬¼Ä´æÆ÷µÄÖµ
+ * \note é™¤éç‰¹æ®Šåº”ç”¨ï¼Œå¦åˆ™ä¸å»ºè®®ä½¿ç”¨è¯¥å‡½æ•°ç›´æ¥å†™çŠ¶æ€å¯„å­˜å™¨çš„å€¼
  */
 int am_mx25xx_status_write(am_mx25xx_handle_t  handle,
                            uint8_t             val);
 
 /** 
- * \brief ½øÈëµôµçÄ£Ê½£¨µÍ¹¦ºÄ£©
+ * \brief è¿›å…¥æ‰ç”µæ¨¡å¼ï¼ˆä½åŠŸè€—ï¼‰
  * 
- * \param[in] handle : MX25XX ²Ù×÷¾ä±ú
+ * \param[in] handle : MX25XX æ“ä½œå¥æŸ„
  *
- * \retval  AM_OK     : ½øÈëµôµçÄ£Ê½³É¹¦
- * \retval -AM_EINVAL : ½øÈëµôµçÄ£Ê½Ê§°Ü, ²ÎÊı´íÎó
- * \retval -AM_EIO    : ½øÈëµôµçÄ£Ê½Ê§°Ü, SPIÍ¨ĞÅ³ö´í
+ * \retval  AM_OK     : è¿›å…¥æ‰ç”µæ¨¡å¼æˆåŠŸ
+ * \retval -AM_EINVAL : è¿›å…¥æ‰ç”µæ¨¡å¼å¤±è´¥, å‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : è¿›å…¥æ‰ç”µæ¨¡å¼å¤±è´¥, SPIé€šä¿¡å‡ºé”™
  */                              
 int am_mx25xx_deep_power_down_enter(am_mx25xx_handle_t  handle);
 
 /** 
- * \brief ÍË³öµôµçÄ£Ê½
+ * \brief é€€å‡ºæ‰ç”µæ¨¡å¼
  * 
- * \param[in] handle : MX25XX ²Ù×÷¾ä±ú
+ * \param[in] handle : MX25XX æ“ä½œå¥æŸ„
  *
- * \retval  AM_OK     : ½øÈëµôµçÄ£Ê½³É¹¦
- * \retval -AM_EINVAL : ½øÈëµôµçÄ£Ê½Ê§°Ü, ²ÎÊı´íÎó
- * \retval -AM_EIO    : ½øÈëµôµçÄ£Ê½Ê§°Ü, SPIÍ¨ĞÅ³ö´í
+ * \retval  AM_OK     : è¿›å…¥æ‰ç”µæ¨¡å¼æˆåŠŸ
+ * \retval -AM_EINVAL : è¿›å…¥æ‰ç”µæ¨¡å¼å¤±è´¥, å‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : è¿›å…¥æ‰ç”µæ¨¡å¼å¤±è´¥, SPIé€šä¿¡å‡ºé”™
  */
 int am_mx25xx_deep_power_down_exit(am_mx25xx_handle_t  handle);
 
 /** 
- * \brief ½øÈë°²È«ÇøÓò£¨OTPÊı¾İÇø£©£¬½øÈëºó£¬¿ÉÒÔÊ¹ÓÃ¶ÁĞ´º¯Êı²Ù×÷OTPÊı¾İÇø
+ * \brief è¿›å…¥å®‰å…¨åŒºåŸŸï¼ˆOTPæ•°æ®åŒºï¼‰ï¼Œè¿›å…¥åï¼Œå¯ä»¥ä½¿ç”¨è¯»å†™å‡½æ•°æ“ä½œOTPæ•°æ®åŒº
  * 
- * \param[in] handle : MX25XX ²Ù×÷¾ä±ú
+ * \param[in] handle : MX25XX æ“ä½œå¥æŸ„
  *
- * \retval  AM_OK     : ½øÈë°²È«ÇøÓò³É¹¦
- * \retval -AM_EINVAL : ½øÈë°²È«ÇøÓòÊ§°Ü, ²ÎÊı´íÎó
- * \retval -AM_EIO    : ½øÈë°²È«ÇøÓòÊ§°Ü, SPIÍ¨ĞÅ³ö´í
+ * \retval  AM_OK     : è¿›å…¥å®‰å…¨åŒºåŸŸæˆåŠŸ
+ * \retval -AM_EINVAL : è¿›å…¥å®‰å…¨åŒºåŸŸå¤±è´¥, å‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : è¿›å…¥å®‰å…¨åŒºåŸŸå¤±è´¥, SPIé€šä¿¡å‡ºé”™
  *
- * \note Èç¹û¸ÃÇøÓò±»Ëø¶¨£¬½«Ö»ÄÜ¶ÁÈ¡ÊıÖµ£¬²»ÄÜĞŞ¸ÄÊıÖµ
+ * \note å¦‚æœè¯¥åŒºåŸŸè¢«é”å®šï¼Œå°†åªèƒ½è¯»å–æ•°å€¼ï¼Œä¸èƒ½ä¿®æ”¹æ•°å€¼
  */
 int am_mx25xx_secured_otp_enter(am_mx25xx_handle_t handle);
 
 /**
- * \brief ÍË³ö°²È«ÇøÓò£¨OTPÊı¾İÇø£©
+ * \brief é€€å‡ºå®‰å…¨åŒºåŸŸï¼ˆOTPæ•°æ®åŒºï¼‰
  * 
- * \param[in] handle : MX25XX ²Ù×÷¾ä±ú
+ * \param[in] handle : MX25XX æ“ä½œå¥æŸ„
  *
- * \retval  AM_OK     : ÍË³ö°²È«ÇøÓò³É¹¦
- * \retval -AM_EINVAL : ÍË³ö°²È«ÇøÓòÊ§°Ü, ²ÎÊı´íÎó
- * \retval -AM_EIO    : ÍË³ö°²È«ÇøÓòÊ§°Ü, SPIÍ¨ĞÅ³ö´í
+ * \retval  AM_OK     : é€€å‡ºå®‰å…¨åŒºåŸŸæˆåŠŸ
+ * \retval -AM_EINVAL : é€€å‡ºå®‰å…¨åŒºåŸŸå¤±è´¥, å‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : é€€å‡ºå®‰å…¨åŒºåŸŸå¤±è´¥, SPIé€šä¿¡å‡ºé”™
  */
 int am_mx25xx_secured_otp_exit(am_mx25xx_handle_t handle);
 
 /** 
- * \brief ¼ì²â°²È«ÇøÓò£¨OTPÊı¾İÇø£©ÊÇ·ñÒÑ±»Ëø¶¨
+ * \brief æ£€æµ‹å®‰å…¨åŒºåŸŸï¼ˆOTPæ•°æ®åŒºï¼‰æ˜¯å¦å·²è¢«é”å®š
  * 
- * \param[in]  handle     : MX25XX ²Ù×÷¾ä±ú
- * \param[out] p_lockdown : »ñÈ¡µ±Ç°µÄËø¶¨×´Ì¬£¬AM_TRUE, Ëø¶¨£¬AM_FALSE,Î´Ëø¶¨
+ * \param[in]  handle     : MX25XX æ“ä½œå¥æŸ„
+ * \param[out] p_lockdown : è·å–å½“å‰çš„é”å®šçŠ¶æ€ï¼ŒAM_TRUE, é”å®šï¼ŒAM_FALSE,æœªé”å®š
  *
- * \retval  AM_OK     : ¼ì²â³É¹¦
- * \retval -AM_EINVAL : ¼ì²âÊ§°Ü, ²ÎÊı´íÎó
- * \retval -AM_EIO    : ¼ì²âÊ§°Ü, SPIÍ¨ĞÅ³ö´í
+ * \retval  AM_OK     : æ£€æµ‹æˆåŠŸ
+ * \retval -AM_EINVAL : æ£€æµ‹å¤±è´¥, å‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : æ£€æµ‹å¤±è´¥, SPIé€šä¿¡å‡ºé”™
  */   
 int am_mx25xx_secured_lockdown_check(am_mx25xx_handle_t   handle,
                                      am_bool_t           *p_lockdown);
 
 /** 
- * \brief Ëø¶¨°²È«ÇøÓò£¨OTPÊı¾İÇø£©£¬Ëø¶¨ºó£¬½«ÎŞ·¨½âËø£¬Ò²ÎŞ·¨ĞŞ¸ÄOTPÖĞµÄÊı¾İ
+ * \brief é”å®šå®‰å…¨åŒºåŸŸï¼ˆOTPæ•°æ®åŒºï¼‰ï¼Œé”å®šåï¼Œå°†æ— æ³•è§£é”ï¼Œä¹Ÿæ— æ³•ä¿®æ”¹OTPä¸­çš„æ•°æ®
  * 
- * \param[in] handle : MX25XX ²Ù×÷¾ä±ú
+ * \param[in] handle : MX25XX æ“ä½œå¥æŸ„
  *
- * \retval  AM_OK     : Ëø¶¨³É¹¦
- * \retval -AM_EINVAL : Ëø¶¨Ê§°Ü, ²ÎÊı´íÎó
- * \retval -AM_EIO    : Ëø¶¨Ê§°Ü, SPIÍ¨ĞÅ³ö´í
+ * \retval  AM_OK     : é”å®šæˆåŠŸ
+ * \retval -AM_EINVAL : é”å®šå¤±è´¥, å‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : é”å®šå¤±è´¥, SPIé€šä¿¡å‡ºé”™
  */   
 int am_mx25xx_secured_lockdown(am_mx25xx_handle_t handle);
 
 
 /** 
- * \brief MX25XX½â³õÊ¼»¯£¬ÊÍ·ÅÏà¹Ø×ÊÔ´
+ * \brief MX25XXè§£åˆå§‹åŒ–ï¼Œé‡Šæ”¾ç›¸å…³èµ„æº
  * 
- *     ½â³õÊ¼»¯ºó£¬MX25XXÏà¹Øº¯Êı¾ù²»¿ÉÊ¹ÓÃ£¬°üÀ¨Ê¹ÓÃMX25XX»ñÈ¡
- * µ½µÄNVRAM±ê×¼·şÎñhandle¡£
+ *     è§£åˆå§‹åŒ–åï¼ŒMX25XXç›¸å…³å‡½æ•°å‡ä¸å¯ä½¿ç”¨ï¼ŒåŒ…æ‹¬ä½¿ç”¨MX25XXè·å–
+ * åˆ°çš„NVRAMæ ‡å‡†æœåŠ¡handleã€‚
  * 
- * \param[in] p_dev : Ö¸Ïò MX25XX Éè±¸µÄÖ¸Õë
+ * \param[in] p_dev : æŒ‡å‘ MX25XX è®¾å¤‡çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_mx25xx_deinit(am_mx25xx_dev_t *p_dev);
 

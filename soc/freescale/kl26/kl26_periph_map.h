@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief KL26 外设映射
+ * \brief KL26 澶栬鏄犲皠
  *
  * \internal
  * \par Modification history
@@ -59,7 +59,7 @@ extern "C" {
  */
 
 /**
- * \name 外设定义
+ * \name 澶栬瀹氫箟
  * @{
  */
 #define KL26_SIM      ((amhw_kl26_sim_t     *)KL26_SIM_BASE)    /**< \brief SIM */

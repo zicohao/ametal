@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief I2CÇı¶¯£¬·şÎñI2C±ê×¼½Ó¿Ú
+ * \brief I2Cé©±åŠ¨ï¼ŒæœåŠ¡I2Cæ ‡å‡†æ¥å£
  *
  * \internal
  * \par Modification History
@@ -41,74 +41,74 @@ extern "C" {
  */
 
 /**
- * \brief I2C Éè±¸ĞÅÏ¢²ÎÊı½á¹¹Ìå
+ * \brief I2C è®¾å¤‡ä¿¡æ¯å‚æ•°ç»“æ„ä½“
  */
 typedef struct am_fsl_i2c_devinfo {
-    struct amhw_fsl_i2c  *p_hw_i2c;    /**< \brief Ö¸ÏòI2C¼Ä´æÆ÷¿éµØÖ·Ö¸Õë     */
-    uint32_t               bus_speed;  /**< \brief I2C ³õÊ¼»¯×ÜÏßÊ±ÖÓ     */
-    uint16_t               inum;       /**< \brief I2C ¿ØÖÆÆ÷µÄÖĞ¶ÏºÅ  */
-    uint32_t               clk_id;     /**< \brief I2C Ê±ÖÓºÅ */
-    uint16_t               timeout_ms; /**< \brief I2C ³¬Ê±Ê±¼äÉèÖÃ  */
-    void  (*pfn_plfm_init)(void);      /**< \brief Æ½Ì¨³õÊ¼»¯º¯Êı£¬ÅäÖÃÒı½ÅµÈ¹¤×÷ */
+    struct amhw_fsl_i2c  *p_hw_i2c;    /**< \brief æŒ‡å‘I2Cå¯„å­˜å™¨å—åœ°å€æŒ‡é’ˆ     */
+    uint32_t               bus_speed;  /**< \brief I2C åˆå§‹åŒ–æ€»çº¿æ—¶é’Ÿ     */
+    uint16_t               inum;       /**< \brief I2C æ§åˆ¶å™¨çš„ä¸­æ–­å·  */
+    uint32_t               clk_id;     /**< \brief I2C æ—¶é’Ÿå· */
+    uint16_t               timeout_ms; /**< \brief I2C è¶…æ—¶æ—¶é—´è®¾ç½®  */
+    void  (*pfn_plfm_init)(void);      /**< \brief å¹³å°åˆå§‹åŒ–å‡½æ•°ï¼Œé…ç½®å¼•è„šç­‰å·¥ä½œ */
 
-    void  (*pfn_plfm_deinit)(void);    /**< \brief Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    void  (*pfn_plfm_deinit)(void);    /**< \brief å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 
 } am_fsl_i2c_devinfo_t;
 
 /**
- * \brief I2C Éè±¸½á¹¹Ìå
+ * \brief I2C è®¾å¤‡ç»“æ„ä½“
  */
 typedef struct am_fsl_i2c_dev {
-    /** \brief ±ê×¼I2C·şÎñ           */
+    /** \brief æ ‡å‡†I2CæœåŠ¡           */
     am_i2c_serv_t                 i2c_serv;
 
-    /** \brief I2C ¿ØÖÆÆ÷ÏûÏ¢¶ÓÁĞ */
+    /** \brief I2C æ§åˆ¶å™¨æ¶ˆæ¯é˜Ÿåˆ— */
     struct am_list_head           msg_list;
 
-    /** \brief Ö¸ÏòI2C´«Êä½á¹¹ÌåµÄÖ¸Õë£¬Í¬Ò»Ê±¼äÖ»ÄÜ´¦ÀíÒ»¸ö´«Êä           */
+    /** \brief æŒ‡å‘I2Cä¼ è¾“ç»“æ„ä½“çš„æŒ‡é’ˆï¼ŒåŒä¸€æ—¶é—´åªèƒ½å¤„ç†ä¸€ä¸ªä¼ è¾“           */
     am_i2c_transfer_t            *p_cur_trans;
 
-    /** \brief µ±Ç°ÕıÔÚ´¦ÀíµÄÏûÏ¢   */
+    /** \brief å½“å‰æ­£åœ¨å¤„ç†çš„æ¶ˆæ¯   */
     am_i2c_message_t             *p_cur_msg;
 
-    /** \brief ÓÃÓÚÊı¾İµÄ´«Êä¼ÆÊı   */
+    /** \brief ç”¨äºæ•°æ®çš„ä¼ è¾“è®¡æ•°   */
     uint32_t                      data_ptr;
 
-    /** \brief I2CÄ£¿éÃ¦±êÊ¶          */
+    /** \brief I2Cæ¨¡å—å¿™æ ‡è¯†          */
     am_bool_t                        busy;
 
-    /** \brief I2CÄ£¿éµ±Ç°×´Ì¬      */
+    /** \brief I2Cæ¨¡å—å½“å‰çŠ¶æ€      */
     uint8_t                       state;
 
-    /** \brief I2CÄ£¿éĞéÄâ¶ÁÈ¡±êÖ¾      */
+    /** \brief I2Cæ¨¡å—è™šæ‹Ÿè¯»å–æ ‡å¿—      */
     uint8_t                       dummy_rx_flg;
 
-    /** \brief STOPĞÅºÅ²úÉú±êÖ¾      */
+    /** \brief STOPä¿¡å·äº§ç”Ÿæ ‡å¿—      */
     am_bool_t                     stop_signal;
 
-    /** \brief ³¬Ê±Èí¼ş¶¨Ê±Æ÷ */
+    /** \brief è¶…æ—¶è½¯ä»¶å®šæ—¶å™¨ */
     am_softimer_t                 softimer;
 
-    /** \brief Ö¸ÏòI2CÉè±¸ĞÅÏ¢Ö¸Õë   */
+    /** \brief æŒ‡å‘I2Cè®¾å¤‡ä¿¡æ¯æŒ‡é’ˆ   */
     const am_fsl_i2c_devinfo_t  *p_devinfo;
 } am_fsl_i2c_dev_t;
 
 /**
- * \brief I2C ³õÊ¼»¯º¯Êı
+ * \brief I2C åˆå§‹åŒ–å‡½æ•°
  *
- * \param[in] p_dev     : Ö¸ÏòI2CÉè±¸½á¹¹ÌåÖ¸Õë
- * \param[in] p_devinfo : Ö¸ÏòI2CÉè±¸ĞÅÏ¢½á¹¹ÌåÖ¸Õë
+ * \param[in] p_dev     : æŒ‡å‘I2Cè®¾å¤‡ç»“æ„ä½“æŒ‡é’ˆ
+ * \param[in] p_devinfo : æŒ‡å‘I2Cè®¾å¤‡ä¿¡æ¯ç»“æ„ä½“æŒ‡é’ˆ
  *
- * \return  I2C ±ê×¼·şÎñ²Ù×÷¾ä±ú
+ * \return  I2C æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  */
 am_i2c_handle_t am_fsl_i2c_init(am_fsl_i2c_dev_t           *p_dev,
                                  const am_fsl_i2c_devinfo_t *p_devinfo);
 
 /**
- * \brief I2C ½â³õÊ¼»¯º¯Êı
- * \param[in] handle : Ö¸ÏòI2C±ê×¼·şÎñ²Ù×÷¾ä±ú
+ * \brief I2C è§£åˆå§‹åŒ–å‡½æ•°
+ * \param[in] handle : æŒ‡å‘I2Cæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_fsl_i2c_deinit(am_i2c_handle_t handle);
 

@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief F-RAM(fm25clxx) ÅäÖÃÎÄ¼ş
+ * \brief F-RAM(fm25clxx) é…ç½®æ–‡ä»¶
  *
  * \internal
  * \par Modification history
@@ -31,7 +31,7 @@
  * @{
  */
 
-/** \brief Éè±¸ĞÅÏ¢ */
+/** \brief è®¾å¤‡ä¿¡æ¯ */
 struct am_fm25clxx_devinfo fm25clxx_devinfo = {
     AM_SPI_MODE_0,
     PIO0_0,
@@ -39,13 +39,13 @@ struct am_fm25clxx_devinfo fm25clxx_devinfo = {
 };
 
 /*******************************************************************************
-  FRAM(fm25clxx) ÊµÀı³õÊ¼»¯
+  FRAM(fm25clxx) å®ä¾‹åˆå§‹åŒ–
 *******************************************************************************/
 
-/** \brief Éè±¸¶¨Òå */
+/** \brief è®¾å¤‡å®šä¹‰ */
 am_local am_fm25clxx_dev_t __g_fm25clxx_flash_dev;
 
-/** \brief ÊµÀı³õÊ¼»¯ */
+/** \brief å®ä¾‹åˆå§‹åŒ– */
 am_fm25clxx_handle_t am_fm25clxx_inst_init (void)
 {
     return am_fm25clxx_init(&__g_fm25clxx_flash_dev,
@@ -53,7 +53,7 @@ am_fm25clxx_handle_t am_fm25clxx_inst_init (void)
                              am_lpc84x_spi0_int_inst_init());
 }
 
-/** \brief ÊµÀı³õÊ¼»¯ */
+/** \brief å®ä¾‹åˆå§‹åŒ– */
 void am_fm25clxx_inst_deinit (am_fm25clxx_handle_t handle)
 {
     am_lpc84x_spi0_int_inst_deinit(handle->spi_dev.handle);
@@ -61,14 +61,14 @@ void am_fm25clxx_inst_deinit (am_fm25clxx_handle_t handle)
 }
 
 /*******************************************************************************
-  FRAM ÊµÀı³õÊ¼»¯£¨½« FM24C02 ÓÃ×÷±ê×¼µÄ NVRAM Éè±¸£©
+  FRAM å®ä¾‹åˆå§‹åŒ–ï¼ˆå°† FM24C02 ç”¨ä½œæ ‡å‡†çš„ NVRAM è®¾å¤‡ï¼‰
 *******************************************************************************/
 
-/** \brief MicroPort-EEPROM Éè±¸ÊµÀı */
+/** \brief MicroPort-EEPROM è®¾å¤‡å®ä¾‹ */
 am_local am_nvram_dev_t __g_fram_nvram_dev;
 
 /**
- * \brief MicroPort-EEPROM ÊµÀı³õÊ¼»¯£¨½« FM24C02 ÓÃ×÷±ê×¼µÄ NVRAM Éè±¸£©
+ * \brief MicroPort-EEPROM å®ä¾‹åˆå§‹åŒ–ï¼ˆå°† FM24C02 ç”¨ä½œæ ‡å‡†çš„ NVRAM è®¾å¤‡ï¼‰
  */
 int am_fm25clxx_fram_nvram_inst_init (void)
 {

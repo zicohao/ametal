@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ´«¸ĞÆ÷ bme280 ÅäÖÃÎÄ¼ş
+ * \brief ä¼ æ„Ÿå™¨ bme280 é…ç½®æ–‡ä»¶
  *
  * \internal
  * \par Modification history
@@ -30,12 +30,12 @@ extern "C" {
 #endif
 
 /**
- * \brief ´«¸ĞÆ÷ bme280 Éè±¸ÊµÀı»¯
+ * \brief ä¼ æ„Ÿå™¨ bme280 è®¾å¤‡å®ä¾‹åŒ–
  */
 am_sensor_handle_t am_sensor_bme280_inst_init (void);
 
 /**
- * \brief ´«¸ĞÆ÷ bme280 ÊµÀı½â³õÊ¼»¯
+ * \brief ä¼ æ„Ÿå™¨ bme280 å®ä¾‹è§£åˆå§‹åŒ–
  */
 am_err_t am_sensor_bme280_inst_deinit (am_sensor_handle_t handle);
 

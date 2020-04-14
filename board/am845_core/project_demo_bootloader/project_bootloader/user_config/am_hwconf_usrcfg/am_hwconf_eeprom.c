@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief MicroPort EEPROM ÅäÖÃÎÄ¼ş
+ * \brief MicroPort EEPROM é…ç½®æ–‡ä»¶
  * \sa am_hwconf_microport_eeprom.c
  *
  * \internal
@@ -31,19 +31,19 @@
  */
 
 /*******************************************************************************
-  MicroPort EEPROM ÊµÀı³õÊ¼»¯£¨Ê¹ÓÃĞ¾Æ¬¹¦ÄÜ£©
+  MicroPort EEPROM å®ä¾‹åˆå§‹åŒ–ï¼ˆä½¿ç”¨èŠ¯ç‰‡åŠŸèƒ½ï¼‰
 *******************************************************************************/
 
-/** \brief Éè±¸ĞÅÏ¢ */
+/** \brief è®¾å¤‡ä¿¡æ¯ */
 am_local am_const am_ep24cxx_devinfo_t __g_microport_eeprom_devinfo = {
-    0x50,                   /**< \brief Æ÷¼şµÄI2CµØÖ· */
-    AM_EP24CXX_FM24C512,    /**< \brief Æ÷¼şĞÍºÅ */
+    0x50,                   /**< \brief å™¨ä»¶çš„I2Cåœ°å€ */
+    AM_EP24CXX_FM24C512,    /**< \brief å™¨ä»¶å‹å· */
 };
 
-/** \brief Éè±¸¶¨Òå */
+/** \brief è®¾å¤‡å®šä¹‰ */
 am_local  am_ep24cxx_dev_t __g_microport_eeprom_dev;
 
-/** \brief ÊµÀı³õÊ¼»¯ */
+/** \brief å®ä¾‹åˆå§‹åŒ– */
 am_ep24cxx_handle_t am_eeprom_inst_init (void)
 {
     am_i2c_handle_t i2c_handle = am_lpc84x_i2c1_inst_init();
@@ -53,13 +53,13 @@ am_ep24cxx_handle_t am_eeprom_inst_init (void)
 }
 
 /*******************************************************************************
-  MicroPort EEPROM ÊµÀı³õÊ¼»¯£¨½« FM24C02 ÓÃ×÷±ê×¼µÄ NVRAM Éè±¸£©
+  MicroPort EEPROM å®ä¾‹åˆå§‹åŒ–ï¼ˆå°† FM24C02 ç”¨ä½œæ ‡å‡†çš„ NVRAM è®¾å¤‡ï¼‰
 *******************************************************************************/
 
-/** \brief Éè±¸¶¨Òå */
+/** \brief è®¾å¤‡å®šä¹‰ */
 am_local am_nvram_dev_t  __g_microport_eeprom_nvram_dev;
 
-/** \brief ÊµÀı³õÊ¼»¯ */
+/** \brief å®ä¾‹åˆå§‹åŒ– */
 int am_eeprom_nvram_inst_init (void)
 {
     am_ep24cxx_handle_t microport_eeprom_handle = am_eeprom_inst_init();

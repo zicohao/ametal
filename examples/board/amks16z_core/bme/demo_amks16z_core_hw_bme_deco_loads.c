@@ -11,15 +11,15 @@
 *******************************************************************************/
 /**
  * \file
- * \brief  BME·â×°Ê½´æ´¢Ö¸ÁîÊµÏÖÀý×Ó
+ * \brief  BMEå°è£…å¼å­˜å‚¨æŒ‡ä»¤å®žçŽ°ä¾‹å­
  *
- * - ²Ù×÷£º
- *   1.PIOA_1 Òý½ÅÁ¬½ÓPC´®¿ÚµÄTXD;
- *   2.PIOA_2 Òý½ÅÁ¬½ÓPC´®¿ÚµÄRXD;
- *   3.ÅäÖÃÉÏÎ»»ú´®¿Ú²¨ÌØÂÊÎª115200£¬8Î»Êý¾Ý³¤¶È 1Î»Í£Ö¹Î» ÎÞÆæÅ¼Ð£Ñé;
+ * - æ“ä½œï¼š
+ *   1.PIOA_1 å¼•è„šè¿žæŽ¥PCä¸²å£çš„TXD;
+ *   2.PIOA_2 å¼•è„šè¿žæŽ¥PCä¸²å£çš„RXD;
+ *   3.é…ç½®ä¸Šä½æœºä¸²å£æ³¢ç‰¹çŽ‡ä¸º115200ï¼Œ8ä½æ•°æ®é•¿åº¦ 1ä½åœæ­¢ä½ æ— å¥‡å¶æ ¡éªŒ;
  *
- * -ÊµÏÖÏÖÏó£º´®¿ÚÒÀ´Î´òÓ¡³öÒÔÏÂ×Ö·û´®£¬ÓÃÓÚCÓïÑÔÊµÏÖÓëBMEÖ¸ÁîÖ´ÐÐÐ§ÂÊÉÏµÄ²î±ð£¬
- *         ¿ÉÒÔ¿´³öBMEÖ¸ÁîÊµÏÖµÄÖ´ÐÐÐ§ÂÊ¸ü¸ßÐ§£¬³ÌÐò×îºóµãÁÁledµÆ
+ * -å®žçŽ°çŽ°è±¡ï¼šä¸²å£ä¾æ¬¡æ‰“å°å‡ºä»¥ä¸‹å­—ç¬¦ä¸²ï¼Œç”¨äºŽCè¯­è¨€å®žçŽ°ä¸ŽBMEæŒ‡ä»¤æ‰§è¡Œæ•ˆçŽ‡ä¸Šçš„å·®åˆ«ï¼Œ
+ *         å¯ä»¥çœ‹å‡ºBMEæŒ‡ä»¤å®žçŽ°çš„æ‰§è¡Œæ•ˆçŽ‡æ›´é«˜æ•ˆï¼Œç¨‹åºæœ€åŽç‚¹äº®ledç¯
 
  *         systick end value: 0xff9d63
  *
@@ -57,9 +57,9 @@
  *
  *         actual execution cycle for ubfx operation with BME macro: 0xa
  *
- * \note BMEµÄ ¶Á»ØÐ´1ÇåÁãÃüÁîAMHW_KL26_BME_LAS1_*²»ÔÚÊ¹ÓÃÔÚÓÐÐí¶àµÄw1cÇåÁãÎ»µÄ¼Ä´æÆ÷ÖÐ£¬ÈçÍâÉèµÄ×´Ì¬¼Ä´æÆ÷.
+ * \note BMEçš„ è¯»å›žå†™1æ¸…é›¶å‘½ä»¤AMHW_KL26_BME_LAS1_*ä¸åœ¨ä½¿ç”¨åœ¨æœ‰è®¸å¤šçš„w1cæ¸…é›¶ä½çš„å¯„å­˜å™¨ä¸­ï¼Œå¦‚å¤–è®¾çš„çŠ¶æ€å¯„å­˜å™¨.
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_amks16z_core_hw_bme_deco_loads.c src_amks16z_core_hw_bme_deco_loads
  *
  * \internal
@@ -86,7 +86,7 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_amks16z_core_hw_bme_deco_loads_entry (void)
 {

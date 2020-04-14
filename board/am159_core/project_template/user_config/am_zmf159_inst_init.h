@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief ZMF159 ÍâÉè ÊµÀı³õÊ¼»¯º¯ÊıÉùÃ÷
+ * \brief ZMF159 å¤–è®¾ å®ä¾‹åˆå§‹åŒ–å‡½æ•°å£°æ˜
  *
- * ËùÓĞÍâÉèÉè±¸£¨I2C¡¢SPI¡¢ADC...£©µÄÊµÀı³õÊ¼»¯º¯Êı¾ùÔÚ±¾Í·ÎÄ¼şÖĞÉùÃ÷£¬Ê¹ÓÃÊµÀı
- * ³õÊ¼»¯º¯Êı£¬¿ÉÒÔÇáËÉ»ñµÃÒ»¸öÍâÉèµÄ¾ä±ú£¬È»ºóÊ¹ÓÃÏà¹ØµÄ½Ó¿Úº¯Êı¶ÔÍâÉè½øĞĞ²Ù×÷¡£
+ * æ‰€æœ‰å¤–è®¾è®¾å¤‡ï¼ˆI2Cã€SPIã€ADC...ï¼‰çš„å®ä¾‹åˆå§‹åŒ–å‡½æ•°å‡åœ¨æœ¬å¤´æ–‡ä»¶ä¸­å£°æ˜ï¼Œä½¿ç”¨å®ä¾‹
+ * åˆå§‹åŒ–å‡½æ•°ï¼Œå¯ä»¥è½»æ¾è·å¾—ä¸€ä¸ªå¤–è®¾çš„å¥æŸ„ï¼Œç„¶åä½¿ç”¨ç›¸å…³çš„æ¥å£å‡½æ•°å¯¹å¤–è®¾è¿›è¡Œæ“ä½œã€‚
  *
  * \sa am_zmf159_inst_init.h
  * \internal
@@ -82,968 +82,968 @@ extern "C" {
  */
 
 /**
- * \brief µ÷ÊÔ´®¿ÚÊµÀı³õÊ¼»¯
+ * \brief è°ƒè¯•ä¸²å£å®ä¾‹åˆå§‹åŒ–
  */
 am_uart_handle_t am_debug_uart_inst_init (void);
 
 /**
- * \brief LED GPIOÊµÀı³õÊ¼»¯
+ * \brief LED GPIOå®ä¾‹åˆå§‹åŒ–
  */
 int am_led_gpio_inst_init (void);
 
 /**
- * \brief ÏµÍ³µÎ´ğÊµÀı³õÊ¼»¯(Ê¹ÓÃÈí¼ş¶¨Ê±Æ÷)
+ * \brief ç³»ç»Ÿæ»´ç­”å®ä¾‹åˆå§‹åŒ–(ä½¿ç”¨è½¯ä»¶å®šæ—¶å™¨)
  */
 am_timer_handle_t am_system_tick_softimer_inst_init (void);
 
 /**
- * \brief ·äÃùÆ÷ÊµÀı³õÊ¼»¯
+ * \brief èœ‚é¸£å™¨å®ä¾‹åˆå§‹åŒ–
  */
 am_pwm_handle_t am_buzzer_pwm_inst_init (void);
 
 /**
- * \brief ÊµÀı³õÊ¼»¯º¯Êı
+ * \brief å®ä¾‹åˆå§‹åŒ–å‡½æ•°
  */
 int am_key_gpio_inst_init (void);
 
 /**
- * \brief ÖĞ¶ÏÊµÀı³õÊ¼»¯£¬³õÊ¼»¯ÖĞ¶ÏÇı¶¯
+ * \brief ä¸­æ–­å®ä¾‹åˆå§‹åŒ–ï¼Œåˆå§‹åŒ–ä¸­æ–­é©±åŠ¨
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ·µ»Ø AW_OK Îª³õÊ¼»¯³É¹¦£¬ÆäËüÎª³õÊ¼»¯Ê§°Ü
+ * \return è¿”å› AW_OK ä¸ºåˆå§‹åŒ–æˆåŠŸï¼Œå…¶å®ƒä¸ºåˆå§‹åŒ–å¤±è´¥
  */
 int am_zmf159_nvic_inst_init (void);
 
 /**
- * \brief ÖĞ¶ÏÊµÀı½â³õÊ¼»¯
+ * \brief ä¸­æ–­å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_nvic_inst_deinit (void);
 
 /**
- * \brief ILI9341 ÊµÀı³õÊ¼»¯£¬»ñµÃ ILI9341 ±ê×¼·şÎñ¾ä±ú
+ * \brief ILI9341 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— ILI9341 æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ILI9341 ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return ILI9341 æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_ili9341_handle_t am_zmf159_ili9341_inst_init (void);
 
 /**
- * \brief ILI9341 ÊµÀı½â³õÊ¼»¯
+ * \brief ILI9341 å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_ili9341_inst_init() º¯Êı»ñµÃµÄ ILI9341
- *                   ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_ili9341_inst_init() å‡½æ•°è·å¾—çš„ ILI9341
+ *                   æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_ili9341_inst_deinit (am_ili9341_handle_t handle);
 
 /**
- * \brief ADC1 ÊµÀı³õÊ¼»¯£¬»ñµÃ ADC ±ê×¼·şÎñ¾ä±ú
+ * \brief ADC1 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— ADC æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ADC ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return ADC æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_adc_handle_t am_zmf159_adc1_inst_init (void);
 
 /**
- * \brief ADC1 ÊµÀı½â³õÊ¼»¯
+ * \brief ADC1 å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_adc1_inst_init() º¯Êı»ñµÃµÄ ADC ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_adc1_inst_init() å‡½æ•°è·å¾—çš„ ADC æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_adc1_inst_deinit (am_adc_handle_t handle);
 
 /**
- * \brief ADC2 ÊµÀı³õÊ¼»¯£¬»ñµÃ ADC ±ê×¼·şÎñ¾ä±ú
+ * \brief ADC2 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— ADC æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ADC ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return ADC æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_adc_handle_t am_zmf159_adc2_inst_init (void);
 
 /**
- * \brief ADC2 ÊµÀı½â³õÊ¼»¯
+ * \brief ADC2 å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_adc2_inst_init() º¯Êı»ñµÃµÄ ADC ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_adc2_inst_init() å‡½æ•°è·å¾—çš„ ADC æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_adc2_inst_deinit (am_adc_handle_t handle);
 
 /**
- * \brief CLK ÊµÀı³õÊ¼»¯£¬³õÊ¼»¯ÏµÍ³Ê±ÖÓ
+ * \brief CLK å®ä¾‹åˆå§‹åŒ–ï¼Œåˆå§‹åŒ–ç³»ç»Ÿæ—¶é’Ÿ
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ·µ»Ø AW_OK Îª³õÊ¼»¯³É¹¦£¬ÆäËüÎª³õÊ¼»¯Ê§°Ü
+ * \return è¿”å› AW_OK ä¸ºåˆå§‹åŒ–æˆåŠŸï¼Œå…¶å®ƒä¸ºåˆå§‹åŒ–å¤±è´¥
  */
 int am_zmf159_clk_inst_init (void);
 
 /**
- * \brief CRC ÊµÀı³õÊ¼»¯£¬»ñµÃ CRC ±ê×¼·şÎñ¾ä±ú
+ * \brief CRC å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— CRC æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return CRC ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return CRC æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_crc_handle_t am_zmf159_crc_inst_init (void);
 
 /**
- * \brief CRC ÊµÀı½â³õÊ¼»¯
+ * \brief CRC å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_crc_inst_init() º¯Êı»ñµÃµÄ CRC ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_crc_inst_init() å‡½æ•°è·å¾—çš„ CRC æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_crc_inst_deinit (am_crc_handle_t handle);
 
 /**
- * \brief DAC1 ÊµÀı³õÊ¼»¯£¬»ñµÃ DAC ±ê×¼·şÎñ¾ä±ú
+ * \brief DAC1 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— DAC æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return DAC ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return DAC æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_dac_handle_t am_zmf159_dac1_inst_init (void);
 
 /**
- * \brief DAC1 ÊµÀı½â³õÊ¼»¯
+ * \brief DAC1 å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_dac1_inst_init() º¯Êı»ñµÃµÄ DAC ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_dac1_inst_init() å‡½æ•°è·å¾—çš„ DAC æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_dac1_inst_deinit (am_dac_handle_t handle);
 
 /**
- * \brief DAC2 ÊµÀı³õÊ¼»¯£¬»ñµÃ DAC ±ê×¼·şÎñ¾ä±ú
+ * \brief DAC2 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— DAC æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return DAC ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return DAC æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_dac_handle_t am_zmf159_dac2_inst_init (void);
 
 /**
- * \brief DAC2 ÊµÀı½â³õÊ¼»¯
+ * \brief DAC2 å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_dac2_inst_init() º¯Êı»ñµÃµÄ DAC ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_dac2_inst_init() å‡½æ•°è·å¾—çš„ DAC æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_dac2_inst_deinit (am_dac_handle_t handle);
 
 /**
- * \brief DMA1 ÊµÀı³õÊ¼»¯
+ * \brief DMA1 å®ä¾‹åˆå§‹åŒ–
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ·µ»Ø AW_OK Îª³õÊ¼»¯³É¹¦£¬ÆäËüÎª³õÊ¼»¯Ê§°Ü
+ * \return è¿”å› AW_OK ä¸ºåˆå§‹åŒ–æˆåŠŸï¼Œå…¶å®ƒä¸ºåˆå§‹åŒ–å¤±è´¥
  */
 int am_zmf159_dma1_inst_init (void);
 
 /**
- * \brief DMA2 ÊµÀı³õÊ¼»¯
+ * \brief DMA2 å®ä¾‹åˆå§‹åŒ–
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ·µ»Ø AW_OK Îª³õÊ¼»¯³É¹¦£¬ÆäËüÎª³õÊ¼»¯Ê§°Ü
+ * \return è¿”å› AW_OK ä¸ºåˆå§‹åŒ–æˆåŠŸï¼Œå…¶å®ƒä¸ºåˆå§‹åŒ–å¤±è´¥
  */
 int am_zmf159_dma2_inst_init (void);
 
 /**
- * \brief DMA1 ÊµÀı½â³õÊ¼»¯
+ * \brief DMA1 å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_dma1_inst_deinit (void);
 
 /**
- * \brief DMA2 ÊµÀı½â³õÊ¼»¯
+ * \brief DMA2 å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_dma2_inst_deinit (void);
 
 /**
- * \brief GPIO ÊµÀı³õÊ¼»¯
+ * \brief GPIO å®ä¾‹åˆå§‹åŒ–
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ·µ»Ø AW_OK Îª³õÊ¼»¯³É¹¦£¬ÆäËüÎª³õÊ¼»¯Ê§°Ü
+ * \return è¿”å› AW_OK ä¸ºåˆå§‹åŒ–æˆåŠŸï¼Œå…¶å®ƒä¸ºåˆå§‹åŒ–å¤±è´¥
  */
 int am_zmf159_gpio_inst_init (void);
 
 /**
- * \brief GPIO ÊµÀı½â³õÊ¼»¯
+ * \brief GPIO å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_gpio_inst_deinit (void);
 
 /**
- * \brief I2C1 ÊµÀı³õÊ¼»¯£¬»ñµÃ I2C ±ê×¼·şÎñ¾ä±ú
+ * \brief I2C1 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— I2C æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return I2C ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return I2C æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_i2c_handle_t am_zmf159_i2c1_inst_init (void);
 
 /**
- * \brief I2C1 ÊµÀı½â³õÊ¼»¯
+ * \brief I2C1 å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_i2c1_inst_init() º¯Êı»ñµÃµÄ I2C ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_i2c1_inst_init() å‡½æ•°è·å¾—çš„ I2C æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_i2c1_inst_deinit (am_i2c_handle_t handle);
 
 /**
- * \brief I2C2 ÊµÀı³õÊ¼»¯£¬»ñµÃ I2C ±ê×¼·şÎñ¾ä±ú
+ * \brief I2C2 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— I2C æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return I2C ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return I2C æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_i2c_handle_t am_zmf159_i2c2_inst_init (void);
 
 /**
- * \brief I2C2 ÊµÀı½â³õÊ¼»¯
+ * \brief I2C2 å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_i2c2_inst_init() º¯Êı»ñµÃµÄ I2C ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_i2c2_inst_init() å‡½æ•°è·å¾—çš„ I2C æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_i2c2_inst_deinit (am_i2c_handle_t handle);
 
 /**
- * \brief I2C1 ´Ó»úÊµÀı³õÊ¼»¯£¬»ñµÃ I2C ´Ó»ú±ê×¼·şÎñ¾ä±ú
+ * \brief I2C1 ä»æœºå®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— I2C ä»æœºæ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return I2C ´Ó»ú±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return I2C ä»æœºæ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_i2c_slv_handle_t am_zmf159_i2c1_slv_inst_init (void);
 
 /**
- * \brief I2C1 ´Ó»úÊµÀı½â³õÊ¼»¯
+ * \brief I2C1 ä»æœºå®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_i2c1_slv_inst_init() º¯Êı
- *                   »ñµÃµÄ I2C ´Ó»ú±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_i2c1_slv_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ I2C ä»æœºæ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_i2c1_slv_inst_deinit (am_i2c_slv_handle_t handle);
 
 /**
- * \brief I2C2 ´Ó»úÊµÀı³õÊ¼»¯£¬»ñµÃ I2C ´Ó»ú±ê×¼·şÎñ¾ä±ú
+ * \brief I2C2 ä»æœºå®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— I2C ä»æœºæ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return I2C ´Ó»ú±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return I2C ä»æœºæ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_i2c_slv_handle_t am_zmf159_i2c2_slv_inst_init (void);
 
 /**
- * \brief I2C2 ´Ó»úÊµÀı½â³õÊ¼»¯
+ * \brief I2C2 ä»æœºå®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_i2c2_slv_inst_init() º¯Êı
- *                   »ñµÃµÄ I2C ´Ó»ú±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_i2c2_slv_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ I2C ä»æœºæ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_i2c2_slv_inst_deinit (am_i2c_slv_handle_t handle);
 
 /**
- * \brief IWDG ÊµÀı³õÊ¼»¯£¬»ñµÃ WDT ±ê×¼·şÎñ¾ä±ú
+ * \brief IWDG å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— WDT æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return WDT ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return WDT æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_wdt_handle_t am_zmf159_iwdg_inst_init (void);
 
 /**
- * \brief IWDG ÊµÀı½â³õÊ¼»¯
+ * \brief IWDG å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_iwdg_inst_init() º¯Êı»ñµÃµÄ WDT ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_iwdg_inst_init() å‡½æ•°è·å¾—çš„ WDT æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_iwdg_inst_deinit (am_wdt_handle_t handle);
 
 /**
- * \brief PWR ÊµÀı³õÊ¼»¯
+ * \brief PWR å®ä¾‹åˆå§‹åŒ–
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return PWR ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return PWR æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 //am_zmf159_pwr_handle_t am_zmf159_pwr_inst_init (void);
 
 /**
- * \brief PWR ÊµÀı½â³õÊ¼»¯
+ * \brief PWR å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_pwr_inst_deinit (void);
 
 /**
- * \brief RTC ÊµÀı³õÊ¼»¯£¬»ñµÃ RTC ±ê×¼·şÎñ¾ä±ú
+ * \brief RTC å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— RTC æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return RTC ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return RTC æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_rtc_handle_t am_zmf159_rtc_inst_init (void);
 
 /**
- * \brief RTC ÊµÀı½â³õÊ¼»¯
+ * \brief RTC å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_rtc_inst_init() º¯Êı»ñµÃµÄ RTC ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_rtc_inst_init() å‡½æ•°è·å¾—çš„ RTC æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_rtc_inst_deinit (am_rtc_handle_t handle);
 
 /**
- * \brief SPI1 DMA ÊµÀı³õÊ¼»¯£¬»ñµÃ SPI ±ê×¼·şÎñ¾ä±ú
+ * \brief SPI1 DMA å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— SPI æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return SPI ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return SPI æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_spi_handle_t am_zmf159_spi1_dma_inst_init (void);
 
 /**
- * \brief SPI1 DMA ÊµÀı½â³õÊ¼»¯
+ * \brief SPI1 DMA å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_spi1_dma_inst_init() º¯Êı
- *                   »ñµÃµÄ SPI ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_spi1_dma_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ SPI æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_spi1_dma_inst_deinit (am_spi_handle_t handle);
 
 /**
- * \brief SPI2 DMA ÊµÀı³õÊ¼»¯£¬»ñµÃ SPI ±ê×¼·şÎñ¾ä±ú
+ * \brief SPI2 DMA å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— SPI æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return SPI ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return SPI æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_spi_handle_t am_zmf159_spi2_dma_inst_init (void);
 
 /**
- * \brief SPI2 DMA ÊµÀı½â³õÊ¼»¯
+ * \brief SPI2 DMA å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_spi2_dma_inst_init() º¯Êı
- *                   »ñµÃµÄ SPI ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_spi2_dma_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ SPI æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_spi2_dma_inst_deinit (am_spi_handle_t handle);
 
 /**
- * \brief SPI1 INT ÊµÀı³õÊ¼»¯£¬»ñµÃ SPI ±ê×¼·şÎñ¾ä±ú
+ * \brief SPI1 INT å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— SPI æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return SPI ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return SPI æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_spi_handle_t am_zmf159_spi1_int_inst_init (void);
 
 /**
- * \brief SPI1 INT ÊµÀı½â³õÊ¼»¯
+ * \brief SPI1 INT å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_spi1_int_inst_init() º¯Êı
- *                   »ñµÃµÄ SPI ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_spi1_int_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ SPI æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_spi1_int_inst_deinit (am_spi_handle_t handle);
 
 /**
- * \brief SPI2 INT ÊµÀı³õÊ¼»¯£¬»ñµÃ SPI ±ê×¼·şÎñ¾ä±ú
+ * \brief SPI2 INT å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— SPI æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return SPI ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return SPI æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_spi_handle_t am_zmf159_spi2_int_inst_init (void);
 
 /**
- * \brief SPI2 INT ÊµÀı½â³õÊ¼»¯
+ * \brief SPI2 INT å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_spi2_int_inst_init() º¯Êı
- *                   »ñµÃµÄ SPI ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_spi2_int_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ SPI æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_spi2_int_inst_deinit (am_spi_handle_t handle);
 
 /**
- * \brief SYSTICK ÊµÀı³õÊ¼»¯£¬»ñµÃ TIMER ±ê×¼·şÎñ¾ä±ú
+ * \brief SYSTICK å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— TIMER æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return TIMER ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return TIMER æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_timer_handle_t am_zmf159_systick_inst_init (void);
 
 /**
- * \brief SYSTICK ÊµÀı½â³õÊ¼»¯
+ * \brief SYSTICK å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_systick_inst_init() º¯Êı
- *                   »ñµÃµÄ TIMER ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_systick_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ TIMER æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_systick_inst_deinit (am_timer_handle_t handle);
 
 /**
- * \brief TIM1 CAP ÊµÀı³õÊ¼»¯£¬»ñµÃ CAP ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM1 CAP å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— CAP æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return CAP ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return CAP æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_cap_handle_t am_zmf159_tim1_cap_inst_init (void);
 
 /**
- * \brief TIM1 CAP ÊµÀı½â³õÊ¼»¯
+ * \brief TIM1 CAP å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_tim1_cap_inst_init() º¯Êı
- *                   »ñµÃµÄ CAP ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_tim1_cap_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ CAP æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_tim1_cap_inst_deinit (am_cap_handle_t handle);
 
 /**
- * \brief TIM2 CAP ÊµÀı³õÊ¼»¯£¬»ñµÃ CAP ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM2 CAP å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— CAP æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return CAP ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return CAP æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_cap_handle_t am_zmf159_tim2_cap_inst_init (void);
 
 /**
- * \brief TIM2 CAP ÊµÀı½â³õÊ¼»¯
+ * \brief TIM2 CAP å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_tim2_cap_inst_init() º¯Êı
- *                   »ñµÃµÄ CAP ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_tim2_cap_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ CAP æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_tim2_cap_inst_deinit (am_cap_handle_t handle);
 
 /**
- * \brief TIM3 CAP ÊµÀı³õÊ¼»¯£¬»ñµÃ CAP ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM3 CAP å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— CAP æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return CAP ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return CAP æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_cap_handle_t am_zmf159_tim3_cap_inst_init (void);
 
 /**
- * \brief TIM3 CAP ÊµÀı½â³õÊ¼»¯
+ * \brief TIM3 CAP å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_tim3_cap_inst_init() º¯Êı
- *                   »ñµÃµÄ CAP ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_tim3_cap_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ CAP æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_tim3_cap_inst_deinit (am_cap_handle_t handle);
 
 /**
- * \brief TIM4 CAP ÊµÀı³õÊ¼»¯£¬»ñµÃ CAP ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM4 CAP å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— CAP æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return CAP ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return CAP æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_cap_handle_t am_zmf159_tim4_cap_inst_init (void);
 
 /**
- * \brief TIM4 CAP ÊµÀı½â³õÊ¼»¯
+ * \brief TIM4 CAP å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_tim4_cap_inst_init() º¯Êı
- *                   »ñµÃµÄ CAP ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_tim4_cap_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ CAP æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_tim4_cap_inst_deinit (am_cap_handle_t handle);
 
 /**
- * \brief TIM5 CAP ÊµÀı³õÊ¼»¯£¬»ñµÃ CAP ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM5 CAP å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— CAP æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return CAP ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return CAP æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_cap_handle_t am_zmf159_tim5_cap_inst_init (void);
 
 /**
- * \brief TIM5 CAP ÊµÀı½â³õÊ¼»¯
+ * \brief TIM5 CAP å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_tim5_cap_inst_init() º¯Êı
- *                   »ñµÃµÄ CAP ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_tim5_cap_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ CAP æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_tim5_cap_inst_deinit (am_cap_handle_t handle);
 
 /**
- * \brief TIM6 CAP ÊµÀı³õÊ¼»¯£¬»ñµÃ CAP ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM6 CAP å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— CAP æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return CAP ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return CAP æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_cap_handle_t am_zmf159_tim6_cap_inst_init (void);
 
 /**
- * \brief TIM6 CAP ÊµÀı½â³õÊ¼»¯
+ * \brief TIM6 CAP å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_tim6_cap_inst_init() º¯Êı
- *                   »ñµÃµÄ CAP ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_tim6_cap_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ CAP æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_tim6_cap_inst_deinit (am_cap_handle_t handle);
 
 /**
- * \brief TIM7 CAP ÊµÀı³õÊ¼»¯£¬»ñµÃ CAP ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM7 CAP å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— CAP æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return CAP ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return CAP æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_cap_handle_t am_zmf159_tim7_cap_inst_init (void);
 
 /**
- * \brief TIM4 CAP ÊµÀı½â³õÊ¼»¯
+ * \brief TIM4 CAP å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_tim7_cap_inst_init() º¯Êı
- *                   »ñµÃµÄ CAP ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_tim7_cap_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ CAP æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_tim7_cap_inst_deinit (am_cap_handle_t handle);
 
 /**
- * \brief TIM8 CAP ÊµÀı³õÊ¼»¯£¬»ñµÃ CAP ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM8 CAP å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— CAP æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return CAP ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return CAP æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_cap_handle_t am_zmf159_tim8_cap_inst_init (void);
 
 /**
- * \brief TIM8 CAP ÊµÀı½â³õÊ¼»¯
+ * \brief TIM8 CAP å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_tim8_cap_inst_init() º¯Êı
- *                   »ñµÃµÄ CAP ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_tim8_cap_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ CAP æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_tim8_cap_inst_deinit (am_cap_handle_t handle);
 
 /**
- * \brief TIM1 PWM ÊµÀı³õÊ¼»¯£¬»ñµÃ PWM ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM1 PWM å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— PWM æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return PWM ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return PWM æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_pwm_handle_t am_zmf159_tim1_pwm_inst_init (void);
 
 /**
- * \brief TIM1 PWM ÊµÀı½â³õÊ¼»¯
+ * \brief TIM1 PWM å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_tim1_pwm_inst_init() º¯Êı
- *                   »ñµÃµÄ PWM ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_tim1_pwm_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ PWM æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_tim1_pwm_inst_deinit (am_pwm_handle_t handle);
 
 /**
- * \brief TIM2 PWM ÊµÀı³õÊ¼»¯£¬»ñµÃ PWM ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM2 PWM å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— PWM æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return PWM ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return PWM æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_pwm_handle_t am_zmf159_tim2_pwm_inst_init (void);
 
 /**
- * \brief TIM2 PWM ÊµÀı½â³õÊ¼»¯
+ * \brief TIM2 PWM å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_tim2_pwm_inst_init() º¯Êı
- *                   »ñµÃµÄ PWM ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_tim2_pwm_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ PWM æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_tim2_pwm_inst_deinit (am_pwm_handle_t handle);
 
 /**
- * \brief TIM3 PWM ÊµÀı³õÊ¼»¯£¬»ñµÃ PWM ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM3 PWM å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— PWM æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return PWM ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return PWM æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_pwm_handle_t am_zmf159_tim3_pwm_inst_init (void);
 
 /**
- * \brief TIM3 PWM ÊµÀı½â³õÊ¼»¯
+ * \brief TIM3 PWM å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_tim3_pwm_inst_init() º¯Êı
- *                   »ñµÃµÄ PWM ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_tim3_pwm_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ PWM æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_tim3_pwm_inst_deinit (am_pwm_handle_t handle);
 
 /**
- * \brief TIM4 PWM ÊµÀı³õÊ¼»¯£¬»ñµÃ PWM ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM4 PWM å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— PWM æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return PWM ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return PWM æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_pwm_handle_t am_zmf159_tim4_pwm_inst_init (void);
 
 /**
- * \brief TIM4 PWM ÊµÀı½â³õÊ¼»¯
+ * \brief TIM4 PWM å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_tim4_pwm_inst_init() º¯Êı
- *                   »ñµÃµÄ PWM ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_tim4_pwm_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ PWM æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_tim4_pwm_inst_deinit (am_pwm_handle_t handle);
 
 /**
- * \brief TIM5 PWM ÊµÀı³õÊ¼»¯£¬»ñµÃ PWM ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM5 PWM å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— PWM æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return PWM ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return PWM æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_pwm_handle_t am_zmf159_tim5_pwm_inst_init (void);
 
 /**
- * \brief TIM5 PWM ÊµÀı½â³õÊ¼»¯
+ * \brief TIM5 PWM å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_tim5_pwm_inst_init() º¯Êı
- *                   »ñµÃµÄ PWM ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_tim5_pwm_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ PWM æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_tim5_pwm_inst_deinit (am_pwm_handle_t handle);
 
 /**
- * \brief TIM6 PWM ÊµÀı³õÊ¼»¯£¬»ñµÃ PWM ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM6 PWM å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— PWM æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return PWM ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return PWM æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_pwm_handle_t am_zmf159_tim6_pwm_inst_init (void);
 
 /**
- * \brief TIM6 PWM ÊµÀı½â³õÊ¼»¯
+ * \brief TIM6 PWM å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_tim6_pwm_inst_init() º¯Êı
- *                   »ñµÃµÄ PWM ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_tim6_pwm_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ PWM æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_tim6_pwm_inst_deinit (am_pwm_handle_t handle);
 
 /**
- * \brief TIM7 PWM ÊµÀı³õÊ¼»¯£¬»ñµÃ PWM ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM7 PWM å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— PWM æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return PWM ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return PWM æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_pwm_handle_t am_zmf159_tim7_pwm_inst_init (void);
 
 /**
- * \brief TIM7 PWM ÊµÀı½â³õÊ¼»¯
+ * \brief TIM7 PWM å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_tim7_pwm_inst_init() º¯Êı
- *                   »ñµÃµÄ PWM ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_tim7_pwm_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ PWM æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_tim7_pwm_inst_deinit (am_pwm_handle_t handle);
 
 /**
- * \brief TIM8 PWM ÊµÀı³õÊ¼»¯£¬»ñµÃ PWM ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM8 PWM å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— PWM æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return PWM ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return PWM æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_pwm_handle_t am_zmf159_tim8_pwm_inst_init (void);
 
 /**
- * \brief TIM8 PWM ÊµÀı½â³õÊ¼»¯
+ * \brief TIM8 PWM å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_tim8_pwm_inst_init() º¯Êı
- *                   »ñµÃµÄ PWM ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_tim8_pwm_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ PWM æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_tim8_pwm_inst_deinit (am_pwm_handle_t handle);
 
 /**
- * \brief TIM1 TIMING ÊµÀı³õÊ¼»¯£¬»ñµÃ TIMER ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM1 TIMING å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— TIMER æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return PWM ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return PWM æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_timer_handle_t am_zmf159_tim1_timing_inst_init (void);
 
 /**
- * \brief TIM1 TIMING ÊµÀı½â³õÊ¼»¯
+ * \brief TIM1 TIMING å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_tim1_timing_inst_init() º¯Êı
- *                   »ñµÃµÄ TIMER ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_tim1_timing_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ TIMER æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_tim1_timing_inst_deinit (am_timer_handle_t handle);
 
 /**
- * \brief TIM2 TIMING ÊµÀı³õÊ¼»¯£¬»ñµÃ TIMER ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM2 TIMING å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— TIMER æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return PWM ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return PWM æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_timer_handle_t am_zmf159_tim2_timing_inst_init (void);
 
 /**
- * \brief TIM2 TIMING ÊµÀı½â³õÊ¼»¯
+ * \brief TIM2 TIMING å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_tim2_timing_inst_init() º¯Êı
- *                   »ñµÃµÄ TIMER ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_tim2_timing_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ TIMER æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_tim2_timing_inst_deinit (am_timer_handle_t handle);
 
 /**
- * \brief TIM3 TIMING ÊµÀı³õÊ¼»¯£¬»ñµÃ TIMER ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM3 TIMING å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— TIMER æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return PWM ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return PWM æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_timer_handle_t am_zmf159_tim3_timing_inst_init (void);
 
 /**
- * \brief TIM3 TIMING ÊµÀı½â³õÊ¼»¯
+ * \brief TIM3 TIMING å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_tim3_timing_inst_init() º¯Êı
- *                   »ñµÃµÄ TIMER ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_tim3_timing_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ TIMER æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_tim3_timing_inst_deinit (am_timer_handle_t handle);
 
 /**
- * \brief TIM4 TIMING ÊµÀı³õÊ¼»¯£¬»ñµÃ TIMER ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM4 TIMING å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— TIMER æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return PWM ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return PWM æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_timer_handle_t am_zmf159_tim4_timing_inst_init (void);
 
 /**
- * \brief TIM4 TIMING ÊµÀı½â³õÊ¼»¯
+ * \brief TIM4 TIMING å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_tim4_timing_inst_init() º¯Êı
- *                   »ñµÃµÄ TIMER ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_tim4_timing_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ TIMER æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_tim4_timing_inst_deinit (am_timer_handle_t handle);
 
 /**
- * \brief TIM5 TIMING ÊµÀı³õÊ¼»¯£¬»ñµÃ TIMER ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM5 TIMING å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— TIMER æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return PWM ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return PWM æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_timer_handle_t am_zmf159_tim5_timing_inst_init (void);
 
 /**
- * \brief TIM5 TIMING ÊµÀı½â³õÊ¼»¯
+ * \brief TIM5 TIMING å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_tim5_timing_inst_init() º¯Êı
- *                   »ñµÃµÄ TIMER ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_tim5_timing_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ TIMER æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_tim5_timing_inst_deinit (am_timer_handle_t handle);
 
 /**
- * \brief TIM6 TIMING ÊµÀı³õÊ¼»¯£¬»ñµÃ TIMER ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM6 TIMING å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— TIMER æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return PWM ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return PWM æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_timer_handle_t am_zmf159_tim6_timing_inst_init (void);
 
 /**
- * \brief TIM6 TIMING ÊµÀı½â³õÊ¼»¯
+ * \brief TIM6 TIMING å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_tim6_timing_inst_init() º¯Êı
- *                   »ñµÃµÄ TIMER ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_tim6_timing_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ TIMER æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_tim6_timing_inst_deinit (am_timer_handle_t handle);
 
 /**
- * \brief TIM7 TIMING ÊµÀı³õÊ¼»¯£¬»ñµÃ TIMER ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM7 TIMING å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— TIMER æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return PWM ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return PWM æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_timer_handle_t am_zmf159_tim7_timing_inst_init (void);
 
 /**
- * \brief TIM7 TIMING ÊµÀı½â³õÊ¼»¯
+ * \brief TIM7 TIMING å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_tim7_timing_inst_init() º¯Êı
- *                   »ñµÃµÄ TIMER ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_tim7_timing_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ TIMER æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_tim7_timing_inst_deinit (am_timer_handle_t handle);
 
 /**
- * \brief TIM8 TIMING ÊµÀı³õÊ¼»¯£¬»ñµÃ TIMER ±ê×¼·şÎñ¾ä±ú
+ * \brief TIM8 TIMING å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— TIMER æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return PWM ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return PWM æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_timer_handle_t am_zmf159_tim8_timing_inst_init (void);
 
 /**
- * \brief TIM8 TIMING ÊµÀı½â³õÊ¼»¯
+ * \brief TIM8 TIMING å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_tim8_timing_inst_init() º¯Êı
- *                   »ñµÃµÄ TIMER ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_tim8_timing_inst_init() å‡½æ•°
+ *                   è·å¾—çš„ TIMER æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_tim8_timing_inst_deinit (am_timer_handle_t handle);
 
 /**
- * \brief UART1 ÊµÀı³õÊ¼»¯£¬»ñµÃ UART ±ê×¼·şÎñ¾ä±ú
+ * \brief UART1 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— UART æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return UART ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return UART æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_uart_handle_t am_zmf159_uart1_inst_init (void);
 
 /**
- * \brief UART1 ÊµÀı½â³õÊ¼»¯
+ * \brief UART1 å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_uart1_inst_init() º¯Êı»ñµÃµÄ UART ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_uart1_inst_init() å‡½æ•°è·å¾—çš„ UART æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_uart1_inst_deinit (am_uart_handle_t handle);
 
 /**
- * \brief UART2 ÊµÀı³õÊ¼»¯£¬»ñµÃ UART ±ê×¼·şÎñ¾ä±ú
+ * \brief UART2 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— UART æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return UART ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return UART æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_uart_handle_t am_zmf159_uart2_inst_init (void);
 
 /**
- * \brief UART2 ÊµÀı½â³õÊ¼»¯
+ * \brief UART2 å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_uart2_inst_init() º¯Êı»ñµÃµÄ UART ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_uart2_inst_init() å‡½æ•°è·å¾—çš„ UART æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_uart2_inst_deinit (am_uart_handle_t handle);
 
 /**
- * \brief UART3 ÊµÀı³õÊ¼»¯£¬»ñµÃ UART ±ê×¼·şÎñ¾ä±ú
+ * \brief UART3 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— UART æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return UART ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return UART æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_uart_handle_t am_zmf159_uart3_inst_init (void);
 
 /**
- * \brief UART3 ÊµÀı½â³õÊ¼»¯
+ * \brief UART3 å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_uart3_inst_init() º¯Êı»ñµÃµÄ UART ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_uart3_inst_init() å‡½æ•°è·å¾—çš„ UART æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_uart3_inst_deinit (am_uart_handle_t handle);
 
 /**
- * \brief WWDG ÊµÀı³õÊ¼»¯£¬»ñµÃ WDT ±ê×¼·şÎñ¾ä±ú
+ * \brief WWDG å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— WDT æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return WDT ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return WDT æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_wdt_handle_t am_zmf159_wwdg_inst_init (void);
 
 /**
- * \brief WWDG ÊµÀı½â³õÊ¼»¯
+ * \brief WWDG å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_zmf159_wwdg_inst_init() º¯Êı»ñµÃµÄ WDT ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_zmf159_wwdg_inst_init() å‡½æ•°è·å¾—çš„ WDT æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_wwdg_inst_deinit (am_wdt_handle_t handle);
 

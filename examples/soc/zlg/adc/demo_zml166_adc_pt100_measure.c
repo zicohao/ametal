@@ -11,13 +11,13 @@
 *******************************************************************************/
 /**
  * \file
- * \brief AM_ZML166_ADC²âÁ¿¹Ì¶¨µçÑ¹£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief AM_ZML166_ADCæµ‹é‡å›ºå®šç”µå‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Á¬½ÓºÃ´®¿Ú£¬½«PT100µç×è½ÓÈëRTDCÓëRTDBÖ®¼ä£¬²¢¶Ì½ÓRTDA¡£
- *   2. ´®¿Ú½«»á´òÓ¡³öPT100×èÖµÒÔ¼°ÎÂ¶ÈÖµ
+ * - å®éªŒç°è±¡ï¼š
+ *   1. è¿æ¥å¥½ä¸²å£ï¼Œå°†PT100ç”µé˜»æ¥å…¥RTDCä¸RTDBä¹‹é—´ï¼Œå¹¶çŸ­æ¥RTDAã€‚
+ *   2. ä¸²å£å°†ä¼šæ‰“å°å‡ºPT100é˜»å€¼ä»¥åŠæ¸©åº¦å€¼
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet dome_zml166_adc_pt100_measure.c src_dome_zml166_adc_pt100_measure
  *
  * \internal
@@ -37,7 +37,7 @@
 #include "am_pt100_to_temperature.h"
 #include "am_common.h"
 /**
- * \brief »ñÈ¡PT100ÈÈµç×è×èÖµ
+ * \brief è·å–PT100çƒ­ç”µé˜»é˜»å€¼
  */
 float am_zml166_adc_thermistor_res_data_get(void *p_handle)
 {
@@ -47,7 +47,7 @@ float am_zml166_adc_thermistor_res_data_get(void *p_handle)
     int32_t   vol_rtdb_c = 0, vol_rtda_c = 0, vol_res = 0;
     int32_t  adc_val[4];
     am_adc_handle_t adc_handle = &handle->adc_serve;
-    //ÉèÖÃÍ¨µÀÎªADC_2 ADC_4    RTDB---RTDC
+    //è®¾ç½®é€šé“ä¸ºADC_2 ADC_4    RTDB---RTDC
     am_zml166_adc_mux_set(handle, AM_ZML166_ADC_INPS_AIN(2) | AM_ZML166_ADC_INNS_AIN(3));
     am_adc_read(adc_handle, 0, (uint32_t *)adc_val, AM_NELEMENTS(adc_val));
     for(i = 0; i < AM_NELEMENTS(adc_val); i++){
@@ -55,7 +55,7 @@ float am_zml166_adc_thermistor_res_data_get(void *p_handle)
     }
     vol_rtdb_c /= 4;
 
-    /*  ÉèÖÃÍ¨µÀÎªADC_3 ADC_4     RTDA---RTDC */
+    /*  è®¾ç½®é€šé“ä¸ºADC_3 ADC_4     RTDA---RTDC */
     am_zml166_adc_mux_set(handle, AM_ZML166_ADC_INPS_AIN(3) | AM_ZML166_ADC_INNS_AIN(3));
     am_adc_read(adc_handle, 0, (uint32_t *)adc_val, AM_NELEMENTS(adc_val));
 
@@ -70,13 +70,13 @@ float am_zml166_adc_thermistor_res_data_get(void *p_handle)
         vol_res *= -1;
     }
 
-    /* µ÷ÓÃµçÑ¹Ğ£×¼ÏµÊı  */
+    /* è°ƒç”¨ç”µå‹æ ¡å‡†ç³»æ•°  */
     r_data = (float)((float)(vol_res / 8388607.0) * 1999.36);
 
     return r_data;
 }
 /**
- * \brief ²âÊÔAML166°å¼¶Íâ½ÓPT100ÈÈµç×èµÄ×èÖµÒÔ¼°¶ÔÓ¦µÄ×ª»»ÎÂ¶È
+ * \brief æµ‹è¯•AML166æ¿çº§å¤–æ¥PT100çƒ­ç”µé˜»çš„é˜»å€¼ä»¥åŠå¯¹åº”çš„è½¬æ¢æ¸©åº¦
  */
 void demo_zml166_adc_pt100_measure_entry(am_zml166_adc_handle_t  handle,
                                          float                  *p_para)
@@ -84,23 +84,23 @@ void demo_zml166_adc_pt100_measure_entry(am_zml166_adc_handle_t  handle,
     float  r_data = 0, temperature = 0;
 
     while(1){
-        /* ÉèÖÃPT100ÔöÒæ±¶Êı */
+        /* è®¾ç½®PT100å¢ç›Šå€æ•° */
         am_zml166_adc_gain_set(handle, 1);
 
         r_data = am_zml166_adc_thermistor_res_data_get(handle);
-        /* µç×èĞ£×¼ÏµÊı  */
+        /* ç”µé˜»æ ¡å‡†ç³»æ•°  */
         r_data = p_para[0] * r_data + p_para[1];
 
-        /* PT100µç×è×ªÎÂ¶È  */
+        /* PT100ç”µé˜»è½¬æ¸©åº¦  */
         temperature = pt100_to_temperature(r_data);
 
         if(temperature < 0){
             temperature *= -1;
-            am_kprintf("Tem = -%d.%03d¡ã\r\n",
+            am_kprintf("Tem = -%d.%03dÂ°\r\n",
                ((int32_t)(temperature * 1000) / 1000) ,
                ((int32_t)(temperature * 1000) % 1000));
         }else{
-            am_kprintf("Tem = %d.%03d¡ã\r\n\r\n",
+            am_kprintf("Tem = %d.%03dÂ°\r\n\r\n",
                ((int32_t)(temperature * 1000) / 1000) ,
                ((int32_t)(temperature * 1000) % 1000));
         }

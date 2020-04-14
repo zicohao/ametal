@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief LPC82X WKT ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief LPC82X WKT ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_lpc82x_wkt.c
  *
  * \internal
@@ -35,7 +35,7 @@
  */
 
 /**
- * \brief WKT Æ½Ì¨³õÊ¼»¯
+ * \brief WKT å¹³å°åˆå§‹åŒ–
  */
 am_local void __lpc82x_wkt_plfm_init (void)
 {
@@ -44,7 +44,7 @@ am_local void __lpc82x_wkt_plfm_init (void)
 }
 
 /**
- * \brief WKT Æ½Ì¨½â³õÊ¼»¯
+ * \brief WKT å¹³å°è§£åˆå§‹åŒ–
  */
 am_local void __lpc82x_wkt_plfm_deinit (void)
 {
@@ -53,7 +53,7 @@ am_local void __lpc82x_wkt_plfm_deinit (void)
 }
 
 /**
- * \brief WKT Æ½Ì¨Ê±ÖÓ³õÊ¼»¯
+ * \brief WKT å¹³å°æ—¶é’Ÿåˆå§‹åŒ–
  */
 am_local
 void __lpc82x_wkt_plfm_clk_init (am_const am_lpc_wkt_devinfo_t *p_devinfo)
@@ -68,50 +68,50 @@ void __lpc82x_wkt_plfm_clk_init (am_const am_lpc_wkt_devinfo_t *p_devinfo)
 
     case AMHW_LPC_WKT_IRC_CLOCK:
 
-        /* ÉèÖÃ WKT Ê±ÖÓÔ´ÎªÄÚ²¿Ê±ÖÓ */
+        /* è®¾ç½® WKT æ—¶é’Ÿæºä¸ºå†…éƒ¨æ—¶é’Ÿ */
         amhw_lpc_wkt_clksel_cfg(p_hw_wkt, AMHW_LPC_WKT_IRC_CLOCK);
         break;
 
     case AMHW_LPC_WKT_LOW_POWER_CLOCK:
 
-        /* Ê¹ÄÜµÍ¹¦ºÄÕñµ´Æ÷ */
+        /* ä½¿èƒ½ä½åŠŸè€—æŒ¯è¡å™¨ */
         amhw_lpc82x_pmu_lposcen_enable(LPC82X_PMU);
 
-        /* ÉèÖÃ WKT Ê±ÖÓÔ´ÎªµÍ¹¦ºÄÕñµ´Æ÷ */
+        /* è®¾ç½® WKT æ—¶é’Ÿæºä¸ºä½åŠŸè€—æŒ¯è¡å™¨ */
         amhw_lpc_wkt_clksel_cfg(p_hw_wkt, AMHW_LPC_WKT_LOW_POWER_CLOCK);
         break;
 
     case AMHW_LPC_WKT_EXT_CLOCK:
 
-        /* WAKEUPCLKHYS Òı½Å³ÙÖÍÊ¹ÄÜ */
+        /* WAKEUPCLKHYS å¼•è„šè¿Ÿæ»ä½¿èƒ½ */
         amhw_lpc82x_pmu_wakeupclkhys_enable(LPC82X_PMU);
 
-        /* WAKECLKPAD Òı½ÅÊ¹ÄÜ(Ê¹ÄÜ PIO0_28 Íâ²¿Ê±ÖÓ¹¦ÄÜ) */
+        /* WAKECLKPAD å¼•è„šä½¿èƒ½(ä½¿èƒ½ PIO0_28 å¤–éƒ¨æ—¶é’ŸåŠŸèƒ½) */
         amhw_lpc82x_pmu_wakeclkpad_enable(LPC82X_PMU);
 
-        /* ÉèÖÃ WKT Ê±ÖÓÔ´ÎªÍâ²¿Ê±ÖÓ */
+        /* è®¾ç½® WKT æ—¶é’Ÿæºä¸ºå¤–éƒ¨æ—¶é’Ÿ */
         amhw_lpc_wkt_clksel_cfg(p_hw_wkt, AMHW_LPC_WKT_EXT_CLOCK);
         break;
     }
 }
 
-/** \brief WKT Éè±¸ĞÅÏ¢ */
+/** \brief WKT è®¾å¤‡ä¿¡æ¯ */
 am_local am_const am_lpc_wkt_devinfo_t __g_lpc82x_wkt_devinfo = {
-    LPC82X_WKT_BASE,                 /* WKT ¼Ä´æÆ÷¿é»ùµØÖ· */
-    INUM_WKT,                        /* WKT ÖĞ¶ÏºÅ */
-    1,                               /* Ö§³Ö 1 ¸öÍ¨µÀ */
-    AMHW_LPC_WKT_LOW_POWER_CLOCK,    /* Ñ¡Ôñ IRC Ê±ÖÓ */
-    0,                               /* Ê¹ÓÃÍâ²¿Ê±ÖÓÊ±µÄÆµÂÊÉèÖÃ */
-    __lpc82x_wkt_plfm_clk_init,      /* Æ½Ì¨Ê±ÖÓ³õÊ¼»¯º¯Êı */
-    __lpc82x_wkt_plfm_init,          /* Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __lpc82x_wkt_plfm_deinit         /* Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    LPC82X_WKT_BASE,                 /* WKT å¯„å­˜å™¨å—åŸºåœ°å€ */
+    INUM_WKT,                        /* WKT ä¸­æ–­å· */
+    1,                               /* æ”¯æŒ 1 ä¸ªé€šé“ */
+    AMHW_LPC_WKT_LOW_POWER_CLOCK,    /* é€‰æ‹© IRC æ—¶é’Ÿ */
+    0,                               /* ä½¿ç”¨å¤–éƒ¨æ—¶é’Ÿæ—¶çš„é¢‘ç‡è®¾ç½® */
+    __lpc82x_wkt_plfm_clk_init,      /* å¹³å°æ—¶é’Ÿåˆå§‹åŒ–å‡½æ•° */
+    __lpc82x_wkt_plfm_init,          /* å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __lpc82x_wkt_plfm_deinit         /* å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 };
 
-/** \brief WKT Éè±¸ÊµÀı */
+/** \brief WKT è®¾å¤‡å®ä¾‹ */
 am_local am_lpc_wkt_dev_t __g_lpc82x_wkt_dev;
 
 /**
- * \brief WKT ÊµÀı³õÊ¼»¯
+ * \brief WKT å®ä¾‹åˆå§‹åŒ–
  */
 am_timer_handle_t am_lpc82x_wkt_inst_init (void)
 {
@@ -119,7 +119,7 @@ am_timer_handle_t am_lpc82x_wkt_inst_init (void)
 }
 
 /**
- * \brief WKT ÊµÀı½â³õÊ¼»¯
+ * \brief WKT å®ä¾‹è§£åˆå§‹åŒ–
  */
 void am_lpc82x_wkt_inst_deinit (am_timer_handle_t handle)
 {

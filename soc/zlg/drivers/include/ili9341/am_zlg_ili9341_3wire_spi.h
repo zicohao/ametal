@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief ZLG ÈıÏß½Ó¿Ú ILI9341 Çı¶¯
+ * \brief ZLG ä¸‰çº¿æ¥å£ ILI9341 é©±åŠ¨
  *
- * \note ¸ÃÇı¶¯ÊÇÍ¨¹ı¼Ä´æÆ÷Ö±½Ó²Ù×÷Ó²¼şSPI(Æ¬Ñ¡Ò²²ÉÓÃÓ²¼şÆ¬Ñ¡)£¬ËÙ¶È¿ì
+ * \note è¯¥é©±åŠ¨æ˜¯é€šè¿‡å¯„å­˜å™¨ç›´æ¥æ“ä½œç¡¬ä»¶SPI(ç‰‡é€‰ä¹Ÿé‡‡ç”¨ç¡¬ä»¶ç‰‡é€‰)ï¼Œé€Ÿåº¦å¿«
  *
  * \internal
  * \par Modification history
@@ -39,65 +39,65 @@ extern "C" {
  */
 
 /**
- * \brief ili9341ÈıÏß½Ó¿ÚĞÅÏ¢
+ * \brief ili9341ä¸‰çº¿æ¥å£ä¿¡æ¯
  */
 typedef struct am_zlg_ili9341_intfc_3wire_devinfo {
 
-    /** \brief ILI9341µÄSPIµÄÆ¬Ñ¡Òı½Å CSËùÁ¬½Óµ½µÄGPIOÒı½Å±àºÅ */
+    /** \brief ILI9341çš„SPIçš„ç‰‡é€‰å¼•è„š CSæ‰€è¿æ¥åˆ°çš„GPIOå¼•è„šç¼–å· */
     int                cs_pin;
 
-    /** \brief ILI9341µÄSPIµÄsck ËùÁ¬½Óµ½µÄGPIOÒı½Å±àºÅ */
+    /** \brief ILI9341çš„SPIçš„sck æ‰€è¿æ¥åˆ°çš„GPIOå¼•è„šç¼–å· */
     int                sck_pin;
 
-    /** \brief lcd_sck µÄÒı½Å¹¦ÄÜ */
+    /** \brief lcd_sck çš„å¼•è„šåŠŸèƒ½ */
     uint32_t           sck_func;
 
-    /** \brief ILI9341µÄSPIµÄMOSIËùÁ¬½Óµ½µÄGPIOÒı½Å±àºÅ */
+    /** \brief ILI9341çš„SPIçš„MOSIæ‰€è¿æ¥åˆ°çš„GPIOå¼•è„šç¼–å· */
     int                mosi_pin;
 
-    /** \brief lcd_mosi µÄÒı½Å¹¦ÄÜ */
+    /** \brief lcd_mosi çš„å¼•è„šåŠŸèƒ½ */
     uint32_t           mosi_func;
 
-    /**  \brief ILI9341µÄSPIµÄMISOËùÁ¬½Óµ½µÄGPIOÒı½Å±àºÅ */
+    /**  \brief ILI9341çš„SPIçš„MISOæ‰€è¿æ¥åˆ°çš„GPIOå¼•è„šç¼–å· */
     int                miso_pin;
 
-    /** \brief lcd_mosi µÄÒı½Å¹¦ÄÜ */
+    /** \brief lcd_mosi çš„å¼•è„šåŠŸèƒ½ */
     uint32_t           miso_func;
 
-    /** \brief lcd_mosi µÄÒı½Å¹¦ÄÜ */
+    /** \brief lcd_mosi çš„å¼•è„šåŠŸèƒ½ */
     uint32_t           cs_func;
 
-    /** \brief SPI¼Ä´æÆ÷¿éµÄ»ùµØÖ· */
+    /** \brief SPIå¯„å­˜å™¨å—çš„åŸºåœ°å€ */
     amhw_zlg_spi_t    *spi_reg_base;
 
-    /** \brief Ê±ÖÓID */
+    /** \brief æ—¶é’ŸID */
     uint32_t           clk_spi;
 
-    /** \brief SPI ËÙ¶È£¬×î´ó 24Mhz */
+    /** \brief SPI é€Ÿåº¦ï¼Œæœ€å¤§ 24Mhz */
     uint32_t           speed_hz;
 
 }am_zlg_ili9341_intfc_3wire_devinfo_t;
 
 /**
- * \brief ili9341ÈıÏß½Ó¿ÚÉè±¸
+ * \brief ili9341ä¸‰çº¿æ¥å£è®¾å¤‡
  */
 typedef struct am_zlg_ili9341_intfc_3wire_dev {
 
-    /** \brief ÈıÏß½Ó¿ÚÇı¶¯·şÎñ */
+    /** \brief ä¸‰çº¿æ¥å£é©±åŠ¨æœåŠ¡ */
     am_ili9341_serv_t                 serv;
 
-    /** \brief ÈıÏß½Ó¿ÚµÄ½Ó¿ÚĞÅÏ¢ */
+    /** \brief ä¸‰çº¿æ¥å£çš„æ¥å£ä¿¡æ¯ */
     const am_zlg_ili9341_intfc_3wire_devinfo_t *p_devinfo;
 
 }am_zlg_ili9341_intfc_3wire_dev_t;
 
 /**
- * \brief ili9341 ÈıÏß½Ó¿Ú³õÊ¼»¯º¯Êı
+ * \brief ili9341 ä¸‰çº¿æ¥å£åˆå§‹åŒ–å‡½æ•°
  *
- * \param[in] p_dev     Ö¸ÏòILI9341ÈıÏß½Ó¿ÚÉè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[in] p_devinfo Ö¸ÏòILI9341ÈıÏß½Ó¿ÚĞÅÏ¢µÄÖ¸Õë
+ * \param[in] p_dev     æŒ‡å‘ILI9341ä¸‰çº¿æ¥å£è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo æŒ‡å‘ILI9341ä¸‰çº¿æ¥å£ä¿¡æ¯çš„æŒ‡é’ˆ
  *
- * \return ÈıÏß½Ó¿Ú·şÎñÖ¸Õë
+ * \return ä¸‰çº¿æ¥å£æœåŠ¡æŒ‡é’ˆ
  */
 am_ili9341_serv_t *am_zlg_ili9341_intfc_3wire_init(
                          am_zlg_ili9341_intfc_3wire_dev_t           *p_dev,

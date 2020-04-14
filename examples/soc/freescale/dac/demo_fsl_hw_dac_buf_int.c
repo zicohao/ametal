@@ -12,15 +12,15 @@
 
 /**
  * \file
- * \brief DACÊıÄ£×ª»»Àı³Ì£¬Í¨¹ıHW½Ó¿ÚÊµÏÖ
+ * \brief DACæ•°æ¨¡è½¬æ¢ä¾‹ç¨‹ï¼Œé€šè¿‡HWæ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ÅäÖÃPIOE_30ÎªDACÄ£ÄâÊä³ö
- *   2. ÓÃÊ¾²¨Æ÷²É¼¯ÊıÄ£×ª»»µÄÊä³ö¿ÚPE30µÄĞÅºÅÊä³ö
- *   3. Ê¾²¨Æ÷ÏÔÊ¾PIOE_30µÄÄ£ÄâÊä³öÖÜÆÚ´ó¸ÅÎª7ÃëµÄÕıÏÒ²¨¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. é…ç½®PIOE_30ä¸ºDACæ¨¡æ‹Ÿè¾“å‡º
+ *   2. ç”¨ç¤ºæ³¢å™¨é‡‡é›†æ•°æ¨¡è½¬æ¢çš„è¾“å‡ºå£PE30çš„ä¿¡å·è¾“å‡º
+ *   3. ç¤ºæ³¢å™¨æ˜¾ç¤ºPIOE_30çš„æ¨¡æ‹Ÿè¾“å‡ºå‘¨æœŸå¤§æ¦‚ä¸º7ç§’çš„æ­£å¼¦æ³¢ã€‚
  *
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_fsl_hw_dac_buf_int.c src_fsl_hw_dac_buf_int
  *
  * \internal
@@ -47,7 +47,7 @@
 
 uint16_t volatile __g_sinwave_cont = 0;
 
-static const uint16_t __g_sin_wave[__BUFLEN] = { /* ÕıÏÒ²¨Êı¾İ */
+static const uint16_t __g_sin_wave[__BUFLEN] = { /* æ­£å¼¦æ³¢æ•°æ® */
     0x0800, 0x0823, 0x0847, 0x086B, 0x088E, 0x08B2, 0x08D6, 0x08F9,
     0x091C, 0x0940, 0x0963, 0x0986, 0x09A9, 0x09CC, 0x09EF, 0x0A11,
     0x0A34, 0x0A56, 0x0A78, 0x0A9A, 0x0ABC, 0x0ADD, 0x0AFF, 0x0B20,
@@ -96,13 +96,13 @@ static const uint16_t __g_sin_wave[__BUFLEN] = { /* ÕıÏÒ²¨Êı¾İ */
 };
 
 /**
- * \brief DAC ÖĞ¶Ï·şÎñº¯Êı
+ * \brief DAC ä¸­æ–­æœåŠ¡å‡½æ•°
  */
 static void __fsl_dac_int (void *p_arg)
 {
     amhw_fsl_dac_t *p_hw_dac = (amhw_fsl_dac_t *)p_arg;
 
-    /* ¶ÁÈ¡µ×Ö¸ÕëÖĞ¶ÏÇå³ı*/
+    /* è¯»å–åº•æŒ‡é’ˆä¸­æ–­æ¸…é™¤*/
     if (amhw_fsl_dac_bufint_flag_get(p_hw_dac,
         AMHW_FSL_DAC_BUF_FLAG_START)) {
        amhw_fsl_dac_bufint_flag_clr(p_hw_dac,
@@ -123,39 +123,39 @@ static void __fsl_dac_int (void *p_arg)
 }
 
 /**
- * \brief DAC Ê¹ÓÃ»º³åÇøÖĞ¶ÏÊä³öÕıÏÒ²¨ĞÅºÅ£¬HW²ãÊµÏÖ
- * \return ÎŞ
+ * \brief DAC ä½¿ç”¨ç¼“å†²åŒºä¸­æ–­è¾“å‡ºæ­£å¼¦æ³¢ä¿¡å·ï¼ŒHWå±‚å®ç°
+ * \return æ— 
  */
 void demo_fsl_hw_dac_buf_int_entry (amhw_fsl_dac_t *p_hw_dac,
                                     int             inum)
 {
     /**
-     * \brief DAC »º´æÇø¹¦ÄÜÅäÖÃ½á¹¹Ìå¶¨Òå
+     * \brief DAC ç¼“å­˜åŒºåŠŸèƒ½é…ç½®ç»“æ„ä½“å®šä¹‰
      */
     amhw_fsl_dac_buffer_config_t dac_buf_cfg={
-        AM_TRUE,                         /* Ê¹ÄÜBUF¹¦ÄÜ                   */
-        AMHW_FSL_DAC_TRG_SOFT,           /* Èí¼ş´¥·¢                           */
-        AM_TRUE,                         /* »º³å¶ÁÈ¡µ×Ö¸ÕëÖĞ¶ÏÊ¹ÄÜ */
-        AM_FALSE,                        /* »º³å¶ÁÈ¡¶¥Ö¸ÕëÖĞ¶Ï½ûÄÜ */
-        AM_FALSE,                        /* ½ûÖ¹DMA¹¦ÄÜ                    */
-        AMHW_FSL_DAC_BUFMODE_NORMAL,     /* »º´æÇøÄ£Ê½ÎªÕı³£Ä£Ê½      */
-        AM_TRUE,                         /* »º´æÇøÉÏÏŞÊ¹ÄÜ                 */
+        AM_TRUE,                         /* ä½¿èƒ½BUFåŠŸèƒ½                   */
+        AMHW_FSL_DAC_TRG_SOFT,           /* è½¯ä»¶è§¦å‘                           */
+        AM_TRUE,                         /* ç¼“å†²è¯»å–åº•æŒ‡é’ˆä¸­æ–­ä½¿èƒ½ */
+        AM_FALSE,                        /* ç¼“å†²è¯»å–é¡¶æŒ‡é’ˆä¸­æ–­ç¦èƒ½ */
+        AM_FALSE,                        /* ç¦æ­¢DMAåŠŸèƒ½                    */
+        AMHW_FSL_DAC_BUFMODE_NORMAL,     /* ç¼“å­˜åŒºæ¨¡å¼ä¸ºæ­£å¸¸æ¨¡å¼      */
+        AM_TRUE,                         /* ç¼“å­˜åŒºä¸Šé™ä½¿èƒ½                 */
     };
 
-    /* DACÊı¾İ»º´æÇø³õÊ¼»¯ */
+    /* DACæ•°æ®ç¼“å­˜åŒºåˆå§‹åŒ– */
     amhw_fsl_dac_dat_buf_init(p_hw_dac, &dac_buf_cfg);
 
     extern int am_int_connect (int inum, am_pfnvoid_t pfn_isr, void *p_arg);
     extern int am_int_enable (int inum);
 
-    /* DACÖĞ¶ÏÁ´½Óº¯Êı */
+    /* DACä¸­æ–­é“¾æ¥å‡½æ•° */
     am_int_connect(inum, __fsl_dac_int, p_hw_dac);
     am_int_enable(inum);
 
-    /* Ê¹ÄÜDAC¹¦ÄÜ */
+    /* ä½¿èƒ½DACåŠŸèƒ½ */
     amhw_fsl_dac_enable(p_hw_dac);
 
-    /* ÉèÖÃDAC»º´æÇøµÄÖµ */
+    /* è®¾ç½®DACç¼“å­˜åŒºçš„å€¼ */
     uint32_t key = am_int_cpu_lock();
     amhw_fsl_dac_buf_val_set(p_hw_dac,
                              0,
@@ -165,7 +165,7 @@ void demo_fsl_hw_dac_buf_int_entry (amhw_fsl_dac_t *p_hw_dac,
     __g_sinwave_cont += 2;
     am_int_cpu_unlock(key);
 
-    /* Èí¼ş´¥·¢DAC×ª»»¹¦ÄÜ */
+    /* è½¯ä»¶è§¦å‘DACè½¬æ¢åŠŸèƒ½ */
     amhw_fsl_dac_soft_trg_enable(p_hw_dac);
 
     while (1) {

@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief bootloader kboot KinetisFlashTool 属性实现
+ * \brief bootloader kboot KinetisFlashTool 脢么脨脭脢碌脧脰
  *
  *
  * \internal

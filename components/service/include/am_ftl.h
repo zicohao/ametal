@@ -30,14 +30,14 @@ extern "C" {
 #endif
 
 /**
- * \brief FTLĞèÒªÊ¹ÓÃµ½µÄÄÚ´æ£¨RAM£©¿Õ¼ä´óĞ¡
+ * \brief FTLéœ€è¦ä½¿ç”¨åˆ°çš„å†…å­˜ï¼ˆRAMï¼‰ç©ºé—´å¤§å°
  *
- * \param[in] size           : ´æ´¢Æ÷µÄÈİÁ¿
- * \param[in] erase_size     : ²Á³ıµ¥Ôª´óĞ¡
- * \param[in] logic_blk_size : Âß¼­¿éµÄ´óĞ¡
- * \param[in] nb_log_blocks  : ÈÕÖ¾¿é¸öÊı
+ * \param[in] size           : å­˜å‚¨å™¨çš„å®¹é‡
+ * \param[in] erase_size     : æ“¦é™¤å•å…ƒå¤§å°
+ * \param[in] logic_blk_size : é€»è¾‘å—çš„å¤§å°
+ * \param[in] nb_log_blocks  : æ—¥å¿—å—ä¸ªæ•°
  *
- * \return FTLĞèÒªÊ¹ÓÃµ½µÄÄÚ´æ£¨RAM£©¿Õ¼ä´óĞ¡
+ * \return FTLéœ€è¦ä½¿ç”¨åˆ°çš„å†…å­˜ï¼ˆRAMï¼‰ç©ºé—´å¤§å°
  */
 #define AM_FTL_RAM_SIZE_GET(size, erase_size, logic_blk_size, nb_log_blocks) \
    (((logic_blk_size) + 4)                                                   \
@@ -48,35 +48,35 @@ extern "C" {
  
 typedef struct am_ftl_info {
 
-    /** \brief RAM »º³åÇø   */
+    /** \brief RAM ç¼“å†²åŒº   */
     uint8_t  *p_buf;
 
-    /** \brief RAM »º³åÇøµÄ³¤¶È£¬±ØĞëÎª AM_FTL_RAM_SIZE_GET() ºêµÃµ½µÄÖµ  */
+    /** \brief RAM ç¼“å†²åŒºçš„é•¿åº¦ï¼Œå¿…é¡»ä¸º AM_FTL_RAM_SIZE_GET() å®å¾—åˆ°çš„å€¼  */
     size_t    len;
 
     /**
-     * \brief Âß¼­¿éµÄ´óĞ¡
+     * \brief é€»è¾‘å—çš„å¤§å°
      *
-     * Ò»°ãÓë MTD Éè±¸µÄĞ´Èë´óĞ¡£¨Èç£ºSPI FLASHµÄÒ³´óĞ¡£©ÏàµÈ»òÎªĞ´Èë´óĞ¡µÄ
-     * ÕûÊı±¶£¬Ê¹ÓÃ \sa am_ftl_read() »òÕß \sa am_ftl_write() º¯Êı¶Á/Ğ´µÄÊı¾İ
-     * Ê±£¬Ã¿´Î¶Á/Ğ´µÄÊı¾İÁ¿¼´ÎªÂß¼­¿é´óĞ¡
+     * ä¸€èˆ¬ä¸ MTD è®¾å¤‡çš„å†™å…¥å¤§å°ï¼ˆå¦‚ï¼šSPI FLASHçš„é¡µå¤§å°ï¼‰ç›¸ç­‰æˆ–ä¸ºå†™å…¥å¤§å°çš„
+     * æ•´æ•°å€ï¼Œä½¿ç”¨ \sa am_ftl_read() æˆ–è€… \sa am_ftl_write() å‡½æ•°è¯»/å†™çš„æ•°æ®
+     * æ—¶ï¼Œæ¯æ¬¡è¯»/å†™çš„æ•°æ®é‡å³ä¸ºé€»è¾‘å—å¤§å°
      */
     size_t     logic_blk_size;
 
     /**
-     * \brief ÈÕÖ¾¿é¸öÊı£¬¼´Ê¹ÓÃ¶àÉÙ¸öÎïÀí¿é£¨²Á³ıµ¥Ôª£©À´»º´æÊı¾İ£¬¸ÃÖµÔ½´ó£¬Ğ§ÂÊÔ½¸ß
-     * µ«ÏàÓ¦µÄÊµ¼ÊÊı¾İ¿é¾Í»á¼õÉÙ£¬Ò»°ãÇé¿öÏÂ£¬¿ÉÒÔÉèÖÃÔÚ 2 ~ 10Ö®¼ä£¬²»µÃĞ¡ÓÚ2¡£
+     * \brief æ—¥å¿—å—ä¸ªæ•°ï¼Œå³ä½¿ç”¨å¤šå°‘ä¸ªç‰©ç†å—ï¼ˆæ“¦é™¤å•å…ƒï¼‰æ¥ç¼“å­˜æ•°æ®ï¼Œè¯¥å€¼è¶Šå¤§ï¼Œæ•ˆç‡è¶Šé«˜
+     * ä½†ç›¸åº”çš„å®é™…æ•°æ®å—å°±ä¼šå‡å°‘ï¼Œä¸€èˆ¬æƒ…å†µä¸‹ï¼Œå¯ä»¥è®¾ç½®åœ¨ 2 ~ 10ä¹‹é—´ï¼Œä¸å¾—å°äº2ã€‚
      */
     size_t     nb_log_blocks;
 
-    /** \brief ±£ÁôµÄÎïÀí¿é£¨²Á³ıµ¥Ôª£©¸öÊı£¬ÆğÊ¼µÄ¼¸¸ö¿é½«²»»á±»Ê¹ÓÃ     */
+    /** \brief ä¿ç•™çš„ç‰©ç†å—ï¼ˆæ“¦é™¤å•å…ƒï¼‰ä¸ªæ•°ï¼Œèµ·å§‹çš„å‡ ä¸ªå—å°†ä¸ä¼šè¢«ä½¿ç”¨     */
     size_t     reserved_blocks;
 
 } am_ftl_info_t ;
 
 
 /**
- * FTL ·şÎñ½á¹¹Ìå¶¨Òå
+ * FTL æœåŠ¡ç»“æ„ä½“å®šä¹‰
  */
 typedef struct am_ftl_serv {
 
@@ -122,64 +122,64 @@ typedef struct am_ftl_serv {
  
 } am_ftl_serv_t;
 
-/** \brief FTL¾ä±úÀàĞÍ¶¨Òå  */
+/** \brief FTLå¥æŸ„ç±»å‹å®šä¹‰  */
 typedef am_ftl_serv_t *am_ftl_handle_t;
  
 /**
- * \brief FTL³õÊ¼»¯
+ * \brief FTLåˆå§‹åŒ–
  *
- * \param[in] p_ftl      : FTL ÊµÀı
- * \param[in] p_info     : FTL ÊµÀıĞÅÏ¢
- * \param[in] mtd_handle : ¹ØÁªµÄ  MTD ´æ´¢Éè±¸
+ * \param[in] p_ftl      : FTL å®ä¾‹
+ * \param[in] p_info     : FTL å®ä¾‹ä¿¡æ¯
+ * \param[in] mtd_handle : å…³è”çš„  MTD å­˜å‚¨è®¾å¤‡
  *
- * \return FTL ·şÎñ¾ä±ú£¬ÖµÎªNULLÊ±±íÊ¾³õÊ¼»¯Ê§°Ü
+ * \return FTL æœåŠ¡å¥æŸ„ï¼Œå€¼ä¸ºNULLæ—¶è¡¨ç¤ºåˆå§‹åŒ–å¤±è´¥
  */
 am_ftl_handle_t  am_ftl_init (am_ftl_serv_t          *p_ftl,
                               const am_ftl_info_t    *p_info,
                               am_mtd_handle_t         mtd_handle);
 
 /**
- * \brief »ñÈ¡ÓÃ»§¿ÉÓÃµÄÂß¼­¿é¸öÊı£¨lbn_num£©
+ * \brief è·å–ç”¨æˆ·å¯ç”¨çš„é€»è¾‘å—ä¸ªæ•°ï¼ˆlbn_numï¼‰
  *
- * ¶ÁĞ´Âß¼­¿éÊ±£¬Âß¼­¿é±àºÅµÄÓĞĞ§·¶Î§Îª : 0 ~ (lbn_num - 1)
+ * è¯»å†™é€»è¾‘å—æ—¶ï¼Œé€»è¾‘å—ç¼–å·çš„æœ‰æ•ˆèŒƒå›´ä¸º : 0 ~ (lbn_num - 1)
  *
- * Ã¿¸öÂß¼­¿éµÄ´æ´¢ÈİÁ¿Îª³õÊ¼»¯ĞÅÏ¢ÖĞÖ¸¶¨µÄÂß¼­¿é´óĞ¡¡£
+ * æ¯ä¸ªé€»è¾‘å—çš„å­˜å‚¨å®¹é‡ä¸ºåˆå§‹åŒ–ä¿¡æ¯ä¸­æŒ‡å®šçš„é€»è¾‘å—å¤§å°ã€‚
  */
 size_t am_ftl_max_lbn_get (am_ftl_serv_t *p_ftl);
 
 /**
- * \brief Ğ´ÈëÒ»¿éÊı¾İ
+ * \brief å†™å…¥ä¸€å—æ•°æ®
  *
- * \param[in] handle : FTL ÊµÀı¾ä±ú
- * \param[in] lbn   : Âß¼­¿é
- * \param[in] p_buf : Êı¾İ´æ·ÅµÄ»º³åÇø£¨³¤¶È¹Ì¶¨Îª³õÊ¼»¯Ê±Ö¸¶¨µÄÂß¼­¿é´óĞ¡£©
+ * \param[in] handle : FTL å®ä¾‹å¥æŸ„
+ * \param[in] lbn   : é€»è¾‘å—
+ * \param[in] p_buf : æ•°æ®å­˜æ”¾çš„ç¼“å†²åŒºï¼ˆé•¿åº¦å›ºå®šä¸ºåˆå§‹åŒ–æ—¶æŒ‡å®šçš„é€»è¾‘å—å¤§å°ï¼‰
  *
- * \retval AM_OK : Ğ´ÈëÊı¾İ³É¹¦
- * \retval  < 0  : Ğ´ÈëÊ§°Ü
+ * \retval AM_OK : å†™å…¥æ•°æ®æˆåŠŸ
+ * \retval  < 0  : å†™å…¥å¤±è´¥
  */
 int am_ftl_write (am_ftl_handle_t handle, unsigned int lbn, void *p_buf);
 
 /**
- * \brief ¶ÁÈ¡Ò»¿éÊı¾İ
+ * \brief è¯»å–ä¸€å—æ•°æ®
  *
- * \param[in] handle : FTL ÊµÀı¾ä±ú
- * \param[in] lbn   : Âß¼­¿é
- * \param[in] p_buf : Êı¾İ´æ·ÅµÄ»º³åÇø£¨³¤¶È¹Ì¶¨Îª³õÊ¼»¯Ê±Ö¸¶¨µÄÂß¼­¿é´óĞ¡£©
+ * \param[in] handle : FTL å®ä¾‹å¥æŸ„
+ * \param[in] lbn   : é€»è¾‘å—
+ * \param[in] p_buf : æ•°æ®å­˜æ”¾çš„ç¼“å†²åŒºï¼ˆé•¿åº¦å›ºå®šä¸ºåˆå§‹åŒ–æ—¶æŒ‡å®šçš„é€»è¾‘å—å¤§å°ï¼‰
  *
- * \retval AM_OK : Ğ´ÈëÊı¾İ³É¹¦
- * \retval  < 0  : Ğ´ÈëÊ§°Ü
+ * \retval AM_OK : å†™å…¥æ•°æ®æˆåŠŸ
+ * \retval  < 0  : å†™å…¥å¤±è´¥
  */
 int am_ftl_read (am_ftl_handle_t handle, unsigned int lbn, void *p_buf);
 
 /**
- * \brief ³õÊ¼»¯ NVRAM ¹¦ÄÜ£¬ÒÔ±ãÊ¹ÓÃNVRAM½Ó¿Ú·ÃÎÊ´æ´¢Æ÷
+ * \brief åˆå§‹åŒ– NVRAM åŠŸèƒ½ï¼Œä»¥ä¾¿ä½¿ç”¨NVRAMæ¥å£è®¿é—®å­˜å‚¨å™¨
  *
- * \param[in] handle : FTL ÊµÀı¾ä±ú
- * \param[in] p_dev  : NVRAM Éè±¸ÊµÀı
- * \param[in] p_name : NVRAM Éè±¸Ãû£¬Óë NVRAM´æ´¢¶ÎÁĞ±íÖĞµÄÉè±¸Ãû¶ÔÓ¦
+ * \param[in] handle : FTL å®ä¾‹å¥æŸ„
+ * \param[in] p_dev  : NVRAM è®¾å¤‡å®ä¾‹
+ * \param[in] p_name : NVRAM è®¾å¤‡åï¼Œä¸ NVRAMå­˜å‚¨æ®µåˆ—è¡¨ä¸­çš„è®¾å¤‡åå¯¹åº”
  *
- * \retval AM_OK : ³õÊ¼»¯³É¹¦
- * \retval  < 0  : ³õÊ¼»¯Ê§°Ü
+ * \retval AM_OK : åˆå§‹åŒ–æˆåŠŸ
+ * \retval  < 0  : åˆå§‹åŒ–å¤±è´¥
  */
 int am_ftl_nvram_init (am_ftl_handle_t   handle,
                        am_nvram_dev_t   *p_dev,

@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ÏµÍ³µÎ´ğ¡¢Èí¼ş¶¨Ê±Æ÷ÅäÖÃÎÄ¼ş
+ * \brief ç³»ç»Ÿæ»´ç­”ã€è½¯ä»¶å®šæ—¶å™¨é…ç½®æ–‡ä»¶
  * \sa am_hwconf_system_tick_softimer.c
  *
  * \internal
@@ -37,28 +37,28 @@
 
 
 struct __prescale_and_count_cal_ctx {
-    uint32_t   desired_ticks;           /* Ä¿±ê ticks                         */
-    uint32_t   count_max;               /* ¶¨Ê±Æ÷×î´ó count Öµ                */
-    uint32_t   error;                   /* µ±Ç°Ô¤·ÖÆµºÍ¼ÆÊıÖµËù¶ÔÓ¦µÄÎó²îÖµ   */
-    uint32_t   count;                   /* µ±Ç°¼ÆËã½á¹û: count Öµ             */
-    uint32_t   prescale;                /* µ±Ç°¼ÆËã½á¹û: Ô¤·ÖÆµÖµ             */
-    am_bool_t  update;                  /* ÊÇ·ñ¸üĞÂ¹ıÔ¤·ÖÆµÖµ                 */
+    uint32_t   desired_ticks;           /* ç›®æ ‡ ticks                         */
+    uint32_t   count_max;               /* å®šæ—¶å™¨æœ€å¤§ count å€¼                */
+    uint32_t   error;                   /* å½“å‰é¢„åˆ†é¢‘å’Œè®¡æ•°å€¼æ‰€å¯¹åº”çš„è¯¯å·®å€¼   */
+    uint32_t   count;                   /* å½“å‰è®¡ç®—ç»“æœ: count å€¼             */
+    uint32_t   prescale;                /* å½“å‰è®¡ç®—ç»“æœ: é¢„åˆ†é¢‘å€¼             */
+    am_bool_t  update;                  /* æ˜¯å¦æ›´æ–°è¿‡é¢„åˆ†é¢‘å€¼                 */
 };
 
 /**
- * \brief ÉèÖÃÏµÍ³µÎ´ğµÄÆµÂÊ£¬Ä¬ÈÏ 1KHz
+ * \brief è®¾ç½®ç³»ç»Ÿæ»´ç­”çš„é¢‘ç‡ï¼Œé»˜è®¤ 1KHz
  *
- * ÏµÍ³µÎ´ğµÄÊ¹ÓÃÏê¼û am_system.h
+ * ç³»ç»Ÿæ»´ç­”çš„ä½¿ç”¨è¯¦è§ am_system.h
  */
 #define __SYSTEM_TICK_RATE      1000
 
-/** \brief ¶¨Ê±Æ÷»Øµ÷º¯Êı£¬ÓÃÓÚ²úÉúÏµÍ³µÎ´ğ */
+/** \brief å®šæ—¶å™¨å›è°ƒå‡½æ•°ï¼Œç”¨äºäº§ç”Ÿç³»ç»Ÿæ»´ç­” */
 am_local void __system_tick_callback (void *p_arg)
 {
-    am_system_module_tick();       /* Çı¶¯ÏµÍ³µÎ´ğ */
+    am_system_module_tick();       /* é©±åŠ¨ç³»ç»Ÿæ»´ç­” */
 }
 
-/** \brief ÏµÍ³µÎ´ğÊµÀı³õÊ¼»¯(²»Ê¹ÓÃÈí¼ş¶¨Ê±Æ÷) */
+/** \brief ç³»ç»Ÿæ»´ç­”å®ä¾‹åˆå§‹åŒ–(ä¸ä½¿ç”¨è½¯ä»¶å®šæ—¶å™¨) */
 void am_system_tick_inst_init (void)
 {
     am_timer_handle_t handle  = am_zlg116_systick_inst_init();
@@ -69,7 +69,7 @@ void am_system_tick_inst_init (void)
 
         am_timer_count_freq_get(handle, 0, &clk_freq);
 
-        /* ½« SYSTICK ¶¨Ê±Æ÷µÄÖĞ¶ÏÓÅÏÈ¼¶ÉèÖÃÎª×îµÍ */
+        /* å°† SYSTICK å®šæ—¶å™¨çš„ä¸­æ–­ä¼˜å…ˆçº§è®¾ç½®ä¸ºæœ€ä½ */
         am_arm_nvic_priority_set(SysTick_IRQn, 0x03, 0x03);
 
         am_timer_callback_set(handle, 0, __system_tick_callback, NULL);
@@ -82,11 +82,11 @@ void am_system_tick_inst_init (void)
 
 /******************************************************************************/
 
-/** \brief ¶¨Ê±Æ÷»Øµ÷º¯Êı£¬ÓÃÓÚ²úÉúÏµÍ³µÎ´ğ£¬Çı¶¯Èí¼ş¶¨Ê±Æ÷µÈµÈ */
+/** \brief å®šæ—¶å™¨å›è°ƒå‡½æ•°ï¼Œç”¨äºäº§ç”Ÿç³»ç»Ÿæ»´ç­”ï¼Œé©±åŠ¨è½¯ä»¶å®šæ—¶å™¨ç­‰ç­‰ */
 am_local void __system_tick_softimer_callback (void *p_arg)
 {
-    am_system_module_tick();       /* Çı¶¯ÏµÍ³µÎ´ğ */
-    am_softimer_module_tick();     /* Çı¶¯Èí¼ş¶¨Ê±Æ÷ */
+    am_system_module_tick();       /* é©±åŠ¨ç³»ç»Ÿæ»´ç­” */
+    am_softimer_module_tick();     /* é©±åŠ¨è½¯ä»¶å®šæ—¶å™¨ */
 }
 
 
@@ -96,14 +96,14 @@ static void __error_check_with_new_prescale (
     uint32_t count = p_ctx->desired_ticks / prescale_new;
     uint32_t error;
 
-    /* ±ÜÃâ count Öµ³¬¹ı count_max */
+    /* é¿å… count å€¼è¶…è¿‡ count_max */
     if (count > p_ctx->count_max) {
         count = p_ctx->count_max;
     }
 
     error = p_ctx->desired_ticks - count * prescale_new;
 
-    if (p_ctx->error > error) {        /* ·¢ÏÖ¸üĞ¡Îó²îµÄ×éºÏÖµ */
+    if (p_ctx->error > error) {        /* å‘ç°æ›´å°è¯¯å·®çš„ç»„åˆå€¼ */
         p_ctx->error    = error;
         p_ctx->count    = count;
         p_ctx->prescale = prescale_new;
@@ -128,7 +128,7 @@ static int __prescale_and_count_cal (const am_timer_info_t *p_info,
 
     count_max = ( (uint32_t)1ull << (p_info->counter_width) ) - 1;
 
-    /* ÎŞĞè·ÖÆµ */
+    /* æ— éœ€åˆ†é¢‘ */
     if (ticks <= count_max) {
 
          *p_prescale = 1;
@@ -137,16 +137,16 @@ static int __prescale_and_count_cal (const am_timer_info_t *p_info,
          return AM_OK;
     }
 
-    /* ĞèÒª·ÖÆµ£¬µ«²»Ö§³ÖÈÎºÎ·ÖÆµÖµ */
+    /* éœ€è¦åˆ†é¢‘ï¼Œä½†ä¸æ”¯æŒä»»ä½•åˆ†é¢‘å€¼ */
     if (p_info->prescaler == 0) {
         return -AM_ENOTSUP;
     }
 
-    prescale_min = ticks / count_max;        /* Âú×ã Ticks µÄ×îĞ¡·ÖÆµ  */
+    prescale_min = ticks / count_max;        /* æ»¡è¶³ Ticks çš„æœ€å°åˆ†é¢‘  */
 
     ctx.count_max     = count_max;
     ctx.desired_ticks = ticks;
-    ctx.error         = ticks;              /* ³õÊ¼ÉèÖÃÎª×î´óÎó²î      */
+    ctx.error         = ticks;              /* åˆå§‹è®¾ç½®ä¸ºæœ€å¤§è¯¯å·®      */
     ctx.count         = count_max;
     ctx.prescale      = 1;
     ctx.update        = AM_FALSE;
@@ -155,11 +155,11 @@ static int __prescale_and_count_cal (const am_timer_info_t *p_info,
 
         prescale_max = p_info->prescaler;
 
-        if (prescale_max < prescale_min) {   /* ÎŞ·¨Âú×ã */
+        if (prescale_max < prescale_min) {   /* æ— æ³•æ»¡è¶³ */
             return -AM_ENOTSUP;
         }
 
-        /* ±éÀúËùÓĞ·ÖÆµÖµ£¬Ñ°ÕÒ×î¼Ñ·ÖÆµÖµ£¨Îó²î×îĞ¡£©*/
+        /* éå†æ‰€æœ‰åˆ†é¢‘å€¼ï¼Œå¯»æ‰¾æœ€ä½³åˆ†é¢‘å€¼ï¼ˆè¯¯å·®æœ€å°ï¼‰*/
         for (prescale = prescale_min; prescale <= prescale_max; prescale++) {
             __error_check_with_new_prescale(&ctx, prescale);
             if (ctx.error == 0) {
@@ -171,7 +171,7 @@ static int __prescale_and_count_cal (const am_timer_info_t *p_info,
 
         for (prescale = 1; prescale != 0; prescale <<= 1) {
 
-            /* Ö§³Ö¸Ã·ÖÆµ£¬ ÇÒÂú×ã×îĞ¡ÖµÒªÇó  */
+            /* æ”¯æŒè¯¥åˆ†é¢‘ï¼Œ ä¸”æ»¡è¶³æœ€å°å€¼è¦æ±‚  */
             if ((prescale & p_info->prescaler) && (prescale >= prescale_min)) {
                 __error_check_with_new_prescale(&ctx, prescale);
                 if (ctx.error == 0) {
@@ -210,7 +210,7 @@ static int __timer_enable_us (am_timer_handle_t handle, uint8_t chan, uint32_t n
 
     am_timer_clkin_freq_get(handle, &clkin);
 
-    /* ¼ÆËãÔÚÊäÈëÆµÂÊÏÂ£¬Ó¦¸Ã¼ÇÂ¼µÄcount Öµ */
+    /* è®¡ç®—åœ¨è¾“å…¥é¢‘ç‡ä¸‹ï¼Œåº”è¯¥è®°å½•çš„count å€¼ */
     ticks = nus *  (clkin / 1000000);
 
     if (__prescale_and_count_cal(p_info, ticks, &prescale, &count) != AM_OK) {
@@ -228,17 +228,17 @@ static int __timer_enable_us (am_timer_handle_t handle, uint8_t chan, uint32_t n
     return AM_OK;
 }
 
-/** \brief ÏµÍ³µÎ´ğÊµÀı³õÊ¼»¯(Ê¹ÓÃÈí¼ş¶¨Ê±Æ÷) */
+/** \brief ç³»ç»Ÿæ»´ç­”å®ä¾‹åˆå§‹åŒ–(ä½¿ç”¨è½¯ä»¶å®šæ—¶å™¨) */
 void am_system_tick_softimer_inst_init (void)
 {
     am_timer_handle_t handle = am_zlg116_systick_inst_init();
 
     if (NULL != handle) {
  
-        /* ³õÊ¼»¯Èí¼ş¶¨Ê±Æ÷ */
+        /* åˆå§‹åŒ–è½¯ä»¶å®šæ—¶å™¨ */
         am_softimer_module_init(__SYSTEM_TICK_RATE);
 
-        /* ½« SYSTICK ¶¨Ê±Æ÷µÄÖĞ¶ÏÓÅÏÈ¼¶ÉèÖÃÎª×îµÍ */
+        /* å°† SYSTICK å®šæ—¶å™¨çš„ä¸­æ–­ä¼˜å…ˆçº§è®¾ç½®ä¸ºæœ€ä½ */
         am_arm_nvic_priority_set(SysTick_IRQn, 0x03, 0x03);
 
         am_timer_callback_set(handle, 0, __system_tick_softimer_callback, NULL);
@@ -246,11 +246,11 @@ void am_system_tick_softimer_inst_init (void)
         am_system_module_init(__SYSTEM_TICK_RATE);
 
         /*
-         * ¶¨Ê±Ê±¼ä£¬1 / __SYSTEM_TICK_RATE£¬
-         * ×ª»»Îª us ¼´Îª£º 1000000 / __SYSTEM_TICK_RATE
+         * å®šæ—¶æ—¶é—´ï¼Œ1 / __SYSTEM_TICK_RATEï¼Œ
+         * è½¬æ¢ä¸º us å³ä¸ºï¼š 1000000 / __SYSTEM_TICK_RATE
          *
-         * ÔÚ am_system_tick_inst_init() º¯ÊıÖĞ£¬Ê¹ÓÃÁË am_timer_enable()º¯Êı£¬
-         * ×¢ÒâËûÃÇÖ®Ç°µÄÇø±ğ¡£
+         * åœ¨ am_system_tick_inst_init() å‡½æ•°ä¸­ï¼Œä½¿ç”¨äº† am_timer_enable()å‡½æ•°ï¼Œ
+         * æ³¨æ„ä»–ä»¬ä¹‹å‰çš„åŒºåˆ«ã€‚
          */
         __timer_enable_us(handle, 0, 1000000 / __SYSTEM_TICK_RATE);
     }

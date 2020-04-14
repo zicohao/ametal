@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief Èí¼þ¶¨Ê±Æ÷½Ó¿Úº¯ÊýÊµÏÖ
+ * \brief è½¯ä»¶å®šæ—¶å™¨æŽ¥å£å‡½æ•°å®žçŽ°
  * 
  * \internal
  * \par Modification history
@@ -24,10 +24,10 @@
 #include "am_common.h"
 #include "am_int.h"
 
-/** \brief ÓÃÓÚÈí¼þ¶¨Ê±Æ÷µÄÓ²¼þ¶¨Ê±Æ÷¹¤×÷ÆµÂÊ£¬Õý³£ÔËÐÐÊ±£¬ÆµÂÊ²»»áÎª0 */
+/** \brief ç”¨äºŽè½¯ä»¶å®šæ—¶å™¨çš„ç¡¬ä»¶å®šæ—¶å™¨å·¥ä½œé¢‘çŽ‡ï¼Œæ­£å¸¸è¿è¡Œæ—¶ï¼Œé¢‘çŽ‡ä¸ä¼šä¸º0 */
 static unsigned int __g_hwtimer_freq = 0;
 
-/** \brief Èí¼þ¶¨Ê±Æ÷Á´±í±íÍ· */
+/** \brief è½¯ä»¶å®šæ—¶å™¨é“¾è¡¨è¡¨å¤´ */
 static struct am_list_head g_softimer_head;
 
 /******************************************************************************/
@@ -47,7 +47,7 @@ static void __softimer_add (am_softimer_t *p_timer, unsigned int ticks)
     
     am_list_for_each(p, &g_softimer_head) {
         p_timer_iterator = am_list_entry(p, am_softimer_t, node);
-        if (ticks >= p_timer_iterator->ticks ) {  /* ÏàÍ¬Ê±£¬Ó¦²åÈëÔÚ½ÚµãºóÃæ */
+        if (ticks >= p_timer_iterator->ticks ) {  /* ç›¸åŒæ—¶ï¼Œåº”æ’å…¥åœ¨èŠ‚ç‚¹åŽé¢ */
             ticks -= p_timer_iterator->ticks;
         } else {
             break;
@@ -55,9 +55,9 @@ static void __softimer_add (am_softimer_t *p_timer, unsigned int ticks)
     }
     p_timer->ticks = ticks;
 
-    am_list_add_tail( &p_timer->node, p);         /* ÔÚÕýÈ·µÄÎ»ÖÃ²åÈë¶¨Ê±Æ÷   */
+    am_list_add_tail( &p_timer->node, p);         /* åœ¨æ­£ç¡®çš„ä½ç½®æ’å…¥å®šæ—¶å™¨   */
     
-    if (p != &g_softimer_head ) {                 /* pËùÖ¸¶¨Ê±Æ÷ÑÓÊ±Òª¸üÐÂ    */
+    if (p != &g_softimer_head ) {                 /* pæ‰€æŒ‡å®šæ—¶å™¨å»¶æ—¶è¦æ›´æ–°    */
         p_timer_iterator->ticks -= ticks;
     }
 }
@@ -67,11 +67,11 @@ static void __softimer_remove (am_softimer_t *p_timer)
 {
     am_softimer_t *p_next = NULL;
 
-    if (am_list_empty(&p_timer->node) ) {         /* ½ÚµãÎ´¼ÓÈëÁ´±íÖÐ         */
+    if (am_list_empty(&p_timer->node) ) {         /* èŠ‚ç‚¹æœªåŠ å…¥é“¾è¡¨ä¸­         */
         return ;
     }
     
-    /* µ±Ç°½Úµã²»ÊÇ×îºóÒ»¸ö½Úµã, É¾³ý¸Ã½ÚµãÇ°£¬½«ÏÂÒ»¸ö½ÚµãµÄÑÓÊ±tick¸üÐÂ */
+    /* å½“å‰èŠ‚ç‚¹ä¸æ˜¯æœ€åŽä¸€ä¸ªèŠ‚ç‚¹, åˆ é™¤è¯¥èŠ‚ç‚¹å‰ï¼Œå°†ä¸‹ä¸€ä¸ªèŠ‚ç‚¹çš„å»¶æ—¶tickæ›´æ–° */
     if ( (&p_timer->node)->next != &g_softimer_head ) {
         p_next = am_list_entry((&p_timer->node)->next, am_softimer_t, node);
         p_next->ticks += p_timer->ticks;
@@ -80,7 +80,7 @@ static void __softimer_remove (am_softimer_t *p_timer)
     am_list_del_init(&p_timer->node);
 }
 
-/* ±ØÐëÒÔ³õÊ¼»¯Ö¸¶¨µÄÆµÂÊµ÷ÓÃ¸Ãº¯Êý  */
+/* å¿…é¡»ä»¥åˆå§‹åŒ–æŒ‡å®šçš„é¢‘çŽ‡è°ƒç”¨è¯¥å‡½æ•°  */
 void am_softimer_module_tick (void)
 {
     struct am_list_head *p;
@@ -88,15 +88,15 @@ void am_softimer_module_tick (void)
 
     int old = am_int_cpu_lock();
 
-    /* ¶ÔÊ×¸ö½Úµã½øÐÐ¼õ1²Ù×÷£¨Õâ¶ÎÊ±¼äÈ·¶¨£© */
+    /* å¯¹é¦–ä¸ªèŠ‚ç‚¹è¿›è¡Œå‡1æ“ä½œï¼ˆè¿™æ®µæ—¶é—´ç¡®å®šï¼‰ */
     if ( !am_list_empty( &g_softimer_head ) ) {
 
-        /* Ö¸ÏòµÚÒ»¸öÓÐÐ§ÔªËØ½Úµã */
+        /* æŒ‡å‘ç¬¬ä¸€ä¸ªæœ‰æ•ˆå…ƒç´ èŠ‚ç‚¹ */
         p       = (&g_softimer_head)->next;
         p_timer = am_list_entry(p, am_softimer_t, node);
 
         /*
-         * Á´±íÊ×½ÚµãÖµ¼õ1
+         * é“¾è¡¨é¦–èŠ‚ç‚¹å€¼å‡1
          */
         if (p_timer->ticks) {
             p_timer->ticks--;
@@ -107,25 +107,25 @@ void am_softimer_module_tick (void)
 
     old = am_int_cpu_lock();
 
-    /* ´¦ÀíÁ´±íÊ×¸ö½Úµã£¬Îª 0 ÔòÈ¡³ö´¦Àí  */
+    /* å¤„ç†é“¾è¡¨é¦–ä¸ªèŠ‚ç‚¹ï¼Œä¸º 0 åˆ™å–å‡ºå¤„ç†  */
     while (!am_list_empty(&g_softimer_head)) {
 
         p       = (&g_softimer_head)->next;
         p_timer = am_list_entry(p, am_softimer_t, node);
 
         /*
-         * ´¦ÀíµÚÒ»¸öÓÐÐ§ÔªËØ,´¦Àíºó¸Ã½áµã±ØÈ»²»´¦ÓÚµÚÒ»¸ö½áµã
-         * (Èô´¦ÓÚµÚÒ»¸ö½áµã£¬ÆäÖµÒ²²»»áÎª 0£¬¼´ÏÂ´ÎÉ¨Ãè¾Í»áÍË³ö)
+         * å¤„ç†ç¬¬ä¸€ä¸ªæœ‰æ•ˆå…ƒç´ ,å¤„ç†åŽè¯¥ç»“ç‚¹å¿…ç„¶ä¸å¤„äºŽç¬¬ä¸€ä¸ªç»“ç‚¹
+         * (è‹¥å¤„äºŽç¬¬ä¸€ä¸ªç»“ç‚¹ï¼Œå…¶å€¼ä¹Ÿä¸ä¼šä¸º 0ï¼Œå³ä¸‹æ¬¡æ‰«æå°±ä¼šé€€å‡º)
          */
         if (p_timer->ticks == 0) {
 
-            /* ¸Ã½Úµã±¾´Î¶¨Ê±Ê±¼äµ½£¬É¾³ý¸Ã½Úµã                  */
+            /* è¯¥èŠ‚ç‚¹æœ¬æ¬¡å®šæ—¶æ—¶é—´åˆ°ï¼Œåˆ é™¤è¯¥èŠ‚ç‚¹                  */
             am_list_del_init(&p_timer->node);
 
-            /* ¿ÉÄÜÔÚ»Øµ÷º¯ÊýÖÐÍ£Ö¹£¬Òò´ËÏÈ½«ÆäÖØÐÂÌí¼Ó½øÁ´±íÖÐ  */
+            /* å¯èƒ½åœ¨å›žè°ƒå‡½æ•°ä¸­åœæ­¢ï¼Œå› æ­¤å…ˆå°†å…¶é‡æ–°æ·»åŠ è¿›é“¾è¡¨ä¸­  */
             __softimer_add(p_timer, p_timer->repeat_ticks);
 
-            /* ´¦Àí»Øµ÷Ê±£¬ ÎªÆä´ò¿ªÖÐ¶Ï */
+            /* å¤„ç†å›žè°ƒæ—¶ï¼Œ ä¸ºå…¶æ‰“å¼€ä¸­æ–­ */
             am_int_cpu_unlock(old);
 
             if (p_timer->timeout_callback ) {
@@ -134,7 +134,7 @@ void am_softimer_module_tick (void)
 
             old = am_int_cpu_lock();
 
-        /* Ö»ÒªÓöµ½²»Îª0µÄ½áµã£¬¾ÍÍË³öÑ­»· */
+        /* åªè¦é‡åˆ°ä¸ä¸º0çš„ç»“ç‚¹ï¼Œå°±é€€å‡ºå¾ªçŽ¯ */
         } else {
             break;
         }
@@ -161,7 +161,7 @@ int am_softimer_init (am_softimer_t *p_timer,
 {
     int old;
     
-    if (__g_hwtimer_freq == 0) {                      /* Ó²¼þ¶¨Ê±Æ÷Î´Õý³£¹¤×÷ */
+    if (__g_hwtimer_freq == 0) {                      /* ç¡¬ä»¶å®šæ—¶å™¨æœªæ­£å¸¸å·¥ä½œ */
         return -AM_EPERM;
     }
     
@@ -184,7 +184,7 @@ void am_softimer_start (am_softimer_t *p_timer, unsigned int ms)
     unsigned int ticks =  __ms_to_ticks(ms);
     old = am_int_cpu_lock();
     
-    /* ticks×îÐ¡ÖµÎª1 */
+    /* ticksæœ€å°å€¼ä¸º1 */
     ticks = ticks > 0 ? ticks : 1;
     
     p_timer->repeat_ticks = ticks;

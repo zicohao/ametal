@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief Í¨ÓÃÊı¾İÀàĞÍÏà¹Ø¶¨ÒåÍ·ÎÄ¼ş
+ * \brief é€šç”¨æ•°æ®ç±»å‹ç›¸å…³å®šä¹‰å¤´æ–‡ä»¶
  *
  * \internal
  * \par Modification history
@@ -37,24 +37,24 @@ extern "C" {
  * @{
  */
  
-/** \brief ²¼¶ûÀàĞÍ¶¨Òå */
+/** \brief å¸ƒå°”ç±»å‹å®šä¹‰ */
 typedef uint8_t am_bool_t;
 
-/** \brief Õæ£¬¿É¸³Öµ¸ø²¼¶ûÀàĞÍ */
+/** \brief çœŸï¼Œå¯èµ‹å€¼ç»™å¸ƒå°”ç±»å‹ */
 #define AM_TRUE   1
 
-/** \brief ¼Ù£¬¿É¸³Öµ¸ø²¼¶ûÀàĞÍ */
+/** \brief å‡ï¼Œå¯èµ‹å€¼ç»™å¸ƒå°”ç±»å‹ */
 #define AM_FALSE  0
 
 /**
- * \brief ¿ÕÖ¸Õë¶¨Òå
+ * \brief ç©ºæŒ‡é’ˆå®šä¹‰
  */
 #ifndef NULL
 #define NULL      ((void *)0)
 #endif
  
 /**
- * \brief inline ¶¨Òå
+ * \brief inline å®šä¹‰
  * @{
  */
 #if   defined (__CC_ARM)     
@@ -79,29 +79,29 @@ typedef	 long		off_t;
 #endif /* __CC_ARM */
 /** @} */
 
-/** \todo  ¸ù¾İ±àÒëÆ÷ÀàĞÍÑ¡Ôñ static ¹Ø¼ü×Ö */
+/** \todo  æ ¹æ®ç¼–è¯‘å™¨ç±»å‹é€‰æ‹© static å…³é”®å­— */
 #define am_local    static
 
-/** \todo  ¸ù¾İ±àÒëÆ÷ÀàĞÍÑ¡Ôñ const ¹Ø¼ü×Ö */
+/** \todo  æ ¹æ®ç¼–è¯‘å™¨ç±»å‹é€‰æ‹© const å…³é”®å­— */
 #define am_const    const
     
-/** \todo  ¸ù¾İ±àÒëÆ÷ÀàĞÍÑ¡Ôñ extern ¹Ø¼ü×Ö */
+/** \todo  æ ¹æ®ç¼–è¯‘å™¨ç±»å‹é€‰æ‹© extern å…³é”®å­— */
 #define am_extern   extern
 
-/** \todo  ¸ù¾İ±àÒëÆ÷ÀàĞÍÑ¡Ôñ extern ¹Ø¼ü×Ö */
+/** \todo  æ ¹æ®ç¼–è¯‘å™¨ç±»å‹é€‰æ‹© extern å…³é”®å­— */
 #define am_import   extern
 
-/** \todo  ¸ù¾İ±àÒëÆ÷ÀàĞÍÑ¡Ôñ extern ¹Ø¼ü×Ö */
+/** \todo  æ ¹æ®ç¼–è¯‘å™¨ç±»å‹é€‰æ‹© extern å…³é”®å­— */
 #define am_export   extern
 
 
 #ifdef __cplusplus
-  #define   __I     volatile             /**< Defines Ö»¶Á     */
+  #define   __I     volatile             /**< Defines åªè¯»     */
 #else
-  #define   __I     volatile const       /**< Defines Ö»¶Á     */
+  #define   __I     volatile const       /**< Defines åªè¯»     */
 #endif
-#define     __O     volatile             /**< Defines Ö»Ğ´     */
-#define     __IO    volatile             /**< Defines ¿É¶Á¿ÉĞ´ */
+#define     __O     volatile             /**< Defines åªå†™     */
+#define     __IO    volatile             /**< Defines å¯è¯»å¯å†™ */
 
 
 /** \brief void (*pfn) (void *) */

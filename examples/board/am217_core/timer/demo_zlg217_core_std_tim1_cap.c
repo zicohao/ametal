@@ -12,24 +12,24 @@
 
 /**
  * \file
- * \brief TIM1 ��ʱ�� CAP ���̣�ͨ����׼�ӿ�ʵ��
+ * \brief TIM1 定时器 CAP 例程，通过标准接口实现
  *
- * - �������裺
- *   1. ʹ�öŰ��ߣ��� PIOB_6 �� PIOA_11 ���ӡ�
+ * - 操作步骤：
+ *   1. 使用杜邦线，将 PIOB_6 与 PIOA_11 连接。
  *
- * - ʵ������
- *   1. TIM4 ͨ�� PIOB_6 ������� 2KHz �� PWM��
- *   2. TIM1 ��������ͨ�� 4 ʹ�� PIOA_11 ���Ų���
- *   3. ���ڴ�ӡ�����ò����ܵõ��� PWM �źŵ����ں�Ƶ�ʡ�
+ * - 实验现象：
+ *   1. TIM4 通过 PIOB_6 引脚输出 2KHz 的 PWM；
+ *   2. TIM1 捕获输入通道 4 使用 PIOA_11 引脚捕获；
+ *   3. 串口打印出利用捕获功能得到的 PWM 信号的周期和频率。
  *
  * \note
- *    1. ����۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIOA_10 �������� PC ���ڵ� TXD��
- *       PIOA_9 �������� PC ���ڵ� RXD��
- *    2. ���� TIM4 Ĭ�ϳ�ʼ������Ϊϵͳ�δ�ʹ�ã�ʹ�ñ� Demo ֮ǰ������
- *       am_prj_config.h �ڽ� AM_CFG_KEY_GPIO_ENABLE��AM_CFG_SOFTIMER_ENABLE
- *       �� AM_CFG_SYSTEM_TICK_ENABLE ����Ϊ 0��
+ *    1. 如需观察串口打印的调试信息，需要将 PIOA_10 引脚连接 PC 串口的 TXD，
+ *       PIOA_9 引脚连接 PC 串口的 RXD。
+ *    2. 由于 TIM4 默认初始化并作为系统滴答使用，使用本 Demo 之前必须在
+ *       am_prj_config.h 内将 AM_CFG_KEY_GPIO_ENABLE、AM_CFG_SOFTIMER_ENABLE
+ *       和 AM_CFG_SYSTEM_TICK_ENABLE 定义为 0。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_zlg217_std_tim1_cap.c src_zlg217_std_tim1_cap
  *
  * \internal
@@ -51,7 +51,7 @@
 #include "demo_am217_core_entries.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_zlg217_core_std_tim1_cap_entry (void)
 {
@@ -61,7 +61,7 @@ void demo_zlg217_core_std_tim1_cap_entry (void)
     
 	  AM_DBG_INFO("demo am217_core std tim1 cap!\r\n");
 
-    /* TIM2 ���Ƶ��Ϊ 2KHz �� PWM */
+    /* TIM2 输出频率为 2KHz 的 PWM */
     am_pwm_config(tim4_pwm_handle, 0, 500000 / 2, 500000);
     am_pwm_enable(tim4_pwm_handle, 0);
 

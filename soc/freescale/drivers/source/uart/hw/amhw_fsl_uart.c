@@ -12,25 +12,25 @@
 
 /**
  * \file
- * \brief ´®¿Ú£¨UART£©²Ù×÷½Ó¿Ú
+ * \brief ä¸²å£ï¼ˆUARTï¼‰æ“ä½œæ¥å£
  *
- * 1. È«Ë«¹¤²Ù×÷£¬±ê×¼²»¹éÁã(NRZ)¸ñÊ½
- * 2. ¾ßÓĞ¶ÀÁ¢Ê¹ÄÜµÄË«»º³å¿É·ÖÀëµÄ·¢ËÍ½ÓÊÕÆ÷ºÍ½ÓÊÕÆ÷
- * 3. ²¨ÌØÂÊ¿É±à³Ì£¨ 13 Î»Ä£Êı·ÖÆµÆ÷£©
- * 4. ÖĞ¶ÏÇı¶¯»òÂÖÑ¯²Ù×÷
- * 1. ·¢ËÍÊı¾İ¼Ä´æÆ÷¿Õ²¢ÇÒ·¢ËÍÍê³É
- * 2. ½ÓÊÕÊı¾İ¼Ä´æÆ÷Âú
- * 3. ½ÓÊÕ¹ıÔØ¡¢ÆæÅ¼¼ìÑé´íÎó¡¢Ö¡´íÎóºÍÔëÉù´íÎó
- * 4. ¿ÕÏĞ½ÓÊÕÆ÷¼ì²â
- * 5. ½ÓÊÕÒı½ÅÉÏÓĞ»î¶¯ÑØ
- * 6. Ö§³Ö LIN µÄÖĞ¶Ï¼ì²â
- * 5. Ó²¼şÆæÅ¼Ğ£ÑéÉú³ÉºÍ¼ì²â
- * 6. ¿É±à³ÌµÄ 8 Î»»ò×¨ 9 Î»×Ö·û³¤¶È
- * 7. ¿É±à³ÌµÄ 1 Î»»ò 2 Î»Í£Ö¹Î»
- * 8. ¿ÕÏĞÏß»òµØÖ·±êÖ¾»½ĞÑ½ÓÊÕÆ÷£º
- * 9. ¿ÉÑ¡µÄ 13 Î»ÖĞÖ¹·ûÉú³É/11 Î»ÖĞÖ¹·û¼ì²â
- * 10. ¿ÉÑ¡µÄ·¢ËÍÆ÷Êä³ö¼«ĞÔ
- * 11. 5 Í¨µÀ DMA ½Ó¿Ú
+ * 1. å…¨åŒå·¥æ“ä½œï¼Œæ ‡å‡†ä¸å½’é›¶(NRZ)æ ¼å¼
+ * 2. å…·æœ‰ç‹¬ç«‹ä½¿èƒ½çš„åŒç¼“å†²å¯åˆ†ç¦»çš„å‘é€æ¥æ”¶å™¨å’Œæ¥æ”¶å™¨
+ * 3. æ³¢ç‰¹ç‡å¯ç¼–ç¨‹ï¼ˆ 13 ä½æ¨¡æ•°åˆ†é¢‘å™¨ï¼‰
+ * 4. ä¸­æ–­é©±åŠ¨æˆ–è½®è¯¢æ“ä½œ
+ * 1. å‘é€æ•°æ®å¯„å­˜å™¨ç©ºå¹¶ä¸”å‘é€å®Œæˆ
+ * 2. æ¥æ”¶æ•°æ®å¯„å­˜å™¨æ»¡
+ * 3. æ¥æ”¶è¿‡è½½ã€å¥‡å¶æ£€éªŒé”™è¯¯ã€å¸§é”™è¯¯å’Œå™ªå£°é”™è¯¯
+ * 4. ç©ºé—²æ¥æ”¶å™¨æ£€æµ‹
+ * 5. æ¥æ”¶å¼•è„šä¸Šæœ‰æ´»åŠ¨æ²¿
+ * 6. æ”¯æŒ LIN çš„ä¸­æ–­æ£€æµ‹
+ * 5. ç¡¬ä»¶å¥‡å¶æ ¡éªŒç”Ÿæˆå’Œæ£€æµ‹
+ * 6. å¯ç¼–ç¨‹çš„ 8 ä½æˆ–ä¸“ 9 ä½å­—ç¬¦é•¿åº¦
+ * 7. å¯ç¼–ç¨‹çš„ 1 ä½æˆ– 2 ä½åœæ­¢ä½
+ * 8. ç©ºé—²çº¿æˆ–åœ°å€æ ‡å¿—å”¤é†’æ¥æ”¶å™¨ï¼š
+ * 9. å¯é€‰çš„ 13 ä½ä¸­æ­¢ç¬¦ç”Ÿæˆ/11 ä½ä¸­æ­¢ç¬¦æ£€æµ‹
+ * 10. å¯é€‰çš„å‘é€å™¨è¾“å‡ºææ€§
+ * 11. 5 é€šé“ DMA æ¥å£
  *
  * \internal
  * \par Modification History
@@ -40,7 +40,7 @@
  */
 #include "hw/amhw_fsl_uart.h"
 /**
- * \brief ±È½ÏÎó²î´óĞ¡
+ * \brief æ¯”è¾ƒè¯¯å·®å¤§å°
  */
 static int __err_cal (uint32_t  uart0clk,
                       uint32_t  baud,
@@ -54,20 +54,20 @@ static int __err_cal (uint32_t  uart0clk,
 
     uint32_t temp            = 0;
 
-    /* ÓÃ×îĞ¡µÄ¹ı²ÉÑùÂÊOSR_VALÀ´¼ÆËãµÚÒ»¸öbaud_diff*/
+    /* ç”¨æœ€å°çš„è¿‡é‡‡æ ·ç‡OSR_VALæ¥è®¡ç®—ç¬¬ä¸€ä¸ªbaud_diff*/
     osr_val      = 4;
-    /* µÃµ½ÀíÂÛ¼ÆËãµÄ²¨ÌØÂÊ */
+    /* å¾—åˆ°ç†è®ºè®¡ç®—çš„æ³¢ç‰¹ç‡ */
     sbr_val = (uint32_t)(uart0clk/(baud * osr_val));
     calculated_baud = (uart0clk / (osr_val * sbr_val));
 
-    /* ¼ÆËãµÄ²¨ÌØÂÊÆ«²î */
+    /* è®¡ç®—çš„æ³¢ç‰¹ç‡åå·® */
     if (calculated_baud > baud) {
         baud_diff = calculated_baud - baud;
     }  else {
         baud_diff = baud - calculated_baud;
     }
 
-    /* ¼ÆËã×îºÏÊÊµÄ¹ı²ÉÑùÂÊosr_val */
+    /* è®¡ç®—æœ€åˆé€‚çš„è¿‡é‡‡æ ·ç‡osr_val */
     for (i = 5; i <= 32; i++) {
         sbr_val = (uint32_t)(uart0clk/(baud * i));
         calculated_baud = (uart0clk / (i * sbr_val));
@@ -85,7 +85,7 @@ static int __err_cal (uint32_t  uart0clk,
 
     *p_osr_val = osr_val;
 
-    /* ²¨ÌØÂÊÎó²î¿ØÖÆÔÚ%4ÒÔÏÂ */
+    /* æ³¢ç‰¹ç‡è¯¯å·®æ§åˆ¶åœ¨%4ä»¥ä¸‹ */
     if (baud_diff < ((baud / 100) * 3)) {
            return AM_OK;
     }else {
@@ -95,7 +95,7 @@ static int __err_cal (uint32_t  uart0clk,
 }
 
 /**
- * \brief USARTÊı¾İ·¢ËÍ(²éÑ¯Ä£Ê½)
+ * \brief USARTæ•°æ®å‘é€(æŸ¥è¯¢æ¨¡å¼)
  */
 uint32_t amhw_fsl_uart_poll_send (amhw_fsl_uart_t  *p_hw_uart,
                                    const uint8_t *p_txbuf,
@@ -114,7 +114,7 @@ uint32_t amhw_fsl_uart_poll_send (amhw_fsl_uart_t  *p_hw_uart,
 
 
 /**
- * \brief USARTÊı¾İ½ÓÊÕ(²éÑ¯Ä£Ê½)
+ * \brief USARTæ•°æ®æ¥æ”¶(æŸ¥è¯¢æ¨¡å¼)
  */
 uint32_t amhw_fsl_uart_poll_receive (amhw_fsl_uart_t *p_hw_uart,
                                       uint8_t      *p_rxbuf,
@@ -131,29 +131,29 @@ uint32_t amhw_fsl_uart_poll_receive (amhw_fsl_uart_t *p_hw_uart,
 }
 
 /**
- * \brief VER0 ´®¿Ú²¨ÌØÂÊÉèÖÃ
+ * \brief VER0 ä¸²å£æ³¢ç‰¹ç‡è®¾ç½®
  */
 int amhw_fsl_uart_ver0_baudrate_set (amhw_fsl_uart_t *p_hw_uart, uint32_t sysclk, int baud)
 {
     uint32_t osr_val  = 0;
     uint32_t sbr_val  = 0;
     uint32_t uart0clk = 0;
-    /* È·±£ÓĞĞ§µÄ clock value*/
+    /* ç¡®ä¿æœ‰æ•ˆçš„ clock value*/
     if ((sysclk > 50000000) || (sysclk < 32000)) {
         sysclk = 0;
 
-        /* ³õÊ¼»¯Òì³££¬ÓÉÓÚÆÚÍûµÄÏµÍ³Ê±ÖÓÖµÎŞĞ§*/
+        /* åˆå§‹åŒ–å¼‚å¸¸ï¼Œç”±äºæœŸæœ›çš„ç³»ç»Ÿæ—¶é’Ÿå€¼æ— æ•ˆ*/
         return AM_ERROR;
     }
 
-    /* uart0 Ê±ÖÓµ¥Î»Îª HZ */
+    /* uart0 æ—¶é’Ÿå•ä½ä¸º HZ */
     uart0clk  = sysclk;
-    /* ÔÚ¸Ä±äUART1/2¼Ä´æÆ÷ÖµÇ° ½ÓÊÕ·¢ËÍ½ûÄÜ */
+    /* åœ¨æ”¹å˜UART1/2å¯„å­˜å™¨å€¼å‰ æ¥æ”¶å‘é€ç¦èƒ½ */
     amhw_fsl_uart_disable(p_hw_uart);
 
 
 	if (__err_cal(uart0clk,baud,&osr_val) == AM_OK) {
-	   /* Èç¹ûOSRµÄÖµÔÚ4x - 8xÖ®¼ä£¬Ê¹ÄÜË«±ßÑØ²ÉÑù*/
+	   /* å¦‚æœOSRçš„å€¼åœ¨4x - 8xä¹‹é—´ï¼Œä½¿èƒ½åŒè¾¹æ²¿é‡‡æ ·*/
 		if ((osr_val >3) && (osr_val < 9)){
 			p_hw_uart->uart0_c5 |= AMHW_FSL_UART0_C5_BOTHEDGE_EN;
 		}
@@ -166,30 +166,30 @@ int amhw_fsl_uart_ver0_baudrate_set (amhw_fsl_uart_t *p_hw_uart, uint32_t sysclk
     amhw_fsl_uart_bdh_sbr_set(p_hw_uart,((sbr_val&0x1F00)>>8));
     amhw_fsl_uart_bdl_sbr_set(p_hw_uart,sbr_val & AMHW_FSL_UART_BDL_SBR_MASK);
 
-    /* Ê¹ÄÜ½ÓÊÕºÍ´«ËÍ */
+    /* ä½¿èƒ½æ¥æ”¶å’Œä¼ é€ */
     amhw_fsl_uart_enable(p_hw_uart);
 
     return baud;
 }
 
 /**
- * \brief VER1 ´®¿Ú²¨ÌØÂÊÉèÖÃ
+ * \brief VER1 ä¸²å£æ³¢ç‰¹ç‡è®¾ç½®
  */
 int amhw_fsl_uart_ver1_baudrate_set (amhw_fsl_uart_t *p_hw_uart, uint32_t sysclk, int baud)
 {
 
     uint32_t sbr_val  = 0;
     uint32_t temp1, temp2;
-    /* È·±£ÓĞĞ§µÄ clock value*/
+    /* ç¡®ä¿æœ‰æ•ˆçš„ clock value*/
     if ((sysclk > 50000000) || (sysclk < 32000)) {
         sysclk = 0;
 
-        /* ³õÊ¼»¯Òì³££¬ÓÉÓÚÆÚÍûµÄÏµÍ³Ê±ÖÓÖµÎŞĞ§*/
+        /* åˆå§‹åŒ–å¼‚å¸¸ï¼Œç”±äºæœŸæœ›çš„ç³»ç»Ÿæ—¶é’Ÿå€¼æ— æ•ˆ*/
         return AM_ERROR;
     }
 
 
-    /* ÔÚ¸Ä±äUART1/2¼Ä´æÆ÷ÖµÇ° ½ÓÊÕ·¢ËÍ½ûÄÜ */
+    /* åœ¨æ”¹å˜UART1/2å¯„å­˜å™¨å€¼å‰ æ¥æ”¶å‘é€ç¦èƒ½ */
     amhw_fsl_uart_disable(p_hw_uart);
     temp1 = sysclk / (baud * 16);
     temp2 = sysclk % (baud * 16);
@@ -199,14 +199,14 @@ int amhw_fsl_uart_ver1_baudrate_set (amhw_fsl_uart_t *p_hw_uart, uint32_t sysclk
     amhw_fsl_uart_bdh_sbr_set(p_hw_uart,((sbr_val&0x1F00)>>8));
     amhw_fsl_uart_bdl_sbr_set(p_hw_uart,sbr_val & AMHW_FSL_UART_BDL_SBR_MASK);
 
-    /* Ê¹ÄÜ½ÓÊÕºÍ´«ËÍ */
+    /* ä½¿èƒ½æ¥æ”¶å’Œä¼ é€ */
     amhw_fsl_uart_enable(p_hw_uart);
 
     return baud;
 }
 
 /**
- * \brief UARTÌØÊâ¹¦ÄÜÄ£Ê½ÉèÖÃ(»Ø»·Ä£Ê½¡¢ µ¥ÏßÄ£Ê½)
+ * \brief UARTç‰¹æ®ŠåŠŸèƒ½æ¨¡å¼è®¾ç½®(å›ç¯æ¨¡å¼ã€ å•çº¿æ¨¡å¼)
  */
 void amhw_fsl_uart_special_mode_set (amhw_fsl_uart_t *p_hw_uart, uint8_t mode)
 {

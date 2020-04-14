@@ -28,7 +28,7 @@
 #include "hw/amhw_lpc84x_syscon.h"
 
 /**
- * \brief »ñÈ¡Ê±ÖÓÆµÂÊ
+ * \brief è·å–æ—¶é’Ÿé¢‘ç‡
  */
 int am_clk_rate_get (am_clk_id_t clk_id)
 {
@@ -36,7 +36,7 @@ int am_clk_rate_get (am_clk_id_t clk_id)
     
     switch (clk_id) {
     
-    /* ÏµÍ³ÄÚ²¿Ê±ÖÓ */
+    /* ç³»ç»Ÿå†…éƒ¨æ—¶é’Ÿ */
     case CLK_FRO:
         clk = amhw_lpc84x_clk_fro_rate_get();
         break;
@@ -69,7 +69,7 @@ int am_clk_rate_get (am_clk_id_t clk_id)
         clk = amhw_lpc84x_clk_system_clkrate_get();
         break;
 
-    case CLK_UART0:    /* UART »ù±¾ÊäÈëÊ±ÖÓ*/
+    case CLK_UART0:    /* UART åŸºæœ¬è¾“å…¥æ—¶é’Ÿ*/
     case CLK_UART1:
     case CLK_UART2:
     case CLK_UART3:
@@ -77,23 +77,23 @@ int am_clk_rate_get (am_clk_id_t clk_id)
         clk = amhw_lpc84x_clk_usart_i2c_spi_baseclkrate_get(clk_id);
         break;
 
-    case CLK_I2C0:    /* I2C »ù±¾ÊäÈëÊ±ÖÓ*/
+    case CLK_I2C0:    /* I2C åŸºæœ¬è¾“å…¥æ—¶é’Ÿ*/
     case CLK_I2C1:
     case CLK_I2C2:
     case CLK_I2C3:
     	clk = amhw_lpc84x_clk_usart_i2c_spi_baseclkrate_get(clk_id);
     	break;
 
-    case CLK_SPI0:    /* I2C »ù±¾ÊäÈëÊ±ÖÓ*/
+    case CLK_SPI0:    /* I2C åŸºæœ¬è¾“å…¥æ—¶é’Ÿ*/
     case CLK_SPI1:
     	clk = amhw_lpc84x_clk_usart_i2c_spi_baseclkrate_get(clk_id);
     	break;
 
-    case CLK_WWDT:    /* WWDT Ê±ÖÓ*/
+    case CLK_WWDT:    /* WWDT æ—¶é’Ÿ*/
         clk = amhw_lpc84x_clk_wdt_rate_get();
         break;
 
-    case CLK_WKT:    /* WKT Ê±ÖÓ*/
+    case CLK_WKT:    /* WKT æ—¶é’Ÿ*/
         clk = amhw_lpc84x_clk_fro_rate_get();
         break;
 
@@ -105,7 +105,7 @@ int am_clk_rate_get (am_clk_id_t clk_id)
    	     clk = amhw_lpc84x_clk_sct_baseclkrate_get();
    	     break;
 
-    /* Ê¹ÓÃÏµÍ³Ê±ÖÓµÄÍâÉè */
+    /* ä½¿ç”¨ç³»ç»Ÿæ—¶é’Ÿçš„å¤–è®¾ */
     case CLK_ROM:
     case CLK_SRAM0_1:
     case CLK_FLASH:
@@ -130,14 +130,14 @@ int am_clk_rate_get (am_clk_id_t clk_id)
 }
 
 /**
- * \brief Ê¹ÄÜÖ¸¶¨µÄÏµÍ³»òÍâÉèÊ±ÖÓ
+ * \brief ä½¿èƒ½æŒ‡å®šçš„ç³»ç»Ÿæˆ–å¤–è®¾æ—¶é’Ÿ
  */
 int am_clk_enable (am_clk_id_t clk_id)
 {
     if ((clk_id < CLK_PERIPH_MIN) ||
         (clk_id > CLK_PERIPH_MAX)) {
 
-        /* Ê±ÖÓID²»ÔÚ·¶Î§ÄÚ*/
+        /* æ—¶é’ŸIDä¸åœ¨èŒƒå›´å†…*/
         return -AM_ENXIO;
     }
     
@@ -147,14 +147,14 @@ int am_clk_enable (am_clk_id_t clk_id)
 }
 
 /**
- * \brief ½ûÄÜÖ¸¶¨µÄÏµÍ³»òÍâÉèÊ±ÖÓ
+ * \brief ç¦èƒ½æŒ‡å®šçš„ç³»ç»Ÿæˆ–å¤–è®¾æ—¶é’Ÿ
  */
 int am_clk_disable (am_clk_id_t clk_id)
 {
     if ((clk_id < CLK_PERIPH_MIN) ||
         (clk_id > CLK_PERIPH_MAX)) {
 
-        /* Ê±ÖÓID²»ÔÚ·¶Î§ÄÚ*/
+        /* æ—¶é’ŸIDä¸åœ¨èŒƒå›´å†…*/
         return -AM_ENXIO;
     }
         
@@ -183,12 +183,12 @@ int am_lpc84x_clk_init (am_lpc84x_clk_dev_t           *p_dev,
 		LPC_PWRD_API->set_fro_frequency(24000);
 	}
 
-    /* CLKÆ½Ì¨³õÊ¼»¯£¬ÅäÖÃÊ±ÖÓÒı½Å */
+    /* CLKå¹³å°åˆå§‹åŒ–ï¼Œé…ç½®æ—¶é’Ÿå¼•è„š */
     if (p_devinfo->pfn_plfm_init) {
     	p_devinfo->pfn_plfm_init();
     }
 
-    /* ÉèÖÃFROÊ±ÖÓ */
+    /* è®¾ç½®FROæ—¶é’Ÿ */
     amhw_lpc84x_clk_fro_set(AMHW_LPC84X_SYSCON_PD_FRO);
 
 	/* Wait for update to take effect */
@@ -196,17 +196,17 @@ int am_lpc84x_clk_init (am_lpc84x_clk_dev_t           *p_dev,
 
 	LPC84X_SYSCON->extclksel = p_devinfo->external_in_src;
 
-	/* Ê¹ÓÃ¿´ÃÅ¹·Ê±ÖÓ×÷ÎªÊ±ÖÓÔ´Ôò³õÊ¼»¯¿´ÃÅ¹·Ê±ÖÓ */
+	/* ä½¿ç”¨çœ‹é—¨ç‹—æ—¶é’Ÿä½œä¸ºæ—¶é’Ÿæºåˆ™åˆå§‹åŒ–çœ‹é—¨ç‹—æ—¶é’Ÿ */
 	if (p_devinfo->pllin_src == AMHW_LPC84X_CLK_PLLIN_SRC_WTD_CLK ) {
 
-        /* WDT_OSC×÷ÎªmianÊ±ÖÓÔ´ */
+        /* WDT_OSCä½œä¸ºmianæ—¶é’Ÿæº */
         amhw_lpc84x_clk_wdtoscc_cfg(p_devinfo->wdtosc_freq,
                                     p_devinfo->wdtosc_div);
 		amhw_lpc84x_syscon_powerup(AMHW_LPC84X_SYSCON_PD_WDT_OSC);
 		for (i = 0; i < 200; i++) __NOP();
 	}
 
-	/* ÅäÖÃPLL */
+	/* é…ç½®PLL */
     if (p_devinfo->main_src == AMHW_LPC84X_CLK_PLLIN_SRC_EXTERNAL_SYS_PLL ) {
     	LPC84X_SYSCON->pdruncfg       |= (AMHW_LPC84X_SYSCON_PD_SYS_PLL);
     	LPC84X_SYSCON->syspllclksel    = p_devinfo->pllin_src;
@@ -218,10 +218,10 @@ int am_lpc84x_clk_init (am_lpc84x_clk_dev_t           *p_dev,
   	    while (!(LPC84X_SYSCON->syspllstat & 1)) __NOP();
     }
 
-    /* ÇĞ»»Ö÷Ê±ÖÓÔ´ */
+    /* åˆ‡æ¢ä¸»æ—¶é’Ÿæº */
     amhw_lpc84x_clk_mainclk_set( p_devinfo->main_src);
 
-    /* ÏµÍ³Ê±ÖÓ·ÖÆµÖµ */
+    /* ç³»ç»Ÿæ—¶é’Ÿåˆ†é¢‘å€¼ */
     amhw_lpc84x_clk_main_div_set( p_devinfo->sysclk_div);
 
     /* Select main_clk as the source for FRG0 */
@@ -241,18 +241,18 @@ void am_lpc84x_clk_deinit(am_lpc84x_clk_dev_t *p_dev)
 
     const am_lpc84x_clk_devinfo_t *p_devinfo = p_dev->p_devinfo;
 
-    /* CLKÆ½Ì¨³õÊ¼»¯£¬ÅäÖÃÊ±ÖÓÒı½Å */
+    /* CLKå¹³å°åˆå§‹åŒ–ï¼Œé…ç½®æ—¶é’Ÿå¼•è„š */
     if (p_devinfo->pfn_plfm_deinit) {
         p_devinfo->pfn_plfm_deinit();
     }
 
-    /* ÇĞ»»Ö÷Ê±ÖÓÔ´ */
+    /* åˆ‡æ¢ä¸»æ—¶é’Ÿæº */
     amhw_lpc84x_clk_mainclk_set( AMHW_LPC84X_MAIN_CLK_PLLIN_SRC_MAIN_CLK_PRE_PLL);
 
 }
 
 /**
- * \brief Í¨¹ıÉè±¸»ùµØÖ·µÃµ½ÍâÉèµÄÊäÈëÆµÂÊ
+ * \brief é€šè¿‡è®¾å¤‡åŸºåœ°å€å¾—åˆ°å¤–è®¾çš„è¾“å…¥é¢‘ç‡
  */
 uint32_t amhw_lpc84x_clk_periph_freq_get (void *p_periph)
 {

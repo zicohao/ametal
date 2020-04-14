@@ -12,21 +12,21 @@
 
 /**
  * \file
- * \brief Ä£Äâ±È½ÏÆ÷Àý³Ì£¨²éÑ¯Ä£Ê½£©£¬Í¨¹ý HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief æ¨¡æ‹Ÿæ¯”è¾ƒå™¨ä¾‹ç¨‹ï¼ˆæŸ¥è¯¢æ¨¡å¼ï¼‰ï¼Œé€šè¿‡ HW å±‚æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. PIO0_1 Á¬½ÓÄ£ÄâÊäÈë 2£»
- *   2. PIO0_14 Á¬½ÓÄ£ÄâÊäÈë 3¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. PIO0_1 è¿žæŽ¥æ¨¡æ‹Ÿè¾“å…¥ 2ï¼›
+ *   2. PIO0_14 è¿žæŽ¥æ¨¡æ‹Ÿè¾“å…¥ 3ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ÊäÈë 2 ´óÓÚÊäÈë 3 Ê±£¬´®¿Ú»áÊä³ö±È½Ï½á¹û "result: PIO0_1_ACMP_I2 > PIO0_14_ACMP_I3"£»
- *   2. ÊäÈë 2 Ð¡ÓÚÊäÈë 3 Ê±£¬´®¿Ú»áÊä³ö±È½Ï½á¹û "result: PIO0_1_ACMP_I2 < PIO0_14_ACMP_I3"¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. è¾“å…¥ 2 å¤§äºŽè¾“å…¥ 3 æ—¶ï¼Œä¸²å£ä¼šè¾“å‡ºæ¯”è¾ƒç»“æžœ "result: PIO0_1_ACMP_I2 > PIO0_14_ACMP_I3"ï¼›
+ *   2. è¾“å…¥ 2 å°äºŽè¾“å…¥ 3 æ—¶ï¼Œä¸²å£ä¼šè¾“å‡ºæ¯”è¾ƒç»“æžœ "result: PIO0_1_ACMP_I2 < PIO0_14_ACMP_I3"ã€‚
  *
  * \note
- *    ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIO0_0 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *    PIO0_4 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
+ *    å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO0_0 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *    PIO0_4 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_lpc824_hw_acmp_poll.c src_lpc824_hw_acmp_poll
  *
  * \internal
@@ -52,8 +52,8 @@ void demo_lpc824_hw_acmp_poll_entry(amhw_lpc82x_acmp_t *p_hw_acmp,
                                     int                 pin)
 {
     amhw_lpc82x_acmp_config(p_hw_acmp,
-                            AMHW_LPC82X_ACMP_CTRL_VP_CMP2 | /* ÊäÈë 2 ÎªÍ¬Ïà¶ËÊäÈë */
-                            AMHW_LPC82X_ACMP_CTRL_VM_CMP3); /* ÊäÈë 3 Îª·´Ïà¶ËÊäÈë */
+                            AMHW_LPC82X_ACMP_CTRL_VP_CMP2 | /* è¾“å…¥ 2 ä¸ºåŒç›¸ç«¯è¾“å…¥ */
+                            AMHW_LPC82X_ACMP_CTRL_VM_CMP3); /* è¾“å…¥ 3 ä¸ºåç›¸ç«¯è¾“å…¥ */
 
     amhw_lpc82x_acmp_ladder_disable(p_hw_acmp);
     AM_FOREVER {

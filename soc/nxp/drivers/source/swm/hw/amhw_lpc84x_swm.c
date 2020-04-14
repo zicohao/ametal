@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief SWM (¿ª¹Ø¾ØÕó) Ó²¼ş²Ù×÷ÊµÏÖ
+ * \brief SWM (å¼€å…³çŸ©é˜µ) ç¡¬ä»¶æ“ä½œå®ç°
  *
  * \internal
  * \par Modification History
@@ -28,15 +28,15 @@
 #include "hw/amhw_lpc84x_swm.h"
 
 
-#define AMHW_LPC84X_SWM_NO_FIXED_FUNC    30   /**< \brief Òı½ÅÃ»ÓĞÌØÊâ¹¦ÄÜ   */
-#define AMHW_LPC84X_SWM_MULTI_FIXED_FUNC 255  /**< \brief Òı½ÅÓĞ¶à¸öÌØÊâ¹¦ÄÜ */
+#define AMHW_LPC84X_SWM_NO_FIXED_FUNC    30   /**< \brief å¼•è„šæ²¡æœ‰ç‰¹æ®ŠåŠŸèƒ½   */
+#define AMHW_LPC84X_SWM_MULTI_FIXED_FUNC 255  /**< \brief å¼•è„šæœ‰å¤šä¸ªç‰¹æ®ŠåŠŸèƒ½ */
 
 /*
- * LPC8XX PINENABLE Òı½ÅÌØÊâ¹¦ÄÜºÅÆ«ÒÆ±í
+ * LPC8XX PINENABLE å¼•è„šç‰¹æ®ŠåŠŸèƒ½å·åç§»è¡¨
  * amhw_lpc84x_swm_fixedfunc_offset_pin[PIO0_5]:
- *                                           PIO0_5Òı½ÅÌØÊâ¹¦ÄÜÔÚ¼Ä´æÆ÷ÖĞµÄÎ»Æ«ÒÆ
- * ×¢£ºAMHW_LPC84X_SWM_NO_FIXED_FUNC           £ºÒı½ÅÃ»ÓĞÌØÊâ¹¦ÄÜ
- *     AMHW_LPC84X_SWM_MULTI_FIXED_FUNC        £ºÒı½ÅÓĞ¶à¸öÌØÊâ¹¦ÄÜ
+ *                                           PIO0_5å¼•è„šç‰¹æ®ŠåŠŸèƒ½åœ¨å¯„å­˜å™¨ä¸­çš„ä½åç§»
+ * æ³¨ï¼šAMHW_LPC84X_SWM_NO_FIXED_FUNC           ï¼šå¼•è„šæ²¡æœ‰ç‰¹æ®ŠåŠŸèƒ½
+ *     AMHW_LPC84X_SWM_MULTI_FIXED_FUNC        ï¼šå¼•è„šæœ‰å¤šä¸ªç‰¹æ®ŠåŠŸèƒ½
  */
 const static uint8_t amhw_lpc84x_swm_fixedfunc_offset_pin[]=
 {
@@ -72,12 +72,12 @@ const static uint8_t amhw_lpc84x_swm_fixedfunc_offset_pin[]=
 };
 
 /**
- * \brief È¡ÏûÒı½ÅµÄÌØÊâ¹¦ÄÜ
+ * \brief å–æ¶ˆå¼•è„šçš„ç‰¹æ®ŠåŠŸèƒ½
  */
 void amhw_lpc84x_swm_pin_fixed_func_disable (amhw_lpc84x_swm_t *p_hw_swm,
                                              int                pin)
 {
-    /* Ã»ÓĞÌØÊâ¹¦ÄÜµÄÒı½Å²Ù×÷ÎŞĞ§ */
+    /* æ²¡æœ‰ç‰¹æ®ŠåŠŸèƒ½çš„å¼•è„šæ“ä½œæ— æ•ˆ */
     if((pin > LPC84X_PIN_NUM) ||
        (amhw_lpc84x_swm_fixedfunc_offset_pin[pin] ==
                                                AMHW_LPC84X_SWM_NO_FIXED_FUNC)) {
@@ -86,7 +86,7 @@ void amhw_lpc84x_swm_pin_fixed_func_disable (amhw_lpc84x_swm_t *p_hw_swm,
 
     switch(pin) {
 
-    /* Á½¸ö¹¦ÄÜ£ºPIO0_1_ACMP_I2£¬PIO0_1_CLKIN */
+    /* ä¸¤ä¸ªåŠŸèƒ½ï¼šPIO0_1_ACMP_I2ï¼ŒPIO0_1_CLKIN */
     case PIO0_1:
         amhw_lpc84x_swm_fixed_func_disable(p_hw_swm,
                                            AMHW_LPC84X_SWM_PIO0_1_ACMP_I2);
@@ -94,7 +94,7 @@ void amhw_lpc84x_swm_pin_fixed_func_disable (amhw_lpc84x_swm_t *p_hw_swm,
                                            AMHW_LPC84X_SWM_PIO0_1_CLKIN);
         break;
 
-    /* Á½¸ö¹¦ÄÜ£ºPIO0_6_VDDCMP£¬PIO0_6_ADC_1 */
+    /* ä¸¤ä¸ªåŠŸèƒ½ï¼šPIO0_6_VDDCMPï¼ŒPIO0_6_ADC_1 */
     case PIO0_6:
         amhw_lpc84x_swm_fixed_func_disable(p_hw_swm,
                                            AMHW_LPC84X_SWM_PIO0_6_VDDCMP);
@@ -102,7 +102,7 @@ void amhw_lpc84x_swm_pin_fixed_func_disable (amhw_lpc84x_swm_t *p_hw_swm,
                                            AMHW_LPC84X_SWM_PIO0_6_ADC_1);
         break;
 
-    /* Á½¸ö¹¦ÄÜ£ºPIO0_14_ACMP_I3£¬PIO0_14_ADC_2 */
+    /* ä¸¤ä¸ªåŠŸèƒ½ï¼šPIO0_14_ACMP_I3ï¼ŒPIO0_14_ADC_2 */
     case PIO0_14:
         amhw_lpc84x_swm_fixed_func_disable(p_hw_swm,
                                            AMHW_LPC84X_SWM_PIO0_14_ACMP_I3);
@@ -110,7 +110,7 @@ void amhw_lpc84x_swm_pin_fixed_func_disable (amhw_lpc84x_swm_t *p_hw_swm,
                                            AMHW_LPC84X_SWM_PIO0_14_ADC_2);
         break;
 
-    /* Á½¸ö¹¦ÄÜ£ºPIO0_23_ACMP_I4£¬PIO0_23_ADC_3 */
+    /* ä¸¤ä¸ªåŠŸèƒ½ï¼šPIO0_23_ACMP_I4ï¼ŒPIO0_23_ADC_3 */
     case PIO0_23:
         amhw_lpc84x_swm_fixed_func_disable(p_hw_swm,
                                            AMHW_LPC84X_SWM_PIO0_23_ACMP_I4);
@@ -118,7 +118,7 @@ void amhw_lpc84x_swm_pin_fixed_func_disable (amhw_lpc84x_swm_t *p_hw_swm,
                                            AMHW_LPC84X_SWM_PIO0_23_ADC_3);
         break;
 
-    /* ÆäËüÒı½Å²é±í */
+    /* å…¶å®ƒå¼•è„šæŸ¥è¡¨ */
     default:
         amhw_lpc84x_swm_fixed_func_disable(
         p_hw_swm,
@@ -128,13 +128,13 @@ void amhw_lpc84x_swm_pin_fixed_func_disable (amhw_lpc84x_swm_t *p_hw_swm,
 }
 
 /**
- * \brief Ê¹ÄÜÒı½ÅµÄÌØÊâ¹¦ÄÜ
+ * \brief ä½¿èƒ½å¼•è„šçš„ç‰¹æ®ŠåŠŸèƒ½
  */
 void amhw_lpc84x_swm_pin_fixed_func_enable (amhw_lpc84x_swm_t *p_hw_swm,
                                             int                pin,
                                             uint32_t           func)
 {
-    /* Ã»ÓĞÌØÊâ¹¦ÄÜµÄÒı½Å²Ù×÷ÎŞĞ§ */
+    /* æ²¡æœ‰ç‰¹æ®ŠåŠŸèƒ½çš„å¼•è„šæ“ä½œæ— æ•ˆ */
     if((pin > LPC84X_PIN_NUM) ||
        (amhw_lpc84x_swm_fixedfunc_offset_pin[pin] ==
                                                AMHW_LPC84X_SWM_NO_FIXED_FUNC)) {
@@ -143,7 +143,7 @@ void amhw_lpc84x_swm_pin_fixed_func_enable (amhw_lpc84x_swm_t *p_hw_swm,
 
     switch(pin) {
 
-    /* Á½¸ö¹¦ÄÜ£ºPIO0_1_ACMP_I2£¬PIO0_1_CLKIN */
+    /* ä¸¤ä¸ªåŠŸèƒ½ï¼šPIO0_1_ACMP_I2ï¼ŒPIO0_1_CLKIN */
     case PIO0_1:
         if (func == PIO0_1_ACMP_I2) {
             amhw_lpc84x_swm_fixed_func_enable(p_hw_swm,
@@ -155,7 +155,7 @@ void amhw_lpc84x_swm_pin_fixed_func_enable (amhw_lpc84x_swm_t *p_hw_swm,
         }
         break;
 
-    /* Á½¸ö¹¦ÄÜ£ºPIO0_6_VDDCMP£¬PIO0_6_ADC_1 */
+    /* ä¸¤ä¸ªåŠŸèƒ½ï¼šPIO0_6_VDDCMPï¼ŒPIO0_6_ADC_1 */
     case PIO0_6:
         if (func == PIO0_6_VDDCMP) {
             amhw_lpc84x_swm_fixed_func_enable(p_hw_swm,
@@ -167,7 +167,7 @@ void amhw_lpc84x_swm_pin_fixed_func_enable (amhw_lpc84x_swm_t *p_hw_swm,
         }
         break;
 
-    /* Á½¸ö¹¦ÄÜ£ºPIO0_14_ACMP_I3£¬PIO0_14_ADC_2 */
+    /* ä¸¤ä¸ªåŠŸèƒ½ï¼šPIO0_14_ACMP_I3ï¼ŒPIO0_14_ADC_2 */
     case PIO0_14:
         if (func == PIO0_14_ACMP_I3) {
             amhw_lpc84x_swm_fixed_func_enable(p_hw_swm,
@@ -179,7 +179,7 @@ void amhw_lpc84x_swm_pin_fixed_func_enable (amhw_lpc84x_swm_t *p_hw_swm,
         }
         break;
 
-    /* Á½¸ö¹¦ÄÜ£ºPIO0_23_ACMP_I4£¬PIO0_23_ADC_3 */
+    /* ä¸¤ä¸ªåŠŸèƒ½ï¼šPIO0_23_ACMP_I4ï¼ŒPIO0_23_ADC_3 */
     case PIO0_23:
         if (func == PIO0_23_ACMP_I4) {
             amhw_lpc84x_swm_fixed_func_enable(p_hw_swm,
@@ -191,7 +191,7 @@ void amhw_lpc84x_swm_pin_fixed_func_enable (amhw_lpc84x_swm_t *p_hw_swm,
         }
         break;
 
-    /* ÆäËüÒı½Å²é±í */
+    /* å…¶å®ƒå¼•è„šæŸ¥è¡¨ */
     default:
         amhw_lpc84x_swm_fixed_func_enable(
         p_hw_swm,

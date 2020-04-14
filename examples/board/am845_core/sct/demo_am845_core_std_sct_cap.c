@@ -12,19 +12,19 @@
 
 /**
  * \file
- * \brief SCT ²¶»ñÀý³Ì£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief SCT æ•èŽ·ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. PIO0_25 Òý½Å²¶»ñÌø±äÑØÀ´»ñÈ¡ PWM ÖÜÆÚ£»
- *   2. ´®¿Ú´òÓ¡²¶»ñµ½µÄÖÜÆÚºÍÆµÂÊ¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. PIO0_25 å¼•è„šæ•èŽ·è·³å˜æ²¿æ¥èŽ·å– PWM å‘¨æœŸï¼›
+ *   2. ä¸²å£æ‰“å°æ•èŽ·åˆ°çš„å‘¨æœŸå’Œé¢‘çŽ‡ã€‚
  *
  * \note
- *    1. ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIO0_0 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *       PIO0_4 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD£»
- *    2. ÓÉÓÚ SCT Ä¬ÈÏ×÷ÎªÇý¶¯·äÃùÆ÷£¬Ê¹ÓÃ²âÊÔ±¾ Demo Ç°ÐèÒª½« am_prj_config.h ÖÐ
- *       µÄ AM_CFG_BUZZER_ENABLE ¶¨ÒåÎª 0£¬²»Ê¹ÓÃ·äÃùÆ÷¡£
+ *    1. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO0_0 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *       PIO0_4 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDï¼›
+ *    2. ç”±äºŽ SCT é»˜è®¤ä½œä¸ºé©±åŠ¨èœ‚é¸£å™¨ï¼Œä½¿ç”¨æµ‹è¯•æœ¬ Demo å‰éœ€è¦å°† am_prj_config.h ä¸­
+ *       çš„ AM_CFG_BUZZER_ENABLE å®šä¹‰ä¸º 0ï¼Œä¸ä½¿ç”¨èœ‚é¸£å™¨ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am824_std_sct_cap.c src_am824_std_sct_cap
  *
  * \internal
@@ -47,7 +47,7 @@
 #include "demo_std_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am845_core_std_sct_cap_entry (void)
 {

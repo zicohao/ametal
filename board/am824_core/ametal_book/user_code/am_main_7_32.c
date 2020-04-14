@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief 程序清单7.32
+ * \brief 绋嬪簭娓呭崟7.32
  *
  *
  * \internal
@@ -27,21 +27,21 @@
 static void __input_key1_proc(void *p_arg, int key_code, int key_state, int keep_time)
 {
     if (key_code == KEY_KP0) {
-        // 处理按键1
+        // 澶勭悊鎸夐敭1
     }
 }
 
 static void __input_key2_proc (void *p_arg, int key_code, int key_state, int keep_time)
 {
     if (key_code == KEY_KP1){
-        // 处理按键2
+        // 澶勭悊鎸夐敭2
     }
 }
 
 static void __input_key3_proc (void *p_arg, int key_code, int key_state, int keep_time)
 {
     if (key_code == KEY_KP2){
-        // 处理按键3
+        // 澶勭悊鎸夐敭3
     }
 }
 

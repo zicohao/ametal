@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief оƬƬ��ϵͳӲ�����ã� �������ļ���Ӱ�� ����Ĵ����б��Ķ���
+ * \brief 芯片片上系统硬件配置， 该配置文件将影响 外设寄存器列表的定义
  *
- * ����Ӳ��������Ҫ���ã����磬ͨ����Ŀ�ȣ� ��ͬоƬ���ܴ��ڲ��졣 ���ļ�������ָ��
- * оƬ��Ӧ��Ӳ�����á�ÿ��оƬĿ¼�¾�Ӧ����һ�����ļ���
+ * 部分硬件可能需要配置，例如，通道数目等， 不同芯片可能存在差异。 本文件包含了指定
+ * 芯片对应的硬件配置。每个芯片目录下均应包含一个该文件。
  *
  * \internal
  * \par Modification history
@@ -31,17 +31,17 @@ extern "C" {
 #endif
 
 /**
- * \name ZLG116 Ӳ�����ã�������������ʹ�õ��ĸ�������
+ * \name ZLG116 硬件配置，配置项来自于使用到的各个驱动
  * @{
  */
 
-/** \brief DMA ͨ����Ŀ���ã������������  hw/amhw_zlg_dma.h �ļ��� */
+/** \brief DMA 通道数目配置，该配置项被用于  hw/amhw_zlg_dma.h 文件中 */
 #define SOC_CFG_ZLG_DMA_CHAN_CNT          5
 
-/**< \brief flash�Ĵ�С ���ֽ�(8bit)Ϊ��λ */
+/**< \brief flash的大小 以字节(8bit)为单位 */
 #define FLASH_SIZE  (1024 * 64UL)
 
-/**< \brief ������С ����(32bit)Ϊ��λ */
+/**< \brief 扇区大小 以字(32bit)为单位 */
 #define SECTOR_SIZE (4096UL / 4)
 
 /**@} */

@@ -27,7 +27,7 @@ typedef int (*slist_node_process_t) (void *p_arg, slist_node_t *p_node);
 static int __view_process(void *p_arg, slist_node_t *p_node)
 {
 	observer_t	*p_observer = (observer_t *)p_node;
-  model_t	    *p_model    = (model_t *)p_arg;		// 此处的p_arg为指向模型自身的指针
+  model_t	    *p_model    = (model_t *)p_arg;		// 姝ゅ鐨刾_arg涓烘寚鍚戞ā鍨嬭嚜韬殑鎸囬拡
 	p_observer -> pfn_update_view(p_observer, p_model);
 	return 0;
 }
@@ -94,7 +94,7 @@ int model_notify(model_t *p_this)
 		if (p_this == NULL){
 			return -1;
 		}
-		slist_foreach(&p_this -> head, __view_process, p_this);// 遍历链表，模型自身作为遍历函数的参数
+		slist_foreach(&p_this -> head, __view_process, p_this);// 閬嶅巻閾捐〃锛屾ā鍨嬭嚜韬綔涓洪亶鍘嗗嚱鏁扮殑鍙傛暟
 		return 0;
 }
 

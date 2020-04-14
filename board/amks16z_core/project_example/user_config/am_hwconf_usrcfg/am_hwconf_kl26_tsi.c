@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief KL26 TSI ÓÃ»§ÅäÖÃÎÄ¼ş¡£
+ * \brief KL26 TSI ç”¨æˆ·é…ç½®æ–‡ä»¶ã€‚
  * \sa am_kl26_hwconfig_tsi.c
  *
  * \internal
@@ -36,37 +36,37 @@
  * @{
  */
 
-/** \brief tsiÆ½Ì¨³õÊ¼»¯ */
+/** \brief tsiå¹³å°åˆå§‹åŒ– */
 static void __plfm_tsi_init (void)
 {
-    /* Ê¹ÄÜtsiÏà¹ØÍâÉèÊ±ÖÓ */
+    /* ä½¿èƒ½tsiç›¸å…³å¤–è®¾æ—¶é’Ÿ */
     amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_TSI);
 
-    /* ÅäÖÃPIOA_1Òı½ÅÎªTSI0_CH2 */
+    /* é…ç½®PIOA_1å¼•è„šä¸ºTSI0_CH2 */
     am_gpio_pin_cfg(PIOA_1, PIOA_1_TSI0_CH2);
 }
 
-/** \brief tsiÆ½Ì¨È¥³õÊ¼»¯ */
+/** \brief tsiå¹³å°å»åˆå§‹åŒ– */
 static void __plfm_tsi_deinit (void)
 {
-    /* ½ûÄÜtsiÏà¹ØÍâÉèÊ±ÖÓ */
+    /* ç¦èƒ½tsiç›¸å…³å¤–è®¾æ—¶é’Ÿ */
     amhw_kl26_sim_periph_clock_disable(KL26_SIM_SCGC_TSI);
 }
 
-/** \brief tsiÉè±¸ĞÅÏ¢     */
+/** \brief tsiè®¾å¤‡ä¿¡æ¯     */
 static const am_fsl_tsi_devinfo_t __g_tsi_devinfo = {
-    KL26_TSI,               /**< \brief Ö¸Ïòtsi¶Ë¿Ú¼Ä´æÆ÷¿éµÄÖ¸Õë */
-    AM_FALSE,               /**< \brief ²»ÆôÓÃµÍ¹¦ºÄÖĞ¶Ï»½ĞÑMCU¹¦ÄÜ */
+    KL26_TSI,               /**< \brief æŒ‡å‘tsiç«¯å£å¯„å­˜å™¨å—çš„æŒ‡é’ˆ */
+    AM_FALSE,               /**< \brief ä¸å¯ç”¨ä½åŠŸè€—ä¸­æ–­å”¤é†’MCUåŠŸèƒ½ */
 	INUM_TSI0,
-    __plfm_tsi_init,     /**< \brief TSIÆ½Ì¨³õÊ¼»¯.  */
-    __plfm_tsi_deinit    /**< \brief TSIÆ½Ì¨È¥³õÊ¼»¯.  */
+    __plfm_tsi_init,     /**< \brief TSIå¹³å°åˆå§‹åŒ–.  */
+    __plfm_tsi_deinit    /**< \brief TSIå¹³å°å»åˆå§‹åŒ–.  */
 };
 
-/** \brief tsiÉè±¸ÊµÀı   */
+/** \brief tsiè®¾å¤‡å®ä¾‹   */
 static am_fsl_tsi_dev_t __g_tsi_dev;
 
 /**
- * \brief TSIÊµÀı³õÊ¼»¯
+ * \brief TSIå®ä¾‹åˆå§‹åŒ–
  */
 int am_kl26_tsi_inst_init (void)
 {
@@ -74,7 +74,7 @@ int am_kl26_tsi_inst_init (void)
 }
 
 /**
- * \brief TSIÊµÀı½â³õÊ¼»¯
+ * \brief TSIå®ä¾‹è§£åˆå§‹åŒ–
  */
 void am_kl26_tsi_inst_deinit (void)
 {

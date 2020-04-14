@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief bootloader kboot KinetisFlashTool ´®ĞĞÊı¾İ°üÉùÃ÷
+ * \brief bootloader kboot KinetisFlashTool ä¸²è¡Œæ•°æ®åŒ…å£°æ˜
  *
  *
  * \internal

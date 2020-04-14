@@ -12,22 +12,22 @@
 
 /**
  * \file
- * \brief Ö§³Ö¶àÊµÀıµÄ¶ÎÊ½ÊıÂë¹ÜÇı¶¯½Ó¿Ú
+ * \brief æ”¯æŒå¤šå®ä¾‹çš„æ®µå¼æ•°ç ç®¡é©±åŠ¨æ¥å£
  *
- * Ê¹ÓÃ±¾·şÎñĞèÒª°üº¬Í·ÎÄ¼ş am_digitron_disp.h
+ * ä½¿ç”¨æœ¬æœåŠ¡éœ€è¦åŒ…å«å¤´æ–‡ä»¶ am_digitron_disp.h
  *
- * \par Ê¹ÓÃÊ¾Àı
+ * \par ä½¿ç”¨ç¤ºä¾‹
  * \code
  * #include "am_digitron_disp.h"
  *
- * // ³õÊ¼»¯£¬ÉèÖÃ8¶ÎASCII½âÂë
+ * // åˆå§‹åŒ–ï¼Œè®¾ç½®8æ®µASCIIè§£ç 
  * am_digitron_disp_decode_set(0, am_digitron_seg8_ascii_decode);
  *
- * am_digitron_disp_blink_set(0, 0, AM_TRUE);  // ÉèÖÃµÚ0¸öÊıÂë¹ÜÉÁË¸
- * am_digitron_disp_at(0, 0, 0x54);            // µÚ0¸öÊıÂë¹ÜÏÔÊ¾×Ô¶¨ÒåĞÎ×´0x54
- * am_digitron_disp_char_at(0, 1, 'A');        // µÚ1¸öÊıÂë¹ÜÏÔÊ¾×Ö·û'A'
- * am_digitron_disp_clr(0);                    // Çå³ıËùÓĞÊıÂë¹ÜÏÔÊ¾£¨ºÚÆÁ£©
- * am_digitron_disp_str(0, 0, 4, "0123");      // ÊıÂë¹ÜÏÔÊ¾×Ö·û´®"0123"
+ * am_digitron_disp_blink_set(0, 0, AM_TRUE);  // è®¾ç½®ç¬¬0ä¸ªæ•°ç ç®¡é—ªçƒ
+ * am_digitron_disp_at(0, 0, 0x54);            // ç¬¬0ä¸ªæ•°ç ç®¡æ˜¾ç¤ºè‡ªå®šä¹‰å½¢çŠ¶0x54
+ * am_digitron_disp_char_at(0, 1, 'A');        // ç¬¬1ä¸ªæ•°ç ç®¡æ˜¾ç¤ºå­—ç¬¦'A'
+ * am_digitron_disp_clr(0);                    // æ¸…é™¤æ‰€æœ‰æ•°ç ç®¡æ˜¾ç¤ºï¼ˆé»‘å±ï¼‰
+ * am_digitron_disp_str(0, 0, 4, "0123");      // æ•°ç ç®¡æ˜¾ç¤ºå­—ç¬¦ä¸²"0123"
  * \endcode
  *
  * \internal
@@ -52,15 +52,15 @@ extern "C" {
  */
 
 /**
- * \brief Í¨ÓÃµÄ8¶ÎÊıÂë¹ÜASCII×Ö·û½âÂëº¯Êı
- * \param[in] ascii_char £º Òª½âÂëµÄASCII×Ö·û
- * \return ASCII×Ö·û¶ÔÓ¦µÄÊıÂë¹Ü×ÖĞÎÊı¾İ, Èç¹ûÎŞ·¨½âÂë£¬·µ»Ø¿Õ°×Âë£¨0x00£©¡£
+ * \brief é€šç”¨çš„8æ®µæ•°ç ç®¡ASCIIå­—ç¬¦è§£ç å‡½æ•°
+ * \param[in] ascii_char ï¼š è¦è§£ç çš„ASCIIå­—ç¬¦
+ * \return ASCIIå­—ç¬¦å¯¹åº”çš„æ•°ç ç®¡å­—å½¢æ•°æ®, å¦‚æœæ— æ³•è§£ç ï¼Œè¿”å›ç©ºç™½ç ï¼ˆ0x00ï¼‰ã€‚
  *
  * \note
- * ¸Ãº¯ÊıÒ»°ã×÷Îª8¶ÎÊıÂë¹ÜµÄÄ¬ÈÏ½âÂëº¯Êı£¬Èç¹ûÓÃ»§ĞèÒªÊ¹ÓÃ×Ô¶¨ÒåµÄ½âÂëº¯Êı¶Ô×Ö·û
- * ½øĞĞ½âÂë£¬¿ÉÒÔÊ¹ÓÃ am_digitron_disp_set_decode() ÉèÖÃ×Ô¶¨ÒåµÄ½âÂëº¯Êı¡£
+ * è¯¥å‡½æ•°ä¸€èˆ¬ä½œä¸º8æ®µæ•°ç ç®¡çš„é»˜è®¤è§£ç å‡½æ•°ï¼Œå¦‚æœç”¨æˆ·éœ€è¦ä½¿ç”¨è‡ªå®šä¹‰çš„è§£ç å‡½æ•°å¯¹å­—ç¬¦
+ * è¿›è¡Œè§£ç ï¼Œå¯ä»¥ä½¿ç”¨ am_digitron_disp_set_decode() è®¾ç½®è‡ªå®šä¹‰çš„è§£ç å‡½æ•°ã€‚
  *
- * ¸Ãº¯ÊıÖ§³ÖµÄASCII×Ö·ûÓĞ£º
+ * è¯¥å‡½æ•°æ”¯æŒçš„ASCIIå­—ç¬¦æœ‰ï¼š
  *  |  A  |  S  |  C  |  I  |  I  |
  *  |-----|-----|-----|-----|-----|
  *  | '0' | '1' | '2' | '3' | '4' |
@@ -77,97 +77,97 @@ extern "C" {
 uint16_t am_digitron_seg8_ascii_decode (uint16_t ascii_char);
 
 /**
- * \brief ÉèÖÃÊıÂë¹ÜÏÔÊ¾Çı¶¯µÄ¶ÎÂë½âÂë½Ó¿Ú
+ * \brief è®¾ç½®æ•°ç ç®¡æ˜¾ç¤ºé©±åŠ¨çš„æ®µç è§£ç æ¥å£
  *
- * \param[in] id         : ÏÔÊ¾Æ÷±àºÅ
- * \param[in] pfn_decode : ½âÂëº¯Êı
+ * \param[in] id         : æ˜¾ç¤ºå™¨ç¼–å·
+ * \param[in] pfn_decode : è§£ç å‡½æ•°
  *
- * \retval AM_OK      : ÉèÖÃ³É¹¦
- * \retval -AM_ENODEV : ÏÔÊ¾Æ÷±àºÅÓĞÎó£¬ÎŞ´ËÏÔÊ¾Æ÷
+ * \retval AM_OK      : è®¾ç½®æˆåŠŸ
+ * \retval -AM_ENODEV : æ˜¾ç¤ºå™¨ç¼–å·æœ‰è¯¯ï¼Œæ— æ­¤æ˜¾ç¤ºå™¨
  */
 int am_digitron_disp_decode_set (int        id,
                                  uint16_t (*pfn_decode) (uint16_t ch));
 
 /**
- * \brief ÉèÖÃÊıÂë¹ÜÏÔÊ¾ÉÁË¸ÊôĞÔ
+ * \brief è®¾ç½®æ•°ç ç®¡æ˜¾ç¤ºé—ªçƒå±æ€§
  *
- * \param[in] id    : ÏÔÊ¾Æ÷±àºÅ
- * \param[in] index : ÊıÂë¹ÜË÷ÒıºÅ
- * \param[in] blink : ÉÁË¸ÊôĞÔ£¬TURE£ºÉÁË¸£¬FALSE£º½ûÖ¹ÉÁË¸¡£
+ * \param[in] id    : æ˜¾ç¤ºå™¨ç¼–å·
+ * \param[in] index : æ•°ç ç®¡ç´¢å¼•å·
+ * \param[in] blink : é—ªçƒå±æ€§ï¼ŒTUREï¼šé—ªçƒï¼ŒFALSEï¼šç¦æ­¢é—ªçƒã€‚
  *
- * \retval AM_OK      : ÉèÖÃ³É¹¦
- * \retval -AM_ENODEV : ÏÔÊ¾Æ÷±àºÅÓĞÎó£¬ÎŞ´ËÏÔÊ¾Æ÷
+ * \retval AM_OK      : è®¾ç½®æˆåŠŸ
+ * \retval -AM_ENODEV : æ˜¾ç¤ºå™¨ç¼–å·æœ‰è¯¯ï¼Œæ— æ­¤æ˜¾ç¤ºå™¨
  */
 int am_digitron_disp_blink_set (int id, int index, am_bool_t blink);
 
 /**
- * \brief Ö±½ÓÏòÊıÂë¹ÜĞ´Èë¶ÎÂëÏÔÊ¾Êı¾İ¡£±¾º¯ÊıÒ»°ãÓÃÓÚÏÔÊ¾×Ô¶¨ÒåµÄÌØÊâ·ûºÅ»òĞÎ×´
+ * \brief ç›´æ¥å‘æ•°ç ç®¡å†™å…¥æ®µç æ˜¾ç¤ºæ•°æ®ã€‚æœ¬å‡½æ•°ä¸€èˆ¬ç”¨äºæ˜¾ç¤ºè‡ªå®šä¹‰çš„ç‰¹æ®Šç¬¦å·æˆ–å½¢çŠ¶
  *
- * \param[in] id    : ÏÔÊ¾Æ÷±àºÅ
- * \param[in] index : ÊıÂë¹ÜË÷ÒıºÅ
- * \param[in] seg   : ÏÔÊ¾µÄ¡°¶Î¡±Âë£¨¸ßµçÆ½ÓĞĞ§£¬Î»ÖµÎª1Ê±£¬ÏàÓ¦µÄ¶ÎµãÁÁ£©
+ * \param[in] id    : æ˜¾ç¤ºå™¨ç¼–å·
+ * \param[in] index : æ•°ç ç®¡ç´¢å¼•å·
+ * \param[in] seg   : æ˜¾ç¤ºçš„â€œæ®µâ€ç ï¼ˆé«˜ç”µå¹³æœ‰æ•ˆï¼Œä½å€¼ä¸º1æ—¶ï¼Œç›¸åº”çš„æ®µç‚¹äº®ï¼‰
  *
- * \retval AM_OK      : Ğ´Èë³É¹¦
- * \retval -AM_ENODEV : ÏÔÊ¾Æ÷±àºÅÓĞÎó£¬ÎŞ´ËÏÔÊ¾Æ÷
+ * \retval AM_OK      : å†™å…¥æˆåŠŸ
+ * \retval -AM_ENODEV : æ˜¾ç¤ºå™¨ç¼–å·æœ‰è¯¯ï¼Œæ— æ­¤æ˜¾ç¤ºå™¨
  */
 int am_digitron_disp_at (int id, int index, uint16_t seg);
 
 /**
- * \brief ÔÚÖ¸¶¨±àºÅµÄÊıÂë¹ÜÉÏÏÔÊ¾ASCII×Ö·û
+ * \brief åœ¨æŒ‡å®šç¼–å·çš„æ•°ç ç®¡ä¸Šæ˜¾ç¤ºASCIIå­—ç¬¦
  *
- * \param[in] id    : ÏÔÊ¾Æ÷±àºÅ
- * \param[in] index : ÊıÂë¹ÜË÷ÒıºÅ
- * \param[in] ch    : ÒªÏÔÊ¾µÄASCII×Ö·û
+ * \param[in] id    : æ˜¾ç¤ºå™¨ç¼–å·
+ * \param[in] index : æ•°ç ç®¡ç´¢å¼•å·
+ * \param[in] ch    : è¦æ˜¾ç¤ºçš„ASCIIå­—ç¬¦
  *
- * \retval AM_OK      : ÉèÖÃ³É¹¦
- * \retval -AM_ENODEV : ÏÔÊ¾Æ÷±àºÅÓĞÎó£¬ÎŞ´ËÏÔÊ¾Æ÷
+ * \retval AM_OK      : è®¾ç½®æˆåŠŸ
+ * \retval -AM_ENODEV : æ˜¾ç¤ºå™¨ç¼–å·æœ‰è¯¯ï¼Œæ— æ­¤æ˜¾ç¤ºå™¨
  *
- * \note ÄÜÏÔÊ¾µÄ×Ö·ûÓÉ½âÂëº¯ÊıÈ·¶¨
+ * \note èƒ½æ˜¾ç¤ºçš„å­—ç¬¦ç”±è§£ç å‡½æ•°ç¡®å®š
  */
 int am_digitron_disp_char_at (int id, int index, const char ch);
 
 /**
- * \brief ÔÚÊıÂë¹ÜÉÏÏÔÊ¾ASCII×Ö·û´®
+ * \brief åœ¨æ•°ç ç®¡ä¸Šæ˜¾ç¤ºASCIIå­—ç¬¦ä¸²
  *
- * \param[in] id    : ÏÔÊ¾Æ÷±àºÅ
- * \param[in] index : ÊıÂë¹ÜË÷ÒıºÅ
- * \param[in] len   : ÏÔÊ¾³¤¶È
- * \param[in] p_str : ÒªÏÔÊ¾µÄASCII×Ö·û´®
+ * \param[in] id    : æ˜¾ç¤ºå™¨ç¼–å·
+ * \param[in] index : æ•°ç ç®¡ç´¢å¼•å·
+ * \param[in] len   : æ˜¾ç¤ºé•¿åº¦
+ * \param[in] p_str : è¦æ˜¾ç¤ºçš„ASCIIå­—ç¬¦ä¸²
  *
- * \retval AM_OK      : ÏÔÊ¾³É¹¦
- * \retval -AM_ENODEV : ÏÔÊ¾Æ÷±àºÅÓĞÎó£¬ÎŞ´ËÏÔÊ¾Æ÷
+ * \retval AM_OK      : æ˜¾ç¤ºæˆåŠŸ
+ * \retval -AM_ENODEV : æ˜¾ç¤ºå™¨ç¼–å·æœ‰è¯¯ï¼Œæ— æ­¤æ˜¾ç¤ºå™¨
  *
- * \note ÄÜÏÔÊ¾µÄ×Ö·ûÓÉ½âÂëº¯ÊıÈ·¶¨
+ * \note èƒ½æ˜¾ç¤ºçš„å­—ç¬¦ç”±è§£ç å‡½æ•°ç¡®å®š
  */
 int am_digitron_disp_str (int id, int index, int len, const char *p_str);
 
 /**
- * \brief Çå³ıËùÓĞÊıÂë¹ÜÏÔÊ¾
+ * \brief æ¸…é™¤æ‰€æœ‰æ•°ç ç®¡æ˜¾ç¤º
  *
- * \param[in] id  : ÏÔÊ¾Æ÷±àºÅ
+ * \param[in] id  : æ˜¾ç¤ºå™¨ç¼–å·
  *
- * \retval AM_OK      : ÇåÆÁ³É¹¦
- * \retval -AM_ENODEV : ÏÔÊ¾Æ÷±àºÅÓĞÎó£¬ÎŞ´ËÏÔÊ¾Æ÷
+ * \retval AM_OK      : æ¸…å±æˆåŠŸ
+ * \retval -AM_ENODEV : æ˜¾ç¤ºå™¨ç¼–å·æœ‰è¯¯ï¼Œæ— æ­¤æ˜¾ç¤ºå™¨
  */
 int am_digitron_disp_clr (int id);
 
 /**
- * \brief Ê¹ÄÜÊıÂë¹ÜÏÔÊ¾£¬¿ªÆôÉ¨Ãè£¨Ä¬ÈÏ×´Ì¬ÊÇ¿ªÆôµÄ£©
+ * \brief ä½¿èƒ½æ•°ç ç®¡æ˜¾ç¤ºï¼Œå¼€å¯æ‰«æï¼ˆé»˜è®¤çŠ¶æ€æ˜¯å¼€å¯çš„ï¼‰
  *
- * \param[in] id  : ÏÔÊ¾Æ÷±àºÅ
+ * \param[in] id  : æ˜¾ç¤ºå™¨ç¼–å·
  *
- * \retval AM_OK      : Ê¹ÄÜ³É¹¦
- * \retval -AM_ENODEV : ÏÔÊ¾Æ÷±àºÅÓĞÎó£¬ÎŞ´ËÏÔÊ¾Æ÷
+ * \retval AM_OK      : ä½¿èƒ½æˆåŠŸ
+ * \retval -AM_ENODEV : æ˜¾ç¤ºå™¨ç¼–å·æœ‰è¯¯ï¼Œæ— æ­¤æ˜¾ç¤ºå™¨
  */
 int am_digitron_disp_enable (int id);
 
 /**
- * \brief ½ûÄÜÊıÂë¹ÜÏÔÊ¾,Í£Ö¹É¨Ãè
+ * \brief ç¦èƒ½æ•°ç ç®¡æ˜¾ç¤º,åœæ­¢æ‰«æ
  *
- * \param[in] id  : ÏÔÊ¾Æ÷±àºÅ
+ * \param[in] id  : æ˜¾ç¤ºå™¨ç¼–å·
  *
- * \retval AM_OK      : ½ûÄÜ³É¹¦
- * \retval -AM_ENODEV : ÏÔÊ¾Æ÷±àºÅÓĞÎó£¬ÎŞ´ËÏÔÊ¾Æ÷
+ * \retval AM_OK      : ç¦èƒ½æˆåŠŸ
+ * \retval -AM_ENODEV : æ˜¾ç¤ºå™¨ç¼–å·æœ‰è¯¯ï¼Œæ— æ­¤æ˜¾ç¤ºå™¨
  */
 int am_digitron_disp_disable (int id);
 

@@ -12,13 +12,13 @@
 
 /**
  * \file
- * \brief bootloader memory ²Ù×÷Í¨ÓÃ²Ù×÷½Ó¿Ú
+ * \brief bootloader memory æ“ä½œé€šç”¨æ“ä½œæ¥å£
  *
- *   ¸ÃÀàÖ÷ÒªÃèÊöÁËBootLoader¹ØÓÚÄÚ´æ²Ù×÷µÄ£¬ÊôÓÚ³éÏóÀà£¬¸ù¾İ²»Í¬µÄÇı¶¯·½Ê½£¬ÓÉ×ÓÀàÊµÏÖ¶ÔÆä²Ù×÷£¬
- *   ÁĞÈç£¬Ê¹ÓÃflashÇı¶¯µÄÄÚ´æ²Ù×÷£¬Ê¹ÓÃramÇı¶¯ÄÚ´æ²Ù×÷¡£
+ *   è¯¥ç±»ä¸»è¦æè¿°äº†BootLoaderå…³äºå†…å­˜æ“ä½œçš„ï¼Œå±äºæŠ½è±¡ç±»ï¼Œæ ¹æ®ä¸åŒçš„é©±åŠ¨æ–¹å¼ï¼Œç”±å­ç±»å®ç°å¯¹å…¶æ“ä½œï¼Œ
+ *   åˆ—å¦‚ï¼Œä½¿ç”¨flashé©±åŠ¨çš„å†…å­˜æ“ä½œï¼Œä½¿ç”¨ramé©±åŠ¨å†…å­˜æ“ä½œã€‚
  *
  *
- * \par Ê¹ÓÃÊ¾Àı
+ * \par ä½¿ç”¨ç¤ºä¾‹
  * \code
  *
  *
@@ -43,38 +43,38 @@ extern "C" {
 
 
 /**
- * \brief bootloader memory Çı¶¯º¯Êı½á¹¹Ìå
+ * \brief bootloader memory é©±åŠ¨å‡½æ•°ç»“æ„ä½“
  */
 struct am_boot_mem_drv_funcs {
 
-    /** \brief ÄÚ´æ¶Á²Ù×÷ */
+    /** \brief å†…å­˜è¯»æ“ä½œ */
     int (*pfn_read) (void *p_drv, uint32_t address,  uint8_t *p_buf, uint32_t length);
 
-    /** \brief ÄÚ´æĞ´²Ù×÷ */
+    /** \brief å†…å­˜å†™æ“ä½œ */
     int (*pfn_write) (void *p_drv, uint32_t address, uint8_t *p_buf, uint32_t length);
 };
 
 /**
- * \brief bootloader memory ±ê×¼·şÎñ½á¹¹Ìå
+ * \brief bootloader memory æ ‡å‡†æœåŠ¡ç»“æ„ä½“
  */
 typedef struct am_boot_mem_serv {
-    const struct am_boot_mem_drv_funcs *p_funcs;  /**< \brief Éè±¸Çı¶¯º¯Êı½á¹¹ÌåÖ¸Õë    */
-    void                               *p_drv;    /**< \brief Éè±¸Çı¶¯º¯ÊıµÚÒ»¸ö²ÎÊı */
+    const struct am_boot_mem_drv_funcs *p_funcs;  /**< \brief è®¾å¤‡é©±åŠ¨å‡½æ•°ç»“æ„ä½“æŒ‡é’ˆ    */
+    void                               *p_drv;    /**< \brief è®¾å¤‡é©±åŠ¨å‡½æ•°ç¬¬ä¸€ä¸ªå‚æ•° */
 } am_boot_mem_serv_t;
 
-/** \brief bootloader memory ±ê×¼·şÎñ²Ù×÷¾ä±úÀàĞÍ¶¨Òå */
+/** \brief bootloader memory æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„ç±»å‹å®šä¹‰ */
 typedef am_boot_mem_serv_t  *am_boot_mem_handle_t;
 
 /**
- * \brief ÄÚ´æ¶Á
+ * \brief å†…å­˜è¯»
  *
- * \param[in] handle  : ÄÚ´æ²Ù×÷±ê×¼·şÎñ¾ä±ú
- * \param[in] address : ¶ÁÊı¾İµÄµØÖ·
- * \param[in] p_buf   : ´æ·Å¶Á³öµÄÊı¾İ
- * \param[in] length  : ¶ÁÊı¾İµÄ³¤¶È
+ * \param[in] handle  : å†…å­˜æ“ä½œæ ‡å‡†æœåŠ¡å¥æŸ„
+ * \param[in] address : è¯»æ•°æ®çš„åœ°å€
+ * \param[in] p_buf   : å­˜æ”¾è¯»å‡ºçš„æ•°æ®
+ * \param[in] length  : è¯»æ•°æ®çš„é•¿åº¦
  *
- * \retval AM_OK    : ¶ÁÈ¡³É¹¦
- * \retval AM_ERROR : ¶ÁÈ¡Ê§°Ü
+ * \retval AM_OK    : è¯»å–æˆåŠŸ
+ * \retval AM_ERROR : è¯»å–å¤±è´¥
  */
 am_static_inline
 int am_boot_mem_read(am_boot_mem_handle_t handle,
@@ -89,16 +89,16 @@ int am_boot_mem_read(am_boot_mem_handle_t handle,
 }
 
 /**
- * \brief ÄÚ´æĞ´
+ * \brief å†…å­˜å†™
  *
- * \param[in] handle  : ÄÚ´æ²Ù×÷±ê×¼·şÎñ¾ä±ú
- * \param[in] address : ÄÚ´æĞ´µÄÆğÊ¼µØÖ·
- * \param[in] p_buf   : Ğ´ÈëÊı¾İ´æ·ÅµÄÎ»ÖÃ
- * \param[in] length  : Ğ´ÈëÊı¾İµÄ³¤¶È
+ * \param[in] handle  : å†…å­˜æ“ä½œæ ‡å‡†æœåŠ¡å¥æŸ„
+ * \param[in] address : å†…å­˜å†™çš„èµ·å§‹åœ°å€
+ * \param[in] p_buf   : å†™å…¥æ•°æ®å­˜æ”¾çš„ä½ç½®
+ * \param[in] length  : å†™å…¥æ•°æ®çš„é•¿åº¦
  *
  *
- * \retval AM_OK    : Ğ´Èë³É¹¦
- * \retval AM_ERROR : Ğ´ÈëÊ§°Ü
+ * \retval AM_OK    : å†™å…¥æˆåŠŸ
+ * \retval AM_ERROR : å†™å…¥å¤±è´¥
  */
 am_static_inline
 int am_boot_mem_write(am_boot_mem_handle_t handle,

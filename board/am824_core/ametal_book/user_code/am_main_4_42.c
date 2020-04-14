@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥4.42
+ * \brief ç¨‹åºæ¸…å•4.42
  *
- * \note ¸ÃÀú³ÌĞèÒªÓÃµ½miniportÍØÕ¹°å
+ * \note è¯¥å†ç¨‹éœ€è¦ç”¨åˆ°miniportæ‹“å±•æ¿
  *
  * \internal
  * \par Modification history
@@ -26,11 +26,11 @@
 #include "buzzer.h"
 #include "key1.h"
 
-static void key1_process(void *p_arg, uint8_t key_return)    // °´¼ü´¦Àí³ÌĞò
+static void key1_process(void *p_arg, uint8_t key_return)    // æŒ‰é”®å¤„ç†ç¨‹åº
 {
-    if (key_return == 0) {                            // °´¼ü°´ÏÂ
+    if (key_return == 0) {                            // æŒ‰é”®æŒ‰ä¸‹
         buzzer_beep_async(100);
-    } else if (key_return == 1) {                     // °´¼üÊÍ·Å
+    } else if (key_return == 1) {                     // æŒ‰é”®é‡Šæ”¾
         led_toggle(0);
     }
 }
@@ -39,7 +39,7 @@ int am_main (void)
 {
     led_init();
     buzzer_init();
-    key1_init_with_softimer(key1_process, NULL);    // ÎŞĞèÊ¹ÓÃ×Ô¶¨Òå²ÎÊıNULL
+    key1_init_with_softimer(key1_process, NULL);    // æ— éœ€ä½¿ç”¨è‡ªå®šä¹‰å‚æ•°NULL
     while(1) {
     }
 }

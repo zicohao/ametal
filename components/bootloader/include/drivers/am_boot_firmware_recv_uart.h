@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ¹Ì¼ş½ÓÊÕ±ê×¼Éè±¸ÊµÏÖ£¨uartÇı¶¯£©
+ * \brief å›ºä»¶æ¥æ”¶æ ‡å‡†è®¾å¤‡å®ç°ï¼ˆuarté©±åŠ¨ï¼‰
  *
  * \internal
  * \par modification history:
@@ -31,19 +31,19 @@ extern "C" {
 #include "am_boot_firmware.h"
 #include "am_boot_firmware_recv.h"
 /**
- * \brief ¹Ì¼ş½ÓÊÕµÄÉè±¸£¨´®¿Ú´«ÊäÊµÏÖ£©
+ * \brief å›ºä»¶æ¥æ”¶çš„è®¾å¤‡ï¼ˆä¸²å£ä¼ è¾“å®ç°ï¼‰
  */
 typedef struct am_boot_firwa_recv_uart_dev {
-    /**< \brief ±ê×¼µÄ¹Ì¼ş½ÓÊÕ·şÎñ  */
+    /**< \brief æ ‡å‡†çš„å›ºä»¶æ¥æ”¶æœåŠ¡  */
     am_boot_firwa_recv_serv_t        isa;
-    /**< \brief ¹Ì¼ş´æ·ÅµÄ±ê×¼·şÎñ²Ù×÷¾ä±ú  */
+    /**< \brief å›ºä»¶å­˜æ”¾çš„æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„  */
     am_boot_firmware_handle_t        firmware_handle;
-    /**< \brief ´®¿ÚµÄ±ê×¼·şÎñ²Ù×÷¾ä±ú  */
+    /**< \brief ä¸²å£çš„æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„  */
     am_uart_handle_t                 uart_handle;
 } am_boot_firwa_recv_uart_dev_t;
 
 /**
- * \brief ¹Ì¼ş½ÓÊÕÉè±¸³õÊ¼»¯£¨´®¿Ú´«ÊäÊµÏÖ£©
+ * \brief å›ºä»¶æ¥æ”¶è®¾å¤‡åˆå§‹åŒ–ï¼ˆä¸²å£ä¼ è¾“å®ç°ï¼‰
  */
 am_boot_firwa_recv_handle_t am_boot_firwa_recv_uart_init(
     am_boot_firmware_handle_t firmware_handle, am_uart_handle_t uart_handle);

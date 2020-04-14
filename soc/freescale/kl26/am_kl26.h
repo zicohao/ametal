@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief AM_KL26 Ğ¾Æ¬ÌØĞÔÏà¹ØÍ·ÎÄ¼ş¶¨Òå
+ * \brief AM_KL26 èŠ¯ç‰‡ç‰¹æ€§ç›¸å…³å¤´æ–‡ä»¶å®šä¹‰
  *
  * \internal
  * \par Modification history
@@ -28,26 +28,26 @@ extern "C" {
 #endif
 
 
-/** \brief Ğ¾Æ¬Òı½Å¶¨Òå */
+/** \brief èŠ¯ç‰‡å¼•è„šå®šä¹‰ */
 #include "../kl26/kl26_pin.h"
 
-/** \brief Ğ¾Æ¬ÖĞ¶Ï±àºÅ¶¨Òå */
+/** \brief èŠ¯ç‰‡ä¸­æ–­ç¼–å·å®šä¹‰ */
 #include "../kl26/kl26_inum.h"
 
-/** \brief Ğ¾Æ¬ÍâÉè¼Ä´æÆ÷»ùÖ·¶¨Òå */
+/** \brief èŠ¯ç‰‡å¤–è®¾å¯„å­˜å™¨åŸºå€å®šä¹‰ */
 #include "../kl26/kl26_regbase.h"
 
-/** \brief Ğ¾Æ¬ÍâÉèÓ³Éä */
+/** \brief èŠ¯ç‰‡å¤–è®¾æ˜ å°„ */
 #include "../kl26/kl26_periph_map.h"
 
-/** \brief Ê±ÖÓID¶¨Òå */
+/** \brief æ—¶é’ŸIDå®šä¹‰ */
 #include "../kl26/kl26_clk.h"
 
-/** \brief DMAÍ¨µÀ¼°²ÎÊı¶¨Òå */
+/** \brief DMAé€šé“åŠå‚æ•°å®šä¹‰ */
 #include "../kl26/kl26_dmamux_chan.h"
 
 /**
- * \name Cortex-M0+ ºË´¦ÀíÆ÷ºÍÍâÉèÅäÖÃ
+ * \name Cortex-M0+ æ ¸å¤„ç†å™¨å’Œå¤–è®¾é…ç½®
  * @{
  */
 #ifndef AM_CORTEX_M0
@@ -56,10 +56,10 @@ extern "C" {
 
 #ifdef AM_CORTEX_M0
 
-#define __MPU_PRESENT           0  /**< \brief M0+ºËÎŞMPU                  */
-#define __NVIC_PRIO_BITS        2  /**< \brief M0+ºËÎª2                    */
-#define __Vendor_SysTickConfig  0  /**< \brief ÉèÖÃÎª1 ¿ÉÒÔÅäÖÃSysTick     */
-#define __VTOR_PRESENT          1  /**< \brief Èç¹ûÎª1£¬¿ÉÅäÖÃÖĞ¶ÏÏòÁ¿±í   */
+#define __MPU_PRESENT           0  /**< \brief M0+æ ¸æ— MPU                  */
+#define __NVIC_PRIO_BITS        2  /**< \brief M0+æ ¸ä¸º2                    */
+#define __Vendor_SysTickConfig  0  /**< \brief è®¾ç½®ä¸º1 å¯ä»¥é…ç½®SysTick     */
+#define __VTOR_PRESENT          1  /**< \brief å¦‚æœä¸º1ï¼Œå¯é…ç½®ä¸­æ–­å‘é‡è¡¨   */
 
 #include "core_cm0plus.h"
 

@@ -12,12 +12,12 @@
 
 /**
  * \file
- * \brief LED Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief LED ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Ö¸¶¨ ID µÄ LED ÒÔ 0.5s µÄÊ±¼ä¼ä¸ôÉÁË¸¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. æŒ‡å®š ID çš„ LED ä»¥ 0.5s çš„æ—¶é—´é—´éš”é—ªçƒã€‚
  * 
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_std_led.c src_std_led
  * 
  * \internal
@@ -37,7 +37,7 @@
 #include "am_delay.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_std_led_entry (int led_id)
 {

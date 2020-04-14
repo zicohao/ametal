@@ -12,23 +12,23 @@
 
 /**
  * \file
- * \brief SCT 32 Î»²¶»ñÀý³Ì£¬Í¨¹ý HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief SCT 32 ä½æ•èŽ·ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. Ê¹ÓÃ¶Å°îÏß£¬½«Íâ²¿Ìá¹©µÄ PWM ÐÅºÅÓë PIO0_25 Á¬½Ó¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. ä½¿ç”¨æœé‚¦çº¿ï¼Œå°†å¤–éƒ¨æä¾›çš„ PWM ä¿¡å·ä¸Ž PIO0_25 è¿žæŽ¥ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. PIO0_25(SCT_IN_2) ÅäÖÃÎª²¶»ñ¹¦ÄÜ£¬²¶»ñ PWM ÖÜÆÚºÍÆµÂÊ²¢Í¨¹ý´®¿ÚÊä³ö¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. PIO0_25(SCT_IN_2) é…ç½®ä¸ºæ•èŽ·åŠŸèƒ½ï¼Œæ•èŽ· PWM å‘¨æœŸå’Œé¢‘çŽ‡å¹¶é€šè¿‡ä¸²å£è¾“å‡ºã€‚
  *
  * \note
- *    1. ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIO0_0 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *       PIO0_4 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD£»
- *    2. ÈôÓÐÊ¾²¨Æ÷¡¢Âß¼­·ÖÎöÒÇµÈÒÇÆ÷£¬¿ÉÒÔ¶Ô±ÈÊä³ö²¨ÐÎÆµÂÊºÍÖÜÆÚ£¬ÊÇ·ñÓë²¶»ñ¼ÆËã
- *       µÄÒ»ÖÂ£»
- *    3. ÓÉÓÚ SCT Ä¬ÈÏ×÷ÎªÇý¶¯·äÃùÆ÷£¬Ê¹ÓÃ²âÊÔ±¾ Demo Ç°ÐèÒª½« am_prj_config.h ÖÐ
- *       µÄ AM_CFG_BUZZER_ENABLE ¶¨ÒåÎª 0£¬²»Ê¹ÓÃ·äÃùÆ÷¡£
+ *    1. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO0_0 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *       PIO0_4 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDï¼›
+ *    2. è‹¥æœ‰ç¤ºæ³¢å™¨ã€é€»è¾‘åˆ†æžä»ªç­‰ä»ªå™¨ï¼Œå¯ä»¥å¯¹æ¯”è¾“å‡ºæ³¢å½¢é¢‘çŽ‡å’Œå‘¨æœŸï¼Œæ˜¯å¦ä¸Žæ•èŽ·è®¡ç®—
+ *       çš„ä¸€è‡´ï¼›
+ *    3. ç”±äºŽ SCT é»˜è®¤ä½œä¸ºé©±åŠ¨èœ‚é¸£å™¨ï¼Œä½¿ç”¨æµ‹è¯•æœ¬ Demo å‰éœ€è¦å°† am_prj_config.h ä¸­
+ *       çš„ AM_CFG_BUZZER_ENABLE å®šä¹‰ä¸º 0ï¼Œä¸ä½¿ç”¨èœ‚é¸£å™¨ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am824_hw_sct_cap.c src_am824_hw_sct_cap
  *
  * \internal
@@ -53,7 +53,7 @@
 #include "demo_nxp_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am824_core_hw_sct_cap_entry (void)
 {
@@ -62,22 +62,22 @@ void demo_am824_core_hw_sct_cap_entry (void)
     am_kprintf("demo am824_core hw sct cap!\r\n");
   
     /**
-    * Ò»¹²ÓÐ 4 ¸öÊäÈëÍ¨µÀ, Ã¿¸öÍ¨µÀ¿ÉÑ¡ÔñµÄÊäÈë¹¦ÄÜ´ïµ½ 8 ¸ö,
-    * ¾ßÌåµÄËùÓÐ¹¦ÄÜÔÚ amhw_lpc82x_inmux.h ÎÄ¼þÖÐ¹ØÓÚ SCT µÄ¶¨Òå
-    * ÕâÀïÅäÖÃÊäÈëÍ¨µÀ 2
+    * ä¸€å…±æœ‰ 4 ä¸ªè¾“å…¥é€šé“, æ¯ä¸ªé€šé“å¯é€‰æ‹©çš„è¾“å…¥åŠŸèƒ½è¾¾åˆ° 8 ä¸ª,
+    * å…·ä½“çš„æ‰€æœ‰åŠŸèƒ½åœ¨ amhw_lpc82x_inmux.h æ–‡ä»¶ä¸­å…³äºŽ SCT çš„å®šä¹‰
+    * è¿™é‡Œé…ç½®è¾“å…¥é€šé“ 2
     */
     amhw_lpc82x_inmux_sct_trig_set(LPC82X_INMUX,
                                    2,
                                    AMHW_LPC82X_INMUX_SCTTRIG_SCT_PIN2);
 
-    /* Æ½Ì¨³õÊ¼»¯ */
+    /* å¹³å°åˆå§‹åŒ– */
     amhw_lpc82x_clk_periph_enable(AMHW_LPC82X_CLK_SCT);
     amhw_lpc82x_syscon_periph_reset(AMHW_LPC82X_RESET_SCT);
 
-    /* ½« SCT_PIN_2 ¹ØÁªµ½ PIO0_25 Òý½Å */
+    /* å°† SCT_PIN_2 å…³è”åˆ° PIO0_25 å¼•è„š */
     am_gpio_pin_cfg(PIO0_25, PIO_FUNC_SCT_PIN2);
   
-    /* ÉèÖÃ SCT ´¥·¢ÐÅºÅÔ´Îª SCT ÊäÈëÍ¨µÀ 2 */
+    /* è®¾ç½® SCT è§¦å‘ä¿¡å·æºä¸º SCT è¾“å…¥é€šé“ 2 */
     amhw_lpc82x_inmux_sct_trig_set(LPC82X_INMUX,
                                    2,
                                    AMHW_LPC82X_INMUX_SCTTRIG_SCT_PIN2);

@@ -12,16 +12,16 @@
 
 /**
  * \file
- * \brief ÄÚ´æµ½ÄÚ´æµÄ DMA ´«ÊäÀý³Ì£¬Í¨¹ýÇý¶¯²ã½Ó¿ÚÊµÏÖ
+ * \brief å†…å­˜åˆ°å†…å­˜çš„ DMA ä¼ è¾“ä¾‹ç¨‹ï¼Œé€šè¿‡é©±åŠ¨å±‚æŽ¥å£å®žçŽ°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Èç¹û DMA ´«Êä³É¹¦£¬LED0 ³¤ÁÁ£»
- *   2. Èç¹û DMA ´«ÊäÊ§°Ü£¬LED0 ÉÁË¸¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. å¦‚æžœ DMA ä¼ è¾“æˆåŠŸï¼ŒLED0 é•¿äº®ï¼›
+ *   2. å¦‚æžœ DMA ä¼ è¾“å¤±è´¥ï¼ŒLED0 é—ªçƒã€‚
  *
  * \note
- *    LED0 ÐèÒª¶Ì½Ó J9 ÌøÏßÃ±£¬²ÅÄÜ±» PIO0_20 ¿ØÖÆ¡£
+ *    LED0 éœ€è¦çŸ­æŽ¥ J9 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIO0_20 æŽ§åˆ¶ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am824_drv_dma_m2m.c src_am824_drv_dma_m2m
  *
  * \internal
@@ -44,12 +44,12 @@
 #include "am_board.h"
 #include "demo_nxp_entries.h"
 
-#define __TEST_COUNT  256                    /**< \brief ²âÊÔÊý¾ÝµÄ´óÐ¡ */
+#define __TEST_COUNT  256                    /**< \brief æµ‹è¯•æ•°æ®çš„å¤§å° */
 
-am_local uint8_t __g_buf_src[__TEST_COUNT];  /**< \brief Ô´¶ËÊý¾Ý»º³åÇø */
+am_local uint8_t __g_buf_src[__TEST_COUNT];  /**< \brief æºç«¯æ•°æ®ç¼“å†²åŒº */
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am824_core_drv_dma_m2m_entry (void)
 {
@@ -57,7 +57,7 @@ void demo_am824_core_drv_dma_m2m_entry (void)
 
     am_kprintf("demo am_824 dma drv m2m!\r\n");
 
-    /* ¹¹Ôì·¢ËÍÊý¾Ý */
+    /* æž„é€ å‘é€æ•°æ® */
     for (i = 0; i < __TEST_COUNT; i++) {
         __g_buf_src[i] = i;
         //__g_buf_dst[i] = 0;

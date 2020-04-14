@@ -12,20 +12,20 @@
 
 /**
  * \file
- * \brief ADC ���̣�ͨ����׼�ӿ�ʵ��
+ * \brief ADC 例程，通过标准接口实现
  *
- * - �������裺
- *   1. PIOA_4 (ADC ͨ�� 4) ����ģ�����롣
+ * - 操作步骤：
+ *   1. PIOA_4 (ADC 通道 4) 连接模拟输入。
  *
- * - ʵ������
- *   1. ���������ѹ����ֵ��
+ * - 实验现象：
+ *   1. 串口输出电压采样值。
  *
  * \note
- *    1. ʹ�� ADC ģ�鹦�ܣ����뱣֤ ADC ģ���ϵ磻
- *    2. ����۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIOA_10 �������� PC ���ڵ� TXD��
- *       PIOA_9 �������� PC ���ڵ� RXD��
+ *    1. 使用 ADC 模块功能，必须保证 ADC 模块上电；
+ *    2. 如需观察串口打印的调试信息，需要将 PIOA_10 引脚连接 PC 串口的 TXD，
+ *       PIOA_9 引脚连接 PC 串口的 RXD。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_zlg217_std_adc.c src_std_adc
  *
  * \internal
@@ -49,7 +49,7 @@
 #include "demo_am217_core_entries.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_zlg217_core_std_adc_entry (void)
 {

@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ´«¸ĞÆ÷ MMC5883MA ÅäÖÃÎÄ¼ş
+ * \brief ä¼ æ„Ÿå™¨ MMC5883MA é…ç½®æ–‡ä»¶
  * 
  *
  * \internal
@@ -26,16 +26,16 @@
 #include "zlg116_pin.h"
 #include "am_zlg116_inst_init.h"
 
-/** \brief ´«¸ĞÆ÷ MMC5883MA Éè±¸ĞÅÏ¢ÊµÀı */
+/** \brief ä¼ æ„Ÿå™¨ MMC5883MA è®¾å¤‡ä¿¡æ¯å®ä¾‹ */
 am_const am_local struct am_sensor_mmc5883ma_devinfo __g_mmc5883ma_info = {
-        PIOB_0,            /*< \brief ´¥·¢Òı½Å¶¨Òå   */
-        0x30               /*< \breif MMC5883MA I2CµØÖ· */
+        PIOB_0,            /*< \brief è§¦å‘å¼•è„šå®šä¹‰   */
+        0x30               /*< \breif MMC5883MA I2Cåœ°å€ */
 };
 
-/** \breif ´«¸ĞÆ÷ MMC5883MA Éè±¸½á¹¹Ìå¶¨Òå */
+/** \breif ä¼ æ„Ÿå™¨ MMC5883MA è®¾å¤‡ç»“æ„ä½“å®šä¹‰ */
 am_local struct am_sensor_mmc5883ma_dev __g_mmc5883ma_dev;
 
-/** \brief ´«¸ĞÆ÷ MMC5883MA Éè±¸ÊµÀı»¯ */
+/** \brief ä¼ æ„Ÿå™¨ MMC5883MA è®¾å¤‡å®ä¾‹åŒ– */
 am_sensor_handle_t am_sensor_mmc5883ma_inst_init (void)
 {
     return am_sensor_mmc5883ma_init(&__g_mmc5883ma_dev,
@@ -43,7 +43,7 @@ am_sensor_handle_t am_sensor_mmc5883ma_inst_init (void)
                                     am_zlg116_i2c1_inst_init());
 }
 
-/** \brief ´«¸ĞÆ÷ MMC5883MA ÊµÀı½â³õÊ¼»¯ */
+/** \brief ä¼ æ„Ÿå™¨ MMC5883MA å®ä¾‹è§£åˆå§‹åŒ– */
 am_err_t am_sensor_mmc5883ma_inst_deinit (am_sensor_handle_t handle)
 {
     return am_sensor_mmc5883ma_deinit(handle);

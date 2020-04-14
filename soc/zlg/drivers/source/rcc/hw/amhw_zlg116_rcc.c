@@ -14,7 +14,7 @@
  * \file
  * \brief RCC
  *
- * Çı¶¯Ö±½ÓÊ¹ÓÃÁË ZLG116 ÍâÉè¼Ä´æÆ÷»ùµØÖ·£¬ Òò´Ë£¬¸ÃÇı¶¯½öÊÊÓÃÓÚ ZLG116
+ * é©±åŠ¨ç›´æ¥ä½¿ç”¨äº† ZLG116 å¤–è®¾å¯„å­˜å™¨åŸºåœ°å€ï¼Œ å› æ­¤ï¼Œè¯¥é©±åŠ¨ä»…é€‚ç”¨äº ZLG116
  *
  * \internal
  * \par Modification History
@@ -23,7 +23,7 @@
  */
 #include "hw/amhw_zlg116_rcc.h"
 
-/* Ê¹ÄÜ»ò½ûÄÜÍâÉè */
+/* ä½¿èƒ½æˆ–ç¦èƒ½å¤–è®¾ */
 static void __rcc_ahb_cmd (amhw_zlg116_ahb_peripheral peri, uint8_t cmd)
 {
     uint32_t tempa = 0;
@@ -46,11 +46,11 @@ static void __rcc_ahb_cmd (amhw_zlg116_ahb_peripheral peri, uint8_t cmd)
 }
 
 /**
- * \brief Ê¹ÄÜAHBÍâÉè
+ * \brief ä½¿èƒ½AHBå¤–è®¾
  *
- * \param[in]  peri £ºĞèÒªÊ¹ÄÜµÄÍâÉè
+ * \param[in]  peri ï¼šéœ€è¦ä½¿èƒ½çš„å¤–è®¾
  *
- * \return ÎŞ
+ * \return æ— 
  *
  */
 void amhw_zlg116_rcc_ahb_enable (amhw_zlg116_ahb_peripheral peri)
@@ -59,11 +59,11 @@ void amhw_zlg116_rcc_ahb_enable (amhw_zlg116_ahb_peripheral peri)
 }
 
 /**
- * \brief ½ûÄÜAHBÍâÉè
+ * \brief ç¦èƒ½AHBå¤–è®¾
  *
- * \param[in]  peri £ºĞèÒª½ûÄÜµÄÍâÉè
+ * \param[in]  peri ï¼šéœ€è¦ç¦èƒ½çš„å¤–è®¾
  *
- * \return ÎŞ
+ * \return æ— 
  *
  */
 void amhw_zlg116_rcc_ahb_disable (amhw_zlg116_ahb_peripheral peri)

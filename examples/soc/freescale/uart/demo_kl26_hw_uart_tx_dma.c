@@ -12,23 +12,23 @@
 
 /**
  * \file
- * \brief UART0ͨ��DMA��ʽ�������ݣ�ͨ��HW��Ľӿ�ʵ��
+ * \brief UART0通过DMA方式接收数据，通过HW层的接口实现
  *
- * - �������裺
- *   1. PIOA_1 ��������PC���ڵ�TXD;
- *   2. PIOA_2 ��������PC���ڵ�RXD;
- *   3. ������λ�����ڲ�����Ϊ115200��8λ���ݳ��� 1λֹͣλ ����żУ��;
+ * - 操作步骤：
+ *   1. PIOA_1 引脚连接PC串口的TXD;
+ *   2. PIOA_2 引脚连接PC串口的RXD;
+ *   3. 配置上位机串口波特率为115200，8位数据长度 1位停止位 无奇偶校验;
  *
- * - ʵ������
- *   1.���ڴ�ӡ��ʾ�ַ� DMA tx transfer start:
- *   2. Ȼ�󴮿ڽ����ӡһ���ڴ涨����ַ����ֱ�Ϊ��
+ * - 实验现象：
+ *   1.串口打印提示字符 DMA tx transfer start:
+ *   2. 然后串口交替打印一次内存定义的字符，分别为：
  *      uart tx dma test running
  *      uart tx dma test done
  *      
  *
- * \note ��DMA�����ڼ䲻Ҫ�Դ������ݼĴ���UART_D���в���
+ * \note 在DMA操作期间不要对串口数据寄存器UART_D进行操作
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_kl26_hw_uart_tx_dma.c src_kl26_hw_uart_tx_dma
  *
  *
@@ -57,24 +57,24 @@
 #include "../../../../soc/freescale/kl26/am_kl26.h"
 
 /*******************************************************************************
-  �궨��
+  宏定义
 *******************************************************************************/
-#define UART_CH            KL26_UART0  /**< \brief UARTͨ��     */
-#define UART_BAUDRATE      (115200)         /**< \brief ������       */
+#define UART_CH            KL26_UART0  /**< \brief UART通道     */
+#define UART_BAUDRATE      (115200)         /**< \brief 波特率       */
 
 /*******************************************************************************
-  ȫ�ֱ���
+  全局变量
 *******************************************************************************/
 
-static volatile am_bool_t  __g_trans_done = AM_FALSE;                 /**< \brief ������ɱ�־.  */
+static volatile am_bool_t  __g_trans_done = AM_FALSE;                 /**< \brief 传输完成标志.  */
 
 /**
- * \brief DMA�жϷ������
+ * \brief DMA中断服务程序。
  *
- * \param[in] p_arg : �û��Զ��������ͨ�� am_kl26_dma_isr_connect() �������ݡ�
- * \param[in] flag  : DMA�жϱ�־���ɵײ��������룬�ò����Ŀ���ȡֵ��
- *                    (#AM_KL26_DMA_INT_ERROR) �� (#AM_KL26_DMA_INT_NORMAL)��
- * \return    �ޡ�
+ * \param[in] p_arg : 用户自定义参数，通过 am_kl26_dma_isr_connect() 函数传递。
+ * \param[in] flag  : DMA中断标志，由底层驱动传入，该参数的可能取值：
+ *                    (#AM_KL26_DMA_INT_ERROR) 或 (#AM_KL26_DMA_INT_NORMAL)。
+ * \return    无。
  */
 static void uart_dma_isr (void *p_arg , uint8_t flag)
 {
@@ -82,29 +82,29 @@ static void uart_dma_isr (void *p_arg , uint8_t flag)
 
     if (flag == AM_KL26_DMA_INT_NORMAL) {
         if (flag_chan == DMA_CHAN_0) {
-            /* ����UART����.*/
+            /* 禁能UART发送.*/
             amhw_fsl_uart_c2_tx_disable(UART_CH);
 
-            /* ����UART����ʱʹ��DMA����.*/
+            /* 禁能UART发送时使用DMA传输.*/
             if(UART_CH == KL26_UART0){
                 amhw_fsl_uart_ver0_dma_tx_disable(UART_CH);
             }else {
                 amhw_fsl_uart_ver1_dma_tx_disable(UART_CH);
             }
 
-            /* ��uart0����ʱDMA������Ҫ�����ж� */
+            /* 非uart0发送时DMA传输需要禁能中断 */
             if (UART_CH != KL26_UART0) {
-               /* ���ܷ����ж�*/
+               /* 禁能发送中断*/
                amhw_fsl_uart_int_disable(UART_CH, AMHW_FSL_UART_INT_C2_TIE);
             }
 
-            /* ֹͣDMAͨ��. */
+            /* 停止DMA通道. */
             am_kl26_dma_chan_stop(DMA_CHAN_0);
 
             __g_trans_done = AM_TRUE;
         }
     } else {
-        /* �û��Զ���ִ�д��� */
+        /* 用户自定义执行代码 */
     }
 }
 
@@ -120,41 +120,41 @@ static uint8_t uart_dma_src_request_set (void)
 }
 
 /**
- * \brief DMA�������á�
+ * \brief DMA传输配置。
  */
 static int uart_tx_dma_tran_cfg (const uint8_t *p_txbuf, uint32_t dma_tran_len)
 {
     uint32_t flags;
-    static amhw_kl26_dma_xfer_desc_t desc;          /**< \brief DMA ���������� */
+    static amhw_kl26_dma_xfer_desc_t desc;          /**< \brief DMA 重载描述符 */
 
-    /* ����DMA�жϷ����� */
+    /* 连接DMA中断服务函数 */
     am_kl26_dma_isr_connect(DMA_CHAN_0, uart_dma_isr, (void *)0);
 
-    /* DMA�������� */
-    flags = KL26_DMA_DCR_PER_REQUEST_ENABLE     |  /* ��������Դʹ��    */
-            KL26_DMA_DCR_SINGLE_TRANSFERS       |  /* ���δ���          */
-            KL26_DMA_DCR_AUTO_ALIGN_DISABLE     |  /* �Զ��������      */
-            KL26_DMA_DCR_SOURCE_SIZE_8_BIT      |  /* Դ��ַ1�ֽڶ�ȡ   */
-            KL26_DMA_DCR_DESTINATION_SIZE_8_BIT |  /* Ŀ�ĵ�ַ1�ֽ�д�� */
-            KL26_DMA_DCR_REQUEST_AFFECTED       |  /* ������Ӱ��        */
-            KL26_DMA_DCR_NO_LINKING             |  /* ��ͨ������        */
-            KL26_DMA_DCR_INTERRUTP_ENABLE       |  /* DMA�ж�ʹ��       */
-            KL26_DMA_DCR_START_DISABLE    ;        /* DMA�������       */
+    /* DMA传输配置 */
+    flags = KL26_DMA_DCR_PER_REQUEST_ENABLE     |  /* 外设请求源使能    */
+            KL26_DMA_DCR_SINGLE_TRANSFERS       |  /* 单次传输          */
+            KL26_DMA_DCR_AUTO_ALIGN_DISABLE     |  /* 自动对齐禁能      */
+            KL26_DMA_DCR_SOURCE_SIZE_8_BIT      |  /* 源地址1字节读取   */
+            KL26_DMA_DCR_DESTINATION_SIZE_8_BIT |  /* 目的地址1字节写入 */
+            KL26_DMA_DCR_REQUEST_AFFECTED       |  /* 请求有影响        */
+            KL26_DMA_DCR_NO_LINKING             |  /* 无通道连接        */
+            KL26_DMA_DCR_INTERRUTP_ENABLE       |  /* DMA中断使能       */
+            KL26_DMA_DCR_START_DISABLE    ;        /* DMA传输禁能       */
 
-    /* ����ͨ�������� */
-    am_kl26_dma_xfer_desc_build(&desc,                           /* ͨ��������   */
-                                (uint32_t)(p_txbuf),               /* Դ�����ݻ��� */
-                                (uint32_t)(&(UART_CH->data)),      /* Ŀ�����ݻ��� */
-                                (uint32_t)dma_tran_len,            /* �����ֽ���   */
-                                flags);                            /* ��������     */
+    /* 建立通道描述符 */
+    am_kl26_dma_xfer_desc_build(&desc,                           /* 通道描述符   */
+                                (uint32_t)(p_txbuf),               /* 源端数据缓冲 */
+                                (uint32_t)(&(UART_CH->data)),      /* 目标数据缓冲 */
+                                (uint32_t)dma_tran_len,            /* 传输字节数   */
+                                flags);                            /* 传输配置     */
 
     am_kl26_dma_chan_cfg(DMA_CHAN_0,
-                         KL26_DMA_TRIGGER_DISABLE |     /**< \brief DMA����ģʽ */
-                         uart_dma_src_request_set());        /**< \brief ����Դ      */
+                         KL26_DMA_TRIGGER_DISABLE |     /**< \brief DMA正常模式 */
+                         uart_dma_src_request_set());        /**< \brief 请求源      */
 
-    /* ����DMA���䣬���Ͽ�ʼ���� */
+    /* 启动DMA传输，马上开始传输 */
     if (am_kl26_dma_chan_start(&desc,
-                               KL26_DMA_MER_TO_PER,    /* �ڴ浽����   */
+                               KL26_DMA_MER_TO_PER,    /* 内存到外设   */
                                (uint8_t)DMA_CHAN_0) == AM_ERROR) {
         return AM_ERROR;
     }
@@ -163,8 +163,8 @@ static int uart_tx_dma_tran_cfg (const uint8_t *p_txbuf, uint32_t dma_tran_len)
 }
 
 /**
- * \brief UARTʱ��ʹ�ܳ�ʼ��
- * \param[in] p_hw_uart : ָ�򴮿��豸�Ĵ����ṹ��, ��KL26_UART1.
+ * \brief UART时钟使能初始化
+ * \param[in] p_hw_uart : 指向串口设备寄存器结构体, 如KL26_UART1.
  */
 static void uart_clock_init (void *p_hw_uart)
 {
@@ -172,27 +172,27 @@ static void uart_clock_init (void *p_hw_uart)
 
     switch (base_addr) {
 
-    /* ����0ʱ�ӳ�ʼ�� */
+    /* 串口0时钟初始化 */
     case KL26_UART0_BASE:
         amhw_kl26_sim_uart0_src_set(KL26_SIM_UART0SRC_PLLFLLCLK);
-        /* ����UART0ʱ��                  */
+        /* 开启UART0时钟                  */
         amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_UART0);
         break;
 
-    /* ����1ʱ�ӳ�ʼ�� */
+    /* 串口1时钟初始化 */
     case KL26_UART1_BASE:
         amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_UART1);
         break;
 
-    /* ����2ʱ�ӳ�ʼ�� */
+    /* 串口2时钟初始化 */
     case KL26_UART2_BASE:
         amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_UART2);
         break;
     }
 }
 /**
- * \brief UART���ų�ʼ��
- * \param[in] p_hw_uart : ָ�򴮿��豸�Ĵ����ṹ��, ��KL26_UART1.
+ * \brief UART引脚初始化
+ * \param[in] p_hw_uart : 指向串口设备寄存器结构体, 如KL26_UART1.
  */
 static void uart_pin_init (void *p_hw_uart)
 {
@@ -206,13 +206,13 @@ static void uart_pin_init (void *p_hw_uart)
         break;
 
     case KL26_UART1_BASE:
-        /* ���ų�ʼ��      PIOC_3_UART1_RX  PIOC_4_UART1_TX     */
+        /* 引脚初始化      PIOC_3_UART1_RX  PIOC_4_UART1_TX     */
         am_gpio_pin_cfg (PIOC_3,PIOC_3_UART1_RX);
         am_gpio_pin_cfg (PIOC_4,PIOC_4_UART1_TX);
         break;
 
     case KL26_UART2_BASE:
-        /* ���ų�ʼ��      PIOD_4_UART2_RX  PIOD_5_UART2_TX     */
+        /* 引脚初始化      PIOD_4_UART2_RX  PIOD_5_UART2_TX     */
         am_gpio_pin_cfg (PIOD_4,PIOD_4_UART2_RX);
         am_gpio_pin_cfg (PIOD_5,PIOD_5_UART2_TX);
         break;
@@ -220,21 +220,21 @@ static void uart_pin_init (void *p_hw_uart)
 }
 
 /**
- * \brief UART��ʼ��
+ * \brief UART初始化
  */
 static void uart_hw_init (void)
 {
-    /* ʹ�ܴ���ʱ��ģ�� */
+    /* 使能串口时钟模块 */
     uart_clock_init(UART_CH);
 
-    /* ���ô�������������� */
+    /* 配置串口输入输出引脚 */
     uart_pin_init(UART_CH);
 
     amhw_fsl_uart_stop_bit_set (UART_CH, AMHW_FSL_UART_BDH_SBNS_STOP_1);
     amhw_fsl_uart_data_mode_set(UART_CH, AMHW_FSL_UART_C1_M_8BIT);
     amhw_fsl_uart_parity_set(UART_CH,  AMHW_FSL_UART_C1_PARITY_NO);
 
-    /* ���ô��ڲ����� */
+    /* 设置串口波特率 */
     if(UART_CH == KL26_UART0){
         amhw_fsl_uart_ver0_baudrate_set(UART_CH,
                                         am_kl26_clk_periph_rate_get((void *)(UART_CH)),
@@ -248,53 +248,53 @@ static void uart_hw_init (void)
 
 
 /**
- * \brief UART����DMA�����ʼ��
+ * \brief UART发送DMA传输初始化
  */
 static void uart_hw_dma_init (void)
 {
-    /* ���ڷ���DMA����ʹ��  */
+    /* 串口发送DMA传输使能  */
     if(UART_CH == KL26_UART0){
         amhw_fsl_uart_ver0_dma_tx_enable(UART_CH);
     }else {
         amhw_fsl_uart_ver1_dma_tx_enable(UART_CH);
     }
 
-    /* ��uart0����ʱDMA������Ҫʹ���ж� */
+    /* 非uart0发送时DMA传输需要使能中断 */
     if (UART_CH != KL26_UART0) {
-        /* ���ܷ�������ж�*/
+        /* 禁能发送完成中断*/
         amhw_fsl_uart_int_disable(UART_CH, AMHW_FSL_UART_INT_C2_TCIE);
 
-       /* ʹ�ܷ����жϣ�TDRE�ж��źŴ���DMA���� */
+       /* 使能发送中断，TDRE中断信号触发DMA传输 */
        amhw_fsl_uart_int_enable(UART_CH, AMHW_FSL_UART_INT_C2_TIE);
     }
 
-    /* ʹ�ܴ��� */
+    /* 使能串口 */
     amhw_fsl_uart_enable(UART_CH);
 }
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_kl26_hw_uart_tx_dma_entry (void)
 {
-    static uint8_t buf_dst[]  = "uart tx dma test running\r\n"; /**< \brief Ŀ������ݻ����� */
-    static uint8_t buf_dst1[] = "uart tx dma test done\r\n";    /**< \brief Ŀ������ݻ����� */
+    static uint8_t buf_dst[]  = "uart tx dma test running\r\n"; /**< \brief 目标端数据缓冲区 */
+    static uint8_t buf_dst1[] = "uart tx dma test done\r\n";    /**< \brief 目标端数据缓冲区 */
     uint8_t i = 0;
     uint32_t key;
 
-    /* DMA��ʼ�� */
+    /* DMA初始化 */
     am_kl26_dma_inst_init();
 
-    /* UART��ʼ�� */
+    /* UART初始化 */
     uart_hw_init();
 
     amhw_fsl_uart_poll_send(UART_CH, (uint8_t *)"DMA tx transfer start:\r\n",
                             sizeof("DMA tx transfer start:\r\n"));
 
-    /* UART��DMA����ĳ�ʼ�� */
+    /* UART用DMA传输的初始化 */
     uart_hw_dma_init();
 
-    /* ��ʼDMA���� */
+    /* 开始DMA传输 */
     uart_tx_dma_tran_cfg(buf_dst, sizeof(buf_dst)-1);
 
     while (1) {
@@ -305,20 +305,20 @@ void demo_kl26_hw_uart_tx_dma_entry (void)
 
             i = 1;
 
-            /* ���ڷ���DMA����ʹ��  */
+            /* 串口发送DMA传输使能  */
             if(UART_CH == KL26_UART0){
                 amhw_fsl_uart_ver0_dma_tx_enable(UART_CH);
             }else {
                 amhw_fsl_uart_ver1_dma_tx_enable(UART_CH);
             }
 
-            /* ��uart0����ʱDMA������Ҫʹ���ж� */
+            /* 非uart0发送时DMA传输需要使能中断 */
             if (UART_CH != KL26_UART0) {
-               /* ʹ�ܷ����жϣ�TDRE�ж��źŴ���DMA���� */
+               /* 使能发送中断，TDRE中断信号触发DMA传输 */
                amhw_fsl_uart_int_enable(UART_CH, AMHW_FSL_UART_INT_C2_TIE);
             }
 
-            /* ʹ��UART����.*/
+            /* 使能UART发送.*/
             amhw_fsl_uart_c2_tx_enable(UART_CH);
 
             uart_tx_dma_tran_cfg(buf_dst1, sizeof(buf_dst1) - 1);
@@ -336,20 +336,20 @@ void demo_kl26_hw_uart_tx_dma_entry (void)
 
              i = 0;
 
-             /* ���ڷ���DMA����ʹ��  */
+             /* 串口发送DMA传输使能  */
              if(UART_CH == KL26_UART0){
                  amhw_fsl_uart_ver0_dma_tx_enable(UART_CH);
              }else {
                  amhw_fsl_uart_ver1_dma_tx_enable(UART_CH);
              }
 
-             /* ��uart0����ʱDMA������Ҫʹ���ж� */
+             /* 非uart0发送时DMA传输需要使能中断 */
              if (UART_CH != KL26_UART0) {
-                /* ʹ�ܷ����жϣ�TDRE�ж��źŴ���DMA���� */
+                /* 使能发送中断，TDRE中断信号触发DMA传输 */
                 amhw_fsl_uart_int_enable(UART_CH, AMHW_FSL_UART_INT_C2_TIE);
              }
 
-             /* ʹ��UART����.*/
+             /* 使能UART发送.*/
              amhw_fsl_uart_c2_tx_enable(UART_CH);
 
              uart_tx_dma_tran_cfg(buf_dst, sizeof(buf_dst) - 1);

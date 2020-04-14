@@ -14,16 +14,16 @@
  * \file
  * \brief
  *
- * - ²Ù×÷²½Öè£º
- *      - PTC1Òı½ÅÍâ½Ó32.786kHzµÄÊ±ÖÓÊäÈë
- *      - Ê¹ÓÃµ÷ÊÔ´®¿Ú´òÓ¡
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *      - PTC1å¼•è„šå¤–æ¥32.786kHzçš„æ—¶é’Ÿè¾“å…¥
+ *      - ä½¿ç”¨è°ƒè¯•ä¸²å£æ‰“å°
  *
- * - ÊµÑéÏÖÏó£º
- *      - ´®¿Ú´òÓ¡³öÉèÖÃµÄÊ±¼ä
- *      - ÒÔºóÃ¿Ãë´òÓ¡Ò»´ÎÊ±¼ä
- *      - LED0µÄ×´Ì¬Ã¿ÃëÖÓ·­×ªÒ»´Î
+ * - å®éªŒç°è±¡ï¼š
+ *      - ä¸²å£æ‰“å°å‡ºè®¾ç½®çš„æ—¶é—´
+ *      - ä»¥åæ¯ç§’æ‰“å°ä¸€æ¬¡æ—¶é—´
+ *      - LED0çš„çŠ¶æ€æ¯ç§’é’Ÿç¿»è½¬ä¸€æ¬¡
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_amks16z_core_hw_rtc_sec_int.c src_amks16z_core_hw_rtc_sec_int
  *
  * \internal
@@ -52,21 +52,21 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief AMetal Ó¦ÓÃ³ÌĞòÈë¿Ú
+ * \brief AMetal åº”ç”¨ç¨‹åºå…¥å£
  */
 void demo_amks16z_core_hw_rtc_sec_int_entry (void)
 {
 	  
-    /* RTC Ê±ÖÓÔ´Ñ¡ÔñÎªÍâ²¿RTCÊ±ÖÓÔ´ */
+    /* RTC æ—¶é’Ÿæºé€‰æ‹©ä¸ºå¤–éƒ¨RTCæ—¶é’Ÿæº */
     amhw_kl26_sim_ercclk32k_src_set(KL26_SIM_OSC32KSEL_CLKIN);
 
-    /* RTC Ä£¿éÊ±ÖÓÊ¹ÄÜ */
+    /* RTC æ¨¡å—æ—¶é’Ÿä½¿èƒ½ */
     amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_RTC);
 
-    /* PORTC Ê±ÖÓÒı½ÅÊ¹ÄÜ */
+    /* PORTC æ—¶é’Ÿå¼•è„šä½¿èƒ½ */
     amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_PORTC);
 
-    /* PTC1 ¸´ÓÃÎ» RTC_CLK_INPUT */
+    /* PTC1 å¤ç”¨ä½ RTC_CLK_INPUT */
     amhw_kl26_port_pin_func_cfg(KL26_PORT, PIOC_1, 1);
 
     demo_fsl_hw_rtc_sec_int_entry(KL26_RTC);

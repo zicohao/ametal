@@ -13,10 +13,10 @@
 
 /**
  * \file
- * \brief LPC8XX FMC Ó²¼ş²Ù×÷½Ó¿ÚÃèÊö
+ * \brief LPC8XX FMC ç¡¬ä»¶æ“ä½œæ¥å£æè¿°
  *
- * 1. ¿É¿ØÖÆÉÁ´æ·ÃÎÊÊ±¼ä£»
- * 2. Ìá¹©ÓÃÓÚÉú³ÉÉÁ´æÇ©ÃûµÄ¼Ä´æÆ÷¡£
+ * 1. å¯æ§åˆ¶é—ªå­˜è®¿é—®æ—¶é—´ï¼›
+ * 2. æä¾›ç”¨äºç”Ÿæˆé—ªå­˜ç­¾åçš„å¯„å­˜å™¨ã€‚
  *
  * \internal
  * \par Modification history
@@ -41,32 +41,32 @@ extern "C" {
  */
 
 /**
- * \brief Flash¿ØÖÆÆ÷¼Ä´æÆ÷½á¹¹Ìå¿é
+ * \brief Flashæ§åˆ¶å™¨å¯„å­˜å™¨ç»“æ„ä½“å—
  */
 typedef struct amhw_lpc_fmc {
-    __I  uint32_t reserved0[4];         /**< \brief ±£Áô */
-    __IO uint32_t flashcfg;             /**< \brief ÉÁ´æÅäÖÃ¼Ä´æÆ÷ */
-    __I  uint32_t reserved1[3];         /**< \brief ±£Áô */
-    __IO uint32_t fmsstart;             /**< \brief Ç©ÃûÆğÊ¼µØÖ·¼Ä´æÆ÷ */
-    __IO uint32_t fmsstop;              /**< \brief Ç©ÃûÍ£Ö¹µØÖ·¼Ä´æÆ÷ */
-    __I  uint32_t reserved2[1];         /**< \brief ±£Áô */
-    __I  uint32_t fmsw0;                /**< \brief Ç©Ãû×Ö */
+    __I  uint32_t reserved0[4];         /**< \brief ä¿ç•™ */
+    __IO uint32_t flashcfg;             /**< \brief é—ªå­˜é…ç½®å¯„å­˜å™¨ */
+    __I  uint32_t reserved1[3];         /**< \brief ä¿ç•™ */
+    __IO uint32_t fmsstart;             /**< \brief ç­¾åèµ·å§‹åœ°å€å¯„å­˜å™¨ */
+    __IO uint32_t fmsstop;              /**< \brief ç­¾ååœæ­¢åœ°å€å¯„å­˜å™¨ */
+    __I  uint32_t reserved2[1];         /**< \brief ä¿ç•™ */
+    __I  uint32_t fmsw0;                /**< \brief ç­¾åå­— */
 } amhw_lpc_fmc_t;
 
 /**
- * \brief ÓÃÓÚÉÁ´æ·ÃÎÊÊ±¼äÅäÖÃ
- *        1¸öÏµÍ³Ê±ÖÓµÄÉÁ´æ·ÃÎÊÊ±¼äÖ»ÄÜÔÚ20MHzÊ±ÖÓÏÂ
- *        2¸öÏµÍ³Ê±ÖÓµÄÉÁ´æ·ÃÎÊÊ±¼äÖ»ÄÜÔÚ30MHzÊ±ÖÓÏÂ
+ * \brief ç”¨äºé—ªå­˜è®¿é—®æ—¶é—´é…ç½®
+ *        1ä¸ªç³»ç»Ÿæ—¶é’Ÿçš„é—ªå­˜è®¿é—®æ—¶é—´åªèƒ½åœ¨20MHzæ—¶é’Ÿä¸‹
+ *        2ä¸ªç³»ç»Ÿæ—¶é’Ÿçš„é—ªå­˜è®¿é—®æ—¶é—´åªèƒ½åœ¨30MHzæ—¶é’Ÿä¸‹
  */
 typedef enum amhw_lpc_fmc_time {
-    AMHW_LPC_FMC_FLASHTIM_1 = 0,     /**< \brief 1¸öÏµÍ³Ê±ÖÓµÄÉÁ´æ·ÃÎÊÊ±¼ä */
-    AMHW_LPC_FMC_FLASHTIM_2 = 1      /**< \brief 2¸öÏµÍ³Ê±ÖÓµÄÉÁ´æ·ÃÎÊÊ±¼ä */
+    AMHW_LPC_FMC_FLASHTIM_1 = 0,     /**< \brief 1ä¸ªç³»ç»Ÿæ—¶é’Ÿçš„é—ªå­˜è®¿é—®æ—¶é—´ */
+    AMHW_LPC_FMC_FLASHTIM_2 = 1      /**< \brief 2ä¸ªç³»ç»Ÿæ—¶é’Ÿçš„é—ªå­˜è®¿é—®æ—¶é—´ */
 } amhw_lpc_fmc_time_t;
 
 /**
- * \brief ÉÁ´æ·ÃÎÊÊ±¼äÅäÖÃ
- * \param[in] time : ÉÁ´æ·ÃÎÊÊ±¼ä(ÏµÍ³Ê±ÖÓÖÜÆÚÎªµ¥Î»)
- * \return ÎŞ
+ * \brief é—ªå­˜è®¿é—®æ—¶é—´é…ç½®
+ * \param[in] time : é—ªå­˜è®¿é—®æ—¶é—´(ç³»ç»Ÿæ—¶é’Ÿå‘¨æœŸä¸ºå•ä½)
+ * \return æ— 
  */
 am_static_inline
 void amhw_lpc_fmc_flashtim_set (amhw_lpc_fmc_t * p_hw_fmc, amhw_lpc_fmc_time_t time)
@@ -75,9 +75,9 @@ void amhw_lpc_fmc_flashtim_set (amhw_lpc_fmc_t * p_hw_fmc, amhw_lpc_fmc_time_t t
 }
 
 /**
- * \brief ¶ÁÈ¡ÉÁ´æ·ÃÎÊÊ±¼ä
- * \param[in] : ÎŞ
- * \return Ç©Ãû·ÃÎÊÊ±¼ä(ÏµÍ³Ê±ÖÓÖÜÆÚÎªµ¥Î»)
+ * \brief è¯»å–é—ªå­˜è®¿é—®æ—¶é—´
+ * \param[in] : æ— 
+ * \return ç­¾åè®¿é—®æ—¶é—´(ç³»ç»Ÿæ—¶é’Ÿå‘¨æœŸä¸ºå•ä½)
  */
 am_static_inline
 amhw_lpc_fmc_time_t amhw_lpc_fmc_flashtim_get (amhw_lpc_fmc_t * p_hw_fmc)
@@ -86,9 +86,9 @@ amhw_lpc_fmc_time_t amhw_lpc_fmc_flashtim_get (amhw_lpc_fmc_t * p_hw_fmc)
 }
 
 /**
- * \brief Ç©ÃûÉú³ÉÆğÊ¼µØÖ·
- * \param[in] addr : Ç©ÃûÉú³ÉÆğÊ¼µØÖ·(¶ÔÓ¦ÓÚAHB×Ö½ÚµØÖ·Î»¡¾20:4¡¿¼´16Î»¶ÔÆë)
- * \return ÎŞ
+ * \brief ç­¾åç”Ÿæˆèµ·å§‹åœ°å€
+ * \param[in] addr : ç­¾åç”Ÿæˆèµ·å§‹åœ°å€(å¯¹åº”äºAHBå­—èŠ‚åœ°å€ä½ã€20:4ã€‘å³16ä½å¯¹é½)
+ * \return æ— 
  */
 am_static_inline
 void amhw_lpc_fmc_fmsstart_set (amhw_lpc_fmc_t * p_hw_fmc, uint32_t addr)
@@ -97,9 +97,9 @@ void amhw_lpc_fmc_fmsstart_set (amhw_lpc_fmc_t * p_hw_fmc, uint32_t addr)
 }
 
 /**
- * \brief »ñÈ¡Ç©ÃûÉú³ÉÆğÊ¼µØÖ·
- * \param[in] : ÎŞ
- * \return Ç©ÃûÉú³ÉÆğÊ¼µØÖ·
+ * \brief è·å–ç­¾åç”Ÿæˆèµ·å§‹åœ°å€
+ * \param[in] : æ— 
+ * \return ç­¾åç”Ÿæˆèµ·å§‹åœ°å€
  */
 am_static_inline
 uint32_t amhw_lpc_fmc_fmsstart_get (amhw_lpc_fmc_t * p_hw_fmc)
@@ -108,10 +108,10 @@ uint32_t amhw_lpc_fmc_fmsstart_get (amhw_lpc_fmc_t * p_hw_fmc)
 }
 
 /**
- * \brief Ç©ÃûÉú³É½áÊøµØÖ·
- * \param[in] addr : Ç©ÃûÉú³É½áÊøµØÖ·(¶ÔÓ¦ÓÚAHB×Ö½ÚµØÖ·Î»¡¾20:4¡¿¼´16Î»¶ÔÆë)
- * \return ÎŞ
- * \note STOPAÖ¸¶¨×Ö°üº¬ÔÚµØÖ··¶Î§£¬µØÖ·µ¥Î»Îª´æ´¢×Ö¶ø·Ç×Ö½Ú
+ * \brief ç­¾åç”Ÿæˆç»“æŸåœ°å€
+ * \param[in] addr : ç­¾åç”Ÿæˆç»“æŸåœ°å€(å¯¹åº”äºAHBå­—èŠ‚åœ°å€ä½ã€20:4ã€‘å³16ä½å¯¹é½)
+ * \return æ— 
+ * \note STOPAæŒ‡å®šå­—åŒ…å«åœ¨åœ°å€èŒƒå›´ï¼Œåœ°å€å•ä½ä¸ºå­˜å‚¨å­—è€Œéå­—èŠ‚
  */
 am_static_inline
 void amhw_lpc_fmc_fmsstop_set (amhw_lpc_fmc_t * p_hw_fmc, uint32_t addr)
@@ -120,9 +120,9 @@ void amhw_lpc_fmc_fmsstop_set (amhw_lpc_fmc_t * p_hw_fmc, uint32_t addr)
 }
 
 /**
- * \brief »ñÈ¡Ç©ÃûÉú³É½áÊøµØÖ·
- * \param[in] : ÎŞ
- * \return Ç©ÃûÉú³É½áÊøµØÖ·
+ * \brief è·å–ç­¾åç”Ÿæˆç»“æŸåœ°å€
+ * \param[in] : æ— 
+ * \return ç­¾åç”Ÿæˆç»“æŸåœ°å€
  */
 am_static_inline
 uint32_t amhw_lpc_fmc_fmsstop_get (amhw_lpc_fmc_t * p_hw_fmc)
@@ -131,7 +131,7 @@ uint32_t amhw_lpc_fmc_fmsstop_get (amhw_lpc_fmc_t * p_hw_fmc)
 }
 
 /**
- * \brief ¿ªÊ¼Ç©ÃûÉú³É
+ * \brief å¼€å§‹ç­¾åç”Ÿæˆ
  */
 am_static_inline
 void amhw_lpc_fmc_strtbist (amhw_lpc_fmc_t * p_hw_fmc)
@@ -140,9 +140,9 @@ void amhw_lpc_fmc_strtbist (amhw_lpc_fmc_t * p_hw_fmc)
 }
 
 /**
- * \brief »ñÈ¡Ç©ÃûĞÅÏ¢
- * \param[in] : ÎŞ
- * \return ·µ»ØflashÇ©ÃûĞÅÏ¢
+ * \brief è·å–ç­¾åä¿¡æ¯
+ * \param[in] : æ— 
+ * \return è¿”å›flashç­¾åä¿¡æ¯
  */
 am_static_inline
 uint32_t amhw_lpc_fmc_flash_sign_get (amhw_lpc_fmc_t * p_hw_fmc)
@@ -151,12 +151,12 @@ uint32_t amhw_lpc_fmc_flash_sign_get (amhw_lpc_fmc_t * p_hw_fmc)
 }
 
 /**
- * \brief ¿ìËÙ»ñÈ¡Ç©ÃûĞÅÏ¢
+ * \brief å¿«é€Ÿè·å–ç­¾åä¿¡æ¯
  *
- * \param[in] start_addr : Ç©ÃûÉú³ÉÆğÊ¼µØÖ·(¶ÔÓ¦ÓÚAHB×Ö½ÚµØÖ·Î»¡¾20:4¡¿¼´16Î»¶ÔÆë)
- * \param[in] end_addr   : Ç©ÃûÉú³É½áÊøµØÖ·(¶ÔÓ¦ÓÚAHB×Ö½ÚµØÖ·Î»¡¾20:4¡¿¼´16Î»¶ÔÆë)
+ * \param[in] start_addr : ç­¾åç”Ÿæˆèµ·å§‹åœ°å€(å¯¹åº”äºAHBå­—èŠ‚åœ°å€ä½ã€20:4ã€‘å³16ä½å¯¹é½)
+ * \param[in] end_addr   : ç­¾åç”Ÿæˆç»“æŸåœ°å€(å¯¹åº”äºAHBå­—èŠ‚åœ°å€ä½ã€20:4ã€‘å³16ä½å¯¹é½)
  *
- * \return ·µ»ØflashÇ©ÃûĞÅÏ¢
+ * \return è¿”å›flashç­¾åä¿¡æ¯
  */
 am_static_inline
 uint32_t amhw_lpc_fmc_flash_sign (amhw_lpc_fmc_t * p_hw_fmc, uint32_t start_addr, uint32_t end_addr)

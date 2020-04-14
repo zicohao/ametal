@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief KL16 PMU ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief KL16 PMU ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_kl26_hwconfig_pmu.c
  * 
  * \internal
@@ -33,44 +33,44 @@
  * @{
  */
 
-/** \brief PMU Æ½Ì¨³õÊ¼»¯ */
+/** \brief PMU å¹³å°åˆå§‹åŒ– */
 void __kl26_plfm_pmu_init (void)
 {
 
 }
 
-/** \brief ½â³ıPMU Æ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤PMU å¹³å°åˆå§‹åŒ– */
 void __kl26_plfm_pmu_deinit (void)
 {
 	amhw_arm_nvic_disable(INUM_LLWU);
 }
 /**
- * \brief PMU Éè±¸ĞÅÏ¢
+ * \brief PMU è®¾å¤‡ä¿¡æ¯
  */
 const  struct am_kl26_pmu_devinfo  __g_pmu_devinfo = {
-    KL26_SMC,                                /**< \brief SMC¼Ä´æÆ÷Ö¸Õë       */
-    KL26_PMC,                                /**< \brief PMC¼Ä´æÆ÷Ö¸Õë       */
-    KL26_RCM,                                /**< \brief RCM¼Ä´æÆ÷Ö¸Õë       */
-    KL26_LLWU,                               /**< \brief LLWU¼Ä´æÆ÷Ö¸Õë      */
-    AM_KL26_PMU_ARG_VLLS0_POR_DISABLE |      /**< \brief VLLS0½ûÄÜµçÔ´¼ì²â   */
-    AM_KL26_PMU_ARG_VLLSx_ISOACK_CLEAR,      /**< \brief ×Ô¶¯Çå³ı»½ĞÑACK±êÖ¾ */
-    __kl26_plfm_pmu_init,                    /**< \brief PMUÆ½Ì¨³õÊ¼»¯ */
-    __kl26_plfm_pmu_deinit                   /**< \brief PMUÆ½Ì¨È¥³õÊ¼»¯ */
+    KL26_SMC,                                /**< \brief SMCå¯„å­˜å™¨æŒ‡é’ˆ       */
+    KL26_PMC,                                /**< \brief PMCå¯„å­˜å™¨æŒ‡é’ˆ       */
+    KL26_RCM,                                /**< \brief RCMå¯„å­˜å™¨æŒ‡é’ˆ       */
+    KL26_LLWU,                               /**< \brief LLWUå¯„å­˜å™¨æŒ‡é’ˆ      */
+    AM_KL26_PMU_ARG_VLLS0_POR_DISABLE |      /**< \brief VLLS0ç¦èƒ½ç”µæºæ£€æµ‹   */
+    AM_KL26_PMU_ARG_VLLSx_ISOACK_CLEAR,      /**< \brief è‡ªåŠ¨æ¸…é™¤å”¤é†’ACKæ ‡å¿— */
+    __kl26_plfm_pmu_init,                    /**< \brief PMUå¹³å°åˆå§‹åŒ– */
+    __kl26_plfm_pmu_deinit                   /**< \brief PMUå¹³å°å»åˆå§‹åŒ– */
 };
 
-/** \brief PMU Éè±¸ÊµÀı */
+/** \brief PMU è®¾å¤‡å®ä¾‹ */
 am_kl26_pmu_dev_t __g_pmu_dev;
 
 /**
- * \brief  PMU ÊµÀı³õÊ¼»¯£¬³õÊ¼»¯ÏµÍ³Ê±ÖÓ
- * \retval AM_OK : ³É¹¦³õÊ¼»¯
+ * \brief  PMU å®ä¾‹åˆå§‹åŒ–ï¼Œåˆå§‹åŒ–ç³»ç»Ÿæ—¶é’Ÿ
+ * \retval AM_OK : æˆåŠŸåˆå§‹åŒ–
  */
 int am_kl26_pmu_inst_init (void)
 {
     return am_kl26_pmu_init(&__g_pmu_dev, &__g_pmu_devinfo);
 }
 
-/** \brief PMUÊµÀı½â³õÊ¼»¯ */
+/** \brief PMUå®ä¾‹è§£åˆå§‹åŒ– */
 void am_kl26_pmu_inst_deinit (void)
 {
     am_kl26_pmu_deinit(&__g_pmu_dev);

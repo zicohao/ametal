@@ -12,13 +12,13 @@
 
 /**
  * \file
- * \brief DACÊıÄ£×ª»»Àı³Ì£¬Í¨¹ıHW½Ó¿ÚÊµÏÖ£¬DMA´«ÊäÊı¾İ
+ * \brief DACæ•°æ¨¡è½¬æ¢ä¾‹ç¨‹ï¼Œé€šè¿‡HWæ¥å£å®ç°ï¼ŒDMAä¼ è¾“æ•°æ®
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ²É¼¯ÊıÄ£×ª»»µÄÊä³ö¿ÚPE30µÄµçÑ¹Öµ
+ * - å®éªŒç°è±¡ï¼š
+ *   1. é‡‡é›†æ•°æ¨¡è½¬æ¢çš„è¾“å‡ºå£PE30çš„ç”µå‹å€¼
  *
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_kl26_hw_dac_dma_st.c src_kl26_hw_dac_dma_st
  *
  * \internal
@@ -50,7 +50,7 @@
 
 static volatile uint8_t  __g_signal = 0;
 
-static const uint16_t __g_sin_wave[__BUFLEN] = { /* ÕıÏÒ²¨Êı¾İ */
+static const uint16_t __g_sin_wave[__BUFLEN] = { /* æ­£å¼¦æ³¢æ•°æ® */
     0x0800, 0x0823, 0x0847, 0x086B, 0x088E, 0x08B2, 0x08D6, 0x08F9,
     0x091C, 0x0940, 0x0963, 0x0986, 0x09A9, 0x09CC, 0x09EF, 0x0A11,
     0x0A34, 0x0A56, 0x0A78, 0x0A9A, 0x0ABC, 0x0ADD, 0x0AFF, 0x0B20,
@@ -98,7 +98,7 @@ static const uint16_t __g_sin_wave[__BUFLEN] = { /* ÕıÏÒ²¨Êı¾İ */
     0x06E3, 0x0706, 0x0729, 0x074D, 0x0771, 0x0794, 0x07B8, 0x07DC,
 };
 
-/** \brief DAC_DMA´«ÊäÍê³É»Øµ÷º¯Êı */
+/** \brief DAC_DMAä¼ è¾“å®Œæˆå›è°ƒå‡½æ•° */
 static void __am_kl26_dac_dma_isr (void *p_arg , uint8_t flag)
 {
     if (flag == AM_KL26_DMA_INT_NORMAL) {
@@ -106,98 +106,98 @@ static void __am_kl26_dac_dma_isr (void *p_arg , uint8_t flag)
     }
 }
 
-/** \brief DMA ³õÊ¼»¯ÅäÖÃ */
+/** \brief DMA åˆå§‹åŒ–é…ç½® */
 static void _kl26_dac_dma_init (uint8_t   dma_chan, uint8_t *p_dest,
                           const uint16_t *p_src,    uint32_t  lenth)
 {
     uint32_t flags;
     amhw_kl26_dma_xfer_desc_t dma_desc;
 
-    /* DMA´«ÊäÅäÖÃ */
-    flags = KL26_DMA_DCR_PER_REQUEST_ENABLE      |  /* ÍâÉèÇëÇóÔ´Ê¹ÄÜ    */
-            KL26_DMA_DCR_SINGLE_TRANSFERS        |  /* µ¥´Î´«Êä          */
-            KL26_DMA_DCR_AUTO_ALIGN_DISABLE      |  /* ×Ô¶¯¶ÔÆë½ûÄÜ      */
-            KL26_DMA_DCR_SOURCE_SIZE_16_BIT      |  /* Ô´µØÖ·2×Ö½Ú¶ÁÈ¡   */
-            KL26_DMA_DCR_SOURCE_SIZE_16_BIT      |  /* Ä¿µÄµØÖ·2×Ö½ÚĞ´Èë */
-            KL26_DMA_DCR_REQUEST_AFFECTED        |  /* ÇëÇóÓĞÓ°Ïì        */
-            KL26_DMA_DCR_NO_LINKING              |  /* ÎŞÍ¨µÀÁ¬½Ó        */
-            KL26_DMA_DCR_INTERRUTP_ENABLE        |  /* DMAÖĞ¶ÏÊ¹ÄÜ       */
-            KL26_DMA_DCR_START_DISABLE    ;         /* DMA¿ªÊ¼´«Êä½ûÄÜ   */
+    /* DMAä¼ è¾“é…ç½® */
+    flags = KL26_DMA_DCR_PER_REQUEST_ENABLE      |  /* å¤–è®¾è¯·æ±‚æºä½¿èƒ½    */
+            KL26_DMA_DCR_SINGLE_TRANSFERS        |  /* å•æ¬¡ä¼ è¾“          */
+            KL26_DMA_DCR_AUTO_ALIGN_DISABLE      |  /* è‡ªåŠ¨å¯¹é½ç¦èƒ½      */
+            KL26_DMA_DCR_SOURCE_SIZE_16_BIT      |  /* æºåœ°å€2å­—èŠ‚è¯»å–   */
+            KL26_DMA_DCR_SOURCE_SIZE_16_BIT      |  /* ç›®çš„åœ°å€2å­—èŠ‚å†™å…¥ */
+            KL26_DMA_DCR_REQUEST_AFFECTED        |  /* è¯·æ±‚æœ‰å½±å“        */
+            KL26_DMA_DCR_NO_LINKING              |  /* æ— é€šé“è¿æ¥        */
+            KL26_DMA_DCR_INTERRUTP_ENABLE        |  /* DMAä¸­æ–­ä½¿èƒ½       */
+            KL26_DMA_DCR_START_DISABLE    ;         /* DMAå¼€å§‹ä¼ è¾“ç¦èƒ½   */
 
-    /* Á¬½ÓDMAÖĞ¶Ï·şÎñº¯Êı */
+    /* è¿æ¥DMAä¸­æ–­æœåŠ¡å‡½æ•° */
     am_kl26_dma_isr_connect(dma_chan, __am_kl26_dac_dma_isr, NULL);
 
     am_kl26_dma_chan_cfg(dma_chan,
-                         KL26_DMA_TRIGGER_DISABLE | /**< \brief DMAÕı³£Ä£Ê½ */
-                         DMA_REQUEST_MUX0_DAC0);         /**< \brief DACÇëÇóÔ´      */
+                         KL26_DMA_TRIGGER_DISABLE | /**< \brief DMAæ­£å¸¸æ¨¡å¼ */
+                         DMA_REQUEST_MUX0_DAC0);         /**< \brief DACè¯·æ±‚æº      */
 
-    /* ½¨Á¢Í¨µÀÃèÊö·û */
-    am_kl26_dma_xfer_desc_build(&dma_desc,              /* Í¨µÀÃèÊö·û   */
-                                (uint32_t)(p_src),      /* Ô´¶ËÊı¾İ»º³å */
-                                (uint32_t)(p_dest),     /* Ä¿±êÊı¾İ»º³å */
-                                (uint32_t)(lenth << 1), /* ´«Êä×Ö½ÚÊı   */
-                                flags);                 /* ´«ÊäÅäÖÃ     */
+    /* å»ºç«‹é€šé“æè¿°ç¬¦ */
+    am_kl26_dma_xfer_desc_build(&dma_desc,              /* é€šé“æè¿°ç¬¦   */
+                                (uint32_t)(p_src),      /* æºç«¯æ•°æ®ç¼“å†² */
+                                (uint32_t)(p_dest),     /* ç›®æ ‡æ•°æ®ç¼“å†² */
+                                (uint32_t)(lenth << 1), /* ä¼ è¾“å­—èŠ‚æ•°   */
+                                flags);                 /* ä¼ è¾“é…ç½®     */
 
-    /* Æô¶¯DMA´«Êä£¬ÂíÉÏ¿ªÊ¼´«Êä */
+    /* å¯åŠ¨DMAä¼ è¾“ï¼Œé©¬ä¸Šå¼€å§‹ä¼ è¾“ */
     if (am_kl26_dma_chan_start(&dma_desc,
-                               KL26_DMA_MER_TO_PER, /*  ÄÚ´æµ½ÍâÉè  */
+                               KL26_DMA_MER_TO_PER, /*  å†…å­˜åˆ°å¤–è®¾  */
                                dma_chan) == AM_ERROR) {
         am_kprintf("DMA init error!\n");
     }
 
 }
 
-/** \brief DAC ³õÊ¼»¯ÅäÖÃ */
+/** \brief DAC åˆå§‹åŒ–é…ç½® */
 static void _kl26_dac_init (void)
 {
     /**
-     * \brief DAC »º´æÇø¹¦ÄÜÅäÖÃ½á¹¹Ìå¶¨Òå
+     * \brief DAC ç¼“å­˜åŒºåŠŸèƒ½é…ç½®ç»“æ„ä½“å®šä¹‰
      */
     amhw_fsl_dac_buffer_config_t dac_buf_cfg = {
-        AM_TRUE,                         /* Ê¹ÄÜBUF¹¦ÄÜ                   */
-        AMHW_FSL_DAC_TRG_SOFT,           /* Èí¼ş´¥·¢                           */
-        AM_TRUE,                         /* »º³å¶ÁÈ¡µ×Ö¸ÕëÖĞ¶ÏÊ¹ÄÜ */
-        AM_FALSE,                        /* »º³å¶ÁÈ¡¶¥Ö¸ÕëÖĞ¶Ï½ûÄÜ */
-        AM_TRUE,                         /* Ê¹ÄÜDMA¹¦ÄÜ                    */
-        AMHW_FSL_DAC_BUFMODE_NORMAL,     /* »º´æÇøÄ£Ê½ÎªÕı³£Ä£Ê½      */
-        AM_TRUE,                         /* »º´æÇøÉÏÏŞÊ¹ÄÜ                 */
+        AM_TRUE,                         /* ä½¿èƒ½BUFåŠŸèƒ½                   */
+        AMHW_FSL_DAC_TRG_SOFT,           /* è½¯ä»¶è§¦å‘                           */
+        AM_TRUE,                         /* ç¼“å†²è¯»å–åº•æŒ‡é’ˆä¸­æ–­ä½¿èƒ½ */
+        AM_FALSE,                        /* ç¼“å†²è¯»å–é¡¶æŒ‡é’ˆä¸­æ–­ç¦èƒ½ */
+        AM_TRUE,                         /* ä½¿èƒ½DMAåŠŸèƒ½                    */
+        AMHW_FSL_DAC_BUFMODE_NORMAL,     /* ç¼“å­˜åŒºæ¨¡å¼ä¸ºæ­£å¸¸æ¨¡å¼      */
+        AM_TRUE,                         /* ç¼“å­˜åŒºä¸Šé™ä½¿èƒ½                 */
     };
 
-    /* ÅäÖÃPIOE_30ÎªDAC0_OUT¹¦ÄÜ                 */
+    /* é…ç½®PIOE_30ä¸ºDAC0_OUTåŠŸèƒ½                 */
     am_gpio_pin_cfg (PIOE_30, PIOE_30_DAC0_OUT);
 
-    /* ¿ªÆôDACÊ±ÖÓ                               */
+    /* å¼€å¯DACæ—¶é’Ÿ                               */
     amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_DAC0);
 
-    /* DAC»º³åÇø´«ÊäÊ¹ÄÜ */
+    /* DACç¼“å†²åŒºä¼ è¾“ä½¿èƒ½ */
     amhw_fsl_dac_dat_buf_init(KL26_DAC0, &dac_buf_cfg);
 
-    /* Ê¹ÄÜDACÄ£¿é */
+    /* ä½¿èƒ½DACæ¨¡å— */
     amhw_fsl_dac_enable(KL26_DAC0);
 }
 
-/** \brief Æô¶¯DAC×ª»» */
+/** \brief å¯åŠ¨DACè½¬æ¢ */
 static void _kl26_dac_start (void)
 {
     amhw_fsl_dac_soft_trg_enable(KL26_DAC0);
 }
 
 /**
- * \brief DACÊä³öµçÑ¹£¬DMA´«ÊäÊı¾İ£¬HW²ã½Ó¿ÚÊµÏÖ
- * \return ÎŞ
+ * \brief DACè¾“å‡ºç”µå‹ï¼ŒDMAä¼ è¾“æ•°æ®ï¼ŒHWå±‚æ¥å£å®ç°
+ * \return æ— 
  */
 void demo_kl26_hw_dac_dma_st_entry (void)
 {
     uint32_t key;
 
-    am_kl26_dma_inst_init();       /* DMAÊµÀı³õÊ¼»¯            */
-    _kl26_dac_dma_init(DMA_CHAN_0, /* DAC DMA´«Êä³õÊ¼»¯ */
+    am_kl26_dma_inst_init();       /* DMAå®ä¾‹åˆå§‹åŒ–            */
+    _kl26_dac_dma_init(DMA_CHAN_0, /* DAC DMAä¼ è¾“åˆå§‹åŒ– */
                        (uint8_t *)&(KL26_DAC0->dat),
                        __g_sin_wave,
                        __BUFLEN);
-    _kl26_dac_init();              /* DAC ³õÊ¼»¯ */
+    _kl26_dac_init();              /* DAC åˆå§‹åŒ– */
 
-    _kl26_dac_start();             /* Æô¶¯DAC */
+    _kl26_dac_start();             /* å¯åŠ¨DAC */
 
     am_kprintf("DAC hw dac dma test\n");
 

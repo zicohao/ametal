@@ -44,7 +44,7 @@
 #include "am_bsp_newlib.h"
 #endif
 
-/** \brief SRAM ĞÅÏ¢,Ê¹ÓÃ ARMCC Ê±ĞèÒªÌá¹© SRAM½áÊøµØÖ· */
+/** \brief SRAM ä¿¡æ¯,ä½¿ç”¨ ARMCC æ—¶éœ€è¦æä¾› SRAMç»“æŸåœ°å€ */
 #ifdef __CC_ARM
 #define SRAM_SIZE   8
 #define SRAM_START  0x10000000
@@ -52,32 +52,32 @@
 #endif /* __CC_ARM */
 
 /*******************************************************************************
-  È«¾Ö±äÁ¿
+  å…¨å±€å˜é‡
 *******************************************************************************/
 
 /**
- * \brief ·äÃùÆ÷Ê¹ÓÃµÄ¶¨Ê±Æ÷µÄ handle
+ * \brief èœ‚é¸£å™¨ä½¿ç”¨çš„å®šæ—¶å™¨çš„ handle
  *
- * µ±Ê¹ÓÃ·äÃùÆ÷Ê±£¬Ä¬ÈÏ½«Ê¹ÓÃ SCT µÄ OUT1 Êä³ö PWM ²¨ĞÎ£¬Òò´ËÒÑ¾­½« SCT ³õÊ¼»¯Îª
- * PWM ¹¦ÄÜ£¬ÓÉÓÚ SCT ¿ÉÒÔÊä³öÁùÂ· PWM£¬Òò´Ë¿ÉÒÔÊ¹ÓÃ¸Ã handle£¬ÒÔ±ãÊ¹ÓÃÆäËü 5 Â· PWM
+ * å½“ä½¿ç”¨èœ‚é¸£å™¨æ—¶ï¼Œé»˜è®¤å°†ä½¿ç”¨ SCT çš„ OUT1 è¾“å‡º PWM æ³¢å½¢ï¼Œå› æ­¤å·²ç»å°† SCT åˆå§‹åŒ–ä¸º
+ * PWM åŠŸèƒ½ï¼Œç”±äº SCT å¯ä»¥è¾“å‡ºå…­è·¯ PWMï¼Œå› æ­¤å¯ä»¥ä½¿ç”¨è¯¥ handleï¼Œä»¥ä¾¿ä½¿ç”¨å…¶å®ƒ 5 è·¯ PWM
  */
 am_pwm_handle_t g_buzzer_pwm_handle;
 
 /**
- * \brief ÏµÍ³µÎ´ğÊ¹ÓÃµÄ¶¨Ê±Æ÷µÄ handle
+ * \brief ç³»ç»Ÿæ»´ç­”ä½¿ç”¨çš„å®šæ—¶å™¨çš„ handle
  *
- * µ±Ê¹ÓÃÏµÍ³µÎ´ğÊ±£¬Ä¬ÈÏÊ¹ÓÃ MRT µÄÍ¨µÀ 0 ×÷Îª»ù´¡¶¨Ê±µ¥Ôª£¬Òò´ËÒÑ¾­½« MRT ³õÊ¼»¯Îª
- * ¶¨Ê±Æ÷¹¦ÄÜ£¬ÓÉÓÚ MRT ¿ÉÒÔÖ§³Ö 4 Â·¶¨Ê±£¬Òò´Ë¿ÉÒÔÊ¹ÓÃ¸Ã handle£¬ÒÔ±ãÊ¹ÓÃÆäËü 3 Â·
- * ¶¨Ê±Í¨µÀ
+ * å½“ä½¿ç”¨ç³»ç»Ÿæ»´ç­”æ—¶ï¼Œé»˜è®¤ä½¿ç”¨ MRT çš„é€šé“ 0 ä½œä¸ºåŸºç¡€å®šæ—¶å•å…ƒï¼Œå› æ­¤å·²ç»å°† MRT åˆå§‹åŒ–ä¸º
+ * å®šæ—¶å™¨åŠŸèƒ½ï¼Œç”±äº MRT å¯ä»¥æ”¯æŒ 4 è·¯å®šæ—¶ï¼Œå› æ­¤å¯ä»¥ä½¿ç”¨è¯¥ handleï¼Œä»¥ä¾¿ä½¿ç”¨å…¶å®ƒ 3 è·¯
+ * å®šæ—¶é€šé“
  */
 am_timer_handle_t g_system_tick_timer_handle;
 
 /*******************************************************************************
-  ¹«¹²º¯Êı
+  å…¬å…±å‡½æ•°
 *******************************************************************************/
 
 /**
- * \brief °å¼¶³õÊ¼»¯
+ * \brief æ¿çº§åˆå§‹åŒ–
  */
 void am_board_init (void)
 {
@@ -98,7 +98,7 @@ void am_board_init (void)
     int *heap_end   = (int *)SRAM_END;
 #endif
 
-    /* ÏµÍ³¶ÑÕ»³õÊ¼»¯ */
+    /* ç³»ç»Ÿå †æ ˆåˆå§‹åŒ– */
     am_bsp_system_heap_init((void *)heap_start, (void *)heap_end);
 
 #if (AM_CFG_DELAY_ENABLE == 1)
@@ -121,17 +121,17 @@ void am_board_init (void)
     #ifdef __CC_ARM
         #ifdef __MICROLIB
 
-            /* ³õÊ¼»¯Micro LIB */
+            /* åˆå§‹åŒ–Micro LIB */
             am_bsp_microlib_init(dbg_handle);
         #else
 
-            /* ³õÊ¼»¯ARM LIB */
+            /* åˆå§‹åŒ–ARM LIB */
             am_bsp_armlib_init(dbg_handle);
         #endif /* __MICROLIB */
 
     #elif defined(__GNUC__)
 
-        /* ³õÊ¼»¯ NEW LIB ¿â */
+        /* åˆå§‹åŒ– NEW LIB åº“ */
         am_bsp_newlib_init(dbg_handle);
     #endif
 #endif /* (AM_CFG_STDLIB_ENABLE == 1) */
@@ -147,7 +147,7 @@ void am_board_init (void)
 #endif /* (AM_CFG_BUZZER_ENABLE == 1) */
 
 #if (AM_CFG_KEY_ENABLE == 1) || (AM_CFG_KEY_GPIO_ENABLE == 1)
-    am_event_input_inst_init();                   /* ÊÂ¼şÊäÈë¹ÜÀíÆ÷·şÎñ³õÊ¼»¯ */
+    am_event_input_inst_init();                   /* äº‹ä»¶è¾“å…¥ç®¡ç†å™¨æœåŠ¡åˆå§‹åŒ– */
 #endif /* (AM_CFG_KEY_ENABLE == 1) || (AM_CFG_KEY_GPIO_ENABLE == 1) */
 
 #if (AM_CFG_KEY_GPIO_ENABLE == 1)
@@ -158,7 +158,7 @@ void am_board_init (void)
     am_bsp_isr_defer_pendsv_init();
 #endif /* (AM_CFG_ISR_DEFER_ENABLE == 1) */
 
-    /* ÆäËüÄÚÈİ´ıÌí¼Ó */
+    /* å…¶å®ƒå†…å®¹å¾…æ·»åŠ  */
 }
 
 /* end of file */

@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief SPI Çı¶¯²ãÊµÏÖº¯Êı
+ * \brief SPI é©±åŠ¨å±‚å®ç°å‡½æ•°
  *
  * \internal
  * \par Modification history
@@ -32,36 +32,36 @@ includes
 #include "hw/amhw_zlg_spi.h"
 
 /*******************************************************************************
-  SPI ×´Ì¬ºÍÊÂ¼ş¶¨Òå
+  SPI çŠ¶æ€å’Œäº‹ä»¶å®šä¹‰
 *******************************************************************************/
 
 /**
- * SPI ¿ØÖÆÆ÷×´Ì¬
+ * SPI æ§åˆ¶å™¨çŠ¶æ€
  */
 
-#define __SPI_ST_IDLE               0                   /* ¿ÕÏĞ×´Ì¬ */
-#define __SPI_ST_MSG_START          1                   /* ÏûÏ¢¿ªÊ¼ */
-#define __SPI_ST_TRANS_START        2                   /* ´«Êä¿ªÊ¼ */
-#define __SPI_ST_M_SEND_DATA        3                   /* Ö÷»ú·¢ËÍ */
-#define __SPI_ST_M_RECV_DATA        4                   /* Ö÷»ú½ÓÊÕ */
+#define __SPI_ST_IDLE               0                   /* ç©ºé—²çŠ¶æ€ */
+#define __SPI_ST_MSG_START          1                   /* æ¶ˆæ¯å¼€å§‹ */
+#define __SPI_ST_TRANS_START        2                   /* ä¼ è¾“å¼€å§‹ */
+#define __SPI_ST_M_SEND_DATA        3                   /* ä¸»æœºå‘é€ */
+#define __SPI_ST_M_RECV_DATA        4                   /* ä¸»æœºæ¥æ”¶ */
 
 /**
- * SPI ¿ØÖÆÆ÷ÊÂ¼ş
+ * SPI æ§åˆ¶å™¨äº‹ä»¶
  *
- * ¹²32Î»£¬µÍ16Î»ÊÇÊÂ¼ş±àºÅ£¬¸ß16Î»ÊÇÊÂ¼ş²ÎÊı
+ * å…±32ä½ï¼Œä½16ä½æ˜¯äº‹ä»¶ç¼–å·ï¼Œé«˜16ä½æ˜¯äº‹ä»¶å‚æ•°
  */
 
 #define __SPI_EVT_NUM_GET(event)    ((event) & 0xFFFF)
 #define __SPI_EVT_PAR_GET(event)    ((event >> 16) & 0xFFFF)
 #define __SPI_EVT(evt_num, evt_par) (((evt_num) & 0xFFFF) | ((evt_par) << 16))
 
-#define __SPI_EVT_NONE              __SPI_EVT(0, 0)     /* ÎŞÊÂ¼ş */
-#define __SPI_EVT_TRANS_LAUNCH      __SPI_EVT(1, 0)     /* ´«Êä¾ÍĞ÷ */
-#define __SPI_EVT_M_SEND_DATA       __SPI_EVT(2, 0)     /* ·¢ËÍÊı¾İ */
-#define __SPI_EVT_M_RECV_DATA       __SPI_EVT(3, 0)     /* ½ÓÊÕÊı¾İ */
+#define __SPI_EVT_NONE              __SPI_EVT(0, 0)     /* æ— äº‹ä»¶ */
+#define __SPI_EVT_TRANS_LAUNCH      __SPI_EVT(1, 0)     /* ä¼ è¾“å°±ç»ª */
+#define __SPI_EVT_M_SEND_DATA       __SPI_EVT(2, 0)     /* å‘é€æ•°æ® */
+#define __SPI_EVT_M_RECV_DATA       __SPI_EVT(3, 0)     /* æ¥æ”¶æ•°æ® */
 
 /*******************************************************************************
-  Ä£¿éÄÚº¯ÊıÉùÃ÷
+  æ¨¡å—å†…å‡½æ•°å£°æ˜
 *******************************************************************************/
 am_local void __spi_default_cs_ha    (am_spi_device_t *p_dev, int state);
 am_local void __spi_default_cs_la    (am_spi_device_t *p_dev, int state);
@@ -80,7 +80,7 @@ am_local uint32_t __spi_speed_cfg (am_zlg_spi_poll_dev_t *p_dev, uint32_t target
 
 am_local int  __spi_mst_sm_event (am_zlg_spi_poll_dev_t *p_dev);
 /*******************************************************************************
-  SPIÇı¶¯º¯ÊıÉùÃ÷
+  SPIé©±åŠ¨å‡½æ•°å£°æ˜
 *******************************************************************************/
 am_local int __spi_info_get (void *p_arg, am_spi_info_t   *p_info);
 am_local int __spi_setup    (void *p_arg, am_spi_device_t *p_dev );
@@ -89,7 +89,7 @@ am_local int __spi_msg_start (void              *p_drv,
                               am_spi_message_t  *p_msg);
 
 /**
- * \brief SPI Çı¶¯º¯Êı
+ * \brief SPI é©±åŠ¨å‡½æ•°
  */
 am_local am_const struct am_spi_drv_funcs __g_spi_drv_funcs = {
     __spi_info_get,
@@ -99,17 +99,17 @@ am_local am_const struct am_spi_drv_funcs __g_spi_drv_funcs = {
 
 /******************************************************************************/
 
-/* »ñÈ¡SPIµÄÊäÈëÆµÂÊ */
+/* è·å–SPIçš„è¾“å…¥é¢‘ç‡ */
 #define __SPI_FRQIIN_GET(p_hw_spi)    am_clk_rate_get(p_this->p_devinfo->clk_id)
 
-/* »ñÈ¡SPIÖ§³ÖµÄ×î´óËÙ¶È */
+/* è·å–SPIæ”¯æŒçš„æœ€å¤§é€Ÿåº¦ */
 #define __SPI_MAXSPEED_GET(p_hw_spi) (__SPI_FRQIIN_GET(p_hw_spi) / 2)
 
-/* »ñÈ¡SPIÖ§³ÖµÄ×îĞ¡ËÙ¶È */
+/* è·å–SPIæ”¯æŒçš„æœ€å°é€Ÿåº¦ */
 #define __SPI_MINSPEED_GET(p_hw_spi) (__SPI_FRQIIN_GET(p_hw_spi) / 65535)
 
 /**
- * \brief Î»Êı×ª×Ö½Ú
+ * \brief ä½æ•°è½¬å­—èŠ‚
  */
 am_local
 uint8_t __bits_to_bytes (uint8_t bits)
@@ -119,7 +119,7 @@ uint8_t __bits_to_bytes (uint8_t bits)
        return bytes;
 }
 /**
- * \brief Ä¬ÈÏCS½Å¿ØÖÆº¯Êı£¬¸ßµçÆ½ÓĞĞ§
+ * \brief é»˜è®¤CSè„šæ§åˆ¶å‡½æ•°ï¼Œé«˜ç”µå¹³æœ‰æ•ˆ
  */
 am_local
 void __spi_default_cs_ha (am_spi_device_t *p_dev, int state)
@@ -128,7 +128,7 @@ void __spi_default_cs_ha (am_spi_device_t *p_dev, int state)
 }
 
 /**
- * \brief Ä¬ÈÏCS½Å¿ØÖÆº¯Êı£¬µÍµçÆ½ÓĞĞ§
+ * \brief é»˜è®¤CSè„šæ§åˆ¶å‡½æ•°ï¼Œä½ç”µå¹³æœ‰æ•ˆ
  */
 am_local
 void __spi_default_cs_la (am_spi_device_t *p_dev, int state)
@@ -137,7 +137,7 @@ void __spi_default_cs_la (am_spi_device_t *p_dev, int state)
 }
 
 /**
- * \brief Ä¬ÈÏCS½Å¿ØÖÆº¯Êı£¬ÓÉÓ²¼ş×ÔĞĞ¿ØÖÆ
+ * \brief é»˜è®¤CSè„šæ§åˆ¶å‡½æ•°ï¼Œç”±ç¡¬ä»¶è‡ªè¡Œæ§åˆ¶
  */
 am_local
 void __spi_default_cs_dummy (am_spi_device_t *p_dev, int state)
@@ -146,7 +146,7 @@ void __spi_default_cs_dummy (am_spi_device_t *p_dev, int state)
 }
 
 /**
- * \brief CSÒı½Å¼¤»î
+ * \brief CSå¼•è„šæ¿€æ´»
  */
 am_local
 void __spi_cs_on (am_zlg_spi_poll_dev_t *p_this, am_spi_device_t *p_dev)
@@ -165,7 +165,7 @@ void __spi_cs_on (am_zlg_spi_poll_dev_t *p_this, am_spi_device_t *p_dev)
 }
 
 /**
- * \brief CSÒı½ÅÈ¥»î
+ * \brief CSå¼•è„šå»æ´»
  */
 am_local
 void __spi_cs_off (am_zlg_spi_poll_dev_t *p_this,
@@ -188,17 +188,17 @@ void __spi_write_data (am_zlg_spi_poll_dev_t *p_dev)
 
     while(!(amhw_zlg_spi_reg_cstat_get (p_hw_spi) & AMHW_ZLG_SPI_CSTAT_TX_EMPTY));
 
-    /* tx_buf ÓĞĞ§ */
+    /* tx_buf æœ‰æ•ˆ */
     if (p_trans->p_txbuf != NULL) {
-        /** \brief ´ı·¢ËÍÊı¾İµÄ»ùÖ·+Æ«ÒÆ */
+        /** \brief å¾…å‘é€æ•°æ®çš„åŸºå€+åç§» */
         uint8_t *ptr = (uint8_t *)(p_trans->p_txbuf) + p_dev->data_ptr;
         amhw_zlg_spi_tx_data8_put(p_hw_spi, *ptr);
-    /* tx_buf ÎŞĞ§ */
+    /* tx_buf æ— æ•ˆ */
     } else {
-        /* ´ı·¢ËÍÊı¾İÎŞĞ§ Ö±½Ó·¢0 */
+        /* å¾…å‘é€æ•°æ®æ— æ•ˆ ç›´æ¥å‘0 */
             amhw_zlg_spi_tx_data8_put(p_hw_spi, 0x00);
     }
-    /** \brief Ğè½ÓÊÕÊı¾İµÄbyteÊı */
+    /** \brief éœ€æ¥æ”¶æ•°æ®çš„byteæ•° */
     p_dev->nbytes_to_recv = __bits_to_bytes(p_dev->p_cur_spi_dev->bits_per_word); //todo
     p_dev->p_cur_msg->actual_length += p_dev->nbytes_to_recv;
 }
@@ -216,15 +216,15 @@ void __spi_read_data (am_zlg_spi_poll_dev_t *p_dev)
 
     if (amhw_zlg_spi_reg_cstat_get (p_hw_spi) & AMHW_ZLG_SPI_CSTAT_RXVAL) {
 
-        /* rx_buf ÓĞĞ§ */
+        /* rx_buf æœ‰æ•ˆ */
         if (p_trans->p_rxbuf != NULL && p_dev->nbytes_to_recv) {
              *p_buf8 = amhw_zlg_spi_rx_data8_get(p_hw_spi);
-        /* rx_buf ÎŞĞ§»òÕß²»ĞèÒª½ÓÊÕÊı¾İ */
+        /* rx_buf æ— æ•ˆæˆ–è€…ä¸éœ€è¦æ¥æ”¶æ•°æ® */
         } else {
                (void)amhw_zlg_spi_rx_data8_get(p_hw_spi);
         }
 
-        /* ÒÑ¾­·¢ËÍ»ò½ÓÊÕµÄÊı¾İbyteÊı */
+        /* å·²ç»å‘é€æˆ–æ¥æ”¶çš„æ•°æ®byteæ•° */
         p_dev->data_ptr += p_dev->nbytes_to_recv;
         p_dev->nbytes_to_recv = 0;
 
@@ -233,8 +233,8 @@ void __spi_read_data (am_zlg_spi_poll_dev_t *p_dev)
 
 /******************************************************************************/
 /**
- * \brief ´ÓmessageÁĞ±í±íÍ·È¡³öÒ»Ìõ transfer
- * \attention µ÷ÓÃ´Ëº¯Êı±ØĞëËø¶¨¿ØÖÆÆ÷
+ * \brief ä»messageåˆ—è¡¨è¡¨å¤´å–å‡ºä¸€æ¡ transfer
+ * \attention è°ƒç”¨æ­¤å‡½æ•°å¿…é¡»é”å®šæ§åˆ¶å™¨
  */
 am_static_inline
 struct am_spi_transfer *__spi_trans_out (am_spi_message_t *msg)
@@ -260,14 +260,14 @@ int __spi_setup (void *p_arg, am_spi_device_t *p_dev)
         return -AM_EINVAL;
     }
 
-    /* Ä¬ÈÏÊı¾İÎª8Î»£¬×î´ó²»³¬¹ı16Î» */
+    /* é»˜è®¤æ•°æ®ä¸º8ä½ï¼Œæœ€å¤§ä¸è¶…è¿‡16ä½ */
     if (p_dev->bits_per_word == 0) {
         p_dev->bits_per_word = 8;
     } else if (p_dev->bits_per_word > 32) {
         return -AM_ENOTSUP;
     }
 
-    /* ×î´óSPIËÙÂÊ²»ÄÜ³¬¹ıÖ÷Ê±ÖÓ£¬×îĞ¡²»ÄÜĞ¡ÓÚÖ÷Ê±ÖÓ65536·ÖÆµ */
+    /* æœ€å¤§SPIé€Ÿç‡ä¸èƒ½è¶…è¿‡ä¸»æ—¶é’Ÿï¼Œæœ€å°ä¸èƒ½å°äºä¸»æ—¶é’Ÿ65536åˆ†é¢‘ */
     max_speed = __SPI_MAXSPEED_GET(p_hw_spi);
     min_speed = __SPI_MINSPEED_GET(p_hw_spi);
 
@@ -277,22 +277,22 @@ int __spi_setup (void *p_arg, am_spi_device_t *p_dev)
         return -AM_ENOTSUP;
     }
 
-    /* ÎŞÆ¬Ñ¡º¯Êı */
+    /* æ— ç‰‡é€‰å‡½æ•° */
     if (p_dev->mode & AM_SPI_NO_CS) {
         p_dev->pfunc_cs = __spi_default_cs_dummy;
 
-    /* ÓĞÆ¬Ñ¡º¯Êı */
+    /* æœ‰ç‰‡é€‰å‡½æ•° */
     }  else {
 
-        /* ²»Ìá¹©ÔòÄ¬ÈÏÆ¬Ñ¡º¯Êı */
+        /* ä¸æä¾›åˆ™é»˜è®¤ç‰‡é€‰å‡½æ•° */
         if (p_dev->pfunc_cs == NULL) {
 
-            /* Æ¬Ñ¡¸ßµçÆ½ÓĞĞ§ */
+            /* ç‰‡é€‰é«˜ç”µå¹³æœ‰æ•ˆ */
             if (p_dev->mode & AM_SPI_CS_HIGH) {
                 am_gpio_pin_cfg(p_dev->cs_pin, AM_GPIO_OUTPUT_INIT_LOW);
                 p_dev->pfunc_cs = __spi_default_cs_ha;
 
-            /* Æ¬Ñ¡µÍµçÆ½ÓĞĞ§ */
+            /* ç‰‡é€‰ä½ç”µå¹³æœ‰æ•ˆ */
             } else {
                 am_gpio_pin_cfg(p_dev->cs_pin, AM_GPIO_OUTPUT_INIT_HIGH);
                 p_dev->pfunc_cs = __spi_default_cs_la;
@@ -300,7 +300,7 @@ int __spi_setup (void *p_arg, am_spi_device_t *p_dev)
         }
     }
 
-    /* ½â³ıÆ¬Ñ¡ĞÅºÅ */
+    /* è§£é™¤ç‰‡é€‰ä¿¡å· */
     __spi_cs_off(p_this, p_dev);
 
     return AM_OK;
@@ -315,7 +315,7 @@ int __spi_info_get (void *p_arg, am_spi_info_t *p_info)
         return -AM_EINVAL;
     }
 
-    /* ×î´óËÙÂÊµÈÓÚ PCLK */
+    /* æœ€å¤§é€Ÿç‡ç­‰äº PCLK */
     p_info->max_speed = __SPI_MAXSPEED_GET(p_hw_spi);
     p_info->min_speed = __SPI_MINSPEED_GET(p_hw_spi);
     p_info->features  = AM_SPI_CS_HIGH   |
@@ -328,7 +328,7 @@ int __spi_info_get (void *p_arg, am_spi_info_t *p_info)
 }
 
 /**
- * \brief SPI Ó²¼ş³õÊ¼»¯
+ * \brief SPI ç¡¬ä»¶åˆå§‹åŒ–
  */
 am_local
 int __spi_hard_init (am_zlg_spi_poll_dev_t *p_this)
@@ -339,13 +339,13 @@ int __spi_hard_init (am_zlg_spi_poll_dev_t *p_this)
         return -AM_EINVAL;
     }
 
-    /* ÅäÖÃÎªÖ÷»úÄ£Ê½ */
+    /* é…ç½®ä¸ºä¸»æœºæ¨¡å¼ */
     amhw_zlg_spi_mode_sel(p_hw_spi, AMHW_ZLG_SPI_MODE_MASTER);
     amhw_zlg_spi_tx_enable(p_hw_spi, AM_TRUE);
     amhw_zlg_spi_rx_enable(p_hw_spi, AM_TRUE);
     amhw_zlg_spi_module_enable(p_hw_spi, AM_TRUE);
 
-    /* ³õÊ¼»¯ÅäÖÃSPI */
+    /* åˆå§‹åŒ–é…ç½®SPI */
     return AM_OK;
 }
 
@@ -358,7 +358,7 @@ int __spi_config (am_zlg_spi_poll_dev_t *p_this)
 
     uint32_t mode_flag = 0;
 
-    /* Èç¹ûÎª0£¬Ê¹ÓÃÄ¬ÈÏ²ÎÊıÖµ */
+    /* å¦‚æœä¸º0ï¼Œä½¿ç”¨é»˜è®¤å‚æ•°å€¼ */
     if (p_trans->bits_per_word == 0) {
         p_trans->bits_per_word = p_this->p_cur_spi_dev->bits_per_word;
     }
@@ -367,29 +367,29 @@ int __spi_config (am_zlg_spi_poll_dev_t *p_this)
         p_trans->speed_hz = p_this->p_cur_spi_dev->max_speed_hz;
     }
 
-    /* ÉèÖÃ×Ö½ÚÊıÓĞĞ§ĞÔ¼ì²é */
+    /* è®¾ç½®å­—èŠ‚æ•°æœ‰æ•ˆæ€§æ£€æŸ¥ */
     if (p_trans->bits_per_word > 32 || p_trans->bits_per_word < 1) {
         return -AM_EINVAL;
     }
 
-    /* ÉèÖÃ·ÖÆµÖµÓĞĞ§ĞÔ¼ì²é */
+    /* è®¾ç½®åˆ†é¢‘å€¼æœ‰æ•ˆæ€§æ£€æŸ¥ */
     if (p_trans->speed_hz > __SPI_MAXSPEED_GET(p_hw_spi) ||
         p_trans->speed_hz < __SPI_MINSPEED_GET(p_hw_spi)) {
         return -AM_EINVAL;
     }
 
-    /* ·¢ËÍºÍ½ÓÊÕ»º³åÇøÓĞĞ§ĞÔ¼ì²é */
+    /* å‘é€å’Œæ¥æ”¶ç¼“å†²åŒºæœ‰æ•ˆæ€§æ£€æŸ¥ */
     if ((p_trans->p_txbuf == NULL) && (p_trans->p_rxbuf == NULL)) {
         return -AM_EINVAL;
     }
 
-    /* ·¢ËÍ×Ö½ÚÊı¼ì²é */
+    /* å‘é€å­—èŠ‚æ•°æ£€æŸ¥ */
     if (p_trans->nbytes == 0) {
         return -AM_ELOW;
     }
 
     /**
-     * ÅäÖÃµ±Ç°Éè±¸Ä£Ê½
+     * é…ç½®å½“å‰è®¾å¤‡æ¨¡å¼
      */
     mode_flag = 0;
 
@@ -397,15 +397,15 @@ int __spi_config (am_zlg_spi_poll_dev_t *p_this)
         mode_flag |= AMHW_ZLG_SPI_DATA_LSB;
     }
 
-    /* ÅäÖÃSPIÄ£Ê½£¨Ê±ÖÓÏàÎ»ºÍ¼«ĞÔ£© */
+    /* é…ç½®SPIæ¨¡å¼ï¼ˆæ—¶é’Ÿç›¸ä½å’Œææ€§ï¼‰ */
     amhw_zlg_spi_clk_mode_set(p_hw_spi, (0x3 & p_this->p_cur_spi_dev->mode) ^ 0x01);
 
-    /* ÅäÖÃSPI¹¤×÷ÌØĞÔ */
+    /* é…ç½®SPIå·¥ä½œç‰¹æ€§ */
     amhw_zlg_spi_first_bit_sel(p_hw_spi, (1u << 2) & mode_flag);
 
     amhw_zlg_spi_data_len_sel(p_hw_spi, AMHW_ZLG_SPI_DATA_LEN_8BIT);
 
-    /* ÅäÖÃÎªÖ÷»úÄ£Ê½ */
+    /* é…ç½®ä¸ºä¸»æœºæ¨¡å¼ */
     amhw_zlg_spi_mode_sel(p_hw_spi, AMHW_ZLG_SPI_MODE_MASTER);
 
     if (p_this->p_cur_spi_dev->bits_per_word > 8) {
@@ -420,25 +420,25 @@ int __spi_config (am_zlg_spi_poll_dev_t *p_this)
 
     if (p_trans->speed_hz > (72000000 / 5)) {
 
-        /* ¸ßËÙ */
+        /* é«˜é€Ÿ */
         amhw_zlg_spi_tx_data_edge_sel(p_hw_spi, AMHW_ZLG_SPI_TX_DATA_IMMEDIATELY);
         amhw_zlg_spi_rx_data_edge_sel(p_hw_spi, AMHW_ZLG_SPI_RX_DATA_LAST_CLOCK);
 
     } else {
 
-        /* µÍËÙ */
+        /* ä½é€Ÿ */
         amhw_zlg_spi_tx_data_edge_sel(p_hw_spi, AMHW_ZLG_SPI_TX_DATA_ONE_CLOCK);
         amhw_zlg_spi_rx_data_edge_sel(p_hw_spi, AMHW_ZLG_SPI_RX_DATA_MID_CLOCK);
 
     }
-    /* ÉèÖÃSPIËÙÂÊ */
+    /* è®¾ç½®SPIé€Ÿç‡ */
     __spi_speed_cfg(p_this, p_trans->speed_hz);
 
     return AM_OK;
 }
 
 /**
- * \brief SPI´«ÊäÊı¾İº¯Êı
+ * \brief SPIä¼ è¾“æ•°æ®å‡½æ•°
  */
 am_local
 int __spi_msg_start (void              *p_drv,
@@ -447,10 +447,10 @@ int __spi_msg_start (void              *p_drv,
 {
     am_zlg_spi_poll_dev_t *p_this = (am_zlg_spi_poll_dev_t *)p_drv;
 
-    p_this->p_cur_spi_dev  = p_dev;                         /* ½«µ±Ç°Éè±¸²ÎÊıĞÅÏ¢´æÈë */
-    p_this->p_cur_msg      = p_msg;                         /* ½«µ±Ç°Éè±¸´«ÊäÏûÏ¢´æÈë */
-    p_this->nbytes_to_recv = 0;                             /* ´ı½ÓÊÕ×Ö·ûÊıÇå0 */
-    p_this->data_ptr       = 0;                             /* ÒÑ½ÓÊÕ×Ö·ûÊıÇå0 */
+    p_this->p_cur_spi_dev  = p_dev;                         /* å°†å½“å‰è®¾å¤‡å‚æ•°ä¿¡æ¯å­˜å…¥ */
+    p_this->p_cur_msg      = p_msg;                         /* å°†å½“å‰è®¾å¤‡ä¼ è¾“æ¶ˆæ¯å­˜å…¥ */
+    p_this->nbytes_to_recv = 0;                             /* å¾…æ¥æ”¶å­—ç¬¦æ•°æ¸…0 */
+    p_this->data_ptr       = 0;                             /* å·²æ¥æ”¶å­—ç¬¦æ•°æ¸…0 */
 
     p_this->busy = AM_TRUE;
 
@@ -463,7 +463,7 @@ int __spi_msg_start (void              *p_drv,
 
 
 /**
- * \brief SPI Ê¹ÓÃ×´Ì¬»ú´«Êä
+ * \brief SPI ä½¿ç”¨çŠ¶æ€æœºä¼ è¾“
  */
 am_local
 int __spi_mst_sm_event (am_zlg_spi_poll_dev_t *p_dev)
@@ -473,7 +473,7 @@ int __spi_mst_sm_event (am_zlg_spi_poll_dev_t *p_dev)
     p_cur_msg = p_dev->p_cur_msg;
 
     while (!am_list_empty(&(p_cur_msg->transfers))) {
-        /* »ñÈ¡µ½Ò»¸ö´«Êä£¬ÕıÈ·´¦Àí¸Ã´«Êä¼´¿É */
+        /* è·å–åˆ°ä¸€ä¸ªä¼ è¾“ï¼Œæ­£ç¡®å¤„ç†è¯¥ä¼ è¾“å³å¯ */
         am_spi_transfer_t *p_cur_trans = __spi_trans_out(p_cur_msg);
         p_dev->p_cur_trans             = p_cur_trans;
 
@@ -481,25 +481,25 @@ int __spi_mst_sm_event (am_zlg_spi_poll_dev_t *p_dev)
         p_dev->data_ptr       = 0;
         p_dev->nbytes_to_recv = 0;
 
-        /* Èç¹û¸Ã´«ÊäÖ¸¶¨SPI×Ö½ÚÊı´«Êä  Ôò½øÈë¸ÃÅĞ¶Ï ÓÃ»§×Ô¶¨ÒåÉèÖÃ  */
+        /* å¦‚æœè¯¥ä¼ è¾“æŒ‡å®šSPIå­—èŠ‚æ•°ä¼ è¾“  åˆ™è¿›å…¥è¯¥åˆ¤æ–­ ç”¨æˆ·è‡ªå®šä¹‰è®¾ç½®  */
         if(p_dev->p_cur_trans->bits_per_word != 0 || p_dev->p_cur_trans->speed_hz != 0){
            __spi_config(p_dev);
            p_dev->bef_bits_per_word = p_dev->p_cur_spi_dev->bits_per_word;
            p_dev->bef_speed_hz = p_dev->p_cur_trans->speed_hz;
-        /* Èç¹û¸Ã´«ÊäÄ¬ÈÏSPI×Ö½ÚÊı´«Êä  ÇÒÉÏ´Î´«Êä±£´æµÄSPI×Ö½ÚÊıÓë SPI Éè±¸²»Í¬  Ôò½øĞĞÖØĞÂÉèÖÃ  */
+        /* å¦‚æœè¯¥ä¼ è¾“é»˜è®¤SPIå­—èŠ‚æ•°ä¼ è¾“  ä¸”ä¸Šæ¬¡ä¼ è¾“ä¿å­˜çš„SPIå­—èŠ‚æ•°ä¸ SPI è®¾å¤‡ä¸åŒ  åˆ™è¿›è¡Œé‡æ–°è®¾ç½®  */
         }else if(p_dev->p_cur_trans->bits_per_word == 0 &&
                p_dev->bef_bits_per_word != p_dev->p_cur_spi_dev->bits_per_word){
-            /* ÅĞ¶ÏÊ¹ÓÃºÎÖÖ´«Êä·½Ê½   ¸Ä±äÊ±½øĞĞÖØĞÂÅäÖÃ */
+            /* åˆ¤æ–­ä½¿ç”¨ä½•ç§ä¼ è¾“æ–¹å¼   æ”¹å˜æ—¶è¿›è¡Œé‡æ–°é…ç½® */
             __spi_config(p_dev);
             p_dev->bef_bits_per_word = p_dev->p_cur_spi_dev->bits_per_word;
         }
        if(p_dev->p_cur_trans->speed_hz == 0 &&
             p_dev->bef_speed_hz != p_dev->p_cur_spi_dev->max_speed_hz ){
-            /* ÅäÖÃSPI´«Êä²ÎÊı    ¸Ä±äÊ±½øĞĞÖØĞÂÅäÖÃ     */
+            /* é…ç½®SPIä¼ è¾“å‚æ•°    æ”¹å˜æ—¶è¿›è¡Œé‡æ–°é…ç½®     */
             __spi_config(p_dev);
             p_dev->bef_speed_hz = p_dev->p_cur_spi_dev->max_speed_hz;
         }
-        /* CSÑ¡Í¨ */
+        /* CSé€‰é€š */
         __spi_cs_on(p_dev, p_dev->p_cur_spi_dev);
         while(p_dev->data_ptr < p_cur_trans->nbytes){
             __spi_write_data(p_dev);
@@ -511,7 +511,7 @@ int __spi_mst_sm_event (am_zlg_spi_poll_dev_t *p_dev)
     /* notify the caller */
     p_cur_msg->pfn_complete(p_cur_msg->p_arg);
 
-    /* Æ¬Ñ¡¹Ø±Õ */
+    /* ç‰‡é€‰å…³é—­ */
     __spi_cs_off(p_dev, p_dev->p_cur_spi_dev);
 
     return AM_OK;
@@ -520,7 +520,7 @@ int __spi_mst_sm_event (am_zlg_spi_poll_dev_t *p_dev)
 /******************************************************************************/
 
 /**
- * \brief SPI³õÊ¼»¯
+ * \brief SPIåˆå§‹åŒ–
  */
 am_spi_handle_t am_zlg_spi_poll_init (am_zlg_spi_poll_dev_t           *p_dev,
                                      const am_zlg_spi_poll_devinfo_t *p_devinfo)
@@ -545,7 +545,7 @@ am_spi_handle_t am_zlg_spi_poll_init (am_zlg_spi_poll_dev_t           *p_dev,
     p_dev->p_cur_trans       = NULL;
     p_dev->data_ptr          = 0;
     p_dev->nbytes_to_recv    = 0;
-    p_dev->state             = __SPI_ST_IDLE;     /* ³õÊ¼»¯Îª¿ÕÏĞ×´Ì¬ */
+    p_dev->state             = __SPI_ST_IDLE;     /* åˆå§‹åŒ–ä¸ºç©ºé—²çŠ¶æ€ */
 
     if (__spi_hard_init(p_dev) != AM_OK) {
         return NULL;
@@ -555,7 +555,7 @@ am_spi_handle_t am_zlg_spi_poll_init (am_zlg_spi_poll_dev_t           *p_dev,
 }
 
 /**
- * \brief SPI È¥³ı³õÊ¼»¯
+ * \brief SPI å»é™¤åˆå§‹åŒ–
  */
 void am_zlg_spi_poll_deinit (am_spi_handle_t handle)
 {
@@ -569,7 +569,7 @@ void am_zlg_spi_poll_deinit (am_spi_handle_t handle)
     p_dev->spi_serve.p_funcs = NULL;
     p_dev->spi_serve.p_drv   = NULL;
 
-    /* ½ûÄÜSPI */
+    /* ç¦èƒ½SPI */
     amhw_zlg_spi_module_enable(p_hw_spi, AM_FALSE);
 
     if (p_dev->p_devinfo->pfn_plfm_deinit) {
@@ -578,14 +578,14 @@ void am_zlg_spi_poll_deinit (am_spi_handle_t handle)
 }
 
 /**
- * \brief SPI´«ÊäËÙ¶ÈÅäÖÃ
+ * \brief SPIä¼ è¾“é€Ÿåº¦é…ç½®
  *
  */
 am_local
 uint32_t __spi_speed_cfg (am_zlg_spi_poll_dev_t *p_dev, uint32_t target_speed)
 {
 
-    uint32_t baud_div, best_speed;  /* ¼ÆËã³öµÄËÙ¶È */
+    uint32_t baud_div, best_speed;  /* è®¡ç®—å‡ºçš„é€Ÿåº¦ */
 
     amhw_zlg_spi_t *p_hw_spi = (amhw_zlg_spi_t *)(p_dev->p_devinfo->spi_reg_base);
 

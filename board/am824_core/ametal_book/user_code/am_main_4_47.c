@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥4.47
+ * \brief ç¨‹åºæ¸…å•4.47
  *
- * \note ¸ÃÀú³ÌĞèÒªÓÃµ½miniportÍØÕ¹°å
+ * \note è¯¥å†ç¨‹éœ€è¦ç”¨åˆ°miniportæ‹“å±•æ¿
  *
  * \internal
  * \par Modification history
@@ -30,55 +30,55 @@ static uint8_t g_disp_num = 0;
 
 static void key_process (uint8_t code)
 {
-    static uint8_t adj_state = 0;                           // Õı³£×´Ì¬Îª0£¬µ÷½Ú×´Ì¬Îª1
-    static uint8_t adj_pos;                                 // ÉÁË¸Î»£¬³õÊ¼»¯Ê±¸öÎ»ÉÁË¸
-    uint8_t        num_single;                              // ¸öÎ»¼ÆÊıÆ÷
-    uint8_t        num_ten;                                 // Ê®Î»¼ÆÊıÆ÷
+    static uint8_t adj_state = 0;                           // æ­£å¸¸çŠ¶æ€ä¸º0ï¼Œè°ƒèŠ‚çŠ¶æ€ä¸º1
+    static uint8_t adj_pos;                                 // é—ªçƒä½ï¼Œåˆå§‹åŒ–æ—¶ä¸ªä½é—ªçƒ
+    uint8_t        num_single;                              // ä¸ªä½è®¡æ•°å™¨
+    uint8_t        num_ten;                                 // åä½è®¡æ•°å™¨
 
     switch (code) {
     case 0:  
-            adj_state = !adj_state;                         // ×´Ì¬·­×ª
-            if (adj_state == 1) {                           // ÇĞ»»µ½µ÷½Ú×´Ì¬
-                digitron1_disp_blink_set(1, AM_TRUE);       // ¸öÎ»ÉÁË¸
-            } else {                                        // ÇĞ»»µ½Õı³£×´Ì¬
-                digitron1_disp_blink_set(adj_pos, AM_FALSE);// Í£Ö¹ÉÁË¸
+            adj_state = !adj_state;                         // çŠ¶æ€ç¿»è½¬
+            if (adj_state == 1) {                           // åˆ‡æ¢åˆ°è°ƒèŠ‚çŠ¶æ€
+                digitron1_disp_blink_set(1, AM_TRUE);       // ä¸ªä½é—ªçƒ
+            } else {                                        // åˆ‡æ¢åˆ°æ­£å¸¸çŠ¶æ€
+                digitron1_disp_blink_set(adj_pos, AM_FALSE);// åœæ­¢é—ªçƒ
                 adj_pos = 1;
             }
            break;
-    case 1:                                                 // ÉÁË¸Î»¼Ó1
+    case 1:                                                 // é—ªçƒä½åŠ 1
             if (adj_state == 1) {    
                 num_single = g_disp_num % 10;
                 num_ten   = g_disp_num / 10;
                 if (adj_pos == 1) {
-                    num_single = (num_single + 1) % 10;     // ¸öÎ»¼Ó1£¬0 ~ 9
+                    num_single = (num_single + 1) % 10;     // ä¸ªä½åŠ 1ï¼Œ0 ~ 9
                 } else {
-                    num_ten   = (num_ten + 1) % 10;         // Ê®Î»¼Ó1£¬0 ~ 9
+                    num_ten   = (num_ten + 1) % 10;         // åä½åŠ 1ï¼Œ0 ~ 9
                 }
                 g_disp_num = num_ten * 10 + num_single;
-                digitron1_disp_num_set(0,num_ten);          // ¸üĞÂÏÔÊ¾Æ÷µÄÊ®Î»
-                digitron1_disp_num_set(1,num_single);       // ¸üĞÂÏÔÊ¾Æ÷µÄ¸öÎ»
+                digitron1_disp_num_set(0,num_ten);          // æ›´æ–°æ˜¾ç¤ºå™¨çš„åä½
+                digitron1_disp_num_set(1,num_single);       // æ›´æ–°æ˜¾ç¤ºå™¨çš„ä¸ªä½
         }
         break;
-    case 2:                                                // ÇĞ»»µ÷½ÚÎ»
+    case 2:                                                // åˆ‡æ¢è°ƒèŠ‚ä½
         if (adj_state == 1) {
                 digitron1_disp_blink_set(adj_pos, AM_FALSE);
                 adj_pos = !adj_pos;
                 digitron1_disp_blink_set(adj_pos, AM_TRUE);
             }
             break;
-    case 3:                                                  // ÉÁË¸Î»¼õ1
+    case 3:                                                  // é—ªçƒä½å‡1
             num_single = g_disp_num % 10;
             num_ten   = g_disp_num / 10;
             if (adj_state == 1) {
                 if (adj_pos == 1) {
-                    num_single = (num_single - 1 + 10) % 10; // ¸öÎ»¼õ1£¬0 ~ 9
+                    num_single = (num_single - 1 + 10) % 10; // ä¸ªä½å‡1ï¼Œ0 ~ 9
                 } else {                                     
-                    num_ten   = (num_ten - 1 + 10) % 10;     // Ê®Î»¼õ1£¬0 ~ 9
+                    num_ten   = (num_ten - 1 + 10) % 10;     // åä½å‡1ï¼Œ0 ~ 9
                 }
             }
             g_disp_num = num_ten * 10 + num_single;
-            digitron1_disp_num_set(0,num_ten);                // ¸üĞÂÏÔÊ¾Æ÷µÄÊ®Î»
-            digitron1_disp_num_set(1,num_single);             // ¸üĞÂÏÔÊ¾Æ÷µÄ¸öÎ»
+            digitron1_disp_num_set(0,num_ten);                // æ›´æ–°æ˜¾ç¤ºå™¨çš„åä½
+            digitron1_disp_num_set(1,num_single);             // æ›´æ–°æ˜¾ç¤ºå™¨çš„ä¸ªä½
             break;
     default:
             break;
@@ -91,13 +91,13 @@ int am_main(void)
 
     matrixkey_init();
     digitron1_init();
-    digitron1_disp_num_set(0,g_disp_num / 10);                 // ¸üĞÂÏÔÊ¾Æ÷µÄÊ®Î»
-    digitron1_disp_num_set(1,g_disp_num % 10);                 // ¸üĞÂÏÔÊ¾Æ÷µÄ¸öÎ»
+    digitron1_disp_num_set(0,g_disp_num / 10);                 // æ›´æ–°æ˜¾ç¤ºå™¨çš„åä½
+    digitron1_disp_num_set(1,g_disp_num % 10);                 // æ›´æ–°æ˜¾ç¤ºå™¨çš„ä¸ªä½
     while(1) {
         key_return = matrixkey_scan_with_digitron(digitron1_disp_scan);
 
         if (key_return!= 0xFF) {
-            // ÓĞ°´¼üÊÂ¼ş²úÉú
+            // æœ‰æŒ‰é”®äº‹ä»¶äº§ç”Ÿ
             key_process(key_return);
         }
 				am_mdelay(5);

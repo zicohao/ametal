@@ -12,20 +12,20 @@
 
 /**
  * \file
- * \brief °´¼üÊäÈëÀý³Ì£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief æŒ‰é”®è¾“å…¥ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. µ÷ÊÔ´®¿Ú´òÓ¡°´¼üÊÂ¼þ¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. è°ƒè¯•ä¸²å£æ‰“å°æŒ‰é”®äº‹ä»¶ã€‚
  *
  * \note
- *    1. LED0 ÐèÒª¶Ì½Ó J9 ÌøÏßÃ±£¬²ÅÄÜ±» PIO0_20 ¿ØÖÆ£»
- *    2. Ê¹ÓÃ°´¼üÐèÒª½« J14 ÌøÏßÃ±µÄ KEY ºÍ PIO0_1 ¶Ì½Ó£¬ÇÒ±ØÐëÔÚ am_prj_config.h
- *       ÄÚ½« AM_CFG_KEY_GPIO_ENABLE ¶¨ÒåÎª 1£¬µ«¸ÃºêÒÑ¾­Ä¬ÈÏÅäÖÃÎª 1£¬ ÓÃ»§²»±ØÔÙ
- *       ´ÎÅäÖÃ£»
- *    3. ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIO0_0 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *       PIO0_4 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
+ *    1. LED0 éœ€è¦çŸ­æŽ¥ J9 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIO0_20 æŽ§åˆ¶ï¼›
+ *    2. ä½¿ç”¨æŒ‰é”®éœ€è¦å°† J14 è·³çº¿å¸½çš„ KEY å’Œ PIO0_1 çŸ­æŽ¥ï¼Œä¸”å¿…é¡»åœ¨ am_prj_config.h
+ *       å†…å°† AM_CFG_KEY_GPIO_ENABLE å®šä¹‰ä¸º 1ï¼Œä½†è¯¥å®å·²ç»é»˜è®¤é…ç½®ä¸º 1ï¼Œ ç”¨æˆ·ä¸å¿…å†
+ *       æ¬¡é…ç½®ï¼›
+ *    3. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO0_0 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *       PIO0_4 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am824_std_key_input_event.c src_am824_std_key_input_event
  *
  * \internal
@@ -45,7 +45,7 @@
 #include "demo_std_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am824_core_std_key_input_event_entry (void)
 {

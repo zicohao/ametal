@@ -12,19 +12,19 @@
 
 /**
  * \file
- * \brief ADC Àý³Ì£¬×ª»»½á¹ûÊý¾ÝÍ¨¹ý DMA ´«Êä£¬Í¨¹ý HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief ADC ä¾‹ç¨‹ï¼Œè½¬æ¢ç»“æžœæ•°æ®é€šè¿‡ DMA ä¼ è¾“ï¼Œé€šè¿‡ HW å±‚æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   2. PIO0_7(ADC Í¨µÀ 0) Á¬½ÓÄ£ÄâÊäÈëµçÑ¹¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   2. PIO0_7(ADC é€šé“ 0) è¿žæŽ¥æ¨¡æ‹Ÿè¾“å…¥ç”µåŽ‹ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ADC ×ª»»Íê³É 100 ´Î£¬´®¿Ú´òÓ¡³ö 100 ¸ö²ÉÑùµçÑ¹Öµ¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. ADC è½¬æ¢å®Œæˆ 100 æ¬¡ï¼Œä¸²å£æ‰“å°å‡º 100 ä¸ªé‡‡æ ·ç”µåŽ‹å€¼ã€‚
  *
  * \note
- *    ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIO1_2 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *    PIO1_0 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
+ *    å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO1_2 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *    PIO1_0 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am845_core_hw_adc_dma.c src_am845_core_hw_adc_dma
  *
  * \internal
@@ -53,17 +53,17 @@ extern void demo_lpc845_hw_adc_dma_entry(amhw_lpc84x_adc_t *p_hw_adc,
                                          uint32_t           vref_mv);
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am845_core_hw_adc_dma_entry (void)
 {
     am_kprintf("demo am845_core hw adc dma!\r\n");
 
-    /* Æ½Ì¨³õÊ¼»¯ */
+    /* å¹³å°åˆå§‹åŒ– */
     amhw_lpc84x_syscon_powerup(AMHW_LPC84X_SYSCON_PD_ADC0);
     amhw_lpc84x_clk_periph_enable(AMHW_LPC84X_CLK_ADC);
 
-    /* ÅäÖÃÍ¨µÀ£¬Ê¹ÓÃÍ¨µÀ 0£¬Òý½ÅÅäÖÃÎªÏû¼«Ä£Ê½ INACTIVE */
+    /* é…ç½®é€šé“ï¼Œä½¿ç”¨é€šé“ 0ï¼Œå¼•è„šé…ç½®ä¸ºæ¶ˆæžæ¨¡å¼ INACTIVE */
     am_gpio_pin_cfg(PIO0_7, PIO0_7_ADC_0 | PIO0_7_INACTIVE);
 
     demo_lpc845_hw_adc_dma_entry(LPC84X_ADC0, 0, 2500);

@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥4.4
+ * \brief ç¨‹åºæ¸…å•4.4
  *
- * \note ¸ÃÀú³ÌĞèÒªÓÃµ½miniportÍØÕ¹°å
+ * \note è¯¥å†ç¨‹éœ€è¦ç”¨åˆ°miniportæ‹“å±•æ¿
  *
  * \internal
  * \par Modification history
@@ -27,12 +27,12 @@
 
 int am_main (void)
 {
-    led_init();                 // °å¼¶³õÊ¼»¯£¬Ï¨ÃğLED0
+    led_init();                 // æ¿çº§åˆå§‹åŒ–ï¼Œç†„ç­LED0
     while (1) {
-        led_on(0);              // µãÁÁLED0 
-        am_mdelay(200);         // ÑÓÊ±200ms£¬¼´ÑÓÊ±200ms 
-        led_off(0);             // Ï¨ÃğLED0  
-        am_mdelay(200);         // ÑÓÊ±200ms£¬¼´ÑÓÊ±200ms  
+        led_on(0);              // ç‚¹äº®LED0 
+        am_mdelay(200);         // å»¶æ—¶200msï¼Œå³å»¶æ—¶200ms 
+        led_off(0);             // ç†„ç­LED0  
+        am_mdelay(200);         // å»¶æ—¶200msï¼Œå³å»¶æ—¶200ms  
     }
 }
 

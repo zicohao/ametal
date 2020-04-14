@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief Miniport-595 ÅäÖÃÎÄ¼ş
+ * \brief Miniport-595 é…ç½®æ–‡ä»¶
  * \sa am_hwconf_miniport_595.c
  *
  * \internal
@@ -42,13 +42,13 @@
    Public functions
 *******************************************************************************/
 static  am_hc595_spi_info_t __hc595_spi_info = {
-    PIOD_4,                                        /* Êı¾İËø´æÒı½Å */
-    -1,                                            /* Î´Ê¹ÓÃoeÒı½Å */
-    300000,                                        /* Ê±ÖÓ300KHZ */
-    AM_TRUE                                        /* Êı¾İµÍÎ»ÏÈ·¢ËÍ */
+    PIOD_4,                                        /* æ•°æ®é”å­˜å¼•è„š */
+    -1,                                            /* æœªä½¿ç”¨oeå¼•è„š */
+    300000,                                        /* æ—¶é’Ÿ300KHZ */
+    AM_TRUE                                        /* æ•°æ®ä½ä½å…ˆå‘é€ */
 };
 
-/** \brief 595 SPI1 ³õÊ¼»¯ */
+/** \brief 595 SPI1 åˆå§‹åŒ– */
 static void __miniport_595_spi1_init (void)
 {
     am_gpio_pin_cfg(PIOD_5,  PIOD_5_SPI1_SCK   | AM_GPIO_PULLUP);
@@ -58,10 +58,10 @@ static void __miniport_595_spi1_init (void)
     amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_SPI1);
 }
 
-/** \brief ½â³ı595 SPI1 ³õÊ¼»¯ */
+/** \brief è§£é™¤595 SPI1 åˆå§‹åŒ– */
 static void __miniport_595_spi1_deinit (void)
 {
-    /* ÊÍ·ÅÒı½ÅÎªÊäÈëÄ£Ê½ */
+    /* é‡Šæ”¾å¼•è„šä¸ºè¾“å…¥æ¨¡å¼ */
     am_gpio_pin_cfg(PIOD_5,  AM_GPIO_INPUT);
     am_gpio_pin_cfg(PIOB_17, AM_GPIO_INPUT);
     am_gpio_pin_cfg(PIOB_16, AM_GPIO_INPUT);
@@ -70,32 +70,32 @@ static void __miniport_595_spi1_deinit (void)
 }
 
 /**
- * \brief SPI1 Éè±¸ĞÅÏ¢
+ * \brief SPI1 è®¾å¤‡ä¿¡æ¯
  */
 const  struct am_kl26_spi_int_devinfo  __g_miniport_595_devinfo = {
-    KL26_SPI1_BASE,                  /**< \brief SPI1¼Ä´æÆ÷Ö¸Õë   */
-    INUM_SPI1,                       /**< \brief SPI1ÖĞ¶ÏºÅ       */
-    AM_KL26_SPI_INT_CFG_WIAT_EN,     /**< \brief SPI ÅäÖÃ±êÊ¶    */
-    __miniport_595_spi1_init,        /**< \brief SPI1Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __miniport_595_spi1_deinit       /**< \brief SPI1Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    KL26_SPI1_BASE,                  /**< \brief SPI1å¯„å­˜å™¨æŒ‡é’ˆ   */
+    INUM_SPI1,                       /**< \brief SPI1ä¸­æ–­å·       */
+    AM_KL26_SPI_INT_CFG_WIAT_EN,     /**< \brief SPI é…ç½®æ ‡è¯†    */
+    __miniport_595_spi1_init,        /**< \brief SPI1å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __miniport_595_spi1_deinit       /**< \brief SPI1å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 };
 
-/** \brief SPI1 Éè±¸ÊµÀı */
+/** \brief SPI1 è®¾å¤‡å®ä¾‹ */
 static am_kl26_spi_int_dev_t __g_miniport_595_dev;
 
-/** \brief SPI1 ÊµÀı³õÊ¼»¯£¬»ñµÃSPI±ê×¼·şÎñ¾ä±ú */
+/** \brief SPI1 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—SPIæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_spi_handle_t am_miniport_595_spi1_inst_init (void)
 {
     return am_kl26_spi_int_init(&__g_miniport_595_dev, &__g_miniport_595_devinfo);
 }
 
-/** \brief SPI1 ÊµÀı½â³õÊ¼»¯ */
+/** \brief SPI1 å®ä¾‹è§£åˆå§‹åŒ– */
 void am_miniport_595_spi1_inst_deinit (am_spi_handle_t handle)
 {
     am_kl26_spi_int_deinit(handle);
 }
 
-/* MiniPort-595 ÊµÀı³õÊ¼»¯ */
+/* MiniPort-595 å®ä¾‹åˆå§‹åŒ– */
 am_hc595_handle_t am_miniport_595_inst_init (void)
 {
     static am_hc595_spi_dev_t    miniport_595;

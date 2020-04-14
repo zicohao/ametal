@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief KL26 DAC ÓÃ»§ÅäÖÃÎÄ¼ş¡£
+ * \brief KL26 DAC ç”¨æˆ·é…ç½®æ–‡ä»¶ã€‚
  * \sa am_kl26_hwconfig_dac.c
  *s
  * \internal
@@ -37,11 +37,11 @@
  */
 
 /**
- * \brief DAC Æ½Ì¨³õÊ¼»¯¡£
+ * \brief DAC å¹³å°åˆå§‹åŒ–ã€‚
  */
 void __lpc84x_plfm_dac0_init (void)
 {
-    /* ÅäÖÃPIOE_30ÎªDAC0_OUT¹¦ÄÜ                 */
+    /* é…ç½®PIOE_30ä¸ºDAC0_OUTåŠŸèƒ½                 */
 	amhw_lpc84x_clk_periph_enable(AMHW_LPC84X_CLK_DAC0);
 	amhw_lpc84x_syscon_periph_reset(AMHW_LPC84X_RESET_DAC0);
     amhw_lpc84x_clk_periph_enable(AMHW_LPC84X_CLK_SWM);
@@ -57,36 +57,36 @@ void __lpc84x_plfm_dac0_init (void)
 }
 
 /**
- * \brief DAC Æ½Ì¨È¥³õÊ¼»¯¡£
+ * \brief DAC å¹³å°å»åˆå§‹åŒ–ã€‚
  */
 void __lpc84x_plfm_dac0_deinit (void)
 {
-   /* ¹Ø±ÕDACÊ±ÖÓ                  */
+   /* å…³é—­DACæ—¶é’Ÿ                  */
 	amhw_lpc84x_clk_periph_disable(AMHW_LPC84X_CLK_DAC0);
 
 }
 
-/** \brief DAC Éè±¸ĞÅÏ¢ */
+/** \brief DAC è®¾å¤‡ä¿¡æ¯ */
 static const am_lpc_dac_devinfo_t _g_dac0_devinfo =
 {
-	LPC84X_DAC0,                   /**< \brief Ö¸ÏòDAC0¼Ä´æÆ÷¿éµÄÖ¸Õë */
-	INUM_DAC0,                     /**< \brief DAC0ÖĞ¶ÏºÅ             */
-    10,                            /**< \brief DAC×ª»»¾«¶È            */
-    3300,                          /**< \brief DAC²Î¿¼µçÑ¹£¬µ¥Î»£ºmV  */
+	LPC84X_DAC0,                   /**< \brief æŒ‡å‘DAC0å¯„å­˜å™¨å—çš„æŒ‡é’ˆ */
+	INUM_DAC0,                     /**< \brief DAC0ä¸­æ–­å·             */
+    10,                            /**< \brief DACè½¬æ¢ç²¾åº¦            */
+    3300,                          /**< \brief DACå‚è€ƒç”µå‹ï¼Œå•ä½ï¼šmV  */
 	__lpc84x_plfm_dac0_init,
 	__lpc84x_plfm_dac0_deinit,
 };
 
-/** \brief DAC0Éè±¸ÊµÀı */
+/** \brief DAC0è®¾å¤‡å®ä¾‹ */
 static am_lpc_dac_dev_t _g_dac0_dev;
 
-/** \brief DAC0 ÊµÀı³õÊ¼»¯£¬»ñµÃDAC±ê×¼·şÎñ¾ä±ú */
+/** \brief DAC0 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—DACæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_dac_handle_t am_lpc84x_dac0_inst_init (void)
 {
     return am_lpc_dac_init(&_g_dac0_dev, &_g_dac0_devinfo);
 }
 
-/** \brief DAC0 ÊµÀı½â³õÊ¼»¯ */
+/** \brief DAC0 å®ä¾‹è§£åˆå§‹åŒ– */
 void am_lpc84x_dac0_inst_deinit (am_dac_handle_t handle)
 {
     am_lpc_dac_deinit(handle);

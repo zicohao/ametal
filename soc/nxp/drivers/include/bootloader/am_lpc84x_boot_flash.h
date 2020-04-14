@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief bootloader flash²Ù×÷Çı¶¯£¬·şÎñbootloaderµÄflash±ê×¼½Ó¿Ú
+ * \brief bootloader flashæ“ä½œé©±åŠ¨ï¼ŒæœåŠ¡bootloaderçš„flashæ ‡å‡†æ¥å£
  *
  * \internal
  * \par Modification history
@@ -27,27 +27,27 @@
 #include "am_boot_flash.h"
 
 typedef struct am_lpc84x_boot_flash_devinfo {
-    /**< \brief flash»ù±¾ĞÅÏ¢ */
+    /**< \brief flashåŸºæœ¬ä¿¡æ¯ */
     am_boot_flash_info_t  base_info;
 
-    void (*pfn_plfm_init)(void);    /**< \brief Æ½Ì¨³õÊ¼»¯º¯Êı */
+    void (*pfn_plfm_init)(void);    /**< \brief å¹³å°åˆå§‹åŒ–å‡½æ•° */
 
-    void (*pfn_plfm_deinit)(void);  /**< \brief Æ½Ì¨È¥³õÊ¼»¯º¯Êı */
+    void (*pfn_plfm_deinit)(void);  /**< \brief å¹³å°å»åˆå§‹åŒ–å‡½æ•° */
 
 } am_lpc84x_boot_flash_devinfo_t;
 
 typedef struct am_lpc84x_boot_flash_dev {
-    am_boot_flash_serv_t            flash_serv;     /**< \brief flash±ê×¼·şÎñ */
-    am_lpc84x_boot_flash_devinfo_t *p_devinfo;      /**< \brief Éè±¸ĞÅÏ¢½á¹¹Ìå */
+    am_boot_flash_serv_t            flash_serv;     /**< \brief flashæ ‡å‡†æœåŠ¡ */
+    am_lpc84x_boot_flash_devinfo_t *p_devinfo;      /**< \brief è®¾å¤‡ä¿¡æ¯ç»“æ„ä½“ */
 }am_lpc84x_boot_flash_dev_t;
 
 /**
- * \brief ³õÊ¼»¯flash£¬·µ»Øflash±ê×¼·şÎñ²Ù×÷¾ä±ú
+ * \brief åˆå§‹åŒ–flashï¼Œè¿”å›flashæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  *
- * \param[in] p_dev     : Ö¸ÏòflashÉè±¸µÄÖ¸Õë
- * \param[in] p_devinfo : Ö¸ÏòflashÉè±¸ĞÅÏ¢³£Á¿µÄÖ¸Õë
+ * \param[in] p_dev     : æŒ‡å‘flashè®¾å¤‡çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo : æŒ‡å‘flashè®¾å¤‡ä¿¡æ¯å¸¸é‡çš„æŒ‡é’ˆ
  *
- * \return flash±ê×¼·şÎñ²Ù×÷¾ä±ú£¬ÖµÎªNULLÊ±±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return flashæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„ï¼Œå€¼ä¸ºNULLæ—¶è¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_boot_flash_handle_t am_lpc84x_boot_flash_init(am_lpc84x_boot_flash_dev_t     *p_dev,
                                                  am_lpc84x_boot_flash_devinfo_t *p_devinfo);

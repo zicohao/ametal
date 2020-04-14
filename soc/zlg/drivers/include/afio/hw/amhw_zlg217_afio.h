@@ -37,16 +37,16 @@ extern "C" {
  */
 
 /**
- * \brief GPIO ¶Ë¿Ú¼Ä´æÆ÷½á¹¹Ìå
+ * \brief GPIO ç«¯å£å¯„å­˜å™¨ç»“æ„ä½“
  */
 typedef struct amhw_zlg217_afio {
-          uint32_t reserve;      /**< \brief ±£Áô */
-    __IO  uint32_t mapr;         /**< \brief ¸´ÓÃÖØÓ³ÉäºÍµ÷ÊÔI/OÅäÖÃ¼Ä´æÆ÷ */
-    __IO  uint32_t exticr[4];    /**< \brief Íâ²¿ÖĞ¶ÏÅäÖÃ¼Ä´æÆ÷ */
+          uint32_t reserve;      /**< \brief ä¿ç•™ */
+    __IO  uint32_t mapr;         /**< \brief å¤ç”¨é‡æ˜ å°„å’Œè°ƒè¯•I/Oé…ç½®å¯„å­˜å™¨ */
+    __IO  uint32_t exticr[4];    /**< \brief å¤–éƒ¨ä¸­æ–­é…ç½®å¯„å­˜å™¨ */
 } amhw_zlg217_afio_t;
 
 /**
- * \brief ¿ÉÖØÓ³ÏñµÄÍâÉè±àºÅ
+ * \brief å¯é‡æ˜ åƒçš„å¤–è®¾ç¼–å·
  */
 typedef enum {
     AMHW_ZLG217_SPI1_REMAP = 0,     /**< \brief SPI1 */
@@ -59,64 +59,64 @@ typedef enum {
     AMHW_ZLG217_CAN_REMAP  = 13,    /**< \brief CAN */
     AMHW_ZLG217_PD01_REMAP = 15,    /**< \brief PD01 */
     AMHW_ZLG217_SWJ_CFG,            /**< \brief SWJ_CFG */
-    AMHW_ZLG217_NO_REMAP,           /**< \brief Ã»ÓĞÖØÓ³Ïñ¹¦ÄÜ */
+    AMHW_ZLG217_NO_REMAP,           /**< \brief æ²¡æœ‰é‡æ˜ åƒåŠŸèƒ½ */
 }amhw_zlg217_afio_remap_peripheral_t;
 
 /**
- * \name  ÖØÓ³ÏñÎ»¶¨Òå
+ * \name  é‡æ˜ åƒä½å®šä¹‰
  * @{
  */
 
-/** \brief SPI1ÖØÓ³Ïñ SCK/PB3£¬MISO/PB4£¬MOSI/PB5 */
+/** \brief SPI1é‡æ˜ åƒ SCK/PB3ï¼ŒMISO/PB4ï¼ŒMOSI/PB5 */
 #define AMHW_ZLG217_AFIO_MAPR_SPI1    (0u)
 
-/** \brief I2C1ÖØÓ³Ïñ SCL/PB8£¬SDA/PB9 */
+/** \brief I2C1é‡æ˜ åƒ SCL/PB8ï¼ŒSDA/PB9 */
 #define AMHW_ZLG217_AFIO_MAPR_I2C1    (1u)
 
-/** \brief UART1ÖØÓ³Ïñ TX/PB6£¬RX/PB7 */
+/** \brief UART1é‡æ˜ åƒ TX/PB6ï¼ŒRX/PB7 */
 #define AMHW_ZLG217_AFIO_MAPR_UART1   (2u)
 
-/** \brief UART3²¿·ÖÖØÓ³Ïñ TX/PC10£¬RX/PC11 */
+/** \brief UART3éƒ¨åˆ†é‡æ˜ åƒ TX/PC10ï¼ŒRX/PC11 */
 #define AMHW_ZLG217_AFIO_MAPR_UART3   (4u)
 
 /** \brief
- * TIM1²¿·ÖÖØÓ³Ïñ
- * ETR/PA12£¬
- * CH1/PA8£¬CH2/PA9£¬CH3/PA10£¬CH4/PA11£¬
- * BAKIN/PA6£¬
- * CH1N/PA7£¬CH2N/PB0£¬CH3N/PB1
+ * TIM1éƒ¨åˆ†é‡æ˜ åƒ
+ * ETR/PA12ï¼Œ
+ * CH1/PA8ï¼ŒCH2/PA9ï¼ŒCH3/PA10ï¼ŒCH4/PA11ï¼Œ
+ * BAKIN/PA6ï¼Œ
+ * CH1N/PA7ï¼ŒCH2N/PB0ï¼ŒCH3N/PB1
  */
 #define AMHW_ZLG217_AFIO_MAPR_TIM1    (6u)
 
-/** \brief TIM2ÖØÓ³Ïñ */
+/** \brief TIM2é‡æ˜ åƒ */
 #define AMHW_ZLG217_AFIO_MAPR_TIM2    (8u)
 
 typedef enum {
 
-    /** \brief CH1/ETR/PA0£¬CH2/PA1£¬CH3/PA2£¬CH4/PA3 */
+    /** \brief CH1/ETR/PA0ï¼ŒCH2/PA1ï¼ŒCH3/PA2ï¼ŒCH4/PA3 */
     AMHW_ZLG217_AFIO_TIM2_REMAP_NO = 0,
-    /** \brief CH1/ETR/PA15£¬CH2/PB3£¬CH3/PA2£¬CH4/PA3 */
+    /** \brief CH1/ETR/PA15ï¼ŒCH2/PB3ï¼ŒCH3/PA2ï¼ŒCH4/PA3 */
     AMHW_ZLG217_AFIO_TIM2_REMAP_PART1,
-    /** \brief CH1/ETR/PA0£¬CH2/PA1£¬CH3/PB10£¬CH4/PB11 */
+    /** \brief CH1/ETR/PA0ï¼ŒCH2/PA1ï¼ŒCH3/PB10ï¼ŒCH4/PB11 */
     AMHW_ZLG217_AFIO_TIM2_REMAP_PART2,
-    /** \brief CH1/ETR/PA15£¬CH2/PB3£¬CH3/PB10£¬CH4/PB11 */
+    /** \brief CH1/ETR/PA15ï¼ŒCH2/PB3ï¼ŒCH3/PB10ï¼ŒCH4/PB11 */
     AMHW_ZLG217_AFIO_TIM2_REMAP_ALL
 }amhw_zlg217_afio_tim2_remap_mode_t;
 
-/** \brief TIM3ÖØÓ³Ïñ */
+/** \brief TIM3é‡æ˜ åƒ */
 #define AMHW_ZLG217_AFIO_MAPR_TIM3    (10u)
 
 typedef enum {
 
-    /** \brief CH1/PA6£¬CH2/PA7£¬CH3/PB0£¬CH4/PB1 */
+    /** \brief CH1/PA6ï¼ŒCH2/PA7ï¼ŒCH3/PB0ï¼ŒCH4/PB1 */
     AMHW_ZLG217_AFIO_TIM3_REMAP_NO = 0,
-    /** \brief CH1 /PB4£¬CH2/PB5£¬CH3/PB0£¬CH4/PB1 */
+    /** \brief CH1 /PB4ï¼ŒCH2/PB5ï¼ŒCH3/PB0ï¼ŒCH4/PB1 */
     AMHW_ZLG217_AFIO_TIM3_REMAP_PART = 2,
-    /** \brief CH1/PC6£¬CH2/PC7£¬CH3/PC8£¬CH4/PC9 */
+    /** \brief CH1/PC6ï¼ŒCH2/PC7ï¼ŒCH3/PC8ï¼ŒCH4/PC9 */
     AMHW_ZLG217_AFIO_TIM3_REMAP_ALL
 }amhw_zlg217_afio_tim3_remap_mode_t;
 
-/** \brief CANÖØÓ³Ïñ */
+/** \brief CANé‡æ˜ åƒ */
 #define AMHW_ZLG217_AFIO_MAPR_CAN     (13u)
 
 typedef enum {
@@ -125,42 +125,42 @@ typedef enum {
     AMHW_ZLG217_AFIO_CAN_RX_PD0_PD1  = 3,
 }amhw_zlg217_afio_can_remap_mode_t;
 
-/** \brief PD01ÖØÓ³Ïñ PD0Ó³Ïñµ½OSC_IN£¬PD1Ó³Ïñµ½OSC_OUT */
+/** \brief PD01é‡æ˜ åƒ PD0æ˜ åƒåˆ°OSC_INï¼ŒPD1æ˜ åƒåˆ°OSC_OUT */
 #define AMHW_ZLG217_AFIO_MAPR_PD01    (15u)
 
-/** \brief ´®ĞĞÏßJTAGÅäÖÃ */
+/** \brief ä¸²è¡Œçº¿JTAGé…ç½® */
 #define AMHW_ZLG217_AFIO_SWJ_CFG      (24u)
 
 typedef enum {
     /**
-     * \brief ÍêÈ«SWJ£¨JTAG-DP + SW-DP£©£º¸´Î»×´Ì¬
+     * \brief å®Œå…¨SWJï¼ˆJTAG-DP + SW-DPï¼‰ï¼šå¤ä½çŠ¶æ€
      *
-     * PIOA13:I/0²»¿ÉÓÃ   PIOA14:I/0²»¿ÉÓÃ   PIOA15:I/0²»¿ÉÓÃ
-     * PIOB3 :I/0²»¿ÉÓÃ   PIOB4 :I/0²»¿ÉÓÃ
+     * PIOA13:I/0ä¸å¯ç”¨   PIOA14:I/0ä¸å¯ç”¨   PIOA15:I/0ä¸å¯ç”¨
+     * PIOB3 :I/0ä¸å¯ç”¨   PIOB4 :I/0ä¸å¯ç”¨
      */
     AMHW_ZLG217_AFIO_SWJ_CFG_0 = 0,
 
     /**
-     * \brief ÍêÈ«SWJ£¨JTAG-DP + SW-DP£©µ«Ã»ÓĞJNTRST
+     * \brief å®Œå…¨SWJï¼ˆJTAG-DP + SW-DPï¼‰ä½†æ²¡æœ‰JNTRST
      *
-     * PIOA13:I/0²»¿ÉÓÃ   PIOA14:I/0²»¿ÉÓÃ   PIOA15:I/0²»¿ÉÓÃ
-     * PIOB3 :I/0²»¿ÉÓÃ   PIOB4 :I/0¿ÉÓÃ
+     * PIOA13:I/0ä¸å¯ç”¨   PIOA14:I/0ä¸å¯ç”¨   PIOA15:I/0ä¸å¯ç”¨
+     * PIOB3 :I/0ä¸å¯ç”¨   PIOB4 :I/0å¯ç”¨
      */
     AMHW_ZLG217_AFIO_SWJ_CFG_1,
 
     /**
-     * \brief ¹Ø±ÕJTAG-DP£¬Æô¶¯SW-DP
+     * \brief å…³é—­JTAG-DPï¼Œå¯åŠ¨SW-DP
      *
-     * PIOA13:I/0²»¿ÉÓÃ   PIOA14:I/0²»¿ÉÓÃ   PIOA15:I/0¿ÉÓÃ
-     * PIOB3 :I/0¿ÉÓÃ   PIOB4 :I/0¿ÉÓÃ
+     * PIOA13:I/0ä¸å¯ç”¨   PIOA14:I/0ä¸å¯ç”¨   PIOA15:I/0å¯ç”¨
+     * PIOB3 :I/0å¯ç”¨   PIOB4 :I/0å¯ç”¨
      */
     AMHW_ZLG217_AFIO_SWJ_CFG_2,
 
     /**
-     * \brief ¹Ø±ÕJTAG-DP£¬¹Ø±ÕSW-DP
+     * \brief å…³é—­JTAG-DPï¼Œå…³é—­SW-DP
      *
-     * PIOA13:I/0¿ÉÓÃ   PIOA14:I/0¿ÉÓÃ   PIOA15:I/0¿ÉÓÃ
-     * PIOB3 :I/0¿ÉÓÃ   PIOB4 :I/0¿ÉÓÃ
+     * PIOA13:I/0å¯ç”¨   PIOA14:I/0å¯ç”¨   PIOA15:I/0å¯ç”¨
+     * PIOB3 :I/0å¯ç”¨   PIOB4 :I/0å¯ç”¨
      */
     AMHW_ZLG217_AFIO_SWJ_CFG_7 = 7,
 }amhw_zlg217_afio_swj_cfg_mode_t;
@@ -168,11 +168,11 @@ typedef enum {
 /** @} */
 
 /**
- * \brief SPI1Òı½ÅÖØÓ³ÏñÊ¹ÄÜ
+ * \brief SPI1å¼•è„šé‡æ˜ åƒä½¿èƒ½
  *
- * \param[in] p_hw_afio Ö¸Ïò amhw_zlg217_afio_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_afio æŒ‡å‘ amhw_zlg217_afio_t ç»“æ„çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_afio_spi1_pin_remap_enable (amhw_zlg217_afio_t *p_hw_afio)
@@ -181,11 +181,11 @@ void amhw_zlg217_afio_spi1_pin_remap_enable (amhw_zlg217_afio_t *p_hw_afio)
 }
 
 /**
- * \brief SPI1Òı½ÅÖØÓ³Ïñ½ûÄÜ
+ * \brief SPI1å¼•è„šé‡æ˜ åƒç¦èƒ½
  *
- * \param[in] p_hw_afio Ö¸Ïò amhw_zlg217_afio_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_afio æŒ‡å‘ amhw_zlg217_afio_t ç»“æ„çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_afio_spi1_pin_remap_disable (amhw_zlg217_afio_t *p_hw_afio)
@@ -194,11 +194,11 @@ void amhw_zlg217_afio_spi1_pin_remap_disable (amhw_zlg217_afio_t *p_hw_afio)
 }
 
 /**
- * \brief I2C1Òı½ÅÖØÓ³ÏñÊ¹ÄÜ
+ * \brief I2C1å¼•è„šé‡æ˜ åƒä½¿èƒ½
  *
- * \param[in] p_hw_afio Ö¸Ïò amhw_zlg217_afio_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_afio æŒ‡å‘ amhw_zlg217_afio_t ç»“æ„çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_afio_i2c1_pin_remap_enable (amhw_zlg217_afio_t *p_hw_afio)
@@ -207,11 +207,11 @@ void amhw_zlg217_afio_i2c1_pin_remap_enable (amhw_zlg217_afio_t *p_hw_afio)
 }
 
 /**
- * \brief I2C1Òı½ÅÖØÓ³Ïñ½ûÄÜ
+ * \brief I2C1å¼•è„šé‡æ˜ åƒç¦èƒ½
  *
- * \param[in] p_hw_afio Ö¸Ïò amhw_zlg217_afio_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_afio æŒ‡å‘ amhw_zlg217_afio_t ç»“æ„çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_afio_i2c1_pin_remap_disable (amhw_zlg217_afio_t *p_hw_afio)
@@ -220,12 +220,12 @@ void amhw_zlg217_afio_i2c1_pin_remap_disable (amhw_zlg217_afio_t *p_hw_afio)
 }
 
 /**
- * \brief UART1Òı½ÅÖØÓ³ÏñÊ¹ÄÜ
+ * \brief UART1å¼•è„šé‡æ˜ åƒä½¿èƒ½
  *
- * \param[in] p_hw_afio Ö¸Ïò amhw_zlg217_afio_t ½á¹¹µÄÖ¸Õë
- * \param[in] num       ´®¿ÚºÅ£º0£»2
+ * \param[in] p_hw_afio æŒ‡å‘ amhw_zlg217_afio_t ç»“æ„çš„æŒ‡é’ˆ
+ * \param[in] num       ä¸²å£å·ï¼š0ï¼›2
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_afio_uart_pin_remap_enable (amhw_zlg217_afio_t *p_hw_afio,
@@ -239,12 +239,12 @@ void amhw_zlg217_afio_uart_pin_remap_enable (amhw_zlg217_afio_t *p_hw_afio,
 }
 
 /**
- * \brief UART1Òı½ÅÖØÓ³Ïñ½ûÄÜ
+ * \brief UART1å¼•è„šé‡æ˜ åƒç¦èƒ½
  *
- * \param[in] p_hw_afio Ö¸Ïò amhw_zlg217_afio_t ½á¹¹µÄÖ¸Õë
- * \param[in] num       ´®¿ÚºÅ£º0£»2
+ * \param[in] p_hw_afio æŒ‡å‘ amhw_zlg217_afio_t ç»“æ„çš„æŒ‡é’ˆ
+ * \param[in] num       ä¸²å£å·ï¼š0ï¼›2
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_afio_uart_pin_remap_disable (amhw_zlg217_afio_t *p_hw_afio,
@@ -258,11 +258,11 @@ void amhw_zlg217_afio_uart_pin_remap_disable (amhw_zlg217_afio_t *p_hw_afio,
 }
 
 /**
- * \brief TIM1Òı½ÅÖØÓ³ÏñÊ¹ÄÜ
+ * \brief TIM1å¼•è„šé‡æ˜ åƒä½¿èƒ½
  *
- * \param[in] p_hw_afio Ö¸Ïò amhw_zlg217_afio_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_afio æŒ‡å‘ amhw_zlg217_afio_t ç»“æ„çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_afio_tim1_pin_remap_enable (amhw_zlg217_afio_t *p_hw_afio)
@@ -271,11 +271,11 @@ void amhw_zlg217_afio_tim1_pin_remap_enable (amhw_zlg217_afio_t *p_hw_afio)
 }
 
 /**
- * \brief TIM1Òı½ÅÖØÓ³Ïñ½ûÄÜ
+ * \brief TIM1å¼•è„šé‡æ˜ åƒç¦èƒ½
  *
- * \param[in] p_hw_afio Ö¸Ïò amhw_zlg217_afio_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_afio æŒ‡å‘ amhw_zlg217_afio_t ç»“æ„çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_afio_tim1_pin_remap_disable (amhw_zlg217_afio_t *p_hw_afio)
@@ -284,12 +284,12 @@ void amhw_zlg217_afio_tim1_pin_remap_disable (amhw_zlg217_afio_t *p_hw_afio)
 }
 
 /**
- * \brief TIM2Òı½ÅÖØÓ³ÏñÄ£Ê½ÉèÖÃ
+ * \brief TIM2å¼•è„šé‡æ˜ åƒæ¨¡å¼è®¾ç½®
  *
- * \param[in] p_hw_afio Ö¸Ïò amhw_zlg217_afio_t ½á¹¹µÄÖ¸Õë
- * \param[in] mode      ÖØÓ³ÉèÄ£Ê½£ºamhw_zlg217_afio_tim2_remap_modeÃ¶¾ÙµÄºê
+ * \param[in] p_hw_afio æŒ‡å‘ amhw_zlg217_afio_t ç»“æ„çš„æŒ‡é’ˆ
+ * \param[in] mode      é‡æ˜ è®¾æ¨¡å¼ï¼šamhw_zlg217_afio_tim2_remap_modeæšä¸¾çš„å®
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_afio_tim2_remap_mode_set (amhw_zlg217_afio_t *p_hw_afio,
@@ -300,12 +300,12 @@ void amhw_zlg217_afio_tim2_remap_mode_set (amhw_zlg217_afio_t *p_hw_afio,
 }
 
 /**
- * \brief TIM3Òı½ÅÖØÓ³ÏñÄ£Ê½ÉèÖÃ
+ * \brief TIM3å¼•è„šé‡æ˜ åƒæ¨¡å¼è®¾ç½®
  *
- * \param[in] p_hw_afio Ö¸Ïò amhw_zlg217_afio_t ½á¹¹µÄÖ¸Õë
- * \param[in] mode      ÖØÓ³ÉèÄ£Ê½£ºamhw_zlg217_afio_tim3_remap_modeÃ¶¾ÙµÄºê
+ * \param[in] p_hw_afio æŒ‡å‘ amhw_zlg217_afio_t ç»“æ„çš„æŒ‡é’ˆ
+ * \param[in] mode      é‡æ˜ è®¾æ¨¡å¼ï¼šamhw_zlg217_afio_tim3_remap_modeæšä¸¾çš„å®
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_afio_tim3_remap_mode_set (amhw_zlg217_afio_t *p_hw_afio,
@@ -316,12 +316,12 @@ void amhw_zlg217_afio_tim3_remap_mode_set (amhw_zlg217_afio_t *p_hw_afio,
 }
 
 /**
- * \brief CANÒı½ÅÖØÓ³ÏñÄ£Ê½ÉèÖÃ
+ * \brief CANå¼•è„šé‡æ˜ åƒæ¨¡å¼è®¾ç½®
  *
- * \param[in] p_hw_afio Ö¸Ïò amhw_zlg217_afio_t ½á¹¹µÄÖ¸Õë
- * \param[in] mode      ÖØÓ³ÉèÄ£Ê½£ºamhw_zlg217_afio_can_remap_modeÃ¶¾ÙµÄºê
+ * \param[in] p_hw_afio æŒ‡å‘ amhw_zlg217_afio_t ç»“æ„çš„æŒ‡é’ˆ
+ * \param[in] mode      é‡æ˜ è®¾æ¨¡å¼ï¼šamhw_zlg217_afio_can_remap_modeæšä¸¾çš„å®
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_afio_can_remap_mode_set (amhw_zlg217_afio_t *p_hw_afio,
@@ -332,11 +332,11 @@ void amhw_zlg217_afio_can_remap_mode_set (amhw_zlg217_afio_t *p_hw_afio,
 }
 
 /**
- * \brief PD01Òı½ÅÖØÓ³ÏñÊ¹ÄÜ
+ * \brief PD01å¼•è„šé‡æ˜ åƒä½¿èƒ½
  *
- * \param[in] p_hw_afio Ö¸Ïò amhw_zlg217_afio_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_afio æŒ‡å‘ amhw_zlg217_afio_t ç»“æ„çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_afio_pd01_pin_remap_enable (amhw_zlg217_afio_t *p_hw_afio)
@@ -345,11 +345,11 @@ void amhw_zlg217_afio_pd01_pin_remap_enable (amhw_zlg217_afio_t *p_hw_afio)
 }
 
 /**
- * \brief PD01Òı½ÅÖØÓ³Ïñ½ûÄÜ
+ * \brief PD01å¼•è„šé‡æ˜ åƒç¦èƒ½
  *
- * \param[in] p_hw_afio Ö¸Ïò amhw_zlg217_afio_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_afio æŒ‡å‘ amhw_zlg217_afio_t ç»“æ„çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_afio_pd01_pin_remap_disable (amhw_zlg217_afio_t *p_hw_afio)
@@ -358,12 +358,12 @@ void amhw_zlg217_afio_pd01_pin_remap_disable (amhw_zlg217_afio_t *p_hw_afio)
 }
 
 /**
- * \brief SWJ_CFGÖØÓ³ÏñÄ£Ê½ÉèÖÃ
+ * \brief SWJ_CFGé‡æ˜ åƒæ¨¡å¼è®¾ç½®
  *
- * \param[in] p_hw_afio Ö¸Ïò amhw_zlg217_afio_t ½á¹¹µÄÖ¸Õë
- * \param[in] mode      ÖØÓ³ÉèÄ£Ê½£ºamhw_zlg217_afio_swj_cfg_mode_tÃ¶¾ÙµÄºê
+ * \param[in] p_hw_afio æŒ‡å‘ amhw_zlg217_afio_t ç»“æ„çš„æŒ‡é’ˆ
+ * \param[in] mode      é‡æ˜ è®¾æ¨¡å¼ï¼šamhw_zlg217_afio_swj_cfg_mode_tæšä¸¾çš„å®
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_afio_swj_cfg_remap_mode_set (amhw_zlg217_afio_t *p_hw_afio,
@@ -378,12 +378,12 @@ void amhw_zlg217_afio_swj_cfg_remap_mode_set (amhw_zlg217_afio_t *p_hw_afio,
 }
 
 /**
- * \brief Íâ²¿ÖĞ¶ÏºÅÉèÖÃ
+ * \brief å¤–éƒ¨ä¸­æ–­å·è®¾ç½®
  *
- * \param[in] p_hw_afio Ö¸Ïò amhw_zlg217_afio_t ½á¹¹µÄÖ¸Õë
- * \param[in] pin       Òı½ÅºÅ
+ * \param[in] p_hw_afio æŒ‡å‘ amhw_zlg217_afio_t ç»“æ„çš„æŒ‡é’ˆ
+ * \param[in] pin       å¼•è„šå·
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_afio_exti_pin_set (amhw_zlg217_afio_t *p_hw_afio, int pin)

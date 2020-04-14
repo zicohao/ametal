@@ -27,7 +27,7 @@
 #include "mvc.h"
 #include "model_bool.h"
 
-// ¶¨ÒåLEDÊÓÍ¼Àà
+// å®šä¹‰LEDè§†å›¾ç±»
 typedef struct _view_led{
     observer_t  isa;
     int		led_id;

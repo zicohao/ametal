@@ -13,17 +13,17 @@
 
 /**
  * \file
- * \brief LPC84x Òý½Å¼°ÅäÖÃ²ÎÊý¶¨Òå
+ * \brief LPC84x å¼•è„šåŠé…ç½®å‚æ•°å®šä¹‰
  * 
- * \note 1. ¿É×ªÒÆ¹¦ÄÜ¿ÉÒÔÅäÖÃËùÓÐI/OÒý½Å£»
- *          GPIO¹¦ÄÜºÍÌØÊâ¹¦ÄÜÊôÓÚ¹Ì¶¨¹¦ÄÜ£¬Ö»ÄÜ´îÅä¶ÔÓ¦µÄÒý½ÅÊ¹ÓÃ \n
- *          Ê¾Àý£ºPIO0_0Òý½Å¹¦ÄÜÅäÖÃ£º \n 
- *          - ÅäÖÃÎªGPIO¹¦ÄÜÊ¹ÓÃºê£º      PIO0_0_GPIO \n
- *          - ÅäÖÃÎª±È½ÏÆ÷ÊäÈë¹¦ÄÜÊ¹ÓÃºê£ºPIO0_0_ACMP_I1 \n
- *          - ÅäÖÃ´®¿Ú·¢ËÍÒý½Å¹¦ÄÜÊ¹ÓÃºê£ºPIO_FUNC_U0_TXD
+ * \note 1. å¯è½¬ç§»åŠŸèƒ½å¯ä»¥é…ç½®æ‰€æœ‰I/Oå¼•è„šï¼›
+ *          GPIOåŠŸèƒ½å’Œç‰¹æ®ŠåŠŸèƒ½å±žäºŽå›ºå®šåŠŸèƒ½ï¼Œåªèƒ½æ­é…å¯¹åº”çš„å¼•è„šä½¿ç”¨ \n
+ *          ç¤ºä¾‹ï¼šPIO0_0å¼•è„šåŠŸèƒ½é…ç½®ï¼š \n 
+ *          - é…ç½®ä¸ºGPIOåŠŸèƒ½ä½¿ç”¨å®ï¼š      PIO0_0_GPIO \n
+ *          - é…ç½®ä¸ºæ¯”è¾ƒå™¨è¾“å…¥åŠŸèƒ½ä½¿ç”¨å®ï¼šPIO0_0_ACMP_I1 \n
+ *          - é…ç½®ä¸²å£å‘é€å¼•è„šåŠŸèƒ½ä½¿ç”¨å®ï¼šPIO_FUNC_U0_TXD
  *
- * \note 2. ¸´ÓÃ¹¦ÄÜ·½ÏòÓÉ×ÔÉí¾ö¶¨£¬PIOx_x_GPIO_INPUT»òPIOx_x_GPIO_OUTPUT
- *          »á½«Òý½ÅÅäÖÃÎªÆÕÍ¨IOÊäÈëÊä³ö¹¦ÄÜ 
+ * \note 2. å¤ç”¨åŠŸèƒ½æ–¹å‘ç”±è‡ªèº«å†³å®šï¼ŒPIOx_x_GPIO_INPUTæˆ–PIOx_x_GPIO_OUTPUT
+ *          ä¼šå°†å¼•è„šé…ç½®ä¸ºæ™®é€šIOè¾“å…¥è¾“å‡ºåŠŸèƒ½ 
  *
  * \internal
  * \par Modification History
@@ -40,140 +40,140 @@ extern "C" {
 #include "lpc84x_pin.h"
 
 /** 
- * \name °´¼üÒý½ÅÅäÖÃ
+ * \name æŒ‰é”®å¼•è„šé…ç½®
  * @{
  */  
-#define __KEY_KP0_PIN          PIO1_11      /**< \brief ËùÓÐÒý½Å¿ÉÑ¡ */
+#define __KEY_KP0_PIN          PIO1_11      /**< \brief æ‰€æœ‰å¼•è„šå¯é€‰ */
 /** @} */   
   
 /** 
- * \name LEDÒý½ÅÅäÖÃ
+ * \name LEDå¼•è„šé…ç½®
  * @{
  */  
-#define __LED0_PIN             PIO1_8       /**< \brief ËùÓÐÒý½Å¿ÉÑ¡ */
-#define __LED1_PIN             PIO1_10      /**< \brief ËùÓÐÒý½Å¿ÉÑ¡ */  
+#define __LED0_PIN             PIO1_8       /**< \brief æ‰€æœ‰å¼•è„šå¯é€‰ */
+#define __LED1_PIN             PIO1_10      /**< \brief æ‰€æœ‰å¼•è„šå¯é€‰ */  
 /** @} */ 
  
 /** 
- * \name ADCÒý½ÅÅäÖÃ
+ * \name ADCå¼•è„šé…ç½®
  * @{
  */
-#define __ADC_IN0_PIN          PIO0_7       /**< \brief ¹Ì¶¨Òý½Å²»¿É¸ü¸Ä */
-#define __ADC_IN1_PIN          PIO0_6       /**< \brief ¹Ì¶¨Òý½Å²»¿É¸ü¸Ä */
-#define __ADC_IN2_PIN          PIO0_14      /**< \brief ¹Ì¶¨Òý½Å²»¿É¸ü¸Ä */
-#define __ADC_IN3_PIN          PIO0_23      /**< \brief ¹Ì¶¨Òý½Å²»¿É¸ü¸Ä */
-#define __ADC_IN4_PIN          PIO0_22      /**< \brief ¹Ì¶¨Òý½Å²»¿É¸ü¸Ä */
-#define __ADC_IN5_PIN          PIO0_21      /**< \brief ¹Ì¶¨Òý½Å²»¿É¸ü¸Ä */
-#define __ADC_IN6_PIN          PIO0_20      /**< \brief ¹Ì¶¨Òý½Å²»¿É¸ü¸Ä */
-#define __ADC_IN7_PIN          PIO0_19      /**< \brief ¹Ì¶¨Òý½Å²»¿É¸ü¸Ä */
-#define __ADC_IN8_PIN          PIO0_18      /**< \brief ¹Ì¶¨Òý½Å²»¿É¸ü¸Ä */
-#define __ADC_IN9_PIN          PIO0_17      /**< \brief ¹Ì¶¨Òý½Å²»¿É¸ü¸Ä */
-#define __ADC_IN10_PIN         PIO0_13      /**< \brief ¹Ì¶¨Òý½Å²»¿É¸ü¸Ä */
-#define __ADC_IN11_PIN         PIO0_4       /**< \brief ¹Ì¶¨Òý½Å²»¿É¸ü¸Ä */
+#define __ADC_IN0_PIN          PIO0_7       /**< \brief å›ºå®šå¼•è„šä¸å¯æ›´æ”¹ */
+#define __ADC_IN1_PIN          PIO0_6       /**< \brief å›ºå®šå¼•è„šä¸å¯æ›´æ”¹ */
+#define __ADC_IN2_PIN          PIO0_14      /**< \brief å›ºå®šå¼•è„šä¸å¯æ›´æ”¹ */
+#define __ADC_IN3_PIN          PIO0_23      /**< \brief å›ºå®šå¼•è„šä¸å¯æ›´æ”¹ */
+#define __ADC_IN4_PIN          PIO0_22      /**< \brief å›ºå®šå¼•è„šä¸å¯æ›´æ”¹ */
+#define __ADC_IN5_PIN          PIO0_21      /**< \brief å›ºå®šå¼•è„šä¸å¯æ›´æ”¹ */
+#define __ADC_IN6_PIN          PIO0_20      /**< \brief å›ºå®šå¼•è„šä¸å¯æ›´æ”¹ */
+#define __ADC_IN7_PIN          PIO0_19      /**< \brief å›ºå®šå¼•è„šä¸å¯æ›´æ”¹ */
+#define __ADC_IN8_PIN          PIO0_18      /**< \brief å›ºå®šå¼•è„šä¸å¯æ›´æ”¹ */
+#define __ADC_IN9_PIN          PIO0_17      /**< \brief å›ºå®šå¼•è„šä¸å¯æ›´æ”¹ */
+#define __ADC_IN10_PIN         PIO0_13      /**< \brief å›ºå®šå¼•è„šä¸å¯æ›´æ”¹ */
+#define __ADC_IN11_PIN         PIO0_4       /**< \brief å›ºå®šå¼•è„šä¸å¯æ›´æ”¹ */
 /** @} */
   
 /** 
- * \name DACÒý½ÅÅäÖÃ
+ * \name DACå¼•è„šé…ç½®
  * @{
  */
-#define __DAC_OUT_PIN          PIO0_17      /**< \brief ¹Ì¶¨Òý½Å²»¿É¸ü¸Ä */
+#define __DAC_OUT_PIN          PIO0_17      /**< \brief å›ºå®šå¼•è„šä¸å¯æ›´æ”¹ */
 /** @} */
 
 /** 
- * \name I2CÒý½ÅÅäÖÃ
+ * \name I2Cå¼•è„šé…ç½®
  * @{
  */
-#define __I2C0_SCL_PIN         PIO0_10      /**< \brief ¹Ì¶¨Òý½Å²»¿É¸ü¸Ä */
-#define __I2C0_SDA_PIN         PIO0_11      /**< \brief ¹Ì¶¨Òý½Å²»¿É¸ü¸Ä */
+#define __I2C0_SCL_PIN         PIO0_10      /**< \brief å›ºå®šå¼•è„šä¸å¯æ›´æ”¹ */
+#define __I2C0_SDA_PIN         PIO0_11      /**< \brief å›ºå®šå¼•è„šä¸å¯æ›´æ”¹ */
     
-#define __I2C1_SCL_PIN         PIO0_18      /**< \brief ËùÓÐÒý½Å¿ÉÑ¡ */
-#define __I2C1_SDA_PIN         PIO0_19      /**< \brief ËùÓÐÒý½Å¿ÉÑ¡ */
+#define __I2C1_SCL_PIN         PIO0_18      /**< \brief æ‰€æœ‰å¼•è„šå¯é€‰ */
+#define __I2C1_SDA_PIN         PIO0_19      /**< \brief æ‰€æœ‰å¼•è„šå¯é€‰ */
     
-#define __I2C2_SCL_PIN         PIO0_9       /**< \brief ËùÓÐÒý½Å¿ÉÑ¡ */
-#define __I2C2_SDA_PIN         PIO0_8       /**< \brief ËùÓÐÒý½Å¿ÉÑ¡ */
+#define __I2C2_SCL_PIN         PIO0_9       /**< \brief æ‰€æœ‰å¼•è„šå¯é€‰ */
+#define __I2C2_SDA_PIN         PIO0_8       /**< \brief æ‰€æœ‰å¼•è„šå¯é€‰ */
     
-#define __I2C3_SCL_PIN         PIO0_6       /**< \brief ËùÓÐÒý½Å¿ÉÑ¡ */
-#define __I2C3_SDA_PIN         PIO0_7       /**< \brief ËùÓÐÒý½Å¿ÉÑ¡ */
+#define __I2C3_SCL_PIN         PIO0_6       /**< \brief æ‰€æœ‰å¼•è„šå¯é€‰ */
+#define __I2C3_SDA_PIN         PIO0_7       /**< \brief æ‰€æœ‰å¼•è„šå¯é€‰ */
 /** @} */
 
 /** 
- * \name SCT CAPÒý½ÅÅäÖÃ
+ * \name SCT CAPå¼•è„šé…ç½®
  * @{
  */
-#define __SCT0_CAP_PIN0        PIO0_25      /**< \brief ËùÓÐÒý½Å¿ÉÑ¡ */
-#define __SCT0_CAP_PIN1        PIO0_26      /**< \brief ËùÓÐÒý½Å¿ÉÑ¡ */
-#define __SCT0_CAP_PIN2        PIO0_27      /**< \brief ËùÓÐÒý½Å¿ÉÑ¡ */
-#define __SCT0_CAP_PIN3        PIO0_28      /**< \brief ËùÓÐÒý½Å¿ÉÑ¡ */
+#define __SCT0_CAP_PIN0        PIO0_25      /**< \brief æ‰€æœ‰å¼•è„šå¯é€‰ */
+#define __SCT0_CAP_PIN1        PIO0_26      /**< \brief æ‰€æœ‰å¼•è„šå¯é€‰ */
+#define __SCT0_CAP_PIN2        PIO0_27      /**< \brief æ‰€æœ‰å¼•è„šå¯é€‰ */
+#define __SCT0_CAP_PIN3        PIO0_28      /**< \brief æ‰€æœ‰å¼•è„šå¯é€‰ */
 /** @} */
 
 /** 
- * \name SCT PWMÒý½ÅÅäÖÃ
+ * \name SCT PWMå¼•è„šé…ç½®
  * @{
  */
-#define __SCT0_OUT0_PIN        PIO0_23      /**< \brief ËùÓÐÒý½Å¿ÉÑ¡ */
-#define __SCT0_OUT1_PIN        PIO0_24      /**< \brief ËùÓÐÒý½Å¿ÉÑ¡ */
-#define __SCT0_OUT2_PIN        PIO0_25      /**< \brief ËùÓÐÒý½Å¿ÉÑ¡ */
-#define __SCT0_OUT3_PIN        PIO0_26      /**< \brief ËùÓÐÒý½Å¿ÉÑ¡ */
-#define __SCT0_OUT4_PIN        PIO0_27      /**< \brief ËùÓÐÒý½Å¿ÉÑ¡ */
-#define __SCT0_OUT5_PIN        PIO0_15      /**< \brief ËùÓÐÒý½Å¿ÉÑ¡ */
+#define __SCT0_OUT0_PIN        PIO0_23      /**< \brief æ‰€æœ‰å¼•è„šå¯é€‰ */
+#define __SCT0_OUT1_PIN        PIO0_24      /**< \brief æ‰€æœ‰å¼•è„šå¯é€‰ */
+#define __SCT0_OUT2_PIN        PIO0_25      /**< \brief æ‰€æœ‰å¼•è„šå¯é€‰ */
+#define __SCT0_OUT3_PIN        PIO0_26      /**< \brief æ‰€æœ‰å¼•è„šå¯é€‰ */
+#define __SCT0_OUT4_PIN        PIO0_27      /**< \brief æ‰€æœ‰å¼•è„šå¯é€‰ */
+#define __SCT0_OUT5_PIN        PIO0_15      /**< \brief æ‰€æœ‰å¼•è„šå¯é€‰ */
 /** @} */
 
 /** 
- * \name SPI0Òý½ÅÅäÖÃ
+ * \name SPI0å¼•è„šé…ç½®
  * @{
  */
-#define __SPI0_SCK_PIN         PIO0_17      /**< \brief ËùÓÐÒý½Å¿ÉÑ¡ */
-#define __SPI0_MOSI_PIN        PIO0_18      /**< \brief ËùÓÐÒý½Å¿ÉÑ¡ */
-#define __SPI0_MISO_PIN        PIO0_19      /**< \brief ËùÓÐÒý½Å¿ÉÑ¡ */
+#define __SPI0_SCK_PIN         PIO0_17      /**< \brief æ‰€æœ‰å¼•è„šå¯é€‰ */
+#define __SPI0_MOSI_PIN        PIO0_18      /**< \brief æ‰€æœ‰å¼•è„šå¯é€‰ */
+#define __SPI0_MISO_PIN        PIO0_19      /**< \brief æ‰€æœ‰å¼•è„šå¯é€‰ */
 /** @} */                                                            
                                                                      
 /**                                                                  
- * \name SPI1Òý½ÅÅäÖÃ                                                
+ * \name SPI1å¼•è„šé…ç½®                                                
  * @{                                                                 
  */                                                                  
-#define __SPI1_SCK_PIN         PIO0_11      /**< \brief ËùÓÐÒý½Å¿ÉÑ¡ */
-#define __SPI1_MOSI_PIN        PIO0_10      /**< \brief ËùÓÐÒý½Å¿ÉÑ¡ */
-#define __SPI1_MISO_PIN        PIO0_9       /**< \brief ËùÓÐÒý½Å¿ÉÑ¡ */
+#define __SPI1_SCK_PIN         PIO0_11      /**< \brief æ‰€æœ‰å¼•è„šå¯é€‰ */
+#define __SPI1_MOSI_PIN        PIO0_10      /**< \brief æ‰€æœ‰å¼•è„šå¯é€‰ */
+#define __SPI1_MISO_PIN        PIO0_9       /**< \brief æ‰€æœ‰å¼•è„šå¯é€‰ */
 /** @} */
 
 /** 
- * \name USART0Òý½ÅÅäÖÃ
+ * \name USART0å¼•è„šé…ç½®
  * @{
  */
-#define __U0_TXD_PIN           PIO1_0       /**< \brief ËùÓÐÒý½Å¿ÉÑ¡ */
-#define __U0_RXD_PIN           PIO1_2       /**< \brief ËùÓÐÒý½Å¿ÉÑ¡ */
+#define __U0_TXD_PIN           PIO1_0       /**< \brief æ‰€æœ‰å¼•è„šå¯é€‰ */
+#define __U0_RXD_PIN           PIO1_2       /**< \brief æ‰€æœ‰å¼•è„šå¯é€‰ */
 /** @} */                      
                                
 /**                            
- * \name USART1Òý½ÅÅäÖÃ        
+ * \name USART1å¼•è„šé…ç½®        
  * @{                          
  */                            
-#define __U1_TXD_PIN           PIO0_23       /**< \brief ËùÓÐÒý½Å¿ÉÑ¡ */
-#define __U1_RXD_PIN           PIO0_14       /**< \brief ËùÓÐÒý½Å¿ÉÑ¡ */
+#define __U1_TXD_PIN           PIO0_23       /**< \brief æ‰€æœ‰å¼•è„šå¯é€‰ */
+#define __U1_RXD_PIN           PIO0_14       /**< \brief æ‰€æœ‰å¼•è„šå¯é€‰ */
 /** @} */                      
                                
 /**                            
- * \name USART2Òý½ÅÅäÖÃ        
+ * \name USART2å¼•è„šé…ç½®        
  * @{                          
  */                            
-#define __U2_TXD_PIN           PIO0_27      /**< \brief ËùÓÐÒý½Å¿ÉÑ¡ */
-#define __U2_RXD_PIN           PIO0_26      /**< \brief ËùÓÐÒý½Å¿ÉÑ¡ */
+#define __U2_TXD_PIN           PIO0_27      /**< \brief æ‰€æœ‰å¼•è„šå¯é€‰ */
+#define __U2_RXD_PIN           PIO0_26      /**< \brief æ‰€æœ‰å¼•è„šå¯é€‰ */
 /** @} */       
 
 /**                            
- * \name USART3Òý½ÅÅäÖÃ        
+ * \name USART3å¼•è„šé…ç½®        
  * @{                          
  */                            
-#define __U3_TXD_PIN           PIO0_27      /**< \brief ËùÓÐÒý½Å¿ÉÑ¡ */
-#define __U3_RXD_PIN           PIO0_26      /**< \brief ËùÓÐÒý½Å¿ÉÑ¡ */
+#define __U3_TXD_PIN           PIO0_27      /**< \brief æ‰€æœ‰å¼•è„šå¯é€‰ */
+#define __U3_RXD_PIN           PIO0_26      /**< \brief æ‰€æœ‰å¼•è„šå¯é€‰ */
 /** @} */     
 
 /**                            
- * \name USART4Òý½ÅÅäÖÃ        
+ * \name USART4å¼•è„šé…ç½®        
  * @{                          
  */                            
-#define __U4_TXD_PIN           PIO0_27      /**< \brief ËùÓÐÒý½Å¿ÉÑ¡ */
-#define __U4_RXD_PIN           PIO0_26      /**< \brief ËùÓÐÒý½Å¿ÉÑ¡ */
+#define __U4_TXD_PIN           PIO0_27      /**< \brief æ‰€æœ‰å¼•è„šå¯é€‰ */
+#define __U4_RXD_PIN           PIO0_26      /**< \brief æ‰€æœ‰å¼•è„šå¯é€‰ */
 /** @} */  
 
 #endif /* __LPC82X_PIN_OUTSET_H */

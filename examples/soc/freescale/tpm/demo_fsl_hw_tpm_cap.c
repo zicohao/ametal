@@ -12,17 +12,17 @@
 
 /**
  * \file
- * \brief TPMÊµÏÖ²¶»ñ¹¦ÄÜ£¬Í¨¹ıHW²ãµÄ½Ó¿ÚÊµÏÖ
+ * \brief TPMå®ç°æ•è·åŠŸèƒ½ï¼Œé€šè¿‡HWå±‚çš„æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Êä³öÀûÓÃ²¶»ñ¹¦ÄÜµÃµ½µÄPWMĞÅºÅµÄÖÜÆÚºÍÆµÂÊ¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. è¾“å‡ºåˆ©ç”¨æ•è·åŠŸèƒ½å¾—åˆ°çš„PWMä¿¡å·çš„å‘¨æœŸå’Œé¢‘ç‡ã€‚
  *
- * - ×¢Òâ£º
- *   1. TPM1Í¨¹ıPIOE_23Òı½ÅÊä³öPWM£»
- *   2. TPM0²¶»ñÊäÈëÍ¨µÀ0Ê¹ÓÃPIOD_0Òı½Å£»
- *   3. ¹ØÁªPIOE_23Òı½ÅºÍPIOD_0Òı½Å£¬Ê¹ÓÃ²¶»ñ²âÁ¿PWMÆµÂÊ¡£
+ * - æ³¨æ„ï¼š
+ *   1. TPM1é€šè¿‡PIOE_23å¼•è„šè¾“å‡ºPWMï¼›
+ *   2. TPM0æ•è·è¾“å…¥é€šé“0ä½¿ç”¨PIOD_0å¼•è„šï¼›
+ *   3. å…³è”PIOE_23å¼•è„šå’ŒPIOD_0å¼•è„šï¼Œä½¿ç”¨æ•è·æµ‹é‡PWMé¢‘ç‡ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_fsl_hw_tpm_cap.c src_fsl_hw_tpm_cap
  *
  * \internal
@@ -46,18 +46,18 @@
 #include "am_board.h"
 #include "demo_fsl_entrys.h"
 
-/** \brief ÉÏÉıÑØ²¶»ñ */
+/** \brief ä¸Šå‡æ²¿æ•è· */
 #define TPM_CAP_TRIGGER_RISE  1
 
-/** \brief ÏÂ½µÑØ²¶»ñ */
+/** \brief ä¸‹é™æ²¿æ•è· */
 #define TPM_CAP_TRIGGER_FALL  2
 
-/** \brief TPMÍ¨µÀºÅ */
+/** \brief TPMé€šé“å· */
 #define TPM_CAP_CH_NUM        AMHW_FSL_TPM_CH(0)
 
-static volatile am_bool_t  __g_flag    = AM_FALSE;  /**< \brief ²¶»ñ±êÖ¾£¬ÊÇ·ñ²¶»ñµ½ĞÂµÄÊÂ¼ş   */
-static volatile uint64_t   __g_time_ns = 0;         /**< \brief ²¶»ñ¼ÆÊıÖµ */
-uint32_t                   __g_tpm_clock;           /**< \brief tpm²ÉÓÃµÄÊ±ÖÓÔ´´óĞ¡ */
+static volatile am_bool_t  __g_flag    = AM_FALSE;  /**< \brief æ•è·æ ‡å¿—ï¼Œæ˜¯å¦æ•è·åˆ°æ–°çš„äº‹ä»¶   */
+static volatile uint64_t   __g_time_ns = 0;         /**< \brief æ•è·è®¡æ•°å€¼ */
+uint32_t                   __g_tpm_clock;           /**< \brief tpmé‡‡ç”¨çš„æ—¶é’Ÿæºå¤§å° */
 
 void tpm_cap_isr (void *p_arg)
 {
@@ -75,50 +75,50 @@ void tpm_cap_isr (void *p_arg)
                 first = AM_FALSE;
             } else {
                 if(cap_val > count1) {
-                    /* ½«Á½´Î¶ÁÈ¡ÖµµÄ²î×ª»»³ÉÊ±¼ä  */
+                    /* å°†ä¸¤æ¬¡è¯»å–å€¼çš„å·®è½¬æ¢æˆæ—¶é—´  */
                     __g_time_ns = (uint64_t)1000000000 * (uint64_t)(cap_val - count1) / __g_tpm_clock;
                 }
                 first = AM_TRUE;
-                /* ÖÃ±êÖ¾ÎªÕæ£¬±íÃ÷²¶»ñÍê³É */
+                /* ç½®æ ‡å¿—ä¸ºçœŸï¼Œè¡¨æ˜æ•è·å®Œæˆ */
                 __g_flag = AM_TRUE;
             } 
         }
 
-        /* Çå³ıÍ¨µÀ±êÖ¾ */
+        /* æ¸…é™¤é€šé“æ ‡å¿— */
         amhw_fsl_tpm_stat_flag_clear(p_hw_tpm, AMHW_FSL_TPM_STAT_FLAG(TPM_CAP_CH_NUM));
     }
 }
 
 /**
- * \brief ²¶»ñ³õÊ¼»¯
- * \param[in] p_tpm : Ö¸ÏòTPM¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ÎŞ
- * \note Ä¬ÈÏÅäÖÃTPM0µÄÍ¨µÀ0Òı½Å£¬ÈçÑ¡ÔñÆäËüÍ¨µÀÔòĞèÔÚ´ËĞŞ¸Ä
+ * \brief æ•è·åˆå§‹åŒ–
+ * \param[in] p_tpm : æŒ‡å‘TPMå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return æ— 
+ * \note é»˜è®¤é…ç½®TPM0çš„é€šé“0å¼•è„šï¼Œå¦‚é€‰æ‹©å…¶å®ƒé€šé“åˆ™éœ€åœ¨æ­¤ä¿®æ”¹
  */
 void tpm_cap_init (amhw_fsl_tpm_t *p_hw_tpm)
 {
-    /* ¹Ø±ÕÊ±ÖÓ£¬Í£Ö¹¼ÆÊı */
+    /* å…³é—­æ—¶é’Ÿï¼Œåœæ­¢è®¡æ•° */
     amhw_fsl_tpm_clock_mode(p_hw_tpm, AMHW_FSL_TPM_CLK_SRC_NONE);
 
-    /* ÇåÁã¼ÆÊıÆ÷ */
+    /* æ¸…é›¶è®¡æ•°å™¨ */
     amhw_fsl_tpm_count_clear(p_hw_tpm);
 
-    /* Ô¤·ÖÆµÉèÖÃ */
+    /* é¢„åˆ†é¢‘è®¾ç½® */
     amhw_fsl_tpm_prescale_set(p_hw_tpm, AMHW_FSL_TPM_DIVIDED_BY_1);
 
-//    /* »ñÈ¡tpmÊ±ÖÓÔ´ÆµÂÊ£¬±ãÓÚºóÃæ¼ÆËã */
+//    /* è·å–tpmæ—¶é’Ÿæºé¢‘ç‡ï¼Œä¾¿äºåé¢è®¡ç®— */
 //    __g_tpm_clock = am_kl26_clk_periph_rate_get(p_hw_tpm);
 
 }
 
 /**
- * \brief ³õÊ¼»¯Ò»Â·PWMÊä³ö¡£
+ * \brief åˆå§‹åŒ–ä¸€è·¯PWMè¾“å‡ºã€‚
  *
- * \param[in] p_tpm    : Ö¸ÏòTPM¼Ä´æÆ÷¿éµÄÖ¸Õë¡£
- * \param[in] cap_num  : ²¶»ñ±àºÅ¡£
- * \param[in] cap_edge : ²¶»ñ±ßÑØÑ¡Ôñ (#TPM_CAP_TRIGGER_RISE) »ò (#TPM_CAP_TRIGGER_FALL)
+ * \param[in] p_tpm    : æŒ‡å‘TPMå¯„å­˜å™¨å—çš„æŒ‡é’ˆã€‚
+ * \param[in] cap_num  : æ•è·ç¼–å·ã€‚
+ * \param[in] cap_edge : æ•è·è¾¹æ²¿é€‰æ‹© (#TPM_CAP_TRIGGER_RISE) æˆ– (#TPM_CAP_TRIGGER_FALL)
  *
- * \return  ÎŞ
+ * \return  æ— 
  */
 void tpm_cap_chan_config (amhw_fsl_tpm_t *p_hw_tpm, uint8_t cap_num, uint8_t cap_edge)
 {
@@ -133,30 +133,30 @@ void tpm_cap_chan_config (amhw_fsl_tpm_t *p_hw_tpm, uint8_t cap_num, uint8_t cap
 
 void tpm_cap_chan_enable (amhw_fsl_tpm_t *p_hw_tpm, uint32_t cap_num)
 {
-    /* Ê¹ÄÜÍ¨µÀÖĞ¶Ï */
+    /* ä½¿èƒ½é€šé“ä¸­æ–­ */
     amhw_fsl_tpm_ch_sc_set(p_hw_tpm, cap_num, AMHW_FSL_TPM_CHSC_IE);
 
-    /* ´ò¿ªÊ±ÖÓ£¬Æô¶¯¼ÆÊı */
+    /* æ‰“å¼€æ—¶é’Ÿï¼Œå¯åŠ¨è®¡æ•° */
     amhw_fsl_tpm_clock_mode(p_hw_tpm, AMHW_FSL_TPM_CLK_SRC_MODULE);
 }
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_fsl_hw_tpm_cap_entry (am_pwm_handle_t  tpm2_pwm_handle,
                                 amhw_fsl_tpm_t  *p_hw_tpm,
                                 int              inum,
                                 uint32_t         tpm_clock)
 {
-    uint32_t        freq;               /**< \brief ²¶»ñµ½µÄÆµÂÊ */
+    uint32_t        freq;               /**< \brief æ•è·åˆ°çš„é¢‘ç‡ */
     uint32_t        time_ns;
 
     AM_DBG_INFO("The TPM demo for CAP service\r\n");
 
     __g_tpm_clock = tpm_clock;
 
-    /* TPM2Í¨µÀ1Ê¹ÓÃPIOE_23£¬ÔÚ amhw_timer_cap_config.c ÖĞÅäÖÃ */
-    am_pwm_config(tpm2_pwm_handle, 1, 500000 / 2, 500000); /* TÆµÂÊÎª2KHz */
+    /* TPM2é€šé“1ä½¿ç”¨PIOE_23ï¼Œåœ¨ amhw_timer_cap_config.c ä¸­é…ç½® */
+    am_pwm_config(tpm2_pwm_handle, 1, 500000 / 2, 500000); /* Té¢‘ç‡ä¸º2KHz */
     am_pwm_enable(tpm2_pwm_handle, 1);
     
     am_int_connect(inum, tpm_cap_isr, (void *)p_hw_tpm);
@@ -172,7 +172,7 @@ void demo_fsl_hw_tpm_cap_entry (am_pwm_handle_t  tpm2_pwm_handle,
             time_ns = __g_time_ns;
             __g_flag = AM_FALSE;
             am_int_cpu_unlock(key);
-            freq = (uint32_t)1000000000 / time_ns;           /* ×ª»»³ÉÆµÂÊ */
+            freq = (uint32_t)1000000000 / time_ns;           /* è½¬æ¢æˆé¢‘ç‡ */
             AM_DBG_INFO("The period is %d ns, The freq is %d Hz \r\n", time_ns, freq);
         } else {
             am_int_cpu_unlock(key);

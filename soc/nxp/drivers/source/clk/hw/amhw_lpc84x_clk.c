@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief Ê±ÖÓÓ²¼ş²Ù×÷½Ó¿ÚÊµÏÖ¡£
+ * \brief æ—¶é’Ÿç¡¬ä»¶æ“ä½œæ¥å£å®ç°ã€‚
  *
  * \internal
  * \par Modification history
@@ -29,7 +29,7 @@
 
 
 /**
- * \brief »ñÈ¡ÏµÍ³PLLÊäÈëÊ±ÖÓÆµÂÊ
+ * \brief è·å–ç³»ç»ŸPLLè¾“å…¥æ—¶é’Ÿé¢‘ç‡
  */
 uint32_t amhw_lpc84x_clk_pllin_rate_get (void)
 {     
@@ -38,23 +38,23 @@ uint32_t amhw_lpc84x_clk_pllin_rate_get (void)
     switch ((amhw_lpc84x_pllinclk_src_t) (LPC84X_SYSCON->syspllclksel &
              0x03)) {
           
-    case AMHW_LPC84X_CLK_PLLIN_SRC_FRO:            /* ÄÚ²¿RCÕñµ´Æ÷ */
+    case AMHW_LPC84X_CLK_PLLIN_SRC_FRO:            /* å†…éƒ¨RCæŒ¯è¡å™¨ */
         syspllin_rate = AMHW_LPC84X_CLK_FREQ_IRC;
         break;
     
-    case AMHW_LPC84X_CLK_PLLIN_SRC_EXTERNAL_CLK:    /* ÏµÍ³Õñµ´Æ÷ */
+    case AMHW_LPC84X_CLK_PLLIN_SRC_EXTERNAL_CLK:    /* ç³»ç»ŸæŒ¯è¡å™¨ */
         syspllin_rate = AMHW_LPC84X_CLK_FREQ_XTAL;
         break;
         
-    case AMHW_LPC84X_CLK_PLLIN_SRC_WTD_CLK:        /* WDTÊ±ÖÓ */
+    case AMHW_LPC84X_CLK_PLLIN_SRC_WTD_CLK:        /* WDTæ—¶é’Ÿ */
     	syspllin_rate = amhw_lpc84x_clk_wdt_rate_get ();
         break;
 
-    case AMHW_LPC84X_CLK_PLLIN_SRC_FRO_DIV:        /* WDTÊ±ÖÓ */
+    case AMHW_LPC84X_CLK_PLLIN_SRC_FRO_DIV:        /* WDTæ—¶é’Ÿ */
         syspllin_rate = AMHW_LPC84X_CLK_FREQ_IRC / 2;
         break;
     
-    default:    /* Ä¬ÈÏ´¦Àí */
+    default:    /* é»˜è®¤å¤„ç† */
         syspllin_rate = 0;
         break;
     }
@@ -63,7 +63,7 @@ uint32_t amhw_lpc84x_clk_pllin_rate_get (void)
 }
 
 /**
- * \brief »ñÈ¡ÏµÍ³PLLÊä³öÊ±ÖÓÆµÂÊ
+ * \brief è·å–ç³»ç»ŸPLLè¾“å‡ºæ—¶é’Ÿé¢‘ç‡
  */
 uint32_t amhw_lpc84x_clk_pllout_rate_get (void)
 {
@@ -76,7 +76,7 @@ uint32_t amhw_lpc84x_clk_pllout_rate_get (void)
 }
 
 /**
- * \brief µÃµ½ main Ê±ÖÓÆµÂÊ
+ * \brief å¾—åˆ° main æ—¶é’Ÿé¢‘ç‡
  */
 uint32_t amhw_lpc84x_clk_main_clkrate_get (void)
 {
@@ -85,7 +85,7 @@ uint32_t amhw_lpc84x_clk_main_clkrate_get (void)
     switch (amhw_lpc84x_clk_main_src_get()) {
         
     case AMHW_LPC84X_MAIN_CLK_PLLIN_SRC_MAIN_CLK_PRE_PLL:
-        /* Ìí¼Ó»ñÈ¡Ö÷Ê±ÖÓ´úÂë */
+        /* æ·»åŠ è·å–ä¸»æ—¶é’Ÿä»£ç  */
     	clkrate = amhw_lpc84x_clk_fro_rate_get();
         break;
 
@@ -103,7 +103,7 @@ uint32_t amhw_lpc84x_clk_main_clkrate_get (void)
 
 
 /**
- * \brief µÃµ½WDTÕñµ´Æ÷µÄÊ±ÖÓÆµÂÊ
+ * \brief å¾—åˆ°WDTæŒ¯è¡å™¨çš„æ—¶é’Ÿé¢‘ç‡
  */
 uint32_t amhw_lpc84x_clk_wdt_rate_get (void)
 {
@@ -115,11 +115,11 @@ uint32_t amhw_lpc84x_clk_wdt_rate_get (void)
      
     if (wdtosc_ispowerup == AM_FALSE) {
 
-        /* ´ò¿ªwdtÕñµ´Æ÷*/
+        /* æ‰“å¼€wdtæŒ¯è¡å™¨*/
         amhw_lpc84x_syscon_powerup(AMHW_LPC84X_SYSCON_PD_WDT_OSC);
     }
     
-    /* µÃµ½Ê±ÖÓÆµÂÊ*/
+    /* å¾—åˆ°æ—¶é’Ÿé¢‘ç‡*/
     switch ((LPC84X_SYSCON->wdtoscctrl >> 5) & 0xF) {
         
     case 1:  
@@ -194,7 +194,7 @@ uint32_t amhw_lpc84x_clk_wdt_rate_get (void)
 
 
 /**
- * \brief µÃµ½ outclkÊ±ÖÓÆµÂÊ
+ * \brief å¾—åˆ° outclkæ—¶é’Ÿé¢‘ç‡
  */
 uint32_t amhw_lpc84x_outclk_clkrate_get (void)
 {
@@ -224,17 +224,17 @@ uint32_t amhw_lpc84x_outclk_clkrate_get (void)
 }
 
 /**
- * \brief µÃµ½ÏµÍ³Ê±ÖÓÆµÂÊ
+ * \brief å¾—åˆ°ç³»ç»Ÿæ—¶é’Ÿé¢‘ç‡
  */
 uint32_t amhw_lpc84x_clk_system_clkrate_get (void)
 {   
-    /* sysahbclkdiv Îª0Ê±£¬ÏµÍ³Ê±ÖÓ¹Ø±Õ£¬¸´Î»ºósysahbclkdivÄ¬ÈÏÎª 1*/
+    /* sysahbclkdiv ä¸º0æ—¶ï¼Œç³»ç»Ÿæ—¶é’Ÿå…³é—­ï¼Œå¤ä½åsysahbclkdivé»˜è®¤ä¸º 1*/
     return (amhw_lpc84x_clk_main_clkrate_get() /
             amhw_lpc84x_clk_system_clkdiv_get());
 }
 
 /**
- * \brief »ñÈ¡ADC»ù±¾ÊäÈëÆµÂÊ
+ * \brief è·å–ADCåŸºæœ¬è¾“å…¥é¢‘ç‡
  */
 uint32_t amhw_lpc84x_clk_adc_baseclkrate_get (void)
 {
@@ -251,7 +251,7 @@ uint32_t amhw_lpc84x_clk_adc_baseclkrate_get (void)
 }
 
 /**
- * \brief »ñÈ¡SCT»ù±¾ÊäÈëÆµÂÊ
+ * \brief è·å–SCTåŸºæœ¬è¾“å…¥é¢‘ç‡
  */
 uint32_t amhw_lpc84x_clk_sct_baseclkrate_get (void)
 {
@@ -270,7 +270,7 @@ uint32_t amhw_lpc84x_clk_sct_baseclkrate_get (void)
 }
 
 /**
- * \brief »ñÈ¡´®¿ÚSPIhºÍI2C»ù±¾ÊäÈëÆµÂÊ
+ * \brief è·å–ä¸²å£SPIhå’ŒI2CåŸºæœ¬è¾“å…¥é¢‘ç‡
  */
 uint32_t amhw_lpc84x_clk_usart_i2c_spi_baseclkrate_get (int id)
 {
@@ -280,7 +280,7 @@ uint32_t amhw_lpc84x_clk_usart_i2c_spi_baseclkrate_get (int id)
     uint32_t mult, div, infrg0;
 
 
-    /* µÃµ½Ñ¡ÔñµÄÊ±ÖÓÔ´*/
+    /* å¾—åˆ°é€‰æ‹©çš„æ—¶é’Ÿæº*/
     if (id == CLK_UART0) {
     	clk_sel = LPC84X_SYSCON->uart0clksel & 0x00000007;
     } else if (id == CLK_UART1) {
@@ -313,9 +313,9 @@ uint32_t amhw_lpc84x_clk_usart_i2c_spi_baseclkrate_get (int id)
 	    inclk = amhw_lpc84x_clk_main_clkrate_get();
         break;
     case DEV_FRG0:
- 	   /* µÃµ½FRG0µÄ·ÖÆµÖµ*/
+ 	   /* å¾—åˆ°FRG0çš„åˆ†é¢‘å€¼*/
 
- 	   /* µÃµ½FRG0µÄÊ±ÖÓÔ´*/
+ 	   /* å¾—åˆ°FRG0çš„æ—¶é’Ÿæº*/
  	   infrg0 = LPC84X_SYSCON->frg0clksel & 0x00000003;
 
  	   if (infrg0 == FRG_FRO) {
@@ -332,7 +332,7 @@ uint32_t amhw_lpc84x_clk_usart_i2c_spi_baseclkrate_get (int id)
  	   if ((LPC84X_SYSCON->frg0mult & 0xFF) != 0x0) {
 
  	 	  div    = LPC84X_SYSCON->frg0div;
- 	      /* Ğ¡Êı²¿·ÖÊ¹ÄÜ£¬µÃµ½±¶ÆµÏµÊı*/
+ 	      /* å°æ•°éƒ¨åˆ†ä½¿èƒ½ï¼Œå¾—åˆ°å€é¢‘ç³»æ•°*/
  	      mult = LPC84X_SYSCON->frg0mult & 0xFF;
 
  	     inclk_temp = inclk;
@@ -344,7 +344,7 @@ uint32_t amhw_lpc84x_clk_usart_i2c_spi_baseclkrate_get (int id)
         break;
     case DEV_FRG1:
 
- 	   /* µÃµ½FRG0µÄÊ±ÖÓÔ´*/
+ 	   /* å¾—åˆ°FRG0çš„æ—¶é’Ÿæº*/
  	   infrg0 = LPC84X_SYSCON->frg1clksel & 0x00000003;
 
  	   if (infrg0 == FRG_FRO) {
@@ -360,7 +360,7 @@ uint32_t amhw_lpc84x_clk_usart_i2c_spi_baseclkrate_get (int id)
  	   if ((LPC84X_SYSCON->frg1mult & 0xFF) == 0xFF) {
 
   	 	  div    = LPC84X_SYSCON->frg1div;
-  	      /* Ğ¡Êı²¿·ÖÊ¹ÄÜ£¬µÃµ½±¶ÆµÏµÊı*/
+  	      /* å°æ•°éƒ¨åˆ†ä½¿èƒ½ï¼Œå¾—åˆ°å€é¢‘ç³»æ•°*/
   	      mult = LPC84X_SYSCON->frg1mult & 0xFF;
 
   	       inclk_temp = inclk;
@@ -380,7 +380,7 @@ uint32_t amhw_lpc84x_clk_usart_i2c_spi_baseclkrate_get (int id)
 }
 
 /**
- * \brief ÉèÖÃUART0Ê±ÖÓÊäÈëÔ´
+ * \brief è®¾ç½®UART0æ—¶é’Ÿè¾“å…¥æº
  */
 void amhw_lpc84x_clk_uart0_clk_sel_set (uint32_t uart_clk_sel)
 {
@@ -388,7 +388,7 @@ void amhw_lpc84x_clk_uart0_clk_sel_set (uint32_t uart_clk_sel)
 }
 
 /**
- * \brief ÉèÖÃUART1Ê±ÖÓÊäÈëÔ´
+ * \brief è®¾ç½®UART1æ—¶é’Ÿè¾“å…¥æº
  */
 void amhw_lpc84x_clk_uart1_clk_sel_set (uint32_t uart_clk_sel)
 {
@@ -396,7 +396,7 @@ void amhw_lpc84x_clk_uart1_clk_sel_set (uint32_t uart_clk_sel)
 }
 
 /**
- * \brief ÉèÖÃUART0Ê±ÖÓÊäÈëÔ´
+ * \brief è®¾ç½®UART0æ—¶é’Ÿè¾“å…¥æº
  */
 void amhw_lpc84x_clk_uart2_clk_sel_set (uint32_t uart_clk_sel)
 {
@@ -404,7 +404,7 @@ void amhw_lpc84x_clk_uart2_clk_sel_set (uint32_t uart_clk_sel)
 }
 
 /**
- * \brief ÉèÖÃUART0Ê±ÖÓÊäÈëÔ´
+ * \brief è®¾ç½®UART0æ—¶é’Ÿè¾“å…¥æº
  */
 void amhw_lpc84x_clk_uart3_clk_sel_set (uint32_t uart_clk_sel)
 {
@@ -413,7 +413,7 @@ void amhw_lpc84x_clk_uart3_clk_sel_set (uint32_t uart_clk_sel)
 
 
 /**
- * \brief ÉèÖÃUART0Ê±ÖÓÊäÈëÔ´
+ * \brief è®¾ç½®UART0æ—¶é’Ÿè¾“å…¥æº
  */
 void amhw_lpc84x_clk_uart4_clk_sel_set (uint32_t uart_clk_sel)
 {
@@ -421,7 +421,7 @@ void amhw_lpc84x_clk_uart4_clk_sel_set (uint32_t uart_clk_sel)
 }
 
 /**
- * \brief ÉèÖÃUART0Ê±ÖÓÊäÈëÔ´
+ * \brief è®¾ç½®UART0æ—¶é’Ÿè¾“å…¥æº
  */
 void amhw_lpc84x_clk_i2c0_clk_sel_set (uint32_t i2c_clk_sel)
 {
@@ -429,21 +429,21 @@ void amhw_lpc84x_clk_i2c0_clk_sel_set (uint32_t i2c_clk_sel)
 }
 
 /**
- * \brief ÉèÖÃUART0Ê±ÖÓÊäÈëÔ´
+ * \brief è®¾ç½®UART0æ—¶é’Ÿè¾“å…¥æº
  */
 void amhw_lpc84x_clk_i2c1_clk_sel_set (uint32_t i2c_clk_sel)
 {
 	LPC84X_SYSCON->i2c1clksel = i2c_clk_sel;
 }
 /**
- * \brief ÉèÖÃUART0Ê±ÖÓÊäÈëÔ´
+ * \brief è®¾ç½®UART0æ—¶é’Ÿè¾“å…¥æº
  */
 void amhw_lpc84x_clk_i2c2_clk_sel_set (uint32_t i2c_clk_sel)
 {
 	LPC84X_SYSCON->i2c2clksel = i2c_clk_sel;
 }
 /**
- * \brief ÉèÖÃUART0Ê±ÖÓÊäÈëÔ´
+ * \brief è®¾ç½®UART0æ—¶é’Ÿè¾“å…¥æº
  */
 void amhw_lpc84x_clk_i2c3_clk_sel_set (uint32_t i2c_clk_sel)
 {
@@ -451,7 +451,7 @@ void amhw_lpc84x_clk_i2c3_clk_sel_set (uint32_t i2c_clk_sel)
 }
 
 /**
- * \brief ÉèÖÃUART0Ê±ÖÓÊäÈëÔ´
+ * \brief è®¾ç½®UART0æ—¶é’Ÿè¾“å…¥æº
  */
 void amhw_lpc84x_clk_spi0_clk_sel_set (uint32_t spi_clk_sel)
 {
@@ -459,7 +459,7 @@ void amhw_lpc84x_clk_spi0_clk_sel_set (uint32_t spi_clk_sel)
 }
 
 /**
- * \brief ÉèÖÃUART0Ê±ÖÓÊäÈëÔ´
+ * \brief è®¾ç½®UART0æ—¶é’Ÿè¾“å…¥æº
  */
 void amhw_lpc84x_clk_spi1_clk_sel_set (uint32_t spi_clk_sel)
 {
@@ -467,7 +467,7 @@ void amhw_lpc84x_clk_spi1_clk_sel_set (uint32_t spi_clk_sel)
 }
 
 /**
- * \brief ÉèÖÃUART0Ê±ÖÓÊäÈëÔ´
+ * \brief è®¾ç½®UART0æ—¶é’Ÿè¾“å…¥æº
  */
 void amhw_lpc84x_clk_cap_clk_sel_set (uint32_t cap_clk_sel)
 {
@@ -475,7 +475,7 @@ void amhw_lpc84x_clk_cap_clk_sel_set (uint32_t cap_clk_sel)
 }
 
 /**
- * \brief ÉèÖÃUART0Ê±ÖÓÊäÈëÔ´
+ * \brief è®¾ç½®UART0æ—¶é’Ÿè¾“å…¥æº
  */
 void amhw_lpc84x_sct_clk_sel_set (uint32_t sct_clk_sel, uint8_t sct_clk_div)
 {
@@ -490,7 +490,7 @@ void amhw_lpc84x_clk_adc_sel_set (uint32_t adc_clk_sel, uint8_t adc_clk_div)
 }
 
 /**
- * \brief ÉèÖÃfrg0»ù±¾ÊäÈëÆµÂÊ
+ * \brief è®¾ç½®frg0åŸºæœ¬è¾“å…¥é¢‘ç‡
  */
 int amhw_lpc84x_clk_frg0_baseclkrate_set (uint32_t rate)
 {
@@ -498,7 +498,7 @@ int amhw_lpc84x_clk_frg0_baseclkrate_set (uint32_t rate)
     uint32_t mult;
     uint32_t infrg0;
 
-	   /* µÃµ½FRG0µÄÊ±ÖÓÔ´*/
+	   /* å¾—åˆ°FRG0çš„æ—¶é’Ÿæº*/
 	   infrg0 = LPC84X_SYSCON->frg0clksel & 0x00000003;
 	   if (infrg0 == FRG_FRO) {
 	 	  inclk = amhw_lpc84x_clk_fro_rate_get() ;
@@ -515,16 +515,16 @@ int amhw_lpc84x_clk_frg0_baseclkrate_set (uint32_t rate)
     }
     LPC84X_SYSCON->frg0div  = 0;
 
-    /* ¼ÆËãĞ¡Êı·ÖÆµÖµ */
+    /* è®¡ç®—å°æ•°åˆ†é¢‘å€¼ */
     mult = ((inclk / rate)) - 1;
 
-       /* ±£ÁôĞ¡Êı²¿·Ö */
+       /* ä¿ç•™å°æ•°éƒ¨åˆ† */
     LPC84X_SYSCON->frg0mult = (uint8_t)mult;
     return AM_OK;
 }
 
 /**
- * \brief ÉèÖÃfrg1»ù±¾ÊäÈëÆµÂÊ
+ * \brief è®¾ç½®frg1åŸºæœ¬è¾“å…¥é¢‘ç‡
  */
 int amhw_lpc84x_clk_frg1_baseclkrate_set (uint32_t rate)
 {
@@ -532,7 +532,7 @@ int amhw_lpc84x_clk_frg1_baseclkrate_set (uint32_t rate)
     uint32_t mult;
     uint32_t infrg0;
 
-	   /* µÃµ½FRG0µÄÊ±ÖÓÔ´*/
+	   /* å¾—åˆ°FRG0çš„æ—¶é’Ÿæº*/
 	   infrg0 = LPC84X_SYSCON->frg1clksel & 0x00000003;
 	   if (infrg0 == FRG_FRO) {
 	 	  inclk = amhw_lpc84x_clk_fro_rate_get() ;
@@ -549,17 +549,17 @@ int amhw_lpc84x_clk_frg1_baseclkrate_set (uint32_t rate)
     }
     LPC84X_SYSCON->frg1div  = 0;
 
-    /* ¼ÆËãĞ¡Êı·ÖÆµÖµ */
+    /* è®¡ç®—å°æ•°åˆ†é¢‘å€¼ */
     mult = ((inclk / rate)) - 1;
 
-       /* ±£ÁôĞ¡Êı²¿·Ö */
+       /* ä¿ç•™å°æ•°éƒ¨åˆ† */
     LPC84X_SYSCON->frg1mult = (uint8_t)mult;
     return AM_OK;
 }
 
 
 ///**
-// * \brief µÃµ½ÍâÉèµÄÊäÈëÆµÂÊ
+// * \brief å¾—åˆ°å¤–è®¾çš„è¾“å…¥é¢‘ç‡
 // */
 //uint32_t amhw_lpc84x_clk_periph_freq_get (void *p_periph)
 //{

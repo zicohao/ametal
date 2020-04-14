@@ -12,21 +12,21 @@
 
 /**
  * \file
- * \brief ģ��Ƚ������̣���ѹ���ݣ���ͨ�� HW ��ӿ�ʵ��
+ * \brief 模拟比较器例程（电压阶梯），通过 HW 层接口实现
  *
- * - �������裺
- *   1. PIO0_14 ����ģ������ 3��
- *   2. PIO0_6 ��ѹ��Ϊ���ݵ�ѹ��Դ����ʵ��� 3.3V ��ѹ���� VDDCMP = 3.3V��
+ * - 操作步骤：
+ *   1. PIO0_14 连接模拟输入 3；
+ *   2. PIO0_6 电压作为阶梯电压电源，此实验接 3.3V 电压，即 VDDCMP = 3.3V。
  *
- * - ʵ������
- *   1. ���� 3 ���� 1703mV ʱ�����ڻ�����ȽϽ�� "result: PIO0_14_ACMP_I3 > PIO0_6_ACMP_LAD(1703mV)"��
- *   1. ���� 3 С�� 1703mV ʱ�����ڻ�����ȽϽ�� "result: PIO0_14_ACMP_I3 < PIO0_6_ACMP_LAD(1703mV)"��
+ * - 实验现象：
+ *   1. 输入 3 大于 1703mV 时，串口会输出比较结果 "result: PIO0_14_ACMP_I3 > PIO0_6_ACMP_LAD(1703mV)"；
+ *   1. 输入 3 小于 1703mV 时，串口会输出比较结果 "result: PIO0_14_ACMP_I3 < PIO0_6_ACMP_LAD(1703mV)"。
  *
  * \note
- *    ����۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIO1_2 �������� PC ���ڵ� TXD��
- *    PIO1_0 �������� PC ���ڵ� RXD��
+ *    如需观察串口打印的调试信息，需要将 PIO1_2 引脚连接 PC 串口的 TXD，
+ *    PIO1_0 引脚连接 PC 串口的 RXD。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_lpc845_hw_acmp_lad.c src_lpc845_hw_acmp_lad
  *
  * \internal
@@ -54,20 +54,20 @@ void demo_lpc845_hw_acmp_lad_entry (amhw_lpc84x_acmp_t *p_hw_acmp, int pin)
     
     amhw_lpc84x_acmp_config(p_hw_acmp,
 
-                            /* ѡ������ 3 ͨ��Ϊͬ������� */
+                            /* 选择输入 3 通道为同相端输入 */
                             AMHW_LPC84X_ACMP_CTRL_VP_CMP3 |
 
-                            /* ѡ����ݵ�ѹΪ��������� */
+                            /* 选择阶梯电压为反相端输入 */
                             AMHW_LPC84X_ACMP_CTRL_VM_LADOUT);
 
-    /* ʹ�ܽ��ݵ�ѹ���� */
+    /* 使能阶梯电压功能 */
     amhw_lpc84x_acmp_ladder_enable(p_hw_acmp);
 
-    /* ѡ��Ƚ�����Դ VDDCMP */
+    /* 选择比较器电源 VDDCMP */
     amhw_lpc84x_acmp_ladref_set(p_hw_acmp,
                                 AMHW_LPC84X_ACMP_LADDER_VDDCMP);
 
-    /* ���ݵ�ѹ���� Vol = VDDCMP * value / 31 = 3300mV * 16 / 31 = 1703mV */
+    /* 阶梯电压输入 Vol = VDDCMP * value / 31 = 3300mV * 16 / 31 = 1703mV */
     amhw_lpc84x_acmp_ladsel_set(p_hw_acmp, 16);
 
     AM_FOREVER {

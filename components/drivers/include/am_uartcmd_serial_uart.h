@@ -34,30 +34,30 @@ extern "C" {
 #include "am_uartcmd_flash_define.h"
 
 /**
- * \brief ´®¿Ú³¬Ê±¶¨Ê±Æ÷½á¹¹Ìå
+ * \brief ä¸²å£è¶…æ—¶å®šæ—¶å™¨ç»“æ„ä½“
  */
 typedef struct uartcmd_serial_uart_timer {
     
-    /** \brief ¶¨Ê±Æ÷³¬Ê±¾ä±ú */
+    /** \brief å®šæ—¶å™¨è¶…æ—¶å¥æŸ„ */
     am_softimer_t *p_softtimer;
     
-    /** \brief ¶¨Ê±Æ÷¼ÆÊıÖµ */
+    /** \brief å®šæ—¶å™¨è®¡æ•°å€¼ */
     uint32_t       timeout_ms;
     
 } uartcmd_serial_uart_timer_t;
 
 /**
- * \brief UARTCMD ´®ĞĞÉè±¸ UART Éè±¸½ÚµãÉú³Éº¯Êı
+ * \brief UARTCMD ä¸²è¡Œè®¾å¤‡ UART è®¾å¤‡èŠ‚ç‚¹ç”Ÿæˆå‡½æ•°
  *
- * \param[in] p_serial      : ´®ĞĞÉè±¸½á¹¹ÌåÖ¸Õë
- * \param[in] p_uart_timer  : ´®¿Ú³¬Ê±¶¨Ê±Æ÷½á¹¹ÌåÖ¸Õë
- * \param[in] uart_handle   : ´®¿Ú¾ä±ú
- * \param[in] am_softimer_t : Èí¼ş¶¨Ê±Æ÷½á¹¹ÌåÖ¸Õë
- * \param[in] timer_ms      : ¶¨Ê±Æ÷³¬Ê±Ê±¼ä,µ¥Î»£¨ms£©
- * \param[in] serial_id     : ´®ĞĞÉè±¸±íÊ¾
+ * \param[in] p_serial      : ä¸²è¡Œè®¾å¤‡ç»“æ„ä½“æŒ‡é’ˆ
+ * \param[in] p_uart_timer  : ä¸²å£è¶…æ—¶å®šæ—¶å™¨ç»“æ„ä½“æŒ‡é’ˆ
+ * \param[in] uart_handle   : ä¸²å£å¥æŸ„
+ * \param[in] am_softimer_t : è½¯ä»¶å®šæ—¶å™¨ç»“æ„ä½“æŒ‡é’ˆ
+ * \param[in] timer_ms      : å®šæ—¶å™¨è¶…æ—¶æ—¶é—´,å•ä½ï¼ˆmsï¼‰
+ * \param[in] serial_id     : ä¸²è¡Œè®¾å¤‡è¡¨ç¤º
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int uartcmd_serial_uart_mkdev (uartcmd_serial_t            *p_serial,
@@ -82,27 +82,27 @@ int uartcmd_serial_uart_mkdev (uartcmd_serial_t            *p_serial,
 }
 
 /**
- * \brief ´®ĞĞÉè±¸ UART ³õÊ¼»¯º¯Êı
+ * \brief ä¸²è¡Œè®¾å¤‡ UART åˆå§‹åŒ–å‡½æ•°
  *
- * \param[in] handle   : UARTCMD·şÎñ¾ä±ú
- * \param[in] p_serial : ´®ĞĞÉè±¸½á¹¹Ìå
+ * \param[in] handle   : UARTCMDæœåŠ¡å¥æŸ„
+ * \param[in] p_serial : ä¸²è¡Œè®¾å¤‡ç»“æ„ä½“
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 int uartcmd_serial_uart_init (am_uartcmd_handle_t  handle,
                               uartcmd_serial_t    *p_serial);
 
 /**
- * \brief ´®ĞĞÉè±¸ UART ½â³ı³õÊ¼»¯º¯Êı
+ * \brief ä¸²è¡Œè®¾å¤‡ UART è§£é™¤åˆå§‹åŒ–å‡½æ•°
  *
- * \param[in] p_serial     : ´®ĞĞÉè±¸½á¹¹Ìå
- * \param[in] uart_handle  : ´®¿Ú¾ä±ú
- * \param[in] timer_handle : ¶¨Ê±Æ÷¾ä±ú
- * \param[in] serial_id    : ´®ĞĞÉè±¸ID£¬ÓÃÓÚÇø·Ö²»Í¬µÄÉè±¸
+ * \param[in] p_serial     : ä¸²è¡Œè®¾å¤‡ç»“æ„ä½“
+ * \param[in] uart_handle  : ä¸²å£å¥æŸ„
+ * \param[in] timer_handle : å®šæ—¶å™¨å¥æŸ„
+ * \param[in] serial_id    : ä¸²è¡Œè®¾å¤‡IDï¼Œç”¨äºåŒºåˆ†ä¸åŒçš„è®¾å¤‡
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 int uartcmd_serial_uart_deinit (am_uartcmd_handle_t  handle,
                                 uartcmd_serial_t    *p_serial);

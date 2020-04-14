@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief 8段数字型数码管ASCII字形解码
+ * \brief 8娈垫暟瀛楀瀷鏁扮爜绠SCII瀛楀舰瑙ｇ爜
  *
  * \internal
  * \par modification history:

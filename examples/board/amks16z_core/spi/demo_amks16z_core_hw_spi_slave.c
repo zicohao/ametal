@@ -11,20 +11,20 @@
 *******************************************************************************/
 /**
  * \file
- * \brief SPI�ӻ���ʾ���̣�ͨ��HW��Ľӿ�ʵ��
+ * \brief SPI从机演示例程，通过HW层的接口实现
  *
- * - ��������:
- *   1. ��SPI�ӻ��ӿں������ӿڶ�Ӧ��������;
- *   2. ���������ص�demo�壬�����ϵ���߸�λ��
+ * - 操作步骤:
+ *   1. 将SPI从机接口和主机接口对应连接起来;
+ *   2. 将程序下载到demo板，重新上电或者复位。
  *
- * - ʵ������:
- *   1. �ӻ������������ݣ���ͨ�����ڽ����յ������ݴ�ӡ������
- *   2. �ӻ��������ݵ���������ͨ�����ڽ����͵����ݴ�ӡ������
+ * - 实验现象:
+ *   1. 从机接收主机数据，并通过串口将接收到的数据打印出来；
+ *   2. 从机发送数据到主机，并通过串口将发送的数据打印出来；
  *
- * - ע�⣺
- *   1. ��Ҫʹ�������豸�䵱������
+ * - 注意：
+ *   1. 需要使用其他设备充当主机。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_amks16z_core_hw_spi_slave.c src_amks16z_core_hw_spi_slave
  *
  * \internal
@@ -50,13 +50,13 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_amks16z_core_hw_spi_slave_entry (void)
 {
     AM_DBG_INFO("demo amks16z_core hw spi slave!\r\n");
 
-    /* ����ʹ��Ƭѡ,�͵�ƽ��Ч */
+    /* 必须使用片选,低电平有效 */
     am_gpio_pin_cfg(PIOC_4, PIOC_4_SPI0_PCS0);
     am_gpio_pin_cfg(PIOC_5, PIOC_5_SPI0_SCK );
     am_gpio_pin_cfg(PIOC_6, PIOC_6_SPI0_MOSI);

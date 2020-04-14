@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief ÎÂÊª¶È´«¸ĞÆ÷ HTS221 Àı³Ì£¬Í¨¹ı´¥·¢Ä£Ê½ÊµÏÖ
+ * \brief æ¸©æ¹¿åº¦ä¼ æ„Ÿå™¨ HTS221 ä¾‹ç¨‹ï¼Œé€šè¿‡è§¦å‘æ¨¡å¼å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. °´ÕÕÉèÖÃµÄÆµÂÊ£¬ÔÚÖĞ¶ÏÖĞ»ñÈ¡Êı¾İ£¬²¢Í¨¹ı´®¿Ú´òÓ¡
+ * - å®éªŒç°è±¡ï¼š
+ *   1. æŒ‰ç…§è®¾ç½®çš„é¢‘ç‡ï¼Œåœ¨ä¸­æ–­ä¸­è·å–æ•°æ®ï¼Œå¹¶é€šè¿‡ä¸²å£æ‰“å°
  *
  * \internal
  * \par Modification history
@@ -29,14 +29,14 @@
 #include "am_sensor_hts221.h"
 #include "am_delay.h"
 
-/** \brief HTS221´«¸ĞÆ÷µÄID */
+/** \brief HTS221ä¼ æ„Ÿå™¨çš„ID */
 const static int __hts221_id[2] = {0, 1};
 
-/* \breif HTS221´«¸ĞÆ÷Êı¾İ */
+/* \breif HTS221ä¼ æ„Ÿå™¨æ•°æ® */
 static am_sensor_val_t __hts221_data[2];
 
 /**
- * \brief Í¨µÀ1£¬Êª¶ÈµÄ»Øµ÷º¯Êı
+ * \brief é€šé“1ï¼Œæ¹¿åº¦çš„å›è°ƒå‡½æ•°
  */
 static void __pfn_humidity (void *p_arg, uint32_t trigger_src)
 {
@@ -52,7 +52,7 @@ static void __pfn_humidity (void *p_arg, uint32_t trigger_src)
 }
 
 /**
- * \brief Í¨µÀ2£¬ÎÂ¶ÈµÄ»Øµ÷º¯Êı
+ * \brief é€šé“2ï¼Œæ¸©åº¦çš„å›è°ƒå‡½æ•°
  */
 static void __pfn_temprature (void *p_arg, uint32_t trigger_src)
 {
@@ -60,7 +60,9 @@ static void __pfn_temprature (void *p_arg, uint32_t trigger_src)
     if (trigger_src & AM_SENSOR_TRIGGER_DATA_READY) {
         am_sensor_data_get(handle, &__hts221_id[1], 1, &__hts221_data[1]);
         am_sensor_val_unit_convert(&__hts221_data[1], 1, AM_SENSOR_UNIT_MICRO);
-        am_kprintf("The channel %d,type is temprature, value is: %d.%06d  ¡æ!\r\n",
+    //TODO:    
+//        am_kprintf("The channel %d,type is temprature, value is: %d.%06d  â„ƒ!\r\n",
+        am_kprintf("The channel %d,type is temprature, value is: %d.%06d  C!\r\n",
                    __hts221_id[1],
                    (__hts221_data[1].val)/1000000,
                    (__hts221_data[1].val)%1000000);
@@ -68,13 +70,13 @@ static void __pfn_temprature (void *p_arg, uint32_t trigger_src)
 }
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_std_hts221_int_entry (am_sensor_handle_t handle)
 {
     am_err_t ret = AM_OK;
 	
-    /* ÉèÖÃ¸Ã´«¸ĞÆ÷µÄÊı¾İÊä³öÆµÂÊÎª12.5Hz£¨Á½Â·Í¨µÀÍ¬²½£© */
+    /* è®¾ç½®è¯¥ä¼ æ„Ÿå™¨çš„æ•°æ®è¾“å‡ºé¢‘ç‡ä¸º12.5Hzï¼ˆä¸¤è·¯é€šé“åŒæ­¥ï¼‰ */
     am_sensor_val_t hts221_rate = {125, AM_SENSOR_UNIT_DECI};
 
     ret = am_sensor_attr_set(handle,
@@ -85,10 +87,10 @@ void demo_std_hts221_int_entry (am_sensor_handle_t handle)
         am_kprintf("sensor_attr_set faild!\r\n");
     }
 
-    /* Ê¹ÄÜÁ½Â·Í¨µÀ */
+    /* ä½¿èƒ½ä¸¤è·¯é€šé“ */
     am_sensor_enable(handle, __hts221_id, 2, __hts221_data);
 
-    /* ÉèÖÃÍ¨µÀ0£¬1µÄ´¥·¢»Øµ÷º¯Êı */
+    /* è®¾ç½®é€šé“0ï¼Œ1çš„è§¦å‘å›è°ƒå‡½æ•° */
     am_sensor_trigger_cfg(handle,
                           __hts221_id[0],
                           AM_SENSOR_TRIGGER_DATA_READY,
@@ -100,7 +102,7 @@ void demo_std_hts221_int_entry (am_sensor_handle_t handle)
                           __pfn_temprature,
                           (void*)handle);
 
-    /* ´ò¿ªÍ¨µÀ0£¬1µÄ´¥·¢Ä£Ê½ */
+    /* æ‰“å¼€é€šé“0ï¼Œ1çš„è§¦å‘æ¨¡å¼ */
     am_sensor_trigger_on(handle, __hts221_id[0]);
     am_sensor_trigger_on(handle, __hts221_id[1]);
 

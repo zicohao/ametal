@@ -12,18 +12,18 @@
 
 /**
  * \file
- * \brief ADC Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief ADC ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè£º
- *   1. PIOA_1 (ADC Í¨µÀ 1) Á¬½ÓÄ£ÄâÊäÈë¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. PIOA_1 (ADC é€šé“ 1) è¿æ¥æ¨¡æ‹Ÿè¾“å…¥ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿ÚÊä³öµçÑ¹²ÉÑùÖµ¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. ä¸²å£è¾“å‡ºç”µå‹é‡‡æ ·å€¼ã€‚
  *
  * \note
- *    1. ÈçĞè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔĞÅÏ¢£¬ĞèÒª½« PIOA_9 Òı½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
+ *    1. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIOA_9 å¼•è„šè¿æ¥ PC ä¸²å£çš„ RXDã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am116_core_std_adcc.c src_am116_core_std_adc
  *
  * \internal
@@ -47,13 +47,13 @@
 #include "demo_am116_core_entries.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am116_core_std_adc_entry (void)
 {
     AM_DBG_INFO("demo am116_core std adc int!\r\n");
 
-    demo_std_adc_entry(am_zlg116_adc_inst_init(), 1);  /* Ê¹ÓÃÍ¨µÀ1 £¨PIOA_1£©*/
+    demo_std_adc_entry(am_zlg116_adc_inst_init(), 1);  /* ä½¿ç”¨é€šé“1 ï¼ˆPIOA_1ï¼‰*/
 }
 /** [src_am116_core_std_adc] */
  

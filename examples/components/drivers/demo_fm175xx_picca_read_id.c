@@ -13,17 +13,17 @@
 
 /**
  * \file
- * \brief fm175xx¶Á¿¨ÀàĞÍºÍID£¬Í¨¹ıÇı¶¯½Ó¿ÚÊµÏÖ
+ * \brief fm175xxè¯»å¡ç±»å‹å’ŒIDï¼Œé€šè¿‡é©±åŠ¨æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè£º
- *   1. ÕıÈ·Á¬½Ó²¢ÅäÖÃºÃ´®¿Ú¡£
- *   2. ÕıÈ·Á¬½ÓºÃÌìÏß¡£
- *   3. ½«AÀà¿¨ÖÃÓÚÌìÏß¸ĞÓ¦Çø¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. æ­£ç¡®è¿æ¥å¹¶é…ç½®å¥½ä¸²å£ã€‚
+ *   2. æ­£ç¡®è¿æ¥å¥½å¤©çº¿ã€‚
+ *   3. å°†Aç±»å¡ç½®äºå¤©çº¿æ„Ÿåº”åŒºã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿Ú´òÓ¡³ö¿¨Æ¬ÀàĞÍºÅºÍ¿¨ºÅ¼°¿¨Æ¬ĞÅÏ¢
+ * - å®éªŒç°è±¡ï¼š
+ *   1. ä¸²å£æ‰“å°å‡ºå¡ç‰‡ç±»å‹å·å’Œå¡å·åŠå¡ç‰‡ä¿¡æ¯
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_fm175xx_picca_read_id.c src_fm175xx_picca_read_id
  *
  * \internal
@@ -43,13 +43,13 @@
 #include "am_vdebug.h"
 
 /**
- * \brief AÀà¿¨¶Á¿¨ÀàĞÍºÍ¿¨ºÅÀı³Ì
+ * \brief Aç±»å¡è¯»å¡ç±»å‹å’Œå¡å·ä¾‹ç¨‹
  */
 void demo_fm175xx_picca_read_id (am_fm175xx_handle_t handle)
 {
     uint8_t              tag_type[2]  = { 0 };      /* ATQA */
     uint8_t              uid[10]      = { 0 };      /* UID */
-    uint8_t              uid_real_len =   0;         /* ½ÓÊÕµ½µÄUIDµÄ³¤¶È */
+    uint8_t              uid_real_len =   0;         /* æ¥æ”¶åˆ°çš„UIDçš„é•¿åº¦ */
     uint8_t              sak[3]       = { 0 };      /* SAK */
 
     while (1) {
@@ -63,14 +63,14 @@ void demo_fm175xx_picca_read_id (am_fm175xx_handle_t handle)
                                                     sak)) {
             am_kprintf("ATQA :%02x %02x\n", tag_type[0], tag_type[1]);
 
-            /* ´òÓ¡UID */
+            /* æ‰“å°UID */
             am_kprintf("UID  :");
             for (i = 0; i < uid_real_len; i++) {
                 am_kprintf("%02x ", uid[i]);
             }
             am_kprintf("\n");
 
-            /* ´òÓ¡SAK */
+            /* æ‰“å°SAK */
             am_kprintf("SAK  :");
             for (i = 4; i <= uid_real_len; i+=3) {
                 am_kprintf("%02x ", sak[(i - 4) / 3]);

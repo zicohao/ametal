@@ -7,7 +7,7 @@
 #include "view_zigbee.h"
 #include "app_mvc_bool_main.h"
 
-static model_bool_t __g_model_bool;      			//¶¨ÒåÒ»¸ö²¼¶ûĞÍÊµÀı
+static model_bool_t __g_model_bool;      			//å®šä¹‰ä¸€ä¸ªå¸ƒå°”å‹å®ä¾‹
 static void __input_key_proc (void *p_arg, int key_code, int key_state, int keep_time)
 {
 //    int       	code = (int)p_arg; 
@@ -22,18 +22,18 @@ static void __input_key_proc (void *p_arg, int key_code, int key_state, int keep
 
 int app_mvc_bool_main (int led_id, int key_code,am_zm516x_handle_t zm516x_handle)
 {
-    view_led_t              view_led0;     	//¶¨ÒåÒ»¸öLEDÊÓÍ¼ÊµÀı
-    view_zigbee_t           view_zigbee;   	//¶¨ÒåÒ»¸özigbeeÊÓÍ¼ÊµÀı
-    am_input_key_handler_t   key_handler;   //¶¨ÒåÒ»¸ö°´¼ü´¦ÀíÆ÷
+    view_led_t              view_led0;     	//å®šä¹‰ä¸€ä¸ªLEDè§†å›¾å®ä¾‹
+    view_zigbee_t           view_zigbee;   	//å®šä¹‰ä¸€ä¸ªzigbeeè§†å›¾å®ä¾‹
+    am_input_key_handler_t   key_handler;   //å®šä¹‰ä¸€ä¸ªæŒ‰é”®å¤„ç†å™¨
 
-    //×¢²á°´¼üÊÂ¼ş£¬½«°´¼ü¶ÔÓ¦µÄ±àÂëÍ¨¹ı´«²Î´«µİ¸ø»Øµ÷º¯Êı
+    //æ³¨å†ŒæŒ‰é”®äº‹ä»¶ï¼Œå°†æŒ‰é”®å¯¹åº”çš„ç¼–ç é€šè¿‡ä¼ å‚ä¼ é€’ç»™å›è°ƒå‡½æ•°
     am_input_key_handler_register(&key_handler, __input_key_proc, (void *)key_code);
-    //³õÊ¼»¯Ä£ĞÍ,valueµÄ³õÖµÎªAM_FALSE
+    //åˆå§‹åŒ–æ¨¡å‹,valueçš„åˆå€¼ä¸ºAM_FALSE
     model_bool_init(&__g_model_bool, AM_FALSE);       
-    //³õÊ¼»¯ÊÓÍ¼ÊµÀı
+    //åˆå§‹åŒ–è§†å›¾å®ä¾‹
     view_led_init(&view_led0, led_id);
     view_zigbee_init(&view_zigbee, zm516x_handle);
-    //Ìí¼ÓÊÓÍ¼
+    //æ·»åŠ è§†å›¾
     model_attach(&(__g_model_bool.isa), &(view_led0.isa));
     model_attach(&(__g_model_bool.isa), &(view_zigbee.isa));
     while (1) {

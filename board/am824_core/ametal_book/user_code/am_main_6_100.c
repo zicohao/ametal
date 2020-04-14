@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥6.100
+ * \brief ç¨‹åºæ¸…å•6.100
  *
- * \note ¸ÃÀú³ÌĞèÒªÓÃµ½miniportÍØÕ¹°å,¿ÉÒÔÓÃLED¿´Ğ§¹û
+ * \note è¯¥å†ç¨‹éœ€è¦ç”¨åˆ°miniportæ‹“å±•æ¿,å¯ä»¥ç”¨LEDçœ‹æ•ˆæœ
  * 
  * \internal
  * \par Modification history
@@ -26,14 +26,14 @@
 #include "am_zlg72128.h"
 #include "am_hwconf_zlg72128.h"
 
-// ×Ô¶¨Òå°´¼ü´¦Àí»Øµ÷º¯Êı
+// è‡ªå®šä¹‰æŒ‰é”®å¤„ç†å›è°ƒå‡½æ•°
 static void __key_callback (void *p_arg,uint8_t key_val,uint8_t repeat_cnt,uint8_t funkey_val)
 {
-    if (key_val == AM_ZLG72128_KEY_1_1) {        // µÚ1ĞĞµÚ1¸ö°´¼ü°´ÏÂ
-            // ¹¦ÄÜ¼üF0°´ÏÂ
+    if (key_val == AM_ZLG72128_KEY_1_1) {        // ç¬¬1è¡Œç¬¬1ä¸ªæŒ‰é”®æŒ‰ä¸‹
+            // åŠŸèƒ½é”®F0æŒ‰ä¸‹
         if (AM_ZLG72128_FUNKEY_CHECK(funkey_val, AM_ZLG72128_FUNKEY_0)) {
             am_led_toggle(1);
-        } else {                                // ¹¦ÄÜ¼üF0Î´°´ÏÂ
+        } else {                                // åŠŸèƒ½é”®F0æœªæŒ‰ä¸‹
             am_led_toggle(0);
         }
     }
@@ -43,7 +43,7 @@ int am_main (void)
 {
     am_zlg72128_handle_t zlg72128_handle = am_zlg72128_inst_init();
     am_zlg72128_key_cb_set(zlg72128_handle, __key_callback, NULL);                    
-    // _key_callback×¢²áµÄ»Øµ÷º¯Êı£¬»Øµ÷º¯ÊıµÄµÚÒ»¸ö²ÎÊı²»Ê¹ÓÃ£¬ÉèÖÃÎªNULL
+    // _key_callbackæ³¨å†Œçš„å›è°ƒå‡½æ•°ï¼Œå›è°ƒå‡½æ•°çš„ç¬¬ä¸€ä¸ªå‚æ•°ä¸ä½¿ç”¨ï¼Œè®¾ç½®ä¸ºNULL
     while (1){
     }
 }

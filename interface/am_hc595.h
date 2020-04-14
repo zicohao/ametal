@@ -12,12 +12,12 @@
 
 /**
  * \file
- * \brief 74HC595Í¨ÓÃ²Ù×÷½Ó¿Ú
+ * \brief 74HC595é€šç”¨æ“ä½œæŽ¥å£
  *
- *        ¸ÃÀàÓÃÓÚÃèÊöÒ»¿é74HC595Ð¾Æ¬, ÊôÓÚ³éÏóÀà. ¸ù¾Ý²»Í¬µÄÇý¶¯·½Ê½, ÓÉ×ÓÀàÊµÏÖ¶Ô
- *    ÆäµÄ²Ù×÷, ÀýÈç, Ê¹ÓÃGPIOÇý¶¯74HC595, Ê¹ÓÃSPIÇý¶¯74HC595.
+ *        è¯¥ç±»ç”¨äºŽæè¿°ä¸€å—74HC595èŠ¯ç‰‡, å±žäºŽæŠ½è±¡ç±». æ ¹æ®ä¸åŒçš„é©±åŠ¨æ–¹å¼, ç”±å­ç±»å®žçŽ°å¯¹
+ *    å…¶çš„æ“ä½œ, ä¾‹å¦‚, ä½¿ç”¨GPIOé©±åŠ¨74HC595, ä½¿ç”¨SPIé©±åŠ¨74HC595.
  *
- *  74HC595Òý½Å¼°Æä¶¨Òå
+ *  74HC595å¼•è„šåŠå…¶å®šä¹‰
  *
  *               -------------
  *               | O         |
@@ -32,27 +32,27 @@
  *               |           |
  *               -------------
  *
- *       Q0 ~ Q7 :  ²¢ÐÐÊý¾ÝÊä³ö.
- *        GND(8) :  µØ.
- *        Q7'(9) :  ´®ÐÐÊý¾ÝÊäÈë(ÊäÈëµ½ÏÂÒ»¸ö¼¶ÁªµÄ74HC595).
- *      SCLR(10) :  µ±SCLRÊÇµÍµçÆ½Ê±, ½«ÒÆÎ»¼Ä´æÆ÷ÖÐµÄÄÚÈÝÇå³ý.
- *       SCK(11) :  ÒÆÎ»¼Ä´æÆ÷´®ÐÐÊäÈëÊ±ÖÓÐÅºÅ, ÒÆÎ»·¢ÉúÔÚSCKµÄÉÏÉýÑØ.
- *       RCK(12) :  Êä³ö¼Ä´æÆ÷Ëø´æÊ±ÖÓÐÅºÅ.
- *        OE(13) :  Êä³öÊ¹ÄÜ, µÍµçÆ½ÓÐÐ§.
- *       SDI(14) :  ´®ÐÐÊý¾ÝÊäÈë.
+ *       Q0 ~ Q7 :  å¹¶è¡Œæ•°æ®è¾“å‡º.
+ *        GND(8) :  åœ°.
+ *        Q7'(9) :  ä¸²è¡Œæ•°æ®è¾“å…¥(è¾“å…¥åˆ°ä¸‹ä¸€ä¸ªçº§è”çš„74HC595).
+ *      SCLR(10) :  å½“SCLRæ˜¯ä½Žç”µå¹³æ—¶, å°†ç§»ä½å¯„å­˜å™¨ä¸­çš„å†…å®¹æ¸…é™¤.
+ *       SCK(11) :  ç§»ä½å¯„å­˜å™¨ä¸²è¡Œè¾“å…¥æ—¶é’Ÿä¿¡å·, ç§»ä½å‘ç”Ÿåœ¨SCKçš„ä¸Šå‡æ²¿.
+ *       RCK(12) :  è¾“å‡ºå¯„å­˜å™¨é”å­˜æ—¶é’Ÿä¿¡å·.
+ *        OE(13) :  è¾“å‡ºä½¿èƒ½, ä½Žç”µå¹³æœ‰æ•ˆ.
+ *       SDI(14) :  ä¸²è¡Œæ•°æ®è¾“å…¥.
  *           VCC :  2 ~ 5v.
  *
- * \par Ê¹ÓÃÊ¾Àý
+ * \par ä½¿ç”¨ç¤ºä¾‹
  * \code
  *
  *  int am_main (void)
  *  {
  *      uint8_t buf[2] = {0x02, 0x06};
  *
- *      // »ñµÃ¾ä±ú£¬²»Í¬Æ½Ì¨ÖÐµÄÊµÀý³õÊ¼»¯º¯ÊýÃû(am_hc595_inst_init)¿ÉÄÜ´æÔÚ²»Í¬
+ *      // èŽ·å¾—å¥æŸ„ï¼Œä¸åŒå¹³å°ä¸­çš„å®žä¾‹åˆå§‹åŒ–å‡½æ•°å(am_hc595_inst_init)å¯èƒ½å­˜åœ¨ä¸åŒ
  *      am_hc595_handle_t handle = am_hc595_inst_init();
  *
- *      // ·¢ËÍÊý¾Ý0x02£¬0x06£¬ ÓÃÓÚÁ½¸öHC595¼¶Áª
+ *      // å‘é€æ•°æ®0x02ï¼Œ0x06ï¼Œ ç”¨äºŽä¸¤ä¸ªHC595çº§è”
  *      am_hc595_send(handle, buf, 2);
  *
  *      // ...
@@ -83,35 +83,35 @@ extern "C" {
  */
 
 /**
- * \brief HC595Çý¶¯º¯Êý½á¹¹Ìå
+ * \brief HC595é©±åŠ¨å‡½æ•°ç»“æž„ä½“
  */
 struct am_hc595_drv_funcs {
 
-    /** \brief Ê¹ÄÜHC595Êä³ö */
+    /** \brief ä½¿èƒ½HC595è¾“å‡º */
     int (*pfn_hc595_enable) (void *p_cookie);
 
-    /** \brief ½ûÄÜHC595Êä³ö£¨Ä¬ÈÏ£¬Êä³ö±£³Ö¸ß×è×´Ì¬£© */
+    /** \brief ç¦èƒ½HC595è¾“å‡ºï¼ˆé»˜è®¤ï¼Œè¾“å‡ºä¿æŒé«˜é˜»çŠ¶æ€ï¼‰ */
     int (*pfn_hc595_disable) (void *p_cookie);
 
-    /** \brief HC595Êý¾Ý·¢ËÍ  */
+    /** \brief HC595æ•°æ®å‘é€  */
     int (*pfn_send) (void *p_cookie, const void *p_data, size_t nbytes);
 };
 
 /**
- * \brief HC595 ±ê×¼·þÎñ½á¹¹Ìå
+ * \brief HC595 æ ‡å‡†æœåŠ¡ç»“æž„ä½“
  */
 typedef struct am_hc595_dev {
-    const struct am_hc595_drv_funcs *p_funcs;  /**< \brief Éè±¸Çý¶¯º¯Êý     */
-    void                            *p_cookie; /**< \brief Éè±¸Çý¶¯º¯Êý²ÎÊý */
+    const struct am_hc595_drv_funcs *p_funcs;  /**< \brief è®¾å¤‡é©±åŠ¨å‡½æ•°     */
+    void                            *p_cookie; /**< \brief è®¾å¤‡é©±åŠ¨å‡½æ•°å‚æ•° */
 } am_hc595_dev_t;
 
-/** \brief HC595 ±ê×¼·þÎñ²Ù×÷¾ä±ú¶¨Òå */
+/** \brief HC595 æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„å®šä¹‰ */
 typedef am_hc595_dev_t *am_hc595_handle_t;
 
 /**
- * \brief Ê¹ÄÜHC595Êä³ö
- * \param[in] handle : HC595±ê×¼·þÎñ¾ä±ú
- * \return ±ê×¼´íÎóºÅ
+ * \brief ä½¿èƒ½HC595è¾“å‡º
+ * \param[in] handle : HC595æ ‡å‡†æœåŠ¡å¥æŸ„
+ * \return æ ‡å‡†é”™è¯¯å·
  */
 am_static_inline
 int am_hc595_enable (am_hc595_handle_t handle)
@@ -123,9 +123,9 @@ int am_hc595_enable (am_hc595_handle_t handle)
 }
 
 /**
- * \brief ½ûÄÜHC595Êä³ö£¨Ä¬ÈÏ£¬Êä³ö±£³Ö¸ß×è×´Ì¬£©
- * \param[in] handle : HC595±ê×¼·þÎñ¾ä±ú
- * \return ±ê×¼´íÎóºÅ
+ * \brief ç¦èƒ½HC595è¾“å‡ºï¼ˆé»˜è®¤ï¼Œè¾“å‡ºä¿æŒé«˜é˜»çŠ¶æ€ï¼‰
+ * \param[in] handle : HC595æ ‡å‡†æœåŠ¡å¥æŸ„
+ * \return æ ‡å‡†é”™è¯¯å·
  */
 am_static_inline
 int am_hc595_disable (am_hc595_handle_t handle)
@@ -137,13 +137,13 @@ int am_hc595_disable (am_hc595_handle_t handle)
 }
 
 /**
- * \brief HC595Êý¾Ý·¢ËÍ
+ * \brief HC595æ•°æ®å‘é€
  *
- * \param[in] handle : HC595±ê×¼·þÎñ¾ä±ú
- * \param[in] p_data : ´ý·¢ËÍµÄÊý¾Ý»º´æ
- * \param[in] nbytes : Êý¾Ý×Ö½ÚÊý
+ * \param[in] handle : HC595æ ‡å‡†æœåŠ¡å¥æŸ„
+ * \param[in] p_data : å¾…å‘é€çš„æ•°æ®ç¼“å­˜
+ * \param[in] nbytes : æ•°æ®å­—èŠ‚æ•°
  *
- * \return ±ê×¼´íÎóºÅ
+ * \return æ ‡å‡†é”™è¯¯å·
  */
 am_static_inline
 int am_hc595_send (am_hc595_handle_t handle, const void *p_data, size_t nbytes)

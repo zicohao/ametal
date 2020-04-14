@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief bootloader ¹Ì¼ş´æ´¢flashÇı¶¯£¬·şÎñ¹Ì¼ş´æ´¢±ê×¼½Ó¿Ú
+ * \brief bootloader å›ºä»¶å­˜å‚¨flashé©±åŠ¨ï¼ŒæœåŠ¡å›ºä»¶å­˜å‚¨æ ‡å‡†æ¥å£
  *
  * \internal
  * \par Modification history
@@ -26,45 +26,45 @@
 #include "am_boot_flash.h"
 #include "am_boot_firmware.h"
 typedef struct am_zlg116_boot_firmware_flash_devinfo {
-    uint32_t firmware_dst_addr;    /**< \brief ¹Ì¼şÔÚflash´æ·ÅµÄÄ¿µÄµØÖ· */
+    uint32_t firmware_dst_addr;    /**< \brief å›ºä»¶åœ¨flashå­˜æ”¾çš„ç›®çš„åœ°å€ */
     uint32_t buf_size;
 
-    void (*pfn_plfm_init)(void);   /**< \brief Æ½Ì¨³õÊ¼»¯º¯Êı */
+    void (*pfn_plfm_init)(void);   /**< \brief å¹³å°åˆå§‹åŒ–å‡½æ•° */
 
-    void (*pfn_plfm_deinit)(void); /**< \brief Æ½Ì¨È¥³õÊ¼»¯º¯Êı */
+    void (*pfn_plfm_deinit)(void); /**< \brief å¹³å°å»åˆå§‹åŒ–å‡½æ•° */
 }am_zlg116_boot_firmware_flash_devinfo_t;
 
 typedef struct am_zlg116_boot_firmware_flash_dev {
-    /**< \brief ¹Ì¼ş´æ·ÅµÄ±ê×¼·şÎñ */
+    /**< \brief å›ºä»¶å­˜æ”¾çš„æ ‡å‡†æœåŠ¡ */
     am_boot_firmware_serv_t           firmware_flash_serv;
-    /**< \brief flashµÄ²Ù×÷¾ä±ú*/
+    /**< \brief flashçš„æ“ä½œå¥æŸ„*/
     am_boot_flash_handle_t            flash_handle;
-    /**< \brief Éè±¸ĞÅÏ¢ */
+    /**< \brief è®¾å¤‡ä¿¡æ¯ */
     am_zlg116_boot_firmware_flash_devinfo_t *p_devinfo;
-    /**< \brief Êı¾İ»º³åÇø */
+    /**< \brief æ•°æ®ç¼“å†²åŒº */
     uint8_t                           buf_data[1024];
-    /**< \brief »º³åÇøµÄ´óĞ¡ */
+    /**< \brief ç¼“å†²åŒºçš„å¤§å° */
     uint32_t                          buf_data_size;
-    /**< \brief µ±Ç°»º³åÇøÖĞµÄÊı¾İ´óĞ¡ */
+    /**< \brief å½“å‰ç¼“å†²åŒºä¸­çš„æ•°æ®å¤§å° */
     uint32_t                          curr_buf_data_size;
-    /**< \brief ×î½ü±»²Á³ıÉÈÇøµÄÆğÊ¼µØÖ· */
+    /**< \brief æœ€è¿‘è¢«æ“¦é™¤æ‰‡åŒºçš„èµ·å§‹åœ°å€ */
     uint32_t                          erase_sector_start_addr;
-    /**< \brief µ±Ç°Ğ´flashµÄµØÖ· */
+    /**< \brief å½“å‰å†™flashçš„åœ°å€ */
     uint32_t                          curr_program_flash_addr;
-    /**< \brief ¹Ì¼ş´æ·ÅµÄÄ¿µØµØÖ· */
+    /**< \brief å›ºä»¶å­˜æ”¾çš„ç›®åœ°åœ°å€ */
     uint32_t                          firmware_dst_addr;
-    /**< \brief ¹Ì¼ş×ÜµÄ´óĞ¡ */
+    /**< \brief å›ºä»¶æ€»çš„å¤§å° */
     uint32_t                          firmware_total_size;
     am_bool_t                         firmware_size_is_unknow;
 }am_zlg116_boot_firmware_flash_dev_t;
 
 /**
- * \brief ³õÊ¼»¯¹Ì¼ş´æ·Åº¯Êı£¬·µ»Ø±ê×¼·şÎñ²Ù×÷¾ä±ú
+ * \brief åˆå§‹åŒ–å›ºä»¶å­˜æ”¾å‡½æ•°ï¼Œè¿”å›æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  *
- * \param[in] p_dev     : Ö¸Ïò¹Ì¼ş´æ·ÅÉè±¸µÄÖ¸Õë
- * \param[in] p_devinfo : Ö¸Ïò¹Ì¼ş´æ·ÅÉè±¸ĞÅÏ¢³£Á¿µÄÖ¸Õë
+ * \param[in] p_dev     : æŒ‡å‘å›ºä»¶å­˜æ”¾è®¾å¤‡çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo : æŒ‡å‘å›ºä»¶å­˜æ”¾è®¾å¤‡ä¿¡æ¯å¸¸é‡çš„æŒ‡é’ˆ
  *
- * \return ¹Ì¼ş´æ·Å±ê×¼·şÎñ²Ù×÷¾ä±ú£¬ÖµÎªNULLÊ±±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return å›ºä»¶å­˜æ”¾æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„ï¼Œå€¼ä¸ºNULLæ—¶è¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_boot_firmware_handle_t am_zlg116_boot_firmware_flash_init (
     am_zlg116_boot_firmware_flash_dev_t     *p_dev,
@@ -73,7 +73,7 @@ am_boot_firmware_handle_t am_zlg116_boot_firmware_flash_init (
 
 
 /**
- * \brief ¹Ì¼şflash´æ´¢½â³õÊ¼»¯
+ * \brief å›ºä»¶flashå­˜å‚¨è§£åˆå§‹åŒ–
  */
 void am_zlg116_boot_firmware_flash_deint(void);
 

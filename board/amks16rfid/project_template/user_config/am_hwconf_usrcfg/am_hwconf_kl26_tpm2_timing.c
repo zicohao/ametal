@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief KL26 TPM2 ¶¨Ê±¹¦ÄÜÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief KL26 TPM2 å®šæ—¶åŠŸèƒ½ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_kl26_hwconfig_tpm2_timing.c
  * 
  * \internal
@@ -32,39 +32,39 @@
  * @{
  */
 
-/** \brief TPM2 Æ½Ì¨³õÊ¼»¯ */
+/** \brief TPM2 å¹³å°åˆå§‹åŒ– */
 void __kl26_plfm_tpm2_timing_init (void)
 {
     amhw_kl26_sim_tpm_src_set(KL26_SIM_TPMSRC_PLLFLLCLK);
     amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_TPM2);
 }
 
-/** \brief ½â³ı TPM1 Æ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤ TPM1 å¹³å°åˆå§‹åŒ– */
 void __kl26_plfm_tpm2_timing_deinit (void)
 {
     amhw_kl26_sim_periph_clock_disable(KL26_SIM_SCGC_TPM2);
 }
 
-/** \brief TPM2 Éè±¸ĞÅÏ¢ */
+/** \brief TPM2 è®¾å¤‡ä¿¡æ¯ */
 const am_fsl_tpm_timing_devinfo_t  __g_tpm2_timing_devinfo = {
-    KL26_TPM2,                  /**< \brief Ö¸ÏòTPM¼Ä´æÆ÷¿éµÄÖ¸Õë */
-    INUM_TPM2,                       /**< \brief TPM2ÖĞ¶Ï±àºÅ */
-    CLK_TPM2,                        /**< \brief Ê±ÖÓºÅ */
-    __kl26_plfm_tpm2_timing_init,    /**< \brief Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __kl26_plfm_tpm2_timing_deinit   /**< \brief Æ½Ì¨½âÎö³õÊ¼»¯º¯Êı */
+    KL26_TPM2,                  /**< \brief æŒ‡å‘TPMå¯„å­˜å™¨å—çš„æŒ‡é’ˆ */
+    INUM_TPM2,                       /**< \brief TPM2ä¸­æ–­ç¼–å· */
+    CLK_TPM2,                        /**< \brief æ—¶é’Ÿå· */
+    __kl26_plfm_tpm2_timing_init,    /**< \brief å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __kl26_plfm_tpm2_timing_deinit   /**< \brief å¹³å°è§£æåˆå§‹åŒ–å‡½æ•° */
 };
 
-/** \brief TPM2 Éè±¸¶¨Òå  */
+/** \brief TPM2 è®¾å¤‡å®šä¹‰  */
 am_fsl_tpm_timing_dev_t  __g_tpm2_timing_dev;
 
-/** \brief tpm2 Timer ÊµÀı³õÊ¼»¯£¬»ñµÃTimer±ê×¼·şÎñ¾ä±ú */
+/** \brief tpm2 Timer å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—Timeræ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_timer_handle_t am_kl26_tpm2_timing_inst_init (void)
 {
     return am_fsl_tpm_timing_init(&__g_tpm2_timing_dev,
                                   &__g_tpm2_timing_devinfo);
 }
 
-/** \brief tpm2 Timer ÊµÀı½â³õÊ¼»¯ */
+/** \brief tpm2 Timer å®ä¾‹è§£åˆå§‹åŒ– */
 void am_kl26_tpm2_timing_inst_deinit (am_timer_handle_t handle)
 {
     am_fsl_tpm_timing_deinit(handle);

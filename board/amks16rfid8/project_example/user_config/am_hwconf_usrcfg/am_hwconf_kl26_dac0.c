@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief KL26 DAC ÓÃ»§ÅäÖÃÎÄ¼ş¡£
+ * \brief KL26 DAC ç”¨æˆ·é…ç½®æ–‡ä»¶ã€‚
  * \sa am_kl26_hwconfig_dac.c
  *
  * \internal
@@ -33,48 +33,48 @@
  */
 
 /**
- * \brief DAC Æ½Ì¨³õÊ¼»¯¡£
+ * \brief DAC å¹³å°åˆå§‹åŒ–ã€‚
  */
 void __kl26_plfm_dac0_init (void)
 {
-    /* ÅäÖÃPIOE_30ÎªDAC0_OUT¹¦ÄÜ                 */
+    /* é…ç½®PIOE_30ä¸ºDAC0_OUTåŠŸèƒ½                 */
      am_gpio_pin_cfg (PIOE_30,PIOE_30_DAC0_OUT);
 
-     /* ¿ªÆôDACÊ±ÖÓ                  */
+     /* å¼€å¯DACæ—¶é’Ÿ                  */
      amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_DAC0);
 }
 
 /**
- * \brief DAC Æ½Ì¨È¥³õÊ¼»¯¡£
+ * \brief DAC å¹³å°å»åˆå§‹åŒ–ã€‚
  */
 void __kl26_plfm_dac0_deinit (void)
 {
-   /* ¹Ø±ÕDACÊ±ÖÓ                  */
+   /* å…³é—­DACæ—¶é’Ÿ                  */
     amhw_kl26_sim_periph_clock_disable(KL26_SIM_SCGC_DAC0);
 }
 
-/** \brief DAC Éè±¸ĞÅÏ¢ */
+/** \brief DAC è®¾å¤‡ä¿¡æ¯ */
 static const am_fsl_dac_devinfo_t _g_dac0_devinfo =
 {
-    KL26_DAC0,                     /**< \brief Ö¸ÏòDAC0¼Ä´æÆ÷¿éµÄÖ¸Õë */
-    INUM_DAC0,                     /**< \brief DAC0ÖĞ¶ÏºÅ             */
-    12,                            /**< \brief DAC×ª»»¾«¶È            */
-    3270,                          /**< \brief DAC²Î¿¼µçÑ¹£¬µ¥Î»£ºmV  */
-    AMHW_FSL_DAC_VREF_2,           /**< \brief DACµçÑ¹Ô´              */
+    KL26_DAC0,                     /**< \brief æŒ‡å‘DAC0å¯„å­˜å™¨å—çš„æŒ‡é’ˆ */
+    INUM_DAC0,                     /**< \brief DAC0ä¸­æ–­å·             */
+    12,                            /**< \brief DACè½¬æ¢ç²¾åº¦            */
+    3270,                          /**< \brief DACå‚è€ƒç”µå‹ï¼Œå•ä½ï¼šmV  */
+    AMHW_FSL_DAC_VREF_2,           /**< \brief DACç”µå‹æº              */
     __kl26_plfm_dac0_init,
     __kl26_plfm_dac0_deinit,
 };
 
-/** \brief DAC0Éè±¸ÊµÀı */
+/** \brief DAC0è®¾å¤‡å®ä¾‹ */
 static am_fsl_dac_dev_t _g_dac0_dev;
 
-/** \brief DAC0 ÊµÀı³õÊ¼»¯£¬»ñµÃDAC±ê×¼·şÎñ¾ä±ú */
+/** \brief DAC0 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—DACæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_dac_handle_t am_kl26_dac0_inst_init (void)
 {
     return am_fsl_dac_init(&_g_dac0_dev, &_g_dac0_devinfo);
 }
 
-/** \brief DAC0 ÊµÀı½â³õÊ¼»¯ */
+/** \brief DAC0 å®ä¾‹è§£åˆå§‹åŒ– */
 void am_kl26_dac0_inst_deinit (am_dac_handle_t handle)
 {
     am_fsl_dac_deinit(handle);

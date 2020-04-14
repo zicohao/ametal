@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZLG217 bootloaderµÄÓ¦ÓÃ³ÌĞò¹¤³Ì
+ * \brief ZLG217 bootloaderçš„åº”ç”¨ç¨‹åºå·¥ç¨‹
  *
  *
  * \internal
@@ -22,7 +22,7 @@
  */
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 #include "ametal.h"
 #include "am_board.h"
@@ -36,13 +36,13 @@
 int am_main (void)
 {
 
-    /* µ¥Çøbootloader µÄ²âÊÔÓ¦ÓÃ³ÌĞò demo */
+    /* å•åŒºbootloader çš„æµ‹è¯•åº”ç”¨ç¨‹åº demo */
     //demo_zlg217_core_single_application_entry();
 
-    /* Ë«Çøbootloader µÄ²âÊÔÓ¦ÓÃ³ÌĞò demo */
+    /* åŒåŒºbootloader çš„æµ‹è¯•åº”ç”¨ç¨‹åº demo */
     demo_zlg217_core_double_application_entry();
 
-    /* »ùÓÚÉÏÎ»»úµÄ bootloader µÄ²âÊÔÓ¦ÓÃ³ÌĞò demo */
+    /* åŸºäºä¸Šä½æœºçš„ bootloader çš„æµ‹è¯•åº”ç”¨ç¨‹åº demo */
     //demo_zlg217_core_kft_application_entry();
 
     while (1) {

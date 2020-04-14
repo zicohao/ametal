@@ -12,12 +12,12 @@
 
 /**
  * \file
- * \brief MiniPort-LED ÅäÖÃÎÄ¼ş
+ * \brief MiniPort-LED é…ç½®æ–‡ä»¶
  * \sa am_hwconf_miniport_led.c
  *
- * Ëü¿ÉÒÔµ¥¶ÀÊ¹ÓÃ£¬Ò²¿ÉÒÔºÍ MiniPort-595 ÁªºÏÊ¹ÓÃ£¬ÒÔ½ÚÊ¡¿ØÖÆÒı½Å¡£
+ * å®ƒå¯ä»¥å•ç‹¬ä½¿ç”¨ï¼Œä¹Ÿå¯ä»¥å’Œ MiniPort-595 è”åˆä½¿ç”¨ï¼Œä»¥èŠ‚çœæ§åˆ¶å¼•è„šã€‚
  *
- * µ±Ç°Ö§³ÖµÄÓÃ·¨ÓĞ£º
+ * å½“å‰æ”¯æŒçš„ç”¨æ³•æœ‰ï¼š
  * 1. MiniPort-LED                : am_miniport_led_inst_init();
  * 2. MiniPort-LED + MiniPort-595 : am_miniport_led_595_inst_init();
  *
@@ -42,21 +42,21 @@
  */
 
 /*******************************************************************************
-   MiniPort-LED µ¥¶ÀÊ¹ÓÃ
+   MiniPort-LED å•ç‹¬ä½¿ç”¨
 *******************************************************************************/
 
-/* ¶¨ÒåGPIO LED ÊµÀı */
+/* å®šä¹‰GPIO LED å®ä¾‹ */
 static am_led_gpio_dev_t  __g_miniport_led;
 
 static const int __g_miniport_led_pins[] = {
     PIOB_7, PIOB_6, PIOA_7, PIOA_5, PIOA_11, PIOA_6, PIOA_4, PIOA_0
 };
 
-/* ¶¨ÒåGPIO°´¼üÊµÀıĞÅÏ¢ */
+/* å®šä¹‰GPIOæŒ‰é”®å®ä¾‹ä¿¡æ¯ */
 static const am_led_gpio_info_t __g_miniport_led_info = {
     {
-        2,                            /* ÆğÊ¼±àºÅ2 */
-        9                             /* ½áÊø±àºÅ9£¬¹²¼Æ8¸öLED */
+        2,                            /* èµ·å§‹ç¼–å·2 */
+        9                             /* ç»“æŸç¼–å·9ï¼Œå…±è®¡8ä¸ªLED */
     },
     __g_miniport_led_pins,
     AM_TRUE
@@ -68,18 +68,18 @@ int am_miniport_led_inst_init (void)
 }
 
 /*******************************************************************************
-   MiniPort-LED ºÍ MiniPort-595ÁªºÏÊ¹ÓÃ
+   MiniPort-LED å’Œ MiniPort-595è”åˆä½¿ç”¨
 *******************************************************************************/
 
 static am_led_hc595_dev_t  __g_miniport_led_595;
 
 static uint8_t __g_miniport_led_595_buf[1];
 
-/* ¶¨ÒåGPIO°´¼üÊµÀıĞÅÏ¢ */
+/* å®šä¹‰GPIOæŒ‰é”®å®ä¾‹ä¿¡æ¯ */
 static const am_led_hc595_info_t __g_miniport_led_595_info = {
     {
-        2,                            /* ÆğÊ¼±àºÅ2 */
-        9                             /* ½áÊø±àºÅ9£¬¹²¼Æ8¸öLED */
+        2,                            /* èµ·å§‹ç¼–å·2 */
+        9                             /* ç»“æŸç¼–å·9ï¼Œå…±è®¡8ä¸ªLED */
     },
     1,
     __g_miniport_led_595_buf,

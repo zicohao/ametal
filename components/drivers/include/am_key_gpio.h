@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ¶ÀÁ¢°´¼üÇı¶¯½Ó¿Ú
+ * \brief ç‹¬ç«‹æŒ‰é”®é©±åŠ¨æ¥å£
  *
  * \internal
  * \par modification history:
@@ -37,17 +37,17 @@ extern "C" {
 #endif
 
 /**
- * \brief °´¼üĞÅÏ¢
+ * \brief æŒ‰é”®ä¿¡æ¯
  */
 typedef struct am_key_gpio_info {
-    const int  *p_pins;                /**< \brief Ê¹ÓÃµÄÒı½ÅºÅ               */
-    const int  *p_codes;               /**< \brief ¸÷¸ö°´¼ü¶ÔÓ¦µÄ±àÂë£¨ÉÏ±¨£© */
-    int         pin_num;               /**< \brief °´¼üÊıÄ¿ */
-    am_bool_t   active_low;            /**< \brief ÊÇ·ñµÍµçÆ½¼¤»î£¨°´ÏÂÎªµÍµçÆ½£© */
-    int         scan_interval_ms;      /**< \brief °´¼üÉ¨ÃèÊ±¼ä¼ä¸ô£¬Ò»°ã10ms */
+    const int  *p_pins;                /**< \brief ä½¿ç”¨çš„å¼•è„šå·               */
+    const int  *p_codes;               /**< \brief å„ä¸ªæŒ‰é”®å¯¹åº”çš„ç¼–ç ï¼ˆä¸ŠæŠ¥ï¼‰ */
+    int         pin_num;               /**< \brief æŒ‰é”®æ•°ç›® */
+    am_bool_t   active_low;            /**< \brief æ˜¯å¦ä½ç”µå¹³æ¿€æ´»ï¼ˆæŒ‰ä¸‹ä¸ºä½ç”µå¹³ï¼‰ */
+    int         scan_interval_ms;      /**< \brief æŒ‰é”®æ‰«ææ—¶é—´é—´éš”ï¼Œä¸€èˆ¬10ms */
 } am_key_gpio_info_t;
 
-/** \brief °´¼üÉè±¸  */
+/** \brief æŒ‰é”®è®¾å¤‡  */
 typedef struct am_key_gpio {
     am_softimer_t             timer;
     const am_key_gpio_info_t *p_info;
@@ -56,12 +56,12 @@ typedef struct am_key_gpio {
 } am_key_gpio_t;
 
 /**
- * \brief °´¼ü³õÊ¼»¯
+ * \brief æŒ‰é”®åˆå§‹åŒ–
  *
- * \param[in] p_dev  : °´¼üÉè±¸ÊµÀı
- * \param[in] p_info : °´¼üĞÅÏ¢
+ * \param[in] p_dev  : æŒ‰é”®è®¾å¤‡å®ä¾‹
+ * \param[in] p_info : æŒ‰é”®ä¿¡æ¯
  *
- * \return  AM_OK£¬³õÊ¼»¯³É¹¦; ÆäËüÖµ£¬³õÊ¼»¯Ê§°Ü£¬Ê§°ÜÔ­ÒòÇë²é¿´´íÎóºÅ
+ * \return  AM_OKï¼Œåˆå§‹åŒ–æˆåŠŸ; å…¶å®ƒå€¼ï¼Œåˆå§‹åŒ–å¤±è´¥ï¼Œå¤±è´¥åŸå› è¯·æŸ¥çœ‹é”™è¯¯å·
  */
 int am_key_gpio_init (am_key_gpio_t *p_dev, const am_key_gpio_info_t *p_info);
 

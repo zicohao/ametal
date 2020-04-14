@@ -12,19 +12,19 @@
 
 /**
  * \file
- * \brief MicroPort DS1302 ���̣�ͨ�� RTC ��׼�ӿ�ʵ��
+ * \brief MicroPort DS1302 例程，通过 RTC 标准接口实现
  *
- * - �������裺
- *   1. �� MicroPort DS1302 ������ӵ� AM217BLE �� MicroPort �ӿڡ�
+ * - 操作步骤：
+ *   1. 将 MicroPort DS1302 配板连接到 AM217BLE 的 MicroPort 接口。
  *
- * - ʵ������
- *   1. ���ڽ�ÿһ���ʱ����Ϣ��ӡ������
+ * - 实验现象：
+ *   1. 串口将每一秒的时间信息打印出来。
  *
  * \note
- *    ����۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIOA_10 �������� PC ���ڵ� TXD��
- *    PIOA_9 �������� PC ���ڵ� RXD��
+ *    如需观察串口打印的调试信息，需要将 PIOA_10 引脚连接 PC 串口的 TXD，
+ *    PIOA_9 引脚连接 PC 串口的 RXD。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_microport_ds1302.c src_microport_ds1302
  *
  * \internal
@@ -46,11 +46,11 @@
 #include "am_hwconf_microport.h"
 
 /**
- * \brief MicroPort DS1302 ���̣�ͨ����׼�ӿ�ʵ��
+ * \brief MicroPort DS1302 例程，通过标准接口实现
  *
- * \param ��
+ * \param 无
  *
- * \return ��
+ * \return 无
  */
 void demo_zmf159_core_microport_ds1302_entry (void)
 {

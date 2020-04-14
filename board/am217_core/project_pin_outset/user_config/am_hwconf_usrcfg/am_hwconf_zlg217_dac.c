@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZLG DAC ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief ZLG DAC ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_zlg217_dac.c
  *
  * \internal
@@ -33,93 +33,93 @@
  */
 
 /**
- * \brief DAC1 Æ½Ì¨³õÊ¼»¯
+ * \brief DAC1 å¹³å°åˆå§‹åŒ–
  */
 void __zlg217_plfm_dac1_init (void)
 {
 
-    /* ÅäÖÃPIOA_4ÎªDAC1_OUT¹¦ÄÜ */
+    /* é…ç½®PIOA_4ä¸ºDAC1_OUTåŠŸèƒ½ */
     am_gpio_pin_cfg(__DAC1_OUT, __GPIO_DAC1_OUT);
 
-    /* ¿ªÆôDACÊ±ÖÓ */
+    /* å¼€å¯DACæ—¶é’Ÿ */
     am_clk_enable(CLK_DAC);
 }
 
 /**
- * \brief DAC2 Æ½Ì¨È¥³õÊ¼»¯
+ * \brief DAC2 å¹³å°å»åˆå§‹åŒ–
  */
 void __zlg217_plfm_dac1_deinit (void)
 {
-    /* ¹Ø±ÕDACÊ±ÖÓ */
+    /* å…³é—­DACæ—¶é’Ÿ */
     am_clk_disable(CLK_DAC);
 }
 
-/** \brief DAC1 Éè±¸ĞÅÏ¢ */
+/** \brief DAC1 è®¾å¤‡ä¿¡æ¯ */
 static const am_zlg_dac_devinfo_t __g_dac1_devinfo =
 {
-    ZLG217_DAC_BASE,                  /**< \brief Ö¸ÏòDAC¼Ä´æÆ÷¿éµÄÖ¸Õë */
-    12,                               /**< \brief DAC×ª»»¾«¶È */
-    3270,                             /**< \brief DAC²Î¿¼µçÑ¹£¬µ¥Î»£ºmV */
+    ZLG217_DAC_BASE,                  /**< \brief æŒ‡å‘DACå¯„å­˜å™¨å—çš„æŒ‡é’ˆ */
+    12,                               /**< \brief DACè½¬æ¢ç²¾åº¦ */
+    3270,                             /**< \brief DACå‚è€ƒç”µå‹ï¼Œå•ä½ï¼šmV */
     __zlg217_plfm_dac1_init,
     __zlg217_plfm_dac1_deinit,
 };
 
-/** \brief DAC1Éè±¸ÊµÀı */
+/** \brief DAC1è®¾å¤‡å®ä¾‹ */
 static am_zlg_dac_dev_t __g_dac1_dev;
 
-/** \brief DAC1 ÊµÀı³õÊ¼»¯£¬»ñµÃDAC±ê×¼·şÎñ¾ä±ú */
+/** \brief DAC1 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—DACæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_dac_handle_t am_zlg217_dac1_inst_init (void)
 {
     return am_zlg_dac_init(&__g_dac1_dev, &__g_dac1_devinfo);
 }
 
-/** \brief DAC1 ÊµÀı½â³õÊ¼»¯ */
+/** \brief DAC1 å®ä¾‹è§£åˆå§‹åŒ– */
 void am_zlg217_dac1_inst_deinit (am_dac_handle_t handle)
 {
     am_zlg_dac_deinit(handle);
 }
 
 /**
- * \brief DAC2 Æ½Ì¨³õÊ¼»¯
+ * \brief DAC2 å¹³å°åˆå§‹åŒ–
  */
 void __zlg217_plfm_dac2_init (void)
 {
-    /* ÅäÖÃPIOA_5ÎªDAC2_OUT¹¦ÄÜ */
+    /* é…ç½®PIOA_5ä¸ºDAC2_OUTåŠŸèƒ½ */
     am_gpio_pin_cfg (PIOA_5,PIOA_5_DAC2_OUT);
 
-    /* ¿ªÆôDACÊ±ÖÓ */
+    /* å¼€å¯DACæ—¶é’Ÿ */
     am_clk_enable(CLK_DAC);
 }
 
 /**
- * \brief DAC2 Æ½Ì¨È¥³õÊ¼»¯
+ * \brief DAC2 å¹³å°å»åˆå§‹åŒ–
  */
 void __zlg217_plfm_dac2_deinit (void)
 {
-    /* ¹Ø±ÕDACÊ±ÖÓ */
+    /* å…³é—­DACæ—¶é’Ÿ */
     am_clk_disable(CLK_DAC);
 }
 
-/** \brief DAC2 Éè±¸ĞÅÏ¢ */
+/** \brief DAC2 è®¾å¤‡ä¿¡æ¯ */
 static const am_zlg_dac_devinfo_t __g_dac2_devinfo =
 {
-    ZLG217_DAC_BASE,                  /**< \brief Ö¸ÏòDAC¼Ä´æÆ÷¿éµÄÖ¸Õë */
-    12,                               /**< \brief DAC×ª»»¾«¶È */
-    3270,                             /**< \brief DAC²Î¿¼µçÑ¹£¬µ¥Î»£ºmV */
+    ZLG217_DAC_BASE,                  /**< \brief æŒ‡å‘DACå¯„å­˜å™¨å—çš„æŒ‡é’ˆ */
+    12,                               /**< \brief DACè½¬æ¢ç²¾åº¦ */
+    3270,                             /**< \brief DACå‚è€ƒç”µå‹ï¼Œå•ä½ï¼šmV */
     __zlg217_plfm_dac2_init,
     __zlg217_plfm_dac2_deinit,
 };
 
-/** \brief DAC2Éè±¸ÊµÀı */
+/** \brief DAC2è®¾å¤‡å®ä¾‹ */
 static am_zlg_dac_dev_t __g_dac2_dev;
 
-/** \brief DAC2 ÊµÀı³õÊ¼»¯£¬»ñµÃDAC±ê×¼·şÎñ¾ä±ú */
+/** \brief DAC2 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—DACæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_dac_handle_t am_zlg217_dac2_inst_init (void)
 {
     return am_zlg_dac_init(&__g_dac2_dev, &__g_dac2_devinfo);
 }
 
-/** \brief DAC2 ÊµÀı½â³õÊ¼»¯ */
+/** \brief DAC2 å®ä¾‹è§£åˆå§‹åŒ– */
 void am_zlg217_dac2_inst_deinit (am_dac_handle_t handle)
 {
     am_zlg_dac_deinit(handle);

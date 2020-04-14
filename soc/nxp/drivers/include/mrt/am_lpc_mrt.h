@@ -43,7 +43,7 @@ extern "C" {
  * \brief LPC5410x MRT device information structure
  */
 typedef struct am_lpc_mrt_devinfo {
-    uint32_t             mrt_regbase;   /**< \brief Ö¸ÏòMRT¼Ä´æÆ÷¿éµÄÖ¸Õë    */
+    uint32_t             mrt_regbase;   /**< \brief æŒ‡å‘MRTå¯„å­˜å™¨å—çš„æŒ‡é’ˆ    */
     uint8_t              inum;          /**< \brief The MRT interrupt number                */
     uint32_t             clk_id;        /**< \brief MRT clk id                              */
     uint8_t              channel_nums;  /**< \brief The channel numbers, maximum value is 4 */

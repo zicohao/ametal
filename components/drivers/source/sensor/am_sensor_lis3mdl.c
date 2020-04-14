@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ´«¸ĞÆ÷ LIS3MDL Çı¶¯ÎÄ¼ş
+ * \brief ä¼ æ„Ÿå™¨ LIS3MDL é©±åŠ¨æ–‡ä»¶
  *
  * \internal
  * \par Modification history
@@ -25,107 +25,107 @@
 #include "am_vdebug.h"
 
 /*******************************************************************************
- * ºê¶¨Òå
+ * å®å®šä¹‰
  ******************************************************************************/
-#define  __LIS3MDL_REG_ID           0x0F/**< \brief ID¼Ä´æÆ÷µØÖ·              */
-#define  __LIS3MDL_REG_CTRL1        0x20/**< \brief ¿ØÖÆ¼Ä´æÆ÷1µØÖ·           */
-#define  __LIS3MDL_REG_CTRL2        0x21/**< \brief ¿ØÖÆ¼Ä´æÆ÷2µØÖ·           */
-#define  __LIS3MDL_REG_CTRL3        0x22/**< \brief ¿ØÖÆ¼Ä´æÆ÷3µØÖ·           */
-#define  __LIS3MDL_REG_CTRL4        0x23/**< \brief ¿ØÖÆ¼Ä´æÆ÷4µØÖ·           */
-#define  __LIS3MDL_REG_CTRL5        0x24/**< \brief ¿ØÖÆ¼Ä´æÆ÷5µØÖ·           */
-#define  __LIS3MDL_REG_STATUS       0x27/**< \brief ×´Ì¬¼Ä´æÆ÷µØÖ·            */
-#define  __LIS3MDL_REG_OUT_X_L      0x28/**< \brief XÖáµÍ×Ö½ÚÊı¾İ¼Ä´æÆ÷µØÖ·   */
-#define  __LIS3MDL_REG_OUT_X_H      0x29/**< \brief XÖá¸ß×Ö½ÚÊı¾İ¼Ä´æÆ÷µØÖ·   */
-#define  __LIS3MDL_REG_OUT_Y_L      0x2A/**< \brief YÖáµÍ×Ö½ÚÊı¾İ¼Ä´æÆ÷µØÖ·   */
-#define  __LIS3MDL_REG_OUT_Y_H      0x2B/**< \brief YÖá¸ß×Ö½ÚÊı¾İ¼Ä´æÆ÷µØÖ·   */
-#define  __LIS3MDL_REG_OUT_Z_L      0x2C/**< \brief ZÖáµÍ×Ö½ÚÊı¾İ¼Ä´æÆ÷µØÖ·   */
-#define  __LIS3MDL_REG_OUT_Z_H      0x2D/**< \brief ZÖá¸ß×Ö½ÚÊı¾İ¼Ä´æÆ÷µØÖ·   */
-#define  __LIS3MDL_REG_TEMP_OUT_L   0x2E/**< \brief ÎÂ¶ÈµÍ×Ö½ÚÊı¾İ¼Ä´æÆ÷µØÖ·  */
-#define  __LIS3MDL_REG_TEMP_OUT_H   0x2F/**< \brief ÎÂ¶ÈÊı¾İ¼Ä´æÆ÷µØÖ·        */
-#define  __LIS3MDL_REG_INT_CFG      0x30/**< \brief ÖĞ¶ÏÅäÖÃ¼Ä´æÆ÷µØÖ·        */
-#define  __LIS3MDL_REG_INT_SRC      0x31/**< \brief ÖĞ¶ÏÔ´¼Ä´æÆ÷µØÖ·          */
-#define  __LIS3MDL_REG_INT_THS_L    0x32/**< \brief ÖĞ¶ÏãĞÖµµÍ×Ö½Ú¼Ä´æÆ÷µØÖ·  */
-#define  __LIS3MDL_REG_INT_THS_H    0x33/**< \brief ÖĞ¶ÏãĞÖµ¸ß×Ö½Ú¼Ä´æÆ÷µØÖ·  */
+#define  __LIS3MDL_REG_ID           0x0F/**< \brief IDå¯„å­˜å™¨åœ°å€              */
+#define  __LIS3MDL_REG_CTRL1        0x20/**< \brief æ§åˆ¶å¯„å­˜å™¨1åœ°å€           */
+#define  __LIS3MDL_REG_CTRL2        0x21/**< \brief æ§åˆ¶å¯„å­˜å™¨2åœ°å€           */
+#define  __LIS3MDL_REG_CTRL3        0x22/**< \brief æ§åˆ¶å¯„å­˜å™¨3åœ°å€           */
+#define  __LIS3MDL_REG_CTRL4        0x23/**< \brief æ§åˆ¶å¯„å­˜å™¨4åœ°å€           */
+#define  __LIS3MDL_REG_CTRL5        0x24/**< \brief æ§åˆ¶å¯„å­˜å™¨5åœ°å€           */
+#define  __LIS3MDL_REG_STATUS       0x27/**< \brief çŠ¶æ€å¯„å­˜å™¨åœ°å€            */
+#define  __LIS3MDL_REG_OUT_X_L      0x28/**< \brief Xè½´ä½å­—èŠ‚æ•°æ®å¯„å­˜å™¨åœ°å€   */
+#define  __LIS3MDL_REG_OUT_X_H      0x29/**< \brief Xè½´é«˜å­—èŠ‚æ•°æ®å¯„å­˜å™¨åœ°å€   */
+#define  __LIS3MDL_REG_OUT_Y_L      0x2A/**< \brief Yè½´ä½å­—èŠ‚æ•°æ®å¯„å­˜å™¨åœ°å€   */
+#define  __LIS3MDL_REG_OUT_Y_H      0x2B/**< \brief Yè½´é«˜å­—èŠ‚æ•°æ®å¯„å­˜å™¨åœ°å€   */
+#define  __LIS3MDL_REG_OUT_Z_L      0x2C/**< \brief Zè½´ä½å­—èŠ‚æ•°æ®å¯„å­˜å™¨åœ°å€   */
+#define  __LIS3MDL_REG_OUT_Z_H      0x2D/**< \brief Zè½´é«˜å­—èŠ‚æ•°æ®å¯„å­˜å™¨åœ°å€   */
+#define  __LIS3MDL_REG_TEMP_OUT_L   0x2E/**< \brief æ¸©åº¦ä½å­—èŠ‚æ•°æ®å¯„å­˜å™¨åœ°å€  */
+#define  __LIS3MDL_REG_TEMP_OUT_H   0x2F/**< \brief æ¸©åº¦æ•°æ®å¯„å­˜å™¨åœ°å€        */
+#define  __LIS3MDL_REG_INT_CFG      0x30/**< \brief ä¸­æ–­é…ç½®å¯„å­˜å™¨åœ°å€        */
+#define  __LIS3MDL_REG_INT_SRC      0x31/**< \brief ä¸­æ–­æºå¯„å­˜å™¨åœ°å€          */
+#define  __LIS3MDL_REG_INT_THS_L    0x32/**< \brief ä¸­æ–­é˜ˆå€¼ä½å­—èŠ‚å¯„å­˜å™¨åœ°å€  */
+#define  __LIS3MDL_REG_INT_THS_H    0x33/**< \brief ä¸­æ–­é˜ˆå€¼é«˜å­—èŠ‚å¯„å­˜å™¨åœ°å€  */
 
-#define  __LIS3MDL_MY_ID            0X3D  /**< \brief IDÖµ                    */
+#define  __LIS3MDL_MY_ID            0X3D  /**< \brief IDå€¼                    */
 
-/* Ê¹ÄÜÎÂ¶È´«¸ĞÆ÷ */
+/* ä½¿èƒ½æ¸©åº¦ä¼ æ„Ÿå™¨ */
 #define  __LIS3MDL_TEMP_START       0X80
 
-/* Ê¹ÄÜÒı½ÅÖĞ¶Ï */
+/* ä½¿èƒ½å¼•è„šä¸­æ–­ */
 #define  __LIS3MDL_EN_DRDY          0x03
-/* ½ûÄÜÒı½ÅÖĞ¶Ï */
+/* ç¦èƒ½å¼•è„šä¸­æ–­ */
 #define  __LIS3MDL_EN_CLOSE         (~0x01)
 
-/** \brief ÉèÖÃ²ÉÑù·¶Î§ */
-#define  __LIS3MDL_RANGE_SET_4G     0X00  /**< \brief ÉèÖÃ²ÉÑù·¶Î§Îª¡À4G      */
-#define  __LIS3MDL_RANGE_SET_8G     0X20  /**< \brief ÉèÖÃ²ÉÑù·¶Î§Îª¡À8G      */
-#define  __LIS3MDL_RANGE_SET_12G    0X40  /**< \brief ÉèÖÃ²ÉÑù·¶Î§Îª¡À12G     */
-#define  __LIS3MDL_RANGE_SET_16G    0X60  /**< \brief ÉèÖÃ²ÉÑù·¶Î§Îª¡À16G     */
+/** \brief è®¾ç½®é‡‡æ ·èŒƒå›´ */
+#define  __LIS3MDL_RANGE_SET_4G     0X00  /**< \brief è®¾ç½®é‡‡æ ·èŒƒå›´ä¸ºÂ±4G      */
+#define  __LIS3MDL_RANGE_SET_8G     0X20  /**< \brief è®¾ç½®é‡‡æ ·èŒƒå›´ä¸ºÂ±8G      */
+#define  __LIS3MDL_RANGE_SET_12G    0X40  /**< \brief è®¾ç½®é‡‡æ ·èŒƒå›´ä¸ºÂ±12G     */
+#define  __LIS3MDL_RANGE_SET_16G    0X60  /**< \brief è®¾ç½®é‡‡æ ·èŒƒå›´ä¸ºÂ±16G     */
 
-/** \brief ½«Á½¸öint8×ª»»ÎªÒ»¸öint16_tÀàĞÍ */
+/** \brief å°†ä¸¤ä¸ªint8è½¬æ¢ä¸ºä¸€ä¸ªint16_tç±»å‹ */
 #define __LIS3MDL_UINT8_TO_UINT16(buff) \
                        (int16_t)(((int8_t)(buff[1]) << 8) \
                                | ((int8_t)(buff[0])))
-/** \brief ¼ÆËãÎÂ¶È,²¢À©´ó10^6±¶ */
+/** \brief è®¡ç®—æ¸©åº¦,å¹¶æ‰©å¤§10^6å€ */
 #define __LIS3MDL_GET_TEMP_VALUE(data) \
             ((int32_t)((25 + ((int8_t)(data) >> 3)) * 1000000))
 
-/** \brief ¼ÆËã´ÅÁ¦,²¢À©´ó10^6±¶ */
+/** \brief è®¡ç®—ç£åŠ›,å¹¶æ‰©å¤§10^6å€ */
 #define __LIS3MDL_GET_MAG_VALUE_4G(data)  ((int32_t)(data * 10000 / 6842) * 100)
 #define __LIS3MDL_GET_MAG_VALUE_8G(data)  ((int32_t)(data * 10000 / 3421) * 100)
 #define __LIS3MDL_GET_MAG_VALUE_12G(data) ((int32_t)(data * 10000 / 2281) * 100)
 #define __LIS3MDL_GET_MAG_VALUE_16G(data) ((int32_t)(data * 10000 / 1711) * 100)
 /*******************************************************************************
- * ±¾µØº¯ÊıÉùÃ÷
+ * æœ¬åœ°å‡½æ•°å£°æ˜
  ******************************************************************************/
-/** \brief »ñÈ¡¸Ã´«¸ĞÆ÷Ä³Ò»Í¨µÀµÄÀàĞÍ */
+/** \brief è·å–è¯¥ä¼ æ„Ÿå™¨æŸä¸€é€šé“çš„ç±»å‹ */
 am_local am_err_t __pfn_type_get (void *p_drv, int id);
 
-/** \brief »ñÈ¡´«¸ĞÆ÷Í¨µÀ²ÉÑùÊı¾İ */
+/** \brief è·å–ä¼ æ„Ÿå™¨é€šé“é‡‡æ ·æ•°æ® */
 am_local am_err_t __pfn_data_get (void            *p_drv,
                                   const int       *p_ids,
                                   int              num,
                                   am_sensor_val_t *p_buf);
 
-/** \brief Ê¹ÄÜ´«¸ĞÆ÷Í¨µÀ */
+/** \brief ä½¿èƒ½ä¼ æ„Ÿå™¨é€šé“ */
 am_local am_err_t __pfn_enable (void            *p_drv,
                                 const int       *p_ids,
                                 int              num,
                                 am_sensor_val_t *p_result);
 
-/** \brief ½ûÄÜ´«¸ĞÆ÷Í¨µÀ */
+/** \brief ç¦èƒ½ä¼ æ„Ÿå™¨é€šé“ */
 am_local am_err_t __pfn_disable (void            *p_drv,
                                  const int       *p_ids,
                                  int              num,
                                  am_sensor_val_t *p_result);
 
-/** \brief ÅäÖÃ´«¸ĞÆ÷Í¨µÀÊôĞÔ */
+/** \brief é…ç½®ä¼ æ„Ÿå™¨é€šé“å±æ€§ */
 am_local am_err_t __pfn_attr_set (void                  *p_drv,
                                   int                    id,
                                   int                    attr,
                                   const am_sensor_val_t *p_val);
 
-/** \brief »ñÈ¡´«¸ĞÆ÷Í¨µÀÊôĞÔ */
+/** \brief è·å–ä¼ æ„Ÿå™¨é€šé“å±æ€§ */
 am_local am_err_t __pfn_attr_get (void            *p_drv,
                                   int              id,
                                   int              attr,
                                   am_sensor_val_t *p_val);
 
-/** \brief ÉèÖÃ´¥·¢£¬Ò»¸öÍ¨µÀ½öÄÜÉèÖÃÒ»¸ö´¥·¢»Øµ÷º¯Êı */
+/** \brief è®¾ç½®è§¦å‘ï¼Œä¸€ä¸ªé€šé“ä»…èƒ½è®¾ç½®ä¸€ä¸ªè§¦å‘å›è°ƒå‡½æ•° */
 am_local am_err_t __pfn_trigger_cfg (void                   *p_drv,
                                      int                     id,
                                      uint32_t                flags,
                                      am_sensor_trigger_cb_t  pfn_cb,
                                      void                   *p_arg);
 
-/** \brief ´ò¿ª´¥·¢ */
+/** \brief æ‰“å¼€è§¦å‘ */
 am_local am_err_t __pfn_trigger_on (void *p_drv, int id);
 
-/** \brief ¹Ø±Õ´¥·¢ */
+/** \brief å…³é—­è§¦å‘ */
 am_local am_err_t __pfn_trigger_off (void *p_drv, int id);
                                   
-/** \brief ´«¸ĞÆ÷±ê×¼·şÎñ */
+/** \brief ä¼ æ„Ÿå™¨æ ‡å‡†æœåŠ¡ */
 am_local am_const struct am_sensor_drv_funcs __g_sensor_lis3mdl_funcs = {
         __pfn_type_get,
         __pfn_data_get,
@@ -141,7 +141,7 @@ am_local am_const struct am_sensor_drv_funcs __g_sensor_lis3mdl_funcs = {
   Local functions
 *******************************************************************************/
 /**
- * \brief LIS3MDL Ğ´Êı¾İ
+ * \brief LIS3MDL å†™æ•°æ®
  */
 am_local am_err_t __lis3mdl_write (am_sensor_lis3mdl_dev_t *p_this,
                                    uint32_t                subaddr,
@@ -152,7 +152,7 @@ am_local am_err_t __lis3mdl_write (am_sensor_lis3mdl_dev_t *p_this,
 }
 
 /**
- * \brief LIS3MDL ¶ÁÊı¾İ
+ * \brief LIS3MDL è¯»æ•°æ®
  */
 am_local am_err_t __lis3mdl_read (am_sensor_lis3mdl_dev_t *p_this,
                                   uint32_t                subaddr,
@@ -163,7 +163,7 @@ am_local am_err_t __lis3mdl_read (am_sensor_lis3mdl_dev_t *p_this,
 }
 
 /**
- * \brief ¸ù¾İÁ¿³Ì½«½á¹û×ª»»³É´ÅÁ¦Êµ¼ÊÖµ
+ * \brief æ ¹æ®é‡ç¨‹å°†ç»“æœè½¬æ¢æˆç£åŠ›å®é™…å€¼
  */
 am_local int32_t __lis3mdl_get_accel_value (am_sensor_lis3mdl_dev_t* p_this,
                                             int32_t                  data)
@@ -194,15 +194,15 @@ am_local int32_t __lis3mdl_get_accel_value (am_sensor_lis3mdl_dev_t* p_this,
     return real_data;
 }
 
-/** \breif ÖĞ¶Ï»Øµ÷º¯Êı */
+/** \breif ä¸­æ–­å›è°ƒå‡½æ•° */
 am_local void __lis3mdl_alarm_callback (void *p_arg)
 {
     am_sensor_lis3mdl_dev_t* p_this = (am_sensor_lis3mdl_dev_t*)p_arg;
 
-    am_isr_defer_job_add(&p_this->g_myjob);   /*< \brief Ìí¼ÓÖĞ¶ÏÑÓ³Ù´¦ÀíÈÎÎñ */
+    am_isr_defer_job_add(&p_this->g_myjob);   /*< \brief æ·»åŠ ä¸­æ–­å»¶è¿Ÿå¤„ç†ä»»åŠ¡ */
 }
 
-/** \breif ÖĞ¶ÏÑÓ³Ùº¯Êı */
+/** \breif ä¸­æ–­å»¶è¿Ÿå‡½æ•° */
 am_local void __am_pfnvoid_t (void *p_arg)
 {
     am_sensor_lis3mdl_dev_t* p_this = (am_sensor_lis3mdl_dev_t*)p_arg;
@@ -212,47 +212,47 @@ am_local void __am_pfnvoid_t (void *p_arg)
     uint8_t i = 0;
     uint8_t int_cfg = 0;
 
-    /** \brief ½ûÄÜ´¥·¢Òı½Å */
+    /** \brief ç¦èƒ½è§¦å‘å¼•è„š */
     __lis3mdl_read(p_this, __LIS3MDL_REG_INT_CFG, &int_cfg, 1);
 
     int_cfg &= __LIS3MDL_EN_CLOSE;
     __lis3mdl_write(p_this, __LIS3MDL_REG_INT_CFG, &int_cfg, 1);
 
-    /** \brief »ñÈ¡XÖá´ÅÁ¦ */
+    /** \brief è·å–Xè½´ç£åŠ› */
     __lis3mdl_read(p_this, __LIS3MDL_REG_OUT_X_L, reg_data, 2);
     
     tem_data = __LIS3MDL_UINT8_TO_UINT16(reg_data);
 
-    /** \brief XÖá´ÅÁ¦ */
+    /** \brief Xè½´ç£åŠ› */
     p_this->data[0].val = __lis3mdl_get_accel_value(p_this, tem_data); 
-    p_this->data[0].unit = AM_SENSOR_UNIT_MICRO; /*< \brief µ¥Î»Ä¬ÈÏÎª0:10^(-6) */
+    p_this->data[0].unit = AM_SENSOR_UNIT_MICRO; /*< \brief å•ä½é»˜è®¤ä¸º0:10^(-6) */
 
-    /** \brief »ñÈ¡YÖá´ÅÁ¦ */
+    /** \brief è·å–Yè½´ç£åŠ› */
     __lis3mdl_read(p_this, __LIS3MDL_REG_OUT_Y_L, reg_data, 2);
 
     tem_data = __LIS3MDL_UINT8_TO_UINT16(reg_data);
    
-    /** \brief YÖá´ÅÁ¦ */
+    /** \brief Yè½´ç£åŠ› */
     p_this->data[1].val = __lis3mdl_get_accel_value(p_this, tem_data); 
-    p_this->data[1].unit = AM_SENSOR_UNIT_MICRO; /*< \brief µ¥Î»Ä¬ÈÏÎª0:10^(-6) */
+    p_this->data[1].unit = AM_SENSOR_UNIT_MICRO; /*< \brief å•ä½é»˜è®¤ä¸º0:10^(-6) */
 
-    /** \brief »ñÈ¡ZÖá´ÅÁ¦ */
+    /** \brief è·å–Zè½´ç£åŠ› */
     __lis3mdl_read(p_this, __LIS3MDL_REG_OUT_Z_L, reg_data, 2);
     
     tem_data = __LIS3MDL_UINT8_TO_UINT16(reg_data);
    
-    /** \brief ZÖá´ÅÁ¦ */
+    /** \brief Zè½´ç£åŠ› */
     p_this->data[2].val = __lis3mdl_get_accel_value(p_this, tem_data); 
-    p_this->data[2].unit = AM_SENSOR_UNIT_MICRO; /*< \brief µ¥Î»Ä¬ÈÏÎª0:10^(-6) */
+    p_this->data[2].unit = AM_SENSOR_UNIT_MICRO; /*< \brief å•ä½é»˜è®¤ä¸º0:10^(-6) */
 
-    /** \brief »ñÈ¡ÎÂ¶È */
+    /** \brief è·å–æ¸©åº¦ */
     __lis3mdl_read(p_this, __LIS3MDL_REG_TEMP_OUT_L, reg_data, 2);
     
     tem_data = __LIS3MDL_UINT8_TO_UINT16(reg_data);
 
-    /** \brief ÎÂ¶È */
+    /** \brief æ¸©åº¦ */
     p_this->data[3].val = __LIS3MDL_GET_TEMP_VALUE(tem_data); 
-    p_this->data[3].unit = AM_SENSOR_UNIT_MICRO;/*< \brief µ¥Î»Ä¬ÈÏÎª0:10^(-6)*/    
+    p_this->data[3].unit = AM_SENSOR_UNIT_MICRO;/*< \brief å•ä½é»˜è®¤ä¸º0:10^(-6)*/    
 
     for (i = 0; i < 4; i++) {
         if (p_this->pfn_trigger_cb[i] &&
@@ -262,14 +262,14 @@ am_local void __am_pfnvoid_t (void *p_arg)
         } 
     }
 
-    /** \brief Ê¹ÄÜÖĞ¶Ï´¥·¢ */
+    /** \brief ä½¿èƒ½ä¸­æ–­è§¦å‘ */
     __lis3mdl_read(p_this, __LIS3MDL_REG_INT_CFG, &int_cfg, 1);
 
     int_cfg |= __LIS3MDL_EN_DRDY;
     __lis3mdl_write(p_this, __LIS3MDL_REG_INT_CFG, &int_cfg, 1);   
 }
 
-/** \brief »ñÈ¡¸Ã´«¸ĞÆ÷Ä³Ò»Í¨µÀµÄÀàĞÍ */
+/** \brief è·å–è¯¥ä¼ æ„Ÿå™¨æŸä¸€é€šé“çš„ç±»å‹ */
 am_local am_err_t __pfn_type_get (void *p_drv, int id)
 {
     if (p_drv == NULL) {
@@ -286,7 +286,7 @@ am_local am_err_t __pfn_type_get (void *p_drv, int id)
     }
 }
 
-/** \brief »ñÈ¡´«¸ĞÆ÷Í¨µÀ²ÉÑùÊı¾İ */
+/** \brief è·å–ä¼ æ„Ÿå™¨é€šé“é‡‡æ ·æ•°æ® */
 am_local am_err_t __pfn_data_get (void            *p_drv,
                                   const int       *p_ids,
                                   int              num,
@@ -313,11 +313,11 @@ am_local am_err_t __pfn_data_get (void            *p_drv,
         p_buf[i].unit = AM_SENSOR_UNIT_INVALID;
     }
 
-    /* ÈôÎª1£¬Ôò¿ÉÄÜÔÚÊı¾İ×¼±¸¾ÍĞ÷´¥·¢»Øµ÷º¯ÊıÖĞÊ¹ÓÃ */
+    /* è‹¥ä¸º1ï¼Œåˆ™å¯èƒ½åœ¨æ•°æ®å‡†å¤‡å°±ç»ªè§¦å‘å›è°ƒå‡½æ•°ä¸­ä½¿ç”¨ */
     if (num == 1) {
         cur_id = p_ids[0];
 
-        /* Èô´ò¿ªÊı¾İ×¼±¸¾ÍĞ÷´¥·¢·½Ê½£¬ÔòÖ±½Ó¸³Öµ */
+        /* è‹¥æ‰“å¼€æ•°æ®å‡†å¤‡å°±ç»ªè§¦å‘æ–¹å¼ï¼Œåˆ™ç›´æ¥èµ‹å€¼ */
         if ((AM_BIT_GET(p_this->trigger, 4)) &&
                 ((p_this->flags[0] & AM_SENSOR_TRIGGER_DATA_READY) ||
                  (p_this->flags[1] & AM_SENSOR_TRIGGER_DATA_READY) ||
@@ -335,46 +335,46 @@ am_local am_err_t __pfn_data_get (void            *p_drv,
 
         if (cur_id == 0) {
 
-            /** \brief »ñÈ¡XÖá´ÅÁ¦ */
+            /** \brief è·å–Xè½´ç£åŠ› */
             ret = __lis3mdl_read(p_this, __LIS3MDL_REG_OUT_X_L, reg_data, 2);
             if (ret != AM_OK) {
                 return ret;
             }
             tem_data = __LIS3MDL_UINT8_TO_UINT16(reg_data);
            
-            /** \brief XÖá´ÅÁ¦ */
+            /** \brief Xè½´ç£åŠ› */
             p_buf[i].val = __lis3mdl_get_accel_value(p_this, tem_data); 
-            p_buf[i].unit = AM_SENSOR_UNIT_MICRO; /*< \brief µ¥Î»Ä¬ÈÏÎª0:10^(-6)*/
+            p_buf[i].unit = AM_SENSOR_UNIT_MICRO; /*< \brief å•ä½é»˜è®¤ä¸º0:10^(-6)*/
 
         } else if (cur_id == 1) {
 
-            /** \brief »ñÈ¡YÖá´ÅÁ¦ */
+            /** \brief è·å–Yè½´ç£åŠ› */
             ret = __lis3mdl_read(p_this, __LIS3MDL_REG_OUT_Y_L, reg_data, 2);
             if (ret != AM_OK) {
                 return ret;
             }
             tem_data = __LIS3MDL_UINT8_TO_UINT16(reg_data);
            
-            /** \brief YÖá´ÅÁ¦ */
+            /** \brief Yè½´ç£åŠ› */
             p_buf[i].val = __lis3mdl_get_accel_value(p_this, tem_data); 
-            p_buf[i].unit = AM_SENSOR_UNIT_MICRO; /*< \brief µ¥Î»Ä¬ÈÏÎª0:10^(-6)*/
+            p_buf[i].unit = AM_SENSOR_UNIT_MICRO; /*< \brief å•ä½é»˜è®¤ä¸º0:10^(-6)*/
 
         } else if (cur_id == 2) {
 
-            /** \brief »ñÈ¡ZÖá´ÅÁ¦ */
+            /** \brief è·å–Zè½´ç£åŠ› */
             ret = __lis3mdl_read(p_this, __LIS3MDL_REG_OUT_Z_L, reg_data, 2);
             if (ret != AM_OK) {
                 return ret;
             }
             tem_data = __LIS3MDL_UINT8_TO_UINT16(reg_data);
            
-            /** \brief ZÖá´ÅÁ¦ */
+            /** \brief Zè½´ç£åŠ› */
             p_buf[i].val = __lis3mdl_get_accel_value(p_this, tem_data); 
-            p_buf[i].unit = AM_SENSOR_UNIT_MICRO; /*< \brief µ¥Î»Ä¬ÈÏÎª0:10^(-6)*/
+            p_buf[i].unit = AM_SENSOR_UNIT_MICRO; /*< \brief å•ä½é»˜è®¤ä¸º0:10^(-6)*/
 
         } else if (cur_id == 3) {
 
-            /** \brief »ñÈ¡ÎÂ¶È */
+            /** \brief è·å–æ¸©åº¦ */
             ret = __lis3mdl_read(p_this, __LIS3MDL_REG_TEMP_OUT_L, reg_data, 2);
             if (ret != AM_OK) {
                 return ret;
@@ -382,19 +382,19 @@ am_local am_err_t __pfn_data_get (void            *p_drv,
 
             tem_data = __LIS3MDL_UINT8_TO_UINT16(reg_data);
 
-            /** \brief ÎÂ¶È */
+            /** \brief æ¸©åº¦ */
             p_buf[i].val = __LIS3MDL_GET_TEMP_VALUE(tem_data);
-            p_buf[i].unit = AM_SENSOR_UNIT_MICRO; /*< \brief µ¥Î»Ä¬ÈÏÎª0:10^(-6)*/
+            p_buf[i].unit = AM_SENSOR_UNIT_MICRO; /*< \brief å•ä½é»˜è®¤ä¸º0:10^(-6)*/
 
         } else {
-            return -AM_ENODEV;  /*< \brief Èô´Ë´ÎÍ¨µÀ²»ÊôÓÚ¸Ã´«¸ĞÆ÷£¬Ö±½Ó·µ»Ø */
+            return -AM_ENODEV;  /*< \brief è‹¥æ­¤æ¬¡é€šé“ä¸å±äºè¯¥ä¼ æ„Ÿå™¨ï¼Œç›´æ¥è¿”å› */
         }
     }
     
     return ret;
 }
 
-/** \brief Ê¹ÄÜ´«¸ĞÆ÷Í¨µÀ */
+/** \brief ä½¿èƒ½ä¼ æ„Ÿå™¨é€šé“ */
 am_local am_err_t __pfn_enable (void            *p_drv,
                                 const int       *p_ids,
                                 int              num,
@@ -432,11 +432,11 @@ am_local am_err_t __pfn_enable (void            *p_drv,
         }
     }
 
-    if (ret != AM_OK) {    /**< \breif Èç¹û±¾´ÎÃ»ÓĞ¸Ã´«¸ĞÆ÷µÄÍ¨µÀ´«Èë£¬ÔòÍË³ö */
+    if (ret != AM_OK) {    /**< \breif å¦‚æœæœ¬æ¬¡æ²¡æœ‰è¯¥ä¼ æ„Ÿå™¨çš„é€šé“ä¼ å…¥ï¼Œåˆ™é€€å‡º */
         return curent_ret;
     }
     
-    /** \brief Á¬Ğø×ª»»Ä£Ê½ */
+    /** \brief è¿ç»­è½¬æ¢æ¨¡å¼ */
     ctrl_reg3 = 0x00;
     ret = __lis3mdl_write(p_this, __LIS3MDL_REG_CTRL3, &ctrl_reg3, 1);
     if (ret != AM_OK) {
@@ -445,7 +445,7 @@ am_local am_err_t __pfn_enable (void            *p_drv,
     
     if (AM_BIT_GET(p_this->trigger, 11) == 1) {
         
-        /** \brief Ê¹ÄÜÎÂ¶ÈÍ¨µÀ */
+        /** \brief ä½¿èƒ½æ¸©åº¦é€šé“ */
         ret = __lis3mdl_read(p_this, __LIS3MDL_REG_CTRL1, &ctrl_reg1, 1);
         if (ret != AM_OK) {
             curent_ret = ret;
@@ -463,7 +463,7 @@ am_local am_err_t __pfn_enable (void            *p_drv,
     }    
 
     if (p_this->sam_range.val == 0) {
-        /* Ä¬ÈÏÁ¿³ÌÎª¡À4G */
+        /* é»˜è®¤é‡ç¨‹ä¸ºÂ±4G */
         p_this->sam_range.val  = 4;    
         p_this->sam_range.unit = AM_SENSOR_UNIT_BASE;
     }
@@ -471,7 +471,7 @@ am_local am_err_t __pfn_enable (void            *p_drv,
     return curent_ret;
 }
 
-/** \brief ½ûÄÜ´«¸ĞÆ÷Í¨µÀ */
+/** \brief ç¦èƒ½ä¼ æ„Ÿå™¨é€šé“ */
 am_local am_err_t __pfn_disable (void            *p_drv,
                                  const int       *p_ids,
                                  int              num,
@@ -513,7 +513,7 @@ am_local am_err_t __pfn_disable (void            *p_drv,
             && (AM_BIT_GET(p_this->trigger, 12) == 0)
             && (AM_BIT_GET(p_this->trigger, 11) == 0)) {
 
-        /** \brief µôµçÄ£Ê½ */
+        /** \brief æ‰ç”µæ¨¡å¼ */
         ctrl_reg3 = 0x03;
         ret = __lis3mdl_write(p_this, __LIS3MDL_REG_CTRL3, &ctrl_reg3, 1);
         if (ret != AM_OK) {
@@ -529,7 +529,7 @@ am_local am_err_t __pfn_disable (void            *p_drv,
 }
 
 /*
- * \brief ÅäÖÃÑ¡ÔñÁ¿³Ì
+ * \brief é…ç½®é€‰æ‹©é‡ç¨‹
  */
 am_local am_err_t  __reg_attr_range_set (am_sensor_lis3mdl_dev_t *p_this, 
                                          uint8_t                 range)
@@ -555,7 +555,7 @@ am_local am_err_t  __reg_attr_range_set (am_sensor_lis3mdl_dev_t *p_this,
     return __lis3mdl_write(p_this, __LIS3MDL_REG_CTRL2, &range_cfg, 1);
 }
 
-/** \brief ÅäÖÃ´«¸ĞÆ÷Í¨µÀÊôĞÔ */
+/** \brief é…ç½®ä¼ æ„Ÿå™¨é€šé“å±æ€§ */
 am_local am_err_t __pfn_attr_set (void                  *p_drv,
                                   int                    id,
                                   int                    attr,
@@ -580,7 +580,7 @@ am_local am_err_t __pfn_attr_set (void                  *p_drv,
 
     switch (attr) {
 
-    /* ĞŞ¸ÄÁ¿³Ì */
+    /* ä¿®æ”¹é‡ç¨‹ */
     case AM_SENSOR_ATTR_FULL_SCALE:
 
         sensor_val.unit = p_val->unit;
@@ -620,7 +620,7 @@ am_local am_err_t __pfn_attr_set (void                  *p_drv,
     return cur_ret;
 }
 
-/** \brief »ñÈ¡´«¸ĞÆ÷Í¨µÀÊôĞÔ */
+/** \brief è·å–ä¼ æ„Ÿå™¨é€šé“å±æ€§ */
 am_local am_err_t __pfn_attr_get (void            *p_drv,
                                   int              id,
                                   int              attr,
@@ -641,7 +641,7 @@ am_local am_err_t __pfn_attr_get (void            *p_drv,
 
     switch (attr) {
 
-    /* »ñÈ¡Á¿³Ì */
+    /* è·å–é‡ç¨‹ */
     case AM_SENSOR_ATTR_FULL_SCALE:
 
         p_val->val  = p_this->sam_range.val;
@@ -657,7 +657,7 @@ am_local am_err_t __pfn_attr_get (void            *p_drv,
     return ret;
 }
 
-/** \brief ÉèÖÃ´¥·¢£¬Ò»¸öÍ¨µÀ½öÄÜÉèÖÃÒ»¸ö´¥·¢»Øµ÷º¯Êı */
+/** \brief è®¾ç½®è§¦å‘ï¼Œä¸€ä¸ªé€šé“ä»…èƒ½è®¾ç½®ä¸€ä¸ªè§¦å‘å›è°ƒå‡½æ•° */
 am_local am_err_t __pfn_trigger_cfg (void                   *p_drv,
                                      int                     id,
                                      uint32_t                flags,
@@ -688,7 +688,7 @@ am_local am_err_t __pfn_trigger_cfg (void                   *p_drv,
     return AM_OK;
 }
 
-/** \brief ´ò¿ª´¥·¢ */
+/** \brief æ‰“å¼€è§¦å‘ */
 am_local am_err_t __pfn_trigger_on (void *p_drv, int id)
 {
     am_sensor_lis3mdl_dev_t* p_this = (am_sensor_lis3mdl_dev_t*)p_drv;
@@ -709,7 +709,7 @@ am_local am_err_t __pfn_trigger_on (void *p_drv, int id)
         return AM_OK;
     }
 
-    /** \brief Ê¹ÄÜ´¥·¢Òı½Å */
+    /** \brief ä½¿èƒ½è§¦å‘å¼•è„š */
     ret = __lis3mdl_read(p_this, __LIS3MDL_REG_INT_CFG, &int_cfg, 1);
     if ( ret != AM_OK) {
         cur_ret = ret;
@@ -723,7 +723,7 @@ am_local am_err_t __pfn_trigger_on (void *p_drv, int id)
     
     if (p_this->dev_info->trigger_pin != -1) {
         
-        /* ´ò¿ª´¥·¢Òı½Å */
+        /* æ‰“å¼€è§¦å‘å¼•è„š */
         ret = am_gpio_trigger_on(p_this->dev_info->trigger_pin);
         if (ret != AM_OK) {
             cur_ret = ret;
@@ -750,7 +750,7 @@ am_local am_err_t __pfn_trigger_on (void *p_drv, int id)
     return cur_ret;
 }
 
-/** \brief ¹Ø±Õ´¥·¢ */
+/** \brief å…³é—­è§¦å‘ */
 am_local am_err_t __pfn_trigger_off (void *p_drv, int id)
 {
     am_sensor_lis3mdl_dev_t* p_this = (am_sensor_lis3mdl_dev_t*)p_drv;
@@ -782,7 +782,7 @@ am_local am_err_t __pfn_trigger_off (void *p_drv, int id)
             }
         }
 
-        /** \brief ½ûÄÜÊı¾İ¿É¶Á´¥·¢ */
+        /** \brief ç¦èƒ½æ•°æ®å¯è¯»è§¦å‘ */
         ret = __lis3mdl_read(p_this, __LIS3MDL_REG_INT_CFG, &int_cfg, 1);
         if ( ret != AM_OK) {
             cur_ret = ret;
@@ -806,7 +806,7 @@ am_local am_err_t __pfn_trigger_off (void *p_drv, int id)
   Public functions
 *******************************************************************************/
 /**
- * \brief ´«¸ĞÆ÷ LIS3MDL ³õÊ¼»¯
+ * \brief ä¼ æ„Ÿå™¨ LIS3MDL åˆå§‹åŒ–
  */
 am_sensor_handle_t am_sensor_lis3mdl_init (
         am_sensor_lis3mdl_dev_t           *p_dev,
@@ -854,7 +854,7 @@ am_sensor_handle_t am_sensor_lis3mdl_init (
     p_dev->sam_range.val       = 0;
     p_dev->sam_range.unit      = AM_SENSOR_UNIT_INVALID;
     
-    /* Íâ²¿ÖĞ¶ÏÁ¬½Ó */
+    /* å¤–éƒ¨ä¸­æ–­è¿æ¥ */
     if (p_devinfo->trigger_pin != -1) {
         am_gpio_pin_cfg(p_devinfo->trigger_pin, AM_GPIO_INPUT | AM_GPIO_PULLUP);
         am_gpio_trigger_connect(p_devinfo->trigger_pin,
@@ -865,7 +865,7 @@ am_sensor_handle_t am_sensor_lis3mdl_init (
 
     am_isr_defer_job_init(&p_dev->g_myjob, __am_pfnvoid_t, p_dev, 1);
 
-    /* ¶ÁÈ¡ID */
+    /* è¯»å–ID */
     ret = __lis3mdl_read(p_dev, __LIS3MDL_REG_ID, &lis3mdl_id, 1);
 
     if (ret != AM_OK || lis3mdl_id != __LIS3MDL_MY_ID) {
@@ -881,7 +881,7 @@ am_sensor_handle_t am_sensor_lis3mdl_init (
 }
 
 /**
- * \brief ´«¸ĞÆ÷ LIS3MDL È¥³õÊ¼»¯
+ * \brief ä¼ æ„Ÿå™¨ LIS3MDL å»åˆå§‹åŒ–
  */
 am_err_t am_sensor_lis3mdl_deinit (am_sensor_handle_t handle)
 {

@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief Kl26 DMA Í¨µÀ±àºÅ¶¨Òå
+ * \brief Kl26 DMA é€šé“ç¼–å·å®šä¹‰
  *
  * \internal
  * \par Modification History
@@ -35,73 +35,73 @@ extern "C" {
 
 
 /**
- * \name KL26 DMA Í¨µÀ±àºÅ
+ * \name KL26 DMA é€šé“ç¼–å·
  * @{
  */
-#define DMA_CHAN_0                0               /**< \brief DMAÍ¨µÀ0  */
-#define DMA_CHAN_1                1               /**< \brief DMAÍ¨µÀ1  */
-#define DMA_CHAN_2                2               /**< \brief DMAÍ¨µÀ2  */
-#define DMA_CHAN_3                3               /**< \brief DMAÍ¨µÀ3  */
+#define DMA_CHAN_0                0               /**< \brief DMAé€šé“0  */
+#define DMA_CHAN_1                1               /**< \brief DMAé€šé“1  */
+#define DMA_CHAN_2                2               /**< \brief DMAé€šé“2  */
+#define DMA_CHAN_3                3               /**< \brief DMAé€šé“3  */
 
 /** @} */
 
 
 /**
- * \name ÍâÉèµÄDMAÇëÇóÔ´ĞòºÅ
+ * \name å¤–è®¾çš„DMAè¯·æ±‚æºåºå·
  * @{
  */
 
-#define DMA_REQUEST_MUX0_DISABLE        0      /**< \brief ÎŞÍâÉè ÇëÇóÔ´        */
+#define DMA_REQUEST_MUX0_DISABLE        0      /**< \brief æ— å¤–è®¾ è¯·æ±‚æº        */
 
-#define DMA_REQUEST_MUX0_UART0RX        2      /**< \brief UART0 RX ÇëÇó     */
-#define DMA_REQUEST_MUX0_UART0TX        3      /**< \brief UART0 TX ÇëÇó     */
-#define DMA_REQUEST_MUX0_UART1RX        4      /**< \brief UART1 RX ÇëÇó     */
-#define DMA_REQUEST_MUX0_UART1TX        5      /**< \brief UART1 TX ÇëÇó     */
-#define DMA_REQUEST_MUX0_UART2RX        6      /**< \brief UART2 RX ÇëÇó     */
-#define DMA_REQUEST_MUX0_UART2TX        7      /**< \brief UART2 TX ÇëÇó     */
+#define DMA_REQUEST_MUX0_UART0RX        2      /**< \brief UART0 RX è¯·æ±‚     */
+#define DMA_REQUEST_MUX0_UART0TX        3      /**< \brief UART0 TX è¯·æ±‚     */
+#define DMA_REQUEST_MUX0_UART1RX        4      /**< \brief UART1 RX è¯·æ±‚     */
+#define DMA_REQUEST_MUX0_UART1TX        5      /**< \brief UART1 TX è¯·æ±‚     */
+#define DMA_REQUEST_MUX0_UART2RX        6      /**< \brief UART2 RX è¯·æ±‚     */
+#define DMA_REQUEST_MUX0_UART2TX        7      /**< \brief UART2 TX è¯·æ±‚     */
 
-#define DMA_REQUEST_MUX0_I2S0RX         14     /**< \brief I2S0 RX ÇëÇó       */
-#define DMA_REQUEST_MUX0_I2S0TX         15     /**< \brief I2S0 TX ÇëÇó       */
+#define DMA_REQUEST_MUX0_I2S0RX         14     /**< \brief I2S0 RX è¯·æ±‚       */
+#define DMA_REQUEST_MUX0_I2S0TX         15     /**< \brief I2S0 TX è¯·æ±‚       */
 
-#define DMA_REQUEST_MUX0_SPI0RX         16     /**< \brief SPI0 RX ÇëÇó       */
-#define DMA_REQUEST_MUX0_SPI0TX         17     /**< \brief SPI0 TX ÇëÇó       */
-#define DMA_REQUEST_MUX0_SPI1RX         18     /**< \brief SPI1 RX ÇëÇó       */
-#define DMA_REQUEST_MUX0_SPI1TX         19     /**< \brief SPI1 TX ÇëÇó       */
+#define DMA_REQUEST_MUX0_SPI0RX         16     /**< \brief SPI0 RX è¯·æ±‚       */
+#define DMA_REQUEST_MUX0_SPI0TX         17     /**< \brief SPI0 TX è¯·æ±‚       */
+#define DMA_REQUEST_MUX0_SPI1RX         18     /**< \brief SPI1 RX è¯·æ±‚       */
+#define DMA_REQUEST_MUX0_SPI1TX         19     /**< \brief SPI1 TX è¯·æ±‚       */
 
-#define DMA_REQUEST_MUX0_I2C0           22     /**< \brief I2C0    ÇëÇó       */
-#define DMA_REQUEST_MUX0_I2C1           23     /**< \brief I2C1    ÇëÇó       */
+#define DMA_REQUEST_MUX0_I2C0           22     /**< \brief I2C0    è¯·æ±‚       */
+#define DMA_REQUEST_MUX0_I2C1           23     /**< \brief I2C1    è¯·æ±‚       */
 
-#define DMA_REQUEST_MUX0_TPM0_CHANNEL0  24     /**< \brief TPM0Í¨µÀ0 ÇëÇó   */
-#define DMA_REQUEST_MUX0_TPM0_CHANNEL1  25     /**< \brief TPM0Í¨µÀ1 ÇëÇó   */
-#define DMA_REQUEST_MUX0_TPM0_CHANNEL2  26     /**< \brief TPM0Í¨µÀ2 ÇëÇó   */
-#define DMA_REQUEST_MUX0_TPM0_CHANNEL3  27     /**< \brief TPM0Í¨µÀ3 ÇëÇó   */
-#define DMA_REQUEST_MUX0_TPM0_CHANNEL4  28     /**< \brief TPM0Í¨µÀ4 ÇëÇó   */
-#define DMA_REQUEST_MUX0_TPM0_CHANNEL5  29     /**< \brief TPM0Í¨µÀ5 ÇëÇó   */
-#define DMA_REQUEST_MUX0_TPM1_CHANNEL0  32     /**< \brief TPM1Í¨µÀ0 ÇëÇó   */
-#define DMA_REQUEST_MUX0_TPM1_CHANNEL1  33     /**< \brief TPM1Í¨µÀ1 ÇëÇó   */
-#define DMA_REQUEST_MUX0_TPM2_CHANNEL0  34     /**< \brief TPM2Í¨µÀ0 ÇëÇó   */
-#define DMA_REQUEST_MUX0_TPM2_CHANNEL1  35     /**< \brief TPM2Í¨µÀ1 ÇëÇó   */
+#define DMA_REQUEST_MUX0_TPM0_CHANNEL0  24     /**< \brief TPM0é€šé“0 è¯·æ±‚   */
+#define DMA_REQUEST_MUX0_TPM0_CHANNEL1  25     /**< \brief TPM0é€šé“1 è¯·æ±‚   */
+#define DMA_REQUEST_MUX0_TPM0_CHANNEL2  26     /**< \brief TPM0é€šé“2 è¯·æ±‚   */
+#define DMA_REQUEST_MUX0_TPM0_CHANNEL3  27     /**< \brief TPM0é€šé“3 è¯·æ±‚   */
+#define DMA_REQUEST_MUX0_TPM0_CHANNEL4  28     /**< \brief TPM0é€šé“4 è¯·æ±‚   */
+#define DMA_REQUEST_MUX0_TPM0_CHANNEL5  29     /**< \brief TPM0é€šé“5 è¯·æ±‚   */
+#define DMA_REQUEST_MUX0_TPM1_CHANNEL0  32     /**< \brief TPM1é€šé“0 è¯·æ±‚   */
+#define DMA_REQUEST_MUX0_TPM1_CHANNEL1  33     /**< \brief TPM1é€šé“1 è¯·æ±‚   */
+#define DMA_REQUEST_MUX0_TPM2_CHANNEL0  34     /**< \brief TPM2é€šé“0 è¯·æ±‚   */
+#define DMA_REQUEST_MUX0_TPM2_CHANNEL1  35     /**< \brief TPM2é€šé“1 è¯·æ±‚   */
 
-#define DMA_REQUEST_MUX0_ADC0           40     /**< \brief ADC0 ÇëÇó                */
+#define DMA_REQUEST_MUX0_ADC0           40     /**< \brief ADC0 è¯·æ±‚                */
 
-#define DMA_REQUEST_MUX0_CMP0           42     /**< \brief CMP0 ÇëÇó                */
+#define DMA_REQUEST_MUX0_CMP0           42     /**< \brief CMP0 è¯·æ±‚                */
 
-#define DMA_REQUEST_MUX0_DAC0           45     /**< \brief DAC0 ÇëÇó                */
+#define DMA_REQUEST_MUX0_DAC0           45     /**< \brief DAC0 è¯·æ±‚                */
 
-#define DMA_REQUEST_MUX0_PORTA          49     /**< \brief PORTA ÇëÇó              */
-#define DMA_REQUEST_MUX0_PORTC          51     /**< \brief PORTC ÇëÇó              */
-#define DMA_REQUEST_MUX0_PORTD          52     /**< \brief PORTD ÇëÇó              */
+#define DMA_REQUEST_MUX0_PORTA          49     /**< \brief PORTA è¯·æ±‚              */
+#define DMA_REQUEST_MUX0_PORTC          51     /**< \brief PORTC è¯·æ±‚              */
+#define DMA_REQUEST_MUX0_PORTD          52     /**< \brief PORTD è¯·æ±‚              */
 
-#define DMA_REQUEST_MUX0_TPM0_OVERFLOW  54     /**< \brief TPM0Òç³ö  ÇëÇó        */
-#define DMA_REQUEST_MUX0_TPM1_OVERFLOW  55     /**< \brief TPM0Òç³ö  ÇëÇó        */
-#define DMA_REQUEST_MUX0_TPM2_OVERFLOW  56     /**< \brief TPM0Òç³ö  ÇëÇó        */
+#define DMA_REQUEST_MUX0_TPM0_OVERFLOW  54     /**< \brief TPM0æº¢å‡º  è¯·æ±‚        */
+#define DMA_REQUEST_MUX0_TPM1_OVERFLOW  55     /**< \brief TPM0æº¢å‡º  è¯·æ±‚        */
+#define DMA_REQUEST_MUX0_TPM2_OVERFLOW  56     /**< \brief TPM0æº¢å‡º  è¯·æ±‚        */
 
-#define DMA_REQUEST_MUX0_TSI            57     /**< \brief TSI ÇëÇó                     */
+#define DMA_REQUEST_MUX0_TSI            57     /**< \brief TSI è¯·æ±‚                     */
 
-#define DMA_REQUEST_MUX0_ALWAYSON0      60     /**< \brief Ïß½áµã0 ÇëÇó           */
-#define DMA_REQUEST_MUX0_ALWAYSON1      61     /**< \brief Ïß½áµã1 ÇëÇó           */
-#define DMA_REQUEST_MUX0_ALWAYSON2      62     /**< \brief Ïß½áµã2 ÇëÇó           */
-#define DMA_REQUEST_MUX0_ALWAYSON3      63     /**< \brief Ïß½áµã3 ÇëÇó           */
+#define DMA_REQUEST_MUX0_ALWAYSON0      60     /**< \brief çº¿ç»“ç‚¹0 è¯·æ±‚           */
+#define DMA_REQUEST_MUX0_ALWAYSON1      61     /**< \brief çº¿ç»“ç‚¹1 è¯·æ±‚           */
+#define DMA_REQUEST_MUX0_ALWAYSON2      62     /**< \brief çº¿ç»“ç‚¹2 è¯·æ±‚           */
+#define DMA_REQUEST_MUX0_ALWAYSON3      63     /**< \brief çº¿ç»“ç‚¹3 è¯·æ±‚           */
 
 /** @} */
 

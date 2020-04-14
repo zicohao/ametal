@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief GPIOÇı¶¯ĞÍLED
+ * \brief GPIOé©±åŠ¨å‹LED
  *
  * \internal
  * \par modification history:
@@ -37,23 +37,23 @@ extern "C" {
  */
 
 /**
- * \brief LEDĞÅÏ¢£¨GPIOÇı¶¯£©
+ * \brief LEDä¿¡æ¯ï¼ˆGPIOé©±åŠ¨ï¼‰
  */
 typedef struct am_led_gpio_info {
 
-    /** \brief LED»ù´¡·şÎñĞÅÏ¢ £¬°üº¬ÆğÊ¼±àºÅºÍ½áÊø±àºÅ     */
+    /** \brief LEDåŸºç¡€æœåŠ¡ä¿¡æ¯ ï¼ŒåŒ…å«èµ·å§‹ç¼–å·å’Œç»“æŸç¼–å·     */
     am_led_servinfo_t  serv_info;
 
-    /** \brief Ê¹ÓÃµÄGPIOÒı½Å£¬Òı½ÅÊıÄ¿Ó¦¸ÃÎª £¨½áÊø±àºÅ - ÆğÊ¼±àºÅ + 1£©   */
+    /** \brief ä½¿ç”¨çš„GPIOå¼•è„šï¼Œå¼•è„šæ•°ç›®åº”è¯¥ä¸º ï¼ˆç»“æŸç¼–å· - èµ·å§‹ç¼–å· + 1ï¼‰   */
     const int         *p_pins;
 
-    /** \brief LEDÊÇ·ñÊÇµÍµçÆ½µãÁÁ  */
+    /** \brief LEDæ˜¯å¦æ˜¯ä½ç”µå¹³ç‚¹äº®  */
     am_bool_t          active_low;
 
 } am_led_gpio_info_t;
 
 /**
- * \brief LEDÉè±¸£¨GPIOÇı¶¯£©
+ * \brief LEDè®¾å¤‡ï¼ˆGPIOé©±åŠ¨ï¼‰
  */
 typedef struct am_led_gpio_dev {
     am_led_dev_t               isa;
@@ -61,24 +61,24 @@ typedef struct am_led_gpio_dev {
 } am_led_gpio_dev_t;
 
 /**
- * \brief LEDÉè±¸³õÊ¼»¯£¨GPIOÇı¶¯£©
+ * \brief LEDè®¾å¤‡åˆå§‹åŒ–ï¼ˆGPIOé©±åŠ¨ï¼‰
  *
- * \param[in] p_dev  : LEDÉè±¸
- * \param[in] p_info : LEDÉè±¸ĞÅÏ¢
+ * \param[in] p_dev  : LEDè®¾å¤‡
+ * \param[in] p_info : LEDè®¾å¤‡ä¿¡æ¯
  *
- * \retval AM_OK      : ³õÊ¼»¯³É¹¦
- * \retval -AM_EINVAL : ³õÊ¼»¯Ê§°Ü
+ * \retval AM_OK      : åˆå§‹åŒ–æˆåŠŸ
+ * \retval -AM_EINVAL : åˆå§‹åŒ–å¤±è´¥
  */
 int am_led_gpio_init (am_led_gpio_dev_t         *p_dev,
                       const am_led_gpio_info_t  *p_info);
 
 /**
- * \brief LEDÉè±¸½â³õÊ¼»¯£¨GPIOÇı¶¯£©
+ * \brief LEDè®¾å¤‡è§£åˆå§‹åŒ–ï¼ˆGPIOé©±åŠ¨ï¼‰
  *
- * \param[in] p_dev  : LEDÉè±¸
+ * \param[in] p_dev  : LEDè®¾å¤‡
  *
- * \retval AM_OK      : ½â³õÊ¼»¯³É¹¦
- * \retval -AM_EINVAL : ½â³õÊ¼»¯Ê§°Ü
+ * \retval AM_OK      : è§£åˆå§‹åŒ–æˆåŠŸ
+ * \retval -AM_EINVAL : è§£åˆå§‹åŒ–å¤±è´¥
  */
 int am_led_gpio_deinit (am_led_gpio_dev_t *p_dev);
 

@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥4.37
+ * \brief ç¨‹åºæ¸…å•4.37
  *
- * \note ¸ÃÀú³ÌĞèÒªÓÃµ½miniportÍØÕ¹°å
+ * \note è¯¥å†ç¨‹éœ€è¦ç”¨åˆ°miniportæ‹“å±•æ¿
  *
  * \internal
  * \par Modification history
@@ -27,8 +27,8 @@
 #include "key1.h"
 #include "am_softimer.h"
 
-static am_softimer_t g_key1_timer;           // °´¼üÉ¨ÃèµÄÈí¼ş¶¨Ê±Æ÷±äÁ¿
-static void key1_process(uint8_t key_return) // °´¼ü´¦Àí³ÌĞò
+static am_softimer_t g_key1_timer;           // æŒ‰é”®æ‰«æçš„è½¯ä»¶å®šæ—¶å™¨å˜é‡
+static void key1_process(uint8_t key_return) // æŒ‰é”®å¤„ç†ç¨‹åº
 {
     if (key_return == 0) {
         buzzer_beep_async(100);

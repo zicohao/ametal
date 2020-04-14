@@ -12,23 +12,23 @@
 
 /**
  * \file
- * \brief MiniPort-View + MiniPort-595 + MiniPort-KEY Àý³Ì£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MiniPort-View + MiniPort-595 + MiniPort-KEY ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè
- *   1. ÏÈ½« MiniPort-595 °å×ÓÖ±½ÓÓë AM217BLE µÄ MiniPort ÏàÁ¬½Ó£»
- *   2. ½« MiniPort-View °å×ÓÓë MiniPort-595 ½Ó¿ÚÏàÁ¬½Ó£»
- *   3. ½« MiniPort-KEY Óë MiniPort-View Á¬½Ó¡£
+ * - æ“ä½œæ­¥éª¤
+ *   1. å…ˆå°† MiniPort-595 æ¿å­ç›´æŽ¥ä¸Ž AM217BLE çš„ MiniPort ç›¸è¿žæŽ¥ï¼›
+ *   2. å°† MiniPort-View æ¿å­ä¸Ž MiniPort-595 æŽ¥å£ç›¸è¿žæŽ¥ï¼›
+ *   3. å°† MiniPort-KEY ä¸Ž MiniPort-View è¿žæŽ¥ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. °´ÏÂÒ»¸ö°´¼ü£¬Á½Î»ÊýÂë¹ÜÏÔÊ¾°´¼ü±àºÅµÄ¶þ½øÖÆ£»
- *   2. Å¼Êý±àºÅÊ±£¬ÊýÂë¹ÜÉÁË¸£¬ÆæÊý±àºÅÊ±£¬ÊýÂë¹Ü²»ÉÁË¸¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. æŒ‰ä¸‹ä¸€ä¸ªæŒ‰é”®ï¼Œä¸¤ä½æ•°ç ç®¡æ˜¾ç¤ºæŒ‰é”®ç¼–å·çš„äºŒè¿›åˆ¶ï¼›
+ *   2. å¶æ•°ç¼–å·æ—¶ï¼Œæ•°ç ç®¡é—ªçƒï¼Œå¥‡æ•°ç¼–å·æ—¶ï¼Œæ•°ç ç®¡ä¸é—ªçƒã€‚
  *
  * \note
- *    ²âÊÔ±¾ Demo ±ØÐëÔÚ am_prj_config.h ÄÚ½« AM_CFG_KEY_GPIO_ENABLE¡¢
- *    AM_CFG_KEY_ENABLE ºÍ AM_CFG_SOFTIMER_ENABLE ¶¨ÒåÎª 1¡£µ«ÕâÐ©ºê
- *    ÒÑ¾­Ä¬ÈÏÅäÖÃÎª 1£¬ ÓÃ»§²»±ØÔÙ´ÎÅäÖÃ¡£
+ *    æµ‹è¯•æœ¬ Demo å¿…é¡»åœ¨ am_prj_config.h å†…å°† AM_CFG_KEY_GPIO_ENABLEã€
+ *    AM_CFG_KEY_ENABLE å’Œ AM_CFG_SOFTIMER_ENABLE å®šä¹‰ä¸º 1ã€‚ä½†è¿™äº›å®
+ *    å·²ç»é»˜è®¤é…ç½®ä¸º 1ï¼Œ ç”¨æˆ·ä¸å¿…å†æ¬¡é…ç½®ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_miniport_hc595_digitron_key.c src_miniport_hc595_digitron_key
  *
  * \internal
@@ -51,7 +51,7 @@
 #include "demo_am217_core_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_zlg217_core_miniport_hc595_digitron_key_entry (void)
 {

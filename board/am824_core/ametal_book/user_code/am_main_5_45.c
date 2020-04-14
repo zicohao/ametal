@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥5.45
+ * \brief ç¨‹åºæ¸…å•5.45
  *
- * \note ¸ÃÀú³ÌĞèÒªÓÃµ½miniportÍØÕ¹°å
+ * \note è¯¥å†ç¨‹éœ€è¦ç”¨åˆ°miniportæ‹“å±•æ¿
  * 
  * \internal
  * \par Modification history
@@ -28,21 +28,21 @@
 #include "am_delay.h"
 int am_main(void)
 {
-    uint8_t key_return;                    // key1_scan()·µ»ØÖµ±äÁ¿
+    uint8_t key_return;                    // key1_scan()è¿”å›å€¼å˜é‡
 
     key1_init();
     led_init();
     buzzer_init();
     while(1) {
-        key_return = key1_scan();          // ¸ù¾İkey_returnµÄ·µ»ØÖµÅĞ¶Ï°´¼üÊÂ¼şµÄ²úÉú
+        key_return = key1_scan();          // æ ¹æ®key_returnçš„è¿”å›å€¼åˆ¤æ–­æŒ‰é”®äº‹ä»¶çš„äº§ç”Ÿ
         if (key_return == 0) {
-          // ·µ»ØÖµÎª0£¬ËµÃ÷ÓĞ¼ü°´ÏÂ£¬·äÃùÆ÷¡°àÖ¡±Ò»Éù
+          // è¿”å›å€¼ä¸º0ï¼Œè¯´æ˜æœ‰é”®æŒ‰ä¸‹ï¼Œèœ‚é¸£å™¨â€œå˜€â€ä¸€å£°
             buzzer_beep(100);
         } else if (key_return == 1) {
-          // ·µ»ØÖµÎª1£¬ËµÃ÷°´¼üÊÍ·Å£¬LED0·­×ª
+          // è¿”å›å€¼ä¸º1ï¼Œè¯´æ˜æŒ‰é”®é‡Šæ”¾ï¼ŒLED0ç¿»è½¬
             led_toggle(0);
         }
-        am_mdelay(10);                    // Ã¿¸ô10msÉ¨ÃèÒ»´Î°´¼ü£¬ÑÓÊ±È¥¶¶¶¯
+        am_mdelay(10);                    // æ¯éš”10msæ‰«æä¸€æ¬¡æŒ‰é”®ï¼Œå»¶æ—¶å»æŠ–åŠ¨
     }
 }
 

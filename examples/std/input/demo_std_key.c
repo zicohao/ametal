@@ -12,14 +12,14 @@
 
 /**
  * \file
- * \brief °´¼üÀı³Ì
+ * \brief æŒ‰é”®ä¾‹ç¨‹
  *
- * ±¾Àı³ÌÕ¹Ê¾ÁË°´¼ü´¦ÀíµÄÒ»°ãÁ÷³Ì
+ * æœ¬ä¾‹ç¨‹å±•ç¤ºäº†æŒ‰é”®å¤„ç†çš„ä¸€èˆ¬æµç¨‹
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ÏµÍ³ÖĞÈÎÒâ°´¼ü°´ÏÂ£¬µ÷ÊÔ´®¿Ú´òÓ¡°´¼üÊÂ¼ş¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. ç³»ç»Ÿä¸­ä»»æ„æŒ‰é”®æŒ‰ä¸‹ï¼Œè°ƒè¯•ä¸²å£æ‰“å°æŒ‰é”®äº‹ä»¶ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_std_key.c src_std_key
  *
  * \internal
@@ -40,7 +40,7 @@
 #include "am_vdebug.h"
 
 /**
- * \brief °´¼üÊÂ¼ş»Øµ÷º¯Êı
+ * \brief æŒ‰é”®äº‹ä»¶å›è°ƒå‡½æ•°
  */
 am_local void __input_key_proc (void *p_arg, int key_code, int key_state, int keep_time)
 {
@@ -52,7 +52,7 @@ am_local void __input_key_proc (void *p_arg, int key_code, int key_state, int ke
 }
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_std_key_entry (void)
 {

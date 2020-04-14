@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief PT100ÎÂ¶È×ª»»Ëã·¨
+ * \brief PT100æ¸©åº¦è½¬æ¢ç®—æ³•
  *
  * \internal
  * \par Modification History
@@ -25,9 +25,9 @@
 #define __PT100_TO_TEMPERATURE_H
 
 /**
- * \brief ÒÀ¾İPT100µÄµç×è²âÁ¿Öµ£¨µ¥Î»£º¦¸£©¼ÆËãÎÂ¶ÈÖµ£¨µ¥Î»£º¡æ£©
- * \param[in] : PT100µÄ²âÁ¿µç×è£¬µ¥Î»£º¦¸
- * \return ÎÂ¶ÈÖµ
+ * \brief ä¾æ®PT100çš„ç”µé˜»æµ‹é‡å€¼ï¼ˆå•ä½ï¼šÎ©ï¼‰è®¡ç®—æ¸©åº¦å€¼ï¼ˆå•ä½ï¼šâ„ƒï¼‰
+ * \param[in] : PT100çš„æµ‹é‡ç”µé˜»ï¼Œå•ä½ï¼šÎ©
+ * \return æ¸©åº¦å€¼
  */
 float pt100_to_temperature(float pt100);
 

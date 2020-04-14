@@ -12,11 +12,11 @@
 
 /**
  * \file
- * \brief bootloader kboot KinetisFlashTool 版本管理
+ * \brief bootloader kboot KinetisFlashTool 鐗堟湰绠＄悊
  *
  *
  *
- * \par 使用示例
+ * \par 浣跨敤绀轰緥
  * \code
  *
  *

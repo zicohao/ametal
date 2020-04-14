@@ -12,19 +12,19 @@
 
 /**
  * \file
- * \brief SPI ¶ÁÐ´ FLASH(MX25L3206E) Àý³Ì£¨DMA ·½Ê½£©£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief SPI è¯»å†™ FLASH(MX25L3206E) ä¾‹ç¨‹ï¼ˆDMA æ–¹å¼ï¼‰ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. ½« SPI0 Óë SPI FLASH ½øÐÐÎïÀíÁ¬½Ó¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. å°† SPI0 ä¸Ž SPI FLASH è¿›è¡Œç‰©ç†è¿žæŽ¥ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Ð´ÈëÊý¾Ýµ½ SPI FLASH ²¢¶ÁÈ¡³öÀ´½øÐÐÐ£Ñé£¬²¢½«¶ÁÈ¡µ½µÄÊý¾ÝÍ¨¹ý´®¿ÚÊä³ö¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. å†™å…¥æ•°æ®åˆ° SPI FLASH å¹¶è¯»å–å‡ºæ¥è¿›è¡Œæ ¡éªŒï¼Œå¹¶å°†è¯»å–åˆ°çš„æ•°æ®é€šè¿‡ä¸²å£è¾“å‡ºã€‚
  *
  * \note
- *    ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIO0_0 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *    PIO0_4 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
+ *    å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO0_0 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *    PIO0_4 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_lpc82x_std_spi_flash_dma.c src_lpc82x_std_spi_flash_dma
  *
  * \internal
@@ -46,7 +46,7 @@
 #include "demo_std_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am824_core_std_spi_flash_dma_entry (void)
 {

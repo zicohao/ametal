@@ -6,14 +6,14 @@
 #include "view_digitron.h"
 
 typedef struct _param_adjust_action {
-    int                      led0_id;     	// LED0µÄIDºÅ
-    int                      led1_id;     	// LED1µÄIDºÅ
-    am_softimer_t            timer;       	// ÓÃÓÚLEDÉÁË¸µÄÈí¼ş¶¨Ê±Æ÷
-    model_temp_monitor_t		*p_model;  	    // ÎÂ¶ÈÄ£ĞÍ
-    view_digitron_t       	*p_view;    	  // ÎÂ¶ÈÄ£ĞÍµÄÊıÂë¹ÜÊÓÍ¼
-    int                      digitron_id; 	// ÊıÂë¹ÜÏÔÊ¾Æ÷±àºÅ
-    uint32_t                 adj_val;     	// µ±Ç°µ÷½ÚµÄÖµ
-    uint8_t                  adj_pos;     	// µ÷½Ú×´Ì¬ÏÂµÄµ÷½ÚÎ»ÖÃ£¬¸öÎ»¡¢Ê®Î»......
+    int                      led0_id;     	// LED0çš„IDå·
+    int                      led1_id;     	// LED1çš„IDå·
+    am_softimer_t            timer;       	// ç”¨äºLEDé—ªçƒçš„è½¯ä»¶å®šæ—¶å™¨
+    model_temp_monitor_t		*p_model;  	    // æ¸©åº¦æ¨¡å‹
+    view_digitron_t       	*p_view;    	  // æ¸©åº¦æ¨¡å‹çš„æ•°ç ç®¡è§†å›¾
+    int                      digitron_id; 	// æ•°ç ç®¡æ˜¾ç¤ºå™¨ç¼–å·
+    uint32_t                 adj_val;     	// å½“å‰è°ƒèŠ‚çš„å€¼
+    uint8_t                  adj_pos;     	// è°ƒèŠ‚çŠ¶æ€ä¸‹çš„è°ƒèŠ‚ä½ç½®ï¼Œä¸ªä½ã€åä½......
 } param_adjust_action_t;
 
 	

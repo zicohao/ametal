@@ -11,25 +11,25 @@
 *******************************************************************************/
 /**
  * \file
- * \brief USART Á÷¿ØÖÆÀý³Ì£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief USART æµæŽ§åˆ¶ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. ÅäÖÃÉÏÎ»»ú´®¿Ú²¨ÌØÂÊÎª 115200£¬8 Î»Êý¾Ý³¤¶È 1 Î»Í£Ö¹Î» ÎÞÆæÅ¼Ð£Ñé£»
- *   2. ´ò¿ª PC ¶ËÉÏÎ»»úµÄÈí¼þÁ÷¿Ø£¬ÉèÖÃ XON = 0x11£¬ XOFF = 0x13¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. é…ç½®ä¸Šä½æœºä¸²å£æ³¢ç‰¹çŽ‡ä¸º 115200ï¼Œ8 ä½æ•°æ®é•¿åº¦ 1 ä½åœæ­¢ä½ æ— å¥‡å¶æ ¡éªŒï¼›
+ *   2. æ‰“å¼€ PC ç«¯ä¸Šä½æœºçš„è½¯ä»¶æµæŽ§ï¼Œè®¾ç½® XON = 0x11ï¼Œ XOFF = 0x13ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿ÚÊä³ö "USART flowctrl test:\r\n"£»
- *   2. ´®¿ÚÊä³ö½ÓÊÕµ½µÄ×Ö·û´®£»
- *   3. Àý³ÌÖÐÏÂÎ»»úÃ¿ 100 ºÁÃëÖ»ÄÜ´¦Àí 5 ¸ö×Ö·û£¨»ØËÍ£©£¬ÒòÎª¿ªÆôÁËÈí¼þÁ÷¿Ø£¬ËùÒÔ
- *      PC ¶Ë´ó¹æÄ£(Ê¹ÓÃ´øÈí¼þÁ÷¿ØµÄÉÏÎ»»ú)·¢ËÍÊý¾ÝÒ²²»»á¶ªÊ§Êý¾Ý£¬
- *      PC ·¢ËÍµÄÊý¾ÝÁ¿µÈÓÚ½ÓÊÕµÄÊý¾ÝÁ¿¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. ä¸²å£è¾“å‡º "USART flowctrl test:\r\n"ï¼›
+ *   2. ä¸²å£è¾“å‡ºæŽ¥æ”¶åˆ°çš„å­—ç¬¦ä¸²ï¼›
+ *   3. ä¾‹ç¨‹ä¸­ä¸‹ä½æœºæ¯ 100 æ¯«ç§’åªèƒ½å¤„ç† 5 ä¸ªå­—ç¬¦ï¼ˆå›žé€ï¼‰ï¼Œå› ä¸ºå¼€å¯äº†è½¯ä»¶æµæŽ§ï¼Œæ‰€ä»¥
+ *      PC ç«¯å¤§è§„æ¨¡(ä½¿ç”¨å¸¦è½¯ä»¶æµæŽ§çš„ä¸Šä½æœº)å‘é€æ•°æ®ä¹Ÿä¸ä¼šä¸¢å¤±æ•°æ®ï¼Œ
+ *      PC å‘é€çš„æ•°æ®é‡ç­‰äºŽæŽ¥æ”¶çš„æ•°æ®é‡ã€‚
  *
  * \note
- *    1. Àý³ÌÊ¹ÓÃ USART0£¬Óë DEBUG µ÷ÊÔÊ¹ÓÃ´®¿ÚÏàÍ¬£»
- *    2. ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIO0_0 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *       PIO0_4 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
+ *    1. ä¾‹ç¨‹ä½¿ç”¨ USART0ï¼Œä¸Ž DEBUG è°ƒè¯•ä½¿ç”¨ä¸²å£ç›¸åŒï¼›
+ *    2. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO0_0 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *       PIO0_4 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_lpc_std_usart_flowctrl.c src_lpc_std_usart_flowctrl
  *
  * \internal
@@ -50,23 +50,23 @@
 #include "am_lpc_usart.h"
 
 /*******************************************************************************
-  ºê¶¨Òå
+  å®å®šä¹‰
 *******************************************************************************/
 
-#define __UART0_RX_BUF_SIZE  128  /**< \brief ½ÓÊÕ»·ÐÎ»º³åÇø´óÐ¡£¬Ó¦¸ÃÎª 2^n */
-#define __UART0_TX_BUF_SIZE  128  /**< \brief ·¢ËÍ»·ÐÎ»º³åÇø´óÐ¡£¬Ó¦¸ÃÎª 2^n */
+#define __UART0_RX_BUF_SIZE  128  /**< \brief æŽ¥æ”¶çŽ¯å½¢ç¼“å†²åŒºå¤§å°ï¼Œåº”è¯¥ä¸º 2^n */
+#define __UART0_TX_BUF_SIZE  128  /**< \brief å‘é€çŽ¯å½¢ç¼“å†²åŒºå¤§å°ï¼Œåº”è¯¥ä¸º 2^n */
 
 /*******************************************************************************
-  ±¾µØÈ«¾Ö±äÁ¿¶¨Òå
+  æœ¬åœ°å…¨å±€å˜é‡å®šä¹‰
 *******************************************************************************/
 
-/** \brief USART ½ÓÊÕ»·ÐÎ»º³åÇø */
+/** \brief USART æŽ¥æ”¶çŽ¯å½¢ç¼“å†²åŒº */
 am_local uint8_t __g_usart0_rxbuf[__UART0_RX_BUF_SIZE];
 
-/** \brief USART ·¢ËÍ»·ÐÎ»º³åÇø */
+/** \brief USART å‘é€çŽ¯å½¢ç¼“å†²åŒº */
 am_local uint8_t __g_usart0_txbuf[__UART0_TX_BUF_SIZE];
 
-/** \brief ´®¿Ú»º³åÇøÉè±¸ */
+/** \brief ä¸²å£ç¼“å†²åŒºè®¾å¤‡ */
 am_local am_uart_rngbuf_dev_t  __g_uart0_rngbuf_dev;
 
 void demo_lpc_std_usart_flowctrl_entry (am_uart_handle_t  uart_handle)
@@ -78,7 +78,7 @@ void demo_lpc_std_usart_flowctrl_entry (am_uart_handle_t  uart_handle)
                       (am_const uint8_t *)"USART flowctrl test:\r\n",
                       sizeof("USART flowctrl test:\r\n") - 1);
 
-    /* USART ³õÊ¼»¯Îª»·ÐÎ»º³åÇøÄ£Ê½ */
+    /* USART åˆå§‹åŒ–ä¸ºçŽ¯å½¢ç¼“å†²åŒºæ¨¡å¼ */
     handle = am_uart_rngbuf_init(&__g_uart0_rngbuf_dev,
                                   uart_handle,
                                   __g_usart0_rxbuf,
@@ -86,34 +86,34 @@ void demo_lpc_std_usart_flowctrl_entry (am_uart_handle_t  uart_handle)
                                   __g_usart0_txbuf,
                                   __UART0_TX_BUF_SIZE);
 
-    /* ¿ªÆôÈí¼þÁ÷¿Ø */
+    /* å¼€å¯è½¯ä»¶æµæŽ§ */
     am_uart_rngbuf_ioctl(handle,
                          AM_UART_FLOWMODE_SET,
                          (void *)AM_UART_FLOWCTL_SW);
 
-    /* ÉèÖÃÁ÷¹Ø·§Öµ£¬50 ¸ö×Ö½Ú */
+    /* è®¾ç½®æµå…³é˜€å€¼ï¼Œ50 ä¸ªå­—èŠ‚ */
     am_uart_rngbuf_ioctl(handle,
                          AM_UART_RNGBUF_RX_FLOW_OFF_THR,
                          (void *)50);
 
-    /* ÉèÖÃÁ÷¿ª·§Öµ£¬10 ¸ö×Ö½Ú */
+    /* è®¾ç½®æµå¼€é˜€å€¼ï¼Œ10 ä¸ªå­—èŠ‚ */
     am_uart_rngbuf_ioctl(handle,
                          AM_UART_RNGBUF_RX_FLOW_OFF_THR,
                          (void *)10);
 
     AM_FOREVER {
 
-       /* Ã¿ 100 ms ´Ó½ÓÊÕ»·ÐÎ»º³åÇøÖÐÈ¡³ö 5 ¸öÊý¾Ý·¢»Øµ½ PC ¶Ë
-        * Èç¹û PC ¶ËÏÂ·¢µÄÊý¾Ý¹ý¶à£¬µ±»·ÐÎ»º³åÇø´ïµ½Á÷¹Ø·§ÖµÊ±£¬
-        * MCU »áÏò PC ·¢ËÍÁ÷¿ØÐÅºÅ XOFF£¨0x13£©£¬PC ¶ËÍ£Ö¹·¢ËÍ¡£
-        * µ±½ÓÊÕ»·ÐÎ»º³åÇøÄÚµÄÊý¾Ý±»È¡³ö¼õÉÙµ½Á÷¿Õ·§ÖµÊ±£¬MCU
-        * »áÏò PC ·¢ËÍÁ÷¿ØÐÅºÅ XON £¨0x11£©£¬PC ¶Ë¼ÌÐø·¢ËÍÊý¾Ý¡£
+       /* æ¯ 100 ms ä»ŽæŽ¥æ”¶çŽ¯å½¢ç¼“å†²åŒºä¸­å–å‡º 5 ä¸ªæ•°æ®å‘å›žåˆ° PC ç«¯
+        * å¦‚æžœ PC ç«¯ä¸‹å‘çš„æ•°æ®è¿‡å¤šï¼Œå½“çŽ¯å½¢ç¼“å†²åŒºè¾¾åˆ°æµå…³é˜€å€¼æ—¶ï¼Œ
+        * MCU ä¼šå‘ PC å‘é€æµæŽ§ä¿¡å· XOFFï¼ˆ0x13ï¼‰ï¼ŒPC ç«¯åœæ­¢å‘é€ã€‚
+        * å½“æŽ¥æ”¶çŽ¯å½¢ç¼“å†²åŒºå†…çš„æ•°æ®è¢«å–å‡ºå‡å°‘åˆ°æµç©ºé˜€å€¼æ—¶ï¼ŒMCU
+        * ä¼šå‘ PC å‘é€æµæŽ§ä¿¡å· XON ï¼ˆ0x11ï¼‰ï¼ŒPC ç«¯ç»§ç»­å‘é€æ•°æ®ã€‚
         */
 
-       /* È¡³ö½ÓÊÕ»º³åÇøÄÚµÄÊý¾Ý */
+       /* å–å‡ºæŽ¥æ”¶ç¼“å†²åŒºå†…çš„æ•°æ® */
        am_uart_rngbuf_receive(handle, usart0_buf, 5);
 
-       /* Ð´Êý¾Ýµ½·¢ËÍ»º³åÇø */
+       /* å†™æ•°æ®åˆ°å‘é€ç¼“å†²åŒº */
        am_uart_rngbuf_send(handle, usart0_buf, 5);
 
        am_mdelay(100);

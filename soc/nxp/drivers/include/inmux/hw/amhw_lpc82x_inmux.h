@@ -13,11 +13,11 @@
 
 /**
  * \file
- * \brief ���븴�� (INMUX) Ӳ�������ӿ�
+ * \brief 输入复用 (INMUX) 硬件操作接口
  *
- * 1. ����DMAͨ����Ӳ������Դ;
- * 2. ����DMAͨ�������������;
- * 3. ����SCT���봥��Դ��
+ * 1. 配置DMA通道的硬件触发源;
+ * 2. 配置DMA通道触发输出复用;
+ * 3. 配置SCT输入触发源。
  *
  * \internal
  * \par Modification History
@@ -43,31 +43,31 @@ extern "C" {
 
 
 /**
- * \brief  ���븴�üĴ�����ṹ��
+ * \brief  输入复用寄存器块结构体
  */
 typedef struct amhw_lpc82x_inmux {
-    __IO uint32_t dma_inmux[18];      /**< \brief DMA ����Դѡ��Ĵ���        */
-    __I  uint32_t reserved[4078];     /**< \brief ����                        */  
-    __IO uint32_t dma_mux[2];         /**< \brief DMA ������üĴ���          */
-    __I  uint32_t reserved2[6];       /**< \brief ����                        */ 
-    __IO uint32_t sct0_inmux[4];      /**< \brief SCT ����ѡ��Ĵ���          */ 
+    __IO uint32_t dma_inmux[18];      /**< \brief DMA 触发源选择寄存器        */
+    __I  uint32_t reserved[4078];     /**< \brief 保留                        */  
+    __IO uint32_t dma_mux[2];         /**< \brief DMA 输出复用寄存器          */
+    __I  uint32_t reserved2[6];       /**< \brief 保留                        */ 
+    __IO uint32_t sct0_inmux[4];      /**< \brief SCT 输入选择寄存器          */ 
 } amhw_lpc82x_inmux_t;
 
 
-/** \brief DMA ͨ������Դ */
+/** \brief DMA 通道触发源 */
 typedef enum amhw_lpc82x_inmux_dma_trig_src {
-    AMHW_LPC82X_INMUX_DMA_TRIG_ADC0_SEQA_IRQ = 0, /**< \brief ADC0 ����A�ж�  */
-    AMHW_LPC82X_INMUX_DMA_TRIG_ADC0_SEQB_IRQ,     /**< \brief ADC0 ����B�ж�  */
-    AMHW_LPC82X_INMUX_DMA_TRIG_SCT0_DMA0,         /**< \brief SCT0 DMA0 ����  */
-    AMHW_LPC82X_INMUX_DMA_TRIG_SCT0_DMA1,         /**< \brief SCT1 DMA1 ����  */
-    AMHW_LPC82X_INMUX_DMA_TRIG_ACMP_O,            /**< \brief ACMP �Ƚ������ */
-    AMHW_LPC82X_INMUX_DMA_TRIG_PININT0,           /**< \brief �����ж� 0      */
-    AMHW_LPC82X_INMUX_DMA_TRIG_PININT1,           /**< \brief �����ж� 1      */
-    AMHW_LPC82X_INMUX_DMA_TRIG_DMA_MUX0,          /**< \brief DMA ���ô��� 0  */
-    AMHW_LPC82X_INMUX_DMA_TRIG_DMA_MUX1,          /**< \brief DMA ���ô��� 1  */
+    AMHW_LPC82X_INMUX_DMA_TRIG_ADC0_SEQA_IRQ = 0, /**< \brief ADC0 序列A中断  */
+    AMHW_LPC82X_INMUX_DMA_TRIG_ADC0_SEQB_IRQ,     /**< \brief ADC0 序列B中断  */
+    AMHW_LPC82X_INMUX_DMA_TRIG_SCT0_DMA0,         /**< \brief SCT0 DMA0 请求  */
+    AMHW_LPC82X_INMUX_DMA_TRIG_SCT0_DMA1,         /**< \brief SCT1 DMA1 请求  */
+    AMHW_LPC82X_INMUX_DMA_TRIG_ACMP_O,            /**< \brief ACMP 比较器输出 */
+    AMHW_LPC82X_INMUX_DMA_TRIG_PININT0,           /**< \brief 引脚中断 0      */
+    AMHW_LPC82X_INMUX_DMA_TRIG_PININT1,           /**< \brief 引脚中断 1      */
+    AMHW_LPC82X_INMUX_DMA_TRIG_DMA_MUX0,          /**< \brief DMA 复用触发 0  */
+    AMHW_LPC82X_INMUX_DMA_TRIG_DMA_MUX1,          /**< \brief DMA 复用触发 1  */
 } amhw_lpc82x_inmux_dma_trig_src_t;
 
-/** \brief SCT ���봥��Դ */
+/** \brief SCT 输入触发源 */
 typedef enum amhw_lpc82x_inmux_sct_trig_src {
     AMHW_LPC82X_INMUX_SCTTRIG_SCT_PIN0 = 0,    /**< \brief SCT_PIN0.          */
     AMHW_LPC82X_INMUX_SCTTRIG_SCT_PIN1,        /**< \brief SCT_PIN1.          */
@@ -80,13 +80,13 @@ typedef enum amhw_lpc82x_inmux_sct_trig_src {
 } amhw_lpc82x_inmux_sct_trig_src_t;
 
 /**
- * \brief ����ָ��DMAͨ������Դ
+ * \brief 配置指定DMA通道触发源
  *
- * \param[in] p_hw_inmux : ָ�����븴�üĴ������ָ��
- * \param[in] chan       : DMAͨ����ֵΪ DMA_CHAN_* (#DMA_CHAN_0)
- * \param[in] trig       : ����Դ
+ * \param[in] p_hw_inmux : 指向输入复用寄存器块的指针
+ * \param[in] chan       : DMA通道，值为 DMA_CHAN_* (#DMA_CHAN_0)
+ * \param[in] trig       : 触发源
  *
- * \return ��
+ * \return 无
  */
 am_static_inline 
 void amhw_lpc82x_inmux_dma_trig_set (amhw_lpc82x_inmux_t            *p_hw_inmux,
@@ -97,13 +97,13 @@ void amhw_lpc82x_inmux_dma_trig_set (amhw_lpc82x_inmux_t            *p_hw_inmux,
 }
 
 /**
- * \brief ����DMA����������ӵ�DAMͨ��
+ * \brief 配置DMA复用输出连接的DAM通道
  *
- * \param[in] p_hw_inmux : ָ�����븴�üĴ������ָ��
- * \param[in] dma_mux    : inmuxͨ��0����1����ӦֵΪ0����1 
- * \param[in] chan       : DMAͨ����ֵΪ DMA_CHAN_*(#DMA_CHAN_0)
+ * \param[in] p_hw_inmux : 指向输入复用寄存器块的指针
+ * \param[in] dma_mux    : inmux通道0或者1，对应值为0或者1 
+ * \param[in] chan       : DMA通道，值为 DMA_CHAN_*(#DMA_CHAN_0)
  *
- * \return ��
+ * \return 无
  */
 am_static_inline 
 void amhw_lpc82x_inmux_dma_mux_set (amhw_lpc82x_inmux_t *p_hw_inmux,
@@ -114,13 +114,13 @@ void amhw_lpc82x_inmux_dma_mux_set (amhw_lpc82x_inmux_t *p_hw_inmux,
 }
 
 /**
- * \brief ����SCT���봥��Դ
+ * \brief 配置SCT输入触发源
  *
- * \param[in] p_hw_inmux : ָ�����븴�üĴ������ָ��
- * \param[in] chan       : SCTͨ��
- * \param[in] trig       : ����Դ
+ * \param[in] p_hw_inmux : 指向输入复用寄存器块的指针
+ * \param[in] chan       : SCT通道
+ * \param[in] trig       : 触发源
  *
- * \return ��
+ * \return 无
  */
 am_static_inline 
 void amhw_lpc82x_inmux_sct_trig_set (amhw_lpc82x_inmux_t            *p_hw_inmux,

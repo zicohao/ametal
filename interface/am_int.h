@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief NVIC±ê×¼½Ó¿Ú
+ * \brief NVICæ ‡å‡†æ¥å£
  *
  * \internal
  * \par Modification history
@@ -36,55 +36,55 @@ extern "C" {
  */
 
 /**
- * \brief ÖĞ¶ÏÁ¬½Ó
+ * \brief ä¸­æ–­è¿æ¥
  * 
- * \param[in] inum    : ÖĞ¶ÏºÅ
- * \param[in] pfn_isr : ÖĞ¶Ï»Øµ÷º¯ÊıÖ¸Õë
- * \param[in] p_arg   : »Øµ÷º¯ÊıµÄÈë¿Ú²ÎÊı
+ * \param[in] inum    : ä¸­æ–­å·
+ * \param[in] pfn_isr : ä¸­æ–­å›è°ƒå‡½æ•°æŒ‡é’ˆ
+ * \param[in] p_arg   : å›è°ƒå‡½æ•°çš„å…¥å£å‚æ•°
  * 
- * \retval  AM_OK     : Á¬½Ó³É¹¦
- * \retval -AM_EINVAL : ÎŞĞ§²ÎÊı
- * \retval -AM_EPERM  : ²Ù×÷Ê§°Ü
+ * \retval  AM_OK     : è¿æ¥æˆåŠŸ
+ * \retval -AM_EINVAL : æ— æ•ˆå‚æ•°
+ * \retval -AM_EPERM  : æ“ä½œå¤±è´¥
  */
 int am_int_connect(int inum, am_pfnvoid_t pfn_isr, void *p_arg);
 
 /**
- * \brief É¾³ıÖĞ¶ÏÁ¬½Ó
+ * \brief åˆ é™¤ä¸­æ–­è¿æ¥
  * 
- * \param[in] inum    : ÖĞ¶ÏºÅ
- * \param[in] pfn_isr : ÖĞ¶Ï»Øµ÷º¯ÊıÖ¸Õë
- * \param[in] p_arg   : »Øµ÷º¯ÊıµÄÈë¿Ú²ÎÊı
+ * \param[in] inum    : ä¸­æ–­å·
+ * \param[in] pfn_isr : ä¸­æ–­å›è°ƒå‡½æ•°æŒ‡é’ˆ
+ * \param[in] p_arg   : å›è°ƒå‡½æ•°çš„å…¥å£å‚æ•°
  * 
- * \retval  AM_OK     : É¾³ıÁ¬½Ó³É¹¦
- * \retval -AM_EINVAL : ÎŞĞ§²ÎÊı
- * \retval -AM_EPERM  : ²Ù×÷Ê§°Ü
+ * \retval  AM_OK     : åˆ é™¤è¿æ¥æˆåŠŸ
+ * \retval -AM_EINVAL : æ— æ•ˆå‚æ•°
+ * \retval -AM_EPERM  : æ“ä½œå¤±è´¥
  */
 int am_int_disconnect(int inum, am_pfnvoid_t pfn_isr, void *p_arg);
 
 /**
- * \brief Ê¹ÄÜÖĞ¶Ï
- * \param[in] inum  : ÖĞ¶ÏºÅ
- * \retval    AM_OK : ²Ù×÷³É¹¦
+ * \brief ä½¿èƒ½ä¸­æ–­
+ * \param[in] inum  : ä¸­æ–­å·
+ * \retval    AM_OK : æ“ä½œæˆåŠŸ
  */
 int am_int_enable(int inum);
 
 /**
- * \brief ½ûÄÜÖĞ¶Ï
- * \param[in] inum  : ÖĞ¶ÏºÅ
- * \retval    AM_OK : ²Ù×÷³É¹¦
+ * \brief ç¦èƒ½ä¸­æ–­
+ * \param[in] inum  : ä¸­æ–­å·
+ * \retval    AM_OK : æ“ä½œæˆåŠŸ
  */
 int am_int_disable(int inum);
 
 /**
- * \brief ¹Ø±Õ±¾µØCPUÖĞ¶Ï
+ * \brief å…³é—­æœ¬åœ°CPUä¸­æ–­
  *
  * \attention
- * - ¹Ø±Õ±¾µØCPUÖĞ¶ÏµÄÊ±¼äÒ»¶¨Òª¶Ì
- * - ±ØĞëÓë am_int_cpu_unlock() º¯Êı´îÅäÊ¹ÓÃ
+ * - å…³é—­æœ¬åœ°CPUä¸­æ–­çš„æ—¶é—´ä¸€å®šè¦çŸ­
+ * - å¿…é¡»ä¸ am_int_cpu_unlock() å‡½æ•°æ­é…ä½¿ç”¨
  *
- * \return ÖĞ¶Ï¹Ø±ÕĞÅÏ¢
+ * \return ä¸­æ–­å…³é—­ä¿¡æ¯
  *
- * \par Ê¾Àı£º
+ * \par ç¤ºä¾‹ï¼š
  * \code
  * uint32_t key;
  * 
@@ -93,27 +93,27 @@ int am_int_disable(int inum);
  * am_int_cpu_unlock(key);
  * \endcode
  *
- * \par Ç¶Ì×Ê¹ÓÃÊ¾Àı£º
+ * \par åµŒå¥—ä½¿ç”¨ç¤ºä¾‹ï¼š
  * \code 
  * uint32_t key0, key1;
  *
- * key0 = am_int_cpu_lock();  // ÖĞ¶ÏÂíÉÏ¹Ø±Õ
- * key1 = am_int_cpu_lock();  // ÖĞ¶Ï±£³Ö¹Ø±Õ
+ * key0 = am_int_cpu_lock();  // ä¸­æ–­é©¬ä¸Šå…³é—­
+ * key1 = am_int_cpu_lock();  // ä¸­æ–­ä¿æŒå…³é—­
  * 
- * am_int_cpu_unlock(key1);   // ÖĞ¶Ï±£³Ö¹Ø±Õ
- * am_int_cpu_unlock(key0);   // ÖĞ¶ÏÂíÉÏ´ò¿ª
+ * am_int_cpu_unlock(key1);   // ä¸­æ–­ä¿æŒå…³é—­
+ * am_int_cpu_unlock(key0);   // ä¸­æ–­é©¬ä¸Šæ‰“å¼€
  * \endcode
  */
 uint32_t am_int_cpu_lock(void);
 
 /**
- * \brief ´ò¿ª±¾µØCPUÖĞ¶Ï
+ * \brief æ‰“å¼€æœ¬åœ°CPUä¸­æ–­
  *
  * \attention
- *  ±ØĞëÓë am_int_cpu_lock() º¯Êı´îÅäÊ¹ÓÃ
+ *  å¿…é¡»ä¸ am_int_cpu_lock() å‡½æ•°æ­é…ä½¿ç”¨
  *
- * \param[in] key : ÖĞ¶Ï¹Ø±ÕĞÅÏ¢
- * \return    ÎŞ
+ * \param[in] key : ä¸­æ–­å…³é—­ä¿¡æ¯
+ * \return    æ— 
  */
 void am_int_cpu_unlock(uint32_t key);
 

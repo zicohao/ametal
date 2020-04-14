@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief CRCÇı¶¯£¬·şÎñCRC±ê×¼½Ó¿Ú
+ * \brief CRCé©±åŠ¨ï¼ŒæœåŠ¡CRCæ ‡å‡†æ¥å£
  *
- * Ö»ÄÜÖ§³Ö4×Ö½Ú¶ÔÆëµÄĞòÁĞ¼ÆËã
- * ¼´£º ĞòÁĞµÄ×Ö½ÚÊı % 4 == 0
+ * åªèƒ½æ”¯æŒ4å­—èŠ‚å¯¹é½çš„åºåˆ—è®¡ç®—
+ * å³ï¼š åºåˆ—çš„å­—èŠ‚æ•° % 4 == 0
  *
  * \internal
  * \par Modification History
@@ -42,54 +42,54 @@ extern "C" {
  */
 
 /**
- * \brief CRCÉè±¸ĞÅÏ¢
+ * \brief CRCè®¾å¤‡ä¿¡æ¯
  */
 typedef struct am_zlg_crc_devinfo {
 
-    /** \brief CRC¼Ä´æÆ÷¿éµÄ»ùµØÖ· */
+    /** \brief CRCå¯„å­˜å™¨å—çš„åŸºåœ°å€ */
     uint32_t   crc_reg_base;
 
-    /** \brief Æ½Ì¨³õÊ¼»¯º¯Êı£¬Èç´ò¿ªÊ±ÖÓ£¬ÅäÖÃÒı½ÅµÈ¹¤×÷ */
+    /** \brief å¹³å°åˆå§‹åŒ–å‡½æ•°ï¼Œå¦‚æ‰“å¼€æ—¶é’Ÿï¼Œé…ç½®å¼•è„šç­‰å·¥ä½œ */
     void     (*pfn_plfm_init)(void);
 
-    /** \brief Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    /** \brief å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
     void     (*pfn_plfm_deinit)(void);
 
 } am_zlg_crc_devinfo_t;
 
 /**
- * \brief CRCÉè±¸ÊµÀı
+ * \brief CRCè®¾å¤‡å®ä¾‹
  */
 typedef struct am_zlg_crc_dev {
 
-    /** \brief CRC±ê×¼·şÎñ */
+    /** \brief CRCæ ‡å‡†æœåŠ¡ */
     am_crc_serv_t               crc_serve;
 
-    /** \brief Ö¸ÏòCRCÉè±¸ĞÅÏ¢µÄÖ¸Õë */
+    /** \brief æŒ‡å‘CRCè®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ */
     const am_zlg_crc_devinfo_t *p_devinfo;
 
-    /** \brief Ö¸ÏòCRCÄ£ĞÍµÄÖ¸Õë */
+    /** \brief æŒ‡å‘CRCæ¨¡å‹çš„æŒ‡é’ˆ */
     am_crc_pattern_t           *p_pattern;
 
 } am_zlg_crc_dev_t;
 
 /**
- * \brief CRC³õÊ¼»¯
+ * \brief CRCåˆå§‹åŒ–
  *
- * \param[in] p_dev     : Ö¸ÏòCRCÉè±¸µÄÖ¸Õë
- * \param[in] p_devinfo : Ö¸ÏòCRCÉè±¸ĞÅÏ¢µÄÖ¸Õë
+ * \param[in] p_dev     : æŒ‡å‘CRCè®¾å¤‡çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo : æŒ‡å‘CRCè®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ
  *
- * \return CRC±ê×¼·şÎñ²Ù×÷¾ä±ú£¬Èç¹ûÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return CRCæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„ï¼Œå¦‚æœä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_crc_handle_t am_zlg_crc_init (am_zlg_crc_dev_t           *p_dev,
                                  const am_zlg_crc_devinfo_t *p_devinfo);
 
 /**
- * \brief CRCÈ¥³õÊ¼»¯
+ * \brief CRCå»åˆå§‹åŒ–
  *
- * \param[in] handle : am_zlg_crc_init() ³õÊ¼»¯º¯Êı»ñµÃµÄCRC·şÎñ¾ä±ú
+ * \param[in] handle : am_zlg_crc_init() åˆå§‹åŒ–å‡½æ•°è·å¾—çš„CRCæœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg_crc_deinit (am_crc_handle_t handle);
 

@@ -12,21 +12,21 @@
 
 /**
  * \file
- * \brief SPI ¶ÁĞ´ FLASH(MX25L3206E) Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief SPI è¯»å†™ FLASH(MX25L3206E) ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè£º
- *   1. ½« SPI ½Ó¿ÚºÍ FLASH ¶ÔÓ¦µÄ½Ó¿ÚÁ¬½Ó¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. å°† SPI æ¥å£å’Œ FLASH å¯¹åº”çš„æ¥å£è¿æ¥ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Ğ´Êı¾İµ½ FLASH£»
- *   2. ¶Á³ö¸Õ²ÅĞ´ÈëµÄÊı¾İ£»
- *   3. µ÷ÊÔ´®¿Ú´òÓ¡²âÊÔ½á¹û¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. å†™æ•°æ®åˆ° FLASHï¼›
+ *   2. è¯»å‡ºåˆšæ‰å†™å…¥çš„æ•°æ®ï¼›
+ *   3. è°ƒè¯•ä¸²å£æ‰“å°æµ‹è¯•ç»“æœã€‚
  *
  * \note
- *   1. ¿É¼û£¬´ó¶àÊıÇé¿öÏÂ£¬Ö±½ÓÊ¹ÓÃ am_spi_write_then_read() ºÍ
- *      am_spi_write_then_write() º¯Êı¼´¿É¡£
+ *   1. å¯è§ï¼Œå¤§å¤šæ•°æƒ…å†µä¸‹ï¼Œç›´æ¥ä½¿ç”¨ am_spi_write_then_read() å’Œ
+ *      am_spi_write_then_write() å‡½æ•°å³å¯ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_std_spi_flash.c src_std_spi_flash
  *
  * \internal
@@ -47,27 +47,27 @@
 #include "am_vdebug.h"
 
 /**
- * \brief ¶¨Òå FLASH Ïà¹ØÃüÁî
+ * \brief å®šä¹‰ FLASH ç›¸å…³å‘½ä»¤
  */
-#define WREN       0x06 /**< \brief SPI_FLASH Ğ´Ê¹ÄÜÃüÁî */
-#define WRDI       0x04 /**< \brief SPI_FLASH ¶ÁÈ¡ ID ÃüÁî */
-#define RDSR       0x05 /**< \brief SPI_FLASH ¶ÁÈ¡×´Ì¬ÃüÁî */
-#define WRSR       0x01 /**< \brief SPI_FLASH Ğ´×´Ì¬ÃüÁî */
-#define READ       0x03 /**< \brief SPI_FLASH ¶Á²Ù×÷ÃüÁî */
-#define WRITE      0x02 /**< \brief SPI_FLASH Ğ´²Ù×÷ÃüÁî */
-#define SE         0xD8 /**< \brief SPI_FLASH ²Á³ı²Ù×÷ÃüÁî */
-#define CHIP_ERASE 0x60 /**< \brief SPI_FLASH ÕûÆ¬²Á³ıÃüÁî */
+#define WREN       0x06 /**< \brief SPI_FLASH å†™ä½¿èƒ½å‘½ä»¤ */
+#define WRDI       0x04 /**< \brief SPI_FLASH è¯»å– ID å‘½ä»¤ */
+#define RDSR       0x05 /**< \brief SPI_FLASH è¯»å–çŠ¶æ€å‘½ä»¤ */
+#define WRSR       0x01 /**< \brief SPI_FLASH å†™çŠ¶æ€å‘½ä»¤ */
+#define READ       0x03 /**< \brief SPI_FLASH è¯»æ“ä½œå‘½ä»¤ */
+#define WRITE      0x02 /**< \brief SPI_FLASH å†™æ“ä½œå‘½ä»¤ */
+#define SE         0xD8 /**< \brief SPI_FLASH æ“¦é™¤æ“ä½œå‘½ä»¤ */
+#define CHIP_ERASE 0x60 /**< \brief SPI_FLASH æ•´ç‰‡æ“¦é™¤å‘½ä»¤ */
 
-#define FLASH_PAGE_SIZE 256 /**< \brief SPI_FLASH Ò³´óĞ¡¶¨Òå */
+#define FLASH_PAGE_SIZE 256 /**< \brief SPI_FLASH é¡µå¤§å°å®šä¹‰ */
 
-#define TEST_ADDR 0x0000          /**< \brief SPI_FLASH ²âÊÔÒ³µØÖ· */
-#define TEST_LEN  FLASH_PAGE_SIZE /**< \brief ²âÊÔ×Ö½Ú³¤¶È */
+#define TEST_ADDR 0x0000          /**< \brief SPI_FLASH æµ‹è¯•é¡µåœ°å€ */
+#define TEST_LEN  FLASH_PAGE_SIZE /**< \brief æµ‹è¯•å­—èŠ‚é•¿åº¦ */
 
-static uint8_t g_tx_buf[TEST_LEN] = {0x9F}; /**< \brief SPI_FLASH Ğ´Êı¾İ»º´æ */
-static uint8_t g_rx_buf[TEST_LEN] = {0};    /**< \brief SPI_FLASH ¶ÁÊı¾İ»º´æ */
+static uint8_t g_tx_buf[TEST_LEN] = {0x9F}; /**< \brief SPI_FLASH å†™æ•°æ®ç¼“å­˜ */
+static uint8_t g_rx_buf[TEST_LEN] = {0};    /**< \brief SPI_FLASH è¯»æ•°æ®ç¼“å­˜ */
 
 /**
- * \brief ÅĞ¶Ï SPI_FLASH ÊÇ·ñ´¦ÓÚÃ¦×´Ì¬
+ * \brief åˆ¤æ–­ SPI_FLASH æ˜¯å¦å¤„äºå¿™çŠ¶æ€
  */
 static am_bool_t flash_isbusy_chk (am_spi_device_t *p_dev)
 {
@@ -84,13 +84,13 @@ static am_bool_t flash_isbusy_chk (am_spi_device_t *p_dev)
 }
 
 /**
- * \brief Ğ´Ê¹ÄÜ
+ * \brief å†™ä½¿èƒ½
  */
 static void flash_wren (am_spi_device_t *p_dev)
 {
-    uint8_t tx_cmd = WREN; /* ·¢ËÍµÄÖ¸Áî */
+    uint8_t tx_cmd = WREN; /* å‘é€çš„æŒ‡ä»¤ */
 
-    /* ÉèÖÃ´«Êä²ÎÊı£¬·¢ËÍĞ´Ê¹ÄÜÃüÁî */
+    /* è®¾ç½®ä¼ è¾“å‚æ•°ï¼Œå‘é€å†™ä½¿èƒ½å‘½ä»¤ */
     am_spi_write_then_write(p_dev,
                            &tx_cmd,
                             1,
@@ -99,12 +99,12 @@ static void flash_wren (am_spi_device_t *p_dev)
 }
 
 /**
- * \brief ²Á³ıº¯Êı
+ * \brief æ“¦é™¤å‡½æ•°
  */
 static void spi_flash_erase (am_spi_device_t *p_dev, uint32_t addr )
 {
-    uint8_t tx_cmd[4]; /* ·¢ËÍµÄÖ¸Áî */
-    uint8_t cmd_len;   /* Ö¸Áî³¤¶È */
+    uint8_t tx_cmd[4]; /* å‘é€çš„æŒ‡ä»¤ */
+    uint8_t cmd_len;   /* æŒ‡ä»¤é•¿åº¦ */
 
     flash_wren(p_dev);
 
@@ -121,22 +121,22 @@ static void spi_flash_erase (am_spi_device_t *p_dev, uint32_t addr )
                             NULL,
                             0);
 
-    /* µÈ´ı FLASH ´¦ÓÚ¿ÕÏĞ×´Ì¬ */
+    /* ç­‰å¾… FLASH å¤„äºç©ºé—²çŠ¶æ€ */
     while (flash_isbusy_chk(p_dev) == AM_TRUE);
 }
 
 /**
- * \brief Ğ´Êı¾İ
+ * \brief å†™æ•°æ®
  */
 static void spi_flash_write (am_spi_device_t *p_dev,
                              uint32_t         addr,
                              uint32_t         length)
 {
-    uint8_t tx_cmd[4]; /* ·¢ËÍµÄÖ¸Áî */
+    uint8_t tx_cmd[4]; /* å‘é€çš„æŒ‡ä»¤ */
 
     flash_wren(p_dev);
 
-    /* Ğ´ÈëĞ´Ö¸ÁîºÍ 24 Î»µØÖ· */
+    /* å†™å…¥å†™æŒ‡ä»¤å’Œ 24 ä½åœ°å€ */
     tx_cmd[0] = WRITE;
     tx_cmd[1] = addr >> 16;
     tx_cmd[2] = addr >>  8;
@@ -148,20 +148,20 @@ static void spi_flash_write (am_spi_device_t *p_dev,
                             g_tx_buf,
                             length);
 
-    /* µÈ´ı FLASH ´¦ÓÚ¿ÕÏĞ×´Ì¬ */
+    /* ç­‰å¾… FLASH å¤„äºç©ºé—²çŠ¶æ€ */
     while (flash_isbusy_chk(p_dev) == AM_TRUE);
 }
 
 /**
- * \brief ¶ÁÊı¾İ
+ * \brief è¯»æ•°æ®
  */
  static void spi_flash_read (am_spi_device_t *p_dev,
                              uint32_t         addr,
                              uint32_t         length)
 {
-    uint8_t tx_cmd[4]; /* ·¢ËÍµÄÖ¸Áî */
+    uint8_t tx_cmd[4]; /* å‘é€çš„æŒ‡ä»¤ */
 
-    /* Ğ´Èë¶ÁÖ¸ÁîºÍ 24 Î»µØÖ· */
+    /* å†™å…¥è¯»æŒ‡ä»¤å’Œ 24 ä½åœ°å€ */
     tx_cmd[0] = READ;
     tx_cmd[1] = addr >> 16;
     tx_cmd[2] = addr >>  8;
@@ -173,16 +173,16 @@ static void spi_flash_write (am_spi_device_t *p_dev,
                            g_rx_buf,
                            length);
 
-    /* µÈ´ı FLASH ´¦ÓÚ¿ÕÏĞ×´Ì¬ */
+    /* ç­‰å¾… FLASH å¤„äºç©ºé—²çŠ¶æ€ */
     while (flash_isbusy_chk(p_dev) == AM_TRUE);
 }
 
 /**
- * \brief ID ¼ì²â
+ * \brief ID æ£€æµ‹
  */
 static void flash_id_chk (am_spi_device_t *p_dev)
 {
-    uint8_t tx_cmd = 0x9F; /* ·¢ËÍµÄÖ¸Áî */
+    uint8_t tx_cmd = 0x9F; /* å‘é€çš„æŒ‡ä»¤ */
     uint8_t rd_id[3];
 
     am_spi_write_then_read(p_dev,
@@ -191,14 +191,14 @@ static void flash_id_chk (am_spi_device_t *p_dev)
                            rd_id,
                            3);
 
-    /* µÈ´ı FLASH ´¦ÓÚ¿ÕÏĞ×´Ì¬ */
+    /* ç­‰å¾… FLASH å¤„äºç©ºé—²çŠ¶æ€ */
     while (flash_isbusy_chk(p_dev) == AM_TRUE);
 
     AM_DBG_INFO("The ID is %x, %x ,%x\r\n", rd_id[0], rd_id[1], rd_id[2]);
 }
 
 /**
- * \brief FLASH ²âÊÔ
+ * \brief FLASH æµ‹è¯•
  */
 static void spi_flash_test_demo (am_spi_device_t *p_dev,
                                  uint32_t         addr,
@@ -206,10 +206,10 @@ static void spi_flash_test_demo (am_spi_device_t *p_dev,
 {
     uint32_t i;
 
-    /* ¼ì²éĞ¾Æ¬ ID */
+    /* æ£€æŸ¥èŠ¯ç‰‡ ID */
     flash_id_chk(p_dev);
 
-    /* ²Á³ıµ±Ç°µØÖ·ÖĞÊı¾İ */
+    /* æ“¦é™¤å½“å‰åœ°å€ä¸­æ•°æ® */
     spi_flash_erase(p_dev, addr);
 
     AM_DBG_INFO("FLASH erase ok\r\n");
@@ -218,7 +218,7 @@ static void spi_flash_test_demo (am_spi_device_t *p_dev,
         g_tx_buf[i] = i + 1;
     }
 
-    /* Ğ´ÈëÊı¾İµ½Éè¶¨ FLASH µØÖ· */
+    /* å†™å…¥æ•°æ®åˆ°è®¾å®š FLASH åœ°å€ */
     spi_flash_write(p_dev, addr, length);
     am_mdelay(10);
 
@@ -228,14 +228,14 @@ static void spi_flash_test_demo (am_spi_device_t *p_dev,
         g_rx_buf[i] = 0;
     }
 
-    /* ´ÓÉè¶¨µÄ FLASH µØÖ·ÖĞ¶ÁÈ¡Êı¾İ */
+    /* ä»è®¾å®šçš„ FLASH åœ°å€ä¸­è¯»å–æ•°æ® */
     spi_flash_read(p_dev, addr, length);
     am_mdelay(10);
 
-    /* Êı¾İĞ£Ñé */
+    /* æ•°æ®æ ¡éªŒ */
     for (i = 0; i < length; i++) {
 
-        /* ½«¶ÁÈ¡µ½µÄÊı¾İÍ¨¹ı´®¿Ú´òÓ¡³öÀ´ */
+        /* å°†è¯»å–åˆ°çš„æ•°æ®é€šè¿‡ä¸²å£æ‰“å°å‡ºæ¥ */
         AM_DBG_INFO(" read %2dst data is : 0x%2x \r\n", i, g_rx_buf[i]);
         if(g_rx_buf[i] != ((1 + i) & 0xFF)) {
             AM_DBG_INFO("verify failed!\r\n");
@@ -245,7 +245,7 @@ static void spi_flash_test_demo (am_spi_device_t *p_dev,
 }
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_std_spi_flash_entry (am_spi_handle_t spi_handle,
                                int             cs_pin,

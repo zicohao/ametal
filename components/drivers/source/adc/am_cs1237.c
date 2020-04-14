@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief CS1237Èí¼ş°üÊµÏÖ
+ * \brief CS1237è½¯ä»¶åŒ…å®ç°
  *
  * \internal
  * \par Modification history
@@ -27,35 +27,35 @@
 #include "am_delay.h"
 #include "am_vdebug.h"
 /**
- * \brief CS1237¶ÁÖ¸ÁîºÍĞ´Ö¸Áîºê¶¨Òå
+ * \brief CS1237è¯»æŒ‡ä»¤å’Œå†™æŒ‡ä»¤å®å®šä¹‰
  */
-#define __AM_CS1237_WRITE_CMD             (0x65 << 1)      /**< \brief Ğ´Ö¸Áî */
-#define __AM_CS1237_READ_CMD              (0x56 << 1)      /**< \brief ¶ÁÖ¸Áî */
+#define __AM_CS1237_WRITE_CMD             (0x65 << 1)      /**< \brief å†™æŒ‡ä»¤ */
+#define __AM_CS1237_READ_CMD              (0x56 << 1)      /**< \brief è¯»æŒ‡ä»¤ */
 
 /*****************************************************************************
- * ¾²Ì¬ÉùÃ÷
+ * é™æ€å£°æ˜
  ****************************************************************************/
 
- /** \brief CS1237 ADC¶Áº¯Êı */
+ /** \brief CS1237 ADCè¯»å‡½æ•° */
 static int __am_cs1237_dat_read(am_cs1237_adc_dev_t *p_dev, uint32_t *val);
 
- /** \brief CS1237¿ªÆôÖĞ¶Ï */
+ /** \brief CS1237å¼€å¯ä¸­æ–­ */
  static void __am_cs1237_int_open(am_cs1237_adc_dev_t  *p_dev);
 
- /** \brief CS1237¹Ø±ÕÖĞ¶Ï */
+ /** \brief CS1237å…³é—­ä¸­æ–­ */
  static void __am_cs1237_int_close(am_cs1237_adc_dev_t  *p_dev);
 
- /** \brief CS1237 adcÊ±Ğò */
+ /** \brief CS1237 adcæ—¶åº */
   void __am_cs1237_ad_clk (am_cs1237_adc_dev_t  *p_dev);
 
- /** \brief CS1237 ADCÖĞ¶Ï´¦Àí */
+ /** \brief CS1237 ADCä¸­æ–­å¤„ç† */
  static void __am_cs1237_trigger_handle(void *p_arg);
 
- /** \brief ADC ÅäÖÃ¼Ä´æÆ÷Ğ´º¯Êı */
+ /** \brief ADC é…ç½®å¯„å­˜å™¨å†™å‡½æ•° */
  static int __am_cs1237_config_reg_write (am_cs1237_adc_dev_t  *p_dev,
                                           uint8_t           config_reg);
 
- /** \brief Æô¶¯ADC×ª»» */
+ /** \brief å¯åŠ¨ADCè½¬æ¢ */
  static int __pfn_adc_start (void                   *p_drv,
                             int                     chan,
                             am_adc_buf_desc_t      *p_desc,
@@ -65,27 +65,27 @@ static int __am_cs1237_dat_read(am_cs1237_adc_dev_t *p_dev, uint32_t *val);
                             am_adc_seq_cb_t         pfn_callback,
                             void                   *p_arg);
 
- /** \brief Í£Ö¹×ª»» */
+ /** \brief åœæ­¢è½¬æ¢ */
  static int __pfn_adc_stop (void *p_drv, int chan);
 
- /** \brief »ñÈ¡ADCµÄ²ÉÑùÂÊ    */
+ /** \brief è·å–ADCçš„é‡‡æ ·ç‡    */
  static int __pfn_adc_rate_get (void       *p_drv,
                                int         chan,
                                uint32_t   *p_rate);
 
- /** \brief ÉèÖÃADCµÄ²ÉÑùÂÊ£¬Êµ¼Ê²ÉÑùÂÊ¿ÉÄÜ´æÔÚ²îÒì */
+ /** \brief è®¾ç½®ADCçš„é‡‡æ ·ç‡ï¼Œå®é™…é‡‡æ ·ç‡å¯èƒ½å­˜åœ¨å·®å¼‚ */
  static int __pfn_adc_rate_set (void     *p_drv,
                                int       chan,
                                uint32_t  rate);
 
- /** \brief »ñÈ¡ADC×ª»»¾«¶È */
+ /** \brief è·å–ADCè½¬æ¢ç²¾åº¦ */
  static uint32_t __pfn_bits_get (void *p_drv, int chan);
 
- /** \brief »ñÈ¡ADC²Î¿¼µçÑ¹ */
+ /** \brief è·å–ADCå‚è€ƒç”µå‹ */
  static uint32_t __pfn_vref_get (void *p_drv, int chan);
 
  /**
-  * \brief ADC·şÎñº¯Êı
+  * \brief ADCæœåŠ¡å‡½æ•°
   */
  static const struct am_adc_drv_funcs __g_adc_drvfuncs = {
      __pfn_adc_start,
@@ -99,7 +99,7 @@ static int __am_cs1237_dat_read(am_cs1237_adc_dev_t *p_dev, uint32_t *val);
 
 
 /**
- * \brief CS1237 SPI Ê±ÖÓÊ±Ğò
+ * \brief CS1237 SPI æ—¶é’Ÿæ—¶åº
  */
  void __am_cs1237_ad_clk (am_cs1237_adc_dev_t  *p_dev)
 {
@@ -127,24 +127,24 @@ static int __am_cs1237_dat_read(am_cs1237_adc_dev_t *p_dev, uint32_t *val);
 }
 
 /**
- * \brief CS1237 ¶ÁÖĞ¶Ï´¦Àí
+ * \brief CS1237 è¯»ä¸­æ–­å¤„ç†
  */
 static void __am_cs1237_trigger_handle(void *p_arg)
 {
     am_cs1237_adc_dev_t *p_dev = (am_cs1237_adc_dev_t *)p_arg;
-    /* µ±Ç°×ª»»µÄĞòÁĞÃèÊö·û */
+    /* å½“å‰è½¬æ¢çš„åºåˆ—æè¿°ç¬¦ */
     am_adc_buf_desc_t *p_desc     = &(p_dev->p_desc[p_dev->desc_index]);
     uint32_t           adc_dat    = 0;
     uint32_t          *buf        = NULL;
 
     int ret = AM_OK;
 
-    /* È¡ÏûÍâ²¿ÖĞ¶Ï */
+    /* å–æ¶ˆå¤–éƒ¨ä¸­æ–­ */
     __am_cs1237_int_close(p_dev);
 
     ret = __am_cs1237_dat_read(p_dev, &adc_dat);
 
-    /* ¿ªÆôÍâ²¿ÖĞ¶Ï */
+    /* å¼€å¯å¤–éƒ¨ä¸­æ–­ */
     __am_cs1237_int_open(p_dev);
 
     if (AM_OK != ret) {
@@ -160,12 +160,12 @@ static void __am_cs1237_trigger_handle(void *p_arg)
         return ;
 
     } else {
-        /* ÅĞ¶ÏÊÇ·ñµ±Ç°Êı¾İÊÇÓĞĞ§µÄ */
+        /* åˆ¤æ–­æ˜¯å¦å½“å‰æ•°æ®æ˜¯æœ‰æ•ˆçš„ */
         if (p_dev->conv_cnt < p_desc->length) {
 
             buf = (uint32_t *)p_desc->p_buf;
 
-            /* ±£´æÊı¾İ */
+            /* ä¿å­˜æ•°æ® */
             if (AM_ADC_DATA_ALIGN_RIGHT == p_dev->flags) {
                 buf[p_dev->conv_cnt] = adc_dat & 0x00ffffff;
             } else {
@@ -174,7 +174,7 @@ static void __am_cs1237_trigger_handle(void *p_arg)
 
             p_dev->conv_cnt++;
 
-            /* ÅĞ¶Ïµ±Ç°ĞòÁĞÃèÊö·ûÊÇ·ñÒÑ¾­Íê³É×ª»» */
+            /* åˆ¤æ–­å½“å‰åºåˆ—æè¿°ç¬¦æ˜¯å¦å·²ç»å®Œæˆè½¬æ¢ */
             if (p_dev->conv_cnt >= p_desc->length) {
 
                 p_dev->conv_cnt = 0;
@@ -184,7 +184,7 @@ static void __am_cs1237_trigger_handle(void *p_arg)
 
                 p_dev->desc_index++;
 
-                /* ÅĞ¶ÏÕû¸öĞòÁĞÃèÊö·ûÊÇ·ñÍê³ÉÒ»ÂÖ×ª»» */
+                /* åˆ¤æ–­æ•´ä¸ªåºåˆ—æè¿°ç¬¦æ˜¯å¦å®Œæˆä¸€è½®è½¬æ¢ */
                 if (p_dev->desc_index == p_dev->desc_num) {
 
                     p_dev->desc_index = 0;
@@ -192,13 +192,13 @@ static void __am_cs1237_trigger_handle(void *p_arg)
                         p_dev->pfn_callback(p_dev->p_arg, AM_OK);
                     }
 
-                    p_dev->seq_cnt++; /* Õû¸öĞòÁĞ×ª»»Íê³É */
+                    p_dev->seq_cnt++; /* æ•´ä¸ªåºåˆ—è½¬æ¢å®Œæˆ */
                     if (p_dev->count != 0 && p_dev->seq_cnt == p_dev->count) {
                         p_dev->seq_cnt = 0;
 
-                        __pfn_adc_stop (p_dev, p_dev->ch);  /* ¹Ø±ÕÄ£¿é */
+                        __pfn_adc_stop (p_dev, p_dev->ch);  /* å…³é—­æ¨¡å— */
 
-                        return ; /* ·µ»Ø */
+                        return ; /* è¿”å› */
                     }
                 }
             }
@@ -212,7 +212,7 @@ static void __am_cs1237_trigger_handle(void *p_arg)
 }
 
 /**
- * \brief CS1237 ÖĞ¶Ï¹Ø±Õ
+ * \brief CS1237 ä¸­æ–­å…³é—­
  */
 static void __am_cs1237_int_close(am_cs1237_adc_dev_t  *p_dev)
 {
@@ -229,7 +229,7 @@ static void __am_cs1237_int_close(am_cs1237_adc_dev_t  *p_dev)
 }
 
 /**
- * \brief CS1237 ÖĞ¶Ï¿ªÆô
+ * \brief CS1237 ä¸­æ–­å¼€å¯
  */
 static void __am_cs1237_int_open(am_cs1237_adc_dev_t  *p_dev)
 {
@@ -250,7 +250,7 @@ static void __am_cs1237_int_open(am_cs1237_adc_dev_t  *p_dev)
 }
 
  /**
-  * \brief cs1237 ¶ÁÊı¾İº¯Êı
+  * \brief cs1237 è¯»æ•°æ®å‡½æ•°
   */
 static int __am_cs1237_dat_read(am_cs1237_adc_dev_t *p_dev, uint32_t *val)
 {
@@ -260,18 +260,18 @@ static int __am_cs1237_dat_read(am_cs1237_adc_dev_t *p_dev, uint32_t *val)
         return -AM_EINVAL;
     }
 
-    /* out_pinÊäÈëÉÏÀ­Ä£Ê½ */
+    /* out_pinè¾“å…¥ä¸Šæ‹‰æ¨¡å¼ */
     am_gpio_pin_cfg(p_dev->p_devinfo->out_pin,
                     AM_GPIO_INPUT | AM_GPIO_PULLUP);
 
     if (am_gpio_get(p_dev->p_devinfo->out_pin)) {
-        /* adcÊı¾İ»¹Î´×ª»»Íê³É */
+        /* adcæ•°æ®è¿˜æœªè½¬æ¢å®Œæˆ */
         return AM_ERROR;
     }
 
     *val = 0;
 
-    /* Ñ­»·¶ÁÈ¡24bitÊı¾İ */
+    /* å¾ªç¯è¯»å–24bitæ•°æ® */
     for (i = 0 ; i < 24 ; i++) {
 
         __am_cs1237_ad_clk(p_dev);
@@ -284,7 +284,7 @@ static int __am_cs1237_dat_read(am_cs1237_adc_dev_t *p_dev, uint32_t *val)
     __am_cs1237_ad_clk(p_dev);
     __am_cs1237_ad_clk(p_dev);
 
-    /* 27¸öÊ±ÖÓÀ­¸ßÊı¾İÏß */
+    /* 27ä¸ªæ—¶é’Ÿæ‹‰é«˜æ•°æ®çº¿ */
     am_gpio_pin_cfg(p_dev->p_devinfo->in_pin,
                     AM_GPIO_OUTPUT_INIT_HIGH);
     __am_cs1237_ad_clk(p_dev);
@@ -293,7 +293,7 @@ static int __am_cs1237_dat_read(am_cs1237_adc_dev_t *p_dev, uint32_t *val)
 }
 
 /**
- * \brief ADC ÅäÖÃ¼Ä´æÆ÷Ğ´º¯Êı(·Ç×èÈû)
+ * \brief ADC é…ç½®å¯„å­˜å™¨å†™å‡½æ•°(éé˜»å¡)
  */
 static int __am_cs1237_config_reg_write (am_cs1237_adc_dev_t  *p_dev,
                                          uint8_t           config_reg)
@@ -309,13 +309,13 @@ static int __am_cs1237_config_reg_write (am_cs1237_adc_dev_t  *p_dev,
                         AM_GPIO_INPUT | AM_GPIO_PULLUP);
     }
 
-    /* µÈ´ıÊı¾İ×ª»»Íê³É */
+    /* ç­‰å¾…æ•°æ®è½¬æ¢å®Œæˆ */
     if (am_gpio_get(p_dev->p_devinfo->out_pin)) {
-        /* adcÊı¾İ»¹Î´×ª»»Íê³É */
+        /* adcæ•°æ®è¿˜æœªè½¬æ¢å®Œæˆ */
         return AM_ERROR;
     }
 
-    /*·¢ËÍ29¸öCLK*/
+    /*å‘é€29ä¸ªCLK*/
     for (i = 0; i < 29; i++) {
         __am_cs1237_ad_clk(p_dev);
     }
@@ -323,7 +323,7 @@ static int __am_cs1237_config_reg_write (am_cs1237_adc_dev_t  *p_dev,
     am_gpio_pin_cfg(p_dev->p_devinfo->in_pin,
                     AM_GPIO_OUTPUT_INIT_HIGH);
 
-    /* Ğ´ÃüÁî */
+    /* å†™å‘½ä»¤ */
     for (i = 0 ; i < 7 ; i++) {
 
         if(__AM_CS1237_WRITE_CMD & (1 << (7-i))) {
@@ -336,7 +336,7 @@ static int __am_cs1237_config_reg_write (am_cs1237_adc_dev_t  *p_dev,
 
     __am_cs1237_ad_clk(p_dev);
 
-    /* Ğ´ÅäÖÃ */
+    /* å†™é…ç½® */
     for (i = 0; i < 8; i++) {
 
         if(config_reg & (1 << (7-i))) {
@@ -358,7 +358,7 @@ static int __am_cs1237_config_reg_write (am_cs1237_adc_dev_t  *p_dev,
     return AM_OK;
 }
 
-/** \brief Æô¶¯ADC×ª»» */
+/** \brief å¯åŠ¨ADCè½¬æ¢ */
 static int __pfn_adc_start (void                   *p_drv,
                            int                     chan,
                            am_adc_buf_desc_t      *p_desc,
@@ -385,13 +385,13 @@ static int __pfn_adc_start (void                   *p_drv,
     p_dev->p_arg        = p_arg;
 
     am_cs1237_ch_set(p_dev,p_dev->ch);
-    /* ¿ªÆôÍâ²¿ÖĞ¶Ï */
+    /* å¼€å¯å¤–éƒ¨ä¸­æ–­ */
     am_cs1237_read_int_enable(p_dev);
 
     return AM_OK;
 }
 
-/** \brief Í£Ö¹×ª»» */
+/** \brief åœæ­¢è½¬æ¢ */
 static int __pfn_adc_stop (void *p_drv, int chan)
 {
     am_cs1237_adc_dev_t *p_dev;
@@ -407,7 +407,7 @@ static int __pfn_adc_stop (void *p_drv, int chan)
     return AM_OK;
 }
 
-/** \brief »ñÈ¡ADCµÄ²ÉÑùÂÊ    */
+/** \brief è·å–ADCçš„é‡‡æ ·ç‡    */
 static int __pfn_adc_rate_get (void       *p_drv,
                               int         chan,
                               uint32_t   *p_rate)
@@ -425,7 +425,7 @@ static int __pfn_adc_rate_get (void       *p_drv,
     return AM_OK;
 }
 
-/** \brief ÉèÖÃADCµÄ²ÉÑùÂÊ£¬Êµ¼Ê²ÉÑùÂÊ¿ÉÄÜ´æÔÚ²îÒì */
+/** \brief è®¾ç½®ADCçš„é‡‡æ ·ç‡ï¼Œå®é™…é‡‡æ ·ç‡å¯èƒ½å­˜åœ¨å·®å¼‚ */
 static int __pfn_adc_rate_set (void     *p_drv,
                               int       chan,
                               uint32_t  rate)
@@ -453,7 +453,7 @@ static int __pfn_adc_rate_set (void     *p_drv,
     return AM_OK;
 }
 
-/** \brief »ñÈ¡ADC×ª»»¾«¶È */
+/** \brief è·å–ADCè½¬æ¢ç²¾åº¦ */
 static uint32_t __pfn_bits_get (void *p_drv, int chan)
 {
 
@@ -464,7 +464,7 @@ static uint32_t __pfn_bits_get (void *p_drv, int chan)
     return 24;
 }
 
-/** \brief »ñÈ¡ADC²Î¿¼µçÑ¹ */
+/** \brief è·å–ADCå‚è€ƒç”µå‹ */
 static uint32_t __pfn_vref_get (void *p_drv, int chan)
 {
     am_cs1237_adc_dev_t *p_dev;
@@ -479,7 +479,7 @@ static uint32_t __pfn_vref_get (void *p_drv, int chan)
 }
 
 /**
- * \brief ADC ÅäÖÃ¼Ä´æÆ÷¶Áº¯Êı
+ * \brief ADC é…ç½®å¯„å­˜å™¨è¯»å‡½æ•°
  */
 uint8_t am_cs1237_config_reg_read(am_cs1237_adc_dev_t  *p_dev)
 {
@@ -505,7 +505,7 @@ uint8_t am_cs1237_config_reg_read(am_cs1237_adc_dev_t  *p_dev)
     am_gpio_pin_cfg(p_dev->p_devinfo->in_pin,
                     AM_GPIO_OUTPUT_INIT_HIGH);
 
-    /*30-36CLK,MCU data_inÒı½Å·¢ËÍ¶ÁÃüÁî×Ö*/
+    /*30-36CLK,MCU data_inå¼•è„šå‘é€è¯»å‘½ä»¤å­—*/
     for (i = 0; i < 7; i++) {
 
         if (__AM_CS1237_READ_CMD & (1 << (7-i))) {
@@ -544,14 +544,14 @@ uint8_t am_cs1237_config_reg_read(am_cs1237_adc_dev_t  *p_dev)
 }
 
 /**
- * \brief ³õÊ¼»¯º¯Êı
+ * \brief åˆå§‹åŒ–å‡½æ•°
  */
 am_cs1237_adc_handle_t am_cs1237_init(am_cs1237_adc_dev_t            *p_dev,
                                   const am_cs1237_adc_devinfo_t  *p_devinfo)
 {
     uint8_t config_reg = 0;
 
-    /* ÑéÖ¤²ÎÊıÓĞĞ§ĞÔ */
+    /* éªŒè¯å‚æ•°æœ‰æ•ˆæ€§ */
     if ((p_dev == NULL) || (p_devinfo == NULL)) {
         return NULL;
     }
@@ -574,19 +574,19 @@ am_cs1237_adc_handle_t am_cs1237_init(am_cs1237_adc_dev_t            *p_dev,
     p_dev->p_devinfo         = p_devinfo;
     p_dev->is_int            = AM_FALSE;
 
-    /*MCU data_clk ÅäÖÃÎªÊä³ö£¬ÆğÊ¼µçÆ½ÎªµÍ*/
+    /*MCU data_clk é…ç½®ä¸ºè¾“å‡ºï¼Œèµ·å§‹ç”µå¹³ä¸ºä½*/
     am_gpio_pin_cfg(p_dev->p_devinfo->clk,
                     AM_GPIO_OUTPUT_INIT_LOW);
 
-    /*MCU data_in ÅäÖÃÎªÊä³ö£¬ÆğÊ¼µçÆ½Îª¸ß*/
+    /*MCU data_in é…ç½®ä¸ºè¾“å‡ºï¼Œèµ·å§‹ç”µå¹³ä¸ºé«˜*/
     am_gpio_pin_cfg(p_dev->p_devinfo->in_pin,
                     AM_GPIO_OUTPUT_INIT_HIGH);
 
-    /*MCU data_outÅäÖÃÎªÉÏÀ­ÊäÈë*/
+    /*MCU data_outé…ç½®ä¸ºä¸Šæ‹‰è¾“å…¥*/
     am_gpio_pin_cfg(p_dev->p_devinfo->out_pin,
                     AM_GPIO_INPUT | AM_GPIO_PULLUP);
 
-   /*³õÊ¼»¯config¼Ä´æÆ÷*/
+   /*åˆå§‹åŒ–configå¯„å­˜å™¨*/
     config_reg |= p_dev->ch;
     config_reg |= p_dev->pga << 2;
     config_reg |= p_dev->out_speed << 4;
@@ -598,7 +598,7 @@ am_cs1237_adc_handle_t am_cs1237_init(am_cs1237_adc_dev_t            *p_dev,
 }
 
 /**
- * \brief ½â³õÊ¼»¯º¯Êı
+ * \brief è§£åˆå§‹åŒ–å‡½æ•°
  */
 void am_cs1237_deinit (am_cs1237_adc_handle_t handle)
 {
@@ -613,7 +613,7 @@ void am_cs1237_deinit (am_cs1237_adc_handle_t handle)
 }
 
 /**
- * \brief CS1237 ÅäÖÃ¼Ä´æÆ÷pgaĞ´
+ * \brief CS1237 é…ç½®å¯„å­˜å™¨pgaå†™
  */
 int am_cs1237_pga_set(am_cs1237_adc_dev_t  *p_dev, uint32_t pga)
 {
@@ -633,7 +633,7 @@ int am_cs1237_pga_set(am_cs1237_adc_dev_t  *p_dev, uint32_t pga)
 }
 
 /**
- * \brief CS1237 pga·Å´ó±¶Êı¶Á
+ * \brief CS1237 pgaæ”¾å¤§å€æ•°è¯»
  */
 uint32_t am_cs1237_pga_get(am_cs1237_adc_dev_t  *p_dev)
 {
@@ -654,7 +654,7 @@ uint32_t am_cs1237_pga_get(am_cs1237_adc_dev_t  *p_dev)
 }
 
 /**
- * \brief CS1237 ÅäÖÃ¼Ä´æÆ÷chĞ´
+ * \brief CS1237 é…ç½®å¯„å­˜å™¨chå†™
  */
 int am_cs1237_ch_set(am_cs1237_adc_dev_t  *p_dev, uint32_t ch)
 {
@@ -676,7 +676,7 @@ int am_cs1237_ch_set(am_cs1237_adc_dev_t  *p_dev, uint32_t ch)
 
 
 /**
- * \brief CS1237 ÅäÖÃ¼Ä´æÆ÷ch¶Á
+ * \brief CS1237 é…ç½®å¯„å­˜å™¨chè¯»
  */
 uint8_t am_cs1237_ch_get(am_cs1237_adc_dev_t  *p_dev)
 {
@@ -687,7 +687,7 @@ uint8_t am_cs1237_ch_get(am_cs1237_adc_dev_t  *p_dev)
     return ch_reg;
 }
 /**
- * \brief CS1237 ÅäÖÃ¼Ä´æÆ÷speedĞ´
+ * \brief CS1237 é…ç½®å¯„å­˜å™¨speedå†™
  */
 int am_cs1237_out_speed_set(am_cs1237_adc_dev_t  *p_dev, uint32_t speed)
 {
@@ -709,7 +709,7 @@ int am_cs1237_out_speed_set(am_cs1237_adc_dev_t  *p_dev, uint32_t speed)
 }
 
 /**
- * \brief CS1237 adcÊä³öËÙÂÊ¶Á
+ * \brief CS1237 adcè¾“å‡ºé€Ÿç‡è¯»
  */
 uint32_t am_cs1237_out_speed_get(am_cs1237_adc_dev_t  *p_dev)
 {
@@ -730,7 +730,7 @@ uint32_t am_cs1237_out_speed_get(am_cs1237_adc_dev_t  *p_dev)
 }
 
 /**
- * \brief CS1237 ÔÊĞí¶Á
+ * \brief CS1237 å…è®¸è¯»
  */
 int am_cs1237_read_int_enable(am_cs1237_adc_dev_t  *p_dev)
 {
@@ -740,11 +740,11 @@ int am_cs1237_read_int_enable(am_cs1237_adc_dev_t  *p_dev)
 }
 
 /**
- * \brief CS1237 ½ûÖ¹¶Á
+ * \brief CS1237 ç¦æ­¢è¯»
  *
- * \param[in] p_dev   : CS1237²Ù×÷¾ä±ú
+ * \param[in] p_dev   : CS1237æ“ä½œå¥æŸ„
  *
- * \retval  AM_OK     : ²Ù×÷³É¹¦
+ * \retval  AM_OK     : æ“ä½œæˆåŠŸ
  */
 int am_cs1237_read_int_disable(am_cs1237_adc_dev_t  *p_dev)
 {
@@ -755,7 +755,7 @@ int am_cs1237_read_int_disable(am_cs1237_adc_dev_t  *p_dev)
 
 
 /**
- * \brief CS1237 ÂÖÑ­¶Áadc²É¼¯Öµ
+ * \brief CS1237 è½®å¾ªè¯»adcé‡‡é›†å€¼
  */
 int am_cs1237_read_polling(am_cs1237_adc_dev_t *p_dev, uint32_t *val)
 {
@@ -763,11 +763,11 @@ int am_cs1237_read_polling(am_cs1237_adc_dev_t *p_dev, uint32_t *val)
 }
 
 /**
- * \brief CS1237 µÍ¹¦ºÄÄ£Ê½
+ * \brief CS1237 ä½åŠŸè€—æ¨¡å¼
  *
- * \param[in] p_dev   : CS1237²Ù×÷¾ä±ú
+ * \param[in] p_dev   : CS1237æ“ä½œå¥æŸ„
  *
- * \retval  ÎŞ
+ * \retval  æ— 
  */
 void am_cs1237_power_down_enter(am_cs1237_adc_dev_t  *p_dev)
 {
@@ -781,11 +781,11 @@ void am_cs1237_power_down_enter(am_cs1237_adc_dev_t  *p_dev)
 }
 
 /**
- * \brief CS1237 µÍ¹¦ºÄÄ£Ê½
+ * \brief CS1237 ä½åŠŸè€—æ¨¡å¼
  *
- * \param[in] p_dev   : CS1237²Ù×÷¾ä±ú
+ * \param[in] p_dev   : CS1237æ“ä½œå¥æŸ„
  *
- * \retval  ÎŞ
+ * \retval  æ— 
  */
 void am_cs1237_power_down_out(am_cs1237_adc_dev_t  *p_dev)
 {
@@ -795,7 +795,7 @@ void am_cs1237_power_down_out(am_cs1237_adc_dev_t  *p_dev)
 }
 
 /**
- * \brief CS1237 Á¬½ÓÖĞ¶ÏÁ¬½Óº¯Êı
+ * \brief CS1237 è¿æ¥ä¸­æ–­è¿æ¥å‡½æ•°
  */
 void am_cs1237_int_connect(am_cs1237_adc_dev_t      *p_dev ,
                            am_cs1237_code_read_cb_t  p_fun,
@@ -806,7 +806,7 @@ void am_cs1237_int_connect(am_cs1237_adc_dev_t      *p_dev ,
 }
 
 /**
- * \brief CS1237É¾³ıÖĞ¶ÏÁ¬½Óº¯Êı
+ * \brief CS1237åˆ é™¤ä¸­æ–­è¿æ¥å‡½æ•°
  */
 void am_cs1237_int_disconnect(am_cs1237_adc_dev_t      *p_dev ,
                               am_cs1237_code_read_cb_t  p_fun,

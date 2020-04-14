@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZLG116 ADC ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief ZLG116 ADC ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_zlg116_adc.c
  *
  * \internal
@@ -34,7 +34,7 @@
  * @{
  */
 
-/** \brief ADCÆ½Ì¨³õÊ¼»¯ */
+/** \brief ADCå¹³å°åˆå§‹åŒ– */
 static void __zlg_plfm_adc_init (void)
 {
     am_gpio_pin_cfg(__ADC_IN1_GPIO, __GPIO__ADC_IN);
@@ -42,7 +42,7 @@ static void __zlg_plfm_adc_init (void)
     am_clk_enable(CLK_ADC1);
 }
 
-/** \brief ½â³ıADCÆ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤ADCå¹³å°åˆå§‹åŒ– */
 static void __zlg_plfm_adc_deinit (void)
 {
     am_gpio_pin_cfg(__ADC_IN1_GPIO, __PIO_GPIO);
@@ -50,30 +50,30 @@ static void __zlg_plfm_adc_deinit (void)
     am_clk_disable (CLK_ADC1);
 }
 
-/** \brief ADCÉè±¸ĞÅÏ¢ */
+/** \brief ADCè®¾å¤‡ä¿¡æ¯ */
 static const am_zlg_adc_devinfo_t __g_adc_devinfo = {
 
     ZLG116_ADC_BASE,                  /**< \brief ADC */
-    INUM_ADC_COMP,                    /**< \brief ADCµÄÖĞ¶Ï±àºÅ */
-    CLK_ADC1,                         /**< \brief ADCÊ±ÖÓºÅ */
+    INUM_ADC_COMP,                    /**< \brief ADCçš„ä¸­æ–­ç¼–å· */
+    CLK_ADC1,                         /**< \brief ADCæ—¶é’Ÿå· */
 
-    3300,                             /**< \brief ²Î¿¼µçÑ¹ */
-    AMHW_ZLG_ADC_DATA_VALID_12BIT, /**< \brief ×ª»»¾«¶È */
+    3300,                             /**< \brief å‚è€ƒç”µå‹ */
+    AMHW_ZLG_ADC_DATA_VALID_12BIT, /**< \brief è½¬æ¢ç²¾åº¦ */
 
-    __zlg_plfm_adc_init,              /**< \brief ADCµÄÆ½Ì¨³õÊ¼»¯ */
-    __zlg_plfm_adc_deinit,            /**< \brief ADCµÄÆ½Ì¨È¥³õÊ¼»¯ */
+    __zlg_plfm_adc_init,              /**< \brief ADCçš„å¹³å°åˆå§‹åŒ– */
+    __zlg_plfm_adc_deinit,            /**< \brief ADCçš„å¹³å°å»åˆå§‹åŒ– */
 
 };
 
-static am_zlg_adc_dev_t  __g_adc_dev;   /**< \brief ¶¨ÒåADC Éè±¸ */
+static am_zlg_adc_dev_t  __g_adc_dev;   /**< \brief å®šä¹‰ADC è®¾å¤‡ */
 
-/** \brief ADCÊµÀı³õÊ¼»¯£¬»ñµÃADC±ê×¼·şÎñ¾ä±ú */
+/** \brief ADCå®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—ADCæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_adc_handle_t am_zlg116_adc_inst_init (void)
 {
     return am_zlg_adc_init(&__g_adc_dev, &__g_adc_devinfo);
 }
 
-/** \brief ADCÊµÀı½â³õÊ¼»¯ */
+/** \brief ADCå®ä¾‹è§£åˆå§‹åŒ– */
 void am_zlg116_adc_inst_deinit (am_adc_handle_t handle)
 {
     am_zlg_adc_deinit(handle);

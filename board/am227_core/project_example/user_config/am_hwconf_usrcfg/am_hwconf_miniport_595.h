@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief Miniport-595 ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief Miniport-595 ç”¨æˆ·é…ç½®æ–‡ä»¶
  *
  * \internal
  * \par Modification history
@@ -31,10 +31,10 @@ extern "C" {
 #include "am_hc595.h"
 
 /**
- * \brief MiniPort-595 ÊµÀı³õÊ¼»¯
+ * \brief MiniPort-595 å®ä¾‹åˆå§‹åŒ–
  *
- * \retval  AW_OK  ³õÊ¼»¯³É¹¦
- * \retval   < 0   ³õÊ¼»¯Ê§°Ü£¬Çë¼ìCÎÄ¼şÖĞ¸÷ÅäÖÃÏîÊÇ·ñºÏ·¨
+ * \retval  AW_OK  åˆå§‹åŒ–æˆåŠŸ
+ * \retval   < 0   åˆå§‹åŒ–å¤±è´¥ï¼Œè¯·æ£€Cæ–‡ä»¶ä¸­å„é…ç½®é¡¹æ˜¯å¦åˆæ³•
  */
 am_hc595_handle_t am_miniport_595_inst_init (void);
 

@@ -12,22 +12,22 @@
 
 /**
  * \file
- * \brief uartcmd¶Á¿¨ID£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief uartcmdè¯»å¡IDï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ²Ù×÷£º
- * - 1. ×¼±¸Á½¿éAMKS16RFID-8ÆÀ¹À°å£¬³ÆÎª°å1ºÍ°å2£»
- *   2. °å1Ğè²åÈëÌìÏß£¬Ö´ĞĞprojects_keil5\examples_uart_cmd_read_card\demo_kl26_uartcmd_handleÖĞµÄÀı³Ì£»
- *   3. ½«°å1µÄPIOC_3Óë°å2µÄPIOC_4Á¬½Ó£¬°å1µÄPIOC_4Óë°å2µÄPIOC_3Á¬½Ó£¬°å1Óë°å2¹²µØ£»
- *   4. ½«°å2µÄPIOE_20ÓëµçÄÔ´®¿Ú½ÓÊÕ¶ËÁ¬½Ó£»
- *   5. Á½¿é°å×ÓÉÏµçºó°´ÏÂÁ½¿é°å×ÓµÄ¸´Î»¼ü£¬È»ºóÏÈËÉ¿ª°å1µÄ¸´Î»¼ü£¬1ÃëºóÔÙËÉ¿ª°å2
- *      µÄ¸´Î»¼ü¡£
- *   6. ½«AÀà¿¨Æ¬ÖÁÓÚ°å1µÄÌìÏß¸ĞÓ¦Çø¡£
+ * - æ“ä½œï¼š
+ * - 1. å‡†å¤‡ä¸¤å—AMKS16RFID-8è¯„ä¼°æ¿ï¼Œç§°ä¸ºæ¿1å’Œæ¿2ï¼›
+ *   2. æ¿1éœ€æ’å…¥å¤©çº¿ï¼Œæ‰§è¡Œprojects_keil5\examples_uart_cmd_read_card\demo_kl26_uartcmd_handleä¸­çš„ä¾‹ç¨‹ï¼›
+ *   3. å°†æ¿1çš„PIOC_3ä¸æ¿2çš„PIOC_4è¿æ¥ï¼Œæ¿1çš„PIOC_4ä¸æ¿2çš„PIOC_3è¿æ¥ï¼Œæ¿1ä¸æ¿2å…±åœ°ï¼›
+ *   4. å°†æ¿2çš„PIOE_20ä¸ç”µè„‘ä¸²å£æ¥æ”¶ç«¯è¿æ¥ï¼›
+ *   5. ä¸¤å—æ¿å­ä¸Šç”µåæŒ‰ä¸‹ä¸¤å—æ¿å­çš„å¤ä½é”®ï¼Œç„¶åå…ˆæ¾å¼€æ¿1çš„å¤ä½é”®ï¼Œ1ç§’åå†æ¾å¼€æ¿2
+ *      çš„å¤ä½é”®ã€‚
+ *   6. å°†Aç±»å¡ç‰‡è‡³äºæ¿1çš„å¤©çº¿æ„Ÿåº”åŒºã€‚
  *
- * - ÊµÏÖÏÖÏó£º
- * - 1. µÚ5²½²Ù×÷×öÍêºó°å1ÉÏµÄÁ½¸ö°åÔØLED»á½»ÌæÉÁË¸£¬·ñÔòÖØ¸´µÚ5²½²Ù×÷»ò¼ì²éÆäËûÎÊÌâ¡£
- *   2. µÚ6²½²Ù×÷Èç¹û¶ÁÈ¡µ½¿¨Æ¬£¬Ôò°å2µÄ´®¿Ú£¨PIOE_20)»á´òÓ¡¿¨ºÅ¡£
+ * - å®ç°ç°è±¡ï¼š
+ * - 1. ç¬¬5æ­¥æ“ä½œåšå®Œåæ¿1ä¸Šçš„ä¸¤ä¸ªæ¿è½½LEDä¼šäº¤æ›¿é—ªçƒï¼Œå¦åˆ™é‡å¤ç¬¬5æ­¥æ“ä½œæˆ–æ£€æŸ¥å…¶ä»–é—®é¢˜ã€‚
+ *   2. ç¬¬6æ­¥æ“ä½œå¦‚æœè¯»å–åˆ°å¡ç‰‡ï¼Œåˆ™æ¿2çš„ä¸²å£ï¼ˆPIOE_20)ä¼šæ‰“å°å¡å·ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_kl26_std_uartcmd_picca_auto_detect_entry.c src_kl26_std_uartcmd_picca_auto_detect_entry
  *
  * \internal
@@ -52,7 +52,7 @@
 #include "string.h"
 
 #ifndef AM_VDEBUG
-#define AM_VDEBUG           /* ¿ªÆôµ÷ÊÔÄ£Ê½ */
+#define AM_VDEBUG           /* å¼€å¯è°ƒè¯•æ¨¡å¼ */
 #endif
 
 #include "am_vdebug.h"
@@ -76,7 +76,7 @@ const am_uartcmd_auto_detect_info_t __g_uartcmd_auto_detect_info = {
     0,
     AM_UARTCMD_MIFARE_CARD_TX_TX1,
     AM_UARTCMD_MIFARE_CARD_REQ_IDLE,
-    AM_UARTCMD_MIFARE_CARD_AUTH_DIRECT,       /* ²»ÑéÖ¤Ê±ºóĞø²ÎÊı¿ÉÒÔÌî¿Õ */
+    AM_UARTCMD_MIFARE_CARD_AUTH_DIRECT,       /* ä¸éªŒè¯æ—¶åç»­å‚æ•°å¯ä»¥å¡«ç©º */
     AM_UARTCMD_IC_KEY_TYPE_B,
     {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF},
     6,
@@ -91,7 +91,7 @@ static void __error_happen(int line)
 }
 
 /**
- * \brief ×Ô¶¯¼ì²â»Øµ÷º¯Êı
+ * \brief è‡ªåŠ¨æ£€æµ‹å›è°ƒå‡½æ•°
  */
 static void __uartcmd_callback (void *p_arg)
 {
@@ -101,7 +101,7 @@ static void __uartcmd_callback (void *p_arg)
 }
 
 /**
- * \uartcmd ×Ô¶¯¼ì²â²âÊÔÀı³Ì
+ * \uartcmd è‡ªåŠ¨æ£€æµ‹æµ‹è¯•ä¾‹ç¨‹
  */
 void demo_amks16rfid8_uartcmd_picca_auto_detect_entry (void)
 {
@@ -110,7 +110,7 @@ void demo_amks16rfid8_uartcmd_picca_auto_detect_entry (void)
     am_uart_handle_t       uart1_handle;
     am_uartcmd_uart_dev_t  uartcmd_uart_dev;
     am_uartcmd_send_handle_t    uartcmd_handle;
-    volatile uint32_t      detect_flag = 0;     /* ×Ô¶¯¼ì²âÍê³É±êÖ¾ */
+    volatile uint32_t      detect_flag = 0;     /* è‡ªåŠ¨æ£€æµ‹å®Œæˆæ ‡å¿— */
     am_uartcmd_mifare_card_info_t card_info;
 
     uart1_handle  = am_kl26_uart1_inst_init();
@@ -122,12 +122,12 @@ void demo_amks16rfid8_uartcmd_picca_auto_detect_entry (void)
         __error_happen(__LINE__);
     }
     
-    /* ÉèÖÃ×Ô¶¯¼ì²â»Øµ÷º¯Êı */
+    /* è®¾ç½®è‡ªåŠ¨æ£€æµ‹å›è°ƒå‡½æ•° */
     am_uartcmd_mifare_card_auto_detect_cb_set(uartcmd_handle,
                                               __uartcmd_callback,
                                               (void *)&detect_flag);
 
-    /* ¿ªÊ¼×Ô¶¯¼ì²â */
+    /* å¼€å§‹è‡ªåŠ¨æ£€æµ‹ */
     am_uartcmd_mifare_card_auto_detect_start(uartcmd_handle,
                                              &__g_uartcmd_auto_detect_info);
 
@@ -140,7 +140,7 @@ void demo_amks16rfid8_uartcmd_picca_auto_detect_entry (void)
 
             if (ret == AM_OK) {
 
-                AM_DBG_INFO("¼ì²âµ½¿¨£¬¿¨IDÎª %d bytes £º \r\n", card_info.uid_len);
+                AM_DBG_INFO("æ£€æµ‹åˆ°å¡ï¼Œå¡IDä¸º %d bytes ï¼š \r\n", card_info.uid_len);
 
                 for (i = 0; i < card_info.uid_len; i++) {
                     AM_DBG_INFO("%02x   ", card_info.uid[i]);
@@ -150,10 +150,10 @@ void demo_amks16rfid8_uartcmd_picca_auto_detect_entry (void)
                 am_led_on(1);
             } else {
                 am_led_off(1);
-                AM_DBG_INFO("Ê§°Ü£¡%d \r\n", ret);
+                AM_DBG_INFO("å¤±è´¥ï¼%d \r\n", ret);
             }
 
-            /* Ò»´Î×Ô¶¯¼ì²âÍê³ÉºóĞèÒªÖØĞÂÆô¶¯×Ô¶¯¼ì²â */
+            /* ä¸€æ¬¡è‡ªåŠ¨æ£€æµ‹å®Œæˆåéœ€è¦é‡æ–°å¯åŠ¨è‡ªåŠ¨æ£€æµ‹ */
             am_uartcmd_mifare_card_auto_detect_start(uartcmd_handle,
                                                      &__g_uartcmd_auto_detect_info);
         }

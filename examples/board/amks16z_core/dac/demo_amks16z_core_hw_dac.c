@@ -12,15 +12,15 @@
 
 /**
  * \file
- * \brief DAC��ģת�����̣�ͨ��HW�ӿ�ʵ��
+ * \brief DAC数模转换例程，通过HW接口实现
  *
- * - ʵ������
- *   1. �ɼ���ģת���������PE30�ĵ�ѹֵ
- *   2. ʹ��DACREF_2�ο���ѹ��DACREF_2����VDDA�ܽţ���ѹֵΪ3.3V��
- *   3. �����ѹֵΪ1.823V
+ * - 实验现象：
+ *   1. 采集数模转换的输出口PE30的电压值
+ *   2. 使用DACREF_2参考电压，DACREF_2连接VDDA管脚，电压值为3.3V。
+ *   3. 输出电压值为1.823V
  *
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_amks16z_core_hw_dac.c src_amks16z_core_hw_dac
  *
  * \internal
@@ -46,17 +46,17 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief DAC�����ѹֵ������HW��ʵ��
+ * \brief DAC输出电压值，调用HW层实现
  */
 void demo_amks16z_core_hw_dac_entry ()
 {
-    /* ����PIOE_30ΪDAC0_OUT����                 */
+    /* 配置PIOE_30为DAC0_OUT功能                 */
     am_gpio_pin_cfg (PIOE_30,PIOE_30_DAC0_OUT);
 
-    /* ����DACʱ��                               */
+    /* 开启DAC时钟                               */
     amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_DAC0);
 
-	  /* ���1832mv��ѹ */
+	  /* 输出1832mv电压 */
     demo_fsl_hw_dac_entry(KL26_DAC0, 1832);
 }
 

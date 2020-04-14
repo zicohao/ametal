@@ -12,13 +12,13 @@
 
 /**
  * \file
- * \brief DAC ²Ù×÷½Ó¿Ú
+ * \brief DAC æ“ä½œæ¥å£
  *
- * 1. Æ¬ÉÏ¿É±à³ÌµÄÊä³ö²úÉúÆ÷(µçÑ¹Êä³ö´Ó 1/4096Vin µ½ Vin Vin ²½³¤ÊÇ 1/4096Vin)
- * 2. Vin ¿ÉÒÔ´ÓÁ½¸ö²Î¿¼µçÔ´ÖĞÑ¡Ôñ
- * 3. ÔÚÕı³£Í£»úÄ£Ê½µÄ¾²Ì¬²Ù×÷
- * 4. Ö§³Ö 16 Î»µÄÊı¾İ»º³åÇø
- * 5. Ö§³Ö DMA
+ * 1. ç‰‡ä¸Šå¯ç¼–ç¨‹çš„è¾“å‡ºäº§ç”Ÿå™¨(ç”µå‹è¾“å‡ºä» 1/4096Vin åˆ° Vin Vin æ­¥é•¿æ˜¯ 1/4096Vin)
+ * 2. Vin å¯ä»¥ä»ä¸¤ä¸ªå‚è€ƒç”µæºä¸­é€‰æ‹©
+ * 3. åœ¨æ­£å¸¸åœæœºæ¨¡å¼çš„é™æ€æ“ä½œ
+ * 4. æ”¯æŒ 16 ä½çš„æ•°æ®ç¼“å†²åŒº
+ * 5. æ”¯æŒ DMA
  *
  * \internal
  * \par Modification History
@@ -28,12 +28,12 @@
 #include "hw/amhw_fsl_dac.h"
 
 /**
- * \brief DACÊı¾İ»º´æÇø³õÊ¼»¯
+ * \brief DACæ•°æ®ç¼“å­˜åŒºåˆå§‹åŒ–
  *
- * \param[in] p_hw_dac : Ö¸ÏòDAC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] p_buf    : Ö¸ÏòDAC»º´æÇøÅäÖÃ½á¹¹Ìå
+ * \param[in] p_hw_dac : æŒ‡å‘DACå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] p_buf    : æŒ‡å‘DACç¼“å­˜åŒºé…ç½®ç»“æ„ä½“
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void amhw_fsl_dac_dat_buf_init (amhw_fsl_dac_t               *p_hw_dac,
                                  amhw_fsl_dac_buffer_config_t *p_buf)

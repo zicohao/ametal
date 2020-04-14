@@ -11,7 +11,7 @@
 *******************************************************************************/
 /**
  * \file
- * \brief SDIO±ê×¼½Ó¿Ú
+ * \brief SDIOæ ‡å‡†æ¥å£
  *
  * \internal
  * \par Modification history
@@ -37,7 +37,7 @@ extern "C" {
  */
 
 /**
- * \name SDIO ÃüÁî
+ * \name SDIO å‘½ä»¤
  * @{
  */
 #define AM_SDIO_CMD0               0
@@ -141,7 +141,7 @@ extern "C" {
 /** \brief indicate whether the card is locked */
 #define AM_SDIO_R1_CARD_IS_LOCKED        (1 << 25)
 
-/** \brief indicate in the lock/unlock command£¬password verify error */
+/** \brief indicate in the lock/unlock commandï¼Œpassword verify error */
 #define AM_SDIO_R1_LOCK_UNLOCK_FAILED    (1 << 24)
 
 /** \brief CRC error */
@@ -205,58 +205,58 @@ extern "C" {
  * @{
  */
 
-/** \brief Ö¸Ê¾¿¨ÊÇ·ñ´¦ÓÚ¿ÕÏĞ×´Ì¬ */
+/** \brief æŒ‡ç¤ºå¡æ˜¯å¦å¤„äºç©ºé—²çŠ¶æ€ */
 #define AM_SDIO_SPI_R1_IN_IDLE_STATE       0x01
 
-/** \brief ²Ù×÷±»¸´Î» */
+/** \brief æ“ä½œè¢«å¤ä½ */
 #define AM_SDIO_SPI_R1_ERASE_RESET         0x02
 
-/** \brief ¶ÔÓÚµ±Ç°¿¨×´Ì¬Îª·Ç·¨ÃüÁî  */
+/** \brief å¯¹äºå½“å‰å¡çŠ¶æ€ä¸ºéæ³•å‘½ä»¤  */
 #define AM_SDIO_SPI_R1_ILLEGAL_CMD         0x04
 
-/** \brief CRCĞ£ÑéÊ§°Ü */
+/** \brief CRCæ ¡éªŒå¤±è´¥ */
 #define AM_SDIO_SPI_R1_COM_CRC_ERROR       0x08
 
-/** \brief ²Á³ı´íÎó */
+/** \brief æ“¦é™¤é”™è¯¯ */
 #define AM_SDIO_SPI_R1_ERASE_SEQ_ERROR     0x10
 
-/** \brief µØÖ·´íÎó£¬·Ç¶ÔÆë»òÊı¾İ³¤¶È²»Æ¥Åä */
+/** \brief åœ°å€é”™è¯¯ï¼Œéå¯¹é½æˆ–æ•°æ®é•¿åº¦ä¸åŒ¹é… */
 #define AM_SDIO_SPI_R1_ADDRESS_ERROR       0x20
 
-/** \brief ²ÎÊı´íÎó£¬ÃüÁî²ÎÊı¶Î²»ºÏ·¨  */
+/** \brief å‚æ•°é”™è¯¯ï¼Œå‘½ä»¤å‚æ•°æ®µä¸åˆæ³•  */
 #define AM_SDIO_SPI_R1_PARA_ERROR          0x40
 #define AM_SDIO_SPI_R1_ALL_ERROR           0x7E
 #define AM_SDIO_SPI_R1_MASK                0x7F
 /** @} */
 
 /**
- * \name SPIÄ£Ê½ R2×´Ì¬
+ * \name SPIæ¨¡å¼ R2çŠ¶æ€
  * \anchor grp_awbl_spi_r2_state
  * @{
  */
 
-/** \brief ¿¨±»Ëø¶¨ */
+/** \brief å¡è¢«é”å®š */
 #define AM_SDIO_SPI_R2_CARD_LOCKED         0x01
 
-/** \brief ºöÂÔĞ´±£»¤,²Á³ı */
+/** \brief å¿½ç•¥å†™ä¿æŠ¤,æ“¦é™¤ */
 #define AM_SDIO_SPI_R2_WP_ERASE_SKIP       0x02
 
-/** \brief LOCK¡¢UNLOCKÃüÁîÊ§°Ü */
+/** \brief LOCKã€UNLOCKå‘½ä»¤å¤±è´¥ */
 #define AM_SDIO_SPI_R2_LOCK_UNLOCK_FAIL    0x02
 
-/** \brief ÎªÖ¹´íÎó */
+/** \brief ä¸ºæ­¢é”™è¯¯ */
 #define AM_SDIO_SPI_R2_ERROR               0x04
 
-/** \brief ¿¨ÄÚ²¿¿ØÖÆÆ÷´íÎó */
+/** \brief å¡å†…éƒ¨æ§åˆ¶å™¨é”™è¯¯ */
 #define AM_SDIO_SPI_R2_CC_ERROR            0x08
 
-/** \brief ECC´íÎó */
+/** \brief ECCé”™è¯¯ */
 #define AM_SDIO_SPI_R2_CARD_ECC_ERROR      0x10
 
-/** \brief ¶ÔĞ´±£»¤ÇøÓò½øĞĞÁËĞ´²Ù×÷ */
+/** \brief å¯¹å†™ä¿æŠ¤åŒºåŸŸè¿›è¡Œäº†å†™æ“ä½œ */
 #define AM_SDIO_SPI_R2_WP_VIOLATION        0x20
 
-/** \brief ²Á³ı²ÎÊıÎŞĞ§£¬¶ÔÎŞĞ§ÇøÓò²Á³ı */
+/** \brief æ“¦é™¤å‚æ•°æ— æ•ˆï¼Œå¯¹æ— æ•ˆåŒºåŸŸæ“¦é™¤ */
 #define AM_SDIO_SPI_R2_ERASE_PARAM         0x40
 
 /** \brief    */
@@ -267,15 +267,15 @@ extern "C" {
 /** \brief command */
 typedef struct am_sdio_trans{
 
-    struct am_list_head  trans_node; /**< \brief ´«ÊäÁ´±í½Úµã */
+    struct am_list_head  trans_node; /**< \brief ä¼ è¾“é“¾è¡¨èŠ‚ç‚¹ */
 
-    uint8_t              opt;        /**< \brief ´«Êä²Ù×÷ */
-#define AM_SDIO_OW           0       /**< \brief Ö»Ğ´ */
-#define AM_SDIO_WR           1       /**< \brief ÏÈĞ´ºó¶Á */
+    uint8_t              opt;        /**< \brief ä¼ è¾“æ“ä½œ */
+#define AM_SDIO_OW           0       /**< \brief åªå†™ */
+#define AM_SDIO_WR           1       /**< \brief å…ˆå†™åè¯» */
 
-    uint32_t             cmd;        /**< \brief SDIO ÃüÁî*/
-    uint32_t             arg;        /**< \brief ÃüÁî²ÎÊı */
-    uint8_t              rsp_type;   /**< \brief ÃüÁîÏìÓ¦ÀàĞÍ */
+    uint32_t             cmd;        /**< \brief SDIO å‘½ä»¤*/
+    uint32_t             arg;        /**< \brief å‘½ä»¤å‚æ•° */
+    uint8_t              rsp_type;   /**< \brief å‘½ä»¤å“åº”ç±»å‹ */
 #define AM_SDIO_RSP_NONE      0
 #define AM_SDIO_RSP_R1        1
 #define AM_SDIO_RSP_R1B       2
@@ -286,65 +286,65 @@ typedef struct am_sdio_trans{
 #define AM_SDIO_RSP_R6        7
 #define AM_SDIO_RSP_R7        8
 
-    uint32_t            *p_rsp;      /**< \brief ÏìÓ¦Êı¾İ */
+    uint32_t            *p_rsp;      /**< \brief å“åº”æ•°æ® */
 
-    void                *p_data;     /**< \brief Êı¾İ»º³åÇø */
-    uint32_t             blk_size;   /**< \brief ´«Êä¿é´óĞ¡ */
-    uint32_t             nblock;     /**< \brief ´«Êä¿éÊıÁ¿ */
-    uint8_t              retries;    /**< \brief ³¬Ê±ÖØ·¢´ÎÊı */
+    void                *p_data;     /**< \brief æ•°æ®ç¼“å†²åŒº */
+    uint32_t             blk_size;   /**< \brief ä¼ è¾“å—å¤§å° */
+    uint32_t             nblock;     /**< \brief ä¼ è¾“å—æ•°é‡ */
+    uint8_t              retries;    /**< \brief è¶…æ—¶é‡å‘æ¬¡æ•° */
 } am_sdio_trans_t;
 
 /** \brief message */
 typedef struct am_sdio_msg {
-    struct am_list_head  trans_list;        /**< \brief ÏûÏ¢´«ÊäÁ´±í */
-    int                  status;            /**< \brief Íê³É×´Ì¬  */
-    void                *p_arg;             /**< \brief »Øµ÷º¯Êı²ÎÊı */
-    void (*pfn_complete) (void *p_arg);     /**< \brief ÃüÁîÍê³É»Øµ÷º¯Êı*/
+    struct am_list_head  trans_list;        /**< \brief æ¶ˆæ¯ä¼ è¾“é“¾è¡¨ */
+    int                  status;            /**< \brief å®ŒæˆçŠ¶æ€  */
+    void                *p_arg;             /**< \brief å›è°ƒå‡½æ•°å‚æ•° */
+    void (*pfn_complete) (void *p_arg);     /**< \brief å‘½ä»¤å®Œæˆå›è°ƒå‡½æ•°*/
 } am_sdio_msg_t;
 
 struct am_sdio_device;
 
 /**
- * \brief SDIOÇı¶¯º¯Êı½á¹¹Ìå
+ * \brief SDIOé©±åŠ¨å‡½æ•°ç»“æ„ä½“
  */
 struct am_sdio_drv_funcs {
 
-    /** \brief ÉèÖÃSDIOÉè±¸   */
+    /** \brief è®¾ç½®SDIOè®¾å¤‡   */
     int (*pfn_sdio_setup) (void *p_drv, struct am_sdio_device *p_dev);
 
-    /** \brief Æô¶¯SDIOÏûÏ¢´«Êä£¬Íê³Éºóµ÷ÓÃ»Øµ÷º¯Êı  */
+    /** \brief å¯åŠ¨SDIOæ¶ˆæ¯ä¼ è¾“ï¼Œå®Œæˆåè°ƒç”¨å›è°ƒå‡½æ•°  */
     int (*pfn_sdio_msg_start)(void                  *p_drv,
                               struct am_sdio_device *p_dev,
                               struct am_sdio_msg    *p_msg);
 };
 
 /**
- * \brief SDIO ±ê×¼·şÎñ½á¹¹Ìå
+ * \brief SDIO æ ‡å‡†æœåŠ¡ç»“æ„ä½“
  */
 typedef struct am_sdio_serv {
-    struct am_sdio_drv_funcs   *p_funcs;    /**< \brief SDIO  sdioÇı¶¯º¯Êı     */
-    void                       *p_drv;      /**< \brief SDIO  sdioÇı¶¯º¯Êı²ÎÊı */
+    struct am_sdio_drv_funcs   *p_funcs;    /**< \brief SDIO  sdioé©±åŠ¨å‡½æ•°     */
+    void                       *p_drv;      /**< \brief SDIO  sdioé©±åŠ¨å‡½æ•°å‚æ•° */
 } am_sdio_serv_t;
 
-/** \brief SDIO ±ê×¼·şÎñ²Ù×÷¾ä±ú¶¨Òå */
+/** \brief SDIO æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„å®šä¹‰ */
 typedef am_sdio_serv_t *am_sdio_handle_t;
 
-/** \brief SDIO host Éè±¸  */
+/** \brief SDIO host è®¾å¤‡  */
 typedef struct am_sdio_device {
 
     am_sdio_handle_t        handle;
-    uint8_t                 mode;           /**< \brief ¹¤×÷Ä£Ê½  */
-#define AM_SDIO_SPI_M               0       /**< \brief SDIO SPIÄ£Ê½ */
-#define AM_SDIO_SD_1B_M             1       /**< \brief SDIO SD 1ÏßÄ£Ê½ */
-#define AM_SDIO_SD_4B_M             2       /**< \brief SDIO SD 4ÏßÄ£Ê½ */
-#define AM_SDIO_SD_8B_M             3       /**< \brief SDIO SD 8ÏßÄ£Ê½ */
+    uint8_t                 mode;           /**< \brief å·¥ä½œæ¨¡å¼  */
+#define AM_SDIO_SPI_M               0       /**< \brief SDIO SPIæ¨¡å¼ */
+#define AM_SDIO_SD_1B_M             1       /**< \brief SDIO SD 1çº¿æ¨¡å¼ */
+#define AM_SDIO_SD_4B_M             2       /**< \brief SDIO SD 4çº¿æ¨¡å¼ */
+#define AM_SDIO_SD_8B_M             3       /**< \brief SDIO SD 8çº¿æ¨¡å¼ */
 
-    uint32_t                speed;          /**< \brief SDIOËÙÂÊ  */
-    am_bool_t               crc_enable;     /**< \brief CRCÊ¹ÄÜ±êÖ¾  */
+    uint32_t                speed;          /**< \brief SDIOé€Ÿç‡  */
+    am_bool_t               crc_enable;     /**< \brief CRCä½¿èƒ½æ ‡å¿—  */
 
 } am_sdio_device_t;
 
-/**< \brief ÏìÓ¦ÀàĞÍ */
+/**< \brief å“åº”ç±»å‹ */
 #define AM_SDIO_RESPONSE_NO         0
 #define AM_SDIO_RESPONSE_SHORT      1
 #define AM_SDIO_RESPONSE_LONG       2
@@ -356,12 +356,12 @@ typedef struct am_sdio_timeout_obj {
 } am_sdio_timeout_obj_t;
 
 /**
- * \brief      ³¬Ê±Ê±¼äÉèÖÃ
+ * \brief      è¶…æ—¶æ—¶é—´è®¾ç½®
  *
  * \param[in]  p_t   :  timeout obj
- * \param[in]  ms    :  ³¬Ê±Ê±¼ä£¨µ¥Î»£ºms£©
+ * \param[in]  ms    :  è¶…æ—¶æ—¶é—´ï¼ˆå•ä½ï¼šmsï¼‰
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void am_sdio_timeout_set (am_sdio_timeout_obj_t *p_t,
@@ -372,11 +372,11 @@ void am_sdio_timeout_set (am_sdio_timeout_obj_t *p_t,
 }
 
 /**
- * \brief ¼ì²éÊÇ·ñ³¬Ê±
+ * \brief æ£€æŸ¥æ˜¯å¦è¶…æ—¶
  *
  * \param[in] t     timeout obj
  *
- * \retval ·µ»ØÖµÎª1Ôò³¬Ê±£¬·ñÔòÎ´³¬Ê±
+ * \retval è¿”å›å€¼ä¸º1åˆ™è¶…æ—¶ï¼Œå¦åˆ™æœªè¶…æ—¶
  */
 am_static_inline
 am_bool_t am_sdio_timeout (am_sdio_timeout_obj_t *p_t)
@@ -385,18 +385,18 @@ am_bool_t am_sdio_timeout (am_sdio_timeout_obj_t *p_t)
 }
 
 /**
- * \brief ÉèÖÃSDIOÉè±¸½á¹¹Ìå²ÎÊı
+ * \brief è®¾ç½®SDIOè®¾å¤‡ç»“æ„ä½“å‚æ•°
  *
- * \param[in] p_dev         : SDIO´Ó»úÉè±¸ÃèÊö·ûÖ¸Õë
- * \param[in] handle        : SDIO±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \param[in] mode          : Éè±¸Ä£Ê½±êÖ¾£¬¼û¡°SDIOÄ£Ê½±êÖ¾¡±
- * \param[in] speed         : SDIOÉè±¸µÄËÙ¶È
- * \param[in] crc_enable    : CRCÊ¹ÄÜ±êÖ¾
+ * \param[in] p_dev         : SDIOä»æœºè®¾å¤‡æè¿°ç¬¦æŒ‡é’ˆ
+ * \param[in] handle        : SDIOæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] mode          : è®¾å¤‡æ¨¡å¼æ ‡å¿—ï¼Œè§â€œSDIOæ¨¡å¼æ ‡å¿—â€
+ * \param[in] speed         : SDIOè®¾å¤‡çš„é€Ÿåº¦
+ * \param[in] crc_enable    : CRCä½¿èƒ½æ ‡å¿—
  *
- * \return ÎŞ
+ * \return æ— 
  *
- * \par ·¶Àı
- * ¼û am_sdio_setup()
+ * \par èŒƒä¾‹
+ * è§ am_sdio_setup()
  */
 am_static_inline
 void am_sdio_mkdev (am_sdio_device_t *p_dev,
@@ -412,28 +412,28 @@ void am_sdio_mkdev (am_sdio_device_t *p_dev,
 }
 
 /**
- * \brief ÉèÖÃSDIO HOSTÉè±¸
+ * \brief è®¾ç½®SDIO HOSTè®¾å¤‡
  *
- * \attention ÔÚSDIO HOSTÉè±¸±»Ê¹ÓÃÇ°£¬±ØĞëÏÈµ÷ÓÃ±¾º¯Êı½øĞĞÉèÖÃ£¬ÇÒÈç±¾º¯Êı·µ»Ø
- *            ´íÎó£¬ÔòÒ»¶¨²»ÄÜÔÙÊ¹ÓÃ´ËSDIO HOSTÉè±¸
+ * \attention åœ¨SDIO HOSTè®¾å¤‡è¢«ä½¿ç”¨å‰ï¼Œå¿…é¡»å…ˆè°ƒç”¨æœ¬å‡½æ•°è¿›è¡Œè®¾ç½®ï¼Œä¸”å¦‚æœ¬å‡½æ•°è¿”å›
+ *            é”™è¯¯ï¼Œåˆ™ä¸€å®šä¸èƒ½å†ä½¿ç”¨æ­¤SDIO HOSTè®¾å¤‡
  *
- * \param[in] p_dev : SDIO HOSTÉè±¸
+ * \param[in] p_dev : SDIO HOSTè®¾å¤‡
  *
- * \retval   AM_OK           : ÉèÖÃ³É¹¦
- * \retval  -AM_ENOTSUP      : ÅäÖÃÊ§°Ü£¬²»Ö§³ÖµÄÎ»¿í¡¢Ä£Ê½µÈ
+ * \retval   AM_OK           : è®¾ç½®æˆåŠŸ
+ * \retval  -AM_ENOTSUP      : é…ç½®å¤±è´¥ï¼Œä¸æ”¯æŒçš„ä½å®½ã€æ¨¡å¼ç­‰
  *
- * \par Ê¾Àı
+ * \par ç¤ºä¾‹
  * \code
- * am_sdio_device_t sdio_dev;     // Éè±¸ÃèÊö½á¹¹
+ * am_sdio_device_t sdio_dev;     // è®¾å¤‡æè¿°ç»“æ„
  *
- * // ³õÊ¼»¯Éè±¸ÃèÊö½á¹¹
+ * // åˆå§‹åŒ–è®¾å¤‡æè¿°ç»“æ„
  * am_sdio_mkdev(&sdio_dev,
- *               handle,          // SDIO±ê×¼·şÎñhandle
- *               AM_SDIO_SD_4B_M, // SDIOËÄÏßÄ£Ê½
- *               1000000,         // ËÙ¶È 1000000 Hz
- *               AM_TRUE),        // CRCÊ¹ÄÜ
+ *               handle,          // SDIOæ ‡å‡†æœåŠ¡handle
+ *               AM_SDIO_SD_4B_M, // SDIOå››çº¿æ¨¡å¼
+ *               1000000,         // é€Ÿåº¦ 1000000 Hz
+ *               AM_TRUE),        // CRCä½¿èƒ½
  *
- * // ÉèÖÃÉè±¸
+ * // è®¾ç½®è®¾å¤‡
  * am_sdio_setup(&sdio_dev);
  *
  * \endcode
@@ -445,21 +445,21 @@ int am_sdio_setup (am_sdio_device_t *p_dev)
 }
 
 /**
- * \brief SDIO´«ÊäÃüÁî½á¹¹ÌåĞÅÏ¢²ÎÊıÉèÖÃ
+ * \brief SDIOä¼ è¾“å‘½ä»¤ç»“æ„ä½“ä¿¡æ¯å‚æ•°è®¾ç½®
  *
- * \param[in] p_trans : Ö¸Ïò´«Êä½á¹¹ÌåÖ¸Õë
- * \param[in] opt       ´«Êä·½Ê½
- * \param[in] cmd       CMD ÃüÁî
- * \param[in] cmd_arg   ÃüÁî²ÎÊı
- * \param[in] rsp_type  ÏìÓ¦ÀàĞÍ
- * \param[in] rsp_type  ÏìÓ¦Êı¾İ»º´æ
- * \param[in] p_data    ´«ÊäÊı¾İ»º´æ
- * \param[in] blk_size  ´«Êä¿é´óĞ¡
- * \param[in] nblk      ´«Êä¿éÊıÁ¿
- * \param[in] retries   ³¬Ê±ÖØ·¢´ÎÊı
+ * \param[in] p_trans : æŒ‡å‘ä¼ è¾“ç»“æ„ä½“æŒ‡é’ˆ
+ * \param[in] opt       ä¼ è¾“æ–¹å¼
+ * \param[in] cmd       CMD å‘½ä»¤
+ * \param[in] cmd_arg   å‘½ä»¤å‚æ•°
+ * \param[in] rsp_type  å“åº”ç±»å‹
+ * \param[in] rsp_type  å“åº”æ•°æ®ç¼“å­˜
+ * \param[in] p_data    ä¼ è¾“æ•°æ®ç¼“å­˜
+ * \param[in] blk_size  ä¼ è¾“å—å¤§å°
+ * \param[in] nblk      ä¼ è¾“å—æ•°é‡
+ * \param[in] retries   è¶…æ—¶é‡å‘æ¬¡æ•°
  *
- * \retval  AM_OK     : ´«Êä½á¹¹Ìå²ÎÊıÉèÖÃÍê³É
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval  AM_OK     : ä¼ è¾“ç»“æ„ä½“å‚æ•°è®¾ç½®å®Œæˆ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 void am_sdio_mktrans (am_sdio_trans_t *p_trans,
@@ -485,13 +485,13 @@ void am_sdio_mktrans (am_sdio_trans_t *p_trans,
 }
 
 /**
- * \brief ³õÊ¼»¯ÏûÏ¢
+ * \brief åˆå§‹åŒ–æ¶ˆæ¯
  *
- * \param[in] p_msg        : SDIOÏûÏ¢ÃèÊö·ûÖ¸Õë
- * \param[in] pfn_complete : ´«ÊäÍê³É»Øµ÷º¯Êı
- * \param[in] p_arg        : ´«µİ¸ø»Øµ÷º¯ÊıµÄ²ÎÊı
+ * \param[in] p_msg        : SDIOæ¶ˆæ¯æè¿°ç¬¦æŒ‡é’ˆ
+ * \param[in] pfn_complete : ä¼ è¾“å®Œæˆå›è°ƒå‡½æ•°
+ * \param[in] p_arg        : ä¼ é€’ç»™å›è°ƒå‡½æ•°çš„å‚æ•°
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void am_sdio_msg_init (am_sdio_msg_t *p_msg,
@@ -508,7 +508,7 @@ void am_sdio_msg_init (am_sdio_msg_t *p_msg,
 }
 
 /**
- * \brief ½«´«ÊäÌí¼Óµ½ÏûÏ¢Ä©Î²
+ * \brief å°†ä¼ è¾“æ·»åŠ åˆ°æ¶ˆæ¯æœ«å°¾
  * \param p_msg     message object
  * \param p_cmd     command to be added
  */
@@ -520,10 +520,10 @@ void am_sdio_trans_add_tail (am_sdio_msg_t   *p_msg,
 }
 
 /**
- * \brief ½«´«Êä´ÓÏûÏ¢ÖĞÉ¾³ı
- * \param[in] p_trans : ´ı¼ÓÈëÉ¾³ıµÄ´«Êä
- * \return ÎŞ
- * \note É¾³ıÇ°£¬Îñ±ØÈ·±£¸Ã´«ÊäÈ·ÊµÒÑ¾­¼ÓÈëÁËÏûÏ¢ÖĞ
+ * \brief å°†ä¼ è¾“ä»æ¶ˆæ¯ä¸­åˆ é™¤
+ * \param[in] p_trans : å¾…åŠ å…¥åˆ é™¤çš„ä¼ è¾“
+ * \return æ— 
+ * \note åˆ é™¤å‰ï¼ŒåŠ¡å¿…ç¡®ä¿è¯¥ä¼ è¾“ç¡®å®å·²ç»åŠ å…¥äº†æ¶ˆæ¯ä¸­
  */
 am_static_inline
 void am_sdio_trans_del (am_sdio_trans_t *p_trans)
@@ -532,8 +532,8 @@ void am_sdio_trans_del (am_sdio_trans_t *p_trans)
 }
 
 /**
- * \brief ´ÓmessageÁĞ±í±íÍ·È¡³öÒ»Ìõ transfer
- * \attention µ÷ÓÃ´Ëº¯Êı±ØĞëËø¶¨¿ØÖÆÆ÷
+ * \brief ä»messageåˆ—è¡¨è¡¨å¤´å–å‡ºä¸€æ¡ transfer
+ * \attention è°ƒç”¨æ­¤å‡½æ•°å¿…é¡»é”å®šæ§åˆ¶å™¨
  *
  * \retval  p_msg
  */
@@ -553,19 +553,19 @@ am_sdio_trans_t *am_sdio_msg_out (am_sdio_msg_t *p_msg)
 }
 
 /**
- * \brief SDIO´«Êäº¯Êı
+ * \brief SDIOä¼ è¾“å‡½æ•°
  *
- * \param[in] p_dev   : SDIO HOSTÉè±¸
- * \param[in] p_msg   : ´«ÊäµÄÏûÏ¢
+ * \param[in] p_dev   : SDIO HOSTè®¾å¤‡
+ * \param[in] p_msg   : ä¼ è¾“çš„æ¶ˆæ¯
  *
- * \retval AM_OK            : ´«Êä³É¹¦
- * \retval -AM_ENOMEM       : ÄÚ´æ¿Õ¼ä²»×ã
- * \retval -AM_ECANCELED    : ²Ù×÷±»È¡Ïû
- * \retval -AM_EIO          : SDIO×ÜÏßI/O´íÎó
- * \retval -AM_EBUSY        : SDIO HOSTÃ¦£¬ÕıÔÚ´¦ÀíÆäËûmsg
- * \retval -AM_EINVAL       : ²ÎÊı´íÎó
- * \retval -AM_ETIME        : HOST´¦Àí³¬Ê±
- * \retval -AM_ENOTSUP      : HOST²»Ö§³Ö¸Ã¹¦ÄÜ
+ * \retval AM_OK            : ä¼ è¾“æˆåŠŸ
+ * \retval -AM_ENOMEM       : å†…å­˜ç©ºé—´ä¸è¶³
+ * \retval -AM_ECANCELED    : æ“ä½œè¢«å–æ¶ˆ
+ * \retval -AM_EIO          : SDIOæ€»çº¿I/Oé”™è¯¯
+ * \retval -AM_EBUSY        : SDIO HOSTå¿™ï¼Œæ­£åœ¨å¤„ç†å…¶ä»–msg
+ * \retval -AM_EINVAL       : å‚æ•°é”™è¯¯
+ * \retval -AM_ETIME        : HOSTå¤„ç†è¶…æ—¶
+ * \retval -AM_ENOTSUP      : HOSTä¸æ”¯æŒè¯¥åŠŸèƒ½
  */
 am_static_inline
 int am_sdio_msg_start (am_sdio_device_t *p_dev,
@@ -577,22 +577,22 @@ int am_sdio_msg_start (am_sdio_device_t *p_dev,
 }
 
 /**
- * \brief SDIOĞ´ÃüÁî
+ * \brief SDIOå†™å‘½ä»¤
  *
- * \param[in]  p_dev        : SDIOÉè±¸
- * \param[in]  cmd          : ĞèÒªĞ´ÈëµÄÃüÁî
- * \param[in]  cmd_arg      : ÃüÁî²ÎÊı
- * \param[in]  rsp_type     : ÏìÓ¦ÀàĞÍ
- * \param[in]  p_rsp        : ÏìÓ¦Êı¾İ»º´æ£¬²»ĞèÒªÊ±¿É´«ÈëNULL
+ * \param[in]  p_dev        : SDIOè®¾å¤‡
+ * \param[in]  cmd          : éœ€è¦å†™å…¥çš„å‘½ä»¤
+ * \param[in]  cmd_arg      : å‘½ä»¤å‚æ•°
+ * \param[in]  rsp_type     : å“åº”ç±»å‹
+ * \param[in]  p_rsp        : å“åº”æ•°æ®ç¼“å­˜ï¼Œä¸éœ€è¦æ—¶å¯ä¼ å…¥NULL
  *
- * \retval AM_OK            : ´«Êä³É¹¦
- * \retval -AM_ENOMEM       : ÄÚ´æ¿Õ¼ä²»×ã
- * \retval -AM_ECANCELED    : ²Ù×÷±»È¡Ïû
- * \retval -AM_EIO          : SDIO×ÜÏßI/O´íÎó
- * \retval -AM_EBUSY        : SDIO HOSTÃ¦£¬ÕıÔÚ´¦ÀíÆäËûmsg
- * \retval -AM_EINVAL       : ²ÎÊı´íÎó
- * \retval -AM_ETIME        : HOST´¦Àí³¬Ê±
- * \retval -AM_ENOTSUP      : HOST²»Ö§³Ö¸Ã¹¦ÄÜ
+ * \retval AM_OK            : ä¼ è¾“æˆåŠŸ
+ * \retval -AM_ENOMEM       : å†…å­˜ç©ºé—´ä¸è¶³
+ * \retval -AM_ECANCELED    : æ“ä½œè¢«å–æ¶ˆ
+ * \retval -AM_EIO          : SDIOæ€»çº¿I/Oé”™è¯¯
+ * \retval -AM_EBUSY        : SDIO HOSTå¿™ï¼Œæ­£åœ¨å¤„ç†å…¶ä»–msg
+ * \retval -AM_EINVAL       : å‚æ•°é”™è¯¯
+ * \retval -AM_ETIME        : HOSTå¤„ç†è¶…æ—¶
+ * \retval -AM_ENOTSUP      : HOSTä¸æ”¯æŒè¯¥åŠŸèƒ½
  */
 int am_sdio_cmd_write (am_sdio_device_t *p_dev,
                        uint8_t           cmd,
@@ -601,25 +601,25 @@ int am_sdio_cmd_write (am_sdio_device_t *p_dev,
                        void             *p_rsp);
 
 /**
- * \brief SDIOÏÈĞ´ÃüÁîÔÙ¶ÁÊı¾İ
+ * \brief SDIOå…ˆå†™å‘½ä»¤å†è¯»æ•°æ®
  *
- * \param[in]  p_dev        : SDIOÉè±¸
- * \param[in]  cmd          : ĞèÒªĞ´µÄÃüÁî
- * \param[in]  cmd_arg      : ÃüÁî²ÎÊı
- * \param[in]  rsp_type     : ÃüÁîÏìÓ¦ÀàĞÍ
- * \param[in]  p_rsp        : ÏìÓ¦»º´æ
- * \param[in]  p_data       : ¶ÁÈ¡µÄÊı¾İ»º´æ
- * \param[in]  blk_size     : ĞèÒª¶ÁÈ¡Êı¾İµÄ¿é´óĞ¡
- * \param[in]  nblks        : ĞèÒª¶ÁÈ¡Êı¾İµÄ¿é¸öÊı
+ * \param[in]  p_dev        : SDIOè®¾å¤‡
+ * \param[in]  cmd          : éœ€è¦å†™çš„å‘½ä»¤
+ * \param[in]  cmd_arg      : å‘½ä»¤å‚æ•°
+ * \param[in]  rsp_type     : å‘½ä»¤å“åº”ç±»å‹
+ * \param[in]  p_rsp        : å“åº”ç¼“å­˜
+ * \param[in]  p_data       : è¯»å–çš„æ•°æ®ç¼“å­˜
+ * \param[in]  blk_size     : éœ€è¦è¯»å–æ•°æ®çš„å—å¤§å°
+ * \param[in]  nblks        : éœ€è¦è¯»å–æ•°æ®çš„å—ä¸ªæ•°
  *
- * \retval AM_OK            : ´«Êä³É¹¦
- * \retval -AM_ENOMEM       : ÄÚ´æ¿Õ¼ä²»×ã
- * \retval -AM_ECANCELED    : ²Ù×÷±»È¡Ïû
- * \retval -AM_EIO          : SDIO×ÜÏßI/O´íÎó
- * \retval -AM_EBUSY        : SDIO HOSTÃ¦£¬ÕıÔÚ´¦ÀíÆäËûmsg
- * \retval -AM_EINVAL       : ²ÎÊı´íÎó
- * \retval -AM_ETIME        : HOST´¦Àí³¬Ê±
- * \retval -AM_ENOTSUP      : HOST²»Ö§³Ö¸Ã¹¦ÄÜ
+ * \retval AM_OK            : ä¼ è¾“æˆåŠŸ
+ * \retval -AM_ENOMEM       : å†…å­˜ç©ºé—´ä¸è¶³
+ * \retval -AM_ECANCELED    : æ“ä½œè¢«å–æ¶ˆ
+ * \retval -AM_EIO          : SDIOæ€»çº¿I/Oé”™è¯¯
+ * \retval -AM_EBUSY        : SDIO HOSTå¿™ï¼Œæ­£åœ¨å¤„ç†å…¶ä»–msg
+ * \retval -AM_EINVAL       : å‚æ•°é”™è¯¯
+ * \retval -AM_ETIME        : HOSTå¤„ç†è¶…æ—¶
+ * \retval -AM_ENOTSUP      : HOSTä¸æ”¯æŒè¯¥åŠŸèƒ½
  */
 int am_sdio_write_then_read (am_sdio_device_t *p_dev,
                              uint8_t           cmd,
@@ -631,25 +631,25 @@ int am_sdio_write_then_read (am_sdio_device_t *p_dev,
                              uint32_t          nblks);
 
 /**
- * \brief SDIOÏÈĞ´ÃüÁîÔÙĞ´Êı¾İ
+ * \brief SDIOå…ˆå†™å‘½ä»¤å†å†™æ•°æ®
  *
- * \param[in]  p_dev        : SDIOÉè±¸
- * \param[in]  cmd          : ĞèÒªĞ´µÄÃüÁî
- * \param[in]  cmd_arg      : ÃüÁî²ÎÊı
- * \param[in]  rsp_type     : ÃüÁîÏìÓ¦ÀàĞÍ
- * \param[in]  p_rsp        : ÏìÓ¦»º´æ
- * \param[in]  p_data       : Ğ´ÈëµÄÊı¾İ»º´æ
- * \param[in]  blk_size     : ĞèÒªĞ´ÈëÊı¾İµÄ¿é´óĞ¡
- * \param[in]  nblks        : ĞèÒªĞ´ÈëÊı¾İµÄ¿é¸öÊı
+ * \param[in]  p_dev        : SDIOè®¾å¤‡
+ * \param[in]  cmd          : éœ€è¦å†™çš„å‘½ä»¤
+ * \param[in]  cmd_arg      : å‘½ä»¤å‚æ•°
+ * \param[in]  rsp_type     : å‘½ä»¤å“åº”ç±»å‹
+ * \param[in]  p_rsp        : å“åº”ç¼“å­˜
+ * \param[in]  p_data       : å†™å…¥çš„æ•°æ®ç¼“å­˜
+ * \param[in]  blk_size     : éœ€è¦å†™å…¥æ•°æ®çš„å—å¤§å°
+ * \param[in]  nblks        : éœ€è¦å†™å…¥æ•°æ®çš„å—ä¸ªæ•°
  *
- * \retval AM_OK            : ´«Êä³É¹¦
- * \retval -AM_ENOMEM       : ÄÚ´æ¿Õ¼ä²»×ã
- * \retval -AM_ECANCELED    : ²Ù×÷±»È¡Ïû
- * \retval -AM_EIO          : SDIO×ÜÏßI/O´íÎó
- * \retval -AM_EBUSY        : SDIO HOSTÃ¦£¬ÕıÔÚ´¦ÀíÆäËûmsg
- * \retval -AM_EINVAL       : ²ÎÊı´íÎó
- * \retval -AM_ETIME        : HOST´¦Àí³¬Ê±
- * \retval -AM_ENOTSUP      : HOST²»Ö§³Ö¸Ã¹¦ÄÜ
+ * \retval AM_OK            : ä¼ è¾“æˆåŠŸ
+ * \retval -AM_ENOMEM       : å†…å­˜ç©ºé—´ä¸è¶³
+ * \retval -AM_ECANCELED    : æ“ä½œè¢«å–æ¶ˆ
+ * \retval -AM_EIO          : SDIOæ€»çº¿I/Oé”™è¯¯
+ * \retval -AM_EBUSY        : SDIO HOSTå¿™ï¼Œæ­£åœ¨å¤„ç†å…¶ä»–msg
+ * \retval -AM_EINVAL       : å‚æ•°é”™è¯¯
+ * \retval -AM_ETIME        : HOSTå¤„ç†è¶…æ—¶
+ * \retval -AM_ENOTSUP      : HOSTä¸æ”¯æŒè¯¥åŠŸèƒ½
  */
 int am_sdio_write_then_write (am_sdio_device_t *p_dev,
                               uint8_t           cmd,

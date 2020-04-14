@@ -12,12 +12,12 @@
 
 /**
  * \file
- * \brief ¶¨Ê±Æ÷ PWM Êä³öÀı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief å®šæ—¶å™¨ PWM è¾“å‡ºä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. PIOA_0(TIM2_CH1) Êä³ö 4KHz µÄ PWM£¬Õ¼¿Õ±ÈÎª 50%¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. PIOA_0(TIM2_CH1) è¾“å‡º 4KHz çš„ PWMï¼Œå ç©ºæ¯”ä¸º 50%ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_zmf159_core_hw_tim_pwm.c src_zmf159_core_hw_tim_pwm
  *
  * \internal
@@ -44,19 +44,19 @@
 #include "demo_zlg_entries.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_zmf159_core_hw_tim_pwm_entry (void)
 {
     AM_DBG_INFO("demo zmf159_core hw tim pwm!\r\n");
 
-    /* ³õÊ¼»¯Òı½Å */
+    /* åˆå§‹åŒ–å¼•è„š */
     am_gpio_pin_cfg(PIOA_0, PIOA_0_TIM2_CH1_ETR | PIOA_0_AF_PP | PIOA_0_SPEED_50MHz);
 
-    /* Ê¹ÄÜ¶¨Ê±Æ÷Ê±ÖÓ */
+    /* ä½¿èƒ½å®šæ—¶å™¨æ—¶é’Ÿ */
     am_clk_enable(CLK_TIM2);
 
-    /* ¸´Î»¶¨Ê±Æ÷ */
+    /* å¤ä½å®šæ—¶å™¨ */
     am_zmf159_clk_reset(CLK_TIM2);
 
     demo_zlg_hw_tim_pwm_entry(ZMF159_TIM2,

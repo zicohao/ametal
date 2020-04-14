@@ -13,36 +13,36 @@
 
 /**
  * \file
- * \brief ZM516X ģ�� KEY LED ���̣�ͨ����׼�ӿ�ʵ��
+ * \brief ZM516X 模块 KEY LED 例程，通过标准接口实现
  *
- * - �������裺
- *   1. ���Ա� Demo ��Ҫʹ������ AM824ZB �壬�������Ҫ���ز�ͬ�ĳ���
- *      ����һ�� AM824ZB ��򿪺� USE_BORD0���رպ� USE_BORD1�����벢���س���
- *      ����һ�� AM824ZB ��򿪺� USE_BORD1���رպ� USE_BORD0�����벢���س���
+ * - 操作步骤：
+ *   1. 测试本 Demo 需要使用两块 AM824ZB 板，两块板需要下载不同的程序，
+ *      其中一块 AM824ZB 板打开宏 USE_BORD0，关闭宏 USE_BORD1，编译并下载程序，
+ *      另外一块 AM824ZB 板打开宏 USE_BORD1，关闭宏 USE_BORD0，编译并下载程序。
  *
- * - ʵ������
- *   1. ZM516X ģ���ʼ�������óɹ��� LED0 �����������ʼ��ʧ�ܣ�LED0 ��˸��
- *   2. ���� KEY/RST ������Է����� key_code��������ͳɹ�����ͨ�����ڴ�ӡ
- *      "send key code xx success"�������ʧ�ܣ���ͨ�����ڴ�ӡ
- *      "send key code xx failed"���Է����յ�֮�󣬷�ת LED1����ͨ������
- *      ��ӡ "received key code: xx"��
+ * - 实验现象：
+ *   1. ZM516X 模块初始化并配置成功后 LED0 长亮，如果初始化失败，LED0 闪烁；
+ *   2. 按下 KEY/RST 键，向对方发送 key_code。如果发送成功，将通过串口打印
+ *      "send key code xx success"如果发送失败，将通过串口打印
+ *      "send key code xx failed"。对方接收到之后，翻转 LED1，并通过串口
+ *      打印 "received key code: xx"。
  *
  * \note
- *    1. LED0 ��Ҫ�̽� J9 ����ñ�����ܱ� PIO0_8 ���ƣ�
- *    2. ʹ�ð���������Ҫ�� J14 �� KEY �� PIO0_1 �̽���һ��
- *    3. ����۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIO0_0 �������� PC ���ڵ� TXD��
- *       PIO0_4 �������� PC ���ڵ� RXD��
- *    4. ���Ա� Demo ������ am_prj_config.h �ڽ� AM_CFG_KEY_GPIO_ENABLE ����Ϊ 1
- *       ���ú��Ѿ�Ĭ������Ϊ 1�� �û������ٴ����ã�
- *    5. ZigBee ģ�������ӹ�ϵ���£�
+ *    1. LED0 需要短接 J9 跳线帽，才能被 PIO0_8 控制；
+ *    2. 使用按键功能需要将 J14 的 KEY 和 PIO0_1 短接在一起；
+ *    3. 如需观察串口打印的调试信息，需要将 PIO0_0 引脚连接 PC 串口的 TXD，
+ *       PIO0_4 引脚连接 PC 串口的 RXD；
+ *    4. 测试本 Demo 必须在 am_prj_config.h 内将 AM_CFG_KEY_GPIO_ENABLE 定义为 1
+ *       但该宏已经默认配置为 1， 用户不必再次配置；
+ *    5. ZigBee 模块内连接关系如下：
  * <pre>
  *           PIO0_26  <-->  ZigBee_TX
  *           PIO0_27  <-->  ZigBee_RX
  *           PIO0_28  <-->  ZigBee_RST
  * </pre>
- *        �����Ҫʹ�� ZigBee����Щ IO �ڲ�������������;��
+ *        如果需要使用 ZigBee，这些 IO 口不能用作其它用途。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_zm516x_key_led.c src_zm516x_key_led
  *
  * \internal
@@ -68,26 +68,26 @@
 #include "am_board.h"
 #include <string.h>
 
-//#define USE_BORD0                /**< \brief ʹ�øú�ʱ�����������ڵ��� 0 */
-#define USE_BORD1              /**< \brief ʹ�øú�ʱ�����������ڵ��� 1 */
+//#define USE_BORD0                /**< \brief 使用该宏时，本例程用于单板 0 */
+#define USE_BORD1              /**< \brief 使用该宏时，本例程用于单板 1 */
 
-#define __MAX_KEY_BUF_SIZE   4   /**< \brief ������������ܱ�����ٴΰ������� */
+#define __MAX_KEY_BUF_SIZE   4   /**< \brief 缓冲区中最多能保存多少次按键数据 */
 
-/** \brief �������λ������ṹ */
+/** \brief 按键环形缓冲区结构 */
 am_local struct am_rngbuf __g_key_rngbuf;
 
-/** \brief �������λ����������ɴ�� __MAX_KEY_BUF_SIZE ����ֵ */
+/** \brief 按键环形缓冲区，最多可存放 __MAX_KEY_BUF_SIZE 个键值 */
 am_local char             __g_key_buf[sizeof(int) * __MAX_KEY_BUF_SIZE + 1];
 
-/** \brief ���ջ��λ������ṹ */
+/** \brief 接收环形缓冲区结构 */
 am_local struct am_rngbuf __g_recv_rngbuf;
 
-/** \brief ���ջ��λ����������ɴ�� __MAX_KEY_BUF_SIZE ����ֵ */
+/** \brief 接收环形缓冲区，最多可存放 __MAX_KEY_BUF_SIZE 个键值 */
 am_local char             __g_recv_buf0[sizeof(int) * __MAX_KEY_BUF_SIZE + 1];
 am_local char             __g_recv_buf1[sizeof(int) * __MAX_KEY_BUF_SIZE];
 
 /**
- * \brief ��˸ LED0
+ * \brief 闪烁 LED0
  */
 am_local void flash_led (void)
 {
@@ -101,21 +101,21 @@ am_local void flash_led (void)
 }
 
 /**
- * \brief �����ص���������
+ * \brief 按键回调函数类型
  *
- * \param[in] p_usr_data �û����ݣ�ע��ʱ�趨���û�����
- * \param[in] key_code   ��������
- * \param[in] key_state  ����״̬��AM_INPUT_KEY_STATE_PRESSED
- * \param[in] keep_time  ��������ʱ��
+ * \param[in] p_usr_data 用户数据，注册时设定的用户参数
+ * \param[in] key_code   按键编码
+ * \param[in] key_state  按键状态，AM_INPUT_KEY_STATE_PRESSED
+ * \param[in] keep_time  按键长按时间
  *
- * \return ��
+ * \return 无
  */
 am_local void __input_key_proc (void *p_arg, int key_code, int key_state, int keep_time)
 {
     if (key_code == KEY_KP0) {
         if (key_state == AM_INPUT_KEY_STATE_PRESSED) {
 
-            /* �жϰ����������Ƿ��� */
+            /* 判断按键缓冲区是否满 */
             if (am_rngbuf_freebytes(&__g_key_rngbuf) >= sizeof(key_code)) {
                 am_rngbuf_put(&__g_key_rngbuf,
                                (const char *)&key_code,
@@ -126,7 +126,7 @@ am_local void __input_key_proc (void *p_arg, int key_code, int key_state, int ke
 }
 
 /**
- * \brief ������ʼ��
+ * \brief 按键初始化
  */
 am_local void __key_init (void)
 {
@@ -136,7 +136,7 @@ am_local void __key_init (void)
 }
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_zm516x_key_led_entry (am_zm516x_handle_t zm516x_handle)
 {
@@ -163,24 +163,24 @@ void demo_zm516x_key_led_entry (am_zm516x_handle_t zm516x_handle)
                 dst_addr[0],
                 dst_addr[1]);
 
-    /* ��ʼ������ */
+    /* 初始化按键 */
     __key_init();
 
-    /* ��ʼ�����λ����� */
+    /* 初始化环形缓冲区 */
     am_rngbuf_init(&__g_key_rngbuf, __g_key_buf, sizeof(__g_key_buf));
     am_rngbuf_init(&__g_recv_rngbuf, __g_recv_buf0, sizeof(__g_recv_buf0));
 
-    /* �ָ� ZM516X ģ��������ã��������DA�������óɹ��踴λ */
+    /* 恢复 ZM516X 模块出厂设置（永久命令：DA），设置成功需复位 */
     if (am_zm516x_default_set(zm516x_handle) != AM_OK) {
         AM_DBG_INFO("am_zm516x_default_set failed\r\n");
         flash_led();
     }
 
-    /* ���óɹ�����λ ZM516X ģ�飨�������D9�� */
+    /* 设置成功，复位 ZM516X 模块（永久命令：D9） */
     am_zm516x_reset(zm516x_handle);
     am_mdelay(10);
 
-    /* ��ȡ ZigBee ģ���������Ϣ���������D1�� */
+    /* 获取 ZigBee 模块的配置信息（永久命令：D1） */
     if (am_zm516x_cfg_info_get(zm516x_handle, &zm516x_cfg_info) != AM_OK) {
         AM_DBG_INFO("am_zm516x_cfg_info_get failed\r\n");
         flash_led();
@@ -191,23 +191,23 @@ void demo_zm516x_key_led_entry (am_zm516x_handle_t zm516x_handle)
     zm516x_cfg_info.panid[0] = 0x10;
     zm516x_cfg_info.panid[1] = 0x01;
 
-    /* �޸� ZigBee ģ���������Ϣ���������D6�������óɹ��踴λ */
+    /* 修改 ZigBee 模块的配置信息（永久命令：D6），设置成功需复位 */
     if (am_zm516x_cfg_info_set(zm516x_handle, &zm516x_cfg_info) != AM_OK) {
         AM_DBG_INFO("am_zm516x_cfg_info_set failed\r\n");
         flash_led();
     }
 
-    /* ʹ ZigBee ģ�鸴λ���������D9�� */
+    /* 使 ZigBee 模块复位（永久命令：D9） */
     am_zm516x_reset(zm516x_handle);
     am_mdelay(10);
 
-    /* ���� ZigBee ģ��ͨ���ţ���ʱ���D1�� */
+    /* 设置 ZigBee 模块通道号（临时命令：D1） */
     if (am_zm516x_channel_set(zm516x_handle, 25) != AM_OK) {
         AM_DBG_INFO("am_zm516x_channel_set failed\r\n");
         flash_led();
     }
 
-    /* ���� ZigBee ģ��Ŀ���ַ����ʱ���D2�� */
+    /* 设置 ZigBee 模块目标地址（临时命令：D2） */
     zb_addr.p_addr    = dst_addr;
     zb_addr.addr_size = sizeof(dst_addr);
     if (am_zm516x_dest_addr_set(zm516x_handle, &zb_addr) != AM_OK) {
@@ -215,19 +215,19 @@ void demo_zm516x_key_led_entry (am_zm516x_handle_t zm516x_handle)
         flash_led();
     }
 
-    /* ���� ZigBee ģ����յ����ݰ���ͷ�Ƿ���ʾԴ��ַ����ʱ���D3�� */
+    /* 设置 ZigBee 模块接收的数据包包头是否显示源地址（临时命令：D3） */
     if (am_zm516x_display_head_set(zm516x_handle, AM_FALSE) != AM_OK) {
     	AM_DBG_INFO("am_zm516x_display_head_set failed\r\n");
         flash_led();
     }
 
-    /* ���� ZigBee ģ���ͨѶģʽ����ʱ���D9�� */
+    /* 设置 ZigBee 模块的通讯模式（临时命令：D9） */
     if (am_zm516x_mode_set(zm516x_handle, AM_ZM516X_COMM_UNICAST) != AM_OK) {
         AM_DBG_INFO("am_zm516x_mode_set failed\r\n");
         flash_led();
     }
 
-    /* ��ȡ ZigBee ģ���������Ϣ���������D1�� */
+    /* 获取 ZigBee 模块的配置信息（永久命令：D1） */
     if (am_zm516x_cfg_info_get(zm516x_handle, &zm516x_cfg_info) != AM_OK) {
         AM_DBG_INFO("am_zm516x_cfg_info_get failed\r\n");
         flash_led();
@@ -259,20 +259,20 @@ void demo_zm516x_key_led_entry (am_zm516x_handle_t zm516x_handle)
                 zm516x_cfg_info.tran_timeout,
                 zm516x_cfg_info.send_mode);
 
-    /*  ������ɣ����� LED0 */
+    /*  配置完成，点亮 LED0 */
     am_led_on(LED0);
 
     AM_FOREVER {
 
-        /* �жϰ������������Ƿ��а������� */
+        /* 判断按键缓冲区中是否有按键数据 */
         if (am_rngbuf_nbytes(&__g_key_rngbuf) >= sizeof(int)) {
 
-            /* �Ӱ����������л�ȡ��ֵ */
+            /* 从按键缓冲区中获取键值 */
             am_rngbuf_get(&__g_key_rngbuf,
                            (char *)&key_code,
                            sizeof(key_code));
 
-            /* ���ͼ�ֵ */
+            /* 发送键值 */
             if (am_zm516x_send_with_ack(zm516x_handle,
                                        &key_code,
                                         sizeof(key_code)) != sizeof(key_code)) {
@@ -283,23 +283,23 @@ void demo_zm516x_key_led_entry (am_zm516x_handle_t zm516x_handle)
             }
         }
 
-        /*  am_zm516x_receive�����Ķ���ʱΪ10ms */
+        /*  am_zm516x_receive函数的读超时为10ms */
         ret = am_zm516x_receive(zm516x_handle,
                                 __g_recv_buf1,
                                 sizeof(__g_recv_buf1));
         if (ret > 0) {
 
-            /* �жϽ��ջ������Ƿ��� */
+            /* 判断接收缓冲区是否满 */
             if (am_rngbuf_freebytes(&__g_key_rngbuf) >= sizeof(key_code)) {
                 am_rngbuf_put(&__g_recv_rngbuf,
                                __g_recv_buf1,
                                ret);
             }
 
-            /* �жϽ��ջ��������Ƿ��а������� */
+            /* 判断接收缓冲区中是否有按键数据 */
             if (am_rngbuf_nbytes(&__g_recv_rngbuf) >= sizeof(int)) {
 
-                /* �ӽ��ջ������л�ȡ��ֵ */
+                /* 从接收缓冲区中获取键值 */
                 am_rngbuf_get(&__g_recv_rngbuf,
                                (char *)&key_code,
                                sizeof(key_code));

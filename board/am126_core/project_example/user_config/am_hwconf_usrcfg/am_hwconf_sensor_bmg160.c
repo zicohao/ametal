@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ´«¸ĞÆ÷ BMG160 ÅäÖÃÎÄ¼ş
+ * \brief ä¼ æ„Ÿå™¨ BMG160 é…ç½®æ–‡ä»¶
  *
  * \internal
  * \par Modification history
@@ -25,16 +25,16 @@
 #include "zlg116_pin.h"
 #include "am_zlg116_inst_init.h"
 
-/** \brief ´«¸ĞÆ÷ BMG160 Éè±¸ĞÅÏ¢ÊµÀı */
+/** \brief ä¼ æ„Ÿå™¨ BMG160 è®¾å¤‡ä¿¡æ¯å®ä¾‹ */
 am_const am_local struct am_sensor_bmg160_devinfo __g_bmg160_info = {
-        PIOB_0,            /*< \brief ´¥·¢Òı½Å¶¨Òå */
-        0x68               /*< \breif BMG160 I2CµØÖ· */
+        PIOB_0,            /*< \brief è§¦å‘å¼•è„šå®šä¹‰ */
+        0x68               /*< \breif BMG160 I2Cåœ°å€ */
 };
 
-/** \breif ´«¸ĞÆ÷ BMG160 Éè±¸½á¹¹Ìå¶¨Òå */
+/** \breif ä¼ æ„Ÿå™¨ BMG160 è®¾å¤‡ç»“æ„ä½“å®šä¹‰ */
 am_local struct am_sensor_bmg160_dev __g_bmg160_dev;
 
-/** \brief ´«¸ĞÆ÷ BMG160 Éè±¸ÊµÀı»¯ */
+/** \brief ä¼ æ„Ÿå™¨ BMG160 è®¾å¤‡å®ä¾‹åŒ– */
 am_sensor_handle_t am_sensor_bmg160_inst_init (void)
 {
     return am_sensor_bmg160_init(&__g_bmg160_dev,
@@ -42,7 +42,7 @@ am_sensor_handle_t am_sensor_bmg160_inst_init (void)
                                  am_zlg116_i2c1_inst_init());
 }
 
-/** \brief ´«¸ĞÆ÷ BMG160 ÊµÀı½â³õÊ¼»¯ */
+/** \brief ä¼ æ„Ÿå™¨ BMG160 å®ä¾‹è§£åˆå§‹åŒ– */
 am_err_t am_sensor_bmg160_inst_deinit (am_sensor_handle_t handle)
 {
     return am_sensor_bmg160_deinit(handle);

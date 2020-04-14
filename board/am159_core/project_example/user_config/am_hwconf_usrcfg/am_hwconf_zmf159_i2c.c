@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZMF159 I2C ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief ZMF159 I2C ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_zmf159_i2c.c
  *
  * \internal
@@ -35,7 +35,7 @@
  * @{
  */
 
-/** \brief I2C1 ×ÜÏß»Ö¸´º¯Êı */
+/** \brief I2C1 æ€»çº¿æ¢å¤å‡½æ•° */
 static void __zlg_i2c1_bus_clean (void)
 {
     uint8_t i;
@@ -54,7 +54,7 @@ static void __zlg_i2c1_bus_clean (void)
     am_gpio_pin_cfg(PIOB_9, PIOB_9_I2C1_SDA | PIOB_9_AF_OD);
 }
 
-/** \brief I2C1 Æ½Ì¨³õÊ¼»¯º¯Êı */
+/** \brief I2C1 å¹³å°åˆå§‹åŒ–å‡½æ•° */
 static void __zlg_i2c1_plfm_init (void)
 {
 
@@ -65,39 +65,39 @@ static void __zlg_i2c1_plfm_init (void)
     am_zmf159_clk_reset(CLK_I2C1);
 }
 
-/** \brief ½â³ıI2C1 Æ½Ì¨³õÊ¼»¯º¯Êı */
+/** \brief è§£é™¤I2C1 å¹³å°åˆå§‹åŒ–å‡½æ•° */
 static void __zlg_i2c1_plfm_deinit (void)
 {
     am_clk_disable(CLK_I2C1);
 }
 
 /**
- * \name I2C1 ¿ØÖÆÆ÷²ÎÊı¶¨Òå
+ * \name I2C1 æ§åˆ¶å™¨å‚æ•°å®šä¹‰
  * @{
  */
 
 /** @} */
 
 /**
- * \brief I2C1 Éè±¸ĞÅÏ¢
+ * \brief I2C1 è®¾å¤‡ä¿¡æ¯
  */
 static const am_zlg_i2c_devinfo_t __g_i2c1_devinfo = {
 
-    ZMF159_I2C1_BASE,                 /**< \brief I2C1¼Ä´æÆ÷¿é»ùÖ· */
-    CLK_I2C1,                         /**< \brief Ê±ÖÓIDÖµ */
-    INUM_I2C1_EV,                     /**< \brief I2C1 ÖĞ¶Ï±àºÅ */
+    ZMF159_I2C1_BASE,                 /**< \brief I2C1å¯„å­˜å™¨å—åŸºå€ */
+    CLK_I2C1,                         /**< \brief æ—¶é’ŸIDå€¼ */
+    INUM_I2C1_EV,                     /**< \brief I2C1 ä¸­æ–­ç¼–å· */
 
-    100000,                           /**< \brief I2C ËÙÂÊ */
-    10,                               /**< \brief ³¬Ê±Öµ10 */
-    __zlg_i2c1_bus_clean,             /**< \brief ×ÜÏß»Ö¸´º¯Êı */
-    __zlg_i2c1_plfm_init,             /**< \brief Æ½Ì¨³õÊ¼»¯ */
-    __zlg_i2c1_plfm_deinit            /**< \brief Æ½Ì¨È¥³õÊ¼»¯ */
+    100000,                           /**< \brief I2C é€Ÿç‡ */
+    10,                               /**< \brief è¶…æ—¶å€¼10 */
+    __zlg_i2c1_bus_clean,             /**< \brief æ€»çº¿æ¢å¤å‡½æ•° */
+    __zlg_i2c1_plfm_init,             /**< \brief å¹³å°åˆå§‹åŒ– */
+    __zlg_i2c1_plfm_deinit            /**< \brief å¹³å°å»åˆå§‹åŒ– */
 };
 
-static am_zlg_i2c_dev_t __g_i2c1_dev;           /**< \brief I2C1 Éè±¸ÊµÀı */
-static am_i2c_handle_t  __g_i2c1_handle = NULL; /**< \brief I2C ±ê×¼·şÎñ¾ä±ú */
+static am_zlg_i2c_dev_t __g_i2c1_dev;           /**< \brief I2C1 è®¾å¤‡å®ä¾‹ */
+static am_i2c_handle_t  __g_i2c1_handle = NULL; /**< \brief I2C æ ‡å‡†æœåŠ¡å¥æŸ„ */
 
-/** \brief I2C1 ÊµÀı³õÊ¼»¯£¬»ñµÃI2C±ê×¼·şÎñ¾ä±ú */
+/** \brief I2C1 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—I2Cæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_i2c_handle_t am_zmf159_i2c1_inst_init (void)
 {
     if (NULL == __g_i2c1_handle) {
@@ -107,7 +107,7 @@ am_i2c_handle_t am_zmf159_i2c1_inst_init (void)
     return __g_i2c1_handle;
 }
 
-/** \brief I2C1 ÊµÀı½â³õÊ¼»¯ */
+/** \brief I2C1 å®ä¾‹è§£åˆå§‹åŒ– */
 void am_zmf159_i2c1_inst_deinit (am_i2c_handle_t handle)
 {
     am_zlg_i2c_deinit(handle);
@@ -116,7 +116,7 @@ void am_zmf159_i2c1_inst_deinit (am_i2c_handle_t handle)
 
 /*******************************************************************************/
 
-/** \brief I2C2 ×ÜÏß»Ö¸´º¯Êı */
+/** \brief I2C2 æ€»çº¿æ¢å¤å‡½æ•° */
 static void __zlg_i2c2_bus_clean (void)
 {
     uint8_t i;
@@ -135,7 +135,7 @@ static void __zlg_i2c2_bus_clean (void)
     am_gpio_pin_cfg(PIOC_9, PIOC_9_I2C2_SDA | PIOC_9_AF_OD);
 }
 
-/** \brief I2C2 Æ½Ì¨³õÊ¼»¯º¯Êı */
+/** \brief I2C2 å¹³å°åˆå§‹åŒ–å‡½æ•° */
 static void __zlg_i2c2_plfm_init (void)
 {
     am_gpio_pin_cfg(PIOC_8, PIOC_8_I2C2_SCL | PIOC_8_AF_OD | PIOC_8_SPEED_20MHz);
@@ -145,39 +145,39 @@ static void __zlg_i2c2_plfm_init (void)
     am_zmf159_clk_reset(CLK_I2C2);
 }
 
-/** \brief ½â³ıI2C2 Æ½Ì¨³õÊ¼»¯º¯Êı */
+/** \brief è§£é™¤I2C2 å¹³å°åˆå§‹åŒ–å‡½æ•° */
 static void __zlg_i2c2_plfm_deinit (void)
 {
     am_clk_disable(CLK_I2C2);
 }
 
 /**
- * \name I2C2 ¿ØÖÆÆ÷²ÎÊı¶¨Òå
+ * \name I2C2 æ§åˆ¶å™¨å‚æ•°å®šä¹‰
  * @{
  */
 
 /** @} */
 
 /**
- * \brief I2C2 Éè±¸ĞÅÏ¢
+ * \brief I2C2 è®¾å¤‡ä¿¡æ¯
  */
 static const am_zlg_i2c_devinfo_t __g_i2c2_devinfo = {
 
-    ZMF159_I2C2_BASE,                 /**< \brief I2C2¼Ä´æÆ÷¿é»ùÖ· */
-    CLK_I2C2,                         /**< \brief Ê±ÖÓIDÖµ */
-    INUM_I2C2_EV,                     /**< \brief I2C2 ÖĞ¶Ï±àºÅ */
+    ZMF159_I2C2_BASE,                 /**< \brief I2C2å¯„å­˜å™¨å—åŸºå€ */
+    CLK_I2C2,                         /**< \brief æ—¶é’ŸIDå€¼ */
+    INUM_I2C2_EV,                     /**< \brief I2C2 ä¸­æ–­ç¼–å· */
 
-    100000,                           /**< \brief I2C ËÙÂÊ */
-    200,                              /**< \brief ³¬Ê±Öµ10 */
-    __zlg_i2c2_bus_clean,             /**< \brief ×ÜÏß»Ö¸´º¯Êı */
-    __zlg_i2c2_plfm_init,             /**< \brief Æ½Ì¨³õÊ¼»¯ */
-    __zlg_i2c2_plfm_deinit            /**< \brief Æ½Ì¨È¥³õÊ¼»¯ */
+    100000,                           /**< \brief I2C é€Ÿç‡ */
+    200,                              /**< \brief è¶…æ—¶å€¼10 */
+    __zlg_i2c2_bus_clean,             /**< \brief æ€»çº¿æ¢å¤å‡½æ•° */
+    __zlg_i2c2_plfm_init,             /**< \brief å¹³å°åˆå§‹åŒ– */
+    __zlg_i2c2_plfm_deinit            /**< \brief å¹³å°å»åˆå§‹åŒ– */
 };
 
-static am_zlg_i2c_dev_t __g_i2c2_dev;           /**< \brief I2C2 Éè±¸ÊµÀı */
-static am_i2c_handle_t  __g_i2c2_handle = NULL; /**< \brief I2C ±ê×¼·şÎñ¾ä±ú */
+static am_zlg_i2c_dev_t __g_i2c2_dev;           /**< \brief I2C2 è®¾å¤‡å®ä¾‹ */
+static am_i2c_handle_t  __g_i2c2_handle = NULL; /**< \brief I2C æ ‡å‡†æœåŠ¡å¥æŸ„ */
 
-/** \brief I2C1 ÊµÀı³õÊ¼»¯£¬»ñµÃI2C±ê×¼·şÎñ¾ä±ú */
+/** \brief I2C1 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—I2Cæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_i2c_handle_t am_zmf159_i2c2_inst_init (void)
 {
     if (NULL == __g_i2c2_handle) {
@@ -187,7 +187,7 @@ am_i2c_handle_t am_zmf159_i2c2_inst_init (void)
     return __g_i2c2_handle;
 }
 
-/** \brief I2C2 ÊµÀı½â³õÊ¼»¯ */
+/** \brief I2C2 å®ä¾‹è§£åˆå§‹åŒ– */
 void am_zmf159_i2c2_inst_deinit (am_i2c_handle_t handle)
 {
     am_zlg_i2c_deinit(handle);

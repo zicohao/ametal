@@ -11,9 +11,9 @@
 *******************************************************************************/
 /**
  * \file
- * \brief Íúºê¹«Ë¾µÄMX25ÏµÁĞFM25CLXXĞ¾Æ¬Çı¶¯ 
+ * \brief æ—ºå®å…¬å¸çš„MX25ç³»åˆ—FM25CLXXèŠ¯ç‰‡é©±åŠ¨ 
  * 
- * ÒÑÖª¼æÈİĞ¾Æ¬£º 
+ * å·²çŸ¥å…¼å®¹èŠ¯ç‰‡ï¼š 
  *   - MX25L1606E
  *   - MX25L8006E
  * 
@@ -44,59 +44,59 @@ extern "C" {
 
 
 /**
- * \brief FM25CLXX ÊµÀıĞÅÏ¢
+ * \brief FM25CLXX å®ä¾‹ä¿¡æ¯
  */
 typedef struct am_fm25clxx_devinfo {
  
-    uint16_t          spi_mode;      /**< \brief Æ÷¼şÊ¹ÓÃµÄSPIÄ£Ê½ */
-    int               spi_cs_pin;    /**< \brief SPIÆ¬Ñ¡Òı½Å       */
-    uint32_t          spi_speed;     /**< \brief Ê¹ÓÃµÄSPIËÙÂÊ     */
+    uint16_t          spi_mode;      /**< \brief å™¨ä»¶ä½¿ç”¨çš„SPIæ¨¡å¼ */
+    int               spi_cs_pin;    /**< \brief SPIç‰‡é€‰å¼•è„š       */
+    uint32_t          spi_speed;     /**< \brief ä½¿ç”¨çš„SPIé€Ÿç‡     */
 } am_fm25clxx_devinfo_t;
      
 /**
- * \brief FM25CLXX ÊµÀı
+ * \brief FM25CLXX å®ä¾‹
  */
 typedef struct am_fm25clxx_dev {
 
-    /**< \brief SPIÉè±¸              */
+    /**< \brief SPIè®¾å¤‡              */
     am_spi_device_t              spi_dev;
 
-    /**< \brief fm25clxxÉè±¸Ìá¹©µÄ NVRAM ±ê×¼·şÎñ */
+    /**< \brief fm25clxxè®¾å¤‡æä¾›çš„ NVRAM æ ‡å‡†æœåŠ¡ */
     am_nvram_dev_t               *p_serv;
 
-    /**< \brief ÊµÀıĞÅÏ¢             */
+    /**< \brief å®ä¾‹ä¿¡æ¯             */
     const am_fm25clxx_devinfo_t  *p_devinfo;
 
 } am_fm25clxx_dev_t;
 
-/** \brief ¶¨Òå FM25CLXX µÄÊµÀı¾ä±úÀàĞÍ */
+/** \brief å®šä¹‰ FM25CLXX çš„å®ä¾‹å¥æŸ„ç±»å‹ */
 typedef struct am_fm25clxx_dev *am_fm25clxx_handle_t;
 
 
 /** 
- * \brief ³õÊ¼»¯ FM25CLXX£¬»ñÈ¡²Ù×÷ FM25CLXX µÄ handle
+ * \brief åˆå§‹åŒ– FM25CLXXï¼Œè·å–æ“ä½œ FM25CLXX çš„ handle
  * 
- * \param[in] p_dev      : Ö¸Ïò FM25CLXX ÊµÀıµÄÖ¸Õë
- * \param[in] p_devinfo  : Ö¸Ïò FM25CLXX ÊµÀıĞÅÏ¢µÄÖ¸Õë
- * \param[in] handle     : SPI±ê×¼·şÎñhandle,Ê¹ÓÃ¸Ã handle Óë FM25CLXX ½øĞĞÍ¨ĞÅ
+ * \param[in] p_dev      : æŒ‡å‘ FM25CLXX å®ä¾‹çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo  : æŒ‡å‘ FM25CLXX å®ä¾‹ä¿¡æ¯çš„æŒ‡é’ˆ
+ * \param[in] handle     : SPIæ ‡å‡†æœåŠ¡handle,ä½¿ç”¨è¯¥ handle ä¸ FM25CLXX è¿›è¡Œé€šä¿¡
  *
- * \return FM25CLXX ²Ù×÷¾ä±ú£¬Èç¹û³õÊ¼»¯Ê§°Ü£¬Ôò·µ»ØÖµÎªNULL
+ * \return FM25CLXX æ“ä½œå¥æŸ„ï¼Œå¦‚æœåˆå§‹åŒ–å¤±è´¥ï¼Œåˆ™è¿”å›å€¼ä¸ºNULL
  */
 am_fm25clxx_handle_t am_fm25clxx_init(am_fm25clxx_dev_t            *p_dev,
                                       const am_fm25clxx_devinfo_t  *p_devinfo,
                                       am_spi_handle_t               spi_handle);
 
 /**
- * \brief ¶ÁÈ¡Êı¾İ
+ * \brief è¯»å–æ•°æ®
  *
- * \param[in] handle : FM25CLXX ²Ù×÷¾ä±ú
- * \param[in] addr   : ¶ÁÈ¡Êı¾İµÄÊ×µØÖ·
- * \param[in] p_buf  : ¶ÁÈ¡Êı¾İ´æ·ÅµÄ»º³åÇø
- * \param[in] len    : Êı¾İ¶ÁÈ¡µÄ³¤¶È
+ * \param[in] handle : FM25CLXX æ“ä½œå¥æŸ„
+ * \param[in] addr   : è¯»å–æ•°æ®çš„é¦–åœ°å€
+ * \param[in] p_buf  : è¯»å–æ•°æ®å­˜æ”¾çš„ç¼“å†²åŒº
+ * \param[in] len    : æ•°æ®è¯»å–çš„é•¿åº¦
  *
- * \retval  AM_OK     : ¶ÁÈ¡Êı¾İ³É¹¦
- * \retval -AM_EINVAL : ¶ÁÈ¡Êı¾İÊ§°Ü, ²ÎÊı´íÎó
- * \retval -AM_EIO    : ¶ÁÈ¡Êı¾İÊ§°Ü, SPIÍ¨ĞÅ³ö´í
+ * \retval  AM_OK     : è¯»å–æ•°æ®æˆåŠŸ
+ * \retval -AM_EINVAL : è¯»å–æ•°æ®å¤±è´¥, å‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : è¯»å–æ•°æ®å¤±è´¥, SPIé€šä¿¡å‡ºé”™
  */
 int am_fm25clxx_read(am_fm25clxx_handle_t  handle,
                      uint32_t              addr,
@@ -105,16 +105,16 @@ int am_fm25clxx_read(am_fm25clxx_handle_t  handle,
 
 
 /** 
- * \brief Ğ´ÈëÊı¾İ
+ * \brief å†™å…¥æ•°æ®
  *
- * \param[in] handle : FM25CLXX ²Ù×÷¾ä±ú
- * \param[in] addr   : Ğ´ÈëÊı¾İµÄÊ×µØÖ·
- * \param[in] p_buf  : Ğ´ÈëÊı¾İ´æ·ÅµÄ»º³åÇø
- * \param[in] len    : Êı¾İ¶ÁÈ¡µÄ³¤¶È
+ * \param[in] handle : FM25CLXX æ“ä½œå¥æŸ„
+ * \param[in] addr   : å†™å…¥æ•°æ®çš„é¦–åœ°å€
+ * \param[in] p_buf  : å†™å…¥æ•°æ®å­˜æ”¾çš„ç¼“å†²åŒº
+ * \param[in] len    : æ•°æ®è¯»å–çš„é•¿åº¦
  *
- * \retval  AM_OK     : ¶ÁÈ¡Êı¾İ³É¹¦
- * \retval -AM_EINVAL : ¶ÁÈ¡Êı¾İÊ§°Ü, ²ÎÊı´íÎó
- * \retval -AM_EIO    : ¶ÁÈ¡Êı¾İÊ§°Ü, SPIÍ¨ĞÅ³ö´í
+ * \retval  AM_OK     : è¯»å–æ•°æ®æˆåŠŸ
+ * \retval -AM_EINVAL : è¯»å–æ•°æ®å¤±è´¥, å‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : è¯»å–æ•°æ®å¤±è´¥, SPIé€šä¿¡å‡ºé”™
  */
 int am_fm25clxx_write(am_fm25clxx_handle_t  handle,
                       uint32_t              addr,
@@ -123,27 +123,27 @@ int am_fm25clxx_write(am_fm25clxx_handle_t  handle,
 
                             
 /** 
- * \brief ¶ÁÈ¡FM25CLXX×´Ì¬¼Ä´æÆ÷µÄÖµ
+ * \brief è¯»å–FM25CLXXçŠ¶æ€å¯„å­˜å™¨çš„å€¼
  * 
- * \param[in]  handle : FM25CLXX ²Ù×÷¾ä±ú
- * \param[out] p_stat : »ñÈ¡µ½µÄ×´Ì¬¼Ä´æÆ÷µÄÖµ
+ * \param[in]  handle : FM25CLXX æ“ä½œå¥æŸ„
+ * \param[out] p_stat : è·å–åˆ°çš„çŠ¶æ€å¯„å­˜å™¨çš„å€¼
  *
- * \retval  AM_OK     : ¶ÁÈ¡×´Ì¬¼Ä´æÆ÷³É¹¦
- * \retval -AM_EINVAL : ¶ÁÈ¡Ê§°Ü, ²ÎÊı´íÎó
- * \retval -AM_EIO    : ¶ÁÈ¡Ê§°Ü, SPIÍ¨ĞÅ³ö´í
+ * \retval  AM_OK     : è¯»å–çŠ¶æ€å¯„å­˜å™¨æˆåŠŸ
+ * \retval -AM_EINVAL : è¯»å–å¤±è´¥, å‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : è¯»å–å¤±è´¥, SPIé€šä¿¡å‡ºé”™
  */
 int am_fm25clxx_status_read(am_fm25clxx_handle_t  handle,
                             uint8_t              *p_stat);
 
 /** 
- * \brief ÉèÖÃFM25CLXX×´Ì¬¼Ä´æÆ÷µÄÖµ
+ * \brief è®¾ç½®FM25CLXXçŠ¶æ€å¯„å­˜å™¨çš„å€¼
  * 
- * \param[in] handle : FM25CLXX ²Ù×÷¾ä±ú
- * \param[in] val    : Ğ´Èë×´Ì¬¼Ä´æÆ÷µÄÖµ
+ * \param[in] handle : FM25CLXX æ“ä½œå¥æŸ„
+ * \param[in] val    : å†™å…¥çŠ¶æ€å¯„å­˜å™¨çš„å€¼
  *
- * \retval  AM_OK     : Ğ´Èë×´Ì¬¼Ä´æÆ÷³É¹¦
- * \retval -AM_EINVAL : Ğ´ÈëÊ§°Ü, ²ÎÊı´íÎó
- * \retval -AM_EIO    : Ğ´ÈëÊ§°Ü, SPIÍ¨ĞÅ³ö´í
+ * \retval  AM_OK     : å†™å…¥çŠ¶æ€å¯„å­˜å™¨æˆåŠŸ
+ * \retval -AM_EINVAL : å†™å…¥å¤±è´¥, å‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : å†™å…¥å¤±è´¥, SPIé€šä¿¡å‡ºé”™
  *
  */
 int am_fm25clxx_status_write(am_fm25clxx_handle_t  handle,
@@ -151,20 +151,20 @@ int am_fm25clxx_status_write(am_fm25clxx_handle_t  handle,
 
 
 /**
- * \brief ³õÊ¼»¯fm25clxxµÄNVRAM¹¦ÄÜ£¬ÏòÏµÍ³Ìá¹©  NVRAM ±ê×¼·şÎñ
+ * \brief åˆå§‹åŒ–fm25clxxçš„NVRAMåŠŸèƒ½ï¼Œå‘ç³»ç»Ÿæä¾›  NVRAM æ ‡å‡†æœåŠ¡
  * 
- *   ¸Ãº¯Êı½«fm25clxxÉè±¸×÷Îª±ê×¼µÄNVRAMÉè±¸×¢²áµ½ÏµÍ³ÖĞ
+ *   è¯¥å‡½æ•°å°†fm25clxxè®¾å¤‡ä½œä¸ºæ ‡å‡†çš„NVRAMè®¾å¤‡æ³¨å†Œåˆ°ç³»ç»Ÿä¸­
  * 
- * \param[in] handle      : ep24cxx²Ù×÷¾ä±ú
- * \param[in] p_dev       : NVRAM ±ê×¼Éè±¸
- * \param[in] p_dev_name  : NVRAM ±ê×¼Éè±¸µÄÉè±¸Ãû
+ * \param[in] handle      : ep24cxxæ“ä½œå¥æŸ„
+ * \param[in] p_dev       : NVRAM æ ‡å‡†è®¾å¤‡
+ * \param[in] p_dev_name  : NVRAM æ ‡å‡†è®¾å¤‡çš„è®¾å¤‡å
  *
- * \return AM_OK, Ìá¹©NVRAM·şÎñ³É¹¦£»ÆäËüÖµ£¬Ìá¹©NVRAM·şÎñÊ§°Ü¡£
+ * \return AM_OK, æä¾›NVRAMæœåŠ¡æˆåŠŸï¼›å…¶å®ƒå€¼ï¼Œæä¾›NVRAMæœåŠ¡å¤±è´¥ã€‚
  *
- * \note Ê¹ÓÃ¸Ãº¯Êıºó£¬¼´¿ÉÊ¹ÓÃNVRAM±ê×¼½Ó¿Ú am_nvram_set() ºÍ am_nvram_get() ·ÃÎÊ
- * fm25clxx´æ´¢Æ÷£¬Ê¹ÓÃµÄ¶Î±ØĞëÔÚ am_nvram_cfg.cÎÄ¼şÖĞ¶¨Òå£¬´æ´¢¶ÎÒÀÀµµÄÉè±¸Ãû¼´¿É
- * ÌîĞ´Îª´Ë´¦ p_name Ö¸¶¨µÄÃû×Ö£¬Èç p_name Îª  "fm24c02", Õâ¿ÉÒÔÏòg_nvram_segs[]´æ
- * ´¢¶ÎÁĞ±íÖĞÔö¼ÓÈçÏÂ5¸ö´æ´¢¶Î£¨½ö×÷ÎªÊ¾Àı£©£º
+ * \note ä½¿ç”¨è¯¥å‡½æ•°åï¼Œå³å¯ä½¿ç”¨NVRAMæ ‡å‡†æ¥å£ am_nvram_set() å’Œ am_nvram_get() è®¿é—®
+ * fm25clxxå­˜å‚¨å™¨ï¼Œä½¿ç”¨çš„æ®µå¿…é¡»åœ¨ am_nvram_cfg.cæ–‡ä»¶ä¸­å®šä¹‰ï¼Œå­˜å‚¨æ®µä¾èµ–çš„è®¾å¤‡åå³å¯
+ * å¡«å†™ä¸ºæ­¤å¤„ p_name æŒ‡å®šçš„åå­—ï¼Œå¦‚ p_name ä¸º  "fm24c02", è¿™å¯ä»¥å‘g_nvram_segs[]å­˜
+ * å‚¨æ®µåˆ—è¡¨ä¸­å¢åŠ å¦‚ä¸‹5ä¸ªå­˜å‚¨æ®µï¼ˆä»…ä½œä¸ºç¤ºä¾‹ï¼‰ï¼š
  *    {"ip",         0,  0,  4,   "fm24c02"},
  *    {"ip",         1,  4,  4,   "fm24c02"},
  *    {"temp_limit", 0,  8,  4,   "fm24c02"},

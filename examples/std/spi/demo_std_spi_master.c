@@ -12,16 +12,16 @@
 
 /**
  * \file
- * \brief SPI ���̣�ͨ����׼�ӿ�ʵ��
+ * \brief SPI 例程，通过标准接口实现
  *
- * - �������裺
- *   1. �� MOSI �� MISO �̽ӣ�����ӻ��豸���ӡ�
+ * - 操作步骤：
+ *   1. 将 MOSI 和 MISO 短接，虚拟从机设备连接。
  *
- * - ʵ������
- *   1. ����ͨ�� MOSI �������ݣ����������ݴ� MOSI ���أ�
- *   2. ���Դ��ڴ�ӡ���Խ����
+ * - 实验现象：
+ *   1. 主机通过 MOSI 发送数据，发出的数据从 MOSI 读回；
+ *   2. 调试串口打印测试结果。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_std_spi_master.c src_std_spi_master
  *
  * \internal
@@ -43,26 +43,26 @@
 #include "am_delay.h"
 #include "am_vdebug.h"
 
-#define BUF_LEN  20 /**< \brief ���Ի�������С */
+#define BUF_LEN  20 /**< \brief 测试缓冲区大小 */
 
-static uint8_t __g_tx_buf[BUF_LEN]; /**< \brief д���ݻ���     */
-static uint8_t __g_rx_buf[BUF_LEN]; /**< \brief �����ݻ���     */
+static uint8_t __g_tx_buf[BUF_LEN]; /**< \brief 写数据缓存     */
+static uint8_t __g_rx_buf[BUF_LEN]; /**< \brief 读数据缓存     */
 
-static am_spi_device_t __g_dev; /**< \brief �豸      */
+static am_spi_device_t __g_dev; /**< \brief 设备      */
 
 /**
- * \brief SPI ��Ϣ��ɻص�����
+ * \brief SPI 消息完成回调函数
  */
 static void __message_complete (void *p_arg)
 {
     am_wait_t *p_wait = (am_wait_t *)p_arg;
 
-    /* �����ȴ����� */
+    /* 结束等待序列 */
     am_wait_done(p_wait);
 }
 
 /**
- * \brief SPI ���亯��
+ * \brief SPI 传输函数
  */
 static int __trans_once (am_spi_handle_t spi_handle,
                          int             cs_pin)
@@ -73,16 +73,16 @@ static int __trans_once (am_spi_handle_t spi_handle,
     am_spi_message_t  spi_msg;
     am_spi_transfer_t trans;
 
-    /* ��ʼ�� SPI �豸 */
+    /* 初始化 SPI 设备 */
     am_spi_mkdev (&__g_dev,
                    spi_handle,
                    8,
                    AM_SPI_MODE_1,
                    3000000,
-                   cs_pin,  /* ʹ�����ſ���Ƭѡ */
+                   cs_pin,  /* 使用引脚控制片选 */
                    NULL);
 
-    /* ���ݴ���֮ǰӦʹ�� am_spi_setup (am_spi_device_t *p_dev) �����豸�Ƿ�֧�� */
+    /* 数据传输之前应使用 am_spi_setup (am_spi_device_t *p_dev) 检验设备是否支持 */
     if (am_spi_setup(&__g_dev) != AM_OK) {
         return AM_ERROR;
     }
@@ -134,7 +134,7 @@ static int __trans_once (am_spi_handle_t spi_handle,
 }
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_std_spi_master_entry (am_spi_handle_t spi_handle,
                                 int             cs_pin)

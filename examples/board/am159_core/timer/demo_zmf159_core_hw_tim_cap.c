@@ -12,20 +12,20 @@
 
 /**
  * \file
- * \brief ��ʱ�� CAP �������̣�ͨ�� HW ��ӿ�ʵ��
+ * \brief 定时器 CAP 捕获例程，通过 HW 层接口实现
  *
- * - �������裺
- *   1. ʹ�öŰ��ߣ��� PIOA_8 �� PIOB_4 ���ӡ�
+ * - 操作步骤：
+ *   1. 使用杜邦线，将 PIOA_8 与 PIOB_4 连接。
  *
- * - ʵ������
- *   1. TIM1 ͨ�� PIOA_8 ������� 2KHz �� PWM��
- *   2. TIM3 ��������ͨ�� 1 ʹ�� PIOB_4 ���Ų���
- *   3. ���ڴ�ӡ�����ò����ܵõ��� PWM �źŵ����ں�Ƶ�ʡ�
+ * - 实验现象：
+ *   1. TIM1 通过 PIOA_8 引脚输出 2KHz 的 PWM；
+ *   2. TIM3 捕获输入通道 1 使用 PIOB_4 引脚捕获；
+ *   3. 串口打印出利用捕获功能得到的 PWM 信号的周期和频率。
  *
  * \note
- *    ����۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIOA_9 �������� PC ���ڵ� RXD��
+ *    如需观察串口打印的调试信息，需要将 PIOA_9 引脚连接 PC 串口的 RXD。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_zmf159_core_hw_tim_cap.c src_zmf159_core_hw_tim_cap
  *
  * \internal
@@ -53,7 +53,7 @@
 #include "demo_zlg_entries.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_zmf159_core_hw_tim_cap_entry (void)
 {
@@ -61,18 +61,18 @@ void demo_zmf159_core_hw_tim_cap_entry (void)
 
     AM_DBG_INFO("demo zmf159_core hw tim cap!\r\n");
 
-    /* TIM1 ���Ƶ��Ϊ 2KHz �� PWM */
+    /* TIM1 输出频率为 2KHz 的 PWM */
     am_pwm_config(pwm_handle, 0, 500000 / 2, 500000);
-    /* TIM1ͨ��1ʹ�� */
+    /* TIM1通道1使能 */
     am_pwm_enable(pwm_handle, 0);
 
-    /* ��ʼ������ */
+    /* 初始化引脚 */
     am_gpio_pin_cfg(PIOB_4, PIOB_4_TIM3_CH1 | PIOB_4_INPUT_FLOAT);
 
-    /* ʹ�ܶ�ʱ��ʱ�� */
+    /* 使能定时器时钟 */
     am_clk_enable(CLK_TIM3);
 
-    /* ��λ��ʱ�� */
+    /* 复位定时器 */
     am_zmf159_clk_reset(CLK_TIM3);
 
     demo_zlg_hw_tim_cap_entry(ZMF159_TIM3,

@@ -44,7 +44,7 @@ static int __uart_rngbuf_txchar_get (void *p_arg, char *p_outchar)
         return -AM_EEMPTY;     /* No data to transmit,return -AM_EEMPTY */
     }
 
-    /* Èç¹û¿ÕÏĞ×Ö½ÚÊı´óÓÚ·¢ËÍãĞÖµÇÒ»Øµ÷º¯Êı·Ç¿Õ */
+    /* å¦‚æœç©ºé—²å­—èŠ‚æ•°å¤§äºå‘é€é˜ˆå€¼ä¸”å›è°ƒå‡½æ•°éç©º */
     if ((AM_TRUE == p_dev->rx_trigger_enable) &&
         (am_rngbuf_nbytes(rb) >= p_dev->tx_trigger_threshold)) {
 
@@ -64,7 +64,7 @@ static int __uart_rngbuf_rxchar_put (void *p_arg, char inchar)
     am_uart_rngbuf_dev_t *p_dev = (am_uart_rngbuf_dev_t *)p_arg;
     am_rngbuf_t            rb    = &(p_dev->rx_rngbuf);
 
-    /* ¿ÕÏĞ×Ö½ÚÊıĞ¡ÓÚÁ÷¹ØãĞÖµ£¬Á÷¹Ø */
+    /* ç©ºé—²å­—èŠ‚æ•°å°äºæµå…³é˜ˆå€¼ï¼Œæµå…³ */
     if (am_rngbuf_freebytes(rb) < p_dev->xoff_threshold) {
        
         /* Notify the other party continues to stop send */
@@ -72,7 +72,7 @@ static int __uart_rngbuf_rxchar_put (void *p_arg, char inchar)
                       AM_UART_FLOWSTAT_RX_SET, 
                       (void *)AM_UART_FLOWSTAT_OFF);
         
-         p_dev->flow_stat = AM_FALSE;         /* Êı¾İ½ÓÊÕ±»¹Ø±Õ */
+         p_dev->flow_stat = AM_FALSE;         /* æ•°æ®æ¥æ”¶è¢«å…³é—­ */
     }
     
     am_wait_done(&p_dev->rx_wait);
@@ -81,7 +81,7 @@ static int __uart_rngbuf_rxchar_put (void *p_arg, char inchar)
         return -AM_EFULL;          /* No data to receive,return -AM_EFULL */
     }
 
-    /* Èç¹û½ÓÊÕ×Ö½ÚÊı´óÓÚ½ÓÊÕãĞÖµÇÒ»Øµ÷º¯Êı·Ç¿Õ */
+    /* å¦‚æœæ¥æ”¶å­—èŠ‚æ•°å¤§äºæ¥æ”¶é˜ˆå€¼ä¸”å›è°ƒå‡½æ•°éç©º */
     if ((AM_TRUE == p_dev->rx_trigger_enable) &&
         (am_rngbuf_nbytes(rb) >= p_dev->rx_trigger_threshold)) {
 
@@ -197,7 +197,7 @@ int am_uart_rngbuf_ioctl (am_uart_rngbuf_handle_t   handle,
         p_dev->xon_threshold  = (int)p_arg;
         break;
     
-    case AM_UART_MODE_SET :                   /* Ä£Ê½¹Ì¶¨ÎªÖĞ¶ÏÄ£Ê½£¬²»¿ÉÉèÖÃÎª²éÑ¯Ä£Ê½ */
+    case AM_UART_MODE_SET :                   /* æ¨¡å¼å›ºå®šä¸ºä¸­æ–­æ¨¡å¼ï¼Œä¸å¯è®¾ç½®ä¸ºæŸ¥è¯¢æ¨¡å¼ */
         ret = -AM_EINVAL;
         break;
 
@@ -222,11 +222,11 @@ int am_uart_rngbuf_receive (am_uart_rngbuf_handle_t   handle,
     am_rngbuf_t            rb    = &(p_dev->rx_rngbuf);
     
     uint32_t rb_ct, read_ct;
-    uint32_t len = 0;                                /* ¶ÁÈ¡µÄ×Ö½ÚÊı      */
+    uint32_t len = 0;                                /* è¯»å–çš„å­—èŠ‚æ•°      */
 
     while (nbytes > 0) {
          
-        if (am_rngbuf_isempty(rb) == AM_TRUE) {     /* ÈçÎª¿Õ£¬ÔòÉèÖÃµÈ´ı */
+        if (am_rngbuf_isempty(rb) == AM_TRUE) {     /* å¦‚ä¸ºç©ºï¼Œåˆ™è®¾ç½®ç­‰å¾… */
             
             if (p_dev->timeout_ms == AM_NO_WAIT) {
 
@@ -255,10 +255,10 @@ int am_uart_rngbuf_receive (am_uart_rngbuf_handle_t   handle,
         nbytes  -= read_ct;
         len     += read_ct;
         
-        /* Êı¾İ½ÓÊÕ¹Ø±Õ£¬ÅĞ¶ÏÊÇ·ñĞèÒª´ò¿ª */
+        /* æ•°æ®æ¥æ”¶å…³é—­ï¼Œåˆ¤æ–­æ˜¯å¦éœ€è¦æ‰“å¼€ */
         if (p_dev->flow_stat == AM_FALSE) {
             
-            /* ¿ÕÏĞ×Ö½ÚÊı´óÓÚÁ÷¿ªãĞÖµ£¬Á÷¿ª */
+            /* ç©ºé—²å­—èŠ‚æ•°å¤§äºæµå¼€é˜ˆå€¼ï¼Œæµå¼€ */
             if (am_rngbuf_freebytes(rb) > p_dev->xon_threshold) {
 
                 /* Notify the other party continues to send */ 
@@ -420,14 +420,14 @@ am_uart_rngbuf_handle_t am_uart_rngbuf_init (am_uart_rngbuf_dev_t *p_dev,
         return NULL;
     }
     
-    p_dev->flow_stat = AM_TRUE;          /* ³õÊ¼Êı¾İ½ÓÊÕÊÇ´ò¿ªµÄ */
+    p_dev->flow_stat = AM_TRUE;          /* åˆå§‹æ•°æ®æ¥æ”¶æ˜¯æ‰“å¼€çš„ */
 
     p_dev->xon_threshold  = rxbuf_size * 80 / 100;
     p_dev->xoff_threshold = rxbuf_size * 20 / 100;
     
     am_wait_init(&p_dev->rx_wait);
     
-    p_dev->timeout_ms               = (uint32_t)AM_WAIT_FOREVER;  /* Ä¬ÈÏ³¬Ê±Ê±¼äÉèÖÃÎª0£¬¼´»áÒ»Ö±µÈ´ı */
+    p_dev->timeout_ms               = (uint32_t)AM_WAIT_FOREVER;  /* é»˜è®¤è¶…æ—¶æ—¶é—´è®¾ç½®ä¸º0ï¼Œå³ä¼šä¸€ç›´ç­‰å¾… */
     
     p_dev->rx_trigger_enable        = AM_FALSE;
     p_dev->rx_trigger_threshold     = 0;

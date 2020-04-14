@@ -12,13 +12,13 @@
 
 /**
  * \file
- * \brief DACÊıÄ£×ª»»Àı³Ì£¬Í¨¹ıHW½Ó¿ÚÊµÏÖ£¬DMA´«ÊäÊı¾İ
+ * \brief DACæ•°æ¨¡è½¬æ¢ä¾‹ç¨‹ï¼Œé€šè¿‡HWæ¥å£å®ç°ï¼ŒDMAä¼ è¾“æ•°æ®
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ²É¼¯ÊıÄ£×ª»»µÄÊä³ö¿ÚPE30µÄµçÑ¹Öµ
+ * - å®éªŒç°è±¡ï¼š
+ *   1. é‡‡é›†æ•°æ¨¡è½¬æ¢çš„è¾“å‡ºå£PE30çš„ç”µå‹å€¼
  *
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_amks16z_core_hw_dac_dma_st.c src_amks16z_core_hw_dac_dma_st
  *
  * \internal
@@ -47,8 +47,8 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief DACÊä³öµçÑ¹£¬DMA´«ÊäÊı¾İ£¬HW²ã½Ó¿ÚÊµÏÖ
- * \return ÎŞ
+ * \brief DACè¾“å‡ºç”µå‹ï¼ŒDMAä¼ è¾“æ•°æ®ï¼ŒHWå±‚æ¥å£å®ç°
+ * \return æ— 
  */
 void demo_amks16z_core_hw_dac_dma_st_entry (void)
 {

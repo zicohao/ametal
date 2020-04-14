@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief bootloader ¹Ì¼ş½ÓÊÕµÄ½Ó¿Ú
+ * \brief bootloader å›ºä»¶æ¥æ”¶çš„æ¥å£
  *
  * \internal
  * \par Modification history
@@ -26,33 +26,33 @@
 #include "am_common.h"
 
 /**
- * \brief bootloader ¹Ì¼ş½ÓÊÕÇı¶¯º¯Êı½á¹¹Ìå
+ * \brief bootloader å›ºä»¶æ¥æ”¶é©±åŠ¨å‡½æ•°ç»“æ„ä½“
  */
 struct am_boot_firwa_recv_drv_funcs {
 
-    /** \brief ¹Ì¼ş½ÓÊÕ²Ù×÷ */
+    /** \brief å›ºä»¶æ¥æ”¶æ“ä½œ */
     int (*pfn_firwa_recv) (void *p_drv);
 };
 
 /**
- * \brief bootloader ¹Ì¼ş½ÓÊÕ±ê×¼·şÎñ½á¹¹Ìå
+ * \brief bootloader å›ºä»¶æ¥æ”¶æ ‡å‡†æœåŠ¡ç»“æ„ä½“
  */
 typedef struct am_boot_firwa_recv_serv {
-    /**< \brief Éè±¸Çı¶¯º¯Êı½á¹¹ÌåÖ¸Õë */
+    /**< \brief è®¾å¤‡é©±åŠ¨å‡½æ•°ç»“æ„ä½“æŒ‡é’ˆ */
     const struct am_boot_firwa_recv_drv_funcs *p_funcs;
 
-    /**< \brief Éè±¸Çı¶¯º¯ÊıµÚÒ»¸ö²ÎÊı */
+    /**< \brief è®¾å¤‡é©±åŠ¨å‡½æ•°ç¬¬ä¸€ä¸ªå‚æ•° */
     void                                     *p_drv;
 } am_boot_firwa_recv_serv_t;
 
-/** \brief bootloader ¹Ì¼ş½ÓÊÕ±ê×¼·şÎñ²Ù×÷¾ä±úÀàĞÍ¶¨Òå */
+/** \brief bootloader å›ºä»¶æ¥æ”¶æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„ç±»å‹å®šä¹‰ */
 typedef am_boot_firwa_recv_serv_t  *am_boot_firwa_recv_handle_t;
 
 /**
- * \brief ¹Ì¼ş½ÓÊÕ
+ * \brief å›ºä»¶æ¥æ”¶
  *
- * \retval AM_OK    ½ÓÊÕ³É¹¦
- * \retval AM_ERROR ½ÓÊÕÊ§°Ü
+ * \retval AM_OK    æ¥æ”¶æˆåŠŸ
+ * \retval AM_ERROR æ¥æ”¶å¤±è´¥
  */
 am_static_inline
 int am_boot_firmware_recv(am_boot_firwa_recv_handle_t handle)

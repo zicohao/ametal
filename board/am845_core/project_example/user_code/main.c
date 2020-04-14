@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief LPC84X ģ�幤��
+ * \brief LPC84X 模板工程
  *
  *
  * \internal
@@ -29,17 +29,17 @@
 #include "demo_am845_core_entries.h"
 
 /**
- * \brief AMetal Ӧ�ó������
+ * \brief AMetal 应用程序入口
  */
 void am_main (void) 
 {
     AM_DBG_INFO("Start up successful!\r\n");
     /*
-     * ����Ϊ����demo����ں�������Ҫ�����ĸ� demo�� ��ȡ����Ӧ���������е�ע��
+     * 以下为所有demo的入口函数，需要运行哪个 demo， 就取消对应函数调用行的注释
      *
-     * Ĭ�����е���LED��˸ demo��
+     * 默认运行的是LED闪烁 demo。
      *
-     * ע�⣺ͬһʱ��ֻ������һ�� demo����ֻ��ʹĳһ�д���ȡ��ע��״̬��
+     * 注意：同一时刻只能运行一个 demo，即只能使某一行处于取消注释状态。
      */
     demo_am845_core_std_led_entry();
 //    demo_am845_core_std_wwdt_entry();

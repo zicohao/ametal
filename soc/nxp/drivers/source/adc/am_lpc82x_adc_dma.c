@@ -30,7 +30,7 @@
 #include "hw/amhw_lpc82x_clk.h"
 #include "hw/amhw_lpc82x_adc.h"
 /*******************************************************************************
-* Ë½ÓÐ¶¨Òå
+* ç§æœ‰å®šä¹‰
 *******************************************************************************/
 
 #define __ADC_HW_DECL(p_hw_adc, p_drv)    \
@@ -42,17 +42,17 @@
 
 
 /*******************************************************************************
-* º¯ÊýÉùÃ÷
+* å‡½æ•°å£°æ˜Ž
 *******************************************************************************/
 
-/** \brief ADC DMA´«ÊäÍê³ÉÖÐ¶Ïº¯Êý */
+/** \brief ADC DMAä¼ è¾“å®Œæˆä¸­æ–­å‡½æ•° */
 static void __adc_dma_int(void *p_arg, int state);
 
-/** \brief ADC Ê¹ÓÃDMAÄ£Ê½Ê±Æô¶¯ÅäÖÃ */
+/** \brief ADC ä½¿ç”¨DMAæ¨¡å¼æ—¶å¯åŠ¨é…ç½® */
 static int __adc_dma_work_startup(am_lpc82x_adc_dma_dev_t *p_dev,
                                   uint32_t                 desc_num);
 
-/** \brief Æô¶¯ADC×ª»»        */
+/** \brief å¯åŠ¨ADCè½¬æ¢        */
 static int __pfn_adc_start  (void                   *p_drv,
                              int                     chan,
                              am_adc_buf_desc_t      *p_desc,
@@ -62,29 +62,29 @@ static int __pfn_adc_start  (void                   *p_drv,
                              am_adc_seq_cb_t         pfn_callback,
                              void                   *p_arg);
  
-/** \brief Í£Ö¹×ª»»           */
+/** \brief åœæ­¢è½¬æ¢           */
 static int __pfn_adc_stop (void *p_drv, int chan);
                       
-/** \brief »ñÈ¡ADCµÄ²ÉÑùÂÊ    */
+/** \brief èŽ·å–ADCçš„é‡‡æ ·çŽ‡    */
 static int __pfn_rate_get (void       *p_drv,
                            int         chan,
                            uint32_t   *p_rate);
 
-/** \brief ÉèÖÃADCµÄ²ÉÑùÂÊ£¬Êµ¼Ê²ÉÑùÂÊ¿ÉÄÜ´æÔÚ²îÒì */
+/** \brief è®¾ç½®ADCçš„é‡‡æ ·çŽ‡ï¼Œå®žé™…é‡‡æ ·çŽ‡å¯èƒ½å­˜åœ¨å·®å¼‚ */
 static int __pfn_rate_set (void     *p_drv,
                            int       chan,
                            uint32_t  rate);
 
-/** \brief »ñÈ¡ADC×ª»»¾«¶È */
+/** \brief èŽ·å–ADCè½¬æ¢ç²¾åº¦ */
 static uint32_t __pfn_bits_get(void *p_drv, int chan);
 
-/** \brief »ñÈ¡ADC²Î¿¼µçÑ¹ */
+/** \brief èŽ·å–ADCå‚è€ƒç”µåŽ‹ */
 static uint32_t __pfn_vref_get(void *p_drv, int chan);
 
 
 
 /**
- * \brief ADC·þÎñº¯Êý 
+ * \brief ADCæœåŠ¡å‡½æ•° 
  */
 static const struct am_adc_drv_funcs __g_adc_drvfuncs = {
     __pfn_adc_start,
@@ -110,7 +110,7 @@ static void __adc_dma_int(void *p_arg, int state)
 
     uint16_t      *p_buf = NULL;
 
-    /* ´íÎóÖÐ¶Ï */
+    /* é”™è¯¯ä¸­æ–­ */
     if ( state & AM_LPC82X_DMA_STAT_INTERR) {
 
         __pfn_adc_stop (p_dev, p_dev->chan);
@@ -121,7 +121,7 @@ static void __adc_dma_int(void *p_arg, int state)
         return;
     }
 
-    /* ÅÐ¶Ï²ÉÑùÂÊÊÇ·ñ¹ý¸ß */
+    /* åˆ¤æ–­é‡‡æ ·çŽ‡æ˜¯å¦è¿‡é«˜ */
     if ((state & AM_LPC82X_DMA_STAT_INTA) &&
         (state & AM_LPC82X_DMA_STAT_INTB)) {
 
@@ -142,7 +142,7 @@ static void __adc_dma_int(void *p_arg, int state)
         buf_pos = 1;
     }
 
-    /* Êý¾Ý¸ñÊ½´¦Àí */
+    /* æ•°æ®æ ¼å¼å¤„ç† */
     if (AM_ADC_DATA_ALIGN_RIGHT == p_dev->flags) {
 
         p_buf = (uint16_t *)(p_dev->p_desc[buf_pos].p_buf);
@@ -152,13 +152,13 @@ static void __adc_dma_int(void *p_arg, int state)
         }
     }
 
-    /* ÃèÊö·û»Øµ÷º¯Êý  */
+    /* æè¿°ç¬¦å›žè°ƒå‡½æ•°  */
     if (NULL != p_dev->p_desc[buf_pos].pfn_complete) {
         p_dev->p_desc[buf_pos].pfn_complete(p_dev->p_desc[buf_pos].p_arg, 
                                             AM_OK);
     }
 
-    /* ÐòÁÐÍê³Éµ÷ÓÃÏµÁÐÍê³ÉÖÐ¶Ï */
+    /* åºåˆ—å®Œæˆè°ƒç”¨ç³»åˆ—å®Œæˆä¸­æ–­ */
     if ((++p_dev->desc_index) == p_dev->desc_num) {
 
         p_dev->desc_index = 0;
@@ -166,7 +166,7 @@ static void __adc_dma_int(void *p_arg, int state)
 
         if (p_dev->count != 0 && p_dev->seq_cnt >= p_dev->count) {
 
-            /* ´ïµ½²ÉÑù´ÎÊýÇÒ²»Á¬Ðø */
+            /* è¾¾åˆ°é‡‡æ ·æ¬¡æ•°ä¸”ä¸è¿žç»­ */
             p_dev->seq_cnt = 0;
             __pfn_adc_stop (p_dev, p_dev->chan);
 
@@ -175,14 +175,14 @@ static void __adc_dma_int(void *p_arg, int state)
             p_hw_adc = (amhw_lpc82x_adc_t *)(p_dev->p_devinfo->adc_regbase);
 
             {
-                am_lpc82x_dma_controller_abort(p_dev->p_dma_ctr);   /* Í£Ö¹DMA´«Êä */
-                am_lpc82x_dma_controller_release(p_dev->p_dma_ctr); /* ÊÍ·ÅDMA×ÊÔ´ */
+                am_lpc82x_dma_controller_abort(p_dev->p_dma_ctr);   /* åœæ­¢DMAä¼ è¾“ */
+                am_lpc82x_dma_controller_release(p_dev->p_dma_ctr); /* é‡Šæ”¾DMAèµ„æº */
 
-                /* Í£Ö¹µ±Ç°´«Êä£¬²¢½ûÄÜÐòÁÐA */
+                /* åœæ­¢å½“å‰ä¼ è¾“ï¼Œå¹¶ç¦èƒ½åºåˆ—A */
                 amhw_lpc82x_adc_seq_stop   (p_hw_adc, AMHW_LPC82X_ADC_SEQ_A);
                 amhw_lpc82x_adc_seq_disable(p_hw_adc, AMHW_LPC82X_ADC_SEQ_A);
 
-                /* ½ûÄÜÐòÁÐAÖÐ¶Ï */
+                /* ç¦èƒ½åºåˆ—Aä¸­æ–­ */
                 amhw_lpc82x_adc_int_disable(p_hw_adc,
                                             AMHW_LPC82X_ADC_INTEN_SEQA_ENABLE);
             }
@@ -202,7 +202,7 @@ static void __adc_dma_int(void *p_arg, int state)
 }
 
 /**
- * \brief ADC Ê¹ÓÃDMAÄ£Ê½Ê±Æô¶¯ÅäÖÃ
+ * \brief ADC ä½¿ç”¨DMAæ¨¡å¼æ—¶å¯åŠ¨é…ç½®
  */
 static int __adc_dma_work_startup(am_lpc82x_adc_dma_dev_t *p_dev, uint32_t desc_num)
 {
@@ -217,15 +217,15 @@ static int __adc_dma_work_startup(am_lpc82x_adc_dma_dev_t *p_dev, uint32_t desc_
     p_hw_adc =  (amhw_lpc82x_adc_t *)(p_dev->p_devinfo->adc_regbase);
 
     p_dma_ctr = am_lpc82x_dma_controller_get(p_dev->p_devinfo->dma_chan,
-                                             /* Í¨µÀÓÅÏÈ¼¶Îª1 */
+                                             /* é€šé“ä¼˜å…ˆçº§ä¸º1 */
                                              DMA_CHAN_OPT_PRIO_1             |
-                                             /* ÉÏÉýÑØ´¥·¢ */
+                                             /* ä¸Šå‡æ²¿è§¦å‘ */
                                              DMA_CHAN_OPT_HWTRIG_MODE_RISE   |
-                                             /* ÉÏÉýÑØ´¥·¢ */
+                                             /* ä¸Šå‡æ²¿è§¦å‘ */
                                              DMA_CHAN_OPT_HWTRIG_BURST_EN    |
-                                             /* Í»·¢´«Êä´óÐ¡Îª1 */
+                                             /* çªå‘ä¼ è¾“å¤§å°ä¸º1 */
                                              DMA_CHAN_OPT_HWTRIG_BURST_1     |
-                                             /* ADC0ÐòÁÐAÖÐ¶Ï´¥·¢DMA´«Êä */
+                                             /* ADC0åºåˆ—Aä¸­æ–­è§¦å‘DMAä¼ è¾“ */
                                              DMA_CHAN_OPT_HWTRIG_SRC_ADC0_SEQA_IRQ);
 
     if (p_dma_ctr == NULL) {
@@ -234,59 +234,59 @@ static int __adc_dma_work_startup(am_lpc82x_adc_dma_dev_t *p_dev, uint32_t desc_
     }
     p_dev->p_dma_ctr = p_dma_ctr;
 
-    /* ´«Êä¿í¶ÈÅäÖÃ */
+    /* ä¼ è¾“å®½åº¦é…ç½® */
     trans_byte_one   = 2;
     trans_width_flag = AM_LPC82X_DMA_XFER_WIDTH_16BIT;
 
-    /* DMA´«ÊäÅäÖÃ */
-    dma_aflags = AM_LPC82X_DMA_XFER_VALID           |  /* µ±Ç°Í¨µÀÃèÊö·ûÓÐÐ§ */
-                 AM_LPC82X_DMA_XFER_RELOAD          |  /* ´«ÊäÍêÖØÔØÍ¨µÀÃèÊö·û */
-                 trans_width_flag                   |  /* ´«ÊäÊý¾Ý¿í¶È */
-                 AM_LPC82X_DMA_XFER_SRCINC_NOINC    |  /* Ô´¶ËÊý¾ÝµØÖ·²»µÝÔö */
-                 AM_LPC82X_DMA_XFER_DSTINC_1X       |  /* Ä¿±êµØÖ·°´1x¿í¶ÈµÝÔö */
-                 AM_LPC82X_DMA_XFER_SETINTA;           /* Ê¹ÄÜÖÐ¶Ï A */
+    /* DMAä¼ è¾“é…ç½® */
+    dma_aflags = AM_LPC82X_DMA_XFER_VALID           |  /* å½“å‰é€šé“æè¿°ç¬¦æœ‰æ•ˆ */
+                 AM_LPC82X_DMA_XFER_RELOAD          |  /* ä¼ è¾“å®Œé‡è½½é€šé“æè¿°ç¬¦ */
+                 trans_width_flag                   |  /* ä¼ è¾“æ•°æ®å®½åº¦ */
+                 AM_LPC82X_DMA_XFER_SRCINC_NOINC    |  /* æºç«¯æ•°æ®åœ°å€ä¸é€’å¢ž */
+                 AM_LPC82X_DMA_XFER_DSTINC_1X       |  /* ç›®æ ‡åœ°å€æŒ‰1xå®½åº¦é€’å¢ž */
+                 AM_LPC82X_DMA_XFER_SETINTA;           /* ä½¿èƒ½ä¸­æ–­ A */
 
-    /* ½¨Á¢Í¨µÀÃèÊö·ûA */
-    am_lpc82x_dma_xfer_desc_build(&p_dev->dma_desc[0],                      /* AµÄÖØÔØÃèÊö·û */
-                                  (uint32_t)(&p_hw_adc->dat[p_dev->chan]),  /* Ô´¶ËÊý¾ÝµØÖ·  */
-                                  (uint32_t)p_dev->p_desc[0].p_buf,         /* »º³åÇøµØÖ·  */
-                                  p_dev->p_desc[0].length * trans_byte_one, /* ´«Êä×Ö½ÚÊý  */
-                                  dma_aflags);                              /* ´«ÊäÅäÖÃ    */
+    /* å»ºç«‹é€šé“æè¿°ç¬¦A */
+    am_lpc82x_dma_xfer_desc_build(&p_dev->dma_desc[0],                      /* Açš„é‡è½½æè¿°ç¬¦ */
+                                  (uint32_t)(&p_hw_adc->dat[p_dev->chan]),  /* æºç«¯æ•°æ®åœ°å€  */
+                                  (uint32_t)p_dev->p_desc[0].p_buf,         /* ç¼“å†²åŒºåœ°å€  */
+                                  p_dev->p_desc[0].length * trans_byte_one, /* ä¼ è¾“å­—èŠ‚æ•°  */
+                                  dma_aflags);                              /* ä¼ è¾“é…ç½®    */
 
     if (desc_num == 2) {
 
-        /* DMA´«ÊäÅäÖÃ */
-        dma_bflags = AM_LPC82X_DMA_XFER_VALID           |  /* µ±Ç°Í¨µÀÃèÊö·ûÓÐÐ§  */
-                     AM_LPC82X_DMA_XFER_RELOAD          |  /* ´«ÊäÍêÖØÔØÍ¨µÀÃèÊö·û */
-                     trans_width_flag                   |  /* ´«ÊäÊý¾Ý¿í¶È */
-                     AM_LPC82X_DMA_XFER_SRCINC_NOINC    |  /* Ô´¶ËÊý¾ÝµØÖ·²»µÝÔö   */
-                     AM_LPC82X_DMA_XFER_DSTINC_1X       |  /* Ä¿±êµØÖ·°´1x¿í¶ÈµÝÔö */
-                     AM_LPC82X_DMA_XFER_SETINTB;           /* Ê¹ÄÜÖÐ¶Ï B */
+        /* DMAä¼ è¾“é…ç½® */
+        dma_bflags = AM_LPC82X_DMA_XFER_VALID           |  /* å½“å‰é€šé“æè¿°ç¬¦æœ‰æ•ˆ  */
+                     AM_LPC82X_DMA_XFER_RELOAD          |  /* ä¼ è¾“å®Œé‡è½½é€šé“æè¿°ç¬¦ */
+                     trans_width_flag                   |  /* ä¼ è¾“æ•°æ®å®½åº¦ */
+                     AM_LPC82X_DMA_XFER_SRCINC_NOINC    |  /* æºç«¯æ•°æ®åœ°å€ä¸é€’å¢ž   */
+                     AM_LPC82X_DMA_XFER_DSTINC_1X       |  /* ç›®æ ‡åœ°å€æŒ‰1xå®½åº¦é€’å¢ž */
+                     AM_LPC82X_DMA_XFER_SETINTB;           /* ä½¿èƒ½ä¸­æ–­ B */
 
-        /* ½¨Á¢Í¨µÀÃèÊö·ûB */
-        am_lpc82x_dma_xfer_desc_build(&p_dev->dma_desc[1],                      /* BµÄÖØÔØÃèÊö·û */
-                                      (uint32_t)(&p_hw_adc->dat[p_dev->chan]),  /* Ô´¶ËÊý¾ÝµØÖ·  */
-                                      (uint32_t)p_dev->p_desc[1].p_buf,         /* »º³åÇøµØÖ·  */
-                                      p_dev->p_desc[1].length * trans_byte_one, /* ´«Êä×Ö½ÚÊý  */
-                                      dma_bflags);                              /* ´«ÊäÅäÖÃ    */
+        /* å»ºç«‹é€šé“æè¿°ç¬¦B */
+        am_lpc82x_dma_xfer_desc_build(&p_dev->dma_desc[1],                      /* Bçš„é‡è½½æè¿°ç¬¦ */
+                                      (uint32_t)(&p_hw_adc->dat[p_dev->chan]),  /* æºç«¯æ•°æ®åœ°å€  */
+                                      (uint32_t)p_dev->p_desc[1].p_buf,         /* ç¼“å†²åŒºåœ°å€  */
+                                      p_dev->p_desc[1].length * trans_byte_one, /* ä¼ è¾“å­—èŠ‚æ•°  */
+                                      dma_bflags);                              /* ä¼ è¾“é…ç½®    */
 
         am_lpc82x_dma_xfer_desc_link(&p_dev->dma_desc[0], &p_dev->dma_desc[1]);
         am_lpc82x_dma_xfer_desc_link(&p_dev->dma_desc[1], &p_dev->dma_desc[0]);
     }
 
-    /* Æô¶¯DMA´«Êä£¬ÂíÉÏ¿ªÊ¼´«Êä */
+    /* å¯åŠ¨DMAä¼ è¾“ï¼Œé©¬ä¸Šå¼€å§‹ä¼ è¾“ */
     am_lpc82x_dma_xfer_desc_startup(p_dma_ctr,
                                     &p_dev->dma_desc[0],
                                     __adc_dma_int,
                                     (void *)p_dev);
 
-    seq_flags = AMHW_LPC82X_ADC_SEQ_CTRL_MODE_BURST   |          /* ²ÉÓÃÍ»·¢×ª»»Ä£Ê½ */
-                AMHW_LPC82X_ADC_SEQ_CTRL_TRIG_POL_POS |          /* Ê¹ÓÃÕý±ßÑØ´¥·¢·½Ê½ */
-                AMHW_LPC82X_ADC_SEQ_CTRL_MODE_EOS     |          /* ÐòÁÐ×ª»»Íêºó´¥·¢DMA */
-                AMHW_LPC82X_ADC_SEQ_CTRL_ENA          |          /* ÐòÁÐAÊ¹ÄÜ          */
-                AMHW_LPC82X_ADC_SEQ_CTRL_ENABLE_CH(p_dev->chan); /* Ê¹ÄÜADCÍ¨µÀ    */
+    seq_flags = AMHW_LPC82X_ADC_SEQ_CTRL_MODE_BURST   |          /* é‡‡ç”¨çªå‘è½¬æ¢æ¨¡å¼ */
+                AMHW_LPC82X_ADC_SEQ_CTRL_TRIG_POL_POS |          /* ä½¿ç”¨æ­£è¾¹æ²¿è§¦å‘æ–¹å¼ */
+                AMHW_LPC82X_ADC_SEQ_CTRL_MODE_EOS     |          /* åºåˆ—è½¬æ¢å®ŒåŽè§¦å‘DMA */
+                AMHW_LPC82X_ADC_SEQ_CTRL_ENA          |          /* åºåˆ—Aä½¿èƒ½          */
+                AMHW_LPC82X_ADC_SEQ_CTRL_ENABLE_CH(p_dev->chan); /* ä½¿èƒ½ADCé€šé“    */
 
-    /* ADCÐòÁÐAÅäÖÃ(ADCÊ¹ÓÃDMA´«Êä£¬ÐèÏÈÆô¶¯DMA´«Êä£¬ÔÙÆô¶¯ADC×ª»»)  */
+    /* ADCåºåˆ—Aé…ç½®(ADCä½¿ç”¨DMAä¼ è¾“ï¼Œéœ€å…ˆå¯åŠ¨DMAä¼ è¾“ï¼Œå†å¯åŠ¨ADCè½¬æ¢)  */
     amhw_lpc82x_adc_seq_config(p_hw_adc,
                                AMHW_LPC82X_ADC_SEQ_A,
                                seq_flags);
@@ -294,7 +294,7 @@ static int __adc_dma_work_startup(am_lpc82x_adc_dma_dev_t *p_dev, uint32_t desc_
     return AM_OK;
 }
 /**
- * \brief Æô¶¯ADC×ª»»
+ * \brief å¯åŠ¨ADCè½¬æ¢
  */
 static int __pfn_adc_start  (void                   *p_drv,
                              int                     chan,
@@ -331,16 +331,16 @@ static int __pfn_adc_start  (void                   *p_drv,
     p_dev->desc_index   = 0;
     p_dev->conv_cnt     = 0;
 
-    /* Ê¹ÄÜÐòÁÐAÖÐ¶Ï */
+    /* ä½¿èƒ½åºåˆ—Aä¸­æ–­ */
     amhw_lpc82x_adc_int_enable(p_hw_adc,
                                AMHW_LPC82X_ADC_INTEN_SEQA_ENABLE);
 
    {
-        /* DMA¹¤×÷Ä£Ê½ÏÂ£¬ÃèÊö·ûÊýÁ¿×î´óÖ§³Ö2¸ö */
+        /* DMAå·¥ä½œæ¨¡å¼ä¸‹ï¼Œæè¿°ç¬¦æ•°é‡æœ€å¤§æ”¯æŒ2ä¸ª */
         if (NULL == p_drv || desc_num > 2) {
             return -AM_EINVAL;
         }
-        /* DMAÆô¶¯ÅäÖÃ */
+        /* DMAå¯åŠ¨é…ç½® */
         if (-AM_EPERM == __adc_dma_work_startup(p_dev, desc_num)) {
             return -AM_EINVAL;
         }
@@ -350,7 +350,7 @@ static int __pfn_adc_start  (void                   *p_drv,
 }
  
 /**
- * \brief Í£Ö¹×ª»»
+ * \brief åœæ­¢è½¬æ¢
  */
 static int __pfn_adc_stop (void *p_drv, int chan)
 {
@@ -365,14 +365,14 @@ static int __pfn_adc_stop (void *p_drv, int chan)
     p_hw_adc = (amhw_lpc82x_adc_t *)(p_dev->p_devinfo->adc_regbase);
 
     {
-        am_lpc82x_dma_controller_abort(p_dev->p_dma_ctr);   /* Í£Ö¹DMA´«Êä */
-        am_lpc82x_dma_controller_release(p_dev->p_dma_ctr); /* ÊÍ·ÅDMA×ÊÔ´ */
+        am_lpc82x_dma_controller_abort(p_dev->p_dma_ctr);   /* åœæ­¢DMAä¼ è¾“ */
+        am_lpc82x_dma_controller_release(p_dev->p_dma_ctr); /* é‡Šæ”¾DMAèµ„æº */
     }
-    /* Í£Ö¹µ±Ç°´«Êä£¬²¢½ûÄÜÐòÁÐA */
+    /* åœæ­¢å½“å‰ä¼ è¾“ï¼Œå¹¶ç¦èƒ½åºåˆ—A */
     amhw_lpc82x_adc_seq_stop   (p_hw_adc, AMHW_LPC82X_ADC_SEQ_A);
     amhw_lpc82x_adc_seq_disable(p_hw_adc, AMHW_LPC82X_ADC_SEQ_A);
 
-    /* ½ûÄÜÐòÁÐAÖÐ¶Ï */
+    /* ç¦èƒ½åºåˆ—Aä¸­æ–­ */
     amhw_lpc82x_adc_int_disable(p_hw_adc,
                                AMHW_LPC82X_ADC_INTEN_SEQA_ENABLE);
 
@@ -382,7 +382,7 @@ static int __pfn_adc_stop (void *p_drv, int chan)
 }
 
 /**
- * \brief »ñÈ¡ADCµÄ²ÉÑùÂÊ
+ * \brief èŽ·å–ADCçš„é‡‡æ ·çŽ‡
  */
 static int __pfn_rate_get (void       *p_drv,
                            int         chan,
@@ -402,20 +402,20 @@ static int __pfn_rate_get (void       *p_drv,
 
     sys_clk  = am_clk_rate_get(p_dev->p_devinfo->clk_id);
 
-    /* µÃµ½Ê±ÖÓ·ÖÆµÏµÊý */
+    /* å¾—åˆ°æ—¶é’Ÿåˆ†é¢‘ç³»æ•° */
     adc_clkdiv = amhw_lpc82x_adc_clkdiv_get(p_hw_adc);
 
-    /* µÃµ½·ÖÆµÖµ */
+    /* å¾—åˆ°åˆ†é¢‘å€¼ */
     adc_clkdiv = (adc_clkdiv == 255) ? 255 : (adc_clkdiv + 1);
 
-    /* LPC824ÖÐÆµÂÊÎª²ÉÑùÂÊµÄ25±¶ */
+    /* LPC824ä¸­é¢‘çŽ‡ä¸ºé‡‡æ ·çŽ‡çš„25å€ */
     *p_rate = sys_clk / adc_clkdiv / 25;
 
     return AM_OK;
 }
 
 /**
- * \brief ÉèÖÃADCµÄ²ÉÑùÂÊ£¬Êµ¼Ê²ÉÑùÂÊ¿ÉÄÜ´æÔÚ²îÒì
+ * \brief è®¾ç½®ADCçš„é‡‡æ ·çŽ‡ï¼Œå®žé™…é‡‡æ ·çŽ‡å¯èƒ½å­˜åœ¨å·®å¼‚
  */
 static int __pfn_rate_set (void     *p_drv,
                            int       chan,
@@ -435,10 +435,10 @@ static int __pfn_rate_set (void     *p_drv,
 
     sys_clk = am_clk_rate_get(p_dev->p_devinfo->clk_id);
 
-    /* LPC824ÖÐÆµÂÊÎª²ÉÑùÂÊµÄ25±¶ */
+    /* LPC824ä¸­é¢‘çŽ‡ä¸ºé‡‡æ ·çŽ‡çš„25å€ */
     adc_clkdiv = sys_clk / rate / 25;
     
-    /* ²ÉÑùÂÊÌ«µÍ»òÌ«¸ßÊ±£¬ÉèÖÃµ½¼«ÏÞ */
+    /* é‡‡æ ·çŽ‡å¤ªä½Žæˆ–å¤ªé«˜æ—¶ï¼Œè®¾ç½®åˆ°æžé™ */
     if (adc_clkdiv != 0) {
         adc_clkdiv = adc_clkdiv > 256 ? 255 : adc_clkdiv - 1; 
     }
@@ -450,7 +450,7 @@ static int __pfn_rate_set (void     *p_drv,
 }
 
 /**
- * \brief »ñÈ¡ADC×ª»»¾«¶È
+ * \brief èŽ·å–ADCè½¬æ¢ç²¾åº¦
  */
 static uint32_t __pfn_bits_get (void *p_drv, int chan)
 {
@@ -458,19 +458,19 @@ static uint32_t __pfn_bits_get (void *p_drv, int chan)
 }
 
 /**
- * \brief »ñÈ¡ADC²Î¿¼µçÑ¹
+ * \brief èŽ·å–ADCå‚è€ƒç”µåŽ‹
  */
 static uint32_t __pfn_vref_get (void *p_drv, int chan)
 {
     if (NULL == p_drv) {
-        return 0;   /* ×ÊÔ´ÒÑ¾­ÊÍ·Å£¬²Î¿¼µçÑ¹Î´Öª */
+        return 0;   /* èµ„æºå·²ç»é‡Šæ”¾ï¼Œå‚è€ƒç”µåŽ‹æœªçŸ¥ */
     }
 
     return (uint32_t)__ADC_VREF_GET(p_drv);
 }
 
 /**
- * \brief ADC³õÊ¼»¯
+ * \brief ADCåˆå§‹åŒ–
  */
 am_adc_handle_t am_lpc82x_adc_dma_init (am_lpc82x_adc_dma_dev_t     *p_dev,
                               const am_lpc82x_adc_dma_devinfo_t *p_devinfo)
@@ -504,7 +504,7 @@ am_adc_handle_t am_lpc82x_adc_dma_init (am_lpc82x_adc_dma_dev_t     *p_dev,
 }
 
 /**
- * \brief ADCÈ¥³õÊ¼»¯
+ * \brief ADCåŽ»åˆå§‹åŒ–
  */
 void am_lpc82x_adc_dma_deinit (am_adc_handle_t handle)
 {
@@ -517,18 +517,18 @@ void am_lpc82x_adc_dma_deinit (am_adc_handle_t handle)
 
     p_hw_adc = (amhw_lpc82x_adc_t *)(p_dev->p_devinfo->adc_regbase);
     
-    /* Í£Ö¹µ±Ç°ÕýÔÚ½øÐÐµÄ×ª»»£¬²¢½ûÖ¹ÐòÁÐ×ª»» */
+    /* åœæ­¢å½“å‰æ­£åœ¨è¿›è¡Œçš„è½¬æ¢ï¼Œå¹¶ç¦æ­¢åºåˆ—è½¬æ¢ */
     amhw_lpc82x_adc_seq_stop   (p_hw_adc, AMHW_LPC82X_ADC_SEQ_A);
     amhw_lpc82x_adc_seq_disable(p_hw_adc,
                                 AMHW_LPC82X_ADC_SEQ_A);
 
-    /* ½ûÄÜÐòÁÐAÖÐ¶Ï */
+    /* ç¦èƒ½åºåˆ—Aä¸­æ–­ */
     amhw_lpc82x_adc_int_disable(p_hw_adc,
                                AMHW_LPC82X_ADC_INTEN_SEQA_ENABLE);
 
     {
-        am_lpc82x_dma_controller_abort(p_dev->p_dma_ctr);   /* Í£Ö¹DMA´«Êä */
-        am_lpc82x_dma_controller_release(p_dev->p_dma_ctr); /* ÊÍ·ÅDMA×ÊÔ´ */
+        am_lpc82x_dma_controller_abort(p_dev->p_dma_ctr);   /* åœæ­¢DMAä¼ è¾“ */
+        am_lpc82x_dma_controller_release(p_dev->p_dma_ctr); /* é‡Šæ”¾DMAèµ„æº */
     }
 
     p_dev->adc_serve.p_drv = NULL;

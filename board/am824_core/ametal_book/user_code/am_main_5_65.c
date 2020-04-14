@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥5.65  ¸Ã³ÌĞòÊÇÃ»ÓĞÈÎºÎĞ§¹ûµÄ
+ * \brief ç¨‹åºæ¸…å•5.65  è¯¥ç¨‹åºæ˜¯æ²¡æœ‰ä»»ä½•æ•ˆæœçš„
  *
  * 
  * \internal
@@ -24,15 +24,15 @@
 #include "am_spi.h"
 static void __spi_msg_complete_callback (void *p_arg)
 {
-     // ÏûÏ¢´¦ÀíÍê±Ï
+     // æ¶ˆæ¯å¤„ç†å®Œæ¯•
 }
 
 int am_main (void)
 {
-    am_spi_message_t     spi_msg;                  // ¶¨ÒåÒ»¸öSPIÏûÏ¢½á¹¹Ìå
+    am_spi_message_t     spi_msg;                  // å®šä¹‰ä¸€ä¸ªSPIæ¶ˆæ¯ç»“æ„ä½“
     uint8_t              tx_buf[8];
     uint8_t              rx_buf[8];
-    am_spi_transfer_t    spi_trans;                // ¶¨ÒåÒ»¸öSPI´«Êä½á¹¹Ìå
+    am_spi_transfer_t    spi_trans;                // å®šä¹‰ä¸€ä¸ªSPIä¼ è¾“ç»“æ„ä½“
 
     am_spi_mktrans(&spi_trans, tx_buf, rx_buf, 8, 0, 0, 0, 0, 0);
     am_spi_msg_init (&spi_msg,     __spi_msg_complete_callback, NULL);

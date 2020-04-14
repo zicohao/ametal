@@ -14,14 +14,14 @@
  * \file
  * \brief AMetal linked-list and queue definitions
  *
- * Ê¹ÓÃ±¾Ä£¿éĞèÒª°üº¬ÒÔÏÂÍ·ÎÄ¼ş£º
+ * ä½¿ç”¨æœ¬æ¨¡å—éœ€è¦åŒ…å«ä»¥ä¸‹å¤´æ–‡ä»¶ï¼š
  * \code
  * #include "am_list.h"
  * \endcode
  *
- * ±¾ÎÄ¼şÓÉ linux ÖĞµÄ list.h ĞŞ¸Ä¶øÀ´£¬Ïà¹ØÓÃ·¨Çë²ÎÔÄlinuxÁ´±íµÄÏà¹Ø×ÊÁÏ¡£
+ * æœ¬æ–‡ä»¶ç”± linux ä¸­çš„ list.h ä¿®æ”¹è€Œæ¥ï¼Œç›¸å…³ç”¨æ³•è¯·å‚é˜…linuxé“¾è¡¨çš„ç›¸å…³èµ„æ–™ã€‚
  *
- * // ¸ü¶àÄÚÈİ´ıÌí¼Ó
+ * // æ›´å¤šå†…å®¹å¾…æ·»åŠ 
  *
  * \internal
  * \par modification history:

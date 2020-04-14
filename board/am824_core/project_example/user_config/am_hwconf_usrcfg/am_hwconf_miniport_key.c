@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief MiniPort-KEY ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief MiniPort-KEY ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_miniport_key.c
  *
- * µ¥¶ÀÊ¹ÓÃ MiniPort-KEY Ê±Ê¹ÓÃ¸ÃÎÄ¼şÌá¹©µÄÊµÀı³õÊ¼»¯º¯Êı
+ * å•ç‹¬ä½¿ç”¨ MiniPort-KEY æ—¶ä½¿ç”¨è¯¥æ–‡ä»¶æä¾›çš„å®ä¾‹åˆå§‹åŒ–å‡½æ•°
  *
  * \internal
  * \par Modification history
@@ -34,48 +34,48 @@
  * @{
  */
 
-/** \brief MiniPort-KEY °´¼ü±àÂëĞÅÏ¢ */
+/** \brief MiniPort-KEY æŒ‰é”®ç¼–ç ä¿¡æ¯ */
 am_local am_const int __g_miniport_key_codes[] = {
-    KEY_0,    /* °´¼ü KEY0 µÄ¼üÖµ */
-    KEY_1,    /* °´¼ü KEY1 µÄ¼üÖµ */
-    KEY_2,    /* °´¼ü KEY2 µÄ¼üÖµ */
-    KEY_3     /* °´¼ü KEY3 µÄ¼üÖµ */
+    KEY_0,    /* æŒ‰é”® KEY0 çš„é”®å€¼ */
+    KEY_1,    /* æŒ‰é”® KEY1 çš„é”®å€¼ */
+    KEY_2,    /* æŒ‰é”® KEY2 çš„é”®å€¼ */
+    KEY_3     /* æŒ‰é”® KEY3 çš„é”®å€¼ */
 };
 
-/** \brief MiniPort-KEY °´¼üĞĞÏßÒı½Å */
+/** \brief MiniPort-KEY æŒ‰é”®è¡Œçº¿å¼•è„š */
 am_local am_const int __g_miniport_key_pins_row[] = {
-    PIO0_6,    /* µÚ 0 ĞĞÒı½Å */
-    PIO0_7     /* µÚ 1 ĞĞÒı½Å */
+    PIO0_6,    /* ç¬¬ 0 è¡Œå¼•è„š */
+    PIO0_7     /* ç¬¬ 1 è¡Œå¼•è„š */
 };
 
-/** \brief MiniPort-KEY °´¼üÁĞÏßÒı½Å */
+/** \brief MiniPort-KEY æŒ‰é”®åˆ—çº¿å¼•è„š */
 am_local am_const int __g_miniport_key_pins_col[] = {
-    PIO0_17,    /* µÚ 0 ÁĞÒı½Å */
-    PIO0_23     /* µÚ 1 ÁĞÒı½Å */
+    PIO0_17,    /* ç¬¬ 0 åˆ—å¼•è„š */
+    PIO0_23     /* ç¬¬ 1 åˆ—å¼•è„š */
 };
 
-/** \brief MiniPort-KEY Éè±¸ĞÅÏ¢ */
+/** \brief MiniPort-KEY è®¾å¤‡ä¿¡æ¯ */
 am_local am_const
 am_key_matrix_gpio_softimer_info_t __g_miniport_key_devinfo = {
     {
         {
-            2,                           /* 2 ĞĞ°´¼ü */
-            2,                           /* 2 ÁĞ°´¼ü */
-            __g_miniport_key_codes,      /* ¸÷°´¼ü¶ÔÓ¦µÄ±àÂë */
-            AM_TRUE,                     /* °´¼üµÍµçÆ½ÊÓÎª°´ÏÂ */
-            AM_KEY_MATRIX_SCAN_MODE_COL, /* É¨Ãè·½Ê½£¬°´ÁĞÉ¨Ãè£¨±ãÓÚÁĞÏßÒı½Å¸´ÓÃ£© */
+            2,                           /* 2 è¡ŒæŒ‰é”® */
+            2,                           /* 2 åˆ—æŒ‰é”® */
+            __g_miniport_key_codes,      /* å„æŒ‰é”®å¯¹åº”çš„ç¼–ç  */
+            AM_TRUE,                     /* æŒ‰é”®ä½ç”µå¹³è§†ä¸ºæŒ‰ä¸‹ */
+            AM_KEY_MATRIX_SCAN_MODE_COL, /* æ‰«ææ–¹å¼ï¼ŒæŒ‰åˆ—æ‰«æï¼ˆä¾¿äºåˆ—çº¿å¼•è„šå¤ç”¨ï¼‰ */
         },
-        __g_miniport_key_pins_row,       /* °´¼üĞĞÏßÒı½Å */
-        __g_miniport_key_pins_col,       /* °´¼üÁĞÏßÒı½Å */
+        __g_miniport_key_pins_row,       /* æŒ‰é”®è¡Œçº¿å¼•è„š */
+        __g_miniport_key_pins_col,       /* æŒ‰é”®åˆ—çº¿å¼•è„š */
     },
-    5,                                   /* É¨ÃèÊ±¼ä¼ä¸ô£¬5ms */
+    5,                                   /* æ‰«ææ—¶é—´é—´éš”ï¼Œ5ms */
 };
 
-/** \brief MiniPort-KEY Éè±¸ÊµÀı */
+/** \brief MiniPort-KEY è®¾å¤‡å®ä¾‹ */
 am_local am_key_matrix_gpio_softimer_t __g_miniport_key_dev;
 
 /**
- * \brief MiniPort-KEY ÊµÀı³õÊ¼»¯£¨µ¥¶ÀÊ¹ÓÃ£©
+ * \brief MiniPort-KEY å®ä¾‹åˆå§‹åŒ–ï¼ˆå•ç‹¬ä½¿ç”¨ï¼‰
  */
 int am_miniport_key_inst_init (void)
 {

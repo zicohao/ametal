@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief 程序清单7.55
+ * \brief 绋嬪簭娓呭崟7.55
  *
  *
  * \internal
@@ -26,8 +26,8 @@
 
 int am_main (void)
 {
-    am_miniport_view_595_inst_init();      // MiniPort-View数码管（HC595输出段码）实例初始化
-    app_digitron_count_down(0);            // 使用显示器编号为0的数码管
+    am_miniport_view_595_inst_init();      // MiniPort-View鏁扮爜绠★紙HC595杈撳嚭娈电爜锛夊疄渚嬪垵濮嬪寲
+    app_digitron_count_down(0);            // 浣跨敤鏄剧ず鍣ㄧ紪鍙蜂负0鐨勬暟鐮佺
     while (1) {
     }
 }

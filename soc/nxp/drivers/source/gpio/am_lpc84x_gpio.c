@@ -15,9 +15,9 @@
  * \file
  * \brief GPIO implementation
  * 
- * - GPIOÒı½ÅÄÜ¹»Í¨¹ıÈí¼şÅäÖÃÎªÊäÈë»òÕßÊä³ö£»
- * - ¸´Î»ºó£¬ËùÓĞGPIOÒı½ÅÄ¬ÈÏÊÇÊäÈëÇÒ¹Ø±ÕÖĞ¶Ï£»
- * - Òı½Å¼Ä´æÆ÷ÔÊĞíÒı½Åµ¥¶ÀÉèÖÃ¡£
+ * - GPIOå¼•è„šèƒ½å¤Ÿé€šè¿‡è½¯ä»¶é…ç½®ä¸ºè¾“å…¥æˆ–è€…è¾“å‡ºï¼›
+ * - å¤ä½åï¼Œæ‰€æœ‰GPIOå¼•è„šé»˜è®¤æ˜¯è¾“å…¥ä¸”å…³é—­ä¸­æ–­ï¼›
+ * - å¼•è„šå¯„å­˜å™¨å…è®¸å¼•è„šå•ç‹¬è®¾ç½®ã€‚
  *
  * \internal
  * \par Modification history
@@ -42,35 +42,35 @@
 #include "lpc84x_pin.h"
 
 /*******************************************************************************
-* Ë½ÓĞ¶¨Òå
+* ç§æœ‰å®šä¹‰
 *******************************************************************************/
 
-/** \brief ÖĞ¶ÏÎ´Á¬½Ó±êÊ¶ */
+/** \brief ä¸­æ–­æœªè¿æ¥æ ‡è¯† */
 #define __GPIO_INVALID_PIN_MAP    0xFF
 
-/** \brief Î´ÅäÖÃ¿ÉÅäÖÃ¹¦ÄÜ±êÊ¶ */
+/** \brief æœªé…ç½®å¯é…ç½®åŠŸèƒ½æ ‡è¯† */
 #define __GPIO_NO_MOVED_FUNC      0xFF
 
-/** \brief ¶¨ÒåÖ¸ÏòGPIOÉè±¸ĞÅÏ¢µÄÖ¸Õë */
+/** \brief å®šä¹‰æŒ‡å‘GPIOè®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ */
 #define __GPIO_DEVINFO_DECL(p_devinfo, p_dev)  \
         const am_lpc84x_gpio_devinfo_t *p_devinfo = p_dev->p_devinfo
 
 /******************************************************************************
-  È«¾Ö±äÁ¿
+  å…¨å±€å˜é‡
 ******************************************************************************/
 
-/** \bruef Ö¸ÏòGPIOÉè±¸µÄÖ¸Õë */
+/** \bruef æŒ‡å‘GPIOè®¾å¤‡çš„æŒ‡é’ˆ */
 am_lpc84x_gpio_dev_t *__gp_gpio_dev = NULL;
 
 /*******************************************************************************
-  ¹«¹²º¯Êı
+  å…¬å…±å‡½æ•°
 *******************************************************************************/
 
 /**
- * \brief Òı½Å¹¦ÄÜÅäÖÃ
+ * \brief å¼•è„šåŠŸèƒ½é…ç½®
  *
- * \param[in] pin   : Òı½Å±àºÅ£¬ÖµÎª PIO* (#PIO0_0)
- * \param[in] flags : ¹¦ÄÜÂë£¬Îªam_gpio.h,lpc8xx_pin.hµÄºê¶¨Òå
+ * \param[in] pin   : å¼•è„šç¼–å·ï¼Œå€¼ä¸º PIO* (#PIO0_0)
+ * \param[in] flags : åŠŸèƒ½ç ï¼Œä¸ºam_gpio.h,lpc8xx_pin.hçš„å®å®šä¹‰
  *
  */
 int am_gpio_pin_cfg (int pin, uint32_t flags)
@@ -92,24 +92,24 @@ int am_gpio_pin_cfg (int pin, uint32_t flags)
     p_hw_iocon = (amhw_lpc84x_iocon_t*)p_devinfo->iocon_regbase;
     p_hw_swm   = (amhw_lpc84x_swm_t*)p_devinfo->swm_regbase;
             
-    /* ¶ÁÈ¡Ô­IOCONÊı¾İ */
+    /* è¯»å–åŸIOCONæ•°æ® */
     iocon_cfg = amhw_lpc84x_iocon_pio_get(p_hw_iocon, pin);
     
-    /* ¶ÁÈ¡±ê×¼²ã¶¨ÒåµÄĞÅÏ¢ */
+    /* è¯»å–æ ‡å‡†å±‚å®šä¹‰çš„ä¿¡æ¯ */
     func = AM_GPIO_COM_FUNC_GET(flags);
     mode = AM_GPIO_COM_MODE_GET(flags);
 
     /**
-     * \brief ¹²ÓĞ¹¦ÄÜÅäÖÃ£¨ÓÅÏÈ¼¶¸ß£©
+     * \brief å…±æœ‰åŠŸèƒ½é…ç½®ï¼ˆä¼˜å…ˆçº§é«˜ï¼‰
      */
     if (func != 0x00) {
         
-        /* ²»ÔÙÉèÖÃLPC8xxÌØÓĞ¹¦ÄÜ */
+        /* ä¸å†è®¾ç½®LPC8xxç‰¹æœ‰åŠŸèƒ½ */
         AM_BIT_CLR_MASK(flags, AM_LPC84X_GPIO_FUNC_MASK);
             
-        /* ½«Òı½ÅÖÁÓÚGPIO×´Ì¬ */
+        /* å°†å¼•è„šè‡³äºGPIOçŠ¶æ€ */
         
-        /* Èç¹ûÖ®Ç°ÓĞÒÑÅäÖÃµÄ¿É×ªÒÆ¹¦ÄÜ£¬ÏÈÈ¡Ïû */
+        /* å¦‚æœä¹‹å‰æœ‰å·²é…ç½®çš„å¯è½¬ç§»åŠŸèƒ½ï¼Œå…ˆå–æ¶ˆ */
         if (__gp_gpio_dev->pin_moved_func[pin] != __GPIO_NO_MOVED_FUNC) {
 
             amhw_lpc84x_swm_moved_func_cfg(p_hw_swm,
@@ -117,7 +117,7 @@ int am_gpio_pin_cfg (int pin, uint32_t flags)
                                           (__gp_gpio_dev->pin_moved_func[pin]),
                                           __GPIO_NO_MOVED_FUNC);
 
-            /* ¼ÇÂ¼£¬µ±Ç°Òı½ÅÃ»ÓĞÉèÖÃ¿ÉÅäÖÃ¹¦ÄÜ */
+            /* è®°å½•ï¼Œå½“å‰å¼•è„šæ²¡æœ‰è®¾ç½®å¯é…ç½®åŠŸèƒ½ */
             __gp_gpio_dev->pin_moved_func[pin] = __GPIO_NO_MOVED_FUNC;
         }
         
@@ -150,33 +150,33 @@ int am_gpio_pin_cfg (int pin, uint32_t flags)
         
         if (mode < AM_GPIO_OPEN_DRAIN_VAL) {
             
-            /* ºöÂÔÖĞ¼ÌÄ£Ê½ */
+            /* å¿½ç•¥ä¸­ç»§æ¨¡å¼ */
             AM_BIT_CLR_MASK(flags, AM_LPC84X_GPIO_REP_MASK);
             
-            /* Çå³ı¿ªÂ©Ä£Ê½ */
+            /* æ¸…é™¤å¼€æ¼æ¨¡å¼ */
             AM_BIT_CLR(iocon_cfg, 10);
             
             AM_BIT_CLR_MASK(iocon_cfg, AM_SBF(0x3, 3));
             iocon_cfg |= (((~mode) & 0x3) << 3);
 
-          /* ÉèÖÃ¿ªÂ©Ä£Ê½ */
+          /* è®¾ç½®å¼€æ¼æ¨¡å¼ */
         } else if (mode == AM_GPIO_OPEN_DRAIN_VAL) {
             AM_BIT_SET(iocon_cfg, 10);
 
-          /* ÆäËüÄ£Ê½²»Ö§³Ö  */
+          /* å…¶å®ƒæ¨¡å¼ä¸æ”¯æŒ  */
         } else if (mode > AM_GPIO_OPEN_DRAIN_VAL) {
             return -AM_ENOTSUP;
         }
     }
 
     /**
-     * \brief Æ½Ì¨¹¦ÄÜÅäÖÃ
+     * \brief å¹³å°åŠŸèƒ½é…ç½®
      */
 
-    /* ĞèÒªÉèÖÃÒı½Å¹¦ÄÜ */
+    /* éœ€è¦è®¾ç½®å¼•è„šåŠŸèƒ½ */
     if ((flags & AM_LPC84X_GPIO_FUNC_MASK) != 0) {
         
-        /* Èç¹ûÖ®Ç°ÓĞÒÑÅäÖÃµÄ¿É×ªÒÆ¹¦ÄÜ£¬ÏÈÈ¡Ïû */
+        /* å¦‚æœä¹‹å‰æœ‰å·²é…ç½®çš„å¯è½¬ç§»åŠŸèƒ½ï¼Œå…ˆå–æ¶ˆ */
         if (__gp_gpio_dev->pin_moved_func[pin] != __GPIO_NO_MOVED_FUNC) {
             amhw_lpc84x_swm_moved_func_cfg(
                                        p_hw_swm,
@@ -189,7 +189,7 @@ int am_gpio_pin_cfg (int pin, uint32_t flags)
         
         amhw_lpc84x_swm_pin_fixed_func_disable(p_hw_swm, pin);
 
-        /* ÌØÊâ¹¦ÄÜÅäÖÃ */
+        /* ç‰¹æ®ŠåŠŸèƒ½é…ç½® */
         if (AM_LPC84X_GPIO_FUNC_GET(flags) >
             AM_LPC84X_GPIO_FUNC_GET(AM_LPC84X_GPIO_FUNC_GPIO)) {
 
@@ -198,11 +198,11 @@ int am_gpio_pin_cfg (int pin, uint32_t flags)
                 pin, 
                 AM_LPC84X_GPIO_FUNC_CODE(AM_LPC84X_GPIO_FUNC_GET(flags)));
 
-        /* ¿É×ªÒÆ¹¦ÄÜ */
+        /* å¯è½¬ç§»åŠŸèƒ½ */
         }else if (AM_LPC84X_GPIO_FUNC_GET(flags) <
                   AM_LPC84X_GPIO_FUNC_GET(AM_LPC84X_GPIO_FUNC_GPIO)) {
             
-            /* ´æ´¢µ±Ç°Òı½ÅÅäÖÃµÄ¹¦ÄÜ */
+            /* å­˜å‚¨å½“å‰å¼•è„šé…ç½®çš„åŠŸèƒ½ */
             __gp_gpio_dev->pin_moved_func[pin] = AM_LPC84X_GPIO_FUNC_GET(flags);
 
             amhw_lpc84x_swm_moved_func_cfg(
@@ -212,30 +212,30 @@ int am_gpio_pin_cfg (int pin, uint32_t flags)
         }
     }
 
-    /* ĞèÒªÉèÖÃÎªÖĞ¼ÌÄ£Ê½ */
+    /* éœ€è¦è®¾ç½®ä¸ºä¸­ç»§æ¨¡å¼ */
     if ((flags & AM_LPC84X_GPIO_REP_MASK) != 0) {
              AM_BIT_SET_MASK(iocon_cfg, AM_SBF(0x3, 3));
     }
 
-    /* ĞèÒªÉèÖÃÒı½Å³ÙÖÍ */
+    /* éœ€è¦è®¾ç½®å¼•è„šè¿Ÿæ» */
     if ((flags & AM_LPC84X_GPIO_HYS_MASK) != 0) {
         AM_BIT_CLR(iocon_cfg, 5);
         AM_BIT_SET_MASK(iocon_cfg, AM_SBF(AM_LPC84X_GPIO_HYS_GET(flags), 5));
     }
 
-    /* ĞèÒªÉèÖÃÒı½ÅÊäÈë·´×ª */
+    /* éœ€è¦è®¾ç½®å¼•è„šè¾“å…¥åè½¬ */
     if ((flags & AM_LPC84X_GPIO_INV_MASK) != 0) {
         AM_BIT_CLR(iocon_cfg, 6);
         AM_BIT_SET_MASK(iocon_cfg, AM_SBF(AM_LPC84X_GPIO_INV_GET(flags), 6));
     }
 
-    /* ĞèÒªÉèÖÃÒı½ÅI2CÄ£Ê½  */
+    /* éœ€è¦è®¾ç½®å¼•è„šI2Cæ¨¡å¼  */
     if ((flags & AM_LPC84X_GPIO_I2C_MASK) != 0) {
         AM_BIT_CLR_MASK(iocon_cfg, AM_SBF(0x3, 8));
         AM_BIT_SET_MASK(iocon_cfg ,AM_SBF(AM_LPC84X_GPIO_I2C_GET(flags), 8));
     }
 
-    /* ĞèÒªÉèÖÃÒı½ÅÂË²¨ÖÜÆÚ */
+    /* éœ€è¦è®¾ç½®å¼•è„šæ»¤æ³¢å‘¨æœŸ */
     if ((flags & AM_LPC84X_GPIO_FIL_CYC_MASK) != 0) {
         AM_BIT_CLR_MASK(iocon_cfg, AM_SBF(0x7, 11));
         AM_BIT_SET_MASK(iocon_cfg,
@@ -243,7 +243,7 @@ int am_gpio_pin_cfg (int pin, uint32_t flags)
                         11));
     }
 
-    /* ĞèÒªÉèÖÃÒı½ÅÂË²¨·ÖÆµ */
+    /* éœ€è¦è®¾ç½®å¼•è„šæ»¤æ³¢åˆ†é¢‘ */
     if ((flags & AM_LPC84X_GPIO_FIL_DIV_MASK) != 0) {
         AM_BIT_CLR_MASK(iocon_cfg, AM_SBF(0xF, 13));
         AM_BIT_SET_MASK(iocon_cfg, 
@@ -251,14 +251,14 @@ int am_gpio_pin_cfg (int pin, uint32_t flags)
                         13));
     }
 
-    /* ÅäÖÃICONĞÅÏ¢ */
+    /* é…ç½®ICONä¿¡æ¯ */
     amhw_lpc84x_iocon_pio_cfg(p_hw_iocon, pin, iocon_cfg);
 
     return AM_OK;
 }
 
 
-/** \brief »ñÈ¡Òı½Å×´Ì¬ */
+/** \brief è·å–å¼•è„šçŠ¶æ€ */
 int am_gpio_get (int pin)
 {
     amhw_lpc84x_gpio_t *p_hw_gpio  = NULL;
@@ -272,7 +272,7 @@ int am_gpio_get (int pin)
     return amhw_lpc84x_gpio_pin_level_get(p_hw_gpio, pin);
 }
 
-/** \brief ÉèÖÃÊä³öÒı½Å×´Ì¬ */
+/** \brief è®¾ç½®è¾“å‡ºå¼•è„šçŠ¶æ€ */
 int am_gpio_set (int pin, int value)
 {
     amhw_lpc84x_gpio_t *p_hw_gpio  = NULL;
@@ -287,7 +287,7 @@ int am_gpio_set (int pin, int value)
     return AM_OK;
 }
 
-/** \brief Òı½ÅÊä³ö×´Ì¬·­×ª */
+/** \brief å¼•è„šè¾“å‡ºçŠ¶æ€ç¿»è½¬ */
 int am_gpio_toggle (int pin)
 {
     amhw_lpc84x_gpio_t *p_hw_gpio  = NULL;
@@ -303,7 +303,7 @@ int am_gpio_toggle (int pin)
 }
 
 /**
- * \brief Òı½Å´¥·¢ĞÎÊ½Ñ¡Ôñ¡£
+ * \brief å¼•è„šè§¦å‘å½¢å¼é€‰æ‹©ã€‚
  */
 int am_gpio_trigger_cfg (int pin, uint32_t flag)
 {   
@@ -331,42 +331,42 @@ int am_gpio_trigger_cfg (int pin, uint32_t flag)
         return -AM_ENXIO;
     }
 
-    /* ÇåÁã¸ÃÒı½ÅµÄÉÏÉıºÍÏÂ½µÑØ¼ì²â */
+    /* æ¸…é›¶è¯¥å¼•è„šçš„ä¸Šå‡å’Œä¸‹é™æ²¿æ£€æµ‹ */
     amhw_lpc82x_pint_edge_dec_clr(p_hw_pint, slot);
 
     switch (flag) {
         
-    case AM_GPIO_TRIGGER_OFF:          /* ¹Ø±Õ´¥·¢ */
+    case AM_GPIO_TRIGGER_OFF:          /* å…³é—­è§¦å‘ */
         amhw_lpc82x_pint_trigger_set(p_hw_pint,
                                           slot, 
                                           AMHW_LPC82X_PINT_TRIGGER_OFF);
         break;
 
-    case AM_GPIO_TRIGGER_HIGH:         /* ¸ßµçÆ½´¥·¢ */
+    case AM_GPIO_TRIGGER_HIGH:         /* é«˜ç”µå¹³è§¦å‘ */
         amhw_lpc82x_pint_trigger_set(p_hw_pint,
                                           slot, 
                                           AMHW_LPC82X_PINT_TRIGGER_HIGH);
         break;
 
-    case AM_GPIO_TRIGGER_LOW:          /* µÍµçÆ½´¥·¢ */
+    case AM_GPIO_TRIGGER_LOW:          /* ä½ç”µå¹³è§¦å‘ */
         amhw_lpc82x_pint_trigger_set(p_hw_pint,
                                           slot, 
                                           AMHW_LPC82X_PINT_TRIGGER_LOW);
         break;
 
-    case AM_GPIO_TRIGGER_RISE:         /* ÉÏÉıÑØ´¥·¢ */
+    case AM_GPIO_TRIGGER_RISE:         /* ä¸Šå‡æ²¿è§¦å‘ */
         amhw_lpc82x_pint_trigger_set(p_hw_pint,
                                           slot, 
                                           AMHW_LPC82X_PINT_TRIGGER_RISE);
         break;
 
-    case AM_GPIO_TRIGGER_FALL:         /* ÏÂ½µÑØ´¥·¢ */
+    case AM_GPIO_TRIGGER_FALL:         /* ä¸‹é™æ²¿è§¦å‘ */
         amhw_lpc82x_pint_trigger_set(p_hw_pint,
                                           slot, 
                                           AMHW_LPC82X_PINT_TRIGGER_FALL);
         break;
 
-    case AM_GPIO_TRIGGER_BOTH_EDGES:   /* Ë«±ßÑØ´¥·¢ */
+    case AM_GPIO_TRIGGER_BOTH_EDGES:   /* åŒè¾¹æ²¿è§¦å‘ */
         amhw_lpc82x_pint_trigger_set(p_hw_pint,
                                           slot, 
                                      AMHW_LPC82X_PINT_TRIGGER_BOTH_EDGES);
@@ -380,8 +380,8 @@ int am_gpio_trigger_cfg (int pin, uint32_t flag)
 }
 
 /**
- * \brief GPIO ÖĞ¶Ï·şÎñÏìÓ¦º¯Êı¡£
- * \param[in] p_arg : µ±Ç°ÖĞ¶ÏÓ³Éä±àºÅ¡£
+ * \brief GPIO ä¸­æ–­æœåŠ¡å“åº”å‡½æ•°ã€‚
+ * \param[in] p_arg : å½“å‰ä¸­æ–­æ˜ å°„ç¼–å·ã€‚
  */
 static void __gpio_eint_isr (void *p_arg)
 {
@@ -398,7 +398,7 @@ static void __gpio_eint_isr (void *p_arg)
     p_devinfo = __gp_gpio_dev->p_devinfo;
     p_hw_pint = (amhw_lpc82x_pint_t *)p_devinfo->pint_regbase;
 
-    /* »ñÈ¡ÓĞ¹Ø»Øµ÷º¯Êı¼°²ÎÊı */
+    /* è·å–æœ‰å…³å›è°ƒå‡½æ•°åŠå‚æ•° */
     pfn_isr = p_devinfo->p_triginfo[slot].pfn_callback;
     p_arg   = p_devinfo->p_triginfo[slot].p_arg;
 
@@ -406,14 +406,14 @@ static void __gpio_eint_isr (void *p_arg)
         pfn_isr(p_arg);
     }
 
-    /* Èç¹ûÊÇ±ßÑØÃô¸Ğ´¥·¢£¬ÔòÇå±ßÑØ¼à²â */
+    /* å¦‚æœæ˜¯è¾¹æ²¿æ•æ„Ÿè§¦å‘ï¼Œåˆ™æ¸…è¾¹æ²¿ç›‘æµ‹ */
     if ((p_hw_pint->isel & AM_BIT(slot)) == 0) {
         p_hw_pint->ist = AM_BIT(slot);
     }
 }
 
 /**
- * \brief Á¬½ÓÒı½ÅÖĞ¶Ï»Øµ÷º¯Êı
+ * \brief è¿æ¥å¼•è„šä¸­æ–­å›è°ƒå‡½æ•°
  */
 int am_gpio_trigger_connect (int           pin,
                              am_pfnvoid_t  pfn_callback,
@@ -433,7 +433,7 @@ int am_gpio_trigger_connect (int           pin,
     
     p_devinfo = __gp_gpio_dev->p_devinfo;
     
-    /* ¹Ø±ÕCPUÖĞ¶Ï */
+    /* å…³é—­CPUä¸­æ–­ */
     key = am_int_cpu_lock();
     
     for (i = 0; i < p_devinfo->pint_count; i++) {
@@ -449,7 +449,7 @@ int am_gpio_trigger_connect (int           pin,
 
     if (already) {
 
-        /* ´ò¿ªCPUÖĞ¶Ï */
+        /* æ‰“å¼€CPUä¸­æ–­ */
         am_int_cpu_unlock(key);
         return -AM_EINVAL;
     }
@@ -459,7 +459,7 @@ int am_gpio_trigger_connect (int           pin,
                              (am_pfnvoid_t)__gpio_eint_isr,
                              (void *)slot);
 
-        /*  ±£´æ´¥·¢Òı½Å¼°»Øµ÷º¯Êı */
+        /*  ä¿å­˜è§¦å‘å¼•è„šåŠå›è°ƒå‡½æ•° */
         if (AM_OK == err) {
             (p_devinfo->p_infomap)[slot]               = pin;
             (p_devinfo->p_triginfo)[slot].pfn_callback = pfn_callback;
@@ -468,11 +468,11 @@ int am_gpio_trigger_connect (int           pin,
 
         amhw_lpc84x_syscon_pint_sel(slot, pin);
 
-        /* ´ò¿ªCPUÖĞ¶Ï */
+        /* æ‰“å¼€CPUä¸­æ–­ */
         am_int_cpu_unlock(key);
     }
 
-    /* ´ò¿ªCPUÖĞ¶Ï */
+    /* æ‰“å¼€CPUä¸­æ–­ */
     am_int_cpu_unlock(key);
 
     return AM_OK;
@@ -480,7 +480,7 @@ int am_gpio_trigger_connect (int           pin,
 
 
 /**
- * \brief É¾³ıÒı½ÅÖĞ¶Ï»Øµ÷º¯ÊıÁ¬½Ó
+ * \brief åˆ é™¤å¼•è„šä¸­æ–­å›è°ƒå‡½æ•°è¿æ¥
  */
 int am_gpio_trigger_disconnect (int           pin,
                                 am_pfnvoid_t  pfn_callback,
@@ -498,7 +498,7 @@ int am_gpio_trigger_disconnect (int           pin,
 
     p_devinfo = __gp_gpio_dev->p_devinfo;
     
-    /* ¹Ø±ÕCPUÖĞ¶Ï */  
+    /* å…³é—­CPUä¸­æ–­ */  
     key = am_int_cpu_lock();
     
     for (i = 0; i < p_devinfo->pint_count; i++) {
@@ -511,7 +511,7 @@ int am_gpio_trigger_disconnect (int           pin,
     if (slot == -1 || 
        ((p_devinfo->p_triginfo)[slot].pfn_callback != pfn_callback)) {
 
-        /* ´ò¿ªCPUÖĞ¶Ï */ 
+        /* æ‰“å¼€CPUä¸­æ–­ */ 
         am_int_cpu_unlock(key);
         return -AM_EINVAL;
     }
@@ -523,14 +523,14 @@ int am_gpio_trigger_disconnect (int           pin,
     (p_devinfo->p_infomap)[slot]               = __GPIO_INVALID_PIN_MAP;
     (p_devinfo->p_triginfo)[slot].pfn_callback = NULL;
 
-    /* ´ò¿ªCPUÖĞ¶Ï */ 
+    /* æ‰“å¼€CPUä¸­æ–­ */ 
     am_int_cpu_unlock(key);
 
     return AM_OK;
 }
 
 /**
- * \brief Ê¹ÄÜÒı½ÅÖĞ¶Ï
+ * \brief ä½¿èƒ½å¼•è„šä¸­æ–­
  */
 int am_gpio_trigger_on (int pin)
 {
@@ -546,7 +546,7 @@ int am_gpio_trigger_on (int pin)
     
     p_devinfo = __gp_gpio_dev->p_devinfo;
     
-    /* ¹Ø±ÕCPUÖĞ¶Ï */
+    /* å…³é—­CPUä¸­æ–­ */
     key = am_int_cpu_lock();
 
     for (i = 0; i < p_devinfo->pint_count; i++) {
@@ -556,7 +556,7 @@ int am_gpio_trigger_on (int pin)
         }
     }
 
-    /* ´ò¿ªCPUÖĞ¶Ït */ 
+    /* æ‰“å¼€CPUä¸­æ–­t */ 
     am_int_cpu_unlock(key);
 
     if (slot == -1) {
@@ -567,7 +567,7 @@ int am_gpio_trigger_on (int pin)
 }
 
 /**
- * \brief ½ûÄÜÒı½ÅÖĞ¶Ï
+ * \brief ç¦èƒ½å¼•è„šä¸­æ–­
  */
 int am_gpio_trigger_off (int pin)
 {
@@ -583,7 +583,7 @@ int am_gpio_trigger_off (int pin)
     
     p_devinfo = __gp_gpio_dev->p_devinfo;
 
-    /* ¹Ø±ÕCPUÖĞ¶Ï */ 
+    /* å…³é—­CPUä¸­æ–­ */ 
     key = am_int_cpu_lock();
     
     for (i = 0; i < p_devinfo->pint_count; i++) {
@@ -593,7 +593,7 @@ int am_gpio_trigger_off (int pin)
         }
     }
 
-    /* ´ò¿ªCPUÖĞ¶Ï */
+    /* æ‰“å¼€CPUä¸­æ–­ */
     am_int_cpu_unlock(key);
 
     if (slot == -1) {
@@ -604,7 +604,7 @@ int am_gpio_trigger_off (int pin)
 }
 
 /**
- * \brief GPIO³õÊ¼»¯
+ * \brief GPIOåˆå§‹åŒ–
  */
 int am_lpc84x_gpio_init (am_lpc84x_gpio_dev_t           *p_dev,
                          const am_lpc84x_gpio_devinfo_t *p_devinfo)
@@ -639,7 +639,7 @@ int am_lpc84x_gpio_init (am_lpc84x_gpio_dev_t           *p_dev,
         }
     }
 
-    /* ³õÊ¼»¯Òı½Å¹¦ÄÜ±í */
+    /* åˆå§‹åŒ–å¼•è„šåŠŸèƒ½è¡¨ */
     for (i = 0; i < LPC84X_PIN_NUM; i++) {
         p_dev->pin_moved_func[i] = __GPIO_NO_MOVED_FUNC;
     }
@@ -648,7 +648,7 @@ int am_lpc84x_gpio_init (am_lpc84x_gpio_dev_t           *p_dev,
 }
 
 /**
- * \brief GPIOÈ¥³õÊ¼»¯
+ * \brief GPIOå»åˆå§‹åŒ–
  */
 void am_lpc84x_gpio_deinit (void)
 {
@@ -676,7 +676,7 @@ void am_lpc84x_gpio_deinit (void)
         __gp_gpio_dev->pin_moved_func[i] = __GPIO_NO_MOVED_FUNC;
     }
 
-    /* »Ö¸´¿ª¹Ø¾ØÕó¼Ä´æÆ÷Êı¾İ */
+    /* æ¢å¤å¼€å…³çŸ©é˜µå¯„å­˜å™¨æ•°æ® */
     amhw_lpc84x_swm_reset(LPC84X_SWM);
     
     if (__gp_gpio_dev->p_devinfo->pfn_plfm_deinit) {

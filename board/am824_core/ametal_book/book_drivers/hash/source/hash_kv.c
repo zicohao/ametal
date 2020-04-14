@@ -16,13 +16,13 @@
 #define DIRTY_THRESHOLD        50
 
 typedef struct _hash_kv_header_t {
-    uint32_t magic;                   /* ±êÊ¶       */
-    uint32_t version;                 /* °æ±¾ºÅ  */
-    uint32_t reserved;                /* ±£Áô       */
-    uint16_t entry_nr;                /* ¹şÏ£±í´óĞ¡ */
-    uint16_t key_size;                /* ¼üµÄ³¤¶È      */
-    uint16_t value_size;              /* ÖµµÃ³¤¶È            */
-    hash_kv_addr_t free_record_head;  /* ¿ÕÏĞ¼ÇÂ¼±íµÄ±íÍ·  */
+    uint32_t magic;                   /* æ ‡è¯†       */
+    uint32_t version;                 /* ç‰ˆæœ¬å·  */
+    uint32_t reserved;                /* ä¿ç•™       */
+    uint16_t entry_nr;                /* å“ˆå¸Œè¡¨å¤§å° */
+    uint16_t key_size;                /* é”®çš„é•¿åº¦      */
+    uint16_t value_size;              /* å€¼å¾—é•¿åº¦            */
+    hash_kv_addr_t free_record_head;  /* ç©ºé—²è®°å½•è¡¨çš„è¡¨å¤´  */
 } __hash_kv_header_t;
 
 #define FHT_MAGIC 0x11223344
@@ -30,7 +30,7 @@ typedef struct _hash_kv_header_t {
 #define INVALID_RECORD_ADDR 0
 
 /*******************************************************************************
-    ±¾µØº¯Êı
+    æœ¬åœ°å‡½æ•°
 *******************************************************************************/
 
 static void __hash_kv_header_init (__hash_kv_header_t *p_header,
@@ -67,7 +67,7 @@ static int __hash_kv_write_at (FILE           *fp,
 }
 
 /******************************************************************************/
-/* ¶ÁÈ¡Ò»Ìõhash¼ÇÂ¼ */
+/* è¯»å–ä¸€æ¡hashè®°å½• */
 static int __hash_kv_read_at (FILE          *fp,
                               char          *buff,
                               size_t         record_size,
@@ -160,7 +160,7 @@ static int __hash_kv_do_create (hash_kv_t *p_db)
 
     memset(buff, 0x00, sizeof(buff));
 
-    /* ½«ËùÓĞentryÇåÁã  */
+    /* å°†æ‰€æœ‰entryæ¸…é›¶  */
     n = header.entry_nr/ AM_NELEMENTS(buff);
     for(i = 0; i < n; i++) {
         ret = fwrite(buff, sizeof(buff), 1, fp);
@@ -209,7 +209,7 @@ static int __hash_kv_do_open (hash_kv_t  *p_db)
 
 /******************************************************************************/
 
-/* ¸ù¾İ Key Öµ¼ÆËã hash ±íÎ»ÖÃ  */
+/* æ ¹æ® Key å€¼è®¡ç®— hash è¡¨ä½ç½®  */
 uint16_t __hash_kv_hash_offset(hash_kv_t *p_db, const void *key)
 {
     int loc = p_db->pfn_hash(key) % p_db->size;
@@ -257,7 +257,7 @@ static int __hash_kv_first_record_addr_set (
 }
 
 /******************************************************************************/
-/* ³õÊ¼»¯Ò»ÌõÊı¾İ¿â¼ÇÂ¼ */
+/* åˆå§‹åŒ–ä¸€æ¡æ•°æ®åº“è®°å½• */
 static char *__hash_kv_record_init (hash_kv_t *p_db,
                                     char                  *buff,
                                     const void            *p_key,
@@ -277,7 +277,7 @@ static char *__hash_kv_record_init (hash_kv_t *p_db,
 
 
 /*******************************************************************************
-    ¹«¹²º¯Êı
+    å…¬å…±å‡½æ•°
 *******************************************************************************/
 
 int hash_kv_init (hash_kv_t      *p_db,
@@ -299,7 +299,7 @@ int hash_kv_init (hash_kv_t      *p_db,
     p_db->dirty       = 0;
     p_db->p_file_name = file_name;
 
-    /* ´ò¿ªÎÄ¼ş  */
+    /* æ‰“å¼€æ–‡ä»¶  */
     p_db->fp = fopen(file_name, "r+b");
 
     if (p_db->fp != NULL) {
@@ -339,10 +339,10 @@ int hash_kv_add (hash_kv_t  *p_db,
             return -1;
         }
 
-        /* ÕÒµ½¸Ã¼ÇÂ¼£¬*/
+        /* æ‰¾åˆ°è¯¥è®°å½•ï¼Œ*/
         if(memcmp(GET_KEY(kv, buff), key, p_db->key_size) == 0) {
 
-            /* ¸üĞÂÖµ */
+            /* æ›´æ–°å€¼ */
             if ((value != NULL) && (p_db->value_size != 0)) {
                 memcpy(buff + VALUE_OFFSET(p_db), value, p_db->value_size);
             }
@@ -357,7 +357,7 @@ int hash_kv_add (hash_kv_t  *p_db,
     }
 #endif
 
-    /* ¸Ã¹Ø¼ü×ÖµÄ¼ÇÂ¼Ã»ÓĞÕÒµ½£¬Ñ°ÕÒÒ»¸ö¿ÕÏĞÎ»ÖÃ´æ·Å£¬ÓÅÏÈÊ¹ÓÃ±»É¾³ıµÄÇøÓò  */
+    /* è¯¥å…³é”®å­—çš„è®°å½•æ²¡æœ‰æ‰¾åˆ°ï¼Œå¯»æ‰¾ä¸€ä¸ªç©ºé—²ä½ç½®å­˜æ”¾ï¼Œä¼˜å…ˆä½¿ç”¨è¢«åˆ é™¤çš„åŒºåŸŸ  */
     if (p_db->free_record_head) {
         addr = p_db->free_record_head;
 
@@ -371,7 +371,7 @@ int hash_kv_add (hash_kv_t  *p_db,
         addr = ftell(fp);
     }
 
-    /* Ğ´Èë¸ÃÌõ¼ÇÂ¼Ê±£¬ next addrÇøÓòĞ´ÈëµÄÊÇ first_addr £¬¼´²åÈëµ¥ÏîÁ´±íµÄÍ·²¿  */
+    /* å†™å…¥è¯¥æ¡è®°å½•æ—¶ï¼Œ next addråŒºåŸŸå†™å…¥çš„æ˜¯ first_addr ï¼Œå³æ’å…¥å•é¡¹é“¾è¡¨çš„å¤´éƒ¨  */
     ret = __hash_kv_write_at(fp,
                              __hash_kv_record_init(p_db, buff, key, value, first_addr),
                              record_size,
@@ -451,7 +451,7 @@ int hash_kv_del (hash_kv_t   *p_db,
 
             hash_kv_addr_t next_addr = GET_NEXT_ADDR(kv, buff);
 
-            /* ¸üĞÂ¿ÕÏĞ±í */
+            /* æ›´æ–°ç©ºé—²è¡¨ */
             SET_NEXT_ADDR(kv, buff, p_db->free_record_head);
 
             if (__hash_kv_write_at(fp, buff, record_size, addr) < 0) {
@@ -460,7 +460,7 @@ int hash_kv_del (hash_kv_t   *p_db,
 
             p_db->free_record_head = addr;
 
-            /* ¸üĞÂ¸ÃÌõ hash ±í */
+            /* æ›´æ–°è¯¥æ¡ hash è¡¨ */
             if (addr == first_addr) {
                 if (__hash_kv_first_record_addr_set(p_db, p_key, next_addr) < 0) {
                     return -1;
@@ -503,7 +503,7 @@ int hash_kv_reset (hash_kv_t *p_db)
         return -1;
     }
 
-    return __hash_kv_do_create(p_db);      /* ÖØĞÂ´´½¨hash±í  */
+    return __hash_kv_do_create(p_db);      /* é‡æ–°åˆ›å»ºhashè¡¨  */
 }
 
 /******************************************************************************/

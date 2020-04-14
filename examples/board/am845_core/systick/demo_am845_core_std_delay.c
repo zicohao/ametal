@@ -12,12 +12,12 @@
 
 /**
  * \file
- * \brief Systick ÑÓÊ±Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief Systick å»¶æ—¶ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. LED0 ÒÔ 10Hz µÄÆµÂÊÉÁË¸¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. LED0 ä»¥ 10Hz çš„é¢‘ç‡é—ªçƒã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am845_core_std_delay.c src_am845_core_std_delay
  *
  * \internal
@@ -38,7 +38,7 @@
 #include "demo_std_entries.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am845_core_std_delay_entry (void)
 {

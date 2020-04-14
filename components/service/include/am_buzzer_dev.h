@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ·äÃùÆ÷Éè±¸¹ÜÀí
+ * \brief èœ‚é¸£å™¨è®¾å¤‡ç®¡ç†
  *
  * \internal
  * \par Modification history
@@ -37,28 +37,28 @@ extern "C" {
  */
 
 /**
- * \brief ·äÃùÆ÷Çı¶¯º¯Êı
+ * \brief èœ‚é¸£å™¨é©±åŠ¨å‡½æ•°
  */
 typedef struct am_buzzer_drv_funcs {
 
-    /* ´ò¿ª»ò¹Ø±Õ·äÃùÆ÷ */
+    /* æ‰“å¼€æˆ–å…³é—­èœ‚é¸£å™¨ */
     int (*pfn_buzzer_set) (void *p_cookie, am_bool_t on);
 
 } am_buzzer_drv_funcs_t;
 
 /**
- *  \brief ·äÃùÆ÷Éè±¸
+ *  \brief èœ‚é¸£å™¨è®¾å¤‡
  */
 typedef struct am_buzzer_dev {
-    const am_buzzer_drv_funcs_t     *p_funcs;   /**< \brief Çı¶¯º¯Êı      */
-    void                            *p_cookie;  /**< \brief Çı¶¯º¯Êı²ÎÊı  */
-    am_softimer_t                    timer;     /**< \brief Èí¼ş¶¨Ê±Æ÷  */
+    const am_buzzer_drv_funcs_t     *p_funcs;   /**< \brief é©±åŠ¨å‡½æ•°      */
+    void                            *p_cookie;  /**< \brief é©±åŠ¨å‡½æ•°å‚æ•°  */
+    am_softimer_t                    timer;     /**< \brief è½¯ä»¶å®šæ—¶å™¨  */
 } am_buzzer_dev_t;
 
 /**
- * \brief ×¢²á·äÃùÆ÷Éè±¸£¬µ±Ç°½öÖ§³Öµ¥¸ö·äÃùÆ÷Éè±¸
- * \param[in] p_dev £º ×¢²áµÄÉè±¸
- * \return AM_OK : ×¢²á³É¹¦
+ * \brief æ³¨å†Œèœ‚é¸£å™¨è®¾å¤‡ï¼Œå½“å‰ä»…æ”¯æŒå•ä¸ªèœ‚é¸£å™¨è®¾å¤‡
+ * \param[in] p_dev ï¼š æ³¨å†Œçš„è®¾å¤‡
+ * \return AM_OK : æ³¨å†ŒæˆåŠŸ
  */
 int am_buzzer_dev_register (am_buzzer_dev_t             *p_dev,
                             const am_buzzer_drv_funcs_t *p_funcs,

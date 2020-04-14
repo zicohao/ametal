@@ -13,16 +13,16 @@
 
 /**
  * \file
- * \brief LPC82X PMU Ӳ�������ӿ�����
+ * \brief LPC82X PMU 硬件操作接口描述
  * 
- * 1. ����ģʽ���ƣ�
- * 2. �͹����������ƣ�
- * 3. ���ͨ�ñ��ݼĴ���������ȵ���ģʽ�±������ݣ�
- * 4. ���¶ȷ�Χ(-40��~ 105��)��Vdd��ѹֵ��Χ(1.8V~3.35V)��������������
- * ע�⣺
- *     ��ȵ���ģʽ������������ܹ���(�����ֲ�˵��)��
- *         - �¶�С�ڵ���25�ȣ�Vdd��ѹֵ����3.4V
- *         - �¶ȴ���25�ȣ�Vdd��ѹֵ����3.35V
+ * 1. 节能模式控制；
+ * 2. 低功耗振荡器控制；
+ * 3. 五个通用备份寄存器可在深度掉电模式下保存数据；
+ * 4. 在温度范围(-40°~ 105°)，Vdd电压值范围(1.8V~3.35V)可以正常工作。
+ * 注意：
+ *     深度掉电模式在以下情况不能工作(勘误手册说明)：
+ *         - 温度小于等于25度，Vdd电压值大于3.4V
+ *         - 温度大于25度，Vdd电压值大于3.35V
  *
  * \internal
  * \par Modification History
@@ -47,71 +47,71 @@ extern "C" {
  */
 
 /**
-  * \brief LPC82x PMU ��Դ�����Ĵ�����ṹ��
+  * \brief LPC82x PMU 电源管理寄存器块结构体
  */
 typedef struct amhw_lpc82x_pmu {
-    __IO uint32_t pcon;      /**< \brief ƫ��: 0x00 ��Դ���ƼĴ���(R/W) */
-    __IO uint32_t gpreg[4];  /**< \brief ƫ��: 0x04 ͨ�üĴ���0��3(R/W) */
-    __IO uint32_t dpdctrl;   /**< \brief ƫ��: 0x14 ��ȵ�����ƼĴ���0(R/W) */
+    __IO uint32_t pcon;      /**< \brief 偏移: 0x00 电源控制寄存器(R/W) */
+    __IO uint32_t gpreg[4];  /**< \brief 偏移: 0x04 通用寄存器0到3(R/W) */
+    __IO uint32_t dpdctrl;   /**< \brief 偏移: 0x14 深度掉电控制寄存器0(R/W) */
 } amhw_lpc82x_pmu_t;
 
 /**
- * \brief �͹���ģʽ
+ * \brief 低功耗模式
  */
 typedef enum amhw_lpc82x_pmu_pm_src {
-    AMHW_LPC82X_PMU_PCON_MODE_NORMAL = 0,   /**< \brief ����ģʽ��˯��ģʽ */
-    AMHW_LPC82X_PMU_PCON_MODE_DEEPSLP,      /**< \brief ���˯��ģʽ */
-    AMHW_LPC82X_PMU_PCON_MODE_PD,           /**< \brief ����ģʽ */
-    AMHW_LPC82X_PMU_PCON_MODE_DEEPPD,       /**< \brief ��ȵ���ģʽ */
+    AMHW_LPC82X_PMU_PCON_MODE_NORMAL = 0,   /**< \brief 工作模式或睡眠模式 */
+    AMHW_LPC82X_PMU_PCON_MODE_DEEPSLP,      /**< \brief 深度睡眠模式 */
+    AMHW_LPC82X_PMU_PCON_MODE_PD,           /**< \brief 掉电模式 */
+    AMHW_LPC82X_PMU_PCON_MODE_DEEPPD,       /**< \brief 深度掉电模式 */
 } amhw_lpc82x_pmu_pm_src_t;
 
 
 /**
- * \brief ͨ�üĴ���
+ * \brief 通用寄存器
  */
 typedef enum amhw_lpc82x_pmu_gp_reg_src {
-    GP_REG_0 = 0,                /**< \brief ͨ�üĴ���0 */
-    GP_REG_1,                    /**< \brief ͨ�üĴ���1 */
-    GP_REG_2,                    /**< \brief ͨ�üĴ���2 */
-    GP_REG_3,                    /**< \brief ͨ�üĴ���3 */
+    GP_REG_0 = 0,                /**< \brief 通用寄存器0 */
+    GP_REG_1,                    /**< \brief 通用寄存器1 */
+    GP_REG_2,                    /**< \brief 通用寄存器2 */
+    GP_REG_3,                    /**< \brief 通用寄存器3 */
 } amhw_lpc82x_pmu_gp_reg_src_t;
 
 /**
- * \name ϵͳ���ƼĴ����궨��
+ * \name 系统控制寄存器宏定义
  * @{
  */
-/** \brief ���������ص��߳�ģʽʱ������˯�� */
+/** \brief 处理器返回到线程模式时不进入睡眠 */
 #define AMHW_LPC82X_SCR_ISRBACK_NTO_SLP     AM_SBF(0, 1)
 
-/** \brief ���������ص��߳�ģʽʱ����˯�� */
+/** \brief 处理器返回到线程模式时进入睡眠 */
 #define AMHW_LPC82X_SCR_ISRBACK_TO_SLP      AM_SBF(1, 1)
 
-/** \brief ��˯��ģʽ��Ϊ�͹���ģʽ */
+/** \brief 将睡眠模式作为低功耗模式 */
 #define AMHW_LPC82X_SCR_LOWPWR_MODE_SLP     AM_SBF(0, 2)
 
-/** \brief �����˯��ģʽ��Ϊ�͹���ģʽ */
+/** \brief 将深度睡眠模式作为低功耗模式 */
 #define AMHW_LPC82X_SCR_LOWPWR_MODE_DPSLP   AM_SBF(1, 2)
 
-/** \brief ֻ��ʹ�ܵ��ж��ܹ����Ѵ����� */
+/** \brief 只有使能的中断能够唤醒处理器 */
 #define AMHW_LPC82X_SCR_WKUP_BY_ENAISR      AM_SBF(0, 4)
 
-/** \brief �����ж��ܹ����Ѵ����� */
+/** \brief 所有中断能够唤醒处理器 */
 #define AMHW_LPC82X_SCR_WKUP_BY_ALLISR      AM_SBF(1, 4)
 /**
  * @}
  */
 
 /**
- * \brief PMU PCON PM ѡ���Դģʽ
+ * \brief PMU PCON PM 选择电源模式
  *
- * \param[in] p_hw_pmu : ָ��PMU��Դ���ƼĴ������ָ��
- * \param[in] value    : ���ò���ֵΪ amhw_lpc82x_pmu_pm_src_t
- *                       #AMHW_LPC82X_PMU_PCON_MODE_NORMAL   : ������˯��ģʽ
- *                       #AMHW_LPC82X_PMU_PCON_MODE_DEEPSLP  : ���˯��ģʽ
- *                       #AMHW_LPC82X_PMU_PCON_MODE_PD       : ����ģʽ
- *                       #AMHW_LPC82X_PMU_PCON_MODE_DEEPPD   : ��ȵ���ģʽ
- *                                               ��ARM Cortex-M0+ �ں˵��磩
- * \return ��
+ * \param[in] p_hw_pmu : 指向PMU电源控制寄存器块的指针
+ * \param[in] value    : 配置参数值为 amhw_lpc82x_pmu_pm_src_t
+ *                       #AMHW_LPC82X_PMU_PCON_MODE_NORMAL   : 工作或睡眠模式
+ *                       #AMHW_LPC82X_PMU_PCON_MODE_DEEPSLP  : 深度睡眠模式
+ *                       #AMHW_LPC82X_PMU_PCON_MODE_PD       : 掉电模式
+ *                       #AMHW_LPC82X_PMU_PCON_MODE_DEEPPD   : 深度掉电模式
+ *                                               （ARM Cortex-M0+ 内核掉电）
+ * \return 无
  */
 am_static_inline
 void amhw_lpc82x_pmu_pm_cfg (amhw_lpc82x_pmu_t        *p_hw_pmu,
@@ -122,12 +122,12 @@ void amhw_lpc82x_pmu_pm_cfg (amhw_lpc82x_pmu_t        *p_hw_pmu,
 }
 
 /**
- * \brief PMU PCON NODPD ��ֹ����������ȵ���ģʽ
- * \param[in] p_hw_pmu : ָ��PMU��Դ���ƼĴ������ָ��
- * \return ��
+ * \brief PMU PCON NODPD 阻止器件进入深度掉电模式
+ * \param[in] p_hw_pmu : 指向PMU电源控制寄存器块的指针
+ * \return 无
  *
- * \note ��λֻ��ͨ���ϵ縴λ�ſ����㣬��˽�1д���λ������������
- *       ʹ���޷�������ȵ���ģʽ��
+ * \note 该位只有通过上电复位才可清零，因此将1写入该位将锁定器件，
+ *       使其无法进入深度掉电模式。
  */
 am_static_inline
 void amhw_lpc82x_pmu_nodpd_enable (amhw_lpc82x_pmu_t *p_hw_pmu)
@@ -136,12 +136,12 @@ void amhw_lpc82x_pmu_nodpd_enable (amhw_lpc82x_pmu_t *p_hw_pmu)
 }
 
 /**
- * \brief PMU PCON SLEEPFLAG ��ȡ˯��ģʽ��־״̬
+ * \brief PMU PCON SLEEPFLAG 获取睡眠模式标志状态
  *
- * \param[in] p_hw_pmu : ָ��PMU��Դ���ƼĴ������ָ��
+ * \param[in] p_hw_pmu : 指向PMU电源控制寄存器块的指针
  *
- * \retval 0 : �������ڹ���ģʽ
- * \retval 1 : �����ѽ���˯��/���˯�߻���ȵ���ģʽ
+ * \retval 0 : 器件处于工作模式
+ * \retval 1 : 器件已进入睡眠/深度睡眠或深度掉电模式
  */
 am_static_inline
 uint8_t amhw_lpc82x_pmu_sleepflag_get (amhw_lpc82x_pmu_t *p_hw_pmu)
@@ -150,9 +150,9 @@ uint8_t amhw_lpc82x_pmu_sleepflag_get (amhw_lpc82x_pmu_t *p_hw_pmu)
 }
 
 /**
- * \brief PMU PCON SLEEPFLAG д 1 SLEEPFLAGλ����
- * \param[in] p_hw_pmu : ָ��PMU��Դ���ƼĴ������ָ��
- * \return ��
+ * \brief PMU PCON SLEEPFLAG 写 1 SLEEPFLAG位清零
+ * \param[in] p_hw_pmu : 指向PMU电源控制寄存器块的指针
+ * \return 无
  */
 am_static_inline
 void amhw_lpc82x_pmu_sleepflag_clear (amhw_lpc82x_pmu_t *p_hw_pmu)
@@ -161,10 +161,10 @@ void amhw_lpc82x_pmu_sleepflag_clear (amhw_lpc82x_pmu_t *p_hw_pmu)
 }
 
 /**
- * \brief PMU PCON DPDFLAG ��ȡ��ȵ����־״̬
- * \param[in] p_hw_pmu : ָ��PMU��Դ���ƼĴ������ָ��
- * \retval 0 : ���������ȵ���ģ
- * \retval 1 : �����ѽ�����ȵ���ģʽ
+ * \brief PMU PCON DPDFLAG 获取深度掉电标志状态
+ * \param[in] p_hw_pmu : 指向PMU电源控制寄存器块的指针
+ * \retval 0 : 不会进入深度掉电模
+ * \retval 1 : 器件已进入深度掉电模式
  */
 am_static_inline
 uint8_t amhw_lpc82x_pmu_dpdflag_get (amhw_lpc82x_pmu_t *p_hw_pmu)
@@ -173,9 +173,9 @@ uint8_t amhw_lpc82x_pmu_dpdflag_get (amhw_lpc82x_pmu_t *p_hw_pmu)
 }
 
 /**
- * \brief PMU PCON DPDFLAG д 1 DPDFLAGλ����
- * \param[in] p_hw_pmu : ָ��PMU��Դ���ƼĴ������ָ��
- * \return ��
+ * \brief PMU PCON DPDFLAG 写 1 DPDFLAG位清零
+ * \param[in] p_hw_pmu : 指向PMU电源控制寄存器块的指针
+ * \return 无
  */
 am_static_inline
 void amhw_lpc82x_pmu_dpdflag_clear (amhw_lpc82x_pmu_t *p_hw_pmu)
@@ -184,13 +184,13 @@ void amhw_lpc82x_pmu_dpdflag_clear (amhw_lpc82x_pmu_t *p_hw_pmu)
 }
 
 /**
- * \brief PMU GPDATA ������ȵ���ģʽ�±�������
+ * \brief PMU GPDATA 设置深度掉电模式下保留数据
  *
- * \param[in] p_hw_pmu : ָ��PMU��Դ���ƼĴ������ָ��
- * \param[in] chan     : ͨ�üĴ��� 0~3 (#GP_REG_0)
- * \param[in] value    : ������Ҫ����������
+ * \param[in] p_hw_pmu : 指向PMU电源控制寄存器块的指针
+ * \param[in] chan     : 通用寄存器 0~3 (#GP_REG_0)
+ * \param[in] value    : 设置需要保留的数据
  *
- * \return ��
+ * \return 无
  */
 am_static_inline 
 void amhw_lpc82x_pmu_gpdata_save (amhw_lpc82x_pmu_t            *p_hw_pmu,
@@ -201,12 +201,12 @@ void amhw_lpc82x_pmu_gpdata_save (amhw_lpc82x_pmu_t            *p_hw_pmu,
 }
 
 /**
- * \brief PMU GPDATA ��ȡ��ȵ���ģʽ�±�������
+ * \brief PMU GPDATA 读取深度掉电模式下保留数据
  *
- * \param[in] p_hw_pmu : ָ��PMU��Դ���ƼĴ������ָ��
- * \param[in] chan     : ͨ�üĴ��� 0~3 (#GP_REG_0)
+ * \param[in] p_hw_pmu : 指向PMU电源控制寄存器块的指针
+ * \param[in] chan     : 通用寄存器 0~3 (#GP_REG_0)
  *
- * \return ���ض�Ӧ�Ĵ�����������ֵ
+ * \return 返回对应寄存器所保留的值
  */
 am_static_inline 
 uint32_t amhw_lpc82x_pmu_gpdata_get (amhw_lpc82x_pmu_t            *p_hw_pmu,
@@ -216,9 +216,9 @@ uint32_t amhw_lpc82x_pmu_gpdata_get (amhw_lpc82x_pmu_t            *p_hw_pmu,
 }
 
 /**
- * \brief PMU DPDCTRL WAKEUPHYS WAKEUP���ų���ʹ��
- * \param[in] p_hw_pmu : ָ��PMU��Դ���ƼĴ������ָ��
- * \return ��
+ * \brief PMU DPDCTRL WAKEUPHYS WAKEUP引脚迟滞使能
+ * \param[in] p_hw_pmu : 指向PMU电源控制寄存器块的指针
+ * \return 无
  */
 am_static_inline
 void amhw_lpc82x_pmu_wakeuphys_enable (amhw_lpc82x_pmu_t *p_hw_pmu)
@@ -227,9 +227,9 @@ void amhw_lpc82x_pmu_wakeuphys_enable (amhw_lpc82x_pmu_t *p_hw_pmu)
 }
 
 /**
- * \brief PMU DPDCTRL WAKEUPHYS WAKEUP���ų��ͽ���
- * \param[in] p_hw_pmu : ָ��PMU��Դ���ƼĴ������ָ��
- * \return ��
+ * \brief PMU DPDCTRL WAKEUPHYS WAKEUP引脚迟滞禁能
+ * \param[in] p_hw_pmu : 指向PMU电源控制寄存器块的指针
+ * \return 无
  */
 am_static_inline
 void amhw_lpc82x_pmu_wakeuphys_disable (amhw_lpc82x_pmu_t *p_hw_pmu)
@@ -238,9 +238,9 @@ void amhw_lpc82x_pmu_wakeuphys_disable (amhw_lpc82x_pmu_t *p_hw_pmu)
 }
 
 /**
- * \brief PMU DPDCTRL WAKEPAD_DISABLE WAKEUP����ʹ��(ʹ��PIO0_4���ѹ���)
- * \param[in] p_hw_pmu : ָ��PMU��Դ���ƼĴ������ָ��
- * \return ��
+ * \brief PMU DPDCTRL WAKEPAD_DISABLE WAKEUP引脚使能(使能PIO0_4唤醒功能)
+ * \param[in] p_hw_pmu : 指向PMU电源控制寄存器块的指针
+ * \return 无
  */
 am_static_inline
 void amhw_lpc82x_pmu_wakepad_enable (amhw_lpc82x_pmu_t *p_hw_pmu)
@@ -249,9 +249,9 @@ void amhw_lpc82x_pmu_wakepad_enable (amhw_lpc82x_pmu_t *p_hw_pmu)
 }
 
 /**
- * \brief PMU DPDCTRL WAKEPAD_DISABLE WAKEUP���Ž���(����PIO0_4���ѹ���)
- * \param[in] p_hw_pmu : ָ��PMU��Դ���ƼĴ������ָ��
- * \return ��
+ * \brief PMU DPDCTRL WAKEPAD_DISABLE WAKEUP引脚禁能(禁能PIO0_4唤醒功能)
+ * \param[in] p_hw_pmu : 指向PMU电源控制寄存器块的指针
+ * \return 无
  */
 am_static_inline
 void amhw_lpc82x_pmu_wakepad_disable (amhw_lpc82x_pmu_t *p_hw_pmu)
@@ -260,9 +260,9 @@ void amhw_lpc82x_pmu_wakepad_disable (amhw_lpc82x_pmu_t *p_hw_pmu)
 }
 
 /**
- * \brief PMU DPDCTRL LPOSCEN ʹ�ܵ͹�������
- * \param[in] p_hw_pmu : ָ��PMU��Դ���ƼĴ������ָ��
- * \return ��
+ * \brief PMU DPDCTRL LPOSCEN 使能低功耗振荡器
+ * \param[in] p_hw_pmu : 指向PMU电源控制寄存器块的指针
+ * \return 无
  */
 am_static_inline
 void amhw_lpc82x_pmu_lposcen_enable (amhw_lpc82x_pmu_t *p_hw_pmu)
@@ -271,9 +271,9 @@ void amhw_lpc82x_pmu_lposcen_enable (amhw_lpc82x_pmu_t *p_hw_pmu)
 }
 
 /**
- * \brief PMU DPDCTRL LPOSCEN ���ܵ͹�������
- * \param[in] p_hw_pmu : ָ��PMU��Դ���ƼĴ������ָ��
- * \return ��
+ * \brief PMU DPDCTRL LPOSCEN 禁能低功耗振荡器
+ * \param[in] p_hw_pmu : 指向PMU电源控制寄存器块的指针
+ * \return 无
  */
 am_static_inline
 void amhw_lpc82x_pmu_lposcen_disable (amhw_lpc82x_pmu_t *p_hw_pmu)
@@ -282,9 +282,9 @@ void amhw_lpc82x_pmu_lposcen_disable (amhw_lpc82x_pmu_t *p_hw_pmu)
 }
 
 /**
- * \brief PMU DPDCTRL LPOSCDPDEN ��ȵ���ģʽ��ʹ�ܵ͹�������
- * \param[in] p_hw_pmu : ָ��PMU��Դ���ƼĴ������ָ��
- * \return ��
+ * \brief PMU DPDCTRL LPOSCDPDEN 深度掉电模式下使能低功耗振荡器
+ * \param[in] p_hw_pmu : 指向PMU电源控制寄存器块的指针
+ * \return 无
  */
 am_static_inline
 void amhw_lpc82x_pmu_lposcdpden_enable (amhw_lpc82x_pmu_t *p_hw_pmu)
@@ -293,9 +293,9 @@ void amhw_lpc82x_pmu_lposcdpden_enable (amhw_lpc82x_pmu_t *p_hw_pmu)
 }
 
 /**
- * \brief PMU DPDCTRL LPOSCDPDEN ��ȵ���ģʽ�½��ܵ͹�������
- * \param[in] p_hw_pmu : ָ��PMU��Դ���ƼĴ������ָ��
- * \return ��
+ * \brief PMU DPDCTRL LPOSCDPDEN 深度掉电模式下禁能低功耗振荡器
+ * \param[in] p_hw_pmu : 指向PMU电源控制寄存器块的指针
+ * \return 无
  */
 am_static_inline
 void amhw_lpc82x_pmu_lposcdpden_disable (amhw_lpc82x_pmu_t *p_hw_pmu)
@@ -304,9 +304,9 @@ void amhw_lpc82x_pmu_lposcdpden_disable (amhw_lpc82x_pmu_t *p_hw_pmu)
 }
 
 /**
- * \brief PMU DPDCTRL WAKEUPCLKHYS WAKEUP���ų���ʹ��
- * \param[in] p_hw_pmu : ָ��PMU��Դ���ƼĴ������ָ��
- * \return ��
+ * \brief PMU DPDCTRL WAKEUPCLKHYS WAKEUP引脚迟滞使能
+ * \param[in] p_hw_pmu : 指向PMU电源控制寄存器块的指针
+ * \return 无
  */
 am_static_inline
 void amhw_lpc82x_pmu_wakeupclkhys_enable (amhw_lpc82x_pmu_t *p_hw_pmu)
@@ -315,9 +315,9 @@ void amhw_lpc82x_pmu_wakeupclkhys_enable (amhw_lpc82x_pmu_t *p_hw_pmu)
 }
 
 /**
- * \brief PMU DPDCTRL WAKEUPCLKHYS WAKEUP���ų��ͽ���
- * \param[in] p_hw_pmu : ָ��PMU��Դ���ƼĴ������ָ��
- * \return ��
+ * \brief PMU DPDCTRL WAKEUPCLKHYS WAKEUP引脚迟滞禁能
+ * \param[in] p_hw_pmu : 指向PMU电源控制寄存器块的指针
+ * \return 无
  */
 am_static_inline
 void amhw_lpc82x_pmu_wakeupclkhys_disable (amhw_lpc82x_pmu_t *p_hw_pmu)
@@ -326,9 +326,9 @@ void amhw_lpc82x_pmu_wakeupclkhys_disable (amhw_lpc82x_pmu_t *p_hw_pmu)
 }
 
 /**
- * \brief PMU DPDCTRL WAKECLKPAD_DISABLE WAKEUP����ʹ��(ʹ��PIO0_28�ⲿʱ�ӹ���)
- * \param[in] p_hw_pmu : ָ��PMU��Դ���ƼĴ������ָ��
- * \return ��
+ * \brief PMU DPDCTRL WAKECLKPAD_DISABLE WAKEUP引脚使能(使能PIO0_28外部时钟功能)
+ * \param[in] p_hw_pmu : 指向PMU电源控制寄存器块的指针
+ * \return 无
  */
 am_static_inline
 void amhw_lpc82x_pmu_wakeclkpad_enable (amhw_lpc82x_pmu_t *p_hw_pmu)
@@ -337,9 +337,9 @@ void amhw_lpc82x_pmu_wakeclkpad_enable (amhw_lpc82x_pmu_t *p_hw_pmu)
 }
 
 /**
- * \brief PMU DPDCTRL WAKECLKPAD_DISABLE WAKEUP���Ž���(����PIO0_28�ⲿʱ�ӹ���)
- * \param[in] p_hw_pmu : ָ��PMU��Դ���ƼĴ������ָ��
- * \return ��
+ * \brief PMU DPDCTRL WAKECLKPAD_DISABLE WAKEUP引脚禁能(禁能PIO0_28外部时钟功能)
+ * \param[in] p_hw_pmu : 指向PMU电源控制寄存器块的指针
+ * \return 无
  */
 am_static_inline
 void amhw_lpc82x_pmu_wakeclkpad_disable (amhw_lpc82x_pmu_t *p_hw_pmu)
@@ -348,13 +348,13 @@ void amhw_lpc82x_pmu_wakeclkpad_disable (amhw_lpc82x_pmu_t *p_hw_pmu)
 }
 
 /**
- * \brief �͹���ģʽ����
+ * \brief 低功耗模式设置
  *
- * \param[in] p_hw_pmu : ָ��PMU��Դ���ƼĴ������ָ��
- * \param[in] mode     : ��Ҫ���õ�ģʽ
+ * \param[in] p_hw_pmu : 指向PMU电源控制寄存器块的指针
+ * \param[in] mode     : 需要配置的模式
  *
- * \return AM_ERROR    : ����ʧ��
- *         AM_OK       : ���óɹ�
+ * \return AM_ERROR    : 设置失败
+ *         AM_OK       : 设置成功
  */
 int amhw_lpc82x_lowpower_mode_set (amhw_lpc82x_pmu_t       *p_hw_pmu,
                                    amhw_lpc82x_pmu_pm_src_t mode);

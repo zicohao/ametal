@@ -38,7 +38,7 @@ static am_usb_status_t __ep_init(am_zmf159_device_t       *p_dev,
     uint32_t                dataBufAdd   = (uint32_t)pUSB_OTG_BDT+0x200+0x100*ep;
 
     for (i = 0; i < AM_USBD_MAX_EP_CNT; i++) {
-        /* ¶ËµãÃèÊö·ûÖĞ±ØĞëÖ¸¶¨ÁËÕâ¸ö¶Ëµã */
+        /* ç«¯ç‚¹æè¿°ç¬¦ä¸­å¿…é¡»æŒ‡å®šäº†è¿™ä¸ªç«¯ç‚¹ */
         if (p_dev->isa.endpoint_info[i].inuse == AM_TRUE &&
             p_dev->isa.endpoint_info[i].ep_address == epinit->endpoint_address) {
             break;
@@ -53,17 +53,17 @@ static am_usb_status_t __ep_init(am_zmf159_device_t       *p_dev,
     if (epinit->transfer_type > AM_USB_ENDPOINT_INTERRUPT)
         return AM_USB_STATUS_INVALID_PARAMETER;
 
-    /* ÉèÖÃ¶ËµãÄÜ´«ÊäµÄ×î´ó×Ö½Ú¸öÊı */
+    /* è®¾ç½®ç«¯ç‚¹èƒ½ä¼ è¾“çš„æœ€å¤§å­—èŠ‚ä¸ªæ•° */
     if (epinit->max_packet_size > AM_USBD_MAX_EP_DATA_CNT)
         epinit->max_packet_size = AM_USBD_MAX_EP_DATA_CNT;
 
     pUSB_OTG_BDT->rx_buf[0].format = 0;
     pUSB_OTG_BDT->rx_buf[0].adress = dataBufAdd;
-    pUSB_OTG_BDT->rx_buf[0].format |= 0x40<<16;//³¤¶È64byte
+    pUSB_OTG_BDT->rx_buf[0].format |= 0x40<<16;//é•¿åº¦64byte
     pUSB_OTG_BDT->rx_buf[0].format |= 1<<7;
 
     pUSB_OTG_BDT->rx_buf[1].format = 0;
-    pUSB_OTG_BDT->rx_buf[1].format |= 0x40<<16;//³¤¶È64byte
+    pUSB_OTG_BDT->rx_buf[1].format |= 0x40<<16;//é•¿åº¦64byte
     pUSB_OTG_BDT->rx_buf[1].adress = pUSB_OTG_BDT->rx_buf[0].adress+0x40;
     pUSB_OTG_BDT->rx_buf[1].format |= 1<<6;
     pUSB_OTG_BDT->rx_buf[1].format |= 1<<7;
@@ -116,14 +116,14 @@ static am_usb_status_t __zmf159_init(void *p_arg)
 
     p_dev->p_usb_bdt = (amhw_zmf159_usb_bdt_t *)amhw_zmf159_bdt_page_get(ZMF159_USB);
 
-    /* Çå³ıSETUPÊı¾İ */
+    /* æ¸…é™¤SETUPæ•°æ® */
     p_dev->isa.setup_data.bm_request_type = 0;
     p_dev->isa.setup_data.b_request       = 0;
     p_dev->isa.setup_data.w_value         = 0;
     p_dev->isa.setup_data.w_index         = 0;
     p_dev->isa.setup_data.w_length        = 0;
 
-    /**< \brief ³õÊ¼»¯¶Ëµã */
+    /**< \brief åˆå§‹åŒ–ç«¯ç‚¹ */
     for (i = 0; i < AM_USBD_MAX_EP_CNT; i++) {
         if (p_dev->isa.endpoint_info[i].inuse == 1) {
             endpoint.endpoint_address = p_dev->isa.endpoint_info[i].ep_address;
@@ -179,14 +179,14 @@ static void __zmf159_reset(void *p_arg)
 
     p_dev->p_usb_bdt = (amhw_zmf159_usb_bdt_t *)amhw_zmf159_bdt_page_get(ZMF159_USB);
 
-    /* Çå³ıSETUPÊı¾İ */
+    /* æ¸…é™¤SETUPæ•°æ® */
     p_dev->isa.setup_data.bm_request_type = 0;
     p_dev->isa.setup_data.b_request       = 0;
     p_dev->isa.setup_data.w_value         = 0;
     p_dev->isa.setup_data.w_index         = 0;
     p_dev->isa.setup_data.w_length        = 0;
 
-    /**< \brief ³õÊ¼»¯¶Ëµã */
+    /**< \brief åˆå§‹åŒ–ç«¯ç‚¹ */
     for (i = 0; i < AM_USBD_MAX_EP_CNT; i++) {
         if (p_dev->isa.endpoint_info[i].inuse == 1) {
             endpoint.endpoint_address = p_dev->isa.endpoint_info[i].ep_address;
@@ -229,7 +229,7 @@ static am_usb_status_t __zmf159_usbd_send(void *p_arg, uint8_t ep, uint8_t *p_bu
         p_buf++;
     }
 
-    pBuf[i] = '\0';  // ½Ø¶ÏÊı¾İ£¬·ÀÖ¹ÔàÊı¾İ
+    pBuf[i] = '\0';  // æˆªæ–­æ•°æ®ï¼Œé˜²æ­¢è„æ•°æ®
 
     (pUSB_OTG_BDT+ep)->tx_buf[p_dev->tx_odd[ep]].format |= (length<<16)|(p_dev->ep_indata_num[ep]<<6);
     p_dev->ep_indata_num[ep] = !p_dev->ep_indata_num[ep];
@@ -278,15 +278,15 @@ static uint8_t __zmf159_usbd_recv(void *p_arg, uint8_t ep, uint8_t *p_buf, uint3
          p_buf++;
     }
 
-    (p_bdt + ep)->rx_buf[p_dev->rx_odd[ep]].format &= 0xff00;//Çå³ı¼ÆÊı,Çå³ıstall
-    (p_bdt + ep)->rx_buf[p_dev->rx_odd[ep]].format |= (64 << 16);//ÉèÖÃ×î´ó½ÓÊÕ×Ö½Ú
+    (p_bdt + ep)->rx_buf[p_dev->rx_odd[ep]].format &= 0xff00;//æ¸…é™¤è®¡æ•°,æ¸…é™¤stall
+    (p_bdt + ep)->rx_buf[p_dev->rx_odd[ep]].format |= (64 << 16);//è®¾ç½®æœ€å¤§æ¥æ”¶å­—èŠ‚
     (p_bdt + ep)->rx_buf[p_dev->rx_odd[ep]].format |= 1 << 7;
 
     return len;
 }
 
 /**
- * \brief ÖÕÖ¹Ä³¸ö¶ËµãÕıÔÚ½øĞĞµÄ´«Êä
+ * \brief ç»ˆæ­¢æŸä¸ªç«¯ç‚¹æ­£åœ¨è¿›è¡Œçš„ä¼ è¾“
  */
 static am_usb_status_t __zmf159_usbd_cancel (am_usbd_handle_t handle,
                                             uint8_t           endpoint_addr)
@@ -317,13 +317,13 @@ static am_usb_status_t __zmf159_usbd_control(am_usbd_handle_t         handle,
             error = AM_USB_STATUS_SUCCESS;
             break;
 
-        case AM_USBD_CONTROL_ENDPOINT_INIT:     /* ¶ÔÄ³¸ö¶Ëµã³õÊ¼»¯ */
+        case AM_USBD_CONTROL_ENDPOINT_INIT:     /* å¯¹æŸä¸ªç«¯ç‚¹åˆå§‹åŒ– */
             if (param) {
                 error = __ep_init(p_dev, (am_usbd_endpoint_init_t *)param);
             }
             break;
 
-        case AM_USBD_CONTROL_ENDPOINT_DEINIT:   /* ¶ÔÄ³¸ö¶ËµãÈ¥³õÊ¼»¯ */
+        case AM_USBD_CONTROL_ENDPOINT_DEINIT:   /* å¯¹æŸä¸ªç«¯ç‚¹å»åˆå§‹åŒ– */
             if (param) {
                 p_temp8 = (uint8_t *)param;
                 //todo
@@ -331,7 +331,7 @@ static am_usb_status_t __zmf159_usbd_control(am_usbd_handle_t         handle,
             }
             break;
 
-        case AM_USBD_CONTROL_ENDPOINT_STALL:    /* ¿ØÖÆ¶Ëµã×èÈû */
+        case AM_USBD_CONTROL_ENDPOINT_STALL:    /* æ§åˆ¶ç«¯ç‚¹é˜»å¡ */
             if (param) {
                 p_temp8 = (uint8_t *)param;
                 //todo
@@ -339,7 +339,7 @@ static am_usb_status_t __zmf159_usbd_control(am_usbd_handle_t         handle,
             }
             break;
 
-        case AM_USBD_CONTROL_ENDPOINT_UNSTALL:  /* ¿ØÖÆ¶Ëµã²»×èÈû */
+        case AM_USBD_CONTROL_ENDPOINT_UNSTALL:  /* æ§åˆ¶ç«¯ç‚¹ä¸é˜»å¡ */
             if (param) {
                 p_temp8 = (uint8_t *)param;
                 //todo
@@ -347,11 +347,11 @@ static am_usb_status_t __zmf159_usbd_control(am_usbd_handle_t         handle,
             }
             break;
 
-        case AM_USBD_CONTROL_GET_DEVICE_STATUS: /* »ñÈ¡Éè±¸×´Ì¬ */
+        case AM_USBD_CONTROL_GET_DEVICE_STATUS: /* è·å–è®¾å¤‡çŠ¶æ€ */
 
             break;
 
-        case AM_USBD_CONTROL_GET_ENDPOINT_STATUS:   /* Í¨¹ı¶ËµãµØÖ·»ñÈ¡¶Ëµã×´Ì¬ */
+        case AM_USBD_CONTROL_GET_ENDPOINT_STATUS:   /* é€šè¿‡ç«¯ç‚¹åœ°å€è·å–ç«¯ç‚¹çŠ¶æ€ */
             if (param) {
                 p_endpoint_status = (am_usbd_ep_status_t *)param;
 
@@ -386,7 +386,7 @@ static am_usb_status_t __zmf159_usbd_control(am_usbd_handle_t         handle,
             }
             break;
 
-        case AM_USBD_CONTROL_SET_DEVICE_ADDRESS:    /* ÉèÖÃUSBÉè±¸µØÖ· */
+        case AM_USBD_CONTROL_SET_DEVICE_ADDRESS:    /* è®¾ç½®USBè®¾å¤‡åœ°å€ */
             if (param) {
                 p_temp8 = (uint8_t *)param;
                 amhw_zmf159_addr_set(ZMF159_USB, *p_temp8);
@@ -401,7 +401,7 @@ static am_usb_status_t __zmf159_usbd_control(am_usbd_handle_t         handle,
 //            amhw_zlg217_usbd_wakeup();
             break;
 
-            /* ÉèÖÃÄ¬ÈÏ×´Ì¬ */
+            /* è®¾ç½®é»˜è®¤çŠ¶æ€ */
         case AM_USBD_CONTROL_SET_DEFAULT_STATUS:
 //            __usb_device_setdefault_state(p_dev);
             error = AM_USB_STATUS_SUCCESS;
@@ -467,7 +467,7 @@ static void __data_stage_out(am_zmf159_device_t *p_dev)
 
             p_dev->state = LAST_OUT_DATA;
         } else if (p_ctrl_info->length == 0) {
-            /* ½ÓÊÕÍê³ÉÖ®ºó·¢ËÍ¿Õ°ü½øĞĞÏìÓ¦ */
+            /* æ¥æ”¶å®Œæˆä¹‹åå‘é€ç©ºåŒ…è¿›è¡Œå“åº” */
             p_dev->state = WAIT_STATUS_IN;
             p_dev->ep_indata_num[0] = 1;
             __zmf159_usbd_send(p_dev, 0, NULL, 0);
@@ -483,7 +483,7 @@ static void __data_stage_in(am_zmf159_device_t *p_dev)
     uint16_t send_len  = p_ctrl_info->length;
     uint32_t status    = p_dev->state;
 
-    /* Èç¹û´ı·¢ËÍµÄ×Ö½Ú³¤¶ÈÎª 0 Ôò·¢ËÍ¿Õ°ü */
+    /* å¦‚æœå¾…å‘é€çš„å­—èŠ‚é•¿åº¦ä¸º 0 åˆ™å‘é€ç©ºåŒ… */
     if ((send_len == 0) && (status == LAST_IN_DATA)) {
         if(p_dev->data_mul == AM_TRUE) {
             /* No more data to send and empty packet */
@@ -498,7 +498,7 @@ static void __data_stage_in(am_zmf159_device_t *p_dev)
         return ;
     }
 
-        /* ÅĞ¶Ï·¢ËÍÊı¾İÊÇ·ñ´óÓÚ°ü×î´ó×Ö½ÚÊı  */
+        /* åˆ¤æ–­å‘é€æ•°æ®æ˜¯å¦å¤§äºåŒ…æœ€å¤§å­—èŠ‚æ•°  */
     if(send_len <= p_ctrl_info->packet_size){
         status = LAST_IN_DATA;
     }else{
@@ -525,7 +525,7 @@ static void __nodata_setup0(am_zmf159_device_t *p_dev)
 
     switch (type & (AM_USB_REQ_TYPE_MASK | AM_USB_REQ_TYPE_RECIPIENT_MASK)){
 
-    /* ±ê×¼Éè±¸ÇëÇó */
+    /* æ ‡å‡†è®¾å¤‡è¯·æ±‚ */
     case (AM_USB_REQ_TYPE_STANDARD | AM_USB_REQ_TYPE_RECIPIENT_DEVICE):
         switch (code) {
         case AM_USB_REQ_STANDARD_SET_CONFIGURATION :
@@ -570,14 +570,14 @@ static void __nodata_setup0(am_zmf159_device_t *p_dev)
         }
         break;
 
-    /* ±ê×¼½Ó¿ÚÇëÇó */
+    /* æ ‡å‡†æ¥å£è¯·æ±‚ */
     case (AM_USB_REQ_TYPE_STANDARD | AM_USB_REQ_TYPE_RECIPIENT_INTERFACE):
         if (code == AM_USB_REQ_STANDARD_SET_INTERFACE) {
             ret = p_usb_dev->p_funcs->pfn_interface_set(p_usb_dev);
         }
         break;
 
-    /* ±ê×¼¶ËµãÀàÇëÇó */
+    /* æ ‡å‡†ç«¯ç‚¹ç±»è¯·æ±‚ */
     case (AM_USB_REQ_TYPE_STANDARD | AM_USB_REQ_TYPE_RECIPIENT_ENDPOINT):
         /*CLEAR FEATURE for EndPoint*/
         if (code == AM_USB_REQ_STANDARD_CLEAR_FEATURE) {
@@ -592,7 +592,7 @@ static void __nodata_setup0(am_zmf159_device_t *p_dev)
         break;
     }
 
-    // ÀàÇëÇó
+    // ç±»è¯·æ±‚
     if (ret != AM_USB_STATUS_SUCCESS) {
         ret = p_dev->isa.class_req.pfn_class(p_dev->isa.class_req.p_arg, code);
     }
@@ -604,7 +604,7 @@ static void __nodata_setup0(am_zmf159_device_t *p_dev)
 
     status = WAIT_STATUS_IN;/* After no data stage SETUP */
 
-    // ·¢ËÍ¿Õ°ü
+    // å‘é€ç©ºåŒ…
     p_dev->ep_indata_num[0] = 1;
     __zmf159_usbd_send(p_dev, 0, NULL, 0);
 
@@ -683,7 +683,7 @@ void __data_setup0(am_zmf159_device_t *p_dev)
     }
 
     if(ret == AM_USB_STATUS_NOT_SUPPORTED){
-        // ÀàÇëÇó
+        // ç±»è¯·æ±‚
         ret = p_usb_dev->class_req.pfn_class(p_dev->isa.class_req.p_arg,
                                              p_dev->isa.setup_data.b_request);
         if (ret == AM_USB_STATUS_RETRY) {
@@ -708,9 +708,9 @@ void __data_setup0(am_zmf159_device_t *p_dev)
 
         volatile uint32_t req_len = p_usb_dev->setup_data.w_length;
 
-        /* ÅĞ¶ÏĞèÒª·¢ËÍÊı¾İµÄ×Ü³¤¶È
-         * Èç¹ûÇëÇóÊı¾İ³¤¶ÈĞ¡ÓÚ´ı·¢ËÍĞÅÏ¢Êı¾İ³¤¶È£¬Ôò´ı·¢ËÍÊı¾İ³¤¶ÈÎªÇëÇóÊı¾İ³¤¶È
-         * Èç¹ûÇëÇóÊı¾İ³¤¶È´óÓÚ´ı·¢ËÍĞÅÏ¢Êı¾İ³¤¶È£¬Ôò´ı·¢ËÍÊı¾İ³¤¶ÈÎª´ı·¢ËÍĞÅÏ¢×Ü³¤¶È
+        /* åˆ¤æ–­éœ€è¦å‘é€æ•°æ®çš„æ€»é•¿åº¦
+         * å¦‚æœè¯·æ±‚æ•°æ®é•¿åº¦å°äºå¾…å‘é€ä¿¡æ¯æ•°æ®é•¿åº¦ï¼Œåˆ™å¾…å‘é€æ•°æ®é•¿åº¦ä¸ºè¯·æ±‚æ•°æ®é•¿åº¦
+         * å¦‚æœè¯·æ±‚æ•°æ®é•¿åº¦å¤§äºå¾…å‘é€ä¿¡æ¯æ•°æ®é•¿åº¦ï¼Œåˆ™å¾…å‘é€æ•°æ®é•¿åº¦ä¸ºå¾…å‘é€ä¿¡æ¯æ€»é•¿åº¦
          */
         if (p_data_info->length > req_len) {
 
@@ -728,7 +728,7 @@ void __data_setup0(am_zmf159_device_t *p_dev)
         p_data_info->packet_size = p_dev->max_packsizee;
         __data_stage_in(p_dev);
     } else {
-        /* ´ı»ñÈ¡µÄÊı¾İµÄ³¤¶È  */
+        /* å¾…è·å–çš„æ•°æ®çš„é•¿åº¦  */
         p_data_info->length = p_dev->isa.setup_data.w_length;
         p_dev->state = OUT_DATA;
     }
@@ -770,7 +770,7 @@ static void __in0_process(am_zmf159_device_t *p_dev)
 
         if ((p_dev->isa.setup_data.b_request == AM_USB_REQ_STANDARD_SET_ADDRESS) &&
             (Recipient == (AM_USB_REQ_TYPE_STANDARD | AM_USB_REQ_TYPE_RECIPIENT_DEVICE))) {
-            /* ÉèÖÃÉè±¸µØÖ·  ½ÓÊÕµ½ÉèÖÃµØÖ·Ö¸Áîºó  Éè±¸ÒÑ¾­·¢ËÍÏàÓ¦¿Õ°ü³É¹¦ */
+            /* è®¾ç½®è®¾å¤‡åœ°å€  æ¥æ”¶åˆ°è®¾ç½®åœ°å€æŒ‡ä»¤å  è®¾å¤‡å·²ç»å‘é€ç›¸åº”ç©ºåŒ…æˆåŠŸ */
             p_dev->isa.p_funcs->pfn_address_set(&(p_dev->isa), p_dev->isa.setup_data.w_value);
         }
     } else {
@@ -812,11 +812,11 @@ static void __token_isr(am_zmf159_device_t *p_dev)
     uint8_t  tx_oddtemp;
     uint8_t  ep, trans_mode;
 
-    /* »ñÈ¡USB×´Ì¬¼Ä´æÆ÷   */
+    /* è·å–USBçŠ¶æ€å¯„å­˜å™¨   */
     status = amhw_zmf159_usb_stat_get(ZMF159_USB);
     amhw_zmf159_usb_int_clear(ZMF159_USB, ZMF159_USB_INT_STAT_TOK_DNE);
 
-    /*  »ñÈ¡ÖĞ¶Ï¶ËµãºÅ */
+    /*  è·å–ä¸­æ–­ç«¯ç‚¹å· */
     ep = (status >> 4) & 0xf;
     trans_mode = (status >> 3) & 0x01;
 
@@ -830,7 +830,7 @@ static void __token_isr(am_zmf159_device_t *p_dev)
             p_dev->p_usb_bdt->tx_buf[tx_oddtemp].format = 0;
         }
 
-        /* »ñÈ¡¶Ëµã0ÊäÈëÁîÅÆ:  0x01-OUTÁîÅÆ,  0x09-INÁîÅÆ,  0x0d SETUPÁîÅÆ   */
+        /* è·å–ç«¯ç‚¹0è¾“å…¥ä»¤ç‰Œ:  0x01-OUTä»¤ç‰Œ,  0x09-INä»¤ç‰Œ,  0x0d SETUPä»¤ç‰Œ   */
         tok_pid = (format >> 2) & 0xf;
 
         if(tok_pid == 0x0D) {
@@ -857,14 +857,14 @@ static void __token_isr(am_zmf159_device_t *p_dev)
            (p_dev->p_usb_bdt + ep)->rx_buf[tx_oddtemp].format = 0;
         }
 
-        /* ¶Ëµã»Øµ÷º¯Êı  */
+        /* ç«¯ç‚¹å›è°ƒå‡½æ•°  */
         if (p_dev->isa.endpoint_info[ep].pfn_callback != NULL) {
             (p_dev->isa.endpoint_info[ep].pfn_callback)(p_dev->isa.endpoint_info[ep].p_arg);
         }
     }
 }
 
-/* ÖĞ¶Ï»Øµ÷º¯Êı*/
+/* ä¸­æ–­å›è°ƒå‡½æ•°*/
 static void __zmf159_usbd_istr(void *p_arg)
 {
     volatile uint16_t status = 0;
@@ -884,11 +884,11 @@ static void __zmf159_usbd_istr(void *p_arg)
 
 
 /**
- * \brief Í¨¹ıwValueµÄÖµÑ°ÕÒÖ¸¶¨µÄÃèÊö·û
+ * \brief é€šè¿‡wValueçš„å€¼å¯»æ‰¾æŒ‡å®šçš„æè¿°ç¬¦
  *
- * \retval ³É¹¦·µ»ØÃèÊö·ûÖ¸Õë£¬Ê§°Ü·µ»ØNULL
+ * \retval æˆåŠŸè¿”å›æè¿°ç¬¦æŒ‡é’ˆï¼Œå¤±è´¥è¿”å›NULL
  *
- * \note ÅäÖÃÃèÊö·ûµÄÏÂ¼¶ÃèÊö·û²»ÄÜÍ¨¹ı´Ë·¨»ñµÃ
+ * \note é…ç½®æè¿°ç¬¦çš„ä¸‹çº§æè¿°ç¬¦ä¸èƒ½é€šè¿‡æ­¤æ³•è·å¾—
  */
 static uint8_t * __find_desc_by_wValue1 (am_zmf159_device_t    *p_dev,
                                          uint16_t               w_value)
@@ -905,39 +905,39 @@ static uint8_t * __find_desc_by_wValue1 (am_zmf159_device_t    *p_dev,
 
 
 /**
- * \brief £¨Í¨¹ıÅäÖÃÃèÊö·û£©³õÊ¼»¯¶ËµãĞÅÏ¢£¨¶Ëµã¸öÊı£¬ÊäÈëÊä³öÊôĞÔ£¬Ö§³ÖµÄ×î´ó°ü´óĞ¡£©
+ * \brief ï¼ˆé€šè¿‡é…ç½®æè¿°ç¬¦ï¼‰åˆå§‹åŒ–ç«¯ç‚¹ä¿¡æ¯ï¼ˆç«¯ç‚¹ä¸ªæ•°ï¼Œè¾“å…¥è¾“å‡ºå±æ€§ï¼Œæ”¯æŒçš„æœ€å¤§åŒ…å¤§å°ï¼‰
  *
- * \retval ³É¹¦·µ»Ø¸ÃÊ¹ÓÃµÄ¶Ëµã¸öÊı£¬Ê§°Ü·µ»Ø-1
+ * \retval æˆåŠŸè¿”å›è¯¥ä½¿ç”¨çš„ç«¯ç‚¹ä¸ªæ•°ï¼Œå¤±è´¥è¿”å›-1
  */
 static am_err_t __init_ep_info (am_zmf159_device_t *p_dev)
 {
-    uint8_t  ret     = 0;       /* ¶¨Òå·µ»ØÖµ */
-    uint8_t *p_tmp   = NULL;    /* Êı¾İ»º´æÖ¸Õë */
-    uint8_t  ep_num  = 0;       /* ¶ËµãºÅ */
-    uint8_t  tmp     = 0;       /* ÁÙÊ±±äÁ¿*/
-    uint8_t  offset  = 0;       /* Æ«ÒÆÁ¿*/
-    uint8_t  len     = 0;       /* ÃèÊö·û×Ü³¤¶È */
+    uint8_t  ret     = 0;       /* å®šä¹‰è¿”å›å€¼ */
+    uint8_t *p_tmp   = NULL;    /* æ•°æ®ç¼“å­˜æŒ‡é’ˆ */
+    uint8_t  ep_num  = 0;       /* ç«¯ç‚¹å· */
+    uint8_t  tmp     = 0;       /* ä¸´æ—¶å˜é‡*/
+    uint8_t  offset  = 0;       /* åç§»é‡*/
+    uint8_t  len     = 0;       /* æè¿°ç¬¦æ€»é•¿åº¦ */
     am_usb_descriptor_endpoint_t  *p_desc_ep   = NULL;
 
-    /* »ñÈ¡ÅäÖÃÃèÊö·û */
+    /* è·å–é…ç½®æè¿°ç¬¦ */
     p_tmp = __find_desc_by_wValue1(p_dev, (AM_USB_DESC_TYPE_CONFIGURE << 8) | 0);
     if (p_tmp == NULL)
         return AM_ERROR;
 
-    /*ÅäÖÃÃèÊö·û¼°ÆäÏÂÊôÃèÊö·ûµÄ×Ü³¤¶È*/
+    /*é…ç½®æè¿°ç¬¦åŠå…¶ä¸‹å±æè¿°ç¬¦çš„æ€»é•¿åº¦*/
     len = (uint8_t)( ( *(p_tmp + 2) ) | ( ( *(p_tmp + 3)) >> 8 ) );
-    /* ÕÒ¶ËµãÃèÊö·û*/
+    /* æ‰¾ç«¯ç‚¹æè¿°ç¬¦*/
     while (tmp < len) {
-        offset  = *(p_tmp);   /* ¸ÃÃèÊö·ûµÄ×Ö½ÚÊı,µÚÒ»´ÎÎªÅäÖÃÃèÊö·û*/
-        p_tmp  +=   offset;   /* ×öÆ«ÒÆ */
+        offset  = *(p_tmp);   /* è¯¥æè¿°ç¬¦çš„å­—èŠ‚æ•°,ç¬¬ä¸€æ¬¡ä¸ºé…ç½®æè¿°ç¬¦*/
+        p_tmp  +=   offset;   /* åšåç§» */
         tmp    +=   offset;
 
-        /* Èç¹ûÊÇ¶ËµãÃèÊö·û*/
+        /* å¦‚æœæ˜¯ç«¯ç‚¹æè¿°ç¬¦*/
         if ((*(p_tmp + 1) == AM_USB_DESC_TYPE_ENDPOINT) && (*p_tmp == AM_USB_DESC_LENGTH_ENDPOINT)) {
             p_desc_ep = (am_usb_descriptor_endpoint_t *)p_tmp;
-            // »ñÈ¡¶ËµãºÅ
+            // è·å–ç«¯ç‚¹å·
             ep_num = (p_desc_ep->b_endpoint_address & AM_USB_DESC_ENDPOINT_ADDR_NUMBER_MASK);
-            p_dev->isa.endpoint_info[ep_num].inuse           = 1;  // ±íÊ¾¶Ëµã±»Ê¹ÓÃ
+            p_dev->isa.endpoint_info[ep_num].inuse           = 1;  // è¡¨ç¤ºç«¯ç‚¹è¢«ä½¿ç”¨
             p_dev->isa.endpoint_info[ep_num].ep_address      = p_desc_ep->b_endpoint_address;
             p_dev->isa.endpoint_info[ep_num].max_packet_size = (p_desc_ep->wmax_packet_size[1] << 8) |
                                                                    p_desc_ep->wmax_packet_size[0];
@@ -967,7 +967,7 @@ am_usbd_dev_t *am_zmf159_usbd_init(am_zmf159_device_t              *p_dev,
     p_dev->rx_buf        = NULL;
     p_dev->max_packsizee = 64;
 
-    /* ÉèÖÃ¶Ëµã0µÄÄ¬ÈÏÅäÖÃ */
+    /* è®¾ç½®ç«¯ç‚¹0çš„é»˜è®¤é…ç½® */
     p_dev->isa.endpoint_info[0].stalled          = 0;
     p_dev->isa.endpoint_info[0].ep_address       = 0;
     p_dev->isa.endpoint_info[0].max_packet_size  = AM_USBD_MAX_EP_DATA_CNT;
@@ -975,7 +975,7 @@ am_usbd_dev_t *am_zmf159_usbd_init(am_zmf159_device_t              *p_dev,
     p_dev->isa.endpoint_info[0].inuse            = 1;
     p_dev->isa.endpoint_info[0].val_length       = 0;
 
-    /* ÉèÖÃ³ı¶Ëµã0ÍâÆäËû¶ËµãÎªÄ¬ÈÏÅäÖÃ */
+    /* è®¾ç½®é™¤ç«¯ç‚¹0å¤–å…¶ä»–ç«¯ç‚¹ä¸ºé»˜è®¤é…ç½® */
     for (i = 1 ;i < AM_USBD_MAX_EP_CNT; i++) {
         p_dev->isa.endpoint_info[i].stalled          = 0;
         p_dev->isa.endpoint_info[i].ep_address       = 0;
@@ -985,7 +985,7 @@ am_usbd_dev_t *am_zmf159_usbd_init(am_zmf159_device_t              *p_dev,
         p_dev->isa.endpoint_info[i].val_length       = 0;
     }
 
-    /* ¸ù¾İÃèÊö·û¶ÔÆäËû¶Ëµã½øĞĞÏàÓ¦ÅäÖÃ */
+    /* æ ¹æ®æè¿°ç¬¦å¯¹å…¶ä»–ç«¯ç‚¹è¿›è¡Œç›¸åº”é…ç½® */
     if (__init_ep_info(p_dev) == -1) {
         am_kprintf("fail to init endpoint\n");
     }
@@ -994,7 +994,7 @@ am_usbd_dev_t *am_zmf159_usbd_init(am_zmf159_device_t              *p_dev,
         p_dev->p_info->pfn_plfm_init();
     }
 
-    /* ±ê×¼ÇëÇóº¯Êı³õÊ¼»¯ */
+    /* æ ‡å‡†è¯·æ±‚å‡½æ•°åˆå§‹åŒ– */
     am_usbd_ch9_std_request_init(&p_dev->isa);
 
     p_dev->isa.p_interface->pfn_device_init(p_dev);

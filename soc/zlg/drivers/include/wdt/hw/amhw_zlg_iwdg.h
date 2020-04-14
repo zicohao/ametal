@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief IWDG²Ù×÷½Ó¿Ú
+ * \brief IWDGæ“ä½œæ¥å£
  *
  * \internal
  * \par Modification history
@@ -30,7 +30,7 @@ extern "C" {
 #include "am_types.h"
 
 /*
- * \brief ÄäÃû½á¹¹Ìå¶ÎµÄ¿ªÊ¼
+ * \brief åŒ¿åç»“æ„ä½“æ®µçš„å¼€å§‹
  */
 #if defined(__CC_ARM)
   #pragma push
@@ -52,26 +52,26 @@ extern "C" {
  */
 
 /**
- * \brief IWDG¼Ä´æÆ÷¿é½á¹¹Ìå
+ * \brief IWDGå¯„å­˜å™¨å—ç»“æ„ä½“
  */
 typedef struct amhw_zlg_iwdg {
-    __IO uint32_t kr;  /**< \brief ¼ü¼Ä´æÆ÷ */
-    __IO uint32_t pr;  /**< \brief Ô¤·ÖÆµ¼Ä´æÆ÷ */
-    __IO uint32_t rlr; /**< \brief ÖØ×°ÔØ¼Ä´æÆ÷ */
-    __IO uint32_t sr;  /**< \brief ×´Ì¬¼Ä´æÆ÷ */
+    __IO uint32_t kr;  /**< \brief é”®å¯„å­˜å™¨ */
+    __IO uint32_t pr;  /**< \brief é¢„åˆ†é¢‘å¯„å­˜å™¨ */
+    __IO uint32_t rlr; /**< \brief é‡è£…è½½å¯„å­˜å™¨ */
+    __IO uint32_t sr;  /**< \brief çŠ¶æ€å¯„å­˜å™¨ */
 } amhw_zlg_iwdg_t;
 
 /**
- * \brief Ğ´¼üÖµ
+ * \brief å†™é”®å€¼
  *
- * \param[in] p_hw_iwdg : Ö¸ÏòIWDG¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] key       : ¼üÖµ
+ * \param[in] p_hw_iwdg : æŒ‡å‘IWDGå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] key       : é”®å€¼
  *
- *      - 0x5555 £ºÔÊĞí·ÃÎÊ IWDG_PR ºÍ IWDG_RLR ¼Ä´æÆ÷
- *      - 0xAAAA £ºÎ¹¹·
- *      - 0xCCCC £ºÆô¶¯¿´ÃÅ¹·¹¤×÷
+ *      - 0x5555 ï¼šå…è®¸è®¿é—® IWDG_PR å’Œ IWDG_RLR å¯„å­˜å™¨
+ *      - 0xAAAA ï¼šå–‚ç‹—
+ *      - 0xCCCC ï¼šå¯åŠ¨çœ‹é—¨ç‹—å·¥ä½œ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_iwdg_keyvalue_set (amhw_zlg_iwdg_t    *p_hw_iwdg,
@@ -81,21 +81,21 @@ void amhw_zlg_iwdg_keyvalue_set (amhw_zlg_iwdg_t    *p_hw_iwdg,
 }
 
 /**
- * \brief ÉèÖÃÔ¤·ÖÆµÖµ
+ * \brief è®¾ç½®é¢„åˆ†é¢‘å€¼
  *
- * \param[in] p_hw_iwdg : Ö¸ÏòIWDG¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] div       : ·ÖÆµÖµ
+ * \param[in] p_hw_iwdg : æŒ‡å‘IWDGå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] div       : åˆ†é¢‘å€¼
  *
- *      - 0 £ºÔ¤·ÖÆµÒò×Ó  = 4
- *      - 1 £ºÔ¤·ÖÆµÒò×Ó  = 8
- *      - 2 £ºÔ¤·ÖÆµÒò×Ó  = 16
- *      - 3 £ºÔ¤·ÖÆµÒò×Ó  = 32
- *      - 4 £ºÔ¤·ÖÆµÒò×Ó  = 64
- *      - 5 £ºÔ¤·ÖÆµÒò×Ó  = 128
- *      - 6 £ºÔ¤·ÖÆµÒò×Ó  = 256
- *      - 7 £ºÔ¤·ÖÆµÒò×Ó  = 256
+ *      - 0 ï¼šé¢„åˆ†é¢‘å› å­  = 4
+ *      - 1 ï¼šé¢„åˆ†é¢‘å› å­  = 8
+ *      - 2 ï¼šé¢„åˆ†é¢‘å› å­  = 16
+ *      - 3 ï¼šé¢„åˆ†é¢‘å› å­  = 32
+ *      - 4 ï¼šé¢„åˆ†é¢‘å› å­  = 64
+ *      - 5 ï¼šé¢„åˆ†é¢‘å› å­  = 128
+ *      - 6 ï¼šé¢„åˆ†é¢‘å› å­  = 256
+ *      - 7 ï¼šé¢„åˆ†é¢‘å› å­  = 256
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_iwdg_div_set (amhw_zlg_iwdg_t    *p_hw_iwdg,
@@ -105,12 +105,12 @@ void amhw_zlg_iwdg_div_set (amhw_zlg_iwdg_t    *p_hw_iwdg,
 }
 
 /**
- * \brief ÉèÖÃÖØÔØ×°Öµ
+ * \brief è®¾ç½®é‡è½½è£…å€¼
  *
- * \param[in] p_hw_iwdg : Ö¸ÏòIWDG¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] val       : ÖØÔØÖµ
+ * \param[in] p_hw_iwdg : æŒ‡å‘IWDGå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] val       : é‡è½½å€¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_iwdg_reload_set (amhw_zlg_iwdg_t    *p_hw_iwdg,
@@ -120,15 +120,15 @@ void amhw_zlg_iwdg_reload_set (amhw_zlg_iwdg_t    *p_hw_iwdg,
 }
 
 /**
- * \brief ¿´ÃÅ¹·×´Ì¬¸üĞÂ
+ * \brief çœ‹é—¨ç‹—çŠ¶æ€æ›´æ–°
  *
- * \param[in] p_hw_iwdg : Ö¸ÏòIWDG¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_iwdg : æŒ‡å‘IWDGå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ×´Ì¬Öµ£¨¸÷¸ö×´Ì¬ÊÇ»òµÄ¹ØÏµ£©
+ * \return çŠ¶æ€å€¼ï¼ˆå„ä¸ªçŠ¶æ€æ˜¯æˆ–çš„å…³ç³»ï¼‰
  *
- *        - 0 £º ÎŞ×´Ì¬
- *        - 1 £º ¿´ÃÅ¹·Ô¤·ÖÆµ¸üĞÂ
- *        - 2 £º ¿´ÃÅ¹·¼ÆÊıÆ÷ÖØ×°ÔØÖµ¸üĞÂ
+ *        - 0 ï¼š æ— çŠ¶æ€
+ *        - 1 ï¼š çœ‹é—¨ç‹—é¢„åˆ†é¢‘æ›´æ–°
+ *        - 2 ï¼š çœ‹é—¨ç‹—è®¡æ•°å™¨é‡è£…è½½å€¼æ›´æ–°
  */
 am_static_inline
 uint8_t amhw_zlg_iwdg_status_get (amhw_zlg_iwdg_t *p_hw_iwdg)
@@ -140,7 +140,7 @@ uint8_t amhw_zlg_iwdg_status_get (amhw_zlg_iwdg_t *p_hw_iwdg)
  * @}
  */
 /*
- * \brief ÄäÃû½á¹¹Ìå¶ÎµÄ½áÊø
+ * \brief åŒ¿åç»“æ„ä½“æ®µçš„ç»“æŸ
  */
 
 #if defined(__CC_ARM)

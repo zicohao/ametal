@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief ���� PensSV �ж�ʵ�ֵ� isr defer
+ * \brief 基于 PensSV 中断实现的 isr defer
  *
- * Ϊ�������ж��д������ڷ��غ�ʱ������Ӱ��ϵͳʵʱ�ԣ��������ж���Ҫ�����������Ƴ�
- * �ӳ������д�������� am_isr_defer.h
+ * 为避免在中断中处理过于繁重耗时的事务，影响系统实时性，往往将中断中要处理的事务推迟
+ * 延迟任务中处理，详见 am_isr_defer.h
  *
  * \internal
  * \par modification history
@@ -33,15 +33,15 @@ extern "C" {
 #endif
 
 /**
- * \brief �����ж��ӳ�ģ��ʹ�õ����ȼ���ĿΪ32
+ * \brief 定义中断延迟模块使用的优先级数目为32
  *
- * ֻ��Ҫʹ�øú궨��һ�Σ�job����Ч���ȼ���Ϊ��0 ~ 31
+ * 只需要使用该宏定义一次，job的有效优先级即为：0 ~ 31
  *
  */
 #define AM_BSP_ISR_DEFER_PRIORITY_NUM     32
 
 /**
- * \brief ISR DEFER �弶��ʼ�������ж��ӳ�������� PENDSV�� ������
+ * \brief ISR DEFER 板级初始化，将中断延迟任务放在 PENDSV中 处理。
  */
 void am_bsp_isr_defer_pendsv_init (void);
 

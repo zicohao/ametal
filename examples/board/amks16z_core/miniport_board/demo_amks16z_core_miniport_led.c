@@ -12,18 +12,18 @@
 
 /**
  * \file
- * \brief MiniPort-LED Ê¾Àı³ÌĞò£¬½ö¹©²Î¿¼
+ * \brief MiniPort-LED ç¤ºä¾‹ç¨‹åºï¼Œä»…ä¾›å‚è€ƒ
  *
- * - ²Ù×÷²½Öè
- *   1. ½« MiniPort-LED °å×ÓÖ±½ÓÓë µ×°å(AMKS16Z-Core)±êºÅÎªJ4µÄ MiniPort½Ó¿ÚÏàÁ¬½Ó¡£
+ * - æ“ä½œæ­¥éª¤
+ *   1. å°† MiniPort-LED æ¿å­ç›´æ¥ä¸ åº•æ¿(AMKS16Z-Core)æ ‡å·ä¸ºJ4çš„ MiniPortæ¥å£ç›¸è¿æ¥ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Á÷Ë®µÆÏÖÏó¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. æµæ°´ç¯ç°è±¡ã€‚
  *
- * - ×¢Òâ£º
- *   1. ÒªÊ¹ÓÃ¸ÃÀı³Ì£¬ĞèÒªÔÚam_prj_config.hÀïÃæ½«AM_CFG_LED_ENABLE¶¨ÒåÎª0¡£
+ * - æ³¨æ„ï¼š
+ *   1. è¦ä½¿ç”¨è¯¥ä¾‹ç¨‹ï¼Œéœ€è¦åœ¨am_prj_config.hé‡Œé¢å°†AM_CFG_LED_ENABLEå®šä¹‰ä¸º0ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_miniport_led.c src_miniport_led
  *
  * \internal
@@ -46,7 +46,7 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /*
- * Àı³ÌÈë¿Ú
+ * ä¾‹ç¨‹å…¥å£
  */
 void demo_amks16z_core_miniport_led_entry (void)
 {

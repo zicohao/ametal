@@ -12,16 +12,16 @@
 
 /**
  * \file
- * \brief MiniPort-LED + MiniPort-595 Ê¾Àı³ÌĞò(´ø595)£¬½ö¹©²Î¿¼
+ * \brief MiniPort-LED + MiniPort-595 ç¤ºä¾‹ç¨‹åº(å¸¦595)ï¼Œä»…ä¾›å‚è€ƒ
  *
- * - ²Ù×÷²½Öè
- *   1. ÏÈ½« MiniPort-595 °å×ÓÖ±½ÓÓëµ×°å(AMKS16Z-Core)±êºÅÎªJ4µÄ MiniPort ÏàÁ¬½Ó£»
- *   2. ½« MiniPort-LED °å×ÓÓë MiniPort-595 ½Ó¿ÚÏàÁ¬½Ó¡£
+ * - æ“ä½œæ­¥éª¤
+ *   1. å…ˆå°† MiniPort-595 æ¿å­ç›´æ¥ä¸åº•æ¿(AMKS16Z-Core)æ ‡å·ä¸ºJ4çš„ MiniPort ç›¸è¿æ¥ï¼›
+ *   2. å°† MiniPort-LED æ¿å­ä¸ MiniPort-595 æ¥å£ç›¸è¿æ¥ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Á÷Ë®µÆÏÖÏó¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. æµæ°´ç¯ç°è±¡ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_miniport_hc595_led.c src_miniport_hc595_led
  *
  * \internal
@@ -43,7 +43,7 @@
 #include "am_kl26_inst_init.h"
 #include "demo_amks16z_core_all_entries.h"
 
-/* Àı³ÌÈë¿Ú */
+/* ä¾‹ç¨‹å…¥å£ */
 void demo_amks16z_core_miniport_hc595_led_entry (void)
 {
     AM_DBG_INFO("demo amks16z_core miniport hc595 led!\r\n");

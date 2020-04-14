@@ -12,15 +12,15 @@
 
 /**
  * \file
- * \brief GPIO Òı½ÅÖĞ¶ÏÀı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief GPIO å¼•è„šä¸­æ–­ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè£º
- *   1. Ê¹¶ÔÓ¦µÄÖĞ¶ÏÒı½ÅÉÏ²úÉúÏÂ½µÑØ¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. ä½¿å¯¹åº”çš„ä¸­æ–­å¼•è„šä¸Šäº§ç”Ÿä¸‹é™æ²¿ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ÖĞ¶Ï²úÉúÊ±µ÷ÊÔ´®¿ÚÊä³ö "the gpio interrupt happen!"¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. ä¸­æ–­äº§ç”Ÿæ—¶è°ƒè¯•ä¸²å£è¾“å‡º "the gpio interrupt happen!"ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_std_gpio_trigger.c src_std_gpio_trigger
  *
  * \internal
@@ -41,7 +41,7 @@
 #include "am_vdebug.h"
 
 /**
- * \brief Òı½ÅÖĞ¶Ï·şÎñº¯Êı
+ * \brief å¼•è„šä¸­æ–­æœåŠ¡å‡½æ•°
  */
 static void __gpio_isr (void *p_arg)
 {
@@ -53,18 +53,18 @@ static void __gpio_isr (void *p_arg)
 }
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_std_gpio_trigger_entry (int pin)
 {
 
-    /* Á¬½ÓÒı½ÅÖĞ¶Ï·şÎñº¯Êı */
+    /* è¿æ¥å¼•è„šä¸­æ–­æœåŠ¡å‡½æ•° */
     am_gpio_trigger_connect(pin, __gpio_isr, (void *)0);
 
-    /* ÅäÖÃÒı½ÅÖĞ¶Ï´¥·¢·½Ê½ */
+    /* é…ç½®å¼•è„šä¸­æ–­è§¦å‘æ–¹å¼ */
     am_gpio_trigger_cfg(pin, AM_GPIO_TRIGGER_FALL);
 
-    /* Ê¹ÄÜÒı½Å´¥·¢ÖĞ¶Ï */
+    /* ä½¿èƒ½å¼•è„šè§¦å‘ä¸­æ–­ */
     am_gpio_trigger_on(pin);
 
     AM_FOREVER {

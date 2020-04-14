@@ -12,19 +12,19 @@
 
 /**
  * \file
- * \brief ADCÀý³Ì£¬ÀûÓÃÖÐ¶Ï·½Ê½»ñÈ¡Èí¼þ´¥·¢µÄADC×ª»»½á¹û£¬Í¨¹ýHW²ã½Ó¿ÚÊµÏÖ
+ * \brief ADCä¾‹ç¨‹ï¼Œåˆ©ç”¨ä¸­æ–­æ–¹å¼èŽ·å–è½¯ä»¶è§¦å‘çš„ADCè½¬æ¢ç»“æžœï¼Œé€šè¿‡HWå±‚æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. PIOA_1Òý½ÅÁ¬½ÓPC´®¿ÚµÄTXD£»
- *   2. PIOA_2Òý½ÅÁ¬½ÓPC´®¿ÚµÄRXD£»
- *   3. J12ÌøÏßÃ±¶Ì½Ó£¨´ËÊ±²Î¿¼µçÑ¹Îª2.5v£©£»
- *   4. PIOE_29(ADCÍ¨µÀ0) Á¬½ÓÄ£ÄâÊäÈë¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. PIOA_1å¼•è„šè¿žæŽ¥PCä¸²å£çš„TXDï¼›
+ *   2. PIOA_2å¼•è„šè¿žæŽ¥PCä¸²å£çš„RXDï¼›
+ *   3. J12è·³çº¿å¸½çŸ­æŽ¥ï¼ˆæ­¤æ—¶å‚è€ƒç”µåŽ‹ä¸º2.5vï¼‰ï¼›
+ *   4. PIOE_29(ADCé€šé“0) è¿žæŽ¥æ¨¡æ‹Ÿè¾“å…¥ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ADCÄ£¿éÒÔ444.44kHz²ÉÑùÂÊ(×ÜÏßÊ±ÖÓÎª24MHz)£¬½øÐÐ16Î»²ÉÑù;
- *   2. ´®¿ÚÊä³öµçÑ¹²ÉÑùÖµ¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. ADCæ¨¡å—ä»¥444.44kHzé‡‡æ ·çŽ‡(æ€»çº¿æ—¶é’Ÿä¸º24MHz)ï¼Œè¿›è¡Œ16ä½é‡‡æ ·;
+ *   2. ä¸²å£è¾“å‡ºç”µåŽ‹é‡‡æ ·å€¼ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_amks16z_core_hw_adc_int.c src_amks16z_core_hw_adc_int
  *
  * \internal
@@ -49,17 +49,17 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief ÖÐ¶Ï·½Ê½»ñÈ¡Èí¼þ´¥·¢µÄADC×ª»»½á¹û£¬Í¨¹ýHW²ã½Ó¿ÚÊµÏÖ
- * \return ÎÞ
+ * \brief ä¸­æ–­æ–¹å¼èŽ·å–è½¯ä»¶è§¦å‘çš„ADCè½¬æ¢ç»“æžœï¼Œé€šè¿‡HWå±‚æŽ¥å£å®žçŽ°
+ * \return æ— 
  */
 void demo_amks16z_core_hw_adc_int_entry (void)
 {
     AM_DBG_INFO("demo amks16z_core hw adc int!\r\n");
 
-    /* ÅäÖÃADC Ñ¡ÔñÄ£ÄâÊäÈëÒý½Å */
+    /* é…ç½®ADC é€‰æ‹©æ¨¡æ‹Ÿè¾“å…¥å¼•è„š */
     am_gpio_pin_cfg(PIOE_29, PIOE_29_ADC0_SE4B);
 
-    /* Ê¹ÄÜADCÊ±ÖÓ                  */
+    /* ä½¿èƒ½ADCæ—¶é’Ÿ                  */
     amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_ADC0);
 
     demo_fsl_hw_adc_int_entry(KL26_ADC0,

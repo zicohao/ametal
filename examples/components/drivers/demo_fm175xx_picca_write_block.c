@@ -12,19 +12,19 @@
 
 /**
  * \file
- * \brief fm175xxĞ´¿éÊı¾İ£¬Í¨¹ıÇı¶¯½Ó¿ÚÊµÏÖ
+ * \brief fm175xxå†™å—æ•°æ®ï¼Œé€šè¿‡é©±åŠ¨æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè£º
- *   1. ÕıÈ·Á¬½Ó²¢ÅäÖÃºÃ´®¿Ú¡£
- *   2. ÕıÈ·Á¬½ÓºÃÌìÏß¡£
- *   3. ½«AÀà¿¨ÖÃÓÚÌìÏß¸ĞÓ¦Çø¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. æ­£ç¡®è¿æ¥å¹¶é…ç½®å¥½ä¸²å£ã€‚
+ *   2. æ­£ç¡®è¿æ¥å¥½å¤©çº¿ã€‚
+ *   3. å°†Aç±»å¡ç½®äºå¤©çº¿æ„Ÿåº”åŒºã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ÏÈÓÃÃÜÔ¿A¶Ô¿¨Æ¬Ö¸¶¨µÄ¿é½øĞĞÑéÖ¤£¬Èç¹ûÑéÖ¤²»Í¨¹ıÔò´òÓ¡key A authent failed¡£
- *   2. Èç¹ûÑéÖ¤³É¹¦£¬Ôò½«»º³åÇøµÄÊı¾İĞ´ÈëÖ¸¶¨µÄ¿éºóÇå¿Õ»º³åÇø£¬ÔÙ½«¿éÖĞµÄÊı¾İ¶ÁÈ¡³öÀ´£¬Èç¹ûÓëĞ´ÈëµÄÊı¾İ
- *      Ò»ÖÂ£¬±íÃ÷Ğ´Êı¾İ³É¹¦¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. å…ˆç”¨å¯†é’¥Aå¯¹å¡ç‰‡æŒ‡å®šçš„å—è¿›è¡ŒéªŒè¯ï¼Œå¦‚æœéªŒè¯ä¸é€šè¿‡åˆ™æ‰“å°key A authent failedã€‚
+ *   2. å¦‚æœéªŒè¯æˆåŠŸï¼Œåˆ™å°†ç¼“å†²åŒºçš„æ•°æ®å†™å…¥æŒ‡å®šçš„å—åæ¸…ç©ºç¼“å†²åŒºï¼Œå†å°†å—ä¸­çš„æ•°æ®è¯»å–å‡ºæ¥ï¼Œå¦‚æœä¸å†™å…¥çš„æ•°æ®
+ *      ä¸€è‡´ï¼Œè¡¨æ˜å†™æ•°æ®æˆåŠŸã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_fm175xx_picca_write_block.c src_fm175xx_picca_write_block
  *
  * \internal
@@ -45,22 +45,22 @@
 #include "am_delay.h"
  
 /**
- * \brief AÀà¿¨Ğ´¿éÀı³Ì
+ * \brief Aç±»å¡å†™å—ä¾‹ç¨‹
  */
 void demo_fm175xx_picca_write_block (am_fm175xx_handle_t handle)
 {
     uint8_t tag_type[2]  = { 0 };      /* ATQA */
     uint8_t uid[10]      = { 0 };      /* UID */
-    uint8_t uid_real_len =   0;        /* ½ÓÊÕµ½µÄUIDµÄ³¤¶È */
+    uint8_t uid_real_len =   0;        /* æ¥æ”¶åˆ°çš„UIDçš„é•¿åº¦ */
     uint8_t sak[3]       = { 0 };      /* SAK */
-    uint8_t keya[6]      = {0xff, 0xff, 0xff, 0xff, 0xff, 0xff};  /* ÑéÖ¤ÃÜÔ¿A */
-    uint8_t buff[16]     = { 0 };         /* ÓÃÓÚ´æ´¢¿éÊı¾İµÄ»º³åÇø */
+    uint8_t keya[6]      = {0xff, 0xff, 0xff, 0xff, 0xff, 0xff};  /* éªŒè¯å¯†é’¥A */
+    uint8_t buff[16]     = { 0 };         /* ç”¨äºå­˜å‚¨å—æ•°æ®çš„ç¼“å†²åŒº */
     uint8_t i;
-    uint8_t blocknum = 10;            /* Òª¶ÁĞ´µÄ¿é */
+    uint8_t blocknum = 10;            /* è¦è¯»å†™çš„å— */
 
     while (1) {
 
-        /* Ñ°ËùÓĞÎ´ĞİÃß£¨halt£©µÄ¿¨ */
+        /* å¯»æ‰€æœ‰æœªä¼‘çœ ï¼ˆhaltï¼‰çš„å¡ */
         if (AM_FM175XX_STATUS_SUCCESS == am_fm175xx_picca_active\
                                          (handle,
                                           AM_FM175XX_PICCA_REQ_IDLE,
@@ -70,26 +70,26 @@ void demo_fm175xx_picca_write_block (am_fm175xx_handle_t handle)
                                           sak)) {
             am_kprintf("actived\n");
 
-            /* ÑéÖ¤AÃÜÔ¿ */
+            /* éªŒè¯Aå¯†é’¥ */
             if (AM_FM175XX_STATUS_SUCCESS == am_fm175xx_picca_authent\
                                              (handle,
                                               AM_FM175XX_IC_KEY_TYPE_A,
                                               uid,
                                               keya,
                                               blocknum)) {
-                /* Ğ´»º³åÇø */
+                /* å†™ç¼“å†²åŒº */
                 for (i = 0; i < sizeof(buff); i++) {
                     buff[i] = i;
                 }
-                /* Ğ´¿éÊı¾İ */
+                /* å†™å—æ•°æ® */
                 am_fm175xx_picca_write(handle, blocknum, buff);
 
-                /* Çå¿Õ»º³åÇø */
+                /* æ¸…ç©ºç¼“å†²åŒº */
                 for (i = 0; i < sizeof(buff); i++) {
                     buff[i] = 0;
                 }
 
-                /* ¶Á¿éÊı¾İ */
+                /* è¯»å—æ•°æ® */
                 am_fm175xx_picca_read(handle, blocknum, buff);
 
                 am_kprintf("block%d: ", blocknum);

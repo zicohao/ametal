@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZLG600µ×²ãÇı¶¯³ÌĞò
+ * \brief ZLG600åº•å±‚é©±åŠ¨ç¨‹åº
  *
  * \internal
  * \par Modification history
@@ -28,7 +28,7 @@
 #include <string.h>
 
 /*******************************************************************************
-  ÀàĞÍ¶¨Òå
+  ç±»å‹å®šä¹‰
 *******************************************************************************/
 typedef struct am_zlg600_info_buf_desc {
     uint8_t   *p_buf;
@@ -36,39 +36,39 @@ typedef struct am_zlg600_info_buf_desc {
 } am_zlg600_info_buf_desc_t;
 
 /**
- * \brief ¶¨Òå¾ÉÖ¡½á¹¹Ìå
+ * \brief å®šä¹‰æ—§å¸§ç»“æ„ä½“
  */
 typedef struct am_zlg600_frame_old {
-    uint8_t                    frame_len;   /** \brief Ö¡³¤                   */
-    uint8_t                    cmd_type;    /** \brief ÃüÁîÀàĞÍ               */
-    uint8_t                    cmd_status;  /** \brief ÃüÁî/×´Ì¬              */
-    uint8_t                    info_len;    /** \brief ĞÅÏ¢³¤¶È               */
-    am_zlg600_info_buf_desc_t *p_info_desc; /** \brief ĞÅÏ¢ÃèÊö½á¹¹ÌåÖ¸Õë     */
-    uint8_t                    buf_num;     /** \brief ĞÅÏ¢»º³åÇøµÄ¸öÊı       */
-    uint8_t                    bcc;         /** \brief Ğ£ÑéºÍ                 */
-    uint8_t                    ext;         /** \brief Ö¡½áÊø·û               */
+    uint8_t                    frame_len;   /** \brief å¸§é•¿                   */
+    uint8_t                    cmd_type;    /** \brief å‘½ä»¤ç±»å‹               */
+    uint8_t                    cmd_status;  /** \brief å‘½ä»¤/çŠ¶æ€              */
+    uint8_t                    info_len;    /** \brief ä¿¡æ¯é•¿åº¦               */
+    am_zlg600_info_buf_desc_t *p_info_desc; /** \brief ä¿¡æ¯æè¿°ç»“æ„ä½“æŒ‡é’ˆ     */
+    uint8_t                    buf_num;     /** \brief ä¿¡æ¯ç¼“å†²åŒºçš„ä¸ªæ•°       */
+    uint8_t                    bcc;         /** \brief æ ¡éªŒå’Œ                 */
+    uint8_t                    ext;         /** \brief å¸§ç»“æŸç¬¦               */
 } am_zlg600_frame_old_t;
 
 /**
- * \brief ¶¨ÒåĞÂÖ¡½á¹¹Ìå
+ * \brief å®šä¹‰æ–°å¸§ç»“æ„ä½“
  */
 typedef struct am_zlg600_frame_new {
-    uint8_t                    local_addr;  /** \brief ´Ó»úµØÖ·               */
-    uint8_t                    slot_index;  /** \brief ¿¨²ÛË÷Òı               */
-    uint8_t                    smc_seq;     /** \brief °²È«±¨ÎÄ/°üºÅ          */
-    uint8_t                    cmd_class;   /** \brief ÃüÁîÀàĞÍ               */
-    uint16_t                   cmd_status;  /** \brief ÃüÁî/×´Ì¬Âë            */
-    uint16_t                   info_len;    /** \brief ĞÅÏ¢³¤¶È               */
-    am_zlg600_info_buf_desc_t *p_info_desc; /** \brief ĞÅÏ¢ÃèÊö½á¹¹ÌåÖ¸Õë     */
-    uint8_t                    buf_num;     /** \brief ĞÅÏ¢»º³åÇøµÄ¸öÊı       */
-    uint16_t                   check_sum;   /** \brief Ğ£ÑéºÍ                 */
+    uint8_t                    local_addr;  /** \brief ä»æœºåœ°å€               */
+    uint8_t                    slot_index;  /** \brief å¡æ§½ç´¢å¼•               */
+    uint8_t                    smc_seq;     /** \brief å®‰å…¨æŠ¥æ–‡/åŒ…å·          */
+    uint8_t                    cmd_class;   /** \brief å‘½ä»¤ç±»å‹               */
+    uint16_t                   cmd_status;  /** \brief å‘½ä»¤/çŠ¶æ€ç             */
+    uint16_t                   info_len;    /** \brief ä¿¡æ¯é•¿åº¦               */
+    am_zlg600_info_buf_desc_t *p_info_desc; /** \brief ä¿¡æ¯æè¿°ç»“æ„ä½“æŒ‡é’ˆ     */
+    uint8_t                    buf_num;     /** \brief ä¿¡æ¯ç¼“å†²åŒºçš„ä¸ªæ•°       */
+    uint16_t                   check_sum;   /** \brief æ ¡éªŒå’Œ                 */
 } am_zlg600_frame_new_t;
 
 /*******************************************************************************
-  ´®¿Ú·¢ËÍºÍ½ÓÊÕº¯Êı
+  ä¸²å£å‘é€å’Œæ¥æ”¶å‡½æ•°
 *******************************************************************************/
 
-/* ·¢ËÍÒ»¸ö¾ÉÖ¡ÃüÁî */
+/* å‘é€ä¸€ä¸ªæ—§å¸§å‘½ä»¤ */
 static int __zlg600_uart_old_frame_cmd_send (void                   *p_cookie,
                                              am_zlg600_frame_old_t  *p_frame)
 {
@@ -78,28 +78,28 @@ static int __zlg600_uart_old_frame_cmd_send (void                   *p_cookie,
     uint8_t *p_buf;
     uint8_t  info_len;
 
-    /* ·¢ËÍÖ¡³¤ + ÃüÁîÀàĞÍ + ÃüÁî + ĞÅÏ¢³¤¶È £¨¹²¼Æ4¸ö×Ö½Ú£©*/
+    /* å‘é€å¸§é•¿ + å‘½ä»¤ç±»å‹ + å‘½ä»¤ + ä¿¡æ¯é•¿åº¦ ï¼ˆå…±è®¡4ä¸ªå­—èŠ‚ï¼‰*/
     am_uart_rngbuf_send(p_dev->uart_ringbuf_handle, (uint8_t *)p_frame, 4);
 
-    /* ·¢ËÍ¸÷¸öĞÅÏ¢»º³åÇøÖĞµÄĞÅÏ¢ */
+    /* å‘é€å„ä¸ªä¿¡æ¯ç¼“å†²åŒºä¸­çš„ä¿¡æ¯ */
     for (i = 0; i < p_frame->buf_num; i++) {
         p_buf     = p_frame->p_info_desc[i].p_buf;
         info_len  = p_frame->p_info_desc[i].len;
-        if (info_len != 0) {                        /* ´æÔÚĞÅÏ¢£¬Ôò·¢ËÍ */
+        if (info_len != 0) {                        /* å­˜åœ¨ä¿¡æ¯ï¼Œåˆ™å‘é€ */
             am_uart_rngbuf_send(p_dev->uart_ringbuf_handle, p_buf, info_len);
         }
     }
 
-    /* ·¢ËÍĞ£ÑéºÍ   */
+    /* å‘é€æ ¡éªŒå’Œ   */
     am_uart_rngbuf_send(p_dev->uart_ringbuf_handle, &(p_frame->bcc), 1);
 
-    /* ·¢ËÍÖ¡½áÊø·û */
+    /* å‘é€å¸§ç»“æŸç¬¦ */
     am_uart_rngbuf_send(p_dev->uart_ringbuf_handle, &(p_frame->ext), 1);
 
     return AM_OK;
 }
 
-/* ½ÓÊÕÒ»¸ö¾É»ØÓ¦Ö¡ */
+/* æ¥æ”¶ä¸€ä¸ªæ—§å›åº”å¸§ */
 static int __zlg600_uart_old_frame_respond_recv (void                  *p_cookie,
                                                  am_zlg600_frame_old_t *p_frame)
 {
@@ -108,12 +108,12 @@ static int __zlg600_uart_old_frame_respond_recv (void                  *p_cookie
     int      len,i,j;
     uint8_t  info_len;
     uint8_t *p_buf;
-    uint8_t  bcc = 0;             /* ½ÓÊÕÊ±£¬¿ÉÄÜ´æÔÚÊı¾İ¶ªÆú£¬Ö±½Ó±ß¶Á±ßĞ£Ñé */
+    uint8_t  bcc = 0;             /* æ¥æ”¶æ—¶ï¼Œå¯èƒ½å­˜åœ¨æ•°æ®ä¸¢å¼ƒï¼Œç›´æ¥è¾¹è¯»è¾¹æ ¡éªŒ */
 
     uint8_t  remain_len;
-    uint8_t  discard_data;        /* ÓÃÓÚ½«½ÓÊÕµÄÎŞÓÃÊı¾İ¶ªÆú */
+    uint8_t  discard_data;        /* ç”¨äºå°†æ¥æ”¶çš„æ— ç”¨æ•°æ®ä¸¢å¼ƒ */
 
-    /* ½ÓÊÕÖ¡³¤ + ÃüÁîÀàĞÍ + ×´Ì¬ + ĞÅÏ¢³¤¶È £¨¹²¼Æ4¸ö×Ö½Ú£©*/
+    /* æ¥æ”¶å¸§é•¿ + å‘½ä»¤ç±»å‹ + çŠ¶æ€ + ä¿¡æ¯é•¿åº¦ ï¼ˆå…±è®¡4ä¸ªå­—èŠ‚ï¼‰*/
     len = am_uart_rngbuf_receive(p_dev->uart_ringbuf_handle,
                                  (uint8_t *)p_frame,
                                  4);
@@ -126,23 +126,23 @@ static int __zlg600_uart_old_frame_respond_recv (void                  *p_cookie
     bcc ^= p_frame->cmd_status;
     bcc ^= p_frame->info_len;
 
-    remain_len = p_frame->info_len;      /* Ê£Óà´ı½ÓÊÕĞÅÏ¢µÄ×Ö·û×ÜÊı */
+    remain_len = p_frame->info_len;      /* å‰©ä½™å¾…æ¥æ”¶ä¿¡æ¯çš„å­—ç¬¦æ€»æ•° */
 
-    /* ½ÓÊÕ¸÷¸öĞÅÏ¢»º³åÇøÖĞµÄÊı¾İ */
+    /* æ¥æ”¶å„ä¸ªä¿¡æ¯ç¼“å†²åŒºä¸­çš„æ•°æ® */
     for (i = 0; i < p_frame->buf_num; i++) {
         p_buf     = p_frame->p_info_desc[i].p_buf;
         info_len  = p_frame->p_info_desc[i].len;
 
-        /* ¶ÁÈ¡µÄ×Ö½ÚÊı²»ÄÜ´óÓÚÊ£Óà×Ö½Ú */
+        /* è¯»å–çš„å­—èŠ‚æ•°ä¸èƒ½å¤§äºå‰©ä½™å­—èŠ‚ */
         info_len = info_len > remain_len ? remain_len : info_len;
 
         remain_len -= info_len;
 
         p_frame->p_info_desc[i].len = info_len;
 
-        if (info_len != 0) {                       /* ´æÔÚĞÅÏ¢£¬Ôò½ÓÊÕ */
+        if (info_len != 0) {                       /* å­˜åœ¨ä¿¡æ¯ï¼Œåˆ™æ¥æ”¶ */
 
-            if (p_buf == NULL) {                   /* ½ÓÊÕµÄÊı¾İ¶ªÆú   */
+            if (p_buf == NULL) {                   /* æ¥æ”¶çš„æ•°æ®ä¸¢å¼ƒ   */
                 while (info_len != 0) {
                     len = am_uart_rngbuf_receive(p_dev->uart_ringbuf_handle,
                                                  &discard_data,
@@ -168,7 +168,7 @@ static int __zlg600_uart_old_frame_respond_recv (void                  *p_cookie
         }
     }
 
-    /* Î´½ÓÊÕµÄĞÅÏ¢¶ªÆú */
+    /* æœªæ¥æ”¶çš„ä¿¡æ¯ä¸¢å¼ƒ */
     while (remain_len != 0) {
         len = am_uart_rngbuf_receive(p_dev->uart_ringbuf_handle,
                                      &discard_data,
@@ -180,13 +180,13 @@ static int __zlg600_uart_old_frame_respond_recv (void                  *p_cookie
         bcc ^= discard_data;
     }
 
-    /* ½ÓÊÕĞ£ÑéºÍ */
+    /* æ¥æ”¶æ ¡éªŒå’Œ */
     len = am_uart_rngbuf_receive(p_dev->uart_ringbuf_handle, &(p_frame->bcc), 1);
     if (len != 1) {
         return -AM_ETIME;
     }
 
-    /* ½ÓÊÕÖ¡½áÊø·û */
+    /* æ¥æ”¶å¸§ç»“æŸç¬¦ */
     len = am_uart_rngbuf_receive(p_dev->uart_ringbuf_handle, &(p_frame->ext), 1);
     if (len != 1) {
         return -AM_ETIME;
@@ -202,7 +202,7 @@ static int __zlg600_uart_old_frame_respond_recv (void                  *p_cookie
 
 /******************************************************************************/
 
-/* ·¢ËÍÒ»¸öĞÂÃüÁîÖ¡ */
+/* å‘é€ä¸€ä¸ªæ–°å‘½ä»¤å¸§ */
 static int __zlg600_uart_new_frame_cmd_send (void                  *p_cookie,
                                              am_zlg600_frame_new_t *p_frame)
 {
@@ -212,15 +212,15 @@ static int __zlg600_uart_new_frame_cmd_send (void                  *p_cookie,
     uint8_t   *p_buf;
     uint16_t  info_len;
 
-    /* ·¢ËÍµØÖ·(1) + ¿¨²ÛË÷Òı(1) + °²È«±¨ÎÄ/°üºÅ(1) + ÃüÁîÀàĞÍ £¨¹²¼Æ4¸ö×Ö½Ú£©*/
+    /* å‘é€åœ°å€(1) + å¡æ§½ç´¢å¼•(1) + å®‰å…¨æŠ¥æ–‡/åŒ…å·(1) + å‘½ä»¤ç±»å‹ ï¼ˆå…±è®¡4ä¸ªå­—èŠ‚ï¼‰*/
     am_uart_rngbuf_send(p_dev->uart_ringbuf_handle, (uint8_t *)p_frame, 4);
 
-    /* ·¢ËÍÃüÁî/×´Ì¬Âë(2) + ĞÅÏ¢³¤¶È(2)£¨¹²¼Æ4¸ö×Ö½Ú£©                        */
+    /* å‘é€å‘½ä»¤/çŠ¶æ€ç (2) + ä¿¡æ¯é•¿åº¦(2)ï¼ˆå…±è®¡4ä¸ªå­—èŠ‚ï¼‰                        */
     am_uart_rngbuf_send(p_dev->uart_ringbuf_handle,
                         (uint8_t *)(&p_frame->cmd_status),
                         4);
 
-    /* ·¢ËÍ¸÷»º³åÇøÖĞµÄĞÅÏ¢ */
+    /* å‘é€å„ç¼“å†²åŒºä¸­çš„ä¿¡æ¯ */
     for (i = 0; i < p_frame->buf_num; i++) {
         p_buf     = p_frame->p_info_desc[i].p_buf;
         info_len  = p_frame->p_info_desc[i].len;
@@ -229,7 +229,7 @@ static int __zlg600_uart_new_frame_cmd_send (void                  *p_cookie,
         }
     }
 
-    /* ·¢ËÍĞ£ÑéºÍ,2×Ö½Ú */
+    /* å‘é€æ ¡éªŒå’Œ,2å­—èŠ‚ */
     am_uart_rngbuf_send(p_dev->uart_ringbuf_handle,
                         (uint8_t *)&(p_frame->check_sum),
                         2);
@@ -237,7 +237,7 @@ static int __zlg600_uart_new_frame_cmd_send (void                  *p_cookie,
     return AM_OK;
 }
 
-/* ½ÓÊÕÒ»¸öĞÂ»ØÓ¦Ö¡ */
+/* æ¥æ”¶ä¸€ä¸ªæ–°å›åº”å¸§ */
 static int __zlg600_uart_new_frame_respond_recv (void                  *p_cookie,
                                                  am_zlg600_frame_new_t *p_frame)
 {
@@ -248,11 +248,11 @@ static int __zlg600_uart_new_frame_respond_recv (void                  *p_cookie
     uint16_t  info_len;
     uint16_t  remain_len;
     uint8_t   discard_data;
-    uint16_t  sum = 0;         /* ½ÓÊÕÊ±£¬¿ÉÄÜ´æÔÚÊı¾İ¶ªÆú£¬Ö±½Ó±ß¶Á±ßĞ£Ñé */
+    uint16_t  sum = 0;         /* æ¥æ”¶æ—¶ï¼Œå¯èƒ½å­˜åœ¨æ•°æ®ä¸¢å¼ƒï¼Œç›´æ¥è¾¹è¯»è¾¹æ ¡éªŒ */
 
 
 
-    /* ½ÓÊÕµØÖ·(1) + ¿¨²ÛË÷Òı(1) + °²È«±¨ÎÄ/°üºÅ(1) + ÃüÁîÀàĞÍ £¨¹²¼Æ4¸ö×Ö½Ú£©*/
+    /* æ¥æ”¶åœ°å€(1) + å¡æ§½ç´¢å¼•(1) + å®‰å…¨æŠ¥æ–‡/åŒ…å·(1) + å‘½ä»¤ç±»å‹ ï¼ˆå…±è®¡4ä¸ªå­—èŠ‚ï¼‰*/
     len = am_uart_rngbuf_receive(p_dev->uart_ringbuf_handle,
                                  (uint8_t *)p_frame,
                                  4);
@@ -266,7 +266,7 @@ static int __zlg600_uart_new_frame_respond_recv (void                  *p_cookie
     sum += p_frame->cmd_class;
 
 
-    /* ½ÓÊÕÃüÁî/×´Ì¬Âë(2) + ĞÅÏ¢³¤¶È(2)£¨¹²¼Æ4¸ö×Ö½Ú£© */
+    /* æ¥æ”¶å‘½ä»¤/çŠ¶æ€ç (2) + ä¿¡æ¯é•¿åº¦(2)ï¼ˆå…±è®¡4ä¸ªå­—èŠ‚ï¼‰ */
     len = am_uart_rngbuf_receive(p_dev->uart_ringbuf_handle,
                                  (uint8_t *)(&p_frame->cmd_status),
                                  4);
@@ -274,28 +274,28 @@ static int __zlg600_uart_new_frame_respond_recv (void                  *p_cookie
         return -AM_ETIME;
     }
 
-    sum += p_frame->cmd_status & 0xFF;            /* µÍ×Ö½Ú */
-    sum += p_frame->cmd_status >> 8;              /* ¸ß×Ö½Ú */
+    sum += p_frame->cmd_status & 0xFF;            /* ä½å­—èŠ‚ */
+    sum += p_frame->cmd_status >> 8;              /* é«˜å­—èŠ‚ */
 
-    sum += p_frame->info_len & 0xFF;              /* µÍ×Ö½Ú */
-    sum += p_frame->info_len >> 8;                /* µÍ×Ö½Ú */
+    sum += p_frame->info_len & 0xFF;              /* ä½å­—èŠ‚ */
+    sum += p_frame->info_len >> 8;                /* ä½å­—èŠ‚ */
 
-    remain_len = p_frame->info_len;               /* Ê£Óà´ı½ÓÊÕĞÅÏ¢µÄ×Ö·û×ÜÊı */
+    remain_len = p_frame->info_len;               /* å‰©ä½™å¾…æ¥æ”¶ä¿¡æ¯çš„å­—ç¬¦æ€»æ•° */
 
     for (i = 0; i < p_frame->buf_num; i++) {
         p_buf     = p_frame->p_info_desc[i].p_buf;
         info_len  = p_frame->p_info_desc[i].len;
 
-        /* ¶ÁÈ¡µÄ×Ö½ÚÊı²»ÄÜ´óÓÚÊ£Óà×Ö½Ú */
+        /* è¯»å–çš„å­—èŠ‚æ•°ä¸èƒ½å¤§äºå‰©ä½™å­—èŠ‚ */
         info_len = info_len > remain_len ? remain_len : info_len;
 
         remain_len -= info_len;
 
-        p_frame->p_info_desc[i].len = info_len;   /* ±¾»º³åÇøÊµ¼Ê¶ÁÈ¡×Ö·û³¤¶È */
+        p_frame->p_info_desc[i].len = info_len;   /* æœ¬ç¼“å†²åŒºå®é™…è¯»å–å­—ç¬¦é•¿åº¦ */
 
-        if (info_len != 0) {                      /* ´æÔÚĞÅÏ¢£¬Ôò½ÓÊÕ */
+        if (info_len != 0) {                      /* å­˜åœ¨ä¿¡æ¯ï¼Œåˆ™æ¥æ”¶ */
 
-            if (p_buf == NULL) {                  /* ½ÓÊÕµÄÊı¾İ¶ªÆú   */
+            if (p_buf == NULL) {                  /* æ¥æ”¶çš„æ•°æ®ä¸¢å¼ƒ   */
                 while (info_len != 0) {
                     len = am_uart_rngbuf_receive(p_dev->uart_ringbuf_handle,
                                                  &discard_data,
@@ -333,7 +333,7 @@ static int __zlg600_uart_new_frame_respond_recv (void                  *p_cookie
     }
     sum = ~sum;
 
-    /* ½ÓÊÕĞ£ÑéºÍ */
+    /* æ¥æ”¶æ ¡éªŒå’Œ */
     len = am_uart_rngbuf_receive(p_dev->uart_ringbuf_handle,
                                  (uint8_t *)&(p_frame->check_sum),
                                  2);
@@ -350,7 +350,7 @@ static int __zlg600_uart_new_frame_respond_recv (void                  *p_cookie
 }
 
 /*******************************************************************************
-  I2C·¢ËÍºÍ½ÓÊÕº¯Êı
+  I2Cå‘é€å’Œæ¥æ”¶å‡½æ•°
 *******************************************************************************/
 
 static void __pin_int_callback (void *p_arg)
@@ -358,7 +358,7 @@ static void __pin_int_callback (void *p_arg)
     am_zlg600_i2c_dev_t *p_dev = (am_zlg600_i2c_dev_t *)p_arg;
     am_zlg600_serv_t    *p_serv = &p_dev->zlg600_serv;
     
-//    /* Èç¹ûÎ´Æô¶¯×Ô¶¯¼ì²â */
+//    /* å¦‚æœæœªå¯åŠ¨è‡ªåŠ¨æ£€æµ‹ */
 //    if (p_serv->auto_detect == 0) {
 //        am_gpio_trigger_off(p_dev->pin);
 //    }
@@ -378,17 +378,17 @@ static int __wait_can_recv (am_zlg600_i2c_dev_t *p_dev)
 {
     int ret;
 
-    /* ÒÑ¾­ÊÇµÍµçÆ½ */
+    /* å·²ç»æ˜¯ä½ç”µå¹³ */
     if (am_gpio_get(p_dev->pin) == 0) {
         return AM_OK;
     }
     
     am_gpio_trigger_on(p_dev->pin);
     
-    /* ³¬Ê±Ê±¼äÄÚÃ»ÓĞÏìÓ¦£¬³¬Ê±ÍË³ö */
+    /* è¶…æ—¶æ—¶é—´å†…æ²¡æœ‰å“åº”ï¼Œè¶…æ—¶é€€å‡º */
     ret = am_wait_on_timeout(&p_dev->wait, p_dev->zlg600_serv.timeout_ms);
 
-    /* Èç¹û³¬Ê± */
+    /* å¦‚æœè¶…æ—¶ */
     if (-AM_ETIME == ret) {
         am_gpio_trigger_off(p_dev->pin);
     }
@@ -396,14 +396,14 @@ static int __wait_can_recv (am_zlg600_i2c_dev_t *p_dev)
     return ret;
 }
 
-/* I2CÊı¾İ´«ÊäÍê³É»Øµ÷º¯Êı */
+/* I2Cæ•°æ®ä¼ è¾“å®Œæˆå›è°ƒå‡½æ•° */
 static void __i2c_trans_data_complete (void *p_arg)
 {
     am_wait_t *p_wait = (am_wait_t *)p_arg;
     am_wait_done(p_wait);
 }
 
-/* Íê³ÉÒ»´ÎI2CÊı¾İ´«Êä */
+/* å®Œæˆä¸€æ¬¡I2Cæ•°æ®ä¼ è¾“ */
 static int __i2c_trans_data (am_zlg600_i2c_dev_t *p_dev,
                              uint16_t             flags,
                              uint8_t             *p_buf,
@@ -434,7 +434,7 @@ static int __i2c_trans_data (am_zlg600_i2c_dev_t *p_dev,
     return msg.status;
 }
 
-/* ·¢ËÍÒ»¸ö¾ÉÖ¡ÃüÁî */
+/* å‘é€ä¸€ä¸ªæ—§å¸§å‘½ä»¤ */
 static int __zlg600_i2c_old_frame_cmd_send (void                   *p_cookie,
                                             am_zlg600_frame_old_t  *p_frame)
 {
@@ -449,19 +449,19 @@ static int __zlg600_i2c_old_frame_cmd_send (void                   *p_cookie,
 
     am_wait_init(&wait);
 
-    /* ·¢ËÍÖ¡Ç°4¸ö×Ö½Ú */
+    /* å‘é€å¸§å‰4ä¸ªå­—èŠ‚ */
     am_i2c_mktrans(&p_dev->p_trans[trans_addr++],
                    (p_dev->zlg600_serv.cur_addr),// >> 1,
                    AM_I2C_M_7BIT | AM_I2C_M_WR,
                    (uint8_t *)p_frame,
                    4);
 
-    /* ·¢ËÍ¸÷¸öĞÅÏ¢»º³åÇøÖĞµÄĞÅÏ¢ */
+    /* å‘é€å„ä¸ªä¿¡æ¯ç¼“å†²åŒºä¸­çš„ä¿¡æ¯ */
     for (i = 0; i < p_frame->buf_num; i++) {
         p_buf     = p_frame->p_info_desc[i].p_buf;
         info_len  = p_frame->p_info_desc[i].len;
-        if (info_len != 0) {                        /* ´æÔÚĞÅÏ¢£¬Ôò·¢ËÍ */
-            /* ÖĞ¼äµÄÊı¾İ·¢ËÍ¾ùÎŞĞèÆô¶¯ĞÅºÅ */
+        if (info_len != 0) {                        /* å­˜åœ¨ä¿¡æ¯ï¼Œåˆ™å‘é€ */
+            /* ä¸­é—´çš„æ•°æ®å‘é€å‡æ— éœ€å¯åŠ¨ä¿¡å· */
             am_i2c_mktrans(&p_dev->p_trans[trans_addr++],
                            (p_dev->zlg600_serv.cur_addr),// >> 1,
                            AM_I2C_M_7BIT | AM_I2C_M_WR | AM_I2C_M_NOSTART,
@@ -470,11 +470,11 @@ static int __zlg600_i2c_old_frame_cmd_send (void                   *p_cookie,
         }
     }
 
-    /* ±ãÓÚ·¢ËÍĞ£ÑéºÍºÍÖ¡½áÊø·û */
+    /* ä¾¿äºå‘é€æ ¡éªŒå’Œå’Œå¸§ç»“æŸç¬¦ */
     temp[0] = p_frame->bcc;
     temp[1] = p_frame->ext;
     
-    /* ×îºóÒ»´Î·¢ËÍĞèÒªÍ£Ö¹ */
+    /* æœ€åä¸€æ¬¡å‘é€éœ€è¦åœæ­¢ */
     am_i2c_mktrans(&p_dev->p_trans[trans_addr++],
                    (p_dev->zlg600_serv.cur_addr),// >> 1,
                    AM_I2C_M_7BIT | AM_I2C_M_WR | AM_I2C_M_NOSTART,
@@ -494,7 +494,7 @@ static int __zlg600_i2c_old_frame_cmd_send (void                   *p_cookie,
     return msg.status;
 }
 
-/* ½ÓÊÕÒ»¸ö¾É»ØÓ¦Ö¡ */
+/* æ¥æ”¶ä¸€ä¸ªæ—§å›åº”å¸§ */
 static int __zlg600_i2c_old_frame_respond_recv (void                  *p_cookie,
                                                 am_zlg600_frame_old_t *p_frame)
 {
@@ -503,26 +503,26 @@ static int __zlg600_i2c_old_frame_respond_recv (void                  *p_cookie,
     int      i,j;
     uint8_t  info_len;
     uint8_t *p_buf;
-    uint8_t  bcc = 0;             /* ½ÓÊÕÊ±£¬¿ÉÄÜ´æÔÚÊı¾İ¶ªÆú£¬Ö±½Ó±ß¶Á±ßĞ£Ñé */
+    uint8_t  bcc = 0;             /* æ¥æ”¶æ—¶ï¼Œå¯èƒ½å­˜åœ¨æ•°æ®ä¸¢å¼ƒï¼Œç›´æ¥è¾¹è¯»è¾¹æ ¡éªŒ */
 
     uint8_t  remain_len;
-    uint8_t  discard_data;        /* ÓÃÓÚ½«½ÓÊÕµÄÎŞÓÃÊı¾İ¶ªÆú */
+    uint8_t  discard_data;        /* ç”¨äºå°†æ¥æ”¶çš„æ— ç”¨æ•°æ®ä¸¢å¼ƒ */
     uint8_t  temp[2];
     int      ret;
 
-    /* µÈ´ı¿ÉÒÔ½ÓÊÕ */
+    /* ç­‰å¾…å¯ä»¥æ¥æ”¶ */
     ret = __wait_can_recv(p_dev);
     if (ret != AM_OK) {
         return ret;
     }
     
-    /* Èç¹ûÊÇÖ¡¸ñÊ½ÇĞ»»£¬ÔòÖ±½Ó·µ»Ø */
+    /* å¦‚æœæ˜¯å¸§æ ¼å¼åˆ‡æ¢ï¼Œåˆ™ç›´æ¥è¿”å› */
     if (((p_frame->cmd_type & 0xF) == 0x01) && (p_frame->cmd_status == 'K')) {
         p_frame->cmd_status = 0;
         return AM_OK;
     }
 
-    /* ½ÓÊÕÖ¡³¤ + ÃüÁîÀàĞÍ + ×´Ì¬ + ĞÅÏ¢³¤¶È £¨¹²¼Æ4¸ö×Ö½Ú£©*/
+    /* æ¥æ”¶å¸§é•¿ + å‘½ä»¤ç±»å‹ + çŠ¶æ€ + ä¿¡æ¯é•¿åº¦ ï¼ˆå…±è®¡4ä¸ªå­—èŠ‚ï¼‰*/
     ret = __i2c_trans_data(p_dev, 
                            AM_I2C_M_7BIT | AM_I2C_M_RD,
                            (uint8_t *)p_frame,
@@ -536,23 +536,23 @@ static int __zlg600_i2c_old_frame_respond_recv (void                  *p_cookie,
     bcc ^= p_frame->cmd_status;
     bcc ^= p_frame->info_len;
  
-    remain_len = p_frame->info_len;      /* Ê£Óà´ı½ÓÊÕĞÅÏ¢µÄ×Ö·û×ÜÊı */
+    remain_len = p_frame->info_len;      /* å‰©ä½™å¾…æ¥æ”¶ä¿¡æ¯çš„å­—ç¬¦æ€»æ•° */
     
-    /* ½ÓÊÕ¸÷¸öĞÅÏ¢»º³åÇøÖĞµÄÊı¾İ */
+    /* æ¥æ”¶å„ä¸ªä¿¡æ¯ç¼“å†²åŒºä¸­çš„æ•°æ® */
     for (i = 0; i < p_frame->buf_num; i++) {
         p_buf     = p_frame->p_info_desc[i].p_buf;
         info_len  = p_frame->p_info_desc[i].len;
 
-        /* ¶ÁÈ¡µÄ×Ö½ÚÊı²»ÄÜ´óÓÚÊ£Óà×Ö½Ú */
+        /* è¯»å–çš„å­—èŠ‚æ•°ä¸èƒ½å¤§äºå‰©ä½™å­—èŠ‚ */
         info_len = info_len > remain_len ? remain_len : info_len;
 
         remain_len -= info_len;
 
         p_frame->p_info_desc[i].len = info_len;
 
-        if (info_len != 0) {                       /* ´æÔÚĞÅÏ¢£¬Ôò½ÓÊÕ */
+        if (info_len != 0) {                       /* å­˜åœ¨ä¿¡æ¯ï¼Œåˆ™æ¥æ”¶ */
 
-            if (p_buf == NULL) {                   /* ½ÓÊÕµÄÊı¾İ¶ªÆú   */
+            if (p_buf == NULL) {                   /* æ¥æ”¶çš„æ•°æ®ä¸¢å¼ƒ   */
 
                 while (info_len != 0) {
                     
@@ -586,7 +586,7 @@ static int __zlg600_i2c_old_frame_respond_recv (void                  *p_cookie,
         }
     }
 
-    /* Î´½ÓÊÕµÄĞÅÏ¢¶ªÆú */
+    /* æœªæ¥æ”¶çš„ä¿¡æ¯ä¸¢å¼ƒ */
     while (remain_len != 0) {
         
         ret = __i2c_trans_data(p_dev, 
@@ -601,7 +601,7 @@ static int __zlg600_i2c_old_frame_respond_recv (void                  *p_cookie,
         bcc ^= discard_data;
     }
  
-    /* ×îºóÒ»´Î¶ÁÈ¡ĞèÒªÍ£Ö¹ */
+    /* æœ€åä¸€æ¬¡è¯»å–éœ€è¦åœæ­¢ */
     ret = __i2c_trans_data(p_dev, 
                            AM_I2C_M_7BIT | AM_I2C_M_RD | AM_I2C_M_NOSTART,
                            temp, 
@@ -611,7 +611,7 @@ static int __zlg600_i2c_old_frame_respond_recv (void                  *p_cookie,
         return ret;
     }
 
-    /* ±ãÓÚ·¢ËÍĞ£ÑéºÍºÍÖ¡½áÊø·û */
+    /* ä¾¿äºå‘é€æ ¡éªŒå’Œå’Œå¸§ç»“æŸç¬¦ */
     p_frame->bcc = temp[0];
     p_frame->ext = temp[1];
     
@@ -626,7 +626,7 @@ static int __zlg600_i2c_old_frame_respond_recv (void                  *p_cookie,
 
 /******************************************************************************/
 
-/* Íê³ÉÒ»´ÎI2CÊı¾İ´«Êä */
+/* å®Œæˆä¸€æ¬¡I2Cæ•°æ®ä¼ è¾“ */
 static int __i2c_trans_new_frame_data (am_zlg600_i2c_dev_t *p_dev,
                                        uint16_t             flags,
                                        uint16_t             sub_addr,
@@ -666,7 +666,7 @@ static int __i2c_trans_new_frame_data (am_zlg600_i2c_dev_t *p_dev,
     return msg.status;
 }
 
-/* ·¢ËÍÒ»¸öĞÂÃüÁîÖ¡ */
+/* å‘é€ä¸€ä¸ªæ–°å‘½ä»¤å¸§ */
 static int __zlg600_i2c_new_frame_cmd_send (void                   *p_cookie,
                                             am_zlg600_frame_new_t  *p_frame)
 {
@@ -683,15 +683,15 @@ static int __zlg600_i2c_new_frame_cmd_send (void                   *p_cookie,
 
 //    p_dev->zlg600_serv.cur_addr = p_frame->local_addr;
 
-    /* Ê×ÏÈÇóµÃÃüÁîÖ¡µÄ×Ü³¤¶È */
+    /* é¦–å…ˆæ±‚å¾—å‘½ä»¤å¸§çš„æ€»é•¿åº¦ */
     info_len = 0;
     for (i = 0; i < p_frame->buf_num; i++) {
         info_len += p_frame->p_info_desc[i].len;
     }
 
-    info_len += 10;  /* ÆäÓàĞÅÏ¢³¤¶ÈÎª10 */
+    info_len += 10;  /* å…¶ä½™ä¿¡æ¯é•¿åº¦ä¸º10 */
 
-    /* Ğ´ÈëÃüÁîÖ¡³¤¶È */
+    /* å†™å…¥å‘½ä»¤å¸§é•¿åº¦ */
     ret = __i2c_trans_new_frame_data(p_dev,
                                      AM_I2C_M_7BIT,
                                      start_addr,
@@ -703,7 +703,7 @@ static int __zlg600_i2c_new_frame_cmd_send (void                   *p_cookie,
 
     start_addr += 2;
 
-    /* ·¢ËÍµØÖ·(1) + ¿¨²ÛË÷Òı(1) + °²È«±¨ÎÄ/°üºÅ(1) + ÃüÁîÀàĞÍ £¨¹²¼Æ4¸ö×Ö½Ú£©*/
+    /* å‘é€åœ°å€(1) + å¡æ§½ç´¢å¼•(1) + å®‰å…¨æŠ¥æ–‡/åŒ…å·(1) + å‘½ä»¤ç±»å‹ ï¼ˆå…±è®¡4ä¸ªå­—èŠ‚ï¼‰*/
     ret = __i2c_trans_new_frame_data(p_dev,
                                      AM_I2C_M_7BIT,
                                      start_addr,
@@ -715,7 +715,7 @@ static int __zlg600_i2c_new_frame_cmd_send (void                   *p_cookie,
 
     start_addr += 4;
 
-    /* ·¢ËÍÃüÁî/×´Ì¬Âë(2) + ĞÅÏ¢³¤¶È(2)£¨¹²¼Æ4¸ö×Ö½Ú£© */
+    /* å‘é€å‘½ä»¤/çŠ¶æ€ç (2) + ä¿¡æ¯é•¿åº¦(2)ï¼ˆå…±è®¡4ä¸ªå­—èŠ‚ï¼‰ */
     ret = __i2c_trans_new_frame_data(p_dev,
                                      AM_I2C_M_7BIT,
                                      start_addr,
@@ -727,7 +727,7 @@ static int __zlg600_i2c_new_frame_cmd_send (void                   *p_cookie,
 
     start_addr += 4;
 
-    /* ·¢ËÍ¸÷»º³åÇøÖĞµÄĞÅÏ¢ */
+    /* å‘é€å„ç¼“å†²åŒºä¸­çš„ä¿¡æ¯ */
     for (i = 0; i < p_frame->buf_num; i++) {
         p_buf     = p_frame->p_info_desc[i].p_buf;
         info_len  = p_frame->p_info_desc[i].len;
@@ -746,7 +746,7 @@ static int __zlg600_i2c_new_frame_cmd_send (void                   *p_cookie,
         }
     }
 
-    /* ·¢ËÍĞ£ÑéºÍ£¬2×Ö½Ú */
+    /* å‘é€æ ¡éªŒå’Œï¼Œ2å­—èŠ‚ */
     ret = __i2c_trans_new_frame_data(p_dev,
                                      AM_I2C_M_7BIT,
                                      start_addr,
@@ -768,7 +768,7 @@ static int __zlg600_i2c_new_frame_cmd_send (void                   *p_cookie,
     return ret;
 }
 
-/* ½ÓÊÕÒ»¸öĞÂ»ØÓ¦Ö¡ */
+/* æ¥æ”¶ä¸€ä¸ªæ–°å›åº”å¸§ */
 static int __zlg600_i2c_new_frame_respond_recv (void                  *p_cookie,
                                                 am_zlg600_frame_new_t *p_frame)
 {
@@ -781,22 +781,22 @@ static int __zlg600_i2c_new_frame_respond_recv (void                  *p_cookie,
     uint16_t  remain_len;
     uint16_t  start_addr   = 0x0104;
     uint8_t   discard_data;
-    uint16_t  sum = 0;         /* ½ÓÊÕÊ±£¬¿ÉÄÜ´æÔÚÊı¾İ¶ªÆú£¬Ö±½Ó±ß¶Á±ßĞ£Ñé */
+    uint16_t  sum = 0;         /* æ¥æ”¶æ—¶ï¼Œå¯èƒ½å­˜åœ¨æ•°æ®ä¸¢å¼ƒï¼Œç›´æ¥è¾¹è¯»è¾¹æ ¡éªŒ */
 
 //    p_dev->zlg600_serv.cur_addr = p_frame->local_addr;
     
-    /* µÈ´ı¿ÉÒÔ½ÓÊÕ */
+    /* ç­‰å¾…å¯ä»¥æ¥æ”¶ */
     ret = __wait_can_recv(p_dev);
     if (ret != AM_OK) {
         return ret;
     }
     
-    /* Èç¹ûÊÇÖ¡¸ñÊ½ÇĞ»»£¬ÔòÖ±½Ó·µ»Ø */
+    /* å¦‚æœæ˜¯å¸§æ ¼å¼åˆ‡æ¢ï¼Œåˆ™ç›´æ¥è¿”å› */
     if ((p_frame->cmd_class == 0x01) && (p_frame->cmd_status == 'K')) {
         return AM_OK;
     }
 
-    /* ½ÓÊÕµØÖ·(1) + ¿¨²ÛË÷Òı(1) + °²È«±¨ÎÄ/°üºÅ(1) + ÃüÁîÀàĞÍ £¨¹²¼Æ4¸ö×Ö½Ú£©*/
+    /* æ¥æ”¶åœ°å€(1) + å¡æ§½ç´¢å¼•(1) + å®‰å…¨æŠ¥æ–‡/åŒ…å·(1) + å‘½ä»¤ç±»å‹ ï¼ˆå…±è®¡4ä¸ªå­—èŠ‚ï¼‰*/
     ret = __i2c_trans_new_frame_data(p_dev,
                                      AM_I2C_M_7BIT | AM_I2C_M_RD,
                                      start_addr,
@@ -813,7 +813,7 @@ static int __zlg600_i2c_new_frame_respond_recv (void                  *p_cookie,
     sum += p_frame->smc_seq;
     sum += p_frame->cmd_class;
 
-    /* ½ÓÊÕÃüÁî/×´Ì¬Âë(2) + ĞÅÏ¢³¤¶È(2)£¨¹²¼Æ4¸ö×Ö½Ú£© */
+    /* æ¥æ”¶å‘½ä»¤/çŠ¶æ€ç (2) + ä¿¡æ¯é•¿åº¦(2)ï¼ˆå…±è®¡4ä¸ªå­—èŠ‚ï¼‰ */
     ret = __i2c_trans_new_frame_data(p_dev,
                                      AM_I2C_M_7BIT | AM_I2C_M_RD,
                                      start_addr,
@@ -825,29 +825,29 @@ static int __zlg600_i2c_new_frame_respond_recv (void                  *p_cookie,
 
     start_addr += 4;
 
-    sum += p_frame->cmd_status & 0xFF;            /* µÍ×Ö½Ú */
-    sum += p_frame->cmd_status >> 8;              /* ¸ß×Ö½Ú */
+    sum += p_frame->cmd_status & 0xFF;            /* ä½å­—èŠ‚ */
+    sum += p_frame->cmd_status >> 8;              /* é«˜å­—èŠ‚ */
 
-    sum += p_frame->info_len & 0xFF;              /* µÍ×Ö½Ú */
-    sum += p_frame->info_len >> 8;                /* µÍ×Ö½Ú */
+    sum += p_frame->info_len & 0xFF;              /* ä½å­—èŠ‚ */
+    sum += p_frame->info_len >> 8;                /* ä½å­—èŠ‚ */
 
-    remain_len = p_frame->info_len;               /* Ê£Óà´ı½ÓÊÕĞÅÏ¢µÄ×Ö·û×ÜÊı */
+    remain_len = p_frame->info_len;               /* å‰©ä½™å¾…æ¥æ”¶ä¿¡æ¯çš„å­—ç¬¦æ€»æ•° */
     
-    /* ½ÓÊÕ¸÷¸öĞÅÏ¢»º³åÇøÖĞµÄÊı¾İ */
+    /* æ¥æ”¶å„ä¸ªä¿¡æ¯ç¼“å†²åŒºä¸­çš„æ•°æ® */
     for (i = 0; i < p_frame->buf_num; i++) {
         p_buf     = p_frame->p_info_desc[i].p_buf;
         info_len  = p_frame->p_info_desc[i].len;
 
-        /* ¶ÁÈ¡µÄ×Ö½ÚÊı²»ÄÜ´óÓÚÊ£Óà×Ö½Ú */
+        /* è¯»å–çš„å­—èŠ‚æ•°ä¸èƒ½å¤§äºå‰©ä½™å­—èŠ‚ */
         info_len = info_len > remain_len ? remain_len : info_len;
 
         remain_len -= info_len;
 
         p_frame->p_info_desc[i].len = info_len;
 
-        if (info_len != 0) {                       /* ´æÔÚĞÅÏ¢£¬Ôò½ÓÊÕ */
+        if (info_len != 0) {                       /* å­˜åœ¨ä¿¡æ¯ï¼Œåˆ™æ¥æ”¶ */
 
-            if (p_buf == NULL) {                   /* ½ÓÊÕµÄÊı¾İ¶ªÆú   */
+            if (p_buf == NULL) {                   /* æ¥æ”¶çš„æ•°æ®ä¸¢å¼ƒ   */
 
                 while (info_len != 0) {
                     
@@ -887,7 +887,7 @@ static int __zlg600_i2c_new_frame_respond_recv (void                  *p_cookie,
         }
     }
     
-    /* Î´½ÓÊÕµÄĞÅÏ¢¶ªÆú */
+    /* æœªæ¥æ”¶çš„ä¿¡æ¯ä¸¢å¼ƒ */
     while (remain_len != 0) {
         
         ret = __i2c_trans_new_frame_data(p_dev,
@@ -908,7 +908,7 @@ static int __zlg600_i2c_new_frame_respond_recv (void                  *p_cookie,
     
     sum = ~sum;
 
-    /* ½ÓÊÕĞ£ÑéºÍ */
+    /* æ¥æ”¶æ ¡éªŒå’Œ */
     ret = __i2c_trans_new_frame_data(p_dev,
                                      AM_I2C_M_7BIT | AM_I2C_M_RD,
                                      start_addr,
@@ -927,10 +927,10 @@ static int __zlg600_i2c_new_frame_respond_recv (void                  *p_cookie,
 }
 
 /*******************************************************************************
-  ¹«¹²µÄ´¦Àíº¯Êı
+  å…¬å…±çš„å¤„ç†å‡½æ•°
 *******************************************************************************/
 
-/* ¼ÆËã¾ÉÖ¡µÄĞ£ÑéºÍÖµ */
+/* è®¡ç®—æ—§å¸§çš„æ ¡éªŒå’Œå€¼ */
 static uint8_t __zlg600_old_frame_bcc_cal (am_zlg600_frame_old_t *p_frame)
 {
     uint8_t  i,j;
@@ -950,12 +950,12 @@ static uint8_t __zlg600_old_frame_bcc_cal (am_zlg600_frame_old_t *p_frame)
             bcc ^= p_buf[j];
         }
     }
-    bcc = ~bcc;                     /* ½«Òì»òÖµÈ¡·´ºó×÷ÎªĞ£ÑéºÍ */
+    bcc = ~bcc;                     /* å°†å¼‚æˆ–å€¼å–ååä½œä¸ºæ ¡éªŒå’Œ */
 
     return  bcc;
 }
 
-/* ¼ÆËãĞÂÖ¡µÄĞ£ÑéºÍÖµ */
+/* è®¡ç®—æ–°å¸§çš„æ ¡éªŒå’Œå€¼ */
 static uint16_t __zlg600_new_frame_sum_cal (am_zlg600_frame_new_t *p_frame)
 {
     uint16_t  i,j;
@@ -968,11 +968,11 @@ static uint16_t __zlg600_new_frame_sum_cal (am_zlg600_frame_new_t *p_frame)
     sum += p_frame->smc_seq;
     sum += p_frame->cmd_class;
 
-    sum += p_frame->cmd_status & 0xFF;          /* µÍ×Ö½Ú */
-    sum += p_frame->cmd_status >> 8;            /* ¸ß×Ö½Ú */
+    sum += p_frame->cmd_status & 0xFF;          /* ä½å­—èŠ‚ */
+    sum += p_frame->cmd_status >> 8;            /* é«˜å­—èŠ‚ */
 
-    sum += p_frame->info_len & 0xFF;            /* µÍ×Ö½Ú */
-    sum += p_frame->info_len >> 8;              /* µÍ×Ö½Ú */
+    sum += p_frame->info_len & 0xFF;            /* ä½å­—èŠ‚ */
+    sum += p_frame->info_len >> 8;              /* ä½å­—èŠ‚ */
 
     for (i = 0; i < p_frame->buf_num; i++) {
         p_buf     = p_frame->p_info_desc[i].p_buf;
@@ -982,24 +982,24 @@ static uint16_t __zlg600_new_frame_sum_cal (am_zlg600_frame_new_t *p_frame)
         }
     }
 
-    sum = ~sum;                                 /* ½«µÃµ½µÄ¸÷¸öÊı¾İµÄºÍÖµÈ¡·´ */
+    sum = ~sum;                                 /* å°†å¾—åˆ°çš„å„ä¸ªæ•°æ®çš„å’Œå€¼å–å */
 
     return  sum;
 }
 
 /******************************************************************************/
 
-/* Ğ£Ñé½ÓÊÕµÄ¾É»ØÓ¦Ö¡ÊÇ·ñ³öÏÖ´íÎó */
+/* æ ¡éªŒæ¥æ”¶çš„æ—§å›åº”å¸§æ˜¯å¦å‡ºç°é”™è¯¯ */
 static int __zlg600_old_frame_respond_check (am_zlg600_frame_old_t *p_frame,
                                              uint8_t                cmd_type)
 {
 
-    /* ×´Ì¬²»Îª0x00£¬±íÊ¾ÃüÁîÖ´ĞĞÊ§°Ü */
+    /* çŠ¶æ€ä¸ä¸º0x00ï¼Œè¡¨ç¤ºå‘½ä»¤æ‰§è¡Œå¤±è´¥ */
     if (p_frame->cmd_status != 0x00) {
         return -AM_EIO;
     }
 
-    /* »ØÓ¦Ö¡ºÍÃüÁîÖ¡µÄ ÃüÁîÀàĞÍ ²»Í¬£¬±íÊ¾³öÏÖ´íÎó */
+    /* å›åº”å¸§å’Œå‘½ä»¤å¸§çš„ å‘½ä»¤ç±»å‹ ä¸åŒï¼Œè¡¨ç¤ºå‡ºç°é”™è¯¯ */
     if (p_frame->cmd_type != cmd_type) {
         return -AM_EIO;
     }
@@ -1007,23 +1007,23 @@ static int __zlg600_old_frame_respond_check (am_zlg600_frame_old_t *p_frame,
     return AM_OK;
 }
 
-/* Ğ£Ñé½ÓÊÕµÄĞÂ»ØÓ¦Ö¡ÊÇ·ñ³öÏÖ´íÎó */
+/* æ ¡éªŒæ¥æ”¶çš„æ–°å›åº”å¸§æ˜¯å¦å‡ºç°é”™è¯¯ */
 static int __zlg600_new_frame_respond_check (am_zlg600_frame_new_t *p_frame,
                                              uint8_t                cmd_type,
                                              uint8_t                frame_seq)
 {
 
-    /* ×´Ì¬²»Îª0x00£¬±íÊ¾ÃüÁîÖ´ĞĞÊ§°Ü */
+    /* çŠ¶æ€ä¸ä¸º0x00ï¼Œè¡¨ç¤ºå‘½ä»¤æ‰§è¡Œå¤±è´¥ */
     if (p_frame->cmd_status != 0x00) {
         return -AM_EIO;
     }
 
-    /* »ØÓ¦Ö¡ºÍÃüÁîÖ¡µÄ ÃüÁîÀàĞÍ ²»Í¬£¬±íÊ¾³öÏÖ´íÎó */
+    /* å›åº”å¸§å’Œå‘½ä»¤å¸§çš„ å‘½ä»¤ç±»å‹ ä¸åŒï¼Œè¡¨ç¤ºå‡ºç°é”™è¯¯ */
     if (p_frame->cmd_class != cmd_type) {
         return -AM_EIO;
     }
 
-    /* »ØÓ¦Ö¡ºÍÃüÁîÖ¡µÄ °üºÅ ²»Í¬£¬±íÊ¾³öÏÖ´íÎó     */
+    /* å›åº”å¸§å’Œå‘½ä»¤å¸§çš„ åŒ…å· ä¸åŒï¼Œè¡¨ç¤ºå‡ºç°é”™è¯¯     */
     if (p_frame->smc_seq != frame_seq ) {
         return -AM_EIO;
     }
@@ -1033,7 +1033,7 @@ static int __zlg600_new_frame_respond_check (am_zlg600_frame_new_t *p_frame,
 
 /******************************************************************************/
 
-/* ´¦ÀíÒ»¸öUART¾ÉÖ¡ */
+/* å¤„ç†ä¸€ä¸ªUARTæ—§å¸§ */
 static int __zlg600_uart_old_frame_proc (am_zlg600_handle_t           handle,
                                          uint8_t                      cmd_type,
                                          uint8_t                      cmd,
@@ -1065,10 +1065,10 @@ static int __zlg600_uart_old_frame_proc (am_zlg600_handle_t           handle,
         total_len += p_cmd_desc[i].len;
     }
 
-    p_serv->frame_seq = (p_serv->frame_seq + 1) & 0xF;  /* Ö¡°üºÅ×ÔÔö */
+    p_serv->frame_seq = (p_serv->frame_seq + 1) & 0xF;  /* å¸§åŒ…å·è‡ªå¢ */
 
-    frame.frame_len    = 0x06 + total_len;     /* ¾ÉÖ¡µÄ³¤¶ÈÎª0x06 + ĞÅÏ¢³¤¶È */
-    frame.cmd_type     = cmd_type | (p_serv->frame_seq << 4);    /* Ö¡°üºÅÔÚ¸ßËÄÎ» */
+    frame.frame_len    = 0x06 + total_len;     /* æ—§å¸§çš„é•¿åº¦ä¸º0x06 + ä¿¡æ¯é•¿åº¦ */
+    frame.cmd_type     = cmd_type | (p_serv->frame_seq << 4);    /* å¸§åŒ…å·åœ¨é«˜å››ä½ */
     frame.cmd_status   = cmd;
     frame.info_len     = total_len;
     frame.p_info_desc  = p_cmd_desc;
@@ -1080,26 +1080,26 @@ static int __zlg600_uart_old_frame_proc (am_zlg600_handle_t           handle,
 
         pfn_temp = __zlg600_uart_old_frame_cmd_send;
 
-        /* ·¢ËÍÃüÁîÖ¡£¬²¢ÅĞ¶ÏÊÇ·ñ³É¹¦ */
+        /* å‘é€å‘½ä»¤å¸§ï¼Œå¹¶åˆ¤æ–­æ˜¯å¦æˆåŠŸ */
         ret = pfn_temp(handle->p_cookie, &frame);
         if (ret != AM_OK) {
             return ret;
         }
     }
 
-    /* ÓÃÓÚ½ÓÊÕ»ØÓ¦Ö¡ÖĞµÄĞÅÏ¢      */
+    /* ç”¨äºæ¥æ”¶å›åº”å¸§ä¸­çš„ä¿¡æ¯      */
     frame.p_info_desc  = p_res_desc;
     frame.buf_num      = res_buf_num;
 
     pfn_temp = __zlg600_uart_old_frame_respond_recv;
 
-    /* ½ÓÊÕ»ØÓ¦Ö¡£¬²¢ÅĞ¶ÏÊÇ·ñ³É¹¦ */
+    /* æ¥æ”¶å›åº”å¸§ï¼Œå¹¶åˆ¤æ–­æ˜¯å¦æˆåŠŸ */
     ret = pfn_temp(handle->p_cookie, &frame);
     if (ret != AM_OK) {
         return ret;
     }
 
-    /* ¼ì²é»ØÓ¦Ö¡ÊÇ·ñ³öÏÖ´íÎó */
+    /* æ£€æŸ¥å›åº”å¸§æ˜¯å¦å‡ºç°é”™è¯¯ */
     ret = __zlg600_old_frame_respond_check(&frame, cmd_type | (p_serv->frame_seq << 4));
     if (ret != AM_OK) {
         return ret;
@@ -1114,7 +1114,7 @@ static int __zlg600_uart_old_frame_proc (am_zlg600_handle_t           handle,
 
 /******************************************************************************/
 
-/* ´¦ÀíÒ»¸öUARTĞÂÖ¡ */
+/* å¤„ç†ä¸€ä¸ªUARTæ–°å¸§ */
 static int __zlg600_uart_new_frame_proc (am_zlg600_handle_t         handle,
                                          uint8_t                    cmd_class,
                                          uint16_t                   cmd,
@@ -1159,7 +1159,7 @@ static int __zlg600_uart_new_frame_proc (am_zlg600_handle_t         handle,
 
     if (1 != p_serv->auto_detect_read) {
 
-        /* °üºÅ¼Ó1£¬½öµÍ4Î»ÓĞĞ§ */
+        /* åŒ…å·åŠ 1ï¼Œä»…ä½4ä½æœ‰æ•ˆ */
         p_serv->frame_seq = (p_serv->frame_seq + 1) & 0xF;
 
         frame.smc_seq      = p_serv->frame_seq;
@@ -1167,26 +1167,26 @@ static int __zlg600_uart_new_frame_proc (am_zlg600_handle_t         handle,
 
         pfn_temp = __zlg600_uart_new_frame_cmd_send;
 
-        /* ·¢ËÍÃüÁîÖ¡£¬²¢ÅĞ¶ÏÊÇ·ñ³É¹¦ */
+        /* å‘é€å‘½ä»¤å¸§ï¼Œå¹¶åˆ¤æ–­æ˜¯å¦æˆåŠŸ */
         ret = pfn_temp(p_serv->p_cookie, &frame);
         if (ret != AM_OK) {
             return ret;
         }
     }
 
-    /* ÓÃÓÚ½ÓÊÕ»ØÓ¦Ö¡ÖĞµÄĞÅÏ¢      */
+    /* ç”¨äºæ¥æ”¶å›åº”å¸§ä¸­çš„ä¿¡æ¯      */
     frame.p_info_desc  = p_res_desc;
     frame.buf_num      = res_buf_num;
 
     pfn_temp = __zlg600_uart_new_frame_respond_recv;
 
-     /* ½ÓÊÕ»ØÓ¦Ö¡£¬²¢ÅĞ¶ÏÊÇ·ñ³É¹¦ */
+     /* æ¥æ”¶å›åº”å¸§ï¼Œå¹¶åˆ¤æ–­æ˜¯å¦æˆåŠŸ */
     ret = pfn_temp(p_serv->p_cookie, &frame);
     if (ret != AM_OK) {
         return ret;
     }
 
-    /* ¼ì²é»ØÓ¦Ö¡ÊÇ·ñ³öÏÖ´íÎó */
+    /* æ£€æŸ¥å›åº”å¸§æ˜¯å¦å‡ºç°é”™è¯¯ */
     ret = __zlg600_new_frame_respond_check(&frame, cmd_class, p_serv->frame_seq);
     if (ret != AM_OK) {
         return ret;
@@ -1200,7 +1200,7 @@ static int __zlg600_uart_new_frame_proc (am_zlg600_handle_t         handle,
 
 /******************************************************************************/
 
-/* ´¦ÀíÒ»¸öUARTÖ¡ */
+/* å¤„ç†ä¸€ä¸ªUARTå¸§ */
 static int __zlg600_uart_frame_proc (am_zlg600_handle_t         handle,
                                      uint8_t                    cmd_class,
                                      uint16_t                   cmd,
@@ -1233,7 +1233,7 @@ static int __zlg600_uart_frame_proc (am_zlg600_handle_t         handle,
 
 /******************************************************************************/
 
-/* ´¦ÀíÒ»¸öI2C¾ÉÖ¡ */
+/* å¤„ç†ä¸€ä¸ªI2Cæ—§å¸§ */
 static int __zlg600_i2c_old_frame_proc (am_zlg600_handle_t           handle,
                                         uint8_t                      cmd_type,
                                         uint8_t                      cmd,
@@ -1265,10 +1265,10 @@ static int __zlg600_i2c_old_frame_proc (am_zlg600_handle_t           handle,
         total_len += p_cmd_desc[i].len;
     }
 
-    p_serv->frame_seq = (p_serv->frame_seq + 1) & 0xF;  /* Ö¡°üºÅ×ÔÔö */
+    p_serv->frame_seq = (p_serv->frame_seq + 1) & 0xF;  /* å¸§åŒ…å·è‡ªå¢ */
 
-    frame.frame_len   = 0x06 + total_len;     /* ¾ÉÖ¡µÄ³¤¶ÈÎª0x06 + ĞÅÏ¢³¤¶È */
-    frame.cmd_type    = cmd_type | (p_serv->frame_seq << 4);    /* Ö¡°üºÅÔÚ¸ßËÄÎ» */
+    frame.frame_len   = 0x06 + total_len;     /* æ—§å¸§çš„é•¿åº¦ä¸º0x06 + ä¿¡æ¯é•¿åº¦ */
+    frame.cmd_type    = cmd_type | (p_serv->frame_seq << 4);    /* å¸§åŒ…å·åœ¨é«˜å››ä½ */
     frame.cmd_status  = cmd;
     frame.info_len    = total_len;
     frame.p_info_desc = p_cmd_desc;
@@ -1280,26 +1280,26 @@ static int __zlg600_i2c_old_frame_proc (am_zlg600_handle_t           handle,
 
         pfn_temp = __zlg600_i2c_old_frame_cmd_send;
 
-        /* ·¢ËÍÃüÁîÖ¡£¬²¢ÅĞ¶ÏÊÇ·ñ³É¹¦ */
+        /* å‘é€å‘½ä»¤å¸§ï¼Œå¹¶åˆ¤æ–­æ˜¯å¦æˆåŠŸ */
         ret = pfn_temp(handle->p_cookie, &frame);
         if (ret != AM_OK) {
             return ret;
         }
     }
 
-    /* ÓÃÓÚ½ÓÊÕ»ØÓ¦Ö¡ÖĞµÄĞÅÏ¢      */
+    /* ç”¨äºæ¥æ”¶å›åº”å¸§ä¸­çš„ä¿¡æ¯      */
     frame.p_info_desc  = p_res_desc;
     frame.buf_num      = res_buf_num;
 
     pfn_temp = __zlg600_i2c_old_frame_respond_recv;
 
-    /* ½ÓÊÕ»ØÓ¦Ö¡£¬²¢ÅĞ¶ÏÊÇ·ñ³É¹¦ */
+    /* æ¥æ”¶å›åº”å¸§ï¼Œå¹¶åˆ¤æ–­æ˜¯å¦æˆåŠŸ */
     ret = pfn_temp(handle->p_cookie, &frame);
     if (ret != AM_OK) {
         return ret;
     }
 
-    /* ¼ì²é»ØÓ¦Ö¡ÊÇ·ñ³öÏÖ´íÎó */
+    /* æ£€æŸ¥å›åº”å¸§æ˜¯å¦å‡ºç°é”™è¯¯ */
     ret = __zlg600_old_frame_respond_check(&frame, cmd_type | (p_serv->frame_seq << 4));
     if (ret != AM_OK) {
         return ret;
@@ -1314,7 +1314,7 @@ static int __zlg600_i2c_old_frame_proc (am_zlg600_handle_t           handle,
 
 /******************************************************************************/
 
-/* ´¦ÀíÒ»¸öI2CĞÂÖ¡ */
+/* å¤„ç†ä¸€ä¸ªI2Cæ–°å¸§ */
 static int __zlg600_i2c_new_frame_proc (am_zlg600_handle_t         handle,
                                         uint8_t                    cmd_class,
                                         uint16_t                   cmd,
@@ -1359,7 +1359,7 @@ static int __zlg600_i2c_new_frame_proc (am_zlg600_handle_t         handle,
 
     if (1 != p_serv->auto_detect_read) {
 
-        /* °üºÅ¼Ó1£¬½öµÍ4Î»ÓĞĞ§ */
+        /* åŒ…å·åŠ 1ï¼Œä»…ä½4ä½æœ‰æ•ˆ */
         p_serv->frame_seq = (p_serv->frame_seq + 1) & 0xF;
 
         frame.smc_seq     = p_serv->frame_seq;
@@ -1367,31 +1367,31 @@ static int __zlg600_i2c_new_frame_proc (am_zlg600_handle_t         handle,
 
         pfn_temp = __zlg600_i2c_new_frame_cmd_send;
 
-        /* ·¢ËÍÃüÁîÖ¡£¬²¢ÅĞ¶ÏÊÇ·ñ³É¹¦ */
+        /* å‘é€å‘½ä»¤å¸§ï¼Œå¹¶åˆ¤æ–­æ˜¯å¦æˆåŠŸ */
         ret = pfn_temp(p_serv->p_cookie, &frame);
         if (ret != AM_OK) {
             return ret;
         }
     }
 
-    /* I2CÄ£Ê½ÏÂÉèÖÃĞÂ¾ÉÖ¡¸ñÊ½£¬ÇĞ»»¸ñÊ½ºóÎŞĞèÔÙ½ÓÊÕ»ØÓ¦Ö¡ */
+    /* I2Cæ¨¡å¼ä¸‹è®¾ç½®æ–°æ—§å¸§æ ¼å¼ï¼Œåˆ‡æ¢æ ¼å¼åæ— éœ€å†æ¥æ”¶å›åº”å¸§ */
     if (cmd_class == 0x01 && cmd == 'K') {
         return AM_OK;
     }
     
-    /* ÓÃÓÚ½ÓÊÕ»ØÓ¦Ö¡ÖĞµÄĞÅÏ¢      */
+    /* ç”¨äºæ¥æ”¶å›åº”å¸§ä¸­çš„ä¿¡æ¯      */
     frame.p_info_desc  = p_res_desc;
     frame.buf_num      = res_buf_num;
 
     pfn_temp = __zlg600_i2c_new_frame_respond_recv;
     
-     /* ½ÓÊÕ»ØÓ¦Ö¡£¬²¢ÅĞ¶ÏÊÇ·ñ³É¹¦ */
+     /* æ¥æ”¶å›åº”å¸§ï¼Œå¹¶åˆ¤æ–­æ˜¯å¦æˆåŠŸ */
     ret = pfn_temp(p_serv->p_cookie, &frame);
     if (ret != AM_OK) {
         return ret;
     }
 
-    /* ¼ì²é»ØÓ¦Ö¡ÊÇ·ñ³öÏÖ´íÎó */
+    /* æ£€æŸ¥å›åº”å¸§æ˜¯å¦å‡ºç°é”™è¯¯ */
     ret = __zlg600_new_frame_respond_check(&frame, cmd_class, p_serv->frame_seq);
     if (ret != AM_OK) {
         return ret;
@@ -1403,7 +1403,7 @@ static int __zlg600_i2c_new_frame_proc (am_zlg600_handle_t         handle,
     return AM_OK;
 }
 
-/* ´¦ÀíÒ»¸öI2CÖ¡ */
+/* å¤„ç†ä¸€ä¸ªI2Cå¸§ */
 static int __zlg600_i2c_frame_proc (am_zlg600_handle_t         handle,
                                     uint8_t                    cmd_class,
                                     uint16_t                   cmd,
@@ -1416,7 +1416,7 @@ static int __zlg600_i2c_frame_proc (am_zlg600_handle_t         handle,
 {
     am_zlg600_i2c_dev_t *p_dev = (am_zlg600_i2c_dev_t *)(handle->p_cookie);
 
-    /* Èç¹ûÖ¸ÁîÎªÉèÖÃ²¨ÌØÂÊ(I2C²»Ö§³Ö´®¿Ú²¨ÌØÂÊÉèÖÃ) */
+    /* å¦‚æœæŒ‡ä»¤ä¸ºè®¾ç½®æ³¢ç‰¹ç‡(I2Cä¸æ”¯æŒä¸²å£æ³¢ç‰¹ç‡è®¾ç½®) */
     if ((cmd_class == 0x01) && (cmd == 'H')) {
         return -AM_ENOTSUP;
     }
@@ -1441,7 +1441,7 @@ static int __zlg600_i2c_frame_proc (am_zlg600_handle_t         handle,
 
 /******************************************************************************/
 
-/* ¸ù¾İÉè±¸ÖĞµÄframe_fmt´¦ÀíÒ»¸öÖ¡ */
+/* æ ¹æ®è®¾å¤‡ä¸­çš„frame_fmtå¤„ç†ä¸€ä¸ªå¸§ */
 static int __zlg600_frame_proc (am_zlg600_handle_t           handle,
                                 uint8_t                      cmd_class,
                                 uint16_t                     cmd,
@@ -1470,7 +1470,7 @@ static int __zlg600_frame_proc (am_zlg600_handle_t           handle,
                                       p_res_info_len);
 }
 
-/* ÉèÖÃUARTÖ¸Áî³¬Ê±Ê±¼ä */
+/* è®¾ç½®UARTæŒ‡ä»¤è¶…æ—¶æ—¶é—´ */
 static int __zlg600_uart_cmd_timeout_set (am_zlg600_handle_t handle,
                                           uint32_t           timeout_ms)
 {
@@ -1480,7 +1480,7 @@ static int __zlg600_uart_cmd_timeout_set (am_zlg600_handle_t handle,
 
     handle->timeout_ms = timeout_ms;
 
-    /* ÉèÖÃ¶Á³¬Ê±Ê±¼ä */
+    /* è®¾ç½®è¯»è¶…æ—¶æ—¶é—´ */
     ret = am_uart_rngbuf_ioctl(p_dev->uart_ringbuf_handle,
                                AM_UART_RNGBUF_TIMEOUT,
                                (void *)timeout_ms);
@@ -1488,7 +1488,7 @@ static int __zlg600_uart_cmd_timeout_set (am_zlg600_handle_t handle,
     return ret;
 }
 
-/* ÉèÖÃI2CÖ¸Áî³¬Ê±Ê±¼ä */
+/* è®¾ç½®I2CæŒ‡ä»¤è¶…æ—¶æ—¶é—´ */
 static int __zlg600_i2c_cmd_timeout_set (am_zlg600_handle_t handle,
                                          uint32_t           timeout_ms)
 {
@@ -1496,63 +1496,63 @@ static int __zlg600_i2c_cmd_timeout_set (am_zlg600_handle_t handle,
     return AM_OK;
 }
 
-/* Mifare¿¨UART×Ô¶¯¼ì²âÖĞ¶Ï»Øµ÷º¯Êı(Ç°ÏòÉùÃ÷) */
+/* Mifareå¡UARTè‡ªåŠ¨æ£€æµ‹ä¸­æ–­å›è°ƒå‡½æ•°(å‰å‘å£°æ˜) */
 static void __auto_detect_int_callback (void *p_arg);
 
-/* UARTÉèÖÃ×Ô¶¯¼ì²â´¥·¢ */
+/* UARTè®¾ç½®è‡ªåŠ¨æ£€æµ‹è§¦å‘ */
 static void __zlg600_uart_auto_detect_trigger_set (am_zlg600_handle_t handle,
                                                    am_bool_t          enable)
 {
     am_zlg600_uart_dev_t *p_dev = (am_zlg600_uart_dev_t *)(handle->p_cookie);
 
-    /* Ê¹ÄÜ */
+    /* ä½¿èƒ½ */
     if (enable) {
 
-        /* Á¬½Ó´¥·¢º¯Êı */
+        /* è¿æ¥è§¦å‘å‡½æ•° */
         am_uart_rngbuf_rx_trigger_cfg(p_dev->uart_ringbuf_handle,
                                       3,
                                       __auto_detect_int_callback,
                                       handle);
 
-        /* Ê¹ÄÜ´¥·¢º¯Êı */
+        /* ä½¿èƒ½è§¦å‘å‡½æ•° */
         am_uart_rngbuf_rx_trigger_enable(p_dev->uart_ringbuf_handle);
 
-    /* ½ûÄÜ */
+    /* ç¦èƒ½ */
     } else {
 
-        /* ½ûÄÜ´¥·¢º¯Êı */
+        /* ç¦èƒ½è§¦å‘å‡½æ•° */
         am_uart_rngbuf_rx_trigger_disable(p_dev->uart_ringbuf_handle);
     }
 }
 
-/* I2CÉèÖÃ×Ô¶¯¼ì²â´¥·¢ */
+/* I2Cè®¾ç½®è‡ªåŠ¨æ£€æµ‹è§¦å‘ */
 static void __zlg600_i2c_auto_detect_trigger_set (am_zlg600_handle_t handle,
                                                   am_bool_t          enable)
 {
     am_zlg600_i2c_dev_t *p_dev = (am_zlg600_i2c_dev_t *)(handle->p_cookie);
 
-    /* Ê¹ÄÜ */
+    /* ä½¿èƒ½ */
     if (enable) {
 
-        /* ¹Ø±ÕÒı½Å´¥·¢(Çå³ıÖĞ¶Ï) */
+        /* å…³é—­å¼•è„šè§¦å‘(æ¸…é™¤ä¸­æ–­) */
         am_gpio_trigger_off(p_dev->pin);
 
-        /* Æô¶¯Òı½Å´¥·¢ */
+        /* å¯åŠ¨å¼•è„šè§¦å‘ */
         am_gpio_trigger_on(p_dev->pin);
 
-    /* ½ûÄÜ */
+    /* ç¦èƒ½ */
     } else {
 
-        /* ¹Ø±ÕÒı½Å´¥·¢ */
+        /* å…³é—­å¼•è„šè§¦å‘ */
         am_gpio_trigger_off(p_dev->pin);
     }
 }
 
 /*******************************************************************************
-   ³õÊ¼»¯º¯Êı
+   åˆå§‹åŒ–å‡½æ•°
 *******************************************************************************/
 
-/* zlg600 uart ³õÊ¼»¯ */
+/* zlg600 uart åˆå§‹åŒ– */
 static am_zlg600_handle_t __zlg600_uart_init (am_zlg600_uart_dev_t            *p_dev,
                                               am_uart_handle_t                 uart_handle,
                                               const am_zlg600_uart_dev_info_t *p_uart_info,
@@ -1565,18 +1565,18 @@ static am_zlg600_handle_t __zlg600_uart_init (am_zlg600_uart_dev_t            *p
         return NULL;
     }
 
-    /* ´®¿ÚÍ¨ĞÅ³õÊ¼»¯º¯Êı²»Ö§³ÖÊ¹ÓÃI2CÄ£Ê½£¬Ó¦Ö±½ÓÊ¹ÓÃI2CÍ¨ĞÅµÄ³õÊ¼»¯º¯Êı  */
+    /* ä¸²å£é€šä¿¡åˆå§‹åŒ–å‡½æ•°ä¸æ”¯æŒä½¿ç”¨I2Cæ¨¡å¼ï¼Œåº”ç›´æ¥ä½¿ç”¨I2Cé€šä¿¡çš„åˆå§‹åŒ–å‡½æ•°  */
     if (p_uart_info->now_mode == AM_ZLG600_MODE_I2C) {
         return NULL;
     }
 
-    /* ÉèÖÃ²¨ÌØÂÊÎª  baudrate */
+    /* è®¾ç½®æ³¢ç‰¹ç‡ä¸º  baudrate */
     am_uart_ioctl(uart_handle, AM_UART_BAUD_SET, (void *)p_uart_info->baudrate);
 
-    /* ÉèÖÃÊı¾İÎ»Îª8Î»£¬ÎŞĞ£Ñé£¬1Í£Ö¹Î» */
+    /* è®¾ç½®æ•°æ®ä½ä¸º8ä½ï¼Œæ— æ ¡éªŒï¼Œ1åœæ­¢ä½ */
     am_uart_ioctl(uart_handle, AM_UART_OPTS_SET, (void *)AM_UART_CS8);
 
-    /* ´®¿Ú£¨´øRingBuf£©³õÊ¼»¯*/
+    /* ä¸²å£ï¼ˆå¸¦RingBufï¼‰åˆå§‹åŒ–*/
     p_dev->uart_ringbuf_handle = am_uart_rngbuf_init(&(p_dev->uart_ringbuf_dev),
                                                       uart_handle,
                                                       p_uart_info->p_uart_rxbuf,
@@ -1584,12 +1584,12 @@ static am_zlg600_handle_t __zlg600_uart_init (am_zlg600_uart_dev_t            *p
                                                       p_uart_info->p_uart_txbuf,
                                                       p_uart_info->txbuf_size);
 
-    /* ÉèÖÃ¶Á³¬Ê±Ê±¼äÎª 200ms */
+    /* è®¾ç½®è¯»è¶…æ—¶æ—¶é—´ä¸º 200ms */
     am_uart_rngbuf_ioctl(p_dev->uart_ringbuf_handle,
                          AM_UART_RNGBUF_TIMEOUT,
                          (void *)200);
 
-    /* µ±Ç°´¦ÓÚ×Ô¶¯Õì²âÄ£Ê½£¬Á¬Ğø·¢ËÍÁ½´Î0x20 */
+    /* å½“å‰å¤„äºè‡ªåŠ¨ä¾¦æµ‹æ¨¡å¼ï¼Œè¿ç»­å‘é€ä¸¤æ¬¡0x20 */
     if (p_uart_info->now_mode == AM_ZLG600_MODE_AUTO_CHECK ) {
         tx_data = 0x20;
         am_uart_rngbuf_send(p_dev->uart_ringbuf_handle, &tx_data, 1);
@@ -1598,44 +1598,44 @@ static am_zlg600_handle_t __zlg600_uart_init (am_zlg600_uart_dev_t            *p
 
         rx_data = 0x00;
 
-        /* ½ÓÊÕÒ»¸öÊı¾İ */
+        /* æ¥æ”¶ä¸€ä¸ªæ•°æ® */
          am_uart_rngbuf_receive(p_dev->uart_ringbuf_handle, &rx_data, 1);
 
-//        /* Ã»ÓĞ½ÓÊÕµ½Ò»¸öÊı¾İ»ò½ÓÊÕµÄÊı¾İ²»Îª0x06 */
+//        /* æ²¡æœ‰æ¥æ”¶åˆ°ä¸€ä¸ªæ•°æ®æˆ–æ¥æ”¶çš„æ•°æ®ä¸ä¸º0x06 */
 //        if ((len != 1)  || (rx_data != 0x06)) {
 //            return NULL;
 //        }
     }
 
-    /* ÒÑ¾­´¦ÓÚ´®¿ÚÄ£Ê½£¬ÎŞĞèÔÙ·¢ËÍÁ½´Î0x20 */
+    /* å·²ç»å¤„äºä¸²å£æ¨¡å¼ï¼Œæ— éœ€å†å‘é€ä¸¤æ¬¡0x20 */
     if (p_uart_info->now_mode == AM_ZLG600_MODE_UART) {
     }
 
     p_serv = &p_dev->zlg600_serv;
     
-    /* ³õÊ¼»¯ZLG600±ê×¼·şÎñ */
+    /* åˆå§‹åŒ–ZLG600æ ‡å‡†æœåŠ¡ */
     p_serv->frame_seq  = 0;
     p_serv->p_cookie   = p_dev;
     p_serv->cur_addr   = p_uart_info->local_addr;
     p_serv->timeout_ms = 200;
     
-    /* ¼ÓÔØÖ¸Áî³¬Ê±º¯Êı */
+    /* åŠ è½½æŒ‡ä»¤è¶…æ—¶å‡½æ•° */
     p_serv->pfn_cmd_timeout_set = (am_pfnvoid_t)(__zlg600_uart_cmd_timeout_set);
 
-    /* ¼ÓÔØÖ¡´¦Àíº¯Êı */
+    /* åŠ è½½å¸§å¤„ç†å‡½æ•° */
     p_serv->pfn_frame_proc = p_op_func;
 
-    /* ¼ÓÔØ×Ô¶¯¼ì²â´¥·¢º¯Êı */
+    /* åŠ è½½è‡ªåŠ¨æ£€æµ‹è§¦å‘å‡½æ•° */
     p_serv->pfn_auto_detect_trigger_set =
                     (am_pfnvoid_t)__zlg600_uart_auto_detect_trigger_set;
 
-    /* Çå³ı×Ô¶¯¼ì²â¶Á±êÖ¾ */
+    /* æ¸…é™¤è‡ªåŠ¨æ£€æµ‹è¯»æ ‡å¿— */
     p_serv->auto_detect_read = 0;
 
     return p_serv;
 }
 
-/* zlg600 uart ³õÊ¼»¯£¨¾ÉÖ¡£© */
+/* zlg600 uart åˆå§‹åŒ–ï¼ˆæ—§å¸§ï¼‰ */
 am_zlg600_handle_t am_zlg600_uart_old_init (am_zlg600_uart_dev_t            *p_dev,
                                             am_uart_handle_t                 uart_handle,
                                             const am_zlg600_uart_dev_info_t *p_uart_info)
@@ -1649,7 +1649,7 @@ am_zlg600_handle_t am_zlg600_uart_old_init (am_zlg600_uart_dev_t            *p_d
                               (am_pfnvoid_t)(__zlg600_uart_frame_proc));
 }
 
-/* zlg600 uart ³õÊ¼»¯£¨ĞÂÖ¡£© */
+/* zlg600 uart åˆå§‹åŒ–ï¼ˆæ–°å¸§ï¼‰ */
 am_zlg600_handle_t am_zlg600_uart_new_init (am_zlg600_uart_dev_t            *p_dev,
                                             am_uart_handle_t                 uart_handle,
                                             const am_zlg600_uart_dev_info_t *p_uart_info)
@@ -1662,7 +1662,7 @@ am_zlg600_handle_t am_zlg600_uart_new_init (am_zlg600_uart_dev_t            *p_d
                               (am_pfnvoid_t)(__zlg600_uart_frame_proc));
 }
 
-/* zlg600 i2c ³õÊ¼»¯ */
+/* zlg600 i2c åˆå§‹åŒ– */
 static am_zlg600_handle_t __zlg600_i2c_init (am_zlg600_i2c_dev_t            *p_dev,
                                              am_i2c_handle_t                 i2c_handle,
                                              const am_zlg600_i2c_dev_info_t *p_i2c_info,
@@ -1674,22 +1674,22 @@ static am_zlg600_handle_t __zlg600_i2c_init (am_zlg600_i2c_dev_t            *p_d
         return NULL;
     }
 
-    /* I2CÍ¨ĞÅ³õÊ¼»¯º¯Êı²»Ö§³ÖÊ¹ÓÃUARTÄ£Ê½£¬Ó¦Ö±½ÓÊ¹ÓÃUARTÍ¨ĞÅµÄ³õÊ¼»¯º¯Êı  */
+    /* I2Cé€šä¿¡åˆå§‹åŒ–å‡½æ•°ä¸æ”¯æŒä½¿ç”¨UARTæ¨¡å¼ï¼Œåº”ç›´æ¥ä½¿ç”¨UARTé€šä¿¡çš„åˆå§‹åŒ–å‡½æ•°  */
     if (p_i2c_info->now_mode == AM_ZLG600_MODE_UART) {
         return NULL;
     }
 
-    /* I2CÄ£Ê½¿ÉÒÔÖ±½Ó½øĞĞÊı¾İÍ¨ĞÅ£¬ÎŞĞèÏò´®¿ÚÄÇÑùÁ¬Ğø·¢ËÍÁ½´Î0x20 */
+    /* I2Cæ¨¡å¼å¯ä»¥ç›´æ¥è¿›è¡Œæ•°æ®é€šä¿¡ï¼Œæ— éœ€å‘ä¸²å£é‚£æ ·è¿ç»­å‘é€ä¸¤æ¬¡0x20 */
 
-    /* ÅäÖÃI2CÖĞ¶ÏÒı½Å */
+    /* é…ç½®I2Cä¸­æ–­å¼•è„š */
     am_gpio_pin_cfg(p_i2c_info->pin, AM_GPIO_INPUT | AM_GPIO_PULLUP);
 
-    /* Á¬½ÓGPIOÒı½ÅÖĞ¶Ï */
+    /* è¿æ¥GPIOå¼•è„šä¸­æ–­ */
     if (am_gpio_trigger_connect(p_i2c_info->pin, __pin_int_callback, p_dev) != AM_OK) {
         return NULL;
     }
 
-    /* ÏÂ½µÑØ´¥·¢ */
+    /* ä¸‹é™æ²¿è§¦å‘ */
     if (am_gpio_trigger_cfg(p_i2c_info->pin, AM_GPIO_TRIGGER_FALL) != AM_OK) {
         return NULL;
     }
@@ -1701,7 +1701,7 @@ static am_zlg600_handle_t __zlg600_i2c_init (am_zlg600_i2c_dev_t            *p_d
 
     p_serv            = &p_dev->zlg600_serv;
 
-    /* ³õÊ¼»¯ZLG600±ê×¼·şÎñ */
+    /* åˆå§‹åŒ–ZLG600æ ‡å‡†æœåŠ¡ */
     p_serv->frame_seq   = 0;
     p_serv->p_cookie    = p_dev;
     p_serv->work_mode   = AM_ZLG600_MODE_SLAVE;
@@ -1709,25 +1709,25 @@ static am_zlg600_handle_t __zlg600_i2c_init (am_zlg600_i2c_dev_t            *p_d
     p_serv->cur_addr    = p_i2c_info->local_addr;
     p_serv->timeout_ms  = 500;
 
-    /* ¼ÓÔØÖ¸Áî³¬Ê±º¯Êı */
+    /* åŠ è½½æŒ‡ä»¤è¶…æ—¶å‡½æ•° */
     p_serv->pfn_cmd_timeout_set = (am_pfnvoid_t)(__zlg600_i2c_cmd_timeout_set);
 
-    /* ¼ÓÔØÖ¡´¦Àíº¯Êı */
+    /* åŠ è½½å¸§å¤„ç†å‡½æ•° */
     p_serv->pfn_frame_proc = p_op_func;
 
-    /* ¼ÓÔØ×Ô¶¯¼ì²â´¥·¢º¯Êı */
+    /* åŠ è½½è‡ªåŠ¨æ£€æµ‹è§¦å‘å‡½æ•° */
     p_serv->pfn_auto_detect_trigger_set =
                     (am_pfnvoid_t)__zlg600_i2c_auto_detect_trigger_set;
 
     am_wait_init(&p_dev->wait);
 
-    /* Çå³ı×Ô¶¯¼ì²â¶Á±êÖ¾ */
+    /* æ¸…é™¤è‡ªåŠ¨æ£€æµ‹è¯»æ ‡å¿— */
     p_serv->auto_detect_read = 0;
 
     return p_serv;
 }
 
-/* zlg600 i2c ³õÊ¼»¯£¨¾ÉÖ¡£© */
+/* zlg600 i2c åˆå§‹åŒ–ï¼ˆæ—§å¸§ï¼‰ */
 am_zlg600_handle_t am_zlg600_i2c_old_init (am_zlg600_i2c_dev_t            *p_dev,
                                            am_i2c_handle_t                 i2c_handle,
                                            const am_zlg600_i2c_dev_info_t *p_i2c_info)
@@ -1740,7 +1740,7 @@ am_zlg600_handle_t am_zlg600_i2c_old_init (am_zlg600_i2c_dev_t            *p_dev
                              (am_pfnvoid_t)(__zlg600_i2c_frame_proc));
 }
 
-/* zlg600 i2c ³õÊ¼»¯£¨ĞÂÖ¡£© */
+/* zlg600 i2c åˆå§‹åŒ–ï¼ˆæ–°å¸§ï¼‰ */
 am_zlg600_handle_t am_zlg600_i2c_new_init (am_zlg600_i2c_dev_t            *p_dev,
                                            am_i2c_handle_t                 i2c_handle,
                                            const am_zlg600_i2c_dev_info_t *p_i2c_info)
@@ -1754,10 +1754,10 @@ am_zlg600_handle_t am_zlg600_i2c_new_init (am_zlg600_i2c_dev_t            *p_dev
 }
 
 /*******************************************************************************
-   Éè±¸¿ØÖÆÀàº¯Êı
+   è®¾å¤‡æ§åˆ¶ç±»å‡½æ•°
 *******************************************************************************/
 
-/* ¶ÁÉè±¸ĞÅÏ¢ */
+/* è¯»è®¾å¤‡ä¿¡æ¯ */
 int am_zlg600_info_get (am_zlg600_handle_t  handle,
                         uint8_t            *p_info)
 {
@@ -1768,14 +1768,14 @@ int am_zlg600_info_get (am_zlg600_handle_t  handle,
     }
 
     rx_desc[0].p_buf = p_info;
-    rx_desc[0].len   = 0x14;          /* ¹Ì¶¨½ÓÊÕ³¤¶È0x14 */
+    rx_desc[0].len   = 0x14;          /* å›ºå®šæ¥æ”¶é•¿åº¦0x14 */
 
     return __zlg600_frame_proc(handle, 1, 'A', NULL, 0, rx_desc, 1, NULL);
 }
 
 /******************************************************************************/
 
-/* ÅäÖÃIC¿¨½Ó¿Ú£¬¸ÃÃüÁîÖ´ĞĞºó£¬Æô¶¯ÁËIC¿¨½Ó¿Ú£¬Æô¶¯ºóÄ¬ÈÏÖ§³ÖTypeA¿¨ */
+/* é…ç½®ICå¡æ¥å£ï¼Œè¯¥å‘½ä»¤æ‰§è¡Œåï¼Œå¯åŠ¨äº†ICå¡æ¥å£ï¼Œå¯åŠ¨åé»˜è®¤æ”¯æŒTypeAå¡ */
 int am_zlg600_ic_port_config (am_zlg600_handle_t handle)
 {
     if (handle == NULL) {
@@ -1785,7 +1785,7 @@ int am_zlg600_ic_port_config (am_zlg600_handle_t handle)
     return __zlg600_frame_proc(handle, 1, 'B', NULL, 0, NULL, 0, NULL);
 }
 
-/* ¹Ø±ÕIC¿¨½Ó¿Ú */
+/* å…³é—­ICå¡æ¥å£ */
 int am_zlg600_ic_port_close (am_zlg600_handle_t handle)
 {
     if (handle == NULL) {
@@ -1795,7 +1795,7 @@ int am_zlg600_ic_port_close (am_zlg600_handle_t handle)
     return __zlg600_frame_proc(handle, 1, 'C', NULL, 0, NULL, 0, NULL);
 }
 
-/* ÉèÖÃIC¿¨½Ó¿ÚĞ­Òé£¨¹¤×÷Ä£Ê½£©TypeA(0)»òÕßTypeB(4) */
+/* è®¾ç½®ICå¡æ¥å£åè®®ï¼ˆå·¥ä½œæ¨¡å¼ï¼‰TypeA(0)æˆ–è€…TypeB(4) */
 int am_zlg600_ic_isotype_set (am_zlg600_handle_t handle,
                               uint8_t            isotype)
 {
@@ -1813,7 +1813,7 @@ int am_zlg600_ic_isotype_set (am_zlg600_handle_t handle,
 
 /******************************************************************************/
 
-/* ×°ÔØIC¿¨ÃÜÔ¿£¨¹¤×÷Ä£Ê½£©TypeA(0)»òÕßTypeB(4) */
+/* è£…è½½ICå¡å¯†é’¥ï¼ˆå·¥ä½œæ¨¡å¼ï¼‰TypeA(0)æˆ–è€…TypeB(4) */
 int am_zlg600_ic_key_load (am_zlg600_handle_t  handle,
                            uint8_t             key_type,
                            uint8_t             key_sec,
@@ -1826,15 +1826,15 @@ int am_zlg600_ic_key_load (am_zlg600_handle_t  handle,
         return -AM_EINVAL;
     }
 
-    /* ÃÜÔ¿ÀàĞÍ */
+    /* å¯†é’¥ç±»å‹ */
     tx_desc[0].p_buf = &key_type;
     tx_desc[0].len   = 1;
 
-    /* ÃÜÔ¿ÇøºÅ */
+    /* å¯†é’¥åŒºå· */
     tx_desc[1].p_buf = &key_sec;
     tx_desc[1].len   = 1;
 
-    /* ÃÜÔ¿    */
+    /* å¯†é’¥    */
     tx_desc[2].p_buf = p_key;
     tx_desc[2].len   = key_length;
 
@@ -1843,7 +1843,7 @@ int am_zlg600_ic_key_load (am_zlg600_handle_t  handle,
 
 /******************************************************************************/
 
-/* ÉèÖÃIC¿¨½Ó¿ÚµÄ¼Ä´æÆ÷Öµ */
+/* è®¾ç½®ICå¡æ¥å£çš„å¯„å­˜å™¨å€¼ */
 int am_zlg600_ic_reg_set (am_zlg600_handle_t handle,
                           uint8_t            reg_addr,
                           uint8_t            reg_val)
@@ -1854,18 +1854,18 @@ int am_zlg600_ic_reg_set (am_zlg600_handle_t handle,
         return -AM_EINVAL;
     }
 
-    /* ¼Ä´æÆ÷µØÖ· */
+    /* å¯„å­˜å™¨åœ°å€ */
     tx_desc[0].p_buf = &reg_addr;
     tx_desc[0].len   = 1;
 
-    /* ¼Ä´æÆ÷Öµ  */
+    /* å¯„å­˜å™¨å€¼  */
     tx_desc[1].p_buf = &reg_val;
     tx_desc[1].len   = 1;
 
     return __zlg600_frame_proc(handle, 1, 'F', tx_desc, 2, NULL, 0, NULL);
 }
 
-/* »ñÈ¡IC¿¨½Ó¿ÚµÄ¼Ä´æÆ÷Öµ */
+/* è·å–ICå¡æ¥å£çš„å¯„å­˜å™¨å€¼ */
 int am_zlg600_ic_reg_get (am_zlg600_handle_t  handle,
                           uint8_t             reg_addr,
                           uint8_t            *p_val)
@@ -1877,11 +1877,11 @@ int am_zlg600_ic_reg_get (am_zlg600_handle_t  handle,
         return -AM_EINVAL;
     }
 
-    /* ¼Ä´æÆ÷µØÖ·     */
+    /* å¯„å­˜å™¨åœ°å€     */
     tx_desc[0].p_buf = &reg_addr;
     tx_desc[0].len   = 1;
 
-    /* »ñÈ¡µÄ¼Ä´æÆ÷Öµ */
+    /* è·å–çš„å¯„å­˜å™¨å€¼ */
     rx_desc[0].p_buf = p_val;
     rx_desc[0].len   = 1;
 
@@ -1890,12 +1890,12 @@ int am_zlg600_ic_reg_get (am_zlg600_handle_t  handle,
 
 /******************************************************************************/
 
-/* ÉèÖÃ²¨ÌØÂÊ */
+/* è®¾ç½®æ³¢ç‰¹ç‡ */
 int am_zlg600_baudrate_set (am_zlg600_handle_t handle,
                             uint32_t           baudrate_flag)
 {
     am_zlg600_info_buf_desc_t  tx_desc[1];
-    uint8_t                    num = 0;     /* ²¨ÌØÂÊ±àÂë£¬¶ÔÓ¦0 ~ 7 */
+    uint8_t                    num = 0;     /* æ³¢ç‰¹ç‡ç¼–ç ï¼Œå¯¹åº”0 ~ 7 */
 
     int ret;
 
@@ -1942,7 +1942,7 @@ int am_zlg600_baudrate_set (am_zlg600_handle_t handle,
         return ret;
     }
 
-    /* ĞŞ¸Ä´®¿ÚÊ¹ÓÃµÄ±ÈÌØÂÊ */
+    /* ä¿®æ”¹ä¸²å£ä½¿ç”¨çš„æ¯”ç‰¹ç‡ */
     am_uart_rngbuf_ioctl(((am_zlg600_uart_dev_t *)handle)->uart_ringbuf_handle,
                           AM_UART_BAUD_SET,
                          (void *)baudrate_flag);
@@ -1952,7 +1952,7 @@ int am_zlg600_baudrate_set (am_zlg600_handle_t handle,
 
 /******************************************************************************/
 
-/* ÉèÖÃÌìÏßÇı¶¯·½Ê½ */
+/* è®¾ç½®å¤©çº¿é©±åŠ¨æ–¹å¼ */
 int am_zlg600_ant_mode_set (am_zlg600_handle_t handle,
                             uint8_t            antmode_flag)
 {
@@ -1970,7 +1970,7 @@ int am_zlg600_ant_mode_set (am_zlg600_handle_t handle,
 
 /******************************************************************************/
 
-/* ÉèÖÃĞÂ¾ÉÖ¡¸ñÊ½ */
+/* è®¾ç½®æ–°æ—§å¸§æ ¼å¼ */
 int am_zlg600_frame_fmt_set (am_zlg600_handle_t handle,
                              uint8_t            flag)
 {
@@ -1982,7 +1982,7 @@ int am_zlg600_frame_fmt_set (am_zlg600_handle_t handle,
         return -AM_EINVAL;
     }
 
-    flag = flag & 0x01;     /* Ö¡ÀàĞÍÖ»ÓĞ×îµÍÎ»ÓĞĞ§ #AM_ZLG600_FRAME_FMT_NEW */
+    flag = flag & 0x01;     /* å¸§ç±»å‹åªæœ‰æœ€ä½ä½æœ‰æ•ˆ #AM_ZLG600_FRAME_FMT_NEW */
 
     tx_desc[0].p_buf = &flag;
     tx_desc[0].len   = 1;
@@ -1994,7 +1994,7 @@ int am_zlg600_frame_fmt_set (am_zlg600_handle_t handle,
 
 /******************************************************************************/
 
-/* ÉèÖÃÄ£Ê½µÄ´Ó»úµØÖ· */
+/* è®¾ç½®æ¨¡å¼çš„ä»æœºåœ°å€ */
 int am_zlg600_mode_addr_set (am_zlg600_handle_t handle,
                              uint8_t            mode,
                              uint8_t            new_addr)
@@ -2025,7 +2025,7 @@ int am_zlg600_mode_addr_set (am_zlg600_handle_t handle,
     return ret;
 }
 
-/* »ñÈ¡Ä£Ê½ºÍ´Ó»úµØÖ· */
+/* è·å–æ¨¡å¼å’Œä»æœºåœ°å€ */
 int am_zlg600_mode_addr_get (am_zlg600_handle_t  handle,
                              uint8_t            *p_mode,
                              uint8_t            *p_addr)
@@ -2053,7 +2053,7 @@ int am_zlg600_mode_addr_get (am_zlg600_handle_t  handle,
 
 /******************************************************************************/
 
-/* ×°ÔØÓÃ»§ÃÜ³× */
+/* è£…è½½ç”¨æˆ·å¯†åŒ™ */
 int am_zlg600_user_key_load (am_zlg600_handle_t handle,
                              uint8_t            key_sec,
                              uint8_t           *p_key)
@@ -2068,14 +2068,14 @@ int am_zlg600_user_key_load (am_zlg600_handle_t handle,
     tx_desc[0].len   = 1;
 
     tx_desc[1].p_buf = p_key;
-    tx_desc[1].len   = 16;              /* ³¤¶È¹Ì¶¨Îª16×Ö½Ú  */
+    tx_desc[1].len   = 16;              /* é•¿åº¦å›ºå®šä¸º16å­—èŠ‚  */
 
     return __zlg600_frame_proc(handle, 1, 'a', tx_desc, 2, NULL, 0, NULL);
 }
 
 /******************************************************************************/
 
-/* ¶ÁEEPROM */
+/* è¯»EEPROM */
 int am_zlg600_eeprom_read (am_zlg600_handle_t handle,
                            uint8_t            eeprom_addr,
                            uint8_t           *p_buf,
@@ -2092,7 +2092,7 @@ int am_zlg600_eeprom_read (am_zlg600_handle_t handle,
     tx_desc[0].len   = 1;
 
     tx_desc[1].p_buf = &nbytes;
-    tx_desc[1].len   = 1;              /* ³¤¶È¹Ì¶¨Îª16×Ö½Ú  */
+    tx_desc[1].len   = 1;              /* é•¿åº¦å›ºå®šä¸º16å­—èŠ‚  */
 
     rx_desc[0].p_buf = p_buf;
     rx_desc[0].len   = nbytes;
@@ -2100,7 +2100,7 @@ int am_zlg600_eeprom_read (am_zlg600_handle_t handle,
     return __zlg600_frame_proc(handle, 1, 'b', tx_desc, 2, rx_desc, 1, NULL);
 }
 
-/* Ğ´EEPROM */
+/* å†™EEPROM */
 int am_zlg600_eeprom_write (am_zlg600_handle_t handle,
                             uint8_t            eeprom_addr,
                             uint8_t           *p_buf,
@@ -2116,7 +2116,7 @@ int am_zlg600_eeprom_write (am_zlg600_handle_t handle,
     tx_desc[0].len   = 1;
 
     tx_desc[1].p_buf = &nbytes;
-    tx_desc[1].len   = 1;              /* ³¤¶È¹Ì¶¨Îª16×Ö½Ú  */
+    tx_desc[1].len   = 1;              /* é•¿åº¦å›ºå®šä¸º16å­—èŠ‚  */
 
     tx_desc[2].p_buf = p_buf;
     tx_desc[2].len   = nbytes;
@@ -2126,12 +2126,12 @@ int am_zlg600_eeprom_write (am_zlg600_handle_t handle,
 
 
 /*******************************************************************************
-   ISO14443Í¨ÓÃº¯Êı£¨±¾µØÊ¹ÓÃ£©
+   ISO14443é€šç”¨å‡½æ•°ï¼ˆæœ¬åœ°ä½¿ç”¨ï¼‰
 *******************************************************************************/
 
 /*
- *     ¿¨ÇëÇó²Ù×÷¡£ÒÔÏÂÃüÁîÊÇISO14443Ğ­Òé¹æ¶¨ºÃµÄ£¬Mifare ¿¨ ºÍ PICC¿¨¾ùÊÇÒ»ÑùµÄ
- * ²Ù×÷,ÕâÁ½ÖÖ¿¨½öÃüÁîÀàĞÍ²»Í¬¡£
+ *     å¡è¯·æ±‚æ“ä½œã€‚ä»¥ä¸‹å‘½ä»¤æ˜¯ISO14443åè®®è§„å®šå¥½çš„ï¼ŒMifare å¡ å’Œ PICCå¡å‡æ˜¯ä¸€æ ·çš„
+ * æ“ä½œ,è¿™ä¸¤ç§å¡ä»…å‘½ä»¤ç±»å‹ä¸åŒã€‚
  */
 static int __zlg600_iso14443_request (am_zlg600_handle_t handle,
                                       uint8_t            cmd_type,
@@ -2150,7 +2150,7 @@ static int __zlg600_iso14443_request (am_zlg600_handle_t handle,
     return __zlg600_frame_proc(handle, cmd_type, 'A', tx_desc, 1, rx_desc, 1, NULL);
 }
 
-/* ·ÀÅö×² */
+/* é˜²ç¢°æ’ */
 static int __zlg600_iso14443_anticoll (am_zlg600_handle_t handle,
                                        uint8_t            cmd_type,
                                        uint8_t            anticoll_level,
@@ -2164,15 +2164,15 @@ static int __zlg600_iso14443_anticoll (am_zlg600_handle_t handle,
     tx_desc[0].p_buf = &anticoll_level;
     tx_desc[0].len   = 1;
 
-    /* ÒÑÖªĞòÁĞºÅµÄ³¤¶È */
+    /* å·²çŸ¥åºåˆ—å·çš„é•¿åº¦ */
     tx_desc[1].p_buf = &nbit_cnt;
     tx_desc[1].len   = 1;
 
-    /* ÒÑÖªUID£¬ÒÑÖªUIDµÄÎ»ÊıÓÉ nbit_cnt ¾ö¶¨ */
+    /* å·²çŸ¥UIDï¼Œå·²çŸ¥UIDçš„ä½æ•°ç”± nbit_cnt å†³å®š */
     tx_desc[2].p_buf = (uint8_t *)&know_uid;
     tx_desc[2].len   = 4;
 
-    /* ½ÓÊÕµÄ4×Ö½ÚUID */
+    /* æ¥æ”¶çš„4å­—èŠ‚UID */
     rx_desc[0].p_buf = (uint8_t *)p_uid;
     rx_desc[0].len   = 4;
 
@@ -2199,7 +2199,7 @@ static int __zlg600_iso14443_anticoll (am_zlg600_handle_t handle,
     }
 }
 
-/* ¿¨Ñ¡Ôñ */
+/* å¡é€‰æ‹© */
 static int __zlg600_iso14443_select (am_zlg600_handle_t handle,
                                      uint8_t            cmd_type,
                                      uint8_t            anticoll_level,
@@ -2212,18 +2212,18 @@ static int __zlg600_iso14443_select (am_zlg600_handle_t handle,
     tx_desc[0].p_buf = &anticoll_level;
     tx_desc[0].len   = 1;
 
-    /* ÒÑÖªĞòÁĞºÅ     */
+    /* å·²çŸ¥åºåˆ—å·     */
     tx_desc[1].p_buf = (uint8_t *)&uid;
     tx_desc[1].len   = 4;
 
-    /* ½ÓÊÕµÄ1×Ö½ÚSAK */
+    /* æ¥æ”¶çš„1å­—èŠ‚SAK */
     rx_desc[0].p_buf = p_sak;
     rx_desc[0].len   = 1;
 
     return __zlg600_frame_proc(handle, cmd_type, 'C', tx_desc, 2, rx_desc, 1, NULL);
 }
 
-/* ¿¨¹ÒÆğ */
+/* å¡æŒ‚èµ· */
 static int __zlg600_iso14443_halt (am_zlg600_handle_t handle,
                                    uint8_t            cmd_type)
 {
@@ -2232,7 +2232,7 @@ static int __zlg600_iso14443_halt (am_zlg600_handle_t handle,
 
 /******************************************************************************/
 
-/* ¿¨¸´Î» */
+/* å¡å¤ä½ */
 static int __zlg600_iso14443_reset (am_zlg600_handle_t  handle,
                                     uint8_t             cmd_type,
                                     uint8_t             time_ms)
@@ -2245,7 +2245,7 @@ static int __zlg600_iso14443_reset (am_zlg600_handle_t  handle,
     return __zlg600_frame_proc(handle, cmd_type, 'L', tx_desc, 1, NULL, 0, NULL);
 }
 
-/* ¿¨¼¤»î*/
+/* å¡æ¿€æ´»*/
 static int __zlg600_iso14443_active (am_zlg600_handle_t  handle,
                                      uint8_t             cmd_type,
                                      uint8_t             req_mode,
@@ -2258,13 +2258,13 @@ static int __zlg600_iso14443_active (am_zlg600_handle_t  handle,
     am_zlg600_info_buf_desc_t  tx_desc[2];
     am_zlg600_info_buf_desc_t  rx_desc[4];
 
-    uint8_t       data = 0x00;                  /* ±£Áô×Ö½Ú£¬ÉèÖÃÎª0x00 */
+    uint8_t       data = 0x00;                  /* ä¿ç•™å­—èŠ‚ï¼Œè®¾ç½®ä¸º0x00 */
 
     if (handle == NULL) {
         return -AM_EINVAL;
     }
 
-    /* µÚÒ»×Ö½ÚÎª±£Áô */
+    /* ç¬¬ä¸€å­—èŠ‚ä¸ºä¿ç•™ */
     data = 0x00;
     tx_desc[0].p_buf = &data;
     tx_desc[0].len   = 1;
@@ -2272,26 +2272,26 @@ static int __zlg600_iso14443_active (am_zlg600_handle_t  handle,
     tx_desc[1].p_buf = &req_mode;
     tx_desc[1].len   = 1;
 
-    rx_desc[0].p_buf = (uint8_t *)p_atq;   /* ÇëÇóÓ¦´ğ£¨2×Ö½Ú£©          */
+    rx_desc[0].p_buf = (uint8_t *)p_atq;   /* è¯·æ±‚åº”ç­”ï¼ˆ2å­—èŠ‚ï¼‰          */
     rx_desc[0].len   = 2;
 
-    rx_desc[1].p_buf = p_saq;              /* ×îºóÒ»¼¶Ñ¡ÔñÓ¦´ğSAK£¨1×Ö½Ú£©*/
+    rx_desc[1].p_buf = p_saq;              /* æœ€åä¸€çº§é€‰æ‹©åº”ç­”SAKï¼ˆ1å­—èŠ‚ï¼‰*/
     rx_desc[1].len   = 1;
 
-    rx_desc[2].p_buf = p_len;              /* ĞòÁĞºÅ³¤¶È£¨1×Ö½Ú£©        */
+    rx_desc[2].p_buf = p_len;              /* åºåˆ—å·é•¿åº¦ï¼ˆ1å­—èŠ‚ï¼‰        */
     rx_desc[2].len   = 1;
 
-    rx_desc[3].p_buf = p_uid;              /* ĞòÁĞºÅ£¨N×Ö½Ú£¬ÓÉĞòÁĞºÅ³¤¶È¾ö¶¨£© */
-    rx_desc[3].len   = uid_len;            /* ×î´ó10×Ö½Ú£¬Ö±½Ó°´ÕÕ10×Ö½Ú¶ÁÈ¡    */
+    rx_desc[3].p_buf = p_uid;              /* åºåˆ—å·ï¼ˆNå­—èŠ‚ï¼Œç”±åºåˆ—å·é•¿åº¦å†³å®šï¼‰ */
+    rx_desc[3].len   = uid_len;            /* æœ€å¤§10å­—èŠ‚ï¼Œç›´æ¥æŒ‰ç…§10å­—èŠ‚è¯»å–    */
 
     return __zlg600_frame_proc(handle, cmd_type, 'M', tx_desc, 2, rx_desc, 4, NULL);
 }
 
 /*******************************************************************************
-   Mifare¿¨º¯Êı
+   Mifareå¡å‡½æ•°
 *******************************************************************************/
 
-/* ¿¨ÇëÇó */
+/* å¡è¯·æ±‚ */
 int am_zlg600_mifare_card_request (am_zlg600_handle_t handle,
                                    uint8_t            req_mode,
                                    uint16_t          *p_atq)
@@ -2306,7 +2306,7 @@ int am_zlg600_mifare_card_request (am_zlg600_handle_t handle,
                                      p_atq);
 }
 
-/* ·ÀÅö×² */
+/* é˜²ç¢°æ’ */
 int am_zlg600_mifare_card_anticoll(am_zlg600_handle_t handle,
                                    uint8_t            anticoll_level,
                                    uint32_t           know_uid,
@@ -2325,7 +2325,7 @@ int am_zlg600_mifare_card_anticoll(am_zlg600_handle_t handle,
                                       p_uid);
 }
 
-/* ¿¨Ñ¡Ôñ */
+/* å¡é€‰æ‹© */
 int am_zlg600_mifare_card_select(am_zlg600_handle_t handle,
                                  uint8_t            anticoll_level,
                                  uint32_t           uid,
@@ -2342,7 +2342,7 @@ int am_zlg600_mifare_card_select(am_zlg600_handle_t handle,
                                     p_sak);
 }
 
-/* ¿¨¹ÒÆğ */
+/* å¡æŒ‚èµ· */
 int am_zlg600_mifare_card_halt (am_zlg600_handle_t handle)
 {
     if (handle == NULL) {
@@ -2354,7 +2354,7 @@ int am_zlg600_mifare_card_halt (am_zlg600_handle_t handle)
 
 /******************************************************************************/
 
-/* E2ÃÜÔ¿ÑéÖ¤ */
+/* E2å¯†é’¥éªŒè¯ */
 int am_zlg600_mifare_card_e2_authent (am_zlg600_handle_t  handle,
                                       uint8_t             key_type,
                                       uint8_t            *p_uid,
@@ -2382,7 +2382,7 @@ int am_zlg600_mifare_card_e2_authent (am_zlg600_handle_t  handle,
     return __zlg600_frame_proc(handle, 2, 'E', tx_desc, 4, NULL, 0, NULL);
 }
 
-/* Ö±½ÓÃÜÔ¿ÑéÖ¤ */
+/* ç›´æ¥å¯†é’¥éªŒè¯ */
 int am_zlg600_mifare_card_direct_authent (am_zlg600_handle_t  handle,
                                           uint8_t             key_type,
                                           uint8_t            *p_uid,
@@ -2413,7 +2413,7 @@ int am_zlg600_mifare_card_direct_authent (am_zlg600_handle_t  handle,
 
 /******************************************************************************/
 
-/* ¶ÁÊı¾İ */
+/* è¯»æ•°æ® */
 int am_zlg600_mifare_card_read (am_zlg600_handle_t  handle,
                                 uint8_t             nblock,
                                 uint8_t            *p_buf)
@@ -2435,7 +2435,7 @@ int am_zlg600_mifare_card_read (am_zlg600_handle_t  handle,
 
 }
 
-/* Ğ´Êı¾İ */
+/* å†™æ•°æ® */
 int am_zlg600_mifare_card_write (am_zlg600_handle_t  handle,
                                  uint8_t             nblock,
                                  uint8_t            *p_buf)
@@ -2457,7 +2457,7 @@ int am_zlg600_mifare_card_write (am_zlg600_handle_t  handle,
 
 /******************************************************************************/
 
-/* ultralight¿¨ÃüÁî, Ğ´Êı¾İ */
+/* ultralightå¡å‘½ä»¤, å†™æ•°æ® */
 int am_zlg600_ultralight_card_write (am_zlg600_handle_t  handle,
                                      uint8_t             nblock,
                                      uint8_t            *p_buf)
@@ -2479,7 +2479,7 @@ int am_zlg600_ultralight_card_write (am_zlg600_handle_t  handle,
 
 /******************************************************************************/
 
-/* mifare¿¨ÃüÁî¡ª¡ªÖµ²Ù×÷ */
+/* mifareå¡å‘½ä»¤â€•â€•å€¼æ“ä½œ */
 int am_zlg600_mifare_card_val_operate (am_zlg600_handle_t  handle,
                                        uint8_t             mode,
                                        uint8_t             nblock,
@@ -2509,7 +2509,7 @@ int am_zlg600_mifare_card_val_operate (am_zlg600_handle_t  handle,
 
 /******************************************************************************/
 
-/* ¿¨¸´Î» */
+/* å¡å¤ä½ */
 int am_zlg600_mifare_card_reset (am_zlg600_handle_t  handle,
                                  uint8_t             time_ms)
 
@@ -2521,7 +2521,7 @@ int am_zlg600_mifare_card_reset (am_zlg600_handle_t  handle,
     return __zlg600_iso14443_reset(handle, 0x02, time_ms);
 }
 
-/* ¿¨¼¤»î */
+/* å¡æ¿€æ´» */
 int am_zlg600_mifare_card_active (am_zlg600_handle_t  handle,
                                   uint8_t             req_mode,
                                   uint16_t           *p_atq,
@@ -2546,7 +2546,7 @@ int am_zlg600_mifare_card_active (am_zlg600_handle_t  handle,
 
 /******************************************************************************/
 
-/* mifare¿¨ÃüÁî¡ª¡ªÉèÖÃ¿éÖµµÄÖµ */
+/* mifareå¡å‘½ä»¤â€•â€•è®¾ç½®å—å€¼çš„å€¼ */
 int am_zlg600_mifare_card_val_set (am_zlg600_handle_t  handle,
                                    uint8_t             nblock,
                                    int32_t             value)
@@ -2568,7 +2568,7 @@ int am_zlg600_mifare_card_val_set (am_zlg600_handle_t  handle,
 
 /******************************************************************************/
 
-/* »ñÈ¡¿éÖµµÄÖµ */
+/* è·å–å—å€¼çš„å€¼ */
 int am_zlg600_mifare_card_val_get (am_zlg600_handle_t  handle,
                                    uint8_t             nblock,
                                    int32_t            *p_value)
@@ -2591,7 +2591,7 @@ int am_zlg600_mifare_card_val_get (am_zlg600_handle_t  handle,
 
 /******************************************************************************/
 
-/* mifare¿¨ÃüÁî¡ª¡ªÃüÁî´«Êä  */
+/* mifareå¡å‘½ä»¤â€•â€•å‘½ä»¤ä¼ è¾“  */
 int am_zlg600_mifare_card_cmd_trans (am_zlg600_handle_t  handle,
                                      uint8_t            *p_tx_buf,
                                      uint8_t             tx_nbytes,
@@ -2605,23 +2605,23 @@ int am_zlg600_mifare_card_cmd_trans (am_zlg600_handle_t  handle,
         return -AM_EINVAL;
     }
 
-    /* Êµ¼Ê´«ÊäµÄÃüÁîÊı¾İ´® */
+    /* å®é™…ä¼ è¾“çš„å‘½ä»¤æ•°æ®ä¸² */
     tx_desc[1].p_buf = p_tx_buf;
     tx_desc[1].len   = tx_nbytes;
 
-    /* µÚÒ»×Ö½ÚÎªÊµ¼ÊÊı¾İ³¤¶È£¬Ó¦¸ÃÊÇ£¨Êµ¼ÊĞÅÏ¢³¤¶È + 1£©*/
+    /* ç¬¬ä¸€å­—èŠ‚ä¸ºå®é™…æ•°æ®é•¿åº¦ï¼Œåº”è¯¥æ˜¯ï¼ˆå®é™…ä¿¡æ¯é•¿åº¦ + 1ï¼‰*/
     tx_nbytes++;
     tx_desc[0].p_buf = &tx_nbytes;
     tx_desc[0].len   = 1;
 
-    /* Êµ¼Ê½ÓÊÕµ½µÄĞÅÏ¢ */
+    /* å®é™…æ¥æ”¶åˆ°çš„ä¿¡æ¯ */
     rx_desc[0].p_buf = p_rx_buf;
     rx_desc[0].len   = rx_nbytes;
 
     return __zlg600_frame_proc(handle, 2, 'S', tx_desc, 2, rx_desc, 1, NULL);
 }
 
-/* Êı¾İ½»»» */
+/* æ•°æ®äº¤æ¢ */
 int am_zlg600_mifare_card_data_exchange (am_zlg600_handle_t  handle,
                                          uint8_t            *p_data_buf,
                                          uint8_t             len,
@@ -2638,7 +2638,7 @@ int am_zlg600_mifare_card_data_exchange (am_zlg600_handle_t  handle,
         return -AM_EINVAL;
     }
 
-    /* ½»»¥Êı¾İ */
+    /* äº¤äº’æ•°æ® */
     tx_desc[0].p_buf = p_data_buf;
     tx_desc[0].len   = len;
 
@@ -2648,23 +2648,23 @@ int am_zlg600_mifare_card_data_exchange (am_zlg600_handle_t  handle,
     tx_desc[2].p_buf = &fwi;
     tx_desc[2].len   = 1;
 
-    /* Êµ¼Ê½ÓÊÕµ½µÄĞÅÏ¢ */
+    /* å®é™…æ¥æ”¶åˆ°çš„ä¿¡æ¯ */
     rx_desc[0].p_buf = p_rx_buf;
     rx_desc[0].len   = buf_size;
 
     return __zlg600_frame_proc(handle, 2, 'X', tx_desc, 3, rx_desc, 1, p_real_len);
 }
 
-/* Mifare¿¨UART×Ô¶¯¼ì²âÖĞ¶Ï»Øµ÷º¯Êı */
+/* Mifareå¡UARTè‡ªåŠ¨æ£€æµ‹ä¸­æ–­å›è°ƒå‡½æ•° */
 static void __auto_detect_int_callback (void *p_arg)
 {
     am_zlg600_serv_t     *p_serv = (am_zlg600_serv_t *)p_arg;
     am_zlg600_uart_dev_t *p_dev  = (am_zlg600_uart_dev_t *)(p_serv->p_cookie);
 
-    /* ½ûÄÜ´¥·¢º¯Êı */
+    /* ç¦èƒ½è§¦å‘å‡½æ•° */
     am_uart_rngbuf_rx_trigger_disable(p_dev->uart_ringbuf_handle);
 
-    /* Ö÷»úÄ£Ê½£¬»Øµ÷ÓÃ»§º¯Êı */
+    /* ä¸»æœºæ¨¡å¼ï¼Œå›è°ƒç”¨æˆ·å‡½æ•° */
     if ((p_serv->work_mode & 0xF0) == AM_ZLG600_MODE_MASTER) {
         if (p_serv->pfn_callback != NULL) {
             p_serv->pfn_callback(p_serv->p_arg);
@@ -2673,7 +2673,7 @@ static void __auto_detect_int_callback (void *p_arg)
 }
 
 /**
- * \brief Mifare¿¨×Ô¶¯¼ì²â»Øµ÷º¯ÊıÉèÖÃ
+ * \brief Mifareå¡è‡ªåŠ¨æ£€æµ‹å›è°ƒå‡½æ•°è®¾ç½®
  */
 int am_zlg600_mifare_card_auto_detect_cb_set (am_zlg600_handle_t  handle,
                                               am_pfnvoid_t        pfn_callback,
@@ -2692,7 +2692,7 @@ int am_zlg600_mifare_card_auto_detect_cb_set (am_zlg600_handle_t  handle,
 }
 
 /**
- * \brief Mifare¿¨×Ô¶¯¼ì²â¶Ï¿ªÁ¬½Ó»Øµ÷º¯Êı
+ * \brief Mifareå¡è‡ªåŠ¨æ£€æµ‹æ–­å¼€è¿æ¥å›è°ƒå‡½æ•°
  */
 int am_zlg600_mifare_card_auto_detect_disconnect (am_zlg600_handle_t  handle,
                                                   am_pfnvoid_t        pfn_callback,
@@ -2714,10 +2714,10 @@ int am_zlg600_mifare_card_auto_detect_disconnect (am_zlg600_handle_t  handle,
 }
 
 /**
- * \brief Æô¶¯Mifare¿¨×Ô¶¯¼ì²â
- * \note ÔÚ×Ô¶¯¼ì²âÆÚ¼ä£¬ÈôÖ÷»ú·¢ËÍÈÎºÎ³ı¶Á×Ô¶¯¼ì²âÊı¾İÍâµÄ£¬ÇÒÊı¾İ³¤¶ÈĞ¡ÓÚ3
- *       µÄÃüÁî£¬½«ÍË³ö×Ô¶¯¼ì²âÄ£Ê½£¬ÈçÇëÇóam_zlg600_mifare_card_active()
- *       ÃüÁî£¬ÔÚ´ËÆÚ¼ä£¬Ä£¿é½«²»½ÓÊÕÊı¾İ³¤¶È´óÓÚ2µÄÃüÁî
+ * \brief å¯åŠ¨Mifareå¡è‡ªåŠ¨æ£€æµ‹
+ * \note åœ¨è‡ªåŠ¨æ£€æµ‹æœŸé—´ï¼Œè‹¥ä¸»æœºå‘é€ä»»ä½•é™¤è¯»è‡ªåŠ¨æ£€æµ‹æ•°æ®å¤–çš„ï¼Œä¸”æ•°æ®é•¿åº¦å°äº3
+ *       çš„å‘½ä»¤ï¼Œå°†é€€å‡ºè‡ªåŠ¨æ£€æµ‹æ¨¡å¼ï¼Œå¦‚è¯·æ±‚am_zlg600_mifare_card_active()
+ *       å‘½ä»¤ï¼Œåœ¨æ­¤æœŸé—´ï¼Œæ¨¡å—å°†ä¸æ¥æ”¶æ•°æ®é•¿åº¦å¤§äº2çš„å‘½ä»¤
  */
 int am_zlg600_mifare_card_auto_detect_start (am_zlg600_handle_t                  handle,
                                              const am_zlg600_auto_detect_info_t *p_info)
@@ -2737,7 +2737,7 @@ int am_zlg600_mifare_card_auto_detect_start (am_zlg600_handle_t                 
 
     p_serv->p_auto_detect_info = (am_zlg600_auto_detect_info_t *)p_info;
 
-    /* ²»×Ô¶¯¼ì²â¡¢UART²»²úÉúÖĞ¶Ï¡¢UARTÖ÷¶¯·¢ËÍÊı¾İ */
+    /* ä¸è‡ªåŠ¨æ£€æµ‹ã€UARTä¸äº§ç”Ÿä¸­æ–­ã€UARTä¸»åŠ¨å‘é€æ•°æ® */
     temp_buf = (p_info->ad_mode & 0x80) | 0x01;
     tx_desc[0].p_buf = (uint8_t *)&temp_buf;
     tx_desc[0].len   = 1;
@@ -2788,18 +2788,18 @@ int am_zlg600_mifare_card_auto_detect_start (am_zlg600_handle_t                 
 
     p_serv->work_mode = (p_serv->work_mode & 0x0F) | AM_ZLG600_MODE_MASTER;
 
-    /* Ê¹ÄÜ×Ô¶¯¼ì²â´¥·¢ */
+    /* ä½¿èƒ½è‡ªåŠ¨æ£€æµ‹è§¦å‘ */
     ((void (*)(am_zlg600_handle_t, am_bool_t))
             (p_serv->pfn_auto_detect_trigger_set))(p_serv, AM_TRUE);
 
-    /* ±ê¼Ç×Ô¶¯¼ì²â */
+    /* æ ‡è®°è‡ªåŠ¨æ£€æµ‹ */
     p_serv->auto_detect = 1;
 
     return ret;
 }
 
 /**
- * \brief ¹Ø±ÕMifare¿¨×Ô¶¯¼ì²â
+ * \brief å…³é—­Mifareå¡è‡ªåŠ¨æ£€æµ‹
  */
 int am_zlg600_mifare_card_auto_detect_stop (am_zlg600_handle_t handle)
 {
@@ -2812,14 +2812,14 @@ int am_zlg600_mifare_card_auto_detect_stop (am_zlg600_handle_t handle)
         return -AM_ENXIO;
     }
 
-    /* ÔİÊ±ÍË³öÖ÷»úÄ£Ê½ */
+    /* æš‚æ—¶é€€å‡ºä¸»æœºæ¨¡å¼ */
     p_serv->work_mode = (p_serv->work_mode & 0x0F) | AM_ZLG600_MODE_SLAVE;
 
     ret = am_zlg600_mode_addr_get(handle, &mode, &addr);
 
     if (ret == AM_OK) {
 
-        /* ½ûÄÜ×Ô¶¯¼ì²â´¥·¢ */
+        /* ç¦èƒ½è‡ªåŠ¨æ£€æµ‹è§¦å‘ */
         ((void (*)(am_zlg600_handle_t, am_bool_t))
                 (p_serv->pfn_auto_detect_trigger_set))(p_serv, AM_FALSE);
 
@@ -2827,14 +2827,14 @@ int am_zlg600_mifare_card_auto_detect_stop (am_zlg600_handle_t handle)
         p_serv->work_mode = (p_serv->work_mode & 0x0F) | AM_ZLG600_MODE_MASTER;
     }
 
-    /* È¥µô×Ô¶¯¼ì²â±ê¼Ç */
+    /* å»æ‰è‡ªåŠ¨æ£€æµ‹æ ‡è®° */
     p_serv->auto_detect = 0;
 
     return ret;
 }
 
 /**
- * \brief Mifare¿¨¶ÁÈ¡×Ô¶¯¼ì²âÊı¾İÃüÁî
+ * \brief Mifareå¡è¯»å–è‡ªåŠ¨æ£€æµ‹æ•°æ®å‘½ä»¤
  */
 int am_zlg600_mifare_card_auto_detect_read (am_zlg600_handle_t            handle,
                                             am_zlg600_mifare_card_info_t *p_card_info)
@@ -2867,7 +2867,7 @@ int am_zlg600_mifare_card_auto_detect_read (am_zlg600_handle_t            handle
     rx_desc[4].p_buf = (uint8_t *)&p_card_info->card_data;
     rx_desc[4].len   = 16;
 
-    /* ¶Á×Ô¶¯¼ì²âÊı¾İÃüÁî»áÔİÊ±ÍË³öÖ÷»úÄ£Ê½ */
+    /* è¯»è‡ªåŠ¨æ£€æµ‹æ•°æ®å‘½ä»¤ä¼šæš‚æ—¶é€€å‡ºä¸»æœºæ¨¡å¼ */
     p_serv->work_mode = (p_serv->work_mode & 0x0F) | AM_ZLG600_MODE_SLAVE;
 
     p_serv->auto_detect_read = 1;
@@ -2893,7 +2893,7 @@ int am_zlg600_mifare_card_auto_detect_read (am_zlg600_handle_t            handle
 
 __WORK_MODE_UPDATE :
 
-    /* ½ûÄÜ×Ô¶¯¼ì²â´¥·¢ */
+    /* ç¦èƒ½è‡ªåŠ¨æ£€æµ‹è§¦å‘ */
     ((void (*)(am_zlg600_handle_t, am_bool_t))
             (p_serv->pfn_auto_detect_trigger_set))(p_serv, AM_FALSE);
 
@@ -2901,10 +2901,10 @@ __WORK_MODE_UPDATE :
 }
 
 /*******************************************************************************
-  ISO7816-3ÀàÃüÁî£¬½Ó´¥Ê½IC¿¨
+  ISO7816-3ç±»å‘½ä»¤ï¼Œæ¥è§¦å¼ICå¡
 *******************************************************************************/
 
-/* IC¿¨¸´Î» */
+/* ICå¡å¤ä½ */
 int am_zlg600_cicc_reset (am_zlg600_handle_t  handle,
                           uint8_t             baudrate_flag,
                           uint8_t            *p_rx_buf,
@@ -2923,18 +2923,18 @@ int am_zlg600_cicc_reset (am_zlg600_handle_t  handle,
     tx_desc[0].p_buf = &baudrate_flag;
     tx_desc[0].len   = 1;
 
-    /* ±£ÁôĞÅÏ¢16×Ö½Ú¶ªÆú */
+    /* ä¿ç•™ä¿¡æ¯16å­—èŠ‚ä¸¢å¼ƒ */
     rx_desc[0].p_buf = NULL;
     rx_desc[0].len   = 16;
 
-    /* Êµ¼ÊĞÅÏ¢ */
+    /* å®é™…ä¿¡æ¯ */
     rx_desc[0].p_buf = p_rx_buf;
     rx_desc[0].len   = rx_bufsize;
 
     ret = __zlg600_frame_proc(handle, 5, 'A', tx_desc, 1, rx_desc, 2, p_real_len);
 
     if (p_real_len != NULL) {
-        *p_real_len = *p_real_len - 16;     /* ¸´Î»ĞÅÏ¢µÄÊµ¼Ê³¤¶ÈÒª¼õÈ¥Ç°Ãæ±£ÁôµÄ16×Ö½Ú*/
+        *p_real_len = *p_real_len - 16;     /* å¤ä½ä¿¡æ¯çš„å®é™…é•¿åº¦è¦å‡å»å‰é¢ä¿ç•™çš„16å­—èŠ‚*/
     }
 
     return ret;
@@ -2942,7 +2942,7 @@ int am_zlg600_cicc_reset (am_zlg600_handle_t  handle,
 
 /******************************************************************************/
 
-/* IC¿¨´«ÊäĞ­Òé */
+/* ICå¡ä¼ è¾“åè®® */
 int am_zlg600_cicc_tpdu (am_zlg600_handle_t  handle,
                          uint8_t            *p_tx_buf,
                          uint16_t            tx_bufsize,
@@ -2957,11 +2957,11 @@ int am_zlg600_cicc_tpdu (am_zlg600_handle_t  handle,
         return -AM_EINVAL;
     }
 
-    /* ·¢ËÍÊı¾İ */
+    /* å‘é€æ•°æ® */
     tx_desc[0].p_buf = p_tx_buf;
     tx_desc[0].len   = tx_bufsize;
 
-    /* ½ÓÊÕĞÅÏ¢ */
+    /* æ¥æ”¶ä¿¡æ¯ */
     rx_desc[0].p_buf = p_rx_buf;
     rx_desc[0].len   = rx_bufsize;
 
@@ -2970,7 +2970,7 @@ int am_zlg600_cicc_tpdu (am_zlg600_handle_t  handle,
 
 /******************************************************************************/
 
-/* IC¿¨Àä¸´Î» */
+/* ICå¡å†·å¤ä½ */
 int am_zlg600_cicc_coldreset (am_zlg600_handle_t  handle,
                               uint8_t             baudrate_flag,
                               uint8_t            *p_rx_buf,
@@ -2995,7 +2995,7 @@ int am_zlg600_cicc_coldreset (am_zlg600_handle_t  handle,
 
 /******************************************************************************/
 
-/* ISO7816-3ÀàÃüÁî-IC¿¨ÈÈ¸´Î» */
+/* ISO7816-3ç±»å‘½ä»¤-ICå¡çƒ­å¤ä½ */
 int am_zlg600_cicc_warmreset (am_zlg600_handle_t  handle,
                               uint8_t             baudrate_flag,
                               uint8_t            *p_rx_buf,
@@ -3018,7 +3018,7 @@ int am_zlg600_cicc_warmreset (am_zlg600_handle_t  handle,
     return __zlg600_frame_proc(handle, 5, 'D', tx_desc, 1, rx_desc, 1, p_rx_len);
 }
 
-/* IC¿¨Í£»î   */
+/* ICå¡åœæ´»   */
 int am_zlg600_cicc_deactive (am_zlg600_handle_t  handle)
 {
     if (handle == NULL) {
@@ -3048,7 +3048,7 @@ int am_zlg600_cicc_pps (am_zlg600_handle_t  handle,
 
 /******************************************************************************/
 
-/* ISO7816-3ÀàÃüÁî-IC¿¨´«ÊäĞ­Òé(T = 0) */
+/* ISO7816-3ç±»å‘½ä»¤-ICå¡ä¼ è¾“åè®®(T = 0) */
 int am_zlg600_cicc_tpdu_tp0 (am_zlg600_handle_t  handle,
                              uint8_t            *p_tx_buf,
                              uint16_t            tx_bufsize,
@@ -3062,18 +3062,18 @@ int am_zlg600_cicc_tpdu_tp0 (am_zlg600_handle_t  handle,
     if (handle == NULL || p_tx_buf == NULL || p_rx_buf == NULL || p_rx_len == NULL) {
         return -AM_EINVAL;
     }
-    /* ·¢ËÍÊı¾İ */
+    /* å‘é€æ•°æ® */
     tx_desc[0].p_buf = p_tx_buf;
     tx_desc[0].len   = tx_bufsize;
 
-    /* ½ÓÊÕĞÅÏ¢ */
+    /* æ¥æ”¶ä¿¡æ¯ */
     rx_desc[0].p_buf = p_rx_buf;
     rx_desc[0].len   = rx_bufsize;
 
     return __zlg600_frame_proc(handle, 5, 'G', tx_desc, 1, rx_desc, 1, p_rx_len);
 }
 
-/* ISO7816-3ÀàÃüÁî-IC¿¨´«ÊäĞ­Òé(T = 1) */
+/* ISO7816-3ç±»å‘½ä»¤-ICå¡ä¼ è¾“åè®®(T = 1) */
 int am_zlg600_cicc_tpdu_tp1 (am_zlg600_handle_t  handle,
                              uint8_t            *p_tx_buf,
                              uint16_t            tx_bufsize,
@@ -3088,11 +3088,11 @@ int am_zlg600_cicc_tpdu_tp1 (am_zlg600_handle_t  handle,
         return -AM_EINVAL;
     }
 
-    /* ·¢ËÍÊı¾İ */
+    /* å‘é€æ•°æ® */
     tx_desc[0].p_buf = p_tx_buf;
     tx_desc[0].len   = tx_bufsize;
 
-    /* ½ÓÊÕĞÅÏ¢ */
+    /* æ¥æ”¶ä¿¡æ¯ */
     rx_desc[0].p_buf = p_rx_buf;
     rx_desc[0].len   = rx_bufsize;
 
@@ -3100,10 +3100,10 @@ int am_zlg600_cicc_tpdu_tp1 (am_zlg600_handle_t  handle,
 }
 
 /*******************************************************************************
-   PICCA¿¨Ààº¯Êı
+   PICCAå¡ç±»å‡½æ•°
 *******************************************************************************/
 
-/* PICCA¿¨ÃüÁî¡ª¡ªÇëÇó    */
+/* PICCAå¡å‘½ä»¤â€•â€•è¯·æ±‚    */
 int am_zlg600_picca_request (am_zlg600_handle_t handle,
                              uint8_t            req_mode,
                              uint16_t          *p_atq)
@@ -3115,7 +3115,7 @@ int am_zlg600_picca_request (am_zlg600_handle_t handle,
     return __zlg600_iso14443_request(handle, 6, req_mode, p_atq);
 }
 
-/* PICCA¿¨ÃüÁî¡ª¡ª·ÀÅö×²  */
+/* PICCAå¡å‘½ä»¤â€•â€•é˜²ç¢°æ’  */
 int am_zlg600_picca_anticoll (am_zlg600_handle_t handle,
                               uint8_t            anticoll_level,
                               uint32_t           know_uid,
@@ -3134,7 +3134,7 @@ int am_zlg600_picca_anticoll (am_zlg600_handle_t handle,
                                       p_uid);
 }
 
-/* PICCA¿¨ÃüÁî¡ª¡ª¿¨Ñ¡Ôñ   */
+/* PICCAå¡å‘½ä»¤â€•â€•å¡é€‰æ‹©   */
 int am_zlg600_picca_select (am_zlg600_handle_t handle,
                             uint8_t            anticoll_level,
                             uint32_t           uid,
@@ -3151,7 +3151,7 @@ int am_zlg600_picca_select (am_zlg600_handle_t handle,
                                     p_sak);
 }
 
-/* PICCA¿¨ÃüÁî¡ª¡ª¿¨¹ÒÆğ   */
+/* PICCAå¡å‘½ä»¤â€•â€•å¡æŒ‚èµ·   */
 int am_zlg600_picca_halt (am_zlg600_handle_t handle)
 {
     if (handle == NULL) {
@@ -3162,7 +3162,7 @@ int am_zlg600_picca_halt (am_zlg600_handle_t handle)
 }
 
 
-/* PICC A¿¨ÃüÁî¡ª¡ªRATS */
+/* PICC Aå¡å‘½ä»¤â€•â€•RATS */
 int am_zlg600_picca_rats (am_zlg600_handle_t  handle,
                           uint8_t             cid,
                           uint8_t            *p_ats_buf,
@@ -3185,7 +3185,7 @@ int am_zlg600_picca_rats (am_zlg600_handle_t  handle,
     return __zlg600_frame_proc(handle, 6, 'E', tx_desc, 1, rx_desc, 1, p_rx_len);
 }
 
-/* PICC A¿¨ÃüÁî¡ª¡ªPPS */
+/* PICC Aå¡å‘½ä»¤â€•â€•PPS */
 int am_zlg600_picca_pps (am_zlg600_handle_t  handle,
                          uint8_t             dsi_dri)
 {
@@ -3201,7 +3201,7 @@ int am_zlg600_picca_pps (am_zlg600_handle_t  handle,
     return __zlg600_frame_proc(handle, 6, 'F', tx_desc, 1, NULL, 0, NULL);
 }
 
-/* PICC A¿¨ÃüÁî¡ª¡ª½â³ı¿¨¼¤»î */
+/* PICC Aå¡å‘½ä»¤â€•â€•è§£é™¤å¡æ¿€æ´» */
 int am_zlg600_picca_deselect (am_zlg600_handle_t  handle)
 {
     if (handle == NULL) {
@@ -3213,7 +3213,7 @@ int am_zlg600_picca_deselect (am_zlg600_handle_t  handle)
 
 /******************************************************************************/
 
-/* PICC A¿¨ÃüÁî¡ª¡ªT=CL */
+/* PICC Aå¡å‘½ä»¤â€•â€•T=CL */
 int am_zlg600_picc_tpcl (am_zlg600_handle_t  handle,
                          uint8_t            *p_cos_buf,
                          uint8_t             cos_bufsize,
@@ -3237,7 +3237,7 @@ int am_zlg600_picc_tpcl (am_zlg600_handle_t  handle,
     return __zlg600_frame_proc(handle, 6, 'H', tx_desc, 1, rx_desc, 1, p_rx_len);
 }
 
-/* PICC A¿¨ÃüÁî¡ª¡ªÊı¾İ½»»» */
+/* PICC Aå¡å‘½ä»¤â€•â€•æ•°æ®äº¤æ¢ */
 int am_zlg600_picc_data_exchange (am_zlg600_handle_t  handle,
                                   uint8_t            *p_data_buf,
                                   uint8_t             len,
@@ -3254,7 +3254,7 @@ int am_zlg600_picc_data_exchange (am_zlg600_handle_t  handle,
         return -AM_EINVAL;
     }
 
-    /* ½»»¥Êı¾İ */
+    /* äº¤äº’æ•°æ® */
     tx_desc[0].p_buf = p_data_buf;
     tx_desc[0].len   = len;
 
@@ -3264,14 +3264,14 @@ int am_zlg600_picc_data_exchange (am_zlg600_handle_t  handle,
     tx_desc[2].p_buf = &fwi;
     tx_desc[2].len   = 1;
 
-    /* Êµ¼Ê½ÓÊÕµ½µÄĞÅÏ¢ */
+    /* å®é™…æ¥æ”¶åˆ°çš„ä¿¡æ¯ */
     rx_desc[0].p_buf = p_rx_buf;
     rx_desc[0].len   = bufsize;
 
     return __zlg600_frame_proc(handle, 6, 'J', tx_desc, 3, rx_desc, 1, p_rx_len);
 }
 
-/* PICC A¿¨ÃüÁî¡ª¡ª¿¨¸´Î» */
+/* PICC Aå¡å‘½ä»¤â€•â€•å¡å¤ä½ */
 int am_zlg600_picca_reset (am_zlg600_handle_t  handle,
                            uint8_t             time_ms)
 
@@ -3283,7 +3283,7 @@ int am_zlg600_picca_reset (am_zlg600_handle_t  handle,
     return __zlg600_iso14443_reset(handle, 0x06, time_ms);
 }
 
-/* PICC A¿¨ÃüÁî¡ª¡ª¿¨¼¤»î */
+/* PICC Aå¡å‘½ä»¤â€•â€•å¡æ¿€æ´» */
 int am_zlg600_picca_active (am_zlg600_handle_t  handle,
                             uint8_t             req_mode,
                             uint16_t           *p_atq,
@@ -3307,10 +3307,10 @@ int am_zlg600_picca_active (am_zlg600_handle_t  handle,
 }
 
 /*******************************************************************************
-  PICC BĞÍ¿¨
+  PICC Bå‹å¡
 *******************************************************************************/
 
-/* BĞÍ¿¨¼¤»î */
+/* Bå‹å¡æ¿€æ´» */
 int am_zlg600_piccb_active (am_zlg600_handle_t  handle,
                             uint8_t             req_mode,
                             uint8_t            *p_uid)
@@ -3318,7 +3318,7 @@ int am_zlg600_piccb_active (am_zlg600_handle_t  handle,
     am_zlg600_info_buf_desc_t tx_desc[2];
     am_zlg600_info_buf_desc_t rx_desc[1];
 
-    uint8_t  data = 0x00;  /* Ó¦ÓÃ±êÊ¶£¨1×Ö½Ú£©£ºÄ¬ÈÏÎª0x00 */
+    uint8_t  data = 0x00;  /* åº”ç”¨æ ‡è¯†ï¼ˆ1å­—èŠ‚ï¼‰ï¼šé»˜è®¤ä¸º0x00 */
 
     if (handle == NULL || p_uid == NULL) {
         return -AM_EINVAL;
@@ -3336,7 +3336,7 @@ int am_zlg600_piccb_active (am_zlg600_handle_t  handle,
     return __zlg600_frame_proc(handle, 6, 'N', tx_desc, 2, rx_desc, 1, NULL);
 }
 
-/* PICC B¿¨ÃüÁî¡ª¡ª¿¨¸´Î» */
+/* PICC Bå¡å‘½ä»¤â€•â€•å¡å¤ä½ */
 int am_zlg600_piccb_reset (am_zlg600_handle_t  handle,
                            uint8_t             time_ms)
 
@@ -3353,7 +3353,7 @@ int am_zlg600_piccb_reset (am_zlg600_handle_t  handle,
     return __zlg600_frame_proc(handle, 6, 'O', tx_desc, 1, NULL, 0, NULL);
 }
 
-/* PICC B¿¨ÃüÁî¡ª¡ª¿¨ÇëÇó */
+/* PICC Bå¡å‘½ä»¤â€•â€•å¡è¯·æ±‚ */
 int am_zlg600_piccb_request (am_zlg600_handle_t handle,
                              uint8_t            req_mode,
                              uint8_t            slot_time,
@@ -3362,7 +3362,7 @@ int am_zlg600_piccb_request (am_zlg600_handle_t handle,
     am_zlg600_info_buf_desc_t tx_desc[3];
     am_zlg600_info_buf_desc_t rx_desc[1];
 
-    uint8_t data = 0x00;  /* Ó¦ÓÃ±êÊ¶£¨1×Ö½Ú£©£ºÄ¬ÈÏÎª0x00 */
+    uint8_t data = 0x00;  /* åº”ç”¨æ ‡è¯†ï¼ˆ1å­—èŠ‚ï¼‰ï¼šé»˜è®¤ä¸º0x00 */
 
     if (handle == NULL || p_uid == NULL) {
         return -AM_EINVAL;
@@ -3405,7 +3405,7 @@ int am_zlg600_piccb_anticoll(am_zlg600_handle_t  handle,
 
 /******************************************************************************/
 
-/* BĞÍ¿¨ĞŞ¸Ä´«ÊäÊôĞÔ */
+/* Bå‹å¡ä¿®æ”¹ä¼ è¾“å±æ€§ */
 int am_zlg600_piccb_attrib_set (am_zlg600_handle_t handle,
                                 uint8_t           *p_pupi,
                                 uint8_t            cid,
@@ -3429,7 +3429,7 @@ int am_zlg600_piccb_attrib_set (am_zlg600_handle_t handle,
     return __zlg600_frame_proc(handle, 6, 'R', tx_desc, 3, NULL, 0, NULL);
 }
 
-/* BĞÍ¿¨ HALT */
+/* Bå‹å¡ HALT */
 int am_zlg600_piccb_halt (am_zlg600_handle_t handle,
                           uint8_t           *p_pupi)
 {
@@ -3446,10 +3446,10 @@ int am_zlg600_piccb_halt (am_zlg600_handle_t handle,
 }
 
 /*******************************************************************************
-  PLUS CPU ¿¨
+  PLUS CPU å¡
 *******************************************************************************/
 
-/* PLUS CPU ¿¨ÃüÁî-¸öÈË»¯¸üĞÂÊı¾İ */
+/* PLUS CPU å¡å‘½ä»¤-ä¸ªäººåŒ–æ›´æ–°æ•°æ® */
 int am_zlg600_pluscpu_persotcl_write (am_zlg600_handle_t  handle,
                                       uint16_t            sector_addr,
                                       uint8_t            *p_buf)
@@ -3469,7 +3469,7 @@ int am_zlg600_pluscpu_persotcl_write (am_zlg600_handle_t  handle,
     return __zlg600_frame_proc(handle, 7, 'B', tx_desc, 2, NULL, 0, NULL);
 }
 
-/* PLUS CPU ¿¨ÃüÁî-Ìá½»¸öÈË»¯ */
+/* PLUS CPU å¡å‘½ä»¤-æäº¤ä¸ªäººåŒ– */
 int am_zlg600_pluscpu_persotcl_commit (am_zlg600_handle_t  handle)
 {
     if (handle == NULL) {
@@ -3481,7 +3481,7 @@ int am_zlg600_pluscpu_persotcl_commit (am_zlg600_handle_t  handle)
 
 /******************************************************************************/
 
-/* PLUS CPU ¿¨ÃüÁî-SL3Ê×´ÎÖ±½ÓÑéÖ¤ */
+/* PLUS CPU å¡å‘½ä»¤-SL3é¦–æ¬¡ç›´æ¥éªŒè¯ */
 int am_zlg600_pluscpu_sl3_first_direct_authent (am_zlg600_handle_t  handle,
                                                 uint16_t            authent_addr,
                                                 uint8_t            *p_key)
@@ -3501,7 +3501,7 @@ int am_zlg600_pluscpu_sl3_first_direct_authent (am_zlg600_handle_t  handle,
     return __zlg600_frame_proc(handle, 7, 'J', tx_desc, 2, NULL, 0, NULL);
 }
 
-/*  PLUS CPU ¿¨ÃüÁî-SL3Ê×´ÎE2ÑéÖ¤ */
+/*  PLUS CPU å¡å‘½ä»¤-SL3é¦–æ¬¡E2éªŒè¯ */
 int am_zlg600_pluscpu_sl3_first_e2_authent (am_zlg600_handle_t  handle,
                                             uint16_t            authent_addr,
                                             uint8_t             key_sector)
@@ -3523,7 +3523,7 @@ int am_zlg600_pluscpu_sl3_first_e2_authent (am_zlg600_handle_t  handle,
 
 /******************************************************************************/
 
-/* PLUS CPU ¿¨ÃüÁî-SL3Ö±½Ó¸úËæÑéÖ¤ */
+/* PLUS CPU å¡å‘½ä»¤-SL3ç›´æ¥è·ŸéšéªŒè¯ */
 int am_zlg600_pluscpu_sl3_follow_direct_authent (am_zlg600_handle_t  handle,
                                                  uint16_t            authent_addr,
                                                  uint8_t            *p_key)
@@ -3542,7 +3542,7 @@ int am_zlg600_pluscpu_sl3_follow_direct_authent (am_zlg600_handle_t  handle,
     return __zlg600_frame_proc(handle, 7, 'L', tx_desc, 2, NULL, 0, NULL);
 }
 
-/* PLUS CPU ¿¨ÃüÁî-SL3Ê×´ÎE2ÑéÖ¤ */
+/* PLUS CPU å¡å‘½ä»¤-SL3é¦–æ¬¡E2éªŒè¯ */
 int am_zlg600_pluscpu_sl3_follow_e2_authent (am_zlg600_handle_t  handle,
                                              uint16_t            authent_addr,
                                              uint8_t             key_sector)
@@ -3564,7 +3564,7 @@ int am_zlg600_pluscpu_sl3_follow_e2_authent (am_zlg600_handle_t  handle,
 
 /******************************************************************************/
 
-/* PLUS CPU ¿¨ÃüÁî-SL3¸´Î»ÑéÖ¤  */
+/* PLUS CPU å¡å‘½ä»¤-SL3å¤ä½éªŒè¯  */
 int am_zlg600_pluscpu_sl3_reset_authent (am_zlg600_handle_t  handle)
 {
     if (handle == NULL) {
@@ -3576,7 +3576,7 @@ int am_zlg600_pluscpu_sl3_reset_authent (am_zlg600_handle_t  handle)
 
 /******************************************************************************/
 
-/* PLUS CPU ¿¨ÃüÁî-SL3¶Á  */
+/* PLUS CPU å¡å‘½ä»¤-SL3è¯»  */
 int am_zlg600_pluscpu_sl3_read (am_zlg600_handle_t  handle,
                                 uint8_t             read_mode,
                                 uint16_t            start_block,
@@ -3605,7 +3605,7 @@ int am_zlg600_pluscpu_sl3_read (am_zlg600_handle_t  handle,
     return __zlg600_frame_proc(handle, 7, 'O', tx_desc, 3, rx_desc, 1, NULL);
 }
 
-/* PLUS CPU ¿¨ÃüÁî-SL3Ğ´ */
+/* PLUS CPU å¡å‘½ä»¤-SL3å†™ */
 int am_zlg600_pluscpu_sl3_write (am_zlg600_handle_t  handle,
                                  uint8_t             write_mode,
                                  uint16_t            start_block,
@@ -3635,7 +3635,7 @@ int am_zlg600_pluscpu_sl3_write (am_zlg600_handle_t  handle,
 
 /******************************************************************************/
 
-/* PLUS CPU ¿¨ÃüÁî-Öµ¿é²Ù×÷ */
+/* PLUS CPU å¡å‘½ä»¤-å€¼å—æ“ä½œ */
 int am_zlg600_pluscpu_val_operate (am_zlg600_handle_t  handle,
                                    uint8_t             mode,
                                    uint16_t            src_block,
@@ -3665,14 +3665,14 @@ int am_zlg600_pluscpu_val_operate (am_zlg600_handle_t  handle,
 
 /******************************************************************************/
 
-/* ¶ÁÈ¡Éí·İÖ¤ĞÅÏ¢ */
+/* è¯»å–èº«ä»½è¯ä¿¡æ¯ */
 int am_zlg600_id_card_info_get (am_zlg600_handle_t handle, uint8_t req_mode, uint8_t *p_info)
 {
     am_zlg600_info_buf_desc_t  tx_desc[1];
     am_zlg600_info_buf_desc_t  rx_desc[1];
 
-    uint8_t cmd_type  = 0x06;       /* Ö¸ÁîÀàĞÍ */
-    uint8_t atq       = req_mode;   /* ÇëÇó´úÂë */
+    uint8_t cmd_type  = 0x06;       /* æŒ‡ä»¤ç±»å‹ */
+    uint8_t atq       = req_mode;   /* è¯·æ±‚ä»£ç  */
 
     if (handle == NULL) {
         return -AM_EINVAL;
@@ -3689,7 +3689,7 @@ int am_zlg600_id_card_info_get (am_zlg600_handle_t handle, uint8_t req_mode, uin
 
 /******************************************************************************/
 
-/* ÉèÖÃÖ¸Áî³¬Ê±Ê±¼ä */
+/* è®¾ç½®æŒ‡ä»¤è¶…æ—¶æ—¶é—´ */
 int am_zlg600_cmd_timeout_set (am_zlg600_handle_t handle,
                                uint32_t           timeout_ms)
 {

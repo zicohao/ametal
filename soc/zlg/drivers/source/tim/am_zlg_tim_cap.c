@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief TIMÇı¶¯£¬ÊäÈë²¶»ñÇı¶¯²ãÊµÏÖ
+ * \brief TIMé©±åŠ¨ï¼Œè¾“å…¥æ•è·é©±åŠ¨å±‚å®ç°
  *
- * \note: ËùÓĞ¶¨Ê±Æ÷²»Ö§³ÖË«±ßÑØ ´¥·¢
+ * \note: æ‰€æœ‰å®šæ—¶å™¨ä¸æ”¯æŒåŒè¾¹æ²¿ è§¦å‘
  *
  * \internal
  * \par Modification history
@@ -28,23 +28,23 @@
 #include "am_clk.h"
 
 /*******************************************************************************
-* º¯ÊıÉùÃ÷
+* å‡½æ•°å£°æ˜
 *******************************************************************************/
 
-/** \brief ²¶»ñ²ÎÊıÅäÖÃ */
+/** \brief æ•è·å‚æ•°é…ç½® */
 static int __zlg_tim_cap_config (void              *p_cookie,
                                  int                chan,
                                  unsigned int       flags,
                                  am_cap_callback_t  pfn_callback,
                                  void              *p_arg);
 
-/** \brief Ê¹ÄÜ²¶»ñÍ¨µÀ */
+/** \brief ä½¿èƒ½æ•è·é€šé“ */
 static int __zlg_tim_cap_enable (void *p_drv, int chan);
 
-/** \brief ½ûÄÜ²¶»ñÍ¨µÀ */
+/** \brief ç¦èƒ½æ•è·é€šé“ */
 static int __zlg_tim_cap_disable (void *p_drv, int chan);
 
-/** \brief ¸´Î»²¶»ñÍ¨µÀ¼ÆÊıÖµ */
+/** \brief å¤ä½æ•è·é€šé“è®¡æ•°å€¼ */
 static int __zlg_tim_cap_reset (void *p_drv, int chan);
 
 static int __zlg_tim_cap_count_to_time (void         *p_drv,
@@ -55,7 +55,7 @@ static int __zlg_tim_cap_count_to_time (void         *p_drv,
 
 static void __zlg_tim_cap_irq_handler (void *p_arg);
 
-/** \brief ²¶»ñ·şÎñÇı¶¯º¯Êı */
+/** \brief æ•è·æœåŠ¡é©±åŠ¨å‡½æ•° */
 static const struct am_cap_drv_funcs __g_tim_cap_drv_funcs = {
     __zlg_tim_cap_config,
     __zlg_tim_cap_enable,
@@ -66,7 +66,7 @@ static const struct am_cap_drv_funcs __g_tim_cap_drv_funcs = {
 
 /******************************************************************************/
 
-/** \brief ÅäÖÃÒ»¸öÊäÈë²¶»ñÍ¨µÀ */
+/** \brief é…ç½®ä¸€ä¸ªè¾“å…¥æ•è·é€šé“ */
 static int __zlg_tim_cap_config (void              *p_drv,
                                  int                chan,
                                  unsigned int       options,
@@ -76,26 +76,26 @@ static int __zlg_tim_cap_config (void              *p_drv,
     am_zlg_tim_cap_dev_t *p_dev    = (am_zlg_tim_cap_dev_t *)p_drv;
     amhw_zlg_tim_t       *p_hw_tim = (amhw_zlg_tim_t *)p_dev->p_devinfo->tim_regbase;
 
-    /* ÓĞĞ§Í¨µÀºÅ·¶Î§ 0 ~ (channels_num - 1) */
+    /* æœ‰æ•ˆé€šé“å·èŒƒå›´ 0 ~ (channels_num - 1) */
     if (chan >= p_dev->p_devinfo->channels_num) {
         return -AM_EINVAL;
     }
 
-    /* ²»Ö§³ÖË«±ßÑØ´¥·¢ */
+    /* ä¸æ”¯æŒåŒè¾¹æ²¿è§¦å‘ */
     if ( (options & AM_CAP_TRIGGER_BOTH_EDGES) == AM_CAP_TRIGGER_BOTH_EDGES ) {
         return - AM_ENOTSUP;
     }
 
-    /* ÅäÖÃÊäÈë²»·ÖÆµ, 1´Î±ßÑØ¾Í´¥·¢ 1´Î²¶»ñ */
+    /* é…ç½®è¾“å…¥ä¸åˆ†é¢‘, 1æ¬¡è¾¹æ²¿å°±è§¦å‘ 1æ¬¡æ•è· */
     amhw_zlg_tim_icpsc_set(p_hw_tim, 0, chan);
 
-    /* Ñ¡ÔñÊäÈë¶ËÍ¨µÀÓ³Éä²»·´Ïà */
+    /* é€‰æ‹©è¾“å…¥ç«¯é€šé“æ˜ å°„ä¸åç›¸ */
     amhw_zlg_tim_ccs_set(p_hw_tim, 1, chan);
 
-    /* ÉèÖÃÊäÈëÂË²¨Æ÷µÄ·ÖÆµÖµÎª0(Ä¬ÈÏ²»Ê¹ÓÃÂË²¨) */
+    /* è®¾ç½®è¾“å…¥æ»¤æ³¢å™¨çš„åˆ†é¢‘å€¼ä¸º0(é»˜è®¤ä¸ä½¿ç”¨æ»¤æ³¢) */
     amhw_zlg_tim_icf_set(p_hw_tim, AMHW_ZLG_TIM_ICF_FSAMPLING0, chan);
 
-    /*  Ñ¡ÔñÉÏÉıÑØ´¥·¢ */
+    /*  é€‰æ‹©ä¸Šå‡æ²¿è§¦å‘ */
     if ((options & AM_CAP_TRIGGER_RISE) == AM_CAP_TRIGGER_RISE) {
         amhw_zlg_tim_ccp_captrigger_set(p_hw_tim,
                                            p_dev->p_devinfo->tim_type,
@@ -103,7 +103,7 @@ static int __zlg_tim_cap_config (void              *p_drv,
                                            chan);
     }
 
-    /*  Ñ¡ÔñÏÂ½µÑØ´¥·¢ */
+    /*  é€‰æ‹©ä¸‹é™æ²¿è§¦å‘ */
     if ((options & AM_CAP_TRIGGER_FALL) == AM_CAP_TRIGGER_FALL) {
         amhw_zlg_tim_ccp_captrigger_set(p_hw_tim,
                                            p_dev->p_devinfo->tim_type,
@@ -117,100 +117,100 @@ static int __zlg_tim_cap_config (void              *p_drv,
     return AM_OK;
 }
 
-/** \brief ²¶»ñÊ¹ÄÜ */
+/** \brief æ•è·ä½¿èƒ½ */
 static int __zlg_tim_cap_enable (void *p_drv, int chan)
 {
     am_zlg_tim_cap_dev_t    *p_dev    = (am_zlg_tim_cap_dev_t *)p_drv;
     amhw_zlg_tim_t          *p_hw_tim = (amhw_zlg_tim_t *)p_dev->p_devinfo->tim_regbase;
     am_zlg_tim_cap_ioinfo_t *p_ioinfo = p_dev->p_devinfo->p_ioinfo;
 
-    /* ÓĞĞ§Í¨µÀºÅ·¶Î§ 0 ~ (channels_num - 1) */
+    /* æœ‰æ•ˆé€šé“å·èŒƒå›´ 0 ~ (channels_num - 1) */
     if (chan >= p_dev->p_devinfo->channels_num) {
         return -AM_EINVAL;
     }
 
-    /* Òı½ÅÅäÖÃ */
+    /* å¼•è„šé…ç½® */
     am_gpio_pin_cfg(p_ioinfo[chan].gpio, p_ioinfo[chan].func);
 
-    /* ÖĞ¶ÏÁ¬½Ó²¢Ê¹ÄÜ */
+    /* ä¸­æ–­è¿æ¥å¹¶ä½¿èƒ½ */
     am_int_connect(p_dev->p_devinfo->inum, __zlg_tim_cap_irq_handler, (void *)p_dev);
     am_int_enable(p_dev->p_devinfo->inum);
 
-    /* ÉèÖÃ×Ô¶¯ÖØ×°¼Ä´æÆ÷µÄÖµ */
+    /* è®¾ç½®è‡ªåŠ¨é‡è£…å¯„å­˜å™¨çš„å€¼ */
     amhw_zlg_tim_arr_set(p_hw_tim, 0xffffffff);
 
-    /* ÇåÁã¼ÆÊıÆ÷ */
+    /* æ¸…é›¶è®¡æ•°å™¨ */
     amhw_zlg_tim_count_set(p_hw_tim, 0);
 
-    /* ²úÉú¸üĞÂÊÂ¼ş£¬ÖØĞÂ³õÊ¼»¯Prescaler¼ÆÊıÆ÷ ¼°Repetition¼ÆÊıÆ÷ */
+    /* äº§ç”Ÿæ›´æ–°äº‹ä»¶ï¼Œé‡æ–°åˆå§‹åŒ–Prescalerè®¡æ•°å™¨ åŠRepetitionè®¡æ•°å™¨ */
     amhw_zlg_tim_egr_set(p_hw_tim, AMHW_ZLG_TIM_UG);
 
     if (amhw_zlg_tim_status_flg_get(p_hw_tim, AMHW_ZLG_TIM_UG) != 0) {
 
-        /* ¸üĞÂ¶¨Ê±Æ÷Ê±»á²úÉú¸üĞÂÊÂ¼ş,Çå³ı±êÖ¾Î» */
+        /* æ›´æ–°å®šæ—¶å™¨æ—¶ä¼šäº§ç”Ÿæ›´æ–°äº‹ä»¶,æ¸…é™¤æ ‡å¿—ä½ */
         amhw_zlg_tim_status_flg_clr(p_hw_tim, AMHW_ZLG_TIM_UG);
     }
 
-    /* ÔÊĞí²¶»ñ¼ÆÊıÆ÷µÄÖµµ½²¶»ñ¼Ä´æÆ÷ÖĞ */
+    /* å…è®¸æ•è·è®¡æ•°å™¨çš„å€¼åˆ°æ•è·å¯„å­˜å™¨ä¸­ */
     amhw_zlg_tim_cce_cap_enable(p_hw_tim, chan);
 
-    /* ÔÊĞí²¶»ñÖĞ¶Ï */
+    /* å…è®¸æ•è·ä¸­æ–­ */
     amhw_zlg_tim_int_enable(p_hw_tim, (1UL << (chan + 1)));
 
-    /* Ê¹ÄÜ¶¨Ê±Æ÷TIMÔÊĞí¼ÆÊı */
+    /* ä½¿èƒ½å®šæ—¶å™¨TIMå…è®¸è®¡æ•° */
     amhw_zlg_tim_enable(p_hw_tim);
 
     return AM_OK;
 }
 
-/** \brief ²¶»ñ½ûÄÜ */
+/** \brief æ•è·ç¦èƒ½ */
 static int __zlg_tim_cap_disable (void *p_drv, int chan)
 {
     am_zlg_tim_cap_dev_t    *p_dev    = (am_zlg_tim_cap_dev_t *)p_drv;
     amhw_zlg_tim_t          *p_hw_tim = (amhw_zlg_tim_t *)p_dev->p_devinfo->tim_regbase;
     am_zlg_tim_cap_ioinfo_t *p_ioinfo = p_dev->p_devinfo->p_ioinfo;
 
-    /* ÓĞĞ§Í¨µÀºÅ·¶Î§ 0 ~ (channels_num - 1) */
+    /* æœ‰æ•ˆé€šé“å·èŒƒå›´ 0 ~ (channels_num - 1) */
     if (chan >= p_dev->p_devinfo->channels_num) {
         return -AM_EINVAL;
     }
 
-    /* »¹Ô­GPIOÅäÖÃ */
+    /* è¿˜åŸGPIOé…ç½® */
     am_gpio_pin_cfg(p_ioinfo[chan].gpio, p_ioinfo[chan].dfunc);
 
-    /* ¶Ï¿ªNVICÖĞ¶Ï»Øµ÷º¯Êı */
+    /* æ–­å¼€NVICä¸­æ–­å›è°ƒå‡½æ•° */
     am_int_disconnect(p_dev->p_devinfo->inum, __zlg_tim_cap_irq_handler, (void *)p_dev);
     am_int_disable(p_dev->p_devinfo->inum);
 
-    /* ½ûÄÜ²¶»ñÖĞ¶Ï */
+    /* ç¦èƒ½æ•è·ä¸­æ–­ */
     amhw_zlg_tim_int_disable(p_hw_tim, (1UL << (chan + 1)));
 
-    /* ½ûÄÜ¶¨Ê±Æ÷TIMÔÊĞí¼ÆÊı */
+    /* ç¦èƒ½å®šæ—¶å™¨TIMå…è®¸è®¡æ•° */
     amhw_zlg_tim_disable(p_hw_tim);
 
     return AM_OK;
 }
 
 /**
-  * \brief ¸´Î»²¶»ñÍ¨µÀ¼ÆÊıÖµ
+  * \brief å¤ä½æ•è·é€šé“è®¡æ•°å€¼
   */
 static int __zlg_tim_cap_reset (void *p_drv, int chan)
 {
     am_zlg_tim_cap_dev_t *p_dev    = (am_zlg_tim_cap_dev_t *)p_drv;
     amhw_zlg_tim_t       *p_hw_tim = (amhw_zlg_tim_t *)p_dev->p_devinfo->tim_regbase;
 
-    /* ½ûÄÜ¶¨Ê±Æ÷TIMÔÊĞí¼ÆÊı */
+    /* ç¦èƒ½å®šæ—¶å™¨TIMå…è®¸è®¡æ•° */
     amhw_zlg_tim_disable(p_hw_tim);
 
-    /* ÇåÁã¼ÆÊıÆ÷ */
+    /* æ¸…é›¶è®¡æ•°å™¨ */
     amhw_zlg_tim_count_set(p_hw_tim, 0);
 
-    /* ²úÉú¸üĞÂÊÂ¼ş£¬ÖØĞÂ³õÊ¼»¯Prescaler¼ÆÊıÆ÷ ¼°Repetition¼ÆÊıÆ÷ */
+    /* äº§ç”Ÿæ›´æ–°äº‹ä»¶ï¼Œé‡æ–°åˆå§‹åŒ–Prescalerè®¡æ•°å™¨ åŠRepetitionè®¡æ•°å™¨ */
     amhw_zlg_tim_egr_set(p_hw_tim, AMHW_ZLG_TIM_UG);
 
     if (amhw_zlg_tim_status_flg_get(p_hw_tim, AMHW_ZLG_TIM_UG) != 0) {
 
-        /* ¸üĞÂ¶¨Ê±Æ÷Ê±»á²úÉú¸üĞÂÊÂ¼ş,Çå³ı±êÖ¾Î» */
+        /* æ›´æ–°å®šæ—¶å™¨æ—¶ä¼šäº§ç”Ÿæ›´æ–°äº‹ä»¶,æ¸…é™¤æ ‡å¿—ä½ */
         amhw_zlg_tim_status_flg_clr(p_hw_tim, AMHW_ZLG_TIM_UG);
     }
 
@@ -218,7 +218,7 @@ static int __zlg_tim_cap_reset (void *p_drv, int chan)
 }
 
 /**
-  * \brief ×ª»»Á½´Î²¶»ñÖµÎªÊ±¼äÖµ
+  * \brief è½¬æ¢ä¸¤æ¬¡æ•è·å€¼ä¸ºæ—¶é—´å€¼
   */
 static int __zlg_tim_cap_count_to_time (void         *p_drv,
                                         int           chan,
@@ -241,7 +241,7 @@ static int __zlg_tim_cap_count_to_time (void         *p_drv,
 
     count_err = count2 - count1;
 
-    /* ½«Á½´Î¶ÁÈ¡ÖµµÄ²î×ª»»³ÉÊ±¼ä */
+    /* å°†ä¸¤æ¬¡è¯»å–å€¼çš„å·®è½¬æ¢æˆæ—¶é—´ */
     time_ns = (uint64_t)1000000000 * (uint64_t)count_err * pre / (uint64_t)clkfreq;
 
     *p_time_ns = time_ns;
@@ -250,7 +250,7 @@ static int __zlg_tim_cap_count_to_time (void         *p_drv,
 }
 
 /**
-  * \brief ÖĞ¶Ï·şÎñº¯Êı
+  * \brief ä¸­æ–­æœåŠ¡å‡½æ•°
   */
 static void __zlg_tim_cap_irq_handler (void *p_arg)
 {
@@ -267,44 +267,44 @@ static void __zlg_tim_cap_irq_handler (void *p_arg)
 
             callback_func = p_dev->callback_info[i - 1].callback_func;
 
-            /* µÃµ½¶ÔÓ¦Í¨µÀµÄÖµ */
+            /* å¾—åˆ°å¯¹åº”é€šé“çš„å€¼ */
             value = amhw_zlg_tim_ccr_cap_val_get(p_hw_tim, i - 1);
 
             if (callback_func != NULL) {
                 callback_func(p_dev->callback_info[i - 1].p_arg, value);
             }
 
-            /* Çå³ıÍ¨µÀi±êÖ¾ */
+            /* æ¸…é™¤é€šé“iæ ‡å¿— */
             amhw_zlg_tim_status_flg_clr(p_hw_tim, (1UL << i));
         }
     }
 }
 
 /**
-  * \brief ²¶»ñ³õÊ¼»¯
+  * \brief æ•è·åˆå§‹åŒ–
   */
 void __zlg_tim_cap_init (amhw_zlg_tim_t     *p_hw_tim,
                          amhw_zlg_tim_type_t type)
 {
     if ((type == AMHW_ZLG_TIM_TYPE0) || (type == AMHW_ZLG_TIM_TYPE1))  {
 
-        /* ±ßÑØ¶ÔÆëÄ£Ê½ */
+        /* è¾¹æ²¿å¯¹é½æ¨¡å¼ */
         amhw_zlg_tim_cms_set(p_hw_tim, 0);
 
-        /* ÏòÉÏ¼ÆÊı */
+        /* å‘ä¸Šè®¡æ•° */
         amhw_zlg_tim_dir_set(p_hw_tim, 0);
     }
 
-    /* ÉèÖÃÊ±ÖÓ·Ö¸î(ÓÃÓÚÈ·¶¨ÊäÈëÂË²¨Æ÷µÄÊäÈëÊ±ÖÓÆµÂÊ,Ä¬ÈÏ Fdts = Fck_in */
+    /* è®¾ç½®æ—¶é’Ÿåˆ†å‰²(ç”¨äºç¡®å®šè¾“å…¥æ»¤æ³¢å™¨çš„è¾“å…¥æ—¶é’Ÿé¢‘ç‡,é»˜è®¤ Fdts = Fck_in */
     amhw_zlg_tim_ckd_set(p_hw_tim, 0);
 
-    /* ÇåÁã¼ÆÊıÆ÷ */
+    /* æ¸…é›¶è®¡æ•°å™¨ */
     amhw_zlg_tim_count_set(p_hw_tim, 0);
 
-    /* ÉèÖÃ·ÖÆµÆ÷ */
+    /* è®¾ç½®åˆ†é¢‘å™¨ */
     amhw_zlg_tim_prescale_set(p_hw_tim, 0x00);
 
-    /* ÔÊĞí¸üĞÂÊÂ¼ş */
+    /* å…è®¸æ›´æ–°äº‹ä»¶ */
     amhw_zlg_tim_udis_enable(p_hw_tim);
 }
 
@@ -331,7 +331,7 @@ am_cap_handle_t am_zlg_tim_cap_init (am_zlg_tim_cap_dev_t           *p_dev,
         p_dev->callback_info[i].callback_func = NULL;
     }
 
-    /* ²¶»ñ³õÊ¼»¯ */
+    /* æ•è·åˆå§‹åŒ– */
     __zlg_tim_cap_init(p_hw_tim, p_devinfo->tim_type);
 
     return &(p_dev->cap_serv);
@@ -352,17 +352,17 @@ void am_zlg_tim_cap_deinit (am_cap_handle_t handle)
 
     p_hw_tim     = (amhw_zlg_tim_t *)p_dev->p_devinfo->tim_regbase;
 
-    /* ÇåÁã¼ÆÊıÆ÷ */
+    /* æ¸…é›¶è®¡æ•°å™¨ */
     amhw_zlg_tim_count_set(p_hw_tim, 0);
 
-    /* ¹Ø±ÕTIMÄ£¿é */
+    /* å…³é—­TIMæ¨¡å— */
     amhw_zlg_tim_disable(p_hw_tim);
 
     am_int_disable(p_dev->p_devinfo->inum);
 
     p_dev->cap_serv.p_drv = NULL;
 
-    /* »¹Ô­GPIOÅäÖÃ */
+    /* è¿˜åŸGPIOé…ç½® */
     for (i = 0; i <p_dev->p_devinfo->channels_num; i++) {
 
         am_gpio_pin_cfg(p_ioinfo[i].gpio, p_ioinfo[i].dfunc);

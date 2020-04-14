@@ -11,16 +11,16 @@
 *******************************************************************************/
 /**
  * \file
- * \brief ÔÚI2CÂÖÑ¯Ä£Ê½ÏÂ´ÓLM75´«¸ĞÆ÷¶ÁÈ¡ÎÂ¶ÈÖµÑİÊ¾Àı³Ì£¬Í¨¹ıHW²ãµÄ½Ó¿ÚÊµÏÖ
+ * \brief åœ¨I2Cè½®è¯¢æ¨¡å¼ä¸‹ä»LM75ä¼ æ„Ÿå™¨è¯»å–æ¸©åº¦å€¼æ¼”ç¤ºä¾‹ç¨‹ï¼Œé€šè¿‡HWå±‚çš„æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè:
- *       1. ½«J11ºÍJ13ÓÃÌøÏßÃ±Á¬½Ó£»
- *       2. ½«³ÌĞòÏÂÔØÖÁ°å×Ó¡£
+ * - æ“ä½œæ­¥éª¤:
+ *       1. å°†J11å’ŒJ13ç”¨è·³çº¿å¸½è¿æ¥ï¼›
+ *       2. å°†ç¨‹åºä¸‹è½½è‡³æ¿å­ã€‚
  *
- * - ÊµÑéÏÖÏó:
- *       ´ÓLM75¶Á»ØÀ´µÄÎÂ¶ÈÖµÏò´®¿Ú´òÓ¡¡£
+ * - å®éªŒç°è±¡:
+ *       ä»LM75è¯»å›æ¥çš„æ¸©åº¦å€¼å‘ä¸²å£æ‰“å°ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_fsl_hw_i2c_master_poll.c src_fsl_hw_i2c_master_poll
  * 
  * \internal
@@ -47,51 +47,51 @@
 #include "demo_fsl_entrys.h"
 
 /*******************************************************************************
-  ºê¶¨Òå
+  å®å®šä¹‰
 *******************************************************************************/
-#define I2C_M_7BIT        0x0000u          /**< \brief 7-bits Éè±¸µØÖ·           */
-#define I2C_M_10BIT       0x0001u          /**< \brief 10-bit Éè±¸µØÖ·           */
-#define I2C_M_WR          0x0000u          /**< \brief Ğ´²Ù×÷                    */
-#define I2C_M_RD          0x0002u          /**< \brief ¶Á²Ù×÷                    */
-#define I2C_M_NOSTART     0x0010u          /**< \brief ÎŞĞèÖØĞÂÆô¶¯±êÊ¶          */
+#define I2C_M_7BIT        0x0000u          /**< \brief 7-bits è®¾å¤‡åœ°å€           */
+#define I2C_M_10BIT       0x0001u          /**< \brief 10-bit è®¾å¤‡åœ°å€           */
+#define I2C_M_WR          0x0000u          /**< \brief å†™æ“ä½œ                    */
+#define I2C_M_RD          0x0002u          /**< \brief è¯»æ“ä½œ                    */
+#define I2C_M_NOSTART     0x0010u          /**< \brief æ— éœ€é‡æ–°å¯åŠ¨æ ‡è¯†          */
                       
-//#define I2C_MASTER        KL26_I2C1   /**< \brief I2CÖ÷»ú¿ØÖÆÆ÷Í¨µÀºÅ¶¨Òå   */
-#define I2C_SPEED         100000           /**< \brief I2C¿ØÖÆÆ÷ËÙ¶È²ÎÊı¶¨Òå     */
-#define LM75_ADDR         0x48             /**< \brief AAM75Éè±¸µØÖ·¶¨Òå        */
+//#define I2C_MASTER        KL26_I2C1   /**< \brief I2Cä¸»æœºæ§åˆ¶å™¨é€šé“å·å®šä¹‰   */
+#define I2C_SPEED         100000           /**< \brief I2Cæ§åˆ¶å™¨é€Ÿåº¦å‚æ•°å®šä¹‰     */
+#define LM75_ADDR         0x48             /**< \brief AAM75è®¾å¤‡åœ°å€å®šä¹‰        */
 
 
 /**
- * \brief I2C´«Êä½á¹¹Ìå¶¨Òå£¬Ö÷ÒªÓÃÓÚI2CÂÖÑ¯Ä£Ê½ÏÂ¡£
+ * \brief I2Cä¼ è¾“ç»“æ„ä½“å®šä¹‰ï¼Œä¸»è¦ç”¨äºI2Cè½®è¯¢æ¨¡å¼ä¸‹ã€‚
  */ 
 typedef struct i2c_transfer {
-    /** \brief I2CÉè±¸µØÖ·          */ 
+    /** \brief I2Cè®¾å¤‡åœ°å€          */ 
     volatile uint16_t   addr;      
-    /** \brief I2C Éè±¸ÌØĞÔÒÔ¼°transferĞèÒªµÄÌØÊâ±êÊ¶ */
+    /** \brief I2C è®¾å¤‡ç‰¹æ€§ä»¥åŠtransferéœ€è¦çš„ç‰¹æ®Šæ ‡è¯† */
     volatile uint16_t   flags;     
-    /** \brief I2C ´«ÊäÊı¾İ»º´æÖ¸Õë */
+    /** \brief I2C ä¼ è¾“æ•°æ®ç¼“å­˜æŒ‡é’ˆ */
     volatile void      *p_buf;     
-    /** \brief I2C Êı¾İ»º´æ³¤¶È     */
+    /** \brief I2C æ•°æ®ç¼“å­˜é•¿åº¦     */
     volatile uint16_t   length;    
 } i2c_transfer_t;
 
 /**
- * \brief I2CÊ±ÖÓÅäÖÃ½á¹¹Ìå
+ * \brief I2Cæ—¶é’Ÿé…ç½®ç»“æ„ä½“
  */
 typedef struct __i2c_div_table {
-    uint8_t   icr;         /**< \brief I2C ³ËÊıÒò×Ó        */
-    uint16_t  scl_div;     /**< \brief I2C ·ÖÆµÒò×Ó        */
+    uint8_t   icr;         /**< \brief I2C ä¹˜æ•°å› å­        */
+    uint16_t  scl_div;     /**< \brief I2C åˆ†é¢‘å› å­        */
 } __i2c_div_table_t;
 
 /**
- * \brief I2C´«Êä½á¹¹Ìå²ÎÊıÉèÖÃº¯Êı
+ * \brief I2Cä¼ è¾“ç»“æ„ä½“å‚æ•°è®¾ç½®å‡½æ•°
  *
- * \param[in] p_trans : Ö¸ÏòI2C´«Êä½á¹¹ÌåµÄÖ¸Õë
- * \param[in] addr    : Éè±¸µØÖ·²ÎÊı
- * \param[in] flags   : ´«Êä¿ØÖÆ±êÊ¶Î»²ÎÊı 
- * \param[in] p_buf   : Ö¸Ïò·¢ËÍ»òÕß½ÓÊÕÊı¾İ»º´æµÄÖ¸Õë
- * \param[in] length  : »º´æµÄ×Ö½Ú³¤¶È²ÎÊı
+ * \param[in] p_trans : æŒ‡å‘I2Cä¼ è¾“ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] addr    : è®¾å¤‡åœ°å€å‚æ•°
+ * \param[in] flags   : ä¼ è¾“æ§åˆ¶æ ‡è¯†ä½å‚æ•° 
+ * \param[in] p_buf   : æŒ‡å‘å‘é€æˆ–è€…æ¥æ”¶æ•°æ®ç¼“å­˜çš„æŒ‡é’ˆ
+ * \param[in] length  : ç¼“å­˜çš„å­—èŠ‚é•¿åº¦å‚æ•°
  *
- * \retval AM_OK : ´«Êä½á¹¹ÌåÉèÖÃÍê³É
+ * \retval AM_OK : ä¼ è¾“ç»“æ„ä½“è®¾ç½®å®Œæˆ
  */
 static int __i2c_mktrans (i2c_transfer_t    *p_trans,
                           uint16_t           addr,  
@@ -112,7 +112,7 @@ static int __i2c_mktrans (i2c_transfer_t    *p_trans,
 }
 
 /**
- * \brief I2C ²¨ÌØÂÊÉèÖÃº¯Êı
+ * \brief I2C æ³¢ç‰¹ç‡è®¾ç½®å‡½æ•°
  */
 static int __i2c_speed_set(amhw_fsl_i2c_t *p_hw_i2c,
                            uint32_t        i2c_clk,
@@ -129,7 +129,7 @@ static int __i2c_speed_set(amhw_fsl_i2c_t *p_hw_i2c,
         return -AM_EINVAL;
     }
 
-    /* I2C Ê±ÖÓ·ÖÆµÒò×ÓÁĞ±í  */
+    /* I2C æ—¶é’Ÿåˆ†é¢‘å› å­åˆ—è¡¨  */
     const __i2c_div_table_t div_table[50] = {
         { 0x00, 20 },   { 0x01, 22 },   { 0x02, 24 },   { 0x03, 26 },
         { 0x04, 28 },   { 0x05, 30 },   { 0x09, 32 },   { 0x06, 34 },
@@ -165,18 +165,18 @@ static int __i2c_speed_set(amhw_fsl_i2c_t *p_hw_i2c,
         }
     }
 
-    /* Ğ´Èë·ÖÆµÒò×Ó£¬ÉèÖÃ²¨ÌØÂÊ  */
+    /* å†™å…¥åˆ†é¢‘å› å­ï¼Œè®¾ç½®æ³¢ç‰¹ç‡  */
     amhw_fsl_i2c_clk_div_set(p_hw_i2c , (best_mult << 6)|best_icr);
     return AM_OK;
 }
 
 /**
- * \brief I2CÖ÷»úÆô¶¯º¯Êı
+ * \brief I2Cä¸»æœºå¯åŠ¨å‡½æ•°
  *
- * \param[in] p_hw_i2c : Ö¸ÏòI2C¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] p_trans  : Ö¸ÏòI2C´«Êä½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] p_hw_i2c : æŒ‡å‘I2Cå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] p_trans  : æŒ‡å‘I2Cä¼ è¾“ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 static void __i2c_mst_start (amhw_fsl_i2c_t     *p_hw_i2c,
                              i2c_transfer_t      *p_trans)
@@ -186,17 +186,17 @@ static void __i2c_mst_start (amhw_fsl_i2c_t     *p_hw_i2c,
     if(!(p_trans->flags & I2C_M_NOSTART)) {
         
         if (p_trans->flags & I2C_M_RD) {
-            dev_addr |= 0x1;            /* ÉèÖÃbit0Îª1£¬±íÃ÷µ±Ç°Îª¶Á²Ù×÷ */
+            dev_addr |= 0x1;            /* è®¾ç½®bit0ä¸º1ï¼Œè¡¨æ˜å½“å‰ä¸ºè¯»æ“ä½œ */
             amhw_fsl_i2c_restart_signal_send(p_hw_i2c);
 
         } else {
-            dev_addr |= 0x0;            /* ÉèÖÃbit0Îª0£¬±íÃ÷µ±Ç°ÎªĞ´²Ù×÷ */
+            dev_addr |= 0x0;            /* è®¾ç½®bit0ä¸º0ï¼Œè¡¨æ˜å½“å‰ä¸ºå†™æ“ä½œ */
             amhw_fsl_i2c_start_signal_send(p_hw_i2c);
         }
 
         amhw_fsl_i2c_transmode_set(p_hw_i2c, AMHW_FSL_I2C_TRANSMODE_SEND);
 
-        /* ·¢ËÍÉè±¸µØÖ· */
+        /* å‘é€è®¾å¤‡åœ°å€ */
         amhw_fsl_i2c_data_write(p_hw_i2c, dev_addr);
 
     }
@@ -205,12 +205,12 @@ static void __i2c_mst_start (amhw_fsl_i2c_t     *p_hw_i2c,
 }
 
 /**
- * \brief I2CÖ÷»ú·¢ËÍµØÖ·/Êı¾İ
+ * \brief I2Cä¸»æœºå‘é€åœ°å€/æ•°æ®
  *
- * \param[in] p_hw_i2c : Ö¸ÏòI2C¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] p_trans  : Ö¸ÏòI2C´«Êä½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] p_hw_i2c : æŒ‡å‘I2Cå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] p_trans  : æŒ‡å‘I2Cä¼ è¾“ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \retval AM_OK : ·¢ËÍÍê³É
+ * \retval AM_OK : å‘é€å®Œæˆ
  */
 static int __i2c_mst_send (amhw_fsl_i2c_t    *p_hw_i2c,
                            i2c_transfer_t    *p_trans)
@@ -230,12 +230,12 @@ static int __i2c_mst_send (amhw_fsl_i2c_t    *p_hw_i2c,
 }
 
 /**
- * \brief  I2CÖ÷»ú½ÓÊÕµØÖ·/Êı¾İ
+ * \brief  I2Cä¸»æœºæ¥æ”¶åœ°å€/æ•°æ®
  *
- * \param[in] p_hw_i2c : Ö¸ÏòI2C¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] p_trans  : Ö¸ÏòI2C´«Êä½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] p_hw_i2c : æŒ‡å‘I2Cå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] p_trans  : æŒ‡å‘I2Cä¼ è¾“ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \retval AM_OK : ½ÓÊÕÍê³É
+ * \retval AM_OK : æ¥æ”¶å®Œæˆ
  */
 static int __i2c_mst_recv (amhw_fsl_i2c_t *p_hw_i2c,
                            i2c_transfer_t    *p_trans)
@@ -244,7 +244,7 @@ static int __i2c_mst_recv (amhw_fsl_i2c_t *p_hw_i2c,
     amhw_fsl_i2c_transmode_set(p_hw_i2c, AMHW_FSL_I2C_TRANSMODE_RECV );
     for (i = 0; i < p_trans->length; i++) {
 
-        /* ½ÓÊÕÊı¾İ */
+        /* æ¥æ”¶æ•°æ® */
         ((uint8_t *)(p_trans->p_buf))[i] = amhw_fsl_i2c_data_read(p_hw_i2c);
         while (!(p_hw_i2c->status & AMHW_FSL_I2C_STAT_IICIF )) ;
         amhw_fsl_i2c_stat_clr(p_hw_i2c , AMHW_FSL_I2C_STAT_IICIF);
@@ -252,13 +252,13 @@ static int __i2c_mst_recv (amhw_fsl_i2c_t *p_hw_i2c,
     }
     amhw_fsl_i2c_stop_signal_send(p_hw_i2c);
 
-    /* p_buf[0] ÖĞ¶ÁÈ¡µÄÊÇÉÏ´ÎĞ´ÈëµÄ Éè±¸µØÖ·£¨AM75_ADDR£© Í£Ö¹ºóÔÙ¶ÁÒ»´Î */
+    /* p_buf[0] ä¸­è¯»å–çš„æ˜¯ä¸Šæ¬¡å†™å…¥çš„ è®¾å¤‡åœ°å€ï¼ˆAM75_ADDRï¼‰ åœæ­¢åå†è¯»ä¸€æ¬¡ */
     ((uint8_t *)(p_trans->p_buf))[0] = amhw_fsl_i2c_data_read(p_hw_i2c);
     return AM_OK;    
 }
 
 /**
- * \brief ²âÊÔº¯ÊıÈë¿Ú
+ * \brief æµ‹è¯•å‡½æ•°å…¥å£
  */
 void demo_fsl_hw_i2c_master_poll_entry (amhw_fsl_i2c_t *p_hw_i2c,
                                         uint32_t        i2c_clk)
@@ -270,12 +270,12 @@ void demo_fsl_hw_i2c_master_poll_entry (amhw_fsl_i2c_t *p_hw_i2c,
     am_kprintf("I2C operate LM75 demo in polling mode .\r\n");
 
     amhw_fsl_i2c_disable(p_hw_i2c);
-       /* I2C ²¨ÌØÂÊÉèÖÃ  */
+       /* I2C æ³¢ç‰¹ç‡è®¾ç½®  */
     __i2c_speed_set(p_hw_i2c, i2c_clk, I2C_SPEED);
     amhw_fsl_i2c_enable(p_hw_i2c);
 
     while (1) {
-         /* ÉèÖÃtransfer½á¹¹Ìå²ÎÊı£¬Ğ´ÈëµØÖ· */
+         /* è®¾ç½®transferç»“æ„ä½“å‚æ•°ï¼Œå†™å…¥åœ°å€ */
         __i2c_mktrans(&i2c1_transfer,
                       LM75_ADDR,
                       (I2C_M_7BIT | I2C_M_WR),
@@ -285,7 +285,7 @@ void demo_fsl_hw_i2c_master_poll_entry (amhw_fsl_i2c_t *p_hw_i2c,
         __i2c_mst_start(p_hw_i2c, &i2c1_transfer);
         __i2c_mst_send (p_hw_i2c, &i2c1_transfer);
 
-        /* ÉèÖÃtransfer½á¹¹Ìå²ÎÊı£¬Ğ´ÈëÊı¾İ */
+        /* è®¾ç½®transferç»“æ„ä½“å‚æ•°ï¼Œå†™å…¥æ•°æ® */
         __i2c_mktrans(&i2c1_transfer,
                       LM75_ADDR,
                       (I2C_M_7BIT | I2C_M_RD),
@@ -298,7 +298,7 @@ void demo_fsl_hw_i2c_master_poll_entry (amhw_fsl_i2c_t *p_hw_i2c,
         uint16_t temp;
         lm75_data[0] &= 0xE0;
         temp = lm75_data[1] << 8 | lm75_data[0];
-        AM_DBG_INFO("Current temperature is %d¡ãC\r\n", temp / 256 );
+        AM_DBG_INFO("Current temperature is %dÂ°C\r\n", temp / 256 );
         am_mdelay(500);
     }
 

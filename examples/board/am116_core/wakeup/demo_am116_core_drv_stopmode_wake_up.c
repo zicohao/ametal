@@ -11,13 +11,13 @@
 *******************************************************************************/
 /**
  * \file
- * \brief Í£Ö¹Ä£Ê½Àı³Ì£¬Í¨¹ıÇı¶¯²ã½Ó¿ÚÊµÏÖ
+ * \brief åœæ­¢æ¨¡å¼ä¾‹ç¨‹ï¼Œé€šè¿‡é©±åŠ¨å±‚æ¥å£å®ç°
  *
- * - ÊµÏÖÏÖÏó
- *   1. MCU ½øÈëÍ£Ö¹Ä£Ê½Ê±£¬ J-Link µ÷ÊÔ¶Ï¿ª£»
- *   2. °´ÏÂ KEY/RES ¼ü»½ĞÑ MCU£¬´®¿ÚÊä³ö wake_up£¬³ÌĞò¼ÌĞøÔËĞĞ¡£
+ * - å®ç°ç°è±¡
+ *   1. MCU è¿›å…¥åœæ­¢æ¨¡å¼æ—¶ï¼Œ J-Link è°ƒè¯•æ–­å¼€ï¼›
+ *   2. æŒ‰ä¸‹ KEY/RES é”®å”¤é†’ MCUï¼Œä¸²å£è¾“å‡º wake_upï¼Œç¨‹åºç»§ç»­è¿è¡Œã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am116_core_drv_stopmode_wake_up.c src_am116_core_drv_stopmode_wake_up
  *
  * \internal
@@ -39,7 +39,7 @@
 #include "demo_am116_core_entries.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am116_core_drv_stopmode_wake_up_entry (void)
 {

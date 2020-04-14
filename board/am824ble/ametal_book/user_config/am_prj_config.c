@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief LPC82X ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief LPC82X ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_prj_config.c
  *
  * \internal
@@ -53,7 +53,7 @@ int main (void)
     am_nvram_inst_init();
 #endif /* (AM_CFG_NVRAM_ENABLE == 1) */
 
-    /* °å¼¶³õÊ¼»¯ */
+    /* æ¿çº§åˆå§‹åŒ– */
     am_board_init();
 
     return am_main();

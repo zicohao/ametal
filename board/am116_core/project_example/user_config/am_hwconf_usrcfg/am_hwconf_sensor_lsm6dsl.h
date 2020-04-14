@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ´«¸ĞÆ÷ LSM6DSL ÅäÖÃÎÄ¼ş
+ * \brief ä¼ æ„Ÿå™¨ LSM6DSL é…ç½®æ–‡ä»¶
  *
  * \internal
  * \par Modification history
@@ -31,12 +31,12 @@ extern "C" {
 #endif
 
 /**
- * \brief ´«¸ĞÆ÷ LSM6DSL Éè±¸ÊµÀı»¯
+ * \brief ä¼ æ„Ÿå™¨ LSM6DSL è®¾å¤‡å®ä¾‹åŒ–
  */
 am_sensor_handle_t am_sensor_lsm6dsl_inst_init (void);
 
 /**
- * \brief ´«¸ĞÆ÷ LSM6DSL ÊµÀı½â³õÊ¼»¯
+ * \brief ä¼ æ„Ÿå™¨ LSM6DSL å®ä¾‹è§£åˆå§‹åŒ–
  */
 am_err_t am_sensor_lsm6dsl_inst_deinit (am_sensor_handle_t handle);
 

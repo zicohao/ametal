@@ -8,17 +8,17 @@
  */
 
 /**
- * \brief cd4051Òı½Å³õÊ¼»¯
+ * \brief cd4051å¼•è„šåˆå§‹åŒ–
  */
 void am_cd4051_pin_init (am_antenna_info_t *p_dev)
 {
-    /* ÉèÖÃÒı½ÅÎªGPIO¹¦ÄÜ,Êä³öÄ£Ê½,ÄÚ²¿ÉÏÀ­ */
+    /* è®¾ç½®å¼•è„šä¸ºGPIOåŠŸèƒ½,è¾“å‡ºæ¨¡å¼,å†…éƒ¨ä¸Šæ‹‰ */
     am_gpio_pin_cfg(p_dev->cd4051_dev_inf.pin_en, AM_GPIO_OUTPUT_INIT_HIGH);
     am_gpio_pin_cfg(p_dev->cd4051_dev_inf.pin_s2, AM_GPIO_OUTPUT_INIT_HIGH);
     am_gpio_pin_cfg(p_dev->cd4051_dev_inf.pin_s1, AM_GPIO_OUTPUT_INIT_HIGH);
     am_gpio_pin_cfg(p_dev->cd4051_dev_inf.pin_s0, AM_GPIO_OUTPUT_INIT_HIGH);
 
-    /* Ä¬ÈÏCD4051Ê¹ÄÜ,Ñ¡ÔñÍ¨µÀ0 */
+    /* é»˜è®¤CD4051ä½¿èƒ½,é€‰æ‹©é€šé“0 */
     am_gpio_set(p_dev->cd4051_dev_inf.pin_en, 0);
     am_gpio_set(p_dev->cd4051_dev_inf.pin_s2, 0);
     am_gpio_set(p_dev->cd4051_dev_inf.pin_s1, 0);
@@ -26,9 +26,9 @@ void am_cd4051_pin_init (am_antenna_info_t *p_dev)
 }
 
 /**
- * \brief cd4051Í¨µÀÑ¡Ôñ
+ * \brief cd4051é€šé“é€‰æ‹©
  *
- * \param[in] channel_num : Ñ¡ÔñµÄÍ¨µÀºÅ(0~7)
+ * \param[in] channel_num : é€‰æ‹©çš„é€šé“å·(0~7)
  */
 void am_cd4051_channel_selected (am_antenna_info_t *p_dev, uint8_t channel_num)
 {

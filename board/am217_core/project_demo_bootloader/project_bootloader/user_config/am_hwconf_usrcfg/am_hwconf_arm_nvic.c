@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief NVIC �û������ļ�
+ * \brief NVIC 用户配置文件
  * \sa am_hwconf_arm_nvic.c
  *
  * \internal
@@ -33,49 +33,49 @@
  */
 
 /**
- * \brief ISR ��Ϣ����
- *        ������Ĭ�϶���Ϊ MCU ��֧�ֵ���������жϸ�����
- *        �û����Ը���Ӧ����ʵ������Ҫ�õ����жϸ���
- *        ���޸ĸú�ֵ���Դﵽ���ٲ���Ҫ���ڴ��˷ѵ�Ŀ�ġ�
+ * \brief ISR 信息数量
+ *        该数量默认定义为 MCU 所支持的最大向量中断个数，
+ *        用户可以根据应用中实际所需要用到的中断个数
+ *        来修改该宏值，以达到减少不必要的内存浪费的目的。
  */
 #define __ISRINFO_COUNT    INUM_INTERNAL_COUNT
 
 /**
- * \brief �洢�û��жϻص���Ϣ
+ * \brief 存储用户中断回调信息
  */
 static struct am_arm_nvic_isr_info __nvic_isr_infor[__ISRINFO_COUNT];
 
 /**
- * \brief �洢�жϱ�������Ӧ�� __nvic_isr_infor �жϻص���Ϣ��
- *        λ�õ�ӳ�䣬�����Сһ����MCU��֧�ֵ���������жϸ�����ȡ�
+ * \brief 存储中断编号与其对应在 __nvic_isr_infor 中断回调信息中
+ *        位置的映射，数组大小一般与MCU所支持的最大向量中断个数相等。
  */
 static uint8_t __nvic_isr_map[INUM_INTERNAL_COUNT];
 
-/** \brief �豸��Ϣ */
+/** \brief 设备信息 */
 static const am_arm_nvic_devinfo_t __g_nvic_devinfo =
 {
     {
-        INUM_INTERNAL_MIN, /**< \brief �ж���ʼ�� */
-        INUM_INTERNAL_MAX  /**< \brief �ж�ĩβ�� */
+        INUM_INTERNAL_MIN, /**< \brief 中断起始号 */
+        INUM_INTERNAL_MAX  /**< \brief 中断末尾号 */
     },
 
-    AM_ARM_NVIC_CORE_M3,   /**< \brief �ں� */
-    4,                     /**< \brief ���ȼ�λ�� */
-    16,                    /**< \brief �������ж� */
-    INUM_INTERNAL_COUNT,   /**< \brief ���ж����� */
-    __nvic_isr_map,        /**< \brief ISR ��Ϣӳ��(��С�� input_cnt һ��) */
-    __ISRINFO_COUNT,       /**< \brief ISR ��Ϣ���� */
-    __nvic_isr_infor,      /**< \brief ISR ��Ϣӳ���ڴ�(��С�� isrinfo_cnt һ��) */
+    AM_ARM_NVIC_CORE_M3,   /**< \brief 内核 */
+    4,                     /**< \brief 优先级位数 */
+    16,                    /**< \brief 设置组中断 */
+    INUM_INTERNAL_COUNT,   /**< \brief 总中断数量 */
+    __nvic_isr_map,        /**< \brief ISR 信息映射(大小与 input_cnt 一致) */
+    __ISRINFO_COUNT,       /**< \brief ISR 信息数量 */
+    __nvic_isr_infor,      /**< \brief ISR 信息映射内存(大小与 isrinfo_cnt 一致) */
 
-    NULL,                  /**< \brief ����ƽ̨��ʼ�� */
-    NULL                   /**< \brief ����ƽ̨ȥ��ʼ�� */
+    NULL,                  /**< \brief 无需平台初始化 */
+    NULL                   /**< \brief 无需平台去初始化 */
 };
 
-/** \brief �豸ʵ�� */
+/** \brief 设备实例 */
 static am_arm_nvic_dev_t __g_nvic_dev;
 
 /**
- * \brief �ж�ʵ����ʼ������ʼ���ж�����
+ * \brief 中断实例初始化，初始化中断驱动
  */
 int am_zlg217_nvic_inst_init (void)
 {
@@ -83,7 +83,7 @@ int am_zlg217_nvic_inst_init (void)
 }
 
 /**
- * \brief �ж�ʵ�����ʼ��
+ * \brief 中断实例解初始化
  */
 void am_zlg217_nvic_inst_deinit (void)
 {

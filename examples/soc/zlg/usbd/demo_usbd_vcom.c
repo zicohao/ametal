@@ -13,13 +13,13 @@
 
 /**
  * \file
- * \brief USB Vcom Àı³Ì
+ * \brief USB Vcom ä¾‹ç¨‹
  *
- * - ÊµÑéÏÖÏó£º
- * 1. ½«°å×ÓÓëPC»úÓÃUSBµçÀÂÏßÁ¬½Ó¡£
- * 2. PC¶ËÓÃ´®¿ÚÖúÊÖ(xcom)¸ø°å×Ó·¢ËÍÊı¾İ£¬Èç¹û°å×ÓÊÕµ½Êı¾İ£¬»á»Ø´«¡°recv success¡±.
+ * - å®éªŒç°è±¡ï¼š
+ * 1. å°†æ¿å­ä¸PCæœºç”¨USBç”µç¼†çº¿è¿æ¥ã€‚
+ * 2. PCç«¯ç”¨ä¸²å£åŠ©æ‰‹(xcom)ç»™æ¿å­å‘é€æ•°æ®ï¼Œå¦‚æœæ¿å­æ”¶åˆ°æ•°æ®ï¼Œä¼šå›ä¼ â€œrecv successâ€.
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_usbd_vcom.c src_usbd_vcom
  *
  * \internal
@@ -44,42 +44,42 @@
 #include "am_usbd_cdc_vcom.h"
 #include "demo_zlg_entries.h"
 
-#define __RNG_BUFF_SIZE    256                   /**< »º³åÇø´óĞ¡. */
+#define __RNG_BUFF_SIZE    256                   /**< ç¼“å†²åŒºå¤§å°. */
 
-static char __g_rng_buff[__RNG_BUFF_SIZE] = {0}; /**< \brief »·ĞÎ»º³åÇøbuff*/
+static char __g_rng_buff[__RNG_BUFF_SIZE] = {0}; /**< \brief ç¯å½¢ç¼“å†²åŒºbuff*/
 
-static char __g_buff[__RNG_BUFF_SIZE]     = {0}; /**< \brief Êı¾İ¶ÁÈ¡buff*/
+static char __g_buff[__RNG_BUFF_SIZE]     = {0}; /**< \brief æ•°æ®è¯»å–buff*/
 
-static struct am_rngbuf __g_rngbuff;             /**< \brief ¶¨ÒåÒ»¸ö»·ĞÎ»º³åÇøÊµÀı*/
+static struct am_rngbuf __g_rngbuff;             /**< \brief å®šä¹‰ä¸€ä¸ªç¯å½¢ç¼“å†²åŒºå®ä¾‹*/
 
 
 static void __test_function(void *p_arg, uint8_t *p_buffer, uint8_t len)
 {
-    am_rngbuf_put(&__g_rngbuff, (char *)p_buffer, len); /* Ìî³ä»·ĞÎ»º³åÇø*/
+    am_rngbuf_put(&__g_rngbuff, (char *)p_buffer, len); /* å¡«å……ç¯å½¢ç¼“å†²åŒº*/
 }
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_usbd_vcom_entry (void* p_handle)
 {
     uint32_t key = 0;
     am_usbd_cdc_vcom_handle handle = p_handle;
-    // ÉèÖÃ´®¿Ú½ÓÊÕÖĞ¶Ï
+    // è®¾ç½®ä¸²å£æ¥æ”¶ä¸­æ–­
     am_usbd_cdc_vcom_recv_cb(handle, __test_function, NULL);
 
     am_rngbuf_init(&__g_rngbuff, __g_rng_buff, __RNG_BUFF_SIZE);
 
     for (;;){
 
-        /* Èç¹û»·ĞÎ»º³åÇø²»Îª¿Õ£¬´¦ÀíÊı¾İ*/
+        /* å¦‚æœç¯å½¢ç¼“å†²åŒºä¸ä¸ºç©ºï¼Œå¤„ç†æ•°æ®*/
         if (!am_rngbuf_isempty(&__g_rngbuff)) {
             key = am_int_cpu_lock();
             am_rngbuf_get(&__g_rngbuff, __g_buff, __RNG_BUFF_SIZE);
 
             am_kprintf("%s", __g_buff);
 
-            // ¸ø´®¿Ú·¢Êı¾İ ×î¶àÖ»ÄÜ·¢64 ×Ö½Ú£¬Èç¹û·¢ËÍ64×Ö½ÚÒÔÉÏ£¬½¨Òé·Ö¶Î·¢ËÍ
+            // ç»™ä¸²å£å‘æ•°æ® æœ€å¤šåªèƒ½å‘64 å­—èŠ‚ï¼Œå¦‚æœå‘é€64å­—èŠ‚ä»¥ä¸Šï¼Œå»ºè®®åˆ†æ®µå‘é€
             am_usbd_cdc_vcom_send(handle,
                                  (uint8_t *)"recv success\r\n",
                                  sizeof("recv success\r\n"));

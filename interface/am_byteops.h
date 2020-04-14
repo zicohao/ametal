@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief ×Ö½Ú²Ù×÷Ïà¹Ø¶¨ÒåÍ·ÎÄ¼ş
+ * \brief å­—èŠ‚æ“ä½œç›¸å…³å®šä¹‰å¤´æ–‡ä»¶
  *
- * ±¾ÎÄ¼şÌá¹©ÁË³£ÓÃµÄÎ»²Ù×÷¹¤¾ßºê£¬ÀıÈç£ºAM_LSB(), AM_LONGSWAP()¡£¸ü¶àÄÚÈİ
- * Çë²Î¿¼ \ref am_if_byteops ¡£
+ * æœ¬æ–‡ä»¶æä¾›äº†å¸¸ç”¨çš„ä½æ“ä½œå·¥å…·å®ï¼Œä¾‹å¦‚ï¼šAM_LSB(), AM_LONGSWAP()ã€‚æ›´å¤šå†…å®¹
+ * è¯·å‚è€ƒ \ref am_if_byteops ã€‚
  *
  * \internal
  * \par Modification history:
@@ -34,9 +34,9 @@
  */
 
 /**
- * \brief È¡2-byteÕûÊıµÄ¸ßÎ»byte
+ * \brief å–2-byteæ•´æ•°çš„é«˜ä½byte
  *
- * \par Ê¾Àı
+ * \par ç¤ºä¾‹
  * \code
  *  uint16_t a = 0x1234;
  *  uint16_t b;
@@ -47,9 +47,9 @@
 #define AM_MSB(x)       (((x) >> 8) & 0xff)
 
 /**
- * \brief È¡2-byteÕûÊıµÄµÍÎ»byte
+ * \brief å–2-byteæ•´æ•°çš„ä½ä½byte
  *
- * \par Ê¾Àı
+ * \par ç¤ºä¾‹
  * \code
  *  uint16_t a = 0x1234;
  *  uint16_t b;
@@ -60,9 +60,9 @@
 #define AM_LSB(x)       ((x) & 0xff)
 
 /**
- * \brief È¡2-wordÕûÊıµÄ¸ßÎ»word
+ * \brief å–2-wordæ•´æ•°çš„é«˜ä½word
  *
- * \par Ê¾Àı
+ * \par ç¤ºä¾‹
  * \code
  *  uint32_t a = 0x12345678;
  *  uint32_t b;
@@ -73,9 +73,9 @@
 #define AM_MSW(x)       (((x) >> 16) & 0xffff)
 
 /**
- * \brief È¡2-wordÕûÊıµÄµÍÎ»word
+ * \brief å–2-wordæ•´æ•°çš„ä½ä½word
  *
- * \par Ê¾Àı
+ * \par ç¤ºä¾‹
  * \code
  *  uint32_t a = 0x12345678;
  *  uint32_t b;
@@ -86,9 +86,9 @@
 #define AM_LSW(x)       ((x) & 0xffff)
 
 /**
- * \brief ½»»»32-bitÕûÊıµÄ¸ßÎ»wordºÍµÍÎ»word
+ * \brief äº¤æ¢32-bitæ•´æ•°çš„é«˜ä½wordå’Œä½ä½word
  *
- * \par Ê¾Àı
+ * \par ç¤ºä¾‹
  * \code
  *  uint32_t a = 0x12345678;
  *  uint32_t b;
@@ -99,9 +99,9 @@
 #define AM_WORDSWAP(x)  (AM_MSW(x) | (AM_LSW(x) << 16))
 
 /**
- * \brief ½»»»32-bitÕûÊıµÄ×Ö½ÚË³Ğò
+ * \brief äº¤æ¢32-bitæ•´æ•°çš„å­—èŠ‚é¡ºåº
  *
- * \par Ê¾Àı
+ * \par ç¤ºä¾‹
  * \code
  *  uint32_t a = 0x12345678;
  *  uint32_t b;
@@ -114,10 +114,10 @@
                         (AM_LNMSB(x) << 8)  | \
                         (AM_LMSB(x)))
 
-#define AM_LLSB(x)      ((x) & 0xff)            /**< \brief È¡32bitÕûÊıµÚ1¸ö×Ö½Ú */
-#define AM_LNLSB(x)     (((x) >> 8) & 0xff)     /**< \brief È¡32bitÕûÊıµÚ2¸ö×Ö½Ú */
-#define AM_LNMSB(x)     (((x) >> 16) & 0xff)    /**< \brief È¡32bitÕûÊıµÚ3¸ö×Ö½Ú */
-#define AM_LMSB(x)      (((x) >> 24) & 0xff)    /**< \brief È¡32bitÕûÊıµÚ4¸ö×Ö½Ú */
+#define AM_LLSB(x)      ((x) & 0xff)            /**< \brief å–32bitæ•´æ•°ç¬¬1ä¸ªå­—èŠ‚ */
+#define AM_LNLSB(x)     (((x) >> 8) & 0xff)     /**< \brief å–32bitæ•´æ•°ç¬¬2ä¸ªå­—èŠ‚ */
+#define AM_LNMSB(x)     (((x) >> 16) & 0xff)    /**< \brief å–32bitæ•´æ•°ç¬¬3ä¸ªå­—èŠ‚ */
+#define AM_LMSB(x)      (((x) >> 24) & 0xff)    /**< \brief å–32bitæ•´æ•°ç¬¬4ä¸ªå­—èŠ‚ */
 
 /** 
  * @}  

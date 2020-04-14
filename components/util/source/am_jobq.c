@@ -14,7 +14,7 @@
  * \file
  * \brief job queue library
  *
- * й╧сц╠╬╥ЧнЯпХр╙╟Э╨╛ртобм╥нд╪Ч:
+ * Д╫©Г■╗Ф°╛Ф°█Е┼║И°─Х╕│Е▄┘Е░╚Д╩╔Д╦▀Е╓╢Ф√┤Д╩╤:
  * \code
  * #include "am_jobq.h"
  * \endcode
@@ -30,28 +30,28 @@
 #include "am_bitops.h"
 
 /*******************************************************************************
-  дз╡©й╧сц╨Й╤╗рЕ
+  Е├┘И┐╗Д╫©Г■╗Е╝▐Е╝ Д╧┴
 *******************************************************************************/
 
-/* ╠Йж╬хннЯря╠╩╪схК╤сап                        */
+/* Ф═┤Е©≈Д╩╩Е┼║Е╥╡Х╒╚Е┼═Е┘╔И≤÷Е┬≈                        */
 #define __JOBQ_JOB_ENQUEUED      0x100
 
-/* ╠Йж╬╣╠г╟хннЯ╤сапуЩтз╢╕юМжп                   */
+/* Ф═┤Е©≈Е╫⌠Е┴█Д╩╩Е┼║И≤÷Е┬≈Ф╜ёЕ°╗Е╓└Г░├Д╦╜                   */
 #define __JOBQ_FLG_RUNNING   0x01
 
-/** \brief жцн╩вИсеох╪╤жп╣доЮс╕н╩  */
+/** \brief Г╫╝Д╫█Г╩└Д╪≤Е┘┬Г╨╖Д╦╜Г └Г⌡╦Е╨■Д╫█  */
 #define __JOBQ_BITMAP_GRP_SET(bitmap_grp, pri) \
                bitmap_grp |= (1 << ((pri) >> 5))
 
-/** \brief гЕаЦвИсеох╪╤жп╣доЮс╕н╩  */
+/** \brief Ф╦┘И⌡╤Г╩└Д╪≤Е┘┬Г╨╖Д╦╜Г └Г⌡╦Е╨■Д╫█  */
 #define __JOBQ_BITMAP_GRP_CLR(bitmap_grp, pri) \
                bitmap_grp &= ~(1 << ((pri) >> 5))
                
-/** \brief жцн╩хннЯсеох╪╤╣доЮс╕н╩  */
+/** \brief Г╫╝Д╫█Д╩╩Е┼║Д╪≤Е┘┬Г╨╖Г └Г⌡╦Е╨■Д╫█  */
 #define __JOBQ_BITMAP_JOB_SET(bitmap_job, pri) \
                bitmap_job[(pri) >> 5] |= (1 << ((pri) & 0x1F))
 
-/** \brief гЕаЦхннЯсеох╪╤╣доЮс╕н╩  */
+/** \brief Ф╦┘И⌡╤Д╩╩Е┼║Д╪≤Е┘┬Г╨╖Г └Г⌡╦Е╨■Д╫█  */
 #define __JOBQ_BITMAP_JOB_CLR(bitmap_job, pri) \
                bitmap_job[(pri) >> 5] &= ~(1 << ((pri) & 0x1F))
 
@@ -78,24 +78,24 @@ static const unsigned char __ffs8_table[256] = {
 };
 
 /* 
- * ╦ц╨╞йЩ╩Ях║╣╫р╩╦Жнч╥Ш╨еуШпнйЩ║╟вН╣мн╩1║╠╣дн╩жцё╛хГ 0x01 ╥╣╩ьн╩жцн╙ 1
+ * Х╞╔Е┤╫Ф∙╟Х▌╥Е▐√Е┬╟Д╦─Д╦╙Ф≈═Г╛╕Е▐╥Ф∙╢Е╫╒Ф∙╟Б─°Ф°─Д╫▌Д╫█1Б─²Г └Д╫█Г╫╝О╪▄Е╕┌ 0x01 Х©■Е⌡·Д╫█Г╫╝Д╦╨ 1
  */
 int __jobq_ffs (unsigned int x )
 {
-    int pos = 0;  /* ╪гб╪вН╣мн╩н╙1╣дн╩жцё╛ЁУй╪н╙0  */
+    int pos = 0;  /* Х╝╟Е╫∙Ф°─Д╫▌Д╫█Д╦╨1Г └Д╫█Г╫╝О╪▄Е┬²Е╖▀Д╦╨0  */
 
-    if ( !(x & 0xffff) ) {  /* ╣м16н╩н╙0ё╛вН╣мн╩1ЁЖожтз╦ъ16н╩ */
+    if ( !(x & 0xffff) ) {  /* Д╫▌16Д╫█Д╦╨0О╪▄Ф°─Д╫▌Д╫█1Е┤╨Г▌╟Е°╗И╚≤16Д╫█ */
         x >>= 16;
         pos += 16;
     }
     
-    if ( !(x & 0xff) ) {   /* 16н╩жпё╛╣м8н╩н╙0ё╛вН╣мн╩1ЁЖожтз╦ъ8н╩ */
+    if ( !(x & 0xff) ) {   /* 16Д╫█Д╦╜О╪▄Д╫▌8Д╫█Д╦╨0О╪▄Ф°─Д╫▌Д╫█1Е┤╨Г▌╟Е°╗И╚≤8Д╫█ */
         x >>= 8;
         pos += 8;
     }
     
     x &= 0xff;
-    pos +=  __ffs8_table[x]; /* ╡И╠М╩Ях║н╩жц */
+    pos +=  __ffs8_table[x]; /* Ф÷╔Х║╗Х▌╥Е▐√Д╫█Г╫╝ */
     return pos;
 }
 
@@ -120,7 +120,7 @@ am_jobq_handle_t am_jobq_queue_init (am_jobq_queue_t     *p_jobq_queue,
         p_bitmap_job[i] = 0;
     }
 
-    /* ЁУй╪╩╞╦В╦Жсеох╪╤╣дхннЯа╢╠Мм╥ */
+    /* Е┬²Е╖▀Е▄√Е░└Д╦╙Д╪≤Е┘┬Г╨╖Г └Д╩╩Е┼║И⌠╬Х║╗Е╓╢ */
     for (i = 0; i < pri_num; i++) {
         am_list_head_init(&p_heads[i]);
     }
@@ -164,10 +164,10 @@ int am_jobq_post (am_jobq_queue_t *p_jobq_queue, am_jobq_job_t *p_job)
 
     key = am_int_cpu_lock();
 
-    /* аый╠й╧сц╦ц╠Да©╠ё╢Ф╠Йж╬      */
+    /* Д╦╢Ф≈╤Д╫©Г■╗Х╞╔Е▐≤И┤▐Д©²Е╜≤Ф═┤Е©≈      */
     pri = p_job->flags;
     
-    /* хннЯц╩сптз╤сапжпё╛╡е╫╚фД╪схК */
+    /* Д╩╩Е┼║Ф╡║Ф°┴Е°╗И≤÷Е┬≈Д╦╜О╪▄Ф┴█Е╟├Е┘╤Е┼═Е┘╔ */
     if ((pri & (__JOBQ_JOB_ENQUEUED)) == 0) {
         
         p_job->flags = pri | __JOBQ_JOB_ENQUEUED;
@@ -180,7 +180,7 @@ int am_jobq_post (am_jobq_queue_t *p_jobq_queue, am_jobq_job_t *p_job)
         __JOBQ_BITMAP_GRP_SET(p_jobq_queue->bitmap_grp, pri);
         __JOBQ_BITMAP_JOB_SET(p_jobq_queue->p_bitmap_job, pri);
         
-        /* ╫╚хннЯ╪схК╦цсеох╪╤хннЯа╢╣дн╡╡© */
+        /* Е╟├Д╩╩Е┼║Е┼═Е┘╔Х╞╔Д╪≤Е┘┬Г╨╖Д╩╩Е┼║И⌠╬Г └Е╟╬И┐╗ */
         am_list_add_tail(&p_job->node, &p_jobq_queue->p_heads[pri]);
 
         am_int_cpu_unlock(key);
@@ -207,7 +207,7 @@ int am_jobq_process (am_jobq_queue_t *p_jobq_queue)
         return -AM_EINVAL;
     }
     
-    /* ╦цхннЯ╤сапуЩтз╢╕юМжп */
+    /* Х╞╔Д╩╩Е┼║И≤÷Е┬≈Ф╜ёЕ°╗Е╓└Г░├Д╦╜ */
     if ((p_jobq_queue->flags & __JOBQ_FLG_RUNNING) != 0) {
         return -AM_EBUSY;
     }
@@ -224,33 +224,33 @@ int am_jobq_process (am_jobq_queue_t *p_jobq_queue)
 
         key = am_int_cpu_lock();
         
-        /* ╤сапжпнчхн╨нхннЯ */
+        /* И≤÷Е┬≈Д╦╜Ф≈═Д╩╩Д╫∙Д╩╩Е┼║ */
         if (p_jobq_queue->bitmap_grp == 0) {
             p_jobq_queue->flags &= ~__JOBQ_FLG_RUNNING;
             am_int_cpu_unlock(key);
             return AM_OK;
         }
         
-        /* ур╣╫хннЯ╤сапжпсеох╪╤вН╦ъ╣двИ     */
+        /* Ф┴╬Е┬╟Д╩╩Е┼║И≤÷Е┬≈Д╦╜Д╪≤Е┘┬Г╨╖Ф°─И╚≤Г └Г╩└     */
         pri = __jobq_ffs(p_jobq_queue->bitmap_grp) - 1;
  
-        /* ур╣╫сеох╪╤вН╦ъ╣двИжп╣двН╦ъсеох╪╤ */
+        /* Ф┴╬Е┬╟Д╪≤Е┘┬Г╨╖Ф°─И╚≤Г └Г╩└Д╦╜Г └Ф°─И╚≤Д╪≤Е┘┬Г╨╖ */
         pri = __jobq_ffs(p_jobq_queue->p_bitmap_job[pri]) - 1 + (pri << 5);
  
         /* Remove the job from the appropriate queue */
         p_q = &p_jobq_queue->p_heads[pri];
 
-        /* х║ЁЖ╣зр╩╦ЖхннЯ */
+        /* Е▐√Е┤╨Г╛╛Д╦─Д╦╙Д╩╩Е┼║ */
         p_job = am_list_entry(p_q->next, am_jobq_job_t, node);
         
-        /* ╢с╤сапжпи╬ЁЩ╦цхннЯ */
+        /* Д╩▌И≤÷Е┬≈Д╦╜Е┬═И≥╓Х╞╔Д╩╩Е┼║ */
         am_list_del_init(p_q->next);
         
-        /* ╦цсеох╪╤╤сапн╙©уё╛и╬ЁЩоЮс╕сеох╪╤╠Йж╬н╩ */
+        /* Х╞╔Д╪≤Е┘┬Г╨╖И≤÷Е┬≈Д╦╨Г╘╨О╪▄Е┬═И≥╓Г⌡╦Е╨■Д╪≤Е┘┬Г╨╖Ф═┤Е©≈Д╫█ */
         if (am_list_empty_careful(p_q)) {
             __JOBQ_BITMAP_JOB_CLR(p_jobq_queue->p_bitmap_job, pri);
             
-            /* ╦цвИжпря╬╜ц╩спхннЯ */
+            /* Х╞╔Г╩└Д╦╜Е╥╡Г╩▐Ф╡║Ф°┴Д╩╩Е┼║ */
             if (p_jobq_queue->p_bitmap_job[pri >> 5] == 0) {
                 __JOBQ_BITMAP_GRP_CLR(p_jobq_queue->bitmap_grp, pri);
             }

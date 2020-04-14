@@ -11,17 +11,17 @@
 *******************************************************************************/
 /**
  * \file
- * \brief I2C ´Ó»úÀý³Ì(´ËÀý³Ì¿ÉÒÔÓÃÀ´Ä£Äâ EEPROM)£¬Í¨¹ý HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief I2C ä»Žæœºä¾‹ç¨‹(æ­¤ä¾‹ç¨‹å¯ä»¥ç”¨æ¥æ¨¡æ‹Ÿ EEPROM)ï¼Œé€šè¿‡ HW å±‚æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. PIOC_8 Òý½ÅÁ¬½Ó I2C Ö÷»úµÄ SCL Òý½Å£»
- *   2. PIOC_9 Òý½ÅÁ¬½Ó I2C Ö÷»úµÄ SDA Òý½Å¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. PIOC_8 å¼•è„šè¿žæŽ¥ I2C ä¸»æœºçš„ SCL å¼•è„šï¼›
+ *   2. PIOC_9 å¼•è„šè¿žæŽ¥ I2C ä¸»æœºçš„ SDA å¼•è„šã€‚
  *
  * \note
- *    µ±Ç° I2C µÄ SCL Òý½ÅÊ¹ÓÃµÄÊÇ PIOC_8£¬SDA Òý½ÅÊ¹ÓÃµÄÊÇ PIOC_9£¬
- *    ¿É¸ù¾ÝÊµ¼ÊÇé¿ö¸ü»»Òý½Å¡£
+ *    å½“å‰ I2C çš„ SCL å¼•è„šä½¿ç”¨çš„æ˜¯ PIOC_8ï¼ŒSDA å¼•è„šä½¿ç”¨çš„æ˜¯ PIOC_9ï¼Œ
+ *    å¯æ ¹æ®å®žé™…æƒ…å†µæ›´æ¢å¼•è„šã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_zmf159_hw_i2c_slave_poll.c src_zmf159_hw_i2c_slave_poll
  *
  * \internal
@@ -48,7 +48,7 @@
 #include "demo_zmf159_core_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_zmf159_core_hw_i2c_slave_poll_entry (void)
 {

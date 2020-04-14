@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief µçÔ´¹ÜÀí½Ó¿Ú
+ * \brief ç”µæºç®¡ç†æ¥å£
  *
  * \internal
  * \par History
@@ -36,7 +36,7 @@ extern "C" {
  */
 
 /**
- * \name Çå³ı´ı»úÎ»Óë»½ĞÑÎ»Çå³ı
+ * \name æ¸…é™¤å¾…æœºä½ä¸å”¤é†’ä½æ¸…é™¤
  * @{
  */
 
@@ -46,7 +46,7 @@ extern "C" {
 /** @} */
 
 /**
- * \name µôµçÉî¶ÈË¯ÃßÄ£Ê½
+ * \name æ‰ç”µæ·±åº¦ç¡çœ æ¨¡å¼
  * @{
  */
 
@@ -56,7 +56,7 @@ extern "C" {
 /** @} */
 
 /**
- * \name Ô´µçÑ¹¼à²âÆ÷£¨PVD£©Ê¹ÄÜ
+ * \name æºç”µå‹ç›‘æµ‹å™¨ï¼ˆPVDï¼‰ä½¿èƒ½
  * @{
  */
 #define AM_ZLG_PVDE_ENABLE        1
@@ -65,7 +65,7 @@ extern "C" {
 /** @} */
 
 /**
- * \name BKP±¸·İ¼Ä´æÆ÷·ÃÎÊÊ¹ÄÜ
+ * \name BKPå¤‡ä»½å¯„å­˜å™¨è®¿é—®ä½¿èƒ½
  * @{
  */
 #define AM_ZLG_BKP_ENABLE         1
@@ -74,7 +74,7 @@ extern "C" {
 /** @} */
 
 /**
- * \name WAKE_UP»½ĞÑÒı½ÅÊ¹ÄÜ
+ * \name WAKE_UPå”¤é†’å¼•è„šä½¿èƒ½
  * @{
  */
 #define AM_ZLG_WAKEUP_ENABLE      1
@@ -83,47 +83,47 @@ extern "C" {
 /** @} */
 
 /**
-  * \brief ÏµÍ³¿ØÖÆ¼Ä´æÆ÷¿é½á¹¹Ìå
+  * \brief ç³»ç»Ÿæ§åˆ¶å¯„å­˜å™¨å—ç»“æ„ä½“
   */
 typedef struct amhw_zlg_pwr {
-    __IO  uint32_t cr;          /**< \brief µçÔ´¿ØÖÆ¼Ä´æÆ÷ */
-    __IO  uint32_t csr;         /**< \brief µçÔ´¿ØÖÆ/×´Ì¬¼Ä´æÆ÷ */
+    __IO  uint32_t cr;          /**< \brief ç”µæºæ§åˆ¶å¯„å­˜å™¨ */
+    __IO  uint32_t csr;         /**< \brief ç”µæºæ§åˆ¶/çŠ¶æ€å¯„å­˜å™¨ */
 } amhw_zlg_pwr_t;
 
 /**
- * \brief PVDµçÆ½Ñ¡Ôñ
+ * \brief PVDç”µå¹³é€‰æ‹©
  */
 typedef enum amhw_zlg_pvd_lever_set {
-    AMHW_ZLG_PVD_LEVER_1_8V  = 0,  /**< \brief 1.8V PVD¼à²âµçÑ¹ */
-    AMHW_ZLG_PVD_LEVER_2_1V  = 1,  /**< \brief 2.1V PVD¼à²âµçÑ¹ */
-    AMHW_ZLG_PVD_LEVER_2_4V  = 2,  /**< \brief 2.4V PVD¼à²âµçÑ¹ */
-    AMHW_ZLG_PVD_LEVER_2_7V  = 3,  /**< \brief 2.7V PVD¼à²âµçÑ¹ */
-    AMHW_ZLG_PVD_LEVER_3_0V  = 4,  /**< \brief 3.0V PVD¼à²âµçÑ¹ */
-    AMHW_ZLG_PVD_LEVER_3_3V  = 5,  /**< \brief 3.3V PVD¼à²âµçÑ¹ */
-    AMHW_ZLG_PVD_LEVER_3_6V  = 6,  /**< \brief 3.6V PVD¼à²âµçÑ¹ */
-    AMHW_ZLG_PVD_LEVER_3_9V  = 7,  /**< \brief 3.9V PVD¼à²âµçÑ¹ */
-    AMHW_ZLG_PVD_LEVER_4_2V  = 8,  /**< \brief 4.2V PVD¼à²âµçÑ¹ */
-    AMHW_ZLG_PVD_LEVER_4_5V  = 9,  /**< \brief 4.5V PVD¼à²âµçÑ¹ */
-    AMHW_ZLG_PVD_LEVER_4_8V  = 10, /**< \brief 4.8V PVD¼à²âµçÑ¹ */
+    AMHW_ZLG_PVD_LEVER_1_8V  = 0,  /**< \brief 1.8V PVDç›‘æµ‹ç”µå‹ */
+    AMHW_ZLG_PVD_LEVER_2_1V  = 1,  /**< \brief 2.1V PVDç›‘æµ‹ç”µå‹ */
+    AMHW_ZLG_PVD_LEVER_2_4V  = 2,  /**< \brief 2.4V PVDç›‘æµ‹ç”µå‹ */
+    AMHW_ZLG_PVD_LEVER_2_7V  = 3,  /**< \brief 2.7V PVDç›‘æµ‹ç”µå‹ */
+    AMHW_ZLG_PVD_LEVER_3_0V  = 4,  /**< \brief 3.0V PVDç›‘æµ‹ç”µå‹ */
+    AMHW_ZLG_PVD_LEVER_3_3V  = 5,  /**< \brief 3.3V PVDç›‘æµ‹ç”µå‹ */
+    AMHW_ZLG_PVD_LEVER_3_6V  = 6,  /**< \brief 3.6V PVDç›‘æµ‹ç”µå‹ */
+    AMHW_ZLG_PVD_LEVER_3_9V  = 7,  /**< \brief 3.9V PVDç›‘æµ‹ç”µå‹ */
+    AMHW_ZLG_PVD_LEVER_4_2V  = 8,  /**< \brief 4.2V PVDç›‘æµ‹ç”µå‹ */
+    AMHW_ZLG_PVD_LEVER_4_5V  = 9,  /**< \brief 4.5V PVDç›‘æµ‹ç”µå‹ */
+    AMHW_ZLG_PVD_LEVER_4_8V  = 10, /**< \brief 4.8V PVDç›‘æµ‹ç”µå‹ */
 } amhw_zlg_pvd_lever_set_t;
 
 /**
- * \brief µçÔ´¿ØÖÆ×´Ì¬±êÖ¾
+ * \brief ç”µæºæ§åˆ¶çŠ¶æ€æ ‡å¿—
  */
 typedef enum amhw_zlg_pwr_status_flag {
-    AMHW_ZLG_PVD_OUTPUT_FLAG  = (1UL << 2),  /**< \brief PVDÊä³ö±êÖ¾Î» */
-    AMHW_ZLG_PVD_SBF_FLAG     = (1UL << 1),  /**< \brief ´ı»ú±êÖ¾Î» */
-    AMHW_ZLG_PVD_WUF_FLAG     = (1UL << 0),  /**< \brief »½ĞÑ±êÖ¾Î» */
+    AMHW_ZLG_PVD_OUTPUT_FLAG  = (1UL << 2),  /**< \brief PVDè¾“å‡ºæ ‡å¿—ä½ */
+    AMHW_ZLG_PVD_SBF_FLAG     = (1UL << 1),  /**< \brief å¾…æœºæ ‡å¿—ä½ */
+    AMHW_ZLG_PVD_WUF_FLAG     = (1UL << 0),  /**< \brief å”¤é†’æ ‡å¿—ä½ */
 } amhw_zlg_pwr_status_flag_t;
 
 /**
- * \brief Éî¶ÈµôµçÄ£Ê½Ñ¡Ôñ
+ * \brief æ·±åº¦æ‰ç”µæ¨¡å¼é€‰æ‹©
  *
- * \param[in] pdds_mode £º Éî¶ÈµôµçÄ£Ê½ÀàĞÍ,ÖµÎª  AM_ZLG_PDDS_*_MODE ÕâÒ»Ààºê
+ * \param[in] pdds_mode ï¼š æ·±åº¦æ‰ç”µæ¨¡å¼ç±»å‹,å€¼ä¸º  AM_ZLG_PDDS_*_MODE è¿™ä¸€ç±»å®
  *                         (# AM_ZLG_PDDS_STOP_MODE)
- * \param[in] p_hw_pwr  £º Ö¸ÏòµçÔ´¿ØÖÆ¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_pwr  ï¼š æŒ‡å‘ç”µæºæ§åˆ¶å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_pwr_pdds_mode_set (amhw_zlg_pwr_t *p_hw_pwr, uint8_t pdds_mode)
@@ -132,13 +132,13 @@ void amhw_zlg_pwr_pdds_mode_set (amhw_zlg_pwr_t *p_hw_pwr, uint8_t pdds_mode)
 }
 
 /**
- * \brief PVDµçÑ¹¼à²âÊ¹ÄÜ
+ * \brief PVDç”µå‹ç›‘æµ‹ä½¿èƒ½
  *
- * \param[in] p_hw_pwr    £ºÖ¸ÏòµçÔ´¿ØÖÆ¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] pvd_enable  £ºµçÑ¹¼à²âÊ¹ÄÜ£¬ÖµÎª  AM_ZLG_PVDE_* ÕâÒ»Ààºê
+ * \param[in] p_hw_pwr    ï¼šæŒ‡å‘ç”µæºæ§åˆ¶å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] pvd_enable  ï¼šç”µå‹ç›‘æµ‹ä½¿èƒ½ï¼Œå€¼ä¸º  AM_ZLG_PVDE_* è¿™ä¸€ç±»å®
  *                           (# AM_ZLG_PVDE_ENABLE)
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_pwr_pvd_detect_enable (amhw_zlg_pwr_t *p_hw_pwr, uint8_t pvd_enable)
@@ -147,13 +147,13 @@ void amhw_zlg_pwr_pvd_detect_enable (amhw_zlg_pwr_t *p_hw_pwr, uint8_t pvd_enabl
 }
 
 /**
- * \brief ·ÃÎÊ±¸·İ¼Ä´æÆ÷Ê¹ÄÜ
+ * \brief è®¿é—®å¤‡ä»½å¯„å­˜å™¨ä½¿èƒ½
  *
- * \param[in] p_hw_pwr    £ºÖ¸ÏòµçÔ´¿ØÖÆ¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] bkp_enable  £ºµçÑ¹¼à²âÊ¹ÄÜ£¬ÖµÎª  AM_ZLG_BKP_* ÕâÒ»Ààºê
+ * \param[in] p_hw_pwr    ï¼šæŒ‡å‘ç”µæºæ§åˆ¶å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] bkp_enable  ï¼šç”µå‹ç›‘æµ‹ä½¿èƒ½ï¼Œå€¼ä¸º  AM_ZLG_BKP_* è¿™ä¸€ç±»å®
  *                           (# AM_ZLG_BKP_ENABLE)
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_pwr_bkp_access_enable (amhw_zlg_pwr_t *p_hw_pwr, uint8_t bkp_enable)
@@ -162,13 +162,13 @@ void amhw_zlg_pwr_bkp_access_enable (amhw_zlg_pwr_t *p_hw_pwr, uint8_t bkp_enabl
 }
 
 /**
- * \brief Çå³ı´ı»ú±êÖ¾Î»Óë»½ĞÑÎ»
+ * \brief æ¸…é™¤å¾…æœºæ ‡å¿—ä½ä¸å”¤é†’ä½
  *
- * \param[in] p_hw_pwr    £ºÖ¸ÏòµçÔ´¿ØÖÆ¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] status_flg  £º±êÖ¾Î»Çå³ıÑ¡Ôñ£¬ÖµÎª  AM_ZLG_*_FLAG_CLEAR ÕâÒ»Ààºê
+ * \param[in] p_hw_pwr    ï¼šæŒ‡å‘ç”µæºæ§åˆ¶å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] status_flg  ï¼šæ ‡å¿—ä½æ¸…é™¤é€‰æ‹©ï¼Œå€¼ä¸º  AM_ZLG_*_FLAG_CLEAR è¿™ä¸€ç±»å®
  *                           (# AM_ZLG_STANDBY_FLAG_CLEAR)
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_pwr_stauts_flag_clear (amhw_zlg_pwr_t *p_hw_pwr, uint8_t status_flg)
@@ -177,12 +177,12 @@ void amhw_zlg_pwr_stauts_flag_clear (amhw_zlg_pwr_t *p_hw_pwr, uint8_t status_fl
 }
 
 /**
- * \brief PV¼à²âµçÑ¹Ñ¡Ôñ
+ * \brief PVç›‘æµ‹ç”µå‹é€‰æ‹©
  *
- * \param[in] p_hw_pwr £ºÖ¸ÏòµçÔ´¿ØÖÆ¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] pvd_lever£ºµçÑ¹¼à²â·¶Î§Ñ¡Ôñ, ÖµÎª amhw_zlg_pvd_lever_set_t ÕâÒ»Ã¶¾ÙÀàĞÍµÄÖµ
+ * \param[in] p_hw_pwr ï¼šæŒ‡å‘ç”µæºæ§åˆ¶å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] pvd_leverï¼šç”µå‹ç›‘æµ‹èŒƒå›´é€‰æ‹©, å€¼ä¸º amhw_zlg_pvd_lever_set_t è¿™ä¸€æšä¸¾ç±»å‹çš„å€¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_pvd_lever_set (amhw_zlg_pwr_t *p_hw_pwr, uint8_t pvd_lever)
@@ -191,13 +191,13 @@ void amhw_zlg_pvd_lever_set (amhw_zlg_pwr_t *p_hw_pwr, uint8_t pvd_lever)
 }
 
 /**
- * \brief Ê¹ÄÜWAKE_UPÒı½Å
+ * \brief ä½¿èƒ½WAKE_UPå¼•è„š
  *
- * \param[in] p_hw_pwr £ºÖ¸ÏòµçÔ´¿ØÖÆ¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] wakeup_en£º»½ĞÑÒı½ÅÊ¹ÄÜÓë·ñ£¬ÖµÎª AM_ZLG_WAKEUP_* ÕâÒ»Ààºê£¬
+ * \param[in] p_hw_pwr ï¼šæŒ‡å‘ç”µæºæ§åˆ¶å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] wakeup_enï¼šå”¤é†’å¼•è„šä½¿èƒ½ä¸å¦ï¼Œå€¼ä¸º AM_ZLG_WAKEUP_* è¿™ä¸€ç±»å®ï¼Œ
  *                      (# AM_ZLG_WAKEUP_ENABLE)
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_wake_up_enable (amhw_zlg_pwr_t *p_hw_pwr, uint8_t wakeup_en)
@@ -206,12 +206,12 @@ void amhw_zlg_wake_up_enable (amhw_zlg_pwr_t *p_hw_pwr, uint8_t wakeup_en)
 }
 
 /**
- * \brief »ñÈ¡µçÔ´¿ØÖÆÏà¹Ø×´Ì¬Î»
+ * \brief è·å–ç”µæºæ§åˆ¶ç›¸å…³çŠ¶æ€ä½
  *
- * \param[in] p_hw_pwr   £ºÖ¸ÏòµçÔ´¿ØÖÆ¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] status_flag£ºµçÔ´¿ØÖÆ×´Ì¬Î»£¬ÖµÎª amhw_zlg_pwr_status_flag_t ÕâÒ»Ã¶¾ÙÀàĞÍ
+ * \param[in] p_hw_pwr   ï¼šæŒ‡å‘ç”µæºæ§åˆ¶å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] status_flagï¼šç”µæºæ§åˆ¶çŠ¶æ€ä½ï¼Œå€¼ä¸º amhw_zlg_pwr_status_flag_t è¿™ä¸€æšä¸¾ç±»å‹
  *
- * \return µ±·µ»ØÖµ²»Îª0Ê±£¬´ú±í¸Ã±êÖ¾Î»ÖÃ1
+ * \return å½“è¿”å›å€¼ä¸ä¸º0æ—¶ï¼Œä»£è¡¨è¯¥æ ‡å¿—ä½ç½®1
  */
 am_static_inline
 uint32_t amhw_zlg_pwr_csr_status_get (amhw_zlg_pwr_t *p_hw_pwr, uint8_t status_flag)

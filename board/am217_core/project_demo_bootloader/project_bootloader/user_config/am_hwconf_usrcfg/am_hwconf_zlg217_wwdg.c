@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZLG217 WWDT ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief ZLG217 WWDT ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_zlg217_wwdg.c
  *
  * \internal
@@ -32,37 +32,37 @@
  * @{
  */
 
-/** \brief WWDT Æ½Ì¨³õÊ¼»¯ */
+/** \brief WWDT å¹³å°åˆå§‹åŒ– */
 static void __zlg217_wwdg_plfm_init (void)
 {
     am_clk_enable(CLK_WWDG);
     am_zlg217_clk_reset(CLK_WWDG);
 
-    /* ¼ì²é¸´Î»ÊÇ·ñÓÉ¿´ÃÅ¹·Ôì³ÉµÄ */
+    /* æ£€æŸ¥å¤ä½æ˜¯å¦ç”±çœ‹é—¨ç‹—é€ æˆçš„ */
     if (amhw_zlg217_rcc_reset_flag() & AMHW_ZLG217_RCC_CSR_WWDGRSTF) {
         amhw_zlg217_rcc_reset_flag_clear();
     }
 }
 
-/** \brief ½â³ıWWDT Æ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤WWDT å¹³å°åˆå§‹åŒ– */
 static void __zlg217_wwdg_plfm_deinit (void)
 {
     am_clk_disable(CLK_WWDG);
 }
 
-/** \brief WWDT Éè±¸ĞÅÏ¢ */
+/** \brief WWDT è®¾å¤‡ä¿¡æ¯ */
 static const am_zlg_wwdg_devinfo_t  __g_wwdg_devinfo = {
-    ZLG217_WWDG_BASE,          /**< \brief WWDT¼Ä´æÆ÷»ùÖ· */
-    CLK_WWDG,                  /**< \brief Ê±ÖÓID */
-    __zlg217_wwdg_plfm_init,   /**< \brief WWDT Æ½Ì¨³õÊ¼»¯ */
-    __zlg217_wwdg_plfm_deinit, /**< \brief ½â³ıWWDT Æ½Ì¨³õÊ¼»¯ */
+    ZLG217_WWDG_BASE,          /**< \brief WWDTå¯„å­˜å™¨åŸºå€ */
+    CLK_WWDG,                  /**< \brief æ—¶é’ŸID */
+    __zlg217_wwdg_plfm_init,   /**< \brief WWDT å¹³å°åˆå§‹åŒ– */
+    __zlg217_wwdg_plfm_deinit, /**< \brief è§£é™¤WWDT å¹³å°åˆå§‹åŒ– */
 };
 
-/** \brief WWDTÉè±¸ÊµÀı */
+/** \brief WWDTè®¾å¤‡å®ä¾‹ */
 static am_zlg_wwdg_dev_t __g_wwdg_dev;
 
 /**
- * \brief WWDT ÊµÀı³õÊ¼»¯£¬»ñµÃWDT±ê×¼·şÎñ¾ä±ú
+ * \brief WWDT å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—WDTæ ‡å‡†æœåŠ¡å¥æŸ„
  */
 am_wdt_handle_t am_zlg217_wwdg_inst_init (void)
 {
@@ -70,7 +70,7 @@ am_wdt_handle_t am_zlg217_wwdg_inst_init (void)
 }
 
 /**
- * \brief WWDT ÊµÀı½â³õÊ¼»¯
+ * \brief WWDT å®ä¾‹è§£åˆå§‹åŒ–
  */
 void am_zlg217_wwdg_inst_deinit (am_wdt_handle_t handle)
 {

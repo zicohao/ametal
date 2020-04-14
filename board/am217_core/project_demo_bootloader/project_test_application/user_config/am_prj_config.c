@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZLG217 ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief ZLG217 ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_prj_config.c
  *
  * \internal
@@ -55,7 +55,7 @@ int main (void)
 #endif /* (AM_CFG_NVRAM_ENABLE == 1) */
 
 
-    /* °å¼¶³õÊ¼»¯ */
+    /* æ¿çº§åˆå§‹åŒ– */
     am_board_init();
 
 #if (AM_CFG_BOOTLOADER == 1)

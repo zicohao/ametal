@@ -13,27 +13,27 @@
 
 /**
  * \file
- * \brief AM824BLE À¶ÑÀÄ£¿é LED Àý³Ì£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief AM824BLE è“ç‰™æ¨¡å— LED ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. ÊÖ»ú°²×°À¶ÑÀ´®¿ÚÖúÊÖÈí¼þ£¬Á¬½ÓÀ¶ÑÀÄ£¿é£»
- *   2. À¶ÑÀ´®¿ÚÖúÊÖÈí¼þÍ¨¹ý×Ö·û´®·½Ê½ÏòÄ£¿é·Ö±ð·¢ËÍ "on"¡¢"off"¡¢"tog"¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. æ‰‹æœºå®‰è£…è“ç‰™ä¸²å£åŠ©æ‰‹è½¯ä»¶ï¼Œè¿žæŽ¥è“ç‰™æ¨¡å—ï¼›
+ *   2. è“ç‰™ä¸²å£åŠ©æ‰‹è½¯ä»¶é€šè¿‡å­—ç¬¦ä¸²æ–¹å¼å‘æ¨¡å—åˆ†åˆ«å‘é€ "on"ã€"off"ã€"tog"ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ZLG9021 Ä£¿é³õÊ¼»¯²¢ÅäÖÃ³É¹¦ºó LED0 °´ 500 ms µÄ¼ä¸ôÂýÉÁË¸£¬Èç¹û³õÊ¼»¯Ê§°Ü£¬
- *      LED0 °´ 100 ms µÄ¼ä¸ô¿ìÉÁË¸£»
- *   2. À¶ÑÀÁ¬½Ó³É¹¦ºó£¬LED0 Ï¨Ãð£»
- *   3. ½ÓÊÕµ½ "on"¡¢"off"¡¢"tog" ×Ö·û´®Ê±£¬·Ö±ðµãÁÁ¡¢Ï¨Ãð¡¢·­×ª LED0£¬²¢ÏòÊÖ»ú¶Ë·¢
- *      ËÍ "ok!"¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. ZLG9021 æ¨¡å—åˆå§‹åŒ–å¹¶é…ç½®æˆåŠŸåŽ LED0 æŒ‰ 500 ms çš„é—´éš”æ…¢é—ªçƒï¼Œå¦‚æžœåˆå§‹åŒ–å¤±è´¥ï¼Œ
+ *      LED0 æŒ‰ 100 ms çš„é—´éš”å¿«é—ªçƒï¼›
+ *   2. è“ç‰™è¿žæŽ¥æˆåŠŸåŽï¼ŒLED0 ç†„ç­ï¼›
+ *   3. æŽ¥æ”¶åˆ° "on"ã€"off"ã€"tog" å­—ç¬¦ä¸²æ—¶ï¼Œåˆ†åˆ«ç‚¹äº®ã€ç†„ç­ã€ç¿»è½¬ LED0ï¼Œå¹¶å‘æ‰‹æœºç«¯å‘
+ *      é€ "ok!"ã€‚
  *
  * \note
- *    1. LED0 ÐèÒª¶Ì½Ó J9 ÌøÏßÃ±£¬²ÅÄÜ±» PIO0_8 ¿ØÖÆ£»
- *    2. ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIO0_0 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *       PIO0_4 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD£»
- *    3. ²âÊÔ±¾ Demo ±ØÐëÔÚ am_prj_config.h ÄÚ½« AM_CFG_KEY_GPIO_ENABLE¡¢
- *       AM_CFG_KEY_ENABLE ºÍ AM_CFG_SOFTIMER_ENABLE ¶¨ÒåÎª 1¡£µ«ÕâÐ©ºê
- *       ÒÑ¾­Ä¬ÈÏÅäÖÃÎª 1£¬ ÓÃ»§²»±ØÔÙ´ÎÅäÖÃ£»
- *    4. ZLG9021 Ä£¿éÄÚÁ¬½Ó¹ØÏµÈçÏÂ£º
+ *    1. LED0 éœ€è¦çŸ­æŽ¥ J9 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIO0_8 æŽ§åˆ¶ï¼›
+ *    2. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO0_0 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *       PIO0_4 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDï¼›
+ *    3. æµ‹è¯•æœ¬ Demo å¿…é¡»åœ¨ am_prj_config.h å†…å°† AM_CFG_KEY_GPIO_ENABLEã€
+ *       AM_CFG_KEY_ENABLE å’Œ AM_CFG_SOFTIMER_ENABLE å®šä¹‰ä¸º 1ã€‚ä½†è¿™äº›å®
+ *       å·²ç»é»˜è®¤é…ç½®ä¸º 1ï¼Œ ç”¨æˆ·ä¸å¿…å†æ¬¡é…ç½®ï¼›
+ *    4. ZLG9021 æ¨¡å—å†…è¿žæŽ¥å…³ç³»å¦‚ä¸‹ï¼š
  * <pre>
  *           PIO0_26  <-->  ZLG9021_RX
  *           PIO0_27  <-->  ZLG9021_TX
@@ -41,13 +41,13 @@
  *           PIO0_25  <-->  ZLG9021_BRTS
  *           PIO0_28  <-->  ZLG9021_RESET
  * </pre>
- *    5. À¶ÑÀ´®¿Ú APP ¿ÉÒÔÔÚ http://www.zlg.cn/wireless/down/down/id/199.html Ò³Ãæ
- *       ÖÐÏÂÔØµÄÊÖ»úÍ¸´« APP ¿ª·¢Ô´ÂëÖÐ½âÑ¹µÃµ½£»
- *    6. À¶ÑÀÄ£¿éÄ¬ÈÏ²¨ÌØÂÊÎª 9600£¬ÓÃ»§¿ÉÒÔÔÚ am_hwconf_zlg9021.h ÖÐÅäÖÃ¡£Èç¹ûÓÃ»§
- *       ²»ÄÜÈ·¶¨ÊÖÖÐ¿ª·¢°åÀ¶ÑÀ²¨ÌØÂÊ£¬¿ÉÒÔ³¢ÊÔÊ¹ÓÃ demo_am824ble_std_zlg9021_baudrate
- *       Àý³Ì×Ô¶¯ËÑË÷À¶ÑÀÄ£¿é²¨ÌØÂÊ¡£
+ *    5. è“ç‰™ä¸²å£ APP å¯ä»¥åœ¨ http://www.zlg.cn/wireless/down/down/id/199.html é¡µé¢
+ *       ä¸­ä¸‹è½½çš„æ‰‹æœºé€ä¼  APP å¼€å‘æºç ä¸­è§£åŽ‹å¾—åˆ°ï¼›
+ *    6. è“ç‰™æ¨¡å—é»˜è®¤æ³¢ç‰¹çŽ‡ä¸º 9600ï¼Œç”¨æˆ·å¯ä»¥åœ¨ am_hwconf_zlg9021.h ä¸­é…ç½®ã€‚å¦‚æžœç”¨æˆ·
+ *       ä¸èƒ½ç¡®å®šæ‰‹ä¸­å¼€å‘æ¿è“ç‰™æ³¢ç‰¹çŽ‡ï¼Œå¯ä»¥å°è¯•ä½¿ç”¨ demo_am824ble_std_zlg9021_baudrate
+ *       ä¾‹ç¨‹è‡ªåŠ¨æœç´¢è“ç‰™æ¨¡å—æ³¢ç‰¹çŽ‡ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am824ble_std_zlg9021_led.c src_am824ble_std_zlg9021_led
  *
  * \internal
@@ -71,7 +71,7 @@
 #include "demo_components_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am824ble_std_zlg9021_led_entry (void)
 {

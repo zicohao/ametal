@@ -12,16 +12,16 @@
 
 /**
  * \file
- * \brief GPIO Òı½ÅÖĞ¶ÏÀı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief GPIO å¼•è„šä¸­æ–­ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. PIO0_1 µÄµçÆ½ÓÉ¸ßµçÆ½¸Ä±äÎªµÍµçÆ½£¨°´¼ü KEY/RES °´ÏÂ£©Ê±£¬LED0 ×´Ì¬¸Ä±ä¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. PIO0_1 çš„ç”µå¹³ç”±é«˜ç”µå¹³æ”¹å˜ä¸ºä½ç”µå¹³ï¼ˆæŒ‰é”® KEY/RES æŒ‰ä¸‹ï¼‰æ—¶ï¼ŒLED0 çŠ¶æ€æ”¹å˜ã€‚
  *
  * \note
- *    1. LED0 ĞèÒª¶Ì½Ó J9 ÌøÏßÃ±£¬²ÅÄÜ±» PIO0_20 ¿ØÖÆ£»
- *    2. °´¼üĞèÒª½« J14 ÌøÏßÃ±µÄ KEY ºÍ PIO0_1 ¶Ì½Ó²ÅÄÜÊ¹ÓÃ¡£
+ *    1. LED0 éœ€è¦çŸ­æ¥ J9 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIO0_20 æ§åˆ¶ï¼›
+ *    2. æŒ‰é”®éœ€è¦å°† J14 è·³çº¿å¸½çš„ KEY å’Œ PIO0_1 çŸ­æ¥æ‰èƒ½ä½¿ç”¨ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_lpc824_hw_gpio_int.c src_lpc824_hw_gpio_int
  *
  * \internal
@@ -44,17 +44,17 @@
 
 
 /**
- * \brief Òı½ÅÖĞ¶Ï·şÎñº¯Êı
+ * \brief å¼•è„šä¸­æ–­æœåŠ¡å‡½æ•°
  */
 am_local void __hw_pint_isr (void *p_arg)
 {
 
     int led_pin = (int)p_arg;
 
-    /* Çå³ıÖĞ¶Ï±êÖ¾ */
+    /* æ¸…é™¤ä¸­æ–­æ ‡å¿— */
     amhw_lpc82x_pint_edge_dec_clr(LPC82X_PINT, AMHW_LPC82X_PINT_CHAN_0);
 
-    /* Òı½ÅÊä³ö×´Ì¬·­×ª */
+    /* å¼•è„šè¾“å‡ºçŠ¶æ€ç¿»è½¬ */
     amhw_lpc82x_gpio_pin_out_tog(LPC82X_GPIO, led_pin);
 }
 
@@ -63,13 +63,13 @@ void demo_lpc824_hw_gpio_int_entry(int                 key_pin,
                                    int                 pint_sel,
                                    int                 inum)
 {
-    /* Òı½ÅÖĞ¶Ï 0 Ñ¡Ôñ KEY Òı½Å */
+    /* å¼•è„šä¸­æ–­ 0 é€‰æ‹© KEY å¼•è„š */
     amhw_lpc82x_syscon_pint_sel(pint_sel, key_pin);
 
-    /* Á¬½ÓÖĞ¶Ï·şÎñº¯Êı */
+    /* è¿æ¥ä¸­æ–­æœåŠ¡å‡½æ•° */
     am_int_connect(inum, __hw_pint_isr, (void *)led_pin);
 
-    /* Ê¹ÄÜÒı½ÅÖĞ¶Ï */
+    /* ä½¿èƒ½å¼•è„šä¸­æ–­ */
     am_int_enable(inum);
 
     AM_FOREVER {

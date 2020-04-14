@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief PCF85063 �����ļ�
+ * \brief PCF85063 配置文件
  *
  * \internal
  * \par Modification history
@@ -32,31 +32,31 @@ extern "C" {
 #endif
 
 /**
- * \brief PCF85063 ʵ����ʼ����ʹ��оƬ���⹦�ܣ�
- * \return PCF85063оƬ�������ΪNULL��������ʼ��ʧ��
- * \note ��ʹ��оƬ���⹦��ʱ��ʹ�øú�����ȡоƬ�ľ��
+ * \brief PCF85063 实例初始化（使用芯片特殊功能）
+ * \return PCF85063芯片句柄，若为NULL，表明初始化失败
+ * \note 当使用芯片特殊功能时，使用该函数获取芯片的句柄
  */
 am_pcf85063_handle_t am_pcf85063_inst_init (void);
 
 /**
- * \brief PCF85063 ʵ����ʼ�� ��ʹ��ͨ�õ�RTC���ܣ�
- * \return RTC��׼����������ΪNULL��������ʼ��ʧ��
- * \note ��ʹ��ͨ�õ�RTC����ʱ��ʹ�øú�����ȡRTC��׼������
+ * \brief PCF85063 实例初始化 （使用通用的RTC功能）
+ * \return RTC标准服务句柄，若为NULL，表明初始化失败
+ * \note 当使用通用的RTC功能时，使用该函数获取RTC标准服务句柄
  */
 am_rtc_handle_t am_pcf85063_rtc_inst_init(void);
 
 /**
- * \brief PCF85063 ʵ����ʼ�� ��ʹ��ͨ�õ����ӹ��ܣ�
- * \return ���ӱ�׼����������ΪNULL��������ʼ��ʧ��
- * \note ��ʹ��ͨ�õ����ӹ���ʱ��ʹ�øú�����ȡ���ӱ�׼������
+ * \brief PCF85063 实例初始化 （使用通用的闹钟功能）
+ * \return 闹钟标准服务句柄，若为NULL，表明初始化失败
+ * \note 当使用通用的闹钟功能时，使用该函数获取闹钟标准服务句柄
  */
 am_alarm_clk_handle_t  am_pcf85063_alarm_clk_inst_init(void);
 
 /**
- * \brief PCF85063 ʵ����ʼ�� ����PCF85063����ϵͳʱ�䣩
+ * \brief PCF85063 实例初始化 （将PCF85063用作系统时间）
  *
- * \retval  AW_OK  ��ʼ���ɹ�
- * \retval   < 0   ��ʼ��ʧ�ܣ�����C�ļ��и��������Ƿ�Ϸ�
+ * \retval  AW_OK  初始化成功
+ * \retval   < 0   初始化失败，请检查C文件中各配置项是否合法
  */
 int am_pcf85063_time_inst_init(void);
 

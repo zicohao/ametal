@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZLG217 ÷–∂œ∫≈∂®“Â
+ * \brief ZLG217 ‰∏≠Êñ≠Âè∑ÂÆö‰πâ
  *
  * \internal
  * \par Modification history
@@ -36,148 +36,148 @@ extern "C" {
  */
 
 /**
- * \name ZLG217 CPU ÷–∂œ∫≈
+ * \name ZLG217 CPU ‰∏≠Êñ≠Âè∑
  * @{
  */
 
-#define INUM_WWDG                 0    /**< \brief ¥∞ø⁄∂® ±∆˜÷–∂œ */
-#define INUM_PVD                  1    /**< \brief µÁ‘¥µÁ—πºÏ≤‚÷–∂œ */
-#define INUM_TAMPER               2    /**< \brief «÷»ÎºÏ≤‚÷–∂œ */
-#define INUM_RTC                  3    /**< \brief  µ ± ±÷”£®RTC£©»´æ÷÷–∂œ */
-#define INUM_FLASH                4    /**< \brief …¡¥Ê»´æ÷÷–∂œ */
-#define INUM_RCC                  5    /**< \brief ∏¥Œª∫Õ ±÷”øÿ÷∆£®RCC£©÷–∂œ */
+#define INUM_WWDG                 0    /**< \brief Á™óÂè£ÂÆöÊó∂Âô®‰∏≠Êñ≠ */
+#define INUM_PVD                  1    /**< \brief ÁîµÊ∫êÁîµÂéãÊ£ÄÊµã‰∏≠Êñ≠ */
+#define INUM_TAMPER               2    /**< \brief ‰æµÂÖ•Ê£ÄÊµã‰∏≠Êñ≠ */
+#define INUM_RTC                  3    /**< \brief ÂÆûÊó∂Êó∂ÈíüÔºàRTCÔºâÂÖ®Â±Ä‰∏≠Êñ≠ */
+#define INUM_FLASH                4    /**< \brief Èó™Â≠òÂÖ®Â±Ä‰∏≠Êñ≠ */
+#define INUM_RCC                  5    /**< \brief Â§ç‰ΩçÂíåÊó∂ÈíüÊéßÂà∂ÔºàRCCÔºâ‰∏≠Êñ≠ */
 
-#define INUM_EXTI0                6    /**< \brief EXTIœﬂ0÷–∂œ */
-#define INUM_EXTI1                7    /**< \brief EXTIœﬂ1÷–∂œ */
-#define INUM_EXTI2                8    /**< \brief EXTIœﬂ2÷–∂œ */
-#define INUM_EXTI3                9    /**< \brief EXTIœﬂ3÷–∂œ */
-#define INUM_EXTI4                10   /**< \brief EXTIœﬂ4÷–∂œ */
+#define INUM_EXTI0                6    /**< \brief EXTIÁ∫ø0‰∏≠Êñ≠ */
+#define INUM_EXTI1                7    /**< \brief EXTIÁ∫ø1‰∏≠Êñ≠ */
+#define INUM_EXTI2                8    /**< \brief EXTIÁ∫ø2‰∏≠Êñ≠ */
+#define INUM_EXTI3                9    /**< \brief EXTIÁ∫ø3‰∏≠Êñ≠ */
+#define INUM_EXTI4                10   /**< \brief EXTIÁ∫ø4‰∏≠Êñ≠ */
 
-#define INUM_DMA1_1               11   /**< \brief DMA1Õ®µ¿1»´æ÷÷–∂œ */
-#define INUM_DMA1_2               12   /**< \brief DMA1Õ®µ¿2»´æ÷÷–∂œ */
-#define INUM_DMA1_3               13   /**< \brief DMA1Õ®µ¿3»´æ÷÷–∂œ */
-#define INUM_DMA1_4               14   /**< \brief DMA1Õ®µ¿4»´æ÷÷–∂œ */
-#define INUM_DMA1_5               15   /**< \brief DMA1Õ®µ¿5»´æ÷÷–∂œ */
-#define INUM_DMA1_6               16   /**< \brief DMA1Õ®µ¿6»´æ÷÷–∂œ */
-#define INUM_DMA1_7               17   /**< \brief DMA1Õ®µ¿7»´æ÷÷–∂œ */
+#define INUM_DMA1_1               11   /**< \brief DMA1ÈÄöÈÅì1ÂÖ®Â±Ä‰∏≠Êñ≠ */
+#define INUM_DMA1_2               12   /**< \brief DMA1ÈÄöÈÅì2ÂÖ®Â±Ä‰∏≠Êñ≠ */
+#define INUM_DMA1_3               13   /**< \brief DMA1ÈÄöÈÅì3ÂÖ®Â±Ä‰∏≠Êñ≠ */
+#define INUM_DMA1_4               14   /**< \brief DMA1ÈÄöÈÅì4ÂÖ®Â±Ä‰∏≠Êñ≠ */
+#define INUM_DMA1_5               15   /**< \brief DMA1ÈÄöÈÅì5ÂÖ®Â±Ä‰∏≠Êñ≠ */
+#define INUM_DMA1_6               16   /**< \brief DMA1ÈÄöÈÅì6ÂÖ®Â±Ä‰∏≠Êñ≠ */
+#define INUM_DMA1_7               17   /**< \brief DMA1ÈÄöÈÅì7ÂÖ®Â±Ä‰∏≠Êñ≠ */
 
-#define INUM_ADC1_2               18   /**< \brief ADC1∫ÕADC2µƒ»´æ÷÷–∂œ */
-#define INUM_USB                  19   /**< \brief USB÷–∂œ */
+#define INUM_ADC1_2               18   /**< \brief ADC1ÂíåADC2ÁöÑÂÖ®Â±Ä‰∏≠Êñ≠ */
+#define INUM_USB                  19   /**< \brief USB‰∏≠Êñ≠ */
 
-#define INUM_CAN_RX1              21   /**< \brief CANΩ” ’1÷–∂œ */
+#define INUM_CAN_RX1              21   /**< \brief CANÊé•Êî∂1‰∏≠Êñ≠ */
 
-#define INUM_EXTI9_5              23   /**< \brief EXTIœﬂ[9£∫5]÷–∂œ */
-#define INUM_TIM1_BRK             24   /**< \brief TIM1∂œø™÷–∂œ */
-#define INUM_TIM1_UP              25   /**< \brief TIM1∏¸–¬÷–∂œ */
-#define INUM_TIM1_TRG_COM         26   /**< \brief TIM1¥•∑¢∫ÕÕ®–≈÷–∂œ */
-#define INUM_TIM1_CC              27   /**< \brief TIM1≤∂ªÒ±»Ωœ÷–∂œ */
-#define INUM_TIM2                 28   /**< \brief TIM2»´æ÷÷–∂œ */
-#define INUM_TIM3                 29   /**< \brief TIM3»´æ÷÷–∂œ */
-#define INUM_TIM4                 30   /**< \brief TIM14»´æ÷÷–∂œ */
+#define INUM_EXTI9_5              23   /**< \brief EXTIÁ∫ø[9Ôºö5]‰∏≠Êñ≠ */
+#define INUM_TIM1_BRK             24   /**< \brief TIM1Êñ≠ÂºÄ‰∏≠Êñ≠ */
+#define INUM_TIM1_UP              25   /**< \brief TIM1Êõ¥Êñ∞‰∏≠Êñ≠ */
+#define INUM_TIM1_TRG_COM         26   /**< \brief TIM1Ëß¶ÂèëÂíåÈÄö‰ø°‰∏≠Êñ≠ */
+#define INUM_TIM1_CC              27   /**< \brief TIM1ÊçïËé∑ÊØîËæÉ‰∏≠Êñ≠ */
+#define INUM_TIM2                 28   /**< \brief TIM2ÂÖ®Â±Ä‰∏≠Êñ≠ */
+#define INUM_TIM3                 29   /**< \brief TIM3ÂÖ®Â±Ä‰∏≠Êñ≠ */
+#define INUM_TIM4                 30   /**< \brief TIM14ÂÖ®Â±Ä‰∏≠Êñ≠ */
 
-#define INUM_I2C1_EV              31   /**< \brief I2C1 ¬º˛÷–∂œ */
+#define INUM_I2C1_EV              31   /**< \brief I2C1‰∫ã‰ª∂‰∏≠Êñ≠ */
 
-#define INUM_I2C2_EV              33   /**< \brief I2C1 ¬º˛÷–∂œ */
+#define INUM_I2C2_EV              33   /**< \brief I2C1‰∫ã‰ª∂‰∏≠Êñ≠ */
 
-#define INUM_SPI1                 35   /**< \brief SPI1»´æ÷÷–∂œ */
-#define INUM_SPI2                 36   /**< \brief SPI2»´æ÷÷–∂œ */
+#define INUM_SPI1                 35   /**< \brief SPI1ÂÖ®Â±Ä‰∏≠Êñ≠ */
+#define INUM_SPI2                 36   /**< \brief SPI2ÂÖ®Â±Ä‰∏≠Êñ≠ */
 
-#define INUM_UART1                37   /**< \brief UART1»´æ÷÷–∂œ */
-#define INUM_UART2                38   /**< \brief UART2»´æ÷÷–∂œ */
-#define INUM_UART3                39   /**< \brief UART3»´æ÷÷–∂œ */
+#define INUM_UART1                37   /**< \brief UART1ÂÖ®Â±Ä‰∏≠Êñ≠ */
+#define INUM_UART2                38   /**< \brief UART2ÂÖ®Â±Ä‰∏≠Êñ≠ */
+#define INUM_UART3                39   /**< \brief UART3ÂÖ®Â±Ä‰∏≠Êñ≠ */
 
-#define INUM_EXTI15_10            40   /**< \brief EXTIœﬂ[15£∫10]÷–∂œ */
-#define INUM_RTC_Alarm            41   /**< \brief ¡¨µΩEXTI17µƒRTCƒ÷÷”÷–∂œ */
-#define INUM_USB_WK               42   /**< \brief ¡¨µΩEXTI18µƒ¥”USB¥˝ª˙ªΩ–—÷–∂œ */
+#define INUM_EXTI15_10            40   /**< \brief EXTIÁ∫ø[15Ôºö10]‰∏≠Êñ≠ */
+#define INUM_RTC_Alarm            41   /**< \brief ËøûÂà∞EXTI17ÁöÑRTCÈóπÈíü‰∏≠Êñ≠ */
+#define INUM_USB_WK               42   /**< \brief ËøûÂà∞EXTI18ÁöÑ‰ªéUSBÂæÖÊú∫Âî§ÈÜí‰∏≠Êñ≠ */
 
-#define INUM_AES                  45   /**< \brief AES»´æ÷÷–∂œ */
+#define INUM_AES                  45   /**< \brief AESÂÖ®Â±Ä‰∏≠Êñ≠ */
 
 /** @} */
 
 /**
- * \brief ◊‹÷–∂œ ˝Œ™£∫(INUM_USB - INUM_WWDT + 1),
+ * \brief ÊÄª‰∏≠Êñ≠Êï∞‰∏∫Ôºö(INUM_USB - INUM_WWDT + 1),
  *
  */
 #define INUM_INTERNAL_COUNT     (INUM_AES - INUM_WWDG + 1)
 
 /**
- * \brief ◊Ó¥Û÷–∂œ∫≈Œ™£∫ INUM_USB
+ * \brief ÊúÄÂ§ß‰∏≠Êñ≠Âè∑‰∏∫Ôºö INUM_USB
  */
 #define INUM_INTERNAL_MAX        INUM_AES
 
-/** \brief ◊Ó–°÷–∂œ∫≈: INUM_WWDT */
+/** \brief ÊúÄÂ∞è‰∏≠Êñ≠Âè∑: INUM_WWDT */
 #define INUM_INTERNAL_MIN        INUM_WWDG
 
 /**
  * \cond
- * ÷–∂œ∫≈∂®“Â£¨Œ™ core_cm3.hŒƒº˛±£¡Ù
+ * ‰∏≠Êñ≠Âè∑ÂÆö‰πâÔºå‰∏∫ core_cm3.hÊñá‰ª∂‰øùÁïô
  */
 typedef enum {
 
-    /* ----------------------  Cortex-M3∫À“Ï≥£∫≈  ------------------- */
+    /* ----------------------  Cortex-M3Ê†∏ÂºÇÂ∏∏Âè∑  ------------------- */
 
-    /** \brief 2  ≤ªø…∆¡±Œ÷–∂œ, ≤ªƒ‹±ªÕ£÷πªÚ«¿’º */
+    /** \brief 2  ‰∏çÂèØÂ±èËîΩ‰∏≠Êñ≠, ‰∏çËÉΩË¢´ÂÅúÊ≠¢ÊàñÊä¢Âç† */
     NonMaskableInt_IRQn      = -14,
 
-    /** \brief 3  ”≤º˛¥ÌŒÛ÷–∂œ */
+    /** \brief 3  Á°¨‰ª∂ÈîôËØØ‰∏≠Êñ≠ */
     HardFault_IRQn           = -13,
 
-    /** \brief 11  œµÕ≥∑˛ŒÒµ˜”√Õ®π˝SVC÷∏¡Ó */
+    /** \brief 11  Á≥ªÁªüÊúçÂä°Ë∞ÉÁî®ÈÄöËøáSVCÊåá‰ª§ */
     SVCall_IRQn              =  -5,
 
-    /** \brief 14  œµÕ≥µƒπ“∆«Î«Û */
+    /** \brief 14  Á≥ªÁªüÁöÑÊåÇËµ∑ËØ∑Ê±Ç */
     PendSV_IRQn              =  -2,
 
-    /** \brief 15  œµÕ≥µŒ¥∂® ±∆˜ */
+    /** \brief 15  Á≥ªÁªüÊª¥Á≠îÂÆöÊó∂Âô® */
     SysTick_IRQn             =  -1,
 
     /******  ZLG217 Specific Interrupt Numbers *******************************************************/
-    WWDG_IRQn                = 0,         /**< \brief ¥∞ø⁄∂® ±∆˜÷–∂œ */
-    PVD_IRQn                  =1,         /**< \brief µÁ‘¥µÁ—πºÏ≤‚÷–∂œ */
-    TAMPER_IRQn               =2,         /**< \brief «÷»ÎºÏ≤‚÷–∂œ */
-    RTC_IRQn                  =3,         /**< \brief  µ ± ±÷”£®RTC£©»´æ÷÷–∂œ */
-    FLASH_IRQn                =4,         /**< \brief …¡¥Ê»´æ÷÷–∂œ */
-    RCC_IRQn                  =5,         /**< \brief ∏¥Œª∫Õ ±÷”øÿ÷∆£®RCC£©÷–∂œ */
-    EXTI0_IRQn                =6,         /**< \brief EXTIœﬂ0÷–∂œ */
-    EXTI1_IRQn                =7,         /**< \brief EXTIœﬂ1÷–∂œ */
-    EXTI2_IRQn                =8,         /**< \brief EXTIœﬂ2÷–∂œ */
-    EXTI3_IRQn                =9,         /**< \brief EXTIœﬂ3÷–∂œ */
-    EXTI4_IRQn                =10,        /**< \brief EXTIœﬂ4÷–∂œ */
-    DMA1_1_IRQn               =11,        /**< \brief DMA1Õ®µ¿1»´æ÷÷–∂œ */
-    DMA1_2_IRQn               =12,        /**< \brief DMA1Õ®µ¿2»´æ÷÷–∂œ */
-    DMA1_3_IRQn               =13,        /**< \brief DMA1Õ®µ¿3»´æ÷÷–∂œ */
-    DMA1_4_IRQn               =14,        /**< \brief DMA1Õ®µ¿4»´æ÷÷–∂œ */
-    DMA1_5_IRQn               =15,        /**< \brief DMA1Õ®µ¿5»´æ÷÷–∂œ */
-    DMA1_6_IRQn               =16,        /**< \brief DMA1Õ®µ¿6»´æ÷÷–∂œ */
-    DMA1_7_IRQn               =17,        /**< \brief DMA1Õ®µ¿7»´æ÷÷–∂œ */
-    ADC1_2_IRQn               =18,        /**< \brief ADC1∫ÕADC2µƒ»´æ÷÷–∂œ */
-    USB_IRQn                  =19,        /**< \brief USB÷–∂œ */
+    WWDG_IRQn                = 0,         /**< \brief Á™óÂè£ÂÆöÊó∂Âô®‰∏≠Êñ≠ */
+    PVD_IRQn                  =1,         /**< \brief ÁîµÊ∫êÁîµÂéãÊ£ÄÊµã‰∏≠Êñ≠ */
+    TAMPER_IRQn               =2,         /**< \brief ‰æµÂÖ•Ê£ÄÊµã‰∏≠Êñ≠ */
+    RTC_IRQn                  =3,         /**< \brief ÂÆûÊó∂Êó∂ÈíüÔºàRTCÔºâÂÖ®Â±Ä‰∏≠Êñ≠ */
+    FLASH_IRQn                =4,         /**< \brief Èó™Â≠òÂÖ®Â±Ä‰∏≠Êñ≠ */
+    RCC_IRQn                  =5,         /**< \brief Â§ç‰ΩçÂíåÊó∂ÈíüÊéßÂà∂ÔºàRCCÔºâ‰∏≠Êñ≠ */
+    EXTI0_IRQn                =6,         /**< \brief EXTIÁ∫ø0‰∏≠Êñ≠ */
+    EXTI1_IRQn                =7,         /**< \brief EXTIÁ∫ø1‰∏≠Êñ≠ */
+    EXTI2_IRQn                =8,         /**< \brief EXTIÁ∫ø2‰∏≠Êñ≠ */
+    EXTI3_IRQn                =9,         /**< \brief EXTIÁ∫ø3‰∏≠Êñ≠ */
+    EXTI4_IRQn                =10,        /**< \brief EXTIÁ∫ø4‰∏≠Êñ≠ */
+    DMA1_1_IRQn               =11,        /**< \brief DMA1ÈÄöÈÅì1ÂÖ®Â±Ä‰∏≠Êñ≠ */
+    DMA1_2_IRQn               =12,        /**< \brief DMA1ÈÄöÈÅì2ÂÖ®Â±Ä‰∏≠Êñ≠ */
+    DMA1_3_IRQn               =13,        /**< \brief DMA1ÈÄöÈÅì3ÂÖ®Â±Ä‰∏≠Êñ≠ */
+    DMA1_4_IRQn               =14,        /**< \brief DMA1ÈÄöÈÅì4ÂÖ®Â±Ä‰∏≠Êñ≠ */
+    DMA1_5_IRQn               =15,        /**< \brief DMA1ÈÄöÈÅì5ÂÖ®Â±Ä‰∏≠Êñ≠ */
+    DMA1_6_IRQn               =16,        /**< \brief DMA1ÈÄöÈÅì6ÂÖ®Â±Ä‰∏≠Êñ≠ */
+    DMA1_7_IRQn               =17,        /**< \brief DMA1ÈÄöÈÅì7ÂÖ®Â±Ä‰∏≠Êñ≠ */
+    ADC1_2_IRQn               =18,        /**< \brief ADC1ÂíåADC2ÁöÑÂÖ®Â±Ä‰∏≠Êñ≠ */
+    USB_IRQn                  =19,        /**< \brief USB‰∏≠Êñ≠ */
     Reserved0                 =20,        /**< \brief RESERVED */
-    CAN_RX1_IRQn              =21,        /**< \brief CANΩ” ’1÷–∂œ */
+    CAN_RX1_IRQn              =21,        /**< \brief CANÊé•Êî∂1‰∏≠Êñ≠ */
     Reserved1                 =22,        /**< \brief RESERVED */
-    EXTI9_5_IRQn              =23,        /**< \brief EXTIœﬂ[9£∫5]÷–∂œ */
-    TIM1_BRK_IRQn             =24,        /**< \brief TIM1∂œø™÷–∂œ */
-    TIM1_UP_IRQn              =25,        /**< \brief TIM1∏¸–¬÷–∂œ */
-    TIM1_TRG_COM_IRQn         =26,        /**< \brief TIM1¥•∑¢∫ÕÕ®–≈÷–∂œ */
-    TIM1_CC_IRQn              =27,        /**< \brief TIM1≤∂ªÒ±»Ωœ÷–∂œ */
-    TIM2_IRQn                 =28,        /**< \brief TIM2»´æ÷÷–∂œ */
-    TIM3_IRQn                 =29,        /**< \brief TIM3»´æ÷÷–∂œ */
-    TIM4_IRQn                 =30,        /**< \brief TIM14»´æ÷÷–∂œ */
-    I2C1_EV_IRQn              =31,        /**< \brief I2C1 ¬º˛÷–∂œ */
+    EXTI9_5_IRQn              =23,        /**< \brief EXTIÁ∫ø[9Ôºö5]‰∏≠Êñ≠ */
+    TIM1_BRK_IRQn             =24,        /**< \brief TIM1Êñ≠ÂºÄ‰∏≠Êñ≠ */
+    TIM1_UP_IRQn              =25,        /**< \brief TIM1Êõ¥Êñ∞‰∏≠Êñ≠ */
+    TIM1_TRG_COM_IRQn         =26,        /**< \brief TIM1Ëß¶ÂèëÂíåÈÄö‰ø°‰∏≠Êñ≠ */
+    TIM1_CC_IRQn              =27,        /**< \brief TIM1ÊçïËé∑ÊØîËæÉ‰∏≠Êñ≠ */
+    TIM2_IRQn                 =28,        /**< \brief TIM2ÂÖ®Â±Ä‰∏≠Êñ≠ */
+    TIM3_IRQn                 =29,        /**< \brief TIM3ÂÖ®Â±Ä‰∏≠Êñ≠ */
+    TIM4_IRQn                 =30,        /**< \brief TIM14ÂÖ®Â±Ä‰∏≠Êñ≠ */
+    I2C1_EV_IRQn              =31,        /**< \brief I2C1‰∫ã‰ª∂‰∏≠Êñ≠ */
     Reserved2                 =32,        /**< \brief RESERVED */
-    I2C2_EV_IRQn              =33,        /**< \brief I2C1 ¬º˛÷–∂œ */
+    I2C2_EV_IRQn              =33,        /**< \brief I2C1‰∫ã‰ª∂‰∏≠Êñ≠ */
     Reserved3                 =34,        /**< \brief RESERVED */
-    SPI1_IRQn                 =35,        /**< \brief SPI1»´æ÷÷–∂œ */
-    SPI2_IRQn                 =36,        /**< \brief SPI2»´æ÷÷–∂œ */
-    UART1_IRQn                =37,        /**< \brief UART1»´æ÷÷–∂œ */
-    UART2_IRQn                =38,        /**< \brief UART2»´æ÷÷–∂œ */
-    UART3_IRQn                =39,        /**< \brief UART3»´æ÷÷–∂œ */
-    EXTI15_10_IRQn            =40,        /**< \brief EXTIœﬂ[15£∫10]÷–∂œ */
-    RTCAlarm_IRQn             =41,        /**< \brief ¡¨µΩEXTI17µƒRTCƒ÷÷”÷–∂œ */
-    USB_WK_IRQn               =42,        /**< \brief ¡¨µΩEXTI18µƒ¥”USB¥˝ª˙ªΩ–—÷–∂œ */
+    SPI1_IRQn                 =35,        /**< \brief SPI1ÂÖ®Â±Ä‰∏≠Êñ≠ */
+    SPI2_IRQn                 =36,        /**< \brief SPI2ÂÖ®Â±Ä‰∏≠Êñ≠ */
+    UART1_IRQn                =37,        /**< \brief UART1ÂÖ®Â±Ä‰∏≠Êñ≠ */
+    UART2_IRQn                =38,        /**< \brief UART2ÂÖ®Â±Ä‰∏≠Êñ≠ */
+    UART3_IRQn                =39,        /**< \brief UART3ÂÖ®Â±Ä‰∏≠Êñ≠ */
+    EXTI15_10_IRQn            =40,        /**< \brief EXTIÁ∫ø[15Ôºö10]‰∏≠Êñ≠ */
+    RTCAlarm_IRQn             =41,        /**< \brief ËøûÂà∞EXTI17ÁöÑRTCÈóπÈíü‰∏≠Êñ≠ */
+    USB_WK_IRQn               =42,        /**< \brief ËøûÂà∞EXTI18ÁöÑ‰ªéUSBÂæÖÊú∫Âî§ÈÜí‰∏≠Êñ≠ */
     Reserved4                 =43,        /**< \brief RESERVED */
     Reserved5                 =44,        /**< \brief RESERVED */
-    AES_IRQn                  =45,        /**< \brief AES»´æ÷÷–∂œ */
+    AES_IRQn                  =45,        /**< \brief AESÂÖ®Â±Ä‰∏≠Êñ≠ */
 } IRQn_Type;
 
 /**

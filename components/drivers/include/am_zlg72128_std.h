@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZLG72128Í¨ÓÃ½Ó¿Ú£¨°üÀ¨ÊıÂë¹Ü½Ó¿ÚºÍ°´¼ü½Ó¿Ú£©Çı¶¯
+ * \brief ZLG72128é€šç”¨æ¥å£ï¼ˆåŒ…æ‹¬æ•°ç ç®¡æ¥å£å’ŒæŒ‰é”®æ¥å£ï¼‰é©±åŠ¨
  *
  * \internal
  * \par Modification History
@@ -38,78 +38,78 @@ extern "C" {
  * @{
  */
 
-#define AM_ZLG72128_STD_KEY_ROW_0  (1 << 0) /**< \brief Ê¹ÓÃµÚ0ĞĞ      */
-#define AM_ZLG72128_STD_KEY_ROW_1  (1 << 1) /**< \brief Ê¹ÓÃµÚ1ĞĞ      */
-#define AM_ZLG72128_STD_KEY_ROW_2  (1 << 2) /**< \brief Ê¹ÓÃµÚ2ĞĞ      */
-#define AM_ZLG72128_STD_KEY_ROW_3  (1 << 3) /**< \brief Ê¹ÓÃµÚ3ĞĞ£¨¹¦ÄÜ°´¼üĞĞ£©*/
+#define AM_ZLG72128_STD_KEY_ROW_0  (1 << 0) /**< \brief ä½¿ç”¨ç¬¬0è¡Œ      */
+#define AM_ZLG72128_STD_KEY_ROW_1  (1 << 1) /**< \brief ä½¿ç”¨ç¬¬1è¡Œ      */
+#define AM_ZLG72128_STD_KEY_ROW_2  (1 << 2) /**< \brief ä½¿ç”¨ç¬¬2è¡Œ      */
+#define AM_ZLG72128_STD_KEY_ROW_3  (1 << 3) /**< \brief ä½¿ç”¨ç¬¬3è¡Œï¼ˆåŠŸèƒ½æŒ‰é”®è¡Œï¼‰*/
                                                  
-#define AM_ZLG72128_STD_KEY_COL_0  (1 << 0) /**< \brief Ê¹ÓÃµÚ0ÁĞ      */
-#define AM_ZLG72128_STD_KEY_COL_1  (1 << 1) /**< \brief Ê¹ÓÃµÚ1ÁĞ      */
-#define AM_ZLG72128_STD_KEY_COL_2  (1 << 2) /**< \brief Ê¹ÓÃµÚ2ÁĞ      */
-#define AM_ZLG72128_STD_KEY_COL_3  (1 << 3) /**< \brief Ê¹ÓÃµÚ3ÁĞ      */
-#define AM_ZLG72128_STD_KEY_COL_4  (1 << 4) /**< \brief Ê¹ÓÃµÚ4ÁĞ      */
-#define AM_ZLG72128_STD_KEY_COL_5  (1 << 5) /**< \brief Ê¹ÓÃµÚ5ÁĞ      */
-#define AM_ZLG72128_STD_KEY_COL_6  (1 << 6) /**< \brief Ê¹ÓÃµÚ6ÁĞ      */
-#define AM_ZLG72128_STD_KEY_COL_7  (1 << 7) /**< \brief Ê¹ÓÃµÚ7ÁĞ      */
+#define AM_ZLG72128_STD_KEY_COL_0  (1 << 0) /**< \brief ä½¿ç”¨ç¬¬0åˆ—      */
+#define AM_ZLG72128_STD_KEY_COL_1  (1 << 1) /**< \brief ä½¿ç”¨ç¬¬1åˆ—      */
+#define AM_ZLG72128_STD_KEY_COL_2  (1 << 2) /**< \brief ä½¿ç”¨ç¬¬2åˆ—      */
+#define AM_ZLG72128_STD_KEY_COL_3  (1 << 3) /**< \brief ä½¿ç”¨ç¬¬3åˆ—      */
+#define AM_ZLG72128_STD_KEY_COL_4  (1 << 4) /**< \brief ä½¿ç”¨ç¬¬4åˆ—      */
+#define AM_ZLG72128_STD_KEY_COL_5  (1 << 5) /**< \brief ä½¿ç”¨ç¬¬5åˆ—      */
+#define AM_ZLG72128_STD_KEY_COL_6  (1 << 6) /**< \brief ä½¿ç”¨ç¬¬6åˆ—      */
+#define AM_ZLG72128_STD_KEY_COL_7  (1 << 7) /**< \brief ä½¿ç”¨ç¬¬7åˆ—      */
 
 /**
- * \brief ZLG72128ÓÃ×÷Í¨ÓÃÊıÂë¹ÜºÍ°´¼üµÄÉè±¸ĞÅÏ¢
+ * \brief ZLG72128ç”¨ä½œé€šç”¨æ•°ç ç®¡å’ŒæŒ‰é”®çš„è®¾å¤‡ä¿¡æ¯
  */
 typedef struct am_zlg72128_std_devinfo {
-    zlg72128_devinfo_t     base_info;         /**< \brief »ù´¡Éè±¸ĞÅÏ¢         */
-    am_digitron_devinfo_t  id_info;           /**< \brief ÊıÂë¹ÜÏÔÊ¾Æ÷ID         */
-    uint16_t               blink_on_time;     /**< \brief Ò»¸öÉÁË¸ÖÜÆÚÄÚ£¬µãÁÁµÄÊ±¼ä£¬Èç 500ms */
-    uint16_t               blink_off_time;    /**< \brief Ò»¸öÉÁË¸ÖÜÆÚÄÚ£¬Ï¨ÃğµÄÊ±¼ä£¬Èç 500ms */
-    uint8_t                key_use_row_flags; /**< \brief Êµ¼ÊÊ¹ÓÃµÄĞĞ±êÖ¾  */
-    uint8_t                key_use_col_flags; /**< \brief Êµ¼ÊÊ¹ÓÃµÄÁĞ±êÖ¾ */
-    const int             *p_key_codes;  /**< \brief °´¼ü±àÂë£¬ Æä´óĞ¡Îª key_rows * key_cols */
-    uint8_t                num_digitron; /**< \brief Êµ¼ÊÊ¹ÓÃµÄÊıÂë¹Ü¸öÊı */
+    zlg72128_devinfo_t     base_info;         /**< \brief åŸºç¡€è®¾å¤‡ä¿¡æ¯         */
+    am_digitron_devinfo_t  id_info;           /**< \brief æ•°ç ç®¡æ˜¾ç¤ºå™¨ID         */
+    uint16_t               blink_on_time;     /**< \brief ä¸€ä¸ªé—ªçƒå‘¨æœŸå†…ï¼Œç‚¹äº®çš„æ—¶é—´ï¼Œå¦‚ 500ms */
+    uint16_t               blink_off_time;    /**< \brief ä¸€ä¸ªé—ªçƒå‘¨æœŸå†…ï¼Œç†„ç­çš„æ—¶é—´ï¼Œå¦‚ 500ms */
+    uint8_t                key_use_row_flags; /**< \brief å®é™…ä½¿ç”¨çš„è¡Œæ ‡å¿—  */
+    uint8_t                key_use_col_flags; /**< \brief å®é™…ä½¿ç”¨çš„åˆ—æ ‡å¿— */
+    const int             *p_key_codes;  /**< \brief æŒ‰é”®ç¼–ç ï¼Œ å…¶å¤§å°ä¸º key_rows * key_cols */
+    uint8_t                num_digitron; /**< \brief å®é™…ä½¿ç”¨çš„æ•°ç ç®¡ä¸ªæ•° */
 } am_zlg72128_std_devinfo_t;
 
 /**
- * \brief ZLG72128ÓÃ×÷Í¨ÓÃÊıÂë¹ÜºÍ°´¼üµÄÉè±¸
+ * \brief ZLG72128ç”¨ä½œé€šç”¨æ•°ç ç®¡å’ŒæŒ‰é”®çš„è®¾å¤‡
  */
 typedef struct am_zlg72128_std_digitron_key_dev {
 
-    /** Ê¹ÓÃµ×²ãµÄZLG72128¹¦ÄÜ    */
+    /** ä½¿ç”¨åº•å±‚çš„ZLG72128åŠŸèƒ½    */
     zlg72128_dev_t        zlg72128_dev;
 
-    /** \brief ÊıÂë¹ÜÉè±¸      */
+    /** \brief æ•°ç ç®¡è®¾å¤‡      */
     am_digitron_dev_t     digitron_dev;
 
-    /** \brief ZLG72128¾ä±ú      */
+    /** \brief ZLG72128å¥æŸ„      */
     zlg72128_handle_t     handle;
 
-    /** \brief ¹¦ÄÜ¼üÖµ£¬½«¹¦ÄÜ¼ü×ª»»ÎªÍ¨ÓÃ°´¼üÊ¹ÓÃ      */
+    /** \brief åŠŸèƒ½é”®å€¼ï¼Œå°†åŠŸèƒ½é”®è½¬æ¢ä¸ºé€šç”¨æŒ‰é”®ä½¿ç”¨      */
     uint8_t               f_key;
     
-    /** \brief Êµ¼ÊÊ¹ÓÃµÄ°´¼üĞĞÊı  */
+    /** \brief å®é™…ä½¿ç”¨çš„æŒ‰é”®è¡Œæ•°  */
     uint8_t               num_rows;
 
-    /** \brief Êµ¼ÊÊ¹ÓÃ°´¼üµÄÁĞÊı */
+    /** \brief å®é™…ä½¿ç”¨æŒ‰é”®çš„åˆ—æ•° */
     uint8_t               num_cols;
 
-    /** \brief ÉÁË¸±ê¼Ç  */
+    /** \brief é—ªçƒæ ‡è®°  */
     uint16_t              blink_flags;
 
-    /** \brief ×Ô¶¨Òå½âÂëº¯Êı  */
+    /** \brief è‡ªå®šä¹‰è§£ç å‡½æ•°  */
     uint16_t  (*pfn_decode)(uint16_t code);
 
-    /** \brief ÓÃÓÚ±£´æÉè±¸ĞÅÏ¢Ö¸Õë */
+    /** \brief ç”¨äºä¿å­˜è®¾å¤‡ä¿¡æ¯æŒ‡é’ˆ */
     const am_zlg72128_std_devinfo_t  *p_info;
 
 } am_zlg72128_std_dev_t;
 
 /**
- * \brief ZLG72128³õÊ¼»¯º¯Êı
+ * \brief ZLG72128åˆå§‹åŒ–å‡½æ•°
  *
- * Ê¹ÓÃZLG72128Ç°£¬Ó¦¸ÃÊ×ÏÈµ÷ÓÃ¸Ã³õÊ¼»¯º¯Êı£¬ÒÔ»ñÈ¡²Ù×÷ZLG72128µÄhandle¡£
+ * ä½¿ç”¨ZLG72128å‰ï¼Œåº”è¯¥é¦–å…ˆè°ƒç”¨è¯¥åˆå§‹åŒ–å‡½æ•°ï¼Œä»¥è·å–æ“ä½œZLG72128çš„handleã€‚
  *
- * \param[in] p_dev      : Ö¸ÏòZLG72128Éè±¸µÄÖ¸Õë
- * \param[in] p_info     : Ö¸ÏòZLG72128Éè±¸ĞÅÏ¢µÄÖ¸Õë
- * \param[in] i2c_handle : I2C±ê×¼·şÎñ²Ù×÷¾ä±ú£¨Ê¹ÓÃ¸ÃI2C¾ä±úÓëZLG72128Í¨ĞÅ£©
+ * \param[in] p_dev      : æŒ‡å‘ZLG72128è®¾å¤‡çš„æŒ‡é’ˆ
+ * \param[in] p_info     : æŒ‡å‘ZLG72128è®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ
+ * \param[in] i2c_handle : I2Cæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„ï¼ˆä½¿ç”¨è¯¥I2Cå¥æŸ„ä¸ZLG72128é€šä¿¡ï¼‰
  *
- * \return AM_OK£¬³õÊ¼»¯³É¹¦£»·ñÔò£¬³õÊ¼»¯Ê§°Ü
+ * \return AM_OKï¼Œåˆå§‹åŒ–æˆåŠŸï¼›å¦åˆ™ï¼Œåˆå§‹åŒ–å¤±è´¥
  */
 int am_zlg72128_std_init (am_zlg72128_std_dev_t           *p_dev,
                           const am_zlg72128_std_devinfo_t *p_info);

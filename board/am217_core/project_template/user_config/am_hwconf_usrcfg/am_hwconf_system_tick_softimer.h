@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ϵͳ�δ�������ʱ���û������ļ�
+ * \brief 系统滴答、软件定时器用户配置文件
  *
  * \internal
  * \par Modification history
@@ -30,26 +30,26 @@ extern "C" {
 #include "am_timer.h"
 
 /**
- * \brief ϵͳ�δ�ʵ����ʼ��(��ʹ��������ʱ��)
+ * \brief 系统滴答实例初始化(不使用软件定时器)
  *
- * ��ʹ��ϵͳ�δ�ʱ��Ĭ��ʹ�� TIM4 ��ͨ�� 0 ��Ϊ������ʱ��Ԫ������Ѿ��� TIM4 ��ʼ��
- * Ϊ��ʱ������
+ * 当使用系统滴答时，默认使用 TIM4 的通道 0 作为基础定时单元，因此已经将 TIM4 初始化
+ * 为定时器功能
  *
- * \param ��
+ * \param 无
  *
- * \return TIMER ��׼����������Ϊ NULL��������ʼ��ʧ��
+ * \return TIMER 标准服务句柄，若为 NULL，表明初始化失败
  */
 am_timer_handle_t am_system_tick_inst_init (void);
 
 /**
- * \brief ϵͳ�δ�ʵ����ʼ��(ʹ��������ʱ��)
+ * \brief 系统滴答实例初始化(使用软件定时器)
  *
- * ��ʹ��ϵͳ�δ�ʱ��Ĭ��ʹ�� TIM4 ��ͨ�� 0 ��Ϊ������ʱ��Ԫ������Ѿ��� TIM4 ��ʼ��
- * Ϊ��ʱ������
+ * 当使用系统滴答时，默认使用 TIM4 的通道 0 作为基础定时单元，因此已经将 TIM4 初始化
+ * 为定时器功能
  *
- * \param ��
+ * \param 无
  *
- * \return TIMER ��׼����������Ϊ NULL��������ʼ��ʧ��
+ * \return TIMER 标准服务句柄，若为 NULL，表明初始化失败
  */
 am_timer_handle_t am_system_tick_softimer_inst_init (void);
 

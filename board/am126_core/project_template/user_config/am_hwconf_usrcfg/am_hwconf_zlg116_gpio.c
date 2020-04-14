@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZLG116 GPIO ÓÃ»§ÅäÖÃÎÄ¼ş¡£
+ * \brief ZLG116 GPIO ç”¨æˆ·é…ç½®æ–‡ä»¶ã€‚
  * \sa am_hwconf_zlg116_gpio.c
  * 
  * \internal
@@ -33,22 +33,22 @@
  * @{
  */
 
-/** \brief GPIOÆ½Ì¨³õÊ¼»¯ */
+/** \brief GPIOå¹³å°åˆå§‹åŒ– */
 void __zlg116_plfm_gpio_init (void)
 {
 
-    /* Ê¹ÄÜGPIOÏà¹ØÍâÉèÊ±ÖÓ */
+    /* ä½¿èƒ½GPIOç›¸å…³å¤–è®¾æ—¶é’Ÿ */
 
-    /* ¿ªÆôGPIO¸÷¸ö¶Ë¿ÚÊ±ÖÓ */
+    /* å¼€å¯GPIOå„ä¸ªç«¯å£æ—¶é’Ÿ */
     am_clk_enable(CLK_GPIOA );
     am_clk_enable(CLK_GPIOB);
     am_clk_enable(CLK_GPIOC);
     am_clk_enable(CLK_GPIOD);
 
-    /* ÏµÍ³ÅäÖÃÊ±ÖÓÊ¹ÄÜ(µÈ¼ÛÓÚAFIOÊ±ÖÓ) */
+    /* ç³»ç»Ÿé…ç½®æ—¶é’Ÿä½¿èƒ½(ç­‰ä»·äºAFIOæ—¶é’Ÿ) */
     am_clk_enable(CLK_SYSCFG);
 
-    /* ¸´Î»GPIOÏà¹ØÍâÉè */
+    /* å¤ä½GPIOç›¸å…³å¤–è®¾ */
     am_zlg116_clk_reset(CLK_GPIOA);
     am_zlg116_clk_reset(CLK_GPIOB);
     am_zlg116_clk_reset(CLK_GPIOC);
@@ -56,65 +56,65 @@ void __zlg116_plfm_gpio_init (void)
     am_zlg116_clk_reset(CLK_SYSCFG);
 }
 
-/** \brief GPIOÆ½Ì¨È¥³õÊ¼»¯ */
+/** \brief GPIOå¹³å°å»åˆå§‹åŒ– */
 void __zlg116_plfm_gpio_deinit (void)
 {
 
-    /* ¸´Î»GPIOÏà¹ØÍâÉè */
+    /* å¤ä½GPIOç›¸å…³å¤–è®¾ */
     am_zlg116_clk_reset(CLK_GPIOA);
     am_zlg116_clk_reset(CLK_GPIOB);
     am_zlg116_clk_reset(CLK_GPIOC);
     am_zlg116_clk_reset(CLK_GPIOD);
     am_zlg116_clk_reset(CLK_SYSCFG);
 
-    /* ½ûÄÜGPIOÏà¹ØÍâÉèÊ±ÖÓ */
+    /* ç¦èƒ½GPIOç›¸å…³å¤–è®¾æ—¶é’Ÿ */
 
-    /* ½ûÄÜGPIO¸÷¸ö¶Ë¿ÚÊ±ÖÓ */
+    /* ç¦èƒ½GPIOå„ä¸ªç«¯å£æ—¶é’Ÿ */
     am_clk_disable(CLK_GPIOA);
     am_clk_disable(CLK_GPIOB);
     am_clk_disable(CLK_GPIOC);
     am_clk_disable(CLK_GPIOD);
 
-    /* ÏµÍ³ÅäÖÃÊ±ÖÓ½ûÄÜ(µÈ¼ÛÓÚAFIOÊ±ÖÓ) */
+    /* ç³»ç»Ÿé…ç½®æ—¶é’Ÿç¦èƒ½(ç­‰ä»·äºAFIOæ—¶é’Ÿ) */
     am_clk_disable(CLK_SYSCFG);
 }
 
-/** \brief Òı½Å´¥·¢ĞÅÏ¢ÄÚ´æ */
+/** \brief å¼•è„šè§¦å‘ä¿¡æ¯å†…å­˜ */
 static struct am_zlg116_gpio_trigger_info __g_gpio_triginfos[PIN_INT_MAX];
 
-/** \brief Òı½Å´¥·¢ĞÅÏ¢Ó³Éä */
+/** \brief å¼•è„šè§¦å‘ä¿¡æ¯æ˜ å°„ */
 static uint8_t __g_gpio_infomap[PIN_INT_MAX];
 
-/** \brief GPIOÉè±¸ĞÅÏ¢ */
+/** \brief GPIOè®¾å¤‡ä¿¡æ¯ */
 const am_zlg116_gpio_devinfo_t __g_gpio_devinfo = {
-     ZLG116_GPIO_BASE,          /**< \brief GPIO¿ØÖÆÆ÷¼Ä´æÆ÷¿é»ùÖ· */
-     ZLG116_SYSCFG_BASE,        /**< \brief SYSCFGÅäÖÃ¼Ä´æÆ÷¿é»ùÖ· */
-     ZLG116_EXTI_BASE,          /**< \brief Íâ²¿ÊÂ¼ş¿ØÖÆÆ÷¼Ä´æÆ÷¿é»ùÖ· */
+     ZLG116_GPIO_BASE,          /**< \brief GPIOæ§åˆ¶å™¨å¯„å­˜å™¨å—åŸºå€ */
+     ZLG116_SYSCFG_BASE,        /**< \brief SYSCFGé…ç½®å¯„å­˜å™¨å—åŸºå€ */
+     ZLG116_EXTI_BASE,          /**< \brief å¤–éƒ¨äº‹ä»¶æ§åˆ¶å™¨å¯„å­˜å™¨å—åŸºå€ */
 
      {
-          INUM_EXTI0_1,         /**< \brief Íâ²¿ÖĞ¶ÏÏß0ÓëÏß1 */
-          INUM_EXTI2_3,         /**< \brief Íâ²¿ÖĞ¶ÏÏß2ÓëÏß3 */
-          INUM_EXTI4_15         /**< \brief Íâ²¿ÖĞ¶ÏÏß4ÓëÏß15 */
+          INUM_EXTI0_1,         /**< \brief å¤–éƒ¨ä¸­æ–­çº¿0ä¸çº¿1 */
+          INUM_EXTI2_3,         /**< \brief å¤–éƒ¨ä¸­æ–­çº¿2ä¸çº¿3 */
+          INUM_EXTI4_15         /**< \brief å¤–éƒ¨ä¸­æ–­çº¿4ä¸çº¿15 */
 
      },
 
-     PIN_INT_MAX,               /**< \brief GPIOÖ§³ÖµÄÒı½ÅÖĞ¶ÏºÅÊıÁ¿ */
-    __g_gpio_infomap,           /**< \brief Òı½Å´¥·¢ĞÅÏ¢Ó³Éä */
-    __g_gpio_triginfos,         /**< \brief Òı½Å´¥·¢ĞÅÏ¢ÄÚ´æ */
+     PIN_INT_MAX,               /**< \brief GPIOæ”¯æŒçš„å¼•è„šä¸­æ–­å·æ•°é‡ */
+    __g_gpio_infomap,           /**< \brief å¼•è„šè§¦å‘ä¿¡æ¯æ˜ å°„ */
+    __g_gpio_triginfos,         /**< \brief å¼•è„šè§¦å‘ä¿¡æ¯å†…å­˜ */
     __zlg116_plfm_gpio_init,
     __zlg116_plfm_gpio_deinit
 };
 
-/** \brief GPIOÉè±¸ÊµÀı */
+/** \brief GPIOè®¾å¤‡å®ä¾‹ */
 am_zlg116_gpio_dev_t __g_gpio_dev;
 
-/** \brief GPIO ÊµÀı³õÊ¼»¯ */
+/** \brief GPIO å®ä¾‹åˆå§‹åŒ– */
 int am_zlg116_gpio_inst_init (void)
 {
     return am_zlg116_gpio_init(&__g_gpio_dev, &__g_gpio_devinfo);
 }
 
-/** \brief GPIO ÊµÀı½â³õÊ¼»¯ */
+/** \brief GPIO å®ä¾‹è§£åˆå§‹åŒ– */
 void am_zlg116_gpio_inst_deinit (void)
 {
     am_zlg116_gpio_deinit();

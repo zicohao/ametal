@@ -12,16 +12,16 @@
 
 /**
  * \file
- * \brief ·äÃùÆ÷Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief èœ‚é¸£å™¨ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ·äÃùÆ÷ÒÔ 0.5s µÄÊ±¼ä¼ä¸ôÃù½Ğ¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. èœ‚é¸£å™¨ä»¥ 0.5s çš„æ—¶é—´é—´éš”é¸£å«ã€‚
  *
  * \note
- *    ²âÊÔ±¾ Demo ±ØĞëÔÚ am_prj_config.h ÄÚ½« AM_CFG_BUZZER_ENABLE ¶¨ÒåÎª 1£¬
- *    Í¨³£¸ÃºêÒÑ¾­Ä¬ÈÏÅäÖÃÎª 1¡£
+ *    æµ‹è¯•æœ¬ Demo å¿…é¡»åœ¨ am_prj_config.h å†…å°† AM_CFG_BUZZER_ENABLE å®šä¹‰ä¸º 1ï¼Œ
+ *    é€šå¸¸è¯¥å®å·²ç»é»˜è®¤é…ç½®ä¸º 1ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_std_buzzer.c src_std_buzzer
  *
  * \internal
@@ -41,7 +41,7 @@
 #include "am_buzzer.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_std_buzzer_entry (void)
 {
@@ -52,7 +52,7 @@ void demo_std_buzzer_entry (void)
 
     AM_FOREVER {
 
-        am_buzzer_beep(500);  /* ·äÃùÆ÷Ãù½Ğ 0.5s */
+        am_buzzer_beep(500);  /* èœ‚é¸£å™¨é¸£å« 0.5s */
         am_mdelay(500);
     }
 }

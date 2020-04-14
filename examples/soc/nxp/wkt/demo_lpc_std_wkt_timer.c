@@ -12,15 +12,15 @@
 
 /**
  * \file
- * \brief WKT ¶¨Ê±Æ÷Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief WKT å®šæ—¶å™¨ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. LED0 ÒÔ 1s ¼ä¸ôÉÁË¸¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. LED0 ä»¥ 1s é—´éš”é—ªçƒã€‚
  *
  * \note
- *    LED0 ĞèÒª¶Ì½Ó J9 ÌøÏßÃ±£¬²ÅÄÜ±» PIO0_20 ¿ØÖÆ¡£
+ *    LED0 éœ€è¦çŸ­æ¥ J9 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIO0_20 æ§åˆ¶ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_lpc_std_wkt_timer.c src_lpc_std_wkt_timer
  *
  * \internal
@@ -40,20 +40,20 @@
 #include "am_vdebug.h"
 #include "am_board.h"
 
-am_local am_timer_handle_t __g_wkt_handle; /**< \brief ¶¨Ê±Æ÷±ê×¼·şÎñ²Ù×÷¾ä±úÀàĞÍ±äÁ¿ */
+am_local am_timer_handle_t __g_wkt_handle; /**< \brief å®šæ—¶å™¨æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„ç±»å‹å˜é‡ */
 
 /**
- * \brief WKT »Øµ÷º¯Êı
+ * \brief WKT å›è°ƒå‡½æ•°
  */
 am_local void __wkt_callback (void *p_arg)
 {
     uint32_t  ckin = (uint32_t)p_arg;
-    /* LED0 ·­×ª */
+    /* LED0 ç¿»è½¬ */
     am_led_toggle(LED0);
 
     /**
-     * Ê¹ÄÜ¶¨Ê±Æ÷ 1Hz ÖĞ¶Ï£¬×¢Òâ£¬×î´óÖµÎª£º0xFFFFFFFF
-     * ÒòÎª WKT ¶¨Ê±Æ÷Ã»ÓĞ×Ô¶¯ÖØÔØ£¬ËùÒÔĞèÒªÔÙ´Î¿ªÆô
+     * ä½¿èƒ½å®šæ—¶å™¨ 1Hz ä¸­æ–­ï¼Œæ³¨æ„ï¼Œæœ€å¤§å€¼ä¸ºï¼š0xFFFFFFFF
+     * å› ä¸º WKT å®šæ—¶å™¨æ²¡æœ‰è‡ªåŠ¨é‡è½½ï¼Œæ‰€ä»¥éœ€è¦å†æ¬¡å¼€å¯
      */
     am_timer_enable(__g_wkt_handle, 0, ckin);
 }
@@ -64,16 +64,16 @@ void demo_lpc_std_wkt_timer_entry (am_timer_handle_t timer_handle,
 {
     uint32_t               wkt_timer_count;
 
-    /* ´«Èë handle */
+    /* ä¼ å…¥ handle */
     __g_wkt_handle = timer_handle;
   
-    /* Ê¹ÓÃÍ¨µÀ 0(Ö»ÓĞÍ¨µÀ 0) */
+    /* ä½¿ç”¨é€šé“ 0(åªæœ‰é€šé“ 0) */
     am_timer_callback_set(timer_handle,
                           0,
                           __wkt_callback, 
                           (void *)clkin);
 
-    /* Ê¹ÄÜ¶¨Ê±Æ÷ 1Hz ÖĞ¶Ï£¬×¢Òâ£¬×î´óÖµÎª£º0xFFFFFFFF */
+    /* ä½¿èƒ½å®šæ—¶å™¨ 1Hz ä¸­æ–­ï¼Œæ³¨æ„ï¼Œæœ€å¤§å€¼ä¸ºï¼š0xFFFFFFFF */
     am_timer_enable(timer_handle, 0, clkin);
 
     AM_FOREVER {

@@ -13,13 +13,13 @@
 
 /**
  * \file
- * \brief USB printer_counter Àı³Ì
+ * \brief USB printer_counter ä¾‹ç¨‹
  *
- * - ÊµÑéÏÖÏó£º
- * 1. ½«°å×ÓÓëPC»úÓÃUSBµçÀÂÏßÁ¬½Ó¡£
- * 2. PC¶ËÓÃ´®¿ÚÖúÊÖ(xcom)¸ø°å×Ó·¢ËÍÊı¾İ£¬Èç¹û°å×ÓÊÕµ½Êı¾İ£¬»á»Ø´«¡°recv success¡±.
+ * - å®éªŒç°è±¡ï¼š
+ * 1. å°†æ¿å­ä¸PCæœºç”¨USBç”µç¼†çº¿è¿æ¥ã€‚
+ * 2. PCç«¯ç”¨ä¸²å£åŠ©æ‰‹(xcom)ç»™æ¿å­å‘é€æ•°æ®ï¼Œå¦‚æœæ¿å­æ”¶åˆ°æ•°æ®ï¼Œä¼šå›ä¼ â€œrecv successâ€.
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_zlg126_core_usbd_printer.c src_zlg126_core_usbd_printer
  *
  * \internal
@@ -44,7 +44,7 @@ void demo_zlg126_usbd_vcom_entry (void)
 
     AM_DBG_INFO("demo zlg126_core usbd vcom!\r\n");
 
-    /* usb´òÓ¡»úÊµÀı³õÊ¼»¯*/
+    /* usbæ‰“å°æœºå®ä¾‹åˆå§‹åŒ–*/
     am_usbd_cdc_vcom_handle handle = am_zlg126_usbd_vcom_inst_init();
 
     demo_usbd_vcom_entry(handle);

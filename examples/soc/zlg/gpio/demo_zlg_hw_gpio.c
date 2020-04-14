@@ -12,15 +12,15 @@
 
 /**
  * \file
- * \brief GPIO ���̣�ͨ�� HW ��ӿ�ʵ��
+ * \brief GPIO 例程，通过 HW 层接口实现
  *
- * - �������裺
- *   1. ʹ��������Ϊ�͵�ƽ��
+ * - 操作步骤：
+ *   1. 使输入引脚为低电平。
  *
- * - ʵ������
- *   2. ��������Ϊ�͵�ƽʱ���������״̬��ת��
+ * - 实验现象：
+ *   2. 输入引脚为低电平时，输出引脚状态翻转。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_zlg_hw_gpio.c src_zlg_hw_gpio
  *
  * \internal
@@ -41,7 +41,7 @@
 #include "hw/amhw_zlg_gpio.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_zlg_hw_gpio_entry (amhw_zlg_gpio_t *p_hw_gpio,
                              int32_t          input_pin,
@@ -49,25 +49,25 @@ void demo_zlg_hw_gpio_entry (amhw_zlg_gpio_t *p_hw_gpio,
 {
     uint32_t dir_input = 0;
 
-    /* ȡ�����ŵĸ��ù��� */
+    /* 取消引脚的复用功能 */
     amhw_zlg_gpio_pin_afr_set(p_hw_gpio, AMHW_ZLG_GPIO_AF_DEFAULT, input_pin);
 
-    /* �������ŵķ���Ϊ���뼰�������ŵ�ģʽ */
+    /* 设置引脚的方向为输入及设置引脚的模式 */
     amhw_zlg_gpio_pin_set(p_hw_gpio, AMHW_ZLG_GPIO_MODE_IPU << 2 | 0x00, input_pin);
 
-    /* ʹ�����ŵ��������� */
+    /* 使能引脚的上拉电阻 */
     amhw_zlg_gpio_pin_out_high(p_hw_gpio, input_pin);
 
-    /* ȡ�����ŵĸ��ù��� */
+    /* 取消引脚的复用功能 */
     amhw_zlg_gpio_pin_afr_set(p_hw_gpio, AMHW_ZLG_GPIO_AF_DEFAULT, output_pin);
 
-    /* �������ŵķ���Ϊ������������ŵ�ģʽ */
+    /* 设置引脚的方向为输出及设置引脚的模式 */
     amhw_zlg_gpio_pin_set(p_hw_gpio, AMHW_ZLG_GPIO_MODE_OUT_PP << 2 | 0x00, output_pin);
 
-    /* �������ŵ�����ٶ� */
+    /* 设置引脚的输出速度 */
     amhw_zlg_gpio_pin_dir_output(p_hw_gpio, AMHW_ZLG_GPIO_SPEED_10MHz, output_pin);
 
-    /* ʹ�����ŵ��������� */
+    /* 使能引脚的上拉电阻 */
     amhw_zlg_gpio_pin_out_high(p_hw_gpio, output_pin);
 
     while (1) {

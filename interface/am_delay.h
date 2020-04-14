@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief ÑÓÊ±±ê×¼½Ó¿Ú
+ * \brief å»¶æ—¶æ ‡å‡†æ¥å£
  * 
- * °üÀ¨ºÁÃë¼¶±ğÑÓÊ±ºÍÎ¢Ãë¼¶±ğÑÓÊ±
+ * åŒ…æ‹¬æ¯«ç§’çº§åˆ«å»¶æ—¶å’Œå¾®ç§’çº§åˆ«å»¶æ—¶
  * 
  * \internal
  * \par Modification history
@@ -39,16 +39,16 @@ extern "C" {
  */
      
 /** 
- * \brief ºÁÃë¼¶±ğÑÓÊ±
- * \param[in] nms : ÑÓÊ±µÄºÁÃëÊı
- * \return ÎŞ
+ * \brief æ¯«ç§’çº§åˆ«å»¶æ—¶
+ * \param[in] nms : å»¶æ—¶çš„æ¯«ç§’æ•°
+ * \return æ— 
  */   
 void am_mdelay(uint32_t nms);
     
 /** 
- * \brief Î¢Ãë¼¶±ğÑÓÊ±
- * \param[in] nus : ÑÓÊ±µÄÎ¢ÃëÊı
- * \return ÎŞ
+ * \brief å¾®ç§’çº§åˆ«å»¶æ—¶
+ * \param[in] nus : å»¶æ—¶çš„å¾®ç§’æ•°
+ * \return æ— 
  */    
 void am_udelay(uint32_t nus);
  

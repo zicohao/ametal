@@ -42,7 +42,7 @@ int view_led_init (view_led_t *p_view_led, int led_id)
 			 return -1;
 		}
 		view_init(&(p_view_led -> isa), __view_led_update);
-		p_view_led->led_id  = led_id;             		// ʹ�õ�LED��
+		p_view_led->led_id  = led_id;             		// Ê¹ÓÃµÄLEDºÅ
 		return 0;
 }
 /* end of file */

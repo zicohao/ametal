@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZLG217 kboot KinetisFlashTool ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief ZLG217 kboot KinetisFlashTool ç”¨æˆ·é…ç½®æ–‡ä»¶
  *
  *
  *
@@ -47,42 +47,42 @@
 #include "am_arm_nvic.h"
 
 /*******************************************************************************
- * flashÅäÖÃ
+ * flashé…ç½®
  ******************************************************************************/
 /**
- * < \brief bootloader flash Éè±¸ĞÅÏ¢
+ * < \brief bootloader flash è®¾å¤‡ä¿¡æ¯
  */
 static am_zlg_boot_flash_devinfo_t __g_flash_devinfo = {
 
     {
-        /** \brief flashµÄÆğÊ¼µØÖ· */
+        /** \brief flashçš„èµ·å§‹åœ°å€ */
         0x08000000,
-        /** \brief flashµÄ×ÜµÄ´óĞ¡ */
+        /** \brief flashçš„æ€»çš„å¤§å° */
         128 * 1024,
-        /** \brief flashÉÈÇø´óĞ¡ */
+        /** \brief flashæ‰‡åŒºå¤§å° */
         1024,
-        /** \brief flashÒ³´óĞ¡ */
+        /** \brief flashé¡µå¤§å° */
         4,
     },
-    /** \brief flash¼Ä´æÆ÷µÄ»ùµØÖ· */
+    /** \brief flashå¯„å­˜å™¨çš„åŸºåœ°å€ */
     ZLG217_FLASH_BASE,
-    /** \brief Æ½Ì¨³õÊ¼»¯º¯Êı */
+    /** \brief å¹³å°åˆå§‹åŒ–å‡½æ•° */
     NULL,
-    /** \brief Æ½Ì¨³õ½âÊ¼»¯º¯Êı */
+    /** \brief å¹³å°åˆè§£å§‹åŒ–å‡½æ•° */
     NULL,
 };
 
 /**
- * < \brief bootloader flash Éè±¸ÊµÀı
+ * < \brief bootloader flash è®¾å¤‡å®ä¾‹
  */
 static am_zlg_boot_flash_dev_t __g_flash_dev;
 
 /**
- * \brief bootloader flashÊµÀı³õÊ¼»¯£¬»ñµÃÆä±ê×¼·şÎñ¾ä±ú
+ * \brief bootloader flashå®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—å…¶æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return bootloader flash±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return bootloader flashæ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_boot_flash_handle_t am_zlg217_boot_kft_flash_inst_init(void)
 {
@@ -90,13 +90,13 @@ am_boot_flash_handle_t am_zlg217_boot_kft_flash_inst_init(void)
 }
 
 /*******************************************************************************
- * ±ê×¼bootloader½Ó¿ÚÅäÖÃ
+ * æ ‡å‡†bootloaderæ¥å£é…ç½®
  ******************************************************************************/
 
 static void __zlg217_boot_kft_plfm_deinit()
 {
     volatile uint32_t i = 1000000;
-    /* ´®¿Ú½â³õÊ¼»¯ £¬½â³õÊ¼»¯Ç°ĞèÒªĞ¡¶ÎµÄÑÓÊ±£¬±£Ö¤¼Ä´æÆ÷ÈÎÎñÒÑ¾­Íê³É*/
+    /* ä¸²å£è§£åˆå§‹åŒ– ï¼Œè§£åˆå§‹åŒ–å‰éœ€è¦å°æ®µçš„å»¶æ—¶ï¼Œä¿è¯å¯„å­˜å™¨ä»»åŠ¡å·²ç»å®Œæˆ*/
     while(i--){
 
     }
@@ -107,7 +107,7 @@ static void __zlg217_boot_kft_plfm_deinit()
     amhw_zlg_uart_disable((amhw_zlg_uart_t *)ZLG217_UART1_BASE);
     am_int_disable(INUM_UART1);
 
-    /* ¶¨Ê±Æ÷½â³õÊ¼»¯  */
+    /* å®šæ—¶å™¨è§£åˆå§‹åŒ–  */
     amhw_zlg_tim_int_disable(ZLG217_TIM4, AMHW_ZLG_TIM_UIE);
     amhw_zlg_tim_disable(ZLG217_TIM4);
     am_int_disable(INUM_TIM4);
@@ -119,23 +119,23 @@ static void __zlg217_boot_kft_plfm_deinit()
 }
 
 /**
- *  \brief bootloader±ê×¼Éè±¸ĞÅÏ¢
+ *  \brief bootloaderæ ‡å‡†è®¾å¤‡ä¿¡æ¯
  */
 static am_arm_boot_devinfo_t __g_zlg217_boot_devinfo = {
-    /**< \brief Ó¦ÓÃ´úÂëÇøÆğÊ¼µØÖ·*/
+    /**< \brief åº”ç”¨ä»£ç åŒºèµ·å§‹åœ°å€*/
     0x08007000,
-    /** \brief ramÆğÊ¼µØÖ· */
+    /** \brief ramèµ·å§‹åœ°å€ */
     0x20000000,
-    /** \brief ram½áÊøµØÖ· */
+    /** \brief ramç»“æŸåœ°å€ */
     20 * 1024,
-    /** \brief Æ½Ì¨³õÊ¼»¯º¯Êı */
+    /** \brief å¹³å°åˆå§‹åŒ–å‡½æ•° */
     NULL,
-    /** \brief Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    /** \brief å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
     __zlg217_boot_kft_plfm_deinit,
 };
 
 /**
- *  \brief bootloader±ê×¼Éè±¸ÊµÀı
+ *  \brief bootloaderæ ‡å‡†è®¾å¤‡å®ä¾‹
  */
 int am_zlg217_boot_kft_inst_init()
 {

@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief bootloader±ê×¼½Ó¿ÚÊµÏÖ£¨armÇı¶¯£©
+ * \brief bootloaderæ ‡å‡†æ¥å£å®ç°ï¼ˆarmé©±åŠ¨ï¼‰
  *
  * \internal
  * \par Modification history
@@ -27,19 +27,19 @@
 #include "am_boot_flash.h"
 
 typedef struct am_arm_boot_devinfo {
-    /**< \brief Ó¦ÓÃ´úÂëÇøÆğÊ¼µØÖ·*/
+    /**< \brief åº”ç”¨ä»£ç åŒºèµ·å§‹åœ°å€*/
     uint32_t  app_reg_sta_addr;
 
-    /**< \brief ramÆğÊ¼µØÖ· */
+    /**< \brief ramèµ·å§‹åœ°å€ */
     uint32_t  ram_start_addr;
 
-    /**< \brief ramµÄ´óĞ¡ */
+    /**< \brief ramçš„å¤§å° */
     uint32_t  ram_size;
 
-    /**< \brief Æ½Ì¨³õÊ¼»¯º¯Êı */
+    /**< \brief å¹³å°åˆå§‹åŒ–å‡½æ•° */
     void    (*pfn_plfm_init)(void);
 
-    /**< \brief Æ½Ì¨È¥³õÊ¼»¯º¯Êı */
+    /**< \brief å¹³å°å»åˆå§‹åŒ–å‡½æ•° */
     void    (*pfn_plfm_deinit)(void);
 }am_arm_boot_devinfo_t;
 
@@ -49,11 +49,11 @@ typedef struct am_arm_boot_dev {
 }am_arm_boot_dev_t;
 
 /**
- * \brief ³õÊ¼»¯BootLoader£¬·µ»ØBootLoader±ê×¼·şÎñ²Ù×÷¾ä±ú
+ * \brief åˆå§‹åŒ–BootLoaderï¼Œè¿”å›BootLoaderæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  *
- * \param[in] p_devinfo : Ö¸ÏòBootLoaderÉè±¸ĞÅÏ¢³£Á¿µÄÖ¸Õë
+ * \param[in] p_devinfo : æŒ‡å‘BootLoaderè®¾å¤‡ä¿¡æ¯å¸¸é‡çš„æŒ‡é’ˆ
  *
- * \return BootLoader±ê×¼·şÎñ²Ù×÷¾ä±ú£¬ÖµÎªNULLÊ±±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return BootLoaderæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„ï¼Œå€¼ä¸ºNULLæ—¶è¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 int am_arm_boot_init(am_arm_boot_devinfo_t *p_devinfo);
 

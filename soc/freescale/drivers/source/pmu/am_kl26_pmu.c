@@ -33,13 +33,13 @@
 #include "../../../kl26/kl26_periph_map.h"
 #include "../../../kl26/kl26_regbase.h"
 /******************************************************************************
- * ÆäËûÄ£¿éµÄ²Ù×÷
+ * å…¶ä»–æ¨¡å—çš„æ“ä½œ
  ******************************************************************************/
 
-/* ¹Ø±Õ¼ì²âOSCÊ±ÖÓÊÇ·ñ¶ªÊ§ */
+/* å…³é—­æ£€æµ‹OSCæ—¶é’Ÿæ˜¯å¦ä¸¢å¤± */
 #define __PMU_CLOCK_MONITOR_CLOSE()     amhw_kl26_mcg_osc_monitor_disable()
 
-/* ¿ªÆô¼ì²âOSCÊ±ÖÓÊÇ·ñ¶ªÊ§ */
+/* å¼€å¯æ£€æµ‹OSCæ—¶é’Ÿæ˜¯å¦ä¸¢å¤± */
 #define __PMU_CLOCK_MONITOR_OPEN()                                        \
 {                                                                         \
     if (0 != amhw_kl26_mcg_fll_stat_get()) {                              \
@@ -48,7 +48,7 @@
         amhw_kl26_mcg_osc_monitor_enable(KL26_TPM2_OSC_MONITOR_RESET);\
     }                                                                     \
 }
-/* ½øÈëVLPxÄ£Ê½Ç°Ê±ÖÓÅäÖÃ£¨PEE->BLPE »òÕß FEI->BLPI£© */
+/* è¿›å…¥VLPxæ¨¡å¼å‰æ—¶é’Ÿé…ç½®ï¼ˆPEE->BLPE æˆ–è€… FEI->BLPIï¼‰ */
 #define __PMU_CLOCK_VLPX_MODE_INTO()                                      \
 {                                                                         \
     if (am_kl26_clk_mode_get() == AM_KL26_CLK_MODE_PEE) {                 \
@@ -60,7 +60,7 @@
     amhw_kl26_mcg_irc_src_set(KL26_TPM2_IRC_SRC_FAST);                \
 }
 
-/* ÍË³öVLPxÄ£Ê½ºóÊ±ÖÓÅäÖÃ£¨BLPE->PEE »òÕß BLPI->FEI£© */
+/* é€€å‡ºVLPxæ¨¡å¼åæ—¶é’Ÿé…ç½®ï¼ˆBLPE->PEE æˆ–è€… BLPI->FEIï¼‰ */
 #define __PMU_CLOCK_VLPX_MODE_EXIT()                                      \
 {                                                                         \
     if (am_kl26_clk_mode_get() == AM_KL26_CLK_MODE_BLPE) {                \
@@ -71,7 +71,7 @@
     }                                                                     \
 }
 
-/* ÄÚºËË¯Ãßº¯Êı */
+/* å†…æ ¸ç¡çœ å‡½æ•° */
 void __pmu_cpu_wfi(am_bool_t deep)
 {
     if (deep) {
@@ -87,7 +87,7 @@ void __pmu_cpu_wfi(am_bool_t deep)
 
 
 /******************************************************************************
- * ÄÚ²¿ºê¶¨Òå£¬È«¾Ö±äÁ¿¶¨Òå£¬¾²Ì¬º¯ÊıÉùÃ÷
+ * å†…éƒ¨å®å®šä¹‰ï¼Œå…¨å±€å˜é‡å®šä¹‰ï¼Œé™æ€å‡½æ•°å£°æ˜
  ******************************************************************************/
 #define __PMU_P_SMC    __gp_pmu_dev->p_devinfo->p_hw_smc
 #define __PMU_P_PMC    __gp_pmu_dev->p_devinfo->p_hw_pmc
@@ -95,30 +95,30 @@ void __pmu_cpu_wfi(am_bool_t deep)
 #define __PMU_P_LLWU   __gp_pmu_dev->p_devinfo->p_hw_llwu
 #define __PMU_P_MCM    __gp_pmu_dev->p_devinfo->p_hw_mcm
 
-static am_kl26_pmu_dev_t *__gp_pmu_dev = NULL;  /* µ¥Ò»È«¾ÖÉè±¸Ö¸Õë        */
+static am_kl26_pmu_dev_t *__gp_pmu_dev = NULL;  /* å•ä¸€å…¨å±€è®¾å¤‡æŒ‡é’ˆ        */
 
-void __pmu_lvw_irq_handle(void*);            /* µôµç±¨¾¯»Øµ÷º¯Êı        */
+void __pmu_lvw_irq_handle(void*);            /* æ‰ç”µæŠ¥è­¦å›è°ƒå‡½æ•°        */
                                              
-void __pmu_vlpr_exit(void);                  /* ÍË³öVLPRÄ£Ê½            */
-void __pmu_vlpr_into(void);                  /* ½øÈëVLPRÄ£Ê½            */
-void __pmu_wait_into(void);                  /* ½øÈëWAITÄ£Ê½            */
-void __pmu_stop_into(uint8_t level);         /* ½øÈëSTOP(level)Ä£Ê½     */
-void __pmu_vlps_into(void);                  /* ½øÈëVLPSÄ£Ê½            */
-void __pmu_lls_into(void);                   /* ½øÈëLLSÄ£Ê½             */
-void __pmu_vlls_into(uint8_t level);         /* ½øÈëVLLSxÄ£Ê½           */
+void __pmu_vlpr_exit(void);                  /* é€€å‡ºVLPRæ¨¡å¼            */
+void __pmu_vlpr_into(void);                  /* è¿›å…¥VLPRæ¨¡å¼            */
+void __pmu_wait_into(void);                  /* è¿›å…¥WAITæ¨¡å¼            */
+void __pmu_stop_into(uint8_t level);         /* è¿›å…¥STOP(level)æ¨¡å¼     */
+void __pmu_vlps_into(void);                  /* è¿›å…¥VLPSæ¨¡å¼            */
+void __pmu_lls_into(void);                   /* è¿›å…¥LLSæ¨¡å¼             */
+void __pmu_vlls_into(uint8_t level);         /* è¿›å…¥VLLSxæ¨¡å¼           */
 
 
 /******************************************************************************
- * ÒÔÏÂÎªº¯ÊıÊµÏÖ
+ * ä»¥ä¸‹ä¸ºå‡½æ•°å®ç°
  ******************************************************************************/
 
  /**
- * \brief µôµç±¨¾¯»Øµ÷º¯Êı
+ * \brief æ‰ç”µæŠ¥è­¦å›è°ƒå‡½æ•°
  */
 void __pmu_lvw_irq_handle(void *p_arg)
 {
         
-    /* Çå³ı±¨¾¯±êÖ¾ */
+    /* æ¸…é™¤æŠ¥è­¦æ ‡å¿— */
     if (amhw_fsl_pmc_int_flags_get(__PMU_P_PMC) & AMHW_FSL_PMC_FLAG_LVWF) {
         amhw_fsl_pmc_ack_set(__PMU_P_PMC, AMHW_FSL_PMC_ACK_LVW);
     }
@@ -129,7 +129,7 @@ void __pmu_lvw_irq_handle(void *p_arg)
 }
 
  /**
- * \brief LLWU»½ĞÑÖĞ¶Ïº¯Êı
+ * \brief LLWUå”¤é†’ä¸­æ–­å‡½æ•°
  */
 void am_kl26_pmu_llwu_irq_handle(void)
 {
@@ -139,15 +139,15 @@ void am_kl26_pmu_llwu_irq_handle(void)
         amhw_fsl_pmc_ack_set(KL26_PMC, AMHW_FSL_PMC_ACK_VLLS);
     }
 
-    /* Çå³ıÒı½Å»½ĞÑ±êÖ¾£¬ÍâÉèÄ£¿éÓĞ¶ÔÓ¦µÄÄ£¿éÇå³ı */
+    /* æ¸…é™¤å¼•è„šå”¤é†’æ ‡å¿—ï¼Œå¤–è®¾æ¨¡å—æœ‰å¯¹åº”çš„æ¨¡å—æ¸…é™¤ */
     amhw_fsl_llwu_wuflags_clr(KL26_LLWU, llwu_flag);
 
-    /* ¹Ø±ÕLLWUÖĞ¶Ï */
+    /* å…³é—­LLWUä¸­æ–­ */
     amhw_arm_nvic_disable(INUM_LLWU);
 }
 
 /**
- * \brief PMU ³õÊ¼»¯
+ * \brief PMU åˆå§‹åŒ–
  */
 int am_kl26_pmu_init (am_kl26_pmu_dev_t *p_dev, const am_kl26_pmu_devinfo_t *p_devinfo)
 {
@@ -163,12 +163,12 @@ int am_kl26_pmu_init (am_kl26_pmu_dev_t *p_dev, const am_kl26_pmu_devinfo_t *p_d
            return -AM_EINVAL;
     }
 
-    /* PMUÆ½Ì¨³õÊ¼»¯ */
+    /* PMUå¹³å°åˆå§‹åŒ– */
     if (p_devinfo->pfn_plfm_init) {
         p_devinfo->pfn_plfm_init();
     }
 
-    /* ¸´Î»Òı½ÅÂË²¨ÖÜÆÚ */
+    /* å¤ä½å¼•è„šæ»¤æ³¢å‘¨æœŸ */
     filt_count = AM_BITS_GET(p_devinfo->flags, 1, 5);
 
     __gp_pmu_dev     = p_dev;
@@ -189,12 +189,12 @@ int am_kl26_pmu_init (am_kl26_pmu_dev_t *p_dev, const am_kl26_pmu_devinfo_t *p_d
 
     p_dev->p_warn_func = NULL;
 
-    /* Í£Ö¹Ä£Ê½¸´Î»Òı½ÅÂË²¨Ê¹ÄÜ */
+    /* åœæ­¢æ¨¡å¼å¤ä½å¼•è„šæ»¤æ³¢ä½¿èƒ½ */
     if (p_devinfo->flags & AM_KL26_PMU_ARG_REST_PIN_STOP_FILT_ENABLE) {
         amhw_fsl_rcm_respin_filt_stop_cfg(p_hw_rcm, AMHW_FSL_RCM_RESPIN_FILT_STOP_LPO);
     }
 
-    /* ÔËĞĞÄ£Ê½¸´Î»Òı½ÅÂË²¨ÅäÖÃ */
+    /* è¿è¡Œæ¨¡å¼å¤ä½å¼•è„šæ»¤æ³¢é…ç½® */
     if ( filt_count == 0) {
         amhw_fsl_rcm_respin_filt_runw_cfg(p_hw_rcm, AMHW_FSL_RCM_RESPIN_FILT_RUNW_DISABLE);
     } else {
@@ -202,28 +202,28 @@ int am_kl26_pmu_init (am_kl26_pmu_dev_t *p_dev, const am_kl26_pmu_devinfo_t *p_d
         amhw_fsl_rcm_respin_filt_busc_cfg(p_hw_rcm, filt_count & 0x1F);
     }
 
-    /* Ê¹ÄÜVLPxÄ£Ê½ÄÜ´øÏ¶ */
+    /* ä½¿èƒ½VLPxæ¨¡å¼èƒ½å¸¦éš™ */
     if (p_devinfo->flags & AM_KL26_PMU_ARG_VLPx_BANDGAP_ENABLE) {
         amhw_fsl_pmc_bandgap_enable(p_hw_pmc);
     } else {
         amhw_fsl_pmc_bandgap_disable(p_hw_pmc);
     }
 
-    /* Ê¹ÄÜÄÜ´øÏ¶»º³å */
+    /* ä½¿èƒ½èƒ½å¸¦éš™ç¼“å†² */
     if (p_devinfo->flags & AM_KL26_PMU_ARG_BANDGAP_BUF_ENABLE) {
         amhw_fsl_pmc_bandgap_buf_enable(p_hw_pmc);
     } else {
         amhw_fsl_pmc_bandgap_buf_disable(p_hw_pmc);
     }
 
-    /* VLSS0Ä£Ê½½ûÄÜµçÔ´¼ì²âµçÂ· */
+    /* VLSS0æ¨¡å¼ç¦èƒ½ç”µæºæ£€æµ‹ç”µè·¯ */
     if (p_devinfo->flags & AM_KL26_PMU_ARG_VLLS0_POR_DISABLE) {
         amhw_fsl_smc_vlls0_por_disable(p_hw_smc);
     } else {
         amhw_fsl_smc_vlls0_por_enable(p_hw_smc);
     }
 
-    /* Çå³ı»½ĞÑ¸´Î»±êÖ¾£¬ÊÍ·ÅIOÒı½Å */
+    /* æ¸…é™¤å”¤é†’å¤ä½æ ‡å¿—ï¼Œé‡Šæ”¾IOå¼•è„š */
     if ((p_devinfo->flags & AM_KL26_PMU_ARG_VLLSx_ISOACK_CLEAR) &&
         (p_hw_pmc->regsc & 0x08)) {
         amhw_fsl_pmc_ack_set(p_hw_pmc, AMHW_FSL_PMC_ACK_VLLS);
@@ -232,7 +232,7 @@ int am_kl26_pmu_init (am_kl26_pmu_dev_t *p_dev, const am_kl26_pmu_devinfo_t *p_d
     amhw_fsl_pmc_int_disable(p_hw_pmc, AMHW_FSL_PMC_IRQ_LVW | AMHW_FSL_PMC_IRQ_LVD);
     amhw_fsl_pmc_lvdrest_disable(p_hw_pmc);
 
-    /* ¿ÉÒÔ½øÈëËùÓĞÏµÍ³Ä£Ê½ */
+    /* å¯ä»¥è¿›å…¥æ‰€æœ‰ç³»ç»Ÿæ¨¡å¼ */
     amhw_fsl_smc_mode_allow_cfg(p_hw_smc, AMHW_FSL_SMC_PROTECT_AVLP_ALLOW |
                                            AMHW_FSL_SMC_PROTECT_ALLS_ALLOW |
                                            AMHW_FSL_SMC_PROTECT_AVLLS_ALLOW);
@@ -242,7 +242,7 @@ int am_kl26_pmu_init (am_kl26_pmu_dev_t *p_dev, const am_kl26_pmu_devinfo_t *p_d
 
 
 /**
- * \brief ½â³ıPMU³õÊ¼»¯
+ * \brief è§£é™¤PMUåˆå§‹åŒ–
  */
 void am_kl26_pmu_deinit (am_kl26_pmu_dev_t *p_dev)
 {
@@ -266,7 +266,7 @@ void am_kl26_pmu_deinit (am_kl26_pmu_dev_t *p_dev)
 
 
 /**
- * \brief ÅäÖÃÏµÍ³Ä£Ê½
+ * \brief é…ç½®ç³»ç»Ÿæ¨¡å¼
  */
 int am_kl26_pmu_mode_into (am_kl26_pmu_mode_t mode)
 {
@@ -278,7 +278,7 @@ int am_kl26_pmu_mode_into (am_kl26_pmu_mode_t mode)
 
     switch (mode) {
 
-    case AM_KL26_PMU_MODE_RUN:    /* ÔËĞĞÄ£Ê½ */
+    case AM_KL26_PMU_MODE_RUN:    /* è¿è¡Œæ¨¡å¼ */
         if (cur_mode == AM_KL26_PMU_MODE_VLPR) {
             __pmu_vlpr_exit();
             __PMU_CLOCK_VLPX_MODE_EXIT();
@@ -289,7 +289,7 @@ int am_kl26_pmu_mode_into (am_kl26_pmu_mode_t mode)
 
         break;
 
-    case AM_KL26_PMU_MODE_VLPR:  /* ³¬µÍ¹¦ºÄÔËĞĞÄ£Ê½ */
+    case AM_KL26_PMU_MODE_VLPR:  /* è¶…ä½åŠŸè€—è¿è¡Œæ¨¡å¼ */
         if (cur_mode == AM_KL26_PMU_MODE_RUN) {
             __PMU_CLOCK_VLPX_MODE_INTO();
             __pmu_vlpr_into();
@@ -301,14 +301,14 @@ int am_kl26_pmu_mode_into (am_kl26_pmu_mode_t mode)
 
         break;
 
-    case AM_KL26_PMU_MODE_WAIT:  /* µÈ´ıÄ£Ê½ */
+    case AM_KL26_PMU_MODE_WAIT:  /* ç­‰å¾…æ¨¡å¼ */
         if (cur_mode != AM_KL26_PMU_MODE_RUN) {
             return -AM_EPERM;
         }
         __pmu_wait_into();
         break;
 
-    case AM_KL26_PMU_MODE_VLPW:  /* ³¬µÍ¹¦ºÄµÈ´ıÄ£Ê½ */
+    case AM_KL26_PMU_MODE_VLPW:  /* è¶…ä½åŠŸè€—ç­‰å¾…æ¨¡å¼ */
         if (cur_mode != AM_KL26_PMU_MODE_VLPR) {
             return -AM_EPERM;
         }
@@ -316,7 +316,7 @@ int am_kl26_pmu_mode_into (am_kl26_pmu_mode_t mode)
         
         break;
 
-    case AM_KL26_PMU_MODE_STOP2: /* Í£Ö¹Ä£Ê½2 */
+    case AM_KL26_PMU_MODE_STOP2: /* åœæ­¢æ¨¡å¼2 */
         if (cur_mode != AM_KL26_PMU_MODE_RUN) {
             return -AM_EPERM;
         }
@@ -327,7 +327,7 @@ int am_kl26_pmu_mode_into (am_kl26_pmu_mode_t mode)
 
         break;
 
-    case AM_KL26_PMU_MODE_STOP1: /* Í£Ö¹Ä£Ê½1 */
+    case AM_KL26_PMU_MODE_STOP1: /* åœæ­¢æ¨¡å¼1 */
         if (cur_mode != AM_KL26_PMU_MODE_RUN) {
             return -AM_EPERM;
         }
@@ -338,7 +338,7 @@ int am_kl26_pmu_mode_into (am_kl26_pmu_mode_t mode)
         
         break;
 
-    case AM_KL26_PMU_MODE_STOP:  /* Õı³£Í£Ö¹Ä£Ê½ */
+    case AM_KL26_PMU_MODE_STOP:  /* æ­£å¸¸åœæ­¢æ¨¡å¼ */
         if (cur_mode != AM_KL26_PMU_MODE_RUN) {
             return -AM_EPERM;
         }
@@ -348,33 +348,33 @@ int am_kl26_pmu_mode_into (am_kl26_pmu_mode_t mode)
         
         break;
 
-    case AM_KL26_PMU_MODE_VLPS:  /* ³¬µÍ¹¦ºÄÍ£Ö¹Ä£Ê½ */
+    case AM_KL26_PMU_MODE_VLPS:  /* è¶…ä½åŠŸè€—åœæ­¢æ¨¡å¼ */
         __PMU_CLOCK_MONITOR_CLOSE();
         __pmu_vlps_into();
         __PMU_CLOCK_MONITOR_OPEN();
         
         break;
 
-    case AM_KL26_PMU_MODE_LLS:   /* µÍÂ©µçÍ£Ö¹Ä£Ê½ */
+    case AM_KL26_PMU_MODE_LLS:   /* ä½æ¼ç”µåœæ­¢æ¨¡å¼ */
         __PMU_CLOCK_MONITOR_CLOSE();
         __pmu_lls_into();
         __PMU_CLOCK_MONITOR_OPEN();
         
         break;
 
-    case AM_KL26_PMU_MODE_VLLS3: /* ³¬µÍÂ©µçÍ£Ö¹Ä£Ê½3 */
+    case AM_KL26_PMU_MODE_VLLS3: /* è¶…ä½æ¼ç”µåœæ­¢æ¨¡å¼3 */
         __PMU_CLOCK_MONITOR_CLOSE();
         __pmu_vlls_into(3);
         
         break;
 
-    case AM_KL26_PMU_MODE_VLLS1: /* ³¬µÍÂ©µçÍ£Ö¹Ä£Ê½1 */
+    case AM_KL26_PMU_MODE_VLLS1: /* è¶…ä½æ¼ç”µåœæ­¢æ¨¡å¼1 */
         __PMU_CLOCK_MONITOR_CLOSE();
         __pmu_vlls_into(1);
         
         break;
 
-    case AM_KL26_PMU_MODE_VLLS0: /* ³¬µÍÂ©µçÍ£Ö¹Ä£Ê½0 */
+    case AM_KL26_PMU_MODE_VLLS0: /* è¶…ä½æ¼ç”µåœæ­¢æ¨¡å¼0 */
         __PMU_CLOCK_MONITOR_CLOSE();
         __pmu_vlls_into(0);
         
@@ -388,22 +388,22 @@ int am_kl26_pmu_mode_into (am_kl26_pmu_mode_t mode)
 }
 
 /**
- * \brief »ñÈ¡ÏµÍ³Ä£Ê½
+ * \brief è·å–ç³»ç»Ÿæ¨¡å¼
  */
 am_kl26_pmu_mode_t am_kl26_pmu_mode_get (void)
 {
-    /* µÍ¹¦ºÄÔËĞĞÄ£Ê½ */
+    /* ä½åŠŸè€—è¿è¡Œæ¨¡å¼ */
     if (amhw_fsl_smc_mode_get(__PMU_P_SMC) == AMHW_FSL_SMC_MODE_VLPR) {
         return AM_KL26_PMU_MODE_VLPR;
 
-    /* ÔËĞĞÄ£Ê½ */
+    /* è¿è¡Œæ¨¡å¼ */
     } else {
         return AM_KL26_PMU_MODE_RUN;
     }
 }
 
 /**
- * \brief ÅäÖÃµôµç¼ì²âĞÅÏ¢
+ * \brief é…ç½®æ‰ç”µæ£€æµ‹ä¿¡æ¯
  */
 int am_kl26_pmu_brownout_cfg (am_kl26_pmu_brownout_info_t *p_info)
 {
@@ -413,7 +413,7 @@ int am_kl26_pmu_brownout_cfg (am_kl26_pmu_brownout_info_t *p_info)
         return -AM_EINVAL;
     }
 
-    /* µÍ¹¦ºÄÄ£Ê½²»Ö§³Öµôµç¼ì²â */
+    /* ä½åŠŸè€—æ¨¡å¼ä¸æ”¯æŒæ‰ç”µæ£€æµ‹ */
     if (cur_mode == AM_KL26_PMU_MODE_VLPR) {
         return AM_ERROR;
     }
@@ -453,7 +453,7 @@ int am_kl26_pmu_brownout_cfg (am_kl26_pmu_brownout_info_t *p_info)
 }
 
 /**
- * \brief ÅäÖÃ»½ĞÑÔ´
+ * \brief é…ç½®å”¤é†’æº
  */
 int am_kl26_pmu_llwu_src_cfg (am_kl26_pmu_llwu_src_info_t *p_info)
 {
@@ -467,19 +467,19 @@ int am_kl26_pmu_llwu_src_cfg (am_kl26_pmu_llwu_src_info_t *p_info)
     val = AM_BITS_GET(p_info->src, 24, 2);
     
     switch (val) {
-    case 00: /* ÅäÖÃ»½ĞÑÒı½Å */
+    case 00: /* é…ç½®å”¤é†’å¼•è„š */
         amhw_fsl_llwu_pin_cfg(__PMU_P_LLWU,
                               (amhw_fsl_llwu_pin_t)src,
                               (amhw_fsl_llwu_pin_arg_t)p_info->extra_info);
         break;
 
-    case 01: /* ÅäÖÃ»½ĞÑÄ£¿é */
+    case 01: /* é…ç½®å”¤é†’æ¨¡å— */
         amhw_fsl_llwu_module_cfg(__PMU_P_LLWU,
                                  (amhw_fsl_llwu_module_t)src,
                                  (amhw_fsl_llwu_module_arg_t)p_info->extra_info);
         break;
 
-    case 02: /* ÅäÖÃ»½ĞÑÂË²¨Í¨µÀ */
+    case 02: /* é…ç½®å”¤é†’æ»¤æ³¢é€šé“ */
         amhw_fsl_llwu_filt_cfg(__PMU_P_LLWU,
                                (amhw_fsl_llwu_filt_chan_t)src,
                                (amhw_fsl_llwu_pin_t)(p_info->extra_info & 0xFFFF),
@@ -494,7 +494,7 @@ int am_kl26_pmu_llwu_src_cfg (am_kl26_pmu_llwu_src_info_t *p_info)
 }
 
 /**
- * \brief ÍË³öµÍ¹¦ºÄÔËĞĞÄ£Ê½
+ * \brief é€€å‡ºä½åŠŸè€—è¿è¡Œæ¨¡å¼
  */
 void __pmu_vlpr_exit()
 {
@@ -502,7 +502,7 @@ void __pmu_vlpr_exit()
 
     amhw_fsl_smc_run_mdoe_sel(__PMU_P_SMC, AMHW_FSL_SMC_RUNMODE_RUN);
 
-    /* µÈ´ıµ÷ÕûÆ÷¹ı¶ÉÍê³É */
+    /* ç­‰å¾…è°ƒæ•´å™¨è¿‡æ¸¡å®Œæˆ */
     for (i = 0; i < 0xff; i++) {
         if (am_kl26_pmu_mode_get() == AM_KL26_PMU_MODE_RUN) {
             if (amhw_fsl_pmc_regulator_wstat_get(__PMU_P_PMC) == AM_TRUE) {
@@ -513,7 +513,7 @@ void __pmu_vlpr_exit()
 }
 
 /**
- * \brief ½øÈëµÍ¹¦ºÄÔËĞĞÄ£Ê½
+ * \brief è¿›å…¥ä½åŠŸè€—è¿è¡Œæ¨¡å¼
  */
 void __pmu_vlpr_into()
 {
@@ -521,7 +521,7 @@ void __pmu_vlpr_into()
     
     amhw_fsl_smc_run_mdoe_sel(__PMU_P_SMC, AMHW_FSL_SMC_RUNMODE_VLPR);
 
-    /* µÈ´ıµ÷ÕûÆ÷¹ı¶ÉÍê³É(µ÷ÕûÆ÷±ä0) */
+    /* ç­‰å¾…è°ƒæ•´å™¨è¿‡æ¸¡å®Œæˆ(è°ƒæ•´å™¨å˜0) */
     for (i=0; i < 10000; i++) {
         if (am_kl26_pmu_mode_get() == AM_KL26_PMU_MODE_RUN) {
             if (amhw_fsl_pmc_regulator_wstat_get(__PMU_P_PMC) == AM_FALSE) { //?
@@ -532,7 +532,7 @@ void __pmu_vlpr_into()
 }
 
 /**
- * \brief ½øÈëµÈ´ıÄ£Ê½
+ * \brief è¿›å…¥ç­‰å¾…æ¨¡å¼
  */
 void __pmu_wait_into()
 {
@@ -540,7 +540,7 @@ void __pmu_wait_into()
 }
 
 /**
- * \brief ½øÈëÍ£Ö¹Ä£Ê½
+ * \brief è¿›å…¥åœæ­¢æ¨¡å¼
  */
 void __pmu_stop_into(uint8_t level)
 {
@@ -554,7 +554,7 @@ void __pmu_stop_into(uint8_t level)
         return;
     }
 
-    /* ¶ÁÈ¡¼Ä´æÆ÷£¬±£Ö¤½øÈëÍ£Ö¹Ö®Ç°Êı¾İĞ´Èë */
+    /* è¯»å–å¯„å­˜å™¨ï¼Œä¿è¯è¿›å…¥åœæ­¢ä¹‹å‰æ•°æ®å†™å…¥ */
     amhw_fsl_smc_stop_mdoe_isabort(__PMU_P_SMC);
 
     __pmu_cpu_wfi(AM_TRUE);
@@ -564,18 +564,18 @@ void __pmu_vlps_into()
 {
     amhw_fsl_smc_stop_mdoe_sel(__PMU_P_SMC, AMHW_FSL_SMC_STOPMODE_VLPS);
 
-    /* ¶ÁÈ¡¼Ä´æÆ÷£¬±£Ö¤½øÈëÍ£Ö¹Ö®Ç°Êı¾İĞ´Èë */
+    /* è¯»å–å¯„å­˜å™¨ï¼Œä¿è¯è¿›å…¥åœæ­¢ä¹‹å‰æ•°æ®å†™å…¥ */
     amhw_fsl_smc_stop_mdoe_isabort(__PMU_P_SMC);
 
     __pmu_cpu_wfi(AM_TRUE);
 }
 
 /**
- * \brief ½øÈëµÍÂ©µçÍ£Ö¹Ä£Ê½
+ * \brief è¿›å…¥ä½æ¼ç”µåœæ­¢æ¨¡å¼
  */
 void __pmu_lls_into()
 {
-    /* Çå³ı»½ĞÑ±êÖ¾ */
+    /* æ¸…é™¤å”¤é†’æ ‡å¿— */
     amhw_fsl_llwu_wuflags_clr(__PMU_P_LLWU, AMHW_FSL_LLWU_WUF_P5_PTB0  |
                                              AMHW_FSL_LLWU_WUF_P6_PTC1  |
                                              AMHW_FSL_LLWU_WUF_P7_PTC3  |
@@ -589,14 +589,14 @@ void __pmu_lls_into()
     
     amhw_fsl_smc_stop_mdoe_sel(__PMU_P_SMC, AMHW_FSL_SMC_STOPMODE_LLS);
 
-    /* ¶ÁÈ¡¼Ä´æÆ÷£¬±£Ö¤½øÈëÍ£Ö¹Ö®Ç°Êı¾İĞ´Èë */
+    /* è¯»å–å¯„å­˜å™¨ï¼Œä¿è¯è¿›å…¥åœæ­¢ä¹‹å‰æ•°æ®å†™å…¥ */
     amhw_fsl_smc_stop_mdoe_isabort(__PMU_P_SMC);
 
     __pmu_cpu_wfi(AM_TRUE);
 }
 
 /**
- * \brief ½øÈë³¬µÍÂ©µçÍ£Ö¹Ä£Ê½
+ * \brief è¿›å…¥è¶…ä½æ¼ç”µåœæ­¢æ¨¡å¼
  */
 void __pmu_vlls_into(uint8_t level)
 {
@@ -604,7 +604,7 @@ void __pmu_vlls_into(uint8_t level)
     case 3:
     case 1:
     case 0:
-        /* Çå³ı»½ĞÑ±êÖ¾ */
+        /* æ¸…é™¤å”¤é†’æ ‡å¿— */
         amhw_fsl_llwu_wuflags_clr(__PMU_P_LLWU, AMHW_FSL_LLWU_WUF_P5_PTB0  |
                                                  AMHW_FSL_LLWU_WUF_P6_PTC1  |
                                                  AMHW_FSL_LLWU_WUF_P7_PTC3  |
@@ -622,7 +622,7 @@ void __pmu_vlls_into(uint8_t level)
         return;
     }
 
-    /* ¶ÁÈ¡¼Ä´æÆ÷£¬±£Ö¤½øÈëÍ£Ö¹Ö®Ç°Êı¾İĞ´Èë */
+    /* è¯»å–å¯„å­˜å™¨ï¼Œä¿è¯è¿›å…¥åœæ­¢ä¹‹å‰æ•°æ®å†™å…¥ */
     amhw_fsl_smc_stop_mdoe_isabort(__PMU_P_SMC);
 
     __pmu_cpu_wfi(AM_TRUE);

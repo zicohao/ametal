@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief Ö§³ÖÉè±¸¿ØÖÆÀàÖ¸ÁîµÄ±ê×¼½Ó¿Ú
+ * \brief æ”¯æŒè®¾å¤‡æ§åˆ¶ç±»æŒ‡ä»¤çš„æ ‡å‡†æ¥å£
  *
  * \internal
  * \par Modification History
@@ -29,7 +29,7 @@ extern "C" {
 #include "am_common.h"
 
 /**
- * \name ¶Á¿¨Ğ¾Æ¬Ö§³ÖµÄISOĞ­ÒéÀàĞÍ
+ * \name è¯»å¡èŠ¯ç‰‡æ”¯æŒçš„ISOåè®®ç±»å‹
  * @{
  */
 
@@ -39,72 +39,72 @@ extern "C" {
 /** \brief ISO14443 Type B */
 #define AM_READER_CARD_ISO14443B          0x01
 
-/** \brief ISO15693 ¿ìËÙÄ£Ê½ */
+/** \brief ISO15693 å¿«é€Ÿæ¨¡å¼ */
 #define AM_READER_CARD_ISO15693_FAST      0x02
 
-/** \brief ISO15693 ±ê×¼Ä£Ê½ */
+/** \brief ISO15693 æ ‡å‡†æ¨¡å¼ */
 #define AM_READER_CARD_ISO15693_STANDARD  0x03
 
 /** @} */
 
 /**
- * \name ÌìÏßµÄÇı¶¯Ä£Ê½ (TX1,TX2Çı¶¯·½Ê½)
+ * \name å¤©çº¿çš„é©±åŠ¨æ¨¡å¼ (TX1,TX2é©±åŠ¨æ–¹å¼)
  * @{
  */
 
-/** \brief Í¬Ê±¹Ø±ÕTX1ºÍTX2 */
+/** \brief åŒæ—¶å…³é—­TX1å’ŒTX2 */
 #define AM_READER_CARD_ALL_OFF            0x00
 
-/** \brief ½öTX1Çı¶¯ÌìÏß */
+/** \brief ä»…TX1é©±åŠ¨å¤©çº¿ */
 #define AM_READER_CARD_TX1_ON             0x01
 
-/** \brief ½öTX2Çı¶¯ÌìÏß */
+/** \brief ä»…TX2é©±åŠ¨å¤©çº¿ */
 #define AM_READER_CARD_TX2_ON             0x02
 
-/** \brief TX1ºÍTX2Í¬Ê±Çı¶¯ÌìÏß */
+/** \brief TX1å’ŒTX2åŒæ—¶é©±åŠ¨å¤©çº¿ */
 #define AM_READER_CARD_ALL_ON             0x03
 
 /** @} */
 
 /**
- * \brief ¶Á¿¨Ğ¾Æ¬Çı¶¯º¯Êı½á¹¹Ìå
+ * \brief è¯»å¡èŠ¯ç‰‡é©±åŠ¨å‡½æ•°ç»“æ„ä½“
  */
 struct am_reader_card_drv_funcs {
 
-    /** \brief ¹Ø±ÕĞ¾Æ¬ */
+    /** \brief å…³é—­èŠ¯ç‰‡ */
     int (*pfn_cd_close) (void *p_drv);
 
-    /** \brief ¸´Î»Ğ¾Æ¬ */
+    /** \brief å¤ä½èŠ¯ç‰‡ */
     int (*pfn_cd_reset) (void *p_drv);
 
-    /** \brief ÅäÖÃĞ¾Æ¬ */
+    /** \brief é…ç½®èŠ¯ç‰‡ */
     int (*pfn_cd_config) (void *p_drv);
 
-    /** \brief ÉèÖÃĞ¾Æ¬ISOĞ­ÒéÀàĞÍ */
+    /** \brief è®¾ç½®èŠ¯ç‰‡ISOåè®®ç±»å‹ */
     int (*pfn_cd_iso_type_set) (void *p_drv, uint8_t type);
 	
-	  /** \brief ÉèÖÃTxÍ¨µÀºÅ*/
+	  /** \brief è®¾ç½®Txé€šé“å·*/
     int (*pfn_cd_channal_set) (void *p_drv, uint8_t channal_num);
 
-    /** \brief ÉèÖÃĞ¾Æ¬¼Ä´æÆ÷µÄÖµ */
+    /** \brief è®¾ç½®èŠ¯ç‰‡å¯„å­˜å™¨çš„å€¼ */
     int (*pfn_cd_reg_write) (void     *p_drv,
                              uint32_t  reg_addr,
                              void     *p_tx_buf,
                              uint32_t  nbytes);
 
-    /** \brief »ñÈ¡Ğ¾Æ¬¼Ä´æÆ÷µÄÖµ */
+    /** \brief è·å–èŠ¯ç‰‡å¯„å­˜å™¨çš„å€¼ */
     int (*pfn_cd_reg_read) (void     *p_drv,
                             uint32_t  reg_addr,
                             uint32_t *p_rx_buf,
                             uint32_t  nbytes);
 
-    /** \brief ÉèÖÃÌìÏßµÄÇı¶¯Ä£Ê½ */
+    /** \brief è®¾ç½®å¤©çº¿çš„é©±åŠ¨æ¨¡å¼ */
     int (*pfn_cd_antenna_mode_set) (void *p_drv, uint32_t mode);
 
-    /** \brief »ñÈ¡ÌìÏßµÄÇı¶¯Ä£Ê½ */
+    /** \brief è·å–å¤©çº¿çš„é©±åŠ¨æ¨¡å¼ */
     int (*pfn_cd_antenna_mode_get) (void *p_drv, uint32_t *p_mode);
 
-    /** \brief Êı¾İ½»»» */
+    /** \brief æ•°æ®äº¤æ¢ */
     int (*pfn_cd_block_exchange) (void     *p_drv,
                                   uint8_t  *p_tx_buf,
                                   uint32_t  tx_nbytes,
@@ -114,44 +114,44 @@ struct am_reader_card_drv_funcs {
                                   uint8_t   nwtxm_crc,
                                   uint8_t   nfwi);
 
-    /** \brief ÔØ²¨ÔİÍ£ */
+    /** \brief è½½æ³¢æš‚åœ */
     int (*pfn_cd_wave_pause) (void     *p_drv,
                               uint32_t  pause_ms,
                               uint32_t  wait_ms);
 
-    /** \brief »ñÈ¡Éí·İÖ¤ID */
+    /** \brief è·å–èº«ä»½è¯ID */
     int (*pfn_cd_sid_get) (void     *p_drv,
                            uint8_t  *p_uid,
                            uint32_t *p_rx_nbytes);
 
-    /** \brief »ñÈ¡¸´Î»´ÎÊı */
+    /** \brief è·å–å¤ä½æ¬¡æ•° */
     int (*pfn_cd_reset_count_get) (void *p_drv, uint32_t *p_count);
 
 };
 
 /**
- * \brief ¶Á¿¨Ğ¾Æ¬·şÎñ½á¹¹Ìå
+ * \brief è¯»å¡èŠ¯ç‰‡æœåŠ¡ç»“æ„ä½“
  */
 typedef struct am_reader_card_serv {
 
-    /** \brief ¶Á¿¨Ğ¾Æ¬Çı¶¯º¯Êı½á¹¹ÌåÖ¸Õë */
+    /** \brief è¯»å¡èŠ¯ç‰‡é©±åŠ¨å‡½æ•°ç»“æ„ä½“æŒ‡é’ˆ */
     struct am_reader_card_drv_funcs *p_funcs;
 
-    /** \brief ÓÃÓÚÇı¶¯º¯ÊıµÄµÚÒ»¸ö²ÎÊı */
+    /** \brief ç”¨äºé©±åŠ¨å‡½æ•°çš„ç¬¬ä¸€ä¸ªå‚æ•° */
     void                            *p_drv;
 
 } am_reader_card_serv_t;
 
-/** \brief ¶¨Òå¶Á¿¨Ğ¾Æ¬·şÎñ¾ä±ú */
+/** \brief å®šä¹‰è¯»å¡èŠ¯ç‰‡æœåŠ¡å¥æŸ„ */
 typedef am_reader_card_serv_t *am_reader_card_handle_t;
 
 /**
- * \brief ¹Ø±Õ¶Á¿¨Ğ¾Æ¬
+ * \brief å…³é—­è¯»å¡èŠ¯ç‰‡
  *
- * \param[in] handle : ¶Á¿¨Ğ¾Æ¬·şÎñ¾ä±ú
+ * \param[in] handle : è¯»å¡èŠ¯ç‰‡æœåŠ¡å¥æŸ„
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_reader_card_close (am_reader_card_handle_t handle)
@@ -160,12 +160,12 @@ int am_reader_card_close (am_reader_card_handle_t handle)
 }
 
 /**
- * \brief ¸´Î»Ğ¾Æ¬
+ * \brief å¤ä½èŠ¯ç‰‡
  *
- * \param[in] handle : ¶Á¿¨Ğ¾Æ¬·şÎñ¾ä±ú
+ * \param[in] handle : è¯»å¡èŠ¯ç‰‡æœåŠ¡å¥æŸ„
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_reader_card_reset (am_reader_card_handle_t handle)
@@ -174,12 +174,12 @@ int am_reader_card_reset (am_reader_card_handle_t handle)
 }
 
 /**
- * \brief ÅäÖÃĞ¾Æ¬
+ * \brief é…ç½®èŠ¯ç‰‡
  *
- * \param[in] handle : ¶Á¿¨Ğ¾Æ¬·şÎñ¾ä±ú
+ * \param[in] handle : è¯»å¡èŠ¯ç‰‡æœåŠ¡å¥æŸ„
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_reader_card_config (am_reader_card_handle_t handle)
@@ -188,13 +188,13 @@ int am_reader_card_config (am_reader_card_handle_t handle)
 }
 
 /**
- * \brief ÉèÖÃĞ¾Æ¬ISOĞ­ÒéÀàĞÍ
+ * \brief è®¾ç½®èŠ¯ç‰‡ISOåè®®ç±»å‹
  *
- * \param[in] handle : ¶Á¿¨Ğ¾Æ¬·şÎñ¾ä±ú
- * \param[in] type   : ISOĞ­ÒéÀàĞÍ
+ * \param[in] handle : è¯»å¡èŠ¯ç‰‡æœåŠ¡å¥æŸ„
+ * \param[in] type   : ISOåè®®ç±»å‹
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_reader_card_iso_type_set (am_reader_card_handle_t handle,
@@ -205,13 +205,13 @@ int am_reader_card_iso_type_set (am_reader_card_handle_t handle,
 }
 
 /**
- * \brief ÉèÖÃĞ¾Æ¬TxÍ¨µÀºÅ
+ * \brief è®¾ç½®èŠ¯ç‰‡Txé€šé“å·
  *
- * \param[in] handle : ¶Á¿¨Ğ¾Æ¬·şÎñ¾ä±ú
- * \param[in] type   : Í¨µÀºÅ
+ * \param[in] handle : è¯»å¡èŠ¯ç‰‡æœåŠ¡å¥æŸ„
+ * \param[in] type   : é€šé“å·
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_reader_card_tx_channal_set (am_reader_card_handle_t handle,
@@ -221,16 +221,16 @@ int am_reader_card_tx_channal_set (am_reader_card_handle_t handle,
 }
 
 /**
- * \brief ÉèÖÃĞ¾Æ¬¼Ä´æÆ÷µÄÖµ
- * \note  ¼Ä´æÆ÷µØÖ·×Ô¶¯Ôö¼Ó
+ * \brief è®¾ç½®èŠ¯ç‰‡å¯„å­˜å™¨çš„å€¼
+ * \note  å¯„å­˜å™¨åœ°å€è‡ªåŠ¨å¢åŠ 
  *
- * \param[in] handle   : ¶Á¿¨Ğ¾Æ¬·şÎñ¾ä±ú
- * \param[in] reg_addr : Ğ¾Æ¬ÄÚ²¿¼Ä´æÆ÷µÄµØÖ·
- * \param[in] p_tx_buf : ÉèÖÃµÄÖµ£¬´æ·Å»º³åÇø
- * \param[in] nbytes   : ·¢ËÍµÄ×Ö½ÚÊı
+ * \param[in] handle   : è¯»å¡èŠ¯ç‰‡æœåŠ¡å¥æŸ„
+ * \param[in] reg_addr : èŠ¯ç‰‡å†…éƒ¨å¯„å­˜å™¨çš„åœ°å€
+ * \param[in] p_tx_buf : è®¾ç½®çš„å€¼ï¼Œå­˜æ”¾ç¼“å†²åŒº
+ * \param[in] nbytes   : å‘é€çš„å­—èŠ‚æ•°
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_reader_card_reg_write (am_reader_card_handle_t  handle,
@@ -245,16 +245,16 @@ int am_reader_card_reg_write (am_reader_card_handle_t  handle,
 }
 
 /**
- * \brief »ñÈ¡Ğ¾Æ¬¼Ä´æÆ÷µÄÖµ
- * \note  ¼Ä´æÆ÷µØÖ·×Ô¶¯Ôö¼Ó
+ * \brief è·å–èŠ¯ç‰‡å¯„å­˜å™¨çš„å€¼
+ * \note  å¯„å­˜å™¨åœ°å€è‡ªåŠ¨å¢åŠ 
  *
- * \param[in] handle   : ¶Á¿¨Ğ¾Æ¬·şÎñ¾ä±ú
- * \param[in] reg_addr : Ğ¾Æ¬ÄÚ²¿¼Ä´æÆ÷µÄµØÖ·
- * \param[in] p_tx_buf : »ñÈ¡µÄÖµ£¬´æ·ÅµÄ»º³åÇø
- * \param[in] nbytes   : ½ÓÊÕµÄ×Ö½ÚÊı
+ * \param[in] handle   : è¯»å¡èŠ¯ç‰‡æœåŠ¡å¥æŸ„
+ * \param[in] reg_addr : èŠ¯ç‰‡å†…éƒ¨å¯„å­˜å™¨çš„åœ°å€
+ * \param[in] p_tx_buf : è·å–çš„å€¼ï¼Œå­˜æ”¾çš„ç¼“å†²åŒº
+ * \param[in] nbytes   : æ¥æ”¶çš„å­—èŠ‚æ•°
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_reader_card_reg_read (am_reader_card_handle_t  handle,
@@ -269,13 +269,13 @@ int am_reader_card_reg_read (am_reader_card_handle_t  handle,
 }
 
 /**
- * \brief ÉèÖÃÌìÏßµÄÇı¶¯Ä£Ê½
+ * \brief è®¾ç½®å¤©çº¿çš„é©±åŠ¨æ¨¡å¼
  *
- * \param[in] handle : ¶Á¿¨Ğ¾Æ¬·şÎñ¾ä±ú
- * \param[in] mode   : ÌìÏßÄ£Ê½
+ * \param[in] handle : è¯»å¡èŠ¯ç‰‡æœåŠ¡å¥æŸ„
+ * \param[in] mode   : å¤©çº¿æ¨¡å¼
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_reader_card_antenna_mode_set (am_reader_card_handle_t  handle,
@@ -285,13 +285,13 @@ int am_reader_card_antenna_mode_set (am_reader_card_handle_t  handle,
 }
 
 /**
- * \brief »ñÈ¡ÌìÏßµÄÇı¶¯Ä£Ê½
+ * \brief è·å–å¤©çº¿çš„é©±åŠ¨æ¨¡å¼
  *
- * \param[in] handle : ¶Á¿¨Ğ¾Æ¬·şÎñ¾ä±ú
- * \param[in] p_mode : ÌìÏßÄ£Ê½
+ * \param[in] handle : è¯»å¡èŠ¯ç‰‡æœåŠ¡å¥æŸ„
+ * \param[in] p_mode : å¤©çº¿æ¨¡å¼
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_reader_card_antenna_mode_get (am_reader_card_handle_t   handle,
@@ -301,19 +301,19 @@ int am_reader_card_antenna_mode_get (am_reader_card_handle_t   handle,
 }
 
 /**
- * \brief Êı¾İ½»»»
+ * \brief æ•°æ®äº¤æ¢
  *
- * \param[in] handle      : ¶Á¿¨Ğ¾Æ¬·şÎñ¾ä±ú
- * \param[in] p_tx_buf    : ´ı·¢ËÍµÄÊı¾İ
- * \param[in] tx_nbytes   : ·¢ËÍÊı¾İµÄ³¤¶È
- * \param[in] p_rx_buf    : ´ı½ÓÊÕµÄÊı¾İ
- * \param[in] rx_buf_size : ½ÓÊÕ»º³åÇø´óĞ¡
- * \param[in] p_rx_nbytes : ¹²½ÓÊÕµ½¶àÉÙ×Ö½Ú
- * \param[in] nwtxm_crc   : crcĞ£Ñé²ÎÊı
- * \param[in] nfwi        : ÑÓÊ±
+ * \param[in] handle      : è¯»å¡èŠ¯ç‰‡æœåŠ¡å¥æŸ„
+ * \param[in] p_tx_buf    : å¾…å‘é€çš„æ•°æ®
+ * \param[in] tx_nbytes   : å‘é€æ•°æ®çš„é•¿åº¦
+ * \param[in] p_rx_buf    : å¾…æ¥æ”¶çš„æ•°æ®
+ * \param[in] rx_buf_size : æ¥æ”¶ç¼“å†²åŒºå¤§å°
+ * \param[in] p_rx_nbytes : å…±æ¥æ”¶åˆ°å¤šå°‘å­—èŠ‚
+ * \param[in] nwtxm_crc   : crcæ ¡éªŒå‚æ•°
+ * \param[in] nfwi        : å»¶æ—¶
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_reader_card_block_exchange (am_reader_card_handle_t  handle,
@@ -336,14 +336,14 @@ int am_reader_card_block_exchange (am_reader_card_handle_t  handle,
 }
 
 /**
- * \brief ÔØ²¨ÔİÍ£
+ * \brief è½½æ³¢æš‚åœ
  *
- * \param[in] handle   : ¶Á¿¨Ğ¾Æ¬·şÎñ¾ä±ú
- * \param[in] pause_ms : ÔİÍ£Ê±¼ä£¬¹Ø±ÕRF³¡¸ÃÊ±¼äºóÖØĞÂ´ò¿ª£¬ÈôÎª0Ôò²»ÖØĞÂ´ò¿ª
- * \param[in] wait_ms  : RF³¡ÖØĞÂ´ò¿ªºó³ÖĞøµÈ´ı¸ÃÊ±¼ä£¬ÈôÎª0Ôò²»µÈ´ı
+ * \param[in] handle   : è¯»å¡èŠ¯ç‰‡æœåŠ¡å¥æŸ„
+ * \param[in] pause_ms : æš‚åœæ—¶é—´ï¼Œå…³é—­RFåœºè¯¥æ—¶é—´åé‡æ–°æ‰“å¼€ï¼Œè‹¥ä¸º0åˆ™ä¸é‡æ–°æ‰“å¼€
+ * \param[in] wait_ms  : RFåœºé‡æ–°æ‰“å¼€åæŒç»­ç­‰å¾…è¯¥æ—¶é—´ï¼Œè‹¥ä¸º0åˆ™ä¸ç­‰å¾…
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_reader_card_wave_pause (am_reader_card_handle_t handle,
@@ -356,14 +356,14 @@ int am_reader_card_wave_pause (am_reader_card_handle_t handle,
 }
 
 /**
- * \brief »ñÈ¡Éí·İÖ¤ID
+ * \brief è·å–èº«ä»½è¯ID
  *
- * \param[in] handle      : ¶Á¿¨Ğ¾Æ¬·şÎñ¾ä±ú
- * \param[in] p_uid       : ·µ»ØµÄÉí·İÖ¤ID
- * \param[in] p_rx_nbytes : Éí·İÖ¤IDµÄ×Ö½ÚÊı
+ * \param[in] handle      : è¯»å¡èŠ¯ç‰‡æœåŠ¡å¥æŸ„
+ * \param[in] p_uid       : è¿”å›çš„èº«ä»½è¯ID
+ * \param[in] p_rx_nbytes : èº«ä»½è¯IDçš„å­—èŠ‚æ•°
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_reader_card_sid_get (am_reader_card_handle_t  handle,
@@ -376,13 +376,13 @@ int am_reader_card_sid_get (am_reader_card_handle_t  handle,
 }
 
 /**
- * \brief »ñÈ¡¶Á¿¨Ğ¾Æ¬¸´Î»´ÎÊı
+ * \brief è·å–è¯»å¡èŠ¯ç‰‡å¤ä½æ¬¡æ•°
  *
- * \param[in]  handle  : ¶Á¿¨Ğ¾Æ¬·şÎñ¾ä±ú
- * \param[out] p_count : ·µ»Ø¸´Î»´ÎÊı
+ * \param[in]  handle  : è¯»å¡èŠ¯ç‰‡æœåŠ¡å¥æŸ„
+ * \param[out] p_count : è¿”å›å¤ä½æ¬¡æ•°
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_reader_card_reset_count_get (am_reader_card_handle_t  handle,

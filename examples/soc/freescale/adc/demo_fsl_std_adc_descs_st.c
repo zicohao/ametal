@@ -12,18 +12,18 @@
 
 /**
  * \file
- * \brief ADCÀý³Ì£¬Èí¼þ´¥·¢×ª»»£¬DMA´«Êä×ª»»½á¹û£¬Ê¹ÓÃ¶à¸ö´«ÊäÃèÊö·û£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief ADCä¾‹ç¨‹ï¼Œè½¯ä»¶è§¦å‘è½¬æ¢ï¼ŒDMAä¼ è¾“è½¬æ¢ç»“æžœï¼Œä½¿ç”¨å¤šä¸ªä¼ è¾“æè¿°ç¬¦ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. PIOA_1Òý½ÅÁ¬½ÓPC´®¿ÚµÄTXD£»
- *   2. PIOA_2Òý½ÅÁ¬½ÓPC´®¿ÚµÄRXD£»
- *   3. J12ÌøÏßÃ±¶Ì½Ó£¨´ËÊ±²Î¿¼µçÑ¹Îª2.5v£©£»
- *   4. PIOE_20(ADCÍ¨µÀ0) Á¬½ÓÄ£ÄâÊäÈë¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. PIOA_1å¼•è„šè¿žæŽ¥PCä¸²å£çš„TXDï¼›
+ *   2. PIOA_2å¼•è„šè¿žæŽ¥PCä¸²å£çš„RXDï¼›
+ *   3. J12è·³çº¿å¸½çŸ­æŽ¥ï¼ˆæ­¤æ—¶å‚è€ƒç”µåŽ‹ä¸º2.5vï¼‰ï¼›
+ *   4. PIOE_20(ADCé€šé“0) è¿žæŽ¥æ¨¡æ‹Ÿè¾“å…¥ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿ÚÊä³öµçÑ¹²ÉÑùÖµ¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. ä¸²å£è¾“å‡ºç”µåŽ‹é‡‡æ ·å€¼ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_fsl_std_adc_descs_st.c src_fsl_std_adc_descs_st
  *
  * \internal
@@ -45,11 +45,11 @@
 #include "hw/amhw_fsl_adc.h"
 #include "am_int.h"
 
-volatile static uint8_t __g_flag_complete  = 0;   /**< \brief ADC×ª»»Íê³É±êÖ¾ */
-volatile static uint8_t __g_flag_complete0 = 0;   /**< \brief Êý¾Ý»º³åÇø0Íê³É±êÖ¾ */
-volatile static uint8_t __g_flag_complete1 = 0;   /**< \brief Êý¾Ý»º³åÇø1Íê³É±êÖ¾ */
+volatile static uint8_t __g_flag_complete  = 0;   /**< \brief ADCè½¬æ¢å®Œæˆæ ‡å¿— */
+volatile static uint8_t __g_flag_complete0 = 0;   /**< \brief æ•°æ®ç¼“å†²åŒº0å®Œæˆæ ‡å¿— */
+volatile static uint8_t __g_flag_complete1 = 0;   /**< \brief æ•°æ®ç¼“å†²åŒº1å®Œæˆæ ‡å¿— */
 
-/** \brief »º³åÇøÃèÊö·ûÌî³äÂú»Øµ÷º¯Êý */
+/** \brief ç¼“å†²åŒºæè¿°ç¬¦å¡«å……æ»¡å›žè°ƒå‡½æ•° */
 static void __fsl_adc_callback (void *p_arg, int state)
 {
     if (state != AM_OK) {
@@ -65,37 +65,37 @@ static void __fsl_adc_callback (void *p_arg, int state)
     }
 }
 
-/** \brief ADC×ª»»Íê³É»Øµ÷º¯Êý */
+/** \brief ADCè½¬æ¢å®Œæˆå›žè°ƒå‡½æ•° */
 void __fsl_adc_seq_complete (void *p_arg, int state)
 {
     __g_flag_complete = 1;
 }
 
 /**
- * \brief adcÈí¼þ´¥·¢£¬DMA´«Êä½á¹û£¬Ò»´Î²ÉÑùÁ½¸öADCÃèÊö·û
- * \return ÎÞ
+ * \brief adcè½¯ä»¶è§¦å‘ï¼ŒDMAä¼ è¾“ç»“æžœï¼Œä¸€æ¬¡é‡‡æ ·ä¸¤ä¸ªADCæè¿°ç¬¦
+ * \return æ— 
  */
 void demo_fsl_std_adc_descs_st_entry (am_adc_handle_t adc0_handle)
 {
-    uint32_t adc_bits = 0;          /**< \brief ADCÎ»Êý */
-    uint32_t adc_vref = 0;          /**< \brief ADC²Î¿¼µçÑ¹*/
-    uint32_t adc_mv;                /**< \brief ²ÉÑùµçÑ¹ */
-    int      chan = 0;              /**< \brief Í¨µÀ0 */
+    uint32_t adc_bits = 0;          /**< \brief ADCä½æ•° */
+    uint32_t adc_vref = 0;          /**< \brief ADCå‚è€ƒç”µåŽ‹*/
+    uint32_t adc_mv;                /**< \brief é‡‡æ ·ç”µåŽ‹ */
+    int      chan = 0;              /**< \brief é€šé“0 */
     int      i;
-    am_adc_buf_desc_t   desc[2];                /**< \brief Ê¹ÓÃÁ½¸ö»º³åÇøÃèÊö */
-    uint16_t            adc_val0[10];           /**< \brief Êý¾Ý»º³åÇø1     */
-    uint16_t            adc_val1[10];           /**< \brief Êý¾Ý»º³åÇø2     */
+    am_adc_buf_desc_t   desc[2];                /**< \brief ä½¿ç”¨ä¸¤ä¸ªç¼“å†²åŒºæè¿° */
+    uint16_t            adc_val0[10];           /**< \brief æ•°æ®ç¼“å†²åŒº1     */
+    uint16_t            adc_val1[10];           /**< \brief æ•°æ®ç¼“å†²åŒº2     */
     uint32_t key;
     uint32_t adc_sum;
 
-    adc_bits = am_adc_bits_get(adc0_handle, chan); /* »ñÈ¡ADC×ª»»¾«¶È */
-    adc_vref = am_adc_vref_get(adc0_handle, chan); /* »ñÈ¡ADC²Î¿¼µçÑ¹£¬µ¥Î»£ºmV */
+    adc_bits = am_adc_bits_get(adc0_handle, chan); /* èŽ·å–ADCè½¬æ¢ç²¾åº¦ */
+    adc_vref = am_adc_vref_get(adc0_handle, chan); /* èŽ·å–ADCå‚è€ƒç”µåŽ‹ï¼Œå•ä½ï¼šmV */
 
-    /* ÅäÖÃ»º³åÇøÃèÊö·û */
+    /* é…ç½®ç¼“å†²åŒºæè¿°ç¬¦ */
     am_adc_mkbufdesc(&desc[0], adc_val0, 10, __fsl_adc_callback, (void *)0);
     am_adc_mkbufdesc(&desc[1], adc_val1, 10, __fsl_adc_callback, (void *)1);
 
-    /* Æô¶¯ADC×ª»» */
+    /* å¯åŠ¨ADCè½¬æ¢ */
     am_adc_start(adc0_handle,
                  chan,
                  desc,
@@ -136,7 +136,7 @@ void demo_fsl_std_adc_descs_st_entry (am_adc_handle_t adc0_handle)
             adc_sum /= 10;
             adc_mv = adc_sum * adc_vref / ((1UL << adc_bits) - 1);
 
-            /* ´®¿ÚÊä³ö²ÉÑùµçÑ¹Öµ */
+            /* ä¸²å£è¾“å‡ºé‡‡æ ·ç”µåŽ‹å€¼ */
             am_kprintf("Vol0: %d mv\r\n", adc_mv);
 
             adc_mv  = 0;
@@ -148,7 +148,7 @@ void demo_fsl_std_adc_descs_st_entry (am_adc_handle_t adc0_handle)
             adc_sum /= 10;
             adc_mv = adc_sum * adc_vref / ((1UL << adc_bits) - 1);
 
-            /* ´®¿ÚÊä³ö²ÉÑùµçÑ¹Öµ */
+            /* ä¸²å£è¾“å‡ºé‡‡æ ·ç”µåŽ‹å€¼ */
             am_kprintf("Vol1: %d mv\r\n", adc_mv);
 
             for (i = 0; i < 10; i++) {

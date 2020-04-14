@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief kl26 UART1 ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief kl26 UART1 ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_kl26_hwconfig_uart1.c
  *
  * \internal
@@ -38,56 +38,56 @@
  * @{
  */
 
-/** \brief ´®¿Ú1Æ½Ì¨³õÊ¼»¯ */
+/** \brief ä¸²å£1å¹³å°åˆå§‹åŒ– */
 static void __kl26_plfm_uart1_init (void)
 {
-    /* Òı½Å³õÊ¼»¯      PIOC_3_UART1_RX  PIOC_4_UART1_TX   */
+    /* å¼•è„šåˆå§‹åŒ–      PIOC_3_UART1_RX  PIOC_4_UART1_TX   */
      am_gpio_pin_cfg(__UART1_RX, __GPIO_UART1_RX);
      am_gpio_pin_cfg(__UART1_TX, __GPIO_UART1_TX);
 
-    /* ¿ªÆôUART1Ê±ÖÓ                  */
+    /* å¼€å¯UART1æ—¶é’Ÿ                  */
     amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_UART1);
 }
 
-/** \brief ½â³ı´®¿Ú1Æ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤ä¸²å£1å¹³å°åˆå§‹åŒ– */
 static void __kl26_plfm_uart1_deinit (void)
 {
-     /* ¹Ø±ÕUART1Ê±ÖÓ                  */
+     /* å…³é—­UART1æ—¶é’Ÿ                  */
      amhw_kl26_sim_periph_clock_disable(KL26_SIM_SCGC_UART1);
 
      am_gpio_pin_cfg(__UART1_RX, __PIO_GPIO);
      am_gpio_pin_cfg(__UART1_TX, __PIO_GPIO);
 }
 
-/** \brief ´®¿Ú1Éè±¸ĞÅÏ¢ */
+/** \brief ä¸²å£1è®¾å¤‡ä¿¡æ¯ */
 static const am_fsl_uart_devinfo_t __g_uart1_devinfo = {
 
-    KL26_UART1,                      /**< \brief ´®¿Ú1            */
-    INUM_UART1,                      /**< \brief ´®¿Ú1µÄÖĞ¶Ï±àºÅ.    */
-	AM_FSL_UART_VER1,                /**< \brief ´®¿ÚÇı¶¯µÄ°æ±¾ºÅ.     */
-	CLK_UART1,                       /**< \brief ´®¿Ú1µÄÊ±ÖÓºÅ.     */
-    AMHW_FSL_UART_C1_M_8BIT      |  /**< \brief 8Î»Êı¾İ.          */
-	AMHW_FSL_UART_C1_PARITY_NO   |  /**< \brief ÎŞ¼«ĞÔ.           */
-    AMHW_FSL_UART_BDH_SBNS_STOP_1,  /**< \brief 1¸öÍ£Ö¹Î».         */
+    KL26_UART1,                      /**< \brief ä¸²å£1            */
+    INUM_UART1,                      /**< \brief ä¸²å£1çš„ä¸­æ–­ç¼–å·.    */
+	AM_FSL_UART_VER1,                /**< \brief ä¸²å£é©±åŠ¨çš„ç‰ˆæœ¬å·.     */
+	CLK_UART1,                       /**< \brief ä¸²å£1çš„æ—¶é’Ÿå·.     */
+    AMHW_FSL_UART_C1_M_8BIT      |  /**< \brief 8ä½æ•°æ®.          */
+	AMHW_FSL_UART_C1_PARITY_NO   |  /**< \brief æ— ææ€§.           */
+    AMHW_FSL_UART_BDH_SBNS_STOP_1,  /**< \brief 1ä¸ªåœæ­¢ä½.         */
 
-    115200,                          /**< \brief ÉèÖÃµÄ²¨ÌØÂÊ.       */
+    115200,                          /**< \brief è®¾ç½®çš„æ³¢ç‰¹ç‡.       */
 
-    0,                               /**< \brief ÎŞÆäËûÖĞ¶Ï.         */
+    0,                               /**< \brief æ— å…¶ä»–ä¸­æ–­.         */
 
-    NULL,                            /**< \brief USART1²»Ê¹ÓÃRS485   */
-    __kl26_plfm_uart1_init,          /**< \brief USART1µÄÆ½Ì¨³õÊ¼»¯.  */
-    __kl26_plfm_uart1_deinit,        /**< \brief USART1µÄÆ½Ì¨È¥³õÊ¼»¯. */
+    NULL,                            /**< \brief USART1ä¸ä½¿ç”¨RS485   */
+    __kl26_plfm_uart1_init,          /**< \brief USART1çš„å¹³å°åˆå§‹åŒ–.  */
+    __kl26_plfm_uart1_deinit,        /**< \brief USART1çš„å¹³å°å»åˆå§‹åŒ–. */
 };
 
-static am_fsl_uart_dev_t  __g_uart1_dev;   /**< \brief ¶¨Òå´®¿Ú1 Éè±¸.*/
+static am_fsl_uart_dev_t  __g_uart1_dev;   /**< \brief å®šä¹‰ä¸²å£1 è®¾å¤‡.*/
 
-/** \brief UART1ÊµÀı³õÊ¼»¯£¬»ñµÃuart1±ê×¼·şÎñ¾ä±ú */
+/** \brief UART1å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—uart1æ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_uart_handle_t am_kl26_uart1_inst_init (void)
 {
     return am_fsl_uart_init(&__g_uart1_dev, &__g_uart1_devinfo);
 }
 
-/** \brief UART1ÊµÀı½â³õÊ¼»¯ */
+/** \brief UART1å®ä¾‹è§£åˆå§‹åŒ– */
 void am_kl26_uart1_inst_deinit (am_uart_handle_t handle)
 {
     am_fsl_uart_deinit((am_fsl_uart_dev_t *)handle);

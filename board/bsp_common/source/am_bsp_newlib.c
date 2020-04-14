@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief newlibÊÊÅäÆ÷°å¼¶Ö§³Ö
+ * \brief newlibÃŠÃŠÃ…Ã¤Ã†Ã·Â°Ã¥Â¼Â¶Ã–Â§Â³Ã–
  *
  * \internal
  * \par modification history

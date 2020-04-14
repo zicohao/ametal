@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief LM75 ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief LM75 ç”¨æˆ·é…ç½®æ–‡ä»¶
  *
  * \internal
  * \par Modification history
@@ -31,11 +31,11 @@ extern "C" {
 #include "am_temp.h"
 
 /**
- * \brief LM75 ÊµÀı³õÊ¼»¯
+ * \brief LM75 å®ä¾‹åˆå§‹åŒ–
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎÂ¶È±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return æ¸©åº¦æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_temp_handle_t am_temp_lm75_inst_init (void);
 

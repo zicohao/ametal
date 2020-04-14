@@ -12,14 +12,14 @@
 
 /**
  * \file
- * \brief CRC Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief CRC ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿Ú´òÓ¡ "CRC-16 result is     : 0xbb3d\r\n"£»
- *   2. ´®¿Ú´òÓ¡ "CRC-CCITT result is  : 0x29b1\r\n"£»
- *   3. ´®¿Ú´òÓ¡ "CRC-32 result is     : 0xcbf43926\r\n"¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. ä¸²å£æ‰“å° "CRC-16 result is     : 0xbb3d\r\n"ï¼›
+ *   2. ä¸²å£æ‰“å° "CRC-CCITT result is  : 0x29b1\r\n"ï¼›
+ *   3. ä¸²å£æ‰“å° "CRC-32 result is     : 0xcbf43926\r\n"ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_std_crc.c src_std_crc
  *
  * \internal
@@ -38,41 +38,41 @@
 #include "am_crc.h"
 #include "am_vdebug.h"
 
-/** \brief CRC ²âÊÔÊı¾İ */
+/** \brief CRC æµ‹è¯•æ•°æ® */
 am_local am_const uint8_t __g_data_test[] =
                               {'1', '2', '3', '4', '5', '6', '7', '8'};
 
-/** \brief CRC ²âÊÔÊı¾İµÄ³¤¶È */
+/** \brief CRC æµ‹è¯•æ•°æ®çš„é•¿åº¦ */
 am_local uint32_t __g_length_test = AM_NELEMENTS(__g_data_test);
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_std_crc_entry (am_crc_handle_t crc_handle)
 {
     uint32_t         crc_result = 0;
-    am_crc_pattern_t crc_pattern;   /* ¶¨Òå CRC Ä£ĞÍ */
+    am_crc_pattern_t crc_pattern;   /* å®šä¹‰ CRC æ¨¡å‹ */
 
-    /* ¶¨Òå CRC-16 Ä£ĞÍ */
-    crc_pattern.width     = 16;      /* CRC ¿í¶È(Èç£ºCRC5 µÄ¿í¶ÈÎª 5) */
-    crc_pattern.poly      = 0x8005;  /* CRC Éú³É¶àÏîÊ½ */
-    crc_pattern.initvalue = 0x0000;  /* CRC ³õÊ¼Öµ */
-    crc_pattern.refin     = AM_TRUE; /* Èç¹ûÊäÈëÊı¾İĞèÒªÎ»·´×ª£¬Ôò¸ÃÖµÎª TRUE */
-    crc_pattern.refout    = AM_TRUE; /* Èç¹ûÊä³ö½á¹ûÖµĞèÒªÎ»·´×ª£¬Ôò¸ÃÖµÎª TRUE */
-    crc_pattern.xorout    = 0x0000;  /* Êä³öÒì»òÖµ */
+    /* å®šä¹‰ CRC-16 æ¨¡å‹ */
+    crc_pattern.width     = 16;      /* CRC å®½åº¦(å¦‚ï¼šCRC5 çš„å®½åº¦ä¸º 5) */
+    crc_pattern.poly      = 0x8005;  /* CRC ç”Ÿæˆå¤šé¡¹å¼ */
+    crc_pattern.initvalue = 0x0000;  /* CRC åˆå§‹å€¼ */
+    crc_pattern.refin     = AM_TRUE; /* å¦‚æœè¾“å…¥æ•°æ®éœ€è¦ä½åè½¬ï¼Œåˆ™è¯¥å€¼ä¸º TRUE */
+    crc_pattern.refout    = AM_TRUE; /* å¦‚æœè¾“å‡ºç»“æœå€¼éœ€è¦ä½åè½¬ï¼Œåˆ™è¯¥å€¼ä¸º TRUE */
+    crc_pattern.xorout    = 0x0000;  /* è¾“å‡ºå¼‚æˆ–å€¼ */
 
-    /* ³õÊ¼»¯ CRC Îª CRC-16 Ä£ĞÍ */
+    /* åˆå§‹åŒ– CRC ä¸º CRC-16 æ¨¡å‹ */
     if (am_crc_init(crc_handle, &crc_pattern) != AM_OK) {
         AM_DBG_INFO("The crc-16 init failed\r\n");
     } else {
         am_crc_cal(crc_handle, __g_data_test, __g_length_test);
         am_crc_final(crc_handle, &crc_result);
 
-        /* ¼ÆËã½á¹ûÓ¦Îª£º0xbb3d */
+        /* è®¡ç®—ç»“æœåº”ä¸ºï¼š0xbb3d */
         AM_DBG_INFO("CRC-16 result is        : 0x%x \r\n", crc_result);
     }
 
-    /* ¸Ä±äÄ£ĞÍÎª CRC-CCITT Ä£ĞÍ */
+    /* æ”¹å˜æ¨¡å‹ä¸º CRC-CCITT æ¨¡å‹ */
     crc_pattern.width     = 16;
     crc_pattern.poly      = 0x1021;
     crc_pattern.initvalue = 0xFFFF;
@@ -80,18 +80,18 @@ void demo_std_crc_entry (am_crc_handle_t crc_handle)
     crc_pattern.refout    = AM_FALSE;
     crc_pattern.xorout    = 0x0000;
 
-    /* ³õÊ¼»¯ CRC Îª CRC-CCITT Ä£ĞÍ */
+    /* åˆå§‹åŒ– CRC ä¸º CRC-CCITT æ¨¡å‹ */
     if (am_crc_init(crc_handle, &crc_pattern) != AM_OK) {
         AM_DBG_INFO("The crc-ccitt init failed\r\n");
     } else {
         am_crc_cal(crc_handle, __g_data_test, __g_length_test);
         am_crc_final(crc_handle, &crc_result);
 
-        /* ¼ÆËã½á¹ûÓ¦Îª£º0x29b1 */
+        /* è®¡ç®—ç»“æœåº”ä¸ºï¼š0x29b1 */
         AM_DBG_INFO("CRC-CCITT result is     : 0x%x \r\n", crc_result);
     }
 
-    /* ¸Ä±äÄ£ĞÍÎª CRC-32 Ä£ĞÍ */
+    /* æ”¹å˜æ¨¡å‹ä¸º CRC-32 æ¨¡å‹ */
     crc_pattern.width     = 32;
     crc_pattern.poly      = 0x04C11DB7;
     crc_pattern.initvalue = 0xFFFFFFFF;
@@ -99,14 +99,14 @@ void demo_std_crc_entry (am_crc_handle_t crc_handle)
     crc_pattern.refout    = AM_TRUE;
     crc_pattern.xorout    = 0xFFFFFFFF;
 
-    /* ³õÊ¼»¯ CRC Îª CRC-32 Ä£ĞÍ */
+    /* åˆå§‹åŒ– CRC ä¸º CRC-32 æ¨¡å‹ */
     if (am_crc_init(crc_handle, &crc_pattern) != AM_OK) {
         AM_DBG_INFO("The crc-32 init failed\r\n");
     } else {
         am_crc_cal(crc_handle, __g_data_test, __g_length_test);
         am_crc_final(crc_handle, &crc_result);
 
-        /* ¼ÆËã½á¹ûÓ¦Îª£º0xcbf43926 */
+        /* è®¡ç®—ç»“æœåº”ä¸ºï¼š0xcbf43926 */
         AM_DBG_INFO("CRC-32 result is        : 0x%x \r\n", crc_result);
     }
 

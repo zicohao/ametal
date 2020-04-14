@@ -12,19 +12,19 @@
 
 /**
  * \file
- * \brief ·äÃùÆ÷Àý³Ì£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief èœ‚é¸£å™¨ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. ¶Ì½Ó J7 ÌøÏßÃ±£¬PIOC_8 ¿ØÖÆ·äÃùÆ÷¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. çŸ­æŽ¥ J7 è·³çº¿å¸½ï¼ŒPIOC_8 æŽ§åˆ¶èœ‚é¸£å™¨ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ·äÃùÆ÷ÒÔ 0.5s µÄÊ±¼ä¼ä¸ôÃù½Ð¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. èœ‚é¸£å™¨ä»¥ 0.5s çš„æ—¶é—´é—´éš”é¸£å«ã€‚
  *
  * \note
- *    ²âÊÔ±¾ Demo ±ØÐëÔÚ am_prj_config.h ÄÚ½« AM_CFG_BUZZER_ENABLE 
- *¡¡    ¶¨ÒåÎª 1¡£µ«¸ÃºêÒÑ¾­Ä¬ÈÏÅäÖÃÎª 1£¬ ÓÃ»§²»±ØÔÙ´ÎÅäÖÃ£»
+ *    æµ‹è¯•æœ¬ Demo å¿…é¡»åœ¨ am_prj_config.h å†…å°† AM_CFG_BUZZER_ENABLE 
+ *ã€€    å®šä¹‰ä¸º 1ã€‚ä½†è¯¥å®å·²ç»é»˜è®¤é…ç½®ä¸º 1ï¼Œ ç”¨æˆ·ä¸å¿…å†æ¬¡é…ç½®ï¼›
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_zlg217_std_buzzer.c src_std_buzzer
  *
  * \internal
@@ -46,7 +46,7 @@
 #include "demo_am217_core_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_zlg217_core_std_buzzer_entry (void)
 {

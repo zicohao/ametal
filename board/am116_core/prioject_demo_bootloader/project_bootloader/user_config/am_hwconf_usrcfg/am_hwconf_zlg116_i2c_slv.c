@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZLG116 I2C´Ó»ú ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief ZLG116 I2Cä»æœº ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_zlg116_i2c_slv.c
  *
  * \internal
@@ -35,7 +35,7 @@
  * @{
  */
 
-/** \brief I2C1 Æ½Ì¨³õÊ¼»¯º¯Êı */
+/** \brief I2C1 å¹³å°åˆå§‹åŒ–å‡½æ•° */
 static void __zlg_i2c1_plfm_init (void)
 {
 
@@ -49,41 +49,41 @@ static void __zlg_i2c1_plfm_init (void)
     am_zlg116_clk_reset(CLK_I2C1);
 }
 
-/** \brief ½â³ıI2C1 Æ½Ì¨³õÊ¼»¯º¯Êı */
+/** \brief è§£é™¤I2C1 å¹³å°åˆå§‹åŒ–å‡½æ•° */
 static void __zlg_i2c1_plfm_deinit (void)
 {
     am_clk_disable(CLK_I2C1);
 }
 
 /**
- * \name I2C1 ¿ØÖÆÆ÷²ÎÊı¶¨Òå
+ * \name I2C1 æ§åˆ¶å™¨å‚æ•°å®šä¹‰
  * @{
  */
 
 /** @} */
 
 /**
- * \brief I2C1´Ó Éè±¸ĞÅÏ¢
+ * \brief I2C1ä» è®¾å¤‡ä¿¡æ¯
  */
 static const am_zlg_i2c_slv_devinfo_t __g_i2c1_devinfo = {
 
-    ZLG116_I2C1_BASE,                /**< \brief I2C1¼Ä´æÆ÷¿é»ùÖ· */
-    INUM_I2C1,                       /**< \brief I2C1 ÖĞ¶Ï±àºÅ */
+    ZLG116_I2C1_BASE,                /**< \brief I2C1å¯„å­˜å™¨å—åŸºå€ */
+    INUM_I2C1,                       /**< \brief I2C1 ä¸­æ–­ç¼–å· */
 
-    __zlg_i2c1_plfm_init,            /**< \brief Æ½Ì¨³õÊ¼»¯ */
-    __zlg_i2c1_plfm_deinit           /**< \brief Æ½Ì¨È¥³õÊ¼»¯ */
+    __zlg_i2c1_plfm_init,            /**< \brief å¹³å°åˆå§‹åŒ– */
+    __zlg_i2c1_plfm_deinit           /**< \brief å¹³å°å»åˆå§‹åŒ– */
 };
 
-static am_zlg_i2c_slv_dev_t __g_i2c1_dev; /**< \brief I2C1 Éè±¸ÊµÀı */
+static am_zlg_i2c_slv_dev_t __g_i2c1_dev; /**< \brief I2C1 è®¾å¤‡å®ä¾‹ */
 
 
-/** \brief I2C1 ÊµÀı³õÊ¼»¯£¬»ñµÃI2C±ê×¼·şÎñ¾ä±ú */
+/** \brief I2C1 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—I2Cæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_i2c_slv_handle_t  am_zlg116_i2c1_slv_inst_init (void)
 {
     return am_zlg_i2c_slv_init(&__g_i2c1_dev, &__g_i2c1_devinfo);
 }
 
-/** \brief I2C1 ÊµÀı½â³õÊ¼»¯ */
+/** \brief I2C1 å®ä¾‹è§£åˆå§‹åŒ– */
 void am_zlg116_i2c1_slv_inst_deinit (am_i2c_slv_handle_t handle)
 {
     am_zlg_i2c_slv_deinit(handle);

@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief bootloader Ê¹ÓÃkboot KinetisFlashToolÉÏÎ»»úÀı³Ì
+ * \brief bootloader ä½¿ç”¨kboot KinetisFlashToolä¸Šä½æœºä¾‹ç¨‹
  *
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_std_bootloader_kft.c src_std_bootloader_kft
  *
  * \internal
@@ -42,16 +42,16 @@ void demo_std_bootloader_kft_entry(am_boot_flash_handle_t    flash_handle,
                                    uint32_t                  ram_start_addr,
                                    uint32_t                  ram_size)
 {
-    /* »ùÓÚ´®¿ÚµÄ´®ĞĞÊı¾İ´«Êä */
+    /* åŸºäºä¸²å£çš„ä¸²è¡Œæ•°æ®ä¼ è¾“ */
     am_boot_serial_handle_t serial_handle = am_boot_serial_uart_init(
         uart_handle, baund);
-    /* ÃüÁî½âÎöÄ£¿é³õÊ¼»¯ */
+    /* å‘½ä»¤è§£ææ¨¡å—åˆå§‹åŒ– */
     am_boot_kft_init(memory_handle,
                      flash_handle,
                      serial_handle,
                      ram_start_addr,
                      ram_size);
-    /* Ñ­»·¼ì²âÉÏÎ»»úÏûÏ¢ */
+    /* å¾ªç¯æ£€æµ‹ä¸Šä½æœºæ¶ˆæ¯ */
     while(1) {
         am_boot_kft_command_pump();
     }

@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥4.12
+ * \brief ç¨‹åºæ¸…å•4.12
  *
- * \note ¸ÃÀú³ÌĞèÒªÓÃµ½miniportÍØÕ¹°å
+ * \note è¯¥å†ç¨‹éœ€è¦ç”¨åˆ°miniportæ‹“å±•æ¿
  *
  * \internal
  * \par Modification history
@@ -27,8 +27,8 @@
 
 int am_main (void)
 {
-    digitron_init();                            // °å¼¶³õÊ¼»¯
-    digitron_disp_num(0, 1);                    // com0ÏÔÊ¾Êı×Ö1
+    digitron_init();                            // æ¿çº§åˆå§‹åŒ–
+    digitron_disp_num(0, 1);                    // com0æ˜¾ç¤ºæ•°å­—1
     while(1) {
     }
 }

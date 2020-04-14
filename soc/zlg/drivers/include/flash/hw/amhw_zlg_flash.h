@@ -41,7 +41,7 @@ extern "C" {
  */
 
 /**
- * \brief Ê¹ÓÃÄäÃûÁªºÏÌå¶Î¿ªÊ¼
+ * \brief ä½¿ç”¨åŒ¿åè”åˆä½“æ®µå¼€å§‹
  * @{
  */
 
@@ -52,10 +52,10 @@ extern "C" {
   #pragma language=extended
 #elif defined(__GNUC__)
 
-  /* Ä¬ÈÏÊ¹ÄÜÄäÃûÁªºÏÌå */
+  /* é»˜è®¤ä½¿èƒ½åŒ¿åè”åˆä½“ */
 #elif defined(__TMS470__)
 
-  /* Ä¬ÈÏÊ¹ÄÜÄäÃûÁªºÏÌå */
+  /* é»˜è®¤ä½¿èƒ½åŒ¿åè”åˆä½“ */
 #elif defined(__TASKING__)
   #pragma warning 586
 #else
@@ -366,7 +366,7 @@ void amhw_zlg_flash_wrpr_set (amhw_zlg_flash_t    *p_hw_flash,
 }
 
 /**
- * \brief Ê¹ÓÃÄäÃûÁªºÏÌå¶Î½áÊø
+ * \brief ä½¿ç”¨åŒ¿åè”åˆä½“æ®µç»“æŸ
  * @{
  */
 
@@ -374,13 +374,13 @@ void amhw_zlg_flash_wrpr_set (amhw_zlg_flash_t    *p_hw_flash,
   #pragma pop
 #elif defined(__ICCARM__)
 
-  /* ÔÊĞíÄäÃûÁªºÏÌåÊ¹ÄÜ */
+  /* å…è®¸åŒ¿åè”åˆä½“ä½¿èƒ½ */
 #elif defined(__GNUC__)
 
-  /* Ä¬ÈÏÊ¹ÓÃÄäÃûÁªºÏÌå */
+  /* é»˜è®¤ä½¿ç”¨åŒ¿åè”åˆä½“ */
 #elif defined(__TMS470__)
 
-  /* Ä¬ÈÏÊ¹ÓÃÄäÃûÁªºÏÌå */
+  /* é»˜è®¤ä½¿ç”¨åŒ¿åè”åˆä½“ */
 #elif defined(__TASKING__)
   #pragma warning restore
 #else

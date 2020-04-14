@@ -14,16 +14,16 @@
  * \file
  * \brief
  *
- * - ²Ù×÷²½Öè£º
- *      - PTC1Òı½ÅÍâ½Ó32.786kHzµÄÊ±ÖÓÊäÈë
- *      - Ê¹ÓÃµ÷ÊÔ´®¿Ú´òÓ¡
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *      - PTC1å¼•è„šå¤–æ¥32.786kHzçš„æ—¶é’Ÿè¾“å…¥
+ *      - ä½¿ç”¨è°ƒè¯•ä¸²å£æ‰“å°
  *
- * - ÊµÑéÏÖÏó£º
- *      - ´®¿Ú´òÓ¡³öÉèÖÃµÄÊ±¼ä
- *      - ÒÔºóÃ¿Ãë´òÓ¡Ò»´ÎÊ±¼ä
- *      - LED0µÄ×´Ì¬Ã¿ÃëÖÓ·­×ªÒ»´Î
+ * - å®éªŒç°è±¡ï¼š
+ *      - ä¸²å£æ‰“å°å‡ºè®¾ç½®çš„æ—¶é—´
+ *      - ä»¥åæ¯ç§’æ‰“å°ä¸€æ¬¡æ—¶é—´
+ *      - LED0çš„çŠ¶æ€æ¯ç§’é’Ÿç¿»è½¬ä¸€æ¬¡
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_fsl_hw_rtc_sec_int.c src_fsl_hw_rtc_sec_int
  *
  * \internal
@@ -48,7 +48,7 @@
 #include "demo_fsl_entrys.h"
 
 /**
- * \brief  RTC ÃëÖĞ¶Ï·şÎñº¯Êı
+ * \brief  RTC ç§’ä¸­æ–­æœåŠ¡å‡½æ•°
  */
 static void rtc_sec_isr (void *p_arg)
 {
@@ -57,30 +57,30 @@ static void rtc_sec_isr (void *p_arg)
 
 
 /**
- * \brief AMetal Ó¦ÓÃ³ÌĞòÈë¿Ú
+ * \brief AMetal åº”ç”¨ç¨‹åºå…¥å£
  */
 void demo_fsl_hw_rtc_sec_int_entry (amhw_fsl_rtc_t *p_hw_rtc)
 {
     uint32_t tmp = 0;
 
-    /* »º´æÊ±¼äµÄ±äÁ¿ */
+    /* ç¼“å­˜æ—¶é—´çš„å˜é‡ */
     am_tm_t *p_time;
     time_t simple_time;
 
-    /* ³õÊ¼Ê±¼äÉèÖÃ */
+    /* åˆå§‹æ—¶é—´è®¾ç½® */
     am_tm_t current_time = {
-        58,   /** Ãë                     */
-        30,   /** ·Ö                     */
-        15,   /** Ê±                     */
-        28,   /** ÈÕ                     */
-        9,    /** ÔÂ                     */
-        115,  /** Äê                     */
-        3,    /** ÖÜ                     */
-        300,  /** Ìì µ±ÄêµÄµÚnÌì */
-        0,    /** ÏÄÁîÊ±              */
+        58,   /** ç§’                     */
+        30,   /** åˆ†                     */
+        15,   /** æ—¶                     */
+        28,   /** æ—¥                     */
+        9,    /** æœˆ                     */
+        115,  /** å¹´                     */
+        3,    /** å‘¨                     */
+        300,  /** å¤© å½“å¹´çš„ç¬¬nå¤© */
+        0,    /** å¤ä»¤æ—¶              */
     };
 
-    /* ½«ÈÕÀúÊ±¼ä×ª»»ÎªÊ±¼ä´Á */
+    /* å°†æ—¥å†æ—¶é—´è½¬æ¢ä¸ºæ—¶é—´æˆ³ */
     simple_time = mktime((struct tm*)&current_time);
 
     if (-1 == (int)simple_time) {
@@ -88,10 +88,10 @@ void demo_fsl_hw_rtc_sec_int_entry (amhw_fsl_rtc_t *p_hw_rtc)
         return;
     }
 
-    /* ¹Ø±ÕÃë¼ÆÊıÆ÷ */
+    /* å…³é—­ç§’è®¡æ•°å™¨ */
     amhw_fsl_rtc_time_counter_status_clr(p_hw_rtc);
 
-    /* ·ÖÆµ¼ÆÊıÆ÷¡¢Ãë¼ÆÊıÆ÷¡¢Ğ£×¼¼Ä´æÆ÷Çå0 */
+    /* åˆ†é¢‘è®¡æ•°å™¨ã€ç§’è®¡æ•°å™¨ã€æ ¡å‡†å¯„å­˜å™¨æ¸…0 */
     amhw_fsl_rtc_prescaler_set(p_hw_rtc, 0x00);
     amhw_fsl_rtc_alarm_set(p_hw_rtc, 0x00);
     amhw_fsl_rtc_compensate_interval_set(p_hw_rtc, 0x00);
@@ -99,20 +99,20 @@ void demo_fsl_hw_rtc_sec_int_entry (amhw_fsl_rtc_t *p_hw_rtc)
     amhw_fsl_rtc_current_compensate_counter_set(p_hw_rtc, 0x00);
     amhw_fsl_rtc_current_compensate_value_set(p_hw_rtc, 0x00);
 
-    /* ÉèÖÃÃë¼ÆÊıÆ÷ */
+    /* è®¾ç½®ç§’è®¡æ•°å™¨ */
     amhw_fsl_rtc_second_set(p_hw_rtc, simple_time);
 
-    /* Ê¹ÄÜÃëÖĞ¶Ï */
+    /* ä½¿èƒ½ç§’ä¸­æ–­ */
     amhw_fsl_rtc_sec_int_enable(p_hw_rtc);
 
-    /* Á¬½ÓRTCÃëÖĞ¶Ï²¢Ê¹ÄÜ */
+    /* è¿æ¥RTCç§’ä¸­æ–­å¹¶ä½¿èƒ½ */
     am_int_connect(INUM_RTC_SEC, rtc_sec_isr, NULL);
     am_int_enable(INUM_RTC_SEC);
 
-    /* Ê¹ÄÜÃë¼ÆÊıÆ÷ */
+    /* ä½¿èƒ½ç§’è®¡æ•°å™¨ */
     amhw_fsl_rtc_time_counter_status_set(p_hw_rtc);
 
-    /* ´òÓ¡ÉèÖÃµÄÊ±¼ä */
+    /* æ‰“å°è®¾ç½®çš„æ—¶é—´ */
     AM_DBG_INFO("the time you set is :%02d-%02d-%02d %02d:%02d:%02d\n",
                 current_time.tm_year + 1900,
                 current_time.tm_mon + 1,

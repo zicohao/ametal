@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief LPC84X I2C0 ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief LPC84X I2C0 ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_lpc84x_i2c0.c
  *
  * \internal
@@ -33,7 +33,7 @@
  */
 
 /**
- * \brief I2C0 Æ½Ì¨³õÊ¼»¯º¯Êı
+ * \brief I2C0 å¹³å°åˆå§‹åŒ–å‡½æ•°
  */
 am_local void __lpc84x_i2c0_plfm_init (void)
 {
@@ -46,7 +46,7 @@ am_local void __lpc84x_i2c0_plfm_init (void)
 }
 
 /**
- * \brief I2C0 Æ½Ì¨½â³õÊ¼»¯º¯Êı
+ * \brief I2C0 å¹³å°è§£åˆå§‹åŒ–å‡½æ•°
  */
 am_local void __lpc84x_i2c0_plfm_deinit (void)
 {
@@ -54,25 +54,25 @@ am_local void __lpc84x_i2c0_plfm_deinit (void)
     amhw_lpc84x_clk_periph_disable(AMHW_LPC84X_CLK_I2C0);
 }
 
-/** \brief I2C0 ×ÜÏßËÙÂÊ²ÎÊı¶¨Òå */
+/** \brief I2C0 æ€»çº¿é€Ÿç‡å‚æ•°å®šä¹‰ */
 #define __BUS_SPEED_I2C0     (10000)
 
-/** \brief I2C0 Éè±¸ĞÅÏ¢ */
+/** \brief I2C0 è®¾å¤‡ä¿¡æ¯ */
 am_local am_const am_lpc_i2c_devinfo_t __g_lpc84x_i2c0_devinfo = {
-    __BUS_SPEED_I2C0,           /* I2C0 ×ÜÏßËÙÂÊ */
-    LPC84X_I2C0_BASE,           /* I2C0 ¼Ä´æÆ÷¿é»ùÖ· */
-    INUM_I2C0,                  /* I2C0 ÖĞ¶ÏºÅ */
-    CLK_I2C0,                   /* I2C0 Ê±ÖÓºÅ */
-    10,                         /* ³¬Ê±Ê±¼ä */
-    __lpc84x_i2c0_plfm_init,    /* Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __lpc84x_i2c0_plfm_deinit   /* Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    __BUS_SPEED_I2C0,           /* I2C0 æ€»çº¿é€Ÿç‡ */
+    LPC84X_I2C0_BASE,           /* I2C0 å¯„å­˜å™¨å—åŸºå€ */
+    INUM_I2C0,                  /* I2C0 ä¸­æ–­å· */
+    CLK_I2C0,                   /* I2C0 æ—¶é’Ÿå· */
+    10,                         /* è¶…æ—¶æ—¶é—´ */
+    __lpc84x_i2c0_plfm_init,    /* å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __lpc84x_i2c0_plfm_deinit   /* å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 };
 
-/** \brief I2C0 Éè±¸ÊµÀı */
+/** \brief I2C0 è®¾å¤‡å®ä¾‹ */
 am_local am_lpc_i2c_dev_t __g_lpc84x_i2c0_dev;
 
 /**
- * \brief I2C0 ÊµÀı³õÊ¼»¯
+ * \brief I2C0 å®ä¾‹åˆå§‹åŒ–
  */
 am_i2c_handle_t am_lpc84x_i2c0_inst_init (void)
 {
@@ -80,7 +80,7 @@ am_i2c_handle_t am_lpc84x_i2c0_inst_init (void)
 }
 
 /**
- * \brief I2C0 ÊµÀı½â³õÊ¼»¯
+ * \brief I2C0 å®ä¾‹è§£åˆå§‹åŒ–
  */
 void am_lpc84x_i2c0_inst_deinit (am_i2c_handle_t handle)
 {

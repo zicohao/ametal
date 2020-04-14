@@ -12,12 +12,12 @@
 
 /**
  * \file
- * \brief PIT����������Timer������ʵ��
+ * \brief PIT驱动，服务Timer驱动层实现
  *
- * 1. PIT֧���ṩ�������ֱ�׼���񣬱������ṩ���Ƿ���Timer��׼�����������
- *     - ��ʱ
- *     - PWM���
- *     - ����
+ * 1. PIT支持提供如下三种标准服务，本驱动提供的是服务Timer标准服务的驱动。
+ *     - 定时
+ *     - PWM输出
+ *     - 捕获
  *
  * \internal
  * \par Modification history
@@ -41,62 +41,62 @@ extern "C" {
  * @{
  */
 
-/** \brief PIT������1��64λ��ʱ��ģʽ, �����ṩ1����ʱ��ͨ��    */
+/** \brief PIT运行在1个64位定时器模式, 仅能提供1个定时器通道    */
 #define AM_FSL_PIT_TIMING_1_64BIT      1
 
-/** \brief PIT������2��32λ��ʱ��ģʽ, ���ṩ2����ʱ��ͨ��      */
+/** \brief PIT运行在2个32位定时器模式, 能提供2个定时器通道      */
 #define AM_FSL_PIT_TIMING_2_32BIT      2
 
 /**
- * \brief PIT��ʱ������ص��豸��Ϣ
+ * \brief PIT定时功能相关的设备信息
  */
 typedef struct am_fsl_pit_timing_devinfo {
-    amhw_fsl_pit_t    *p_hw_pit;    /**< \brief ָ��PIT�Ĵ������ָ�� */
-    uint8_t            flag;        /**< \brief PIT���ñ�־(1-64bit ���� 2-32bit)  */
-    uint8_t            inum;        /**< \brief PIT�жϺ�  */
-    uint32_t           clk_id;      /**< \brief PITʱ�Ӻ�  */
+    amhw_fsl_pit_t    *p_hw_pit;    /**< \brief 指向PIT寄存器块的指针 */
+    uint8_t            flag;        /**< \brief PIT配置标志(1-64bit 或者 2-32bit)  */
+    uint8_t            inum;        /**< \brief PIT中断号  */
+    uint32_t           clk_id;      /**< \brief PIT时钟号  */
 
-    /** \brief ƽ̨��ʼ�����������ʱ�ӣ��������ŵȹ��� */
+    /** \brief 平台初始化函数，如打开时钟，配置引脚等工作 */
     void     (*pfn_plfm_init)(void);
 
-    /** \brief ƽ̨���ʼ������ */
+    /** \brief 平台解初始化函数 */
     void     (*pfn_plfm_deinit)(void);
 
 } am_fsl_pit_timing_devinfo_t;
     
 /**
- * \brief PIT��ʱ�����豸
+ * \brief PIT定时功能设备
  */
 typedef struct am_fsl_pit_timing_dev {
 
-    am_timer_serv_t   timer_serv;           /**< \brief ��׼��ʱ(Timer)���� */
+    am_timer_serv_t   timer_serv;           /**< \brief 标准定时(Timer)服务 */
 
-    void (*pfn_ch1_callback)(void *);       /**< \brief �ص����� */
-    void *p_arg_ch1;                        /**< \brief �ص��������û����� */
+    void (*pfn_ch1_callback)(void *);       /**< \brief 回调函数 */
+    void *p_arg_ch1;                        /**< \brief 回调函数的用户参数 */
     
-    void (*pfn_ch2_callback)(void *);       /**< \brief �ص����� */
-    void *p_arg_ch2;                        /**< \brief �ص��������û����� */
+    void (*pfn_ch2_callback)(void *);       /**< \brief 回调函数 */
+    void *p_arg_ch2;                        /**< \brief 回调函数的用户参数 */
     
-    /** \brief ָ��PIT(��ʱ����)�豸��Ϣ������ָ�� */
+    /** \brief 指向PIT(定时功能)设备信息常量的指针 */
     const am_fsl_pit_timing_devinfo_t  *p_devinfo;
 
 } am_fsl_pit_timing_dev_t;
 
 /**
- * \brief ��ʼ��PITΪ��ʱ����
+ * \brief 初始化PIT为定时功能
  *
- * \param[in] p_dev     : ָ��PIT(��ʱ����)�豸��ָ��
- * \param[in] p_devinfo : ָ��PIT(��ʱ����)�豸��Ϣ������ָ��
+ * \param[in] p_dev     : 指向PIT(定时功能)设备的指针
+ * \param[in] p_devinfo : 指向PIT(定时功能)设备信息常量的指针
  *
- * \return Timer��׼������������ֵΪNULLʱ������ʼ��ʧ��
+ * \return Timer标准服务操作句柄，值为NULL时表明初始化失败
  */
 am_timer_handle_t am_fsl_pit_timing_init (am_fsl_pit_timing_dev_t            *p_dev,
                                           const am_fsl_pit_timing_devinfo_t  *p_devinfo);
 
 /**
- * \brief ��ʹ��PIT��ʱ����ʱ�����ʼ��PIT��ʱ���ܣ��ͷ������Դ
- * \param[in] handle : am_fsl_pit_timing_init() ��ʼ��������õ�Timer������
- * \return ��
+ * \brief 不使用PIT定时功能时，解初始化PIT定时功能，释放相关资源
+ * \param[in] handle : am_fsl_pit_timing_init() 初始化函数获得的Timer服务句柄
+ * \return 无
  */
 void am_fsl_pit_timing_deinit (am_timer_handle_t handle);
 

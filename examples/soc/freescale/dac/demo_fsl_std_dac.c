@@ -12,13 +12,13 @@
 
 /**
  * \file
- * \brief DACÊıÄ£×ª»»Àı³Ì£¬Í¨¹ıSTD½Ó¿ÚÊµÏÖ
+ * \brief DACæ•°æ¨¡è½¬æ¢ä¾‹ç¨‹ï¼Œé€šè¿‡STDæ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. PE30Êä³ö1523mvµçÑ¹¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. PE30è¾“å‡º1523mvç”µå‹ã€‚
  *
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_kl26_std_dac.c src_kl26_std_dac
  *
  * \internal
@@ -42,8 +42,8 @@
 #include "demo_fsl_entrys.h"
 
 /**
- * \brief DACÊä³öµçÑ¹£¬±ê×¼½Ó¿Ú²ãÊµÏÖ
- * \return ÎŞ
+ * \brief DACè¾“å‡ºç”µå‹ï¼Œæ ‡å‡†æ¥å£å±‚å®ç°
+ * \return æ— 
  */
 void demo_fsl_std_dac_entry (am_dac_handle_t dac0_handle,
                              uint32_t        mv_out)
@@ -51,19 +51,19 @@ void demo_fsl_std_dac_entry (am_dac_handle_t dac0_handle,
     uint32_t        dac_bits    = 0;
     uint32_t        dac_vref    = 0;
 
-    /* DACÊµÀı³õÊ¼»¯£¬²¢»ñÈ¡DAC¾ä±úÖµ */
+    /* DACå®ä¾‹åˆå§‹åŒ–ï¼Œå¹¶è·å–DACå¥æŸ„å€¼ */
     dac0_handle = am_kl26_dac0_inst_init();
 
-    /* »ñÈ¡DAC×ª»»¾«¶È */
+    /* è·å–DACè½¬æ¢ç²¾åº¦ */
     dac_bits = am_dac_bits_get(dac0_handle);
 
-    /* »ñÈ¡DAC²Î¿¼µçÑ¹£¬µ¥Î»£ºmV */
+    /* è·å–DACå‚è€ƒç”µå‹ï¼Œå•ä½ï¼šmV */
     dac_vref = am_dac_vref_get(dac0_handle);
 
-    /* ÉèÖÃDACÍ¨µÀÊä³öµçÑ¹Öµ */
+    /* è®¾ç½®DACé€šé“è¾“å‡ºç”µå‹å€¼ */
     am_dac_mv_set(dac0_handle, AMHW_FSL_DAC0_CHAN_0, mv_out);
 
-    /* Ê¹ÄÜDACÊä³ö */
+    /* ä½¿èƒ½DACè¾“å‡º */
     am_dac_enable(dac0_handle, AMHW_FSL_DAC0_CHAN_0);
 
     am_kprintf("DAC Std Demo test\n");

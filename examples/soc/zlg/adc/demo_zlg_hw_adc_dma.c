@@ -12,12 +12,12 @@
 
 /**
  * \file
- * \brief ADC¶àÍ¨µÀÍ¨¹ıDMA´«Êä£¬Í¨¹ıÇı¶¯²ã½Ó¿ÚÊµÏÖ
+ * \brief ADCå¤šé€šé“é€šè¿‡DMAä¼ è¾“ï¼Œé€šè¿‡é©±åŠ¨å±‚æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ¶ÔÓ¦ADCÍ¨µÀ´òÓ¡µçÑ¹Öµ¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. å¯¹åº”ADCé€šé“æ‰“å°ç”µå‹å€¼ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_zlg_adc_dma.c src_zlg_adc_dma
  *
  * \internal
@@ -41,20 +41,20 @@
 
 #define  BUF_SIZE    10
 
-static uint32_t __g_buf_dst[BUF_SIZE];   /**< \brief Ä¿±ê¶ËÊı¾İ»º³åÇø */
+static uint32_t __g_buf_dst[BUF_SIZE];   /**< \brief ç›®æ ‡ç«¯æ•°æ®ç¼“å†²åŒº */
 
-static uint16_t __g_adc_dat[8];          /**< \brief ADCÊı¾İ»º³åÇø */
+static uint16_t __g_adc_dat[8];          /**< \brief ADCæ•°æ®ç¼“å†²åŒº */
 
-static am_bool_t g_trans_done;           /**< \brief ´«ÊäÍê³É±êÖ¾ */
+static am_bool_t g_trans_done;           /**< \brief ä¼ è¾“å®Œæˆæ ‡å¿— */
 
-static amhw_zlg_dma_xfer_desc_t g_desc;  /**< \brief DMAÃèÊö·û */
+static amhw_zlg_dma_xfer_desc_t g_desc;  /**< \brief DMAæè¿°ç¬¦ */
 
-static int *__gp_adc_chan = NULL;        /* Ö¸ÏòADCÍ¨µÀÁĞ±í */
+static int *__gp_adc_chan = NULL;        /* æŒ‡å‘ADCé€šé“åˆ—è¡¨ */
 
-static int __g_adc_chan_num;             /* ADCÍ¨µÀÊı */
+static int __g_adc_chan_num;             /* ADCé€šé“æ•° */
 
 /**
- * \brief DMA ÖĞ¶Ï·şÎñ³ÌĞò
+ * \brief DMA ä¸­æ–­æœåŠ¡ç¨‹åº
  */
 static void dma_isr (void *p_arg , uint32_t flag)
 {
@@ -66,10 +66,10 @@ static void dma_isr (void *p_arg , uint32_t flag)
 
         for (i = 0; i < BUF_SIZE; i++) {
 
-            /* »ñÈ¡µ±Ç°ÇëÇóDMAµÄADCÍ¨µÀ */
+            /* è·å–å½“å‰è¯·æ±‚DMAçš„ADCé€šé“ */
             cur_chan = (__g_buf_dst[i] >> 16) & 0x0f;
 
-            /* ¼ì²éADCÍ¨µÀÊÇ·ñºÏ·¨ */
+            /* æ£€æŸ¥ADCé€šé“æ˜¯å¦åˆæ³• */
             for (j = 0; j < __g_adc_chan_num; j++) {
                 if (cur_chan == __gp_adc_chan[j]) {
                     break;
@@ -79,7 +79,7 @@ static void dma_isr (void *p_arg , uint32_t flag)
                 }
             }
 
-            /* µÍ12Î»ÎªADC²É¼¯Êı¾İ */
+            /* ä½12ä½ä¸ºADCé‡‡é›†æ•°æ® */
             __g_adc_dat[cur_chan] = __g_buf_dst[i] & 0xfff;
         }
 
@@ -106,7 +106,7 @@ static void __zlg_adc_init (amhw_zlg_adc_t *p_hw_adc,
 
     amhw_zlg_adc_cgf_reg_set(p_hw_adc, AMHW_ZLG_ADC_MODULE_EN_MASK);
 
-    /* Ê¹ÄÜADC DMAÇëÇó */
+    /* ä½¿èƒ½ADC DMAè¯·æ±‚ */
     amhw_zlg_adc_ctrl_reg_set(p_hw_adc,
                               AMHW_ZLG_ADC_DMA_EN_MASK);
 
@@ -116,14 +116,14 @@ static void __zlg_adc_init (amhw_zlg_adc_t *p_hw_adc,
 }
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_zlg_hw_adc_dma_entry (amhw_zlg_adc_t *p_hw_adc,
                                 int            *p_adc_chan,
                                 int             adc_chan_num,
                                 uint8_t         dma_chan)
 {
-    uint32_t adc_mv = 0;    /* ²ÉÑùµçÑ¹ */
+    uint32_t adc_mv = 0;    /* é‡‡æ ·ç”µå‹ */
     uint32_t flags;
     int      i;
 
@@ -131,39 +131,39 @@ void demo_zlg_hw_adc_dma_entry (amhw_zlg_adc_t *p_hw_adc,
 
     __zlg_adc_init(p_hw_adc, p_adc_chan, adc_chan_num);
 
-    /* Á¬½Ó DMA ÖĞ¶Ï·şÎñº¯Êı */
+    /* è¿æ¥ DMA ä¸­æ–­æœåŠ¡å‡½æ•° */
     am_zlg_dma_isr_connect(dma_chan, dma_isr, (void *)p_hw_adc);
 
-    /* DMA ´«ÊäÅäÖÃ */
-    flags = AMHW_ZLG_DMA_CHAN_PRIORITY_HIGH         |  /* ÖĞ¶ÏÓÅÏÈ¼¶ ¸ß */
-            AMHW_ZLG_DMA_CHAN_MEM_SIZE_32BIT        |  /* ÄÚ´æÊı¾İ¿í¶È 2 ×Ö½Ú */
-            AMHW_ZLG_DMA_CHAN_PER_SIZE_32BIT        |  /* ÍâÉèÊı¾İ¿í¶È 2 ×Ö½Ú */
-            AMHW_ZLG_DMA_CHAN_MEM_ADD_INC_ENABLE    |  /* ÄÚ´æµØÖ·×ÔÔö */
-            AMHW_ZLG_DMA_CHAN_PER_ADD_INC_DISABLE   |  /* ÍâÉèµØÖ·²»×ÔÔö */
-            AMHW_ZLG_DMA_CHAN_CIRCULAR_MODE_ENABLE  |  /* ´ò¿ªÑ­»·Ä£Ê½ */
-            AMHW_ZLG_DMA_CHAN_INT_TX_CMP_ENABLE;       /* Ê¹ÄÜDMA´«ÊäÍê³ÉÖĞ¶Ï */
+    /* DMA ä¼ è¾“é…ç½® */
+    flags = AMHW_ZLG_DMA_CHAN_PRIORITY_HIGH         |  /* ä¸­æ–­ä¼˜å…ˆçº§ é«˜ */
+            AMHW_ZLG_DMA_CHAN_MEM_SIZE_32BIT        |  /* å†…å­˜æ•°æ®å®½åº¦ 2 å­—èŠ‚ */
+            AMHW_ZLG_DMA_CHAN_PER_SIZE_32BIT        |  /* å¤–è®¾æ•°æ®å®½åº¦ 2 å­—èŠ‚ */
+            AMHW_ZLG_DMA_CHAN_MEM_ADD_INC_ENABLE    |  /* å†…å­˜åœ°å€è‡ªå¢ */
+            AMHW_ZLG_DMA_CHAN_PER_ADD_INC_DISABLE   |  /* å¤–è®¾åœ°å€ä¸è‡ªå¢ */
+            AMHW_ZLG_DMA_CHAN_CIRCULAR_MODE_ENABLE  |  /* æ‰“å¼€å¾ªç¯æ¨¡å¼ */
+            AMHW_ZLG_DMA_CHAN_INT_TX_CMP_ENABLE;       /* ä½¿èƒ½DMAä¼ è¾“å®Œæˆä¸­æ–­ */
 
-        /* ½¨Á¢Í¨µÀÃèÊö·û */
-    am_zlg_dma_xfer_desc_build(&g_desc,                      /* Í¨µÀÃèÊö·û */
-                               (uint32_t)(&p_hw_adc->addata), /* Ô´¶ËÊı¾İ»º³åÇø */
-                               (uint32_t)(__g_buf_dst),    /* Ä¿±ê¶ËÊı¾İ»º³åÇø */
-                               sizeof(__g_buf_dst),         /* ´«Êä×Ö½ÚÊı */
-                               flags);                                     /* ´«ÊäÅäÖÃ */
+        /* å»ºç«‹é€šé“æè¿°ç¬¦ */
+    am_zlg_dma_xfer_desc_build(&g_desc,                      /* é€šé“æè¿°ç¬¦ */
+                               (uint32_t)(&p_hw_adc->addata), /* æºç«¯æ•°æ®ç¼“å†²åŒº */
+                               (uint32_t)(__g_buf_dst),    /* ç›®æ ‡ç«¯æ•°æ®ç¼“å†²åŒº */
+                               sizeof(__g_buf_dst),         /* ä¼ è¾“å­—èŠ‚æ•° */
+                               flags);                                     /* ä¼ è¾“é…ç½® */
 
     am_zlg_dma_xfer_desc_chan_cfg(&g_desc,
-                                   AMHW_ZLG_DMA_PER_TO_MER, /* ÍâÉèµ½ÄÚ´æ */
+                                   AMHW_ZLG_DMA_PER_TO_MER, /* å¤–è®¾åˆ°å†…å­˜ */
                                    dma_chan);
 
-    /* Æô¶¯ DMA ´«Êä£¬ÂíÉÏ¿ªÊ¼´«Êä */
+    /* å¯åŠ¨ DMA ä¼ è¾“ï¼Œé©¬ä¸Šå¼€å§‹ä¼ è¾“ */
     am_zlg_dma_chan_start(dma_chan);
 
     while(1) {
 
-        while(g_trans_done == AM_FALSE); /* µÈ´ı´«ÊäÍê³É */
+        while(g_trans_done == AM_FALSE); /* ç­‰å¾…ä¼ è¾“å®Œæˆ */
 
         for (i = 0; i < adc_chan_num; i++) {
 
-            /* ×ª»»ÎªµçÑ¹Öµ¶ÔÓ¦µÄÕûÊıÖµ */
+            /* è½¬æ¢ä¸ºç”µå‹å€¼å¯¹åº”çš„æ•´æ•°å€¼ */
             adc_mv = __g_adc_dat[p_adc_chan[i]] * 3300 / ((1UL << 12) -1);
 
             am_kprintf("chan: %d, Sample : %d, Vol: %d mv\r\n", p_adc_chan[i],

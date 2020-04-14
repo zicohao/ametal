@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ´«¸ĞÆ÷ LPS22HB ÅäÖÃÎÄ¼ş
+ * \brief ä¼ æ„Ÿå™¨ LPS22HB é…ç½®æ–‡ä»¶
  *
  * \internal
  * \par Modification history
@@ -25,16 +25,16 @@
 #include "zlg116_pin.h"
 #include "am_zlg116_inst_init.h"
 
-/** \brief ´«¸ĞÆ÷ LPS22HB Éè±¸ĞÅÏ¢ÊµÀı */
+/** \brief ä¼ æ„Ÿå™¨ LPS22HB è®¾å¤‡ä¿¡æ¯å®ä¾‹ */
 am_const am_local struct am_sensor_lps22hb_devinfo __g_lps22hb_info = {
-    PIOB_0,            /*< \brief ´¥·¢Òı½Å¶¨Òå    */
-    0x5C               /*< \breif LPS22HB I2CµØÖ· */
+    PIOB_0,            /*< \brief è§¦å‘å¼•è„šå®šä¹‰    */
+    0x5C               /*< \breif LPS22HB I2Cåœ°å€ */
 };
 
-/** \breif ´«¸ĞÆ÷ LPS22HB Éè±¸½á¹¹Ìå¶¨Òå */
+/** \breif ä¼ æ„Ÿå™¨ LPS22HB è®¾å¤‡ç»“æ„ä½“å®šä¹‰ */
 am_local struct am_sensor_lps22hb_dev __g_lps22hb_dev;
 
-/** \brief ´«¸ĞÆ÷ LPS22HB Éè±¸ÊµÀı»¯ */
+/** \brief ä¼ æ„Ÿå™¨ LPS22HB è®¾å¤‡å®ä¾‹åŒ– */
 am_sensor_handle_t am_sensor_lps22hb_inst_init (void)
 {
     return am_sensor_lps22hb_init(&__g_lps22hb_dev,
@@ -42,7 +42,7 @@ am_sensor_handle_t am_sensor_lps22hb_inst_init (void)
                                   am_zlg116_i2c1_inst_init());
 }
 
-/** \brief ´«¸ĞÆ÷ LPS22HB ÊµÀı½â³õÊ¼»¯ */
+/** \brief ä¼ æ„Ÿå™¨ LPS22HB å®ä¾‹è§£åˆå§‹åŒ– */
 am_err_t am_sensor_lps22hb_inst_deinit (am_sensor_handle_t handle)
 {
     return am_sensor_lps22hb_deinit(handle);

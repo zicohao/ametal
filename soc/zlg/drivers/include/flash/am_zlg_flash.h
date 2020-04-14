@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief FlashÇı¶¯²ã½Ó¿Ú
+ * \brief Flashé©±åŠ¨å±‚æ¥å£
  *
  * \internal
  * \par Modification History
@@ -39,34 +39,34 @@ extern "C" {
  */
 
 /**
- * \brief FlashÄ£¿é³õÊ¼»¯
+ * \brief Flashæ¨¡å—åˆå§‹åŒ–
  *
- * \param[in] p_hw_flash Ö¸ÏòFLASH¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_flash æŒ‡å‘FLASHå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg_flash_init (amhw_zlg_flash_t *p_hw_flash);
 
 /**
- * \brief ²Á³ıÉÈÇø
+ * \brief æ“¦é™¤æ‰‡åŒº
  *
- * \param[in] p_hw_flash  Ö¸ÏòFLASH¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] start_addr  ÉÈÇøµÄÆğÊ¼µØÖ·
+ * \param[in] p_hw_flash  æŒ‡å‘FLASHå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] start_addr  æ‰‡åŒºçš„èµ·å§‹åœ°å€
  *
- * \return >0: Ö´ĞĞ½á¹û, -AM_EINVAL: ÊäÈëµØÖ·¹ı´ó
+ * \return >0: æ‰§è¡Œç»“æœ, -AM_EINVAL: è¾“å…¥åœ°å€è¿‡å¤§
  */
 int32_t am_zlg_flash_sector_erase (amhw_zlg_flash_t *p_hw_flash,
                                    uint32_t             start_addr);
 
 /**
- * \brief ¶ÔÉÈÇø±à³Ì»ò²¿·ÖÉÈÇø±à³Ì
+ * \brief å¯¹æ‰‡åŒºç¼–ç¨‹æˆ–éƒ¨åˆ†æ‰‡åŒºç¼–ç¨‹
  *
- * \param[in] p_hw_flash Ö¸ÏòFLASH¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] dst_addr   Ğ´Èëµ½flashµÄÆğÊ¼µØÖ·
- * \param[in] p_src      ÒªĞ´Èëµ½flashÖĞµÄÊı¾İµÄÆğÊ¼µØÖ·
- * \param[in] size       Ğ´Èë×Ö(32bit)µÄ¸öÊı
+ * \param[in] p_hw_flash æŒ‡å‘FLASHå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] dst_addr   å†™å…¥åˆ°flashçš„èµ·å§‹åœ°å€
+ * \param[in] p_src      è¦å†™å…¥åˆ°flashä¸­çš„æ•°æ®çš„èµ·å§‹åœ°å€
+ * \param[in] size       å†™å…¥å­—(32bit)çš„ä¸ªæ•°
  *
- * \retval 0 Êµ¼Ê³É¹¦Ğ´ÈëµÄ×ÖÊı
+ * \retval 0 å®é™…æˆåŠŸå†™å…¥çš„å­—æ•°
  */
 int32_t am_zlg_flash_flash_program (amhw_zlg_flash_t *p_hw_flash,
                                     uint32_t             dst_addr,
@@ -74,11 +74,11 @@ int32_t am_zlg_flash_flash_program (amhw_zlg_flash_t *p_hw_flash,
                                     uint32_t             size);
 
 /**
- * \brief ²Á³ıËùÓĞÉÈÇø
+ * \brief æ“¦é™¤æ‰€æœ‰æ‰‡åŒº
  *
- * \param[in] p_hw_flash Ö¸ÏòFLASH¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_flash æŒ‡å‘FLASHå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return Ö´ĞĞ½á¹û
+ * \return æ‰§è¡Œç»“æœ
  *
  */
 uint32_t am_zlg_flash_all_sector_erase (amhw_zlg_flash_t *p_hw_flash);

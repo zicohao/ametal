@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief bootloader ´®ĞĞÊı¾İ²Ù×÷±ê×¼Éè±¸ÊµÏÖ£¨uartÇı¶¯£©
+ * \brief bootloader ä¸²è¡Œæ•°æ®æ“ä½œæ ‡å‡†è®¾å¤‡å®ç°ï¼ˆuarté©±åŠ¨ï¼‰
  *
  * \internal
  * \par modification history:
@@ -27,8 +27,8 @@
 #include "am_zlg116_inst_init.h"
 #include "am_bootconf_zlg116.h"
 
-#define UART_CH       ZLG116_UART1_BASE  /**< \brief UARTÍ¨µÀ */
-#define UART_INT_NUM  INUM_UART1         /**< \brief UARTÖĞ¶ÏºÅ*/
+#define UART_CH       ZLG116_UART1_BASE  /**< \brief UARTé€šé“ */
+#define UART_INT_NUM  INUM_UART1         /**< \brief UARTä¸­æ–­å·*/
 
 static serial_byte_receive_func_t __g_uart_byte_receive_callback;
 
@@ -57,7 +57,7 @@ static void __uart_irq_handler(void *p_arg)
     if (amhw_zlg_uart_int_flag_check((amhw_zlg_uart_t *)UART_CH, AMHW_ZLG_UART_INT_RX_VAL_FLAG) == AM_TRUE) {
 
         amhw_zlg_uart_int_flag_clr((amhw_zlg_uart_t *)UART_CH,AMHW_ZLG_UART_INT_RX_VAL_FLAG);
-        /* »ñÈ¡ĞÂ½ÓÊÕÊı¾İ£¬²¢·¢ËÍ³öÈ¥ */
+        /* è·å–æ–°æ¥æ”¶æ•°æ®ï¼Œå¹¶å‘é€å‡ºå» */
         data = amhw_zlg_uart_data_read((amhw_zlg_uart_t *)UART_CH);
 
         __g_uart_byte_receive_callback(data);
@@ -66,11 +66,11 @@ static void __uart_irq_handler(void *p_arg)
 
 static void __zlg116_uart_int_init()
 {
-    /* Ê¹ÄÜRDRF½ÓÊÕ×¼ÖĞ¶Ï */
+    /* ä½¿èƒ½RDRFæ¥æ”¶å‡†ä¸­æ–­ */
     amhw_zlg_uart_int_enable((amhw_zlg_uart_t *)UART_CH, AMHW_ZLG_UART_INT_RX_VAL_ENABLE);
     amhw_zlg_uart_int_flag_clr((amhw_zlg_uart_t *)UART_CH,AMHW_ZLG_UART_INT_RX_VAL_ENABLE);
 
-    /* ¹ØÁªÖĞ¶ÏÏòÁ¿ºÅ£¬¿ªÆôÖĞ¶Ï */
+    /* å…³è”ä¸­æ–­å‘é‡å·ï¼Œå¼€å¯ä¸­æ–­ */
     am_int_enable(UART_INT_NUM);
     am_int_connect(UART_INT_NUM, (am_pfnvoid_t)__uart_irq_handler, (void *)NULL);
 }

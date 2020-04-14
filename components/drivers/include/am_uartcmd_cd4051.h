@@ -3,9 +3,9 @@
 
 #include "ametal.h"
 
-#define  AM_FM175XX_ANTENNA_ONE       1  /**< \brief 1¿É¿ØÌìÏßÉè±¸ FM17510 */
-#define  AM_FM175XX_ANTENNA_TWO       2  /**< \brief 2¿É¿ØÌìÏßÉè±¸ FM17550 */
-#define  AM_FM175XX_ANTENNA_EIGHT     8  /**< \brief 8¿É¿ØÌìÏßÉè±¸ FM175xx + CD4051*/
+#define  AM_FM175XX_ANTENNA_ONE       1  /**< \brief 1å¯æŽ§å¤©çº¿è®¾å¤‡ FM17510 */
+#define  AM_FM175XX_ANTENNA_TWO       2  /**< \brief 2å¯æŽ§å¤©çº¿è®¾å¤‡ FM17550 */
+#define  AM_FM175XX_ANTENNA_EIGHT     8  /**< \brief 8å¯æŽ§å¤©çº¿è®¾å¤‡ FM175xx + CD4051*/
 
 typedef struct am_cd4051_device_info{
     int pin_en;
@@ -20,19 +20,19 @@ typedef struct am_antenna_info{
 }am_antenna_info_t;
 
 /**
- * \brief cd4051Òý½Å³õÊ¼»¯
+ * \brief cd4051å¼•è„šåˆå§‹åŒ–
  */
 void uartcmd_cd4051_pin_init (am_antenna_info_t *p_dev);
 
 /**
- * \brief cd4051Ê¹ÄÜ
+ * \brief cd4051ä½¿èƒ½
  */
 void uartcmd_cd4051_chip_en (am_antenna_info_t *p_dev);
 
 /**
- * \brief cd4051Í¨µÀÑ¡Ôñ
+ * \brief cd4051é€šé“é€‰æ‹©
  *
- * \param[in] channel_num : Ñ¡ÔñµÄÍ¨µÀºÅ(0~7)
+ * \param[in] channel_num : é€‰æ‹©çš„é€šé“å·(0~7)
  */
 void uartcmd_cd4051_channel_selected (am_antenna_info_t *p_dev, uint8_t channel_num);
 

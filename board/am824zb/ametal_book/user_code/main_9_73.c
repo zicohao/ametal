@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥ 9.73
+ * \brief ç¨‹åºæ¸…å• 9.73
  * 
  * \internal
  * \par Modification history
@@ -26,7 +26,7 @@
 #include "model_bool.h"
 #include "view_led.h"
 
-static model_bool_t __g_model_bool;      			// ¶¨ÒåÒ»¸ö²¼¶ûĞÍÄ£ĞÍÊµÀı
+static model_bool_t __g_model_bool;      			// å®šä¹‰ä¸€ä¸ªå¸ƒå°”å‹æ¨¡å‹å®ä¾‹
 static void __input_key_proc (void *p_arg, int key_code, int key_state, int keep_time)
 {
 	    am_bool_t value;
@@ -40,16 +40,16 @@ static void __input_key_proc (void *p_arg, int key_code, int key_state, int keep
 	
 int am_main (void)
 {
-    view_led_t              view_led0;     		//¶¨ÒåÒ»¸öLEDÊÓÍ¼ÊµÀı
-    am_input_key_handler_t  key_handler;   	  //¶¨ÒåÒ»¸ö°´¼ü´¦ÀíÆ÷
+    view_led_t              view_led0;     		//å®šä¹‰ä¸€ä¸ªLEDè§†å›¾å®ä¾‹
+    am_input_key_handler_t  key_handler;   	  //å®šä¹‰ä¸€ä¸ªæŒ‰é”®å¤„ç†å™¨
 
-    //×¢²á°´¼üÊÂ¼ş
+    //æ³¨å†ŒæŒ‰é”®äº‹ä»¶
     am_input_key_handler_register(&key_handler, __input_key_proc, (void *)NULL);
-    //³õÊ¼»¯Ä£ĞÍ,valueµÄ³õÊ¼ÖµÎªAM_FALSE
+    //åˆå§‹åŒ–æ¨¡å‹,valueçš„åˆå§‹å€¼ä¸ºAM_FALSE
     model_bool_init(&__g_model_bool, AM_TRUE);
-    //³õÊ¼»¯ÊÓÍ¼ÊµÀı
+    //åˆå§‹åŒ–è§†å›¾å®ä¾‹
     view_led_init(&view_led0, 0);
-    //Ìí¼ÓÊÓÍ¼
+    //æ·»åŠ è§†å›¾
     model_attach(&(__g_model_bool.isa), &(view_led0.isa));
     while (1) {
     }

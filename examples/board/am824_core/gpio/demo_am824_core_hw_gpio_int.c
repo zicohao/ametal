@@ -12,16 +12,16 @@
 
 /**
  * \file
- * \brief GPIO �����ж����̣�ͨ����׼�ӿ�ʵ��
+ * \brief GPIO 引脚中断例程，通过标准接口实现
  *
- * - ʵ������
- *   1. PIO0_1 �ĵ�ƽ�ɸߵ�ƽ�ı�Ϊ�͵�ƽ������ KEY/RES ���£�ʱ��LED0 ״̬�ı䡣
+ * - 实验现象：
+ *   1. PIO0_1 的电平由高电平改变为低电平（按键 KEY/RES 按下）时，LED0 状态改变。
  *
  * \note
- *    1. LED0 ��Ҫ�̽� J9 ����ñ�����ܱ� PIO0_20 ���ƣ�
- *    2. ������Ҫ�� J14 ����ñ�� KEY �� PIO0_1 �̽Ӳ���ʹ�á�
+ *    1. LED0 需要短接 J9 跳线帽，才能被 PIO0_20 控制；
+ *    2. 按键需要将 J14 跳线帽的 KEY 和 PIO0_1 短接才能使用。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_am824_hw_gpio_int.c src_am824_hw_gpio_int
  *
  * \internal
@@ -45,32 +45,32 @@
 #include "hw/amhw_lpc82x_iocon.h"
 #include "demo_nxp_entries.h"
 
-/** \brief LED0 ���� */
+/** \brief LED0 引脚 */
 #define __LED0_PIN  PIO0_20
 
-/** \brief �������� */
+/** \brief 按键引脚 */
 #define __KEY_PIN  PIO0_1
 
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_am824_core_hw_gpio_int_entry (void)
 {
 
     am_kprintf("demo am824 hw gpio int!\r\n");
 
-    /* ���� LED ���ŷ���Ϊ��� */
+    /* 配置 LED 引脚方向为输出 */
     amhw_lpc82x_gpio_pin_dir_output(LPC82X_GPIO, __LED0_PIN);
 
-    /* ���� KEY ���ŷ���Ϊ���� */
+    /* 配置 KEY 引脚方向为输入 */
     amhw_lpc82x_gpio_pin_dir_input(LPC82X_GPIO, __KEY_PIN);
 
-    /* ���� KEY ����Ϊ���� */
+    /* 配置 KEY 引脚为上拉 */
     amhw_lpc82x_iocon_mode_set(LPC82X_IOCON, __KEY_PIN,
                                AMHW_LPC82X_IOCON_MODE_PULLUP);
 
-    /* ����Ϊ�½��ش��� */
+    /* 配置为下降沿触发 */
     amhw_lpc82x_pint_trigger_set(LPC82X_PINT,
                                  AMHW_LPC82X_PINT_CHAN_0,
                                  AMHW_LPC82X_PINT_TRIGGER_FALL);

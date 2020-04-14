@@ -12,22 +12,22 @@
 
 /**
  * \file
- * \brief ´ı»úÄ£Ê½Àı³Ì£¬Í¨¹ıÇı¶¯²ã½Ó¿ÚÊµÏÖ
+ * \brief å¾…æœºæ¨¡å¼ä¾‹ç¨‹ï¼Œé€šè¿‡é©±åŠ¨å±‚æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè£º
- *   1. ÉÏµçÇ°½« WAKE_UP(PIOA_0) Á¬½Óµ½µÍµçÆ½£»
- *   2. µÈ´ı MCU ½øÈë´ı»úÄ£Ê½£»
- *   3. ½« PIOA_0 Á¬½Óµ½¸ßµçÆ½£¬Ê¹ PIOA_0 ÉÏ²úÉúÉÏÉıÑØ»½ĞÑ MCU¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. ä¸Šç”µå‰å°† WAKE_UP(PIOA_0) è¿æ¥åˆ°ä½ç”µå¹³ï¼›
+ *   2. ç­‰å¾… MCU è¿›å…¥å¾…æœºæ¨¡å¼ï¼›
+ *   3. å°† PIOA_0 è¿æ¥åˆ°é«˜ç”µå¹³ï¼Œä½¿ PIOA_0 ä¸Šäº§ç”Ÿä¸Šå‡æ²¿å”¤é†’ MCUã€‚
  *
- * - ÊµÏÖÏÖÏó
- *   1. ³É¹¦½øÈë´ı»úÄ£Ê½Ê±£¬´®¿ÚÊä³ö"enter standby!"£¬ÇÒ J-Link µ÷ÊÔ¶Ï¿ª£»
- *      ·ñÔò´®¿ÚÊä³ö"WAKE_UP(PIOA_0) must be low!"£»
- *   2. PIOA_0 ²úÉúÉÏÉıÑØºó£¬MCU ¸´Î»ÔËĞĞ¡£
+ * - å®ç°ç°è±¡
+ *   1. æˆåŠŸè¿›å…¥å¾…æœºæ¨¡å¼æ—¶ï¼Œä¸²å£è¾“å‡º"enter standby!"ï¼Œä¸” J-Link è°ƒè¯•æ–­å¼€ï¼›
+ *      å¦åˆ™ä¸²å£è¾“å‡º"WAKE_UP(PIOA_0) must be low!"ï¼›
+ *   2. PIOA_0 äº§ç”Ÿä¸Šå‡æ²¿åï¼ŒMCU å¤ä½è¿è¡Œã€‚
  *
  * \note
- *    Ö»ÓĞÔÚ WAKE_UP(PIOA_0) ÎªµÍµçÆ½µÄÊ±ºò²ÅÄÜ½øÈë´ı»úÄ£Ê½
+ *    åªæœ‰åœ¨ WAKE_UP(PIOA_0) ä¸ºä½ç”µå¹³çš„æ—¶å€™æ‰èƒ½è¿›å…¥å¾…æœºæ¨¡å¼
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_zmf159_drv_standbymode_wake_up.c src_zmf159_drv_standbymode_wake_up
  *
  * \internal
@@ -54,7 +54,7 @@
 #include "am_zmf159_inst_init.h"
 
 /**
- * \brief ÉÁË¸ LED0
+ * \brief é—ªçƒ LED0
  */
 am_local void __led_flash (void)
 {
@@ -67,7 +67,7 @@ am_local void __led_flash (void)
 }
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_zmf159_drv_standbymode_wake_up_entry (void)
 {
@@ -77,22 +77,22 @@ void demo_zmf159_drv_standbymode_wake_up_entry (void)
 
     am_zmf159_pwr_inst_init();
 
-    /* »½ĞÑÅäÖÃ */
+    /* å”¤é†’é…ç½® */
     am_zmf159_wake_up_cfg(AM_ZMF159_PWR_MODE_STANBY, NULL, NULL);
 
     for (i = 0; i < 5; i++) {
         am_mdelay(1000);
     }
 
-    /* ½øÈë´ı»úÄ£Ê½ */
+    /* è¿›å…¥å¾…æœºæ¨¡å¼ */
     if (am_zmf159_pwr_mode_into(AM_ZMF159_PWR_MODE_STANBY) != AM_OK) {
 
-        /* Ö»ÓĞÔÚ WAKE_UP(PIOA_0) ÎªµÍµçÆ½µÄÊ±ºò²ÅÄÜ½øÈë´ı»úÄ£Ê½ */
+        /* åªæœ‰åœ¨ WAKE_UP(PIOA_0) ä¸ºä½ç”µå¹³çš„æ—¶å€™æ‰èƒ½è¿›å…¥å¾…æœºæ¨¡å¼ */
         AM_DBG_INFO("WAKE_UP(PIOA_0) must be low!\r\n");
         __led_flash();
     }
 
-    /* ²»Ó¦¸ÃÖ´ĞĞµ½ÕâÀï£¬ÒòÎª´ı»úÄ£Ê½»½ĞÑÖ®ºóĞ¾Æ¬»áÖ±½Ó¸´Î» */
+    /* ä¸åº”è¯¥æ‰§è¡Œåˆ°è¿™é‡Œï¼Œå› ä¸ºå¾…æœºæ¨¡å¼å”¤é†’ä¹‹åèŠ¯ç‰‡ä¼šç›´æ¥å¤ä½ */
     AM_DBG_INFO("error!\r\n");
 
     __led_flash();

@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZMF159 µçÔ´¹ÜÀí(µÍ¹¦ºÄÄ£Ê½)ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief ZMF159 ç”µæºç®¡ç†(ä½åŠŸè€—æ¨¡å¼)ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_zmf159_pwr.c
  *
  * \internal
@@ -31,59 +31,59 @@
  * @{
  */
 
-/** \brief PWRÆ½Ì¨³õÊ¼»¯ */
+/** \brief PWRå¹³å°åˆå§‹åŒ– */
 void __zmf159_plfm_pwr_init (void)
 {
     am_clk_enable(CLK_PWR);
     am_zmf159_clk_reset(CLK_PWR);
 }
 
-/** \brief PWRÆ½Ì¨È¥³õÊ¼»¯ */
+/** \brief PWRå¹³å°å»åˆå§‹åŒ– */
 void __zmf159_plfm_pwr_deinit (void)
 {
     am_zmf159_clk_reset(CLK_PWR);
     am_clk_disable(CLK_PWR);
 }
 
-/** \brief Òı½Å´¥·¢ĞÅÏ¢ÄÚ´æ */
+/** \brief å¼•è„šè§¦å‘ä¿¡æ¯å†…å­˜ */
 static struct am_zmf159_pwr_mode_init __g_pwr_mode_init[3] = {
      {AM_ZMF159_PWR_MODE_SLEEP,  PIOC_7},
      {AM_ZMF159_PWR_MODE_STOP,   PIOC_7},
      {AM_ZMF159_PWR_MODE_STANBY, PIOA_0},
 };
 
-/** \brief PVD´¥·¢ĞÅÏ¢ÄÚ´æ */
+/** \brief PVDè§¦å‘ä¿¡æ¯å†…å­˜ */
 static struct am_zmf159_pwr_pvd_info __g_pwr_pvd_info = {
-     AMHW_ZLG_PVD_LEVER_3_3V,  /**< \brief PVD¼à¿ØµçÑ¹ */
-     AM_TRUE,                     /**< \brief Ê¹ÄÜ¼à¿ØµçÑ¹ */
-     2,                           /**< \brief ¼à¿ØµçÑ¹Ä£Ê½ */
+     AMHW_ZLG_PVD_LEVER_3_3V,  /**< \brief PVDç›‘æ§ç”µå‹ */
+     AM_TRUE,                     /**< \brief ä½¿èƒ½ç›‘æ§ç”µå‹ */
+     2,                           /**< \brief ç›‘æ§ç”µå‹æ¨¡å¼ */
 };
 
-/** \brief PWRÉè±¸ĞÅÏ¢ */
+/** \brief PWRè®¾å¤‡ä¿¡æ¯ */
 const am_zmf159_pwr_devinfo_t __g_pwr_devinfo = {
-    ZMF159_PWR_BASE,            /**< \brief PWR¿ØÖÆÆ÷¼Ä´æÆ÷¿é»ùÖ· */
-//    ZMF159_BKP_BASE,            /**< \brief BKPÅäÖÃ¼Ä´æÆ÷¿é»ùÖ· */
+    ZMF159_PWR_BASE,            /**< \brief PWRæ§åˆ¶å™¨å¯„å­˜å™¨å—åŸºå€ */
+//    ZMF159_BKP_BASE,            /**< \brief BKPé…ç½®å¯„å­˜å™¨å—åŸºå€ */
     ZMF159_EXTI_BASE,
-    CLK_AHB1,                   /**< \brief AHBÊ±ÖÓID */
-    CLK_APB1,                   /**< \brief APB1Ê±ÖÓID */
-    CLK_APB2,                   /**< \brief APB2Ê±ÖÓID */
-    INUM_PVD,                   /**< \brief pvdÖĞ¶ÏID */
-    __g_pwr_mode_init,          /**< \brief Ö¸Ïòpwr¹¦ºÄÄ£Ê½Êı×éµÄÖ¸Õë */
-    &__g_pwr_pvd_info,          /**< \brief Ö¸ÏòpvdµçÑ¹¼à¿ØĞÅÏ¢µÄÖ¸Õë */
+    CLK_AHB1,                   /**< \brief AHBæ—¶é’ŸID */
+    CLK_APB1,                   /**< \brief APB1æ—¶é’ŸID */
+    CLK_APB2,                   /**< \brief APB2æ—¶é’ŸID */
+    INUM_PVD,                   /**< \brief pvdä¸­æ–­ID */
+    __g_pwr_mode_init,          /**< \brief æŒ‡å‘pwråŠŸè€—æ¨¡å¼æ•°ç»„çš„æŒ‡é’ˆ */
+    &__g_pwr_pvd_info,          /**< \brief æŒ‡å‘pvdç”µå‹ç›‘æ§ä¿¡æ¯çš„æŒ‡é’ˆ */
     __zmf159_plfm_pwr_init,
     __zmf159_plfm_pwr_deinit
 };
 
-/** \brief PWRÉè±¸ÊµÀı */
+/** \brief PWRè®¾å¤‡å®ä¾‹ */
 am_zmf159_pwr_dev_t __g_pwr_dev;
 
-/** \brief PWR ÊµÀı³õÊ¼»¯ */
+/** \brief PWR å®ä¾‹åˆå§‹åŒ– */
 am_zmf159_pwr_handle_t am_zmf159_pwr_inst_init (void)
 {
     return am_zmf159_pwr_init(&__g_pwr_dev, &__g_pwr_devinfo);
 }
 
-/** \brief PWR ÊµÀı½â³õÊ¼»¯ */
+/** \brief PWR å®ä¾‹è§£åˆå§‹åŒ– */
 void am_zmf159_pwr_inst_deinit (void)
 {
     am_zmf159_pwr_deinit();

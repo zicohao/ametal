@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief 在标准矩阵键盘的基础上，添加软件定时器，实现自动扫描
+ * \brief 鍦ㄦ爣鍑嗙煩闃甸敭鐩樼殑鍩虹涓婏紝娣诲姞杞欢瀹氭椂鍣紝瀹炵幇鑷姩鎵弿
  *
  * \internal
  * \par Modification history

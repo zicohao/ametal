@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥7.5
+ * \brief ç¨‹åºæ¸…å•7.5
  *
  *
  * \internal
@@ -29,10 +29,10 @@ int am_main (void)
 {
     int i = 0;
     while(1) {
-        am_led_on(i);        // µãÁÁLED£¨i£©
-        am_mdelay(200);      // ÑÓÊ±200ms
-        am_led_off(i);       // Ï¨ÃğLED£¨i£©
-        i = (i + 1) % 2;     // ½öÓĞ2¸öLED
+        am_led_on(i);        // ç‚¹äº®LEDï¼ˆiï¼‰
+        am_mdelay(200);      // å»¶æ—¶200ms
+        am_led_off(i);       // ç†„ç­LEDï¼ˆiï¼‰
+        i = (i + 1) % 2;     // ä»…æœ‰2ä¸ªLED
     }
 }
 

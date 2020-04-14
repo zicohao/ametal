@@ -12,23 +12,23 @@
 
 /**
  * \file
- * \brief ÊäÈë×ÓÏµÍ³Í¨ÓÃ±ê×¼½Ó¿Ú
+ * \brief è¾“å…¥å­ç³»ç»Ÿé€šç”¨æ ‡å‡†æ¥å£
  *
- *    µ±Ç°°üº¬°´¼üÉè±¸½Ó¿Ú¡£
+ *    å½“å‰åŒ…å«æŒ‰é”®è®¾å¤‡æ¥å£ã€‚
  *
- *    todo: Ìí¼ÓÆäËûÍ¨ÓÃ½Ó¿Ú´ı£¬ÈçÊó±ê¡¢¼üÅÌ¡¢Ò¡¸Ë¡¢´¥ÃşÉè±¸µÈ
+ *    todo: æ·»åŠ å…¶ä»–é€šç”¨æ¥å£å¾…ï¼Œå¦‚é¼ æ ‡ã€é”®ç›˜ã€æ‘‡æ†ã€è§¦æ‘¸è®¾å¤‡ç­‰
  *
- * \par ¼òµ¥Ê¾Àı
+ * \par ç®€å•ç¤ºä¾‹
  * \code
  *
  * #include "am_input.h"
  *
- * (1) °´¼üÇı¶¯º¯ÊıÖĞÉÏ±¨°´¼üÊÂ¼ş£¨Çı¶¯º¯ÊıÊµÏÖ£¬ÓÃ»§ÎŞĞè¹ØĞÄ£©£¬ ÀıÈç£º
+ * (1) æŒ‰é”®é©±åŠ¨å‡½æ•°ä¸­ä¸ŠæŠ¥æŒ‰é”®äº‹ä»¶ï¼ˆé©±åŠ¨å‡½æ•°å®ç°ï¼Œç”¨æˆ·æ— éœ€å…³å¿ƒï¼‰ï¼Œ ä¾‹å¦‚ï¼š
  *
- *      - ¼ì²âµ½ KEY_1 ¼ü°´ÏÂ£ºam_event_input_key_pressed(KEY_1);
- *      - ¼ì²âµ½ KEY_1 ¼üÊÍ·Å£ºam_event_input_key_released(KEY_1);
+ *      - æ£€æµ‹åˆ° KEY_1 é”®æŒ‰ä¸‹ï¼šam_event_input_key_pressed(KEY_1);
+ *      - æ£€æµ‹åˆ° KEY_1 é”®é‡Šæ”¾ï¼šam_event_input_key_released(KEY_1);
  *
- * (2) Ó¦ÓÃ³ÌĞòÖĞÊ¹ÓÃ»Øµ÷º¯Êı´¦Àí°´¼üÊÂ¼ş
+ * (2) åº”ç”¨ç¨‹åºä¸­ä½¿ç”¨å›è°ƒå‡½æ•°å¤„ç†æŒ‰é”®äº‹ä»¶
  *
  * static void __input_key_proc (
  *      void *p_arg, int key_code, int key_state, int keep_time)
@@ -37,8 +37,8 @@
  *           if (key_state == AM_INPUT_KEY_STATE_PRESSED) {
  *               am_led_on(0);
  *
- *               if (keep_time >= 3000) {           // °´¼ü³¤°´Ê±¼ä´ïµ½ 3s
- *                   // ³¤°´3sµÄ´¦Àí£¬ÀıÈç£¬¹Ø»ú£¿
+ *               if (keep_time >= 3000) {           // æŒ‰é”®é•¿æŒ‰æ—¶é—´è¾¾åˆ° 3s
+ *                   // é•¿æŒ‰3sçš„å¤„ç†ï¼Œä¾‹å¦‚ï¼Œå…³æœºï¼Ÿ
  *               }
  *
  *           } else if (key_state == AM_INPUT_KEY_STATE_RELEASED){
@@ -80,27 +80,27 @@ extern "C" {
 #include "am_input_code.h"
 
 /**
- * \name °´¼üµÄ×´Ì¬
+ * \name æŒ‰é”®çš„çŠ¶æ€
  * @{
  */
 
-#define  AM_INPUT_KEY_STATE_PRESSED    0       /**< \brief °´¼ü°´ÏÂ  */
-#define  AM_INPUT_KEY_STATE_RELEASED   1       /**< \brief °´¼üÊÍ·Å  */
+#define  AM_INPUT_KEY_STATE_PRESSED    0       /**< \brief æŒ‰é”®æŒ‰ä¸‹  */
+#define  AM_INPUT_KEY_STATE_RELEASED   1       /**< \brief æŒ‰é”®é‡Šæ”¾  */
 
 /** @} */
 
 /**
- * \brief °´¼ü»Øµ÷º¯ÊıÀàĞÍ
+ * \brief æŒ‰é”®å›è°ƒå‡½æ•°ç±»å‹
  *
- * \param[in] p_arg      : ÓÃ»§Êı¾İ£¬×¢²áÊ±Éè¶¨µÄÓÃ»§²ÎÊı
- * \param[in] key_code   : °´¼ü±àÂë
- * \param[in] key_state  : °´¼ü×´Ì¬£¬AM_INPUT_KEY_STATE_PRESSED
- * \param[in] keep_time  : ×´Ì¬±£³ÖÊ±¼ä£¬ÓÃÓÚ°´¼ü³¤°´£¬Ê±¼äµ¥Î»Îª£ºms¡£
+ * \param[in] p_arg      : ç”¨æˆ·æ•°æ®ï¼Œæ³¨å†Œæ—¶è®¾å®šçš„ç”¨æˆ·å‚æ•°
+ * \param[in] key_code   : æŒ‰é”®ç¼–ç 
+ * \param[in] key_state  : æŒ‰é”®çŠ¶æ€ï¼ŒAM_INPUT_KEY_STATE_PRESSED
+ * \param[in] keep_time  : çŠ¶æ€ä¿æŒæ—¶é—´ï¼Œç”¨äºæŒ‰é”®é•¿æŒ‰ï¼Œæ—¶é—´å•ä½ä¸ºï¼šmsã€‚
  *
- * \note ×´Ì¬±£³ÖÊ±¼äÓÃÓÚ°´¼ü³¤°´£¬°´¼üÊ×´Î°´ÏÂ£¬ÊÂ¼şÎªAM_INPUT_KEY_STATE_PRESSED
- * keep_timeÎª0£¬Èô°´¼üÒ»Ö±±£³Ö£¬½«»áÒÔÒ»¶¨µÄÆµÂÊÉÏ±¨ AM_INPUT_KEY_STATE_PRESSED
- * ÊÂ¼ş£¬keep_time ±íÊ¾°´¼ü°´ÏÂ±£³ÖµÄÊ±¼ä¡£ÌØ±ğµØ£¬Èô°´¼ü±¾Éí²»Ö§³Ö³¤°´£¬Ôò
- * keep_time Ê¼ÖÕÎª -1¡£
+ * \note çŠ¶æ€ä¿æŒæ—¶é—´ç”¨äºæŒ‰é”®é•¿æŒ‰ï¼ŒæŒ‰é”®é¦–æ¬¡æŒ‰ä¸‹ï¼Œäº‹ä»¶ä¸ºAM_INPUT_KEY_STATE_PRESSED
+ * keep_timeä¸º0ï¼Œè‹¥æŒ‰é”®ä¸€ç›´ä¿æŒï¼Œå°†ä¼šä»¥ä¸€å®šçš„é¢‘ç‡ä¸ŠæŠ¥ AM_INPUT_KEY_STATE_PRESSED
+ * äº‹ä»¶ï¼Œkeep_time è¡¨ç¤ºæŒ‰é”®æŒ‰ä¸‹ä¿æŒçš„æ—¶é—´ã€‚ç‰¹åˆ«åœ°ï¼Œè‹¥æŒ‰é”®æœ¬èº«ä¸æ”¯æŒé•¿æŒ‰ï¼Œåˆ™
+ * keep_time å§‹ç»ˆä¸º -1ã€‚
  */
 typedef void (*am_input_key_cb_t) (void     *p_arg,
                                    int       key_code,
@@ -108,38 +108,38 @@ typedef void (*am_input_key_cb_t) (void     *p_arg,
                                    int       keep_time);
 
 /**
- * \brief °´¼ü´¦ÀíÆ÷
+ * \brief æŒ‰é”®å¤„ç†å™¨
  */
 typedef struct am_input_key_handler {
-    am_event_handler_t    ev_handler;            /**< \brief Í¨ÓÃÊÂ¼ş´¦ÀíÆ÷  */
-    am_input_key_cb_t     pfn_cb;                /**< \brief »Øµ÷º¯Êı  */
-    void                 *p_usr_data;            /**< \brief »Øµ÷º¯ÊıÓÃ»§²ÎÊı */
+    am_event_handler_t    ev_handler;            /**< \brief é€šç”¨äº‹ä»¶å¤„ç†å™¨  */
+    am_input_key_cb_t     pfn_cb;                /**< \brief å›è°ƒå‡½æ•°  */
+    void                 *p_usr_data;            /**< \brief å›è°ƒå‡½æ•°ç”¨æˆ·å‚æ•° */
 } am_input_key_handler_t;
 
 /**
- * \brief ×¢²áÒ»¸ö°´¼ü´¦ÀíÆ÷
+ * \brief æ³¨å†Œä¸€ä¸ªæŒ‰é”®å¤„ç†å™¨
  *
- * µ±°´¼ü°´ÏÂ»òÊÍ·ÅÊ±£¬¾ù»áµ÷ÓÃ  pfn_cb Ö¸ÏòµÄ»Øµ÷º¯Êı
+ * å½“æŒ‰é”®æŒ‰ä¸‹æˆ–é‡Šæ”¾æ—¶ï¼Œå‡ä¼šè°ƒç”¨  pfn_cb æŒ‡å‘çš„å›è°ƒå‡½æ•°
  *
- * \param[in] p_handler £º  °´¼ü´¦ÀíÆ÷
- * \param[in] pfn_cb    £º  °´¼ü´¦Àí»Øµ÷º¯Êı
- * \param[in] p_arg     : °´¼ü´¦Àí»Øµ÷º¯ÊıÓÃ»§²ÎÊı
+ * \param[in] p_handler ï¼š  æŒ‰é”®å¤„ç†å™¨
+ * \param[in] pfn_cb    ï¼š  æŒ‰é”®å¤„ç†å›è°ƒå‡½æ•°
+ * \param[in] p_arg     : æŒ‰é”®å¤„ç†å›è°ƒå‡½æ•°ç”¨æˆ·å‚æ•°
  *
- * \retval   AM_OK      ×¢²á³É¹¦
- * \retval  -AM_EINVAL  ²ÎÊı´íÎó
+ * \retval   AM_OK      æ³¨å†ŒæˆåŠŸ
+ * \retval  -AM_EINVAL  å‚æ•°é”™è¯¯
  */
 int am_input_key_handler_register (am_input_key_handler_t  *p_handler,
                                    am_input_key_cb_t        pfn_cb,
                                    void                    *p_arg);
 
 /**
- * \brief ×¢ÏûÒ»¸ö°´¼ü´¦ÀíÆ÷
+ * \brief æ³¨æ¶ˆä¸€ä¸ªæŒ‰é”®å¤„ç†å™¨
  *
- * \param[in] p_handler £º  °´¼ü´¦ÀíÆ÷
+ * \param[in] p_handler ï¼š  æŒ‰é”®å¤„ç†å™¨
  *
- * \retval   AM_OK      ×¢²á³É¹¦
- * \retval  -AM_ENODEV  ×¢²áÊ§°Ü£¬°´¼ü´¦ÀíÆ÷²»´æÔÚ£¨»¹Î´×¢²á£©
- * \retval  -AM_EINVAL  ²ÎÊı´íÎó
+ * \retval   AM_OK      æ³¨å†ŒæˆåŠŸ
+ * \retval  -AM_ENODEV  æ³¨å†Œå¤±è´¥ï¼ŒæŒ‰é”®å¤„ç†å™¨ä¸å­˜åœ¨ï¼ˆè¿˜æœªæ³¨å†Œï¼‰
+ * \retval  -AM_EINVAL  å‚æ•°é”™è¯¯
  */
 int am_input_key_handler_unregister (am_input_key_handler_t *p_handler);
 

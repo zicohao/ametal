@@ -12,13 +12,13 @@
 
 /**
  * \file
- * \brief bootloader ´®ÐÐÊý¾Ý²Ù×÷Í¨ÓÃ²Ù×÷½Ó¿Ú
+ * \brief bootloader ä¸²è¡Œæ•°æ®æ“ä½œé€šç”¨æ“ä½œæŽ¥å£
  *
- *   ¸ÃÀàÖ÷ÒªÃèÊöÁËBootLoader¹ØÓÚ´®ÐÐÊý¾Ý²Ù×÷µÄ£¬ÊôÓÚ³éÏóÀà£¬¸ù¾Ý²»Í¬µÄÇý¶¯·½Ê½£¬ÓÉ×ÓÀàÊµÏÖ¶ÔÆä²Ù×÷£¬
- *   ÁÐÈç£¬Ê¹ÓÃuartÇý¶¯µÄÊý¾Ý´«Êä£¬Ê¹ÓÃi2cÇý¶¯µÄÊý¾Ý´«Êä¡£
+ *   è¯¥ç±»ä¸»è¦æè¿°äº†BootLoaderå…³äºŽä¸²è¡Œæ•°æ®æ“ä½œçš„ï¼Œå±žäºŽæŠ½è±¡ç±»ï¼Œæ ¹æ®ä¸åŒçš„é©±åŠ¨æ–¹å¼ï¼Œç”±å­ç±»å®žçŽ°å¯¹å…¶æ“ä½œï¼Œ
+ *   åˆ—å¦‚ï¼Œä½¿ç”¨uarté©±åŠ¨çš„æ•°æ®ä¼ è¾“ï¼Œä½¿ç”¨i2cé©±åŠ¨çš„æ•°æ®ä¼ è¾“ã€‚
  *
  *
- * \par Ê¹ÓÃÊ¾Àý
+ * \par ä½¿ç”¨ç¤ºä¾‹
  * \code
  *
  *
@@ -38,42 +38,42 @@
 extern "C" {
 #endif
 
-/**< \brief ½ÓÊÕ»Øµ÷º¯ÊýÀàÐÍÉùÃ÷ */
+/**< \brief æŽ¥æ”¶å›žè°ƒå‡½æ•°ç±»åž‹å£°æ˜Ž */
 typedef void (*serial_byte_receive_func_t)(uint8_t inchar);
 
 /**
- * \brief ´®ÐÐÉè±¸×Ö½Ú´«ÊäÇý¶¯º¯Êý½á¹¹Ìå
+ * \brief ä¸²è¡Œè®¾å¤‡å­—èŠ‚ä¼ è¾“é©±åŠ¨å‡½æ•°ç»“æž„ä½“
  */
 struct am_boot_serial_byte_funcs {
-    /**< \brief ·¢ËÍÊý¾Ý */
+    /**< \brief å‘é€æ•°æ® */
     int (*pfn_serial_byte_send)(void *p_arg, const uint8_t *p_buffer, uint32_t size);
 
-    /**< \brief ½ÓÊÕÊý¾Ý */
+    /**< \brief æŽ¥æ”¶æ•°æ® */
     int (*pfn_serial_byte_receive)(void *p_arg, uint8_t *p_buffer, uint32_t size);
 
-    /**< \brief ÓÃ»§ÖÐ¶Ï½ÓÊÕ»Øµ÷º¯ÊýÉèÖÃ */
+    /**< \brief ç”¨æˆ·ä¸­æ–­æŽ¥æ”¶å›žè°ƒå‡½æ•°è®¾ç½® */
     int (*pfn_serial_int_callback_enable)(void *p_arg, serial_byte_receive_func_t callback_fun);
 };
 
 /**
- * \brief bootloader ´®ÐÐÊý¾Ý´¦Àí ±ê×¼·þÎñ½á¹¹Ìå
+ * \brief bootloader ä¸²è¡Œæ•°æ®å¤„ç† æ ‡å‡†æœåŠ¡ç»“æž„ä½“
  */
 typedef struct am_boot_serial_byte_serv {
-    const struct am_boot_serial_byte_funcs *p_funcs;  /**< \brief ´®ÐÐÊý¾Ý´¦ÀíÇý¶¯º¯Êý½á¹¹ÌåÖ¸Õë */
-    void                                   *p_drv;    /**< \brief ´®ÐÐÊý¾Ý´¦ÀíÇý¶¯º¯ÊýµÚÒ»¸ö²ÎÊý */
+    const struct am_boot_serial_byte_funcs *p_funcs;  /**< \brief ä¸²è¡Œæ•°æ®å¤„ç†é©±åŠ¨å‡½æ•°ç»“æž„ä½“æŒ‡é’ˆ */
+    void                                   *p_drv;    /**< \brief ä¸²è¡Œæ•°æ®å¤„ç†é©±åŠ¨å‡½æ•°ç¬¬ä¸€ä¸ªå‚æ•° */
 } am_boot_serial_byte_serv_t;
 
-/** \brief bootloader ´®ÐÐÊý¾Ý²Ù×÷±ê×¼·þÎñ²Ù×÷¾ä±ú¶¨Òå */
+/** \brief bootloader ä¸²è¡Œæ•°æ®æ“ä½œæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„å®šä¹‰ */
 typedef am_boot_serial_byte_serv_t  *am_boot_serial_handle_t;
 
 /**
- * \brief Í¨¹ý´®ÐÐÉè±¸½Ó¿Ú·¢Êý¾Ý
+ * \brief é€šè¿‡ä¸²è¡Œè®¾å¤‡æŽ¥å£å‘æ•°æ®
  *
- * \param[in] handle : ´®ÐÐÊý¾Ý²Ù×÷±ê×¼·þÎñ¾ä±ú
- * \param[in] p_buffer : ·¢ËÍµÄÊý¾Ý
- * \param[in] size   : ·¢ËÍÊý¾ÝµÄ³¤¶È
+ * \param[in] handle : ä¸²è¡Œæ•°æ®æ“ä½œæ ‡å‡†æœåŠ¡å¥æŸ„
+ * \param[in] p_buffer : å‘é€çš„æ•°æ®
+ * \param[in] size   : å‘é€æ•°æ®çš„é•¿åº¦
  *
- * \retval ·¢ËÍµÄ×Ö½ÚÊý
+ * \retval å‘é€çš„å­—èŠ‚æ•°
  */
 am_static_inline
 int am_boot_serial_byte_send(am_boot_serial_handle_t handle,
@@ -89,13 +89,13 @@ int am_boot_serial_byte_send(am_boot_serial_handle_t handle,
 }
 
 /**
- * \brief Í¨¹ý´®ÐÐÉè±¸½Ó¿ÚÊÕÊý¾Ý
+ * \brief é€šè¿‡ä¸²è¡Œè®¾å¤‡æŽ¥å£æ”¶æ•°æ®
  *
- * \param[in] handle : ´®ÐÐÊý¾Ý²Ù×÷±ê×¼·þÎñ¾ä±ú
- * \param[in] p_buffer : ½ÓÊÕµÄÊý¾Ý
- * \param[in] size   : ½ÓÊÕÊý¾ÝµÄ³¤¶È
+ * \param[in] handle : ä¸²è¡Œæ•°æ®æ“ä½œæ ‡å‡†æœåŠ¡å¥æŸ„
+ * \param[in] p_buffer : æŽ¥æ”¶çš„æ•°æ®
+ * \param[in] size   : æŽ¥æ”¶æ•°æ®çš„é•¿åº¦
  *
- * \retval ÊÕµ½µÄ×Ö½ÚÊý
+ * \retval æ”¶åˆ°çš„å­—èŠ‚æ•°
  */
 am_static_inline
 int am_boot_serial_byte_receive(am_boot_serial_handle_t handle,
@@ -111,16 +111,16 @@ int am_boot_serial_byte_receive(am_boot_serial_handle_t handle,
 }
 
 /**
- * \brief ´®ÐÐÖÐ¶Ï½ÓÊÕÓÃ»§´«ÈëµÄ»Øµ÷º¯ÊýÉèÖÃ
+ * \brief ä¸²è¡Œä¸­æ–­æŽ¥æ”¶ç”¨æˆ·ä¼ å…¥çš„å›žè°ƒå‡½æ•°è®¾ç½®
  *
- * ÓÃ»§¿ÉÒÔ×Ô¼º±àÐ´×Ô¼ºµÄ»Øµ÷º¯Êý£¬Í¨¹ý¸Ã½Ó¿ÚÊ¹¾ßÌåµÄ´®ÐÐÉè±¸ÖÐ¶Ï½ÓÊÕ»Øµ÷ÀïÃæ½«ÊÕµ½µÄÊý¾Ý´«¸øÓÃ»§»Øµ÷º¯Êý¡£
+ * ç”¨æˆ·å¯ä»¥è‡ªå·±ç¼–å†™è‡ªå·±çš„å›žè°ƒå‡½æ•°ï¼Œé€šè¿‡è¯¥æŽ¥å£ä½¿å…·ä½“çš„ä¸²è¡Œè®¾å¤‡ä¸­æ–­æŽ¥æ”¶å›žè°ƒé‡Œé¢å°†æ”¶åˆ°çš„æ•°æ®ä¼ ç»™ç”¨æˆ·å›žè°ƒå‡½æ•°ã€‚
  *
- * \param[in] handle       : ´®ÐÐÊý¾Ý²Ù×÷±ê×¼·þÎñ¾ä±ú
- * \param[in] callback_fun : ÓÃ»§µÄ»Øµ÷´¦Àíº¯Êý,serial_byte_receive_func_tÊÇÒ»¸öº¯ÊýÖ¸ÕëÀàÐÍ
- *                           ÊÇÖÐ¶Ï½ÓÊÕµ½µÄÒ»¸ö×Ö½Ú£¬ÓÃ»§¿ÉÒÔÔÚ»Øµ÷º¯ÊýÀïÃæ´¦ÀíÕâ¸ö×Ö½Ú
+ * \param[in] handle       : ä¸²è¡Œæ•°æ®æ“ä½œæ ‡å‡†æœåŠ¡å¥æŸ„
+ * \param[in] callback_fun : ç”¨æˆ·çš„å›žè°ƒå¤„ç†å‡½æ•°,serial_byte_receive_func_tæ˜¯ä¸€ä¸ªå‡½æ•°æŒ‡é’ˆç±»åž‹
+ *                           æ˜¯ä¸­æ–­æŽ¥æ”¶åˆ°çš„ä¸€ä¸ªå­—èŠ‚ï¼Œç”¨æˆ·å¯ä»¥åœ¨å›žè°ƒå‡½æ•°é‡Œé¢å¤„ç†è¿™ä¸ªå­—èŠ‚
  *
- * \retval AM_OK    : ³É¹¦
- * \retval AM_ERROR : Ê§°Ü
+ * \retval AM_OK    : æˆåŠŸ
+ * \retval AM_ERROR : å¤±è´¥
  */
 am_static_inline
 int am_boot_serial_int_recev_callback_enable(am_boot_serial_handle_t    handle,

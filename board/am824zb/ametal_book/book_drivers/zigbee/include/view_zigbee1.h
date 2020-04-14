@@ -27,7 +27,7 @@
 #include "model_bool.h"
 #include "am_zm516x.h"
 
-//¶¨ÒåzigbeeÊÓÍ¼Àà
+//å®šä¹‰zigbeeè§†å›¾ç±»
 typedef struct _view_zigbee{
     
     observer_t               isa;

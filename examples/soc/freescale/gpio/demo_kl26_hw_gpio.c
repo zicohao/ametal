@@ -11,18 +11,18 @@
 *******************************************************************************/
 /**
  * \file
- * \brief KS16xx GPIO¡¢PORT HW²ãÀý×Ó
+ * \brief KS16xx GPIOã€PORT HWå±‚ä¾‹å­
  *
- * \brief GPIO Çý¶¯²ãÒý½ÅÊäÈëÊä³öÀý×Ó
- * - ²Ù×÷£º
- *   1.½«J14µÄkeyºÍPIOC_0¶Ì½ÓÔÚÒ»Æð;
- *   2.½«J9µÄLED0ºÍPIOC_4¶Ì½ÓÔÚÒ»Æð;
- *   3.½«J10µÄLED1ºÍPIOC_8¶Ì½ÓÔÚÒ»Æð;
+ * \brief GPIO é©±åŠ¨å±‚å¼•è„šè¾“å…¥è¾“å‡ºä¾‹å­
+ * - æ“ä½œï¼š
+ *   1.å°†J14çš„keyå’ŒPIOC_0çŸ­æŽ¥åœ¨ä¸€èµ·;
+ *   2.å°†J9çš„LED0å’ŒPIOC_4çŸ­æŽ¥åœ¨ä¸€èµ·;
+ *   3.å°†J10çš„LED1å’ŒPIOC_8çŸ­æŽ¥åœ¨ä¸€èµ·;
  *
- * -ÊµÏÖÏÖÏó£º³ÌÐòÏÂÔØµ½demo°åºó£¬°´ÏÂÒ»´Î°´¼üLED0»á½øÐÐÒ»´Î·­×ª£¬Èô³¤°´£¬demo°åÉÏµÄLED0»áÉÁ¡£
+ * -å®žçŽ°çŽ°è±¡ï¼šç¨‹åºä¸‹è½½åˆ°demoæ¿åŽï¼ŒæŒ‰ä¸‹ä¸€æ¬¡æŒ‰é”®LED0ä¼šè¿›è¡Œä¸€æ¬¡ç¿»è½¬ï¼Œè‹¥é•¿æŒ‰ï¼Œdemoæ¿ä¸Šçš„LED0ä¼šé—ªã€‚
  *
- * \par Ô´´úÂë
- * \par Ô´´úÂë
+ * \par æºä»£ç 
+ * \par æºä»£ç 
  * \snippet demo_kl26_hw_gpio.c src_kl26_hw_gpio
  *
  * \internal
@@ -47,38 +47,38 @@
 #include "../../../../soc/freescale/kl26/am_kl26.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_kl26_hw_gpio_entry (void)
 {
     int pin_val=0;
 
-    /* ÉèÖÃ PORTC 0,4ºÅ¹Ü½ÅÎªGPIO¹¦ÄÜ */
+    /* è®¾ç½® PORTC 0,4å·ç®¡è„šä¸ºGPIOåŠŸèƒ½ */
     amhw_kl26_port_pin_func_cfg(KL26_PORT, PIOC_4, 0x1);
     amhw_kl26_port_pin_func_cfg(KL26_PORT, PIOC_0, 0x1);
 
-    /* GPIOC 0 ¹Ü½ÅÉÏ/ÏÂÀ­Ê¹ÄÜ */
+    /* GPIOC 0 ç®¡è„šä¸Š/ä¸‹æ‹‰ä½¿èƒ½ */
     amhw_kl26_port_pin_pull_enable(KL26_PORT, PIOC_0);
 
-    /* GPIOC 0 Òý½ÅÊäÈëÉÏÀ­ */
+    /* GPIOC 0 å¼•è„šè¾“å…¥ä¸Šæ‹‰ */
     amhw_kl26_port_pin_pull_up(KL26_PORT, PIOC_0);
 
-    /* ÉèÖÃGPIOC 4ºÅ¹Ü½Å³õÊ¼µçÆ½ */
+    /* è®¾ç½®GPIOC 4å·ç®¡è„šåˆå§‹ç”µå¹³ */
     amhw_kl26_gpio_pin_init_out_low(KL26_GPIO, PIOC_4);
 
-    /* ÉèÖÃGPIOC 4ºÅ¹Ü½ÅÎªÊä³ö·½Ïò */
+    /* è®¾ç½®GPIOC 4å·ç®¡è„šä¸ºè¾“å‡ºæ–¹å‘ */
     amhw_kl26_gpio_pin_dir_output(KL26_GPIO, PIOC_4);
 
-    /* ÉèÖÃGPIOC 0ºÅ¹Ü½ÅÎªÊäÈë·½Ïò */
+    /* è®¾ç½®GPIOC 0å·ç®¡è„šä¸ºè¾“å…¥æ–¹å‘ */
     amhw_kl26_gpio_pin_dir_input(KL26_GPIO, PIOC_0);
 
     while (1) {
 
-        /* ¶ÁÈ¡Òý½ÅÊäÈëµçÆ½ */
+        /* è¯»å–å¼•è„šè¾“å…¥ç”µå¹³ */
         pin_val = amhw_kl26_gpio_pin_input_get(KL26_GPIO, PIOC_0);
 
         if (pin_val == 0) {
-            /* ·­×ªÒý½ÅÊä³öµçÆ½ */
+            /* ç¿»è½¬å¼•è„šè¾“å‡ºç”µå¹³ */
             amhw_kl26_gpio_pin_out_toggle (KL26_GPIO, PIOC_4);
 
             am_mdelay(200);

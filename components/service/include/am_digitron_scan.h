@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ͨ�ö�̬ɨ���������
+ * \brief 通用动态扫描类数码管
  *
  * \internal
  * \par modification history:
@@ -39,40 +39,40 @@ extern "C" {
  */
 
 /**
- * \brief ��̬ɨ�����������Ϣ
+ * \brief 动态扫描类数码管信息
  */
 typedef struct am_digitron_scan_devinfo {
 
-    /** \brief ��׼������豸��Ϣ������ID�� */
+    /** \brief 标准数码管设备信息，包含ID号 */
     am_digitron_devinfo_t devinfo; 
 
-    /** \brief ��������ܵ�ɨ��Ƶ�ʣ�һ�� 50Hz */
+    /** \brief 整个数码管的扫描频率，一般 50Hz */
     uint8_t               scan_freq;
  
-    /** \brief һ����˸�����ڣ�������ʱ�䣬�� 500ms */
+    /** \brief 一个闪烁周期内，点亮的时间，如 500ms */
     uint16_t              blink_on_time;
     
-    /** \brief һ����˸�����ڣ�Ϩ���ʱ�䣬�� 500ms */
+    /** \brief 一个闪烁周期内，熄灭的时间，如 500ms */
     uint16_t              blink_off_time; 
 
     /**
-     * \brief ������Դ棬��������������ܶ������
+     * \brief 数码管显存，具体类型与数码管段数相关
      *
-     * ����ܶ��� 1 ~ 8�� ����������Ϊ uint8_t����С��������ܸ���һ��
-     * ����ܶ��� 8 ~ 16������������Ϊ uint16_t����С��������ܸ���һ��
+     * 数码管段数 1 ~ 8， 缓冲区类型为 uint8_t，大小与数码管总个数一致
+     * 数码管段数 8 ~ 16，缓冲区类型为 uint16_t，大小与数码管总个数一致
      */
     void                  *p_disp_buf;
 
     /**
-     * \brief �����ɨ���Դ棬���ڴ�ŵ���ɨ��ľ�������������ܶ������
+     * \brief 数码管扫描显存，用于存放单次扫描的具体类型与数码管段数相关
      *
-     * ����ܶ��� 1 ~ 8�� ����������Ϊ uint8_t����С�뵥�������ɨ��ĸ���һ��
-     * ����ܶ��� 8 ~ 16������������Ϊ uint16_t����С�뵥�������ɨ��ĸ���һ��
+     * 数码管段数 1 ~ 8， 缓冲区类型为 uint8_t，大小与单次数码管扫描的个数一致
+     * 数码管段数 8 ~ 16，缓冲区类型为 uint16_t，大小与单次数码管扫描的个数一致
      *
-     * �簴��ɨ�裬�����С�� num_rows ��ͬ��
-     * �簴��ɨ�裬�����С�� num_cols ��ͬ��
+     * 如按行扫描，则其大小与 num_rows 相同；
+     * 如按列扫描，则其大小与 num_cols 相同；
      *
-     * ���ھ��󲿷�Ӧ�õ�·��һ��ֻ��ɨ��һ������ܣ������СΪ1
+     * 对于绝大部分应用电路，一次只能扫描一个数码管，缓存大小为1
      */
     void                  *p_scan_buf;
 
@@ -80,53 +80,53 @@ typedef struct am_digitron_scan_devinfo {
 
 
 /**
- * \brief ���������������λѡ�ֿ����У���Ӧ���ɾ��������ṩ
+ * \brief 驱动函数（段码和位选分开进行），应该由具体驱动提供
  *
- * �����λ��ֿ����ͣ��Զ�������Ӱ���⣬����Ӱ�����ڣ�ִ�пռ�ص�������
+ * 段码和位码分开发送，自动处理消影问题，在消影空闲期，执行空间回调函数。
  *
  */
 typedef struct am_digitron_scan_ops_separate {
-   am_digitron_base_sender_seg_t      *p_send_seg; /**< \brief ���뷢���� */
-   am_digitron_base_selector_com_t    *p_sel_com;  /**< \brief λѡ�� */
+   am_digitron_base_sender_seg_t      *p_send_seg; /**< \brief 段码发送器 */
+   am_digitron_base_selector_com_t    *p_sel_com;  /**< \brief 位选器 */
 } am_digitron_scan_ops_separate_t;
 
 /**
- * \brief ���������������λѡͬʱ���У���Ӧ���ɾ��������ṩ
+ * \brief 驱动函数（段码和位选同时进行），应该由具体驱动提供
  *
- *     �����λ��ͬʱ���ͣ���Ҫ���д�����Ӱ���⣬�µ�����ܼ���󣬶�ѡ��λѡ��
- * ������Ч״̬
+ *     段码和位码同时发送，需要自行处理消影问题，新的数码管激活后，段选和位选均
+ * 处于有效状态
  */
 typedef struct am_digitron_scan_ops_unite {
-    am_digitron_base_sender_data_t   *p_send_data; /**< \brief ���뷢���� */
+    am_digitron_base_sender_data_t   *p_send_data; /**< \brief 数码发送器 */
 } am_digitron_scan_ops_unite_t;
 
 /**
- * \brief ���лص����������������Ÿ��ã�
+ * \brief 空闲回调函数（可用于引脚复用）
  *
- * �������λ��ʼɨ��ʱ������øûص�������������������밴�����õ�����Ӧ�ó��ϡ�
- * �ڻص�����ִ���ڼ䣬�����λѡ������Ч״̬����ѡ������Ч״̬
+ * 在数码管位开始扫描时，会调用该回调函数，以用于数码管与按键复用等灵活的应用场合。
+ * 在回调函数执行期间，数码管位选处于有效状态，段选处于无效状态
  *
- * \param[in] p_cookie : ���������Զ������
- * \param[in] scan_idx : ��ǰ������λѡ
+ * \param[in] p_cookie : 驱动函数自定义参数
+ * \param[in] scan_idx : 当前所处的位选
  *
- * \return ��
+ * \return 无
  */
 typedef void (*am_digitron_scan_cb_t) (void *p_cookie, int scan_idx);
 
 /**
- * \brief ͨ�ö�̬ɨ��������豸
+ * \brief 通用动态扫描数码管设备
  */
 typedef struct am_digitron_scan_dev {
 
-    am_digitron_dev_t isa;             /**< \brief �Ǳ�׼��������豸      */
-    am_softimer_t     timer;           /**< \brief ʹ��������ʱ��          */
+    am_digitron_dev_t isa;             /**< \brief 是标准的数码管设备      */
+    am_softimer_t     timer;           /**< \brief 使用软件定时器          */
 
-    uint8_t           scan_idx;        /**< \brief ��ǰɨ������            */
-    uint8_t           scan_interval;   /**< \brief ɨ��ʱ����            */
-    uint8_t           num_scan;        /**< \brief ����ɨ��ĸ�����һ��Ϊ1 */
-    uint8_t           num_digitron;    /**< \brief ����ܸ���              */
-    uint32_t          blink_flags;     /**< \brief ��˸���(bit map)       */
-    uint16_t          blink_cnt;       /**< \brief ��˸����                */
+    uint8_t           scan_idx;        /**< \brief 当前扫描索引            */
+    uint8_t           scan_interval;   /**< \brief 扫描时间间隔            */
+    uint8_t           num_scan;        /**< \brief 单次扫描的个数，一般为1 */
+    uint8_t           num_digitron;    /**< \brief 数码管个数              */
+    uint32_t          blink_flags;     /**< \brief 闪烁标记(bit map)       */
+    uint16_t          blink_cnt;       /**< \brief 闪烁计数                */
 
     uint16_t  (*pfn_decode)(uint16_t code);
 
@@ -140,16 +140,16 @@ typedef struct am_digitron_scan_dev {
 } am_digitron_scan_dev_t;
 
 /**
- * \brief ��̬ɨ��������ܳ�ʼ��
+ * \brief 动态扫描类数码管初始化
  *
- * \param[in] p_dev       : ��̬ɨ����������豸ʵ��
- * \param[in] p_info      : ��̬ɨ����������豸ʵ����Ϣ
- * \param[in] is_separate : �����λ���Ƿ�Ϊ�������ͣ� ������ p_ops ��ʵ������
- *                         - AM_TRUE�� ����Ϊ��am_digitron_scan_ops_unite_t *
- *                         - AM_FALSE������Ϊ��am_digitron_scan_ops_separate_t *
+ * \param[in] p_dev       : 动态扫描类数码管设备实例
+ * \param[in] p_info      : 动态扫描类数码管设备实例信息
+ * \param[in] is_separate : 段码和位码是否为独立发送， 决定了 p_ops 的实际类型
+ *                         - AM_TRUE， 类型为：am_digitron_scan_ops_unite_t *
+ *                         - AM_FALSE，类型为：am_digitron_scan_ops_separate_t *
  *
- * \retval AM_OK      : ��ʼ���ɹ�
- * \retval -AM_EINVAL ����ʼ��ʧ�ܣ��������ڴ���
+ * \retval AM_OK      : 初始化成功
+ * \retval -AM_EINVAL ：初始化失败，参数存在错误
  */
 int am_digitron_scan_init (am_digitron_scan_dev_t           *p_dev,
                            const am_digitron_scan_devinfo_t *p_info,
@@ -158,28 +158,28 @@ int am_digitron_scan_init (am_digitron_scan_dev_t           *p_dev,
                            void                             *p_ops);
 
 /**
- * \brief ���������ɨ��ص���������������һ����
+ * \brief 设置数码管扫描回调函数（仅可设置一个）
  *
- *     ��һ���µ������λ��ʼɨ��ʱ������øûص�����
+ *     当一个新的数码管位开始扫描时，会调用该回调函数
  * 
- * \param[in] p_dev  : ��̬ɨ����������豸ʵ��
- * \param[in] pfn_cb : �ص�����
- * \param[in] p_arg  : �ص������û�����
+ * \param[in] p_dev  : 动态扫描类数码管设备实例
+ * \param[in] pfn_cb : 回调函数
+ * \param[in] p_arg  : 回调函数用户参数
  *
- * \retval AM_OK      : ���óɹ�
- * \retval -AM_EINVAL ������ʧ�ܣ��������ڴ���
+ * \retval AM_OK      : 设置成功
+ * \retval -AM_EINVAL ：设置失败，参数存在错误
  */
 int am_digitron_scan_cb_set (am_digitron_scan_dev_t *p_dev,
                              am_digitron_scan_cb_t   pfn_cb,
                              void                   *p_arg);
 
 /**
- * \brief ��̬ɨ��������ܽ��ʼ��
+ * \brief 动态扫描类数码管解初始化
  *
- * \param[in] p_dev   : ��̬ɨ����������豸ʵ��
+ * \param[in] p_dev   : 动态扫描类数码管设备实例
  *
- * \retval AM_OK      : ���ʼ���ɹ�
- * \retval -AM_EINVAL �����ʼ��ʧ�ܣ��������ڴ���
+ * \retval AM_OK      : 解初始化成功
+ * \retval -AM_EINVAL ：解初始化失败，参数存在错误
  */
 int am_digitron_scan_deinit (am_digitron_scan_dev_t *p_dev);
 

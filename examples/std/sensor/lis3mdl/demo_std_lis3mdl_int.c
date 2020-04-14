@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief ÈıÖá´Å´«¸ĞÆ÷ LIS3MDL Àı³Ì£¬Í¨¹ı´¥·¢Ä£Ê½ÊµÏÖ
+ * \brief ä¸‰è½´ç£ä¼ æ„Ÿå™¨ LIS3MDL ä¾‹ç¨‹ï¼Œé€šè¿‡è§¦å‘æ¨¡å¼å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ¸ù¾İÊı¾İ¸üĞÂËÙ¶È£¬ÔÚÖĞ¶ÏÖĞ»ñÈ¡Êı¾İ£¬²¢Í¨¹ı´®¿Ú´òÓ¡
+ * - å®éªŒç°è±¡ï¼š
+ *   1. æ ¹æ®æ•°æ®æ›´æ–°é€Ÿåº¦ï¼Œåœ¨ä¸­æ–­ä¸­è·å–æ•°æ®ï¼Œå¹¶é€šè¿‡ä¸²å£æ‰“å°
  *
  * \internal
  * \par Modification history
@@ -29,15 +29,15 @@
 #include "am_sensor_lis3mdl.h"
 #include "am_delay.h"
 
-/** \brief LIS3MDL´«¸ĞÆ÷µÄID */
+/** \brief LIS3MDLä¼ æ„Ÿå™¨çš„ID */
 const static int __lis3mdl_id[4] = {AM_LIS3MDL_CHAN_1, AM_LIS3MDL_CHAN_2,
                                     AM_LIS3MDL_CHAN_3, AM_LIS3MDL_CHAN_4};
 
-/* \breif LIS3MDL´«¸ĞÆ÷Êı¾İ */
+/* \breif LIS3MDLä¼ æ„Ÿå™¨æ•°æ® */
 static am_sensor_val_t __lis3mdl_data[4];
 
 /**
- * \brief Í¨µÀ1£¬XÖá´ÅµÄ»Øµ÷º¯Êı
+ * \brief é€šé“1ï¼ŒXè½´ç£çš„å›è°ƒå‡½æ•°
  */
 static void __pfn_mag_x (void *p_arg, uint32_t trigger_src)
 {
@@ -53,7 +53,7 @@ static void __pfn_mag_x (void *p_arg, uint32_t trigger_src)
 }
 
 /**
- * \brief Í¨µÀ2£¬YÖá´ÅµÄ»Øµ÷º¯Êı
+ * \brief é€šé“2ï¼ŒYè½´ç£çš„å›è°ƒå‡½æ•°
  */
 static void __pfn_mag_y (void *p_arg, uint32_t trigger_src)
 {
@@ -69,7 +69,7 @@ static void __pfn_mag_y (void *p_arg, uint32_t trigger_src)
 }
 
 /**
- * \brief Í¨µÀ3£¬ZÖá´ÅµÄ»Øµ÷º¯Êı
+ * \brief é€šé“3ï¼ŒZè½´ç£çš„å›è°ƒå‡½æ•°
  */
 static void __pfn_mag_z (void *p_arg, uint32_t trigger_src)
 {
@@ -85,7 +85,7 @@ static void __pfn_mag_z (void *p_arg, uint32_t trigger_src)
 }
 
 /**
- * \brief Í¨µÀ4£¬ÎÂ¶ÈµÄ»Øµ÷º¯Êı
+ * \brief é€šé“4ï¼Œæ¸©åº¦çš„å›è°ƒå‡½æ•°
  */
 static void __pfn_temprature (void *p_arg, uint32_t trigger_src)
 {
@@ -93,7 +93,9 @@ static void __pfn_temprature (void *p_arg, uint32_t trigger_src)
     if (trigger_src & AM_SENSOR_TRIGGER_DATA_READY) {
         am_sensor_data_get(handle, &__lis3mdl_id[3], 1, &__lis3mdl_data[3]);
         am_sensor_val_unit_convert(&__lis3mdl_data[3], 1, AM_SENSOR_UNIT_MICRO);
-        am_kprintf("The channel %d,type is temprature, value is: %d.%06d  ¡æ!\r\n",
+//        am_kprintf("The channel %d,type is temprature, value is: %d.%06d  â„ƒ!\r\n",
+        //TODO
+        am_kprintf("The channel %d,type is temprature, value is: %d.%06d  C!\r\n",
                    __lis3mdl_id[3],
                    (__lis3mdl_data[3].val)/1000000,
                    (uint32_t)(__lis3mdl_data[3].val)%1000000);
@@ -101,11 +103,11 @@ static void __pfn_temprature (void *p_arg, uint32_t trigger_src)
 }
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_std_lis3mdl_int_entry (am_sensor_handle_t handle)
 {
-    /* ÉèÖÃ¸Ã´«¸ĞÆ÷µÄÁ¿³ÌÎª¡À4gauss£¨ÈıÍ¨µÀÍ¬²½£© */
+    /* è®¾ç½®è¯¥ä¼ æ„Ÿå™¨çš„é‡ç¨‹ä¸ºÂ±4gaussï¼ˆä¸‰é€šé“åŒæ­¥ï¼‰ */
     am_sensor_val_t lis3mdl_range = {4, AM_SENSOR_UNIT_BASE};
     
     am_err_t ret = AM_OK;
@@ -118,10 +120,10 @@ void demo_std_lis3mdl_int_entry (am_sensor_handle_t handle)
         am_kprintf("sensor_attr_set faild!\r\n");
     }
 
-    /* Ê¹ÄÜËÄÂ·Í¨µÀ */
+    /* ä½¿èƒ½å››è·¯é€šé“ */
     am_sensor_enable(handle, __lis3mdl_id, 4, __lis3mdl_data);
 
-    /* ÉèÖÃÍ¨µÀ0,1,2,3µÄ´¥·¢»Øµ÷º¯Êı */
+    /* è®¾ç½®é€šé“0,1,2,3çš„è§¦å‘å›è°ƒå‡½æ•° */
     am_sensor_trigger_cfg(handle,
                           __lis3mdl_id[0],
                           AM_SENSOR_TRIGGER_DATA_READY,
@@ -143,7 +145,7 @@ void demo_std_lis3mdl_int_entry (am_sensor_handle_t handle)
                           __pfn_temprature,
                           (void*)handle);
 
-    /* ´ò¿ªÍ¨µÀ0,1,2,3µÄ´¥·¢Ä£Ê½ */
+    /* æ‰“å¼€é€šé“0,1,2,3çš„è§¦å‘æ¨¡å¼ */
     am_sensor_trigger_on(handle, __lis3mdl_id[0]);
     am_sensor_trigger_on(handle, __lis3mdl_id[1]);
     am_sensor_trigger_on(handle, __lis3mdl_id[2]);

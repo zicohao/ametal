@@ -14,20 +14,20 @@
  * \file
  * \brief TSI implementation
  *
- * 1. µç¼«Õğµ´ÆµÂÊ¼ÆËã¹«Ê½£º
- *                        I(ºã¶¨µçÁ÷)
+ * 1. ç”µæéœ‡è¡é¢‘ç‡è®¡ç®—å…¬å¼ï¼š
+ *                        I(æ’å®šç”µæµ)
  *      F(elec) = ---------------------------------
- *                  2 * C(µç¼«µçÈİ) * V(µçÑ¹ÔöÁ¿)
+ *                  2 * C(ç”µæç”µå®¹) * V(ç”µå‹å¢é‡)
  *
- * 2. ²Î¿¼Õğµ´ÆµÂÊ¼ÆËã¹«Ê½£º
- *                        I(²Î¿¼ºã¶¨µçÁ÷)
+ * 2. å‚è€ƒéœ‡è¡é¢‘ç‡è®¡ç®—å…¬å¼ï¼š
+ *                        I(å‚è€ƒæ’å®šç”µæµ)
  *      F(ref)  = --------------------------------------
- *                  2 * C(ÄÚ²¿²Î¿¼µçÈİ) * V(µçÑ¹ÔöÁ¿)
+ *                  2 * C(å†…éƒ¨å‚è€ƒç”µå®¹) * V(ç”µå‹å¢é‡)
  *
- * 3. ²ÉÑùÊ±¼ä¼ÆËã¹«Ê½£º
- *                 2 * PS(·ÖÆµÊı) * NSCN(É¨Ãè´ÎÊı) * C(µç¼«µçÈİ) * V(µçÑ¹ÔöÁ¿)
+ * 3. é‡‡æ ·æ—¶é—´è®¡ç®—å…¬å¼ï¼š
+ *                 2 * PS(åˆ†é¢‘æ•°) * NSCN(æ‰«ææ¬¡æ•°) * C(ç”µæç”µå®¹) * V(ç”µå‹å¢é‡)
  *      T(samp) = -----------------------------------------------------------------
- *                                  I(ºã¶¨µçÁ÷)
+ *                                  I(æ’å®šç”µæµ)
  * \internal
  * \par Modification history
  * - 1.01 16-09-26  nwt, make some changes.
@@ -37,27 +37,27 @@
 
 #include "am_fsl_tsi.h"
 
-/** \brief ¶¨ÒåÖ¸ÏòTSIĞÅÏ¢µÄÖ¸Õë */
+/** \brief å®šä¹‰æŒ‡å‘TSIä¿¡æ¯çš„æŒ‡é’ˆ */
 #define __TSI_DEVINFO_DECL(p_tsi_devinfo, p_dev)  \
         const am_fsl_tsi_devinfo_t *p_tsi_devinfo = p_dev->p_devinfo
 
 
 /*******************************************************************************
-  È«¾Ö±äÁ¿
+  å…¨å±€å˜é‡
 *******************************************************************************/
 
-/** \brief Ö¸ÏòTSIÉè±¸µÄÖ¸Õë */
+/** \brief æŒ‡å‘TSIè®¾å¤‡çš„æŒ‡é’ˆ */
 am_fsl_tsi_dev_t *__gp_tsi_dev;
 
 /*******************************************************************************
-  ÄÚ²¿º¯ÊıÉùÃ÷
+  å†…éƒ¨å‡½æ•°å£°æ˜
 *******************************************************************************/
 
 static uint16_t __am_fsl_tsi_basevale_get (void);
 static void __am_fsl_tsi_thresh_set (uint16_t val_h, uint16_t val_l);
 
 /**
- * \brief TSIÉèÖÃÍ¨µÀÉÏ¡¢ÏÂÏŞ·§Öµ
+ * \brief TSIè®¾ç½®é€šé“ä¸Šã€ä¸‹é™é˜€å€¼
  */
 void __am_fsl_tsi_thresh_set (uint16_t val_h, uint16_t val_l)
 {
@@ -68,76 +68,76 @@ void __am_fsl_tsi_thresh_set (uint16_t val_h, uint16_t val_l)
 }
 
 /**
- * \brief TSI ×Ô¶¯¼ì²â£¬»ñÈ¡µ±Ç°»·¾³ÏÂÎ´´¥ÃşÊ±µÄ¼ì²âÖµ
+ * \brief TSI è‡ªåŠ¨æ£€æµ‹ï¼Œè·å–å½“å‰ç¯å¢ƒä¸‹æœªè§¦æ‘¸æ—¶çš„æ£€æµ‹å€¼
  */
 uint16_t __am_fsl_tsi_basevale_get ()
 {
-    uint16_t trigger_backup;    /* ±£´æ´¥·¢·½Ê½ */
-    uint16_t calib_val[10];     /* ´æ·Å10´Î¼ì²âÖµ */
-    uint16_t base_val = 0;      /* ´æ·Åµ±Ç°»·¾³ÏÂµÄ»ù´¡Öµ */
-    uint16_t i = 0;             /* Ñ­»·±äÁ¿ */
+    uint16_t trigger_backup;    /* ä¿å­˜è§¦å‘æ–¹å¼ */
+    uint16_t calib_val[10];     /* å­˜æ”¾10æ¬¡æ£€æµ‹å€¼ */
+    uint16_t base_val = 0;      /* å­˜æ”¾å½“å‰ç¯å¢ƒä¸‹çš„åŸºç¡€å€¼ */
+    uint16_t i = 0;             /* å¾ªç¯å˜é‡ */
     
     __TSI_DEVINFO_DECL(p_tsi_devinfo, __gp_tsi_dev);
 
-    /* ¶ÁÈ¡ÉèÖÃµÄ´¥·¢·½Ê½ */
+    /* è¯»å–è®¾ç½®çš„è§¦å‘æ–¹å¼ */
     if(amhw_fsl_tsi_scan_trig_get(p_tsi_devinfo->p_hw_tsi)) {
-        trigger_backup = AM_TRUE;          /* Ó²¼ş´¥·¢ */
+        trigger_backup = AM_TRUE;          /* ç¡¬ä»¶è§¦å‘ */
     } else {
-        trigger_backup = AM_FALSE;         /* Èí¼ş´¥·¢ */
+        trigger_backup = AM_FALSE;         /* è½¯ä»¶è§¦å‘ */
     }
     
-    /* Çå³ıÉ¨Ãè½áÊø±êÖ¾ */
+    /* æ¸…é™¤æ‰«æç»“æŸæ ‡å¿— */
     amhw_fsl_tsi_eosf_clr(p_tsi_devinfo->p_hw_tsi);
 
-    /* ÅäÖÃÎªÈí¼ş´¥·¢É¨Ãè */
+    /* é…ç½®ä¸ºè½¯ä»¶è§¦å‘æ‰«æ */
     amhw_fsl_tsi_scan_trig_set(p_tsi_devinfo->p_hw_tsi,AMHW_FSL_TSI_TRIG_SOFTWARE);
 
     for (i = 0; i<10; i++) {
 
-        /* Æô¶¯Èí¼ş´¥·¢É¨Ãè */
+        /* å¯åŠ¨è½¯ä»¶è§¦å‘æ‰«æ */
         amhw_fsl_tsi_soft_tirg_start(p_tsi_devinfo->p_hw_tsi);
 
-        /* »ñÈ¡É¨Ãè½áÊø±êÖ¾,µÈ´ıÉ¨Ãè½áÊø */
+        /* è·å–æ‰«æç»“æŸæ ‡å¿—,ç­‰å¾…æ‰«æç»“æŸ */
         while ( !amhw_fsl_tsi_eosf_get(p_tsi_devinfo->p_hw_tsi));
 
-        /* ¶ÁÈ¡Ã»ÓĞ´¥ÃşÊ±µÄÖµ */
+        /* è¯»å–æ²¡æœ‰è§¦æ‘¸æ—¶çš„å€¼ */
         calib_val[i] = amhw_fsl_tsi_convert_value_get(p_tsi_devinfo->p_hw_tsi);
 
         base_val = base_val + calib_val[i];
 
-        /* ÇåÉ¨Ãè½áÊø±êÖ¾ */
+        /* æ¸…æ‰«æç»“æŸæ ‡å¿— */
         amhw_fsl_tsi_eosf_clr(p_tsi_devinfo->p_hw_tsi);
     }
       
-    /* »Ö¸´ÎªÉèÖÃµÄ´¥·¢·½Ê½ */
+    /* æ¢å¤ä¸ºè®¾ç½®çš„è§¦å‘æ–¹å¼ */
     if (trigger_backup == AM_TRUE) {
         amhw_fsl_tsi_scan_trig_set(p_tsi_devinfo->p_hw_tsi, AMHW_FSL_TSI_TRIG_HAEDWARE);
     } 
     
-    /* ·µ»Ø»ù´¡Æ½¾ùÖµ */
+    /* è¿”å›åŸºç¡€å¹³å‡å€¼ */
     return (base_val / 10);
 }
 
 /**
- * \brief TSI ÁéÃô¶ÈÉèÖÃ
+ * \brief TSI çµæ•åº¦è®¾ç½®
  */
 void am_fsl_tsi_sens_set (uint16_t val)
 {
 
-    uint16_t base_val;                      /* ´æ·Å»ù´¡·§Öµ */
-    uint16_t tshd_val, tsld_val;            /* ´æ·ÅÉèÖÃµÄÉÏ/ÏÂÏŞ·§Öµ */
+    uint16_t base_val;                      /* å­˜æ”¾åŸºç¡€é˜€å€¼ */
+    uint16_t tshd_val, tsld_val;            /* å­˜æ”¾è®¾ç½®çš„ä¸Š/ä¸‹é™é˜€å€¼ */
     
-    base_val = __am_fsl_tsi_basevale_get();   /* ¶ÁÈ¡»ù´¡×ª»»Öµ */
+    base_val = __am_fsl_tsi_basevale_get();   /* è¯»å–åŸºç¡€è½¬æ¢å€¼ */
     
-    tshd_val = val + base_val;              /* ÉÏÏŞÎªÉèÖÃÖµ¼Ó»ù´¡Öµ */
-    tsld_val = base_val - base_val / 2;     /* ÏÂÏŞÎª»ù´¡ÖµµÄÒ»°ë */
+    tshd_val = val + base_val;              /* ä¸Šé™ä¸ºè®¾ç½®å€¼åŠ åŸºç¡€å€¼ */
+    tsld_val = base_val - base_val / 2;     /* ä¸‹é™ä¸ºåŸºç¡€å€¼çš„ä¸€åŠ */
 
-    /* Ğ´ÈëÉÏ/ÏÂÏŞÖµ */
+    /* å†™å…¥ä¸Š/ä¸‹é™å€¼ */
     __am_fsl_tsi_thresh_set(tshd_val,tsld_val);
 }
 
 /**
- * \brief TSIÖĞ¶Ï´¥·¢Ä£Ê½
+ * \brief TSIä¸­æ–­è§¦å‘æ¨¡å¼
  */
 void am_fsl_tsi_trigger_cfg (amhw_fsl_tsi_irq_mode_t flag)
 {
@@ -147,55 +147,55 @@ void am_fsl_tsi_trigger_cfg (amhw_fsl_tsi_irq_mode_t flag)
 }
 
 /**
- * \brief TSIÖĞ¶ÏÊ¹ÄÜ
+ * \brief TSIä¸­æ–­ä½¿èƒ½
  */
 void am_fsl_tsi_int_enable (void)
 {
     __TSI_DEVINFO_DECL(p_tsi_devinfo, __gp_tsi_dev);
 
-    /* TSIÖĞ¶ÏÊ¹ÄÜ */
+    /* TSIä¸­æ–­ä½¿èƒ½ */
     amhw_fsl_tsi_int_enable(p_tsi_devinfo->p_hw_tsi);
 
-    /* ÏµÍ³ÖĞ¶ÏÊ¹ÄÜ */
+    /* ç³»ç»Ÿä¸­æ–­ä½¿èƒ½ */
     am_int_enable(p_tsi_devinfo->inum);
 }
 
 /**
- * \brief TSIÖĞ½ûÄÜ
+ * \brief TSIä¸­ç¦èƒ½
  */
 void am_fsl_tsi_int_disable (void)
 {
     __TSI_DEVINFO_DECL(p_tsi_devinfo, __gp_tsi_dev);
 
-    /* TSI ÖĞ¶Ï½ûÄÜ */
+    /* TSI ä¸­æ–­ç¦èƒ½ */
     amhw_fsl_tsi_int_disable(p_tsi_devinfo->p_hw_tsi);
     
-    /* ÏµÍ³ÖĞ¶Ï½ûÄÜ */
+    /* ç³»ç»Ÿä¸­æ–­ç¦èƒ½ */
     am_int_enable(p_tsi_devinfo->inum);
 }
 
 /**
- * \brief Á¬½ÓÖĞ¶Ï»Øµ÷º¯Êı
+ * \brief è¿æ¥ä¸­æ–­å›è°ƒå‡½æ•°
  */
 int am_fsl_tsi_trigger_connect (am_pfnvoid_t pfn_callback)
 {
     __TSI_DEVINFO_DECL(p_tsi_devinfo, __gp_tsi_dev);
     int key;
 
-    /* ¹Ø±ÕCPUÖĞ¶Ï */
+    /* å…³é—­CPUä¸­æ–­ */
     key = am_int_cpu_lock();
 
-    /* Á¬½Ó»Øµ÷º¯Êı */
+    /* è¿æ¥å›è°ƒå‡½æ•° */
     am_int_connect(p_tsi_devinfo->inum, pfn_callback, NULL);
 
-    /* ´ò¿ªÖĞ¶Ï */
+    /* æ‰“å¼€ä¸­æ–­ */
     am_int_cpu_unlock(key);
 
      return AM_OK;
 }
 
 /**
- * \brief TSI ¹¦ÄÜÅäÖÃ
+ * \brief TSI åŠŸèƒ½é…ç½®
  */
 int am_fsl_tsi_fun_cfg (amhw_fsl_tsi_channel_t    chan,
                          amhw_fsl_tsi_mode_t       work_mode,
@@ -203,40 +203,40 @@ int am_fsl_tsi_fun_cfg (amhw_fsl_tsi_channel_t    chan,
 {
     __TSI_DEVINFO_DECL(p_tsi_devinfo, __gp_tsi_dev);
 
-    /* Ê¹ÄÜTSIÍ¨µÀ */
+    /* ä½¿èƒ½TSIé€šé“ */
     amhw_fsl_tsi_chan_set(p_tsi_devinfo->p_hw_tsi, chan);
 
-    /* ÉèÖÃTSI¹¤×÷Ä£Ê½ */
+    /* è®¾ç½®TSIå·¥ä½œæ¨¡å¼ */
     amhw_fsl_tsi_mode_set(p_tsi_devinfo->p_hw_tsi, work_mode);
 
-    /* ÅäÖÃ´¥·¢É¨ÃèÄ£Ê½ */
+    /* é…ç½®è§¦å‘æ‰«ææ¨¡å¼ */
     amhw_fsl_tsi_scan_trig_set(p_tsi_devinfo->p_hw_tsi, trig_mode);
 
-    /* µÍ¹¦ºÄ»½ĞÑ¹¦ÄÜ */
+    /* ä½åŠŸè€—å”¤é†’åŠŸèƒ½ */
     if(p_tsi_devinfo->lp_mode == AM_TRUE) {
         amhw_fsl_tsi_lowpower_enable(p_tsi_devinfo->p_hw_tsi);
     }
 
-    /* ÉèÖÃµçÑ¹ÔöÁ¿Îª600mV(Vp - Vm) */
+    /* è®¾ç½®ç”µå‹å¢é‡ä¸º600mV(Vp - Vm) */
     amhw_fsl_tsi_dvolt_set (p_tsi_devinfo->p_hw_tsi, AMHW_FSL_TSI_DV073);
 
-    /* É¨ÃèÔ¤·ÖÆµÉèÖÃÎª2·ÖÆµ */
+    /* æ‰«æé¢„åˆ†é¢‘è®¾ç½®ä¸º2åˆ†é¢‘ */
     amhw_fsl_tsi_oscfreq_div_set(p_tsi_devinfo->p_hw_tsi, AMHW_FSL_TSI_OSCFRQ_DIV_2);
 
-    /* ÉèÖÃµç¼«É¨Ãè´ÎÊıÎª16 */
+    /* è®¾ç½®ç”µææ‰«ææ¬¡æ•°ä¸º16 */
     amhw_fsl_tsi_scan_num_set(p_tsi_devinfo->p_hw_tsi, 16);
 
-    /* ÉèÖÃÍâ²¿Õñµ´Æ÷ºã¶¨µçÁ÷Îª16uA */
+    /* è®¾ç½®å¤–éƒ¨æŒ¯è¡å™¨æ’å®šç”µæµä¸º16uA */
     amhw_fsl_tsi_extchrg_val_set(p_tsi_devinfo->p_hw_tsi, AMHW_FSL_TSI_EXTCHRG_16UA);
 
-    /* ÉèÖÃ²Î¿¼Õñµ´Æ÷ºã¶¨µçÁ÷Ô´Îª12uA ,Ôò²Î¿¼Ê±ÖÓÎª10MHz*/
+    /* è®¾ç½®å‚è€ƒæŒ¯è¡å™¨æ’å®šç”µæµæºä¸º12uA ,åˆ™å‚è€ƒæ—¶é’Ÿä¸º10MHz*/
     amhw_fsl_tsi_refchrg_val_set(p_tsi_devinfo->p_hw_tsi, AMHW_FSL_TSI_REFCHRG_32UA);
 
     return AM_OK;
 }
 
 /**
- * \brief TSI³õÊ¼»¯
+ * \brief TSIåˆå§‹åŒ–
  */
 int am_fsl_tsi_init (am_fsl_tsi_dev_t *p_dev, const am_fsl_tsi_devinfo_t *p_devinfo)
 {
@@ -254,21 +254,21 @@ int am_fsl_tsi_init (am_fsl_tsi_dev_t *p_dev, const am_fsl_tsi_devinfo_t *p_devi
     }
 
     if (p_devinfo->lp_mode != AM_FALSE) {
-        /* Ìí¼ÓµÍ¹¦ºÄÄ£Ê½ÏÂ¼ÌĞøÔËĞĞÉèÖÃ */
+        /* æ·»åŠ ä½åŠŸè€—æ¨¡å¼ä¸‹ç»§ç»­è¿è¡Œè®¾ç½® */
         amhw_fsl_tsi_lowpower_enable(p_devinfo->p_hw_tsi);
     }
 
-    /* ÖĞ¶Ï½ûÄÜ */
+    /* ä¸­æ–­ç¦èƒ½ */
     amhw_fsl_tsi_int_disable(p_devinfo->p_hw_tsi);
 
-    /* Ê¹ÄÜTSIÄ£¿é */
+    /* ä½¿èƒ½TSIæ¨¡å— */
     amhw_fsl_tsi_mode_enable(p_devinfo->p_hw_tsi);
 
     return AM_OK;
 }
 
 /**
- * \brief TSI ½â³õÊ¼»¯
+ * \brief TSI è§£åˆå§‹åŒ–
  */
 void am_fsl_tsi_deinit (am_fsl_tsi_dev_t *p_dev)
 {
@@ -280,10 +280,10 @@ void am_fsl_tsi_deinit (am_fsl_tsi_dev_t *p_dev)
         p_devinfo->pfn_plfm_deinit();
     }
 
-    /* ÖĞ¶Ï½ûÄÜ */
+    /* ä¸­æ–­ç¦èƒ½ */
     amhw_fsl_tsi_int_disable(p_hw_tsi);
 
-    /* ½ûÄÜTSIÄ£¿é */
+    /* ç¦èƒ½TSIæ¨¡å— */
     amhw_fsl_tsi_mode_disable(p_hw_tsi);
 }
 

@@ -13,16 +13,16 @@
 
 /**
  * \file
- * \brief USB printer_counter Àı³Ì
+ * \brief USB printer_counter ä¾‹ç¨‹
  *
- * - ÊµÑéÏÖÏó£º
- * 1.½«USBµÄÁí¶Ëµã½ÓÈëPC»ú¡£
- * 2.¸ø°å×ÓÉÕÂ¼¸ÃÀı³Ì£¬µÈ´ı3Ãë(³ÌĞòÖĞÓĞ3ÃëÑÓÊ±£¬ÎªÁËÄ£ÄâUSB°Î³ö¹ı³Ì)£¬3Ãëºópc»ú»áÌáÊ¾°²×°Çı¶¯£¬
- *   ÕâÀïÄ¬ÈÏ°²×°windows Í¨ÓÃ´òÓ¡»úÇı¶¯£¬ÏêÏ¸¿É¿´Çı¶¯°²×°ËµÃ÷ÎÄµµ£¬Èç¹ûÓÃ»§ÏëÒªÓÃ×Ô¼ºµÄÇı¶¯£¬¿ÉÒÔ×ÔĞĞ¸üĞÂ¡£
- * 3.ÔÚµçÄÔ×ÀÃæĞÂ½¨Ò»¸ötxtÎÄ¼ş£¬ÊäÈë×Ö·û´®,Ö®ºóµã»÷ÎÄ¼ş´òÓ¡£¬¼´ÔÚ´®¿ÚÖĞ¿ÉÒÔ¿´µ½ÎÄ¼şÄÚÈİ£¬×îºó»áÏÔÊ¾¸Ã´Î´«ÊäÊı¾İÁ¿
- *   ¼°ÆäËùºÄÊ±¼ä¡£
+ * - å®éªŒç°è±¡ï¼š
+ * 1.å°†USBçš„å¦ç«¯ç‚¹æ¥å…¥PCæœºã€‚
+ * 2.ç»™æ¿å­çƒ§å½•è¯¥ä¾‹ç¨‹ï¼Œç­‰å¾…3ç§’(ç¨‹åºä¸­æœ‰3ç§’å»¶æ—¶ï¼Œä¸ºäº†æ¨¡æ‹ŸUSBæ‹”å‡ºè¿‡ç¨‹)ï¼Œ3ç§’åpcæœºä¼šæç¤ºå®‰è£…é©±åŠ¨ï¼Œ
+ *   è¿™é‡Œé»˜è®¤å®‰è£…windows é€šç”¨æ‰“å°æœºé©±åŠ¨ï¼Œè¯¦ç»†å¯çœ‹é©±åŠ¨å®‰è£…è¯´æ˜æ–‡æ¡£ï¼Œå¦‚æœç”¨æˆ·æƒ³è¦ç”¨è‡ªå·±çš„é©±åŠ¨ï¼Œå¯ä»¥è‡ªè¡Œæ›´æ–°ã€‚
+ * 3.åœ¨ç”µè„‘æ¡Œé¢æ–°å»ºä¸€ä¸ªtxtæ–‡ä»¶ï¼Œè¾“å…¥å­—ç¬¦ä¸²,ä¹‹åç‚¹å‡»æ–‡ä»¶æ‰“å°ï¼Œå³åœ¨ä¸²å£ä¸­å¯ä»¥çœ‹åˆ°æ–‡ä»¶å†…å®¹ï¼Œæœ€åä¼šæ˜¾ç¤ºè¯¥æ¬¡ä¼ è¾“æ•°æ®é‡
+ *   åŠå…¶æ‰€è€—æ—¶é—´ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_usbd_printer_counter.c src_usbd_printer_counter
  *
  * \internal
@@ -47,42 +47,42 @@
 #include "am_usbd_printer.h"
 #include "demo_zlg_entries.h"
 
-#define __RNG_BUFF_SIZE    1024                      /**< \brief »º³åÇø´óĞ¡. */
+#define __RNG_BUFF_SIZE    1024                      /**< \brief ç¼“å†²åŒºå¤§å°. */
 
-static char __g_rng_buff[__RNG_BUFF_SIZE]   = {0};  /**< \brief »·ĞÎ»º³åÇøbuff*/
+static char __g_rng_buff[__RNG_BUFF_SIZE]   = {0};  /**< \brief ç¯å½¢ç¼“å†²åŒºbuff*/
 
-static char __g_read_buff[__RNG_BUFF_SIZE]  = {0};  /**< \brief Êı¾İ¶ÁÈ¡buff*/
+static char __g_read_buff[__RNG_BUFF_SIZE]  = {0};  /**< \brief æ•°æ®è¯»å–buff*/
 
-static struct am_rngbuf __g_rngbuff; /**< \brief ¶¨ÒåÒ»¸ö»·ĞÎ»º³åÇøÊµÀı*/
+static struct am_rngbuf __g_rngbuff; /**< \brief å®šä¹‰ä¸€ä¸ªç¯å½¢ç¼“å†²åŒºå®ä¾‹*/
 
-static uint32_t __g_data_len  = 0;   /**< \brief Ò»´ÎÖ÷»ú·¢ËÍµÄµÄÊı¾İ³¤¶È. */
-static uint32_t __g_timeout   = 0;   /**< \brief ÖĞ¶Ï³¬Ê±×´Ì¬*/
-static uint32_t __g_clock     = 0;   /**< \brief ¶¨Ê±Æ÷¼ÆÊıÖµ,ms¼¶±ğ. */
-static uint8_t  __g_int_state = 0;   /**< \brief ÖĞ¶Ï×´Ì¬*/
+static uint32_t __g_data_len  = 0;   /**< \brief ä¸€æ¬¡ä¸»æœºå‘é€çš„çš„æ•°æ®é•¿åº¦. */
+static uint32_t __g_timeout   = 0;   /**< \brief ä¸­æ–­è¶…æ—¶çŠ¶æ€*/
+static uint32_t __g_clock     = 0;   /**< \brief å®šæ—¶å™¨è®¡æ•°å€¼,msçº§åˆ«. */
+static uint8_t  __g_int_state = 0;   /**< \brief ä¸­æ–­çŠ¶æ€*/
 
 /**
- * \brief ´òÓ¡»ú½ÓÊÕÖĞ¶ÏÇëÇó»Øµ÷º¯Êı
+ * \brief æ‰“å°æœºæ¥æ”¶ä¸­æ–­è¯·æ±‚å›è°ƒå‡½æ•°
  *
- * param[in] p_arg  : »Øµ÷º¯Êı²ÎÊı
- * param[in] p_data : ½ÓÊÕÊı¾İbuff
- * param[in] len    : ½ÓÊÕÊı¾İµÄÓĞĞ§³¤¶È£¨Êı¾İÁ¿£©
+ * param[in] p_arg  : å›è°ƒå‡½æ•°å‚æ•°
+ * param[in] p_data : æ¥æ”¶æ•°æ®buff
+ * param[in] len    : æ¥æ”¶æ•°æ®çš„æœ‰æ•ˆé•¿åº¦ï¼ˆæ•°æ®é‡ï¼‰
  */
 static void __printer_recv_callback(void *p_arg, uint8_t *p_data, uint8_t len)
 {
-    __g_data_len += len;  /* ³¤¶È. */
-    __g_timeout   = 0;    /* ¹éÁã³¬Ê±Ê±¼ä*/
-    __g_int_state = 1;    /* ÖĞ¶Ï×´Ì¬±êÖ¾*/
-    am_rngbuf_put(&__g_rngbuff, (char *)p_data, len);  /* Ìî³ä»·ĞÎ»º³åÇø*/
+    __g_data_len += len;  /* é•¿åº¦. */
+    __g_timeout   = 0;    /* å½’é›¶è¶…æ—¶æ—¶é—´*/
+    __g_int_state = 1;    /* ä¸­æ–­çŠ¶æ€æ ‡å¿—*/
+    am_rngbuf_put(&__g_rngbuff, (char *)p_data, len);  /* å¡«å……ç¯å½¢ç¼“å†²åŒº*/
 }
 
 /**
- * \brief ´òÓ¡»ú·¢ËÍÖĞ¶ÏÇëÇó»Øµ÷º¯Êı
+ * \brief æ‰“å°æœºå‘é€ä¸­æ–­è¯·æ±‚å›è°ƒå‡½æ•°
  *
- * param[in] p_arg  : »Øµ÷º¯Êı²ÎÊı
+ * param[in] p_arg  : å›è°ƒå‡½æ•°å‚æ•°
  */
 static void __printer_send_callback(void *p_arg)
 {
-    //¸Ãº¯ÊıÎª´òÓ¡»ú·¢ËÍÇëÇó,¼´Ö÷»úÓĞÇëÇóUSB device ·¢ËÍÊı¾İ(¶¨ÒåµÄ¶ËµãÊı¾İ)Ê±£¬¾Í»á½øÈë¸Ãº¯Êı
+    //è¯¥å‡½æ•°ä¸ºæ‰“å°æœºå‘é€è¯·æ±‚,å³ä¸»æœºæœ‰è¯·æ±‚USB device å‘é€æ•°æ®(å®šä¹‰çš„ç«¯ç‚¹æ•°æ®)æ—¶ï¼Œå°±ä¼šè¿›å…¥è¯¥å‡½æ•°
     uint8_t data[] = "ZLG printer demo test string";
     am_usbd_printer_handle handle = (am_usbd_printer_handle)p_arg;
 
@@ -90,27 +90,27 @@ static void __printer_send_callback(void *p_arg)
 }
 
 /**
- * \brief Èí¼ş¶¨Ê±Æ÷ÖĞ¶Ï»Øµ÷º¯Êı
+ * \brief è½¯ä»¶å®šæ—¶å™¨ä¸­æ–­å›è°ƒå‡½æ•°
  */
 static void  __softimer_callback_func(void * p_arg)
 {
     static uint32_t time = 0;
 
-    if (__g_int_state == 1) {       /* ÅĞ¶ÏÊÇ·ñ½øÈëÖĞ¶ÏÊ±¼ä*/
-        __g_timeout++;              /* ³¬Ê±Ê±¼äÀÛ¼Ó£¬Èç¹û½øÈëÖĞ¶Ï×´Ì¬»áÇå¿Õ³¬Ê±Ê±¼ä*/
-        __g_clock++;                /* µ¥´Î·¢ËÍÊı¾İÊ±¼äÀÛ¼Ó*/
+    if (__g_int_state == 1) {       /* åˆ¤æ–­æ˜¯å¦è¿›å…¥ä¸­æ–­æ—¶é—´*/
+        __g_timeout++;              /* è¶…æ—¶æ—¶é—´ç´¯åŠ ï¼Œå¦‚æœè¿›å…¥ä¸­æ–­çŠ¶æ€ä¼šæ¸…ç©ºè¶…æ—¶æ—¶é—´*/
+        __g_clock++;                /* å•æ¬¡å‘é€æ•°æ®æ—¶é—´ç´¯åŠ */
 
-        if (__g_clock > 1000) {     /* Èç¹ûÀÛ¼ÓÊ±¼ä´óÓÚ1s,ÇåÁã£¬ÁîtimeÊıÖµÀÛ¼Ó1 */
+        if (__g_clock > 1000) {     /* å¦‚æœç´¯åŠ æ—¶é—´å¤§äº1s,æ¸…é›¶ï¼Œä»¤timeæ•°å€¼ç´¯åŠ 1 */
             __g_clock = 0;
             time++;
         }
 
-        if (__g_timeout  > 1000) {  /* Èç¹û³¬Ê±Ê±¼ä´óÓÚ1s,ÕâÀïÄ¬ÈÏ±íÊ¾ÎªÖ÷»úÒ»´ÎÊı¾İ·¢ËÍÍê³É*/
+        if (__g_timeout  > 1000) {  /* å¦‚æœè¶…æ—¶æ—¶é—´å¤§äº1s,è¿™é‡Œé»˜è®¤è¡¨ç¤ºä¸ºä¸»æœºä¸€æ¬¡æ•°æ®å‘é€å®Œæˆ*/
             am_kprintf("\n total data: %d byte" \
                        "time-consuming: %d.%03d s\n", __g_data_len,
                                                       time - 1,
                                                       __g_clock);
-            /* Çå¿Õ×´Ì¬*/
+            /* æ¸…ç©ºçŠ¶æ€*/
             __g_data_len  = 0;
             __g_timeout   = 0;
             __g_int_state = 0;
@@ -121,29 +121,29 @@ static void  __softimer_callback_func(void * p_arg)
 }
 
 /**
- * \brief usb device printer Á÷Á¿¼ÆÊıÀı³ÌÈë¿Ú
+ * \brief usb device printer æµé‡è®¡æ•°ä¾‹ç¨‹å…¥å£
  */
 void demo_usbd_printer_counter_entry (void* p_handle)
 {
     uint32_t key = 0;
     am_usbd_printer_handle handle = p_handle;
-    am_mdelay(3000);                                  /* Ä£ÄâUSBÉè±¸°Î³öµÄ¶¯×÷ */
-    am_softimer_t soft_time;                          /* Èí¼ş¶¨Ê±Æ÷handle*/
+    am_mdelay(3000);                                  /* æ¨¡æ‹ŸUSBè®¾å¤‡æ‹”å‡ºçš„åŠ¨ä½œ */
+    am_softimer_t soft_time;                          /* è½¯ä»¶å®šæ—¶å™¨handle*/
 
-    /* ³õÊ¼»¯»·ĞÎ»º³åÇø*/
+    /* åˆå§‹åŒ–ç¯å½¢ç¼“å†²åŒº*/
     am_rngbuf_init(&__g_rngbuff, __g_rng_buff, __RNG_BUFF_SIZE);
 
-    /* ³õÊ¼»¯Èí¼ş¶¨Ê±Æ÷. */
+    /* åˆå§‹åŒ–è½¯ä»¶å®šæ—¶å™¨. */
     am_softimer_init(&soft_time, __softimer_callback_func, handle);
-    am_softimer_start(&soft_time, 1);                 /* ¿ªÊ¼Èí¼ş¶¨Ê±Æ÷²¼¾Ö 1ms*/
+    am_softimer_start(&soft_time, 1);                 /* å¼€å§‹è½¯ä»¶å®šæ—¶å™¨å¸ƒå±€ 1ms*/
 
-    /* ¶¨ÒåÈí¼ş¶¨Ê±Æ÷½ÓÊÕºÍ·¢ËÍÇëÇó»Øµ÷º¯Êı*/
+    /* å®šä¹‰è½¯ä»¶å®šæ—¶å™¨æ¥æ”¶å’Œå‘é€è¯·æ±‚å›è°ƒå‡½æ•°*/
     am_usbd_printer_recv_request_callback(handle, __printer_recv_callback, handle);
     am_usbd_printer_send_request_callback(handle, __printer_send_callback, handle);
 
     while (1) {
 
-        /* Èç¹û»·ĞÎ»º³åÇø²»Îª¿Õ£¬´¦ÀíÊı¾İ*/
+        /* å¦‚æœç¯å½¢ç¼“å†²åŒºä¸ä¸ºç©ºï¼Œå¤„ç†æ•°æ®*/
         if (!am_rngbuf_isempty(&__g_rngbuff)) {
             key = am_int_cpu_lock();
             am_rngbuf_get(&__g_rngbuff, __g_read_buff, __RNG_BUFF_SIZE);

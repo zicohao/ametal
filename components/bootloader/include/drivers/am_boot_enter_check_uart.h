@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief ½øÈëÓ¦ÓÃ³ÌĞò¼ì²â£¨´®¿ÚÊı¾İÊµÏÖ£©
+ * \brief è¿›å…¥åº”ç”¨ç¨‹åºæ£€æµ‹ï¼ˆä¸²å£æ•°æ®å®ç°ï¼‰
  *
- * Ö÷Òª¼ì²â´®¿ÚÊÇ·ñ½ÓÊÕµ½ÈÎÒâÊı¾İ£¬
+ * ä¸»è¦æ£€æµ‹ä¸²å£æ˜¯å¦æ¥æ”¶åˆ°ä»»æ„æ•°æ®ï¼Œ
  *
  * \internal
  * \par Modification history
@@ -30,17 +30,17 @@
 #include "am_boot_enter_check.h"
 
 /**
- * \brief ½øÈëÓ¦ÓÃ´úÂë¼ì²âÉè±¸£¨´®¿ÚÊı¾İÇı¶¯£©
+ * \brief è¿›å…¥åº”ç”¨ä»£ç æ£€æµ‹è®¾å¤‡ï¼ˆä¸²å£æ•°æ®é©±åŠ¨ï¼‰
  */
 typedef struct am_boot_enter_check_uart_dev {
-    /**< \brief ±ê×¼µÄ½øÈëÓ¦ÓÃ³ÌĞò¼ì²â·şÎñ  */
+    /**< \brief æ ‡å‡†çš„è¿›å…¥åº”ç”¨ç¨‹åºæ£€æµ‹æœåŠ¡  */
     am_boot_enter_check_serv_t enter_check_serv;
-    /**< \brief ´®¿Ú±ê×¼·şÎñ²Ù×÷¾ä±ú  */
+    /**< \brief ä¸²å£æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„  */
     am_uart_handle_t           uart_handle;
 }am_boot_enter_check_uart_dev_t;
 
 /**
- * \brief ½øÈëÓ¦ÓÃ´úÂë¼ì²âÉè±¸³õÊ¼»¯£¨´®¿ÚÊı¾İÇı¶¯£©
+ * \brief è¿›å…¥åº”ç”¨ä»£ç æ£€æµ‹è®¾å¤‡åˆå§‹åŒ–ï¼ˆä¸²å£æ•°æ®é©±åŠ¨ï¼‰
  */
 am_boot_enter_check_handle_t am_boot_enter_check_uart_init(am_uart_handle_t uart_handle);
 

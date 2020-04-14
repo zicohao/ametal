@@ -31,7 +31,7 @@
 
 static void __input_key_proc (void *p_arg, int key_code, int key_state)
 {
-	    //°´¼ü°´ÏÂ£¬·¢ËÍ"key_pressed"×Ö·û´®
+	    //æŒ‰é”®æŒ‰ä¸‹ï¼Œå‘é€"key_pressed"å­—ç¬¦ä¸²
 	    if ((key_code == KEY_F1) && (key_state == AM_INPUT_KEY_STATE_PRESSED)) {
 	        am_zm516x_send(p_arg, "key_pressed", strlen("key_pressed"));
 	    }
@@ -43,12 +43,12 @@ int app_led_control (am_zm516x_handle_t zm516x_handle, uint16_t my_addr, uint16_
 		am_zm516x_cfg_info_t    zm516x_cfg_info;
 		am_input_key_handler_t  key_handler;
 		
-    // »ñÈ¡ZM516XÄ£¿éµÄĞÅÏ¢
+    // è·å–ZM516Xæ¨¡å—çš„ä¿¡æ¯
     if (am_zm516x_cfg_info_get(zm516x_handle, &zm516x_cfg_info) != AM_OK) {
         return AM_ERROR;
     }
 		
-    //ĞŞ¸ÄZM516XÄ£¿éµÄĞÅÏ¢
+    //ä¿®æ”¹ZM516Xæ¨¡å—çš„ä¿¡æ¯
     zm516x_cfg_info.my_addr[0]  	= (my_addr >> 8) & 0xFF;
     zm516x_cfg_info.my_addr[1]  	= my_addr & 0xFF;
     zm516x_cfg_info.dst_addr[0] 	= (dst_addr >> 8) & 0xFF;
@@ -57,15 +57,15 @@ int app_led_control (am_zm516x_handle_t zm516x_handle, uint16_t my_addr, uint16_
     if (am_zm516x_cfg_info_set(zm516x_handle, &zm516x_cfg_info) != AM_OK) {
         return AM_ERROR;
     }
-    //Ê¹ZM516XÄ£¿é¸´Î»£¬ÒÔÊ¹ÉèÖÃÉúĞ§
+    //ä½¿ZM516Xæ¨¡å—å¤ä½ï¼Œä»¥ä½¿è®¾ç½®ç”Ÿæ•ˆ
     am_zm516x_reset(zm516x_handle);
     am_mdelay(10);
-	  //×¢²á°´¼ü´¦Àíº¯Êı
+	  //æ³¨å†ŒæŒ‰é”®å¤„ç†å‡½æ•°
 		am_input_key_handler_register(&key_handler, __input_key_proc, (void *)zm516x_handle);
 	  while (1) {
         memset(buf, 0, sizeof(buf));
         am_zm516x_receive(zm516x_handle, buf, sizeof(buf)); 
-        if (strcmp((const char *)buf, "key_pressed") == 0) {  // ÈôÊÕµ½"key_pressed",Ôò·­×ªLED0µÄ×´Ì¬
+        if (strcmp((const char *)buf, "key_pressed") == 0) {  // è‹¥æ”¶åˆ°"key_pressed",åˆ™ç¿»è½¬LED0çš„çŠ¶æ€
             am_led_toggle(0);
         }
         am_mdelay(10);

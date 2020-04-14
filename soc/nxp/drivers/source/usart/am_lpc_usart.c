@@ -27,38 +27,38 @@
 #include "hw/amhw_lpc_usart.h"
 #include "am_clk.h"
 
-#define __USART_BAUDRATE    115200  /* USARTÄ£¿éÄ¬ÈÏ²¨ÌØÂÊ  */
+#define __USART_BAUDRATE    115200  /* USARTæ¨¡å—é»˜è®¤æ³¢ç‰¹ç‡  */
 
 /*******************************************************************************
-* º¯ÊıÉùÃ÷
+* å‡½æ•°å£°æ˜
 *******************************************************************************/
 
 /** 
- * \brief ´®¿ÚÄ£Ê½£¨²éÑ¯»òÖĞ¶Ï£©ÉèÖÃ
+ * \brief ä¸²å£æ¨¡å¼ï¼ˆæŸ¥è¯¢æˆ–ä¸­æ–­ï¼‰è®¾ç½®
  */
 static int __usart_mode_set (am_lpc_usart_dev_t *p_dev, uint32_t new_mode);
 
 /** 
- * \brief ´®¿ÚÓ²¼şÉèÖÃ
+ * \brief ä¸²å£ç¡¬ä»¶è®¾ç½®
  */
 static int __usart_opt_set (am_lpc_usart_dev_t *p_dev, uint32_t opts);
 
 /** 
- * \brief Á÷¿Ø½ÓÊÜÆ÷Á÷¿Ø×´Ì¬ÉèÖÃ
+ * \brief æµæ§æ¥å—å™¨æµæ§çŠ¶æ€è®¾ç½®
  */
 static int __usart_flow_rxstat_set (am_lpc_usart_dev_t *p_dev, uint32_t ctrl);
 
 /** 
- * \brief Á÷¿ØÄ£Ê½ÉèÖÃ
+ * \brief æµæ§æ¨¡å¼è®¾ç½®
  */
 static int __usart_flow_mode_set (am_lpc_usart_dev_t *p_dev, uint32_t mode);
 
 /** 
- * \brief Á÷¿Ø·¢ËÍÆ÷Á÷¿Ø×´Ì¬»ñÈ¡
+ * \brief æµæ§å‘é€å™¨æµæ§çŠ¶æ€è·å–
  */
 static int __usart_flow_txstat_get (am_lpc_usart_dev_t *p_dev);
 
-/* lpc824X UART Éè±¸·şÎñ */
+/* lpc824X UART è®¾å¤‡æœåŠ¡ */
 static int __usart_ioctl (void *p_drv,int request, void *p_arg);
 
 static int __usart_tx_startup (void *p_drv);
@@ -72,7 +72,7 @@ static int __usart_poll_getchar (void *p_drv, char *p_char);
 
 static int __usart_poll_putchar (void *p_drv, char outchar);
 
-/** \brief uart ¹¦ÄÜº¯Êı½á¹¹Ìå±äÁ¿ */
+/** \brief uart åŠŸèƒ½å‡½æ•°ç»“æ„ä½“å˜é‡ */
 static const struct am_uart_drv_funcs __g_uart_drv_funcs = {
      __usart_ioctl,
      __usart_tx_startup,
@@ -84,10 +84,10 @@ static const struct am_uart_drv_funcs __g_uart_drv_funcs = {
 /*******************************************************************************/
 
 /**
- * \brief Éè±¸¿ØÖÆº¯Êı
+ * \brief è®¾å¤‡æ§åˆ¶å‡½æ•°
  *
- * ÆäÖĞ°üº¬ÉèÖÃ»ñÈ¡²¨ÌØÂÊ£¬Ä£Ê½ÉèÖÃ£¨ÖĞ¶Ï/²éÑ¯£©£¬»ñÈ¡Ö§³ÖµÄÄ£Ê½£¬Ó²¼şÑ¡ÏîÉèÖÃ£¬
- * Á÷¿ØÄ£Ê½Ñ¡Ôñ£¬Á÷¿ØÉèÖÃµÈÌØÊâ¹¦ÄÜ¡£
+ * å…¶ä¸­åŒ…å«è®¾ç½®è·å–æ³¢ç‰¹ç‡ï¼Œæ¨¡å¼è®¾ç½®ï¼ˆä¸­æ–­/æŸ¥è¯¢ï¼‰ï¼Œè·å–æ”¯æŒçš„æ¨¡å¼ï¼Œç¡¬ä»¶é€‰é¡¹è®¾ç½®ï¼Œ
+ * æµæ§æ¨¡å¼é€‰æ‹©ï¼Œæµæ§è®¾ç½®ç­‰ç‰¹æ®ŠåŠŸèƒ½ã€‚
  *
  */
 static int __usart_ioctl (void *p_drv, int request, void *p_arg)
@@ -108,11 +108,11 @@ static int __usart_ioctl (void *p_drv, int request, void *p_arg)
         
     case AM_UART_BAUD_SET:
     
-        /* µÈ´ı´®¿Ú·¢ËÍ¿ÕÏĞ */
+        /* ç­‰å¾…ä¸²å£å‘é€ç©ºé—² */
         while ((amhw_lpc_usart_stat_get(p_hw_usart) &
                 AMHW_LPC_USART_STAT_TXIDLE) == 0);
     
-        /* ÉèÖÃ´®¿Ú²¨ÌØÂÊ */
+        /* è®¾ç½®ä¸²å£æ³¢ç‰¹ç‡ */
         status = amhw_lpc_usart_baudrate_set(
                                        p_hw_usart,
                      am_clk_rate_get(p_dev->p_devinfo->clk_id),
@@ -183,7 +183,7 @@ static int __usart_ioctl (void *p_drv, int request, void *p_arg)
 
 /******************************************************************************/
 /** 
- * \brief Æô¶¯´«Êä£¨ÔÚÖĞ¶ÏÄ£Ê½ÏÂ£©
+ * \brief å¯åŠ¨ä¼ è¾“ï¼ˆåœ¨ä¸­æ–­æ¨¡å¼ä¸‹ï¼‰
  */
 static int __usart_tx_startup (void *p_drv)
 {
@@ -204,7 +204,7 @@ static int __usart_tx_startup (void *p_drv)
         p_dev->p_devinfo->pfn_rs485_dir(AM_TRUE);
     }
 
-    /* Ê¹ÄÜ·¢ËÍÖĞ¶Ï */
+    /* ä½¿èƒ½å‘é€ä¸­æ–­ */
     amhw_lpc_usart_int_enable(p_hw_usart, AMHW_LPC_USART_INT_TXRDY);
     
     /* RS485 mode */
@@ -219,7 +219,7 @@ static int __usart_tx_startup (void *p_drv)
 
 /******************************************************************************/
 /**
- * \brief ÉèÖÃ»Øµ÷º¯Êı
+ * \brief è®¾ç½®å›è°ƒå‡½æ•°
  */
 static int __usart_callback_set (void  *p_drv,
                                  int    callback_type,
@@ -259,7 +259,7 @@ static int __usart_callback_set (void  *p_drv,
 
 /******************************************************************************/
 /**
- * \brief ·¢ËÍÒ»¸ö×Ö·û£¨²éÑ¯Ä£Ê½£©
+ * \brief å‘é€ä¸€ä¸ªå­—ç¬¦ï¼ˆæŸ¥è¯¢æ¨¡å¼ï¼‰
  */
 static int __usart_poll_putchar (void *p_drv, char outchar)
 {
@@ -273,7 +273,7 @@ static int __usart_poll_putchar (void *p_drv, char outchar)
     p_dev      = (am_lpc_usart_dev_t *)p_drv;
     p_hw_usart = (amhw_lpc_usart_t *)p_dev->p_devinfo->usart_regbase;
         
-    /* ·¢ËÍ·Ç¾ÍĞ÷»òÈíÁ÷¿ØÄ£Ê½ÏÂÁ÷¿Ø¹Ø×´Ì¬ */
+    /* å‘é€éå°±ç»ªæˆ–è½¯æµæ§æ¨¡å¼ä¸‹æµæ§å…³çŠ¶æ€ */
     if ((amhw_lpc_usart_stat_get(p_hw_usart) & 
          AMHW_LPC_USART_STAT_TXRDY) == 0 ||
             (AM_UART_FLOWSTAT_OFF == p_dev->flowctl_tx_stat &&
@@ -286,7 +286,7 @@ static int __usart_poll_putchar (void *p_drv, char outchar)
             p_dev->p_devinfo->pfn_rs485_dir(AM_TRUE);
         }
 
-        /* ·¢ËÍÒ»¸öÊı¾İ */
+        /* å‘é€ä¸€ä¸ªæ•°æ® */
         amhw_lpc_usart_txdata_write(p_hw_usart, outchar);
 
         if (p_dev->rs485_en && p_dev->p_devinfo->pfn_rs485_dir) {
@@ -303,7 +303,7 @@ static int __usart_poll_putchar (void *p_drv, char outchar)
 
 /******************************************************************************/
 /**
- * \brief »ñÈ¡Ò»¸ö×Ö·û£¨²éÑ¯Ä£Ê½£©
+ * \brief è·å–ä¸€ä¸ªå­—ç¬¦ï¼ˆæŸ¥è¯¢æ¨¡å¼ï¼‰
  */
 static int __usart_poll_getchar (void *p_drv, char *p_char)
 {
@@ -320,14 +320,14 @@ static int __usart_poll_getchar (void *p_drv, char *p_char)
     p_dev      = (am_lpc_usart_dev_t *)p_drv;
     p_hw_usart = (amhw_lpc_usart_t *)p_dev->p_devinfo->usart_regbase;
 
-    /* ½ÓÊÕÎ´¾ÍĞ÷ */
+    /* æ¥æ”¶æœªå°±ç»ª */
     if ((amhw_lpc_usart_stat_get(p_hw_usart) &
          AMHW_LPC_USART_STAT_RXRDY) == 0) {
         return (-AM_EAGAIN);
     } else {
         *p_inchar = amhw_lpc_usart_rxdata_read(p_hw_usart);
         
-        /* Èç¹ûÊÇÈíÁ÷¿ØÄ£Ê½£¬¼ì²é½ÓÊÕµÄÊı¾İÊÇ·ñÊÇXON/XOFF¿ØÖÆĞÅºÅ */
+        /* å¦‚æœæ˜¯è½¯æµæ§æ¨¡å¼ï¼Œæ£€æŸ¥æ¥æ”¶çš„æ•°æ®æ˜¯å¦æ˜¯XON/XOFFæ§åˆ¶ä¿¡å· */
         if (AM_UART_FLOWCTL_SW == p_dev->flowctl_mode) {
             if (*p_inchar == AM_LPC_UART_XON) {
                 p_dev->flowctl_tx_stat = AM_UART_FLOWSTAT_ON;
@@ -343,7 +343,7 @@ static int __usart_poll_getchar (void *p_drv, char *p_char)
 
 /******************************************************************************/
 /**
- * \brief usart Ä£Ê½ÉèÖÃ
+ * \brief usart æ¨¡å¼è®¾ç½®
  */
 static int __usart_mode_set (am_lpc_usart_dev_t *p_dev, uint32_t new_mode)
 {
@@ -355,18 +355,18 @@ static int __usart_mode_set (am_lpc_usart_dev_t *p_dev, uint32_t new_mode)
     
     p_hw_usart = (amhw_lpc_usart_t *)p_dev->p_devinfo->usart_regbase;
 
-    /* Ö»Ö§³ÖÖĞ¶ÏÄ£Ê½ºÍ²éÑ¯Ä£Ê½ */
+    /* åªæ”¯æŒä¸­æ–­æ¨¡å¼å’ŒæŸ¥è¯¢æ¨¡å¼ */
     if ((new_mode != AM_UART_MODE_POLL) && (new_mode != AM_UART_MODE_INT)) {
         return (AM_ERROR);
     }
     
     if (new_mode == AM_UART_MODE_INT) {
             
-       /* Ê¹ÄÜ½ÓÊÕÖĞ¶Ï */
+       /* ä½¿èƒ½æ¥æ”¶ä¸­æ–­ */
        amhw_lpc_usart_int_enable(p_hw_usart, AMHW_LPC_USART_INT_RXRDY);
     } else {
         
-       /* ½ûÄÜËùÓĞÖĞ¶Ï */
+       /* ç¦èƒ½æ‰€æœ‰ä¸­æ–­ */
        amhw_lpc_usart_int_disable(p_hw_usart, AMHW_LPC_USART_INT_ALL);
     }
     
@@ -377,7 +377,7 @@ static int __usart_mode_set (am_lpc_usart_dev_t *p_dev, uint32_t new_mode)
 
 /******************************************************************************/
 /**
- * \brief usart Ó²¼şÉèÖÃ
+ * \brief usart ç¡¬ä»¶è®¾ç½®
  */
 static int __usart_opt_set (am_lpc_usart_dev_t *p_dev, uint32_t options)
 {
@@ -407,7 +407,7 @@ static int __usart_opt_set (am_lpc_usart_dev_t *p_dev, uint32_t options)
         break;
     }
 
-    /* Í£Ö¹Î»ÉèÖÃ */
+    /* åœæ­¢ä½è®¾ç½® */
     if (options & AM_UART_STOPB) {
         AM_BIT_CLR_MASK(cfg_flags, AM_BIT(6));
         AM_BIT_SET_MASK(cfg_flags, AMHW_LPC_USART_CFG_STOP_2);
@@ -416,7 +416,7 @@ static int __usart_opt_set (am_lpc_usart_dev_t *p_dev, uint32_t options)
         AM_BIT_SET_MASK(cfg_flags, AMHW_LPC_USART_CFG_STOP_1);
     }
 
-    /* ÆæÅ¼Ğ£ÑéÎ»ÉèÖÃ */        
+    /* å¥‡å¶æ ¡éªŒä½è®¾ç½® */        
     if (options & AM_UART_PARENB) {
         AM_BIT_CLR_MASK(cfg_flags, AM_SBF(0x03, 4));
 
@@ -431,7 +431,7 @@ static int __usart_opt_set (am_lpc_usart_dev_t *p_dev, uint32_t options)
     }
 
     if ((p_hw_usart->cfg & AMHW_LPC_USART_CFG_ENABLE) == 1) {
-        /* µÈ´ı¿ÕÏĞ */
+        /* ç­‰å¾…ç©ºé—² */
         while((amhw_lpc_usart_stat_get(p_hw_usart) & 
                AMHW_LPC_USART_STAT_TXIDLE) == 0);
         amhw_lpc_usart_disable(p_hw_usart);
@@ -447,7 +447,7 @@ static int __usart_opt_set (am_lpc_usart_dev_t *p_dev, uint32_t options)
 
 /******************************************************************************/
 /**
- * \brief ½ÓÊÕÆ÷Á÷¿Ø×´Ì¬ÉèÖÃ£¨¿ª»ò¹Ø£©
+ * \brief æ¥æ”¶å™¨æµæ§çŠ¶æ€è®¾ç½®ï¼ˆå¼€æˆ–å…³ï¼‰
  */
 static int __usart_flow_rxstat_set (am_lpc_usart_dev_t *p_dev, uint32_t ctrl)
 {
@@ -462,20 +462,20 @@ static int __usart_flow_rxstat_set (am_lpc_usart_dev_t *p_dev, uint32_t ctrl)
     if (AM_UART_FLOWCTL_NO == p_dev->flowctl_mode) {
         return -AM_ENOTSUP;
       
-    /* Èç¹ûÊÇÓ²¼şÁ÷¿Ø£¬ÅäÖÃRTSÊä³öÒı½ÅµçÎ» */
+    /* å¦‚æœæ˜¯ç¡¬ä»¶æµæ§ï¼Œé…ç½®RTSè¾“å‡ºå¼•è„šç”µä½ */
     } else if (AM_UART_FLOWCTL_HW == p_dev->flowctl_mode) {
         if (AM_UART_FLOWSTAT_ON == ctrl) {
-            /* À­µÍRTS¹Ü½Å,¿ªÁ÷     */
+            /* æ‹‰ä½RTSç®¡è„š,å¼€æµ     */
             amhw_lpc_usart_cfg_clr(p_hw_usart, 
                                       AMHW_LPC_USART_CFG_OEPOLHIGH);
 
         } else {
-            /* À­¸ßRTS¹Ü½Å,ÏŞÁ÷     */
+            /* æ‹‰é«˜RTSç®¡è„š,é™æµ     */
             amhw_lpc_usart_cfg_set(p_hw_usart, 
                                       AMHW_LPC_USART_CFG_OEPOLHIGH);
         }
     } else {
-        /* Èç¹ûÊÇÈí¼şÁ÷¿Ø£¬·¢ËÍXON/XOFFÁ÷¿Ø×Ö·û */
+        /* å¦‚æœæ˜¯è½¯ä»¶æµæ§ï¼Œå‘é€XON/XOFFæµæ§å­—ç¬¦ */
         if (AM_UART_FLOWSTAT_ON == ctrl) {
             amhw_lpc_usart_txdata_write(p_hw_usart, AM_LPC_UART_XON);
         } else {
@@ -488,7 +488,7 @@ static int __usart_flow_rxstat_set (am_lpc_usart_dev_t *p_dev, uint32_t ctrl)
 
 /******************************************************************************/
 /**
- * \brief Á÷¿ØÄ£Ê½ÉèÖÃ£¨ÎŞÁ÷¿Ø£¬Èí¼şÁ÷¿Ø£¬Ó²¼şÁ÷¿Ø£©
+ * \brief æµæ§æ¨¡å¼è®¾ç½®ï¼ˆæ— æµæ§ï¼Œè½¯ä»¶æµæ§ï¼Œç¡¬ä»¶æµæ§ï¼‰
  */
 static int __usart_flow_mode_set(am_lpc_usart_dev_t *p_dev, uint32_t mode)
 {
@@ -507,7 +507,7 @@ static int __usart_flow_mode_set(am_lpc_usart_dev_t *p_dev, uint32_t mode)
         amhw_lpc_usart_cfg_clr(p_hw_usart, AMHW_LPC_USART_CFG_OESEL);
     } else if (AM_UART_FLOWCTL_HW == p_dev->flowctl_mode) {
 
-        /* Ó²¼şÁ÷¿ØÊ¹ÄÜ     */
+        /* ç¡¬ä»¶æµæ§ä½¿èƒ½     */
         amhw_lpc_usart_cfg_set(p_hw_usart, AMHW_LPC_USART_CFG_HWFLOW);
         amhw_lpc_usart_cfg_set(p_hw_usart, AMHW_LPC_USART_CFG_OESEL);
     } else {
@@ -520,7 +520,7 @@ static int __usart_flow_mode_set(am_lpc_usart_dev_t *p_dev, uint32_t mode)
 
 /******************************************************************************/
 /**
- * \brief ·¢ËÍÆ÷Á÷¿Ø×´Ì¬»ñÈ¡
+ * \brief å‘é€å™¨æµæ§çŠ¶æ€è·å–
  */
 static int __usart_flow_txstat_get (am_lpc_usart_dev_t *p_dev)
 {
@@ -534,7 +534,7 @@ static int __usart_flow_txstat_get (am_lpc_usart_dev_t *p_dev)
     
     if(AM_UART_FLOWCTL_HW == p_dev->flowctl_mode) {
 
-        /* Ó²¼şÁ÷¿ØÅĞ¶ÏctsµÄ×´Ì¬     */
+        /* ç¡¬ä»¶æµæ§åˆ¤æ–­ctsçš„çŠ¶æ€     */
         if((AMHW_LPC_USART_STAT_CTS &
             amhw_lpc_usart_stat_get(p_hw_usart)) == 0) {
             return (int)AM_UART_FLOWSTAT_ON;
@@ -548,7 +548,7 @@ static int __usart_flow_txstat_get (am_lpc_usart_dev_t *p_dev)
 
 /******************************************************************************/
 /**
- * \brief ½ÓÊÕÖĞ¶Ï£¨½ÓÊÕÆ÷½ÓÊÕ×¼±¸¾ÍĞ÷£©
+ * \brief æ¥æ”¶ä¸­æ–­ï¼ˆæ¥æ”¶å™¨æ¥æ”¶å‡†å¤‡å°±ç»ªï¼‰
  */
 
 static void __usart_irq_rx_handler (am_lpc_usart_dev_t *p_dev)
@@ -565,14 +565,14 @@ static void __usart_irq_rx_handler (am_lpc_usart_dev_t *p_dev)
     int_stat   = amhw_lpc_usart_intstat_get(p_hw_usart);
 
     
-    /* ¼ì²éÖĞ¶Ï×´Ì¬¼Ä´æÆ÷ÊÇ·ñÓĞ½ÓÊÕÖĞ¶Ï */
+    /* æ£€æŸ¥ä¸­æ–­çŠ¶æ€å¯„å­˜å™¨æ˜¯å¦æœ‰æ¥æ”¶ä¸­æ–­ */
     if ((int_stat & AMHW_LPC_USART_INTSTAT_RXRDY) != 0) {
         
         data = amhw_lpc_usart_rxdata_read(p_hw_usart);
         
         p_dev->pfn_rxchar_put(p_dev->p_rxput_arg, data);
       
-        /* Èç¹ûÊÇÈí¼şÁ÷¿ØÄ£Ê½£¬¼ì²é½ÓÊÜµ½Êı¾İÊÇ·ñÊÇXON/XOFFĞÅºÅ */
+        /* å¦‚æœæ˜¯è½¯ä»¶æµæ§æ¨¡å¼ï¼Œæ£€æŸ¥æ¥å—åˆ°æ•°æ®æ˜¯å¦æ˜¯XON/XOFFä¿¡å· */
         if (AM_UART_FLOWCTL_SW == p_dev->flowctl_mode) {
             if (data == AM_LPC_UART_XON) {
                 p_dev->flowctl_tx_stat = AM_UART_FLOWSTAT_ON;
@@ -589,7 +589,7 @@ static void __usart_irq_rx_handler (am_lpc_usart_dev_t *p_dev)
 
 /******************************************************************************/
 /**
- * \brief ·¢ËÍÖĞ¶Ï£¨·¢ËÍÆ÷·¢ËÍ×¼±¸¾ÍĞ÷£©
+ * \brief å‘é€ä¸­æ–­ï¼ˆå‘é€å™¨å‘é€å‡†å¤‡å°±ç»ªï¼‰
  */
 static void __usart_irq_tx_handler (am_lpc_usart_dev_t *p_dev)
 {
@@ -617,7 +617,7 @@ static void __usart_irq_tx_handler (am_lpc_usart_dev_t *p_dev)
             amhw_lpc_usart_txdata_write(p_hw_usart, data);
         } else {
 
-            /* Êı¾İ·¢ËÍÍê¹Ø·¢ËÍ¾ÍĞ÷ÖĞ¶Ï */
+            /* æ•°æ®å‘é€å®Œå…³å‘é€å°±ç»ªä¸­æ–­ */
             amhw_lpc_usart_int_disable(p_hw_usart, 
                                           AMHW_LPC_USART_INT_TXRDY);
 
@@ -641,7 +641,7 @@ static void __usart_irq_tx_handler (am_lpc_usart_dev_t *p_dev)
 
 /******************************************************************************/
 /**
- * \brief usart ÖĞ¶Ïº¯Êı
+ * \brief usart ä¸­æ–­å‡½æ•°
  */
 static void __usart_irq_handler (void *p_arg)
 {
@@ -670,7 +670,7 @@ static void __usart_irq_handler (void *p_arg)
         __usart_irq_tx_handler(p_dev);
     }
     
-    /* ÆäËûµÄÖĞ¶Ï */
+    /* å…¶ä»–çš„ä¸­æ–­ */
     if ((p_dev->other_int_enable & usart_int_stat) != 0) {
 
         usart_int_stat &= p_dev->other_int_enable;
@@ -686,7 +686,7 @@ static void __usart_irq_handler (void *p_arg)
 
 /******************************************************************************/
 /**
- * \brief ´íÎó»Øµ÷º¯Êı
+ * \brief é”™è¯¯å›è°ƒå‡½æ•°
  */
 static int __usart_dummy_callback (void *p_arg, char *p_outchar)
 {
@@ -698,14 +698,14 @@ static int __usart_dummy_callback (void *p_arg, char *p_outchar)
 *******************************************************************************/
 
 /**
- * \brief usart Ä£¿é³õÊ¼»¯
+ * \brief usart æ¨¡å—åˆå§‹åŒ–
  */
 am_uart_handle_t am_lpc_usart_init (am_lpc_usart_dev_t     *p_dev,
                                     const am_lpc_usart_devinfo_t *p_devinfo)
 {
     uint32_t       tmp;
 
-    /* Ä¬ÈÏUSARTÅäÖÃ£¨8Î»Êı¾İ£¬ÎŞÆæÅ¼Ğ£Ñé£¬Ò»Î»Í£Ö¹Î»£© */
+    /* é»˜è®¤USARTé…ç½®ï¼ˆ8ä½æ•°æ®ï¼Œæ— å¥‡å¶æ ¡éªŒï¼Œä¸€ä½åœæ­¢ä½ï¼‰ */
     uint32_t       usart_cfg_flags = AMHW_LPC_USART_CFG_8BIT      |
                                      AMHW_LPC_USART_CFG_PARITY_NO |
                                      AMHW_LPC_USART_CFG_STOP_1;
@@ -800,7 +800,7 @@ am_uart_handle_t am_lpc_usart_init (am_lpc_usart_dev_t     *p_dev,
 
 /******************************************************************************/
 /**
- * \brief usart Ä£¿é½â³õÊ¼»¯
+ * \brief usart æ¨¡å—è§£åˆå§‹åŒ–
  */
 void am_lpc_usart_deinit (am_uart_handle_t handle)
 {

@@ -13,9 +13,9 @@
 
 /**
  * \file
- * \brief WKTÇı¶¯£¬·şÎñTimer±ê×¼½Ó¿Ú
+ * \brief WKTé©±åŠ¨ï¼ŒæœåŠ¡Timeræ ‡å‡†æ¥å£
  *
- * ¸ÃÇı¶¯ÊµÏÖÁËWKTµÄ¶¨Ê±¹¦ÄÜ
+ * è¯¥é©±åŠ¨å®ç°äº†WKTçš„å®šæ—¶åŠŸèƒ½
  *
  * \internal
  * \par Modification History
@@ -34,10 +34,10 @@ includes
 
 
 /*******************************************************************************
-º¯ÊıÉùÃ÷
+å‡½æ•°å£°æ˜
 *******************************************************************************/
 
-/** \brief »ñÈ¡WKTĞÅÏ¢ */
+/** \brief è·å–WKTä¿¡æ¯ */
 //static int __wkt_info_get (void *p_drv, am_timer_info_t *p_info);
 static const am_timer_info_t * __wkt_info_get (void *p_drv);
 
@@ -45,43 +45,43 @@ static int __wkt_clkin_freq_get (void *, uint32_t *);
 static int __wkt_prescale_set (void *, uint8_t, uint32_t );
 static int __wkt_prescale_get (void *, uint8_t, uint32_t *);
 
-/** \brief »ñÈ¡ WKT ¼ÆÊıÆ÷µÄÖµ */
+/** \brief è·å– WKT è®¡æ•°å™¨çš„å€¼ */
 static int __wkt_count_get (void *p_drv, uint8_t chan, void *p_count);
 
-/** \brief »ñÈ¡WKT roll over µÄÖµ */
+/** \brief è·å–WKT roll over çš„å€¼ */
 static int __wkt_rollover_get (void *p_drv, uint8_t chan, void *p_rollover);
 
-/** \brief WKT ½ûÄÜ */
+/** \brief WKT ç¦èƒ½ */
 static int __wkt_disable (void *p_drv, uint8_t chan);
 
-/** \brief WKT Ê¹ÄÜ */
+/** \brief WKT ä½¿èƒ½ */
 static int __wkt_enable (void *p_drv, uint8_t chan, void *max_timer_count);
 
-/** \brief WKT »Øµ÷º¯ÊıÉèÖÃ */
+/** \brief WKT å›è°ƒå‡½æ•°è®¾ç½® */
 static int __wkt_callback_set (void    *p_drv,
                                uint8_t  chan,
                                void    (*pfn_callback)(void *),
                                void    *p_arg);
 
-/** \brief WKT Á¬½Óº¯Êı */
+/** \brief WKT è¿æ¥å‡½æ•° */
 static int __wkt_connect (void *p_drv);
 
 /*******************************************************************************
-  È«¾Ö±äÁ¿
+  å…¨å±€å˜é‡
 *******************************************************************************/
 
 static const am_timer_info_t __g_wkt_timing_info = {
-    32,                                      /* 32Î»¶¨Ê±Æ÷               */
-    1,                                       /* 1Í¨µÀ                   */
-    AM_TIMER_CAN_INTERRUPT      |            /* ¿ÉÒÔ²úÉúÖĞ¶Ï             */
+    32,                                      /* 32ä½å®šæ—¶å™¨               */
+    1,                                       /* 1é€šé“                   */
+    AM_TIMER_CAN_INTERRUPT      |            /* å¯ä»¥äº§ç”Ÿä¸­æ–­             */
     AM_TIMER_CANNOT_DISABLE     |
-    AM_TIMER_INTERMEDIATE_COUNT ,            /* µ±Ç°¼ÆÊıÆ÷Öµ¿É¶Á         */
-    65536                                    /* Ô¤·ÖÆµ×î´óÖµ£º65536      */
+    AM_TIMER_INTERMEDIATE_COUNT ,            /* å½“å‰è®¡æ•°å™¨å€¼å¯è¯»         */
+    65536                                    /* é¢„åˆ†é¢‘æœ€å¤§å€¼ï¼š65536      */
 };
                                
-uint32_t __g_count_set;     /**< \brief Éè¶¨µÄWKT¼ÆÊıÆ÷µÄÖµ */
+uint32_t __g_count_set;     /**< \brief è®¾å®šçš„WKTè®¡æ•°å™¨çš„å€¼ */
 
-/** \brief WKT Çı¶¯º¯Êı */
+/** \brief WKT é©±åŠ¨å‡½æ•° */
 static const struct am_timer_drv_funcs __g_wkt_drv_funcs = {
     __wkt_info_get,
     __wkt_clkin_freq_get,
@@ -97,9 +97,9 @@ static const struct am_timer_drv_funcs __g_wkt_drv_funcs = {
 /******************************************************************************/
 
 /**
- * \brief WKT ÖĞ¶Ï´¦Àíº¯Êı
- * \param[in] p_arg : ÖĞ¶Ïº¯ÊıÈë¿Ú²ÎÊı
- * \return ÎŞ
+ * \brief WKT ä¸­æ–­å¤„ç†å‡½æ•°
+ * \param[in] p_arg : ä¸­æ–­å‡½æ•°å…¥å£å‚æ•°
+ * \return æ— 
  */
 static void __wkt_irq_handler (void *p_arg)
 {
@@ -107,7 +107,7 @@ static void __wkt_irq_handler (void *p_arg)
     amhw_lpc_wkt_t *p_hw_wkt   = (amhw_lpc_wkt_t *)(p_dev->p_devinfo->wkt_regbase);
 
     if (amhw_lpc_wkt_alarmflag_get(p_hw_wkt)) {
-        amhw_lpc_wkt_alarmflag_clear(p_hw_wkt);    /* Çå³ıÖĞ¶Ï±êÖ¾ */
+        amhw_lpc_wkt_alarmflag_clear(p_hw_wkt);    /* æ¸…é™¤ä¸­æ–­æ ‡å¿— */
 
         if (p_dev->callback_info.pfn_callback != NULL) {
             p_dev->callback_info.pfn_callback(p_dev->callback_info.p_arg);
@@ -163,7 +163,7 @@ static int __wkt_clkin_freq_get (void *p_drv, uint32_t *p_freq)
         return -AM_EINVAL;
     }
 
-    /* »ñÈ¡µ±Ç°ÏµÍ³Ê±ÖÓÆµÂÊ£¬systick Ê¹ÓÃµÄÊÇÏµÍ³Ê±ÖÓ */
+    /* è·å–å½“å‰ç³»ç»Ÿæ—¶é’Ÿé¢‘ç‡ï¼Œsystick ä½¿ç”¨çš„æ˜¯ç³»ç»Ÿæ—¶é’Ÿ */
     *p_freq =  __wkt_clk_frq_get(p_dev);
 
     return AM_OK;
@@ -193,19 +193,19 @@ static int __wkt_prescale_get (void     *p_drv,
 
 
 /**
- * \brief »ñÈ¡ WKT ĞÅÏ¢
+ * \brief è·å– WKT ä¿¡æ¯
  *
- * \param[in] p_drv  : Ö¸ÏòWKTÉè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[in] p_info : Ö¸Ïò¶¨Ê±Æ÷½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] p_drv  : æŒ‡å‘WKTè®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] p_info : æŒ‡å‘å®šæ—¶å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \retval AM_OK : ³É¹¦
+ * \retval AM_OK : æˆåŠŸ
  */
 //static int __wkt_info_get (void *p_drv, am_timer_info_t *p_info)
 //{
 //    am_lpc_wkt_dev_t *p_dev        = (am_lpc_wkt_dev_t *)p_drv;
 //    uint8_t              channel_nums = p_dev->p_devinfo->channel_nums;
 
-//    /* ÅĞ¶ÏWKTµ±Ç°Ê¹ÓÃµÄÊ±ÖÓÔ´ */
+//    /* åˆ¤æ–­WKTå½“å‰ä½¿ç”¨çš„æ—¶é’Ÿæº */
 //    p_info->clk_frequency = __wkt_clk_frq_get(p_dev);
 
 //    if (p_info->clk_frequency <= AMHW_LPC_WKT_INVAL_MAX) {
@@ -213,7 +213,7 @@ static int __wkt_prescale_get (void     *p_drv,
 //    } else {
 //        p_info->min_frequency = p_info->clk_frequency / AMHW_LPC_WKT_INVAL_MAX;
 
-//        /* p_info->clk_frequency / AMHW_WKT_INVAL_MAX, È¡²»Ğ¡ÓÚËüµÄ×îĞ¡ÕûÊı */
+//        /* p_info->clk_frequency / AMHW_WKT_INVAL_MAX, å–ä¸å°äºå®ƒçš„æœ€å°æ•´æ•° */
 //        if (p_info->min_frequency * AMHW_LPC_WKT_INVAL_MAX
 //                                      < p_info->clk_frequency) {
 //            p_info->min_frequency += 1;
@@ -222,24 +222,24 @@ static int __wkt_prescale_get (void     *p_drv,
 
 //    p_info->max_frequency = p_info->clk_frequency;
 
-//    p_info->features = AM_TIMER_SIZE(32)               | /* 32Î»¶¨Ê±Æ÷ */
-//                       AM_TIMER_CHAN_NUM(channel_nums) | /* Ö§³Ö1Í¨µÀ */
-//                       AM_TIMER_CAN_INTERRUPT          | /* ¿ÉÒÔ²úÉúÖĞ¶Ï */
-//                       AM_TIMER_INTERMEDIATE_COUNT     | /* ¿ÉÒÔ¶Áµ±Ç°¼ÆÊıÖµ */
-//                       AM_TIMER_CANNOT_DISABLE;          /* ¶¨Ê±Æ÷²»ÄÜ±»Í£Ö¹ */
+//    p_info->features = AM_TIMER_SIZE(32)               | /* 32ä½å®šæ—¶å™¨ */
+//                       AM_TIMER_CHAN_NUM(channel_nums) | /* æ”¯æŒ1é€šé“ */
+//                       AM_TIMER_CAN_INTERRUPT          | /* å¯ä»¥äº§ç”Ÿä¸­æ–­ */
+//                       AM_TIMER_INTERMEDIATE_COUNT     | /* å¯ä»¥è¯»å½“å‰è®¡æ•°å€¼ */
+//                       AM_TIMER_CANNOT_DISABLE;          /* å®šæ—¶å™¨ä¸èƒ½è¢«åœæ­¢ */
 
 //    return AM_OK;
 //}
 
 /**
- * \brief »ñÈ¡ WKT ¼ÆÊıÆ÷µÄÖµ
+ * \brief è·å– WKT è®¡æ•°å™¨çš„å€¼
  *
- * \param[in] p_drv   : Ö¸Ïò WKT Éè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[in] chan    : Í¨µÀºÅ
- * \param[in] p_count : Ö¸Ïò±£´æ¼ÆÊıÆ÷µÄÖµµÄÖ¸Õë
+ * \param[in] p_drv   : æŒ‡å‘ WKT è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] chan    : é€šé“å·
+ * \param[in] p_count : æŒ‡å‘ä¿å­˜è®¡æ•°å™¨çš„å€¼çš„æŒ‡é’ˆ
  *
- * \retval  AM_OK     : »ñÈ¡³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı·Ç·¨
+ * \retval  AM_OK     : è·å–æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°éæ³•
  */
 static int __wkt_count_get (void *p_drv, uint8_t chan, void *p_count)
 {
@@ -252,7 +252,7 @@ static int __wkt_count_get (void *p_drv, uint8_t chan, void *p_count)
         return -AM_EINVAL;
     }
 
-    /* ÊÖ²á²»½¨Òé¶Á£¬Èç¹û±ØĞë¶Á£¬Á¬Ğø¶Á2´Î */
+    /* æ‰‹å†Œä¸å»ºè®®è¯»ï¼Œå¦‚æœå¿…é¡»è¯»ï¼Œè¿ç»­è¯»2æ¬¡ */
     tmp = amhw_lpc_wkt_count_get(p_hw_wkt);
     tmp = amhw_lpc_wkt_count_get(p_hw_wkt);
 
@@ -262,14 +262,14 @@ static int __wkt_count_get (void *p_drv, uint8_t chan, void *p_count)
 }
 
 /**
- * \brief »ñÈ¡ WKT roll over µÄÖµ
+ * \brief è·å– WKT roll over çš„å€¼
  *
- * \param[in] p_drv      : Ö¸Ïò WKT Éè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[in] chan       : WKT Í¨µÀºÅ
- * \param[in] p_rollover : Ö¸Ïò±£´æ roll over µÄÖµµÄÖ¸Õë
+ * \param[in] p_drv      : æŒ‡å‘ WKT è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] chan       : WKT é€šé“å·
+ * \param[in] p_rollover : æŒ‡å‘ä¿å­˜ roll over çš„å€¼çš„æŒ‡é’ˆ
  *
- * \retval  AM_OK     : »ñÈ¡³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı·Ç·¨
+ * \retval  AM_OK     : è·å–æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°éæ³•
  */
 static int __wkt_rollover_get (void *p_drv, uint8_t chan, void *p_rollover)
 {
@@ -281,10 +281,10 @@ static int __wkt_rollover_get (void *p_drv, uint8_t chan, void *p_rollover)
         return -AM_EINVAL;
     }
 
-    /* ÅĞ¶ÏWKTµ±Ç°Ê¹ÓÃµÄÊ±ÖÓÔ´ */
-    if(amhw_lpc_wkt_clksel_get(p_hw_wkt) == 1) {        /* µÍ¹¦ºÄÊ±ÖÓ 10kHz */
+    /* åˆ¤æ–­WKTå½“å‰ä½¿ç”¨çš„æ—¶é’Ÿæº */
+    if(amhw_lpc_wkt_clksel_get(p_hw_wkt) == 1) {        /* ä½åŠŸè€—æ—¶é’Ÿ 10kHz */
         *(uint32_t *)p_rollover = AMHW_LPC_WKT_INVAL_MAX / AMHW_LPC_WKT_LOW_POWER_CLOCK_FREQ;
-    } else if(amhw_lpc_wkt_clksel_get(p_hw_wkt) == 0) { /* IRCÊ±ÖÓ 750kHz */
+    } else if(amhw_lpc_wkt_clksel_get(p_hw_wkt) == 0) { /* IRCæ—¶é’Ÿ 750kHz */
         *(uint32_t *)p_rollover = AMHW_LPC_WKT_INVAL_MAX / AMHW_LPC_WKT_IRC_CLOCK_FREQ;
     } else {
         *(uint32_t *)p_rollover = AMHW_LPC_WKT_INVAL_MAX / p_dev->p_devinfo->wkt_ext_clock_freq;
@@ -294,13 +294,13 @@ static int __wkt_rollover_get (void *p_drv, uint8_t chan, void *p_rollover)
 }
 
 /**
- * \brief WKT ½ûÄÜ
+ * \brief WKT ç¦èƒ½
  *
- * \param[in] p_drv : Ö¸Ïò WKT Éè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[in] chan  : WKT Í¨µÀºÅ
+ * \param[in] p_drv : æŒ‡å‘ WKT è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] chan  : WKT é€šé“å·
  *
- * \retval  AM_OK     : ½ûÄÜ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı·Ç·¨
+ * \retval  AM_OK     : ç¦èƒ½æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°éæ³•
  */
 static int __wkt_disable (void *p_drv, uint8_t chan)
 {
@@ -318,14 +318,14 @@ static int __wkt_disable (void *p_drv, uint8_t chan)
 }
 
 /**
- * \brief WKT Ê¹ÄÜ
+ * \brief WKT ä½¿èƒ½
  *
- * \param[in] p_drv           : Ö¸Ïò WKT Éè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[in] chan            : WKT Í¨µÀºÅ
- * \param[in] max_timer_count : ×î´ó¶¨Ê±Æ÷¼ÆËãÖµ
+ * \param[in] p_drv           : æŒ‡å‘ WKT è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] chan            : WKT é€šé“å·
+ * \param[in] max_timer_count : æœ€å¤§å®šæ—¶å™¨è®¡ç®—å€¼
  *
- * \retval  AM_OK     : Ê¹ÄÜ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı·Ç·¨
+ * \retval  AM_OK     : ä½¿èƒ½æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°éæ³•
  */
 static int __wkt_enable (void *p_drv, uint8_t chan, void *p_count)
 {
@@ -351,15 +351,15 @@ static int __wkt_enable (void *p_drv, uint8_t chan, void *p_count)
 }
 
 /**
- * \brief WKT »Øµ÷º¯ÊıÉèÖÃ
+ * \brief WKT å›è°ƒå‡½æ•°è®¾ç½®
  *
- * \param[in] p_drv        : Ö¸ÏòWKTÉè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[in] chan         : WKT Í¨µÀºÅ
- * \param[in] pfn_callback : º¯ÊıÖ¸Õë
- * \param[in] p_arg        : º¯ÊıÈë²Î
+ * \param[in] p_drv        : æŒ‡å‘WKTè®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] chan         : WKT é€šé“å·
+ * \param[in] pfn_callback : å‡½æ•°æŒ‡é’ˆ
+ * \param[in] p_arg        : å‡½æ•°å…¥å‚
  *
- * \retval  AM_OK     : ÉèÖÃ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı·Ç·¨
+ * \retval  AM_OK     : è®¾ç½®æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°éæ³•
  */
 static int __wkt_callback_set (void    *p_drv,
                                uint8_t  chan,
@@ -380,18 +380,18 @@ static int __wkt_callback_set (void    *p_drv,
         p_dev->callback_info.pfn_callback = pfn_callback;
     }
 
-    /* Á¬½ÓWKT */
+    /* è¿æ¥WKT */
     __wkt_connect(p_dev);
 
     return AM_OK;
 }
 
 /**
- * \brief WKT Á¬½Óº¯Êı
+ * \brief WKT è¿æ¥å‡½æ•°
  *
- * \param[in] p_drv : Ö¸Ïò WKT Éè±¸½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] p_drv : æŒ‡å‘ WKT è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \retval AM_OK : ³É¹¦
+ * \retval AM_OK : æˆåŠŸ
  */
 static int __wkt_connect (void *p_drv)
 {
@@ -404,7 +404,7 @@ static int __wkt_connect (void *p_drv)
 }
 
 /**
- * \brief ³õÊ¼»¯ WKT Îª¶¨Ê±¹¦ÄÜ
+ * \brief åˆå§‹åŒ– WKT ä¸ºå®šæ—¶åŠŸèƒ½
  */
 am_timer_handle_t am_lpc_wkt_init (am_lpc_wkt_dev_t            *p_dev,
                                       const am_lpc_wkt_devinfo_t  *p_devinfo)
@@ -423,9 +423,9 @@ am_timer_handle_t am_lpc_wkt_init (am_lpc_wkt_dev_t            *p_dev,
     p_dev->timer_serv.p_drv   = p_dev;
     p_hw_wkt = (amhw_lpc_wkt_t *)(p_devinfo->wkt_regbase);
 
-    amhw_lpc_wkt_alarmflag_clear(p_hw_wkt);    /* Çå³ıÖĞ¶Ï±êÖ¾ */
+    amhw_lpc_wkt_alarmflag_clear(p_hw_wkt);    /* æ¸…é™¤ä¸­æ–­æ ‡å¿— */
 
-    /*¡¡Æ½Ì¨Ê±ÖÓ³õÊ¼»¯º¯Êı */
+    /*ã€€å¹³å°æ—¶é’Ÿåˆå§‹åŒ–å‡½æ•° */
     if (p_devinfo->pfn_plfm_clk_init) {
         p_devinfo->pfn_plfm_clk_init(p_devinfo);
     }
@@ -437,7 +437,7 @@ am_timer_handle_t am_lpc_wkt_init (am_lpc_wkt_dev_t            *p_dev,
 }
 
 /**
- * \brief ²»Ê¹ÓÃ WKT Ê±£¬½â³õÊ¼»¯ WKT£¬ÊÍ·ÅÏà¹Ø×ÊÔ´
+ * \brief ä¸ä½¿ç”¨ WKT æ—¶ï¼Œè§£åˆå§‹åŒ– WKTï¼Œé‡Šæ”¾ç›¸å…³èµ„æº
  */
 void am_lpc_wkt_deinit (am_timer_handle_t handle)
 {

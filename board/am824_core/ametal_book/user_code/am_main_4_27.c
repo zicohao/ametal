@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥4.27
+ * \brief ç¨‹åºæ¸…å•4.27
  *
- * \note ¸ÃÀú³ÌĞèÒªÓÃµ½miniportÍØÕ¹°å
+ * \note è¯¥å†ç¨‹éœ€è¦ç”¨åˆ°miniportæ‹“å±•æ¿
  *
  * \internal
  * \par Modification history
@@ -25,13 +25,13 @@
  #include "am_softimer.h"
 static void timer_callback (void *p_arg)
 {
-    // ¶¨Ê±Ê±¼äµ½£¬µ÷ÓÃ»Øµ÷º¯ÊıÖ´ĞĞÓÃ»§×Ô¶¨ÒåµÄÈÎÎñ
+    // å®šæ—¶æ—¶é—´åˆ°ï¼Œè°ƒç”¨å›è°ƒå‡½æ•°æ‰§è¡Œç”¨æˆ·è‡ªå®šä¹‰çš„ä»»åŠ¡
 }
 
-static am_softimer_t timer;                                  // ¶¨ÒåÒ»¸ö¶¨Ê±Æ÷ÊµÀı
+static am_softimer_t timer;                                  // å®šä¹‰ä¸€ä¸ªå®šæ—¶å™¨å®ä¾‹
 int am_main (void)
 {
-    am_softimer_init(&timer,timer_callback, NULL);    // ³õÊ¼»¯¶¨Ê±Æ÷
+    am_softimer_init(&timer,timer_callback, NULL);    // åˆå§‹åŒ–å®šæ—¶å™¨
     while(1) {
 		}
 }

@@ -12,18 +12,18 @@
 
 /**
  * \file
- * \brief UART ÖÐ¶Ï·¢ËÍÀý³Ì£¬Í¨¹ý HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief UART ä¸­æ–­å‘é€ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æŽ¥å£å®žçŽ°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿ÚÊä³ö "HW example---UART test in interrupt mode:"£»
- *   2. ´®¿ÚÊä³ö½ÓÊÕµ½µÄ×Ö·û¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. ä¸²å£è¾“å‡º "HW example---UART test in interrupt mode:"ï¼›
+ *   2. ä¸²å£è¾“å‡ºæŽ¥æ”¶åˆ°çš„å­—ç¬¦ã€‚
  *
  * \note
- *    1. ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIOA_9 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD£»
- *    2. Èç¹ûµ÷ÊÔ´®¿ÚÊ¹ÓÃÓë±¾Àý³ÌÏàÍ¬£¬Ôò²»Ó¦ÔÚºóÐø¼ÌÐøÊ¹ÓÃµ÷ÊÔÐÅÏ¢Êä³öº¯Êý
- *      £¨Èç£ºAM_DBG_INFO()£©¡£
+ *    1. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIOA_9 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDï¼›
+ *    2. å¦‚æžœè°ƒè¯•ä¸²å£ä½¿ç”¨ä¸Žæœ¬ä¾‹ç¨‹ç›¸åŒï¼Œåˆ™ä¸åº”åœ¨åŽç»­ç»§ç»­ä½¿ç”¨è°ƒè¯•ä¿¡æ¯è¾“å‡ºå‡½æ•°
+ *      ï¼ˆå¦‚ï¼šAM_DBG_INFO()ï¼‰ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am116_core_hw_uart_int.c src_am116_core_hw_uart_int
  *
  * \internal
@@ -48,13 +48,13 @@
 
 static void __zlg116_uart_pins_intit (void)
 {
-    /* ³õÊ¼»¯Òý½Å */
+    /* åˆå§‹åŒ–å¼•è„š */
     am_gpio_pin_cfg(PIOA_9, PIOA_9_UART1_TX | PIOA_9_AF_PP);
     am_gpio_pin_cfg(PIOA_10, PIOA_10_UART1_RX| PIOA_10_INPUT_FLOAT);
 }
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am116_core_hw_uart_int_entry (void)
 {
@@ -62,7 +62,7 @@ void demo_am116_core_hw_uart_int_entry (void)
 
     am_mdelay(100);
 
-    /* Ê¹ÄÜÊ±ÖÓ */
+    /* ä½¿èƒ½æ—¶é’Ÿ */
     am_clk_enable(CLK_UART1);
 
     demo_zlg_hw_uart_int_entry(ZLG116_UART1,

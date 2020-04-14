@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief ZM516X zigbeeÅäÖÃÎÄ¼ş
+ * \brief ZM516X zigbeeé…ç½®æ–‡ä»¶
  * \sa am_hwconf_zm516x.c
  *
  * \internal
@@ -36,24 +36,24 @@
 static uint8_t __g_zm516x_txbuf[256];
 static uint8_t __g_zm516x_rxbuf[512];
 
-/* ¶¨Òå ZM516X ÊµÀı */
+/* å®šä¹‰ ZM516X å®ä¾‹ */
 static am_zm516x_dev_t __g_zm516x_dev;
 
-/* ¶¨Òå ZM516X ÊµÀıĞÅÏ¢ */
+/* å®šä¹‰ ZM516X å®ä¾‹ä¿¡æ¯ */
 static const am_zm516x_dev_info_t __g_zm516x_devinfo = {
-    PIO0_28,                        /**< \brief ¸´Î»Òı½Å */
-    PIO0_25,                        /**< \brief ACK Òı½Å */
-    10,                             /**< \brief ACK ³¬Ê±Ê±¼ä£¬µ¥Î»ÎªºÁÃë */
-    __g_zm516x_txbuf,               /**< \brief ·¢ËÍ»º´æ */
-    sizeof(__g_zm516x_txbuf),       /**< \brief ·¢ËÍ»º´æ³¤¶È */
-    __g_zm516x_rxbuf,               /**< \brief ½ÓÊÕ»º´æ */
-    sizeof(__g_zm516x_rxbuf)        /**< \brief ½ÓÊÕ»º´æ³¤¶È */
+    PIO0_28,                        /**< \brief å¤ä½å¼•è„š */
+    PIO0_25,                        /**< \brief ACK å¼•è„š */
+    10,                             /**< \brief ACK è¶…æ—¶æ—¶é—´ï¼Œå•ä½ä¸ºæ¯«ç§’ */
+    __g_zm516x_txbuf,               /**< \brief å‘é€ç¼“å­˜ */
+    sizeof(__g_zm516x_txbuf),       /**< \brief å‘é€ç¼“å­˜é•¿åº¦ */
+    __g_zm516x_rxbuf,               /**< \brief æ¥æ”¶ç¼“å­˜ */
+    sizeof(__g_zm516x_rxbuf)        /**< \brief æ¥æ”¶ç¼“å­˜é•¿åº¦ */
 };
 
 /**
- * \brief  ZM516XÊµÀı³õÊ¼»¯£¬»ñµÃZM516XÄ£¿é±ê×¼·şÎñ²Ù×÷¾ä±ú
+ * \brief  ZM516Xå®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—ZM516Xæ¨¡å—æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  *
- * \return  ZM516XÄ£¿é±ê×¼·şÎñ²Ù×÷¾ä±ú
+ * \return  ZM516Xæ¨¡å—æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  */
 am_zm516x_handle_t am_zm516x_inst_init (void)
 {

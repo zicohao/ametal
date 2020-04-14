@@ -13,26 +13,26 @@
 
 /**
  * \file
- * \brief ZM516X ģ�� GPIO ���̣�ͨ����׼�ӿ�ʵ��
+ * \brief ZM516X 模块 GPIO 例程，通过标准接口实现
  *
- * - ʵ������
- *   1. ZM516X ģ���ʼ�������óɹ��� LED0 �����������ʼ��ʧ�ܣ�LED0 ��˸��
- *   2. ���ڴ�ӡ��ȡ����ģ��������Ϣ��
- *   3. ��ȡ IO1(JOIN) ���ŵĵ�ƽ������ͬ�ĵ�ƽ����� IO2(DETECH) ���š�
+ * - 实验现象：
+ *   1. ZM516X 模块初始化并配置成功后 LED0 长亮，如果初始化失败，LED0 闪烁；
+ *   2. 串口打印读取到的模块配置信息；
+ *   3. 读取 IO1(JOIN) 引脚的电平并将相同的电平输出到 IO2(DETECH) 引脚。
  *
  * \note
- *    1. LED0 ��Ҫ�̽� J9 ����ñ�����ܱ� PIO0_8 ���ƣ�
- *    2. ����۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIO0_0 �������� PC ���ڵ� TXD��
- *       PIO0_4 �������� PC ���ڵ� RXD��
- *    3. ZigBee ģ�������ӹ�ϵ���£�
+ *    1. LED0 需要短接 J9 跳线帽，才能被 PIO0_8 控制；
+ *    2. 如需观察串口打印的调试信息，需要将 PIO0_0 引脚连接 PC 串口的 TXD，
+ *       PIO0_4 引脚连接 PC 串口的 RXD；
+ *    3. ZigBee 模块内连接关系如下：
  * <pre>
  *           PIO0_26  <-->  ZigBee_TX
  *           PIO0_27  <-->  ZigBee_RX
  *           PIO0_28  <-->  ZigBee_RST
  * </pre>
- *        �����Ҫʹ�� ZigBee����Щ IO �ڲ�������������;��
+ *        如果需要使用 ZigBee，这些 IO 口不能用作其它用途。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_zm516x_gpio.c src_zm516x_gpio
  *
  * \internal
@@ -55,11 +55,11 @@
 #include "am_board.h"
 #include <string.h>
 
-#define    __TEST_CFG_COMMAND    (0)    /**< \brief �Ƿ���������������� */
-#define    __TEST_CMD_COMMAND    (1)    /**< \brief �Ƿ������ʱ�������� */
+#define    __TEST_CFG_COMMAND    (0)    /**< \brief 是否测试永久配置命令 */
+#define    __TEST_CMD_COMMAND    (1)    /**< \brief 是否测试临时配置命令 */
 
 /**
- * \brief ��˸ LED0
+ * \brief 闪烁 LED0
  */
 am_local void flash_led (void)
 {
@@ -73,7 +73,7 @@ am_local void flash_led (void)
 }
 
 /**
- * \brief ��ӡ ZM516X ģ���������Ϣ
+ * \brief 打印 ZM516X 模块的配置信息
  */
 am_local void __cfg_info_print (am_zm516x_cfg_info_t *p_zm516x_cfg_info)
 {
@@ -109,7 +109,7 @@ am_local void __cfg_info_print (am_zm516x_cfg_info_t *p_zm516x_cfg_info)
 #if (__TEST_CFG_COMMAND == 1)
 
 /**
- * \brief ��ӡ PWM ��Ϣ
+ * \brief 打印 PWM 信息
  */
 am_local void __pwm_info_print (am_zm516x_pwm_t *p_pwm_info, uint8_t num)
 {
@@ -130,7 +130,7 @@ am_local void __pwm_info_print (am_zm516x_pwm_t *p_pwm_info, uint8_t num)
 #endif /* (__TEST_CFG_COMMAND == 1) */
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_zm516x_gpio_entry (am_zm516x_handle_t zm516x_handle)
 {
@@ -152,31 +152,31 @@ void demo_zm516x_gpio_entry (am_zm516x_handle_t zm516x_handle)
     uint16_t             adc_value      = 0;
 #endif /* (__TEST_CMD_COMMAND == 1) */
 
-    /* �ָ� ZM516X ģ��������ã��������DA�������óɹ��踴λ */
+    /* 恢复 ZM516X 模块出厂设置（永久命令：DA），设置成功需复位 */
     if (am_zm516x_default_set(zm516x_handle) != AM_OK) {
         AM_DBG_INFO("am_zm516x_default_set failed\r\n");
         flash_led();
     }
 
-    /* ���óɹ�����λ ZM516X ģ�飨�������D9�� */
+    /* 设置成功，复位 ZM516X 模块（永久命令：D9） */
     am_zm516x_reset(zm516x_handle);
     am_mdelay(10);
 
-    /* ��ȡ ZigBee ģ���������Ϣ���������D1�� */
+    /* 获取 ZigBee 模块的配置信息（永久命令：D1） */
     if (am_zm516x_cfg_info_get(zm516x_handle, &zm516x_cfg_info) != AM_OK) {
         AM_DBG_INFO("am_zm516x_cfg_info_get failed\r\n");
         flash_led();
     }
     __cfg_info_print(&zm516x_cfg_info);
 
-    /* ����Ŀ���ַ */
+    /* 设置目标地址 */
     zb_addr.p_addr    = zm516x_cfg_info.my_addr;
     zb_addr.addr_size = 2;
 
 #if (__TEST_CFG_COMMAND == 1)
     gpio_dir = 0x05;
 
-    /* ����ָ����ַ ZigBee ģ��� GPIO ������������������E1�� */
+    /* 设置指定地址 ZigBee 模块的 GPIO 输入输出方向（永久命令：E1） */
     if (am_zm516x_cfg_gpio_dir_set(zm516x_handle,
                                   &zb_addr,
                                    gpio_dir) != AM_OK) {
@@ -184,7 +184,7 @@ void demo_zm516x_gpio_entry (am_zm516x_handle_t zm516x_handle)
         flash_led();
     }
 
-    /* ��ȡָ����ַ ZigBee ģ��� GPIO ������������������E1�� */
+    /* 获取指定地址 ZigBee 模块的 GPIO 输入输出方向（永久命令：E1） */
     if (am_zm516x_cfg_gpio_dir_get(zm516x_handle,
                                   &zb_addr,
                                   &gpio_dir) != AM_OK) {
@@ -196,7 +196,7 @@ void demo_zm516x_gpio_entry (am_zm516x_handle_t zm516x_handle)
     period = 100;
     is_dormant = AM_FALSE;
 
-    /* IO/AD �ɼ����ã��������E2�������óɹ��踴λ */
+    /* IO/AD 采集设置（永久命令：E2），设置成功需复位 */
     if (am_zm516x_cfg_io_adc_upload_set(zm516x_handle,
                                        &zb_addr,
                                         dir,
@@ -206,11 +206,11 @@ void demo_zm516x_gpio_entry (am_zm516x_handle_t zm516x_handle)
         flash_led();
     }
 
-    /* ���óɹ�����λ ZM516X ģ�飨�������D9�� */
+    /* 设置成功，复位 ZM516X 模块（永久命令：D9） */
     am_zm516x_reset(zm516x_handle);
     am_mdelay(10);
 
-    /* IO/AD �ɼ����û�ȡ���������E2�� */
+    /* IO/AD 采集配置获取（永久命令：E2） */
     if (am_zm516x_cfg_io_adc_upload_get(zm516x_handle,
                                        &zb_addr,
                                        &dir,
@@ -226,7 +226,7 @@ void demo_zm516x_gpio_entry (am_zm516x_handle_t zm516x_handle)
 
     gpio_value = 0x05;
 
-    /* ����ָ����ַ ZigBee ģ��� GPIO ���ֵ���������E3�� */
+    /* 设置指定地址 ZigBee 模块的 GPIO 输出值（永久命令：E3） */
     if (am_zm516x_cfg_gpio_set(zm516x_handle,
                               &zb_addr,
                                gpio_value) != AM_OK) {
@@ -234,7 +234,7 @@ void demo_zm516x_gpio_entry (am_zm516x_handle_t zm516x_handle)
         flash_led();
     }
 
-    /* ��ȡָ����ַ ZigBee ģ��� GPIO ����ֵ���������E3�� */
+    /* 获取指定地址 ZigBee 模块的 GPIO 输入值（永久命令：E3） */
     if (am_zm516x_cfg_gpio_get(zm516x_handle,
                               &zb_addr,
                               &gpio_value) != AM_OK) {
@@ -249,7 +249,7 @@ void demo_zm516x_gpio_entry (am_zm516x_handle_t zm516x_handle)
         pwm[i].duty_cycle = 50;
     }
 
-    /* ����ָ����ַ ZigBee ģ��� PWM ���ֵ���������E4�� */
+    /* 设置指定地址 ZigBee 模块的 PWM 输出值（永久命令：E4） */
     if (am_zm516x_cfg_pwm_set(zm516x_handle,
                              &zb_addr,
                              &pwm[0]) != AM_OK) {
@@ -257,7 +257,7 @@ void demo_zm516x_gpio_entry (am_zm516x_handle_t zm516x_handle)
         flash_led();
     }
 
-    /* ��ȡָ����ַ ZigBee ģ��� PWM ���ֵ���ã��������E4�� */
+    /* 获取指定地址 ZigBee 模块的 PWM 输出值配置（永久命令：E4） */
     if (am_zm516x_cfg_pwm_get(zm516x_handle,
                              &zb_addr,
                              &pwm[0]) != AM_OK) {
@@ -272,7 +272,7 @@ void demo_zm516x_gpio_entry (am_zm516x_handle_t zm516x_handle)
 #if (__TEST_CMD_COMMAND == 1)
     gpio_dir = 0x08;
 
-    /* ����ָ����ַ ZM516X ģ��� GPIO �������������ʱ���D4�� */
+    /* 设置指定地址 ZM516X 模块的 GPIO 输入输出方向（临时命令：D4） */
     if (am_zm516x_gpio_dir(zm516x_handle,
                           &zb_addr,
                            gpio_dir) != AM_OK) {
@@ -280,7 +280,7 @@ void demo_zm516x_gpio_entry (am_zm516x_handle_t zm516x_handle)
         flash_led();
     }
 
-    /* ��ȡָ����ַ ZM516X ģ��� AD ת��ֵ����ʱ���D7�� */
+    /* 读取指定地址 ZM516X 模块的 AD 转换值（临时命令：D7） */
     if (am_zm516x_ad_get(zm516x_handle,
                         &zb_addr,
                          0,
@@ -293,14 +293,14 @@ void demo_zm516x_gpio_entry (am_zm516x_handle_t zm516x_handle)
                 adc_value * 2470 / 1024);
 #endif /* (__TEST_CMD_COMMAND == 1) */
 
-    /* ������ɣ����� LED0 */
+    /* 配置完成，点亮 LED0 */
     am_led_on(LED0);
 
     AM_FOREVER {
 
 #if (__TEST_CMD_COMMAND == 1)
 
-        /* ��ȡָ����ַ ZM516X ģ��� GPIO ����ֵ����ʱ���D5�� */
+        /* 读取指定地址 ZM516X 模块的 GPIO 输入值（临时命令：D5） */
         if (am_zm516x_gpio_get(zm516x_handle,
                               &zb_addr,
                               &gpio_value) != AM_OK) {
@@ -309,7 +309,7 @@ void demo_zm516x_gpio_entry (am_zm516x_handle_t zm516x_handle)
         }
         AM_DBG_INFO("gpio_value: 0x%02x\r\n", gpio_value);
 
-        /* ����ָ����ַ ZM516X ģ��� GPIO ���ֵ����ʱ���D6�� */
+        /* 设置指定地址 ZM516X 模块的 GPIO 输出值（临时命令：D6） */
         if (am_zm516x_gpio_set(zm516x_handle,
                               &zb_addr,
                                (gpio_value & 0x04) << 1) != AM_OK) {

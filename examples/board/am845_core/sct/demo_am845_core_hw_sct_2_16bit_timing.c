@@ -12,20 +12,20 @@
 
 /**
  * \file
- * \brief SCT ×÷Îª 2 ¸ö 16 Î»¶¨Ê±Æ÷¶¨Ê±Àý³Ì£¬Í¨¹ý HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief SCT ä½œä¸º 2 ä¸ª 16 ä½å®šæ—¶å™¨å®šæ—¶ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æŽ¥å£å®žçŽ°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. LED0 ÒÔ 10Hz µÄÆµÂÊÉÁË¸;
- *   2. ·äÃùÆ÷Òý½Å(PIO0_17)×´Ì¬ÒÔ 8KHz µÄÆµÂÊ·­×ª£¬Êä³ö²¨ÐÎÎª 4KHz£¬
- *      Ã¿´ÎÃù½Ð 50 ºÁÃë£¬Ãù½ÐÆµÂÊÎª 10Hz¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. LED0 ä»¥ 10Hz çš„é¢‘çŽ‡é—ªçƒ;
+ *   2. èœ‚é¸£å™¨å¼•è„š(PIO0_17)çŠ¶æ€ä»¥ 8KHz çš„é¢‘çŽ‡ç¿»è½¬ï¼Œè¾“å‡ºæ³¢å½¢ä¸º 4KHzï¼Œ
+ *      æ¯æ¬¡é¸£å« 50 æ¯«ç§’ï¼Œé¸£å«é¢‘çŽ‡ä¸º 10Hzã€‚
  *
  * \note
- *    1. LED0 ÐèÒª¶Ì½Ó J9 ÌøÏßÃ±£¬²ÅÄÜ±» PIO1_8 ¿ØÖÆ£»
- *    2. ·äÃùÆ÷ÐèÒª¶Ì½Ó J7 ÌøÏßÃ±£¬²ÅÄÜ±» PIO0_17 ¿ØÖÆ£»
- *    3. ÓÉÓÚ SCT Ä¬ÈÏ×÷ÎªÇý¶¯·äÃùÆ÷£¬Ê¹ÓÃ²âÊÔ±¾ Demo Ç°ÐèÒª½« am_prj_config.h ÖÐ
- *       µÄ AM_CFG_BUZZER_ENABLE ¶¨ÒåÎª 0£¬²»Ä¬ÈÏ³õÊ¼»¯·äÃùÆ÷¡£
+ *    1. LED0 éœ€è¦çŸ­æŽ¥ J9 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIO1_8 æŽ§åˆ¶ï¼›
+ *    2. èœ‚é¸£å™¨éœ€è¦çŸ­æŽ¥ J7 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIO0_17 æŽ§åˆ¶ï¼›
+ *    3. ç”±äºŽ SCT é»˜è®¤ä½œä¸ºé©±åŠ¨èœ‚é¸£å™¨ï¼Œä½¿ç”¨æµ‹è¯•æœ¬ Demo å‰éœ€è¦å°† am_prj_config.h ä¸­
+ *       çš„ AM_CFG_BUZZER_ENABLE å®šä¹‰ä¸º 0ï¼Œä¸é»˜è®¤åˆå§‹åŒ–èœ‚é¸£å™¨ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am845_core_hw_sct_2_16bit_timing.c src_am845_core_hw_sct_2_16bit_timing
  *
  * \internal
@@ -50,21 +50,21 @@
 
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am845_core_hw_sct_2_16bit_timing_entry (void)
 {
     AM_DBG_INFO("demo am845_core hw sct 2-16bit timing\r\n");
   
     uint32_t frq = 0;
-    /* Æ½Ì¨³õÊ¼»¯ */
+    /* å¹³å°åˆå§‹åŒ– */
     amhw_lpc84x_clk_periph_enable(AMHW_LPC84X_CLK_SCT);
     amhw_lpc84x_syscon_periph_reset(AMHW_LPC84X_RESET_SCT);
 
     AM_DBG_INFO("The LED0 blinking in 10Hz\r\n");
     AM_DBG_INFO("The PIO0_24 toggle in 8KHz, The output waveform is 4KHz\r\n");
 
-    /* ³õÊ¼»¯·äÃùÆ÷ £¬Êä³ö¸ß£¬·äÃùÆ÷²»Ïì */
+    /* åˆå§‹åŒ–èœ‚é¸£å™¨ ï¼Œè¾“å‡ºé«˜ï¼Œèœ‚é¸£å™¨ä¸å“ */
     am_gpio_pin_cfg(PIO0_17, AM_GPIO_OUTPUT_INIT_HIGH | AM_GPIO_PULLUP);
 
     frq = amhw_lpc84x_clk_system_clkrate_get();

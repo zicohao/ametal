@@ -13,19 +13,19 @@
 
 /**
  * \file
- * \brief ZM516X ʵ�����߹̼���������demoʵ�����еķ��͹̼����ܣ��������ص�A����
+ * \brief ZM516X 实现无线固件升级，该demo实现其中的发送固件功能，程序下载到A板中
  *
  *
  * \note
- *    1. LED0 ��Ҫ�̽� J9 ����ñ�����ܱ� PIO0_8 ���ƣ�
- *    2. ����0��Ҫ��PC���ӣ�ͨ���������ַ��͹̼���������Ϊ9600���������ӹ�ϵ���£�
+ *    1. LED0 需要短接 J9 跳线帽，才能被 PIO0_8 控制；
+ *    2. 串口0需要与PC连接，通过串口助手发送固件，波特率为9600，引脚连接关系如下：
  * <pre>
  *           PIO0_0   <-->  PC_TX
  *           PIO0_4   <-->  PC_RX
  * </pre>
- *        �����Ҫʹ�� ZigBee����Щ IO �ڲ�������������;��
+ *        如果需要使用 ZigBee，这些 IO 口不能用作其它用途。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_lpc82x_std_zm516x.c src_lpc28x_std_zm516x
  *
  * \internal
@@ -70,7 +70,7 @@ static am_uart_rngbuf_dev_t __g_rngbuf_dev;
 static uint8_t  buf[64] = {0};
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_zigbee_firmware_send_entry (void)
 {
@@ -92,12 +92,12 @@ void demo_zigbee_firmware_send_entry (void)
 		              AM_UART_BAUD_SET, 
 		              (void *)9600);
 		
-		    /* ��ȡ ZigBee ģ���������Ϣ���������D1�� */
+		    /* 获取 ZigBee 模块的配置信息（永久命令：D1） */
     if (am_zm516x_cfg_info_get(zm516x_handle, &zm516x_cfg_info) != AM_OK) {
         AM_DBG_INFO("am_zm516x_cfg_info_get failed\r\n");
     }
     zm516x_cfg_info.chan        = 20;
-		zm516x_cfg_info.serial_rate = 3; /* ������9600 */
+		zm516x_cfg_info.serial_rate = 3; /* 波特率9600 */
 		zm516x_cfg_info.panid[0]    = 0x10;
 		zm516x_cfg_info.panid[1]    = 0x01;
 		zm516x_cfg_info.my_addr[0]  = my_addr[0];
@@ -105,22 +105,22 @@ void demo_zigbee_firmware_send_entry (void)
 		zm516x_cfg_info.dst_addr[0] = dst_addr[0];
 		zm516x_cfg_info.dst_addr[1] = dst_addr[1];
 		
-    /* �޸� ZigBee ģ���������Ϣ���������D6�������óɹ��踴λ */
+    /* 修改 ZigBee 模块的配置信息（永久命令：D6），设置成功需复位 */
     if (am_zm516x_cfg_info_set(zm516x_handle, &zm516x_cfg_info) != AM_OK) {
         AM_DBG_INFO("am_zm516x_cfg_info_set failed\r\n");
     }
 		
-    /* ʹ ZigBee ģ�鸴λ���������D9�� */
+    /* 使 ZigBee 模块复位（永久命令：D9） */
     am_zm516x_reset(zm516x_handle);
     am_mdelay(10);
 
     /**
-     * ���� ZigBee ģ�����˯��ģʽ����ʱ���D8������Ҫ�������ԣ�ZM516X ˯�ߺ�
-     * ֻ�ܸ�λģ����ģ��� WAKE ��������������ģ��
+     * 设置 ZigBee 模块进入睡眠模式（临时命令：D8），需要单独测试，ZM516X 睡眠后
+     * 只能复位模块或把模块的 WAKE 引脚拉低来唤醒模块
      */
 //    am_zm516x_enter_sleep(zm516x_handle);
 		
-    /* ���в���ͨ�������� LED0 */
+    /* 所有测试通过，点亮 LED0 */
     am_led_on(LED0);
 		
     am_softimer_t timer;
@@ -151,7 +151,7 @@ void demo_zigbee_firmware_send_entry (void)
 			
 			  num = am_uart_rngbuf_receive(rngbuf_handle, buf, sizeof(buf));
 
-			 /* ������ܵ��̼�����ͨ��zigbee���͸�Ŀ��� */
+			 /* 如果接受到固件，则通过zigbee发送给目标板 */
 			  if (num > 0) {
 					
 					  flog = 0;
@@ -162,7 +162,7 @@ void demo_zigbee_firmware_send_entry (void)
 					  memset(uart_rx_buf, 0xff, sizeof(buf));			           					
 				}
 				
-				/* ����յ�Ŀ���Ļ�Ӧ */
+				/* 如果收到目标板的回应 */
 				if (am_zm516x_receive(zm516x_handle, recv, sizeof(recv)) > 0) {
 					  if (strstr((const char *)recv, "recvOK") != NULL) {
 							  AM_DBG_INFO("set addr success, next dst_addr is 0x%04x\r\n\r\n", ++dst_addr_set);
@@ -170,12 +170,12 @@ void demo_zigbee_firmware_send_entry (void)
 						}
 				}
 				
-				/* 300ms��ʱδ���յ��̼����ݣ����жϹ̼�������� */
+				/* 300ms超时未接收到固件数据，则判断固件发送完成 */
 				if (flog >= 30 && count > 0) {
 
 					AM_DBG_INFO("set current dst addr 0x%04x\r\n\r\n", dst_addr_set);
 					
-					/* ������Ҫ�޸ĵ�Ŀ����zigbee�ı��ص�ַ*/
+					/* 发送需要修改的目标板的zigbee的本地地址*/
 					am_zm516x_send(zm516x_handle, &dst_addr_set, sizeof(dst_addr_set));
 					
 					AM_DBG_INFO("successfully send %d bytes data\r\n\r\n", count);

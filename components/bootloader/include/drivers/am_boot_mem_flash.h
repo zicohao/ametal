@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief bootloader ÄÚ´æ²Ù×÷£¨flashÇı¶¯£©
+ * \brief bootloader å†…å­˜æ“ä½œï¼ˆflashé©±åŠ¨ï¼‰
  *
  * \internal
  * \par modification history:
@@ -31,17 +31,17 @@ extern "C" {
 #include "am_boot_flash.h"
 
 /**
- * \brief ÄÚ´æ²Ù×÷Éè±¸£¨flashÊµÏÖ£©
+ * \brief å†…å­˜æ“ä½œè®¾å¤‡ï¼ˆflashå®ç°ï¼‰
  */
 typedef struct am_boot_mem_flash_dev {
-    am_boot_mem_serv_t            isa;          /**< \brief ±ê×¼µÄ memory ·şÎñ  */
-    am_boot_flash_handle_t        flash_handle; /**< \brief flashµÄ±ê×¼·şÎñ²Ù×÷¾ä±ú  */
+    am_boot_mem_serv_t            isa;          /**< \brief æ ‡å‡†çš„ memory æœåŠ¡  */
+    am_boot_flash_handle_t        flash_handle; /**< \brief flashçš„æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„  */
 } am_boot_mem_flash_dev_t;
 
 /**
- * \brief ÄÚ´æ²Ù×÷Éè±¸³õÊ¼»¯£¨flashÊµÏÖ£©
+ * \brief å†…å­˜æ“ä½œè®¾å¤‡åˆå§‹åŒ–ï¼ˆflashå®ç°ï¼‰
  *
- * \return flash ±ê×¼·şÎñ²Ù×÷¾ä±ú
+ * \return flash æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  */
 am_boot_mem_handle_t am_boot_mem_flash_init(am_boot_flash_handle_t flash_handle);
 

@@ -11,17 +11,17 @@
 *******************************************************************************/
 /**
  * \file
- * \brief MicroPort EEPROM ���̣�ͨ����׼�ӿ�ʵ��
+ * \brief MicroPort EEPROM 例程，通过标准接口实现
  *
- * - �������裺
- *   1. �� MicroPort EEPROM ������ӵ� MicroPort �ӿڡ�
+ * - 操作步骤：
+ *   1. 将 MicroPort EEPROM 配板连接到 MicroPort 接口。
  *
- * - ʵ������
- *   1. ����д���ݵ� EEPROM��
- *   2. ������ EEPROM ��ȡ���ݣ���ͨ�����ڴ�ӡ������
- *   3. ���ڴ�ӡ�����Խ����
+ * - 实验现象：
+ *   1. 主机写数据到 EEPROM；
+ *   2. 主机从 EEPROM 读取数据，并通过串口打印处理；
+ *   3. 串口打印出测试结果。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_ep24cxx.c src_ep24cxx
  *
  * \internal
@@ -41,28 +41,28 @@
 #include "am_vdebug.h"
 #include "am_ep24cxx.h"
 
-#define __BUF_SIZE  16    /**< \brief ��������С */
+#define __BUF_SIZE  16    /**< \brief 缓冲区大小 */
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_ep24cxx_entry (am_ep24cxx_handle_t ep24cxx_handle, int32_t test_lenth)
 {
     uint8_t i;
-    uint8_t wr_buf[__BUF_SIZE] = {0}; /* д���ݻ��涨�� */
-    uint8_t rd_buf[__BUF_SIZE] = {0}; /* �����ݻ��涨�� */
+    uint8_t wr_buf[__BUF_SIZE] = {0}; /* 写数据缓存定义 */
+    uint8_t rd_buf[__BUF_SIZE] = {0}; /* 读数据缓存定义 */
     int     ret;
 
     if (__BUF_SIZE < test_lenth) {
         test_lenth = __BUF_SIZE;
     }
 
-    /* ��䷢�ͻ����� */
+    /* 填充发送缓冲区 */
     for (i = 0;i < test_lenth; i++) {
         wr_buf[i] = (i + 6);
     }
 
-    /* д���� */
+    /* 写数据 */
     ret = am_ep24cxx_write(ep24cxx_handle,
                            0x00,
                           &wr_buf[0],
@@ -74,7 +74,7 @@ void demo_ep24cxx_entry (am_ep24cxx_handle_t ep24cxx_handle, int32_t test_lenth)
     }
     am_mdelay(5);
 
-    /* ������ */
+    /* 读数据 */
     ret = am_ep24cxx_read(ep24cxx_handle,
                           0x00,
                          &rd_buf[0],
@@ -85,11 +85,11 @@ void demo_ep24cxx_entry (am_ep24cxx_handle_t ep24cxx_handle, int32_t test_lenth)
         return;
     }
 
-    /* У��д��Ͷ�ȡ�������Ƿ�һ�� */
+    /* 校验写入和读取的数据是否一致 */
     for (i = 0; i < test_lenth; i++) {
         AM_DBG_INFO("Read EEPROM the %2dth data is 0x%02x\r\n", i ,rd_buf[i]);
 
-        /* У��ʧ�� */
+        /* 校验失败 */
         if(wr_buf[i] != rd_buf[i]) {
             AM_DBG_INFO("verify failed at index %d.\r\n", i);
             break;

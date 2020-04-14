@@ -12,12 +12,12 @@
 
 /**
  * \file
- * \brief ��ʱ��������ʱ��Ļ��� PWM ������̣�ͨ�� HW ��ӿ�ʵ��
+ * \brief 定时器带死区时间的互补 PWM 输出例程，通过 HW 层接口实现
  *
- * - ʵ������
- *   1. ��Ӧ����������� PWM��Ƶ��Ϊ 100KHz��ռ�ձ�Ϊ 40%������ʱ��Ϊ 100ns��
+ * - 实验现象：
+ *   1. 对应引脚输出互补 PWM，频率为 100KHz，占空比为 40%，死区时间为 100ns。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_zlg_hw_tim_pwm_dead.c src_zlg_hw_tim_pwm_dead
  *
  * \internal
@@ -40,49 +40,49 @@
 #include "hw/amhw_zlg_tim.h"
 
 /**
- * \brief PWM ���Ƶ�ʶ��壬��λΪ Hz
- *        �����Ƶ�ʲ����ɶ�ʱ��ʱ��������Ƶ�õ���ʵ��Ƶ�ʻ������
+ * \brief PWM 输出频率定义，单位为 Hz
+ *        如果此频率不能由定时器时钟整数分频得到，实际频率会有误差
  */
 #define  __PWM_FREQ  100000
 
 /**
- * \brief PWM ռ�ձȶ��壬��λΪ %
- *        100% / (arr �Ĵ���ֵ + 1)Ϊռ�ձȵ����ľ��ȣ�
+ * \brief PWM 占空比定义，单位为 %
+ *        100% / (arr 寄存器值 + 1)为占空比调整的精度，
  */
 #define  __PWM_DUTY  40
 
 /**
- * \brief PWM ռ�ձȳ������壬__PWM_DUTY / __PWM_UNIT �ĵ�λΪ %
- *        ������Ҫ����ֵ�ľ���Ϊ 1%���� __PWM_UNIT ����Ϊ 100��
- *        �����Ҫ����ֵ�ľ���Ϊ 0.1%���� __PWM_UNIT ����Ϊ 1000���Դ�����
+ * \brief PWM 占空比除数定义，__PWM_DUTY / __PWM_UNIT 的单位为 %
+ *        比如需要配置值的精度为 1%，则 __PWM_UNIT 配置为 100，
+ *        如果需要配置值的精度为 0.1%，则 __PWM_UNIT 配置为 1000，以此类推
  */
 #define  __PWM_UNIT  100
 
 /**
- * \brief ����ʱ�䶨�壬��λΪƤ�룬������ TIMx_CR1 �е� CKD �йأ�
- *        ���綨ʱ��ʱ��Ϊ 48MHz��CKD ����Ϊ 0��������ʱ�侫��Ϊ 1 / 48MHz = 20.83ns
- *        �������ʱ����󣬻ᵼ�� PWM �������
- *        ͬʱ����������ʱ��Ĳ��룬�ᵼ��ռ�ձ���
- *        ռ�ձ���� = (����ʱ�� / PWM ����) * 100%
- *        ���磬PWM Ƶ��Ϊ 100KHz������Ϊ 10us������ʱ������Ϊ 100ns ʱ��ռ�ձ����Ϊ 1%
- *        �����ʱռ�ձ�����Ϊ 40%���� TIM_CHx �������ռ�ձ�Ϊ 40% - 1% = 39%
- *        TIM_CHxN �������ռ�ձ�Ϊ 40% + 1% = 41%
+ * \brief 死区时间定义，单位为皮秒，精度与 TIMx_CR1 中的 CKD 有关，
+ *        比如定时器时钟为 48MHz，CKD 配置为 0，则死区时间精度为 1 / 48MHz = 20.83ns
+ *        如果死区时间过大，会导致 PWM 无输出，
+ *        同时，由于死区时间的插入，会导致占空比误差，
+ *        占空比误差 = (死区时间 / PWM 周期) * 100%
+ *        比如，PWM 频率为 100KHz，周期为 10us，死区时间配置为 100ns 时，占空比误差为 1%
+ *        如果此时占空比配置为 40%，则 TIM_CHx 上输出的占空比为 40% - 1% = 39%
+ *        TIM_CHxN 上输出的占空比为 40% + 1% = 41%
  */
 #define  __DEAD_TIME  100000
 
 /**
- * \brief ���ö�ʱ�� TIM Ϊ PWM ���(PWM ģʽ 2)
+ * \brief 配置定时器 TIM 为 PWM 输出(PWM 模式 2)
  *
- * \param[in] p_hw_tim ָ��ʱ���Ĵ������ָ��
- * \param[in] chan     PWM �����ͨ����TIM1��TIM2��TIM3 �� 4 ��ͨ����
- *                     �� TIM14��TIM16��TIM17 ֻ��һ��
- * \param[in] freq     PWM Ƶ�ʣ���λΪ Hz��ʵ�ʿ��ܻ������
- * \param[in] duty     ռ�ձȣ���λΪ %��ʵ�ʿ��ܻ������
- * \param[in] clk_rate ��ʱ��ʱ��Ƶ��
+ * \param[in] p_hw_tim 指向定时器寄存器块的指针
+ * \param[in] chan     PWM 输出的通道，TIM1、TIM2、TIM3 有 4 个通道，
+ *                     而 TIM14、TIM16、TIM17 只有一个
+ * \param[in] freq     PWM 频率，单位为 Hz，实际可能会有误差
+ * \param[in] duty     占空比，单位为 %，实际可能会有误差
+ * \param[in] clk_rate 定时器时钟频率
  *
- * \return ��
+ * \return 无
  *
- * \note �� ARR �Ĵ����������� PWM ͨ��ʹ����ͬ�����ڲ���
+ * \note 由 ARR 寄存器决定所有 PWM 通道使用相同的周期参数
  */
 am_local void __tim_pwm_chan_config (amhw_zlg_tim_t *p_hw_tim,
                                      uint32_t        chan,
@@ -96,112 +96,112 @@ am_local void __tim_pwm_chan_config (amhw_zlg_tim_t *p_hw_tim,
     uint32_t duty_c;
     uint32_t temp;
 
-    /* ��������õ����Ǽ���ֵ CNT */
+    /* 计算出来得到的是计数值 CNT */
     period_c = clk_rate / freq;
     duty_c   = period_c * (__PWM_UNIT - duty) / __PWM_UNIT;
 
-    /* ������С�� 65536 ʱ������Ƶ(ֵΪ 1, 1 ����Ϊ 1 ��Ƶ) */
+    /* 当计数小于 65536 时，不分频(值为 1, 1 代表为 1 分频) */
     temp = period_c / 65536 + 1;
 
-    /* 16 λ��ʱ����Ҫ����ȡ�ú��ʵķ�Ƶֵ */
+    /* 16 位定时器需要运算取得合适的分频值 */
     for (pre_real = 1; pre_real < temp; ) {
-        pre_reg++;           /* ����д��Ĵ����ķ�Ƶֵ 0, 1, 2, ... */
-        pre_real++;          /* ��Ƶ�� */
+        pre_reg++;           /* 计算写入寄存器的分频值 0, 1, 2, ... */
+        pre_real++;          /* 分频数 */
     }
 
-    /* ���÷�Ƶֵ */
+    /* 设置分频值 */
     amhw_zlg_tim_prescale_set(p_hw_tim, pre_reg);
 
-    /* ���¼��� PWM �����ڼ�����Ƶ�� */
+    /* 重新计算 PWM 的周期及脉冲频率 */
     period_c = period_c / pre_real;
     duty_c = duty_c / pre_real;
 
-    /* �����Զ���װ�Ĵ�����ֵ */
+    /* 设置自动重装寄存器的值 */
     amhw_zlg_tim_arr_set(p_hw_tim, period_c - 1);
 
-    /* ���ñȽ����ͨ����ƥ��ֵ */
+    /* 设置比较输出通道的匹配值 */
     amhw_zlg_tim_ccr_ouput_reload_val_set(p_hw_tim,  duty_c, chan);
 
-    /* �������� 0 */
+    /* 计数器清 0 */
     amhw_zlg_tim_count_set(p_hw_tim, 0);
 
-    /* ʹ�ܶ� ARR Ԥװ�� */
+    /* 使能定 ARR 预装载 */
     amhw_zlg_tim_arpe_enable(p_hw_tim);
 
-    /* ѡ���ͨ��Ϊ��� */
+    /* 选择该通道为输出 */
     amhw_zlg_tim_ccs_set(p_hw_tim, 0, chan);
 
-    /* ѡ���ͨ����ģʽΪ PWM ģʽ 2 */
+    /* 选择该通道的模式为 PWM 模式 2 */
     amhw_zlg_tim_ocm_set(p_hw_tim, AMHW_ZLG_TIM_PWM_MODE2, chan);
 
-    /* PWM ���ͨ��Ԥװ��ʹ�� */
+    /* PWM 输出通道预装载使能 */
     amhw_zlg_tim_ccs_ocpe_enable(p_hw_tim, chan);
 
-    /* ���ñȽ����ͨ�� CCP �ߵ�ƽ������Ч */
+    /* 设置比较输出通道 CCP 高电平极性有效 */
     amhw_zlg_tim_ccp_output_set(p_hw_tim, 0, chan);
 }
 
 /**
- * \brief ʹ�� PWM ���
+ * \brief 使能 PWM 输出
  *
- * \param[in] p_hw_tim ָ��ʱ���Ĵ������ָ��
- * \param[in] chan     PWM �����ͨ����TIM1��TIM2��TIM3 �� 4 ��ͨ����
- *                     �� TIM14��TIM16��TIM17 ֻ��һ��
+ * \param[in] p_hw_tim 指向定时器寄存器块的指针
+ * \param[in] chan     PWM 输出的通道，TIM1、TIM2、TIM3 有 4 个通道，
+ *                     而 TIM14、TIM16、TIM17 只有一个
  *
- * \return ��
+ * \return 无
  */
 am_local void __tim_pwm_enable (amhw_zlg_tim_t *p_hw_tim, uint32_t chan)
 {
 
-    /* ʹ��ͨ�� PWM ��� */
+    /* 使能通道 PWM 输出 */
     amhw_zlg_tim_cce_output_enable(p_hw_tim, chan);
 
-    /* �߼���ʱ��ʹ������� MOE */
+    /* 高级定时器使能主输出 MOE */
     amhw_zlg_tim_bdtr_enable(p_hw_tim, AMHW_ZLG_TIM_MOE);
 
-    /* ���������¼������³�ʼ�� Prescaler �������� Repetition ������ */
+    /* 产生更新事件，重新初始化 Prescaler 计数器及 Repetition 计数器 */
     amhw_zlg_tim_egr_set(p_hw_tim, AMHW_ZLG_TIM_UG);
 
     if (amhw_zlg_tim_status_flg_get(p_hw_tim, AMHW_ZLG_TIM_UG) != 0) {
 
-        /* ���¶�ʱ��ʱ����������¼��������־λ */
+        /* 更新定时器时会产生更新事件，清除标志位 */
         amhw_zlg_tim_status_flg_clr(p_hw_tim, AMHW_ZLG_TIM_UG);
     }
 
-    /* ʹ�ܶ�ʱ�� TIM �������� */
+    /* 使能定时器 TIM 允许计数 */
     amhw_zlg_tim_enable(p_hw_tim);
 }
 
 /**
- * \brief ��ʱ�� TIM PWM �����ʼ������
+ * \brief 定时器 TIM PWM 输出初始化函数
  *
- * \param[in] p_hw_tim ָ��ʱ���Ĵ������ָ��
- * \param[in] clk_id   ʱ�� ID (��ƽ̨����), �μ� \ref grp_clk_id
+ * \param[in] p_hw_tim 指向定时器寄存器块的指针
+ * \param[in] clk_id   时钟 ID (由平台定义), 参见 \ref grp_clk_id
  *
- * \return ��
+ * \return 无
  */
 am_local void __tim_pwm_init (amhw_zlg_tim_t *p_hw_tim)
 {
-    /* ���ض���ģʽ */
+    /* 边沿对齐模式 */
     amhw_zlg_tim_cms_set(p_hw_tim, 0);
 
-    /* ���ϼ��� */
+    /* 向上计数 */
     amhw_zlg_tim_dir_set(p_hw_tim, 0);
 
-    /* ����ʱ�ӷָ�:TDTS = Tck_tin */
+    /* 设置时钟分割:TDTS = Tck_tin */
     amhw_zlg_tim_ckd_set(p_hw_tim, 0);
 
-    /* ���������¼� */
+    /* 允许更新事件 */
     amhw_zlg_tim_udis_enable(p_hw_tim);
 }
 
 /**
- * \brief ���� DTG ���ü�������ʱ��
+ * \brief 根据 DTG 配置计算死区时间
  *
- * \param[in] p_hw_tim ָ��ʱ���Ĵ������ָ��
- * \param[in] dtg      �������������ã�TIMx_BDTR �� DTG �ֶ�
+ * \param[in] p_hw_tim 指向定时器寄存器块的指针
+ * \param[in] dtg      死区发生器设置，TIMx_BDTR 的 DTG 字段
  *
- * \return ����ʱ�䣬��λΪƤ��
+ * \return 死区时间，单位为皮秒
  */
 am_local int32_t __dead_time_get (amhw_zlg_tim_t *p_hw_tim,
                                   uint8_t         dtg,
@@ -229,17 +229,17 @@ am_local int32_t __dead_time_get (amhw_zlg_tim_t *p_hw_tim,
         dt = AM_ERROR;
     }
 
-    /* �������һ�� tck_int ����Ϊʵ�� dtg ����Ϊ 0 ��ʱ��Ҳ��һ�� tck_int ������ʱ�� */
+    /* 这里加上一个 tck_int 是因为实测 dtg 配置为 0 的时候，也有一个 tck_int 的死区时间 */
     return dt + tck_int;
 }
 
 /**
- * \brief ������Ҫ������ʱ�������ӽ��� DTG ����
+ * \brief 根据需要的死区时间计算最接近的 DTG 配置
  *
- * \param[in] p_hw_tim  ָ��ʱ���Ĵ������ָ��
- * \param[in] dead_time ��Ҫ���õ�����ʱ�䣬��λΪƤ��
+ * \param[in] p_hw_tim  指向定时器寄存器块的指针
+ * \param[in] dead_time 需要配置的死区时间，单位为皮秒
  *
- * \return DTG ����ֵ
+ * \return DTG 配置值
  */
 am_local int32_t __dtg_calculate (amhw_zlg_tim_t *p_hw_tim,
                                   uint32_t        dead_time,
@@ -259,7 +259,7 @@ am_local int32_t __dtg_calculate (amhw_zlg_tim_t *p_hw_tim,
 }
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_zlg_hw_tim_pwm_dead_entry (amhw_zlg_tim_t     *p_hw_tim,
                                      amhw_zlg_tim_type_t type,
@@ -272,22 +272,22 @@ void demo_zlg_hw_tim_pwm_dead_entry (amhw_zlg_tim_t     *p_hw_tim,
         AM_DBG_INFO("this timer don't support pwm dead!\r\n");
     }
 
-    /* ��ʼ����ʱ�� TIM Ϊ PWM ���� */
+    /* 初始化定时器 TIM 为 PWM 功能 */
     __tim_pwm_init(p_hw_tim);
 
-    /* ���ö�ʱ�� TIM PWM ���ͨ�� */
+    /* 配置定时器 TIM PWM 输出通道 */
     __tim_pwm_chan_config(p_hw_tim, 0, __PWM_FREQ, __PWM_DUTY, clk_rate);
 
-    /* ʹ�ܻ������ */
+    /* 使能互补输出 */
     amhw_zlg_tim_ccne_enable(p_hw_tim, AMHW_ZLG_TIM_CC1S);
 
-    /* ʹ�ܻ�������ߵ�ƽ��Ч */
+    /* 使能互补输出高电平有效 */
     amhw_zlg_tim_ccne_set(p_hw_tim, 0, AMHW_ZLG_TIM_CC1S);
 
-    /* ��������ʱ�� */
+    /* 设置死区时间 */
     amhw_zlg_tim_utg_set(p_hw_tim, __dtg_calculate(p_hw_tim, __DEAD_TIME, clk_rate));
 
-    /* ������ʱ�� */
+    /* 启动定时器 */
     __tim_pwm_enable(p_hw_tim, 0);
 
     AM_FOREVER {

@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief LPC82X ÍâÉèÊµÀı³õÊ¼»¯º¯ÊıÉùÃ÷
+ * \brief LPC82X å¤–è®¾å®ä¾‹åˆå§‹åŒ–å‡½æ•°å£°æ˜
  *
- * ËùÓĞÍâÉèÉè±¸£¨I2C¡¢SPI¡¢ADC...£©µÄÊµÀı³õÊ¼»¯º¯Êı¾ùÔÚ±¾Í·ÎÄ¼şÖĞÉùÃ÷£¬Ê¹ÓÃÊµÀı
- * ³õÊ¼»¯º¯Êı£¬¿ÉÒÔÇáËÉ»ñµÃÒ»¸öÍâÉèµÄ¾ä±ú£¬È»ºóÊ¹ÓÃÏà¹ØµÄ½Ó¿Úº¯Êı¶ÔÍâÉè½øĞĞ²Ù×÷
+ * æ‰€æœ‰å¤–è®¾è®¾å¤‡ï¼ˆI2Cã€SPIã€ADC...ï¼‰çš„å®ä¾‹åˆå§‹åŒ–å‡½æ•°å‡åœ¨æœ¬å¤´æ–‡ä»¶ä¸­å£°æ˜ï¼Œä½¿ç”¨å®ä¾‹
+ * åˆå§‹åŒ–å‡½æ•°ï¼Œå¯ä»¥è½»æ¾è·å¾—ä¸€ä¸ªå¤–è®¾çš„å¥æŸ„ï¼Œç„¶åä½¿ç”¨ç›¸å…³çš„æ¥å£å‡½æ•°å¯¹å¤–è®¾è¿›è¡Œæ“ä½œ
  *
  * \sa am_lpc84x_inst_init.h
  * \internal
@@ -61,514 +61,514 @@ extern "C" {
  */
 
 /**
- * \brief ADC0 (DMA ·½Ê½) ÊµÀı³õÊ¼»¯£¬»ñµÃ ADC ±ê×¼·şÎñ¾ä±ú
+ * \brief ADC0 (DMA æ–¹å¼) å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— ADC æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ADC ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return ADC æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_adc_handle_t am_lpc84x_adc0_dma_inst_init (void);
 
 /**
- * \brief ADC0 (DMA ·½Ê½) ÊµÀı½â³õÊ¼»¯
+ * \brief ADC0 (DMA æ–¹å¼) å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_lpc84x_adc0_dma_inst_init() º¯Êı»ñµÃµÄ ADC ±ê×¼
- *                   ·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_lpc84x_adc0_dma_inst_init() å‡½æ•°è·å¾—çš„ ADC æ ‡å‡†
+ *                   æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_lpc84x_adc0_dma_inst_deinit (am_adc_handle_t handle);
 
 /**
- * \brief ADC0 (ÖĞ¶Ï·½Ê½) ÊµÀı³õÊ¼»¯£¬»ñµÃ ADC ±ê×¼·şÎñ¾ä±ú
+ * \brief ADC0 (ä¸­æ–­æ–¹å¼) å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— ADC æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ADC ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return ADC æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_adc_handle_t am_lpc84x_adc0_int_inst_init (void);
 
 /**
- * \brief ADC0 (ÖĞ¶Ï·½Ê½) ÊµÀı½â³õÊ¼»¯
+ * \brief ADC0 (ä¸­æ–­æ–¹å¼) å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_lpc84x_adc0_int_inst_init() º¯Êı»ñµÃµÄ ADC ±ê×¼
- *                   ·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_lpc84x_adc0_int_inst_init() å‡½æ•°è·å¾—çš„ ADC æ ‡å‡†
+ *                   æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_lpc84x_adc0_int_inst_deinit (am_adc_handle_t handle);
 
 /**
- * \brief CLK ÊµÀı³õÊ¼»¯£¬³õÊ¼»¯ÏµÍ³Ê±ÖÓ
+ * \brief CLK å®ä¾‹åˆå§‹åŒ–ï¼Œåˆå§‹åŒ–ç³»ç»Ÿæ—¶é’Ÿ
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ·µ»Ø AW_OK Îª³õÊ¼»¯³É¹¦£¬ÆäËüÎª³õÊ¼»¯Ê§°Ü
+ * \return è¿”å› AW_OK ä¸ºåˆå§‹åŒ–æˆåŠŸï¼Œå…¶å®ƒä¸ºåˆå§‹åŒ–å¤±è´¥
  */
 int am_lpc84x_clk_inst_init (void);
 
 /**
- * \brief CRC ÊµÀı³õÊ¼»¯£¬»ñµÃ CRC ±ê×¼·şÎñ¾ä±ú
+ * \brief CRC å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— CRC æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return CRC ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return CRC æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_crc_handle_t am_lpc84x_crc_inst_init (void);
 
 /**
- * \brief CRC ÊµÀı½â³õÊ¼»¯
+ * \brief CRC å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_lpc84x_crc_inst_deinit (void);
 
 /**
- * \brief DMA ÊµÀı³õÊ¼»¯
+ * \brief DMA å®ä¾‹åˆå§‹åŒ–
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ·µ»Ø AW_OK Îª³õÊ¼»¯³É¹¦£¬ÆäËüÎª³õÊ¼»¯Ê§°Ü
+ * \return è¿”å› AW_OK ä¸ºåˆå§‹åŒ–æˆåŠŸï¼Œå…¶å®ƒä¸ºåˆå§‹åŒ–å¤±è´¥
  */
 int am_lpc84x_dma_inst_init (void);
 
 /**
- * \brief DMA ÊµÀı½â³õÊ¼»¯
+ * \brief DMA å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_lpc84x_dma_inst_deinit (void);
 
 /**
- * \brief GPIO ÊµÀı³õÊ¼»¯
+ * \brief GPIO å®ä¾‹åˆå§‹åŒ–
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ·µ»Ø AW_OK Îª³õÊ¼»¯³É¹¦£¬ÆäËüÎª³õÊ¼»¯Ê§°Ü
+ * \return è¿”å› AW_OK ä¸ºåˆå§‹åŒ–æˆåŠŸï¼Œå…¶å®ƒä¸ºåˆå§‹åŒ–å¤±è´¥
  */
 int am_lpc84x_gpio_inst_init (void);
 
 /**
- * \brief GPIO ÊµÀı½â³õÊ¼»¯
+ * \brief GPIO å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_lpc84x_gpio_inst_deinit (void);
 
 /**
- * \brief I2C0 ÊµÀı³õÊ¼»¯£¬»ñµÃ I2C ±ê×¼·şÎñ¾ä±ú
+ * \brief I2C0 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— I2C æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return I2C ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return I2C æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_i2c_handle_t am_lpc84x_i2c0_inst_init (void);
 
 /**
- * \brief I2C0 ÊµÀı½â³õÊ¼»¯
+ * \brief I2C0 å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_lpc84x_i2c0_inst_init() º¯Êı»ñµÃµÄ I2C ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_lpc84x_i2c0_inst_init() å‡½æ•°è·å¾—çš„ I2C æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_lpc84x_i2c0_inst_deinit (am_i2c_handle_t handle);
 
 /**
- * \brief I2C1 ÊµÀı³õÊ¼»¯£¬»ñµÃ I2C ±ê×¼·şÎñ¾ä±ú
+ * \brief I2C1 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— I2C æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return I2C ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return I2C æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_i2c_handle_t am_lpc84x_i2c1_inst_init (void);
 
 /**
- * \brief I2C1 ÊµÀı½â³õÊ¼»¯
+ * \brief I2C1 å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_lpc84x_i2c1_inst_init() º¯Êı»ñµÃµÄ I2C ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_lpc84x_i2c1_inst_init() å‡½æ•°è·å¾—çš„ I2C æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_lpc84x_i2c1_inst_deinit (am_i2c_handle_t handle);
 
 /**
- * \brief I2C2 ÊµÀı³õÊ¼»¯£¬»ñµÃ I2C ±ê×¼·şÎñ¾ä±ú
+ * \brief I2C2 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— I2C æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return I2C ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return I2C æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_i2c_handle_t am_lpc84x_i2c2_inst_init (void);
 
 /**
- * \brief I2C2 ÊµÀı½â³õÊ¼»¯
+ * \brief I2C2 å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_lpc84x_i2c2_inst_init() º¯Êı»ñµÃµÄ I2C ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_lpc84x_i2c2_inst_init() å‡½æ•°è·å¾—çš„ I2C æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_lpc84x_i2c2_inst_deinit (am_i2c_handle_t handle);
 
 /**
- * \brief I2C3 ÊµÀı³õÊ¼»¯£¬»ñµÃ I2C ±ê×¼·şÎñ¾ä±ú
+ * \brief I2C3 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— I2C æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return I2C ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return I2C æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_i2c_handle_t am_lpc84x_i2c3_inst_init (void);
 
 /**
- * \brief I2C3 ÊµÀı½â³õÊ¼»¯
+ * \brief I2C3 å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_lpc84x_i2c3_inst_init() º¯Êı»ñµÃµÄ I2C ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_lpc84x_i2c3_inst_init() å‡½æ•°è·å¾—çš„ I2C æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_lpc84x_i2c3_inst_deinit (am_i2c_handle_t handle);
 
 /**
- * \brief MRT ÊµÀı³õÊ¼»¯£¬»ñµÃ TIMER ±ê×¼·şÎñ¾ä±ú
+ * \brief MRT å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— TIMER æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return TIMER ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return TIMER æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_timer_handle_t am_lpc84x_mrt_inst_init (void);
 
 /**
- * \brief MRT ÊµÀı½â³õÊ¼»¯
+ * \brief MRT å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_lpc84x_mrt_inst_init() º¯Êı»ñµÃµÄ TIMER ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_lpc84x_mrt_inst_init() å‡½æ•°è·å¾—çš„ TIMER æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_lpc84x_mrt_inst_deinit (am_timer_handle_t handle);
 
 /**
- * \brief SCT0 PWM ÊµÀı³õÊ¼»¯£¬»ñµÃ PWM ±ê×¼·şÎñ¾ä±ú
+ * \brief SCT0 PWM å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— PWM æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return PWM ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return PWM æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_pwm_handle_t am_lpc84x_sct0_pwm_inst_init (void);
 
 /**
- * \brief SCT0 PWM ÊµÀı½â³õÊ¼»¯
+ * \brief SCT0 PWM å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_lpc84x_sct0_pwm_inst_init() º¯Êı»ñµÃµÄ PWM ±ê×¼
- *                   ·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_lpc84x_sct0_pwm_inst_init() å‡½æ•°è·å¾—çš„ PWM æ ‡å‡†
+ *                   æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_lpc84x_sct0_pwm_inst_deinit (am_pwm_handle_t handle);
 
 /**
- * \brief SCT0 TIMING ÊµÀı³õÊ¼»¯£¬»ñµÃ TIMER ±ê×¼·şÎñ¾ä±ú
+ * \brief SCT0 TIMING å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— TIMER æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return TIMER ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return TIMER æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_timer_handle_t am_lpc84x_sct0_timing_inst_init (void);
 
 /**
- * \brief SCT0 TIMING ÊµÀı½â³õÊ¼»¯
+ * \brief SCT0 TIMING å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_lpc84x_sct0_timing_inst_init() º¯Êı»ñµÃµÄ TIMER ±ê×¼
- *                   ·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_lpc84x_sct0_timing_inst_init() å‡½æ•°è·å¾—çš„ TIMER æ ‡å‡†
+ *                   æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_lpc84x_sct0_timing_inst_deinit (am_timer_handle_t handle);
 
 /**
- * \brief SCT0 CAP ÊµÀı³õÊ¼»¯£¬»ñµÃ CAP ±ê×¼·şÎñ¾ä±ú
+ * \brief SCT0 CAP å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— CAP æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return CAP ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return CAP æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_cap_handle_t am_lpc84x_sct0_cap_inst_init (void);
     
 /**
- * \brief SCT0 CAP ÊµÀı½â³õÊ¼»¯
+ * \brief SCT0 CAP å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_lpc84x_sct0_cap_inst_init() º¯Êı»ñµÃµÄ CAP ±ê×¼
- *                   ·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_lpc84x_sct0_cap_inst_init() å‡½æ•°è·å¾—çš„ CAP æ ‡å‡†
+ *                   æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_lpc84x_sct0_cap_inst_deinit (am_cap_handle_t handle);
 
 /**
- * \brief SCT0 ÊµÀı³õÊ¼»¯£¬»ñµÃ SCT ·şÎñ¾ä±ú
+ * \brief SCT0 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— SCT æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return SCT ·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return SCT æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_lpc_sct_handle_t am_lpc84x_sct0_inst_init (void);
 
 /**
- * \brief SCT0 ÊµÀı½â³õÊ¼»¯
+ * \brief SCT0 å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_lpc84x_sct0_inst_init() º¯Êı»ñµÃµÄ SCT ·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_lpc84x_sct0_inst_init() å‡½æ•°è·å¾—çš„ SCT æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_lpc84x_sct0_inst_deinit (am_lpc_sct_handle_t handle);
 
 /**
- * \brief SPI0 (DMA ·½Ê½) ÊµÀı³õÊ¼»¯£¬»ñµÃ SPI ±ê×¼·şÎñ¾ä±ú
+ * \brief SPI0 (DMA æ–¹å¼) å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— SPI æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return SPI ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return SPI æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_spi_handle_t am_lpc84x_spi0_dma_inst_init (void);
 
 /**
- * \brief SPI0 (DMA ·½Ê½) ÊµÀı½â³õÊ¼»¯
+ * \brief SPI0 (DMA æ–¹å¼) å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_lpc84x_spi0_dma_inst_init() º¯Êı»ñµÃµÄ SPI ±ê×¼
- *                   ·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_lpc84x_spi0_dma_inst_init() å‡½æ•°è·å¾—çš„ SPI æ ‡å‡†
+ *                   æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_lpc84x_spi0_dma_inst_deinit (am_spi_handle_t handle);
 
 /**
- * \brief SPI0 (ÖĞ¶Ï·½Ê½) ÊµÀı³õÊ¼»¯£¬»ñµÃ SPI ±ê×¼·şÎñ¾ä±ú
+ * \brief SPI0 (ä¸­æ–­æ–¹å¼) å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— SPI æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return SPI ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return SPI æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_spi_handle_t am_lpc84x_spi0_int_inst_init (void);
 
 /**
- * \brief SPI0 (ÖĞ¶Ï·½Ê½) ÊµÀı½â³õÊ¼»¯
+ * \brief SPI0 (ä¸­æ–­æ–¹å¼) å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_lpc84x_spi0_int_inst_init() º¯Êı»ñµÃµÄ SPI ±ê×¼
- *                   ·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_lpc84x_spi0_int_inst_init() å‡½æ•°è·å¾—çš„ SPI æ ‡å‡†
+ *                   æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_lpc84x_spi0_int_inst_deinit (am_spi_handle_t handle);
 
 /**
- * \brief SPI1 (DMA ·½Ê½) ÊµÀı³õÊ¼»¯£¬»ñµÃ SPI ±ê×¼·şÎñ¾ä±ú
+ * \brief SPI1 (DMA æ–¹å¼) å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— SPI æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return SPI ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return SPI æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_spi_handle_t am_lpc84x_spi1_dma_inst_init (void);
 
 /**
- * \brief SPI1 (DMA ·½Ê½) ÊµÀı½â³õÊ¼»¯
+ * \brief SPI1 (DMA æ–¹å¼) å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_lpc84x_spi1_dma_inst_init() º¯Êı»ñµÃµÄ SPI ±ê×¼
- *                   ·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_lpc84x_spi1_dma_inst_init() å‡½æ•°è·å¾—çš„ SPI æ ‡å‡†
+ *                   æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_lpc84x_spi1_dma_inst_deinit (am_spi_handle_t handle);
 
 /**
- * \brief SPI1 (ÖĞ¶Ï·½Ê½) ÊµÀı³õÊ¼»¯£¬»ñµÃ SPI ±ê×¼·şÎñ¾ä±ú
+ * \brief SPI1 (ä¸­æ–­æ–¹å¼) å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— SPI æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return SPI ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return SPI æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_spi_handle_t am_lpc84x_spi1_int_inst_init (void);
 
 /**
- * \brief SPI1 (ÖĞ¶Ï·½Ê½) ÊµÀı½â³õÊ¼»¯
+ * \brief SPI1 (ä¸­æ–­æ–¹å¼) å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_lpc84x_spi1_int_inst_init() º¯Êı»ñµÃµÄ SPI ±ê×¼
- *                   ·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_lpc84x_spi1_int_inst_init() å‡½æ•°è·å¾—çš„ SPI æ ‡å‡†
+ *                   æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_lpc84x_spi1_int_inst_deinit (am_spi_handle_t handle);
 
 /**
- * \brief USART0 ÊµÀı³õÊ¼»¯£¬»ñµÃ UART ±ê×¼·şÎñ¾ä±ú
+ * \brief USART0 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— UART æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return UART ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return UART æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_uart_handle_t am_lpc84x_usart0_inst_init (void);
 
 /**
- * \brief USART0 ÊµÀı½â³õÊ¼»¯
+ * \brief USART0 å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_lpc84x_usart0_inst_init() º¯Êı»ñµÃµÄ UART ±ê×¼
- *                   ·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_lpc84x_usart0_inst_init() å‡½æ•°è·å¾—çš„ UART æ ‡å‡†
+ *                   æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_lpc84x_usart0_inst_deinit (am_uart_handle_t handle);
 
 /**
- * \brief USART1 ÊµÀı³õÊ¼»¯£¬»ñµÃ UART ±ê×¼·şÎñ¾ä±ú
+ * \brief USART1 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— UART æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return UART ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return UART æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_uart_handle_t am_lpc84x_usart1_inst_init (void);
 
 /**
- * \brief USART1 ÊµÀı½â³õÊ¼»¯
+ * \brief USART1 å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_lpc84x_usart1_inst_init() º¯Êı»ñµÃµÄ UART ±ê×¼
- *                   ·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_lpc84x_usart1_inst_init() å‡½æ•°è·å¾—çš„ UART æ ‡å‡†
+ *                   æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_lpc84x_usart1_inst_deinit (am_uart_handle_t handle);
 
 /**
- * \brief USART2 ÊµÀı³õÊ¼»¯£¬»ñµÃ UART ±ê×¼·şÎñ¾ä±ú
+ * \brief USART2 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— UART æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return UART ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return UART æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_uart_handle_t am_lpc84x_usart2_inst_init (void);
 
 /**
- * \brief USART2 ÊµÀı½â³õÊ¼»¯
+ * \brief USART2 å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_lpc84x_usart2_inst_init() º¯Êı»ñµÃµÄ UART ±ê×¼
- *                   ·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_lpc84x_usart2_inst_init() å‡½æ•°è·å¾—çš„ UART æ ‡å‡†
+ *                   æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_lpc84x_usart2_inst_deinit (am_uart_handle_t handle);
 
 /**
- * \brief WKT ÊµÀı³õÊ¼»¯£¬»ñµÃ TIMER ±ê×¼·şÎñ¾ä±ú
+ * \brief WKT å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— TIMER æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return TIMER ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return TIMER æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_timer_handle_t am_lpc84x_wkt_inst_init (void);
 
 /**
- * \brief WKT ÊµÀı½â³õÊ¼»¯
+ * \brief WKT å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_lpc84x_wkt_inst_init() º¯Êı»ñµÃµÄ TIMER ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_lpc84x_wkt_inst_init() å‡½æ•°è·å¾—çš„ TIMER æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_lpc84x_wkt_inst_deinit (am_timer_handle_t handle);
 
 /**
- * \brief WWDT ÊµÀı³õÊ¼»¯£¬»ñµÃ WDT ±ê×¼·şÎñ¾ä±ú
+ * \brief WWDT å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— WDT æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return WDT ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return WDT æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_wdt_handle_t am_lpc84x_wwdt_inst_init (void);
 
 /**
- * \brief WWDT ÊµÀı½â³õÊ¼»¯
+ * \brief WWDT å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_lpc84x_wwdt_inst_init() º¯Êı»ñµÃµÄ WDT ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_lpc84x_wwdt_inst_init() å‡½æ•°è·å¾—çš„ WDT æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_lpc84x_wwdt_inst_deinit (am_wdt_handle_t handle);
 
 /**
- * \brief ÖĞ¶ÏÊµÀı³õÊ¼»¯£¬³õÊ¼»¯ÖĞ¶ÏÇı¶¯
+ * \brief ä¸­æ–­å®ä¾‹åˆå§‹åŒ–ï¼Œåˆå§‹åŒ–ä¸­æ–­é©±åŠ¨
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ·µ»Ø AW_OK Îª³õÊ¼»¯³É¹¦£¬ÆäËüÎª³õÊ¼»¯Ê§°Ü
+ * \return è¿”å› AW_OK ä¸ºåˆå§‹åŒ–æˆåŠŸï¼Œå…¶å®ƒä¸ºåˆå§‹åŒ–å¤±è´¥
  */
 int am_arm_nvic_inst_init (void);
 
 /**
- * \brief ÖĞ¶ÏÊµÀı½â³õÊ¼»¯
+ * \brief ä¸­æ–­å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_arm_nvic_inst_deinit (void);
 
 /**
- * \brief SYSTICK ÊµÀı³õÊ¼»¯£¬»ñµÃ TIMER ±ê×¼·şÎñ¾ä±ú
+ * \brief SYSTICK å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— TIMER æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return TIMER ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return TIMER æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_timer_handle_t am_arm_systick_inst_init (void);
 
 /**
- * \brief SYSTICK ÊµÀı½â³õÊ¼»¯
+ * \brief SYSTICK å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_arm_systick_inst_init() º¯Êı»ñµÃµÄ TIMER ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_arm_systick_inst_init() å‡½æ•°è·å¾—çš„ TIMER æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_arm_systick_inst_deinit (am_timer_handle_t handle);
 
 /**
- * \brief DAC0 ÊµÀı³õÊ¼»¯
+ * \brief DAC0 å®ä¾‹åˆå§‹åŒ–
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_dac_handle_t am_lpc84x_dac0_inst_init (void);
 
 /**
- * \brief DAC0 ÊµÀı½â³õÊ¼»¯
+ * \brief DAC0 å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle Í¨¹ı am_lpc84x_dac0_inst_init() º¯Êı»ñµÃµÄ dac ±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle é€šè¿‡ am_lpc84x_dac0_inst_init() å‡½æ•°è·å¾—çš„ dac æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_lpc84x_dac0_inst_deinit (am_dac_handle_t handle);
 
 /**
- * \brief SP0I (ÂÖÑ¯·½Ê½) ÊµÀı³õÊ¼»¯
+ * \brief SP0I (è½®è¯¢æ–¹å¼) å®ä¾‹åˆå§‹åŒ–
  */
 am_spi_handle_t am_lpc84x_spi0_poll_inst_init (void);
 
 /**
- * \brief SPI0 (ÂÖÑ¯·½Ê½) ÊµÀı½â³õÊ¼»¯
+ * \brief SPI0 (è½®è¯¢æ–¹å¼) å®ä¾‹è§£åˆå§‹åŒ–
  */
 void am_lpc84x_spi0_poll_inst_deinit (am_spi_handle_t handle);
 
 /**
- * \brief FM25CLxx ÊµÀı³õÊ¼»¯
+ * \brief FM25CLxx å®ä¾‹åˆå§‹åŒ–
  */
 am_fm25clxx_handle_t am_fm25clxx_inst_init (void);
 
 /**
- * \brief FM25CLxx ÊµÀı½â³õÊ¼»¯
+ * \brief FM25CLxx å®ä¾‹è§£åˆå§‹åŒ–
  */
 void am_fm25clxx_inst_deinit (am_fm25clxx_handle_t handle);
 
 /**
- * \brief FM25CLxx NVRAMÊµÀı³õÊ¼»¯
+ * \brief FM25CLxx NVRAMå®ä¾‹åˆå§‹åŒ–
  */
 int am_fm25clxx_fram_nvram_inst_init(void);
 /**

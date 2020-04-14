@@ -12,15 +12,15 @@
 
 /**
  * \file
- * \brief DACÊıÄ£×ª»»Àı³Ì£¬Í¨¹ıHW½Ó¿ÚÊµÏÖ
+ * \brief DACæ•°æ¨¡è½¬æ¢ä¾‹ç¨‹ï¼Œé€šè¿‡HWæ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ²É¼¯ÊıÄ£×ª»»µÄÊä³ö¿ÚPE30µÄµçÑ¹Öµ
- *   2. Ê¹ÓÃDACREF_2²Î¿¼µçÑ¹£¬DACREF_2Á¬½ÓVDDA¹Ü½Å£¬µçÑ¹ÖµÎª3.3V¡£
- *   3. Êä³öµçÑ¹ÖµÎª1.823V
+ * - å®éªŒç°è±¡ï¼š
+ *   1. é‡‡é›†æ•°æ¨¡è½¬æ¢çš„è¾“å‡ºå£PE30çš„ç”µå‹å€¼
+ *   2. ä½¿ç”¨DACREF_2å‚è€ƒç”µå‹ï¼ŒDACREF_2è¿æ¥VDDAç®¡è„šï¼Œç”µå‹å€¼ä¸º3.3Vã€‚
+ *   3. è¾“å‡ºç”µå‹å€¼ä¸º1.823V
  *
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_fsl_hw_dac.c src_fsl_hw_dac
  *
  * \internal
@@ -43,13 +43,13 @@
 #include "demo_fsl_entrys.h"
 
 /**
- * \brief FSL DAC³õÊ¼»¯º¯Êı
+ * \brief FSL DACåˆå§‹åŒ–å‡½æ•°
  */
 
 static void __fsl_dac_init (amhw_fsl_dac_t *p_hw_dac)
 {
     /*
-     * ÅäÖÃDACÏà¹Ø¹¦ÄÜ
+     * é…ç½®DACç›¸å…³åŠŸèƒ½
      */
     amhw_fsl_dac_c0_cfg(p_hw_dac,
                         AMHW_FSL_DAC_C0_EN                                |
@@ -58,24 +58,24 @@ static void __fsl_dac_init (amhw_fsl_dac_t *p_hw_dac)
                         AMHW_FSL_DAC_C0_POWER_SEL(AMHW_FSL_DAC_POWER_LOW));
 }
 
-/** \brief DAC´¥·¢Ä£Ê½ÅäÖÃ */
+/** \brief DACè§¦å‘æ¨¡å¼é…ç½® */
 static void  __fsl_dac_trigger (amhw_fsl_dac_t *p_hw_dac,
                                 uint16_t        data)
 {
-     /*  DAC¼Ä´æÆ÷¸³Öµ*/
+     /*  DACå¯„å­˜å™¨èµ‹å€¼*/
     amhw_fsl_dac_dat_set(p_hw_dac, AMHW_FSL_DAC_DAT_0, data);
 
-     /* Ê¹ÄÜDACÈí¼ş´¥·¢            */
+     /* ä½¿èƒ½DACè½¯ä»¶è§¦å‘            */
     amhw_fsl_dac_soft_trg_enable(p_hw_dac);
 }
 
 /**
- * \brief DACÊä³öµçÑ¹Öµ£¬µ÷ÓÃHW²ãÊµÏÖ
+ * \brief DACè¾“å‡ºç”µå‹å€¼ï¼Œè°ƒç”¨HWå±‚å®ç°
  */
 void demo_fsl_hw_dac_entry (amhw_fsl_dac_t *p_hw_dac,
                              uint16_t       voltage_mv)
 {
-    /* ¼ÆËã×ª»»Öµ              */
+    /* è®¡ç®—è½¬æ¢å€¼              */
     uint16_t v_out = (uint32_t)voltage_mv * 4096 / 3300;
 
     __fsl_dac_init(p_hw_dac);

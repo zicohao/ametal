@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief LPC82X Ğ¾Æ¬ÌØĞÔÏà¹ØÍ·ÎÄ¼ş¶¨Òå
+ * \brief LPC82X èŠ¯ç‰‡ç‰¹æ€§ç›¸å…³å¤´æ–‡ä»¶å®šä¹‰
  *
  * \internal
  * \par Modification history
@@ -29,27 +29,27 @@ extern "C" {
 #endif
     
 
-/** \brief Ğ¾Æ¬Òı½Å¶¨Òå */ 
+/** \brief èŠ¯ç‰‡å¼•è„šå®šä¹‰ */ 
 #include "lpc84x_pin.h"    
     
-/** \brief Ğ¾Æ¬ÖĞ¶Ï±àºÅ¶¨Òå */    
+/** \brief èŠ¯ç‰‡ä¸­æ–­ç¼–å·å®šä¹‰ */    
 #include "lpc84x_inum.h"
 
-/** \brief Ğ¾Æ¬ÍâÉè¼Ä´æÆ÷»ùÖ·¶¨Òå */
+/** \brief èŠ¯ç‰‡å¤–è®¾å¯„å­˜å™¨åŸºå€å®šä¹‰ */
 #include "lpc84x_regbase.h"
 
-/** \brief Ğ¾Æ¬ÍâÉèÓ³Éä */
+/** \brief èŠ¯ç‰‡å¤–è®¾æ˜ å°„ */
 #include "lpc84x_periph_map.h"
 
-/** \brief Ê±ÖÓID¶¨Òå */
+/** \brief æ—¶é’ŸIDå®šä¹‰ */
 #include "lpc84x_clk.h"
 
-/** \brief DMAÍ¨µÀ¼°²ÎÊı¶¨Òå */
+/** \brief DMAé€šé“åŠå‚æ•°å®šä¹‰ */
 #include "lpc84x_dma_chan.h"
 
 
 /**
- * \name Cortex-M0+ ÄÚºË´¦ÀíÆ÷ºÍÍâÉèÉèÖÃ
+ * \name Cortex-M0+ å†…æ ¸å¤„ç†å™¨å’Œå¤–è®¾è®¾ç½®
  * @{
  */
 #ifndef AM_CORTEX_M0
@@ -60,9 +60,9 @@ extern "C" {
 
 #if defined AM_CORTEX_M0
 
-#define __MPU_PRESENT            0  /**< \brief M0+ºËÎŞMPU              */
-#define __NVIC_PRIO_BITS         2  /**< \brief M0+ºËÎª2                */
-#define __Vendor_SysTickConfig   0  /**< \brief ÉèÖÃÎª1 ¿ÉÒÔÅäÖÃSysTick  */
+#define __MPU_PRESENT            0  /**< \brief M0+æ ¸æ— MPU              */
+#define __NVIC_PRIO_BITS         2  /**< \brief M0+æ ¸ä¸º2                */
+#define __Vendor_SysTickConfig   0  /**< \brief è®¾ç½®ä¸º1 å¯ä»¥é…ç½®SysTick  */
 
 #include "core_cm0plus.h"
 

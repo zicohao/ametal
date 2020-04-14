@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief  NVICÇı¶¯£¬·şÎñÖĞ¶Ï±ê×¼½Ó¿Ú
+ * \brief  NVICé©±åŠ¨ï¼ŒæœåŠ¡ä¸­æ–­æ ‡å‡†æ¥å£
  *
  * \internal
  * \par Modification History
@@ -37,125 +37,125 @@ extern "C" {
  */
 
 /**
- * \brief ÏµÍ³Òì³£±àºÅ¶¨Òå
+ * \brief ç³»ç»Ÿå¼‚å¸¸ç¼–å·å®šä¹‰
  */
-#define    INUM_NMI             -14    /**< \brief ²»¿ÉÆÁ±ÎÖĞ¶Ï */
-#define    INUM_HARDFAULT       -13    /**< \brief Ó²¼ş´íÎó */
-#define    INUM_MEMMANAGE       -12    /**< \brief ´æ´¢Æ÷¹ÜÀíÒì³££¨M0¡¢M0+ÎŞ´ËÒì³££© */
-#define    INUM_BUSFAULT        -11    /**< \brief ×ÜÏßÒì³££¨M0¡¢M0+ÎŞ´ËÒì³££© */
-#define    INUM_USAGEFAULT      -10    /**< \brief Ó¦ÓÃÒì³££¨M0¡¢M0+ÎŞ´ËÒì³££© */
-#define    INUM_SVCALL          -5     /**< \brief ÏµÍ³µ÷ÓÃÒì³£ */
-#define    INUM_PENDSV          -2     /**< \brief ¿ÉĞüÆğÏµÍ³µ÷ÓÃÒì³£ */
-#define    INUM_SYSTICK         -1     /**< \brief ÏµÍ³µÎ´ğ¶¨Ê±Æ÷Òì³£ */
+#define    INUM_NMI             -14    /**< \brief ä¸å¯å±è”½ä¸­æ–­ */
+#define    INUM_HARDFAULT       -13    /**< \brief ç¡¬ä»¶é”™è¯¯ */
+#define    INUM_MEMMANAGE       -12    /**< \brief å­˜å‚¨å™¨ç®¡ç†å¼‚å¸¸ï¼ˆM0ã€M0+æ— æ­¤å¼‚å¸¸ï¼‰ */
+#define    INUM_BUSFAULT        -11    /**< \brief æ€»çº¿å¼‚å¸¸ï¼ˆM0ã€M0+æ— æ­¤å¼‚å¸¸ï¼‰ */
+#define    INUM_USAGEFAULT      -10    /**< \brief åº”ç”¨å¼‚å¸¸ï¼ˆM0ã€M0+æ— æ­¤å¼‚å¸¸ï¼‰ */
+#define    INUM_SVCALL          -5     /**< \brief ç³»ç»Ÿè°ƒç”¨å¼‚å¸¸ */
+#define    INUM_PENDSV          -2     /**< \brief å¯æ‚¬èµ·ç³»ç»Ÿè°ƒç”¨å¼‚å¸¸ */
+#define    INUM_SYSTICK         -1     /**< \brief ç³»ç»Ÿæ»´ç­”å®šæ—¶å™¨å¼‚å¸¸ */
 
 enum {
-    AM_ARM_NVIC_CORE_M0,      /**< \brief M0 ÄÚºË */
-    AM_ARM_NVIC_CORE_M0PLUS,  /**< \brief M0+ÄÚºË */
-    AM_ARM_NVIC_CORE_M3,      /**< \brief M3 ÄÚºË */
-    AM_ARM_NVIC_CORE_M4,      /**< \brief M4 ÄÚºË */
+    AM_ARM_NVIC_CORE_M0,      /**< \brief M0 å†…æ ¸ */
+    AM_ARM_NVIC_CORE_M0PLUS,  /**< \brief M0+å†…æ ¸ */
+    AM_ARM_NVIC_CORE_M3,      /**< \brief M3 å†…æ ¸ */
+    AM_ARM_NVIC_CORE_M4,      /**< \brief M4 å†…æ ¸ */
 };
 
 /**
- * \brief ÖĞ¶Ï·şÎñĞÅÏ¢
+ * \brief ä¸­æ–­æœåŠ¡ä¿¡æ¯
  */
 struct am_arm_nvic_servinfo {
 
-    /** \brief ÆğÊ¼ÖĞ¶ÏºÅ */
+    /** \brief èµ·å§‹ä¸­æ–­å· */
     int inum_start;
 
-    /** \brief Ä©Î²ÖĞ¶ÏºÅ */
+    /** \brief æœ«å°¾ä¸­æ–­å· */
     int inum_end;
 };
 
-/** \brief ÖĞ¶Ï·şÎñÀıĞĞĞÅÏ¢ */
+/** \brief ä¸­æ–­æœåŠ¡ä¾‹è¡Œä¿¡æ¯ */
 struct am_arm_nvic_isr_info {
 
-    /** \brief ´¥·¢»Øµ÷º¯Êı */
+    /** \brief è§¦å‘å›è°ƒå‡½æ•° */
     am_pfnvoid_t  pfn_isr;
 
-    /** \brief »Øµ÷º¯ÊıµÄ²ÎÊı */
+    /** \brief å›è°ƒå‡½æ•°çš„å‚æ•° */
     void         *p_arg;
 };
 
 
-/** \brief ÖĞ¶ÏÉè±¸ĞÅÏ¢ */
+/** \brief ä¸­æ–­è®¾å¤‡ä¿¡æ¯ */
 typedef struct am_arm_nvic_devinfo {
     
-    /** \brief ÖĞ¶Ï·şÎñĞÅÏ¢ÊµÀı */
+    /** \brief ä¸­æ–­æœåŠ¡ä¿¡æ¯å®ä¾‹ */
     const struct am_arm_nvic_servinfo int_servinfo;
     
-    /** \brief ÄÚºË */
+    /** \brief å†…æ ¸ */
     uint8_t core;
 
-    /** \brief ÓÅÏÈ¼¶Î»Êı */
+    /** \brief ä¼˜å…ˆçº§ä½æ•° */
     uint8_t prio_bits;
 
-    /** \brief ÉèÖÃÓÅÏÈ¼¶×é */
+    /** \brief è®¾ç½®ä¼˜å…ˆçº§ç»„ */
     int group;
 
-    /** \brief ×ÜÖĞ¶ÏÊıÁ¿ */
+    /** \brief æ€»ä¸­æ–­æ•°é‡ */
     int input_cnt;
 
-    /** \brief ISR ĞÅÏ¢Ó³Éä(´óĞ¡Óë input_cnt Ò»ÖÂ) */
+    /** \brief ISR ä¿¡æ¯æ˜ å°„(å¤§å°ä¸ input_cnt ä¸€è‡´) */
     uint8_t *p_isrmap;
 
-    /** \brief ISR ĞÅÏ¢ÊıÁ¿ */
+    /** \brief ISR ä¿¡æ¯æ•°é‡ */
     int isrinfo_cnt;
 
-    /** \brief ISR ĞÅÏ¢Ó³ÉäÄÚ´æ(´óĞ¡Óë isrinfo_cnt Ò»ÖÂ) */
+    /** \brief ISR ä¿¡æ¯æ˜ å°„å†…å­˜(å¤§å°ä¸ isrinfo_cnt ä¸€è‡´) */
     struct am_arm_nvic_isr_info *p_isrinfo;
     
-    /** \brief Æ½Ì¨³õÊ¼»¯º¯Êı */
+    /** \brief å¹³å°åˆå§‹åŒ–å‡½æ•° */
     void     (*pfn_plfm_init)(void);
 
-    /** \brief Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    /** \brief å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
     void     (*pfn_plfm_deinit)(void);
     
 } am_arm_nvic_devinfo_t;
 
 /**
- * \brief ÖĞ¶ÏÉè±¸ÊµÀı 
+ * \brief ä¸­æ–­è®¾å¤‡å®ä¾‹ 
  */
 typedef struct am_arm_nvic_dev {
     
-    /** \brief Ö¸ÏòÖĞ¶ÏÉè±¸ĞÅÏ¢µÄÖ¸Õë */
+    /** \brief æŒ‡å‘ä¸­æ–­è®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ */
     const am_arm_nvic_devinfo_t *p_devinfo;
     
-    /** \brief ²ÎÊıÓĞĞ§±êÖ¾ */
+    /** \brief å‚æ•°æœ‰æ•ˆæ ‡å¿— */
     am_bool_t                    valid_flg;
     
 } am_arm_nvic_dev_t;
 
 
 /**
- * \brief	ÉèÖÃÖĞ¶ÏÓÅÏÈ¼¶
+ * \brief	è®¾ç½®ä¸­æ–­ä¼˜å…ˆçº§
  *
- * \param[in]	  inum             : ÖĞ¶ÏºÅ
- * \param[in]	  preempt_priority : Ö÷ÓÅÏÈ¼¶
- * \param[in]     sub_priority     : ´ÎÓÅÏÈ¼¶£¨Õë¶Ôm0ÄÚºË´ËÖµÎŞĞ§£©
+ * \param[in]	  inum             : ä¸­æ–­å·
+ * \param[in]	  preempt_priority : ä¸»ä¼˜å…ˆçº§
+ * \param[in]     sub_priority     : æ¬¡ä¼˜å…ˆçº§ï¼ˆé’ˆå¯¹m0å†…æ ¸æ­¤å€¼æ— æ•ˆï¼‰
  *
- * \retval  AM_OK       : ²Ù×÷³É¹¦
- * \retval -AM_EINVAL   : ÎŞĞ§²ÎÊı
+ * \retval  AM_OK       : æ“ä½œæˆåŠŸ
+ * \retval -AM_EINVAL   : æ— æ•ˆå‚æ•°
  */
 int am_arm_nvic_priority_set(int inum,
                              uint32_t preempt_priority,
                              uint32_t sub_priority);
 
 /**
- * \brief ÖĞ¶Ï³õÊ¼»¯ 
+ * \brief ä¸­æ–­åˆå§‹åŒ– 
  *
- * \param[in] p_dev     : Ö¸ÏòÖĞ¶ÏÉè±¸µÄÖ¸Õë 
- * \param[in] p_devinfo : Ö¸ÏòÖĞ¶ÏÉè±¸ĞÅÏ¢µÄÖ¸Õë 
+ * \param[in] p_dev     : æŒ‡å‘ä¸­æ–­è®¾å¤‡çš„æŒ‡é’ˆ 
+ * \param[in] p_devinfo : æŒ‡å‘ä¸­æ–­è®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ 
  *
- * \retval  AM_OK       : ²Ù×÷³É¹¦ 
- * \retval -AM_EINVAL   : ÎŞĞ§²ÎÊı 
+ * \retval  AM_OK       : æ“ä½œæˆåŠŸ 
+ * \retval -AM_EINVAL   : æ— æ•ˆå‚æ•° 
  */
 int am_arm_nvic_init (am_arm_nvic_dev_t           *p_dev,
                       const am_arm_nvic_devinfo_t *p_devinfo);
 
 /**
- * \brief ÖĞ¶ÏÈ¥³õÊ¼»¯
- * \return  ÎŞ 
+ * \brief ä¸­æ–­å»åˆå§‹åŒ–
+ * \return  æ—  
  */
 void am_arm_nvic_deinit (void);
 

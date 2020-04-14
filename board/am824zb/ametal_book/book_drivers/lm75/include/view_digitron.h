@@ -6,15 +6,15 @@
 #include "mvc.h"
 
 typedef struct _view_digitron { 
-    observer_t  	isa;        				// »ùÀàÅÉÉú
-    int      		digitron_id;  				// ÊıÂë¹ÜÏÔÊ¾Æ÷IDºÅ
+    observer_t  	isa;        				// åŸºç±»æ´¾ç”Ÿ
+    int      		digitron_id;  				// æ•°ç ç®¡æ˜¾ç¤ºå™¨IDå·
 } view_digitron_temp_t;
 
 typedef struct _view_digitron {
 	observer_t   		isa;
-	int           		digitron_id;  	// ÊıÂë¹ÜÏÔÊ¾Æ÷IDºÅ
+	int           		digitron_id;  	// æ•°ç ç®¡æ˜¾ç¤ºå™¨IDå·
 } view_digitron_t;
 
 
-//  ÊıÂë¹ÜÊÓÍ¼³õÊ¼»¯
+//  æ•°ç ç®¡è§†å›¾åˆå§‹åŒ–
 int view_digitron_init (view_digitron_t *p_view_digitron, int digitron_id);

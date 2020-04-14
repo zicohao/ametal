@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief WWDG²Ù×÷½Ó¿Ú
+ * \brief WWDGæ“ä½œæ¥å£
  *
  * \internal
  * \par Modification history
@@ -30,7 +30,7 @@ extern "C" {
 #include "am_types.h"
 
 /*
- * \brief ÄäÃû½á¹¹Ìå¶ÎµÄ¿ªÊ¼
+ * \brief åŒ¿åç»“æ„ä½“æ®µçš„å¼€å§‹
  */
 #if defined(__CC_ARM)
   #pragma push
@@ -52,25 +52,25 @@ extern "C" {
  */
 
 /**
- * \brief WWDG¼Ä´æÆ÷¿é½á¹¹Ìå
+ * \brief WWDGå¯„å­˜å™¨å—ç»“æ„ä½“
  */
 typedef struct amhw_zlg_wwdg {
-    __IO uint32_t cr;    /**< \brief ¿ØÖÆ¼Ä´æÆ÷ */
-    __IO uint32_t cfr;   /**< \brief ÅäÖÃ¼Ä´æÆ÷ */
-    __IO uint32_t sr;    /**< \brief ×´Ì¬¼Ä´æÆ÷ */
+    __IO uint32_t cr;    /**< \brief æ§åˆ¶å¯„å­˜å™¨ */
+    __IO uint32_t cfr;   /**< \brief é…ç½®å¯„å­˜å™¨ */
+    __IO uint32_t sr;    /**< \brief çŠ¶æ€å¯„å­˜å™¨ */
 } amhw_zlg_wwdg_t;
 
 #ifndef AMHW_ZLG_WWDG
-#define AMHW_ZLG_WWDG  ((amhw_zlg_wwdg_t *)0x40002C00UL) /**< \brief ÍâÉè»ùµØÖ· */
+#define AMHW_ZLG_WWDG  ((amhw_zlg_wwdg_t *)0x40002C00UL) /**< \brief å¤–è®¾åŸºåœ°å€ */
 #endif
 
 /**
- * \brief Ğ´¼ÆÊıÖµ
+ * \brief å†™è®¡æ•°å€¼
  *
- * \param[in] p_hw_wwdg : Ö¸ÏòWWDG¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] count     : Öµ
+ * \param[in] p_hw_wwdg : æŒ‡å‘WWDGå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] count     : å€¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_wwdg_counter_set (amhw_zlg_wwdg_t *p_hw_wwdg,
@@ -81,11 +81,11 @@ void amhw_zlg_wwdg_counter_set (amhw_zlg_wwdg_t *p_hw_wwdg,
 }
 
 /**
- * \brief Ê¹ÄÜ´°¿Ú¿´ÃÅ¹·
+ * \brief ä½¿èƒ½çª—å£çœ‹é—¨ç‹—
  *
- * \param[in] p_hw_wwdg : Ö¸ÏòWWDG¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_wwdg : æŒ‡å‘WWDGå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_wwdg_enable (amhw_zlg_wwdg_t *p_hw_wwdg)
@@ -94,12 +94,12 @@ void amhw_zlg_wwdg_enable (amhw_zlg_wwdg_t *p_hw_wwdg)
 }
 
 /**
- * \brief Ğ´´°¿ÚÖµ
+ * \brief å†™çª—å£å€¼
  *
- * \param[in] p_hw_wwdg : Ö¸ÏòWWDG¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] key       : Öµ
+ * \param[in] p_hw_wwdg : æŒ‡å‘WWDGå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] key       : å€¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_wwdg_winvalue_set (amhw_zlg_wwdg_t    *p_hw_wwdg,
@@ -110,12 +110,12 @@ void amhw_zlg_wwdg_winvalue_set (amhw_zlg_wwdg_t    *p_hw_wwdg,
 }
 
 /**
- * \brief Ğ´Ê±»ùÖµ
+ * \brief å†™æ—¶åŸºå€¼
  *
- * \param[in] p_hw_wwdg : Ö¸ÏòWWDG¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] val       : Öµ
+ * \param[in] p_hw_wwdg : æŒ‡å‘WWDGå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] val       : å€¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_wwdg_timerbase_set (amhw_zlg_wwdg_t    *p_hw_wwdg,
@@ -126,11 +126,11 @@ void amhw_zlg_wwdg_timerbase_set (amhw_zlg_wwdg_t    *p_hw_wwdg,
 }
 
 /**
- * \brief ÌáÇ°»½ĞÑÖĞ¶Ï
+ * \brief æå‰å”¤é†’ä¸­æ–­
  *
- * \param[in] p_hw_wwdg : Ö¸ÏòWWDG¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_wwdg : æŒ‡å‘WWDGå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_wwdg_ewi_set (amhw_zlg_wwdg_t *p_hw_wwdg)
@@ -139,11 +139,11 @@ void amhw_zlg_wwdg_ewi_set (amhw_zlg_wwdg_t *p_hw_wwdg)
 }
 
 /**
- * \brief ÌáÇ°»½ĞÑÖĞ¶Ï±êÖ¾»ñÈ¡
+ * \brief æå‰å”¤é†’ä¸­æ–­æ ‡å¿—è·å–
  *
- * \param[in] p_hw_wwdg : Ö¸ÏòWWDG¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_wwdg : æŒ‡å‘WWDGå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 am_bool_t amhw_zlg_wwdg_ewif_read (amhw_zlg_wwdg_t *p_hw_wwdg)
@@ -152,11 +152,11 @@ am_bool_t amhw_zlg_wwdg_ewif_read (amhw_zlg_wwdg_t *p_hw_wwdg)
 }
 
 /**
- * \brief ÌáÇ°»½ĞÑÖĞ¶Ï±êÖ¾Çå³ı
+ * \brief æå‰å”¤é†’ä¸­æ–­æ ‡å¿—æ¸…é™¤
  *
- * \param[in] p_hw_wwdg : Ö¸ÏòWWDG¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_wwdg : æŒ‡å‘WWDGå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_wwdg_ewif_clear (amhw_zlg_wwdg_t *p_hw_wwdg)
@@ -168,7 +168,7 @@ void amhw_zlg_wwdg_ewif_clear (amhw_zlg_wwdg_t *p_hw_wwdg)
  * @}
  */
 /*
- * \brief ÄäÃû½á¹¹Ìå¶ÎµÄ½áÊø
+ * \brief åŒ¿åç»“æ„ä½“æ®µçš„ç»“æŸ
  */
 
 #if defined(__CC_ARM)

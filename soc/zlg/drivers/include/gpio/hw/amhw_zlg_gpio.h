@@ -12,11 +12,11 @@
 
 /**
  * \file
- * \brief GPIO Ӳ�������ӿ�
+ * \brief GPIO 硬件操作接口
  *
- * 1. GPIO �����ܹ�ͨ����������Ϊ���������
- * 2. ����GPIO ����Ĭ��Ϊ���룬�ڸ�λʱ�жϽ��ܣ�
- * 3. ���żĴ����������ŵ������û���ͬʱ���á�
+ * 1. GPIO 引脚能够通过软件配置为输入输出；
+ * 2. 所有GPIO 引脚默认为输入，在复位时中断禁能；
+ * 3. 引脚寄存器允许引脚单独配置或多个同时配置。
  *
  * \internal
  * \par Modification history
@@ -41,14 +41,14 @@ extern "C" {
  */
 
 /**
- * \name GPIO �˿ڱ��
+ * \name GPIO 端口编号
  * @{
  */
 
-#define AMHW_ZLG_GPIO_PORT_A    0        /**< \brief �˿� A */
-#define AMHW_ZLG_GPIO_PORT_B    16       /**< \brief �˿� B */
-#define AMHW_ZLG_GPIO_PORT_C    32       /**< \brief �˿� C */
-#define AMHW_ZLG_GPIO_PORT_D    48       /**< \brief �˿� D */
+#define AMHW_ZLG_GPIO_PORT_A    0        /**< \brief 端口 A */
+#define AMHW_ZLG_GPIO_PORT_B    16       /**< \brief 端口 B */
+#define AMHW_ZLG_GPIO_PORT_C    32       /**< \brief 端口 C */
+#define AMHW_ZLG_GPIO_PORT_D    48       /**< \brief 端口 D */
 
 /** @} */
 
@@ -93,13 +93,13 @@ extern "C" {
 /** \brief AF 7 selection */
 #define AMHW_ZLG_GPIO_AF_7       ((uint8_t)0x07)
 
-/** \brief AF default selection, ����û�и���(Ĭ��GPIO)  */
+/** \brief AF default selection, 引脚没有复用(默认GPIO)  */
 #define AMHW_ZLG_GPIO_AF_DEFAULT ((uint8_t)0x0f)
 
 /** @} */
  
 /**
- * \brief �ܽŸ��÷�Χ���
+ * \brief 管脚复用范围检测
  */
 #define AMHW_ZLG_GPIO_IS_AF(af) (((af) == AMHW_ZLG_GPIO_AF_0) || \
                                  ((af) == AMHW_ZLG_GPIO_AF_1) || \
@@ -111,14 +111,14 @@ extern "C" {
                                  ((af) == AMHW_ZLG_GPIO_AF_7))
 
 /**
- * \name GPIO ���ŵ�ƽ
+ * \name GPIO 引脚电平
  * @{
  */
-#define AMHW_ZLG_GPIO_LEVEL_LOW     0        /**< \brief �͵�ƽ */
-#define AMHW_ZLG_GPIO_LEVEL_HIGH    1        /**< \brief �ߵ�ƽ */
+#define AMHW_ZLG_GPIO_LEVEL_LOW     0        /**< \brief 低电平 */
+#define AMHW_ZLG_GPIO_LEVEL_HIGH    1        /**< \brief 高电平 */
 /** @} */
 
-/* ʹ�������ṹ�������������Ŀ�ʼ */
+/* 使用无名结构体和联合体区域的开始 */
 #if defined(__CC_ARM)
     #pragma push
     #pragma anon_unions
@@ -133,19 +133,19 @@ extern "C" {
 #endif
 
 /**
- * \brief gpio�����жϴ�����ʽ����
+ * \brief gpio引脚中断触发方式定义
  */
 typedef enum amhw_zlg_gpio_trig_mode {
-    AMHW_ZLG_PINT_TRIGGER_HIGH       = 0x0,   /**< \brief �ߵ�ƽ���� */
-    AMHW_ZLG_PINT_TRIGGER_LOW        = 0x1,   /**< \brief �͵�ƽ���� */
-    AMHW_ZLG_PINT_TRIGGER_RISE       = 0x2,   /**< \brief �����ش��� */
-    AMHW_ZLG_PINT_TRIGGER_FALL       = 0x3,   /**< \brief �½��ش��� */
-    AMHW_ZLG_PINT_TRIGGER_BOTH_EDGES = 0x4    /**< \brief ˫���ش��� */
+    AMHW_ZLG_PINT_TRIGGER_HIGH       = 0x0,   /**< \brief 高电平触发 */
+    AMHW_ZLG_PINT_TRIGGER_LOW        = 0x1,   /**< \brief 低电平触发 */
+    AMHW_ZLG_PINT_TRIGGER_RISE       = 0x2,   /**< \brief 上升沿触发 */
+    AMHW_ZLG_PINT_TRIGGER_FALL       = 0x3,   /**< \brief 下降沿触发 */
+    AMHW_ZLG_PINT_TRIGGER_BOTH_EDGES = 0x4    /**< \brief 双边沿触发 */
 } amhw_zlg_pin_trig_mode_t;
 
 /**
- * \brief GPIO����������·��Ӧ�ٶ�
- * \note ѡ���ö������GPIO����������·��Ӧ�ٶ�ʱ��GPIO����Ҳȷ��Ϊ�������
+ * \brief GPIO引脚驱动电路响应速度
+ * \note 选择该枚举设置GPIO引脚驱动电路响应速度时，GPIO引脚也确定为输出方向
  */
 typedef enum amhw_zlg_gpio_speed_mode {
     AMHW_ZLG_GPIO_SPEED_10MHz = 3UL,
@@ -154,74 +154,74 @@ typedef enum amhw_zlg_gpio_speed_mode {
 }amhw_zlg_gpio_speed_mode_t;
 
 /**
- * \brief GPIO����ģʽ
+ * \brief GPIO引脚模式
  *
- * \note ������Ϊ���������ʱ�����в�ͬ��ģʽ
+ * \note 引脚作为输入与输出时，具有不同的模式
  */
 typedef enum amhw_zlg_gpio_mode {
     
-    /** \brief ��GPIO���ŵķ���Ϊ���뷽�����ž������¼���ģʽ */
-    AMHW_ZLG_GPIO_MODE_AIN = 0x00,         /**< \brief ģ������ģʽ     */
-    AMHW_ZLG_GPIO_MODE_IN_FLOATING = 0x01, /**< \brief ��������ģʽ     */
-    AMHW_ZLG_GPIO_MODE_IPD = 0x02,         /**< \brief ��������ģʽ     */
-    AMHW_ZLG_GPIO_MODE_IPU = 0x02,         /**< \brief ��������ģʽ     */
+    /** \brief 当GPIO引脚的方向为输入方向，引脚具有以下几种模式 */
+    AMHW_ZLG_GPIO_MODE_AIN = 0x00,         /**< \brief 模拟输入模式     */
+    AMHW_ZLG_GPIO_MODE_IN_FLOATING = 0x01, /**< \brief 浮空输入模式     */
+    AMHW_ZLG_GPIO_MODE_IPD = 0x02,         /**< \brief 下拉输入模式     */
+    AMHW_ZLG_GPIO_MODE_IPU = 0x02,         /**< \brief 上拉输入模式     */
 
-    /** \brief ��GPIO���ŵķ���Ϊ����������ž������¼���ģʽ */
-    AMHW_ZLG_GPIO_MODE_OUT_PP = 0x00,      /**< \brief ͨ���������ģʽ */
-    AMHW_ZLG_GPIO_MODE_OUT_OD = 0x01,      /**< \brief ͨ�ÿ�©���ģʽ */
-    AMHW_ZLG_GPIO_MODE_AF_PP  = 0x02,      /**< \brief �����������ģʽ */
-    AMHW_ZLG_GPIO_MODE_AF_OD  = 0x03       /**< \brief ���ÿ�©���ģʽ */
+    /** \brief 当GPIO引脚的方向为输出方向，引脚具有以下几种模式 */
+    AMHW_ZLG_GPIO_MODE_OUT_PP = 0x00,      /**< \brief 通用推挽输出模式 */
+    AMHW_ZLG_GPIO_MODE_OUT_OD = 0x01,      /**< \brief 通用开漏输出模式 */
+    AMHW_ZLG_GPIO_MODE_AF_PP  = 0x02,      /**< \brief 复用推挽输出模式 */
+    AMHW_ZLG_GPIO_MODE_AF_OD  = 0x03       /**< \brief 复用开漏输出模式 */
 
 } amhw_zlg_gpio_mode_t;
 
 /**
- * \brief GPIO �Ĵ�����ṹ��
+ * \brief GPIO 寄存器块结构体
  */
 typedef struct amhw_zlg_gpio {
-    __IO uint32_t cr[2];       /**< \brief �˿�����(�ߵ�)�Ĵ��� */
-    __I  uint32_t idr;         /**< \brief �˿��������ݼĴ��� */
-    __IO uint32_t odr;         /**< \brief �˿�����Ĵ��� */
-    __O  uint32_t bsrr;        /**< \brief �˿�����/����Ĵ��� */
-    __O  uint32_t brr;         /**< \brief �˿�λ����Ĵ��� */
-    __IO uint32_t lckr;        /**< \brief �˿����������Ĵ��� */
-    __I  uint32_t reserve;     /**< \brief ���� */
-    __IO uint32_t afr[2];      /**< \brief �˿ڸ��ù���(�ߵ�)�Ĵ��� */
+    __IO uint32_t cr[2];       /**< \brief 端口配置(高低)寄存器 */
+    __I  uint32_t idr;         /**< \brief 端口输入数据寄存器 */
+    __IO uint32_t odr;         /**< \brief 端口输出寄存器 */
+    __O  uint32_t bsrr;        /**< \brief 端口设置/清除寄存器 */
+    __O  uint32_t brr;         /**< \brief 端口位清除寄存器 */
+    __IO uint32_t lckr;        /**< \brief 端口配置锁定寄存器 */
+    __I  uint32_t reserve;     /**< \brief 保留 */
+    __IO uint32_t afr[2];      /**< \brief 端口复用功能(高低)寄存器 */
 } amhw_zlg_gpio_t;
 
 /**
- * \brief GPIO�����������
+ * \brief GPIO引脚相关设置
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] flags     : ���ò���
- * \param[in] pin       : ���ű�ţ�ֵΪ PIO* (#PIOA_0)
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] flags     : 配置参数
+ * \param[in] pin       : 引脚编号，值为 PIO* (#PIOA_0)
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_zlg_gpio_pin_set (amhw_zlg_gpio_t *p_hw_gpio, int flags, int pin)
 {
-    /* ȡ�õ�ǰ��������GPIO�˿ڵĻ���ַ */
+    /* 取得当前引脚所属GPIO端口的基地址 */
     amhw_zlg_gpio_t *p_gpio_addr = (amhw_zlg_gpio_t *)((int)p_hw_gpio \
                                       + (pin >> 4) * 0x400);
 
     /*
-     * pin & 0x0f ��������ȡ������Ӧ�˿����ŵ���������Ϊһ��GPIO�˿�ֻ��16������
-     * eg : ��оƬ17������Ϊ����0x11 & 0x0f = 0x01, ������GPIO�˿�B��1������
+     * pin & 0x0f 这样运算取得了相应端口引脚的余数，因为一个GPIO端口只有16个引脚
+     * eg : 以芯片17号引脚为例：0x11 & 0x0f = 0x01, 代表是GPIO端口B第1个引脚
      *
-     * ((pin & 0x0f) >> 3) ����д��Ŀ�����ڵ�һ��GPIO�˿ڵĵ�8������0 ~ 7������
-     * ���ƼĴ���Ϊcr[0], ��8������8 ~ 15�� ���Ŀ��ƼĴ���Ϊcr[1]
-     * eg����оƬ27�� ����Ϊ����((0x1B & 0x0f) >> 3) = 0x01, ������GPIO�˿�B��
-     *     11�����ŵĿ��ƼĴ���Ϊcr[1]
+     * ((pin & 0x0f) >> 3) 这样写的目的在于当一个GPIO端口的低8个引脚0 ~ 7，它的
+     * 控制寄存器为cr[0], 高8个引脚8 ~ 15， 它的控制寄存器为cr[1]
+     * eg：以芯片27号 引脚为例：((0x1B & 0x0f) >> 3) = 0x01, 代表是GPIO端口B第
+     *     11个引脚的控制寄存器为cr[1]
      *
-     * 4 * ((pin & 0x0f) & 0x07) ��������ȡ���˸������������ĸ�λ�Σ�
-     * 7 ~ 0 ���ŷֱ�����cr[0]��λ [31��28]��[27��24]��[23��20]��[19��16]��
-     *                             [15��12]��[11��8]�� [7��4]��  [3��0]
+     * 4 * ((pin & 0x0f) & 0x07) 这样运算取得了该引脚是属于哪个位段，
+     * 7 ~ 0 引脚分别属于cr[0]的位 [31：28]、[27：24]、[23：20]、[19：16]、
+     *                             [15：12]、[11：8]、 [7：4]、  [3：0]
      *
-     * 15 ~ 8���ŷֱ�����cr[1]��λ [31��28]��[27��24]��[23��20]��[19��16]��
-     *                             [15��12]��[11��8]�� [7��4]��  [3��0]
+     * 15 ~ 8引脚分别属于cr[1]的位 [31：28]、[27：24]、[23：20]、[19：16]、
+     *                             [15：12]、[11：8]、 [7：4]、  [3：0]
      */
 
-    /* ����ÿ������ģʽ���λ�� */
+    /* 设置每个引脚模式相关位段 */
     AM_BITS_SET(p_gpio_addr->cr[((pin & 0x0f) >> 3)],
                 (4 * ((pin & 0x0f) & 0x07)), 
                 4, 
@@ -229,50 +229,50 @@ void amhw_zlg_gpio_pin_set (amhw_zlg_gpio_t *p_hw_gpio, int flags, int pin)
 }
 
 /**
- * \brief ����GPIO���ŷ���Ϊ���������������·��Ӧ�ٶ�
+ * \brief 设置GPIO引脚方向为输出及引脚驱动电路响应速度
  *
- * \param[in] p_hw_gpio  : ָ��GPIO�Ĵ������ָ��
- * \param[in] pin        : ���ű�ţ�ֵΪ PIO* (#PIOA_0)
- * \param[in] speed_mode : ����Ϊ����ʱ����������·��Ӧ�ٶ�ģʽ��
- *                         ֵΪ amhw_zlg_gpio_speed_mode_t ���ö������
+ * \param[in] p_hw_gpio  : 指向GPIO寄存器块的指针
+ * \param[in] pin        : 引脚编号，值为 PIO* (#PIOA_0)
+ * \param[in] speed_mode : 引脚为输现时，其驱动电路响应速度模式，
+ *                         值为 amhw_zlg_gpio_speed_mode_t 这个枚举类型
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_zlg_gpio_pin_dir_output (amhw_zlg_gpio_t           *p_hw_gpio,
                                    amhw_zlg_gpio_speed_mode_t speed_mode,
                                    int                        pin)
 {
-    /* ȡ�õ�ǰ��������GPIO�˿ڵĻ���ַ */
+    /* 取得当前引脚所属GPIO端口的基地址 */
     amhw_zlg_gpio_t *p_gpio_addr = (amhw_zlg_gpio_t *)((int)p_hw_gpio \
                                       + (pin >> 4) * 0x400);
 
     /*
-     * pin & 0x0f ��������ȡ������Ӧ�˿����ŵ���������Ϊһ��GPIO�˿�ֻ��16������
-     * eg : ��оƬ17������Ϊ����0x11 & 0x0f = 0x01, ������GPIO�˿�B��1������
+     * pin & 0x0f 这样运算取得了相应端口引脚的余数，因为一个GPIO端口只有16个引脚
+     * eg : 以芯片17号引脚为例：0x11 & 0x0f = 0x01, 代表是GPIO端口B第1个引脚
      *
-     * ((pin & 0x0f) >> 3) ����д��Ŀ �����ڵ�һ��GPIO�˿ڵĵ�8������0 ~ 7�����Ŀ��Ƽ�
-     * ����Ϊcr[0], ��8������8 ~ 15�� ���Ŀ��ƼĴ���Ϊcr[1]
-     * eg����оƬ27�� ����Ϊ����((0x1B & 0x0f) >> 3) = 0x01, ������GPIO�˿�B��11�����ŵ�
-     *     ���ƼĴ���Ϊcr[1]
+     * ((pin & 0x0f) >> 3) 这样写的目 的在于当一个GPIO端口的低8个引脚0 ~ 7，它的控制寄
+     * 存器为cr[0], 高8个引脚8 ~ 15， 它的控制寄存器为cr[1]
+     * eg：以芯片27号 引脚为例：((0x1B & 0x0f) >> 3) = 0x01, 代表是GPIO端口B第11个引脚的
+     *     控制寄存器为cr[1]
      *
-     * 4 * ((pin & 0x0f) & 0x07) ��������ȡ���˸������������ĸ�λ�Σ�
-     * 7 ~ 0 ��������cr[0]��λ 29��28 λ 25��24 λ 21��20 λ 17��16 λ 13��12λ 9��8λ 5��4 λ 1��0
-     * 15 ~ 8��������cr[1]��λ 29��28 λ 25��24 λ 21��20 λ 17��16 λ 13��12λ 9��8λ 5��4 λ 1��0
+     * 4 * ((pin & 0x0f) & 0x07) 这样运算取得了该引脚是属于哪个位段，
+     * 7 ~ 0 引脚属于cr[0]的位 29：28 位 25：24 位 21：20 位 17：16 位 13：12位 9：8位 5：4 位 1：0
+     * 15 ~ 8引脚属于cr[1]的位 29：28 位 25：24 位 21：20 位 17：16 位 13：12位 9：8位 5：4 位 1：0
      *
      */
 
-    /* �������ŷ���Ϊ������λ��, ���øĽӿڲ���Ӱ������λ�� */
+    /* 设置引脚方向为输出相关位段, 调用改接口不会影响其它位段 */
     AM_BITS_SET(p_gpio_addr->cr[((pin & 0x0f) >> 3)], (4 * ((pin & 0x0f) & 0x07)), 2, speed_mode);
 }
 
 /**
- * \brief ����GPIO���ŷ���Ϊ����
+ * \brief 设置GPIO引脚方向为输入
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] pin       : ���ű�ţ�ֵΪ PIO* (#PIOA_0)
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] pin       : 引脚编号，值为 PIO* (#PIOA_0)
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_zlg_gpio_pin_dir_input (amhw_zlg_gpio_t *p_hw_gpio, int pin)
@@ -280,55 +280,55 @@ void amhw_zlg_gpio_pin_dir_input (amhw_zlg_gpio_t *p_hw_gpio, int pin)
     amhw_zlg_gpio_t *p_gpio_addr = (amhw_zlg_gpio_t *)((int)p_hw_gpio \
                                       + (pin >> 4) * 0x400);
 
-    /* �������ŷ���Ϊ������λ��, ���øĽӿڲ���Ӱ������λ�� */
+    /* 设置引脚方向为输出相关位段, 调用改接口不会影响其它位段 */
     AM_BITS_SET(p_gpio_addr->cr[((pin & 0x0f) >> 3)], (4 * ((pin & 0x0f) & 0x07)), 2, 0x00);
 }
 
 /**
- * \brief ����GPIO���ŵ�ģʽ
+ * \brief 设置GPIO引脚的模式
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] gpio_mode : ���ŵ�ģʽ��ֵΪ amhw_zlg_gpiomode_t ���ö������
- * \param[in] pin       : ���ű�ţ�ֵΪ PIO* (#PIOA_0)
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] gpio_mode : 引脚的模式，值为 amhw_zlg_gpiomode_t 这个枚举类型
+ * \param[in] pin       : 引脚编号，值为 PIO* (#PIOA_0)
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_zlg_gpio_pin_mode_set (amhw_zlg_gpio_t       *p_hw_gpio,
                                  amhw_zlg_gpio_mode_t   gpio_mode,
                                  int                    pin)
 {
-    /* ȡ�õ�ǰ��������GPIO�˿ڵĻ���ַ */
+    /* 取得当前引脚所属GPIO端口的基地址 */
     amhw_zlg_gpio_t *p_gpio_addr = (amhw_zlg_gpio_t *)((int)p_hw_gpio \
                                       + (pin >> 4) * 0x400);
 
     /*
-     * pin & 0x0f ��������ȡ������Ӧ�˿����ŵ���������Ϊһ��GPIO�˿�ֻ��16������
-     * eg : ��оƬ17������Ϊ����0x11 & 0x0f = 0x01, ������GPIO�˿�B��1������
+     * pin & 0x0f 这样运算取得了相应端口引脚的余数，因为一个GPIO端口只有16个引脚
+     * eg : 以芯片17号引脚为例：0x11 & 0x0f = 0x01, 代表是GPIO端口B第1个引脚
      *
-     * ((pin & 0x0f) >> 3) ����д��Ŀ �����ڵ�һ��GPIO�˿ڵĵ�8������0 ~ 7�����Ŀ��Ƽ�
-     * ����Ϊcr[0], ��8������8 ~ 15�� ���Ŀ��ƼĴ���Ϊcr[1]
-     * eg����оƬ27�� ����Ϊ����((0x1B & 0x0f) >> 3) = 0x01, ������GPIO�˿�B��11�����ŵ�
-     *     ���ƼĴ���Ϊcr[1]
+     * ((pin & 0x0f) >> 3) 这样写的目 的在于当一个GPIO端口的低8个引脚0 ~ 7，它的控制寄
+     * 存器为cr[0], 高8个引脚8 ~ 15， 它的控制寄存器为cr[1]
+     * eg：以芯片27号 引脚为例：((0x1B & 0x0f) >> 3) = 0x01, 代表是GPIO端口B第11个引脚的
+     *     控制寄存器为cr[1]
      *
-     * 4 * ((pin & 0x0f) & 0x07) ��������ȡ���˸������������ĸ�λ�Σ�
-     * 7 ~ 0 ��������cr[0]��λ 29��28 λ 25��24 λ 21��20 λ 17��16 λ 13��12λ 9��8λ 5��4 λ 1��0
-     * 15 ~ 8��������cr[1]��λ 29��28 λ 25��24 λ 21��20 λ 17��16 λ 13��12λ 9��8λ 5��4 λ 1��0
+     * 4 * ((pin & 0x0f) & 0x07) 这样运算取得了该引脚是属于哪个位段，
+     * 7 ~ 0 引脚属于cr[0]的位 29：28 位 25：24 位 21：20 位 17：16 位 13：12位 9：8位 5：4 位 1：0
+     * 15 ~ 8引脚属于cr[1]的位 29：28 位 25：24 位 21：20 位 17：16 位 13：12位 9：8位 5：4 位 1：0
      *
      */
 
-    /* ����ÿ������ģʽ���λ�� */
+    /* 设置每个引脚模式相关位段 */
     AM_BITS_SET(p_gpio_addr->cr[((pin & 0x0f) >> 3)], (4 * ((pin & 0x0f) & 0x07) + 2), 2, gpio_mode);
 }
 
 /**
- * \brief ��ȡָ�����ŵķ���
+ * \brief 获取指定引脚的方向
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] pin       : ���ű�ţ�ֵΪ PIO* (#PIOA_0)
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] pin       : 引脚编号，值为 PIO* (#PIOA_0)
  *
- * \retval  0  : ����
- * \retval  1  : ���
+ * \retval  0  : 输入
+ * \retval  1  : 输出
  */
 am_static_inline
 int amhw_zlg_gpio_pin_dir_get (amhw_zlg_gpio_t *p_hw_gpio, int pin)
@@ -341,12 +341,12 @@ int amhw_zlg_gpio_pin_dir_get (amhw_zlg_gpio_t *p_hw_gpio, int pin)
 }
 
 /**
- * \brief ����GPIO���ŷ���Ϊ����
+ * \brief 设置GPIO引脚方向为输入
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] pin       : ���ű�ţ�ֵΪ PIO* (#PIOA_0)
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] pin       : 引脚编号，值为 PIO* (#PIOA_0)
  *
- * \return ����GPIO������ģʽ
+ * \return 返回GPIO的引脚模式
  */
 am_static_inline
 int amhw_zlg_gpio_pin_mode_get (amhw_zlg_gpio_t *p_hw_gpio, int pin)
@@ -354,20 +354,20 @@ int amhw_zlg_gpio_pin_mode_get (amhw_zlg_gpio_t *p_hw_gpio, int pin)
     amhw_zlg_gpio_t *p_gpio_addr = (amhw_zlg_gpio_t *)((int)p_hw_gpio \
                                       + (pin >> 4) * 0x400);
 
-    /* �������ŷ���Ϊ������λ��, ���øĽӿڲ���Ӱ������λ�� */
+    /* 设置引脚方向为输出相关位段, 调用改接口不会影响其它位段 */
     return AM_BITS_GET(p_gpio_addr->cr[((pin & 0x0f) >> 3)], (4 * ((pin & 0x0f) & 0x07) + 2), 2);
 }
 
 /**
- * \brief ��ȡ���ŵĵ�ƽ״̬
+ * \brief 获取引脚的电平状态
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] pin       : ���ű�ţ�ֵΪ PIO* (#PIOA_0)
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] pin       : 引脚编号，值为 PIO* (#PIOA_0)
  *
- *\note �����ŷ���Ϊ�����������Ϊ��©ģʽʱ�����������ݼĴ����ķ��ʿɵõ� I/O ״̬
+ *\note 在引脚方向为输出，且引脚为开漏模式时，对输入数据寄存器的访问可得到 I/O 状态
  *
- * \retval  0  : �͵�ƽ
- * \retval  1  : �ߵ�ƽ
+ * \retval  0  : 低电平
+ * \retval  1  : 高电平
  */
 am_static_inline
 int amhw_zlg_gpio_pin_get (amhw_zlg_gpio_t *p_hw_gpio, int pin)
@@ -377,7 +377,7 @@ int amhw_zlg_gpio_pin_get (amhw_zlg_gpio_t *p_hw_gpio, int pin)
     amhw_zlg_gpio_t *p_gpio_addr = (amhw_zlg_gpio_t *)((int)p_hw_gpio \
                                       + (pin >> 4) * 0x400);
 
-    /* ��Ϊ�������ʱ����ȡ���ŵ�״̬����ͨ����ȡODR�Ĵ�����ֵ��ʵ�� */
+    /* 当为推挽输出时，获取引脚的状态可以通过读取ODR寄存器的值来实现 */
     if (amhw_zlg_gpio_pin_dir_get(p_hw_gpio, pin) != 0) {
 
         gpio_mode = amhw_zlg_gpio_pin_mode_get(p_hw_gpio, pin);
@@ -394,14 +394,14 @@ int amhw_zlg_gpio_pin_get (amhw_zlg_gpio_t *p_hw_gpio, int pin)
 }
 
 /**
- * \brief ����GPIO��������ߵ�ƽ
+ * \brief 设置GPIO引脚输出高电平
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] pin       : ���ű�ţ�ֵΪ PIO* (#PIOA_0)
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] pin       : 引脚编号，值为 PIO* (#PIOA_0)
  *
- * \return ��.
+ * \return 无.
  *
- * \note �ù��������������ŵ�ʱ��Ϊʹ���������貢ʧ����������
+ * \note 该功能配置输入引脚的时候为使能上拉电阻并失能下拉电阻
  */
 am_static_inline
 void amhw_zlg_gpio_pin_out_high (amhw_zlg_gpio_t *p_hw_gpio, int pin)
@@ -409,19 +409,19 @@ void amhw_zlg_gpio_pin_out_high (amhw_zlg_gpio_t *p_hw_gpio, int pin)
     amhw_zlg_gpio_t *p_gpio_addr = (amhw_zlg_gpio_t *)((int)p_hw_gpio \
                                       + (pin >> 4) * 0x400);
 
-     /* ��Ӧ��������ߵ�ƽ */
+     /* 相应引脚输出高电平 */
     p_gpio_addr->bsrr|= (1UL << (pin & 0x0f));
 }
 
 /**
- * \brief ����GPIO��������͵�ƽ
+ * \brief 设置GPIO引脚输出低电平
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] pin       : ���ű�ţ�ֵΪ PIO* (#PIOA_0)
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] pin       : 引脚编号，值为 PIO* (#PIOA_0)
  *
- * \return ��
+ * \return 无
  *
- * \note �ù��������������ŵ�ʱ��Ϊʧ���������貢ʹ����������
+ * \note 该功能配置输入引脚的时候为失能上拉电阻并使能下拉电阻
  */
 am_static_inline
 void amhw_zlg_gpio_pin_out_low (amhw_zlg_gpio_t *p_hw_gpio, int pin)
@@ -433,14 +433,14 @@ void amhw_zlg_gpio_pin_out_low (amhw_zlg_gpio_t *p_hw_gpio, int pin)
 }
 
 /**
- * \brief ��תGPIO������ŵĵ�ƽ״̬
+ * \brief 翻转GPIO输出引脚的电平状态
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] pin       : ���ű�ţ�ֵΪ PIO* (#PIOA_0)
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] pin       : 引脚编号，值为 PIO* (#PIOA_0)
  *
- * \return ��
+ * \return 无
  *
- * \note �ù��������������ŵ�ʱ��Ϊ��������/��������
+ * \note 该功能配置输入引脚的时候为配置上拉/下拉电阻
  */
 am_static_inline
 void amhw_zlg_gpio_pin_toggle (amhw_zlg_gpio_t *p_hw_gpio, int pin)
@@ -453,14 +453,14 @@ void amhw_zlg_gpio_pin_toggle (amhw_zlg_gpio_t *p_hw_gpio, int pin)
 }
 
 /**
- * \brief ����GPIO��������
+ * \brief 设置GPIO引脚锁定
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] pin       : ���ű�ţ�ֵΪ PIO* (#PIOA_0)
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] pin       : 引脚编号，值为 PIO* (#PIOA_0)
  *
- * \note �ú������ö������ͬһGPIO�˿ڲ�ͬ���ŵ�����
+ * \note 该函数调用多次锁定同一GPIO端口不同引脚的配置
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_zlg_gpio_pinlock_set (amhw_zlg_gpio_t *p_hw_gpio, int pin)
@@ -471,14 +471,14 @@ void amhw_zlg_gpio_pinlock_set (amhw_zlg_gpio_t *p_hw_gpio, int pin)
 }
 
 /**
- * \brief GPIO�˿���������
+ * \brief GPIO端口锁键设置
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] port_num  : �˿ڱ�ţ�ֵΪ PIO* (# AMHW_GPIO_PORT_A)
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] port_num  : 端口编号，值为 PIO* (# AMHW_GPIO_PORT_A)
  *
- * \note �ú���һ�� ��amhw_zlg_gpio_pinlock_set���ú�����ŵ���
+ * \note 该函数一般 在amhw_zlg_gpio_pinlock_set调用后紧接着调用
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_zlg_gpio_lckk_set (amhw_zlg_gpio_t *p_hw_gpio, int port_num)
@@ -501,13 +501,13 @@ void amhw_zlg_gpio_lckk_set (amhw_zlg_gpio_t *p_hw_gpio, int port_num)
 }
 
 /**
- * \brief ���Ÿ��ù�����ӳ������
+ * \brief 引脚复用功能重映射设置
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] gpio_af   : ���Ÿ��ù��ܱ�ţ�ֵΪ AMHW_GPIO_AF_* ��һ��� (# AMHW_GPIO_AF_0)
- * \param[in] pin       : ���ű�ţ�ֵΪ PIO* (#PIOA_0)
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] gpio_af   : 引脚复用功能编号，值为 AMHW_GPIO_AF_* 这一类宏 (# AMHW_GPIO_AF_0)
+ * \param[in] pin       : 引脚编号，值为 PIO* (#PIOA_0)
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_zlg_gpio_pin_afr_set (amhw_zlg_gpio_t *p_hw_gpio, int gpio_af, int pin)
@@ -515,17 +515,17 @@ void amhw_zlg_gpio_pin_afr_set (amhw_zlg_gpio_t *p_hw_gpio, int gpio_af, int pin
     amhw_zlg_gpio_t *p_gpio_addr = (amhw_zlg_gpio_t *)((int)p_hw_gpio \
                                       + (pin >> 4) * 0x400);
 
-    /* �������Ÿ��ù��ܵ����λ��, ���øĽӿڲ���Ӱ������λ�� */
+    /* 设置引脚复用功能的相关位段, 调用改接口不会影响其它位段 */
     AM_BITS_SET(p_gpio_addr->afr[((pin & 0x0f) >> 3)], (4 * ((pin & 0x0f) & 0x07)), 4, gpio_af);
 }
 
 /**
- * \brief ��ȡ��ǰ���Ÿ��ù�����AF
+ * \brief 获取当前引脚复用功能码AF
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] pin       : ���ű�ţ�ֵΪ PIO* (#PIOA_0)
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] pin       : 引脚编号，值为 PIO* (#PIOA_0)
  *
- * \return ���� AMHW_GPIO_AF_* ��һ���ֵ (# AMHW_GPIO_AF_0)
+ * \return 返回 AMHW_GPIO_AF_* 这一类宏值 (# AMHW_GPIO_AF_0)
  */
 am_static_inline
 uint32_t amhw_zlg_gpio_pin_afr_get (amhw_zlg_gpio_t *p_hw_gpio, int pin)
@@ -533,7 +533,7 @@ uint32_t amhw_zlg_gpio_pin_afr_get (amhw_zlg_gpio_t *p_hw_gpio, int pin)
     amhw_zlg_gpio_t *p_gpio_addr = (amhw_zlg_gpio_t *)((int)p_hw_gpio \
                                       + (pin >> 4) * 0x400);
 
-    /* �������ŷ���Ϊ������λ��, ���øĽӿڲ���Ӱ������λ�� */
+    /* 设置引脚方向为输出相关位段, 调用改接口不会影响其它位段 */
     return AM_BITS_GET(p_gpio_addr->afr[((pin & 0x0f) >> 3)], (4 * ((pin & 0x0f) & 0x07)), 4);
 }
 
@@ -541,7 +541,7 @@ uint32_t amhw_zlg_gpio_pin_afr_get (amhw_zlg_gpio_t *p_hw_gpio, int pin)
  * @}
  */
 
-/* ʹ�������ṹ�������������Ľ��� */
+/* 使用无名结构体和联合体区域的结束 */
 #if defined(__CC_ARM)
     #pragma pop
 #elif defined(__ICCARM__)

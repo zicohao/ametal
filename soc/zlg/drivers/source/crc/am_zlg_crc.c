@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief CRCÇı¶¯ÊµÏÖ
+ * \brief CRCé©±åŠ¨å®ç°
  *
- * Ö»ÄÜÖ§³Ö4×Ö½Ú¶ÔÆëµÄĞòÁĞ¼ÆËã
- * ¼´£º ĞòÁĞµÄ×Ö½ÚÊı % 4 == 0
+ * åªèƒ½æ”¯æŒ4å­—èŠ‚å¯¹é½çš„åºåˆ—è®¡ç®—
+ * å³ï¼š åºåˆ—çš„å­—èŠ‚æ•° % 4 == 0
  *
  * \internal
  * \par Modification history
@@ -28,27 +28,27 @@
 #include "hw/amhw_zlg_crc.h"
 
 /*******************************************************************************
-* Ä£¿éÄÚº¯ÊıÉùÃ÷
+* æ¨¡å—å†…å‡½æ•°å£°æ˜
 *******************************************************************************/
 
-/** \biref °´Î»µ¹Ğò 10100->00101 */
+/** \biref æŒ‰ä½å€’åº 10100->00101 */
 static uint8_t __rev8bit(uint8_t data);
 
 /*******************************************************************************
-* CRCÇı¶¯º¯ÊıÉùÃ÷
+* CRCé©±åŠ¨å‡½æ•°å£°æ˜
 *******************************************************************************/
 
-/** \biref ¸ù¾İCRCÄ£ĞÍ³õÊ¼»¯CRC£¬ÎªCRC¼ÆËã×öºÃ×¼±¸ */
+/** \biref æ ¹æ®CRCæ¨¡å‹åˆå§‹åŒ–CRCï¼Œä¸ºCRCè®¡ç®—åšå¥½å‡†å¤‡ */
 static int __crc_init (void *p_cookie, am_crc_pattern_t *p_pattern);
 
-/** \brief CRC¼ÆËã */
+/** \brief CRCè®¡ç®— */
 static int __crc_cal (void *p_cookie,const uint8_t *p_data, uint32_t nbytes);
 
-/** \brief »ñÈ¡CRC¼ÆËã½á¹û */
+/** \brief è·å–CRCè®¡ç®—ç»“æœ */
 static int __crc_final (void *p_cookie, uint32_t *p_value);
 
 /**
- * \brief CRC·şÎñº¯Êı
+ * \brief CRCæœåŠ¡å‡½æ•°
  */
 static const struct am_crc_drv_funcs __g_crc_drvfuncs = {
     __crc_init,
@@ -59,7 +59,7 @@ static const struct am_crc_drv_funcs __g_crc_drvfuncs = {
 /******************************************************************************/
 
 /**
- * \brief °´Î»µ¹Ğò 10100->00101
+ * \brief æŒ‰ä½å€’åº 10100->00101
  */
 static uint8_t __rev8bit (uint8_t data)
 {
@@ -78,7 +78,7 @@ static uint8_t __rev8bit (uint8_t data)
 /******************************************************************************/
 
 /**
- * \brief ³õÊ¼»¯CRC
+ * \brief åˆå§‹åŒ–CRC
  */
 
 static int __crc_init (void *p_cookie, am_crc_pattern_t *p_pattern)
@@ -100,14 +100,14 @@ static int __crc_init (void *p_cookie, am_crc_pattern_t *p_pattern)
 
     p_hw_crc = (amhw_zlg_crc_t *)(p_dev->p_devinfo->crc_reg_base);
 
-    /* ÖØÖÃ¼Ä´æÆ÷CRC_DATA Îª0xFFFF FFFF */
+    /* é‡ç½®å¯„å­˜å™¨CRC_DATA ä¸º0xFFFF FFFF */
     amhw_zlg_crc_reset(p_hw_crc);
 
     return AM_OK;
 }
 
 /**
- * \brief CRC¼ÆËã
+ * \brief CRCè®¡ç®—
  */
 static int __crc_cal (void *p_cookie, const uint8_t *p_data, uint32_t nbytes)
 {
@@ -128,7 +128,7 @@ static int __crc_cal (void *p_cookie, const uint8_t *p_data, uint32_t nbytes)
 
         if (p_dev->p_pattern->refin == AM_TRUE) {
 
-            /* ÊäÈëµÄÃ¿Ò»¸ö×Ö½Ú¶¼½øĞĞÎ»µ¹ÖÃ */
+            /* è¾“å…¥çš„æ¯ä¸€ä¸ªå­—èŠ‚éƒ½è¿›è¡Œä½å€’ç½® */
             tdata = (__rev8bit(p_data[i]) << 24)  | (__rev8bit(p_data[i+1]) << 16) |
                     (__rev8bit(p_data[i+2]) << 8) |  __rev8bit(p_data[i+3]);
         } else {
@@ -144,7 +144,7 @@ static int __crc_cal (void *p_cookie, const uint8_t *p_data, uint32_t nbytes)
 }
 
 /**
- * \brief »ñÈ¡CRC¼ÆËã½á¹û
+ * \brief è·å–CRCè®¡ç®—ç»“æœ
  */
 static int __crc_final (void *p_cookie, uint32_t *p_value)
 {
@@ -159,14 +159,14 @@ static int __crc_final (void *p_cookie, uint32_t *p_value)
 
    if (p_dev->p_pattern->refout == AM_TRUE){
 
-       /* ¼ÆËã½á¹û½øĞĞµ¹ÖÃ */
+       /* è®¡ç®—ç»“æœè¿›è¡Œå€’ç½® */
        *p_value = (__rev8bit((uint8_t)(*p_value  & 0x000000ff)) << 24) |
                   (__rev8bit((uint8_t)((*p_value & 0x0000ff00)  >> 8 )) << 16) |
                   (__rev8bit((uint8_t)((*p_value & 0x00ff0000)  >> 16)) << 8 ) |
                    __rev8bit((uint8_t)((*p_value & 0xff000000)  >> 24));
    }
 
-   /* ¼ÆËã½á¹ûÓëxoroutÒì»ò */
+   /* è®¡ç®—ç»“æœä¸xoroutå¼‚æˆ– */
    *p_value ^= p_dev->p_pattern->xorout;
 
     p_dev->p_pattern = NULL;
@@ -175,7 +175,7 @@ static int __crc_final (void *p_cookie, uint32_t *p_value)
 }
 
 /**
- * \brief CRC³õÊ¼»¯
+ * \brief CRCåˆå§‹åŒ–
  */
 am_crc_handle_t am_zlg_crc_init (am_zlg_crc_dev_t           *p_dev,
                                  const am_zlg_crc_devinfo_t *p_devinfo)
@@ -198,7 +198,7 @@ am_crc_handle_t am_zlg_crc_init (am_zlg_crc_dev_t           *p_dev,
 }
 
 /**
- * \brief CRC½â³õÊ¼»¯
+ * \brief CRCè§£åˆå§‹åŒ–
  */
 void am_zlg_crc_deinit (am_crc_handle_t handle)
 {

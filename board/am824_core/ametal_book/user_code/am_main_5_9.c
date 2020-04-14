@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief �����嵥5.9
+ * \brief 程序清单5.9
  *
  *
  * \internal
@@ -26,11 +26,11 @@
 #include "am_delay.h"
 int am_main (void)
 {
-    // ����GPIOΪ���ģʽ������ʼ��Ϊ�ߵ�ƽ
+    // 配置GPIO为输出模式，并初始化为高电平
     am_gpio_pin_cfg(PIO0_20,AM_GPIO_OUTPUT_INIT_HIGH);
     while (1) {
-        am_gpio_toggle (PIO0_20);     //��ת��ƽ����תLED״̬
-        am_mdelay(200);               //��ʱ200ms
+        am_gpio_toggle (PIO0_20);     //翻转电平，翻转LED状态
+        am_mdelay(200);               //延时200ms
     }
 }
 

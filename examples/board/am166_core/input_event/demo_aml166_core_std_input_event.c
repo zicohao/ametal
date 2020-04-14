@@ -12,21 +12,21 @@
 
 /**
  * \file
- * \brief ÊäÈë×ÓÏµÍ³Àý³Ì£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief è¾“å…¥å­ç³»ç»Ÿä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. ½« J14 µÄ KEY ºÍ PIOA_8 ¶Ì½ÓÔÚÒ»Æð¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. å°† J14 çš„ KEY å’Œ PIOA_8 çŸ­æŽ¥åœ¨ä¸€èµ·ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. µ÷ÊÔ´®¿Ú´òÓ¡°´¼üÊÂ¼þ¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. è°ƒè¯•ä¸²å£æ‰“å°æŒ‰é”®äº‹ä»¶ã€‚
  *
  * \note
- *    1. ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIOA_9 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
- *    3. ²âÊÔ±¾ Demo ±ØÐëÔÚ am_prj_config.h ÄÚ½« AM_CFG_KEY_GPIO_ENABLE¡¢
- *       AM_CFG_KEY_ENABLE ºÍ AM_CFG_SOFTIMER_ENABLE ¶¨ÒåÎª 1¡£µ«ÕâÐ©ºê
- *       ÒÑ¾­Ä¬ÈÏÅäÖÃÎª 1£¬ ÓÃ»§²»±ØÔÙ´ÎÅäÖÃ£»
+ *    1. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIOA_9 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDã€‚
+ *    3. æµ‹è¯•æœ¬ Demo å¿…é¡»åœ¨ am_prj_config.h å†…å°† AM_CFG_KEY_GPIO_ENABLEã€
+ *       AM_CFG_KEY_ENABLE å’Œ AM_CFG_SOFTIMER_ENABLE å®šä¹‰ä¸º 1ã€‚ä½†è¿™äº›å®
+ *       å·²ç»é»˜è®¤é…ç½®ä¸º 1ï¼Œ ç”¨æˆ·ä¸å¿…å†æ¬¡é…ç½®ï¼›
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_aml166_core_std_input_event.c src_aml166_core_std_input_event
  *
  * \internal
@@ -47,7 +47,7 @@
 #include "demo_aml166_core_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_aml166_core_std_key_entry (void)
 {

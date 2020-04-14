@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief RTC Ä£¿éµÄÇı¶¯²ã½Ó¿Ú
+ * \brief RTC æ¨¡å—çš„é©±åŠ¨å±‚æ¥å£
  *
  * \internal
  * \par Modification History
@@ -39,70 +39,70 @@ extern "C" {
  */
 
 /**
- * \brief RTC Éè±¸ĞÅÏ¢½á¹¹Ìå
+ * \brief RTC è®¾å¤‡ä¿¡æ¯ç»“æ„ä½“
  */
 typedef struct am_fsl_rtc_devinfo {
-    amhw_fsl_rtc_t  *p_hw_rtc;      /**< \brief Ö¸ÏòRTC¼Ä´æÆ÷¿éµÄ½á¹¹ÌåÖ¸Õë */
+    amhw_fsl_rtc_t  *p_hw_rtc;      /**< \brief æŒ‡å‘RTCå¯„å­˜å™¨å—çš„ç»“æ„ä½“æŒ‡é’ˆ */
 
-    /** \brief Æ½Ì¨³õÊ¼»¯º¯Êı£¬Èç´ò¿ªÊ±ÖÓ£¬ÅäÖÃÒı½ÅµÈ¹¤×÷ */
+    /** \brief å¹³å°åˆå§‹åŒ–å‡½æ•°ï¼Œå¦‚æ‰“å¼€æ—¶é’Ÿï¼Œé…ç½®å¼•è„šç­‰å·¥ä½œ */
     void     (*pfn_plfm_init)(void);
 
-    /** \brief Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    /** \brief å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
     void     (*pfn_plfm_deinit)(void);
 
 } am_fsl_rtc_devinfo_t;
 
 /**
- * \brief RTC Éè±¸½á¹¹Ìå
+ * \brief RTC è®¾å¤‡ç»“æ„ä½“
  */
 typedef struct am_fsl_rtc_dev {
-    am_rtc_serv_t               rtc_serv;     /**< \brief RTC±ê×¼·şÎñ           */
-    const am_fsl_rtc_devinfo_t *p_devinfo;    /**< \brief Ö¸ÏòRTCÉè±¸ĞÅÏ¢µÄÖ¸Õë */
+    am_rtc_serv_t               rtc_serv;     /**< \brief RTCæ ‡å‡†æœåŠ¡           */
+    const am_fsl_rtc_devinfo_t *p_devinfo;    /**< \brief æŒ‡å‘RTCè®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ */
 } am_fsl_rtc_dev_t;
 
 /**
- * \brief ³õÊ¼»¯RTC
+ * \brief åˆå§‹åŒ–RTC
  *
- * \param[in] p_dev     : Ö¸ÏòRTCÉè±¸
- * \param[in] p_devinfo : Ö¸ÏòRTCÉè±¸ĞÅÏ¢
+ * \param[in] p_dev     : æŒ‡å‘RTCè®¾å¤‡
+ * \param[in] p_devinfo : æŒ‡å‘RTCè®¾å¤‡ä¿¡æ¯
  *
- * \return RTC±ê×¼·şÎñ²Ù×÷¾ä±ú¡£Èç¹ûÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü¡£
+ * \return RTCæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„ã€‚å¦‚æœä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥ã€‚
  */
 am_rtc_handle_t am_fsl_rtc_init (am_fsl_rtc_dev_t           *p_dev,
                                  const am_fsl_rtc_devinfo_t *p_devinfo);
 
 /**
- *  \brief ½â³ıRTC³õÊ¼»¯
+ *  \brief è§£é™¤RTCåˆå§‹åŒ–
  *
- * \param[in] handle : am_fsl_rtc_init() ³õÊ¼»¯º¯Êı»ñµÃµÄRTC·şÎñ¾ä±ú
+ * \param[in] handle : am_fsl_rtc_init() åˆå§‹åŒ–å‡½æ•°è·å¾—çš„RTCæœåŠ¡å¥æŸ„
  *
- *  \return ÎŞ
+ *  \return æ— 
  */
 void am_fsl_rtc_deinit (am_rtc_handle_t handle);
 
 /**
- *  \brief ¸ù¾İÈÕÆÚ¼ÆËãÒ»ÄêÖĞµÄµÚ¼¸Ìì
+ *  \brief æ ¹æ®æ—¥æœŸè®¡ç®—ä¸€å¹´ä¸­çš„ç¬¬å‡ å¤©
  *
  *  \param day
  *  \param month
  *  \param year
  *
- *  \return Ò»ÄêÖĞµÄµÚ¼¸Ìì (1ÔÂ1ÈÕ¼ÇÎªµÚ0Ìì)
+ *  \return ä¸€å¹´ä¸­çš„ç¬¬å‡ å¤© (1æœˆ1æ—¥è®°ä¸ºç¬¬0å¤©)
  *
- *  \details Èç am_fsl_rtc_date2yday(4, 11, 2015)¼ÆËãµÄÊÇ11ÔÂ4ÈÕÊÇ
- *           2015ÄêµÄµÚ307Ìì
+ *  \details å¦‚ am_fsl_rtc_date2yday(4, 11, 2015)è®¡ç®—çš„æ˜¯11æœˆ4æ—¥æ˜¯
+ *           2015å¹´çš„ç¬¬307å¤©
  */
 int am_fsl_rtc_date2yday (uint8_t day, uint8_t month, uint32_t year);
 
 
 /**
- *  \brief ÉèÖÃRTCµÄĞ£×¼ÅäÖÃ
+ *  \brief è®¾ç½®RTCçš„æ ¡å‡†é…ç½®
  *
- *  \param p_dev Ö¸ÏòRTCÉè±¸µÄÖ¸Õë
+ *  \param p_dev æŒ‡å‘RTCè®¾å¤‡çš„æŒ‡é’ˆ
  *
- *  \param frq RTCÊ±ÖÓµÄÊµ¼ÊÆµÂÊ£¬ÒÔHz¼Æ
+ *  \param frq RTCæ—¶é’Ÿçš„å®é™…é¢‘ç‡ï¼Œä»¥Hzè®¡
  *
- *  \return Êµ¼ÊĞ£×¼ºóµÄÆµÂÊ
+ *  \return å®é™…æ ¡å‡†åçš„é¢‘ç‡
  */
 int am_fsl_rtc_compensation_set (am_fsl_rtc_dev_t *p_dev, float frq);
 

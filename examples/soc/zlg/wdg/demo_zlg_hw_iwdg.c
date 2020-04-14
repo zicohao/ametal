@@ -12,13 +12,13 @@
 
 /**
  * \file
- * \brief IWDG Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief IWDG ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ĞŞ¸Äºê¶¨Òå __IWDG_FEED_TIME_MS µÄÖµ£¬³¬¹ı 1500ms(´æÔÚ 5ms Îó²î)£¬Ğ¾Æ¬¸´Î»£»
- *   2. ĞŞ¸Äºê¶¨Òå __IWDG_FEED_TIME_MS µÄÖµ£¬Ğ¡ÓÚ 1500ms(´æÔÚ 5ms Îó²î)£¬³ÌĞòÕı³£ÔËĞĞ¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. ä¿®æ”¹å®å®šä¹‰ __IWDG_FEED_TIME_MS çš„å€¼ï¼Œè¶…è¿‡ 1500ms(å­˜åœ¨ 5ms è¯¯å·®)ï¼ŒèŠ¯ç‰‡å¤ä½ï¼›
+ *   2. ä¿®æ”¹å®å®šä¹‰ __IWDG_FEED_TIME_MS çš„å€¼ï¼Œå°äº 1500ms(å­˜åœ¨ 5ms è¯¯å·®)ï¼Œç¨‹åºæ­£å¸¸è¿è¡Œã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_zlg_hw_iwdg.c src_zlg_hw_iwdg
  *
  * \internal
@@ -39,11 +39,11 @@
 #include "hw/amhw_zlg_iwdg.h"
 
 /**
- * \brief ¿´ÃÅ¹·Ê¹ÄÜ
+ * \brief çœ‹é—¨ç‹—ä½¿èƒ½
  *
- * \param[in] timeout_ms : ³¬Ê±Ê±¼äÖµ£¬µ¥Î»£ºms
+ * \param[in] timeout_ms : è¶…æ—¶æ—¶é—´å€¼ï¼Œå•ä½ï¼šms
  *
- * \return ÎŞ
+ * \return æ— 
  *
  */
 static void __zlg_iwdg_enable (amhw_zlg_iwdg_t *p_hw_iwdg, uint32_t timeout_ms)
@@ -90,15 +90,15 @@ static void __zlg_iwdg_enable (amhw_zlg_iwdg_t *p_hw_iwdg, uint32_t timeout_ms)
     while(amhw_zlg_iwdg_status_get(p_hw_iwdg) & 0x2ul);
     amhw_zlg_iwdg_reload_set (p_hw_iwdg, ticks);
 
-    /* Æô¶¯¿´ÃÅ¹· */
+    /* å¯åŠ¨çœ‹é—¨ç‹— */
     amhw_zlg_iwdg_keyvalue_set(p_hw_iwdg, 0xAAAA);
     amhw_zlg_iwdg_keyvalue_set(p_hw_iwdg, 0xCCCC);
 }
 
 /**
- * \brief ¿´ÃÅ¹·Î¹¹·
+ * \brief çœ‹é—¨ç‹—å–‚ç‹—
  *
- * \return ÎŞ
+ * \return æ— 
  *
  */
 static void __zlg_sdt_feed(amhw_zlg_iwdg_t *p_hw_iwdg)
@@ -107,7 +107,7 @@ static void __zlg_sdt_feed(amhw_zlg_iwdg_t *p_hw_iwdg)
 }
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_zlg_hw_iwdg_entry (amhw_zlg_iwdg_t *p_hw_iwdg,
                              uint32_t         time_out_ms,
@@ -117,10 +117,10 @@ void demo_zlg_hw_iwdg_entry (amhw_zlg_iwdg_t *p_hw_iwdg,
 
     while (1) {
 
-        /* Î¹¹·²Ù×÷ */
+        /* å–‚ç‹—æ“ä½œ */
         __zlg_sdt_feed(p_hw_iwdg);
 
-        /* ÑÓÊ±£¬µ±ÑÓÊ±´óÓÚÎ¹¹·Ê±¼äÊ±£¨´óÓÚ5msÒÔÉÏ£©,»á²úÉú¿´ÃÅ¹·ÊÂ¼ş£¬MCU¸´Î» */
+        /* å»¶æ—¶ï¼Œå½“å»¶æ—¶å¤§äºå–‚ç‹—æ—¶é—´æ—¶ï¼ˆå¤§äº5msä»¥ä¸Šï¼‰,ä¼šäº§ç”Ÿçœ‹é—¨ç‹—äº‹ä»¶ï¼ŒMCUå¤ä½ */
         am_mdelay(feed_time_ms);
     }
 }

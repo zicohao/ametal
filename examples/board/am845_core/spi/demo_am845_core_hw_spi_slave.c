@@ -11,23 +11,23 @@
 *******************************************************************************/
 /**
  * \file
- * \brief SPI ´Ó»ú½ÓÊÕÊý¾ÝÀý³Ì£¬Í¨¹ý HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief SPI ä»ŽæœºæŽ¥æ”¶æ•°æ®ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. ±¾Àý³Ì×÷Îª´Ó»ú SPI£¬½«Ö÷»úÓë´Ó»ú SPI ½øÐÐÎïÀíÁ¬½Ó¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. æœ¬ä¾‹ç¨‹ä½œä¸ºä»Žæœº SPIï¼Œå°†ä¸»æœºä¸Žä»Žæœº SPI è¿›è¡Œç‰©ç†è¿žæŽ¥ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. SPI ½ÓÊÕµ½Êý¾Ý£¬Í¨¹ý´®¿Ú½«Êý¾Ý´òÓ¡³öÀ´£¬²¢Èç¹û½ÓÊÕµ½µÄÊý¾ÝÊÇ "nihao"£¬
- *      Ôò LED0 »áÉÁË¸¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. SPI æŽ¥æ”¶åˆ°æ•°æ®ï¼Œé€šè¿‡ä¸²å£å°†æ•°æ®æ‰“å°å‡ºæ¥ï¼Œå¹¶å¦‚æžœæŽ¥æ”¶åˆ°çš„æ•°æ®æ˜¯ "nihao"ï¼Œ
+ *      åˆ™ LED0 ä¼šé—ªçƒã€‚
  *
  * \note
- *    1. ±¾³ÌÐòÐèÒªÓë demo_am845_hw_spi_master.c Ò»Í¬µ÷ÊÔ£»
- *    2. ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIO1_2 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *       PIO1_0 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD£»
- *    3. ÓÉÓÚ PIO0_12 À­µÍ»áµ¼ÖÂµ¥Æ¬»ú¸´Î»Ê±½øÈë ISP Ä£Ê½£¬ËùÒÔ PIO0_12 Ó¦
- *       µ¥Æ¬»ú¸´Î»ºóÔÙÁ¬½Ó¡£
+ *    1. æœ¬ç¨‹åºéœ€è¦ä¸Ž demo_am845_hw_spi_master.c ä¸€åŒè°ƒè¯•ï¼›
+ *    2. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO1_2 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *       PIO1_0 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDï¼›
+ *    3. ç”±äºŽ PIO0_12 æ‹‰ä½Žä¼šå¯¼è‡´å•ç‰‡æœºå¤ä½æ—¶è¿›å…¥ ISP æ¨¡å¼ï¼Œæ‰€ä»¥ PIO0_12 åº”
+ *       å•ç‰‡æœºå¤ä½åŽå†è¿žæŽ¥ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am845_core_hw_spi_slave.c src_am845_core_hw_spi_slave
  *
  * \internal
@@ -50,19 +50,19 @@
 #include "demo_nxp_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am845_core_hw_spi_slave_entry (void)
 {
     uint32_t   clk = 0;
     am_kprintf("demo am845_core hw spi slave!\r\n");
-    /* SPI0 Òý½ÅÅäÖÃ */
+    /* SPI0 å¼•è„šé…ç½® */
     am_gpio_pin_cfg(PIO0_10, PIO_FUNC_SPI0_SSEL0);
     am_gpio_pin_cfg(PIO0_17, PIO_FUNC_SPI0_SCK);
     am_gpio_pin_cfg(PIO0_18, PIO_FUNC_SPI0_MOSI);
     am_gpio_pin_cfg(PIO0_19, PIO_FUNC_SPI0_MISO);
 
-    /* Ê¹ÄÜ SPI0 Ê±ÖÓ */
+    /* ä½¿èƒ½ SPI0 æ—¶é’Ÿ */
     amhw_lpc84x_clk_periph_enable(AMHW_LPC84X_CLK_SPI0);
     amhw_lpc84x_syscon_periph_reset(AMHW_LPC84X_RESET_SPI0);
     clk = amhw_lpc84x_clk_periph_freq_get(LPC84X_SPI0);

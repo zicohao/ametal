@@ -55,7 +55,7 @@ static int __rtc_time_get(void *p_drv, am_tm_t *p_tm)
 
     sec = amhw_lpc_rtc_count_get(p_hw_rtc);
 
-    /* ½«Ãë×ª»»³ÉÊ±¼äĞÅÏ¢ */
+    /* å°†ç§’è½¬æ¢æˆæ—¶é—´ä¿¡æ¯ */
     localtime_r((const time_t *)&sec, (struct tm *)p_tm);
 
     return AM_OK;

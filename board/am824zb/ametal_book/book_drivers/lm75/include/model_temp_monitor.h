@@ -2,18 +2,18 @@
 #include "ametal.h"
 #include "mvc.h"
 
-// ¶¨ÒåÄ£¿é×´Ì¬
-#define MODEL_TEMP_MONITOR_STATUS_NORMAL	0   // ÎÂ¶ÈÕı³£
-#define MODEL_TEMP_MONITOR_STATUS_UPPER		1   // ³¬¹ıÉÏÏŞÎÂ¶ÈÖµ
-#define MODEL_TEMP_MONITOR_STATUS_LOWER	  2   // µÍÓÚÏÂÏŞÎÂ¶ÈÖµ
+// å®šä¹‰æ¨¡å—çŠ¶æ€
+#define MODEL_TEMP_MONITOR_STATUS_NORMAL	0   // æ¸©åº¦æ­£å¸¸
+#define MODEL_TEMP_MONITOR_STATUS_UPPER		1   // è¶…è¿‡ä¸Šé™æ¸©åº¦å€¼
+#define MODEL_TEMP_MONITOR_STATUS_LOWER	  2   // ä½äºä¸‹é™æ¸©åº¦å€¼
 
-// ¶¨ÒåÎÂ¶È¼ì²âÄ£ĞÍÀàĞÍ
+// å®šä¹‰æ¸©åº¦æ£€æµ‹æ¨¡å‹ç±»å‹
 typedef struct _model_temp_monitor {
-	model_t   isa;          					  // model»ùÀàÅÉÉú
-	int       status;         			    // µ±Ç°ÎÂ¶È×´Ì¬
-	float		  temp_cur;      				    // µ±Ç°ÎÂ¶ÈÖµ
-	float     temp_max;      				    // ÉÏÏŞÎÂ¶ÈÖµ
-	float		  temp_min;      				    // ÏÂÏŞÎÂ¶ÈÖµ
+	model_t   isa;          					  // modelåŸºç±»æ´¾ç”Ÿ
+	int       status;         			    // å½“å‰æ¸©åº¦çŠ¶æ€
+	float		  temp_cur;      				    // å½“å‰æ¸©åº¦å€¼
+	float     temp_max;      				    // ä¸Šé™æ¸©åº¦å€¼
+	float		  temp_min;      				    // ä¸‹é™æ¸©åº¦å€¼
 } model_temp_monitor_t; 
 
 int model_temp_monitor_init (model_temp_monitor_t *p_model, float max, float min, float cur);

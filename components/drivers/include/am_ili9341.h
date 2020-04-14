@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief ili9341Çı¶¯½Ó¿ÚÎÄ¼ş
+ * \brief ili9341é©±åŠ¨æ¥å£æ–‡ä»¶
  *
- * \ note   ILI9341Òº¾§ÆÁ ´óĞ¡Îª  320 *240
+ * \ note   ILI9341æ¶²æ™¶å± å¤§å°ä¸º  320 *240
  *
  * \internal
  * \par Modification History
@@ -38,31 +38,31 @@ extern "C" {
 #include "ametal.h"
 
 /**
- * \brief ili9341 Çı¶¯º¯Êı
+ * \brief ili9341 é©±åŠ¨å‡½æ•°
  *
- * \note Ğ´ÃüÁî¡¢Ğ´8Î»ºÍ16Î»Êı¾İÇı¶¯º¯Êı±ØĞëÓĞ
+ * \note å†™å‘½ä»¤ã€å†™8ä½å’Œ16ä½æ•°æ®é©±åŠ¨å‡½æ•°å¿…é¡»æœ‰
  */
 struct am_ili9341_drv_funcs {
 
-    /** \brief ·¢ËÍÃüÁî */
+    /** \brief å‘é€å‘½ä»¤ */
     int (*pfn_ili9341_cmd_write)(void *p_drv, uint8_t cmd);
 
-    /** \brief ·¢ËÍ8Î»Êı¾İ */
+    /** \brief å‘é€8ä½æ•°æ® */
     int (*pfn_ili9341_data_u8_write)(void *p_drv, uint8_t data);
 
-    /** \brief ·¢ËÍ16Î»Êı¾İ */
+    /** \brief å‘é€16ä½æ•°æ® */
     int (*pfn_ili9341_data_u16_write)(void *p_drv, uint16_t data);
 
-    /** \brief¶ÁÈ¡8Î»Êı¾İ */
+    /** \briefè¯»å–8ä½æ•°æ® */
     int (*pfn_ili9341_data_u8_read)(void *p_drv, uint8_t *p_data);
 
-    /** \brief¶ÁÈ¡16Î»Êı¾İ */
+    /** \briefè¯»å–16ä½æ•°æ® */
     int (*pfn_ili9341_data_u16_read)(void *p_drv, uint16_t *p_data);
 
 };
 
 /**
- * \brief ili9341 ±ê×¼·şÎñ
+ * \brief ili9341 æ ‡å‡†æœåŠ¡
  */
 typedef struct am_ili9341_serv {
 
@@ -72,216 +72,216 @@ typedef struct am_ili9341_serv {
 } am_ili9341_serv_t;
 
 /**
- * \brief ILI9341 Éè±¸ĞÅÏ¢½á¹¹Ìå
+ * \brief ILI9341 è®¾å¤‡ä¿¡æ¯ç»“æ„ä½“
  *
  * \note
  */
 typedef struct am_ili9341_devinfo {
 
-    /** \brief ILI9341µÄ¸´Î»Òı½Å ËùÁ¬½Óµ½µÄGPIOÒı½Å±àºÅ */
+    /** \brief ILI9341çš„å¤ä½å¼•è„š æ‰€è¿æ¥åˆ°çš„GPIOå¼•è„šç¼–å· */
     int rst_pin;
 
-    /** \brief ILI9341µÄ±³¹âÒı½Å ËùÁ¬½Óµ½µÄGPIOÒı½Å±àºÅ */
+    /** \brief ILI9341çš„èƒŒå…‰å¼•è„š æ‰€è¿æ¥åˆ°çš„GPIOå¼•è„šç¼–å· */
     int bl_pin;
 
-    /** ÉèÖÃÆÁÄ»µÄ·½Ïò£¬ºáÊúÆÁ  0:ÊúÆÁ £¬ 1£ººáÆÁ */
+    /** è®¾ç½®å±å¹•çš„æ–¹å‘ï¼Œæ¨ªç«–å±  0:ç«–å± ï¼Œ 1ï¼šæ¨ªå± */
     uint8_t lcd_dir;
 
 }am_ili9341_devinfo_t;
 
 /**
- * \brief ILI9341Éè±¸½á¹¹Ìå
+ * \brief ILI9341è®¾å¤‡ç»“æ„ä½“
  */
 typedef struct am_ili9341_dev {
 
-    /** ÉèÖÃ»­±ÊÑÕÉ«  ,Öµ²Î¿¼grp_color*/
+    /** è®¾ç½®ç”»ç¬”é¢œè‰²  ,å€¼å‚è€ƒgrp_color*/
     uint16_t point_color;
 
-    /* ÉèÖÃÆÁÄ»µÄ±³¾°ÑÕÉ« , Öµ²Î¿¼grp_color*/
+    /* è®¾ç½®å±å¹•çš„èƒŒæ™¯é¢œè‰² , å€¼å‚è€ƒgrp_color*/
     uint16_t back_color;
 
 
-    uint16_t width;    /* ÆÁ¿í (in pixels) */
-    uint16_t heigh;    /* ÆÁ¸ß (in pixels) */
+    uint16_t width;    /* å±å®½ (in pixels) */
+    uint16_t heigh;    /* å±é«˜ (in pixels) */
 
-    /**< \brief ½Ó¿ÚÇı¶¯   */
+    /**< \brief æ¥å£é©±åŠ¨   */
     am_ili9341_serv_t      *p_serv;
 
-    const am_ili9341_devinfo_t *p_devinfo;  /* Ö¸ÏòÉè±¸ĞÅÏ¢³£Á¿µÄÖ¸Õë */
+    const am_ili9341_devinfo_t *p_devinfo;  /* æŒ‡å‘è®¾å¤‡ä¿¡æ¯å¸¸é‡çš„æŒ‡é’ˆ */
 
 } am_ili9341_dev_t;
 
 typedef am_ili9341_dev_t *am_ili9341_handle_t;
 
 /**
- * \brief ILI9341 Éè±¸³õÊ¼»¯
+ * \brief ILI9341 è®¾å¤‡åˆå§‹åŒ–
  *
- * \param[in] p_dev      :Ö¸ÏòILI9341Éè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[in] p_devinfo  :Ö¸ÏòILI9341Éè±¸ĞÅÏ¢½á¹¹ÌåµÄÖ¸Õë
- * \param[in] p_serv     :Ö¸ÏòILI9341·şÎñ½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] p_dev      :æŒ‡å‘ILI9341è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo  :æŒ‡å‘ILI9341è®¾å¤‡ä¿¡æ¯ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] p_serv     :æŒ‡å‘ILI9341æœåŠ¡ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return ILI9341·şÎñ²Ù×÷¾ä±ú,Èç¹ûÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return ILI9341æœåŠ¡æ“ä½œå¥æŸ„,å¦‚æœä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_ili9341_handle_t am_ili9341_init(am_ili9341_dev_t                   *p_dev,
                                     const am_ili9341_devinfo_t         *p_devinfo,
                                     am_ili9341_serv_t                  *p_serv);
 
 /**
- * \brief ILI9341 Éè±¸½â³õÊ¼»¯
- * \param[in] handle : ILI9341²Ù×÷¾ä±ú
- * \return ÎŞ
+ * \brief ILI9341 è®¾å¤‡è§£åˆå§‹åŒ–
+ * \param[in] handle : ILI9341æ“ä½œå¥æŸ„
+ * \return æ— 
  */
 void am_ili9341_deinit (am_ili9341_handle_t handle);
 
 /**
- * \brief ili9341Èí¼ş¸´Î»
+ * \brief ili9341è½¯ä»¶å¤ä½
  *
- * \param[in] p_dev      :Ö¸ÏòILI9341Éè±¸½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] p_dev      :æŒ‡å‘ILI9341è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \retval AM_OK : ²Ù×÷³É¹¦
- * \retval ÆäËû  : ²Ù×÷´íÎó,¾ßÌå²é¿´·µ»Ø´íÎó±àÂë
+ * \retval AM_OK : æ“ä½œæˆåŠŸ
+ * \retval å…¶ä»–  : æ“ä½œé”™è¯¯,å…·ä½“æŸ¥çœ‹è¿”å›é”™è¯¯ç¼–ç 
  */
 int am_ili9341_reset(am_ili9341_handle_t handle);
 
 /**
- * \name ÑÕÉ«
+ * \name é¢œè‰²
  * \anchor grp_color
  * @{
  */
-#define AM_ILI9341_COLOR_BLACK       0X0000    /* ºÚÉ« */
-#define AM_ILI9341_COLOR_WHITE       0XFFFF    /* °×É« */
-#define AM_ILI9341_COLOR_BLUE        0X001F    /* À¶É« */
-#define AM_ILI9341_COLOR_DARKGREEN   0X03E0    /* °µÂÌ */
-#define AM_ILI9341_COLOR_GREEN       0x07E0    /* ÂÌÉ« */
-#define AM_ILI9341_COLOR_RED         0xF800    /* ºìÉ« */
-#define AM_ILI9341_COLOR_CYAN        0x7FFF    /* À¶ÂÌ */
-#define AM_ILI9341_COLOR_YELLOW      0xFFE0    /* »ÆÉ« */
-#define AM_ILI9341_COLOR_GRAY        0X8430    /* »ÒÉ« */
-#define AM_ILI9341_COLOR_BROWN       0XBC40    /* ×ØÉ« */
-#define AM_ILI9341_COLOR_MAGENTA     0xF81F    /* Æ·ºì */
-#define AM_ILI9341_COLOR_DARKBLUE    0X01CF    /* ÉîÀ¶É« */
-#define AM_ILI9341_COLOR_LIGHTBLUE   0X7D7C    /* Ç³À¶É« */
-#define AM_ILI9341_COLOR_GRAYBLUE    0X5458    /* »ÒÀ¶É« */
+#define AM_ILI9341_COLOR_BLACK       0X0000    /* é»‘è‰² */
+#define AM_ILI9341_COLOR_WHITE       0XFFFF    /* ç™½è‰² */
+#define AM_ILI9341_COLOR_BLUE        0X001F    /* è“è‰² */
+#define AM_ILI9341_COLOR_DARKGREEN   0X03E0    /* æš—ç»¿ */
+#define AM_ILI9341_COLOR_GREEN       0x07E0    /* ç»¿è‰² */
+#define AM_ILI9341_COLOR_RED         0xF800    /* çº¢è‰² */
+#define AM_ILI9341_COLOR_CYAN        0x7FFF    /* è“ç»¿ */
+#define AM_ILI9341_COLOR_YELLOW      0xFFE0    /* é»„è‰² */
+#define AM_ILI9341_COLOR_GRAY        0X8430    /* ç°è‰² */
+#define AM_ILI9341_COLOR_BROWN       0XBC40    /* æ£•è‰² */
+#define AM_ILI9341_COLOR_MAGENTA     0xF81F    /* å“çº¢ */
+#define AM_ILI9341_COLOR_DARKBLUE    0X01CF    /* æ·±è“è‰² */
+#define AM_ILI9341_COLOR_LIGHTBLUE   0X7D7C    /* æµ…è“è‰² */
+#define AM_ILI9341_COLOR_GRAYBLUE    0X5458    /* ç°è“è‰² */
 /**
  * @}
  */
 
 /**
- * \brief ÉèÖÃ»­±ÊµÄÑÕÉ«
- * \param[in] handle    :Ö¸ÏòILI9341µÄ¾ä±ú
- * \param[in] color     :ÒªÌî³äµÄÑÕÉ« £¬²Î¿¼  \ref grp_color
+ * \brief è®¾ç½®ç”»ç¬”çš„é¢œè‰²
+ * \param[in] handle    :æŒ‡å‘ILI9341çš„å¥æŸ„
+ * \param[in] color     :è¦å¡«å……çš„é¢œè‰² ï¼Œå‚è€ƒ  \ref grp_color
  *
- * \retval AM_OK     : ²Ù×÷³É¹¦
+ * \retval AM_OK     : æ“ä½œæˆåŠŸ
  */
 int am_ili9341_point_color_set(am_ili9341_handle_t handle, uint16_t color);
 
 
 /**
- * \brief ÉèÖÃ±³¾°ÑÕÉ«
- * \param[in] handle    :Ö¸ÏòILI9341µÄ¾ä±ú
- * \param[in] color     :ÒªÌî³äµÄÑÕÉ« £¬²Î¿¼  \ref grp_color
+ * \brief è®¾ç½®èƒŒæ™¯é¢œè‰²
+ * \param[in] handle    :æŒ‡å‘ILI9341çš„å¥æŸ„
+ * \param[in] color     :è¦å¡«å……çš„é¢œè‰² ï¼Œå‚è€ƒ  \ref grp_color
  *
- * \retval AM_OK     : ²Ù×÷³É¹¦
+ * \retval AM_OK     : æ“ä½œæˆåŠŸ
  */
 int am_ili9341_back_color_set(am_ili9341_handle_t handle, uint16_t color);
 
 
 /**
- * \brief ÇåÆÁ
+ * \brief æ¸…å±
  *
- * \param[in] handle Ö¸ÏòILI9341Éè±¸½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] handle æŒ‡å‘ILI9341è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \retval AM_OK     : ²Ù×÷³É¹¦
- *         AM_EINVAL : ÎŞĞ§²ÎÊı
- * \note ÇåÆÁµÄÑÕÉ«ÎªÓÃ»§ÉèÖÃµÄ±³¾°ÑÕÉ«
+ * \retval AM_OK     : æ“ä½œæˆåŠŸ
+ *         AM_EINVAL : æ— æ•ˆå‚æ•°
+ * \note æ¸…å±çš„é¢œè‰²ä¸ºç”¨æˆ·è®¾ç½®çš„èƒŒæ™¯é¢œè‰²
  */
 int am_ili9341_clear (am_ili9341_handle_t handle);
 
 
 /**
- * \brief »­Ö±Ïß
+ * \brief ç”»ç›´çº¿
  *
- * \param[in] handle    :Ö¸ÏòILI9341Éè±¸½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] handle    :æŒ‡å‘ILI9341è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \retval AM_OK     : ²Ù×÷³É¹¦
- *         AM_EINVAL : ÎŞĞ§²ÎÊı
+ * \retval AM_OK     : æ“ä½œæˆåŠŸ
+ *         AM_EINVAL : æ— æ•ˆå‚æ•°
  *
- * \note (x1,y1) ÆğÊ¼×ø±ê
- *       (x2,y2) ÖÕµã×ø±ê
+ * \note (x1,y1) èµ·å§‹åæ ‡
+ *       (x2,y2) ç»ˆç‚¹åæ ‡
  */
 int am_ili9341_draw_line(am_ili9341_handle_t handle,
         uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2);
 
 /**
- * \brief »­¾ØĞÎ
- * \param[in] handle    :Ö¸ÏòILI9341Éè±¸½á¹¹ÌåµÄÖ¸Õë
+ * \brief ç”»çŸ©å½¢
+ * \param[in] handle    :æŒ‡å‘ILI9341è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \retval AM_OK     : ²Ù×÷³É¹¦
- *         AM_EINVAL : ÎŞĞ§²ÎÊı
+ * \retval AM_OK     : æ“ä½œæˆåŠŸ
+ *         AM_EINVAL : æ— æ•ˆå‚æ•°
  *
- * \note (x1,y1) ºÍ  (x2,y2)Îª¾ØĞÎµÄÁ½¸ö¶Ô½Ç×ø±ê
+ * \note (x1,y1) å’Œ  (x2,y2)ä¸ºçŸ©å½¢çš„ä¸¤ä¸ªå¯¹è§’åæ ‡
  */
 int am_ili9341_draw_rectangle(am_ili9341_handle_t handle,
         uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2);
 
 /**
- * \brief »­Ô²
- * \param[in] handle    :Ö¸ÏòILI9341Éè±¸½á¹¹ÌåµÄÖ¸Õë
+ * \brief ç”»åœ†
+ * \param[in] handle    :æŒ‡å‘ILI9341è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \retval AM_OK     : ²Ù×÷³É¹¦
- *         AM_EINVAL : ÎŞĞ§²ÎÊı
+ * \retval AM_OK     : æ“ä½œæˆåŠŸ
+ *         AM_EINVAL : æ— æ•ˆå‚æ•°
  *
- * \note (x0,y0)ÎªÔ²ĞÄµÄ×ø±ê  ,r Îª°ë¾¶
+ * \note (x0,y0)ä¸ºåœ†å¿ƒçš„åæ ‡  ,r ä¸ºåŠå¾„
  */
 int am_ili9341_draw_circle(am_ili9341_handle_t handle,
         uint16_t x0, uint16_t y0, uint8_t r);
 
 /**
- * \brief ÏÔÊ¾Ò»¸ö×Ö·û
+ * \brief æ˜¾ç¤ºä¸€ä¸ªå­—ç¬¦
  *
- * \param[in] handle    :Ö¸ÏòILI9341Éè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[in] x        : x×ø±ê
- * \param[in] y        : y×ø±ê
- * \param[in] num      : ÒªÏÔÊ¾µÄ×Ö·û
- * \param[in] size     : ×Ö·û´óĞ¡   Öµ¿ÉÈ¡Îª 12¡¢16¡¢24
- * \param[in] mode     : µş¼Ó·½Ê½ mode =1
- *                       ·Çµş¼Ó·½Ê½ mode =0
+ * \param[in] handle    :æŒ‡å‘ILI9341è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] x        : xåæ ‡
+ * \param[in] y        : yåæ ‡
+ * \param[in] num      : è¦æ˜¾ç¤ºçš„å­—ç¬¦
+ * \param[in] size     : å­—ç¬¦å¤§å°   å€¼å¯å–ä¸º 12ã€16ã€24
+ * \param[in] mode     : å åŠ æ–¹å¼ mode =1
+ *                       éå åŠ æ–¹å¼ mode =0
  *
- * \retval AM_OK     : ²Ù×÷³É¹¦
- *         AM_EINVAL : ÎŞĞ§²ÎÊı
+ * \retval AM_OK     : æ“ä½œæˆåŠŸ
+ *         AM_EINVAL : æ— æ•ˆå‚æ•°
  */
 int am_ili9341_show_char(am_ili9341_handle_t handle,
         uint16_t x, uint16_t y, uint8_t num, uint8_t size,uint8_t mode);
 
 
 /**
- * \brief ÏÔÊ¾Êı×Ö£¬
+ * \brief æ˜¾ç¤ºæ•°å­—ï¼Œ
  *
- * \param[in] handle    :Ö¸ÏòILI9341Éè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[in] x        : x×ø±ê
- * \param[in] y        : y×ø±ê
- * \param[in] num      : ÒªÏÔÊ¾µÄÊı×Ö
- * \param[in] len      : Êı×ÖµÄÎ»Êı
- * \param[in] size     : Êı×Ö×ÖÌå´óĞ¡   Öµ¿ÉÈ¡Îª 12¡¢16¡¢24
+ * \param[in] handle    :æŒ‡å‘ILI9341è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] x        : xåæ ‡
+ * \param[in] y        : yåæ ‡
+ * \param[in] num      : è¦æ˜¾ç¤ºçš„æ•°å­—
+ * \param[in] len      : æ•°å­—çš„ä½æ•°
+ * \param[in] size     : æ•°å­—å­—ä½“å¤§å°   å€¼å¯å–ä¸º 12ã€16ã€24
  *
- * \retval AM_OK     : ²Ù×÷³É¹¦
- *         AM_EINVAL : ÎŞĞ§²ÎÊı
+ * \retval AM_OK     : æ“ä½œæˆåŠŸ
+ *         AM_EINVAL : æ— æ•ˆå‚æ•°
  */
 int am_ili9341_show_num(am_ili9341_handle_t handle,
        uint16_t x, uint16_t y, uint32_t num, uint8_t len, uint8_t size);
 
 /**
- * \brief ÏÔÊ¾×Ö·û´®
- * \param[in] handle    :Ö¸ÏòILI9341Éè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[in] x        : x×ø±ê
- * \param[in] y        : y×ø±ê
- * \param[in] size     : Êı×Ö×ÖÌå´óĞ¡   Öµ¿ÉÈ¡Îª 12¡¢16¡¢24
- * \param[in] width    : ÏÔÊ¾ÇøÓòµÄ¿í
- * \param[in] height   : ÏÔÊ¾ÇøÓòµÄ¸ß
- * \param[in] p_str    : Ö¸ÏòÒªÏÔÊ¾µÄ×Ö·û´®Ö¸Õë*
+ * \brief æ˜¾ç¤ºå­—ç¬¦ä¸²
+ * \param[in] handle    :æŒ‡å‘ILI9341è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] x        : xåæ ‡
+ * \param[in] y        : yåæ ‡
+ * \param[in] size     : æ•°å­—å­—ä½“å¤§å°   å€¼å¯å–ä¸º 12ã€16ã€24
+ * \param[in] width    : æ˜¾ç¤ºåŒºåŸŸçš„å®½
+ * \param[in] height   : æ˜¾ç¤ºåŒºåŸŸçš„é«˜
+ * \param[in] p_str    : æŒ‡å‘è¦æ˜¾ç¤ºçš„å­—ç¬¦ä¸²æŒ‡é’ˆ*
  *
- * \retval AM_OK     : ²Ù×÷³É¹¦
- *         AM_EINVAL : ÎŞĞ§²ÎÊı
+ * \retval AM_OK     : æ“ä½œæˆåŠŸ
+ *         AM_EINVAL : æ— æ•ˆå‚æ•°
  */
 int am_ili9341_show_string (am_ili9341_handle_t handle,
                             uint16_t x,        uint16_t y,
@@ -291,12 +291,12 @@ int am_ili9341_show_string (am_ili9341_handle_t handle,
 
 
 /**
- * \brief »­Ò»¸öµãµÄÑÕÉ«
+ * \brief ç”»ä¸€ä¸ªç‚¹çš„é¢œè‰²
  *
- * \param[in] handle    :Ö¸ÏòILI9341µÄ¾ä±ú
- * \param[in] color     :ÒªÌî³äµÄÑÕÉ« £¬²Î¿¼  \ref grp_color
+ * \param[in] handle    :æŒ‡å‘ILI9341çš„å¥æŸ„
+ * \param[in] color     :è¦å¡«å……çš„é¢œè‰² ï¼Œå‚è€ƒ  \ref grp_color
  *
- * \note £¨x£¬y£©ÒªÌî³äµãµÄ×ø±ê
+ * \note ï¼ˆxï¼Œyï¼‰è¦å¡«å……ç‚¹çš„åæ ‡
  */
 void am_ili9341_draw_point (am_ili9341_handle_t handle,
                             uint16_t            x,
@@ -304,13 +304,13 @@ void am_ili9341_draw_point (am_ili9341_handle_t handle,
                             uint16_t            color);
 
 /**
- * \brief ili9341 LCDÕûÆÁÑÕÉ«Ìî³ä
+ * \brief ili9341 LCDæ•´å±é¢œè‰²å¡«å……
  *
- * \param[in] handle    :Ö¸ÏòILI9341Éè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[in] color    :ÒªÌî³äµÄÑÕÉ« £¬²Î¿¼  \ref grp_color
+ * \param[in] handle    :æŒ‡å‘ILI9341è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] color    :è¦å¡«å……çš„é¢œè‰² ï¼Œå‚è€ƒ  \ref grp_color
  *
- * \note (x1,y1)¡¢(x2,y2)ÎªÒªÌî³äÇøÓòµÄ Îª¶Ô½Ç×ø±ê
- *       Ö»ÄÜÌî³ä³¤·½ĞÎÇøÓò
+ * \note (x1,y1)ã€(x2,y2)ä¸ºè¦å¡«å……åŒºåŸŸçš„ ä¸ºå¯¹è§’åæ ‡
+ *       åªèƒ½å¡«å……é•¿æ–¹å½¢åŒºåŸŸ
  *
  */
 void am_ili9341_color_fill(am_ili9341_handle_t handle,
@@ -319,14 +319,14 @@ void am_ili9341_color_fill(am_ili9341_handle_t handle,
                            uint16_t color);
 
 /**
- * \brief ¸øÒ»Æ¬ÇøÓòÌî³äÌØ¶¨µÄÑÕÉ«
+ * \brief ç»™ä¸€ç‰‡åŒºåŸŸå¡«å……ç‰¹å®šçš„é¢œè‰²
  *
- * \param[in] handle    :Ö¸ÏòILI9341µÄ¾ä±ú
- * \param[in] x0, x1   : XÇøÓò×ø±ê
- * \param[in] y0, y1   : YÇøÓò×ø±ê
- * \param[in] buf      : ÏñËØÑÕÉ«Öµ
- * \param[in] data_len : ÏñËØÑÕÉ«¸ñÊ½µÄ³¤¶È (µ¥Î»£º×Ö½Ú£©
- * \param[in] reverse  : ·´×ª±êÖ¾£¨±íÃ÷X1(Y1)µÄÖµ±ÈX0(Y0)µÄĞ¡
+ * \param[in] handle    :æŒ‡å‘ILI9341çš„å¥æŸ„
+ * \param[in] x0, x1   : XåŒºåŸŸåæ ‡
+ * \param[in] y0, y1   : YåŒºåŸŸåæ ‡
+ * \param[in] buf      : åƒç´ é¢œè‰²å€¼
+ * \param[in] data_len : åƒç´ é¢œè‰²æ ¼å¼çš„é•¿åº¦ (å•ä½ï¼šå­—èŠ‚ï¼‰
+ * \param[in] reverse  : åè½¬æ ‡å¿—ï¼ˆè¡¨æ˜X1(Y1)çš„å€¼æ¯”X0(Y0)çš„å°
  *
  */
 void am_ili9341_area_draw_color(am_ili9341_handle_t handle,
@@ -336,12 +336,12 @@ void am_ili9341_area_draw_color(am_ili9341_handle_t handle,
                                   uint8_t reverse );
 
 /**
- * \brief ¿ªÆôÆÁÄ»
+ * \brief å¼€å¯å±å¹•
  */
 void am_ili9341_on(am_ili9341_handle_t handle);
 
 /**
- * \brief ¹Ø±ÕÆÁÄ»
+ * \brief å…³é—­å±å¹•
  */
 void am_ili9341_off(am_ili9341_handle_t handle);
 

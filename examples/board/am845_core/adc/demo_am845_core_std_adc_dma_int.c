@@ -12,19 +12,19 @@
 
 /**
  * \file
- * \brief ADC DMA Àı³Ì£¨ÖĞ¶Ï·½Ê½£©£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief ADC DMA ä¾‹ç¨‹ï¼ˆä¸­æ–­æ–¹å¼ï¼‰ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè£º
- *   1. PIO0_7(ADC Í¨µÀ 0) Á¬½ÓÄ£ÄâÊäÈëµçÑ¹¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. PIO0_7(ADC é€šé“ 0) è¿æ¥æ¨¡æ‹Ÿè¾“å…¥ç”µå‹ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿ÚÊä³öµçÑ¹²ÉÑùÖµ¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. ä¸²å£è¾“å‡ºç”µå‹é‡‡æ ·å€¼ã€‚
  *
  * \note
- *    ÈçĞè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔĞÅÏ¢£¬ĞèÒª½« PIO1_2 Òı½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *    PIO1_0 Òı½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
+ *    å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO1_2 å¼•è„šè¿æ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *    PIO1_0 å¼•è„šè¿æ¥ PC ä¸²å£çš„ RXDã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am845_core_std_adc_dma_int.c src_am845_core_std_adc_dma_int
  *
  * \internal
@@ -46,10 +46,10 @@
 #include "am_lpc84x_inst_init.h"
 #include "demo_nxp_entries.h"
 
-/** \brief Í¨µÀ */
+/** \brief é€šé“ */
 #define __ADC_CHAN         0
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am845_core_std_adc_dma_int_entry (void)
 {
@@ -59,7 +59,7 @@ void demo_am845_core_std_adc_dma_int_entry (void)
   
     adc_handle = am_lpc84x_adc0_dma_inst_init();
     
-    /* Í¨µÀºÍ²ÉÑùËÙÂÊ */
+    /* é€šé“å’Œé‡‡æ ·é€Ÿç‡ */
     demo_lpc_std_adc_dma_int_entry (adc_handle, __ADC_CHAN, 10000);
 }
 /** [src_am845_core_std_adc_dma_int] */

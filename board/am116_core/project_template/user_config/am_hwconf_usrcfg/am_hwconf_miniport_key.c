@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief MiniPort-Key ÅäÖÃÎÄ¼ş
+ * \brief MiniPort-Key é…ç½®æ–‡ä»¶
  * \sa am_hwconf_miniport_key.c
  *
- * µ¥¶ÀÊ¹ÓÃ Miniport-KEY Ê±Ê¹ÓÃ¸ÃÎÄ¼şÌá¹©µÄÊµÀı³õÊ¼»¯º¯Êı
+ * å•ç‹¬ä½¿ç”¨ Miniport-KEY æ—¶ä½¿ç”¨è¯¥æ–‡ä»¶æä¾›çš„å®ä¾‹åˆå§‹åŒ–å‡½æ•°
  *
  * \internal
  * \par Modification history
@@ -34,7 +34,7 @@
  */
 
 /*******************************************************************************
-   °´±àÂëĞÅÏ¢
+   æŒ‰ç¼–ç ä¿¡æ¯
 *******************************************************************************/
 
 static const int __g_key_codes[]    = {
@@ -43,12 +43,12 @@ static const int __g_key_codes[]    = {
 };
 
 /*******************************************************************************
-   °´¼üGPIOĞĞÏßÒı½Å
+   æŒ‰é”®GPIOè¡Œçº¿å¼•è„š
 *******************************************************************************/
 static const int __g_key_pins_row[] = {PIOB_5,  PIOB_4}; //todo
 
 /*******************************************************************************
-   °´¼üGPIOÁĞÏßÒı½Å
+   æŒ‰é”®GPIOåˆ—çº¿å¼•è„š
 *******************************************************************************/
 static const int __g_key_pins_col[] = {PIOA_15, PIOA_1}; //todo
 
@@ -56,23 +56,23 @@ static const int __g_key_pins_col[] = {PIOA_15, PIOA_1}; //todo
    Public functions
 *******************************************************************************/
 
-/* MiniPort-Key µ¥¶ÀÊ¹ÓÃÊµÀı³õÊ¼»¯ */
+/* MiniPort-Key å•ç‹¬ä½¿ç”¨å®ä¾‹åˆå§‹åŒ– */
 int am_miniport_key_inst_init (void)
 {
     static am_key_matrix_gpio_softimer_t             miniport_key;
     static const am_key_matrix_gpio_softimer_info_t  miniport_key_info = {
         {
             {
-                2,                           /* 2ĞĞ°´¼ü */
-                2,                           /* 2ÁĞ°´¼ü */
-                __g_key_codes,               /* ¸÷°´¼ü¶ÔÓ¦µÄ±àÂë */
-                AM_TRUE,                     /* °´¼üµÍµçÆ½ÊÓÎª°´ÏÂ */
-                AM_KEY_MATRIX_SCAN_MODE_COL, /* É¨Ãè·½Ê½£¬°´ÁĞÉ¨Ãè£¨±ãÓÚÁĞÏßÒı½Å¸´ÓÃ£© */
+                2,                           /* 2è¡ŒæŒ‰é”® */
+                2,                           /* 2åˆ—æŒ‰é”® */
+                __g_key_codes,               /* å„æŒ‰é”®å¯¹åº”çš„ç¼–ç  */
+                AM_TRUE,                     /* æŒ‰é”®ä½ç”µå¹³è§†ä¸ºæŒ‰ä¸‹ */
+                AM_KEY_MATRIX_SCAN_MODE_COL, /* æ‰«ææ–¹å¼ï¼ŒæŒ‰åˆ—æ‰«æï¼ˆä¾¿äºåˆ—çº¿å¼•è„šå¤ç”¨ï¼‰ */
             },
             __g_key_pins_row,
             __g_key_pins_col,
         },
-        5,                                   /* É¨ÃèÊ±¼ä¼ä¸ô£¬5ms */
+        5,                                   /* æ‰«ææ—¶é—´é—´éš”ï¼Œ5ms */
     };
 
     return am_key_matrix_gpio_softimer_init(&miniport_key, &miniport_key_info);

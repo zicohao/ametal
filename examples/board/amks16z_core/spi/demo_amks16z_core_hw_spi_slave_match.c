@@ -11,17 +11,17 @@
 *******************************************************************************/
 /**
  * \file
- * \brief SPI´Ó»úÆ¥ÅäÖÐ¶ÏÑÝÊ¾Àý³Ì£¬Í¨¹ýHW²ãµÄ½Ó¿ÚÊµÏÖ
+ * \brief SPIä»ŽæœºåŒ¹é…ä¸­æ–­æ¼”ç¤ºä¾‹ç¨‹ï¼Œé€šè¿‡HWå±‚çš„æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè:
- *   1. ½«SPI´Ó»ú½Ó¿ÚºÍÖ÷»ú½Ó¿Ú¶ÔÓ¦Á¬½ÓÆðÀ´(PIOC_4 == PIOD_4, PIOC_5 == PIOD_5,
- *      PIOC_6 == PIOD_6, PIOC_7 == PIOD_7)£»£»
+ * - æ“ä½œæ­¥éª¤:
+ *   1. å°†SPIä»ŽæœºæŽ¥å£å’Œä¸»æœºæŽ¥å£å¯¹åº”è¿žæŽ¥èµ·æ¥(PIOC_4 == PIOD_4, PIOC_5 == PIOD_5,
+ *      PIOC_6 == PIOD_6, PIOC_7 == PIOD_7)ï¼›ï¼›
  *
- * - ÊµÑéÏÖÏó:
- *   1. SPI0´Ó»ú½ÓÊÕSPI1Ö÷»úÊý¾Ý£¬Èç¹ûÊý¾Ý±»Æ¥Åä£¬Ôò·¢ËÍ´Ó»úÌØÕ÷Âë¸øÖ÷»ú£»
- *   2. SPI1Ö÷»ú¼ìÑéÊÕµ½µÄÌØÕ÷ÂëÊÇ·ñÕýÈ·£¬Èç¹ûÕýÈ·µãÁÁLED£¬·ñÔòLEDÉÁË¸±¨¾¯¡£
+ * - å®žéªŒçŽ°è±¡:
+ *   1. SPI0ä»ŽæœºæŽ¥æ”¶SPI1ä¸»æœºæ•°æ®ï¼Œå¦‚æžœæ•°æ®è¢«åŒ¹é…ï¼Œåˆ™å‘é€ä»Žæœºç‰¹å¾ç ç»™ä¸»æœºï¼›
+ *   2. SPI1ä¸»æœºæ£€éªŒæ”¶åˆ°çš„ç‰¹å¾ç æ˜¯å¦æ­£ç¡®ï¼Œå¦‚æžœæ­£ç¡®ç‚¹äº®LEDï¼Œå¦åˆ™LEDé—ªçƒæŠ¥è­¦ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_kl26_hw_spi_slave_match.c src_kl26_hw_spi_slave_match
  *
  * \internal
@@ -49,11 +49,11 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief SPI0´Ó»úÒý½Å³õÊ¼»¯
+ * \brief SPI0ä»Žæœºå¼•è„šåˆå§‹åŒ–
  */
 static void __spi0_pin_init (void)
 {
-    /* ±ØÐëÊ¹ÓÃÆ¬Ñ¡,µÍµçÆ½ÓÐÐ§ */
+    /* å¿…é¡»ä½¿ç”¨ç‰‡é€‰,ä½Žç”µå¹³æœ‰æ•ˆ */
     am_gpio_pin_cfg(PIOC_4, PIOC_4_SPI0_PCS0);
     am_gpio_pin_cfg(PIOC_5, PIOC_5_SPI0_SCK );
     am_gpio_pin_cfg(PIOC_6, PIOC_6_SPI0_MOSI);
@@ -61,7 +61,7 @@ static void __spi0_pin_init (void)
 }
 
 /**
- * \brief SPI1Ö÷»úµÄÒý½Å³õÊ¼»¯
+ * \brief SPI1ä¸»æœºçš„å¼•è„šåˆå§‹åŒ–
  */
 static void __spi1_pin_init (void)
 {
@@ -72,7 +72,7 @@ static void __spi1_pin_init (void)
 }
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_amks16z_core_hw_spi_slave_match_entry (void)
 {
@@ -80,7 +80,7 @@ void demo_amks16z_core_hw_spi_slave_match_entry (void)
     __spi0_pin_init();
     __spi1_pin_init();
 
-    /* ¿ªÆôSPIÊ±ÖÓ */
+    /* å¼€å¯SPIæ—¶é’Ÿ */
     amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_SPI0);
     amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_SPI1);
 

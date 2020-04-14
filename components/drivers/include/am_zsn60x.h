@@ -8,25 +8,25 @@
 #include "am_uart_rngbuf.h"
 
 typedef struct am_zsn60x_dev_info{
-    int8_t   rst_pin;           /** \brief ¸´Î»Òı½Å    ÈôÓÃ»§²»ĞèÒªÊ¹ÓÃ´ËÒı½Å   Ìî-1¼´¿É*/
-    int8_t   mode_det_pin;;     /** \brief Ä£Ê½Ñ¡ÔñÒı½Å    ÈôÓÃ»§²»ĞèÒªÊ¹ÓÃ´ËÒı½Å   Ìî-1¼´¿É  */
-    uint8_t  local_address;     /** \brief ³õÊ¼»¯local address  */
-    /* \brief ÔÚIICÄ£Ê½ÏÂ  ´Ë³ÉÔ±ÎªÖĞ¶ÏÒı½ÅºÅ
-     *        ÔÚUARTÄ£Ê½ÏÂ  ´Ë³ÉÔ±Îª²¨ÌØÂÊ±êÊ¶
+    int8_t   rst_pin;           /** \brief å¤ä½å¼•è„š    è‹¥ç”¨æˆ·ä¸éœ€è¦ä½¿ç”¨æ­¤å¼•è„š   å¡«-1å³å¯*/
+    int8_t   mode_det_pin;;     /** \brief æ¨¡å¼é€‰æ‹©å¼•è„š    è‹¥ç”¨æˆ·ä¸éœ€è¦ä½¿ç”¨æ­¤å¼•è„š   å¡«-1å³å¯  */
+    uint8_t  local_address;     /** \brief åˆå§‹åŒ–local address  */
+    /* \brief åœ¨IICæ¨¡å¼ä¸‹  æ­¤æˆå‘˜ä¸ºä¸­æ–­å¼•è„šå·
+     *        åœ¨UARTæ¨¡å¼ä¸‹  æ­¤æˆå‘˜ä¸ºæ³¢ç‰¹ç‡æ ‡è¯†
      */
     uint8_t other_para;
 
 }am_zsn60x_dev_info_t;
 
 /**
- * \brief ZSN600x Éè±¸³õÊ¼»¯º¯Êı(UARTÍ¨ĞÅÄ£Ê½)
+ * \brief ZSN600x è®¾å¤‡åˆå§‹åŒ–å‡½æ•°(UARTé€šä¿¡æ¨¡å¼)
  *
- * \param[in]  p_dev           : ZSN60XÉè±¸
- * \param[in]  p_dev_info      : ZSN60XÉè±¸ĞÅĞÄ
- * \param[in]  p_arg           : ´«Êäº¯ÊıÖ¸Õë²ÎÊı
+ * \param[in]  p_dev           : ZSN60Xè®¾å¤‡
+ * \param[in]  p_dev_info      : ZSN60Xè®¾å¤‡ä¿¡å¿ƒ
+ * \param[in]  p_arg           : ä¼ è¾“å‡½æ•°æŒ‡é’ˆå‚æ•°
  *
- * \retval ÆäËû : ¶ÔÓ¦´íÎóÂë
- * \retval  0 : Ö´ĞĞ³É¹¦
+ * \retval å…¶ä»– : å¯¹åº”é”™è¯¯ç 
+ * \retval  0 : æ‰§è¡ŒæˆåŠŸ
  */
 zsn60x_handle_t am_zsn60x_uart_init(zsn60x_dev_t                *p_dev,
                                     const am_zsn60x_dev_info_t  *p_dev_info,
@@ -34,29 +34,29 @@ zsn60x_handle_t am_zsn60x_uart_init(zsn60x_dev_t                *p_dev,
 
 
 /**
- * \brief ZSN600x Éè±¸³õÊ¼»¯º¯Êı(I2CÍ¨ĞÅÄ£Ê½)
+ * \brief ZSN600x è®¾å¤‡åˆå§‹åŒ–å‡½æ•°(I2Cé€šä¿¡æ¨¡å¼)
  *
- * \param[in]  p_dev           : ZSN60XÉè±¸
- * \param[in]  p_dev_info      : ZSN60XÉè±¸ĞÅĞÄ
- * \param[in]  p_arg           : ´«Êäº¯ÊıÖ¸Õë²ÎÊı
+ * \param[in]  p_dev           : ZSN60Xè®¾å¤‡
+ * \param[in]  p_dev_info      : ZSN60Xè®¾å¤‡ä¿¡å¿ƒ
+ * \param[in]  p_arg           : ä¼ è¾“å‡½æ•°æŒ‡é’ˆå‚æ•°
  *
- * \retval ÆäËû : ¶ÔÓ¦´íÎóÂë
- * \retval  0 : Ö´ĞĞ³É¹¦
+ * \retval å…¶ä»– : å¯¹åº”é”™è¯¯ç 
+ * \retval  0 : æ‰§è¡ŒæˆåŠŸ
  */
 zsn60x_handle_t am_zsn60x_i2c_init(zsn60x_dev_t                *p_dev,
                                    const am_zsn60x_dev_info_t  *p_dev_info,
                                    void                        *p_arg);
 /**
- * \brief ÉèÖÃ¿ØÖÆZSN60xµÄ´®¿ÚµÄ²¨ÌØÂÊ  ´Ëº¯ÊıÓÃÓÚÉèÖÃ²¨ÌØÂÊÖ¸ÁîÖ®ºóÖØÉèÖ÷»ú²¨ÌØÂÊ
+ * \brief è®¾ç½®æ§åˆ¶ZSN60xçš„ä¸²å£çš„æ³¢ç‰¹ç‡  æ­¤å‡½æ•°ç”¨äºè®¾ç½®æ³¢ç‰¹ç‡æŒ‡ä»¤ä¹‹åé‡è®¾ä¸»æœºæ³¢ç‰¹ç‡
  *
- * \param[in]  p_dev           : ZSN60XÉè±¸
- * \param[in]  baud_flag       : ²¨ÌØÂÊ±êÊ¶  ¿ÉÑ¡²ÎÊıÎª
+ * \param[in]  p_dev           : ZSN60Xè®¾å¤‡
+ * \param[in]  baud_flag       : æ³¢ç‰¹ç‡æ ‡è¯†  å¯é€‰å‚æ•°ä¸º
  *                        ZSN60X_BAUD_172800     ZSN60X_BAUD_115200
  *                        ZSN60X_BAUD_57600      ZSN60X_BAUD_38400
  *                        ZSN60X_BAUD_28800      ZSN60X_BAUD_19200
  *                        ZSN60X_BAUD_230400     ZSN60X_BAUD_9600
- * \retval ÆäËû : ¶ÔÓ¦´íÎóÂë
- * \retval  0 : Ö´ĞĞ³É¹¦
+ * \retval å…¶ä»– : å¯¹åº”é”™è¯¯ç 
+ * \retval  0 : æ‰§è¡ŒæˆåŠŸ
  */
 int am_zsn60x_set_uart_baud(zsn60x_dev_t  *p_dev,
                             uint8_t        baud_flag);

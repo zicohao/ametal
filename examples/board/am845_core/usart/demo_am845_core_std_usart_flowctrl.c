@@ -11,25 +11,25 @@
 *******************************************************************************/
 /**
  * \file
- * \brief USART Á÷¿ØÖÆÀý³Ì£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief USART æµæŽ§åˆ¶ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. ÅäÖÃÉÏÎ»»ú´®¿Ú²¨ÌØÂÊÎª 115200£¬8 Î»Êý¾Ý³¤¶È 1 Î»Í£Ö¹Î» ÎÞÆæÅ¼Ð£Ñé£»
- *   2. ´ò¿ª PC ¶ËÉÏÎ»»úµÄÈí¼þÁ÷¿Ø£¬ÉèÖÃ XON = 0x11£¬ XOFF = 0x13¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. é…ç½®ä¸Šä½æœºä¸²å£æ³¢ç‰¹çŽ‡ä¸º 115200ï¼Œ8 ä½æ•°æ®é•¿åº¦ 1 ä½åœæ­¢ä½ æ— å¥‡å¶æ ¡éªŒï¼›
+ *   2. æ‰“å¼€ PC ç«¯ä¸Šä½æœºçš„è½¯ä»¶æµæŽ§ï¼Œè®¾ç½® XON = 0x11ï¼Œ XOFF = 0x13ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿ÚÊä³ö "USART flowctrl test:\r\n"£»
- *   2. ´®¿ÚÊä³ö½ÓÊÕµ½µÄ×Ö·û´®£»
- *   3. Àý³ÌÖÐÏÂÎ»»úÃ¿ 100 ºÁÃëÖ»ÄÜ´¦Àí 5 ¸ö×Ö·û£¨»ØËÍ£©£¬ÒòÎª¿ªÆôÁËÈí¼þÁ÷¿Ø£¬ËùÒÔ
- *      PC ¶Ë´ó¹æÄ£(Ê¹ÓÃ´øÈí¼þÁ÷¿ØµÄÉÏÎ»»ú)·¢ËÍÊý¾ÝÒ²²»»á¶ªÊ§Êý¾Ý£¬
- *      PC ·¢ËÍµÄÊý¾ÝÁ¿µÈÓÚ½ÓÊÕµÄÊý¾ÝÁ¿¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. ä¸²å£è¾“å‡º "USART flowctrl test:\r\n"ï¼›
+ *   2. ä¸²å£è¾“å‡ºæŽ¥æ”¶åˆ°çš„å­—ç¬¦ä¸²ï¼›
+ *   3. ä¾‹ç¨‹ä¸­ä¸‹ä½æœºæ¯ 100 æ¯«ç§’åªèƒ½å¤„ç† 5 ä¸ªå­—ç¬¦ï¼ˆå›žé€ï¼‰ï¼Œå› ä¸ºå¼€å¯äº†è½¯ä»¶æµæŽ§ï¼Œæ‰€ä»¥
+ *      PC ç«¯å¤§è§„æ¨¡(ä½¿ç”¨å¸¦è½¯ä»¶æµæŽ§çš„ä¸Šä½æœº)å‘é€æ•°æ®ä¹Ÿä¸ä¼šä¸¢å¤±æ•°æ®ï¼Œ
+ *      PC å‘é€çš„æ•°æ®é‡ç­‰äºŽæŽ¥æ”¶çš„æ•°æ®é‡ã€‚
  *
  * \note
- *    1. Àý³ÌÊ¹ÓÃ USART0£¬Óë DEBUG µ÷ÊÔÊ¹ÓÃ´®¿ÚÏàÍ¬£»
- *    2. ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIO1_2 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *       PIO1_0 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
+ *    1. ä¾‹ç¨‹ä½¿ç”¨ USART0ï¼Œä¸Ž DEBUG è°ƒè¯•ä½¿ç”¨ä¸²å£ç›¸åŒï¼›
+ *    2. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO1_2 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *       PIO1_0 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am845_core_std_usart_flowctrl.c src_am845_core_std_usart_flowctrl
  *
  * \internal
@@ -50,7 +50,7 @@
 #include "demo_nxp_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am845_core_std_usart_flowctrl_entry (void)
 {

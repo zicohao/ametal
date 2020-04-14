@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ´«¸ĞÆ÷ BMG160 Çı¶¯ÎÄ¼ş
+ * \brief ä¼ æ„Ÿå™¨ BMG160 é©±åŠ¨æ–‡ä»¶
  *
  * \internal
  * \par Modification history
@@ -25,73 +25,73 @@
 #include "am_vdebug.h"
 
 /*******************************************************************************
- * ºê¶¨Òå
+ * å®å®šä¹‰
  ******************************************************************************/
-#define __BMG160_CHIP_ID        (0x00)  /**< \brief Éè±¸IDµØÖ· */
-#define __BMG160_MY_ID          (0x0F)  /**< \brief Éè±¸ID */
-#define __BMG160_RATE_X_LSB     (0x02)  /**< \brief °üº¬XÍ¨µÀ½ÇËÙÂÊ¶ÁÊıÖµµÄ×îµÍÓĞĞ§Î» */
-#define __BMG160_RATE_X_MSB     (0x03)  /**< \brief °üº¬XÍ¨µÀ½ÇËÙÂÊ¶ÁÊıÖµµÄ×î¸ßÓĞĞ§Î» */
-#define __BMG160_RATE_Y_LSB     (0x04)  /**< \brief °üº¬YÍ¨µÀ½ÇËÙÂÊ¶ÁÊıÖµµÄ×îµÍÓĞĞ§Î» */
-#define __BMG160_RATE_Y_MSB     (0x05)  /**< \brief °üº¬YÍ¨µÀ½ÇËÙÂÊ¶ÁÊıÖµµÄ×î¸ßÓĞĞ§Î» */
-#define __BMG160_RATE_Z_LSB     (0x06)  /**< \brief °üº¬ZÍ¨µÀ½ÇËÙÂÊ¶ÁÊıÖµµÄ×îµÍÓĞĞ§Î» */
-#define __BMG160_RATE_Z_MSB     (0x07)  /**< \brief °üº¬ZÍ¨µÀ½ÇËÙÂÊ¶ÁÊıÖµµÄ×î¸ßÓĞĞ§Î» */
-#define __BMG160_TEMP           (0x08)  /**< \brief °üº¬µ±Ç°Ğ¾Æ¬ÎÂ¶È */
-#define __BMG160_INT_STATUS_0   (0x09)  /**< \brief °üº¬ÖĞ¶Ï×´Ì¬Î» */
-#define __BMG160_INT_STATUS_1   (0x0A)  /**< \brief °üº¬ÖĞ¶Ï×´Ì¬Î» */
-#define __BMG160_INT_STATUS_2   (0x0B)  /**< \brief °üº¬ÈÎºÎÔË¶¯ÖĞ¶Ï×´Ì¬Î» */
-#define __BMG160_INT_STATUS_3   (0x0C)  /**< \brief °üº¬¸ßËÙÂÊÖĞ¶Ï×´Ì¬Î» */
+#define __BMG160_CHIP_ID        (0x00)  /**< \brief è®¾å¤‡IDåœ°å€ */
+#define __BMG160_MY_ID          (0x0F)  /**< \brief è®¾å¤‡ID */
+#define __BMG160_RATE_X_LSB     (0x02)  /**< \brief åŒ…å«Xé€šé“è§’é€Ÿç‡è¯»æ•°å€¼çš„æœ€ä½æœ‰æ•ˆä½ */
+#define __BMG160_RATE_X_MSB     (0x03)  /**< \brief åŒ…å«Xé€šé“è§’é€Ÿç‡è¯»æ•°å€¼çš„æœ€é«˜æœ‰æ•ˆä½ */
+#define __BMG160_RATE_Y_LSB     (0x04)  /**< \brief åŒ…å«Yé€šé“è§’é€Ÿç‡è¯»æ•°å€¼çš„æœ€ä½æœ‰æ•ˆä½ */
+#define __BMG160_RATE_Y_MSB     (0x05)  /**< \brief åŒ…å«Yé€šé“è§’é€Ÿç‡è¯»æ•°å€¼çš„æœ€é«˜æœ‰æ•ˆä½ */
+#define __BMG160_RATE_Z_LSB     (0x06)  /**< \brief åŒ…å«Zé€šé“è§’é€Ÿç‡è¯»æ•°å€¼çš„æœ€ä½æœ‰æ•ˆä½ */
+#define __BMG160_RATE_Z_MSB     (0x07)  /**< \brief åŒ…å«Zé€šé“è§’é€Ÿç‡è¯»æ•°å€¼çš„æœ€é«˜æœ‰æ•ˆä½ */
+#define __BMG160_TEMP           (0x08)  /**< \brief åŒ…å«å½“å‰èŠ¯ç‰‡æ¸©åº¦ */
+#define __BMG160_INT_STATUS_0   (0x09)  /**< \brief åŒ…å«ä¸­æ–­çŠ¶æ€ä½ */
+#define __BMG160_INT_STATUS_1   (0x0A)  /**< \brief åŒ…å«ä¸­æ–­çŠ¶æ€ä½ */
+#define __BMG160_INT_STATUS_2   (0x0B)  /**< \brief åŒ…å«ä»»ä½•è¿åŠ¨ä¸­æ–­çŠ¶æ€ä½ */
+#define __BMG160_INT_STATUS_3   (0x0C)  /**< \brief åŒ…å«é«˜é€Ÿç‡ä¸­æ–­çŠ¶æ€ä½ */
 
-#define __BMG160_FIFO_STATUS    (0x0E)  /**< \brief °üº¬FIFO×´Ì¬±êÖ¾ */
-#define __BMG160_RANGE          (0x0F)  /**< \brief °üº¬BMG160Ö§³Ö5ÖÖ²»Í¬µÄ½ÇËÙÂÊ²âÁ¿·¶Î§ */
-#define __BMG160_BW             (0x10)  /**< \brief ¸Ã¼Ä´æÆ÷ÔÊĞíÑ¡ÔñËÙÂÊÊı¾İÂË²¨Æ÷´ø¿í */
-#define __BMG160_LPM1           (0x11)  /**< \brief Ñ¡ÔñÖ÷µçÔ´Ä£Ê½ */
-#define __BMG160_LPM2           (0x12)  /**< \brief ¿ìËÙÉÏµçºÍÍâ²¿´¥·¢µÄÅäÖÃÉèÖÃ */
-#define __BMG160_RATE_HBW       (0x13)  /**< \brief ½ÇËÙÂÊÊı¾İ²É¼¯ºÍÊı¾İÊä³ö¸ñÊ½ */
-#define __BMG160_BGW_SOFTRESET  (0x14)	/**< \brief ¿ØÖÆÓÃ»§´¥·¢µÄ´«¸ĞÆ÷¸´Î» */ 
-#define __BMG160_INT_EN_0       (0x15)  /**< \brief ¿ØÖÆÆôÓÃÄÄĞ©ÖĞ¶Ï */
-#define __BMG160_INT_EN_1       (0x16)  /**< \brief °üº¬ÖĞ¶ÏÒı½ÅÅäÖÃ */
-#define __BMG160_INT_MAP_0      (0x17)  /**< \brief ¿ØÖÆÄÄĞ©ÖĞ¶ÏĞÅºÅÓ³Éäµ½INT1Òı½Å */
-#define __BMG160_INT_MAP_1      (0x18)  /**< \brief ¿ØÖÆÄÄĞ©ÖĞ¶ÏĞÅºÅÓ³Éäµ½INT1Òı½ÅºÍINT2Òı½Å */
-#define __BMG160_INT_MAP_2      (0x19)  /**< \brief ¿ØÖÆÄÄĞ©ÖĞ¶ÏĞÅºÅÓ³Éäµ½INT2Òı½Å */
-#define __BMG160_INTR_ZERO_ADDR (0x1A)  /**< \brief ¿ØÖÆ¾ßÓĞ¿ÉÑ¡Êı¾İÔ´µÄÄÇĞ©ÖĞ¶ÏµÄÊı¾İÔ´¶¨Òå  */
-#define __BMG160_INTR_ONE_ADDR  (0x1B)  /**< \brief ¿ØÖÆ¿ìËÙÆ«ÒÆ²¹³¥µÄÊı¾İÔ´¶¨ÒåºÍÈÎºÎÔË¶¯ãĞÖµ  */
+#define __BMG160_FIFO_STATUS    (0x0E)  /**< \brief åŒ…å«FIFOçŠ¶æ€æ ‡å¿— */
+#define __BMG160_RANGE          (0x0F)  /**< \brief åŒ…å«BMG160æ”¯æŒ5ç§ä¸åŒçš„è§’é€Ÿç‡æµ‹é‡èŒƒå›´ */
+#define __BMG160_BW             (0x10)  /**< \brief è¯¥å¯„å­˜å™¨å…è®¸é€‰æ‹©é€Ÿç‡æ•°æ®æ»¤æ³¢å™¨å¸¦å®½ */
+#define __BMG160_LPM1           (0x11)  /**< \brief é€‰æ‹©ä¸»ç”µæºæ¨¡å¼ */
+#define __BMG160_LPM2           (0x12)  /**< \brief å¿«é€Ÿä¸Šç”µå’Œå¤–éƒ¨è§¦å‘çš„é…ç½®è®¾ç½® */
+#define __BMG160_RATE_HBW       (0x13)  /**< \brief è§’é€Ÿç‡æ•°æ®é‡‡é›†å’Œæ•°æ®è¾“å‡ºæ ¼å¼ */
+#define __BMG160_BGW_SOFTRESET  (0x14)	/**< \brief æ§åˆ¶ç”¨æˆ·è§¦å‘çš„ä¼ æ„Ÿå™¨å¤ä½ */ 
+#define __BMG160_INT_EN_0       (0x15)  /**< \brief æ§åˆ¶å¯ç”¨å“ªäº›ä¸­æ–­ */
+#define __BMG160_INT_EN_1       (0x16)  /**< \brief åŒ…å«ä¸­æ–­å¼•è„šé…ç½® */
+#define __BMG160_INT_MAP_0      (0x17)  /**< \brief æ§åˆ¶å“ªäº›ä¸­æ–­ä¿¡å·æ˜ å°„åˆ°INT1å¼•è„š */
+#define __BMG160_INT_MAP_1      (0x18)  /**< \brief æ§åˆ¶å“ªäº›ä¸­æ–­ä¿¡å·æ˜ å°„åˆ°INT1å¼•è„šå’ŒINT2å¼•è„š */
+#define __BMG160_INT_MAP_2      (0x19)  /**< \brief æ§åˆ¶å“ªäº›ä¸­æ–­ä¿¡å·æ˜ å°„åˆ°INT2å¼•è„š */
+#define __BMG160_INTR_ZERO_ADDR (0x1A)  /**< \brief æ§åˆ¶å…·æœ‰å¯é€‰æ•°æ®æºçš„é‚£äº›ä¸­æ–­çš„æ•°æ®æºå®šä¹‰  */
+#define __BMG160_INTR_ONE_ADDR  (0x1B)  /**< \brief æ§åˆ¶å¿«é€Ÿåç§»è¡¥å¿çš„æ•°æ®æºå®šä¹‰å’Œä»»ä½•è¿åŠ¨é˜ˆå€¼  */
 #define __BMG160_INTR_TWO_ADDR  (0x1C)  /**< \brief  */
 #define __BMG160_INTR_4_ADDR    (0x1E)  /**< \brief  */
 
-#define __BMG160_INT_RST_LATCH  (0x21)  /**< \brief °üº¬ÖĞ¶Ï¸´Î»Î»ºÍÖĞ¶ÏÄ£Ê½Ñ¡Ôñ */
-#define __BMG160_High_Th_x      (0x22)  /**< \brief °üº¬xÖáµÄ¸ßËÙÂÊãĞÖµºÍ¸ßËÙÂÊÖÍºóÉèÖÃ */
-#define __BMG160_High_Dur_x     (0x23)  /**< \brief °üº¬xÖáµÄ¸ßËÙÂÊ³ÖĞøÊ±¼äÉèÖÃ */
-#define __BMG160_High_Th_y      (0x24)  /**< \brief °üº¬yÖáµÄ¸ßËÙÂÊãĞÖµºÍ¸ßËÙÂÊÖÍºóÉèÖÃ */
-#define __BMG160_High_Dur_y     (0x25)  /**< \brief °üº¬yÖáµÄ¸ßËÙÂÊ³ÖĞøÊ±¼äÉèÖÃ */
-#define __BMG160_High_Th_z      (0x26)  /**< \brief °üº¬zÖáµÄ¸ßËÙÂÊãĞÖµºÍ¸ßËÙÂÊÖÍºóÉèÖÃ */
-#define __BMG160_High_Dur_z     (0x27)  /**< \brief °üº¬zÖáµÄ¸ßËÙÂÊ³ÖĞøÊ±¼äÉèÖÃ */
+#define __BMG160_INT_RST_LATCH  (0x21)  /**< \brief åŒ…å«ä¸­æ–­å¤ä½ä½å’Œä¸­æ–­æ¨¡å¼é€‰æ‹© */
+#define __BMG160_High_Th_x      (0x22)  /**< \brief åŒ…å«xè½´çš„é«˜é€Ÿç‡é˜ˆå€¼å’Œé«˜é€Ÿç‡æ»åè®¾ç½® */
+#define __BMG160_High_Dur_x     (0x23)  /**< \brief åŒ…å«xè½´çš„é«˜é€Ÿç‡æŒç»­æ—¶é—´è®¾ç½® */
+#define __BMG160_High_Th_y      (0x24)  /**< \brief åŒ…å«yè½´çš„é«˜é€Ÿç‡é˜ˆå€¼å’Œé«˜é€Ÿç‡æ»åè®¾ç½® */
+#define __BMG160_High_Dur_y     (0x25)  /**< \brief åŒ…å«yè½´çš„é«˜é€Ÿç‡æŒç»­æ—¶é—´è®¾ç½® */
+#define __BMG160_High_Th_z      (0x26)  /**< \brief åŒ…å«zè½´çš„é«˜é€Ÿç‡é˜ˆå€¼å’Œé«˜é€Ÿç‡æ»åè®¾ç½® */
+#define __BMG160_High_Dur_z     (0x27)  /**< \brief åŒ…å«zè½´çš„é«˜é€Ÿç‡æŒç»­æ—¶é—´è®¾ç½® */
                               
-#define __BMG160_SoC            (0x31)  /**< \brief °üº¬ÂıËÙÆ«ÒÆÈ¡ÏûÉèÖÃ */
-#define __BMG160_A_FOC          (0x32)  /**< \brief °üº¬¿ìËÙÆ«ÒÆÈ¡ÏûÉèÖÃ */
-#define __BMG160_TRIM_NVM_CTRL  (0x33)  /**< \brief °üº¬¼¸´Î¿É±à³Ì·ÇÒ×Ê§ĞÔ´æ´¢Æ÷£¨NVM£©µÄ¿ØÖÆÉèÖÃ */
-#define __BMG160_BGW_SPI3_WDT   (0x34)  /**< \brief °üº¬Êı×Ö½Ó¿ÚµÄÉèÖÃ */
+#define __BMG160_SoC            (0x31)  /**< \brief åŒ…å«æ…¢é€Ÿåç§»å–æ¶ˆè®¾ç½® */
+#define __BMG160_A_FOC          (0x32)  /**< \brief åŒ…å«å¿«é€Ÿåç§»å–æ¶ˆè®¾ç½® */
+#define __BMG160_TRIM_NVM_CTRL  (0x33)  /**< \brief åŒ…å«å‡ æ¬¡å¯ç¼–ç¨‹éæ˜“å¤±æ€§å­˜å‚¨å™¨ï¼ˆNVMï¼‰çš„æ§åˆ¶è®¾ç½® */
+#define __BMG160_BGW_SPI3_WDT   (0x34)  /**< \brief åŒ…å«æ•°å­—æ¥å£çš„è®¾ç½® */
                               
-#define __BMG160_OFC1           (0x36)  /**< \brief °üº¬Æ«ÒÆ²¹³¥Öµ */
-#define __BMG160_OFC2           (0x37)  /**< \brief °üº¬XÍ¨µÀµÄÆ«ÒÆ²¹³¥Öµ */
-#define __BMG160_OFC3           (0x38)  /**< \brief °üº¬YÍ¨µÀµÄÆ«ÒÆ²¹³¥Öµ */
-#define __BMG160_OFC4           (0x39)  /**< \brief °üº¬ZÍ¨µÀµÄÆ«ÒÆ²¹³¥Öµ */
-#define __BMG160_TRIM_GP0       (0x3A)  /**< \brief °üº¬¾ßÓĞNVM±¸·İµÄÍ¨ÓÃÊı¾İ¼Ä´æÆ÷ */
-#define __BMG160_TRIM_GP1       (0x3B)  /**< \brief °üº¬¾ßÓĞNVM±¸·İµÄÍ¨ÓÃÊı¾İ¼Ä´æÆ÷ */
-#define __BMG160_BIST           (0x3C)  /**< \brief °üº¬ÄÚÖÃ×Ô²â£¨BIST£©¹¦ÄÜ */
-#define __BMG160_FIFO_CONFIG_0  (0x3D)  /**< \brief °üº¬FIFOwatermark¼¶±ğ */
-#define __BMG160_FIFO_CONFIG_1  (0x3E)  /**< \brief °üº¬FIFOÅäÖÃÉèÖÃ */
-#define __BMG160_FIFO_DATA      (0x3F)  /**< \brief FIFOÊı¾İ¶Á³ö¼Ä´æÆ÷ */
+#define __BMG160_OFC1           (0x36)  /**< \brief åŒ…å«åç§»è¡¥å¿å€¼ */
+#define __BMG160_OFC2           (0x37)  /**< \brief åŒ…å«Xé€šé“çš„åç§»è¡¥å¿å€¼ */
+#define __BMG160_OFC3           (0x38)  /**< \brief åŒ…å«Yé€šé“çš„åç§»è¡¥å¿å€¼ */
+#define __BMG160_OFC4           (0x39)  /**< \brief åŒ…å«Zé€šé“çš„åç§»è¡¥å¿å€¼ */
+#define __BMG160_TRIM_GP0       (0x3A)  /**< \brief åŒ…å«å…·æœ‰NVMå¤‡ä»½çš„é€šç”¨æ•°æ®å¯„å­˜å™¨ */
+#define __BMG160_TRIM_GP1       (0x3B)  /**< \brief åŒ…å«å…·æœ‰NVMå¤‡ä»½çš„é€šç”¨æ•°æ®å¯„å­˜å™¨ */
+#define __BMG160_BIST           (0x3C)  /**< \brief åŒ…å«å†…ç½®è‡ªæµ‹ï¼ˆBISTï¼‰åŠŸèƒ½ */
+#define __BMG160_FIFO_CONFIG_0  (0x3D)  /**< \brief åŒ…å«FIFOwatermarkçº§åˆ« */
+#define __BMG160_FIFO_CONFIG_1  (0x3E)  /**< \brief åŒ…å«FIFOé…ç½®è®¾ç½® */
+#define __BMG160_FIFO_DATA      (0x3F)  /**< \brief FIFOæ•°æ®è¯»å‡ºå¯„å­˜å™¨ */
 
-/** \brief ½«Á½¸öint8×ª»»ÎªÒ»¸öint16_tÀàĞÍ */
+/** \brief å°†ä¸¤ä¸ªint8è½¬æ¢ä¸ºä¸€ä¸ªint16_tç±»å‹ */
 #define __BMG160_UINT8_TO_UINT16(buff) \
                        (int16_t)(((uint16_t)(buff[1]) << 8) \
                                | ((uint16_t)(buff[0])))
                                                           
-/** \brief XÖá½ÇËÙ¶È²âÁ¿ */ 
+/** \brief Xè½´è§’é€Ÿåº¦æµ‹é‡ */ 
 #define __BMG160_X_START       (0x2<<0)  
-/** \brief YÖá½ÇËÙ¶È²âÁ¿ */ 
+/** \brief Yè½´è§’é€Ÿåº¦æµ‹é‡ */ 
 #define __BMG160_Y_START       (0x2<<2)                   
-/** \brief ZÖá½ÇËÙ¶È²âÁ¿ */ 
+/** \brief Zè½´è§’é€Ÿåº¦æµ‹é‡ */ 
 #define __BMG160_Z_START       (0x2<<5)                                  
                                
  
@@ -110,55 +110,55 @@
 
 
 /*******************************************************************************
- * ±¾µØº¯ÊıÉùÃ÷
+ * æœ¬åœ°å‡½æ•°å£°æ˜
  ******************************************************************************/
-/** \brief »ñÈ¡¸Ã´«¸ĞÆ÷Ä³Ò»Í¨µÀµÄÀàĞÍ */
+/** \brief è·å–è¯¥ä¼ æ„Ÿå™¨æŸä¸€é€šé“çš„ç±»å‹ */
 am_local am_err_t __pfn_type_get (void *p_drv, int id);
 
-/** \brief »ñÈ¡´«¸ĞÆ÷Í¨µÀ²ÉÑùÊı¾İ */
+/** \brief è·å–ä¼ æ„Ÿå™¨é€šé“é‡‡æ ·æ•°æ® */
 am_local am_err_t __pfn_data_get (void            *p_drv,
                                   const int       *p_ids,
                                   int              num,
                                   am_sensor_val_t *p_buf);
 
-/** \brief Ê¹ÄÜ´«¸ĞÆ÷Í¨µÀ */
+/** \brief ä½¿èƒ½ä¼ æ„Ÿå™¨é€šé“ */
 am_local am_err_t __pfn_enable (void            *p_drv,
                                 const int       *p_ids,
                                 int              num,
                                 am_sensor_val_t *p_result);
 
-/** \brief ½ûÄÜ´«¸ĞÆ÷Í¨µÀ */
+/** \brief ç¦èƒ½ä¼ æ„Ÿå™¨é€šé“ */
 am_local am_err_t __pfn_disable (void            *p_drv,
                                  const int       *p_ids,
                                  int              num,
                                  am_sensor_val_t *p_result);
 
-/** \brief ÅäÖÃ´«¸ĞÆ÷Í¨µÀÊôĞÔ */
+/** \brief é…ç½®ä¼ æ„Ÿå™¨é€šé“å±æ€§ */
 am_local am_err_t __pfn_attr_set (void                  *p_drv,
                                   int                    id,
                                   int                    attr,
                                   const am_sensor_val_t *p_val);
 
-/** \brief »ñÈ¡´«¸ĞÆ÷Í¨µÀÊôĞÔ */
+/** \brief è·å–ä¼ æ„Ÿå™¨é€šé“å±æ€§ */
 am_local am_err_t __pfn_attr_get (void            *p_drv,
                                   int              id,
                                   int              attr,
                                   am_sensor_val_t *p_val);
 
-/** \brief ÉèÖÃ´¥·¢£¬Ò»¸öÍ¨µÀ½öÄÜÉèÖÃÒ»¸ö´¥·¢»Øµ÷º¯Êı */
+/** \brief è®¾ç½®è§¦å‘ï¼Œä¸€ä¸ªé€šé“ä»…èƒ½è®¾ç½®ä¸€ä¸ªè§¦å‘å›è°ƒå‡½æ•° */
 am_local am_err_t __pfn_trigger_cfg (void                   *p_drv,
                                      int                     id,
                                      uint32_t                flags,
                                      am_sensor_trigger_cb_t  pfn_cb,
                                      void                   *p_arg);
 
-/** \brief ´ò¿ª´¥·¢ */
+/** \brief æ‰“å¼€è§¦å‘ */
 am_local am_err_t __pfn_trigger_on (void *p_drv, int id);
 
-/** \brief ¹Ø±Õ´¥·¢ */
+/** \brief å…³é—­è§¦å‘ */
 am_local am_err_t __pfn_trigger_off (void *p_drv, int id);
 
-/** \brief ´«¸ĞÆ÷±ê×¼·şÎñ */
+/** \brief ä¼ æ„Ÿå™¨æ ‡å‡†æœåŠ¡ */
 am_local am_const struct am_sensor_drv_funcs __g_sensor_bmg160_funcs = {
         __pfn_type_get,
         __pfn_data_get,
@@ -174,7 +174,7 @@ am_local am_const struct am_sensor_drv_funcs __g_sensor_bmg160_funcs = {
   Local functions
 *******************************************************************************/
 /**
- * \brief BMG160 Ğ´Êı¾İ
+ * \brief BMG160 å†™æ•°æ®
  */
 am_local am_err_t __bmg160_write (am_sensor_bmg160_dev_t *p_this,
                                   uint32_t                subaddr,
@@ -185,7 +185,7 @@ am_local am_err_t __bmg160_write (am_sensor_bmg160_dev_t *p_this,
 }
 
 /**
- * \brief BMG160 ¶ÁÊı¾İ
+ * \brief BMG160 è¯»æ•°æ®
  */
 am_local am_err_t __bmg160_read (am_sensor_bmg160_dev_t *p_this,
                                  uint32_t                subaddr,
@@ -195,15 +195,15 @@ am_local am_err_t __bmg160_read (am_sensor_bmg160_dev_t *p_this,
     return am_i2c_read(&p_this->i2c_dev, subaddr, p_buf, nbytes);
 }
 
-/** \breif ÖĞ¶Ï»Øµ÷º¯Êı */
+/** \breif ä¸­æ–­å›è°ƒå‡½æ•° */
 am_local void __bmg160_alarm_callback (void *p_arg)
 {
     am_sensor_bmg160_dev_t* p_this = (am_sensor_bmg160_dev_t*)p_arg;
 
-    am_isr_defer_job_add(&p_this->g_myjob);   /*< \brief Ìí¼ÓÖĞ¶ÏÑÓ³Ù´¦ÀíÈÎÎñ */
+    am_isr_defer_job_add(&p_this->g_myjob);   /*< \brief æ·»åŠ ä¸­æ–­å»¶è¿Ÿå¤„ç†ä»»åŠ¡ */
 }
 
-/** \breif ÖĞ¶ÏÑÓ³Ùº¯Êı */
+/** \breif ä¸­æ–­å»¶è¿Ÿå‡½æ•° */
 am_local void __am_pfnvoid_t (void *p_arg)
 {
     am_sensor_bmg160_dev_t* p_this = (am_sensor_bmg160_dev_t*)p_arg;
@@ -213,20 +213,20 @@ am_local void __am_pfnvoid_t (void *p_arg)
     int16_t y_axis_data   = 0;
     int16_t z_axis_data   = 0;
 
-    /** \brief »ñÈ¡X¡¢Y¡¢ZÖá½ÇËÙ¶ÈÖµ */
+    /** \brief è·å–Xã€Yã€Zè½´è§’é€Ÿåº¦å€¼ */
     __bmg160_read(p_this, __BMG160_RATE_X_LSB, current_data, 6);
 
-    /* »ñÈ¡XÖá½ÇËÙ¶È */
+    /* è·å–Xè½´è§’é€Ÿåº¦ */
     x_axis_data = __BMG160_UINT8_TO_UINT16(current_data);
     p_this->data[0].val = x_axis_data;
     p_this->data[0].unit = AM_SENSOR_UNIT_MICRO;
 
-    /* »ñÈ¡YÖá½ÇËÙ¶È */
+    /* è·å–Yè½´è§’é€Ÿåº¦ */
     y_axis_data = __BMG160_UINT8_TO_UINT16((current_data+2));
     p_this->data[1].val = y_axis_data;
     p_this->data[1].unit = AM_SENSOR_UNIT_MICRO;
 
-    /* »ñÈ¡ZÖá½ÇËÙ¶È */
+    /* è·å–Zè½´è§’é€Ÿåº¦ */
     z_axis_data = __BMG160_UINT8_TO_UINT16((current_data+4));
     p_this->data[2].val = z_axis_data;
     p_this->data[2].unit = AM_SENSOR_UNIT_MICRO;
@@ -251,7 +251,7 @@ am_local void __am_pfnvoid_t (void *p_arg)
 }
 
 /*
- * \brief ÅäÖÃÑ¡Ôñ
+ * \brief é…ç½®é€‰æ‹©
  */
 am_local am_err_t  __reg_attr_set (am_sensor_bmg160_dev_t *p_this, uint8_t rate)
 {
@@ -288,7 +288,7 @@ am_local am_err_t  __reg_attr_set (am_sensor_bmg160_dev_t *p_this, uint8_t rate)
      return __bmg160_write(p_this, __BMG160_BW, &rate_cfg, 1);
 }
 
-/** \brief »ñÈ¡¸Ã´«¸ĞÆ÷Ä³Ò»Í¨µÀµÄÀàĞÍ */
+/** \brief è·å–è¯¥ä¼ æ„Ÿå™¨æŸä¸€é€šé“çš„ç±»å‹ */
 am_local am_err_t __pfn_type_get (void *p_drv, int id)
 {
     if (p_drv == NULL) {
@@ -304,7 +304,7 @@ am_local am_err_t __pfn_type_get (void *p_drv, int id)
     }
 }
 
-/** \brief »ñÈ¡´«¸ĞÆ÷Í¨µÀ²ÉÑùÊı¾İ */
+/** \brief è·å–ä¼ æ„Ÿå™¨é€šé“é‡‡æ ·æ•°æ® */
 am_local am_err_t __pfn_data_get (void            *p_drv,
                                   const int       *p_ids,
                                   int              num,
@@ -332,10 +332,10 @@ am_local am_err_t __pfn_data_get (void            *p_drv,
     for (i = 0; i < num; i++) {
         p_buf[i].unit = AM_SENSOR_UNIT_INVALID;
     }
-     /* ÈôÎª1£¬Ôò¿ÉÄÜÔÚÊı¾İ×¼±¸¾ÍĞ÷´¥·¢»Øµ÷º¯ÊıÖĞÊ¹ÓÃ */
+     /* è‹¥ä¸º1ï¼Œåˆ™å¯èƒ½åœ¨æ•°æ®å‡†å¤‡å°±ç»ªè§¦å‘å›è°ƒå‡½æ•°ä¸­ä½¿ç”¨ */
     if (num == 1) {
         cur_id = p_ids[0];
-        /* Èô´ò¿ªÊı¾İ×¼±¸¾ÍĞ÷´¥·¢·½Ê½£¬ÔòÖ±½Ó¸³Öµ */
+        /* è‹¥æ‰“å¼€æ•°æ®å‡†å¤‡å°±ç»ªè§¦å‘æ–¹å¼ï¼Œåˆ™ç›´æ¥èµ‹å€¼ */
         if ((AM_BIT_GET(p_this->trigger, 2)) &&
                 ((p_this->flags[0] & AM_SENSOR_TRIGGER_DATA_READY) ||
                  (p_this->flags[1] & AM_SENSOR_TRIGGER_DATA_READY))) {
@@ -344,7 +344,7 @@ am_local am_err_t __pfn_data_get (void            *p_drv,
             return AM_OK;
         }
     }
-    /** \brief »ñÈ¡¿É¶Á×´Ì¬Öµ(ÎŞ´Ë²Ù×÷) */
+    /** \brief è·å–å¯è¯»çŠ¶æ€å€¼(æ— æ­¤æ“ä½œ) */
 
     for (i = 0; i < num; i++) {
 
@@ -352,40 +352,40 @@ am_local am_err_t __pfn_data_get (void            *p_drv,
 
         if (cur_id == 0) {
             
-            /** \brief »ñÈ¡XÖá½ÇËÙ¶ÈÊı¾İ */
+            /** \brief è·å–Xè½´è§’é€Ÿåº¦æ•°æ® */
             ret = __bmg160_read(p_this, __BMG160_RATE_X_LSB, reg_data, 2);
             if (ret != AM_OK) {
                 return ret;
             }
             x_axis_data = __BMG160_UINT8_TO_UINT16(reg_data);
-            p_buf[i].val  = x_axis_data ;         /*< \brief XÖá½ÇËÙ¶ÈÊı¾İ */
-            p_buf[i].unit = AM_SENSOR_UNIT_MICRO; /*< \brief µ¥Î»Ä¬ÈÏÎª-6:10^(-6)*/
+            p_buf[i].val  = x_axis_data ;         /*< \brief Xè½´è§’é€Ÿåº¦æ•°æ® */
+            p_buf[i].unit = AM_SENSOR_UNIT_MICRO; /*< \brief å•ä½é»˜è®¤ä¸º-6:10^(-6)*/
         } else if (cur_id == 1) {
-            /** \brief »ñÈ¡YÖá½ÇËÙ¶ÈÊı¾İ */
+            /** \brief è·å–Yè½´è§’é€Ÿåº¦æ•°æ® */
             ret = __bmg160_read(p_this, __BMG160_RATE_Y_LSB, reg_data+2, 2);
             if (ret != AM_OK) {
                 return ret;
             }
             y_axis_data = __BMG160_UINT8_TO_UINT16((reg_data+2));
-            p_buf[i].val  = y_axis_data ;         /*< \brief YÖá½ÇËÙ¶ÈÊı¾İ */
-            p_buf[i].unit = AM_SENSOR_UNIT_MICRO; /*< \brief µ¥Î»Ä¬ÈÏÎª-6:10^(-6)*/
+            p_buf[i].val  = y_axis_data ;         /*< \brief Yè½´è§’é€Ÿåº¦æ•°æ® */
+            p_buf[i].unit = AM_SENSOR_UNIT_MICRO; /*< \brief å•ä½é»˜è®¤ä¸º-6:10^(-6)*/
         } else if (cur_id == 2) {
-            /** \brief »ñÈ¡ZÖá½ÇËÙ¶ÈÊı¾İ */
+            /** \brief è·å–Zè½´è§’é€Ÿåº¦æ•°æ® */
             ret = __bmg160_read(p_this, __BMG160_RATE_Z_LSB, reg_data+4, 2);
             if (ret != AM_OK) {
                 return ret;
             }
             z_axis_data = __BMG160_UINT8_TO_UINT16((reg_data+4));
-            p_buf[i].val  = z_axis_data ;         /*< \brief ZÖá½ÇËÙ¶ÈÊı¾İ */
-            p_buf[i].unit = AM_SENSOR_UNIT_MICRO; /*< \brief µ¥Î»Ä¬ÈÏÎª-6:10^(-6)*/
+            p_buf[i].val  = z_axis_data ;         /*< \brief Zè½´è§’é€Ÿåº¦æ•°æ® */
+            p_buf[i].unit = AM_SENSOR_UNIT_MICRO; /*< \brief å•ä½é»˜è®¤ä¸º-6:10^(-6)*/
         } else {
-            return -AM_ENODEV;  /*< \brief Èô´Ë´ÎÍ¨µÀ²»ÊôÓÚ¸Ã´«¸ĞÆ÷£¬Ö±½Ó·µ»Ø */
+            return -AM_ENODEV;  /*< \brief è‹¥æ­¤æ¬¡é€šé“ä¸å±äºè¯¥ä¼ æ„Ÿå™¨ï¼Œç›´æ¥è¿”å› */
         }
     }
     return ret;
 }
 
-/** \brief Ê¹ÄÜ´«¸ĞÆ÷Í¨µÀ */
+/** \brief ä½¿èƒ½ä¼ æ„Ÿå™¨é€šé“ */
 am_local am_err_t __pfn_enable (void            *p_drv,
                                 const int       *p_ids,
                                 int              num,
@@ -421,7 +421,7 @@ am_local am_err_t __pfn_enable (void            *p_drv,
             curent_ret = -AM_ENODEV;
         }
     }
-    if (ret != AM_OK) {    /**< \breif Èç¹û±¾´ÎÃ»ÓĞ¸Ã´«¸ĞÆ÷µÄÍ¨µÀ´«Èë£¬ÔòÍË³ö */
+    if (ret != AM_OK) {    /**< \breif å¦‚æœæœ¬æ¬¡æ²¡æœ‰è¯¥ä¼ æ„Ÿå™¨çš„é€šé“ä¼ å…¥ï¼Œåˆ™é€€å‡º */
         return curent_ret;
     }
         if (ret == AM_OK) {
@@ -445,7 +445,7 @@ am_local am_err_t __pfn_enable (void            *p_drv,
      return curent_ret;
 }
 
-/** \brief ½ûÄÜ´«¸ĞÆ÷Í¨µÀ */
+/** \brief ç¦èƒ½ä¼ æ„Ÿå™¨é€šé“ */
 am_local am_err_t __pfn_disable (void            *p_drv,
                                  const int       *p_ids,
                                  int              num,
@@ -500,7 +500,7 @@ am_local am_err_t __pfn_disable (void            *p_drv,
 //            cur_ret = ret;
 //        }
 
-//        /** \brief ¹Ø±Õ¸ÃÍ¨µÀ */
+//        /** \brief å…³é—­è¯¥é€šé“ */
 //        ctrl_reg &= __HTS221_CLOSE;
 //        ret = __bmg160_write(p_this, __HTS221_REG_CTRL_REG1, &ctrl_reg, 1);
         if (ret != AM_OK){
@@ -515,7 +515,7 @@ am_local am_err_t __pfn_disable (void            *p_drv,
     return cur_ret;
 }
  
-/** \brief ÅäÖÃ´«¸ĞÆ÷Í¨µÀÊôĞÔ£¨attributes£© */
+/** \brief é…ç½®ä¼ æ„Ÿå™¨é€šé“å±æ€§ï¼ˆattributesï¼‰ */
 am_local am_err_t __pfn_attr_set (void                  *p_drv,
                                   int                    id,
                                   int                    attr,
@@ -543,7 +543,7 @@ am_local am_err_t __pfn_attr_set (void                  *p_drv,
     }
 
     switch (attr) {
-      /* ĞŞ¸ÄÆµÂÊ */
+      /* ä¿®æ”¹é¢‘ç‡ */
       case AM_SENSOR_ATTR_SAMPLING_RATE:
 
         if (sensor_val.val < 0 || sensor_val.val > 2000) {
@@ -590,7 +590,7 @@ am_local am_err_t __pfn_attr_set (void                  *p_drv,
     return cur_ret;    
 }
  
-/** \brief »ñÈ¡´«¸ĞÆ÷Í¨µÀÊôĞÔ */
+/** \brief è·å–ä¼ æ„Ÿå™¨é€šé“å±æ€§ */
 am_local am_err_t __pfn_attr_get (void            *p_drv,
                                   int              id,
                                   int              attr,
@@ -612,7 +612,7 @@ am_local am_err_t __pfn_attr_get (void            *p_drv,
 
     switch (attr) {
 
-    /* »ñÈ¡²ÉÑùÆµÂÊ */
+    /* è·å–é‡‡æ ·é¢‘ç‡ */
     case AM_SENSOR_ATTR_SAMPLING_RATE:
 
         p_val->val  = p_this->sam_rate.val;
@@ -629,7 +629,7 @@ am_local am_err_t __pfn_attr_get (void            *p_drv,
 }
 
 
-/** \brief ÉèÖÃ´¥·¢£¬Ò»¸öÍ¨µÀ½öÄÜÉèÖÃÒ»¸ö´¥·¢»Øµ÷º¯Êı */
+/** \brief è®¾ç½®è§¦å‘ï¼Œä¸€ä¸ªé€šé“ä»…èƒ½è®¾ç½®ä¸€ä¸ªè§¦å‘å›è°ƒå‡½æ•° */
 am_local am_err_t __pfn_trigger_cfg (void                   *p_drv,
                                      int                     id,
                                      uint32_t                flags,
@@ -660,7 +660,7 @@ am_local am_err_t __pfn_trigger_cfg (void                   *p_drv,
     return AM_OK;
 }
 
-/** \brief ´ò¿ª´¥·¢ */
+/** \brief æ‰“å¼€è§¦å‘ */
 am_local am_err_t __pfn_trigger_on (void *p_drv, int id)
 {
     am_sensor_bmg160_dev_t* p_this = (am_sensor_bmg160_dev_t*)p_drv;
@@ -699,7 +699,7 @@ am_local am_err_t __pfn_trigger_on (void *p_drv, int id)
     return cur_ret;
 }
 
-/** \brief ¹Ø±Õ´¥·¢ */
+/** \brief å…³é—­è§¦å‘ */
 am_local am_err_t __pfn_trigger_off (void *p_drv, int id)
 {
     am_sensor_bmg160_dev_t* p_this = (am_sensor_bmg160_dev_t*)p_drv;
@@ -755,7 +755,7 @@ am_local am_err_t __pfn_trigger_off (void *p_drv, int id)
   Public functions
 *******************************************************************************/
 /**
- * \brief ´«¸ĞÆ÷ BMG160 ³õÊ¼»¯
+ * \brief ä¼ æ„Ÿå™¨ BMG160 åˆå§‹åŒ–
  */
 am_sensor_handle_t am_sensor_bmg160_init (
         am_sensor_bmg160_dev_t           *p_dev,
@@ -824,7 +824,7 @@ am_sensor_handle_t am_sensor_bmg160_init (
 }
 
 /**
- * \brief ´«¸ĞÆ÷ BMG160 ½â³õÊ¼»¯
+ * \brief ä¼ æ„Ÿå™¨ BMG160 è§£åˆå§‹åŒ–
  */
 am_err_t am_sensor_bmg160_deinit (am_sensor_handle_t handle)
 {

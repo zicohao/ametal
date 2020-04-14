@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief bootloader Ë«ÇøÓ¦ÓÃ³ÌĞòÀı³Ì
+ * \brief bootloader åŒåŒºåº”ç”¨ç¨‹åºä¾‹ç¨‹
  *
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_std_double_application.c src_std_double_application
  *
  * \internal
@@ -43,19 +43,19 @@ void demo_std_double_application_entry(am_boot_firwa_recv_handle_t  firwa_recv_h
                                        am_boot_msg_handle_t         msg_handle)
 {
     int ret;
-    /* ÊÇ·ñ½øÈë½ÓÊÕ¹Ì¼ş */
+    /* æ˜¯å¦è¿›å…¥æ¥æ”¶å›ºä»¶ */
     if(am_boot_enter_check(check_handle)) {
-        /* ½ÓÊÕ¹Ì¼ş */
+        /* æ¥æ”¶å›ºä»¶ */
         ret = am_boot_firmware_recv(firwa_recv_handle);
         if(ret != AM_OK) {
             am_kprintf("app : firmware receive fail\r\n");
             return;
         } else {
-            /* ¹Ì¼ş½ÓÊÕ³É¹¦ºó£¬ÉèÖÃÏûÏ¢£¬ĞÂµÄ¹Ì¼şÒÑ¾­½ÓÊÕÍê³É */
+            /* å›ºä»¶æ¥æ”¶æˆåŠŸåï¼Œè®¾ç½®æ¶ˆæ¯ï¼Œæ–°çš„å›ºä»¶å·²ç»æ¥æ”¶å®Œæˆ */
             am_boot_msg_set(msg_handle, (void *)AM_BOOTLOADER_FLAG_UPDATE);
-            /* ÏµÍ³ÖØÆôÇ°½øĞĞĞ¡¶ÎµÄÑÓÊ±£¬·ÀÖ¹Ä³Ğ©¼Ä´æÆ÷Ã»ÓĞÖ´ĞĞÍê */
+            /* ç³»ç»Ÿé‡å¯å‰è¿›è¡Œå°æ®µçš„å»¶æ—¶ï¼Œé˜²æ­¢æŸäº›å¯„å­˜å™¨æ²¡æœ‰æ‰§è¡Œå®Œ */
             am_mdelay(200);
-            /* ÏµÍ³Èí¼ş¸´Î» */
+            /* ç³»ç»Ÿè½¯ä»¶å¤ä½ */
             am_boot_reset();
         }
     }

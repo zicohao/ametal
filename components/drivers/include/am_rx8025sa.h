@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief  RX8025SA Ó¦ÓÃ½Ó¿ÚÎÄ¼ş
+ * \brief  RX8025SA åº”ç”¨æ¥å£æ–‡ä»¶
  *
  * \internal
  * \par Modification History
@@ -40,110 +40,110 @@ extern "C" {
 #include "am_i2c.h"
 
 /**
- * \brief RX8025SA Éè±¸ĞÅÏ¢½á¹¹Ìå
+ * \brief RX8025SA è®¾å¤‡ä¿¡æ¯ç»“æ„ä½“
  *
- * \note Ö÷ÒªÊÇÅäÖÃÒı½ÅºÅ
+ * \note ä¸»è¦æ˜¯é…ç½®å¼•è„šå·
  */
 typedef struct am_rx8025sa_devinfo {
 
-    /** \brief INTAÒı½ÅÁ¬½Óµ½µÄGPIOÒı½Å±àºÅ */
+    /** \brief INTAå¼•è„šè¿æ¥åˆ°çš„GPIOå¼•è„šç¼–å· */
     uint8_t inta_pin;
 
-    /** \brief INTAÒı½ÅÁ¬½Óµ½µÄGPIOÒı½Å±àºÅ */
+    /** \brief INTAå¼•è„šè¿æ¥åˆ°çš„GPIOå¼•è„šç¼–å· */
     uint8_t intb_pin;
     /**
-     * \brief RX8025SAµÄFOE(CLK_EN)Òı½ÅËùÁ¬½Óµ½µÄGPIOÒı½Å±àºÅ
-     *  ÓÃÓÚ¿ØÖÆFOUTÊÇ·ñÊä³öÆµÂÊ,²»ĞèÒªÊ±£¬¸³ÖµÎª -1
+     * \brief RX8025SAçš„FOE(CLK_EN)å¼•è„šæ‰€è¿æ¥åˆ°çš„GPIOå¼•è„šç¼–å·
+     *  ç”¨äºæ§åˆ¶FOUTæ˜¯å¦è¾“å‡ºé¢‘ç‡,ä¸éœ€è¦æ—¶ï¼Œèµ‹å€¼ä¸º -1
      */
     int clk_en_pin;
 
 } am_rx8025sa_devinfo_t;
 
 /**
- * \brief RX8025SA Éè±¸½á¹¹Ìå
+ * \brief RX8025SA è®¾å¤‡ç»“æ„ä½“
  */
 typedef struct am_rx8025sa_dev {
 
-    am_bool_t         conn_stat_inta;  /**< \brief µ±Ç°INTAÖĞ¶ÏÁ¬½Ó×´Ì¬ */
-    uint8_t           time_format;            /** \brief Ğ¡Ê±ÖÆ */
+    am_bool_t         conn_stat_inta;  /**< \brief å½“å‰INTAä¸­æ–­è¿æ¥çŠ¶æ€ */
+    uint8_t           time_format;            /** \brief å°æ—¶åˆ¶ */
 
-    /* ÒÔÏÂ±äÁ¿Ö÷ÒªÓÃÓÚÔÚÖĞ¶ÏÖĞ¶ÁĞ´Ğ¾Æ¬µÄ¼Ä´æÆ÷ */
-    uint8_t           status;     /**< \brief µ±Ç°×´Ì¬ */
-    uint8_t           intr_flag;  /**< \brief ÖĞ¶Ï±êÖ¾ */
-    uint8_t           sub_addr;   /**< \brief I2CÆ÷¼ş×ÓµØÖ· */
-    uint8_t           buf[1];     /**< \brief I2CÊı¾İ»º³åÇø */
-    uint8_t           nbytes;     /**< \brief ²Ù×÷Êı¾İ³¤¶È */
-    am_i2c_transfer_t trans[2];   /**< \brief RX8025SA×´Ì¬»útransfer */
-    am_i2c_message_t  msg;        /**< \brief RX8025SA×´Ì¬»úmsg */
+    /* ä»¥ä¸‹å˜é‡ä¸»è¦ç”¨äºåœ¨ä¸­æ–­ä¸­è¯»å†™èŠ¯ç‰‡çš„å¯„å­˜å™¨ */
+    uint8_t           status;     /**< \brief å½“å‰çŠ¶æ€ */
+    uint8_t           intr_flag;  /**< \brief ä¸­æ–­æ ‡å¿— */
+    uint8_t           sub_addr;   /**< \brief I2Cå™¨ä»¶å­åœ°å€ */
+    uint8_t           buf[1];     /**< \brief I2Cæ•°æ®ç¼“å†²åŒº */
+    uint8_t           nbytes;     /**< \brief æ“ä½œæ•°æ®é•¿åº¦ */
+    am_i2c_transfer_t trans[2];   /**< \brief RX8025SAçŠ¶æ€æœºtransfer */
+    am_i2c_message_t  msg;        /**< \brief RX8025SAçŠ¶æ€æœºmsg */
 
-    am_i2c_device_t  i2c_dev;     /**< \brief RX8025SA I2CÉè±¸ */
+    am_i2c_device_t  i2c_dev;     /**< \brief RX8025SA I2Cè®¾å¤‡ */
 
-    /* INTÒı½ÅµÄ´¥·¢ĞÅÏ¢ */
+    /* INTå¼•è„šçš„è§¦å‘ä¿¡æ¯ */
     struct am_rx8025sa_trigger_info {
 
-        /** \brief ´¥·¢»Øµ÷º¯Êı */
+        /** \brief è§¦å‘å›è°ƒå‡½æ•° */
         am_pfnvoid_t  pfn_callback;
 
-        /** \brief »Øµ÷º¯ÊıµÄ²ÎÊı */
+        /** \brief å›è°ƒå‡½æ•°çš„å‚æ•° */
         void *p_arg;
 
     } triginfo[3];
 
-    const am_rx8025sa_devinfo_t * p_devinfo;  /* Ö¸ÏòÉè±¸ĞÅÏ¢³£Á¿µÄÖ¸Õë */
+    const am_rx8025sa_devinfo_t * p_devinfo;  /* æŒ‡å‘è®¾å¤‡ä¿¡æ¯å¸¸é‡çš„æŒ‡é’ˆ */
 
 } am_rx8025sa_dev_t;
 
-/** \brief RX8025SA²Ù×÷¾ä±ú¶¨Òå */
+/** \brief RX8025SAæ“ä½œå¥æŸ„å®šä¹‰ */
 typedef am_rx8025sa_dev_t *am_rx8025sa_handle_t;
 
 /**
- * \brief RX8025SA Éè±¸³õÊ¼»¯
+ * \brief RX8025SA è®¾å¤‡åˆå§‹åŒ–
  *
- * \param[in] p_dev      : Ö¸ÏòRX8025SAÉè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[in] p_devinfo  : Ö¸ÏòRX8025SAÉè±¸ĞÅÏ¢µÄÖ¸Õë
- * \param[in] i2c_handle : I2C±ê×¼·şÎñ²Ù×÷¾ä±ú
+ * \param[in] p_dev      : æŒ‡å‘RX8025SAè®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo  : æŒ‡å‘RX8025SAè®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ
+ * \param[in] i2c_handle : I2Cæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  *
- * \return RX8025SA·şÎñ²Ù×÷¾ä±ú,Èç¹ûÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return RX8025SAæœåŠ¡æ“ä½œå¥æŸ„,å¦‚æœä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  *
- * \note Èô²»ĞèÒªÓÃÆµÂÊÊä³ö¹¦ÄÜ£¬Éè±¸ĞÅÏ¢½á¹¹ÌåÖĞµÄclk_en_pin ¸³ÖµÎª -1 ¼´¿É
+ * \note è‹¥ä¸éœ€è¦ç”¨é¢‘ç‡è¾“å‡ºåŠŸèƒ½ï¼Œè®¾å¤‡ä¿¡æ¯ç»“æ„ä½“ä¸­çš„clk_en_pin èµ‹å€¼ä¸º -1 å³å¯
  */
 am_rx8025sa_handle_t am_rx8025sa_init (am_rx8025sa_dev_t           *p_dev,
                                        const am_rx8025sa_devinfo_t *p_devinfo,
                                        am_i2c_handle_t              i2c_handle);
 
 /**
- * \brief RX8025SA Éè±¸½â³õÊ¼»¯
- * \param[in] handle : RX8025SA²Ù×÷¾ä±ú
- * \return ÎŞ
+ * \brief RX8025SA è®¾å¤‡è§£åˆå§‹åŒ–
+ * \param[in] handle : RX8025SAæ“ä½œå¥æŸ„
+ * \return æ— 
  */
 void am_rx8025sa_deinit (am_rx8025sa_handle_t handle);
 
 /**
- * \brief »ñÈ¡RTC±ê×¼·şÎñ¾ä±ú
+ * \brief è·å–RTCæ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param[in] handle     : RX8025SA²Ù×÷¾ä±ú
- * \param[in] p_rtc      : Ö¸ÏòRTC±ê×¼·şÎñ
+ * \param[in] handle     : RX8025SAæ“ä½œå¥æŸ„
+ * \param[in] p_rtc      : æŒ‡å‘RTCæ ‡å‡†æœåŠ¡
  *
- * return RTC±ê×¼·şÎñ²Ù×÷¾ä±ú
+ * return RTCæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  */
 am_rtc_handle_t am_rx8025sa_rtc_init (am_rx8025sa_handle_t  handle,
                                       am_rtc_serv_t        *p_rtc);
 
 /**
- * \brief »ñÈ¡RX8025SA ALARM_CLK±ê×¼·şÎñ
+ * \brief è·å–RX8025SA ALARM_CLKæ ‡å‡†æœåŠ¡
  *
- * \param[in] handle       : RX8025SA²Ù×÷¾ä±ú
- * \param[in] p_alarm_clk  : Ö¸ÏòALARM_CLK±ê×¼·şÎñ
+ * \param[in] handle       : RX8025SAæ“ä½œå¥æŸ„
+ * \param[in] p_alarm_clk  : æŒ‡å‘ALARM_CLKæ ‡å‡†æœåŠ¡
  *
- * return ALARM_CLK±ê×¼·şÎñ²Ù×÷¾ä±ú
+ * return ALARM_CLKæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  */
 am_alarm_clk_handle_t am_rx8025sa_alarm_clk_init (am_rx8025sa_handle_t   handle,
                                                   am_alarm_clk_serv_t   *p_alarm_clk);
 
 /**
- * \name rx8025ÉèÖÃĞÇÆÚÄÖÖÓµÄĞÇÆÚÖµ
+ * \name rx8025è®¾ç½®æ˜ŸæœŸé—¹é’Ÿçš„æ˜ŸæœŸå€¼
  * \anchor grp_rx8025sa_alarm_week
- *  eg£º Èç¹ûÒªÉèÖÃĞÇÆÚÈıºÍĞÇÆÚĞÇÆÚÌì µÄÄÖÖÓ   Ôòalarm_weekµÄÖµÎª £º
+ *  egï¼š å¦‚æœè¦è®¾ç½®æ˜ŸæœŸä¸‰å’Œæ˜ŸæœŸæ˜ŸæœŸå¤© çš„é—¹é’Ÿ   åˆ™alarm_weekçš„å€¼ä¸º ï¼š
  *        AM_RX8025SA_ALARM_SUNDAY | AM_RX8025SA_ALARM_WEDNESDAY
  */
 #define AM_RX8025SA_ALARM_SUNDAY    0X01
@@ -155,82 +155,82 @@ am_alarm_clk_handle_t am_rx8025sa_alarm_clk_init (am_rx8025sa_handle_t   handle,
 #define AM_RX8025SA_ALARM_SATURDAY  0X40
 
 /**
- * \brief ÄÖÖÓĞÅÏ¢½á¹¹Ìå
+ * \brief é—¹é’Ÿä¿¡æ¯ç»“æ„ä½“
  */
 typedef struct am_rx8025sa_alarm_info {
     int min;     /**< \brief minutes after the hour       - [0, 59]  */
     int hour;    /**< \brief hours after midnight         - [1, 12] / [0, 23]   */
-    int alarm_week;    /**< \brief Öµ²Î¿¼grp_rx8025sa_alarm_week  alarm_dÄÖÖÓ¿ÉÒÔºöÂÔ*/
+    int alarm_week;    /**< \brief å€¼å‚è€ƒgrp_rx8025sa_alarm_week  alarm_dé—¹é’Ÿå¯ä»¥å¿½ç•¥*/
 }am_rx8025sa_alarm_info_t;
 
 /**
- * \brief Ê¹ÄÜRX8025SAµÄ ALARM_DÄÖÖÓ
+ * \brief ä½¿èƒ½RX8025SAçš„ ALARM_Dé—¹é’Ÿ
  *
- * \param[in] handle       : RX8025SA·şÎñ²Ù×÷¾ä±ú
+ * \param[in] handle       : RX8025SAæœåŠ¡æ“ä½œå¥æŸ„
  *
- * \retval AM_OK : ²Ù×÷³É¹¦
- * \retval ÆäËû  : ²Ù×÷´íÎó,¾ßÌå²é¿´·µ»Ø´íÎó±àÂë
+ * \retval AM_OK : æ“ä½œæˆåŠŸ
+ * \retval å…¶ä»–  : æ“ä½œé”™è¯¯,å…·ä½“æŸ¥çœ‹è¿”å›é”™è¯¯ç¼–ç 
  */
 int am_rx8025sa_alarm_d_enable (am_rx8025sa_handle_t handle);
 /**
- * \brief ½ûÄÜRX8025SA µÄ ALARM_D ÄÖÖÓ
+ * \brief ç¦èƒ½RX8025SA çš„ ALARM_D é—¹é’Ÿ
  *
- * \param[in] handle : RX8025SA·şÎñ²Ù×÷¾ä±ú
+ * \param[in] handle : RX8025SAæœåŠ¡æ“ä½œå¥æŸ„
  *
- * \retval AM_OK : ²Ù×÷³É¹¦
- * \retval ÆäËû  : ²Ù×÷´íÎó,¾ßÌå²é¿´·µ»Ø´íÎó±àÂë
+ * \retval AM_OK : æ“ä½œæˆåŠŸ
+ * \retval å…¶ä»–  : æ“ä½œé”™è¯¯,å…·ä½“æŸ¥çœ‹è¿”å›é”™è¯¯ç¼–ç 
  */
 int am_rx8025sa_alarm_d_disable (am_rx8025sa_handle_t handle);
 
 
 /**
- * \brief Ê¹ÄÜRX8025SAµÄ ALARM_WÄÖÖÓ
+ * \brief ä½¿èƒ½RX8025SAçš„ ALARM_Wé—¹é’Ÿ
  *
- * \param[in] handle       : RX8025SA·şÎñ²Ù×÷¾ä±ú
+ * \param[in] handle       : RX8025SAæœåŠ¡æ“ä½œå¥æŸ„
  *
- * \retval AM_OK : ²Ù×÷³É¹¦
- * \retval ÆäËû  : ²Ù×÷´íÎó,¾ßÌå²é¿´·µ»Ø´íÎó±àÂë
+ * \retval AM_OK : æ“ä½œæˆåŠŸ
+ * \retval å…¶ä»–  : æ“ä½œé”™è¯¯,å…·ä½“æŸ¥çœ‹è¿”å›é”™è¯¯ç¼–ç 
  */
 int am_rx8025sa_alarm_w_enable (am_rx8025sa_handle_t handle);
 /**
- * \brief ½ûÄÜRX8025SA µÄ ALARM_W ÄÖÖÓ
+ * \brief ç¦èƒ½RX8025SA çš„ ALARM_W é—¹é’Ÿ
  *
- * \param[in] handle : RX8025SA·şÎñ²Ù×÷¾ä±ú
+ * \param[in] handle : RX8025SAæœåŠ¡æ“ä½œå¥æŸ„
  *
- * \retval AM_OK : ²Ù×÷³É¹¦
- * \retval ÆäËû  : ²Ù×÷´íÎó,¾ßÌå²é¿´·µ»Ø´íÎó±àÂë
+ * \retval AM_OK : æ“ä½œæˆåŠŸ
+ * \retval å…¶ä»–  : æ“ä½œé”™è¯¯,å…·ä½“æŸ¥çœ‹è¿”å›é”™è¯¯ç¼–ç 
  */
 int am_rx8025sa_alarm_w_disable (am_rx8025sa_handle_t handle);
 
 /**
- * \name RX8025SA  ÖÜÆÚÖĞ¶ÏµÄÒ»Ğ©Ä£Ê½
+ * \name RX8025SA  å‘¨æœŸä¸­æ–­çš„ä¸€äº›æ¨¡å¼
  * \anchor grp_int_mode
- * note£º  Ã¿·Ö00Ãë
- *       Ã¿Ê±00·Ö00Ãë
- *       Ã¿ÔÂ1ºÅ00Ê±00·Ö00Ãë                        À­µÍINTA Òı½Å
+ * noteï¼š  æ¯åˆ†00ç§’
+ *       æ¯æ—¶00åˆ†00ç§’
+ *       æ¯æœˆ1å·00æ—¶00åˆ†00ç§’                        æ‹‰ä½INTA å¼•è„š
  */
 
-#define AM_RX8025SA_INTA_OFF                 0X00  /**< \brief INTAÒı½Å³ÊÏÖ¸ßµçÆ½»ò¸ß×è */
-#define AM_RX8025SA_INTA_LOW                 0X01  /**< \brief INTAÒı½ÅÊä³öµÍµçÆ½ */
-#define AM_RX8025SA_PULSE_2HZ_MODE           0X02  /**< \brief 2HZµÄÂö³åÄ£Ê½ */
-#define AM_RX8025SA_PULSE_1HZ_MODE           0X03  /**< \brief 1HZµÄÂö³åÄ£Ê½ */
-#define AM_RX8025SA_LEVEL_PER_SECOND_MODE    0X04  /**< \brief Ã¿ÃëÀ­µÍINTAÒı½ÅµÄµçÆ½Ä£Ê½ */
-#define AM_RX8025SA_LEVEL_PER_MINUTE_MODE    0X05  /**< \brief Ã¿·ÖÀ­µÍINTAÒı½ÅµÄµçÆ½Ä£Ê½ */
-#define AM_RX8025SA_LEVEL_PER_HOUR_MODE      0X06  /**< \brief Ã¿Ê±À­µÍINTAÒı½ÅµÄµçÆ½Ä£Ê½ */
-#define AM_RX8025SA_LEVEL_PER_MONTH_MODE     0X07  /**< \brief Ã¿ÔÂÀ­µÍINTAÒı½ÅµÄµçÆ½Ä£Ê½ */
+#define AM_RX8025SA_INTA_OFF                 0X00  /**< \brief INTAå¼•è„šå‘ˆç°é«˜ç”µå¹³æˆ–é«˜é˜» */
+#define AM_RX8025SA_INTA_LOW                 0X01  /**< \brief INTAå¼•è„šè¾“å‡ºä½ç”µå¹³ */
+#define AM_RX8025SA_PULSE_2HZ_MODE           0X02  /**< \brief 2HZçš„è„‰å†²æ¨¡å¼ */
+#define AM_RX8025SA_PULSE_1HZ_MODE           0X03  /**< \brief 1HZçš„è„‰å†²æ¨¡å¼ */
+#define AM_RX8025SA_LEVEL_PER_SECOND_MODE    0X04  /**< \brief æ¯ç§’æ‹‰ä½INTAå¼•è„šçš„ç”µå¹³æ¨¡å¼ */
+#define AM_RX8025SA_LEVEL_PER_MINUTE_MODE    0X05  /**< \brief æ¯åˆ†æ‹‰ä½INTAå¼•è„šçš„ç”µå¹³æ¨¡å¼ */
+#define AM_RX8025SA_LEVEL_PER_HOUR_MODE      0X06  /**< \brief æ¯æ—¶æ‹‰ä½INTAå¼•è„šçš„ç”µå¹³æ¨¡å¼ */
+#define AM_RX8025SA_LEVEL_PER_MONTH_MODE     0X07  /**< \brief æ¯æœˆæ‹‰ä½INTAå¼•è„šçš„ç”µå¹³æ¨¡å¼ */
 
 
 /**
- * \brief RX8025SA ÖÜÆÚÖĞ¶Ïº¯ÊıÉèÖÃ
+ * \brief RX8025SA å‘¨æœŸä¸­æ–­å‡½æ•°è®¾ç½®
  *
- * \param[in] handle   : rx8025sa·şÎñ²Ù×÷¾ä±ú
- * \param[in] int_mode :ÖÜÆÚÖĞ¶ÏÄ£Ê½Çë²Î¿¼grp_int_mode
+ * \param[in] handle   : rx8025saæœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] int_mode :å‘¨æœŸä¸­æ–­æ¨¡å¼è¯·å‚è€ƒgrp_int_mode
  *
- * \param[in] pfn_periodic_int_callback   :ÖÜÆÚÖĞ¶ÏµÄ»Øµ÷º¯Êı
- * \param[in] p_periodic_int_arg          :ÖÜÆÚÖĞ¶ÏµÄ»Øµ÷º¯ÊıµÄ²ÎÊı
+ * \param[in] pfn_periodic_int_callback   :å‘¨æœŸä¸­æ–­çš„å›è°ƒå‡½æ•°
+ * \param[in] p_periodic_int_arg          :å‘¨æœŸä¸­æ–­çš„å›è°ƒå‡½æ•°çš„å‚æ•°
  *
- * \retval AM_OK : ²Ù×÷³É¹¦
- * \retval ÆäËû  : ²Ù×÷´íÎó,¾ßÌå²é¿´·µ»Ø´íÎó±àÂë
+ * \retval AM_OK : æ“ä½œæˆåŠŸ
+ * \retval å…¶ä»–  : æ“ä½œé”™è¯¯,å…·ä½“æŸ¥çœ‹è¿”å›é”™è¯¯ç¼–ç 
  */
 int am_rx8025sa_periodic_int_set (am_rx8025sa_handle_t  handle,
                                    uint8_t              int_mode,
@@ -239,32 +239,32 @@ int am_rx8025sa_periodic_int_set (am_rx8025sa_handle_t  handle,
 
 
 /**
- * \brief RX8025SA ÄÖÖÓD»Øµ÷º¯ÊıºÍÄÖÖÓÊ±¼äÉèÖÃ
+ * \brief RX8025SA é—¹é’ŸDå›è°ƒå‡½æ•°å’Œé—¹é’Ÿæ—¶é—´è®¾ç½®
  *
- * \param[in] handle       : rx8025sa·şÎñ²Ù×÷¾ä±ú
- * \param[in] p_alarm_info : ÄÖÖÓÊ±¼äĞÅÏ¢
+ * \param[in] handle       : rx8025saæœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] p_alarm_info : é—¹é’Ÿæ—¶é—´ä¿¡æ¯
  *
- * \param[in] pfn_alarm_callback   :ÄÖÖÓÖĞ¶ÏµÄ»Øµ÷º¯Êı
- * \param[in] p_alarm_arg          :ÄÖÖÓÖĞ¶ÏµÄ»Øµ÷º¯ÊıµÄ²ÎÊı
+ * \param[in] pfn_alarm_callback   :é—¹é’Ÿä¸­æ–­çš„å›è°ƒå‡½æ•°
+ * \param[in] p_alarm_arg          :é—¹é’Ÿä¸­æ–­çš„å›è°ƒå‡½æ•°çš„å‚æ•°
  *
- * \retval AM_OK : ²Ù×÷³É¹¦
- * \retval ÆäËû  : ²Ù×÷´íÎó,¾ßÌå²é¿´·µ»Ø´íÎó±àÂë
+ * \retval AM_OK : æ“ä½œæˆåŠŸ
+ * \retval å…¶ä»–  : æ“ä½œé”™è¯¯,å…·ä½“æŸ¥çœ‹è¿”å›é”™è¯¯ç¼–ç 
  */
 int am_rx8025sa_alarm_d_set(am_rx8025sa_handle_t      handle,
                             am_rx8025sa_alarm_info_t *p_alarm_info,
                             am_pfnvoid_t              pfn_alarm_callback,
                             void                     *p_alarm_arg);
 /**
- * \brief RX8025SA ÄÖÖÓW»Øµ÷º¯ÊıºÍÄÖÖÓÊ±¼äÉèÖÃ
+ * \brief RX8025SA é—¹é’ŸWå›è°ƒå‡½æ•°å’Œé—¹é’Ÿæ—¶é—´è®¾ç½®
  *
- * \param[in] handle       : rx8025sa·şÎñ²Ù×÷¾ä±ú
- * \param[in] p_alarm_info : ÄÖÖÓÊ±¼äĞÅÏ¢
+ * \param[in] handle       : rx8025saæœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] p_alarm_info : é—¹é’Ÿæ—¶é—´ä¿¡æ¯
  *
- * \param[in] pfn_alarm_callback   :ÄÖÖÓÖĞ¶ÏµÄ»Øµ÷º¯Êı
- * \param[in] p_alarm_arg          :ÄÖÖÓÖĞ¶ÏµÄ»Øµ÷º¯ÊıµÄ²ÎÊı
+ * \param[in] pfn_alarm_callback   :é—¹é’Ÿä¸­æ–­çš„å›è°ƒå‡½æ•°
+ * \param[in] p_alarm_arg          :é—¹é’Ÿä¸­æ–­çš„å›è°ƒå‡½æ•°çš„å‚æ•°
  *
- * \retval AM_OK : ²Ù×÷³É¹¦
- * \retval ÆäËû  : ²Ù×÷´íÎó,¾ßÌå²é¿´·µ»Ø´íÎó±àÂë
+ * \retval AM_OK : æ“ä½œæˆåŠŸ
+ * \retval å…¶ä»–  : æ“ä½œé”™è¯¯,å…·ä½“æŸ¥çœ‹è¿”å›é”™è¯¯ç¼–ç 
  */
 int am_rx8025sa_alarm_w_set(am_rx8025sa_handle_t      handle,
                             am_rx8025sa_alarm_info_t *p_alarm_info,
@@ -272,67 +272,67 @@ int am_rx8025sa_alarm_w_set(am_rx8025sa_handle_t      handle,
                             void                     *p_alarm_arg);
 
 /*
- * \brief µçÔ´µçÑ¹Õğµ´¼ì²â
- * \brief\param[in] handle       : rx8025sa·şÎñ²Ù×÷¾ä±ú
+ * \brief ç”µæºç”µå‹éœ‡è¡æ£€æµ‹
+ * \brief\param[in] handle       : rx8025saæœåŠ¡æ“ä½œå¥æŸ„
  *
- * \note     ·µ»ØÖµËµÃ÷£º
- *   return 0  µçÔ´µçÑ¹²»½µµÍ£¬µ«Õñ¶¯Í£Ö¹
- *          1  µçÔ´µçÑ¹½µµÍ£¬ÇÒÕñ¶¯Í£Ö¹
- *          2  Õı³£
- *          3  ËäÈ»µçÔ´½µµÍ£¬µ«Õñ¶¯ÈÔ¼ÌĞø
- *          4,5 µçÔ´ÏÂ½µµ½0v
- *          6,7 µçÔ´Ë²Í£µÄ¿ÉÒÉĞÔ´ó
+ * \note     è¿”å›å€¼è¯´æ˜ï¼š
+ *   return 0  ç”µæºç”µå‹ä¸é™ä½ï¼Œä½†æŒ¯åŠ¨åœæ­¢
+ *          1  ç”µæºç”µå‹é™ä½ï¼Œä¸”æŒ¯åŠ¨åœæ­¢
+ *          2  æ­£å¸¸
+ *          3  è™½ç„¶ç”µæºé™ä½ï¼Œä½†æŒ¯åŠ¨ä»ç»§ç»­
+ *          4,5 ç”µæºä¸‹é™åˆ°0v
+ *          6,7 ç”µæºç¬åœçš„å¯ç–‘æ€§å¤§
  *
  */
 int am_rx8025sa_power_check(am_rx8025sa_handle_t  handle);
 
 /**
- * \name ¼ì²âµÍµçÑ¹µÄãĞÖµÉè¶¨
+ * \name æ£€æµ‹ä½ç”µå‹çš„é˜ˆå€¼è®¾å®š
  * \anchor grp_rx8025sa_check_voltage
  */
-#define RX8025SA_CHECK_VOLTAGE_1_3V  0   /** \brief µçÔ´ ½µµÍ¼ì²â¹¦ÄÜµÄ±ê×¼µçÑ¹ÖµÉè¶¨Îª1.3v */
-#define RX8025SA_CHECK_VOLTAGE_2_1V  1   /** \brief µçÔ´ ½µµÍ¼ì²â¹¦ÄÜµÄ±ê×¼µçÑ¹ÖµÉè¶¨Îª2.1v */
+#define RX8025SA_CHECK_VOLTAGE_1_3V  0   /** \brief ç”µæº é™ä½æ£€æµ‹åŠŸèƒ½çš„æ ‡å‡†ç”µå‹å€¼è®¾å®šä¸º1.3v */
+#define RX8025SA_CHECK_VOLTAGE_2_1V  1   /** \brief ç”µæº é™ä½æ£€æµ‹åŠŸèƒ½çš„æ ‡å‡†ç”µå‹å€¼è®¾å®šä¸º2.1v */
 
 /**
- * \brief µÍµçÑ¹¼ì²â¹¦ÄÜµÄ±ê×¼µçÑ¹ÖµÉè¶¨
+ * \brief ä½ç”µå‹æ£€æµ‹åŠŸèƒ½çš„æ ‡å‡†ç”µå‹å€¼è®¾å®š
  *
- * \param[in] handle        : RX8025SA·şÎñ²Ù×÷¾ä±ú
- * \param[in] check_v_value : µÍµçÑ¹ãĞÖµ £¬²Î¿¼ grp_rx8025sa_check_voltage
+ * \param[in] handle        : RX8025SAæœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] check_v_value : ä½ç”µå‹é˜ˆå€¼ ï¼Œå‚è€ƒ grp_rx8025sa_check_voltage
  *
- * \retval AM_OK : ²Ù×÷³É¹¦
- * \retval ÆäËû  : ²Ù×÷´íÎó,¾ßÌå²é¿´·µ»Ø´íÎó±àÂë
+ * \retval AM_OK : æ“ä½œæˆåŠŸ
+ * \retval å…¶ä»–  : æ“ä½œé”™è¯¯,å…·ä½“æŸ¥çœ‹è¿”å›é”™è¯¯ç¼–ç 
  */
 int am_rx8025sa_check_voltage_set (am_rx8025sa_handle_t handle, uint8_t check_v_value);
 
 /*
- * \brief ¼ÆÊ±ÆµÂÊ½øĞĞµ÷¿ì»òµ÷Âı
- * \param[in] handle   : RX8025SA·şÎñ²Ù×÷¾ä±ú
- * \param[in] clk      : Òªµ÷Õûµ½µÄÆµÂÊ´óĞ¡  £¬µ÷ÕûµÄ·¶Î§ £º-189.1*10^-6 <= (clk-32768)/32768 <= +189.1*10^-6
+ * \brief è®¡æ—¶é¢‘ç‡è¿›è¡Œè°ƒå¿«æˆ–è°ƒæ…¢
+ * \param[in] handle   : RX8025SAæœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] clk      : è¦è°ƒæ•´åˆ°çš„é¢‘ç‡å¤§å°  ï¼Œè°ƒæ•´çš„èŒƒå›´ ï¼š-189.1*10^-6 <= (clk-32768)/32768 <= +189.1*10^-6
  *
- * \retval AM_OK : ²Ù×÷³É¹¦
- * \retval ÆäËû  : ²Ù×÷´íÎó,¾ßÌå²é¿´·µ»Ø´íÎó±àÂë
+ * \retval AM_OK : æ“ä½œæˆåŠŸ
+ * \retval å…¶ä»–  : æ“ä½œé”™è¯¯,å…·ä½“æŸ¥çœ‹è¿”å›é”™è¯¯ç¼–ç 
  *
- * \note clk µÄµ¥Î»ÎªHZ£¬¶ÔFOUTÊä³öµÄÆµÂÊÃ»ÓĞÓ°Ïì¡£
+ * \note clk çš„å•ä½ä¸ºHZï¼Œå¯¹FOUTè¾“å‡ºçš„é¢‘ç‡æ²¡æœ‰å½±å“ã€‚
  */
 int am_rx8025sa_clk_adjust ( am_rx8025sa_handle_t handle, float clk );
 
 /*
- * \brief  ÉèÖÃ clkµÄÊä³ö £¬FOUT½«Êä³ö32.768KHZÆµÂÊ
- * \param[in] handle     : RX8025SA·şÎñ²Ù×÷¾ä±ú
+ * \brief  è®¾ç½® clkçš„è¾“å‡º ï¼ŒFOUTå°†è¾“å‡º32.768KHZé¢‘ç‡
+ * \param[in] handle     : RX8025SAæœåŠ¡æ“ä½œå¥æŸ„
  *
- * \retval AM_OK : ²Ù×÷³É¹¦
- * \retval ÆäËû  : ²Ù×÷´íÎó,¾ßÌå²é¿´·µ»Ø´íÎó±àÂë
+ * \retval AM_OK : æ“ä½œæˆåŠŸ
+ * \retval å…¶ä»–  : æ“ä½œé”™è¯¯,å…·ä½“æŸ¥çœ‹è¿”å›é”™è¯¯ç¼–ç 
  *
- * \note ÈôÒªÊ¹ÓÃĞ¾Æ¬Êä³öµÄÆµÂÊ¾Í±ØĞëÅäÖÃÉè±¸ĞÅÏ¢ÖĞclk_en_pin¡£
+ * \note è‹¥è¦ä½¿ç”¨èŠ¯ç‰‡è¾“å‡ºçš„é¢‘ç‡å°±å¿…é¡»é…ç½®è®¾å¤‡ä¿¡æ¯ä¸­clk_en_pinã€‚
  */
 int am_rx8025sa_clkout_set(am_rx8025sa_handle_t handle);
 
 /*
- * \brief  ¹Ø±Õ clkµÄÊä³ö
- * \param[in] handle     : RX8025SA·şÎñ²Ù×÷¾ä±ú
+ * \brief  å…³é—­ clkçš„è¾“å‡º
+ * \param[in] handle     : RX8025SAæœåŠ¡æ“ä½œå¥æŸ„
  *
- * \retval AM_OK : ²Ù×÷³É¹¦
- * \retval ÆäËû  : ²Ù×÷´íÎó,¾ßÌå²é¿´·µ»Ø´íÎó±àÂë
+ * \retval AM_OK : æ“ä½œæˆåŠŸ
+ * \retval å…¶ä»–  : æ“ä½œé”™è¯¯,å…·ä½“æŸ¥çœ‹è¿”å›é”™è¯¯ç¼–ç 
  */
 int am_rx8025sa_clkout_close(am_rx8025sa_handle_t handle);
                               

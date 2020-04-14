@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief LPC82X ʱ���û������ļ�
+ * \brief LPC82X 时钟用户配置文件
  * \sa am_hwconf_lpc82x_clk.c
  *
  * \internal
@@ -36,26 +36,26 @@
  */
 
 /**
- * \brief  ������PLLʱ��Դ
- *       - �ڲ�IRC��12MHz��  : AMHW_LPC82X_CLK_PLLIN_SRC_IRC
- *       - �ⲿ����12MHz�� : AMHW_LPC82X_CLK_PLLIN_SRC_SYSOSC
- *       - �ⲿ��������ʱ��  : AMHW_LPC82X_CLK_PLLIN_SRC_CLKIN
- * \note ������ʹ���ڲ�IRC����Ҫʹ���ⲿ������Ҫ�ڿ������Ϻ���12MHz�ľ���\n
- *       ���޸ĺ�ֵΪAMHW_LPC82X_CLK_PLLIN_SRC_SYSOSC,��ʹ���ⲿ����ʱ������,\n
- *       ��12MHzʱ�Ӵ�PIO0_1�������롣
+ * \brief  开发板PLL时钟源
+ *       - 内部IRC（12MHz）  : AMHW_LPC82X_CLK_PLLIN_SRC_IRC
+ *       - 外部晶振（12MHz） : AMHW_LPC82X_CLK_PLLIN_SRC_SYSOSC
+ *       - 外部引脚输入时钟  : AMHW_LPC82X_CLK_PLLIN_SRC_CLKIN
+ * \note 开发板使用内部IRC，若要使用外部晶振，需要在开发板上焊接12MHz的晶振，\n
+ *       并修改宏值为AMHW_LPC82X_CLK_PLLIN_SRC_SYSOSC,若使用外部引脚时钟输入,\n
+ *       将12MHz时钟从PIO0_1引脚输入。
  */
 #define __LPC82X_CLK_PLL_SRC  AMHW_LPC82X_CLK_PLLIN_SRC_IRC
 
 
-/** \brief CLK ƽ̨��ʼ�� */
+/** \brief CLK 平台初始化 */
 static void __lpc82x_clk_plfm_init (void)
 {
     if(__LPC82X_CLK_PLL_SRC == AMHW_LPC82X_CLK_PLLIN_SRC_SYSOSC) {
         /**
-         *  �ⲿ�����ϵͳ������Ϊʱ��Դ
+         *  外部晶振和系统振荡器作为时钟源
          */
 
-        /* ��PIO0_8,��PIO0_9 ����Ϊ����ģʽ����������������*/
+        /* 将PIO0_8,、PIO0_9 配置为消极模式（无上拉和下拉）*/
         amhw_lpc82x_clk_periph_enable(AMHW_LPC82X_CLK_IOCON);
 
         amhw_lpc82x_iocon_mode_set(LPC82X_IOCON,
@@ -66,7 +66,7 @@ static void __lpc82x_clk_plfm_init (void)
                                    PIO0_9,
                                    AMHW_LPC82X_IOCON_MODE_INACTIVE);
 
-        /* ʹ��PIO0_8_XTALIN��PIO0_9_XTALOUT ���ؾ���̶����Ź��� */
+        /* 使能PIO0_8_XTALIN，PIO0_9_XTALOUT 开关矩阵固定引脚功能 */
 
         amhw_lpc82x_clk_periph_enable(AMHW_LPC82X_CLK_SWM);
 
@@ -78,105 +78,105 @@ static void __lpc82x_clk_plfm_init (void)
 
         } else if (__LPC82X_CLK_PLL_SRC == AMHW_LPC82X_CLK_PLLIN_SRC_CLKIN) {
         /**
-         *  �ⲿ�ܽ�������Ϊʱ��Դ
+         *  外部管脚输入作为时钟源
          */
 
-        /* ��PIO0_1 ����Ϊ����ģʽ����������������*/
+        /* 将PIO0_1 配置为消极模式（无上拉和下拉）*/
 
         amhw_lpc82x_clk_periph_enable(AMHW_LPC82X_CLK_IOCON);
 
         amhw_lpc82x_iocon_mode_set(LPC82X_IOCON,PIO0_1,
                                    AMHW_LPC82X_IOCON_MODE_INACTIVE);
 
-        /* ʹ��PIO0_1 ���ؾ���̶����Ź��� CLKIN */
+        /* 使能PIO0_1 开关矩阵固定引脚功能 CLKIN */
 
         amhw_lpc82x_clk_periph_enable(AMHW_LPC82X_CLK_SWM);
 
         amhw_lpc82x_swm_fixed_func_enable(LPC82X_SWM,
                                           AMHW_LPC82X_SWM_PIO0_1_CLKIN);
         } else {
-        /* ʹ���ڲ�IRC ��ʱ��Դ */
+        /* 使用内部IRC 作时钟源 */
         }
 
 }
 
-/** \brief CLK�豸��Ϣ
- *  Ĭ��ֵ�� ���ð���ʹ���ڲ�IRC��12MHz), ����PLL��Ƶ���������ʱ�ӣ�\n
- *           ��ʱ�� main_rate = 60 MHz, ϵͳʱ�� system_clk = 30MHz
+/** \brief CLK设备信息
+ *  默认值： 配置板子使用内部IRC（12MHz), 经过PLL倍频后输出到主时钟，\n
+ *           主时钟 main_rate = 60 MHz, 系统时钟 system_clk = 30MHz
  *
- *  \note ����ͨ���޸�__g_clk_devinfo����main��ʱ��Դ��Ƶ�ʣ���ʱ��
- *        ʹ��PLL���ʱ���޸�MSEL,PSELʵ�֣���ϵͳʱ������ʱ�ӷ�Ƶ��õ�,
- *        Ĭ��2��Ƶ
+ *  \note 可以通过修改__g_clk_devinfo配置main主时钟源和频率（主时钟
+ *        使用PLL输出时，修改MSEL,PSEL实现），系统时钟由主时钟分频后得到,
+ *        默认2分频
  */
 static const am_lpc82x_clk_devinfo_t __g_clk_devinfo =
 {
     /**
-     * \brief PLL ʱ��Դ
-     *        PLLʱ��Դʹ���ⲿ����
-     *        �ڲ�IRC��12MHz��:    AMHW_LPC82X_CLK_PLLIN_SRC_IRC
-     *        ϵͳ������12MHz�� : AMHW_LPC82X_CLK_PLLIN_SRC_SYSOSC
-     *        �ⲿ��������ʱ�� : AMHW_LPC82X_CLK_PLLIN_SRC_CLKIN
+     * \brief PLL 时钟源
+     *        PLL时钟源使用外部晶振
+     *        内部IRC（12MHz）:    AMHW_LPC82X_CLK_PLLIN_SRC_IRC
+     *        系统振荡器（12MHz） : AMHW_LPC82X_CLK_PLLIN_SRC_SYSOSC
+     *        外部引脚输入时钟 : AMHW_LPC82X_CLK_PLLIN_SRC_CLKIN
      */
     __LPC82X_CLK_PLL_SRC,
 
     /**
-     * \brief PLL ���ƼĴ���MSEL��ʹFCLKOUT �ڷ�Χ 100MHz��
+     * \brief PLL 控制寄存器MSEL，使FCLKOUT 在范围 100MHz内
      *        FCLKOUT = FCLKIN * (MSEL + 1) = 12MHz * 5 = 60 MHz
      */
     4,
 
     /**
-     * \brief PLL ���ƼĴ���PSEL ,ʹFCCO �ڷ�Χ 156 - 320MHz
+     * \brief PLL 控制寄存器PSEL ,使FCCO 在范围 156 - 320MHz
      *        FCCO = FCLKOUT * 2 * 2^(PSEL) = 60MHz * 2 * 2 = 240MHz
      */
     1,
 
     /**
-     * \brief MAIN ʱ��Դѡ��
-     *        - �ڲ�IRC      AMHW_LPC82X_CLK_MAIN_SRC_IRC
-     *        - PLL����      AMHW_LPC82X_CLK_MAIN_SRC_PLLIN
-     *        - ���Ź����� AMHW_LPC82X_CLK_MAIN_SRC_WDTOSC
-     *        - PLL���      AMHW_LPC82X_CLK_MAIN_SRC_PLLOUT
+     * \brief MAIN 时钟源选择
+     *        - 内部IRC      AMHW_LPC82X_CLK_MAIN_SRC_IRC
+     *        - PLL输入      AMHW_LPC82X_CLK_MAIN_SRC_PLLIN
+     *        - 看门狗振荡器 AMHW_LPC82X_CLK_MAIN_SRC_WDTOSC
+     *        - PLL输出      AMHW_LPC82X_CLK_MAIN_SRC_PLLOUT
      * \note         main_clk = FCLKOUT = 60MHz
      */
     AMHW_LPC82X_CLK_MAIN_SRC_PLLOUT,
 
     /**
-     * \brief ϵͳʱ�ӷ�Ƶ�������� 1- 255 ֮�����ֵ
+     * \brief 系统时钟分频数，可填 1- 255 之间的数值
      *        system_clk = main_clk / div = 60MHz / 2 = 30 MHz
      */
     2,
 
-    /* ��MAIN ʱ��Դѡ���Ź�����ʱ����Ҫ����WDTOSCƵ�ʷ�Ƶϵ����Ƶ��ѡ��
-     * ����ΪĬ��ֵ 0.6MHz��64��Ƶ��ʱ��Ƶ��9.375KHz
+    /* 若MAIN 时钟源选择看门狗振荡器时，需要配置WDTOSC频率分频系数和频率选择
+     * 这里为默认值 0.6MHz，64分频，时钟频率9.375KHz
      */
 
     /**
-     * \brief WDTOSCƵ�ʷ�Ƶϵ�������� 2 - 64 ֮���ż��
+     * \brief WDTOSC频率分频系数，可填 2 - 64 之间的偶数
      *
      */
     64,
 
     /**
-     * \brief WDTOSCƵ��ѡ��
+     * \brief WDTOSC频率选择
      *        wdtosc_freq = 600000UL Hz
      */
     AMHW_LPC82X_CLK_WDTOSC_RATE_0_6MHZ,
 
-    /* ƽ̨��ʼ������������ʱ�����ŵȲ��� */
+    /* 平台初始化函数，配置时钟引脚等操作 */
     __lpc82x_clk_plfm_init,
 
-    /* CLK��ƽ̨ȥ��ʼ������ */
+    /* CLK无平台去初始化函数 */
     NULL
 
 };
 
-/** \brief ʱ���豸ʵ�� */
+/** \brief 时钟设备实例 */
 static am_lpc82x_clk_dev_t __g_clk_dev;
 
 /**
- * \brief  CLK ʵ����ʼ������ʼ��ϵͳʱ��
- * \retval AM_OK : ʱ�ӳɹ���ʼ��
+ * \brief  CLK 实例初始化，初始化系统时钟
+ * \retval AM_OK : 时钟成功初始化
  */
 int am_lpc82x_clk_inst_init (void)
 {

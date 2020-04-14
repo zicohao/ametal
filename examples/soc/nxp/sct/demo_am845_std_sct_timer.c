@@ -12,17 +12,17 @@
 
 /**
  * \file
- * \brief SCT ¶¨Ê±Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief SCT å®šæ—¶ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. LED0 µÄ×´Ì¬ÒÔ 3s ÎªÖÜÆÚÔÚ¶¨Ê±·­×ªºÍÍ£Ö¹·­×ªÁ½¸ö×´Ì¬¼äÇĞ»»¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. LED0 çš„çŠ¶æ€ä»¥ 3s ä¸ºå‘¨æœŸåœ¨å®šæ—¶ç¿»è½¬å’Œåœæ­¢ç¿»è½¬ä¸¤ä¸ªçŠ¶æ€é—´åˆ‡æ¢ã€‚
  *
  * \note
- *    1. LED0 ĞèÒª¶Ì½Ó J9 ÌøÏßÃ±£¬²ÅÄÜ±» PIO0_20 ¿ØÖÆ£»
- *    2. ÓÉÓÚ SCT Ä¬ÈÏ×÷ÎªÇı¶¯·äÃùÆ÷£¬Ê¹ÓÃ²âÊÔ±¾ Demo Ç°ĞèÒª½« am_prj_config.h ÖĞ
- *       µÄ AM_CFG_BUZZER_ENABLE ¶¨ÒåÎª 0£¬²»Ê¹ÓÃ·äÃùÆ÷¡£
+ *    1. LED0 éœ€è¦çŸ­æ¥ J9 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIO0_20 æ§åˆ¶ï¼›
+ *    2. ç”±äº SCT é»˜è®¤ä½œä¸ºé©±åŠ¨èœ‚é¸£å™¨ï¼Œä½¿ç”¨æµ‹è¯•æœ¬ Demo å‰éœ€è¦å°† am_prj_config.h ä¸­
+ *       çš„ AM_CFG_BUZZER_ENABLE å®šä¹‰ä¸º 0ï¼Œä¸ä½¿ç”¨èœ‚é¸£å™¨ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_lpc82x_std_sct_timer.c src_lpc82x_std_sct_timer
  *
  * \internal
@@ -45,7 +45,7 @@
 #include "am_lpc84x_inst_init.h"
 
 /**
- * \brief ¶¨Ê±Æ÷»Øµ÷º¯Êı
+ * \brief å®šæ—¶å™¨å›è°ƒå‡½æ•°
  */
 am_local void __src_timing_callback (void *p_arg)
 {
@@ -53,7 +53,7 @@ am_local void __src_timing_callback (void *p_arg)
 }
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_lpc84x_std_sct_timer_entry (void)
 {
@@ -63,13 +63,13 @@ void demo_lpc84x_std_sct_timer_entry (void)
     sct_timing_handle = am_lpc84x_sct0_timing_inst_init();
     am_timer_info_get(sct_timing_handle);
 
-    /* ÉèÖÃ»Øµ÷º¯Êı */
+    /* è®¾ç½®å›è°ƒå‡½æ•° */
     am_timer_callback_set(sct_timing_handle, 0, __src_timing_callback, NULL);
 
     AM_FOREVER
     {
 
-//        /* ÉèÖÃ¶¨Ê±ÖĞ¶ÏÆµÂÊÎª 20Hz */
+//        /* è®¾ç½®å®šæ—¶ä¸­æ–­é¢‘ç‡ä¸º 20Hz */
 //        am_timer_enable(sct_timing_handle,
 //                        0,
 //                        sct_timing_info.clk_frequency / 20);

@@ -43,18 +43,18 @@ extern "C" {
  * Definitions
  ******************************************************************************/
 
-/**< \brief ¶¨ÒåÊÂÎñÀàÐÍ */
+/**< \brief å®šä¹‰äº‹åŠ¡ç±»åž‹ */
 #define AM_USBD_CTRL_SETUP    0x00
 #define AM_USBD_CTRL_IN       0x01
 #define AM_USBD_CTRL_OUT      0x02
 #define AM_USBD_CTRL_IDLE     0xFF
 
 
-/** \brief Éè±¸ÊÇ·ñÖ§³Ö×Ô¹©µç (0:²»Ö§³Ö£¬1:Ö§³Ö)*/
+/** \brief è®¾å¤‡æ˜¯å¦æ”¯æŒè‡ªä¾›ç”µ (0:ä¸æ”¯æŒï¼Œ1:æ”¯æŒ)*/
 #define AM_USBD_CONFIG_SELF_POWER                ((0x80) | (1 << 6U))
 #define AM_USBD_CONFIG_NOT_SELF_POWER            ((0x80) | (0 << 6U))
 
-/** \brief Éè±¸ÊÇ·ñÖ§³ÖÔ¶³Ì»½ÐÑ¹¦ÄÜ(0:²»Ö§³Ö£¬1:Ö§³Ö) */
+/** \brief è®¾å¤‡æ˜¯å¦æ”¯æŒè¿œç¨‹å”¤é†’åŠŸèƒ½(0:ä¸æ”¯æŒï¼Œ1:æ”¯æŒ) */
 #define AM_USBD_CONFIG_REMOTE_WAKEUP             ((0x80) | (1 << 5U))
 #define AM_USBD_CONFIG_NOT_REMOTE_WAKEUP         ((0x80) | (0 << 5U))
 
@@ -67,86 +67,86 @@ extern "C" {
 #define AM_USBD_PROTOCOL                         (0x00U)
 #define AM_USBD_MAX_POWER                        (0x32U)
 
-/**< \brief Ö§³ÖµÄ×î´ó¶Ëµã¸öÊý */
+/**< \brief æ”¯æŒçš„æœ€å¤§ç«¯ç‚¹ä¸ªæ•° */
 #define AM_USBD_MAX_EP_CNT                       (10)
 
-/**< \brief Ò»´ÎÐÔÊÕ·¢µÄ×î´ó×Ö½Ú¸öÊý */
+/**< \brief ä¸€æ¬¡æ€§æ”¶å‘çš„æœ€å¤§å­—èŠ‚ä¸ªæ•° */
 #define AM_USBD_MAX_EP_DATA_CNT                  (64U)
 
-/**< \brief ¶ËµãÑÚÂë*/
+/**< \brief ç«¯ç‚¹æŽ©ç */
 #define AM_USBD_ENDPOINT_NUMBER_MASK             (0x0FU)
 
-/** \brief »ñÈ¡/ÉèÖÃ×´Ì¬ÀàÐÍ */
+/** \brief èŽ·å–/è®¾ç½®çŠ¶æ€ç±»åž‹ */
 typedef enum am_usbd_status {
-    AM_USBD_STATUS_TEST_MODE = 1U, /**< \brief ²âÊÔÄ£Ê½×´Ì¬ */
-    AM_USBD_STATUS_SPEED,          /**< \brief µ±Ç°ËÙ¶È×´Ì¬ */
-    AM_USBD_STATUS_OTG,            /**< \brief OTG ×´Ì¬ */
-    AM_USBD_STATUS_DEVICE,         /**< \brief Éè±¸×´Ì¬ */
-    AM_USBD_STATUS_ENDPOINT,       /**< \brief ¶ËµãÉè±¸×´Ì¬ */
-    AM_USBD_STATUS_DEVICE_STATE,   /**< \brief Éè±¸×´Ì¬ */
-    AM_USBD_STATUS_ADDRESS,        /**< \brief Éè±¸µØÖ·×´Ì¬ */
-    AM_USBD_STATUS_SYNCH_FRAME,    /**< \brief µ±Ç°Ö¡×´Ì¬ */
-    AM_USBD_STATUS_BUS,            /**< \brief ×ÜÏß×´Ì¬ */
+    AM_USBD_STATUS_TEST_MODE = 1U, /**< \brief æµ‹è¯•æ¨¡å¼çŠ¶æ€ */
+    AM_USBD_STATUS_SPEED,          /**< \brief å½“å‰é€Ÿåº¦çŠ¶æ€ */
+    AM_USBD_STATUS_OTG,            /**< \brief OTG çŠ¶æ€ */
+    AM_USBD_STATUS_DEVICE,         /**< \brief è®¾å¤‡çŠ¶æ€ */
+    AM_USBD_STATUS_ENDPOINT,       /**< \brief ç«¯ç‚¹è®¾å¤‡çŠ¶æ€ */
+    AM_USBD_STATUS_DEVICE_STATE,   /**< \brief è®¾å¤‡çŠ¶æ€ */
+    AM_USBD_STATUS_ADDRESS,        /**< \brief è®¾å¤‡åœ°å€çŠ¶æ€ */
+    AM_USBD_STATUS_SYNCH_FRAME,    /**< \brief å½“å‰å¸§çŠ¶æ€ */
+    AM_USBD_STATUS_BUS,            /**< \brief æ€»çº¿çŠ¶æ€ */
 } am_usbd_status_t;
 
-/** \brief USB 2.0 Éè±¸×´Ì¬ÀàÐÍ */
+/** \brief USB 2.0 è®¾å¤‡çŠ¶æ€ç±»åž‹ */
 typedef enum am_usbd_state {
-    AM_USBD_STATE_CONFIGURED = 0U, /**< \brief Éè±¸×´Ì¬, ÅäÖÃ */
-    AM_USBD_STATE_ADDRESS,         /**< \brief Éè±¸×´Ì¬, µØÖ· */
-    AM_USBD_STATE_DEFAULT,         /**< \brief Éè±¸×´Ì¬, Ä¬ÈÏ*/
-    AM_USBD_STATE_ADDRESSING,      /**< \brief Éè±¸×´Ì¬, µØÖ·ÉèÖÃ */
-    AM_USBD_STATE_TEST_MODE,       /**< \brief Éè±¸×´Ì¬, ²âÊÔÄ£Ê½ */
+    AM_USBD_STATE_CONFIGURED = 0U, /**< \brief è®¾å¤‡çŠ¶æ€, é…ç½® */
+    AM_USBD_STATE_ADDRESS,         /**< \brief è®¾å¤‡çŠ¶æ€, åœ°å€ */
+    AM_USBD_STATE_DEFAULT,         /**< \brief è®¾å¤‡çŠ¶æ€, é»˜è®¤*/
+    AM_USBD_STATE_ADDRESSING,      /**< \brief è®¾å¤‡çŠ¶æ€, åœ°å€è®¾ç½® */
+    AM_USBD_STATE_TEST_MODE,       /**< \brief è®¾å¤‡çŠ¶æ€, æµ‹è¯•æ¨¡å¼ */
 } am_usbd_state_t;
 
 
-/** \brief Éè±¸»Øµ÷ÊÂ¼þÀàÐÍ */
+/** \brief è®¾å¤‡å›žè°ƒäº‹ä»¶ç±»åž‹ */
 typedef enum am_usbd_event {
-    AM_USBD_EVENT_BUS_RESET = 1U,                  /**< \brief ¼ì²âµ½USB×ÜÏß¸´Î»ÐÅºÅ  */
-    AM_USBD_EVENT_SUSPEND,                         /**< \brief ¼ì²âµ½USB×ÜÏßÔÝÍ£ÐÅºÅ */
-    AM_USBD_EVENT_RESUME,                          /**< \brief ¼ì²âµ½USB×ÜÏß»Ö¸´ÐÅºÅ */
-    AM_USBD_EVENT_ERROR,                           /**< \brief ×ÜÏßÉÏ·¢ÉúÁË´íÎó */
-    AM_USBD_EVENT_DETACH,                          /**< \brief USB Éè±¸´ÓÖ÷»úÖÐ¶Ï¿ªÁË */
-    AM_USBD_EVENT_ATTACH,                          /**< \brief USB Éè±¸Á¬½ÓÉÏÖ÷»ú */
-    AM_USBD_EVENT_SET_CONFIGURATION,               /**< \brief ÉèÖÃÅäÖÃ */
-    AM_USBD_EVENT_SET_INTERFACE,                   /**< \brief ÉèÖÃ½Ó¿Ú  */
+    AM_USBD_EVENT_BUS_RESET = 1U,                  /**< \brief æ£€æµ‹åˆ°USBæ€»çº¿å¤ä½ä¿¡å·  */
+    AM_USBD_EVENT_SUSPEND,                         /**< \brief æ£€æµ‹åˆ°USBæ€»çº¿æš‚åœä¿¡å· */
+    AM_USBD_EVENT_RESUME,                          /**< \brief æ£€æµ‹åˆ°USBæ€»çº¿æ¢å¤ä¿¡å· */
+    AM_USBD_EVENT_ERROR,                           /**< \brief æ€»çº¿ä¸Šå‘ç”Ÿäº†é”™è¯¯ */
+    AM_USBD_EVENT_DETACH,                          /**< \brief USB è®¾å¤‡ä»Žä¸»æœºä¸­æ–­å¼€äº† */
+    AM_USBD_EVENT_ATTACH,                          /**< \brief USB è®¾å¤‡è¿žæŽ¥ä¸Šä¸»æœº */
+    AM_USBD_EVENT_SET_CONFIGURATION,               /**< \brief è®¾ç½®é…ç½® */
+    AM_USBD_EVENT_SET_INTERFACE,                   /**< \brief è®¾ç½®æŽ¥å£  */
 
-    AM_USBD_EVENT_GET_DEVICE_DESCRIPTOR,           /**< \brief »ñÈ¡Éè±¸ÃèÊö */
-    AM_USBD_EVENT_GET_CONFIGURATION_DESCRIPTOR,    /**< \brief »ñÈ¡ÅäÖÃÃèÊö */
-    AM_USBD_EVENT_GET_STRING_DESCRIPTOR,           /**< \brief »ñÈ¡×Ö·û´®ÃèÊö */
-    AM_USBD_EVENT_GET_HID_DESCRIPTOR,              /**< \brief »ñÈ¡ HID ÃèÊö */
-    AM_USBD_EVENT_GET_HID_REPORT_DESCRIPTOR,       /**< \brief »ñÈ¡ HID ±¨¸æÃèÊö */
-    AM_USBD_EVENT_GET_HID_PHYSICAL_DESCRIPTOR,     /**< \brief »ñÈ¡ HID ÎïÀíÃèÊö */
-    AM_USBD_EVENT_GET_DEVICE_QUALIFIER_DESCRIPTOR, /**< \brief »ñÈ¡ Éè±¸ÖÊÁ¿ÃèÊö */
-    AM_USBD_EVENT_VENDOR_REQUEST,                  /**< \brief ¹©Ó¦ÉÌÇëÇó */
-    AM_USBD_EVENT_SET_REMOTE_WAKEUP,               /**< \brief Ê¹ÄÜ/½ûÖ¹Ô¶¶Ë»½ÐÑ¹¦ÄÜ */
-    AM_USBD_EVENT_GET_CONFIGURATION,               /**< \brief »ñÈ¡µ±Ç°ÅäÖÃË÷Òý */
-    AM_USBD_EVENT_GET_INTERFACE,                   /**< \brief »ñÈ¡µ±Ç°±¸ÓÃ½Ó¿ÚÖµ */
+    AM_USBD_EVENT_GET_DEVICE_DESCRIPTOR,           /**< \brief èŽ·å–è®¾å¤‡æè¿° */
+    AM_USBD_EVENT_GET_CONFIGURATION_DESCRIPTOR,    /**< \brief èŽ·å–é…ç½®æè¿° */
+    AM_USBD_EVENT_GET_STRING_DESCRIPTOR,           /**< \brief èŽ·å–å­—ç¬¦ä¸²æè¿° */
+    AM_USBD_EVENT_GET_HID_DESCRIPTOR,              /**< \brief èŽ·å– HID æè¿° */
+    AM_USBD_EVENT_GET_HID_REPORT_DESCRIPTOR,       /**< \brief èŽ·å– HID æŠ¥å‘Šæè¿° */
+    AM_USBD_EVENT_GET_HID_PHYSICAL_DESCRIPTOR,     /**< \brief èŽ·å– HID ç‰©ç†æè¿° */
+    AM_USBD_EVENT_GET_DEVICE_QUALIFIER_DESCRIPTOR, /**< \brief èŽ·å– è®¾å¤‡è´¨é‡æè¿° */
+    AM_USBD_EVENT_VENDOR_REQUEST,                  /**< \brief ä¾›åº”å•†è¯·æ±‚ */
+    AM_USBD_EVENT_SET_REMOTE_WAKEUP,               /**< \brief ä½¿èƒ½/ç¦æ­¢è¿œç«¯å”¤é†’åŠŸèƒ½ */
+    AM_USBD_EVENT_GET_CONFIGURATION,               /**< \brief èŽ·å–å½“å‰é…ç½®ç´¢å¼• */
+    AM_USBD_EVENT_GET_INTERFACE,                   /**< \brief èŽ·å–å½“å‰å¤‡ç”¨æŽ¥å£å€¼ */
 } am_usbd_event_t;
 
 
 /**
- * \brief ¶Ëµã³õÊ¼»¯½á¹¹
- * ¸Ã½á¹¹Ìå¿ÉÒÔ³õÊ¼»¯¶ËµãÐÅÏ¢£¬×÷Îªam_usbd_control µÄ²ÎÊý´«Èë
+ * \brief ç«¯ç‚¹åˆå§‹åŒ–ç»“æž„
+ * è¯¥ç»“æž„ä½“å¯ä»¥åˆå§‹åŒ–ç«¯ç‚¹ä¿¡æ¯ï¼Œä½œä¸ºam_usbd_control çš„å‚æ•°ä¼ å…¥
  */
 typedef struct am_usbd_endpoint_init {
-    uint8_t  endpoint_address;     /**< \brief ¶ËµãµØÖ· */
-    uint8_t  transfer_type;        /**< \brief ¶Ëµã´«ÊäÀàÐÍ */
-    uint16_t max_packet_size;      /**< \brief ¶Ëµã×î´ó°ü´óÐ¡ */
+    uint8_t  endpoint_address;     /**< \brief ç«¯ç‚¹åœ°å€ */
+    uint8_t  transfer_type;        /**< \brief ç«¯ç‚¹ä¼ è¾“ç±»åž‹ */
+    uint16_t max_packet_size;      /**< \brief ç«¯ç‚¹æœ€å¤§åŒ…å¤§å° */
 } am_usbd_endpoint_init_t;
 
 /**
- * \brief ¶Ëµã×´Ì¬½á¹¹
- * ¸Ã½á¹¹Ìå¿ÉÒÔ³õÊ¼»¯¶ËµãÐÅÏ¢£¬×÷Îªam_usbd_control µÄ²ÎÊý´«Èë
+ * \brief ç«¯ç‚¹çŠ¶æ€ç»“æž„
+ * è¯¥ç»“æž„ä½“å¯ä»¥åˆå§‹åŒ–ç«¯ç‚¹ä¿¡æ¯ï¼Œä½œä¸ºam_usbd_control çš„å‚æ•°ä¼ å…¥
  */
 typedef struct am_usbd_ep_status {
-    uint8_t  endpoint_address;     /**< \brief ¶ËµãµØÖ· */
-    uint16_t endpoint_status;      /**< \brief ¶Ëµã×´Ì¬ : ¿ÕÏÐ  or ¹ÒÆð */
+    uint8_t  endpoint_address;     /**< \brief ç«¯ç‚¹åœ°å€ */
+    uint16_t endpoint_status;      /**< \brief ç«¯ç‚¹çŠ¶æ€ : ç©ºé—²  or æŒ‚èµ· */
 } am_usbd_ep_status_t;
 
 typedef struct am_usbd_descriptor {
-    uint16_t  desc_wValue;             /* ¸ß8Î»ÎªÃèÊö·ûÀàÐÍ£¬µÍ8Î»ÎªÃèÊö·û±àºÅ */
-    uint16_t  desc_size;               /* ÃèÊö·û´óÐ¡ */
-    const uint8_t  *p_desc;            /* ÃèÊö·ûÄÚÈÝ */
+    uint16_t  desc_wValue;             /* é«˜8ä½ä¸ºæè¿°ç¬¦ç±»åž‹ï¼Œä½Ž8ä½ä¸ºæè¿°ç¬¦ç¼–å· */
+    uint16_t  desc_size;               /* æè¿°ç¬¦å¤§å° */
+    const uint8_t  *p_desc;            /* æè¿°ç¬¦å†…å®¹ */
 }am_usbd_descriptor_t;
 
 #ifdef __cplusplus

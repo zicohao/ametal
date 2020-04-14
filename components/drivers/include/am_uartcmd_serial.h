@@ -29,124 +29,124 @@ extern "C" {
 
 #include "am_uartcmd.h"
 
-#define UARTCMD_SERIAL_SPEED_SET  1 /**< \brief ÉèÖÃ´®ÐÐÉè±¸ËÙÂÊ */
-#define UARTCMD_SERIAL_SPEED_GET  2 /**< \brief »ñÈ¡´®ÐÐÉè±¸ËÙÂÊ */
-#define UARTCMD_SERIAL_ADDR_SET   3 /**< \brief ÉèÖÃ´®ÐÐÉè±¸µØÖ· */
-#define UARTCMD_SERIAL_ADDR_GET   4 /**< \brief »ñÈ¡´®ÐÐÉè±¸µØÖ· */
+#define UARTCMD_SERIAL_SPEED_SET  1 /**< \brief è®¾ç½®ä¸²è¡Œè®¾å¤‡é€ŸçŽ‡ */
+#define UARTCMD_SERIAL_SPEED_GET  2 /**< \brief èŽ·å–ä¸²è¡Œè®¾å¤‡é€ŸçŽ‡ */
+#define UARTCMD_SERIAL_ADDR_SET   3 /**< \brief è®¾ç½®ä¸²è¡Œè®¾å¤‡åœ°å€ */
+#define UARTCMD_SERIAL_ADDR_GET   4 /**< \brief èŽ·å–ä¸²è¡Œè®¾å¤‡åœ°å€ */
 
-/** \brief ÌáÇ°ÉùÃ÷½á¹¹Ìå */
+/** \brief æå‰å£°æ˜Žç»“æž„ä½“ */
 struct uartcmd_serial;
 
 /**
- * \brief ´®ÐÐÉè±¸Í¨ÓÃº¯Êý
+ * \brief ä¸²è¡Œè®¾å¤‡é€šç”¨å‡½æ•°
  */
 struct uartcmd_serial_funcs {
 
-    /** \brief Ê¹ÄÜ¸ÃÉè±¸ */
+    /** \brief ä½¿èƒ½è¯¥è®¾å¤‡ */
     int (*pfn_serial_enable)(struct uartcmd_serial *p_serial);
 
-    /** \brief ½ûÄÜ¸ÃÉè±¸ */
+    /** \brief ç¦èƒ½è¯¥è®¾å¤‡ */
     int (*pfn_serial_disable)(struct uartcmd_serial *p_serial);
 
-    /** \brief Æô¶¯·¢ËÍ */
+    /** \brief å¯åŠ¨å‘é€ */
     int (*pfn_serial_tx_startup)(struct uartcmd_serial *p_serial);
 
-    /** \brief Éè±¸²ÎÊýÉèÖÃ */
+    /** \brief è®¾å¤‡å‚æ•°è®¾ç½® */
     int (*pfn_serial_ioctl)(struct uartcmd_serial *p_serial,
                             int                    request,
                             void                  *p_arg);
                             
-    /** \brief ´®ÐÐÉè±¸Ö´ÐÐÃüÁîÖ¡×´Ì¬ */
+    /** \brief ä¸²è¡Œè®¾å¤‡æ‰§è¡Œå‘½ä»¤å¸§çŠ¶æ€ */
     int (*pfn_serial_status_set) (struct uartcmd_serial *p_serial,
                                   int                    status);
 
 };
 
 /**
- * \brief ´®ÐÐÉè±¸½á¹¹Ìå
+ * \brief ä¸²è¡Œè®¾å¤‡ç»“æž„ä½“
  */
 typedef struct uartcmd_serial {
     
-    /** \brief ´®ÐÐÉè±¸¾ä±ú */
+    /** \brief ä¸²è¡Œè®¾å¤‡å¥æŸ„ */
     void               *p_serial_handle;
     
-    /** \brief ÓÃÓÚÈ·¶¨µ±Ç°ÐèÒªÊ¹ÓÃµÄÊÇºÎÖÖ´®ÐÐÉè±¸ */
+    /** \brief ç”¨äºŽç¡®å®šå½“å‰éœ€è¦ä½¿ç”¨çš„æ˜¯ä½•ç§ä¸²è¡Œè®¾å¤‡ */
     uint8_t             serial_id;   
     
-    uint32_t            rx_count;    /**< \brief ½ÓÊÕ¼ÆÊý */
-    uint32_t            tx_count;    /**< \brief ·¢ËÍ¼ÆÊý */
+    uint32_t            rx_count;    /**< \brief æŽ¥æ”¶è®¡æ•° */
+    uint32_t            tx_count;    /**< \brief å‘é€è®¡æ•° */
     
-    /** \brief Á´±íÍ·½Úµã */
+    /** \brief é“¾è¡¨å¤´èŠ‚ç‚¹ */
     struct am_list_head node;
     
-    /** \brief UARTCMD ·þÎñ¾ä±ú */
+    /** \brief UARTCMD æœåŠ¡å¥æŸ„ */
     am_uartcmd_handle_t uartcmd_handle;
     
-    /** \brief ÓÃÓÚÉè±¸¸½¼ÓÐÅÏ¢ */
+    /** \brief ç”¨äºŽè®¾å¤‡é™„åŠ ä¿¡æ¯ */
     void               *p_arg;
     
-    /** \brief ´®ÐÐÉè±¸Í¨ÓÃº¯Êý */
+    /** \brief ä¸²è¡Œè®¾å¤‡é€šç”¨å‡½æ•° */
     struct uartcmd_serial_funcs *p_funcs;
     
 } uartcmd_serial_t;
 
 /**
- * \brief ×¢²áÒ»¸ö´®ÐÐÉè±¸
+ * \brief æ³¨å†Œä¸€ä¸ªä¸²è¡Œè®¾å¤‡
  *
- * \param[in] handle   : UARTCMD·þÎñ¾ä±ú
- * \param[in] p_serial : ´®ÐÐÉè±¸½á¹¹ÌåÖ¸Õë
+ * \param[in] handle   : UARTCMDæœåŠ¡å¥æŸ„
+ * \param[in] p_serial : ä¸²è¡Œè®¾å¤‡ç»“æž„ä½“æŒ‡é’ˆ
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊý´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 int uartcmd_serial_register (am_uartcmd_handle_t handle, uartcmd_serial_t *p_serial);
 
 /**
- * \brief ×¢ÏúÒ»¸ö´®ÐÐÉè±¸
+ * \brief æ³¨é”€ä¸€ä¸ªä¸²è¡Œè®¾å¤‡
  *
- * \param[in] handle   : UARTCMD·þÎñ¾ä±ú
- * \param[in] p_serial : ´®ÐÐÉè±¸½á¹¹ÌåÖ¸Õë
+ * \param[in] handle   : UARTCMDæœåŠ¡å¥æŸ„
+ * \param[in] p_serial : ä¸²è¡Œè®¾å¤‡ç»“æž„ä½“æŒ‡é’ˆ
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊý´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 int uartcmd_serial_unregister (am_uartcmd_handle_t handle, uartcmd_serial_t *p_serial);
 
 /**
- * \brief Æô¶¯´®ÐÐÉè±¸µÄ·¢ËÍ
- *        ¸Ãº¯ÊýÓÉUARTCMDÄ£¿éµ÷ÓÃ£¬ÓÃÓÚUARTCMD·¢ËÍ»ØÓ¦Ö¡
+ * \brief å¯åŠ¨ä¸²è¡Œè®¾å¤‡çš„å‘é€
+ *        è¯¥å‡½æ•°ç”±UARTCMDæ¨¡å—è°ƒç”¨ï¼Œç”¨äºŽUARTCMDå‘é€å›žåº”å¸§
  *
- * \param[in] handle : UARTCMD·þÎñ¾ä±ú
+ * \param[in] handle : UARTCMDæœåŠ¡å¥æŸ„
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊý´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 int uartcmd_serial_tx_startup (am_uartcmd_handle_t handle);
 
 /**
- * \brief ´®ÐÐÉè±¸Í¨ÓÃ¿ØÖÆº¯Êý
+ * \brief ä¸²è¡Œè®¾å¤‡é€šç”¨æŽ§åˆ¶å‡½æ•°
  *
- * \param[in] handle  : UARTCMD·þÎñ¾ä±ú
- * \param[in] request : ¿ØÖÆÖ¸Áî£¬ÓÉ¾ßÌåÉè±¸¶¨Òå
- *                      - UARTCMD_SERIAL_SPEED_SET ÉèÖÃ´®ÐÐÉè±¸ËÙÂÊ
- *                      - UARTCMD_SERIAL_SPEED_GET »ñÈ¡´®ÐÐÉè±¸ËÙÂÊ
- *                      - UARTCMD_SERIAL_ADDR_SET  ÉèÖÃ´®ÐÐÉè±¸µØÖ·
- *                      - UARTCMD_SERIAL_ADDR_GET  »ñÈ¡´®ÐÐÉè±¸µØÖ·
- * \param[in] p_arg   : ¸ÃÖ¸Áî¶ÔÓ¦µÄ²ÎÊý
+ * \param[in] handle  : UARTCMDæœåŠ¡å¥æŸ„
+ * \param[in] request : æŽ§åˆ¶æŒ‡ä»¤ï¼Œç”±å…·ä½“è®¾å¤‡å®šä¹‰
+ *                      - UARTCMD_SERIAL_SPEED_SET è®¾ç½®ä¸²è¡Œè®¾å¤‡é€ŸçŽ‡
+ *                      - UARTCMD_SERIAL_SPEED_GET èŽ·å–ä¸²è¡Œè®¾å¤‡é€ŸçŽ‡
+ *                      - UARTCMD_SERIAL_ADDR_SET  è®¾ç½®ä¸²è¡Œè®¾å¤‡åœ°å€
+ *                      - UARTCMD_SERIAL_ADDR_GET  èŽ·å–ä¸²è¡Œè®¾å¤‡åœ°å€
+ * \param[in] p_arg   : è¯¥æŒ‡ä»¤å¯¹åº”çš„å‚æ•°
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊý´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 int uartcmd_serial_ioctl (am_uartcmd_handle_t handle, int request, void *p_arg);
 
 /**
- * \brief ´®ÐÐÉè±¸Ö´ÐÐÃüÁîÖ¡×´Ì¬ÉèÖÃ
+ * \brief ä¸²è¡Œè®¾å¤‡æ‰§è¡Œå‘½ä»¤å¸§çŠ¶æ€è®¾ç½®
  *
- * \param[in] handle  : UARTCMD·þÎñ¾ä±ú
- * \param[in] stauts  : ×´Ì¬Öµ
+ * \param[in] handle  : UARTCMDæœåŠ¡å¥æŸ„
+ * \param[in] stauts  : çŠ¶æ€å€¼
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊý´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 int uartcmd_serial_status_set (am_uartcmd_handle_t handle, int status);
 

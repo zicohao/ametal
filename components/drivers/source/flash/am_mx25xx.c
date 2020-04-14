@@ -11,9 +11,9 @@
 *******************************************************************************/
 /**
  * \file
- * \brief Íúºê¹«Ë¾µÄMX25ÏµÁĞSPI FLASHĞ¾Æ¬Çı¶¯ 
+ * \brief æ—ºå®å…¬å¸çš„MX25ç³»åˆ—SPI FLASHèŠ¯ç‰‡é©±åŠ¨ 
  * 
- * ÒÑÖª¼æÈİĞ¾Æ¬£º 
+ * å·²çŸ¥å…¼å®¹èŠ¯ç‰‡ï¼š 
  *   - MX25L1606E
  *   - MX25L8006E
  * 
@@ -32,11 +32,11 @@
 #include <string.h>
 
 /*******************************************************************************
-  ºê¶¨Òå
+  å®å®šä¹‰
 *******************************************************************************/
 
 /**
- * \name Í¨¹ıÆ÷¼şĞÍºÅ»ñÈ¡µ½Êµ¼ÊµÄÏà¹ØĞÅÏ¢
+ * \name é€šè¿‡å™¨ä»¶å‹å·è·å–åˆ°å®é™…çš„ç›¸å…³ä¿¡æ¯
  * @{
  */
 
@@ -61,37 +61,37 @@
 /** @} */
 
 /**
- * \name SPI FLASHµÄ¸÷¸öÃüÁî
+ * \name SPI FLASHçš„å„ä¸ªå‘½ä»¤
  * @{
  */
 
-#define __MX25XX_CMD_WREN       0x06   /**< \brief Ğ´Ê¹ÄÜ                */
-#define __MX25XX_CMD_WRDI       0x04   /**< \brief Ğ´½ûÄÜ                */
-#define __MX25XX_CMD_WRSR       0x01   /**< \brief Ğ´×´Ì¬¼Ä´æÆ÷          */
-#define __MX25XX_CMD_RDID       0x9F   /**< \brief ¶ÁIDºÅ                */
-#define __MX25XX_CMD_RDSR       0x05   /**< \brief ¶Á×´Ì¬¼Ä´æÆ÷          */
-#define __MX25XX_CMD_READ       0x03   /**< \brief ¶ÁÊı¾İ                */
-#define __MX25XX_CMD_FAST_READ  0x0B   /**< \brief ¶ÁÊı¾İ£¨¿ìËÙ£©        */ 
-#define __MX25XX_CMD_RES        0xAB   /**< \brief ¶Áµç×ÓID              */
-#define __MX25XX_CMD_REMS       0x90   /**< \brief ¶Á³§¼ÒIDºÍÆ÷¼şID      */
-#define __MX25XX_CMD_DREAD      0x3B   /**< \brief Ë«Êı¾İ(2-bit)Êä³öÄ£Ê½ */ 
-#define __MX25XX_CMD_SE         0x20   /**< \brief ÉÈÇø²Á³ı              */
-#define __MX25XX_CMD_BE         0x52   /**< \brief ¿é²Á³ı£¨»ò 0xD8£©     */
-#define __MX25XX_CMD_CE         0x60   /**< \brief Ğ¾Æ¬²Á³ı£¨»ò 0xC7£©   */
-#define __MX25XX_CMD_PP         0x02   /**< \brief ±àĞ´Ò³Êı¾İ            */
+#define __MX25XX_CMD_WREN       0x06   /**< \brief å†™ä½¿èƒ½                */
+#define __MX25XX_CMD_WRDI       0x04   /**< \brief å†™ç¦èƒ½                */
+#define __MX25XX_CMD_WRSR       0x01   /**< \brief å†™çŠ¶æ€å¯„å­˜å™¨          */
+#define __MX25XX_CMD_RDID       0x9F   /**< \brief è¯»IDå·                */
+#define __MX25XX_CMD_RDSR       0x05   /**< \brief è¯»çŠ¶æ€å¯„å­˜å™¨          */
+#define __MX25XX_CMD_READ       0x03   /**< \brief è¯»æ•°æ®                */
+#define __MX25XX_CMD_FAST_READ  0x0B   /**< \brief è¯»æ•°æ®ï¼ˆå¿«é€Ÿï¼‰        */ 
+#define __MX25XX_CMD_RES        0xAB   /**< \brief è¯»ç”µå­ID              */
+#define __MX25XX_CMD_REMS       0x90   /**< \brief è¯»å‚å®¶IDå’Œå™¨ä»¶ID      */
+#define __MX25XX_CMD_DREAD      0x3B   /**< \brief åŒæ•°æ®(2-bit)è¾“å‡ºæ¨¡å¼ */ 
+#define __MX25XX_CMD_SE         0x20   /**< \brief æ‰‡åŒºæ“¦é™¤              */
+#define __MX25XX_CMD_BE         0x52   /**< \brief å—æ“¦é™¤ï¼ˆæˆ– 0xD8ï¼‰     */
+#define __MX25XX_CMD_CE         0x60   /**< \brief èŠ¯ç‰‡æ“¦é™¤ï¼ˆæˆ– 0xC7ï¼‰   */
+#define __MX25XX_CMD_PP         0x02   /**< \brief ç¼–å†™é¡µæ•°æ®            */
 
-#define __MX25XX_CMD_RDSCUR     0x2B   /**< \brief ¶Á°²È«¼Ä´æÆ÷          */
-#define __MX25XX_CMD_WRSCUR     0x2F   /**< \brief Ğ´°²È«¼Ä´æÆ÷          */
-#define __MX25XX_CMD_ENSO       0xB1   /**< \brief ½øÈë°²È«ÇøÓò          */
-#define __MX25XX_CMD_EXSO       0xC1   /**< \brief ÍË³ö°²È«ÇøÓò          */
+#define __MX25XX_CMD_RDSCUR     0x2B   /**< \brief è¯»å®‰å…¨å¯„å­˜å™¨          */
+#define __MX25XX_CMD_WRSCUR     0x2F   /**< \brief å†™å®‰å…¨å¯„å­˜å™¨          */
+#define __MX25XX_CMD_ENSO       0xB1   /**< \brief è¿›å…¥å®‰å…¨åŒºåŸŸ          */
+#define __MX25XX_CMD_EXSO       0xC1   /**< \brief é€€å‡ºå®‰å…¨åŒºåŸŸ          */
 
-#define __MX25XX_CMD_DP         0xB9   /**< \brief ½øÈëÉî¶ÈµôµçÄ£Ê½      */
-#define __MX25XX_CMD_RDP        0xAB   /**< \brief ÍË³öÉî¶ÈµôµçÄ£Ê½      */
+#define __MX25XX_CMD_DP         0xB9   /**< \brief è¿›å…¥æ·±åº¦æ‰ç”µæ¨¡å¼      */
+#define __MX25XX_CMD_RDP        0xAB   /**< \brief é€€å‡ºæ·±åº¦æ‰ç”µæ¨¡å¼      */
 
 /** @} */
 
 /*******************************************************************************
-  ±¾µØº¯Êı
+  æœ¬åœ°å‡½æ•°
 *******************************************************************************/
 
 static int __mx25xx_wait_busy (am_mx25xx_dev_t *p_dev)
@@ -99,7 +99,7 @@ static int __mx25xx_wait_busy (am_mx25xx_dev_t *p_dev)
     uint8_t status;
     int     ret;
 
-    /* Ö±µ½×îµÍÎ»Á½Î»¾ùÎª0 */
+    /* ç›´åˆ°æœ€ä½ä½ä¸¤ä½å‡ä¸º0 */
     do {
         ret = am_mx25xx_status_read(p_dev, &status);
         
@@ -111,13 +111,13 @@ static int __mx25xx_wait_busy (am_mx25xx_dev_t *p_dev)
     return AM_OK;
 }
 
-/* µÈ´ıbusyÎ»ºÍ WELÎª¾ùÎª0£¬È·±£Ğ´Èë¡¢²Á³ıµÈ²Ù×÷³É¹¦Íê³É */
+/* ç­‰å¾…busyä½å’Œ WELä¸ºå‡ä¸º0ï¼Œç¡®ä¿å†™å…¥ã€æ“¦é™¤ç­‰æ“ä½œæˆåŠŸå®Œæˆ */
 static int __mx25xx_wait_busy_and_wel (am_mx25xx_dev_t *p_dev)
 {
     uint8_t status;
     int     ret;
 
-    /* Ö±µ½×îµÍÎ»Á½Î»¾ùÎª0 */
+    /* ç›´åˆ°æœ€ä½ä½ä¸¤ä½å‡ä¸º0 */
     do {
         ret = am_mx25xx_status_read(p_dev, &status);
         
@@ -186,7 +186,7 @@ static int __mx25xx_secured_reg_write (am_mx25xx_dev_t *p_dev,
 
 /******************************************************************************/
 
-/* ¶ÁÈ¡FLASH µÄ JEDEC_ID */
+/* è¯»å–FLASH çš„ JEDEC_ID */
 static int __mx25xx_id_read (am_mx25xx_dev_t *p_dev, uint32_t *p_id)
 {
 
@@ -203,7 +203,7 @@ static int __mx25xx_id_read (am_mx25xx_dev_t *p_dev, uint32_t *p_id)
 
 /******************************************************************************/
 
-/* Ã¿´Î×î¶à±àĞ´Ò»Ò³Êı¾İ£¬³¬¹ıÒ»Ò³Êı¾İºó£¬½ö×îºóµÄÒ»Ò³Êı¾İÓĞĞ§ */
+/* æ¯æ¬¡æœ€å¤šç¼–å†™ä¸€é¡µæ•°æ®ï¼Œè¶…è¿‡ä¸€é¡µæ•°æ®åï¼Œä»…æœ€åçš„ä¸€é¡µæ•°æ®æœ‰æ•ˆ */
 static int __mx25xx_page_write (am_mx25xx_dev_t   *p_dev,
                                 uint32_t           addr,
                                 uint8_t           *p_buf,
@@ -231,7 +231,7 @@ static int __mx25xx_page_write (am_mx25xx_dev_t   *p_dev,
         return ret;
     }
 
-    /* µÈ´ıĞ´ÈëÊı¾İÍê³É */
+    /* ç­‰å¾…å†™å…¥æ•°æ®å®Œæˆ */
     return __mx25xx_wait_busy_and_wel(p_dev);
 }
 
@@ -250,7 +250,7 @@ static int __mx25xx_read (am_mx25xx_dev_t   *p_dev,
     cmd_buf[3] = addr & 0xFF;
     cmd_buf[4] = 0xFF;             /* Dummy Byte */
 
-    /* ¿ìËÙ¶ÁÇ°ĞèÒªÈ·±£×´Ì¬´¦ÓÚ¿ÕÏĞ×´Ì¬ */
+    /* å¿«é€Ÿè¯»å‰éœ€è¦ç¡®ä¿çŠ¶æ€å¤„äºç©ºé—²çŠ¶æ€ */
     ret = __mx25xx_wait_busy(p_dev);
 
     if (ret != AM_OK) {
@@ -376,7 +376,7 @@ static int __mx25xx_sector_erase (am_mx25xx_handle_t handle, uint32_t addr)
 
     cmd_buf[0] = __MX25XX_CMD_SE;
 
-    /* ÉÈÇøµØÖ·£¬Ò»¸öÉÈÇøµÄ´óĞ¡Îª4K£¬ÔòµÍ12Î»È«Îª0 */
+    /* æ‰‡åŒºåœ°å€ï¼Œä¸€ä¸ªæ‰‡åŒºçš„å¤§å°ä¸º4Kï¼Œåˆ™ä½12ä½å…¨ä¸º0 */
     cmd_buf[1] = (addr >> 16) & 0xFF;
     cmd_buf[2] = (addr >> 8 ) & 0xFF;
     cmd_buf[3] = addr & 0xFF;
@@ -393,7 +393,7 @@ static int __mx25xx_sector_erase (am_mx25xx_handle_t handle, uint32_t addr)
         return ret;
     }
 
-    /* µÈ´ı²Á³ıÍê³É */
+    /* ç­‰å¾…æ“¦é™¤å®Œæˆ */
     return 0;// __mx25xx_wait_busy_and_wel(handle);
 }
 
@@ -410,7 +410,7 @@ static int __mx25xx_block_erase (am_mx25xx_handle_t handle, uint32_t addr)
 
     cmd_buf[0] = __MX25XX_CMD_BE;
 
-    /* ÉÈÇøµØÖ·£¬Ò»¸öÉÈÇøµÄ´óĞ¡Îª4K£¬ÔòµÍ12Î»È«Îª0 */
+    /* æ‰‡åŒºåœ°å€ï¼Œä¸€ä¸ªæ‰‡åŒºçš„å¤§å°ä¸º4Kï¼Œåˆ™ä½12ä½å…¨ä¸º0 */
     cmd_buf[1] = (addr >> 16) & 0xFF;
     cmd_buf[2] = (addr >> 8 ) & 0xFF;
     cmd_buf[3] = addr & 0xFF;
@@ -427,7 +427,7 @@ static int __mx25xx_block_erase (am_mx25xx_handle_t handle, uint32_t addr)
         return ret;
     }
 
-    /* µÈ´ı²Á³ıÍê³É */
+    /* ç­‰å¾…æ“¦é™¤å®Œæˆ */
     return __mx25xx_wait_busy_and_wel(handle);
 }
 
@@ -453,12 +453,12 @@ static int __mx25xx_chip_erase (am_mx25xx_handle_t handle)
         return ret;
     }
 
-    /* µÈ´ı²Á³ıÍê³É */
+    /* ç­‰å¾…æ“¦é™¤å®Œæˆ */
     return __mx25xx_wait_busy_and_wel(handle);
 }
 
 /*******************************************************************************
-  ¹«¹²º¯Êı
+  å…¬å…±å‡½æ•°
 *******************************************************************************/
 am_mx25xx_handle_t am_mx25xx_init (am_mx25xx_dev_t           *p_dev,
                                    const am_mx25xx_devinfo_t *p_devinfo,
@@ -503,7 +503,7 @@ am_mx25xx_handle_t am_mx25xx_init (am_mx25xx_dev_t           *p_dev,
         return NULL;
     }
 
-    /* Éè±¸µØÖ·×÷Îª handle ·µ»Ø */
+    /* è®¾å¤‡åœ°å€ä½œä¸º handle è¿”å› */
     return p_dev;
 }
 
@@ -593,7 +593,7 @@ int am_mx25xx_write (am_mx25xx_handle_t  handle,
 }
 
 /*******************************************************************************
-  Ìá¹©MTD³õÊ¼»¯½Ó¿Úº¯Êı
+  æä¾›MTDåˆå§‹åŒ–æ¥å£å‡½æ•°
 *******************************************************************************/
 
 static int __mx25xx_mtd_erase (void                        *p_cookie,
@@ -726,10 +726,10 @@ am_mtd_handle_t am_mx25xx_mtd_init(am_mx25xx_handle_t  handle,
 }
 
 /*******************************************************************************
-  ÆäËüÒ»Ğ©Æ÷¼şÏà¹ØµÄ½Ó¿Úº¯Êı
+  å…¶å®ƒä¸€äº›å™¨ä»¶ç›¸å…³çš„æ¥å£å‡½æ•°
 *******************************************************************************/
 
-/* ¶ÁÈ¡×´Ì¬ */
+/* è¯»å–çŠ¶æ€ */
 int am_mx25xx_status_read (am_mx25xx_handle_t  handle,
                            uint8_t            *p_stat)
 {
@@ -743,7 +743,7 @@ int am_mx25xx_status_read (am_mx25xx_handle_t  handle,
 }
 
 /******************************************************************************/
-/* Ğ´×´Ì¬¼Ä´æÆ÷£¬bit6¡¢bit1¡¢bit0 ×Ô¶¯ÉèÖÃ£¬²»ÄÜÊ¹ÓÃĞ´ÃüÁîĞŞ¸Ä */
+/* å†™çŠ¶æ€å¯„å­˜å™¨ï¼Œbit6ã€bit1ã€bit0 è‡ªåŠ¨è®¾ç½®ï¼Œä¸èƒ½ä½¿ç”¨å†™å‘½ä»¤ä¿®æ”¹ */
 int am_mx25xx_status_write (am_mx25xx_handle_t handle,
                             uint8_t            val)
 {
@@ -788,7 +788,7 @@ int am_mx25xx_deep_power_down_exit (am_mx25xx_handle_t handle)
 
 /******************************************************************************/
 
-/* ¶ÁÈ¡FLASH µÄ JEDEC_ID */
+/* è¯»å–FLASH çš„ JEDEC_ID */
 int am_mx25xx_id_read (am_mx25xx_handle_t handle, uint32_t *p_id)
 {
  
@@ -822,9 +822,9 @@ int am_mx25xx_id_rems_read (am_mx25xx_handle_t  handle,
     cmd_buf[3] = 0x00;     /* Manufacturer ID + Device ID */
     
     ret = am_spi_write_then_read(&(handle->spi_dev),
-                                   cmd_buf,     /* ÏÈ·¢ËÍ4¸ö×Ö½Ú */
+                                   cmd_buf,     /* å…ˆå‘é€4ä¸ªå­—èŠ‚ */
                                    4,
-                                   cmd_buf,     /* ÔÙ½ÓÊÕ2¸ö×Ö½Ú */
+                                   cmd_buf,     /* å†æ¥æ”¶2ä¸ªå­—èŠ‚ */
                                    3);
     
     if (ret != AM_OK) {
@@ -839,7 +839,7 @@ int am_mx25xx_id_rems_read (am_mx25xx_handle_t  handle,
 
 /******************************************************************************/
 
-/* ½øÈëÇøÓòºó£¬¾Í¿ÉÒÔÊ¹ÓÃÕı³£µÄÊı¾İ¶ÁĞ´ÃüÁî²Ù×÷512bitµÄ OTP */
+/* è¿›å…¥åŒºåŸŸåï¼Œå°±å¯ä»¥ä½¿ç”¨æ­£å¸¸çš„æ•°æ®è¯»å†™å‘½ä»¤æ“ä½œ512bitçš„ OTP */
 int am_mx25xx_secured_otp_enter (am_mx25xx_handle_t handle)
 {
  
@@ -868,7 +868,7 @@ int am_mx25xx_secured_otp_exit (am_mx25xx_handle_t handle)
 
 /******************************************************************************/
 
-/* ¼ì²éÊÇ·ñËø¶¨£¬Ëø¶¨ºóÎŞ·¨ĞŞ¸ÄOTPµÄÖµ */
+/* æ£€æŸ¥æ˜¯å¦é”å®šï¼Œé”å®šåæ— æ³•ä¿®æ”¹OTPçš„å€¼ */
 int am_mx25xx_secured_lockdown_check (am_mx25xx_dev_t *p_dev,
                                       am_bool_t       *p_lockdown)
 {
@@ -886,7 +886,7 @@ int am_mx25xx_secured_lockdown_check (am_mx25xx_dev_t *p_dev,
 
 /******************************************************************************/
 
-/* Ëø¶¨OTPÇøÓò */
+/* é”å®šOTPåŒºåŸŸ */
 int am_mx25xx_secured_lockdown (am_mx25xx_handle_t handle)
 {
     uint8_t reg;
@@ -898,7 +898,7 @@ int am_mx25xx_secured_lockdown (am_mx25xx_handle_t handle)
         return ret;
     }
     
-    reg |= 0x02;            /* Ëø¶¨ÇøÓò  */
+    reg |= 0x02;            /* é”å®šåŒºåŸŸ  */
     
     return __mx25xx_secured_reg_write(handle, reg);
 }

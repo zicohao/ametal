@@ -12,13 +12,13 @@
 
 /**
  * \file
- * \brief Ë¯ÃßÄ£Ê½Àı³Ì£¬Í¨¹ıÇı¶¯²ã½Ó¿ÚÊµÏÖ
+ * \brief ç¡çœ æ¨¡å¼ä¾‹ç¨‹ï¼Œé€šè¿‡é©±åŠ¨å±‚æ¥å£å®ç°
  *
- * - ÊµÏÖÏÖÏó
- *   1. MCU ½øÈëÍ£Ö¹Ä£Ê½Ê±£¬ µ÷ÊÔ´®¿Ú´òÓ¡µ÷ÊÔĞÅÏ¢£»
- *   2. Ö¸¶¨Òı½ÅÉÏµÄÖĞ¶Ï»½ĞÑ MCU£¬´®¿ÚÊä³ö wake_up£¬³ÌĞò¼ÌĞøÔËĞĞ¡£
+ * - å®ç°ç°è±¡
+ *   1. MCU è¿›å…¥åœæ­¢æ¨¡å¼æ—¶ï¼Œ è°ƒè¯•ä¸²å£æ‰“å°è°ƒè¯•ä¿¡æ¯ï¼›
+ *   2. æŒ‡å®šå¼•è„šä¸Šçš„ä¸­æ–­å”¤é†’ MCUï¼Œä¸²å£è¾“å‡º wake_upï¼Œç¨‹åºç»§ç»­è¿è¡Œã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_zlg116_drv_sleepmode_wake_up.c src_zlg116_drv_sleepmode_wake_up
  *
  * \internal
@@ -38,7 +38,7 @@
 #include "am_zlg116_pwr.h"
 
 /**
- * \brief Òı½ÅÖĞ¶Ï·şÎñº¯Êı
+ * \brief å¼•è„šä¸­æ–­æœåŠ¡å‡½æ•°
  */
 static void gpio_isr (void *p_arg)
 {
@@ -46,15 +46,15 @@ static void gpio_isr (void *p_arg)
 }
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_zlg116_drv_sleepmode_wake_up_entry (void)
 {
 
-    /* »½ĞÑÅäÖÃ */
+    /* å”¤é†’é…ç½® */
     am_zlg116_wake_up_cfg(AM_ZLG116_PWR_MODE_SLEEP, gpio_isr, (void *)0);
 
-    /* ½øÈëË¯ÃßÄ£Ê½ */
+    /* è¿›å…¥ç¡çœ æ¨¡å¼ */
     am_zlg116_pwr_mode_into(AM_ZLG116_PWR_MODE_SLEEP);
 
     AM_DBG_INFO("wake_up!\r\n");

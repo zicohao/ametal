@@ -12,15 +12,15 @@
 
 /**
  * \file
- * \brief LPTMRÊµÏÖ±ê×¼¶¨Ê±Æ÷Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief LPTMRå®ç°æ ‡å‡†å®šæ—¶å™¨ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. LED0ÒÔ10HzµÄÆµÂÊÉÁË¸¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. LED0ä»¥10Hzçš„é¢‘ç‡é—ªçƒã€‚
  *
- * \note LPTMRÊ±ÖÓÔ´ÓĞ4ÖÖÑ¡Ôñ£¬ÔÚam_kl26_hwconfig_lptmr_timing.cÖĞ½øĞĞÅäÖÃ£¬Ñ¡Ôñ²»Í¬´óĞ¡
- *       µÄÊ±ÖÓÔ´£¬¶¨Ê±µÄ·¶Î§ºÍ¾«¶È´æÔÚ²î±ğ¡£
+ * \note LPTMRæ—¶é’Ÿæºæœ‰4ç§é€‰æ‹©ï¼Œåœ¨am_kl26_hwconfig_lptmr_timing.cä¸­è¿›è¡Œé…ç½®ï¼Œé€‰æ‹©ä¸åŒå¤§å°
+ *       çš„æ—¶é’Ÿæºï¼Œå®šæ—¶çš„èŒƒå›´å’Œç²¾åº¦å­˜åœ¨å·®åˆ«ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_amks16z_core_std_lptmr_timing.c src_amks16z_core_std_lptmr_timing
  *
  * \internal
@@ -44,7 +44,7 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief AMetal Ó¦ÓÃ³ÌĞòÈë¿Ú
+ * \brief AMetal åº”ç”¨ç¨‹åºå…¥å£
  */
 void demo_amks16z_core_std_lptmr_timing_entry (void)
 {

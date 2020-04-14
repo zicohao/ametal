@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief LM75 配置文件
+ * \brief LM75 閰嶇疆鏂囦欢
  * \sa am_hwconf_lm75.c
  *
  * \internal
@@ -31,10 +31,10 @@
  * @{
  */
 
-/* 定义 LM75 实例 */
+/* 瀹氫箟 LM75 瀹炰緥 */
 static am_temp_lm75_t  __g_temp_lm75;
 
-/* 定义 LM75 实例信息 */
+/* 瀹氫箟 LM75 瀹炰緥淇℃伅 */
 static const am_temp_lm75_info_t __g_temp_lm75_info = {
     0x48
 };

@@ -37,27 +37,27 @@
  * Definitions
  ******************************************************************************/
 
-/** \brief ´òÓ¡»úÀàÉè±¸´úÂë±êÊ¶  */
+/** \brief æ‰“å°æœºç±»è®¾å¤‡ä»£ç æ ‡è¯†  */
 #define AM_USBD_CONFIG_PRINTER_CLASS_CODE               (0x07)
 
-/** \brief USB printer Éè±¸×ÓÀàÂë*/
+/** \brief USB printer è®¾å¤‡å­ç±»ç */
 #define AM_USBD_PRINTER_SUBCLASS                        (0x01U)
 
-/** \brief usb printerĞ­ÒéÂë*/
+/** \brief usb printeråè®®ç */
 #define AM_USBD_PRINTER_PROTOCOL                        (0x02U)
 
-/** \brief »ñÈ¡Éè±¸idÇëÇó */
+/** \brief è·å–è®¾å¤‡idè¯·æ±‚ */
 #define AM_USBD_PRINTER_GET_DEVICE_ID                   (0x00U)
-/** \brief »ñÈ¡¶Ë¿Ú×´Ì¬ÇëÇó */
+/** \brief è·å–ç«¯å£çŠ¶æ€è¯·æ±‚ */
 #define AM_USBD_PRINTER_GET_PORT_STATUS                 (0x01U)
-/** \brief Èí¼şÖØÆôÇëÇó */
+/** \brief è½¯ä»¶é‡å¯è¯·æ±‚ */
 #define AM_USBD_PRINTER_SOFT_RESET                      (0x02U)
 
-/** \brief »ñÈ¡¶Ë¿Ú×´Ì¬µÄÖ½¿ÕÎ»ÑÚÂë */
+/** \brief è·å–ç«¯å£çŠ¶æ€çš„çº¸ç©ºä½æ©ç  */
 #define AM_USBD_PRINTER_PORT_STATUS_PAPER_EMPTRY_MASK   (0x20U)
-/** \brief »ñÈ¡¶Ë¿Ú×´Ì¬ */
+/** \brief è·å–ç«¯å£çŠ¶æ€ */
 #define AM_USBD_PRINTER_PORT_STATUS_SELECT_MASK         (0x10U)
-/** \brief »ñÈ¡¶Ë¿Ú×´Ì¬µÄ´íÎóÎ»ÑÚÂë */
+/** \brief è·å–ç«¯å£çŠ¶æ€çš„é”™è¯¯ä½æ©ç  */
 #define AM_USBD_PRINTER_PORT_STATUS_NOT_ERROR_MASK      (0x08U)
 
 #define AM_USBD_PRINTER_PORT_STATUS_DEFAULT_VALUE \
@@ -74,18 +74,18 @@
 extern "C" {
 #endif
 
-/** \brief ´òÓ¡»úĞÅÏ¢½á¹¹Ìå */
+/** \brief æ‰“å°æœºä¿¡æ¯ç»“æ„ä½“ */
 typedef struct am_usbd_printer_info {
-    uint8_t         *p_printer_id;      /**< \brief ´òÓ¡»úÉè±¸id*/
-    uint16_t         printer_id_len;    /**< \brief ´òÓ¡»úÉè±¸id, ³¤¶È*/
-    uint8_t         *p_printer_buff;    /**< \brief ´òÓ¡»úÊı¾İbuff*/
+    uint8_t         *p_printer_id;      /**< \brief æ‰“å°æœºè®¾å¤‡id*/
+    uint16_t         printer_id_len;    /**< \brief æ‰“å°æœºè®¾å¤‡id, é•¿åº¦*/
+    uint8_t         *p_printer_buff;    /**< \brief æ‰“å°æœºæ•°æ®buff*/
 }am_usbd_printer_info_t;
 
 
-/** \brief ´òÓ¡»ú½ÓÊÕÇëÇó»Øµ÷º¯ÊıÀàĞÍ */
+/** \brief æ‰“å°æœºæ¥æ”¶è¯·æ±‚å›è°ƒå‡½æ•°ç±»å‹ */
 typedef void (*am_printer_recv_cb_t)(void *p_arg, uint8_t *p_buf, uint8_t len);
 
-/** \brief ´òÓ¡»ú·¢ËÍÇëÇó»Øµ÷º¯ÊıÀàĞÍ*/
+/** \brief æ‰“å°æœºå‘é€è¯·æ±‚å›è°ƒå‡½æ•°ç±»å‹*/
 typedef void (*am_printer_send_cb_t)(void *p_arg);
 
 typedef struct am_usbd_printer_endpoint {
@@ -95,21 +95,21 @@ typedef struct am_usbd_printer_endpoint {
 
 
 typedef struct am_usbd_printer_recv_cb {
-    am_printer_recv_cb_t          pfn_recv_cb;    /**< \brief ´òÓ¡»ú½ÓÊÕÇëÇó»Øµ÷º¯Êı*/
-    void                         *p_recv_arg;     /**< \brief ´òÓ¡»ú½ÓÊÕÇëÇó»Øµ÷º¯Êı²ÎÊı*/
+    am_printer_recv_cb_t          pfn_recv_cb;    /**< \brief æ‰“å°æœºæ¥æ”¶è¯·æ±‚å›è°ƒå‡½æ•°*/
+    void                         *p_recv_arg;     /**< \brief æ‰“å°æœºæ¥æ”¶è¯·æ±‚å›è°ƒå‡½æ•°å‚æ•°*/
 }am_usbd_printer_recv_cb_t;
 
 typedef struct am_usbd_printer_send_cb {
-    am_printer_send_cb_t          pfn_send_cb;    /**< \brief ´òÓ¡»ú·¢ËÍÇëÇó»Øµ÷º¯Êı*/
-    void                         *p_send_arg;     /**< \brief ´òÓ¡»ú·¢ËÍÇëÇó»Øµ÷º¯Êı²ÎÊı*/
+    am_printer_send_cb_t          pfn_send_cb;    /**< \brief æ‰“å°æœºå‘é€è¯·æ±‚å›è°ƒå‡½æ•°*/
+    void                         *p_send_arg;     /**< \brief æ‰“å°æœºå‘é€è¯·æ±‚å›è°ƒå‡½æ•°å‚æ•°*/
 }am_usbd_printer_send_cb_t;
 
 
 /** \brief usb device printer struct */
 typedef struct _usbd_printer {
-    am_usbd_dev_t                *p_dev;          /**< \brief ±£´æusbÉè±¸ÀàÖ¸Õë*/
-    uint8_t                      *p_printer_buff; /**< \brief ´òÓ¡»úbuff */
-    uint8_t                       port_state;     /**< \brief ´òÓ¡»ú×´Ì¬. */
+    am_usbd_dev_t                *p_dev;          /**< \brief ä¿å­˜usbè®¾å¤‡ç±»æŒ‡é’ˆ*/
+    uint8_t                      *p_printer_buff; /**< \brief æ‰“å°æœºbuff */
+    uint8_t                       port_state;     /**< \brief æ‰“å°æœºçŠ¶æ€. */
 
     am_usbd_printer_send_cb_t     s_funcs;
 
@@ -117,7 +117,7 @@ typedef struct _usbd_printer {
 
     am_usbd_printer_endpoint_t    endpoint;
 
-    const am_usbd_printer_info_t *p_info;         /**< \brief ´òÓ¡»úÉè±¸ĞÅÏ¢*/
+    const am_usbd_printer_info_t *p_info;         /**< \brief æ‰“å°æœºè®¾å¤‡ä¿¡æ¯*/
 } am_usbd_printer_t;
 
 
@@ -126,26 +126,26 @@ typedef am_usbd_printer_t  *am_usbd_printer_handle;
 
 
 /**
- * \brief ´òÓ¡»ú½ÓÊÕÇëÇó»Øµ÷º¯ÊıÉèÖÃ
- * \param[in] handle : usb device ´òÓ¡»úhandle
- * \param[in] pfn_cb : ´òÓ¡»ú½ÓÊÕÇëÇó»Øµ÷º¯Êı
- * \param[in] p_arg  : ´òÓ¡»ú½ÓÊÕÇëÇó»Øµ÷º¯Êı²ÎÊı
+ * \brief æ‰“å°æœºæ¥æ”¶è¯·æ±‚å›è°ƒå‡½æ•°è®¾ç½®
+ * \param[in] handle : usb device æ‰“å°æœºhandle
+ * \param[in] pfn_cb : æ‰“å°æœºæ¥æ”¶è¯·æ±‚å›è°ƒå‡½æ•°
+ * \param[in] p_arg  : æ‰“å°æœºæ¥æ”¶è¯·æ±‚å›è°ƒå‡½æ•°å‚æ•°
  *
- * \retval AM_USB_STATUS_SUCCESS         ÉèÖÃ³É¹¦
- *         AM_USB_STATUS_INVALID_HANDLE  ·Ç·¨handle
+ * \retval AM_USB_STATUS_SUCCESS         è®¾ç½®æˆåŠŸ
+ *         AM_USB_STATUS_INVALID_HANDLE  éæ³•handle
  */
 am_usb_status_t am_usbd_printer_recv_request_callback(am_usbd_printer_handle  handle,
                                                       am_printer_recv_cb_t    pfn_cb,
                                                       void                   *p_arg);
 
 /**
- * \brief ´òÓ¡»ú·¢ËÍÇëÇó»Øµ÷º¯ÊıÉèÖÃ
- * \param[in] handle : usb device ´òÓ¡»ú¾ä±ú
- * \param[in] pfn_cb : ´òÓ¡»ú·¢ËÍÇëÇó»Øµ÷º¯Êı
- * \param[in] p_arg  : ´òÓ¡»ú·¢ËÍÇëÇó»Øµ÷º¯Êı²ÎÊı
+ * \brief æ‰“å°æœºå‘é€è¯·æ±‚å›è°ƒå‡½æ•°è®¾ç½®
+ * \param[in] handle : usb device æ‰“å°æœºå¥æŸ„
+ * \param[in] pfn_cb : æ‰“å°æœºå‘é€è¯·æ±‚å›è°ƒå‡½æ•°
+ * \param[in] p_arg  : æ‰“å°æœºå‘é€è¯·æ±‚å›è°ƒå‡½æ•°å‚æ•°
  *
- * \retval AM_USB_STATUS_SUCCESS         ÉèÖÃ³É¹¦
- *         AM_USB_STATUS_INVALID_HANDLE  ÎŞĞ§µÄ¾ä±ú
+ * \retval AM_USB_STATUS_SUCCESS         è®¾ç½®æˆåŠŸ
+ *         AM_USB_STATUS_INVALID_HANDLE  æ— æ•ˆçš„å¥æŸ„
  */
 am_usb_status_t am_usbd_printer_send_request_callback(am_usbd_printer_handle handle,
                                                       am_printer_send_cb_t   pfn_cb,
@@ -153,29 +153,29 @@ am_usb_status_t am_usbd_printer_send_request_callback(am_usbd_printer_handle han
 
 
 /**
- * \brief ´òÓ¡»ú³§ÉÌÇëÇó»Øµ÷º¯ÊıÉèÖÃ
- * \param[in] handle : usb device ´òÓ¡»ú¾ä±ú
- * \param[in] pfn_cb : ´òÓ¡»ú·¢ËÍÇëÇó»Øµ÷º¯Êı
- * \param[in] p_arg  : ´òÓ¡»ú·¢ËÍÇëÇó»Øµ÷º¯Êı²ÎÊı
+ * \brief æ‰“å°æœºå‚å•†è¯·æ±‚å›è°ƒå‡½æ•°è®¾ç½®
+ * \param[in] handle : usb device æ‰“å°æœºå¥æŸ„
+ * \param[in] pfn_cb : æ‰“å°æœºå‘é€è¯·æ±‚å›è°ƒå‡½æ•°
+ * \param[in] p_arg  : æ‰“å°æœºå‘é€è¯·æ±‚å›è°ƒå‡½æ•°å‚æ•°
  *
- * \retval AM_USB_STATUS_SUCCESS         ÉèÖÃ³É¹¦
- *         AM_USB_STATUS_INVALID_HANDLE  ÎŞĞ§µÄ¾ä±ú
+ * \retval AM_USB_STATUS_SUCCESS         è®¾ç½®æˆåŠŸ
+ *         AM_USB_STATUS_INVALID_HANDLE  æ— æ•ˆçš„å¥æŸ„
  */
 am_usb_status_t am_usbd_printer_vendor_request_callback(am_usbd_printer_handle handle,
                                                         am_vendor_request_t    pfn_cb,
                                                         void                  *p_arg);
 /**
- * \brief ´òÓ¡»ú·¢ËÍº¯Êı
+ * \brief æ‰“å°æœºå‘é€å‡½æ•°
  *
- * \param[in] handle    : ´òÓ¡»úhandle
- * \param[in] p_buff    : ´ı·¢ËÍµÄbuff
- * \param[in] length    : ´ı·¢ËÍµÄÊı¾İ³¤¶È
+ * \param[in] handle    : æ‰“å°æœºhandle
+ * \param[in] p_buff    : å¾…å‘é€çš„buff
+ * \param[in] length    : å¾…å‘é€çš„æ•°æ®é•¿åº¦
  *
- * \retval  AM_USB_STATUS_SUCCESS               Í¨Öª³É¹¦
- * \retval  AM_USB_STATUS_ERROR                 Í¨ÖªÊ§°Ü
- * \retval  AM_USB_STATUS_INVALID_REQUEST       USB ÏìÓ¦´íÎó
- * \retval  AM_USB_STATUS_INVALID_HANDLE        ÎŞĞ§µÄ¾ä±ú
- * \retval  AM_USB_STATUS_INVALID_PARAMETER     ²ÎÊı´íÎó
+ * \retval  AM_USB_STATUS_SUCCESS               é€šçŸ¥æˆåŠŸ
+ * \retval  AM_USB_STATUS_ERROR                 é€šçŸ¥å¤±è´¥
+ * \retval  AM_USB_STATUS_INVALID_REQUEST       USB å“åº”é”™è¯¯
+ * \retval  AM_USB_STATUS_INVALID_HANDLE        æ— æ•ˆçš„å¥æŸ„
+ * \retval  AM_USB_STATUS_INVALID_PARAMETER     å‚æ•°é”™è¯¯
  */
 am_usb_status_t am_usbd_printer_send(am_usbd_printer_handle handle,
 									 uint8_t                ep,
@@ -183,12 +183,12 @@ am_usb_status_t am_usbd_printer_send(am_usbd_printer_handle handle,
                                      uint32_t               length);
 
 /**
- * \brief ³õÊ¼»¯USB
+ * \brief åˆå§‹åŒ–USB
  *
- * \param[in] p_dev     : Ö¸ÏòUSBÉè±¸
- * \param[in] p_info    : Ö¸ÏòUSBÉè±¸ĞÅÏ¢
+ * \param[in] p_dev     : æŒ‡å‘USBè®¾å¤‡
+ * \param[in] p_info    : æŒ‡å‘USBè®¾å¤‡ä¿¡æ¯
  *
- * \return USB±ê×¼·şÎñ²Ù×÷¾ä±ú¡£Èç¹ûÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü¡£
+ * \return USBæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„ã€‚å¦‚æœä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥ã€‚
  */
 am_usbd_printer_handle am_usbd_printer_init (am_usbd_printer_t            *p_dev,
                                              const am_usbd_printer_info_t *p_info,
@@ -196,9 +196,9 @@ am_usbd_printer_handle am_usbd_printer_init (am_usbd_printer_t            *p_dev
 
 
 /**
- * \brief USB Device È¥³õÊ¼»¯
+ * \brief USB Device å»åˆå§‹åŒ–
  *
- * \param[in] p_dev : Ö¸ÏòUSBÉè±¸ÊµÀı
+ * \param[in] p_dev : æŒ‡å‘USBè®¾å¤‡å®ä¾‹
  */
 void am_usbd_printer_deinit (am_usbd_printer_t *p_dev);
 

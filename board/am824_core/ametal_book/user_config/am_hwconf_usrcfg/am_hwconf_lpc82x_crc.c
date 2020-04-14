@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief LPC82X CRC ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief LPC82X CRC ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_lpc82x_crc.c
  *
  * \internal
@@ -33,7 +33,7 @@
  */
 
 /**
- * \brief CRC Æ½Ì¨³õÊ¼»¯
+ * \brief CRC å¹³å°åˆå§‹åŒ–
  */
 am_local void __lpc82x_crc_plfm_init (void)
 {
@@ -41,25 +41,25 @@ am_local void __lpc82x_crc_plfm_init (void)
 }
 
 /**
- * \brief CRC Æ½Ì¨½â³õÊ¼»¯
+ * \brief CRC å¹³å°è§£åˆå§‹åŒ–
  */
 am_local void __lpc82x_crc_plfm_deinit (void)
 {
     amhw_lpc82x_clk_periph_disable(AMHW_LPC82X_CLK_CRC);
 }
 
-/** \brief CRC Éè±¸ĞÅÏ¢ */
+/** \brief CRC è®¾å¤‡ä¿¡æ¯ */
 am_local am_const am_lpc_crc_devinfo_t __g_lpc82x_crc_devinfo = {
-    LPC82X_CRC_BASE,                /* CRC ¼Ä´æÆ÷¿é»ùÖ· */
-    __lpc82x_crc_plfm_init,         /* Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __lpc82x_crc_plfm_deinit        /* Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    LPC82X_CRC_BASE,                /* CRC å¯„å­˜å™¨å—åŸºå€ */
+    __lpc82x_crc_plfm_init,         /* å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __lpc82x_crc_plfm_deinit        /* å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 };
 
-/** \brief CRC Éè±¸ÊµÀı */
+/** \brief CRC è®¾å¤‡å®ä¾‹ */
 am_local am_lpc_crc_dev_t __g_lpc82x_crc_dev;
 
 /**
- * \brief CRC ÊµÀı³õÊ¼»¯
+ * \brief CRC å®ä¾‹åˆå§‹åŒ–
  */
 am_crc_handle_t am_lpc82x_crc_inst_init (void)
 {
@@ -67,7 +67,7 @@ am_crc_handle_t am_lpc82x_crc_inst_init (void)
 }
 
 /**
- * \brief CRC ÊµÀı½â³õÊ¼»¯
+ * \brief CRC å®ä¾‹è§£åˆå§‹åŒ–
  */
 void am_lpc82x_crc_inst_deinit (void)
 {

@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief ZLG9021 配置文件
+ * \brief ZLG9021 閰嶇疆鏂囦欢
  *
  * \internal
  * \par Modification history
@@ -32,9 +32,9 @@ extern "C" {
 #endif
 
 /**
- * \brief  ZLG9021 实例初始化，获得 ZLG9021 标准服务操作句柄
+ * \brief  ZLG9021 瀹炰緥鍒濆鍖栵紝鑾峰緱 ZLG9021 鏍囧噯鏈嶅姟鎿嶄綔鍙ユ焺
  *
- * \return  ZLG9021 标准服务操作句柄
+ * \return  ZLG9021 鏍囧噯鏈嶅姟鎿嶄綔鍙ユ焺
  */
 am_zlg9021_handle_t am_zlg9021_inst_init (void);
 

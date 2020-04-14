@@ -38,33 +38,33 @@ extern "C" {
  */
 
 /**
- * \brief RTC ¼Ä´æÆ÷½á¹¹Ìå¶¨Òå
+ * \brief RTC å¯„å­˜å™¨ç»“æž„ä½“å®šä¹‰
  */
 typedef struct amhw_zlg217_rtc {
-    __IO uint16_t crh;         /**< \brief RTC ¿ØÖÆ¼Ä´æÆ÷¸ßÎ» */
-    __I  uint16_t reserve0;    /**< \brief ±£ÁôÎ» */
-    __IO uint16_t crl;         /**< \brief RTC ¿ØÖÆ¼Ä´æÆ÷µÍÎ» */
-    __I  uint16_t reserve1;    /**< \brief ±£ÁôÎ» */
-    __IO uint16_t prlh;        /**< \brief RTC Ô¤·ÖÆµ×°ÔØ¼Ä´æÆ÷¸ßÎ» */
-    __I  uint16_t reserve2;    /**< \brief ±£ÁôÎ» */
-    __IO uint16_t prll;        /**< \brief RTC Ô¤·ÖÆµ×°ÔØ¼Ä´æÆ÷µÍÎ» */
-    __I  uint16_t reserve3;    /**< \brief ±£ÁôÎ» */
-    __IO uint16_t divh;        /**< \brief RTC Ô¤·ÖÆµÆ÷·ÖÆµÒò×Ó¼Ä´æÆ÷¸ßÎ» */
-    __I  uint16_t reserve4;    /**< \brief ±£ÁôÎ» */
-    __IO uint16_t divl;        /**< \brief RTC Ô¤·ÖÆµÆ÷·ÖÆµÒò×Ó¼Ä´æÆ÷µÍÎ» */
-    __I  uint16_t reserve5;    /**< \brief ±£ÁôÎ» */
-    __IO uint16_t cnth;        /**< \brief RTC ¼ÆÊýÆ÷¼Ä´æÆ÷¸ßÎ» */
-    __I  uint16_t reserve6;    /**< \brief ±£ÁôÎ» */
-    __IO uint16_t cntl;        /**< \brief RTC ¼ÆÊýÆ÷¼Ä´æÆ÷µÍÎ» */
-    __I  uint16_t reserve7;    /**< \brief ±£ÁôÎ» */
-    __IO uint16_t alrh;        /**< \brief RTC ÄÖÖÓ¼Ä´æÆ÷¸ßÎ» */
-    __I  uint16_t reserve8;    /**< \brief ±£ÁôÎ» */
-    __IO uint16_t alrl;        /**< \brief RTC ÄÖÖÓ¼Ä´æÆ÷µÍÎ» */
-    __I  uint16_t reserve9;    /**< \brief ±£ÁôÎ» */
+    __IO uint16_t crh;         /**< \brief RTC æŽ§åˆ¶å¯„å­˜å™¨é«˜ä½ */
+    __I  uint16_t reserve0;    /**< \brief ä¿ç•™ä½ */
+    __IO uint16_t crl;         /**< \brief RTC æŽ§åˆ¶å¯„å­˜å™¨ä½Žä½ */
+    __I  uint16_t reserve1;    /**< \brief ä¿ç•™ä½ */
+    __IO uint16_t prlh;        /**< \brief RTC é¢„åˆ†é¢‘è£…è½½å¯„å­˜å™¨é«˜ä½ */
+    __I  uint16_t reserve2;    /**< \brief ä¿ç•™ä½ */
+    __IO uint16_t prll;        /**< \brief RTC é¢„åˆ†é¢‘è£…è½½å¯„å­˜å™¨ä½Žä½ */
+    __I  uint16_t reserve3;    /**< \brief ä¿ç•™ä½ */
+    __IO uint16_t divh;        /**< \brief RTC é¢„åˆ†é¢‘å™¨åˆ†é¢‘å› å­å¯„å­˜å™¨é«˜ä½ */
+    __I  uint16_t reserve4;    /**< \brief ä¿ç•™ä½ */
+    __IO uint16_t divl;        /**< \brief RTC é¢„åˆ†é¢‘å™¨åˆ†é¢‘å› å­å¯„å­˜å™¨ä½Žä½ */
+    __I  uint16_t reserve5;    /**< \brief ä¿ç•™ä½ */
+    __IO uint16_t cnth;        /**< \brief RTC è®¡æ•°å™¨å¯„å­˜å™¨é«˜ä½ */
+    __I  uint16_t reserve6;    /**< \brief ä¿ç•™ä½ */
+    __IO uint16_t cntl;        /**< \brief RTC è®¡æ•°å™¨å¯„å­˜å™¨ä½Žä½ */
+    __I  uint16_t reserve7;    /**< \brief ä¿ç•™ä½ */
+    __IO uint16_t alrh;        /**< \brief RTC é—¹é’Ÿå¯„å­˜å™¨é«˜ä½ */
+    __I  uint16_t reserve8;    /**< \brief ä¿ç•™ä½ */
+    __IO uint16_t alrl;        /**< \brief RTC é—¹é’Ÿå¯„å­˜å™¨ä½Žä½ */
+    __I  uint16_t reserve9;    /**< \brief ä¿ç•™ä½ */
 } amhw_zlg217_rtc_t;
 
 /**
- * \brief RTC ¿ØÖÆ¼Ä´æÆ÷¸ßÎ»ÖÐ¶ÏÔÊÐíÃ¶¾Ù
+ * \brief RTC æŽ§åˆ¶å¯„å­˜å™¨é«˜ä½ä¸­æ–­å…è®¸æžšä¸¾
  */
 typedef enum {
     AMHW_ZLG217_RTC_SECIE = 0,
@@ -73,7 +73,7 @@ typedef enum {
 } amhw_zlg217_rtc_crh_int_permit;
 
 /**
- * \brief RTC ¿ØÖÆ¼Ä´æÆ÷µÍÎ»×´Ì¬±êÖ¾Ã¶¾Ù
+ * \brief RTC æŽ§åˆ¶å¯„å­˜å™¨ä½Žä½çŠ¶æ€æ ‡å¿—æžšä¸¾
  */
 typedef enum {
     AMHW_ZLG217_RTC_SECF  = 0,
@@ -84,12 +84,12 @@ typedef enum {
 } amhw_zlg217_rtc_crl_status;
 
 /**
- * \brief ÖÐ¶ÏÔÊÐíº¯Êý
+ * \brief ä¸­æ–­å…è®¸å‡½æ•°
  *
- * \param[in] p_hw_rtc Ö¸Ïò amhw_zlg217_rtc_t ½á¹¹µÄÖ¸Õë
- * \param[in] permit   RTC ¿ØÖÆ¼Ä´æÆ÷¸ßÎ»ÖÐ¶ÏÔÊÐíÃ¶¾Ù
+ * \param[in] p_hw_rtc æŒ‡å‘ amhw_zlg217_rtc_t ç»“æž„çš„æŒ‡é’ˆ
+ * \param[in] permit   RTC æŽ§åˆ¶å¯„å­˜å™¨é«˜ä½ä¸­æ–­å…è®¸æžšä¸¾
  *
- * \return ÎÞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rtc_crh_allow_int (amhw_zlg217_rtc_t              *p_hw_rtc,
@@ -99,12 +99,12 @@ void amhw_zlg217_rtc_crh_allow_int (amhw_zlg217_rtc_t              *p_hw_rtc,
 }
 
 /**
- * \brief ÖÐ¶Ï½ûÖ¹º¯Êý
+ * \brief ä¸­æ–­ç¦æ­¢å‡½æ•°
  *
- * \param[in] p_hw_rtc Ö¸Ïò amhw_zlg217_rtc_t ½á¹¹µÄÖ¸Õë
- * \param[in] permit   RTC ¿ØÖÆ¼Ä´æÆ÷¸ßÎ»ÖÐ¶ÏÔÊÐíÃ¶¾Ù
+ * \param[in] p_hw_rtc æŒ‡å‘ amhw_zlg217_rtc_t ç»“æž„çš„æŒ‡é’ˆ
+ * \param[in] permit   RTC æŽ§åˆ¶å¯„å­˜å™¨é«˜ä½ä¸­æ–­å…è®¸æžšä¸¾
  *
- * \return ÎÞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rtc_crh_forbid_int (amhw_zlg217_rtc_t              *p_hw_rtc,
@@ -114,13 +114,13 @@ void amhw_zlg217_rtc_crh_forbid_int (amhw_zlg217_rtc_t              *p_hw_rtc,
 }
 
 /**
- * \brief ¶Á¿ØÖÆ¼Ä´æÆ÷µÍÎ»×´Ì¬Î»
+ * \brief è¯»æŽ§åˆ¶å¯„å­˜å™¨ä½Žä½çŠ¶æ€ä½
  *
- * \param[in] p_hw_rtc Ö¸Ïò amhw_zlg217_rtc_t ½á¹¹µÄÖ¸Õë
- * \param[in] status    RTC ¿ØÖÆ¼Ä´æÆ÷µÍÎ»×´Ì¬±êÖ¾Ã¶¾Ù
+ * \param[in] p_hw_rtc æŒ‡å‘ amhw_zlg217_rtc_t ç»“æž„çš„æŒ‡é’ˆ
+ * \param[in] status    RTC æŽ§åˆ¶å¯„å­˜å™¨ä½Žä½çŠ¶æ€æ ‡å¿—æžšä¸¾
  *
- * \retval AM_TRUE  ±êÖ¾Î»ÖÃÎ»
- * \retval AM_FALSE ±êÖ¾Î»Î´ÖÃÎ»
+ * \retval AM_TRUE  æ ‡å¿—ä½ç½®ä½
+ * \retval AM_FALSE æ ‡å¿—ä½æœªç½®ä½
  */
 am_static_inline
 am_bool_t amhw_zlg217_rtc_crl_read_statu (amhw_zlg217_rtc_t          *p_hw_rtc,
@@ -130,12 +130,12 @@ am_bool_t amhw_zlg217_rtc_crl_read_statu (amhw_zlg217_rtc_t          *p_hw_rtc,
 }
 
 /**
- * \brief ¿ØÖÆ¼Ä´æÆ÷µÍÎ»×´Ì¬Î»Çå³ý
+ * \brief æŽ§åˆ¶å¯„å­˜å™¨ä½Žä½çŠ¶æ€ä½æ¸…é™¤
  *
- * \param[in] p_hw_rtc Ö¸Ïò amhw_zlg217_rtc_t ½á¹¹µÄÖ¸Õë
- * \param[in] status   RTC ¿ØÖÆ¼Ä´æÆ÷µÍÎ»×´Ì¬±êÖ¾Ã¶¾Ù
+ * \param[in] p_hw_rtc æŒ‡å‘ amhw_zlg217_rtc_t ç»“æž„çš„æŒ‡é’ˆ
+ * \param[in] status   RTC æŽ§åˆ¶å¯„å­˜å™¨ä½Žä½çŠ¶æ€æ ‡å¿—æžšä¸¾
  *
- * \return ÎÞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rtc_clr_status_clear (amhw_zlg217_rtc_t          *p_hw_rtc,
@@ -145,11 +145,11 @@ void amhw_zlg217_rtc_clr_status_clear (amhw_zlg217_rtc_t          *p_hw_rtc,
 }
 
 /**
- * \brief ½øÈë RTC ÅäÖÃÄ£Ê½
+ * \brief è¿›å…¥ RTC é…ç½®æ¨¡å¼
  *
- * \param[in] p_hw_rtc Ö¸Ïò amhw_zlg217_rtc_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_rtc æŒ‡å‘ amhw_zlg217_rtc_t ç»“æž„çš„æŒ‡é’ˆ
  *
- * \return ÎÞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rtc_crl_cnf_enter (amhw_zlg217_rtc_t *p_hw_rtc)
@@ -158,11 +158,11 @@ void amhw_zlg217_rtc_crl_cnf_enter (amhw_zlg217_rtc_t *p_hw_rtc)
 }
 
 /**
- * \brief ÍË³ö RTC ÅäÖÃÄ£Ê½
+ * \brief é€€å‡º RTC é…ç½®æ¨¡å¼
  *
- * \param[in] p_hw_rtc Ö¸Ïò amhw_zlg217_rtc_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_rtc æŒ‡å‘ amhw_zlg217_rtc_t ç»“æž„çš„æŒ‡é’ˆ
  *
- * \return ÎÞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rtc_crl_cnf_out (amhw_zlg217_rtc_t *p_hw_rtc)
@@ -171,12 +171,12 @@ void amhw_zlg217_rtc_crl_cnf_out (amhw_zlg217_rtc_t *p_hw_rtc)
 }
 
 /**
- * \brief RTC Ô¤·ÖÆµ×°ÔØ¼Ä´æÆ÷¸ßÎ»Ð´º¯Êý
+ * \brief RTC é¢„åˆ†é¢‘è£…è½½å¯„å­˜å™¨é«˜ä½å†™å‡½æ•°
  *
- * \param[in] p_hw_rtc Ö¸Ïò amhw_zlg217_rtc_t ½á¹¹µÄÖ¸Õë
- * \param[in] divh     Ô¤·ÖÆµ¸ßÎ»
+ * \param[in] p_hw_rtc æŒ‡å‘ amhw_zlg217_rtc_t ç»“æž„çš„æŒ‡é’ˆ
+ * \param[in] divh     é¢„åˆ†é¢‘é«˜ä½
  *
- * \return ÎÞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rtc_prlh_div_write (amhw_zlg217_rtc_t *p_hw_rtc, uint16_t divh)
@@ -185,12 +185,12 @@ void amhw_zlg217_rtc_prlh_div_write (amhw_zlg217_rtc_t *p_hw_rtc, uint16_t divh)
 }
 
 /**
- * \brief RTC Ô¤·ÖÆµ×°ÔØ¼Ä´æÆ÷µÍÎ»Ð´º¯Êý
+ * \brief RTC é¢„åˆ†é¢‘è£…è½½å¯„å­˜å™¨ä½Žä½å†™å‡½æ•°
  *
- * \param[in] p_hw_rtc Ö¸Ïò amhw_zlg217_rtc_t ½á¹¹µÄÖ¸Õë
- * \param[in] divl     Ô¤·ÖÆµµÍÎ»
+ * \param[in] p_hw_rtc æŒ‡å‘ amhw_zlg217_rtc_t ç»“æž„çš„æŒ‡é’ˆ
+ * \param[in] divl     é¢„åˆ†é¢‘ä½Žä½
  *
- * \return ÎÞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rtc_prll_div_write (amhw_zlg217_rtc_t *p_hw_rtc, uint16_t divl)
@@ -199,11 +199,11 @@ void amhw_zlg217_rtc_prll_div_write (amhw_zlg217_rtc_t *p_hw_rtc, uint16_t divl)
 }
 
 /**
- * \brief RTC Ô¤·ÖÆµ×°ÔØ¼Ä´æÆ÷¸ßÎ»¶Áº¯Êý
+ * \brief RTC é¢„åˆ†é¢‘è£…è½½å¯„å­˜å™¨é«˜ä½è¯»å‡½æ•°
  *
- * \param[in] p_hw_rtc Ö¸Ïò amhw_zlg217_rtc_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_rtc æŒ‡å‘ amhw_zlg217_rtc_t ç»“æž„çš„æŒ‡é’ˆ
  *
- * \return RTC Ô¤·ÖÆµ¼Ä´æÆ÷¸ßÎ»×´Ì¬Öµ
+ * \return RTC é¢„åˆ†é¢‘å¯„å­˜å™¨é«˜ä½çŠ¶æ€å€¼
  */
 am_static_inline
 uint16_t amhw_zlg217_rtc_divh_div_read (amhw_zlg217_rtc_t *p_hw_rtc)
@@ -212,11 +212,11 @@ uint16_t amhw_zlg217_rtc_divh_div_read (amhw_zlg217_rtc_t *p_hw_rtc)
 }
 
 /**
- * \brief RTC Ô¤·ÖÆµ×°ÔØ¼Ä´æÆ÷µÍÎ»¶Áº¯Êý
+ * \brief RTC é¢„åˆ†é¢‘è£…è½½å¯„å­˜å™¨ä½Žä½è¯»å‡½æ•°
  *
- * \param[in] p_hw_rtc Ö¸Ïò amhw_zlg217_rtc_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_rtc æŒ‡å‘ amhw_zlg217_rtc_t ç»“æž„çš„æŒ‡é’ˆ
  *
- * \return RTC Ô¤·ÖÆµ¼Ä´æÆ÷µÍÎ»×´Ì¬Öµ
+ * \return RTC é¢„åˆ†é¢‘å¯„å­˜å™¨ä½Žä½çŠ¶æ€å€¼
  */
 am_static_inline
 uint16_t amhw_zlg217_rtc_divl_div_read (amhw_zlg217_rtc_t *p_hw_rtc)
@@ -225,12 +225,12 @@ uint16_t amhw_zlg217_rtc_divl_div_read (amhw_zlg217_rtc_t *p_hw_rtc)
 }
 
 /**
- * \brief RTC ¼ÆÊýÆ÷¼Ä´æÆ÷¸ßÎ»ÉèÖÃº¯Êý
+ * \brief RTC è®¡æ•°å™¨å¯„å­˜å™¨é«˜ä½è®¾ç½®å‡½æ•°
  *
- * \param[in] p_hw_rtc Ö¸Ïò amhw_zlg217_rtc_t ½á¹¹µÄÖ¸Õë
- * \param[in] cnth     ¼ÆÊýÆ÷¸ßÎ»
+ * \param[in] p_hw_rtc æŒ‡å‘ amhw_zlg217_rtc_t ç»“æž„çš„æŒ‡é’ˆ
+ * \param[in] cnth     è®¡æ•°å™¨é«˜ä½
  *
- * \return ÎÞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rtc_cnth_set (amhw_zlg217_rtc_t *p_hw_rtc, uint16_t cnth)
@@ -239,12 +239,12 @@ void amhw_zlg217_rtc_cnth_set (amhw_zlg217_rtc_t *p_hw_rtc, uint16_t cnth)
 }
 
 /**
- * \brief RTC ¼ÆÊýÆ÷¼Ä´æÆ÷µÍÎ»ÉèÖÃº¯Êý
+ * \brief RTC è®¡æ•°å™¨å¯„å­˜å™¨ä½Žä½è®¾ç½®å‡½æ•°
  *
- * \param[in] p_hw_rtc Ö¸Ïò amhw_zlg217_rtc_t ½á¹¹µÄÖ¸Õë
- * \param[in] cntl     ¼ÆÊýÆ÷µÍÎ»
+ * \param[in] p_hw_rtc æŒ‡å‘ amhw_zlg217_rtc_t ç»“æž„çš„æŒ‡é’ˆ
+ * \param[in] cntl     è®¡æ•°å™¨ä½Žä½
  *
- * \return ÎÞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rtc_cntl_set (amhw_zlg217_rtc_t *p_hw_rtc, uint16_t cntl)
@@ -253,11 +253,11 @@ void amhw_zlg217_rtc_cntl_set (amhw_zlg217_rtc_t *p_hw_rtc, uint16_t cntl)
 }
 
 /**
- * \brief »ñÈ¡ RTC ¼ÆÊýÆ÷¼Ä´æÆ÷¸ßÎ»¼ÆÊýÖµ
+ * \brief èŽ·å– RTC è®¡æ•°å™¨å¯„å­˜å™¨é«˜ä½è®¡æ•°å€¼
  *
- * \param[in] p_hw_rtc Ö¸Ïò amhw_zlg217_rtc_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_rtc æŒ‡å‘ amhw_zlg217_rtc_t ç»“æž„çš„æŒ‡é’ˆ
  *
- * \return ¼ÆÊýÆ÷¸ßÎ»ÊýÖµ
+ * \return è®¡æ•°å™¨é«˜ä½æ•°å€¼
  */
 am_static_inline
 uint16_t amhw_zlg217_rtc_cnth_get (amhw_zlg217_rtc_t *p_hw_rtc)
@@ -266,11 +266,11 @@ uint16_t amhw_zlg217_rtc_cnth_get (amhw_zlg217_rtc_t *p_hw_rtc)
 }
 
 /**
- * \brief »ñÈ¡ RTC ¼ÆÊýÆ÷¼Ä´æÆ÷¸ßÎ»¼ÆÊýÖµ
+ * \brief èŽ·å– RTC è®¡æ•°å™¨å¯„å­˜å™¨é«˜ä½è®¡æ•°å€¼
  *
- * \param[in] p_hw_rtc Ö¸Ïò amhw_zlg217_rtc_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_rtc æŒ‡å‘ amhw_zlg217_rtc_t ç»“æž„çš„æŒ‡é’ˆ
  *
- * \return ¼Ä´æÆ÷µÍÎ»ÊýÖµ
+ * \return å¯„å­˜å™¨ä½Žä½æ•°å€¼
  */
 am_static_inline
 uint16_t amhw_zlg217_rtc_cntl_get (amhw_zlg217_rtc_t *p_hw_rtc)
@@ -279,12 +279,12 @@ uint16_t amhw_zlg217_rtc_cntl_get (amhw_zlg217_rtc_t *p_hw_rtc)
 }
 
 /**
- * \brief RTC ÄÖÖÓ¼Ä´æÆ÷¸ßÎ»Ð´º¯Êý
+ * \brief RTC é—¹é’Ÿå¯„å­˜å™¨é«˜ä½å†™å‡½æ•°
  *
- * \param[in] p_hw_rtc Ö¸Ïò amhw_zlg217_rtc_t ½á¹¹µÄÖ¸Õë
- * \param[in] alarmh   ÄÖÖÓ¼Ä´æÆ÷¸ßÎ»
+ * \param[in] p_hw_rtc æŒ‡å‘ amhw_zlg217_rtc_t ç»“æž„çš„æŒ‡é’ˆ
+ * \param[in] alarmh   é—¹é’Ÿå¯„å­˜å™¨é«˜ä½
  *
- * \return ÎÞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rtc_alrh_set (amhw_zlg217_rtc_t *p_hw_rtc, uint16_t alarmh)
@@ -293,12 +293,12 @@ void amhw_zlg217_rtc_alrh_set (amhw_zlg217_rtc_t *p_hw_rtc, uint16_t alarmh)
 }
 
 /**
- * \brief RTC ÄÖÖÓ¼Ä´æÆ÷µÍÎ»Ð´º¯Êý
+ * \brief RTC é—¹é’Ÿå¯„å­˜å™¨ä½Žä½å†™å‡½æ•°
  *
- * \param[in] p_hw_rtc Ö¸Ïò amhw_zlg217_rtc_t ½á¹¹µÄÖ¸Õë
- * \param[in] alarml   ÄÖÖÓ¼Ä´æÆ÷µÍÎ»
+ * \param[in] p_hw_rtc æŒ‡å‘ amhw_zlg217_rtc_t ç»“æž„çš„æŒ‡é’ˆ
+ * \param[in] alarml   é—¹é’Ÿå¯„å­˜å™¨ä½Žä½
  *
- * \return ÎÞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_rtc_alrl_set (amhw_zlg217_rtc_t *p_hw_rtc, uint16_t alarml)

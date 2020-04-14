@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ±ê×¼µÄLEDÉè±¸¹ÜÀí
+ * \brief æ ‡å‡†çš„LEDè®¾å¤‡ç®¡ç†
  *
  * \internal
  * \par modification history:
@@ -36,66 +36,66 @@ extern "C" {
  */
 
 /**
- * \brief LEDÇı¶¯º¯Êı
+ * \brief LEDé©±åŠ¨å‡½æ•°
  */
 typedef struct am_led_drv_funcs {
 
-    /* ÉèÖÃLEDµÄ×´Ì¬ */
+    /* è®¾ç½®LEDçš„çŠ¶æ€ */
     int (*pfn_led_set)   (void *p_cookie, int id, am_bool_t on);
 
-    /* ·­×ªLEDµÄ×´Ì¬ */
+    /* ç¿»è½¬LEDçš„çŠ¶æ€ */
     int (*pfn_led_toggle)(void *p_cookie, int id);
 
 } am_led_drv_funcs_t;
 
 /**
- * \brief Í¨ÓÃLED·şÎñĞÅÏ¢
+ * \brief é€šç”¨LEDæœåŠ¡ä¿¡æ¯
  */
 typedef struct am_led_servinfo {
-    int         start_id;        /**< \brief ±¾Éè±¸Ìá¹©µÄLED·şÎñµÄÆğÊ¼±àºÅ */
-    int         end_id;          /**< \brief ±¾Éè±¸Ìá¹©µÄLED·şÎñµÄ½áÊø±àºÅ */
+    int         start_id;        /**< \brief æœ¬è®¾å¤‡æä¾›çš„LEDæœåŠ¡çš„èµ·å§‹ç¼–å· */
+    int         end_id;          /**< \brief æœ¬è®¾å¤‡æä¾›çš„LEDæœåŠ¡çš„ç»“æŸç¼–å· */
 } am_led_servinfo_t;
 
 /**
- * \brief Í¨ÓÃLEDÉè±¸
+ * \brief é€šç”¨LEDè®¾å¤‡
  */
 typedef struct am_led_dev {
-    const am_led_drv_funcs_t     *p_funcs;   /**< \brief Çı¶¯º¯Êı            */
-    void                         *p_cookie;  /**< \brief Çı¶¯º¯Êı²ÎÊı  */
-    const am_led_servinfo_t      *p_info;    /**< \brief LED·şÎñĞÅÏ¢     */
-    struct am_led_dev            *p_next;    /**< \brief ÏÂÒ»¸öLEDÉè±¸ */
+    const am_led_drv_funcs_t     *p_funcs;   /**< \brief é©±åŠ¨å‡½æ•°            */
+    void                         *p_cookie;  /**< \brief é©±åŠ¨å‡½æ•°å‚æ•°  */
+    const am_led_servinfo_t      *p_info;    /**< \brief LEDæœåŠ¡ä¿¡æ¯     */
+    struct am_led_dev            *p_next;    /**< \brief ä¸‹ä¸€ä¸ªLEDè®¾å¤‡ */
 } am_led_dev_t;
 
 /** 
- * \brief LEDÉè±¸¿â¹ÜÀí³õÊ¼»¯
- * \retval AM_OK : LEDÉè±¸¿â¹ÜÀí³õÊ¼»¯¿â³õÊ¼»¯³É¹¦
+ * \brief LEDè®¾å¤‡åº“ç®¡ç†åˆå§‹åŒ–
+ * \retval AM_OK : LEDè®¾å¤‡åº“ç®¡ç†åˆå§‹åŒ–åº“åˆå§‹åŒ–æˆåŠŸ
  */
 int am_led_dev_lib_init (void);
 
 /**
- * \brief Ìí¼ÓÒ»¸öLEDÉè±¸
+ * \brief æ·»åŠ ä¸€ä¸ªLEDè®¾å¤‡
  *
- * \param[in] p_dev    : LEDÉè±¸ÊµÀı
- * \param[in] p_info   £ºLEDÉè±¸·şÎñĞÅÏ¢
- * \param[in] p_funcs  : LEDÉè±¸µÄÇı¶¯º¯Êı
- * \param[in] p_cookie : Çı¶¯º¯ÊıµÄ²ÎÊı
+ * \param[in] p_dev    : LEDè®¾å¤‡å®ä¾‹
+ * \param[in] p_info   ï¼šLEDè®¾å¤‡æœåŠ¡ä¿¡æ¯
+ * \param[in] p_funcs  : LEDè®¾å¤‡çš„é©±åŠ¨å‡½æ•°
+ * \param[in] p_cookie : é©±åŠ¨å‡½æ•°çš„å‚æ•°
  *
- * \retval AM_OK      : Ìí¼Ó³É¹¦
- * \retval -AM_EINVAL £ºÌí¼ÓÊ§°Ü£¬²ÎÊı´æÔÚ´íÎó
- * \retval -AM_EPERM  : Ìí¼ÓÊ§°Ü£¬¸ÃÉè±¸¶ÔÓ¦µÄLED±àºÅÒÑ¾­´æÔÚ
+ * \retval AM_OK      : æ·»åŠ æˆåŠŸ
+ * \retval -AM_EINVAL ï¼šæ·»åŠ å¤±è´¥ï¼Œå‚æ•°å­˜åœ¨é”™è¯¯
+ * \retval -AM_EPERM  : æ·»åŠ å¤±è´¥ï¼Œè¯¥è®¾å¤‡å¯¹åº”çš„LEDç¼–å·å·²ç»å­˜åœ¨
  */
 int am_led_dev_add (am_led_dev_t             *p_dev,
                     const am_led_servinfo_t  *p_info,
                     const am_led_drv_funcs_t *p_funcs,
                     void                     *p_cookie);
 /**
- * \brief É¾³ıÒ»¸öLEDÉè±¸
+ * \brief åˆ é™¤ä¸€ä¸ªLEDè®¾å¤‡
  *
- * \param[in] p_dev     : LEDÉè±¸ÊµÀı
+ * \param[in] p_dev     : LEDè®¾å¤‡å®ä¾‹
  *
- * \retval AM_OK      : É¾³ı³É¹¦
- * \retval -AM_EINVAL £ºÉ¾³ıÊ§°Ü£¬²ÎÊı´æÔÚ´íÎó
- * \retval -AM_ENODEV : É¾³ıÊ§°Ü£¬ÎŞ´Ë²ÎÊı
+ * \retval AM_OK      : åˆ é™¤æˆåŠŸ
+ * \retval -AM_EINVAL ï¼šåˆ é™¤å¤±è´¥ï¼Œå‚æ•°å­˜åœ¨é”™è¯¯
+ * \retval -AM_ENODEV : åˆ é™¤å¤±è´¥ï¼Œæ— æ­¤å‚æ•°
  */
 int am_led_dev_del (am_led_dev_t *p_dev);
 

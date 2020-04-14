@@ -12,15 +12,15 @@
 
 /**
  * \file
- * \brief TPMʵ�ֱ�׼��ʱ�����̣�ͨ��HW��Ľӿ�ʵ��
+ * \brief TPM实现标准定时器例程，通过HW层的接口实现
  *
- * - ʵ������
- *   1. LED��10Hz��Ƶ����˸��
+ * - 实验现象：
+ *   1. LED以10Hz的频率闪烁。
  *
- *\note TPM��4��ʱ��Դ����ѡ��Ĭ������ʱ��Դ��СΪ20M,���жϵ���СƵ��Ϊ:
- *              fre = 20000000/(128*65535) = 2.38Hz  ��16λ��ʱ�������128��Ƶ��
+ *\note TPM有4种时钟源可以选择，默认配置时钟源大小为20M,则中断的最小频率为:
+ *              fre = 20000000/(128*65535) = 2.38Hz  （16位定时器，最高128分频）
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_fsl_hw_tpm_timing.c src_fsl_hw_tpm_timing
  *
  * \internal
@@ -42,35 +42,35 @@
 #include "am_board.h"
 
 /** 
- * \brief  ��ʱ��0�ص�����
- * \param[in] p_arg : �û��Զ����������am_timer_callback_set() �������ݡ�
- * \return  ��
+ * \brief  定时器0回调函数
+ * \param[in] p_arg : 用户自定义参数，由am_timer_callback_set() 函数传递。
+ * \return  无
  */
 void tpm_timing_callback (void *p_arg)
 {
 
     amhw_fsl_tpm_t *p_hw_tpm = (amhw_fsl_tpm_t *)p_arg;
     /*
-     * �ж��Ƿ��Ƕ�ʱ������ж�
+     * 判断是否是定时器溢出中断
      */
     if (amhw_fsl_tpm_stat_flag_get(p_hw_tpm) & AMHW_FSL_TPM_STAT_OV_FLAG ) {
 
         am_led_toggle(LED0);
-        /* ��������־ */
+        /* 清除溢出标志 */
         amhw_fsl_tpm_stat_flag_clear(p_hw_tpm, AMHW_FSL_TPM_STAT_OV_FLAG);
     }
 }
 
 /**
- * \brief ��ʼ��TPMΪ��ʱ�����ܡ�
+ * \brief 初始化TPM为定时器功能。
  *
- * \param[in] p_tpm    : ָ��TPM�Ĵ������ָ��
- * \param[in] freq     : �ж�Ƶ�ʡ�
- * \param[in] inum     : �жϺš�
- * \param[in] tpm_rate : ��ʱ������Ƶ�ʡ�
+ * \param[in] p_tpm    : 指向TPM寄存器块的指针
+ * \param[in] freq     : 中断频率。
+ * \param[in] inum     : 中断号。
+ * \param[in] tpm_rate : 定时器外设频率。
  *
- * \retval  AM_OK      : ��ʼ���ɹ�
- * \retval  -AM_EINVAL : ��������
+ * \retval  AM_OK      : 初始化成功
+ * \retval  -AM_EINVAL : 参数有误
  */
 int tpm_timer_init (amhw_fsl_tpm_t *p_hw_tpm,
                     uint32_t        freq,
@@ -82,22 +82,22 @@ int tpm_timer_init (amhw_fsl_tpm_t *p_hw_tpm,
 
     match    = tpm_clk / freq;
 
-    if (match > 0xffff * 128) {             /* 16λ��ʱ����128��Ƶ */
+    if (match > 0xffff * 128) {             /* 16位定时器，128分频 */
         return -AM_EINVAL;
     }
 
     temp = match / 0xffffu + 1;
-    /* ֻ֧�ַ�Ƶ��С1,2,4,8...128����ô��ڷ�Ƶ������С����2^n */
+    /* 只支持分频大小1,2,4,8...128，求得大于分频数中最小的数2^n */
     for (pre_real = 1; pre_real < temp; ) {
-        pre_reg++;                        /* ����д��Ĵ����ķ�Ƶֵ0,1,2,... */
-        pre_real = pre_real << 1;           /* ��Ƶ��2^n */
+        pre_reg++;                        /* 计算写入寄存器的分频值0,1,2,... */
+        pre_real = pre_real << 1;           /* 分频数2^n */
     }
     match = match / pre_real;
     amhw_fsl_tpm_prescale_set(p_hw_tpm, (amhw_fsl_tpm_prescale_t)pre_reg);
     amhw_fsl_tpm_count_clear(p_hw_tpm);
     amhw_fsl_tpm_mod_set(p_hw_tpm, match - 1);
 
-    amhw_fsl_tpm_ctrl_set(p_hw_tpm, AMHW_FSL_TPM_SC_TOI_EN);        /* ���ж� */
+    amhw_fsl_tpm_ctrl_set(p_hw_tpm, AMHW_FSL_TPM_SC_TOI_EN);        /* 开中断 */
 
     am_int_connect(inum, tpm_timing_callback, p_hw_tpm);
     am_int_enable(inum);
@@ -106,29 +106,29 @@ int tpm_timer_init (amhw_fsl_tpm_t *p_hw_tpm,
 }
 
 /**
- * \brief ʹ��TPM��ʱ��(��ʼ����)
- * \param[in] p_tpm : ָ��TPM�Ĵ������ָ��
- * \return ��
+ * \brief 使能TPM定时器(开始计数)
+ * \param[in] p_tpm : 指向TPM寄存器块的指针
+ * \return 无
  */
 void tpm_timer_enable (amhw_fsl_tpm_t *p_hw_tpm)
 {
-    /* �ر�ʱ�ӣ�TPM��ʼ���� */
+    /* 关闭时钟，TPM开始运行 */
     amhw_fsl_tpm_clock_mode(p_hw_tpm, AMHW_FSL_TPM_CLK_SRC_MODULE);
 }
 
 /**
- * \brief  ��ֹTPM��ʱ��(ֹͣ����)
- * \param[in] p_hw_tpm : ָ��TPM�Ĵ������ָ��
- * \return  ��
+ * \brief  禁止TPM定时器(停止计数)
+ * \param[in] p_hw_tpm : 指向TPM寄存器块的指针
+ * \return  无
  */
 void hw_tpm_timer_disable (amhw_fsl_tpm_t *p_hw_tpm)
 {
-    /* �ر�ʱ�ӣ�TPMֹͣ���� */
+    /* 关闭时钟，TPM停止运行 */
     amhw_fsl_tpm_clock_mode(p_hw_tpm, AMHW_FSL_TPM_CLK_SRC_NONE);
 }
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_fsl_hw_tpm_timing_entry (amhw_fsl_tpm_t *p_hw_tpm0,
                                    uint32_t        freq,
@@ -139,10 +139,10 @@ void demo_fsl_hw_tpm_timing_entry (amhw_fsl_tpm_t *p_hw_tpm0,
     AM_DBG_INFO("The demo for TPM timing:\r\n");
     AM_DBG_INFO("The led toggle in 10Hz \r\n");
   
-    /* ʹ��TPM0,�ж�Ƶ��Ϊ10Hz */
+    /* 使用TPM0,中断频率为10Hz */
     tpm_timer_init(p_hw_tpm0, freq, inum, tpm_clk);
     
-    /* ��ʼ���� */
+    /* 开始计数 */
     tpm_timer_enable(p_hw_tpm0);
 
     while (1) {

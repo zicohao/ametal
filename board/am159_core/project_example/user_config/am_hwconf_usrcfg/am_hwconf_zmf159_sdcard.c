@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_sdcard.c
  *
  * \internal
@@ -37,31 +37,31 @@
  */
 
 /**
- * \brief SDCARD Éè±¸ĞÅÏ¢ÊµÀı
+ * \brief SDCARD è®¾å¤‡ä¿¡æ¯å®ä¾‹
  */
 static const am_sdcard_devinfo_t __g_sdcard_info = {
 
-        /** \brief SDIO SD 4ÏßÄ£Ê½ */
+        /** \brief SDIO SD 4çº¿æ¨¡å¼ */
         AM_SDIO_SD_4B_M,
 
-        /** \brief SDIOËÙÂÊ*/
+        /** \brief SDIOé€Ÿç‡*/
         1000000,
 
-        /** \brief SDIO CRCÊ¹ÄÜ±êÖ¾*/
+        /** \brief SDIO CRCä½¿èƒ½æ ‡å¿—*/
         AM_TRUE,
 
-        /** \brief SD CardÖ§³ÖµÄORC£¨µçÑ¹·¶Î§£© */
+        /** \brief SD Cardæ”¯æŒçš„ORCï¼ˆç”µå‹èŒƒå›´ï¼‰ */
         (AM_SD_OCR_VDD_27_28 | AM_SD_OCR_VDD_28_29 | AM_SD_OCR_VDD_29_30 |
          AM_SD_OCR_VDD_30_31 | AM_SD_OCR_VDD_31_32 | AM_SD_OCR_VDD_32_33 |
          AM_SD_OCR_VDD_33_34 | AM_SD_OCR_VDD_34_35 | AM_SD_OCR_VDD_35_36),
 };
 
 /**
- * \brief SDCARD Éè±¸ÊµÀı
+ * \brief SDCARD è®¾å¤‡å®ä¾‹
  */
 static am_sdcard_dev_t    __g_sdcard_dev;
 
-/* ÊµÀı³õÊ¼»¯ */
+/* å®ä¾‹åˆå§‹åŒ– */
 am_sdcard_handle_t am_sdcard_inst_init (void)
 {
 

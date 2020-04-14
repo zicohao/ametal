@@ -12,17 +12,17 @@
 
 /**
  * \file
- * \brief I2C ´Ó»úÀý³Ì£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief I2C ä»Žæœºä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. PIOB_6 Òý½ÅÁ¬½Ó I2C Ö÷»úµÄ SCL Òý½Å£»
- *   2. PIOB_7 Òý½ÅÁ¬½Ó I2C Ö÷»úµÄ SDA Òý½Å¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. PIOB_6 å¼•è„šè¿žæŽ¥ I2C ä¸»æœºçš„ SCL å¼•è„šï¼›
+ *   2. PIOB_7 å¼•è„šè¿žæŽ¥ I2C ä¸»æœºçš„ SDA å¼•è„šã€‚
  *
  * \note
- *    1. µ±Ç° I2C µÄ SCL Òý½ÅÊ¹ÓÃµÄÊÇ PIOB_6£¬SDA Òý½ÅÊ¹ÓÃµÄÊÇ PIOB_7£¬
- *       ¿É¸ù¾ÝÊµ¼ÊÇé¿ö¸ü»»Òý½Å¡£
+ *    1. å½“å‰ I2C çš„ SCL å¼•è„šä½¿ç”¨çš„æ˜¯ PIOB_6ï¼ŒSDA å¼•è„šä½¿ç”¨çš„æ˜¯ PIOB_7ï¼Œ
+ *       å¯æ ¹æ®å®žé™…æƒ…å†µæ›´æ¢å¼•è„šã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_aml166_core_std_i2c_slave.c src_aml166_core_std_i2c_slave
  *
  * \internal
@@ -43,10 +43,10 @@
 #include "demo_std_entries.h"
 #include "demo_aml166_core_entries.h"
 
-#define __I2C_SLV_ADDR   0X50  /**< \brief ´ÓÉè±¸µÄµØÖ· */
+#define __I2C_SLV_ADDR   0X50  /**< \brief ä»Žè®¾å¤‡çš„åœ°å€ */
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_aml166_core_std_i2c_slave_entry (void)
 {

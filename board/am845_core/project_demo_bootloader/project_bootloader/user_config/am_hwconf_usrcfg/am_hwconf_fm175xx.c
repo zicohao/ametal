@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief FM175XX ÅäÖÃÎÄ¼ş
+ * \brief FM175XX é…ç½®æ–‡ä»¶
  * \sa am_hwconf_fm175xx.c
  *
  * \internal
@@ -25,7 +25,7 @@
 #include "lpc84x_pin.h"
 #include "am_lpc84x_inst_init.h"
 
-#define   LPCD      0    /** \brief Èç¹ûĞèÒª¿ªÆôLPCD¹¦ÄÜ£¬Ôò°ÑÖµ¸ÄÎª1£¬²»ĞèÒªÊ¹ÓÃÔòÎª0 */
+#define   LPCD      0    /** \brief å¦‚æœéœ€è¦å¼€å¯LPCDåŠŸèƒ½ï¼Œåˆ™æŠŠå€¼æ”¹ä¸º1ï¼Œä¸éœ€è¦ä½¿ç”¨åˆ™ä¸º0 */
 
 /**
  * \addtogroup am_if_src_hwconf_fm175xx
@@ -33,11 +33,11 @@
  * @{
  */
 
-/* ¶¨Òå fm175xx ÊµÀı */
+/* å®šä¹‰ fm175xx å®ä¾‹ */
 static am_fm175xx_dev_t  __g_fm175xx_dev;
 
 #if      LPCD
-/* ÅäÖÃFM175xx LPCDÄ£Ê½²ÎÊı */
+/* é…ç½®FM175xx LPCDæ¨¡å¼å‚æ•° */
 am_local am_const am_fm175xx_lpcd_cfginfo_t  __g_lpcd_cfg_info = {
     AM_FM175XX_LCPD_SLEEP500MS,
     AM_FM175XX_LCPD_DETECT47US,
@@ -52,7 +52,7 @@ am_local am_const am_fm175xx_lpcd_cfginfo_t  __g_lpcd_cfg_info = {
 };
 #endif
 
-/* ¶¨Òå fm175xx ÊµÀıĞÅÏ¢ */
+/* å®šä¹‰ fm175xx å®ä¾‹ä¿¡æ¯ */
 am_local am_const am_fm175xx_devinfo_t __g_fm175xx_devinfo = {
     PIO0_24,
 	PIO0_25,

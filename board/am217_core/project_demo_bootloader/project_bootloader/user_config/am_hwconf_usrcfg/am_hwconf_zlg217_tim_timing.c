@@ -12,7 +12,7 @@
 
 /**
   \file
-  \brief ZLG217 TIM ¶¨Ê±¹¦ÄÜÓÃ»§ÅäÖÃÎÄ¼ş
+  \brief ZLG217 TIM å®šæ—¶åŠŸèƒ½ç”¨æˆ·é…ç½®æ–‡ä»¶
   \sa am_hwconf_zlg217_tim_timing.c
  *
  *
@@ -35,176 +35,176 @@
  */
 
 /*******************************************************************************
-  TIM1 ÅäÖÃ
+  TIM1 é…ç½®
 *******************************************************************************/
 
-/** \brief TIM1 Æ½Ì¨³õÊ¼»¯ */
+/** \brief TIM1 å¹³å°åˆå§‹åŒ– */
 void __zlg217_plfm_tim1_timing_init (void)
 {
     am_clk_enable(CLK_TIM1);
     am_zlg217_clk_reset(CLK_TIM1);
 }
 
-/** \brief ½â³ı TIM1 Æ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤ TIM1 å¹³å°åˆå§‹åŒ– */
 void __zlg217_plfm_tim1_timing_deinit (void)
 {
     am_zlg217_clk_reset(CLK_TIM1);
     am_clk_disable(CLK_TIM1);
 }
 
-/** \brief TIM1 Éè±¸ĞÅÏ¢ */
+/** \brief TIM1 è®¾å¤‡ä¿¡æ¯ */
 const am_zlg_tim_timing_devinfo_t  __g_tim1_timing_devinfo = {
-    ZLG217_TIM1_BASE,                  /**< \brief TIM1¼Ä´æÆ÷¿éµÄ»ùµØÖ· */
-    INUM_TIM1_UP,                      /**< \brief TIM1ÖĞ¶Ï±àºÅ */
-    CLK_TIM1,                          /**< \brief TIM1Ê±ÖÓID */
-    AMHW_ZLG_TIM_TYPE0,             /**< \brief ¶¨Ê±Æ÷ÀàĞÍ */
-    __zlg217_plfm_tim1_timing_init,    /**< \brief Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __zlg217_plfm_tim1_timing_deinit   /**< \brief Æ½Ì¨½âÎö³õÊ¼»¯º¯Êı */
+    ZLG217_TIM1_BASE,                  /**< \brief TIM1å¯„å­˜å™¨å—çš„åŸºåœ°å€ */
+    INUM_TIM1_UP,                      /**< \brief TIM1ä¸­æ–­ç¼–å· */
+    CLK_TIM1,                          /**< \brief TIM1æ—¶é’ŸID */
+    AMHW_ZLG_TIM_TYPE0,             /**< \brief å®šæ—¶å™¨ç±»å‹ */
+    __zlg217_plfm_tim1_timing_init,    /**< \brief å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __zlg217_plfm_tim1_timing_deinit   /**< \brief å¹³å°è§£æåˆå§‹åŒ–å‡½æ•° */
 };
 
-/** \brief TIM1 Éè±¸¶¨Òå */
+/** \brief TIM1 è®¾å¤‡å®šä¹‰ */
 am_zlg_tim_timing_dev_t __g_tim1_timing_dev;
 
-/** \brief ¶¨Ê±Æ÷TIM1 TimingÊµÀı³õÊ¼»¯£¬»ñµÃTimer±ê×¼·şÎñ¾ä±ú */
+/** \brief å®šæ—¶å™¨TIM1 Timingå®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—Timeræ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_timer_handle_t am_zlg217_tim1_timing_inst_init (void)
 {
     return am_zlg_tim_timing_init(&__g_tim1_timing_dev,
                                      &__g_tim1_timing_devinfo);
 }
 
-/** \brief TIM1 TimingÊµÀı½â³õÊ¼»¯ */
+/** \brief TIM1 Timingå®ä¾‹è§£åˆå§‹åŒ– */
 void am_zlg217_tim1_timing_inst_deinit (am_timer_handle_t handle)
 {
     am_zlg_tim_timing_deinit(handle);
 }
 
 /*******************************************************************************
-  TIM2 ÅäÖÃ
+  TIM2 é…ç½®
 *******************************************************************************/
 
-/** \brief TIM2 Æ½Ì¨³õÊ¼»¯ */
+/** \brief TIM2 å¹³å°åˆå§‹åŒ– */
 void __zlg217_plfm_tim2_timing_init (void)
 {
     am_clk_enable(CLK_TIM2);
     am_zlg217_clk_reset(CLK_TIM2);
 }
 
-/** \brief ½â³ı TIM2 Æ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤ TIM2 å¹³å°åˆå§‹åŒ– */
 void __zlg217_plfm_tim2_timing_deinit (void)
 {
     am_zlg217_clk_reset(CLK_TIM2);
     am_clk_disable(CLK_TIM2);
 }
 
-/** \brief TIM2 Éè±¸ĞÅÏ¢ */
+/** \brief TIM2 è®¾å¤‡ä¿¡æ¯ */
 const am_zlg_tim_timing_devinfo_t  __g_tim2_timing_devinfo = {
-    ZLG217_TIM2_BASE,                  /**< \brief TIM2¼Ä´æÆ÷¿éµÄ»ùµØÖ· */
-    INUM_TIM2,                         /**< \brief TIM2ÖĞ¶Ï±àºÅ */
-    CLK_TIM2,                          /**< \brief TIM2Ê±ÖÓID */
-    AMHW_ZLG_TIM_TYPE1,             /**< \brief ¶¨Ê±Æ÷ÀàĞÍ */
-    __zlg217_plfm_tim2_timing_init,    /**< \brief Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __zlg217_plfm_tim2_timing_deinit   /**< \brief Æ½Ì¨½âÎö³õÊ¼»¯º¯Êı */
+    ZLG217_TIM2_BASE,                  /**< \brief TIM2å¯„å­˜å™¨å—çš„åŸºåœ°å€ */
+    INUM_TIM2,                         /**< \brief TIM2ä¸­æ–­ç¼–å· */
+    CLK_TIM2,                          /**< \brief TIM2æ—¶é’ŸID */
+    AMHW_ZLG_TIM_TYPE1,             /**< \brief å®šæ—¶å™¨ç±»å‹ */
+    __zlg217_plfm_tim2_timing_init,    /**< \brief å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __zlg217_plfm_tim2_timing_deinit   /**< \brief å¹³å°è§£æåˆå§‹åŒ–å‡½æ•° */
 };
 
-/** \brief TIM2 Éè±¸¶¨Òå */
+/** \brief TIM2 è®¾å¤‡å®šä¹‰ */
 am_zlg_tim_timing_dev_t  __g_tim2_timing_dev;
 
-/** \brief TIM2 TimingÊµÀı³õÊ¼»¯£¬»ñµÃTimer±ê×¼·şÎñ¾ä±ú */
+/** \brief TIM2 Timingå®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—Timeræ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_timer_handle_t am_zlg217_tim2_timing_inst_init (void)
 {
     return am_zlg_tim_timing_init(&__g_tim2_timing_dev,
                                      &__g_tim2_timing_devinfo);
 }
 
-/** \brief TIM2 TimingÊµÀı½â³õÊ¼»¯ */
+/** \brief TIM2 Timingå®ä¾‹è§£åˆå§‹åŒ– */
 void am_zlg217_tim2_timing_inst_deinit (am_timer_handle_t handle)
 {
     am_zlg_tim_timing_deinit(handle);
 }
 
 /*******************************************************************************
-  TIM3ÅäÖÃ
+  TIM3é…ç½®
 *******************************************************************************/
 
-/** \brief TIM3Æ½Ì¨³õÊ¼»¯ */
+/** \brief TIM3å¹³å°åˆå§‹åŒ– */
 void __zlg217_plfm_tim3_timing_init (void)
 {
     am_clk_enable(CLK_TIM3);
     am_zlg217_clk_reset(CLK_TIM3);
 }
 
-/** \brief ½â³ıTIM3Æ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤TIM3å¹³å°åˆå§‹åŒ– */
 void __zlg217_plfm_tim3_timing_deinit (void)
 {
     am_zlg217_clk_reset(CLK_TIM3);
     am_clk_disable(CLK_TIM3);
 }
 
-/** \brief TIM3 Éè±¸ĞÅÏ¢ */
+/** \brief TIM3 è®¾å¤‡ä¿¡æ¯ */
 const am_zlg_tim_timing_devinfo_t  __g_tim3_timing_devinfo = {
-    ZLG217_TIM3_BASE,                  /**< \brief TIM3¼Ä´æÆ÷¿éµÄ»ùµØÖ· */
-    INUM_TIM3,                         /**< \brief TIM3ÖĞ¶Ï±àºÅ */
-    CLK_TIM3,                          /**< \brief TIM3Ê±ÖÓID */
-    AMHW_ZLG_TIM_TYPE1,             /**< \brief ¶¨Ê±Æ÷ÀàĞÍ */
-    __zlg217_plfm_tim3_timing_init,    /**< \brief Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __zlg217_plfm_tim3_timing_deinit   /**< \brief Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    ZLG217_TIM3_BASE,                  /**< \brief TIM3å¯„å­˜å™¨å—çš„åŸºåœ°å€ */
+    INUM_TIM3,                         /**< \brief TIM3ä¸­æ–­ç¼–å· */
+    CLK_TIM3,                          /**< \brief TIM3æ—¶é’ŸID */
+    AMHW_ZLG_TIM_TYPE1,             /**< \brief å®šæ—¶å™¨ç±»å‹ */
+    __zlg217_plfm_tim3_timing_init,    /**< \brief å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __zlg217_plfm_tim3_timing_deinit   /**< \brief å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 };
 
-/** \brief TIM3Éè±¸¶¨Òå */
+/** \brief TIM3è®¾å¤‡å®šä¹‰ */
 am_zlg_tim_timing_dev_t  __g_tim3_timing_dev;
 
-/** \brief TIM3 TimingÊµÀı³õÊ¼»¯£¬»ñµÃTimer±ê×¼·şÎñ¾ä±ú */
+/** \brief TIM3 Timingå®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—Timeræ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_timer_handle_t am_zlg217_tim3_timing_inst_init (void)
 {
     return am_zlg_tim_timing_init(&__g_tim3_timing_dev,
                                      &__g_tim3_timing_devinfo);
 }
 
-/** \brief TIM3 TimingÊµÀı½â³õÊ¼»¯ */
+/** \brief TIM3 Timingå®ä¾‹è§£åˆå§‹åŒ– */
 void am_zlg217_tim3_timing_inst_deinit (am_timer_handle_t handle)
 {
     am_zlg_tim_timing_deinit(handle);
 }
 
 /*******************************************************************************
-  TIM4ÅäÖÃ
+  TIM4é…ç½®
 *******************************************************************************/
 
-/** \brief TIM4Æ½Ì¨³õÊ¼»¯ */
+/** \brief TIM4å¹³å°åˆå§‹åŒ– */
 void __zlg217_plfm_tim4_timing_init (void)
 {
     am_clk_enable(CLK_TIM4);
     am_zlg217_clk_reset(CLK_TIM4);
 }
 
-/** \brief ½â³ıTIM4Æ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤TIM4å¹³å°åˆå§‹åŒ– */
 void __zlg217_plfm_tim4_timing_deinit (void)
 {
     am_zlg217_clk_reset(CLK_TIM4);
     am_clk_disable(CLK_TIM4);
 }
 
-/** \brief TIM4Éè±¸ĞÅÏ¢ */
+/** \brief TIM4è®¾å¤‡ä¿¡æ¯ */
 const am_zlg_tim_timing_devinfo_t  __g_tim4_timing_devinfo = {
-    ZLG217_TIM4_BASE,                  /**< \brief TIM4¼Ä´æÆ÷¿éµÄ»ùµØÖ· */
-    INUM_TIM4,                         /**< \brief TIM4ÖĞ¶Ï±àºÅ */
-    CLK_TIM4,                          /**< \brief TIM4Ê±ÖÓID */
-    AMHW_ZLG_TIM_TYPE1,             /**< \brief ¶¨Ê±Æ÷ÀàĞÍ */
-    __zlg217_plfm_tim4_timing_init,    /**< \brief Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __zlg217_plfm_tim4_timing_deinit   /**< \brief Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    ZLG217_TIM4_BASE,                  /**< \brief TIM4å¯„å­˜å™¨å—çš„åŸºåœ°å€ */
+    INUM_TIM4,                         /**< \brief TIM4ä¸­æ–­ç¼–å· */
+    CLK_TIM4,                          /**< \brief TIM4æ—¶é’ŸID */
+    AMHW_ZLG_TIM_TYPE1,             /**< \brief å®šæ—¶å™¨ç±»å‹ */
+    __zlg217_plfm_tim4_timing_init,    /**< \brief å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __zlg217_plfm_tim4_timing_deinit   /**< \brief å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 };
 
-/** \brief TIM4Éè±¸¶¨Òå */
+/** \brief TIM4è®¾å¤‡å®šä¹‰ */
 am_zlg_tim_timing_dev_t  __g_tim4_timing_dev;
 
-/** \brief TIM4 TimingÊµÀı³õÊ¼»¯£¬»ñµÃTimer±ê×¼·şÎñ¾ä±ú */
+/** \brief TIM4 Timingå®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—Timeræ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_timer_handle_t am_zlg217_tim4_timing_inst_init (void)
 {
     return am_zlg_tim_timing_init(&__g_tim4_timing_dev,
                                      &__g_tim4_timing_devinfo);
 }
 
-/** \brief TIM4 TimingÊµÀı½â³õÊ¼»¯ */
+/** \brief TIM4 Timingå®ä¾‹è§£åˆå§‹åŒ– */
 void am_zlg217_tim4_timing_inst_deinit (am_timer_handle_t handle)
 {
     am_zlg_tim_timing_deinit(handle);

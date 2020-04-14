@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief LPC82x Xmodem ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief LPC82x Xmodem ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_lpc82x_xmodem.c
  *
  * \internal
@@ -33,7 +33,7 @@
  * @{
  */
 
-/* Xmodem·¢ËÍ¹¤×÷Ä£Ê½*/
+/* Xmodemå‘é€å·¥ä½œæ¨¡å¼*/
 #define __MODE   AM_XMODEM_128_MODE
 #if (__MODE == AM_XMODEM_128_MODE)
 #define  __BUFF_SIZE      128
@@ -41,34 +41,34 @@
 #define  __BUFF_SIZE      1024
 #endif
 
-/* Êı¾İ»º´æÇø*/
+/* æ•°æ®ç¼“å­˜åŒº*/
 static char __g_xmodem_rec_buf[__BUFF_SIZE];
 
-/* ·¢ËÍÉè±¸ÊµÀı*/
+/* å‘é€è®¾å¤‡å®ä¾‹*/
 static am_xmodem_tx_dev_t  __g_xmodem_tx_dev;
 
-/* ½ÓÊÕÉè±¸ÊµÀı*/
+/* æ¥æ”¶è®¾å¤‡å®ä¾‹*/
 static am_xmodem_rec_dev_t __g_xmodem_rec_dev;
 
-/* ¶¨ÒåXmodem½ÓÊÕÉè±¸ĞÅÏ¢½á¹¹Ìå */
+/* å®šä¹‰Xmodemæ¥æ”¶è®¾å¤‡ä¿¡æ¯ç»“æ„ä½“ */
 static const am_xmodem_rec_dev_info_t  __g_xmodem_dev_info = {
-    __g_xmodem_rec_buf,         /**< \brief ½ÓÊÕ»º´æÇø*/
-    10,                         /**< \brief ×î´óÖØ·¢´ÎÊı*/
-    sizeof(__g_xmodem_rec_buf), /**< \brief ½ÓÊÕ»º´æÇø´óĞ¡ */
-    __MODE,                     /**< \brief ½ÓÊÕ¹¤×÷Ä£Ê½*/
-    AM_XMODEM_CRC_MODE,         /**< \brief Ğ£Ñé·½Ê½*/
-    3000,                       /**< \brief ½ÓÊÕ³¬Ê±Ê±¼ä*/
-    8000                        /**< \brief Æô¶¯¼ä¸ôÊ±¼ä*/
+    __g_xmodem_rec_buf,         /**< \brief æ¥æ”¶ç¼“å­˜åŒº*/
+    10,                         /**< \brief æœ€å¤§é‡å‘æ¬¡æ•°*/
+    sizeof(__g_xmodem_rec_buf), /**< \brief æ¥æ”¶ç¼“å­˜åŒºå¤§å° */
+    __MODE,                     /**< \brief æ¥æ”¶å·¥ä½œæ¨¡å¼*/
+    AM_XMODEM_CRC_MODE,         /**< \brief æ ¡éªŒæ–¹å¼*/
+    3000,                       /**< \brief æ¥æ”¶è¶…æ—¶æ—¶é—´*/
+    8000                        /**< \brief å¯åŠ¨é—´éš”æ—¶é—´*/
 };
 
-/* ¶¨ÒåXmodem·¢ËÍÉè±¸ĞÅÏ¢½á¹¹Ìå*/
+/* å®šä¹‰Xmodemå‘é€è®¾å¤‡ä¿¡æ¯ç»“æ„ä½“*/
 static const am_xmodem_tx_dev_info_t __g_xmodem_tx_dev_info = {
-   1000,        /**< \brief ·¢ËÍ³¬Ê±Ê±¼ä*/
-   3,           /**< \brief ×î´óÖØ·¢´ÎÊı*/
+   1000,        /**< \brief å‘é€è¶…æ—¶æ—¶é—´*/
+   3,           /**< \brief æœ€å¤§é‡å‘æ¬¡æ•°*/
 };
 
 
-/* Xmodem·¢ËÍÊµÀı³õÊ¼»¯£¬»ñÈ¡Xmodem·¢ËÍ²Ù×÷¾ä±ú*/
+/* Xmodemå‘é€å®ä¾‹åˆå§‹åŒ–ï¼Œè·å–Xmodemå‘é€æ“ä½œå¥æŸ„*/
 am_xmodem_tx_handle_t   am_lpc82x_xmodem_tx_inst_init (void)
 {
     am_crc_handle_t   crc_handle   = NULL;
@@ -84,7 +84,7 @@ am_xmodem_tx_handle_t   am_lpc82x_xmodem_tx_inst_init (void)
                              crc_handle);
 }
 
-/* Xmodem½ÓÊÕÊµÀı³õÊ¼»¯£¬»ñÈ¡Xmodem½ÓÊÕ²Ù×÷¾ä±ú*/
+/* Xmodemæ¥æ”¶å®ä¾‹åˆå§‹åŒ–ï¼Œè·å–Xmodemæ¥æ”¶æ“ä½œå¥æŸ„*/
 am_xmodem_rec_handle_t   am_lpc82x_xmodem_rec_inst_init (void)
 {
     am_crc_handle_t   crc_handle   = NULL;

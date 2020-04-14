@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZLG116 SPI ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief ZLG116 SPI ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_zlg116_spi_int.c
  *
  * \internal
@@ -34,7 +34,7 @@
  * @{
  */
 
-/** \brief SPI1 Æ½Ì¨³õÊ¼»¯ */
+/** \brief SPI1 å¹³å°åˆå§‹åŒ– */
 static void __zlg_plfm_spi1_poll_init (void)
 {
     am_gpio_pin_cfg(PIOA_5, PIOA_5_SPI1_SCK  | PIOA_5_AF_PP);
@@ -44,11 +44,11 @@ static void __zlg_plfm_spi1_poll_init (void)
     am_clk_enable(CLK_SPI1);
 }
 
-/** \brief ½â³ıSPI1 Æ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤SPI1 å¹³å°åˆå§‹åŒ– */
 static void __zlg_plfm_spi1_poll_deinit (void)
 {
 
-    /* ÊÍ·ÅÒı½ÅÎªÊäÈëÄ£Ê½ */
+    /* é‡Šæ”¾å¼•è„šä¸ºè¾“å…¥æ¨¡å¼ */
     am_gpio_pin_cfg(PIOA_5, AM_GPIO_INPUT);
     am_gpio_pin_cfg(PIOA_6, AM_GPIO_INPUT);
     am_gpio_pin_cfg(PIOA_7, AM_GPIO_INPUT);
@@ -57,34 +57,34 @@ static void __zlg_plfm_spi1_poll_deinit (void)
 }
 
 /**
- * \brief SPI1 Éè±¸ĞÅÏ¢
+ * \brief SPI1 è®¾å¤‡ä¿¡æ¯
  */
 const  struct am_zlg_spi_poll_devinfo  __g_spi1_poll_devinfo = {
-    ZLG116_SPI1_BASE,                   /**< \brief SPI1¼Ä´æÆ÷Ö¸Õë */
-    CLK_SPI1,                           /**< \brief Ê±ÖÓIDºÅ */
-    PIOA_7_SPI1_MOSI | PIOA_7_AF_PP,    /**< \brief SPI1ÅäÖÃ±êÊ¶ */
-    PIOA_7,                             /**< \brief MOSIÒı½ÅºÅ */
-    __zlg_plfm_spi1_poll_init,           /**< \brief SPI1Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __zlg_plfm_spi1_poll_deinit          /**< \brief SPI1Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    ZLG116_SPI1_BASE,                   /**< \brief SPI1å¯„å­˜å™¨æŒ‡é’ˆ */
+    CLK_SPI1,                           /**< \brief æ—¶é’ŸIDå· */
+    PIOA_7_SPI1_MOSI | PIOA_7_AF_PP,    /**< \brief SPI1é…ç½®æ ‡è¯† */
+    PIOA_7,                             /**< \brief MOSIå¼•è„šå· */
+    __zlg_plfm_spi1_poll_init,           /**< \brief SPI1å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __zlg_plfm_spi1_poll_deinit          /**< \brief SPI1å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 };
 
-/** \brief SPI1 Éè±¸ÊµÀı */
+/** \brief SPI1 è®¾å¤‡å®ä¾‹ */
 static am_zlg_spi_poll_dev_t __g_spi1_poll_dev;
 
-/** \brief SPI1 ÊµÀı³õÊ¼»¯£¬»ñµÃSPI±ê×¼·şÎñ¾ä±ú */
+/** \brief SPI1 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—SPIæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_spi_handle_t am_zlg116_spi1_poll_inst_init (void)
 {
     return am_zlg_spi_poll_init(&__g_spi1_poll_dev, &__g_spi1_poll_devinfo);
 }
 
-/** \brief SPI1 ÊµÀı½â³õÊ¼»¯ */
+/** \brief SPI1 å®ä¾‹è§£åˆå§‹åŒ– */
 void am_zlg116_spi1_poll_inst_deinit (am_spi_handle_t handle)
 {
     am_zlg_spi_poll_deinit(handle);
 }
 
 #if 0
-/** \brief SPI2 Æ½Ì¨³õÊ¼»¯ */
+/** \brief SPI2 å¹³å°åˆå§‹åŒ– */
 static void __zlg_plfm_spi2_poll_init (void)
 {
     am_gpio_pin_cfg(PIOB_13, PIOB_13_SPI2_MISO | PIOB_13_INPUT_FLOAT);
@@ -94,7 +94,7 @@ static void __zlg_plfm_spi2_poll_init (void)
     am_clk_enable(CLK_SPI2);
 }
 
-/** \brief ½â³ı SPI2 Æ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤ SPI2 å¹³å°åˆå§‹åŒ– */
 static void __zlg_plfm_spi2_poll_deinit (void)
 {
     am_gpio_pin_cfg(PIOB_13, AM_GPIO_INPUT);
@@ -104,28 +104,28 @@ static void __zlg_plfm_spi2_poll_deinit (void)
     am_clk_disable(CLK_SPI2);
 }
 /**
- * \brief SPI2 Éè±¸ĞÅÏ¢
+ * \brief SPI2 è®¾å¤‡ä¿¡æ¯
  */
 const  struct am_zlg_spi_poll_devinfo  __g_spi2_poll_devinfo = {
-    ZLG116_SPI2_BASE,                      /**< \brief SPI2 ¼Ä´æÆ÷Ö¸Õë */
-    CLK_SPI2,                              /**< \brief Ê±ÖÓ ID ºÅ */
-    INUM_SPI2,                             /**< \brief SPI2 ÖĞ¶ÏºÅ */
-    PIOB_14_SPI2_MOSI | PIOB_14_AF_PP,     /**< \brief SPI2 ÅäÖÃ±êÊ¶ */
-    PIOB_14,                               /**< \brief MOSI Òı½ÅºÅ */
-    __zlg_plfm_spi2_poll_init,              /**< \brief SPI2 Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __zlg_plfm_spi2_poll_deinit             /**< \brief SPI2 Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    ZLG116_SPI2_BASE,                      /**< \brief SPI2 å¯„å­˜å™¨æŒ‡é’ˆ */
+    CLK_SPI2,                              /**< \brief æ—¶é’Ÿ ID å· */
+    INUM_SPI2,                             /**< \brief SPI2 ä¸­æ–­å· */
+    PIOB_14_SPI2_MOSI | PIOB_14_AF_PP,     /**< \brief SPI2 é…ç½®æ ‡è¯† */
+    PIOB_14,                               /**< \brief MOSI å¼•è„šå· */
+    __zlg_plfm_spi2_poll_init,              /**< \brief SPI2 å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __zlg_plfm_spi2_poll_deinit             /**< \brief SPI2 å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 };
 
-/** \brief SPI2 Éè±¸ÊµÀı */
+/** \brief SPI2 è®¾å¤‡å®ä¾‹ */
 static am_zlg_spi_poll_dev_t __g_spi2_poll_dev;
 
-/** \brief SPI2 ÊµÀı³õÊ¼»¯£¬»ñµÃ SPI ±ê×¼·şÎñ¾ä±ú */
+/** \brief SPI2 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— SPI æ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_spi_handle_t am_zlg116_spi2_poll_inst_init (void)
 {
     return am_zlg_spi_poll_init(&__g_spi2_poll_dev, &__g_spi2_poll_devinfo);
 }
 
-/** \brief SPI2 ÊµÀı½â³õÊ¼»¯ */
+/** \brief SPI2 å®ä¾‹è§£åˆå§‹åŒ– */
 void am_zlg116_spi2_poll_inst_deinit (am_spi_handle_t handle)
 {
     am_zlg_spi_poll_deinit(handle);

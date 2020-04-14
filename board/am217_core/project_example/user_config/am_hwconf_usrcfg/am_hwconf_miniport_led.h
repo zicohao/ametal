@@ -12,11 +12,11 @@
 
 /**
  * \file
- * \brief MiniPort-LED ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief MiniPort-LED ç”¨æˆ·é…ç½®æ–‡ä»¶
  *
- * Ëü¿ÉÒÔµ¥¶ÀÊ¹ÓÃ£¬Ò²¿ÉÒÔºÍ MiniPort-595 ÁªºÏÊ¹ÓÃ£¬ÒÔ½ÚÊ¡¿ØÖÆÒı½Å¡£
+ * å®ƒå¯ä»¥å•ç‹¬ä½¿ç”¨ï¼Œä¹Ÿå¯ä»¥å’Œ MiniPort-595 è”åˆä½¿ç”¨ï¼Œä»¥èŠ‚çœæ§åˆ¶å¼•è„šã€‚
  *
- * µ±Ç°Ö§³ÖµÄÓÃ·¨ÓĞ£º
+ * å½“å‰æ”¯æŒçš„ç”¨æ³•æœ‰ï¼š
  * 1. MiniPort-LED                : am_miniport_led_inst_init();
  * 2. MiniPort-LED + MiniPort-595 : am_miniport_led_595_inst_init();
  *
@@ -35,18 +35,18 @@ extern "C" {
 #include "ametal.h"
 
 /**
- * \brief MiniPort-LEDÊµÀı³õÊ¼»¯
+ * \brief MiniPort-LEDå®ä¾‹åˆå§‹åŒ–
  *
- * \retval  AW_OK  ³õÊ¼»¯³É¹¦
- * \retval   < 0   ³õÊ¼»¯Ê§°Ü£¬Çë¼ìCÎÄ¼şÖĞ¸÷ÅäÖÃÏîÊÇ·ñºÏ·¨
+ * \retval  AW_OK  åˆå§‹åŒ–æˆåŠŸ
+ * \retval   < 0   åˆå§‹åŒ–å¤±è´¥ï¼Œè¯·æ£€Cæ–‡ä»¶ä¸­å„é…ç½®é¡¹æ˜¯å¦åˆæ³•
  */
 int am_miniport_led_inst_init (void);
 
 /**
- * \brief MiniPort-LED ºÍ MiniPort-595 ÁªºÏÊ¹ÓÃÊµÀı³õÊ¼»¯
+ * \brief MiniPort-LED å’Œ MiniPort-595 è”åˆä½¿ç”¨å®ä¾‹åˆå§‹åŒ–
  *
- * \retval  AW_OK  ³õÊ¼»¯³É¹¦
- * \retval   < 0   ³õÊ¼»¯Ê§°Ü£¬Çë¼ìCÎÄ¼şÖĞ¸÷ÅäÖÃÏîÊÇ·ñºÏ·¨
+ * \retval  AW_OK  åˆå§‹åŒ–æˆåŠŸ
+ * \retval   < 0   åˆå§‹åŒ–å¤±è´¥ï¼Œè¯·æ£€Cæ–‡ä»¶ä¸­å„é…ç½®é¡¹æ˜¯å¦åˆæ³•
  */
 int am_miniport_led_595_inst_init (void);
 

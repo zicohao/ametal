@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ¾ØÕó¼üÅÌGPIO¼üÖµ¶ÁÈ¡
+ * \brief çŸ©é˜µé”®ç›˜GPIOé”®å€¼è¯»å–
  *
  * \internal
  * \par modification history:
@@ -37,7 +37,7 @@
 extern "C" {
 #endif
 
-/** \brief ¾ØÕó¼üÅÌ¼üÖµ¶ÁÈ¡Éè±¸  */
+/** \brief çŸ©é˜µé”®ç›˜é”®å€¼è¯»å–è®¾å¤‡  */
 typedef struct am_key_matrix_read_gpio {
     am_key_matrix_read_t             isa;
     const am_key_matrix_base_info_t *p_info;
@@ -46,15 +46,15 @@ typedef struct am_key_matrix_read_gpio {
 } am_key_matrix_read_gpio_t;
 
 /**
- * \brief ¾ØÕó¼üÅÌ¼üÖµ¶ÁÈ¡Éè±¸³õÊ¼»¯£¨GPIO£©
+ * \brief çŸ©é˜µé”®ç›˜é”®å€¼è¯»å–è®¾å¤‡åˆå§‹åŒ–ï¼ˆGPIOï¼‰
  *
- * \param[in] p_dev      : °´¼üÉè±¸ÊµÀı
- * \param[in] p_info     : °´¼üĞÅÏ¢
- * \param[in] p_pins     :  GPIOÒı½ÅÁĞ±í£¬ÓÃÓÚ¶ÁÈ¡Ò»´ÎÉ¨ÃèÏÂµÄËùÓĞ°´¼üµÄ¼üÖµ
- *                          - Èô°´ÕÕĞĞÉ¨Ãè£¬ÔòÒı½ÅÊıÓ¦¸ÃÓëÁĞÊıÏàµÈ
- *                          - Èô°´ÕÕÁĞÉ¨Ãè£¬ÔòÒı½ÅÊıÓ¦¸ÃÓëĞĞÊıÏàµÈ
+ * \param[in] p_dev      : æŒ‰é”®è®¾å¤‡å®ä¾‹
+ * \param[in] p_info     : æŒ‰é”®ä¿¡æ¯
+ * \param[in] p_pins     :  GPIOå¼•è„šåˆ—è¡¨ï¼Œç”¨äºè¯»å–ä¸€æ¬¡æ‰«æä¸‹çš„æ‰€æœ‰æŒ‰é”®çš„é”®å€¼
+ *                          - è‹¥æŒ‰ç…§è¡Œæ‰«æï¼Œåˆ™å¼•è„šæ•°åº”è¯¥ä¸åˆ—æ•°ç›¸ç­‰
+ *                          - è‹¥æŒ‰ç…§åˆ—æ‰«æï¼Œåˆ™å¼•è„šæ•°åº”è¯¥ä¸è¡Œæ•°ç›¸ç­‰
  *
- * \return Í¨ÓÃµÄ¾ØÕó¼üÅÌ¼üÖµ¶ÁÈ¡
+ * \return é€šç”¨çš„çŸ©é˜µé”®ç›˜é”®å€¼è¯»å–
  */
 am_key_matrix_read_t * am_key_matrix_read_gpio_init (
     am_key_matrix_read_gpio_t       *p_dev,

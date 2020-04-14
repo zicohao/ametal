@@ -12,19 +12,19 @@
 
 /**
  * \file
- * \brief SPI �ػ����̣��жϷ�ʽ����ͨ����׼�ӿ�ʵ��
+ * \brief SPI 回环例程（中断方式），通过标准接口实现
  *
- * - �������裺
- *   1. �̽� SPI �� MOSI(PIO0_12) �� MISO(PIO0_13)��
+ * - 操作步骤：
+ *   1. 短接 SPI 的 MOSI(PIO0_12) 和 MISO(PIO0_13)；
  *
- * - ʵ������
- *   1. ��������һ�δ��䣬��У�鷢�͵���������յ������Ƿ�һ�£�
+ * - 实验现象：
+ *   1. 主机发起一次传输，并校验发送的数据与接收的数据是否一致；
  *
  * \note
- *    1. ����۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIO0_0 �������� PC ���ڵ� TXD��
- *       PIO0_4 �������� PC ���ڵ� RXD��
+ *    1. 如需观察串口打印的调试信息，需要将 PIO0_0 引脚连接 PC 串口的 TXD，
+ *       PIO0_4 引脚连接 PC 串口的 RXD。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_am824_std_spi_master_int.c src_am824_std_spi_master_int
  *
  * \internal
@@ -46,7 +46,7 @@
 #include "demo_std_entries.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_am824_core_std_spi_master_int_entry (void)
 {

@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief HC595��׼�豸ʵ�֣�GPIO������
+ * \brief HC595标准设备实现（GPIO驱动）
  *
  * \internal
  * \par modification history:
@@ -38,60 +38,60 @@ extern "C" {
  */
 
 /**
- * \brief GPIO����HC595���豸��Ϣ
+ * \brief GPIO驱动HC595的设备信息
  *
- * δʹ�õ����ţ���OE���̶�Ϊ�͵�ƽʱ�����Խ� oe���ŵ�ֵ����Ϊ -1
+ * 未使用的引脚，如OE，固定为低电平时，可以将 oe引脚的值设置为 -1
  */
 typedef struct am_hc595_gpio_info {
-    int data_pin;            /**< \brief ��������                            */
-    int clk_pin;             /**< \brief ��λʱ������                        */
-    int lock_pin;            /**< \brief ������������                        */
-    int oe_pin;              /**< \brief ���ʹ�����ţ�δʹ��ʱ������Ϊ -1�� */
+    int data_pin;            /**< \brief 数据引脚                            */
+    int clk_pin;             /**< \brief 移位时钟引脚                        */
+    int lock_pin;            /**< \brief 数据锁存引脚                        */
+    int oe_pin;              /**< \brief 输出使能引脚（未使用时可设置为 -1） */
 
     /**
-     * \brief HC595���ݷ����Ƿ����λ�ȷ��ͣ�Ĭ�ϸ�λ�ȷ��ͣ�
+     * \brief HC595数据发送是否最低位先发送（默认高位先发送）
      *
-     *  ��ֵΪ AM_TRUE �� ���λ�ȷ��ͣ� ���λ���ͳ��� Q7λ��
-     *  ��ֵΪ AM_FALSE �� ���λ�ȷ��ͣ� ���λ���ͳ��� Q7λ��
+     *  该值为 AM_TRUE ， 最低位先发送， 最低位将送出到 Q7位置
+     *  该值为 AM_FALSE ， 最高位先发送， 最高位将送出到 Q7位置
      *
-     *  ���磺
-     *  - ��Q0 ������� 'a'�����ӣ��� ���� LSB Ӧ���ȷ���
-     *  - ��Q7 �� 'a'�����ӣ��� ���� MSB Ӧ���ȷ���
+     *  例如：
+     *  - 若Q0 与数码管 'a'相连接，则 数据 LSB 应该先发送
+     *  - 若Q7 余 'a'相连接，则 数据 MSB 应该先发送
      */
     am_bool_t  lsb_first;
 
-    /** ��λʱ�� �͵�ƽ����ʱʱ��  (��λus) */
+    /** 移位时钟 低电平的延时时间  (单位us) */
     uint16_t clk_low_udelay;
 
-    /** ��λʱ�� �ߵ�ƽ����ʱʱ��  (��λus) */
+    /** 移位时钟 高电平的延时时间  (单位us) */
     uint16_t clk_high_udelay;
 
 } am_hc595_gpio_info_t;
 
 /**
- * \brief GPIO����HC595���豸
+ * \brief GPIO驱动HC595的设备
  */
 typedef struct am_hc595_gpio_dev {
-    am_hc595_dev_t                isa;       /**< \brief ��׼��HC595����    */
-    const am_hc595_gpio_info_t   *p_info;    /**< \brief �豸��Ϣ           */
+    am_hc595_dev_t                isa;       /**< \brief 标准的HC595服务    */
+    const am_hc595_gpio_info_t   *p_info;    /**< \brief 设备信息           */
 } am_hc595_gpio_dev_t;
 
 
 /**
- * \brief  GPIO����HC595���豸��ʼ��
+ * \brief  GPIO驱动HC595的设备初始化
  *
- * \param[in] p_dev  : GPIO������ HC595�豸
- * \param[in] p_info : GPIO������ HC595�豸��Ϣ
+ * \param[in] p_dev  : GPIO驱动的 HC595设备
+ * \param[in] p_info : GPIO驱动的 HC595设备信息
  *
- * \return hc595����������ΪNULL��������ʼ��ʧ��
+ * \return hc595服务句柄，若为NULL，表明初始化失败
  */
 am_hc595_handle_t am_hc595_gpio_init (am_hc595_gpio_dev_t        *p_dev,
                                       const am_hc595_gpio_info_t *p_info);
 
 /**
- * \brief  GPIO����HC595���豸���ʼ��
- * \param[in] p_dev  : GPIO������ HC595�豸
- * \return AM_OK�����ʼ���ɹ�������ֵ�����ʼ��ʧ��
+ * \brief  GPIO驱动HC595的设备解初始化
+ * \param[in] p_dev  : GPIO驱动的 HC595设备
+ * \return AM_OK，解初始化成功；其它值，解初始化失败
  */
 int am_hc595_gpio_deinit (am_hc595_gpio_dev_t *p_dev);
 

@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ¶ÎÂëÇı¶¯£¨HC595£©
+ * \brief æ®µç é©±åŠ¨ï¼ˆHC595ï¼‰
  *
  * \internal
  * \par modification history:
@@ -38,7 +38,7 @@ extern "C" {
  */
 
 /**
- * \brief HC595¶ÎÂëÉè±¸
+ * \brief HC595æ®µç è®¾å¤‡
  */
 typedef struct am_digitron_seg_hc595 {
     am_digitron_base_sender_seg_t      sender;
@@ -46,14 +46,14 @@ typedef struct am_digitron_seg_hc595 {
 } am_digitron_seg_hc595_dev_t;
 
 /**
- * \brief HC595¶ÎÂë·¢ËÍÆ÷³õÊ¼»¯
+ * \brief HC595æ®µç å‘é€å™¨åˆå§‹åŒ–
  *
- * \param[in] p_dev  : HC595¶ÎÂë·¢ËÍÆ÷Éè±¸ÊµÀı
- * \param[in] p_info : ÊıÂë¹Ü»ù´¡ĞÅÏ¢
- * \param[in] flags  : HC595Êı¾İ·¢ËÍ±êÖ¾£¬ÈôQ0 Óë 'a'ÏàÁ¬½Ó£¬Ôò Êı¾İ LSB Ó¦¸ÃÏÈ·¢ËÍ
- * \param[in] handle : ±ê×¼µÄHC595·şÎñ¾ä±ú
+ * \param[in] p_dev  : HC595æ®µç å‘é€å™¨è®¾å¤‡å®ä¾‹
+ * \param[in] p_info : æ•°ç ç®¡åŸºç¡€ä¿¡æ¯
+ * \param[in] flags  : HC595æ•°æ®å‘é€æ ‡å¿—ï¼Œè‹¥Q0 ä¸ 'a'ç›¸è¿æ¥ï¼Œåˆ™ æ•°æ® LSB åº”è¯¥å…ˆå‘é€
+ * \param[in] handle : æ ‡å‡†çš„HC595æœåŠ¡å¥æŸ„
  *
- * \return ±ê×¼µÄ¶ÎÂë·¢ËÍÆ÷£¨¿É¹©ÊıÂë¹ÜÉ¨ÃèÆ÷Ê¹ÓÃ£©
+ * \return æ ‡å‡†çš„æ®µç å‘é€å™¨ï¼ˆå¯ä¾›æ•°ç ç®¡æ‰«æå™¨ä½¿ç”¨ï¼‰
  */
 am_digitron_base_sender_seg_t *am_digitron_seg_hc595_init (
         am_digitron_seg_hc595_dev_t     *p_dev,

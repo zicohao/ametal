@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief ZLG9021 ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief ZLG9021 ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_zlg9021.c
  *
  * \internal
@@ -33,29 +33,29 @@
  * @{
  */
 
-am_local uint8_t __g_zlg9021_txbuf[128]; /**< \brief ·¢ËÍ»º³åÇø */
-am_local uint8_t __g_zlg9021_rxbuf[128]; /**< \brief ½ÓÊÕ»º³åÇø */
+am_local uint8_t __g_zlg9021_txbuf[128]; /**< \brief å‘é€ç¼“å†²åŒº */
+am_local uint8_t __g_zlg9021_rxbuf[128]; /**< \brief æ¥æ”¶ç¼“å†²åŒº */
 
-/** \brief Éè±¸ÊµÀı */
+/** \brief è®¾å¤‡å®ä¾‹ */
 am_local am_zlg9021_dev_t __g_zlg9021_dev;
 
-/** \brief Éè±¸ĞÅÏ¢ */
+/** \brief è®¾å¤‡ä¿¡æ¯ */
 am_local am_const am_zlg9021_devinfo_t __g_zlg9021_devinfo = {
-    PIO0_16,                   /**< \brief EN Òı½Å£¬ÈôÎŞĞè MCU ¿ØÖÆ£¬¸ÃÖµÉèÖÃÎª -1 */
-    PIO0_25,                   /**< \brief BRTS Òı½Å£¬·¢ËÍÊı¾İÖÁ ZLG9021 Ç°±»À­µÍ£¬½áÊøºóÀ­¸ß */
-    PIO0_28,                   /**< \brief ¸´Î»Òı½Å */
-    -1,                        /**< \brief RESTORE Òı½Å£¬ÓÃÓÚ»Ö¸´³ö³§ÉèÖÃ */
-    9600,                      /**< \brief Ä£¿éµ±Ç°Ê¹ÓÃµÄ²¨ÌØÂÊ */
-    __g_zlg9021_rxbuf,         /**< \brief ½ÓÊÕ»º´æ */
-    __g_zlg9021_txbuf,         /**< \brief ·¢ËÍ»º´æ */
-    sizeof(__g_zlg9021_rxbuf), /**< \brief ½ÓÊÕ»º´æ³¤¶È */
-    sizeof(__g_zlg9021_txbuf)  /**< \brief ·¢ËÍ»º´æ³¤¶È */
+    PIO0_16,                   /**< \brief EN å¼•è„šï¼Œè‹¥æ— éœ€ MCU æ§åˆ¶ï¼Œè¯¥å€¼è®¾ç½®ä¸º -1 */
+    PIO0_25,                   /**< \brief BRTS å¼•è„šï¼Œå‘é€æ•°æ®è‡³ ZLG9021 å‰è¢«æ‹‰ä½ï¼Œç»“æŸåæ‹‰é«˜ */
+    PIO0_28,                   /**< \brief å¤ä½å¼•è„š */
+    -1,                        /**< \brief RESTORE å¼•è„šï¼Œç”¨äºæ¢å¤å‡ºå‚è®¾ç½® */
+    9600,                      /**< \brief æ¨¡å—å½“å‰ä½¿ç”¨çš„æ³¢ç‰¹ç‡ */
+    __g_zlg9021_rxbuf,         /**< \brief æ¥æ”¶ç¼“å­˜ */
+    __g_zlg9021_txbuf,         /**< \brief å‘é€ç¼“å­˜ */
+    sizeof(__g_zlg9021_rxbuf), /**< \brief æ¥æ”¶ç¼“å­˜é•¿åº¦ */
+    sizeof(__g_zlg9021_txbuf)  /**< \brief å‘é€ç¼“å­˜é•¿åº¦ */
 };
 
 /**
- * \brief  ZLG9021 ÊµÀı³õÊ¼»¯£¬»ñµÃ ZLG9021 ±ê×¼·şÎñ²Ù×÷¾ä±ú
+ * \brief  ZLG9021 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— ZLG9021 æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  *
- * \return  ZLG9021 ±ê×¼·şÎñ²Ù×÷¾ä±ú
+ * \return  ZLG9021 æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  */
 am_zlg9021_handle_t am_zlg9021_inst_init (void)
 {

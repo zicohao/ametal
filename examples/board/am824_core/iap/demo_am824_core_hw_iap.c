@@ -12,18 +12,18 @@
 
 /**
  * \file
- * \brief IAP Àý³Ì£¬Í¨¹ý HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief IAP ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æŽ¥å£å®žçŽ°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Êä³ö UID, PID, Boot ´úÂë°æ±¾ºÅºÍÇ©Ãû£»
- *   2. ¿½±´ RAM µ½ FLASH£¬Êä³öÏà¹ØÒ³Êý¾Ý£»
- *   3. Èç¹û·äÃùÆ÷Ïì£¬ËµÃ÷ IAP Ö¸ÁîÔÚÖ´ÐÐ²úÉú´íÎó¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. è¾“å‡º UID, PID, Boot ä»£ç ç‰ˆæœ¬å·å’Œç­¾åï¼›
+ *   2. æ‹·è´ RAM åˆ° FLASHï¼Œè¾“å‡ºç›¸å…³é¡µæ•°æ®ï¼›
+ *   3. å¦‚æžœèœ‚é¸£å™¨å“ï¼Œè¯´æ˜Ž IAP æŒ‡ä»¤åœ¨æ‰§è¡Œäº§ç”Ÿé”™è¯¯ã€‚
  *
- *       ÔÚÉÈÇøºÍÖ¸¶¨ÉÈÇøºÅ¿É½øÐÐ IAP ºÍ ISP Ö¸Áî²Ù×÷¡£ÁíÍâ£¬¿É½øÐÐÒ³²Á³ý¡£ÉÈÇø´óÐ¡
- *       Îª 1KB£¬Ò³´óÐ¡Îª 64 ×Ö½Ú£¬Ò»¸öÉÈÇø°üº¬ 16 Ò³£¬ÉÈÇø 0 ºÍÒ³ 0 Î»ÓÚ 0x0000 0000
- *       µØÖ·¡£16KB flash ½ö°üº¬ÉÈÇø 0-15£¬32KB flash °üº¬ÉÈÇø 0-31.
+ *       åœ¨æ‰‡åŒºå’ŒæŒ‡å®šæ‰‡åŒºå·å¯è¿›è¡Œ IAP å’Œ ISP æŒ‡ä»¤æ“ä½œã€‚å¦å¤–ï¼Œå¯è¿›è¡Œé¡µæ“¦é™¤ã€‚æ‰‡åŒºå¤§å°
+ *       ä¸º 1KBï¼Œé¡µå¤§å°ä¸º 64 å­—èŠ‚ï¼Œä¸€ä¸ªæ‰‡åŒºåŒ…å« 16 é¡µï¼Œæ‰‡åŒº 0 å’Œé¡µ 0 ä½äºŽ 0x0000 0000
+ *       åœ°å€ã€‚16KB flash ä»…åŒ…å«æ‰‡åŒº 0-15ï¼Œ32KB flash åŒ…å«æ‰‡åŒº 0-31.
  *
- *       ÉÈÇø±àºÅ       |    ÉÈÇø´óÐ¡[kB]      |    Ò³±àºÅ      |         µØÖ··¶Î§
+ *       æ‰‡åŒºç¼–å·       |    æ‰‡åŒºå¤§å°[kB]      |    é¡µç¼–å·      |         åœ°å€èŒƒå›´
  *    ------------- | ---------------- | ----------- | -------------------------
  *           0      |        1         |    0 -  15  | 0x0000 0000 - 0x0000 03ff
  *           1      |        1         |   16 -  31  | 0x0000 0400 - 0x0000 07ff
@@ -59,14 +59,14 @@
  *          31      |        1         |  496 - 511  | 0x0000 7c00 - 0x0000 7fff
  *
  * \note
- *    1. LED0 ÐèÒª¶Ì½Ó J9 ÌøÏßÃ±£¬²ÅÄÜ±» PIO0_20 ¿ØÖÆ£»
- *    2. ·äÃùÆ÷ÐèÒª¶Ì½Ó J7 ÌøÏßÃ±£¬²ÅÄÜ±» PIO0_24 ¿ØÖÆ¡£¶øÇÒ±ØÐëÔÚ am_prj_config.h
- *       ÄÚ½« AM_CFG_BUZZER_ENABLE ¶¨ÒåÎª 1¡£µ«¸ÃºêÒÑ¾­Ä¬ÈÏÅäÖÃÎª 1£¬ ÓÃ»§²»±ØÔÙ´Î
- *       ÅäÖÃ£»
- *    3. ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIO0_0 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *       PIO0_4 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
+ *    1. LED0 éœ€è¦çŸ­æŽ¥ J9 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIO0_20 æŽ§åˆ¶ï¼›
+ *    2. èœ‚é¸£å™¨éœ€è¦çŸ­æŽ¥ J7 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIO0_24 æŽ§åˆ¶ã€‚è€Œä¸”å¿…é¡»åœ¨ am_prj_config.h
+ *       å†…å°† AM_CFG_BUZZER_ENABLE å®šä¹‰ä¸º 1ã€‚ä½†è¯¥å®å·²ç»é»˜è®¤é…ç½®ä¸º 1ï¼Œ ç”¨æˆ·ä¸å¿…å†æ¬¡
+ *       é…ç½®ï¼›
+ *    3. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO0_0 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *       PIO0_4 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am824_hw_iap.c src_am824_hw_iap
  *
  * \internal
@@ -87,7 +87,7 @@
 #include "demo_nxp_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am824_core_hw_iap_entry (void)
 {

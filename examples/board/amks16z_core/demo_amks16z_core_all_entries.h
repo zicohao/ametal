@@ -11,7 +11,7 @@
 *******************************************************************************/
 /**
  * \file
- * \brief KL26 ËùÓĞÀı³Ìº¯ÊıÈë¿ÚÉùÃ÷
+ * \brief KL26 æ‰€æœ‰ä¾‹ç¨‹å‡½æ•°å…¥å£å£°æ˜
  * \sa    demo_all_entrys.h
  *
  * \internal
@@ -21,615 +21,615 @@
  */
 
 /**
- * \brief TPMÊµÏÖ±ê×¼¶¨Ê±Æ÷Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
- * \return ÎŞ
+ * \brief TPMå®ç°æ ‡å‡†å®šæ—¶å™¨ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
+ * \return æ— 
  */
 void demo_amks16z_core_std_tpm_timing_entry (void);
 
 /**
- * \brief TPMÊµÏÖPWM±ê×¼½Ó¿ÚÀı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
- * \return ÎŞ
+ * \brief TPMå®ç°PWMæ ‡å‡†æ¥å£ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
+ * \return æ— 
  */
 void demo_amks16z_core_std_tpm_pwm_entry (void);
 
 /**
- * \brief TPMÊµÏÖ²¶»ñ¹¦ÄÜ£¬Í¨¹ıHW²ãµÄ½Ó¿ÚÊµÏÖ
- * \return ÎŞ
+ * \brief TPMå®ç°æ•è·åŠŸèƒ½ï¼Œé€šè¿‡HWå±‚çš„æ¥å£å®ç°
+ * \return æ— 
  */
 void demo_amks16z_core_std_tpm_cap_entry (void);
 
 /**
- * \brief TPMÊµÏÖ±ê×¼¶¨Ê±Æ÷Àı³Ì£¬Í¨¹ıHW²ãµÄ½Ó¿ÚÊµÏÖ
- * \return ÎŞ
+ * \brief TPMå®ç°æ ‡å‡†å®šæ—¶å™¨ä¾‹ç¨‹ï¼Œé€šè¿‡HWå±‚çš„æ¥å£å®ç°
+ * \return æ— 
  */
 void demo_amks16z_core_hw_tpm_timing_entry (void);
 
 /**
- * \brief TPMÊµÏÖPWM¹¦ÄÜ£¬Í¨¹ıHW²ãµÄ½Ó¿ÚÊµÏÖ
- * \return ÎŞ
+ * \brief TPMå®ç°PWMåŠŸèƒ½ï¼Œé€šè¿‡HWå±‚çš„æ¥å£å®ç°
+ * \return æ— 
  */
 void demo_amks16z_core_hw_tpm_pwm_entry (void);
 
 /**
- * \brief TPMÊµÏÖ²¶»ñ¹¦ÄÜ£¬Í¨¹ıHW²ãµÄ½Ó¿ÚÊµÏÖ
- * \return ÎŞ
+ * \brief TPMå®ç°æ•è·åŠŸèƒ½ï¼Œé€šè¿‡HWå±‚çš„æ¥å£å®ç°
+ * \return æ— 
  */
 void demo_amks16z_core_hw_tpm_cap_entry (void);
 
 /**
- * \brief RTCÀı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
- * \return ÎŞ
+ * \brief RTCä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
+ * \return æ— 
  */
 void demo_amks16z_core_std_rtc_entry (void);
 
 /**
- * \brief PIT ¶¨Ê±Æ÷ÊµÏÖ(32Î»)¶¨Ê±¹¦ÄÜµÄÀı³Ì£¬Í¨¹ıHW²ãµÄ½Ó¿ÚÊµÏÖ
- * \return ÎŞ
+ * \brief PIT å®šæ—¶å™¨å®ç°(32ä½)å®šæ—¶åŠŸèƒ½çš„ä¾‹ç¨‹ï¼Œé€šè¿‡HWå±‚çš„æ¥å£å®ç°
+ * \return æ— 
  */
 void demo_amks16z_core_hw_pit_1_32bit_timing_entry (void);
 
 /**
- * \brief PITÊµÏÖ±ê×¼¶¨Ê±Æ÷(32Î»)Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
- * \return ÎŞ
+ * \brief PITå®ç°æ ‡å‡†å®šæ—¶å™¨(32ä½)ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
+ * \return æ— 
  */
 void demo_amks16z_core_std_pit_1_32bit_timing_entry (void);
 
 /**
- * \brief PITÊµÏÖ±ê×¼¶¨Ê±Æ÷(64Î»)Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
- * \return ÎŞ
+ * \brief PITå®ç°æ ‡å‡†å®šæ—¶å™¨(64ä½)ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
+ * \return æ— 
  */
 void demo_amks16z_core_std_pit_2_64bit_timing_entry (void);
 
 /**
- * \brief LPTMRÊµÏÖ±ê×¼¶¨Ê±Æ÷Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
- * \return ÎŞ
+ * \brief LPTMRå®ç°æ ‡å‡†å®šæ—¶å™¨ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
+ * \return æ— 
  */
 void demo_amks16z_core_std_lptmr_timing_entry (void);
 
 /**
- * \brief LPTMRÊµÏÖ¶¨Ê±Æ÷Àı³Ì£¬Í¨¹ıHW²ã½Ó¿ÚÊµÏÖ
- * \return ÎŞ
+ * \brief LPTMRå®ç°å®šæ—¶å™¨ä¾‹ç¨‹ï¼Œé€šè¿‡HWå±‚æ¥å£å®ç°
+ * \return æ— 
  */
 void demo_amks16z_core_hw_lptmr_timing_entry (void);
 
 /**
- * \brief ADC²éÑ¯»ñÈ¡²ÉÑùÖµ£¬Ê¹ÓÃHW²ã½Ó¿Úº¯Êı
- * \return ÎŞ
+ * \brief ADCæŸ¥è¯¢è·å–é‡‡æ ·å€¼ï¼Œä½¿ç”¨HWå±‚æ¥å£å‡½æ•°
+ * \return æ— 
  */
 void demo_amks16z_core_hw_adc_poll_entry (void);
 
 /**
- * \brief ÖĞ¶Ï·½Ê½»ñÈ¡Èí¼ş´¥·¢µÄADC×ª»»½á¹û£¬Í¨¹ıHW²ã½Ó¿ÚÊµÏÖ
- * \return ÎŞ
+ * \brief ä¸­æ–­æ–¹å¼è·å–è½¯ä»¶è§¦å‘çš„ADCè½¬æ¢ç»“æœï¼Œé€šè¿‡HWå±‚æ¥å£å®ç°
+ * \return æ— 
  */
 void demo_amks16z_core_hw_adc_int_entry (void);
 
 /**
- * \brief ADCÓ²¼ş´¥·¢×ª»»£¬DMA´«Êä×ª»»½á¹û£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
- * \return ÎŞ
+ * \brief ADCç¡¬ä»¶è§¦å‘è½¬æ¢ï¼ŒDMAä¼ è¾“è½¬æ¢ç»“æœï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
+ * \return æ— 
  */
 void demo_amks16z_core_std_adc_ht_entry (void);
 
 /**
- * \brief adcÈí¼ş´¥·¢£¬DMA´«Êä½á¹û
- * \return ÎŞ
+ * \brief adcè½¯ä»¶è§¦å‘ï¼ŒDMAä¼ è¾“ç»“æœ
+ * \return æ— 
  */
 void demo_amks16z_core_std_adc_st_entry (void);
 
 /**
- * \brief ADCÓ²¼ş´¥·¢×ª»»£¬Ó²¼şÆ½¾ù×ª»»½á¹û£¬DMA´«Êä×ª»»½á¹û
- * \return ÎŞ
+ * \brief ADCç¡¬ä»¶è§¦å‘è½¬æ¢ï¼Œç¡¬ä»¶å¹³å‡è½¬æ¢ç»“æœï¼ŒDMAä¼ è¾“è½¬æ¢ç»“æœ
+ * \return æ— 
  */
 void demo_amks16z_core_std_adc_ht_avg_entry (void);
 
 /**
- * \brief ADCÓ²¼ş´¥·¢±È½Ï£¬DMA´«Êä
- * \return ÎŞ
+ * \brief ADCç¡¬ä»¶è§¦å‘æ¯”è¾ƒï¼ŒDMAä¼ è¾“
+ * \return æ— 
  */
 void demo_amks16z_core_std_adc_ht_cmp_entry (void);
 
 /**
- * \brief ADCÓ²¼ş´¥·¢×ª»»£¬Ó²¼şÆ½¾ù±È½ÏÊä³ö£¬DMA´«Êä½á¹û
- * \return ÎŞ
+ * \brief ADCç¡¬ä»¶è§¦å‘è½¬æ¢ï¼Œç¡¬ä»¶å¹³å‡æ¯”è¾ƒè¾“å‡ºï¼ŒDMAä¼ è¾“ç»“æœ
+ * \return æ— 
  */
 int demo_amks16z_core_std_adc_ht_avg_cmp_entry (void);
 
 /**
- * \brief ADC²î·ÖÊäÈë£¬DMA´«Êä£¬Èí¼ş´¥·¢
- * \return ÎŞ
+ * \brief ADCå·®åˆ†è¾“å…¥ï¼ŒDMAä¼ è¾“ï¼Œè½¯ä»¶è§¦å‘
+ * \return æ— 
  */
 void demo_amks16z_core_std_adc_dif_st_entry (void);
 
 /**
- * \brief adcÈí¼ş´¥·¢£¬DMA´«Êä½á¹û£¬Ò»´Î²ÉÑùÁ½¸öADCÃèÊö·û
- * \return ÎŞ
+ * \brief adcè½¯ä»¶è§¦å‘ï¼ŒDMAä¼ è¾“ç»“æœï¼Œä¸€æ¬¡é‡‡æ ·ä¸¤ä¸ªADCæè¿°ç¬¦
+ * \return æ— 
  */
 void demo_amks16z_core_std_adc_descs_st_entry(void);
 
 /**
- * \brief DMAÄÚ´æµ½ÄÚ´æ
- * \return ÎŞ
+ * \brief DMAå†…å­˜åˆ°å†…å­˜
+ * \return æ— 
  */
 void demo_amks16z_core_dr_dma_m2m_entry (void);
 
 /**
- * \brief CMP±È½ÏÆ÷HW²ãÖĞ¶ÏÀı³Ì
- * \return ÎŞ
+ * \brief CMPæ¯”è¾ƒå™¨HWå±‚ä¸­æ–­ä¾‹ç¨‹
+ * \return æ— 
  */
 void demo_amks16z_core_hw_cmp_int_entry (void);
 
 /**
- * \brief FTFAÀı³Ì,Í¨¹ıÇı¶¯²ãµÄ½Ó¿ÚÊµÏÖ
- * \return ÎŞ
+ * \brief FTFAä¾‹ç¨‹,é€šè¿‡é©±åŠ¨å±‚çš„æ¥å£å®ç°
+ * \return æ— 
  */
 void demo_amks16z_core_dr_ftfa_entry (void);
 
 /**
- * \brief  GPIOÓ²¼şHW²ãÀı³Ì
- * \return ÎŞ
+ * \brief  GPIOç¡¬ä»¶HWå±‚ä¾‹ç¨‹
+ * \return æ— 
  */
 void demo_amks16z_core_hw_gpio_entry (void);
 
 /**
- * \brief  FGPIOÓ²¼şHW²ãÀı³Ì
- * \return ÎŞ
+ * \brief  FGPIOç¡¬ä»¶HWå±‚ä¾‹ç¨‹
+ * \return æ— 
  */
 void demo_amks16z_core_hw_fgpio_entry (void);
 
 /**
- * \brief  GPIOÓ²¼şHW²ãÖĞ¶ÏÀı³Ì
- * \return ÎŞ
+ * \brief  GPIOç¡¬ä»¶HWå±‚ä¸­æ–­ä¾‹ç¨‹
+ * \return æ— 
  */
 void demo_amks16z_core_hw_gpio_int_entry (void);
 
 /**
- * \brief  GPIO±ê×¼Àı³Ì
- * \return ÎŞ
+ * \brief  GPIOæ ‡å‡†ä¾‹ç¨‹
+ * \return æ— 
  */
 void demo_amks16z_core_std_gpio_entry (void);
 
 /**
- * \brief  GPIO±ê×¼ÖĞ¶Ï´¥·¢Àı³Ì
- * \return ÎŞ
+ * \brief  GPIOæ ‡å‡†ä¸­æ–­è§¦å‘ä¾‹ç¨‹
+ * \return æ— 
  */
 void demo_amks16z_core_std_gpio_trigger_entry (void);
 
 /**
- * \brief  ´®¿ÚÓ²¼şHW²ã²éÑ¯ÊÕ·¢Àı³Ì
- * \return ÎŞ
+ * \brief  ä¸²å£ç¡¬ä»¶HWå±‚æŸ¥è¯¢æ”¶å‘ä¾‹ç¨‹
+ * \return æ— 
  */
 void demo_amks16z_core_hw_uart_polling_entry (void);
 
 /**
- * \brief  ´®¿ÚÓ²¼şHW²ãÖĞ¶ÏÊÕ·¢Àı³Ì
- * \retval ÎŞ
+ * \brief  ä¸²å£ç¡¬ä»¶HWå±‚ä¸­æ–­æ”¶å‘ä¾‹ç¨‹
+ * \retval æ— 
  */
 void demo_amks16z_core_hw_uart_int_entry (void);
 
 /**
- * \brief  ´®¿Ú±ê×¼½Ó¿Ú²éÑ¯ÊÕ·¢Àı³Ì
- * \return ÎŞ
+ * \brief  ä¸²å£æ ‡å‡†æ¥å£æŸ¥è¯¢æ”¶å‘ä¾‹ç¨‹
+ * \return æ— 
  */
 void demo_amks16z_core_std_uart_polling_entry (void);
 
 /**
- * \brief  ´®¿Ú»·ĞÎ»º³åÇøÀı³Ì
- * \return ÎŞ
+ * \brief  ä¸²å£ç¯å½¢ç¼“å†²åŒºä¾‹ç¨‹
+ * \return æ— 
  */
 void demo_amks16z_core_std_uart_ringbuf_entry (void);
 
 /**
- * \brief  ´®¿Ú½ÓÊÕÊ¹ÓÃDMAÀı³Ì
- * \return ÎŞ
+ * \brief  ä¸²å£æ¥æ”¶ä½¿ç”¨DMAä¾‹ç¨‹
+ * \return æ— 
  */
 void demo_amks16z_core_hw_uart_rx_dma_entry (void);
 /**
- * \brief  DMA´®¿Ú±ê×¼½Ó¿Ú²éÑ¯ÊÕ·¢Àı³Ì
- * \return ÎŞ
+ * \brief  DMAä¸²å£æ ‡å‡†æ¥å£æŸ¥è¯¢æ”¶å‘ä¾‹ç¨‹
+ * \return æ— 
  */
 void demo_amks16z_core_std_uart_dma_polling_entry (void);
 
 /**
- * \brief  DMA´®¿Ú»·ĞÎ»º³åÇøÀı³Ì
- * \return ÎŞ
+ * \brief  DMAä¸²å£ç¯å½¢ç¼“å†²åŒºä¾‹ç¨‹
+ * \return æ— 
  */
 void demo_amks16z_core_std_uart_dma_ringbuf_entry (void);
 /**
- * \brief  LEDÀı³Ì
- * \return ÎŞ
+ * \brief  LEDä¾‹ç¨‹
+ * \return æ— 
  */
 void demo_amks16z_core_std_led_entry (void);
 
 /**
- * \brief i2c¶ÁĞ´AM75Ê¾Àı£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
- * \return ÎŞ
+ * \brief i2cè¯»å†™AM75ç¤ºä¾‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
+ * \return æ— 
  */
 void demo_amks16z_core_std_i2c_lm75_entry (void);
 /**
- * \brief i2c¶ÁĞ´AM75Ê¾Àı£¬Í¨¹ıhw²ã½Ó¿ÚÊµÏÖ
- * \return ÎŞ
+ * \brief i2cè¯»å†™AM75ç¤ºä¾‹ï¼Œé€šè¿‡hwå±‚æ¥å£å®ç°
+ * \return æ— 
  */
 void demo_amks16z_core_hw_i2c_master_poll_entry (void);
 
 /**
- * \brief flash hw²ãÀı³Ì
- * \return ÎŞ
+ * \brief flash hwå±‚ä¾‹ç¨‹
+ * \return æ— 
  */
 void demo_amks16z_core_hw_ftfa_entry (void);
 
 /**
- * \brief flash Çı¶¯²ãÀı³Ì
- * \return ÎŞ
+ * \brief flash é©±åŠ¨å±‚ä¾‹ç¨‹
+ * \return æ— 
  */
 void demo_amks16z_core_dr_ftfa_entry (void);
 
 /**
- * \brief DACÊä³öµçÑ¹Öµ£¬µ÷ÓÃHW²ãÊµÏÖ
- * \return ÎŞ
+ * \brief DACè¾“å‡ºç”µå‹å€¼ï¼Œè°ƒç”¨HWå±‚å®ç°
+ * \return æ— 
  */
 void demo_amks16z_core_hw_dac_entry (void);
 
 /**
- * \brief DAC Ê¹ÓÃ»º³åÇøÖĞ¶ÏÊä³öÕıÏÒ²¨ĞÅºÅ£¬HW²ãÊµÏÖ
- * \return ÎŞ
+ * \brief DAC ä½¿ç”¨ç¼“å†²åŒºä¸­æ–­è¾“å‡ºæ­£å¼¦æ³¢ä¿¡å·ï¼ŒHWå±‚å®ç°
+ * \return æ— 
  */
 void demo_amks16z_core_hw_dac_buf_int_entry (void);
 
 /**
- * \brief DACÊä³öµçÑ¹£¬±ê×¼½Ó¿Ú²ãÊµÏÖ
- * \return ÎŞ
+ * \brief DACè¾“å‡ºç”µå‹ï¼Œæ ‡å‡†æ¥å£å±‚å®ç°
+ * \return æ— 
  */
 void demo_amks16z_core_std_dac_entry (void);
 
 /**
- * \brief DACÊä³öµçÑ¹£¬DMA´«ÊäÊı¾İ£¬HW²ã½Ó¿ÚÊµÏÖ
- * \return ÎŞ
+ * \brief DACè¾“å‡ºç”µå‹ï¼ŒDMAä¼ è¾“æ•°æ®ï¼ŒHWå±‚æ¥å£å®ç°
+ * \return æ— 
  */
 void demo_amks16z_core_hw_dac_dma_st_entry (void);
 
 /**
- * \brief  TSIÇı¶¯²ãÖĞ¶ÏÀı³Ì
- * \return ÎŞ
+ * \brief  TSIé©±åŠ¨å±‚ä¸­æ–­ä¾‹ç¨‹
+ * \return æ— 
  */
 void demo_amks16z_core_dr_tsi_int_entry (void);
 
 /**
- * \brief  TSI HW²ãÖĞ¶ÏÀı³Ì
- * \return ÎŞ
+ * \brief  TSI HWå±‚ä¸­æ–­ä¾‹ç¨‹
+ * \return æ— 
  */
 void demo_amks16z_core_hw_tsi_int_entry (void);
 
 /**
- * \brief  TSI HW²ãÀı³Ì
- * \return ÎŞ
+ * \brief  TSI HWå±‚ä¾‹ç¨‹
+ * \return æ— 
  */
 void demo_amks16z_core_hw_tsi_entry (void);
 
 
 /**
- * \brief  BME HW²ã·â×°Ê½´æ´¢Ö¸Áî(gpio)Àı³Ì
- * \return ÎŞ
+ * \brief  BME HWå±‚å°è£…å¼å­˜å‚¨æŒ‡ä»¤(gpio)ä¾‹ç¨‹
+ * \return æ— 
  */
 void demo_amks16z_core_hw_bme_deco_stores_gpio_entry (void);
 
 /**
- * \brief  BME HW²ã·â×°Ê½´æ´¢Ö¸ÁîÀı³Ì
- * \return ÎŞ
+ * \brief  BME HWå±‚å°è£…å¼å­˜å‚¨æŒ‡ä»¤ä¾‹ç¨‹
+ * \return æ— 
  */
 void demo_amks16z_core_hw_bme_deco_stores_entry (void);
 
 /**
- * \brief  BME HW²ã·â×°Ê½ÔØÈëÖ¸ÁîÀı³Ì
- * \return ÎŞ
+ * \brief  BME HWå±‚å°è£…å¼è½½å…¥æŒ‡ä»¤ä¾‹ç¨‹
+ * \return æ— 
  */
 void demo_amks16z_core_hw_bme_deco_loads_entry (void);
 
 
 /**
- * \brief i2sÊı¾İ·¢ËÍ£¬µ÷ÓÃHW²ã½Ó¿Úº¯ÊıÊµÏÖ
- * \return ÎŞ
+ * \brief i2sæ•°æ®å‘é€ï¼Œè°ƒç”¨HWå±‚æ¥å£å‡½æ•°å®ç°
+ * \return æ— 
  */
 void demo_amks16z_core_hw_i2s_polling_entry (void);
 
 /**
- * \brief i2sÖĞ¶ÏÊı¾İ·¢ËÍ£¬µ÷ÓÃHW²ã½Ó¿Úº¯ÊıÊµÏÖ
- * \return ÎŞ
+ * \brief i2sä¸­æ–­æ•°æ®å‘é€ï¼Œè°ƒç”¨HWå±‚æ¥å£å‡½æ•°å®ç°
+ * \return æ— 
  */
 void demo_amks16z_core_hw_i2s_int_entry (void);
 
 /**
- * \brief i2s dma·½Ê½Êı¾İ·¢ËÍ£¬µ÷ÓÃHW²ã½Ó¿Úº¯ÊıÊµÏÖ
- * \return ÎŞ
+ * \brief i2s dmaæ–¹å¼æ•°æ®å‘é€ï¼Œè°ƒç”¨HWå±‚æ¥å£å‡½æ•°å®ç°
+ * \return æ— 
  */
 void demo_amks16z_core_hw_i2s_dma_entry (void);
 
 /**
-* \brief buzzerÊ¾Àı£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
-* \return ÎŞ
+* \brief buzzerç¤ºä¾‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
+* \return æ— 
 */
 void demo_amks16z_core_std_buzzer_entry (void);
 
 /**
-* \brief SPIÊ¾Àı£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ(INT·½Ê½)
-* \return ÎŞ
+* \brief SPIç¤ºä¾‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°(INTæ–¹å¼)
+* \return æ— 
 */
 void demo_amks16z_core_std_spi_master_int_entry (void);
 
 /**
-* \brief SPIÊ¾Àı£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ(DMA·½Ê½)
-* \return ÎŞ
+* \brief SPIç¤ºä¾‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°(DMAæ–¹å¼)
+* \return æ— 
 */
 void demo_amks16z_core_std_spi_master_dma_entry (void);
 
 /**
-* \brief SPI²Ù×÷FLASHÊ¾Àı£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ(INT·½Ê½)
-* \return ÎŞ
+* \brief SPIæ“ä½œFLASHç¤ºä¾‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°(INTæ–¹å¼)
+* \return æ— 
 */
 void demo_amks16z_core_std_spi_flash_int_entry (void);
 
 /**
-* \brief SPI²Ù×÷FLASHÊ¾Àı£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ(DMA·½Ê½)
-* \return ÎŞ
+* \brief SPIæ“ä½œFLASHç¤ºä¾‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°(DMAæ–¹å¼)
+* \return æ— 
 */
 void demo_amks16z_core_std_spi_flash_dma_entry (void);
 
 /**
- * \brief WDTÈë¿Úº¯Êı£¬HW²ãÊµÏÖ
- * \return ÎŞ
+ * \brief WDTå…¥å£å‡½æ•°ï¼ŒHWå±‚å®ç°
+ * \return æ— 
  */
 void demo_amks16z_core_hw_wdt_entry (void);
 
 /**
- * \brief ¿´ÃÅ¹·Èë¿Úº¯Êı£¬±ê×¼½Ó¿Ú²ãÊµÏÖ
+ * \brief çœ‹é—¨ç‹—å…¥å£å‡½æ•°ï¼Œæ ‡å‡†æ¥å£å±‚å®ç°
  *
- * \note ²âÊÔ¿´ÃÅ¹·Àı³ÌÊ±Çë½«am_prj_config.hÎÄ¼şÖĞµÄºêAM_CFG_SIM_COPÖÃÎª1
+ * \note æµ‹è¯•çœ‹é—¨ç‹—ä¾‹ç¨‹æ—¶è¯·å°†am_prj_config.hæ–‡ä»¶ä¸­çš„å®AM_CFG_SIM_COPç½®ä¸º1
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_amks16z_core_std_wdt_entry (void);
 
 /**
- * \brief PMUÊ¾Àı£¬HW²ãÊµÏÖ
+ * \brief PMUç¤ºä¾‹ï¼ŒHWå±‚å®ç°
  *
- * \note ²âÊÔ¿´ÃÅ¹·Àı³ÌÊ±Çë½«am_prj_config.hÎÄ¼şÖĞµÄºêAM_CFG_SIM_COPÖÃÎª1
+ * \note æµ‹è¯•çœ‹é—¨ç‹—ä¾‹ç¨‹æ—¶è¯·å°†am_prj_config.hæ–‡ä»¶ä¸­çš„å®AM_CFG_SIM_COPç½®ä¸º1
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_amks16z_core_std_pmu_lowpower_entry (void);
 
 /**
- * \brief SPI´Ó»úÑİÊ¾Àı³Ì£¬Í¨¹ıHW²ãµÄ½Ó¿ÚÊµÏÖ
- * \return ÎŞ
+ * \brief SPIä»æœºæ¼”ç¤ºä¾‹ç¨‹ï¼Œé€šè¿‡HWå±‚çš„æ¥å£å®ç°
+ * \return æ— 
  */
 void demo_amks16z_core_hw_spi_slave_entry (void);
 
 /**
- * \brief SPI´Ó»úÆ¥ÅäÖĞ¶ÏÑİÊ¾Àı³Ì£¬Í¨¹ıHW²ãµÄ½Ó¿ÚÊµÏÖ
- * \return ÎŞ
+ * \brief SPIä»æœºåŒ¹é…ä¸­æ–­æ¼”ç¤ºä¾‹ç¨‹ï¼Œé€šè¿‡HWå±‚çš„æ¥å£å®ç°
+ * \return æ— 
  */
 void demo_amks16z_core_hw_spi_slave_match_entry (void);
 
 /**
- * \brief SPI´Ó»úÍ¨¹ıDMA¿ØÖÆÆ÷½ÓÊÕÊı¾İ£¬Í¨¹ıHW²ãµÄ½Ó¿ÚÊµÏÖ
- * \return ÎŞ
+ * \brief SPIä»æœºé€šè¿‡DMAæ§åˆ¶å™¨æ¥æ”¶æ•°æ®ï¼Œé€šè¿‡HWå±‚çš„æ¥å£å®ç°
+ * \return æ— 
  */
 void demo_amks16z_core_hw_spi_slave_dma_entry (void);
 
 /**
- * \brief SPIÖ÷»úÑİÊ¾Àı³Ì£¬Í¨¹ıHW²ãµÄ½Ó¿ÚÊµÏÖ
- * \return ÎŞ
+ * \brief SPIä¸»æœºæ¼”ç¤ºä¾‹ç¨‹ï¼Œé€šè¿‡HWå±‚çš„æ¥å£å®ç°
+ * \return æ— 
  */
 void demo_amks16z_core_hw_spi_master_entry (void);
 
 /**
- * \brief SPI´Ó»úÑİÊ¾Àı³Ì£¬Í¨¹ıHW²ãµÄ½Ó¿ÚÊµÏÖ
- * \return ÎŞ
+ * \brief SPIä»æœºæ¼”ç¤ºä¾‹ç¨‹ï¼Œé€šè¿‡HWå±‚çš„æ¥å£å®ç°
+ * \return æ— 
  */
 void demo_amks16z_core_hw_spi_slave_irq_entry (void);
 
 /**
- * \brief  ´®¿Ú·¢ËÍÊ¹ÓÃDMAÀı³Ì
- * \return ÎŞ
+ * \brief  ä¸²å£å‘é€ä½¿ç”¨DMAä¾‹ç¨‹
+ * \return æ— 
  */
 void demo_amks16z_core_hw_uart_tx_dma_entry (void);
 
 /**
- * \brief UIDÀı³ÌÈë¿Ú
+ * \brief UIDä¾‹ç¨‹å…¥å£
  */
 void demo_amks16z_core_hw_sim_uid_entry (void);
 
 /**
- * \brief ºóÃæ°²È«ÃÜÔ¿Àı³ÌÈë¿Ú
+ * \brief åé¢å®‰å…¨å¯†é’¥ä¾‹ç¨‹å…¥å£
  */
 void demo_amks16z_core_hw_backdoor_sec_entry (void);
 
 /**
- * \brief AMetal Ó¦ÓÃ³ÌĞòÈë¿Ú
+ * \brief AMetal åº”ç”¨ç¨‹åºå…¥å£
  */
 void demo_amks16z_core_hw_rtc_sec_int_entry (void);
 
 /**
- * \brief MiniPort-View + MiniPort-595 ÎÂ¶ÈÏÔÊ¾Àı³Ì
+ * \brief MiniPort-View + MiniPort-595 æ¸©åº¦æ˜¾ç¤ºä¾‹ç¨‹
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_amks16z_core_miniport_hc595_digitron_temp_interface_entry (void);
 
 /**
- * \brief MiniPort-LED Àı³Ì
+ * \brief MiniPort-LED ä¾‹ç¨‹
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_amks16z_core_miniport_led_entry (void);
 
 /**
- * \brief MiniPort-VIEW Àı³Ì
+ * \brief MiniPort-VIEW ä¾‹ç¨‹
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_amks16z_core_miniport_digitron_entry (void);
 
 /**
- * \brief MiniPort-595 + MiniPort-LED Àı³Ì
+ * \brief MiniPort-595 + MiniPort-LED ä¾‹ç¨‹
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_amks16z_core_miniport_hc595_led_entry (void);
 
 /**
- * \brief MiniPort-595 + MiniPort-VIEW Àı³Ì
+ * \brief MiniPort-595 + MiniPort-VIEW ä¾‹ç¨‹
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_amks16z_core_miniport_hc595_digitron_entry (void);
 
 /**
  * \brief MiniPort-KEY
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_amks16z_core_miniport_key_entry (void);
 
 /**
- * \brief MiniPort-595 + MiniPort-KEY Àı³Ì
+ * \brief MiniPort-595 + MiniPort-KEY ä¾‹ç¨‹
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_amks16z_core_miniport_hc595_digitron_key_entry (void);
 
 /**
- * \brief MiniPort-595 + MiniPort-VIEW + LM75 ÎÂ¶ÈÏÔÊ¾Àı³Ì
+ * \brief MiniPort-595 + MiniPort-VIEW + LM75 æ¸©åº¦æ˜¾ç¤ºä¾‹ç¨‹
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_amks16z_core_miniport_hc595_digitron_temp_entry (void);
 
 /**
- * \brief MiniPort-ZLG72128ÏÔÊ¾Àı³Ì
+ * \brief MiniPort-ZLG72128æ˜¾ç¤ºä¾‹ç¨‹
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_amks16z_core_miniport_zlg72128_entry (void);
 
 /**
- * \brief MiniPort-KEY + MiniPort-DIGITORNÏÔÊ¾Àı³Ì
+ * \brief MiniPort-KEY + MiniPort-DIGITORNæ˜¾ç¤ºä¾‹ç¨‹
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_amks16z_core_miniport_key_digitron_entry (void);
 
 /**
- * \brief MicroPort DS1302 Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MicroPort DS1302 ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_amks16z_core_microport_ds1302_entry (void);
 
 /**
- * \brief MicroPort EEPROM Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MicroPort EEPROM ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_amks16z_core_microport_eeprom_entry (void);
 
 /**
- * \brief MicroPort EEPROM Àı³Ì£¬Í¨¹ı NVRAM ½Ó¿ÚÊµÏÖ
+ * \brief MicroPort EEPROM ä¾‹ç¨‹ï¼Œé€šè¿‡ NVRAM æ¥å£å®ç°
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_amks16z_core_microport_eeprom_nvram_entry (void);
 
 /**
- * \brief MicroPort FLASH Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MicroPort FLASH ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_amks16z_core_microport_flash_entry (void);
 
 /**
- * \brief MicroPort FLASH Àı³Ì£¬Í¨¹ı MTD ½Ó¿ÚÊµÏÖ
+ * \brief MicroPort FLASH ä¾‹ç¨‹ï¼Œé€šè¿‡ MTD æ¥å£å®ç°
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_amks16z_core_microport_flash_mtd_entry (void);
 
 /**
- * \brief MicroPort FLASH Àı³Ì£¬Í¨¹ı FTL ½Ó¿ÚÊµÏÖ
+ * \brief MicroPort FLASH ä¾‹ç¨‹ï¼Œé€šè¿‡ FTL æ¥å£å®ç°
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_amks16z_core_microport_flash_ftl_entry (void);
 
 /**
- * \brief MicroPort RS485 Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MicroPort RS485 ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_amks16z_core_microport_rs485_entry (void);
 
 /**
- * \brief MicroPort RTC Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MicroPort RTC ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_amks16z_core_microport_rtc_entry (void);
 
 /**
- * \brief MicroPort RX8025T Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MicroPort RX8025T ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_amks16z_core_microport_rx8025t_entry (void);
 
 /**
- * \brief MicroPort USB Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MicroPort USB ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_amks16z_core_microport_usb_entry (void);
 
 /**
- * \brief ´®¿Ú²¨ÌØÂÊ¼ì²âÀı³ÌÈë¿Ú
+ * \brief ä¸²å£æ³¢ç‰¹ç‡æ£€æµ‹ä¾‹ç¨‹å…¥å£
  */
 void demo_amks16z_core_uart_auto_baudrate_entry (void);
 

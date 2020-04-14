@@ -14,8 +14,8 @@
  * \file
  * \brief Micro LIB
  *
- * ÔÚÊ¹ÓÃÇ°£¬±ØĞëÔÚ"Project->Options for Target xxx->Target"ÖĞ¹´Ñ¡"Use MicroLIB"
- * ÇÒÄÚ´æ¹ÜÀí½Ó¿ÚÖ»ÄÜÔÚMicro LIBÓëametalÏµÍ³½Ó¿ÚÖ®¼äÑ¡ÔñÒ»¸öÊ¹ÓÃ
+ * åœ¨ä½¿ç”¨å‰ï¼Œå¿…é¡»åœ¨"Project->Options for Target xxx->Target"ä¸­å‹¾é€‰"Use MicroLIB"
+ * ä¸”å†…å­˜ç®¡ç†æ¥å£åªèƒ½åœ¨Micro LIBä¸ametalç³»ç»Ÿæ¥å£ä¹‹é—´é€‰æ‹©ä¸€ä¸ªä½¿ç”¨
  *
  * \internal
  * \par Modification History
@@ -33,9 +33,9 @@ extern "C" {
 #endif
 
 /**
- * \brief Micro LIB³õÊ¼»¯
+ * \brief Micro LIBåˆå§‹åŒ–
  *
- * \param[in] uart_handle UART·şÎñ
+ * \param[in] uart_handle UARTæœåŠ¡
  *
  * \return AM_OK
  */

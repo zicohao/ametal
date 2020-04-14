@@ -12,15 +12,15 @@
 
 /**
  * \file
- * \brief RTC Àı³Ì
+ * \brief RTC ä¾‹ç¨‹
  *
- * - ²Ù×÷²½Öè£º
- *   1. µ÷ÓÃÈë¿Úº¯Êı
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. è°ƒç”¨å…¥å£å‡½æ•°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. µ÷ÊÔ´®¿Ú½«Ã¿Ò»ÃëµÄÊ±¼äĞÅÏ¢´òÓ¡³öÀ´¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. è°ƒè¯•ä¸²å£å°†æ¯ä¸€ç§’çš„æ—¶é—´ä¿¡æ¯æ‰“å°å‡ºæ¥ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_std_rtc.c src_std_rtc
  *
  * \internal
@@ -40,19 +40,19 @@
 #include "am_delay.h"
 #include "am_vdebug.h"
 
-/** \brief ÒªÉèÖÃµÄÊ±¼äĞÅÏ¢ */
+/** \brief è¦è®¾ç½®çš„æ—¶é—´ä¿¡æ¯ */
 am_local am_tm_t __g_current_time = {
-    55,          /**< \brief Ãë */
-    59,          /**< \brief ·Ö */
-    11,          /**< \brief Ê± */
-    5,           /**< \brief ÈÕ */
-    8-1,         /**< \brief ÔÂ */
-    2017-1900,   /**< \brief Äê */
-    6,           /**< \brief ÖÜ */
+    55,          /**< \brief ç§’ */
+    59,          /**< \brief åˆ† */
+    11,          /**< \brief æ—¶ */
+    5,           /**< \brief æ—¥ */
+    8-1,         /**< \brief æœˆ */
+    2017-1900,   /**< \brief å¹´ */
+    6,           /**< \brief å‘¨ */
 };
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_std_rtc_entry (am_rtc_handle_t rtc_handle)
 {
@@ -60,7 +60,7 @@ void demo_std_rtc_entry (am_rtc_handle_t rtc_handle)
     int     tmp = 0;
     am_tm_t time;
 
-    /* ÉèÖÃÊ±¼ä */
+    /* è®¾ç½®æ—¶é—´ */
     ret= am_rtc_time_set(rtc_handle, &__g_current_time);
     if(ret == AM_OK){
         AM_DBG_INFO("set time success \r\n");

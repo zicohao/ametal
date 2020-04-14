@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ·äÃùÆ÷ÅäÖÃÎÄ¼þ£¨PWMÇý¶¯£©
+ * \brief èœ‚é¸£å™¨é…ç½®æ–‡ä»¶ï¼ˆPWMé©±åŠ¨ï¼‰
  *
  * \internal
  * \par Modification history
@@ -30,10 +30,10 @@ extern "C" {
 #endif
 
 /**
- * \brief ·äÃùÆ÷ÊµÀý³õÊ¼»¯
+ * \brief èœ‚é¸£å™¨å®žä¾‹åˆå§‹åŒ–
  *
- * µ±Ê¹ÓÃ·äÃùÆ÷Ê±£¬Ä¬ÈÏ½«Ê¹ÓÃ TIM16 µÄÍ¨µÀ 1 Êä³ö PWM ²¨ÐÎ£¬Òò´Ë»á½« TIM16 ³õÊ¼
- * »¯ÎªPWM ¹¦ÄÜ
+ * å½“ä½¿ç”¨èœ‚é¸£å™¨æ—¶ï¼Œé»˜è®¤å°†ä½¿ç”¨ TIM16 çš„é€šé“ 1 è¾“å‡º PWM æ³¢å½¢ï¼Œå› æ­¤ä¼šå°† TIM16 åˆå§‹
+ * åŒ–ä¸ºPWM åŠŸèƒ½
  */
 void am_buzzer_pwm_inst_init (void);
 

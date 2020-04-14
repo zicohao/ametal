@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief KL26 PIT ¶¨Ê±¹¦ÄÜÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief KL26 PIT å®šæ—¶åŠŸèƒ½ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_kl26_hwconfig_pit_timing.c
  * 
  * \internal
@@ -32,39 +32,39 @@
  * @{
  */
 
-/** \brief PIT Æ½Ì¨³õÊ¼»¯ */
+/** \brief PIT å¹³å°åˆå§‹åŒ– */
 void __kl26_plfm_pit_timing_init (void)
 {
     amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_PIT);
 }
 
-/** \brief ½â³ı PIT Æ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤ PIT å¹³å°åˆå§‹åŒ– */
 void __kl26_plfm_pit_timing_deinit (void)
 {
     amhw_kl26_sim_periph_clock_disable(KL26_SIM_SCGC_PIT);
 }
 
-/** \brief PIT Éè±¸ĞÅÏ¢ */
+/** \brief PIT è®¾å¤‡ä¿¡æ¯ */
 const am_fsl_pit_timing_devinfo_t  __g_pit_timing_devinfo = {
-    KL26_PIT ,                 /**< \brief Ö¸ÏòPIT¼Ä´æÆ÷¿éµÄÖ¸Õë  */
-    AM_FSL_PIT_TIMING_2_32BIT,      /**< \brief ÅäÖÃÎª2Í¨µÀµÄ32Î»¶¨Ê±Æ÷ */
-    INUM_PIT,                       /**< \brief PITÖĞ¶Ï±àºÅ */
-    CLK_PIT,                        /**< \brief PITÊ±ÖÓºÅ */
-    __kl26_plfm_pit_timing_init,    /**< \brief Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __kl26_plfm_pit_timing_deinit   /**< \brief Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    KL26_PIT ,                 /**< \brief æŒ‡å‘PITå¯„å­˜å™¨å—çš„æŒ‡é’ˆ  */
+    AM_FSL_PIT_TIMING_2_32BIT,      /**< \brief é…ç½®ä¸º2é€šé“çš„32ä½å®šæ—¶å™¨ */
+    INUM_PIT,                       /**< \brief PITä¸­æ–­ç¼–å· */
+    CLK_PIT,                        /**< \brief PITæ—¶é’Ÿå· */
+    __kl26_plfm_pit_timing_init,    /**< \brief å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __kl26_plfm_pit_timing_deinit   /**< \brief å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 };
 
-/** \brief PIT Éè±¸¶¨Òå  */
+/** \brief PIT è®¾å¤‡å®šä¹‰  */
 am_fsl_pit_timing_dev_t  __g_pit_timing_dev;
 
-/** \brief pit Timer ÊµÀı³õÊ¼»¯£¬»ñµÃTimer±ê×¼·şÎñ¾ä±ú */
+/** \brief pit Timer å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—Timeræ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_timer_handle_t am_kl26_pit_timing_inst_init (void)
 {
     return am_fsl_pit_timing_init(&__g_pit_timing_dev,
                                   &__g_pit_timing_devinfo);
 }
 
-/** \brief pit Timer ÊµÀı½â³õÊ¼»¯ */
+/** \brief pit Timer å®ä¾‹è§£åˆå§‹åŒ– */
 void am_kl26_pit_timing_inst_deinit (am_timer_handle_t handle)
 {
     am_fsl_pit_timing_deinit(handle);

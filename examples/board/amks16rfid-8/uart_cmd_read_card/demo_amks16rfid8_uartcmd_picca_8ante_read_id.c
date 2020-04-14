@@ -12,22 +12,22 @@
 
 /**
  * \file
- * \brief uartcmd¶Á¿¨ID£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief uartcmdè¯»å¡IDï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷£º
- * - 1. ×¼±¸Á½¿éAMKS16RFID-8ÆÀ¹À°å£¬³ÆÎª°å1ºÍ°å2£»
- *   2. °å1Ðè²åÈëÌìÏß£¬Ö´ÐÐprojects_keil5\examples_uart_cmd_read_card\demo_kl26_uartcmd_handleÖÐµÄÀý³Ì£»
- *   3. ½«°å1µÄPIOC_3Óë°å2µÄPIOC_4Á¬½Ó£¬°å1µÄPIOC_4Óë°å2µÄPIOC_3Á¬½Ó£¬°å1Óë°å2¹²µØ£»
- *   4. ½«°å2µÄPIOE_20ÓëµçÄÔ´®¿Ú½ÓÊÕ¶ËÁ¬½Ó£»
- *   5. Á½¿é°å×ÓÉÏµçºó°´ÏÂÁ½¿é°å×ÓµÄ¸´Î»¼ü£¬È»ºóÏÈËÉ¿ª°å1µÄ¸´Î»¼ü£¬1ÃëºóÔÙËÉ¿ª°å2
- *      µÄ¸´Î»¼ü¡£
- *   6. ½«AÀà¿¨Æ¬ÖÁÓÚ°å1µÄÌìÏß¸ÐÓ¦Çø¡£
+ * - æ“ä½œï¼š
+ * - 1. å‡†å¤‡ä¸¤å—AMKS16RFID-8è¯„ä¼°æ¿ï¼Œç§°ä¸ºæ¿1å’Œæ¿2ï¼›
+ *   2. æ¿1éœ€æ’å…¥å¤©çº¿ï¼Œæ‰§è¡Œprojects_keil5\examples_uart_cmd_read_card\demo_kl26_uartcmd_handleä¸­çš„ä¾‹ç¨‹ï¼›
+ *   3. å°†æ¿1çš„PIOC_3ä¸Žæ¿2çš„PIOC_4è¿žæŽ¥ï¼Œæ¿1çš„PIOC_4ä¸Žæ¿2çš„PIOC_3è¿žæŽ¥ï¼Œæ¿1ä¸Žæ¿2å…±åœ°ï¼›
+ *   4. å°†æ¿2çš„PIOE_20ä¸Žç”µè„‘ä¸²å£æŽ¥æ”¶ç«¯è¿žæŽ¥ï¼›
+ *   5. ä¸¤å—æ¿å­ä¸Šç”µåŽæŒ‰ä¸‹ä¸¤å—æ¿å­çš„å¤ä½é”®ï¼Œç„¶åŽå…ˆæ¾å¼€æ¿1çš„å¤ä½é”®ï¼Œ1ç§’åŽå†æ¾å¼€æ¿2
+ *      çš„å¤ä½é”®ã€‚
+ *   6. å°†Aç±»å¡ç‰‡è‡³äºŽæ¿1çš„å¤©çº¿æ„Ÿåº”åŒºã€‚
  *
- * - ÊµÏÖÏÖÏó£º
- * - 1. µÚ5²½²Ù×÷×öÍêºó°å1ÉÏµÄÁ½¸ö°åÔØLED»á½»ÌæÉÁË¸£¬·ñÔòÖØ¸´µÚ5²½²Ù×÷»ò¼ì²éÆäËûÎÊÌâ¡£
- *   2. µÚ6²½²Ù×÷Èç¹û¶ÁÈ¡µ½¿¨Æ¬£¬Ôò°å2µÄ´®¿Ú£¨PIOE_20)»á´òÓ¡ÌìÏßµÄÐòºÅ¼°¿¨ºÅ£¬²¢ÇÒ·äÃùÆ÷Ãù½ÐÒ»Éù¡£
+ * - å®žçŽ°çŽ°è±¡ï¼š
+ * - 1. ç¬¬5æ­¥æ“ä½œåšå®ŒåŽæ¿1ä¸Šçš„ä¸¤ä¸ªæ¿è½½LEDä¼šäº¤æ›¿é—ªçƒï¼Œå¦åˆ™é‡å¤ç¬¬5æ­¥æ“ä½œæˆ–æ£€æŸ¥å…¶ä»–é—®é¢˜ã€‚
+ *   2. ç¬¬6æ­¥æ“ä½œå¦‚æžœè¯»å–åˆ°å¡ç‰‡ï¼Œåˆ™æ¿2çš„ä¸²å£ï¼ˆPIOE_20)ä¼šæ‰“å°å¤©çº¿çš„åºå·åŠå¡å·ï¼Œå¹¶ä¸”èœ‚é¸£å™¨é¸£å«ä¸€å£°ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_kl26_std_uartcmd_picca_8ante_read_id.c src_kl26_std_uartcmd_picca_8ante_read_id
  *
  * \internal
@@ -52,7 +52,7 @@
 #include "am_kl26_inst_init.h"
 
 #ifndef AM_VDEBUG
-#define AM_VDEBUG           /* ¿ªÆôµ÷ÊÔÄ£Ê½ */
+#define AM_VDEBUG           /* å¼€å¯è°ƒè¯•æ¨¡å¼ */
 #endif
 
 #include "am_vdebug.h"
@@ -79,7 +79,7 @@ static void __error_happen(int line)
 }
 
 /**
- * \uartcmd 8ÌìÏß¶ÁÈ¡¿¨Æ¬ID
+ * \uartcmd 8å¤©çº¿è¯»å–å¡ç‰‡ID
  */
 void demo_amks16rfid8_uartcmd_picca_8ante_read_id_entry (void)
 {

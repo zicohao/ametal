@@ -11,16 +11,16 @@
 *******************************************************************************/
 /**
  * \file
- * \brief   TSI�����жϼ�⣬Ӳ����ʵ��
+ * \brief   TSI触摸中断检测，硬件层实现
  *
- *  ʵ������
- *  1.���ֲ��Ӵ�PIOA_1����ʱ�������⵽�Ļ���ֵ
- *  2.������PIOA_1���ź󣬵��ݼ����ڷ�ֵ����1000ʱ�������жϣ�LED1״̬��ת
+ *  实验现象：
+ *  1.当手不接触PIOA_1引脚时，输出检测到的基本值
+ *  2.当触摸PIOA_1引脚后，电容检测大于阀值上限1000时，进入中断，LED1状态翻转
  *
- *  ע�⣺
- *  1.���и�����ʱPIOA_1�������óɴ������š�
+ *  注意：
+ *  1.运行该例程时PIOA_1不能配置成串口引脚。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_amks16z_core_hw_tsi_int.c src_amks16z_core_hw_tsi_int
  *
  * \internal
@@ -48,16 +48,16 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief ���������
+ * \brief 主函数入口
  */
 void demo_amks16z_core_hw_tsi_int_entry(void)
 {  
     AM_DBG_INFO("demo amks16z_core hw tsi int!\r\n");
 
-    /* ʹ��tsi�������ʱ�� */
+    /* 使能tsi相关外设时钟 */
     amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_TSI);
 
-    /* ����PIOA_1����ΪTSI0_CH2 */
+    /* 配置PIOA_1引脚为TSI0_CH2 */
     am_gpio_pin_cfg(PIOA_1, PIOA_1_TSI0_CH2);
 
     demo_fsl_hw_tsi_int_entry(KL26_TSI, INUM_TSI0);

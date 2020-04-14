@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief bootloader kboot KinetisFlashTool 通用工具宏定义头文件
+ * \brief bootloader kboot KinetisFlashTool 閫氱敤宸ュ叿瀹忓畾涔夊ご鏂囦欢
  *
  *
  *

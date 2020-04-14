@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief Æ½Ì¨ÊÊÅäº¯ÊıµÄÊµÏÖ
+ * \brief å¹³å°é€‚é…å‡½æ•°çš„å®ç°
  *
- *  zlg72128_platform.h ÎÄ¼şÖĞÉùÃ÷µÄ¸÷¸öº¯ÊıÊµÏÖ
+ *  zlg72128_platform.h æ–‡ä»¶ä¸­å£°æ˜çš„å„ä¸ªå‡½æ•°å®ç°
  *
  * \internal
  * \par Modification History
@@ -23,27 +23,27 @@
  */
 #include "zlg72128_platform.h"
 
-/* ÏµÍ³¼Ä´æÆ÷µØÖ·*/
+/* ç³»ç»Ÿå¯„å­˜å™¨åœ°å€*/
 static const uint8_t __g_sys_addr = 0x00;
-/* ¼üÖµ¼Ä´æÆ÷µØÖ·*/
+/* é”®å€¼å¯„å­˜å™¨åœ°å€*/
 static const uint8_t __g_key_addr = 0x01;
 
-/* ¼üÖµÉÏ±¨º¯Êı*/
+/* é”®å€¼ä¸ŠæŠ¥å‡½æ•°*/
 static void __zlg72128_key_report(zlg72128_plfm_t *p_plfm);
-/* ¼ì²â¼üÖµÊÇ·ñÓĞĞ§º¯Êı*/
+/* æ£€æµ‹é”®å€¼æ˜¯å¦æœ‰æ•ˆå‡½æ•°*/
 static void __zlg72128_key_vaild(zlg72128_plfm_t *p_plfm);
 
-/* ms ¼¶±ğÑÓÊ±º¯ÊıÊµÏÖ */
+/* ms çº§åˆ«å»¶æ—¶å‡½æ•°å®ç° */
 void zlg72128_plfm_delay_ms (uint32_t ms)
 {
     am_mdelay(ms);
 
 }
 
-/* ¼ì²éÏµÍ³¼Ä´æÆ÷ÊÇ·ñÓĞĞ§º¯Êı*/
+/* æ£€æŸ¥ç³»ç»Ÿå¯„å­˜å™¨æ˜¯å¦æœ‰æ•ˆå‡½æ•°*/
 static void __zlg72128_key_vaild(zlg72128_plfm_t *p_plfm)
 {
-    /* Èç¹ûÏµÍ³¼Ä´æÆ÷²»Îª0£¬ÔòÒÀ´Î¶ÁÈ¡ÆäËû¼Ä´æÆ÷*/
+    /* å¦‚æœç³»ç»Ÿå¯„å­˜å™¨ä¸ä¸º0ï¼Œåˆ™ä¾æ¬¡è¯»å–å…¶ä»–å¯„å­˜å™¨*/
     if (p_plfm->r_buff[0]) {
 
         am_i2c_mktrans(&p_plfm->trans[2],
@@ -52,54 +52,54 @@ static void __zlg72128_key_vaild(zlg72128_plfm_t *p_plfm)
                         (uint8_t *)&__g_key_addr,
                         1);
 
-        /* ¶ÁÈ¡ÓĞĞ§¼üÖµ¼Ä´æÆ÷ */
+        /* è¯»å–æœ‰æ•ˆé”®å€¼å¯„å­˜å™¨ */
         am_i2c_mktrans(&p_plfm->trans[3],
                         p_plfm->p_devinfo->slv_addr,
                         AM_I2C_M_RD,
                         &p_plfm->r_buff[1],
                         3);
-        /*¹¹½¨ÏûÏ¢*/
+        /*æ„å»ºæ¶ˆæ¯*/
         am_i2c_mkmsg(&(p_plfm->msg),
                      &(p_plfm->trans[2]),
                      2,
                      (am_pfnvoid_t)__zlg72128_key_report,
                      (void *)p_plfm);
 
-        /* ²éÑ¯¼üÖµ¼Ä´æÆ÷Öµ*/
+        /* æŸ¥è¯¢é”®å€¼å¯„å­˜å™¨å€¼*/
         am_i2c_msg_start(p_plfm->i2c_handle, &p_plfm->msg);
     } else {
 
         if (p_plfm->p_devinfo->use_int_pin) {
-            /* ÖØĞÂ´ò¿ª´¥·¢ÖĞ¶Ï*/
+            /* é‡æ–°æ‰“å¼€è§¦å‘ä¸­æ–­*/
             am_gpio_trigger_on(p_plfm->p_devinfo->int_pin);
         } else {
-            /* Æô¶¯Èí¼ş¶¨Ê±Æ÷*/
+            /* å¯åŠ¨è½¯ä»¶å®šæ—¶å™¨*/
             am_softimer_start(&(p_plfm->timer),
                                p_plfm->p_devinfo->interval_ms);
         }
     }
 }
 
-/* ÉÏ±¨ÓĞĞ§¼üÖµº¯Êı*/
+/* ä¸ŠæŠ¥æœ‰æ•ˆé”®å€¼å‡½æ•°*/
 static void __zlg72128_key_report(zlg72128_plfm_t *p_plfm)
 {
-    /* ÉÏ±¨ÓĞĞ§¼üÖµ*/
+    /* ä¸ŠæŠ¥æœ‰æ•ˆé”®å€¼*/
     p_plfm->pfn_keyval_report(p_plfm->p_key_arg, &p_plfm->r_buff[1]);
 
     if (p_plfm->p_devinfo->use_int_pin) {
-        /* ÖØĞÂ´ò¿ª´¥·¢ÖĞ¶Ï*/
+        /* é‡æ–°æ‰“å¼€è§¦å‘ä¸­æ–­*/
         am_gpio_trigger_on(p_plfm->p_devinfo->int_pin);
     } else {
-        /* Æô¶¯Èí¼ş¶¨Ê±Æ÷*/
+        /* å¯åŠ¨è½¯ä»¶å®šæ—¶å™¨*/
         am_softimer_start(&(p_plfm->timer),
                            p_plfm->p_devinfo->interval_ms);
     }
 }
 
-/* Òı½ÅÖĞ¶Ï´¦Àíº¯Êı*/
+/* å¼•è„šä¸­æ–­å¤„ç†å‡½æ•°*/
 static void __int_keyval_i2c_read(zlg72128_plfm_t *p_plfm)
 {
-    /* ¹Ø±ÕÒı½ÅÖĞ¶Ï*/
+    /* å…³é—­å¼•è„šä¸­æ–­*/
     if (am_gpio_trigger_off(p_plfm->p_devinfo->int_pin)) {
          return;
     }
@@ -110,29 +110,29 @@ static void __int_keyval_i2c_read(zlg72128_plfm_t *p_plfm)
                     (uint8_t *)&__g_sys_addr,
                     1);
 
-    /* ¶ÁÈ¡ÏµÍ³¼Ä´æÆ÷ */
+    /* è¯»å–ç³»ç»Ÿå¯„å­˜å™¨ */
     am_i2c_mktrans(&p_plfm->trans[1],
                     p_plfm->p_devinfo->slv_addr,
                     AM_I2C_M_RD,
                     p_plfm->r_buff,
                     1);
 
-    /*¹¹½¨ÏûÏ¢*/
+    /*æ„å»ºæ¶ˆæ¯*/
     am_i2c_mkmsg(&(p_plfm->msg),
                  &(p_plfm->trans[0]),
                  2,
                  (am_pfnvoid_t)__zlg72128_key_vaild,
                  (void *)p_plfm);
 
-    /* ²éÑ¯ÏµÍ³¼Ä´æÆ÷£¬¼ì²â¼üÖµÊÇ·ñÓĞĞ§*/
+    /* æŸ¥è¯¢ç³»ç»Ÿå¯„å­˜å™¨ï¼Œæ£€æµ‹é”®å€¼æ˜¯å¦æœ‰æ•ˆ*/
     am_i2c_msg_start(p_plfm->i2c_handle, &p_plfm->msg);
 }
 
-/* ¶¨Ê±Æ÷ÂÖÑ¯´¦Àíº¯Êı*/
+/* å®šæ—¶å™¨è½®è¯¢å¤„ç†å‡½æ•°*/
 static void __timer_keyval_i2c_read(zlg72128_plfm_t *p_plfm)
 {
     if (!p_plfm->p_devinfo->use_int_pin) {
-        /* ¹Ø±ÕÈí¼ş¶¨Ê±Æ÷*/
+        /* å…³é—­è½¯ä»¶å®šæ—¶å™¨*/
         am_softimer_stop(&(p_plfm->timer));
     }
 
@@ -142,28 +142,28 @@ static void __timer_keyval_i2c_read(zlg72128_plfm_t *p_plfm)
                     (uint8_t *)&__g_sys_addr,
                     1);
 
-    /* ¶ÁÈ¡ÏµÍ³¼Ä´æÆ÷ */
+    /* è¯»å–ç³»ç»Ÿå¯„å­˜å™¨ */
     am_i2c_mktrans(&p_plfm->trans[1],
                     p_plfm->p_devinfo->slv_addr,
                     AM_I2C_M_RD,
                     p_plfm->r_buff,
                     1);
 
-    /*¹¹½¨ÏûÏ¢*/
+    /*æ„å»ºæ¶ˆæ¯*/
     am_i2c_mkmsg(&(p_plfm->msg),
                  &(p_plfm->trans[0]),
                  2,
                  (am_pfnvoid_t)__zlg72128_key_vaild,
                  (void *)p_plfm);
 
-    /* ²éÑ¯ÏµÍ³¼Ä´æÆ÷£¬¼ì²â¼üÖµÊÇ·ñÓĞĞ§*/
+    /* æŸ¥è¯¢ç³»ç»Ÿå¯„å­˜å™¨ï¼Œæ£€æµ‹é”®å€¼æ˜¯å¦æœ‰æ•ˆ*/
     am_i2c_msg_start(p_plfm->i2c_handle, &p_plfm->msg);
 }
 
 /**
- * \brief Æ½Ì¨³õÊ¼»¯£¬¸Ãº¯Êı½«»áÔÚ zlg72128_init()º¯ÊıÖĞ£¬±»Ê×ÏÈµ÷ÓÃ
+ * \brief å¹³å°åˆå§‹åŒ–ï¼Œè¯¥å‡½æ•°å°†ä¼šåœ¨ zlg72128_init()å‡½æ•°ä¸­ï¼Œè¢«é¦–å…ˆè°ƒç”¨
  *
- * ÓëÆ½Ì¨Ïà¹ØµÄ³õÊ¼»¯£¬ÀıÈç£¬³õÊ¼»¯GPIO¡¢I2CµÈ¡¢´ò¿ªÒı½ÅÖĞ¶ÏµÈ
+ * ä¸å¹³å°ç›¸å…³çš„åˆå§‹åŒ–ï¼Œä¾‹å¦‚ï¼Œåˆå§‹åŒ–GPIOã€I2Cç­‰ã€æ‰“å¼€å¼•è„šä¸­æ–­ç­‰
  */
 int zlg72128_plfm_init (zlg72128_plfm_t                  *p_plfm,
                         const zlg72128_plfm_init_info_t  *p_plfm_init_info,
@@ -182,15 +182,15 @@ int zlg72128_plfm_init (zlg72128_plfm_t                  *p_plfm,
     p_plfm->i2c_handle        = p_plfm_init_info->pfn_i2c_handle_get();
     p_plfm->pfn_keyval_report = pfn_keyval_report;
 
-    /* ÖÆ×÷´Ó»úÉè±¸ÓÃÓÚI2C¶ÁĞ´²Ù×÷*/
+    /* åˆ¶ä½œä»æœºè®¾å¤‡ç”¨äºI2Cè¯»å†™æ“ä½œ*/
     am_i2c_mkdev(&p_plfm->i2c_dev,
                   p_plfm->i2c_handle,
                   p_plfm->p_devinfo->slv_addr,
                   AM_I2C_ADDR_7BIT | AM_I2C_SUBADDR_1BYTE);
 
-    /* ¸´Î»Òı½ÅÅäÖÃ*/
+    /* å¤ä½å¼•è„šé…ç½®*/
     if (p_plfm->p_devinfo->rst_pin != -1) {
-        /* ÅäÖÃ¸´Î»Òı½ÅÊä³ö×´Ì¬ÎªµÍµçÆ½*/
+        /* é…ç½®å¤ä½å¼•è„šè¾“å‡ºçŠ¶æ€ä¸ºä½ç”µå¹³*/
         if (am_gpio_pin_cfg(p_plfm->p_devinfo->rst_pin,
                             AM_GPIO_OUTPUT_INIT_LOW)) {
 
@@ -198,7 +198,7 @@ int zlg72128_plfm_init (zlg72128_plfm_t                  *p_plfm,
         }
 
         am_mdelay(1);
-        /* À­¸ß¸´Î»Òı½Å*/
+        /* æ‹‰é«˜å¤ä½å¼•è„š*/
         if (am_gpio_set(p_plfm->p_devinfo->rst_pin, 1)) {
 
             return -AM_ENXIO;
@@ -206,7 +206,7 @@ int zlg72128_plfm_init (zlg72128_plfm_t                  *p_plfm,
         am_mdelay(5);
     }
 
-    /* ÖĞ¶ÏÒı½ÅÅäÖÃ*/
+    /* ä¸­æ–­å¼•è„šé…ç½®*/
     if (p_plfm->p_devinfo->use_int_pin) {
 
         if (am_gpio_pin_cfg(p_plfm->p_devinfo->int_pin,
@@ -214,31 +214,31 @@ int zlg72128_plfm_init (zlg72128_plfm_t                  *p_plfm,
             return -AM_ENOTSUP;
         }
 
-        /* Á¬½ÓGPIOÒı½ÅÖĞ¶Ï */
+        /* è¿æ¥GPIOå¼•è„šä¸­æ–­ */
         if (am_gpio_trigger_connect(p_plfm_init_info->int_pin,
                                     (am_pfnvoid_t)__int_keyval_i2c_read,
                                     (void *)p_plfm)) {
             return -AM_EPERM;
         }
 
-        /* ÉèÖÃÎªµÍµçÆ½´¥·¢£¬ÈôÊ§°ÜÔòÉèÖÃÎªÏÂ½µÑØ´¥·¢*/
+        /* è®¾ç½®ä¸ºä½ç”µå¹³è§¦å‘ï¼Œè‹¥å¤±è´¥åˆ™è®¾ç½®ä¸ºä¸‹é™æ²¿è§¦å‘*/
         if(am_gpio_trigger_cfg(p_plfm_init_info->int_pin,
                                AM_GPIO_TRIGGER_LOW)) {
 
             if(am_gpio_trigger_cfg(p_plfm_init_info->int_pin,
                                    AM_GPIO_TRIGGER_FALL)) {
-                /* ²»Ö§³Öµ±Ç°´¥·¢·½Ê½*/
+                /* ä¸æ”¯æŒå½“å‰è§¦å‘æ–¹å¼*/
                 return -AM_EPERM;
             }
 
         }
         if (am_gpio_trigger_on(p_plfm_init_info->int_pin)) {
 
-            /* Ê¹ÄÜÒı½ÅÖĞ¶ÏÊ§°Ü*/
+            /* ä½¿èƒ½å¼•è„šä¸­æ–­å¤±è´¥*/
             return -AM_EPERM;
         }
     } else {
-        /* Ê¹ÓÃÈí¼ş¶¨Ê±Æ÷ÒÔÒ»¶¨µÄÊ±¼ä¼ä¸ôÉ¨Ãè */
+        /* ä½¿ç”¨è½¯ä»¶å®šæ—¶å™¨ä»¥ä¸€å®šçš„æ—¶é—´é—´éš”æ‰«æ */
         ret = am_softimer_init(&(p_plfm->timer),
                                (am_pfnvoid_t)__timer_keyval_i2c_read,
                                (void *)p_plfm);
@@ -255,9 +255,9 @@ int zlg72128_plfm_init (zlg72128_plfm_t                  *p_plfm,
 }
 
 /**
- * \brief Æ½Ì¨½â³õÊ¼»¯
+ * \brief å¹³å°è§£åˆå§‹åŒ–
  *
- * ÊÍ·ÅÒ»Ğ©ÓëÆ½Ì¨Ïà¹ØµÄ×ÊÔ´£¬ÀıÈç²¿·ÖÆ½Ì¨ĞèÒª¹Ø±ÕÒı½ÅÖĞ¶Ï¡¢ÊÍ·ÅÒı½Å
+ * é‡Šæ”¾ä¸€äº›ä¸å¹³å°ç›¸å…³çš„èµ„æºï¼Œä¾‹å¦‚éƒ¨åˆ†å¹³å°éœ€è¦å…³é—­å¼•è„šä¸­æ–­ã€é‡Šæ”¾å¼•è„š
  */
 int zlg72128_plfm_deinit(zlg72128_plfm_t *p_plfm)
 {
@@ -270,11 +270,11 @@ int zlg72128_plfm_deinit(zlg72128_plfm_t *p_plfm)
     p_plfm->p_devinfo->pfn_i2c_deinit(p_plfm->i2c_handle);
 
     if (p_plfm->p_devinfo->use_int_pin) {
-        /* ¹Ø±ÕÒı½ÅÖĞ¶Ï*/
+        /* å…³é—­å¼•è„šä¸­æ–­*/
         if (am_gpio_trigger_off(p_plfm->p_devinfo->int_pin)) {
             return -AM_EPERM;
         }
-        /* É¾³ıÒı½Å»Øµ÷º¯Êı*/
+        /* åˆ é™¤å¼•è„šå›è°ƒå‡½æ•°*/
         ret = am_gpio_trigger_disconnect(p_plfm->p_devinfo->int_pin,
                                          (am_pfnvoid_t)__int_keyval_i2c_read,
                                          (void *)p_plfm);
@@ -289,7 +289,7 @@ int zlg72128_plfm_deinit(zlg72128_plfm_t *p_plfm)
     return AM_OK;
 }
 
-/* I2CĞ´º¯Êıº¯ÊıÊµÏÖ*/
+/* I2Cå†™å‡½æ•°å‡½æ•°å®ç°*/
 int zlg72128_plfm_i2c_write (zlg72128_plfm_t *p_plfm,
                              uint8_t          sub_addr,
                              uint8_t         *p_buf,

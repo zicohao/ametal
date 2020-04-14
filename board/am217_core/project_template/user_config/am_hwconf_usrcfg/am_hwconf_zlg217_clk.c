@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZLG217 CLK �û������ļ�
+ * \brief ZLG217 CLK 用户配置文件
  * \sa am_hwconf_zlg217_clk.c
  *
  * \internal
@@ -30,52 +30,52 @@
  * \copydoc am_hwconf_zlg217_clk.c
  * @{
  */
-/** \brief CLK ƽ̨��ʼ�� */
+/** \brief CLK 平台初始化 */
 static void __zlg217_clk_plfm_init (void)
 {
 }
 
-/** \brief CLK�豸��Ϣ */
+/** \brief CLK设备信息 */
 static const am_zlg217_clk_devinfo_t __g_clk_devinfo =
 {
     /**
-     * \brief HSEOSC�ⲿ����Ƶ��
+     * \brief HSEOSC外部晶振频率
      *
-     *  ���pllin_srcѡ�� AMHW_ZLG217_PLLCLK_HSE �� PLLIN = hse_osc��
+     *  如果pllin_src选择 AMHW_ZLG217_PLLCLK_HSE 则 PLLIN = hse_osc）
      */
     12000000,
 
     /**
-     * \brief LSEOSC�ⲿ����Ƶ��
+     * \brief LSEOSC外部晶振频率
      *
-     *  ���rtc_srcѡ�� AMHW_ZLG217_RTCCLK_LSE �� rtcclk = lse_osc��
+     *  如果rtc_src选择 AMHW_ZLG217_RTCCLK_LSE 则 rtcclk = lse_osc）
      */
     0,
 
     /** \brief
-     *    PLL ʱ��Դѡ��
-     *    -# AMHW_ZLG217_PLLCLK_HSI_DIV4 : HSI ���� 4 ��Ƶ��ΪPLL����ʱ��
-     *    -# AMHW_ZLG217_PLLCLK_HSE      : HSE ��ΪPLL����ʱ��
+     *    PLL 时钟源选择
+     *    -# AMHW_ZLG217_PLLCLK_HSI_DIV4 : HSI 振荡器 4 分频作为PLL输入时钟
+     *    -# AMHW_ZLG217_PLLCLK_HSE      : HSE 作为PLL输入时钟
      */
     AMHW_ZLG217_PLLCLK_HSE,
 
     /**
-     * \brief PLL ��Ƶϵ������ѡ1-64
+     * \brief PLL 倍频系数，可选1-64
      *        PLLOUT = PLLIN * pll_mul / pll_div
      */
     8,
 
     /**
-     * \brief PLL ��Ƶϵ������ѡ1-8
+     * \brief PLL 分频系数，可选1-8
      *        PLLOUT = PLLIN * pll_mul / pll_div
      */
     1,
 
-    /** \brief USB��Ƶϵ����USBCLK = PLLOUT / (usb_div + 1),�������ó�48Mhz */
+    /** \brief USB分频系数，USBCLK = PLLOUT / (usb_div + 1),建议配置成48Mhz */
     1,
 
     /**
-     * \brief AHB��Ƶϵ����AHBCLK = PLLOUT / DIV,AHB���Ƶ��Ϊ96Mhz
+     * \brief AHB分频系数，AHBCLK = PLLOUT / DIV,AHB最大频率为96Mhz
      *
      *    ahb_div |  DIV
      *   ---------------------
@@ -92,37 +92,37 @@ static const am_zlg217_clk_devinfo_t __g_clk_devinfo =
     0,
 
     /**
-     * \brief APB1��Ƶϵ����APB1CLK = AHBCLK / (2 ^ apb1_div)
-     *        APB1���Ƶ��Ϊ96Mhz
+     * \brief APB1分频系数，APB1CLK = AHBCLK / (2 ^ apb1_div)
+     *        APB1最大频率为96Mhz
      */
     1,
 
     /**
-     * \brief APB2��Ƶϵ����APB2CLK = AHBCLK / (2 ^ apb2_div)
-     *        APB2���Ƶ��Ϊ96Mhz
+     * \brief APB2分频系数，APB2CLK = AHBCLK / (2 ^ apb2_div)
+     *        APB2最大频率为96Mhz
      */
     0,
 
     /**
-     * \brief ADC��Ƶϵ����APB2CLK = APB2 / (2 ^ adc_div)
-     *        ADC���Ƶ��Ϊ48Mhz
+     * \brief ADC分频系数，APB2CLK = APB2 / (2 ^ adc_div)
+     *        ADC最大频率为48Mhz
      */
     1,
 
-    /** \brief ƽ̨��ʼ���������������ŵȹ��� */
+    /** \brief 平台初始化函数，配置引脚等工作 */
     __zlg217_clk_plfm_init,
 
-    /** \brief ƽ̨���ʼ������ */
+    /** \brief 平台解初始化函数 */
     NULL,
 };
 
-/** \brief ʱ���豸ʵ�� */
+/** \brief 时钟设备实例 */
 static am_zlg217_clk_dev_t __g_clk_dev;
 
 /**
- * \brief CLK ʵ����ʼ������ʼ��ϵͳʱ��
+ * \brief CLK 实例初始化，初始化系统时钟
  *
- * \retval AM_OK : ʱ�ӳɹ���ʼ��
+ * \retval AM_OK : 时钟成功初始化
  */
 int am_zlg217_clk_inst_init (void)
 {

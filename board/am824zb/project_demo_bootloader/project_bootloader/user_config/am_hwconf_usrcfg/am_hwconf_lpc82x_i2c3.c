@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief LPC82X I2C3 ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief LPC82X I2C3 ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_lpc82x_i2c3.c
  *
  * \internal
@@ -32,7 +32,7 @@
  * @{
  */
 
-/** \brief I2C3 Æ½Ì¨³õÊ¼»¯º¯Êı */
+/** \brief I2C3 å¹³å°åˆå§‹åŒ–å‡½æ•° */
 static void __lpc82x_i2c3_plfm_init (void)
 {
     /**
@@ -45,7 +45,7 @@ static void __lpc82x_i2c3_plfm_init (void)
     amhw_lpc82x_syscon_periph_reset(AMHW_LPC82X_RESET_I2C3);
 }
 
-/** \brief ½â³ıI2C3 Æ½Ì¨³õÊ¼»¯º¯Êı */
+/** \brief è§£é™¤I2C3 å¹³å°åˆå§‹åŒ–å‡½æ•° */
 static void __lpc82x_i2c3_plfm_deinit (void)
 {
     amhw_lpc82x_syscon_periph_reset(AMHW_LPC82X_RESET_I2C3);
@@ -53,40 +53,40 @@ static void __lpc82x_i2c3_plfm_deinit (void)
 }
 
 /**
- * \name I2C3 ¿ØÖÆÆ÷²ÎÊı¶¨Òå
+ * \name I2C3 æ§åˆ¶å™¨å‚æ•°å®šä¹‰
  * @{
  */
 
-#define BUS_SPEED_I2C3     (400000)     /**< \brief I2C3 ×ÜÏßËÙÂÊ²ÎÊı¶¨Òå */
+#define BUS_SPEED_I2C3     (400000)     /**< \brief I2C3 æ€»çº¿é€Ÿç‡å‚æ•°å®šä¹‰ */
 
 /** @} */
 
 /**
- * \brief I2C2 Éè±¸ĞÅÏ¢
+ * \brief I2C2 è®¾å¤‡ä¿¡æ¯
  */
 static const am_lpc_i2c_devinfo_t __g_i2c3_devinfo = {
 
-    BUS_SPEED_I2C3,                     /**< \brief I2C3 ×ÜÏßÊ±ÖÓËÙÂÊ */
-    LPC82X_I2C3_BASE,                   /**< \brief I2C3¼Ä´æÆ÷¿é»ùÖ· */
-    INUM_I2C3,                          /**< \brief I2C3 ÖĞ¶Ï±àºÅ */
-    CLK_I2C3,                           /**< \brief I2C0 Ê±ÖÓID */
+    BUS_SPEED_I2C3,                     /**< \brief I2C3 æ€»çº¿æ—¶é’Ÿé€Ÿç‡ */
+    LPC82X_I2C3_BASE,                   /**< \brief I2C3å¯„å­˜å™¨å—åŸºå€ */
+    INUM_I2C3,                          /**< \brief I2C3 ä¸­æ–­ç¼–å· */
+    CLK_I2C3,                           /**< \brief I2C0 æ—¶é’ŸID */
 
-    0,                                  /**< \brief ³¬Ê±Öµ0 */
+    0,                                  /**< \brief è¶…æ—¶å€¼0 */
 
-    __lpc82x_i2c3_plfm_init,            /**< \brief Æ½Ì¨³õÊ¼»¯ */
-    __lpc82x_i2c3_plfm_deinit           /**< \brief Æ½Ì¨È¥³õÊ¼»¯ */
+    __lpc82x_i2c3_plfm_init,            /**< \brief å¹³å°åˆå§‹åŒ– */
+    __lpc82x_i2c3_plfm_deinit           /**< \brief å¹³å°å»åˆå§‹åŒ– */
 };
 
-static am_lpc_i2c_dev_t __g_i2c3_dev; /**< \brief I2C3 Éè±¸ÊµÀı */
+static am_lpc_i2c_dev_t __g_i2c3_dev; /**< \brief I2C3 è®¾å¤‡å®ä¾‹ */
 
 
-/** \brief I2C3 ÊµÀı³õÊ¼»¯£¬»ñµÃI2C±ê×¼·şÎñ¾ä±ú */
+/** \brief I2C3 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—I2Cæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_i2c_handle_t am_lpc82x_i2c3_inst_init (void)
 {
     return am_lpc_i2c_init(&__g_i2c3_dev, &__g_i2c3_devinfo);
 }
 
-/** \brief I2C3 ÊµÀı½â³õÊ¼»¯ */
+/** \brief I2C3 å®ä¾‹è§£åˆå§‹åŒ– */
 void am_lpc82x_i2c3_inst_deinit (am_i2c_handle_t handle)
 {
     am_lpc_i2c_deinit(handle);

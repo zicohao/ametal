@@ -12,13 +12,13 @@
 
 /**
  * \file
- * \brief WWDG��ʾ���̣�ͨ����׼�ӿ�ʵ��
+ * \brief WWDG演示例程，通过标准接口实现
  *
- * - ʵ������
- *   1. �޸ĺ궨�� __WWDG_FEED_TIME_MS ��ֵ������ __WWDG_TIMEOUT_MS��оƬ��λ��
- *   2. �޸ĺ궨�� __WWDG_FEED_TIME_MS ��ֵ��С�� __WWDG_TIMEOUT_MS�������������С�
+ * - 实验现象：
+ *   1. 修改宏定义 __WWDG_FEED_TIME_MS 的值，超过 __WWDG_TIMEOUT_MS，芯片复位；
+ *   2. 修改宏定义 __WWDG_FEED_TIME_MS 的值，小于 __WWDG_TIMEOUT_MS，程序正常运行。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_aml166_core_std_wwdg.c src_aml166_core_std_wwdg
  *
  * \internal
@@ -40,18 +40,18 @@
 #include "demo_aml166_core_entries.h"
 
 /**
- * \brief ���Ź���ʱʱ��
+ * \brief 看门狗超时时间
  */
 #define __WWDG_TIMEOUT_MS       50
 
 /**
- * \brief ���Ź�ι��ʱ�䣬��ι��ʱ�䳬��WWDG_TIMEOUT_MS��ֵ,
- *        ��������Ź��¼���
+ * \brief 看门狗喂狗时间，若喂狗时间超过WWDG_TIMEOUT_MS的值,
+ *        会产生看门狗事件。
  */
 #define __WWDG_FEED_TIME_MS     75
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_aml166_core_std_wwdg_entry (void)
 {

@@ -11,24 +11,24 @@
 *******************************************************************************/
 /**
  * \file
- * \brief MicroPort EEPROM ���̣�ͨ�� NVRAM �ӿ�ʵ�֡�
+ * \brief MicroPort EEPROM 例程，通过 NVRAM 接口实现。
  *
- * ���� FM24C02 �� EEPROM �ǵ��͵ķ���ʧ�Դ洢�������ʹ�� NVRAM����
- * ��ʧ�Դ洢������׼�ӿڶ�д���ݾ�������ľ���������ˡ�
+ * 由于 FM24C02 等 EEPROM 是典型的非易失性存储器，因此使用 NVRAM（非
+ * 易失性存储器）标准接口读写数据就无需关心具体的器件了。
  *
- * - ��������:
- *   1. �� MicroPort EEPROM ������ӵ� AMKS16RFID �� MicroPort �ӿڡ�
+ * - 操作步骤:
+ *   1. 将 MicroPort EEPROM 配板连接到 AMKS16RFID 的 MicroPort 接口。
  *
- * - ʵ������:
- *   1. ����д���ݵ� EEPROM��
- *   2. ������ EEPROM ��ȡ���ݣ���ͨ�����ڴ�ӡ������
- *   3. ���ڴ�ӡ�����Խ����
+ * - 实验现象:
+ *   1. 主机写数据到 EEPROM；
+ *   2. 主机从 EEPROM 读取数据，并通过串口打印处理；
+ *   3. 串口打印出测试结果。
  *
  * \note
- *    ����۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIOA_1 �������� PC ���ڵ� TXD��
- *    PIOA_2 �������� PC ���ڵ� RXD��
+ *    如需观察串口打印的调试信息，需要将 PIOA_1 引脚连接 PC 串口的 TXD，
+ *    PIOA_2 引脚连接 PC 串口的 RXD。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_microport_eeprom_nvram.c src_microport_eeprom_nvram
  *
  * \internal
@@ -51,11 +51,11 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief MicroPort EEPROM ���̣�ͨ����׼�ӿ�ʵ��
+ * \brief MicroPort EEPROM 例程，通过标准接口实现
  *
- * \param ��
+ * \param 无
  *
- * \return ��
+ * \return 无
  */
 void demo_amks16z_core_microport_eeprom_nvram_entry (void)
 {

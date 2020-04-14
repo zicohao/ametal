@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief bootloader ´®ÐÐÊý¾Ý²Ù×÷±ê×¼Éè±¸ÊµÏÖ£¨uartÇý¶¯£©
+ * \brief bootloader ä¸²è¡Œæ•°æ®æ“ä½œæ ‡å‡†è®¾å¤‡å®žçŽ°ï¼ˆuarté©±åŠ¨ï¼‰
  *
  * \internal
  * \par modification history:
@@ -47,9 +47,9 @@ static int __uart_int_callback_enable(void *p_arg, serial_byte_receive_func_t ca
 {
     am_boot_serial_uart_dev_t *p_dev = (am_boot_serial_uart_dev_t  *)p_arg;
     __g_uart_byte_receive_callback = callback_fun;
-    /* Ê¹ÄÜ´®¿ÚÖÐ¶ÏÄ£Ê½  */
+    /* ä½¿èƒ½ä¸²å£ä¸­æ–­æ¨¡å¼  */
     am_uart_ioctl(p_dev->uart_handle, AM_UART_MODE_SET, (void *)AM_UART_MODE_INT);
-    /* ×¢²á·¢ËÍ»Øµ÷º¯Êý  */
+    /* æ³¨å†Œå‘é€å›žè°ƒå‡½æ•°  */
     am_uart_callback_set(p_dev->uart_handle, AM_UART_CALLBACK_RXCHAR_PUT, __uart_irq_handler, NULL);
 
     return AM_OK;

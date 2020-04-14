@@ -11,13 +11,13 @@
 *******************************************************************************/
 /**
  * \file
- * \brief AM_ZML166_ADC²âÁ¿¹Ì¶¨µçÑ¹£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief AM_ZML166_ADCæµ‹é‡å›ºå®šç”µå‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Á¬½ÓºÃ´®¿Ú£¬½«PT100µç×è½ÓÈëTCBÓëTCAÖ®¼ä¡£
- *   2. ´®¿Ú½«»á´òÓ¡³öÈÈµçÅ¼²âÁ¿ÎÂ¶È¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. è¿æ¥å¥½ä¸²å£ï¼Œå°†PT100ç”µé˜»æ¥å…¥TCBä¸TCAä¹‹é—´ã€‚
+ *   2. ä¸²å£å°†ä¼šæ‰“å°å‡ºçƒ­ç”µå¶æµ‹é‡æ¸©åº¦ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet dome_zml166_adc_pt100_measure.c src_demo_zml166_adc_thermistor_measure
  *
  * \internal
@@ -38,7 +38,7 @@
 #include "am_thermocouple.h"
 #include "math.h"
 /**
- * \brief ²âÊÔAML166Íâ½ÓÈÈµçÅ¼²âÁ¿ÎÂ¶ÈÀı³Ì
+ * \brief æµ‹è¯•AML166å¤–æ¥çƒ­ç”µå¶æµ‹é‡æ¸©åº¦ä¾‹ç¨‹
  */
 void dome_zml166_adc_thermocouple_measure_entry(void     *p_handle,
                                                 float    *p_para,
@@ -52,7 +52,7 @@ void dome_zml166_adc_thermocouple_measure_entry(void     *p_handle,
 
     while(1){
         double temperature, v1;
-        /* ²âÁ¿Àä¶ËÎÂ¶È */
+        /* æµ‹é‡å†·ç«¯æ¸©åº¦ */
         am_zml166_adc_gain_set(handle, 1);
         am_zml166_adc_reg_set(handle,
                               AM_ZML166_ADC_ADC3_ADDR,
@@ -83,11 +83,11 @@ void dome_zml166_adc_thermocouple_measure_entry(void     *p_handle,
 
         if(temperature < 0){
             temperature *= -1;
-            am_kprintf("Tem = -%d.%03d¡ã\r\n",
+            am_kprintf("Tem = -%d.%03dÂ°\r\n",
              (uint32_t)temperature/1000 ,
              (uint32_t)temperature%1000);
         }else{
-            am_kprintf("Tem = %d.%03d¡ã\r\n\r\n",
+            am_kprintf("Tem = %d.%03dÂ°\r\n\r\n",
              (uint32_t)temperature/1000 ,
              (uint32_t)temperature%1000);
         }

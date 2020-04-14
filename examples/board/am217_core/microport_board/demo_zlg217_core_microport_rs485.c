@@ -12,19 +12,19 @@
 
 /**
  * \file
- * \brief MicroPort RS485 Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MicroPort RS485 ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè£º
- *   1. ½« MicroPort RS485 Åä°åÁ¬½Óµ½ AM217BLE µÄ MicroPort ½Ó¿Ú¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. å°† MicroPort RS485 é…æ¿è¿æ¥åˆ° AM217BLE çš„ MicroPort æ¥å£ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿ÚÊä³ö"MicroPort RS485 Test:"£»
- *   2. ´®¿ÚÊä³ö½ÓÊÕµ½µÄ×Ö·û´®¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. ä¸²å£è¾“å‡º"MicroPort RS485 Test:"ï¼›
+ *   2. ä¸²å£è¾“å‡ºæ¥æ”¶åˆ°çš„å­—ç¬¦ä¸²ã€‚
  *
  * \note
- *   1. TP8485E Îª RS485 ×ª´®¿ÚĞ¾Æ¬¡£
+ *   1. TP8485E ä¸º RS485 è½¬ä¸²å£èŠ¯ç‰‡ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_microport_rs485.c src_microport_rs485
  *
  * \internal
@@ -46,11 +46,11 @@
 #include "demo_am217_core_entries.h"
 
 /**
- * \brief MicroPort RS485 Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MicroPort RS485 ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_zlg217_core_microport_rs485_entry (void)
 {

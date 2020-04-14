@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief DMA Çı¶¯ÊµÏÖ
+ * \brief DMA é©±åŠ¨å®ç°
  *
  * \internal
  * \par Modification history
@@ -25,37 +25,37 @@
 #include "am_vdebug.h"
 
 /*******************************************************************************
-  Ë½ÓĞ¶¨Òå
+  ç§æœ‰å®šä¹‰
 *******************************************************************************/
 
-/** \brief ÖĞ¶ÏÎ´Á¬½Ó±êÊ¶ */
+/** \brief ä¸­æ–­æœªè¿æ¥æ ‡è¯† */
 #define __INT_NOT_CONNECTED      0xFF
 
-/** \brief Í¨µÀÎ´Á¬½Ó±êÊ¶ */
+/** \brief é€šé“æœªè¿æ¥æ ‡è¯† */
 #define __CHAN_NOT_CONNECTED     0xFF
 
-/** \brief ¶¨ÒåÖ¸ÏòDMAÉè±¸ĞÅÏ¢µÄÖ¸Õë */
+/** \brief å®šä¹‰æŒ‡å‘DMAè®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ */
 #define __DMA_DEVINFO_DECL(p_dma_devinfo, p_dev)  \
         const am_zlg_dma_devinfo_t *p_dma_devinfo = p_dev->p_devinfo
 
 /*******************************************************************************
-  È«¾Ö±äÁ¿
+  å…¨å±€å˜é‡
 *******************************************************************************/
 
-/** \brief Ö¸ÏòDMAÉè±¸µÄÖ¸Õë */
+/** \brief æŒ‡å‘DMAè®¾å¤‡çš„æŒ‡é’ˆ */
 static am_zlg_dma_dev_t *__gp_dma_dev;
 
-/** \brief DMAÖĞ¶Ï»Øµ÷º¯ÊıĞÅÏ¢Êı×é */
+/** \brief DMAä¸­æ–­å›è°ƒå‡½æ•°ä¿¡æ¯æ•°ç»„ */
 static struct am_zlg_dma_int_info __dma_int_info[AMHW_ZLG_DMA_CHAN_CNT];
 
-/** \brief DMAÖĞ¶Ï»Øµ÷º¯ÊıĞÅÏ¢Ó³Éä */
+/** \brief DMAä¸­æ–­å›è°ƒå‡½æ•°ä¿¡æ¯æ˜ å°„ */
 static uint8_t __dma_int_map[AMHW_ZLG_DMA_CHAN_CNT];
 
 /*******************************************************************************
-  ¹«¹²º¯Êı
+  å…¬å…±å‡½æ•°
 *******************************************************************************/
 
-/* ½¨Á¢´«ÊäÃèÊö·û */
+/* å»ºç«‹ä¼ è¾“æè¿°ç¬¦ */
 int am_zlg_dma_xfer_desc_build (amhw_zlg_dma_xfer_desc_t *p_desc,
                                 uint32_t                  src_addr,
                                 uint32_t                  dst_addr,
@@ -78,7 +78,7 @@ int am_zlg_dma_xfer_desc_build (amhw_zlg_dma_xfer_desc_t *p_desc,
     return AM_OK;
 }
 
-/* ¿ªÊ¼DMA´«Êä */
+/* å¼€å§‹DMAä¼ è¾“ */
 int am_zlg_dma_xfer_desc_chan_cfg (amhw_zlg_dma_xfer_desc_t      *p_desc,
                                    amhw_zlg_dma_transfer_type_t   type,
                                    uint8_t                        chan)
@@ -162,7 +162,7 @@ int am_zlg_dma_xfer_desc_chan_cfg (amhw_zlg_dma_xfer_desc_t      *p_desc,
     return AM_OK;
 }
 
-/* Í£Ö¹Í¨µÀ´«Êä */
+/* åœæ­¢é€šé“ä¼ è¾“ */
 int am_zlg_dma_chan_start (int chan)
 {
     __DMA_DEVINFO_DECL(p_dma_devinfo, __gp_dma_dev);
@@ -177,7 +177,7 @@ int am_zlg_dma_chan_start (int chan)
     return AM_OK;
 }
 
-/* Í£Ö¹Í¨µÀ´«Êä */
+/* åœæ­¢é€šé“ä¼ è¾“ */
 int am_zlg_dma_chan_stop (int chan)
 {
     __DMA_DEVINFO_DECL(p_dma_devinfo, __gp_dma_dev);
@@ -192,7 +192,7 @@ int am_zlg_dma_chan_stop (int chan)
     return AM_OK;
 }
 
-/* DMAÖĞ¶Ï´¦Àíº¯Êı */
+/* DMAä¸­æ–­å¤„ç†å‡½æ•° */
 static void __dma_int_handler (void *p_arg)
 {
     __DMA_DEVINFO_DECL(p_dma_devinfo, __gp_dma_dev);
@@ -233,7 +233,7 @@ static void __dma_int_handler (void *p_arg)
     }
 }
 
-/* Á¬½ÓDMAÖĞ¶Ï·şÎñº¯Êı */
+/* è¿æ¥DMAä¸­æ–­æœåŠ¡å‡½æ•° */
 int am_zlg_dma_isr_connect (int                     chan,
                             am_zlg_pfn_dma_isr_t    pfn_isr,
                             void                   *p_arg)
@@ -249,7 +249,7 @@ int am_zlg_dma_isr_connect (int                     chan,
     return AM_OK;
 }
 
-/* É¾³ıDMAÖĞ¶Ï·şÎñº¯ÊıÁ¬½Ó */
+/* åˆ é™¤DMAä¸­æ–­æœåŠ¡å‡½æ•°è¿æ¥ */
 int am_zlg_dma_isr_disconnect (int                     chan,
                                am_zlg_pfn_dma_isr_t    pfn_isr,
                                void                   *p_arg)
@@ -265,7 +265,7 @@ int am_zlg_dma_isr_disconnect (int                     chan,
 }
 
 /**
- * \breif »ñÈ¡Ä³Í¨µÀµ±Ç°´«ÊäÊ£ÓàµÄ×Ö½ÚÊı
+ * \breif è·å–æŸé€šé“å½“å‰ä¼ è¾“å‰©ä½™çš„å­—èŠ‚æ•°
  */
 uint16_t am_zlg_dma_tran_data_get (int chan)
 {
@@ -276,7 +276,7 @@ uint16_t am_zlg_dma_tran_data_get (int chan)
 }
 
 /**
- * \brief ÉèÖÃ´«ÊäµÄ×Ö½ÚÊı
+ * \brief è®¾ç½®ä¼ è¾“çš„å­—èŠ‚æ•°
  */
 void am_zlg_dma_tran_data_size (int chan, uint32_t trans_data_byte)
 {
@@ -288,7 +288,7 @@ void am_zlg_dma_tran_data_size (int chan, uint32_t trans_data_byte)
                                         chan);
 }
 
-/* DMA³õÊ¼»¯ */
+/* DMAåˆå§‹åŒ– */
 int am_zlg_dma_init (am_zlg_dma_dev_t           *p_dev,
                      const am_zlg_dma_devinfo_t *p_devinfo)
 {
@@ -318,7 +318,7 @@ int am_zlg_dma_init (am_zlg_dma_dev_t           *p_dev,
     return AM_OK;
 }
 
-/* DMAÈ¥³õÊ¼»¯ */
+/* DMAå»åˆå§‹åŒ– */
 void am_zlg_dma_deinit (void)
 {
     am_zlg_dma_devinfo_t *p_dma_devinfo = NULL;

@@ -12,12 +12,12 @@
 
 /**
  * \file
- * \brief GPIO Òı½ÅÖĞ¶ÏÀı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief GPIO å¼•è„šä¸­æ–­ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. PIO1_11 µÄµçÆ½ÓÉ¸ßµçÆ½¸Ä±äÎªµÍµçÆ½£¨°´¼ü KEY/RES °´ÏÂ£©Ê±£¬LED0 ×´Ì¬¸Ä±ä¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. PIO1_11 çš„ç”µå¹³ç”±é«˜ç”µå¹³æ”¹å˜ä¸ºä½ç”µå¹³ï¼ˆæŒ‰é”® KEY/RES æŒ‰ä¸‹ï¼‰æ—¶ï¼ŒLED0 çŠ¶æ€æ”¹å˜ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am845_core_hw_gpio_int.c src_am845_core_hw_gpio_int
  *
  * \internal
@@ -42,31 +42,31 @@
 #include "demo_nxp_entries.h"
 #include "lpc84x_inum.h"
 
-/** \brief LED0 Òı½Å */
+/** \brief LED0 å¼•è„š */
 #define __LED0_PIN  PIO1_8
 
-/** \brief °´¼üÒı½Å */
+/** \brief æŒ‰é”®å¼•è„š */
 #define __KEY_PIN  PIO1_11
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am845_core_hw_gpio_int_entry (void)
 {
 
     am_kprintf("demo am845 hw gpio int!\r\n");
 
-    /* ÅäÖÃ LED Òı½Å·½ÏòÎªÊä³ö */
+    /* é…ç½® LED å¼•è„šæ–¹å‘ä¸ºè¾“å‡º */
     amhw_lpc84x_gpio_pin_dir_output(LPC84X_GPIO, __LED0_PIN);
 
-    /* ÅäÖÃ KEY Òı½Å·½ÏòÎªÊäÈë */
+    /* é…ç½® KEY å¼•è„šæ–¹å‘ä¸ºè¾“å…¥ */
     amhw_lpc84x_gpio_pin_dir_input(LPC84X_GPIO, __KEY_PIN);
 
-    /* ÅäÖÃ KEY Òı½ÅÎªÉÏÀ­ */
+    /* é…ç½® KEY å¼•è„šä¸ºä¸Šæ‹‰ */
     amhw_lpc84x_iocon_mode_set(LPC84X_IOCON, __KEY_PIN,
                                AMHW_LPC84X_IOCON_MODE_PULLUP);
 
-    /* ÅäÖÃÎªÏÂ½µÑØ´¥·¢ */
+    /* é…ç½®ä¸ºä¸‹é™æ²¿è§¦å‘ */
     amhw_lpc82x_pint_trigger_set(LPC84X_PINT,
                                  AMHW_LPC82X_PINT_CHAN_0,
                                  AMHW_LPC82X_PINT_TRIGGER_FALL);

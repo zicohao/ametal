@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief MiniPort-595 ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief MiniPort-595 ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_miniport_595.c
  *
  * \internal
@@ -33,38 +33,38 @@
  * @{
  */
 
-/** \brief ÊÇ·ñÊ¹ÓÃ GPIO Ä£Äâ SPI 0: Ê¹ÓÃÓ²¼ş SPI  1: Ê¹ÓÃ GPIO Ä£Äâ SPI */
+/** \brief æ˜¯å¦ä½¿ç”¨ GPIO æ¨¡æ‹Ÿ SPI 0: ä½¿ç”¨ç¡¬ä»¶ SPI  1: ä½¿ç”¨ GPIO æ¨¡æ‹Ÿ SPI */
 #define    __USE_GPIO_SPI    0
 
 #if (__USE_GPIO_SPI == 1)
 
-/** \brief MiniPort-595 GPIO Éè±¸ĞÅÏ¢ */
+/** \brief MiniPort-595 GPIO è®¾å¤‡ä¿¡æ¯ */
 am_local am_const am_hc595_gpio_info_t __g_miniport_595_gpio_devinfo = {
-    PIO0_10,    /* Êı¾İÒı½Å (SPI_MOSI) */
-    PIO0_11,    /* ÒÆÎ»Ê±ÖÓÒı½Å (SPI_CLK) */
-    PIO0_14,    /* Êı¾İËø´æÒı½Å (SPI_CS) */
-    -1,         /* OE ¹Ì¶¨ÎªµÍµçÆ½£¬Î´Ê¹ÓÃ */
-    AM_TRUE     /* µÍÎ»ÏÈ·¢ËÍ */
+    PIO0_10,    /* æ•°æ®å¼•è„š (SPI_MOSI) */
+    PIO0_11,    /* ç§»ä½æ—¶é’Ÿå¼•è„š (SPI_CLK) */
+    PIO0_14,    /* æ•°æ®é”å­˜å¼•è„š (SPI_CS) */
+    -1,         /* OE å›ºå®šä¸ºä½ç”µå¹³ï¼Œæœªä½¿ç”¨ */
+    AM_TRUE     /* ä½ä½å…ˆå‘é€ */
 };
 
-/** \brief MiniPort-595 GPIO Éè±¸ÊµÀı */
+/** \brief MiniPort-595 GPIO è®¾å¤‡å®ä¾‹ */
 am_local am_hc595_gpio_dev_t __g_miniport_595_gpio_dev;
 #else
 
-/** \brief MiniPort-595 SPI Éè±¸ĞÅÏ¢ */
+/** \brief MiniPort-595 SPI è®¾å¤‡ä¿¡æ¯ */
 am_local  am_hc595_spi_info_t __g_miniport_595_spi_devinfo = {
-    PIO0_14,    /* Êı¾İËø´æÒı½Å */
-    -1,         /* Î´Ê¹ÓÃ OE Òı½Å */
-    300000,     /* Ê±ÖÓÆµÂÊ 300KHz */
-    AM_TRUE     /* Êı¾İµÍÎ»ÏÈ·¢ËÍ */
+    PIO0_14,    /* æ•°æ®é”å­˜å¼•è„š */
+    -1,         /* æœªä½¿ç”¨ OE å¼•è„š */
+    300000,     /* æ—¶é’Ÿé¢‘ç‡ 300KHz */
+    AM_TRUE     /* æ•°æ®ä½ä½å…ˆå‘é€ */
 };
 
-/** \brief MiniPort-595 SPI Éè±¸ÊµÀı */
+/** \brief MiniPort-595 SPI è®¾å¤‡å®ä¾‹ */
 am_local am_hc595_spi_dev_t __g_miniport_595_spi_dev;
 #endif /* (__USE_GPIO_SPI != 1) */
 
 /**
- * \brief MiniPort-595 ÊµÀı³õÊ¼»¯
+ * \brief MiniPort-595 å®ä¾‹åˆå§‹åŒ–
  */
 am_hc595_handle_t am_miniport_595_inst_init (void)
 {

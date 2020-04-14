@@ -12,18 +12,18 @@
 
 /**
  * \file
- * \brief UART²éÑ¯·½Ê½ÏÂ½ÓÊÕ·¢ËÍÊý¾ÝÀý³Ì£¬Í¨¹ýHW²ãµÄ½Ó¿ÚÊµÏÖ
+ * \brief UARTæŸ¥è¯¢æ–¹å¼ä¸‹æŽ¥æ”¶å‘é€æ•°æ®ä¾‹ç¨‹ï¼Œé€šè¿‡HWå±‚çš„æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. PIOC_3 Òý½ÅÁ¬½ÓPC´®¿ÚµÄTXD;
- *   2. PIOC_4 Òý½ÅÁ¬½ÓPC´®¿ÚµÄRXD¡£
- *   3. ÅäÖÃÉÏÎ»»ú´®¿Ú²¨ÌØÂÊÎª115200£¬8Î»Êý¾Ý³¤¶È 1Î»Í£Ö¹Î» ÎÞÆæÅ¼Ð£Ñé;
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. PIOC_3 å¼•è„šè¿žæŽ¥PCä¸²å£çš„TXD;
+ *   2. PIOC_4 å¼•è„šè¿žæŽ¥PCä¸²å£çš„RXDã€‚
+ *   3. é…ç½®ä¸Šä½æœºä¸²å£æ³¢ç‰¹çŽ‡ä¸º115200ï¼Œ8ä½æ•°æ®é•¿åº¦ 1ä½åœæ­¢ä½ æ— å¥‡å¶æ ¡éªŒ;
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿ÚÊä³ö"HW example---UART test in polling mode:"£»
- *   2. ´®¿ÚÊä³ö½ÓÊÕµ½µÄ×Ö·û´®¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. ä¸²å£è¾“å‡º"HW example---UART test in polling mode:"ï¼›
+ *   2. ä¸²å£è¾“å‡ºæŽ¥æ”¶åˆ°çš„å­—ç¬¦ä¸²ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_fsl_hw_uart_polling.c src_fsl_hw_uart_polling
  *
  * \internal
@@ -46,18 +46,18 @@
 #include "demo_fsl_entrys.h"
 
 /*******************************************************************************
-  ºê¶¨Òå
+  å®å®šä¹‰
 *******************************************************************************/
-#define UART_BAUDRATE     (115200)              /** <\brief ²¨ÌØÂÊ.  */
+#define UART_BAUDRATE     (115200)              /** <\brief æ³¢ç‰¹çŽ‡.  */
 
 /**
- * \brief UART hw ²éÑ¯ÊÕ·¢³õÊ¼»¯
+ * \brief UART hw æŸ¥è¯¢æ”¶å‘åˆå§‹åŒ–
  */
 static void uart_polling_init (amhw_fsl_uart_t *p_hw_uart,
                                uint32_t         uart_clk,
                                am_bool_t        uart0_flog)
 {
-    /* ÉèÖÃ´®¿Ú²¨ÌØÂÊ */
+    /* è®¾ç½®ä¸²å£æ³¢ç‰¹çŽ‡ */
     if(uart0_flog){
         amhw_fsl_uart_ver0_baudrate_set(p_hw_uart,
                                         uart_clk,
@@ -71,12 +71,12 @@ static void uart_polling_init (amhw_fsl_uart_t *p_hw_uart,
     amhw_fsl_uart_data_mode_set(p_hw_uart, AMHW_FSL_UART_C1_M_8BIT);
     amhw_fsl_uart_parity_set(p_hw_uart,  AMHW_FSL_UART_C1_PARITY_NO);
 
-    /* Ê¹ÄÜ´®¿Ú */
+    /* ä½¿èƒ½ä¸²å£ */
     amhw_fsl_uart_enable(p_hw_uart);
 }
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_fsl_hw_uart_polling_entry (amhw_fsl_uart_t *p_hw_uart,
                                      uint32_t         uart_clk,
@@ -84,18 +84,18 @@ void demo_fsl_hw_uart_polling_entry (amhw_fsl_uart_t *p_hw_uart,
 {
     const uint8_t uart_hw_str[]={"HW example---UART test in polling mode:\r\n"};
     
-    /* Êý¾Ý»º³åÇø       */
+    /* æ•°æ®ç¼“å†²åŒº       */
     uint8_t buf_src[256];
 
-    /* UART²éÑ¯³õÊ¼»¯ */
+    /* UARTæŸ¥è¯¢åˆå§‹åŒ– */
     uart_polling_init(p_hw_uart, uart_clk, uart0_flog);
 
     amhw_fsl_uart_poll_send(p_hw_uart, uart_hw_str, sizeof(uart_hw_str));
 
     while (1) {
-        /* ½ÓÊÕ×Ö·û */
+        /* æŽ¥æ”¶å­—ç¬¦ */
         amhw_fsl_uart_poll_receive(p_hw_uart, buf_src, 1);
-        /* ·¢ËÍ¸Õ¸Õ½ÓÊÕµÄ×Ö·û */
+        /* å‘é€åˆšåˆšæŽ¥æ”¶çš„å­—ç¬¦ */
         amhw_fsl_uart_poll_send(p_hw_uart, buf_src, 1);
     }
 }

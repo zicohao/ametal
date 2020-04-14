@@ -11,10 +11,10 @@
 *******************************************************************************/
 /**
  * \file
- * \brief CRC TABLE ±í¶¨Òå£¬ ÓÃÓÚÈí¼þ CRC ¼ÆËã
+ * \brief CRC TABLE è¡¨å®šä¹‰ï¼Œ ç”¨äºŽè½¯ä»¶ CRC è®¡ç®—
  *
- * ±¾ÎÄ¼þ¶¨ÒåÁË ¼¸ÖÖ³£¼ûCRCµÄ TABLE±í£¬¿ÉÖ±½ÓÓÃÓÚ (\sa am_crc_soft_init()) º¯ÊýµÄ
- * p_table ²ÎÊý.
+ * æœ¬æ–‡ä»¶å®šä¹‰äº† å‡ ç§å¸¸è§CRCçš„ TABLEè¡¨ï¼Œå¯ç›´æŽ¥ç”¨äºŽ (\sa am_crc_soft_init()) å‡½æ•°çš„
+ * p_table å‚æ•°.
  *
  * \internal
  * \par modification history
@@ -39,23 +39,23 @@ extern "C" {
 #include "am_crc_soft.h"
 
 /**
- * \name 8Î»¼°8Î»ÒÔÏÂcrc table
+ * \name 8ä½åŠ8ä½ä»¥ä¸‹crc table
  *
- * µ±Ç°ÒÑ¾­Ö§³ÖµÄÄ£ÐÍ£¬±í¸ñÒÑ¾­½¨Á¢ºÃ£¬ÎÞÐèÖØÐÂ½¨Á¢£¬Ö±½ÓÊ¹ÓÃ¼´¿É¡£
- * ±íµÄÃüÃû¹æÔò£ºg_crc_table_X_Y(_ref)[256] X¡¢Y´ú±íÒ»¸öÊý×Ö¡£
- *   - ½ô¸ú g_crc_table µÄÊý×ÖX±íÊ¾crc¿í¶È£¬Èçcrc5Ôò¶ÔÓ¦ g_crc_table_5
- *   - ½Ó×ÅÏÂ»®ÏßºóµÄÊý×ÖY±íÊ¾poly,Éú³É¶àÏîÊ½¡£
- *      - 8Î»¼°8Î»ÒÔÏÂ£ºpolyÊ¹ÓÃ8Î»±íÊ¾£¬  Èç09,²»Ê¡ÂÔ0
- *      - 9ÖÁ16Î»     £ºpolyÊ¹ÓÃ16Î»±íÊ¾£¬Èç8005,²»Ê¡ÂÔ0
- *      - 17 ÖÁ32Î»   £ºpolyÊ¹ÓÃ32Î»±íÊ¾£¬Èç04C11DB7,²»Ê¡ÂÔ0.
- *   - ºó×º´ørefµÄ±íÊ¾¸Ã±íÎª·´Ðò±í£¬µ±crcÄ£ÐÍÖÐrefin == TRUEÊ±£¬
- *     Ó¦¸Ã´«Èëºó×º´ørefµÄ±í¡£
+ * å½“å‰å·²ç»æ”¯æŒçš„æ¨¡åž‹ï¼Œè¡¨æ ¼å·²ç»å»ºç«‹å¥½ï¼Œæ— éœ€é‡æ–°å»ºç«‹ï¼Œç›´æŽ¥ä½¿ç”¨å³å¯ã€‚
+ * è¡¨çš„å‘½åè§„åˆ™ï¼šg_crc_table_X_Y(_ref)[256] Xã€Yä»£è¡¨ä¸€ä¸ªæ•°å­—ã€‚
+ *   - ç´§è·Ÿ g_crc_table çš„æ•°å­—Xè¡¨ç¤ºcrcå®½åº¦ï¼Œå¦‚crc5åˆ™å¯¹åº” g_crc_table_5
+ *   - æŽ¥ç€ä¸‹åˆ’çº¿åŽçš„æ•°å­—Yè¡¨ç¤ºpoly,ç”Ÿæˆå¤šé¡¹å¼ã€‚
+ *      - 8ä½åŠ8ä½ä»¥ä¸‹ï¼špolyä½¿ç”¨8ä½è¡¨ç¤ºï¼Œ  å¦‚09,ä¸çœç•¥0
+ *      - 9è‡³16ä½     ï¼špolyä½¿ç”¨16ä½è¡¨ç¤ºï¼Œå¦‚8005,ä¸çœç•¥0
+ *      - 17 è‡³32ä½   ï¼špolyä½¿ç”¨32ä½è¡¨ç¤ºï¼Œå¦‚04C11DB7,ä¸çœç•¥0.
+ *   - åŽç¼€å¸¦refçš„è¡¨ç¤ºè¯¥è¡¨ä¸ºååºè¡¨ï¼Œå½“crcæ¨¡åž‹ä¸­refin == TRUEæ—¶ï¼Œ
+ *     åº”è¯¥ä¼ å…¥åŽç¼€å¸¦refçš„è¡¨ã€‚
  *
- * Òò´Ë£¬¸ù¾ÝÊ¹ÓÃµÄcrcÄ£ÐÍ£¬¼´¿ÉÖªµÀ¸ÃÊ¹ÓÃÄÄ¸ö±í£¬ÈçcrcÄ£ÐÍÎª£º
- *     width = 5£¬poly = 0x09,refin = TRUE.
- * ÔòÖ±½ÓÊ¹ÓÃ g_crc_table_5_09_ref ±í¼´¿É¡£
+ * å› æ­¤ï¼Œæ ¹æ®ä½¿ç”¨çš„crcæ¨¡åž‹ï¼Œå³å¯çŸ¥é“è¯¥ä½¿ç”¨å“ªä¸ªè¡¨ï¼Œå¦‚crcæ¨¡åž‹ä¸ºï¼š
+ *     width = 5ï¼Œpoly = 0x09,refin = TRUE.
+ * åˆ™ç›´æŽ¥ä½¿ç”¨ g_crc_table_5_09_ref è¡¨å³å¯ã€‚
  *
- * \note ±íµÄÃüÃû¹æÔòÍ¬ÑùÊÊºÏÓÚÆäËûÎ»ÊýµÄCRC table±í
+ * \note è¡¨çš„å‘½åè§„åˆ™åŒæ ·é€‚åˆäºŽå…¶ä»–ä½æ•°çš„CRC tableè¡¨
  * @{
  */
 
@@ -89,7 +89,7 @@ am_import am_const am_crc_table_t g_crc_table_8_31_ref;
 /** @} */
 
 /**
- * \name 9Î»ÖÁ16Î»crc table
+ * \name 9ä½è‡³16ä½crc table
  * @{
  */
 
@@ -108,7 +108,7 @@ am_import am_const am_crc_table_t g_crc_table_16_3d65_ref;
 /** @} */
 
 /**
- * \name 17Î»ÖÁ32Î»crc table
+ * \name 17ä½è‡³32ä½crc table
  * @{
  */
 

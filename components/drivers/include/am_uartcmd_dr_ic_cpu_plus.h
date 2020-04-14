@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief CPU PLUS¿¨±ê×¼·şÎñÇı¶¯²ã
+ * \brief CPU PLUSå¡æ ‡å‡†æœåŠ¡é©±åŠ¨å±‚
  *
  * \internal
  * \par Modification History
@@ -31,59 +31,59 @@ extern "C" {
 #include "am_uartcmd_ic_iso14443.h"
 
 /**
- * \brief CPU PLUS¿¨Éè±¸½á¹¹Ìå
+ * \brief CPU PLUSå¡è®¾å¤‡ç»“æ„ä½“
  */
 typedef struct amdr_ic_cpu_plus_dev {
 
-    /** \brief CPU PLUS¿¨·şÎñ½á¹¹Ìå */
+    /** \brief CPU PLUSå¡æœåŠ¡ç»“æ„ä½“ */
     am_ic_cpu_plus_serv_t   serv;
 
-    /** \brief ISO14443·şÎñ¾ä±ú */
+    /** \brief ISO14443æœåŠ¡å¥æŸ„ */
     am_ic_iso14443_handle_t iso14443_handle;
 
-    uint8_t  pcd_vector[16];   /** \brief PCD¼ÓÃÜ³õÊ¼»¯ÏòÁ¿ */
-    uint8_t  picc_vector[16];  /** \brief PICC¼ÓÃÜ³õÊ¼»¯ÏòÁ¿ */
-    uint8_t  random[16];       /** \brief Ëæ»úÊı */
+    uint8_t  pcd_vector[16];   /** \brief PCDåŠ å¯†åˆå§‹åŒ–å‘é‡ */
+    uint8_t  picc_vector[16];  /** \brief PICCåŠ å¯†åˆå§‹åŒ–å‘é‡ */
+    uint8_t  random[16];       /** \brief éšæœºæ•° */
 
-    /** \brief ½»Ò×Ëæ»úÊı£¬ÓÉÊ×´ÎÑéÖ¤ÃüÁîÉú³É£¬ÔÚÕû¸ö½»Ò×ÖĞÊ¹ÓÃ */
+    /** \brief äº¤æ˜“éšæœºæ•°ï¼Œç”±é¦–æ¬¡éªŒè¯å‘½ä»¤ç”Ÿæˆï¼Œåœ¨æ•´ä¸ªäº¤æ˜“ä¸­ä½¿ç”¨ */
     uint8_t  ti[4];
 
-    uint8_t  picc_cap2[6];     /** \brief PICCÄÜÁ¦²ÎÊı */
-    uint8_t  subkey1[16];      /** \brief CMAC¼ÆËã×ÓÃÜÔ¿1 */
-    uint8_t  subkey2[16];      /** \brief CMAC¼ÆËã×ÓÃÜÔ¿2 */
+    uint8_t  picc_cap2[6];     /** \brief PICCèƒ½åŠ›å‚æ•° */
+    uint8_t  subkey1[16];      /** \brief CMACè®¡ç®—å­å¯†é’¥1 */
+    uint8_t  subkey2[16];      /** \brief CMACè®¡ç®—å­å¯†é’¥2 */
 
-    /** \brief  ¼ÓÃÜ»á»°ÃÜÔ¿ */
+    /** \brief  åŠ å¯†ä¼šè¯å¯†é’¥ */
     uint8_t  session_key_enc[16];
 
-    /** \brief MAC »á»°ÃÜÔ¿ */
+    /** \brief MAC ä¼šè¯å¯†é’¥ */
     uint8_t  session_key_mac[16];
 
-    am_bool_t   enckey_expand;    /** \brief ¼ÓÃÜÃÜÔ¿À©Õ¹±êÖ¾ */
-    am_bool_t   mackey_expand;    /** \brief MACÃÜÔ¿À©Õ¹±êÖ¾ */
-    am_bool_t   subkey_expand;    /** \brief CMAC¼ÆËã×ÓÃÜÔ¿À©Õ¹±êÖ¾ */
+    am_bool_t   enckey_expand;    /** \brief åŠ å¯†å¯†é’¥æ‰©å±•æ ‡å¿— */
+    am_bool_t   mackey_expand;    /** \brief MACå¯†é’¥æ‰©å±•æ ‡å¿— */
+    am_bool_t   subkey_expand;    /** \brief CMACè®¡ç®—å­å¯†é’¥æ‰©å±•æ ‡å¿— */
 
-    uint16_t read_count;       /** \brief ¶Á¼ÆÊıÆ÷ */
-    uint16_t write_count;      /** \brief Ğ´¼ÆÊıÆ÷ */
+    uint16_t read_count;       /** \brief è¯»è®¡æ•°å™¨ */
+    uint16_t write_count;      /** \brief å†™è®¡æ•°å™¨ */
 
 } amdr_ic_cpu_plus_dev_t;
 
 
 /**
- * \brief CPU PLUS¿¨Çı¶¯³õÊ¼º¯Êı
+ * \brief CPU PLUSå¡é©±åŠ¨åˆå§‹å‡½æ•°
  *
- * \param[in] p_dev : CPU PLUS¿¨Éè±¸½á¹¹ÌåÖ¸Õë
+ * \param[in] p_dev : CPU PLUSå¡è®¾å¤‡ç»“æ„ä½“æŒ‡é’ˆ
  *
- * \return CPU PLUS±ê×¼·şÎñ¾ä±ú
+ * \return CPU PLUSæ ‡å‡†æœåŠ¡å¥æŸ„
  */
 am_ic_cpu_plus_handle_t amdr_ic_cpu_plus_init (amdr_ic_cpu_plus_dev_t  *p_dev,
                                                am_ic_iso14443_handle_t  iso14443_handle);
 
 /**
- * \brief CPU PLUS¿¨½â³ı³õÊ¼º¯Êı
+ * \brief CPU PLUSå¡è§£é™¤åˆå§‹å‡½æ•°
  *
- * \param[in] p_dev : CPU PLUS¿¨Éè±¸½á¹¹ÌåÖ¸Õë
+ * \param[in] p_dev : CPU PLUSå¡è®¾å¤‡ç»“æ„ä½“æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void amdr_ic_cpu_plus_deinit (amdr_ic_cpu_plus_dev_t *p_dev);
 

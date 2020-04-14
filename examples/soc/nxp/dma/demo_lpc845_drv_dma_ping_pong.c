@@ -12,16 +12,16 @@
 
 /**
  * \file
- * \brief DMA Æ¹ÅÒ´«ÊäÀý³Ì£¬Í¨¹ýÇý¶¯²ã½Ó¿ÚÊµÏÖ
+ * \brief DMA ä¹’ä¹“ä¼ è¾“ä¾‹ç¨‹ï¼Œé€šè¿‡é©±åŠ¨å±‚æŽ¥å£å®žçŽ°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Èç¹û DMA ´«Êä³É¹¦£¬LED0 ³¤ÁÁ£»
- *   2. Èç¹û DMA ´«ÊäÊ§°Ü£¬LED0 ÉÁË¸¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. å¦‚æžœ DMA ä¼ è¾“æˆåŠŸï¼ŒLED0 é•¿äº®ï¼›
+ *   2. å¦‚æžœ DMA ä¼ è¾“å¤±è´¥ï¼ŒLED0 é—ªçƒã€‚
  *
  * \note
- *    LED0 ÐèÒª¶Ì½Ó J9 ÌøÏßÃ±£¬²ÅÄÜ±» PIO0_20 ¿ØÖÆ¡£
+ *    LED0 éœ€è¦çŸ­æŽ¥ J9 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIO0_20 æŽ§åˆ¶ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_lpc824_drv_dma_ping_pong.c src_lpc824_drv_dma_ping_pong
  *
  * \internal
@@ -45,23 +45,23 @@
 #include "am_lpc84x_dma.h"
 #include "lpc84x_dma_chan.h"
 
-/** \brief ÖØÔØÃèÊö·û£¬Ê¹ÓÃÆ¹ÅÒ´«ÊäÊ±£¬ÃèÊö·û±ØÐëÊÇ16×Ö½Ú¶ÔÆë */
+/** \brief é‡è½½æè¿°ç¬¦ï¼Œä½¿ç”¨ä¹’ä¹“ä¼ è¾“æ—¶ï¼Œæè¿°ç¬¦å¿…é¡»æ˜¯16å­—èŠ‚å¯¹é½ */
 am_local __attribute__((aligned(16)))  am_lpc84x_dma_xfer_desc_t __g_desc[2];
 
-am_local volatile am_bool_t __g_trans_a_done;  /**< \brief ´«ÊäÍê³É±êÖ¾ */
-am_local volatile am_bool_t __g_trans_b_done;  /**< \brief ´«ÊäÍê³É±êÖ¾ */
-am_local volatile am_bool_t __g_trans_err;     /**< \brief ´«Êä´íÎó±êÖ¾ */
+am_local volatile am_bool_t __g_trans_a_done;  /**< \brief ä¼ è¾“å®Œæˆæ ‡å¿— */
+am_local volatile am_bool_t __g_trans_b_done;  /**< \brief ä¼ è¾“å®Œæˆæ ‡å¿— */
+am_local volatile am_bool_t __g_trans_err;     /**< \brief ä¼ è¾“é”™è¯¯æ ‡å¿— */
 
 /**
- * \brief DMA ÖÐ¶Ï·þÎñ³ÌÐò¡£
+ * \brief DMA ä¸­æ–­æœåŠ¡ç¨‹åºã€‚
  *
- * \param[in] p_arg ÓÃ»§×Ô¶¨Òå²ÎÊý
- * \param[in] stat  DMA ´«ÊäÍê³É×´Ì¬±êÖ¾£¬¸Ã²ÎÊýµÄ¿ÉÄÜÈ¡Öµ£º
- *                      AM_LPC84X_DMA_STAT_INTA   A ÖÐ¶Ï·¢Éú
- *                      AM_LPC84X_DMA_STAT_INTB   B ÖÐ¶Ï·¢Éú
- *                      AM_LPC84X_DMA_STAT_INTERR ´íÎó·¢Éú
+ * \param[in] p_arg ç”¨æˆ·è‡ªå®šä¹‰å‚æ•°
+ * \param[in] stat  DMA ä¼ è¾“å®ŒæˆçŠ¶æ€æ ‡å¿—ï¼Œè¯¥å‚æ•°çš„å¯èƒ½å–å€¼ï¼š
+ *                      AM_LPC84X_DMA_STAT_INTA   A ä¸­æ–­å‘ç”Ÿ
+ *                      AM_LPC84X_DMA_STAT_INTB   B ä¸­æ–­å‘ç”Ÿ
+ *                      AM_LPC84X_DMA_STAT_INTERR é”™è¯¯å‘ç”Ÿ
  *
- * \return ÎÞ
+ * \return æ— 
  */
 am_local void __dma_ping_pong_isr (void *p_arg, int stat)
 {
@@ -80,7 +80,7 @@ am_local void __dma_ping_pong_isr (void *p_arg, int stat)
 }
 
 /**
- * \brief DMA ´«Êä£¬Æ¹ÅÒÄ£Ê½
+ * \brief DMA ä¼ è¾“ï¼Œä¹’ä¹“æ¨¡å¼
  */
 void demo_lpc845_drv_dma_ping_pong_entry (uint8_t  chan,
                                           uint8_t *p_src, 
@@ -90,7 +90,7 @@ void demo_lpc845_drv_dma_ping_pong_entry (uint8_t  chan,
     uint32_t     flags1 = 0;
     uint32_t     flags2 = 0;
     
-    /* ÉêÇëping-pongÊý¾Ý»º³åÇø¿Õ¼ä */
+    /* ç”³è¯·ping-pongæ•°æ®ç¼“å†²åŒºç©ºé—´ */
     uint8_t *p_dsta = calloc(len, sizeof(uint8_t));
     uint8_t *p_dstb = calloc(len, sizeof(uint8_t));
     
@@ -103,45 +103,45 @@ void demo_lpc845_drv_dma_ping_pong_entry (uint8_t  chan,
         AM_FOREVER {};
     }
 
-    /* DMA ´«ÊäÅäÖÃ */
-    flags1 = AM_LPC84X_DMA_XFER_VALID           | /* µ±Ç°Í¨µÀÃèÊö·ûÓÐÐ§ */
-             AM_LPC84X_DMA_XFER_RELOAD          | /* ´«ÊäÍê³ÉÖØÔØÍ¨µÀÃèÊö·û */
-             AM_LPC84X_DMA_XFER_SWTRIG          | /* Èí¼þ´¥·¢ */
-             AM_LPC84X_DMA_XFER_WIDTH_8BIT      | /* ´«ÊäÊý¾Ý¿í¶È£º8 bit */
-             AM_LPC84X_DMA_XFER_SRCINC_1X       | /* Ô´µØÖ·°´ 1 ¸öÊý¾Ý¿í¶ÈµÝÔö */
-             AM_LPC84X_DMA_XFER_DSTINC_1X       | /* Ä¿±êµØÖ·°´ 1 ¸öÊý¾Ý¿í¶ÈµÝÔö */
-             AM_LPC84X_DMA_XFER_SETINTA;          /* Ê¹ÄÜÖÐ¶Ï A */
+    /* DMA ä¼ è¾“é…ç½® */
+    flags1 = AM_LPC84X_DMA_XFER_VALID           | /* å½“å‰é€šé“æè¿°ç¬¦æœ‰æ•ˆ */
+             AM_LPC84X_DMA_XFER_RELOAD          | /* ä¼ è¾“å®Œæˆé‡è½½é€šé“æè¿°ç¬¦ */
+             AM_LPC84X_DMA_XFER_SWTRIG          | /* è½¯ä»¶è§¦å‘ */
+             AM_LPC84X_DMA_XFER_WIDTH_8BIT      | /* ä¼ è¾“æ•°æ®å®½åº¦ï¼š8 bit */
+             AM_LPC84X_DMA_XFER_SRCINC_1X       | /* æºåœ°å€æŒ‰ 1 ä¸ªæ•°æ®å®½åº¦é€’å¢ž */
+             AM_LPC84X_DMA_XFER_DSTINC_1X       | /* ç›®æ ‡åœ°å€æŒ‰ 1 ä¸ªæ•°æ®å®½åº¦é€’å¢ž */
+             AM_LPC84X_DMA_XFER_SETINTA;          /* ä½¿èƒ½ä¸­æ–­ A */
 
-    /* DMA ´«ÊäÅäÖÃ */
-    flags2 = AM_LPC84X_DMA_XFER_VALID           | /* µ±Ç°Í¨µÀÃèÊö·ûÓÐÐ§ */
-             AM_LPC84X_DMA_XFER_RELOAD          | /* ´«ÊäÍê³ÉÖØÔØÍ¨µÀÃèÊö·û */
-             AM_LPC84X_DMA_XFER_CLRTRIG         | /* Çå³ý´¥·¢±êÖ¾ */
-             AM_LPC84X_DMA_XFER_WIDTH_8BIT      | /* ´«ÊäÊý¾Ý¿í¶È£º8 bit */
-             AM_LPC84X_DMA_XFER_SRCINC_1X       | /* Ô´µØÖ·°´ 1 ¸öÊý¾Ý¿í¶ÈµÝÔö */
-             AM_LPC84X_DMA_XFER_DSTINC_1X       | /* Ä¿±êµØÖ·°´ 1 ¸öÊý¾Ý¿í¶ÈµÝÔö */
-             AM_LPC84X_DMA_XFER_SETINTB;          /* Ê¹ÄÜÖÐ¶Ï B */
+    /* DMA ä¼ è¾“é…ç½® */
+    flags2 = AM_LPC84X_DMA_XFER_VALID           | /* å½“å‰é€šé“æè¿°ç¬¦æœ‰æ•ˆ */
+             AM_LPC84X_DMA_XFER_RELOAD          | /* ä¼ è¾“å®Œæˆé‡è½½é€šé“æè¿°ç¬¦ */
+             AM_LPC84X_DMA_XFER_CLRTRIG         | /* æ¸…é™¤è§¦å‘æ ‡å¿— */
+             AM_LPC84X_DMA_XFER_WIDTH_8BIT      | /* ä¼ è¾“æ•°æ®å®½åº¦ï¼š8 bit */
+             AM_LPC84X_DMA_XFER_SRCINC_1X       | /* æºåœ°å€æŒ‰ 1 ä¸ªæ•°æ®å®½åº¦é€’å¢ž */
+             AM_LPC84X_DMA_XFER_DSTINC_1X       | /* ç›®æ ‡åœ°å€æŒ‰ 1 ä¸ªæ•°æ®å®½åº¦é€’å¢ž */
+             AM_LPC84X_DMA_XFER_SETINTB;          /* ä½¿èƒ½ä¸­æ–­ B */
 
-    /* ½¨Á¢Í¨µÀÃèÊö·û A */
+    /* å»ºç«‹é€šé“æè¿°ç¬¦ A */
     am_lpc84x_dma_xfer_desc_build(
-       &__g_desc[0],            /* A µÄÖØÔØÃèÊö·û */
-        (uint32_t)p_src,        /* Ô´¶ËÊý¾Ý»º³åÇø */
-        (uint32_t)p_dsta,       /* A µÄÄ¿±ê¶Ë»º³åÇøµØÖ· */
-        len,                    /* ´«Êä×Ö½ÚÊý */
-        flags1);                /* ´«ÊäÅäÖÃ */
+       &__g_desc[0],            /* A çš„é‡è½½æè¿°ç¬¦ */
+        (uint32_t)p_src,        /* æºç«¯æ•°æ®ç¼“å†²åŒº */
+        (uint32_t)p_dsta,       /* A çš„ç›®æ ‡ç«¯ç¼“å†²åŒºåœ°å€ */
+        len,                    /* ä¼ è¾“å­—èŠ‚æ•° */
+        flags1);                /* ä¼ è¾“é…ç½® */
 
-    /* ½¨Á¢Í¨µÀÃèÊö·ûB */
+    /* å»ºç«‹é€šé“æè¿°ç¬¦B */
     am_lpc84x_dma_xfer_desc_build(
-       &__g_desc[1],            /* B µÄÖØÔØÃèÊö·û */
-        (uint32_t)p_src,        /* Ô´¶ËÊý¾Ý»º³åÇø */
-        (uint32_t)p_dstb,       /* B µÄÄ¿±ê¶Ë»º³åÇøµØÖ· */
-        len,                    /* ´«Êä×Ö½ÚÊý */
-        flags2);                /* ´«ÊäÅäÖÃ */
+       &__g_desc[1],            /* B çš„é‡è½½æè¿°ç¬¦ */
+        (uint32_t)p_src,        /* æºç«¯æ•°æ®ç¼“å†²åŒº */
+        (uint32_t)p_dstb,       /* B çš„ç›®æ ‡ç«¯ç¼“å†²åŒºåœ°å€ */
+        len,                    /* ä¼ è¾“å­—èŠ‚æ•° */
+        flags2);                /* ä¼ è¾“é…ç½® */
 
-    /* Á´½ÓÖØÔØÃèÊö·û */
+    /* é“¾æŽ¥é‡è½½æè¿°ç¬¦ */
     am_lpc84x_dma_xfer_desc_link(&__g_desc[1], &__g_desc[0]);
     am_lpc84x_dma_xfer_desc_link(&__g_desc[0], &__g_desc[1]);
 
-    /* Æô¶¯ DMA ´«Êä£¬ÂíÉÏ¿ªÊ¼´«Êä */
+    /* å¯åŠ¨ DMA ä¼ è¾“ï¼Œé©¬ä¸Šå¼€å§‹ä¼ è¾“ */
     am_lpc84x_dma_xfer_desc_startup(p_ctr,
                                    &__g_desc[0],
                                     __dma_ping_pong_isr,
@@ -149,16 +149,16 @@ void demo_lpc845_drv_dma_ping_pong_entry (uint8_t  chan,
 
     am_mdelay(1);
 
-    /* µÈ´ý´«ÊäÍê³É */
+    /* ç­‰å¾…ä¼ è¾“å®Œæˆ */
     while ((__g_trans_a_done == AM_FALSE) || (__g_trans_b_done == AM_FALSE));
 
-    /* ÖÕÖ¹¿ØÖÆÆ÷Êý¾Ý´«Êä */
+    /* ç»ˆæ­¢æŽ§åˆ¶å™¨æ•°æ®ä¼ è¾“ */
     am_lpc84x_dma_controller_abort(p_ctr);
 
-    /* ²»ÔÙÊ¹ÓÃ¸Ã¿ØÖÆÆ÷Ê±£¬Ó¦ÊÍ·Å¿ØÖÆÆ÷ */
+    /* ä¸å†ä½¿ç”¨è¯¥æŽ§åˆ¶å™¨æ—¶ï¼Œåº”é‡Šæ”¾æŽ§åˆ¶å™¨ */
     am_lpc84x_dma_controller_release(p_ctr);
 
-    /* ºËÊµ´«ÊäÊý¾Ý */
+    /* æ ¸å®žä¼ è¾“æ•°æ® */
     for (i = 0; i < len; i++) {
         if (p_src[i] != p_dsta[i]) {
             __g_trans_err = AM_TRUE;
@@ -177,7 +177,7 @@ void demo_lpc845_drv_dma_ping_pong_entry (uint8_t  chan,
 
     if (__g_trans_err == AM_TRUE) {
 
-         /* ÊÍ·Å¿Õ¼ä */
+         /* é‡Šæ”¾ç©ºé—´ */
         free(p_dsta);
         free(p_dstb);
         
@@ -191,7 +191,7 @@ void demo_lpc845_drv_dma_ping_pong_entry (uint8_t  chan,
         am_led_on(LED0);
     }
         
-        /* ÊÍ·Å¿Õ¼ä */
+        /* é‡Šæ”¾ç©ºé—´ */
     free(p_dsta);
     free(p_dstb);
         

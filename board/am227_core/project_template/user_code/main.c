@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief ZLG217 Ä£°å¹¤³Ì
+ * \brief ZLG217 æ¨¡æ¿å·¥ç¨‹
  *
- * - ÊµÑéÏÖÏó:
- *   Ä£°åÀı³Ì:LED0ÒÔ1ÃëµÄÆµÂÊÉÁË¸; demoÀı³ÌÈë¿Ú:Ïê¼ûdemoÈë¿Úº¯ÊıÎÄ¼ş½éÉÜ
+ * - å®éªŒç°è±¡:
+ *   æ¨¡æ¿ä¾‹ç¨‹:LED0ä»¥1ç§’çš„é¢‘ç‡é—ªçƒ; demoä¾‹ç¨‹å…¥å£:è¯¦è§demoå…¥å£å‡½æ•°æ–‡ä»¶ä»‹ç»
  *
  * \internal
  * \par Modification history
@@ -24,7 +24,7 @@
  */
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 #include "ametal.h"
 #include "am_board.h"
@@ -36,7 +36,7 @@ int am_main (void)
 {
     AM_DBG_INFO("Start up successful!\r\n");
 
-    /* demoÀı³ÌÈë¿Ú */
+    /* demoä¾‹ç¨‹å…¥å£ */
 
     while (1) {
 

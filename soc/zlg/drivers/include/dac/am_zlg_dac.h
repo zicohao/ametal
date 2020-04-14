@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief DACÇı¶¯£¬·şÎñDAC±ê×¼½Ó¿Ú
+ * \brief DACé©±åŠ¨ï¼ŒæœåŠ¡DACæ ‡å‡†æ¥å£
  *
  * \internal
  * \par Modification History
@@ -37,67 +37,67 @@ extern "C" {
  * @{
  */
 /**
- * \brief DACÉè±¸ĞÅÏ¢
+ * \brief DACè®¾å¤‡ä¿¡æ¯
  */
 typedef struct am_zlg_dac_devinfo {
 
-    /** \brief DAC¼Ä´æÆ÷¿é»ùµØÖ· */
+    /** \brief DACå¯„å­˜å™¨å—åŸºåœ°å€ */
     uint32_t   dac_reg_base;
 
-    /** \brief DAC×ª»»¾«¶È */
+    /** \brief DACè½¬æ¢ç²¾åº¦ */
     uint8_t    bits;
 
     /**
-     * \brief DAC²Î¿¼µçÑ¹£¬µ¥Î»£ºmV
+     * \brief DACå‚è€ƒç”µå‹ï¼Œå•ä½ï¼šmV
      *
-     * \note ¸Ã²Î¿¼µçÑ¹ÓÉ¾ßÌåµÄµçÂ·¾ö¶¨
+     * \note è¯¥å‚è€ƒç”µå‹ç”±å…·ä½“çš„ç”µè·¯å†³å®š
      *
      */
     uint32_t   vref;
 
-    /** \brief Æ½Ì¨³õÊ¼»¯º¯Êı£¬Èç´ò¿ªÊ±ÖÓ£¬ÅäÖÃÒı½ÅµÈ¹¤×÷ */
+    /** \brief å¹³å°åˆå§‹åŒ–å‡½æ•°ï¼Œå¦‚æ‰“å¼€æ—¶é’Ÿï¼Œé…ç½®å¼•è„šç­‰å·¥ä½œ */
     void     (*pfn_plfm_init)(void);
 
-    /** \brief Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    /** \brief å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
     void     (*pfn_plfm_deinit)(void);
 
 } am_zlg_dac_devinfo_t;
 
 /**
- * \brief DACÉè±¸ÊµÀı
+ * \brief DACè®¾å¤‡å®ä¾‹
  */
 typedef struct am_zlg_dac_dev {
 
-    /** \brief DAC±ê×¼·şÎñ */
+    /** \brief DACæ ‡å‡†æœåŠ¡ */
     am_dac_serv_t               dac_serve;
 
-    /** \brief Ö¸ÏòDACÉè±¸ĞÅÏ¢µÄÖ¸Õë */
+    /** \brief æŒ‡å‘DACè®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ */
     const am_zlg_dac_devinfo_t *p_devinfo;
 
-    /** \brief µ±Ç°×ª»»µÄÍ¨µÀ */
+    /** \brief å½“å‰è½¬æ¢çš„é€šé“ */
     uint32_t                    chan;
 
 } am_zlg_dac_dev_t;
 
 /**
- * \brief DAC³õÊ¼»¯
+ * \brief DACåˆå§‹åŒ–
  *
  *
- * \param[in] p_dev     : Ö¸ÏòDACÉè±¸µÄÖ¸Õë
- * \param[in] p_devinfo : Ö¸ÏòDACÉè±¸ĞÅÏ¢µÄÖ¸Õë
+ * \param[in] p_dev     : æŒ‡å‘DACè®¾å¤‡çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo : æŒ‡å‘DACè®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ
  *
- * \return DAC±ê×¼·şÎñ²Ù×÷¾ä±ú Èç¹ûÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return DACæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„ å¦‚æœä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_dac_handle_t am_zlg_dac_init (am_zlg_dac_dev_t           *p_dev,
                                  const am_zlg_dac_devinfo_t *p_devinfo);
 
 /**
- * \brief DACÈ¥³õÊ¼»¯
+ * \brief DACå»åˆå§‹åŒ–
  *
  *
- * \param[in] handle : DACÉè±¸µÄ¾ä±úÖµ
+ * \param[in] handle : DACè®¾å¤‡çš„å¥æŸ„å€¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg_dac_deinit (am_dac_handle_t handle);
 

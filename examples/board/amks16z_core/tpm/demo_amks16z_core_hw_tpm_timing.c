@@ -12,15 +12,15 @@
 
 /**
  * \file
- * \brief TPMÊµÏÖ±ê×¼¶¨Ê±Æ÷Àı³Ì£¬Í¨¹ıHW²ãµÄ½Ó¿ÚÊµÏÖ
+ * \brief TPMå®ç°æ ‡å‡†å®šæ—¶å™¨ä¾‹ç¨‹ï¼Œé€šè¿‡HWå±‚çš„æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. LEDÒÔ10HzµÄÆµÂÊÉÁË¸¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. LEDä»¥10Hzçš„é¢‘ç‡é—ªçƒã€‚
  *
- *\note TPMÓĞ4ÖÖÊ±ÖÓÔ´¿ÉÒÔÑ¡Ôñ£¬Ä¬ÈÏÅäÖÃÊ±ÖÓÔ´´óĞ¡Îª20M,ÔòÖĞ¶ÏµÄ×îĞ¡ÆµÂÊÎª:
- *              fre = 20000000/(128*65535) = 2.38Hz  £¨16Î»¶¨Ê±Æ÷£¬×î¸ß128·ÖÆµ£©
+ *\note TPMæœ‰4ç§æ—¶é’Ÿæºå¯ä»¥é€‰æ‹©ï¼Œé»˜è®¤é…ç½®æ—¶é’Ÿæºå¤§å°ä¸º20M,åˆ™ä¸­æ–­çš„æœ€å°é¢‘ç‡ä¸º:
+ *              fre = 20000000/(128*65535) = 2.38Hz  ï¼ˆ16ä½å®šæ—¶å™¨ï¼Œæœ€é«˜128åˆ†é¢‘ï¼‰
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_amks16z_core_hw_tpm_timing.c src_amks16z_core_hw_tpm_timing
  *
  * \internal
@@ -47,13 +47,13 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_amks16z_core_hw_tpm_timing_entry (void)
 {
     uint32_t tpm_clk;
 
-    /* Æ½Ì¨³õÊ¼»¯ */
+    /* å¹³å°åˆå§‹åŒ– */
     amhw_kl26_sim_tpm_src_set(KL26_SIM_TPMSRC_PLLFLLCLK);
     amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_TPM0);
 

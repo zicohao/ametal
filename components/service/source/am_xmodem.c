@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief  XmodemĞ­Òé Çı¶¯
+ * \brief  Xmodemåè®® é©±åŠ¨
  *
  * \internal
  * \par Modification History
@@ -28,66 +28,66 @@
 /*******************************************************************************
 local defined
 *******************************************************************************/
-/* ÎÄ¼ş·¢ËÍÍê³É*/
+/* æ–‡ä»¶å‘é€å®Œæˆ*/
 #define __AM_XMODEM_DOC_EOT     0x51
 
-/* ÎÄ¼ş½áÊøĞÅºÅÒÑ·¢ËÍ²¢Ó¦´ğ*/
+/* æ–‡ä»¶ç»“æŸä¿¡å·å·²å‘é€å¹¶åº”ç­”*/
 #define __AM_XMODEM_EOT_ACK     0x52
 
-/* Êı¾İÎ»Îª128×Ö½Ú¹¤×÷Ä£Ê½´«ÊäµÄÆğÊ¼Î» */
+/* æ•°æ®ä½ä¸º128å­—èŠ‚å·¥ä½œæ¨¡å¼ä¼ è¾“çš„èµ·å§‹ä½ */
 #define __AM_XMODEM_SOH         0x01
 
-/* Êı¾İÎ»Îª1K×Ö½Ú¹¤×÷Ä£Ê½´«ÊäµÄÆğÊ¼Î»*/
+/* æ•°æ®ä½ä¸º1Kå­—èŠ‚å·¥ä½œæ¨¡å¼ä¼ è¾“çš„èµ·å§‹ä½*/
 #define __AM_XMODEM_STX         0x02
 
-/* ÎÄ¼ş´«ÊäÍê±ÏµÄ½áÊøĞÅºÅ */
+/* æ–‡ä»¶ä¼ è¾“å®Œæ¯•çš„ç»“æŸä¿¡å· */
 #define __AM_XMODEM_EOT         0x04
 
-/* Ìî³äÊı¾İ */
+/* å¡«å……æ•°æ® */
 #define __AM_XMODEM_CTRLZ       0x1A
 
-/* ´®¿Ú»ñÈ¡·¢ËÍ×Ö·û¹Ø±Õ×´Ì¬*/
+/* ä¸²å£è·å–å‘é€å­—ç¬¦å…³é—­çŠ¶æ€*/
 #define __AM_XMODEM_CHAR_DOWN   0x00
 
-/* ´®¿Ú»ñÈ¡·¢ËÍ×Ö·û´ò¿ª×´Ì¬*/
+/* ä¸²å£è·å–å‘é€å­—ç¬¦æ‰“å¼€çŠ¶æ€*/
 #define __AM_XMODEM_CHAR_UP     0x01
 
-/* XmodemÒÑ¾­½¨Á¢Á¬½Ó*/
+/* Xmodemå·²ç»å»ºç«‹è¿æ¥*/
 #define __AM_XMODEM_CON_UP      0x02
 
-/* XmodemÎ´½¨Á¢Á¬½Ó*/
+/* Xmodemæœªå»ºç«‹è¿æ¥*/
 #define __AM_XMODEM_CON_DOWN    0x03
 
-/* ÕıÔÚ·¢ËÍÊı¾İ*/
+/* æ­£åœ¨å‘é€æ•°æ®*/
 #define __AM_XMODEM_DATA_TX     0x04
 
-/* ÕıÔÚ·¢ËÍ´«Êä±êÖ¾*/
+/* æ­£åœ¨å‘é€ä¼ è¾“æ ‡å¿—*/
 #define __AM_XMODEM_FLAG_TX     0x05
 
-/* ½ûÖ¹»ñÈ¡·¢ËÍ×Ö·û*/
+/* ç¦æ­¢è·å–å‘é€å­—ç¬¦*/
 #define __AM_XMODEM_STOP_TX     0x06
 
-/* Xmodem·¢ËÍ¾ÍĞ÷*/
+/* Xmodemå‘é€å°±ç»ª*/
 #define __AM_XMODEM_TX_READY    0x00
 
-/* Xmodem·¢ËÍÆô¶¯*/
+/* Xmodemå‘é€å¯åŠ¨*/
 #define __AM_XMODEM_TX_START    0x01
 /******************************************************************************/
-/** \brief Ö¡Í·½ÓÊÜº¯Êı*/
+/** \brief å¸§å¤´æ¥å—å‡½æ•°*/
 am_local am_bool_t am_xmodem_rec_frames (am_xmodem_rec_dev_t *p_dev,
                                          char                 inchar);
 
-/** \brief ¿ªÊ¼½ÓÊÜº¯Êı*/
+/** \brief å¼€å§‹æ¥å—å‡½æ•°*/
 am_local void  __xmodem_rx_startup (am_xmodem_rec_dev_t  *p_dev);
 
 /******************************************************************************/
 /**
- * \brief ·¢ËÍ·½½ô¼±È¡Ïû·¢ËÍº¯Êı
+ * \brief å‘é€æ–¹ç´§æ€¥å–æ¶ˆå‘é€å‡½æ•°
  */
 am_local void __xmodem_rec_can (am_xmodem_rec_dev_t *p_dev, char inchar)
 {
     p_dev->rx_bytes = -AM_DATA_CAN;
-    /* »Øµ÷Í¨ÖªÓÃ»§ ·¢ËÍ·½½ô¼±È¡Ïû´«Êä*/
+    /* å›è°ƒé€šçŸ¥ç”¨æˆ· å‘é€æ–¹ç´§æ€¥å–æ¶ˆä¼ è¾“*/
     p_dev->pfn_rx_callback(p_dev->p_arg,
                            p_dev->p_rec_devinfo->frames_info,
                            p_dev->rx_bytes);
@@ -95,7 +95,7 @@ am_local void __xmodem_rec_can (am_xmodem_rec_dev_t *p_dev, char inchar)
 
 /******************************************************************************/
 /**
- * \brief ½ÓÊÕ·½¼ìÑéÅĞ¶Ïº¯Êı
+ * \brief æ¥æ”¶æ–¹æ£€éªŒåˆ¤æ–­å‡½æ•°
  */
 am_local int __xmodem_data_check(am_xmodem_rec_dev_t *p_dev)
 {
@@ -110,19 +110,19 @@ am_local int __xmodem_data_check(am_xmodem_rec_dev_t *p_dev)
                    p_dev->p_rec_devinfo->frames_bytes);
         am_crc_final(p_dev->crc_handle, &crc);
         tcrc = p_dev->fra_crc_pry;
-        /* ½«×Ô¼º¼ÆËãµÄĞ£ÑéÂëºÍ´«ÊäµÃµ½µÄĞ£ÑéÂë½øĞĞ±È½Ï*/
+        /* å°†è‡ªå·±è®¡ç®—çš„æ ¡éªŒç å’Œä¼ è¾“å¾—åˆ°çš„æ ¡éªŒç è¿›è¡Œæ¯”è¾ƒ*/
         if ((uint16_t)crc == tcrc) {
             return AM_TRUE;
         }
     }
     else
     {
-        /* ½«Êı¾İÀÛ¼ÓÇóºÍ*/
+        /* å°†æ•°æ®ç´¯åŠ æ±‚å’Œ*/
         for (i = 0; i < p_dev->p_rec_devinfo->frames_bytes; i++)
         {
             cks += p_dev->p_rec_devinfo->frames_info[i];
         }
-        /* ½«×ÔĞĞ¼ÆËãµÄÀÛ¼ÓºÍÓë´«Êä¹ıÀ´µÄÀÛ¼ÓºÍ½øĞĞ±È½Ï*/
+        /* å°†è‡ªè¡Œè®¡ç®—çš„ç´¯åŠ å’Œä¸ä¼ è¾“è¿‡æ¥çš„ç´¯åŠ å’Œè¿›è¡Œæ¯”è¾ƒ*/
         if (cks == p_dev->fra_sum_parity)
             return AM_TRUE;
     }
@@ -131,23 +131,23 @@ am_local int __xmodem_data_check(am_xmodem_rec_dev_t *p_dev)
 
 /******************************************************************************/
 /**
- * \brief ½ÓÊÕµ½EOT½áÊøº¯Êı
+ * \brief æ¥æ”¶åˆ°EOTç»“æŸå‡½æ•°
  */
 am_local am_bool_t __xmodem_rec_eot (am_xmodem_rec_dev_t *p_dev, char inchar)
 {
-    /* ·¢ËÍ×Ö·û»ñÈ¡³É¹¦*/
+    /* å‘é€å­—ç¬¦è·å–æˆåŠŸ*/
     p_dev->char_get_state = __AM_XMODEM_CHAR_UP;
 
-    /* ½ÓÊÜµ½½áÊø×Ö·ûºó»ØÓ¦·¢ËÍ·½ */
+    /* æ¥å—åˆ°ç»“æŸå­—ç¬¦åå›åº”å‘é€æ–¹ */
     p_dev->p_rec_devinfo->frames_info[0] = AM_XMODEM_ACK;
 
-    /* Ê¹ÄÜÖĞ¶Ï*/
+    /* ä½¿èƒ½ä¸­æ–­*/
     am_uart_tx_startup(p_dev->uart_handle);
 
-    /* ·¢ËÍ³É¹¦*/
+    /* å‘é€æˆåŠŸ*/
     p_dev->rx_bytes = -AM_DATA_SUC;
 
-    /* »Øµ÷Í¨ÖªÓÃ»§ ´«Êä½áÊø*/
+    /* å›è°ƒé€šçŸ¥ç”¨æˆ· ä¼ è¾“ç»“æŸ*/
     p_dev->pfn_rx_callback(p_dev->p_arg,
                            p_dev->p_rec_devinfo->frames_info,
                            p_dev->rx_bytes);
@@ -157,7 +157,7 @@ am_local am_bool_t __xmodem_rec_eot (am_xmodem_rec_dev_t *p_dev, char inchar)
 
 /******************************************************************************/
 /**
- * \brief SUMĞ£Ñéº¯Êı
+ * \brief SUMæ ¡éªŒå‡½æ•°
  */
 am_local am_bool_t __xmodem_rec_sum (am_xmodem_rec_dev_t *p_dev, char inchar)
 {
@@ -179,7 +179,7 @@ am_local am_bool_t __xmodem_rec_sum (am_xmodem_rec_dev_t *p_dev, char inchar)
 
 /******************************************************************************/
 /**
- * \brief CRCĞ£Ñéº¯Êı
+ * \brief CRCæ ¡éªŒå‡½æ•°
  */
 am_local am_bool_t __xmodem__rec_crc (am_xmodem_rec_dev_t *p_dev, char inchar)
 {
@@ -209,25 +209,25 @@ am_local am_bool_t __xmodem__rec_crc (am_xmodem_rec_dev_t *p_dev, char inchar)
 }
 
 /*******************************************************************************
-      ×´Ì¬»úº¯Êı
+      çŠ¶æ€æœºå‡½æ•°
 *******************************************************************************/
 /**
- * \brief Êı¾İ¶Î±£´æº¯Êı
+ * \brief æ•°æ®æ®µä¿å­˜å‡½æ•°
  */
 am_local am_bool_t __xmodem_rec_data_rec (am_xmodem_rec_dev_t *p_dev, char inchar)
 {
-    /* Êı¾İ½ÓÊÕ*/
+    /* æ•°æ®æ¥æ”¶*/
     if (p_dev->rx_bytes < p_dev->p_rec_devinfo->frames_bytes) {
         p_dev->p_rec_devinfo->frames_info[p_dev->rx_bytes] = inchar;
         p_dev->rx_bytes++;
         return AM_TRUE;
     }
-    /* Êı¾İ½ÓÊÕÍê±Ï£¬½ÓÊÕsumĞ£ÑéÂë*/
+    /* æ•°æ®æ¥æ”¶å®Œæ¯•ï¼Œæ¥æ”¶sumæ ¡éªŒç */
     if (AM_XMODEM_SUM_MODE == p_dev->p_rec_devinfo->parity_mode) {
         return __xmodem_rec_sum(p_dev, inchar);
 
     }
-    /* Êı¾İ½ÓÊÕÍê±Ï£¬½ÓÊÕcrcĞ£ÑéÂë*/
+    /* æ•°æ®æ¥æ”¶å®Œæ¯•ï¼Œæ¥æ”¶crcæ ¡éªŒç */
     if (AM_XMODEM_CRC_MODE == p_dev->p_rec_devinfo->parity_mode) {
         return __xmodem__rec_crc(p_dev, inchar);
     }
@@ -235,12 +235,12 @@ am_local am_bool_t __xmodem_rec_data_rec (am_xmodem_rec_dev_t *p_dev, char incha
 }
 
 /**
- * \brief ĞòÁĞºÅ·´ÂëÅĞ¶Ï
+ * \brief åºåˆ—å·åç åˆ¤æ–­
  */
 am_local am_bool_t __xmodem_rec_rad (am_xmodem_rec_dev_t *p_dev, char inchar)
 {
     if (inchar == ~ (char)p_dev->frames_num) {
-        /* ¸ü¸Äµ½ÏÂÒ»¸ö½ÓÊÜ×´Ì¬*/
+        /* æ›´æ”¹åˆ°ä¸‹ä¸€ä¸ªæ¥å—çŠ¶æ€*/
         p_dev->p_rec_func = (pfn_xmodem_rx_t)__xmodem_rec_data_rec;
         return AM_TRUE;
     }
@@ -249,7 +249,7 @@ am_local am_bool_t __xmodem_rec_rad (am_xmodem_rec_dev_t *p_dev, char inchar)
 }
 
 /**
- * \brief ĞòÁĞºÅ½ÓÊÜº¯Êı
+ * \brief åºåˆ—å·æ¥å—å‡½æ•°
  */
 am_local am_bool_t __xmodem_rec_pack (am_xmodem_rec_dev_t *p_dev, char inchar)
 {
@@ -262,7 +262,7 @@ am_local am_bool_t __xmodem_rec_pack (am_xmodem_rec_dev_t *p_dev, char inchar)
 }
 
 /**
- * \brief ×´Ì¬»ú¿ªÊ¼´«Êäº¯Êı
+ * \brief çŠ¶æ€æœºå¼€å§‹ä¼ è¾“å‡½æ•°
  */
 am_local am_bool_t am_xmodem_rec_frames (am_xmodem_rec_dev_t *p_dev, char inchar)
 {
@@ -280,19 +280,19 @@ am_local am_bool_t am_xmodem_rec_frames (am_xmodem_rec_dev_t *p_dev, char inchar
 
 /*****************************************************************************/
 /**
- * \brief ÖØĞÂ½ÓÊÕÉÏÒ»Ö¡º¯Êı
+ * \brief é‡æ–°æ¥æ”¶ä¸Šä¸€å¸§å‡½æ•°
  */
 am_local void __xmodem_rx_nak_set (am_xmodem_rec_dev_t  *p_dev)
 {
-    /* ¼ÆËãÖØ·¢´ÎÊı */
+    /* è®¡ç®—é‡å‘æ¬¡æ•° */
     ++p_dev->nak_state;
 
-    /* ÅĞ¶ÏÊÇ·ñ´ïµ½×î´óÖØ·¢´ÎÊı*/
+    /* åˆ¤æ–­æ˜¯å¦è¾¾åˆ°æœ€å¤§é‡å‘æ¬¡æ•°*/
     if (p_dev->nak_state == p_dev->p_rec_devinfo->nak_max_times) {
-        /* ÒªÇó×î´ó´ÎÊıµÄÖØ·¢Íê³É */
+        /* è¦æ±‚æœ€å¤§æ¬¡æ•°çš„é‡å‘å®Œæˆ */
         p_dev->nak_state = AM_OK;
         p_dev->rx_bytes  = -AM_EBADMSG;
-        /* Î´ÄÜ½ÓÊÜµ½ÕıÈ·µÄÊı¾İ£¬µ÷ÓÃÓÃ»§»Øµ÷º¯ÊıÍ¨ÖªÓÃ»§Êı¾İ´íÎó */
+        /* æœªèƒ½æ¥å—åˆ°æ­£ç¡®çš„æ•°æ®ï¼Œè°ƒç”¨ç”¨æˆ·å›è°ƒå‡½æ•°é€šçŸ¥ç”¨æˆ·æ•°æ®é”™è¯¯ */
         p_dev->pfn_rx_callback(p_dev->p_arg,
                                p_dev->p_rec_devinfo->frames_info,
                                p_dev->rx_bytes);
@@ -300,7 +300,7 @@ am_local void __xmodem_rx_nak_set (am_xmodem_rec_dev_t  *p_dev)
     }
     p_dev->p_rec_func     = (pfn_xmodem_rx_t)am_xmodem_rec_frames;
     p_dev->char_get_state = __AM_XMODEM_CHAR_UP;
-    /* Ïò·¢ËÍ·½·¢ËÍNAKÖØ·¢ĞÅºÅ*/
+    /* å‘å‘é€æ–¹å‘é€NAKé‡å‘ä¿¡å·*/
     p_dev->p_rec_devinfo->frames_info[0] = AM_XMODEM_NAK;
 
     am_uart_tx_startup(p_dev->uart_handle);
@@ -308,7 +308,7 @@ am_local void __xmodem_rx_nak_set (am_xmodem_rec_dev_t  *p_dev)
 
 /******************************************************************************/
 /**
- * \brief È¡Ïû·¢ËÍº¯Êı
+ * \brief å–æ¶ˆå‘é€å‡½æ•°
  */
 am_err_t am_xmodem_rec_can_set (am_xmodem_rec_handle_t handle)
 {
@@ -318,15 +318,15 @@ am_err_t am_xmodem_rec_can_set (am_xmodem_rec_handle_t handle)
       return -AM_EINVAL;
    }
 
-   /* ÖØÖÃXmodem½ÓÊÕ×´Ì¬»úº¯Êı*/
+   /* é‡ç½®Xmodemæ¥æ”¶çŠ¶æ€æœºå‡½æ•°*/
    handle->p_rec_func = (pfn_xmodem_rx_t)am_xmodem_rec_frames;
 
-   /* È¡Ïû·¢ËÍÃüÁî£¬Á¬·¢Èı´Î·ÀÖ¹·¢ËÍ·½Î´ÄÜ½Óµ½*/
+   /* å–æ¶ˆå‘é€å‘½ä»¤ï¼Œè¿å‘ä¸‰æ¬¡é˜²æ­¢å‘é€æ–¹æœªèƒ½æ¥åˆ°*/
    for (i = 0; i < 3; i++) {
-      /* ±£´æ·¢ËÍµÄÈ¡Ïû±êÖ¾*/
+      /* ä¿å­˜å‘é€çš„å–æ¶ˆæ ‡å¿—*/
       handle->p_rec_devinfo->frames_info[0] = AM_XMODEM_CAN;
       handle->char_get_state = __AM_XMODEM_CHAR_UP;
-      /* ¿ªÆô·¢ËÍÖĞ¶Ï */
+      /* å¼€å¯å‘é€ä¸­æ–­ */
       am_uart_tx_startup(handle->uart_handle);
       while(handle->char_get_state == __AM_XMODEM_CHAR_UP);
    }
@@ -336,7 +336,7 @@ am_err_t am_xmodem_rec_can_set (am_xmodem_rec_handle_t handle)
 
 /******************************************************************************/
 /**
- * \brief ¼ÌĞø½ÓÊÕº¯Êı
+ * \brief ç»§ç»­æ¥æ”¶å‡½æ•°
  */
 am_err_t am_xmodem_rec_ack_set (am_xmodem_rec_handle_t handle)
 {
@@ -344,25 +344,25 @@ am_err_t am_xmodem_rec_ack_set (am_xmodem_rec_handle_t handle)
        return -AM_EINVAL;
     }
 
-    /* ÖØÖÃÖØ·¢´ÎÊı*/
+    /* é‡ç½®é‡å‘æ¬¡æ•°*/
     handle->nak_state      = 0;
 
-    /* µ±Ç°XmodemÁ¬½ÓÒÑ¾­½¨Á¢*/
+    /* å½“å‰Xmodemè¿æ¥å·²ç»å»ºç«‹*/
     handle->con_state      = __AM_XMODEM_CON_UP;
 
-    /* ÖØÖÃ½ÓÊÜ×´Ì¬»úº¯Êı*/
+    /* é‡ç½®æ¥å—çŠ¶æ€æœºå‡½æ•°*/
     handle->p_rec_func     = (pfn_xmodem_rx_t)am_xmodem_rec_frames;
 
-    /* µ±Ç°Îª½ÓÊÜ×´Ì¬Ì¬*/
+    /* å½“å‰ä¸ºæ¥å—çŠ¶æ€æ€*/
     handle->char_get_state = __AM_XMODEM_CHAR_UP;
 
-    /* ·¢ËÍACKÈ·ÈÏĞÅºÅ£¬ ÏìÓ¦·¢ËÍ·½·¢ËÍÉÏÒ»Ö¡Êı¾İ */
+    /* å‘é€ACKç¡®è®¤ä¿¡å·ï¼Œ å“åº”å‘é€æ–¹å‘é€ä¸Šä¸€å¸§æ•°æ® */
     handle->p_rec_devinfo->frames_info[0] = AM_XMODEM_ACK;
 
-    /* ¿ªÆô·¢ËÍÖĞ¶Ï */
+    /* å¼€å¯å‘é€ä¸­æ–­ */
     am_uart_tx_startup(handle->uart_handle);
 
-    /* ¶¨Ê±µÈ´ıXmodemÉÏÎ»»úµÄ»ØÓ¦*/
+    /* å®šæ—¶ç­‰å¾…Xmodemä¸Šä½æœºçš„å›åº”*/
     am_softimer_start(&handle->rx_softimer, \
                        handle->p_rec_devinfo->rx_timeout);
 
@@ -371,7 +371,7 @@ am_err_t am_xmodem_rec_ack_set (am_xmodem_rec_handle_t handle)
 
 /******************************************************************************/
 /**
- * \brief xmodem½ÓÊÕ»Øµ÷º¯Êı×¢²á
+ * \brief xmodemæ¥æ”¶å›è°ƒå‡½æ•°æ³¨å†Œ
  */
 am_err_t am_xmodem_rec_cb_reg (am_xmodem_rec_handle_t handle,
                                 am_xmodem_user_rx_t   pfn_rec_cb,
@@ -390,18 +390,18 @@ am_err_t am_xmodem_rec_cb_reg (am_xmodem_rec_handle_t handle,
 
 /******************************************************************************/
 /**
- * \brief Èí¼ş¶¨Ê±Æ÷»Øµ÷º¯Êı
+ * \brief è½¯ä»¶å®šæ—¶å™¨å›è°ƒå‡½æ•°
  *
- * \param[in] p_arg Ö¸ÏòXMODEM Éè±¸½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] p_arg æŒ‡å‘XMODEM è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_local void __xmodem_rec_softimer_callback (void *p_arg)
 {
     am_xmodem_rec_dev_t *p_dev = (am_xmodem_rec_dev_t *)p_arg;
-    /* ¹Ø±ÕÈí¼ş¶¨Ê±Æ÷ */
+    /* å…³é—­è½¯ä»¶å®šæ—¶å™¨ */
     am_softimer_stop(&p_dev->rx_softimer);
-    //Èç¹ûÎ´ÄÜ³¬Ê±Ã»½¨Á¢Á¬½Ó£¬ÔòÖØĞÂÁ¬½Ó
+    //å¦‚æœæœªèƒ½è¶…æ—¶æ²¡å»ºç«‹è¿æ¥ï¼Œåˆ™é‡æ–°è¿æ¥
     if (p_dev->con_state == __AM_XMODEM_CON_DOWN) {
         ++p_dev->nak_state;
         if (p_dev->nak_state == p_dev->p_rec_devinfo->nak_max_times) {
@@ -414,7 +414,7 @@ am_local void __xmodem_rec_softimer_callback (void *p_arg)
         am_xmodem_rec_start(p_dev);
         return;
     }
-    /*ÉèÁ¢±êÖ¾Î»£¬³¬Ê±Î´½ÓÊÕµ½Êı¾İ*/
+    /*è®¾ç«‹æ ‡å¿—ä½ï¼Œè¶…æ—¶æœªæ¥æ”¶åˆ°æ•°æ®*/
     p_dev->rx_bytes = -AM_ETIME;
     if (p_dev->pfn_rx_callback != NULL) {
         p_dev->pfn_rx_callback(p_dev->p_arg,
@@ -425,16 +425,16 @@ am_local void __xmodem_rec_softimer_callback (void *p_arg)
 
 /******************************************************************************/
 /**
- * \brief ×Ö·û»ñÈ¡º¯Êı
+ * \brief å­—ç¬¦è·å–å‡½æ•°
  */
 am_local int __xmodem_rec_getchar (am_xmodem_rec_dev_t  *p_dev, char *p_data)
 {
-    /* ½ÓÊÜ×´Ì¬Ê±£¬Ö»·¢ËÍÊı×éµÄµÚÒ»¸ö×Ö½ÚÖĞµÄÊı¾İ */
+    /* æ¥å—çŠ¶æ€æ—¶ï¼Œåªå‘é€æ•°ç»„çš„ç¬¬ä¸€ä¸ªå­—èŠ‚ä¸­çš„æ•°æ® */
     if (p_dev->char_get_state == __AM_XMODEM_CHAR_UP) {
 
-        /* »ñÈ¡ĞèÒª·¢ËÍµÄµÚÒ»¸ö×Ö·û*/
+        /* è·å–éœ€è¦å‘é€çš„ç¬¬ä¸€ä¸ªå­—ç¬¦*/
        *p_data = p_dev->p_rec_devinfo->frames_info[0];
-        /* ·¢ËÍÒ»´Îºó£¬½«²»ÔÙÔÊĞí»ñÈ¡·¢ËÍ×Ö·û*/
+        /* å‘é€ä¸€æ¬¡åï¼Œå°†ä¸å†å…è®¸è·å–å‘é€å­—ç¬¦*/
         p_dev->char_get_state = __AM_XMODEM_CHAR_DOWN;
 
         return AM_TRUE;
@@ -444,7 +444,7 @@ am_local int __xmodem_rec_getchar (am_xmodem_rec_dev_t  *p_dev, char *p_data)
 
 /******************************************************************************/
 /**
- * \brief Xmodem»ñÈ¡Ò»¸ö×Ö·û·¢ËÍº¯Êı
+ * \brief Xmodemè·å–ä¸€ä¸ªå­—ç¬¦å‘é€å‡½æ•°
  */
 am_local int __xmodem_rec_txchar_get (void *p_arg, char *p_outchar)
 {
@@ -457,13 +457,13 @@ am_local int __xmodem_rec_txchar_get (void *p_arg, char *p_outchar)
 
 /******************************************************************************/
 /**
- * \brief Êı¾İ´íÎó×´Ì¬º¯Êı
+ * \brief æ•°æ®é”™è¯¯çŠ¶æ€å‡½æ•°
  */
 am_local am_bool_t __xmodem_rec_data_err (am_xmodem_rec_dev_t *p_dev,
                                           char                 inchar)
 {
     int ret = 0;
-    /* ÅĞ¶Ï´íÎóĞÅÏ¢£¬Èô·¢ËÍ·½½ô¼±È¡Ïû·¢ËÍ£¬Ôò»Øµ÷Í¨ÖªÓÃ»§*/
+    /* åˆ¤æ–­é”™è¯¯ä¿¡æ¯ï¼Œè‹¥å‘é€æ–¹ç´§æ€¥å–æ¶ˆå‘é€ï¼Œåˆ™å›è°ƒé€šçŸ¥ç”¨æˆ·*/
     if (inchar == AM_XMODEM_CAN) {
         p_dev->rx_bytes++;
         if (p_dev->rx_bytes > 2) {
@@ -491,22 +491,22 @@ am_local am_bool_t __xmodem_rec_data_err (am_xmodem_rec_dev_t *p_dev,
         __xmodem_rx_nak_set(p_dev);
         return AM_TRUE;
     }
-    //Èç¹û²»ÊÇÒÔÉÏ´íÎó£¬Ôò²»×öÈÎºÎ´¦Àí£¬Ö±½Ó·µ»Ø
+    //å¦‚æœä¸æ˜¯ä»¥ä¸Šé”™è¯¯ï¼Œåˆ™ä¸åšä»»ä½•å¤„ç†ï¼Œç›´æ¥è¿”å›
     return AM_FALSE;
 }
 
 /******************************************************************************/
 /**
- * \brief XmodemÊı¾İ½ÓÊÕº¯Êı
+ * \brief Xmodemæ•°æ®æ¥æ”¶å‡½æ•°
  */
 am_local void __xmodem_rx_char (void *p_arg, char inchar)
 {
     am_xmodem_rec_dev_t *p_dev = (am_xmodem_rec_dev_t *)p_arg;
 
-    //»ñÈ¡µ±Ç°×´Ì¬º¯Êı
+    //è·å–å½“å‰çŠ¶æ€å‡½æ•°
     pfn_xmodem_rx_t pfn_rx_func = (pfn_xmodem_rx_t)p_dev->p_rec_func;
 
-    //ÈôÊ§°ÜÔòÊı¾İ´íÎó£¬ÇëÇóÖØ·¢»òÈ¡Ïû
+    //è‹¥å¤±è´¥åˆ™æ•°æ®é”™è¯¯ï¼Œè¯·æ±‚é‡å‘æˆ–å–æ¶ˆ
     if (AM_FALSE == pfn_rx_func(p_dev, inchar)) {
         if (AM_TRUE == __xmodem_rec_data_err(p_dev, inchar)) {
             am_softimer_stop (&p_dev->rx_softimer);
@@ -518,36 +518,36 @@ am_local void __xmodem_rx_char (void *p_arg, char inchar)
 
 /******************************************************************************/
 /**
- * \brief Xmodem¿ªÊ¼½ÓÊÕº¯Êı
+ * \brief Xmodemå¼€å§‹æ¥æ”¶å‡½æ•°
  */
 am_local void  __xmodem_rx_startup (am_xmodem_rec_dev_t  *p_dev)
 {
-    /* ¸ù¾İ¹¤×÷Ä£Ê½À´Ñ¡Ôñ·¢ËÍ¸ø·¢ËÍ·½µÄ×Ö·û*/
+    /* æ ¹æ®å·¥ä½œæ¨¡å¼æ¥é€‰æ‹©å‘é€ç»™å‘é€æ–¹çš„å­—ç¬¦*/
     switch (p_dev->p_rec_devinfo->parity_mode) {
-       /* ¹¤×÷Ä£Ê½ÎªÊı¾İÎ»Îª128×Ö½ÚÊ±£¬·¢ËÍ×Ö·ûNAK*/
+       /* å·¥ä½œæ¨¡å¼ä¸ºæ•°æ®ä½ä¸º128å­—èŠ‚æ—¶ï¼Œå‘é€å­—ç¬¦NAK*/
        case AM_XMODEM_SUM_MODE:
                  p_dev->p_rec_devinfo->frames_info[0] = AM_XMODEM_NAK;
                  break;
-       /* ¹¤×÷Ä£Ê½ÎªÊı¾İÎ»Îª1K×Ö½ÚÊ±£¬·¢ËÍ×Ö·ûC*/
+       /* å·¥ä½œæ¨¡å¼ä¸ºæ•°æ®ä½ä¸º1Kå­—èŠ‚æ—¶ï¼Œå‘é€å­—ç¬¦C*/
        case AM_XMODEM_CRC_MODE:
                  p_dev->p_rec_devinfo->frames_info[0] = 'C';
                  break;
     }
-    /* ·¢ËÍÆô¶¯×Ö·û*/
+    /* å‘é€å¯åŠ¨å­—ç¬¦*/
     p_dev->char_get_state = __AM_XMODEM_CHAR_UP;
-    /* ´ò¿ª·¢ËÍÖĞ¶Ï*/
+    /* æ‰“å¼€å‘é€ä¸­æ–­*/
     am_uart_tx_startup(p_dev->uart_handle);
-    /* ´ò¿ª¶¨Ê±Æ÷*/
+    /* æ‰“å¼€å®šæ—¶å™¨*/
     am_softimer_start(&p_dev->rx_softimer, p_dev->p_rec_devinfo->start_time);
 }
 
 /******************************************************************************/
 /**
- * \brief XmodemÎÄ¼ş½ÓÊÕº¯Êı
+ * \brief Xmodemæ–‡ä»¶æ¥æ”¶å‡½æ•°
  */
 am_err_t am_xmodem_rec_start (am_xmodem_rec_handle_t handle)
 {
-    /* ¿ªÊ¼½ÓÊÕ */
+    /* å¼€å§‹æ¥æ”¶ */
     if (handle != NULL) {
         __xmodem_rx_startup(handle);
         return AM_OK;
@@ -557,25 +557,25 @@ am_err_t am_xmodem_rec_start (am_xmodem_rec_handle_t handle)
 
 /******************************************************************************/
 /**
- * \brief ÉèÖÃCRC-16
+ * \brief è®¾ç½®CRC-16
  */
 static void __crc_16_pattern_set(am_crc_handle_t   crc_handle,
                                  am_crc_pattern_t *p_crc_pattern)
 {
-    /* ¶¨Òå CRC-16 Ä£ĞÍ */
-    p_crc_pattern->width     = 16;       /* CRC ¿í¶È(Èç£ºCRC5 µÄ¿í¶ÈÎª 5) */
-    p_crc_pattern->poly      = 0x1021;   /* CRC Éú³É¶àÏîÊ½ */
-    p_crc_pattern->initvalue = 0x0000;   /* CRC ³õÊ¼Öµ */
-    p_crc_pattern->refin     = AM_FALSE; /* Èç¹ûÊäÈëÊı¾İĞèÒªÎ»·´×ª£¬Ôò¸ÃÖµÎª TRUE */
-    p_crc_pattern->refout    = AM_FALSE; /* Èç¹ûÊä³ö½á¹ûÖµĞèÒªÎ»·´×ª£¬Ôò¸ÃÖµÎª TRUE */
-    p_crc_pattern->xorout    = 0x0000;   /* Êä³öÒì»òÖµ */
+    /* å®šä¹‰ CRC-16 æ¨¡å‹ */
+    p_crc_pattern->width     = 16;       /* CRC å®½åº¦(å¦‚ï¼šCRC5 çš„å®½åº¦ä¸º 5) */
+    p_crc_pattern->poly      = 0x1021;   /* CRC ç”Ÿæˆå¤šé¡¹å¼ */
+    p_crc_pattern->initvalue = 0x0000;   /* CRC åˆå§‹å€¼ */
+    p_crc_pattern->refin     = AM_FALSE; /* å¦‚æœè¾“å…¥æ•°æ®éœ€è¦ä½åè½¬ï¼Œåˆ™è¯¥å€¼ä¸º TRUE */
+    p_crc_pattern->refout    = AM_FALSE; /* å¦‚æœè¾“å‡ºç»“æœå€¼éœ€è¦ä½åè½¬ï¼Œåˆ™è¯¥å€¼ä¸º TRUE */
+    p_crc_pattern->xorout    = 0x0000;   /* è¾“å‡ºå¼‚æˆ–å€¼ */
 
-    /* ³õÊ¼»¯CRC*/
+    /* åˆå§‹åŒ–CRC*/
     am_crc_init(crc_handle, p_crc_pattern);
 }
 
 /**
- * \brief ½ÓÊÕÉè±¸³õÊ¼»¯º¯Êı
+ * \brief æ¥æ”¶è®¾å¤‡åˆå§‹åŒ–å‡½æ•°
  */
 am_xmodem_rec_handle_t  am_xmodem_rec_init (
                             am_xmodem_rec_dev_t            *p_dev,
@@ -587,41 +587,41 @@ am_xmodem_rec_handle_t  am_xmodem_rec_init (
         return NULL;
     }
     p_dev->p_rec_devinfo = (am_xmodem_rec_dev_info_t *)p_rec_devinfo;
-    /* Ö¡ĞòÁĞºÅ³õÊ¼ÖµÎª1*/
+    /* å¸§åºåˆ—å·åˆå§‹å€¼ä¸º1*/
     p_dev->frames_num      = 1;
-    /* ³õÊ¼»¯ÀÛ»ıºÍĞ£ÑéÎ»Îª0 */
+    /* åˆå§‹åŒ–ç´¯ç§¯å’Œæ ¡éªŒä½ä¸º0 */
     p_dev->fra_sum_parity  = 0;
-    /* ³õÊ¼»¯CRCĞ£Ñé */
+    /* åˆå§‹åŒ–CRCæ ¡éªŒ */
     p_dev->fra_crc_pry     = 0;
-    /* ³õÊ¼»¯»Øµ÷º¯ÊıÎªNULL*/
+    /* åˆå§‹åŒ–å›è°ƒå‡½æ•°ä¸ºNULL*/
     p_dev->pfn_rx_callback = NULL;
-    /* ³õÊ¼»¯µ±Ç°½ÓÊÕ×Ö½ÚÊı */
+    /* åˆå§‹åŒ–å½“å‰æ¥æ”¶å­—èŠ‚æ•° */
     p_dev->rx_bytes        = 0;
-    /* ³õÊ¼»¯µ±Ç°ÖØ·¢×´Ì¬Îª0 */
+    /* åˆå§‹åŒ–å½“å‰é‡å‘çŠ¶æ€ä¸º0 */
     p_dev->nak_state       = 0;
-    /* Xmodemµ±Ç°Á¬½Ó×´Ì¬*/
+    /* Xmodemå½“å‰è¿æ¥çŠ¶æ€*/
     p_dev->con_state       = __AM_XMODEM_CON_DOWN;
-    /* ±£´æXmodemĞèÒªµÄ´®¿Ú¾ä±ú*/
+    /* ä¿å­˜Xmodeméœ€è¦çš„ä¸²å£å¥æŸ„*/
     p_dev->uart_handle     = uart_handle;
-    /* ±£´æ±ê×¼CRC¾ä±ú*/
+    /* ä¿å­˜æ ‡å‡†CRCå¥æŸ„*/
     p_dev->crc_handle      = crc_handle;
-    /* ·¢ËÍ×Ö·û»ñÈ¡Ä¬ÈÏÎª0 */
+    /* å‘é€å­—ç¬¦è·å–é»˜è®¤ä¸º0 */
     p_dev->char_get_state  = __AM_XMODEM_CHAR_DOWN;
-    /** ×´Ì¬»úº¯Êı¾ä±ú*/
+    /** çŠ¶æ€æœºå‡½æ•°å¥æŸ„*/
     p_dev->p_rec_func      = (pfn_xmodem_rx_t)am_xmodem_rec_frames;
 
     __crc_16_pattern_set(crc_handle, &p_dev->crc_pattern);
 
-    /* Ê¹ÄÜ´®¿ÚÖĞ¶ÏÄ£Ê½ */
+    /* ä½¿èƒ½ä¸²å£ä¸­æ–­æ¨¡å¼ */
     am_uart_ioctl(p_dev->uart_handle,
                   AM_UART_MODE_SET,
                   (void *)AM_UART_MODE_INT);
-    /* ×¢²á·¢ËÍ»Øµ÷º¯Êı */
+    /* æ³¨å†Œå‘é€å›è°ƒå‡½æ•° */
     am_uart_callback_set(p_dev->uart_handle,
                          AM_UART_CALLBACK_TXCHAR_GET,
                          __xmodem_rec_txchar_get,
                          (void *)(p_dev));
-    /* ×¢²á½ÓÊÕ»Øµ÷º¯Êı */
+    /* æ³¨å†Œæ¥æ”¶å›è°ƒå‡½æ•° */
     am_uart_callback_set(p_dev->uart_handle,
                          AM_UART_CALLBACK_RXCHAR_PUT,
                          __xmodem_rx_char,
@@ -638,11 +638,11 @@ am_xmodem_rec_handle_t  am_xmodem_rec_init (
 }
 
 /********************************************************************************
-Xmodem·¢ËÍÇı¶¯
+Xmodemå‘é€é©±åŠ¨
 ********************************************************************************/
 
 /**
- * \brief »ñÈ¡ÎÄ¼ş·¢ËÍ½áÊø×Ö·û
+ * \brief è·å–æ–‡ä»¶å‘é€ç»“æŸå­—ç¬¦
  */
 am_local void __xmodem_tx_eot (am_xmodem_tx_dev_t *p_dev,
                                uint8_t            *p_outchar)
@@ -654,23 +654,23 @@ am_local void __xmodem_tx_eot (am_xmodem_tx_dev_t *p_dev,
 
 /******************************************************************************/
 /**
- * \brief ÎÄ¼ş·¢ËÍ½áÊøº¯Êı
+ * \brief æ–‡ä»¶å‘é€ç»“æŸå‡½æ•°
  */
 am_err_t am_xmodem_tx_over (am_xmodem_tx_handle_t handle)
 {
     if (handle == NULL) {
        return -AM_EINVAL;
     }
-    /* ¿ªÆô»ñÈ¡×Ö·û·¢ËÍ±êÖ¾Î»*/
+    /* å¼€å¯è·å–å­—ç¬¦å‘é€æ ‡å¿—ä½*/
     handle->tx_state = __AM_XMODEM_FLAG_TX;
-    /* ¿ªÆô¶¨Ê±Æ÷*/
+    /* å¼€å¯å®šæ—¶å™¨*/
     am_softimer_start(&handle->tx_softimer,
                        handle->p_tx_devinfo->tx_timeout);
-    /* ÇĞ»»µ½ÎÄ¼ş·¢ËÍ½áÊø×´Ì¬*/
+    /* åˆ‡æ¢åˆ°æ–‡ä»¶å‘é€ç»“æŸçŠ¶æ€*/
     handle->p_tx_func = (pfn_xmodem_tx_t)__xmodem_tx_eot;
-    /* ¿ªÆô·¢ËÍÖĞ¶Ï */
+    /* å¼€å¯å‘é€ä¸­æ–­ */
     am_uart_tx_startup(handle->uart_handle);
-    /* ¿ªÆô¼ÆÊ±Æ÷*/
+    /* å¼€å¯è®¡æ—¶å™¨*/
     am_softimer_start(&handle->tx_softimer,
                        handle->p_tx_devinfo->tx_timeout);
     return AM_OK;
@@ -678,7 +678,7 @@ am_err_t am_xmodem_tx_over (am_xmodem_tx_handle_t handle)
 
 /******************************************************************************/
 /**
- * \brief »ñÈ¡È¡Ïû·¢ËÍº¯Êı×Ö·û
+ * \brief è·å–å–æ¶ˆå‘é€å‡½æ•°å­—ç¬¦
  */
 am_local am_bool_t __xmodem_tx_can_get (am_xmodem_tx_handle_t handle,
                                         char                 *p_outchar)
@@ -695,7 +695,7 @@ am_local am_bool_t __xmodem_tx_can_get (am_xmodem_tx_handle_t handle,
 
 /******************************************************************************/
 /**
- * \brief ÓÃ»§È¡Ïû·¢ËÍº¯Êı
+ * \brief ç”¨æˆ·å–æ¶ˆå‘é€å‡½æ•°
  */
 am_err_t am_xmodem_tx_can_set (am_xmodem_tx_handle_t handle)
 {
@@ -704,7 +704,7 @@ am_err_t am_xmodem_tx_can_set (am_xmodem_tx_handle_t handle)
     }
     handle->tx_bytes = 0;
     handle->tx_state = __AM_XMODEM_DATA_TX;
-    /* ÇĞ»»µ½½ô¼±È¡Ïû·¢ËÍÎÄ¼ş×´Ì¬£¬²¢Á¬Ğø·¢ËÍÈı´Î½ô¼±È¡ÏûĞÅºÅ*/
+    /* åˆ‡æ¢åˆ°ç´§æ€¥å–æ¶ˆå‘é€æ–‡ä»¶çŠ¶æ€ï¼Œå¹¶è¿ç»­å‘é€ä¸‰æ¬¡ç´§æ€¥å–æ¶ˆä¿¡å·*/
     handle->p_tx_func = (pfn_xmodem_tx_t)__xmodem_tx_can_get;
     am_uart_tx_startup(handle->uart_handle);
     handle->state_flag = __AM_XMODEM_EOT_ACK;
@@ -714,7 +714,7 @@ am_err_t am_xmodem_tx_can_set (am_xmodem_tx_handle_t handle)
 
 /******************************************************************************/
 /**
- * \brief ×Ö·û»ñÈ¡º¯Êı
+ * \brief å­—ç¬¦è·å–å‡½æ•°
  */
 am_local int __xmodem_tx_getchar (am_xmodem_tx_dev_t  *p_dev, char *p_data)
 {
@@ -731,7 +731,7 @@ am_local int __xmodem_tx_getchar (am_xmodem_tx_dev_t  *p_dev, char *p_data)
 
 /******************************************************************************/
 /**
- * \brief Xmodem·¢ËÍÄ£Ê½»ñÈ¡Ò»¸ö×Ö·û·¢ËÍº¯Êı
+ * \brief Xmodemå‘é€æ¨¡å¼è·å–ä¸€ä¸ªå­—ç¬¦å‘é€å‡½æ•°
  */
 am_local int __xmodem_tx_char_get (void *p_arg, char *p_outchar)
 {
@@ -744,7 +744,7 @@ am_local int __xmodem_tx_char_get (void *p_arg, char *p_outchar)
 
 /******************************************************************************/
 /**
- * \brief xmodem·¢ËÍ»Øµ÷º¯Êı×¢²á
+ * \brief xmodemå‘é€å›è°ƒå‡½æ•°æ³¨å†Œ
  */
 am_err_t am_xmodem_tx_cb_reg (am_xmodem_tx_handle_t handle,
                               am_xmodem_user_tx_t   pfn_tx_cb,
@@ -761,7 +761,7 @@ am_err_t am_xmodem_tx_cb_reg (am_xmodem_tx_handle_t handle,
 }
 
 /**
- * \brief Éú³ÉCRCĞ£ÑéÂëº¯Êı
+ * \brief ç”ŸæˆCRCæ ¡éªŒç å‡½æ•°
  */
 am_local uint16_t __xmodem_tx_crc_set (am_xmodem_tx_dev_t *p_dev,
                                        char               *ptr,
@@ -772,7 +772,7 @@ am_local uint16_t __xmodem_tx_crc_set (am_xmodem_tx_dev_t *p_dev,
     uint32_t crc         = 0;
     uint32_t ctrlz_count = 0;
 
-    //±ê×¼CRC¼ÆËã
+    //æ ‡å‡†CRCè®¡ç®—
     am_crc_cal(p_dev->crc_handle,
                (uint8_t *)ptr,
                p_dev->doc_bytes);
@@ -792,16 +792,16 @@ am_local uint16_t __xmodem_tx_crc_set (am_xmodem_tx_dev_t *p_dev,
 }
 
 /*******************************************************************************
-×´Ì¬»úº¯Êı
+çŠ¶æ€æœºå‡½æ•°
 *******************************************************************************/
 /**
- * \brief ·¢ËÍĞ£ÑéÂëº¯Êı
+ * \brief å‘é€æ ¡éªŒç å‡½æ•°
  */
 am_local void __xmodem_tx_frames_parity (am_xmodem_tx_dev_t *p_dev,
                                          char               *p_outchar)
 {
     uint16_t crc_high = 0;
-    /* Èô¹¤×÷Ä£Ê½Îª1KÔò»ñÈ¡CRCĞ£ÑéÂë*/
+    /* è‹¥å·¥ä½œæ¨¡å¼ä¸º1Kåˆ™è·å–CRCæ ¡éªŒç */
     if (p_dev->frame_tx_bytes == 1024) {
         crc_high = __xmodem_tx_crc_set(p_dev,
                                        (char *)p_dev->p_tx_buf,
@@ -814,11 +814,11 @@ am_local void __xmodem_tx_frames_parity (am_xmodem_tx_dev_t *p_dev,
         }
        *p_outchar = p_dev->fra_crc_pry;
     }
-    /* Èô¹¤×÷Ä£Ê½Îª128Ôò»ñÈ¡SUMĞ£ÑéÂë*/
+    /* è‹¥å·¥ä½œæ¨¡å¼ä¸º128åˆ™è·å–SUMæ ¡éªŒç */
     if (p_dev->frame_tx_bytes == 128) {
         int i;
         char cks = 0;
-        /* ½«Êı¾İÀÛ¼ÓÇóºÍ*/
+        /* å°†æ•°æ®ç´¯åŠ æ±‚å’Œ*/
         for (i = 0; i < p_dev->doc_bytes; i++)
         {
             cks += p_dev->p_tx_buf[i];
@@ -837,7 +837,7 @@ am_local void __xmodem_tx_frames_parity (am_xmodem_tx_dev_t *p_dev,
 
 /******************************************************************************/
 /**
- * \brief Êı¾İ²»×ãÒ»Ö¡Ìî³äº¯Êı
+ * \brief æ•°æ®ä¸è¶³ä¸€å¸§å¡«å……å‡½æ•°
  */
 am_local am_bool_t __xmodem_tx_ctrlz_set (am_xmodem_tx_dev_t *p_dev,
                                           char               *p_outchar)
@@ -855,7 +855,7 @@ am_local am_bool_t __xmodem_tx_ctrlz_set (am_xmodem_tx_dev_t *p_dev,
 
 /******************************************************************************/
 /**
- * \brief ·¢ËÍÊı¾İ¶Îº¯Êı
+ * \brief å‘é€æ•°æ®æ®µå‡½æ•°
  */
 am_local am_bool_t __xmodem_tx_frames_data (am_xmodem_tx_dev_t *p_dev,
                                             char               *p_outchar)
@@ -884,15 +884,15 @@ am_local am_bool_t __xmodem_tx_frames_data (am_xmodem_tx_dev_t *p_dev,
 
 /******************************************************************************/
 /**
- * \brief ·¢ËÍĞòÁĞºÅ·´Âëº¯Êı
+ * \brief å‘é€åºåˆ—å·åç å‡½æ•°
  */
 am_local am_bool_t __xmodem_tx_frames_pack_rmoc (am_xmodem_tx_dev_t *p_dev,
                                                  char               *p_outchar)
 {
-    /* ÖĞ¶Ï·¢ËÍº¯Êı»ñÈ¡ĞòÁĞºÅ·´Âë*/
+    /* ä¸­æ–­å‘é€å‡½æ•°è·å–åºåˆ—å·åç */
    *p_outchar = ~p_dev->frames_num;
 
-    /* ÇĞ»»µ½Êı¾İ·¢ËÍ×´Ì¬*/
+    /* åˆ‡æ¢åˆ°æ•°æ®å‘é€çŠ¶æ€*/
     p_dev->p_tx_func = (pfn_xmodem_tx_t)__xmodem_tx_frames_data;
 
     return AM_TRUE;
@@ -900,18 +900,18 @@ am_local am_bool_t __xmodem_tx_frames_pack_rmoc (am_xmodem_tx_dev_t *p_dev,
 
 /******************************************************************************/
 /**
- * \brief ·¢ËÍĞòÁĞºÅº¯Êı
+ * \brief å‘é€åºåˆ—å·å‡½æ•°
  */
 am_local am_bool_t  __xomdem_tx_frames_packetno (am_xmodem_tx_dev_t *p_dev,
                                                  char               *p_outchar)
 {
-    /* ĞòÁĞºÅ¼Ó1*/
+    /* åºåˆ—å·åŠ 1*/
     p_dev->frames_num++;
 
-    /* ÖĞ¶Ï·¢ËÍº¯Êı»ñÈ¡ĞòÁĞºÅ*/
+    /* ä¸­æ–­å‘é€å‡½æ•°è·å–åºåˆ—å·*/
    *p_outchar = p_dev->frames_num;
 
-    /* ÇĞ»»µ½»ñÈ¡ĞòÁĞºÅ·´Âë×´Ì¬*/
+    /* åˆ‡æ¢åˆ°è·å–åºåˆ—å·åç çŠ¶æ€*/
     p_dev->p_tx_func = (pfn_xmodem_tx_t)__xmodem_tx_frames_pack_rmoc;
 
     return AM_TRUE;
@@ -919,20 +919,20 @@ am_local am_bool_t  __xomdem_tx_frames_packetno (am_xmodem_tx_dev_t *p_dev,
 
 /******************************************************************************/
 /**
- * \brief ·¢ËÍÖ¡Í·º¯Êı
+ * \brief å‘é€å¸§å¤´å‡½æ•°
  */
 am_local am_bool_t __xmodem_tx_frames_head (am_xmodem_tx_dev_t *p_dev,
                                             char               *p_outchar)
 {
     if (p_dev->frame_tx_bytes == 1024) {
-       /* 1K¹¤×÷Ä£Ê½µÄÖ¡Í·ÎªSTX*/
+       /* 1Kå·¥ä½œæ¨¡å¼çš„å¸§å¤´ä¸ºSTX*/
        *p_outchar = __AM_XMODEM_STX;
     }
     if (p_dev->frame_tx_bytes == 128) {
-        /* 128¹¤×÷Ä£Ê½µÄÖ¡Í·ÎªSOH*/
+        /* 128å·¥ä½œæ¨¡å¼çš„å¸§å¤´ä¸ºSOH*/
        *p_outchar = __AM_XMODEM_SOH;
     }
-    /* ÇĞ»»µ½ĞòÁĞºÅ·¢ËÍ×´Ì¬*/
+    /* åˆ‡æ¢åˆ°åºåˆ—å·å‘é€çŠ¶æ€*/
     p_dev->p_tx_func = (pfn_xmodem_tx_t)__xomdem_tx_frames_packetno;
 
     return AM_TRUE;
@@ -940,7 +940,7 @@ am_local am_bool_t __xmodem_tx_frames_head (am_xmodem_tx_dev_t *p_dev,
 
 /******************************************************************************/
 /**
- * \brief ¿ªÊ¼·¢ËÍº¯Êı
+ * \brief å¼€å§‹å‘é€å‡½æ•°
  */
 am_err_t am_xmodem_tx_pack (am_xmodem_tx_handle_t handle,
                             char                 *p_doc,
@@ -955,17 +955,17 @@ am_err_t am_xmodem_tx_pack (am_xmodem_tx_handle_t handle,
     if (pack_size < handle->frame_tx_bytes) {
         handle->ctrlz_num = handle->frame_tx_bytes - pack_size;
     }
-    /* »ñÈ¡·¢ËÍÎÄ¼şµÄÖ¸Õë*/
+    /* è·å–å‘é€æ–‡ä»¶çš„æŒ‡é’ˆ*/
     handle->p_tx_buf  = p_doc;
-    /* Ò»´Î·¢ËÍµÄÄ£¿é´óĞ¡*/
+    /* ä¸€æ¬¡å‘é€çš„æ¨¡å—å¤§å°*/
     handle->doc_bytes = pack_size;
-    /* ÔÊĞí»ñÈ¡·¢ËÍ×Ö·û*/
+    /* å…è®¸è·å–å‘é€å­—ç¬¦*/
     handle->tx_state  = __AM_XMODEM_DATA_TX;
-    /* ÇĞ»»µ½Ö¡Í··¢ËÍ×´Ì¬*/
+    /* åˆ‡æ¢åˆ°å¸§å¤´å‘é€çŠ¶æ€*/
     handle->p_tx_func = (pfn_xmodem_tx_t)__xmodem_tx_frames_head;
-    /* ´ò¿ª·¢ËÍÖĞ¶Ï*/
+    /* æ‰“å¼€å‘é€ä¸­æ–­*/
     am_uart_tx_startup(handle->uart_handle);
-    /* ¿ªÆô¼ÆÊ±Æ÷*/
+    /* å¼€å¯è®¡æ—¶å™¨*/
     am_softimer_start(&handle->tx_softimer,
                        handle->p_tx_devinfo->tx_timeout);
     return AM_OK;
@@ -993,7 +993,7 @@ am_local int __xmodem_tx_eot_ack (am_xmodem_tx_dev_t *p_dev)
 
 /******************************************************************************/
 /**
- * \brief ½ÓÊÕ·½ÒªÇóÖØ·¢º¯Êı
+ * \brief æ¥æ”¶æ–¹è¦æ±‚é‡å‘å‡½æ•°
  */
 am_local void __xmodem_tx_nak (am_xmodem_tx_dev_t *p_dev)
 {
@@ -1007,7 +1007,7 @@ am_local void __xmodem_tx_nak (am_xmodem_tx_dev_t *p_dev)
     if (p_dev->nake_state == p_dev->p_tx_devinfo->nak_times_max) {
         am_xmodem_tx_can_set(p_dev);
         p_dev->nake_state = 0;
-        /* Í¨ÖªÓÃ»§µ±Ç°Êı¾İ°üÖØ·¢´ÎÊı´ïµ½¹æ¶¨µÄ×î´óÖØ·¢´ÎÊı, ²¢ÒÑ¾­È¡ÏûÁË·¢ËÍ*/
+        /* é€šçŸ¥ç”¨æˆ·å½“å‰æ•°æ®åŒ…é‡å‘æ¬¡æ•°è¾¾åˆ°è§„å®šçš„æœ€å¤§é‡å‘æ¬¡æ•°, å¹¶å·²ç»å–æ¶ˆäº†å‘é€*/
         p_dev->pfn_tx_callback(p_dev->p_arg, AM_XMODEM_NAK_TIME);
     }
     p_dev->nake_state++;
@@ -1015,7 +1015,7 @@ am_local void __xmodem_tx_nak (am_xmodem_tx_dev_t *p_dev)
 
 /******************************************************************************/
 /**
- * \brief Ó¦´ğĞÅºÅÅĞ¶Ïº¯Êı
+ * \brief åº”ç­”ä¿¡å·åˆ¤æ–­å‡½æ•°
  */
 am_local int __xmodem_tx_result_mode (am_xmodem_tx_dev_t *p_dev,
                                       char                inchar)
@@ -1054,12 +1054,12 @@ am_local int __xmodem_tx_result_mode (am_xmodem_tx_dev_t *p_dev,
 
 /******************************************************************************/
 /**
- * \brief Ä£¿é·¢ËÍÍê»òÕß½ÓÊÕ·½×¼±¸ºÃ·¢ËÍÍ¨ÖªÓÃ»§
+ * \brief æ¨¡å—å‘é€å®Œæˆ–è€…æ¥æ”¶æ–¹å‡†å¤‡å¥½å‘é€é€šçŸ¥ç”¨æˆ·
  */
 am_local int __xmodem_tx_user_inform (am_xmodem_tx_dev_t *p_dev,
                                       char                inchar)
 {
-    /*µ±Ç°×´Ì¬ÎªÎÄ¼ş·¢ËÍ½áÊøÊ±£¬½ÓÊÕµ½µÄÓ¦´ğĞÅºÅ½«×Ô¶¯»Ø¸´*/
+    /*å½“å‰çŠ¶æ€ä¸ºæ–‡ä»¶å‘é€ç»“æŸæ—¶ï¼Œæ¥æ”¶åˆ°çš„åº”ç­”ä¿¡å·å°†è‡ªåŠ¨å›å¤*/
     if (p_dev->state_flag == __AM_XMODEM_DOC_EOT) {
         return __xmodem_tx_eot_ack(p_dev);
     }
@@ -1072,7 +1072,7 @@ am_local int __xmodem_tx_user_inform (am_xmodem_tx_dev_t *p_dev,
 
 /******************************************************************************/
 /**
- * \brief ÖĞ¶Ï½ÓÊÕ×Ö·ûº¯Êı
+ * \brief ä¸­æ–­æ¥æ”¶å­—ç¬¦å‡½æ•°
  */
 am_local void __xmodem_tx_char (void *p_arg, uint8_t inchar)
 {
@@ -1087,12 +1087,12 @@ am_local void __xmodem_tx_char (void *p_arg, uint8_t inchar)
 
 /******************************************************************************/
 /**
- * \brief Xmodem·¢ËÍ³¬Ê±º¯Êı
+ * \brief Xmodemå‘é€è¶…æ—¶å‡½æ•°
  */
 am_local void __xmodem_tx_time_callback(void *p_arg)
 {
     am_xmodem_tx_dev_t *p_dev = (am_xmodem_tx_dev_t *)p_arg;
-    /* ¹Ø±ÕÈí¼ş¶¨Ê±Æ÷ */
+    /* å…³é—­è½¯ä»¶å®šæ—¶å™¨ */
     am_softimer_stop(&p_dev->tx_softimer);
     if (p_dev->pfn_tx_callback != NULL) {
         am_xmodem_tx_can_set(p_dev);
@@ -1102,7 +1102,7 @@ am_local void __xmodem_tx_time_callback(void *p_arg)
 
 /******************************************************************************/
 /**
- * \brief ·¢ËÍÉè±¸³õÊ¼»¯º¯Êı
+ * \brief å‘é€è®¾å¤‡åˆå§‹åŒ–å‡½æ•°
  */
 am_xmodem_tx_handle_t  am_xmodem_tx_init (
                            am_xmodem_tx_dev_t            *p_dev,
@@ -1114,21 +1114,21 @@ am_xmodem_tx_handle_t  am_xmodem_tx_init (
         return NULL;
     }
 
-    p_dev->ctrlz_num    = 0;    /**< \brief ³õÊ¼»¯Ìî³äÁ¿*/
-    p_dev->tx_bytes     = 0;    /**< \brief ³õÊ¼»¯·¢ËÍÎÄ¼ş´óĞ¡*/
-    p_dev->p_tx_buf     = NULL; /**< \brief ³õÊ¼»¯ÎÄ¼şÖ¸Õë */
-    p_dev->state_flag   = 0;    /**< \brief Ä¬ÈÏµÚÒ»¸ö½ÓÊÕµ½µÄ×Ö·ûÎªÄ£Ê½ÅĞ¶Ï×Ö·û */
-    p_dev->nake_state   = 0;    /**< \brief ³õÊ¼»¯ÖØ·¢×´Ì¬Îª0*/
-    p_dev->p_tx_func    = NULL; /**< \brief ³õÊ¼»¯×´Ì¬»úº¯ÊıÖ¸Õë */
-    p_dev->crc_handle   = crc_handle;   /**< \brief CRC¾ä±ú*/
-    p_dev->uart_handle  = uart_handle;  /**< \brief ´®¿Ú¾ä±ú*/
+    p_dev->ctrlz_num    = 0;    /**< \brief åˆå§‹åŒ–å¡«å……é‡*/
+    p_dev->tx_bytes     = 0;    /**< \brief åˆå§‹åŒ–å‘é€æ–‡ä»¶å¤§å°*/
+    p_dev->p_tx_buf     = NULL; /**< \brief åˆå§‹åŒ–æ–‡ä»¶æŒ‡é’ˆ */
+    p_dev->state_flag   = 0;    /**< \brief é»˜è®¤ç¬¬ä¸€ä¸ªæ¥æ”¶åˆ°çš„å­—ç¬¦ä¸ºæ¨¡å¼åˆ¤æ–­å­—ç¬¦ */
+    p_dev->nake_state   = 0;    /**< \brief åˆå§‹åŒ–é‡å‘çŠ¶æ€ä¸º0*/
+    p_dev->p_tx_func    = NULL; /**< \brief åˆå§‹åŒ–çŠ¶æ€æœºå‡½æ•°æŒ‡é’ˆ */
+    p_dev->crc_handle   = crc_handle;   /**< \brief CRCå¥æŸ„*/
+    p_dev->uart_handle  = uart_handle;  /**< \brief ä¸²å£å¥æŸ„*/
     p_dev->tx_state     = __AM_XMODEM_DATA_TX;
     p_dev->p_tx_devinfo = (am_xmodem_tx_dev_info_t *)p_tx_devinfo;
 
-    /* ³õÊ¼»¯CRCÄ£ĞÍ*/
+    /* åˆå§‹åŒ–CRCæ¨¡å‹*/
     __crc_16_pattern_set(crc_handle, &p_dev->crc_pattern);
 
-    /* Ê¹ÄÜ´®¿ÚÖĞ¶ÏÄ£Ê½ */
+    /* ä½¿èƒ½ä¸²å£ä¸­æ–­æ¨¡å¼ */
     am_uart_ioctl(p_dev->uart_handle,
                   AM_UART_MODE_SET,
                   (void *)AM_UART_MODE_INT);
@@ -1138,7 +1138,7 @@ am_xmodem_tx_handle_t  am_xmodem_tx_init (
                          __xmodem_tx_char,
                          (void *)(p_dev));
 
-    /* ×¢²á·¢ËÍ»Øµ÷º¯Êı */
+    /* æ³¨å†Œå‘é€å›è°ƒå‡½æ•° */
     am_uart_callback_set(p_dev->uart_handle,
                          AM_UART_CALLBACK_TXCHAR_GET,
                          __xmodem_tx_char_get,

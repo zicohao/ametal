@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief LED±ê×¼½Ó¿ÚÊµÏÖ£¨GPIOÇı¶¯£©
+ * \brief LEDæ ‡å‡†æ¥å£å®ç°ï¼ˆGPIOé©±åŠ¨ï¼‰
  * 
  * \internal
  * \par Modification history

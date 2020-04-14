@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥4.30
+ * \brief ç¨‹åºæ¸…å•4.30
  *
- * \note ¸ÃÀú³ÌĞèÒªÓÃµ½miniportÍØÕ¹°å
+ * \note è¯¥å†ç¨‹éœ€è¦ç”¨åˆ°miniportæ‹“å±•æ¿
  *
  * \internal
  * \par Modification history
@@ -28,17 +28,17 @@
 int am_main (void)
 
 {
-    int sec      = 0;                        // Ãë¼ÆÊıÆ÷Çå0
+    int sec      = 0;                        // ç§’è®¡æ•°å™¨æ¸…0
 
-    digitron1_init_with_softimer ();          // °å¼¶³õÊ¼»¯£¬5msÈí¼ş¶¨Ê±Æ÷
-    digitron1_disp_num_set(0, 0);             // ÏÔÊ¾Æ÷µÄÊ®Î»Çå0
-    digitron1_disp_num_set(1, 0);             // ÏÔÊ¾Æ÷µÄ¸öÎ»Çå0
-    digitron1_disp_blink_set(1, AM_TRUE);     // com1ÉÁË¸
+    digitron1_init_with_softimer ();          // æ¿çº§åˆå§‹åŒ–ï¼Œ5msè½¯ä»¶å®šæ—¶å™¨
+    digitron1_disp_num_set(0, 0);             // æ˜¾ç¤ºå™¨çš„åä½æ¸…0
+    digitron1_disp_num_set(1, 0);             // æ˜¾ç¤ºå™¨çš„ä¸ªä½æ¸…0
+    digitron1_disp_blink_set(1, AM_TRUE);     // com1é—ªçƒ
     while(1) {
         am_mdelay(1000);
-        sec = (sec + 1) % 60;                // Ãë¼ÆÊıÆ÷+1
-        digitron1_disp_num_set(0,sec / 10);   // ¸üĞÂÏÔÊ¾Æ÷µÄÊ®Î»
-        digitron1_disp_num_set(1,sec % 10);   // ¸üĞÂÏÔÊ¾Æ÷µÄ¸öÎ»
+        sec = (sec + 1) % 60;                // ç§’è®¡æ•°å™¨+1
+        digitron1_disp_num_set(0,sec / 10);   // æ›´æ–°æ˜¾ç¤ºå™¨çš„åä½
+        digitron1_disp_num_set(1,sec % 10);   // æ›´æ–°æ˜¾ç¤ºå™¨çš„ä¸ªä½
     }
 }
 

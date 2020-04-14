@@ -11,21 +11,21 @@
 *******************************************************************************/
 /**
  * \file
- * \brief I2C Ö÷»ú´Ó LM75 ´«¸ÐÆ÷¶ÁÈ¡ÎÂ¶ÈÖµÀý³Ì£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief I2C ä¸»æœºä»Ž LM75 ä¼ æ„Ÿå™¨è¯»å–æ¸©åº¦å€¼ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè:
- *   1. ½« J14 µÄ KEY ºÍ RES ¶Ì½ÓÔÚÒ»Æð£¬Ê¹µÃ°´ÏÂ RES ¼ü½ÓÍ¨¹¦ÂÊµç×è£»
- *   2. ¶Ì½ÓÌøÏßÃ± J11 ºÍ J13£¬Ê¹ I2C1 Óë LM75 Á¬½Ó¡£
+ * - æ“ä½œæ­¥éª¤:
+ *   1. å°† J14 çš„ KEY å’Œ RES çŸ­æŽ¥åœ¨ä¸€èµ·ï¼Œä½¿å¾—æŒ‰ä¸‹ RES é”®æŽ¥é€šåŠŸçŽ‡ç”µé˜»ï¼›
+ *   2. çŸ­æŽ¥è·³çº¿å¸½ J11 å’Œ J13ï¼Œä½¿ I2C1 ä¸Ž LM75 è¿žæŽ¥ã€‚
  *
- * - ÊµÑéÏÖÏó:
- *   1. ´®¿ÚÊä³öÎÂ¶ÈÖµ£»
- *   2. °´ÏÂ RES °´¼ü£¬¹ýÒ»»á¶ù£¬´®¿ÚÊä³öÎÂ¶ÈÖµÉý¸ß¡£
+ * - å®žéªŒçŽ°è±¡:
+ *   1. ä¸²å£è¾“å‡ºæ¸©åº¦å€¼ï¼›
+ *   2. æŒ‰ä¸‹ RES æŒ‰é”®ï¼Œè¿‡ä¸€ä¼šå„¿ï¼Œä¸²å£è¾“å‡ºæ¸©åº¦å€¼å‡é«˜ã€‚
  *
  * \note
- *    ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIOA_10 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *    PIOA_9 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
+ *    å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIOA_10 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *    PIOA_9 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_zlg217_std_i2c_lm75.c src_zlg217_std_i2c_lm75
  *
  * \internal
@@ -49,7 +49,7 @@
 #include "demo_am217_core_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_zlg217_core_std_i2c_lm75_entry (void)
 {

@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief GPIO按键 配置文件
+ * \brief GPIO鎸夐敭 閰嶇疆鏂囦欢
  * \sa am_hwconf_key_gpio.c
  *
  * \internal
@@ -33,13 +33,13 @@
  * @{
  */
 
-/* 定义GPIO按键实例 */
+/* 瀹氫箟GPIO鎸夐敭瀹炰緥 */
 static am_key_gpio_t __g_key_gpio;
 
 static const int __g_key_pins[] = {PIO0_1};
 static const int __g_key_codes[] = {KEY_KP0};
 
-/* 定义GPIO按键实例信息 */
+/* 瀹氫箟GPIO鎸夐敭瀹炰緥淇℃伅 */
 static const am_key_gpio_info_t __g_key_gpio_info = {
     __g_key_pins,
     __g_key_codes,

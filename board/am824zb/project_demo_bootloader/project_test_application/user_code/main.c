@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief AM824ZB booltoader 测试应用工程
+ * \brief AM824ZB booltoader 娴嬭瘯搴旂敤宸ョ▼
  *
- *  使用方式可参考ametal/documents/am24zb/目录下的ametal_am824zb_bootloader操作手册
+ *  浣跨敤鏂瑰紡鍙弬鑰僡metal/documents/am24zb/鐩綍涓嬬殑ametal_am824zb_bootloader鎿嶄綔鎵嬪唽
  *
  * \internal
  * \par Modification history
@@ -29,11 +29,11 @@
 #include "am_led.h"
 #include "demo_am824zb_entries.h"
 /**
- * \brief AMetal 应用程序入口
+ * \brief AMetal 搴旂敤绋嬪簭鍏ュ彛
  */
 void am_main (void)
 {
-    AM_DBG_INFO("application ：application Start up successful!\r\n");
+    AM_DBG_INFO("application 锛歛pplication Start up successful!\r\n");
     while(1) {
         am_mdelay(1000);
         am_led_toggle(0);

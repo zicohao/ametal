@@ -11,12 +11,12 @@
 *******************************************************************************/
 /**
  * \file
- * \brief ÈıÖá´Å´«¸ĞÆ÷ MMC5883MA Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief ä¸‰è½´ç£ä¼ æ„Ÿå™¨ MMC5883MA ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Ã¿¹ıÒ»Ãë£¬Í¨¹ı´®¿Ú´òÓ¡X¡¢Y¡¢ZÈıÖáµÄ´Å¸ĞÓ¦Ç¿¶ÈÖµ
+ * - å®éªŒç°è±¡ï¼š
+ *   1. æ¯è¿‡ä¸€ç§’ï¼Œé€šè¿‡ä¸²å£æ‰“å°Xã€Yã€Zä¸‰è½´çš„ç£æ„Ÿåº”å¼ºåº¦å€¼
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_std_mmc5883ma.c src_std_mmc5883ma
  *
  * \internal
@@ -37,21 +37,21 @@
 #include "am_delay.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_std_mmc5883ma_entry (am_sensor_handle_t handle)
 {  
     
-    /* MMC5883MAÌá¹©µÄËùÓĞÍ¨µÀIDÁĞ¾Ù */
+    /* MMC5883MAæä¾›çš„æ‰€æœ‰é€šé“IDåˆ—ä¸¾ */
     const int id[3] = {AM_MMC5883MA_CHAN_1, AM_MMC5883MA_CHAN_2, AM_MMC5883MA_CHAN_3};
     
-    /* ´¢´æ3¸öÍ¨µÀÊı¾İµÄ»º´æ */
+    /* å‚¨å­˜3ä¸ªé€šé“æ•°æ®çš„ç¼“å­˜ */
     am_sensor_val_t data[3];
 
     int             i;
 
     /*
-     * ÁĞ³öÈı¸öÍ¨µÀ£¨X,Y,ZÖá´Å¸ĞÓ¦Ç¿¶È£©Êı¾İµÄÃû×ÖºÍµ¥Î»×Ö·û´®£¬±ãÓÚ´òÓ¡
+     * åˆ—å‡ºä¸‰ä¸ªé€šé“ï¼ˆX,Y,Zè½´ç£æ„Ÿåº”å¼ºåº¦ï¼‰æ•°æ®çš„åå­—å’Œå•ä½å­—ç¬¦ä¸²ï¼Œä¾¿äºæ‰“å°
      */
     const char *data_name_string[] = {"x_axis_data", "y_axis_data", "z_axis_data"};
     const char *data_unit_string[] = {"Gs","Gs","Gs"};
@@ -61,14 +61,14 @@ void demo_std_mmc5883ma_entry (am_sensor_handle_t handle)
     while (1) {
         am_sensor_data_get(handle, id, 3, data);
         for(i=0; i<3; i++) {
-            if (AM_SENSOR_VAL_IS_VALID(data[i])) { /* ¸ÃÍ¨µÀÊı¾İÓĞĞ§£¬¿ÉÒÔÕı³£Ê¹ÓÃ */
-                /* µ¥Î»×ª»»Îª AM_SENSOR_UNIT_MICRO£¬ÒÔ´òÓ¡ÏÔÊ¾6Î»Ğ¡Êı */
+            if (AM_SENSOR_VAL_IS_VALID(data[i])) { /* è¯¥é€šé“æ•°æ®æœ‰æ•ˆï¼Œå¯ä»¥æ­£å¸¸ä½¿ç”¨ */
+                /* å•ä½è½¬æ¢ä¸º AM_SENSOR_UNIT_MICROï¼Œä»¥æ‰“å°æ˜¾ç¤º6ä½å°æ•° */
                 am_sensor_val_unit_convert(&data[i], 1, AM_SENSOR_UNIT_MICRO);
                 am_kprintf("The %s is : %d.%06d %s.\r\n", data_name_string[i],
                                                           (data[i].val)/1000000,
                                                           (data[i].val)%1000000,
                                                           data_unit_string[i]);
-            } else {       //¸ÃÍ¨µÀÊı¾İÎŞĞ§£¬Êı¾İ»ñÈ¡Ê§°Ü
+            } else {       //è¯¥é€šé“æ•°æ®æ— æ•ˆï¼Œæ•°æ®è·å–å¤±è´¥
                 am_kprintf("The %s get failed!\r\n", data_name_string[i]);
             }
         }

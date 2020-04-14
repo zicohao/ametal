@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZMF159 ÍâÉèÓ³Éä
+ * \brief ZMF159 å¤–è®¾æ˜ å°„
  *
  * \internal
  * \par Modification history
@@ -57,19 +57,19 @@ extern "C" {
  */
 
 /**
- * \name ÍâÉè¶¨Òå
+ * \name å¤–è®¾å®šä¹‰
  * @{
  */
 
 #define ZMF159_GPIO    ((amhw_zlg_gpio_t         *)ZMF159_GPIO_BASE)
 
-/** \brief RCC¿ØÖÆÆ÷¼Ä´æÆ÷¿éÖ¸Õë */
+/** \brief RCCæ§åˆ¶å™¨å¯„å­˜å™¨å—æŒ‡é’ˆ */
 #define ZMF159_RCC     ((amhw_zmf159_rcc_t       *)ZMF159_RCC_BASE)
 
-/** \brief FLASH¼Ä´æÆ÷¿éÖ¸Õë */
+/** \brief FLASHå¯„å­˜å™¨å—æŒ‡é’ˆ */
 #define ZMF159_FLASH   ((amhw_zlg_flash_t        *)ZMF159_FLASH_BASE)
 
-/** \brief ÏµÍ³ÅäÖÃ(SYSCFG)¼Ä´æÆ÷¿éÖ¸Õë */
+/** \brief ç³»ç»Ÿé…ç½®(SYSCFG)å¯„å­˜å™¨å—æŒ‡é’ˆ */
 #define ZMF159_SYSCFG  ((amhw_zlg_syscfg_t       *)ZMF159_SYSCFG_BASE)
 
 /** \brief  */

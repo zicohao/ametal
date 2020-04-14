@@ -12,14 +12,14 @@
 
 /**
  * \file
- * \brief ϵͳ���ƽӿ�
+ * \brief 系统控制接口
  *
- * 1. ����ϵͳʱ���ſ�ʹ��/���ܣ�
- * 2. ����ʱ��Դѡ��
- * 3. UART TX/RX Դ��
- * 4. ADC ����Դ��
- * 5. �豸 ID �Ĵ�����
- * 6. COP���Ź�����
+ * 1. 外设系统时钟门控使能/禁能；
+ * 2. 外设时钟源选择
+ * 3. UART TX/RX 源；
+ * 4. ADC 触发源；
+ * 5. 设备 ID 寄存器；
+ * 6. COP看门狗服务。
  *
  * \internal
  * \par History
@@ -47,37 +47,37 @@ extern "C" {
  ******************************************************************************/
 
 /**
-  * \brief ϵͳ���ƼĴ�����ṹ��
+  * \brief 系统控制寄存器块结构体
   */
 typedef struct amhw_kl26_sim {
-    __IO uint32_t sopt1;            /**< \brief ϵͳ���üĴ���1  */
-    __IO uint32_t sopt1cfg;         /**< \brief sopt1���üĴ��� */
-    __I  uint32_t reserved0[1023];  /**< \brief ����                              */
-    __IO uint32_t sopt2;            /**< \brief ϵͳ���üĴ���2 */
-    __I  uint32_t reserved1[1];     /**< \brief ����                              */
-    __IO uint32_t sopt4;            /**< \brief ϵͳ���üĴ���4 */
-    __IO uint32_t sopt5;            /**< \brief ϵͳ���üĴ���5 */
-    __I  uint32_t reserved2[1];     /**< \brief ����                              */
-    __IO uint32_t sopt7;            /**< \brief ϵͳ���üĴ���7 */
-    __I  uint32_t reserved3[2];     /**< \brief ����                              */
-    __I  uint32_t sdid;             /**< \brief ϵͳ�豸ID�Ĵ��� */
-    __I  uint32_t reserved4[3];     /**< \brief ����                              */
-    __IO uint32_t scgc[4];          /**< \brief ϵͳʱ���ſؼĴ���     */
-    __IO uint32_t clkdiv1;          /**< \brief ϵͳʱ�ӷ�Ƶ�Ĵ���1 */
-    __I  uint32_t reserved5[1];     /**< \brief ����                              */
-    __IO uint32_t fcfg1;            /**< \brief FLASH���üĴ���1 */
-    __I  uint32_t fcfg2;            /**< \brief FLASH���üĴ���2 */
-    __I  uint32_t reserved6[1];     /**< \brief ����                              */
-    __I  uint32_t uidmh;            /**< \brief ΨһID�Ĵ���       */
-    __I  uint32_t uidml;            /**< \brief ΨһID�Ĵ���       */
-    __I  uint32_t uidl;             /**< \brief ΨһID�Ĵ���       */
-    __I  uint32_t reserved7[39];    /**< \brief ����                              */
-    __IO uint32_t copc;             /**< \brief ���Ź����ƼĴ���   */
-    __O  uint32_t srvcop;           /**< \brief ι���Ĵ���         */
+    __IO uint32_t sopt1;            /**< \brief 系统配置寄存器1  */
+    __IO uint32_t sopt1cfg;         /**< \brief sopt1配置寄存器 */
+    __I  uint32_t reserved0[1023];  /**< \brief 保留                              */
+    __IO uint32_t sopt2;            /**< \brief 系统配置寄存器2 */
+    __I  uint32_t reserved1[1];     /**< \brief 保留                              */
+    __IO uint32_t sopt4;            /**< \brief 系统配置寄存器4 */
+    __IO uint32_t sopt5;            /**< \brief 系统配置寄存器5 */
+    __I  uint32_t reserved2[1];     /**< \brief 保留                              */
+    __IO uint32_t sopt7;            /**< \brief 系统配置寄存器7 */
+    __I  uint32_t reserved3[2];     /**< \brief 保留                              */
+    __I  uint32_t sdid;             /**< \brief 系统设备ID寄存器 */
+    __I  uint32_t reserved4[3];     /**< \brief 保留                              */
+    __IO uint32_t scgc[4];          /**< \brief 系统时钟门控寄存器     */
+    __IO uint32_t clkdiv1;          /**< \brief 系统时钟分频寄存器1 */
+    __I  uint32_t reserved5[1];     /**< \brief 保留                              */
+    __IO uint32_t fcfg1;            /**< \brief FLASH配置寄存器1 */
+    __I  uint32_t fcfg2;            /**< \brief FLASH配置寄存器2 */
+    __I  uint32_t reserved6[1];     /**< \brief 保留                              */
+    __I  uint32_t uidmh;            /**< \brief 唯一ID寄存器       */
+    __I  uint32_t uidml;            /**< \brief 唯一ID寄存器       */
+    __I  uint32_t uidl;             /**< \brief 唯一ID寄存器       */
+    __I  uint32_t reserved7[39];    /**< \brief 保留                              */
+    __IO uint32_t copc;             /**< \brief 看门狗控制寄存器   */
+    __O  uint32_t srvcop;           /**< \brief 喂狗寄存器         */
 } amhw_kl26_sim_t;
 
 /**
- * \brief ����ʱ���ſض���
+ * \brief 外设时钟门控定义
  */
 typedef enum amhw_kl26_sim_scgc_periph {
     /** \brief  SCGC4 */
@@ -117,15 +117,15 @@ typedef enum amhw_kl26_sim_scgc_periph {
 } amhw_kl26_sim_scgc_periph_t;
 
 /**
- * \brief USB ��ѹ����������
+ * \brief USB 电压调节器设置
  */
 typedef enum amhw_kl26_sim_usb_regulator {
-    KL26_SIM_USBREG_NO_STANDBY = 0,  /**< \brief ��standbyģʽ */
-    KL26_SIM_USBREG_STANDBY    = 1,  /**< \brief standbyģʽ */
+    KL26_SIM_USBREG_NO_STANDBY = 0,  /**< \brief 非standby模式 */
+    KL26_SIM_USBREG_STANDBY    = 1,  /**< \brief standby模式 */
 } amhw_kl26_sim_usb_regulator_t;
 
 /**
- * \brief RTC��LPTMR��32Kʱ��ԴERCLK32K
+ * \brief RTC和LPTMR的32K时钟源ERCLK32K
  */
 typedef enum amhw_kl26_sim_ercclk32k_src {
     KL26_SIM_OSC32KSEL_SYS   = 0,    /**< \brief OSC32KCLK  */
@@ -134,7 +134,7 @@ typedef enum amhw_kl26_sim_ercclk32k_src {
 } amhw_kl26_sim_ercclk32k_src_t;
 
 /**
- * \brief RTC_CLKOUT����ʱ�����Դ
+ * \brief RTC_CLKOUT引脚时钟输出源
  */
 typedef enum amhw_kl26_sim_rtc_clkout {
     KL26_SIM_RTC_CLKOUT_RTC      = 0,   /**< \brief RTC 1HZ   */
@@ -142,18 +142,18 @@ typedef enum amhw_kl26_sim_rtc_clkout {
 } amhw_kl26_sim_rtc_clkout_t;
 
 /**
- * \brief CLKOUT����ʱ�����Դ
+ * \brief CLKOUT引脚时钟输出源
  */
 typedef enum amhw_kl26_sim_clkout {
-    KL26_SIM_CLKOUT_BUSCLK   = 2,      /**< \brief BUSʱ��   */
+    KL26_SIM_CLKOUT_BUSCLK   = 2,      /**< \brief BUS时钟   */
     KL26_SIM_CLKOUT_LPOCLK   = 3,      /**< \brief LPO 1HZ   */
     KL26_SIM_CLKOUT_MCGIRCLK = 4,      /**< \brief MCGIRCLK  */
     KL26_SIM_CLKOUT_OSCERCLK = 6,      /**< \brief OSCERCLK  */
 } amhw_kl26_sim_clkout_t;
 
 /**
- * \brief ����MCGPLLCLK/MCGFLLCLKʱ��ѡ��
- * \note  ����ʹ��MCGFLLCLKʱ�ӣ�MCGFLLCLKĬ��2��Ƶ��ʹ��
+ * \brief 外设MCGPLLCLK/MCGFLLCLK时钟选择
+ * \note  建议使用MCGFLLCLK时钟，MCGFLLCLK默认2分频后使用
  */
 typedef enum amhw_kl26_sim_fllpll_sel {
     KL26_SIM_PLLFLLSEL_FLL = 0,    /**< \brief FLL           */
@@ -161,8 +161,8 @@ typedef enum amhw_kl26_sim_fllpll_sel {
 } amhw_kl26_sim_fllpll_sel_t;
 
 /**
- * \brief USBʱ��ѡ��
- * \note  USBʱ����Ҫ�ﵽ48MHz
+ * \brief USB时钟选择
+ * \note  USB时钟需要达到48MHz
  */
 typedef enum amhw_kl26_sim_usb_src {
     KL26_SIM_USBSRC_USBCLKIN  = 0,    /**< \brief USB_CLKIN     */
@@ -170,8 +170,8 @@ typedef enum amhw_kl26_sim_usb_src {
 } amhw_kl26_sim_usb_src_t;
 
 /**
- * \brief TPMʱ��Դѡ��
- * \note ѡ��PLL/FLLԴʱ��Ҫ��ʹ��KL26_SIM_periph_pllfll_set����
+ * \brief TPM时钟源选择
+ * \note 选择PLL/FLL源时，要先使用KL26_SIM_periph_pllfll_set函数
  */
 typedef enum amhw_kl26_sim_tpm_src {
     KL26_SIM_TPMSRC_DISABLED  = 0,    /**< \brief DISABLED   */
@@ -181,8 +181,8 @@ typedef enum amhw_kl26_sim_tpm_src {
 } amhw_kl26_sim_tpm_src_t;
 
 /**
- * \brief UART0ʱ��Դѡ��
- * \note ѡ��PLL/FLLԴʱ��Ҫ��ʹ��KL26_SIM_periph_pllfll_set����
+ * \brief UART0时钟源选择
+ * \note 选择PLL/FLL源时，要先使用KL26_SIM_periph_pllfll_set函数
  */
 typedef enum amhw_kl26_sim_uart0_src {
     KL26_SIM_UART0SRC_DISABLED  = 0,    /**< \brief DISABLED   */
@@ -192,7 +192,7 @@ typedef enum amhw_kl26_sim_uart0_src {
 } amhw_kl26_sim_uart0_src_t;
 
 /**
- * \brief TPM1ͨ��0����Դѡ��
+ * \brief TPM1通道0捕获源选择
  */
 typedef enum amhw_kl26_sim_tpm1ch0_src {
     KL26_SIM_TPM1CH0SRC_TPM1CH0 = 0,    /**< \brief TPM1_CH0   */
@@ -200,7 +200,7 @@ typedef enum amhw_kl26_sim_tpm1ch0_src {
 } amhw_kl26_sim_tpm1ch0_src_t;
 
 /**
- * \brief TPM2ͨ��0����Դѡ��
+ * \brief TPM2通道0捕获源选择
  */
 typedef enum amhw_kl26_sim_tpm2ch0_src {
     KL26_SIM_TPM2CH0SRC_TPM2CH0 = 0,    /**< \brief TPM1_CH0   */
@@ -208,111 +208,111 @@ typedef enum amhw_kl26_sim_tpm2ch0_src {
 } amhw_kl26_sim_tpm2ch0_src_t;
 
 /**
- * \brief TPM0�ⲿʱ����������ѡ��
+ * \brief TPM0外部时钟输入引脚选择
  */
 typedef enum amhw_kl26_sim_tpm0_clkin {
-    KL26_SIM_TPM0_CLKIN_0 = 0,    /**< \brief TPM0_CLKIN_0����  */
-    KL26_SIM_TPM0_CLKIN_1 = 1,    /**< \brief TPM0_CLKIN_1����  */
+    KL26_SIM_TPM0_CLKIN_0 = 0,    /**< \brief TPM0_CLKIN_0引脚  */
+    KL26_SIM_TPM0_CLKIN_1 = 1,    /**< \brief TPM0_CLKIN_1引脚  */
 } amhw_kl26_sim_tpm0_clkin_t;
 
 /**
- * \brief TPM1�ⲿʱ����������ѡ��
+ * \brief TPM1外部时钟输入引脚选择
  */
 typedef enum amhw_kl26_sim_tpm1_clkin {
-    KL26_SIM_TPM1_CLKIN_0 = 0,    /**< \brief TPM1_CLKIN_0����  */
-    KL26_SIM_TPM1_CLKIN_1 = 1,    /**< \brief TPM1_CLKIN_1����  */
+    KL26_SIM_TPM1_CLKIN_0 = 0,    /**< \brief TPM1_CLKIN_0引脚  */
+    KL26_SIM_TPM1_CLKIN_1 = 1,    /**< \brief TPM1_CLKIN_1引脚  */
 } amhw_kl26_sim_tpm1_clkin_t;
 
 /**
- * \brief TPM2�ⲿʱ����������ѡ��
+ * \brief TPM2外部时钟输入引脚选择
  */
 typedef enum amhw_kl26_sim_tpm2_clkin {
-    KL26_SIM_TPM2_CLKIN_0 = 0,    /**< \brief TPM2_CLKIN_0����  */
-    KL26_SIM_TPM2_CLKIN_1 = 1,    /**< \brief TPM2_CLKIN_1����  */
+    KL26_SIM_TPM2_CLKIN_0 = 0,    /**< \brief TPM2_CLKIN_0引脚  */
+    KL26_SIM_TPM2_CLKIN_1 = 1,    /**< \brief TPM2_CLKIN_1引脚  */
 } amhw_kl26_sim_tpm2_clkin_t;
 
 /**
- * \brief UART0��������TXԴ
+ * \brief UART0发送数据TX源
  */
 typedef enum amhw_kl26_sim_uart0_tx_src {
-    KL26_SIM_UART0_TXSRC_TX      = 0,    /**< \brief TX����  */
-    KL26_SIM_UART0_TXSRC_TX_TPM1 = 1,    /**< \brief TX���ż���TPM1����  */
-    KL26_SIM_UART0_TXSRC_TX_TPM2 = 2,    /**< \brief TX���ż���TPM2����  */
+    KL26_SIM_UART0_TXSRC_TX      = 0,    /**< \brief TX引脚  */
+    KL26_SIM_UART0_TXSRC_TX_TPM1 = 1,    /**< \brief TX引脚加上TPM1调制  */
+    KL26_SIM_UART0_TXSRC_TX_TPM2 = 2,    /**< \brief TX引脚加上TPM2调制  */
 } amhw_kl26_sim_uart0_tx_src_t;
 
 /**
- * \brief UART0��������TXԴ
+ * \brief UART0接收数据TX源
  */
 typedef enum amhw_kl26_sim_uart0_rx_src {
-    KL26_SIM_UART0_TXSRC_RX   = 0,      /**< \brief RX����       */
-    KL26_SIM_UART0_TXSRC_CMP0 = 1,      /**< \brief CMP0���  */
+    KL26_SIM_UART0_TXSRC_RX   = 0,      /**< \brief RX引脚       */
+    KL26_SIM_UART0_TXSRC_CMP0 = 1,      /**< \brief CMP0输出  */
 } amhw_kl26_sim_uart0_rx_src_t;
 
 /**
- * \brief UART1��������TXԴ
+ * \brief UART1发送数据TX源
  */
 typedef enum amhw_kl26_sim_uart1_tx_src {
-    KL26_SIM_UART1_TXSRC_TX      = 0,    /**< \brief TX����  */
-    KL26_SIM_UART1_TXSRC_TX_TPM1 = 1,    /**< \brief TX���ż���TPM1����  */
-    KL26_SIM_UART1_TXSRC_TX_TPM2 = 2,    /**< \brief TX���ż���TPM2����  */
+    KL26_SIM_UART1_TXSRC_TX      = 0,    /**< \brief TX引脚  */
+    KL26_SIM_UART1_TXSRC_TX_TPM1 = 1,    /**< \brief TX引脚加上TPM1调制  */
+    KL26_SIM_UART1_TXSRC_TX_TPM2 = 2,    /**< \brief TX引脚加上TPM2调制  */
 } amhw_kl26_sim_uart1_tx_src_t;
 
 /**
- * \brief UART1��������TXԴ
+ * \brief UART1接收数据TX源
  */
 typedef enum amhw_kl26_sim_uart1_rx_src {
-    KL26_SIM_UART1_TXSRC_RX   = 0,      /**< \brief RX����       */
-    KL26_SIM_UART1_TXSRC_CMP0 = 1,      /**< \brief CMP0���  */
+    KL26_SIM_UART1_TXSRC_RX   = 0,      /**< \brief RX引脚       */
+    KL26_SIM_UART1_TXSRC_CMP0 = 1,      /**< \brief CMP0输出  */
 } amhw_kl26_sim_uart1_rx_src_t;
 
 /**
- * \brief ADC0����ԴTPM1ͨ��ѡ��
+ * \brief ADC0触发源TPM1通道选择
  */
 typedef enum amhw_kl26_sim_adc0_pretrigger {
-    KL26_SIM_ADC0_PRE_TRIGGER_A = 0,    /**< \brief ��ʱ��1ͨ��0  */
-    KL26_SIM_ADC0_PRE_TRIGGER_B = 1,    /**< \brief ��ʱ��1ͨ��1  */
+    KL26_SIM_ADC0_PRE_TRIGGER_A = 0,    /**< \brief 定时器1通道0  */
+    KL26_SIM_ADC0_PRE_TRIGGER_B = 1,    /**< \brief 定时器1通道1  */
 } amhw_kl26_sim_adc0_pretrigger_t;
 
 /**
- * \brief ADC0����Դѡ��
+ * \brief ADC0触发源选择
  */
 typedef enum amhw_kl26_sim_adc0_trigger {
-    KL26_SIM_ADC0_TRIGGER_EXTRG  = 0,    /**< \brief �ⲿ������������ */
+    KL26_SIM_ADC0_TRIGGER_EXTRG  = 0,    /**< \brief 外部触发引脚输入 */
     KL26_SIM_ADC0_TRIGGER_CMP0   = 1,    /**< \brief CMP0 OUTPUT    */
-    KL26_SIM_ADC0_TRIGGER_PIT0   = 4,    /**< \brief PIT ����0      */
-    KL26_SIM_ADC0_TRIGGER_PIT1   = 5,    /**< \brief PIT ����1      */
-    KL26_SIM_ADC0_TRIGGER_TPM0   = 8,    /**< \brief ��ʱ��0���           */
-    KL26_SIM_ADC0_TRIGGER_TPM1   = 9,    /**< \brief ��ʱ��1���           */
-    KL26_SIM_ADC0_TRIGGER_TPM2   = 10,   /**< \brief ��ʱ��2���           */
-    KL26_SIM_ADC0_TRIGGER_RTCALR = 12,   /**< \brief RTC����                    */
-    KL26_SIM_ADC0_TRIGGER_RTCSEC = 13,   /**< \brief RTC��                         */
-    KL26_SIM_ADC0_TRIGGER_LPTMR0 = 14,   /**< \brief LPTMR0����            */
+    KL26_SIM_ADC0_TRIGGER_PIT0   = 4,    /**< \brief PIT 触发0      */
+    KL26_SIM_ADC0_TRIGGER_PIT1   = 5,    /**< \brief PIT 触发1      */
+    KL26_SIM_ADC0_TRIGGER_TPM0   = 8,    /**< \brief 定时器0溢出           */
+    KL26_SIM_ADC0_TRIGGER_TPM1   = 9,    /**< \brief 定时器1溢出           */
+    KL26_SIM_ADC0_TRIGGER_TPM2   = 10,   /**< \brief 定时器2溢出           */
+    KL26_SIM_ADC0_TRIGGER_RTCALR = 12,   /**< \brief RTC报警                    */
+    KL26_SIM_ADC0_TRIGGER_RTCSEC = 13,   /**< \brief RTC秒                         */
+    KL26_SIM_ADC0_TRIGGER_LPTMR0 = 14,   /**< \brief LPTMR0触发            */
 } amhw_kl26_sim_adc0_trigger_t;
 
 /**
- * \brief COP���Ź���ʱʱ��
+ * \brief COP看门狗超时时间
  */
 typedef enum amhw_kl26_sim_cop_timeout {
-    KL26_SIM_COP_DISABLED      = 0,   /**< \brief COP ����  */
-    KL26_SIM_COP_TIMOUT_VALUE1 = 1,   /**< \brief 2��5�η���LPO���ڻ�2��13�η�BUS���� */
-    KL26_SIM_COP_TIMOUT_VALUE2 = 2,   /**< \brief 2��8�η���LPO���ڻ�2��16�η�BUS���� */
-    KL26_SIM_COP_TIMOUT_VALUE3 = 3,   /**< \brief 2��10�η���LPO���ڻ�2��18�η�BUS���� */
+    KL26_SIM_COP_DISABLED      = 0,   /**< \brief COP 禁能  */
+    KL26_SIM_COP_TIMOUT_VALUE1 = 1,   /**< \brief 2的5次方个LPO周期或2的13次方BUS周期 */
+    KL26_SIM_COP_TIMOUT_VALUE2 = 2,   /**< \brief 2的8次方个LPO周期或2的16次方BUS周期 */
+    KL26_SIM_COP_TIMOUT_VALUE3 = 3,   /**< \brief 2的10次方个LPO周期或2的18次方BUS周期 */
 } amhw_kl26_sim_cop_timeout_t;
 
 /**
- * \brief COP���Ź�ʱ��ѡ��
+ * \brief COP看门狗时钟选择
  */
 typedef enum amhw_kl26_sim_cop_clk {
-    KL26_SIM_COP_CLK_INTERNAL = 0,    /**< \brief �ڲ�1KHZʱ��  */
-    KL26_SIM_COP_CLK_BUS      = 1,    /**< \brief ����ʱ�� */
+    KL26_SIM_COP_CLK_INTERNAL = 0,    /**< \brief 内部1KHZ时钟  */
+    KL26_SIM_COP_CLK_BUS      = 1,    /**< \brief 总线时钟 */
 } amhw_kl26_sim_cop_clk_t;
 
 /**
- * \brief COP���Ź�ģʽ
+ * \brief COP看门狗模式
  */
 typedef enum amhw_kl26_sim_cop_mode {
-    KL26_SIM_COP_MODE_NORMAL = 0,    /**< \brief ����ģʽ  */
-    KL26_SIM_COP_MODE_WINDOW = 1,    /**< \brief ����ģʽ */
+    KL26_SIM_COP_MODE_NORMAL = 0,    /**< \brief 正常模式  */
+    KL26_SIM_COP_MODE_WINDOW = 1,    /**< \brief 窗口模式 */
 } amhw_kl26_sim_cop_mode_t;
 
 /*******************************************************************************
@@ -320,8 +320,8 @@ typedef enum amhw_kl26_sim_cop_mode {
  ******************************************************************************/
 
 /**
- * \brief ʹ��USB������
- * \return ��
+ * \brief 使能USB调节器
+ * \return 无
  */
 am_static_inline
 void amhw_kl26_sim_usbreg_enable (void)
@@ -331,8 +331,8 @@ void amhw_kl26_sim_usbreg_enable (void)
 }
 
 /**
- * \brief ����USB������
- * \return ��
+ * \brief 禁能USB调节器
+ * \return 无
  */
 am_static_inline
 void amhw_kl26_sim_usbreg_disable (void)
@@ -342,9 +342,9 @@ void amhw_kl26_sim_usbreg_disable (void)
 }
 
 /**
- * \brief USB��ѹ����������(Stop��VLPS��LLS��VLLSģʽ��)
- * \param[in] value : USB��ѹ����������ֵ
- * \return ��
+ * \brief USB电压调节器设置(Stop、VLPS、LLS、VLLS模式下)
+ * \param[in] value : USB电压调节器设置值
+ * \return 无
  */
 am_static_inline
 void amhw_kl26_sim_usbsstby_set (amhw_kl26_sim_usb_regulator_t value)
@@ -355,9 +355,9 @@ void amhw_kl26_sim_usbsstby_set (amhw_kl26_sim_usb_regulator_t value)
 }
 
 /**
- * \brief USB��ѹ����������(VLPR��VLPWģʽ��)
- * \param[in] value : USB��ѹ����������ֵ
- * \return ��
+ * \brief USB电压调节器设置(VLPR、VLPW模式下)
+ * \param[in] value : USB电压调节器设置值
+ * \return 无
  */
 am_static_inline
 void amhw_kl26_sim_usbvstby_set (amhw_kl26_sim_usb_regulator_t value)
@@ -368,9 +368,9 @@ void amhw_kl26_sim_usbvstby_set (amhw_kl26_sim_usb_regulator_t value)
 }
 
 /**
- * \brief ERC32KCLKʱ��Դѡ��
- * \param[in] value : ERC32KCLKʱ��Դ
- * \return ��
+ * \brief ERC32KCLK时钟源选择
+ * \param[in] value : ERC32KCLK时钟源
+ * \return 无
  */
 am_static_inline
 void amhw_kl26_sim_ercclk32k_src_set (amhw_kl26_sim_ercclk32k_src_t value)
@@ -380,8 +380,8 @@ void amhw_kl26_sim_ercclk32k_src_set (amhw_kl26_sim_ercclk32k_src_t value)
 }
 
 /**
- * \brief ��ȡERC32KCLKʱ��Դ
- * \return ERC32KCLKʱ��Դ
+ * \brief 获取ERC32KCLK时钟源
+ * \return ERC32KCLK时钟源
  */
 am_static_inline
 amhw_kl26_sim_ercclk32k_src_t amhw_kl26_sim_ercclk32k_src_get (void)
@@ -390,9 +390,9 @@ amhw_kl26_sim_ercclk32k_src_t amhw_kl26_sim_ercclk32k_src_get (void)
 }
 
 /**
- * \brief RTC_CLKOUT����ʱ�����Դѡ��
- * \param[in] value : ���ʱ��Դ
- * \return ��
+ * \brief RTC_CLKOUT引脚时钟输出源选择
+ * \param[in] value : 输出时钟源
+ * \return 无
  */
 am_static_inline
 void amhw_kl26_sim_rtc_clkout_set (amhw_kl26_sim_rtc_clkout_t value)
@@ -402,8 +402,8 @@ void amhw_kl26_sim_rtc_clkout_set (amhw_kl26_sim_rtc_clkout_t value)
 }
 
 /**
- * \brief ��ȡRTC_CLKOUT����ʱ�����Դ
- * \return ��
+ * \brief 获取RTC_CLKOUT引脚时钟输出源
+ * \return 无
  */
 am_static_inline
 amhw_kl26_sim_rtc_clkout_t amhw_kl26_sim_rtc_clkout_get (void)
@@ -412,9 +412,9 @@ amhw_kl26_sim_rtc_clkout_t amhw_kl26_sim_rtc_clkout_get (void)
 }
 
 /**
- * \brief CLKOUT����ʱ�����ѡ��
- * \param[in] value : CLK���ʱ��
- * \return ��
+ * \brief CLKOUT引脚时钟输出选择
+ * \param[in] value : CLK输出时钟
+ * \return 无
  */
 am_static_inline
 void amhw_kl26_sim_clkout_set (amhw_kl26_sim_clkout_t value)
@@ -424,9 +424,9 @@ void amhw_kl26_sim_clkout_set (amhw_kl26_sim_clkout_t value)
 }
 
 /**
- * \brief ����MCGPLLCLK/MCGFLLCLKʱ��ѡ��
- * \param[in] value : PLL/FLLʱ��
- * \return ��
+ * \brief 外设MCGPLLCLK/MCGFLLCLK时钟选择
+ * \param[in] value : PLL/FLL时钟
+ * \return 无
  */
 am_static_inline
 void amhw_kl26_sim_pllfll_sel_set (amhw_kl26_sim_fllpll_sel_t value)
@@ -436,8 +436,8 @@ void amhw_kl26_sim_pllfll_sel_set (amhw_kl26_sim_fllpll_sel_t value)
 }
 
 /**
- * \brief ��ȡ����MCGPLLCLK/MCGFLLCLKʱ��Դ
- * \return ����MCGPLLCLK/MCGFLLCLKʱ��Դ
+ * \brief 获取外设MCGPLLCLK/MCGFLLCLK时钟源
+ * \return 外设MCGPLLCLK/MCGFLLCLK时钟源
  */
 am_static_inline
 amhw_kl26_sim_fllpll_sel_t amhw_kl26_sim_pllfll_sel_get (void)
@@ -446,9 +446,9 @@ amhw_kl26_sim_fllpll_sel_t amhw_kl26_sim_pllfll_sel_get (void)
 }
 
 /**
- * \brief USBʱ��ѡ��
- * \param[in] value : USB_CLKIN����PFF��FLL
- * \return ��
+ * \brief USB时钟选择
+ * \param[in] value : USB_CLKIN或者PFF、FLL
+ * \return 无
  */
 am_static_inline
 void amhw_kl26_sim_usb_src_set (amhw_kl26_sim_usb_src_t value)
@@ -458,8 +458,8 @@ void amhw_kl26_sim_usb_src_set (amhw_kl26_sim_usb_src_t value)
 }
 
 /**
- * \brief ��ȡ����USBʱ��Դ
- * \return ����USBʱ��Դ
+ * \brief 获取外设USB时钟源
+ * \return 外设USB时钟源
  */
 am_static_inline
 amhw_kl26_sim_usb_src_t amhw_kl26_sim_usb_src_get (void)
@@ -468,9 +468,9 @@ amhw_kl26_sim_usb_src_t amhw_kl26_sim_usb_src_get (void)
 }
 
 /**
- * \brief TPMʱ��Դѡ��
- * \param[in] value : TPMʱ��Դ
- * \return ��
+ * \brief TPM时钟源选择
+ * \param[in] value : TPM时钟源
+ * \return 无
  */
 am_static_inline
 void amhw_kl26_sim_tpm_src_set (amhw_kl26_sim_tpm_src_t value)
@@ -480,8 +480,8 @@ void amhw_kl26_sim_tpm_src_set (amhw_kl26_sim_tpm_src_t value)
 }
 
 /**
- * \brief TPMʱ��Դ��ȡ
- * \return TPMʱ��Դ
+ * \brief TPM时钟源获取
+ * \return TPM时钟源
  */
 am_static_inline
 amhw_kl26_sim_tpm_src_t amhw_kl26_sim_tpm_src_get (void)
@@ -490,9 +490,9 @@ amhw_kl26_sim_tpm_src_t amhw_kl26_sim_tpm_src_get (void)
 }
 
 /**
- * \brief UART0ʱ��Դѡ��
- * \param[in] value : UART0ʱ��Դ
- * \return ��
+ * \brief UART0时钟源选择
+ * \param[in] value : UART0时钟源
+ * \return 无
  */
 am_static_inline
 void amhw_kl26_sim_uart0_src_set (amhw_kl26_sim_uart0_src_t value)
@@ -502,8 +502,8 @@ void amhw_kl26_sim_uart0_src_set (amhw_kl26_sim_uart0_src_t value)
 }
 
 /**
- * \brief UART0ʱ��Դ��ȡ
- * \return UART0ʹ�õ�ʱ��Դ
+ * \brief UART0时钟源获取
+ * \return UART0使用的时钟源
  */
 am_static_inline
 amhw_kl26_sim_uart0_src_t amhw_kl26_sim_uart0_src_get (void)
@@ -512,10 +512,10 @@ amhw_kl26_sim_uart0_src_t amhw_kl26_sim_uart0_src_get (void)
 }
 
 /**
- * \brief TPM1ͨ��0����Դѡ��
- * \param[in] value : TPM1ͨ��0����Դ
- * \return ��
- * \note ��TPM1��ʹ�����벶��ģʽʱ�����Щλ
+ * \brief TPM1通道0捕获源选择
+ * \param[in] value : TPM1通道0捕获源
+ * \return 无
+ * \note 当TPM1不使用输入捕获模式时清空这些位
  */
 am_static_inline
 void amhw_kl26_sim_tpm1ch0_src_set (amhw_kl26_sim_tpm1ch0_src_t value)
@@ -525,10 +525,10 @@ void amhw_kl26_sim_tpm1ch0_src_set (amhw_kl26_sim_tpm1ch0_src_t value)
 }
 
 /**
- * \brief TPM2ͨ��0����Դѡ��
- * \param[in] value : TPM1ͨ��0����Դ
- * \return ��
- * \note ��TPM2��ʹ�����벶��ģʽʱ�����Щλ
+ * \brief TPM2通道0捕获源选择
+ * \param[in] value : TPM1通道0捕获源
+ * \return 无
+ * \note 当TPM2不使用输入捕获模式时清空这些位
  */
 am_static_inline
 void amhw_kl26_sim_tpm2ch0_src_set (amhw_kl26_sim_tpm2ch0_src_t value)
@@ -538,10 +538,10 @@ void amhw_kl26_sim_tpm2ch0_src_set (amhw_kl26_sim_tpm2ch0_src_t value)
 }
 
 /**
- * \brief TPM0�ⲿʱ������ѡ��
- * \param[in] value :�ⲿʱ������
- * \return ��
- * \note ��Щѡ������ű���ͨ���������üĴ������ó�TPMʱ�����Ź���
+ * \brief TPM0外部时钟引脚选择
+ * \param[in] value :外部时钟引脚
+ * \return 无
+ * \note 这些选择的引脚必须通过引脚配置寄存器配置成TPM时钟引脚功能
  */
 am_static_inline
 void amhw_kl26_sim_tpm0_clkin_set (amhw_kl26_sim_tpm0_clkin_t value)
@@ -551,10 +551,10 @@ void amhw_kl26_sim_tpm0_clkin_set (amhw_kl26_sim_tpm0_clkin_t value)
 }
 
 /**
- * \brief TPM1�ⲿʱ������ѡ��
- * \param[in] value :�ⲿʱ������
- * \return ��
- * \note ��Щѡ������ű���ͨ���������üĴ������ó�TPMʱ�����Ź���
+ * \brief TPM1外部时钟引脚选择
+ * \param[in] value :外部时钟引脚
+ * \return 无
+ * \note 这些选择的引脚必须通过引脚配置寄存器配置成TPM时钟引脚功能
  */
 am_static_inline
 void amhw_kl26_sim_tpm1_clkin_set (amhw_kl26_sim_tpm1_clkin_t value)
@@ -564,10 +564,10 @@ void amhw_kl26_sim_tpm1_clkin_set (amhw_kl26_sim_tpm1_clkin_t value)
 }
 
 /**
- * \brief TPM2�ⲿʱ������ѡ��
- * \param[in] value :�ⲿʱ������
- * \return ��
- * \note ��Щѡ������ű���ͨ���������üĴ������ó�TPMʱ�����Ź���
+ * \brief TPM2外部时钟引脚选择
+ * \param[in] value :外部时钟引脚
+ * \return 无
+ * \note 这些选择的引脚必须通过引脚配置寄存器配置成TPM时钟引脚功能
  */
 am_static_inline
 void amhw_kl26_sim_tpm2_clkin_set (amhw_kl26_sim_tpm2_clkin_t value)
@@ -577,9 +577,9 @@ void amhw_kl26_sim_tpm2_clkin_set (amhw_kl26_sim_tpm2_clkin_t value)
 }
 
 /**
- * \brief  UART0 ��������TXԴ����
- * \param[in] value : TX����Դ
- * \return ��
+ * \brief  UART0 发送数据TX源设置
+ * \param[in] value : TX发送源
+ * \return 无
  * \note
  */
 am_static_inline
@@ -590,9 +590,9 @@ void amhw_kl26_sim_uart0_tx_src_set (amhw_kl26_sim_uart0_tx_src_t value)
 }
 
 /**
- * \brief  UART0 ��������RXԴ����
- * \param[in] value : RX����Դ
- * \return ��
+ * \brief  UART0 接收数据RX源设置
+ * \param[in] value : RX接收源
+ * \return 无
  * \note
  */
 am_static_inline
@@ -603,9 +603,9 @@ void amhw_kl26_sim_uart0_rx_src_set (amhw_kl26_sim_uart0_rx_src_t value)
 }
 
 /**
- * \brief  UART1 ��������TXԴ����
- * \param[in] value : TX����Դ
- * \return ��
+ * \brief  UART1 发送数据TX源设置
+ * \param[in] value : TX发送源
+ * \return 无
  * \note
  */
 am_static_inline
@@ -616,9 +616,9 @@ void amhw_kl26_sim_uart1_tx_src_set (amhw_kl26_sim_uart1_tx_src_t value)
 }
 
 /**
- * \brief  UART1 ��������RXԴ����
- * \param[in] value : RX����Դ
- * \return ��
+ * \brief  UART1 接收数据RX源设置
+ * \param[in] value : RX接收源
+ * \return 无
  * \note
  */
 am_static_inline
@@ -629,8 +629,8 @@ void amhw_kl26_sim_uart1_rx_src_set (amhw_kl26_sim_uart1_rx_src_t value)
 }
 
 /**
- * \brief UART0���ſ�©ʹ��
- * \return ��
+ * \brief UART0引脚开漏使能
+ * \return 无
  * \note
  */
 am_static_inline
@@ -640,8 +640,8 @@ void amhw_kl26_sim_uart0_open_drain_enable (void)
 }
 
 /**
- * \brief UART0���ſ�©����
- * \return ��
+ * \brief UART0引脚开漏禁能
+ * \return 无
  * \note
  */
 am_static_inline
@@ -651,8 +651,8 @@ void amhw_kl26_sim_uart0_odrain_disable (void)
 }
 
 /**
- * \brief UART1���ſ�©ʹ��
- * \return ��
+ * \brief UART1引脚开漏使能
+ * \return 无
  * \note
  */
 am_static_inline
@@ -662,8 +662,8 @@ void amhw_kl26_sim_uart1_open_drain_enable (void)
 }
 
 /**
- * \brief UART1���ſ�©����
- * \return ��
+ * \brief UART1引脚开漏禁能
+ * \return 无
  * \note
  */
 am_static_inline
@@ -673,8 +673,8 @@ void amhw_kl26_sim_uart1_open_drain_disable (void)
 }
 
 /**
- * \brief UART2���ſ�©ʹ��
- * \return ��
+ * \brief UART2引脚开漏使能
+ * \return 无
  * \note
  */
 am_static_inline
@@ -684,8 +684,8 @@ void amhw_kl26_sim_uart2_open_drain_enable (void)
 }
 
 /**
- * \brief UART2���ſ�©����
- * \return ��
+ * \brief UART2引脚开漏禁能
+ * \return 无
  * \note
  */
 am_static_inline
@@ -695,8 +695,8 @@ void amhw_kl26_sim_uart2_open_drain_disable (void)
 }
 
 /**
- * \brief ADC0�ഥ��Դʹ�ܣ�Ĭ��TPM1ͨ��0��ͨ��1������
- * \return ��
+ * \brief ADC0多触发源使能（默认TPM1通道0或通道1触发）
+ * \return 无
  * \note
  */
 am_static_inline
@@ -706,8 +706,8 @@ void amhw_kl26_sim_adc0_alter_trigger_enable (void)
 }
 
 /**
- * \brief ADC0�ഥ��Դ���ܣ�ѡ��ΪTPM1ͨ��0��ͨ��1������
- * \return ��
+ * \brief ADC0多触发源禁能（选择为TPM1通道0或通道1触发）
+ * \return 无
  * \note
  */
 am_static_inline
@@ -717,10 +717,10 @@ void amhw_kl26_sim_adc0_alter_trigger_disable (void)
 }
 
 /**
- * \brief ADC0����ԴTPM1ͨ��ѡ��
- * \param[in] value : ͨ��0��ͨ��1
- * \return ��
- * \note  ��ADC0�ഥ��Դ����ʱ
+ * \brief ADC0触发源TPM1通道选择
+ * \param[in] value : 通道0或通道1
+ * \return 无
+ * \note  当ADC0多触发源禁能时
  */
 am_static_inline
 void amhw_kl26_sim_adc0_pretrigger_set (amhw_kl26_sim_adc0_pretrigger_t value)
@@ -730,9 +730,9 @@ void amhw_kl26_sim_adc0_pretrigger_set (amhw_kl26_sim_adc0_pretrigger_t value)
 }
 
 /**
- * \brief ADC0����Դѡ��
- * \param[in] flags : ADC����Դ
- * \return ��
+ * \brief ADC0触发源选择
+ * \param[in] flags : ADC触发源
+ * \return 无
  * \note
  */
 am_static_inline
@@ -743,9 +743,9 @@ void amhw_kl26_sim_adc0_trigger_set (amhw_kl26_sim_adc0_trigger_t flags)
 }
 
 /**
- * \brief ϵͳ�豸��Ϣ�Ĵ���
- *        ���Ի��оƬ������ϵ�У�SRAM��С��������Ŀ����Ϣ
- * \return SDID�Ĵ���ֵ
+ * \brief 系统设备信息寄存器
+ *        可以获得芯片的所在系列，SRAM大小，引脚数目等信息
+ * \return SDID寄存器值
  */
 am_static_inline
 uint32_t amhw_kl26_sim_sdid_get (void)
@@ -754,9 +754,9 @@ uint32_t amhw_kl26_sim_sdid_get (void)
 }
 
 /**
- * \brief ����ϵͳʱ��ʹ��
- * \param[in] periph : �����ſ�
- * \return ��
+ * \brief 外设系统时钟使能
+ * \param[in] periph : 外设门控
+ * \return 无
  */
 am_static_inline
 void amhw_kl26_sim_periph_clock_enable (amhw_kl26_sim_scgc_periph_t periph)
@@ -765,9 +765,9 @@ void amhw_kl26_sim_periph_clock_enable (amhw_kl26_sim_scgc_periph_t periph)
 }
 
 /**
- * \brief ����ϵͳʱ�ӽ���
- * \param[in] periph : �����ſ�
- * \return ��
+ * \brief 外设系统时钟禁能
+ * \param[in] periph : 外设门控
+ * \return 无
  */
 am_static_inline
 void amhw_kl26_sim_periph_clock_disable (amhw_kl26_sim_scgc_periph_t periph)
@@ -776,9 +776,9 @@ void amhw_kl26_sim_periph_clock_disable (amhw_kl26_sim_scgc_periph_t periph)
 }
 
 /**
- * \brief CORE_CLKʱ�ӷ�Ƶϵ��OUTDIV1����
- * \param[in] value :OUTDIV1��Ƶϵ�� 0~15
- * \return ��
+ * \brief CORE_CLK时钟分频系数OUTDIV1设置
+ * \param[in] value :OUTDIV1分频系数 0~15
+ * \return 无
  */
 am_static_inline
 void amhw_kl26_sim_clkdiv1_outdiv1_set (uint32_t value)
@@ -788,8 +788,8 @@ void amhw_kl26_sim_clkdiv1_outdiv1_set (uint32_t value)
 }
 
 /**
- * \brief ��ȡCORE_CLKʱ�ӷ�Ƶϵ��OUTDIV1
- * \return ��
+ * \brief 获取CORE_CLK时钟分频系数OUTDIV1
+ * \return 无
  */
 am_static_inline
 uint32_t amhw_kl26_sim_clkdiv1_outdiv1_get (void)
@@ -798,9 +798,9 @@ uint32_t amhw_kl26_sim_clkdiv1_outdiv1_get (void)
 }
 
 /**
- * \brief BUS_CLKʱ�ӷ�Ƶϵ��OUTDIV4����
- * \param[in] value :OUTDIV4��Ƶϵ�� 0~7
- * \return ��
+ * \brief BUS_CLK时钟分频系数OUTDIV4设置
+ * \param[in] value :OUTDIV4分频系数 0~7
+ * \return 无
  */
 am_static_inline
 void amhw_kl26_sim_clkdiv1_outdiv4_set (uint32_t value)
@@ -810,8 +810,8 @@ void amhw_kl26_sim_clkdiv1_outdiv4_set (uint32_t value)
 }
 
 /**
- * \brief ��ȡBUS_CLKʱ�ӷ�Ƶϵ��OUTDIV4
- * \return ��
+ * \brief 获取BUS_CLK时钟分频系数OUTDIV4
+ * \return 无
  */
 am_static_inline
 uint32_t amhw_kl26_sim_clkdiv1_outdiv4_get (void)
@@ -820,8 +820,8 @@ uint32_t amhw_kl26_sim_clkdiv1_outdiv4_get (void)
 }
 
 /**
- * \brief ʹ��flash
- * \return ��
+ * \brief 使能flash
+ * \return 无
  */
 am_static_inline
 void amhw_kl26_sim_flash_enable (void)
@@ -830,8 +830,8 @@ void amhw_kl26_sim_flash_enable (void)
 }
 
 /**
- * \brief ��ֹ��flash
- * \return ��
+ * \brief 禁止能flash
+ * \return 无
  */
 am_static_inline
 void amhw_kl26_sim_flash_disable (void)
@@ -840,8 +840,8 @@ void amhw_kl26_sim_flash_disable (void)
 }
 
 /**
- * \brief dozeģʽ��ʹ��flash
- * \return ��
+ * \brief doze模式下使能flash
+ * \return 无
  */
 am_static_inline
 void amhw_kl26_sim_flash_doze_enable (void)
@@ -850,8 +850,8 @@ void amhw_kl26_sim_flash_doze_enable (void)
 }
 
 /**
- * \brief dozeģʽ�½���flash
- * \return ��
+ * \brief doze模式下禁能flash
+ * \return 无
  */
 am_static_inline
 void amhw_kl26_sim_flash_doze_disable (void)
@@ -860,7 +860,7 @@ void amhw_kl26_sim_flash_doze_disable (void)
 }
 
 /**
- * \brief ��ѯflash ��С
+ * \brief 查询flash 大小
  * \retval 0 : 8kb flash
  * \retval 1 : 16kb flash
  * \retval 3 : 32kb flash
@@ -876,8 +876,8 @@ uint32_t amhw_kl26_sim_flash_size_get (void)
 }
 
 /**
- * \brief ��ȡFCFG MAXADDR0ֵ
- * \return MAXADDR0��ֵַ
+ * \brief 获取FCFG MAXADDR0值
+ * \return MAXADDR0地址值
  */
 am_static_inline
 uint32_t amhw_kl26_sim_flash_maxaddr0_get (void)
@@ -886,8 +886,8 @@ uint32_t amhw_kl26_sim_flash_maxaddr0_get (void)
 }
 
 /**
- * \brief ��ȡFCFG MAXADDR1ֵ
- * \return MAXADDR1��ֵַ
+ * \brief 获取FCFG MAXADDR1值
+ * \return MAXADDR1地址值
  */
 am_static_inline
 uint32_t amhw_kl26_sim_flash_maxaddr1_get (void)
@@ -896,8 +896,8 @@ uint32_t amhw_kl26_sim_flash_maxaddr1_get (void)
 }
 
 /**
- * \brief ��ȡͨ��Ψһ��ʶ��UID��λ
- * \return UID ��λ
+ * \brief 获取通用唯一标识符UID高位
+ * \return UID 高位
  */
 am_static_inline
 uint32_t amhw_kl26_sim_uid_high_get (void)
@@ -906,8 +906,8 @@ uint32_t amhw_kl26_sim_uid_high_get (void)
 }
 
 /**
- * \brief ��ȡͨ��Ψһ��ʶ��UID�е�λ
- * \return UID �е�λ
+ * \brief 获取通用唯一标识符UID中低位
+ * \return UID 中低位
  */
 am_static_inline
 uint32_t amhw_kl26_sim_uid_mid_get (void)
@@ -916,8 +916,8 @@ uint32_t amhw_kl26_sim_uid_mid_get (void)
 }
 
 /**
- * \brief ��ȡͨ��Ψһ��ʶ��UID��λ
- * \return UID ��λ
+ * \brief 获取通用唯一标识符UID低位
+ * \return UID 低位
  */
 am_static_inline
 uint32_t amhw_kl26_sim_uid_low_get (void)
@@ -926,15 +926,15 @@ uint32_t amhw_kl26_sim_uid_low_get (void)
 }
 
 /**
- * \brief COP����
+ * \brief COP配置
  *
- * \param[in] mode    : ģʽ
- * \param[in] clk     : ʱ��Դ
- * \param[in] timeout : ��ʱʱ��
+ * \param[in] mode    : 模式
+ * \param[in] clk     : 时钟源
+ * \param[in] timeout : 超时时间
  *
- * \return ��
+ * \return 无
  *
- * \note ��λ֮��ֻ��дһ��COPC
+ * \note 复位之后只能写一次COPC
  */
 am_static_inline
 void amhw_kl26_sim_cop_cfg (amhw_kl26_sim_cop_mode_t    mode,
@@ -945,10 +945,10 @@ void amhw_kl26_sim_cop_cfg (amhw_kl26_sim_cop_mode_t    mode,
 }
 
 /**
- * \brief ��ȡCOP���Ź�ʱ��Դ
+ * \brief 获取COP看门狗时钟源
  *
- * retval: KL26_SIM_COP_CLK_INTERNAL���ڲ�1KHZʱ��
- *         KL26_SIM_COP_CLK_BUS������ʱ��
+ * retval: KL26_SIM_COP_CLK_INTERNAL，内部1KHZ时钟
+ *         KL26_SIM_COP_CLK_BUS，总线时钟
  */
 am_static_inline
 amhw_kl26_sim_cop_clk_t amhw_kl26_sim_cop_src_get (void)
@@ -957,11 +957,11 @@ amhw_kl26_sim_cop_clk_t amhw_kl26_sim_cop_src_get (void)
 }
 
 /**
- * \brief COP����������������Ź�ι������������
+ * \brief COP服务操作函数（看门狗喂狗操作函数）
  *
- * \param[in] value :0x55��0xAA
+ * \param[in] value :0x55或0xAA
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_kl26_sim_srvcop_set (uint8_t value)

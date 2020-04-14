@@ -12,20 +12,20 @@
 
 /**
  * \file
- * \brief CRC Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief CRC ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿Ú´òÓ¡ "CRC-16 result is     : 0xbb3d\r\n"£»
- *   2. ´®¿Ú´òÓ¡ "CRC-CCITT result is  : 0x29b1\r\n"£»
- *   3. ´®¿Ú´òÓ¡ "CRC-32 result is     : 0xcbf43926\r\n"£»
- *   4. LED ÒÔ 0.5s µÄÊ±¼ä¼ä¸ôÉÁË¸¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. ä¸²å£æ‰“å° "CRC-16 result is     : 0xbb3d\r\n"ï¼›
+ *   2. ä¸²å£æ‰“å° "CRC-CCITT result is  : 0x29b1\r\n"ï¼›
+ *   3. ä¸²å£æ‰“å° "CRC-32 result is     : 0xcbf43926\r\n"ï¼›
+ *   4. LED ä»¥ 0.5s çš„æ—¶é—´é—´éš”é—ªçƒã€‚
  *
  * \note
- *    1. LED0 ĞèÒª¶Ì½Ó J9 ÌøÏßÃ±£¬²ÅÄÜ±» PIO1_8 ¿ØÖÆ£»
- *    2. ÈçĞè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔĞÅÏ¢£¬ĞèÒª½« PIO1_2 Òı½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *       PIO1_0 Òı½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
+ *    1. LED0 éœ€è¦çŸ­æ¥ J9 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIO1_8 æ§åˆ¶ï¼›
+ *    2. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO1_2 å¼•è„šè¿æ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *       PIO1_0 å¼•è„šè¿æ¥ PC ä¸²å£çš„ RXDã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am845_core_std_crc.c src_am845_core_std_crc
  *
  * \internal
@@ -48,7 +48,7 @@
 #include "demo_std_entries.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am845_core_std_crc_entry (void)
 {

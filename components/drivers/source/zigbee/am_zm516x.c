@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief  ZigBee Ä£¿é ZM516X Çı¶¯
+ * \brief  ZigBee æ¨¡å— ZM516X é©±åŠ¨
  *
  * \internal
  * \par modification history:
@@ -29,62 +29,62 @@
 #include "am_int.h"
 #include <string.h>
 
-#define __ZM516X_CFG_TAG    "\xAB\xBC\xCD"    /**< \brief ÓÀ¾ÃÃüÁîÖ¡Ö¡Í· */
-#define __ZM516X_COM_TAG    "\xDE\xDF\xEF"    /**< \brief ÁÙÊ±ÃüÁîÖ¡Ö¡Í· */
+#define __ZM516X_CFG_TAG    "\xAB\xBC\xCD"    /**< \brief æ°¸ä¹…å‘½ä»¤å¸§å¸§å¤´ */
+#define __ZM516X_COM_TAG    "\xDE\xDF\xEF"    /**< \brief ä¸´æ—¶å‘½ä»¤å¸§å¸§å¤´ */
 
-#define __ZM516X_CFG_END    0xAA              /**< \brief ÓÀ¾ÃÃüÁîÖ¡Ö¡Î² */
+#define __ZM516X_CFG_END    0xAA              /**< \brief æ°¸ä¹…å‘½ä»¤å¸§å¸§å°¾ */
 
-#define __ZM516X_CMD_BUF_LEN       100    /**< \brief ÃüÁî»º´æ³¤¶È */
-#define __ZM516X_RSP_BUF_LEN       100    /**< \brief Ó¦´ğ»º´æ³¤¶È */
-#define __ZM516X_CMD_SPACE_TIME    5      /**< \brief ÃüÁîÖ¡¼ä¸ôÊ±¼ä£¬µ¥Î»£ºms */
+#define __ZM516X_CMD_BUF_LEN       100    /**< \brief å‘½ä»¤ç¼“å­˜é•¿åº¦ */
+#define __ZM516X_RSP_BUF_LEN       100    /**< \brief åº”ç­”ç¼“å­˜é•¿åº¦ */
+#define __ZM516X_CMD_SPACE_TIME    5      /**< \brief å‘½ä»¤å¸§é—´éš”æ—¶é—´ï¼Œå•ä½ï¼šms */
 
-/** \brief ÓÀ¾Ã²ÎÊıÅäÖÃÃüÁî */
+/** \brief æ°¸ä¹…å‚æ•°é…ç½®å‘½ä»¤ */
 enum __ZM516X_CFG_CMD {
-    ZM516X_CFG_CONFIG_GET       = 0xD1,    /**< \brief ¶ÁÈ¡±¾µØÅäÖÃ */
-    ZM516X_CFG_CHAN_SET         = 0xD2,    /**< \brief ÉèÖÃÍ¨µÀºÅ */
-    ZM516X_CFG_DISCOVER         = 0xD4,    /**< \brief ËÑË÷ */
-    ZM516X_CFG_REMOTE_GET       = 0xD5,    /**< \brief »ñÈ¡Ô¶³ÌÅäÖÃĞÅÏ¢ */
-    ZM516X_CFG_CONFIG_SET       = 0xD6,    /**< \brief ĞŞ¸ÄÅäÖÃ£¬ÉèÖÃ³É¹¦Ğè¸´Î» */
-    ZM516X_CFG_RESET            = 0xD9,    /**< \brief ¸´Î» */
-    ZM516X_CFG_REDEFAULT        = 0xDA,    /**< \brief »Ö¸´³ö³§ÉèÖÃ£¬ÉèÖÃ³É¹¦Ğè¸´Î» */
-    ZM516X_CFG_SRC_DIS          = 0xDC,    /**< \brief °üÍ·ÏÔÊ¾Ô´µØÖ·£¬ÉèÖÃ³É¹¦Ğè¸´Î» */
-    ZM516X_CFG_GPIO_DIR         = 0xE1,    /**< \brief ÉèÖÃ/»ñÈ¡ GPIO ·½Ïò£¬ÉèÖÃ³É¹¦Ğè¸´Î» */
-    ZM516X_CFG_IO_ADC_UPLOAD    = 0xE2,    /**< \brief IO/AD ²É¼¯ÉèÖÃ/»ñÈ¡£¬ÉèÖÃ³É¹¦Ğè¸´Î» */
-    ZM516X_CFG_GPIO_STATE       = 0xE3,    /**< \brief ÉèÖÃ/»ñÈ¡ GPIO µçÆ½ */
-    ZM516X_CFG_PWM              = 0xE4,    /**< \brief PWM ¿ØÖÆÊä³ö */
-    ZM516X_CFG_NETWORK_SET      = 0xE5,    /**< \brief ÉèÖÃ×Ô×éÍø¹¦ÄÜ£¬ÉèÖÃ³É¹¦Ğè¸´Î» */
-    ZM516X_CFG_JOIN_ENABLE      = 0xE6,    /**< \brief Ö÷»úÔÊĞí´Ó»ú¼ÓÈëÍøÂç */
-    ZM516X_CFG_SLAVE_GET        = 0xE7,    /**< \brief ²éÑ¯Ö÷»úÄ£¿é´æ´¢µÄ´Ó»úĞÅÏ¢ */
-    ZM516X_CFG_STATE_GET        = 0xE8,    /**< \brief ²éÑ¯Ö÷´Ó»ú×´Ì¬ */
+    ZM516X_CFG_CONFIG_GET       = 0xD1,    /**< \brief è¯»å–æœ¬åœ°é…ç½® */
+    ZM516X_CFG_CHAN_SET         = 0xD2,    /**< \brief è®¾ç½®é€šé“å· */
+    ZM516X_CFG_DISCOVER         = 0xD4,    /**< \brief æœç´¢ */
+    ZM516X_CFG_REMOTE_GET       = 0xD5,    /**< \brief è·å–è¿œç¨‹é…ç½®ä¿¡æ¯ */
+    ZM516X_CFG_CONFIG_SET       = 0xD6,    /**< \brief ä¿®æ”¹é…ç½®ï¼Œè®¾ç½®æˆåŠŸéœ€å¤ä½ */
+    ZM516X_CFG_RESET            = 0xD9,    /**< \brief å¤ä½ */
+    ZM516X_CFG_REDEFAULT        = 0xDA,    /**< \brief æ¢å¤å‡ºå‚è®¾ç½®ï¼Œè®¾ç½®æˆåŠŸéœ€å¤ä½ */
+    ZM516X_CFG_SRC_DIS          = 0xDC,    /**< \brief åŒ…å¤´æ˜¾ç¤ºæºåœ°å€ï¼Œè®¾ç½®æˆåŠŸéœ€å¤ä½ */
+    ZM516X_CFG_GPIO_DIR         = 0xE1,    /**< \brief è®¾ç½®/è·å– GPIO æ–¹å‘ï¼Œè®¾ç½®æˆåŠŸéœ€å¤ä½ */
+    ZM516X_CFG_IO_ADC_UPLOAD    = 0xE2,    /**< \brief IO/AD é‡‡é›†è®¾ç½®/è·å–ï¼Œè®¾ç½®æˆåŠŸéœ€å¤ä½ */
+    ZM516X_CFG_GPIO_STATE       = 0xE3,    /**< \brief è®¾ç½®/è·å– GPIO ç”µå¹³ */
+    ZM516X_CFG_PWM              = 0xE4,    /**< \brief PWM æ§åˆ¶è¾“å‡º */
+    ZM516X_CFG_NETWORK_SET      = 0xE5,    /**< \brief è®¾ç½®è‡ªç»„ç½‘åŠŸèƒ½ï¼Œè®¾ç½®æˆåŠŸéœ€å¤ä½ */
+    ZM516X_CFG_JOIN_ENABLE      = 0xE6,    /**< \brief ä¸»æœºå…è®¸ä»æœºåŠ å…¥ç½‘ç»œ */
+    ZM516X_CFG_SLAVE_GET        = 0xE7,    /**< \brief æŸ¥è¯¢ä¸»æœºæ¨¡å—å­˜å‚¨çš„ä»æœºä¿¡æ¯ */
+    ZM516X_CFG_STATE_GET        = 0xE8,    /**< \brief æŸ¥è¯¢ä¸»ä»æœºçŠ¶æ€ */
 };
 
-/** \brief ÁÙÊ±²ÎÊıÅäÖÃÃüÁî */
+/** \brief ä¸´æ—¶å‚æ•°é…ç½®å‘½ä»¤ */
 enum __ZM516X_COM_CMD {
-    ZM516X_COM_CHAN_SET         = 0xD1,    /**< \brief ĞŞ¸ÄÍ¨µÀºÅ */
-    ZM516X_COM_DEST_SET         = 0xD2,    /**< \brief ĞŞ¸ÄÄ¿µÄÍøÂçµØÖ· */
-    ZM516X_COM_SRC_DIS          = 0xD3,    /**< \brief °üÍ·ÏÔÊ¾Ô´µØÖ· */
-    ZM516X_COM_GPIO_DIR_SET     = 0xD4,    /**< \brief ÉèÖÃ GPIO ·½Ïò */
-    ZM516X_COM_GPIO_GET         = 0xD5,    /**< \brief »ñÈ¡ GPIO µçÆ½ */
-    ZM516X_COM_GPIO_SET         = 0xD6,    /**< \brief ÉèÖÃ GPIO µçÆ½ */
-    ZM516X_COM_ADC_GET          = 0xD7,    /**< \brief »ñÈ¡ ADC ÊıÖµ */
-    ZM516X_COM_SLEEP            = 0xD8,    /**< \brief ½øÈëĞİÃß */
-    ZM516X_COM_MODE_SET         = 0xD9,    /**< \brief ÉèÖÃÍ¨Ñ¶Ä£Ê½ */
-    ZM516X_COM_CSQ_GET          = 0xDA,    /**< \brief »ñÈ¡ĞÅºÅÇ¿¶È */
+    ZM516X_COM_CHAN_SET         = 0xD1,    /**< \brief ä¿®æ”¹é€šé“å· */
+    ZM516X_COM_DEST_SET         = 0xD2,    /**< \brief ä¿®æ”¹ç›®çš„ç½‘ç»œåœ°å€ */
+    ZM516X_COM_SRC_DIS          = 0xD3,    /**< \brief åŒ…å¤´æ˜¾ç¤ºæºåœ°å€ */
+    ZM516X_COM_GPIO_DIR_SET     = 0xD4,    /**< \brief è®¾ç½® GPIO æ–¹å‘ */
+    ZM516X_COM_GPIO_GET         = 0xD5,    /**< \brief è·å– GPIO ç”µå¹³ */
+    ZM516X_COM_GPIO_SET         = 0xD6,    /**< \brief è®¾ç½® GPIO ç”µå¹³ */
+    ZM516X_COM_ADC_GET          = 0xD7,    /**< \brief è·å– ADC æ•°å€¼ */
+    ZM516X_COM_SLEEP            = 0xD8,    /**< \brief è¿›å…¥ä¼‘çœ  */
+    ZM516X_COM_MODE_SET         = 0xD9,    /**< \brief è®¾ç½®é€šè®¯æ¨¡å¼ */
+    ZM516X_COM_CSQ_GET          = 0xDA,    /**< \brief è·å–ä¿¡å·å¼ºåº¦ */
 };
 
-/** \brief ÓÀ¾Ã²ÎÊıÅäÖÃÃüÁîÓ¦´ğ */
+/** \brief æ°¸ä¹…å‚æ•°é…ç½®å‘½ä»¤åº”ç­” */
 enum __ZM516X_CFG_ERR {
-    ZM516X_CFG_OK              = 0x00,    /**< \brief ²Ù×÷³É¹¦ */
-    ZM516X_CFG_LENGTH_FAUSE    = 0x01,    /**< \brief Ö¡³¤¶È´íÎó */
-    ZM516X_CFG_ADDRESS_FAUSE   = 0x02,    /**< \brief µØÖ·´íÎó */
-    ZM516X_CFG_CHECK_FAUSE     = 0x03,    /**< \brief Ö¡×Ö½ÚĞ£Ñé´íÎó */
-    ZM516X_CFG_WRITE_FAUSE     = 0x04,    /**< \brief Ğ´´íÎó */
-    ZM516X_CFG_OTHER_FAUSE     = 0x05,    /**< \brief ÆäËü´íÎó */
+    ZM516X_CFG_OK              = 0x00,    /**< \brief æ“ä½œæˆåŠŸ */
+    ZM516X_CFG_LENGTH_FAUSE    = 0x01,    /**< \brief å¸§é•¿åº¦é”™è¯¯ */
+    ZM516X_CFG_ADDRESS_FAUSE   = 0x02,    /**< \brief åœ°å€é”™è¯¯ */
+    ZM516X_CFG_CHECK_FAUSE     = 0x03,    /**< \brief å¸§å­—èŠ‚æ ¡éªŒé”™è¯¯ */
+    ZM516X_CFG_WRITE_FAUSE     = 0x04,    /**< \brief å†™é”™è¯¯ */
+    ZM516X_CFG_OTHER_FAUSE     = 0x05,    /**< \brief å…¶å®ƒé”™è¯¯ */
 };
 
-/** \brief ÁÙÊ±²ÎÊıÅäÖÃÃüÁîÓ¦´ğ */
+/** \brief ä¸´æ—¶å‚æ•°é…ç½®å‘½ä»¤åº”ç­” */
 enum __ZM516X_COM_ERR {
-    ZM516X_COM_OK              = 0x00,    /**< \brief ²Ù×÷³É¹¦ */
+    ZM516X_COM_OK              = 0x00,    /**< \brief æ“ä½œæˆåŠŸ */
 };
 
 typedef struct __firmware_info {
@@ -106,7 +106,7 @@ static void __delay(uint32_t time)
 		}
 }
 /**
- * \brief ACK Òı½ÅÖĞ¶Ï·şÎñº¯Êı
+ * \brief ACK å¼•è„šä¸­æ–­æœåŠ¡å‡½æ•°
  */
 am_local void __ack_pint_isr (void *p_arg)
 {
@@ -115,7 +115,7 @@ am_local void __ack_pint_isr (void *p_arg)
     am_wait_done(&p_dev->ack_wait);
 }
 
-/** \brief ·¢ËÍ ZigBee ÃüÁî */
+/** \brief å‘é€ ZigBee å‘½ä»¤ */
 am_local am_bool_t am_zm516x_send_cmd (am_uart_rngbuf_handle_t  rngbuf_handle,
                                        uint8_t                 *p_cmd,
                                        uint16_t                 cmd_len,
@@ -138,7 +138,7 @@ am_local am_bool_t am_zm516x_send_cmd (am_uart_rngbuf_handle_t  rngbuf_handle,
     am_int_cpu_unlock(key);
 
     if (p_rsp == NULL) {
-        return AM_TRUE;   /* Ó¦´ğÎŞ·µ»ØÖµ£¬Ö±½Ó·µ»Ø AM_TRUE */
+        return AM_TRUE;   /* åº”ç­”æ— è¿”å›å€¼ï¼Œç›´æ¥è¿”å› AM_TRUE */
     }
 
     for (i = 0; i < timeout; i++) {
@@ -155,7 +155,7 @@ am_local am_bool_t am_zm516x_send_cmd (am_uart_rngbuf_handle_t  rngbuf_handle,
         return AM_FALSE;
     }
 
-    /* Ó¦´ğÖ¡¼ä¸ôÎª 100ms£¬Ó¦´ğÍê³É */
+    /* åº”ç­”å¸§é—´éš”ä¸º 100msï¼Œåº”ç­”å®Œæˆ */
     for (i = 0; i < 10; i++) {
         len = am_uart_rngbuf_receive(rngbuf_handle,
                                     &p_rsp[index],
@@ -172,7 +172,7 @@ am_local am_bool_t am_zm516x_send_cmd (am_uart_rngbuf_handle_t  rngbuf_handle,
     return AM_TRUE;
 }
 
-/** \brief Ïò ZigBee Ä£¿é·¢ËÍ nbytes ¸ö×Ö½ÚÊı¾İ */
+/** \brief å‘ ZigBee æ¨¡å—å‘é€ nbytes ä¸ªå­—èŠ‚æ•°æ® */
 am_err_t am_zm516x_send (am_zm516x_handle_t handle,
                          const void        *p_buf,
                          size_t             nbytes)
@@ -182,7 +182,7 @@ am_err_t am_zm516x_send (am_zm516x_handle_t handle,
     return am_uart_rngbuf_send(p_dev->uart_handle, (uint8_t *)p_buf, nbytes);
 }
 
-/** \brief Ïò ZigBee Ä£¿é·¢ËÍ nbytes ¸ö×Ö½ÚÊı¾İ£¬²¢µÈ´ı ACK */
+/** \brief å‘ ZigBee æ¨¡å—å‘é€ nbytes ä¸ªå­—èŠ‚æ•°æ®ï¼Œå¹¶ç­‰å¾… ACK */
 am_err_t am_zm516x_send_with_ack (am_zm516x_handle_t handle,
                                   const void        *p_buf,
                                   size_t             nbytes)
@@ -204,7 +204,7 @@ am_err_t am_zm516x_send_with_ack (am_zm516x_handle_t handle,
     }
 }
 
-/** \brief ´Ó ZigBee Ä£¿é½ÓÊÕ maxbytes ¸ö×Ö½ÚÊı¾İ */
+/** \brief ä» ZigBee æ¨¡å—æ¥æ”¶ maxbytes ä¸ªå­—èŠ‚æ•°æ® */
 am_err_t am_zm516x_receive (am_zm516x_handle_t handle,
                             void              *p_buf,
                             size_t             maxbytes)
@@ -217,10 +217,10 @@ am_err_t am_zm516x_receive (am_zm516x_handle_t handle,
 }
 
 /*******************************************************************************
-  ÓÀ¾ÃÃüÁî
+  æ°¸ä¹…å‘½ä»¤
 *******************************************************************************/
 
-/** \brief »ñÈ¡ ZigBee Ä£¿éµÄÅäÖÃĞÅÏ¢£¨ÓÀ¾ÃÃüÁî£ºD1£© */
+/** \brief è·å– ZigBee æ¨¡å—çš„é…ç½®ä¿¡æ¯ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šD1ï¼‰ */
 am_err_t am_zm516x_cfg_info_get (am_zm516x_handle_t    handle,
                                  am_zm516x_cfg_info_t *p_info)
 {
@@ -269,7 +269,7 @@ am_err_t am_zm516x_cfg_info_get (am_zm516x_handle_t    handle,
     return -AM_EPERM;
 }
 
-/** \brief ÉèÖÃ ZigBee Ä£¿éÍ¨µÀºÅ£¨ÓÀ¾ÃÃüÁî£ºD2£© */
+/** \brief è®¾ç½® ZigBee æ¨¡å—é€šé“å·ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šD2ï¼‰ */
 am_err_t am_zm516x_cfg_channel_set (am_zm516x_handle_t handle, uint8_t chan)
 {
     am_zm516x_dev_t *p_dev = (am_zm516x_dev_t *)handle;
@@ -306,7 +306,7 @@ am_err_t am_zm516x_cfg_channel_set (am_zm516x_handle_t handle, uint8_t chan)
     return -AM_EPERM;
 }
 
-/** \brief ËÑË÷ÆäËüÄ£¿é£¨ÓÀ¾ÃÃüÁî£ºD4£© */
+/** \brief æœç´¢å…¶å®ƒæ¨¡å—ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šD4ï¼‰ */
 am_err_t am_zm516x_discover (am_zm516x_handle_t     handle,
                              uint8_t                buf_size,
                              am_zm516x_base_info_t *p_base_info,
@@ -364,7 +364,7 @@ am_err_t am_zm516x_discover (am_zm516x_handle_t     handle,
     return -AM_EPERM;
 }
 
-/** \brief »ñÈ¡Ô¶³ÌÅäÖÃĞÅÏ¢£¨ÓÀ¾ÃÃüÁî£ºD5£© */
+/** \brief è·å–è¿œç¨‹é…ç½®ä¿¡æ¯ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šD5ï¼‰ */
 am_err_t am_zm516x_remote_info_get (am_zm516x_handle_t       handle,
                                     am_zm516x_addr_t        *p_zb_addr,
                                     am_zm516x_remote_info_t *p_remote_info)
@@ -411,7 +411,7 @@ am_err_t am_zm516x_remote_info_get (am_zm516x_handle_t       handle,
     return -AM_EPERM;
 }
 
-/** \brief ĞŞ¸Ä ZigBee Ä£¿éµÄÅäÖÃĞÅÏ¢£¨ÓÀ¾ÃÃüÁî£ºD6£©£¬ÉèÖÃ³É¹¦Ğè¸´Î» */
+/** \brief ä¿®æ”¹ ZigBee æ¨¡å—çš„é…ç½®ä¿¡æ¯ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šD6ï¼‰ï¼Œè®¾ç½®æˆåŠŸéœ€å¤ä½ */
 am_err_t am_zm516x_cfg_info_set (am_zm516x_handle_t    handle,
                                  am_zm516x_cfg_info_t *p_info)
 {
@@ -456,7 +456,7 @@ am_err_t am_zm516x_cfg_info_set (am_zm516x_handle_t    handle,
     return -AM_EPERM;
 }
 
-/** \brief Ê¹ ZigBee Ä£¿é¸´Î»£¨ÓÀ¾ÃÃüÁî£ºD9£© */
+/** \brief ä½¿ ZigBee æ¨¡å—å¤ä½ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šD9ï¼‰ */
 void am_zm516x_reset (am_zm516x_handle_t handle)
 {
     am_zm516x_dev_t     *p_dev = (am_zm516x_dev_t *)handle;
@@ -480,7 +480,7 @@ void am_zm516x_reset (am_zm516x_handle_t handle)
     __delay(200);
 }
 
-/** \brief »Ö¸´ ZigBee Ä£¿é³ö³§ÉèÖÃ£¨ÓÀ¾ÃÃüÁî£ºDA£©£¬ÉèÖÃ³É¹¦Ğè¸´Î» */
+/** \brief æ¢å¤ ZigBee æ¨¡å—å‡ºå‚è®¾ç½®ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šDAï¼‰ï¼Œè®¾ç½®æˆåŠŸéœ€å¤ä½ */
 am_err_t am_zm516x_default_set (am_zm516x_handle_t handle)
 {
     am_zm516x_dev_t     *p_dev = (am_zm516x_dev_t *)handle;
@@ -522,8 +522,8 @@ am_err_t am_zm516x_default_set (am_zm516x_handle_t handle)
 }
 
 /**
- * \brief ÉèÖÃ ZigBee Ä£¿é½ÓÊÕµÄÊı¾İ°ü°üÍ·ÊÇ·ñÏÔÊ¾Ô´µØÖ·£¨ÓÀ¾ÃÃüÁî£ºDC£©£¬
- *        ÉèÖÃ³É¹¦Ğè¸´Î»
+ * \brief è®¾ç½® ZigBee æ¨¡å—æ¥æ”¶çš„æ•°æ®åŒ…åŒ…å¤´æ˜¯å¦æ˜¾ç¤ºæºåœ°å€ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šDCï¼‰ï¼Œ
+ *        è®¾ç½®æˆåŠŸéœ€å¤ä½
  */
 am_err_t am_zm516x_cfg_display_head_set (am_zm516x_handle_t handle,
                                          am_zm516x_addr_t  *p_zb_addr,
@@ -572,7 +572,7 @@ am_err_t am_zm516x_cfg_display_head_set (am_zm516x_handle_t handle,
     return -AM_EPERM;
 }
 
-/** \brief ÉèÖÃÖ¸¶¨µØÖ· ZigBee Ä£¿éµÄ GPIO ÊäÈëÊä³ö·½Ïò£¨ÓÀ¾ÃÃüÁî£ºE1£© */
+/** \brief è®¾ç½®æŒ‡å®šåœ°å€ ZigBee æ¨¡å—çš„ GPIO è¾“å…¥è¾“å‡ºæ–¹å‘ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šE1ï¼‰ */
 am_err_t am_zm516x_cfg_gpio_dir_set (am_zm516x_handle_t handle,
                                      am_zm516x_addr_t  *p_zb_addr,
                                      uint8_t            dir)
@@ -624,7 +624,7 @@ am_err_t am_zm516x_cfg_gpio_dir_set (am_zm516x_handle_t handle,
     return -AM_EPERM;
 }
 
-/** \brief »ñÈ¡Ö¸¶¨µØÖ· ZigBee Ä£¿éµÄ GPIO ÊäÈëÊä³ö·½Ïò£¨ÓÀ¾ÃÃüÁî£ºE1£© */
+/** \brief è·å–æŒ‡å®šåœ°å€ ZigBee æ¨¡å—çš„ GPIO è¾“å…¥è¾“å‡ºæ–¹å‘ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šE1ï¼‰ */
 am_err_t am_zm516x_cfg_gpio_dir_get (am_zm516x_handle_t handle,
                                      am_zm516x_addr_t  *p_zb_addr,
                                      uint8_t           *p_dir)
@@ -674,7 +674,7 @@ am_err_t am_zm516x_cfg_gpio_dir_get (am_zm516x_handle_t handle,
     return -AM_EPERM;
 }
 
-/** \brief IO/AD ²É¼¯ÉèÖÃ£¨ÓÀ¾ÃÃüÁî£ºE2£©£¬ÉèÖÃ³É¹¦Ğè¸´Î» */
+/** \brief IO/AD é‡‡é›†è®¾ç½®ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šE2ï¼‰ï¼Œè®¾ç½®æˆåŠŸéœ€å¤ä½ */
 am_err_t am_zm516x_cfg_io_adc_upload_set (am_zm516x_handle_t handle,
                                           am_zm516x_addr_t  *p_zb_addr,
                                           uint8_t            dir,
@@ -738,7 +738,7 @@ am_err_t am_zm516x_cfg_io_adc_upload_set (am_zm516x_handle_t handle,
     return -AM_EPERM;
 }
 
-/** \brief IO/AD ²É¼¯ÅäÖÃ»ñÈ¡£¨ÓÀ¾ÃÃüÁî£ºE2£© */
+/** \brief IO/AD é‡‡é›†é…ç½®è·å–ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šE2ï¼‰ */
 am_err_t am_zm516x_cfg_io_adc_upload_get (am_zm516x_handle_t handle,
                                           am_zm516x_addr_t  *p_zb_addr,
                                           uint8_t           *p_dir,
@@ -799,7 +799,7 @@ am_err_t am_zm516x_cfg_io_adc_upload_get (am_zm516x_handle_t handle,
     return -AM_EPERM;
 }
 
-/** \brief ÉèÖÃÖ¸¶¨µØÖ· ZigBee Ä£¿éµÄ GPIO Êä³öÖµ£¨ÓÀ¾ÃÃüÁî£ºE3£© */
+/** \brief è®¾ç½®æŒ‡å®šåœ°å€ ZigBee æ¨¡å—çš„ GPIO è¾“å‡ºå€¼ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šE3ï¼‰ */
 am_err_t am_zm516x_cfg_gpio_set (am_zm516x_handle_t handle,
                                  am_zm516x_addr_t  *p_zb_addr,
                                  uint8_t            value)
@@ -851,7 +851,7 @@ am_err_t am_zm516x_cfg_gpio_set (am_zm516x_handle_t handle,
     return -AM_EPERM;
 }
 
-/** \brief »ñÈ¡Ö¸¶¨µØÖ· ZigBee Ä£¿éµÄ GPIO ÊäÈëÖµ£¨ÓÀ¾ÃÃüÁî£ºE3£© */
+/** \brief è·å–æŒ‡å®šåœ°å€ ZigBee æ¨¡å—çš„ GPIO è¾“å…¥å€¼ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šE3ï¼‰ */
 am_err_t am_zm516x_cfg_gpio_get (am_zm516x_handle_t handle,
                                  am_zm516x_addr_t  *p_zb_addr,
                                  uint8_t           *p_value)
@@ -902,7 +902,7 @@ am_err_t am_zm516x_cfg_gpio_get (am_zm516x_handle_t handle,
     return -AM_EPERM;
 }
 
-/** \brief ÉèÖÃÖ¸¶¨µØÖ· ZigBee Ä£¿éµÄ PWM Êä³öÖµ£¨ÓÀ¾ÃÃüÁî£ºE4£© */
+/** \brief è®¾ç½®æŒ‡å®šåœ°å€ ZigBee æ¨¡å—çš„ PWM è¾“å‡ºå€¼ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šE4ï¼‰ */
 am_err_t am_zm516x_cfg_pwm_set (am_zm516x_handle_t handle,
                                 am_zm516x_addr_t  *p_zb_addr,
                                 am_zm516x_pwm_t   *p_pwm)
@@ -970,7 +970,7 @@ am_err_t am_zm516x_cfg_pwm_set (am_zm516x_handle_t handle,
     return -AM_EPERM;
 }
 
-/** \brief »ñÈ¡Ö¸¶¨µØÖ· ZigBee Ä£¿éµÄ PWM Êä³öÖµÅäÖÃ£¨ÓÀ¾ÃÃüÁî£ºE4£© */
+/** \brief è·å–æŒ‡å®šåœ°å€ ZigBee æ¨¡å—çš„ PWM è¾“å‡ºå€¼é…ç½®ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šE4ï¼‰ */
 am_err_t am_zm516x_cfg_pwm_get (am_zm516x_handle_t handle,
                                 am_zm516x_addr_t  *p_zb_addr,
                                 am_zm516x_pwm_t   *p_pwm)
@@ -1026,7 +1026,7 @@ am_err_t am_zm516x_cfg_pwm_get (am_zm516x_handle_t handle,
     return -AM_EPERM;
 }
 
-/** \brief ÉèÖÃ×Ô×éÍø¹¦ÄÜ£¨ÓÀ¾ÃÃüÁî£ºE5£©£¬ÉèÖÃ³É¹¦Ğè¸´Î» */
+/** \brief è®¾ç½®è‡ªç»„ç½‘åŠŸèƒ½ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šE5ï¼‰ï¼Œè®¾ç½®æˆåŠŸéœ€å¤ä½ */
 am_err_t am_zm516x_cfg_network_set (am_zm516x_handle_t handle,
                                     am_bool_t          state,
                                     uint8_t            type)
@@ -1072,7 +1072,7 @@ am_err_t am_zm516x_cfg_network_set (am_zm516x_handle_t handle,
     return -AM_EPERM;
 }
 
-/** \brief Ö÷»úÔÊĞí´Ó»ú¼ÓÈëÍøÂç£¨ÓÀ¾ÃÃüÁî£ºE6£© */
+/** \brief ä¸»æœºå…è®¸ä»æœºåŠ å…¥ç½‘ç»œï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šE6ï¼‰ */
 am_err_t am_zm516x_cfg_join_enable (am_zm516x_handle_t handle,
                                     uint16_t           time)
 {
@@ -1115,7 +1115,7 @@ am_err_t am_zm516x_cfg_join_enable (am_zm516x_handle_t handle,
     return -AM_EPERM;
 }
 
-/** \brief ²éÑ¯Ö÷»úÄ£¿é´æ´¢µÄ´Ó»úĞÅÏ¢£¨ÓÀ¾ÃÃüÁî£ºE7£© */
+/** \brief æŸ¥è¯¢ä¸»æœºæ¨¡å—å­˜å‚¨çš„ä»æœºä¿¡æ¯ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šE7ï¼‰ */
 am_err_t am_zm516x_cfg_slave_get (am_zm516x_handle_t      handle,
                                   uint8_t                 buf_size,
                                   am_zm516x_slave_info_t *p_slave_info,
@@ -1162,7 +1162,7 @@ am_err_t am_zm516x_cfg_slave_get (am_zm516x_handle_t      handle,
     return -AM_EPERM;
 }
 
-/** \brief ²éÑ¯Ö÷´Ó»ú×´Ì¬£¨ÓÀ¾ÃÃüÁî£ºE8£© */
+/** \brief æŸ¥è¯¢ä¸»ä»æœºçŠ¶æ€ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šE8ï¼‰ */
 am_err_t am_zm516x_cfg_state_get (am_zm516x_handle_t handle,
                                   uint8_t           *p_state,
                                   uint8_t           *p_response_state)
@@ -1206,10 +1206,10 @@ am_err_t am_zm516x_cfg_state_get (am_zm516x_handle_t handle,
 }
 
 /*******************************************************************************
-  ÁÙÊ±ÃüÁî
+  ä¸´æ—¶å‘½ä»¤
 *******************************************************************************/
 
-/** \brief ÉèÖÃ ZigBee Ä£¿éÍ¨µÀºÅ£¨ÁÙÊ±ÃüÁî£ºD1£© */
+/** \brief è®¾ç½® ZigBee æ¨¡å—é€šé“å·ï¼ˆä¸´æ—¶å‘½ä»¤ï¼šD1ï¼‰ */
 am_err_t am_zm516x_channel_set (am_zm516x_handle_t handle, uint8_t chan)
 {
     am_zm516x_dev_t *p_dev = (am_zm516x_dev_t *)handle;
@@ -1245,7 +1245,7 @@ am_err_t am_zm516x_channel_set (am_zm516x_handle_t handle, uint8_t chan)
     return -AM_EPERM;
 }
 
-/** \brief ÉèÖÃ ZigBee Ä£¿éÄ¿±êµØÖ·£¨ÁÙÊ±ÃüÁî£ºD2£© */
+/** \brief è®¾ç½® ZigBee æ¨¡å—ç›®æ ‡åœ°å€ï¼ˆä¸´æ—¶å‘½ä»¤ï¼šD2ï¼‰ */
 am_err_t am_zm516x_dest_addr_set (am_zm516x_handle_t handle,
                                   am_zm516x_addr_t  *p_zb_addr)
 {
@@ -1282,7 +1282,7 @@ am_err_t am_zm516x_dest_addr_set (am_zm516x_handle_t handle,
     return -AM_EPERM;
 }
 
-/** \brief ÉèÖÃ ZigBee Ä£¿é½ÓÊÕµÄÊı¾İ°ü°üÍ·ÊÇ·ñÏÔÊ¾Ô´µØÖ·£¨ÁÙÊ±ÃüÁî£ºD3£© */
+/** \brief è®¾ç½® ZigBee æ¨¡å—æ¥æ”¶çš„æ•°æ®åŒ…åŒ…å¤´æ˜¯å¦æ˜¾ç¤ºæºåœ°å€ï¼ˆä¸´æ—¶å‘½ä»¤ï¼šD3ï¼‰ */
 am_err_t am_zm516x_display_head_set (am_zm516x_handle_t handle, am_bool_t flag)
 {
     am_zm516x_dev_t *p_dev = (am_zm516x_dev_t *)handle;
@@ -1318,7 +1318,7 @@ am_err_t am_zm516x_display_head_set (am_zm516x_handle_t handle, am_bool_t flag)
     return -AM_EPERM;
 }
 
-/** \brief ÉèÖÃÖ¸¶¨µØÖ· ZigBee Ä£¿éµÄ GPIO ÊäÈëÊä³ö·½Ïò£¨ÁÙÊ±ÃüÁî£ºD4£© */
+/** \brief è®¾ç½®æŒ‡å®šåœ°å€ ZigBee æ¨¡å—çš„ GPIO è¾“å…¥è¾“å‡ºæ–¹å‘ï¼ˆä¸´æ—¶å‘½ä»¤ï¼šD4ï¼‰ */
 am_err_t am_zm516x_gpio_dir (am_zm516x_handle_t handle,
                              am_zm516x_addr_t  *p_zb_addr,
                              uint8_t            dir)
@@ -1356,7 +1356,7 @@ am_err_t am_zm516x_gpio_dir (am_zm516x_handle_t handle,
     return -AM_EPERM;
 }
 
-/** \brief ¶ÁÈ¡Ö¸¶¨µØÖ· ZigBee Ä£¿éµÄ GPIO ÊäÈëÖµ£¨ÁÙÊ±ÃüÁî£ºD5£© */
+/** \brief è¯»å–æŒ‡å®šåœ°å€ ZigBee æ¨¡å—çš„ GPIO è¾“å…¥å€¼ï¼ˆä¸´æ—¶å‘½ä»¤ï¼šD5ï¼‰ */
 am_err_t am_zm516x_gpio_get (am_zm516x_handle_t handle,
                              am_zm516x_addr_t  *p_zb_addr,
                              uint8_t           *p_value)
@@ -1392,7 +1392,7 @@ am_err_t am_zm516x_gpio_get (am_zm516x_handle_t handle,
     return -AM_EPERM;
 }
 
-/** \brief ÉèÖÃÖ¸¶¨µØÖ· ZigBee Ä£¿éµÄGPIOÊä³öÖµ£¨ÁÙÊ±ÃüÁî£ºD6£© */
+/** \brief è®¾ç½®æŒ‡å®šåœ°å€ ZigBee æ¨¡å—çš„GPIOè¾“å‡ºå€¼ï¼ˆä¸´æ—¶å‘½ä»¤ï¼šD6ï¼‰ */
 am_err_t am_zm516x_gpio_set (am_zm516x_handle_t handle,
                              am_zm516x_addr_t  *p_zb_addr,
                              uint8_t            value)
@@ -1431,7 +1431,7 @@ am_err_t am_zm516x_gpio_set (am_zm516x_handle_t handle,
     return -AM_EPERM;
 }
 
-/** \brief ¶ÁÈ¡Ö¸¶¨µØÖ· ZigBee Ä£¿éµÄAD×ª»»Öµ£¨ÁÙÊ±ÃüÁî£ºD7£© */
+/** \brief è¯»å–æŒ‡å®šåœ°å€ ZigBee æ¨¡å—çš„ADè½¬æ¢å€¼ï¼ˆä¸´æ—¶å‘½ä»¤ï¼šD7ï¼‰ */
 am_err_t am_zm516x_ad_get (am_zm516x_handle_t handle,
                            am_zm516x_addr_t  *p_zb_addr,
                            uint8_t            chan,
@@ -1470,7 +1470,7 @@ am_err_t am_zm516x_ad_get (am_zm516x_handle_t handle,
     return -AM_EPERM;
 }
 
-/** \brief ÉèÖÃ ZigBee Ä£¿é½øÈëË¯ÃßÄ£Ê½£¨ÁÙÊ±ÃüÁî£ºD8£© */
+/** \brief è®¾ç½® ZigBee æ¨¡å—è¿›å…¥ç¡çœ æ¨¡å¼ï¼ˆä¸´æ—¶å‘½ä»¤ï¼šD8ï¼‰ */
 void am_zm516x_enter_sleep (am_zm516x_handle_t handle)
 {
     am_zm516x_dev_t *p_dev = (am_zm516x_dev_t *)handle;
@@ -1489,7 +1489,7 @@ void am_zm516x_enter_sleep (am_zm516x_handle_t handle)
     __delay(200);
 }
 
-/** \brief ÉèÖÃ ZigBee Ä£¿éµÄÍ¨Ñ¶Ä£Ê½£¨ÁÙÊ±ÃüÁî£ºD9£© */
+/** \brief è®¾ç½® ZigBee æ¨¡å—çš„é€šè®¯æ¨¡å¼ï¼ˆä¸´æ—¶å‘½ä»¤ï¼šD9ï¼‰ */
 am_err_t am_zm516x_mode_set (am_zm516x_handle_t    handle,
                              am_zm516x_comm_mode_t mode)
 {
@@ -1526,7 +1526,7 @@ am_err_t am_zm516x_mode_set (am_zm516x_handle_t    handle,
     return -AM_EPERM;
 }
 
-/** \brief ¶ÁÈ¡Ö¸¶¨µØÖ· ZigBee Ä£¿éµÄĞÅºÅÇ¿¶È£¨ÁÙÊ±ÃüÁî£ºDA£© */
+/** \brief è¯»å–æŒ‡å®šåœ°å€ ZigBee æ¨¡å—çš„ä¿¡å·å¼ºåº¦ï¼ˆä¸´æ—¶å‘½ä»¤ï¼šDAï¼‰ */
 am_err_t am_zm516x_sigal_get (am_zm516x_handle_t handle,
                               am_zm516x_addr_t  *p_zb_addr,
                               uint8_t           *p_signal)
@@ -1562,7 +1562,7 @@ am_err_t am_zm516x_sigal_get (am_zm516x_handle_t handle,
     return -AM_EPERM;
 }
 
-/** \brief ZM516XÄ£¿é³õÊ¼»¯ */
+/** \brief ZM516Xæ¨¡å—åˆå§‹åŒ– */
 am_zm516x_handle_t am_zm516x_init (am_zm516x_dev_t            *p_dev,
                                    const am_zm516x_dev_info_t *p_info,
                                    am_uart_handle_t            uart_handle)
@@ -1608,7 +1608,7 @@ am_zm516x_handle_t am_zm516x_init (am_zm516x_dev_t            *p_dev,
     return (am_zm516x_handle_t)(p_dev);
 }
 
-/** \brief ZM516XÄ£¿é½â³õÊ¼»¯ */
+/** \brief ZM516Xæ¨¡å—è§£åˆå§‹åŒ– */
 am_err_t am_zm516x_deinit (am_zm516x_handle_t handle)
 {
     if (NULL == handle) {

@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief RX8025SAÈí¼ş°üÊµÏÖ
+ * \brief RX8025SAè½¯ä»¶åŒ…å®ç°
  *
  * \internal
  * \par Modification history
@@ -23,71 +23,71 @@
 #include "am_rx8025sa.h"
 #include "am_gpio.h"
 /*****************************************************************************
- * ºê¶¨Òå
+ * å®å®šä¹‰
  ****************************************************************************/
  
- /** \brief RX8025SAÉè±¸µØÖ·  (ÆßÎ»)*/
+ /** \brief RX8025SAè®¾å¤‡åœ°å€  (ä¸ƒä½)*/
 #define __RX8025SA_ADDR               0x32
 
-#define __RX8025SA_12H_FORMAT  0   /** \brief 12Ğ¡Ê±ÖÆ */
-#define __RX8025SA_24H_FORMAT  1   /** \brief 24Ğ¡Ê±ÖÆ */
+#define __RX8025SA_12H_FORMAT  0   /** \brief 12å°æ—¶åˆ¶ */
+#define __RX8025SA_24H_FORMAT  1   /** \brief 24å°æ—¶åˆ¶ */
 /**
- * \name RX8025SA ¼Ä´æÆ÷µØÖ· + ´«ËÍÄ£Ê½ £¨ Ä¬ÈÏÎª0£©
+ * \name RX8025SA å¯„å­˜å™¨åœ°å€ + ä¼ é€æ¨¡å¼ ï¼ˆ é»˜è®¤ä¸º0ï¼‰
  *
- * \note ¸ßËÄÎ»Îª£º¼Ä´æÆ÷µØÖ·
- *       µÍËÄÎ»Îª£º´«ËÍÄ£Ê½        0h ±ê×¼µÄreadÄ£Ê½
- *                      4h Ëõ¶ÌË³ĞòreadÄ£Ê½ £¨²»ÍÆ¼ö£©
+ * \note é«˜å››ä½ä¸ºï¼šå¯„å­˜å™¨åœ°å€
+ *       ä½å››ä½ä¸ºï¼šä¼ é€æ¨¡å¼        0h æ ‡å‡†çš„readæ¨¡å¼
+ *                      4h ç¼©çŸ­é¡ºåºreadæ¨¡å¼ ï¼ˆä¸æ¨èï¼‰
  */
  
-#define __RX8025SA_REG_SECONDS          0x00    /**< \brief Ãë¼Ä´æÆ÷µØÖ· + ±ê×¼Ä£Ê½ */
-#define __RX8025SA_REG_MINUTES          0x10    /**< \brief ·Ö¼Ä´æÆ÷µØÖ· + ±ê×¼Ä£Ê½ */
-#define __RX8025SA_REG_HOURS            0x20    /**< \brief Ê±¼Ä´æÆ÷µØÖ· + ±ê×¼Ä£Ê½ */
-#define __RX8025SA_REG_WEEKDAYS         0x30    /**< \brief ĞÇÆÚ¼Ä´æÆ÷µØÖ· + ±ê×¼Ä£Ê½ */
-#define __RX8025SA_REG_DAYS             0x40    /**< \brief ÈÕ¼Ä´æÆ÷µØÖ· + ±ê×¼Ä£Ê½ */
-#define __RX8025SA_REG_MONTHS           0x50    /**< \brief ÔÂ¼Ä´æÆ÷µØÖ· + ±ê×¼Ä£Ê½ */
-#define __RX8025SA_REG_YEAERS           0x60    /**< \brief Äê¼Ä´æÆ÷µØÖ· + ±ê×¼Ä£Ê½ */
+#define __RX8025SA_REG_SECONDS          0x00    /**< \brief ç§’å¯„å­˜å™¨åœ°å€ + æ ‡å‡†æ¨¡å¼ */
+#define __RX8025SA_REG_MINUTES          0x10    /**< \brief åˆ†å¯„å­˜å™¨åœ°å€ + æ ‡å‡†æ¨¡å¼ */
+#define __RX8025SA_REG_HOURS            0x20    /**< \brief æ—¶å¯„å­˜å™¨åœ°å€ + æ ‡å‡†æ¨¡å¼ */
+#define __RX8025SA_REG_WEEKDAYS         0x30    /**< \brief æ˜ŸæœŸå¯„å­˜å™¨åœ°å€ + æ ‡å‡†æ¨¡å¼ */
+#define __RX8025SA_REG_DAYS             0x40    /**< \brief æ—¥å¯„å­˜å™¨åœ°å€ + æ ‡å‡†æ¨¡å¼ */
+#define __RX8025SA_REG_MONTHS           0x50    /**< \brief æœˆå¯„å­˜å™¨åœ°å€ + æ ‡å‡†æ¨¡å¼ */
+#define __RX8025SA_REG_YEAERS           0x60    /**< \brief å¹´å¯„å­˜å™¨åœ°å€ + æ ‡å‡†æ¨¡å¼ */
 
-#define __RX8025SA_REG_DIGITAL_OFFSET   0x70    /**< \brief Ê±ÖÓÆ«ÒÆ¼Ä´æÆ÷µØÖ· + ±ê×¼Ä£Ê½ */
+#define __RX8025SA_REG_DIGITAL_OFFSET   0x70    /**< \brief æ—¶é’Ÿåç§»å¯„å­˜å™¨åœ°å€ + æ ‡å‡†æ¨¡å¼ */
 
-#define __RX8025SA_REG_MINUTES_ALARM_W  0x80    /**< \brief ÄÖÖÓW·ÖÖÓ¼Ä´æÆ÷µØÖ· + ±ê×¼Ä£Ê½ */
-#define __RX8025SA_REG_HOURS_ALARM_W    0x90    /**< \brief ÄÖÖÓWĞ¡Ê±¼Ä´æÆ÷µØÖ·  + ±ê×¼Ä£Ê½*/
-#define __RX8025SA_REG_WEEKDAYS_ALARM_W 0xa0    /**< \brief ÄÖÖÓWĞÇÆÚ¼Ä´æÆ÷µØÖ· + ±ê×¼Ä£Ê½*/
+#define __RX8025SA_REG_MINUTES_ALARM_W  0x80    /**< \brief é—¹é’ŸWåˆ†é’Ÿå¯„å­˜å™¨åœ°å€ + æ ‡å‡†æ¨¡å¼ */
+#define __RX8025SA_REG_HOURS_ALARM_W    0x90    /**< \brief é—¹é’ŸWå°æ—¶å¯„å­˜å™¨åœ°å€  + æ ‡å‡†æ¨¡å¼*/
+#define __RX8025SA_REG_WEEKDAYS_ALARM_W 0xa0    /**< \brief é—¹é’ŸWæ˜ŸæœŸå¯„å­˜å™¨åœ°å€ + æ ‡å‡†æ¨¡å¼*/
 
-#define __RX8025SA_REG_MINUTES_ALARM_D  0xb0    /**< \brief ÄÖÖÓD·ÖÖÓ¼Ä´æÆ÷µØÖ· + ±ê×¼Ä£Ê½ */
-#define __RX8025SA_REG_HOURS_ALARM_D    0xc0    /**< \brief ÄÖÖÓDĞ¡Ê±¼Ä´æÆ÷µØÖ·  + ±ê×¼Ä£Ê½*/
+#define __RX8025SA_REG_MINUTES_ALARM_D  0xb0    /**< \brief é—¹é’ŸDåˆ†é’Ÿå¯„å­˜å™¨åœ°å€ + æ ‡å‡†æ¨¡å¼ */
+#define __RX8025SA_REG_HOURS_ALARM_D    0xc0    /**< \brief é—¹é’ŸDå°æ—¶å¯„å­˜å™¨åœ°å€  + æ ‡å‡†æ¨¡å¼*/
  /* 0x0d is reserved */
-#define __RX8025SA_REG_CONTROL1         0xe0    /**< \brief ¿ØÖÆ×´Ì¬¼Ä´æÆ÷1µØÖ· + ±ê×¼Ä£Ê½ */
-#define __RX8025SA_REG_CONTROL2         0xf0    /**< \brief ¿ØÖÆ×´Ì¬¼Ä´æÆ÷2µØÖ· + ±ê×¼Ä£Ê½ */
+#define __RX8025SA_REG_CONTROL1         0xe0    /**< \brief æ§åˆ¶çŠ¶æ€å¯„å­˜å™¨1åœ°å€ + æ ‡å‡†æ¨¡å¼ */
+#define __RX8025SA_REG_CONTROL2         0xf0    /**< \brief æ§åˆ¶çŠ¶æ€å¯„å­˜å™¨2åœ°å€ + æ ‡å‡†æ¨¡å¼ */
 
 /**
- * \name RX8025SA ¼Ä´æÆ÷Î»ÓòÃèÊö
+ * \name RX8025SA å¯„å­˜å™¨ä½åŸŸæè¿°
  * \anchor grp_rx8025sa_bitfield_descriptions
  * @{
  */
 
 
-#define __RX8025SA_C1_ALARM_W_EN   0x80   /**< \brief Ê¹ÄÜALARM_WÄÖÖÓ */
-#define __RX8025SA_C1_ALARM_D_EN   0x40   /**< \brief Ê¹ÄÜALARM_DÄÖÖÓ */
+#define __RX8025SA_C1_ALARM_W_EN   0x80   /**< \brief ä½¿èƒ½ALARM_Wé—¹é’Ÿ */
+#define __RX8025SA_C1_ALARM_D_EN   0x40   /**< \brief ä½¿èƒ½ALARM_Dé—¹é’Ÿ */
 
-#define __RX8025SA_C2_DAFG_ALARM_D        (uint8_t)(1<<0)    /**< \brief DAFGÎ»*/
-#define __RX8025SA_C2_WAFG_ALARM_W        (uint8_t)(1<<1)    /**< \brief WAFGÎ»*/
-#define __RX8025SA_C2_CTFG_INT            (uint8_t)(1<<2)    /**< \brief CTFGÎ»*/
+#define __RX8025SA_C2_DAFG_ALARM_D        (uint8_t)(1<<0)    /**< \brief DAFGä½*/
+#define __RX8025SA_C2_WAFG_ALARM_W        (uint8_t)(1<<1)    /**< \brief WAFGä½*/
+#define __RX8025SA_C2_CTFG_INT            (uint8_t)(1<<2)    /**< \brief CTFGä½*/
 
-#define __RX8025SA_C1_24H_FORMAT   0x20  /**< \brief 24Ğ¡Ê±ÖÆ */
+#define __RX8025SA_C1_24H_FORMAT   0x20  /**< \brief 24å°æ—¶åˆ¶ */
 
-#define __RX8025SA_C2_VDSL_1_3_SET   0x80  /**< \brief µÍµçÑ¹¼ì²â¹¦ÄÜµÄ±ê×¼µçÑ¹ÖµÉè¶¨Îª1.3v*/
+#define __RX8025SA_C2_VDSL_1_3_SET   0x80  /**< \brief ä½ç”µå‹æ£€æµ‹åŠŸèƒ½çš„æ ‡å‡†ç”µå‹å€¼è®¾å®šä¸º1.3v*/
 
 
 
 /**
- * \name RX8025SA I2Cµ±Ç°×´Ì¬
+ * \name RX8025SA I2Cå½“å‰çŠ¶æ€
  * \anchor grp_rx8025sa_i2c_operation
  * @{
  */
 
-#define __RX8025SA_I2C_RD_STATUS        0x00    /**< \brief ¶ÁÈ¡×´Ì¬ */
-#define __RX8025SA_I2C_WR_STATUS        0x01    /**< \brief Çå³ı×´Ì¬ */
-#define __RX8025SA_I2C_DATA_PROCESSING  0x02    /**< \brief Êı¾İ´¦Àí½×¶Î */
+#define __RX8025SA_I2C_RD_STATUS        0x00    /**< \brief è¯»å–çŠ¶æ€ */
+#define __RX8025SA_I2C_WR_STATUS        0x01    /**< \brief æ¸…é™¤çŠ¶æ€ */
+#define __RX8025SA_I2C_DATA_PROCESSING  0x02    /**< \brief æ•°æ®å¤„ç†é˜¶æ®µ */
 
 /* RTC driver function implementation */
 static int __rx8025sa_time_set (void *p_drv, am_tm_t *p_tm);
@@ -101,7 +101,7 @@ static struct am_rtc_drv_funcs __g_rtc_drv_funcs = {
     __rx8025sa_time_get,
 };
 
-/* º¯ÊıÉùÃ÷ */
+/* å‡½æ•°å£°æ˜ */
 static void __rx8025sa_intb_isr (void *p_arg);
 
 /* ALARM_CLK driver function implementation */
@@ -122,22 +122,22 @@ static struct am_alarm_clk_drv_funcs __g_alarm_clk_drv_funcs = {
     __rx8025sa_alarm_clk_off,
 };
 /**
- * \brief ÈòÄêºÍÆ½ÄêÃ¿¸öÔÂ¶ÔÓ¦µÄÌìÊı
+ * \brief é—°å¹´å’Œå¹³å¹´æ¯ä¸ªæœˆå¯¹åº”çš„å¤©æ•°
  */
 static const uint8_t __mdays[2][12] = {
-    /* Æ½Äê */
+    /* å¹³å¹´ */
     {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31},
-    /* ÈòÄê */
+    /* é—°å¹´ */
     {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}
 };
 
 /**
- * \brief ÅĞ¶ÏÄê·İÊÇ·ñÎªÈòÄê
+ * \brief åˆ¤æ–­å¹´ä»½æ˜¯å¦ä¸ºé—°å¹´
  *
- * \param[in] year : Äê·İ
+ * \param[in] year : å¹´ä»½
  *
- * \retval 1 : ÈòÄê
- * \retval 0 : Æ½Äê
+ * \retval 1 : é—°å¹´
+ * \retval 0 : å¹³å¹´
  */
 static uint8_t __rx8025sa_leap_year_check (uint16_t year)
 {
@@ -145,14 +145,14 @@ static uint8_t __rx8025sa_leap_year_check (uint16_t year)
 }
 
 /**
- * \brief ¼ÆËãÕâÊÇÒ»ÄêÖĞµÄµÚ¼¸Ìì
+ * \brief è®¡ç®—è¿™æ˜¯ä¸€å¹´ä¸­çš„ç¬¬å‡ å¤©
  *
- * \param[in] year  : Äê·İ
- * \param[in] month : ÔÂ·İ
- * \param[in] day   : Ìì
+ * \param[in] year  : å¹´ä»½
+ * \param[in] month : æœˆä»½
+ * \param[in] day   : å¤©
  *
- * \retval 1 : ÈòÄê
- * \retval 0 : Æ½Äê
+ * \retval 1 : é—°å¹´
+ * \retval 0 : å¹³å¹´
  */
 static uint8_t __rx8025sa_day_of_year (uint16_t year, uint8_t month, uint8_t day)
 {
@@ -171,12 +171,12 @@ static uint8_t __rx8025sa_day_of_year (uint16_t year, uint8_t month, uint8_t day
     return (day);
 }
 /**
- * \brief ¼ìÑéÊ±¼äĞÅÏ¢µÄÓĞĞ§ĞÔ
+ * \brief æ£€éªŒæ—¶é—´ä¿¡æ¯çš„æœ‰æ•ˆæ€§
  *
- * \param[in] p_tm : Ö¸ÏòÊ±¼ä½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] p_tm : æŒ‡å‘æ—¶é—´ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \retval AM_OK      : ÉèÖÃ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : è®¾ç½®æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 int __rx8025sa_time_validator (am_tm_t *p_tm)
 {
@@ -195,53 +195,53 @@ int __rx8025sa_time_validator (am_tm_t *p_tm)
     }
 }
 /**
- * \brief RTC±ê×¼²Ù×÷º¯Êı-Ê±¼äÉèÖÃÇı¶¯º¯Êı
+ * \brief RTCæ ‡å‡†æ“ä½œå‡½æ•°-æ—¶é—´è®¾ç½®é©±åŠ¨å‡½æ•°
  *
- * \param[in] p_drv : Ö¸ÏòÉè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[in] p_tm  : Ö¸ÏòÊ±¼ä½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] p_drv : æŒ‡å‘è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] p_tm  : æŒ‡å‘æ—¶é—´ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \retval AM_OK      : ÉèÖÃ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : è®¾ç½®æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 static int __rx8025sa_time_set (void *p_drv, am_tm_t *p_tm)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
     uint8_t temp;
 
-    /* Êı¾İ»º³åÇø */
+    /* æ•°æ®ç¼“å†²åŒº */
     uint8_t buf[7] = {0};
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = NULL;
 
-    /* ¼ìÑé²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* æ£€éªŒå‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == p_drv || NULL == p_tm) {
         return -AM_EINVAL;
     }
 
-    /* ÑéÖ¤Ê±¼äĞÅÏ¢µÄÓĞĞ§ĞÔ */
+    /* éªŒè¯æ—¶é—´ä¿¡æ¯çš„æœ‰æ•ˆæ€§ */
     if ((AM_OK != __rx8025sa_time_validator(p_tm)) ||
         (p_tm->tm_hour > 23) || (p_tm->tm_hour < 0)) {
         return -AM_EINVAL;
     }
 
-    /* ´ÓÉè±¸½á¹¹ÌåÖĞ»ñÈ¡i2cÉè±¸Ö¸Õë */
+    /* ä»è®¾å¤‡ç»“æ„ä½“ä¸­è·å–i2cè®¾å¤‡æŒ‡é’ˆ */
     p_i2c_dev = &(((am_rx8025sa_dev_t *)p_drv)->i2c_dev);
 
-    /* ½«Ê±¼äÈÕÆÚĞÅÏ¢ÌîÈëbufÖĞ */
+    /* å°†æ—¶é—´æ—¥æœŸä¿¡æ¯å¡«å…¥bufä¸­ */
     buf[__RX8025SA_REG_SECONDS >> 4 ] = AM_HEX_TO_BCD(p_tm->tm_sec);
     buf[__RX8025SA_REG_MINUTES >> 4 ] = AM_HEX_TO_BCD(p_tm->tm_min);
 
     if (((am_rx8025sa_dev_t *)p_drv)->time_format == __RX8025SA_24H_FORMAT){
-        buf[__RX8025SA_REG_HOURS >> 4] = AM_HEX_TO_BCD(p_tm->tm_hour);         /* 24Ğ¡Ê±ÖÆµÄĞ¡Ê± */
+        buf[__RX8025SA_REG_HOURS >> 4] = AM_HEX_TO_BCD(p_tm->tm_hour);         /* 24å°æ—¶åˆ¶çš„å°æ—¶ */
     } else {
         temp = AM_HEX_TO_BCD((p_tm->tm_hour % 12));
         if (temp == 0) {
             temp = 12;
         }
-        buf[__RX8025SA_REG_HOURS >> 4] = temp | ((p_tm->tm_hour / 12) << 5);   /* 12Ğ¡Ê±ÖÆµÄĞ¡Ê± */
+        buf[__RX8025SA_REG_HOURS >> 4] = temp | ((p_tm->tm_hour / 12) << 5);   /* 12å°æ—¶åˆ¶çš„å°æ—¶ */
     }
 
     buf[__RX8025SA_REG_WEEKDAYS >> 4] = AM_HEX_TO_BCD(p_tm-> tm_wday);
@@ -249,7 +249,7 @@ static int __rx8025sa_time_set (void *p_drv, am_tm_t *p_tm)
     buf[__RX8025SA_REG_MONTHS >> 4]   = AM_HEX_TO_BCD(p_tm->tm_mon + 1);
     buf[__RX8025SA_REG_YEAERS >> 4]   = AM_HEX_TO_BCD(p_tm->tm_year);
 
-    /* ÀûÓÃI2C´«ÊäÊı¾İ */
+    /* åˆ©ç”¨I2Cä¼ è¾“æ•°æ® */
     ret = am_i2c_write(p_i2c_dev,
                        __RX8025SA_REG_SECONDS,
                        buf,
@@ -264,36 +264,36 @@ static int __rx8025sa_time_set (void *p_drv, am_tm_t *p_tm)
 }
 
 /**
- * \brief RTC±ê×¼²Ù×÷º¯Êı-Ê±¼ä»ñÈ¡Çı¶¯º¯Êı
+ * \brief RTCæ ‡å‡†æ“ä½œå‡½æ•°-æ—¶é—´è·å–é©±åŠ¨å‡½æ•°
  *
- * \param[in] p_drv : Ö¸ÏòÉè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[in] p_tm  : Ö¸ÏòÊ±¼ä½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] p_drv : æŒ‡å‘è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] p_tm  : æŒ‡å‘æ—¶é—´ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \retval AM_OK      : ÉèÖÃ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : è®¾ç½®æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 static int __rx8025sa_time_get (void *p_drv, am_tm_t *p_tm)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
     uint8_t  temp;
 
-    /* Êı¾İ»º³åÇø */
+    /* æ•°æ®ç¼“å†²åŒº */
     uint8_t buf[7] = {0};
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = NULL;
 
-    /* ¼ìÑé²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* æ£€éªŒå‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == p_drv || NULL == p_tm) {
         return -AM_EINVAL;
     }
 
-    /* ´ÓÉè±¸½á¹¹ÌåÖĞ»ñÈ¡i2cÉè±¸Ö¸Õë */
+    /* ä»è®¾å¤‡ç»“æ„ä½“ä¸­è·å–i2cè®¾å¤‡æŒ‡é’ˆ */
     p_i2c_dev = &(((am_rx8025sa_dev_t *)p_drv)->i2c_dev);
 
-    /* Í¨¹ıI2C¶ÁÈ¡Êı¾İ */
+    /* é€šè¿‡I2Cè¯»å–æ•°æ® */
     ret = am_i2c_read(p_i2c_dev,
                       __RX8025SA_REG_SECONDS,
                       buf,
@@ -303,18 +303,18 @@ static int __rx8025sa_time_get (void *p_drv, am_tm_t *p_tm)
         return -AM_EINVAL;
     }
 
-    /** ´ÓbufÖĞ»ñÈ¡Ê±¼äÈÕÆÚĞÅÏ¢ */
+    /** ä»bufä¸­è·å–æ—¶é—´æ—¥æœŸä¿¡æ¯ */
     p_tm->tm_sec  = AM_BCD_TO_HEX(buf[__RX8025SA_REG_SECONDS >> 4] & 0x7F);
     p_tm->tm_min  = AM_BCD_TO_HEX(buf[__RX8025SA_REG_MINUTES >> 4] & 0x7F);
 
     if (((am_rx8025sa_dev_t *)p_drv)->time_format == __RX8025SA_24H_FORMAT){
-        p_tm->tm_hour = AM_BCD_TO_HEX(buf[__RX8025SA_REG_HOURS >> 4] & 0x3F);        /* 24Ğ¡Ê±ÖÆµÄĞ¡Ê± */
+        p_tm->tm_hour = AM_BCD_TO_HEX(buf[__RX8025SA_REG_HOURS >> 4] & 0x3F);        /* 24å°æ—¶åˆ¶çš„å°æ—¶ */
     } else {
         temp = AM_BCD_TO_HEX(buf[__RX8025SA_REG_HOURS >> 4]& 0x1F);
         if (temp == 12) {
             temp =0;
         }
-        p_tm->tm_hour = temp + ((buf[__RX8025SA_REG_HOURS >> 4] >> 5) & 0x01) * 12;  /* 12Ğ¡Ê±ÖÆµÄĞ¡Ê± */
+        p_tm->tm_hour = temp + ((buf[__RX8025SA_REG_HOURS >> 4] >> 5) & 0x01) * 12;  /* 12å°æ—¶åˆ¶çš„å°æ—¶ */
     }
 
     p_tm->tm_wday = AM_BCD_TO_HEX(buf[__RX8025SA_REG_WEEKDAYS >> 4] & 0x07);
@@ -327,46 +327,46 @@ static int __rx8025sa_time_get (void *p_drv, am_tm_t *p_tm)
 }
 
 /**
- * \brief ALARM_CLK ±ê×¼²Ù×÷º¯Êı-ÄÖÖÓÊ±¼äÉèÖÃº¯Êı
+ * \brief ALARM_CLK æ ‡å‡†æ“ä½œå‡½æ•°-é—¹é’Ÿæ—¶é—´è®¾ç½®å‡½æ•°
  *
- * \param[in] p_drv : Ö¸ÏòÉè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[in] p_tm  : Ö¸ÏòÄÖÖÓÊ±¼ä½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] p_drv : æŒ‡å‘è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] p_tm  : æŒ‡å‘é—¹é’Ÿæ—¶é—´ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \retval AM_OK      : ÉèÖÃ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : è®¾ç½®æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 static int __rx8025sa_alarm_clk_time_set (void *p_drv, am_alarm_clk_tm_t *p_tm)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* Êı¾İ»º³åÇø */
+    /* æ•°æ®ç¼“å†²åŒº */
     uint8_t buf[3] = {0};
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = NULL;
 
-    /* ¼ìÑé²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* æ£€éªŒå‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == p_drv || NULL == p_tm) {
         return -AM_EINVAL;
     }
 
-    /* ÑéÖ¤Ê±¼äĞÅÏ¢µÄÓĞĞ§ĞÔ */
+    /* éªŒè¯æ—¶é—´ä¿¡æ¯çš„æœ‰æ•ˆæ€§ */
     if ((p_tm->min  > 59) || (p_tm->min  < 0) ||
         (p_tm->hour > 23) || (p_tm->hour < 0)) {
         return -AM_EINVAL;
     }
 
-    /* ´ÓÉè±¸½á¹¹ÌåÖĞ»ñÈ¡i2cÉè±¸Ö¸Õë */
+    /* ä»è®¾å¤‡ç»“æ„ä½“ä¸­è·å–i2cè®¾å¤‡æŒ‡é’ˆ */
     p_i2c_dev = &(((am_rx8025sa_dev_t *)p_drv)->i2c_dev);
 
-    /* ½«Ê±¼äÈÕÆÚĞÅÏ¢ÌîÈëbufÖĞ */
+    /* å°†æ—¶é—´æ—¥æœŸä¿¡æ¯å¡«å…¥bufä¸­ */
     buf[0] = AM_HEX_TO_BCD(p_tm->min);
     buf[1] = AM_HEX_TO_BCD(p_tm->hour);
-    /* ĞÇÆÚÊı¾İÎŞĞè×ª³ÉBCDÂë */
+    /* æ˜ŸæœŸæ•°æ®æ— éœ€è½¬æˆBCDç  */
     buf[2] = p_tm->wdays;
 
-    /* ÀûÓÃI2C´«ÊäÊı¾İ */
+    /* åˆ©ç”¨I2Cä¼ è¾“æ•°æ® */
     ret = am_i2c_write(p_i2c_dev,
                        __RX8025SA_REG_MINUTES_ALARM_W,
                        buf,
@@ -380,29 +380,29 @@ static int __rx8025sa_alarm_clk_time_set (void *p_drv, am_alarm_clk_tm_t *p_tm)
 }
 
 /**
- * \brief ALARM_CLK ±ê×¼²Ù×÷º¯Êı-ÄÖÖÓ»Øµ÷º¯ÊıµÄÉèÖÃº¯Êı
+ * \brief ALARM_CLK æ ‡å‡†æ“ä½œå‡½æ•°-é—¹é’Ÿå›è°ƒå‡½æ•°çš„è®¾ç½®å‡½æ•°
  *
- * \param[in] p_drv         : Ö¸ÏòÉè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[in] pfn_callback  : Ö¸Ïò»Øµ÷º¯ÊıµÄÖ¸Õë
- * \param[in] p_arg         : Ö¸Ïò»Øµ÷º¯Êı²ÎÊıµÄÖ¸Õë
+ * \param[in] p_drv         : æŒ‡å‘è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] pfn_callback  : æŒ‡å‘å›è°ƒå‡½æ•°çš„æŒ‡é’ˆ
+ * \param[in] p_arg         : æŒ‡å‘å›è°ƒå‡½æ•°å‚æ•°çš„æŒ‡é’ˆ
  *
- * \retval AM_OK  : ÉèÖÃ³É¹¦
- * \retval ÆäËû             : ²é¿´´íÎóÂë
+ * \retval AM_OK  : è®¾ç½®æˆåŠŸ
+ * \retval å…¶ä»–             : æŸ¥çœ‹é”™è¯¯ç 
  */
 static int __rx8025sa_alarm_clk_callback_set (void         *p_drv,
                                               am_pfnvoid_t  pfn_alarm_callback,
                                               void          *p_arg)
 {
-	/* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+	/* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* RX8025SA Éè±¸Ö¸Õë */
+    /* RX8025SA è®¾å¤‡æŒ‡é’ˆ */
     am_rx8025sa_handle_t  rx8025sa_handle = NULL;
 
-    /* Éè±¸ĞÅÏ¢Ö¸Õë */
+    /* è®¾å¤‡ä¿¡æ¯æŒ‡é’ˆ */
    const am_rx8025sa_devinfo_t *p_devinfo = NULL;
 
-    /* ¼ìÑé²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* æ£€éªŒå‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == p_drv) {
         return -AM_EINVAL;
     }
@@ -410,7 +410,7 @@ static int __rx8025sa_alarm_clk_callback_set (void         *p_drv,
     rx8025sa_handle =  (am_rx8025sa_handle_t)p_drv;
     p_devinfo      = rx8025sa_handle->p_devinfo;
 
-    /* Á¬½ÓÒı½ÅÖĞ¶Ï»Øµ÷º¯Êı */
+    /* è¿æ¥å¼•è„šä¸­æ–­å›è°ƒå‡½æ•° */
     ret = am_gpio_trigger_connect(p_devinfo->intb_pin,
                                   __rx8025sa_intb_isr,
                                   rx8025sa_handle);
@@ -418,18 +418,18 @@ static int __rx8025sa_alarm_clk_callback_set (void         *p_drv,
         return ret;
     }
 
-    /* ÉèÖÃÎªÏÂ½µÑØ´¥·¢ */
+    /* è®¾ç½®ä¸ºä¸‹é™æ²¿è§¦å‘ */
     am_gpio_trigger_cfg(p_devinfo->intb_pin, AM_GPIO_TRIGGER_FALL);
     am_gpio_trigger_on(p_devinfo->intb_pin);
 
-    /* Á¬½ÓÖĞ¶Ï»Øµ÷º¯Êı */
+    /* è¿æ¥ä¸­æ–­å›è°ƒå‡½æ•° */
     rx8025sa_handle->triginfo[2].pfn_callback = pfn_alarm_callback;
     rx8025sa_handle->triginfo[2].p_arg        = p_arg;
 
-    /* Èç¹ûËùÓĞµÄ»Øµ÷º¯Êı¶¼Îª¿Õ */
+    /* å¦‚æœæ‰€æœ‰çš„å›è°ƒå‡½æ•°éƒ½ä¸ºç©º */
     if (rx8025sa_handle->triginfo[2].pfn_callback == NULL) {
 
-        /* É¾³ıÒı½ÅÖĞ¶Ï»Øµ÷º¯Êı */
+        /* åˆ é™¤å¼•è„šä¸­æ–­å›è°ƒå‡½æ•° */
         ret = am_gpio_trigger_disconnect(p_devinfo->intb_pin,
                                          __rx8025sa_intb_isr,
                                          rx8025sa_handle);
@@ -438,7 +438,7 @@ static int __rx8025sa_alarm_clk_callback_set (void         *p_drv,
             return ret;
         }
 
-        /* ¹Ø±ÕÒı½Å´¥·¢ */
+        /* å…³é—­å¼•è„šè§¦å‘ */
         am_gpio_trigger_off(p_devinfo->intb_pin);
     }
 
@@ -446,33 +446,33 @@ static int __rx8025sa_alarm_clk_callback_set (void         *p_drv,
 }
 
 /**
- * \brief ALARM_CLK ±ê×¼²Ù×÷º¯Êı-¿ªÆôÄÖÖÓº¯Êı
+ * \brief ALARM_CLK æ ‡å‡†æ“ä½œå‡½æ•°-å¼€å¯é—¹é’Ÿå‡½æ•°
  *
- * \param[in] p_drv : Ö¸ÏòÉè±¸½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] p_drv : æŒ‡å‘è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \retval AM_OK      : ÉèÖÃ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : è®¾ç½®æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 static int __rx8025sa_alarm_clk_on (void *p_drv)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* Êı¾İ»º³åÇø */
+    /* æ•°æ®ç¼“å†²åŒº */
     uint8_t buf[1]  = {0};
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = NULL;
 
-    /* ÑéÖ¤²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* éªŒè¯å‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == p_drv) {
         return -AM_EINVAL;
     }
 
-    /* ´Óp_drvÖĞ»ñÈ¡i2cÉè±¸Ö¸Õë */
+    /* ä»p_drvä¸­è·å–i2cè®¾å¤‡æŒ‡é’ˆ */
     p_i2c_dev = &(((am_rx8025sa_dev_t *)p_drv)->i2c_dev);
 
-    /* ¶ÁÈ¡¿ØÖÆ¼Ä´æÆ÷1 */
+    /* è¯»å–æ§åˆ¶å¯„å­˜å™¨1 */
     ret = am_i2c_read(p_i2c_dev,
                       __RX8025SA_REG_CONTROL1,
                       buf,
@@ -482,10 +482,10 @@ static int __rx8025sa_alarm_clk_on (void *p_drv)
         return ret;
     }
 
-    /* ÄÖÖÓÖĞ¶ÏÊ¹ÄÜ */
+    /* é—¹é’Ÿä¸­æ–­ä½¿èƒ½ */
     buf[0] |= __RX8025SA_C1_ALARM_W_EN;
 
-    /* ½«ÄÖÖÓÖĞ¶ÏĞÅÏ¢Ğ´Èë¿ØÖÆ×´Ì¬¼Ä´æÆ÷1 */
+    /* å°†é—¹é’Ÿä¸­æ–­ä¿¡æ¯å†™å…¥æ§åˆ¶çŠ¶æ€å¯„å­˜å™¨1 */
     ret = am_i2c_write(p_i2c_dev,
                        __RX8025SA_REG_CONTROL1,
                        buf,
@@ -498,33 +498,33 @@ static int __rx8025sa_alarm_clk_on (void *p_drv)
 }
 
 /**
- * \brief ALARM_CLK ±ê×¼²Ù×÷º¯Êı-¹Ø±ÕÄÖÖÓº¯Êı
+ * \brief ALARM_CLK æ ‡å‡†æ“ä½œå‡½æ•°-å…³é—­é—¹é’Ÿå‡½æ•°
  *
- * \param[in] p_drv : Ö¸ÏòÉè±¸½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] p_drv : æŒ‡å‘è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \retval AM_OK      : ÉèÖÃ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : è®¾ç½®æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 static int __rx8025sa_alarm_clk_off (void *p_drv)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* Êı¾İ»º³åÇø */
+    /* æ•°æ®ç¼“å†²åŒº */
     uint8_t buf[1]  = {0};
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = NULL;
 
-    /* ÑéÖ¤²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* éªŒè¯å‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == p_drv) {
         return -AM_EINVAL;
     }
 
-    /* ´Óp_drvÖĞ»ñÈ¡i2cÉè±¸Ö¸Õë */
+    /* ä»p_drvä¸­è·å–i2cè®¾å¤‡æŒ‡é’ˆ */
     p_i2c_dev = &(((am_rx8025sa_dev_t *)p_drv)->i2c_dev);
 
-    /* ¶ÁÈ¡¿ØÖÆ¼Ä´æÆ÷ */
+    /* è¯»å–æ§åˆ¶å¯„å­˜å™¨ */
     ret = am_i2c_read(p_i2c_dev,
                       __RX8025SA_REG_CONTROL1,
                       buf,
@@ -534,10 +534,10 @@ static int __rx8025sa_alarm_clk_off (void *p_drv)
         return ret;
     }
 
-    /* ¹Ø±ÕÄÖÖÓÖĞ¶Ï */
+    /* å…³é—­é—¹é’Ÿä¸­æ–­ */
     buf[0] &= ~__RX8025SA_C1_ALARM_W_EN;
 
-    /* ½«ÄÖÖÓÖĞ¶ÏĞÅÏ¢Ğ´Èë¿ØÖÆ×´Ì¬¼Ä´æÆ÷ */
+    /* å°†é—¹é’Ÿä¸­æ–­ä¿¡æ¯å†™å…¥æ§åˆ¶çŠ¶æ€å¯„å­˜å™¨ */
     ret = am_i2c_write(p_i2c_dev,
                        __RX8025SA_REG_CONTROL1,
                        buf,
@@ -550,12 +550,12 @@ static int __rx8025sa_alarm_clk_off (void *p_drv)
 }
 
 /**
- * \brief ¸ù¾İÖĞ¶Ï±êÖ¾À´Ö´ĞĞÓÃ»§ÖĞ¶Ï»Øµ÷º¯Êı
+ * \brief æ ¹æ®ä¸­æ–­æ ‡å¿—æ¥æ‰§è¡Œç”¨æˆ·ä¸­æ–­å›è°ƒå‡½æ•°
  *
- * \param[in] p_dev     : Ö¸ÏòRX8025SAÉè±¸µÄÖ¸Õë
- * \param[in] intr_flag : ÖĞ¶Ï±êÖ¾
+ * \param[in] p_dev     : æŒ‡å‘RX8025SAè®¾å¤‡çš„æŒ‡é’ˆ
+ * \param[in] intr_flag : ä¸­æ–­æ ‡å¿—
  *
- * \return ÎŞ
+ * \return æ— 
  */
 static void __rx8025sa_callback_exec (void    *p_drv,
                                       uint8_t  intr_flag)
@@ -564,14 +564,14 @@ static void __rx8025sa_callback_exec (void    *p_drv,
     am_pfnvoid_t       pfn_callback = NULL;
     void              *p_arg        = NULL;
 
-    /* ¼ìÑé²ÎÊıÓĞĞ§ĞÔ */
+    /* æ£€éªŒå‚æ•°æœ‰æ•ˆæ€§ */
     if (0 == intr_flag || NULL == p_drv) {
         return;
     }
 
     p_dev = (am_rx8025sa_dev_t *)p_drv;
 
-    /* Èç¹ûÊÇÖÜÆÚÖĞ¶Ï£¬ÔòÖ´ĞĞ¶ÔÓ¦ÓÃ»§ÖĞ¶Ï»Øµ÷º¯Êı */
+    /* å¦‚æœæ˜¯å‘¨æœŸä¸­æ–­ï¼Œåˆ™æ‰§è¡Œå¯¹åº”ç”¨æˆ·ä¸­æ–­å›è°ƒå‡½æ•° */
     if (intr_flag & __RX8025SA_C2_CTFG_INT) {
         pfn_callback = p_dev->triginfo[0].pfn_callback;
         p_arg        = p_dev->triginfo[0].p_arg;
@@ -580,7 +580,7 @@ static void __rx8025sa_callback_exec (void    *p_drv,
         }
     }
 
-    /* Èç¹ûÊÇALARM_DÖĞ¶Ï£¬ÔòÖ´ĞĞ¶ÔÓ¦ÓÃ»§ÖĞ¶Ï»Øµ÷º¯Êı */
+    /* å¦‚æœæ˜¯ALARM_Dä¸­æ–­ï¼Œåˆ™æ‰§è¡Œå¯¹åº”ç”¨æˆ·ä¸­æ–­å›è°ƒå‡½æ•° */
     if (intr_flag & __RX8025SA_C2_DAFG_ALARM_D) {
         pfn_callback = p_dev->triginfo[1].pfn_callback;
         p_arg        = p_dev->triginfo[1].p_arg;
@@ -589,7 +589,7 @@ static void __rx8025sa_callback_exec (void    *p_drv,
         }
     }
 
-    /* Èç¹ûÊÇALARM_WÖĞ¶Ï£¬ÔòÖ´ĞĞ¶ÔÓ¦ÓÃ»§ÖĞ¶Ï»Øµ÷º¯Êı */
+    /* å¦‚æœæ˜¯ALARM_Wä¸­æ–­ï¼Œåˆ™æ‰§è¡Œå¯¹åº”ç”¨æˆ·ä¸­æ–­å›è°ƒå‡½æ•° */
     if (intr_flag & __RX8025SA_C2_WAFG_ALARM_W) {
         pfn_callback = p_dev->triginfo[2].pfn_callback;
         p_arg        = p_dev->triginfo[2].p_arg;
@@ -599,33 +599,33 @@ static void __rx8025sa_callback_exec (void    *p_drv,
     }
 }
 /**
- * \brief rx8025saÉè±¸³õÊ¼»¯
- * \param[in] p_dev : Ö¸Ïòrx8025saÉè±¸½á¹¹Ìå
- * \return AM_OK±íÊ¾³õÊ¼»¯³É¹¦, ÆäËûÊ§°Ü
+ * \brief rx8025saè®¾å¤‡åˆå§‹åŒ–
+ * \param[in] p_dev : æŒ‡å‘rx8025saè®¾å¤‡ç»“æ„ä½“
+ * \return AM_OKè¡¨ç¤ºåˆå§‹åŒ–æˆåŠŸ, å…¶ä»–å¤±è´¥
  */
 static int __rx8025sa_init (am_rx8025sa_dev_t *p_dev)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* Êı¾İ»º³åÇø */
+    /* æ•°æ®ç¼“å†²åŒº */
     uint8_t buf[1] = {0};
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = NULL;
 
-    /* ¼ìÑé²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* æ£€éªŒå‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == p_dev) {
         return -AM_EINVAL;
     }
 
-    /* ´ÓÉè±¸½á¹¹ÌåÖĞ»ñÈ¡i2cÉè±¸Ö¸Õë */
+    /* ä»è®¾å¤‡ç»“æ„ä½“ä¸­è·å–i2cè®¾å¤‡æŒ‡é’ˆ */
     p_i2c_dev = &(p_dev->i2c_dev);
 
-    /* ¿ØÖÆ×´Ì¬¼Ä´æÆ÷2Ê±ÖÓÊä³ö½ûÄÜ,Çå³ıÖĞ¶Ï±êÖ¾ */
+    /* æ§åˆ¶çŠ¶æ€å¯„å­˜å™¨2æ—¶é’Ÿè¾“å‡ºç¦èƒ½,æ¸…é™¤ä¸­æ–­æ ‡å¿— */
     buf[0] = 0;
 
-    /* ÀûÓÃI2C´«ÊäÊı¾İ */
+    /* åˆ©ç”¨I2Cä¼ è¾“æ•°æ® */
     ret = am_i2c_write(p_i2c_dev,
     		           __RX8025SA_REG_CONTROL1,
                        buf,
@@ -639,14 +639,14 @@ static int __rx8025sa_init (am_rx8025sa_dev_t *p_dev)
 }
 
 /**
- * \brief ÔÚÖĞ¶ÏÖĞ¶ÁÈ¡Êı¾İºóµÄ´¦Àíº¯Êı,ÅĞ¶ÏÖĞ¶ÏÀàĞÍ
+ * \brief åœ¨ä¸­æ–­ä¸­è¯»å–æ•°æ®åçš„å¤„ç†å‡½æ•°,åˆ¤æ–­ä¸­æ–­ç±»å‹
  *
- * \param[in,out] buf         : Êı¾İ»º³åÇø
- * \param[in]     p_intr_flag : ÖĞ¶Ï±êÖ¾  ²Î¼û \ref grp_rx8025sa_intr_flag
+ * \param[in,out] buf         : æ•°æ®ç¼“å†²åŒº
+ * \param[in]     p_intr_flag : ä¸­æ–­æ ‡å¿—  å‚è§ \ref grp_rx8025sa_intr_flag
  *
- * \return ÎŞ
+ * \return æ— 
  *
- * \note º¯ÊıÖĞbuf ¶ÔÓ¦ CONTROL2¼Ä´æÆ÷
+ * \note å‡½æ•°ä¸­buf å¯¹åº” CONTROL2å¯„å­˜å™¨
  */
 static void __rx8025sa_read_write_data_processing (void    *p_arg,
                                                    uint8_t *p_intr_flag)
@@ -661,66 +661,66 @@ static void __rx8025sa_read_write_data_processing (void    *p_arg,
 
     *p_intr_flag = 0;
 
-    /* ÅĞ¶ÏÊÇ·ñÎªDAFG±êÖ¾ÖÃÎ» */
+    /* åˆ¤æ–­æ˜¯å¦ä¸ºDAFGæ ‡å¿—ç½®ä½ */
     if (p_dev->buf[0] & __RX8025SA_C2_DAFG_ALARM_D) {
 
-        /* ¼ÇÂ¼ALARM_DÖĞ¶Ï±êÖ¾ */
+        /* è®°å½•ALARM_Dä¸­æ–­æ ‡å¿— */
         *p_intr_flag |= __RX8025SA_C2_DAFG_ALARM_D;
 
-        /* Çå³ıDAFG±êÖ¾ */
+        /* æ¸…é™¤DAFGæ ‡å¿— */
         p_dev->buf[0] &= ~__RX8025SA_C2_DAFG_ALARM_D;
     }
 
-    /* ÅĞ¶ÏÊÇ·ñÎªCTFG±êÖ¾ÖÃÎ» */
+    /* åˆ¤æ–­æ˜¯å¦ä¸ºCTFGæ ‡å¿—ç½®ä½ */
     if (p_dev->buf[0] & __RX8025SA_C2_CTFG_INT) {
-          /* ¼ÇÂ¼ÄÖÖÓÖĞ¶Ï±êÖ¾,²¢Çå³ı*/
+          /* è®°å½•é—¹é’Ÿä¸­æ–­æ ‡å¿—,å¹¶æ¸…é™¤*/
         *p_intr_flag |= __RX8025SA_C2_CTFG_INT;
 
-          /* Çå³ıCTFG±êÖ¾ */
+          /* æ¸…é™¤CTFGæ ‡å¿— */
         p_dev->buf[0] &= ~__RX8025SA_C2_CTFG_INT;
         }
 
-    /* ÅĞ¶ÏÊÇ·ñÎªWAFG±êÖ¾ÖÃÎ» */
+    /* åˆ¤æ–­æ˜¯å¦ä¸ºWAFGæ ‡å¿—ç½®ä½ */
     if (p_dev->buf[0] & __RX8025SA_C2_WAFG_ALARM_W) {
-        /* ¼ÇÂ¼ÄÖÖÓÖĞ¶Ï±êÖ¾,²¢Çå³ı */
+        /* è®°å½•é—¹é’Ÿä¸­æ–­æ ‡å¿—,å¹¶æ¸…é™¤ */
         *p_intr_flag |= __RX8025SA_C2_WAFG_ALARM_W;
 
-          /* Çå³ıWAFG±êÖ¾ */
+          /* æ¸…é™¤WAFGæ ‡å¿— */
         p_dev->buf[0] &= ~__RX8025SA_C2_WAFG_ALARM_W;
         }
 }
 /**
- * \brief I2C¶ÁĞ´¹ı³ÌÖĞµÄ×´Ì¬»ú
- * \param[in] p_arg : ²ÎÊı
- * \return ÎŞ
- * \note ×´Ì¬±ä»»Ë³Ğò   [1]´¦Àí¿ªÊ¼ --> [2]Ğ´subaddr,¶ÁÈ¡×´Ì¬ --> [3]´¦ÀíÊı¾İ
- *                   --> [5]Ğ´subaddr --> [6]Ğ´ÈëÊı¾İ --> [7]´¦ÀíÍê³É
+ * \brief I2Cè¯»å†™è¿‡ç¨‹ä¸­çš„çŠ¶æ€æœº
+ * \param[in] p_arg : å‚æ•°
+ * \return æ— 
+ * \note çŠ¶æ€å˜æ¢é¡ºåº   [1]å¤„ç†å¼€å§‹ --> [2]å†™subaddr,è¯»å–çŠ¶æ€ --> [3]å¤„ç†æ•°æ®
+ *                   --> [5]å†™subaddr --> [6]å†™å…¥æ•°æ® --> [7]å¤„ç†å®Œæˆ
  */
 static void __rx8025sa_i2c_read_write_fsm (void *p_arg)
 {
-    /* I2CÉè±¸ */
+    /* I2Cè®¾å¤‡ */
     am_i2c_device_t *p_dev_i2c = NULL;
 
-    /* rx8025saÉè±¸ */
+    /* rx8025saè®¾å¤‡ */
     am_rx8025sa_dev_t *p_dev_rx8025sa = NULL;
 
-    /* ÅĞ¶Ï²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* åˆ¤æ–­å‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == p_arg) {
         return;
     }
 
-    /* »ñÈ¡i2c_status */
+    /* è·å–i2c_status */
     p_dev_rx8025sa = (am_rx8025sa_dev_t *)p_arg;
 
-    /*»ñÈ¡i2c_device */
+    /*è·å–i2c_device */
     p_dev_i2c = &(p_dev_rx8025sa->i2c_dev);
 
     switch (p_dev_rx8025sa->status) {
 
-    /* »ñÈ¡×´Ì¬ */
+    /* è·å–çŠ¶æ€ */
     case __RX8025SA_I2C_RD_STATUS:
 
-        /* ¼ÓÔØÏÂÒ»×´Ì¬ */
+        /* åŠ è½½ä¸‹ä¸€çŠ¶æ€ */
         p_dev_rx8025sa->status = __RX8025SA_I2C_WR_STATUS;
 
         am_i2c_mktrans(&p_dev_rx8025sa->trans[0],
@@ -744,13 +744,13 @@ static void __rx8025sa_i2c_read_write_fsm (void *p_arg)
         am_i2c_msg_start(p_dev_i2c->handle, &p_dev_rx8025sa->msg);
         break;
 
-    /* Çå³ı×´Ì¬ */
+    /* æ¸…é™¤çŠ¶æ€ */
     case __RX8025SA_I2C_WR_STATUS:
 
-        /* ¼ÓÔØÏÂÒ»×´Ì¬ */
+        /* åŠ è½½ä¸‹ä¸€çŠ¶æ€ */
         p_dev_rx8025sa->status = __RX8025SA_I2C_DATA_PROCESSING;
 
-        /* ´¦ÀíÊı¾İ£¬»ñÈ¡ÖĞ¶Ï×´Ì¬ */
+        /* å¤„ç†æ•°æ®ï¼Œè·å–ä¸­æ–­çŠ¶æ€ */
         __rx8025sa_read_write_data_processing(p_arg, &p_dev_rx8025sa->intr_flag);
 
         am_i2c_mktrans(&p_dev_rx8025sa->trans[0],
@@ -774,16 +774,16 @@ static void __rx8025sa_i2c_read_write_fsm (void *p_arg)
         am_i2c_msg_start(p_dev_i2c->handle, &p_dev_rx8025sa->msg);
         break;
 
-    /* Êı¾İ´¦Àí */
+    /* æ•°æ®å¤„ç† */
     case __RX8025SA_I2C_DATA_PROCESSING:
 
-        /* ¼ÓÔØÏÂÒ»×´Ì¬ */
+        /* åŠ è½½ä¸‹ä¸€çŠ¶æ€ */
         p_dev_rx8025sa->status = __RX8025SA_I2C_RD_STATUS;
 
-        /* Ö´ĞĞÓÃ»§ÖĞ¶ÏÖĞ¶Ï»Øµ÷º¯Êı */
+        /* æ‰§è¡Œç”¨æˆ·ä¸­æ–­ä¸­æ–­å›è°ƒå‡½æ•° */
         __rx8025sa_callback_exec(p_arg, p_dev_rx8025sa->intr_flag);
 
-        /* ¿ªÆôGPIOÖĞ¶Ï */
+        /* å¼€å¯GPIOä¸­æ–­ */
         if ( (p_dev_rx8025sa->intr_flag & __RX8025SA_C2_DAFG_ALARM_D ) ||
              (p_dev_rx8025sa->intr_flag & __RX8025SA_C2_CTFG_INT )){
              am_gpio_trigger_on(p_dev_rx8025sa->p_devinfo->inta_pin);
@@ -800,9 +800,9 @@ static void __rx8025sa_i2c_read_write_fsm (void *p_arg)
 }
 
 /**
- * \brief RX8025SA ÉÏÍøINTAÖĞ¶Ï»Øµ÷º¯Êı
- * \param[in] p_arg : ÖĞ¶Ï»Øµ÷º¯Êı²ÎÊı
- * \return ÎŞ
+ * \brief RX8025SA ä¸Šç½‘INTAä¸­æ–­å›è°ƒå‡½æ•°
+ * \param[in] p_arg : ä¸­æ–­å›è°ƒå‡½æ•°å‚æ•°
+ * \return æ— 
  */
 static void __rx8025sa_inta_isr (void *p_arg)
 {
@@ -812,20 +812,20 @@ static void __rx8025sa_inta_isr (void *p_arg)
         return;
     }
 
-    /* ¹Ø±ÕGPIOÖĞ¶Ï */
+    /* å…³é—­GPIOä¸­æ–­ */
     am_gpio_trigger_off(p_dev->p_devinfo->inta_pin);
 
     if (p_dev->status == __RX8025SA_I2C_RD_STATUS) {
 
-        /* Æô¶¯¶ÁĞ´×´Ì¬»ú */
+        /* å¯åŠ¨è¯»å†™çŠ¶æ€æœº */
         __rx8025sa_i2c_read_write_fsm(p_arg);
     }
 }
 
 /**
- * \brief RX8025SA ÉÏÍøINTBÖĞ¶Ï»Øµ÷º¯Êı
- * \param[in] p_arg : ÖĞ¶Ï»Øµ÷º¯Êı²ÎÊı
- * \return ÎŞ
+ * \brief RX8025SA ä¸Šç½‘INTBä¸­æ–­å›è°ƒå‡½æ•°
+ * \param[in] p_arg : ä¸­æ–­å›è°ƒå‡½æ•°å‚æ•°
+ * \return æ— 
  */
 static void __rx8025sa_intb_isr (void *p_arg)
 {
@@ -835,40 +835,40 @@ static void __rx8025sa_intb_isr (void *p_arg)
         return;
     }
 
-    /* ¹Ø±ÕGPIOÖĞ¶Ï */
+    /* å…³é—­GPIOä¸­æ–­ */
     am_gpio_trigger_off(p_dev->p_devinfo->intb_pin);
 
     if (p_dev->status == __RX8025SA_I2C_RD_STATUS) {
 
-        /* Æô¶¯¶ÁĞ´×´Ì¬»ú */
+        /* å¯åŠ¨è¯»å†™çŠ¶æ€æœº */
         __rx8025sa_i2c_read_write_fsm(p_arg);
     }
 }
 
 /**
- * \brief RX8025SA Ê±¼ä¸ñÊ½ÉèÖÃ
+ * \brief RX8025SA æ—¶é—´æ ¼å¼è®¾ç½®
  */
 static int __rx8025sa_time_format_set (am_rx8025sa_handle_t handle, uint8_t format)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* Êı¾İ»º³åÇø */
+    /* æ•°æ®ç¼“å†²åŒº */
     uint8_t buf[1]  = {0};
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = NULL;
 
-    /* ÑéÖ¤²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* éªŒè¯å‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == handle) {
         return -AM_EINVAL;
     }
 
-    /* ´ÓhandleÖĞ»ñÈ¡i2cÉè±¸Ö¸Õë */
+    /* ä»handleä¸­è·å–i2cè®¾å¤‡æŒ‡é’ˆ */
     p_i2c_dev = &(handle->i2c_dev);
 
     handle->time_format = format;
-    /* ¶ÁÈ¡¿ØÖÆ¼Ä´æÆ÷1 */
+    /* è¯»å–æ§åˆ¶å¯„å­˜å™¨1 */
     ret = am_i2c_read(p_i2c_dev,
                       __RX8025SA_REG_CONTROL1,
                       buf,
@@ -884,7 +884,7 @@ static int __rx8025sa_time_format_set (am_rx8025sa_handle_t handle, uint8_t form
         buf[0] &= ~ __RX8025SA_C1_24H_FORMAT;
     }
 
-    /* Ğ´Èë¿ØÖÆ×´Ì¬¼Ä´æÆ÷1 */
+    /* å†™å…¥æ§åˆ¶çŠ¶æ€å¯„å­˜å™¨1 */
     ret = am_i2c_write(p_i2c_dev,
                        __RX8025SA_REG_CONTROL1,
                        buf,
@@ -899,61 +899,61 @@ static int __rx8025sa_time_format_set (am_rx8025sa_handle_t handle, uint8_t form
 }
 
 /*****************************************************************************
- * Íâ²¿º¯ÊıÊµÏÖ
+ * å¤–éƒ¨å‡½æ•°å®ç°
  ****************************************************************************/
 
 /**
- * \brief RX8025SA Éè±¸³õÊ¼»¯
+ * \brief RX8025SA è®¾å¤‡åˆå§‹åŒ–
  */
 am_rx8025sa_handle_t am_rx8025sa_init (am_rx8025sa_dev_t           *p_dev,
                                        const am_rx8025sa_devinfo_t *p_devinfo,
                                        am_i2c_handle_t              i2c_handle)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
     int i;
 
-    /* ÑéÖ¤²ÎÊıÓĞĞ§ĞÔ */
+    /* éªŒè¯å‚æ•°æœ‰æ•ˆæ€§ */
     if (NULL == p_dev || NULL == i2c_handle) {
         return NULL;
     }
 
-    /* ¹¹Ôìi2cÉè±¸ */
+    /* æ„é€ i2cè®¾å¤‡ */
     am_i2c_mkdev(&(p_dev->i2c_dev),
                  i2c_handle,
                  __RX8025SA_ADDR,
                  AM_I2C_ADDR_7BIT | AM_I2C_SUBADDR_1BYTE);
 
-    /* ³õÊ¼»¯Éè±¸ĞÅÏ¢ */
+    /* åˆå§‹åŒ–è®¾å¤‡ä¿¡æ¯ */
     p_dev->conn_stat_inta = AM_FALSE;
     p_dev->p_devinfo      = p_devinfo;
 
-    p_dev->time_format    = __RX8025SA_24H_FORMAT;        /* Ä¬ÈÏ24Ğ¡Ê±ÖÆ¼ÆÊ± */
+    p_dev->time_format    = __RX8025SA_24H_FORMAT;        /* é»˜è®¤24å°æ—¶åˆ¶è®¡æ—¶ */
 
     for (i = 0; i < 3; i++) {
         p_dev->triginfo[i].pfn_callback = NULL;
         p_dev->triginfo[i].p_arg        = NULL;
     }
-    p_dev->status   = __RX8025SA_I2C_RD_STATUS;      /* ³õÊ¼×´Ì¬ */
-    p_dev->sub_addr =__RX8025SA_REG_CONTROL2;        /* ´ı²Ù×÷µÄ¼Ä´æÆ÷µØÖ· */
-    p_dev->nbytes   = 1;                             /* ĞèÒª¶ÁÈ¡µÄÊı¾İ¸öÊı */
+    p_dev->status   = __RX8025SA_I2C_RD_STATUS;      /* åˆå§‹çŠ¶æ€ */
+    p_dev->sub_addr =__RX8025SA_REG_CONTROL2;        /* å¾…æ“ä½œçš„å¯„å­˜å™¨åœ°å€ */
+    p_dev->nbytes   = 1;                             /* éœ€è¦è¯»å–çš„æ•°æ®ä¸ªæ•° */
 
-    /* ³õÊ¼»¯RX8025SAÉè±¸ */
+    /* åˆå§‹åŒ–RX8025SAè®¾å¤‡ */
     ret = __rx8025sa_init(p_dev);
     if (AM_OK != ret) {
         return NULL;
     }
 
-    /* ³õÊ¼»¯Ê±¼ä¸ñÊ½ */
+    /* åˆå§‹åŒ–æ—¶é—´æ ¼å¼ */
     ret = __rx8025sa_time_format_set( p_dev, p_dev->time_format);
 
     if (AM_OK != ret) {
         return NULL;
     }
 
-    /* ³õÊ¼»¯clk_en_pin µÄGPIO¿Ú */
+    /* åˆå§‹åŒ–clk_en_pin çš„GPIOå£ */
     if (p_dev->p_devinfo->clk_en_pin != -1) {
-         am_gpio_pin_cfg(p_dev->p_devinfo->clk_en_pin, AM_GPIO_OUTPUT_INIT_LOW | AM_GPIO_PUSH_PULL);  /* ÅäÖÃÎªÍÆÍìÊä³ö */
+         am_gpio_pin_cfg(p_dev->p_devinfo->clk_en_pin, AM_GPIO_OUTPUT_INIT_LOW | AM_GPIO_PUSH_PULL);  /* é…ç½®ä¸ºæ¨æŒ½è¾“å‡º */
     }
 
     return p_dev;
@@ -961,7 +961,7 @@ am_rx8025sa_handle_t am_rx8025sa_init (am_rx8025sa_dev_t           *p_dev,
 
 
 /**
- * \brief RX8025SA Éè±¸½â³õÊ¼»¯
+ * \brief RX8025SA è®¾å¤‡è§£åˆå§‹åŒ–
  */
 void am_rx8025sa_deinit (am_rx8025sa_handle_t handle)
 {
@@ -969,7 +969,7 @@ void am_rx8025sa_deinit (am_rx8025sa_handle_t handle)
 }
 
 /**
- * \brief »ñÈ¡RX8025SA RTC±ê×¼·şÎñ
+ * \brief è·å–RX8025SA RTCæ ‡å‡†æœåŠ¡
  */
 am_rtc_handle_t am_rx8025sa_rtc_init (am_rx8025sa_handle_t  handle,
                                       am_rtc_serv_t        *p_rtc)
@@ -980,7 +980,7 @@ am_rtc_handle_t am_rx8025sa_rtc_init (am_rx8025sa_handle_t  handle,
 }
 
 /**
- * \brief »ñÈ¡RX8025SA ALARM_CLK±ê×¼·şÎñ
+ * \brief è·å–RX8025SA ALARM_CLKæ ‡å‡†æœåŠ¡
  */
 am_alarm_clk_handle_t am_rx8025sa_alarm_clk_init (am_rx8025sa_handle_t   handle,
 		                                         am_alarm_clk_serv_t    *p_alarm_clk)
@@ -991,28 +991,28 @@ am_alarm_clk_handle_t am_rx8025sa_alarm_clk_init (am_rx8025sa_handle_t   handle,
 }
 
 /**
- * \brief Ê¹ÄÜrx8025µÄ alarm_d ÄÖÖÓ
+ * \brief ä½¿èƒ½rx8025çš„ alarm_d é—¹é’Ÿ
  */
 int am_rx8025sa_alarm_d_enable (am_rx8025sa_handle_t handle)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* Êı¾İ»º³åÇø */
+    /* æ•°æ®ç¼“å†²åŒº */
     uint8_t buf[1]     = {0};
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = NULL;
 
-    /* ÑéÖ¤²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* éªŒè¯å‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == handle) {
         return -AM_EINVAL;
     }
 
-    /* ´ÓhandleÖĞ»ñÈ¡i2cÉè±¸Ö¸Õë */
+    /* ä»handleä¸­è·å–i2cè®¾å¤‡æŒ‡é’ˆ */
     p_i2c_dev = &(handle->i2c_dev);
 
-    /* ¶ÁÈ¡¿ØÖÆ¼Ä´æÆ÷1 */
+    /* è¯»å–æ§åˆ¶å¯„å­˜å™¨1 */
     ret = am_i2c_read(p_i2c_dev,
                       __RX8025SA_REG_CONTROL1,
                       buf,
@@ -1022,10 +1022,10 @@ int am_rx8025sa_alarm_d_enable (am_rx8025sa_handle_t handle)
         return ret;
     }
 
-    /* ÄÖÖÓÖĞ¶ÏÊ¹ÄÜ */
+    /* é—¹é’Ÿä¸­æ–­ä½¿èƒ½ */
     buf[0] |= __RX8025SA_C1_ALARM_D_EN;
 
-    /* ½«ÄÖÖÓÖĞ¶ÏĞÅÏ¢Ğ´Èë¿ØÖÆ×´Ì¬¼Ä´æÆ÷1 */
+    /* å°†é—¹é’Ÿä¸­æ–­ä¿¡æ¯å†™å…¥æ§åˆ¶çŠ¶æ€å¯„å­˜å™¨1 */
     ret = am_i2c_write(p_i2c_dev,
                        __RX8025SA_REG_CONTROL1,
                        buf,
@@ -1037,28 +1037,28 @@ int am_rx8025sa_alarm_d_enable (am_rx8025sa_handle_t handle)
     return AM_OK;
 }
 /**
- * \brief Ê¹ÄÜrx8025µÄ alarm_w ÄÖÖÓ
+ * \brief ä½¿èƒ½rx8025çš„ alarm_w é—¹é’Ÿ
  */
 int am_rx8025sa_alarm_w_enable (am_rx8025sa_handle_t handle)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* Êı¾İ»º³åÇø */
+    /* æ•°æ®ç¼“å†²åŒº */
     uint8_t buf[1]     = {0};
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = NULL;
 
-    /* ÑéÖ¤²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* éªŒè¯å‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == handle) {
         return -AM_EINVAL;
     }
 
-    /* ´ÓhandleÖĞ»ñÈ¡i2cÉè±¸Ö¸Õë */
+    /* ä»handleä¸­è·å–i2cè®¾å¤‡æŒ‡é’ˆ */
     p_i2c_dev = &(handle->i2c_dev);
 
-    /* ¶ÁÈ¡¿ØÖÆ¼Ä´æÆ÷1 */
+    /* è¯»å–æ§åˆ¶å¯„å­˜å™¨1 */
     ret = am_i2c_read(p_i2c_dev,
                       __RX8025SA_REG_CONTROL1,
                       buf,
@@ -1068,10 +1068,10 @@ int am_rx8025sa_alarm_w_enable (am_rx8025sa_handle_t handle)
         return ret;
     }
 
-    /* ÄÖÖÓÖĞ¶Ï½ûÄÜ */
+    /* é—¹é’Ÿä¸­æ–­ç¦èƒ½ */
     buf[0] |= __RX8025SA_C1_ALARM_W_EN;
 
-    /* ½«ÄÖÖÓÖĞ¶ÏĞÅÏ¢Ğ´Èë¿ØÖÆ×´Ì¬¼Ä´æÆ÷1 */
+    /* å°†é—¹é’Ÿä¸­æ–­ä¿¡æ¯å†™å…¥æ§åˆ¶çŠ¶æ€å¯„å­˜å™¨1 */
     ret = am_i2c_write(p_i2c_dev,
                        __RX8025SA_REG_CONTROL1,
                        buf,
@@ -1087,28 +1087,28 @@ int am_rx8025sa_alarm_w_enable (am_rx8025sa_handle_t handle)
 
 
 /**
- * \brief ½ûÄÜ RX8025SA µÄ ALARM_D ÄÖÖÓ
+ * \brief ç¦èƒ½ RX8025SA çš„ ALARM_D é—¹é’Ÿ
  */
 int am_rx8025sa_alarm_d_disable (am_rx8025sa_handle_t handle)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* Êı¾İ»º³åÇø */
+    /* æ•°æ®ç¼“å†²åŒº */
     uint8_t buf[2]     = {0};
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = NULL;
 
-    /* ÑéÖ¤²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* éªŒè¯å‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == handle) {
         return -AM_EINVAL;
     }
 
-    /* ´ÓhandleÖĞ»ñÈ¡i2cÉè±¸Ö¸Õë */
+    /* ä»handleä¸­è·å–i2cè®¾å¤‡æŒ‡é’ˆ */
     p_i2c_dev = &(handle->i2c_dev);
 
-    /* ¶ÁÈ¡¿ØÖÆ¼Ä´æÆ÷1,2(ÓÃÀ´¿ØÖÆÄÖÖÓÖĞ¶Ï) */
+    /* è¯»å–æ§åˆ¶å¯„å­˜å™¨1,2(ç”¨æ¥æ§åˆ¶é—¹é’Ÿä¸­æ–­) */
     ret = am_i2c_read(p_i2c_dev,
                       __RX8025SA_REG_CONTROL1,
                       buf,
@@ -1118,13 +1118,13 @@ int am_rx8025sa_alarm_d_disable (am_rx8025sa_handle_t handle)
         return ret;
     }
 
-    /* ÄÖÖÓÖĞ¶Ï½ûÄÜ */
+    /* é—¹é’Ÿä¸­æ–­ç¦èƒ½ */
     buf[0] &= ~__RX8025SA_C1_ALARM_D_EN;
 
-    /* Çå³ıAF±êÖ¾ */
+    /* æ¸…é™¤AFæ ‡å¿— */
     buf[1] &= ~__RX8025SA_C2_DAFG_ALARM_D;
 
-    /* ½«ÄÖÖÓÖĞ¶ÏĞÅÏ¢Ğ´Èë¿ØÖÆ×´Ì¬¼Ä´æÆ÷1,2 */
+    /* å°†é—¹é’Ÿä¸­æ–­ä¿¡æ¯å†™å…¥æ§åˆ¶çŠ¶æ€å¯„å­˜å™¨1,2 */
     ret = am_i2c_write(p_i2c_dev,
                        __RX8025SA_REG_CONTROL1,
                        buf,
@@ -1138,28 +1138,28 @@ int am_rx8025sa_alarm_d_disable (am_rx8025sa_handle_t handle)
 }
 
 /**
- * \brief ½ûÄÜ RX8025SA µÄ ALARM_W ÄÖÖÓ
+ * \brief ç¦èƒ½ RX8025SA çš„ ALARM_W é—¹é’Ÿ
  */
 int am_rx8025sa_alarm_w_disable (am_rx8025sa_handle_t handle)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* Êı¾İ»º³åÇø */
+    /* æ•°æ®ç¼“å†²åŒº */
     uint8_t buf[2]     = {0};
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = NULL;
 
-    /* ÑéÖ¤²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* éªŒè¯å‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == handle) {
         return -AM_EINVAL;
     }
 
-    /* ´ÓhandleÖĞ»ñÈ¡i2cÉè±¸Ö¸Õë */
+    /* ä»handleä¸­è·å–i2cè®¾å¤‡æŒ‡é’ˆ */
     p_i2c_dev = &(handle->i2c_dev);
 
-    /* ¶ÁÈ¡¿ØÖÆ¼Ä´æÆ÷1,2(ÓÃÀ´¿ØÖÆÄÖÖÓÖĞ¶Ï) */
+    /* è¯»å–æ§åˆ¶å¯„å­˜å™¨1,2(ç”¨æ¥æ§åˆ¶é—¹é’Ÿä¸­æ–­) */
     ret = am_i2c_read(p_i2c_dev,
                       __RX8025SA_REG_CONTROL1,
                       buf,
@@ -1169,13 +1169,13 @@ int am_rx8025sa_alarm_w_disable (am_rx8025sa_handle_t handle)
         return ret;
     }
 
-    /* ÄÖÖÓÖĞ¶Ï½ûÄÜ */
+    /* é—¹é’Ÿä¸­æ–­ç¦èƒ½ */
     buf[0] &= ~__RX8025SA_C1_ALARM_W_EN;
 
-    /* Çå³ıAF±êÖ¾ */
+    /* æ¸…é™¤AFæ ‡å¿— */
     buf[1] &= ~__RX8025SA_C2_WAFG_ALARM_W;
 
-    /* ½«ÄÖÖÓÖĞ¶ÏĞÅÏ¢Ğ´Èë¿ØÖÆ×´Ì¬¼Ä´æÆ÷1,2 */
+    /* å°†é—¹é’Ÿä¸­æ–­ä¿¡æ¯å†™å…¥æ§åˆ¶çŠ¶æ€å¯„å­˜å™¨1,2 */
     ret = am_i2c_write(p_i2c_dev,
                        __RX8025SA_REG_CONTROL1,
                        buf,
@@ -1191,26 +1191,26 @@ int am_rx8025sa_alarm_w_disable (am_rx8025sa_handle_t handle)
 
 
 /**
- * \brief RX8025SA ÖÜÆÚÖĞ¶Ïº¯ÊıÉèÖÃ
+ * \brief RX8025SA å‘¨æœŸä¸­æ–­å‡½æ•°è®¾ç½®
  */
 int am_rx8025sa_periodic_int_set (am_rx8025sa_handle_t  handle,
                                    uint8_t              int_mode,
                                   am_pfnvoid_t          pfn_periodic_int_callback,
                                   void                 *p_periodic_int_arg)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* Êı¾İ»º³åÇø */
+    /* æ•°æ®ç¼“å†²åŒº */
     uint8_t buf[1]     = {0};
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = NULL;
 
-    /* Éè±¸ĞÅÏ¢Ö¸Õë */
+    /* è®¾å¤‡ä¿¡æ¯æŒ‡é’ˆ */
     const am_rx8025sa_devinfo_t *p_devinfo = NULL;
 
-    /* ¼ìÑé²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* æ£€éªŒå‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == handle) {
         return -AM_EINVAL;
     }
@@ -1218,10 +1218,10 @@ int am_rx8025sa_periodic_int_set (am_rx8025sa_handle_t  handle,
     p_devinfo = handle->p_devinfo;
     p_i2c_dev = &(handle->i2c_dev);
 
-    /* conn_stat_intaÓÃÓÚ¼ÇÂ¼µ±Ç°ÖĞ¶ÏÁ¬½Ó×´Ì¬,±ÜÃâÖØ¸´µ÷ÓÃGPIOÁ¬½Óº¯Êı */
+    /* conn_stat_intaç”¨äºè®°å½•å½“å‰ä¸­æ–­è¿æ¥çŠ¶æ€,é¿å…é‡å¤è°ƒç”¨GPIOè¿æ¥å‡½æ•° */
     if (!(handle->conn_stat_inta)) {
 
-        /* Á¬½ÓÒı½ÅÖĞ¶Ï»Øµ÷º¯Êı */
+        /* è¿æ¥å¼•è„šä¸­æ–­å›è°ƒå‡½æ•° */
         ret = am_gpio_trigger_connect(p_devinfo->inta_pin,
                                       __rx8025sa_inta_isr,
                                       handle);
@@ -1229,27 +1229,27 @@ int am_rx8025sa_periodic_int_set (am_rx8025sa_handle_t  handle,
             return ret;
         }
 
-        /* ÉèÖÃÎªÏÂ½µÑØ´¥·¢ */
+        /* è®¾ç½®ä¸ºä¸‹é™æ²¿è§¦å‘ */
         am_gpio_trigger_cfg(p_devinfo->inta_pin, AM_GPIO_TRIGGER_FALL);
         am_gpio_trigger_on(p_devinfo->inta_pin);
 
-        /* ¸üĞÂconn_stat×´Ì¬ÎªTRUE */
+        /* æ›´æ–°conn_statçŠ¶æ€ä¸ºTRUE */
         handle->conn_stat_inta = AM_TRUE;
 
     }
 
-    /* Á¬½ÓÖĞ¶Ï»Øµ÷º¯Êı */
+    /* è¿æ¥ä¸­æ–­å›è°ƒå‡½æ•° */
     handle->triginfo[0].pfn_callback = pfn_periodic_int_callback;
     handle->triginfo[0].p_arg        = p_periodic_int_arg;
 
-    /* Èç¹ûËùÓĞµÄ»Øµ÷º¯Êı¶¼Îª¿Õ */
+    /* å¦‚æœæ‰€æœ‰çš„å›è°ƒå‡½æ•°éƒ½ä¸ºç©º */
     if ((handle->triginfo[0].pfn_callback == NULL) &&
         (handle->triginfo[1].pfn_callback == NULL)) {
 
-        /* Èç¹ûconn_stat_intaÎªTRUEÔòµ÷ÓÃGPIO½â³ıÁ¬½Óº¯Êı */
+        /* å¦‚æœconn_stat_intaä¸ºTRUEåˆ™è°ƒç”¨GPIOè§£é™¤è¿æ¥å‡½æ•° */
         if (handle->conn_stat_inta) {
 
-            /* É¾³ıÒı½ÅÖĞ¶Ï»Øµ÷º¯Êı */
+            /* åˆ é™¤å¼•è„šä¸­æ–­å›è°ƒå‡½æ•° */
             ret = am_gpio_trigger_disconnect(p_devinfo->inta_pin,
                                              __rx8025sa_inta_isr,
                                              handle);
@@ -1258,15 +1258,15 @@ int am_rx8025sa_periodic_int_set (am_rx8025sa_handle_t  handle,
                 return ret;
             }
 
-            /* ¹Ø±ÕÒı½Å´¥·¢ */
+            /* å…³é—­å¼•è„šè§¦å‘ */
             am_gpio_trigger_off(p_devinfo->inta_pin);
 
-            /* ¸üĞÂconn_stat×´Ì¬ÎªFALSE */
+            /* æ›´æ–°conn_statçŠ¶æ€ä¸ºFALSE */
             handle->conn_stat_inta = AM_FALSE;
         }
     }
 
-    /* ¶ÁÈ¡¿ØÖÆ¼Ä´æÆ÷1 */
+    /* è¯»å–æ§åˆ¶å¯„å­˜å™¨1 */
     ret = am_i2c_read(p_i2c_dev,
                       __RX8025SA_REG_CONTROL1,
                       buf,
@@ -1277,7 +1277,7 @@ int am_rx8025sa_periodic_int_set (am_rx8025sa_handle_t  handle,
     }
     buf[0] |= int_mode;
 
-    /* ½«ÄÖÖÓÖĞ¶ÏĞÅÏ¢Ğ´Èë¿ØÖÆ×´Ì¬¼Ä´æÆ÷1 */
+    /* å°†é—¹é’Ÿä¸­æ–­ä¿¡æ¯å†™å…¥æ§åˆ¶çŠ¶æ€å¯„å­˜å™¨1 */
     ret = am_i2c_write(p_i2c_dev,
                        __RX8025SA_REG_CONTROL1,
                        buf,
@@ -1290,26 +1290,26 @@ int am_rx8025sa_periodic_int_set (am_rx8025sa_handle_t  handle,
 }
 
 /**
- * \brief RX8025SA ÄÖÖÓD»Øµ÷º¯ÊıºÍÄÖÖÓÊ±¼äÉèÖÃ
+ * \brief RX8025SA é—¹é’ŸDå›è°ƒå‡½æ•°å’Œé—¹é’Ÿæ—¶é—´è®¾ç½®
  */
 int am_rx8025sa_alarm_d_set(am_rx8025sa_handle_t      handle,
                             am_rx8025sa_alarm_info_t *p_alarm_info,
                             am_pfnvoid_t              pfn_alarm_callback,
                             void                     *p_alarm_arg)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* Êı¾İ»º³åÇø */
+    /* æ•°æ®ç¼“å†²åŒº */
     uint8_t buf[2] = {0};
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = NULL;
 
-    /* Éè±¸ĞÅÏ¢Ö¸Õë */
+    /* è®¾å¤‡ä¿¡æ¯æŒ‡é’ˆ */
     const am_rx8025sa_devinfo_t *p_devinfo = NULL;
 
-    /* ¼ìÑé²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* æ£€éªŒå‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == handle) {
         return -AM_EINVAL;
     }
@@ -1317,10 +1317,10 @@ int am_rx8025sa_alarm_d_set(am_rx8025sa_handle_t      handle,
     p_devinfo = handle->p_devinfo;
     p_i2c_dev = &(handle->i2c_dev);
 
-    /* conn_stat_intaÓÃÓÚ¼ÇÂ¼µ±Ç°ÖĞ¶ÏÁ¬½Ó×´Ì¬,±ÜÃâÖØ¸´µ÷ÓÃGPIOÁ¬½Óº¯Êı */
+    /* conn_stat_intaç”¨äºè®°å½•å½“å‰ä¸­æ–­è¿æ¥çŠ¶æ€,é¿å…é‡å¤è°ƒç”¨GPIOè¿æ¥å‡½æ•° */
     if (!(handle->conn_stat_inta)) {
 
-        /* Á¬½ÓÒı½ÅÖĞ¶Ï»Øµ÷º¯Êı */
+        /* è¿æ¥å¼•è„šä¸­æ–­å›è°ƒå‡½æ•° */
         ret = am_gpio_trigger_connect(p_devinfo->inta_pin,
                                       __rx8025sa_inta_isr,
                                        handle);
@@ -1328,26 +1328,26 @@ int am_rx8025sa_alarm_d_set(am_rx8025sa_handle_t      handle,
             return ret;
         }
 
-        /* ÉèÖÃÎªÏÂ½µÑØ´¥·¢ */
+        /* è®¾ç½®ä¸ºä¸‹é™æ²¿è§¦å‘ */
         am_gpio_trigger_cfg(p_devinfo->inta_pin, AM_GPIO_TRIGGER_FALL);
         am_gpio_trigger_on(p_devinfo->inta_pin);
 
-        /* ¸üĞÂconn_stat_inta×´Ì¬ÎªTRUE */
+        /* æ›´æ–°conn_stat_intaçŠ¶æ€ä¸ºTRUE */
         handle->conn_stat_inta = AM_TRUE;
 
     }
-    /* Á¬½ÓÖĞ¶Ï»Øµ÷º¯Êı */
+    /* è¿æ¥ä¸­æ–­å›è°ƒå‡½æ•° */
     handle->triginfo[1].pfn_callback = pfn_alarm_callback;
     handle->triginfo[1].p_arg        = p_alarm_arg;
 
-    /* Èç¹ûËùÓĞµÄ»Øµ÷º¯Êı¶¼Îª¿Õ */
+    /* å¦‚æœæ‰€æœ‰çš„å›è°ƒå‡½æ•°éƒ½ä¸ºç©º */
     if ((handle->triginfo[0].pfn_callback == NULL) &&
         (handle->triginfo[1].pfn_callback == NULL)) {
 
-        /* Èç¹ûconn_statÎªTRUEÔòµ÷ÓÃGPIO½â³ıÁ¬½Óº¯Êı */
+        /* å¦‚æœconn_statä¸ºTRUEåˆ™è°ƒç”¨GPIOè§£é™¤è¿æ¥å‡½æ•° */
         if (handle->conn_stat_inta) {
 
-            /* É¾³ıÒı½ÅÖĞ¶Ï»Øµ÷º¯Êı */
+            /* åˆ é™¤å¼•è„šä¸­æ–­å›è°ƒå‡½æ•° */
             ret = am_gpio_trigger_disconnect(p_devinfo->inta_pin,
                                              __rx8025sa_inta_isr,
                                              handle);
@@ -1356,15 +1356,15 @@ int am_rx8025sa_alarm_d_set(am_rx8025sa_handle_t      handle,
                 return ret;
             }
 
-            /* ¹Ø±ÕÒı½Å´¥·¢ */
+            /* å…³é—­å¼•è„šè§¦å‘ */
             am_gpio_trigger_off(p_devinfo->inta_pin);
 
-            /* ¸üĞÂconn_stat×´Ì¬ÎªFALSE */
+            /* æ›´æ–°conn_statçŠ¶æ€ä¸ºFALSE */
             handle->conn_stat_inta = AM_FALSE;
         }
     }
 
-    /* ÑéÖ¤ÄÖÖÓĞÅÏ¢ÉèÖÃÖµµÄÓĞĞ§ĞÔ */
+    /* éªŒè¯é—¹é’Ÿä¿¡æ¯è®¾ç½®å€¼çš„æœ‰æ•ˆæ€§ */
     if (p_alarm_info->hour > 23 || p_alarm_info->hour < 0 ||
         p_alarm_info->min  > 59 || p_alarm_info->min < 0) {
         return -AM_EINVAL;
@@ -1372,7 +1372,7 @@ int am_rx8025sa_alarm_d_set(am_rx8025sa_handle_t      handle,
 
     buf[0] = AM_HEX_TO_BCD(p_alarm_info->min);
     buf[1] = AM_HEX_TO_BCD(p_alarm_info->hour);
-    /* ÀûÓÃI2C´«ÊäÊı¾İ */
+    /* åˆ©ç”¨I2Cä¼ è¾“æ•°æ® */
     ret = am_i2c_write(p_i2c_dev,
                        __RX8025SA_REG_MINUTES_ALARM_D,
                        buf,
@@ -1381,7 +1381,7 @@ int am_rx8025sa_alarm_d_set(am_rx8025sa_handle_t      handle,
     if (AM_OK != ret) {
         return -AM_EINVAL;
     }
-    /* Ê¹ÄÜALARM_DÄÖÖÓ*/
+    /* ä½¿èƒ½ALARM_Dé—¹é’Ÿ*/
     am_rx8025sa_alarm_d_enable(handle);
 
     return AM_OK;
@@ -1389,26 +1389,26 @@ int am_rx8025sa_alarm_d_set(am_rx8025sa_handle_t      handle,
 
 
 /**
- * \brief RX8025SA ÄÖÖÓW»Øµ÷º¯ÊıºÍÄÖÖÓÊ±¼äÉèÖÃ
+ * \brief RX8025SA é—¹é’ŸWå›è°ƒå‡½æ•°å’Œé—¹é’Ÿæ—¶é—´è®¾ç½®
  */
 int am_rx8025sa_alarm_w_set(am_rx8025sa_handle_t      handle,
                             am_rx8025sa_alarm_info_t *p_alarm_info,
                             am_pfnvoid_t              pfn_alarm_callback,
                             void                     *p_alarm_arg)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* Êı¾İ»º³åÇø */
+    /* æ•°æ®ç¼“å†²åŒº */
     uint8_t buf[3] = {0};
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = NULL;
 
-    /* Éè±¸ĞÅÏ¢Ö¸Õë */
+    /* è®¾å¤‡ä¿¡æ¯æŒ‡é’ˆ */
     const am_rx8025sa_devinfo_t *p_devinfo = NULL;
 
-    /* ¼ìÑé²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* æ£€éªŒå‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == handle) {
         return -AM_EINVAL;
     }
@@ -1416,7 +1416,7 @@ int am_rx8025sa_alarm_w_set(am_rx8025sa_handle_t      handle,
     p_devinfo = handle->p_devinfo;
     p_i2c_dev = &(handle->i2c_dev);
 
-     /* Á¬½ÓÒı½ÅÖĞ¶Ï»Øµ÷º¯Êı */
+     /* è¿æ¥å¼•è„šä¸­æ–­å›è°ƒå‡½æ•° */
     ret = am_gpio_trigger_connect(p_devinfo->intb_pin,
                                   __rx8025sa_intb_isr,
                                   handle);
@@ -1424,18 +1424,18 @@ int am_rx8025sa_alarm_w_set(am_rx8025sa_handle_t      handle,
         return ret;
     }
 
-    /* ÉèÖÃÎªÏÂ½µÑØ´¥·¢ */
+    /* è®¾ç½®ä¸ºä¸‹é™æ²¿è§¦å‘ */
     am_gpio_trigger_cfg(p_devinfo->intb_pin, AM_GPIO_TRIGGER_LOW);
     am_gpio_trigger_on(p_devinfo->intb_pin);
 
-    /* Á¬½ÓÖĞ¶Ï»Øµ÷º¯Êı */
+    /* è¿æ¥ä¸­æ–­å›è°ƒå‡½æ•° */
     handle->triginfo[2].pfn_callback = pfn_alarm_callback;
     handle->triginfo[2].p_arg        = p_alarm_arg;
 
-    /* Èç¹ûËùÓĞµÄ»Øµ÷º¯Êı¶¼Îª¿Õ */
+    /* å¦‚æœæ‰€æœ‰çš„å›è°ƒå‡½æ•°éƒ½ä¸ºç©º */
     if ( handle->triginfo[2].pfn_callback == NULL) {
 
-        /* É¾³ıÒı½ÅÖĞ¶Ï»Øµ÷º¯Êı */
+        /* åˆ é™¤å¼•è„šä¸­æ–­å›è°ƒå‡½æ•° */
         ret = am_gpio_trigger_disconnect(p_devinfo->intb_pin,
                                          __rx8025sa_intb_isr,
                                          handle);
@@ -1444,14 +1444,14 @@ int am_rx8025sa_alarm_w_set(am_rx8025sa_handle_t      handle,
             return ret;
         }
 
-        /* ¹Ø±ÕÒı½Å´¥·¢ */
+        /* å…³é—­å¼•è„šè§¦å‘ */
         am_gpio_trigger_off(p_devinfo->inta_pin);
 
-         /* ¸üĞÂconn_stat×´Ì¬ÎªFALSE */
+         /* æ›´æ–°conn_statçŠ¶æ€ä¸ºFALSE */
         handle->conn_stat_inta = AM_FALSE;
     }
 
-    /* ÑéÖ¤ÄÖÖÓĞÅÏ¢ÉèÖÃÖµµÄÓĞĞ§ĞÔ */
+    /* éªŒè¯é—¹é’Ÿä¿¡æ¯è®¾ç½®å€¼çš„æœ‰æ•ˆæ€§ */
     if (p_alarm_info->alarm_week > 127  || p_alarm_info->alarm_week < 0 ||
         p_alarm_info->hour > 23 || p_alarm_info->hour < 0 ||
         p_alarm_info->min  > 59 || p_alarm_info->min < 0) {
@@ -1461,7 +1461,7 @@ int am_rx8025sa_alarm_w_set(am_rx8025sa_handle_t      handle,
     buf[0] = AM_HEX_TO_BCD(p_alarm_info->min);
     buf[1] = AM_HEX_TO_BCD(p_alarm_info->hour);
     buf[2] = p_alarm_info->alarm_week;
-    /* ÀûÓÃI2C´«ÊäÊı¾İ */
+    /* åˆ©ç”¨I2Cä¼ è¾“æ•°æ® */
     ret = am_i2c_write(p_i2c_dev,
     		           __RX8025SA_REG_MINUTES_ALARM_W,
                        buf,
@@ -1470,35 +1470,35 @@ int am_rx8025sa_alarm_w_set(am_rx8025sa_handle_t      handle,
     if (AM_OK != ret) {
         return -AM_EINVAL;
     }
-    /* Ê¹ÄÜALARM_WÄÖÖÓ*/
+    /* ä½¿èƒ½ALARM_Wé—¹é’Ÿ*/
     am_rx8025sa_alarm_w_enable(handle);
 
     return AM_OK;
 
 }
 /*
- * µçÔ´µçÑ¹Õğµ´¼ì²â
+ * ç”µæºç”µå‹éœ‡è¡æ£€æµ‹
  */
 int am_rx8025sa_power_check(am_rx8025sa_handle_t  handle)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
 	int ret;
 
-    /* Êı¾İ»º³åÇø */
+    /* æ•°æ®ç¼“å†²åŒº */
     uint8_t buf;
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = NULL;
 
-    /* ¼ìÑé²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* æ£€éªŒå‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == handle) {
         return -AM_EINVAL;
     }
 
-    /* ´ÓÉè±¸½á¹¹ÌåÖĞ»ñÈ¡i2cÉè±¸Ö¸Õë */
+    /* ä»è®¾å¤‡ç»“æ„ä½“ä¸­è·å–i2cè®¾å¤‡æŒ‡é’ˆ */
     p_i2c_dev = &(handle->i2c_dev);
 
-    /* Í¨¹ıI2C¶ÁÈ¡Êı¾İ */
+    /* é€šè¿‡I2Cè¯»å–æ•°æ® */
     ret = am_i2c_read(p_i2c_dev,
     		          __RX8025SA_REG_CONTROL2,
                       &buf,
@@ -1513,28 +1513,28 @@ int am_rx8025sa_power_check(am_rx8025sa_handle_t  handle)
 }
 
 /**
- * µÍµçÑ¹¼ì²â¹¦ÄÜµÄ±ê×¼µçÑ¹ÖµÉè¶¨
+ * ä½ç”µå‹æ£€æµ‹åŠŸèƒ½çš„æ ‡å‡†ç”µå‹å€¼è®¾å®š
  */
 int am_rx8025sa_check_voltage_set (am_rx8025sa_handle_t handle, uint8_t check_v_value)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* Êı¾İ»º³åÇø */
+    /* æ•°æ®ç¼“å†²åŒº */
     uint8_t buf[1]     = {0};
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = NULL;
 
-    /* ÑéÖ¤²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* éªŒè¯å‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == handle) {
         return -AM_EINVAL;
     }
 
-    /* ´ÓhandleÖĞ»ñÈ¡i2cÉè±¸Ö¸Õë */
+    /* ä»handleä¸­è·å–i2cè®¾å¤‡æŒ‡é’ˆ */
     p_i2c_dev = &(handle->i2c_dev);
 
-    /* ¶ÁÈ¡¿ØÖÆ¼Ä´æÆ÷1 */
+    /* è¯»å–æ§åˆ¶å¯„å­˜å™¨1 */
     ret = am_i2c_read(p_i2c_dev,
     		          __RX8025SA_REG_CONTROL2,
                       buf,
@@ -1550,7 +1550,7 @@ int am_rx8025sa_check_voltage_set (am_rx8025sa_handle_t handle, uint8_t check_v_
     	buf[0] &= ~ __RX8025SA_C2_VDSL_1_3_SET;
     }
 
-    /* ½«ÄÖÖÓÖĞ¶ÏĞÅÏ¢Ğ´Èë¿ØÖÆ×´Ì¬¼Ä´æÆ÷1 */
+    /* å°†é—¹é’Ÿä¸­æ–­ä¿¡æ¯å†™å…¥æ§åˆ¶çŠ¶æ€å¯„å­˜å™¨1 */
     ret = am_i2c_write(p_i2c_dev,
     		           __RX8025SA_REG_CONTROL2,
                        buf,
@@ -1565,28 +1565,28 @@ int am_rx8025sa_check_voltage_set (am_rx8025sa_handle_t handle, uint8_t check_v_
 }
 
 /*
- * ¼ÆÊ±ÆµÂÊ½øĞĞµ÷¿ì»òµ÷Âı
+ * è®¡æ—¶é¢‘ç‡è¿›è¡Œè°ƒå¿«æˆ–è°ƒæ…¢
  */
 int am_rx8025sa_clk_adjust ( am_rx8025sa_handle_t handle, float clk )
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int   ret = AM_OK;
 
     double  clk_off;
     int     temp;
 
-    /* Êı¾İ»º³åÇø */
+    /* æ•°æ®ç¼“å†²åŒº */
     uint8_t buf[1]     = {0};
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = NULL;
 
-    /* ÑéÖ¤²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* éªŒè¯å‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == handle) {
         return -AM_EINVAL;
     }
 
-    /* ´ÓhandleÖĞ»ñÈ¡i2cÉè±¸Ö¸Õë */
+    /* ä»handleä¸­è·å–i2cè®¾å¤‡æŒ‡é’ˆ */
     p_i2c_dev = &(handle->i2c_dev);
 
     clk_off = ( clk - 32768)/32768;
@@ -1612,28 +1612,28 @@ int am_rx8025sa_clk_adjust ( am_rx8025sa_handle_t handle, float clk )
     return AM_OK;
 }
 /**
- * ÉèÖÃÆµÂÊÊä³ö
+ * è®¾ç½®é¢‘ç‡è¾“å‡º
  */
 int am_rx8025sa_clkout_set(am_rx8025sa_handle_t handle)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* Êı¾İ»º³åÇø */
+    /* æ•°æ®ç¼“å†²åŒº */
     uint8_t buf[1]  = {0};
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = NULL;
 
-    /* ÑéÖ¤²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* éªŒè¯å‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == handle) {
         return -AM_EINVAL;
     }
 
-    /* ´ÓhandleÖĞ»ñÈ¡i2cÉè±¸Ö¸Õë */
+    /* ä»handleä¸­è·å–i2cè®¾å¤‡æŒ‡é’ˆ */
     p_i2c_dev = &(handle->i2c_dev);
 
-    /* ¶ÁÈ¡¿ØÖÆ¼Ä´æÆ÷1 */
+    /* è¯»å–æ§åˆ¶å¯„å­˜å™¨1 */
     ret = am_i2c_read(p_i2c_dev,
                       __RX8025SA_REG_CONTROL1,
                       buf,
@@ -1643,9 +1643,9 @@ int am_rx8025sa_clkout_set(am_rx8025sa_handle_t handle)
         return ret;
     }
 
-    buf[0] &= 0xEF;  /* ½«¿ØÖÆ¼Ä´æÆ÷1ÖĞCLEN2ÎªÇåÁã */
+    buf[0] &= 0xEF;  /* å°†æ§åˆ¶å¯„å­˜å™¨1ä¸­CLEN2ä¸ºæ¸…é›¶ */
 
-    /* Ğ´Èë¿ØÖÆ×´Ì¬¼Ä´æÆ÷1 */
+    /* å†™å…¥æ§åˆ¶çŠ¶æ€å¯„å­˜å™¨1 */
     ret = am_i2c_write(p_i2c_dev,
                        __RX8025SA_REG_CONTROL1,
                        buf,
@@ -1654,8 +1654,8 @@ int am_rx8025sa_clkout_set(am_rx8025sa_handle_t handle)
     if (AM_OK != ret) {
         return ret;
     }
-    /* ½« FOEÒı½ÅÖÃ¸ß£¬Ê¹ÄÜCLKÊä³ö */
-    /* ½« FOEÒı½ÅÖÃ¸ß£¬Ê¹ÄÜCLKÊä³ö */
+    /* å°† FOEå¼•è„šç½®é«˜ï¼Œä½¿èƒ½CLKè¾“å‡º */
+    /* å°† FOEå¼•è„šç½®é«˜ï¼Œä½¿èƒ½CLKè¾“å‡º */
     if( handle->p_devinfo->clk_en_pin != -1) {
         ret = am_gpio_set(handle->p_devinfo->clk_en_pin, AM_GPIO_LEVEL_HIGH);
     }
@@ -1668,14 +1668,14 @@ int am_rx8025sa_clkout_set(am_rx8025sa_handle_t handle)
 }
 
 /**
- * ¹ØµôÆµÂÊÊä³ö
+ * å…³æ‰é¢‘ç‡è¾“å‡º
  */
 int am_rx8025sa_clkout_close(am_rx8025sa_handle_t handle)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* ½« FOEÒı½ÅÖÃµÍ£¬¹Ø±ÕCLKÊä³ö */
+    /* å°† FOEå¼•è„šç½®ä½ï¼Œå…³é—­CLKè¾“å‡º */
     if( handle->p_devinfo->clk_en_pin != -1) {
         ret = am_gpio_set(handle->p_devinfo->clk_en_pin, AM_GPIO_LEVEL_LOW);
     }

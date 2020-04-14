@@ -12,16 +12,16 @@
 
 /**
  * \file
- * \brief LEDÀı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief LEDä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè£º
- *   1. ¶Ì½ÓJ9/J10ÌøÏßÃ±£¬PIOC_4/PIOC_8¿ØÖÆLED0/LED1;
- *   2. ĞèÒªÔÚam_prj_config.hÍ·ÎÄ¼şÀïÊ¹ÄÜAM_CFG_LED_ENABLE¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. çŸ­æ¥J9/J10è·³çº¿å¸½ï¼ŒPIOC_4/PIOC_8æ§åˆ¶LED0/LED1;
+ *   2. éœ€è¦åœ¨am_prj_config.hå¤´æ–‡ä»¶é‡Œä½¿èƒ½AM_CFG_LED_ENABLEã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. LEDÒÔ0.3sµÄÊ±¼ä¼ä¸ôÉÁË¸¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. LEDä»¥0.3sçš„æ—¶é—´é—´éš”é—ªçƒã€‚
  * 
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_amks16z_core_std_led.c src_amks16z_core_std_led
  * 
  * \internal
@@ -43,7 +43,7 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_amks16z_core_std_led_entry (void)
 {

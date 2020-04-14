@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief I2C´Ó»úÇı¶¯£¬·şÎñI2C´Ó»ú±ê×¼½Ó¿Ú
+ * \brief I2Cä»æœºé©±åŠ¨ï¼ŒæœåŠ¡I2Cä»æœºæ ‡å‡†æ¥å£
  *
  * \internal
  * \par Modification History
@@ -26,25 +26,25 @@
 #include "am_clk.h"
 #include "string.h"
 /*******************************************************************************
-  º¯ÊıÉùÃ÷
+  å‡½æ•°å£°æ˜
 *******************************************************************************/
 
-/** \brief I2CÓ²¼ş³õÊ¼»¯ */
+/** \brief I2Cç¡¬ä»¶åˆå§‹åŒ– */
 static int __i2c_slv_hard_init(am_fsl_i2c_slv_dev_t *p_dev);
 
-/** \brief I2CÖĞ¶Ï´¦Àíº¯Êı */
+/** \brief I2Cä¸­æ–­å¤„ç†å‡½æ•° */
 static void __i2c_slv_irq_handler (void *p_arg);
 
-/** \brief ¿ªÆôI2C´Ó»úÉè±¸ */
+/** \brief å¼€å¯I2Cä»æœºè®¾å¤‡ */
 static int __i2c_slv_setup (void *p_drv, am_i2c_slv_device_t *p_i2c_slv_dev);
 
-/** \brief ¹Ø±Õ I2C´Ó»úÉè±¸ */
+/** \brief å…³é—­ I2Cä»æœºè®¾å¤‡ */
 static int __i2c_slv_shutdown (void *p_drv, am_i2c_slv_device_t *p_i2c_slv_dev);
 
-/** \brief »ñÈ¡¿ÉÓÃµÄ´Ó»úÉè±¸¸öÊı */
+/** \brief è·å–å¯ç”¨çš„ä»æœºè®¾å¤‡ä¸ªæ•° */
 static int __i2c_slv_num_get(void *p_drv);
 
-/** \brief ÉèÖÃ´Ó»ú±£³ÖÊ±¼ä */
+/** \brief è®¾ç½®ä»æœºä¿æŒæ—¶é—´ */
 static void __i2c_set_hold_time(amhw_fsl_i2c_t *base,
 		                        uint32_t scl_stop_hold_time_ns,
 								uint32_t clock);
@@ -61,7 +61,7 @@ static const uint16_t __i2c_divider_table[] = {
 	1280, 1536, 1792, 2048, 2304, 2560, 3072, 3840};
 
 /**
- * \brief I2C´ÓÉè±¸ Çı¶¯º¯Êı¶¨Òå
+ * \brief I2Cä»è®¾å¤‡ é©±åŠ¨å‡½æ•°å®šä¹‰
  */
 static am_const struct am_i2c_slv_drv_funcs __g_i2c_slv_drv_funcs = {
     __i2c_slv_setup,
@@ -70,7 +70,7 @@ static am_const struct am_i2c_slv_drv_funcs __g_i2c_slv_drv_funcs = {
 };
 
 /**
- *  \brief ÉèÖÃ´Ó»ú±£³ÖÊ±¼ä
+ *  \brief è®¾ç½®ä»æœºä¿æŒæ—¶é—´
  */
 static void __i2c_set_hold_time(amhw_fsl_i2c_t *p_hw_i2c,
 		                        uint32_t scl_stop_hold_time_ns,
@@ -114,8 +114,8 @@ static void __i2c_set_hold_time(amhw_fsl_i2c_t *p_hw_i2c,
 
 
 /**
- *  \brief I2CÓ²¼ş³õÊ¼»¯
- *  \note  1: ÅäÖÃ±£³ÖÊ±¼ä
+ *  \brief I2Cç¡¬ä»¶åˆå§‹åŒ–
+ *  \note  1: é…ç½®ä¿æŒæ—¶é—´
  */
 static int __i2c_slv_hard_init (am_fsl_i2c_slv_dev_t *p_dev)
 {
@@ -137,8 +137,8 @@ static int __i2c_slv_hard_init (am_fsl_i2c_slv_dev_t *p_dev)
 }
 
 /**
- *  \brief I2CÓ²¼ş³õÊ¼»¯
- *  \note  1: ÅäÖÃ±£³ÖÊ±¼ä
+ *  \brief I2Cç¡¬ä»¶åˆå§‹åŒ–
+ *  \note  1: é…ç½®ä¿æŒæ—¶é—´
  */
 static inline void amhw_fsl_clear_status_flags(amhw_fsl_i2c_t *p_hw_i2c, uint32_t status_mask)
 {
@@ -155,7 +155,7 @@ static inline void amhw_fsl_clear_status_flags(amhw_fsl_i2c_t *p_hw_i2c, uint32_
 }
 
 /**
- * \brief ¿ªÊ¼´Ó»úÉè±¸
+ * \brief å¼€å§‹ä»æœºè®¾å¤‡
  */
 static int __i2c_slv_setup (void *p_drv, am_i2c_slv_device_t *p_i2c_slv_dev)
 {
@@ -183,7 +183,7 @@ static int __i2c_slv_setup (void *p_drv, am_i2c_slv_device_t *p_i2c_slv_dev)
 }
 
 /**
- * \brief ¹Ø±Õ ´Ó»úÉè±¸
+ * \brief å…³é—­ ä»æœºè®¾å¤‡
  */
 static int __i2c_slv_shutdown (void *p_drv, am_i2c_slv_device_t *p_i2c_slv_dev)
 {
@@ -197,9 +197,9 @@ static int __i2c_slv_shutdown (void *p_drv, am_i2c_slv_device_t *p_i2c_slv_dev)
     p_hw_i2c_slv = (amhw_fsl_i2c_t *) p_dev->p_devinfo->i2c_regbase;
 
     /**
-     * \brief Ê§ÄÜ¶ÔÓ¦´ÓµØÖ· ,¸ù¾İ´Ó»úµØÖ·¿ÉÒÔÈ·¶¨¸Ã¹Ø±ÕÄÄÒ»¸ö´Ó»úÉè±¸
+     * \brief å¤±èƒ½å¯¹åº”ä»åœ°å€ ,æ ¹æ®ä»æœºåœ°å€å¯ä»¥ç¡®å®šè¯¥å…³é—­å“ªä¸€ä¸ªä»æœºè®¾å¤‡
      *
-     * \note FSLÖ»ÄÜÉú³ÉÒ»¸ö´ÓÉè±¸ £¬Ö±½Ó¹Ø±ÕÊ§ÄÜI2C¼´¿É
+     * \note FSLåªèƒ½ç”Ÿæˆä¸€ä¸ªä»è®¾å¤‡ ï¼Œç›´æ¥å…³é—­å¤±èƒ½I2Cå³å¯
      */
     amhw_fsl_i2c_disable (p_hw_i2c_slv);
 
@@ -207,7 +207,7 @@ static int __i2c_slv_shutdown (void *p_drv, am_i2c_slv_device_t *p_i2c_slv_dev)
 }
 
 /**
- * \brief »ñÈ¡¿ÉÓÃ´Ó»úÉè±¸¸öÊı
+ * \brief è·å–å¯ç”¨ä»æœºè®¾å¤‡ä¸ªæ•°
  */
 static int __i2c_slv_num_get (void *p_drv)
 {
@@ -219,7 +219,7 @@ static int __i2c_slv_num_get (void *p_drv)
         return -AM_EINVAL;
     }
 
-    /* »ñÈ¡×ÜµÄ´ÓÉè±¸¸öÊı */
+    /* è·å–æ€»çš„ä»è®¾å¤‡ä¸ªæ•° */
     uint8_t fsl_i2c_slv_dev_num = p_dev->fsl_i2c_slv_dev_num;
 
     for (i = 0; i < fsl_i2c_slv_dev_num; i++) {
@@ -231,7 +231,7 @@ static int __i2c_slv_num_get (void *p_drv)
 }
 
 /**
- * \brief »ñÈ¡´Ó»ú×´Ì¬±êÖ¾
+ * \brief è·å–ä»æœºçŠ¶æ€æ ‡å¿—
  */
 static uint32_t __i2c_slv_get_status_flags(amhw_fsl_i2c_t *p_hw_i2c)
 {
@@ -254,11 +254,11 @@ static uint32_t __i2c_slv_get_status_flags(amhw_fsl_i2c_t *p_hw_i2c)
 
 
 /**
- * \brief I2C ÖĞ¶Ï´¦Àíº¯Êı
+ * \brief I2C ä¸­æ–­å¤„ç†å‡½æ•°
  *
- * \param[in] p_arg : Ö¸ÏòI2CÉè±¸½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] p_arg : æŒ‡å‘I2Cè®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 static void __i2c_slv_irq_handler (void *p_arg)
 {
@@ -345,7 +345,7 @@ static void __i2c_slv_irq_handler (void *p_arg)
 
     	p_i2c_slv_dev->p_cb_funs->pfn_txbyte_get(p_i2c_slv_dev->p_arg, &data);
     	amhw_fsl_i2c_data_write(p_hw_i2c_slv, data);
-        /* ¿ªÊ¼ÓÃÈí¼ş¶¨Ê±Æ÷¼ÆÊ± 1ms */
+        /* å¼€å§‹ç”¨è½¯ä»¶å®šæ—¶å™¨è®¡æ—¶ 1ms */
 //        am_softimer_start(&p_dev->softimer, 1);
     } else {
     	amhw_fsl_i2c_transmode_set (p_hw_i2c_slv , AMHW_FSL_I2C_TRANSMODE_RECV);
@@ -355,9 +355,9 @@ static void __i2c_slv_irq_handler (void *p_arg)
 
 
 /**
- * \brief Èí¼ş¶¨Ê±Æ÷»Øµ÷º¯Êı
+ * \brief è½¯ä»¶å®šæ—¶å™¨å›è°ƒå‡½æ•°
  *
- * \note ÔÚ¿ªÊ¼ĞÅºÅÖ®ºó £¬ÈôÖ÷»ú³¬¹ı1Ãë»¹Î´·¢Í£Ö¹ĞÅºÅ £¬Ôò½«´Ó»ú½øĞĞ¸´Î»
+ * \note åœ¨å¼€å§‹ä¿¡å·ä¹‹å ï¼Œè‹¥ä¸»æœºè¶…è¿‡1ç§’è¿˜æœªå‘åœæ­¢ä¿¡å· ï¼Œåˆ™å°†ä»æœºè¿›è¡Œå¤ä½
  */
 static void __i2c_slv_timing_callback (void *p_arg)
 {
@@ -366,15 +366,15 @@ static void __i2c_slv_timing_callback (void *p_arg)
 
 	amhw_fsl_i2c_transmode_set (p_hw_i2c_slv , AMHW_FSL_I2C_TRANSMODE_RECV);
 	amhw_fsl_i2c_data_read(p_hw_i2c_slv);
-    /** Í£Ö¹¶¨Ê± */
+    /** åœæ­¢å®šæ—¶ */
     am_softimer_stop(&p_dev->softimer);
 }
 
 
 /**
- * \brief I2C³õÊ¼»¯
+ * \brief I2Cåˆå§‹åŒ–
  *
- * \note Ó²¼ş³õÊ¼»¯ Í¨¹ıÓÃ»§µ÷ÓÃ¿ªÊ¼´ÓÉè±¸À´³õÊ¼»¯
+ * \note ç¡¬ä»¶åˆå§‹åŒ– é€šè¿‡ç”¨æˆ·è°ƒç”¨å¼€å§‹ä»è®¾å¤‡æ¥åˆå§‹åŒ–
  */
 am_i2c_slv_handle_t am_fsl_i2c_slv_init (am_fsl_i2c_slv_dev_t           *p_dev,
                                          const am_fsl_i2c_slv_devinfo_t *p_devinfo)
@@ -394,10 +394,10 @@ am_i2c_slv_handle_t am_fsl_i2c_slv_init (am_fsl_i2c_slv_dev_t           *p_dev,
 
     __i2c_slv_hard_init(p_dev);
 
-    /* ³õÊ¼»¯Èí¼ş¶¨Ê±Æ÷ */
+    /* åˆå§‹åŒ–è½¯ä»¶å®šæ—¶å™¨ */
     am_softimer_init(&p_dev->softimer, __i2c_slv_timing_callback, p_dev);
 
-    /* Á¬½ÓÖĞ¶Ï */
+    /* è¿æ¥ä¸­æ–­ */
     am_int_connect(p_dev->p_devinfo->inum, __i2c_slv_irq_handler, (void *)p_dev);
     am_int_enable(p_dev->p_devinfo->inum);
 
@@ -405,7 +405,7 @@ am_i2c_slv_handle_t am_fsl_i2c_slv_init (am_fsl_i2c_slv_dev_t           *p_dev,
 }
 
 /**
- * \brief I2C½â³õÊ¼»¯
+ * \brief I2Cè§£åˆå§‹åŒ–
  */
 void am_fsl_i2c_slv_deinit (am_i2c_slv_handle_t handle)
 {
@@ -421,7 +421,7 @@ void am_fsl_i2c_slv_deinit (am_i2c_slv_handle_t handle)
 
     amhw_fsl_i2c_disable (p_hw_i2c_slv);
 
-    /* È¥³ıÖĞ¶ÏÁ¬½Ó */
+    /* å»é™¤ä¸­æ–­è¿æ¥ */
     am_int_disable(p_dev->p_devinfo->inum);
     am_int_disconnect(p_dev->p_devinfo->inum, __i2c_slv_irq_handler, (void *)p_dev);
 

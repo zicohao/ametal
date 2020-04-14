@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZLG116 SPI ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief ZLG116 SPI ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_zlg116_spi_dma.c
  *
  * \internal
@@ -35,7 +35,7 @@
  * @{
  */
 
-/** \brief SPI1 Æ½Ì¨³õÊ¼»¯ */
+/** \brief SPI1 å¹³å°åˆå§‹åŒ– */
 static void __zlg116_plfm_spi1_dma_init (void)
 {
     am_gpio_pin_cfg(__SPI1_SCK,  __GPIO_SPI1_SCK);
@@ -45,11 +45,11 @@ static void __zlg116_plfm_spi1_dma_init (void)
     am_clk_enable(CLK_SPI1);
 }
 
-/** \brief ½â³ıSPI1 Æ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤SPI1 å¹³å°åˆå§‹åŒ– */
 static void __zlg116_plfm_spi1_dma_deinit (void)
 {
 
-    /* ÊÍ·ÅÒı½ÅÎªÊäÈëÄ£Ê½ */
+    /* é‡Šæ”¾å¼•è„šä¸ºè¾“å…¥æ¨¡å¼ */
     am_gpio_pin_cfg(__SPI1_SCK,  AM_GPIO_INPUT);
     am_gpio_pin_cfg(__SPI1_MISO, AM_GPIO_INPUT);
     am_gpio_pin_cfg(__SPI1_MOSI, AM_GPIO_INPUT);
@@ -58,36 +58,36 @@ static void __zlg116_plfm_spi1_dma_deinit (void)
 }
 
 /**
- * \brief SPI1 Éè±¸ĞÅÏ¢
+ * \brief SPI1 è®¾å¤‡ä¿¡æ¯
  */
 const  struct am_zlg_spi_dma_devinfo  __g_spi1_dma_devinfo = {
-    ZLG116_SPI1_BASE,               /**< \brief SPI1¼Ä´æÆ÷Ö¸Õë */
-    CLK_SPI1,                       /**< \brief Ê±ÖÓIDºÅ */
-    INUM_SPI1,                      /**< \brief SPI1ÖĞ¶ÏºÅ */
-    0,                              /**< \brief SPI1ÅäÖÃ±êÊ¶ */
+    ZLG116_SPI1_BASE,               /**< \brief SPI1å¯„å­˜å™¨æŒ‡é’ˆ */
+    CLK_SPI1,                       /**< \brief æ—¶é’ŸIDå· */
+    INUM_SPI1,                      /**< \brief SPI1ä¸­æ–­å· */
+    0,                              /**< \brief SPI1é…ç½®æ ‡è¯† */
     DMA_CHAN_SPI1_TX,
     DMA_CHAN_SPI1_RX,
-    __zlg116_plfm_spi1_dma_init,    /**< \brief SPI1Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __zlg116_plfm_spi1_dma_deinit   /**< \brief SPI1Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    __zlg116_plfm_spi1_dma_init,    /**< \brief SPI1å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __zlg116_plfm_spi1_dma_deinit   /**< \brief SPI1å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 };
 
-/** \brief SPI1 Éè±¸ÊµÀı */
+/** \brief SPI1 è®¾å¤‡å®ä¾‹ */
 static am_zlg_spi_dma_dev_t __g_spi1_dma_dev;
 
-/** \brief SPI1 ÊµÀı³õÊ¼»¯£¬»ñµÃSPI±ê×¼·şÎñ¾ä±ú */
+/** \brief SPI1 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—SPIæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_spi_handle_t am_zlg116_spi1_dma_inst_init (void)
 {
     return am_zlg_spi_dma_init(&__g_spi1_dma_dev, &__g_spi1_dma_devinfo);
 }
 
-/** \brief SPI1 ÊµÀı½â³õÊ¼»¯ */
+/** \brief SPI1 å®ä¾‹è§£åˆå§‹åŒ– */
 void am_zlg116_spi1_dma_inst_deinit (am_spi_handle_t handle)
 {
     am_zlg_spi_dma_deinit(handle);
 }
 
 #if 0
-/** \brief SPI2 Æ½Ì¨³õÊ¼»¯ */
+/** \brief SPI2 å¹³å°åˆå§‹åŒ– */
 static void __zlg116_plfm_spi2_dma_init (void)
 {
     am_gpio_pin_cfg(PIOB_13, PIOB_13_SPI2_MISO | PIOB_13_INPUT_FLOAT);
@@ -97,7 +97,7 @@ static void __zlg116_plfm_spi2_dma_init (void)
     am_clk_enable(CLK_SPI2);
 }
 
-/** \brief ½â³ı SPI2 Æ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤ SPI2 å¹³å°åˆå§‹åŒ– */
 static void __zlg116_plfm_spi2_dma_deinit (void)
 {
     am_gpio_pin_cfg(PIOB_13, AM_GPIO_INPUT);
@@ -108,30 +108,30 @@ static void __zlg116_plfm_spi2_dma_deinit (void)
 }
 
 /**
- * \brief SPI2 Éè±¸ĞÅÏ¢
+ * \brief SPI2 è®¾å¤‡ä¿¡æ¯
  */
 static const struct am_zlg116_spi_dma_devinfo  __g_spi2_dma_devinfo = {
-    ZLG116_SPI2_BASE,                /**< \brief SPI2 ¼Ä´æÆ÷Ö¸Õë */
-    CLK_SPI2,                        /**< \brief Ê±ÖÓ ID ºÅ */
-    INUM_SPI2,                       /**< \brief SPI2ÖĞ¶ÏºÅ */
-    0,                               /**< \brief SPI2 ÅäÖÃ±êÊ¶ */
+    ZLG116_SPI2_BASE,                /**< \brief SPI2 å¯„å­˜å™¨æŒ‡é’ˆ */
+    CLK_SPI2,                        /**< \brief æ—¶é’Ÿ ID å· */
+    INUM_SPI2,                       /**< \brief SPI2ä¸­æ–­å· */
+    0,                               /**< \brief SPI2 é…ç½®æ ‡è¯† */
 
     DMA_CHAN_SPI2_TX,
     DMA_CHAN_SPI2_RX,
-    __zlg116_plfm_spi2_dma_init,     /**< \brief SPI2 Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __zlg116_plfm_spi2_dma_deinit    /**< \brief SPI2 Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    __zlg116_plfm_spi2_dma_init,     /**< \brief SPI2 å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __zlg116_plfm_spi2_dma_deinit    /**< \brief SPI2 å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 };
 
-/** \brief SPI2 Éè±¸ÊµÀı */
+/** \brief SPI2 è®¾å¤‡å®ä¾‹ */
 static am_zlg116_spi_dma_dev_t __g_spi2_dma_dev;
 
-/** \brief SPI2 ÊµÀı³õÊ¼»¯£¬»ñµÃ SPI ±ê×¼·şÎñ¾ä±ú */
+/** \brief SPI2 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— SPI æ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_spi_handle_t am_zlg116_spi2_dma_inst_init (void)
 {
     return am_zlg116_spi_dma_init(&__g_spi2_dma_dev, &__g_spi2_dma_devinfo);
 }
 
-/** \brief SPI2 ÊµÀı½â³õÊ¼»¯ */
+/** \brief SPI2 å®ä¾‹è§£åˆå§‹åŒ– */
 void am_zlg116_spi2_dma_inst_deinit (am_spi_handle_t handle)
 {
     am_zlg116_spi_dma_deinit(handle);

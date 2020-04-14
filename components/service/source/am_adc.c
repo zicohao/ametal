@@ -28,7 +28,7 @@
 
 volatile static int  g_adc_satus = 0;
 
-/* adc转换回调函数 */
+/* adc杞崲鍥炶皟鍑芥暟 */
 static void adc_convert_cb (void *p_arg, int state)
 {
     am_wait_t *p_wait = (am_wait_t *)p_arg;

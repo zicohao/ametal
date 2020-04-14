@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief  WDT±ê×¼½Ó¿Ú
+ * \brief  WDTæ ‡å‡†æ¥å£
  * 
  * \internal
  * \par Modification history
@@ -37,52 +37,52 @@ extern "C" {
  */
 
 /** 
- * \brief WDT³¬Ê±ĞÅÏ¢
+ * \brief WDTè¶…æ—¶ä¿¡æ¯
  */
 typedef struct am_wdt_info {
-    uint32_t min_timeout_ms;  /**< \brief Ö§³ÖµÄ×î´ó³¬Ê±Ê±¼ä£¬µ¥Î»£ºms */
-    uint32_t max_timeout_ms;  /**< \brief Ö§³ÖµÄ×îĞ¡³¬Ê±Ê±¼ä£¬µ¥Î»£ºms */
+    uint32_t min_timeout_ms;  /**< \brief æ”¯æŒçš„æœ€å¤§è¶…æ—¶æ—¶é—´ï¼Œå•ä½ï¼šms */
+    uint32_t max_timeout_ms;  /**< \brief æ”¯æŒçš„æœ€å°è¶…æ—¶æ—¶é—´ï¼Œå•ä½ï¼šms */
 } am_wdt_info_t;
 
 /** 
- * \brief WDTÇı¶¯º¯Êı
+ * \brief WDTé©±åŠ¨å‡½æ•°
  */
 struct am_wdt_drv_funcs {
     
-    /** \brief »ñÈ¡WDTĞÅÏ¢ */
+    /** \brief è·å–WDTä¿¡æ¯ */
     int (*pfn_wdt_info_get)(void *p_drv, am_wdt_info_t *p_info);
 
-    /** \brief ÉèÖÃ³¬Ê±Ê±¼ä²¢Ê¹ÄÜWDT */
+    /** \brief è®¾ç½®è¶…æ—¶æ—¶é—´å¹¶ä½¿èƒ½WDT */
     int (*pfn_wdt_enable)(void *p_drv, uint32_t timeout_ms);
     
-    /** \brief ¿´ÃÅ¹·Î¹¹· */
+    /** \brief çœ‹é—¨ç‹—å–‚ç‹— */
     int (*pfn_wdt_feed)(void *p_drv);
 };
 
 /** 
- * \brief WDT±ê×¼·şÎñ
+ * \brief WDTæ ‡å‡†æœåŠ¡
  */
 typedef struct am_wdt_serv {
 
-    /** \brief WDTÇı¶¯º¯Êı */
+    /** \brief WDTé©±åŠ¨å‡½æ•° */
     struct am_wdt_drv_funcs  *p_funcs; 
     
-    /** \brief Çı¶¯º¯ÊıµÚÒ»¸öÈë¿Ú²ÎÊı */
+    /** \brief é©±åŠ¨å‡½æ•°ç¬¬ä¸€ä¸ªå…¥å£å‚æ•° */
     void                     *p_drv; 
 } am_wdt_serv_t;
 
-/** \brief WDT±ê×¼·şÎñ²Ù×÷¾ä±úÀàĞÍ */
+/** \brief WDTæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„ç±»å‹ */
 typedef am_wdt_serv_t *am_wdt_handle_t;
 
 
 /**
- * \brief »ñÈ¡WDTĞÅÏ¢
+ * \brief è·å–WDTä¿¡æ¯
  *
- * \param[in] handle  : WDT±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \param[out] p_info : Ö¸ÏòWDTĞÅÏ¢µÄÖ¸Õë
+ * \param[in] handle  : WDTæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[out] p_info : æŒ‡å‘WDTä¿¡æ¯çš„æŒ‡é’ˆ
  *
- * \retval AM_OK      : ²Ù×÷³É¹¦
- * \retval -AM_EINVAL : ÎŞĞ§²ÎÊı
+ * \retval AM_OK      : æ“ä½œæˆåŠŸ
+ * \retval -AM_EINVAL : æ— æ•ˆå‚æ•°
  */
 am_static_inline
 int am_wdt_info_get (am_wdt_handle_t handle, am_wdt_info_t *p_info)
@@ -91,15 +91,15 @@ int am_wdt_info_get (am_wdt_handle_t handle, am_wdt_info_t *p_info)
 }
 
 /**
- * \brief ÉèÖÃ³¬Ê±Ê±¼ä²¢Ê¹ÄÜWDT
+ * \brief è®¾ç½®è¶…æ—¶æ—¶é—´å¹¶ä½¿èƒ½WDT
  *
- * \param[in] handle     : WDT±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \param[in] timeout_ms : ³¬Ê±Ê±¼äÖµ£¬µ¥Î»£ºms
+ * \param[in] handle     : WDTæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] timeout_ms : è¶…æ—¶æ—¶é—´å€¼ï¼Œå•ä½ï¼šms
  *
- * \retval  AM_OK        : ÉèÖÃ³¬Ê±Ê±¼ä³É¹¦
- * \retval -AM_EINVAL    : ²ÎÊıÎŞĞ§£¬¼ì²éÉè¶¨³¬Ê±Ê±¼äÊÇ·ñÔÚÔÊĞí·¶Î§ÄÚ
+ * \retval  AM_OK        : è®¾ç½®è¶…æ—¶æ—¶é—´æˆåŠŸ
+ * \retval -AM_EINVAL    : å‚æ•°æ— æ•ˆï¼Œæ£€æŸ¥è®¾å®šè¶…æ—¶æ—¶é—´æ˜¯å¦åœ¨å…è®¸èŒƒå›´å†…
  *
- * \note Èç¹ûÉè¶¨µÄ³¬Ê±Ê±¼äÖµ²»Îª0£¬WDT½«Ê¹ÄÜ¡£Èô³¬Ê±²»Î¹¹·£¬»áÊ¹Ğ¾Æ¬¸´Î»
+ * \note å¦‚æœè®¾å®šçš„è¶…æ—¶æ—¶é—´å€¼ä¸ä¸º0ï¼ŒWDTå°†ä½¿èƒ½ã€‚è‹¥è¶…æ—¶ä¸å–‚ç‹—ï¼Œä¼šä½¿èŠ¯ç‰‡å¤ä½
  */
 am_static_inline
 int am_wdt_enable (am_wdt_handle_t handle, uint32_t timeout_ms)
@@ -108,13 +108,13 @@ int am_wdt_enable (am_wdt_handle_t handle, uint32_t timeout_ms)
 }
 
 /**
- * \brief ¿´ÃÅ¹·Î¹¹·
+ * \brief çœ‹é—¨ç‹—å–‚ç‹—
  *
- * \param[in] handle : WDT±ê×¼·şÎñ²Ù×÷¾ä±ú
+ * \param[in] handle : WDTæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  *
- * \retval  AM_OK    : ²Ù×÷³É¹¦
+ * \retval  AM_OK    : æ“ä½œæˆåŠŸ
  *
- * \note Èç¹û²»ÔÚÉè¶¨µÄ³¬Ê±Ê±¼äÄÚÎ¹¹·£¬¿´ÃÅ¹·½«¸´Î»Ğ¾Æ¬
+ * \note å¦‚æœä¸åœ¨è®¾å®šçš„è¶…æ—¶æ—¶é—´å†…å–‚ç‹—ï¼Œçœ‹é—¨ç‹—å°†å¤ä½èŠ¯ç‰‡
  */
 am_static_inline
 int am_wdt_feed (am_wdt_handle_t handle)

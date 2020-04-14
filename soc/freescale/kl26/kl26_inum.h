@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief KL26 ÷–∂œ∫≈∂®“Â
+ * \brief KL26 ‰∏≠Êñ≠Âè∑ÂÆö‰πâ
  *
  * \internal
  * \par Modification history
@@ -36,86 +36,86 @@ extern "C" {
  */
 
 /**
- * \name KL26 CPU ÷–∂œ∫≈
+ * \name KL26 CPU ‰∏≠Êñ≠Âè∑
  * @{
  */
 
-#define INUM_DMA_CH0             0     /**< \brief DMAÕ®µ¿0÷–∂œ               */
-#define INUM_DMA_CH1             1     /**< \brief DMAÕ®µ¿1÷–∂œ               */
-#define INUM_DMA_CH2             2     /**< \brief DMAÕ®µ¿2÷–∂œ               */
-#define INUM_DMA_CH3             3     /**< \brief DMAÕ®µ¿3÷–∂œ               */
+#define INUM_DMA_CH0             0     /**< \brief DMAÈÄöÈÅì0‰∏≠Êñ≠               */
+#define INUM_DMA_CH1             1     /**< \brief DMAÈÄöÈÅì1‰∏≠Êñ≠               */
+#define INUM_DMA_CH2             2     /**< \brief DMAÈÄöÈÅì2‰∏≠Êñ≠               */
+#define INUM_DMA_CH3             3     /**< \brief DMAÈÄöÈÅì3‰∏≠Êñ≠               */
 
-#define INUM_FTFA                5     /**< \brief FAFT÷–∂œ             */
-#define INUM_PMC                 6     /**< \brief PMC÷–∂œ               */
-#define INUM_LLWU                7     /**< \brief LLWU÷–∂œ             */
-#define INUM_I2C0                8     /**< \brief I2C0÷–∂œ             */
-#define INUM_I2C1                9     /**< \brief I2C1÷–∂œ             */
-#define INUM_SPI0                10    /**< \brief SPI0÷–∂œ             */
-#define INUM_SPI1                11    /**< \brief SPI1÷–∂œ             */
-#define INUM_UART0               12    /**< \brief UART0÷–∂œ           */
-#define INUM_UART1               13    /**< \brief UART1÷–∂œ           */
-#define INUM_UART2               14    /**< \brief UART2÷–∂œ           */
-#define INUM_ADC0                15    /**< \brief ADC0÷–∂œ             */
-#define INUM_CMP0                16    /**< \brief CMP0÷–∂œ             */
-#define INUM_TPM0                17    /**< \brief TPM0÷–∂œ             */
-#define INUM_TPM1                18    /**< \brief TPM1÷–∂œ             */
-#define INUM_TPM2                19    /**< \brief TPM2÷–∂œ             */
-#define INUM_RTC_ALARM           20    /**< \brief RTC ƒ÷÷”÷–∂œ      */
-#define INUM_RTC_SEC             21    /**< \brief RTC√Î÷–∂œ           */
-#define INUM_PIT                 22    /**< \brief PIT÷–∂œ               */
-#define INUM_I2S                 23    /**< \brief I2S÷–∂œ               */
-#define INUM_USB0                24    /**< \brief USB÷–∂œ               */
-#define INUM_DAC0                25    /**< \brief DAC0÷–∂œ             */
-#define INUM_TSI0                26    /**< \brief TSI0÷–∂œ             */
-#define INUM_MCG                 27    /**< \brief MCG÷–∂œ               */
-#define INUM_LPTMR0              28    /**< \brief LPTMR0÷–∂œ         */
+#define INUM_FTFA                5     /**< \brief FAFT‰∏≠Êñ≠             */
+#define INUM_PMC                 6     /**< \brief PMC‰∏≠Êñ≠               */
+#define INUM_LLWU                7     /**< \brief LLWU‰∏≠Êñ≠             */
+#define INUM_I2C0                8     /**< \brief I2C0‰∏≠Êñ≠             */
+#define INUM_I2C1                9     /**< \brief I2C1‰∏≠Êñ≠             */
+#define INUM_SPI0                10    /**< \brief SPI0‰∏≠Êñ≠             */
+#define INUM_SPI1                11    /**< \brief SPI1‰∏≠Êñ≠             */
+#define INUM_UART0               12    /**< \brief UART0‰∏≠Êñ≠           */
+#define INUM_UART1               13    /**< \brief UART1‰∏≠Êñ≠           */
+#define INUM_UART2               14    /**< \brief UART2‰∏≠Êñ≠           */
+#define INUM_ADC0                15    /**< \brief ADC0‰∏≠Êñ≠             */
+#define INUM_CMP0                16    /**< \brief CMP0‰∏≠Êñ≠             */
+#define INUM_TPM0                17    /**< \brief TPM0‰∏≠Êñ≠             */
+#define INUM_TPM1                18    /**< \brief TPM1‰∏≠Êñ≠             */
+#define INUM_TPM2                19    /**< \brief TPM2‰∏≠Êñ≠             */
+#define INUM_RTC_ALARM           20    /**< \brief RTC ÈóπÈíü‰∏≠Êñ≠      */
+#define INUM_RTC_SEC             21    /**< \brief RTCÁßí‰∏≠Êñ≠           */
+#define INUM_PIT                 22    /**< \brief PIT‰∏≠Êñ≠               */
+#define INUM_I2S                 23    /**< \brief I2S‰∏≠Êñ≠               */
+#define INUM_USB0                24    /**< \brief USB‰∏≠Êñ≠               */
+#define INUM_DAC0                25    /**< \brief DAC0‰∏≠Êñ≠             */
+#define INUM_TSI0                26    /**< \brief TSI0‰∏≠Êñ≠             */
+#define INUM_MCG                 27    /**< \brief MCG‰∏≠Êñ≠               */
+#define INUM_LPTMR0              28    /**< \brief LPTMR0‰∏≠Êñ≠         */
 
-#define INUM_PORTA               30    /**< \brief PORTA “˝Ω≈÷–∂œ               */
-#define INUM_PORTC_PORTD         31    /**< \brief PORTCªÚPORTD“˝Ω≈÷–∂œ    */
+#define INUM_PORTA               30    /**< \brief PORTA ÂºïËÑö‰∏≠Êñ≠               */
+#define INUM_PORTC_PORTD         31    /**< \brief PORTCÊàñPORTDÂºïËÑö‰∏≠Êñ≠    */
 /** @} */
 
 
 
 
 /**
- * \brief ◊‹÷–∂œ ˝Œ™£∫(INUM_PORTC_PORTD - INUM_DMA_CH0 + 1),
+ * \brief ÊÄª‰∏≠Êñ≠Êï∞‰∏∫Ôºö(INUM_PORTC_PORTD - INUM_DMA_CH0 + 1),
  *
  */
 #define INUM_INTERNAL_COUNT     (INUM_PORTC_PORTD - INUM_DMA_CH0 + 1)
 
 /**
- * \brief ◊Ó¥Û÷–∂œ∫≈Œ™£∫INUM_PORTC_PORTD
+ * \brief ÊúÄÂ§ß‰∏≠Êñ≠Âè∑‰∏∫ÔºöINUM_PORTC_PORTD
  */
 #define INUM_INTERNAL_MAX        INUM_PORTC_PORTD
 
 
-/** \brief ◊Ó–°÷–∂œ∫≈Œ™£∫INUM_DMA_CH0 */
+/** \brief ÊúÄÂ∞è‰∏≠Êñ≠Âè∑‰∏∫ÔºöINUM_DMA_CH0 */
 #define INUM_INTERNAL_MIN        INUM_DMA_CH0
 
 /**
  * \cond
- * \brief ÷–∂œ∫≈∂®“Â£¨Œ™core_cm0plus.hŒƒº˛±£¡Ù
+ * \brief ‰∏≠Êñ≠Âè∑ÂÆö‰πâÔºå‰∏∫core_cm0plus.hÊñá‰ª∂‰øùÁïô
  */
 typedef enum {                                                         
-    /** \brief  1  ∏¥ŒªœÚ¡ø                                                */
+    /** \brief  1  Â§ç‰ΩçÂêëÈáè                                                */
     Reset_IRQn               = -15,                                    
                                                                        
-    /** \brief  2  ≤ªø…∆¡±Œ÷–∂œ, ≤ªƒ‹±ªÕ£÷πªÚ«¿’º                          */
+    /** \brief  2  ‰∏çÂèØÂ±èËîΩ‰∏≠Êñ≠, ‰∏çËÉΩË¢´ÂÅúÊ≠¢ÊàñÊä¢Âç†                          */
     NonMaskableInt_IRQn      = -14,                                    
                                                                        
-    /** \brief  3  ”≤º˛¥ÌŒÛ÷–∂œ                                            */
+    /** \brief  3  Á°¨‰ª∂ÈîôËØØ‰∏≠Êñ≠                                            */
     HardFault_IRQn           = -13,                                    
                                                                        
-    /** \brief 11  œµÕ≥∑˛ŒÒµ˜”√Õ®π˝SVC÷∏¡Ó                                 */
+    /** \brief 11  Á≥ªÁªüÊúçÂä°Ë∞ÉÁî®ÈÄöËøáSVCÊåá‰ª§                                 */
     SVCall_IRQn              =  -5,                                    
                                                                        
-    /** \brief 14  œµÕ≥µƒπ“∆«Î«Û                                          */
+    /** \brief 14  Á≥ªÁªüÁöÑÊåÇËµ∑ËØ∑Ê±Ç                                          */
     PendSV_IRQn              =  -2,                                    
                                                                        
-    /** \brief 15  œµÕ≥µŒ¥∂® ±∆˜                                          */
+    /** \brief 15  Á≥ªÁªüÊª¥Á≠îÂÆöÊó∂Âô®                                          */
     SysTick_IRQn             =  -1,   
    
-    /* ---------------  Õ‚…Ë÷–∂œ ------------------------------------ */
+    /* ---------------  Â§ñËÆæ‰∏≠Êñ≠ ------------------------------------ */
     DMA_CH0_IRQn             = 0,    /**< \brief DMA_CH0 Interrupt */
     DMA_CH1_IRQn             = 1,    /**< \brief DMA_CH1 Interrupt */
     DMA_CH2_IRQn             = 2,    /**< \brief DMA_CH2 Interrupt */

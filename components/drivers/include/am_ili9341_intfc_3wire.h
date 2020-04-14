@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief  ���߽ӿ� ILI9341 ���� (���õ��Ǳ�׼���SPI������ ���ٶ���)
+ * \brief  三线接口 ILI9341 驱动 (采用的是标准层的SPI来驱动 ，速度慢)
  *
- * \ note  ���ߣ� MOSI �� CS�� SCK
- *             MOSI һ�δ��� 9λ�ģ����ȷ��͵�һλ�� ����/�����  ѡ�� λ ��Ȼ�������ݻ������λ�ȴ���
+ * \ note  三线： MOSI 、 CS、 SCK
+ *             MOSI 一次传输 9位的，最先发送的一位是 数据/命令的  选择 位 ，然后发送数据或命令，高位先传输
  *
  * \internal
  * \par Modification history
@@ -42,34 +42,34 @@ extern "C" {
 
 
 /**
- * \brief ili9341���߽ӿ���Ϣ
+ * \brief ili9341三线接口信息
  */
 typedef struct am_ili9341_intfc_3wire_devinfo {
 
-    /** \brief ILI9341��SPI��Ƭѡ���� CS�����ӵ���GPIO���ű�� */
+    /** \brief ILI9341的SPI的片选引脚 CS所连接到的GPIO引脚编号 */
     int cs_pin;
 
-    /** \brief ILI9341��SPI��clk �����ӵ���GPIO���ű�� */
+    /** \brief ILI9341的SPI的clk 所连接到的GPIO引脚编号 */
     int sck_pin;
 
-    /* lcd_sck �����Ź��� */
+    /* lcd_sck 的引脚功能 */
     uint32_t sck_func;
 
-    /** \brief ILI9341��SPI��MOSI�����ӵ���GPIO���ű�� */
+    /** \brief ILI9341的SPI的MOSI所连接到的GPIO引脚编号 */
     int mosi_pin;
 
-    /* lcd_mosi �����Ź��� */
+    /* lcd_mosi 的引脚功能 */
     uint32_t mosi_func;
 
-    /** \brief ILI9341��SPI��MISO�����ӵ���GPIO���ű�� */
+    /** \brief ILI9341的SPI的MISO所连接到的GPIO引脚编号 */
     int miso_pin;
 
-    /* lcd_miso �����Ź��� */
+    /* lcd_miso 的引脚功能 */
     uint32_t miso_func;
 
     /**
-     *  \brief SPI �ٶ�
-     *  \note ���ǲ��ñ�׼SPI�ӿڣ��ɴﵽ50MHZ��
+     *  \brief SPI 速度
+     *  \note 这是采用标准SPI接口，可达到50MHZ。
      */
     uint32_t max_speed_hz;
 
@@ -77,29 +77,29 @@ typedef struct am_ili9341_intfc_3wire_devinfo {
 
 
 /**
- * \brief ili9341���߽ӿ��豸
+ * \brief ili9341三线接口设备
  */
 typedef struct am_ili9341_intfc_3wire_dev {
 
-    /**< \brief ���߽ӿ��������� */
+    /**< \brief 三线接口驱动服务 */
     am_ili9341_serv_t                 serv;
 
-    /**< \brief SPI�豸  */
+    /**< \brief SPI设备  */
     am_spi_device_t                   spi_dev;
 
-    /**< \brief ���߽ӿڵĽӿ���Ϣ */
+    /**< \brief 三线接口的接口信息 */
     const am_ili9341_intfc_3wire_devinfo_t *p_devinfo;
 
 }am_ili9341_intfc_3wire_dev_t;
 
 
 /**
- * \brief ili9341 ���߽ӿڳ�ʼ������
- * \param[in] p_dev          :ָ��ILI9341���߽ӿ��豸�ṹ���ָ��
- * \param[in] p_devinfo      :ָ��ILI9341���߽ӿ���Ϣ��ָ��
- * \param[in] spi_handle     : SPI ���
+ * \brief ili9341 三线接口初始化函数
+ * \param[in] p_dev          :指向ILI9341三线接口设备结构体的指针
+ * \param[in] p_devinfo      :指向ILI9341三线接口信息的指针
+ * \param[in] spi_handle     : SPI 句柄
  *
- * \return  ���߽ӿڷ���ָ��
+ * \return  三线接口服务指针
  */
 am_ili9341_serv_t * am_ili9341_intfc_3wire_init(am_ili9341_intfc_3wire_dev_t *p_dev,
                              const am_ili9341_intfc_3wire_devinfo_t *p_devinfo,

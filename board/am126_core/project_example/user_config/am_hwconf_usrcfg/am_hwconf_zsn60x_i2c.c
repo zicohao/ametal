@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZSN60x(I2C模式)配置文件
+ * \brief ZSN60x(I2C妯″紡)閰嶇疆鏂囦欢
  *
  * \internal
  * \par Modification history
@@ -28,9 +28,9 @@
 #include "am_zlg116_inst_init.h"
 #include "am_hwconf_zsn60x_i2c.h"
 
-/**< \brief ZSN60x(I2C模式) 设备实例 */
+/**< \brief ZSN60x(I2C妯″紡) 璁惧瀹炰緥 */
 static   zsn60x_i2c_dev_t          __g_zsn60x_i2c_dev;
-/**< \brief ZSN60x(I2C模式) 设备信息 */
+/**< \brief ZSN60x(I2C妯″紡) 璁惧淇℃伅 */
 static const zsn60x_i2c_devinfo_t  __g_i2c_info = {
     0xb2,
     {
@@ -40,7 +40,7 @@ static const zsn60x_i2c_devinfo_t  __g_i2c_info = {
         am_zlg116_i2c1_inst_deinit
     }
 };
-/** \brief ZSN60x实例初始化，获得ZSN60x标准服务句柄(i2c模式) */
+/** \brief ZSN60x瀹炰緥鍒濆鍖栵紝鑾峰緱ZSN60x鏍囧噯鏈嶅姟鍙ユ焺(i2c妯″紡) */
 zsn60x_handle_t  am_zsn60x_i2c_inst_init (void)
 {
     return zsn60x_i2c_init(&__g_zsn60x_i2c_dev, &__g_i2c_info);

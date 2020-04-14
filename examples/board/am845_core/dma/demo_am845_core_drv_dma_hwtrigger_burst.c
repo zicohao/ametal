@@ -12,30 +12,30 @@
 
 /**
  * \file
- * \brief DMA Ó²¼þ´¥·¢Àý³Ì£¬Í¨¹ýÇý¶¯²ã½Ó¿ÚÊµÏÖ
+ * \brief DMA ç¡¬ä»¶è§¦å‘ä¾‹ç¨‹ï¼Œé€šè¿‡é©±åŠ¨å±‚æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. ½« PIO0_17 ºÍ PIO0_18 ¶Ì½Ó£»
- *   2. ¹Û²ì´®¿ÚÊä³öÐÅÏ¢£¬µ±´®¿ÚÊä³ö "Press any key to finish level test!" ºó£¬
- *      Í¨¹ý´®¿ÚÊäÈëÈÎÒâ×Ö·ûÒÔ¼ÌÐø²âÊÔ£»
- *   3. ¹Û²ì´®¿ÚÊä³öÐÅÏ¢£¬µ±´®¿ÚÊä³ö "Enter the trigger count to make burst!" ºó£¬
- *      Í¨¹ý´®¿ÚÒÔ×Ö·û´®µÄ·½Ê½ÊäÈë´ý´¥·¢µÄ´ÎÊý£¬Ã¿´Î´¥·¢´«ËÍ 8 ×Ö½ÚµÄÊý¾Ý£»
- *   4. ¹Û²ì´®¿ÚÊä³öÐÅÏ¢£¬µ±´®¿ÚÊä³ö "Press any key to finish edge test!" ºó£¬Í¨¹ý
- *      ´®¿ÚÊäÈëÈÎÒâ×Ö·ûÒÔ¼ÌÐø²âÊÔ£»
- *   5. ¹Û²ì´®¿ÚÊä³öÐÅÏ¢£¬µ±´®¿ÚÊä³ö "Enter any key make a burst!" ºó£¬Í¨¹ý´®¿ÚÊä
- *      ÈëÈÎÒâ×Ö·ûÒÔ¼ÌÐø²âÊÔ¡£ÖØ¸´´Ë¹ý³Ì 6 ´Î¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. å°† PIO0_17 å’Œ PIO0_18 çŸ­æŽ¥ï¼›
+ *   2. è§‚å¯Ÿä¸²å£è¾“å‡ºä¿¡æ¯ï¼Œå½“ä¸²å£è¾“å‡º "Press any key to finish level test!" åŽï¼Œ
+ *      é€šè¿‡ä¸²å£è¾“å…¥ä»»æ„å­—ç¬¦ä»¥ç»§ç»­æµ‹è¯•ï¼›
+ *   3. è§‚å¯Ÿä¸²å£è¾“å‡ºä¿¡æ¯ï¼Œå½“ä¸²å£è¾“å‡º "Enter the trigger count to make burst!" åŽï¼Œ
+ *      é€šè¿‡ä¸²å£ä»¥å­—ç¬¦ä¸²çš„æ–¹å¼è¾“å…¥å¾…è§¦å‘çš„æ¬¡æ•°ï¼Œæ¯æ¬¡è§¦å‘ä¼ é€ 8 å­—èŠ‚çš„æ•°æ®ï¼›
+ *   4. è§‚å¯Ÿä¸²å£è¾“å‡ºä¿¡æ¯ï¼Œå½“ä¸²å£è¾“å‡º "Press any key to finish edge test!" åŽï¼Œé€šè¿‡
+ *      ä¸²å£è¾“å…¥ä»»æ„å­—ç¬¦ä»¥ç»§ç»­æµ‹è¯•ï¼›
+ *   5. è§‚å¯Ÿä¸²å£è¾“å‡ºä¿¡æ¯ï¼Œå½“ä¸²å£è¾“å‡º "Enter any key make a burst!" åŽï¼Œé€šè¿‡ä¸²å£è¾“
+ *      å…¥ä»»æ„å­—ç¬¦ä»¥ç»§ç»­æµ‹è¯•ã€‚é‡å¤æ­¤è¿‡ç¨‹ 6 æ¬¡ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. DMA Í¨µÀ 0 ´«ÊäÅäÖÃÎªÖÐ¶ÏÊäÈëµçÆ½´¥·¢£¬Ã»ÓÐÓ²¼þ´¥·¢Ìõ¼þÏÂ£¬Êý¾Ý²»±»´«ËÍ£»
- *   2. DMA Í¨µÀ 0 ´«ÊäÅäÖÃÎªÖÐ¶ÏÊäÈë±ßÑØ´¥·¢£¬Ã¿´ÎÓ²¼þ´¥·¢´«Êä´óÐ¡ÎªÅäÖÃµÄÍ»·¢³¤¶È£»
- *   3. DMA Í¨µÀ 0 ´«ÊäÅäÖÃÎªÖÐ¶ÏÊäÈë±ßÑØ´¥·¢£¬Ä¿±êµØÖ·»·ÈÆ£¬Ã¿´ÎÓ²¼þ´¥·¢£¬
- *      Ö»ÔÚ×îºóµÄÍ»·¢´óÐ¡µÄµØÖ··¶Î§ÄÚ´«ÊäÊý¾Ý¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. DMA é€šé“ 0 ä¼ è¾“é…ç½®ä¸ºä¸­æ–­è¾“å…¥ç”µå¹³è§¦å‘ï¼Œæ²¡æœ‰ç¡¬ä»¶è§¦å‘æ¡ä»¶ä¸‹ï¼Œæ•°æ®ä¸è¢«ä¼ é€ï¼›
+ *   2. DMA é€šé“ 0 ä¼ è¾“é…ç½®ä¸ºä¸­æ–­è¾“å…¥è¾¹æ²¿è§¦å‘ï¼Œæ¯æ¬¡ç¡¬ä»¶è§¦å‘ä¼ è¾“å¤§å°ä¸ºé…ç½®çš„çªå‘é•¿åº¦ï¼›
+ *   3. DMA é€šé“ 0 ä¼ è¾“é…ç½®ä¸ºä¸­æ–­è¾“å…¥è¾¹æ²¿è§¦å‘ï¼Œç›®æ ‡åœ°å€çŽ¯ç»•ï¼Œæ¯æ¬¡ç¡¬ä»¶è§¦å‘ï¼Œ
+ *      åªåœ¨æœ€åŽçš„çªå‘å¤§å°çš„åœ°å€èŒƒå›´å†…ä¼ è¾“æ•°æ®ã€‚
  *
  * \note
- *    ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIO1_2 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *    PIO1_0 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
+ *    å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO1_2 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *    PIO1_0 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am845_core_drv_dma_hwtrigger_burst.c src_am845_core_drv_dma_hwtrigger_burst
  *
  * \internal
@@ -60,33 +60,33 @@
 #define __GET_CHAR(ch) \
             amhw_lpc_usart_poll_receive(AMHW_LPC82X_USART0, (&ch), 1);
 
-#define __GPIO_PIN     PIO0_17          /**< \brief ²úÉúÖÐ¶ÏÐÅºÅµÄÒý½Å */
-#define __INT_PIN      PIO0_18          /**< \brief ×÷ÎªÖÐ¶Ï 0 ÊäÈëµÄÒý½Å */
+#define __GPIO_PIN     PIO0_17          /**< \brief äº§ç”Ÿä¸­æ–­ä¿¡å·çš„å¼•è„š */
+#define __INT_PIN      PIO0_18          /**< \brief ä½œä¸ºä¸­æ–­ 0 è¾“å…¥çš„å¼•è„š */
 
 
 /**
- * \brief ³õÊ¼»¯ÖÐ¶Ï²úÉúºÍ¼ì²âÒý½Å
+ * \brief åˆå§‹åŒ–ä¸­æ–­äº§ç”Ÿå’Œæ£€æµ‹å¼•è„š
  */
 am_local void __pin_init()
 {
 
-    /* ÓÃÓÚ²úÉúÖÐ¶ÏÐÅºÅ */
+    /* ç”¨äºŽäº§ç”Ÿä¸­æ–­ä¿¡å· */
     am_gpio_pin_cfg(__GPIO_PIN, AM_GPIO_PULLDOWN | AM_GPIO_OUTPUT_INIT_LOW);
 
-    /* ÖÐ¶ÏÒý½ÅÅäÖÃÎªÊäÈë */
+    /* ä¸­æ–­å¼•è„šé…ç½®ä¸ºè¾“å…¥ */
     am_gpio_pin_cfg(__INT_PIN, AM_GPIO_PULLDOWN | AM_GPIO_INPUT);
 
-    /* ÖÐ¶Ï 4 Òý½ÅÑ¡Ôñ */
+    /* ä¸­æ–­ 4 å¼•è„šé€‰æ‹© */
     amhw_lpc84x_syscon_pint_sel(AMHW_LPC82X_PINT_CHAN_4, __INT_PIN);
 }
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am845_core_drv_dma_hwtrigger_burst_entry (void)
 {
 
-    /* ´¥·¢Òý½ÅÅäÖÃ */
+    /* è§¦å‘å¼•è„šé…ç½® */
     __pin_init();
   
     demo_lpc845_drv_dma_hwtrigger_burst_entry(DMA_CHAN_0, __GPIO_PIN);

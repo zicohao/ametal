@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief DAC±ê×¼½Ó¿Ú
+ * \brief DACæ ‡å‡†æ¥å£
  *
  * \internal
  * \par Modification History
@@ -36,47 +36,47 @@ extern "C" {
  */
 
 /**
- * \brief DACÇı¶¯º¯Êı
+ * \brief DACé©±åŠ¨å‡½æ•°
  */
 struct am_dac_drv_funcs {
 
-    /** \brief »ñÈ¡DAC×ª»»¾«¶È           */
+    /** \brief è·å–DACè½¬æ¢ç²¾åº¦           */
     uint32_t (*pfn_bits_get)(void *p_drv);
 
-    /** \brief »ñÈ¡DAC²Î¿¼µçÑ¹           */
+    /** \brief è·å–DACå‚è€ƒç”µå‹           */
     uint32_t (*pfn_vref_get)(void *p_drv);
 
-    /** \brief ÉèÖÃÍ¨µÀµÄDAC×ª»»Öµ       */
+    /** \brief è®¾ç½®é€šé“çš„DACè½¬æ¢å€¼       */
     int (*pfn_dac_val_set)(void *p_drv, int chan, uint32_t value);
 
-    /** \brief Ê¹ÄÜDAC×ª»»£¬Êä³öÉèÖÃµçÑ¹  */
+    /** \brief ä½¿èƒ½DACè½¬æ¢ï¼Œè¾“å‡ºè®¾ç½®ç”µå‹  */
     int (*pfn_enable)(void *p_drv, int chan);
 
-    /** \brief ½ûÄÜDAC×ª»»               */
+    /** \brief ç¦èƒ½DACè½¬æ¢               */
     int (*pfn_disable)(void *p_drv, int chan);
     
 };
 
 /**
- * \brief DAC±ê×¼·şÎñ
+ * \brief DACæ ‡å‡†æœåŠ¡
  */
 typedef struct am_dac_serv {
 
-    /** \brief Ö¸ÏòDACÇı¶¯º¯ÊıµÄÖ¸Õë     */
+    /** \brief æŒ‡å‘DACé©±åŠ¨å‡½æ•°çš„æŒ‡é’ˆ     */
     const struct am_dac_drv_funcs *p_funcs;
 
-    /** \brief DACÇı¶¯º¯ÊıµÚÒ»¸öÈë¿Ú²ÎÊı */
+    /** \brief DACé©±åŠ¨å‡½æ•°ç¬¬ä¸€ä¸ªå…¥å£å‚æ•° */
     void                          *p_drv;
 } am_dac_serv_t;
 
-/** \brief DAC±ê×¼·şÎñ²Ù×÷¾ä±úÀàĞÍ¶¨Òå */
+/** \brief DACæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„ç±»å‹å®šä¹‰ */
 typedef am_dac_serv_t *am_dac_handle_t;
 
 
 /**
- * \brief »ñÈ¡DAC×ª»»Î»Êı
- * \param[in] handle : DAC±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \return DAC×ª»»Î»Êı
+ * \brief è·å–DACè½¬æ¢ä½æ•°
+ * \param[in] handle : DACæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \return DACè½¬æ¢ä½æ•°
  */
 am_static_inline
 uint32_t am_dac_bits_get (am_dac_handle_t handle)
@@ -85,9 +85,9 @@ uint32_t am_dac_bits_get (am_dac_handle_t handle)
 }
 
 /**
- * \brief »ñÈ¡DAC²Î¿¼µçÑ¹£¬µ¥Î»£ºmV
- * \param[in] handle : DAC±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \return DAC²Î¿¼µçÑ¹(mV)
+ * \brief è·å–DACå‚è€ƒç”µå‹ï¼Œå•ä½ï¼šmV
+ * \param[in] handle : DACæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \return DACå‚è€ƒç”µå‹(mV)
  */
 am_static_inline
 uint32_t am_dac_vref_get (am_dac_handle_t handle)
@@ -96,13 +96,13 @@ uint32_t am_dac_vref_get (am_dac_handle_t handle)
 }
 
 /**
- * \brief Ê¹ÄÜDAC×ª»»£¬Êä³öÉèÖÃµçÑ¹
+ * \brief ä½¿èƒ½DACè½¬æ¢ï¼Œè¾“å‡ºè®¾ç½®ç”µå‹
  *
- * \param[in] handle : DAC±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \param[in] chan   : DACÍ¨µÀºÅ
+ * \param[in] handle : DACæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] chan   : DACé€šé“å·
  *
- * \retval   AM_OK      ²Ù×÷³É¹¦
- * \retval  -AM_ENXIO   DACÍ¨µÀºÅ²»´æÔÚ
+ * \retval   AM_OK      æ“ä½œæˆåŠŸ
+ * \retval  -AM_ENXIO   DACé€šé“å·ä¸å­˜åœ¨
  */
 am_static_inline
 uint32_t am_dac_enable (am_dac_handle_t handle, int chan)
@@ -112,12 +112,12 @@ uint32_t am_dac_enable (am_dac_handle_t handle, int chan)
 
 
 /**
- * \brief ½ûÄÜDAC×ª»»
- * \param[in] handle : DAC±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \param[in] chan   : DACÍ¨µÀºÅ
+ * \brief ç¦èƒ½DACè½¬æ¢
+ * \param[in] handle : DACæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] chan   : DACé€šé“å·
  *
- * \retval   AM_OK      ²Ù×÷³É¹¦
- * \retval  -AM_ENXIO   DACÍ¨µÀºÅ²»´æÔÚ
+ * \retval   AM_OK      æ“ä½œæˆåŠŸ
+ * \retval  -AM_ENXIO   DACé€šé“å·ä¸å­˜åœ¨
  */
 am_static_inline
 uint32_t am_dac_disable (am_dac_handle_t handle, int chan)
@@ -126,14 +126,14 @@ uint32_t am_dac_disable (am_dac_handle_t handle, int chan)
 }
 
 /**
- * \brief ÉèÖÃDACÍ¨µÀµÄ×ª»»Öµ
+ * \brief è®¾ç½®DACé€šé“çš„è½¬æ¢å€¼
  *
- * \param[in] handle : DAC±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \param[in] chan   : DACÍ¨µÀºÅ
- * \param[in] val    : ÉèÖÃµÄDAC×ª»»Öµ
+ * \param[in] handle : DACæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] chan   : DACé€šé“å·
+ * \param[in] val    : è®¾ç½®çš„DACè½¬æ¢å€¼
  *
- * \retval   AM_OK      ²Ù×÷³É¹¦
- * \retval  -AM_ENXIO   DACÍ¨µÀºÅ²»´æÔÚ
+ * \retval   AM_OK      æ“ä½œæˆåŠŸ
+ * \retval  -AM_ENXIO   DACé€šé“å·ä¸å­˜åœ¨
  */
 am_static_inline
 int am_dac_val_set (am_dac_handle_t handle, int chan, uint32_t val)
@@ -142,14 +142,14 @@ int am_dac_val_set (am_dac_handle_t handle, int chan, uint32_t val)
 }
 
 /**
- * \brief ÉèÖÃDACÍ¨µÀµÄµçÑ¹Öµ£¨µ¥Î»£ºmV£©
+ * \brief è®¾ç½®DACé€šé“çš„ç”µå‹å€¼ï¼ˆå•ä½ï¼šmVï¼‰
  *
- * \param[in] handle : DAC±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \param[in] chan   : DACÍ¨µÀºÅ
- * \param[in] mv     : ÉèÖÃµÄµçÑ¹Öµ
+ * \param[in] handle : DACæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] chan   : DACé€šé“å·
+ * \param[in] mv     : è®¾ç½®çš„ç”µå‹å€¼
  *
- * \retval   AM_OK      ²Ù×÷³É¹¦
- * \retval  -AM_ENXIO   DACÍ¨µÀºÅ²»´æÔÚ
+ * \retval   AM_OK      æ“ä½œæˆåŠŸ
+ * \retval  -AM_ENXIO   DACé€šé“å·ä¸å­˜åœ¨
  */
 int am_dac_mv_set(am_dac_handle_t handle, int chan, uint32_t mv);
 

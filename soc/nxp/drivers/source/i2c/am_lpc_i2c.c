@@ -25,59 +25,59 @@
 #include "am_clk.h"
 
 /*******************************************************************************
-  ºê¶¨Òå
+  å®å®šä¹‰
 *******************************************************************************/
 
-#define __I2C_ST_IDLE             (0x10u)          /* ¿ÕÏĞ×´Ì¬             */
-#define __I2C_ST_MSG_START        (0x11u)          /* ÏûÏ¢´«Êä¿ªÊ¼×´Ì¬     */
-#define __I2C_ST_TRANS_START      (0x12u)          /* µ¥¸ö´«Êä¿ªÊ¼×´Ì¬     */
-#define __I2C_ST_SEND_SLA_ADDR    (0x13u)          /* ·¢ËÍ´Ó»úµØÖ·×´Ì¬     */
-#define __I2C_ST_M_SEND_DATA      (0x14u)          /* ·¢ËÍÊı¾İ×´Ì¬         */
-#define __I2C_ST_M_RECV_DATA      (0x15u)          /* ½ÓÊÕÊı¾İ×´Ì¬         */
-#define __I2C_ST_ARBI_LOST        (0x16u)          /* ÖÙ²Ã¶ªÊ§×´Ì¬         */
-#define __I2C_ST_TIMEOUT          (0x17u)          /* ³¬Ê±×´Ì¬            */
+#define __I2C_ST_IDLE             (0x10u)          /* ç©ºé—²çŠ¶æ€             */
+#define __I2C_ST_MSG_START        (0x11u)          /* æ¶ˆæ¯ä¼ è¾“å¼€å§‹çŠ¶æ€     */
+#define __I2C_ST_TRANS_START      (0x12u)          /* å•ä¸ªä¼ è¾“å¼€å§‹çŠ¶æ€     */
+#define __I2C_ST_SEND_SLA_ADDR    (0x13u)          /* å‘é€ä»æœºåœ°å€çŠ¶æ€     */
+#define __I2C_ST_M_SEND_DATA      (0x14u)          /* å‘é€æ•°æ®çŠ¶æ€         */
+#define __I2C_ST_M_RECV_DATA      (0x15u)          /* æ¥æ”¶æ•°æ®çŠ¶æ€         */
+#define __I2C_ST_ARBI_LOST        (0x16u)          /* ä»²è£ä¸¢å¤±çŠ¶æ€         */
+#define __I2C_ST_TIMEOUT          (0x17u)          /* è¶…æ—¶çŠ¶æ€            */
 
-#define __I2C_EVT_NONE            (0xFFu)          /* ÎŞÊÂ¼ş               */
-#define __I2C_EVT_MSG_LAUNCH      (0xFEu)          /* ¿ªÊ¼´¦ÀíÒ»¸öĞÂµÄÏûÏ¢ */
-#define __I2C_EVT_TRANS_LAUNCH    (0xFDu)          /* ¿ªÊ¼´¦ÀíÒ»¸öĞÂµÄ´«Êä */
+#define __I2C_EVT_NONE            (0xFFu)          /* æ— äº‹ä»¶               */
+#define __I2C_EVT_MSG_LAUNCH      (0xFEu)          /* å¼€å§‹å¤„ç†ä¸€ä¸ªæ–°çš„æ¶ˆæ¯ */
+#define __I2C_EVT_TRANS_LAUNCH    (0xFDu)          /* å¼€å§‹å¤„ç†ä¸€ä¸ªæ–°çš„ä¼ è¾“ */
 
-#define __I2C_EVT_MST_IDLE         AM_SBF(0x0, 1)  /* Ö÷»ú¿ÕÏĞÊÂ¼ş         */
-#define __I2C_EVT_MST_RX           AM_SBF(0x1, 1)  /* ¿ÉÒÔ½ÓÊÕÊı¾İ         */
-#define __I2C_EVT_MST_TX           AM_SBF(0x2, 1)  /* ¿ÉÒÔ·¢ËÍÊı¾İ         */
+#define __I2C_EVT_MST_IDLE         AM_SBF(0x0, 1)  /* ä¸»æœºç©ºé—²äº‹ä»¶         */
+#define __I2C_EVT_MST_RX           AM_SBF(0x1, 1)  /* å¯ä»¥æ¥æ”¶æ•°æ®         */
+#define __I2C_EVT_MST_TX           AM_SBF(0x2, 1)  /* å¯ä»¥å‘é€æ•°æ®         */
 
-#define __I2C_EVT_MST_ADDR_NO_ACK  AM_SBF(0x3, 1)  /* µØÖ·ÎŞÓ¦´ğ           */
-#define __I2C_EVT_MST_DATA_NO_ACK  AM_SBF(0x4, 1)  /* Êı¾İÎŞÓ¦´ğ           */
+#define __I2C_EVT_MST_ADDR_NO_ACK  AM_SBF(0x3, 1)  /* åœ°å€æ— åº”ç­”           */
+#define __I2C_EVT_MST_DATA_NO_ACK  AM_SBF(0x4, 1)  /* æ•°æ®æ— åº”ç­”           */
 
-#define __I2C_EVT_MST_BERR         AM_SBF(0x5, 1)  /* ×ÜÏß´íÎó             */
+#define __I2C_EVT_MST_BERR         AM_SBF(0x5, 1)  /* æ€»çº¿é”™è¯¯             */
 
-#define __I2C_EVT_MST_TIMEOUT      AM_SBF(0x6, 1)  /* ³¬Ê±´íÎó             */
+#define __I2C_EVT_MST_TIMEOUT      AM_SBF(0x6, 1)  /* è¶…æ—¶é”™è¯¯             */
 
 /*******************************************************************************
-  º¯ÊıÉùÃ÷
+  å‡½æ•°å£°æ˜
 *******************************************************************************/
 
-/** \brief I2C ËÙÂÊÉèÖÃº¯Êı */
+/** \brief I2C é€Ÿç‡è®¾ç½®å‡½æ•° */
 static int __i2c_speed_set (am_lpc_i2c_dev_t *p_dev, uint32_t bus_speed);
 
-/** \brief I2C Ó²¼ş³õÊ¼»¯ */
+/** \brief I2C ç¡¬ä»¶åˆå§‹åŒ– */
 static int __i2c_hard_init (am_lpc_i2c_dev_t *p_dev);
 
-/** \brief I2C ÖĞ¶Ï´¦Àíº¯Êı */
+/** \brief I2C ä¸­æ–­å¤„ç†å‡½æ•° */
 static void __i2c_irq_handler (void *p_arg);
 
-/** \brief I2C ×´Ì¬»úº¯Êı */
+/** \brief I2C çŠ¶æ€æœºå‡½æ•° */
 static int __i2c_mst_sm_event (am_lpc_i2c_dev_t *p_dev, uint32_t event);
 
-/** \brief I2C ÏûÏ¢´¦Àíº¯Êı */
+/** \brief I2C æ¶ˆæ¯å¤„ç†å‡½æ•° */
 static int __i2c_msg_start (void *p_drv, am_i2c_message_t *p_trans);
 
 
 /*******************************************************************************
-  È«¾Ö±äÁ¿
+  å…¨å±€å˜é‡
 *******************************************************************************/
 
 /**
- * \brief I2C Çı¶¯º¯Êı¶¨Òå
+ * \brief I2C é©±åŠ¨å‡½æ•°å®šä¹‰
  */
 static am_const struct am_i2c_drv_funcs __g_i2c_drv_funcs = {
     __i2c_msg_start
@@ -86,13 +86,13 @@ static am_const struct am_i2c_drv_funcs __g_i2c_drv_funcs = {
 /******************************************************************************/
 
 /**
- * \brief I2C ×ÜÏßËÙÂÊÉèÖÃ
+ * \brief I2C æ€»çº¿é€Ÿç‡è®¾ç½®
  *
- * \param[in] p_dev     : Ö¸ÏòI2CÉè±¸½á¹¹Ìå
- * \param[in] bus_speed : ×ÜÏßËÙÂÊ
+ * \param[in] p_dev     : æŒ‡å‘I2Cè®¾å¤‡ç»“æ„ä½“
+ * \param[in] bus_speed : æ€»çº¿é€Ÿç‡
  *
- * \retval  AM_OK     : ÉèÖÃ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı·Ç·¨
+ * \retval  AM_OK     : è®¾ç½®æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°éæ³•
  */
 static int __i2c_speed_set (am_lpc_i2c_dev_t *p_dev, uint32_t bus_speed)
 {
@@ -112,21 +112,21 @@ static int __i2c_speed_set (am_lpc_i2c_dev_t *p_dev, uint32_t bus_speed)
     p_hw_i2c  = (amhw_lpc_i2c_t *)p_dev->p_devinfo->i2c_regbase;
 
     if (bus_speed > 1000000) {
-        return -AM_EINVAL;        /* Ö§³ÖµÄ×î´óÆµÂÊÎª1MHz */
+        return -AM_EINVAL;        /* æ”¯æŒçš„æœ€å¤§é¢‘ç‡ä¸º1MHz */
     }
 
     /*
-     * I2CÊ±ÖÓµÄ¸ßµçÆ½ºÍµÍµçÆ½¾ùÔÚ2 ~ 9Ö®¼ä£¬¼´·ÖÆµºó£¬
-     * Ó¦¸ÃÊ¹µ½4 ~ 18¸öÊ±ÖÓ×é³ÉµÄÊ±ÖÓ¿ÉÒÔµÃµ½ĞèÒªµÄÆµÂÊ
+     * I2Cæ—¶é’Ÿçš„é«˜ç”µå¹³å’Œä½ç”µå¹³å‡åœ¨2 ~ 9ä¹‹é—´ï¼Œå³åˆ†é¢‘åï¼Œ
+     * åº”è¯¥ä½¿åˆ°4 ~ 18ä¸ªæ—¶é’Ÿç»„æˆçš„æ—¶é’Ÿå¯ä»¥å¾—åˆ°éœ€è¦çš„é¢‘ç‡
      */
     sum_div = am_clk_rate_get(p_dev->p_devinfo->clk_id) / bus_speed;
 
-    /* ÒòÎªSCL×îĞ¡ÖµÎª4£¬ËùÒÔ·ÖÆµÖµ×î´óÖ»ĞèÒªÎª£º×Ü·ÖÆµÖµ / 4 */
+    /* å› ä¸ºSCLæœ€å°å€¼ä¸º4ï¼Œæ‰€ä»¥åˆ†é¢‘å€¼æœ€å¤§åªéœ€è¦ä¸ºï¼šæ€»åˆ†é¢‘å€¼ / 4 */
     div_top = sum_div / 4 + 1;
 
-    /* ×ÜµÄ·ÖÆµĞ¡ÓÚ 65536 */
+    /* æ€»çš„åˆ†é¢‘å°äº 65536 */
     if (div_top >= 65536) {
-        div_top = 65536;    /* ·ÖÆµÆ÷µÄ·ÖÆµÖµ×î´óÎª65536 */
+        div_top = 65536;    /* åˆ†é¢‘å™¨çš„åˆ†é¢‘å€¼æœ€å¤§ä¸º65536 */
     }
 
     min_err = 0xFFFFFFFF;
@@ -142,21 +142,21 @@ static int __i2c_speed_set (am_lpc_i2c_dev_t *p_dev, uint32_t bus_speed)
                 err = sum_div - cur_div;
             }
 
-            /* ÕÒµ½ÁË×î¼Ñ·ÖÆµÖµ  */
+            /* æ‰¾åˆ°äº†æœ€ä½³åˆ†é¢‘å€¼  */
             if (err == 0) {
                 f_scl = scl;
                 f_div = div;
                 break;
             }
 
-            if (err < min_err) {     /* ±¾´ÎÎó²îĞ¡ÓÚÉÏ´ÎÎó²î */
+            if (err < min_err) {     /* æœ¬æ¬¡è¯¯å·®å°äºä¸Šæ¬¡è¯¯å·® */
                 f_scl   = scl;
                 f_div   = div;
                 min_err = err;
             }
         }
 
-        /* ÕÒµ½ÁË×î¼Ñ·ÖÆµÖµ  */
+        /* æ‰¾åˆ°äº†æœ€ä½³åˆ†é¢‘å€¼  */
         if (err == 0) {
             break;
         }
@@ -166,7 +166,7 @@ static int __i2c_speed_set (am_lpc_i2c_dev_t *p_dev, uint32_t bus_speed)
 
     p_dev->i2c_clkrate = am_clk_rate_get(p_dev->p_devinfo->clk_id) / f_div;
 
-    scl_h = f_scl >> 1;               /* Õ¼¿Õ±ÈÉèÖÃÄ¬ÈÏÎª50% */
+    scl_h = f_scl >> 1;               /* å ç©ºæ¯”è®¾ç½®é»˜è®¤ä¸º50% */
     scl_l = (f_scl - scl_h);
 
     if (scl_h < 2) {
@@ -200,7 +200,7 @@ static int __i2c_slv_timeout_set (am_lpc_i2c_dev_t *p_dev,
 
     p_hw_i2c = (amhw_lpc_i2c_t *)p_dev->p_devinfo->i2c_regbase;
 
-    /* ²»ĞèÒª³¬Ê± */
+    /* ä¸éœ€è¦è¶…æ—¶ */
     if (timeout_ms == 0) {
         amhw_lpc_i2c_mode_disable(p_hw_i2c, AM_I2C_TIMEOUT_MODE);
         amhw_lpc_i2c_int_disable(p_hw_i2c,
@@ -209,10 +209,10 @@ static int __i2c_slv_timeout_set (am_lpc_i2c_dev_t *p_dev,
         return AM_OK;
     }
 
-    /* ¼ÆËãĞèÒª¶¨Ê±µÄticks */
+    /* è®¡ç®—éœ€è¦å®šæ—¶çš„ticks */
     ticks = p_dev->i2c_clkrate / 1000 * timeout_ms;
 
-    /* ×î´ótickÎª65536 */
+    /* æœ€å¤§tickä¸º65536 */
     if (ticks > 65536) {
         ticks = 65536;
     }
@@ -230,7 +230,7 @@ static int __i2c_slv_timeout_set (am_lpc_i2c_dev_t *p_dev,
 
 /******************************************************************************/
 
-/** \brief I2C Ó²¼ş³õÊ¼»¯ */
+/** \brief I2C ç¡¬ä»¶åˆå§‹åŒ– */
 static int __i2c_hard_init(am_lpc_i2c_dev_t *p_dev)
 {
     amhw_lpc_i2c_t *p_hw_i2c = NULL;
@@ -259,8 +259,8 @@ static int __i2c_hard_init(am_lpc_i2c_dev_t *p_dev)
 /******************************************************************************/
 
 /**
- * \brief Ìí¼ÓÒ»Ìõ message µ½¿ØÖÆÆ÷´«ÊäÁĞ±íÄ©Î²
- * \attention µ÷ÓÃ´Ëº¯Êı±ØĞëËø¶¨¿ØÖÆÆ÷
+ * \brief æ·»åŠ ä¸€æ¡ message åˆ°æ§åˆ¶å™¨ä¼ è¾“åˆ—è¡¨æœ«å°¾
+ * \attention è°ƒç”¨æ­¤å‡½æ•°å¿…é¡»é”å®šæ§åˆ¶å™¨
  */
 am_static_inline
 void __i2c_msg_in (am_lpc_i2c_dev_t *p_dev, struct am_i2c_message *p_msg)
@@ -270,8 +270,8 @@ void __i2c_msg_in (am_lpc_i2c_dev_t *p_dev, struct am_i2c_message *p_msg)
 }
 
 /**
- * \brief ´Ó¿ØÖÆÆ÷´«ÊäÁĞ±í±íÍ·È¡³öÒ»Ìõ message
- * \attention µ÷ÓÃ´Ëº¯Êı±ØĞëËø¶¨¿ØÖÆÆ÷
+ * \brief ä»æ§åˆ¶å™¨ä¼ è¾“åˆ—è¡¨è¡¨å¤´å–å‡ºä¸€æ¡ message
+ * \attention è°ƒç”¨æ­¤å‡½æ•°å¿…é¡»é”å®šæ§åˆ¶å™¨
  */
 am_static_inline
 struct am_i2c_message *__i2c_msg_out (am_lpc_i2c_dev_t *p_dev)
@@ -288,11 +288,11 @@ struct am_i2c_message *__i2c_msg_out (am_lpc_i2c_dev_t *p_dev)
 /******************************************************************************/
 
 /**
- * \brief I2C ÖĞ¶Ï´¦Àíº¯Êı
+ * \brief I2C ä¸­æ–­å¤„ç†å‡½æ•°
  *
- * \param[in] p_arg : Ö¸ÏòI2CÉè±¸½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] p_arg : æŒ‡å‘I2Cè®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 static void __i2c_irq_handler (void *p_arg)
 {
@@ -310,7 +310,7 @@ static void __i2c_irq_handler (void *p_arg)
     i2c_status = amhw_lpc_i2c_intstat_get(p_hw_i2c);
 
 
-    /* Ö÷»ú¹ÒÆğ×´Ì¬       */
+    /* ä¸»æœºæŒ‚èµ·çŠ¶æ€       */
     if ((i2c_status & AMHW_LPC_I2C_STAT_MSTPEND)           &&
         ((i2c_status & AMHW_LPC_I2C_STAT_EVTIMEOUT)  == 0) &&
         ((i2c_status & AMHW_LPC_I2C_STAT_SCLTIMEOUT) == 0) &&
@@ -321,11 +321,11 @@ static void __i2c_irq_handler (void *p_arg)
                                    AMHW_LPC_I2C_MASTER_STATE_MASK));
     }
 
-    /* ³¬Ê± */
+    /* è¶…æ—¶ */
     if  ((i2c_status & AMHW_LPC_I2C_STAT_EVTIMEOUT) ||
          (i2c_status & AMHW_LPC_I2C_STAT_SCLTIMEOUT)) {
 
-        /* Çå³ı×´Ì¬          */
+        /* æ¸…é™¤çŠ¶æ€          */
         amhw_lpc_i2c_stat_clr(p_hw_i2c,
                                  AMHW_LPC_I2C_STAT_EVTIMEOUT  |
                                  AMHW_LPC_I2C_STAT_SCLTIMEOUT |
@@ -334,17 +334,17 @@ static void __i2c_irq_handler (void *p_arg)
 
         __i2c_mst_sm_event(p_dev, __I2C_EVT_MST_TIMEOUT);
 
-        /* ½ûÄÜºóÔÙÊ¹ÄÜ³¬Ê±¹¦ÄÜ£¬¸´Î»³¬Ê±ÄÚ²¿Âß¼­ */
+        /* ç¦èƒ½åå†ä½¿èƒ½è¶…æ—¶åŠŸèƒ½ï¼Œå¤ä½è¶…æ—¶å†…éƒ¨é€»è¾‘ */
         amhw_lpc_i2c_mode_disable(p_hw_i2c, AM_I2C_TIMEOUT_MODE);
 
         amhw_lpc_i2c_mode_enable(p_hw_i2c, AM_I2C_TIMEOUT_MODE);
 
 
-      /* ×ÜÏßÖÙ²Ã¶ªÊ§¡¢Æô¶¯/Í£Ö¹´íÎó */
+      /* æ€»çº¿ä»²è£ä¸¢å¤±ã€å¯åŠ¨/åœæ­¢é”™è¯¯ */
     } else if ((i2c_status & AMHW_LPC_I2C_STAT_MSTARBLOSS)||
                (i2c_status & AMHW_LPC_I2C_STAT_MSTSSERR)) {
 
-       /* Çå³ı×´Ì¬          */
+       /* æ¸…é™¤çŠ¶æ€          */
         amhw_lpc_i2c_stat_clr(p_hw_i2c,
                                  AMHW_LPC_I2C_STAT_MSTARBLOSS |
                                  AMHW_LPC_I2C_STAT_MSTSSERR);
@@ -372,7 +372,7 @@ static int __i2c_msg_start (void *p_drv, am_i2c_message_t *p_msg)
 
     key = am_int_cpu_lock();
 
-    /* µ±Ç°ÕıÔÚ´¦ÀíÏûÏ¢£¬Ö»ĞèÒª½«ĞÂµÄÏûÏ¢¼ÓÈëÁ´±í¼´¿É */
+    /* å½“å‰æ­£åœ¨å¤„ç†æ¶ˆæ¯ï¼Œåªéœ€è¦å°†æ–°çš„æ¶ˆæ¯åŠ å…¥é“¾è¡¨å³å¯ */
     if (p_dev->busy == AM_TRUE) {
 
         __i2c_msg_in(p_dev, p_msg);
@@ -386,11 +386,11 @@ static int __i2c_msg_start (void *p_drv, am_i2c_message_t *p_msg)
 
         p_dev->busy = AM_TRUE;
         __i2c_msg_in(p_dev, p_msg);
-        p_msg->status = -AM_EISCONN; /* ÕıÔÚÅÅ¶ÓÖĞ */
+        p_msg->status = -AM_EISCONN; /* æ­£åœ¨æ’é˜Ÿä¸­ */
 
         am_int_cpu_unlock(key);
 
-        /* ´ò¿ª¹ÒÆğ¡¢ÖÙ²Ã¶ªÊ§¡¢Æô¶¯/Í£Ö¹´íÎóÖĞ¶Ï */
+        /* æ‰“å¼€æŒ‚èµ·ã€ä»²è£ä¸¢å¤±ã€å¯åŠ¨/åœæ­¢é”™è¯¯ä¸­æ–­ */
         amhw_lpc_i2c_int_enable(p_hw_i2c,
                                    AMHW_LPC_I2C_INTENSET_MSTPEND    |
                                    AMHW_LPC_I2C_INTENSET_MSTARBLOSS |
@@ -401,7 +401,7 @@ static int __i2c_msg_start (void *p_drv, am_i2c_message_t *p_msg)
 }
 
 /**
- * \brief I2C ³õÊ¼»¯
+ * \brief I2C åˆå§‹åŒ–
  */
 am_i2c_handle_t am_lpc_i2c_init (am_lpc_i2c_dev_t           *p_dev,
                                     const am_lpc_i2c_devinfo_t *p_devinfo)
@@ -419,7 +419,7 @@ am_i2c_handle_t am_lpc_i2c_init (am_lpc_i2c_dev_t           *p_dev,
     p_dev->p_cur_trans = NULL;
     p_dev->p_cur_msg   = NULL;
     p_dev->data_ptr    = 0;
-    p_dev->state       = __I2C_ST_IDLE;                   /* ³õÊ¼»¯Îª¿ÕÏĞ×´Ì¬ */
+    p_dev->state       = __I2C_ST_IDLE;                   /* åˆå§‹åŒ–ä¸ºç©ºé—²çŠ¶æ€ */
 
     if (p_devinfo->pfn_plfm_init) {
         p_devinfo->pfn_plfm_init();
@@ -429,7 +429,7 @@ am_i2c_handle_t am_lpc_i2c_init (am_lpc_i2c_dev_t           *p_dev,
 
     __i2c_hard_init(p_dev);
 
-    /* Á¬½ÓÖĞ¶Ï */
+    /* è¿æ¥ä¸­æ–­ */
     am_int_connect(p_dev->p_devinfo->inum, __i2c_irq_handler, (void *)p_dev);
     am_int_enable(p_dev->p_devinfo->inum);
 
@@ -437,7 +437,7 @@ am_i2c_handle_t am_lpc_i2c_init (am_lpc_i2c_dev_t           *p_dev,
 }
 
 /**
- * \brief I2C½â³õÊ¼»¯
+ * \brief I2Cè§£åˆå§‹åŒ–
  */
 void am_lpc_i2c_deinit (am_i2c_handle_t handle)
 {
@@ -456,7 +456,7 @@ void am_lpc_i2c_deinit (am_i2c_handle_t handle)
 
     amhw_lpc_i2c_mode_disable(p_hw_i2c, AM_I2C_MASTER_MODE);
     
-    /* È¥³ıÖĞ¶ÏÁ¬½Ó */
+    /* å»é™¤ä¸­æ–­è¿æ¥ */
     am_int_disable(p_dev->p_devinfo->inum);
     am_int_disconnect(p_dev->p_devinfo->inum, __i2c_irq_handler, (void *)p_dev);
 
@@ -467,7 +467,7 @@ void am_lpc_i2c_deinit (am_i2c_handle_t handle)
 
 /******************************************************************************/
 
-/*  ×´Ì¬»úÄÚ²¿×´Ì¬ÇĞ»» */
+/*  çŠ¶æ€æœºå†…éƒ¨çŠ¶æ€åˆ‡æ¢ */
 #define __I2C_NEXT_STATE(s, e) \
     do { \
         p_dev->state = (s); \
@@ -480,7 +480,7 @@ void am_lpc_i2c_deinit (am_i2c_handle_t handle)
                              + (p_dev)->p_cur_msg->trans_num)
 
 /**
- * \brief I2C ×´Ì¬»úº¯Êı
+ * \brief I2C çŠ¶æ€æœºå‡½æ•°
  */
 static int __i2c_mst_sm_event (am_lpc_i2c_dev_t *p_dev, uint32_t event)
 {
@@ -498,17 +498,17 @@ static int __i2c_mst_sm_event (am_lpc_i2c_dev_t *p_dev, uint32_t event)
 
     while (1) {
 
-        /* ¼ì²éÊÇ·ñÓĞĞÂµÄÊÂ¼şÔÚ×´Ì¬»úÄÚ²¿²úÉú */
+        /* æ£€æŸ¥æ˜¯å¦æœ‰æ–°çš„äº‹ä»¶åœ¨çŠ¶æ€æœºå†…éƒ¨äº§ç”Ÿ */
         if (new_event != __I2C_EVT_NONE) {
             event     = new_event;
             new_event = __I2C_EVT_NONE;
         }
 
-        /* ÒÔÉè±¸µÄ×´Ì¬Îª»ù×¼½øĞĞ×´Ì¬µÄÉèÖÃ */
+        /* ä»¥è®¾å¤‡çš„çŠ¶æ€ä¸ºåŸºå‡†è¿›è¡ŒçŠ¶æ€çš„è®¾ç½® */
         switch(p_dev->state) {
 
         /*
-         * ¿ÕÏĞ×´Ì¬ºÍ¿ªÊ¼ÏûÏ¢´«Êä×´Ì¬Òª´¦ÀíµÄÊÂÇéÊÇÒ»Ñù£¬ÊÂ¼şÖ»Ó¦ÊÇ£º
+         * ç©ºé—²çŠ¶æ€å’Œå¼€å§‹æ¶ˆæ¯ä¼ è¾“çŠ¶æ€è¦å¤„ç†çš„äº‹æƒ…æ˜¯ä¸€æ ·ï¼Œäº‹ä»¶åªåº”æ˜¯ï¼š
          * __I2C_EVT_TRANS_LAUNCH
          */
         case __I2C_ST_IDLE:
@@ -529,7 +529,7 @@ static int __i2c_mst_sm_event (am_lpc_i2c_dev_t *p_dev, uint32_t event)
 
             } else {
 
-                /* ¹Ø±ÕÖĞ¶Ï */
+                /* å…³é—­ä¸­æ–­ */
                 amhw_lpc_i2c_int_disable(p_hw_i2c,
                                             AMHW_LPC_I2C_INTENSET_MSTPEND    |
                                             AMHW_LPC_I2C_INTENSET_MSTARBLOSS |
@@ -540,7 +540,7 @@ static int __i2c_mst_sm_event (am_lpc_i2c_dev_t *p_dev, uint32_t event)
 
             am_int_cpu_unlock(key);
 
-            /* ÎŞĞèÒª´¦ÀíµÄÏûÏ¢ */
+            /* æ— éœ€è¦å¤„ç†çš„æ¶ˆæ¯ */
             if (p_cur_msg == NULL) {
 
                 __I2C_NEXT_STATE(__I2C_ST_IDLE, __I2C_EVT_NONE);
@@ -555,7 +555,7 @@ static int __i2c_mst_sm_event (am_lpc_i2c_dev_t *p_dev, uint32_t event)
 
                 __I2C_NEXT_STATE(__I2C_ST_TRANS_START, __I2C_EVT_TRANS_LAUNCH);
 
-                /* Ö±½Ó½øÈëÏÂÒ»¸ö×´Ì¬£¬¿ªÊ¼Ò»¸ö´«Êä£¬´Ë´¦ÎŞĞèbreak */
+                /* ç›´æ¥è¿›å…¥ä¸‹ä¸€ä¸ªçŠ¶æ€ï¼Œå¼€å§‹ä¸€ä¸ªä¼ è¾“ï¼Œæ­¤å¤„æ— éœ€break */
                 event     = new_event;
                 new_event = __I2C_EVT_NONE;
             }
@@ -566,40 +566,40 @@ static int __i2c_mst_sm_event (am_lpc_i2c_dev_t *p_dev, uint32_t event)
             struct am_i2c_message *p_cur_msg = p_dev->p_cur_msg;
 
             if (event != __I2C_EVT_TRANS_LAUNCH) {
-                return -AM_EINVAL;  /* ´«Êä¿ªÊ¼×´Ì¬µÈ´ıµÄÏûÏ¢±ØĞëÊÇÆô¶¯´«Êä */
+                return -AM_EINVAL;  /* ä¼ è¾“å¼€å§‹çŠ¶æ€ç­‰å¾…çš„æ¶ˆæ¯å¿…é¡»æ˜¯å¯åŠ¨ä¼ è¾“ */
             }
 
 
-            /* µ±Ç°ÏûÏ¢´«ÊäÍê³É */
+            /* å½“å‰æ¶ˆæ¯ä¼ è¾“å®Œæˆ */
             if (__I2C_TRANS_EMPTY(p_dev)) {
 
-                /* ÏûÏ¢ÕıÔÚ´¦ÀíÖĞ */
+                /* æ¶ˆæ¯æ­£åœ¨å¤„ç†ä¸­ */
                 if (p_cur_msg->status == -AM_EINPROGRESS) {
                     p_cur_msg->status = AM_OK;
                 }
 
-                /* »Øµ÷ÏûÏ¢Íê³Éº¯Êı  */
+                /* å›è°ƒæ¶ˆæ¯å®Œæˆå‡½æ•°  */
                 if (p_cur_msg->pfn_complete != NULL) {
                     p_cur_msg->pfn_complete(p_cur_msg->p_arg);
                 }
 
 
-                /* Í£Ö¹´«Êä */
+                /* åœæ­¢ä¼ è¾“ */
                 amhw_lpc_i2c_mst_stop(p_hw_i2c);
 
                 __I2C_NEXT_STATE(__I2C_ST_MSG_START, __I2C_EVT_MSG_LAUNCH);
 
-            } else {                    /* »ñÈ¡µ½Ò»¸ö´«Êä£¬ÕıÈ·´¦Àí¸Ã´«Êä¼´¿É */
+            } else {                    /* è·å–åˆ°ä¸€ä¸ªä¼ è¾“ï¼Œæ­£ç¡®å¤„ç†è¯¥ä¼ è¾“å³å¯ */
 
                 struct am_i2c_transfer *p_cur_trans = p_dev->p_cur_trans;
 
                 p_dev->data_ptr = 0;
 
                 /*
-                 * ²»ĞèÒªÆô¶¯ĞÅºÅ£¬Ö±½Ó´«Êä£¬±ØĞëÍ¬Ê±Âú×ãÒÔÏÂÈı¸öÌõ¼ş£º
-                 * 1.ÉèÖÃÁË±êÖ¾ AM_I2C_M_NOSTART
-                 * 2.µ±Ç°´«Êä²»ÊÇÒ»¸öÏûÏ¢ÖĞµÄµÚÒ»¸ö´«Êä
-                 * 3.µ±Ç°´«ÊäÓëÉÏÒ»¸ö´«ÊäµÄ·½ÏòÒ»ÖÂ
+                 * ä¸éœ€è¦å¯åŠ¨ä¿¡å·ï¼Œç›´æ¥ä¼ è¾“ï¼Œå¿…é¡»åŒæ—¶æ»¡è¶³ä»¥ä¸‹ä¸‰ä¸ªæ¡ä»¶ï¼š
+                 * 1.è®¾ç½®äº†æ ‡å¿— AM_I2C_M_NOSTART
+                 * 2.å½“å‰ä¼ è¾“ä¸æ˜¯ä¸€ä¸ªæ¶ˆæ¯ä¸­çš„ç¬¬ä¸€ä¸ªä¼ è¾“
+                 * 3.å½“å‰ä¼ è¾“ä¸ä¸Šä¸€ä¸ªä¼ è¾“çš„æ–¹å‘ä¸€è‡´
                  */
                 if ((p_cur_trans->flags & AM_I2C_M_NOSTART) &&
                     (p_cur_trans != p_cur_msg->p_transfers) &&
@@ -611,24 +611,24 @@ static int __i2c_mst_sm_event (am_lpc_i2c_dev_t *p_dev, uint32_t event)
 
                     if (is_read == AM_TRUE) {
 
-                        /* Èç¹ûÊÇ½ÓÊÕ£¬ĞèÒª×ÔĞĞÒ»´Îcontinue£¬ÒÔ±ã¼ÌĞø½ÓÊÕÊı¾İ */
+                        /* å¦‚æœæ˜¯æ¥æ”¶ï¼Œéœ€è¦è‡ªè¡Œä¸€æ¬¡continueï¼Œä»¥ä¾¿ç»§ç»­æ¥æ”¶æ•°æ® */
                         if (amhw_lpc_i2c_stat_get(p_hw_i2c) &
                             AMHW_LPC_I2C_STAT_MSTPEND) {
 
                             amhw_lpc_i2c_mst_continue(p_hw_i2c);
                         }
 
-                        /* ¼ÌĞø½ÓÊÜÊı¾İ */
+                        /* ç»§ç»­æ¥å—æ•°æ® */
                         __I2C_NEXT_STATE(__I2C_ST_M_RECV_DATA, __I2C_EVT_MSG_LAUNCH);
                     } else {
 
-                        /* ¼ÌĞø·¢ËÍÊı¾İ */
+                        /* ç»§ç»­å‘é€æ•°æ® */
                         __I2C_NEXT_STATE(__I2C_ST_M_SEND_DATA, __I2C_EVT_MSG_LAUNCH);
                     }
 
-                /* ·¢ËÍ´Ó»úµØÖ· */
+                /* å‘é€ä»æœºåœ°å€ */
                 } else {
-                    /* ÏÂÒ»²½²Ù×÷ÊÇ·¢ËÍ´Ó»úµØÖ· */
+                    /* ä¸‹ä¸€æ­¥æ“ä½œæ˜¯å‘é€ä»æœºåœ°å€ */
                     __I2C_NEXT_STATE(__I2C_ST_SEND_SLA_ADDR, __I2C_EVT_MSG_LAUNCH);
                 }
             }
@@ -636,58 +636,58 @@ static int __i2c_mst_sm_event (am_lpc_i2c_dev_t *p_dev, uint32_t event)
             break;
         }
         
-        case __I2C_ST_SEND_SLA_ADDR :                         /* ·¢ËÍ´Ó»úµØÖ· */
+        case __I2C_ST_SEND_SLA_ADDR :                         /* å‘é€ä»æœºåœ°å€ */
         {
             struct am_i2c_message  *p_cur_msg   = p_dev->p_cur_msg;
             struct am_i2c_transfer *p_cur_trans = p_dev->p_cur_trans;
 
             uint8_t dev_addr = (p_cur_trans->addr) << 1;
 
-            /* Ôİ²»Ö§³Ö10bit Ä£Ê½ */
+            /* æš‚ä¸æ”¯æŒ10bit æ¨¡å¼ */
             if (p_cur_trans->flags & AM_I2C_ADDR_10BIT) {
 
-                /* ¸üĞÂÏûÏ¢×´Ì¬ */
+                /* æ›´æ–°æ¶ˆæ¯çŠ¶æ€ */
                 p_cur_msg->status = -AM_ENOTSUP;
 
-                /* ºöÂÔÊ£ÏÂµÄtransfer */
+                /* å¿½ç•¥å‰©ä¸‹çš„transfer */
                 p_dev->p_cur_trans = p_cur_msg->p_transfers +
                                      p_cur_msg->trans_num;
 
-                /* ½áÊøµ±Ç°µÄÏûÏ¢´«Êä */
+                /* ç»“æŸå½“å‰çš„æ¶ˆæ¯ä¼ è¾“ */
                 __I2C_NEXT_STATE(__I2C_ST_TRANS_START, __I2C_EVT_TRANS_LAUNCH);
 
                 break;
             }
 
 
-            /* ·¢ËÍÆô¶¯ĞÅºÅ + ´Ó»úµØÖ· */
+            /* å‘é€å¯åŠ¨ä¿¡å· + ä»æœºåœ°å€ */
             if (p_cur_trans->flags & AM_I2C_M_RD) {
-                dev_addr |= 0x1;            /* ¶Á²Ù×÷ */
+                dev_addr |= 0x1;            /* è¯»æ“ä½œ */
 
-                /* ÏÂÒ»²½ÊÇ½ÓÊÕÊı¾İ */
+                /* ä¸‹ä¸€æ­¥æ˜¯æ¥æ”¶æ•°æ® */
                 __I2C_NEXT_STATE(__I2C_ST_M_RECV_DATA, __I2C_EVT_NONE);
 
             } else {
-                dev_addr |= 0x0;            /* Ğ´²Ù×÷ */
+                dev_addr |= 0x0;            /* å†™æ“ä½œ */
 
-                /* ½øÈëÖ÷»ú·¢ËÍÄ£Ê½ */
+                /* è¿›å…¥ä¸»æœºå‘é€æ¨¡å¼ */
                 __I2C_NEXT_STATE(__I2C_ST_M_SEND_DATA, __I2C_EVT_NONE);
             }
 
-            /* ·¢ËÍÉè±¸µØÖ· */
+            /* å‘é€è®¾å¤‡åœ°å€ */
             amhw_lpc_i2c_mstdat_write(p_hw_i2c, dev_addr);
             amhw_lpc_i2c_mst_start(p_hw_i2c);
 
             break;
         }
 
-        /* µ±Ç°´¦ÓÚ½ÓÊÕÊı¾İ×´Ì¬ */
+        /* å½“å‰å¤„äºæ¥æ”¶æ•°æ®çŠ¶æ€ */
         case __I2C_ST_M_RECV_DATA:
         {
             struct am_i2c_message  *p_cur_msg   = p_dev->p_cur_msg;
             struct am_i2c_transfer *p_cur_trans = p_dev->p_cur_trans;
 
-            /* ½ÓÊÕÊı¾İ£¬ÓÉÖ÷»úÓ¦´ğ£¬Òò´ËÖ»¿ÉÄÜ²úÉúµØÖ·ÎŞÓ¦´ğ */
+            /* æ¥æ”¶æ•°æ®ï¼Œç”±ä¸»æœºåº”ç­”ï¼Œå› æ­¤åªå¯èƒ½äº§ç”Ÿåœ°å€æ— åº”ç­” */
             if ((event == __I2C_EVT_MST_ADDR_NO_ACK) ||
                 (event == __I2C_EVT_MST_DATA_NO_ACK)) {
 
@@ -695,7 +695,7 @@ static int __i2c_mst_sm_event (am_lpc_i2c_dev_t *p_dev, uint32_t event)
 
                     p_cur_msg->status = -AM_ENODEV;
 
-                    /* ºöÂÔÊ£ÏÂµÄtransfer */
+                    /* å¿½ç•¥å‰©ä¸‹çš„transfer */
                     p_dev->p_cur_trans = p_cur_msg->p_transfers +
                                          p_cur_msg->trans_num;
 
@@ -703,13 +703,13 @@ static int __i2c_mst_sm_event (am_lpc_i2c_dev_t *p_dev, uint32_t event)
                                      __I2C_EVT_TRANS_LAUNCH);
                     break;
 
-                /* ºöÂÔÕâ¸ö´íÎó */
+                /* å¿½ç•¥è¿™ä¸ªé”™è¯¯ */
                 } else {
                     event = __I2C_EVT_MST_RX;
                 }
             }
 
-            /* ÖÙ²Ã¶ªÊ§¡¢Æô¶¯»òÍ£Ö¹´íÎó */
+            /* ä»²è£ä¸¢å¤±ã€å¯åŠ¨æˆ–åœæ­¢é”™è¯¯ */
             if (event == __I2C_EVT_MST_BERR || event == __I2C_EVT_MST_TIMEOUT) {
                 __I2C_NEXT_STATE(__I2C_ST_ARBI_LOST, __I2C_EVT_MST_BERR);
                 break;
@@ -719,15 +719,15 @@ static int __i2c_mst_sm_event (am_lpc_i2c_dev_t *p_dev, uint32_t event)
                                          amhw_lpc_i2c_mstdat_read(p_hw_i2c);
 
             if (p_dev->data_ptr < p_cur_trans->nbytes) {
-                /* ¼ÌĞø½ÓÊÕÊı¾İ£¬×´Ì¬±£³Ö²»±ä */
+                /* ç»§ç»­æ¥æ”¶æ•°æ®ï¼ŒçŠ¶æ€ä¿æŒä¸å˜ */
                 amhw_lpc_i2c_mst_continue(p_hw_i2c);
 
-            } else {  /* Êı¾İ½ÓÊÕÍê±Ï£¬ ¸Ã´«ÊäÍê³É */
+            } else {  /* æ•°æ®æ¥æ”¶å®Œæ¯•ï¼Œ è¯¥ä¼ è¾“å®Œæˆ */
 
                 p_cur_msg->done_num++;
                 p_dev->p_cur_trans++;
 
-                /* ±¾´«ÊäÍê±Ï£¬½øÈëÏÂÒ»´«Êä */
+                /* æœ¬ä¼ è¾“å®Œæ¯•ï¼Œè¿›å…¥ä¸‹ä¸€ä¼ è¾“ */
                 __I2C_NEXT_STATE(__I2C_ST_TRANS_START, __I2C_EVT_TRANS_LAUNCH);
             }
 
@@ -739,7 +739,7 @@ static int __i2c_mst_sm_event (am_lpc_i2c_dev_t *p_dev, uint32_t event)
             struct am_i2c_message  *p_cur_msg   = p_dev->p_cur_msg;
             struct am_i2c_transfer *p_cur_trans = p_dev->p_cur_trans;
 
-            /* µØÖ·»òÊı¾İÎŞÓ¦´ğ */
+            /* åœ°å€æˆ–æ•°æ®æ— åº”ç­” */
             if ( (event == __I2C_EVT_MST_ADDR_NO_ACK) ||
                  (event == __I2C_EVT_MST_DATA_NO_ACK)) {
 
@@ -748,7 +748,7 @@ static int __i2c_mst_sm_event (am_lpc_i2c_dev_t *p_dev, uint32_t event)
                     p_cur_msg->status = (event == __I2C_EVT_MST_ADDR_NO_ACK) \
                                         ? -AM_ENODEV : -AM_ENOENT;
 
-                    /* ºöÂÔÊ£ÏÂµÄtransfer */
+                    /* å¿½ç•¥å‰©ä¸‹çš„transfer */
                     p_dev->p_cur_trans = p_cur_msg->p_transfers +
                                          p_cur_msg->trans_num;
 
@@ -756,14 +756,14 @@ static int __i2c_mst_sm_event (am_lpc_i2c_dev_t *p_dev, uint32_t event)
                                      __I2C_EVT_TRANS_LAUNCH);
                     break;
 
-                /* ºöÂÔÕâ¸ö´íÎó */
+                /* å¿½ç•¥è¿™ä¸ªé”™è¯¯ */
                 } else {
                     event = __I2C_EVT_MST_TX;
                 }
 
             }
 
-            /* ÖÙ²Ã¶ªÊ§¡¢Æô¶¯»òÍ£Ö¹´íÎó */
+            /* ä»²è£ä¸¢å¤±ã€å¯åŠ¨æˆ–åœæ­¢é”™è¯¯ */
             if (event == __I2C_EVT_MST_BERR || event == __I2C_EVT_MST_TIMEOUT) {
                 __I2C_NEXT_STATE(__I2C_ST_ARBI_LOST, __I2C_EVT_MST_BERR);
                 break;
@@ -780,30 +780,30 @@ static int __i2c_mst_sm_event (am_lpc_i2c_dev_t *p_dev, uint32_t event)
                 p_cur_msg->done_num++;
                 p_dev->p_cur_trans++;
 
-                /* ±¾´«ÊäÍê±Ï£¬½øÈëÏÂÒ»´«Êä */
+                /* æœ¬ä¼ è¾“å®Œæ¯•ï¼Œè¿›å…¥ä¸‹ä¸€ä¼ è¾“ */
                 __I2C_NEXT_STATE(__I2C_ST_TRANS_START, __I2C_EVT_TRANS_LAUNCH);
             }
 
             break;
         }
 
-        /* ÖÙ²Ã´íÎó»ò³¬Ê±£¬±íÃ÷×ÜÏßÒì³££¬Ö±½Ó½áÊøÕâÒ»´Î´«Êä */
+        /* ä»²è£é”™è¯¯æˆ–è¶…æ—¶ï¼Œè¡¨æ˜æ€»çº¿å¼‚å¸¸ï¼Œç›´æ¥ç»“æŸè¿™ä¸€æ¬¡ä¼ è¾“ */
         case __I2C_ST_ARBI_LOST:
         {
             struct am_i2c_message  *p_cur_msg   = p_dev->p_cur_msg;
 
-            /* ½ûÄÜÔÙÊ¹ÄÜ£¬¸´Î»Ó²¼şµÄÄÚ²¿Âß¼­ */
+            /* ç¦èƒ½å†ä½¿èƒ½ï¼Œå¤ä½ç¡¬ä»¶çš„å†…éƒ¨é€»è¾‘ */
             amhw_lpc_i2c_mode_disable(p_hw_i2c, AM_I2C_MASTER_MODE);
             amhw_lpc_i2c_mode_enable(p_hw_i2c, AM_I2C_MASTER_MODE);
 
-            /* ¸üĞÂÏûÏ¢×´Ì¬ */
+            /* æ›´æ–°æ¶ˆæ¯çŠ¶æ€ */
             p_cur_msg->status = -AM_EIO;
 
-            /* ºöÂÔÊ£ÏÂµÄtransfer */
+            /* å¿½ç•¥å‰©ä¸‹çš„transfer */
             p_dev->p_cur_trans = p_cur_msg->p_transfers +
                                      p_cur_msg->trans_num;
 
-            /* ½áÊøµ±Ç°ÏûÏ¢´«Êä */
+            /* ç»“æŸå½“å‰æ¶ˆæ¯ä¼ è¾“ */
             __I2C_NEXT_STATE(__I2C_ST_TRANS_START, __I2C_EVT_TRANS_LAUNCH);
 
             break;
@@ -814,7 +814,7 @@ static int __i2c_mst_sm_event (am_lpc_i2c_dev_t *p_dev, uint32_t event)
             break;
         }
 
-        /* ÄÚ²¿Ã»ÓĞĞÂÊÂ¼ş²úÉú£¬Ìø³ö */
+        /* å†…éƒ¨æ²¡æœ‰æ–°äº‹ä»¶äº§ç”Ÿï¼Œè·³å‡º */
         if (new_event == __I2C_EVT_NONE) {
             break;
         }

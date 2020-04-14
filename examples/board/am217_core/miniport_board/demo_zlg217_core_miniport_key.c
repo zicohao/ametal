@@ -12,30 +12,30 @@
 
 /**
  * \file
- * \brief MiniPort-KEY Àý³Ì£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MiniPort-KEY ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè
- *   1. ½« MiniPort-KEY °å×ÓÖ±½ÓÓë AM217BLE µÄ MiniPort½Ó¿ÚÏàÁ¬½Ó¡£
+ * - æ“ä½œæ­¥éª¤
+ *   1. å°† MiniPort-KEY æ¿å­ç›´æŽ¥ä¸Ž AM217BLE çš„ MiniPortæŽ¥å£ç›¸è¿žæŽ¥ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ÈôÁ¬½ÓÁËµ÷ÊÔ´®¿Ú£¬Ôò°´ÏÂ°´¼üÊ±£¬»á´òÓ¡³öµ±Ç°µÄ°´¼üÐÅÏ¢£»
- *   2. °´¼ü°´ÏÂ£¬Í¬Ê±ÓÃ AM217BLE °åÉÏµÄLEDµÆ·´Ó¦³öµ±Ç°µÄ°´¼ü±àºÅ£¬
- *      ÐèÒª¶Ì½Ó J9 ºÍ J10¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. è‹¥è¿žæŽ¥äº†è°ƒè¯•ä¸²å£ï¼Œåˆ™æŒ‰ä¸‹æŒ‰é”®æ—¶ï¼Œä¼šæ‰“å°å‡ºå½“å‰çš„æŒ‰é”®ä¿¡æ¯ï¼›
+ *   2. æŒ‰é”®æŒ‰ä¸‹ï¼ŒåŒæ—¶ç”¨ AM217BLE æ¿ä¸Šçš„LEDç¯ååº”å‡ºå½“å‰çš„æŒ‰é”®ç¼–å·ï¼Œ
+ *      éœ€è¦çŸ­æŽ¥ J9 å’Œ J10ã€‚
  *
  *           ------------------------------------
- *            °´ÏÂ°´¼ü        | LED1×´Ì¬ |  LED0×´Ì¬
+ *            æŒ‰ä¸‹æŒ‰é”®        | LED1çŠ¶æ€ |  LED0çŠ¶æ€
  *           -------------|---------|------------
- *             KEY0       |    Ï¨Ãð   |   Ï¨Ãð
- *             KEY1       |    Ï¨Ãð   |   µãÁÁ
- *             KEY2       |    µãÁÁ   |   Ï¨Ãð
- *             KEY3       |    µãÁÁ   |   µãÁÁ
+ *             KEY0       |    ç†„ç­   |   ç†„ç­
+ *             KEY1       |    ç†„ç­   |   ç‚¹äº®
+ *             KEY2       |    ç‚¹äº®   |   ç†„ç­
+ *             KEY3       |    ç‚¹äº®   |   ç‚¹äº®
  *
  * \note
- *    ²âÊÔ±¾ Demo ±ØÐëÔÚ am_prj_config.h ÄÚ½« AM_CFG_KEY_GPIO_ENABLE¡¢
- *    AM_CFG_KEY_ENABLE ºÍ AM_CFG_SOFTIMER_ENABLE ¶¨ÒåÎª 1¡£µ«ÕâÐ©ºê
- *    ÒÑ¾­Ä¬ÈÏÅäÖÃÎª 1£¬ ÓÃ»§²»±ØÔÙ´ÎÅäÖÃ¡£
+ *    æµ‹è¯•æœ¬ Demo å¿…é¡»åœ¨ am_prj_config.h å†…å°† AM_CFG_KEY_GPIO_ENABLEã€
+ *    AM_CFG_KEY_ENABLE å’Œ AM_CFG_SOFTIMER_ENABLE å®šä¹‰ä¸º 1ã€‚ä½†è¿™äº›å®
+ *    å·²ç»é»˜è®¤é…ç½®ä¸º 1ï¼Œ ç”¨æˆ·ä¸å¿…å†æ¬¡é…ç½®ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_miniport_key.c src_miniport_key
  *
  * \internal
@@ -59,7 +59,7 @@
 #include "demo_am217_core_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_zlg217_core_miniport_key_entry (void)
 {

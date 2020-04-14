@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief SPI ´Ó»úÇı¶¯£¬·şÎñ SPI ´Ó»ú±ê×¼½Ó¿Ú
+ * \brief SPI ä»æœºé©±åŠ¨ï¼ŒæœåŠ¡ SPI ä»æœºæ ‡å‡†æ¥å£
  *
  * \internal
  * \par Modification History
@@ -39,44 +39,44 @@ extern "C" {
  */
 
 /**
- * \brief SPI ´Ó»úÉè±¸ĞÅÏ¢½á¹¹Ìå
+ * \brief SPI ä»æœºè®¾å¤‡ä¿¡æ¯ç»“æ„ä½“
  */
 typedef struct am_zlg116_spi_slv_dma_devinfo {
-    uint32_t spi_reg_base;           /**< \brief ´Ó»ú SPI ¼Ä´æÆ÷¿éµÄ»ùµØÖ· */
-    int      clk_id;                 /**< \brief Ê±ÖÓ ID */
-    uint32_t dma_chan_tx;            /**< \brief DMA ·¢ËÍÍ¨µÀºÅ */
-    uint32_t dma_chan_rx;            /**< \brief DMA ½ÓÊÕÍ¨µÀºÅ */
-    int      cs_pin;                 /**< \breif Æ¬Ñ¡Òı½Å */
-    void   (*pfn_plfm_init)(void);   /**< \brief SPI Æ½Ì¨³õÊ¼»¯º¯Êı */
-    void   (*pfn_plfm_deinit)(void); /**< \brief SPI Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    uint32_t spi_reg_base;           /**< \brief ä»æœº SPI å¯„å­˜å™¨å—çš„åŸºåœ°å€ */
+    int      clk_id;                 /**< \brief æ—¶é’Ÿ ID */
+    uint32_t dma_chan_tx;            /**< \brief DMA å‘é€é€šé“å· */
+    uint32_t dma_chan_rx;            /**< \brief DMA æ¥æ”¶é€šé“å· */
+    int      cs_pin;                 /**< \breif ç‰‡é€‰å¼•è„š */
+    void   (*pfn_plfm_init)(void);   /**< \brief SPI å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    void   (*pfn_plfm_deinit)(void); /**< \brief SPI å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 } am_zlg_spi_slv_dma_devinfo_t;
 
 /**
- * \brief SPI Éè±¸½á¹¹Ìå
+ * \brief SPI è®¾å¤‡ç»“æ„ä½“
  */
 typedef struct am_zlg116_spi_slv_dma_dev {
 
-    /** \brief SPI ´Ó»ú±ê×¼·şÎñ¾ä±ú */
+    /** \brief SPI ä»æœºæ ‡å‡†æœåŠ¡å¥æŸ„ */
     am_spi_slv_serv_t                      spi_slv_serve;
 
-    /** \brief SPI ´Ó»úÉè±¸ĞÅÏ¢µÄÖ¸Õë */
+    /** \brief SPI ä»æœºè®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ */
     const am_zlg_spi_slv_dma_devinfo_t    *p_devinfo;
 
-    /** \brief ´Ó»úÉè±¸  */
+    /** \brief ä»æœºè®¾å¤‡  */
     am_spi_slv_device_t                   *p_spi_slv_dev;
 
-    /** \brief ´«ÊäÌå */
+    /** \brief ä¼ è¾“ä½“ */
     am_spi_slv_transfer_t                  tansfer;
 
-    /** \brief ´ÓÆ¬Ñ¡ÓĞĞ§µ½Æ¬Ñ¡ÎŞĞ§´«ÊäµÄ×Ü×Ö½ÚÊı */
+    /** \brief ä»ç‰‡é€‰æœ‰æ•ˆåˆ°ç‰‡é€‰æ— æ•ˆä¼ è¾“çš„æ€»å­—èŠ‚æ•° */
     size_t                                 sum_nbytes;
 
-    /** \brief DMA Í¨µÀÃèÊö·û */
+    /** \brief DMA é€šé“æè¿°ç¬¦ */
     amhw_zlg_dma_xfer_desc_t               g_desc[2];
 
     uint32_t                               dma_flags;
 
-    /** \breif ÓÃÓÚÉáÆú½ÓÊÜµÄÊı¾İ»ò·¢ËÍ¿ÕÊı¾İ */
+    /** \breif ç”¨äºèˆå¼ƒæ¥å—çš„æ•°æ®æˆ–å‘é€ç©ºæ•°æ® */
     uint32_t                               dummy_dma_flags;
 
     uint32_t                               dummy_txbuf;
@@ -86,23 +86,23 @@ typedef struct am_zlg116_spi_slv_dma_dev {
 } am_zlg_spi_slv_dma_dev_t;
 
 /**
- * \brief SPI ´Ó»ú³õÊ¼»¯
+ * \brief SPI ä»æœºåˆå§‹åŒ–
  *
- * \param[in] p_dev     Ö¸Ïò SPI ´ÓÉè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[in] p_devinfo Ö¸Ïò SPI ´ÓÉè±¸ĞÅÏ¢½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] p_dev     æŒ‡å‘ SPI ä»è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo æŒ‡å‘ SPI ä»è®¾å¤‡ä¿¡æ¯ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return SPI ±ê×¼·şÎñ²Ù×÷¾ä±ú
+ * \return SPI æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  */
 am_spi_slv_handle_t
 am_zlg_spi_slv_dma_init (am_zlg_spi_slv_dma_dev_t           *p_dev,
                          const am_zlg_spi_slv_dma_devinfo_t *p_devinfo);
 
 /**
- * \brief ½â³ı SPI ´Ó»ú³õÊ¼»¯
+ * \brief è§£é™¤ SPI ä»æœºåˆå§‹åŒ–
  *
- * \param[in] handle SPI ´ÓÉè±¸±ê×¼·şÎñ²Ù×÷¾ä±ú
+ * \param[in] handle SPI ä»è®¾å¤‡æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg_spi_slv_dma_deinit (am_spi_slv_handle_t handle);
 

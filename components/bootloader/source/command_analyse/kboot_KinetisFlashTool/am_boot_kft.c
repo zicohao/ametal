@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief bootloader kboot KinetisFlashTool ×Ü³õÊ¼»¯ÊµÏÖ
+ * \brief bootloader kboot KinetisFlashTool æ€»åˆå§‹åŒ–å®ç°
  *
  *
  * \internal
@@ -25,11 +25,11 @@
 #include "am_boot_kft_serial_packet.h"
 #include "am_arm_nvic.h"
 
-/* µ¥ÊµÀıÉè±¸ */
+/* å•å®ä¾‹è®¾å¤‡ */
 static am_boot_kft_dev_t  __g_boot_kft_dev;
 
 /**
- * \brief bootloader ×é¼ş³õÊ¼»¯
+ * \brief bootloader ç»„ä»¶åˆå§‹åŒ–
  */
 int am_boot_kft_init(am_boot_mem_handle_t    memory_handle,
                      am_boot_flash_handle_t  flash_handle,
@@ -59,9 +59,9 @@ int am_boot_kft_init(am_boot_mem_handle_t    memory_handle,
 }
 
 /**
- * \brief bootloader kboot KinetisFlashTool ÃüÁî´¦Àí(ÃüÁî×´Ì¬»ú)
+ * \brief bootloader kboot KinetisFlashTool å‘½ä»¤å¤„ç†(å‘½ä»¤çŠ¶æ€æœº)
  *
- * \note ¸Ãº¯ÊıĞèÒªÓÃ»§ÔÚÓ¦ÓÃ³ÌĞòÀïÃæÑ­»·µ÷ÓÃ£¬ÉÏÎ»»ú»áÒ»Ö±·¢ËÍĞÅÏ¢¸øbootloader£¬×´Ì¬»úĞèÒªÒ»Ö±È¥½âÎö
+ * \note è¯¥å‡½æ•°éœ€è¦ç”¨æˆ·åœ¨åº”ç”¨ç¨‹åºé‡Œé¢å¾ªç¯è°ƒç”¨ï¼Œä¸Šä½æœºä¼šä¸€ç›´å‘é€ä¿¡æ¯ç»™bootloaderï¼ŒçŠ¶æ€æœºéœ€è¦ä¸€ç›´å»è§£æ
  */
 int am_boot_kft_command_pump()
 {

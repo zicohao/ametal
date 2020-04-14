@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief CLKÇı¶¯£¬Ê±ÖÓ±ê×¼·şÎñ½Ó¿Ú
+ * \brief CLKé©±åŠ¨ï¼Œæ—¶é’Ÿæ ‡å‡†æœåŠ¡æ¥å£
  *
  * \internal
  * \par Modification history
@@ -38,9 +38,9 @@ extern "C" {
  */
 
 /**
- * \brief CLK Éè±¸ĞÅÏ¢²ÎÊı½á¹¹Ìå
+ * \brief CLK è®¾å¤‡ä¿¡æ¯å‚æ•°ç»“æ„ä½“
  *
- *  PLLÆµÂÊ¿ØÖÆ
+ *  PLLé¢‘ç‡æ§åˆ¶
  *
  *  M = pll_msel + 1
  *  P = 2^(pll_psel)
@@ -51,107 +51,107 @@ extern "C" {
 
 typedef struct am_lpc84x_clk_devinfo {
 
-	/** \brief fro Ê±ÖÓÑ¡Ôñ  */
+	/** \brief fro æ—¶é’Ÿé€‰æ‹©  */
 	uint8_t frocillator;
 
-    /** \brief Íâ²¿ Ê±ÖÓÔ´Ñ¡Ôñ  */
+    /** \brief å¤–éƒ¨ æ—¶é’Ÿæºé€‰æ‹©  */
     uint8_t external_in_src;
 
-    /** \brief PLL Ê±ÖÓÔ´Ñ¡Ôñ  */
+    /** \brief PLL æ—¶é’Ÿæºé€‰æ‹©  */
     uint8_t pllin_src;
 
     /** 
-     * \brief PLL ¿ØÖÆ¼Ä´æÆ÷MSEL£¬Ê¹FCLKOUT ÔÚ·¶Î§ 100MHzÄÚ
+     * \brief PLL æ§åˆ¶å¯„å­˜å™¨MSELï¼Œä½¿FCLKOUT åœ¨èŒƒå›´ 100MHzå†…
      *        FCLKOUT = FCLKIN * (MSEL + 1) = 12MHz * 5 = 60 MHz
      */
     uint8_t pll_msel;
 
     /** 
-     * \brief PLL ¿ØÖÆ¼Ä´æÆ÷PSEL ,Ê¹FCCO ÔÚ·¶Î§ 156 - 320MHz
+     * \brief PLL æ§åˆ¶å¯„å­˜å™¨PSEL ,ä½¿FCCO åœ¨èŒƒå›´ 156 - 320MHz
      *        FCCO = FCLKOUT * 2 * 2^(PSEL) = 60MHz * 2 * 2 = 240MHz
      */
     uint8_t pll_psel;
 
-    /** \brief MAIN Ê±ÖÓÔ´Ñ¡Ôñ */
+    /** \brief MAIN æ—¶é’Ÿæºé€‰æ‹© */
     uint8_t main_src;
     
-    /** \brief ÏµÍ³Ê±ÖÓ·ÖÆµÊı£¬¿ÉÌî 1- 255 Ö®¼äÊıÖµ */
+    /** \brief ç³»ç»Ÿæ—¶é’Ÿåˆ†é¢‘æ•°ï¼Œå¯å¡« 1- 255 ä¹‹é—´æ•°å€¼ */
     uint8_t sysclk_div;
 
     /**
-     * \brief WDTOSCÆµÂÊ·ÖÆµÏµÊı£¬¿ÉÌî 2 - 64 Ö®¼äµÄÅ¼Êı
+     * \brief WDTOSCé¢‘ç‡åˆ†é¢‘ç³»æ•°ï¼Œå¯å¡« 2 - 64 ä¹‹é—´çš„å¶æ•°
      *       
      */
     uint8_t wdtosc_div;
 
     /**
-     * \brief WDTOSCÆµÂÊÑ¡Ôñ£¬²Î¼û \ref grp_amhw_lpc84x_clk_wdtosc_rate
+     * \brief WDTOSCé¢‘ç‡é€‰æ‹©ï¼Œå‚è§ \ref grp_amhw_lpc84x_clk_wdtosc_rate
      */
     uint8_t wdtosc_freq;
 
     /**
-     * \brief FR0Ê±ÖÓÔ´Ñ¡Ôñ
+     * \brief FR0æ—¶é’Ÿæºé€‰æ‹©
      */
     uint8_t frg0_src;
 
     /**
-     * \brief FR0Ê±ÖÓÔ´Ñ¡Ôñ
+     * \brief FR0æ—¶é’Ÿæºé€‰æ‹©
      */
     uint8_t frg1_src;
 
-    /** \brief Æ½Ì¨³õÊ¼»¯º¯Êı£¬ÅäÖÃÒı½ÅµÈ¹¤×÷ */
+    /** \brief å¹³å°åˆå§‹åŒ–å‡½æ•°ï¼Œé…ç½®å¼•è„šç­‰å·¥ä½œ */
     void  (*pfn_plfm_init)(void);
 
-    /** \brief Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    /** \brief å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
     void  (*pfn_plfm_deinit)(void);
 
 } am_lpc84x_clk_devinfo_t;
 
 /**
- * \brief CLK Éè±¸½á¹¹Ìå
+ * \brief CLK è®¾å¤‡ç»“æ„ä½“
  */
 typedef struct am_lpc84x_clk_dev {
 
-    /** \brief Ö¸ÏòCLK Éè±¸ĞÅÏ¢µÄÖ¸Õë   */
+    /** \brief æŒ‡å‘CLK è®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ   */
     const am_lpc84x_clk_devinfo_t *p_devinfo;
 
-    /** \brief Ö÷Ê±ÖÓÔ´ÆµÂÊ*/
+    /** \brief ä¸»æ—¶é’Ÿæºé¢‘ç‡*/
     uint32_t main_clkrate;
 
-    /** \brief ÏµÍ³Ê±ÖÓÔ´ÆµÂÊ*/
+    /** \brief ç³»ç»Ÿæ—¶é’Ÿæºé¢‘ç‡*/
     uint32_t system_clkrate;
 
 } am_lpc84x_clk_dev_t;
 
 /**
- * \brief CLK ³õÊ¼»¯
+ * \brief CLK åˆå§‹åŒ–
  *
- * \param[in] p_dev     : Ö¸ÏòCLKÉè±¸µÄÖ¸Õë
- * \param[in] p_devinfo : Ö¸ÏòCLKÉè±¸ĞÅÏ¢µÄÖ¸Õë
+ * \param[in] p_dev     : æŒ‡å‘CLKè®¾å¤‡çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo : æŒ‡å‘CLKè®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ
  *
- * \retval AM_OK : ²Ù×÷³É¹¦
+ * \retval AM_OK : æ“ä½œæˆåŠŸ
  */
 int am_lpc84x_clk_init (am_lpc84x_clk_dev_t           *p_dev,
                         const am_lpc84x_clk_devinfo_t *p_devinfo);
 
 /**
- * \brief CLK ½â³õÊ¼»¯
+ * \brief CLK è§£åˆå§‹åŒ–
  *
- * \param[in] p_dev     : Ö¸ÏòCLKÉè±¸µÄÖ¸Õë
+ * \param[in] p_dev     : æŒ‡å‘CLKè®¾å¤‡çš„æŒ‡é’ˆ
  *
- * \retval ÎŞ
+ * \retval æ— 
  */
 void am_lpc84x_clk_deinit(am_lpc84x_clk_dev_t *p_dev);
 
 /**
- * \brief ÉèÖÃÊ±ÖÓÆµÂÊ
+ * \brief è®¾ç½®æ—¶é’Ÿé¢‘ç‡
  *
- * \param[in] clk_id  Ê±ÖÓ ID (ÓÉÆ½Ì¨¶¨Òå)
- * \param[in] rate    Ê±ÖÓÆµÂÊ
+ * \param[in] clk_id  æ—¶é’Ÿ ID (ç”±å¹³å°å®šä¹‰)
+ * \param[in] rate    æ—¶é’Ÿé¢‘ç‡
  *
- * \retval  AM_OK   ³É¹¦
- * \retval -AM_ENXIO   Ê±ÖÓÆµÂÊID²»´æÔÚ
- * \retval -AM_ENOTSUP ²»Ö§³ÖÒªÉèÖÃÆµÂÊ
+ * \retval  AM_OK   æˆåŠŸ
+ * \retval -AM_ENXIO   æ—¶é’Ÿé¢‘ç‡IDä¸å­˜åœ¨
+ * \retval -AM_ENOTSUP ä¸æ”¯æŒè¦è®¾ç½®é¢‘ç‡
  */
 int am_lpc84x_clk_rate_set (am_clk_id_t clk_id, uint32_t rate);
 

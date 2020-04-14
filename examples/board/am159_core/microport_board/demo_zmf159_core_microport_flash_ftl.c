@@ -12,27 +12,27 @@
 
 /**
  * \file
- * \brief MicroPort FLASH ���̣�ͨ�� FTL �ӿ�ʵ�֡�
+ * \brief MicroPort FLASH 例程，通过 FTL 接口实现。
  *
- * ����ʹ�� MX25XX ��׼�ӿں� MTD �ӿ���Ҫ��ÿ��д������ǰ��ȷ����Ӧ�Ĵ�
- * ���ռ��Ѿ����������Ʊػ����̴����ܴ��鷳���ڴ�ͬʱ������ MX25L1606
- * ��ĳһ��ַ�β����������� 10 ��ε����ޣ���Ӧ�ε�ַ�ռ�洢���ݽ�����
- * �ɿ������� AMetal �ṩ FTL ��׼�ӿڸ��û�ʹ�ã����ͱ���Ѷȡ�
+ * 由于使用 MX25XX 标准接口和 MTD 接口需要在每次写入数据前，确保相应的存
+ * 储空间已经被擦除，势必会给编程带来很大麻烦。于此同时，由于 MX25L1606
+ * 的某一地址段擦除次数超过 10 万次的上限，相应段地址空间存储数据将不再
+ * 可靠。所以 AMetal 提供 FTL 标准接口给用户使用，降低编程难度。
  *
- * - ��������:
- *   1. �� MicroPort FLASH ������ӵ� AM217BLE �� MicroPort �ӿڡ�
+ * - 操作步骤:
+ *   1. 将 MicroPort FLASH 配板连接到 AM217BLE 的 MicroPort 接口。
  *
- * - ʵ������:
- *   1. ����д���ݵ� FLASH��
- *   2. ������ FLASH ��ȡ���ݣ���ͨ�����ڴ�ӡ������
- *   3. ���ڴ�ӡ�����Խ����
+ * - 实验现象:
+ *   1. 主机写数据到 FLASH；
+ *   2. 主机从 FLASH 读取数据，并通过串口打印处理；
+ *   3. 串口打印出测试结果。
  *
  * \note
- *    1. ����۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIOA_10 �������� PC ���ڵ� TXD��
- *       PIOA_9 �������� PC ���ڵ� RXD��
- *    2. ʹ�� FTL �ӿ���Ҫ����һ���� RAM �ռ��Լ�һ���������߼��顣
+ *    1. 如需观察串口打印的调试信息，需要将 PIOA_10 引脚连接 PC 串口的 TXD，
+ *       PIOA_9 引脚连接 PC 串口的 RXD；
+ *    2. 使用 FTL 接口需要消耗一定的 RAM 空间以及一定数量的逻辑块。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_microport_flash_ftl.c src_microport_flash_ftl
  *
  * \internal
@@ -55,11 +55,11 @@
 #include "demo_components_entries.h"
 
 /**
- * \brief MicroPort FLASH ���̣�ͨ�� FTL �ӿ�ʵ��
+ * \brief MicroPort FLASH 例程，通过 FTL 接口实现
  *
- * \param ��
+ * \param 无
  *
- * \return ��
+ * \return 无
  */
 void demo_zmf159_core_microport_flash_ftl_entry (void)
 {

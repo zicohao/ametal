@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief USART����������UART��׼�ӿ�
+ * \brief USART驱动，服务UART标准接口
  *
  * \internal
  * \par Modification History
@@ -38,110 +38,110 @@ extern "C" {
  */
 
 /**
- * \brief �û�ָ���������жϷ���
+ * \brief 用户指定的其它中断发生
  */
 #define AM_LPC_UART_ERRCODE_USART_OTHER_INT  2
  
 /**
- * \brief �����������ص�XON�ַ����壬Ĭ��0x11
+ * \brief 用于软件流控的XON字符定义，默认0x11
  */ 
 #define AM_LPC_UART_XON       0x11
   
 /**
- * \brief �����������ص�XOFF�ַ����壬Ĭ��0x13
+ * \brief 用于软件流控的XOFF字符定义，默认0x13
  */ 
 #define AM_LPC_UART_XOFF      0x13
 
 
 /**
- * \brief �����豸��Ϣ�ṹ�壬���豸��Ϣ���ڴ��ڳ�ʼ��
+ * \brief 串口设备信息结构体，该设备信息用于串口初始化
  */
 typedef struct am_lpc_usart_devinfo {
 
-    uint32_t usart_regbase;        /**< \brief USART�Ĵ�����ַ */
+    uint32_t usart_regbase;        /**< \brief USART寄存器基址 */
 
-    uint8_t  inum;                 /**< \brief �����жϺ� */
+    uint8_t  inum;                 /**< \brief 串口中断号 */
   
-  uint32_t  clk_id;               /**< \brief ����ʱ��ID */
+  uint32_t  clk_id;               /**< \brief 串口时钟ID */
     
-    void (*pfn_plfm_init)(void);   /**< \brief ƽ̨��ʼ������ */
+    void (*pfn_plfm_init)(void);   /**< \brief 平台初始化函数 */
 
-    void (*pfn_plfm_deinit)(void); /**< \brief ƽ̨���ʼ������ */
+    void (*pfn_plfm_deinit)(void); /**< \brief 平台解初始化函数 */
 
-    /** \brief RS485������ƺ���, AM_TRUE: ����ģʽ�� AM_FALSE: ����ģʽ */
+    /** \brief RS485方向控制函数, AM_TRUE: 发送模式， AM_FALSE: 接收模式 */
     void  (*pfn_rs485_dir) (am_bool_t is_txmode);
     
 } am_lpc_usart_devinfo_t;
 
 /**
- * \brief �����豸�ṹ�嶨��
+ * \brief 串口设备结构体定义
  */
 typedef struct am_lpc_usart_dev {
 
-    /** \brief ��׼UART����                 */
+    /** \brief 标准UART服务                 */
     am_uart_serv_t       uart_serv;
 
-    /** \brief ָ���û�ע���txchar_get���� */
+    /** \brief 指向用户注册的txchar_get函数 */
     am_uart_txchar_get_t pfn_txchar_get;
 
-    /** \brief ָ���û�ע���rxchar_put���� */
+    /** \brief 指向用户注册的rxchar_put函数 */
     am_uart_rxchar_put_t pfn_rxchar_put;
  
-    /** \brief ָ���û�ע��Ĵ���ص�����   */
+    /** \brief 指向用户注册的错误回调函数   */
     am_uart_err_t        pfn_err;
 
-    /** \brief txchar_get��������           */
+    /** \brief txchar_get函数参数           */
     void     *p_txget_arg;
 
-    /** \brief rxchar_put��������           */
+    /** \brief rxchar_put函数参数           */
     void     *p_rxput_arg;
 
-    /** \brief ����ص������û�����         */
+    /** \brief 错误回调函数用户参数         */
     void     *p_err_arg;
   
-    /** \brief �Ƿ�ʹ���� 485ģʽ          */
+    /** \brief 是否使能了 485模式          */
     am_bool_t rs485_en;
 
-    /** \brief ����ģʽ���ޣ�������Ӳ����   */
+    /** \brief 流控模式（无，软件，硬件）   */
     uint8_t   flowctl_mode;                   
 
-    /** \brief ���ط�����״̬�����������أ� */
+    /** \brief 流控发送器状态（用于软流控） */
     uint8_t   flowctl_tx_stat;                
 
-    /** \brief ����ģʽ �ж�/��ѯ           */
+    /** \brief 串口模式 中断/查询           */
     uint8_t   channel_mode; 
 
-    /** \brief ���ڲ�����                   */
+    /** \brief 串口波特率                   */
     uint32_t  baud_rate; 
 
-    /** \brief Ӳ������ѡ��                 */
+    /** \brief 硬件设置选项                 */
     uint16_t  options;                        
 
-    /** \brief ָ��ʹ�ܵ������ж�           */
+    /** \brief 指定使能的其它中断           */
     uint32_t  other_int_enable;
  
-    /** \brief ָ���豸��Ϣ������ָ��       */
+    /** \brief 指向设备信息常量的指针       */
     const am_lpc_usart_devinfo_t *p_devinfo;
 
 } am_lpc_usart_dev_t;
 
 /**
- * \brief ��ʼ��USART������UART��׼����������
+ * \brief 初始化USART，返回UART标准服务操作句柄
  *
- * \param[in] p_dev     : ָ�򴮿��豸��ָ��
- * \param[in] p_devinfo : ָ�򴮿��豸��Ϣ������ָ��
+ * \param[in] p_dev     : 指向串口设备的指针
+ * \param[in] p_devinfo : 指向串口设备信息常量的指针
  *
- * \return UART��׼������������ֵΪNULLʱ������ʼ��ʧ��
+ * \return UART标准服务操作句柄，值为NULL时表明初始化失败
  */
 am_uart_handle_t am_lpc_usart_init (am_lpc_usart_dev_t           *p_dev,
                                     const am_lpc_usart_devinfo_t *p_devinfo);
 
 /**
- * \brief ��ʹ��USARTʱ�����ʼ��USART���ͷ������Դ
+ * \brief 不使用USART时，解初始化USART，释放相关资源
  *
- * \param[in] handle : UART��׼����������
+ * \param[in] handle : UART标准服务操作句柄
  *
- * \return ��
+ * \return 无
  */
 void am_lpc_usart_deinit (am_uart_handle_t handle);
 

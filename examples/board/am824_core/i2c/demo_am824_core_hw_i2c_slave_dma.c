@@ -12,23 +12,23 @@
 
 /**
  * \file
- * \brief I2C ´Ó»úÀý³Ì£¨DMA ·½Ê½£©£¬Í¨¹ý HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief I2C ä»Žæœºä¾‹ç¨‹ï¼ˆDMA æ–¹å¼ï¼‰ï¼Œé€šè¿‡ HW å±‚æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. PIO0_10 Òý½ÅÁ¬½Ó I2C Ö÷»úµÄ SCL Òý½Å£»
- *   2. PIO0_11 Òý½ÅÁ¬½Ó I2C Ö÷»úµÄ SDA Òý½Å¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. PIO0_10 å¼•è„šè¿žæŽ¥ I2C ä¸»æœºçš„ SCL å¼•è„šï¼›
+ *   2. PIO0_11 å¼•è„šè¿žæŽ¥ I2C ä¸»æœºçš„ SDA å¼•è„šã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ½ÓÊÕÖ÷»ú·¢ËÍ¹ýÀ´µÄÊý¾Ý£¬Í¨¹ý´®¿Ú·¢ËÍ¸øÉÏÎ»»ú£»
- *   2. ´«ÊäÊ§°ÜÔò LED0 µÆ³¤ÁÁ¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. æŽ¥æ”¶ä¸»æœºå‘é€è¿‡æ¥çš„æ•°æ®ï¼Œé€šè¿‡ä¸²å£å‘é€ç»™ä¸Šä½æœºï¼›
+ *   2. ä¼ è¾“å¤±è´¥åˆ™ LED0 ç¯é•¿äº®ã€‚
  *
  * \note
- *    1. LED0 ÐèÒª¶Ì½Ó J9 ÌøÏßÃ±£¬²ÅÄÜ±» PIO0_20 ¿ØÖÆ£»
- *    2. ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIO0_0 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *       PIO0_4 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD£»
- *    3. DMA ³õÊ¼»¯¹¤×÷ÒÑ¾­ÔÚ am_prj_config.c ÎÄ¼þÄÚ²¿Íê³É¡£
+ *    1. LED0 éœ€è¦çŸ­æŽ¥ J9 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIO0_20 æŽ§åˆ¶ï¼›
+ *    2. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO0_0 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *       PIO0_4 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDï¼›
+ *    3. DMA åˆå§‹åŒ–å·¥ä½œå·²ç»åœ¨ am_prj_config.c æ–‡ä»¶å†…éƒ¨å®Œæˆã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am824_hw_i2c_slave_dma.c src_am824_hw_i2c_slave_dma
  *
  * \internal
@@ -51,7 +51,7 @@
 #include "demo_nxp_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am824_core_hw_i2c_slave_dma_entry (void)
 {

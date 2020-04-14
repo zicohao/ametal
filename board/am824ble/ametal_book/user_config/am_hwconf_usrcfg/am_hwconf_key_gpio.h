@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief °´¼üÓÃ»§ÅäÖÃÎÄ¼ş£¨GPIO Çı¶¯£©
+ * \brief æŒ‰é”®ç”¨æˆ·é…ç½®æ–‡ä»¶ï¼ˆGPIO é©±åŠ¨ï¼‰
  *
  * \internal
  * \par Modification history
@@ -31,12 +31,12 @@ extern "C" {
 #include "ametal.h"
 
 /**
- * \brief °´¼üÊµÀı³õÊ¼»¯£¨GPIO Çı¶¯£©
+ * \brief æŒ‰é”®å®ä¾‹åˆå§‹åŒ–ï¼ˆGPIO é©±åŠ¨ï¼‰
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \retval AW_OK ³õÊ¼»¯³É¹¦
- * \retval  < 0  ³õÊ¼»¯Ê§°Ü£¬Çë¼ì²é am_hwconf_key_gpio.c ÎÄ¼şÖĞ¸÷ÅäÖÃÏîÊÇ·ñºÏ·¨
+ * \retval AW_OK åˆå§‹åŒ–æˆåŠŸ
+ * \retval  < 0  åˆå§‹åŒ–å¤±è´¥ï¼Œè¯·æ£€æŸ¥ am_hwconf_key_gpio.c æ–‡ä»¶ä¸­å„é…ç½®é¡¹æ˜¯å¦åˆæ³•
  */
 int am_key_gpio_inst_init (void);
 

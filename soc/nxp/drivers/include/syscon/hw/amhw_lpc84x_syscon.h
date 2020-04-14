@@ -13,23 +13,23 @@
 
 /**
  * \file
- * \brief ϵͳ���ƽӿ�
+ * \brief 系统控制接口
  *
- * 1. ʱ�ӿ���
- *    - ����ϵͳ PLL ��
- *    - ����ϵͳ�����Ϳ��Ź�������
- *    - ʹ��������ڴ�ʱ�ӣ�
- *    - ����ʱ�������
- *    - ����ʱ�ӷ�Ƶ���������˲���ʱ�Ӻ� USART ������ʱ�ӣ�
- * 2. ���Ӻ͸�λ���裻
- * 3. ѡ�������ⲿ�жϺ�ģʽƥ�����棻
- * 4. ���õ͹���ģʽ��
- * 5. ���ѿ��ƣ�
- * 6. �����⣨BOD�����ã�
- * 7. MTB ����������ֹͣ��
- * 8. �ж���ʱ���ƣ�
- * 9. ѡ�� NMI Դ��
- * 10. У׼ϵͳʱ�Ӷ�ʱ����
+ * 1. 时钟控制
+ *    - 配置系统 PLL ；
+ *    - 配置系统振荡器和看门狗振荡器；
+ *    - 使能外设和内存时钟；
+ *    - 配置时钟输出；
+ *    - 配置时钟分频器，数字滤波器时钟和 USART 波特率时钟；
+ * 2. 监视和复位外设；
+ * 3. 选择引脚外部中断和模式匹配引擎；
+ * 4. 配置低功耗模式；
+ * 5. 唤醒控制；
+ * 6. 掉电检测（BOD）配置；
+ * 7. MTB 跟踪启动和停止；
+ * 8. 中断延时控制；
+ * 9. 选择 NMI 源；
+ * 10. 校准系统时钟定时器。
  *
  * \internal
  * \par History
@@ -56,120 +56,120 @@ extern "C" {
  */
 
 /**
-  * \brief ϵͳ���ƼĴ�����ṹ��
+  * \brief 系统控制寄存器块结构体
   */
 typedef struct amhw_lpc84x_syscon {
-    __IO uint32_t sysmemremap;     /**< \brief ϵͳ�ڴ��ض���Ĵ���          */
-    __IO uint32_t reserved0;       /**< \brief ����λ                        */
+    __IO uint32_t sysmemremap;     /**< \brief 系统内存重定向寄存器          */
+    __IO uint32_t reserved0;       /**< \brief 保留位                        */
 
-    __IO uint32_t syspllctrl;      /**< \brief PLL���ƼĴ���                 */
-    __IO uint32_t syspllstat;      /**< \brief PLL״̬�Ĵ���                 */
-    __I  uint32_t reserved1[4];    /**< \brief ����λ                        */
+    __IO uint32_t syspllctrl;      /**< \brief PLL控制寄存器                 */
+    __IO uint32_t syspllstat;      /**< \brief PLL状态寄存器                 */
+    __I  uint32_t reserved1[4];    /**< \brief 保留位                        */
 
-    __IO uint32_t sysoscctrl;      /**< \brief ϵͳʱ��Դ���ƼĴ���          */
-    __IO uint32_t wdtoscctrl;      /**< \brief ���Ź�ʱ��Դ���ƼĴ���        */
-    __IO uint32_t frooscctrl;      /**< \brief FRO���ƼĴ���        */
-    __I  uint32_t reserved2;       /**< \brief ����λ                        */
+    __IO uint32_t sysoscctrl;      /**< \brief 系统时钟源控制寄存器          */
+    __IO uint32_t wdtoscctrl;      /**< \brief 看门狗时钟源控制寄存器        */
+    __IO uint32_t frooscctrl;      /**< \brief FRO控制寄存器        */
+    __I  uint32_t reserved2;       /**< \brief 保留位                        */
 
-    __IO uint32_t frodirectclkuen; /**< \brief FRO ʱ��Դ����ʹ�ܼĴ���                        */
-    __I  uint32_t reserved3;       /**< \brief ����λ                        */
+    __IO uint32_t frodirectclkuen; /**< \brief FRO 时钟源更新使能寄存器                        */
+    __I  uint32_t reserved3;       /**< \brief 保留位                        */
 
-    __IO uint32_t sysrststat;      /**< \brief ϵͳ��λ״̬�Ĵ���            */
-    __I  uint32_t reserved20;      /**< \brief ����λ                        */
+    __IO uint32_t sysrststat;      /**< \brief 系统复位状态寄存器            */
+    __I  uint32_t reserved20;      /**< \brief 保留位                        */
 
-    __IO uint32_t syspllclksel;    /**< \brief ϵͳʱ��Դѡ��Ĵ���          */
-    __IO uint32_t syspllclkuen;    /**< \brief ϵͳPLLʱ�Ӹ���ʹ�ܼĴ���     */
-    __IO uint32_t mainclkpllsel;   /**< \brief ��ʱ��PLLԴѡ��                  */
-    __IO uint32_t mainclkplluen;   /**< \brief ��ʱ��PLL����ʹ��                */
-    __IO uint32_t mainclksel;      /**< \brief ��ʱ��Դѡ��                  */
-    __IO uint32_t mainclkuen;      /**< \brief ��ʱ�Ӹ���ʹ��                */
-    __IO uint32_t sysahbclkdiv;    /**< \brief ϵͳAHBʱ�ӷ�Ƶ               */
-    __I  uint32_t reserved4;       /**< \brief ����λ                        */
+    __IO uint32_t syspllclksel;    /**< \brief 系统时钟源选择寄存器          */
+    __IO uint32_t syspllclkuen;    /**< \brief 系统PLL时钟更新使能寄存器     */
+    __IO uint32_t mainclkpllsel;   /**< \brief 主时钟PLL源选择                  */
+    __IO uint32_t mainclkplluen;   /**< \brief 主时钟PLL更新使能                */
+    __IO uint32_t mainclksel;      /**< \brief 主时钟源选择                  */
+    __IO uint32_t mainclkuen;      /**< \brief 主时钟更新使能                */
+    __IO uint32_t sysahbclkdiv;    /**< \brief 系统AHB时钟分频               */
+    __I  uint32_t reserved4;       /**< \brief 保留位                        */
 
-    __IO uint32_t captclksel;      /**< \brief CAPTʱ��Դѡ��                     */
-    __IO uint32_t adcclksel;       /**< \brief ADCʱ��Դѡ��                     */
-    __IO uint32_t adcclkdiv;       /**< \brief ADCʱ��Դ����                    */
-    __IO uint32_t sctclksel;       /**< \brief SCTʱ��Դѡ��                     */
-    __IO uint32_t sctclkdiv;       /**< \brief SCTʱ��Դ����   */
-    __IO uint32_t extclksel;       /**< \brief extemalʱ��Դѡ��                     */
-    __I  uint32_t reserved5[2];    /**< \brief ����λ             */
+    __IO uint32_t captclksel;      /**< \brief CAPT时钟源选择                     */
+    __IO uint32_t adcclksel;       /**< \brief ADC时钟源选择                     */
+    __IO uint32_t adcclkdiv;       /**< \brief ADC时钟源分屏                    */
+    __IO uint32_t sctclksel;       /**< \brief SCT时钟源选择                     */
+    __IO uint32_t sctclkdiv;       /**< \brief SCT时钟源分屏   */
+    __IO uint32_t extclksel;       /**< \brief extemal时钟源选择                     */
+    __I  uint32_t reserved5[2];    /**< \brief 保留位             */
 
-    __IO uint32_t sysahbclkctrl0;  /**< \brief ϵͳʱ�ӿ��ƼĴ���0                       */
-    __IO uint32_t sysahbclkctrl1;  /**< \brief ϵͳʱ�ӿ��ƼĴ���1                       */
-    __IO uint32_t presetctrl0;     /**< \brief ��λ�Ĵ���0             */
-    __IO uint32_t presetctrl1;     /**< \brief ��λ�Ĵ���1            */
-    __IO uint32_t uart0clksel;     /**< \brief ����ʱ��Դѡ��UART0�Ĵ���    */
-    __IO uint32_t uart1clksel;     /**< \brief ����ʱ��Դѡ��UART1�Ĵ���    */
-    __IO uint32_t uart2clksel;     /**< \brief ����ʱ��Դѡ��UART2�Ĵ���    */
-    __IO uint32_t uart3clksel;     /**< \brief ����ʱ��Դѡ��UART3�Ĵ���    */
-    __IO uint32_t uart4clksel;     /**< \brief ����ʱ��Դѡ��UART4�Ĵ���    */
-    __IO uint32_t i2c0clksel;      /**< \brief ����ʱ��Դѡ��I2C0�Ĵ���    */
-    __IO uint32_t i2c1clksel;      /**< \brief ����ʱ��Դѡ��I2C1�Ĵ���    */
-    __IO uint32_t i2c2clksel;      /**< \brief ����ʱ��Դѡ��I2C2�Ĵ���    */
-    __IO uint32_t i2c3clksel;      /**< \brief ����ʱ��Դѡ��I2C3�Ĵ���    */
-    __IO uint32_t spi0clksel;      /**< \brief ����ʱ��Դѡ��SPI0�Ĵ���    */
-    __IO uint32_t spi1clksel;      /**< \brief ����ʱ��Դѡ��SPI1�Ĵ���    */
-    __I  uint32_t reserved6[5];    /**< \brief ����λ                        */
+    __IO uint32_t sysahbclkctrl0;  /**< \brief 系统时钟控制寄存器0                       */
+    __IO uint32_t sysahbclkctrl1;  /**< \brief 系统时钟控制寄存器1                       */
+    __IO uint32_t presetctrl0;     /**< \brief 复位寄存器0             */
+    __IO uint32_t presetctrl1;     /**< \brief 复位寄存器1            */
+    __IO uint32_t uart0clksel;     /**< \brief 功能时钟源选择UART0寄存器    */
+    __IO uint32_t uart1clksel;     /**< \brief 功能时钟源选择UART1寄存器    */
+    __IO uint32_t uart2clksel;     /**< \brief 功能时钟源选择UART2寄存器    */
+    __IO uint32_t uart3clksel;     /**< \brief 功能时钟源选择UART3寄存器    */
+    __IO uint32_t uart4clksel;     /**< \brief 功能时钟源选择UART4寄存器    */
+    __IO uint32_t i2c0clksel;      /**< \brief 功能时钟源选择I2C0寄存器    */
+    __IO uint32_t i2c1clksel;      /**< \brief 功能时钟源选择I2C1寄存器    */
+    __IO uint32_t i2c2clksel;      /**< \brief 功能时钟源选择I2C2寄存器    */
+    __IO uint32_t i2c3clksel;      /**< \brief 功能时钟源选择I2C3寄存器    */
+    __IO uint32_t spi0clksel;      /**< \brief 功能时钟源选择SPI0寄存器    */
+    __IO uint32_t spi1clksel;      /**< \brief 功能时钟源选择SPI1寄存器    */
+    __I  uint32_t reserved6[5];    /**< \brief 保留位                        */
     __IO uint32_t frg0div;
     __IO uint32_t frg0mult;
     __IO uint32_t frg0clksel;
-    __I  uint32_t reserved7;       /**< \brief ����λ                        */
+    __I  uint32_t reserved7;       /**< \brief 保留位                        */
 
     __IO uint32_t frg1div;
     __IO uint32_t frg1mult;
     __IO uint32_t frg1clksel;
-    __I  uint32_t reserved8;       /**< \brief ����λ                        */
+    __I  uint32_t reserved8;       /**< \brief 保留位                        */
 
     __IO uint32_t clkoutsel;
     __IO uint32_t clkoutdiv;
-    __I  uint32_t reserved9;       /**< \brief ����λ                        */
+    __I  uint32_t reserved9;       /**< \brief 保留位                        */
 
     __IO uint32_t exttracecmd;
-    __I  uint32_t pioporcap0;      /**< \brief ����ɣ�0״̬                  */
-    __I  uint32_t pioporcap1;      /**< \brief ����ɣ�1״̬                  */
-    __I  uint32_t reserved10[11];    /**< \brief ����λ                        */
+    __I  uint32_t pioporcap0;      /**< \brief 捕获ＩＯ0状态                  */
+    __I  uint32_t pioporcap1;      /**< \brief 捕获ＩＯ1状态                  */
+    __I  uint32_t reserved10[11];    /**< \brief 保留位                        */
 
-    __IO uint32_t ioconclkdiv[7];  /**< \brief ICON ʱ�ӷ�Ƶ                 */
-    __IO uint32_t bodctrl;         /**< \brief BOD���ƼĴ���                 */
-    __IO uint32_t systckcal;       /**< \brief ϵͳ�δ�������̶ȶ���        */
-    __I  uint32_t reserved11[6];   /**< \brief ����λ                        */
+    __IO uint32_t ioconclkdiv[7];  /**< \brief ICON 时钟分频                 */
+    __IO uint32_t bodctrl;         /**< \brief BOD控制寄存器                 */
+    __IO uint32_t systckcal;       /**< \brief 系统滴答计数器刻度定义        */
+    __I  uint32_t reserved11[6];   /**< \brief 保留位                        */
 
-    __IO uint32_t irqlatency;      /**< \brief IRQ��ʱ�Ĵ���                 */
-    __IO uint32_t nmisrc;          /**< \brief NMI���ƼĴ���                 */
-	__IO uint32_t pintsel[8];      /**< \brief �����ж�ѡ��Ĵ���            */
-	__I  uint32_t reserved12[27];  /**< \brief ����λ                        */
-	__IO uint32_t starterp0;       /**< \brief ʹ�ܻ��ѼĴ���0               */
-	__I  uint32_t reserved13[3];   /**< \brief ����λ                        */
-	__IO uint32_t starterp1;       /**< \brief ʹ�ܻ��ѼĴ���01              */
-	__I  uint32_t reserved14[6];   /**< \brief ����λ                        */
-	__IO uint32_t pdsleepcfg;      /**< \brief �������˯�����üĴ���        */
-	__IO uint32_t pdawakecfg;      /**< \brief �������üĴ���                */
-	__IO uint32_t pdruncfg;        /**< \brief �������üĴ���                */
-	__I  uint32_t reserved15[111]; /**< \brief ����λ                        */
-	__I  uint32_t deviceid;        /**< \brief �豸ID              */
+    __IO uint32_t irqlatency;      /**< \brief IRQ延时寄存器                 */
+    __IO uint32_t nmisrc;          /**< \brief NMI控制寄存器                 */
+	__IO uint32_t pintsel[8];      /**< \brief 引脚中断选择寄存器            */
+	__I  uint32_t reserved12[27];  /**< \brief 保留位                        */
+	__IO uint32_t starterp0;       /**< \brief 使能唤醒寄存器0               */
+	__I  uint32_t reserved13[3];   /**< \brief 保留位                        */
+	__IO uint32_t starterp1;       /**< \brief 使能唤醒寄存器01              */
+	__I  uint32_t reserved14[6];   /**< \brief 保留位                        */
+	__IO uint32_t pdsleepcfg;      /**< \brief 进入深度睡眠配置寄存器        */
+	__IO uint32_t pdawakecfg;      /**< \brief 唤醒配置寄存器                */
+	__IO uint32_t pdruncfg;        /**< \brief 掉电配置寄存器                */
+	__I  uint32_t reserved15[111]; /**< \brief 保留位                        */
+	__I  uint32_t deviceid;        /**< \brief 设备ID              */
 } amhw_lpc84x_syscon_t;
 
 /**
- * \brief ϵͳ�ڴ���ӳ�䣬������ӳ���ж�������
+ * \brief 系统内存重映射，用于重映射中断向量表
  */
 typedef enum amhw_lpc84x_syscon_bootmode_remap {
 
-    /** \brief bootlaoder Mode �ж���������ӳ��������ROM�� */
+    /** \brief bootlaoder Mode 中断向量表重映射至启动ROM中 */
     AM_LPC84X_SYSYCON_REMAP_BOOTROM_MODE = 0,
 
-    /** \brief User RAM Mode �ж���������ӳ����SRAM�� */
+    /** \brief User RAM Mode 中断向量表重映射至SRAM中 */
     AM_LPC84X_SYSYCON_REMAP_SRAM_MODE,
 
-    /** \brief User Flash Mode �ж���������ӳ�䣬������FLASH�� */
+    /** \brief User Flash Mode 中断向量不重映射，存在于FLASH中 */
     AM_LPC84X_SYSYCON_REMAP_FLASH_MODE
 } amhw_lpc84x_syscon_bootmode_remap_t;
 
 /**
- * \brief ��ӳ���ж�������
+ * \brief 重映射中断向量表
  *
- * \param[in] remap : ѡ����ӳ���������ڴ���
+ * \param[in] remap : 选择重映射至何种内存中
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_lpc84x_syscon_remap_set (amhw_lpc84x_syscon_bootmode_remap_t remap)
@@ -178,9 +178,9 @@ void amhw_lpc84x_syscon_remap_set (amhw_lpc84x_syscon_bootmode_remap_t remap)
 }
 
 /**
- * \brief ��ȡ�ж�����������ӳ��ֵ
+ * \brief 获取中断向量表的重映射值
  *
- * \return �ж�����������ӳ��ֵ
+ * \return 中断向量表的重映射值
  */
 am_static_inline
 amhw_lpc84x_syscon_bootmode_remap_t amhw_lpc84x_syscon_remap_get (void)
@@ -189,11 +189,11 @@ amhw_lpc84x_syscon_bootmode_remap_t amhw_lpc84x_syscon_remap_get (void)
 }
 
 /**
- * \brief ����Systick��У׼ֵ
+ * \brief 设置Systick的校准值
  *
- * \param[in] systickcal_val : Systick��У׼ֵ
+ * \param[in] systickcal_val : Systick的校准值
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_lpc84x_syscon_systickcal_set (uint32_t systickcal_val)
@@ -203,9 +203,9 @@ void amhw_lpc84x_syscon_systickcal_set (uint32_t systickcal_val)
 
 
 /**
- * \brief �õ�Systick��У׼ֵ
+ * \brief 得到Systick的校准值
  *
- * \return Systick��У׼ֵ
+ * \return Systick的校准值
  */
 am_static_inline
 uint32_t amhw_lpc84x_syscon_systickcal_get (void)
@@ -214,24 +214,24 @@ uint32_t amhw_lpc84x_syscon_systickcal_get (void)
 }
 
 /**
- * \name ϵͳ��λ״ֵ̬
+ * \name 系统复位状态值
  * \anchor grp_amhw_lpc84x_syscon_rststat
  * @{
  */
 
-#define AMHW_LPC84X_SYSCON_RSTSTAT_POR    AM_BIT(0) /**< \brief �ϵ縴λ     */
-#define AMHW_LPC84X_SYSCON_RSTSTAT_EXTRST AM_BIT(1) /**< \brief �ⲿ�ܽŸ�λ */
-#define AMHW_LPC84X_SYSCON_RSTSTAT_WDT    AM_BIT(2) /**< \brief ���Ź���λ   */
-#define AMHW_LPC84X_SYSCON_RSTSTAT_BOD    AM_BIT(3) /**< \brief �����⸴λ */
-#define AMHW_LPC84X_SYSCON_RSTSTAT_SYSRST AM_BIT(4) /**< \brief ������λ     */
+#define AMHW_LPC84X_SYSCON_RSTSTAT_POR    AM_BIT(0) /**< \brief 上电复位     */
+#define AMHW_LPC84X_SYSCON_RSTSTAT_EXTRST AM_BIT(1) /**< \brief 外部管脚复位 */
+#define AMHW_LPC84X_SYSCON_RSTSTAT_WDT    AM_BIT(2) /**< \brief 看门狗复位   */
+#define AMHW_LPC84X_SYSCON_RSTSTAT_BOD    AM_BIT(3) /**< \brief 掉电检测复位 */
+#define AMHW_LPC84X_SYSCON_RSTSTAT_SYSRST AM_BIT(4) /**< \brief 软件复位     */
 
 /** @} */
 
 /**
- * \brief ��ȡϵͳ��λ״̬
+ * \brief 获取系统复位状态
  *
- * \return ���AMHW_LPC84X_SYSCON_RSTSTAT_*��Ļ�OR��ֵ��
- *         �μ� \ref grp_amhw_lpc84x_syscon_rststat
+ * \return 多个AMHW_LPC84X_SYSCON_RSTSTAT_*宏的或（OR）值，
+ *         参见 \ref grp_amhw_lpc84x_syscon_rststat
  */
 am_static_inline
 uint32_t amhw_lpc84x_syscon_rst_stat_get (void)
@@ -240,11 +240,11 @@ uint32_t amhw_lpc84x_syscon_rst_stat_get (void)
 }
 
 /**
- * \brief ���ϵͳ��λ״̬
+ * \brief 清除系统复位状态
  *
- * \param[in] reset : ���AMHW_LPC84X_SYSCON_RSTSTAT_*��Ļ�OR��ֵ��
- *                    �μ� \ref grp_amhw_lpc84x_syscon_rststat
- * \return ��
+ * \param[in] reset : 多个AMHW_LPC84X_SYSCON_RSTSTAT_*宏的或（OR）值，
+ *                    参见 \ref grp_amhw_lpc84x_syscon_rststat
+ * \return 无
  */
 am_static_inline
 void amhw_lpc84x_syscon_rst_stat_clr (uint32_t reset)
@@ -253,7 +253,7 @@ void amhw_lpc84x_syscon_rst_stat_clr (uint32_t reset)
 }
 
 /**
- * \brief �������踴λ��ö��ֵ
+ * \brief 用于外设复位的枚举值
  */
 typedef enum amhw_lpc84x_syscon_periph_reset {
     AMHW_LPC84X_RESET_FLASH = 4,          /**< \brief FLASH  */
@@ -289,11 +289,11 @@ typedef enum amhw_lpc84x_syscon_periph_reset {
 } amhw_lpc84x_syscon_periph_reset_t;
 
 /**
- * \brief ��λһ������
+ * \brief 复位一个外设
  *
- * \param[in] periph : ��Ҫ��λ������
+ * \param[in] periph : 需要复位的外设
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_lpc84x_syscon_periph_reset (amhw_lpc84x_syscon_periph_reset_t periph)
@@ -309,21 +309,21 @@ void amhw_lpc84x_syscon_periph_reset (amhw_lpc84x_syscon_periph_reset_t periph)
 }
 
 /**
- * \brief FLASH����ʱ�䶨��
+ * \brief FLASH访问时间定义
  */
 typedef enum amhw_lpc84x_syscon_flashtim {
-    AMHW_LPC84X_SYSCON_FLASH_1CYCLE = 0, /**< \brief Flash ����ʹ��1��CPUʱ�� */
-    AMHW_LPC84X_SYSCON_FLASH_2CYCLE      /**< \brief Flash ����ʹ��2��CPUʱ�� */
+    AMHW_LPC84X_SYSCON_FLASH_1CYCLE = 0, /**< \brief Flash 访问使用1个CPU时钟 */
+    AMHW_LPC84X_SYSCON_FLASH_2CYCLE      /**< \brief Flash 访问使用2个CPU时钟 */
 } amhw_lpc84x_syscon_flashtim_t;
 
 /**
- * \brief ����ϵͳ�ж���ʱ
+ * \brief 设置系统中断延时
  *
- * \param[in] latency : ��ʱʱ�Ӹ���
+ * \param[in] latency : 延时时钟个数
  *
- * \return    ��
+ * \return    无
  *
- * \note   ��ʱʱ������0-255��ʱ��֮�䣬С��ֵ�������õ��ӳ�
+ * \note   延时时钟数在0-255个时钟之间，小的值允许更好的延迟
  *
  */
 am_static_inline
@@ -333,9 +333,9 @@ void amhw_lpc84x_syscon_setirqlatency(uint32_t latency)
 }
 
 /**
- * \brief ��ȡϵͳ�ж���ʱֵ
+ * \brief 获取系统中断延时值
  *
- * \return ϵͳ�ж���ʱʱ�Ӹ���
+ * \return 系统中断延时时钟个数
  */
 am_static_inline
 uint32_t amhw_lpc84x_syscon_getirqlatency(void)
@@ -344,27 +344,27 @@ uint32_t amhw_lpc84x_syscon_getirqlatency(void)
 }
 
 /**
- * \brief ���ò��������ж�Դ
+ * \brief 设置不可屏蔽中断源
  *
- * \param[in] intsrc : ����NMI���жϺţ�IRQ number��
+ * \param[in] intsrc : 用于NMI的中断号（IRQ number）
  *
- * \return ��
+ * \return 无
  *
- * \note NMI�ж�Դ��ʱ���Ǵ��ڽ�ֹ״̬�ģ������ж�Դ��Ӧʹ��
- *       amhw_lpc84x_syscon_nmisrc_enable()����ʹ������NMI�ж�Դ
+ * \note NMI中断源此时还是处于禁止状态的，配置中断源后应使用
+ *       amhw_lpc84x_syscon_nmisrc_enable()函数使能用于NMI中断源
  */
 am_static_inline
 void amhw_lpc84x_syscon_nmisrc_set(uint32_t intsrc)
 {
-    /* �����NMIʹ��λ����д��ʱ��Դ */
+    /* 先清除NMI使能位，后写入时钟源 */
     AM_BIT_CLR(LPC84X_SYSCON->nmisrc, 31);
     LPC84X_SYSCON->nmisrc  = intsrc;
 }
 
 /**
- * \brief ʹ��NMI�ж�Դ���ж�
+ * \brief 使能NMI中断源的中断
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_lpc84x_syscon_nmisrc_enable (void)
@@ -373,9 +373,9 @@ void amhw_lpc84x_syscon_nmisrc_enable (void)
 }
 
 /**
- * \brief ����NMI�ж�Դ���ж�
+ * \brief 禁能NMI中断源的中断
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_lpc84x_syscon_nmisrc_disable (void)
@@ -384,9 +384,9 @@ void amhw_lpc84x_syscon_nmisrc_disable (void)
 }
 
 /**
- * \brief ö��ֵ������ʹ�ܻ��߽��������жϵĻ���Դ
+ * \brief 枚举值，用于使能或者禁能外设中断的唤醒源
  *  
- *  ���ʹ����ĳ����Ļ���Դ������ж��ܹ���оƬ�����˯��ģʽ�͵���ģʽ����
+ *  如果使能了某外设的唤醒源，则该中断能够将芯片从深度睡眠模式和掉电模式唤醒
  */
 typedef enum amhw_lpc84x_syscon_wakeup {
     AMHW_LPC84X_SYSCON_STARTER_PINT0,           /**< \brief PINT0      */
@@ -412,11 +412,11 @@ typedef enum amhw_lpc84x_syscon_wakeup {
 } amhw_lpc84x_syscon_wakeup_t;
 
 /**
- * \brief ʹ������Ļ���Դ
+ * \brief 使能外设的唤醒源
  *
- * \param[in] pid : �����жϵĻ���Դ
+ * \param[in] pid : 外设中断的唤醒源
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_lpc84x_syscon_wakeup_enable (amhw_lpc84x_syscon_wakeup_t pid)
@@ -429,11 +429,11 @@ void amhw_lpc84x_syscon_wakeup_enable (amhw_lpc84x_syscon_wakeup_t pid)
 }
 
 /**
- * \brief ��������Ļ���Դ
+ * \brief 禁能外设的唤醒源
  *
- * \param[in] pid : �����жϵĻ���Դ
+ * \param[in] pid : 外设中断的唤醒源
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_lpc84x_syscon_wakeup_disable (amhw_lpc84x_syscon_wakeup_t pid)
@@ -446,34 +446,34 @@ void amhw_lpc84x_syscon_wakeup_disable (amhw_lpc84x_syscon_wakeup_t pid)
 }
 
 /**
- * \name ��Դ����λ����(0 = powered, 1 = powered down)
+ * \name 电源控制位定义(0 = powered, 1 = powered down)
  * \anchor grp_amhw_lpc84x_syscon_pd
  * @{
  */
 
-#define AMHW_LPC84X_SYSCON_PD_IRC_OUT AM_BIT(0)  /**< \brief IRC �������   */
-#define AMHW_LPC84X_SYSCON_PD_IRC     AM_BIT(1)  /**< \brief IRC ����       */
+#define AMHW_LPC84X_SYSCON_PD_IRC_OUT AM_BIT(0)  /**< \brief IRC 振荡器输出   */
+#define AMHW_LPC84X_SYSCON_PD_IRC     AM_BIT(1)  /**< \brief IRC 振荡器       */
 #define AMHW_LPC84X_SYSCON_PD_FLASH   AM_BIT(2)  /**< \brief Flash     */
-#define AMHW_LPC84X_SYSCON_PD_BOD     AM_BIT(3)  /**< \brief ������              */
+#define AMHW_LPC84X_SYSCON_PD_BOD     AM_BIT(3)  /**< \brief 掉电检测              */
 #define AMHW_LPC84X_SYSCON_PD_ADC0    AM_BIT(4)  /**< \brief ADC       */
-#define AMHW_LPC84X_SYSCON_PD_SYS_OSC AM_BIT(5)  /**< \brief ϵͳ�����Դ     */
-#define AMHW_LPC84X_SYSCON_PD_WDT_OSC AM_BIT(6)  /**< \brief ���Ź�������Դ */
+#define AMHW_LPC84X_SYSCON_PD_SYS_OSC AM_BIT(5)  /**< \brief 系统晶振电源     */
+#define AMHW_LPC84X_SYSCON_PD_WDT_OSC AM_BIT(6)  /**< \brief 看门狗振荡器电源 */
 #define AMHW_LPC84X_SYSCON_PD_SYS_PLL AM_BIT(7)  /**< \brief SYS PLL    */
 #define AMHW_LPC84X_SYSCON_PD_DAC0    AM_BIT(13) /**< \brief DAC0       */
 #define AMHW_LPC84X_SYSCON_PD_DAC1    AM_BIT(14) /**< \brief DAC1       */
-#define AMHW_LPC84X_SYSCON_PD_ACMP    AM_BIT(15) /**< \brief ģ��Ƚ�������   */
+#define AMHW_LPC84X_SYSCON_PD_ACMP    AM_BIT(15) /**< \brief 模拟比较器掉电   */
 #define AMHW_LPC84X_SYSCON_PD_FRO     AM_BIT(17) /**< \brief FRO   */
 
 /** @} */
 
 /**
- * \brief ��Deep_sleepģʽ������Դʹ��
+ * \brief 在Deep_sleep模式下器电源使能
  *
- * \param[in] flags ��AMHW_LPC84X_SYSCON_PD_BOD �� AMHW_LPC84X_SYSCON_PD_WDT_OSC
+ * \param[in] flags ：AMHW_LPC84X_SYSCON_PD_BOD 或 AMHW_LPC84X_SYSCON_PD_WDT_OSC
  *
- * \return ��
+ * \return 无
  *
- * \note Deep_sleepģʽ�£�ֻ����BOD��WDT����
+ * \note Deep_sleep模式下，只允许BOD和WDT工作
  */
 am_static_inline
 void amhw_lpc84x_syscon_deepsleep_enable (uint32_t flags)
@@ -482,13 +482,13 @@ void amhw_lpc84x_syscon_deepsleep_enable (uint32_t flags)
 }
 
 /**
- * \brief ��Deep_sleepģʽ������Դ����
+ * \brief 在Deep_sleep模式下器电源禁能
  *
- * \param[in] flags ��AMHW_LPC84X_SYSCON_PD_BOD �� AMHW_LPC84X_SYSCON_PD_WDT_OSC
+ * \param[in] flags ：AMHW_LPC84X_SYSCON_PD_BOD 或 AMHW_LPC84X_SYSCON_PD_WDT_OSC
  *
- * \return ��
+ * \return 无
  *
- * \note Deep_sleepģʽ�£�ֻ����BOD��WDT����
+ * \note Deep_sleep模式下，只允许BOD和WDT工作
  */
 am_static_inline
 void amhw_lpc84x_syscon_deepsleep_disable (uint32_t flags)
@@ -497,14 +497,14 @@ void amhw_lpc84x_syscon_deepsleep_disable (uint32_t flags)
 }
 
 /**
- * \brief ����ʱ�ɿ��������ĵ�Դ����
+ * \brief 唤醒时可控制器件的电源配置
  *
- * \param[in] flags : �ɿ��������ĵ�Դ������� #amhw_lpc84x_syscon_powerstat_get()
+ * \param[in] flags : 可控制器件的电源配置情况 #amhw_lpc84x_syscon_powerstat_get()
  *
- * \return ��
+ * \return 无
  * 
- * \note ˯��ǰ��ʹ�� amhw_lpc84x_syscon_powerstat_get()��ȡ�ڼ�״̬��
- *       ����ʱ��ʹ�øĺ�������֮ǰ��״̬
+ * \note 睡眠前先使用 amhw_lpc84x_syscon_powerstat_get()获取期间状态，
+ *       唤醒时再使用改函数唤醒之前的状态
  */
 am_static_inline
 void amhw_lpc84x_syscon_deepwakeup_cfg (uint32_t flags)
@@ -513,11 +513,11 @@ void amhw_lpc84x_syscon_deepwakeup_cfg (uint32_t flags)
 }
 
 /**
- * \brief deep ����ʱ�������ϵ�ʹ��
+ * \brief deep 唤醒时，外设上电使能
  *
- * \param[in] wakeupflags : AMHW_LPC84X_SYSCON_PD_* ��ֵ���� ��� ��OR��ֵ��
- *                          �μ� \ref grp_amhw_lpc84x_syscon_pd
- * \return ��
+ * \param[in] wakeupflags : AMHW_LPC84X_SYSCON_PD_* 宏值或多个 宏的 或（OR）值，
+ *                          参见 \ref grp_amhw_lpc84x_syscon_pd
+ * \return 无
  */
 am_static_inline
 void amhw_lpc84x_syscon_deepwakeup_enable (uint32_t wakeupflags)
@@ -526,11 +526,11 @@ void amhw_lpc84x_syscon_deepwakeup_enable (uint32_t wakeupflags)
 }
 
 /**
- * \brief deep ����ʱ�������ϵ����
+ * \brief deep 唤醒时，外设上电禁能
  *
- * \param[in] wakeupflags : AMHW_LPC84X_SYSCON_PD_* ��ֵ������� ��OR��ֵ��
- *                          �μ� \ref grp_amhw_lpc84x_syscon_pd
- * \return ��
+ * \param[in] wakeupflags : AMHW_LPC84X_SYSCON_PD_* 宏值或多个宏的 或（OR）值，
+ *                          参见 \ref grp_amhw_lpc84x_syscon_pd
+ * \return 无
  */
 am_static_inline
 void amhw_lpc84x_syscon_deepwakeup_disable (uint32_t wakeupflags)
@@ -539,12 +539,12 @@ void amhw_lpc84x_syscon_deepwakeup_disable (uint32_t wakeupflags)
 }
 
 /**
- * \brief �õ���ǰ�ĵ�Դ���ƼĴ���״̬
+ * \brief 得到当前的电源控制寄存器状态
  *
- * \return  AMHW_LPC84X_SYSCON_PD_* ��ֵ������� ��OR��ֵ��
- *          �μ� \ref grp_amhw_lpc84x_syscon_pd
+ * \return  AMHW_LPC84X_SYSCON_PD_* 宏值或多个宏的 或（OR）值，
+ *          参见 \ref grp_amhw_lpc84x_syscon_pd
  *
- * \note  ��ӦλΪ�ߵ�ƽ����������δ���磬�͵�ƽ��������
+ * \note  相应位为高电平表明该外设未供电，低电平表明供电
  */
 am_static_inline
 uint32_t amhw_lpc84x_syscon_powerstat_get (void)
@@ -553,11 +553,11 @@ uint32_t amhw_lpc84x_syscon_powerstat_get (void)
 }
 
 /**
- * \brief �ر������Դ
+ * \brief 关闭外设电源
  *
- * \param[in] powerdownmask ��AMHW_LPC84X_SYSCON_PD_* ��ֵ������Ļ�OR��ֵ,
- *                            �μ� \ref grp_amhw_lpc84x_syscon_pd
- * \return ��
+ * \param[in] powerdownmask ：AMHW_LPC84X_SYSCON_PD_* 宏值或多个宏的或（OR）值,
+ *                            参见 \ref grp_amhw_lpc84x_syscon_pd
+ * \return 无
  */
 am_static_inline
 void amhw_lpc84x_syscon_powerdown (uint32_t powerdownmask)
@@ -566,11 +566,11 @@ void amhw_lpc84x_syscon_powerdown (uint32_t powerdownmask)
 }
 
 /**
- * \brief �������Դ    
+ * \brief 打开外设电源    
  *
- * \param[in] powerupmask ��AMHW_LPC84X_SYSCON_PD_* ��ֵ������Ļ�OR��ֵ,
- *                          �μ� \ref grp_amhw_lpc84x_syscon_pd
- * \return ��
+ * \param[in] powerupmask ：AMHW_LPC84X_SYSCON_PD_* 宏值或多个宏的或（OR）值,
+ *                          参见 \ref grp_amhw_lpc84x_syscon_pd
+ * \return 无
  */
 am_static_inline
 void amhw_lpc84x_syscon_powerup (uint32_t powerupmask)
@@ -579,13 +579,13 @@ void amhw_lpc84x_syscon_powerup (uint32_t powerupmask)
 }
 
 /**
- * \brief ���ָ�������Ƿ��ϵ�
+ * \brief 检测指定外设是否上电
  *
- * \param[in] powermask : AMHW_LPC84X_SYSCON_PD_* ��ֵ��
- *                        �μ� \ref grp_amhw_lpc84x_syscon_pd
+ * \param[in] powermask : AMHW_LPC84X_SYSCON_PD_* 宏值，
+ *                        参见 \ref grp_amhw_lpc84x_syscon_pd
  *
- * \retval    AM_TRUE      : �������ϵ�
- * \retval     AM_FALSE     : ����δ�ϵ�
+ * \retval    AM_TRUE      : 外设已上电
+ * \retval     AM_FALSE     : 外设未上电
  */
 am_static_inline
 am_bool_t amhw_lpc84x_syscon_power_check (uint32_t powermask)
@@ -594,9 +594,9 @@ am_bool_t amhw_lpc84x_syscon_power_check (uint32_t powermask)
 }
 
 /**
- * \brief ��ȡ�豸ID 0
+ * \brief 获取设备ID 0
  *
- * \return �豸ID 0
+ * \return 设备ID 0
  */
 am_static_inline
 uint32_t amhw_lpc84x_syscon_deviceid0_get (void)
@@ -606,12 +606,12 @@ uint32_t amhw_lpc84x_syscon_deviceid0_get (void)
 
 
 /**
- * \brief �����ж�ͨ��ѡ������
+ * \brief 引脚中断通道选择引脚
  *
- * \param[in] pint_sel : �ж�ͨ����ţ�#AMHW_LPC84X_PINT_CHAN_0��
- * \param[in] pin      : ���ű��(#PIO0_0)
+ * \param[in] pint_sel : 中断通道编号（#AMHW_LPC84X_PINT_CHAN_0）
+ * \param[in] pin      : 引脚编号(#PIO0_0)
  *
- * \return  ��
+ * \return  无
  */
 am_static_inline
 void amhw_lpc84x_syscon_pint_sel (int pint_sel, int pin)
@@ -622,40 +622,40 @@ void amhw_lpc84x_syscon_pint_sel (int pint_sel, int pin)
 
 
 /**
- * \brief �����⸴λ�ĵ�Դ��ѹ�ȼ�
+ * \brief 掉电检测复位的电源电压等级
  */
 typedef enum amhw_lpc84x_syscon_bod_rst_level {
-    AMHW_LPC84X_SYSCON_BODRSTLVL_0,                /**< \brief �ȼ�0��1.46V */
+    AMHW_LPC84X_SYSCON_BODRSTLVL_0,                /**< \brief 等级0，1.46V */
     AMHW_LPC84X_SYSCON_BODRSTLVL_1_46V = AMHW_LPC84X_SYSCON_BODRSTLVL_0,
-    AMHW_LPC84X_SYSCON_BODRSTLVL_1,                /**< \brief �ȼ�1��2.05V */
+    AMHW_LPC84X_SYSCON_BODRSTLVL_1,                /**< \brief 等级1，2.05V */
     AMHW_LPC84X_SYSCON_BODRSTLVL_2_05V = AMHW_LPC84X_SYSCON_BODRSTLVL_1,
-    AMHW_LPC84X_SYSCON_BODRSTLVL_2,                /**< \brief �ȼ�2��2.34V */
+    AMHW_LPC84X_SYSCON_BODRSTLVL_2,                /**< \brief 等级2，2.34V */
     AMHW_LPC84X_SYSCON_BODRSTLVL_2_34V = AMHW_LPC84X_SYSCON_BODRSTLVL_2,
-    AMHW_LPC84X_SYSCON_BODRSTLVL_3,                /**< \brief �ȼ�3��2.63V */
+    AMHW_LPC84X_SYSCON_BODRSTLVL_3,                /**< \brief 等级3，2.63V */
     AMHW_LPC84X_SYSCON_BODRSTLVL_2_63V = AMHW_LPC84X_SYSCON_BODRSTLVL_3
 } amhw_lpc84x_syscon_bod_rst_level_t;
 
 
 /**
- * \brief �������жϵĵ�Դ��ѹ�ȼ�
+ * \brief 掉电检测中断的电源电压等级
  */
 typedef enum amhw_syscon_bod_int_level {
-    AMHW_LPC84X_SYSCON_BODINTLVL_0,                /**< \brief �ȼ�0������ */
-    AMHW_LPC84X_SYSCON_BODINTLVL_1,                /**< \brief �ȼ�1��2.25V */
+    AMHW_LPC84X_SYSCON_BODINTLVL_0,                /**< \brief 等级0，保留 */
+    AMHW_LPC84X_SYSCON_BODINTLVL_1,                /**< \brief 等级1，2.25V */
     AMHW_LPC84X_SYSCON_BODINTLVL_2_25V = AMHW_LPC84X_SYSCON_BODINTLVL_1,
-    AMHW_LPC84X_SYSCON_BODINTLVL_2,                /**< \brief �ȼ�2��2.54V */
+    AMHW_LPC84X_SYSCON_BODINTLVL_2,                /**< \brief 等级2，2.54V */
     AMHW_LPC84X_SYSCON_BODINTLVL_2_54V = AMHW_LPC84X_SYSCON_BODINTLVL_2,
-    AMHW_LPC84X_SYSCON_BODINTLVL_3,                /**< \brief �ȼ�3��2.85V */
+    AMHW_LPC84X_SYSCON_BODINTLVL_3,                /**< \brief 等级3，2.85V */
     AMHW_LPC84X_SYSCON_BODINTLVL_2_85V = AMHW_LPC84X_SYSCON_BODINTLVL_3
 } amhw_lpc84x_syscon_bod_int_level_t;
 
 /**
- * \brief ���õ������жϺ͵����⸴λ�ĵ�Դ��ѹ�ȼ�
+ * \brief 设置掉电检测中断和掉电检测复位的电源电压等级
  *
- * \param[in] rstlvl : �����⸴λ��ѹ�ȼ�
- * \param[in] intlvl : �������жϵ�ѹ�ȼ�
+ * \param[in] rstlvl : 掉电检测复位电压等级
+ * \param[in] intlvl : 掉电检测中断电压等级
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_lpc84x_syscon_bod_level_set (amhw_lpc84x_syscon_bod_rst_level_t rstlvl,
@@ -665,9 +665,9 @@ void amhw_lpc84x_syscon_bod_level_set (amhw_lpc84x_syscon_bod_rst_level_t rstlvl
 }
 
 /**
- * \brief ʹ�ܵ����⸴λ
- * \param[in] : ��
- * \return ��/
+ * \brief 使能掉电检测复位
+ * \param[in] : 无
+ * \return 无/
  */
 am_static_inline
 void amhw_lpc84x_syscon_bod_rst_enable (void)
@@ -678,9 +678,9 @@ void amhw_lpc84x_syscon_bod_rst_enable (void)
 
 
 /**
- * \brief ���ܵ����⸴λ
- * \param[in] : ��
- * \return ��
+ * \brief 禁能掉电检测复位
+ * \param[in] : 无
+ * \return 无
  */
 am_static_inline
 void amhw_lpc84x_syscon_bod_rst_disable (void)

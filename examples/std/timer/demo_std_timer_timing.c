@@ -12,13 +12,13 @@
 
 /**
  * \file
- * \brief ¶¨Ê±Æ÷ÊµÏÖ±ê×¼¶¨Ê±Æ÷Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief å®šæ—¶å™¨å®ç°æ ‡å‡†å®šæ—¶å™¨ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. µ÷ÊÔ´®¿ÚÊä³ö¶¨Ê±Æ÷µÄÏà¹ØĞÅÏ¢
- *   2. ¶¨Ê±ÖÜÆÚµ½´ï(Ä¬ÈÏÎª 10Hz)£¬µ÷ÊÔ´®¿Ú»áÊä³ö The timing frq is 10Hz;
+ * - å®éªŒç°è±¡ï¼š
+ *   1. è°ƒè¯•ä¸²å£è¾“å‡ºå®šæ—¶å™¨çš„ç›¸å…³ä¿¡æ¯
+ *   2. å®šæ—¶å‘¨æœŸåˆ°è¾¾(é»˜è®¤ä¸º 10Hz)ï¼Œè°ƒè¯•ä¸²å£ä¼šè¾“å‡º The timing frq is 10Hz;
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_std_timer_timing.c src_std_timer_timing
  *
  * \internal
@@ -41,7 +41,7 @@
 #include "am_board.h"
 
 /**
- * \brief ¶¨Ê±Æ÷»Øµ÷º¯Êı
+ * \brief å®šæ—¶å™¨å›è°ƒå‡½æ•°
  */
 static void __tim_timing_callback (void *p_arg)
 {
@@ -49,7 +49,7 @@ static void __tim_timing_callback (void *p_arg)
 }
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_std_timer_timing_entry (am_timer_handle_t handle,
                                   int               timing_chan)
@@ -64,10 +64,10 @@ void demo_std_timer_timing_entry (am_timer_handle_t handle,
     AM_DBG_INFO("The timer size is : %d-bit \r\n", p_info->counter_width);
     AM_DBG_INFO("The timer clk_frequency: %d Hz\r\n", clkin);
 
-    /* ÉèÖÃ»Øµ÷º¯Êı */
+    /* è®¾ç½®å›è°ƒå‡½æ•° */
     am_timer_callback_set(handle, timing_chan, __tim_timing_callback, NULL);
 
-    /* ÉèÖÃ¶¨Ê±Ê±¼äÎª 0.1s £¨¼´1000000 / 10 us£© */
+    /* è®¾ç½®å®šæ—¶æ—¶é—´ä¸º 0.1s ï¼ˆå³1000000 / 10 usï¼‰ */
     am_timer_enable_us(handle, timing_chan, 1000000 / 10);
 
     AM_FOREVER {

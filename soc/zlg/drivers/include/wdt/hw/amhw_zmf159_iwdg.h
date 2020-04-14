@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief IWDG²Ù×÷½Ó¿Ú
+ * \brief IWDGæ“ä½œæ¥å£
  *
  * \internal
  * \par Modification history
@@ -31,7 +31,7 @@ extern "C" {
 #include "hw/amhw_zlg_iwdg.h"
 
 /*
- * \brief ÄäÃû½á¹¹Ìå¶ÎµÄ¿ªÊ¼
+ * \brief åŒ¿åç»“æ„ä½“æ®µçš„å¼€å§‹
  */
 #if defined(__CC_ARM)
   #pragma push
@@ -53,7 +53,7 @@ extern "C" {
  */
 
 /**
- * \brief IWDG¼Ä´æÆ÷¿é½á¹¹Ìå
+ * \brief IWDGå¯„å­˜å™¨å—ç»“æ„ä½“
  */
 typedef struct amhw_zmf159_iwdg {
     amhw_zlg_iwdg_t zlg_reg;
@@ -61,17 +61,17 @@ typedef struct amhw_zmf159_iwdg {
 } amhw_zmf159_iwdg_t;
 
 typedef enum amhw_zmf159_iwdg_ctrl {
-    ZMF159_IWDG_REST  = 0,         /*< \brief IWDGÒç³öºó²úÉú¸´Î»  */
-    ZMF159_IWDG_IRQ   = 1,         /*< \brief IWDGÒç³öºó²úÉúÖĞ¶Ï  */
+    ZMF159_IWDG_REST  = 0,         /*< \brief IWDGæº¢å‡ºåäº§ç”Ÿå¤ä½  */
+    ZMF159_IWDG_IRQ   = 1,         /*< \brief IWDGæº¢å‡ºåäº§ç”Ÿä¸­æ–­  */
 } amhw_zmf159_iwdg_ctrl_t;
 
 /**
- * \brief IWDGÒç³ö²Ù×÷Ñ¡Ôñ
+ * \brief IWDGæº¢å‡ºæ“ä½œé€‰æ‹©
  *
- * \param[in] p_hw_iwdg : Ö¸ÏòIWDG¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] flag      : Òç³ö²Ù×÷Ñ¡Ôñ
+ * \param[in] p_hw_iwdg : æŒ‡å‘IWDGå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] flag      : æº¢å‡ºæ“ä½œé€‰æ‹©
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zmf159_iwdg_overflow_set (amhw_zmf159_iwdg_t      *p_hw_iwdg,
@@ -81,11 +81,11 @@ void amhw_zmf159_iwdg_overflow_set (amhw_zmf159_iwdg_t      *p_hw_iwdg,
 }
 
 /**
- * \brief IWDGÇå³ıÖĞ¶Ï
+ * \brief IWDGæ¸…é™¤ä¸­æ–­
  *
- * \param[in] p_hw_iwdg : Ö¸ÏòIWDG¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_iwdg : æŒ‡å‘IWDGå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zmf159_iwdg_irq_clear (amhw_zmf159_iwdg_t *p_hw_iwdg)
@@ -97,7 +97,7 @@ void amhw_zmf159_iwdg_irq_clear (amhw_zmf159_iwdg_t *p_hw_iwdg)
  * @}
  */
 /*
- * \brief ÄäÃû½á¹¹Ìå¶ÎµÄ½áÊø
+ * \brief åŒ¿åç»“æ„ä½“æ®µçš„ç»“æŸ
  */
 
 #if defined(__CC_ARM)

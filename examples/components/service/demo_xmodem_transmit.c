@@ -13,28 +13,28 @@
 
 /**
  * \file
- * \brief xmodem������ʾ���̣�ͨ����׼�ӿ�ʵ��
+ * \brief xmodem发送演示例程，通过标准接口实现
  *
- * - ��������:
- *    1��ͨ�����ڽ������뿪�������ӣ����ô��ڲ����ʵ�
- *    2������Ҫ��������ݱ�������Ӧ��С�������У���
- *      ��λ�������յ���λ�������������ַ��󣬽����ݰ���
- *      ����֡��С������λ����
+ * - 操作步骤:
+ *    1、通过串口将主机与开发板连接，设置串口波特率等
+ *    2、将需要传输的数据保存在相应大小的数组中，打开
+ *      上位机，接收到上位机发来的启动字符后，将数据按规
+ *      定的帧大小传到上位机。
  *
- * - ʵ������:
- *    ���շ������յ��ն˷��͵�__TRANS_DATA_LEN���ֽڵ���Ч�����ڴ�������п��ܻ�
- *    ͨ�����ڴ�ӡ������Ϣ��
- *    1����ǰ֡���ͳɹ����ӡ��The current data have been sent!��
+ * - 实验现象:
+ *    接收方将接收到终端发送的__TRANS_DATA_LEN个字节的有效数据在传输过程中可能会
+ *    通过串口打印以下信息：
+ *    1、当前帧发送成功会打印“The current data have been sent!”
  *
- *    2����ʱδ�ܽ��յ���Ӧ���ӡ��The timeout did not receive response!��
+ *    2、超时未能接收到回应会打印“The timeout did not receive response!”
  *
- *    3�����շ���Ӧ�쳣���Ѿ��ط������������ӡ��Have been sent nak maxtimes!��
+ *    3、接收方回应异常，已经重发到最大次数会打印“Have been sent nak maxtimes!”
  *
- *    4���ļ�������ɻ��ӡ��File sent successfully!��
+ *    4、文件发送完成会打印“File sent successfully!”
  *
- * \note ��ӡ��Ϣ�Ĵ�����Ҫ��Xmodem����Ĵ��ڷֿ��������ӡ��Ϣ�����Xmodem����
- *       ��Xmodem�������ô���Ϊuart0�����ӡ��Ϣ����ӦΪuart1�����Ǵ�����Դ���ޣ�
- *       ���Խ���ӡ��Ϣע�͵���
+ * \note 打印信息的串口需要与Xmodem传输的串口分开，否则打印信息会干扰Xmodem传输
+ *       若Xmodem传输所用串口为uart0，则打印信息串口应为uart1，若是串口资源有限，
+ *       可以将打印信息注释掉。
  *
  * \internal
  * \par Modification history
@@ -53,62 +53,62 @@
 #include "am_xmodem.h"
 
 /******************************************************************************
-�궨��
+宏定义
 *******************************************************************************/
-#define __TRANS_DATA_LEN   (1024+3)     /**< \brief �ļ���С(��λΪbyte)*/
+#define __TRANS_DATA_LEN   (1024+3)     /**< \brief 文件大小(单位为byte)*/
 /*******************************************************************************
-ȫ�ֱ���
+全局变量
 *******************************************************************************/
-/* xmodem���ͻص���־*/
+/* xmodem发送回调标志*/
 volatile static int  __g_tx_flag = 0;
 
-/* xmodem�����¼���־*/
+/* xmodem发送事件标志*/
 volatile static int __g_tx_event = 0;
 
-/* ���ݻ�����*/
+/* 数据缓存区*/
 static char __g_xmodem_test[__TRANS_DATA_LEN];
 
 /**
- * \brief ���ͻص�����
+ * \brief 发送回调函数
  *
- * \param[in] p_arg : �û��Զ������
- * \param[in] event : ��ǰ�����¼����ɲο�am_xmodem.h�й���
- *                    am_xmodem_user_tx_t�ص��������͵�
- *                    ע�͡�
- * \note �û���Ҫ����event��������ǰ�����Ĳ���
+ * \param[in] p_arg : 用户自定义参数
+ * \param[in] event : 当前传输事件，可参考am_xmodem.h中关于
+ *                    am_xmodem_user_tx_t回调函数类型的
+ *                    注释。
+ * \note 用户需要根据event来决定当前处理的操作
  */
 static void demo_tx_callback (void *p_arg, int event)
 {
-    /* ���ͻص���־��1*/
+    /* 发送回调标志置1*/
     __g_tx_flag  = 1;
-    /* ���淢���¼�*/
+    /* 保存发送事件*/
     __g_tx_event = event;
 }
 
-/* �������*/
+/* 例程入口*/
 void  demo_xmodem_tx_entry (am_xmodem_tx_handle_t  handle)
 {
     uint32_t i = 0;
 
-    /* һ֡���ݵĳ���*/
+    /* 一帧数据的长度*/
     uint32_t frames_len   = 0;
 
-    /* ��ǰ�ѷ��͵��ֽ���*/
+    /* 当前已发送的字节数*/
     uint32_t index_bytes  = 0;
 
-    /* ��ǰ�Ѿ�����֡��*/
+    /* 当前已经发送帧数*/
     uint32_t index_frames = 0;
 
     if (handle == NULL) {
         return;
     }
 
-    /* ���ݻ��������*/
+    /* 数据缓存区填充*/
     for (i = 0; i < __TRANS_DATA_LEN; i++) {
         __g_xmodem_test[i] = i;
     }
 
-    /* ע�ᷢ�ͻص�����*/
+    /* 注册发送回调函数*/
     am_xmodem_tx_cb_reg(handle, demo_tx_callback, (void *)handle);
 
     while (1) {
@@ -119,7 +119,7 @@ void  demo_xmodem_tx_entry (am_xmodem_tx_handle_t  handle)
 
             switch (__g_tx_event) {
 
-            /* ��������״̬*/
+            /* 传输启动状态*/
             case AM_XMODEM_NAK:
                 frames_len = 128;
                 am_xmodem_tx_pack(handle, __g_xmodem_test, frames_len);
@@ -130,16 +130,16 @@ void  demo_xmodem_tx_entry (am_xmodem_tx_handle_t  handle)
                 am_xmodem_tx_pack(handle, __g_xmodem_test, frames_len);
                 break;
 
-            /* ��ʱδ�ܽ��յ���Ӧ*/
+            /* 超时未能接收到回应*/
             case -AM_ETIME:
-                /* �¼���־��0*/
+                /* 事件标志清0*/
                 __g_tx_event = 0;
                 index_bytes  = 0;
                 index_frames = 0;
                 am_kprintf("The timeout did not receive response!\r\n");
                 return;
 
-            /* ���շ���Ӧ�쳣���Ѵﵽ����ط�����*/
+            /* 接收方回应异常，已达到最大重发次数*/
             case AM_XMODEM_NAK_TIME:
                 __g_tx_event = 0;
                 index_bytes  = 0;
@@ -147,7 +147,7 @@ void  demo_xmodem_tx_entry (am_xmodem_tx_handle_t  handle)
                 am_kprintf("Have been sent nak maxtimes! \r\n");
                 return;
 
-            /* �ļ��������*/
+            /* 文件发送完成*/
             case AM_XMODEM_MOU_SUC:
                 __g_tx_event = 0;
                 index_bytes  = 0;
@@ -160,9 +160,9 @@ void  demo_xmodem_tx_entry (am_xmodem_tx_handle_t  handle)
                 __g_tx_event = 0;
                 index_frames++;
                 index_bytes += frames_len;
-                /* �յ���һ֡��Ӧ��һ֡���������ɣ���ӡ��Ϣ*/
+                /* 收到上一帧回应后，一帧传输才算完成，打印信息*/
                 am_kprintf("The current %d data have been sent!\r\n", index_frames);
-                /* ������һ֡����*/
+                /* 发送下一帧数据*/
                 if (__TRANS_DATA_LEN - index_bytes < frames_len) {
                     am_xmodem_tx_pack(handle,
                                       &__g_xmodem_test[index_bytes],

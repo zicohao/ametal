@@ -12,21 +12,21 @@
 
 /**
  * \file
- * \brief ˯��ģʽ���̣�ʹ�ö�ʱ�����ڻ��ѣ�ͨ��������ӿ�ʵ��
+ * \brief 睡眠模式例程，使用定时器周期唤醒，通过驱动层接口实现
  *
- * - ʵ������
- *   1. LED0 �������ȴ� 5 ��󣬿�ʼ�͹��Ĳ��ԣ����ʱ���û��ɲ�������ģʽ�Ĺ��ģ�
- *   2. �������"enter sleep!"��Ϩ�� LED0��������ʱ����
- *      ����˯��ģʽ��J-Link ���ԶϿ�����ʱ�û��ɲ���˯��ģʽ�Ĺ��ģ�
- *   3. �ȴ���ʱʱ�䵽��MCU �����ѣ��������"wake_up!"������ LED0��Ȼ�����½���
- *      ˯��ģʽ��
+ * - 实现现象
+ *   1. LED0 点亮，等待 5 秒后，开始低功耗测试，这段时间用户可测量运行模式的功耗；
+ *   2. 串口输出"enter sleep!"，熄灭 LED0，启动定时器，
+ *      进入睡眠模式后，J-Link 调试断开，此时用户可测量睡眠模式的功耗；
+ *   3. 等待定时时间到，MCU 被唤醒，串口输出"wake_up!"，点亮 LED0，然后重新进入
+ *      睡眠模式。
  *
  * \note
- *   ���� TIM4 Ĭ�ϳ�ʼ������Ϊϵͳ�δ�ʹ�ã��ᶨ�ڲ����жϵ��»��ѣ� ���Ա�����
- *   ֮ǰӦ�� am_prj_config.h �еĺ� AM_CFG_SYSTEM_TICK_ENABLE��
- *   AM_CFG_SOFTIMER_ENABLE ��   AM_CFG_KEY_GPIO_ENABLE ����Ϊ 0��
+ *   由于 TIM4 默认初始化并作为系统滴答使用，会定期产生中断导致唤醒， 测试本例程
+ *   之前应将 am_prj_config.h 中的宏 AM_CFG_SYSTEM_TICK_ENABLE、
+ *   AM_CFG_SOFTIMER_ENABLE 和   AM_CFG_KEY_GPIO_ENABLE 设置为 0。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_zlg217_drv_sleepmode_timer_wake_up.c src_zlg217_drv_sleepmode_timer_wake_up
  *
  * \internal
@@ -55,11 +55,11 @@
 #include "zlg217_periph_map.h"
 #include "amhw_zlg_uart.h"
 
-/** \brief LSI ʱ��Ƶ�� */
+/** \brief LSI 时钟频率 */
 #define    __LSI_CLK    (40000UL)
 
 /**
- * \brief �ȴ� RTC ����Ϊ����״̬
+ * \brief 等待 RTC 外设为空闲状态
  */
 am_local void __wait_rtc_idle (void)
 {
@@ -68,95 +68,95 @@ am_local void __wait_rtc_idle (void)
 }
 
 /**
- * \brief ��ʱ���ص�����
+ * \brief 定时器回调函数
  */
 am_local void __rtc_handler (void *p_arg)
 {
 
-    /* �ȴ� RTC ����Ϊ����״̬ */
+    /* 等待 RTC 外设为空闲状态 */
     __wait_rtc_idle();
     
-    /* �ж��ж�Դ */
+    /* 判断中断源 */
     if (amhw_zlg217_rtc_crl_read_statu(ZLG217_RTC, AMHW_ZLG217_RTC_ALRF)) {
         
-        /* �ȴ� RTC ����Ϊ����״̬ */
+        /* 等待 RTC 外设为空闲状态 */
         __wait_rtc_idle();
         
-        /* ����жϱ�־λ */
+        /* 清除中断标志位 */
         amhw_zlg217_rtc_clr_status_clear(ZLG217_RTC, AMHW_ZLG217_RTC_ALRF);
     }
 }
 
 /**
- *  \brief ���� RTC ����ʱ��
+ *  \brief 设置 RTC 闹钟时间
  */
 am_local void __rtc_alarm_set (uint32_t second)
 {
     uint32_t sec = 0;
 
-    /* �ȴ� RTC ����Ϊ����״̬ */
+    /* 等待 RTC 外设为空闲状态 */
     __wait_rtc_idle();
 
-    /* ��ȡ��ǰ RTC ʱ�� */
+    /* 获取当前 RTC 时间 */
     sec = amhw_zlg217_rtc_cnth_get(ZLG217_RTC) << 16;
     sec |= amhw_zlg217_rtc_cntl_get(ZLG217_RTC);
 
     sec += second - 1;
     
-    /* �ȴ� RTC ����Ϊ����״̬ */
+    /* 等待 RTC 外设为空闲状态 */
     __wait_rtc_idle();
     
-    amhw_zlg217_rtc_crl_cnf_enter(ZLG217_RTC); /* �������� */
+    amhw_zlg217_rtc_crl_cnf_enter(ZLG217_RTC); /* 允许配置 */
     amhw_zlg217_rtc_alrl_set(ZLG217_RTC, sec & 0xffff);
     amhw_zlg217_rtc_alrh_set(ZLG217_RTC, sec >> 16);
-    amhw_zlg217_rtc_crl_cnf_out(ZLG217_RTC); /* ���ø��� */
+    amhw_zlg217_rtc_crl_cnf_out(ZLG217_RTC); /* 配置更新 */
 }
 
-/** \brief RTC ƽ̨��ʼ�� */
+/** \brief RTC 平台初始化 */
 am_local void __rtc_init (void)
 {
     
-    /* ʹ�� LSI */
+    /* 使能 LSI */
     amhw_zlg217_rcc_lsi_enable();
     while (amhw_zlg217_rcc_lsirdy_read() == AM_FALSE);
 
-    amhw_zlg217_rcc_apb1_enable(AMHW_ZLG217_RCC_APB1_PWR); /* ʹ�ܵ�Դʱ�� */
-    amhw_zlg217_rcc_apb1_enable(AMHW_ZLG217_RCC_APB1_BKP); /* ʹ�ܱ���ʱ�� */
-    amhw_zlg_pwr_bkp_access_enable(ZLG217_PWR, 1);         /* ȡ���������д���� */
-    amhw_zlg217_rcc_bdcr_bdrst_reset();                    /* ��������������λ */
+    amhw_zlg217_rcc_apb1_enable(AMHW_ZLG217_RCC_APB1_PWR); /* 使能电源时钟 */
+    amhw_zlg217_rcc_apb1_enable(AMHW_ZLG217_RCC_APB1_BKP); /* 使能备份时钟 */
+    amhw_zlg_pwr_bkp_access_enable(ZLG217_PWR, 1);         /* 取消备份域的写保护 */
+    amhw_zlg217_rcc_bdcr_bdrst_reset();                    /* 备份区域软件复位 */
     am_udelay(5);
-    amhw_zlg217_rcc_bdcr_bdrst_reset_end();                /* ������������λ���� */
+    amhw_zlg217_rcc_bdcr_bdrst_reset_end();                /* 备份域软件复位结束 */
     
-    /* RTC ʱ��Դѡ��Ϊ LSI */
+    /* RTC 时钟源选择为 LSI */
     amhw_zlg217_rcc_bdcr_rtc_clk_set(AMHW_ZLG217_RTCCLK_LSI);
     am_mdelay(1);
-    amhw_zlg217_rcc_bdcr_rtc_enable();                     /* RTCʱ��ʹ�� */
+    amhw_zlg217_rcc_bdcr_rtc_enable();                     /* RTC时钟使能 */
 
-    /* ��ʱ�ȴ�Ԥ��Ƶ�Ĵ����ȶ� */
+    /* 延时等待预分频寄存器稳定 */
     am_mdelay(10);
 
-    /* �ȴ� RTC ����Ϊ����״̬ */
+    /* 等待 RTC 外设为空闲状态 */
     __wait_rtc_idle();
 
-    /* ���������ж� */
+    /* 允许闹钟中断 */
     amhw_zlg217_rtc_crh_allow_int(ZLG217_RTC, AMHW_ZLG217_RTC_ALRIE);
 
-    /* �ȴ� RTC ����Ϊ����״̬ */
+    /* 等待 RTC 外设为空闲状态 */
     __wait_rtc_idle();
 
-    amhw_zlg217_rtc_crl_cnf_enter(ZLG217_RTC); /* �������� RTC */
+    amhw_zlg217_rtc_crl_cnf_enter(ZLG217_RTC); /* 允许配置 RTC */
     amhw_zlg217_rtc_prll_div_write(ZLG217_RTC, (__LSI_CLK - 1) & 0xffff);
     amhw_zlg217_rtc_prlh_div_write(ZLG217_RTC, (__LSI_CLK - 1) >> 16);
-    amhw_zlg217_rtc_crl_cnf_out(ZLG217_RTC); /* ���ø��� */
+    amhw_zlg217_rtc_crl_cnf_out(ZLG217_RTC); /* 配置更新 */
 
-    /* ���Ӳ�ʹ�� RTC �����ж� */
+    /* 连接并使能 RTC 闹钟中断 */
     am_int_connect(INUM_RTC, __rtc_handler, NULL);
     am_int_enable(INUM_RTC);
     
 }
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_zlg217_drv_sleepmode_timer_wake_up_entry (void)
 {
@@ -165,13 +165,13 @@ void demo_zlg217_drv_sleepmode_timer_wake_up_entry (void)
     AM_DBG_INFO("low power test!\r\n");
     am_led_on(LED0);
 
-    /* ��ʼ�� RTC */
+    /* 初始化 RTC */
     __rtc_init();
     
-    /* ��ʼ�� PWR */
+    /* 初始化 PWR */
     am_zlg217_pwr_inst_init();
 
-    /* �������� */
+    /* 唤醒配置 */
     am_zlg217_wake_up_cfg(AM_ZLG217_PWR_MODE_SLEEP, NULL, NULL);
 
     for (i = 0; i < 5; i++) {
@@ -180,18 +180,18 @@ void demo_zlg217_drv_sleepmode_timer_wake_up_entry (void)
 
     while (1) {
 
-        /* ˯��֮ǰ�ر� LED */
+        /* 睡眠之前关闭 LED */
         am_led_off(LED0);
 
-        /* ���ö�ʱ�ж�����Ϊ 1S����������ʱ�� */        
+        /* 设置定时中断周期为 1S，并启动定时器 */        
         __rtc_alarm_set(1);
 
-        /* ����˯��ģʽ */
+        /* 进入睡眠模式 */
         am_zlg217_pwr_mode_into(AM_ZLG217_PWR_MODE_SLEEP);
 
         AM_DBG_INFO("wake_up!\r\n");
 
-        /* ����֮����� LED */
+        /* 唤醒之后点亮 LED */
         am_led_on(LED0);
         am_mdelay(10);
     }

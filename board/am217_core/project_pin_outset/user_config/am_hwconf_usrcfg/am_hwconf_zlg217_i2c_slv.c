@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZLG217 I2C ´Ó»úÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief ZLG217 I2C ä»æœºç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_zlg217_i2c.c
  *
  * \internal
@@ -35,7 +35,7 @@
  * @{
  */
 
-/** \brief I2C1 Æ½Ì¨³õÊ¼»¯º¯Êı */
+/** \brief I2C1 å¹³å°åˆå§‹åŒ–å‡½æ•° */
 static void __zlg_i2c1_plfm_init (void)
 {
     am_gpio_pin_cfg(__I2C1_SCL, __GPIO_I2C1_SCL);
@@ -45,47 +45,47 @@ static void __zlg_i2c1_plfm_init (void)
     am_zlg217_clk_reset(CLK_I2C1);
 }
 
-/** \brief ½â³ıI2C1 Æ½Ì¨³õÊ¼»¯º¯Êı */
+/** \brief è§£é™¤I2C1 å¹³å°åˆå§‹åŒ–å‡½æ•° */
 static void __zlg_i2c1_plfm_deinit (void)
 {
     am_clk_disable(CLK_I2C1);
 }
 
 /**
- * \name I2C1 ¿ØÖÆÆ÷²ÎÊı¶¨Òå
+ * \name I2C1 æ§åˆ¶å™¨å‚æ•°å®šä¹‰
  * @{
  */
 
 /** @} */
 
 /**
- * \brief I2C1 ´Ó»úÉè±¸ĞÅÏ¢
+ * \brief I2C1 ä»æœºè®¾å¤‡ä¿¡æ¯
  */
 static const am_zlg_i2c_slv_devinfo_t __g_i2c1_devinfo = {
 
-    ZLG217_I2C1_BASE,                 /**< \brief I2C1 ¼Ä´æÆ÷¿é»ùÖ· */
-    INUM_I2C1_EV,                     /**< \brief I2C1 ÖĞ¶Ï±àºÅ */
+    ZLG217_I2C1_BASE,                 /**< \brief I2C1 å¯„å­˜å™¨å—åŸºå€ */
+    INUM_I2C1_EV,                     /**< \brief I2C1 ä¸­æ–­ç¼–å· */
 
-    __zlg_i2c1_plfm_init,             /**< \brief Æ½Ì¨³õÊ¼»¯ */
-    __zlg_i2c1_plfm_deinit            /**< \brief Æ½Ì¨È¥³õÊ¼»¯ */
+    __zlg_i2c1_plfm_init,             /**< \brief å¹³å°åˆå§‹åŒ– */
+    __zlg_i2c1_plfm_deinit            /**< \brief å¹³å°å»åˆå§‹åŒ– */
 };
 
-/**< \brief I2C1 Éè±¸ÊµÀı */
+/**< \brief I2C1 è®¾å¤‡å®ä¾‹ */
 static am_zlg_i2c_slv_dev_t __g_i2c1_dev;
 
-/** \brief I2C1 ÊµÀı³õÊ¼»¯£¬»ñµÃI2C±ê×¼·şÎñ¾ä±ú */
+/** \brief I2C1 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—I2Cæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_i2c_slv_handle_t  am_zlg217_i2c1_slv_inst_init (void)
 {
     return am_zlg_i2c_slv_init(&__g_i2c1_dev, &__g_i2c1_devinfo);
 }
 
-/** \brief I2C1 ÊµÀı½â³õÊ¼»¯ */
+/** \brief I2C1 å®ä¾‹è§£åˆå§‹åŒ– */
 void am_zlg217_i2c1_slv_inst_deinit (am_i2c_slv_handle_t handle)
 {
     am_zlg_i2c_slv_deinit(handle);
 }
 
-/** \brief I2C2 Æ½Ì¨³õÊ¼»¯º¯Êı */
+/** \brief I2C2 å¹³å°åˆå§‹åŒ–å‡½æ•° */
 static void __zlg_i2c2_plfm_init (void)
 {
     am_gpio_pin_cfg(__I2C2_SCL, __GPIO_I2C2_SCL);
@@ -95,41 +95,41 @@ static void __zlg_i2c2_plfm_init (void)
     am_zlg217_clk_reset(CLK_I2C2);
 }
 
-/** \brief ½â³ıI2C1 Æ½Ì¨³õÊ¼»¯º¯Êı */
+/** \brief è§£é™¤I2C1 å¹³å°åˆå§‹åŒ–å‡½æ•° */
 static void __zlg_i2c2_plfm_deinit (void)
 {
     am_clk_disable(CLK_I2C2);
 }
 
 /**
- * \name I2C2 ¿ØÖÆÆ÷²ÎÊı¶¨Òå
+ * \name I2C2 æ§åˆ¶å™¨å‚æ•°å®šä¹‰
  * @{
  */
 
 /** @} */
 
 /**
- * \brief I2C2 ´Ó»úÉè±¸ĞÅÏ¢
+ * \brief I2C2 ä»æœºè®¾å¤‡ä¿¡æ¯
  */
 static const am_zlg_i2c_slv_devinfo_t __g_i2c2_devinfo = {
 
-    ZLG217_I2C2_BASE,                 /**< \brief I2C2¼Ä´æÆ÷¿é»ùÖ· */
-    INUM_I2C2_EV,                     /**< \brief I2C2 ÖĞ¶Ï±àºÅ */
+    ZLG217_I2C2_BASE,                 /**< \brief I2C2å¯„å­˜å™¨å—åŸºå€ */
+    INUM_I2C2_EV,                     /**< \brief I2C2 ä¸­æ–­ç¼–å· */
 
-    __zlg_i2c2_plfm_init,             /**< \brief Æ½Ì¨³õÊ¼»¯ */
-    __zlg_i2c2_plfm_deinit            /**< \brief Æ½Ì¨È¥³õÊ¼»¯ */
+    __zlg_i2c2_plfm_init,             /**< \brief å¹³å°åˆå§‹åŒ– */
+    __zlg_i2c2_plfm_deinit            /**< \brief å¹³å°å»åˆå§‹åŒ– */
 };
 
-/**< \brief I2C2 Éè±¸ÊµÀı */
+/**< \brief I2C2 è®¾å¤‡å®ä¾‹ */
 static am_zlg_i2c_slv_dev_t __g_i2c2_dev;
 
-/** \brief I2C2 ÊµÀı³õÊ¼»¯£¬»ñµÃI2C±ê×¼·şÎñ¾ä±ú */
+/** \brief I2C2 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—I2Cæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_i2c_slv_handle_t  am_zlg217_i2c2_slv_inst_init (void)
 {
     return am_zlg_i2c_slv_init(&__g_i2c2_dev, &__g_i2c2_devinfo);
 }
 
-/** \brief I2C2 ÊµÀı½â³õÊ¼»¯ */
+/** \brief I2C2 å®ä¾‹è§£åˆå§‹åŒ– */
 void am_zlg217_i2c2_slv_inst_deinit (am_i2c_slv_handle_t handle)
 {
     am_zlg_i2c_slv_deinit(handle);

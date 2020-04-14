@@ -6,7 +6,7 @@
 #include "am_input.h"
 #include "am_zm516x.h"
 
-//应用程序入口
+//搴旂敤绋嬪簭鍏ュ彛
 int app_mvc_bool_main (int led_id, int key_code,am_zm516x_handle_t zm516x_handle);
 
 

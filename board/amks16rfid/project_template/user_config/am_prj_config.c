@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief KL26¹¤³ÌÅäÖÃÎÄ¼ş
+ * \brief KL26å·¥ç¨‹é…ç½®æ–‡ä»¶
  * \sa am_prj_config.c
  * 
  * \internal
@@ -28,13 +28,13 @@
 #include "hw/amhw_kl26_sim.h"
 #include "am_board.h"
 #include "am_service_inst_init.h"
-/** \brief ¼ì²â¼ÓÃÜº¯Êı */
+/** \brief æ£€æµ‹åŠ å¯†å‡½æ•° */
 extern void am_encrypt (void);
 
-/** \brief am_mainÍâ²¿º¯Êı */
+/** \brief am_mainå¤–éƒ¨å‡½æ•° */
 extern int am_main (void);
 
-/** \brief mainº¯ÊıÈë¿Ú */
+/** \brief mainå‡½æ•°å…¥å£ */
 int main (void)
 {
 	extern int is_wakeup_reset(void);
@@ -43,28 +43,28 @@ int main (void)
     am_timer_info_t   tmp2_tmrinfo;
 #endif
 
-    /* ¹Ø±ÕCOP¿´ÃÅ¹· */
+    /* å…³é—­COPçœ‹é—¨ç‹— */
 #if (AM_CFG_SIM_COP == 0)
     amhw_kl26_sim_cop_cfg(KL26_SIM_COP_MODE_NORMAL,
                           KL26_SIM_COP_CLK_INTERNAL,
                           KL26_SIM_COP_DISABLED);
 #endif
 
-    /* ÏµÍ³Ê±ÖÓ³õÊ¼»¯ */
+    /* ç³»ç»Ÿæ—¶é’Ÿåˆå§‹åŒ– */
 #if (AM_CFG_CLK_ENABLE == 1)
     am_kl26_clk_inst_init();
 #endif
 
-    /* ¼ì²âĞ¾Æ¬ÊÇ·ñ¼ÓÃÜ£¬Èç¹ûĞ¾Æ¬Ã»ÓĞ¼ÓÃÜ£¬ÔòÖ´ĞĞ¸Ãº¯Êıºó´®¿ÚPTA_2´òÓ¡¡°ready¡±µÈ´ı¼ÓÃÜ */
-    /* Î´¼ÓÃÜµÄĞ¾Æ¬²¿·Ö¹¦ÄÜÎŞ·¨Ê¹ÓÃ */
+    /* æ£€æµ‹èŠ¯ç‰‡æ˜¯å¦åŠ å¯†ï¼Œå¦‚æœèŠ¯ç‰‡æ²¡æœ‰åŠ å¯†ï¼Œåˆ™æ‰§è¡Œè¯¥å‡½æ•°åä¸²å£PTA_2æ‰“å°â€œreadyâ€ç­‰å¾…åŠ å¯† */
+    /* æœªåŠ å¯†çš„èŠ¯ç‰‡éƒ¨åˆ†åŠŸèƒ½æ— æ³•ä½¿ç”¨ */
     am_encrypt();
 
-    /* ÖĞ¶Ï³õÊ¼»¯ */
+    /* ä¸­æ–­åˆå§‹åŒ– */
 #if (AM_CFG_INT_ENABLE == 1)
     am_kl26_nvic_inst_init();
 #endif
 
-    /* GPIO³õÊ¼»¯ */
+    /* GPIOåˆå§‹åŒ– */
 #if (AM_CFG_GPIO_ENABLE == 1)
     am_kl26_gpio_inst_init();
 #endif
@@ -77,14 +77,14 @@ int main (void)
     am_nvram_inst_init();
 #endif /* (AM_CFG_NVRAM_ENABLE == 1) */
 
-    /* °å¼¶³õÊ¼»¯ */
+    /* æ¿çº§åˆå§‹åŒ– */
     am_board_init();
 #if 0
-    /* ADC Ó²¼ş´¥·¢Ê±ĞèÒª¿ªÆô¶¨Ê±Æ÷£¬Ä¬ÈÏÅäÖÃTMP2×÷ÎªADCÓ²¼ş´¥·¢Ô´ */
+    /* ADC ç¡¬ä»¶è§¦å‘æ—¶éœ€è¦å¼€å¯å®šæ—¶å™¨ï¼Œé»˜è®¤é…ç½®TMP2ä½œä¸ºADCç¡¬ä»¶è§¦å‘æº */
     tmp2_tmrhdl = am_kl26_tpm2_timing_inst_init();
     am_timer_info_get(tmp2_tmrhdl, &tmp2_tmrinfo);
 
-    /* 20HzÓ²¼ş´¥·¢²ÉÑù */
+    /* 20Hzç¡¬ä»¶è§¦å‘é‡‡æ · */
     am_timer_enable(tmp2_tmrhdl, 0, tmp2_tmrinfo.clk_frequency / 50);
 #endif
 

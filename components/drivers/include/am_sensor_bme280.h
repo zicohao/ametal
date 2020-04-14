@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief Ñ¹Á¦ÎÂ¶È´«¸ĞÆ÷ BME280 Í·ÎÄ¼ş
+ * \brief å‹åŠ›æ¸©åº¦ä¼ æ„Ÿå™¨ BME280 å¤´æ–‡ä»¶
  *
  * \internal
  * \par modification history
@@ -32,28 +32,28 @@ extern "C" {
 #include "am_isr_defer.h"
 
 /*
- * \brief ´«¸ĞÆ÷BME280Ìá¹©µÄËùÓĞÍ¨µÀID¶¨Òå
+ * \brief ä¼ æ„Ÿå™¨BME280æä¾›çš„æ‰€æœ‰é€šé“IDå®šä¹‰
  */
-#define AM_BME280_CHAN_1      0             /* BME280 µÄÍ¨µÀ1£¬Ñ¹Á¦´«¸ĞÆ÷Í¨µÀ */
-#define AM_BME280_CHAN_2      1             /* BME280 µÄÍ¨µÀ2£¬ÎÂ¶È´«¸ĞÆ÷Í¨µÀ */
-#define AM_BME280_CHAN_3      2             /* BME280 µÄÍ¨µÀ3£¬Êª¶È´«¸ĞÆ÷Í¨µÀ */
+#define AM_BME280_CHAN_1      0             /* BME280 çš„é€šé“1ï¼Œå‹åŠ›ä¼ æ„Ÿå™¨é€šé“ */
+#define AM_BME280_CHAN_2      1             /* BME280 çš„é€šé“2ï¼Œæ¸©åº¦ä¼ æ„Ÿå™¨é€šé“ */
+#define AM_BME280_CHAN_3      2             /* BME280 çš„é€šé“3ï¼Œæ¹¿åº¦ä¼ æ„Ÿå™¨é€šé“ */
 
 /**
- * \brief ´«¸ĞÆ÷ BME280 Éè±¸ĞÅÏ¢½á¹¹Ìå
+ * \brief ä¼ æ„Ÿå™¨ BME280 è®¾å¤‡ä¿¡æ¯ç»“æ„ä½“
  */
 typedef struct am_sensor_bme280_devinfo {
 
     /*
-     * \brief I2C 7Î» Éè±¸µØÖ·
+     * \brief I2C 7ä½ è®¾å¤‡åœ°å€
      *
-     * ¸ÃÉè±¸7Î»µØÖ·Îª 0x76 »ò 0x77
+     * è¯¥è®¾å¤‡7ä½åœ°å€ä¸º 0x76 æˆ– 0x77
      */
     uint8_t i2c_addr;
 
 } am_sensor_bme280_devinfo_t;
 
 /**
- * \brief BME280 Êª¶ÈºÍÎÂ¶ÈĞ£×¼Öµ±£´æ
+ * \brief BME280 æ¹¿åº¦å’Œæ¸©åº¦æ ¡å‡†å€¼ä¿å­˜
  */
 typedef struct am_bme280_calibration_data {
 	uint16_t  dig_t1;
@@ -78,28 +78,28 @@ typedef struct am_bme280_calibration_data {
 } am_bme280_calibration_data_t;
 
 /**
- * \breif ´«¸ĞÆ÷ BME280 Éè±¸½á¹¹Ìå¶¨Òå
+ * \breif ä¼ æ„Ÿå™¨ BME280 è®¾å¤‡ç»“æ„ä½“å®šä¹‰
  */
 typedef struct am_sensor_bme280_dev {
-    am_sensor_serv_t                  bme280_dev; /*< \breif ´«¸ĞÆ÷±ê×¼·şÎñ */
-    am_i2c_device_t                   i2c_dev;    /*< \brief i2cÉè±¸ÊµÀı */
-    am_bme280_calibration_data_t      cal_val;    /*< \brief ±£´æĞ£×¼Öµ */
-    uint8_t                           trigger;    /*< \brief ¼ÇÂ¼±êÖ¾Î» */
-    am_sensor_val_t                   data[3];    /*< \brief ÄÚ²¿Êı¾İ»º´æ */
+    am_sensor_serv_t                  bme280_dev; /*< \breif ä¼ æ„Ÿå™¨æ ‡å‡†æœåŠ¡ */
+    am_i2c_device_t                   i2c_dev;    /*< \brief i2cè®¾å¤‡å®ä¾‹ */
+    am_bme280_calibration_data_t      cal_val;    /*< \brief ä¿å­˜æ ¡å‡†å€¼ */
+    uint8_t                           trigger;    /*< \brief è®°å½•æ ‡å¿—ä½ */
+    am_sensor_val_t                   data[3];    /*< \brief å†…éƒ¨æ•°æ®ç¼“å­˜ */
 
-    /** \brief Éè±¸ĞÅÏ¢ */
+    /** \brief è®¾å¤‡ä¿¡æ¯ */
     const am_sensor_bme280_devinfo_t *dev_info;
 
 } am_sensor_bme280_dev_t;
 
 /**
- * \brief ´«¸ĞÆ÷ BME280 ³õÊ¼»¯
+ * \brief ä¼ æ„Ÿå™¨ BME280 åˆå§‹åŒ–
  *
- * \param[in] p_dev     : Ö¸Ïò´«¸ĞÆ÷BME280Éè±¸µÄÖ¸Õë
- * \param[in] p_devinfo : Ö¸Ïò´«¸ĞÆ÷BME280Éè±¸ĞÅÏ¢µÄÖ¸Õë
- * \param[in] handle    : IIC±ê×¼·şÎñ¾ä±ú
+ * \param[in] p_dev     : æŒ‡å‘ä¼ æ„Ÿå™¨BME280è®¾å¤‡çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo : æŒ‡å‘ä¼ æ„Ÿå™¨BME280è®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ
+ * \param[in] handle    : IICæ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ´«¸ĞÆ÷±ê×¼·şÎñ²Ù×÷¾ä±úÈç¹ûÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return ä¼ æ„Ÿå™¨æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„å¦‚æœä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_sensor_handle_t am_sensor_bme280_init (
         am_sensor_bme280_dev_t           *p_dev,
@@ -107,11 +107,11 @@ am_sensor_handle_t am_sensor_bme280_init (
         am_i2c_handle_t                   handle);
 
 /**
- * \brief ´«¸ĞÆ÷ BME280 È¥³õÊ¼»¯
+ * \brief ä¼ æ„Ÿå™¨ BME280 å»åˆå§‹åŒ–
  *
- * \param[in] handle : am_sensor_bme280_init()³õÊ¼»¯º¯Êı»ñµÃµÄ´«¸ĞÆ÷±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle : am_sensor_bme280_init()åˆå§‹åŒ–å‡½æ•°è·å¾—çš„ä¼ æ„Ÿå™¨æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_err_t am_sensor_bme280_deinit (am_sensor_handle_t handle);
 

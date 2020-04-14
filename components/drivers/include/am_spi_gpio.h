@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief GPIO¿Ú Ä£ÄâSPI Çı¶¯Í·ÎÄ¼ş
+ * \brief GPIOå£ æ¨¡æ‹ŸSPI é©±åŠ¨å¤´æ–‡ä»¶
  *
  * \internal
  * \par modification history:
@@ -37,69 +37,69 @@ extern "C" {
  * @{
  */
 /**
- * \brief SPI_GPIO Éè±¸ĞÅÏ¢²ÎÊı½á¹¹Ìå
+ * \brief SPI_GPIO è®¾å¤‡ä¿¡æ¯å‚æ•°ç»“æ„ä½“
  */
 typedef struct am_spi_gpio_devinfo {
-    int      sck_pin;        /**< \brief SCkÒı½Å */
-    int      mosi_pin;       /**< \brief MOSIÒı½Å (ÈıÏßÄ£Ê½¸ÃÒı½Å×÷ÎªÊı¾İÏß) */
-    int      miso_pin;       /**< \brief MISOÒı½Å */
+    int      sck_pin;        /**< \brief SCkå¼•è„š */
+    int      mosi_pin;       /**< \brief MOSIå¼•è„š (ä¸‰çº¿æ¨¡å¼è¯¥å¼•è„šä½œä¸ºæ•°æ®çº¿) */
+    int      miso_pin;       /**< \brief MISOå¼•è„š */
 
     /**
-     *  \brief ×ÜÏßËÙ¶ÈÖ¸Êı, ÖµÔ½´ó×ÜÏßËÙ¶ÈÔ½Âı, Í¨³£ÅäºÏÂß¼­·ÖÎöÒÇÀ´È·¶¨Êµ¼ÊµÄ×ÜÏßËÙ¶È
-     *         ±ê×¼½Ó¿ÚÖĞÅäÖÃSPIËÙ¶È ÎŞĞ§
+     *  \brief æ€»çº¿é€Ÿåº¦æŒ‡æ•°, å€¼è¶Šå¤§æ€»çº¿é€Ÿåº¦è¶Šæ…¢, é€šå¸¸é…åˆé€»è¾‘åˆ†æä»ªæ¥ç¡®å®šå®é™…çš„æ€»çº¿é€Ÿåº¦
+     *         æ ‡å‡†æ¥å£ä¸­é…ç½®SPIé€Ÿåº¦ æ— æ•ˆ
      */
     uint32_t speed_exp;
 } am_spi_gpio_devinfo_t;
 
 /**
- * \brief SPI_GPIO Éè±¸½á¹¹Ìå
+ * \brief SPI_GPIO è®¾å¤‡ç»“æ„ä½“
  */
 typedef struct am_spi_gpio_dev {
-    /** \brief ±ê×¼SPI·şÎñ */
+    /** \brief æ ‡å‡†SPIæœåŠ¡ */
     am_spi_serv_t                           spi_serv;
 
-    /** \brief SPI¿ØÖÆÆ÷ÏûÏ¢¶ÓÁĞ */
+    /** \brief SPIæ§åˆ¶å™¨æ¶ˆæ¯é˜Ÿåˆ— */
     struct am_list_head                     msg_list;
 
-    /** \brief Ö¸ÏòSPI´«Êä½á¹¹ÌåµÄÖ¸Õë,Í¬Ò»Ê±¼äÖ»ÄÜ´¦ÀíÒ»¸ö´«Êä */
+    /** \brief æŒ‡å‘SPIä¼ è¾“ç»“æ„ä½“çš„æŒ‡é’ˆ,åŒä¸€æ—¶é—´åªèƒ½å¤„ç†ä¸€ä¸ªä¼ è¾“ */
     am_spi_transfer_t                      *p_cur_trans;
 
-    /** \brief µ±Ç°ÕıÔÚ´¦ÀíµÄÏûÏ¢ */
+    /** \brief å½“å‰æ­£åœ¨å¤„ç†çš„æ¶ˆæ¯ */
     am_spi_message_t                       *p_cur_msg;
 
-    /** \brief µ±Ç°´«ÊäµÄSPIÉè±¸ */
+    /** \brief å½“å‰ä¼ è¾“çš„SPIè®¾å¤‡ */
     am_spi_device_t                        *p_cur_spi_dev;
 
-    /** \brief Ã¦±êÊ¶ */
+    /** \brief å¿™æ ‡è¯† */
     volatile am_bool_t                      busy;
 
-    /** \brief SPI×´Ì¬ */
+    /** \brief SPIçŠ¶æ€ */
     volatile uint8_t                        state;
 
-    /** \brief SCK ×´Ì¬ */
+    /** \brief SCK çŠ¶æ€ */
     volatile uint8_t                        sck_state;
 
-    /** \brief SPI_GPIO Éè±¸ĞÅÏ¢ */
+    /** \brief SPI_GPIO è®¾å¤‡ä¿¡æ¯ */
     const am_spi_gpio_devinfo_t            *p_devinfo;
 } am_spi_gpio_dev_t;
 
 /**
- * \brief SPI_GPIO ³õÊ¼»¯
+ * \brief SPI_GPIO åˆå§‹åŒ–
  *
- * \param[in] p_dev     : Ö¸ÏòSPI_GPIO Éè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[in] p_devinfo : Ö¸ÏòSPI_GPIO Éè±¸ĞÅÏ¢½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] p_dev     : æŒ‡å‘SPI_GPIO è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo : æŒ‡å‘SPI_GPIO è®¾å¤‡ä¿¡æ¯ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return SPI±ê×¼·şÎñ²Ù×÷¾ä±ú
+ * \return SPIæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  */
 am_spi_handle_t am_spi_gpio_init (am_spi_gpio_dev_t           *p_dev,
                                   const am_spi_gpio_devinfo_t *p_devinfo);
 
 /**
- * \brief ½â³ıSPI_GPIO³õÊ¼»¯
+ * \brief è§£é™¤SPI_GPIOåˆå§‹åŒ–
  *
- * \param[in] handle : Óë´ÓÉè±¸¹ØÁªµÄSPI±ê×¼·şÎñ²Ù×÷¾ä±ú
+ * \param[in] handle : ä¸ä»è®¾å¤‡å…³è”çš„SPIæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_spi_gpio_deinit (am_spi_handle_t handle);
 

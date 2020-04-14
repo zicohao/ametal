@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥7.31
+ * \brief ç¨‹åºæ¸…å•7.31
  *
  *
  * \internal
@@ -24,27 +24,27 @@
 #include "am_input.h"
 #include "am_led.h"
 
-static am_input_key_handler_t g_key_handler;    // ÊÂ¼ş´¦ÀíÆ÷ÊµÀı¶¨Òå£¬È«¾Ö±äÁ¿£¬È·±£Ò»Ö±ÓĞĞ§
+static am_input_key_handler_t g_key_handler;    // äº‹ä»¶å¤„ç†å™¨å®ä¾‹å®šä¹‰ï¼Œå…¨å±€å˜é‡ï¼Œç¡®ä¿ä¸€ç›´æœ‰æ•ˆ
 
-// Ê¹ÓÃ°´¼ü»ù±¾¹¦ÄÜ£¬Ê¹ÓÃ¸Ã¹¦ÄÜ½«×¢ÊÍ¿ªÊ¼£¬½«ÏÂÃæº¯Êı×¢ÊÍ
+// ä½¿ç”¨æŒ‰é”®åŸºæœ¬åŠŸèƒ½ï¼Œä½¿ç”¨è¯¥åŠŸèƒ½å°†æ³¨é‡Šå¼€å§‹ï¼Œå°†ä¸‹é¢å‡½æ•°æ³¨é‡Š
 //static void __input_key_proc(void *p_arg, int key_code, int key_state, int keep_time)
 //{
 //    if (key_code == KEY_KP0) {
-//        if (key_state == AM_INPUT_KEY_STATE_PRESSED) {        //  ÓĞ¼ü°´ÏÂ
+//        if (key_state == AM_INPUT_KEY_STATE_PRESSED) {        //  æœ‰é”®æŒ‰ä¸‹
 //            am_led_on(0);
-//        }else if (key_state == AM_INPUT_KEY_STATE_RELEASED){  // °´¼üÊÍ·Å
+//        }else if (key_state == AM_INPUT_KEY_STATE_RELEASED){  // æŒ‰é”®é‡Šæ”¾
 //            am_led_off(0);
 //        }
 //    }
 //}
 
 
-// Ê¹ÓÃ°´¼ü³¤°´¹¦ÄÜ£¬Ê¹ÓÃ¸Ã¹¦ÄÜ½«×¢ÊÍ¿ªÊ¼£¬½«ÉÏÃæº¯Êı×¢ÊÍ
+// ä½¿ç”¨æŒ‰é”®é•¿æŒ‰åŠŸèƒ½ï¼Œä½¿ç”¨è¯¥åŠŸèƒ½å°†æ³¨é‡Šå¼€å§‹ï¼Œå°†ä¸Šé¢å‡½æ•°æ³¨é‡Š
 static void __input_key_proc(void *p_arg, int key_code, int key_state, int keep_time) 
 {
     if (key_code == KEY_KP0) {
         if ((key_state == AM_INPUT_KEY_STATE_PRESSED) && (keep_time == 3000)) {
-            am_led_toggle(0); 					// ³¤°´3s,  LED0×´Ì¬·­×ª
+            am_led_toggle(0); 					// é•¿æŒ‰3s,  LED0çŠ¶æ€ç¿»è½¬
         }
     }
 } 
@@ -52,7 +52,7 @@ static void __input_key_proc(void *p_arg, int key_code, int key_state, int keep_
 
 int am_main (void)
 {
-    // ÕâÀï°´¼ü»Øµ÷º¯Êı¿ÉÒÔÑ¡Ôñ°´¼ü²»Í¬µÄ¹¦ÄÜ(»ù±¾¹¦ÄÜ»òÕß³¤°´¹¦ÄÜ,Ö»ĞèÒªĞŞ¸Ä)
+    // è¿™é‡ŒæŒ‰é”®å›è°ƒå‡½æ•°å¯ä»¥é€‰æ‹©æŒ‰é”®ä¸åŒçš„åŠŸèƒ½(åŸºæœ¬åŠŸèƒ½æˆ–è€…é•¿æŒ‰åŠŸèƒ½,åªéœ€è¦ä¿®æ”¹)
     am_input_key_handler_register(&g_key_handler, __input_key_proc, (void *)100);
     while (1) {
     }

@@ -12,12 +12,12 @@
 
 /**
  * \file
- * \brief ϵͳ���ƽӿ�
+ * \brief 系统控制接口
  *
- * 1. ��ӳ�䲿�ִ� TIM16 �� TIM17��UART1 �� ADC �� DMA ����Դ��������ͬ�� DMAͨ���ϣ�
- * 2. �������ӵ� GPIO�ڵ��ⲿ�жϣ�
- * 3. ��ӳ��洢����������ʼ����
- * 4. �ⲿ�ж��������ã�
+ * 1. 重映射部分从 TIM16 和 TIM17，UART1 和 ADC 的 DMA 触发源到其它不同的 DMA通道上；
+ * 2. 管理连接到 GPIO口的外部中断；
+ * 3. 重映射存储器到代码起始区域；
+ * 4. 外部中断引脚配置；
  *
  * \internal
  * \par History
@@ -42,7 +42,7 @@ extern "C" {
  */
 
 /**
- * \name �ⲿ�ж϶˿�Դ
+ * \name 外部中断端口源
  * @{
  */
 
@@ -64,7 +64,7 @@ extern "C" {
 /** @} */
 
 /**
- * \name �ⲿ�жϵ�����Դ
+ * \name 外部中断的引脚源
  * @{
  */
 #define AMHW_ZLG_SYSCFG_EXTI_PINSOURCE_0            ((uint8_t)0x00)
@@ -105,41 +105,41 @@ extern "C" {
 /** @} */
 
 /**
-  * \brief ϵͳ���ƼĴ�����ṹ��
+  * \brief 系统控制寄存器块结构体
   */
 typedef struct amhw_zlg_syscfg {
-    __IO uint32_t cfgr;        /**< \brief ϵͳ���üĴ��� */
-    __I  uint32_t reserve;     /**< \brief ���� */
-    __IO uint32_t exticr[4];   /**< \brief �ⲿ�ж����üĴ��� */
+    __IO uint32_t cfgr;        /**< \brief 系统配置寄存器 */
+    __I  uint32_t reserve;     /**< \brief 保留 */
+    __IO uint32_t exticr[4];   /**< \brief 外部中断配置寄存器 */
 } amhw_zlg_syscfg_t;
 
 /**
- * \brief ϵͳ�ڴ���ӳ�䣬������ӳ��洢����������ʼ����
+ * \brief 系统内存重映射，用于重映射存储器到代码起始区域
  */
 typedef enum amhw_zlg_syscfg_bootmode_remap {
-    AMHW_ZLG_SYSCFG_REMAP_BOOT_MAIN_FLASH = 0,  /**< \brief ������洢��ӳ�䵽 0x00000000 */
-    AMHW_ZLG_SYSCFG_REMAP_BOOT_SYS_FLASH  = 1,  /**< \brief ϵͳ����ӳ�䵽 0x00000000 */
-    AMHW_ZLG_SYSCFG_REMAP_BOOT_SRAM       = 3,  /**< \brief Ƕ��ʽ RAM ӳ�䵽 0x00000000 */
+    AMHW_ZLG_SYSCFG_REMAP_BOOT_MAIN_FLASH = 0,  /**< \brief 主闪存存储器映射到 0x00000000 */
+    AMHW_ZLG_SYSCFG_REMAP_BOOT_SYS_FLASH  = 1,  /**< \brief 系统闪存映射到 0x00000000 */
+    AMHW_ZLG_SYSCFG_REMAP_BOOT_SRAM       = 3,  /**< \brief 嵌入式 RAM 映射到 0x00000000 */
 } amhw_zlg_syscfg_bootmode_remap_t;
 
 /**
- * \brief ĳЩ����(UART1, TIM16��TIM17)DMAͨ����ӳ��
+ * \brief 某些外设(UART1, TIM16、TIM17)DMA通道重映射
  */
 typedef enum amhw_zlg_syscfg_dma_chan_remap {
-    AMHW_ZLG_SYSCFG_REMAP_TIM17_DMA    = (1 << 12), /**< \brief ��ʱ��17DMAͨ����ӳ�� */
-    AMHW_ZLG_SYSCFG_REMAP_TIM16_DMA    = (1 << 11), /**< \brief ��ʱ��16DMAͨ����ӳ�� */
-    AMHW_ZLG_SYSCFG_REMAP_UART1_RX_DMA = (1 << 10), /**< \brief UART1_RX_DMAͨ����ӳ�� */
-    AMHW_ZLG_SYSCFG_REMAP_UART1_TX_DMA = (1 << 9),  /**< \brief UART1_TX_DMAͨ����ӳ�� */
-    AMHW_ZLG_SYSCFG_REMAP_ADC_DMA      = (1 << 8),  /**< \brief ADC_DMͨ����ӳ�� */
+    AMHW_ZLG_SYSCFG_REMAP_TIM17_DMA    = (1 << 12), /**< \brief 定时器17DMA通道重映射 */
+    AMHW_ZLG_SYSCFG_REMAP_TIM16_DMA    = (1 << 11), /**< \brief 定时器16DMA通道重映射 */
+    AMHW_ZLG_SYSCFG_REMAP_UART1_RX_DMA = (1 << 10), /**< \brief UART1_RX_DMA通道重映射 */
+    AMHW_ZLG_SYSCFG_REMAP_UART1_TX_DMA = (1 << 9),  /**< \brief UART1_TX_DMA通道重映射 */
+    AMHW_ZLG_SYSCFG_REMAP_ADC_DMA      = (1 << 8),  /**< \brief ADC_DM通道重映射 */
 } amhw_zlg_syscfg_dma_chan_remap_t;
 
 /**
- * \brief ��ӳ��洢����������ʼ����
+ * \brief 重映射存储器到代码起始区域
  *
- * \param[in] remap       ��ӳ�������ʼ���Ĵ洢λ��
- * \param[in] p_hw_syscfg ��ָ��ϵͳ���üĴ������ָ��
+ * \param[in] remap       ：映射代码起始区的存储位置
+ * \param[in] p_hw_syscfg ：指向系统配置寄存器块的指针
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_zlg_syscfg_mem_mode_remap_set (
@@ -150,11 +150,11 @@ void amhw_zlg_syscfg_mem_mode_remap_set (
 }
 
 /**
- * \brief ��ȡ�洢����������ʼ�������ӳ��ֵ
+ * \brief 获取存储器到代码起始区域的重映射值
  *
- * \param[in] p_hw_syscfg ��ָ��ϵͳ���üĴ������ָ��
+ * \param[in] p_hw_syscfg ：指向系统配置寄存器块的指针
  *
- * \return ������������ʼ�������ӳ��ֵ
+ * \return 储器到代码起始区域的重映射值
  */
 am_static_inline
 int amhw_zlg_syscfg_mem_mode_remap_get (amhw_zlg_syscfg_t *p_hw_syscfg)
@@ -163,13 +163,13 @@ int amhw_zlg_syscfg_mem_mode_remap_get (amhw_zlg_syscfg_t *p_hw_syscfg)
 }
 
 /**
- * \brief ��ӳ��ĳЩ����(UART1, TIM16��TIM17)��DMAͨ��
+ * \brief 重映射某些外设(UART1, TIM16、TIM17)的DMA通道
  *
- * \param[in] remap       ����ӳ���DMAͨ����ֵΪ amhw_zlg_syscfg_dma_chan_remap_t
- *                         ��ö�����ͣ�����ʹ�û����
- * \param[in] p_hw_syscfg ��ָ��ϵͳ���üĴ������ָ��
+ * \param[in] remap       ：重映射的DMA通道，值为 amhw_zlg_syscfg_dma_chan_remap_t
+ *                         该枚举类型，可以使用或组合
+ * \param[in] p_hw_syscfg ：指向系统配置寄存器块的指针
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_zlg_syscfg_dma_chan_remap_set (
@@ -180,15 +180,15 @@ void amhw_zlg_syscfg_dma_chan_remap_set (
 }
 
 /**
- * \brief ѡ�� EXTIx(x=A...D) �ⲿ�жϵ�����Դ
+ * \brief 选择 EXTIx(x=A...D) 外部中断的输入源
  *
- * \param[in] p_hw_syscfg ��ָ��ϵͳ���üĴ������ָ��
- * \param[in] portsource  ���˿�Դ,ֵΪ AMHW_ZLG_SYSCFG_EXTI_PORTSOURCE* ��һ���
+ * \param[in] p_hw_syscfg ：指向系统配置寄存器块的指针
+ * \param[in] portsource  ：端口源,值为 AMHW_ZLG_SYSCFG_EXTI_PORTSOURCE* 这一类宏
  *                          (# AMHW_ZLG_SYSCFG_EXTI_PORTSOURCE_GPIOA)
- * \param[in] pinsource   ������Դ��ֵΪ  AMHW_ZLG_SYSCFG_EXTI_PINSOURCE* ��һ���
+ * \param[in] pinsource   ：引脚源，值为  AMHW_ZLG_SYSCFG_EXTI_PINSOURCE* 这一类宏
  *                          (# AMHW_ZLG_SYSCFG_EXTI_PINSOURCE_0)
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_zlg_syscfg_exti_line_config (amhw_zlg_syscfg_t *p_hw_syscfg,
@@ -198,7 +198,7 @@ void amhw_zlg_syscfg_exti_line_config (amhw_zlg_syscfg_t *p_hw_syscfg,
     uint32_t tmp = 0x00;
 
     /*
-     * ԭ������ѡ���0�����ţ���Ӧ���������4λ��������4λΪ0���������PA0����
+     * 原理：在选择第0个引脚，则应该设置最低4位，如果最低4位为0，则代表是PA0引脚
      */
 
     tmp = ((uint32_t)0x0F) << (0x04 * (pinsource & (uint8_t)0x03));

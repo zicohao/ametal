@@ -12,23 +12,23 @@
 
 /**
  * \file
- * \brief ADC INT ���̣�ͨ�� HW ��ӿ�ʵ��
+ * \brief ADC INT 例程，通过 HW 层接口实现
  *
- * - �������裺
- *   1. PIOA_0 (ADC ͨ�� 0) ����ģ�����롣
- *   2. PIOA_1 (ADC ͨ�� 1) ����ģ�����롣
- *   3. PIOA_2 (ADC ͨ�� 2) ����ģ�����롣
- *   4. PIOA_3 (ADC ͨ�� 3) ����ģ�����롣
+ * - 操作步骤：
+ *   1. PIOA_0 (ADC 通道 0) 连接模拟输入。
+ *   2. PIOA_1 (ADC 通道 1) 连接模拟输入。
+ *   3. PIOA_2 (ADC 通道 2) 连接模拟输入。
+ *   4. PIOA_3 (ADC 通道 3) 连接模拟输入。
  *
- * - ʵ������
- *   1. ���������ѹ����ֵ��
+ * - 实验现象：
+ *   1. 串口输出电压采样值。
  *
  * \note
- *    1. ʹ�� ADC ģ�鹦�ܣ����뱣֤ ADC ģ���ϵ磻
- *    2. ����۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIOA_10 �������� PC ���ڵ� TXD��
- *       PIOA_9 �������� PC ���ڵ� RXD��
+ *    1. 使用 ADC 模块功能，必须保证 ADC 模块上电；
+ *    2. 如需观察串口打印的调试信息，需要将 PIOA_10 引脚连接 PC 串口的 TXD，
+ *       PIOA_9 引脚连接 PC 串口的 RXD。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_zlg217_hw_adc_dma.c src_zlg217_hw_adc_dma
  *
  * \internal
@@ -51,11 +51,11 @@
 #include "demo_zlg_entries.h"
 #include "demo_am217_core_entries.h"
 
-#define  __ADC1_DMA_CHAN1         DMA_CHAN_1 /* ADC1��ӦDMAͨ��1 */
-#define  __ADC2_DMA_CHAN2         DMA_CHAN_2 /* ADC2��ӦDMAͨ��2 */
+#define  __ADC1_DMA_CHAN1         DMA_CHAN_1 /* ADC1对应DMA通道1 */
+#define  __ADC2_DMA_CHAN2         DMA_CHAN_2 /* ADC2对应DMA通道2 */
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_zlg217_core_hw_adc_dma_entry (void)
 {
@@ -63,11 +63,11 @@ void demo_zlg217_core_hw_adc_dma_entry (void)
 
     int adc_chan[] = {0, 1, 2, 3};
 
-    /* ����Ӳ��������ǰ�Ļ������� ���������ţ�ʹ��ʱ�ӵ� */
-    am_gpio_pin_cfg(PIOA_0, PIOA_0_AIN | PIOA_0_ADC1_IN0); /* ADC1ͨ��0 */
-    am_gpio_pin_cfg(PIOA_1, PIOA_1_AIN | PIOA_1_ADC1_IN1); /* ADC1ͨ��1 */
-    am_gpio_pin_cfg(PIOA_2, PIOA_2_AIN | PIOA_2_ADC1_IN2); /* ADC1ͨ��2 */
-    am_gpio_pin_cfg(PIOA_3, PIOA_3_AIN | PIOA_3_ADC1_IN3); /* ADC1ͨ��3 */
+    /* 运行硬件层例程前的环境设置 ，配置引脚，使能时钟等 */
+    am_gpio_pin_cfg(PIOA_0, PIOA_0_AIN | PIOA_0_ADC1_IN0); /* ADC1通道0 */
+    am_gpio_pin_cfg(PIOA_1, PIOA_1_AIN | PIOA_1_ADC1_IN1); /* ADC1通道1 */
+    am_gpio_pin_cfg(PIOA_2, PIOA_2_AIN | PIOA_2_ADC1_IN2); /* ADC1通道2 */
+    am_gpio_pin_cfg(PIOA_3, PIOA_3_AIN | PIOA_3_ADC1_IN3); /* ADC1通道3 */
 
     am_clk_enable(CLK_ADC1);
 

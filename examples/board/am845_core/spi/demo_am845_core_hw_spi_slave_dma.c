@@ -11,22 +11,22 @@
 *******************************************************************************/
 /**
  * \file
- * \brief SPI ´Ó»ú½ÓÊÕÊý¾ÝÀý³Ì£¨DMA ·½Ê½£©£¬Í¨¹ý HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief SPI ä»ŽæœºæŽ¥æ”¶æ•°æ®ä¾‹ç¨‹ï¼ˆDMA æ–¹å¼ï¼‰ï¼Œé€šè¿‡ HW å±‚æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. ½« SPI ½Ó¿ÚºÍÊý¾ÝÔ´¶ÔÓ¦µÄ SPI ½Ó¿ÚÁ¬½ÓÆðÀ´¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. å°† SPI æŽ¥å£å’Œæ•°æ®æºå¯¹åº”çš„ SPI æŽ¥å£è¿žæŽ¥èµ·æ¥ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ½ÓÊÕµ½Êý¾Ý£¬Í¨¹ý´®¿Ú´òÓ¡³öÀ´¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. æŽ¥æ”¶åˆ°æ•°æ®ï¼Œé€šè¿‡ä¸²å£æ‰“å°å‡ºæ¥ã€‚
  *
  * \note
- *    1. Êý¾ÝÔ´¿ÉÑ¡ÓÃ demo_am845_core_std_spi_master_dma.c µÄ³ÌÐò£»
- *    2. ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIO1_2 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *       PIO1_0 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD£»
- *    3. ÓÉÓÚ PIO0_12 À­µÍ»áµ¼ÖÂµ¥Æ¬»ú¸´Î»Ê±½øÈë ISP Ä£Ê½£¬ËùÒÔ PIO0_12 Ó¦
- *       µ¥Æ¬»ú¸´Î»ºóÔÙÁ¬½Ó¡£
+ *    1. æ•°æ®æºå¯é€‰ç”¨ demo_am845_core_std_spi_master_dma.c çš„ç¨‹åºï¼›
+ *    2. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO1_2 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *       PIO1_0 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDï¼›
+ *    3. ç”±äºŽ PIO0_12 æ‹‰ä½Žä¼šå¯¼è‡´å•ç‰‡æœºå¤ä½æ—¶è¿›å…¥ ISP æ¨¡å¼ï¼Œæ‰€ä»¥ PIO0_12 åº”
+ *       å•ç‰‡æœºå¤ä½åŽå†è¿žæŽ¥ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am845_core_hw_spi_slave_dma.c src_am845_core_hw_spi_slave_dma
  *
  * \internal
@@ -49,22 +49,22 @@
 #include "demo_nxp_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am845_core_hw_spi_slave_dma_entry (void)
 {
 
-    /* SPI0 Òý½ÅÅäÖÃ */
+    /* SPI0 å¼•è„šé…ç½® */
     am_gpio_pin_cfg(PIO0_10, PIO_FUNC_SPI0_SSEL0);
     am_gpio_pin_cfg(PIO0_17, PIO_FUNC_SPI0_SCK);
     am_gpio_pin_cfg(PIO0_18, PIO_FUNC_SPI0_MOSI);
     am_gpio_pin_cfg(PIO0_19, PIO_FUNC_SPI0_MISO);
 
-    /* Ê¹ÄÜ SPI0 Ê±ÖÓ */
+    /* ä½¿èƒ½ SPI0 æ—¶é’Ÿ */
     amhw_lpc84x_clk_periph_enable(AMHW_LPC84X_CLK_SPI0);
     amhw_lpc84x_syscon_periph_reset(AMHW_LPC84X_RESET_SPI0);
 
-        /* DMA Æ½Ì¨³õÊ¼»¯ */
+        /* DMA å¹³å°åˆå§‹åŒ– */
     amhw_lpc84x_clk_periph_enable(AMHW_LPC84X_CLK_DMA);
   
     demo_lpc824_hw_spi_slave_dma_entry(LPC84X_SPI0,

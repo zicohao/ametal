@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief FlashÄ£¿éµÄÇý¶¯²ãÊµÏÖ
+ * \brief Flashæ¨¡å—çš„é©±åŠ¨å±‚å®žçŽ°
  *
  * \internal
  * \par Modification History
@@ -36,15 +36,15 @@
 #define FALSH_ADDRESS_BASE   0x08000000
 #define FALSH_ADDRESS_SIZE   0x08000000 + FLASH_SIZE
 /******************************************************************************
-*   º¯Êý¶¨Òå
+*   å‡½æ•°å®šä¹‰
 ******************************************************************************/
 
 /**
- * \brief FlashÄ£¿é³õÊ¼»¯
+ * \brief Flashæ¨¡å—åˆå§‹åŒ–
  *
- * \param[in] p_hw_gpio Ö¸ÏòFLASH¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_gpio æŒ‡å‘FLASHå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎÞ
+ * \return æ— 
  */
 void am_zlg_flash_init (amhw_zlg_flash_t *p_hw_flash)
 {
@@ -63,12 +63,12 @@ void am_zlg_flash_init (amhw_zlg_flash_t *p_hw_flash)
 }
 
 /**
- * \brief ²Á³ýÉÈÇø
+ * \brief æ“¦é™¤æ‰‡åŒº
  *
- * \param[in] p_hw_gpio  Ö¸ÏòFLASH¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] start_addr ÉÈÇøµÄÆðÊ¼µØÖ·
+ * \param[in] p_hw_gpio  æŒ‡å‘FLASHå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] start_addr æ‰‡åŒºçš„èµ·å§‹åœ°å€
  *
- * \return > 0: Ö´ÐÐ½á¹û, -AM_EINVAL: ÊäÈëµØÖ·¹ý´ó
+ * \return > 0: æ‰§è¡Œç»“æžœ, -AM_EINVAL: è¾“å…¥åœ°å€è¿‡å¤§
  */
 int32_t am_zlg_flash_sector_erase (amhw_zlg_flash_t *p_hw_flash,
                                    uint32_t             start_addr)
@@ -99,14 +99,14 @@ int32_t am_zlg_flash_sector_erase (amhw_zlg_flash_t *p_hw_flash,
 }
 
 /**
- * \brief ¶ÔÉÈÇø±à³Ì»ò²¿·ÖÉÈÇø±à³Ì
+ * \brief å¯¹æ‰‡åŒºç¼–ç¨‹æˆ–éƒ¨åˆ†æ‰‡åŒºç¼–ç¨‹
  *
- * \param[in] p_hw_gpio Ö¸ÏòFLASH¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] dst_addr  Ð´Èëµ½flashµÄÆðÊ¼µØÖ·
- * \param[in] p_src     ÒªÐ´Èëµ½flashÖÐµÄÊý¾ÝµÄÆðÊ¼µØÖ·
- * \param[in] size      Ð´Èë×Ö(32bit)µÄ¸öÊý
+ * \param[in] p_hw_gpio æŒ‡å‘FLASHå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] dst_addr  å†™å…¥åˆ°flashçš„èµ·å§‹åœ°å€
+ * \param[in] p_src     è¦å†™å…¥åˆ°flashä¸­çš„æ•°æ®çš„èµ·å§‹åœ°å€
+ * \param[in] size      å†™å…¥å­—(32bit)çš„ä¸ªæ•°
  *
- * \retval 0 Êµ¼Ê³É¹¦Ð´ÈëµÄ×ÖÊý
+ * \retval 0 å®žé™…æˆåŠŸå†™å…¥çš„å­—æ•°
  */
 int32_t am_zlg_flash_flash_program (amhw_zlg_flash_t *p_hw_flash,
                                     uint32_t             dst_addr,
@@ -119,7 +119,7 @@ int32_t am_zlg_flash_flash_program (amhw_zlg_flash_t *p_hw_flash,
         dst_addr += FALSH_ADDRESS_BASE;
     }
 
-    /** size²»ÄÜ´óÓÚÉÈÇøµÄ´óÐ¡ */
+    /** sizeä¸èƒ½å¤§äºŽæ‰‡åŒºçš„å¤§å° */
     if (size > SECTOR_SIZE || dst_addr >= FALSH_ADDRESS_SIZE) {
         return -AM_EINVAL;
     }
@@ -131,10 +131,10 @@ int32_t am_zlg_flash_flash_program (amhw_zlg_flash_t *p_hw_flash,
 
     amhw_zlg_flash_cs_reg_set(p_hw_flash, AMHW_ZLG_FLASH_PROGRAM_MASK);
 
-    /** ¶Ôflash±à³Ì */
+    /** å¯¹flashç¼–ç¨‹ */
     for (i = 0; i < size; i++) {
 
-        /** °ë×ÖÐ´Èë */
+        /** åŠå­—å†™å…¥ */
         *(uint16_t *)(dst_addr + i * 4)     = (uint16_t)p_src[i];
         *(uint16_t *)(dst_addr + i * 4 + 2) = (uint16_t)(p_src[i] >> 16);
     }
@@ -145,7 +145,7 @@ int32_t am_zlg_flash_flash_program (amhw_zlg_flash_t *p_hw_flash,
     }
     for (i = 0; i < size; i++) {
 
-       /** °ë×ÖÐ´Èë */
+       /** åŠå­—å†™å…¥ */
       if (p_src[i] != *(uint32_t *)(dst_addr + i * 4)) {
           break;
       }
@@ -154,11 +154,11 @@ int32_t am_zlg_flash_flash_program (amhw_zlg_flash_t *p_hw_flash,
 }
 
 /**
- * \brief ²Á³ýËùÓÐÉÈÇø
+ * \brief æ“¦é™¤æ‰€æœ‰æ‰‡åŒº
  *
- * \param[in] p_hw_gpio Ö¸ÏòFLASH¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_gpio æŒ‡å‘FLASHå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return Ö´ÐÐ½á¹û
+ * \return æ‰§è¡Œç»“æžœ
  *
  */
 uint32_t am_zlg_flash_all_sector_erase (amhw_zlg_flash_t *p_hw_flash)

@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief BootLoader消息（标志驱动）
+ * \brief BootLoader娑堟伅锛堟爣蹇楅┍鍔級
  *
  * \internal
  * \par Modification history

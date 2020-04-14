@@ -12,47 +12,47 @@
 
 /**
  * \file
- * \brief bootloader Ë«ÇøÀý³Ì(¼È¿ÉÒÔ±¾µØÉý¼¶Ò²¿ÉÒÔÔÚÓ¦ÓÃ³ÌÐòÖÐÉý¼¶)¡£
+ * \brief bootloader åŒåŒºä¾‹ç¨‹(æ—¢å¯ä»¥æœ¬åœ°å‡çº§ä¹Ÿå¯ä»¥åœ¨åº”ç”¨ç¨‹åºä¸­å‡çº§)ã€‚
  *
- * - ²Ù×÷²½Öè£¨±¾µØÉý¼¶£©£º
- *   1. eclipse¹¤³Ì´ò¿ªdemo_am217_core_bootloader.ldÎÄ¼þ£¬´ò¿ª:
+ * - æ“ä½œæ­¥éª¤ï¼ˆæœ¬åœ°å‡çº§ï¼‰ï¼š
+ *   1. eclipseå·¥ç¨‹æ‰“å¼€demo_am217_core_bootloader.ldæ–‡ä»¶ï¼Œæ‰“å¼€:
  *
  *       FLASH (rx)  : ORIGIN = 0x08000000, LENGTH = 15k  // double
  *
- *      µÄÅäÖÃ, ÆÁ±ÎÆäËûflashÅäÖÃ¡£
+ *      çš„é…ç½®, å±è”½å…¶ä»–flashé…ç½®ã€‚
  *
- *      keil¹¤³Ì´ò¿ªdemo_am217_core_application.sctÎÄ¼þ£¬´ò¿ªË«ÇøµÄÅäÖÃ£¬ÆÁ±ÎÆäËûÅäÖÃ
+ *      keilå·¥ç¨‹æ‰“å¼€demo_am217_core_application.sctæ–‡ä»¶ï¼Œæ‰“å¼€åŒåŒºçš„é…ç½®ï¼Œå±è”½å…¶ä»–é…ç½®
  *
- *   2. Á¬½Ó¿ª·¢°åºÍÉÏÎ»»ú´®¿ÚÖúÊÖ£¬²¨ÌØÂÊÉèÖÃÎª115200¡££¨Àý³ÌÊ¹ÓÃ´®¿Ú1£©
+ *   2. è¿žæŽ¥å¼€å‘æ¿å’Œä¸Šä½æœºä¸²å£åŠ©æ‰‹ï¼Œæ³¢ç‰¹çŽ‡è®¾ç½®ä¸º115200ã€‚ï¼ˆä¾‹ç¨‹ä½¿ç”¨ä¸²å£1ï¼‰
  *   
- *   3. ¸ø¿ª·¢°åÏÂÔØ±¾¹¤³Ì±àÒëµÄ³ÌÐò£¬¸´Î»¿ª·¢°åÔËÐÐ¡£
+ *   3. ç»™å¼€å‘æ¿ä¸‹è½½æœ¬å·¥ç¨‹ç¼–è¯‘çš„ç¨‹åºï¼Œå¤ä½å¼€å‘æ¿è¿è¡Œã€‚
  *
- *   4. ´®¿ÚÖúÊÖ´òÓ¡5Ãëµ¹¼ÆÊ±£¬ÔÚ5ÃëÄÚÍ¨¹ý´®¿ÚÖúÊÖ·¢ËÍÈÎÒâÊý¾Ý¸ø¿ª·¢°å£¬¿ª·¢°å×¼±¸½ÓÊÕ¹Ì¼þ¡£
+ *   4. ä¸²å£åŠ©æ‰‹æ‰“å°5ç§’å€’è®¡æ—¶ï¼Œåœ¨5ç§’å†…é€šè¿‡ä¸²å£åŠ©æ‰‹å‘é€ä»»æ„æ•°æ®ç»™å¼€å‘æ¿ï¼Œå¼€å‘æ¿å‡†å¤‡æŽ¥æ”¶å›ºä»¶ã€‚
  *
- *   5. ½«´¦ÀíºÃµÄ¹Ì¼þÍ¨¹ý´®¿ÚÖúÊÖ·¢ËÍ¸ø¿ª·¢°å£¨Èç¹ûÔÚ·¢ËÍµÄ¹ý³Ì³ö´í£¬½«ÖØÐÂ½ÓÊÕ¹Ì¼þ£¬ÉÏÎ»»úÖØÐÂ·¢ËÍ£©¡£
+ *   5. å°†å¤„ç†å¥½çš„å›ºä»¶é€šè¿‡ä¸²å£åŠ©æ‰‹å‘é€ç»™å¼€å‘æ¿ï¼ˆå¦‚æžœåœ¨å‘é€çš„è¿‡ç¨‹å‡ºé”™ï¼Œå°†é‡æ–°æŽ¥æ”¶å›ºä»¶ï¼Œä¸Šä½æœºé‡æ–°å‘é€ï¼‰ã€‚
  *
- *   6. ½ÓÊÕ³É¹¦£¬³ÌÐòÌø×ªµ½Ó¦ÓÃ³ÌÐòÖ´ÐÐ£¬´®¿Ú´òÓ¡³öÓ¦ÓÃ³ÌÐòÐÅÏ¢£¬LEDµÆÉÁË¸¡£
+ *   6. æŽ¥æ”¶æˆåŠŸï¼Œç¨‹åºè·³è½¬åˆ°åº”ç”¨ç¨‹åºæ‰§è¡Œï¼Œä¸²å£æ‰“å°å‡ºåº”ç”¨ç¨‹åºä¿¡æ¯ï¼ŒLEDç¯é—ªçƒã€‚
  *
- * - ²Ù×÷²½Öè£¨Ó¦ÓÃÖÐÉý¼¶£©£º
+ * - æ“ä½œæ­¥éª¤ï¼ˆåº”ç”¨ä¸­å‡çº§ï¼‰ï¼š
  *
- *   Ó¦ÓÃÖÐÉý¼¶µÄÇ°ÌáÌõ¼þÊÇÒÑ¾­Í¨¹ý±¾µØÉý¼¶µÄ·½Ê½½«Ë«ÇøÓ¦ÓÃ³ÌÐò¹Ì¼þÏÂÔØµ½ÁË¿ª·¢°åÖÐ£¬²¢³É¹¦ÔËÐÐ¡£
+ *   åº”ç”¨ä¸­å‡çº§çš„å‰ææ¡ä»¶æ˜¯å·²ç»é€šè¿‡æœ¬åœ°å‡çº§çš„æ–¹å¼å°†åŒåŒºåº”ç”¨ç¨‹åºå›ºä»¶ä¸‹è½½åˆ°äº†å¼€å‘æ¿ä¸­ï¼Œå¹¶æˆåŠŸè¿è¡Œã€‚
  *
- *   1. ·¢ËÍÉý¼¶ÃüÁî£º0x5a 0xa6 0x11 0x66 0x0d£¨ÃüÁîÊÇÒÔ16½øÖÆµÄÐÎÊ½·¢ËÍ£¬×¢ÒâÉèÖÃ´®¿ÚÖúÊÖ£©
+ *   1. å‘é€å‡çº§å‘½ä»¤ï¼š0x5a 0xa6 0x11 0x66 0x0dï¼ˆå‘½ä»¤æ˜¯ä»¥16è¿›åˆ¶çš„å½¢å¼å‘é€ï¼Œæ³¨æ„è®¾ç½®ä¸²å£åŠ©æ‰‹ï¼‰
  *   
- *   2. µÈ´ý´®¿ÚÖúÊÖ´òÓ¡ÒÑ¾­×¼±¸½ÓÊÕ¹Ì¼þÐÅÏ¢ºó£¬·¢ËÍ¹Ì¼þ¡£
+ *   2. ç­‰å¾…ä¸²å£åŠ©æ‰‹æ‰“å°å·²ç»å‡†å¤‡æŽ¥æ”¶å›ºä»¶ä¿¡æ¯åŽï¼Œå‘é€å›ºä»¶ã€‚
  *
- *   3. ¹Ì¼þ·¢ËÍ³É¹¦£¬¿ª·¢°åÖØÆô£¬5ÃëÑÓÊ±ºó½øÈ¥ÐÂµÄÓ¦ÓÃ³ÌÐò£¨ÑÓÊ±Ê±¼äÄÚ²»Òª·¢ËÍÈÎºÎÊý¾Ý£©¡£
+ *   3. å›ºä»¶å‘é€æˆåŠŸï¼Œå¼€å‘æ¿é‡å¯ï¼Œ5ç§’å»¶æ—¶åŽè¿›åŽ»æ–°çš„åº”ç”¨ç¨‹åºï¼ˆå»¶æ—¶æ—¶é—´å†…ä¸è¦å‘é€ä»»ä½•æ•°æ®ï¼‰ã€‚
  *
  *
  * \note
- *    ¹Ì¼þ´¦Àí£º
+ *    å›ºä»¶å¤„ç†ï¼š
  *
- *    ´ò¿ªÔÚametal/tools/bootloader/¹Ì¼þÐ£Ñé/ ÎÄ¼þ¼Ð£¬Ä¿Â¼ÏÂÓÐÒ»¸öbin_chek_sum.binµÄÖ´ÐÐÎÄ¼þ£¬
- *    ½«²âÊÔµÄÓ¦ÓÃ¹¤³Ì±àÒë³öµÄbinÎÄ¼þ¿½±´µ½ºÍbin_chek_sum.binÍ¬Ò»¸öÄ¿Â¼ÏÂ£¬
- *    ÔÚ¸ÃÄ¿Â¼ÏÂ´ò¿ªcmd£¬ÔÚÃüÁîÐÐÖÐÒÀ´ÎÊäÈë£º
- *         bin_chek_sum.bin  xxx.bin£¨±àÒëºóµÄbinÎÄ¼þÃû³Æ£© xxx.bin£¨Ä¿±êÊä³öÎÄ¼þ£¬Ãû×ÖÈÎÒâÈ¡£©
+ *    æ‰“å¼€åœ¨ametal/tools/bootloader/å›ºä»¶æ ¡éªŒ/ æ–‡ä»¶å¤¹ï¼Œç›®å½•ä¸‹æœ‰ä¸€ä¸ªbin_chek_sum.binçš„æ‰§è¡Œæ–‡ä»¶ï¼Œ
+ *    å°†æµ‹è¯•çš„åº”ç”¨å·¥ç¨‹ç¼–è¯‘å‡ºçš„binæ–‡ä»¶æ‹·è´åˆ°å’Œbin_chek_sum.binåŒä¸€ä¸ªç›®å½•ä¸‹ï¼Œ
+ *    åœ¨è¯¥ç›®å½•ä¸‹æ‰“å¼€cmdï¼Œåœ¨å‘½ä»¤è¡Œä¸­ä¾æ¬¡è¾“å…¥ï¼š
+ *         bin_chek_sum.bin  xxx.binï¼ˆç¼–è¯‘åŽçš„binæ–‡ä»¶åç§°ï¼‰ xxx.binï¼ˆç›®æ ‡è¾“å‡ºæ–‡ä»¶ï¼Œåå­—ä»»æ„å–ï¼‰
  *
- *    Ö´ÐÐÃüÁîºó»áÉú³ÉÒ»¸öÓÉÓÃ»§×Ô¼ºÈ¡ÃûµÄÄ¿±êÊä³öÎÄ¼þ£¬Õâ¸öÎÄ¼þ¾ÍÊÇÐèÒª·¢ËÍµÄ¹Ì¼þ¡£
+ *    æ‰§è¡Œå‘½ä»¤åŽä¼šç”Ÿæˆä¸€ä¸ªç”±ç”¨æˆ·è‡ªå·±å–åçš„ç›®æ ‡è¾“å‡ºæ–‡ä»¶ï¼Œè¿™ä¸ªæ–‡ä»¶å°±æ˜¯éœ€è¦å‘é€çš„å›ºä»¶ã€‚
  *
  * \internal
  * \par Modification History
@@ -76,7 +76,7 @@ void demo_zlg217_core_double_bootloader_uart_entry (void)
     am_uart_handle_t           uart_handle;
     am_boot_firmware_handle_t  firmware_handle;
 
-    /* bootloader ±ê×¼½Ó¿Ú³õÊ¼»¯  */
+    /* bootloader æ ‡å‡†æŽ¥å£åˆå§‹åŒ–  */
     am_zlg217_boot_double_inst_init();
 
     firmware_handle = am_zlg217_boot_double_firmware_flash_inst_init();

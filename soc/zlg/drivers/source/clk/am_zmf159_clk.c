@@ -74,7 +74,7 @@ static int __apb2_peri_clk (int peri)
         }
         break;
 
-    case AMHW_ZMF159_RCC_APB2_ADC1: /* ADCÄÚ²¿ÓÐ·ÖÆµÆ÷ */
+    case AMHW_ZMF159_RCC_APB2_ADC1: /* ADCå†…éƒ¨æœ‰åˆ†é¢‘å™¨ */
         clk = __gp_dev->apb2_clk;
         break;
 
@@ -184,7 +184,7 @@ static int __other_clk (am_clk_id_t clk_id)
 }
 
 /**
- * \brief »ñÈ¡Ê±ÖÓÆµÂÊ
+ * \brief èŽ·å–æ—¶é’Ÿé¢‘çŽ‡
  */
 int am_clk_rate_get (am_clk_id_t clk_id)
 {
@@ -262,7 +262,7 @@ int am_clk_rate_get (am_clk_id_t clk_id)
 }
 
 /**
- * \brief Ê¹ÄÜÖ¸¶¨µÄÏµÍ³»òÍâÉèÊ±ÖÓ
+ * \brief ä½¿èƒ½æŒ‡å®šçš„ç³»ç»Ÿæˆ–å¤–è®¾æ—¶é’Ÿ
  */
 int am_clk_enable (am_clk_id_t clk_id)
 {
@@ -293,7 +293,7 @@ int am_clk_enable (am_clk_id_t clk_id)
 }
 
 /**
- * \brief ½ûÄÜÖ¸¶¨µÄÏµÍ³»òÍâÉèÊ±ÖÓ
+ * \brief ç¦èƒ½æŒ‡å®šçš„ç³»ç»Ÿæˆ–å¤–è®¾æ—¶é’Ÿ
  */
 int am_clk_disable (am_clk_id_t clk_id)
 {
@@ -420,7 +420,7 @@ int am_zmf159_div_get (am_clk_id_t clk_id)
 }
 
 /**
- * \brief CLK ³õÊ¼»¯
+ * \brief CLK åˆå§‹åŒ–
  */
 int am_zmf159_clk_init (am_zmf159_clk_dev_t           *p_dev,
                         const am_zmf159_clk_devinfo_t *p_devinfo)
@@ -439,7 +439,7 @@ int am_zmf159_clk_init (am_zmf159_clk_dev_t           *p_dev,
 
     if (p_devinfo->pllin_src == AMHW_ZMF159_PLLCLK_HSE) {
 
-        /* CLKÆ½Ì¨³õÊ¼»¯£¬ÅäÖÃÊ±ÖÓÒý½Å */
+        /* CLKå¹³å°åˆå§‹åŒ–ï¼Œé…ç½®æ—¶é’Ÿå¼•è„š */
         if (p_devinfo->pfn_plfm_init) {
             p_devinfo->pfn_plfm_init();
         }
@@ -452,7 +452,7 @@ int am_zmf159_clk_init (am_zmf159_clk_dev_t           *p_dev,
                         p_devinfo->pll_mul /
                         p_devinfo->pll_div;
 
-    /* ¼ÆËãAHBÊ±ÖÓÆµÂÊ */
+    /* è®¡ç®—AHBæ—¶é’Ÿé¢‘çŽ‡ */
     if (p_devinfo->ahb1_div < 12) {
         for (i = 0; i < p_devinfo->ahb1_div - 7; i++) {
             div = div << 1;
@@ -466,14 +466,14 @@ int am_zmf159_clk_init (am_zmf159_clk_dev_t           *p_dev,
     p_dev->ahb1_clk = p_dev->pllout_clk / div;
     p_dev->usb_clk = p_dev->pllout_clk / (p_dev->p_devinfo->usb_div + 1);
 
-    /* ¼ÆËãAPB1Ê±ÖÓÆµÂÊ */
+    /* è®¡ç®—APB1æ—¶é’Ÿé¢‘çŽ‡ */
     div = 1;
     for (i = 0; i < (p_devinfo->apb1_div & 0x7); i++) {
         div = div << 1;
     }
     p_dev->apb1_clk = p_dev->ahb1_clk / div;
 
-    /* ¼ÆËãAPB2Ê±ÖÓÆµÂÊ */
+    /* è®¡ç®—APB2æ—¶é’Ÿé¢‘çŽ‡ */
     div = 1;
     for (i = 0; i < (p_devinfo->apb2_div & 0x7); i++) {
         div = div << 1;
@@ -499,7 +499,7 @@ int am_zmf159_clk_init (am_zmf159_clk_dev_t           *p_dev,
 
     amhw_zmf159_rcc_pll_enable();
 
-    while (amhw_zmf159_rcc_pllrdy_read() == AM_FALSE); /* µÈ´ýpll¾ÍÐ÷ */
+    while (amhw_zmf159_rcc_pllrdy_read() == AM_FALSE); /* ç­‰å¾…pllå°±ç»ª */
 
     amhw_zmf159_rcc_sys_clk_set(AMHW_ZMF159_SYSCLK_PLL);
 

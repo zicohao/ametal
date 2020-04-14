@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief Í¨ÓÃÊıÂë¹ÜÉè±¸¹ÜÀí
+ * \brief é€šç”¨æ•°ç ç®¡è®¾å¤‡ç®¡ç†
  *
  * \internal
  * \par modification history:
@@ -36,86 +36,86 @@ extern "C" {
  */
 
 /**
- * \brief Í¨ÓÃÊıÂë¹Ü²Ù×÷½Ó¿Ú
- * \note ÈôÄ³Ò»Ïî¹¦ÄÜ²»Ö§³Ö£¬Ôò¿ÉÒÔÉèÖÃÎªNULL
+ * \brief é€šç”¨æ•°ç ç®¡æ“ä½œæ¥å£
+ * \note è‹¥æŸä¸€é¡¹åŠŸèƒ½ä¸æ”¯æŒï¼Œåˆ™å¯ä»¥è®¾ç½®ä¸ºNULL
  */
 typedef struct am_digitron_disp_ops {
 
-    /** \brief ÉèÖÃ½âÂëº¯Êı½Ó¿Ú */
+    /** \brief è®¾ç½®è§£ç å‡½æ•°æ¥å£ */
     int (*pfn_decode_set) (void *p_cookie, uint16_t (*pfn_decode) (uint16_t ch));
 
-    /** \brief ÉèÖÃÊıÂë¹ÜÉÁË¸ */
+    /** \brief è®¾ç½®æ•°ç ç®¡é—ªçƒ */
     int (*pfn_blink_set)(void *p_cookie, int index, am_bool_t blink);
 
-    /** \brief ÏÔÊ¾¶ÎÂë */
+    /** \brief æ˜¾ç¤ºæ®µç  */
     int (*pfn_disp_at)(void *p_cookie, int index, uint16_t seg);
 
-    /** \brief ÏÔÊ¾×Ö·û */
+    /** \brief æ˜¾ç¤ºå­—ç¬¦ */
     int (*pfn_disp_char_at)(void *p_cookie, int index, const char ch);
 
-    /** \brief ÏÔÊ¾×Ö·û´® */
+    /** \brief æ˜¾ç¤ºå­—ç¬¦ä¸² */
     int (*pfn_disp_str)(void *p_cookie, int index, int len, const char *p_str);
 
-    /** \brief ÇåÆÁ*/
+    /** \brief æ¸…å±*/
     int (*pfn_clr)(void *p_cookie);
 
-    /** \brief Ê¹ÄÜ */
+    /** \brief ä½¿èƒ½ */
     int (*pfn_enable)(void *p_cookie);
 
-    /** \brief ½ûÄÜ */
+    /** \brief ç¦èƒ½ */
     int (*pfn_disable)(void *p_cookie);
 
 } am_digitron_disp_ops_t;
 
 /**
- * \brief Í¨ÓÃÊıÂë¹ÜÏÔÊ¾Æ÷ĞÅÏ¢£¨Ò»¸öÊıÂë¹ÜÏÔÊ¾Æ÷¿ÉÄÜ°üº¬Ò»¸ö»ò¶à¸öÊıÂë¹ÜÎ»£©
+ * \brief é€šç”¨æ•°ç ç®¡æ˜¾ç¤ºå™¨ä¿¡æ¯ï¼ˆä¸€ä¸ªæ•°ç ç®¡æ˜¾ç¤ºå™¨å¯èƒ½åŒ…å«ä¸€ä¸ªæˆ–å¤šä¸ªæ•°ç ç®¡ä½ï¼‰
  */
 typedef struct am_digitron_devinfo {
 
-    uint8_t         id;        /**< \brief ÊıÂë¹ÜÏÔÊ¾Æ÷±àºÅ */
+    uint8_t         id;        /**< \brief æ•°ç ç®¡æ˜¾ç¤ºå™¨ç¼–å· */
 
 } am_digitron_devinfo_t;
 
 /**
- * \brief Í¨ÓÃÊıÂë¹ÜÉè±¸
+ * \brief é€šç”¨æ•°ç ç®¡è®¾å¤‡
  */
 typedef struct am_digitron_dev {
-    const am_digitron_disp_ops_t *p_ops;     /**< \brief Çı¶¯º¯Êı  */
-    void                         *p_cookie;  /**< \brief Çı¶¯º¯Êı²ÎÊı */
-    const am_digitron_devinfo_t  *p_info;    /**< \brief ÊıÂë¹ÜÏÔÊ¾Æ÷±àºÅ */
-    struct am_digitron_dev       *p_next;    /**< \brief ÏÂÒ»¸öÊıÂë¹ÜÏÔÊ¾Æ÷ */
+    const am_digitron_disp_ops_t *p_ops;     /**< \brief é©±åŠ¨å‡½æ•°  */
+    void                         *p_cookie;  /**< \brief é©±åŠ¨å‡½æ•°å‚æ•° */
+    const am_digitron_devinfo_t  *p_info;    /**< \brief æ•°ç ç®¡æ˜¾ç¤ºå™¨ç¼–å· */
+    struct am_digitron_dev       *p_next;    /**< \brief ä¸‹ä¸€ä¸ªæ•°ç ç®¡æ˜¾ç¤ºå™¨ */
 } am_digitron_dev_t;
 
 /** 
- * \brief ÊıÂë¹ÜÉè±¸¿â¹ÜÀí³õÊ¼»¯
- * \retval AM_OK : ÊıÂë¹ÜÉè±¸¿â¹ÜÀí³õÊ¼»¯¿â³õÊ¼»¯³É¹¦
+ * \brief æ•°ç ç®¡è®¾å¤‡åº“ç®¡ç†åˆå§‹åŒ–
+ * \retval AM_OK : æ•°ç ç®¡è®¾å¤‡åº“ç®¡ç†åˆå§‹åŒ–åº“åˆå§‹åŒ–æˆåŠŸ
  */
 int am_digitron_dev_lib_init (void);
 
 /**
- * \brief Ìí¼ÓÒ»¸öÊıÂë¹ÜÉè±¸
+ * \brief æ·»åŠ ä¸€ä¸ªæ•°ç ç®¡è®¾å¤‡
  *
- * \param[in] p_dd     : ÊıÂë¹ÜÉè±¸ÊµÀı
- * \param[in] p_info   £ºÊıÂë¹ÜÉè±¸ĞÅÏ¢£¨°üº¬ÊıÂë¹ÜÉè±¸µÄ±àºÅµÈ£©
- * \param[in] p_ops    : ÊıÂë¹ÜÉè±¸µÄÇı¶¯º¯Êı
- * \param[in] p_cookie : Çı¶¯º¯ÊıµÄ²ÎÊı
+ * \param[in] p_dd     : æ•°ç ç®¡è®¾å¤‡å®ä¾‹
+ * \param[in] p_info   ï¼šæ•°ç ç®¡è®¾å¤‡ä¿¡æ¯ï¼ˆåŒ…å«æ•°ç ç®¡è®¾å¤‡çš„ç¼–å·ç­‰ï¼‰
+ * \param[in] p_ops    : æ•°ç ç®¡è®¾å¤‡çš„é©±åŠ¨å‡½æ•°
+ * \param[in] p_cookie : é©±åŠ¨å‡½æ•°çš„å‚æ•°
  *
- * \retval AM_OK      : Ìí¼Ó³É¹¦
- * \retval -AM_EINVAL £ºÌí¼ÓÊ§°Ü£¬²ÎÊı´æÔÚ´íÎó
- * \retval -AM_EPERM  : Ìí¼ÓÊ§°Ü£¬¸Ã±àºÅµÄÉè±¸ÒÑ¾­´æÔÚ
+ * \retval AM_OK      : æ·»åŠ æˆåŠŸ
+ * \retval -AM_EINVAL ï¼šæ·»åŠ å¤±è´¥ï¼Œå‚æ•°å­˜åœ¨é”™è¯¯
+ * \retval -AM_EPERM  : æ·»åŠ å¤±è´¥ï¼Œè¯¥ç¼–å·çš„è®¾å¤‡å·²ç»å­˜åœ¨
  */
 int am_digitron_dev_add (am_digitron_dev_t            *p_dd,
                          const am_digitron_devinfo_t  *p_info,
                          const am_digitron_disp_ops_t *p_ops,
                          void                         *p_cookie);
 /**
- * \brief É¾³ıÒ»¸öÊıÂë¹ÜÉè±¸
+ * \brief åˆ é™¤ä¸€ä¸ªæ•°ç ç®¡è®¾å¤‡
  *
- * \param[in] p_dd     : ÊıÂë¹ÜÉè±¸ÊµÀı
+ * \param[in] p_dd     : æ•°ç ç®¡è®¾å¤‡å®ä¾‹
  *
- * \retval AM_OK      : É¾³ı³É¹¦
- * \retval -AM_EINVAL £ºÉ¾³ıÊ§°Ü£¬²ÎÊı´æÔÚ´íÎó
- * \retval -AM_ENODEV : É¾³ıÊ§°Ü£¬ÎŞ´Ë²ÎÊı
+ * \retval AM_OK      : åˆ é™¤æˆåŠŸ
+ * \retval -AM_EINVAL ï¼šåˆ é™¤å¤±è´¥ï¼Œå‚æ•°å­˜åœ¨é”™è¯¯
+ * \retval -AM_ENODEV : åˆ é™¤å¤±è´¥ï¼Œæ— æ­¤å‚æ•°
  */
 int am_digitron_dev_del (am_digitron_dev_t *p_dd);
 

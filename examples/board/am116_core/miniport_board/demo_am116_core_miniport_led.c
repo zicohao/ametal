@@ -12,18 +12,18 @@
 
 /**
  * \file
- * \brief MiniPort-LED Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MiniPort-LED ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè
- *   1. ½« MiniPort-LED °å×ÓÖ±½ÓÓë AM116-Core µÄ MiniPort½Ó¿ÚÏàÁ¬½Ó¡£
+ * - æ“ä½œæ­¥éª¤
+ *   1. å°† MiniPort-LED æ¿å­ç›´æ¥ä¸ AM116-Core çš„ MiniPortæ¥å£ç›¸è¿æ¥ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Á÷Ë®µÆÏÖÏó¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. æµæ°´ç¯ç°è±¡ã€‚
  *
- * - ×¢Òâ£º
- *   1. ÒªÊ¹ÓÃ¸ÃÀı³Ì£¬ĞèÒªÔÚ am_prj_config.h ÀïÃæ½« AM_CFG_LED_ENABLE ¶¨ÒåÎª 0¡£
+ * - æ³¨æ„ï¼š
+ *   1. è¦ä½¿ç”¨è¯¥ä¾‹ç¨‹ï¼Œéœ€è¦åœ¨ am_prj_config.h é‡Œé¢å°† AM_CFG_LED_ENABLE å®šä¹‰ä¸º 0ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am116_core_miniport_led.c src_am116_core_miniport_led
  *
  * \internal
@@ -45,7 +45,7 @@
 #include "demo_am116_core_entries.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am116_core_miniport_led_entry (void)
 {

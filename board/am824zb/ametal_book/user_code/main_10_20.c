@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥10.20
+ * \brief ç¨‹åºæ¸…å•10.20
  *
- * \note ¸ÃÀú³ÌĞèÒªÓÃµ½miniportÍØÕ¹°å,¿ÉÒÔÓÃLED¿´Ğ§¹û
+ * \note è¯¥å†ç¨‹éœ€è¦ç”¨åˆ°miniportæ‹“å±•æ¿,å¯ä»¥ç”¨LEDçœ‹æ•ˆæœ
  * 
  * \internal
  * \par Modification history
@@ -47,14 +47,14 @@ int am_main (void)
 	  zm516x_handle           = am_zm516x_inst_init();
 	
     am_temp_handle_t     	temp_handle     = am_temp_lm75_inst_init();
-    // ³õÊ¼»¯£¬²¢ÉèÖÃ8¶ÎASCII½âÂë
+    // åˆå§‹åŒ–ï¼Œå¹¶è®¾ç½®8æ®µASCIIè§£ç 
     am_miniport_view_key_inst_init();
     am_digitron_disp_decode_set(0, am_digitron_seg8_ascii_decode);
 	  
     am_temp_read(temp_handle, &temp_cur);
-    // ³õÊ¼»¯ÎÂ¿ØÆ÷Ä£ĞÍ£¬³õÊ¼ÏÂÏŞÖµ 10£¬ÉÏÏŞÖµ40
+    // åˆå§‹åŒ–æ¸©æ§å™¨æ¨¡å‹ï¼Œåˆå§‹ä¸‹é™å€¼ 10ï¼Œä¸Šé™å€¼40
     model_temp_monitor_init(&model_temp, 10, 40, temp_cur / 1000.0f);
-    // ÊÓÍ¼³õÊ¼»¯
+    // è§†å›¾åˆå§‹åŒ–
     view_digitron_init(&view_digitron, 0);
 	 
     view_zigbee_init1(&view_zigbee, zm516x_handle);
@@ -66,7 +66,7 @@ int am_main (void)
     model_attach(&(model_temp.isa), &(view_digitron.isa));
 		
     while (1) {
-        // Ã¿¸ô500ms¶ÁÈ¡Ò»´ÎÎÂ¶ÈÖµ
+        // æ¯éš”500msè¯»å–ä¸€æ¬¡æ¸©åº¦å€¼
         am_temp_read(temp_handle, &temp_cur);
         model_temp_monitor_cur_set(&model_temp, temp_cur / 1000.0f);
 

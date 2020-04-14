@@ -11,20 +11,20 @@
 *******************************************************************************/
 /**
  * \file
- * \brief SPI´Ó»úÑİÊ¾Àı³Ì£¬Í¨¹ıHW²ãµÄ½Ó¿ÚÊµÏÖ
+ * \brief SPIä»æœºæ¼”ç¤ºä¾‹ç¨‹ï¼Œé€šè¿‡HWå±‚çš„æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè:
- *   1. ½«SPI´Ó»ú½Ó¿ÚºÍÖ÷»ú½Ó¿Ú¶ÔÓ¦Á¬½ÓÆğÀ´;
- *   2. ½«³ÌĞòÏÂÔØµ½demo°å£¬ÖØĞÂÉÏµç»òÕß¸´Î»¡£
+ * - æ“ä½œæ­¥éª¤:
+ *   1. å°†SPIä»æœºæ¥å£å’Œä¸»æœºæ¥å£å¯¹åº”è¿æ¥èµ·æ¥;
+ *   2. å°†ç¨‹åºä¸‹è½½åˆ°demoæ¿ï¼Œé‡æ–°ä¸Šç”µæˆ–è€…å¤ä½ã€‚
  *
- * - ÊµÑéÏÖÏó:
- *   1. ´Ó»ú½ÓÊÕÖ÷»úÊı¾İ£¬²¢Í¨¹ı´®¿Ú½«½ÓÊÕµ½µÄÊı¾İ´òÓ¡³öÀ´£»
- *   2. ´Ó»ú·¢ËÍÊı¾İµ½Ö÷»ú£¬²¢Í¨¹ı´®¿Ú½«·¢ËÍµÄÊı¾İ´òÓ¡³öÀ´£»
+ * - å®éªŒç°è±¡:
+ *   1. ä»æœºæ¥æ”¶ä¸»æœºæ•°æ®ï¼Œå¹¶é€šè¿‡ä¸²å£å°†æ¥æ”¶åˆ°çš„æ•°æ®æ‰“å°å‡ºæ¥ï¼›
+ *   2. ä»æœºå‘é€æ•°æ®åˆ°ä¸»æœºï¼Œå¹¶é€šè¿‡ä¸²å£å°†å‘é€çš„æ•°æ®æ‰“å°å‡ºæ¥ï¼›
  *
- * - ×¢Òâ£º
- *   1. ĞèÒªÊ¹ÓÃÆäËûÉè±¸³äµ±Ö÷»ú¡£
+ * - æ³¨æ„ï¼š
+ *   1. éœ€è¦ä½¿ç”¨å…¶ä»–è®¾å¤‡å……å½“ä¸»æœºã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_fsl_hw_spi_slave.c src_fsl_hw_spi_slave
  *
  * \internal
@@ -47,25 +47,25 @@
 
 
 /**
- * \brief SPI´Ó»ú³õÊ¼»¯£¨8bitÊı¾İ¿í¶È SPI_MODE1£©
+ * \brief SPIä»æœºåˆå§‹åŒ–ï¼ˆ8bitæ•°æ®å®½åº¦ SPI_MODE1ï¼‰
  */
 static void __spi_slv_init (amhw_fsl_spi_t *p_hw_spi)
 {
-    /* ÅäÖÃSPIÎª´Ó»ú */
+    /* é…ç½®SPIä¸ºä»æœº */
     amhw_fsl_spi_workmode_cfg(p_hw_spi, AMHW_FSL_SPI_WMODE_SLAVE);
 
-    /* ÅäÖÃ8bitÊı¾İ¿í¶È */
+    /* é…ç½®8bitæ•°æ®å®½åº¦ */
     amhw_fsl_spi_feature_cfg(p_hw_spi, AMHW_FSL_SPI_CFG_8BIT_WIDTH);
 
-    /* ÅäÖÃÊ±ÖÓÏàÎ»ºÍ¼«ĞÔ */
+    /* é…ç½®æ—¶é’Ÿç›¸ä½å’Œææ€§ */
     amhw_fsl_spi_mode_cfg(p_hw_spi, AMHW_FSL_SPI_MODE_1);
 
-    /* Ê¹ÄÜSPIÄ£¿é */
+    /* ä½¿èƒ½SPIæ¨¡å— */
     amhw_fsl_spi_enable(p_hw_spi);
 }
 
 /**
- * \brief SPI´Ó»ú·¢ËÍÊı¾İ
+ * \brief SPIä»æœºå‘é€æ•°æ®
  */
 static void __spi_slv_send (amhw_fsl_spi_t  *p_hw_spi,
                             uint8_t         *p_buf,
@@ -82,7 +82,7 @@ static void __spi_slv_send (amhw_fsl_spi_t  *p_hw_spi,
 }
 
 /**
- * \brief SPI´Ó»ú½ÓÊÕÊı¾İ
+ * \brief SPIä»æœºæ¥æ”¶æ•°æ®
  */
 static void __spi_slv_recv (amhw_fsl_spi_t  *p_hw_spi,
                             uint8_t         *p_buf,
@@ -99,7 +99,7 @@ static void __spi_slv_recv (amhw_fsl_spi_t  *p_hw_spi,
 
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_fsl_hw_spi_slave_entry (amhw_fsl_spi_t *p_hw_spi)
 {
@@ -108,17 +108,17 @@ void demo_fsl_hw_spi_slave_entry (amhw_fsl_spi_t *p_hw_spi)
     uint8_t length =32;
     uint8_t i;
 
-    /* SPI ´Ó»ú³õÊ¼»¯ */
+    /* SPI ä»æœºåˆå§‹åŒ– */
     __spi_slv_init(p_hw_spi);
 
-    /* ¹¹Ôì·¢ËÍµÄÊı¾İ */
+    /* æ„é€ å‘é€çš„æ•°æ® */
     for (i = 0; i < length; i++) {
         spi_slv_txbuf[i] = i;
     }
 
 
     while (1) {
-        /* ´Ó»ú·¢ËÍÊı¾İµ½Ö÷»ú */
+        /* ä»æœºå‘é€æ•°æ®åˆ°ä¸»æœº */
         __spi_slv_send(p_hw_spi, spi_slv_txbuf, length);
         AM_DBG_INFO("\r\n--Slave transmit Data:\r\n");
         for (i = 0; i < length; i++) {

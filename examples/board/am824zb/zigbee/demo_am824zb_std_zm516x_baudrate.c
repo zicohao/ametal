@@ -13,26 +13,26 @@
 
 /**
  * \file
- * \brief ZM516X Ä£¿é×Ô¶¯²¨ÌØÂÊÀý³Ì£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief ZM516X æ¨¡å—è‡ªåŠ¨æ³¢ç‰¹çŽ‡ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. µ¥Æ¬»ú·Ö±ð³¢ÊÔÍ¨¹ý 2400¡¢4800¡¢9600¡¢19200¡¢38400¡¢57600 ºÍ 115200 µÄ²¨ÌØ
- *      ÂÊÁ¬½Ó ZM516X Ä£¿é£»
- *   2. Èç¹ûÁ¬½Ó³É¹¦£¬Í¨¹ý´®¿Ú´òÓ¡µ±Ç°µÄ²¨ÌØÂÊ²¢ÇÒ LED0 ³¤ÁÁ£¬·ñÔò LED0 ÉÁË¸¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. å•ç‰‡æœºåˆ†åˆ«å°è¯•é€šè¿‡ 2400ã€4800ã€9600ã€19200ã€38400ã€57600 å’Œ 115200 çš„æ³¢ç‰¹
+ *      çŽ‡è¿žæŽ¥ ZM516X æ¨¡å—ï¼›
+ *   2. å¦‚æžœè¿žæŽ¥æˆåŠŸï¼Œé€šè¿‡ä¸²å£æ‰“å°å½“å‰çš„æ³¢ç‰¹çŽ‡å¹¶ä¸” LED0 é•¿äº®ï¼Œå¦åˆ™ LED0 é—ªçƒã€‚
  *
  * \note
- *    1. LED0 ÐèÒª¶Ì½Ó J9 ÌøÏßÃ±£¬²ÅÄÜ±» PIO0_8 ¿ØÖÆ£»
- *    2. ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIO0_0 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *       PIO0_4 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD£»
- *    3. ZigBee Ä£¿éÄÚÁ¬½Ó¹ØÏµÈçÏÂ£º
+ *    1. LED0 éœ€è¦çŸ­æŽ¥ J9 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIO0_8 æŽ§åˆ¶ï¼›
+ *    2. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO0_0 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *       PIO0_4 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDï¼›
+ *    3. ZigBee æ¨¡å—å†…è¿žæŽ¥å…³ç³»å¦‚ä¸‹ï¼š
  * <pre>
  *           PIO0_26  <-->  ZigBee_TX
  *           PIO0_27  <-->  ZigBee_RX
  *           PIO0_28  <-->  ZigBee_RST
  * </pre>
- *        Èç¹ûÐèÒªÊ¹ÓÃ ZigBee£¬ÕâÐ© IO ¿Ú²»ÄÜÓÃ×÷ÆäËüÓÃÍ¾¡£
+ *        å¦‚æžœéœ€è¦ä½¿ç”¨ ZigBeeï¼Œè¿™äº› IO å£ä¸èƒ½ç”¨ä½œå…¶å®ƒç”¨é€”ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am824zb_std_zm516x_baudrate.c src_am824zb_std_zm516x_baudrate
  *
  * \internal
@@ -54,7 +54,7 @@
 #include "am_lpc82x_inst_init.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am824zb_std_zm516x_baudrate_entry (void)
 {

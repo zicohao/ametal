@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief GPIOÇı¶¯£¬·şÎñGPIO±ê×¼½Ó¿Ú
+ * \brief GPIOé©±åŠ¨ï¼ŒæœåŠ¡GPIOæ ‡å‡†æ¥å£
  *
  * \internal
  * \par Modification history
@@ -31,25 +31,25 @@
 #include "zlg217_pin.h"
 
 /*******************************************************************************
-* Ë½ÓĞ¶¨Òå
+* ç§æœ‰å®šä¹‰
 *******************************************************************************/
 
-/** \brief ÖĞ¶ÏÎ´Á¬½Ó±êÊ¶ */
+/** \brief ä¸­æ–­æœªè¿æ¥æ ‡è¯† */
 #define AM_ZLG217_GPIO_INVALID_PIN_MAP    0xFF
 
-/** \brief ¶¨ÒåÖ¸ÏòGPIOÉè±¸ĞÅÏ¢µÄÖ¸Õë */
+/** \brief å®šä¹‰æŒ‡å‘GPIOè®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ */
 #define __GPIO_DEVINFO_DECL(p_gpio_devinfo, p_dev)  \
         const am_zlg217_gpio_devinfo_t *p_gpio_devinfo = p_dev->p_devinfo
 
 /******************************************************************************
-  È«¾Ö±äÁ¿
+  å…¨å±€å˜é‡
 ******************************************************************************/
 
-/** \bruef Ö¸ÏòGPIOÉè±¸µÄÖ¸Õë */
+/** \bruef æŒ‡å‘GPIOè®¾å¤‡çš„æŒ‡é’ˆ */
 am_zlg217_gpio_dev_t *__gp_gpio_dev;
 
 /*******************************************************************************
-  ¹«¹²º¯Êı
+  å…¬å…±å‡½æ•°
 *******************************************************************************/
 
 static int __am_zlg217_peripheral_remap_clear(int pin)
@@ -70,12 +70,12 @@ static int __am_zlg217_peripheral_remap_clear(int pin)
         return -AM_ENXIO;
     }
 
-    /* JATG / SWD Òı½ÅÑ¡ÔñĞÔ¹Ø±Õ */
+    /* JATG / SWD å¼•è„šé€‰æ‹©æ€§å…³é—­ */
     if (peripheral != AMHW_ZLG217_SWJ_CFG) {
 
         /*
-         * ½«ÍâÉèÔÚGPIOÖĞÖØÓ³ÏñµÄ¸Ä×éÒı½ÅÈ«²¿ÖØÖÃÎªAMHW_ZLG217_NO_REMAP
-         * ±íÃ÷¸Ä×éÒı½ÅÏÖÔÚÒÑÃ»ÓĞÖØÓ³Ïñ
+         * å°†å¤–è®¾åœ¨GPIOä¸­é‡æ˜ åƒçš„æ”¹ç»„å¼•è„šå…¨éƒ¨é‡ç½®ä¸ºAMHW_ZLG217_NO_REMAP
+         * è¡¨æ˜æ”¹ç»„å¼•è„šç°åœ¨å·²æ²¡æœ‰é‡æ˜ åƒ
          */
 
         for (i = 0 ; i < p_gpio_devinfo->pin_count ; i++) {
@@ -90,7 +90,7 @@ static int __am_zlg217_peripheral_remap_clear(int pin)
          * JTDI       -- PA15   JTDO/TRACESWO -- PB3
          * JNTRST     -- PB4
          *
-         * 0  --  ÎŞ¿ÉÓÃÒı½Å
+         * 0  --  æ— å¯ç”¨å¼•è„š
          * 1  --  PB4
          * 2  --  PB3/PB4/PA15
          * 7  --  PB3/PB4/PA15/PA14/PA13
@@ -99,20 +99,20 @@ static int __am_zlg217_peripheral_remap_clear(int pin)
 
             amhw_zlg217_afio_swj_cfg_remap_mode_set(p_hw_afio, AMHW_ZLG217_AFIO_SWJ_CFG_7);
 
-            /* Çå³ıÒı½ÅÖØÓ³ÏñĞÅÏ¢ */
+            /* æ¸…é™¤å¼•è„šé‡æ˜ åƒä¿¡æ¯ */
             for (i = PIOA_13 ; i < PIOB_5 ; i++) {
                 if (p_gpio_devinfo->p_remap[i] == AMHW_ZLG217_SWJ_CFG) {
                     p_gpio_devinfo->p_remap[i] = AMHW_ZLG217_NO_REMAP;
                 }
             }
 
-            /* Èç¹ûÊ¹ÓÃA15/B3 ÇÒÄ£Ê½²»ÊÇÎ»ÓÚ7 */
+            /* å¦‚æœä½¿ç”¨A15/B3 ä¸”æ¨¡å¼ä¸æ˜¯ä½äº7 */
         } else if (((PIOA_15 == pin) || (PIOB_3 == pin)) &&
                  (p_gpio_devinfo->p_remap[PIOA_13] != AMHW_ZLG217_NO_REMAP)){
 
             amhw_zlg217_afio_swj_cfg_remap_mode_set(p_hw_afio, AMHW_ZLG217_AFIO_SWJ_CFG_2);
 
-            /* Çå³ıÒı½ÅÖØÓ³ÏñĞÅÏ¢ */
+            /* æ¸…é™¤å¼•è„šé‡æ˜ åƒä¿¡æ¯ */
             p_gpio_devinfo->p_remap[PIOB_3]  = AMHW_ZLG217_NO_REMAP;
             p_gpio_devinfo->p_remap[PIOB_4]  = AMHW_ZLG217_NO_REMAP;
             p_gpio_devinfo->p_remap[PIOA_15] = AMHW_ZLG217_NO_REMAP;
@@ -122,12 +122,12 @@ static int __am_zlg217_peripheral_remap_clear(int pin)
 
             amhw_zlg217_afio_swj_cfg_remap_mode_set(p_hw_afio, AMHW_ZLG217_AFIO_SWJ_CFG_1);
 
-            /* Çå³ıÒı½ÅÖØÓ³ÏñĞÅÏ¢ */
+            /* æ¸…é™¤å¼•è„šé‡æ˜ åƒä¿¡æ¯ */
             p_gpio_devinfo->p_remap[PIOB_4]  = AMHW_ZLG217_NO_REMAP;
         }
     }
 
-    /* ¹Ø±ÕÍâÉèÖØÓ³Ïñ */
+    /* å…³é—­å¤–è®¾é‡æ˜ åƒ */
     switch (peripheral) {
 
     case AMHW_ZLG217_SPI1_REMAP:
@@ -177,12 +177,12 @@ static int __am_zlg217_peripheral_remap_clear(int pin)
 }
 
 /**
- * \brief Òı½Å¹¦ÄÜÅäÖÃ
+ * \brief å¼•è„šåŠŸèƒ½é…ç½®
  *
- * \param[in] pin   : Òı½Å±àºÅ£¬ÖµÎª PIO* (#PIOA_0)
- * \param[in] flags : Òı½Å¹¦ÄÜ
+ * \param[in] pin   : å¼•è„šç¼–å·ï¼Œå€¼ä¸º PIO* (#PIOA_0)
+ * \param[in] flags : å¼•è„šåŠŸèƒ½
  *
- * \return AM_OK £ºÅäÖÃ³É¹¦
+ * \return AM_OK ï¼šé…ç½®æˆåŠŸ
  */
 int am_gpio_pin_cfg (int pin, uint32_t flags)
 {
@@ -191,7 +191,7 @@ int am_gpio_pin_cfg (int pin, uint32_t flags)
     amhw_zlg217_afio_t     *p_hw_afio  = NULL;
     amhw_zlg217_gpiomode_t  pin_mode   = AMHW_ZLG217_GPIO_MODE_AIN;
     uint32_t                func = 0, mode = 0;
-    /* IO¿Ú·½Ïò */
+    /* IOå£æ–¹å‘ */
     uint8_t dir = 0;
 
     if (__gp_gpio_dev == NULL) {
@@ -208,21 +208,21 @@ int am_gpio_pin_cfg (int pin, uint32_t flags)
     func = AM_GPIO_COM_FUNC_GET(flags);
     mode = AM_GPIO_COM_MODE_GET(flags);
 
-    /* ±ê×¼²ãÏà¹Ø */
+    /* æ ‡å‡†å±‚ç›¸å…³ */
     if (0 != func) {
 
-        /* Ê¹ÓÃ±ê×¼²ãÇ°ÏÈÍË»ØÒı½ÅÎªGPIOÄ£Ê½ */
+        /* ä½¿ç”¨æ ‡å‡†å±‚å‰å…ˆé€€å›å¼•è„šä¸ºGPIOæ¨¡å¼ */
         __am_zlg217_peripheral_remap_clear(pin);
 
         switch (func) {
 
         case AM_GPIO_INPUT_VAL:
-            /* ÉèÖÃ·½ÏòÎªÊäÈë */
+            /* è®¾ç½®æ–¹å‘ä¸ºè¾“å…¥ */
             amhw_zlg217_gpio_pin_dir_input(p_hw_gpio, pin);
             break;
 
         case AM_GPIO_OUTPUT_INIT_HIGH_VAL:
-            /* ÉèÖÃÊä³öÄ£Ê½£¬ÈçÃ»ÓĞÉèÖÃÔòÄ¬ÈÏÎª50Mhz */
+            /* è®¾ç½®è¾“å‡ºæ¨¡å¼ï¼Œå¦‚æ²¡æœ‰è®¾ç½®åˆ™é»˜è®¤ä¸º50Mhz */
             if (0 == (flags & AM_ZLG217_GPIO_OUTRES_RATE)) {
                 amhw_zlg217_gpio_pin_dir_output(p_hw_gpio,
                                                 AMHW_ZLG217_GPIO_SPEED_50MHz,
@@ -233,16 +233,16 @@ int am_gpio_pin_cfg (int pin, uint32_t flags)
                     (amhw_zlg217_gpio_speed_mode_t)AM_ZLG217_GPIO_OUTRES_RATE_GET(flags),
                     pin);
             }
-            /* Êä³ö¸ßµçÆ½ */
+            /* è¾“å‡ºé«˜ç”µå¹³ */
             amhw_zlg217_gpio_pin_out_high(p_hw_gpio, pin);
-            /* ÍÆÍìÊä³ö */
+            /* æ¨æŒ½è¾“å‡º */
             amhw_zlg217_gpio_pin_mode_set(p_hw_gpio,
                                           AMHW_ZLG217_GPIO_MODE_OUT_PP,
                                           pin);
             break;
 
         case AM_GPIO_OUTPUT_INIT_LOW_VAL:
-            /* ÉèÖÃÊä³öÄ£Ê½£¬ÈçÃ»ÓĞÉèÖÃÔòÄ¬ÈÏÎª50Mhz */
+            /* è®¾ç½®è¾“å‡ºæ¨¡å¼ï¼Œå¦‚æ²¡æœ‰è®¾ç½®åˆ™é»˜è®¤ä¸º50Mhz */
             if (0 == (flags & AM_ZLG217_GPIO_OUTRES_RATE)) {
                 amhw_zlg217_gpio_pin_dir_output(p_hw_gpio,
                                                 AMHW_ZLG217_GPIO_SPEED_50MHz,
@@ -253,9 +253,9 @@ int am_gpio_pin_cfg (int pin, uint32_t flags)
                     (amhw_zlg217_gpio_speed_mode_t)AM_ZLG217_GPIO_OUTRES_RATE_GET(flags),
                     pin);
             }
-            /* Êä³öµÍµçÆ½ */
+            /* è¾“å‡ºä½ç”µå¹³ */
             amhw_zlg217_gpio_pin_out_low(p_hw_gpio, pin);
-            /* ÍÆÍìÊä³ö */
+            /* æ¨æŒ½è¾“å‡º */
             amhw_zlg217_gpio_pin_mode_set(p_hw_gpio,
                                           AMHW_ZLG217_GPIO_MODE_OUT_PP,
                                           pin);
@@ -268,7 +268,7 @@ int am_gpio_pin_cfg (int pin, uint32_t flags)
 
     if (mode != 0x00) {
 
-        /* »ñÈ¡ÊäÈëÊä³ö·½Ïò */
+        /* è·å–è¾“å…¥è¾“å‡ºæ–¹å‘ */
         dir = amhw_zlg217_gpio_pin_dir_get(p_hw_gpio, pin);
 
         switch (mode) {
@@ -276,13 +276,13 @@ int am_gpio_pin_cfg (int pin, uint32_t flags)
         case AM_GPIO_PULL_UP_VAL:
             if (dir != 1) {
 
-                /* Ê¹ODÎ»ÖÃÎª1, ±íÃ÷ÊÇÉÏÀ­ */
+                /* ä½¿ODä½ç½®ä¸º1, è¡¨æ˜æ˜¯ä¸Šæ‹‰ */
                 amhw_zlg217_gpio_pin_out_high(p_hw_gpio, pin);
 
                 pin_mode = AMHW_ZLG217_GPIO_MODE_IPU;
             } else {
 
-                /* Êä³öÃ»ÓĞÉÏÀ­Ä£Ê½£¬ÉèÖÃÎªÍÆÍìÄ£Ê½ */
+                /* è¾“å‡ºæ²¡æœ‰ä¸Šæ‹‰æ¨¡å¼ï¼Œè®¾ç½®ä¸ºæ¨æŒ½æ¨¡å¼ */
                 pin_mode = AMHW_ZLG217_GPIO_MODE_OUT_PP;
             }
             break;
@@ -290,12 +290,12 @@ int am_gpio_pin_cfg (int pin, uint32_t flags)
         case AM_GPIO_PULL_DOWN_VAL:
             if (dir != 1) {
 
-                /* Ê¹ODÎ»ÖÃÎª0, ±íÃ÷ÊÇÏÂÀ­ */
+                /* ä½¿ODä½ç½®ä¸º0, è¡¨æ˜æ˜¯ä¸‹æ‹‰ */
                 amhw_zlg217_gpio_pin_out_low(p_hw_gpio, pin);
                 pin_mode = AMHW_ZLG217_GPIO_MODE_IPD;
             } else {
 
-                /* Êä³öÃ»ÓĞÏÂÀ­Ä£Ê½£¬ÉèÖÃÎªÍÆÍìÄ£Ê½ */
+                /* è¾“å‡ºæ²¡æœ‰ä¸‹æ‹‰æ¨¡å¼ï¼Œè®¾ç½®ä¸ºæ¨æŒ½æ¨¡å¼ */
                 pin_mode = AMHW_ZLG217_GPIO_MODE_OUT_PP;
             }
             break;
@@ -305,14 +305,14 @@ int am_gpio_pin_cfg (int pin, uint32_t flags)
                 pin_mode = AMHW_ZLG217_GPIO_MODE_IN_FLOATING;
             } else {
 
-                /* Êä³öÃ»ÓĞ¸¡¿ÕÄ£Ê½£¬ÉèÖÃÎª¿ªÂ©Ä£Ê½ */
+                /* è¾“å‡ºæ²¡æœ‰æµ®ç©ºæ¨¡å¼ï¼Œè®¾ç½®ä¸ºå¼€æ¼æ¨¡å¼ */
                 pin_mode = AMHW_ZLG217_GPIO_MODE_OUT_OD;
             }
             break;
 
         case AM_GPIO_OPEN_DRAIN_VAL:
             if (dir == 0) {
-                /* ÊäÈëÃ»ÓĞ¿ªÂ©Ä£Ê½£¬ÉèÖÃÎª¸¡¿Õ */
+                /* è¾“å…¥æ²¡æœ‰å¼€æ¼æ¨¡å¼ï¼Œè®¾ç½®ä¸ºæµ®ç©º */
                 pin_mode = AMHW_ZLG217_GPIO_MODE_IN_FLOATING;
             } else {
                 pin_mode = AMHW_ZLG217_GPIO_MODE_OUT_OD;
@@ -321,7 +321,7 @@ int am_gpio_pin_cfg (int pin, uint32_t flags)
 
         case AM_GPIO_PUSH_PULL_VAL:
             if (dir == 0) {
-                /* ÊäÈëÃ»ÓĞÍÆÍìÄ£Ê½£¬ÉèÖÃÎªÉÏÀ­ */
+                /* è¾“å…¥æ²¡æœ‰æ¨æŒ½æ¨¡å¼ï¼Œè®¾ç½®ä¸ºä¸Šæ‹‰ */
                 pin_mode = AMHW_ZLG217_GPIO_MODE_IPU;
             } else {
                 pin_mode = AMHW_ZLG217_GPIO_MODE_OUT_PP;
@@ -335,43 +335,43 @@ int am_gpio_pin_cfg (int pin, uint32_t flags)
         amhw_zlg217_gpio_pin_mode_set(p_hw_gpio, pin_mode, pin);
     }
 
-    /* Æ½Ì¨Ïà¹Ø */
+    /* å¹³å°ç›¸å…³ */
     if (0 != (flags & AM_ZLG217_GPIO_MODE)) {
 
-        /* ÊäÈëÊä³öÏàÓ¦Ä£Ê½ÉèÖÃ */
+        /* è¾“å…¥è¾“å‡ºç›¸åº”æ¨¡å¼è®¾ç½® */
 
         switch (AM_ZLG217_GPIO_MODE_GET(flags)) {
 
         case 0:
-            /* ÉèÖÃÎªÊäÈë */
+            /* è®¾ç½®ä¸ºè¾“å…¥ */
             amhw_zlg217_gpio_pin_dir_input(p_hw_gpio, pin);
             pin_mode = AMHW_ZLG217_GPIO_MODE_AIN;
             break;
 
         case 1:
-            /* ÉèÖÃÎªÊäÈë */
+            /* è®¾ç½®ä¸ºè¾“å…¥ */
             amhw_zlg217_gpio_pin_dir_input(p_hw_gpio, pin);
             pin_mode = AMHW_ZLG217_GPIO_MODE_IN_FLOATING;
             break;
 
         case 2:
-            /* Ê¹ODÎ»ÖÃÎª0, ±íÃ÷ÊÇÏÂÀ­ */
+            /* ä½¿ODä½ç½®ä¸º0, è¡¨æ˜æ˜¯ä¸‹æ‹‰ */
             amhw_zlg217_gpio_pin_out_low(p_hw_gpio, pin);
-            /* ÉèÖÃÎªÊäÈë */
+            /* è®¾ç½®ä¸ºè¾“å…¥ */
             amhw_zlg217_gpio_pin_dir_input(p_hw_gpio, pin);
             pin_mode = AMHW_ZLG217_GPIO_MODE_IPD;
             break;
 
         case 3:
-            /* Ê¹ODÎ»ÖÃÎª1, ±íÃ÷ÊÇÉÏÀ­ */
+            /* ä½¿ODä½ç½®ä¸º1, è¡¨æ˜æ˜¯ä¸Šæ‹‰ */
             amhw_zlg217_gpio_pin_out_high(p_hw_gpio, pin);
-            /* ÉèÖÃÎªÊäÈë */
+            /* è®¾ç½®ä¸ºè¾“å…¥ */
             amhw_zlg217_gpio_pin_dir_input(p_hw_gpio, pin);
             pin_mode = AMHW_ZLG217_GPIO_MODE_IPU;
             break;
 
         case 4:
-            /* ÉèÖÃÎªÊä³ö²¢ÉèÖÃÏìÓ¦ÆµÂÊ£¬Ä¬ÈÏÎª50Mhz */
+            /* è®¾ç½®ä¸ºè¾“å‡ºå¹¶è®¾ç½®å“åº”é¢‘ç‡ï¼Œé»˜è®¤ä¸º50Mhz */
             if (0 != (flags & AM_ZLG217_GPIO_OUTRES_RATE)) {
                 amhw_zlg217_gpio_pin_dir_output(
                     p_hw_gpio,
@@ -386,7 +386,7 @@ int am_gpio_pin_cfg (int pin, uint32_t flags)
             break;
 
         case 5:
-            /* ÉèÖÃÎªÊä³ö²¢ÉèÖÃÏìÓ¦ÆµÂÊ£¬Ä¬ÈÏÎª50Mhz */
+            /* è®¾ç½®ä¸ºè¾“å‡ºå¹¶è®¾ç½®å“åº”é¢‘ç‡ï¼Œé»˜è®¤ä¸º50Mhz */
             if (0 != (flags & AM_ZLG217_GPIO_OUTRES_RATE)) {
                 amhw_zlg217_gpio_pin_dir_output(
                     p_hw_gpio,
@@ -401,7 +401,7 @@ int am_gpio_pin_cfg (int pin, uint32_t flags)
             break;
 
         case 6:
-            /* ÉèÖÃÎªÊä³ö²¢ÉèÖÃÏìÓ¦ÆµÂÊ£¬Ä¬ÈÏÎª50Mhz */
+            /* è®¾ç½®ä¸ºè¾“å‡ºå¹¶è®¾ç½®å“åº”é¢‘ç‡ï¼Œé»˜è®¤ä¸º50Mhz */
             if (0 != (flags & AM_ZLG217_GPIO_OUTRES_RATE)) {
                 amhw_zlg217_gpio_pin_dir_output(
                     p_hw_gpio,
@@ -415,7 +415,7 @@ int am_gpio_pin_cfg (int pin, uint32_t flags)
             break;
 
         case 7:
-            /* ÉèÖÃÎªÊä³ö²¢ÉèÖÃÏìÓ¦ÆµÂÊ£¬Ä¬ÈÏÎª50Mhz */
+            /* è®¾ç½®ä¸ºè¾“å‡ºå¹¶è®¾ç½®å“åº”é¢‘ç‡ï¼Œé»˜è®¤ä¸º50Mhz */
             if (0 != (flags & AM_ZLG217_GPIO_OUTRES_RATE)) {
                 amhw_zlg217_gpio_pin_dir_output(
                     p_hw_gpio,
@@ -435,17 +435,17 @@ int am_gpio_pin_cfg (int pin, uint32_t flags)
         amhw_zlg217_gpio_pin_mode_set(p_hw_gpio, pin_mode, pin);
     }
 
-    /* ÖØÓ³ÏñÉèÖÃ */
+    /* é‡æ˜ åƒè®¾ç½® */
     if (0 != (flags & AM_ZLG217_GPIO_REMAP)) {
 
-        /* ĞÂÖØÓ³ÏñÓëµ±Ç°ÖØÓ³Ïñ²»µÈ£¬ NO -> ÍâÉèÖØÓ³Ïñ £» ÍâÉèÖØÓ³Ïñ -> NO £» ÍâÉè1 -> ÍâÉè2 */
+        /* æ–°é‡æ˜ åƒä¸å½“å‰é‡æ˜ åƒä¸ç­‰ï¼Œ NO -> å¤–è®¾é‡æ˜ åƒ ï¼› å¤–è®¾é‡æ˜ åƒ -> NO ï¼› å¤–è®¾1 -> å¤–è®¾2 */
         if (AM_ZLG217_GPIO_REMAP_PERIPHERAL_GET(flags) !=
                                                p_gpio_devinfo->p_remap[pin]) {
 
-            /* NO -> ÍâÉèÖØÓ³Ïñ£¬µ±Ç°Òı½ÅÎŞÖØÓ³Ïñ¿É²»×öÈÎºÎ´¦Àí */
+            /* NO -> å¤–è®¾é‡æ˜ åƒï¼Œå½“å‰å¼•è„šæ— é‡æ˜ åƒå¯ä¸åšä»»ä½•å¤„ç† */
             if (p_gpio_devinfo->p_remap[pin] == AMHW_ZLG217_NO_REMAP) {
 
-                /* ±£´æµ±Ç°Òı½ÅÖØÓ³ÏñĞÅÏ¢ */
+                /* ä¿å­˜å½“å‰å¼•è„šé‡æ˜ åƒä¿¡æ¯ */
                 p_gpio_devinfo->p_remap[pin] =
                                      (amhw_zlg217_afio_remap_peripheral_t)
                                      AM_ZLG217_GPIO_REMAP_PERIPHERAL_GET(flags);
@@ -453,44 +453,44 @@ int am_gpio_pin_cfg (int pin, uint32_t flags)
             } else if (AM_ZLG217_GPIO_REMAP_PERIPHERAL_GET(flags) == AMHW_ZLG217_NO_REMAP) {
 
                 /*
-                 * ÍâÉèÖØÓ³Ïñ -> NO
-                 * Çå³ıµ±Ç°Òı½Å¶ÔÓ¦ÍâÉèµÄÖØÓ³ÏñÄ£Ê½£¬¸ÃÍâÉè½«²»ÄÜÕı³£¹¤×÷£¬ĞèÒªÖØĞÂÅäÖÃ
-                 * Çå³şÍâÉèÖØÓ³ÏñÄ£Ê½ĞèÒª½«ËùÓ°ÏìµÄËùÓĞGPIOÖØÓ³ÏñĞÅÏ¢ÖØĞ´
+                 * å¤–è®¾é‡æ˜ åƒ -> NO
+                 * æ¸…é™¤å½“å‰å¼•è„šå¯¹åº”å¤–è®¾çš„é‡æ˜ åƒæ¨¡å¼ï¼Œè¯¥å¤–è®¾å°†ä¸èƒ½æ­£å¸¸å·¥ä½œï¼Œéœ€è¦é‡æ–°é…ç½®
+                 * æ¸…æ¥šå¤–è®¾é‡æ˜ åƒæ¨¡å¼éœ€è¦å°†æ‰€å½±å“çš„æ‰€æœ‰GPIOé‡æ˜ åƒä¿¡æ¯é‡å†™
                  */
 
-                /* Çå³ıÍâÉèµÄÖØÓ³Ïñ£¬²¢¶ÔËùÓ°ÏìµÄGPIO³õÊ¼»¯ */
+                /* æ¸…é™¤å¤–è®¾çš„é‡æ˜ åƒï¼Œå¹¶å¯¹æ‰€å½±å“çš„GPIOåˆå§‹åŒ– */
                 __am_zlg217_peripheral_remap_clear(pin);
 
-                /* ±£´æµ±Ç°Òı½ÅÖØÓ³ÏñĞÅÏ¢ */
+                /* ä¿å­˜å½“å‰å¼•è„šé‡æ˜ åƒä¿¡æ¯ */
                 p_gpio_devinfo->p_remap[pin] = AMHW_ZLG217_NO_REMAP;
 
                 return AM_OK;
             } else {
 
                 /*
-                 * ÍâÉè1 -> ÍâÉè2
-                 * Çå³ıµ±Ç°Òı½Å¶ÔÓ¦ÍâÉèµÄÖØÓ³ÏñÄ£Ê½£¬ÉèÖÃĞÂµÄÖØÓ³Ïñ
-                 * Çå³şÍâÉèÖØÓ³ÏñÄ£Ê½ĞèÒª½«ËùÓ°ÏìµÄËùÓĞGPIOÖØÓ³ÏñĞÅÏ¢ÖØĞ´
+                 * å¤–è®¾1 -> å¤–è®¾2
+                 * æ¸…é™¤å½“å‰å¼•è„šå¯¹åº”å¤–è®¾çš„é‡æ˜ åƒæ¨¡å¼ï¼Œè®¾ç½®æ–°çš„é‡æ˜ åƒ
+                 * æ¸…æ¥šå¤–è®¾é‡æ˜ åƒæ¨¡å¼éœ€è¦å°†æ‰€å½±å“çš„æ‰€æœ‰GPIOé‡æ˜ åƒä¿¡æ¯é‡å†™
                  */
 
-                /* Çå³ıÍâÉèµÄÖØÓ³Ïñ£¬²¢¶ÔËùÓ°ÏìµÄGPIO³õÊ¼»¯ */
+                /* æ¸…é™¤å¤–è®¾çš„é‡æ˜ åƒï¼Œå¹¶å¯¹æ‰€å½±å“çš„GPIOåˆå§‹åŒ– */
                 __am_zlg217_peripheral_remap_clear(pin);
 
-                /* ±£´æµ±Ç°Òı½ÅÖØÓ³ÏñĞÅÏ¢ */
+                /* ä¿å­˜å½“å‰å¼•è„šé‡æ˜ åƒä¿¡æ¯ */
                 p_gpio_devinfo->p_remap[pin] =
                                      (amhw_zlg217_afio_remap_peripheral_t)
                                      AM_ZLG217_GPIO_REMAP_PERIPHERAL_GET(flags);
             }
         } else {
 
-            /* ĞÂÖØÓ³ÏñÓëµ±Ç°ÖØÓ³ÏñÏàµÈ£¬°´ÍâÉèÖØĞÂĞ´ÈëÏàÓ¦¶ÔÓ¦ÖØÓ³ÏñÇ°ĞèÒªÇå³şÇ°Ç°ÖØÓ³ÏñÓ°ÏìµÄGPIO */
+            /* æ–°é‡æ˜ åƒä¸å½“å‰é‡æ˜ åƒç›¸ç­‰ï¼ŒæŒ‰å¤–è®¾é‡æ–°å†™å…¥ç›¸åº”å¯¹åº”é‡æ˜ åƒå‰éœ€è¦æ¸…æ¥šå‰å‰é‡æ˜ åƒå½±å“çš„GPIO */
             if (p_gpio_devinfo->p_remap[pin] != AMHW_ZLG217_NO_REMAP) {
 
                 __am_zlg217_peripheral_remap_clear(pin);
             }
         }
 
-        /* °´ÍâÉèÉèÖÃÖØÓ³ÏñÄ£Ê½ */
+        /* æŒ‰å¤–è®¾è®¾ç½®é‡æ˜ åƒæ¨¡å¼ */
         switch (AM_ZLG217_GPIO_REMAP_PERIPHERAL_GET(flags)) {
 
         case AMHW_ZLG217_SPI1_REMAP:
@@ -589,9 +589,9 @@ int am_gpio_pin_cfg (int pin, uint32_t flags)
 }
 
 /**
- * \brief »ñÈ¡GPIOÒı½Å×´Ì¬
- * \param[in] pin : Òı½Å±àºÅ£¬ÖµÎª PIO* (#PIOA_0)
- * \return Òı½Å×´Ì¬
+ * \brief è·å–GPIOå¼•è„šçŠ¶æ€
+ * \param[in] pin : å¼•è„šç¼–å·ï¼Œå€¼ä¸º PIO* (#PIOA_0)
+ * \return å¼•è„šçŠ¶æ€
  */
 int am_gpio_get (int pin)
 {
@@ -613,13 +613,13 @@ int am_gpio_get (int pin)
 }
 
 /**
- * \brief ÉèÖÃÒı½ÅÊä³ö×´Ì¬
+ * \brief è®¾ç½®å¼•è„šè¾“å‡ºçŠ¶æ€
  *
- * \param[in] pin   : Òı½Å±àºÅ£¬ÖµÎª PIO* (#PIOA_0)
- * \param[in] value : Òı½Å×´Ì¬£¬²Î¼û
+ * \param[in] pin   : å¼•è„šç¼–å·ï¼Œå€¼ä¸º PIO* (#PIOA_0)
+ * \param[in] value : å¼•è„šçŠ¶æ€ï¼Œå‚è§
  *                    \ref grp_am_gpio_pin_level
  *
- * \retval  AM_OK   : ²Ù×÷³É¹¦
+ * \retval  AM_OK   : æ“ä½œæˆåŠŸ
  */
 int am_gpio_set (int pin, int value)
 {
@@ -643,9 +643,9 @@ int am_gpio_set (int pin, int value)
 }
 
 /**
- * \brief ·­×ªGPIOÒı½ÅÊä³ö×´Ì¬
- * \param[in] pin : Òı½Å±àºÅ£¬ÖµÎª PIO* (#PIOA_0)
- * \retval  AM_OK : ²Ù×÷³É¹¦
+ * \brief ç¿»è½¬GPIOå¼•è„šè¾“å‡ºçŠ¶æ€
+ * \param[in] pin : å¼•è„šç¼–å·ï¼Œå€¼ä¸º PIO* (#PIOA_0)
+ * \retval  AM_OK : æ“ä½œæˆåŠŸ
  */
 int am_gpio_toggle (int pin)
 {
@@ -665,7 +665,7 @@ int am_gpio_toggle (int pin)
 }
 
 /**
- * \brief Íâ²¿ÖĞ¶ÏÏß0ÖĞ¶Ïº¯Êı
+ * \brief å¤–éƒ¨ä¸­æ–­çº¿0ä¸­æ–­å‡½æ•°
  */
 static void __port_exit0_int_isr (void * p_arg)
 {
@@ -679,7 +679,7 @@ static void __port_exit0_int_isr (void * p_arg)
 
     p_hw_exti   = (amhw_zlg217_exti_t   *)p_gpio_devinfo->exti_regbase;
 
-    /* »ñÈ¡ÓĞ¹Ø»Øµ÷º¯Êı¼°²ÎÊı */
+    /* è·å–æœ‰å…³å›è°ƒå‡½æ•°åŠå‚æ•° */
     pfn_isr   = p_gpio_devinfo->p_triginfo[slot].pfn_callback;
     p_arg_tmp = p_gpio_devinfo->p_triginfo[slot].p_arg;
 
@@ -690,13 +690,13 @@ static void __port_exit0_int_isr (void * p_arg)
         }
     }
 
-    /* ÇåÖĞ¶Ï±êÖ¾ */
+    /* æ¸…ä¸­æ–­æ ‡å¿— */
     amhw_zlg217_exti_pending_clear(p_hw_exti,
                                    (amhw_zlg217_line_num_t)(1ul << slot));
 }
 
 /**
- * \brief Íâ²¿ÖĞ¶ÏÏß1ÖĞ¶Ïº¯Êı
+ * \brief å¤–éƒ¨ä¸­æ–­çº¿1ä¸­æ–­å‡½æ•°
  */
 static void __port_exit1_int_isr (void * p_arg)
 {
@@ -710,7 +710,7 @@ static void __port_exit1_int_isr (void * p_arg)
 
     p_hw_exti   = (amhw_zlg217_exti_t *)p_gpio_devinfo->exti_regbase;
 
-    /* »ñÈ¡ÓĞ¹Ø»Øµ÷º¯Êı¼°²ÎÊı */
+    /* è·å–æœ‰å…³å›è°ƒå‡½æ•°åŠå‚æ•° */
     pfn_isr   = p_gpio_devinfo->p_triginfo[slot].pfn_callback;
     p_arg_tmp = p_gpio_devinfo->p_triginfo[slot].p_arg;
 
@@ -721,13 +721,13 @@ static void __port_exit1_int_isr (void * p_arg)
         }
     }
 
-    /* ÇåÖĞ¶Ï±êÖ¾ */
+    /* æ¸…ä¸­æ–­æ ‡å¿— */
     amhw_zlg217_exti_pending_clear(p_hw_exti,
                                    (amhw_zlg217_line_num_t)(1ul << slot));
 }
 
 /**
- * \brief Íâ²¿ÖĞ¶ÏÏß2ÖĞ¶Ïº¯Êı
+ * \brief å¤–éƒ¨ä¸­æ–­çº¿2ä¸­æ–­å‡½æ•°
  */
 static void __port_exit2_int_isr (void * p_arg)
 {
@@ -741,7 +741,7 @@ static void __port_exit2_int_isr (void * p_arg)
 
     p_hw_exti   = (amhw_zlg217_exti_t *)p_gpio_devinfo->exti_regbase;
 
-    /* »ñÈ¡ÓĞ¹Ø»Øµ÷º¯Êı¼°²ÎÊı */
+    /* è·å–æœ‰å…³å›è°ƒå‡½æ•°åŠå‚æ•° */
     pfn_isr   = p_gpio_devinfo->p_triginfo[slot].pfn_callback;
     p_arg_tmp = p_gpio_devinfo->p_triginfo[slot].p_arg;
 
@@ -752,13 +752,13 @@ static void __port_exit2_int_isr (void * p_arg)
         }
     }
 
-    /* ÇåÖĞ¶Ï±êÖ¾ */
+    /* æ¸…ä¸­æ–­æ ‡å¿— */
     amhw_zlg217_exti_pending_clear(p_hw_exti,
                                    (amhw_zlg217_line_num_t)(1ul << slot));
 }
 
 /**
- * \brief Íâ²¿ÖĞ¶ÏÏß2ÖĞ¶Ïº¯Êı
+ * \brief å¤–éƒ¨ä¸­æ–­çº¿2ä¸­æ–­å‡½æ•°
  */
 static void __port_exit3_int_isr (void * p_arg)
 {
@@ -772,7 +772,7 @@ static void __port_exit3_int_isr (void * p_arg)
 
     p_hw_exti   = (amhw_zlg217_exti_t *)p_gpio_devinfo->exti_regbase;
 
-    /* »ñÈ¡ÓĞ¹Ø»Øµ÷º¯Êı¼°²ÎÊı */
+    /* è·å–æœ‰å…³å›è°ƒå‡½æ•°åŠå‚æ•° */
     pfn_isr   = p_gpio_devinfo->p_triginfo[slot].pfn_callback;
     p_arg_tmp = p_gpio_devinfo->p_triginfo[slot].p_arg;
 
@@ -783,13 +783,13 @@ static void __port_exit3_int_isr (void * p_arg)
         }
     }
 
-    /* ÇåÖĞ¶Ï±êÖ¾ */
+    /* æ¸…ä¸­æ–­æ ‡å¿— */
     amhw_zlg217_exti_pending_clear(p_hw_exti,
                                    (amhw_zlg217_line_num_t)(1ul << slot));
 }
 
 /**
- * \brief Íâ²¿ÖĞ¶ÏÏß4ÖĞ¶Ïº¯Êı
+ * \brief å¤–éƒ¨ä¸­æ–­çº¿4ä¸­æ–­å‡½æ•°
  */
 static void __port_exit4_int_isr (void * p_arg)
 {
@@ -803,7 +803,7 @@ static void __port_exit4_int_isr (void * p_arg)
 
     p_hw_exti   = (amhw_zlg217_exti_t *)p_gpio_devinfo->exti_regbase;
 
-    /* »ñÈ¡ÓĞ¹Ø»Øµ÷º¯Êı¼°²ÎÊı */
+    /* è·å–æœ‰å…³å›è°ƒå‡½æ•°åŠå‚æ•° */
     pfn_isr   = p_gpio_devinfo->p_triginfo[slot].pfn_callback;
     p_arg_tmp = p_gpio_devinfo->p_triginfo[slot].p_arg;
 
@@ -814,13 +814,13 @@ static void __port_exit4_int_isr (void * p_arg)
         }
     }
 
-    /* ÇåÖĞ¶Ï±êÖ¾ */
+    /* æ¸…ä¸­æ–­æ ‡å¿— */
     amhw_zlg217_exti_pending_clear(p_hw_exti,
                                    (amhw_zlg217_line_num_t)(1ul << slot));
 }
 
 /**
- * \brief Íâ²¿ÖĞ¶ÏÏß9_5ÖĞ¶Ïº¯Êı
+ * \brief å¤–éƒ¨ä¸­æ–­çº¿9_5ä¸­æ–­å‡½æ•°
  */
 static void __port_exit9_5_int_isr (void * p_arg)
 {
@@ -853,7 +853,7 @@ static void __port_exit9_5_int_isr (void * p_arg)
 }
 
 /**
- * \brief Íâ²¿ÖĞ¶ÏÏß5_10ÖĞ¶Ïº¯Êı
+ * \brief å¤–éƒ¨ä¸­æ–­çº¿5_10ä¸­æ–­å‡½æ•°
  */
 static void __port_exit15_10_int_isr (void * p_arg)
 {
@@ -886,12 +886,12 @@ static void __port_exit15_10_int_isr (void * p_arg)
 }
 
 /**
- * \brief GPIO³õÊ¼»¯
+ * \brief GPIOåˆå§‹åŒ–
  *
- * \param[in] p_dev     : Ö¸ÏòGPIOÉè±¸µÄÖ¸Õë
- * \param[in] p_devinfo : Ö¸ÏòGPIOÉè±¸ĞÅÏ¢µÄÖ¸Õë
+ * \param[in] p_dev     : æŒ‡å‘GPIOè®¾å¤‡çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo : æŒ‡å‘GPIOè®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ
  *
- * \retval AM_OK : ²Ù×÷³É¹¦
+ * \retval AM_OK : æ“ä½œæˆåŠŸ
  */
 int am_zlg217_gpio_init (am_zlg217_gpio_dev_t           *p_dev,
                          const am_zlg217_gpio_devinfo_t *p_devinfo)
@@ -954,11 +954,11 @@ int am_zlg217_gpio_init (am_zlg217_gpio_dev_t           *p_dev,
 }
 
 /**
- * \brief GPIOÈ¥³õÊ¼»¯
+ * \brief GPIOå»åˆå§‹åŒ–
  *
- * \param[in] ÎŞ
+ * \param[in] æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg217_gpio_deinit (void)
 {
@@ -1008,13 +1008,13 @@ void am_zlg217_gpio_deinit (void)
 }
 
 /**
- * \brief ÅäÖÃGPIOÒı½Å´¥·¢¹¦ÄÜ
+ * \brief é…ç½®GPIOå¼•è„šè§¦å‘åŠŸèƒ½
  *
- * \param[in] pin  : Òı½Å±àºÅ£¬ÖµÎª PIO* (#PIOA_0)
- * \param[in] flag : ÅäÖÃ²ÎÊı£¬²Î¼û
+ * \param[in] pin  : å¼•è„šç¼–å·ï¼Œå€¼ä¸º PIO* (#PIOA_0)
+ * \param[in] flag : é…ç½®å‚æ•°ï¼Œå‚è§
  *                   \ref grp_am_gpio_pin_trigger_function
  *
- * \retval AM_OK   : ÅäÖÃ³É¹¦
+ * \retval AM_OK   : é…ç½®æˆåŠŸ
  */
 int am_gpio_trigger_cfg (int pin, uint32_t flag)
 {
@@ -1041,27 +1041,27 @@ int am_gpio_trigger_cfg (int pin, uint32_t flag)
         return -AM_EINVAL;
     }
 
-    /* Ê¹ÓÃGPIO¹¦ÄÜ */
+    /* ä½¿ç”¨GPIOåŠŸèƒ½ */
     __am_zlg217_peripheral_remap_clear(pin);
 
-    /* ÉèÖÃ¹Ü½ÅÎªÊäÈë·½Ïò */
+    /* è®¾ç½®ç®¡è„šä¸ºè¾“å…¥æ–¹å‘ */
     amhw_zlg217_gpio_pin_dir_input(p_hw_gpio, pin);
 
-    /* ¹Ü½ÅÎªÉÏÀ­/ÏÂÀ­Ä£Ê½ */
+    /* ç®¡è„šä¸ºä¸Šæ‹‰/ä¸‹æ‹‰æ¨¡å¼ */
     amhw_zlg217_gpio_pin_mode_set(p_hw_gpio, AMHW_ZLG217_GPIO_MODE_IPD, pin);
     /*
-     * ÖĞ¶ÏÏß0Ö»ÄÜÁ¬Ò»¸ö¶Ë¿Ú±àºÅÎª0µÄGPIOÒı½Å£¬±ÈÈçËµ£¬PIOA_0Á¬½Óµ½ÁËÖĞ¶ÏÏß0£¬
-     * PIOB_0¡¢PIOC_0¡¢PIOD_0¾Í²»ÄÜÁ¬µ½ÖĞ¶ÏÏß0, µ«´ËÊ±PIOA_1¿ÉÒÔÁ¬½Óµ½ÖĞ¶ÏÏß1¡£
+     * ä¸­æ–­çº¿0åªèƒ½è¿ä¸€ä¸ªç«¯å£ç¼–å·ä¸º0çš„GPIOå¼•è„šï¼Œæ¯”å¦‚è¯´ï¼ŒPIOA_0è¿æ¥åˆ°äº†ä¸­æ–­çº¿0ï¼Œ
+     * PIOB_0ã€PIOC_0ã€PIOD_0å°±ä¸èƒ½è¿åˆ°ä¸­æ–­çº¿0, ä½†æ­¤æ—¶PIOA_1å¯ä»¥è¿æ¥åˆ°ä¸­æ–­çº¿1ã€‚
      */
     amhw_zlg217_afio_exti_pin_set(p_hw_afio, pin);
 
-    /* Çå³ıÖĞ¶ÏÏßÅäÖÃ */
+    /* æ¸…é™¤ä¸­æ–­çº¿é…ç½® */
     amhw_zlg217_exti_imr_clear(p_hw_exti,
                                (amhw_zlg217_line_num_t)(1ul << slot));
     amhw_zlg217_exti_emr_clear(p_hw_exti,
                                (amhw_zlg217_line_num_t)(1ul << slot));
 
-    /* Çå³ıÖĞ¶ÏÏß´¥·¢·½Ê½ÅäÖÃ */
+    /* æ¸…é™¤ä¸­æ–­çº¿è§¦å‘æ–¹å¼é…ç½® */
     amhw_zlg217_exti_rtsr_clear(p_hw_exti,
                                 (amhw_zlg217_line_num_t)(1ul << slot));
     amhw_zlg217_exti_ftsr_clear(p_hw_exti,
@@ -1073,14 +1073,14 @@ int am_gpio_trigger_cfg (int pin, uint32_t flag)
         break;
 
     case AM_GPIO_TRIGGER_RISE:
-        /* Ê¹ODÎ»ÖÃÎª0, ±íÃ÷ÊÇÏÂÀ­ */
+        /* ä½¿ODä½ç½®ä¸º0, è¡¨æ˜æ˜¯ä¸‹æ‹‰ */
         amhw_zlg217_gpio_pin_out_low(p_hw_gpio, pin);
         amhw_zlg217_exti_rtsr_set(p_hw_exti,
                                   (amhw_zlg217_line_num_t)(1ul << slot));
         break;
 
     case AM_GPIO_TRIGGER_FALL:
-        /* Ê¹ODÎ»ÖÃÎª1, ±íÃ÷ÊÇÉÏÀ­ */
+        /* ä½¿ODä½ç½®ä¸º1, è¡¨æ˜æ˜¯ä¸Šæ‹‰ */
         amhw_zlg217_gpio_pin_out_high(p_hw_gpio, pin);
         /* falling  edge */
         amhw_zlg217_exti_ftsr_set(p_hw_exti,
@@ -1088,7 +1088,7 @@ int am_gpio_trigger_cfg (int pin, uint32_t flag)
         break;
 
     case AM_GPIO_TRIGGER_BOTH_EDGES:
-        /* Ê¹ODÎ»ÖÃÎª1, ±íÃ÷ÊÇÉÏÀ­ */
+        /* ä½¿ODä½ç½®ä¸º1, è¡¨æ˜æ˜¯ä¸Šæ‹‰ */
         amhw_zlg217_gpio_pin_out_high(p_hw_gpio, pin);
         /* falling  edge */
         amhw_zlg217_exti_ftsr_set(p_hw_exti,
@@ -1105,13 +1105,13 @@ int am_gpio_trigger_cfg (int pin, uint32_t flag)
 }
 
 /**
- * \brief Á¬½Ó»Øµ÷º¯Êıµ½Òı½Å
+ * \brief è¿æ¥å›è°ƒå‡½æ•°åˆ°å¼•è„š
  *
- * \param[in] pin          : Òı½Å±àºÅ£¬ÖµÎª PIO* (#PIOA_0)
- * \param[in] pfn_callback : »Øµ÷º¯ÊıÖ¸Õë
- * \param[in] p_arg        : »Øµ÷º¯ÊıµÄÈë¿Ú²ÎÊı
+ * \param[in] pin          : å¼•è„šç¼–å·ï¼Œå€¼ä¸º PIO* (#PIOA_0)
+ * \param[in] pfn_callback : å›è°ƒå‡½æ•°æŒ‡é’ˆ
+ * \param[in] p_arg        : å›è°ƒå‡½æ•°çš„å…¥å£å‚æ•°
  *
- * \retval  AM_OK          : ²Ù×÷³É¹¦
+ * \retval  AM_OK          : æ“ä½œæˆåŠŸ
  */
 int am_gpio_trigger_connect(int           pin,
                             am_pfnvoid_t  pfn_callback,
@@ -1153,13 +1153,13 @@ int am_gpio_trigger_connect(int           pin,
 }
 
 /**
- * \brief É¾³ıÁ¬½Óµ½Òı½ÅµÄ»Øµ÷º¯Êı
+ * \brief åˆ é™¤è¿æ¥åˆ°å¼•è„šçš„å›è°ƒå‡½æ•°
  *
- * \param[in] pin          : Òı½Å±àºÅ£¬ÖµÎª PIO* (#PIOA_0)
- * \param[in] pfn_callback : »Øµ÷º¯ÊıÖ¸Õë
- * \param[in] p_arg        : »Øµ÷º¯ÊıµÄÈë¿Ú²ÎÊı
+ * \param[in] pin          : å¼•è„šç¼–å·ï¼Œå€¼ä¸º PIO* (#PIOA_0)
+ * \param[in] pfn_callback : å›è°ƒå‡½æ•°æŒ‡é’ˆ
+ * \param[in] p_arg        : å›è°ƒå‡½æ•°çš„å…¥å£å‚æ•°
  *
- * \retval  AM_OK          : ²Ù×÷³É¹¦
+ * \retval  AM_OK          : æ“ä½œæˆåŠŸ
  */
 int am_gpio_trigger_disconnect(int           pin,
                                am_pfnvoid_t  pfn_callback,
@@ -1196,9 +1196,9 @@ int am_gpio_trigger_disconnect(int           pin,
 }
 
 /**
- * \brief Ê¹ÄÜÒı½Å´¥·¢ÖĞ¶Ï
- * \param[in] pin : Òı½Å±àºÅ£¬ÖµÎª PIO* (#PIOA_0)
- * \retval  AM_OK : ²Ù×÷³É¹¦
+ * \brief ä½¿èƒ½å¼•è„šè§¦å‘ä¸­æ–­
+ * \param[in] pin : å¼•è„šç¼–å·ï¼Œå€¼ä¸º PIO* (#PIOA_0)
+ * \retval  AM_OK : æ“ä½œæˆåŠŸ
  */
 int am_gpio_trigger_on(int pin)
 {
@@ -1231,9 +1231,9 @@ int am_gpio_trigger_on(int pin)
 }
 
 /**
- * \brief ½ûÄÜÒı½Å´¥·¢ÖĞ¶Ï
- * \param[in] pin : Òı½Å±àºÅ£¬ÖµÎª PIO* (#PIOA_0)
- * \retval  AM_OK : ²Ù×÷³É¹¦
+ * \brief ç¦èƒ½å¼•è„šè§¦å‘ä¸­æ–­
+ * \param[in] pin : å¼•è„šç¼–å·ï¼Œå€¼ä¸º PIO* (#PIOA_0)
+ * \retval  AM_OK : æ“ä½œæˆåŠŸ
  */
 int am_gpio_trigger_off(int pin)
 {

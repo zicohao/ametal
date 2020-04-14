@@ -12,16 +12,16 @@
 
 /**
  * \file
- * \brief LED Àý³Ì£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief LED ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. LED0 ºÍ LED1 ÒÔ 0.5s µÄÊ±¼ä¼ä¸ôÉÁË¸¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. LED0 å’Œ LED1 ä»¥ 0.5s çš„æ—¶é—´é—´éš”é—ªçƒã€‚
  *
  * \note
- *    1. ²âÊÔ±¾Àý³Ì±ØÐëÔÚ am_prj_config.h ÄÚ½« AM_CFG_LED_ENABLE ¶¨ÒåÎª 1£¬µ«¸Ãºê
- *       ÒÑ¾­Ä¬ÈÏÅäÖÃÎª 1£¬ ÓÃ»§²»±ØÔÙ´ÎÅäÖÃ¡£
+ *    1. æµ‹è¯•æœ¬ä¾‹ç¨‹å¿…é¡»åœ¨ am_prj_config.h å†…å°† AM_CFG_LED_ENABLE å®šä¹‰ä¸º 1ï¼Œä½†è¯¥å®
+ *       å·²ç»é»˜è®¤é…ç½®ä¸º 1ï¼Œ ç”¨æˆ·ä¸å¿…å†æ¬¡é…ç½®ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am845_core_std_led.c src_am845_core_std_led
  *
  * \internal
@@ -43,7 +43,7 @@
 #include "demo_std_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am845_core_std_led_entry (void)
 {

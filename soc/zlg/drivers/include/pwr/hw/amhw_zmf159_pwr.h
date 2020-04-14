@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief µçÔ´¹ÜÀí½Ó¿Ú
+ * \brief ç”µæºç®¡ç†æ¥å£
  *
  * \internal
  * \par History
@@ -38,21 +38,21 @@ extern "C" {
 
 
 /**
-  * \brief ÏµÍ³¿ØÖÆ¼Ä´æÆ÷¿é½á¹¹Ìå
+  * \brief ç³»ç»Ÿæ§åˆ¶å¯„å­˜å™¨å—ç»“æ„ä½“
   */
 typedef amhw_zlg_pwr_t amhw_zmf159_pwr_t;
 
 typedef enum amhw_zmf159_pwr_vos {
-    NORMAL_MODE       = 1,            /**< \brief Í¨ÓÃÄ£Ê½ */
-    HEIGH_PROPERTY    = 3             /**< \brief ¸ßĞÔÄÜÄ£Ê½ */
+    NORMAL_MODE       = 1,            /**< \brief é€šç”¨æ¨¡å¼ */
+    HEIGH_PROPERTY    = 3             /**< \brief é«˜æ€§èƒ½æ¨¡å¼ */
 } amhw_zmf159_pwr_vos_t;
 
 /**
- * \brief ¹ıÑ¹Ñ¡ÔñÊ¹ÄÜ
+ * \brief è¿‡å‹é€‰æ‹©ä½¿èƒ½
  *
- * \param[in] p_hw_pwr  £º Ö¸ÏòµçÔ´¿ØÖÆ¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_pwr  ï¼š æŒ‡å‘ç”µæºæ§åˆ¶å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zmf159_pwr_odsw_enable (amhw_zmf159_pwr_t *p_hw_pwr)
@@ -61,11 +61,11 @@ void amhw_zmf159_pwr_odsw_enable (amhw_zmf159_pwr_t *p_hw_pwr)
 }
 
 /**
- * \brief ¹ıÑ¹Ñ¡ÔñÎ´Ê¹ÄÜ
+ * \brief è¿‡å‹é€‰æ‹©æœªä½¿èƒ½
  *
- * \param[in] p_hw_pwr  £º Ö¸ÏòµçÔ´¿ØÖÆ¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_pwr  ï¼š æŒ‡å‘ç”µæºæ§åˆ¶å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zmf159_pwr_odsw_disable (amhw_zmf159_pwr_t *p_hw_pwr)
@@ -74,11 +74,11 @@ void amhw_zmf159_pwr_odsw_disable (amhw_zmf159_pwr_t *p_hw_pwr)
 }
 
 /**
- * \brief ¹ıÑ¹Ê¹ÄÜ
+ * \brief è¿‡å‹ä½¿èƒ½
  *
- * \param[in] p_hw_pwr  £º Ö¸ÏòµçÔ´¿ØÖÆ¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_pwr  ï¼š æŒ‡å‘ç”µæºæ§åˆ¶å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zmf159_pwr_od_enable (amhw_zmf159_pwr_t *p_hw_pwr)
@@ -87,11 +87,11 @@ void amhw_zmf159_pwr_od_enable (amhw_zmf159_pwr_t *p_hw_pwr)
 }
 
 /**
- * \brief ¹ıÑ¹Î´Ê¹ÄÜ
+ * \brief è¿‡å‹æœªä½¿èƒ½
  *
- * \param[in] p_hw_pwr  £º Ö¸ÏòµçÔ´¿ØÖÆ¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_pwr  ï¼š æŒ‡å‘ç”µæºæ§åˆ¶å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zmf159_pwr_od_disable (amhw_zmf159_pwr_t *p_hw_pwr)
@@ -100,12 +100,12 @@ void amhw_zmf159_pwr_od_disable (amhw_zmf159_pwr_t *p_hw_pwr)
 }
 
 /**
- * \brief µ÷ÖÆÆ÷µçÑ¹Êä³öÉèÖÃ£¬½öÔÚPLLÎ´Ê¹ÄÜÊ±ÅäÖÃ£¬µ±PLLÊ¹ÄÜºó£¬¸ÃÎ»½«±»Ëø¶¨
+ * \brief è°ƒåˆ¶å™¨ç”µå‹è¾“å‡ºè®¾ç½®ï¼Œä»…åœ¨PLLæœªä½¿èƒ½æ—¶é…ç½®ï¼Œå½“PLLä½¿èƒ½åï¼Œè¯¥ä½å°†è¢«é”å®š
  *
- * \param[in] p_hw_pwr  £º Ö¸ÏòµçÔ´¿ØÖÆ¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] mode      £ºÉèÖÃÄ£Ê½
+ * \param[in] p_hw_pwr  ï¼š æŒ‡å‘ç”µæºæ§åˆ¶å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] mode      ï¼šè®¾ç½®æ¨¡å¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zmf159_pwr_vos_set (amhw_zmf159_pwr_t     *p_hw_pwr,
@@ -115,12 +115,12 @@ void amhw_zmf159_pwr_vos_set (amhw_zmf159_pwr_t     *p_hw_pwr,
 }
 
 /**
- * \brief ¹ıÑ¹Ä£Ê½Ñ¡Ôñ×¼±¸
+ * \brief è¿‡å‹æ¨¡å¼é€‰æ‹©å‡†å¤‡
  *
- * \param[in] p_hw_pwr  £º Ö¸ÏòµçÔ´¿ØÖÆ¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_pwr  ï¼š æŒ‡å‘ç”µæºæ§åˆ¶å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return AM_TRUE  £º×¼±¸Íê³É
- *         AM_FALSE £ºÃ»ÓĞ×¼±¸Íê³É
+ * \return AM_TRUE  ï¼šå‡†å¤‡å®Œæˆ
+ *         AM_FALSE ï¼šæ²¡æœ‰å‡†å¤‡å®Œæˆ
  */
 am_static_inline
 am_bool_t amhw_zmf159_pwr_odswrdy (amhw_zmf159_pwr_t *p_hw_pwr)
@@ -129,12 +129,12 @@ am_bool_t amhw_zmf159_pwr_odswrdy (amhw_zmf159_pwr_t *p_hw_pwr)
 }
 
 /**
- * \brief ¹ıÑ¹Ä£Ê½×¼±¸
+ * \brief è¿‡å‹æ¨¡å¼å‡†å¤‡
  *
- * \param[in] p_hw_pwr  £º Ö¸ÏòµçÔ´¿ØÖÆ¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_pwr  ï¼š æŒ‡å‘ç”µæºæ§åˆ¶å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return AM_TRUE  £º×¼±¸Íê³É
- *         AM_FALSE £ºÃ»ÓĞ×¼±¸Íê³É
+ * \return AM_TRUE  ï¼šå‡†å¤‡å®Œæˆ
+ *         AM_FALSE ï¼šæ²¡æœ‰å‡†å¤‡å®Œæˆ
  */
 am_static_inline
 am_bool_t amhw_zmf159_pwr_odrdy (amhw_zmf159_pwr_t *p_hw_pwr)
@@ -143,12 +143,12 @@ am_bool_t amhw_zmf159_pwr_odrdy (amhw_zmf159_pwr_t *p_hw_pwr)
 }
 
 /**
- * \brief µçÑ¹µ÷ÖÆÆ÷Êä³öÑ¡Ôñ×¼±¸
+ * \brief ç”µå‹è°ƒåˆ¶å™¨è¾“å‡ºé€‰æ‹©å‡†å¤‡
  *
- * \param[in] p_hw_pwr  £º Ö¸ÏòµçÔ´¿ØÖÆ¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_pwr  ï¼š æŒ‡å‘ç”µæºæ§åˆ¶å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return AM_TRUE  £º×¼±¸Íê³É
- *         AM_FALSE £ºÃ»ÓĞ×¼±¸Íê³É
+ * \return AM_TRUE  ï¼šå‡†å¤‡å®Œæˆ
+ *         AM_FALSE ï¼šæ²¡æœ‰å‡†å¤‡å®Œæˆ
  */
 am_static_inline
 am_bool_t amhw_zmf159_pwr_vosrdy (amhw_zmf159_pwr_t *p_hw_pwr)

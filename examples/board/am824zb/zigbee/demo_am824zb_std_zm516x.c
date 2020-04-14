@@ -13,34 +13,34 @@
 
 /**
  * \file
- * \brief ZM516X Ä£¿éÑÝÊ¾Àý³Ì£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief ZM516X æ¨¡å—æ¼”ç¤ºä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. ²âÊÔ±¾ Demo ÐèÒªÊ¹ÓÃÁ½¿é AM824ZB °å£¬Á½¿é°åÐèÒªÏÂÔØ²»Í¬µÄ³ÌÐò£¬
- *      ÆäÖÐÒ»¿é AM824ZB °å´ò¿ªºê USE_BORD0£¬¹Ø±Õºê USE_BORD1£¬±àÒë²¢ÏÂÔØ³ÌÐò£¬
- *      ÁíÍâÒ»¿é AM824ZB °å´ò¿ªºê USE_BORD1£¬¹Ø±Õºê USE_BORD0£¬±àÒë²¢ÏÂÔØ³ÌÐò¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. æµ‹è¯•æœ¬ Demo éœ€è¦ä½¿ç”¨ä¸¤å— AM824ZB æ¿ï¼Œä¸¤å—æ¿éœ€è¦ä¸‹è½½ä¸åŒçš„ç¨‹åºï¼Œ
+ *      å…¶ä¸­ä¸€å— AM824ZB æ¿æ‰“å¼€å® USE_BORD0ï¼Œå…³é—­å® USE_BORD1ï¼Œç¼–è¯‘å¹¶ä¸‹è½½ç¨‹åºï¼Œ
+ *      å¦å¤–ä¸€å— AM824ZB æ¿æ‰“å¼€å® USE_BORD1ï¼Œå…³é—­å® USE_BORD0ï¼Œç¼–è¯‘å¹¶ä¸‹è½½ç¨‹åºã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Á½¿é°å³õÊ¼»¯²¢ÅäÖÃ³É¹¦ºó LED0 ³¤ÁÁ£¬Èç¹û³õÊ¼»¯Ê§°Ü£¬LED0 ÉÁË¸£»
- *   2. Á½¿é°å¼ä¸ô 1S Ïò¶Ô·½·¢ËÍÒ»´ÎÊý¾Ý£¬½ÓÊÕº¯ÊýÊÕµ½¶Ô·½·¢ËÍ¹ýÀ´µÄÊý¾Ýºó£¬µ÷ÊÔ´®¿Ú
- *      ½«½ÓÊÕµ½µÄÊý¾ÝÄÚÈÝÊä³ö£¬ÄÚÈÝÎª "received data from 0x****: I'm 0x**"¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. ä¸¤å—æ¿åˆå§‹åŒ–å¹¶é…ç½®æˆåŠŸåŽ LED0 é•¿äº®ï¼Œå¦‚æžœåˆå§‹åŒ–å¤±è´¥ï¼ŒLED0 é—ªçƒï¼›
+ *   2. ä¸¤å—æ¿é—´éš” 1S å‘å¯¹æ–¹å‘é€ä¸€æ¬¡æ•°æ®ï¼ŒæŽ¥æ”¶å‡½æ•°æ”¶åˆ°å¯¹æ–¹å‘é€è¿‡æ¥çš„æ•°æ®åŽï¼Œè°ƒè¯•ä¸²å£
+ *      å°†æŽ¥æ”¶åˆ°çš„æ•°æ®å†…å®¹è¾“å‡ºï¼Œå†…å®¹ä¸º "received data from 0x****: I'm 0x**"ã€‚
  *
  * \note
- *    1. LED0 ÐèÒª¶Ì½Ó J9 ÌøÏßÃ±£¬²ÅÄÜ±» PIO0_8 ¿ØÖÆ£»
- *    2. Ê¹ÓÃ°´¼ü¹¦ÄÜÐèÒª½« J14 µÄ KEY ºÍ PIO0_1 ¶Ì½ÓÔÚÒ»Æð£»
- *    3. ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIO0_0 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *       PIO0_4 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD£»
- *    4. ²âÊÔ±¾ Demo ±ØÐëÔÚ am_prj_config.h ÄÚ½« AM_CFG_KEY_GPIO_ENABLE ¶¨ÒåÎª 1
- *       µ«¸ÃºêÒÑ¾­Ä¬ÈÏÅäÖÃÎª 1£¬ ÓÃ»§²»±ØÔÙ´ÎÅäÖÃ£»
- *    5. ZigBee Ä£¿éÄÚÁ¬½Ó¹ØÏµÈçÏÂ£º
+ *    1. LED0 éœ€è¦çŸ­æŽ¥ J9 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIO0_8 æŽ§åˆ¶ï¼›
+ *    2. ä½¿ç”¨æŒ‰é”®åŠŸèƒ½éœ€è¦å°† J14 çš„ KEY å’Œ PIO0_1 çŸ­æŽ¥åœ¨ä¸€èµ·ï¼›
+ *    3. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO0_0 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *       PIO0_4 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDï¼›
+ *    4. æµ‹è¯•æœ¬ Demo å¿…é¡»åœ¨ am_prj_config.h å†…å°† AM_CFG_KEY_GPIO_ENABLE å®šä¹‰ä¸º 1
+ *       ä½†è¯¥å®å·²ç»é»˜è®¤é…ç½®ä¸º 1ï¼Œ ç”¨æˆ·ä¸å¿…å†æ¬¡é…ç½®ï¼›
+ *    5. ZigBee æ¨¡å—å†…è¿žæŽ¥å…³ç³»å¦‚ä¸‹ï¼š
  * <pre>
  *           PIO0_26  <-->  ZigBee_TX
  *           PIO0_27  <-->  ZigBee_RX
  *           PIO0_28  <-->  ZigBee_RST
  * </pre>
- *        Èç¹ûÐèÒªÊ¹ÓÃ ZigBee£¬ÕâÐ© IO ¿Ú²»ÄÜÓÃ×÷ÆäËüÓÃÍ¾¡£
+ *        å¦‚æžœéœ€è¦ä½¿ç”¨ ZigBeeï¼Œè¿™äº› IO å£ä¸èƒ½ç”¨ä½œå…¶å®ƒç”¨é€”ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am824zb_std_zm516x.c src_am824zb_std_zm516x
  *
  * \internal
@@ -63,7 +63,7 @@
 #include "am_lpc82x_inst_init.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am824zb_std_zm516x_entry (void)
 {

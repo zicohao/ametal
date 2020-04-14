@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ´«¸ĞÆ÷ BMG160 ÅäÖÃÎÄ¼ş
+ * \brief ä¼ æ„Ÿå™¨ BMG160 é…ç½®æ–‡ä»¶
  *
  * \internal
  * \par Modification history
@@ -30,12 +30,12 @@ extern "C" {
 #endif
 
 /**
- * \brief ´«¸ĞÆ÷ BMG160 Éè±¸ÊµÀı»¯
+ * \brief ä¼ æ„Ÿå™¨ BMG160 è®¾å¤‡å®ä¾‹åŒ–
  */
 am_sensor_handle_t am_sensor_bmg160_inst_init (void);
 
 /**
- * \brief ´«¸ĞÆ÷ BMG160 ÊµÀı½â³õÊ¼»¯
+ * \brief ä¼ æ„Ÿå™¨ BMG160 å®ä¾‹è§£åˆå§‹åŒ–
  */
 am_err_t am_sensor_bmg160_inst_deinit (am_sensor_handle_t handle); 
     

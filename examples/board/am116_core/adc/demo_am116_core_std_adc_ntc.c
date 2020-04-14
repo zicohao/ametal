@@ -12,24 +12,24 @@
 
 /**
  * \file
- * \brief ADC ���ð��ӵ���������(NTC)��������¶����̣�ͨ����׼�ӿ�ʵ��
+ * \brief ADC 利用板子的热敏电阻(NTC)，推算出温度例程，通过标准接口实现
  *
- * - �������裺
- *   1. �̽� J6 ����ñ��ʹ�� ADC_IN8��PIOB_0������ R9 �ĵ�ѹ��
- *   2. �� J14 �� KEY �� RES �̽���һ��ʹ�ð��� RES ����ͨ���ʵ��衣
+ * - 操作步骤：
+ *   1. 短接 J6 跳线帽，使得 ADC_IN8（PIOB_0）测量 R9 的电压；
+ *   2. 将 J14 的 KEY 和 RES 短接在一起，使得按下 RES 键接通功率电阻。
  *
- * - ʵ������
- *   1. ��������¶�ֵ��
- *   2. ���� RES ��������һ�������������¶�ֵ���ߡ�
+ * - 实验现象：
+ *   1. 串口输出温度值；
+ *   2. 按下 RES 按键，过一会儿，串口输出温度值升高。
  *
  * \note
- *    ����۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIOA_9 �������� PC ���ڵ� RXD��
+ *    如需观察串口打印的调试信息，需要将 PIOA_9 引脚连接 PC 串口的 RXD；
  *
- * \warning �뾡��ʹ�ö��� 5V ��Դ�����ӹ��磬��Ϊ���ȵ����ǹ��ʵ��裬��ֵ��С������
- *          ��ͨ���緽ʽ�� USB ���磬���������Դ��ѹ������Ӱ������������ֵ�жϣ�����
- *          Ӱ���¶�ֵ�Ĳ�����
+ * \warning 请尽量使用独立 5V 电源给板子供电，因为加热电阻是功率电阻，阻值较小电流大。
+ *          普通供电方式如 USB 供电，容易引起电源电压波动，影响热敏电阻阻值判断，进而
+ *          影响温度值的测量。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_am116_core_std_adc_ntc.c src_am116_core_std_adc_ntc
  *
  * \internal
@@ -50,12 +50,12 @@
 #include "demo_std_entries.h"
 #include "demo_am116_core_entries.h"
 
-/* \brief �������  */
+/* \brief 例程入口  */
 void demo_am116_core_std_adc_ntc_entry (void)
 {
     AM_DBG_INFO("demo am116_core std adc ntc!\r\n");
 
-    /* NTC�¶Ȳɼ�ʹ�õ���ADCͨ�� 8 ��PIOB_0���� ��ѹ����Ϊ 2000ŷķ */
+    /* NTC温度采集使用的是ADC通道 8 （PIOB_0）， 分压电阻为 2000欧姆 */
     demo_std_adc_ntc_entry(am_zlg116_adc_inst_init(),  8, 2000);
 }
 /** [src_am116_core_std_adc_ntc] */

@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZMF159 CAN ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief ZMF159 CAN ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_zmf159_can.c
  *
  * \internal
@@ -36,7 +36,7 @@
 
 #define MAX     10
 
-/** \brief CANÆ½Ì¨³õÊ¼»¯ */
+/** \brief CANå¹³å°åˆå§‹åŒ– */
 static void __zmf159_plfm_can_init (void)
 {
     am_gpio_pin_cfg(PIOB_8, PIOB_8_CAN1_RX | PIOB_8_INPUT_FLOAT | PIOB_8_SPEED_50MHz);
@@ -46,7 +46,7 @@ static void __zmf159_plfm_can_init (void)
     am_clk_enable(CLK_SYSCFG);
 }
 
-/** \brief ½â³ıCANÆ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤CANå¹³å°åˆå§‹åŒ– */
 static void __zmf159_plfm_can_deinit (void)
 {
     am_clk_disable (CLK_CAN);
@@ -54,29 +54,29 @@ static void __zmf159_plfm_can_deinit (void)
 
 static am_zmf159_can_intcb_info_t    __g_can_intcb_info[MAX];
 
-/** \brief Éè±¸ĞÅÏ¢ */
+/** \brief è®¾å¤‡ä¿¡æ¯ */
 static const am_zmf159_can_devinfo_t __g_can_devinfo = {
 
     ZMF159_CAN_BASE,                 /**< \brief CAN */
-    INUM_CAN_RX1,                    /**< \brief CANµÄÖĞ¶Ï±àºÅ */
-	AMHW_ZMF159_CAN_PELI_CAN,        /**< \brief CANÄ£Ê½¶¨Òå */
-    __g_can_intcb_info,              /**< \brief »Øµ÷ĞÅÏ¢ */
-    MAX,                             /**< \brief »Øµ÷ĞÅÏ¢ÄÚ´æ´óĞ¡*/
-    __zmf159_plfm_can_init,          /**< \brief CAN1µÄÆ½Ì¨³õÊ¼»¯ */
-    __zmf159_plfm_can_deinit,        /**< \brief CAN1µÄÆ½Ì¨È¥³õÊ¼»¯ */
+    INUM_CAN_RX1,                    /**< \brief CANçš„ä¸­æ–­ç¼–å· */
+	AMHW_ZMF159_CAN_PELI_CAN,        /**< \brief CANæ¨¡å¼å®šä¹‰ */
+    __g_can_intcb_info,              /**< \brief å›è°ƒä¿¡æ¯ */
+    MAX,                             /**< \brief å›è°ƒä¿¡æ¯å†…å­˜å¤§å°*/
+    __zmf159_plfm_can_init,          /**< \brief CAN1çš„å¹³å°åˆå§‹åŒ– */
+    __zmf159_plfm_can_deinit,        /**< \brief CAN1çš„å¹³å°å»åˆå§‹åŒ– */
 
 };
 
-/**< \brief Éè±¸ÊµÀı */
+/**< \brief è®¾å¤‡å®ä¾‹ */
 static am_zmf159_can_dev_t  __g_can_dev;
 
-/** \brief CANÊµÀı³õÊ¼»¯£¬»ñµÃCAN±ê×¼·şÎñ¾ä±ú */
+/** \brief CANå®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—CANæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_can_handle_t am_zmf159_can_inst_init (void)
 {
     return am_zmf159_can_init(&__g_can_dev, &__g_can_devinfo);
 }
 
-/** \brief CANÊµÀı½â³õÊ¼»¯ */
+/** \brief CANå®ä¾‹è§£åˆå§‹åŒ– */
 void am_zmf159_can_inst_deinit (am_can_handle_t handle)
 {
     am_zmf159_can_deinit(handle);

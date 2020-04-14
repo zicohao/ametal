@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief GPIO¿Ú Ä£ÄâI2C Çı¶¯Í·ÎÄ¼ş
+ * \brief GPIOå£ æ¨¡æ‹ŸI2C é©±åŠ¨å¤´æ–‡ä»¶
  *
  * \internal
  * \par modification history:
@@ -37,62 +37,62 @@ extern "C" {
  * @{
  */
 /**
- * \brief I2C_GPIO Éè±¸ĞÅÏ¢²ÎÊı½á¹¹Ìå
+ * \brief I2C_GPIO è®¾å¤‡ä¿¡æ¯å‚æ•°ç»“æ„ä½“
  */
 typedef struct am_i2c_gpio_devinfo {
-    int      scl_pin;        /**< \brief SCLÒı½Å */
-    int      sda_pin;        /**< \brief SDAÒı½Å */
+    int      scl_pin;        /**< \brief SCLå¼•è„š */
+    int      sda_pin;        /**< \brief SDAå¼•è„š */
 
-    /** \brief ×ÜÏßËÙ¶ÈÖ¸Êı, ÖµÔ½´ó×ÜÏßËÙ¶ÈÔ½Âı, Í¨³£ÅäºÏÂß¼­·ÖÎöÒÇÀ´È·¶¨Êµ¼ÊµÄ×ÜÏßËÙ¶È  */
+    /** \brief æ€»çº¿é€Ÿåº¦æŒ‡æ•°, å€¼è¶Šå¤§æ€»çº¿é€Ÿåº¦è¶Šæ…¢, é€šå¸¸é…åˆé€»è¾‘åˆ†æä»ªæ¥ç¡®å®šå®é™…çš„æ€»çº¿é€Ÿåº¦  */
     uint32_t speed_exp;
 } am_i2c_gpio_devinfo_t;
 
 /**
- * \brief I2C_GPIO Éè±¸½á¹¹Ìå
+ * \brief I2C_GPIO è®¾å¤‡ç»“æ„ä½“
  */
 typedef struct am_i2c_gpio_dev {
-    /** \brief ±ê×¼I2C·şÎñ */
+    /** \brief æ ‡å‡†I2CæœåŠ¡ */
     am_i2c_serv_t                           i2c_serv;
 
-    /** \brief I2C¿ØÖÆÆ÷ÏûÏ¢¶ÓÁĞ */
+    /** \brief I2Cæ§åˆ¶å™¨æ¶ˆæ¯é˜Ÿåˆ— */
     struct am_list_head                     msg_list;
 
-    /** \brief Ö¸ÏòI2C´«Êä½á¹¹ÌåµÄÖ¸Õë,Í¬Ò»Ê±¼äÖ»ÄÜ´¦ÀíÒ»¸ö´«Êä */
+    /** \brief æŒ‡å‘I2Cä¼ è¾“ç»“æ„ä½“çš„æŒ‡é’ˆ,åŒä¸€æ—¶é—´åªèƒ½å¤„ç†ä¸€ä¸ªä¼ è¾“ */
     am_i2c_transfer_t                      *p_cur_trans;
 
-    /** \brief µ±Ç°ÕıÔÚ´¦ÀíµÄÏûÏ¢ */
+    /** \brief å½“å‰æ­£åœ¨å¤„ç†çš„æ¶ˆæ¯ */
     am_i2c_message_t                       *p_cur_msg;
 
-    /** \brief Ã¦±êÊ¶ */
+    /** \brief å¿™æ ‡è¯† */
     volatile am_bool_t                      busy;
 
-    /** \brief I2C×´Ì¬ */
+    /** \brief I2CçŠ¶æ€ */
     volatile uint8_t                        state;
 
-    /** \brief ÓÃÓÚÊı¾İ½ÓÊÕ/·¢ËÍ¼ÆÊı */
+    /** \brief ç”¨äºæ•°æ®æ¥æ”¶/å‘é€è®¡æ•° */
     volatile uint32_t                       data_ptr;
 
-    /** \brief I2C_GPIO Éè±¸ĞÅÏ¢ */
+    /** \brief I2C_GPIO è®¾å¤‡ä¿¡æ¯ */
     const am_i2c_gpio_devinfo_t             *p_devinfo;
 } am_i2c_gpio_dev_t;
 
 /**
- * \brief I2C_GPIO ³õÊ¼»¯
+ * \brief I2C_GPIO åˆå§‹åŒ–
  *
- * \param[in] p_dev     : Ö¸ÏòI2C_GPIO Éè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[in] p_devinfo : Ö¸ÏòI2C_GPIO Éè±¸ĞÅÏ¢½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] p_dev     : æŒ‡å‘I2C_GPIO è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo : æŒ‡å‘I2C_GPIO è®¾å¤‡ä¿¡æ¯ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return I2C±ê×¼·şÎñ²Ù×÷¾ä±ú
+ * \return I2Cæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  */
 am_i2c_handle_t am_i2c_gpio_init (am_i2c_gpio_dev_t           *p_dev,
                                   const am_i2c_gpio_devinfo_t *p_devinfo);
 
 /**
- * \brief ½â³ıI2C_GPIO³õÊ¼»¯
+ * \brief è§£é™¤I2C_GPIOåˆå§‹åŒ–
  *
- * \param[in] handle : Óë´ÓÉè±¸¹ØÁªµÄI2C±ê×¼·şÎñ²Ù×÷¾ä±ú
+ * \param[in] handle : ä¸ä»è®¾å¤‡å…³è”çš„I2Cæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_i2c_gpio_deinit (am_i2c_handle_t handle);
 

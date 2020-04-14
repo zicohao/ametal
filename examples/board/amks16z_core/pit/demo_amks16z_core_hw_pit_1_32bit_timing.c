@@ -12,16 +12,16 @@
 
 /**
  * \file
- * \brief PIT ¶¨Ê±Æ÷ÊµÏÖ(32Î»)¶¨Ê±¹¦ÄÜµÄÀı³Ì£¬Í¨¹ıHW²ãµÄ½Ó¿ÚÊµÏÖ
+ * \brief PIT å®šæ—¶å™¨å®ç°(32ä½)å®šæ—¶åŠŸèƒ½çš„ä¾‹ç¨‹ï¼Œé€šè¿‡HWå±‚çš„æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. LEDÒÔ10HzµÄÆµÂÊÉÁË¸¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. LEDä»¥10Hzçš„é¢‘ç‡é—ªçƒã€‚
  *
- * - ×¢Òâ£º
- *    Èç¹ûÒªÔËĞĞ´ËÀı³Ì£¬ĞèÒª½«am_prj_config.hÖĞAM_CFG_SOFTIMER_ENABLE¡¢
- *    AM_CFG_KEY_GPIO_ENABLEºÍAM_CFG_SYSTEM_TICK_ENABLEÈı¸öºêµÄÖµ¶¼ÉèÎª0¡£
+ * - æ³¨æ„ï¼š
+ *    å¦‚æœè¦è¿è¡Œæ­¤ä¾‹ç¨‹ï¼Œéœ€è¦å°†am_prj_config.hä¸­AM_CFG_SOFTIMER_ENABLEã€
+ *    AM_CFG_KEY_GPIO_ENABLEå’ŒAM_CFG_SYSTEM_TICK_ENABLEä¸‰ä¸ªå®çš„å€¼éƒ½è®¾ä¸º0ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_amks16z_core_hw_pit_1_32bit_timing.c src_amks16z_core_hw_pit_1_32bit_timing
  *
  * \internal
@@ -49,14 +49,14 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_amks16z_core_hw_pit_1_32bit_timing_entry (void)
 {
     uint32_t pit_clk;
 
     AM_DBG_INFO("demo amks16z_core hw pit 1 32 bit timing!\r\n");
-    /* Æ½Ì¨³õÊ¼»¯ */
+    /* å¹³å°åˆå§‹åŒ– */
     amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_PIT);
 
     pit_clk = am_kl26_clk_periph_rate_get(KL26_PIT);

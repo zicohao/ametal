@@ -12,25 +12,25 @@
 
 /**
  * \file
- * \brief ´®¿Ú£¨UART£©²Ù×÷½Ó¿Ú
+ * \brief ä¸²å£ï¼ˆUARTï¼‰æ“ä½œæ¥å£
  *
- * 1. È«Ë«¹¤²Ù×÷£¬±ê×¼²»¹éÁã(NRZ)¸ñÊ½
- * 2. ¾ßÓĞ¶ÀÁ¢Ê¹ÄÜµÄË«»º³å¿É·ÖÀëµÄ·¢ËÍ½ÓÊÕÆ÷ºÍ½ÓÊÕÆ÷
- * 3. ²¨ÌØÂÊ¿É±à³Ì£¨ 13 Î»Ä£Êı·ÖÆµÆ÷£©
- * 4. ÖĞ¶ÏÇı¶¯»òÂÖÑ¯²Ù×÷
- * 1. ·¢ËÍÊı¾İ¼Ä´æÆ÷¿Õ²¢ÇÒ·¢ËÍÍê³É
- * 2. ½ÓÊÕÊı¾İ¼Ä´æÆ÷Âú
- * 3. ½ÓÊÕ¹ıÔØ¡¢ÆæÅ¼¼ìÑé´íÎó¡¢Ö¡´íÎóºÍÔëÉù´íÎó
- * 4. ¿ÕÏĞ½ÓÊÕÆ÷¼ì²â
- * 5. ½ÓÊÕÒı½ÅÉÏÓĞ»î¶¯ÑØ
- * 6. Ö§³Ö LIN µÄÖĞ¶Ï¼ì²â
- * 5. Ó²¼şÆæÅ¼Ğ£ÑéÉú³ÉºÍ¼ì²â
- * 6. ¿É±à³ÌµÄ 8 Î»»ò×¨ 9 Î»×Ö·û³¤¶È
- * 7. ¿É±à³ÌµÄ 1 Î»»ò 2 Î»Í£Ö¹Î»
- * 8. ¿ÕÏĞÏß»òµØÖ·±êÖ¾»½ĞÑ½ÓÊÕÆ÷£º
- * 9. ¿ÉÑ¡µÄ 13 Î»ÖĞÖ¹·ûÉú³É/11 Î»ÖĞÖ¹·û¼ì²â
- * 10. ¿ÉÑ¡µÄ·¢ËÍÆ÷Êä³ö¼«ĞÔ
- * 11. 5 Í¨µÀ DMA ½Ó¿Ú
+ * 1. å…¨åŒå·¥æ“ä½œï¼Œæ ‡å‡†ä¸å½’é›¶(NRZ)æ ¼å¼
+ * 2. å…·æœ‰ç‹¬ç«‹ä½¿èƒ½çš„åŒç¼“å†²å¯åˆ†ç¦»çš„å‘é€æ¥æ”¶å™¨å’Œæ¥æ”¶å™¨
+ * 3. æ³¢ç‰¹ç‡å¯ç¼–ç¨‹ï¼ˆ 13 ä½æ¨¡æ•°åˆ†é¢‘å™¨ï¼‰
+ * 4. ä¸­æ–­é©±åŠ¨æˆ–è½®è¯¢æ“ä½œ
+ * 1. å‘é€æ•°æ®å¯„å­˜å™¨ç©ºå¹¶ä¸”å‘é€å®Œæˆ
+ * 2. æ¥æ”¶æ•°æ®å¯„å­˜å™¨æ»¡
+ * 3. æ¥æ”¶è¿‡è½½ã€å¥‡å¶æ£€éªŒé”™è¯¯ã€å¸§é”™è¯¯å’Œå™ªå£°é”™è¯¯
+ * 4. ç©ºé—²æ¥æ”¶å™¨æ£€æµ‹
+ * 5. æ¥æ”¶å¼•è„šä¸Šæœ‰æ´»åŠ¨æ²¿
+ * 6. æ”¯æŒ LIN çš„ä¸­æ–­æ£€æµ‹
+ * 5. ç¡¬ä»¶å¥‡å¶æ ¡éªŒç”Ÿæˆå’Œæ£€æµ‹
+ * 6. å¯ç¼–ç¨‹çš„ 8 ä½æˆ–ä¸“ 9 ä½å­—ç¬¦é•¿åº¦
+ * 7. å¯ç¼–ç¨‹çš„ 1 ä½æˆ– 2 ä½åœæ­¢ä½
+ * 8. ç©ºé—²çº¿æˆ–åœ°å€æ ‡å¿—å”¤é†’æ¥æ”¶å™¨ï¼š
+ * 9. å¯é€‰çš„ 13 ä½ä¸­æ­¢ç¬¦ç”Ÿæˆ/11 ä½ä¸­æ­¢ç¬¦æ£€æµ‹
+ * 10. å¯é€‰çš„å‘é€å™¨è¾“å‡ºææ€§
+ * 11. 5 é€šé“ DMA æ¥å£
  *
  * \internal
  * \par Modification History
@@ -56,7 +56,7 @@ extern "C" {
  */
 
 /**
- * \brief Ê¹ÓÃÄäÃûÁªºÏÌå¶Î¿ªÊ¼
+ * \brief ä½¿ç”¨åŒ¿åè”åˆä½“æ®µå¼€å§‹
  * @{
  */
 
@@ -67,10 +67,10 @@ extern "C" {
   #pragma language=extended
 #elif defined(__GNUC__)
 
-  /* Ä¬ÈÏÊ¹ÄÜÄäÃûÁªºÏÌå */
+  /* é»˜è®¤ä½¿èƒ½åŒ¿åè”åˆä½“ */
 #elif defined(__TMS470__)
 
-  /* Ä¬ÈÏÊ¹ÄÜÄäÃûÁªºÏÌå */
+  /* é»˜è®¤ä½¿èƒ½åŒ¿åè”åˆä½“ */
 #elif defined(__TASKING__)
   #pragma warning 586
 #else
@@ -80,66 +80,66 @@ extern "C" {
 /** @} */
 
 /**
- * \brief uart ¼Ä´æÆ÷¿é½á¹¹Ìå
+ * \brief uart å¯„å­˜å™¨å—ç»“æ„ä½“
  */
 typedef struct amhw_fsl_uart {
-     __IO uint8_t bdh;                    /**< \brief UART ²¨ÌØÂÊ¸ßÎ»¼Ä´æÆ÷  */
-     __IO uint8_t bdl;                    /**< \brief UART ²¨ÌØÂÊµ×Î»¼Ä´æÆ÷  */
-     __IO uint8_t c1;                     /**< \brief UART ¿ØÖÆ¼Ä´æÆ÷        */
-     __IO uint8_t c2;                     /**< \brief UART ¿ØÖÆ¼Ä´æÆ÷        */
-     __IO uint8_t stat1;                  /**< \brief UART ×´Ì¬¼Ä´æÆ÷1       */
-     __IO uint8_t stat2;                  /**< \brief UART ×´Ì¬¼Ä´æÆ÷2       */
-     __IO uint8_t c3;                     /**< \brief UART ¿ØÖÆ¼Ä´æÆ÷        */
-     __IO uint8_t data;                   /**< \brief UART Êı¾İ¼Ä´æÆ÷        */
+     __IO uint8_t bdh;                    /**< \brief UART æ³¢ç‰¹ç‡é«˜ä½å¯„å­˜å™¨  */
+     __IO uint8_t bdl;                    /**< \brief UART æ³¢ç‰¹ç‡åº•ä½å¯„å­˜å™¨  */
+     __IO uint8_t c1;                     /**< \brief UART æ§åˆ¶å¯„å­˜å™¨        */
+     __IO uint8_t c2;                     /**< \brief UART æ§åˆ¶å¯„å­˜å™¨        */
+     __IO uint8_t stat1;                  /**< \brief UART çŠ¶æ€å¯„å­˜å™¨1       */
+     __IO uint8_t stat2;                  /**< \brief UART çŠ¶æ€å¯„å­˜å™¨2       */
+     __IO uint8_t c3;                     /**< \brief UART æ§åˆ¶å¯„å­˜å™¨        */
+     __IO uint8_t data;                   /**< \brief UART æ•°æ®å¯„å­˜å™¨        */
      union {                                                                 
           struct {                                                           
-              __IO uint8_t uart0_ma1;     /**< \brief UART0 Æ¥ÅäµØÖ·¼Ä´æÆ÷   */
-              __IO uint8_t uart0_ma2;     /**< \brief UART0 Æ¥ÅäµØÖ·¼Ä´æÆ÷   */
-              __IO uint8_t uart0_c4;      /**< \brief UART0 ¿ØÖÆ¼Ä´æÆ÷       */
-              __IO uint8_t uart0_c5;      /**< \brief UART0 ¿ØÖÆ¼Ä´æÆ÷       */
+              __IO uint8_t uart0_ma1;     /**< \brief UART0 åŒ¹é…åœ°å€å¯„å­˜å™¨   */
+              __IO uint8_t uart0_ma2;     /**< \brief UART0 åŒ¹é…åœ°å€å¯„å­˜å™¨   */
+              __IO uint8_t uart0_c4;      /**< \brief UART0 æ§åˆ¶å¯„å­˜å™¨       */
+              __IO uint8_t uart0_c5;      /**< \brief UART0 æ§åˆ¶å¯„å­˜å™¨       */
           };                                                                 
-          __IO uint8_t uart1_2_c4;        /**< \brief UART1/2 ¿ØÖÆ¼Ä´æÆ÷     */
+          __IO uint8_t uart1_2_c4;        /**< \brief UART1/2 æ§åˆ¶å¯„å­˜å™¨     */
       };
 } amhw_fsl_uart_t;
 
 
 /**
- * \name ´®¿ÚÊı¾İ¼Ä´æÆ÷µØÖ·¶¨Òå£¬(¿ÉÄÜÓÉDMAÓÃµ½)
+ * \name ä¸²å£æ•°æ®å¯„å­˜å™¨åœ°å€å®šä¹‰ï¼Œ(å¯èƒ½ç”±DMAç”¨åˆ°)
  * @{
  */
-/** \brief UART0 ½ÓÊÕÊı¾İ¼Ä´æÆ÷µØÖ·  */
+/** \brief UART0 æ¥æ”¶æ•°æ®å¯„å­˜å™¨åœ°å€  */
 #define AMHW_FSL_UART0_DAT_ADDR  (&(AMHW_FSL_UART0->data))
-/** \brief UART1 ½ÓÊÕÊı¾İ¼Ä´æÆ÷µØÖ·  */
+/** \brief UART1 æ¥æ”¶æ•°æ®å¯„å­˜å™¨åœ°å€  */
 #define AMHW_FSL_UART1_DAT_ADDR  (&(AMHW_FSL_UART1->data))
-/** \brief UART2 ½ÓÊÕÊı¾İ¼Ä´æÆ÷µØÖ·  */
+/** \brief UART2 æ¥æ”¶æ•°æ®å¯„å­˜å™¨åœ°å€  */
 #define AMHW_FSL_UART2_DAT_ADDR  (&(AMHW_FSL_UART2->data))
 
 /** @} */
 
 /**
- * \name uart ²¨ÌØÂÊ·ÖÆµÒò×ÓÉèÖÃÎ»ºê¶¨Òå
+ * \name uart æ³¢ç‰¹ç‡åˆ†é¢‘å› å­è®¾ç½®ä½å®å®šä¹‰
  * @{
  */
-/** \brief ²¨ÌØÂÊ·ÖÆµÒò×Ó¸ßÎ»ÉèÖÃ                                            */
+/** \brief æ³¢ç‰¹ç‡åˆ†é¢‘å› å­é«˜ä½è®¾ç½®                                            */
 #define AMHW_FSL_UART_BDH_SBR_MASK     0x1Fu
 #define AMHW_FSL_UART_BDH_SBR(x)       (((uint8_t)(((uint8_t)(x))<<0))&0x1Fu)
-/** \brief ²¨ÌØÂÊ·ÖÆµÒò×Óµ×Î»ÉèÖÃ                                            */
+/** \brief æ³¢ç‰¹ç‡åˆ†é¢‘å› å­åº•ä½è®¾ç½®                                            */
 #define AMHW_FSL_UART_BDL_SBR_MASK     0xFFu
 #define AMHW_FSL_UART_BDL_SBR(x)       (((uint8_t)(((uint8_t)(x))<<0))&0xFFu)
 
 /** @} */
 
 /**
- * \name uart ½ÓÊÕÆ÷/·¢ËÍÆ÷Ê¹ÄÜÎ»ºê¶¨Òå
+ * \name uart æ¥æ”¶å™¨/å‘é€å™¨ä½¿èƒ½ä½å®å®šä¹‰
  * @{
  */
-#define AMHW_FSL_UART_C2_TE_EN         ((uint8_t)(1<<3)) /**< \brief ·¢ËÍÆ÷Ê¹ÄÜ  */
-#define AMHW_FSL_UART_C2_RE_EN         ((uint8_t)(1<<2)) /**< \brief ½ÓÊÕÆ÷Ê¹ÄÜ  */
+#define AMHW_FSL_UART_C2_TE_EN         ((uint8_t)(1<<3)) /**< \brief å‘é€å™¨ä½¿èƒ½  */
+#define AMHW_FSL_UART_C2_RE_EN         ((uint8_t)(1<<2)) /**< \brief æ¥æ”¶å™¨ä½¿èƒ½  */
 
 /** @} */
 
 /**
- * \name uart ÉèÖÃOSRÖµºê¶¨Òå
+ * \name uart è®¾ç½®OSRå€¼å®å®šä¹‰
  * @{
  */
 #define AMHW_FSL_UART_C4_OSR_MASK     ((uint8_t)0x1Fu)
@@ -148,144 +148,144 @@ typedef struct amhw_fsl_uart {
 /** @} */
 
 /**
- * \name uart ×´Ì¬¼Ä´æÆ÷1ÑÚÂëÎ»ºê¶¨Òå
+ * \name uart çŠ¶æ€å¯„å­˜å™¨1æ©ç ä½å®å®šä¹‰
  * @{
  */
-/** \brief ·¢ËÍÊı¾İ¿ÕÊ±£¬±íÃ÷¿ÉÒÔ¼ÌĞø·¢ËÍ                                    */
+/** \brief å‘é€æ•°æ®ç©ºæ—¶ï¼Œè¡¨æ˜å¯ä»¥ç»§ç»­å‘é€                                    */
 #define AMHW_FSL_UART_S1_TDRE_MASK     0x80u
 
-/** \brief ½Ó·¢ËÍÍê³É±êÖ¾ÑÚÂëÎ»                                                      */
+/** \brief æ¥å‘é€å®Œæˆæ ‡å¿—æ©ç ä½                                                      */
 #define AMHW_FSL_UART_S1_TC_MASK       0x40u
 
-/** \brief ½ÓÊÕÊı¾İÎªÂúÊ±£¬±íÃ÷¿ÉÒÔ¶ÁÈ¡Êı¾İ                                  */
+/** \brief æ¥æ”¶æ•°æ®ä¸ºæ»¡æ—¶ï¼Œè¡¨æ˜å¯ä»¥è¯»å–æ•°æ®                                  */
 #define AMHW_FSL_UART_S1_RDRF_MASK     0x20u
 
-/** \brief Ğ£Ñé´íÎóÎ»ÓòÑÚÂë */
+/** \brief æ ¡éªŒé”™è¯¯ä½åŸŸæ©ç  */
 #define AMHW_FSL_UART_S1_PF_MASK       0x01u
 
 /** @} */
 
 /**
- * \brief Ê¹ÄÜË«±ßÑØ²ÉÑùÎ»ºê¶¨Òå
+ * \brief ä½¿èƒ½åŒè¾¹æ²¿é‡‡æ ·ä½å®å®šä¹‰
  */
 #define AMHW_FSL_UART0_C5_BOTHEDGE_EN  ((uint8_t)(1<<1))
 
 /**
- * \name uart C1 ¿ØÖÆ¼Ä´æÆ÷1
+ * \name uart C1 æ§åˆ¶å¯„å­˜å™¨1
  * @{
  */
 
-/** \brief »Ø»·Ä£Ê½»òµ¥ÏßÄ£Ê½ */
+/** \brief å›ç¯æ¨¡å¼æˆ–å•çº¿æ¨¡å¼ */
 #define AMHW_FSL_UART_C1_LOOPS          ((uint8_t)(1 << 7))
 
-/** \brief ½ÓÊÕÔ´Ñ¡Ôñ£¬[LOOPS = 1]¸ÃÎ»ÓòÎª0Ê±LOOPÄ£Ê½£¬Îª1Ê±Single-WireÄ£Ê½ */
+/** \brief æ¥æ”¶æºé€‰æ‹©ï¼Œ[LOOPS = 1]è¯¥ä½åŸŸä¸º0æ—¶LOOPæ¨¡å¼ï¼Œä¸º1æ—¶Single-Wireæ¨¡å¼ */
 #define AMHW_FSL_UART_C1_RSRC           ((uint8_t)(1 << 5))
 
-#define AMHW_FSL_UART_C1_M_8BIT         ((uint8_t)(0 << 4)) /**< \brief 8Î»Êı¾İ³¤¶È*/
-#define AMHW_FSL_UART_C1_M_9BIT         ((uint8_t)(1 << 4)) /**< \brief 9Î»Êı¾İ³¤¶È*/
-#define AMHW_FSL_UART_C1_M_GET(c1)      ((c1 & (1 << 4)))   /**< \brief »ñÈ¡Êı¾İ³¤¶È*/
+#define AMHW_FSL_UART_C1_M_8BIT         ((uint8_t)(0 << 4)) /**< \brief 8ä½æ•°æ®é•¿åº¦*/
+#define AMHW_FSL_UART_C1_M_9BIT         ((uint8_t)(1 << 4)) /**< \brief 9ä½æ•°æ®é•¿åº¦*/
+#define AMHW_FSL_UART_C1_M_GET(c1)      ((c1 & (1 << 4)))   /**< \brief è·å–æ•°æ®é•¿åº¦*/
 
-#define AMHW_FSL_UART_C1_PARITY_NO      ((uint8_t)(0 << 1)) /**< \brief ²»Ê¹ÓÃĞ£Ñé */
-#define AMHW_FSL_UART_C1_PARITY_EVEN    ((uint8_t)(2 << 0)) /**< \brief Å¼Ğ£Ñé     */
-#define AMHW_FSL_UART_C1_PARITY_ODD     ((uint8_t)(3 << 0)) /**< \brief ÆæĞ£Ñé     */
-#define AMHW_FSL_UART_C1_PARITY_GET(c1) (c1 & 0x3)          /**< \brief »ñÈ¡Ğ£ÑéÉèÖÃ  */
-
-/** @} */
-
-/**
- * \name uart C1 Í£Ö¹Î»Î»ºê¶¨Òå
- * @{
- */
-#define AMHW_FSL_UART_BDH_SBNS_STOP_1   (0UL << 5)         /**< \brief 1Î»Í£Ö¹Î»  */
-#define AMHW_FSL_UART_BDH_SBNS_STOP_2   (1UL << 5)         /**< \brief 2Î»Í£Ö¹Î»  */
+#define AMHW_FSL_UART_C1_PARITY_NO      ((uint8_t)(0 << 1)) /**< \brief ä¸ä½¿ç”¨æ ¡éªŒ */
+#define AMHW_FSL_UART_C1_PARITY_EVEN    ((uint8_t)(2 << 0)) /**< \brief å¶æ ¡éªŒ     */
+#define AMHW_FSL_UART_C1_PARITY_ODD     ((uint8_t)(3 << 0)) /**< \brief å¥‡æ ¡éªŒ     */
+#define AMHW_FSL_UART_C1_PARITY_GET(c1) (c1 & 0x3)          /**< \brief è·å–æ ¡éªŒè®¾ç½®  */
 
 /** @} */
 
 /**
- * \name uart C3 ¿ØÖÆ¼Ä´æÆ÷3
+ * \name uart C1 åœæ­¢ä½ä½å®å®šä¹‰
+ * @{
+ */
+#define AMHW_FSL_UART_BDH_SBNS_STOP_1   (0UL << 5)         /**< \brief 1ä½åœæ­¢ä½  */
+#define AMHW_FSL_UART_BDH_SBNS_STOP_2   (1UL << 5)         /**< \brief 2ä½åœæ­¢ä½  */
+
+/** @} */
+
+/**
+ * \name uart C3 æ§åˆ¶å¯„å­˜å™¨3
  * @{
  */
 
-/** \brief ÅäÖÃµ¥ÏßÄ£Ê½ÏÂIOÒı½ÅµÄÊäÈëÊä³ö·½Ïò£¬¸ÃÎ»Óò0±íÊ¾ÊäÈë£¬¸ÃÎ»Óò1±íÊ¾Êä³ö */
+/** \brief é…ç½®å•çº¿æ¨¡å¼ä¸‹IOå¼•è„šçš„è¾“å…¥è¾“å‡ºæ–¹å‘ï¼Œè¯¥ä½åŸŸ0è¡¨ç¤ºè¾“å…¥ï¼Œè¯¥ä½åŸŸ1è¡¨ç¤ºè¾“å‡º */
 #define AMHW_FSL_UART_C3_TXDIR          (1U << 5)
 
-/** \brief µ¥ÏßÄ£Ê½ÏÂTxÒı½ÅÎªÊäÈë·½Ïò£¬ÓÉ #AMHW_FSL_UART_C3_TXDIR Î»Óò¿ØÖÆ */
+/** \brief å•çº¿æ¨¡å¼ä¸‹Txå¼•è„šä¸ºè¾“å…¥æ–¹å‘ï¼Œç”± #AMHW_FSL_UART_C3_TXDIR ä½åŸŸæ§åˆ¶ */
 #define AMHW_FSL_UART_SINGLE_WIRE_INPUT  0
 
-/** \brief µ¥ÏßÄ£Ê½ÏÂTxÒı½ÅÎªÊä³ö·½Ïò£¬ÓÉ #AMHW_FSL_UART_C3_TXDIR Î»Óò¿ØÖÆ */
+/** \brief å•çº¿æ¨¡å¼ä¸‹Txå¼•è„šä¸ºè¾“å‡ºæ–¹å‘ï¼Œç”± #AMHW_FSL_UART_C3_TXDIR ä½åŸŸæ§åˆ¶ */
 #define AMHW_FSL_UART_SINGLE_WIRE_OUTPUT 1
 
 /** @} */
 
 /**
- * \name ´®¿ÚÖĞ¶ÏÔ´¶¨Òå,¿ÉÍ¨¹ıamhw_fsl_uart_int_enableÊ¹ÄÜ»òamhw_fsl_uart_int_disable½ûÄÜ
+ * \name ä¸²å£ä¸­æ–­æºå®šä¹‰,å¯é€šè¿‡amhw_fsl_uart_int_enableä½¿èƒ½æˆ–amhw_fsl_uart_int_disableç¦èƒ½
  * @{
  */
-#define AMHW_FSL_UART_INT_BDH_LBKDIE  (1UL << 9) /**< \brief LIN¶Ïµã¼ì²âÖĞ¶Ï      */
-#define AMHW_FSL_UART_INT_BDH_RXEDGIE (1UL << 8) /**< \brief RxDÊäÈëÓĞĞ§±ßÑØÖĞ¶Ï  */
-#define AMHW_FSL_UART_INT_C2_TIE      (1UL << 7) /**< \brief TDRE·¢ËÍ×¼±¸¾ÍĞ÷ÖĞ¶Ï */
-#define AMHW_FSL_UART_INT_C2_TCIE     (1UL << 6) /**< \brief TC·¢ËÍÍê³ÉÖĞ¶Ï       */
-#define AMHW_FSL_UART_INT_C2_IRIE     (1UL << 5) /**< \brief RDRF½ÓÊÕ×¼±¸¾ÍĞ÷ÖĞ¶Ï */
-#define AMHW_FSL_UART_INT_C2_ILIE     (1UL << 4) /**< \brief IDLE¿ÕÏĞÏßÂ·ÖĞ¶ÏÊ¹ÄÜ */
-#define AMHW_FSL_UART_INT_C3_OVR      (1UL << 3) /**< \brief Òç³öÖĞ¶Ï             */
-#define AMHW_FSL_UART_INT_C3_NEIE     (1UL << 2) /**< \brief ÔëÉù´íÎóÖĞ¶Ï         */
-#define AMHW_FSL_UART_INT_C3_IFRMERR  (1UL << 1) /**< \brief Ö¡´íÎóÖĞ¶Ï           */
-#define AMHW_FSL_UART_INT_C3_PARERR   (1UL << 0) /**< \brief ÆæÅ¼Ğ£Ñé´íÎóÖĞ¶Ï     */
-#define AMHW_FSL_UART_INT_ALL         (0x3FF)    /**< \brief ËùÓĞÖĞ¶Ï             */
+#define AMHW_FSL_UART_INT_BDH_LBKDIE  (1UL << 9) /**< \brief LINæ–­ç‚¹æ£€æµ‹ä¸­æ–­      */
+#define AMHW_FSL_UART_INT_BDH_RXEDGIE (1UL << 8) /**< \brief RxDè¾“å…¥æœ‰æ•ˆè¾¹æ²¿ä¸­æ–­  */
+#define AMHW_FSL_UART_INT_C2_TIE      (1UL << 7) /**< \brief TDREå‘é€å‡†å¤‡å°±ç»ªä¸­æ–­ */
+#define AMHW_FSL_UART_INT_C2_TCIE     (1UL << 6) /**< \brief TCå‘é€å®Œæˆä¸­æ–­       */
+#define AMHW_FSL_UART_INT_C2_IRIE     (1UL << 5) /**< \brief RDRFæ¥æ”¶å‡†å¤‡å°±ç»ªä¸­æ–­ */
+#define AMHW_FSL_UART_INT_C2_ILIE     (1UL << 4) /**< \brief IDLEç©ºé—²çº¿è·¯ä¸­æ–­ä½¿èƒ½ */
+#define AMHW_FSL_UART_INT_C3_OVR      (1UL << 3) /**< \brief æº¢å‡ºä¸­æ–­             */
+#define AMHW_FSL_UART_INT_C3_NEIE     (1UL << 2) /**< \brief å™ªå£°é”™è¯¯ä¸­æ–­         */
+#define AMHW_FSL_UART_INT_C3_IFRMERR  (1UL << 1) /**< \brief å¸§é”™è¯¯ä¸­æ–­           */
+#define AMHW_FSL_UART_INT_C3_PARERR   (1UL << 0) /**< \brief å¥‡å¶æ ¡éªŒé”™è¯¯ä¸­æ–­     */
+#define AMHW_FSL_UART_INT_ALL         (0x3FF)    /**< \brief æ‰€æœ‰ä¸­æ–­             */
 
 /** @} */
 
 /**
- * \name UART´®¿ÚÖĞ¶Ï×´Ì¬±êÖ¾£¬¿ÉÒÔÍ¨¹ıº¯Êıamhw_fsl_uart_intstat_get()»ñÈ¡ÖĞ¶Ï×´Ì¬
+ * \name UARTä¸²å£ä¸­æ–­çŠ¶æ€æ ‡å¿—ï¼Œå¯ä»¥é€šè¿‡å‡½æ•°amhw_fsl_uart_intstat_get()è·å–ä¸­æ–­çŠ¶æ€
  * @{
  */
-#define AMHW_FSL_UART_INTSTAT_S2_LBKDIF  (1UL << 15) /**< \brief LIN¶Ïµã¼ì²â±êÖ¾   */
-#define AMHW_FSL_UART_INTSTAT_S2_RXEDGIF (1UL << 14) /**< \brief RxDÊäÈëÓĞĞ§ÑØ±êÖ¾ */
-#define AMHW_FSL_UART_INTSTAT_S1_TDRE    (1UL << 7)  /**< \brief TDRE·¢ËÍ¾ÍĞ÷±êÖ¾  */
-#define AMHW_FSL_UART_INTSTAT_S1_TC      (1UL << 6)  /**< \brief TC·¢ËÍÍê³É±êÖ¾    */
-#define AMHW_FSL_UART_INTSTAT_S1_RDRF    (1UL << 5)  /**< \brief RDRF½ÓÊÕ¾ÍĞ÷±êÖ¾  */
-#define AMHW_FSL_UART_INTSTAT_S1_IDLE    (1UL << 4)  /**< \brief IDLE¿ÕÏĞ±êÖ¾      */
-#define AMHW_FSL_UART_INTSTAT_S1_OVR     (1UL << 3)  /**< \brief Òç³ö±êÖ¾          */
-#define AMHW_FSL_UART_INTSTAT_S1_NF      (1UL << 2)  /**< \brief ÔëÉù´íÎó±êÖ¾      */
-#define AMHW_FSL_UART_INTSTAT_S1_FE      (1UL << 1)  /**< \brief Ö¡´íÎó±êÖ¾        */
-#define AMHW_FSL_UART_INTSTAT_S1_PF      (1UL << 0)  /**< \brief ÆæÅ¼Ğ£Ñé´íÎó±êÖ¾  */
+#define AMHW_FSL_UART_INTSTAT_S2_LBKDIF  (1UL << 15) /**< \brief LINæ–­ç‚¹æ£€æµ‹æ ‡å¿—   */
+#define AMHW_FSL_UART_INTSTAT_S2_RXEDGIF (1UL << 14) /**< \brief RxDè¾“å…¥æœ‰æ•ˆæ²¿æ ‡å¿— */
+#define AMHW_FSL_UART_INTSTAT_S1_TDRE    (1UL << 7)  /**< \brief TDREå‘é€å°±ç»ªæ ‡å¿—  */
+#define AMHW_FSL_UART_INTSTAT_S1_TC      (1UL << 6)  /**< \brief TCå‘é€å®Œæˆæ ‡å¿—    */
+#define AMHW_FSL_UART_INTSTAT_S1_RDRF    (1UL << 5)  /**< \brief RDRFæ¥æ”¶å°±ç»ªæ ‡å¿—  */
+#define AMHW_FSL_UART_INTSTAT_S1_IDLE    (1UL << 4)  /**< \brief IDLEç©ºé—²æ ‡å¿—      */
+#define AMHW_FSL_UART_INTSTAT_S1_OVR     (1UL << 3)  /**< \brief æº¢å‡ºæ ‡å¿—          */
+#define AMHW_FSL_UART_INTSTAT_S1_NF      (1UL << 2)  /**< \brief å™ªå£°é”™è¯¯æ ‡å¿—      */
+#define AMHW_FSL_UART_INTSTAT_S1_FE      (1UL << 1)  /**< \brief å¸§é”™è¯¯æ ‡å¿—        */
+#define AMHW_FSL_UART_INTSTAT_S1_PF      (1UL << 0)  /**< \brief å¥‡å¶æ ¡éªŒé”™è¯¯æ ‡å¿—  */
 
 /** @} interrupt state */
 
 
 /**
- * \name uart ½ÓÊÕÆ÷/·¢ËÍÆ÷DMAÊ¹ÄÜÎ»ºê¶¨Òå
+ * \name uart æ¥æ”¶å™¨/å‘é€å™¨DMAä½¿èƒ½ä½å®å®šä¹‰
  * @{
  */
 
-#define AMHW_FSL_UART_DMA_RX_EN         ((uint8_t)(1<<5)) /**< \brief ½ÓÊÕÆ÷DMAÊ¹ÄÜ  */
-#define AMHW_FSL_UART_DMA_TX_EN         ((uint8_t)(1<<7)) /**< \brief ·¢ËÍÆ÷DMAÊ¹ÄÜ  */
+#define AMHW_FSL_UART_DMA_RX_EN         ((uint8_t)(1<<5)) /**< \brief æ¥æ”¶å™¨DMAä½¿èƒ½  */
+#define AMHW_FSL_UART_DMA_TX_EN         ((uint8_t)(1<<7)) /**< \brief å‘é€å™¨DMAä½¿èƒ½  */
 
 /** @} */
 
 
 /**
- * \name ´®¿ÚÌØÊâ¹¤×÷Ä£Ê½
+ * \name ä¸²å£ç‰¹æ®Šå·¥ä½œæ¨¡å¼
  * \anchor amhw_fsl_uart_spec_mode
  * @{
  */
 
-/** \brief »Ø»·Ä£Ê½ */
+/** \brief å›ç¯æ¨¡å¼ */
 #define AMHW_FSL_UART_SPEC_MODE_LOOP            0
 
-/** \brief µ¥ÏßÄ£Ê½ */
+/** \brief å•çº¿æ¨¡å¼ */
 #define AMHW_FSL_UART_SPEC_MODE_SINGLE_WIRE     1
 
 /** @} */
 
 
 /**
- * \brief ´®¿Ú²¨ÌØÂÊ·ÖÆµÒò×Ó¸ßÎ»ÉèÖÃº¯Êı
+ * \brief ä¸²å£æ³¢ç‰¹ç‡åˆ†é¢‘å› å­é«˜ä½è®¾ç½®å‡½æ•°
  *
- * \param[in] p_hw_uart : Ö¸Ïò´®¿Ú¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] sbr_val   : ²¨ÌØÂÊ·ÖÆµÒò×Ó¸ßÎ»Öµ
+ * \param[in] p_hw_uart : æŒ‡å‘ä¸²å£å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] sbr_val   : æ³¢ç‰¹ç‡åˆ†é¢‘å› å­é«˜ä½å€¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_uart_bdh_sbr_set (amhw_fsl_uart_t *p_hw_uart, uint8_t sbr_val)
@@ -294,12 +294,12 @@ void amhw_fsl_uart_bdh_sbr_set (amhw_fsl_uart_t *p_hw_uart, uint8_t sbr_val)
     p_hw_uart->bdh |= AMHW_FSL_UART_BDH_SBR(sbr_val);
 }
 /**
- * \brief ´®¿Ú²¨ÌØÂÊ·ÖÆµÒò×Óµ×Î»ÉèÖÃº¯Êı
+ * \brief ä¸²å£æ³¢ç‰¹ç‡åˆ†é¢‘å› å­åº•ä½è®¾ç½®å‡½æ•°
  *
- * \param[in] p_hw_uart : Ö¸Ïò´®¿Ú¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] sbr_val   : ²¨ÌØÂÊ·ÖÆµÒò×Óµ×Î»Öµ
+ * \param[in] p_hw_uart : æŒ‡å‘ä¸²å£å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] sbr_val   : æ³¢ç‰¹ç‡åˆ†é¢‘å› å­åº•ä½å€¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_uart_bdl_sbr_set (amhw_fsl_uart_t *p_hw_uart, uint8_t sbr_val)
@@ -310,11 +310,11 @@ void amhw_fsl_uart_bdl_sbr_set (amhw_fsl_uart_t *p_hw_uart, uint8_t sbr_val)
 }
 
 /**
- * \brief ·¢ËÍÆ÷Ê¹ÄÜº¯Êı
+ * \brief å‘é€å™¨ä½¿èƒ½å‡½æ•°
  *
- * \param[in] p_hw_uart : Ö¸Ïò´®¿Ú¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_uart : æŒ‡å‘ä¸²å£å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_uart_c2_tx_enable (amhw_fsl_uart_t *p_hw_uart)
@@ -322,11 +322,11 @@ void amhw_fsl_uart_c2_tx_enable (amhw_fsl_uart_t *p_hw_uart)
     p_hw_uart->c2 |= AMHW_FSL_UART_C2_TE_EN;
 }
 /**
- * \brief ·¢ËÍÆ÷½ûÄÜº¯Êı
+ * \brief å‘é€å™¨ç¦èƒ½å‡½æ•°
  *
- * \param[in] p_hw_uart : Ö¸Ïò´®¿Ú¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_uart : æŒ‡å‘ä¸²å£å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_uart_c2_tx_disable (amhw_fsl_uart_t *p_hw_uart)
@@ -335,11 +335,11 @@ void amhw_fsl_uart_c2_tx_disable (amhw_fsl_uart_t *p_hw_uart)
 }
 
 /**
- * \brief ½ÓÊÕÆ÷Ê¹ÄÜº¯Êı
+ * \brief æ¥æ”¶å™¨ä½¿èƒ½å‡½æ•°
  *
- * \param[in] p_hw_uart : Ö¸Ïò´®¿Ú¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_uart : æŒ‡å‘ä¸²å£å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_uart_c2_rx_enable (amhw_fsl_uart_t *p_hw_uart)
@@ -348,11 +348,11 @@ void amhw_fsl_uart_c2_rx_enable (amhw_fsl_uart_t *p_hw_uart)
 }
 
 /**
- * \brief ½ÓÊÕÆ÷½ûÄÜº¯Êı
+ * \brief æ¥æ”¶å™¨ç¦èƒ½å‡½æ•°
  *
- * \param[in] p_hw_uart : Ö¸Ïò´®¿Ú¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_uart : æŒ‡å‘ä¸²å£å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_uart_c2_rx_disable (amhw_fsl_uart_t *p_hw_uart)
@@ -360,9 +360,9 @@ void amhw_fsl_uart_c2_rx_disable (amhw_fsl_uart_t *p_hw_uart)
     p_hw_uart->c2 &= ~AMHW_FSL_UART_C2_RE_EN;
 }
 /**
- * \brief Ê¹ÄÜ´®¿Ú
- * \param[in] p_hw_uart : Ö¸Ïò´®¿Ú¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ÎŞ
+ * \brief ä½¿èƒ½ä¸²å£
+ * \param[in] p_hw_uart : æŒ‡å‘ä¸²å£å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_uart_enable (amhw_fsl_uart_t *p_hw_uart)
@@ -372,9 +372,9 @@ void amhw_fsl_uart_enable (amhw_fsl_uart_t *p_hw_uart)
 }
 
 /**
- * \brief ½ûÄÜ´®¿Ú
- * \param[in] p_hw_uart : Ö¸Ïò´®¿Ú¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ÎŞ
+ * \brief ç¦èƒ½ä¸²å£
+ * \param[in] p_hw_uart : æŒ‡å‘ä¸²å£å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_uart_disable (amhw_fsl_uart_t *p_hw_uart)
@@ -384,13 +384,13 @@ void amhw_fsl_uart_disable (amhw_fsl_uart_t *p_hw_uart)
 }
 
 /**
- * \brief ¹ı²ÉÑùÂÊOSRÖµÉèÖÃº¯Êı
+ * \brief è¿‡é‡‡æ ·ç‡OSRå€¼è®¾ç½®å‡½æ•°
  *
- * \param[in] p_hw_uart : Ö¸Ïò´®¿Ú¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] osr_val   : ²¨ÌØÂÊ·ÖÆµÒò×Ó¸ßÎ»Öµ
+ * \param[in] p_hw_uart : æŒ‡å‘ä¸²å£å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] osr_val   : æ³¢ç‰¹ç‡åˆ†é¢‘å› å­é«˜ä½å€¼
  *
- * \note ¹ı²ÉÑùÂÊÖ»ÓÃÓÚ´®¿Ú0
- * \return ÎŞ
+ * \note è¿‡é‡‡æ ·ç‡åªç”¨äºä¸²å£0
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_uart_c4_osr_set (amhw_fsl_uart_t *p_hw_uart, uint8_t osr_val)
@@ -403,12 +403,12 @@ void amhw_fsl_uart_c4_osr_set (amhw_fsl_uart_t *p_hw_uart, uint8_t osr_val)
 }
 
 /**
- * \brief Ğ´´®¿Ú·¢ËÍ¼Ä´æÆ÷Öµ£¨·¢ËÍÒ»¸öÊı¾İ£©
+ * \brief å†™ä¸²å£å‘é€å¯„å­˜å™¨å€¼ï¼ˆå‘é€ä¸€ä¸ªæ•°æ®ï¼‰
  *
- * \param[in] p_hw_uart : Ö¸Ïò´®¿Ú¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] data      : ·¢ËÍµÄÊı¾İ
+ * \param[in] p_hw_uart : æŒ‡å‘ä¸²å£å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] data      : å‘é€çš„æ•°æ®
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_uart_txdata_write (amhw_fsl_uart_t *p_hw_uart, uint8_t data)
@@ -417,9 +417,9 @@ void amhw_fsl_uart_txdata_write (amhw_fsl_uart_t *p_hw_uart, uint8_t data)
 }
 
 /**
- * \brief ¶ÁÈ¡´®¿Ú½ÓÊÕÊı¾İ
- * \param[in] p_hw_uart : Ö¸Ïò´®¿Ú¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ´®¿Ú½ÓÊÕµ½µÄÊı¾İ
+ * \brief è¯»å–ä¸²å£æ¥æ”¶æ•°æ®
+ * \param[in] p_hw_uart : æŒ‡å‘ä¸²å£å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return ä¸²å£æ¥æ”¶åˆ°çš„æ•°æ®
  */
 am_static_inline
 uint8_t amhw_fsl_uart_rxdata_read (amhw_fsl_uart_t *p_hw_uart)
@@ -429,10 +429,10 @@ uint8_t amhw_fsl_uart_rxdata_read (amhw_fsl_uart_t *p_hw_uart)
 
 
 /**
- * \brief µÃµ½´®¿Ú·¢ËÍ×´Ì¬
- * \param[in] p_hw_uart : Ö¸Ïò´®¿Ú¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \brief å¾—åˆ°ä¸²å£å‘é€çŠ¶æ€
+ * \param[in] p_hw_uart : æŒ‡å‘ä¸²å£å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return £ºS1_TDREÎ»Öµ£¬1Ê±±íÃ÷¿ÉÒÔ¼ÌĞø·¢ËÍÊı¾İ
+ * \return ï¼šS1_TDREä½å€¼ï¼Œ1æ—¶è¡¨æ˜å¯ä»¥ç»§ç»­å‘é€æ•°æ®
  */
 am_static_inline
 uint8_t amhw_fsl_uart_stat1_tdre_get (amhw_fsl_uart_t *p_hw_uart)
@@ -442,11 +442,11 @@ uint8_t amhw_fsl_uart_stat1_tdre_get (amhw_fsl_uart_t *p_hw_uart)
 }
 
 /**
- * \brief µÃµ½´®¿Ú·¢ËÍÍê³É±êÖ¾
+ * \brief å¾—åˆ°ä¸²å£å‘é€å®Œæˆæ ‡å¿—
  *
- * \param[in] p_hw_uart : Ö¸Ïò´®¿Ú¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_uart : æŒ‡å‘ä¸²å£å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return £ºS1_TCÎ»Öµ£¬1Ê±±íÃ÷´«ÊäÍê³É£¬0±íÊ¾ÕıÔÚ´«Êä
+ * \return ï¼šS1_TCä½å€¼ï¼Œ1æ—¶è¡¨æ˜ä¼ è¾“å®Œæˆï¼Œ0è¡¨ç¤ºæ­£åœ¨ä¼ è¾“
  */
 am_static_inline
 uint8_t amhw_fsl_uart_stat1_tc_get (amhw_fsl_uart_t *p_hw_uart)
@@ -455,11 +455,11 @@ uint8_t amhw_fsl_uart_stat1_tc_get (amhw_fsl_uart_t *p_hw_uart)
 }
 
 /**
- * \brief µÃµ½´®¿Ú½ÓÊÕ×´Ì¬
+ * \brief å¾—åˆ°ä¸²å£æ¥æ”¶çŠ¶æ€
  *
- * \param[in] p_hw_uart : Ö¸Ïò´®¿Ú¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_uart : æŒ‡å‘ä¸²å£å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return £ºS1_RDRFÎ»Öµ£¬1Ê±±íÃ÷¿ÉÒÔ¼ÌĞø½ÓÊÕÊı¾İ
+ * \return ï¼šS1_RDRFä½å€¼ï¼Œ1æ—¶è¡¨æ˜å¯ä»¥ç»§ç»­æ¥æ”¶æ•°æ®
  */
 am_static_inline
 uint8_t amhw_fsl_uart_stat1_rdre_get (amhw_fsl_uart_t *p_hw_uart)
@@ -468,11 +468,11 @@ uint8_t amhw_fsl_uart_stat1_rdre_get (amhw_fsl_uart_t *p_hw_uart)
 }
 
 /**
- * \brief µÃµ½Ğ£Ñé×´Ì¬
+ * \brief å¾—åˆ°æ ¡éªŒçŠ¶æ€
  *
- * \param[in] p_hw_uart : Ö¸Ïò´®¿Ú¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_uart : æŒ‡å‘ä¸²å£å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return PFÎ»ÓòÖµ£¬1±íÊ¾µ±Ç°½ÓÊÕÊı¾İ³öÏÖĞ£Ñé´íÎó
+ * \return PFä½åŸŸå€¼ï¼Œ1è¡¨ç¤ºå½“å‰æ¥æ”¶æ•°æ®å‡ºç°æ ¡éªŒé”™è¯¯
  */
 am_static_inline
 uint8_t amhw_fsl_uart_stat1_pf_get (amhw_fsl_uart_t *p_hw_uart)
@@ -482,13 +482,13 @@ uint8_t amhw_fsl_uart_stat1_pf_get (amhw_fsl_uart_t *p_hw_uart)
 
 
 /**
- * \brief UARTÊı¾İÄ£Ê½Î»ÉèÖÃ
+ * \brief UARTæ•°æ®æ¨¡å¼ä½è®¾ç½®
  *
- * \param[in] p_hw_uart : Ö¸Ïò´®¿Ú¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] datamode  : Êı¾İÄ£Ê½
-                          AMHW_FSL_UART_C1_M_*ºêÖµ
+ * \param[in] p_hw_uart : æŒ‡å‘ä¸²å£å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] datamode  : æ•°æ®æ¨¡å¼
+                          AMHW_FSL_UART_C1_M_*å®å€¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_uart_data_mode_set (amhw_fsl_uart_t *p_hw_uart, uint8_t datamode)
@@ -498,13 +498,13 @@ void amhw_fsl_uart_data_mode_set (amhw_fsl_uart_t *p_hw_uart, uint8_t datamode)
 }
 
 /**
- * \brief UARTÆæÅ¼Ğ£ÑéÉèÖÃ
+ * \brief UARTå¥‡å¶æ ¡éªŒè®¾ç½®
  *
- * \param[in] p_hw_uart : Ö¸Ïò´®¿Ú¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] parity    : Êı¾İÄ£Ê½
-                          AMHW_FSL_UART_C1_PARITY_*ºêÖµ
+ * \param[in] p_hw_uart : æŒ‡å‘ä¸²å£å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] parity    : æ•°æ®æ¨¡å¼
+                          AMHW_FSL_UART_C1_PARITY_*å®å€¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_uart_parity_set (amhw_fsl_uart_t *p_hw_uart, uint8_t parity)
@@ -516,13 +516,13 @@ void amhw_fsl_uart_parity_set (amhw_fsl_uart_t *p_hw_uart, uint8_t parity)
 }
 
 /**
- * \brief UARTÍ£Ö¹Î»ÉèÖÃº¯Êı
+ * \brief UARTåœæ­¢ä½è®¾ç½®å‡½æ•°
  *
- * \param[in] p_hw_uart : Ö¸Ïò´®¿Ú¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] stop_bit  : Í£Ö¹Ä£Ê½Î»ºê
-                          AMHW_FSL_UART_BDH_SBNS_STOP_*ºêÖµ
+ * \param[in] p_hw_uart : æŒ‡å‘ä¸²å£å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] stop_bit  : åœæ­¢æ¨¡å¼ä½å®
+                          AMHW_FSL_UART_BDH_SBNS_STOP_*å®å€¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_uart_stop_bit_set (amhw_fsl_uart_t *p_hw_uart, uint8_t stop_bit)
@@ -532,13 +532,13 @@ void amhw_fsl_uart_stop_bit_set (amhw_fsl_uart_t *p_hw_uart, uint8_t stop_bit)
 }
 
 /**
- * \brief Ê¹ÄÜÖ¸¶¨µÄ´®¿ÚÖĞ¶Ï
+ * \brief ä½¿èƒ½æŒ‡å®šçš„ä¸²å£ä¸­æ–­
  *
- * \param[in] p_hw_uart  : Ö¸Ïò´®¿Ú¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] int_enable : AMHW_FSL_UART_INT_* ºêÖµ»ò¶à¸öAMHW_FSL_UART_INT_*ºêµÄ»òÖµ
+ * \param[in] p_hw_uart  : æŒ‡å‘ä¸²å£å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] int_enable : AMHW_FSL_UART_INT_* å®å€¼æˆ–å¤šä¸ªAMHW_FSL_UART_INT_*å®çš„æˆ–å€¼
  *                         (#AMHW_FSL_UART_INT_BDH_LBKDIE)
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_uart_int_enable (amhw_fsl_uart_t *p_hw_uart, uint32_t int_enable)
@@ -549,13 +549,13 @@ void amhw_fsl_uart_int_enable (amhw_fsl_uart_t *p_hw_uart, uint32_t int_enable)
 }
 
 /**
- * \brief ½ûÄÜÖ¸¶¨µÄ´®¿ÚÖĞ¶Ï
+ * \brief ç¦èƒ½æŒ‡å®šçš„ä¸²å£ä¸­æ–­
  *
- * \param[in] p_hw_uart   : Ö¸Ïò´®¿Ú¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] int_disable : AMHW_FSL_UART_INT_* ºêÖµ»ò¶à¸öAMHW_FSL_UART_INT_*ºêµÄ»òÖµ
+ * \param[in] p_hw_uart   : æŒ‡å‘ä¸²å£å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] int_disable : AMHW_FSL_UART_INT_* å®å€¼æˆ–å¤šä¸ªAMHW_FSL_UART_INT_*å®çš„æˆ–å€¼
  *                          (#AMHW_FSL_UART_INT_BDH_LBKDIE)
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_uart_int_disable (amhw_fsl_uart_t *p_hw_uart, uint32_t int_disable)
@@ -566,9 +566,9 @@ void amhw_fsl_uart_int_disable (amhw_fsl_uart_t *p_hw_uart, uint32_t int_disable
 }
 
 /**
- * \brief µÃµ½ver0 ´®¿ÚÖĞ¶Ï×´Ì¬
- * \param[in] p_hw_uart : Ö¸Ïò´®¿Ú¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return AMHW_FSL_UART_INTSTAT_*ºêÖµ»ò¶à¸öAMHW_FSL_UART_INTSTAT_*ºêµÄ»òÖµ
+ * \brief å¾—åˆ°ver0 ä¸²å£ä¸­æ–­çŠ¶æ€
+ * \param[in] p_hw_uart : æŒ‡å‘ä¸²å£å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return AMHW_FSL_UART_INTSTAT_*å®å€¼æˆ–å¤šä¸ªAMHW_FSL_UART_INTSTAT_*å®çš„æˆ–å€¼
  *         (#AMHW_FSL_UART_INTSTAT_S2_LBKDIF)
  */
 am_static_inline
@@ -585,9 +585,9 @@ uint32_t amhw_fsl_uart_ver0_intstat_get (amhw_fsl_uart_t *p_hw_uart)
     return intstat;
 }
 /**
- * \brief µÃµ½ver1 ´®¿ÚÖĞ¶Ï×´Ì¬
- * \param[in] p_hw_uart : Ö¸Ïò´®¿Ú¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return AMHW_FSL_UART_INTSTAT_*ºêÖµ»ò¶à¸öAMHW_FSL_UART_INTSTAT_*ºêµÄ»òÖµ
+ * \brief å¾—åˆ°ver1 ä¸²å£ä¸­æ–­çŠ¶æ€
+ * \param[in] p_hw_uart : æŒ‡å‘ä¸²å£å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return AMHW_FSL_UART_INTSTAT_*å®å€¼æˆ–å¤šä¸ªAMHW_FSL_UART_INTSTAT_*å®çš„æˆ–å€¼
  *         (#AMHW_FSL_UART_INTSTAT_S2_LBKDIF)
  */
 am_static_inline
@@ -601,13 +601,13 @@ uint32_t amhw_fsl_uart_ver1_intstat_get (amhw_fsl_uart_t *p_hw_uart)
 }
 
 /**
- * \brief µ¥ÏßÄ£Ê½ÏÂTxÒı½ÅµÄÊäÈëÊä³ö·½ÏòÅäÖÃ
+ * \brief å•çº¿æ¨¡å¼ä¸‹Txå¼•è„šçš„è¾“å…¥è¾“å‡ºæ–¹å‘é…ç½®
  *
- * \param[in] p_hw_uart : Ö¸Ïò´®¿Ú¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] dir       : ÊäÈëÊä³ö·½Ïò #AMHW_FSL_UART_SINGLE_WIRE_INPUT »òÕß
+ * \param[in] p_hw_uart : æŒ‡å‘ä¸²å£å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] dir       : è¾“å…¥è¾“å‡ºæ–¹å‘ #AMHW_FSL_UART_SINGLE_WIRE_INPUT æˆ–è€…
  *                        #AMHW_FSL_UART_SINGLE_WIRE_OUTPUT
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_uart_single_wire_dir_set (amhw_fsl_uart_t *p_hw_uart, uint8_t dir)
@@ -617,11 +617,11 @@ void amhw_fsl_uart_single_wire_dir_set (amhw_fsl_uart_t *p_hw_uart, uint8_t dir)
 
 
 /**
- * \brief Ê¹ÄÜÖ¸¶¨µÄver0 ´®¿ÚMDA½ÓÊÕ´«Êä
+ * \brief ä½¿èƒ½æŒ‡å®šçš„ver0 ä¸²å£MDAæ¥æ”¶ä¼ è¾“
  *
- * \param[in] p_hw_uart  : Ö¸Ïò´®¿Ú¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_uart  : æŒ‡å‘ä¸²å£å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_uart_ver0_dma_rx_enable (amhw_fsl_uart_t *p_hw_uart)
@@ -629,11 +629,11 @@ void amhw_fsl_uart_ver0_dma_rx_enable (amhw_fsl_uart_t *p_hw_uart)
     p_hw_uart->uart0_c5 |= AMHW_FSL_UART_DMA_RX_EN;
 }
 /**
- * \brief Ê¹ÄÜÖ¸¶¨µÄver0 ´®¿ÚMDA½ÓÊÕ´«Êä
+ * \brief ä½¿èƒ½æŒ‡å®šçš„ver0 ä¸²å£MDAæ¥æ”¶ä¼ è¾“
  *
- * \param[in] p_hw_uart  : Ö¸Ïò´®¿Ú¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_uart  : æŒ‡å‘ä¸²å£å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_uart_ver1_dma_rx_enable (amhw_fsl_uart_t *p_hw_uart)
@@ -642,11 +642,11 @@ void amhw_fsl_uart_ver1_dma_rx_enable (amhw_fsl_uart_t *p_hw_uart)
 }
 
 /**
- * \brief ½ûÄÜÖ¸¶¨µÄver0 ´®¿ÚMDA½ÓÊÕ´«Êä
+ * \brief ç¦èƒ½æŒ‡å®šçš„ver0 ä¸²å£MDAæ¥æ”¶ä¼ è¾“
  *
- * \param[in] p_hw_uart  : Ö¸Ïò´®¿Ú¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_uart  : æŒ‡å‘ä¸²å£å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_uart_ver0_dma_rx_disable (amhw_fsl_uart_t *p_hw_uart)
@@ -655,11 +655,11 @@ void amhw_fsl_uart_ver0_dma_rx_disable (amhw_fsl_uart_t *p_hw_uart)
 }
 
 /**
- * \brief ½ûÄÜÖ¸¶¨µÄver1 ´®¿ÚMDA½ÓÊÕ´«Êä
+ * \brief ç¦èƒ½æŒ‡å®šçš„ver1 ä¸²å£MDAæ¥æ”¶ä¼ è¾“
  *
- * \param[in] p_hw_uart  : Ö¸Ïò´®¿Ú¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_uart  : æŒ‡å‘ä¸²å£å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_uart_ver1_dma_rx_disable (amhw_fsl_uart_t *p_hw_uart)
@@ -668,11 +668,11 @@ void amhw_fsl_uart_ver1_dma_rx_disable (amhw_fsl_uart_t *p_hw_uart)
 }
 
 /**
- * \brief Ê¹ÄÜÖ¸¶¨µÄver0 ´®¿ÚDMA·¢ËÍ´«Êä
+ * \brief ä½¿èƒ½æŒ‡å®šçš„ver0 ä¸²å£DMAå‘é€ä¼ è¾“
  *
- * \param[in] p_hw_uart  : Ö¸Ïò´®¿Ú¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_uart  : æŒ‡å‘ä¸²å£å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_uart_ver0_dma_tx_enable (amhw_fsl_uart_t *p_hw_uart)
@@ -683,11 +683,11 @@ void amhw_fsl_uart_ver0_dma_tx_enable (amhw_fsl_uart_t *p_hw_uart)
 }
 
 /**
- * \brief Ê¹ÄÜÖ¸¶¨µÄver1 ´®¿ÚDMA·¢ËÍ´«Êä
+ * \brief ä½¿èƒ½æŒ‡å®šçš„ver1 ä¸²å£DMAå‘é€ä¼ è¾“
  *
- * \param[in] p_hw_uart  : Ö¸Ïò´®¿Ú¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_uart  : æŒ‡å‘ä¸²å£å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_uart_ver1_dma_tx_enable (amhw_fsl_uart_t *p_hw_uart)
@@ -697,11 +697,11 @@ void amhw_fsl_uart_ver1_dma_tx_enable (amhw_fsl_uart_t *p_hw_uart)
 
 }
 /**
- * \brief ½ûÄÜÖ¸¶¨µÄver0 ´®¿ÚMDA·¢ËÍ´«Êä
+ * \brief ç¦èƒ½æŒ‡å®šçš„ver0 ä¸²å£MDAå‘é€ä¼ è¾“
  *
- * \param[in] p_hw_uart  : Ö¸Ïò´®¿Ú¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_uart  : æŒ‡å‘ä¸²å£å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_uart_ver0_dma_tx_disable (amhw_fsl_uart_t *p_hw_uart)
@@ -712,11 +712,11 @@ void amhw_fsl_uart_ver0_dma_tx_disable (amhw_fsl_uart_t *p_hw_uart)
 }
 
 /**
- * \brief ½ûÄÜÖ¸¶¨µÄver1 ´®¿ÚMDA·¢ËÍ´«Êä
+ * \brief ç¦èƒ½æŒ‡å®šçš„ver1 ä¸²å£MDAå‘é€ä¼ è¾“
  *
- * \param[in] p_hw_uart  : Ö¸Ïò´®¿Ú¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_uart  : æŒ‡å‘ä¸²å£å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_uart_ver1_dma_tx_disable (amhw_fsl_uart_t *p_hw_uart)
@@ -728,68 +728,68 @@ void amhw_fsl_uart_ver1_dma_tx_disable (amhw_fsl_uart_t *p_hw_uart)
 
 
 /**
- * \brief UARTÌØÊâ¹¦ÄÜÄ£Ê½ÉèÖÃ(»Ø»·Ä£Ê½¡¢ µ¥ÏßÄ£Ê½)
+ * \brief UARTç‰¹æ®ŠåŠŸèƒ½æ¨¡å¼è®¾ç½®(å›ç¯æ¨¡å¼ã€ å•çº¿æ¨¡å¼)
  *
- * \param[in] p_hw_uart : Ö¸Ïò´®¿Ú¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] mode      : ¹¤×÷Ä£Ê½
+ * \param[in] p_hw_uart : æŒ‡å‘ä¸²å£å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] mode      : å·¥ä½œæ¨¡å¼
  *
- * \return ÎŞ
+ * \return æ— 
  *
- * \note ÆÕÍ¨µÄ´®¿ÚÄ£Ê½²»ĞèÒªÊ¹ÓÃµ½¸Ãº¯Êı½øĞĞÉèÖÃ
+ * \note æ™®é€šçš„ä¸²å£æ¨¡å¼ä¸éœ€è¦ä½¿ç”¨åˆ°è¯¥å‡½æ•°è¿›è¡Œè®¾ç½®
  */
 void amhw_fsl_uart_special_mode_set (amhw_fsl_uart_t *p_hw_uart, uint8_t mode);
 
 
 /**
- * \brief UARTÊı¾İ·¢ËÍ(²éÑ¯Ä£Ê½)
+ * \brief UARTæ•°æ®å‘é€(æŸ¥è¯¢æ¨¡å¼)
  *
- * \param[in] p_hw_uart : Ö¸Ïò´®¿Ú¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] p_txbuf    : ·¢ËÍÊı¾İ»º³åÇø
- * \param[in] nbytes     : ·¢ËÍÊı¾İ¸öÊı
+ * \param[in] p_hw_uart : æŒ‡å‘ä¸²å£å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] p_txbuf    : å‘é€æ•°æ®ç¼“å†²åŒº
+ * \param[in] nbytes     : å‘é€æ•°æ®ä¸ªæ•°
  *
- * \return ³É¹¦·¢ËÍµÄÊı¾İ¸öÊı
+ * \return æˆåŠŸå‘é€çš„æ•°æ®ä¸ªæ•°
  */
 uint32_t amhw_fsl_uart_poll_send (amhw_fsl_uart_t  *p_hw_uart,
                                    const uint8_t *p_txbuf,
                                    uint32_t       nbytes);
 
 /**
- * \brief UARTÊı¾İ½ÓÊÕ(²éÑ¯Ä£Ê½)
+ * \brief UARTæ•°æ®æ¥æ”¶(æŸ¥è¯¢æ¨¡å¼)
  *
- * \param[in] p_hw_uart  : Ö¸Ïò´®¿Ú¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] p_rxbuf    : ½ÓÊÕÊı¾İ»º³åÇø
- * \param[in] nbytes     : ½ÓÊÕÊı¾İ¸öÊı
+ * \param[in] p_hw_uart  : æŒ‡å‘ä¸²å£å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] p_rxbuf    : æ¥æ”¶æ•°æ®ç¼“å†²åŒº
+ * \param[in] nbytes     : æ¥æ”¶æ•°æ®ä¸ªæ•°
  *
- * \return ³É¹¦½ÓÊÕµÄÊı¾İ¸öÊı
+ * \return æˆåŠŸæ¥æ”¶çš„æ•°æ®ä¸ªæ•°
  */
 uint32_t amhw_fsl_uart_poll_receive (amhw_fsl_uart_t *p_hw_uart,
                                       uint8_t      *p_rxbuf,
                                       uint32_t      nbytes);
 
 /**
- * \brief VER0 ´®¿Ú²¨ÌØÂÊÉèÖÃ
+ * \brief VER0 ä¸²å£æ³¢ç‰¹ç‡è®¾ç½®
  *
- * \param[in] p_hw_uart  : Ö¸Ïò´®¿Ú¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] sysclk     : ´®¿ÚµÄÊäÈëÊ±ÖÓÆµÂÊ
- * \param[in] baud       : ÆÚÍûÉèÖÃµÄ´®¿Ú²¨ÌØÂÊ
+ * \param[in] p_hw_uart  : æŒ‡å‘ä¸²å£å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] sysclk     : ä¸²å£çš„è¾“å…¥æ—¶é’Ÿé¢‘ç‡
+ * \param[in] baud       : æœŸæœ›è®¾ç½®çš„ä¸²å£æ³¢ç‰¹ç‡
  *
- * \return ´óÓÚ0±íÊ¾Êµ¼ÊµÄ²¨ÌØÂÊ£¬Ğ¡ÓÚ0±íÃ÷ÉèÖÃÊ§°Ü¡£
+ * \return å¤§äº0è¡¨ç¤ºå®é™…çš„æ³¢ç‰¹ç‡ï¼Œå°äº0è¡¨æ˜è®¾ç½®å¤±è´¥ã€‚
  */
 int amhw_fsl_uart_ver0_baudrate_set (amhw_fsl_uart_t *p_hw_uart, uint32_t sysclk, int baud);
 
 /**
- * \brief VER1 ´®¿Ú²¨ÌØÂÊÉèÖÃ
+ * \brief VER1 ä¸²å£æ³¢ç‰¹ç‡è®¾ç½®
  *
- * \param[in] p_hw_uart  : Ö¸Ïò´®¿Ú¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] sysclk     : ´®¿ÚµÄÊäÈëÊ±ÖÓÆµÂÊ
- * \param[in] baud       : ÆÚÍûÉèÖÃµÄ´®¿Ú²¨ÌØÂÊ
+ * \param[in] p_hw_uart  : æŒ‡å‘ä¸²å£å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] sysclk     : ä¸²å£çš„è¾“å…¥æ—¶é’Ÿé¢‘ç‡
+ * \param[in] baud       : æœŸæœ›è®¾ç½®çš„ä¸²å£æ³¢ç‰¹ç‡
  *
- * \return ´óÓÚ0±íÊ¾Êµ¼ÊµÄ²¨ÌØÂÊ£¬Ğ¡ÓÚ0±íÃ÷ÉèÖÃÊ§°Ü¡£
+ * \return å¤§äº0è¡¨ç¤ºå®é™…çš„æ³¢ç‰¹ç‡ï¼Œå°äº0è¡¨æ˜è®¾ç½®å¤±è´¥ã€‚
  */
 int amhw_fsl_uart_ver1_baudrate_set (amhw_fsl_uart_t *p_hw_uart, uint32_t sysclk, int baud);
 
 /**
- * \brief Ê¹ÓÃÄäÃûÁªºÏÌå¶Î½áÊø
+ * \brief ä½¿ç”¨åŒ¿åè”åˆä½“æ®µç»“æŸ
  * @{
  */
 
@@ -797,13 +797,13 @@ int amhw_fsl_uart_ver1_baudrate_set (amhw_fsl_uart_t *p_hw_uart, uint32_t sysclk
   #pragma pop
 #elif defined(__ICCARM__)
 
-  /* ÔÊĞíÄäÃûÁªºÏÌåÊ¹ÄÜ */
+  /* å…è®¸åŒ¿åè”åˆä½“ä½¿èƒ½ */
 #elif defined(__GNUC__)
 
-  /* Ä¬ÈÏÊ¹ÓÃÄäÃûÁªºÏÌå */
+  /* é»˜è®¤ä½¿ç”¨åŒ¿åè”åˆä½“ */
 #elif defined(__TMS470__)
 
-  /* Ä¬ÈÏÊ¹ÓÃÄäÃûÁªºÏÌå */
+  /* é»˜è®¤ä½¿ç”¨åŒ¿åè”åˆä½“ */
 #elif defined(__TASKING__)
   #pragma warning restore
 #else

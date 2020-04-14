@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief  CANÇı¶¯²ãÊµÏÖ
+ * \brief  CANé©±åŠ¨å±‚å®ç°
  *
  * \internal
  * \par Modification history
@@ -26,62 +26,62 @@
 #include "am_zmf159_can.h"
 #include "hw/amhw_zmf159_can.h"
 
-/** \brief CANÆô¶¯ */
+/** \brief CANå¯åŠ¨ */
 am_can_err_t __can_start (void *p_drv);
-/** \brief CAN¸´Î»£¨Í£Ö¹£© */
+/** \brief CANå¤ä½ï¼ˆåœæ­¢ï¼‰ */
 am_can_err_t __can_reset (void *p_drv);
-/** \brief CANĞİÃß  */
+/** \brief CANä¼‘çœ   */
 am_can_err_t __can_sleep (void *p_drv);
-/** \brief CAN»½ĞÑ */
+/** \brief CANå”¤é†’ */
 am_can_err_t __can_wakeup (void *p_drv);
-/** \brief ÖĞ¶ÏÊ¹ÄÜ */
+/** \brief ä¸­æ–­ä½¿èƒ½ */
 am_can_err_t __can_int_enable (void *p_drv, am_can_int_type_t int_mask);
-/** \brief ÖĞ¶Ï½ûÄÜ*/
+/** \brief ä¸­æ–­ç¦èƒ½*/
 am_can_err_t __can_int_disable (void *p_drv, am_can_int_type_t int_mask);
-/** \brief Ä£Ê½ÉèÖÃ */
+/** \brief æ¨¡å¼è®¾ç½® */
 am_can_err_t __can_mode_set (void *p_drv, am_can_mode_type_t mode);
-/** \brief ²¨ÌØÂÊÉèÖÃ */
+/** \brief æ³¢ç‰¹ç‡è®¾ç½® */
 am_can_err_t __can_baudrate_set (void               *p_drv,
                                  am_can_bps_param_t *p_can_baudrate);
-/** \brief ²¨ÌØÂÊ»ñÈ¡ */
+/** \brief æ³¢ç‰¹ç‡è·å– */
 am_can_err_t __can_baudrate_get (void               *p_drv,
                                  am_can_bps_param_t *p_can_baudrate);
-/** \brief »ñÈ¡´íÎó¼ÆÊı */
+/** \brief è·å–é”™è¯¯è®¡æ•° */
 am_can_err_t __can_err_cnt_get (void *p_drv, am_can_err_cnt_t *p_can_err_reg);
-/** \brief Çå³ı´íÎó¼ÆÊı */
+/** \brief æ¸…é™¤é”™è¯¯è®¡æ•° */
 am_can_err_t __can_err_cnt_clr (void *p_drv);
-/** \brief ·¢ËÍĞÅÏ¢   */
+/** \brief å‘é€ä¿¡æ¯   */
 am_can_err_t __can_msg_send (void *p_drv, am_can_message_t *p_txmsg);
-/** \brief ½ÓÊÕĞÅÏ¢   */
+/** \brief æ¥æ”¶ä¿¡æ¯   */
 am_can_err_t __can_msg_recv (void *p_drv, am_can_message_t *p_rxmsg);
-/** \brief Í£Ö¹·¢ËÍĞÅÏ¢   */
+/** \brief åœæ­¢å‘é€ä¿¡æ¯   */
 am_can_err_t __can_stop_msg_snd (void *p_drv);
-/** \brief ÉèÖÃÂË²¨º¯Êı */
+/** \brief è®¾ç½®æ»¤æ³¢å‡½æ•° */
 am_can_err_t __can_filter_tab_set (void    *p_drv,
                                    uint8_t *p_filterbuff,
                                    size_t   lenth);
-/** \brief »ñÈ¡ÂË²¨º¯Êı*/
+/** \brief è·å–æ»¤æ³¢å‡½æ•°*/
 am_can_err_t __can_filter_tab_get (void    *p_drv,
                                    uint8_t *p_filterbuff,
                                    size_t  *p_lenth);
-/** \brief CAN ×´Ì¬ */
+/** \brief CAN çŠ¶æ€ */
 am_can_err_t __can_status_get (void              *p_drv,
                                am_can_int_type_t *p_int_type,
                                am_can_bus_err_t  *p_bus_err);
-/** \brief ÖĞ¶ÏÁ¬½Ó */
+/** \brief ä¸­æ–­è¿æ¥ */
 am_can_err_t __can_connect (void         *p_drv,
                             am_pfnvoid_t  pfn_isr,
                             void         *p_arg);
-/** \brief É¾³ıÖĞ¶ÏÁ¬½Ó */
+/** \brief åˆ é™¤ä¸­æ–­è¿æ¥ */
 am_can_err_t __can_disconnect (void         *p_drv,
                                am_pfnvoid_t  pfn_isr,
                                void         *p_arg);
-/** \brief ÖĞ¶Ï»Øµ÷º¯ÊıµÄÁ¬½Ó */
+/** \brief ä¸­æ–­å›è°ƒå‡½æ•°çš„è¿æ¥ */
 am_can_err_t __can_intcb_connect (void              *p_drv,
                                   am_can_int_type_t  inttype,
                                   am_pfnvoid_t       pfn_callback,
                                   void              *p_arg);
-/** \brief É¾³ıÖĞ¶Ï»Øµ÷º¯ÊıµÄÁ¬½Ó */
+/** \brief åˆ é™¤ä¸­æ–­å›è°ƒå‡½æ•°çš„è¿æ¥ */
 am_can_err_t __can_intcb_disconnect (void *p_drv, am_can_int_type_t  inttype);
 
 struct am_can_drv_funcs dev_func = {
@@ -110,7 +110,7 @@ struct am_can_drv_funcs dev_func = {
 
 
 /**
- * \brief CANÆô¶¯
+ * \brief CANå¯åŠ¨
  */
 am_can_err_t __can_start (void *p_drv)
 {
@@ -136,7 +136,7 @@ am_can_err_t __can_start (void *p_drv)
 }
 
 /**
- * \brief CAN¸´Î»£¨Í£Ö¹£©
+ * \brief CANå¤ä½ï¼ˆåœæ­¢ï¼‰
  */
 am_can_err_t __can_reset (void *p_drv)
 {
@@ -153,14 +153,14 @@ am_can_err_t __can_reset (void *p_drv)
                                p_dev->p_devinfo->type,
                                &(p_dev->mode),
                                AMHW_ZMF159_CAN_MODE_RESET);
-    /* ½ûÄÜÖĞ¶Ï */
+    /* ç¦èƒ½ä¸­æ–­ */
     am_int_disable(p_dev->p_devinfo->int_num);
 
     return AM_CAN_NOERROR;
 }
 
 /**
- * \brief CANĞİÃß
+ * \brief CANä¼‘çœ 
  */
 am_can_err_t __can_sleep (void *p_drv)
 {
@@ -182,7 +182,7 @@ am_can_err_t __can_sleep (void *p_drv)
 }
 
 /**
- * \brief CAN»½ĞÑ
+ * \brief CANå”¤é†’
  */
 am_can_err_t __can_wakeup (void *p_drv)
 {
@@ -204,7 +204,7 @@ am_can_err_t __can_wakeup (void *p_drv)
 }
 
 /**
- * \brief ÖĞ¶ÏÊ¹ÄÜ
+ * \brief ä¸­æ–­ä½¿èƒ½
  */
 am_can_err_t __can_int_enable (void *p_drv, am_can_int_type_t int_mask)
 {
@@ -220,7 +220,7 @@ am_can_err_t __can_int_enable (void *p_drv, am_can_int_type_t int_mask)
     p_hw_can = (amhw_zmf159_can_t *)p_dev->p_devinfo->regbase;
     can_type = p_dev->p_devinfo->type;
 
-    /* peli canÖĞ¶ÏÊ¹ÄÜÖ»ÄÜÔÚ¸´Î»Ä£Ê½ÏÂ½øĞĞ */
+    /* peli canä¸­æ–­ä½¿èƒ½åªèƒ½åœ¨å¤ä½æ¨¡å¼ä¸‹è¿›è¡Œ */
     if ((AMHW_ZMF159_CAN_PELI_CAN == can_type) &&
             (AMHW_ZMF159_CAN_MODE_RESET != p_dev->mode)) {
 
@@ -230,37 +230,37 @@ am_can_err_t __can_int_enable (void *p_drv, am_can_int_type_t int_mask)
                                    AMHW_ZMF159_CAN_MODE_RESET);
     }
 
-    /* ½ÓÊÕÖĞ¶Ï */
+    /* æ¥æ”¶ä¸­æ–­ */
     if (int_mask & AM_CAN_INT_RX) {
-        /* ½ûÄÜ½ÓÊÕÖĞ¶Ï */
+        /* ç¦èƒ½æ¥æ”¶ä¸­æ–­ */
         amhw_zmf159_can_int_enable(p_hw_can,
                                      can_type,
                                      AMHW_ZMF159_CAN_INT_RECV);
         int_mask &= ~AM_CAN_INT_RX;
     }
 
-    /* ·¢ËÍÖĞ¶Ï */
+    /* å‘é€ä¸­æ–­ */
     if (int_mask & AM_CAN_INT_TX) {
-        /* ½ûÄÜ·¢ËÍÖĞ¶Ï */
+        /* ç¦èƒ½å‘é€ä¸­æ–­ */
         amhw_zmf159_can_int_enable(p_hw_can,
                                      can_type,
                                      AMHW_ZMF159_CAN_INT_TRAN);
         int_mask &= ~AM_CAN_INT_TX;
     }
 
-    /* ´íÎó\¾¯¸æÖĞ¶Ï  = ´íÎó¡¢Êı¾İÒç³ö */
+    /* é”™è¯¯\è­¦å‘Šä¸­æ–­  = é”™è¯¯ã€æ•°æ®æº¢å‡º */
     if ((int_mask & AM_CAN_INT_ERROR) || (int_mask & AM_CAN_INT_WARN)) {
-        /* ½ûÄÜ´íÎóÖĞ¶Ï */
+        /* ç¦èƒ½é”™è¯¯ä¸­æ–­ */
         amhw_zmf159_can_int_enable(p_hw_can,
                                      can_type,
                                      AMHW_ZMF159_CAN_INT_ERR);
-        /* Èç¹û´¦ÓÚpeli canÄ£Ê½ */
+        /* å¦‚æœå¤„äºpeli canæ¨¡å¼ */
         if (AMHW_ZMF159_CAN_PELI_CAN == can_type) {
-            /* ½ûÄÜ×ÜÏß´íÎóÖĞ¶Ï */
+            /* ç¦èƒ½æ€»çº¿é”™è¯¯ä¸­æ–­ */
             amhw_zmf159_can_int_enable(p_hw_can,
                                          can_type,
                                          AMHW_ZMF159_CAN_INT_BUS_ERR);
-            /* ½ûÄÜ×ÜÏß×Ü²Ã¶ªÊ§ÖĞ¶Ï */
+            /* ç¦èƒ½æ€»çº¿æ€»è£ä¸¢å¤±ä¸­æ–­ */
             amhw_zmf159_can_int_enable(p_hw_can,
                                          can_type,
                                         AMHW_ZMF159_CAN_INT_ARBITRATION_LOST);
@@ -268,18 +268,18 @@ am_can_err_t __can_int_enable (void *p_drv, am_can_int_type_t int_mask)
         int_mask &= ~AM_CAN_INT_ERROR;
     }
 
-    /* »½ĞÑÖĞ¶Ï */
+    /* å”¤é†’ä¸­æ–­ */
     if (int_mask & AM_CAN_INT_WAKE_UP) {
-        /* ½ûÄÜ»½ĞÑÖĞ¶Ï */
+        /* ç¦èƒ½å”¤é†’ä¸­æ–­ */
         amhw_zmf159_can_int_enable(p_hw_can,
                                      can_type,
                                      AMHW_ZMF159_CAN_INT_WAKEUP);
         int_mask &= ~AM_CAN_INT_WAKE_UP;
     }
 
-    /* ×ÜÏß³¬ÔØÖĞ¶Ï */
+    /* æ€»çº¿è¶…è½½ä¸­æ–­ */
     if (int_mask & AM_CAN_INT_DATAOVER) {
-        /* ½ûÄÜÊı¾İÒç³öÖĞ¶Ï */
+        /* ç¦èƒ½æ•°æ®æº¢å‡ºä¸­æ–­ */
         amhw_zmf159_can_int_enable(p_hw_can,
                                      can_type,
                                      AMHW_ZMF159_CAN_INT_OVER);
@@ -288,7 +288,7 @@ am_can_err_t __can_int_enable (void *p_drv, am_can_int_type_t int_mask)
 
     if ((0 != int_mask) && (p_dev->p_devinfo->type ==
                                      AMHW_ZMF159_CAN_BASIC_CAN)) {
-        /* ÔËĞĞÖÁÕâÀï±íÃ÷´¦ÓÚBASIC CANÄ£Ê½Ê¹ÄÜBASIC CAN²»Ö§³ÖµÄÖĞ¶Ï */
+        /* è¿è¡Œè‡³è¿™é‡Œè¡¨æ˜å¤„äºBASIC CANæ¨¡å¼ä½¿èƒ½BASIC CANä¸æ”¯æŒçš„ä¸­æ–­ */
         return AM_CAN_INVALID_PARAMETER;
 
     } else if (0 == int_mask) {
@@ -297,20 +297,20 @@ am_can_err_t __can_int_enable (void *p_drv, am_can_int_type_t int_mask)
     }
 
     if (int_mask & AM_CAN_INT_ERROR_PASSIVE) {
-        /* Ê¹ÄÜpeli can Ïû¼«´íÎóÖĞ¶Ï */
+        /* ä½¿èƒ½peli can æ¶ˆæé”™è¯¯ä¸­æ–­ */
         amhw_zmf159_can_int_enable(p_hw_can,
                                      can_type,
                                      AMHW_ZMF159_CAN_INT_ERR_PASSIVE);
     }
 
     if (int_mask & AM_CAN_INT_BUS_OFF) {
-        /* ½ûÄÜ×ÜÏß´íÎóÖĞ¶Ï */
+        /* ç¦èƒ½æ€»çº¿é”™è¯¯ä¸­æ–­ */
         amhw_zmf159_can_int_enable(p_hw_can,
                                      can_type,
                                      AMHW_ZMF159_CAN_INT_BUS_ERR);
     }
 
-    /* »Ö¸´CAN×´Ì¬ */
+    /* æ¢å¤CANçŠ¶æ€ */
     if (mode != AMHW_ZMF159_CAN_MODE_RESET) {
 
         amhw_zmf159_can_mode_set(p_hw_can,
@@ -323,7 +323,7 @@ am_can_err_t __can_int_enable (void *p_drv, am_can_int_type_t int_mask)
 }
 
 /**
- * \brief ÖĞ¶Ï½ûÄÜ
+ * \brief ä¸­æ–­ç¦èƒ½
  */
 am_can_err_t __can_int_disable (void *p_drv, am_can_int_type_t int_mask)
 {
@@ -339,7 +339,7 @@ am_can_err_t __can_int_disable (void *p_drv, am_can_int_type_t int_mask)
     p_hw_can = (amhw_zmf159_can_t *)p_dev->p_devinfo->regbase;
     can_type = p_dev->p_devinfo->type;
 
-    /* peli canÖĞ¶ÏÊ¹ÄÜÖ»ÄÜÔÚ¸´Î»Ä£Ê½ÏÂ½øĞĞ */
+    /* peli canä¸­æ–­ä½¿èƒ½åªèƒ½åœ¨å¤ä½æ¨¡å¼ä¸‹è¿›è¡Œ */
     if ((AMHW_ZMF159_CAN_PELI_CAN == can_type) &&
             (AMHW_ZMF159_CAN_MODE_RESET != p_dev->mode)) {
 
@@ -349,37 +349,37 @@ am_can_err_t __can_int_disable (void *p_drv, am_can_int_type_t int_mask)
                                    AMHW_ZMF159_CAN_MODE_RESET);
     }
 
-    /* ½ÓÊÕÖĞ¶Ï */
+    /* æ¥æ”¶ä¸­æ–­ */
     if (int_mask & AM_CAN_INT_RX) {
-        /* ½ûÄÜ½ÓÊÕÖĞ¶Ï */
+        /* ç¦èƒ½æ¥æ”¶ä¸­æ–­ */
         amhw_zmf159_can_int_disable(p_hw_can,
                                       can_type,
                                       AMHW_ZMF159_CAN_INT_RECV);
         int_mask &= ~AM_CAN_INT_RX;
     }
 
-    /* ·¢ËÍÖĞ¶Ï */
+    /* å‘é€ä¸­æ–­ */
     if (int_mask & AM_CAN_INT_TX) {
-        /* ½ûÄÜ·¢ËÍÖĞ¶Ï */
+        /* ç¦èƒ½å‘é€ä¸­æ–­ */
         amhw_zmf159_can_int_disable(p_hw_can,
                                       can_type,
                                       AMHW_ZMF159_CAN_INT_TRAN);
         int_mask &= ~AM_CAN_INT_TX;
     }
 
-    /* ´íÎó\¾¯¸æÖĞ¶Ï  = ´íÎó¡¢Êı¾İÒç³ö */
+    /* é”™è¯¯\è­¦å‘Šä¸­æ–­  = é”™è¯¯ã€æ•°æ®æº¢å‡º */
     if ((int_mask & AM_CAN_INT_ERROR) || (int_mask & AM_CAN_INT_WARN)) {
-        /* ½ûÄÜ´íÎóÖĞ¶Ï */
+        /* ç¦èƒ½é”™è¯¯ä¸­æ–­ */
         amhw_zmf159_can_int_disable(p_hw_can,
                                       can_type,
                                       AMHW_ZMF159_CAN_INT_ERR);
-        /* Èç¹û´¦ÓÚpeli canÄ£Ê½ */
+        /* å¦‚æœå¤„äºpeli canæ¨¡å¼ */
         if (AMHW_ZMF159_CAN_PELI_CAN == can_type) {
-            /* ½ûÄÜ×ÜÏß´íÎóÖĞ¶Ï */
+            /* ç¦èƒ½æ€»çº¿é”™è¯¯ä¸­æ–­ */
             amhw_zmf159_can_int_disable(p_hw_can,
                                           can_type,
                                           AMHW_ZMF159_CAN_INT_BUS_ERR);
-            /* ½ûÄÜ×ÜÏß×Ü²Ã¶ªÊ§ÖĞ¶Ï */
+            /* ç¦èƒ½æ€»çº¿æ€»è£ä¸¢å¤±ä¸­æ–­ */
             amhw_zmf159_can_int_disable(p_hw_can,
                                           can_type,
                                         AMHW_ZMF159_CAN_INT_ARBITRATION_LOST);
@@ -387,18 +387,18 @@ am_can_err_t __can_int_disable (void *p_drv, am_can_int_type_t int_mask)
         int_mask &= ~AM_CAN_INT_ERROR;
     }
 
-    /* »½ĞÑÖĞ¶Ï */
+    /* å”¤é†’ä¸­æ–­ */
     if (int_mask & AM_CAN_INT_WAKE_UP) {
-        /* ½ûÄÜ»½ĞÑÖĞ¶Ï */
+        /* ç¦èƒ½å”¤é†’ä¸­æ–­ */
         amhw_zmf159_can_int_disable(p_hw_can,
                                       can_type,
                                       AMHW_ZMF159_CAN_INT_WAKEUP);
         int_mask &= ~AM_CAN_INT_WAKE_UP;
     }
 
-    /* ×ÜÏß³¬ÔØÖĞ¶Ï */
+    /* æ€»çº¿è¶…è½½ä¸­æ–­ */
     if (int_mask & AM_CAN_INT_DATAOVER) {
-        /* ½ûÄÜÊı¾İÒç³öÖĞ¶Ï */
+        /* ç¦èƒ½æ•°æ®æº¢å‡ºä¸­æ–­ */
         amhw_zmf159_can_int_disable(p_hw_can,
                                       can_type,
                                       AMHW_ZMF159_CAN_INT_OVER);
@@ -407,7 +407,7 @@ am_can_err_t __can_int_disable (void *p_drv, am_can_int_type_t int_mask)
 
     if ((0 != int_mask) && (p_dev->p_devinfo->type ==
                                      AMHW_ZMF159_CAN_BASIC_CAN)) {
-        /* ÔËĞĞÖÁÕâÀï±íÃ÷´¦ÓÚBASIC CANÄ£Ê½Ê¹ÄÜBASIC CAN²»Ö§³ÖµÄÖĞ¶Ï */
+        /* è¿è¡Œè‡³è¿™é‡Œè¡¨æ˜å¤„äºBASIC CANæ¨¡å¼ä½¿èƒ½BASIC CANä¸æ”¯æŒçš„ä¸­æ–­ */
         return AM_CAN_INVALID_PARAMETER;
 
     } else if (0 == int_mask) {
@@ -416,20 +416,20 @@ am_can_err_t __can_int_disable (void *p_drv, am_can_int_type_t int_mask)
     }
 
     if (int_mask & AM_CAN_INT_ERROR_PASSIVE) {
-        /* Ê¹ÄÜpeli can Ïû¼«´íÎóÖĞ¶Ï */
+        /* ä½¿èƒ½peli can æ¶ˆæé”™è¯¯ä¸­æ–­ */
         amhw_zmf159_can_int_disable(p_hw_can,
                                       can_type,
                                       AMHW_ZMF159_CAN_INT_ERR_PASSIVE);
     }
 
     if (int_mask & AM_CAN_INT_BUS_OFF) {
-        /* ½ûÄÜ×ÜÏß´íÎóÖĞ¶Ï */
+        /* ç¦èƒ½æ€»çº¿é”™è¯¯ä¸­æ–­ */
         amhw_zmf159_can_int_disable(p_hw_can,
                                       can_type,
                                       AMHW_ZMF159_CAN_INT_BUS_ERR);
     }
 
-    /* »Ö¸´CAN×´Ì¬ */
+    /* æ¢å¤CANçŠ¶æ€ */
     if (mode != AMHW_ZMF159_CAN_MODE_RESET) {
 
         amhw_zmf159_can_mode_set(p_hw_can,
@@ -442,7 +442,7 @@ am_can_err_t __can_int_disable (void *p_drv, am_can_int_type_t int_mask)
 }
 
 /**
- * \brief Ä£Ê½ÉèÖÃ
+ * \brief æ¨¡å¼è®¾ç½®
  */
 am_can_err_t __can_mode_set (void *p_drv, am_can_mode_type_t mode)
 {
@@ -457,7 +457,7 @@ am_can_err_t __can_mode_set (void *p_drv, am_can_mode_type_t mode)
 
     if (AM_CAN_MODE_NROMAL == mode) {
 
-        /* Õı³£Ä£Ê½ */
+        /* æ­£å¸¸æ¨¡å¼ */
         amhw_zmf159_can_mode_set(p_hw_can,
                                    p_dev->p_devinfo->type,
                                    &(p_dev->mode),
@@ -466,13 +466,13 @@ am_can_err_t __can_mode_set (void *p_drv, am_can_mode_type_t mode)
     } else if ((AM_CAN_MODE_LISTEN_ONLY == mode) &&
                  (p_dev->p_devinfo->type == AMHW_ZMF159_CAN_PELI_CAN)) {
 
-        /* Ö»ÌıÄ£Ê½ */
+        /* åªå¬æ¨¡å¼ */
         amhw_zmf159_can_mode_set(p_hw_can,
                                    p_dev->p_devinfo->type,
                                    &(p_dev->mode),
                                    AMHW_ZMF159_CAN_MODE_ONLY_LISTEN);
     } else {
-        /* basic canÎŞÖ»ÌıÄ£Ê½ */
+        /* basic canæ— åªå¬æ¨¡å¼ */
         return AM_CAN_INVALID_PARAMETER;
     }
 
@@ -480,7 +480,7 @@ am_can_err_t __can_mode_set (void *p_drv, am_can_mode_type_t mode)
 }
 
 /**
- * \brief ²¨ÌØÂÊÉèÖÃ
+ * \brief æ³¢ç‰¹ç‡è®¾ç½®
  */
 am_can_err_t __can_baudrate_set (void               *p_drv,
                                  am_can_bps_param_t *p_can_baudrate)
@@ -496,7 +496,7 @@ am_can_err_t __can_baudrate_set (void               *p_drv,
     p_hw_can = (amhw_zmf159_can_t *)p_dev->p_devinfo->regbase;
 
     if (AMHW_ZMF159_CAN_MODE_RESET != p_dev->mode) {
-        /* ²¨ÌØÂÊ¼Ä´æÆ÷Ö»ÄÜÔÚ¸´Î»Ä£Ê½ÏÂ½øĞĞ·ÃÎÊ×÷£¬ÉèÖÃÇ°½øÈë¸´Î»Ä£Ê½*/
+        /* æ³¢ç‰¹ç‡å¯„å­˜å™¨åªèƒ½åœ¨å¤ä½æ¨¡å¼ä¸‹è¿›è¡Œè®¿é—®ä½œï¼Œè®¾ç½®å‰è¿›å…¥å¤ä½æ¨¡å¼*/
         amhw_zmf159_can_mode_set(p_hw_can,
                                    p_dev->p_devinfo->type,
                                    &(p_dev->mode),
@@ -511,7 +511,7 @@ am_can_err_t __can_baudrate_set (void               *p_drv,
     amhw_zmf159_can_tseg2_set(p_hw_can, p_can_baudrate->tesg2);
 
     if (mode != AMHW_ZMF159_CAN_MODE_RESET) {
-        /* ÇĞ»»»ØÕı³£Ä£Ê½ */
+        /* åˆ‡æ¢å›æ­£å¸¸æ¨¡å¼ */
         amhw_zmf159_can_mode_set(p_hw_can,
                                    p_dev->p_devinfo->type,
                                    &(p_dev->mode),
@@ -522,7 +522,7 @@ am_can_err_t __can_baudrate_set (void               *p_drv,
 }
 
 /**
- * \brief ²¨ÌØÂÊ»ñÈ¡
+ * \brief æ³¢ç‰¹ç‡è·å–
  */
 am_can_err_t __can_baudrate_get (void               *p_drv,
                                  am_can_bps_param_t *p_can_baudrate)
@@ -538,7 +538,7 @@ am_can_err_t __can_baudrate_get (void               *p_drv,
     p_hw_can = (amhw_zmf159_can_t *)p_dev->p_devinfo->regbase;
 
     if (AMHW_ZMF159_CAN_MODE_RESET != p_dev->mode) {
-        /* ²¨ÌØÂÊ¼Ä´æÆ÷Ö»ÄÜÔÚ¸´Î»Ä£Ê½ÏÂ½øĞĞ·ÃÎÊ×÷£¬ÉèÖÃÇ°½øÈë¸´Î»Ä£Ê½*/
+        /* æ³¢ç‰¹ç‡å¯„å­˜å™¨åªèƒ½åœ¨å¤ä½æ¨¡å¼ä¸‹è¿›è¡Œè®¿é—®ä½œï¼Œè®¾ç½®å‰è¿›å…¥å¤ä½æ¨¡å¼*/
         amhw_zmf159_can_mode_set(p_hw_can,
                                    p_dev->p_devinfo->type,
                                    &(p_dev->mode),
@@ -553,7 +553,7 @@ am_can_err_t __can_baudrate_get (void               *p_drv,
     p_can_baudrate->tesg2 = amhw_zmf159_can_tseg2_get(p_hw_can);
 
     if (mode != AMHW_ZMF159_CAN_MODE_RESET) {
-        /* ÇĞ»»»ØÕı³£Ä£Ê½ */
+        /* åˆ‡æ¢å›æ­£å¸¸æ¨¡å¼ */
         amhw_zmf159_can_mode_set(p_hw_can,
                                    p_dev->p_devinfo->type,
                                    &(p_dev->mode),
@@ -564,7 +564,7 @@ am_can_err_t __can_baudrate_get (void               *p_drv,
 }
 
 /**
- * \brief »ñÈ¡´íÎó¼ÆÊı
+ * \brief è·å–é”™è¯¯è®¡æ•°
  */
 am_can_err_t __can_err_cnt_get (void *p_drv, am_can_err_cnt_t *p_can_err_reg)
 {
@@ -577,12 +577,12 @@ am_can_err_t __can_err_cnt_get (void *p_drv, am_can_err_cnt_t *p_can_err_reg)
 
     p_hw_can = (amhw_zmf159_can_t *)p_dev->p_devinfo->regbase;
 
-    /* basic CANÃ»ÓĞ´íÎó¼ÆÊıÆ÷ */
+    /* basic CANæ²¡æœ‰é”™è¯¯è®¡æ•°å™¨ */
     if (AMHW_ZMF159_CAN_PELI_CAN != p_dev->p_devinfo->regbase) {
         return AM_CAN_INCOMPATIBLE_TYPE;
     }
 
-    /* ¶Ápeli CAN TX/RX´íÎó¼ÆÊıÆ÷ */
+    /* è¯»peli CAN TX/RXé”™è¯¯è®¡æ•°å™¨ */
     p_can_err_reg->rx_error_cnt = amhw_zmf159_peli_can_rxerr_read(p_hw_can);
     p_can_err_reg->tx_error_cnt = amhw_zmf159_peli_can_txerr_read(p_hw_can);
 
@@ -590,7 +590,7 @@ am_can_err_t __can_err_cnt_get (void *p_drv, am_can_err_cnt_t *p_can_err_reg)
 }
 
 /**
- * \brief Çå³ı´íÎó¼ÆÊı
+ * \brief æ¸…é™¤é”™è¯¯è®¡æ•°
  */
 am_can_err_t __can_err_cnt_clr (void *p_drv)
 {
@@ -608,7 +608,7 @@ am_can_err_t __can_err_cnt_clr (void *p_drv)
         return AM_CAN_INVALID_PARAMETER;
     }
 
-    /* ´íÎó¼ÆÊıÆ÷¼Ä´æÆ÷Ö»ÄÜÔÚ¸´Î»Ä£Ê½ÏÂ½øĞĞ·ÃÎÊ×÷£¬ÉèÖÃÇ°½øÈë¸´Î»Ä£Ê½*/
+    /* é”™è¯¯è®¡æ•°å™¨å¯„å­˜å™¨åªèƒ½åœ¨å¤ä½æ¨¡å¼ä¸‹è¿›è¡Œè®¿é—®ä½œï¼Œè®¾ç½®å‰è¿›å…¥å¤ä½æ¨¡å¼*/
     if (AMHW_ZMF159_CAN_MODE_RESET != p_dev->mode) {
 
         amhw_zmf159_can_mode_set(p_hw_can,
@@ -621,7 +621,7 @@ am_can_err_t __can_err_cnt_clr (void *p_drv)
     amhw_zmf159_peli_can_txerr_write(p_hw_can, 0);
 
     if (mode != AMHW_ZMF159_CAN_MODE_RESET) {
-        /* ÇĞ»»»ØÕı³£Ä£Ê½ */
+        /* åˆ‡æ¢å›æ­£å¸¸æ¨¡å¼ */
         amhw_zmf159_can_mode_set(p_hw_can,
                                    p_dev->p_devinfo->type,
                                    &(p_dev->mode),
@@ -632,7 +632,7 @@ am_can_err_t __can_err_cnt_clr (void *p_drv)
 }
 
 /**
- * \brief ·¢ËÍĞÅÏ¢
+ * \brief å‘é€ä¿¡æ¯
  */
 am_can_err_t __can_msg_send (void *p_drv, am_can_message_t *p_txmsg)
 {
@@ -651,7 +651,7 @@ am_can_err_t __can_msg_send (void *p_drv, am_can_message_t *p_txmsg)
     p_hw_can = (amhw_zmf159_can_t *)p_dev->p_devinfo->regbase;
     can_type = p_dev->p_devinfo->type;
 
-    /* ÅĞ¶Ï·¢ËÍ»º³åÇøÊÇ·ñ±»ÊÍ·Å */
+    /* åˆ¤æ–­å‘é€ç¼“å†²åŒºæ˜¯å¦è¢«é‡Šæ”¾ */
     if (0 == (amhw_zmf159_can_status_get(p_hw_can) &
                                               AMHW_ZMF159_CAN_SR_TBS)) {
         return AM_CAN_INVALID_PARAMETER;
@@ -660,64 +660,64 @@ am_can_err_t __can_msg_send (void *p_drv, am_can_message_t *p_txmsg)
     is_remote = ((p_txmsg->flags & AM_CAN_REMOTE_FLAG) ? AM_TRUE : AM_FALSE);
     is_extern = ((p_txmsg->flags & AM_CAN_EXTERN_FLAG) ? AM_TRUE : AM_FALSE);
 
-    /* zmf159 can Ã»ÓĞcan fd¹¦ÄÜ */
+    /* zmf159 can æ²¡æœ‰can fdåŠŸèƒ½ */
     if (p_txmsg->flags & AM_CAN_FD_CTRL_FLAG) {
         return AM_CAN_INVALID_PARAMETER;
     }
 
-    /* basic can Ã»ÓĞ×Ô½ÓÊÕÇëÇó */
+    /* basic can æ²¡æœ‰è‡ªæ¥æ”¶è¯·æ±‚ */
     if (((p_txmsg->flags & AM_CAN_SELF_SEND_FLAG) ||
             (p_txmsg->flags & AM_CAN_SELFONCE_SEND_FLAG)) &&
                      (AMHW_ZMF159_CAN_BASIC_CAN == can_type)) {
         return AM_CAN_INVALID_PARAMETER;
     }
 
-    /* basic can ²»ÄÜ·¢ËÍÀ©Õ¹Ö¡ */
+    /* basic can ä¸èƒ½å‘é€æ‰©å±•å¸§ */
     if ((AMHW_ZMF159_CAN_BASIC_CAN == can_type) && (AM_TRUE == is_extern)) {
         return AM_CAN_INVALID_PARAMETER;
     }
 
-    /* 8×Ö½ÚÊı¾İ */
+    /* 8å­—èŠ‚æ•°æ® */
     if (p_txmsg->msglen > 8) {
         p_txmsg->msglen = 8;
     }
 
-    /* basic can ·¢ËÍÊı¾İ */
+    /* basic can å‘é€æ•°æ® */
     if (AMHW_ZMF159_CAN_BASIC_CAN == can_type) {
 
         /* 11bit id */
         p_txmsg->id &= 0x3ff;
 
-        /* Ğ´Èëid,rtr,len */
+        /* å†™å…¥id,rtr,len */
         amhw_zmf159_basic_can_tx_id_write(p_hw_can, p_txmsg->id);
         amhw_zmf159_basic_can_tx_rtr_write(p_hw_can, is_remote);
         amhw_zmf159_basic_can_tx_data_len_set(p_hw_can, p_txmsg->msglen);
 
-        /* Ğ´ÈëÊı¾İ */
+        /* å†™å…¥æ•°æ® */
         for (i = 0 ; i < p_txmsg->msglen ; i++) {
             amhw_zmf159_basic_can_tx_data_write(p_hw_can,
                                                   i,
                                                   p_txmsg->msgdata[i]);
         }
     } else {
-        /* peli can ·¢ËÍÊı¾İ */
+        /* peli can å‘é€æ•°æ® */
 
         if (is_extern) {
-            /* À©Õ¹±êÖ¾ */
+            /* æ‰©å±•æ ‡å¿— */
             peli_sff |= AMHW_ZMF159_CAN_PELI_SFF_FF;
         }
 
         if (is_remote) {
-            /* Ô¶³Ì±êÖ¾ */
+            /* è¿œç¨‹æ ‡å¿— */
             peli_sff |= AMHW_ZMF159_CAN_PELI_SFF_RTR;
         }
 
         peli_sff |= p_txmsg->msglen;
-        /* Ğ´Èësff¼Ä´æÆ÷ */
+        /* å†™å…¥sffå¯„å­˜å™¨ */
         amhw_zmf159_peli_can_sff_set(p_hw_can, peli_sff);
-        /* ÉèÖÃIDÖµ */
+        /* è®¾ç½®IDå€¼ */
         amhw_zmf159_peli_can_id_set(p_hw_can, is_extern, p_txmsg->id);
-        /* Ğ´ÈëÊı¾İ */
+        /* å†™å…¥æ•°æ® */
         for (i = 0 ; i < p_txmsg->msglen ; i++) {
             amhw_zmf159_peli_can_data_write(p_hw_can,
                                               is_extern,
@@ -727,19 +727,19 @@ am_can_err_t __can_msg_send (void *p_drv, am_can_message_t *p_txmsg)
 
         if ((p_txmsg->flags & AM_CAN_SELF_SEND_FLAG) ||
                 (p_txmsg->flags & AM_CAN_SELFONCE_SEND_FLAG)) {
-            /* ×Ô½ÓÊÕÇëÇó */
+            /* è‡ªæ¥æ”¶è¯·æ±‚ */
             amhw_zmf159_can_cmr_set(p_hw_can, AMHW_ZMF159_CAN_CMR_SRR);
         }
     }
 
-    /* ·¢ËÍÇëÇó */
+    /* å‘é€è¯·æ±‚ */
     amhw_zmf159_can_cmr_set(p_hw_can, AMHW_ZMF159_CAN_CMR_TR);
 
     return AM_CAN_NOERROR;
 }
 
 /**
- * \brief ½ÓÊÕĞÅÏ¢
+ * \brief æ¥æ”¶ä¿¡æ¯
  */
 am_can_err_t __can_msg_recv (void *p_drv, am_can_message_t *p_rxmsg)
 {
@@ -757,40 +757,40 @@ am_can_err_t __can_msg_recv (void *p_drv, am_can_message_t *p_rxmsg)
     p_hw_can = (amhw_zmf159_can_t *)p_dev->p_devinfo->regbase;
     can_type = p_dev->p_devinfo->type;
 
-    /* ³õÊ¼»¯ */
+    /* åˆå§‹åŒ– */
     p_rxmsg->id     = 0;
     p_rxmsg->flags  = 0;
     p_rxmsg->msglen = 0;
 
-    /* ÅĞ¶Ï½ÓÊÕ»º³åÇøÊÇ·ñÎª¿Õ */
+    /* åˆ¤æ–­æ¥æ”¶ç¼“å†²åŒºæ˜¯å¦ä¸ºç©º */
     if (0 == (amhw_zmf159_can_status_get(p_hw_can) &
                                            AMHW_ZMF159_CAN_SR_RBS)) {
         return AM_CAN_NOERROR;
     }
 
-    /* sasic can½ÓÊÕÊı¾İ */
+    /* sasic canæ¥æ”¶æ•°æ® */
     if (AMHW_ZMF159_CAN_BASIC_CAN == can_type) {
 
         p_rxmsg->id     = amhw_zmf159_basic_can_rx_id_read(p_hw_can);
-        /* »ñÈ¡Ô¶³Ì±êÖ¾Î» */
+        /* è·å–è¿œç¨‹æ ‡å¿—ä½ */
         if (amhw_zmf159_basic_can_rx_rtr_read(p_hw_can)) {
             p_rxmsg->flags |= AM_CAN_REMOTE_FLAG;
             p_rxmsg->msglen = 0;
             return AM_CAN_NOERROR;
         }
         p_rxmsg->msglen = amhw_zmf159_basic_can_rx_data_len_read(p_hw_can);
-        /* ¶ÁÈ¡Êı¾İ */
+        /* è¯»å–æ•°æ® */
         for (i = 0 ; i < p_rxmsg->msglen ; i++) {
             p_rxmsg->msgdata[i] =
                      amhw_zmf159_basic_can_rx_data_read(p_hw_can, i);
         }
 
-        /*Çå³ıÒç³ö */
+        /*æ¸…é™¤æº¢å‡º */
         amhw_zmf159_can_cmr_set(p_hw_can, AMHW_ZMF159_CAN_CMR_RRB);
     } else {
-        /* »ñÈ¡SFF¼Ä´æÆ÷Öµ */
+        /* è·å–SFFå¯„å­˜å™¨å€¼ */
         peli_sff = amhw_zmf159_peli_can_sff_get(p_hw_can);
-        /* À©Õ¹Ö¡´¦Àí */
+        /* æ‰©å±•å¸§å¤„ç† */
         if (peli_sff & AMHW_ZMF159_CAN_PELI_SFF_FF) {
             p_rxmsg->flags |= AM_CAN_EXTERN_FLAG;
             is_extern = AM_TRUE;
@@ -798,21 +798,21 @@ am_can_err_t __can_msg_recv (void *p_drv, am_can_message_t *p_rxmsg)
 
         p_rxmsg->id     = amhw_zmf159_peli_can_id_get(p_hw_can, is_extern);
 
-        /* Ô¶³ÌÖ¡´¦Àí */
+        /* è¿œç¨‹å¸§å¤„ç† */
         if (peli_sff & AMHW_ZMF159_CAN_PELI_SFF_RTR) {
             p_rxmsg->flags |= AM_CAN_REMOTE_FLAG;
             p_rxmsg->msglen = 0;
         }
-        /* »ñÈ¡Êı¾İ³¤¶È */
+        /* è·å–æ•°æ®é•¿åº¦ */
         p_rxmsg->msglen = (peli_sff >> AMHW_ZMF159_CAN_PELI_SFF_DLC_SHIFT) &
                                        AMHW_ZMF159_CAN_PELI_SFF_DLC_MASK;
-        /* ¶ÁÊı¾İ */
+        /* è¯»æ•°æ® */
         for (i = 0 ; i < p_rxmsg->msglen ; i++) {
             p_rxmsg->msgdata[i] =
                     amhw_zmf159_peli_can_data_read(p_hw_can, is_extern, i);
         }
 
-        /*Çå³ıÒç³ö */
+        /*æ¸…é™¤æº¢å‡º */
         amhw_zmf159_can_cmr_set(p_hw_can, AMHW_ZMF159_CAN_CMR_RRB);
     }
 
@@ -820,7 +820,7 @@ am_can_err_t __can_msg_recv (void *p_drv, am_can_message_t *p_rxmsg)
 }
 
 /**
- * \brief Í£Ö¹·¢ËÍĞÅÏ¢
+ * \brief åœæ­¢å‘é€ä¿¡æ¯
  */
 am_can_err_t __can_stop_msg_snd (void *p_drv)
 {
@@ -839,7 +839,7 @@ am_can_err_t __can_stop_msg_snd (void *p_drv)
 }
 
 /**
- * \brief ÉèÖÃÂË²¨º¯Êı
+ * \brief è®¾ç½®æ»¤æ³¢å‡½æ•°
  */
 am_can_err_t __can_filter_tab_set (void    *p_drv,
                                    uint8_t *p_filterbuff,
@@ -855,7 +855,7 @@ am_can_err_t __can_filter_tab_set (void    *p_drv,
 
     p_hw_can = (amhw_zmf159_can_t *)p_dev->p_devinfo->regbase;
 
-    /* ÂË²¨ÉèÖÃÖ»ÄÜÔÚ¸´Î»Ä£Ê½ÏÂ½øĞĞ */
+    /* æ»¤æ³¢è®¾ç½®åªèƒ½åœ¨å¤ä½æ¨¡å¼ä¸‹è¿›è¡Œ */
     if (AMHW_ZMF159_CAN_MODE_RESET != p_dev->mode) {
 
         amhw_zmf159_can_mode_set(p_hw_can,
@@ -867,7 +867,7 @@ am_can_err_t __can_filter_tab_set (void    *p_drv,
     if (AMHW_ZMF159_CAN_BASIC_CAN == p_dev->p_devinfo->type) {
 
         amhw_zmf159_basic_can_ac_set(p_hw_can, *p_filterbuff);
-        /* Èç¹ûÃ»ÓĞ´«ÈëÑÚÂëÔòÑÚÂëÉèÖÃÎªÈ«0 */
+        /* å¦‚æœæ²¡æœ‰ä¼ å…¥æ©ç åˆ™æ©ç è®¾ç½®ä¸ºå…¨0 */
         if (1 == lenth) {
             amhw_zmf159_basic_can_am_set(p_hw_can, 0);
         } else {
@@ -889,7 +889,7 @@ am_can_err_t __can_filter_tab_set (void    *p_drv,
     amhw_zmf159_peli_can_am_set(p_hw_can, *(uint32_t *)(p_filterbuff+4));
 
     if (mode != AMHW_ZMF159_CAN_MODE_RESET) {
-        /* ÇĞ»»»ØÕı³£Ä£Ê½ */
+        /* åˆ‡æ¢å›æ­£å¸¸æ¨¡å¼ */
         amhw_zmf159_can_mode_set(p_hw_can,
                                    p_dev->p_devinfo->type,
                                    &(p_dev->mode),
@@ -900,7 +900,7 @@ am_can_err_t __can_filter_tab_set (void    *p_drv,
 }
 
 /**
- * \brief »ñÈ¡ÂË²¨º¯Êı
+ * \brief è·å–æ»¤æ³¢å‡½æ•°
  */
 am_can_err_t __can_filter_tab_get (void    *p_drv,
                                    uint8_t *p_filterbuff,
@@ -917,7 +917,7 @@ am_can_err_t __can_filter_tab_get (void    *p_drv,
 
     p_hw_can = (amhw_zmf159_can_t *)p_dev->p_devinfo->regbase;
 
-    /* ÂË²¨ÉèÖÃÖ»ÄÜÔÚ¸´Î»Ä£Ê½ÏÂ½øĞĞ */
+    /* æ»¤æ³¢è®¾ç½®åªèƒ½åœ¨å¤ä½æ¨¡å¼ä¸‹è¿›è¡Œ */
     if (AMHW_ZMF159_CAN_MODE_RESET != p_dev->mode) {
 
         amhw_zmf159_can_mode_set(p_hw_can,
@@ -943,7 +943,7 @@ am_can_err_t __can_filter_tab_get (void    *p_drv,
     *p_lenth = 8;
 
     if (mode != AMHW_ZMF159_CAN_MODE_RESET) {
-        /* ÇĞ»»»ØÕı³£Ä£Ê½ */
+        /* åˆ‡æ¢å›æ­£å¸¸æ¨¡å¼ */
         amhw_zmf159_can_mode_set(p_hw_can,
                                    p_dev->p_devinfo->type,
                                    &(p_dev->mode),
@@ -979,15 +979,15 @@ static void __can_intcb_func_run (am_zmf159_can_dev_t  *p_dev,
 }
 
 /**
- * \brief canÖĞ¶Ï·şÎñº¯Êı
+ * \brief canä¸­æ–­æœåŠ¡å‡½æ•°
  */
 static void __can_int_handle (void *p_drv)
 {
     am_zmf159_can_dev_t    *p_dev    = (am_zmf159_can_dev_t *)p_drv;
     amhw_zmf159_can_t      *p_hw_can = NULL;
     amhw_zmf159_can_type_t  can_type;
-    uint8_t                   int_flags = 0;  /* ÖĞ¶Ï±êÖ¾ */
-    uint8_t                   status    = 0;  /* CAN×´Ì¬ */
+    uint8_t                   int_flags = 0;  /* ä¸­æ–­æ ‡å¿— */
+    uint8_t                   status    = 0;  /* CANçŠ¶æ€ */
 
     if (NULL == p_drv) {
         return;
@@ -1000,67 +1000,67 @@ static void __can_int_handle (void *p_drv)
     status    = amhw_zmf159_can_status_get(p_hw_can);
 
     if (AMHW_ZMF159_CAN_BASIC_CAN == can_type) {
-        /* basic can ÎŞ´ËÖĞ¶Ï£¬ÇÒ´ËÈıÎ»ºãÎª1 */
+        /* basic can æ— æ­¤ä¸­æ–­ï¼Œä¸”æ­¤ä¸‰ä½æ’ä¸º1 */
         int_flags &= ~(AMHW_ZMF159_CAN_INT_ERR_PASSIVE);
         int_flags &= ~(AMHW_ZMF159_CAN_INT_ARBITRATION_LOST);
         int_flags &= ~(AMHW_ZMF159_CAN_INT_BUS_ERR);
     }
 
-    /* ½ÓÊÕÖĞ¶Ï²úÉú£¬²¢ÇÒrxfifo²»Îª¿Õ */
+    /* æ¥æ”¶ä¸­æ–­äº§ç”Ÿï¼Œå¹¶ä¸”rxfifoä¸ä¸ºç©º */
     if ((int_flags & AMHW_ZMF159_CAN_INT_RECV) &&
             (status & AMHW_ZMF159_CAN_SR_RBS)) {
 
-        /* Ö´ĞĞ½ÓÊÕ»Øµ÷º¯Êı */
+        /* æ‰§è¡Œæ¥æ”¶å›è°ƒå‡½æ•° */
         __can_intcb_func_run(p_dev, AM_CAN_INT_RX);
-        /* ÊÍ·Å½ÓÊÕ»º³åÇø */
+        /* é‡Šæ”¾æ¥æ”¶ç¼“å†²åŒº */
         amhw_zmf159_can_cmr_set(p_hw_can, AMHW_ZMF159_CAN_CMR_RRB);
     }
 
-    /* ·¢ËÍÖĞ¶Ï²úÉú£¬²¢ÇÒ·¢ËÍÍê³É */
+    /* å‘é€ä¸­æ–­äº§ç”Ÿï¼Œå¹¶ä¸”å‘é€å®Œæˆ */
     if ((int_flags & AMHW_ZMF159_CAN_INT_TRAN) &&
             (status & AMHW_ZMF159_CAN_SR_TCS)) {
 
-        /* Ö´ĞĞ½ÓÊÕ»Øµ÷º¯Êı */
+        /* æ‰§è¡Œæ¥æ”¶å›è°ƒå‡½æ•° */
         __can_intcb_func_run(p_dev, AM_CAN_INT_TX);
     }
 
-    /* Êı¾İÒç³öÖĞ¶Ï²úÉú */
+    /* æ•°æ®æº¢å‡ºä¸­æ–­äº§ç”Ÿ */
     if (int_flags & AMHW_ZMF159_CAN_INT_OVER) {
 
-        /* Ö´ĞĞÊı¾İÒç³öÖĞ¶Ï»Øµ÷º¯Êı */
+        /* æ‰§è¡Œæ•°æ®æº¢å‡ºä¸­æ–­å›è°ƒå‡½æ•° */
         __can_intcb_func_run(p_dev, AM_CAN_INT_DATAOVER);
     }
 
-    /* »½ĞÑÖĞ¶Ï²úÉú */
+    /* å”¤é†’ä¸­æ–­äº§ç”Ÿ */
     if (int_flags & AMHW_ZMF159_CAN_INT_WAKEUP) {
-        /* Ö´ĞĞ»½ĞÑÖĞ¶Ï»Øµ÷º¯Êı */
+        /* æ‰§è¡Œå”¤é†’ä¸­æ–­å›è°ƒå‡½æ•° */
         __can_intcb_func_run(p_dev, AM_CAN_INT_WAKE_UP);
     }
 
-    /* Ïû¼«´íÎóÖĞ¶Ï²úÉú */
+    /* æ¶ˆæé”™è¯¯ä¸­æ–­äº§ç”Ÿ */
     if (int_flags & AMHW_ZMF159_CAN_INT_ERR_PASSIVE) {
-        /* Ö´ĞĞÏû¼«´íÎóÖĞ¶Ï»Øµ÷º¯Êı */
+        /* æ‰§è¡Œæ¶ˆæé”™è¯¯ä¸­æ–­å›è°ƒå‡½æ•° */
         __can_intcb_func_run(p_dev, AM_CAN_INT_ERROR_PASSIVE);
     }
 
-    /* ´íÎóÖĞ¶Ï¡¢×ÜÏß´íÎóÖĞ¶Ï¡¢×ÜÏßÖÙ²Ã¶ªÊ§´¦Àí */
+    /* é”™è¯¯ä¸­æ–­ã€æ€»çº¿é”™è¯¯ä¸­æ–­ã€æ€»çº¿ä»²è£ä¸¢å¤±å¤„ç† */
     if ((int_flags & AMHW_ZMF159_CAN_INT_ERR) ||
             (int_flags & AMHW_ZMF159_CAN_INT_BUS_ERR) ||
                 (int_flags & AMHW_ZMF159_CAN_INT_ARBITRATION_LOST)) {
 
-        /* ÅĞ¶Ï×ÜÏßÊÇ·ñ¹Ø±Õ */
+        /* åˆ¤æ–­æ€»çº¿æ˜¯å¦å…³é—­ */
         if (status & AMHW_ZMF159_CAN_SR_BS) {
-            /* Ö´ĞĞ×ÜÏß¹Ø±Õ´íÎóÖĞ¶Ï»Øµ÷º¯Êı */
+            /* æ‰§è¡Œæ€»çº¿å…³é—­é”™è¯¯ä¸­æ–­å›è°ƒå‡½æ•° */
             __can_intcb_func_run(p_dev, AM_CAN_INT_BUS_OFF);
         } else {
-            /* Ö´ĞĞ´íÎóÖĞ¶Ï»Øµ÷º¯Êı */
+            /* æ‰§è¡Œé”™è¯¯ä¸­æ–­å›è°ƒå‡½æ•° */
             __can_intcb_func_run(p_dev, AM_CAN_INT_ERROR);
         }
     }
 }
 
 /**
- * \brief CAN ×´Ì¬
+ * \brief CAN çŠ¶æ€
  */
 am_can_err_t __can_status_get (void              *p_drv,
                                am_can_int_type_t *p_int_type,
@@ -1069,10 +1069,10 @@ am_can_err_t __can_status_get (void              *p_drv,
     am_zmf159_can_dev_t    *p_dev    = (am_zmf159_can_dev_t *)p_drv;
     amhw_zmf159_can_t      *p_hw_can = NULL;
     amhw_zmf159_can_type_t can_type;
-    uint8_t                  int_flags = 0;  /* ÖĞ¶Ï±êÖ¾ */
-    uint8_t                  err_code  = 0;  /* ´íÎóºÅ */
-    uint8_t                  status    = 0;  /* CAN×´Ì¬ */
-    uint8_t                  err       = 0;  /* ´íÎó¼Ä´æÆ÷Öµ */
+    uint8_t                  int_flags = 0;  /* ä¸­æ–­æ ‡å¿— */
+    uint8_t                  err_code  = 0;  /* é”™è¯¯å· */
+    uint8_t                  status    = 0;  /* CANçŠ¶æ€ */
+    uint8_t                  err       = 0;  /* é”™è¯¯å¯„å­˜å™¨å€¼ */
 
     if (NULL == p_drv || NULL == p_int_type || NULL == p_bus_err) {
         return AM_CAN_INVALID_PARAMETER;
@@ -1090,49 +1090,49 @@ am_can_err_t __can_status_get (void              *p_drv,
 
     *p_int_type = 0;
 
-    /* ½ÓÊÕÖĞ¶Ï */
+    /* æ¥æ”¶ä¸­æ–­ */
     if (int_flags & AMHW_ZMF159_CAN_INT_RECV) {
         *p_int_type |= AM_CAN_INT_RX;
     }
 
-    /* ·¢ËÍÖĞ¶Ï */
+    /* å‘é€ä¸­æ–­ */
     if (int_flags & AMHW_ZMF159_CAN_INT_TRAN) {
         *p_int_type |= AM_CAN_INT_TX;
     }
 
-    /* Êı¾İÒç³öÖĞ¶Ï */
+    /* æ•°æ®æº¢å‡ºä¸­æ–­ */
     if (int_flags & AMHW_ZMF159_CAN_INT_OVER) {
         *p_int_type |= AM_CAN_INT_DATAOVER;
     }
 
-    /* »½ĞÑÖĞ¶Ï */
+    /* å”¤é†’ä¸­æ–­ */
     if (int_flags & AMHW_ZMF159_CAN_INT_WAKEUP) {
         *p_int_type |= AM_CAN_INT_WAKE_UP;
     }
 
-    /* Ïû¼«´íÎóÖĞ¶Ï */
+    /* æ¶ˆæé”™è¯¯ä¸­æ–­ */
     if (int_flags & AMHW_ZMF159_CAN_INT_ERR_PASSIVE) {
         *p_int_type |= AM_CAN_INT_ERROR_PASSIVE;
     }
 
-    /* ´íÎóÖĞ¶Ï¡¢×ÜÏß´íÎóÖĞ¶Ï¡¢×ÜÏßÖÙ²Ã¶ªÊ§ÖĞ¶Ï */
+    /* é”™è¯¯ä¸­æ–­ã€æ€»çº¿é”™è¯¯ä¸­æ–­ã€æ€»çº¿ä»²è£ä¸¢å¤±ä¸­æ–­ */
     if ((int_flags & AMHW_ZMF159_CAN_INT_ERR)     ||
         (int_flags & AMHW_ZMF159_CAN_INT_BUS_ERR) ||
         (int_flags & AMHW_ZMF159_CAN_INT_ARBITRATION_LOST)) {
 
         *p_int_type |= AM_CAN_INT_ERROR;
 
-        /* ÅĞ¶ÏÊÇ·ñÊÇÒòÎª´íÎó¼ÆÊıÆ÷´ïµ½ÏŞÖÆ¶øÒıÆğµÄ×ÜÏß¹Ø±Õ */
+        /* åˆ¤æ–­æ˜¯å¦æ˜¯å› ä¸ºé”™è¯¯è®¡æ•°å™¨è¾¾åˆ°é™åˆ¶è€Œå¼•èµ·çš„æ€»çº¿å…³é—­ */
         if ((status & AMHW_ZMF159_CAN_SR_BS)) {
             *p_int_type &= ~AM_CAN_INT_ERROR;
             *p_int_type |= AM_CAN_INT_BUS_OFF;
         }
     }
 
-    /* basic can ²»ÄÜ»ñÈ¡´íÎó´úÂë */
+    /* basic can ä¸èƒ½è·å–é”™è¯¯ä»£ç  */
     if (AMHW_ZMF159_CAN_BASIC_CAN == can_type) {
 
-        /* basic can ·¢Éú´íÎóÔò·µ»ØÎ´Öª´íÎó */
+        /* basic can å‘ç”Ÿé”™è¯¯åˆ™è¿”å›æœªçŸ¥é”™è¯¯ */
         if (int_flags & AMHW_ZMF159_CAN_INT_ERR) {
             *p_bus_err |= AM_CAN_BUS_ERR_UNKNOWN;
         } else {
@@ -1142,23 +1142,23 @@ am_can_err_t __can_status_get (void              *p_drv,
         return AM_CAN_NOERROR;
     }
 
-    /* ´Ó¼Ä´æÆ÷»ñÈ¡´íÎó´úÂë */
+    /* ä»å¯„å­˜å™¨è·å–é”™è¯¯ä»£ç  */
     *p_bus_err = 0;
     err        = amhw_zmf159_peli_can_ecc_get(p_hw_can);
     err_code = (err >> AMHW_ZMF159_CAN_PELI_ECC_ERRC_SHIFT) &
                        AMHW_ZMF159_CAN_PELI_ECC_ERRC_MASK;
 
-    /* ¸ñÊ½´íÎó */
+    /* æ ¼å¼é”™è¯¯ */
     if (AMHW_ZMF159_CAN_PELI_ECC_ERRC_MODE == err_code) {
         *p_bus_err |= AM_CAN_BUS_ERR_FORM;
     }
 
-    /* Ìî³ä´íÎó */
+    /* å¡«å……é”™è¯¯ */
     if (AMHW_ZMF159_CAN_PELI_ECC_ERRC_FILL == err_code) {
         *p_bus_err |= AM_CAN_BUS_ERR_STUFF;
     }
 
-    /* Î´Öª´íÎó */
+    /* æœªçŸ¥é”™è¯¯ */
     if (AMHW_ZMF159_CAN_PELI_ECC_ERRC_OTHER == err_code) {
         *p_bus_err |= AM_CAN_BUS_ERR_UNKNOWN;
     }
@@ -1166,13 +1166,13 @@ am_can_err_t __can_status_get (void              *p_drv,
     err_code = (err >> AMHW_ZMF159_CAN_PELI_ECC_CODE_SHIFT) &
                        AMHW_ZMF159_CAN_PELI_ECC_CODE_MASK;
 
-    /* ACK´íÎó */
+    /* ACKé”™è¯¯ */
     if ((err_code == AMHW_ZMF159_CAN_PELI_ECC_CODE_ACK) ||
             (err_code == AMHW_ZMF159_CAN_PELI_ECC_CODE_ACK_CH)) {
         *p_bus_err |= AM_CAN_BUS_ERR_ACK;
     }
 
-    /* CRC´íÎó */
+    /* CRCé”™è¯¯ */
     if ((err_code == AMHW_ZMF159_CAN_PELI_ECC_CODE_CRC) ||
             (err_code == AMHW_ZMF159_CAN_PELI_ECC_CODE_CRC_ARRAY)) {
         *p_bus_err |= AM_CAN_BUS_ERR_CRC;
@@ -1182,7 +1182,7 @@ am_can_err_t __can_status_get (void              *p_drv,
 }
 
 /**
- * \brief ÖĞ¶ÏÁ¬½Ó
+ * \brief ä¸­æ–­è¿æ¥
  */
 am_can_err_t __can_connect (void         *p_drv,
                             am_pfnvoid_t  pfn_isr,
@@ -1195,10 +1195,10 @@ am_can_err_t __can_connect (void         *p_drv,
     }
 
     if (NULL != pfn_isr) {
-        /* Á¬½Ó´«Èëº¯Êı */
+        /* è¿æ¥ä¼ å…¥å‡½æ•° */
         am_int_connect(p_dev->p_devinfo->int_num, pfn_isr, p_arg);
     } else {
-        /* Á¬½ÓÄ¬ÈÏº¯Êı */
+        /* è¿æ¥é»˜è®¤å‡½æ•° */
         am_int_connect(p_dev->p_devinfo->int_num, __can_int_handle, p_dev);
     }
 
@@ -1206,7 +1206,7 @@ am_can_err_t __can_connect (void         *p_drv,
 }
 
 /**
- * \brief É¾³ıÖĞ¶ÏÁ¬½Ó
+ * \brief åˆ é™¤ä¸­æ–­è¿æ¥
  */
 am_can_err_t __can_disconnect (void         *p_drv,
                                am_pfnvoid_t  pfn_isr,
@@ -1218,14 +1218,14 @@ am_can_err_t __can_disconnect (void         *p_drv,
         return AM_CAN_INVALID_PARAMETER;
     }
 
-    /* ÖĞ¶Ï½ûÄÜ */
+    /* ä¸­æ–­ç¦èƒ½ */
     am_int_disable(p_dev->p_devinfo->int_num);
 
     if (NULL != pfn_isr) {
-        /* É¾³ıÁ¬½Óº¯Êı */
+        /* åˆ é™¤è¿æ¥å‡½æ•° */
         am_int_disconnect(p_dev->p_devinfo->int_num, pfn_isr, p_arg);
     } else {
-        /* É¾³ıÁ¬½Óº¯Êı */
+        /* åˆ é™¤è¿æ¥å‡½æ•° */
         am_int_disconnect(p_dev->p_devinfo->int_num, __can_int_handle, p_dev);
     }
 
@@ -1233,7 +1233,7 @@ am_can_err_t __can_disconnect (void         *p_drv,
 }
 
 /**
- * \brief ÖĞ¶Ï»Øµ÷º¯ÊıµÄÁ¬½Ó
+ * \brief ä¸­æ–­å›è°ƒå‡½æ•°çš„è¿æ¥
  */
 am_can_err_t __can_intcb_connect (void              *p_drv,
                                   am_can_int_type_t  inttype,
@@ -1263,7 +1263,7 @@ am_can_err_t __can_intcb_connect (void              *p_drv,
 }
 
 /**
- * \brief É¾³ıÖĞ¶Ï»Øµ÷º¯ÊıµÄÁ¬½Ó
+ * \brief åˆ é™¤ä¸­æ–­å›è°ƒå‡½æ•°çš„è¿æ¥
  */
 am_can_err_t __can_intcb_disconnect (void *p_drv, am_can_int_type_t  inttype)
 {
@@ -1290,7 +1290,7 @@ am_can_err_t __can_intcb_disconnect (void *p_drv, am_can_int_type_t  inttype)
 }
 
 /**
- * \brief  CAN³õÊ¼»¯
+ * \brief  CANåˆå§‹åŒ–
  */
 am_can_handle_t am_zmf159_can_init (am_zmf159_can_dev_t           *p_dev,
                                const am_zmf159_can_devinfo_t *p_devinfo)
@@ -1328,7 +1328,7 @@ am_can_handle_t am_zmf159_can_init (am_zmf159_can_dev_t           *p_dev,
 }
 
 /**
- * \brief ½â³õÊ¼»¯
+ * \brief è§£åˆå§‹åŒ–
  */
 void am_zmf159_can_deinit (am_can_handle_t handle)
 {
@@ -1350,7 +1350,7 @@ void am_zmf159_can_deinit (am_can_handle_t handle)
         p_dev->p_devinfo->pfn_plfm_deinit();
     }
 
-    /* ÖĞ¶Ï½ûÄÜ */
+    /* ä¸­æ–­ç¦èƒ½ */
     am_int_disable(p_dev->p_devinfo->int_num);
 }
 

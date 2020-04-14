@@ -12,20 +12,20 @@
 
 /**
  * \file
- * \brief GPIOÒý½ÅÖÐ¶ÏÀý³Ì£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief GPIOå¼•è„šä¸­æ–­ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷£º
- * - 1.½«J14µÄkeyºÍPIOC_0¶Ì½ÓÔÚÒ»Æð;
- *   2.½«J9µÄLED0ºÍPIOC_4¶Ì½ÓÔÚÒ»Æð;
- *   3.½«J10µÄLED1ºÍPIOC_8¶Ì½ÓÔÚÒ»Æð;
- *   4.PIOA_1 Òý½ÅÁ¬½ÓPC´®¿ÚµÄTXD;
- *   5.PIOA_2 Òý½ÅÁ¬½ÓPC´®¿ÚµÄRXD;
- *   6.ÅäÖÃÉÏÎ»»ú´®¿Ú²¨ÌØÂÊÎª115200£¬8Î»Êý¾Ý³¤¶È 1Î»Í£Ö¹Î» ÎÞÆæÅ¼Ð£Ñé;
+ * - æ“ä½œï¼š
+ * - 1.å°†J14çš„keyå’ŒPIOC_0çŸ­æŽ¥åœ¨ä¸€èµ·;
+ *   2.å°†J9çš„LED0å’ŒPIOC_4çŸ­æŽ¥åœ¨ä¸€èµ·;
+ *   3.å°†J10çš„LED1å’ŒPIOC_8çŸ­æŽ¥åœ¨ä¸€èµ·;
+ *   4.PIOA_1 å¼•è„šè¿žæŽ¥PCä¸²å£çš„TXD;
+ *   5.PIOA_2 å¼•è„šè¿žæŽ¥PCä¸²å£çš„RXD;
+ *   6.é…ç½®ä¸Šä½æœºä¸²å£æ³¢ç‰¹çŽ‡ä¸º115200ï¼Œ8ä½æ•°æ®é•¿åº¦ 1ä½åœæ­¢ä½ æ— å¥‡å¶æ ¡éªŒ;
  *
- *- ÊµÏÖÏÖÏó£º³ÌÐòÏÂÔØµ½demo°åºó£¬°´ÏÂ°´¼ü£¬demo°åÉÏµÄLED0»áÉÁ,
- *          Í¬Ê±´®¿ÚÊä³ö "the gpio interrupt happen!"
+ *- å®žçŽ°çŽ°è±¡ï¼šç¨‹åºä¸‹è½½åˆ°demoæ¿åŽï¼ŒæŒ‰ä¸‹æŒ‰é”®ï¼Œdemoæ¿ä¸Šçš„LED0ä¼šé—ª,
+ *          åŒæ—¶ä¸²å£è¾“å‡º "the gpio interrupt happen!"
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_amks16z_core_hw_gpio_int.c src_amks16z_core_hw_gpio_int
  * 
  * \internal
@@ -46,7 +46,7 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_amks16z_core_hw_gpio_int_entry (void)
 {

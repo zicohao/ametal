@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief LPC82X SCT0 CAP ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief LPC82X SCT0 CAP ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_lpc82x_sct0_cap.c
  *
  * \internal
@@ -36,16 +36,16 @@
  * @{
  */
 
-/** \brief SCT0 ÓÃÓÚ CAP µÄÒı½ÅÅäÖÃĞÅÏ¢ÁĞ±í£¬CAP µÄÊäÈë¸öÊıÎª 4 ¸ö */
+/** \brief SCT0 ç”¨äº CAP çš„å¼•è„šé…ç½®ä¿¡æ¯åˆ—è¡¨ï¼ŒCAP çš„è¾“å…¥ä¸ªæ•°ä¸º 4 ä¸ª */
 am_local am_lpc_sct_cap_ioinfo_t __g_sct0_cap_ioinfo_list[] = {
-    {PIO0_25, PIO_FUNC_SCT_PIN0, PIO0_25_GPIO | PIO0_25_GPIO_INPUT}, /* Í¨µÀ 0 */
-    {PIO0_26, PIO_FUNC_SCT_PIN1, PIO0_26_GPIO | PIO0_26_GPIO_INPUT}, /* Í¨µÀ 1 */
-    {PIO0_27, PIO_FUNC_SCT_PIN2, PIO0_27_GPIO | PIO0_27_GPIO_INPUT}, /* Í¨µÀ 2 */
-    {PIO0_28, PIO_FUNC_SCT_PIN3, PIO0_28_GPIO | PIO0_28_GPIO_INPUT}, /* Í¨µÀ 3 */
+    {PIO0_25, PIO_FUNC_SCT_PIN0, PIO0_25_GPIO | PIO0_25_GPIO_INPUT}, /* é€šé“ 0 */
+    {PIO0_26, PIO_FUNC_SCT_PIN1, PIO0_26_GPIO | PIO0_26_GPIO_INPUT}, /* é€šé“ 1 */
+    {PIO0_27, PIO_FUNC_SCT_PIN2, PIO0_27_GPIO | PIO0_27_GPIO_INPUT}, /* é€šé“ 2 */
+    {PIO0_28, PIO_FUNC_SCT_PIN3, PIO0_28_GPIO | PIO0_28_GPIO_INPUT}, /* é€šé“ 3 */
 };
 
 /**
- * \brief SCT0 CAP Æ½Ì¨³õÊ¼»¯
+ * \brief SCT0 CAP å¹³å°åˆå§‹åŒ–
  */
 am_local void __lpc82x_sct0_cap_plfm_init ()
 {
@@ -53,8 +53,8 @@ am_local void __lpc82x_sct0_cap_plfm_init ()
     amhw_lpc82x_syscon_periph_reset(AMHW_LPC82X_RESET_SCT);
 
     /*
-     * Ò»¹²ÓĞ 4 ¸öÊäÈëÍ¨µÀ, Ã¿¸öÍ¨µÀ¿ÉÑ¡ÔñµÄÊäÈë¹¦ÄÜ´ïµ½ 8 ¸ö,
-     * ¾ßÌåµÄ¹¦ÄÜ¿ÉÒÔ²Î¿¼ÔÚ amhw_lpc82x_inmux.h ÎÄ¼şÖĞ¹ØÓÚ SCT µÄ¶¨Òå
+     * ä¸€å…±æœ‰ 4 ä¸ªè¾“å…¥é€šé“, æ¯ä¸ªé€šé“å¯é€‰æ‹©çš„è¾“å…¥åŠŸèƒ½è¾¾åˆ° 8 ä¸ª,
+     * å…·ä½“çš„åŠŸèƒ½å¯ä»¥å‚è€ƒåœ¨ amhw_lpc82x_inmux.h æ–‡ä»¶ä¸­å…³äº SCT çš„å®šä¹‰
      */
     amhw_lpc82x_inmux_sct_trig_set(LPC82X_INMUX,
                                    0,
@@ -71,7 +71,7 @@ am_local void __lpc82x_sct0_cap_plfm_init ()
 }
 
 /**
- * \brief SCT0 Æ½Ì¨½â³õÊ¼»¯
+ * \brief SCT0 å¹³å°è§£åˆå§‹åŒ–
  */
 am_local void __lpc82x_sct0_cap_plfm_deinit (void)
 {
@@ -79,22 +79,22 @@ am_local void __lpc82x_sct0_cap_plfm_deinit (void)
     amhw_lpc82x_clk_periph_disable(AMHW_LPC82X_CLK_SCT);
 }
 
-/** \brief SCT0 CAP Éè±¸ĞÅÏ¢ */
+/** \brief SCT0 CAP è®¾å¤‡ä¿¡æ¯ */
 am_local am_const am_lpc_sct_cap_devinfo_t __g_lpc82x_cap_devinfo = {
-    LPC82X_SCT0_BASE,                 /* SCT0 ¼Ä´æÆ÷¿é»ùµØÖ· */
-    INUM_SCT0,                        /* SCT0 ÖĞ¶ÏºÅ */
-    CLK_SCT,                          /* SCT0 Ê±ÖÓºÅ */
-    4,                                /* 4 ¸ö²¶»ñÍ¨µÀ */
-    &__g_sct0_cap_ioinfo_list[0],     /* ËùÓĞ PWM Òı½ÅÅäÖÃĞÅÏ¢£¬ÓÃÊ×µØÖ·²ÎÊı´«µİ */
-    __lpc82x_sct0_cap_plfm_init,      /* Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __lpc82x_sct0_cap_plfm_deinit,    /* Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    LPC82X_SCT0_BASE,                 /* SCT0 å¯„å­˜å™¨å—åŸºåœ°å€ */
+    INUM_SCT0,                        /* SCT0 ä¸­æ–­å· */
+    CLK_SCT,                          /* SCT0 æ—¶é’Ÿå· */
+    4,                                /* 4 ä¸ªæ•è·é€šé“ */
+    &__g_sct0_cap_ioinfo_list[0],     /* æ‰€æœ‰ PWM å¼•è„šé…ç½®ä¿¡æ¯ï¼Œç”¨é¦–åœ°å€å‚æ•°ä¼ é€’ */
+    __lpc82x_sct0_cap_plfm_init,      /* å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __lpc82x_sct0_cap_plfm_deinit,    /* å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 };
 
-/** \brief SCT0 CAP Éè±¸ÊµÀı */
+/** \brief SCT0 CAP è®¾å¤‡å®ä¾‹ */
 am_local am_lpc_sct_cap_dev_t __g_lpc82x_cap_dev;
 
 /**
- * \brief SCT0 CAP ÊµÀı³õÊ¼»¯
+ * \brief SCT0 CAP å®ä¾‹åˆå§‹åŒ–
  */
 am_cap_handle_t am_lpc82x_sct0_cap_inst_init (void)
 {
@@ -102,7 +102,7 @@ am_cap_handle_t am_lpc82x_sct0_cap_inst_init (void)
 }
 
 /**
- * \brief SCT0 CAP ÊµÀı½â³õÊ¼»¯
+ * \brief SCT0 CAP å®ä¾‹è§£åˆå§‹åŒ–
  */
 void am_lpc82x_sct0_cap_inst_deinit (am_cap_handle_t handle)
 {

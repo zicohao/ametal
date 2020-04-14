@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥9.33
+ * \brief ç¨‹åºæ¸…å•9.33
  *
- * \note ¸ÃÀú³ÌĞèÒªÓÃµ½miniportÍØÕ¹°å,¿ÉÒÔÓÃLED¿´Ğ§¹û
+ * \note è¯¥å†ç¨‹éœ€è¦ç”¨åˆ°miniportæ‹“å±•æ¿,å¯ä»¥ç”¨LEDçœ‹æ•ˆæœ
  * 
  * \internal
  * \par Modification history

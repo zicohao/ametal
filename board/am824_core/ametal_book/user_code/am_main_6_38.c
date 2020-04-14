@@ -12,11 +12,11 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥6.38
+ * \brief ç¨‹åºæ¸…å•6.38
  *
- * \note ¸ÃÀú³ÌĞèÒªÓÃµ½µÚÈı·½¿â£¬hash table, ÈôÒªÊ¹ÓÃ¸Ãdemo£¬ĞèÒª½« am_prj_config.h
- *  ÖĞµÄºê AM_CFG_NVRAM_ENABLE ÉèÖÃÎª1£¨Ä¬ÈÏÎª0£©£¬·ñÔò¸Ãdemo²âÊÔ½á¹û²»ÕıÈ·¡£
- *  ÔÙ²âÊÔÆäËüdemo£¬ĞèÒª½«ºê»¹Ô­Îª0.±ÜÃâ³öÏÖÄÚ´æ²»×ã¡£ 
+ * \note è¯¥å†ç¨‹éœ€è¦ç”¨åˆ°ç¬¬ä¸‰æ–¹åº“ï¼Œhash table, è‹¥è¦ä½¿ç”¨è¯¥demoï¼Œéœ€è¦å°† am_prj_config.h
+ *  ä¸­çš„å® AM_CFG_NVRAM_ENABLE è®¾ç½®ä¸º1ï¼ˆé»˜è®¤ä¸º0ï¼‰ï¼Œå¦åˆ™è¯¥demoæµ‹è¯•ç»“æœä¸æ­£ç¡®ã€‚
+ *  å†æµ‹è¯•å…¶å®ƒdemoï¼Œéœ€è¦å°†å®è¿˜åŸä¸º0.é¿å…å‡ºç°å†…å­˜ä¸è¶³ã€‚ 
  *
  * \internal
  * \par Modification history
@@ -28,12 +28,12 @@
 #include "hash_kv.h"
 #include "am_vdebug.h"
 typedef struct _student{
-    char        name[10];                       // ĞÕÃû
-    char        sex;                            // ĞÔ±ğ
-    int         height, weight;                 // Éí¸ß¡¢ÌåÖØ
+    char        name[10];                       // å§“å
+    char        sex;                            // æ€§åˆ«
+    int         height, weight;                 // èº«é«˜ã€ä½“é‡
 } student_t;
 
-int db_id_to_idx (unsigned char id[6])          // Í¨¹ıIDµÃµ½Êı×éË÷Òı
+int db_id_to_idx (unsigned char id[6])          // é€šè¿‡IDå¾—åˆ°æ•°ç»„ç´¢å¼•
 {
     int i;
     int sum = 0;
@@ -42,15 +42,15 @@ int db_id_to_idx (unsigned char id[6])          // Í¨¹ıIDµÃµ½Êı×éË÷Òı
     return sum % 250;
 }
 
-int student_info_generate (unsigned char *p_id, student_t *p_student) // Ëæ»ú²úÉúÒ»ÌõÑ§Éú¼ÇÂ¼
+int student_info_generate (unsigned char *p_id, student_t *p_student) // éšæœºäº§ç”Ÿä¸€æ¡å­¦ç”Ÿè®°å½•
 {
     int i;
-    for (i = 0; i < 6; i++)                            // Ëæ»ú²úÉúÒ»¸öÑ§ºÅ
+    for (i = 0; i < 6; i++)                            // éšæœºäº§ç”Ÿä¸€ä¸ªå­¦å·
         p_id[i] = rand();
-    for (i = 0; i < 9; i++)                            // Ëæ»úÃû×Ö£¬ÓÉ 'a' ~ 'z' ×é³É
+    for (i = 0; i < 9; i++)                            // éšæœºåå­—ï¼Œç”± 'a' ~ 'z' ç»„æˆ
         p_student->name[i] = (rand() % ('z' - 'a')) + 'a';
-    p_student->name[i]= '\0';                          // ×Ö·û´®½áÊø·û
-    p_student->sex    = (rand() & 0x01) ? 'F' : 'M';   // Ëæ»úĞÔ±ğ
+    p_student->name[i]= '\0';                          // å­—ç¬¦ä¸²ç»“æŸç¬¦
+    p_student->sex    = (rand() & 0x01) ? 'F' : 'M';   // éšæœºæ€§åˆ«
     p_student->height = (int)rand() / rand();
     p_student->weight = (int)rand() / rand();
     return 0;
@@ -66,23 +66,23 @@ int am_main ()
 	
     hash_kv_init(&hash_students, 250, 6, sizeof(student_t), (hash_kv_func_t)db_id_to_idx, "hash_students");
 
-    for (i = 0; i < 100; i++){                              // Ìí¼Ó100¸öÑ§ÉúµÄĞÅÏ¢
-        student_info_generate(id, &stu);                    // ÉèÖÃÑ§ÉúĞÅÏ¢£¬ÓÃËæ»úÊı×÷Îª²âÊÔ
-        if (hash_kv_search(&hash_students, id, &stu) == 0){ // ²éÕÒµ½ÒÑ¾­´æÔÚ¸ÃIDµÄÑ§Éú¼ÇÂ¼
-            am_kprintf("¸ÃIDµÄ¼ÇÂ¼ÒÑ¾­´æÔÚ£¡\n");
+    for (i = 0; i < 100; i++){                              // æ·»åŠ 100ä¸ªå­¦ç”Ÿçš„ä¿¡æ¯
+        student_info_generate(id, &stu);                    // è®¾ç½®å­¦ç”Ÿä¿¡æ¯ï¼Œç”¨éšæœºæ•°ä½œä¸ºæµ‹è¯•
+        if (hash_kv_search(&hash_students, id, &stu) == 0){ // æŸ¥æ‰¾åˆ°å·²ç»å­˜åœ¨è¯¥IDçš„å­¦ç”Ÿè®°å½•
+            am_kprintf("è¯¥IDçš„è®°å½•å·²ç»å­˜åœ¨ï¼\n");
             continue;
         }
-        am_kprintf("Ôö¼Ó¼ÇÂ¼£ºID : %02x%02x%02x%02x%02x%02x",id[0],id[1],id[2],id[3],id[4],id[5]);
-        am_kprintf("ĞÅÏ¢£º %s  %c %d %d\n", stu.name, stu.sex, stu.height, stu.weight);
+        am_kprintf("å¢åŠ è®°å½•ï¼šID : %02x%02x%02x%02x%02x%02x",id[0],id[1],id[2],id[3],id[4],id[5]);
+        am_kprintf("ä¿¡æ¯ï¼š %s  %c %d %d\n", stu.name, stu.sex, stu.height, stu.weight);
         if (hash_kv_add(&hash_students, id, &stu) != 0){
-            am_kprintf("Ìí¼ÓÊ§°Ü\n");
+            am_kprintf("æ·»åŠ å¤±è´¥\n");
         }
     }
-    am_kprintf("²éÕÒIDÎª£º%02x%02x%02x%02x%02x%02xµÄĞÅÏ¢\n",id[0],id[1],id[2],id[3],id[4],id[5]);
+    am_kprintf("æŸ¥æ‰¾IDä¸ºï¼š%02x%02x%02x%02x%02x%02xçš„ä¿¡æ¯\n",id[0],id[1],id[2],id[3],id[4],id[5]);
     if (hash_kv_search(&hash_students, id, &stu) == 0)
-        am_kprintf("Ñ§ÉúĞÅÏ¢£º %s  %c %d %d\n", stu.name, stu.sex, stu.height, stu.weight);
+        am_kprintf("å­¦ç”Ÿä¿¡æ¯ï¼š %s  %c %d %d\n", stu.name, stu.sex, stu.height, stu.weight);
     else
-        am_kprintf("Î´ÕÒµ½¸ÃIDµÄ¼ÇÂ¼£¡\r\n");
+        am_kprintf("æœªæ‰¾åˆ°è¯¥IDçš„è®°å½•ï¼\r\n");
 
     hash_kv_deinit(&hash_students);
     return 0;

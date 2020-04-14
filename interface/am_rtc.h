@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief  RTC ±ê×¼½Ó¿Ú
+ * \brief  RTC æ ‡å‡†æ¥å£
  * 
  * \internal
  * \par Modification History
@@ -39,42 +39,42 @@ extern "C" {
  */
 
 /** 
- * \brief RTCÇı¶¯º¯Êı
+ * \brief RTCé©±åŠ¨å‡½æ•°
  */
 struct am_rtc_drv_funcs {
      
-    /** \brief ÉèÖÃµ±Ç°µÄÏ¸·ÖÊ±¼ä */
+    /** \brief è®¾ç½®å½“å‰çš„ç»†åˆ†æ—¶é—´ */
     int (*pfn_rtc_time_set)(void *p_drv, am_tm_t *p_tm);
     
-    /** \brief »ñÈ¡µ±Ç°µÄÏ¸·ÖÊ±¼ä */
+    /** \brief è·å–å½“å‰çš„ç»†åˆ†æ—¶é—´ */
     int (*pfn_rtc_time_get)(void *p_drv, am_tm_t *p_tm);
 
 };
 
 
 /** 
- * \brief RTC±ê×¼·şÎñ
+ * \brief RTCæ ‡å‡†æœåŠ¡
  */
 typedef struct am_rtc_serv {
 
-    /** \brief RTCÇı¶¯º¯Êı */
+    /** \brief RTCé©±åŠ¨å‡½æ•° */
     struct am_rtc_drv_funcs *p_funcs; 
     
-    /** \brief Çı¶¯º¯ÊıµÚÒ»¸öÈë¿Ú²ÎÊı */
+    /** \brief é©±åŠ¨å‡½æ•°ç¬¬ä¸€ä¸ªå…¥å£å‚æ•° */
     void                    *p_drv;
 } am_rtc_serv_t;
 
-/** \brief RTC±ê×¼·şÎñ²Ù×÷¾ä±úÀàĞÍ */
+/** \brief RTCæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„ç±»å‹ */
 typedef am_rtc_serv_t *am_rtc_handle_t;
 
 /**
- * \brief ÉèÖÃµ±Ç°µÄÏ¸·ÖÊ±¼ä
+ * \brief è®¾ç½®å½“å‰çš„ç»†åˆ†æ—¶é—´
  *
- * \param[in] handle : RTC±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \param[in] p_tm   : ÒªÉèÖÃµÄÊ±¼ä
+ * \param[in] handle : RTCæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] p_tm   : è¦è®¾ç½®çš„æ—¶é—´
  *
- * \return    AM_OK    : ÉèÖÃ³É¹¦
- * \retval  -AM_EINVAL : ²ÎÊı´íÎó
+ * \return    AM_OK    : è®¾ç½®æˆåŠŸ
+ * \retval  -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_rtc_time_set (am_rtc_handle_t handle, am_tm_t *p_tm)
@@ -83,13 +83,13 @@ int am_rtc_time_set (am_rtc_handle_t handle, am_tm_t *p_tm)
 }
 
 /**
- * \brief »ñÈ¡µ±Ç°µÄÏ¸·ÖÊ±¼ä
+ * \brief è·å–å½“å‰çš„ç»†åˆ†æ—¶é—´
  *
- * \param[in]  handle  : RTC±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \param[out] p_tm    : ¶ÁÈ¡µÄÊ±¼ä
+ * \param[in]  handle  : RTCæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[out] p_tm    : è¯»å–çš„æ—¶é—´
  *
- * \return   AM_OK     : »ñÈ¡Ê±¼ä³É¹¦
- * \retval  -AM_EINVAL : ²ÎÊı´íÎó
+ * \return   AM_OK     : è·å–æ—¶é—´æˆåŠŸ
+ * \retval  -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_rtc_time_get (am_rtc_handle_t handle, am_tm_t *p_tm)

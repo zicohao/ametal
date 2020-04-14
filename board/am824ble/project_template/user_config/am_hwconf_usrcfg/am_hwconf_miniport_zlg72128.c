@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief MiniPort-ZLG72128 ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief MiniPort-ZLG72128 ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_miniport_zlg72128.c
  *
  * \internal
@@ -34,44 +34,44 @@
  * @{
  */
 
-/** \brief MiniPort-ZLG72128 °´¼ü±àÂëĞÅÏ¢ */
+/** \brief MiniPort-ZLG72128 æŒ‰é”®ç¼–ç ä¿¡æ¯ */
 am_local am_const int __g_miniport_zlg72128_codes[] = {
-    KEY_0,    /* °´¼ü KEY0 µÄ¼üÖµ */
-    KEY_1,    /* °´¼ü KEY1 µÄ¼üÖµ */
-    KEY_2,    /* °´¼ü KEY2 µÄ¼üÖµ */
-    KEY_3     /* °´¼ü KEY3 µÄ¼üÖµ */
+    KEY_0,    /* æŒ‰é”® KEY0 çš„é”®å€¼ */
+    KEY_1,    /* æŒ‰é”® KEY1 çš„é”®å€¼ */
+    KEY_2,    /* æŒ‰é”® KEY2 çš„é”®å€¼ */
+    KEY_3     /* æŒ‰é”® KEY3 çš„é”®å€¼ */
 };
 
-/** \brief MiniPort-ZLG72128 Éè±¸ĞÅÏ¢ */
+/** \brief MiniPort-ZLG72128 è®¾å¤‡ä¿¡æ¯ */
 am_local am_const am_zlg72128_std_devinfo_t __g_miniport_zlg72128_devinfo = {
     {
         {
             0X33,
-            PIO0_6,                     /* ¸´Î»Òı½Å */
-            AM_TRUE,                    /* Ê¹ÓÃÖĞ¶ÏÒı½Å */
-            PIO0_1,                     /* ÖĞ¶ÏÒı½Å */
+            PIO0_6,                     /* å¤ä½å¼•è„š */
+            AM_TRUE,                    /* ä½¿ç”¨ä¸­æ–­å¼•è„š */
+            PIO0_1,                     /* ä¸­æ–­å¼•è„š */
             5,
             am_lpc82x_i2c2_inst_init,
             am_lpc82x_i2c2_inst_deinit
         }
-                         /* ²éÑ¯Ê±¼ä¼ä¸ô£¬Ê¹ÓÃÖĞ¶ÏÒı½ÅÊ±£¬¸ÃÖµÎŞÒâÒå */
+                         /* æŸ¥è¯¢æ—¶é—´é—´éš”ï¼Œä½¿ç”¨ä¸­æ–­å¼•è„šæ—¶ï¼Œè¯¥å€¼æ— æ„ä¹‰ */
     },
     {
-        0                           /* ÊıÂë¹ÜÏÔÊ¾Æ÷µÄ±àºÅ */
+        0                           /* æ•°ç ç®¡æ˜¾ç¤ºå™¨çš„ç¼–å· */
     },
-    500,                            /* Ò»¸öÉÁË¸ÖÜÆÚÄÚ£¬µãÁÁµÄÊ±¼äÎª 500ms */
-    500,                            /* Ò»¸öÉÁË¸ÖÜÆÚÄÚ£¬Ï¨ÃğµÄÊ±¼äÎª 500ms */
-    AM_ZLG72128_STD_KEY_ROW_0 | AM_ZLG72128_STD_KEY_ROW_3, /* Êµ¼ÊÊ¹ÓÃµÄĞĞ±êÖ¾ */
-    AM_ZLG72128_STD_KEY_COL_0 | AM_ZLG72128_STD_KEY_COL_1, /* Êµ¼ÊÊ¹ÓÃµÄÁĞ±êÖ¾ */
-    __g_miniport_zlg72128_codes,    /* °´¼ü±àÂëĞÅÏ¢ */
-    2                               /* ÊıÂë¹Ü¸öÊıÎª 2 */
+    500,                            /* ä¸€ä¸ªé—ªçƒå‘¨æœŸå†…ï¼Œç‚¹äº®çš„æ—¶é—´ä¸º 500ms */
+    500,                            /* ä¸€ä¸ªé—ªçƒå‘¨æœŸå†…ï¼Œç†„ç­çš„æ—¶é—´ä¸º 500ms */
+    AM_ZLG72128_STD_KEY_ROW_0 | AM_ZLG72128_STD_KEY_ROW_3, /* å®é™…ä½¿ç”¨çš„è¡Œæ ‡å¿— */
+    AM_ZLG72128_STD_KEY_COL_0 | AM_ZLG72128_STD_KEY_COL_1, /* å®é™…ä½¿ç”¨çš„åˆ—æ ‡å¿— */
+    __g_miniport_zlg72128_codes,    /* æŒ‰é”®ç¼–ç ä¿¡æ¯ */
+    2                               /* æ•°ç ç®¡ä¸ªæ•°ä¸º 2 */
 };
 
-/** \brief MiniPort-ZLG72128 Éè±¸ÊµÀı */
+/** \brief MiniPort-ZLG72128 è®¾å¤‡å®ä¾‹ */
 am_local am_zlg72128_std_dev_t __g_miniport_zlg72128_dev;
 
 /**
- * \brief MiniPort-ZLG72128 ÊµÀı³õÊ¼»¯
+ * \brief MiniPort-ZLG72128 å®ä¾‹åˆå§‹åŒ–
  */
 int am_miniport_zlg72128_inst_init (void)
 {

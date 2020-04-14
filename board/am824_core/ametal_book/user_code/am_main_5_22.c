@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥5.22
+ * \brief ç¨‹åºæ¸…å•5.22
  *
- * \note ¸ÃÀú³ÌĞèÒªÓÃµ½miniportÍØÕ¹°å
+ * \note è¯¥å†ç¨‹éœ€è¦ç”¨åˆ°miniportæ‹“å±•æ¿
  * 
  * \internal
  * \par Modification history
@@ -25,10 +25,10 @@
 #include "am_gpio.h"
 #include "am_lpc82x.h" 
 
-// ¶ÔÓ¦Á½¸öÊıÂë¹ÜµÄcom¶Ë
+// å¯¹åº”ä¸¤ä¸ªæ•°ç ç®¡çš„comç«¯
 static const int g_digitron_com[2] = {PIO0_17,PIO0_23};
 
-// 0 ~ 7·Ö±ğ¶ÔÓ¦ a, b, c, d, e, f, g, dp
+// 0 ~ 7åˆ†åˆ«å¯¹åº” a, b, c, d, e, f, g, dp
 static  const int g_digitron_seg[8]={
      PIO0_8, PIO0_9, PIO0_10, PIO0_11, PIO0_12, PIO0_13, PIO0_14, PIO0_15}; 
 
@@ -38,16 +38,16 @@ int am_main (void)
     int i;
 
     for (i = 0; i < 2; i++) {
-        // ½«com¶Ë¶ÔÓ¦Òı½ÅÉèÖÃÎªÊä³ö£¬²¢³õÊ¼»¯Îª¸ßµçÆ½
+        // å°†comç«¯å¯¹åº”å¼•è„šè®¾ç½®ä¸ºè¾“å‡ºï¼Œå¹¶åˆå§‹åŒ–ä¸ºé«˜ç”µå¹³
         am_gpio_pin_cfg(g_digitron_com[i], AM_GPIO_OUTPUT_INIT_HIGH);
     }
     for (i = 0; i < 8; i++) {
-        // ½«¶ÎÑ¡¶Ë¶ÔÓ¦Òı½ÅÉèÖÃÎªÊä³ö£¬²¢³õÊ¼»¯Îª¸ßµçÆ½
+        // å°†æ®µé€‰ç«¯å¯¹åº”å¼•è„šè®¾ç½®ä¸ºè¾“å‡ºï¼Œå¹¶åˆå§‹åŒ–ä¸ºé«˜ç”µå¹³
         am_gpio_pin_cfg(g_digitron_seg[i], AM_GPIO_OUTPUT_INIT_HIGH);
     }
-    am_gpio_set(g_digitron_com[0], 0);            // Ê¹com0¶Ë0ÓĞĞ§
-    am_gpio_set(g_digitron_seg[1], 0);            // µãÁÁb¶ÎLED
-    am_gpio_set(g_digitron_seg[2], 0);            // µãÁÁc¶ÎLED
+    am_gpio_set(g_digitron_com[0], 0);            // ä½¿com0ç«¯0æœ‰æ•ˆ
+    am_gpio_set(g_digitron_seg[1], 0);            // ç‚¹äº®bæ®µLED
+    am_gpio_set(g_digitron_seg[2], 0);            // ç‚¹äº®cæ®µLED
     while(1) {
     }
 }

@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥4.31
+ * \brief ç¨‹åºæ¸…å•4.31
  *
- * \note ¸ÃÀú³ÌĞèÒªÓÃµ½miniportÍØÕ¹°å
+ * \note è¯¥å†ç¨‹éœ€è¦ç”¨åˆ°miniportæ‹“å±•æ¿
  *
  * \internal
  * \par Modification history
@@ -28,20 +28,20 @@
 static am_softimer_t timer_sec;
 static void timer_sec_callback (void *p_arg)
 {
-    static int sec = 0;                           // Ãë¼ÆÊıÆ÷Çå0
+    static int sec = 0;                           // ç§’è®¡æ•°å™¨æ¸…0
 
-    sec = (sec + 1) % 60;                         // Ãë¼ÆÊıÆ÷+1
-    digitron1_disp_num_set(0,sec / 10);            // ¸üĞÂÏÔÊ¾Æ÷µÄÊ®Î»
-    digitron1_disp_num_set(1,sec % 10);            // ¸üĞÂÏÔÊ¾Æ÷µÄ¸öÎ»
+    sec = (sec + 1) % 60;                         // ç§’è®¡æ•°å™¨+1
+    digitron1_disp_num_set(0,sec / 10);            // æ›´æ–°æ˜¾ç¤ºå™¨çš„åä½
+    digitron1_disp_num_set(1,sec % 10);            // æ›´æ–°æ˜¾ç¤ºå™¨çš„ä¸ªä½
 }
 
 int am_main (void)
 {
     digitron1_init_with_softimer ();
-    am_softimer_init(&timer_sec, timer_sec_callback, NULL);    // ³õÊ¼»¯¶¨Ê±Æ÷
-    am_softimer_start(&timer_sec,1000);                        // Æô¶¯¶¨Ê±Æ÷£¬¶¨Ê±Ê±¼äÎª1s
-    digitron1_disp_num_set(0,0);                   // ÏÔÊ¾Æ÷µÄÊ®Î»Çå0
-    digitron1_disp_num_set(1,0);                   // ÏÔÊ¾Æ÷µÄ¸öÎ»Çå0
+    am_softimer_init(&timer_sec, timer_sec_callback, NULL);    // åˆå§‹åŒ–å®šæ—¶å™¨
+    am_softimer_start(&timer_sec,1000);                        // å¯åŠ¨å®šæ—¶å™¨ï¼Œå®šæ—¶æ—¶é—´ä¸º1s
+    digitron1_disp_num_set(0,0);                   // æ˜¾ç¤ºå™¨çš„åä½æ¸…0
+    digitron1_disp_num_set(1,0);                   // æ˜¾ç¤ºå™¨çš„ä¸ªä½æ¸…0
     while(1) {
     }
 }

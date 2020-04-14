@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief  I2SÓ²¼ş²ãÊµÏÖ
+ * \brief  I2Sç¡¬ä»¶å±‚å®ç°
  *
  * \internal
  * \par Modification history
@@ -23,12 +23,12 @@
 #include "hw/amhw_fsl_i2s.h"
 
 /**
- * \brief I2SÖ÷Ê±ÖÓ·ÖÆµÅäÖÃ
- * \param[in] p_hw_i2s : Ö¸ÏòI2S¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] mclk     : i2sÖ÷Ê±ÖÓÆµÂÊ
- * \param[in] src_clk  : Ö÷Ê±ÖÓÊ¹ÓÃµÄÊ±ÖÓÔ´ÆµÂÊ
+ * \brief I2Sä¸»æ—¶é’Ÿåˆ†é¢‘é…ç½®
+ * \param[in] p_hw_i2s : æŒ‡å‘I2Så¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] mclk     : i2sä¸»æ—¶é’Ÿé¢‘ç‡
+ * \param[in] src_clk  : ä¸»æ—¶é’Ÿä½¿ç”¨çš„æ—¶é’Ÿæºé¢‘ç‡
  *
- * \return  ÎŞ
+ * \return  æ— 
  */
 void amhw_fsl_i2s_mclk_divider_cfg (amhw_fsl_i2s_t *p_hw_i2s,
                                      uint32_t         mclk,
@@ -43,7 +43,7 @@ void amhw_fsl_i2s_mclk_divider_cfg (amhw_fsl_i2s_t *p_hw_i2s,
     uint32_t mul_freq          = 0;
     uint32_t max_fract         = 256;
 
-    /* ·ÀÖ¹Òç³ö */
+    /* é˜²æ­¢æº¢å‡º */
     freq /= 100;
     mclk /= 100;
 
@@ -53,26 +53,26 @@ void amhw_fsl_i2s_mclk_divider_cfg (amhw_fsl_i2s_t *p_hw_i2s,
         max_fract = 256;
     }
 
-    /* Ñ°ÕÒ×î½Ó½üµÄÆµÂÊ */
+    /* å¯»æ‰¾æœ€æ¥è¿‘çš„é¢‘ç‡ */
     for (fract = 1; fract < max_fract; fract ++) {
         mul_freq = freq * fract;
         remaind  = mul_freq % mclk;
         divide   = mul_freq / mclk;
 
-        /* ÕÒµ½ÕıÈ·µÄÆµÂÊ */
+        /* æ‰¾åˆ°æ­£ç¡®çš„é¢‘ç‡ */
         if (remaind == 0) {
             current_fract  = fract;
             current_divide = mul_freq / mclk;
             break;
         }
 
-        /* ×î¿¿½üµÄ»òÏÂÒ»¸ö */
+        /* æœ€é è¿‘çš„æˆ–ä¸‹ä¸€ä¸ª */
         if (remaind > mclk/2) {
             remaind = mclk - remaind;
             divide += 1;
         }
 
-        /* ¸üĞÂ·ÖÆµÏµÊı  */
+        /* æ›´æ–°åˆ†é¢‘ç³»æ•°  */
         if (remaind < current_remainder) {
             current_fract = fract;
             current_divide = divide;
@@ -82,30 +82,30 @@ void amhw_fsl_i2s_mclk_divider_cfg (amhw_fsl_i2s_t *p_hw_i2s,
 
     amhw_fsl_i2s_mclk_div_set(p_hw_i2s, current_divide - 1);
 
-    /* µÈ´ı·ÖÆµÆ÷¸üĞÂÆµÂÊ */
+    /* ç­‰å¾…åˆ†é¢‘å™¨æ›´æ–°é¢‘ç‡ */
     while(amhw_fsl_i2s_mclk_duf_get(p_hw_i2s)) {
     }
 
     amhw_fsl_i2s_mclk_fract_set(p_hw_i2s, current_fract - 1);
 
-    /* µÈ´ı·ÖÆµÆ÷¸üĞÂÆµÂÊ */
+    /* ç­‰å¾…åˆ†é¢‘å™¨æ›´æ–°é¢‘ç‡ */
     while(amhw_fsl_i2s_mclk_duf_get(p_hw_i2s)) {
     }
 }
 
 /**
- * \brief I2S·¢ËÍ¼Ä´æÆ÷³õÊ¼»¯
- * \param[in] p_hw_i2s : Ö¸ÏòI2S¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \brief I2Så‘é€å¯„å­˜å™¨åˆå§‹åŒ–
+ * \param[in] p_hw_i2s : æŒ‡å‘I2Så¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return  ÎŞ
+ * \return  æ— 
  */
 void amhw_fsl_i2s_tx_init (amhw_fsl_i2s_t *p_hw_i2s)
 {
-    /** \brief ¸´Î»I2S·¢ËÍÆ÷,Èí¼ş¸´Î»ºÍFIFO¸´Î» */
+    /** \brief å¤ä½I2Så‘é€å™¨,è½¯ä»¶å¤ä½å’ŒFIFOå¤ä½ */
     amhw_fsl_i2s_tcsr_set(p_hw_i2s, AMHW_FSL_I2S_TCSR_SR_MASK);
     amhw_fsl_i2s_tcsr_set(p_hw_i2s, AMHW_FSL_I2S_TCSR_FR_MASK);
 
-    /** \brief Çå¿ÕI2SËùÓĞÏà¹Ø¼Ä´æÆ÷ */
+    /** \brief æ¸…ç©ºI2Sæ‰€æœ‰ç›¸å…³å¯„å­˜å™¨ */
     p_hw_i2s->tcsr = 0;
     p_hw_i2s->tcr2 = 0;
     p_hw_i2s->tcr3 = 0;
@@ -116,17 +116,17 @@ void amhw_fsl_i2s_tx_init (amhw_fsl_i2s_t *p_hw_i2s)
 }
 
 /**
- * \brief I2S½ÓÊÕ¼Ä´æÆ÷³õÊ¼»¯
- * \param[in] p_hw_i2s : Ö¸ÏòI2S¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return  ÎŞ
+ * \brief I2Sæ¥æ”¶å¯„å­˜å™¨åˆå§‹åŒ–
+ * \param[in] p_hw_i2s : æŒ‡å‘I2Så¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return  æ— 
  */
 void amhw_fsl_i2s_rx_init (amhw_fsl_i2s_t *p_hw_i2s)
 {
-    /** \brief ¸´Î»I2S½ÓÊÕÆ÷,Èí¼ş¸´Î»ºÍFIFO¸´Î» */
+    /** \brief å¤ä½I2Sæ¥æ”¶å™¨,è½¯ä»¶å¤ä½å’ŒFIFOå¤ä½ */
     amhw_fsl_i2s_rcsr_set(p_hw_i2s, AMHW_FSL_I2S_RCSR_SR_MASK);
     amhw_fsl_i2s_rcsr_set(p_hw_i2s, AMHW_FSL_I2S_RCSR_FR_MASK);
 
-    /** \brief Çå¿ÕI2SËùÓĞ½ÓÊÕÏà¹Ø¼Ä´æÆ÷ */
+    /** \brief æ¸…ç©ºI2Sæ‰€æœ‰æ¥æ”¶ç›¸å…³å¯„å­˜å™¨ */
     p_hw_i2s->rcsr = 0;
     p_hw_i2s->rcr2 = 0;
     p_hw_i2s->rcr3 = 0;
@@ -136,11 +136,11 @@ void amhw_fsl_i2s_rx_init (amhw_fsl_i2s_t *p_hw_i2s)
 }
 
 /**
- * \brief I2S·¢Ğ­ÒéÉèÖÃ
- * \param[in] p_hw_i2s : Ö¸ÏòI2S¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] protocol : Ê¹ÓÃµÄI2SĞ­Òé
+ * \brief I2Så‘åè®®è®¾ç½®
+ * \param[in] p_hw_i2s : æŒ‡å‘I2Så¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] protocol : ä½¿ç”¨çš„I2Såè®®
  *
- * \return  ÎŞ
+ * \return  æ— 
  */
 void amhw_fsl_i2s_tx_protocol_set (amhw_fsl_i2s_t          *p_hw_i2s,
                                     amhw_fsl_i2s_protocol_t  protocol)
@@ -200,10 +200,10 @@ void amhw_fsl_i2s_tx_protocol_set (amhw_fsl_i2s_t          *p_hw_i2s,
 }
 
 /**
- * \brief I2S½ÓÊÕĞ­ÒéÉèÖÃ
- * \param[in] p_hw_i2s : Ö¸ÏòI2S¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] protocol : Ê¹ÓÃµÄI2SĞ­Òé
- * \return  ÎŞ
+ * \brief I2Sæ¥æ”¶åè®®è®¾ç½®
+ * \param[in] p_hw_i2s : æŒ‡å‘I2Så¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] protocol : ä½¿ç”¨çš„I2Såè®®
+ * \return  æ— 
  */
 void amhw_fsl_i2s_rx_protocol_set (amhw_fsl_i2s_t *p_hw_i2s, amhw_fsl_i2s_protocol_t protocol)
 {
@@ -263,11 +263,11 @@ void amhw_fsl_i2s_rx_protocol_set (amhw_fsl_i2s_t *p_hw_i2s, amhw_fsl_i2s_protoc
 
 
 /**
- * \brief I2S·¢ËÍÊ±ÖÓÅäÖÃ
- * \param[in] p_hw_i2s   : Ö¸ÏòI2S¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] clk_config : i2s·¢ËÍÊ±ÖÓÅäÖÃ²ÎÊı
+ * \brief I2Så‘é€æ—¶é’Ÿé…ç½®
+ * \param[in] p_hw_i2s   : æŒ‡å‘I2Så¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] clk_config : i2så‘é€æ—¶é’Ÿé…ç½®å‚æ•°
  *
- * \return  ÎŞ
+ * \return  æ— 
  */
 void amhw_fsl_i2s_tx_clock_setup (amhw_fsl_i2s_t           *p_hw_i2s,
                                   amhw_fsl_i2s_clock_cfg_t *clk_config)
@@ -278,15 +278,15 @@ void amhw_fsl_i2s_tx_clock_setup (amhw_fsl_i2s_t           *p_hw_i2s,
     amhw_fsl_i2s_tx_bclk_src_set(p_hw_i2s, clk_config->bclk_src);
     amhw_fsl_i2s_tx_bclk_div_set(p_hw_i2s, (bclk_div / 2 - 1));
 
-    /* Èç¹ûÎ»Ê±ÖÓÔ´ÊÇMCLK, ÅäÖÃMCLKÊ±ÖÓ·ÖÆµ */
+    /* å¦‚æœä½æ—¶é’Ÿæºæ˜¯MCLK, é…ç½®MCLKæ—¶é’Ÿåˆ†é¢‘ */
     if (clk_config->bclk_src == AMHW_FSL_I2S_BCLK_SRC_MCLK) {
-        /* Ê¹ÄÜ MCLK */
+        /* ä½¿èƒ½ MCLK */
         amhw_fsl_i2s_mclk_enable(p_hw_i2s);
 
-        /* ÅäÖÃ MCLK Ê±ÖÓÔ´*/
+        /* é…ç½® MCLK æ—¶é’Ÿæº*/
         amhw_fsl_i2s_mclk_src_set(p_hw_i2s, clk_config->mclk_src);
 
-        /* ÅäÖÃ MCLK ·ÖÆµÆ÷ */
+        /* é…ç½® MCLK åˆ†é¢‘å™¨ */
         amhw_fsl_i2s_mclk_divider_cfg(p_hw_i2s,
                                       clk_config->mclk,
                                       clk_config->mclk_src_freq);
@@ -294,11 +294,11 @@ void amhw_fsl_i2s_tx_clock_setup (amhw_fsl_i2s_t           *p_hw_i2s,
 }
 
 /**
- * \brief I2S½ÓÊÕÊ±ÖÓÅäÖÃ
- * \param[in] p_hw_i2s   : Ö¸ÏòI2S¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] clk_config : i2s½ÓÊÕÊ±ÖÓÅäÖÃ²ÎÊı
+ * \brief I2Sæ¥æ”¶æ—¶é’Ÿé…ç½®
+ * \param[in] p_hw_i2s   : æŒ‡å‘I2Så¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] clk_config : i2sæ¥æ”¶æ—¶é’Ÿé…ç½®å‚æ•°
  *
- * \return  ÎŞ
+ * \return  æ— 
  */
 void amhw_fsl_i2s_rx_clock_setup (amhw_fsl_i2s_t *p_hw_i2s,
                               amhw_fsl_i2s_clock_cfg_t *clk_config)
@@ -309,15 +309,15 @@ void amhw_fsl_i2s_rx_clock_setup (amhw_fsl_i2s_t *p_hw_i2s,
     amhw_fsl_i2s_rx_bclk_src_set(p_hw_i2s, clk_config->bclk_src);
     amhw_fsl_i2s_rx_bclk_div_set(p_hw_i2s, (bclk_div / 2 - 1));
 
-    /* Èç¹ûÎ»Ê±ÖÓÔ´ÊÇMCLK, ÅäÖÃMCLKÊ±ÖÓ·ÖÆµ */
+    /* å¦‚æœä½æ—¶é’Ÿæºæ˜¯MCLK, é…ç½®MCLKæ—¶é’Ÿåˆ†é¢‘ */
     if (clk_config->bclk_src == AMHW_FSL_I2S_BCLK_SRC_MCLK) {
-        /* Ê¹ÄÜ MCLK */
+        /* ä½¿èƒ½ MCLK */
         amhw_fsl_i2s_mclk_enable(p_hw_i2s);
 
-        /* ÅäÖÃ MCLK Ê±ÖÓÔ´*/
+        /* é…ç½® MCLK æ—¶é’Ÿæº*/
         amhw_fsl_i2s_mclk_src_set(p_hw_i2s, clk_config->mclk_src);
 
-        /* ÅäÖÃ MCLK ·ÖÆµÆ÷ */
+        /* é…ç½® MCLK åˆ†é¢‘å™¨ */
         amhw_fsl_i2s_mclk_divider_cfg(p_hw_i2s,
                                        clk_config->mclk,
                                        clk_config->mclk_src_freq);
@@ -325,12 +325,12 @@ void amhw_fsl_i2s_rx_clock_setup (amhw_fsl_i2s_t *p_hw_i2s,
 }
 
 /**
- * \brief I2S·¢ËÍ×Ö³¤¶ÈÅäÖÃ
- * \param[in] p_hw_i2s : Ö¸ÏòI2S¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] protocol : Ê¹ÓÃµÄI2SĞ­Òé
- * \param[in] bits     : Î»³¤¶È
+ * \brief I2Så‘é€å­—é•¿åº¦é…ç½®
+ * \param[in] p_hw_i2s : æŒ‡å‘I2Så¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] protocol : ä½¿ç”¨çš„I2Såè®®
+ * \param[in] bits     : ä½é•¿åº¦
  *
- * \return  ÎŞ
+ * \return  æ— 
  */
 void amhw_fsl_i2s_tx_word_width_cfg (amhw_fsl_i2s_t          *p_hw_i2s,
                                       amhw_fsl_i2s_protocol_t  protocol,
@@ -348,12 +348,12 @@ void amhw_fsl_i2s_tx_word_width_cfg (amhw_fsl_i2s_t          *p_hw_i2s,
 }
 
 /**
- * \brief I2S½ÓÊÕ×Ö³¤¶ÈÅäÖÃ
- * \param[in] p_hw_i2s : Ö¸ÏòI2S¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] protocol : Ê¹ÓÃµÄI2SĞ­Òé
- * \param[in] bits     : Î»³¤¶È
+ * \brief I2Sæ¥æ”¶å­—é•¿åº¦é…ç½®
+ * \param[in] p_hw_i2s : æŒ‡å‘I2Så¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] protocol : ä½¿ç”¨çš„I2Såè®®
+ * \param[in] bits     : ä½é•¿åº¦
  *
- * \return  ÎŞ
+ * \return  æ— 
  */
 void amhw_fsl_i2s_rx_word_width_cfg (amhw_fsl_i2s_t          *p_hw_i2s,
                                       amhw_fsl_i2s_protocol_t  protocol,
@@ -371,11 +371,11 @@ void amhw_fsl_i2s_rx_word_width_cfg (amhw_fsl_i2s_t          *p_hw_i2s,
 }
 
 /**
- * \brief I2S·¢ËÍÍ¨µÀÄ£Ê½ÅäÖÃ£¨µ¥ÉùµÀ»òÁ¢ÌåÉù£©
- * \param[in] p_hw_i2s     : Ö¸ÏòI2S¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] channel_mode : ·¢ËÍÍ¨µÀÄ£Ê½
+ * \brief I2Så‘é€é€šé“æ¨¡å¼é…ç½®ï¼ˆå•å£°é“æˆ–ç«‹ä½“å£°ï¼‰
+ * \param[in] p_hw_i2s     : æŒ‡å‘I2Så¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] channel_mode : å‘é€é€šé“æ¨¡å¼
  *
- * \return  ÎŞ
+ * \return  æ— 
  */
 void amhw_fsl_i2s_tx_channel_mode_set (amhw_fsl_i2s_t              *p_hw_i2s,
                                         amhw_fsl_i2s_channel_mode_t  channel_mode)
@@ -388,11 +388,11 @@ void amhw_fsl_i2s_tx_channel_mode_set (amhw_fsl_i2s_t              *p_hw_i2s,
 }
 
 /**
- * \brief I2S½ÓÊÕÍ¨µÀÄ£Ê½ÅäÖÃ£¨µ¥ÉùµÀ»òÁ¢ÌåÉù£©
- * \param[in] p_hw_i2s     : Ö¸ÏòI2S¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] channel_mode : ½ÓÊÕÍ¨µÀÄ£Ê½
+ * \brief I2Sæ¥æ”¶é€šé“æ¨¡å¼é…ç½®ï¼ˆå•å£°é“æˆ–ç«‹ä½“å£°ï¼‰
+ * \param[in] p_hw_i2s     : æŒ‡å‘I2Så¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] channel_mode : æ¥æ”¶é€šé“æ¨¡å¼
  *
- * \return  ÎŞ
+ * \return  æ— 
  */
 void amhw_fsl_i2s_rx_channel_mode_set (amhw_fsl_i2s_t              *p_hw_i2s,
                                         amhw_fsl_i2s_channel_mode_t  channel_mode)
@@ -405,11 +405,11 @@ void amhw_fsl_i2s_rx_channel_mode_set (amhw_fsl_i2s_t              *p_hw_i2s,
 }
 
 /**
- * \brief I2S·¢ËÍÖ÷´ÓÄ£Ê½ÉèÖÃ
- * \param[in] p_hw_i2s : Ö¸ÏòI2S¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] tx_mode  : ·¢ËÍÄ£Ê½
+ * \brief I2Så‘é€ä¸»ä»æ¨¡å¼è®¾ç½®
+ * \param[in] p_hw_i2s : æŒ‡å‘I2Så¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] tx_mode  : å‘é€æ¨¡å¼
  *
- * \return  ÎŞ
+ * \return  æ— 
  */
 void amhw_fsl_i2s_tx_mode_set (amhw_fsl_i2s_t      *p_hw_i2s,
                                 amhw_fsl_i2s_mode_t  tx_mode)
@@ -427,11 +427,11 @@ void amhw_fsl_i2s_tx_mode_set (amhw_fsl_i2s_t      *p_hw_i2s,
 }
 
 /**
- * \brief I2S½ÓÊÕÖ÷´ÓÄ£Ê½ÉèÖÃ
- * \param[in] p_hw_i2s : Ö¸ÏòI2S¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] rx_mode  : ½ÓÊÕÄ£Ê½
+ * \brief I2Sæ¥æ”¶ä¸»ä»æ¨¡å¼è®¾ç½®
+ * \param[in] p_hw_i2s : æŒ‡å‘I2Så¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] rx_mode  : æ¥æ”¶æ¨¡å¼
  *
- * \return  ÎŞ
+ * \return  æ— 
  */
 void amhw_fsl_i2s_rx_mode_set (amhw_fsl_i2s_t *p_hw_i2s,
                                 amhw_fsl_i2s_mode_t rx_mode)
@@ -449,10 +449,10 @@ void amhw_fsl_i2s_rx_mode_set (amhw_fsl_i2s_t *p_hw_i2s,
 }
 
 /**
- * \brief I2S·¢ËÍÍ¬²½µÄÄ£Ê½ÅäÖÃ
- * \param[in] p_hw_i2s  : Ö¸ÏòI2S¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] sync_mode : ·¢ËÍÍ¬²½µÄÄ£Ê½
- * \return  ÎŞ
+ * \brief I2Så‘é€åŒæ­¥çš„æ¨¡å¼é…ç½®
+ * \param[in] p_hw_i2s  : æŒ‡å‘I2Så¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] sync_mode : å‘é€åŒæ­¥çš„æ¨¡å¼
+ * \return  æ— 
  */
 void amhw_fsl_i2s_tx_sync_mode_set (amhw_fsl_i2s_t           *p_hw_i2s,
                                      amhw_fsl_i2s_sync_mode_t  sync_mode)
@@ -467,7 +467,7 @@ void amhw_fsl_i2s_tx_sync_mode_set (amhw_fsl_i2s_t           *p_hw_i2s,
     case AMHW_FSL_I2S_SYNC_SELF:
         amhw_fsl_i2s_tcr2_clr(p_hw_i2s, AMHW_FSL_I2S_TCR2_SYNC_MASK);
         amhw_fsl_i2s_tcr2_set(p_hw_i2s, AMHW_FSL_I2S_TCR2_SYNC_SELF_RX);
-        /* ½ÓÊÕÆ÷±ØĞë¹¤×÷ÔÚÒì²½Ä£Ê½ */
+        /* æ¥æ”¶å™¨å¿…é¡»å·¥ä½œåœ¨å¼‚æ­¥æ¨¡å¼ */
         amhw_fsl_i2s_rcr2_clr(p_hw_i2s, AMHW_FSL_I2S_RCR2_SYNC_MASK);
         amhw_fsl_i2s_rcr2_set(p_hw_i2s, AMHW_FSL_I2S_RCR2_SYNC_DISABLE);
         break;
@@ -488,11 +488,11 @@ void amhw_fsl_i2s_tx_sync_mode_set (amhw_fsl_i2s_t           *p_hw_i2s,
 }
 
 /**
- * \brief I2S½ÓÊÕÍ¬²½µÄÄ£Ê½ÅäÖÃ
- * \param[in] p_hw_i2s  : Ö¸ÏòI2S¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] sync_mode : ½ÓÊÕÍ¬²½µÄÄ£Ê½
+ * \brief I2Sæ¥æ”¶åŒæ­¥çš„æ¨¡å¼é…ç½®
+ * \param[in] p_hw_i2s  : æŒ‡å‘I2Så¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] sync_mode : æ¥æ”¶åŒæ­¥çš„æ¨¡å¼
  *
- * \return  ÎŞ
+ * \return  æ— 
  */
 void amhw_fsl_i2s_rx_sync_mode_set (amhw_fsl_i2s_t *p_hw_i2s,
                                 amhw_fsl_i2s_sync_mode_t sync_mode)
@@ -507,7 +507,7 @@ void amhw_fsl_i2s_rx_sync_mode_set (amhw_fsl_i2s_t *p_hw_i2s,
     case AMHW_FSL_I2S_SYNC_SELF:
         amhw_fsl_i2s_rcr2_clr(p_hw_i2s, AMHW_FSL_I2S_RCR2_SYNC_MASK);
         amhw_fsl_i2s_rcr2_set(p_hw_i2s, AMHW_FSL_I2S_RCR2_SYNC_SELF_TX);
-        /* ·¢ËÍÆ÷±ØĞë¹¤×÷ÔÚÒì²½Ä£Ê½ */
+        /* å‘é€å™¨å¿…é¡»å·¥ä½œåœ¨å¼‚æ­¥æ¨¡å¼ */
         amhw_fsl_i2s_tcr2_clr(p_hw_i2s, AMHW_FSL_I2S_TCR2_SYNC_MASK);
         amhw_fsl_i2s_tcr2_set(p_hw_i2s, AMHW_FSL_I2S_TCR2_SYNC_DISABLE);
         break;
@@ -528,61 +528,61 @@ void amhw_fsl_i2s_rx_sync_mode_set (amhw_fsl_i2s_t *p_hw_i2s,
 }
 
 /**
- * \brief I2S ·¢ËÍÇå³ı×´Ì¬±êÖ¾
- * \param[in] p_hw_i2s  : Ö¸ÏòI2S¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] flag_mask : ×´Ì¬±êÖ¾ÀàĞÍ
+ * \brief I2S å‘é€æ¸…é™¤çŠ¶æ€æ ‡å¿—
+ * \param[in] p_hw_i2s  : æŒ‡å‘I2Så¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] flag_mask : çŠ¶æ€æ ‡å¿—ç±»å‹
  *
- * \return  ÎŞ
+ * \return  æ— 
  */
 void amhw_fsl_i2s_tx_state_flag_clr (amhw_fsl_i2s_t            *p_hw_i2s,
                                      amhw_fsl_i2s_state_flag_t  flag_mask)
 {
-    /* FIFO¾¯¸æ²»ÄÜÇå³ı */
+    /* FIFOè­¦å‘Šä¸èƒ½æ¸…é™¤ */
     if (flag_mask & AMHW_FSL_I2S_STATE_FLAG_FIFO_WARNING) {
         flag_mask &= (uint32_t)(~AMHW_FSL_I2S_STATE_FLAG_FIFO_WARNING);
     }
 
-    /* ¼ì²éÊÇ·ñÒªÇå³ıÈí¼ş¸´Î» */
+    /* æ£€æŸ¥æ˜¯å¦è¦æ¸…é™¤è½¯ä»¶å¤ä½ */
     if (flag_mask & AMHW_FSL_I2S_STATE_FLAG_SOFT_RESET) {
         flag_mask &= (uint32_t)(~AMHW_FSL_I2S_STATE_FLAG_SOFT_RESET);
         amhw_fsl_i2s_tcsr_clr(p_hw_i2s, AMHW_FSL_I2S_TCSR_SR_MASK);
     }
 
-    /* Ğ´1Çå³ıÆäËû×´Ì¬±êÖ¾ */
+    /* å†™1æ¸…é™¤å…¶ä»–çŠ¶æ€æ ‡å¿— */
     amhw_fsl_i2s_tcsr_set(p_hw_i2s, flag_mask);
 }
 
 /**
- * \brief I2S ½ÓÊÕÇå³ı×´Ì¬±êÖ¾
- * \param[in] p_hw_i2s  : Ö¸ÏòI2S¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] flag_mask : ×´Ì¬±êÖ¾ÀàĞÍ
+ * \brief I2S æ¥æ”¶æ¸…é™¤çŠ¶æ€æ ‡å¿—
+ * \param[in] p_hw_i2s  : æŒ‡å‘I2Så¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] flag_mask : çŠ¶æ€æ ‡å¿—ç±»å‹
  *
- * \return  ÎŞ
+ * \return  æ— 
  */
 void amhw_fsl_i2s_rx_state_flag_clr (amhw_fsl_i2s_t            *p_hw_i2s,
                                       amhw_fsl_i2s_state_flag_t  flag_mask)
 {
-    /* FIFO¾¯¸æ²»ÄÜÇå³ş */
+    /* FIFOè­¦å‘Šä¸èƒ½æ¸…æ¥š */
     if (flag_mask & AMHW_FSL_I2S_STATE_FLAG_FIFO_WARNING) {
         flag_mask &= (uint32_t)(~AMHW_FSL_I2S_STATE_FLAG_FIFO_WARNING);
     }
 
-    /* ¼ì²éÊÇ·ñÒªÇå³ıÈí¼ş¸´Î» */
+    /* æ£€æŸ¥æ˜¯å¦è¦æ¸…é™¤è½¯ä»¶å¤ä½ */
     if (flag_mask & AMHW_FSL_I2S_STATE_FLAG_SOFT_RESET) {
         flag_mask &= (uint32_t)(~AMHW_FSL_I2S_STATE_FLAG_SOFT_RESET);
         amhw_fsl_i2s_rcsr_clr(p_hw_i2s, AMHW_FSL_I2S_RCSR_SR_MASK);
     }
 
-    /* Ğ´1Çå³ıÆäËû×´Ì¬±êÖ¾ */
+    /* å†™1æ¸…é™¤å…¶ä»–çŠ¶æ€æ ‡å¿— */
     amhw_fsl_i2s_rcsr_set(p_hw_i2s, flag_mask);
 }
 
 /**
- * \brief I2S·¢ËÍÆ÷¸´Î»
- * \param[in] p_hw_i2s   : Ö¸ÏòI2S¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] reset_mask : ¸´Î»µÄÀàĞÍ
+ * \brief I2Så‘é€å™¨å¤ä½
+ * \param[in] p_hw_i2s   : æŒ‡å‘I2Så¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] reset_mask : å¤ä½çš„ç±»å‹
  *
- * \return  ÎŞ
+ * \return  æ— 
  */
 void amhw_fsl_i2s_tx_reset_set (amhw_fsl_i2s_t            *p_hw_i2s,
                                  amhw_fsl_i2s_reset_type_t  reset_mask)
@@ -591,11 +591,11 @@ void amhw_fsl_i2s_tx_reset_set (amhw_fsl_i2s_t            *p_hw_i2s,
 }
 
 /**
- * \brief I2S½ÓÊÕÆ÷¸´Î»
- * \param[in] p_hw_i2s   : Ö¸ÏòI2S¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] reset_mask : ¸´Î»µÄÀàĞÍ
+ * \brief I2Sæ¥æ”¶å™¨å¤ä½
+ * \param[in] p_hw_i2s   : æŒ‡å‘I2Så¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] reset_mask : å¤ä½çš„ç±»å‹
  *
- * \return  ÎŞ
+ * \return  æ— 
  */
 void amhw_fsl_i2s_rx_reset_set (amhw_fsl_i2s_t            *p_hw_i2s,
                                 amhw_fsl_i2s_reset_type_t  reset_mask)
@@ -604,25 +604,25 @@ void amhw_fsl_i2s_rx_reset_set (amhw_fsl_i2s_t            *p_hw_i2s,
 }
 
 /**
- * \brief I2S·¢ËÍÊı¾İ£¨²éÑ¯Ä£Ê½£©
- * \param[in] p_hw_i2s : Ö¸ÏòI2S¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] txBuff   : Ö¸ÏòÒª·¢ËÍ»º³åÇøµÄÖ¸Õë
- * \param[in] size     : Òª·¢ËÍÊı¾İµÄ³¤¶È
+ * \brief I2Så‘é€æ•°æ®ï¼ˆæŸ¥è¯¢æ¨¡å¼ï¼‰
+ * \param[in] p_hw_i2s : æŒ‡å‘I2Så¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] txBuff   : æŒ‡å‘è¦å‘é€ç¼“å†²åŒºçš„æŒ‡é’ˆ
+ * \param[in] size     : è¦å‘é€æ•°æ®çš„é•¿åº¦
  *
- * \return  ÎŞ
+ * \return  æ— 
  */
 void amhw_fsl_i2s_senddata_polling (amhw_fsl_i2s_t  *p_hw_i2s,
                                     uint32_t        *txbuff,
                                     uint32_t         size)
 {
     while (size--) {
-        /* Çå³ıFIFO ´íÎó */
+        /* æ¸…é™¤FIFO é”™è¯¯ */
         if ((amhw_fsl_i2s_tcsr_get(p_hw_i2s) & AMHW_FSL_I2S_TCSR_FEF_MASK)) {
             amhw_fsl_i2s_tx_reset_set(p_hw_i2s, AMHW_FSL_I2S_RESET_TYPE_FIFO);
             amhw_fsl_i2s_tx_state_flag_clr(p_hw_i2s, AMHW_FSL_I2S_STATE_FLAG_FIFO_ERROR);
         }
 
-        /* µÈ´ıFIFO Îª¿Õ */
+        /* ç­‰å¾…FIFO ä¸ºç©º */
         while (!(amhw_fsl_i2s_tcsr_get(p_hw_i2s) & AMHW_FSL_I2S_TCSR_FWF_MASK)) {
             if ((amhw_fsl_i2s_tcsr_get(p_hw_i2s) & AMHW_FSL_I2S_TCSR_FEF_MASK)) {
                 amhw_fsl_i2s_tx_reset_set(p_hw_i2s, AMHW_FSL_I2S_RESET_TYPE_FIFO);
@@ -637,24 +637,24 @@ void amhw_fsl_i2s_senddata_polling (amhw_fsl_i2s_t  *p_hw_i2s,
 }
 
 /**
- * \brief I2S½ÓÊÕÊı¾İ£¨²éÑ¯Ä£Ê½£©
- * \param[in] p_hw_i2s : Ö¸ÏòI2S¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] rxBuff   : Ö¸ÏòÒª½ÓÊÕ»º³åÇøµÄÖ¸Õë
- * \param[in] size     : Òª½ÓÊÕÊı¾İµÄ³¤¶È
+ * \brief I2Sæ¥æ”¶æ•°æ®ï¼ˆæŸ¥è¯¢æ¨¡å¼ï¼‰
+ * \param[in] p_hw_i2s : æŒ‡å‘I2Så¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] rxBuff   : æŒ‡å‘è¦æ¥æ”¶ç¼“å†²åŒºçš„æŒ‡é’ˆ
+ * \param[in] size     : è¦æ¥æ”¶æ•°æ®çš„é•¿åº¦
  *
- * \return  ÎŞ
+ * \return  æ— 
  */
 void amhw_fsl_i2s_receivedata_polling (amhw_fsl_i2s_t *p_hw_i2s,
                                        uint8_t         *rxBuff,
                                        uint32_t         size)
 {
     while (size --) {
-        /* Çå³ıFIFO´íÎó±êÖ¾  */
+        /* æ¸…é™¤FIFOé”™è¯¯æ ‡å¿—  */
         if ((amhw_fsl_i2s_rcsr_get(p_hw_i2s) & AMHW_FSL_I2S_RCSR_FEF_MASK)) {
             amhw_fsl_i2s_rx_state_flag_clr(p_hw_i2s, AMHW_FSL_I2S_STATE_FLAG_FIFO_ERROR);
         }
 
-        /* µÈ´ıFIFO Îª¿Õ */
+        /* ç­‰å¾…FIFO ä¸ºç©º */
         while (!(amhw_fsl_i2s_rcsr_get(p_hw_i2s) & AMHW_FSL_I2S_RCSR_FWF_MASK)) {
         }
 

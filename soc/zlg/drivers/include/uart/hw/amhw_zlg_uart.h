@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief UART²Ù×÷½Ó¿Ú
+ * \brief UARTæ“ä½œæ¥å£
  *
  * \internal
  * \par Modification History
@@ -36,7 +36,7 @@ extern "C" {
  */
 
 /**
- * \brief Ê¹ÓÃÄäÃûÁªºÏÌå¶Î¿ªÊ¼
+ * \brief ä½¿ç”¨åŒ¿åè”åˆä½“æ®µå¼€å§‹
  * @{
  */
 
@@ -47,10 +47,10 @@ extern "C" {
   #pragma language=extended
 #elif defined(__GNUC__)
 
-  /* Ä¬ÈÏÊ¹ÄÜÄäÃûÁªºÏÌå */
+  /* é»˜è®¤ä½¿èƒ½åŒ¿åè”åˆä½“ */
 #elif defined(__TMS470__)
 
-  /* Ä¬ÈÏÊ¹ÄÜÄäÃûÁªºÏÌå */
+  /* é»˜è®¤ä½¿èƒ½åŒ¿åè”åˆä½“ */
 #elif defined(__TASKING__)
   #pragma warning 586
 #else
@@ -60,7 +60,7 @@ extern "C" {
 /** @} */
 
 /**
- * \brief uart ¼Ä´æÆ÷¿é½á¹¹Ìå
+ * \brief uart å¯„å­˜å™¨å—ç»“æ„ä½“
  */
 typedef struct amhw_zlg_uart {
     __IO uint32_t tdr;       /**< \brief LPUART version ID register */
@@ -530,7 +530,7 @@ uint32_t amhw_zlg_uart_poll_send (amhw_zlg_uart_t     *p_hw_uart,
                                   const uint8_t       *p_txbuf,
                                   uint32_t             nbytes);
 /**
- * \brief Ê¹ÓÃÄäÃûÁªºÏÌå¶Î½áÊø
+ * \brief ä½¿ç”¨åŒ¿åè”åˆä½“æ®µç»“æŸ
  * @{
  */
 
@@ -538,13 +538,13 @@ uint32_t amhw_zlg_uart_poll_send (amhw_zlg_uart_t     *p_hw_uart,
   #pragma pop
 #elif defined(__ICCARM__)
 
-  /* ÔÊĞíÄäÃûÁªºÏÌåÊ¹ÄÜ */
+  /* å…è®¸åŒ¿åè”åˆä½“ä½¿èƒ½ */
 #elif defined(__GNUC__)
 
-  /* Ä¬ÈÏÊ¹ÓÃÄäÃûÁªºÏÌå */
+  /* é»˜è®¤ä½¿ç”¨åŒ¿åè”åˆä½“ */
 #elif defined(__TMS470__)
 
-  /* Ä¬ÈÏÊ¹ÓÃÄäÃûÁªºÏÌå */
+  /* é»˜è®¤ä½¿ç”¨åŒ¿åè”åˆä½“ */
 #elif defined(__TASKING__)
   #pragma warning restore
 #else

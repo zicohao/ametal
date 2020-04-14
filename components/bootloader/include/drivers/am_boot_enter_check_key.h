@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ½øÈëÓ¦ÓÃ³ÌĞò¼ì²â(°´¼üÊµÏÖ)
+ * \brief è¿›å…¥åº”ç”¨ç¨‹åºæ£€æµ‹(æŒ‰é”®å®ç°)
  *
  * \internal
  * \par Modification history
@@ -27,11 +27,11 @@
 #include "am_boot_enter_check.h"
 
 typedef struct am_boot_enter_check_key_dev {
-    /**< \brief ±ê×¼µÄ½øÈëÓ¦ÓÃ³ÌĞò¼ì²â·şÎñ  */
+    /**< \brief æ ‡å‡†çš„è¿›å…¥åº”ç”¨ç¨‹åºæ£€æµ‹æœåŠ¡  */
     am_boot_enter_check_serv_t enter_check_serv;
-    /**< \brief °´¼ü¶ÔÓ¦µÄÒı½Å  */
+    /**< \brief æŒ‰é”®å¯¹åº”çš„å¼•è„š  */
     int                        pin;
-    /**< \brief Òı½ÅÅäÖÃ  */
+    /**< \brief å¼•è„šé…ç½®  */
     uint32_t                   flags;
 }am_boot_enter_check_key_dev_t;
 

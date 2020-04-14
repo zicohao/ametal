@@ -13,11 +13,11 @@
 /**
  * \file
  * \brief
- * - ÊµÑéÏÖÏó£º
- *   1. Á¬½ÓºÃ´®¿Ú£¬²¢½«²âÁ¿µçÑ¹ÊäÈë¶ÔÓ¦µÄÍ¨µÀ¡£
- *   2. ´®¿Ú½«»á´òÓ¡³öµçÑ¹Öµ
+ * - å®éªŒç°è±¡ï¼š
+ *   1. è¿æ¥å¥½ä¸²å£ï¼Œå¹¶å°†æµ‹é‡ç”µå‹è¾“å…¥å¯¹åº”çš„é€šé“ã€‚
+ *   2. ä¸²å£å°†ä¼šæ‰“å°å‡ºç”µå‹å€¼
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_aml166_core_adc24_vol_measure.c src_aml166_core_adc24_vol_measure
  *
  * \internal
@@ -42,29 +42,29 @@
 #include "demo_aml166_core_entries.h"
 #include "demo_zlg_entries.h"
 
-#define AM_ZML166_ADC_PGA_SET_1         0      /**< \brief 1±¶ÔöÒæÑ¡Ôñ²ÎÊı */
-#define AM_ZML166_ADC_PGA_SET_2         1      /**< \brief 2±¶ÔöÒæÑ¡Ôñ²ÎÊı */
-#define AM_ZML166_ADC_PGA_SET_4         2      /**< \brief 4±¶ÔöÒæÑ¡Ôñ²ÎÊı */
-#define AM_ZML166_ADC_PGA_SET_8         3      /**< \brief 8±¶ÔöÒæÑ¡Ôñ²ÎÊı */
-#define AM_ZML166_ADC_PGA_SET_16        4     /**< \brief 16±¶ÔöÒæÑ¡Ôñ²ÎÊı */
-#define AM_ZML166_ADC_PGA_SET_32        5     /**< \brief 32±¶ÔöÒæÑ¡Ôñ²ÎÊı */
-#define AM_ZML166_ADC_PGA_SET_64        6     /**< \brief 64±¶ÔöÒæÑ¡Ôñ²ÎÊı */
-#define AM_ZML166_ADC_PGA_SET_128       7    /**< \brief 128±¶ÔöÒæÑ¡Ôñ²ÎÊı */
-#define AM_ZML166_ADC_PGA_SET_256       8    /**< \brief 256±¶ÔöÒæÑ¡Ôñ²ÎÊı */
+#define AM_ZML166_ADC_PGA_SET_1         0      /**< \brief 1å€å¢ç›Šé€‰æ‹©å‚æ•° */
+#define AM_ZML166_ADC_PGA_SET_2         1      /**< \brief 2å€å¢ç›Šé€‰æ‹©å‚æ•° */
+#define AM_ZML166_ADC_PGA_SET_4         2      /**< \brief 4å€å¢ç›Šé€‰æ‹©å‚æ•° */
+#define AM_ZML166_ADC_PGA_SET_8         3      /**< \brief 8å€å¢ç›Šé€‰æ‹©å‚æ•° */
+#define AM_ZML166_ADC_PGA_SET_16        4     /**< \brief 16å€å¢ç›Šé€‰æ‹©å‚æ•° */
+#define AM_ZML166_ADC_PGA_SET_32        5     /**< \brief 32å€å¢ç›Šé€‰æ‹©å‚æ•° */
+#define AM_ZML166_ADC_PGA_SET_64        6     /**< \brief 64å€å¢ç›Šé€‰æ‹©å‚æ•° */
+#define AM_ZML166_ADC_PGA_SET_128       7    /**< \brief 128å€å¢ç›Šé€‰æ‹©å‚æ•° */
+#define AM_ZML166_ADC_PGA_SET_256       8    /**< \brief 256å€å¢ç›Šé€‰æ‹©å‚æ•° */
 
 
 /**
- * \brief ZML166  24Î»ADC ¹Ì¶¨µçÑ¹²âÁ¿Àı³Ì
+ * \brief ZML166  24ä½ADC å›ºå®šç”µå‹æµ‹é‡ä¾‹ç¨‹
  */
 void demo_aml166_core_zml166_adc_vol_measure (void)
 {
     int i = 0;
     float para[16] = {1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0};
     am_zml166_adc_handle_t handle = am_zml166_adc_inst_init();
-    /* »ñÈ¡flashÖĞµçÑ¹Ğ£×¼ÏµÊı */
+    /* è·å–flashä¸­ç”µå‹æ ¡å‡†ç³»æ•° */
     am_zlg_flash_init(ZLG116_FLASH);
     memcpy((void *)para, (uint32_t *)((FLASH_BLOCK_NUM * 1024)), 4 * 16);
-    /* Èô±£´æÏµÊı²»ÕıÈ· */
+    /* è‹¥ä¿å­˜ç³»æ•°ä¸æ­£ç¡® */
     if(!(para[0] < 1.1 && para[0] > 0.9)){
         for(i = 0; i < 8; i++){
             para[2 * i + 0] = 1;

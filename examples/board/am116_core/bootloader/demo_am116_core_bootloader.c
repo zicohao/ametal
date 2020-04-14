@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief bootloader Àı³Ì£¬±¾demoÊÇ×÷Îªbootloader¡£
+ * \brief bootloader ä¾‹ç¨‹ï¼Œæœ¬demoæ˜¯ä½œä¸ºbootloaderã€‚
  *
- * - ²Ù×÷²½Öè£º
- *   ²Î¿¼AMmetal-AM116-Core-bootloader²Ù×÷ÊÖ²á
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   å‚è€ƒAMmetal-AM116-Core-bootloaderæ“ä½œæ‰‹å†Œ
  *
  *
  * \internal
@@ -41,47 +41,47 @@
 #include "am_int.h"
 #include <string.h>
 
-/** \brief ´®¿ÚÊı¾İ½ÓÊÕ»º´æ´óĞ¡  */
+/** \brief ä¸²å£æ•°æ®æ¥æ”¶ç¼“å­˜å¤§å°  */
 #define UART_CALLBACK_BUF_SIZE      512
 
-/** \brief Æô¶¯ÑÓÊ±Ê±¼ä£¨Ãë£© */
+/** \brief å¯åŠ¨å»¶æ—¶æ—¶é—´ï¼ˆç§’ï¼‰ */
 #define BOOT_WAITE_TIME             5
 
 /**
- * \name bootloader×´Ì¬
+ * \name bootloaderçŠ¶æ€
  * @{
  */
-/** \brief Æô¶¯ÑÓÊ±µÈ´ı×´Ì¬ */
+/** \brief å¯åŠ¨å»¶æ—¶ç­‰å¾…çŠ¶æ€ */
 #define BOOT_WAIT_STATE             0
 
-/** \brief bootloaderÆô¶¯×´Ì¬ */
+/** \brief bootloaderå¯åŠ¨çŠ¶æ€ */
 #define BOOT_STARTUP_STATE          1
 
-/** \brief Ó¦ÓÃÆô¶¯×´Ì¬ */
+/** \brief åº”ç”¨å¯åŠ¨çŠ¶æ€ */
 #define APP_STARTUP_STATE           2
 
-/** \brief Ó¦ÓÃ¹Ì¼ş½ÓÊÕ×´Ì¬ */
+/** \brief åº”ç”¨å›ºä»¶æ¥æ”¶çŠ¶æ€ */
 #define APP_RECEIVE_STATE           3
 /** @} */
 
 volatile static uint32_t write_offset = 0, read_offset = 0;
 
-/** \brief bootloaderÆô¶¯ÑÓÊ±Èí¼ş¶¨Ê±Æ÷½á¹¹Ìå */
+/** \brief bootloaderå¯åŠ¨å»¶æ—¶è½¯ä»¶å®šæ—¶å™¨ç»“æ„ä½“ */
 static am_softimer_t timeout_timer;
 
-/** \brief ¶¨Ê±Æ÷¶¨Ê±Ê±¼ä */
+/** \brief å®šæ—¶å™¨å®šæ—¶æ—¶é—´ */
 static uint8_t timer            = BOOT_WAITE_TIME;
 
-/** \brief bootloader×´Ì¬*/
+/** \brief bootloaderçŠ¶æ€*/
 static uint8_t boot_state       = BOOT_WAIT_STATE;
 
-/** \brief Ò»Ãë³¬Ê±±êÖ¾ */
+/** \brief ä¸€ç§’è¶…æ—¶æ ‡å¿— */
 static uint8_t second_timeout   = 0;
 
-/** \brief ¹Ì¼ş´«Êä³¬Ê±±êÖ¾ */
+/** \brief å›ºä»¶ä¼ è¾“è¶…æ—¶æ ‡å¿— */
 static uint8_t firmware_timeout = 0;
 
-/** \brief ´®¿ÚÖĞ¶Ï»Øµ÷Êı¾İ½ÓÊÕ»º´æ */
+/** \brief ä¸²å£ä¸­æ–­å›è°ƒæ•°æ®æ¥æ”¶ç¼“å­˜ */
 static uint8_t  uart_callback_buffer[UART_CALLBACK_BUF_SIZE] = {0};
 
 static void __delay(void)
@@ -91,7 +91,7 @@ static void __delay(void)
 }
 
 /**
- * \brief ´®¿ÚÖĞ¶Ï½ÓÊÕ»Øµ÷º¯Êı
+ * \brief ä¸²å£ä¸­æ–­æ¥æ”¶å›è°ƒå‡½æ•°
  */
 static void __uart_callback(void *p_arg, char inchar)
 {
@@ -108,7 +108,7 @@ static void __uart_callback(void *p_arg, char inchar)
 
 
 /**
- * \brief ¶¨Ê±Æ÷»Øµ÷º¯Êı
+ * \brief å®šæ—¶å™¨å›è°ƒå‡½æ•°
  */
 static void __timer_handle(void *p_arg)
 {
@@ -130,7 +130,7 @@ static void __timer_handle(void *p_arg)
 }
 
 /**
- * \brief  ´Ó´®¿Ú½ÓÊÕ»º³åÇø¶ÁÊı¾İ
+ * \brief  ä»ä¸²å£æ¥æ”¶ç¼“å†²åŒºè¯»æ•°æ®
  */
 static int __read_data(uint8_t *p_buffer, uint32_t byte_count)
 {
@@ -153,7 +153,7 @@ static int __read_data(uint8_t *p_buffer, uint32_t byte_count)
 }
 
 /**
- * \brief bootloader demoÈë¿Ú
+ * \brief bootloader demoå…¥å£
  */
 void demo_am116_core_bootloader_entry (void)
 {
@@ -161,24 +161,24 @@ void demo_am116_core_bootloader_entry (void)
     am_boot_firmware_handle_t      firmware_handle;
     uint32_t rev = 0;
     int ret, i, count;
-    /* bootloader flash³õÊ¼»¯  */
+    /* bootloader flashåˆå§‹åŒ–  */
     am_boot_flash_handle_t flash_handle = am_zlg116_boot_flash_inst_init();
-    /* bootloader ±ê×¼½Ó¿Ú³õÊ¼»¯  */
+    /* bootloader æ ‡å‡†æ¥å£åˆå§‹åŒ–  */
     am_zlg116_std_boot_inst_init(flash_handle);
 
     am_uart_handle_t uart_handle = am_zlg116_uart1_inst_init ();
     am_debug_init(uart_handle, 115200);
 
-    /* Ê¹ÄÜ´®¿ÚÖĞ¶ÏÄ£Ê½  */
+    /* ä½¿èƒ½ä¸²å£ä¸­æ–­æ¨¡å¼  */
     am_uart_ioctl(uart_handle, AM_UART_MODE_SET, (void *)AM_UART_MODE_INT);
-    /* ×¢²á·¢ËÍ»Øµ÷º¯Êı  */
+    /* æ³¨å†Œå‘é€å›è°ƒå‡½æ•°  */
     am_uart_callback_set(uart_handle, AM_UART_CALLBACK_RXCHAR_PUT, __uart_callback, NULL);
-    /* Æô¶¯ÑÓÊ±»Øµ÷¶¨Ê±Æ÷³õÊ¼»¯  */
+    /* å¯åŠ¨å»¶æ—¶å›è°ƒå®šæ—¶å™¨åˆå§‹åŒ–  */
     am_softimer_init(&timeout_timer, __timer_handle, NULL);
     am_kprintf("Device will enter application, if don't input anything after %ds\r\n",timer);
     am_softimer_start(&timeout_timer, 1000);
 
-    /* ÑÓÊ±µÈ´ı£¬Èç¹ûÓÃ»§ÓĞÊı¾İ·¢À´£¬¾Í½øÈëbootloader£¬·ñÕßÌø×ªµ½Ó¦ÓÃ³ÌĞò */
+    /* å»¶æ—¶ç­‰å¾…ï¼Œå¦‚æœç”¨æˆ·æœ‰æ•°æ®å‘æ¥ï¼Œå°±è¿›å…¥bootloaderï¼Œå¦è€…è·³è½¬åˆ°åº”ç”¨ç¨‹åº */
     while(boot_state == BOOT_WAIT_STATE) {
         if(second_timeout == 1) {
             am_kprintf("Device will enter application, if don't input anything after %ds\r\n",timer);
@@ -187,12 +187,12 @@ void demo_am116_core_bootloader_entry (void)
     }
     am_softimer_stop(&timeout_timer);
 
-    /* ÓÃ»§ÓĞÊı·¢ËÍ¹ıÀ´±íÊ¾Òª½øÈëbootloader±¾µØÉı¼¶£¬ÔòÉèÖÃbootloaderÉı¼¶±êÖ¾ÎªË«ÇøÎŞĞ§£¬ÖØĞÂ½ÓÊÜ¹Ì¼ş  */
+    /* ç”¨æˆ·æœ‰æ•°å‘é€è¿‡æ¥è¡¨ç¤ºè¦è¿›å…¥bootloaderæœ¬åœ°å‡çº§ï¼Œåˆ™è®¾ç½®bootloaderå‡çº§æ ‡å¿—ä¸ºåŒåŒºæ— æ•ˆï¼Œé‡æ–°æ¥å—å›ºä»¶  */
     if( boot_state == BOOT_STARTUP_STATE) {
         am_boot_update_flag_set(AM_BOOTLOADER_FLAG_NO);
     }
 
-    /* ÔÚÑÓÊ±µÈ´ıÆÚ¼äÃ»ÓĞÓÃ»§ÊäÈë£¬Ìø×ªµ½Ó¦ÓÃ³ÌĞò£¬Èç¹ûÓ¦ÓÃ³ÌĞòÃ»×¼±¸ºÃ£¬Ö±½Ó½øÈëbootloader±¾µØÉı¼¶  */
+    /* åœ¨å»¶æ—¶ç­‰å¾…æœŸé—´æ²¡æœ‰ç”¨æˆ·è¾“å…¥ï¼Œè·³è½¬åˆ°åº”ç”¨ç¨‹åºï¼Œå¦‚æœåº”ç”¨ç¨‹åºæ²¡å‡†å¤‡å¥½ï¼Œç›´æ¥è¿›å…¥bootloaderæœ¬åœ°å‡çº§  */
     if(am_boot_app_is_ready() && boot_state == APP_STARTUP_STATE) {
         __delay();
         am_zlg116_uart1_inst_deinit(uart_handle);
@@ -202,15 +202,15 @@ void demo_am116_core_bootloader_entry (void)
     am_kprintf("bootloader : running......\r\n");
     while(1) {
         am_kprintf("bootloader : update init\r\n");
-        /* ¹Ì¼ş´æ·Å±ê×¼½Ó¿Ú³õÊ¼»¯  */
+        /* å›ºä»¶å­˜æ”¾æ ‡å‡†æ¥å£åˆå§‹åŒ–  */
         firmware_handle = am_zlg116_boot_firmware_flash(flash_handle);
-        /* ¿ªÊ¼¹Ì¼ş´æ·Å  */
+        /* å¼€å§‹å›ºä»¶å­˜æ”¾  */
         am_boot_firmware_store_start(firmware_handle, 24 * 1024);
-        /* ÇĞ»»Îª¹Ì¼ş½ÓÊÕ×´Ì¬  */
+        /* åˆ‡æ¢ä¸ºå›ºä»¶æ¥æ”¶çŠ¶æ€  */
         boot_state = APP_RECEIVE_STATE;
         am_kprintf("bootloader : firmware transmission is ready\r\n");
 
-        /* ´Ó´®¿ÚÊı¾İ»º³åÇøÖĞ¶ÁÈ¡¹Ì¼şµÄÍ·²¿ĞÅÏ¢  */
+        /* ä»ä¸²å£æ•°æ®ç¼“å†²åŒºä¸­è¯»å–å›ºä»¶çš„å¤´éƒ¨ä¿¡æ¯  */
         if(AM_OK != __read_data((uint8_t *)&firmware_head, sizeof(firmware_head))) {
             am_kprintf("bootloader : firmware transmission is timeout, bootloader will restart!\r\n");
             continue;
@@ -223,7 +223,7 @@ void demo_am116_core_bootloader_entry (void)
                 am_kprintf("bootloader : firmware transmission is timeout, bootloader will restart!\r\n");
                 break;
             }
-            /* ¹Ì¼ş´æ·Å£¬Ã¿´Î´æ·Å4×Ö½Ú */
+            /* å›ºä»¶å­˜æ”¾ï¼Œæ¯æ¬¡å­˜æ”¾4å­—èŠ‚ */
             ret = am_boot_firmware_store_bytes(firmware_handle, (uint8_t *)&rev, sizeof(rev));
             if(ret != AM_OK) {
                 am_kprintf("bootloader : firmware store is error, bootloader will restart!\r\n");
@@ -251,10 +251,10 @@ void demo_am116_core_bootloader_entry (void)
             }
         }
 	
-        /* ¹Ì¼ş´æ·Å½áÊø  */
+        /* å›ºä»¶å­˜æ”¾ç»“æŸ  */
         am_boot_firmware_store_final(firmware_handle);
         am_kprintf("bootloader : firmware receive successful\r\n");
-        /* ¹Ì¼şĞ£Ñé  */
+        /* å›ºä»¶æ ¡éªŒ  */
         ret = am_boot_firmware_verify(firmware_handle, &firmware_head);
         if(ret != AM_OK) {
             am_kprintf("bootloader : firmware verify error, bootloader will restart!\r\n");
@@ -262,7 +262,7 @@ void demo_am116_core_bootloader_entry (void)
         } else {
             am_kprintf("bootloader : firmware verify successful\r\n");
         }
-        /* ÉèÖÃ bootloader µÄÉı¼¶±êÖ¾ÎªÓ¦ÓÃ³ÌĞòÓĞĞ§  */
+        /* è®¾ç½® bootloader çš„å‡çº§æ ‡å¿—ä¸ºåº”ç”¨ç¨‹åºæœ‰æ•ˆ  */
         am_boot_update_flag_set(AM_BOOTLOADER_FLAG_APP);
 
         if(am_boot_app_is_ready()) {
@@ -270,7 +270,7 @@ void demo_am116_core_bootloader_entry (void)
 
             __delay();
             am_zlg116_uart1_inst_deinit(uart_handle);
-            /* Ìø×ªµ½Ó¦ÓÃ³ÌĞò  */
+            /* è·³è½¬åˆ°åº”ç”¨ç¨‹åº  */
             if(AM_OK != am_boot_go_application()){
                 continue;
             }

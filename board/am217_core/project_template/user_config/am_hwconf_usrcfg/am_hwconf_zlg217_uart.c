@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZLG217 UART ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief ZLG217 UART ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_zlg217l_hwconfig_uart.c
  *
  * \internal
@@ -37,14 +37,14 @@
  * @{
  */
 
-/** \brief ´®¿Ú1Æ½Ì¨³õÊ¼»¯ */
+/** \brief ä¸²å£1å¹³å°åˆå§‹åŒ– */
 static void __zlg217_plfm_uart1_init (void)
 {
     am_gpio_pin_cfg(PIOA_9,  PIOA_9_UART1_TX_REMAP0 | PIOA_9_AF_PP );
     am_gpio_pin_cfg(PIOA_10, PIOA_10_UART1_RX_REMAP0| PIOA_10_INPUT_FLOAT);
 }
 
-/** \brief ½â³ı´®¿Ú1Æ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤ä¸²å£1å¹³å°åˆå§‹åŒ– */
 static void __zlg217_plfm_uart1_deinit (void)
 {
     am_clk_disable(CLK_UART1);
@@ -53,78 +53,78 @@ static void __zlg217_plfm_uart1_deinit (void)
     am_gpio_pin_cfg(PIOA_10,AM_GPIO_INPUT);
 }
 
-/** \brief ´®¿Ú1Éè±¸ĞÅÏ¢ */
+/** \brief ä¸²å£1è®¾å¤‡ä¿¡æ¯ */
 static const am_zlg_uart_devinfo_t __g_uart1_devinfo = {
 
-    ZLG217_UART1_BASE,            /**< \brief ´®¿Ú1 */
-    INUM_UART1,                   /**< \brief ´®¿Ú1µÄÖĞ¶Ï±àºÅ */
-    CLK_UART1,                    /**< \brief ´®¿Ú1µÄÊ±ÖÓ */
+    ZLG217_UART1_BASE,            /**< \brief ä¸²å£1 */
+    INUM_UART1,                   /**< \brief ä¸²å£1çš„ä¸­æ–­ç¼–å· */
+    CLK_UART1,                    /**< \brief ä¸²å£1çš„æ—¶é’Ÿ */
 
-    AMHW_ZLG_UART_DATA_8BIT |  /**< \brief 8Î»Êı¾İ */
-    AMHW_ZLG_UART_PARITY_NO |  /**< \brief ÎŞ¼«ĞÔ */
-    AMHW_ZLG_UART_STOP_1BIT,   /**< \brief 1¸öÍ£Ö¹Î» */
+    AMHW_ZLG_UART_DATA_8BIT |  /**< \brief 8ä½æ•°æ® */
+    AMHW_ZLG_UART_PARITY_NO |  /**< \brief æ— ææ€§ */
+    AMHW_ZLG_UART_STOP_1BIT,   /**< \brief 1ä¸ªåœæ­¢ä½ */
 
-    115200,                       /**< \brief ÉèÖÃµÄ²¨ÌØÂÊ */
+    115200,                       /**< \brief è®¾ç½®çš„æ³¢ç‰¹ç‡ */
 
-    0,                            /**< \brief ÎŞÆäËûÖĞ¶Ï */
+    0,                            /**< \brief æ— å…¶ä»–ä¸­æ–­ */
 
-    NULL,                         /**< \brief UART1Ê¹ÓÃRS485 */
-    __zlg217_plfm_uart1_init,     /**< \brief UART1µÄÆ½Ì¨³õÊ¼»¯ */
-    __zlg217_plfm_uart1_deinit,   /**< \brief UART1µÄÆ½Ì¨È¥³õÊ¼»¯ */
+    NULL,                         /**< \brief UART1ä½¿ç”¨RS485 */
+    __zlg217_plfm_uart1_init,     /**< \brief UART1çš„å¹³å°åˆå§‹åŒ– */
+    __zlg217_plfm_uart1_deinit,   /**< \brief UART1çš„å¹³å°å»åˆå§‹åŒ– */
 };
 
-/**< \brief ¶¨Òå´®¿Ú1 Éè±¸ */
+/**< \brief å®šä¹‰ä¸²å£1 è®¾å¤‡ */
 static am_zlg_uart_dev_t  __g_uart1_dev;
 
-/** \brief ´®¿Ú2Æ½Ì¨³õÊ¼»¯ */
+/** \brief ä¸²å£2å¹³å°åˆå§‹åŒ– */
 static void __zlg217_plfm_uart2_init (void)
 {
     am_gpio_pin_cfg(PIOA_2, PIOA_2_UART2_TX | PIOA_2_AF_PP|PIOA_3_SPEED_2MHz);
     am_gpio_pin_cfg(PIOA_3, PIOA_3_UART2_RX | PIOA_3_INPUT_FLOAT);
 }
 
-/** \brief ½â³ı´®¿Ú2 Æ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤ä¸²å£2 å¹³å°åˆå§‹åŒ– */
 static void __zlg217_plfm_uart2_deinit (void)
 {
 
-    /* ¹Ø±ÕUART2Ê±ÖÓ */
+    /* å…³é—­UART2æ—¶é’Ÿ */
     am_clk_disable(CLK_UART2);
 
     am_gpio_pin_cfg(PIOA_3, AM_GPIO_INPUT);
     am_gpio_pin_cfg(PIOA_2, AM_GPIO_INPUT);
 }
 
-/** \brief ´®¿Ú2 Éè±¸ĞÅÏ¢ */
+/** \brief ä¸²å£2 è®¾å¤‡ä¿¡æ¯ */
 static const am_zlg_uart_devinfo_t __g_uart2_devinfo = {
 
-    ZLG217_UART2_BASE,              /**< \brief ´®¿Ú2 */
-    INUM_UART2,                     /**< \brief ´®¿Ú2µÄÖĞ¶Ï±àºÅ */
-    CLK_UART2,                      /**< \brief ´®¿Ú2µÄÊ±ÖÓ */
+    ZLG217_UART2_BASE,              /**< \brief ä¸²å£2 */
+    INUM_UART2,                     /**< \brief ä¸²å£2çš„ä¸­æ–­ç¼–å· */
+    CLK_UART2,                      /**< \brief ä¸²å£2çš„æ—¶é’Ÿ */
 
-    AMHW_ZLG_UART_DATA_8BIT |    /**< \brief 8Î»Êı¾İ */
-    AMHW_ZLG_UART_PARITY_NO |    /**< \brief ÎŞ¼«ĞÔ */
-    AMHW_ZLG_UART_STOP_1BIT,     /**< \brief 1¸öÍ£Ö¹Î» */
+    AMHW_ZLG_UART_DATA_8BIT |    /**< \brief 8ä½æ•°æ® */
+    AMHW_ZLG_UART_PARITY_NO |    /**< \brief æ— ææ€§ */
+    AMHW_ZLG_UART_STOP_1BIT,     /**< \brief 1ä¸ªåœæ­¢ä½ */
 
-    115200,                         /**< \brief ÉèÖÃµÄ²¨ÌØÂÊ */
+    115200,                         /**< \brief è®¾ç½®çš„æ³¢ç‰¹ç‡ */
 
-    0,                              /**< \brief ÎŞÆäËûÖĞ¶Ï */
+    0,                              /**< \brief æ— å…¶ä»–ä¸­æ–­ */
 
-    NULL,                           /**< \brief UART2Ê¹ÓÃRS485 */
-    __zlg217_plfm_uart2_init,       /**< \brief UART2µÄÆ½Ì¨³õÊ¼»¯ */
-    __zlg217_plfm_uart2_deinit,     /**< \brief UART2µÄÆ½Ì¨È¥³õÊ¼»¯ */
+    NULL,                           /**< \brief UART2ä½¿ç”¨RS485 */
+    __zlg217_plfm_uart2_init,       /**< \brief UART2çš„å¹³å°åˆå§‹åŒ– */
+    __zlg217_plfm_uart2_deinit,     /**< \brief UART2çš„å¹³å°å»åˆå§‹åŒ– */
 };
 
-/**< \brief ¶¨Òå´®¿Ú2Éè±¸ */
+/**< \brief å®šä¹‰ä¸²å£2è®¾å¤‡ */
 static am_zlg_uart_dev_t  __g_uart2_dev;
 
-/** \brief ´®¿Ú3Æ½Ì¨³õÊ¼»¯ */
+/** \brief ä¸²å£3å¹³å°åˆå§‹åŒ– */
 static void __zlg217_plfm_uart3_init (void)
 {
      am_gpio_pin_cfg(PIOB_10, PIOB_10_UART3_TX_REMAP0 | PIOB_10_AF_PP | PIOB_10_SPEED_10MHz);
      am_gpio_pin_cfg(PIOB_11, PIOB_11_UART3_RX_REMAP0 | PIOB_11_INPUT_FLOAT);
 }
 
-/** \brief ½â³ı´®¿Ú3 Æ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤ä¸²å£3 å¹³å°åˆå§‹åŒ– */
 static void __zlg217_plfm_uart3_deinit (void)
 {
     am_clk_disable(CLK_UART3);
@@ -133,60 +133,60 @@ static void __zlg217_plfm_uart3_deinit (void)
     am_gpio_pin_cfg(PIOB_11, AM_GPIO_INPUT);
 }
 
-/** \brief ´®¿Ú3 Éè±¸ĞÅÏ¢ */
+/** \brief ä¸²å£3 è®¾å¤‡ä¿¡æ¯ */
 static const am_zlg_uart_devinfo_t __g_uart3_devinfo = {
 
-    ZLG217_UART3_BASE,              /**< \brief ´®¿Ú3 */
-    INUM_UART3,                     /**< \brief ´®¿Ú2µÄÖĞ¶Ï±àºÅ */
-    CLK_UART3,                      /**< \brief ´®¿Ú2µÄÊ±ÖÓ */
+    ZLG217_UART3_BASE,              /**< \brief ä¸²å£3 */
+    INUM_UART3,                     /**< \brief ä¸²å£2çš„ä¸­æ–­ç¼–å· */
+    CLK_UART3,                      /**< \brief ä¸²å£2çš„æ—¶é’Ÿ */
 
-    AMHW_ZLG_UART_DATA_8BIT |    /**< \brief 8Î»Êı¾İ */
-    AMHW_ZLG_UART_PARITY_NO |    /**< \brief ÎŞ¼«ĞÔ */
-    AMHW_ZLG_UART_STOP_1BIT,     /**< \brief 1¸öÍ£Ö¹Î» */
+    AMHW_ZLG_UART_DATA_8BIT |    /**< \brief 8ä½æ•°æ® */
+    AMHW_ZLG_UART_PARITY_NO |    /**< \brief æ— ææ€§ */
+    AMHW_ZLG_UART_STOP_1BIT,     /**< \brief 1ä¸ªåœæ­¢ä½ */
 
-    115200,                         /**< \brief ÉèÖÃµÄ²¨ÌØÂÊ */
+    115200,                         /**< \brief è®¾ç½®çš„æ³¢ç‰¹ç‡ */
 
-    0,                              /**< \brief ÎŞÆäËûÖĞ¶Ï */
+    0,                              /**< \brief æ— å…¶ä»–ä¸­æ–­ */
 
-    NULL,                           /**< \brief UART3Ê¹ÓÃRS485 */
-    __zlg217_plfm_uart3_init,       /**< \brief UART3µÄÆ½Ì¨³õÊ¼»¯ */
-    __zlg217_plfm_uart3_deinit,     /**< \brief UART3µÄÆ½Ì¨È¥³õÊ¼»¯ */
+    NULL,                           /**< \brief UART3ä½¿ç”¨RS485 */
+    __zlg217_plfm_uart3_init,       /**< \brief UART3çš„å¹³å°åˆå§‹åŒ– */
+    __zlg217_plfm_uart3_deinit,     /**< \brief UART3çš„å¹³å°å»åˆå§‹åŒ– */
 };
 
-/**< \brief ¶¨Òå´®¿Ú2Éè±¸ */
+/**< \brief å®šä¹‰ä¸²å£2è®¾å¤‡ */
 static am_zlg_uart_dev_t  __g_uart3_dev;
 
-/** \brief UART1ÊµÀı³õÊ¼»¯£¬»ñµÃuart1±ê×¼·şÎñ¾ä±ú */
+/** \brief UART1å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—uart1æ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_uart_handle_t am_zlg217_uart1_inst_init (void)
 {
     return am_zlg_uart_init(&__g_uart1_dev, &__g_uart1_devinfo);
 }
 
-/** \brief UART1ÊµÀı½â³õÊ¼»¯ */
+/** \brief UART1å®ä¾‹è§£åˆå§‹åŒ– */
 void am_zlg217_uart1_inst_deinit (am_uart_handle_t handle)
 {
     am_zlg_uart_deinit((am_zlg_uart_dev_t *)handle);
 }
 
-/** \brief UART2ÊµÀı³õÊ¼»¯£¬»ñµÃuart2±ê×¼·şÎñ¾ä±ú */
+/** \brief UART2å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—uart2æ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_uart_handle_t am_zlg217_uart2_inst_init (void)
 {
     return am_zlg_uart_init(&__g_uart2_dev, &__g_uart2_devinfo);
 }
 
-/** \brief UART2ÊµÀı½â³õÊ¼»¯ */
+/** \brief UART2å®ä¾‹è§£åˆå§‹åŒ– */
 void am_zlg217_uart2_inst_deinit (am_uart_handle_t handle)
 {
     am_zlg_uart_deinit((am_zlg_uart_dev_t *)handle);
 }
 
-/** \brief UART3ÊµÀı³õÊ¼»¯£¬»ñµÃuart3±ê×¼·şÎñ¾ä±ú */
+/** \brief UART3å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—uart3æ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_uart_handle_t am_zlg217_uart3_inst_init (void)
 {
     return am_zlg_uart_init(&__g_uart3_dev, &__g_uart3_devinfo);
 }
 
-/** \brief UART3ÊµÀı½â³õÊ¼»¯ */
+/** \brief UART3å®ä¾‹è§£åˆå§‹åŒ– */
 void am_zlg217_uart3_inst_deinit (am_uart_handle_t handle)
 {
     am_zlg_uart_deinit((am_zlg_uart_dev_t *)handle);

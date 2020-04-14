@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief MiniPort-ZLG72128 ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief MiniPort-ZLG72128 ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_miniport_zlg72128.c
  *
  * \internal
@@ -29,13 +29,13 @@ static uint8_t g_zlg600_uart_txbuf[128];
 static uint8_t g_zlg600_uart_rxbuf[128];
 
 static const am_zlg600_uart_dev_info_t __g_zlg600_uart_devinfo = {
-  	g_zlg600_uart_rxbuf,       				// ÓÃÓÚ´®¿Ú½ÓÊÕµÄ»º³åÇø
- 	  g_zlg600_uart_txbuf,       				// ÓÃÓÚ´®¿Ú·¢ËÍµÄ»º³åÇø
-  	128,                       				// ½ÓÊÕÊı¾İ»º³åÇøµÄ´óĞ¡
-  	128,                        			// ·¢ËÍÊı¾İ»º³åÇøµÄ´óĞ¡
-  	AM_ZLG600_BAUDRATE_115200,  			// ÓëZLG600AÍ¨ĞÅµÄ²¨ÌØÂÊÉèÖÃÎª115200
- 	  AM_ZLG600_MODE_AUTO_CHECK, 		    // ³ö³§Ä£Ê½Ê¹ÓÃµÄ×Ô¶¯Õì²âÄ£Ê½
-  	0x59,  								            // Ä¬ÈÏµØÖ·
+  	g_zlg600_uart_rxbuf,       				// ç”¨äºä¸²å£æ¥æ”¶çš„ç¼“å†²åŒº
+ 	  g_zlg600_uart_txbuf,       				// ç”¨äºä¸²å£å‘é€çš„ç¼“å†²åŒº
+  	128,                       				// æ¥æ”¶æ•°æ®ç¼“å†²åŒºçš„å¤§å°
+  	128,                        			// å‘é€æ•°æ®ç¼“å†²åŒºçš„å¤§å°
+  	AM_ZLG600_BAUDRATE_115200,  			// ä¸ZLG600Aé€šä¿¡çš„æ³¢ç‰¹ç‡è®¾ç½®ä¸º115200
+ 	  AM_ZLG600_MODE_AUTO_CHECK, 		    // å‡ºå‚æ¨¡å¼ä½¿ç”¨çš„è‡ªåŠ¨ä¾¦æµ‹æ¨¡å¼
+  	0x59,  								            // é»˜è®¤åœ°å€
 };
 
 static am_zlg600_uart_dev_t  __g_zlg600_uart_dev;

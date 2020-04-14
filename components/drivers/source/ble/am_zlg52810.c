@@ -34,7 +34,7 @@
 #include "am_list.h"
 #include "string.h"
 
-/* \brief   ÃüÁî½ÓÊÕ½âÎö×´Ì¬»ú  */
+/* \brief   å‘½ä»¤æŽ¥æ”¶è§£æžçŠ¶æ€æœº  */
 #define __ZLG52810_CMD_PROC_STAT_NONE          0   /* Not in cmd process      */
 #define __ZLG52810_CMD_PROC_STAT_START         1   /* Cmd process startted    */
 #define __ZLG52810_CMD_PROC_STAT_SEND          2   /* Cmd send complete       */
@@ -47,15 +47,15 @@
 #define __ZLG52810_CMD_PROC_STAT_RECV_OVERFLOW 9   /* receive overflow recbuff*/
 #define __ZLG52810_CMD_PROC_STAT_RECV_ERR      10  /* some error happen       */
 
-/* \brief BLE Á¬½Ó×´Ì¬ */
-#define __ZLG52810_STATE_BLE_NONE              0   /* ÎÞÀ¶ÑÀÁ¬½Ó                   */
-#define __ZLG52810_STATE_BLE_CONNECTED         1   /* Ä£¿éÓëÀ¶ÑÀÁ¬½ÓÖÐ       */
-#define __ZLG52810_STATE_BLE_DISCONNECT        2   /* Ä£¿éÓëÀ¶ÑÀ¶Ï¿ªÁ¬½Ó   */
+/* \brief BLE è¿žæŽ¥çŠ¶æ€ */
+#define __ZLG52810_STATE_BLE_NONE              0   /* æ— è“ç‰™è¿žæŽ¥                   */
+#define __ZLG52810_STATE_BLE_CONNECTED         1   /* æ¨¡å—ä¸Žè“ç‰™è¿žæŽ¥ä¸­       */
+#define __ZLG52810_STATE_BLE_DISCONNECT        2   /* æ¨¡å—ä¸Žè“ç‰™æ–­å¼€è¿žæŽ¥   */
 
-/* \brief ²ÎÊýÀàÐÍ±êÊ¶ */
-#define __ZLG52810_ARG_TYPE_UINT32             1   /* ´«Èë²ÎÊýÎªuint32_t ÀàÐÍ       */
-#define __ZLG52810_ARG_TYPE_STRING             2   /* ´«Èë²ÎÊýÎªchar * ÀàÐÍ       */
-#define __ZLG52810_ARG_TYPE_FLOAT              3   /* ´«Èë²ÎÊýÎªfloat ÀàÐÍ       */
+/* \brief å‚æ•°ç±»åž‹æ ‡è¯† */
+#define __ZLG52810_ARG_TYPE_UINT32             1   /* ä¼ å…¥å‚æ•°ä¸ºuint32_t ç±»åž‹       */
+#define __ZLG52810_ARG_TYPE_STRING             2   /* ä¼ å…¥å‚æ•°ä¸ºchar * ç±»åž‹       */
+#define __ZLG52810_ARG_TYPE_FLOAT              3   /* ä¼ å…¥å‚æ•°ä¸ºfloat ç±»åž‹       */
 
 /* The max data value with a given length */
 am_local const int __g_max_val[] = {
@@ -263,7 +263,7 @@ am_local int __zlg52810_cmd_result (am_zlg52810_dev_t    *p_this,
 {
     int          key;
 
-    /* µÈ´ý·¢ËÍÍê³É */
+    /* ç­‰å¾…å‘é€å®Œæˆ */
     am_wait_on(&p_this->ack_wait);
 
     am_rngbuf_init(&(p_this->tx_rngbuf),
@@ -331,7 +331,7 @@ am_local int __zlg52810_uart_txchar_get (void *p_arg, char *p_outchar)
     am_rngbuf_t        rb          = &(p_dev->tx_rngbuf);
     uint32_t           key         = am_int_cpu_lock();
 
-    /* Èô¿ªÆôÁ÷¿Ø¹¦ÄÜ  ²¢´æÔÚÁ÷¿ØÒý½Å  ÅÐ¶ÏÄ£¿éÊÇ·ñÄÜ½ÓÊÜÊý¾Ý*/
+    /* è‹¥å¼€å¯æµæŽ§åŠŸèƒ½  å¹¶å­˜åœ¨æµæŽ§å¼•è„š  åˆ¤æ–­æ¨¡å—æ˜¯å¦èƒ½æŽ¥å—æ•°æ®*/
     if(p_dev->flowc_state != AM_ZLG52810_FLOWC_DISABLE &&
             p_dev->p_devinfo->pin_rts != -1){
         if(am_gpio_get(p_dev->p_devinfo->pin_rts == 0)){
@@ -344,7 +344,7 @@ am_local int __zlg52810_uart_txchar_get (void *p_arg, char *p_outchar)
             return -AM_EEMPTY;
         }
     }else{
-        /* ÈôÎ´¿ªÆôÁ÷¿Ø¹¦ÄÜ  Ö±½Ó·¢ËÍÊý¾Ý*/
+        /* è‹¥æœªå¼€å¯æµæŽ§åŠŸèƒ½  ç›´æŽ¥å‘é€æ•°æ®*/
         if (am_rngbuf_getchar(rb, p_outchar) == 1) {
             am_int_cpu_unlock(key);
             return AM_OK;
@@ -404,7 +404,7 @@ am_local int __zlg52810_cmd_ack_recv_proc (am_zlg52810_dev_t *p_this, char incha
         am_softimer_start(&p_this->timer, 3);
         break;
     }
-    /* ½ÓÊÕ´íÎó  ½ÓÊÕÖ¡Í·´íÎó½«»á½øÈë¸ÃÅÐ¶Ï */
+    /* æŽ¥æ”¶é”™è¯¯  æŽ¥æ”¶å¸§å¤´é”™è¯¯å°†ä¼šè¿›å…¥è¯¥åˆ¤æ–­ */
     if (ret == AM_OK){
         /* full */
         if ((p_this->cmd_rx_len     == p_this->cmd_rxbuf_len) &&
@@ -412,11 +412,11 @@ am_local int __zlg52810_cmd_ack_recv_proc (am_zlg52810_dev_t *p_this, char incha
 
             if(p_this->p_devinfo->pin_cts != -1 &&
                     p_this->flowc_state == AM_ZLG52810_FLOWC_EN_NOFLOW){
-                /*´Ë´¦¿ªÆôMCUÁ÷¿Ø*/
+                /*æ­¤å¤„å¼€å¯MCUæµæŽ§*/
                 am_gpio_set(p_this->p_devinfo->pin_cts, AM_GPIO_OUTPUT_INIT_LOW);
                 p_this->flowc_state = AM_ZLG52810_FLOWC_EN_FLOW;
             }else{
-                /*Î´¿ªÆôÁ÷¿Ø¹¦ÄÜ  ½ÓÊÕÃüÁîÒç³ö½ÓÊÕ»º³åÇø*/
+                /*æœªå¼€å¯æµæŽ§åŠŸèƒ½  æŽ¥æ”¶å‘½ä»¤æº¢å‡ºæŽ¥æ”¶ç¼“å†²åŒº*/
                 p_this->cmd_proc_state = __ZLG52810_CMD_PROC_STAT_RECV_OVERFLOW;
             }
         }
@@ -530,7 +530,7 @@ am_zlg52810_handle_t am_zlg52810_init (am_zlg52810_dev_t           *p_dev,
     am_wait_init(&(p_dev->rx_wait));
     am_wait_init(&(p_dev->ack_wait));
 
-    /* Á÷¿Ø¿ØÖÆÒý½Å³õÊ¼»¯ */
+    /* æµæŽ§æŽ§åˆ¶å¼•è„šåˆå§‹åŒ– */
     if (p_devinfo->pin_rts != -1) {
         am_gpio_pin_cfg(p_dev->p_devinfo->pin_rts,AM_GPIO_INPUT);
     }
@@ -539,19 +539,19 @@ am_zlg52810_handle_t am_zlg52810_init (am_zlg52810_dev_t           *p_dev,
                         AM_GPIO_PUSH_PULL | AM_GPIO_OUTPUT_INIT_LOW);
     }
 
-    /* »Ö¸´³ö³§ÉèÖÃÒý½Å */
+    /* æ¢å¤å‡ºåŽ‚è®¾ç½®å¼•è„š */
     if (p_devinfo->pin_restore != -1) {
         am_gpio_pin_cfg(p_dev->p_devinfo->pin_restore,
                         AM_GPIO_PUSH_PULL | AM_GPIO_OUTPUT_INIT_HIGH);
     }
 
-    /* µÍµçÆ½¸´Î»Òý½Å */
+    /* ä½Žç”µå¹³å¤ä½å¼•è„š */
     if (p_devinfo->pin_rst != -1) {
         am_gpio_pin_cfg(p_dev->p_devinfo->pin_rst,
                         AM_GPIO_PUSH_PULL | AM_GPIO_OUTPUT_INIT_HIGH);
     }
 
-    /* µÍµçÆ½¸´Î»Òý½Å */
+    /* ä½Žç”µå¹³å¤ä½å¼•è„š */
     if (p_devinfo->pin_wakeup != -1) {
         am_gpio_pin_cfg(p_dev->p_devinfo->pin_rst,
                         AM_GPIO_PUSH_PULL | AM_GPIO_OUTPUT_INIT_HIGH);

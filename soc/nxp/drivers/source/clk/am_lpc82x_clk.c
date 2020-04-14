@@ -28,7 +28,7 @@
 #include "hw/amhw_lpc82x_syscon.h"
 
 /**
- * \brief »ñÈ¡Ê±ÖÓÆµÂÊ
+ * \brief è·å–æ—¶é’Ÿé¢‘ç‡
  */
 int am_clk_rate_get (am_clk_id_t clk_id)
 {
@@ -36,7 +36,7 @@ int am_clk_rate_get (am_clk_id_t clk_id)
     
     switch (clk_id) {
     
-    /* ÏµÍ³ÄÚ²¿Ê±ÖÓ */
+    /* ç³»ç»Ÿå†…éƒ¨æ—¶é’Ÿ */
     case CLK_IRC:
         clk = amhw_lpc82x_clk_irc_rate_get();
         break;
@@ -69,21 +69,21 @@ int am_clk_rate_get (am_clk_id_t clk_id)
         clk = amhw_lpc82x_clk_system_clkrate_get();
         break;
     
-    case CLK_UART0:    /* UART »ù±¾ÊäÈëÊ±ÖÓ*/
+    case CLK_UART0:    /* UART åŸºæœ¬è¾“å…¥æ—¶é’Ÿ*/
     case CLK_UART1:
     case CLK_UART2:
         clk = amhw_lpc82x_clk_usart_baseclkrate_get();
         break;
 
-    case CLK_WWDT:    /* WWDT Ê±ÖÓ*/
+    case CLK_WWDT:    /* WWDT æ—¶é’Ÿ*/
         clk = amhw_lpc82x_clk_wdt_rate_get();
         break;
     
-    case CLK_WKT:    /* WKT Ê±ÖÓ*/
+    case CLK_WKT:    /* WKT æ—¶é’Ÿ*/
         clk = amhw_lpc82x_clk_irc_rate_get();
         break;
 
-    /* Ê¹ÓÃÏµÍ³Ê±ÖÓµÄÍâÉè */
+    /* ä½¿ç”¨ç³»ç»Ÿæ—¶é’Ÿçš„å¤–è®¾ */
     case CLK_ROM:
     case CLK_SRAM0_1:
     case CLK_FLASHREG:
@@ -115,14 +115,14 @@ int am_clk_rate_get (am_clk_id_t clk_id)
 }
 
 /**
- * \brief Ê¹ÄÜÖ¸¶¨µÄÏµÍ³»òÍâÉèÊ±ÖÓ
+ * \brief ä½¿èƒ½æŒ‡å®šçš„ç³»ç»Ÿæˆ–å¤–è®¾æ—¶é’Ÿ
  */
 int am_clk_enable (am_clk_id_t clk_id)
 {
     if ((clk_id < CLK_PERIPH_MIN) ||
         (clk_id > CLK_PERIPH_MAX)) {
 
-        /* Ê±ÖÓID²»ÔÚ·¶Î§ÄÚ*/
+        /* æ—¶é’ŸIDä¸åœ¨èŒƒå›´å†…*/
         return -AM_ENXIO;
     }
     
@@ -132,14 +132,14 @@ int am_clk_enable (am_clk_id_t clk_id)
 }
 
 /**
- * \brief ½ûÄÜÖ¸¶¨µÄÏµÍ³»òÍâÉèÊ±ÖÓ
+ * \brief ç¦èƒ½æŒ‡å®šçš„ç³»ç»Ÿæˆ–å¤–è®¾æ—¶é’Ÿ
  */
 int am_clk_disable (am_clk_id_t clk_id)
 {
     if ((clk_id < CLK_PERIPH_MIN) ||
         (clk_id > CLK_PERIPH_MAX)) {
 
-        /* Ê±ÖÓID²»ÔÚ·¶Î§ÄÚ*/
+        /* æ—¶é’ŸIDä¸åœ¨èŒƒå›´å†…*/
         return -AM_ENXIO;
     }
         
@@ -149,7 +149,7 @@ int am_clk_disable (am_clk_id_t clk_id)
 }
 
 /**
- * \brief CLK ³õÊ¼»¯
+ * \brief CLK åˆå§‹åŒ–
  */
 int am_lpc82x_clk_init (am_lpc82x_clk_dev_t           *p_dev,
                         const am_lpc82x_clk_devinfo_t *p_devinfo)
@@ -160,63 +160,63 @@ int am_lpc82x_clk_init (am_lpc82x_clk_dev_t           *p_dev,
 
     p_dev->p_devinfo  = p_devinfo;
 
-    /* CLKÆ½Ì¨³õÊ¼»¯£¬ÅäÖÃÊ±ÖÓÒı½Å */
+    /* CLKå¹³å°åˆå§‹åŒ–ï¼Œé…ç½®æ—¶é’Ÿå¼•è„š */
     if (p_devinfo->pfn_plfm_init) {
         p_devinfo->pfn_plfm_init();
     }
 
-    /* ÏµÍ³Õñµ´Æ÷×÷ÎªPLLÊ±ÖÓÔ´ */
+    /* ç³»ç»ŸæŒ¯è¡å™¨ä½œä¸ºPLLæ—¶é’Ÿæº */
     if (p_devinfo->pllin_src == AMHW_LPC82X_CLK_PLLIN_SRC_SYSOSC) {
 
-        /* Íâ²¿XTAL < 15MHZ */
+        /* å¤–éƒ¨XTAL < 15MHZ */
         amhw_lpc82x_clk_pll_bypass_set(AM_FALSE, AM_FALSE);
         
-        /* Ê¹ÄÜÏµÍ³ Osc */
+        /* ä½¿èƒ½ç³»ç»Ÿ Osc */
         amhw_lpc82x_syscon_powerup(AMHW_LPC82X_SYSCON_PD_SYS_OSC);
     }
 
-    /* Íâ²¿¹Ü½ÅÊäÈë×÷ÎªPLLÊ±ÖÓÔ´   */
+    /* å¤–éƒ¨ç®¡è„šè¾“å…¥ä½œä¸ºPLLæ—¶é’Ÿæº   */
     if (p_devinfo->pllin_src == AMHW_LPC82X_CLK_PLLIN_SRC_CLKIN) {
 
-        /* Íâ²¿Ê±ÖÓÊäÈë£¬¹Ø±ÕOSC  CLKIN < 15MHz */
+        /* å¤–éƒ¨æ—¶é’Ÿè¾“å…¥ï¼Œå…³é—­OSC  CLKIN < 15MHz */
         amhw_lpc82x_clk_pll_bypass_set(AM_TRUE, AM_FALSE);
     }
 
-    /* ÉèÖÃPLLÊ±ÖÓÔ´ */
+    /* è®¾ç½®PLLæ—¶é’Ÿæº */
     amhw_lpc82x_clk_pll_src_set((amhw_lpc82x_pllinclk_src_t)
                                 (p_devinfo->pllin_src ));
 
     if (p_devinfo->main_src == AMHW_LPC82X_CLK_MAIN_SRC_PLLOUT) { 
 
-        /* PLLÊä³ö×÷ÎªmailÊ±ÖÓÔ´ */
+        /* PLLè¾“å‡ºä½œä¸ºmailæ—¶é’Ÿæº */
         amhw_lpc82x_clk_pllctrl_set(p_devinfo->pll_msel, p_devinfo->pll_psel);
         
         amhw_lpc82x_syscon_powerup(AMHW_LPC82X_SYSCON_PD_SYS_PLL);
 
-        /* µÈ´ıPLLËø¶¨  */
+        /* ç­‰å¾…PLLé”å®š  */
         while (!amhw_lpc82x_clk_pll_locked_chk());
     }
     
     
     if (p_devinfo->main_src == AMHW_LPC82X_CLK_MAIN_SRC_WDTOSC) {
 
-        /* WDT_OSC×÷ÎªmianÊ±ÖÓÔ´ */
+        /* WDT_OSCä½œä¸ºmianæ—¶é’Ÿæº */
         amhw_lpc82x_clk_wdtoscc_cfg(p_devinfo->wdtosc_freq, 
                                     p_devinfo->wdtosc_div);
         amhw_lpc82x_syscon_powerup(AMHW_LPC82X_SYSCON_PD_WDT_OSC);
     }
 
-    /* ÉèÖÃmainÊ±ÖÓÔ´ */
+    /* è®¾ç½®mainæ—¶é’Ÿæº */
     amhw_lpc82x_clk_main_src_set((amhw_lpc82x_clk_main_src_t)
                                  (p_devinfo->main_src));
   
-    /* ÏµÍ³Ê±ÖÓ·ÖÆµ */
+    /* ç³»ç»Ÿæ—¶é’Ÿåˆ†é¢‘ */
     amhw_lpc82x_clk_system_clkdiv_set(p_devinfo->sysclk_div);
 
-    /* ¸üĞÂÖ÷Ê±ÖÓÆµÂÊ */
+    /* æ›´æ–°ä¸»æ—¶é’Ÿé¢‘ç‡ */
     p_dev->main_clkrate = amhw_lpc82x_clk_main_clkrate_get();
 
-    /* ¸üĞÂÏµÍ³ÆµÂÊ */
+    /* æ›´æ–°ç³»ç»Ÿé¢‘ç‡ */
     p_dev->system_clkrate = (p_dev->main_clkrate / 
                                 (LPC82X_SYSCON->sysahbclkdiv & 0xFF));
 
@@ -225,7 +225,7 @@ int am_lpc82x_clk_init (am_lpc82x_clk_dev_t           *p_dev,
 }
 
 /**
- * \brief ÉèÖÃÊ±ÖÓÆµÂÊ
+ * \brief è®¾ç½®æ—¶é’Ÿé¢‘ç‡
  */
 int am_lpc82x_clk_rate_set (am_clk_id_t clk_id, uint32_t rate)
 {
@@ -233,14 +233,14 @@ int am_lpc82x_clk_rate_set (am_clk_id_t clk_id, uint32_t rate)
 
     switch (clk_id) {
 
-    /* UART »ù±¾ÊäÈëÊ±ÖÓ*/
+    /* UART åŸºæœ¬è¾“å…¥æ—¶é’Ÿ*/
     case CLK_UART0:
     case CLK_UART1:
     case CLK_UART2:
         stat = amhw_lpc82x_clk_usart_baseclkrate_set(rate);
         break;
 
-    /* Ê±ÖÓID²»Ö§³Ö */
+    /* æ—¶é’ŸIDä¸æ”¯æŒ */
     default :
         stat = -AM_ENXIO;
         break;

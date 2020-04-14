@@ -48,7 +48,7 @@ int model_temp_monitor_init (model_temp_monitor_t *p_model, float min, float max
 	p_model->temp_max = max;
 	p_model->temp_min = min;
 	p_model->temp_cur = cur;
-	__update_status(p_model);    			// ¸ù¾İ³õÊ¼Öµ¸üĞÂ×´Ì¬Öµ£¬³õÊ¼»¯×´Ì¬Öµ
+	__update_status(p_model);    			// æ ¹æ®åˆå§‹å€¼æ›´æ–°çŠ¶æ€å€¼ï¼Œåˆå§‹åŒ–çŠ¶æ€å€¼
 	return 0;
 }
 
@@ -59,8 +59,8 @@ int model_temp_monitor_cur_set(model_temp_monitor_t *p_model, float value)
 	}
 	if (p_model->temp_cur != value){
 		p_model->temp_cur = value;
-       	    	__update_status(p_model);          		// ¸üĞÂ×´Ì¬
-          	model_notify((model_t *)p_model);  		// Í¨ÖªËùÓĞÊÓÍ¼
+       	    	__update_status(p_model);          		// æ›´æ–°çŠ¶æ€
+          	model_notify((model_t *)p_model);  		// é€šçŸ¥æ‰€æœ‰è§†å›¾
 	}
 	return 0;
 }
@@ -72,8 +72,8 @@ int model_temp_monitor_max_set (model_temp_monitor_t *p_model, float value)
 	}
 	if (p_model->temp_max != value) {
 		p_model->temp_max = value;
-     		__update_status(p_model);          			// ¸üĞÂ×´Ì¬
-     		model_notify((model_t *)p_model);  			// Í¨ÖªËùÓĞÊÓÍ¼
+     		__update_status(p_model);          			// æ›´æ–°çŠ¶æ€
+     		model_notify((model_t *)p_model);  			// é€šçŸ¥æ‰€æœ‰è§†å›¾
 	}
 	return 0;
 }
@@ -87,8 +87,8 @@ int model_temp_monitor_min_set (model_temp_monitor_t *p_model, float value)
 	}
 	if (p_model->temp_min != value) {
 		p_model->temp_min = value;
-     		__update_status(p_model);          			// ¸üĞÂ×´Ì¬
-     		model_notify((model_t *)p_model);  			// Í¨ÖªËùÓĞÊÓÍ¼
+     		__update_status(p_model);          			// æ›´æ–°çŠ¶æ€
+     		model_notify((model_t *)p_model);  			// é€šçŸ¥æ‰€æœ‰è§†å›¾
 	}
 	return 0;
 }

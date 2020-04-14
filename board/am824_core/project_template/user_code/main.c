@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief LPC82X 模板工程
+ * \brief LPC82X 妯℃澘宸ョ▼
  *
  *
  * \internal
@@ -28,12 +28,12 @@
 #include "am_led.h"
 
 /**
- * \brief AMetal 应用程序入口
+ * \brief AMetal 搴旂敤绋嬪簭鍏ュ彛
  */
 void am_main (void) 
 {
     AM_DBG_INFO("Start up successful!\r\n");
-    /* 例程入口 */
+    /* 渚嬬▼鍏ュ彛 */
 
     AM_FOREVER {
         am_led_toggle(LED0);

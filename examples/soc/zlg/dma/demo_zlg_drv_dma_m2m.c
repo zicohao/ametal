@@ -12,13 +12,13 @@
 
 /**
  * \file
- * \brief DMA ÄÚ´æµ½ÄÚ´æÀı³Ì£¬Í¨¹ıÇı¶¯²ã½Ó¿ÚÊµÏÖ
+ * \brief DMA å†…å­˜åˆ°å†…å­˜ä¾‹ç¨‹ï¼Œé€šè¿‡é©±åŠ¨å±‚æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. DMA ´«Êä³É¹¦£¬´òÓ¡ "transfer success"£»
- *   2. DMA ´«Êä³ö´í£¬´òÓ¡ "transfer failure"¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. DMA ä¼ è¾“æˆåŠŸï¼Œæ‰“å° "transfer success"ï¼›
+ *   2. DMA ä¼ è¾“å‡ºé”™ï¼Œæ‰“å° "transfer failure"ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_zlg_drv_dma_m2m.c src_zlg_drv_dma_m2m
  *
  * \internal
@@ -40,15 +40,15 @@
 #include "am_zlg_dma.h"
 #include "hw/amhw_zlg_dma.h"
 
-static uint8_t g_buf_src[50];           /**< \brief Ô´¶ËÊı¾İ»º³åÇø */
-static uint8_t g_buf_dst[50];           /**< \brief Ä¿±ê¶ËÊı¾İ»º³åÇø */
+static uint8_t g_buf_src[50];           /**< \brief æºç«¯æ•°æ®ç¼“å†²åŒº */
+static uint8_t g_buf_dst[50];           /**< \brief ç›®æ ‡ç«¯æ•°æ®ç¼“å†²åŒº */
 
-static volatile am_bool_t g_trans_done; /**< \brief ´«ÊäÍê³É±êÖ¾ */
+static volatile am_bool_t g_trans_done; /**< \brief ä¼ è¾“å®Œæˆæ ‡å¿— */
 
-static amhw_zlg_dma_xfer_desc_t g_desc; /**< \brief ÃèÊö·û */
+static amhw_zlg_dma_xfer_desc_t g_desc; /**< \brief æè¿°ç¬¦ */
 
 /**
- * \brief DMA ÖĞ¶Ï·şÎñ³ÌĞò
+ * \brief DMA ä¸­æ–­æœåŠ¡ç¨‹åº
  */
 static void dma_isr (void *p_arg , uint32_t flag)
 {
@@ -58,10 +58,10 @@ static void dma_isr (void *p_arg , uint32_t flag)
 }
 
 /**
- * \brief DMA M2M Ä£Ê½²âÊÔ³ÌĞò
+ * \brief DMA M2M æ¨¡å¼æµ‹è¯•ç¨‹åº
  *
- * \retval  AM_OK    ´«Êä³É¹¦
- * \retval  AM_ERROR ´«ÊäÊ§°Ü
+ * \retval  AM_OK    ä¼ è¾“æˆåŠŸ
+ * \retval  AM_ERROR ä¼ è¾“å¤±è´¥
  */
 static int dma_m2m_test (uint8_t dma_chan)
 {
@@ -73,35 +73,35 @@ static int dma_m2m_test (uint8_t dma_chan)
         g_buf_dst[i] = 0;
     }
 
-    /* Á¬½Ó DMA ÖĞ¶Ï·şÎñº¯Êı */
+    /* è¿æ¥ DMA ä¸­æ–­æœåŠ¡å‡½æ•° */
     am_zlg_dma_isr_connect(dma_chan, dma_isr, (void *)0);
 
-    /* DMA ´«ÊäÅäÖÃ */
-    flags = AMHW_ZLG_DMA_CHAN_PRIORITY_HIGH         |  /* ÖĞ¶ÏÓÅÏÈ¼¶ ¸ß */
-            AMHW_ZLG_DMA_CHAN_MEM_SIZE_8BIT         |  /* ÄÚ´æÊı¾İ¿í¶È 1 ×Ö½Ú */
-            AMHW_ZLG_DMA_CHAN_PER_SIZE_8BIT         |  /* ÍâÉèÊı¾İ¿í¶È 1 ×Ö½Ú */
-            AMHW_ZLG_DMA_CHAN_MEM_ADD_INC_ENABLE    |  /* ÄÚ´æµØÖ·×ÔÔö */
-            AMHW_ZLG_DMA_CHAN_PER_ADD_INC_ENABLE    |  /* ÍâÉèµØÖ·×ÔÔö */
-            AMHW_ZLG_DMA_CHAN_CIRCULAR_MODE_DISABLE ;  /* ¹Ø±ÕÑ­»·Ä£Ê½ */
+    /* DMA ä¼ è¾“é…ç½® */
+    flags = AMHW_ZLG_DMA_CHAN_PRIORITY_HIGH         |  /* ä¸­æ–­ä¼˜å…ˆçº§ é«˜ */
+            AMHW_ZLG_DMA_CHAN_MEM_SIZE_8BIT         |  /* å†…å­˜æ•°æ®å®½åº¦ 1 å­—èŠ‚ */
+            AMHW_ZLG_DMA_CHAN_PER_SIZE_8BIT         |  /* å¤–è®¾æ•°æ®å®½åº¦ 1 å­—èŠ‚ */
+            AMHW_ZLG_DMA_CHAN_MEM_ADD_INC_ENABLE    |  /* å†…å­˜åœ°å€è‡ªå¢ */
+            AMHW_ZLG_DMA_CHAN_PER_ADD_INC_ENABLE    |  /* å¤–è®¾åœ°å€è‡ªå¢ */
+            AMHW_ZLG_DMA_CHAN_CIRCULAR_MODE_DISABLE ;  /* å…³é—­å¾ªç¯æ¨¡å¼ */
 
 
-    /* ½¨Á¢Í¨µÀÃèÊö·û */
-    am_zlg_dma_xfer_desc_build(&g_desc,                /* Í¨µÀÃèÊö·û */
-                                (uint32_t)(g_buf_src), /* Ô´¶ËÊı¾İ»º³åÇø */
-                                (uint32_t)(g_buf_dst), /* Ä¿±ê¶ËÊı¾İ»º³åÇø */
-                                50,                    /* ´«Êä×Ö½ÚÊı */
-                                flags);                /* ´«ÊäÅäÖÃ */
+    /* å»ºç«‹é€šé“æè¿°ç¬¦ */
+    am_zlg_dma_xfer_desc_build(&g_desc,                /* é€šé“æè¿°ç¬¦ */
+                                (uint32_t)(g_buf_src), /* æºç«¯æ•°æ®ç¼“å†²åŒº */
+                                (uint32_t)(g_buf_dst), /* ç›®æ ‡ç«¯æ•°æ®ç¼“å†²åŒº */
+                                50,                    /* ä¼ è¾“å­—èŠ‚æ•° */
+                                flags);                /* ä¼ è¾“é…ç½® */
 
-    /* Æô¶¯ DMA ´«Êä£¬ÂíÉÏ¿ªÊ¼´«Êä */
+    /* å¯åŠ¨ DMA ä¼ è¾“ï¼Œé©¬ä¸Šå¼€å§‹ä¼ è¾“ */
     if (am_zlg_dma_xfer_desc_chan_cfg(&g_desc,
-                                       AMHW_ZLG_DMA_MER_TO_MER, /* ÄÚ´æµ½ÄÚ´æ */
+                                       AMHW_ZLG_DMA_MER_TO_MER, /* å†…å­˜åˆ°å†…å­˜ */
                                        dma_chan) == AM_ERROR) {
         return AM_ERROR;
     } else {
         am_zlg_dma_chan_start(dma_chan);
     }
 
-    while(g_trans_done == AM_FALSE); /* µÈ´ı´«ÊäÍê³É */
+    while(g_trans_done == AM_FALSE); /* ç­‰å¾…ä¼ è¾“å®Œæˆ */
 
     for (i = 0; i < 50; i++) {
         if (g_buf_src[i] != g_buf_dst[i]) {
@@ -112,7 +112,7 @@ static int dma_m2m_test (uint8_t dma_chan)
 }
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_zlg_drv_dma_m2m_entry (uint32_t dma_chan)
 {

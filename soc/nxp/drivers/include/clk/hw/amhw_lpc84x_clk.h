@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief Ê±ÖÓÑ¡ÔñºÍ¿ØÖÆ½Ó¿Ú
+ * \brief æ—¶é’Ÿé€‰æ‹©å’Œæ§åˆ¶æ¥å£
  *
  * \internal
  * \par Modification history
@@ -40,21 +40,21 @@ extern "C" {
  */
 
 /**
- * \name ÆµÂÊÖµ¶¨Òå
+ * \name é¢‘ç‡å€¼å®šä¹‰
  *
- * Èç¹ûÊ¹ÓÃÁËÍâ²¿¹Ü½Å£¨PIO0_22£©×÷ÎªÊ±ÖÓÊäÈë¹Ü½Å£¬ÔòĞèÒª½«
- * AMHW_LPC84X_CLK_FREQ_CLKIN ÉèÖÃÎªÕıÈ·µÄÆµÂÊÖµ.
+ * å¦‚æœä½¿ç”¨äº†å¤–éƒ¨ç®¡è„šï¼ˆPIO0_22ï¼‰ä½œä¸ºæ—¶é’Ÿè¾“å…¥ç®¡è„šï¼Œåˆ™éœ€è¦å°†
+ * AMHW_LPC84X_CLK_FREQ_CLKIN è®¾ç½®ä¸ºæ­£ç¡®çš„é¢‘ç‡å€¼.
  *
  * @{
  */
 
-/** \brief ÄÚ²¿FROÆµÂÊ         */
+/** \brief å†…éƒ¨FROé¢‘ç‡         */
 #define AMHW_LPC84X_CLK_FREQ_IRC      24000000UL
-/** \brief Íâ²¿¹Ü½ÅµÄÊäÈëÆµÂÊ  */
+/** \brief å¤–éƒ¨ç®¡è„šçš„è¾“å…¥é¢‘ç‡  */
 #define AMHW_LPC84X_CLK_FREQ_CLKIN    12000000UL
-/** \brief ¿´ÃÅ¹·×÷ÎªÊ±ÖÓÔ´µÄÊäÈëÆµÂÊ  */
+/** \brief çœ‹é—¨ç‹—ä½œä¸ºæ—¶é’Ÿæºçš„è¾“å…¥é¢‘ç‡  */
 #define AMHW_LPC84X_WDT_FREQ_CLKIN    12000000UL
-/** \brief Íâ²¿¾§ÕñÆµÂÊ        */
+/** \brief å¤–éƒ¨æ™¶æŒ¯é¢‘ç‡        */
 #define AMHW_LPC84X_CLK_FREQ_XTAL     12000000UL
 
 /** @} */
@@ -118,158 +118,158 @@ typedef struct _ROM_API {
 } LPC_ROM_API_T;
 
 /**
- * \brief ÏµÍ³»òÍâÉèÊ±ÖÓ±àºÅ
+ * \brief ç³»ç»Ÿæˆ–å¤–è®¾æ—¶é’Ÿç¼–å·
  */
 typedef enum amhw_lpc84x_clk_periph {
-    AMHW_LPC84X_CLK_SYS = 0,           /**< \brief System Ê±ÖÓ         */
-    AMHW_LPC84X_CLK_ROM,               /**< \brief ROM Ê±ÖÓ            */
-    AMHW_LPC84X_CLK_SRAM0_1,           /**< \brief SRAM0 SRAM1 Ê±ÖÓ    */
-    AMHW_LPC84X_CLK_FLASH = 4,         /**< \brief FLASH Ê±ÖÓ          */
-    AMHW_LPC84X_CLK_I2C0,              /**< \brief I2C0Ê±ÖÓ            */
-    AMHW_LPC84X_CLK_GPIO0,              /**< \brief GPIO0 Ê±ÖÓ           */
-    AMHW_LPC84X_CLK_SWM,               /**< \brief SWM Ê±ÖÓ            */
-    AMHW_LPC84X_CLK_SCT,               /**< \brief SCT Ê±ÖÓ            */
-    AMHW_LPC84X_CLK_WKT,               /**< \brief WKT Ê±ÖÓ            */
-    AMHW_LPC84X_CLK_MRT,               /**< \brief MRTÊ±ÖÓ             */
-    AMHW_LPC84X_CLK_SPI0,              /**< \brief SPI0 Ê±ÖÓ           */
-    AMHW_LPC84X_CLK_SPI1,              /**< \brief SPI1 Ê±ÖÓ           */
-    AMHW_LPC84X_CLK_CRC,               /**< \brief CRC Ê±ÖÓ            */
-    AMHW_LPC84X_CLK_UART0,             /**< \brief UART0 Ê±ÖÓ          */
-    AMHW_LPC84X_CLK_UART1,             /**< \brief UART1 Ê±ÖÓ          */
-    AMHW_LPC84X_CLK_UART2,             /**< \brief UART2 Ê±ÖÓ          */
-    AMHW_LPC84X_CLK_WWDT,              /**< \brief WWDT Ê±ÖÓ           */
-    AMHW_LPC84X_CLK_IOCON,             /**< \brief IOCON Ê±ÖÓ          */
-    AMHW_LPC84X_CLK_ACMP,              /**< \brief ACMP Ê±ÖÓ           */
-	AMHW_LPC84X_CLK_GPIO1,             /**< \brief GPIO1 Ê±ÖÓ           */
-    AMHW_LPC84X_CLK_I2C1,              /**< \brief I2C1 Ê±ÖÓ           */
-    AMHW_LPC84X_CLK_I2C2,              /**< \brief I2C2 Ê±ÖÓ           */
-    AMHW_LPC84X_CLK_I2C3,              /**< \brief I2C3 Ê±ÖÓ           */
-    AMHW_LPC84X_CLK_ADC,               /**< \brief ADC Ê±ÖÓ            */
-	AMHW_LPC84X_CLK_CTIMER0,           /**< \brief CTIMER0 Ê±ÖÓ   */
-    AMHW_LPC84X_CLK_MTB ,              /**< \brief MTB Ê±ÖÓ            */
-	AMHW_LPC84X_CLK_DAC0,              /**< \brief ADC0 Ê±ÖÓ            */
-	AMHW_LPC84X_CLK_GPIO_INT,          /**< \brief GPIO_INT Ê±ÖÓ            */
-    AMHW_LPC84X_CLK_DMA,               /**< \brief DMA Ê±ÖÓ            */
-	AMHW_LPC84X_CLK_UART3,             /**< \brief UART3 Ê±ÖÓ          */
-	AMHW_LPC84X_CLK_UART4,             /**< \brief UART4 Ê±ÖÓ          */
-	AMHW_LPC84X_CLK_CAPT,              /**< \brief CAPT Ê±ÖÓ          */
-	AMHW_LPC84X_CLK_DAC1,              /**< \brief DAC1 Ê±ÖÓ          */
+    AMHW_LPC84X_CLK_SYS = 0,           /**< \brief System æ—¶é’Ÿ         */
+    AMHW_LPC84X_CLK_ROM,               /**< \brief ROM æ—¶é’Ÿ            */
+    AMHW_LPC84X_CLK_SRAM0_1,           /**< \brief SRAM0 SRAM1 æ—¶é’Ÿ    */
+    AMHW_LPC84X_CLK_FLASH = 4,         /**< \brief FLASH æ—¶é’Ÿ          */
+    AMHW_LPC84X_CLK_I2C0,              /**< \brief I2C0æ—¶é’Ÿ            */
+    AMHW_LPC84X_CLK_GPIO0,              /**< \brief GPIO0 æ—¶é’Ÿ           */
+    AMHW_LPC84X_CLK_SWM,               /**< \brief SWM æ—¶é’Ÿ            */
+    AMHW_LPC84X_CLK_SCT,               /**< \brief SCT æ—¶é’Ÿ            */
+    AMHW_LPC84X_CLK_WKT,               /**< \brief WKT æ—¶é’Ÿ            */
+    AMHW_LPC84X_CLK_MRT,               /**< \brief MRTæ—¶é’Ÿ             */
+    AMHW_LPC84X_CLK_SPI0,              /**< \brief SPI0 æ—¶é’Ÿ           */
+    AMHW_LPC84X_CLK_SPI1,              /**< \brief SPI1 æ—¶é’Ÿ           */
+    AMHW_LPC84X_CLK_CRC,               /**< \brief CRC æ—¶é’Ÿ            */
+    AMHW_LPC84X_CLK_UART0,             /**< \brief UART0 æ—¶é’Ÿ          */
+    AMHW_LPC84X_CLK_UART1,             /**< \brief UART1 æ—¶é’Ÿ          */
+    AMHW_LPC84X_CLK_UART2,             /**< \brief UART2 æ—¶é’Ÿ          */
+    AMHW_LPC84X_CLK_WWDT,              /**< \brief WWDT æ—¶é’Ÿ           */
+    AMHW_LPC84X_CLK_IOCON,             /**< \brief IOCON æ—¶é’Ÿ          */
+    AMHW_LPC84X_CLK_ACMP,              /**< \brief ACMP æ—¶é’Ÿ           */
+	AMHW_LPC84X_CLK_GPIO1,             /**< \brief GPIO1 æ—¶é’Ÿ           */
+    AMHW_LPC84X_CLK_I2C1,              /**< \brief I2C1 æ—¶é’Ÿ           */
+    AMHW_LPC84X_CLK_I2C2,              /**< \brief I2C2 æ—¶é’Ÿ           */
+    AMHW_LPC84X_CLK_I2C3,              /**< \brief I2C3 æ—¶é’Ÿ           */
+    AMHW_LPC84X_CLK_ADC,               /**< \brief ADC æ—¶é’Ÿ            */
+	AMHW_LPC84X_CLK_CTIMER0,           /**< \brief CTIMER0 æ—¶é’Ÿ   */
+    AMHW_LPC84X_CLK_MTB ,              /**< \brief MTB æ—¶é’Ÿ            */
+	AMHW_LPC84X_CLK_DAC0,              /**< \brief ADC0 æ—¶é’Ÿ            */
+	AMHW_LPC84X_CLK_GPIO_INT,          /**< \brief GPIO_INT æ—¶é’Ÿ            */
+    AMHW_LPC84X_CLK_DMA,               /**< \brief DMA æ—¶é’Ÿ            */
+	AMHW_LPC84X_CLK_UART3,             /**< \brief UART3 æ—¶é’Ÿ          */
+	AMHW_LPC84X_CLK_UART4,             /**< \brief UART4 æ—¶é’Ÿ          */
+	AMHW_LPC84X_CLK_CAPT,              /**< \brief CAPT æ—¶é’Ÿ          */
+	AMHW_LPC84X_CLK_DAC1,              /**< \brief DAC1 æ—¶é’Ÿ          */
 } amhw_lpc84x_clk_periph_t;
 
 /**
- * \brief PLL ÊäÈëÊ±ÖÓÔ´
+ * \brief PLL è¾“å…¥æ—¶é’Ÿæº
  */
 typedef enum amhw_lpc84x_pllinclk_src {
-    AMHW_LPC84X_CLK_PLLIN_SRC_FRO = 0,      /**< \brief ÄÚ²¿FRO   */
-    AMHW_LPC84X_CLK_PLLIN_SRC_EXTERNAL_CLK, /**< \brief Íâ²¿Ê±ÖÓ        */
-	AMHW_LPC84X_CLK_PLLIN_SRC_WTD_CLK,      /**< \brief ¿´ÃÅ¹·Ê±ÖÓ        */
-    AMHW_LPC84X_CLK_PLLIN_SRC_FRO_DIV       /**< \brief ÄÚ²¿FRO·ÖÆµÊ±ÖÓ  */
+    AMHW_LPC84X_CLK_PLLIN_SRC_FRO = 0,      /**< \brief å†…éƒ¨FRO   */
+    AMHW_LPC84X_CLK_PLLIN_SRC_EXTERNAL_CLK, /**< \brief å¤–éƒ¨æ—¶é’Ÿ        */
+	AMHW_LPC84X_CLK_PLLIN_SRC_WTD_CLK,      /**< \brief çœ‹é—¨ç‹—æ—¶é’Ÿ        */
+    AMHW_LPC84X_CLK_PLLIN_SRC_FRO_DIV       /**< \brief å†…éƒ¨FROåˆ†é¢‘æ—¶é’Ÿ  */
 } amhw_lpc84x_pllinclk_src_t;
 
 /**
- * \brief FRO ÊäÈëÊ±ÖÓÔ´
+ * \brief FRO è¾“å…¥æ—¶é’Ÿæº
  */
 typedef enum amhw_lpc84x_fro_src {
-    AMHW_LPC84X_CLK_FRO_18000000 = 0,      /**< \brief ÄÚ²¿FRO 1800000HZ   */
-	AMHW_LPC84X_CLK_FRO_30000000,          /**< \brief ÄÚ²¿FRO 3000000HZ        */
-	AMHW_LPC84X_CLK_FRO_24000000,          /**< \brief ÄÚ²¿FRO 2400000HZ         */
+    AMHW_LPC84X_CLK_FRO_18000000 = 0,      /**< \brief å†…éƒ¨FRO 1800000HZ   */
+	AMHW_LPC84X_CLK_FRO_30000000,          /**< \brief å†…éƒ¨FRO 3000000HZ        */
+	AMHW_LPC84X_CLK_FRO_24000000,          /**< \brief å†…éƒ¨FRO 2400000HZ         */
 } amhw_lpc84x_fro_src_t;
 
 
 /**                                                                    
- * \brief Íâ²¿Ê±ÖÓÔ´
+ * \brief å¤–éƒ¨æ—¶é’Ÿæº
  */                                                                    
 typedef enum amhw_lpc84x_clk_exeternal_src {
-    AMHW_LPC84X_EXTERNAL_CLK_PLLIN_SRC_SYS_OSC_CLK = 0, /**< \brief Íâ²¿¾§Õñ×÷ÎªPLLÊ±ÖÓ   */
-    AMHW_LPC84X_EXTERNAL_CLK_PLLIN_SRC_CLK_IN,          /**< \brief Òı½ÅÊäÈë×÷ÎªÊ±ÖÓ       */
+    AMHW_LPC84X_EXTERNAL_CLK_PLLIN_SRC_SYS_OSC_CLK = 0, /**< \brief å¤–éƒ¨æ™¶æŒ¯ä½œä¸ºPLLæ—¶é’Ÿ   */
+    AMHW_LPC84X_EXTERNAL_CLK_PLLIN_SRC_CLK_IN,          /**< \brief å¼•è„šè¾“å…¥ä½œä¸ºæ—¶é’Ÿ       */
 } amhw_lpc84x_clk_exeternal_src_t;
 
 /**
- * \brief Ö÷Ê±ÖÓÔ´
+ * \brief ä¸»æ—¶é’Ÿæº
  */
 typedef enum amhw_lpc84x_clk_main_src {
-    AMHW_LPC84X_MAIN_CLK_PLLIN_SRC_MAIN_CLK_PRE_PLL = 0, /**< \brief ²»¹ıPLLÊ±ÖÓ    */
-    AMHW_LPC84X_CLK_PLLIN_SRC_EXTERNAL_SYS_PLL,          /**< \brief PLLÊä³öÊ±ÖÓ       */
+    AMHW_LPC84X_MAIN_CLK_PLLIN_SRC_MAIN_CLK_PRE_PLL = 0, /**< \brief ä¸è¿‡PLLæ—¶é’Ÿ    */
+    AMHW_LPC84X_CLK_PLLIN_SRC_EXTERNAL_SYS_PLL,          /**< \brief PLLè¾“å‡ºæ—¶é’Ÿ       */
 } amhw_lpc84x_clk_main_src_t;
 
 
 /**                                                                    
- * \brief CLKOUT Òı½ÅµÄÊ±ÖÓÔ´                                          
+ * \brief CLKOUT å¼•è„šçš„æ—¶é’Ÿæº                                          
  */                                                                    
 typedef enum amhw_lpc84x_clk_clkout_src {
-    AMHW_LPC84X_CLK_CLKOUT_SRC_IRC = 0,  /**< \brief ÄÚ²¿IRC    */
-    AMHW_LPC84X_CLK_CLKOUT_SRC_SYSOSC,   /**< \brief ÏµÍ³Õñµ´Æ÷      */
-    AMHW_LPC84X_CLK_CLKOUT_SRC_WDTOSC,   /**< \brief ¿´ÃÅ¹·Õñµ´Æ÷   */
-    AMHW_LPC84X_CLK_CLKOUT_SRC_MAINCLK   /**< \brief Ö÷Ê±ÖÓ              */
+    AMHW_LPC84X_CLK_CLKOUT_SRC_IRC = 0,  /**< \brief å†…éƒ¨IRC    */
+    AMHW_LPC84X_CLK_CLKOUT_SRC_SYSOSC,   /**< \brief ç³»ç»ŸæŒ¯è¡å™¨      */
+    AMHW_LPC84X_CLK_CLKOUT_SRC_WDTOSC,   /**< \brief çœ‹é—¨ç‹—æŒ¯è¡å™¨   */
+    AMHW_LPC84X_CLK_CLKOUT_SRC_MAINCLK   /**< \brief ä¸»æ—¶é’Ÿ              */
 } amhw_lpc84x_clk_clkout_src_t;
 
 /**
- * \brief IOCON Ê±ÖÓ·ÖÆµÑ¡Ôñ
+ * \brief IOCON æ—¶é’Ÿåˆ†é¢‘é€‰æ‹©
  */ 
 typedef enum amhw_lpc84x_clk_iocon_div_t {
-    AMHW_LPC84X_CLK_IOCON_CLKDIV0 = 0,   /**< \brief IOCON Ê±ÖÓ·ÖÆµÆ÷0 */
-    AMHW_LPC84X_CLK_IOCON_CLKDIV1,       /**< \brief IOCON Ê±ÖÓ·ÖÆµÆ÷1 */
-    AMHW_LPC84X_CLK_IOCON_CLKDIV2,       /**< \brief IOCON Ê±ÖÓ·ÖÆµÆ÷2 */
-    AMHW_LPC84X_CLK_IOCON_CLKDIV3,       /**< \brief IOCON Ê±ÖÓ·ÖÆµÆ÷3 */
-    AMHW_LPC84X_CLK_IOCON_CLKDIV4,       /**< \brief IOCON Ê±ÖÓ·ÖÆµÆ÷4 */
-    AMHW_LPC84X_CLK_IOCON_CLKDIV5,       /**< \brief IOCON Ê±ÖÓ·ÖÆµÆ÷5 */
-    AMHW_LPC84X_CLK_IOCON_CLKDIV6,       /**< \brief IOCON Ê±ÖÓ·ÖÆµÆ÷6 */
+    AMHW_LPC84X_CLK_IOCON_CLKDIV0 = 0,   /**< \brief IOCON æ—¶é’Ÿåˆ†é¢‘å™¨0 */
+    AMHW_LPC84X_CLK_IOCON_CLKDIV1,       /**< \brief IOCON æ—¶é’Ÿåˆ†é¢‘å™¨1 */
+    AMHW_LPC84X_CLK_IOCON_CLKDIV2,       /**< \brief IOCON æ—¶é’Ÿåˆ†é¢‘å™¨2 */
+    AMHW_LPC84X_CLK_IOCON_CLKDIV3,       /**< \brief IOCON æ—¶é’Ÿåˆ†é¢‘å™¨3 */
+    AMHW_LPC84X_CLK_IOCON_CLKDIV4,       /**< \brief IOCON æ—¶é’Ÿåˆ†é¢‘å™¨4 */
+    AMHW_LPC84X_CLK_IOCON_CLKDIV5,       /**< \brief IOCON æ—¶é’Ÿåˆ†é¢‘å™¨5 */
+    AMHW_LPC84X_CLK_IOCON_CLKDIV6,       /**< \brief IOCON æ—¶é’Ÿåˆ†é¢‘å™¨6 */
 } amhw_lpc84x_clk_iocon_div_t;
 
 /**
- * \brief ADC Ê±ÖÓÔ´Ñ¡Ôñ
+ * \brief ADC æ—¶é’Ÿæºé€‰æ‹©
  */
 typedef enum amhw_lpc84x_adc_src {
-    AMHW_LPC84X_CLK_ADC_FRO = 0,          /**< \brief ÄÚ²¿FRO   */
-	AMHW_LPC84X_CLK_ADC_SYS_PLL0_CLK,     /**< \brief PLLÊ±ÖÓ        */
+    AMHW_LPC84X_CLK_ADC_FRO = 0,          /**< \brief å†…éƒ¨FRO   */
+	AMHW_LPC84X_CLK_ADC_SYS_PLL0_CLK,     /**< \brief PLLæ—¶é’Ÿ        */
 } amhw_lpc84x_adc_src_t;
 
 /**
- * \brief UART SPI I2C Ê±ÖÓÔ´Ñ¡Ôñ
+ * \brief UART SPI I2C æ—¶é’Ÿæºé€‰æ‹©
  */
 typedef enum amhw_lpc84x_dev_src {
-    AMHW_LPC84X_CLK_DEVICE_FRO = 0,      /**< \brief ÄÚ²¿FRO   */
-    AMHW_LPC84X_CLK_DEVICE_MAIN_CLK,     /**< \brief Ö÷Ê±ÖÓ        */
-	AMHW_LPC84X_CLK_DEVICE_FRG0CLK,      /**< \brief FRG0Ê±ÖÓ        */
-    AMHW_LPC84X_CLK_DEVICE_FRG1CLK,      /**< \brief FRG1Ê±ÖÓ  */
-	AMHW_LPC84X_CLK_DEVICE_FRO_DIV,      /**< \brief ÄÚ²¿FRO·ÖÆµÊ±ÖÓ  */
+    AMHW_LPC84X_CLK_DEVICE_FRO = 0,      /**< \brief å†…éƒ¨FRO   */
+    AMHW_LPC84X_CLK_DEVICE_MAIN_CLK,     /**< \brief ä¸»æ—¶é’Ÿ        */
+	AMHW_LPC84X_CLK_DEVICE_FRG0CLK,      /**< \brief FRG0æ—¶é’Ÿ        */
+    AMHW_LPC84X_CLK_DEVICE_FRG1CLK,      /**< \brief FRG1æ—¶é’Ÿ  */
+	AMHW_LPC84X_CLK_DEVICE_FRO_DIV,      /**< \brief å†…éƒ¨FROåˆ†é¢‘æ—¶é’Ÿ  */
 } amhw_lpc84x_dev_src_t;
 
 /**
- * \brief frg Ê±ÖÓÔ´Ñ¡Ôñ
+ * \brief frg æ—¶é’Ÿæºé€‰æ‹©
  */
 typedef enum amhw_lpc84x_frg_src {
-    AMHW_LPC84X_CLK_FRG_FRO = 0,      /**< \brief ÄÚ²¿FRO   */
-    AMHW_LPC84X_CLK_FRG_MAIN_CLK,     /**< \brief Íâ²¿Ê±ÖÓ        */
-	AMHW_LPC84X_CLK_FRG_SYS_PLL0_CLK, /**< \brief PLLÊ±ÖÓ        */
+    AMHW_LPC84X_CLK_FRG_FRO = 0,      /**< \brief å†…éƒ¨FRO   */
+    AMHW_LPC84X_CLK_FRG_MAIN_CLK,     /**< \brief å¤–éƒ¨æ—¶é’Ÿ        */
+	AMHW_LPC84X_CLK_FRG_SYS_PLL0_CLK, /**< \brief PLLæ—¶é’Ÿ        */
 } amhw_lpc84x_frg_src_t;
 
 /**
- * \brief sct Ê±ÖÓÔ´Ñ¡Ôñ
+ * \brief sct æ—¶é’Ÿæºé€‰æ‹©
  */
 typedef enum amhw_lpc84x_sct_src {
-    AMHW_LPC84X_CLK_SCT_FRO = 0,      /**< \brief ÄÚ²¿FRO   */
-    AMHW_LPC84X_CLK_SCT_MAIN_CLK,     /**< \brief Ö÷Ê±ÖÓ        */
-	AMHW_LPC84X_CLK_SCT_SYS_PLL0_CLK, /**< \brief PLLÊ±ÖÓ       */
+    AMHW_LPC84X_CLK_SCT_FRO = 0,      /**< \brief å†…éƒ¨FRO   */
+    AMHW_LPC84X_CLK_SCT_MAIN_CLK,     /**< \brief ä¸»æ—¶é’Ÿ        */
+	AMHW_LPC84X_CLK_SCT_SYS_PLL0_CLK, /**< \brief PLLæ—¶é’Ÿ       */
 } amhw_lpc84x_sct_src_t;
 
 /**
- * \brief CLKOUT Òı½ÅµÄÊ±ÖÓÔ´
+ * \brief CLKOUT å¼•è„šçš„æ—¶é’Ÿæº
  */
 typedef enum amhw_lpc84x_outclk_src {
-    AMHW_LPC84X_CLKOUT_SRC_FRO = 0,        /**< \brief ÄÚ²¿FRO   */
-    AMHW_LPC84X_CLKOUT_SRC_MAIN,           /**< \brief Ö÷Ê±ÖÓ        */
-    AMHW_LPC84X_CLKOUT_SRC_SYS_LPP0_CLK,   /**< \brief PLLÊ±ÖÓ       */
-    AMHW_LPC84X_CLKOUT_SRC_FRO_DIV,        /**< \brief ÄÚ²¿FRO·ÖÆµÊ±ÖÓ   */
-	AMHW_LPC84X_CLKOUT_SRC_FRO_WDT_OSC_CLK,/**< \brief ¿´ÃÅ¹·Ê±ÖÓ   */
+    AMHW_LPC84X_CLKOUT_SRC_FRO = 0,        /**< \brief å†…éƒ¨FRO   */
+    AMHW_LPC84X_CLKOUT_SRC_MAIN,           /**< \brief ä¸»æ—¶é’Ÿ        */
+    AMHW_LPC84X_CLKOUT_SRC_SYS_LPP0_CLK,   /**< \brief PLLæ—¶é’Ÿ       */
+    AMHW_LPC84X_CLKOUT_SRC_FRO_DIV,        /**< \brief å†…éƒ¨FROåˆ†é¢‘æ—¶é’Ÿ   */
+	AMHW_LPC84X_CLKOUT_SRC_FRO_WDT_OSC_CLK,/**< \brief çœ‹é—¨ç‹—æ—¶é’Ÿ   */
 } amhw_lpc84x_outclk_src_t;
 
 
 
 /**
- * \brief µÃµ½ÄÚ²¿FROÊ±ÖÓÆµÂÊ
+ * \brief å¾—åˆ°å†…éƒ¨FROæ—¶é’Ÿé¢‘ç‡
  *
- * \return ÄÚ²¿Ê±ÖÓÆµÂÊ£¨µ¥Î»£ºHz£©
+ * \return å†…éƒ¨æ—¶é’Ÿé¢‘ç‡ï¼ˆå•ä½ï¼šHzï¼‰
  */
 am_static_inline
 uint32_t amhw_lpc84x_clk_fro_rate_get (void)
@@ -278,9 +278,9 @@ uint32_t amhw_lpc84x_clk_fro_rate_get (void)
 }
 
 /**
- * \brief µÃµ½Íâ²¿XTALÊ±ÖÓÆµÂÊ
+ * \brief å¾—åˆ°å¤–éƒ¨XTALæ—¶é’Ÿé¢‘ç‡
  *
- * \return Íâ²¿XTALÊ±ÖÓÆµÂÊ£¨µ¥Î»£ºHz£©
+ * \return å¤–éƒ¨XTALæ—¶é’Ÿé¢‘ç‡ï¼ˆå•ä½ï¼šHzï¼‰
  */
 am_static_inline
 uint32_t amhw_lpc84x_clk_xtal_rate_get (void)
@@ -289,9 +289,9 @@ uint32_t amhw_lpc84x_clk_xtal_rate_get (void)
 }
 
 /**
- * \brief µÃµ½Íâ²¿¹Ü½ÅÊäÈëÊ±ÖÓÆµÂÊ
+ * \brief å¾—åˆ°å¤–éƒ¨ç®¡è„šè¾“å…¥æ—¶é’Ÿé¢‘ç‡
  *
- * \return Íâ²¿¹Ü½ÅÊäÈëÊ±ÖÓÆµÂÊ£¨µ¥Î»£ºHz£©
+ * \return å¤–éƒ¨ç®¡è„šè¾“å…¥æ—¶é’Ÿé¢‘ç‡ï¼ˆå•ä½ï¼šHzï¼‰
  */
 am_static_inline
 uint32_t amhw_lpc84x_clk_clkin_rate_get (void)
@@ -301,27 +301,27 @@ uint32_t amhw_lpc84x_clk_clkin_rate_get (void)
 
 
 /**
- * \brief µÃµ½WDTÕñµ´Æ÷µÄÊ±ÖÓÆµÂÊ
+ * \brief å¾—åˆ°WDTæŒ¯è¡å™¨çš„æ—¶é’Ÿé¢‘ç‡
  *
- * \return  WDTÕñµ´Æ÷µÄÊ±ÖÓÆµÂÊ£¨µ¥Î»£ºHz£©
+ * \return  WDTæŒ¯è¡å™¨çš„æ—¶é’Ÿé¢‘ç‡ï¼ˆå•ä½ï¼šHzï¼‰
  *
- * \note Õâ¸öÆµÂÊ¾«¶ÈÊÇÕı¸º40%µÄÎó²î
+ * \note è¿™ä¸ªé¢‘ç‡ç²¾åº¦æ˜¯æ­£è´Ÿ40%çš„è¯¯å·®
  */
 uint32_t amhw_lpc84x_clk_wdt_rate_get (void);
 
 /**
- * \brief PLL ¿ØÖÆ¼Ä´æÆ÷ÅäÖÃ
+ * \brief PLL æ§åˆ¶å¯„å­˜å™¨é…ç½®
  *
- * \param[in] msel : ·´À¡·ÖÆµÆ÷µÄÖµ
- * \param[in] psel : ºó±³·ÖÆµÆ÷µÄÖµ
+ * \param[in] msel : åé¦ˆåˆ†é¢‘å™¨çš„å€¼
+ * \param[in] psel : åèƒŒåˆ†é¢‘å™¨çš„å€¼
  *
- * \return ÎŞ
+ * \return æ— 
  * \note  M = msel + 1
  *        P = 2^(psel)
  *        PLLOUT = M * PLLIN;
  *        FCCO = 2 * P * PLLOUT;
- *        PLLIN½ÓÊÕÊäÈëÆµÂÊ10MHz¡«25MHz£¬ÉèÖÃMµÄÖµÊ¹µÃPLLOUTÊä³öÆµÂÊµÍÓÚ100MHz,
- *        ÉèÖÃPµÄÖµÊ¹FCCOÆµÂÊÔÚ156MHz¡«320MHz
+ *        PLLINæ¥æ”¶è¾“å…¥é¢‘ç‡10MHzï½25MHzï¼Œè®¾ç½®Mçš„å€¼ä½¿å¾—PLLOUTè¾“å‡ºé¢‘ç‡ä½äº100MHz,
+ *        è®¾ç½®Pçš„å€¼ä½¿FCCOé¢‘ç‡åœ¨156MHzï½320MHz
  */
 am_static_inline
 void amhw_lpc84x_clk_pllctrl_set (uint8_t msel, uint8_t psel)
@@ -330,11 +330,11 @@ void amhw_lpc84x_clk_pllctrl_set (uint8_t msel, uint8_t psel)
 }
 
 /**
- * \brief Íâ²¿Ê±ÖÓÔ´Ñ¡Ôñ
+ * \brief å¤–éƒ¨æ—¶é’Ÿæºé€‰æ‹©
  *
- * \param[in] src : Íâ²¿Ê±ÖÓ
+ * \param[in] src : å¤–éƒ¨æ—¶é’Ÿ
  *
- * \return ÎŞ
+ * \return æ— 
  *
  */
 am_static_inline
@@ -345,11 +345,11 @@ void amhw_lpc84x_external_clk_src_set (amhw_lpc84x_pllinclk_src_t src)
 
 
 /**
- * \brief PLLÊ±ÖÓÔ´Ñ¡Ôñ
+ * \brief PLLæ—¶é’Ÿæºé€‰æ‹©
  *
- * \param[in] src : PLLÊ±ÖÓÔ´
+ * \param[in] src : PLLæ—¶é’Ÿæº
  * 
- * \return ÎŞ
+ * \return æ— 
  *
  */
 am_static_inline
@@ -357,17 +357,17 @@ void amhw_lpc84x_clk_pll_src_set (amhw_lpc84x_pllinclk_src_t src)
 {
     LPC84X_SYSCON->syspllclksel = (uint32_t)src;
     
-    /* ¸üĞÂPLLÊ±ÖÓ */
+    /* æ›´æ–°PLLæ—¶é’Ÿ */
     LPC84X_SYSCON->syspllclkuen = 0x00;
     LPC84X_SYSCON->syspllclkuen = 0x01;
 }    
 
 /**
- * \brief Ê¹ÄÜÖ¸¶¨µÄÏµÍ³»òÍâÉèÊ±ÖÓ
+ * \brief ä½¿èƒ½æŒ‡å®šçš„ç³»ç»Ÿæˆ–å¤–è®¾æ—¶é’Ÿ
  *
- * \param[in] clk : Ö¸¶¨µÄ´ıÊ¹ÄÜµÄÏµÍ³»òÍâÉèÊ±ÖÓ
+ * \param[in] clk : æŒ‡å®šçš„å¾…ä½¿èƒ½çš„ç³»ç»Ÿæˆ–å¤–è®¾æ—¶é’Ÿ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_lpc84x_clk_periph_enable (amhw_lpc84x_clk_periph_t clk)
@@ -380,11 +380,11 @@ void amhw_lpc84x_clk_periph_enable (amhw_lpc84x_clk_periph_t clk)
 }
 
 /**
- * \brief ½ûÄÜÖ¸¶¨µÄÏµÍ³»òÍâÉèÊ±ÖÓ
+ * \brief ç¦èƒ½æŒ‡å®šçš„ç³»ç»Ÿæˆ–å¤–è®¾æ—¶é’Ÿ
  *
- * \param[in] clk : Ö¸¶¨µÄ´ı½ûÄÜµÄÏµÍ³»òÍâÉèÊ±ÖÓ
+ * \param[in] clk : æŒ‡å®šçš„å¾…ç¦èƒ½çš„ç³»ç»Ÿæˆ–å¤–è®¾æ—¶é’Ÿ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_lpc84x_clk_periph_disable (amhw_lpc84x_clk_periph_t clk)
@@ -397,24 +397,24 @@ void amhw_lpc84x_clk_periph_disable (amhw_lpc84x_clk_periph_t clk)
 }
 
 /**
- * \brief »ñÈ¡ÏµÍ³PLLÊä³öÊ±ÖÓÆµÂÊ
+ * \brief è·å–ç³»ç»ŸPLLè¾“å‡ºæ—¶é’Ÿé¢‘ç‡
  *
- * \return PLLÊä³öÊ±ÖÓÆµÂÊ
+ * \return PLLè¾“å‡ºæ—¶é’Ÿé¢‘ç‡
  */
 uint32_t amhw_lpc84x_clk_pllout_rate_get (void);
 
 /**
- * \brief »ñÈ¡ÏµÍ³PLLÊäÈëÊ±ÖÓÆµÂÊ
+ * \brief è·å–ç³»ç»ŸPLLè¾“å…¥æ—¶é’Ÿé¢‘ç‡
  *
- * \return PLLÊäÈëÊ±ÖÓÆµÂÊ
+ * \return PLLè¾“å…¥æ—¶é’Ÿé¢‘ç‡
  */
 uint32_t amhw_lpc84x_clk_pllin_rate_get (void);
 
 /**
- * \brief ÅĞ¶ÏPLLÊÇ·ñËø¶¨
+ * \brief åˆ¤æ–­PLLæ˜¯å¦é”å®š
  *
- * \return AM_TRUE  Ëø¶¨
- *          AM_FALSE Î´Ëø¶¨
+ * \return AM_TRUE  é”å®š
+ *          AM_FALSE æœªé”å®š
  */
 am_static_inline
 am_bool_t amhw_lpc84x_clk_pll_locked_chk (void)
@@ -423,12 +423,12 @@ am_bool_t amhw_lpc84x_clk_pll_locked_chk (void)
 }
 
 /**
- * \brief ÏµÍ³Õñµ´Æ÷ÅÔÂ·¿ØÖÆÊ¹ÄÜ/½ûÄÜ
+ * \brief ç³»ç»ŸæŒ¯è¡å™¨æ—è·¯æ§åˆ¶ä½¿èƒ½/ç¦èƒ½
  *
- * \param[in] bypass : ÅÔÂ·ÏµÍ³Õñµ´Æ÷  AM_FALSE-½ûÄÜ,TURE-Ê¹ÄÜ
- * \param[in] highfr : Õñµ´Æ÷ÆµÂÊ·¶Î§  AM_FALSE: 1-20MHz TRUE:15-25MHz
+ * \param[in] bypass : æ—è·¯ç³»ç»ŸæŒ¯è¡å™¨  AM_FALSE-ç¦èƒ½,TURE-ä½¿èƒ½
+ * \param[in] highfr : æŒ¯è¡å™¨é¢‘ç‡èŒƒå›´  AM_FALSE: 1-20MHz TRUE:15-25MHz
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_lpc84x_clk_pll_bypass_set (am_bool_t bypass, am_bool_t highfr)
@@ -447,27 +447,27 @@ void amhw_lpc84x_clk_pll_bypass_set (am_bool_t bypass, am_bool_t highfr)
 }
 
 /**
- * \brief ÉèÖÃ main Ê±ÖÓÔ´
+ * \brief è®¾ç½® main æ—¶é’Ÿæº
  *
- * \param[in] src : mainÊ±ÖÓÔ´
+ * \param[in] src : mainæ—¶é’Ÿæº
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_lpc84x_clk_main_src_set (amhw_lpc84x_clk_main_src_t src)
 {
     LPC84X_SYSCON->mainclkpllsel = (uint32_t)src;
     
-    /* ¸üĞÂmainÊ±ÖÓ */
+    /* æ›´æ–°mainæ—¶é’Ÿ */
     LPC84X_SYSCON->mainclkplluen = 0x00;
     LPC84X_SYSCON->mainclkplluen = 0x01;
 }
 
 
 /**
- * \brief µÃµ½ main Ê±ÖÓÔ´
+ * \brief å¾—åˆ° main æ—¶é’Ÿæº
  *
- * \return main Ê±ÖÓÔ´
+ * \return main æ—¶é’Ÿæº
  */
 am_static_inline
 amhw_lpc84x_clk_main_src_t amhw_lpc84x_clk_main_src_get (void)
@@ -476,9 +476,9 @@ amhw_lpc84x_clk_main_src_t amhw_lpc84x_clk_main_src_get (void)
 }
 
 /**
- * \brief µÃµ½ main Ê±ÖÓÔ´
+ * \brief å¾—åˆ° main æ—¶é’Ÿæº
  *
- * \return main Ê±ÖÓÔ´
+ * \return main æ—¶é’Ÿæº
  */
 am_static_inline
 amhw_lpc84x_outclk_src_t amhw_lpc84x_outclk_src_get (void)
@@ -486,11 +486,11 @@ amhw_lpc84x_outclk_src_t amhw_lpc84x_outclk_src_get (void)
     return (amhw_lpc84x_outclk_src_t)(LPC84X_SYSCON->clkoutsel);
 }
 /**
- * \brief Íâ²¿Ê±ÖÓÊä³öÑ¡Ôñ
+ * \brief å¤–éƒ¨æ—¶é’Ÿè¾“å‡ºé€‰æ‹©
  *
- * \param[in] src : Êä³öµÄÍâ²¿
+ * \param[in] src : è¾“å‡ºçš„å¤–éƒ¨
  *
- * \return ÎŞ
+ * \return æ— 
  *
  */
 am_static_inline
@@ -500,11 +500,11 @@ void amhw_lpc84x_outclk_src_set (amhw_lpc84x_outclk_src_t src)
 }
 
 /**
- * \brief Íâ²¿Ê±ÖÓÊä³öÑ¡Ôñ
+ * \brief å¤–éƒ¨æ—¶é’Ÿè¾“å‡ºé€‰æ‹©
  *
- * \param[in] src : Êä³öµÄÍâ²¿
+ * \param[in] src : è¾“å‡ºçš„å¤–éƒ¨
  *
- * \return ÎŞ
+ * \return æ— 
  *
  */
 am_static_inline
@@ -514,33 +514,33 @@ void amhw_lpc84x_outclk_div_set ( uint32_t div)
 }
 
 /**
- * \brief µÃµ½ main Ê±ÖÓÆµÂÊ
+ * \brief å¾—åˆ° main æ—¶é’Ÿé¢‘ç‡
  *
- * \return  main Ê±ÖÓÆµÂÊ£¨µ¥Î»:Hz£©
+ * \return  main æ—¶é’Ÿé¢‘ç‡ï¼ˆå•ä½:Hzï¼‰
  */
 uint32_t amhw_lpc84x_clk_main_clkrate_get (void);
 
 /**
- * \brief µÃµ½ outclkÊ±ÖÓÆµÂÊ
+ * \brief å¾—åˆ° outclkæ—¶é’Ÿé¢‘ç‡
  */
 uint32_t amhw_lpc84x_outclk_clkrate_get (void);
 
 /**
- * \brief ÉèÖÃ CLKOUT Ê±ÖÓÔ´ºÍ·ÖÆµÖµ
+ * \brief è®¾ç½® CLKOUT æ—¶é’Ÿæºå’Œåˆ†é¢‘å€¼
  *
- * \param[in] src : CLKOUTµÄÊ±ÖÓÔ´
- * \param[in] div : ¶ÔCLKOUTÊ±ÖÓÔ´µÄ·ÖÆµ
+ * \param[in] src : CLKOUTçš„æ—¶é’Ÿæº
+ * \param[in] div : å¯¹CLKOUTæ—¶é’Ÿæºçš„åˆ†é¢‘
  *
- * \return ÎŞ
+ * \return æ— 
  *
- * \note ·ÖÆµÖµÎª0Ê±½«½ûÄÜCLKOUTµÄÊä³ö£¬ÆäËüÓĞĞ§ÖµÎª1~255. 
- *       ×îÖÕCLKOUT¹Ü½ÅÊä³öµÄÊ±ÖÓÆµÂÊÎªCLKOUTÊ±ÖÓÔ´µÄÆµÂÊ³ıÒÔ·ÖÆµÏµÊı¡£
+ * \note åˆ†é¢‘å€¼ä¸º0æ—¶å°†ç¦èƒ½CLKOUTçš„è¾“å‡ºï¼Œå…¶å®ƒæœ‰æ•ˆå€¼ä¸º1~255. 
+ *       æœ€ç»ˆCLKOUTç®¡è„šè¾“å‡ºçš„æ—¶é’Ÿé¢‘ç‡ä¸ºCLKOUTæ—¶é’Ÿæºçš„é¢‘ç‡é™¤ä»¥åˆ†é¢‘ç³»æ•°ã€‚
  */
 void amhw_lpc84x_clk_clkout_config (amhw_lpc84x_clk_clkout_src_t src,
                                     uint32_t                     div);
 
 /**
- * \name  WDTOSC¿ÉÑ¡ÆµÂÊ¶¨Òå
+ * \name  WDTOSCå¯é€‰é¢‘ç‡å®šä¹‰
  * \anchor grp_amhw_lpc84x_clk_wdtosc_rate
  *  @{
  */
@@ -563,15 +563,15 @@ void amhw_lpc84x_clk_clkout_config (amhw_lpc84x_clk_clkout_src_t src,
 /** @} */
 
 /**
- * \brief WDTOSC ¿ØÖÆ¼Ä´æÆ÷ÅäÖÃ
+ * \brief WDTOSC æ§åˆ¶å¯„å­˜å™¨é…ç½®
  *
- * \param[in] rate : Ñ¡Ôñ¿´ÃÅ¹·Õñµ´Æ÷Êä³öÆµÂÊ, 
- *                   ²Î¼û \ref grp_amhw_lpc84x_clk_wdtosc_rate
- * \param[in] div  : ÎªFclkanaÑ¡Ôñ·ÖÆµÏµÊı, 2 - 64Ö®¼äµÄÅ¼Êı
+ * \param[in] rate : é€‰æ‹©çœ‹é—¨ç‹—æŒ¯è¡å™¨è¾“å‡ºé¢‘ç‡, 
+ *                   å‚è§ \ref grp_amhw_lpc84x_clk_wdtosc_rate
+ * \param[in] div  : ä¸ºFclkanaé€‰æ‹©åˆ†é¢‘ç³»æ•°, 2 - 64ä¹‹é—´çš„å¶æ•°
  *
- * \return ÎŞ
+ * \return æ— 
  * 
- * \note  ¿´ÃÅ¹·Õñµ´Æ÷ÆµÂÊÔÚ¸´Î»ºóĞèÒªÖØĞÂÅäÖÃ
+ * \note  çœ‹é—¨ç‹—æŒ¯è¡å™¨é¢‘ç‡åœ¨å¤ä½åéœ€è¦é‡æ–°é…ç½®
  */
 am_static_inline
 void amhw_lpc84x_clk_wdtoscc_cfg (uint8_t rate,
@@ -582,14 +582,14 @@ void amhw_lpc84x_clk_wdtoscc_cfg (uint8_t rate,
 }
 
 /**
- * \brief ÉèÖÃÏµÍ³Ê±ÖÓ·ÖÆµÖµ
+ * \brief è®¾ç½®ç³»ç»Ÿæ—¶é’Ÿåˆ†é¢‘å€¼
  *
- * \param[in] div : ÏµÍ³Ê±ÖÓ·ÖÆµÖµ
+ * \param[in] div : ç³»ç»Ÿæ—¶é’Ÿåˆ†é¢‘å€¼
  *
- * \return ÎŞ
+ * \return æ— 
  *
- * \note ·ÖÆµÖµÎª0Ê±½«½ûÄÜÏµÍ³Ê±ÖÓ£¬ÆäËüÓĞĞ§ÖµÎª1~255.
- *       ÏµÍ³Ê±ÖÓÆµÂÊÎªÖ÷Ê±ÖÓÆµÂÊ³ıÒÔ¸Ã´¦ÉèÖÃµÄÏµÍ³Ê±ÖÓ·ÖÆµÖµ¡£
+ * \note åˆ†é¢‘å€¼ä¸º0æ—¶å°†ç¦èƒ½ç³»ç»Ÿæ—¶é’Ÿï¼Œå…¶å®ƒæœ‰æ•ˆå€¼ä¸º1~255.
+ *       ç³»ç»Ÿæ—¶é’Ÿé¢‘ç‡ä¸ºä¸»æ—¶é’Ÿé¢‘ç‡é™¤ä»¥è¯¥å¤„è®¾ç½®çš„ç³»ç»Ÿæ—¶é’Ÿåˆ†é¢‘å€¼ã€‚
  */
 am_static_inline
 void amhw_lpc84x_clk_system_clkdiv_set (uint8_t div)
@@ -598,9 +598,9 @@ void amhw_lpc84x_clk_system_clkdiv_set (uint8_t div)
 }
 
 /**
- * \brief µÃµ½ÏµÍ³Ê±ÖÓ·ÖÆµÖµ
+ * \brief å¾—åˆ°ç³»ç»Ÿæ—¶é’Ÿåˆ†é¢‘å€¼
  *
- * \return ÏµÍ³Ê±ÖÓ·ÖÆµÖµ
+ * \return ç³»ç»Ÿæ—¶é’Ÿåˆ†é¢‘å€¼
  */
 am_static_inline
 uint8_t amhw_lpc84x_clk_system_clkdiv_get (void)
@@ -609,21 +609,21 @@ uint8_t amhw_lpc84x_clk_system_clkdiv_get (void)
 }
 
 /**
- * \brief µÃµ½ÏµÍ³Ê±ÖÓÆµÂÊ
+ * \brief å¾—åˆ°ç³»ç»Ÿæ—¶é’Ÿé¢‘ç‡
  *
- * \return ÏµÍ³Ê±ÖÓÆµÂÊ
+ * \return ç³»ç»Ÿæ—¶é’Ÿé¢‘ç‡
  */
 uint32_t amhw_lpc84x_clk_system_clkrate_get (void);
 
 /**
- * \brief ´®¿ÚÊ±ÖÓ·ÖÆµ
+ * \brief ä¸²å£æ—¶é’Ÿåˆ†é¢‘
  *
- * \param[in] div : ·ÖÆµÊıÖµÉè¶¨
+ * \param[in] div : åˆ†é¢‘æ•°å€¼è®¾å®š
  *
- * \return ÎŞ
+ * \return æ— 
  *
- * \note ·ÖÆµÖµÎª0Ê±½«½ûÄÜ´®¿ÚÊ±ÖÓ£¬ÆäËüÓĞĞ§ÖµÎª1~255.
- *       ´®¿ÚÊ±ÖÓÆµÂÊÎªÖ÷Ê±ÖÓÆµÂÊ³ıÒÔ¸Ã´¦ÉèÖÃµÄ´®¿ÚÊ±ÖÓ·ÖÆµÖµ¡£
+ * \note åˆ†é¢‘å€¼ä¸º0æ—¶å°†ç¦èƒ½ä¸²å£æ—¶é’Ÿï¼Œå…¶å®ƒæœ‰æ•ˆå€¼ä¸º1~255.
+ *       ä¸²å£æ—¶é’Ÿé¢‘ç‡ä¸ºä¸»æ—¶é’Ÿé¢‘ç‡é™¤ä»¥è¯¥å¤„è®¾ç½®çš„ä¸²å£æ—¶é’Ÿåˆ†é¢‘å€¼ã€‚
  */
 am_static_inline
 void amhw_lpc84x_syscon_uartclkdiv_set(uint8_t div)
@@ -632,125 +632,125 @@ void amhw_lpc84x_syscon_uartclkdiv_set(uint8_t div)
 }
 
 /**
- * \brief »ñÈ¡ADC»ù±¾ÊäÈëÆµÂÊ
- * \return ÎŞ
+ * \brief è·å–ADCåŸºæœ¬è¾“å…¥é¢‘ç‡
+ * \return æ— 
  */
 uint32_t amhw_lpc84x_clk_adc_baseclkrate_get (void);
 
 /**
- * \brief »ñÈ¡SCT»ù±¾ÊäÈëÆµÂÊ
- * \return ÎŞ
+ * \brief è·å–SCTåŸºæœ¬è¾“å…¥é¢‘ç‡
+ * \return æ— 
  */
 uint32_t amhw_lpc84x_clk_sct_baseclkrate_get (void);
 
 /**
- * \brief »ñÈ¡´®¿ÚI2CºÍSPI»ù±¾ÊäÈëÆµÂÊ
+ * \brief è·å–ä¸²å£I2Cå’ŒSPIåŸºæœ¬è¾“å…¥é¢‘ç‡
  *
- * \return ´®¿Ú»ù±¾ÊäÈëÆµÂÊÖµ
+ * \return ä¸²å£åŸºæœ¬è¾“å…¥é¢‘ç‡å€¼
  */
 uint32_t amhw_lpc84x_clk_usart_i2c_spi_baseclkrate_get (int id);
 
 
 /**
- * \brief ÉèÖÃUART0Ê±ÖÓÊäÈëÔ´
+ * \brief è®¾ç½®UART0æ—¶é’Ÿè¾“å…¥æº
  */
 void amhw_lpc84x_clk_uart0_clk_sel_set (uint32_t uart_clk_sel);
 
 /**
- * \brief ÉèÖÃUART1Ê±ÖÓÊäÈëÔ´
+ * \brief è®¾ç½®UART1æ—¶é’Ÿè¾“å…¥æº
  */
 void amhw_lpc84x_clk_uart1_clk_sel_set (uint32_t uart_clk_sel);
 
 /**
- * \brief ÉèÖÃUART2Ê±ÖÓÊäÈëÔ´
+ * \brief è®¾ç½®UART2æ—¶é’Ÿè¾“å…¥æº
  */
 void amhw_lpc84x_clk_uart2_clk_sel_set (uint32_t uart_clk_sel);
 /**
- * \brief ÉèÖÃUART3Ê±ÖÓÊäÈëÔ´
+ * \brief è®¾ç½®UART3æ—¶é’Ÿè¾“å…¥æº
  */
 void amhw_lpc84x_clk_uart3_clk_sel_set (uint32_t uart_clk_sel);
 
 /**
- * \brief ÉèÖÃUART4Ê±ÖÓÊäÈëÔ´
+ * \brief è®¾ç½®UART4æ—¶é’Ÿè¾“å…¥æº
  */
 void amhw_lpc84x_clk_uart4_clk_sel_set (uint32_t uart_clk_sel);
 
 /**
- * \brief ÉèÖÃi2c0Ê±ÖÓÊäÈëÔ´
+ * \brief è®¾ç½®i2c0æ—¶é’Ÿè¾“å…¥æº
  */
 void amhw_lpc84x_clk_i2c0_clk_sel_set (uint32_t i2c_clk_sel);
 
 /**
- * \brief ÉèÖÃi2c1Ê±ÖÓÊäÈëÔ´
+ * \brief è®¾ç½®i2c1æ—¶é’Ÿè¾“å…¥æº
  */
 void amhw_lpc84x_clk_i2c1_clk_sel_set (uint32_t i2c_clk_sel);
 
 /**
- * \brief ÉèÖÃi2c2Ê±ÖÓÊäÈëÔ´
+ * \brief è®¾ç½®i2c2æ—¶é’Ÿè¾“å…¥æº
  */
 void amhw_lpc84x_clk_i2c2_clk_sel_set (uint32_t i2c_clk_sel);
 
 /**
- * \brief ÉèÖÃUART0Ê±ÖÓÊäÈëÔ´
+ * \brief è®¾ç½®UART0æ—¶é’Ÿè¾“å…¥æº
  */
 void amhw_lpc84x_clk_i2c3_clk_sel_set (uint32_t i2c_clk_sel);
 
 /**
- * \brief ÉèÖÃspi0Ê±ÖÓÊäÈëÔ´
+ * \brief è®¾ç½®spi0æ—¶é’Ÿè¾“å…¥æº
  */
 void amhw_lpc84x_clk_spi0_clk_sel_set (uint32_t spi_clk_sel);
 
 /**
- * \brief ÉèÖÃUART0Ê±ÖÓÊäÈëÔ´
+ * \brief è®¾ç½®UART0æ—¶é’Ÿè¾“å…¥æº
  */
 void amhw_lpc84x_clk_spi1_clk_sel_set (uint32_t spi_clk_sel);
 
 /**
- * \brief ÉèÖÃcapÊ±ÖÓÊäÈëÔ´
+ * \brief è®¾ç½®capæ—¶é’Ÿè¾“å…¥æº
  */
 void amhw_lpc84x_clk_cap_clk_sel_set (uint32_t cap_clk_sel);
 
 /**
- * \brief ÉèÖÃsctÊ±ÖÓÊäÈëÔ´
+ * \brief è®¾ç½®sctæ—¶é’Ÿè¾“å…¥æº
  */
 void amhw_lpc84x_sct_clk_sel_set (uint32_t sct_clk_sel, uint8_t sct_clk_div);
 
 /**
- * \brief ÉèÖÃadcÊ±ÖÓÊäÈëÔ´
+ * \brief è®¾ç½®adcæ—¶é’Ÿè¾“å…¥æº
  */
 void amhw_lpc84x_clk_adc_sel_set (uint32_t adc_clk_sel, uint8_t adc_clk_div);
 /**
- * \brief ÉèÖÃ´®¿Ú»ù±¾ÊäÈëÆµÂÊ
+ * \brief è®¾ç½®ä¸²å£åŸºæœ¬è¾“å…¥é¢‘ç‡
  *
- * \param[in] rate : ÆÚÍûµÄ´®¿Ú»ù±¾ÊäÈëÆµÂÊÉèÖÃÖµ£¨±ØĞëĞ¡ÓÚÏµÍ³Ê±ÖÓÆµÂÊ£©
+ * \param[in] rate : æœŸæœ›çš„ä¸²å£åŸºæœ¬è¾“å…¥é¢‘ç‡è®¾ç½®å€¼ï¼ˆå¿…é¡»å°äºç³»ç»Ÿæ—¶é’Ÿé¢‘ç‡ï¼‰
  *
- * \retval   AM_OK     : ²Ù×÷³É¹¦
- * \retval  -AM_EINVAL : ÎŞĞ§²ÎÊı
+ * \retval   AM_OK     : æ“ä½œæˆåŠŸ
+ * \retval  -AM_EINVAL : æ— æ•ˆå‚æ•°
  *
- * \note Êµ¼ÊµÄ´®¿Ú»ù±¾ÊäÈëÆµÂÊÖµ£¬¿ÉÄÜÓëÆÚÍûÖµ´æÔÚÆ«²î
+ * \note å®é™…çš„ä¸²å£åŸºæœ¬è¾“å…¥é¢‘ç‡å€¼ï¼Œå¯èƒ½ä¸æœŸæœ›å€¼å­˜åœ¨åå·®
  */
 int amhw_lpc84x_clk_frg0_baseclkrate_set (uint32_t rate);
 
 /**
- * \brief ÉèÖÃ´®¿Ú»ù±¾ÊäÈëÆµÂÊ
+ * \brief è®¾ç½®ä¸²å£åŸºæœ¬è¾“å…¥é¢‘ç‡
  *
- * \param[in] rate : ÆÚÍûµÄ´®¿Ú»ù±¾ÊäÈëÆµÂÊÉèÖÃÖµ£¨±ØĞëĞ¡ÓÚÏµÍ³Ê±ÖÓÆµÂÊ£©
+ * \param[in] rate : æœŸæœ›çš„ä¸²å£åŸºæœ¬è¾“å…¥é¢‘ç‡è®¾ç½®å€¼ï¼ˆå¿…é¡»å°äºç³»ç»Ÿæ—¶é’Ÿé¢‘ç‡ï¼‰
  *
- * \retval   AM_OK     : ²Ù×÷³É¹¦
- * \retval  -AM_EINVAL : ÎŞĞ§²ÎÊı
+ * \retval   AM_OK     : æ“ä½œæˆåŠŸ
+ * \retval  -AM_EINVAL : æ— æ•ˆå‚æ•°
  *
- * \note Êµ¼ÊµÄ´®¿Ú»ù±¾ÊäÈëÆµÂÊÖµ£¬¿ÉÄÜÓëÆÚÍûÖµ´æÔÚÆ«²î
+ * \note å®é™…çš„ä¸²å£åŸºæœ¬è¾“å…¥é¢‘ç‡å€¼ï¼Œå¯èƒ½ä¸æœŸæœ›å€¼å­˜åœ¨åå·®
  */
 int amhw_lpc84x_clk_frg1_baseclkrate_set (uint32_t rate);
 
 /**
- * \brief ÉèÖÃ IOCON Ê±ÖÓ·ÖÆµ
+ * \brief è®¾ç½® IOCON æ—¶é’Ÿåˆ†é¢‘
  *
- * \param[in] divider : ½«ÒªÉèÖÃµÄIOCON·ÖÆµÆ÷
- * \param[in] div     : ·ÖÆµÖµ
+ * \param[in] divider : å°†è¦è®¾ç½®çš„IOCONåˆ†é¢‘å™¨
+ * \param[in] div     : åˆ†é¢‘å€¼
  *
- * \return ÎŞ
- * \note ÉèÖÃ·ÖÆµÖµ0Ê¹¹Ø±Õ£¬ÆäËû·ÖÆµÖµ0-255
+ * \return æ— 
+ * \note è®¾ç½®åˆ†é¢‘å€¼0ä½¿å…³é—­ï¼Œå…¶ä»–åˆ†é¢‘å€¼0-255
  */
 am_static_inline
 void amhw_lpc84x_clk_iocon_div_set (amhw_lpc84x_clk_iocon_div_t divider,
@@ -762,11 +762,11 @@ void amhw_lpc84x_clk_iocon_div_set (amhw_lpc84x_clk_iocon_div_t divider,
 }
 
 /**
- * \brief »ñÈ¡IOCON Ê±ÖÓÆµÂÊ
+ * \brief è·å–IOCON æ—¶é’Ÿé¢‘ç‡
  *
- * \param[in] divider : ½«Òª»ñÈ¡µÄIOCON·ÖÆµÆ÷
+ * \param[in] divider : å°†è¦è·å–çš„IOCONåˆ†é¢‘å™¨
  *
- * \return ¶ÔÓ¦IOCONÂö³åÂË²¨Æ÷ÆµÂÊ
+ * \return å¯¹åº”IOCONè„‰å†²æ»¤æ³¢å™¨é¢‘ç‡
  */
 am_static_inline
 uint32_t 
@@ -778,11 +778,11 @@ amhw_lpc84x_clk_iocon_rate_get (amhw_lpc84x_clk_iocon_div_t divider)
 }
 
 /**
- * \brief ÉèÖÃÖ÷Ê±ÖÓ
+ * \brief è®¾ç½®ä¸»æ—¶é’Ÿ
  *
- * \param[in] main_sel : Ñ¡ÔñµÄÊ±ÖÓÔ´
+ * \param[in] main_sel : é€‰æ‹©çš„æ—¶é’Ÿæº
  *
- * \return ¶ÔÓ¦IOCONÂö³åÂË²¨Æ÷ÆµÂÊ
+ * \return å¯¹åº”IOCONè„‰å†²æ»¤æ³¢å™¨é¢‘ç‡
  */
 am_static_inline
 void amhw_lpc84x_clk_mainclk_set(uint8_t main_sel)
@@ -793,9 +793,9 @@ void amhw_lpc84x_clk_mainclk_set(uint8_t main_sel)
 }
 
 /**
- * \brief ÉèÖÃfroÊ±ÖÓ
+ * \brief è®¾ç½®froæ—¶é’Ÿ
  *
- * \param[in] sel : Ñ¡ÔñµÄ¿ØÖÆÊ±ÖÓÔ´
+ * \param[in] sel : é€‰æ‹©çš„æ§åˆ¶æ—¶é’Ÿæº
  *
  * \return
  */
@@ -813,11 +813,11 @@ void amhw_lpc84x_clk_fro_set(uint32_t fro_sel)
 }
 
 /**
- * \brief ÉèÖÃÖ÷Ê±ÖÓ·ÖÆµÖµ
+ * \brief è®¾ç½®ä¸»æ—¶é’Ÿåˆ†é¢‘å€¼
  *
- * \param[in] div : Ê±ÖÓÔ´·ÖÆµÖµ
+ * \param[in] div : æ—¶é’Ÿæºåˆ†é¢‘å€¼
  *
- * \return ¶ÔÓ¦IOCONÂö³åÂË²¨Æ÷ÆµÂÊ
+ * \return å¯¹åº”IOCONè„‰å†²æ»¤æ³¢å™¨é¢‘ç‡
  */
 am_static_inline
 void amhw_lpc84x_clk_main_div_set(uint8_t div)
@@ -826,11 +826,11 @@ void amhw_lpc84x_clk_main_div_set(uint8_t div)
 }
 
 /**
- * \brief µÃµ½ÍâÉèµÄÊäÈëÆµÂÊ
+ * \brief å¾—åˆ°å¤–è®¾çš„è¾“å…¥é¢‘ç‡
  *
- * \param[in] p_periph : Ö¸ÏòÍâÉèµÄ¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_periph : æŒ‡å‘å¤–è®¾çš„å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÍâÉèµÄÊäÈëÆµÂÊ
+ * \return å¤–è®¾çš„è¾“å…¥é¢‘ç‡
  *
  */
 uint32_t amhw_lpc84x_clk_periph_freq_get (void *p_periph);

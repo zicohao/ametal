@@ -12,17 +12,17 @@
 
 /**
  * \file
- * \brief I2S ·¢ËÍ£¨DMA·½Ê½£©Àı³Ì£¬Í¨¹ıHW²ã½Ó¿ÚÊµÏÖ
+ * \brief I2S å‘é€ï¼ˆDMAæ–¹å¼ï¼‰ä¾‹ç¨‹ï¼Œé€šè¿‡HWå±‚æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè£º
- *   1. °´ÕÕI2S Ïà¹ØÒı½Å½ÓÏßTX_D0¡¢TX_FS¡¢TX_BCLKµ½Âß¼­·ÖÎöÒÇ¡£
- *   2. µ÷ÊÔ³ÌĞò¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. æŒ‰ç…§I2S ç›¸å…³å¼•è„šæ¥çº¿TX_D0ã€TX_FSã€TX_BCLKåˆ°é€»è¾‘åˆ†æä»ªã€‚
+ *   2. è°ƒè¯•ç¨‹åºã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ¿ÉÒÔÔÚÂß¼­·ÖÎöÒÇÉÏ¿´µ½TX_D0¡¢TX_FS¡¢TX_BCLKµÄÊı¾İ£»
- *   2. ÆäÖĞTX_D0Îª·¢ËÍÊı¾İµÄ²¹Âë£¬TX_FSÊÇÖ¡Ê±ÖÓ£¬TX_BCLKÊÇÎ»Ê±ÖÓ¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. å¯ä»¥åœ¨é€»è¾‘åˆ†æä»ªä¸Šçœ‹åˆ°TX_D0ã€TX_FSã€TX_BCLKçš„æ•°æ®ï¼›
+ *   2. å…¶ä¸­TX_D0ä¸ºå‘é€æ•°æ®çš„è¡¥ç ï¼ŒTX_FSæ˜¯å¸§æ—¶é’Ÿï¼ŒTX_BCLKæ˜¯ä½æ—¶é’Ÿã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_kl26_hw_i2s_dma.c src_kl26_hw_i2s_dma
  *
  * \internal
@@ -50,27 +50,27 @@
 #include "demo_fsl_entrys.h"
 #include "../../../../soc/freescale/kl26/am_kl26.h"
 
-/** \brief Ê¹ÓÃI2S0 */
+/** \brief ä½¿ç”¨I2S0 */
 #define I2S_DEV    KL26_I2S0
 
 static volatile uint8_t __g_signal = 0;
 
 
-/** \brief DAC_DMA´«ÊäÍê³É»Øµ÷º¯Êı */
+/** \brief DAC_DMAä¼ è¾“å®Œæˆå›è°ƒå‡½æ•° */
 static void __am_fsl_i2s_dma_isr (void *p_arg , uint8_t flag);
 
 /**
- * \brief I2S Éè±¸³õÊ¼»¯
+ * \brief I2S è®¾å¤‡åˆå§‹åŒ–
  */
 static void __i2s_init (amhw_fsl_i2s_t *p_hw_i2s)
 {
-    /** \brief I2SÊ±ÖÓÅäÖÃ */
+    /** \brief I2Sæ—¶é’Ÿé…ç½® */
     static amhw_fsl_i2s_clock_cfg_t i2s0_clk;
 
-    /* Ê¹ÄÜI2S Ê±ÖÓÃÅ¿Ø */
+    /* ä½¿èƒ½I2S æ—¶é’Ÿé—¨æ§ */
     amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_I2S);
 
-    /* ÅäÖÃI2SÊ±ÖÓ */
+    /* é…ç½®I2Sæ—¶é’Ÿ */
     i2s0_clk.bclk          = 256000UL ;
     i2s0_clk.bclk_src      = AMHW_FSL_I2S_BCLK_SRC_MCLK;
     i2s0_clk.bclk_src_freq = 4096000UL;
@@ -78,7 +78,7 @@ static void __i2s_init (amhw_fsl_i2s_t *p_hw_i2s)
     i2s0_clk.mclk_src      = AMHW_FSL_I2S_MCLK_SRC_SYSCLK;
     i2s0_clk.mclk_src_freq = am_kl26_clk_core_clkrate_get();
 
-    /* ·¢ËÍ¼Ä´æÆ÷³õÊ¼»¯ */
+    /* å‘é€å¯„å­˜å™¨åˆå§‹åŒ– */
     amhw_fsl_i2s_tx_init(p_hw_i2s);
     amhw_fsl_i2s_tx_clock_setup(p_hw_i2s, &i2s0_clk);
     amhw_fsl_i2s_tx_sync_mode_set(p_hw_i2s, AMHW_FSL_I2S_SYNC_DISABLED);
@@ -96,7 +96,7 @@ static void __i2s_init (amhw_fsl_i2s_t *p_hw_i2s)
     amhw_fsl_i2s_tx_enable(p_hw_i2s);
 
 #if 0
-    /* ½ÓÊÕ¼Ä´æÆ÷³õÊ¼»¯ */
+    /* æ¥æ”¶å¯„å­˜å™¨åˆå§‹åŒ– */
     amhw_fsl_i2s_rx_init(p_hw_i2s);
     amhw_fsl_i2s_rx_clock_setup(p_hw_i2s, &i2s0_clk);
     amhw_fsl_i2s_tx_int_disable(p_hw_i2s, AMHW_FSL_I2S_INT_REQ_ALL);
@@ -111,7 +111,7 @@ static void __i2s_init (amhw_fsl_i2s_t *p_hw_i2s)
 #endif
 }
 
-/** \brief DMA ³õÊ¼»¯ÅäÖÃ */
+/** \brief DMA åˆå§‹åŒ–é…ç½® */
 static void _fsl_i2s_dma_init (uint8_t            dma_chan,
                                uint32_t          *p_dest,
                                uint32_t          *p_src,
@@ -120,53 +120,53 @@ static void _fsl_i2s_dma_init (uint8_t            dma_chan,
     uint32_t flags;
     amhw_kl26_dma_xfer_desc_t dma_desc;
 
-    /* DMA´«ÊäÅäÖÃ */
-    flags = KL26_DMA_DCR_PER_REQUEST_ENABLE      |  /* ÍâÉèÇëÇóÔ´Ê¹ÄÜ    */
-            KL26_DMA_DCR_SINGLE_TRANSFERS        |  /* µ¥´Î´«Êä          */
-            KL26_DMA_DCR_AUTO_ALIGN_DISABLE      |  /* ×Ô¶¯¶ÔÆë½ûÄÜ      */
-            KL26_DMA_DCR_SOURCE_SIZE_32_BIT      |  /* Ô´µØÖ·4×Ö½Ú¶ÁÈ¡   */
-            KL26_DMA_DCR_SOURCE_SIZE_32_BIT      |  /* Ä¿µÄµØÖ·4×Ö½ÚĞ´Èë */
-            KL26_DMA_DCR_REQUEST_AFFECTED        |  /* ÇëÇóÓĞÓ°Ïì        */
-            KL26_DMA_DCR_NO_LINKING              |  /* ÎŞÍ¨µÀÁ¬½Ó        */
-            KL26_DMA_DCR_INTERRUTP_ENABLE        |  /* DMAÖĞ¶ÏÊ¹ÄÜ       */
-            KL26_DMA_DCR_START_DISABLE    ;         /* DMA¿ªÊ¼´«Êä½ûÄÜ   */
+    /* DMAä¼ è¾“é…ç½® */
+    flags = KL26_DMA_DCR_PER_REQUEST_ENABLE      |  /* å¤–è®¾è¯·æ±‚æºä½¿èƒ½    */
+            KL26_DMA_DCR_SINGLE_TRANSFERS        |  /* å•æ¬¡ä¼ è¾“          */
+            KL26_DMA_DCR_AUTO_ALIGN_DISABLE      |  /* è‡ªåŠ¨å¯¹é½ç¦èƒ½      */
+            KL26_DMA_DCR_SOURCE_SIZE_32_BIT      |  /* æºåœ°å€4å­—èŠ‚è¯»å–   */
+            KL26_DMA_DCR_SOURCE_SIZE_32_BIT      |  /* ç›®çš„åœ°å€4å­—èŠ‚å†™å…¥ */
+            KL26_DMA_DCR_REQUEST_AFFECTED        |  /* è¯·æ±‚æœ‰å½±å“        */
+            KL26_DMA_DCR_NO_LINKING              |  /* æ— é€šé“è¿æ¥        */
+            KL26_DMA_DCR_INTERRUTP_ENABLE        |  /* DMAä¸­æ–­ä½¿èƒ½       */
+            KL26_DMA_DCR_START_DISABLE    ;         /* DMAå¼€å§‹ä¼ è¾“ç¦èƒ½   */
 
-    /* Á¬½ÓDMAÖĞ¶Ï·şÎñº¯Êı */
+    /* è¿æ¥DMAä¸­æ–­æœåŠ¡å‡½æ•° */
     am_kl26_dma_isr_connect(dma_chan, __am_fsl_i2s_dma_isr, I2S_DEV);
 
     am_kl26_dma_chan_cfg(dma_chan,
-                         KL26_DMA_TRIGGER_DISABLE | /**< \brief DMAÕı³£Ä£Ê½ */
-                         DMA_REQUEST_MUX0_I2S0TX);       /**< \brief I2SÇëÇóÔ´      */
+                         KL26_DMA_TRIGGER_DISABLE | /**< \brief DMAæ­£å¸¸æ¨¡å¼ */
+                         DMA_REQUEST_MUX0_I2S0TX);       /**< \brief I2Sè¯·æ±‚æº      */
 
-    /* ½¨Á¢Í¨µÀÃèÊö·û */
-    am_kl26_dma_xfer_desc_build(&dma_desc,              /* Í¨µÀÃèÊö·û   */
-                                (uint32_t)(p_src),      /* Ô´¶ËÊı¾İ»º³å */
-                                (uint32_t)(p_dest),     /* Ä¿±êÊı¾İ»º³å */
-                                (uint32_t)(lenth << 2), /* ´«Êä×Ö½ÚÊı   */
-                                flags);                 /* ´«ÊäÅäÖÃ     */
+    /* å»ºç«‹é€šé“æè¿°ç¬¦ */
+    am_kl26_dma_xfer_desc_build(&dma_desc,              /* é€šé“æè¿°ç¬¦   */
+                                (uint32_t)(p_src),      /* æºç«¯æ•°æ®ç¼“å†² */
+                                (uint32_t)(p_dest),     /* ç›®æ ‡æ•°æ®ç¼“å†² */
+                                (uint32_t)(lenth << 2), /* ä¼ è¾“å­—èŠ‚æ•°   */
+                                flags);                 /* ä¼ è¾“é…ç½®     */
 
-    /* Æô¶¯DMA´«Êä£¬ÂíÉÏ¿ªÊ¼´«Êä */
+    /* å¯åŠ¨DMAä¼ è¾“ï¼Œé©¬ä¸Šå¼€å§‹ä¼ è¾“ */
     if (am_kl26_dma_chan_start(&dma_desc,
-                               KL26_DMA_MER_TO_PER, /*  ÄÚ´æµ½ÍâÉè  */
+                               KL26_DMA_MER_TO_PER, /*  å†…å­˜åˆ°å¤–è®¾  */
                                dma_chan) == AM_ERROR) {
         am_kprintf("DMA init error!\n");
     }
 
 }
 
-/** \brief DAC_DMA´«ÊäÍê³É»Øµ÷º¯Êı */
+/** \brief DAC_DMAä¼ è¾“å®Œæˆå›è°ƒå‡½æ•° */
 static void __am_fsl_i2s_dma_isr (void *p_arg , uint8_t flag)
 {
     amhw_fsl_i2s_t *p_hw_i2s = (amhw_fsl_i2s_t *)p_arg;
 
     if (flag == AM_KL26_DMA_INT_NORMAL) {
 
-        /* FIFO´íÎó£¬ÇåÁã¸ÃÎ» */
+        /* FIFOé”™è¯¯ï¼Œæ¸…é›¶è¯¥ä½ */
         if ((amhw_fsl_i2s_tcsr_get(p_hw_i2s) & AMHW_FSL_I2S_TCSR_FEF_MASK)) {
             amhw_fsl_i2s_tx_state_flag_clr(p_hw_i2s,AMHW_FSL_I2S_STATE_FLAG_FIFO_ERROR);
             amhw_fsl_i2s_tx_reset_set(p_hw_i2s,AMHW_FSL_I2S_RESET_TYPE_FIFO);
         }
-        /* FIFO¿Õ */
+        /* FIFOç©º */
         if ((amhw_fsl_i2s_tcsr_get(p_hw_i2s) & AMHW_FSL_I2S_TCSR_FWF_MASK)) {
             __g_signal = 1;
             amhw_fsl_i2s_tx_dma_request_disable(p_hw_i2s);
@@ -175,17 +175,17 @@ static void __am_fsl_i2s_dma_isr (void *p_arg , uint8_t flag)
 }
 
 /**
- * \brief i2s dma·½Ê½Êı¾İ·¢ËÍ£¬µ÷ÓÃHW²ã½Ó¿Úº¯ÊıÊµÏÖ
- * \return ÎŞ
+ * \brief i2s dmaæ–¹å¼æ•°æ®å‘é€ï¼Œè°ƒç”¨HWå±‚æ¥å£å‡½æ•°å®ç°
+ * \return æ— 
  */
 void demo_kl26_hw_i2s_dma_entry (void)
 {
 
-    /** \brief I2SÊı¾İ·¢ËÍ»º³åÇø  */
+    /** \brief I2Sæ•°æ®å‘é€ç¼“å†²åŒº  */
     uint32_t send_buf[10] = {1,2,3,4,5,6,7,8,9,10};
 
-    am_kl26_dma_inst_init();       /* DMAÊµÀı³õÊ¼»¯            */
-    _fsl_i2s_dma_init(DMA_CHAN_0,  /* DMA´«Êä³õÊ¼»¯ */
+    am_kl26_dma_inst_init();       /* DMAå®ä¾‹åˆå§‹åŒ–            */
+    _fsl_i2s_dma_init(DMA_CHAN_0,  /* DMAä¼ è¾“åˆå§‹åŒ– */
                       (uint32_t *)&(I2S_DEV->tdr),
                       send_buf,
                       10);
@@ -195,7 +195,7 @@ void demo_kl26_hw_i2s_dma_entry (void)
     while(1) {
         if (1 == __g_signal) {
             __g_signal = 0;
-        _fsl_i2s_dma_init(DMA_CHAN_0, /* DMA´«Êä³õÊ¼»¯ */
+        _fsl_i2s_dma_init(DMA_CHAN_0, /* DMAä¼ è¾“åˆå§‹åŒ– */
                           (uint32_t *)&(I2S_DEV->tdr),
                           send_buf,
                           10);

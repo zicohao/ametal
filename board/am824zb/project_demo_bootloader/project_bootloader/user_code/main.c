@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief AM824ZB bootloader ¹¤³Ì 
+ * \brief AM824ZB bootloader å·¥ç¨‹ 
  *
- *  Ê¹ÓÃ·½Ê½¿É²Î¿¼ametal/documents/am24zb/Ä¿Â¼ÏÂµÄametal_am824zb_bootloader²Ù×÷ÊÖ²á
+ *  ä½¿ç”¨æ–¹å¼å¯å‚è€ƒametal/documents/am24zb/ç›®å½•ä¸‹çš„ametal_am824zb_bootloaderæ“ä½œæ‰‹å†Œ
  *
  * \internal
  * \par Modification history
@@ -34,11 +34,11 @@
 extern void demo_am824zb_bootloader_entry (void);
 
 /**
- * \brief AMetal Ó¦ÓÃ³ÌĞòÈë¿Ú
+ * \brief AMetal åº”ç”¨ç¨‹åºå…¥å£
  */
 void am_main (void)
 {
-    /* ¹Ø±Õ¿´ÃÅ¹· */
+    /* å…³é—­çœ‹é—¨ç‹— */
     am_gpio_pin_cfg(PIO0_22, AM_GPIO_FLOAT);
 
     demo_am824zb_bootloader_entry();

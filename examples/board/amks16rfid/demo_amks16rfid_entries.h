@@ -12,8 +12,8 @@
 *******************************************************************************/
 /**
  * \file
- * \brief am824rfid ËùÓĞÀı³Ìº¯ÊıÈë¿ÚÉùÃ÷£¬±¾ÎÄÖ»°üº¬fm175xxÏà¹Ødemo£¬
- *  ÆäËûdemoÇë²ÎÕÕam116_coreÖĞµÄdemo
+ * \brief am824rfid æ‰€æœ‰ä¾‹ç¨‹å‡½æ•°å…¥å£å£°æ˜ï¼Œæœ¬æ–‡åªåŒ…å«fm175xxç›¸å…³demoï¼Œ
+ *  å…¶ä»–demoè¯·å‚ç…§am116_coreä¸­çš„demo
  * \sa demo_amks16rfid_entries.h
  *
  * \internal
@@ -23,47 +23,47 @@
  */
 
 /**
- * \brief AÀàLPCDÄ£Ê½ ¿¨¶Á¿¨ÀàĞÍºÍ¿¨ºÅÀı³Ì
+ * \brief Aç±»LPCDæ¨¡å¼ å¡è¯»å¡ç±»å‹å’Œå¡å·ä¾‹ç¨‹
  */
 void demo_amks16rfid_dr_fm175xx_lpcd_read_id (void);
 
 /**
- * \brief AÀà¿¨¶ÁĞİÃß¿¨Àı³Ì
+ * \brief Aç±»å¡è¯»ä¼‘çœ å¡ä¾‹ç¨‹
  */
 void demo_amks16rfid_dr_fm175xx_picca_halt (void);
 
 /**
- * \brief AÀà¿¨¶Á¿éÀı³Ì
+ * \brief Aç±»å¡è¯»å—ä¾‹ç¨‹
  */
 void demo_amks16rfid_dr_fm175xx_picca_read_block (void);
 
 /**
- * \brief AÀà¿¨¶Á¿¨ÀàĞÍºÍ¿¨ºÅÀı³Ì
+ * \brief Aç±»å¡è¯»å¡ç±»å‹å’Œå¡å·ä¾‹ç¨‹
  */
 void demo_amks16rfid_dr_fm175xx_picca_read_id (void);
 
 /**
- * \brief AÀà¿¨Öµ²Ù×÷Àı³Ì
+ * \brief Aç±»å¡å€¼æ“ä½œä¾‹ç¨‹
  */
 void demo_amks16rfid_dr_fm175xx_picca_val_operate (void);
 
 /**
- * \brief AÀà¿¨Ğ´¿éÀı³Ì
+ * \brief Aç±»å¡å†™å—ä¾‹ç¨‹
  */
 void demo_amks16rfid_dr_fm175xx_picca_write_block (void);
 
 /**
- * \brief BÀà¿¨¶Á¿¨ºÅÀı³Ì
+ * \brief Bç±»å¡è¯»å¡å·ä¾‹ç¨‹
  */
 void demo_amks16rfid_dr_fm175xx_piccb_read_id (void);
 
 /**
- * \brief FM11RF005M¿¨²Ù×÷Àı³Ì
+ * \brief FM11RF005Må¡æ“ä½œä¾‹ç¨‹
  */
 void demo_amks16rfid_dr_fm11rf005m_operate (void);
 
 /**
- * \brief FM175xx ³¬µÍ¹¦ºÄ¶Á¿¨   ÅäºÏMCUµÍ¹¦ºÄÄ£Ê½
+ * \brief FM175xx è¶…ä½åŠŸè€—è¯»å¡   é…åˆMCUä½åŠŸè€—æ¨¡å¼
  */
 void demo_amks16rfid_dr_fm175xx_lpcd_vlps_read_id (void);
 /* end of file */

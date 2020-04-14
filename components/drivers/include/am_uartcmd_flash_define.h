@@ -27,51 +27,51 @@ extern "C" {
 #endif
 
 /**
- * \name ¹¤×÷Ä£Ê½
+ * \name å·¥ä½œæ¨¡å¼
  * @{
  */
 
-#define UARTCMD_FLASH_WORK_MODE_MASK      0xF0    /**< \brief ¹¤×÷Ä£Ê½ÑÚÂë */
-#define UARTCMD_FLASH_WORK_MODE_SLAVE     0x00    /**< \brief ´Ó»úÄ£Ê½ */
-#define UARTCMD_FLASH_WORK_MODE_AUTO      0x10    /**< \brief ×Ô¶¯¼ì²âÄ£Ê½ */
+#define UARTCMD_FLASH_WORK_MODE_MASK      0xF0    /**< \brief å·¥ä½œæ¨¡å¼æ©ç  */
+#define UARTCMD_FLASH_WORK_MODE_SLAVE     0x00    /**< \brief ä»æœºæ¨¡å¼ */
+#define UARTCMD_FLASH_WORK_MODE_AUTO      0x10    /**< \brief è‡ªåŠ¨æ£€æµ‹æ¨¡å¼ */
 
-#define UARTCMD_FLASH_COMM_MODE_MASK      0x0F    /**< \brief Í¨ĞÅÄ£Ê½ÑÚÂë */
-#define UARTCMD_FLASH_COMM_AUTO           0x00    /**< \brief Í¨ĞÅ×Ô¶¯¼ì²âÄ£Ê½ */
-#define UARTCMD_FLASH_COMM_I2C            0x01    /**< \brief I2CÍ¨ĞÅ */
-#define UARTCMD_FLASH_COMM_UART           0x02    /**< \brief UARTÍ¨ĞÅ */
-#define UARTCMD_FLASH_COMM_WG             0x08    /**< \brief WGÍ¨ĞÅ */
+#define UARTCMD_FLASH_COMM_MODE_MASK      0x0F    /**< \brief é€šä¿¡æ¨¡å¼æ©ç  */
+#define UARTCMD_FLASH_COMM_AUTO           0x00    /**< \brief é€šä¿¡è‡ªåŠ¨æ£€æµ‹æ¨¡å¼ */
+#define UARTCMD_FLASH_COMM_I2C            0x01    /**< \brief I2Cé€šä¿¡ */
+#define UARTCMD_FLASH_COMM_UART           0x02    /**< \brief UARTé€šä¿¡ */
+#define UARTCMD_FLASH_COMM_WG             0x08    /**< \brief WGé€šä¿¡ */
 
-/** \brief Ä¬ÈÏ¹¤×÷Ä£Ê½ */
+/** \brief é»˜è®¤å·¥ä½œæ¨¡å¼ */
 #define UARTCMD_FLASH_MODE_DEFAULT       (UARTCMD_FLASH_WORK_MODE_SLAVE | \
                                           UARTCMD_FLASH_COMM_AUTO)
 
 /** @} */
 
 /**
- * \name °æ±¾ĞÅÏ¢
+ * \name ç‰ˆæœ¬ä¿¡æ¯
  * @
  */
 
-/** \brief °æ±¾ĞÅÏ¢³¤¶È */
+/** \brief ç‰ˆæœ¬ä¿¡æ¯é•¿åº¦ */
 #define UARTCMD_FLASH_VERSION_SIZE        20
 
-/** \brief ĞòÁĞºÅ³¤¶È */
+/** \brief åºåˆ—å·é•¿åº¦ */
 #define UARTCMD_FLASH_SN_SIZE             16
 
 /** @} */
 
 /***
- * \name Ö¡¸ñÊ½
+ * \name å¸§æ ¼å¼
  * @{
  */
 
-#define UARTCMD_FLASH_FRAME_FORMAT_OLD       0x00    /**< \brief ¾ÉÖ¡¸ñÊ½ */
-#define UARTCMD_FLASH_FRAME_FORMAT_NEW       0x01    /**< \brief ĞÂÖ¡¸ñÊ½ */
+#define UARTCMD_FLASH_FRAME_FORMAT_OLD       0x00    /**< \brief æ—§å¸§æ ¼å¼ */
+#define UARTCMD_FLASH_FRAME_FORMAT_NEW       0x01    /**< \brief æ–°å¸§æ ¼å¼ */
 
 /** @} */
 
 /**
- * \name ²¨ÌØÂÊ
+ * \name æ³¢ç‰¹ç‡
  * @{
  */
 
@@ -86,56 +86,56 @@ extern "C" {
 
 /** @} */
 
-//#define AUTO_DETEST_EN_MASK             0x80        //!< ×Ô¶¯¼ì²âÊ¹ÄÜÑÚÂë
-//#define AUTO_DETEST_NOT_SENT_MASK       0x40        //!< Êı¾İÎ´·¢ËÍÑÚÂë
-//#define AUTO_DETEST_EXECUTIVE_HALT_MASK 0x08        //!< ×îºóÖ´ĞĞHalt()ÑÚÂë
-//#define AUTO_DETEST_CONTINUE_MASK       0x04        //!< Êä³öºó¼ÌĞøÖ´ĞĞÑÚÂë
-//#define AUTO_DETEST_INTERRUPT_MASK      0x02        //!< ²úÉúÖĞ¶ÏÑÚÂë£¨UART£©
-//#define AUTO_DETEST_INITIATIVE_SEND_MASK    0x01    //!< Ö÷¶¯·¢ËÍÑÚÂë(UART)
+//#define AUTO_DETEST_EN_MASK             0x80        //!< è‡ªåŠ¨æ£€æµ‹ä½¿èƒ½æ©ç 
+//#define AUTO_DETEST_NOT_SENT_MASK       0x40        //!< æ•°æ®æœªå‘é€æ©ç 
+//#define AUTO_DETEST_EXECUTIVE_HALT_MASK 0x08        //!< æœ€åæ‰§è¡ŒHalt()æ©ç 
+//#define AUTO_DETEST_CONTINUE_MASK       0x04        //!< è¾“å‡ºåç»§ç»­æ‰§è¡Œæ©ç 
+//#define AUTO_DETEST_INTERRUPT_MASK      0x02        //!< äº§ç”Ÿä¸­æ–­æ©ç ï¼ˆUARTï¼‰
+//#define AUTO_DETEST_INITIATIVE_SEND_MASK    0x01    //!< ä¸»åŠ¨å‘é€æ©ç (UART)
 
 /**
- * \name ÃÜÔ¿ÀàĞÍ
+ * \name å¯†é’¥ç±»å‹
  * @{
  */
 
-#define UARTCMD_FLASH_KEY_TYPE_A        0x60  /**< \brief ÃÜÔ¿ÀàĞÍA */
-#define UARTCMD_FLASH_KEY_A_LEN         0x06  /**< \brief ÀàĞÍA³¤¶ÈÎª8 */
-#define UARTCMD_FLASH_KEY_TYPE_B        0x61  /**< \brief ÃÜÔ¿ÀàĞÍB */
-#define UARTCMD_FLASH_KEY_B_LEN         0x10  /**< \brief ÃÜÔ¿³¤¶ÈÎª16 */
+#define UARTCMD_FLASH_KEY_TYPE_A        0x60  /**< \brief å¯†é’¥ç±»å‹A */
+#define UARTCMD_FLASH_KEY_A_LEN         0x06  /**< \brief ç±»å‹Aé•¿åº¦ä¸º8 */
+#define UARTCMD_FLASH_KEY_TYPE_B        0x61  /**< \brief å¯†é’¥ç±»å‹B */
+#define UARTCMD_FLASH_KEY_B_LEN         0x10  /**< \brief å¯†é’¥é•¿åº¦ä¸º16 */
 
 /**
- *  \brief ´æ·Åµ½FLASHÖĞµÄÃÜÔ¿³¤¶È¡£²»¹ÜÊÇÀàĞÍA»¹ÊÇÀàĞÍB£¬´æ·Åµ½FLASHÖĞ¶¼ÊÇ16×Ö½Ú¡£
- *         Ğè½«ÀàĞÍAÌî³äµ½16×Ö½Ú
+ *  \brief å­˜æ”¾åˆ°FLASHä¸­çš„å¯†é’¥é•¿åº¦ã€‚ä¸ç®¡æ˜¯ç±»å‹Aè¿˜æ˜¯ç±»å‹Bï¼Œå­˜æ”¾åˆ°FLASHä¸­éƒ½æ˜¯16å­—èŠ‚ã€‚
+ *         éœ€å°†ç±»å‹Aå¡«å……åˆ°16å­—èŠ‚
  */
 #define UARTCMD_FLASH_KEY_LEN           0x10
 
-/** \brief ÓÃ»§ÃÜÔ¿³¤¶È */
+/** \brief ç”¨æˆ·å¯†é’¥é•¿åº¦ */
 #define UARTCMD_FLASH_USER_KEY_LEN      0x10
 
 /** @} */
 
 /**
- * \name ÓÃ»§Êı¾İ
+ * \name ç”¨æˆ·æ•°æ®
  * @{
  */
 
-#define UARTCMD_FLASH_USER_MEM_SIZE     256  /**< \brief ÓÃ»§Êı¾İ´óĞ¡ */
+#define UARTCMD_FLASH_USER_MEM_SIZE     256  /**< \brief ç”¨æˆ·æ•°æ®å¤§å° */
 
 /** @} */
 
 /**
- * \name I2CµØÖ·
+ * \name I2Cåœ°å€
  * @{
  */
 
-#define UARTCMD_FLASH_MAX_I2C_ADDR         0xBF  /**< \brief Éè±¸×î´óI2CµØÖ· */
-#define UARTCMD_FLASH_MIN_I2C_ADDR         0xB0  /**< \brief Éè±¸×îĞ¡I2CµØÖ· */
-#define UARTCMD_FLASH_DEFAULT_ADDR         0xB2  /**< \brief Éè±¸Ä¬ÈÏµØÖ· 0xB2 */
+#define UARTCMD_FLASH_MAX_I2C_ADDR         0xBF  /**< \brief è®¾å¤‡æœ€å¤§I2Cåœ°å€ */
+#define UARTCMD_FLASH_MIN_I2C_ADDR         0xB0  /**< \brief è®¾å¤‡æœ€å°I2Cåœ°å€ */
+#define UARTCMD_FLASH_DEFAULT_ADDR         0xB2  /**< \brief è®¾å¤‡é»˜è®¤åœ°å€ 0xB2 */
 
 /** @} */
 
 /**
- * \name Ğ­ÒéÀàĞÍ
+ * \name åè®®ç±»å‹
  * @{
  */
 
@@ -146,96 +146,96 @@ extern "C" {
 /** @} */
 
 /**
- * \name ÈÏÖ¤Ê±Ëã·¨±êÊ¶
+ * \name è®¤è¯æ—¶ç®—æ³•æ ‡è¯†
  * @{
  */
 
-#define UARTCMD_FLASH_AUTH_ALGORITHM_ID_MASK   0x7F   /**< \brief Ëã·¨±êÊ¶ÑÚÂë */
+#define UARTCMD_FLASH_AUTH_ALGORITHM_ID_MASK   0x7F   /**< \brief ç®—æ³•æ ‡è¯†æ©ç  */
 #define UARTCMD_FLASH_AUTH_ALGORITHM_3_DES     0x00   /**< \brief 3-DES */
 #define UARTCMD_FLASH_AUTH_ALGORITHM_1_DES     0x01   /**< \brief 1-DES */
 #define UARTCMD_FLASH_AUTH_ALGORITHM_SM1       0x03   /**< \brief SM1 */
 
-/** \brief Mifaer Crypto1/PLUS CPU AES ÃÜÔ¿A */
+/** \brief Mifaer Crypto1/PLUS CPU AES å¯†é’¥A */
 #define UARTCMD_FLASH_AUTH_ALGORITHM_KEY_A     0x60
 
-/** \brief Mifaer Crypto1/PLUS CPU AES ÃÜÔ¿B */
+/** \brief Mifaer Crypto1/PLUS CPU AES å¯†é’¥B */
 #define UARTCMD_FLASH_AUTH_ALGORITHM_KEY_B     0x61
 
-#define UARTCMD_FLASH_AUTH_ALGORITHM_NO        0x7F   /**< \brief ²»ÑéÖ¤ */
+#define UARTCMD_FLASH_AUTH_ALGORITHM_NO        0x7F   /**< \brief ä¸éªŒè¯ */
 
 /** @} */
 
 /**
- * \name ×Ô¶¯¼ì²âÄ£Ê½
+ * \name è‡ªåŠ¨æ£€æµ‹æ¨¡å¼
  * @{
  */
 
-#define UARTCMD_FLASH_AUTO_DETEST_EN_MASK               0x80    /**< \brief ×Ô¶¯¼ì²âÊ¹ÄÜÑÚÂë */
-#define UARTCMD_FLASH_AUTO_DETEST_NO_SEND_MASK          0x40    /**< \brief Êı¾İÎ´·¢ËÍÑÚÂë */
-#define UARTCMD_FLASH_AUTO_DETEST_EXECUTE_HALT_MASK     0x08    /**< \brief ×îºóÖ´ĞĞHalt()ÑÚÂë */
-#define UARTCMD_FLASH_AUTO_DETEST_CONTINUE_MASK         0x04    /**< \brief Êä³öºó¼ÌĞøÖ´ĞĞÑÚÂë */
-#define UARTCMD_FLASH_AUTO_DETEST_INTERRUPT_MASK        0x02    /**< \brief ²úÉúÖĞ¶ÏÑÚÂë£¨UART£© */
-#define UARTCMD_FLASH_AUTO_DETEST_SEND_MASK             0x01    /**< \brief Ö÷¶¯·¢ËÍÑÚÂë(UART) */
+#define UARTCMD_FLASH_AUTO_DETEST_EN_MASK               0x80    /**< \brief è‡ªåŠ¨æ£€æµ‹ä½¿èƒ½æ©ç  */
+#define UARTCMD_FLASH_AUTO_DETEST_NO_SEND_MASK          0x40    /**< \brief æ•°æ®æœªå‘é€æ©ç  */
+#define UARTCMD_FLASH_AUTO_DETEST_EXECUTE_HALT_MASK     0x08    /**< \brief æœ€åæ‰§è¡ŒHalt()æ©ç  */
+#define UARTCMD_FLASH_AUTO_DETEST_CONTINUE_MASK         0x04    /**< \brief è¾“å‡ºåç»§ç»­æ‰§è¡Œæ©ç  */
+#define UARTCMD_FLASH_AUTO_DETEST_INTERRUPT_MASK        0x02    /**< \brief äº§ç”Ÿä¸­æ–­æ©ç ï¼ˆUARTï¼‰ */
+#define UARTCMD_FLASH_AUTO_DETEST_SEND_MASK             0x01    /**< \brief ä¸»åŠ¨å‘é€æ©ç (UART) */
 
-/** \brief UARTCMD×Ô¶¯¼ì²âÄ£Ê½ÑÚÂë */
+/** \brief UARTCMDè‡ªåŠ¨æ£€æµ‹æ¨¡å¼æ©ç  */
 #define UARTCMD_FLASH_AUTO_DETEST_MODE_MASK            (UARTCMD_FLASH_AUTO_DETEST_EXECUTE_HALT_MASK | \
                                                         UARTCMD_FLASH_AUTO_DETEST_CONTINUE_MASK     | \
                                                         UARTCMD_FLASH_AUTO_DETEST_INTERRUPT_MASK    | \
                                                         UARTCMD_FLASH_AUTO_DETEST_SEND_MASK)
 
-#define UARTCMD_FLASH_AUTO_DETEST_EN                    0x80     /**< \brief ×Ô¶¯¼ì²âÊ¹ÄÜ */
-#define UARTCMD_FLASH_AUTO_DETEST_NO_SEND               0x40     /**< \brief Êı¾İÎ´·¢ËÍ */
-#define UARTCMD_FLASH_AUTO_DETEST_EXECUTE_HALT          0x08     /**< \brief ×îºóÖ´ĞĞHalt() */
-#define UARTCMD_FLASH_AUTO_DETEST_CONTINUE              0x04     /**< \brief Êä³öºó¼ÌĞøÖ´ĞĞ */
-#define UARTCMD_FLASH_AUTO_DETEST_INTERRUPT             0x02     /**< \brief ²úÉúÖĞ¶Ï */
-#define UARTCMD_FLASH_AUTO_DETEST_SEND                  0x01     /**< \brief Ö÷¶¯·¢ËÍ */
+#define UARTCMD_FLASH_AUTO_DETEST_EN                    0x80     /**< \brief è‡ªåŠ¨æ£€æµ‹ä½¿èƒ½ */
+#define UARTCMD_FLASH_AUTO_DETEST_NO_SEND               0x40     /**< \brief æ•°æ®æœªå‘é€ */
+#define UARTCMD_FLASH_AUTO_DETEST_EXECUTE_HALT          0x08     /**< \brief æœ€åæ‰§è¡ŒHalt() */
+#define UARTCMD_FLASH_AUTO_DETEST_CONTINUE              0x04     /**< \brief è¾“å‡ºåç»§ç»­æ‰§è¡Œ */
+#define UARTCMD_FLASH_AUTO_DETEST_INTERRUPT             0x02     /**< \brief äº§ç”Ÿä¸­æ–­ */
+#define UARTCMD_FLASH_AUTO_DETEST_SEND                  0x01     /**< \brief ä¸»åŠ¨å‘é€ */
 
 /** @} */
 
 /**
- * \name ¿ØÖÆÄ£Ê½
+ * \name æ§åˆ¶æ¨¡å¼
  * @{
  */
 
-#define UARTCMD_FLASH_CONTROL_BY_PSAM          0xAA  /**< \brief PSAM ÅäÖÃÎÄ¼ş¿ØÖÆÄ£Ê½ */
-#define UARTCMD_FLASH_CONTROL_BY_USER_CARD     0x55  /**< \brief ÓÃ»§¿¨ÅäÖÃÎÄ¼ş¿ØÖÆÄ£Ê½ */
-#define UARTCMD_FLASH_CONTROL_BY_READER        0x00  /**< \brief ¶Á¿¨Æ÷¿ØÖÆÄ£Ê½ */
+#define UARTCMD_FLASH_CONTROL_BY_PSAM          0xAA  /**< \brief PSAM é…ç½®æ–‡ä»¶æ§åˆ¶æ¨¡å¼ */
+#define UARTCMD_FLASH_CONTROL_BY_USER_CARD     0x55  /**< \brief ç”¨æˆ·å¡é…ç½®æ–‡ä»¶æ§åˆ¶æ¨¡å¼ */
+#define UARTCMD_FLASH_CONTROL_BY_READER        0x00  /**< \brief è¯»å¡å™¨æ§åˆ¶æ¨¡å¼ */
 
 /** @} */
 
 /**
- * \name Êı¾İÊä³öÄ£Ê½
+ * \name æ•°æ®è¾“å‡ºæ¨¡å¼
  * @{
  */
 
-/** \brief Êı¾İÊä³ö´óĞ¡¶ËÄ£Ê½ÑÚÂë */
+/** \brief æ•°æ®è¾“å‡ºå¤§å°ç«¯æ¨¡å¼æ©ç  */
 #define UARTCMD_FLASH_DATA_ENDIAN_MASK       0x80
 
-#define UARTCMD_FLASH_DATA_ENDIAN_LITTLE     0x00  /**< \brief Ğ¡¶ËÄ£Ê½(Ä¬ÈÏ) */
-#define UARTCMD_FLASH_DATA_ENDIAN_BIG        0x80  /**< \brief ´ó¶ËÄ£Ê½ */
+#define UARTCMD_FLASH_DATA_ENDIAN_LITTLE     0x00  /**< \brief å°ç«¯æ¨¡å¼(é»˜è®¤) */
+#define UARTCMD_FLASH_DATA_ENDIAN_BIG        0x80  /**< \brief å¤§ç«¯æ¨¡å¼ */
 
-/** \brief Êı¾İÊä³ö´¦ÀíÄ£Ê½ÑÚÂë */
+/** \brief æ•°æ®è¾“å‡ºå¤„ç†æ¨¡å¼æ©ç  */
 #define UARTCMD_FLASH_DATA_OUTPUT_MASK       0x70
 
-#define UARTCMD_FLASH_DATA_OUTPUT_NO         0x00  /**< \brief Êı¾İ²»´¦Àí */
-#define UARTCMD_FLASH_DATA_OUTPUT_SEGMENT    0x10  /**< \brief Êı¾İ·Ö¶Î */
-#define UARTCMD_FLASH_DATA_OUTPUT_CROSS      0x20  /**< \brief Êı¾İ½»²æ */
+#define UARTCMD_FLASH_DATA_OUTPUT_NO         0x00  /**< \brief æ•°æ®ä¸å¤„ç† */
+#define UARTCMD_FLASH_DATA_OUTPUT_SEGMENT    0x10  /**< \brief æ•°æ®åˆ†æ®µ */
+#define UARTCMD_FLASH_DATA_OUTPUT_CROSS      0x20  /**< \brief æ•°æ®äº¤å‰ */
 
-/** \brief Êı¾İÊä³ö¼ÓÃÜÄ£Ê½ÑÚÂë */
+/** \brief æ•°æ®è¾“å‡ºåŠ å¯†æ¨¡å¼æ©ç  */
 #define UARTCMD_FLASH_DATA_ENCRYPT_MASK      0x0F
 
-#define UARTCMD_DATA_ENCRYPT_NO              0x00  /**< \brief ²»¼ÓÃÜ */
+#define UARTCMD_DATA_ENCRYPT_NO              0x00  /**< \brief ä¸åŠ å¯† */
 #define UARTCMD_DATA_ENCRYPT_1_DES           0x01  /**< \brief 1-DES */
 #define UARTCMD_DATA_ENCRYPT_3_DES           0x02  /**< \brief 3-DES */
 #define UARTCMD_DATA_ENCRYPT_SM1             0x03  /**< \brief SM1 */
-#define UARTCMD_DATA_ENCRYPT_ROLLCODE        0x08  /**< \brief ¹öÂë¼ÓÃÜ */
-#define UARTCMD_DATA_ENCRYPT_RC5             0x09  /**< \brief RC5 ¼ÓÃÜ */
-#define UARTCMD_DATA_ENCRYPT_AES             0x0A  /**< \brief AES ¼ÓÃÜ */
+#define UARTCMD_DATA_ENCRYPT_ROLLCODE        0x08  /**< \brief æ»šç åŠ å¯† */
+#define UARTCMD_DATA_ENCRYPT_RC5             0x09  /**< \brief RC5 åŠ å¯† */
+#define UARTCMD_DATA_ENCRYPT_AES             0x0A  /**< \brief AES åŠ å¯† */
 
 /** @} */
 
 /**
- * \name ¿¨µÄÀàĞÍ
+ * \name å¡çš„ç±»å‹
  * @{
  */
 
@@ -243,34 +243,34 @@ extern "C" {
 #define UARTCMD_FLASH_CARD_TYPE_ISO14443B     0x5F  /**< \brief ISO14443B */
 #define UARTCMD_FLASH_CARD_TYPE_ISO115693     0x7F  /**< \brief ISO115693 */
 #define UARTCMD_FLASH_CARD_TYPE_ISO7816_3     0x9F  /**< \brief ISO7816_3 */
-#define UARTCMD_FLASH_CARD_TYPE_INVALID       0xFF  /**< \brief ÎŞĞ§¿¨/ÎŞĞ§µÄSAK */
+#define UARTCMD_FLASH_CARD_TYPE_INVALID       0xFF  /**< \brief æ— æ•ˆå¡/æ— æ•ˆçš„SAK */
 
-#define UARTCMD_FLASH_CARD_TYPE_MF0           0x00  /**< \brief MF0ÏµÁĞ¿¨ */
-#define UARTCMD_FLASH_CARD_TYPE_UL            0x01  /**< \brief MF0 ULÏµÁĞ¿¨ */
-#define UARTCMD_FLASH_CARD_TYPE_ULC           0x02  /**< \brief MF0 ULCÏµÁĞ¿¨ */
+#define UARTCMD_FLASH_CARD_TYPE_MF0           0x00  /**< \brief MF0ç³»åˆ—å¡ */
+#define UARTCMD_FLASH_CARD_TYPE_UL            0x01  /**< \brief MF0 ULç³»åˆ—å¡ */
+#define UARTCMD_FLASH_CARD_TYPE_ULC           0x02  /**< \brief MF0 ULCç³»åˆ—å¡ */
 
-#define UARTCMD_FLASH_CARD_TYPE_MF1           0x08  /**< \brief MF1ÏµÁĞ¿¨ */
-#define UARTCMD_FLASH_CARD_TYPE_MINI          0x09  /**< \brief MF1 miniÏµÁĞ¿¨ */
-#define UARTCMD_FLASH_CARD_TYPE_S50           0x0A  /**< \brief MF1 s50ÏµÁĞ¿¨ */
-#define UARTCMD_FLASH_CARD_TYPE_S70           0x0B  /**< \brief MF1 s70ÏµÁĞ¿¨ */
+#define UARTCMD_FLASH_CARD_TYPE_MF1           0x08  /**< \brief MF1ç³»åˆ—å¡ */
+#define UARTCMD_FLASH_CARD_TYPE_MINI          0x09  /**< \brief MF1 miniç³»åˆ—å¡ */
+#define UARTCMD_FLASH_CARD_TYPE_S50           0x0A  /**< \brief MF1 s50ç³»åˆ—å¡ */
+#define UARTCMD_FLASH_CARD_TYPE_S70           0x0B  /**< \brief MF1 s70ç³»åˆ—å¡ */
 
-#define UARTCMD_FLASH_CARD_TYPE_MF3           0x10  /**< \brief MF3ÏµÁĞ¿¨ */
-#define UARTCMD_FLASH_CARD_TYPE_D20           0x11  /**< \brief MF3 D20¿¨ */
-#define UARTCMD_FLASH_CARD_TYPE_D21           0x12  /**< \brief MF3 D21¿¨ */
-#define UARTCMD_FLASH_CARD_TYPE_D40           0x13  /**< \brief MF3 D40¿¨ */
-#define UARTCMD_FLASH_CARD_TYPE_D41           0x14  /**< \brief MF3 D41¿¨ */
-#define UARTCMD_FLASH_CARD_TYPE_D80           0x15  /**< \brief MF3 D80¿¨ */
-#define UARTCMD_FLASH_CARD_TYPE_D81           0x16  /**< \brief MF3 D81¿¨ */
+#define UARTCMD_FLASH_CARD_TYPE_MF3           0x10  /**< \brief MF3ç³»åˆ—å¡ */
+#define UARTCMD_FLASH_CARD_TYPE_D20           0x11  /**< \brief MF3 D20å¡ */
+#define UARTCMD_FLASH_CARD_TYPE_D21           0x12  /**< \brief MF3 D21å¡ */
+#define UARTCMD_FLASH_CARD_TYPE_D40           0x13  /**< \brief MF3 D40å¡ */
+#define UARTCMD_FLASH_CARD_TYPE_D41           0x14  /**< \brief MF3 D41å¡ */
+#define UARTCMD_FLASH_CARD_TYPE_D80           0x15  /**< \brief MF3 D80å¡ */
+#define UARTCMD_FLASH_CARD_TYPE_D81           0x16  /**< \brief MF3 D81å¡ */
 
-#define UARTCMD_FLASH_CARD_TYPE_MFP           0x18  /**< \brief PLUS CPU ÏµÁĞ¿¨ */
+#define UARTCMD_FLASH_CARD_TYPE_MFP           0x18  /**< \brief PLUS CPU ç³»åˆ—å¡ */
 #define UARTCMD_FLASH_CARD_TYPE_MFP2_SL2      0x19  /**< \brief PLUS CPU 2K(SL2) */
 #define UARTCMD_FLASH_CARD_TYPE_MFP4_SL2      0x1A  /**< \brief PLUS CPU 4K(SL2) */
 #define UARTCMD_FLASH_CARD_TYPE_MFPS_SL3      0x1B  /**< \brief PLUS S 2/4K(SL3) */
 #define UARTCMD_FLASH_CARD_TYPE_MFPX_SL3      0x1C  /**< \brief PLUS X 2/4K(SL3) */
 
-#define UARTCMD_FLASH_CARD_TYPE_ISO14443A_4   0x20  /**< \brief ISO14443-4 TypeA ÏµÁĞ¿¨ */
-#define UARTCMD_FLASH_CARD_TYPE_FM1208        0x21  /**< \brief ¸´µ©Î¢µç×ÓFM1208CPU¿¨ */
-#define UARTCMD_FLASH_CARD_TYPE_FM12AG08      0x22  /**< \brief ¸´µ©Î¢µç×ÓFM12AG08 ¹úÃÜCPU¿¨ */
+#define UARTCMD_FLASH_CARD_TYPE_ISO14443A_4   0x20  /**< \brief ISO14443-4 TypeA ç³»åˆ—å¡ */
+#define UARTCMD_FLASH_CARD_TYPE_FM1208        0x21  /**< \brief å¤æ—¦å¾®ç”µå­FM1208CPUå¡ */
+#define UARTCMD_FLASH_CARD_TYPE_FM12AG08      0x22  /**< \brief å¤æ—¦å¾®ç”µå­FM12AG08 å›½å¯†CPUå¡ */
 
 /** @} */
 

@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief RTC Ӳ�������ӿ�
+ * \brief RTC 硬件操作接口
  *
  * \internal
  * \par Modification History
@@ -38,117 +38,117 @@ extern "C" {
  */
 
 /**
- *  \name RTC λ������صĺ궨��
+ *  \name RTC 位操作相关的宏定义
  *  @{
  */
 
 /******************************************************************************
-  RTC У׼�Ĵ����������
+  RTC 校准寄存器操作相关
 ******************************************************************************/
 
-/** \brief У׼��Ъ��������ǰֵ��ʼλƫ���� */
+/** \brief 校准间歇计数器当前值起始位偏移量 */
 #define AMHW_FSL_RTC_CIC_SHIFT  (24UL)
 
-/** \brief ��ǰ��У׼ֵ��ʼλƫ���� */
+/** \brief 当前的校准值起始位偏移量 */
 #define AMHW_FSL_RTC_TCV_SHIFT  (16UL)
 
-/** \brief У׼��Ъ������ʼλƫ���� */
+/** \brief 校准间歇设置起始位偏移量 */
 #define AMHW_FSL_RTC_CIR_SHIFT  (8UL)
 
-/** \brief У׼����ʼλƫ���� */
+/** \brief 校准量起始位偏移量 */
 #define AMHW_FSL_RTC_TCR_SHIFT  (0UL)
 
 
 /*******************************************************************************
-  RTC ���ƼĴ���������غ�
+  RTC 控制寄存器操作相关宏
 *******************************************************************************/
 
-/** \brief 2pF ��������λ */
+/** \brief 2pF 负载配置位 */
 #define AMHW_FSL_RTC_SC2P       (1 << 13UL)
 
-/** \brief 4pF ��������λ */
+/** \brief 4pF 负载配置位 */
 #define AMHW_FSL_RTC_SC4P       (1 << 12UL)
 
-/** \brief 8pF ��������λ */
+/** \brief 8pF 负载配置位 */
 #define AMHW_FSL_RTC_SC8P       (1 << 11UL)
 
-/** \brief 16pF ��������λ */
+/** \brief 16pF 负载配置位 */
 #define AMHW_FSL_RTC_SC16P      (1 << 10UL)
 
-/** \brief 32kHz ʱ������������豸ʹ��λ */
+/** \brief 32kHz 时钟输出到其他设备使能位 */
 #define AMHW_FSL_RTC_CLKO       (1 <<  9UL)
 
-/** \brief 32.768 kHzʱ��ʹ��λ */
+/** \brief 32.768 kHz时钟使能位 */
 #define AMHW_FSL_RTC_OSCE       (1 <<  8UL)
 
-/** \brief ��������ѡ��λ */
+/** \brief 唤醒引脚选择位 */
 #define AMHW_FSL_RTC_WPS        (1 <<  4UL)
 
-/** \brief ����ǿ�Ƹ���ʹ��λ */
+/** \brief 允许强制更新使能位 */
 #define AMHW_FSL_RTC_UM         (1 <<  3UL)
 
-/** \brief ����Ȩģʽ�¿�дʹ��λ */
+/** \brief 仅特权模式下可写使能位 */
 #define AMHW_FSL_RTC_SUP        (1 <<  2UL)
 
-/** \brief ��������ʹ��λ */
+/** \brief 唤醒引脚使能位 */
 #define AMHW_FSL_RTC_WPE        (1 <<  1UL)
 
-/** \brief RTC ģ��������λ */
+/** \brief RTC 模块软件复位 */
 #define AMHW_FSL_RTC_SWR        (1 <<  0UL)
 
 
 /*******************************************************************************
-  RTC ״̬�Ĵ���������غ�
+  RTC 状态寄存器操作相关宏
 *******************************************************************************/
 
-/** \brief RTC ��ʹ�ܱ�־λ */
+/** \brief RTC 已使能标志位 */
 #define AMHW_FSL_RTC_TCE        (1 <<  4UL)
 
-/** \brief ���ӷ�����־λ */
+/** \brief 闹钟发生标志位 */
 #define AMHW_FSL_RTC_TAF        (1 <<  2UL)
 
-/** \brief RTC ʱ�Ӽ����������־λ */
+/** \brief RTC 时钟计数器溢出标志位 */
 #define AMHW_FSL_RTC_TOF        (1 <<  1UL)
 
-/** \brief RTC ʱ��ģ����Ч��־λ */
+/** \brief RTC 时钟模块无效标志位 */
 #define AMHW_FSL_RTC_TIF        (1 <<  0UL)
 
 
 
 /******************************************************************************
-  RTC �����Ĵ���������غ�
+  RTC 锁定寄存器操作相关宏
 ******************************************************************************/
 
-/** \brief RTC����ʹ��λ */
+/** \brief RTC上锁使能位 */
 #define AMHW_FSL_RTC_LRL        (1 <<  6UL)
 
-/** \brief RTC����״̬λ */
+/** \brief RTC上锁状态位 */
 #define AMHW_FSL_RTC_SRL        (1 <<  5UL)
 
-/** \brief RTC���ƼĴ�������ʹ��λ */
+/** \brief RTC控制寄存器上锁使能位 */
 #define AMHW_FSL_RTC_CRL        (1 <<  4UL)
 
-/** \brief RTCУ׼����ʹ��λ */
+/** \brief RTC校准上锁使能位 */
 #define AMHW_FSL_RTC_TCL        (1 <<  3UL)
 
 
 /*******************************************************************************
-   RTC �ж�ʹ�ܼĴ���������غ�
+   RTC 中断使能寄存器操作相关宏
 *******************************************************************************/
 
-/** \brief �������ſ���λ */
+/** \brief 唤醒引脚开启位 */
 #define AMHW_FSL_RTC_WPON       (1 << 7UL)
 
-/** \brief ÿ���ж�ʹ��λ */
+/** \brief 每秒中断使能位 */
 #define AMHW_FSL_RTC_TSIE       (1 << 4UL)
 
-/** \brief �����ж�ʹ�� */
+/** \brief 闹钟中断使能 */
 #define AMHW_FSL_RTC_TAIE       (1 << 2UL)
 
-/** \brief ����ж�ʹ�� */
+/** \brief 溢出中断使能 */
 #define AMHW_FSL_RTC_TOIE       (1 << 1UL)
 
-/** \brief ʱ��ģ����Ч�ж�ʹ��λ */
+/** \brief 时钟模块无效中断使能位 */
 #define AMHW_FSL_RTC_TIIE       (1 << 0UL)
 
 
@@ -157,32 +157,32 @@ extern "C" {
  */
 
 /**
- *  \brief RTC �Ĵ����ṹ�嶨��
+ *  \brief RTC 寄存器结构体定义
  */
 typedef struct amhw_fsl_rtc {
-    __IO uint32_t tsr;    /**< \brief RTC ��Ĵ��� */
-    __IO uint32_t tpr;    /**< \brief RTC Ԥ��Ƶ�Ĵ��� */
-    __IO uint32_t tar;    /**< \brief RTC ���ӼĴ��� */
-    __IO uint32_t tcr;    /**< \brief RTC У׼�Ĵ��� */
-    __IO uint32_t cr;     /**< \brief RTC ���ƼĴ��� */
-    __IO uint32_t sr;     /**< \brief RTC ״̬�Ĵ��� */
-    __IO uint32_t lr;     /**< \brief RTC �����Ĵ��� */
-    __IO uint32_t ier;    /**< \brief RTC �ж�ʹ�ܼĴ��� */
+    __IO uint32_t tsr;    /**< \brief RTC 秒寄存器 */
+    __IO uint32_t tpr;    /**< \brief RTC 预分频寄存器 */
+    __IO uint32_t tar;    /**< \brief RTC 闹钟寄存器 */
+    __IO uint32_t tcr;    /**< \brief RTC 校准寄存器 */
+    __IO uint32_t cr;     /**< \brief RTC 控制寄存器 */
+    __IO uint32_t sr;     /**< \brief RTC 状态寄存器 */
+    __IO uint32_t lr;     /**< \brief RTC 锁定寄存器 */
+    __IO uint32_t ier;    /**< \brief RTC 中断使能寄存器 */
 } amhw_fsl_rtc_t;
 
 
 /*******************************************************************************
-    ������������
+    内联函数定义
 *******************************************************************************/
 
 /**
- *  \brief д������Ĵ���
+ *  \brief 写秒计数寄存器
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \param second Ҫд��������ֵ
+ *  \param second 要写入的秒的数值
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_second_set (amhw_fsl_rtc_t *p_hw_rtc, uint32_t second)
@@ -191,11 +191,11 @@ void amhw_fsl_rtc_second_set (amhw_fsl_rtc_t *p_hw_rtc, uint32_t second)
 }
 
 /**
- *  \brief ��������Ĵ���
+ *  \brief 读秒计数寄存器
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \return ������Ĵ�����ֵ
+ *  \return 秒计数寄存器的值
  */
 am_static_inline
 uint32_t amhw_fsl_rtc_second_get (amhw_fsl_rtc_t *p_hw_rtc)
@@ -204,13 +204,13 @@ uint32_t amhw_fsl_rtc_second_get (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief дԤ��Ƶ�Ĵ���
+ *  \brief 写预分频寄存器
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \param[in] prescaler Ҫд���Ԥ��Ƶ����ֵ
+ *  \param[in] prescaler 要写入的预分频的数值
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_prescaler_set (amhw_fsl_rtc_t *p_hw_rtc, uint16_t prescaler)
@@ -219,11 +219,11 @@ void amhw_fsl_rtc_prescaler_set (amhw_fsl_rtc_t *p_hw_rtc, uint16_t prescaler)
 }
 
 /**
- *  \brief ��Ԥ��Ƶ�Ĵ���
+ *  \brief 读预分频寄存器
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \return Ԥ��Ƶ�Ĵ���
+ *  \return 预分频寄存器
  */
 am_static_inline
 uint16_t amhw_fsl_rtc_prescaler_get (amhw_fsl_rtc_t *p_hw_rtc)
@@ -232,13 +232,13 @@ uint16_t amhw_fsl_rtc_prescaler_get (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief �������ӼĴ�����ֵ
+ *  \brief 设置闹钟寄存器的值
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \param alarm_second Ҫ���õ����ӼĴ���ֵ
+ *  \param alarm_second 要设置的闹钟寄存器值
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_alarm_set (amhw_fsl_rtc_t *p_hw_rtc, uint32_t alarm_second)
@@ -247,11 +247,11 @@ void amhw_fsl_rtc_alarm_set (amhw_fsl_rtc_t *p_hw_rtc, uint32_t alarm_second)
 }
 
 /**
- *  \brief ��ȡ���ӼĴ�����ֵ
+ *  \brief 读取闹钟寄存器的值
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \return ���ӼĴ�����ֵ
+ *  \return 闹钟寄存器的值
  */
 am_static_inline
 uint32_t amhw_fsl_rtc_alarm_get (amhw_fsl_rtc_t *p_hw_rtc)
@@ -260,13 +260,13 @@ uint32_t amhw_fsl_rtc_alarm_get (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief ����ÿ�ε�У׼��
+ *  \brief 设置每次的校准量
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \param value ÿ��У׼����
+ *  \param value 每次校准的量
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_compensate_value_set (amhw_fsl_rtc_t *p_hw_rtc,
@@ -277,13 +277,13 @@ void amhw_fsl_rtc_compensate_value_set (amhw_fsl_rtc_t *p_hw_rtc,
 }
 
 /**
- *  \brief ����У׼��Ъ
+ *  \brief 设置校准间歇
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \param interval У׼��Ъ��ÿ���������һ��
+ *  \param interval 校准间歇，每多少秒调整一次
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_compensate_interval_set (amhw_fsl_rtc_t *p_hw_rtc,
@@ -294,11 +294,11 @@ void amhw_fsl_rtc_compensate_interval_set (amhw_fsl_rtc_t *p_hw_rtc,
 }
 
 /**
- *  \brief ��ȡ��ǰ��У׼��
+ *  \brief 获取当前的校准量
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \return ��ǰУ׼��
+ *  \return 当前校准量
  */
 am_static_inline
 uint8_t amhw_fsl_rtc_current_compensate_value_get (amhw_fsl_rtc_t *p_hw_rtc)
@@ -308,12 +308,12 @@ uint8_t amhw_fsl_rtc_current_compensate_value_get (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief ���õ�ǰ��У׼��
+ *  \brief 设置当前的校准量
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
- *  \param value У׼����ÿ��У׼���ٵ�ʱ�Ӹ���
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
+ *  \param value 校准量，每次校准减少的时钟个数
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_current_compensate_value_set (amhw_fsl_rtc_t *p_hw_rtc,
@@ -325,12 +325,12 @@ void amhw_fsl_rtc_current_compensate_value_set (amhw_fsl_rtc_t *p_hw_rtc,
 }
 
 /**
- *  \brief ���õ�ǰ������Ъ��������ֵ
+ *  \brief 设置当前调整间歇计数器的值
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
- *  \param count ���õĵ�ǰ������ֵ
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
+ *  \param count 设置的当前计数器值
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_current_compensate_counter_set (amhw_fsl_rtc_t *p_hw_rtc,
@@ -342,13 +342,13 @@ void amhw_fsl_rtc_current_compensate_counter_set (amhw_fsl_rtc_t *p_hw_rtc,
 }
 
 /**
- *  \brief ���õ�����Ъ�͵�����
+ *  \brief 设置调整间歇和调整量
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
- *  \param interval ������Ъ
- *  \param value ����ֵ
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
+ *  \param interval 调整间歇
+ *  \param value 调整值
  *
- *  \return ��
+ *  \return 无
  *
  */
 am_static_inline
@@ -360,11 +360,11 @@ void amhw_fsl_rtc_current_interval_and_value_set (amhw_fsl_rtc_t *p_hw_rtc,
 }
 
 /**
- *  \brief ʹ�� 2pF����������
+ *  \brief 使能 2pF的振荡器负载
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_2pf_load_enable (amhw_fsl_rtc_t *p_hw_rtc)
@@ -373,11 +373,11 @@ void amhw_fsl_rtc_2pf_load_enable (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief ���� 2pF����������
+ *  \brief 除能 2pF的振荡器负载
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_2pf_load_disable (amhw_fsl_rtc_t *p_hw_rtc)
@@ -386,11 +386,11 @@ void amhw_fsl_rtc_2pf_load_disable (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief ʹ�� 4pF����������
+ *  \brief 使能 4pF的振荡器负载
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_4pf_load_enable (amhw_fsl_rtc_t *p_hw_rtc)
@@ -399,11 +399,11 @@ void amhw_fsl_rtc_4pf_load_enable (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief ���� 4pF����������
+ *  \brief 除能 4pF的振荡器负载
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_4pf_load_disable (amhw_fsl_rtc_t *p_hw_rtc)
@@ -412,11 +412,11 @@ void amhw_fsl_rtc_4pf_load_disable (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief ʹ�� 8pF����������
+ *  \brief 使能 8pF的振荡器负载
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_8pf_load_enable (amhw_fsl_rtc_t *p_hw_rtc)
@@ -425,11 +425,11 @@ void amhw_fsl_rtc_8pf_load_enable (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief ���� 8pF����������
+ *  \brief 除能 8pF的振荡器负载
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_8pf_load_disable (amhw_fsl_rtc_t *p_hw_rtc)
@@ -438,11 +438,11 @@ void amhw_fsl_rtc_8pf_load_disable (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief ʹ�� 16pF����������
+ *  \brief 使能 16pF的振荡器负载
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_16pf_load_enable (amhw_fsl_rtc_t *p_hw_rtc)
@@ -451,11 +451,11 @@ void amhw_fsl_rtc_16pf_load_enable (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief ���� 16pF����������
+ *  \brief 除能 16pF的振荡器负载
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_16pf_load_disable (amhw_fsl_rtc_t *p_hw_rtc)
@@ -464,11 +464,11 @@ void amhw_fsl_rtc_16pf_load_disable (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief 32kHzʱ������������豸ʹ��
+ *  \brief 32kHz时钟输出到其它设备使能
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_clk_output_enable (amhw_fsl_rtc_t *p_hw_rtc)
@@ -477,11 +477,11 @@ void amhw_fsl_rtc_clk_output_enable (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief 32kHzʱ������������豸����
+ *  \brief 32kHz时钟输出到其它设备除能
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_clk_output_disable (amhw_fsl_rtc_t *p_hw_rtc)
@@ -490,11 +490,11 @@ void amhw_fsl_rtc_clk_output_disable (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief RTC 32.768kHz ����ʹ��
+ *  \brief RTC 32.768kHz 振荡器使能
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_osc_enable (amhw_fsl_rtc_t *p_hw_rtc)
@@ -503,11 +503,11 @@ void amhw_fsl_rtc_osc_enable (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief RTC 32.768kHz ��������
+ *  \brief RTC 32.768kHz 振荡器除能
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_osc_disable (amhw_fsl_rtc_t *p_hw_rtc)
@@ -516,11 +516,11 @@ void amhw_fsl_rtc_osc_disable (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief ������������״̬��д״̬�Ĵ���(SR)
+ *  \brief 允许在锁定的状态下写状态寄存器(SR)
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_update_mode_enable (amhw_fsl_rtc_t *p_hw_rtc)
@@ -529,11 +529,11 @@ void amhw_fsl_rtc_update_mode_enable (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief ���ò�������������״̬��д״̬�Ĵ���(SR)
+ *  \brief 设置不允许在锁定的状态下写状态寄存器(SR)
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_update_mode_disable (amhw_fsl_rtc_t *p_hw_rtc)
@@ -542,11 +542,11 @@ void amhw_fsl_rtc_update_mode_disable (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief ʹ�ܻ�������
+ *  \brief 使能唤醒引脚
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_wakeup_pin_enable (amhw_fsl_rtc_t *p_hw_rtc)
@@ -555,11 +555,11 @@ void amhw_fsl_rtc_wakeup_pin_enable (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief ʹ�ܻ�������
+ *  \brief 使能唤醒引脚
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_wakeup_pin_disable (amhw_fsl_rtc_t *p_hw_rtc)
@@ -568,11 +568,11 @@ void amhw_fsl_rtc_wakeup_pin_disable (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief ������λRTCģ��
+ *  \brief 软件复位RTC模块
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_soft_reset (amhw_fsl_rtc_t *p_hw_rtc)
@@ -581,11 +581,11 @@ void amhw_fsl_rtc_soft_reset (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief ���������λλ
+ *  \brief 清除软件复位位
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_soft_rstbit_clear (amhw_fsl_rtc_t *p_hw_rtc)
@@ -594,12 +594,12 @@ void amhw_fsl_rtc_soft_rstbit_clear (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief ʱ�������״̬ʹ��λ��ȡ
+ *  \brief 时间计数器状态使能位获取
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \retval 0 û��ʹ��
- *  \retval AMHW_FSL_RTC_TCE �Ѿ�ʹ��
+ *  \retval 0 没有使能
+ *  \retval AMHW_FSL_RTC_TCE 已经使能
  */
 am_static_inline
 uint32_t amhw_fsl_rtc_time_counter_status_get (amhw_fsl_rtc_t *p_hw_rtc)
@@ -608,11 +608,11 @@ uint32_t amhw_fsl_rtc_time_counter_status_get (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief ��1������״̬ʹ��λ,��ʹ�ܼ�����
+ *  \brief 置1计数器状态使能位,即使能计数器
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_time_counter_status_set (amhw_fsl_rtc_t *p_hw_rtc)
@@ -621,11 +621,11 @@ void amhw_fsl_rtc_time_counter_status_set (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief ��0������״̬ʹ��λ�������ܼ�����
+ *  \brief 清0计数器状态使能位，即除能计数器
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_time_counter_status_clr (amhw_fsl_rtc_t *p_hw_rtc)
@@ -634,12 +634,12 @@ void amhw_fsl_rtc_time_counter_status_clr (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief ����״̬��ȡ
+ *  \brief 闹钟状态获取
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \retval 0 ����û�з�����
- *  \retval AMHW_FSL_RTC_TAF ���ӷ�����
+ *  \retval 0 闹钟没有发生过
+ *  \retval AMHW_FSL_RTC_TAF 闹钟发生过
  */
 am_static_inline
 uint32_t amhw_fsl_rtc_alarm_status_get (amhw_fsl_rtc_t *p_hw_rtc)
@@ -648,12 +648,12 @@ uint32_t amhw_fsl_rtc_alarm_status_get (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief ����������״̬��ȡ
+ *  \brief 秒计数器溢出状态获取
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \retval 0 û�����
- *  \retval AMHW_FSL_RTC_TOF ���������
+ *  \retval 0 没有溢出
+ *  \retval AMHW_FSL_RTC_TOF 发生过溢出
  */
 am_static_inline
 uint32_t amhw_fsl_rtc_count_over_status_get (amhw_fsl_rtc_t *p_hw_rtc)
@@ -662,12 +662,12 @@ uint32_t amhw_fsl_rtc_count_over_status_get (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief RTC ģ���Ƿ�Ϊ��Ч״̬��ȡ
+ *  \brief RTC 模块是否为无效状态获取
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \retval 0 ģ����Ч
- *  \retval AMHW_FSL_RTC_TIF ģ����Ч
+ *  \retval 0 模块有效
+ *  \retval AMHW_FSL_RTC_TIF 模块无效
  */
 am_static_inline
 uint32_t amhw_fsl_rtc_is_time_invalid (amhw_fsl_rtc_t *p_hw_rtc)
@@ -676,11 +676,11 @@ uint32_t amhw_fsl_rtc_is_time_invalid (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief �������Ĵ���(LR)����
+ *  \brief 对锁定寄存器(LR)上锁
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_lock_reg_lock (amhw_fsl_rtc_t *p_hw_rtc)
@@ -689,11 +689,11 @@ void amhw_fsl_rtc_lock_reg_lock (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief �Կ��ƼĴ���(CR)����
+ *  \brief 对控制寄存器(CR)上锁
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_control_reg_lock (amhw_fsl_rtc_t *p_hw_rtc)
@@ -702,11 +702,11 @@ void amhw_fsl_rtc_control_reg_lock (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief ��״̬�Ĵ���(SR)����
+ *  \brief 对状态寄存器(SR)上锁
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_status_reg_lock (amhw_fsl_rtc_t *p_hw_rtc)
@@ -715,11 +715,11 @@ void amhw_fsl_rtc_status_reg_lock (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief ��У׼�Ĵ���(TCR)����
+ *  \brief 对校准寄存器(TCR)上锁
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_compensate_reg_lock (amhw_fsl_rtc_t *p_hw_rtc)
@@ -728,11 +728,11 @@ void amhw_fsl_rtc_compensate_reg_lock (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief ����������Ĵ���(LR)����
+ *  \brief 解除对锁定寄存器(LR)上锁
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_lock_reg_unlock (amhw_fsl_rtc_t *p_hw_rtc)
@@ -741,11 +741,11 @@ void amhw_fsl_rtc_lock_reg_unlock (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief ����Կ��ƼĴ���(CR)����
+ *  \brief 解除对控制寄存器(CR)上锁
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_control_reg_unlock (amhw_fsl_rtc_t *p_hw_rtc)
@@ -754,11 +754,11 @@ void amhw_fsl_rtc_control_reg_unlock (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief �����״̬�Ĵ���(SR)����
+ *  \brief 解除对状态寄存器(SR)上锁
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_status_reg_unlock (amhw_fsl_rtc_t *p_hw_rtc)
@@ -767,11 +767,11 @@ void amhw_fsl_rtc_status_reg_unlock (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief �����У׼�Ĵ���(TCR)����
+ *  \brief 解除对校准寄存器(TCR)上锁
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_compensate_reg_unlock (amhw_fsl_rtc_t *p_hw_rtc)
@@ -780,10 +780,10 @@ void amhw_fsl_rtc_compensate_reg_unlock (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief ��������ʹ��
+ *  \brief 唤醒引脚使能
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
- *  \return ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_wakeup_pin_on (amhw_fsl_rtc_t *p_hw_rtc)
@@ -792,11 +792,11 @@ void amhw_fsl_rtc_wakeup_pin_on (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief ���ж�ʹ��
+ *  \brief 秒中断使能
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_sec_int_enable (amhw_fsl_rtc_t *p_hw_rtc)
@@ -805,11 +805,11 @@ void amhw_fsl_rtc_sec_int_enable (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief �����ж�ʹ��
+ *  \brief 闹钟中断使能
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_alarm_int_enable (amhw_fsl_rtc_t *p_hw_rtc)
@@ -818,11 +818,11 @@ void amhw_fsl_rtc_alarm_int_enable (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief ����ж�ʹ��
+ *  \brief 溢出中断使能
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_overflow_int_enable (amhw_fsl_rtc_t *p_hw_rtc)
@@ -831,11 +831,11 @@ void amhw_fsl_rtc_overflow_int_enable (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief ģ���ж���Чʹ��
+ *  \brief 模块中断无效使能
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_invalid_int_enable (amhw_fsl_rtc_t *p_hw_rtc)
@@ -844,10 +844,10 @@ void amhw_fsl_rtc_invalid_int_enable (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief �������ų���
+ *  \brief 唤醒引脚除能
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
- *  \return ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_wakeup_pin_off (amhw_fsl_rtc_t *p_hw_rtc)
@@ -856,11 +856,11 @@ void amhw_fsl_rtc_wakeup_pin_off (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief ���жϳ���
+ *  \brief 秒中断除能
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_sec_int_disable (amhw_fsl_rtc_t *p_hw_rtc)
@@ -869,11 +869,11 @@ void amhw_fsl_rtc_sec_int_disable (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief �����жϳ���
+ *  \brief 闹钟中断除能
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_alarm_int_disable (amhw_fsl_rtc_t *p_hw_rtc)
@@ -882,11 +882,11 @@ void amhw_fsl_rtc_alarm_int_disable (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief ����жϳ���
+ *  \brief 溢出中断除能
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_overflow_int_disable (amhw_fsl_rtc_t *p_hw_rtc)
@@ -895,11 +895,11 @@ void amhw_fsl_rtc_overflow_int_disable (amhw_fsl_rtc_t *p_hw_rtc)
 }
 
 /**
- *  \brief ģ����Ч�жϳ���
+ *  \brief 模块无效中断除能
  *
- *  \param p_hw_rtc ָ��RTC�Ĵ������ָ��
+ *  \param p_hw_rtc 指向RTC寄存器块的指针
  *
- *  \return ��
+ *  \return 无
  */
 am_static_inline
 void amhw_fsl_rtc_invalid_int_disable (amhw_fsl_rtc_t *p_hw_rtc)

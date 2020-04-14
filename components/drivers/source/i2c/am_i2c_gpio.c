@@ -26,41 +26,41 @@
 #include "am_delay.h"
 
 /*******************************************************************************
-  ºê¶¨Òå
+  å®å®šä¹‰
 *******************************************************************************/
 /**
- * \brief ×´Ì¬¶¨Òå
+ * \brief çŠ¶æ€å®šä¹‰
  */
-#define __I2C_GPIO_ST_IDLE             (0x10u)          /* ¿ÕÏĞ×´Ì¬ */
-#define __I2C_GPIO_ST_MSG_START        (0x11u)          /* ÏûÏ¢´«Êä¿ªÊ¼×´Ì¬ */
-#define __I2C_GPIO_ST_TRANS_START      (0x12u)          /* µ¥¸ö´«Êä¿ªÊ¼×´Ì¬ */
-#define __I2C_GPIO_ST_SEND_SLA_ADDR    (0x13u)          /* ·¢ËÍ´Ó»úµØÖ·×´Ì¬ */
-#define __I2C_GPIO_ST_M_SEND_DATA      (0x14u)          /* ·¢ËÍÊı¾İ×´Ì¬ */
-#define __I2C_GPIO_ST_M_RECV_DATA      (0x15u)          /* ½ÓÊÕÊı¾İ×´Ì¬ */
-#define __I2C_GPIO_ST_ARBI_LOST        (0x16u)          /* ÖÙ²Ã¶ªÊ§×´Ì¬ */
+#define __I2C_GPIO_ST_IDLE             (0x10u)          /* ç©ºé—²çŠ¶æ€ */
+#define __I2C_GPIO_ST_MSG_START        (0x11u)          /* æ¶ˆæ¯ä¼ è¾“å¼€å§‹çŠ¶æ€ */
+#define __I2C_GPIO_ST_TRANS_START      (0x12u)          /* å•ä¸ªä¼ è¾“å¼€å§‹çŠ¶æ€ */
+#define __I2C_GPIO_ST_SEND_SLA_ADDR    (0x13u)          /* å‘é€ä»æœºåœ°å€çŠ¶æ€ */
+#define __I2C_GPIO_ST_M_SEND_DATA      (0x14u)          /* å‘é€æ•°æ®çŠ¶æ€ */
+#define __I2C_GPIO_ST_M_RECV_DATA      (0x15u)          /* æ¥æ”¶æ•°æ®çŠ¶æ€ */
+#define __I2C_GPIO_ST_ARBI_LOST        (0x16u)          /* ä»²è£ä¸¢å¤±çŠ¶æ€ */
 
 /**
- * \brief ÊÂ¼ş¶¨Òå
+ * \brief äº‹ä»¶å®šä¹‰
  */
 
-#define __I2C_GPIO_EVT_START_SENT          (0x08u)  /* ÒÑ´«ËÍ¿ªÊ¼ĞÅºÅ*/
-#define __I2C_GPIO_EVT_RESTART_SENT        (0x10u)  /* ÒÑ´«ËÍ¿ªÊ¼ĞÅºÅ*/
+#define __I2C_GPIO_EVT_START_SENT          (0x08u)  /* å·²ä¼ é€å¼€å§‹ä¿¡å·*/
+#define __I2C_GPIO_EVT_RESTART_SENT        (0x10u)  /* å·²ä¼ é€å¼€å§‹ä¿¡å·*/
 
-#define __I2C_GPIO_EVT_ARBI_LOST           (0x38u)  /* ÖÙ²Ã¶ªÊ§ */
+#define __I2C_GPIO_EVT_ARBI_LOST           (0x38u)  /* ä»²è£ä¸¢å¤± */
 
-#define __I2C_GPIO_EVT_M_TX_SLA_ACK        (0x18u)     /* Ğ´µØÖ·ÏìÓ¦ */
-#define __I2C_GPIO_EVT_M_TX_SLA_NACK       (0x20u)     /* Ğ´µØÖ·ÎŞÏìÓ¦ */
-#define __I2C_GPIO_EVT_M_TX_DAT_ACK        (0x28u)     /* ·¢ËÍÊı¾İÏìÓ¦ */
-#define __I2C_GPIO_EVT_M_TX_DAT_NACK       (0x30u)     /* ·¢ËÍÊı¾İÎŞÏìÓ¦ */
+#define __I2C_GPIO_EVT_M_TX_SLA_ACK        (0x18u)     /* å†™åœ°å€å“åº” */
+#define __I2C_GPIO_EVT_M_TX_SLA_NACK       (0x20u)     /* å†™åœ°å€æ— å“åº” */
+#define __I2C_GPIO_EVT_M_TX_DAT_ACK        (0x28u)     /* å‘é€æ•°æ®å“åº” */
+#define __I2C_GPIO_EVT_M_TX_DAT_NACK       (0x30u)     /* å‘é€æ•°æ®æ— å“åº” */
 
-#define __I2C_GPIO_EVT_M_RX_SLA_ACK        (0x40u)     /* ¶ÁµØÖ·ÏìÓ¦ */
-#define __I2C_GPIO_EVT_M_RX_SLA_NACK       (0x48u)     /* ¶ÁµØÖ·ÎŞÏìÓ¦ */
-#define __I2C_GPIO_EVT_M_RX_DAT_R_ACK      (0x50u)     /* ½ÓÊÜÊı¾İ·µ»ØÏìÓ¦ */
-#define __I2C_GPIO_EVT_M_RX_DAT_R_NACK     (0x58u)     /* ½ÓÊÜÊı¾İ·µ»ØÎŞÏìÓ¦ */
+#define __I2C_GPIO_EVT_M_RX_SLA_ACK        (0x40u)     /* è¯»åœ°å€å“åº” */
+#define __I2C_GPIO_EVT_M_RX_SLA_NACK       (0x48u)     /* è¯»åœ°å€æ— å“åº” */
+#define __I2C_GPIO_EVT_M_RX_DAT_R_ACK      (0x50u)     /* æ¥å—æ•°æ®è¿”å›å“åº” */
+#define __I2C_GPIO_EVT_M_RX_DAT_R_NACK     (0x58u)     /* æ¥å—æ•°æ®è¿”å›æ— å“åº” */
 
-#define __I2C_GPIO_EVT_NONE            (0xFFu)          /* ÎŞÊÂ¼ş */
-#define __I2C_GPIO_EVT_MSG_LAUNCH      (0xFEu)          /* ¿ªÊ¼´¦ÀíÒ»¸öĞÂµÄÏûÏ¢ */
-#define __I2C_GPIO_EVT_TRANS_LAUNCH    (0xFDu)          /* ¿ªÊ¼´¦ÀíÒ»¸öĞÂµÄ´«Êä */
+#define __I2C_GPIO_EVT_NONE            (0xFFu)          /* æ— äº‹ä»¶ */
+#define __I2C_GPIO_EVT_MSG_LAUNCH      (0xFEu)          /* å¼€å§‹å¤„ç†ä¸€ä¸ªæ–°çš„æ¶ˆæ¯ */
+#define __I2C_GPIO_EVT_TRANS_LAUNCH    (0xFDu)          /* å¼€å§‹å¤„ç†ä¸€ä¸ªæ–°çš„ä¼ è¾“ */
 
 
 #define __I2C_GPIO_USER_DEALY(p_devinfo)   __i2c_gpio_delay(p_devinfo);
@@ -80,28 +80,28 @@
 #define __I2C_GPIO_SDA_VAL_GET(p_devinfo)  am_gpio_get(p_devinfo->sda_pin)
 
 
-/* »ñÈ¡µ±Ç°ÏûÏ¢ */
+/* è·å–å½“å‰æ¶ˆæ¯ */
 #define __i2c_gpio_cur_msg(p_dev) \
     ((p_dev)->p_cur_msg)
 
-/* ÅĞ¶Ï´«ÊäÌåÊÇ·ñÎª¿Õ */
+/* åˆ¤æ–­ä¼ è¾“ä½“æ˜¯å¦ä¸ºç©º */
 #define __i2c_gpio_trans_empty(p_dev) \
     ((p_dev)->p_cur_trans >= (p_dev)->p_cur_msg->p_transfers \
                              + (p_dev)->p_cur_msg->trans_num)
 
-/* »ñÈ¡µ±Ç°´«ÊäÌå */
+/* è·å–å½“å‰ä¼ è¾“ä½“ */
 #define __i2c_gpio_cur_trans(p_dev) \
     ((p_dev)->p_cur_trans)
 
-/* ºË¶Ô´«ÊäÊı¾İÊÇ·ñ³¬¹ı */
+/* æ ¸å¯¹ä¼ è¾“æ•°æ®æ˜¯å¦è¶…è¿‡ */
 #define __i2c_gpio_data_ptr_ov(p_dev) \
     ((p_dev)->data_ptr >= (p_dev)->p_cur_trans->nbytes)
 
-/* ÅĞ¶ÏÊÇ·ñÊÇ×îºóÒ»¸öÊı¾İ */
+/* åˆ¤æ–­æ˜¯å¦æ˜¯æœ€åä¸€ä¸ªæ•°æ® */
 #define __i2c_gpio_data_ptr_last(p_dev) \
     ((p_dev)->data_ptr == (p_dev)->p_cur_trans->nbytes - 1)
 
-/* µ±Ç°Êı¾İ  */
+/* å½“å‰æ•°æ®  */
 #define __i2c_gpio_cur_data(p_dev) \
     ((p_dev)->p_cur_trans->p_buf[(p_dev)->data_ptr])
 
@@ -116,10 +116,10 @@ am_local struct am_i2c_drv_funcs   __g_i2c_gpio_drv_funcs = {
 
 
  /******************************************************************************
-  I2C Ğ­ÒéÊµÏÖ
+  I2C åè®®å®ç°
  *******************************************************************************/
 /**
- * \brief Ê±ÖÓÑÓÊ±
+ * \brief æ—¶é’Ÿå»¶æ—¶
  */
  am_local void __i2c_gpio_delay (const am_i2c_gpio_devinfo_t *p_devinfo)
  {
@@ -129,7 +129,7 @@ am_local struct am_i2c_drv_funcs   __g_i2c_gpio_drv_funcs = {
  }
 
  /**
-  * \brief ¿ªÊ¼ĞÅºÅ
+  * \brief å¼€å§‹ä¿¡å·
   */
  am_local void __i2c_gpio_start (const am_i2c_gpio_devinfo_t *p_devinfo)
  {
@@ -149,7 +149,7 @@ am_local struct am_i2c_drv_funcs   __g_i2c_gpio_drv_funcs = {
  }
 
  /**
-  * \brief Í£Ö¹ĞÅºÅ
+  * \brief åœæ­¢ä¿¡å·
   */
  am_local void __i2c_gpio_stop (const am_i2c_gpio_devinfo_t *p_devinfo)
  {
@@ -166,7 +166,7 @@ am_local struct am_i2c_drv_funcs   __g_i2c_gpio_drv_funcs = {
  }
 
  /**
-  * \brief »ñÈ¡ÏìÓ¦×´Ì¬
+  * \brief è·å–å“åº”çŠ¶æ€
   */
  am_local am_bool_t __i2c_gpio_ack_get (const am_i2c_gpio_devinfo_t *p_devinfo)
  {
@@ -189,7 +189,7 @@ am_local struct am_i2c_drv_funcs   __g_i2c_gpio_drv_funcs = {
  }
 
  /**
-  * \brief ÉèÖÃÏìÓ¦
+  * \brief è®¾ç½®å“åº”
   */
  am_local void __i2c_gpio_ack_put (const am_i2c_gpio_devinfo_t *p_devinfo,
                                    am_bool_t                    ack)
@@ -208,7 +208,7 @@ am_local struct am_i2c_drv_funcs   __g_i2c_gpio_drv_funcs = {
  }
 
  /**
-  * \brief Ğ´Ò»¸ö×Ö½Ú
+  * \brief å†™ä¸€ä¸ªå­—èŠ‚
   */
  am_local am_bool_t __i2c_gpio_write_byte (const am_i2c_gpio_devinfo_t *p_devinfo,
                                            uint8_t                      data)
@@ -231,7 +231,7 @@ am_local struct am_i2c_drv_funcs   __g_i2c_gpio_drv_funcs = {
  }
 
  /**
-  * \brief ¶ÁÈ¡Ò»¸ö×Ö½Ú
+  * \brief è¯»å–ä¸€ä¸ªå­—èŠ‚
   */
  am_local uint8_t __i2c_gpio_read_byte (const am_i2c_gpio_devinfo_t *p_devinfo,
                                         am_bool_t                    ack)
@@ -263,9 +263,9 @@ am_local struct am_i2c_drv_funcs   __g_i2c_gpio_drv_funcs = {
 /******************************************************************************/
 
  /**
-  * \brief Ìí¼ÓÒ»Ìõ message µ½¿ØÖÆÆ÷´«ÊäÁĞ±íÄ©Î²
+  * \brief æ·»åŠ ä¸€æ¡ message åˆ°æ§åˆ¶å™¨ä¼ è¾“åˆ—è¡¨æœ«å°¾
   *
-  * \attention µ÷ÓÃ´Ëº¯Êı±ØĞëËø¶¨¿ØÖÆÆ÷
+  * \attention è°ƒç”¨æ­¤å‡½æ•°å¿…é¡»é”å®šæ§åˆ¶å™¨
   */
  am_static_inline
  void __i2c_gpio_msg_in (am_i2c_gpio_dev_t *p_dev, struct am_i2c_message *p_msg)
@@ -275,9 +275,9 @@ am_local struct am_i2c_drv_funcs   __g_i2c_gpio_drv_funcs = {
  }
 
  /**
-  * \brief ´Ó¿ØÖÆÆ÷´«ÊäÁĞ±í±íÍ·È¡³öÒ»Ìõ message
+  * \brief ä»æ§åˆ¶å™¨ä¼ è¾“åˆ—è¡¨è¡¨å¤´å–å‡ºä¸€æ¡ message
   *
-  * \attention µ÷ÓÃ´Ëº¯Êı±ØĞëËø¶¨¿ØÖÆÆ÷
+  * \attention è°ƒç”¨æ­¤å‡½æ•°å¿…é¡»é”å®šæ§åˆ¶å™¨
   */
  am_static_inline
  struct am_i2c_message *__i2c_gpio_msg_out (am_i2c_gpio_dev_t *p_dev)
@@ -293,7 +293,7 @@ am_local struct am_i2c_drv_funcs   __g_i2c_gpio_drv_funcs = {
 
 
  /**
-  * \brief Ó²¼ş³õÊ¼»¯
+  * \brief ç¡¬ä»¶åˆå§‹åŒ–
   */
 am_local void __i2c_gpio_hw_init(const am_i2c_gpio_devinfo_t *p_devinfo)
 {
@@ -302,7 +302,7 @@ am_local void __i2c_gpio_hw_init(const am_i2c_gpio_devinfo_t *p_devinfo)
 }
 
 /**
- * \brief ÏûÏ¢¿ªÊ¼
+ * \brief æ¶ˆæ¯å¼€å§‹
  */
 am_local int __i2c_gpio_msg_start(void *p_drv, struct am_i2c_message *p_msg)
 {
@@ -319,7 +319,7 @@ am_local int __i2c_gpio_msg_start(void *p_drv, struct am_i2c_message *p_msg)
 
     key = am_int_cpu_lock();
 
-    /* µ±Ç°ÕıÔÚ´¦ÀíÏûÏ¢£¬Ö»ĞèÒª½«ĞÂµÄÏûÏ¢¼ÓÈëÁ´±í¼´¿É */
+    /* å½“å‰æ­£åœ¨å¤„ç†æ¶ˆæ¯ï¼Œåªéœ€è¦å°†æ–°çš„æ¶ˆæ¯åŠ å…¥é“¾è¡¨å³å¯ */
     if (p_dev->busy == AM_TRUE) {
 
         __i2c_gpio_msg_in(p_dev, p_msg);
@@ -331,7 +331,7 @@ am_local int __i2c_gpio_msg_start(void *p_drv, struct am_i2c_message *p_msg)
     } else {
         p_dev->busy = AM_TRUE;
         __i2c_gpio_msg_in(p_dev, p_msg);
-        p_msg->status = -AM_EISCONN; /* ÕıÔÚÅÅ¶ÓÖĞ */
+        p_msg->status = -AM_EISCONN; /* æ­£åœ¨æ’é˜Ÿä¸­ */
         am_int_cpu_unlock(key);
 
         return __i2c_mst_sm_event(p_dev, __I2C_GPIO_EVT_MSG_LAUNCH);
@@ -346,7 +346,7 @@ am_local int __i2c_gpio_msg_start(void *p_drv, struct am_i2c_message *p_msg)
     } while(0)
 
 /**
- * \brief  I2C_GPIO ×´Ì¬»ú´¦Àí
+ * \brief  I2C_GPIO çŠ¶æ€æœºå¤„ç†
  */
 am_local int __i2c_mst_sm_event(am_i2c_gpio_dev_t *p_dev, uint32_t event)
 {
@@ -356,7 +356,7 @@ am_local int __i2c_mst_sm_event(am_i2c_gpio_dev_t *p_dev, uint32_t event)
 
     while (1) {
 
-        /* ¼ì²éÊÇ·ñÓĞĞÂµÄÊÂ¼şÔÚ×´Ì¬»úÄÚ²¿²úÉú */
+        /* æ£€æŸ¥æ˜¯å¦æœ‰æ–°çš„äº‹ä»¶åœ¨çŠ¶æ€æœºå†…éƒ¨äº§ç”Ÿ */
         if (new_event != __I2C_GPIO_EVT_NONE) {
             event     = new_event;
             new_event = __I2C_GPIO_EVT_NONE;
@@ -365,7 +365,7 @@ am_local int __i2c_mst_sm_event(am_i2c_gpio_dev_t *p_dev, uint32_t event)
         switch (p_dev->state) {
 
         /*
-         * ¿ÕÏĞ×´Ì¬ºÍ¿ªÊ¼ÏûÏ¢´«Êä×´Ì¬Òª´¦ÀíµÄÊÂÇéÊÇÒ»Ñù£¬ÊÂ¼şÖ»Ó¦ÊÇ£º
+         * ç©ºé—²çŠ¶æ€å’Œå¼€å§‹æ¶ˆæ¯ä¼ è¾“çŠ¶æ€è¦å¤„ç†çš„äº‹æƒ…æ˜¯ä¸€æ ·ï¼Œäº‹ä»¶åªåº”æ˜¯ï¼š
          * __I2C_EVT_TRANS_LAUNCH
          */
         case __I2C_GPIO_ST_IDLE:
@@ -387,7 +387,7 @@ am_local int __i2c_mst_sm_event(am_i2c_gpio_dev_t *p_dev, uint32_t event)
 
             am_int_cpu_unlock(key);
 
-            /* ÎŞĞèÒª´¦ÀíµÄÏûÏ¢ */
+            /* æ— éœ€è¦å¤„ç†çš„æ¶ˆæ¯ */
             if (p_cur_msg == NULL) {
 
                 __i2c_gpio_next_state(__I2C_GPIO_ST_IDLE, __I2C_GPIO_EVT_NONE);
@@ -402,7 +402,7 @@ am_local int __i2c_mst_sm_event(am_i2c_gpio_dev_t *p_dev, uint32_t event)
                 __i2c_gpio_next_state(__I2C_GPIO_ST_TRANS_START,
                                       __I2C_GPIO_EVT_TRANS_LAUNCH);
 
-                /* Ö±½Ó½øÈëÏÂÒ»¸ö×´Ì¬£¬¿ªÊ¼Ò»¸ö´«Êä£¬´Ë´¦ÎŞĞèbreak */
+                /* ç›´æ¥è¿›å…¥ä¸‹ä¸€ä¸ªçŠ¶æ€ï¼Œå¼€å§‹ä¸€ä¸ªä¼ è¾“ï¼Œæ­¤å¤„æ— éœ€break */
                 event     = new_event;
                 new_event = __I2C_GPIO_EVT_NONE;
 
@@ -410,20 +410,20 @@ am_local int __i2c_mst_sm_event(am_i2c_gpio_dev_t *p_dev, uint32_t event)
         }
         /* no break */
 
-        /*¡¡´«Êä¿ªÊ¼ */
+        /*ã€€ä¼ è¾“å¼€å§‹ */
         case __I2C_GPIO_ST_TRANS_START:
         {
             struct am_i2c_message *p_cur_msg =  __i2c_gpio_cur_msg(p_dev);
 
-            /* µ±Ç°ÏûÏ¢´«ÊäÍê³É */
+            /* å½“å‰æ¶ˆæ¯ä¼ è¾“å®Œæˆ */
             if (__i2c_gpio_trans_empty(p_dev)) {
 
-                /* ÏûÏ¢ÕıÔÚ´¦ÀíÖĞ */
+                /* æ¶ˆæ¯æ­£åœ¨å¤„ç†ä¸­ */
                 if (p_cur_msg->status == -AM_EINPROGRESS) {
                     p_cur_msg->status = AM_OK;
                 }
 
-                /* »Øµ÷ÏûÏ¢Íê³Éº¯Êı  */
+                /* å›è°ƒæ¶ˆæ¯å®Œæˆå‡½æ•°  */
                 if (p_cur_msg->pfn_complete != NULL) {
                     p_cur_msg->pfn_complete(p_cur_msg->p_arg);
                 }
@@ -434,7 +434,7 @@ am_local int __i2c_mst_sm_event(am_i2c_gpio_dev_t *p_dev, uint32_t event)
                 __i2c_gpio_next_state(__I2C_GPIO_ST_IDLE,
                                             __I2C_GPIO_EVT_MSG_LAUNCH);
 
-            } else {                    /* »ñÈ¡µ½Ò»¸ö´«Êä£¬ÕıÈ·´¦Àí¸Ã´«Êä¼´¿É */
+            } else {                    /* è·å–åˆ°ä¸€ä¸ªä¼ è¾“ï¼Œæ­£ç¡®å¤„ç†è¯¥ä¼ è¾“å³å¯ */
 
                 struct am_i2c_transfer *p_cur_trans = p_dev->p_cur_trans;
 
@@ -442,10 +442,10 @@ am_local int __i2c_mst_sm_event(am_i2c_gpio_dev_t *p_dev, uint32_t event)
                 p_dev->data_ptr = 0;
 
                 /*
-                 * ²»ĞèÒªÆô¶¯ĞÅºÅ£¬Ö±½Ó´«Êä£¬±ØĞëÍ¬Ê±Âú×ãÒÔÏÂÈı¸öÌõ¼ş£º
-                 * 1.ÉèÖÃÁË±êÖ¾ AM_I2C_M_NOSTART
-                 * 2.µ±Ç°´«Êä²»ÊÇÒ»¸öÏûÏ¢ÖĞµÄµÚÒ»¸ö´«Êä
-                 * 3.µ±Ç°´«ÊäÓëÉÏÒ»¸ö´«ÊäµÄ·½ÏòÒ»ÖÂ
+                 * ä¸éœ€è¦å¯åŠ¨ä¿¡å·ï¼Œç›´æ¥ä¼ è¾“ï¼Œå¿…é¡»åŒæ—¶æ»¡è¶³ä»¥ä¸‹ä¸‰ä¸ªæ¡ä»¶ï¼š
+                 * 1.è®¾ç½®äº†æ ‡å¿— AM_I2C_M_NOSTART
+                 * 2.å½“å‰ä¼ è¾“ä¸æ˜¯ä¸€ä¸ªæ¶ˆæ¯ä¸­çš„ç¬¬ä¸€ä¸ªä¼ è¾“
+                 * 3.å½“å‰ä¼ è¾“ä¸ä¸Šä¸€ä¸ªä¼ è¾“çš„æ–¹å‘ä¸€è‡´
                  */
                 if ((p_cur_trans->flags & AM_I2C_M_NOSTART) &&
                     (p_cur_trans != p_cur_msg->p_transfers) &&
@@ -457,21 +457,21 @@ am_local int __i2c_mst_sm_event(am_i2c_gpio_dev_t *p_dev, uint32_t event)
 
                     if (is_read == AM_TRUE) {
 
-                        /* ¼ÌĞø½ÓÊÜÊı¾İ */
+                        /* ç»§ç»­æ¥å—æ•°æ® */
                         __i2c_gpio_next_state(__I2C_GPIO_ST_M_RECV_DATA,
                                               __I2C_GPIO_EVT_M_RX_SLA_ACK);
 
                     } else {
 
-                        /* ¼ÌĞø·¢ËÍÊı¾İ */
+                        /* ç»§ç»­å‘é€æ•°æ® */
                         __i2c_gpio_next_state(__I2C_GPIO_ST_M_SEND_DATA,
                                               __I2C_GPIO_EVT_M_TX_SLA_ACK);
                     }
 
-                /* ·¢ËÍ´Ó»úµØÖ· */
+                /* å‘é€ä»æœºåœ°å€ */
                 } else {
 
-                    /* ÏÂÒ»²½²Ù×÷ÊÇ·¢ËÍ´Ó»úµØÖ· */
+                    /* ä¸‹ä¸€æ­¥æ“ä½œæ˜¯å‘é€ä»æœºåœ°å€ */
                     __i2c_gpio_next_state(__I2C_GPIO_ST_SEND_SLA_ADDR,
                                           __I2C_GPIO_EVT_START_SENT);
 
@@ -481,14 +481,14 @@ am_local int __i2c_mst_sm_event(am_i2c_gpio_dev_t *p_dev, uint32_t event)
             break;
         }
 
-        /* ·¢ËÍ´Ó»úµØÖ· */
+        /* å‘é€ä»æœºåœ°å€ */
         case __I2C_GPIO_ST_SEND_SLA_ADDR:
         {
             uint8_t   flag   = 0X00;
             am_bool_t acked  = AM_FALSE;
             struct am_i2c_transfer *p_cur_trans = __i2c_gpio_cur_trans(p_dev);
 
-            /* ·¢ËÍ´Ó»úµØÖ·*/
+            /* å‘é€ä»æœºåœ°å€*/
             if (p_cur_trans->flags & AM_I2C_M_RD) {
                 flag = 0X01;
             } else {
@@ -515,48 +515,48 @@ am_local int __i2c_mst_sm_event(am_i2c_gpio_dev_t *p_dev, uint32_t event)
             break;
         }
 
-        /* µ±Ç°´¦ÓÚ·¢ËÍÊı¾İ×´Ì¬ */
+        /* å½“å‰å¤„äºå‘é€æ•°æ®çŠ¶æ€ */
         case __I2C_GPIO_ST_M_SEND_DATA:
         {
             struct am_i2c_message  *p_cur_msg   = __i2c_gpio_cur_msg(p_dev);
             struct am_i2c_transfer *p_cur_trans = __i2c_gpio_cur_trans(p_dev);
 
-            /* ·¢ËÍµØÖ·»òÊı¾İÎŞÏìÓ¦ */
+            /* å‘é€åœ°å€æˆ–æ•°æ®æ— å“åº” */
             if ((event == __I2C_GPIO_EVT_M_TX_SLA_NACK) ||
                 (event == __I2C_GPIO_EVT_M_TX_DAT_NACK)) {
 
-                /* ²»ÄÜºöÂÔ´íÎó */
+                /* ä¸èƒ½å¿½ç•¥é”™è¯¯ */
                 if (!(p_cur_trans->flags & AM_I2C_M_IGNORE_NAK)) {
 
-                    /* ¸üĞÂÏûÏ¢×´Ì¬  */
+                    /* æ›´æ–°æ¶ˆæ¯çŠ¶æ€  */
                     p_cur_msg->status = (event == __I2C_GPIO_EVT_M_TX_SLA_NACK ?
                                                  -AM_ENODEV : -AM_ENOENT);
 
-                    /* ºöÂÔÊ£ÏÂµÄtrans */
+                    /* å¿½ç•¥å‰©ä¸‹çš„trans */
                     p_dev->p_cur_trans = p_cur_msg->p_transfers
                                          + p_cur_msg->trans_num;
 
-                    /* ½áÊøµ±Ç°ÏûÏ¢´«Êä */
+                    /* ç»“æŸå½“å‰æ¶ˆæ¯ä¼ è¾“ */
                     __i2c_gpio_next_state(__I2C_GPIO_ST_TRANS_START,
                                        __I2C_GPIO_EVT_TRANS_LAUNCH);
 
                     break;
 
-                /* ºöÂÔ´íÎó */
+                /* å¿½ç•¥é”™è¯¯ */
                 } else {
 
                 }
             }
 
-            /* Ã»ÓĞ¸ü¶àµÄÊı¾İ´«Êä */
+            /* æ²¡æœ‰æ›´å¤šçš„æ•°æ®ä¼ è¾“ */
             if (__i2c_gpio_data_ptr_ov(p_dev)) {
 
-                /* ×¼±¸»ñÈ¡ÏÂÒ»¸ö´«ÊäÌå */
+                /* å‡†å¤‡è·å–ä¸‹ä¸€ä¸ªä¼ è¾“ä½“ */
                 __i2c_gpio_next_state(__I2C_GPIO_ST_TRANS_START, __I2C_GPIO_EVT_TRANS_LAUNCH);
                 p_dev->p_cur_trans++;
                 p_cur_msg->done_num++;
 
-            /* ´«ÊäÏÂÒ»¸öÊı¾İ */
+            /* ä¼ è¾“ä¸‹ä¸€ä¸ªæ•°æ® */
             } else {
                 am_bool_t acked;
                 acked = __i2c_gpio_write_byte(p_devinfo, __i2c_gpio_cur_data(p_dev));
@@ -570,49 +570,49 @@ am_local int __i2c_mst_sm_event(am_i2c_gpio_dev_t *p_dev, uint32_t event)
             break;
         }
 
-        /* ½ÓÊÜÊı¾İ×´Ì¬ */
+        /* æ¥å—æ•°æ®çŠ¶æ€ */
         case __I2C_GPIO_ST_M_RECV_DATA:
         {
             struct am_i2c_message  *p_cur_msg   = __i2c_gpio_cur_msg(p_dev);
             struct am_i2c_transfer *p_cur_trans = __i2c_gpio_cur_trans(p_dev);
 
-            /* ´Ó»úÎŞÏìÓ¦  */
+            /* ä»æœºæ— å“åº”  */
             if (event == __I2C_GPIO_EVT_M_RX_SLA_NACK) {
 
-                /* ²»ÄÜºöÂÔ´íÎó */
+                /* ä¸èƒ½å¿½ç•¥é”™è¯¯ */
                 if (!(p_cur_trans->flags & AM_I2C_M_IGNORE_NAK)) {
 
-                    /* ¸üĞÂÏûÏ¢×´Ì¬ */
+                    /* æ›´æ–°æ¶ˆæ¯çŠ¶æ€ */
                     p_cur_msg->status = -AM_ENODEV;
 
-                    /* ºöÂÔÊ£ÓàµÄtrans */
+                    /* å¿½ç•¥å‰©ä½™çš„trans */
                     p_dev->p_cur_trans = p_cur_msg->p_transfers + p_cur_msg->trans_num;
 
-                    /* ½áÊøµ±Ç°ÏûÏ¢´«Êä */
+                    /* ç»“æŸå½“å‰æ¶ˆæ¯ä¼ è¾“ */
                     __i2c_gpio_next_state(__I2C_GPIO_ST_TRANS_START, __I2C_GPIO_EVT_TRANS_LAUNCH);
 
                     break;
 
-                /* ºöÂÔ´íÎó */
+                /* å¿½ç•¥é”™è¯¯ */
                 } else {
                     event = __I2C_GPIO_EVT_M_RX_SLA_ACK;
                 }
             }
 
-            /* ½ÓÊÜÊı¾İ */
+            /* æ¥å—æ•°æ® */
             while (!__i2c_gpio_data_ptr_last(p_dev)) {
                 __i2c_gpio_cur_data(p_dev) = __i2c_gpio_read_byte(p_devinfo, AM_TRUE);
                 p_dev->data_ptr++;
             }
 
-            /* ×îºóÒ»¸öÊı¾İ  ÎŞĞèÏìÓ¦  */
+            /* æœ€åä¸€ä¸ªæ•°æ®  æ— éœ€å“åº”  */
             __i2c_gpio_cur_data(p_dev) = __i2c_gpio_read_byte(p_devinfo, AM_FALSE);
 
-            /* ½ÓÊÜÍêËùÓĞÊı¾İ */
+            /* æ¥å—å®Œæ‰€æœ‰æ•°æ® */
             p_cur_msg->done_num++;
             p_dev->p_cur_trans++;
 
-            /* »ñÈ¡ÏÂÒ»¸ö´«ÊäÌå*/
+            /* è·å–ä¸‹ä¸€ä¸ªä¼ è¾“ä½“*/
             __i2c_gpio_next_state(__I2C_GPIO_ST_TRANS_START, __I2C_GPIO_EVT_TRANS_LAUNCH);
 
             break;
@@ -623,7 +623,7 @@ am_local int __i2c_mst_sm_event(am_i2c_gpio_dev_t *p_dev, uint32_t event)
             break;
         }
 
-        /* ÎŞÊÂ¼şÍË³ö */
+        /* æ— äº‹ä»¶é€€å‡º */
         if (new_event == __I2C_GPIO_EVT_NONE) {
             break;
         }

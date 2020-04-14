@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief bootloader ´®ĞĞÊı¾İ´¦Àí±ê×¼Éè±¸ÊµÏÖ£¨uartÇı¶¯£©
+ * \brief bootloader ä¸²è¡Œæ•°æ®å¤„ç†æ ‡å‡†è®¾å¤‡å®ç°ï¼ˆuarté©±åŠ¨ï¼‰
  *
  * \internal
  * \par modification history:
@@ -31,12 +31,12 @@ extern "C" {
 #endif
 
 /**
- * \brief uartÇı¶¯ serialÊı¾İµÄÉè±¸
+ * \brief uarté©±åŠ¨ serialæ•°æ®çš„è®¾å¤‡
  */
 typedef struct am_zlg116_boot_serial_uart_dev {
-    am_boot_serial_byte_serv_t    serial_serv;      /**< \brief ±ê×¼µÄ ´®ĞĞÊı¾İ²Ù×÷ ·şÎñ    */
-    //am_autobaud_handle_t          autobaud_handle;  /**< \brief ×Ô¶¯²¨ÌØÂÊ¼ì²âµÄ²Ù×÷¾ä±ú  */
-    am_uart_handle_t              uart_handle;      /**< \brief ±ê×¼µÄuart²Ù×÷¾ä±ú  */
+    am_boot_serial_byte_serv_t    serial_serv;      /**< \brief æ ‡å‡†çš„ ä¸²è¡Œæ•°æ®æ“ä½œ æœåŠ¡    */
+    //am_autobaud_handle_t          autobaud_handle;  /**< \brief è‡ªåŠ¨æ³¢ç‰¹ç‡æ£€æµ‹çš„æ“ä½œå¥æŸ„  */
+    am_uart_handle_t              uart_handle;      /**< \brief æ ‡å‡†çš„uartæ“ä½œå¥æŸ„  */
 } am_zlg116_boot_serial_uart_dev_t;
 
 am_boot_serial_handle_t am_zlg116_boot_serial_uart_init(am_boot_autobaud_handle_t autobaud_handle);

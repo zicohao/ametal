@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief PIT ¶¨Ê±¹¦ÄÜÇı¶¯²ãÊµÏÖ
+ * \brief PIT å®šæ—¶åŠŸèƒ½é©±åŠ¨å±‚å®ç°
  *
- * 1. PITÖÜÆÚĞÔÖĞ¶Ï¶¨Ê±Æ÷£¬±¾Çı¶¯ÊµÏÖÆä"¶¨Ê±"·şÎñ
+ * 1. PITå‘¨æœŸæ€§ä¸­æ–­å®šæ—¶å™¨ï¼Œæœ¬é©±åŠ¨å®ç°å…¶"å®šæ—¶"æœåŠ¡
  *
  * \internal
  * \par Modification history
@@ -27,7 +27,7 @@
 #include "am_clk.h"
 
 /*******************************************************************************
-  ¶¨Ê±Æ÷Çı¶¯º¯ÊıÉùÃ÷
+  å®šæ—¶å™¨é©±åŠ¨å‡½æ•°å£°æ˜
 *******************************************************************************/
 
 static const am_timer_info_t *__pit_timing_info_get (void *p_drv);
@@ -75,17 +75,17 @@ static int __pit_timing_enable64 (void     *p_drv,
                                   uint64_t  max_timer_count);
 
 /*******************************************************************************
-  È«¾Ö±äÁ¿
+  å…¨å±€å˜é‡
 *******************************************************************************/
 
-/* ¶¨Ê±Æ÷ĞÅÏ¢ */
+/* å®šæ—¶å™¨ä¿¡æ¯ */
 static am_timer_info_t __g_pit_timing_info = {
-    32,                                      /* 32Î»¶¨Ê±Æ÷               */
-    2,                                       /* Ë«Í¨µÀ                   */
-    AM_TIMER_CAN_INTERRUPT      |            /* ¿ÉÒÔ²úÉúÖĞ¶Ï             */
-    AM_TIMER_AUTO_RELOAD        |            /* Ö§³Ö×Ô¶¯ÖØÔØ             */
-    AM_TIMER_INTERMEDIATE_COUNT,             /* µ±Ç°¼ÆÊıÆ÷Öµ¿É¶Á         */
-    0                                        /* ²»Ö§³ÖÔ¤·ÖÆµ      */
+    32,                                      /* 32ä½å®šæ—¶å™¨               */
+    2,                                       /* åŒé€šé“                   */
+    AM_TIMER_CAN_INTERRUPT      |            /* å¯ä»¥äº§ç”Ÿä¸­æ–­             */
+    AM_TIMER_AUTO_RELOAD        |            /* æ”¯æŒè‡ªåŠ¨é‡è½½             */
+    AM_TIMER_INTERMEDIATE_COUNT,             /* å½“å‰è®¡æ•°å™¨å€¼å¯è¯»         */
+    0                                        /* ä¸æ”¯æŒé¢„åˆ†é¢‘      */
 };
 
 /** \brief SCT for timing driver functions */
@@ -109,7 +109,7 @@ void __pit_irq_handler (void *p_arg)
     amhw_fsl_pit_t          *p_hw_pit =  p_dev->p_devinfo->p_hw_pit;
 
     /*
-     * ÅĞ¶ÏÊÇ·ñÊÇ¶¨Ê±Æ÷Òç³öÖĞ¶Ï
+     * åˆ¤æ–­æ˜¯å¦æ˜¯å®šæ—¶å™¨æº¢å‡ºä¸­æ–­
      */
     if (amhw_fsl_pit_timerout_flag_check(p_hw_pit, AMHW_FSL_PIT_CH(0))) {
         if (p_dev->pfn_ch1_callback != NULL) {
@@ -125,7 +125,7 @@ void __pit_irq_handler (void *p_arg)
     }
 }
 
-/** \brief »ñÈ¡PITĞÅÏ¢ */
+/** \brief è·å–PITä¿¡æ¯ */
 static const am_timer_info_t * __pit_timing_info_get (void *p_drv)
 {
     am_fsl_pit_timing_dev_t *p_dev    = (am_fsl_pit_timing_dev_t *)p_drv;
@@ -137,7 +137,7 @@ static const am_timer_info_t * __pit_timing_info_get (void *p_drv)
     return &__g_pit_timing_info;
 }
 
-/** \brief »ñÈ¡PITÊ±ÖÓÆµÂÊĞÅÏ¢ */
+/** \brief è·å–PITæ—¶é’Ÿé¢‘ç‡ä¿¡æ¯ */
 static int __pit_timing_clkin_freq_get (void *p_drv, uint32_t *p_freq)
 {
     am_fsl_pit_timing_dev_t *p_dev    = (am_fsl_pit_timing_dev_t *)p_drv;
@@ -146,7 +146,7 @@ static int __pit_timing_clkin_freq_get (void *p_drv, uint32_t *p_freq)
         return -AM_EINVAL;
     }
 
-    /* »ñÈ¡µ±Ç°ÏµÍ³Ê±ÖÓÆµÂÊ£¬systick Ê¹ÓÃµÄÊÇÏµÍ³Ê±ÖÓ */
+    /* è·å–å½“å‰ç³»ç»Ÿæ—¶é’Ÿé¢‘ç‡ï¼Œsystick ä½¿ç”¨çš„æ˜¯ç³»ç»Ÿæ—¶é’Ÿ */
     *p_freq =  am_clk_rate_get(p_dev->p_devinfo->clk_id);
 
     return AM_OK;
@@ -173,14 +173,14 @@ static int __pit_timing_prescale_get (void     *p_drv,
         return -AM_EINVAL;
     }
 
-    /* ÎŞ·ÖÆµÆ÷£¬·ÖÆµÖµÊ¼ÖÕÎª1  */
+    /* æ— åˆ†é¢‘å™¨ï¼Œåˆ†é¢‘å€¼å§‹ç»ˆä¸º1  */
     *p_prescale = 1;
 
     return AM_OK;
 }
 
 /**
- * \brief »ñÈ¡PITµ±Ç°¼ÆÊıÖµ
+ * \brief è·å–PITå½“å‰è®¡æ•°å€¼
  */
 static int __pit_timing_count_get (void     *p_drv,
                                    uint8_t   chan,
@@ -201,7 +201,7 @@ static int __pit_timing_count_get (void     *p_drv,
 }
 
 /**
- * \brief »ñÈ¡PIT·­¹öÖµ
+ * \brief è·å–PITç¿»æ»šå€¼
  */
 static int __pit_timing_rollover_get (void     *p_drv,
                                       uint8_t   chan,
@@ -229,14 +229,14 @@ static int __pit_timing_rollover_get (void     *p_drv,
 }
 
 /**
- * \brief PIT½ûÄÜ
+ * \brief PITç¦èƒ½
  */
 static int __pit_timing_disable (void *p_drv, uint8_t chan)
 {
     am_fsl_pit_timing_dev_t *p_dev    = (am_fsl_pit_timing_dev_t *)p_drv;
     amhw_fsl_pit_t          *p_hw_pit =  p_dev->p_devinfo->p_hw_pit;
 
-    /* ÇåÁãÊ¹ÄÜÎ» */
+    /* æ¸…é›¶ä½¿èƒ½ä½ */
     amhw_fsl_pit_timer_ctrl_clear(p_hw_pit,
                                   AMHW_FSL_PIT_CH(chan),
                                   AMHW_FSL_PIT_TCTL_TMR_EN);
@@ -245,7 +245,7 @@ static int __pit_timing_disable (void *p_drv, uint8_t chan)
 }
 
 /**
- * \brief PITÊ¹ÄÜ²¢ÉèÖÃ¼ÆÊıÖµ
+ * \brief PITä½¿èƒ½å¹¶è®¾ç½®è®¡æ•°å€¼
  */
 static int __pit_timing_enable (void     *p_drv,
                                 uint8_t   chan,
@@ -255,18 +255,18 @@ static int __pit_timing_enable (void     *p_drv,
     amhw_fsl_pit_t          *p_hw_pit      = p_dev->p_devinfo->p_hw_pit;
     uint32_t                 max_pit_count = *(uint32_t *)p_count;
 
-    /* ÅĞ¶Ï¶¨Ê±Æ÷Î»ÊıÊÇ·ñÎª64Î» */
+    /* åˆ¤æ–­å®šæ—¶å™¨ä½æ•°æ˜¯å¦ä¸º64ä½ */
     if (p_dev->p_devinfo->flag == AM_FSL_PIT_TIMING_1_64BIT) {
         __pit_timing_enable64(p_drv, chan, max_pit_count);
         return AM_OK;
     }
 
-    amhw_fsl_pit_module_enable(p_hw_pit);           /* ´ò¿ªPITÄ£¿é */
+    amhw_fsl_pit_module_enable(p_hw_pit);           /* æ‰“å¼€PITæ¨¡å— */
 
-    /* ÉèÖÃ×°ÔØÖµ */
+    /* è®¾ç½®è£…è½½å€¼ */
     amhw_fsl_pit_ldval_set(p_hw_pit, AMHW_FSL_PIT_CH(chan), max_pit_count);
 
-    /* ´ò¿ªÖĞ¶Ï²¢Ê¹ÄÜÍ¨µÀ */
+    /* æ‰“å¼€ä¸­æ–­å¹¶ä½¿èƒ½é€šé“ */
     amhw_fsl_pit_timer_ctrl_set(p_hw_pit,
                                 AMHW_FSL_PIT_CH(chan),
                                 AMHW_FSL_PIT_TCTL_TI_EN | AMHW_FSL_PIT_TCTL_TMR_EN);
@@ -275,7 +275,7 @@ static int __pit_timing_enable (void     *p_drv,
 }
 
 /**
- * \brief ÉèÖÃÖĞ¶Ï»Øµ÷º¯Êı
+ * \brief è®¾ç½®ä¸­æ–­å›è°ƒå‡½æ•°
  */
 static int __pit_timing_callback_set (void     *p_drv,
                                       uint8_t   chan,
@@ -286,7 +286,7 @@ static int __pit_timing_callback_set (void     *p_drv,
     amhw_fsl_pit_t          *p_hw_pit =  p_dev->p_devinfo->p_hw_pit;
 
 
-    /* ²»ĞèÒª¿ªÆôÖĞ¶Ï */
+    /* ä¸éœ€è¦å¼€å¯ä¸­æ–­ */
     if (pfn_callback == NULL) {
         amhw_fsl_pit_timer_ctrl_clear(p_hw_pit,
                                       AMHW_FSL_PIT_CH(chan),
@@ -318,7 +318,7 @@ static int __pit_timing_callback_set (void     *p_drv,
 }
 
 /**
- * \brief 64Î»¶¨Ê±Æ÷¼ÆÊıÖµ»ñÈ¡
+ * \brief 64ä½å®šæ—¶å™¨è®¡æ•°å€¼è·å–
  */
 static int __pit_timing_count_get64 (void     *p_drv,
                                      uint8_t   chan,
@@ -337,7 +337,7 @@ static int __pit_timing_count_get64 (void     *p_drv,
     low_val  = amhw_fsl_pit_ltmr64l_get(p_hw_pit);
     current  = (uint64_t)((uint64_t)high_val << 32) | low_val;
 
-    *p_count = rollover - current; /* ·µ»ØÏòÉÏ¼ÆÊıÖµ */
+    *p_count = rollover - current; /* è¿”å›å‘ä¸Šè®¡æ•°å€¼ */
 
     return AM_OK;
 }
@@ -381,7 +381,7 @@ static int __pit_timing_enable64 (void    *p_drv,
     amhw_fsl_pit_module_enable(p_hw_pit);
     amhw_fsl_pit_ldval_set(p_hw_pit, 1, high_val);
 
-    /* Ê¹ÄÜÁ¬½ÓÄ£Ê½£¬Ê¹ÄÜÖĞ¶Ï£¬¿ªÊ¼¼ÆÊı */
+    /* ä½¿èƒ½è¿æ¥æ¨¡å¼ï¼Œä½¿èƒ½ä¸­æ–­ï¼Œå¼€å§‹è®¡æ•° */
     amhw_fsl_pit_timer_ctrl_set(p_hw_pit, 1, AMHW_FSL_PIT_TCTL_MASK);
 
     amhw_fsl_pit_ldval_set(p_hw_pit, 0, low_val);
@@ -391,14 +391,14 @@ static int __pit_timing_enable64 (void    *p_drv,
                         0,
                         AMHW_FSL_PIT_TCTL_TI_EN | AMHW_FSL_PIT_TCTL_CHAIN_MODE);
 
-    /* ²»ÄÜ¿ªÆôÖĞ¶Ï */
+    /* ä¸èƒ½å¼€å¯ä¸­æ–­ */
     amhw_fsl_pit_timer_ctrl_set(p_hw_pit, 0, AMHW_FSL_PIT_TCTL_TMR_EN);
 
     return AM_OK;
 }
 
 /**
- * \brief PIT³õÊ¼»¯
+ * \brief PITåˆå§‹åŒ–
  */
 am_timer_handle_t am_fsl_pit_timing_init (am_fsl_pit_timing_dev_t           *p_dev,
                                           const am_fsl_pit_timing_devinfo_t *p_devinfo)
@@ -434,7 +434,7 @@ am_timer_handle_t am_fsl_pit_timing_init (am_fsl_pit_timing_dev_t           *p_d
 }
 
 /**
- * \brief PIT½â³õÊ¼»¯
+ * \brief PITè§£åˆå§‹åŒ–
  */
 void am_fsl_pit_timing_deinit (am_timer_handle_t handle)
 {
@@ -447,7 +447,7 @@ void am_fsl_pit_timing_deinit (am_timer_handle_t handle)
 
     p_hw_pit = p_dev->p_devinfo->p_hw_pit;
 
-    /* ¹Ø±ÕPITÄ£¿é */
+    /* å…³é—­PITæ¨¡å— */
     amhw_fsl_pit_module_disable(p_hw_pit);
 
     am_int_disable(p_dev->p_devinfo->inum);

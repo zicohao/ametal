@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief GPIO°´¼ü ÅäÖÃÎÄ¼ş
+ * \brief GPIOæŒ‰é”® é…ç½®æ–‡ä»¶
  *
  * \internal
  * \par Modification history
@@ -30,10 +30,10 @@ extern "C" {
 #endif
 
 /**
- * \brief GPIO°´¼üÊµÀı³õÊ¼»¯
+ * \brief GPIOæŒ‰é”®å®ä¾‹åˆå§‹åŒ–
  *
- * \retval  AW_OK  ³õÊ¼»¯³É¹¦
- * \retval   < 0   ³õÊ¼»¯Ê§°Ü£¬Çë¼ì²éCÎÄ¼şÖĞ¸÷ÅäÖÃÏîÊÇ·ñºÏ·¨
+ * \retval  AW_OK  åˆå§‹åŒ–æˆåŠŸ
+ * \retval   < 0   åˆå§‹åŒ–å¤±è´¥ï¼Œè¯·æ£€æŸ¥Cæ–‡ä»¶ä¸­å„é…ç½®é¡¹æ˜¯å¦åˆæ³•
  */
 int am_key_gpio_inst_init (void);
 

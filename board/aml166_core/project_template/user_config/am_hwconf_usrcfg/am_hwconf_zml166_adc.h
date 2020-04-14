@@ -11,7 +11,7 @@
 *******************************************************************************/
 
 /**
- * \brief µ÷ÊÔ´®¿ÚÅäÖÃÎÄ¼ş
+ * \brief è°ƒè¯•ä¸²å£é…ç½®æ–‡ä»¶
  * \file
  *
  * \internal
@@ -30,17 +30,17 @@ extern "C" {
 #endif
 
 /**
- * \brief ZML166 24Î»ADC Éè±¸ÊµÀı³õÊ¼»¯
+ * \brief ZML166 24ä½ADC è®¾å¤‡å®ä¾‹åˆå§‹åŒ–
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ZML166 24Î»ADC ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return ZML166 24ä½ADC æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_zml166_adc_handle_t am_zml166_adc_inst_init (void);
 
 
 /**
- * \brief ZML166 24Î»ADC ÊµÀı½â³õÊ¼»¯
+ * \brief ZML166 24ä½ADC å®ä¾‹è§£åˆå§‹åŒ–
  */
 void am_zml166_adc_inst_deinit (am_zml166_adc_handle_t handle);
 

@@ -11,18 +11,18 @@
 *******************************************************************************/
 /**
  * \file
- * \brief GPIO Àý³Ì£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief GPIO ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. ½« J14 µÄ KEY ºÍ PIOA_8 ¶Ì½ÓÔÚÒ»Æð¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. å°† J14 çš„ KEY å’Œ PIOA_8 çŸ­æŽ¥åœ¨ä¸€èµ·ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. °´Ò»´Î°´¼ü LED0 µÆÏ¨Ãð£¬ÔÙ°´Ò»´Î°´¼ü LED0 µÆÁÁ£¬Èç´Ë·´¸´¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. æŒ‰ä¸€æ¬¡æŒ‰é”® LED0 ç¯ç†„ç­ï¼Œå†æŒ‰ä¸€æ¬¡æŒ‰é”® LED0 ç¯äº®ï¼Œå¦‚æ­¤åå¤ã€‚
  *
  * \note
- *    LED0 ÐèÒª¶Ì½Ó J9 ÌøÏßÃ±£¬²ÅÄÜ±» PIOB_1 ¿ØÖÆ¡£
+ *    LED0 éœ€è¦çŸ­æŽ¥ J9 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIOB_1 æŽ§åˆ¶ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am116_core_std_gpio.c src_am116_core_std_gpio
  *
  * \internal
@@ -43,11 +43,11 @@
 #include "demo_std_entries.h"
 #include "demo_am116_core_entries.h"
 
-#define INPUT_PIN  PIOA_8 /**< \brief ÊäÈëÒý½Å */
-#define OUTPUT_PIN PIOB_1 /**< \brief Êä³öÒý½Å */
+#define INPUT_PIN  PIOA_8 /**< \brief è¾“å…¥å¼•è„š */
+#define OUTPUT_PIN PIOB_1 /**< \brief è¾“å‡ºå¼•è„š */
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am116_core_std_gpio_entry (void)
 {

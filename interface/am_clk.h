@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief CLK ±ê×¼½Ó¿Ú
+ * \brief CLK æ ‡å‡†æ¥å£
  *
  * \internal
  * \par Modification History
@@ -35,38 +35,38 @@ extern "C" {
  * @{
  */
 
-/** \brief Ê±ÖÓIDÊı¾İÀàĞÍ*/
+/** \brief æ—¶é’ŸIDæ•°æ®ç±»å‹*/
 typedef int am_clk_id_t;
 
 /**
- * \brief Ê¹ÄÜÊ±ÖÓ
+ * \brief ä½¿èƒ½æ—¶é’Ÿ
  *
- * \param[in]   clk_id  Ê±ÖÓ ID (ÓÉÆ½Ì¨¶¨Òå), ²Î¼û \ref grp_clk_id
+ * \param[in]   clk_id  æ—¶é’Ÿ ID (ç”±å¹³å°å®šä¹‰), å‚è§ \ref grp_clk_id
  *
- * \retval      AM_OK   ³É¹¦
- * \retval     -AM_ENXIO   Ê±ÖÓÆµÂÊID²»´æÔÚ
- * \retval     -AM_EIO     Ê¹ÄÜÊ§°Ü
+ * \retval      AM_OK   æˆåŠŸ
+ * \retval     -AM_ENXIO   æ—¶é’Ÿé¢‘ç‡IDä¸å­˜åœ¨
+ * \retval     -AM_EIO     ä½¿èƒ½å¤±è´¥
  */
 int am_clk_enable (am_clk_id_t clk_id);
 
 /**
- * \brief ½ûÄÜÊ±ÖÓ
+ * \brief ç¦èƒ½æ—¶é’Ÿ
  *
- * \param[in]   clk_id  Ê±ÖÓ ID (ÓÉÆ½Ì¨¶¨Òå), ²Î¼û \ref grp_clk_id
+ * \param[in]   clk_id  æ—¶é’Ÿ ID (ç”±å¹³å°å®šä¹‰), å‚è§ \ref grp_clk_id
  *
- * \retval      AM_OK     ³É¹¦
- * \retval     -AM_ENXIO  Ê±ÖÓÆµÂÊID²»´æÔÚ
- * \retval     -AM_EIO       ½ûÄÜÊ§°Ü
+ * \retval      AM_OK     æˆåŠŸ
+ * \retval     -AM_ENXIO  æ—¶é’Ÿé¢‘ç‡IDä¸å­˜åœ¨
+ * \retval     -AM_EIO       ç¦èƒ½å¤±è´¥
  */
 int am_clk_disable (am_clk_id_t clk_id);
 
 /**
- * \brief »ñÈ¡Ê±ÖÓÆµÂÊ
+ * \brief è·å–æ—¶é’Ÿé¢‘ç‡
  *
- * \param[in]   clk_id  Ê±ÖÓ ID (ÓÉÆ½Ì¨¶¨Òå), ²Î¼û \ref grp_clk_id
+ * \param[in]   clk_id  æ—¶é’Ÿ ID (ç”±å¹³å°å®šä¹‰), å‚è§ \ref grp_clk_id
  *
- * \retval      0       Ê±ÖÓÆµÂÊÎª0£¬»ò»ñÈ¡Ê±ÖÓÆµÂÊÊ§°Ü
- * \retval      ÕıÖµ           Ê±ÖÓÆµÂÊ
+ * \retval      0       æ—¶é’Ÿé¢‘ç‡ä¸º0ï¼Œæˆ–è·å–æ—¶é’Ÿé¢‘ç‡å¤±è´¥
+ * \retval      æ­£å€¼           æ—¶é’Ÿé¢‘ç‡
  */
 int am_clk_rate_get (am_clk_id_t clk_id);
 

@@ -12,15 +12,15 @@
 
 /**
  * \file
- * \brief �ڴ������׼�ӿ�
+ * \brief 内存管理标准接口
  *
- * ʹ�ñ�������Ҫ��������ͷ�ļ���
+ * 使用本服务需要包含以下头文件：
  * \code
  * #include "am_mem.h"
  * \endcode
- * �������ṩ�˶�̬�ڴ�����Ľӿ�
+ * 本服务提供了动态内存管理的接口
  *
- * // �������ݴ����ӡ�����
+ * // 更多内容待添加。。。
  *
  * \internal
  * \par modification history:
@@ -44,60 +44,60 @@ extern "C" {
  */
 
 /**
- * \brief ����һ������align�ֽڶ�����ڴ�ռ�
+ * \brief 分配一段满足align字节对齐的内存空间
  *
- * \param[in] size    ������ռ�Ĵ�С
- * \param[in] align   : ָ������ռ������ֽ������׵�ַ������align�ֽڶ��룩
+ * \param[in] size    ：分配空间的大小
+ * \param[in] align   : 指定分配空间对齐的字节数（首地址将按照align字节对齐）
  *
- * \return ����ռ���׵�ַ��NULL��������ʧ��
+ * \return 分配空间的首地址，NULL表明分配失败
  */
 void *am_mem_align(size_t size, size_t align);
 
 /**
- * \brief ����һ���ڴ�ռ�
- * \param[in] size ������ռ�Ĵ�С
- * \return ����ռ���׵�ַ��NULL��������ʧ��
+ * \brief 分配一段内存空间
+ * \param[in] size ：分配空间的大小
+ * \return 分配空间的首地址，NULL表明分配失败
  */
 void *am_mem_alloc(size_t size);
 
 /**
- * \brief ����һ���ڴ�ռ䣨�ڴ�ռ�ᱻ��ʼ��Ϊ0��
+ * \brief 分配一段内存空间（内存空间会被初始化为0）
  *
- * \param[in] nelem ��Ԫ�ظ���
- * \param[in] size  : һ��Ԫ�صĴ�С�������ڴ�ռ�Ĵ�С��Ϊ  nelem * size
+ * \param[in] nelem ：元素个数
+ * \param[in] size  : 一个元素的大小，分配内存空间的大小即为  nelem * size
  *
- * \return ����ռ���׵�ַ��NULL��������ʧ��
+ * \return 分配空间的首地址，NULL表明分配失败
  *
- * \note ������ڴ�ռ�ᱻ��ʼ��Ϊ0
+ * \note 分配的内存空间会被初始化为0
  */
 void *am_mem_calloc(size_t nelem, size_t size);
 
 /**
- * \brief �ͷ��ѷ�����ڴ�ռ�
- * \param[in] ptr ���ѷ�����ڴ�ռ���׵�ַ
- * \return ��
+ * \brief 释放已分配的内存空间
+ * \param[in] ptr ：已分配的内存空间的首地址
+ * \return 无
  */
 void am_mem_free(void *ptr);
 
 /**
- * \brief ��ȡ����ռ�Ĵ�С
- * \param[in] ptr    : ����ռ���׵�ַ
- * \return ����ռ�Ĵ�С���ֽ�����
+ * \brief 获取分配空间的大小
+ * \param[in] ptr    : 分配空间的首地址
+ * \return 分配空间的大小（字节数）
  */
 size_t am_mem_size(void *ptr);
 
 /**
- * \brief ��̬�ڴ�������ı��ѷ���ռ�Ĵ�С
+ * \brief 动态内存调整，改变已分配空间的大小
  *
- * \param[in] ptr     : �ѷ���ռ���׵�ַ
- * \param[in] newsize : ���·���Ŀռ�Ĵ�С
+ * \param[in] ptr     : 已分配空间的首地址
+ * \param[in] newsize : 重新分配的空间的大小
  *
- * \return ���·���ռ���׵�ַ��NULL��������ʧ��
+ * \return 重新分配空间的首地址，NULL表明分配失败
  *
- * \note �������жϵ�ǰ��ָ���Ƿ����㹻�������ռ䣬����У����� ptr ָ���ַ��
- * �ռ䣬ֱ�ӽ�ptr��ֵ���ء�����ռ䲻�����Ȱ���new_sizeָ���Ĵ�С����ռ䣬��
- * ԭ�����ݴ�ͷ��β�������·�����ڴ����򣬶����ͷ�ԭ��ptr��ָ�ڴ�����ԭ��
- * ָ���Զ��ͷţ�����Ҫ am_memheap_free()����ͬʱ�����·�����ڴ�������׵�ַ��
+ * \note 函数先判断当前的指针是否有足够的连续空间，如果有，扩大 ptr 指向地址的
+ * 空间，直接将ptr的值返回。如果空间不够，先按照new_size指定的大小分配空间，将
+ * 原有数据从头到尾拷贝到新分配的内存区域，而后释放原来ptr所指内存区域（原来
+ * 指针自动释放，不需要 am_memheap_free()），同时返回新分配的内存区域的首地址。
  */
 void *am_mem_realloc(void *ptr, size_t newsize);
 

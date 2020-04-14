@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥6.5
+ * \brief ç¨‹åºæ¸…å•6.5
  *
- * \note ¸ÃÀú³ÌĞèÒªÓÃµ½miniportÍØÕ¹°å,¿ÉÒÔÓÃLED¿´Ğ§¹û
+ * \note è¯¥å†ç¨‹éœ€è¦ç”¨åˆ°miniportæ‹“å±•æ¿,å¯ä»¥ç”¨LEDçœ‹æ•ˆæœ
  * 
  * \internal
  * \par Modification history
@@ -33,13 +33,13 @@ int app_test_ep24cxx (am_ep24cxx_handle_t handle)
     int  i;
     uint8_t data[20];
 
-    for (i = 0; i < 20; i++)                        // Ìî³äÊı¾İ
+    for (i = 0; i < 20; i++)                        // å¡«å……æ•°æ®
         data[i] = i;
-    am_ep24cxx_write(handle, 0, &data[0], 20);      // ´Ó0µØÖ·¿ªÊ¼£¬Á¬ĞøĞ´Èë20×Ö½ÚÊı¾İ
-    for (i = 0; i < 20; i++)                        // ÇåÁãÊı¾İ
+    am_ep24cxx_write(handle, 0, &data[0], 20);      // ä»0åœ°å€å¼€å§‹ï¼Œè¿ç»­å†™å…¥20å­—èŠ‚æ•°æ®
+    for (i = 0; i < 20; i++)                        // æ¸…é›¶æ•°æ®
         data[i] = 0;
-    am_ep24cxx_read(handle, 0, &data[0], 20);       // ´Ó0µØÖ·¿ªÊ¼£¬Á¬Ğø¶Á³ö20×Ö½ÚÊı¾İ
-    for (i = 0; i < 20; i++) {                      // ±È½ÏÊı¾İ
+    am_ep24cxx_read(handle, 0, &data[0], 20);       // ä»0åœ°å€å¼€å§‹ï¼Œè¿ç»­è¯»å‡º20å­—èŠ‚æ•°æ®
+    for (i = 0; i < 20; i++) {                      // æ¯”è¾ƒæ•°æ®
         if (data[i] != i)        return AM_ERROR;
     }
     return AM_OK;

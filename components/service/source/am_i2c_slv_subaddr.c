@@ -22,7 +22,7 @@
 #include "am_i2c_slv_subaddr.h"
 
 /**
- * \brief º¯ÊıÉùÃ÷
+ * \brief å‡½æ•°å£°æ˜
  */
 static int __i2c_slv_subaddr_addr_match(void *p_arg, am_bool_t is_rx);
 static int __i2c_slv_subaddr_txbyte_get(void *p_arg, uint8_t *p_outbyte);
@@ -31,7 +31,7 @@ static void __i2c_slv_subaddr_tran_stop(void *p_arg);
 static int __i2c_slv_subaddr_gen_call(void *p_arg, uint8_t byte);
 
 /**
- * \brief »Øµ÷º¯Êı±äÁ¿
+ * \brief å›è°ƒå‡½æ•°å˜é‡
  */
 static am_i2c_slv_cb_funcs_t __g_subaddr_cb_funs = {
         __i2c_slv_subaddr_addr_match,
@@ -41,7 +41,7 @@ static am_i2c_slv_cb_funcs_t __g_subaddr_cb_funs = {
         __i2c_slv_subaddr_gen_call,
 };
 /**
- * \brief ÅĞ¶Ï×ÓµØÖ·µÄÓĞĞ§ĞÔ
+ * \brief åˆ¤æ–­å­åœ°å€çš„æœ‰æ•ˆæ€§
  */
 static int __i2c_slv_subaddr_validator(void * p_arg)
 {
@@ -60,55 +60,55 @@ static int __i2c_slv_subaddr_validator(void * p_arg)
 }
 
 /**
- * \brief »ñµÃ×ÓµØÖ·
+ * \brief è·å¾—å­åœ°å€
  */
 static int __i2c_slv_subaddr_get( void * p_arg,  uint8_t inbyte)
 {
     am_i2c_slv_subaddr_device_t  *p_dev = ( am_i2c_slv_subaddr_device_t *)p_arg;
 
-    /* 2×Ö½ÚµÄ×ÓµØÖ· ½ÓÊÜ*/
+    /* 2å­—èŠ‚çš„å­åœ°å€ æ¥å—*/
     if ( p_dev->subaddr_dev_flags & AM_I2C_SLV_SUBADDR_2BYTE ){
         if( p_dev->subaddr_count_flag == 1) {
-            /* ÏÈ½«½ÓÊÜµÄÁ½¸ö×Ö½Ú·ÅÔÚ subaddr ÖĞ */
+            /* å…ˆå°†æ¥å—çš„ä¸¤ä¸ªå­—èŠ‚æ”¾åœ¨ subaddr ä¸­ */
             p_dev->subaddr  |=  inbyte << 8;
-            p_dev->subaddr_count_flag = 0;  /* ÏÂ´Î½ÓÊÜ´ÓµÚ0¸ö¿ªÊ¼½ÓÊÜ ×ÓµØÖ·×Ö½ÚÊı */
-            p_dev->is_subaddr = AM_FALSE;   /* ½ÓÊÕÍê×ÓµØÖ· */
+            p_dev->subaddr_count_flag = 0;  /* ä¸‹æ¬¡æ¥å—ä»ç¬¬0ä¸ªå¼€å§‹æ¥å— å­åœ°å€å­—èŠ‚æ•° */
+            p_dev->is_subaddr = AM_FALSE;   /* æ¥æ”¶å®Œå­åœ°å€ */
             return AM_OK;
         } else {
             p_dev->subaddr_count_flag = 1;
-            p_dev->subaddr    = inbyte;  /* ½ÓÊÜµÚÒ»¸ö×Ö½Ú×ÓµØÖ· */
+            p_dev->subaddr    = inbyte;  /* æ¥å—ç¬¬ä¸€ä¸ªå­—èŠ‚å­åœ°å€ */
         }
     } else {
-        /* ·ñÔòÄ¬ÈÏ Î»Ò»¸ö×Ö½ÚµÄ×ÓµØÖ· */
+        /* å¦åˆ™é»˜è®¤ ä½ä¸€ä¸ªå­—èŠ‚çš„å­åœ°å€ */
         p_dev->subaddr    = inbyte;
-        p_dev->is_subaddr = AM_FALSE;  /* ±íÊ¾ÒÑ½ÓÊÜµ½×ÓµØÖ· */
+        p_dev->is_subaddr = AM_FALSE;  /* è¡¨ç¤ºå·²æ¥å—åˆ°å­åœ°å€ */
         return AM_OK;
     }
 
-    /* ±íÊ¾Ã»½ÓÊÜÍê »ò½ÓÊÜ´íÎó */
+    /* è¡¨ç¤ºæ²¡æ¥å—å®Œ æˆ–æ¥å—é”™è¯¯ */
     return AM_ERROR;
 }
 
 
 /**
- * \brief µØÖ·Æ¥ÅäÊ±»Øµ÷
+ * \brief åœ°å€åŒ¹é…æ—¶å›è°ƒ
  */
 static int __i2c_slv_subaddr_addr_match(void *p_arg, am_bool_t is_rx)
 {
     am_i2c_slv_subaddr_device_t  *p_dev = ( am_i2c_slv_subaddr_device_t *)p_arg;
 
-    /** Ö´ĞĞÓÃ»§ÉèÖÃµÄ»Øµ÷ */
+    /** æ‰§è¡Œç”¨æˆ·è®¾ç½®çš„å›è°ƒ */
     if (p_dev->p_cb_funs->pfn_addr_match ) {
         p_dev->p_cb_funs->pfn_addr_match( p_dev->p_arg, is_rx);
     }
-    /* ×¼±¸Õâ´Î½ÓÊÜ»ò·¢ËÍÊı¾İ */
+    /* å‡†å¤‡è¿™æ¬¡æ¥å—æˆ–å‘é€æ•°æ® */
     p_dev->is_subaddr = AM_TRUE;
     p_dev->data_count = 0;
 
     return AM_I2C_SLV_ACK;
 }
 /**
- * \brief »ñÈ¡Ò»¸ö·¢ËÍ×Ö½Ú»Øµ÷º¯Êı
+ * \brief è·å–ä¸€ä¸ªå‘é€å­—èŠ‚å›è°ƒå‡½æ•°
  */
 static int __i2c_slv_subaddr_txbyte_get(void *p_arg, uint8_t *p_outbyte)
 {
@@ -118,11 +118,11 @@ static int __i2c_slv_subaddr_txbyte_get(void *p_arg, uint8_t *p_outbyte)
         return AM_I2C_SLV_NACK;
     }
 
-    /*  ÅĞ¶ÏÊÇ·ñÖ§³Ö×ÔÔö */
+    /*  åˆ¤æ–­æ˜¯å¦æ”¯æŒè‡ªå¢ */
     if (p_dev->subaddr_dev_flags & AM_I2C_SLV_SUBADDR_NSELF_INCREASING ) {
         if ( p_dev->reg_mode &  AM_I2C_SLV_REG_IRREGULAR ) {
             if( p_dev->data_count >= p_dev->cur_reg_info->reg_len) {
-                /* ´Ó»ú²»ÏìÓ¦ £¬·¢ËÍÊı¾İ0 */
+                /* ä»æœºä¸å“åº” ï¼Œå‘é€æ•°æ®0 */
                 *p_outbyte = 0;
                 return AM_I2C_SLV_NACK;
             }
@@ -132,32 +132,32 @@ static int __i2c_slv_subaddr_txbyte_get(void *p_arg, uint8_t *p_outbyte)
         }
     }
 
-    /** ×ÓµØÖ·×ÔÔö´¦Àí  */
+    /** å­åœ°å€è‡ªå¢å¤„ç†  */
     if ( p_dev->reg_mode &  AM_I2C_SLV_REG_IRREGULAR ) {
         if ( p_dev->off_byte  >=  p_dev->cur_reg_info->reg_len ) {
             p_dev->off_byte = 0;
-            p_dev->cur_reg_info = p_dev->cur_reg_info + 1;  /* »ñÈ¡ÏÂÒ»¸ö×ÓµØÖ·¶ÔÓ¦µÄ¼Ä´æÆ÷ĞÅÏ¢ */
+            p_dev->cur_reg_info = p_dev->cur_reg_info + 1;  /* è·å–ä¸‹ä¸€ä¸ªå­åœ°å€å¯¹åº”çš„å¯„å­˜å™¨ä¿¡æ¯ */
 
-            /* ³¬¹ıÁË¼Ä´æÆ÷µÄ×Ü¸öÊı £¬´Ó0×ÓµØÖ·¿ªÊ¼  */
+            /* è¶…è¿‡äº†å¯„å­˜å™¨çš„æ€»ä¸ªæ•° ï¼Œä»0å­åœ°å€å¼€å§‹  */
             if ( p_dev->cur_reg_info == ( p_dev->reg_info + p_dev->reg_num)) {
                 p_dev->cur_reg_info =   p_dev->reg_info;
             }
         }
     } else {
-        p_dev->off_byte %= p_dev->cur_reg_info->reg_len;   /* ³¬¹ı´ÓÍ·¿ªÊ¼ */
+        p_dev->off_byte %= p_dev->cur_reg_info->reg_len;   /* è¶…è¿‡ä»å¤´å¼€å§‹ */
     }
 
     *p_outbyte = p_dev->cur_reg_info->p_reg_addr[ p_dev->off_byte];
 
-    p_dev->off_byte++;         /* ×Ö½ÚÆ«ÒÆ¼Ó1 */
-    p_dev->is_rx = AM_FALSE;    /* ±íÊ¾ ·¢ËÍ×´Ì¬ */
-    p_dev->data_count++;       /* ½ÓÊÜµÄÊı¾İ¼Ó1(²»°üÀ¨×ÓµØÖ·Êı¾İ ) */
+    p_dev->off_byte++;         /* å­—èŠ‚åç§»åŠ 1 */
+    p_dev->is_rx = AM_FALSE;    /* è¡¨ç¤º å‘é€çŠ¶æ€ */
+    p_dev->data_count++;       /* æ¥å—çš„æ•°æ®åŠ 1(ä¸åŒ…æ‹¬å­åœ°å€æ•°æ® ) */
 
     return AM_I2C_SLV_ACK;
 }
 
 /**
- * \brief ½ÓÊÕµ½Ò»¸ö×Ö½Ú»Øµ÷
+ * \brief æ¥æ”¶åˆ°ä¸€ä¸ªå­—èŠ‚å›è°ƒ
  */
 static int __i2c_slv_subaddr_rxbyte_put(void *p_arg, uint8_t inbyte)
 {
@@ -166,25 +166,25 @@ static int __i2c_slv_subaddr_rxbyte_put(void *p_arg, uint8_t inbyte)
     am_i2c_slv_subaddr_device_t  *p_dev = ( am_i2c_slv_subaddr_device_t *)p_arg;
     uint8_t temp = 0;
 
-    /* »ñÈ¡×ÓµØÖ· */
+    /* è·å–å­åœ°å€ */
     if ( p_dev->is_subaddr == AM_TRUE ) {
         ret =  __i2c_slv_subaddr_get( p_dev, inbyte);
 
         if ( AM_OK != ret ) {
             return ret;
         }
-         /* ÅĞ¶Ï×ÓµØÖ·µÄÓĞĞ§ĞÔ */
+         /* åˆ¤æ–­å­åœ°å€çš„æœ‰æ•ˆæ€§ */
          ret = __i2c_slv_subaddr_validator(p_dev);
         if ( AM_OK != ret ) {
             p_dev->cur_reg_info = NULL;
             return ret;
         }
         if ( p_dev->reg_mode &  AM_I2C_SLV_REG_IRREGULAR ) {
-            /* ¼Ä´æÆ÷²»¹æÔò´¦Àí  */
+            /* å¯„å­˜å™¨ä¸è§„åˆ™å¤„ç†  */
              p_dev->cur_reg_info = p_dev->reg_info + p_dev->subaddr;
              p_dev->off_byte = 0;
         } else {
-            /* ¼Ä´æÆ÷¿Õ¼ä¹æÔò ´¦Àí (8Î»£¬16Î»£¬32Î»)*/
+            /* å¯„å­˜å™¨ç©ºé—´è§„åˆ™ å¤„ç† (8ä½ï¼Œ16ä½ï¼Œ32ä½)*/
             p_dev->cur_reg_info  = p_dev->reg_info;
             p_dev->off_byte    = inbyte * (p_dev->reg_bit_width);
         }
@@ -195,11 +195,11 @@ static int __i2c_slv_subaddr_rxbyte_put(void *p_arg, uint8_t inbyte)
         return AM_I2C_SLV_NACK;
     }
 
-    /*  ÅĞ¶ÏÊÇ·ñÖ§³Ö×ÔÔö */
+    /*  åˆ¤æ–­æ˜¯å¦æ”¯æŒè‡ªå¢ */
     if (p_dev->subaddr_dev_flags & AM_I2C_SLV_SUBADDR_NSELF_INCREASING ) {
         if ( p_dev->reg_mode &  AM_I2C_SLV_REG_IRREGULAR ) {
             if( p_dev->data_count >= p_dev->cur_reg_info->reg_len) {
-                /* ´Ó»ú²»ÏìÓ¦ */
+                /* ä»æœºä¸å“åº” */
                 return AM_I2C_SLV_NACK;
             }
         } else if (p_dev->data_count >= p_dev->reg_bit_width) {
@@ -207,24 +207,24 @@ static int __i2c_slv_subaddr_rxbyte_put(void *p_arg, uint8_t inbyte)
         }
     }
 
-    /** ×ÓµØÖ·×ÔÔö´¦Àí  */
+    /** å­åœ°å€è‡ªå¢å¤„ç†  */
     if ( p_dev->reg_mode &  AM_I2C_SLV_REG_IRREGULAR ) {
         if ( p_dev->off_byte  >=  p_dev->cur_reg_info->reg_len ) {
             p_dev->off_byte = 0;
-            p_dev->cur_reg_info = p_dev->cur_reg_info + 1;  /* »ñÈ¡ÏÂÒ»¸ö×ÓµØÖ·¶ÔÓ¦µÄ¼Ä´æÆ÷ĞÅÏ¢ */
+            p_dev->cur_reg_info = p_dev->cur_reg_info + 1;  /* è·å–ä¸‹ä¸€ä¸ªå­åœ°å€å¯¹åº”çš„å¯„å­˜å™¨ä¿¡æ¯ */
 
-            /* ³¬¹ıÁË¼Ä´æÆ÷µÄ×Ü¸öÊı £¬´Ó0×ÓµØÖ·¿ªÊ¼  */
+            /* è¶…è¿‡äº†å¯„å­˜å™¨çš„æ€»ä¸ªæ•° ï¼Œä»0å­åœ°å€å¼€å§‹  */
             if ( p_dev->cur_reg_info == ( p_dev->reg_info + p_dev->reg_num)) {
                 p_dev->cur_reg_info =   p_dev->reg_info;
             }
         }
     } else {
-        p_dev->off_byte %= p_dev->cur_reg_info->reg_len;   /* ³¬¹ı´ÓÍ·¿ªÊ¼ */
+        p_dev->off_byte %= p_dev->cur_reg_info->reg_len;   /* è¶…è¿‡ä»å¤´å¼€å§‹ */
     }
 
 
     if ( p_dev->cur_reg_info->p_reg_wr) {
-        /* ½øĞĞĞ´±£»¤´¦Àí ,½«½ÓÊÜµ½µÄÊı¾İ´æ´¢ÆğÀ´*/
+        /* è¿›è¡Œå†™ä¿æŠ¤å¤„ç† ,å°†æ¥å—åˆ°çš„æ•°æ®å­˜å‚¨èµ·æ¥*/
         if( p_dev->cur_reg_info->p_reg_wr [p_dev->off_byte] ) {
             temp =  p_dev->cur_reg_info->p_reg_addr[p_dev->off_byte];
             p_dev->cur_reg_info->p_reg_addr[p_dev->off_byte] = inbyte;
@@ -234,39 +234,39 @@ static int __i2c_slv_subaddr_rxbyte_put(void *p_arg, uint8_t inbyte)
             p_dev->cur_reg_info->p_reg_addr[p_dev->off_byte] = inbyte;
         }
     } else {
-        /* ÈôÃ»ÉèÖÃ¶ÁĞ´±êÖ¾£¬Ä¬ÈÏ¿É¶Á¿ÉĞ´ */
+        /* è‹¥æ²¡è®¾ç½®è¯»å†™æ ‡å¿—ï¼Œé»˜è®¤å¯è¯»å¯å†™ */
         p_dev->cur_reg_info->p_reg_addr[p_dev->off_byte] = inbyte;
     }
 
-    p_dev->off_byte++;          /* ×Ö½ÚÆ«ÒÆ¼Ó1 */
-    p_dev->is_rx = AM_TRUE;    /* ±íÊ¾ ´¦Àí½ÓÊÜ×´Ì¬ */
-    p_dev->data_count++;       /* ½ÓÊÜµÄÊı¾İ¼Ó1(²»°üÀ¨×ÓµØÖ·Êı¾İ ) */
+    p_dev->off_byte++;          /* å­—èŠ‚åç§»åŠ 1 */
+    p_dev->is_rx = AM_TRUE;    /* è¡¨ç¤º å¤„ç†æ¥å—çŠ¶æ€ */
+    p_dev->data_count++;       /* æ¥å—çš„æ•°æ®åŠ 1(ä¸åŒ…æ‹¬å­åœ°å€æ•°æ® ) */
 
     return AM_I2C_SLV_ACK;
 }
 
 
 /**
- * \brief ´«ÊäÍ£Ö¹»Øµ÷
+ * \brief ä¼ è¾“åœæ­¢å›è°ƒ
  */
 static void __i2c_slv_subaddr_tran_stop(void *p_arg)
 {
     am_i2c_slv_subaddr_device_t  *p_dev = ( am_i2c_slv_subaddr_device_t *)p_arg;
 
     if ( p_dev->p_cb_funs->pfn_tran_finish) {
-        /* ´«Êä½áÊø»Øµ÷ */
+        /* ä¼ è¾“ç»“æŸå›è°ƒ */
         p_dev->p_cb_funs->pfn_tran_finish( p_dev->p_arg,
                                            p_dev->is_rx,
                                            p_dev->subaddr,
                                            p_dev->data_count);
     }
-    /* ½ÓÊÜÍê³É ,ÏÂ´Î½ÓÊÜĞèÒªÖØĞÂ½ÓÊÜ×ÖµØÖ· */
+    /* æ¥å—å®Œæˆ ,ä¸‹æ¬¡æ¥å—éœ€è¦é‡æ–°æ¥å—å­—åœ°å€ */
     p_dev->is_subaddr = AM_TRUE;
     p_dev->data_count = 0;
 }
 
 /**
- * \brief ¹ã²¥»Øµ÷º¯Êı
+ * \brief å¹¿æ’­å›è°ƒå‡½æ•°
  */
 static int __i2c_slv_subaddr_gen_call(void *p_arg, uint8_t byte)
 {
@@ -280,7 +280,7 @@ static int __i2c_slv_subaddr_gen_call(void *p_arg, uint8_t byte)
 }
 
 /**
- * \brief Éú³ÉÒ»¸öº¬×ÓµØÖ·µÄÉè±¸
+ * \brief ç”Ÿæˆä¸€ä¸ªå«å­åœ°å€çš„è®¾å¤‡
  */
 void am_i2c_slv_subaddr_mkdev( am_i2c_slv_subaddr_device_t   *p_dev,
                                am_i2c_slv_handle_t            handle,
@@ -301,7 +301,7 @@ void am_i2c_slv_subaddr_mkdev( am_i2c_slv_subaddr_device_t   *p_dev,
 
     p_i2c_slv_dev = & p_dev->i2c_slv_dev;
 
-    /** ³õÊ¼»¯´øÓĞ×ÓµØÖ·µÄÉè±¸½á¹¹Ìå */
+    /** åˆå§‹åŒ–å¸¦æœ‰å­åœ°å€çš„è®¾å¤‡ç»“æ„ä½“ */
     p_dev->is_subaddr         = AM_TRUE;
     p_dev->subaddr            = 0;
     p_dev->subaddr_count_flag = 0;
@@ -310,11 +310,11 @@ void am_i2c_slv_subaddr_mkdev( am_i2c_slv_subaddr_device_t   *p_dev,
 
     p_dev->subaddr_dev_flags = dev_flags;
 
-    /** »Øµ÷º¯Êı */
+    /** å›è°ƒå‡½æ•° */
     p_dev->p_cb_funs         = p_cb_funs;
     p_dev->p_arg             = p_arg;
 
-    /** ×ÓµØÖ·ÖĞ¼Ä´æÆ÷ĞÅÏ¢ */
+    /** å­åœ°å€ä¸­å¯„å­˜å™¨ä¿¡æ¯ */
     p_dev->reg_info          = p_reg_info;
     p_dev->cur_reg_info      = NULL;
     p_dev->reg_num           = reg_num;
@@ -322,17 +322,17 @@ void am_i2c_slv_subaddr_mkdev( am_i2c_slv_subaddr_device_t   *p_dev,
 
 
     if ( reg_mode  & AM_I2C_SLV_REG_16_BIT) {
-        /** 16Î» £¬Á½¸ö×Ö½Ú */
+        /** 16ä½ ï¼Œä¸¤ä¸ªå­—èŠ‚ */
         p_dev->reg_bit_width = 2;
     } else if ( dev_flags & AM_I2C_SLV_REG_32_BIT ) {
-        /* 32 Î» £¬ËÄ¸ö×Ö½Ú */
+        /* 32 ä½ ï¼Œå››ä¸ªå­—èŠ‚ */
         p_dev->reg_bit_width = 4;
     } else {
-        /* 8Î» £¬1×Ö½Ú £¬Ä¬ÈÏ */
+        /* 8ä½ ï¼Œ1å­—èŠ‚ ï¼Œé»˜è®¤ */
         p_dev->reg_bit_width = 1;
     }
 
-    /** ³õÊ¼»¯ ´ÓÉè±¸½á¹¹Ìå */
+    /** åˆå§‹åŒ– ä»è®¾å¤‡ç»“æ„ä½“ */
     am_i2c_slv_mkdev (p_i2c_slv_dev,
                       handle,
                       &__g_subaddr_cb_funs ,

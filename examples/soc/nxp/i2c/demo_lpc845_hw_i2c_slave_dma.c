@@ -12,23 +12,23 @@
 
 /**
  * \file
- * \brief I2C ´Ó»úÀý³Ì£¨DMA ·½Ê½£©£¬Í¨¹ý HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief I2C ä»Žæœºä¾‹ç¨‹ï¼ˆDMA æ–¹å¼ï¼‰ï¼Œé€šè¿‡ HW å±‚æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. PIO0_10 Òý½ÅÁ¬½Ó I2C Ö÷»úµÄ SCL Òý½Å£»
- *   2. PIO0_11 Òý½ÅÁ¬½Ó I2C Ö÷»úµÄ SDA Òý½Å¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. PIO0_10 å¼•è„šè¿žæŽ¥ I2C ä¸»æœºçš„ SCL å¼•è„šï¼›
+ *   2. PIO0_11 å¼•è„šè¿žæŽ¥ I2C ä¸»æœºçš„ SDA å¼•è„šã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ½ÓÊÕÖ÷»ú·¢ËÍ¹ýÀ´µÄÊý¾Ý£¬Í¨¹ý´®¿Ú·¢ËÍ¸øÉÏÎ»»ú£»
- *   2. ´«ÊäÊ§°ÜÔò LED0 µÆ³¤ÁÁ¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. æŽ¥æ”¶ä¸»æœºå‘é€è¿‡æ¥çš„æ•°æ®ï¼Œé€šè¿‡ä¸²å£å‘é€ç»™ä¸Šä½æœºï¼›
+ *   2. ä¼ è¾“å¤±è´¥åˆ™ LED0 ç¯é•¿äº®ã€‚
  *
  * \note
- *    1. LED0 ÐèÒª¶Ì½Ó J9 ÌøÏßÃ±£¬²ÅÄÜ±» PIO0_20 ¿ØÖÆ£»
- *    2. ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIO0_0 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *       PIO0_4 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD£»
- *    3. DMA ³õÊ¼»¯¹¤×÷ÒÑ¾­ÔÚ am_prj_config.c ÎÄ¼þÄÚ²¿Íê³É¡£
+ *    1. LED0 éœ€è¦çŸ­æŽ¥ J9 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIO0_20 æŽ§åˆ¶ï¼›
+ *    2. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO0_0 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *       PIO0_4 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDï¼›
+ *    3. DMA åˆå§‹åŒ–å·¥ä½œå·²ç»åœ¨ am_prj_config.c æ–‡ä»¶å†…éƒ¨å®Œæˆã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_lpc824_hw_i2c_slave_dma.c src_lpc824_hw_i2c_slave_dma
  *
  * \internal
@@ -52,35 +52,35 @@
 #include "hw/amhw_lpc_i2c.h"
 
 /*******************************************************************************
-  ºê¶¨Òå
+  å®å®šä¹‰
 *******************************************************************************/
-#define __SLAVE_ADDR      0x50              /**< \brief Ö÷»ú²Ù×÷´Ó»úµØÖ·¶¨Òå */
+#define __SLAVE_ADDR      0x50              /**< \brief ä¸»æœºæ“ä½œä»Žæœºåœ°å€å®šä¹‰ */
 
-#define __TEST_LENTH      4                 /**< \brief ²âÊÔ¶ÁÐ´µÄ×Ö½ÚÊý */
+#define __TEST_LENTH      4                 /**< \brief æµ‹è¯•è¯»å†™çš„å­—èŠ‚æ•° */
 
 /*******************************************************************************
-  ±¾µØÈ«¾Ö±äÁ¿¶¨Òå
+  æœ¬åœ°å…¨å±€å˜é‡å®šä¹‰
 *******************************************************************************/
 
-/** \brief DMA ÖØÔØÃèÊö·û */
+/** \brief DMA é‡è½½æè¿°ç¬¦ */
 am_local __attribute__((aligned(16)))  am_lpc84x_dma_xfer_desc_t __g_desc[2];
 
-am_local uint8_t __g_buf_dsta[__TEST_LENTH];   /**< \brief A Ä¿±ê¶ËÊý¾Ý»º³åÇø */
-am_local uint8_t __g_buf_dstb[__TEST_LENTH];   /**< \brief B Ä¿±ê¶ËÊý¾Ý»º³åÇø */
+am_local uint8_t __g_buf_dsta[__TEST_LENTH];   /**< \brief A ç›®æ ‡ç«¯æ•°æ®ç¼“å†²åŒº */
+am_local uint8_t __g_buf_dstb[__TEST_LENTH];   /**< \brief B ç›®æ ‡ç«¯æ•°æ®ç¼“å†²åŒº */
 
-am_local volatile am_bool_t __g_a_trans_done;  /**< \brief A Ä¿±ê¶Ë´«ÊäÍê³É±êÖ¾ */
-am_local volatile am_bool_t __g_b_trans_done;  /**< \brief B Ä¿±ê¶Ë´«ÊäÍê³É±êÖ¾ */
+am_local volatile am_bool_t __g_a_trans_done;  /**< \brief A ç›®æ ‡ç«¯ä¼ è¾“å®Œæˆæ ‡å¿— */
+am_local volatile am_bool_t __g_b_trans_done;  /**< \brief B ç›®æ ‡ç«¯ä¼ è¾“å®Œæˆæ ‡å¿— */
 
 /**
- * \brief DMA ÖÐ¶Ï·þÎñ³ÌÐò
+ * \brief DMA ä¸­æ–­æœåŠ¡ç¨‹åº
  *
- * \param[in] p_arg ÓÃ»§×Ô¶¨Òå²ÎÊý£¬Í¨¹ý am_lpc82x_dma_xfer_desc_startup() º¯Êý´«µÝ
- * \param[in] stat  DMA ÖÐ¶Ï×´Ì¬£¬ÓÉµ×²ãÇý¶¯´«Èë£¬¸Ã²ÎÊýµÄ¿ÉÄÜÈ¡Öµ£º
+ * \param[in] p_arg ç”¨æˆ·è‡ªå®šä¹‰å‚æ•°ï¼Œé€šè¿‡ am_lpc82x_dma_xfer_desc_startup() å‡½æ•°ä¼ é€’
+ * \param[in] stat  DMA ä¸­æ–­çŠ¶æ€ï¼Œç”±åº•å±‚é©±åŠ¨ä¼ å…¥ï¼Œè¯¥å‚æ•°çš„å¯èƒ½å–å€¼ï¼š
  *                      AM_LPC84X_DMA_STAT_INTA
  *                      AM_LPC84X_DMA_STAT_INTB
  *                      AM_LPC84X_DMA_STAT_INTERR
  *
- * \return ÎÞ
+ * \return æ— 
  */
 am_local void __i2c_dma_isr (void *p_arg, int stat)
 {
@@ -92,17 +92,17 @@ am_local void __i2c_dma_isr (void *p_arg, int stat)
         am_led_off(LED0);
     } else if (stat & AM_LPC84X_DMA_STAT_INTERR) {
 
-        /* ÓÃ»§×Ô¶¨ÒåÖ´ÐÐ´úÂë */
+        /* ç”¨æˆ·è‡ªå®šä¹‰æ‰§è¡Œä»£ç  */
     }
 }
 
 /**
- * \brief I2C ´Ó»ú³õÊ¼»¯ÅäÖÃº¯Êý
+ * \brief I2C ä»Žæœºåˆå§‹åŒ–é…ç½®å‡½æ•°
  *
- * \param[in] p_hw_i2c Ö¸Ïò I2C ¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] dev_addr Ö÷»ú²Ù×÷´Ó»úµÄµØÖ·²ÎÊý
+ * \param[in] p_hw_i2c æŒ‡å‘ I2C å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] dev_addr ä¸»æœºæ“ä½œä»Žæœºçš„åœ°å€å‚æ•°
  *
- * \retval AM_OK ³õÊ¼»¯ÅäÖÃÍê³É
+ * \retval AM_OK åˆå§‹åŒ–é…ç½®å®Œæˆ
  */
 am_local int __i2c_slave_init (amhw_lpc_i2c_t *p_hw_i2c, uint8_t dev_addr)
 {
@@ -119,13 +119,13 @@ am_local int __i2c_slave_init (amhw_lpc_i2c_t *p_hw_i2c, uint8_t dev_addr)
 }
 
 /**
- * \brief I2C ´Ó»úÆô¶¯º¯Êý
+ * \brief I2C ä»Žæœºå¯åŠ¨å‡½æ•°
  *
- * \param[in] p_hw_i2c Ö¸ÏòI2C¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_i2c æŒ‡å‘I2Cå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎÞ
+ * \return æ— 
  *
- * \note ±¾º¯Êý½ö½öÕë¶ÔÖ÷»ú¶Á´Ó»ú²Ù×÷
+ * \note æœ¬å‡½æ•°ä»…ä»…é’ˆå¯¹ä¸»æœºè¯»ä»Žæœºæ“ä½œ
  */
 am_local void __i2c_slave_start (amhw_lpc_i2c_t *p_hw_i2c)
 {
@@ -136,10 +136,10 @@ am_local void __i2c_slave_start (amhw_lpc_i2c_t *p_hw_i2c)
     while ((p_hw_i2c->stat & AMHW_LPC_I2C_SLAVE_STATE_MASK) !=
            AMHW_LPC_I2C_STAT_SLVADDR);
 
-    /* Æ¥Åäµ½´Ó»úµØÖ·£¬Æô¶¯´Ó»ú DMA ÇëÇó */
+    /* åŒ¹é…åˆ°ä»Žæœºåœ°å€ï¼Œå¯åŠ¨ä»Žæœº DMA è¯·æ±‚ */
     if (!(p_hw_i2c->stat & AMHW_LPC_I2C_STAT_SLVIDX_MASK)) {
 
-        /* ½ÓÊÕÖ÷»ú·¢ËÍ¹ýÀ´µÄ´Ó»úµØÖ·, µØÖ·×îµÍÎ» 1 »ò 0, ´ú±í¶Á»òÐ´²Ù×÷ */
+        /* æŽ¥æ”¶ä¸»æœºå‘é€è¿‡æ¥çš„ä»Žæœºåœ°å€, åœ°å€æœ€ä½Žä½ 1 æˆ– 0, ä»£è¡¨è¯»æˆ–å†™æ“ä½œ */
         addr = amhw_lpc_i2c_slvdat_read(p_hw_i2c);
         amhw_lpc_i2c_slv_continue(p_hw_i2c);
 
@@ -147,7 +147,7 @@ am_local void __i2c_slave_start (amhw_lpc_i2c_t *p_hw_i2c)
         while ((p_hw_i2c->stat & AMHW_LPC_I2C_SLAVE_STATE_MASK) !=
                AMHW_LPC_I2C_STAT_SLVRX);
 
-        /* ½ÓÊÕÖ÷»ú·¢ËÍ¹ýÀ´µÄ´Ó»ú×ÓµØÖ· */
+        /* æŽ¥æ”¶ä¸»æœºå‘é€è¿‡æ¥çš„ä»Žæœºå­åœ°å€ */
         sub_addr = amhw_lpc_i2c_slvdat_read(p_hw_i2c);
         amhw_lpc_i2c_slv_continue(p_hw_i2c);
 
@@ -159,7 +159,7 @@ am_local void __i2c_slave_start (amhw_lpc_i2c_t *p_hw_i2c)
 }
 
 /**
- * \brief I2C ´Ó»ú DMA ½ÓÊÕÊý¾Ý£¬²ÉÓÃ ping-pong ²Ù×÷
+ * \brief I2C ä»Žæœº DMA æŽ¥æ”¶æ•°æ®ï¼Œé‡‡ç”¨ ping-pong æ“ä½œ
  */
 am_local void __dma_i2c_test (amhw_lpc_i2c_t *p_hw_i2c, uint8_t chan)
 {
@@ -171,47 +171,47 @@ am_local void __dma_i2c_test (amhw_lpc_i2c_t *p_hw_i2c, uint8_t chan)
                                          DMA_CHAN_OPT_PRIO_3 |
                                          DMA_CHAN_OPT_PERIPH_REQ_EN);
 
-    /* DMA ´«ÊäÅäÖÃ */
+    /* DMA ä¼ è¾“é…ç½® */
     flags1 =
-        AM_LPC84X_DMA_XFER_VALID           | /* µ±Ç°ÅäÖÃÃèÊö·ûÓÐÐ§ */
-        AM_LPC84X_DMA_XFER_RELOAD          | /* ´«ÊäÍê³ÉÖØÔØÍ¨µÀÃèÊö·û */
-        AM_LPC84X_DMA_XFER_SWTRIG          | /* Èí¼þ´¥·¢ */
-        AM_LPC84X_DMA_XFER_WIDTH_8BIT      | /* ´«ÊäÊý¾Ý¿í¶È£º8 bit */
-        AM_LPC84X_DMA_XFER_SRCINC_NOINC    | /* Ô´¶ËÊý¾ÝµØÖ·²»µÝÔö */
-        AM_LPC84X_DMA_XFER_DSTINC_1X       | /* Ä¿±ê¶ËÊý¾ÝµØÖ·°´ 1 ¸öÊý¾Ý¿í¶ÈµÝÔö */
-        AM_LPC84X_DMA_XFER_SETINTA;          /* Ê¹ÄÜÖÐ¶Ï A */
+        AM_LPC84X_DMA_XFER_VALID           | /* å½“å‰é…ç½®æè¿°ç¬¦æœ‰æ•ˆ */
+        AM_LPC84X_DMA_XFER_RELOAD          | /* ä¼ è¾“å®Œæˆé‡è½½é€šé“æè¿°ç¬¦ */
+        AM_LPC84X_DMA_XFER_SWTRIG          | /* è½¯ä»¶è§¦å‘ */
+        AM_LPC84X_DMA_XFER_WIDTH_8BIT      | /* ä¼ è¾“æ•°æ®å®½åº¦ï¼š8 bit */
+        AM_LPC84X_DMA_XFER_SRCINC_NOINC    | /* æºç«¯æ•°æ®åœ°å€ä¸é€’å¢ž */
+        AM_LPC84X_DMA_XFER_DSTINC_1X       | /* ç›®æ ‡ç«¯æ•°æ®åœ°å€æŒ‰ 1 ä¸ªæ•°æ®å®½åº¦é€’å¢ž */
+        AM_LPC84X_DMA_XFER_SETINTA;          /* ä½¿èƒ½ä¸­æ–­ A */
 
-    /* DMA ´«ÊäÅäÖÃ */
+    /* DMA ä¼ è¾“é…ç½® */
     flags2 =
-        AM_LPC84X_DMA_XFER_VALID           | /* µ±Ç°ÅäÖÃÃèÊö·ûÓÐÐ§ */
-        AM_LPC84X_DMA_XFER_RELOAD          | /* ´«ÊäÍê³ÉÖØÔØÍ¨µÀÃèÊö·û */
-        AM_LPC84X_DMA_XFER_SWTRIG          | /* Èí¼þ´¥·¢ */
-        AM_LPC84X_DMA_XFER_WIDTH_8BIT      | /* ´«ÊäÊý¾Ý¿í¶È£º8 bit */
-        AM_LPC84X_DMA_XFER_SRCINC_NOINC    | /* Ô´¶ËÊý¾ÝµØÖ·²»µÝÔö */
-        AM_LPC84X_DMA_XFER_DSTINC_1X       | /* Ä¿±ê¶ËÊý¾ÝµØÖ·°´ 1 ¸öÊý¾Ý¿í¶ÈµÝÔö */
-        AM_LPC84X_DMA_XFER_SETINTB;          /* Ê¹ÄÜÖÐ¶Ï B */
+        AM_LPC84X_DMA_XFER_VALID           | /* å½“å‰é…ç½®æè¿°ç¬¦æœ‰æ•ˆ */
+        AM_LPC84X_DMA_XFER_RELOAD          | /* ä¼ è¾“å®Œæˆé‡è½½é€šé“æè¿°ç¬¦ */
+        AM_LPC84X_DMA_XFER_SWTRIG          | /* è½¯ä»¶è§¦å‘ */
+        AM_LPC84X_DMA_XFER_WIDTH_8BIT      | /* ä¼ è¾“æ•°æ®å®½åº¦ï¼š8 bit */
+        AM_LPC84X_DMA_XFER_SRCINC_NOINC    | /* æºç«¯æ•°æ®åœ°å€ä¸é€’å¢ž */
+        AM_LPC84X_DMA_XFER_DSTINC_1X       | /* ç›®æ ‡ç«¯æ•°æ®åœ°å€æŒ‰ 1 ä¸ªæ•°æ®å®½åº¦é€’å¢ž */
+        AM_LPC84X_DMA_XFER_SETINTB;          /* ä½¿èƒ½ä¸­æ–­ B */
 
-    /* ½¨Á¢Í¨µÀÃèÊö·û A */
+    /* å»ºç«‹é€šé“æè¿°ç¬¦ A */
     am_lpc84x_dma_xfer_desc_build(
-       &__g_desc[0],                           /* A µÄÖØÔØÃèÊö·û */
-        (uint32_t)&(LPC84X_I2C0->slvdat), /* Ô´¶ËÊý¾Ý»º³åÇø */
-        (uint32_t)__g_buf_dsta,                /* A µÄÄ¿±ê¶Ë»º³åÇøµØÖ· */
-        __TEST_LENTH,                          /* ´«Êä×Ö½ÚÊý */
-        flags1);                               /* ´«ÊäÅäÖÃ */
+       &__g_desc[0],                           /* A çš„é‡è½½æè¿°ç¬¦ */
+        (uint32_t)&(LPC84X_I2C0->slvdat), /* æºç«¯æ•°æ®ç¼“å†²åŒº */
+        (uint32_t)__g_buf_dsta,                /* A çš„ç›®æ ‡ç«¯ç¼“å†²åŒºåœ°å€ */
+        __TEST_LENTH,                          /* ä¼ è¾“å­—èŠ‚æ•° */
+        flags1);                               /* ä¼ è¾“é…ç½® */
 
-    /* ½¨Á¢Í¨µÀÃèÊö·û B */
+    /* å»ºç«‹é€šé“æè¿°ç¬¦ B */
     am_lpc84x_dma_xfer_desc_build(
-       &__g_desc[1],                           /* B µÄÖØÔØÃèÊö·û */
-        (uint32_t)&(LPC84X_I2C0->slvdat), /* Ô´¶ËÊý¾Ý»º³åÇø */
-        (uint32_t)__g_buf_dstb,                /* B µÄÄ¿±ê¶Ë»º³åÇøµØÖ· */
-        __TEST_LENTH,                          /* ´«Êä×Ö½ÚÊý */
-        flags2);                               /* ´«ÊäÅäÖÃ */
+       &__g_desc[1],                           /* B çš„é‡è½½æè¿°ç¬¦ */
+        (uint32_t)&(LPC84X_I2C0->slvdat), /* æºç«¯æ•°æ®ç¼“å†²åŒº */
+        (uint32_t)__g_buf_dstb,                /* B çš„ç›®æ ‡ç«¯ç¼“å†²åŒºåœ°å€ */
+        __TEST_LENTH,                          /* ä¼ è¾“å­—èŠ‚æ•° */
+        flags2);                               /* ä¼ è¾“é…ç½® */
 
-    /* Á¬½ÓÁ½¸öÍ¨µÀÃèÊö·û */
+    /* è¿žæŽ¥ä¸¤ä¸ªé€šé“æè¿°ç¬¦ */
     am_lpc84x_dma_xfer_desc_link(&__g_desc[1], &__g_desc[0]);
     am_lpc84x_dma_xfer_desc_link(&__g_desc[0], &__g_desc[1]);
 
-    /* Æô¶¯ DMA ´«Êä£¬ÂíÉÏ¿ªÊ¼´«Êä */
+    /* å¯åŠ¨ DMA ä¼ è¾“ï¼Œé©¬ä¸Šå¼€å§‹ä¼ è¾“ */
     am_lpc84x_dma_xfer_desc_startup(p_ctr,
                                     &__g_desc[0],
                                     __i2c_dma_isr,
@@ -225,13 +225,13 @@ void demo_lpc845_hw_i2c_slave_dma_entry (amhw_lpc_i2c_t *p_hw_i2c,
 {
     uint8_t i = 0;
 
-    /* I2C Ö÷»ú³õÊ¼»¯ÅäÖÃ */
+    /* I2C ä¸»æœºåˆå§‹åŒ–é…ç½® */
     __i2c_slave_init(p_hw_i2c, __SLAVE_ADDR);
 
-    /* µãÁÁ LED0 */
+    /* ç‚¹äº® LED0 */
     am_led_on(LED0);
 
-    /* I2C ²âÊÔº¯Êý */
+    /* I2C æµ‹è¯•å‡½æ•° */
     __dma_i2c_test(p_hw_i2c, chan);
 
     AM_FOREVER {

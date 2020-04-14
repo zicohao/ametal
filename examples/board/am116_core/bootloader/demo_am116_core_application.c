@@ -12,13 +12,13 @@
 
 /**
  * \file
- * \brief bootloader Àı³Ì£¬±¾demoÊÇ×÷ÎªÓ¦ÓÃ³ÌĞò¡£
+ * \brief bootloader ä¾‹ç¨‹ï¼Œæœ¬demoæ˜¯ä½œä¸ºåº”ç”¨ç¨‹åºã€‚
  *
- * - ²Ù×÷²½Öè£º
- *   ²Î¿¼AMmetal-AM116-Core-bootloader²Ù×÷ÊÖ²á
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   å‚è€ƒAMmetal-AM116-Core-bootloaderæ“ä½œæ‰‹å†Œ
  *
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am116_core_hw_adc_int.c src_am116_core_hw_adc_int
  *
  * \internal
@@ -44,57 +44,57 @@
 
 
 /**
- * \name Êı¾İ½ÓÊÕ×´Ì¬
+ * \name æ•°æ®æ¥æ”¶çŠ¶æ€
  * @{
  */
-/** \brief ½ÓÊÕÃüÁîÊı¾İ½×¶Î */
+/** \brief æ¥æ”¶å‘½ä»¤æ•°æ®é˜¶æ®µ */
 #define  COMMAND_PHASE                   0
 
-/** \brief ½ÓÊÕ¹Ì¼şÊı¾İ½×¶Î */
+/** \brief æ¥æ”¶å›ºä»¶æ•°æ®é˜¶æ®µ */
 #define  FIRMWARE_PHASE                  1
 
-/** \brief ½ÓÊÕ¹Ì¼şÍ·²¿Êı¾İ½×¶Î */
+/** \brief æ¥æ”¶å›ºä»¶å¤´éƒ¨æ•°æ®é˜¶æ®µ */
 #define  FIRMWARE_HEAD                   2
 /** @} */
 
-/** \brief ¹Ì¼ş½ÓÊÜ³¬Ê±Ê±¼ä */
+/** \brief å›ºä»¶æ¥å—è¶…æ—¶æ—¶é—´ */
 #define  FIRMWARE_RECEIVE_TIMEOUT_VALUE  15000
 
-/** \brief ´®¿Ú½ÓÊÕ»º³åÇø´óĞ¡ */
+/** \brief ä¸²å£æ¥æ”¶ç¼“å†²åŒºå¤§å° */
 #define UART_CALLBACK_BUF_SIZE           64
 
-/** \brief ÓÃ»§ÃüÁî³¤¶È */
+/** \brief ç”¨æˆ·å‘½ä»¤é•¿åº¦ */
 #define USER_COMMAND_LEN                 5
 
-/** \brief ÓÃ»§¿ÉÒÔ¶¨ÒåµÄÃüÁî, ÃüÁîÒÔ0x5a,0xa6×÷ÎªÖ¡Í·£¬ÃüÁîÒÔ0x0d½áÎ²£¬¿ÉÒÔ×Ô¶¨ÒåÖĞ¼äµÄÁ½¸ö¸ö×Ö·û  */
+/** \brief ç”¨æˆ·å¯ä»¥å®šä¹‰çš„å‘½ä»¤, å‘½ä»¤ä»¥0x5a,0xa6ä½œä¸ºå¸§å¤´ï¼Œå‘½ä»¤ä»¥0x0dç»“å°¾ï¼Œå¯ä»¥è‡ªå®šä¹‰ä¸­é—´çš„ä¸¤ä¸ªä¸ªå­—ç¬¦  */
 static char user_command[5] = {0x5a, 0xa6, 0x11, 0x66, 0x0d};
 
-/** \brief ÓÃÀ´´æ·Å½ÓÊÕµÄÃüÁî */
+/** \brief ç”¨æ¥å­˜æ”¾æ¥æ”¶çš„å‘½ä»¤ */
 static char command_rec[6] = {0};
 
-/** \brief Êı¾İ½ÓÊÕ×´Ì¬ */
+/** \brief æ•°æ®æ¥æ”¶çŠ¶æ€ */
 static uint8_t int_state = COMMAND_PHASE;
-/** \brief ´®¿ÚÊı¾İ½ÓÊÕ»º³åÇø  */
+/** \brief ä¸²å£æ•°æ®æ¥æ”¶ç¼“å†²åŒº  */
 static uint8_t uart_callback_buffer[UART_CALLBACK_BUF_SIZE] = {0};
 
 static uint8_t index = 0, command_error = 0, firmware_timeout = 0;
 
-/** \brief ¹Ì¼ş´æ·Å²Ù×÷¾ä±ú  */
+/** \brief å›ºä»¶å­˜æ”¾æ“ä½œå¥æŸ„  */
 static am_boot_firmware_handle_t firmware_handle;
 
-/** \brief flash²Ù×÷¾ä±ú  */
+/** \brief flashæ“ä½œå¥æŸ„  */
 static am_boot_flash_handle_t    flash_handle;
 
-/** \brief ledÈí¼ş¶¨Ê±Æ÷½á¹¹Ìå  */
+/** \brief ledè½¯ä»¶å®šæ—¶å™¨ç»“æ„ä½“  */
 static am_softimer_t             led_timer;
 
-/** \brief Êı¾İ½ÓÊÕ³¬Ê±Èí¼ş¶¨Ê±Æ÷½á¹¹Ìå  */
+/** \brief æ•°æ®æ¥æ”¶è¶…æ—¶è½¯ä»¶å®šæ—¶å™¨ç»“æ„ä½“  */
 static am_softimer_t             receive_callback_timer;
 
 static uint32_t  write_offset = 0, read_offset = 0;
 
 /**
- * \brief ´®¿Ú½ÓÊÕ»Øµ÷º¯Êı
+ * \brief ä¸²å£æ¥æ”¶å›è°ƒå‡½æ•°
  */
 void ___pfn_uart_rec_callback(void *p_arg, char inchar)
 {
@@ -114,7 +114,7 @@ static void __delay(void)
     while(i--);
 }
 /**
- * \brief  ´Ó´®¿Ú½ÓÊÕ»º³åÇø¶ÁÊı¾İ
+ * \brief  ä»ä¸²å£æ¥æ”¶ç¼“å†²åŒºè¯»æ•°æ®
  */
 static int __read_data(uint8_t *p_buffer, uint32_t byte_count)
 {
@@ -135,20 +135,20 @@ static int __read_data(uint8_t *p_buffer, uint32_t byte_count)
     return AM_OK;
 }
 /**
- * \brief ledÈí¼ş¶¨Ê±Æ÷»Øµ÷º¯Êı
+ * \brief ledè½¯ä»¶å®šæ—¶å™¨å›è°ƒå‡½æ•°
  * */
 static void __led_timer_handle (void *p_arg)
 {
     am_led_toggle(LED0);
 }
 /**
- * \brief ´®¿Ú½ÓÊÕÊı¾İÈí¼ş¶¨Ê±Æ÷»Øµ÷º¯Êı
+ * \brief ä¸²å£æ¥æ”¶æ•°æ®è½¯ä»¶å®šæ—¶å™¨å›è°ƒå‡½æ•°
  */
 static void __receive_callback_timer_handle(void *p_arg)
 {
     int i;
     if(int_state == COMMAND_PHASE) {
-        /* \brief ½ÓÊÕµÄÃüÁî×Ö·û¸öÊı³ö´í  */
+        /* \brief æ¥æ”¶çš„å‘½ä»¤å­—ç¬¦ä¸ªæ•°å‡ºé”™  */
         if(index != USER_COMMAND_LEN) {
             command_error = 1;
         } else {
@@ -158,7 +158,7 @@ static void __receive_callback_timer_handle(void *p_arg)
                     break;
                 }
             }
-            /* ½ÓÊÕµ½ÓÃ»§µÄÃüÁîÕıÈ· £¬Ôò½øÈë¹Ì¼ş½ÓÊÕ×´Ì¬ */
+            /* æ¥æ”¶åˆ°ç”¨æˆ·çš„å‘½ä»¤æ­£ç¡® ï¼Œåˆ™è¿›å…¥å›ºä»¶æ¥æ”¶çŠ¶æ€ */
             if(i == USER_COMMAND_LEN){
                 int_state = FIRMWARE_PHASE;
             }
@@ -171,32 +171,32 @@ static void __receive_callback_timer_handle(void *p_arg)
     }
 }
 /**
- * \brief ¼ì²âÊÇ·ñÓĞ¹Ì¼ş·¢ËÍ¹ıÀ´
+ * \brief æ£€æµ‹æ˜¯å¦æœ‰å›ºä»¶å‘é€è¿‡æ¥
  */
 static void __detect_firmware_receive(void)
 {
     am_boot_firmware_verify_info_t firmware_head;
     uint32_t rev, count, i;
     int ret;
-    /* ÃüÁî´íÎó´¦Àí */
+    /* å‘½ä»¤é”™è¯¯å¤„ç† */
     if(command_error == 1) {
         AM_DBG_INFO("application : input command error! still execute previous application\r\n");
         command_error = 0;
         return;
     }
-    /* ¹Ì¼ş½ÓÊÕ  */
+    /* å›ºä»¶æ¥æ”¶  */
     if(int_state == FIRMWARE_PHASE) {
 
        am_kprintf("application : update init...\r\n");
-       /* ¹Ì¼ş´æ·Å±ê×¼½Ó¿Ú³õÊ¼»¯ */
+       /* å›ºä»¶å­˜æ”¾æ ‡å‡†æ¥å£åˆå§‹åŒ– */
        firmware_handle = am_zlg116_boot_firmware_flash(flash_handle);
-       /* ¿ªÊ¼¹Ì¼ş´æ·Å  */
+       /* å¼€å§‹å›ºä»¶å­˜æ”¾  */
        am_boot_firmware_store_start(firmware_handle, 24 * 1024);
        am_softimer_start(&led_timer, 100);
        memset(uart_callback_buffer, 0, sizeof(uart_callback_buffer));
        am_kprintf("application : firmware transmission is ready\r\n");
 
-       /* ¶ÁÈ¡¹Ì¼şÍ·²¿  */
+       /* è¯»å–å›ºä»¶å¤´éƒ¨  */
        if(AM_OK != __read_data((uint8_t *)&firmware_head, sizeof(firmware_head))) {
            int_state = COMMAND_PHASE;
            am_softimer_start(&led_timer, 1000);
@@ -213,7 +213,7 @@ static void __detect_firmware_receive(void)
                am_kprintf("application : firmware transmission is timeout, still execute previous application\r\n");
                return;
            }
-           /* ¹Ì¼ş´æ·Å£¬Ã¿´Î´æ·ÅËÄ×Ö½Ú */
+           /* å›ºä»¶å­˜æ”¾ï¼Œæ¯æ¬¡å­˜æ”¾å››å­—èŠ‚ */
            ret = am_boot_firmware_store_bytes(firmware_handle,
                                              (uint8_t *)&rev,
                                               sizeof(rev));
@@ -233,10 +233,10 @@ static void __detect_firmware_receive(void)
                                         (uint8_t *)&rev,
                                          firmware_head.len & 0x3);
        }
-       /* ¹Ì¼ş´æ·Å½áÊø  */
+       /* å›ºä»¶å­˜æ”¾ç»“æŸ  */
        am_boot_firmware_store_final(firmware_handle);
        am_kprintf("application : firmware receive successful\r\n");
-       /* ¹Ì¼şĞ£Ñé  */
+       /* å›ºä»¶æ ¡éªŒ  */
        ret = am_boot_firmware_verify(firmware_handle, &firmware_head);
        if(ret != AM_OK) {
            am_kprintf("application : firmware verify error\r\n");
@@ -245,13 +245,13 @@ static void __detect_firmware_receive(void)
        } else {
            am_kprintf("application : firmware verify successful\r\n");
        }
-       /* ÉèÖÃÉı¼¶±êÖ¾ÎªÉı¼¶ÇøÓĞĞ§  */
+       /* è®¾ç½®å‡çº§æ ‡å¿—ä¸ºå‡çº§åŒºæœ‰æ•ˆ  */
        am_boot_update_flag_set(AM_BOOTLOADER_FLAG_UPDATE);
        am_kprintf("application : device will restart...\r\n");
 
-       /*ÔÚÉè±¸ÖØÆôÖ®Ç°×îºÃ½øĞĞÒ»Ğ¡¶ÎµÄÑÓÊ±£¬ÈÃ´®¿ÚÓĞÊ±¼ä½«»º³åÇøÊı¾İ´¦ÀíÍê*/
+       /*åœ¨è®¾å¤‡é‡å¯ä¹‹å‰æœ€å¥½è¿›è¡Œä¸€å°æ®µçš„å»¶æ—¶ï¼Œè®©ä¸²å£æœ‰æ—¶é—´å°†ç¼“å†²åŒºæ•°æ®å¤„ç†å®Œ*/
        __delay();
-       /* ÖØÆôÉè±¸  */
+       /* é‡å¯è®¾å¤‡  */
        am_boot_reset();
    }
 }
@@ -262,21 +262,21 @@ void demo_am116_core_application_entry (void)
 
     am_softimer_init(&led_timer, __led_timer_handle, NULL);
     am_softimer_start(&led_timer, 1000);
-    /* ÓÃÓÚ¹Ì¼ş½ÓÊÕµÄ³¬Ê±µÄ¶¨Ê±Æ÷³õÊ¼»¯ */
+    /* ç”¨äºå›ºä»¶æ¥æ”¶çš„è¶…æ—¶çš„å®šæ—¶å™¨åˆå§‹åŒ– */
     am_softimer_init(&receive_callback_timer, __receive_callback_timer_handle, NULL);
-    /* flash³õÊ¼»¯  */
+    /* flashåˆå§‹åŒ–  */
     flash_handle = am_zlg116_boot_flash_inst_init();
-    /* bootloader ±ê×¼½Ó¿Ú³õÊ¼»¯  */
+    /* bootloader æ ‡å‡†æ¥å£åˆå§‹åŒ–  */
     am_zlg116_std_boot_inst_init(flash_handle);
 
     am_uart_handle_t uart_handle = am_zlg116_uart1_inst_init();
-    /* Ê¹ÄÜ´®¿ÚÖĞ¶ÏÄ£Ê½ */
+    /* ä½¿èƒ½ä¸²å£ä¸­æ–­æ¨¡å¼ */
     am_uart_ioctl(uart_handle, AM_UART_MODE_SET, (void *)AM_UART_MODE_INT);
-    /* ×¢²á·¢ËÍ»Øµ÷º¯Êı */
+    /* æ³¨å†Œå‘é€å›è°ƒå‡½æ•° */
     am_uart_callback_set(uart_handle, AM_UART_CALLBACK_RXCHAR_PUT, ___pfn_uart_rec_callback, NULL);
 
     while (1) {
-        /* ¼ì²âÊÇ·ñÓĞ·¢ËÍ¹Ì¼ş¹ıÀ´µÄÃüÁî */
+        /* æ£€æµ‹æ˜¯å¦æœ‰å‘é€å›ºä»¶è¿‡æ¥çš„å‘½ä»¤ */
         __detect_firmware_receive();
     }
 }

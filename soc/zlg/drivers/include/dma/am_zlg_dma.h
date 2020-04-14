@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief DMAÇı¶¯£¬·şÎñDMA½Ó¿Ú
+ * \brief DMAé©±åŠ¨ï¼ŒæœåŠ¡DMAæ¥å£
  *
  * \internal
  * \par Modification History
@@ -37,91 +37,91 @@ extern "C" {
  */
 
 /**
- * \name Í¨µÀ´«ÊäÖĞ¶Ï±êÖ¾
+ * \name é€šé“ä¼ è¾“ä¸­æ–­æ ‡å¿—
  * \anchor am_zlg_dma_chan_cfg_flags
  * @{
  */
 
-/** \brief Íê³ÉÖĞ¶Ï±êÊ¶ */
+/** \brief å®Œæˆä¸­æ–­æ ‡è¯† */
 #define AM_ZLG_DMA_INT_NORMAL         0
 
-/** \brief ´íÎóÖĞ¶Ï±êÊ¶ */
+/** \brief é”™è¯¯ä¸­æ–­æ ‡è¯† */
 #define AM_ZLG_DMA_INT_ERROR          1
 
 /** @} */
 
-/** \brief DMAÖĞ¶Ï»Øµ÷º¯ÊıÀàĞÍ */
+/** \brief DMAä¸­æ–­å›è°ƒå‡½æ•°ç±»å‹ */
 typedef void (*am_zlg_pfn_dma_isr_t)(void *p_arg, uint32_t flag);
 
-/** \brief DMAÖĞ¶Ï»Øµ÷º¯ÊıĞÅÏ¢ */
+/** \brief DMAä¸­æ–­å›è°ƒå‡½æ•°ä¿¡æ¯ */
 struct am_zlg_dma_int_info {
 
-    /** \brief DMA´¥·¢»Øµ÷º¯Êı */
+    /** \brief DMAè§¦å‘å›è°ƒå‡½æ•° */
     am_zlg_pfn_dma_isr_t  pfn_isr;
 
-    /** \brief »Øµ÷º¯ÊıµÄµÚÒ»¸öÈë¿Ú²ÎÊı */
+    /** \brief å›è°ƒå‡½æ•°çš„ç¬¬ä¸€ä¸ªå…¥å£å‚æ•° */
     void                    *p_arg;
 };
 
-/** \brief DMAÉè±¸ĞÅÏ¢ */
+/** \brief DMAè®¾å¤‡ä¿¡æ¯ */
 typedef struct am_zlg_dma_devinfo {
 
-    /** \brief Ö¸ÏòDMA¼Ä´æÆ÷¿éµÄÖ¸Õë */
+    /** \brief æŒ‡å‘DMAå¯„å­˜å™¨å—çš„æŒ‡é’ˆ */
     uint32_t   dma_reg_base;
 
-    /** \brief DMAÖĞ¶ÏºÅ¿ªÊ¼ */
+    /** \brief DMAä¸­æ–­å·å¼€å§‹ */
     uint8_t    inum_start;
 
-    /** \brief DMAÖĞ¶ÏºÅ½áÊø */
+    /** \brief DMAä¸­æ–­å·ç»“æŸ */
     uint8_t    inum_end;
 
-    /** \brief Æ½Ì¨³õÊ¼»¯º¯Êı£¬Èç´ò¿ªÊ±ÖÓ£¬ÅäÖÃÒı½ÅµÈ¹¤×÷ */
+    /** \brief å¹³å°åˆå§‹åŒ–å‡½æ•°ï¼Œå¦‚æ‰“å¼€æ—¶é’Ÿï¼Œé…ç½®å¼•è„šç­‰å·¥ä½œ */
     void     (*pfn_plfm_init)(void);
 
-    /** \brief Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    /** \brief å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
     void     (*pfn_plfm_deinit)(void);
 
 } am_zlg_dma_devinfo_t;
 
 /**
- * \brief DMAÉè±¸ÊµÀı
+ * \brief DMAè®¾å¤‡å®ä¾‹
  */
 typedef struct am_zlg_dma_dev {
 
-    /** \brief Ö¸ÏòDMAÉè±¸ĞÅÏ¢µÄÖ¸Õë */
+    /** \brief æŒ‡å‘DMAè®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ */
     const am_zlg_dma_devinfo_t *p_devinfo;
 
 }am_zlg_dma_dev_t;
 
 /**
- * \brief ÅäÖÃDMA´«ÊäÍ¨µÀ
+ * \brief é…ç½®DMAä¼ è¾“é€šé“
  *
- * \param[in] chan  : DMA Í¨µÀºÅ£¬ÖµÎª£ºDMA_CHAN_* (#DMA_CHAN_1) »ò (#DMA_CHAN_UART1_TX)
+ * \param[in] chan  : DMA é€šé“å·ï¼Œå€¼ä¸ºï¼šDMA_CHAN_* (#DMA_CHAN_1) æˆ– (#DMA_CHAN_UART1_TX)
  *
- * \retval AM_OK    : ÅäÖÃ³É¹¦
- * \retval AM_ERROR : ÅäÖÃ´íÎó£¬¸ÃÍ¨µÀÖ®Ç°ÅäÖÃ¹ı
+ * \retval AM_OK    : é…ç½®æˆåŠŸ
+ * \retval AM_ERROR : é…ç½®é”™è¯¯ï¼Œè¯¥é€šé“ä¹‹å‰é…ç½®è¿‡
  */
 int am_zlg_dma_chan_start (int chan);
 
 /**
- * \brief Í£Ö¹Í¨µÀ´«Êä
- * \param[in] chan : DMA Í¨µÀºÅ£¬ÖµÎª£ºDMA_CHAN_* (#DMA_CHAN_1) »ò (#DMA_CHAN_UART1_TX)
+ * \brief åœæ­¢é€šé“ä¼ è¾“
+ * \param[in] chan : DMA é€šé“å·ï¼Œå€¼ä¸ºï¼šDMA_CHAN_* (#DMA_CHAN_1) æˆ– (#DMA_CHAN_UART1_TX)
  *
- * \retval AM_OK   : ²Ù×÷³É¹¦
+ * \retval AM_OK   : æ“ä½œæˆåŠŸ
  */
 int am_zlg_dma_chan_stop (int chan);
 
 /**
- * \brief ½¨Á¢´«ÊäÃèÊö·û
+ * \brief å»ºç«‹ä¼ è¾“æè¿°ç¬¦
  *
- * \param[in] p_desc   : Ö¸ÏòDMA´«ÊäÃèÊö·ûµÄÖ¸Õë
- * \param[in] src_addr : Ô´¶ËÊ×µØÖ·
- * \param[in] dst_addr : Ä¿±ê¶ËÊ×µØÖ·
- * \param[in] nbytes   : ´«Êä×Ö½ÚÊı
- * \param[in] flags    : ÅäÖÃ²ÎÊı
+ * \param[in] p_desc   : æŒ‡å‘DMAä¼ è¾“æè¿°ç¬¦çš„æŒ‡é’ˆ
+ * \param[in] src_addr : æºç«¯é¦–åœ°å€
+ * \param[in] dst_addr : ç›®æ ‡ç«¯é¦–åœ°å€
+ * \param[in] nbytes   : ä¼ è¾“å­—èŠ‚æ•°
+ * \param[in] flags    : é…ç½®å‚æ•°
  *
- * \retval  AM_OK      : ½¨Á¢³É¹¦
- * \retval -AM_EINVAL  : Î´¶ÔÆë£¬ÎŞĞ§²ÎÊı
+ * \retval  AM_OK      : å»ºç«‹æˆåŠŸ
+ * \retval -AM_EINVAL  : æœªå¯¹é½ï¼Œæ— æ•ˆå‚æ•°
  */
 int am_zlg_dma_xfer_desc_build (amhw_zlg_dma_xfer_desc_t *p_desc,
                                 uint32_t                  src_addr,
@@ -130,92 +130,92 @@ int am_zlg_dma_xfer_desc_build (amhw_zlg_dma_xfer_desc_t *p_desc,
                                 uint32_t                  flags);
 
 /**
- * \brief ¿ªÊ¼DMA´«Êä
+ * \brief å¼€å§‹DMAä¼ è¾“
  *
- * \param[in] p_desc  : Ö¸ÏòDMA´«ÊäÃèÊö·ûµÄÖ¸Õë
- * \param[in] type    : DMA´«ÊäÄ£Ê½ÉèÖÃ £ºÓĞ¶ÔÓ¦µÄÃ¶¾ÙÌådma_transfer_type_t
- * \param[in] chan    : DMA Í¨µÀºÅ£¬ÖµÎª£ºDMA_CHAN_* (#DMA_CHAN_1) »ò (#DMA_CHAN_UART1_TX)
+ * \param[in] p_desc  : æŒ‡å‘DMAä¼ è¾“æè¿°ç¬¦çš„æŒ‡é’ˆ
+ * \param[in] type    : DMAä¼ è¾“æ¨¡å¼è®¾ç½® ï¼šæœ‰å¯¹åº”çš„æšä¸¾ä½“dma_transfer_type_t
+ * \param[in] chan    : DMA é€šé“å·ï¼Œå€¼ä¸ºï¼šDMA_CHAN_* (#DMA_CHAN_1) æˆ– (#DMA_CHAN_UART1_TX)
  *
- * \retval  AM_OK     : ²Ù×÷³É¹¦
- * \retval -AM_EINVAL : ²ÎÊıÎŞĞ§
+ * \retval  AM_OK     : æ“ä½œæˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°æ— æ•ˆ
  */
 int am_zlg_dma_xfer_desc_chan_cfg (amhw_zlg_dma_xfer_desc_t    *p_desc,
                                    amhw_zlg_dma_transfer_type_t type,
                                    uint8_t                      chan);
 
 /**
- * \brief Á¬½ÓDMA»Øµ÷º¯Êı
+ * \brief è¿æ¥DMAå›è°ƒå‡½æ•°
  *
- * \attention ¸Ã»Øµ÷º¯ÊıµÄµÚ¶ş¸ö²ÎÊı¿É´ÓÇı¶¯»ñµÃ£¬¸Ã²ÎÊıµÄÈ¡Öµ·¶Î§ÊÇ AM_ZLG_DMA_INT*
- *            (#AM_ZLG_DMA_INT_ERROR)»ò(#AM_ZLG_DMA_INT_NORMAL)
+ * \attention è¯¥å›è°ƒå‡½æ•°çš„ç¬¬äºŒä¸ªå‚æ•°å¯ä»é©±åŠ¨è·å¾—ï¼Œè¯¥å‚æ•°çš„å–å€¼èŒƒå›´æ˜¯ AM_ZLG_DMA_INT*
+ *            (#AM_ZLG_DMA_INT_ERROR)æˆ–(#AM_ZLG_DMA_INT_NORMAL)
  *
- * \param[in] chan    : DMA Í¨µÀºÅ£¬ÖµÎª£ºDMA_CHAN_* (#DMA_CHAN_1) »ò (#DMA_CHAN_UART1_TX)
- * \param[in] pfn_isr : »Øµ÷º¯ÊıÖ¸Õë
- * \param[in] p_arg   : »Øµ÷º¯ÊıµÄµÚÒ»¸öÈë¿Ú²ÎÊı £¬ÔÚÁ¬½Ó¹ı³ÌÖĞ£¬¶ÔÓ¦Í¨µÀĞ´ÉÏ¶ÔÓ¦Êı×Ö£¬
- *                      ÀıÈçDMA0Í¨µÀ£¬Ôò¸Ã²ÎÊıÎª(void *)0
+ * \param[in] chan    : DMA é€šé“å·ï¼Œå€¼ä¸ºï¼šDMA_CHAN_* (#DMA_CHAN_1) æˆ– (#DMA_CHAN_UART1_TX)
+ * \param[in] pfn_isr : å›è°ƒå‡½æ•°æŒ‡é’ˆ
+ * \param[in] p_arg   : å›è°ƒå‡½æ•°çš„ç¬¬ä¸€ä¸ªå…¥å£å‚æ•° ï¼Œåœ¨è¿æ¥è¿‡ç¨‹ä¸­ï¼Œå¯¹åº”é€šé“å†™ä¸Šå¯¹åº”æ•°å­—ï¼Œ
+ *                      ä¾‹å¦‚DMA0é€šé“ï¼Œåˆ™è¯¥å‚æ•°ä¸º(void *)0
  *
- * \retval  AM_OK     : Á¬½Ó³É¹¦
- * \retval -AM_EPERM  : ²ÎÊı´íÎó
+ * \retval  AM_OK     : è¿æ¥æˆåŠŸ
+ * \retval -AM_EPERM  : å‚æ•°é”™è¯¯
  */
 int am_zlg_dma_isr_connect (int                       chan,
                             am_zlg_pfn_dma_isr_t      pfn_isr,
                             void                     *p_arg);
 
 /**
- * \brief É¾³ıDMA»Øµ÷º¯ÊıµÄÁ¬½Ó
+ * \brief åˆ é™¤DMAå›è°ƒå‡½æ•°çš„è¿æ¥
  *
- * \attention ¸Ã»Øµ÷º¯ÊıµÄµÚ¶ş¸ö²ÎÊı¿É´ÓÇı¶¯»ñµÃ£¬¸Ã²ÎÊıµÄÈ¡Öµ·¶Î§ÊÇ AM_ZLG_DMA_INT*
- *            (#AM_ZLG_DMA_INT_ERROR)»ò(#AM_ZLG_DMA_INT_NORMAL)
- *            ¸Ã»Øµ÷º¯ÊıµÄµÚÈı¸ö²ÎÊıÊÇ²úÉúÖĞ¶ÏµÄÍ¨µÀ£¬ÆäÈ¡Öµ·¶Î§ÊÇDMA_CHAN_* (#DMA_CHAN_1)
+ * \attention è¯¥å›è°ƒå‡½æ•°çš„ç¬¬äºŒä¸ªå‚æ•°å¯ä»é©±åŠ¨è·å¾—ï¼Œè¯¥å‚æ•°çš„å–å€¼èŒƒå›´æ˜¯ AM_ZLG_DMA_INT*
+ *            (#AM_ZLG_DMA_INT_ERROR)æˆ–(#AM_ZLG_DMA_INT_NORMAL)
+ *            è¯¥å›è°ƒå‡½æ•°çš„ç¬¬ä¸‰ä¸ªå‚æ•°æ˜¯äº§ç”Ÿä¸­æ–­çš„é€šé“ï¼Œå…¶å–å€¼èŒƒå›´æ˜¯DMA_CHAN_* (#DMA_CHAN_1)
  *
- * \param[in] chan    : DMA Í¨µÀºÅ£¬ÖµÎª£ºDMA_CHAN_* (#DMA_CHAN_1) »ò (#DMA_CHAN_UART1_TX)
- * \param[in] pfn_isr : »Øµ÷º¯ÊıÖ¸Õë
- * \param[in] p_arg   : »Øµ÷º¯ÊıµÄµÚÒ»¸öÈë¿Ú²ÎÊı£¬ÔÚÁ¬½Ó¹ı³ÌÖĞ£¬¶ÔÓ¦Í¨µÀĞ´ÉÏ¶ÔÓ¦Êı×Ö£¬
- *                      ÀıÈçDMA0Í¨µÀ£¬Ôò¸Ã²ÎÊıÎª(void *)0
+ * \param[in] chan    : DMA é€šé“å·ï¼Œå€¼ä¸ºï¼šDMA_CHAN_* (#DMA_CHAN_1) æˆ– (#DMA_CHAN_UART1_TX)
+ * \param[in] pfn_isr : å›è°ƒå‡½æ•°æŒ‡é’ˆ
+ * \param[in] p_arg   : å›è°ƒå‡½æ•°çš„ç¬¬ä¸€ä¸ªå…¥å£å‚æ•°ï¼Œåœ¨è¿æ¥è¿‡ç¨‹ä¸­ï¼Œå¯¹åº”é€šé“å†™ä¸Šå¯¹åº”æ•°å­—ï¼Œ
+ *                      ä¾‹å¦‚DMA0é€šé“ï¼Œåˆ™è¯¥å‚æ•°ä¸º(void *)0
  *
- * \retval  AM_OK     : É¾³ı³É¹¦
- * \retval -AM_EPERM  : ²ÎÊı´íÎó
+ * \retval  AM_OK     : åˆ é™¤æˆåŠŸ
+ * \retval -AM_EPERM  : å‚æ•°é”™è¯¯
  */
 int am_zlg_dma_isr_disconnect (int                      chan,
                                am_zlg_pfn_dma_isr_t     pfn_isr,
                                void                    *p_arg);
 
 /**
- * \breif »ñÈ¡  Ä³Í¨µÀµ±Ç°´«ÊäÊ£ÓàµÄ×Ö½ÚÊı
+ * \breif è·å–  æŸé€šé“å½“å‰ä¼ è¾“å‰©ä½™çš„å­—èŠ‚æ•°
  *
- * \param[in] chan DMA Í¨µÀºÅ£¬ÖµÎª DMA_CHAN_* (#DMA_CHAN_1) »ò (#DMA_CHAN_UART1_TX)
+ * \param[in] chan DMA é€šé“å·ï¼Œå€¼ä¸º DMA_CHAN_* (#DMA_CHAN_1) æˆ– (#DMA_CHAN_UART1_TX)
  *
- * \retval  ×Ö½ÚÊı
+ * \retval  å­—èŠ‚æ•°
  */
 uint16_t am_zlg_dma_tran_data_get (int chan);
 
 /**
- * \breif ÉèÖÃ Ä³Í¨µÀµ±Ç°´«ÊäÊ£ÓàµÄ×Ö½ÚÊı
+ * \breif è®¾ç½® æŸé€šé“å½“å‰ä¼ è¾“å‰©ä½™çš„å­—èŠ‚æ•°
  *
- * \param[in] chan            DMA Í¨µÀºÅ£¬ÖµÎª DMA_CHAN_* (#DMA_CHAN_1) »ò (#DMA_CHAN_UART1_TX)
- * \param[in] trans_data_byte Òª´«ÊäµÄ×Ö½ÚÊı
+ * \param[in] chan            DMA é€šé“å·ï¼Œå€¼ä¸º DMA_CHAN_* (#DMA_CHAN_1) æˆ– (#DMA_CHAN_UART1_TX)
+ * \param[in] trans_data_byte è¦ä¼ è¾“çš„å­—èŠ‚æ•°
  *
- * \retval  ÎŞ
+ * \retval  æ— 
  *
- * \note ÔÚÉèÖÃ´«ÊäµÄ×Ö½ÚÊıÖ®Ç°±ØĞëÍ£Ö¹Í¨µÀ´«Êä
+ * \note åœ¨è®¾ç½®ä¼ è¾“çš„å­—èŠ‚æ•°ä¹‹å‰å¿…é¡»åœæ­¢é€šé“ä¼ è¾“
  */
 void am_zlg_dma_tran_data_size (int chan, uint32_t trans_data_byte);
 
 /**
- * \brief DMA³õÊ¼»¯
+ * \brief DMAåˆå§‹åŒ–
  *
- * \param[in] p_dev         : Ö¸ÏòDMAÉè±¸µÄÖ¸Õë
- * \param[in] p_dma_devinfo : Ö¸ÏòDMAÉè±¸ĞÅÏ¢µÄÖ¸Õë
+ * \param[in] p_dev         : æŒ‡å‘DMAè®¾å¤‡çš„æŒ‡é’ˆ
+ * \param[in] p_dma_devinfo : æŒ‡å‘DMAè®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ
  *
- * \retval  AM_OK       : ³õÊ¼»¯³É¹¦
+ * \retval  AM_OK       : åˆå§‹åŒ–æˆåŠŸ
  */
 int am_zlg_dma_init (am_zlg_dma_dev_t           *p_dev,
                      const am_zlg_dma_devinfo_t *p_dma_devinfo);
 
 /**
- * \brief DMAÈ¥³õÊ¼»¯
+ * \brief DMAå»åˆå§‹åŒ–
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg_dma_deinit (void);
 

@@ -46,10 +46,10 @@
 
 #define    __LSI_CLK    (40000UL)
 
-/** \brief Ö¸Ïò PWR µçÔ´¹ÜÀíÉè±¸µÄÖ¸Õë */
+/** \brief æŒ‡å‘ PWR ç”µæºç®¡ç†è®¾å¤‡çš„æŒ‡é’ˆ */
 am_zlg217_pwr_dev_t *__gp_pwr_dev;
 
-/* ÄÚºËË¯Ãßº¯Êı */
+/* å†…æ ¸ç¡çœ å‡½æ•° */
 static void __pwr_cpu_wif (am_bool_t deep)
 {
     if (deep) {
@@ -71,7 +71,7 @@ static void __pwr_cpu_wif (am_bool_t deep)
 }
 
 /**
- * \brief Ä¬ÈÏµÄÖĞ¶Ï·şÎñº¯Êı
+ * \brief é»˜è®¤çš„ä¸­æ–­æœåŠ¡å‡½æ•°
  */
 static void __dummy_isr (void *p_arg)
 {
@@ -81,21 +81,21 @@ static void __dummy_isr (void *p_arg)
 #if 0
 
 /**
- * \brief ÉèÖÃAHB Ô¤·ÖÆµ
+ * \brief è®¾ç½®AHB é¢„åˆ†é¢‘
  *
- * \param[in]  div £ºÔ¤·ÖÆµÖµ
+ * \param[in]  div ï¼šé¢„åˆ†é¢‘å€¼
  *
- *       - 0-7 £º ²»·ÖÆµ
- *       - 8   £º 2·ÖÆµ
- *       - 9   £º 4·ÖÆµ
- *       - 10  £º 8·ÖÆµ
- *       - 11  £º 16·ÖÆµ
- *       - 12  £º 64·ÖÆµ
- *       - 13  £º 128·ÖÆµ
- *       - 14  £º 256·ÖÆµ
- *       - 15  £º 512·ÖÆµ
+ *       - 0-7 ï¼š ä¸åˆ†é¢‘
+ *       - 8   ï¼š 2åˆ†é¢‘
+ *       - 9   ï¼š 4åˆ†é¢‘
+ *       - 10  ï¼š 8åˆ†é¢‘
+ *       - 11  ï¼š 16åˆ†é¢‘
+ *       - 12  ï¼š 64åˆ†é¢‘
+ *       - 13  ï¼š 128åˆ†é¢‘
+ *       - 14  ï¼š 256åˆ†é¢‘
+ *       - 15  ï¼š 512åˆ†é¢‘
  *
- * \return ·µ»ØAHB·ÖÆµÖµ
+ * \return è¿”å›AHBåˆ†é¢‘å€¼
  *
  */
 static uint8_t ___zlg217_rcc_ahb_div_get (void)
@@ -105,7 +105,7 @@ static uint8_t ___zlg217_rcc_ahb_div_get (void)
 #endif /* 0 */
 
 /*
- * \brief AHB ×ÜÏßÊ±ÖÓÆµÂÊ¸üĞÂ
+ * \brief AHB æ€»çº¿æ—¶é’Ÿé¢‘ç‡æ›´æ–°
  */
 static void __sys_clk_ahbfrq_update (int clk_id, uint32_t clk)
 {
@@ -138,7 +138,7 @@ static void __sys_clk_ahbfrq_update (int clk_id, uint32_t clk)
 }
 
 /**
- * \brief ²»Í¬¹¦ºÄÄ£Ê½ÏÂÊ±ÖÓ×ª±ä£¬Ö§³ÖÍ£Ö¹Ä£Ê½ÓëÕı³£Ä£Ê½µÄ PLL Ê±ÖÓÔ´µÄ×ª»»
+ * \brief ä¸åŒåŠŸè€—æ¨¡å¼ä¸‹æ—¶é’Ÿè½¬å˜ï¼Œæ”¯æŒåœæ­¢æ¨¡å¼ä¸æ­£å¸¸æ¨¡å¼çš„ PLL æ—¶é’Ÿæºçš„è½¬æ¢
  */
 static void __sys_clk_change (uint8_t pwr_mode)
 {
@@ -147,13 +147,13 @@ static void __sys_clk_change (uint8_t pwr_mode)
     uint32_t apb1_div = 0, apb2_div = 0;
     uint32_t i = 0;
 
-    /* ¼ÆËã APB1 Ê±ÖÓÆµÂÊ */
+    /* è®¡ç®— APB1 æ—¶é’Ÿé¢‘ç‡ */
     apb1_div = 1;
     for (i = 0; i < (p_clk_dev->p_devinfo->apb1_div & 0x7); i++) {
         apb1_div = apb1_div << 1;
     }
 
-    /* ¼ÆËã APB2 Ê±ÖÓÆµÂÊ */
+    /* è®¡ç®— APB2 æ—¶é’Ÿé¢‘ç‡ */
     apb2_div = 1;
     for (i = 0; i < (p_clk_dev->p_devinfo->apb2_div & 0x7); i++) {
         apb2_div = apb2_div << 1;
@@ -161,16 +161,16 @@ static void __sys_clk_change (uint8_t pwr_mode)
 
     if (pwr_mode == AM_ZLG217_PWR_MODE_STOP) {
 
-        /* Í£»úÄ£Ê½Ê¹ÄÜ LSI ×÷ÎªÏµÍ³Ê±ÖÓ */
+        /* åœæœºæ¨¡å¼ä½¿èƒ½ LSI ä½œä¸ºç³»ç»Ÿæ—¶é’Ÿ */
         amhw_zlg217_rcc_lsi_enable();
 
-        /* µÈ´ı LSI Ê±ÖÓ¾ÍĞ÷ */
+        /* ç­‰å¾… LSI æ—¶é’Ÿå°±ç»ª */
         while (amhw_zlg217_rcc_lsirdy_read() == AM_FALSE);
 
-        /* ÇĞ»»Ê±ÖÓ */
+        /* åˆ‡æ¢æ—¶é’Ÿ */
         amhw_zlg217_rcc_sys_clk_set(AMHW_ZLG217_SYSCLK_LSI);
 
-        /* ¸üĞÂ AHB¡¢APB1¡¢APB2 ×ÜÏßÇÅµÄÊ±ÖÓÆµÂÊ */
+        /* æ›´æ–° AHBã€APB1ã€APB2 æ€»çº¿æ¡¥çš„æ—¶é’Ÿé¢‘ç‡ */
         __sys_clk_ahbfrq_update(__gp_pwr_dev->p_pwrdevinfo->ahb_clk_num, __LSI_CLK);
         am_zlg217_clk_update(__gp_pwr_dev->p_pwrdevinfo->apb1_clk_num, p_clk_dev->ahb_clk  / apb1_div);
         am_zlg217_clk_update(__gp_pwr_dev->p_pwrdevinfo->apb2_clk_num, p_clk_dev->ahb_clk  / apb2_div);
@@ -189,13 +189,13 @@ static void __sys_clk_change (uint8_t pwr_mode)
         amhw_zlg217_rcc_pll_enable();
         while (amhw_zlg217_rcc_pllrdy_read() == AM_FALSE);
 
-        /* ÏµÍ³Ê±ÖÓÑ¡Îª PLL */
+        /* ç³»ç»Ÿæ—¶é’Ÿé€‰ä¸º PLL */
         amhw_zlg217_rcc_sys_clk_set(AMHW_ZLG217_SYSCLK_PLL);
 
-        /* ÔÚÕı³£Ä£Ê½ÏÂ½ûÄÜ LSI ×÷ÎªÏµÍ³Ê±ÖÓ */
+        /* åœ¨æ­£å¸¸æ¨¡å¼ä¸‹ç¦èƒ½ LSI ä½œä¸ºç³»ç»Ÿæ—¶é’Ÿ */
         amhw_zlg217_rcc_lsi_disable();
 
-        /* ¸üĞÂ AHB¡¢APB1¡¢APB2 ×ÜÏßÇÅµÄÊ±ÖÓÆµÂÊ */
+        /* æ›´æ–° AHBã€APB1ã€APB2 æ€»çº¿æ¡¥çš„æ—¶é’Ÿé¢‘ç‡ */
         __sys_clk_ahbfrq_update(__gp_pwr_dev->p_pwrdevinfo->ahb_clk_num, p_clk_dev->pllout_clk);
         am_zlg217_clk_update(__gp_pwr_dev->p_pwrdevinfo->apb1_clk_num, p_clk_dev->ahb_clk  / apb1_div);
         am_zlg217_clk_update(__gp_pwr_dev->p_pwrdevinfo->apb2_clk_num, p_clk_dev->ahb_clk  / apb2_div);
@@ -203,22 +203,22 @@ static void __sys_clk_change (uint8_t pwr_mode)
 
     if (pwr_mode == AM_ZLG217_PWR_MODE_STANBY) {
 
-        /* ´ı»úÄ£Ê½Ê¹ÄÜ HSI ×÷ÎªÏµÍ³Ê±ÖÓ */
+        /* å¾…æœºæ¨¡å¼ä½¿èƒ½ HSI ä½œä¸ºç³»ç»Ÿæ—¶é’Ÿ */
         amhw_zlg217_rcc_hsion_enable();
 
-        /* µÈ´ı HSI Ê±ÖÓ¾ÍĞ÷ */
+        /* ç­‰å¾… HSI æ—¶é’Ÿå°±ç»ª */
         while (amhw_zlg217_rcc_hsirdy_read() == AM_FALSE);
 
-        /* ÏµÍ³Ê±ÖÓÑ¡Îª HSI */
+        /* ç³»ç»Ÿæ—¶é’Ÿé€‰ä¸º HSI */
         amhw_zlg217_rcc_sys_clk_set(AMHW_ZLG217_SYSCLK_HSI_DIV6);
 
-        /* Ê§ÄÜ PLL */
+        /* å¤±èƒ½ PLL */
         amhw_zlg217_rcc_pll_disable();
 
-        /* Ê§ÄÜ LSI */
+        /* å¤±èƒ½ LSI */
         amhw_zlg217_rcc_lsi_disable();
 
-        /* ¸üĞÂ AHB¡¢APB1¡¢APB2 ×ÜÏßÇÅµÄÊ±ÖÓÆµÂÊ */
+        /* æ›´æ–° AHBã€APB1ã€APB2 æ€»çº¿æ¡¥çš„æ—¶é’Ÿé¢‘ç‡ */
         __sys_clk_ahbfrq_update(__gp_pwr_dev->p_pwrdevinfo->ahb_clk_num,
                                 p_clk_dev->ahb_clk);
         am_zlg217_clk_update(__gp_pwr_dev->p_pwrdevinfo->apb1_clk_num,
@@ -229,7 +229,7 @@ static void __sys_clk_change (uint8_t pwr_mode)
 }
 
 /**
- * \brief PWR ³õÊ¼»¯
+ * \brief PWR åˆå§‹åŒ–
  */
 am_zlg217_pwr_handle_t am_zlg217_pwr_init (am_zlg217_pwr_dev_t           *p_dev,
                                            const am_zlg217_pwr_devinfo_t *p_devinfo)
@@ -238,14 +238,14 @@ am_zlg217_pwr_handle_t am_zlg217_pwr_init (am_zlg217_pwr_dev_t           *p_dev,
            return NULL;
     }
 
-    /* PWR Æ½Ì¨³õÊ¼»¯ */
+    /* PWR å¹³å°åˆå§‹åŒ– */
     if (p_devinfo->pfn_plfm_init) {
         p_devinfo->pfn_plfm_init();
     }
 
     p_dev->p_pwrdevinfo = p_devinfo;
 
-    /* È¡µÃµ±Ç°µÄ PWR Ä£Ê½£¬³õÊ¼»¯Ä¬ÈÏÎªÔËĞĞÄ£Ê½ */
+    /* å–å¾—å½“å‰çš„ PWR æ¨¡å¼ï¼Œåˆå§‹åŒ–é»˜è®¤ä¸ºè¿è¡Œæ¨¡å¼ */
     p_dev->pwr_mode  = AM_ZLG217_PWR_MODE_RUN;
 
     __gp_pwr_dev = p_dev;
@@ -254,7 +254,7 @@ am_zlg217_pwr_handle_t am_zlg217_pwr_init (am_zlg217_pwr_dev_t           *p_dev,
 }
 
 /**
- * \brief ½â³ı PWR ³õÊ¼»¯
+ * \brief è§£é™¤ PWR åˆå§‹åŒ–
  */
 void am_zlg217_pwr_deinit (void)
 {
@@ -269,18 +269,18 @@ void am_zlg217_pwr_deinit (void)
 
     __gp_pwr_dev = NULL;
 
-    /* PWR Æ½Ì¨½â³õÊ¼»¯ */
+    /* PWR å¹³å°è§£åˆå§‹åŒ– */
     if (p_pwr_devinfo->pfn_plfm_deinit) {
         p_pwr_devinfo->pfn_plfm_deinit();
     }
 }
 
 /**
- * \brief ÅäÖÃÏµÍ³Ä£Ê½
+ * \brief é…ç½®ç³»ç»Ÿæ¨¡å¼
  *
- * \note Õâ¸ö»½ĞÑµÄÅäÖÃµÄ PWR Ä£Ê½±ØĞëÓë am_zlg217_pwr_mode_into º¯ÊıµÄÑ¡Ôñ PWR
- *       Ä£Ê½ÏàÍ¬£¬ÔÚ AM_ZLG217_PWR_MODE_STANBY Ä£Ê½ÏÂ£¬»½ĞÑ»á¸´Î»£¬×¢²áÖĞ¶Ï»½ĞÑ
- *       º¯Êı»Øµ÷º¯Êı²»Æğ×÷ÓÃ
+ * \note è¿™ä¸ªå”¤é†’çš„é…ç½®çš„ PWR æ¨¡å¼å¿…é¡»ä¸ am_zlg217_pwr_mode_into å‡½æ•°çš„é€‰æ‹© PWR
+ *       æ¨¡å¼ç›¸åŒï¼Œåœ¨ AM_ZLG217_PWR_MODE_STANBY æ¨¡å¼ä¸‹ï¼Œå”¤é†’ä¼šå¤ä½ï¼Œæ³¨å†Œä¸­æ–­å”¤é†’
+ *       å‡½æ•°å›è°ƒå‡½æ•°ä¸èµ·ä½œç”¨
  */
 void am_zlg217_wake_up_cfg (am_zlg217_pwr_mode_t mode,
                             am_pfnvoid_t         pfn_callback,
@@ -294,68 +294,68 @@ void am_zlg217_wake_up_cfg (am_zlg217_pwr_mode_t mode,
 
     switch (mode) {
 
-    case AM_ZLG217_PWR_MODE_RUN:    /* ÔËĞĞÄ£Ê½ */
+    case AM_ZLG217_PWR_MODE_RUN:    /* è¿è¡Œæ¨¡å¼ */
 
         __gp_pwr_dev->pwr_mode = AM_ZLG217_PWR_MODE_RUN;
 
         break;
 
-    case AM_ZLG217_PWR_MODE_SLEEP:  /* Ë¯ÃßÔËĞĞÄ£Ê½ */
+    case AM_ZLG217_PWR_MODE_SLEEP:  /* ç¡çœ è¿è¡Œæ¨¡å¼ */
 
         if (pfn_callback != NULL) {
 
-            /* Á¬½ÓÒı½ÅÖĞ¶Ï·şÎñº¯Êı */
+            /* è¿æ¥å¼•è„šä¸­æ–­æœåŠ¡å‡½æ•° */
             am_gpio_trigger_connect(__gp_pwr_dev->p_pwrdevinfo->p_pwr_mode[mode - 1].pin,
                                     pfn_callback,
                                     p_arg);
 
-            /* ÅäÖÃÒı½ÅÖĞ¶Ï´¥·¢·½Ê½ */
+            /* é…ç½®å¼•è„šä¸­æ–­è§¦å‘æ–¹å¼ */
             am_gpio_trigger_cfg(__gp_pwr_dev->p_pwrdevinfo->p_pwr_mode[mode - 1].pin,
                                 AM_GPIO_TRIGGER_RISE);
 
-            /* Ê¹ÄÜÒı½Å´¥·¢ÖĞ¶Ï */
+            /* ä½¿èƒ½å¼•è„šè§¦å‘ä¸­æ–­ */
             am_gpio_trigger_on(__gp_pwr_dev->p_pwrdevinfo->p_pwr_mode[mode - 1].pin);
 
         }
 
         break;
 
-    case AM_ZLG217_PWR_MODE_STOP:  /* Í£Ö¹Ä£Ê½ */
+    case AM_ZLG217_PWR_MODE_STOP:  /* åœæ­¢æ¨¡å¼ */
 
         if (pfn_callback != NULL) {
 
-            /* Á¬½ÓÒı½ÅÖĞ¶Ï·şÎñº¯Êı */
+            /* è¿æ¥å¼•è„šä¸­æ–­æœåŠ¡å‡½æ•° */
             am_gpio_trigger_connect(__gp_pwr_dev->p_pwrdevinfo->p_pwr_mode[mode - 1].pin,
                                     pfn_callback,
                                     p_arg);
 
-            /* ÅäÖÃÒı½ÅÖĞ¶Ï´¥·¢·½Ê½ */
+            /* é…ç½®å¼•è„šä¸­æ–­è§¦å‘æ–¹å¼ */
             am_gpio_trigger_cfg(__gp_pwr_dev->p_pwrdevinfo->p_pwr_mode[mode - 1].pin,
                                 AM_GPIO_TRIGGER_RISE);
 
-            /* Ê¹ÄÜÒı½Å´¥·¢ÖĞ¶Ï */
+            /* ä½¿èƒ½å¼•è„šè§¦å‘ä¸­æ–­ */
             am_gpio_trigger_on(__gp_pwr_dev->p_pwrdevinfo->p_pwr_mode[mode - 1].pin);
 
         }
 
         break;
 
-    case AM_ZLG217_PWR_MODE_STANBY:  /* ´ı»úÄ£Ê½ */
+    case AM_ZLG217_PWR_MODE_STANBY:  /* å¾…æœºæ¨¡å¼ */
 
         if (-1 == __gp_pwr_dev->p_pwrdevinfo->p_pwr_mode[mode - 1].pin) {
             break;
         }
 
-        /* Á¬½ÓÒı½ÅÖĞ¶Ï·şÎñº¯Êı */
+        /* è¿æ¥å¼•è„šä¸­æ–­æœåŠ¡å‡½æ•° */
         am_gpio_trigger_connect(__gp_pwr_dev->p_pwrdevinfo->p_pwr_mode[mode - 1].pin,
                                 __dummy_isr,
                                 p_arg);
 
-        /* ÅäÖÃÒı½ÅÖĞ¶Ï´¥·¢·½Ê½ */
+        /* é…ç½®å¼•è„šä¸­æ–­è§¦å‘æ–¹å¼ */
         am_gpio_trigger_cfg(__gp_pwr_dev->p_pwrdevinfo->p_pwr_mode[mode - 1].pin,
                             AM_GPIO_TRIGGER_RISE);
 
-        /* Ê¹ÄÜÒı½Å´¥·¢ÖĞ¶Ï */
+        /* ä½¿èƒ½å¼•è„šè§¦å‘ä¸­æ–­ */
         am_gpio_trigger_on(__gp_pwr_dev->p_pwrdevinfo->p_pwr_mode[mode - 1].pin);
 
         break;
@@ -366,7 +366,7 @@ void am_zlg217_wake_up_cfg (am_zlg217_pwr_mode_t mode,
 }
 
 /**
- * \brief ÅäÖÃÏµÍ³Ä£Ê½
+ * \brief é…ç½®ç³»ç»Ÿæ¨¡å¼
  */
 int am_zlg217_pwr_mode_into (am_zlg217_pwr_mode_t mode)
 {
@@ -383,13 +383,13 @@ int am_zlg217_pwr_mode_into (am_zlg217_pwr_mode_t mode)
 
     switch (mode) {
 
-    case AM_ZLG217_PWR_MODE_RUN:    /* ÔËĞĞÄ£Ê½ */
+    case AM_ZLG217_PWR_MODE_RUN:    /* è¿è¡Œæ¨¡å¼ */
 
         __gp_pwr_dev->pwr_mode = AM_ZLG217_PWR_MODE_RUN;
 
         break;
 
-    case AM_ZLG217_PWR_MODE_SLEEP:  /* Ë¯ÃßÄ£Ê½ */
+    case AM_ZLG217_PWR_MODE_SLEEP:  /* ç¡çœ æ¨¡å¼ */
         if (cur_mode != AM_ZLG217_PWR_MODE_RUN) {
             return -AM_EPERM;
         }
@@ -397,60 +397,60 @@ int am_zlg217_pwr_mode_into (am_zlg217_pwr_mode_t mode)
 
         AM_DBG_INFO("enter sleep!\r\n");
 
-        /* µÈ´ı´®¿Ú·¢ËÍÍê³É */
+        /* ç­‰å¾…ä¸²å£å‘é€å®Œæˆ */
         while((ZLG217_UART1->csr & AMHW_ZLG_UART_TX_COMPLETE_FALG) == AM_FALSE);
 
         __pwr_cpu_wif(AM_FALSE);
 
-        /* »½ĞÑÖØÖÃÄ£Ê½ */
+        /* å”¤é†’é‡ç½®æ¨¡å¼ */
         __gp_pwr_dev->pwr_mode = AM_ZLG217_PWR_MODE_RUN;
 
         break;
 
-    case AM_ZLG217_PWR_MODE_STOP:  /* Í£Ö¹Ä£Ê½ */
+    case AM_ZLG217_PWR_MODE_STOP:  /* åœæ­¢æ¨¡å¼ */
         if (cur_mode != AM_ZLG217_PWR_MODE_RUN) {
             return -AM_EPERM;
         }
         __gp_pwr_dev->pwr_mode = AM_ZLG217_PWR_MODE_STOP;
 
-        /* ×¢Òâ£º µçÑ¹µ÷½ÚÆ÷¿ÉÄÜ¿ªÆô£¬½øÈëÍ£»ú×´Ì¬²¢Ã»ÓĞ¹ØÍ£ */
+        /* æ³¨æ„ï¼š ç”µå‹è°ƒèŠ‚å™¨å¯èƒ½å¼€å¯ï¼Œè¿›å…¥åœæœºçŠ¶æ€å¹¶æ²¡æœ‰å…³åœ */
         amhw_zlg_pwr_pdds_mode_set(p_hw_pwr, AM_ZLG_PDDS_STOP_MODE);
 
         AM_DBG_INFO("enter deepsleep!\r\n");
 
-        /* µÈ´ı´®¿Ú·¢ËÍÍê³É */
+        /* ç­‰å¾…ä¸²å£å‘é€å®Œæˆ */
         while((ZLG217_UART1->csr & AMHW_ZLG_UART_TX_COMPLETE_FALG) == AM_FALSE);
 
-        /* CPU½øÈëÉî¶ÈË¯ÃßÄ£Ê½ */
+        /* CPUè¿›å…¥æ·±åº¦ç¡çœ æ¨¡å¼ */
         __pwr_cpu_wif(AM_TRUE);
 
-        /* Í£Ö¹Ä£Ê½»½ĞÑºó»Ö¸´Ê±ÖÓ */
+        /* åœæ­¢æ¨¡å¼å”¤é†’åæ¢å¤æ—¶é’Ÿ */
         __sys_clk_change(AM_ZLG217_PWR_MODE_RUN);
 
-        /* »½ĞÑÖØÖÃÄ£Ê½ */
+        /* å”¤é†’é‡ç½®æ¨¡å¼ */
         __gp_pwr_dev->pwr_mode = AM_ZLG217_PWR_MODE_RUN;
 
         break;
 
-    case AM_ZLG217_PWR_MODE_STANBY:  /* ´ı»úÄ£Ê½ */
+    case AM_ZLG217_PWR_MODE_STANBY:  /* å¾…æœºæ¨¡å¼ */
         if (cur_mode != AM_ZLG217_PWR_MODE_RUN) {
             return -AM_EPERM;
         }
         __gp_pwr_dev->pwr_mode = AM_ZLG217_PWR_MODE_STANBY;
 
-        /* ½øÈë´ı»úÄ£Ê½Ö®Ç° WKUP Òı½Å±ØĞëÎªµÍµçÆ½ */
+        /* è¿›å…¥å¾…æœºæ¨¡å¼ä¹‹å‰ WKUP å¼•è„šå¿…é¡»ä¸ºä½ç”µå¹³ */
         if (wkup_pin != -1) {
 
-            /* Ê§ÄÜ WKUP Òı½Å */
+            /* å¤±èƒ½ WKUP å¼•è„š */
             amhw_zlg_wake_up_enable(p_hw_pwr, AM_ZLG_WAKEUP_DISABLE);
 
-            /* ½« WKUP ÅäÖÃÎªÊäÈë£¬²¢¼ì²âÊÇ·ñÎª¸ßµçÆ½ */
+            /* å°† WKUP é…ç½®ä¸ºè¾“å…¥ï¼Œå¹¶æ£€æµ‹æ˜¯å¦ä¸ºé«˜ç”µå¹³ */
             am_gpio_pin_cfg(wkup_pin, AM_GPIO_INPUT | AM_GPIO_PULLDOWN);
             if (am_gpio_get(wkup_pin)) {
                 return -AM_ENOTSUP;
             }
 
-            /* Ê¹ÄÜ WAKE_UP Òı½Å */
+            /* ä½¿èƒ½ WAKE_UP å¼•è„š */
             amhw_zlg_wake_up_enable(p_hw_pwr, AM_ZLG_WAKEUP_ENABLE);
         }
 
@@ -460,19 +460,19 @@ int am_zlg217_pwr_mode_into (am_zlg217_pwr_mode_t mode)
 
         AM_DBG_INFO("enter standby!\r\n");
 
-        /* µÈ´ı´®¿Ú·¢ËÍÍê³É */
+        /* ç­‰å¾…ä¸²å£å‘é€å®Œæˆ */
         while((ZLG217_UART1->csr & AMHW_ZLG_UART_TX_COMPLETE_FALG) == AM_FALSE);
 
-        /* ´ı»úÄ£Ê½Ê¹ÓÃ HSI ×÷ÎªÏµÍ³Ê±ÖÓ */
+        /* å¾…æœºæ¨¡å¼ä½¿ç”¨ HSI ä½œä¸ºç³»ç»Ÿæ—¶é’Ÿ */
         __sys_clk_change(AM_ZLG217_PWR_MODE_STANBY);
 
-        /* CPU ½øÈë´ı»úÄ£Ê½ */
+        /* CPU è¿›å…¥å¾…æœºæ¨¡å¼ */
         __pwr_cpu_wif(AM_TRUE);
 
-        /* »Ö¸´Ê±ÖÓÔ´£¬²»Ó¦¸ÃÖ´ĞĞµ½ÕâÀï£¬ÒòÎª´ı»úÄ£Ê½»½ĞÑÖ®ºóĞ¾Æ¬»áÖ±½Ó¸´Î» */
+        /* æ¢å¤æ—¶é’Ÿæºï¼Œä¸åº”è¯¥æ‰§è¡Œåˆ°è¿™é‡Œï¼Œå› ä¸ºå¾…æœºæ¨¡å¼å”¤é†’ä¹‹åèŠ¯ç‰‡ä¼šç›´æ¥å¤ä½ */
         __sys_clk_change(AM_ZLG217_PWR_MODE_RUN);
 
-        /* »½ĞÑÖØÖÃÄ£Ê½ */
+        /* å”¤é†’é‡ç½®æ¨¡å¼ */
         __gp_pwr_dev->pwr_mode = AM_ZLG217_PWR_MODE_RUN;
 
         break;
@@ -486,17 +486,17 @@ int am_zlg217_pwr_mode_into (am_zlg217_pwr_mode_t mode)
 }
 
 /**
- * \brief »ñÈ¡ PWR Ä£Ê½
+ * \brief è·å– PWR æ¨¡å¼
  */
 am_zlg217_pwr_mode_t am_zlg217_pwr_mode_get (void)
 {
 
-    /* µÍ¹¦ºÄÔËĞĞÄ£Ê½ */
+    /* ä½åŠŸè€—è¿è¡Œæ¨¡å¼ */
     return __gp_pwr_dev->pwr_mode;
 }
 
 /**
- * \brief ÅäÖÃ PVD µçÑ¹¼ì²âĞÅÏ¢
+ * \brief é…ç½® PVD ç”µå‹æ£€æµ‹ä¿¡æ¯
  */
 int am_zlg217_pwr_pvd_cfg (am_zlg217_pwr_handle_t pwr_handle,
                            am_pfnvoid_t           pfn_callback,
@@ -509,7 +509,7 @@ int am_zlg217_pwr_pvd_cfg (am_zlg217_pwr_handle_t pwr_handle,
         return -AM_EINVAL;
     }
 
-    /* ´ı»úÄ£Ê½¼°Í£Ö¹Ä£Ê½ÓÉ CPU ÄÚºËÍ£Ö¹²»Ö§³Ö PVD µçÑ¹¼ì²â */
+    /* å¾…æœºæ¨¡å¼åŠåœæ­¢æ¨¡å¼ç”± CPU å†…æ ¸åœæ­¢ä¸æ”¯æŒ PVD ç”µå‹æ£€æµ‹ */
     if (cur_mode == AM_ZLG217_PWR_MODE_STOP  ||
         cur_mode == AM_ZLG217_PWR_MODE_STANBY ) {
 
@@ -523,41 +523,41 @@ int am_zlg217_pwr_pvd_cfg (am_zlg217_pwr_handle_t pwr_handle,
         amhw_zlg_pwr_pvd_detect_enable(p_hw_pwr, AM_ZLG_PVDE_ENABLE);
         amhw_zlg_pvd_lever_set(p_hw_pwr, pwr_handle->p_pwrdevinfo->p_pvd_info->pvd_v_level);
 
-        /* Çå³ıÖĞ¶ÏÏßÅäÖÃ£¬PVD ¶ÔÓ¦ÓÚ AMHW_ZLG217_LINE_NUM16 */
+        /* æ¸…é™¤ä¸­æ–­çº¿é…ç½®ï¼ŒPVD å¯¹åº”äº AMHW_ZLG217_LINE_NUM16 */
         amhw_zlg217_exti_imr_clear(ZLG217_EXTI, AMHW_ZLG217_LINE_NUM16);
         amhw_zlg217_exti_emr_clear(ZLG217_EXTI, AMHW_ZLG217_LINE_NUM16);
 
-        /* Çå³ıÖĞ¶ÏÏß´¥·¢·½Ê½ÅäÖÃ£¬PVD ¶ÔÓ¦ÓÚ AMHW_ZLG217_LINE_NUM16 */
+        /* æ¸…é™¤ä¸­æ–­çº¿è§¦å‘æ–¹å¼é…ç½®ï¼ŒPVD å¯¹åº”äº AMHW_ZLG217_LINE_NUM16 */
         amhw_zlg217_exti_rtsr_clear(ZLG217_EXTI, AMHW_ZLG217_LINE_NUM16);
         amhw_zlg217_exti_ftsr_clear(ZLG217_EXTI, AMHW_ZLG217_LINE_NUM16);
 
         if (pwr_handle->p_pwrdevinfo->p_pvd_info->pvd_mode == 0) {
 
-            /* ÉÏÉıÑØ´¥·¢(±íÊ¾µçÑ¹´Ó¸ßÏÂ½µµ½µÍÓÚÉè¶¨·§ÖµÊ±²úÉúÖĞ¶Ï)£¬PVD ¶ÔÓ¦ÓÚ AMHW_ZLG217_LINE_NUM16 */
+            /* ä¸Šå‡æ²¿è§¦å‘(è¡¨ç¤ºç”µå‹ä»é«˜ä¸‹é™åˆ°ä½äºè®¾å®šé˜€å€¼æ—¶äº§ç”Ÿä¸­æ–­)ï¼ŒPVD å¯¹åº”äº AMHW_ZLG217_LINE_NUM16 */
             amhw_zlg217_exti_rtsr_set(ZLG217_EXTI, AMHW_ZLG217_LINE_NUM16);
         } else if (pwr_handle->p_pwrdevinfo->p_pvd_info->pvd_mode == 1) {
 
-            /* ÏÂ½µÑØ´¥·¢(±íÊ¾µçÑ¹´ÓµÍÉÏÉıµ½¸ßÓÚÉè¶¨·§ÖµÊ±²úÉúÖĞ¶Ï)£¬PVD ¶ÔÓ¦ÓÚ AMHW_ZLG217_LINE_NUM16 */
+            /* ä¸‹é™æ²¿è§¦å‘(è¡¨ç¤ºç”µå‹ä»ä½ä¸Šå‡åˆ°é«˜äºè®¾å®šé˜€å€¼æ—¶äº§ç”Ÿä¸­æ–­)ï¼ŒPVD å¯¹åº”äº AMHW_ZLG217_LINE_NUM16 */
             amhw_zlg217_exti_ftsr_set(ZLG217_EXTI, AMHW_ZLG217_LINE_NUM16);
         } else {
 
-            /* Ë«±ßÑØ´¥·¢(±íÊ¾µçÑ¹ÉÏÉı»òÏÂ½µÔ½¹ıÉè¶¨·§ÖµÊ±¶¼²úÉúÖĞ¶Ï)£¬PVD ¶ÔÓ¦ÓÚ AMHW_ZLG217_LINE_NUM16 */
+            /* åŒè¾¹æ²¿è§¦å‘(è¡¨ç¤ºç”µå‹ä¸Šå‡æˆ–ä¸‹é™è¶Šè¿‡è®¾å®šé˜€å€¼æ—¶éƒ½äº§ç”Ÿä¸­æ–­)ï¼ŒPVD å¯¹åº”äº AMHW_ZLG217_LINE_NUM16 */
             amhw_zlg217_exti_rtsr_set(ZLG217_EXTI, AMHW_ZLG217_LINE_NUM16);
             amhw_zlg217_exti_ftsr_set(ZLG217_EXTI, AMHW_ZLG217_LINE_NUM16);
         }
 
-        /* Çå PVD ÖĞ¶ÏÏß±êÖ¾Î»£¬PVD ¶ÔÓ¦ÓÚ AMHW_ZLG217_LINE_NUM16 */
+        /* æ¸… PVD ä¸­æ–­çº¿æ ‡å¿—ä½ï¼ŒPVD å¯¹åº”äº AMHW_ZLG217_LINE_NUM16 */
         amhw_zlg217_exti_pending_clear(ZLG217_EXTI, AMHW_ZLG217_LINE_NUM16);
 
-        /* ÉèÖÃ¿ª·ÅÖĞ¶ÏÏßÇëÇó , PVD ¶ÔÓ¦ÓÚ AMHW_ZLG217_LINE_NUM16 */
+        /* è®¾ç½®å¼€æ”¾ä¸­æ–­çº¿è¯·æ±‚ , PVD å¯¹åº”äº AMHW_ZLG217_LINE_NUM16 */
         amhw_zlg217_exti_imr_set(ZLG217_EXTI,  AMHW_ZLG217_LINE_NUM16);
 
         /*
-         * Á¬½ÓÓÃ»§×¢²áµÄÖĞ¶Ï»Øµ÷º¯Êı
+         * è¿æ¥ç”¨æˆ·æ³¨å†Œçš„ä¸­æ–­å›è°ƒå‡½æ•°
          */
         if (pfn_callback != NULL) {
 
-            /* ÖĞ¶ÏÁ¬½Ó²¢Ê¹ÄÜ */
+            /* ä¸­æ–­è¿æ¥å¹¶ä½¿èƒ½ */
             am_int_connect(__gp_pwr_dev->p_pwrdevinfo->inum, pfn_callback, (void *)p_arg);
             am_int_enable(__gp_pwr_dev->p_pwrdevinfo->inum);
 
@@ -565,13 +565,13 @@ int am_zlg217_pwr_pvd_cfg (am_zlg217_pwr_handle_t pwr_handle,
 
     } else {
 
-        /* Çå PVD ÖĞ¶ÏÏß±êÖ¾Î»£¬PVD ¶ÔÓ¦ÓÚ AMHW_ZLG217_LINE_NUM16 */
+        /* æ¸… PVD ä¸­æ–­çº¿æ ‡å¿—ä½ï¼ŒPVD å¯¹åº”äº AMHW_ZLG217_LINE_NUM16 */
         amhw_zlg217_exti_pending_clear(ZLG217_EXTI, AMHW_ZLG217_LINE_NUM16);
 
-        /* ÉèÖÃ½ûÖ¹ÖĞ¶ÏÏßÇëÇó , PVD ¶ÔÓ¦ÓÚ AMHW_ZLG217_LINE_NUM16 */
+        /* è®¾ç½®ç¦æ­¢ä¸­æ–­çº¿è¯·æ±‚ , PVD å¯¹åº”äº AMHW_ZLG217_LINE_NUM16 */
         amhw_zlg217_exti_imr_clear(ZLG217_EXTI,  AMHW_ZLG217_LINE_NUM16);
 
-        /* ½ûÄÜ NVIC ÖĞ¶Ï */
+        /* ç¦èƒ½ NVIC ä¸­æ–­ */
         am_int_disable(__gp_pwr_dev->p_pwrdevinfo->inum);
     }
 

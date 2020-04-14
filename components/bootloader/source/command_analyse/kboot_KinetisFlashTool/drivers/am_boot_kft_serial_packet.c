@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief bootloader kboot KinetisFlashTool ´®ĞĞÊı¾İ°ü´¦ÀíÊµÏÖ
+ * \brief bootloader kboot KinetisFlashTool ä¸²è¡Œæ•°æ®åŒ…å¤„ç†å®ç°
  *
  *
  * \internal
@@ -75,7 +75,7 @@ static int32_t __serial_packet_write(void                      *p_arg,
 static void __serial_packet_abort(void *p_arg);
 
 /**
- * \brief ´®ĞĞ°üÖÕÖ¹
+ * \brief ä¸²è¡ŒåŒ…ç»ˆæ­¢
  */
 static int32_t __serial_packet_finalize(void *p_arg);
 
@@ -102,7 +102,7 @@ static int32_t __serial_packet_send_sync(am_boot_kft_packet_dev_t *p_dev,
 static int32_t __serial_send_ping_response(am_boot_kft_packet_dev_t *p_dev);
 
 /**
- * \brief ping»ØÓ¦
+ * \brief pingå›åº”
  */
 const am_boot_kft_ping_response_t kft_ping_response = {
     {
@@ -112,9 +112,9 @@ const am_boot_kft_ping_response_t kft_ping_response = {
           AM_BOOT_KFT_SERIAL_PROTOCOL_VERSION_MAJOR,
           AM_BOOT_KFT_SERIAL_PROTOCOL_VERSION_NAME }
         },
-        0,      /** \brief Ñ¡Ôñ£¬Èç¹û´ËÖµ¸ü¸Ä£¬ÔòÖØĞÂ¼ÆËãcrc16 */
-        0xeaaa  /** \brief crc16µÄ¿ªÊ¼×Ö½Ú£¬°üÀàĞÍ£¬°æ±¾£¬Ñ¡Ïî  */
-                /** \brief i.e. [5a a7 00 00 01 50 00 00]£¬ Calculated using CRC-16/XMODEM. */
+        0,      /** \brief é€‰æ‹©ï¼Œå¦‚æœæ­¤å€¼æ›´æ”¹ï¼Œåˆ™é‡æ–°è®¡ç®—crc16 */
+        0xeaaa  /** \brief crc16çš„å¼€å§‹å­—èŠ‚ï¼ŒåŒ…ç±»å‹ï¼Œç‰ˆæœ¬ï¼Œé€‰é¡¹  */
+                /** \brief i.e. [5a a7 00 00 01 50 00 00]ï¼Œ Calculated using CRC-16/XMODEM. */
 };
 static struct am_boot_kft_packet_funcs __g_packet_funcs = {
     __serial_packet_read,
@@ -153,7 +153,7 @@ static void __serial_packet_queue_byte(uint8_t byte)
 }
 
 /**
- * \brief ´®ĞĞ°üÖÕÖ¹
+ * \brief ä¸²è¡ŒåŒ…ç»ˆæ­¢
  */
 static int32_t __serial_packet_finalize(void *p_arg)
 {
@@ -163,7 +163,7 @@ static int32_t __serial_packet_finalize(void *p_arg)
 }
 
 /**
- * \brief ´®ĞĞ°ü¶Á
+ * \brief ä¸²è¡ŒåŒ…è¯»
  */
 static int32_t __serial_packet_read(void                     *p_arg,
                                     uint8_t                 **pp_packet,
@@ -232,7 +232,7 @@ static int32_t __serial_packet_read(void                     *p_arg,
 }
 
 /**
- * \brief ´®ĞĞ°üĞ´
+ * \brief ä¸²è¡ŒåŒ…å†™
  */
 static int32_t __serial_packet_write(void                      *p_arg,
                                      const uint8_t             *p_packet,
@@ -322,7 +322,7 @@ static int32_t __serial_packet_send_sync(am_boot_kft_packet_dev_t *p_dev,
 }
 
 /**
- * \brief µÈ´ıÒ»¸öack
+ * \brief ç­‰å¾…ä¸€ä¸ªack
  */
 static int32_t __wait_for_ack_packet(am_boot_kft_packet_dev_t *p_dev)
 {
@@ -363,7 +363,7 @@ static int32_t __wait_for_ack_packet(am_boot_kft_packet_dev_t *p_dev)
 }
 
 /**
- * \brief ·¢ËÍping»ØÓ¦
+ * \brief å‘é€pingå›åº”
  */
 static int32_t __serial_send_ping_response(am_boot_kft_packet_dev_t *p_dev)
 {
@@ -388,7 +388,7 @@ static int32_t __serial_send_ping_response(am_boot_kft_packet_dev_t *p_dev)
 }
 
 /**
- * \brief ·¢ËÍACK£¬Èç¹ûĞèÒª
+ * \brief å‘é€ACKï¼Œå¦‚æœéœ€è¦
  */
 static int32_t __send_deferred_ack(am_boot_kft_packet_dev_t *p_dev)
 {
@@ -408,7 +408,7 @@ static int32_t __send_deferred_ack(am_boot_kft_packet_dev_t *p_dev)
 }
 
 /**
- * \brief Ğ´ buff µ½ÍâÉèÖ±µ½ËùÓĞ×Ö½Ú±»·¢ËÍ
+ * \brief å†™ buff åˆ°å¤–è®¾ç›´åˆ°æ‰€æœ‰å­—èŠ‚è¢«å‘é€
  */
 static int32_t __write_data(am_boot_kft_packet_dev_t *p_dev,const uint8_t *p_buffer, uint32_t byte_count)
 {
@@ -422,7 +422,7 @@ static int32_t __write_data(am_boot_kft_packet_dev_t *p_dev,const uint8_t *p_buf
 }
 
 /**
- * \brief ´ÓÍâÉè¶ÁÈ¡Ö±µ½ÊÕµ½¹æ¶¨µÄ×Ö½ÚÊı
+ * \brief ä»å¤–è®¾è¯»å–ç›´åˆ°æ”¶åˆ°è§„å®šçš„å­—èŠ‚æ•°
  */
 static int32_t __read_data(uint8_t *p_buffer, uint32_t byte_count, uint32_t timeout_ms)
 {
@@ -461,7 +461,7 @@ static int32_t __read_data(uint8_t *p_buffer, uint32_t byte_count, uint32_t time
 }
 
 /**
- * \brief ´ÓÍâÉè¶ÁÈ¡Ö±µ½¶Áµ½Õû¸öÊı¾İÖ¡
+ * \brief ä»å¤–è®¾è¯»å–ç›´åˆ°è¯»åˆ°æ•´ä¸ªæ•°æ®å¸§
  */
 static int32_t __read_data_packet(
     am_boot_kft_packet_dev_t               *p_dev,
@@ -515,7 +515,7 @@ static int32_t __read_data_packet(
 }
 
 /**
- * \brief ´ÓÍâÉè¶ÁÈ¡Ö±µ½ÆğÊ¼×Ö½Ú±»ÕÒµ½
+ * \brief ä»å¤–è®¾è¯»å–ç›´åˆ°èµ·å§‹å­—èŠ‚è¢«æ‰¾åˆ°
  */
 static int32_t __read_start_byte(am_boot_kft_framing_header_t *header)
 {
@@ -532,7 +532,7 @@ static int32_t __read_start_byte(am_boot_kft_framing_header_t *header)
 }
 
 /**
- * \brief ´ÓÍâÉè¶ÁÈ¡Ö±µ½°üÍ·²¿±»ÕÒµ½
+ * \brief ä»å¤–è®¾è¯»å–ç›´åˆ°åŒ…å¤´éƒ¨è¢«æ‰¾åˆ°
  */
 static int32_t __read_header(am_boot_kft_framing_header_t *header)
 {
@@ -548,7 +548,7 @@ static int32_t __read_header(am_boot_kft_framing_header_t *header)
 }
 
 /**
- * \brief ´ÓÍâÉè¶ÁÈ¡Ö±µ½°ü³¤¶È±»ÕÒµ½
+ * \brief ä»å¤–è®¾è¯»å–ç›´åˆ°åŒ…é•¿åº¦è¢«æ‰¾åˆ°
  */
 static int32_t __read_length(am_boot_kft_framing_data_packet_t *packet)
 {
@@ -566,7 +566,7 @@ static int32_t __read_length(am_boot_kft_framing_data_packet_t *packet)
 }
 
 /**
- * \brief ´ÓÍâÉè¶ÁÈ¡Ö±µ½crc16±»ÕÒµ½
+ * \brief ä»å¤–è®¾è¯»å–ç›´åˆ°crc16è¢«æ‰¾åˆ°
  */
 static int32_t __read_crc16(am_boot_kft_framing_data_packet_t *p_packet)
 {
@@ -584,7 +584,7 @@ static int32_t __read_crc16(am_boot_kft_framing_data_packet_t *p_packet)
 }
 
 /**
- * \brief ¼ÆËãÖ¡Êı¾İ°üÉÏµÄcrc
+ * \brief è®¡ç®—å¸§æ•°æ®åŒ…ä¸Šçš„crc
  */
 static uint16_t __calculate_framing_crc16(am_boot_kft_framing_data_packet_t *p_packet, const uint8_t *p_data)
 {

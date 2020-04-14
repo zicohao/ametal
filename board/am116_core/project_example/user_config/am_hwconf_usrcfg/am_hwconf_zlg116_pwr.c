@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZLG116µçÔ´¹ÜÀí(µÍ¹¦ºÄÄ£Ê½ÅäÖÃÎÄ¼ş)
+ * \brief ZLG116ç”µæºç®¡ç†(ä½åŠŸè€—æ¨¡å¼é…ç½®æ–‡ä»¶)
  * \sa am_hwconf_zlg116_pwr.c
  * 
  * \internal
@@ -31,67 +31,67 @@
  * @{
  */
 
-/** \brief PWRÆ½Ì¨³õÊ¼»¯ */
+/** \brief PWRå¹³å°åˆå§‹åŒ– */
 void __zlg116_plfm_pwr_init (void)
 {
 
-    /* PWRµçÔ´½Ó¿ÚÊ±ÖÓÊ¹ÄÜ */
+    /* PWRç”µæºæ¥å£æ—¶é’Ÿä½¿èƒ½ */
     am_clk_enable(CLK_PWR);
 
-    /* ¸´Î»PWRµçÔ´½Ó¿Ú */
+    /* å¤ä½PWRç”µæºæ¥å£ */
     am_zlg116_clk_reset(CLK_PWR);
 }
 
-/** \brief PWRÆ½Ì¨È¥³õÊ¼»¯ */
+/** \brief PWRå¹³å°å»åˆå§‹åŒ– */
 void __zlg116_plfm_pwr_deinit (void)
 {
 
-    /* ¸´Î»PWRµçÔ´½Ó¿Ú */
+    /* å¤ä½PWRç”µæºæ¥å£ */
     am_zlg116_clk_reset(CLK_PWR);
 
-    /* ½ûÄÜPWRÏà¹ØÍâÉèÊ±ÖÓ */
+    /* ç¦èƒ½PWRç›¸å…³å¤–è®¾æ—¶é’Ÿ */
     am_clk_disable(CLK_PWR);
 
 }
-/** \brief Òı½Å´¥·¢ĞÅÏ¢ÄÚ´æ */
+/** \brief å¼•è„šè§¦å‘ä¿¡æ¯å†…å­˜ */
 static struct am_zlg116_pwr_mode_init __g_pwr_mode_init[3] = {
      {AM_ZLG116_PWR_MODE_SLEEP,   PIOA_8},
      {AM_ZLG116_PWR_MODE_STOP,    PIOA_8},
      {AM_ZLG116_PWR_MODE_STANBY,  PIOA_0},
 };
 
-/** \brief PVD´¥·¢ĞÅÏ¢ÄÚ´æ */
+/** \brief PVDè§¦å‘ä¿¡æ¯å†…å­˜ */
 static struct am_zlg116_pwr_pvd_info __g_pwr_pvd_info = {
-     AMHW_ZLG_PVD_LEVER_3_3V,    /**< \brief PVD¼à¿ØµçÑ¹ */
-     AM_TRUE,                    /**< \brief Ê¹ÄÜ¼à¿ØµçÑ¹ */
-     2,                          /**< \brief ¼à¿ØµçÑ¹Ä£Ê½ */
+     AMHW_ZLG_PVD_LEVER_3_3V,    /**< \brief PVDç›‘æ§ç”µå‹ */
+     AM_TRUE,                    /**< \brief ä½¿èƒ½ç›‘æ§ç”µå‹ */
+     2,                          /**< \brief ç›‘æ§ç”µå‹æ¨¡å¼ */
 };
 
-/** \brief PWRÉè±¸ĞÅÏ¢ */
+/** \brief PWRè®¾å¤‡ä¿¡æ¯ */
 const am_zlg116_pwr_devinfo_t __g_pwr_devinfo = {
-    ZLG116_PWR_BASE,        /**< \brief PWR¿ØÖÆÆ÷¼Ä´æÆ÷¿é»ùÖ· */
-    ZLG116_BKP_BASE,        /**< \brief BKPÅäÖÃ¼Ä´æÆ÷¿é»ùÖ· */
-	ZLG116_EXTI_BASE,       /**< \brief EXTI¼Ä´æÆ÷¿é»ùÖ· */
-    CLK_AHB,                /**< \brief AHBÊ±ÖÓID */
-    CLK_APB1,               /**< \brief APB1Ê±ÖÓID */
-    CLK_APB2,               /**< \brief APB2Ê±ÖÓID */
-    INUM_PVD,               /**< \brief pvdÖĞ¶ÏID */
-    __g_pwr_mode_init,      /**< \brief Ö¸Ïòpwr¹¦ºÄÄ£Ê½Êı×éµÄÖ¸Õë */
-    &__g_pwr_pvd_info,      /**< \brief Ö¸ÏòpvdµçÑ¹¼à¿ØĞÅÏ¢µÄÖ¸Õë */
+    ZLG116_PWR_BASE,        /**< \brief PWRæ§åˆ¶å™¨å¯„å­˜å™¨å—åŸºå€ */
+    ZLG116_BKP_BASE,        /**< \brief BKPé…ç½®å¯„å­˜å™¨å—åŸºå€ */
+	ZLG116_EXTI_BASE,       /**< \brief EXTIå¯„å­˜å™¨å—åŸºå€ */
+    CLK_AHB,                /**< \brief AHBæ—¶é’ŸID */
+    CLK_APB1,               /**< \brief APB1æ—¶é’ŸID */
+    CLK_APB2,               /**< \brief APB2æ—¶é’ŸID */
+    INUM_PVD,               /**< \brief pvdä¸­æ–­ID */
+    __g_pwr_mode_init,      /**< \brief æŒ‡å‘pwråŠŸè€—æ¨¡å¼æ•°ç»„çš„æŒ‡é’ˆ */
+    &__g_pwr_pvd_info,      /**< \brief æŒ‡å‘pvdç”µå‹ç›‘æ§ä¿¡æ¯çš„æŒ‡é’ˆ */
     __zlg116_plfm_pwr_init,
     __zlg116_plfm_pwr_deinit
 };
 
-/** \brief PWRÉè±¸ÊµÀı */
+/** \brief PWRè®¾å¤‡å®ä¾‹ */
 am_zlg116_pwr_dev_t __g_pwr_dev;
 
-/** \brief PWR ÊµÀı³õÊ¼»¯ */
+/** \brief PWR å®ä¾‹åˆå§‹åŒ– */
 am_zlg116_pwr_handle_t am_zlg116_pwr_inst_init (void)
 {
     return am_zlg116_pwr_init(&__g_pwr_dev, &__g_pwr_devinfo);
 }
 
-/** \brief PWR ÊµÀı½â³õÊ¼»¯ */
+/** \brief PWR å®ä¾‹è§£åˆå§‹åŒ– */
 void am_zlg116_pwr_inst_deinit (void)
 {
     am_zlg116_pwr_deinit();

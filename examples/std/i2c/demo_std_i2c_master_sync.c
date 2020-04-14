@@ -12,17 +12,17 @@
 
 /**
  * \file
- * \brief I2C Ö÷»ú·ÃÎÊ EEPROM Éè±¸Àı³Ì£¬Í¨¹ıÍ¬²½±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief I2C ä¸»æœºè®¿é—® EEPROM è®¾å¤‡ä¾‹ç¨‹ï¼Œé€šè¿‡åŒæ­¥æ ‡å‡†æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè£º
- *   1. Á¬½Ó EEPROM µÄ I2C Òı½Åµ½ÏàÓ¦Òı½Å¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. è¿æ¥ EEPROM çš„ I2C å¼•è„šåˆ°ç›¸åº”å¼•è„šã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Ğ´Êı¾İµ½ EEPROM£»
- *   2. ¶Á³ö¸Õ²ÅĞ´ÈëµÄÊı¾İ£»
- *   3. µ÷ÊÔ´®¿Ú´òÓ¡²âÊÔ½á¹û¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. å†™æ•°æ®åˆ° EEPROMï¼›
+ *   2. è¯»å‡ºåˆšæ‰å†™å…¥çš„æ•°æ®ï¼›
+ *   3. è°ƒè¯•ä¸²å£æ‰“å°æµ‹è¯•ç»“æœã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_std_i2c_master_sync.c src_std_i2c_master_sync
  *
  * \internal
@@ -42,33 +42,33 @@
 #include "am_delay.h"
 #include "am_vdebug.h"
 
-#define __BUF_SIZE 8 /** \brief »º³åÇø´óĞ¡ */
+#define __BUF_SIZE 8 /** \brief ç¼“å†²åŒºå¤§å° */
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_std_i2c_master_sync_entry (am_i2c_handle_t handle,
                                      uint32_t        eeprom_addr,
                                      uint32_t        test_len)
 {
     uint8_t         i;
-    uint8_t         wr_buf[__BUF_SIZE] = {0}; /* Ğ´Êı¾İ»º´æ¶¨Òå */
-    uint8_t         rd_buf[__BUF_SIZE] = {0}; /* ¶ÁÊı¾İ»º´æ¶¨Òå */
+    uint8_t         wr_buf[__BUF_SIZE] = {0}; /* å†™æ•°æ®ç¼“å­˜å®šä¹‰ */
+    uint8_t         rd_buf[__BUF_SIZE] = {0}; /* è¯»æ•°æ®ç¼“å­˜å®šä¹‰ */
     am_err_t        ret;
     am_i2c_device_t i2cdev_eeprom;
 
-    /* ¹¹Ôì I2C Éè±¸ */
+    /* æ„é€  I2C è®¾å¤‡ */
     am_i2c_mkdev(&i2cdev_eeprom,
                   handle,
                   eeprom_addr,
                   AM_I2C_ADDR_7BIT | AM_I2C_SUBADDR_1BYTE);
 
-    /* Ìî³ä·¢ËÍ»º³åÇø */
+    /* å¡«å……å‘é€ç¼“å†²åŒº */
     for (i = 0; i < test_len; i++) {
         wr_buf[i] = (i + 6);
     }
 
-    /* Ğ´Êı¾İ */
+    /* å†™æ•°æ® */
     ret = am_i2c_write(&i2cdev_eeprom,
                         0x00,
                        &wr_buf[0],
@@ -81,7 +81,7 @@ void demo_std_i2c_master_sync_entry (am_i2c_handle_t handle,
 
     am_mdelay(100);
 
-    /* ¶ÁÊı¾İ */
+    /* è¯»æ•°æ® */
     ret = am_i2c_read(&i2cdev_eeprom,
                        0x00,
                       &rd_buf[0],
@@ -92,11 +92,11 @@ void demo_std_i2c_master_sync_entry (am_i2c_handle_t handle,
         return;
     }
 
-    /* Ğ£ÑéĞ´ÈëºÍ¶ÁÈ¡µÄÊı¾İÊÇ·ñÒ»ÖÂ */
+    /* æ ¡éªŒå†™å…¥å’Œè¯»å–çš„æ•°æ®æ˜¯å¦ä¸€è‡´ */
     for (i = 0; i < test_len; i++) {
         AM_DBG_INFO("Read EEPROM the %2dth data is 0x%02x\r\n", i ,rd_buf[i]);
 
-        /* Ğ£ÑéÊ§°Ü */
+        /* æ ¡éªŒå¤±è´¥ */
         if(wr_buf[i] != rd_buf[i]) {
             AM_DBG_INFO("verify failed at index %d.\r\n", i);
             break;

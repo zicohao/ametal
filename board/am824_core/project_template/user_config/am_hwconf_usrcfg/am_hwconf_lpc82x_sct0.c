@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief LPC82X SCT ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief LPC82X SCT ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_lpc82x_sct0.c
  *
  * \internal
@@ -34,31 +34,31 @@
  */
 
 /**
- * \brief SCT ÊÂ¼ş ISR ĞÅÏ¢ÊıÁ¿
+ * \brief SCT äº‹ä»¶ ISR ä¿¡æ¯æ•°é‡
  *
- * ÓÃ»§¿ÉÒÔ¸ù¾İÓ¦ÓÃÖĞÊµ¼ÊËùĞèÒªÓÃµ½µÄÊÂ¼şÖĞ¶Ï¸öÊı£¬×î´ó¿ÉÒÔÖ§³Ö 8 ¸ö£¬Í¨¹ıĞŞ¸Ä¸Ãºê
- * Öµ£¬ÒÔ´ïµ½²»ÀË·ÑÄÚ´æµÄÄ¿µÄ
+ * ç”¨æˆ·å¯ä»¥æ ¹æ®åº”ç”¨ä¸­å®é™…æ‰€éœ€è¦ç”¨åˆ°çš„äº‹ä»¶ä¸­æ–­ä¸ªæ•°ï¼Œæœ€å¤§å¯ä»¥æ”¯æŒ 8 ä¸ªï¼Œé€šè¿‡ä¿®æ”¹è¯¥å®
+ * å€¼ï¼Œä»¥è¾¾åˆ°ä¸æµªè´¹å†…å­˜çš„ç›®çš„
  */
 #define __SCT_EVT_ISRINFO_COUNT    8
 
-/** \brief SCT Êä³öÍ¨µÀÊıÁ¿ */
+/** \brief SCT è¾“å‡ºé€šé“æ•°é‡ */
 #define __SCT_OUTPUT_COUNT    6
 
-/** \brief SCT DAM ÇëÇóÍ¨µÀÊıÁ¿ */
+/** \brief SCT DAM è¯·æ±‚é€šé“æ•°é‡ */
 #define __SCT_DMA_REQ_COUNT    2
 
-/** \brief ´æ´¢ÓÃ»§ÖĞ¶Ï»Øµ÷ĞÅÏ¢ */
+/** \brief å­˜å‚¨ç”¨æˆ·ä¸­æ–­å›è°ƒä¿¡æ¯ */
 am_local
 struct am_lpc_sct_evt_isr_info __sct_evt_isr_info[__SCT_EVT_ISRINFO_COUNT];
 
 /**
- * \brief ´æ´¢ÖĞ¶ÏºÅÓëÆä¶ÔÓ¦ÔÚ __sct_evt_isr_info ÖĞ¶Ï»Øµ÷ĞÅÏ¢ÖĞÎ»ÖÃµÄÓ³Éä£¬Êı×é
- *        ´óĞ¡Ò»°ãÓë SCT ËùÖ§³ÖµÄ×î´óÊÂ¼ş¸öÊıÓë __SCT_EVT_ISRINFO_COUNT ÏàµÈ¡£
+ * \brief å­˜å‚¨ä¸­æ–­å·ä¸å…¶å¯¹åº”åœ¨ __sct_evt_isr_info ä¸­æ–­å›è°ƒä¿¡æ¯ä¸­ä½ç½®çš„æ˜ å°„ï¼Œæ•°ç»„
+ *        å¤§å°ä¸€èˆ¬ä¸ SCT æ‰€æ”¯æŒçš„æœ€å¤§äº‹ä»¶ä¸ªæ•°ä¸ __SCT_EVT_ISRINFO_COUNT ç›¸ç­‰ã€‚
  */
 am_local uint8_t __sct_evt_isr_map[__SCT_EVT_ISRINFO_COUNT];
 
 /**
- * \brief SCT0 Æ½Ì¨³õÊ¼»¯
+ * \brief SCT0 å¹³å°åˆå§‹åŒ–
  */
 am_local void __lpc82x_sct0_plfm_init (void)
 {
@@ -67,7 +67,7 @@ am_local void __lpc82x_sct0_plfm_init (void)
 }
 
 /**
- * \brief SCT0 Æ½Ì¨½â³õÊ¼»¯
+ * \brief SCT0 å¹³å°è§£åˆå§‹åŒ–
  */
 am_local void __lpc82x_sct0_plfm_deinit (void)
 {
@@ -75,27 +75,27 @@ am_local void __lpc82x_sct0_plfm_deinit (void)
     amhw_lpc82x_clk_periph_disable(AMHW_LPC82X_CLK_SCT);
 }
 
-/** \brief SCT Éè±¸ĞÅÏ¢ */
+/** \brief SCT è®¾å¤‡ä¿¡æ¯ */
 am_local am_const am_lpc_sct_devinfo_t __g_lpc82x_sct0_devinfo = {
-    LPC82X_SCT0_BASE,             /* SCT0 ¼Ä´æÆ÷¿é»ùµØÖ· */
-    INUM_SCT0,                    /* SCT0 ÖĞ¶ÏºÅ */
-    CLK_SCT,                      /* SCT0 Ê±ÖÓºÅ */
-    __SCT_EVT_ISRINFO_COUNT,      /* ×ÜÖĞ¶ÏÊıÁ¿ */
-    __sct_evt_isr_map,            /* ISR ĞÅÏ¢Ó³ÉäÄÚ´æ(´óĞ¡Óë evt_isr_cnt Ò»ÖÂ) */
-    __SCT_EVT_ISRINFO_COUNT,      /* ISR ĞÅÏ¢ÊıÁ¿ */
-    __sct_evt_isr_info,           /* ISR ĞÅÏ¢ÄÚ´æ(´óĞ¡Óë isrinfo_cnt Ò»ÖÂ) */
+    LPC82X_SCT0_BASE,             /* SCT0 å¯„å­˜å™¨å—åŸºåœ°å€ */
+    INUM_SCT0,                    /* SCT0 ä¸­æ–­å· */
+    CLK_SCT,                      /* SCT0 æ—¶é’Ÿå· */
+    __SCT_EVT_ISRINFO_COUNT,      /* æ€»ä¸­æ–­æ•°é‡ */
+    __sct_evt_isr_map,            /* ISR ä¿¡æ¯æ˜ å°„å†…å­˜(å¤§å°ä¸ evt_isr_cnt ä¸€è‡´) */
+    __SCT_EVT_ISRINFO_COUNT,      /* ISR ä¿¡æ¯æ•°é‡ */
+    __sct_evt_isr_info,           /* ISR ä¿¡æ¯å†…å­˜(å¤§å°ä¸ isrinfo_cnt ä¸€è‡´) */
 
-    __SCT_OUTPUT_COUNT,           /* 8 ¸öÍ¨µÀÊä³ö */
-    __SCT_DMA_REQ_COUNT,          /* 2 ¸ö DMA ÇëÇóÍ¨µÀ */
-    __lpc82x_sct0_plfm_init,      /* Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __lpc82x_sct0_plfm_deinit,    /* Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    __SCT_OUTPUT_COUNT,           /* 8 ä¸ªé€šé“è¾“å‡º */
+    __SCT_DMA_REQ_COUNT,          /* 2 ä¸ª DMA è¯·æ±‚é€šé“ */
+    __lpc82x_sct0_plfm_init,      /* å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __lpc82x_sct0_plfm_deinit,    /* å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 };
 
-/** \brief SCTÉè±¸ÊµÀı */
+/** \brief SCTè®¾å¤‡å®ä¾‹ */
 am_local am_lpc_sct_dev_t __g_lpc82x_sct0_dev;
 
 /**
- * \brief SCT0 ÊµÀı³õÊ¼»¯
+ * \brief SCT0 å®ä¾‹åˆå§‹åŒ–
  */
 am_lpc_sct_handle_t am_lpc82x_sct0_inst_init (void)
 {
@@ -103,7 +103,7 @@ am_lpc_sct_handle_t am_lpc82x_sct0_inst_init (void)
 }
 
 /**
- * \brief SCT0 ÊµÀı½â³õÊ¼»¯
+ * \brief SCT0 å®ä¾‹è§£åˆå§‹åŒ–
  */
 void am_lpc82x_sct0_inst_deinit (am_lpc_sct_handle_t handle)
 {

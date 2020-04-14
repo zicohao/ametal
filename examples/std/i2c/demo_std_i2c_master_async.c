@@ -12,17 +12,17 @@
 
 /**
  * \file
- * \brief I2C Ö÷»ú·ÃÎÊ EEPROM Éè±¸Àı³Ì£¬Í¨¹ıÒì²½±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief I2C ä¸»æœºè®¿é—® EEPROM è®¾å¤‡ä¾‹ç¨‹ï¼Œé€šè¿‡å¼‚æ­¥æ ‡å‡†æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè£º
- *   1. Á¬½Ó EEPROM µÄ I2C Òı½Åµ½ÏàÓ¦Òı½Å¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. è¿æ¥ EEPROM çš„ I2C å¼•è„šåˆ°ç›¸åº”å¼•è„šã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Ğ´Êı¾İµ½ EEPROM£»
- *   2. ¶Á³ö¸Õ²ÅĞ´ÈëµÄÊı¾İ£»
- *   3. µ÷ÊÔ´®¿Ú´òÓ¡²âÊÔ½á¹û¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. å†™æ•°æ®åˆ° EEPROMï¼›
+ *   2. è¯»å‡ºåˆšæ‰å†™å…¥çš„æ•°æ®ï¼›
+ *   3. è°ƒè¯•ä¸²å£æ‰“å°æµ‹è¯•ç»“æœã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_std_i2c_master_async.c src_std_i2c_master_async
  *
  * \internal
@@ -42,10 +42,10 @@
 #include "am_delay.h"
 #include "am_vdebug.h"
 
-#define __BUF_SIZE 8 /** \brief »º³åÇø´óĞ¡ */
+#define __BUF_SIZE 8 /** \brief ç¼“å†²åŒºå¤§å° */
 
 /**
- * \brief I2C ´«ÊäÍê³É»Øµ÷º¯Êı
+ * \brief I2C ä¼ è¾“å®Œæˆå›è°ƒå‡½æ•°
  */
 void __i2c_msg_callback (void *p_arg)
 {
@@ -53,7 +53,7 @@ void __i2c_msg_callback (void *p_arg)
 }
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_std_i2c_master_async_entry (am_i2c_handle_t handle,
                                       uint32_t        eeprom_addr,
@@ -61,8 +61,8 @@ void demo_std_i2c_master_async_entry (am_i2c_handle_t handle,
 {
     uint8_t           i;
     uint8_t           sub_addr;
-    uint8_t           wr_buf[__BUF_SIZE] = {0}; /* Ğ´Êı¾İ»º´æ¶¨Òå */
-    uint8_t           rd_buf[__BUF_SIZE] = {0}; /* ¶ÁÊı¾İ»º´æ¶¨Òå */
+    uint8_t           wr_buf[__BUF_SIZE] = {0}; /* å†™æ•°æ®ç¼“å­˜å®šä¹‰ */
+    uint8_t           rd_buf[__BUF_SIZE] = {0}; /* è¯»æ•°æ®ç¼“å­˜å®šä¹‰ */
     am_err_t          ret;
     am_i2c_message_t  msg;
     am_i2c_transfer_t trans[4];
@@ -72,11 +72,11 @@ void demo_std_i2c_master_async_entry (am_i2c_handle_t handle,
     }
 
     /**
-     * ¹¹Ôì´«Êä½á¹¹Ìå
-     * µÚ 1 ¸ö´«Êä·¢ËÍ´Ó»ú×ÓµØÖ·
-     * µÚ 2 ¸ö´«Êä´Ó wr_buf ·¢ËÍÊı¾İµ½ EEPROM
-     * µÚ 3 ¸ö´«Êä·¢ËÍ´Ó»ú×ÓµØÖ·
-     * µÚ 4 ¸ö´«Êä´Ó EEPROM ¶ÁÈ¡Êı¾İµ½ rd_buf
+     * æ„é€ ä¼ è¾“ç»“æ„ä½“
+     * ç¬¬ 1 ä¸ªä¼ è¾“å‘é€ä»æœºå­åœ°å€
+     * ç¬¬ 2 ä¸ªä¼ è¾“ä» wr_buf å‘é€æ•°æ®åˆ° EEPROM
+     * ç¬¬ 3 ä¸ªä¼ è¾“å‘é€ä»æœºå­åœ°å€
+     * ç¬¬ 4 ä¸ªä¼ è¾“ä» EEPROM è¯»å–æ•°æ®åˆ° rd_buf
      */
     sub_addr = 0x00;
     am_i2c_mktrans(&trans[0],
@@ -85,7 +85,7 @@ void demo_std_i2c_master_async_entry (am_i2c_handle_t handle,
                    &sub_addr,
                     1);
 
-    /* Ìî³ä·¢ËÍ»º³åÇø */
+    /* å¡«å……å‘é€ç¼“å†²åŒº */
     for (i = 0;i < test_len; i++) {
         wr_buf[i] = (i + 6);
     }
@@ -97,17 +97,17 @@ void demo_std_i2c_master_async_entry (am_i2c_handle_t handle,
                    &wr_buf[0],
                     test_len);
 
-    /* ¹¹ÔìÏûÏ¢ */
+    /* æ„é€ æ¶ˆæ¯ */
     am_i2c_mkmsg(&msg, &trans[0], 2, __i2c_msg_callback, NULL);
 
-    /* Æô¶¯Òì²½ÏûÏ¢´«Êä */
+    /* å¯åŠ¨å¼‚æ­¥æ¶ˆæ¯ä¼ è¾“ */
     ret = am_i2c_msg_start(handle, &msg);
     if (ret != AM_OK) {
         AM_DBG_INFO("am_i2c_msg_start error(id: %d).\r\n", ret);
         return;
     }
 
-    /* ÑÓÊ±Ò»Ğ¡¶ÎÊ±¼ä£¬ÈÃÊı¾İ´«ÊäÏÈÍê³ÉÔÙ½øĞĞÊı¾İĞ£Ñé */
+    /* å»¶æ—¶ä¸€å°æ®µæ—¶é—´ï¼Œè®©æ•°æ®ä¼ è¾“å…ˆå®Œæˆå†è¿›è¡Œæ•°æ®æ ¡éªŒ */
     am_mdelay(100);
 
     am_i2c_mktrans(&trans[2],
@@ -122,24 +122,24 @@ void demo_std_i2c_master_async_entry (am_i2c_handle_t handle,
                    &rd_buf[0],
                     test_len);
 
-    /* ¹¹ÔìÏûÏ¢ */
+    /* æ„é€ æ¶ˆæ¯ */
     am_i2c_mkmsg(&msg, &trans[2], 2, __i2c_msg_callback, NULL);
 
-    /* Æô¶¯Òì²½ÏûÏ¢´«Êä */
+    /* å¯åŠ¨å¼‚æ­¥æ¶ˆæ¯ä¼ è¾“ */
     ret = am_i2c_msg_start(handle, &msg);
     if (ret != AM_OK) {
         AM_DBG_INFO("am_i2c_msg_start error(id: %d).\r\n", ret);
         return;
     }
 
-    /* ÑÓÊ±Ò»Ğ¡¶ÎÊ±¼ä£¬ÈÃÊı¾İ´«ÊäÏÈÍê³ÉÔÙ½øĞĞÊı¾İĞ£Ñé */
+    /* å»¶æ—¶ä¸€å°æ®µæ—¶é—´ï¼Œè®©æ•°æ®ä¼ è¾“å…ˆå®Œæˆå†è¿›è¡Œæ•°æ®æ ¡éªŒ */
     am_mdelay(100);
 
-    /* Ğ£ÑéĞ´ÈëºÍ¶ÁÈ¡µÄÊı¾İÊÇ·ñÒ»ÖÂ */
+    /* æ ¡éªŒå†™å…¥å’Œè¯»å–çš„æ•°æ®æ˜¯å¦ä¸€è‡´ */
     for (i = 0;i < test_len; i++) {
         AM_DBG_INFO("Read EEPROM the %2dth data is 0x%02x\r\n", i ,rd_buf[i]);
 
-        /* Ğ£ÑéÊ§°Ü */
+        /* æ ¡éªŒå¤±è´¥ */
         if(wr_buf[i] != rd_buf[i]) {
             AM_DBG_INFO("verify failed at index %d.\r\n", i);
             break;

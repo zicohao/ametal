@@ -12,17 +12,17 @@
 
 /**
  * \file
- * \brief I2S ·¢ËÍ£¨DMA·½Ê½£©Àý³Ì£¬Í¨¹ýHW²ã½Ó¿ÚÊµÏÖ
+ * \brief I2S å‘é€ï¼ˆDMAæ–¹å¼ï¼‰ä¾‹ç¨‹ï¼Œé€šè¿‡HWå±‚æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. °´ÕÕI2S Ïà¹ØÒý½Å½ÓÏßTX_D0¡¢TX_FS¡¢TX_BCLKµ½Âß¼­·ÖÎöÒÇ¡£
- *   2. µ÷ÊÔ³ÌÐò¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. æŒ‰ç…§I2S ç›¸å…³å¼•è„šæŽ¥çº¿TX_D0ã€TX_FSã€TX_BCLKåˆ°é€»è¾‘åˆ†æžä»ªã€‚
+ *   2. è°ƒè¯•ç¨‹åºã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ¿ÉÒÔÔÚÂß¼­·ÖÎöÒÇÉÏ¿´µ½TX_D0¡¢TX_FS¡¢TX_BCLKµÄÊý¾Ý£»
- *   2. ÆäÖÐTX_D0Îª·¢ËÍÊý¾ÝµÄ²¹Âë£¬TX_FSÊÇÖ¡Ê±ÖÓ£¬TX_BCLKÊÇÎ»Ê±ÖÓ¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. å¯ä»¥åœ¨é€»è¾‘åˆ†æžä»ªä¸Šçœ‹åˆ°TX_D0ã€TX_FSã€TX_BCLKçš„æ•°æ®ï¼›
+ *   2. å…¶ä¸­TX_D0ä¸ºå‘é€æ•°æ®çš„è¡¥ç ï¼ŒTX_FSæ˜¯å¸§æ—¶é’Ÿï¼ŒTX_BCLKæ˜¯ä½æ—¶é’Ÿã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_amks16z_core_hw_i2s_dma.c src_amks16z_core_hw_i2s_dma
  *
  * \internal
@@ -46,14 +46,14 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief i2s dma·½Ê½Êý¾Ý·¢ËÍ£¬µ÷ÓÃHW²ã½Ó¿Úº¯ÊýÊµÏÖ
- * \return ÎÞ
+ * \brief i2s dmaæ–¹å¼æ•°æ®å‘é€ï¼Œè°ƒç”¨HWå±‚æŽ¥å£å‡½æ•°å®žçŽ°
+ * \return æ— 
  */
 void demo_amks16z_core_hw_i2s_dma_entry (void)
 {
     AM_DBG_INFO("demo amks16z_core hw i2s dma!\r\n");
 
-    /* ÅäÖÃI2S ¹¦ÄÜÒý½Å */
+    /* é…ç½®I2S åŠŸèƒ½å¼•è„š */
     am_gpio_pin_cfg(PIOC_1, PIOC_1_I2S0_TXD0);     /* TX_D0   */
     am_gpio_pin_cfg(PIOC_2, PIOC_2_I2S0_TX_FS);    /* TX_FS   */
     am_gpio_pin_cfg(PIOC_3, PIOC_3_I2S0_TX_BCLK);  /* TX_BCLK */

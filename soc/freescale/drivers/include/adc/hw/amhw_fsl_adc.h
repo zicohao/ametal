@@ -12,22 +12,22 @@
 
 /**
  * \file
- * \brief ADC Ó²¼ş²Ù×÷½Ó¿Ú
+ * \brief ADC ç¡¬ä»¶æ“ä½œæ¥å£
  *
- * 1. 16Î»Öğ´Î±Æ½üĞÍÊıÄ£×ª»»Æ÷£»
- * 2. ¸ß´ï4¶Ô²î·ÖÊäÈë£¬24¸öµ¥¶ËÄ£ÄâÊäÈë£»
- * 3. µ¥´Î»òÁ¬Ğø×ª»»£¬×ª»»Íê³É×Ô¶¯·¶Î§¿ÕÏĞ×´Ì¬£»
- * 4. ¿ÉÅäÖÃ²ÉÑùÊ±¼ä£¬×ª»»ËÙ¶È»ò¹¦ºÄ£»
- * 5. ¿ÉÑ¡Ôñ¸ß/µÍãĞÖµ±È½ÏºÍÓ²¼şÆ½¾ù£»
- * 6. ×ª»»Íê³É»òÓ²¼şÆ½¾ùÍê³ÉÖĞ¶ÏÇëÇó£»
- * 7. ËÄ¸ö¿ÉÑ¡Ê±ÖÓÔ´£»
- * 8. ×Ô´øÎÂ¶È´«¸ĞÆ÷£»
- * 9. ¿ÉÑ¡µÄ²Î¿¼µçÑ¹Ô´£»
- * 10. Ó²¼şĞ£ÕıÄ£Ê½;
- * 11. 2¸ö¶ÀÁ¢´¥·¢µÄ×ª»»ĞòÁĞ£»
- * 12. Ö§³ÖÊä³öÄ£Ê½ÓĞ£º
- *     ---16Î»¡¢13Î»¡¢11Î»¡¢9Î»²î·ÖÊäÈëÄ£Ê½
- *     ---16Î»¡¢12Î»¡¢10Î»¡¢8Î»µ¥¶ËÊäÈëÄ£Ê½
+ * 1. 16ä½é€æ¬¡é€¼è¿‘å‹æ•°æ¨¡è½¬æ¢å™¨ï¼›
+ * 2. é«˜è¾¾4å¯¹å·®åˆ†è¾“å…¥ï¼Œ24ä¸ªå•ç«¯æ¨¡æ‹Ÿè¾“å…¥ï¼›
+ * 3. å•æ¬¡æˆ–è¿ç»­è½¬æ¢ï¼Œè½¬æ¢å®Œæˆè‡ªåŠ¨èŒƒå›´ç©ºé—²çŠ¶æ€ï¼›
+ * 4. å¯é…ç½®é‡‡æ ·æ—¶é—´ï¼Œè½¬æ¢é€Ÿåº¦æˆ–åŠŸè€—ï¼›
+ * 5. å¯é€‰æ‹©é«˜/ä½é˜ˆå€¼æ¯”è¾ƒå’Œç¡¬ä»¶å¹³å‡ï¼›
+ * 6. è½¬æ¢å®Œæˆæˆ–ç¡¬ä»¶å¹³å‡å®Œæˆä¸­æ–­è¯·æ±‚ï¼›
+ * 7. å››ä¸ªå¯é€‰æ—¶é’Ÿæºï¼›
+ * 8. è‡ªå¸¦æ¸©åº¦ä¼ æ„Ÿå™¨ï¼›
+ * 9. å¯é€‰çš„å‚è€ƒç”µå‹æºï¼›
+ * 10. ç¡¬ä»¶æ ¡æ­£æ¨¡å¼;
+ * 11. 2ä¸ªç‹¬ç«‹è§¦å‘çš„è½¬æ¢åºåˆ—ï¼›
+ * 12. æ”¯æŒè¾“å‡ºæ¨¡å¼æœ‰ï¼š
+ *     ---16ä½ã€13ä½ã€11ä½ã€9ä½å·®åˆ†è¾“å…¥æ¨¡å¼
+ *     ---16ä½ã€12ä½ã€10ä½ã€8ä½å•ç«¯è¾“å…¥æ¨¡å¼
  *
  * \internal
  * \par Modification history
@@ -50,7 +50,7 @@ extern "C" {
  */
 
 /**
- * \brief Ê¹ÓÃÄäÃûÁªºÏÌå¶Î¿ªÊ¼
+ * \brief ä½¿ç”¨åŒ¿åè”åˆä½“æ®µå¼€å§‹
  * @{
  */
 
@@ -61,10 +61,10 @@ extern "C" {
   #pragma language=extended
 #elif defined(__GNUC__)
 
-  /* Ä¬ÈÏÊ¹ÄÜÄäÃûÁªºÏÌå */
+  /* é»˜è®¤ä½¿èƒ½åŒ¿åè”åˆä½“ */
 #elif defined(__TMS470__)
 
-  /* Ä¬ÈÏÊ¹ÄÜÄäÃûÁªºÏÌå */
+  /* é»˜è®¤ä½¿èƒ½åŒ¿åè”åˆä½“ */
 #elif defined(__TASKING__)
   #pragma warning 586
 #else
@@ -75,133 +75,133 @@ extern "C" {
 
 
 /**
- * \brief ADC ¼Ä´æÆ÷¿é½á¹¹Ìå
+ * \brief ADC å¯„å­˜å™¨å—ç»“æ„ä½“
  */
 typedef struct amhw_fsl_adc {
     union {
-        __IO uint32_t sc1[2];      /**< \brief ADC ×´Ì¬¿ØÖÆ¼Ä´æÆ÷1      */
+        __IO uint32_t sc1[2];      /**< \brief ADC çŠ¶æ€æ§åˆ¶å¯„å­˜å™¨1      */
         struct {
-            __IO uint32_t sc1_a;   /**< \brief ADC ĞòÁĞA¿ØÖÆ¼Ä´æÆ÷     */
-            __IO uint32_t sc1_b;   /**< \brief ADC ĞòÁĞB¿ØÖÆ¼Ä´æÆ÷     */
+            __IO uint32_t sc1_a;   /**< \brief ADC åºåˆ—Aæ§åˆ¶å¯„å­˜å™¨     */
+            __IO uint32_t sc1_b;   /**< \brief ADC åºåˆ—Bæ§åˆ¶å¯„å­˜å™¨     */
         };
     };
-    __IO uint32_t cfg1;           /**< \brief ADC ÅäÖÃ¼Ä´æÆ÷1     */
-    __IO uint32_t cfg2;           /**< \brief ADC ÅäÖÃ¼Ä´æÆ÷2     */
+    __IO uint32_t cfg1;           /**< \brief ADC é…ç½®å¯„å­˜å™¨1     */
+    __IO uint32_t cfg2;           /**< \brief ADC é…ç½®å¯„å­˜å™¨2     */
 
     union {
-        __I uint32_t dat[2];       /**< \brief ADC Êı¾İ¼Ä´æÆ÷      */
+        __I uint32_t dat[2];       /**< \brief ADC æ•°æ®å¯„å­˜å™¨      */
         struct {
-            __I uint32_t dat_a;    /**< \brief ADC ĞòÁĞAÊı¾İ¼Ä´æÆ÷     */
-            __I uint32_t dat_b;    /**< \brief ADC ĞòÁĞBÊı¾İ¼Ä´æÆ÷2     */
+            __I uint32_t dat_a;    /**< \brief ADC åºåˆ—Aæ•°æ®å¯„å­˜å™¨     */
+            __I uint32_t dat_b;    /**< \brief ADC åºåˆ—Bæ•°æ®å¯„å­˜å™¨2     */
         };
     };
     union {
-        __IO uint32_t cv[2];      /**< \brief ADC ãĞÖµ¼Ä´æÆ÷      */
+        __IO uint32_t cv[2];      /**< \brief ADC é˜ˆå€¼å¯„å­˜å™¨      */
         struct {
-            __IO uint32_t cv_1;    /**< \brief ADC ãĞÖµ1¼Ä´æÆ÷     */
-            __IO uint32_t cv_2;    /**< \brief ADC ãĞÖµ2¼Ä´æÆ÷     */
+            __IO uint32_t cv_1;    /**< \brief ADC é˜ˆå€¼1å¯„å­˜å™¨     */
+            __IO uint32_t cv_2;    /**< \brief ADC é˜ˆå€¼2å¯„å­˜å™¨     */
         };
     };
-    __IO uint32_t sc2;      /**< \brief ADC ×´Ì¬¿ØÖÆ¼Ä´æÆ÷2      */
-    __IO uint32_t sc3;      /**< \brief ADC ×´Ì¬¿ØÖÆ¼Ä´æÆ÷3      */
+    __IO uint32_t sc2;      /**< \brief ADC çŠ¶æ€æ§åˆ¶å¯„å­˜å™¨2      */
+    __IO uint32_t sc3;      /**< \brief ADC çŠ¶æ€æ§åˆ¶å¯„å­˜å™¨3      */
 
-    __IO uint32_t ofs;      /**< \brief ADC Æ«ÒÆ½ÃÕı¼Ä´æÆ÷      */
-    __IO uint32_t pg;      /**< \brief ADC Plus-SideÔöÒæ¼Ä´æÆ÷      */
-    __IO uint32_t mg;      /**< \brief ADC Minus-Side¿ØÖÆ¼Ä´æÆ÷      */
+    __IO uint32_t ofs;      /**< \brief ADC åç§»çŸ«æ­£å¯„å­˜å™¨      */
+    __IO uint32_t pg;      /**< \brief ADC Plus-Sideå¢ç›Šå¯„å­˜å™¨      */
+    __IO uint32_t mg;      /**< \brief ADC Minus-Sideæ§åˆ¶å¯„å­˜å™¨      */
 
     union {
-        __IO uint32_t clp[7];      /**< \brief ADC Plus-Side½ÃÕıÖµ¼Ä´æÆ÷  */
+        __IO uint32_t clp[7];      /**< \brief ADC Plus-SideçŸ«æ­£å€¼å¯„å­˜å™¨  */
         struct {
-            __IO uint32_t clp_d;    /**< \brief ADC Plus-Side½ÃÕıÖµ¼Ä´æÆ÷D */
-            __IO uint32_t clp_s;    /**< \brief ADC Plus-Side½ÃÕıÖµ¼Ä´æÆ÷S */
-            __IO uint32_t clp_4;    /**< \brief ADC Plus-Side½ÃÕıÖµ¼Ä´æÆ÷4 */
-            __IO uint32_t clp_3;    /**< \brief ADC Plus-Side½ÃÕıÖµ¼Ä´æÆ÷3 */
-            __IO uint32_t clp_2;    /**< \brief ADC Plus-Side½ÃÕıÖµ¼Ä´æÆ÷2 */
-            __IO uint32_t clp_1;    /**< \brief ADC Plus-Side½ÃÕıÖµ¼Ä´æÆ÷1 */
-            __IO uint32_t clp_0;    /**< \brief ADC Plus-Side½ÃÕıÖµ¼Ä´æÆ÷0 */
+            __IO uint32_t clp_d;    /**< \brief ADC Plus-SideçŸ«æ­£å€¼å¯„å­˜å™¨D */
+            __IO uint32_t clp_s;    /**< \brief ADC Plus-SideçŸ«æ­£å€¼å¯„å­˜å™¨S */
+            __IO uint32_t clp_4;    /**< \brief ADC Plus-SideçŸ«æ­£å€¼å¯„å­˜å™¨4 */
+            __IO uint32_t clp_3;    /**< \brief ADC Plus-SideçŸ«æ­£å€¼å¯„å­˜å™¨3 */
+            __IO uint32_t clp_2;    /**< \brief ADC Plus-SideçŸ«æ­£å€¼å¯„å­˜å™¨2 */
+            __IO uint32_t clp_1;    /**< \brief ADC Plus-SideçŸ«æ­£å€¼å¯„å­˜å™¨1 */
+            __IO uint32_t clp_0;    /**< \brief ADC Plus-SideçŸ«æ­£å€¼å¯„å­˜å™¨0 */
         };
     };
     union {
-        __IO uint32_t clm[7];      /**< \brief ADC Minus-Side½ÃÕıÖµ¼Ä´æÆ÷  */
+        __IO uint32_t clm[7];      /**< \brief ADC Minus-SideçŸ«æ­£å€¼å¯„å­˜å™¨  */
         struct {
-            __IO uint32_t clm_d;    /**< \brief ADC Minus-Side½ÃÕıÖµ¼Ä´æÆ÷D */
-            __IO uint32_t clm_s;    /**< \brief ADC Minus-Side½ÃÕıÖµ¼Ä´æÆ÷S */
-            __IO uint32_t clm_4;    /**< \brief ADC Minus-Side½ÃÕıÖµ¼Ä´æÆ÷4 */
-            __IO uint32_t clm_3;    /**< \brief ADC Minus-Side½ÃÕıÖµ¼Ä´æÆ÷3 */
-            __IO uint32_t clm_2;    /**< \brief ADC Minus-Side½ÃÕıÖµ¼Ä´æÆ÷2 */
-            __IO uint32_t clm_1;    /**< \brief ADC Minus-Side½ÃÕıÖµ¼Ä´æÆ÷1 */
-            __IO uint32_t clm_0;    /**< \brief ADC Minus-Side½ÃÕıÖµ¼Ä´æÆ÷0 */
+            __IO uint32_t clm_d;    /**< \brief ADC Minus-SideçŸ«æ­£å€¼å¯„å­˜å™¨D */
+            __IO uint32_t clm_s;    /**< \brief ADC Minus-SideçŸ«æ­£å€¼å¯„å­˜å™¨S */
+            __IO uint32_t clm_4;    /**< \brief ADC Minus-SideçŸ«æ­£å€¼å¯„å­˜å™¨4 */
+            __IO uint32_t clm_3;    /**< \brief ADC Minus-SideçŸ«æ­£å€¼å¯„å­˜å™¨3 */
+            __IO uint32_t clm_2;    /**< \brief ADC Minus-SideçŸ«æ­£å€¼å¯„å­˜å™¨2 */
+            __IO uint32_t clm_1;    /**< \brief ADC Minus-SideçŸ«æ­£å€¼å¯„å­˜å™¨1 */
+            __IO uint32_t clm_0;    /**< \brief ADC Minus-SideçŸ«æ­£å€¼å¯„å­˜å™¨0 */
         };
     };
 } amhw_fsl_adc_t;
 
 
 /**
- * \brief ADC ĞòÁĞ¼Ä´æÆ÷Ë÷Òı
+ * \brief ADC åºåˆ—å¯„å­˜å™¨ç´¢å¼•
  * \anchor grp_amhw_adc_chan
  */
 typedef enum amhw_fsl_adc_chan {
-    AMHW_FSL_ADC_CHAN_0       = 0 ,         /**< \brief ADC Í¨µÀ 0   */
-    AMHW_FSL_ADC_CHAN_1       = 1 ,         /**< \brief ADC Í¨µÀ 1   */
-    AMHW_FSL_ADC_CHAN_2       = 2 ,         /**< \brief ADC Í¨µÀ 2   */
-    AMHW_FSL_ADC_CHAN_3       = 3 ,         /**< \brief ADC Í¨µÀ 3   */
-    AMHW_FSL_ADC_CHAN_4       = 4 ,         /**< \brief ADC Í¨µÀ 4   */
-    AMHW_FSL_ADC_CHAN_5       = 5 ,         /**< \brief ADC Í¨µÀ 5   */
-    AMHW_FSL_ADC_CHAN_6       = 6 ,         /**< \brief ADC Í¨µÀ 6   */
-    AMHW_FSL_ADC_CHAN_7       = 7 ,         /**< \brief ADC Í¨µÀ 7   */
-    AMHW_FSL_ADC_CHAN_8       = 8 ,         /**< \brief ADC Í¨µÀ 8   */
-    AMHW_FSL_ADC_CHAN_9       = 9 ,         /**< \brief ADC Í¨µÀ 9   */
-    AMHW_FSL_ADC_CHAN_10      = 10,         /**< \brief ADC Í¨µÀ 10  */
-    AMHW_FSL_ADC_CHAN_11      = 11,         /**< \brief ADC Í¨µÀ 11  */
-    AMHW_FSL_ADC_CHAN_12      = 12,         /**< \brief ADC Í¨µÀ 12  */
-    AMHW_FSL_ADC_CHAN_13      = 13,         /**< \brief ADC Í¨µÀ 13  */
-    AMHW_FSL_ADC_CHAN_14      = 14,         /**< \brief ADC Í¨µÀ 14  */
-    AMHW_FSL_ADC_CHAN_15      = 15,         /**< \brief ADC Í¨µÀ 15  */
-    AMHW_FSL_ADC_CHAN_16      = 16,         /**< \brief ADC Í¨µÀ 16  */
-    AMHW_FSL_ADC_CHAN_17      = 17,         /**< \brief ADC Í¨µÀ 17  */
-    AMHW_FSL_ADC_CHAN_18      = 18,         /**< \brief ADC Í¨µÀ 18  */
-    AMHW_FSL_ADC_CHAN_19      = 19,         /**< \brief ADC Í¨µÀ 19  */
-    AMHW_FSL_ADC_CHAN_20      = 20,         /**< \brief ADC Í¨µÀ 20  */
-    AMHW_FSL_ADC_CHAN_21      = 21,         /**< \brief ADC Í¨µÀ 21  */
-    AMHW_FSL_ADC_CHAN_22      = 22,         /**< \brief ADC Í¨µÀ 22  */
-    AMHW_FSL_ADC_CHAN_23      = 23,         /**< \brief ADC Í¨µÀ 23  */
-    AMHW_FSL_ADC_CHAN_TEMP    = 26,         /**< \brief ADC Í¨µÀ 11  */
-    AMHW_FSL_ADC_CHAN_BANDGAP = 27,         /**< \brief ADC Í¨µÀÊıÁ¿ */
-    AMHW_FSL_ADC_CHAN_VREFSH  = 29,         /**< \brief ADC Í¨µÀÊıÁ¿ */
-    AMHW_FSL_ADC_CHAN_VREFSL  = 30,         /**< \brief ADC Í¨µÀÊıÁ¿ */
-    AMHW_FSL_ADC_CHAN_CLOSE   = 31,         /**< \brief ADC Í¨µÀÊıÁ¿ */
+    AMHW_FSL_ADC_CHAN_0       = 0 ,         /**< \brief ADC é€šé“ 0   */
+    AMHW_FSL_ADC_CHAN_1       = 1 ,         /**< \brief ADC é€šé“ 1   */
+    AMHW_FSL_ADC_CHAN_2       = 2 ,         /**< \brief ADC é€šé“ 2   */
+    AMHW_FSL_ADC_CHAN_3       = 3 ,         /**< \brief ADC é€šé“ 3   */
+    AMHW_FSL_ADC_CHAN_4       = 4 ,         /**< \brief ADC é€šé“ 4   */
+    AMHW_FSL_ADC_CHAN_5       = 5 ,         /**< \brief ADC é€šé“ 5   */
+    AMHW_FSL_ADC_CHAN_6       = 6 ,         /**< \brief ADC é€šé“ 6   */
+    AMHW_FSL_ADC_CHAN_7       = 7 ,         /**< \brief ADC é€šé“ 7   */
+    AMHW_FSL_ADC_CHAN_8       = 8 ,         /**< \brief ADC é€šé“ 8   */
+    AMHW_FSL_ADC_CHAN_9       = 9 ,         /**< \brief ADC é€šé“ 9   */
+    AMHW_FSL_ADC_CHAN_10      = 10,         /**< \brief ADC é€šé“ 10  */
+    AMHW_FSL_ADC_CHAN_11      = 11,         /**< \brief ADC é€šé“ 11  */
+    AMHW_FSL_ADC_CHAN_12      = 12,         /**< \brief ADC é€šé“ 12  */
+    AMHW_FSL_ADC_CHAN_13      = 13,         /**< \brief ADC é€šé“ 13  */
+    AMHW_FSL_ADC_CHAN_14      = 14,         /**< \brief ADC é€šé“ 14  */
+    AMHW_FSL_ADC_CHAN_15      = 15,         /**< \brief ADC é€šé“ 15  */
+    AMHW_FSL_ADC_CHAN_16      = 16,         /**< \brief ADC é€šé“ 16  */
+    AMHW_FSL_ADC_CHAN_17      = 17,         /**< \brief ADC é€šé“ 17  */
+    AMHW_FSL_ADC_CHAN_18      = 18,         /**< \brief ADC é€šé“ 18  */
+    AMHW_FSL_ADC_CHAN_19      = 19,         /**< \brief ADC é€šé“ 19  */
+    AMHW_FSL_ADC_CHAN_20      = 20,         /**< \brief ADC é€šé“ 20  */
+    AMHW_FSL_ADC_CHAN_21      = 21,         /**< \brief ADC é€šé“ 21  */
+    AMHW_FSL_ADC_CHAN_22      = 22,         /**< \brief ADC é€šé“ 22  */
+    AMHW_FSL_ADC_CHAN_23      = 23,         /**< \brief ADC é€šé“ 23  */
+    AMHW_FSL_ADC_CHAN_TEMP    = 26,         /**< \brief ADC é€šé“ 11  */
+    AMHW_FSL_ADC_CHAN_BANDGAP = 27,         /**< \brief ADC é€šé“æ•°é‡ */
+    AMHW_FSL_ADC_CHAN_VREFSH  = 29,         /**< \brief ADC é€šé“æ•°é‡ */
+    AMHW_FSL_ADC_CHAN_VREFSL  = 30,         /**< \brief ADC é€šé“æ•°é‡ */
+    AMHW_FSL_ADC_CHAN_CLOSE   = 31,         /**< \brief ADC é€šé“æ•°é‡ */
 } amhw_fsl_adc_chan_t;
 /**
- * \brief ADC ĞòÁĞ¼Ä´æÆ÷Ë÷Òı
+ * \brief ADC åºåˆ—å¯„å­˜å™¨ç´¢å¼•
  */
 typedef enum amhw_fsl_adc_seq_index {
-    AMHW_FSL_ADC_SEQ_A = 0,                      /**< \brief ĞòÁĞAË÷Òı    */
-    AMHW_FSL_ADC_SEQ_B = 1,                      /**< \brief ĞòÁĞBË÷Òı    */
+    AMHW_FSL_ADC_SEQ_A = 0,                      /**< \brief åºåˆ—Aç´¢å¼•    */
+    AMHW_FSL_ADC_SEQ_B = 1,                      /**< \brief åºåˆ—Bç´¢å¼•    */
 } amhw_fsl_adc_seq_index_t;
 
 
 /**
- * \name ADC ¿ØÖÆ¼Ä´æÆ÷Î»Óò¶¨Òå
+ * \name ADC æ§åˆ¶å¯„å­˜å™¨ä½åŸŸå®šä¹‰
  * \anchor grp_amhw_fsl_adc_sc1
  * @{
  */
-#define AMHW_FSL_ADC_SC1_COCO_MASK   (1UL << 7)      /**< \brief ×ª»»Íê³É±êÖ¾ÑÚÂë */
-#define AMHW_FSL_ADC_SC1_INT_MASK    (1UL << 6)      /**< \brief ÖĞ¶ÏÊ¹ÄÜÑÚÂë */
-#define AMHW_FSL_ADC_SC1_DIFF_MASK   (1UL << 5)      /**< \brief ²î·ÖÊäÈëÊ¹ÄÜÑÚÂë */
-#define AMHW_FSL_ADC_SC1_CHAN_MASK   (0x1FUL)        /**< \brief Í¨µÀÑÚÂë */
+#define AMHW_FSL_ADC_SC1_COCO_MASK   (1UL << 7)      /**< \brief è½¬æ¢å®Œæˆæ ‡å¿—æ©ç  */
+#define AMHW_FSL_ADC_SC1_INT_MASK    (1UL << 6)      /**< \brief ä¸­æ–­ä½¿èƒ½æ©ç  */
+#define AMHW_FSL_ADC_SC1_DIFF_MASK   (1UL << 5)      /**< \brief å·®åˆ†è¾“å…¥ä½¿èƒ½æ©ç  */
+#define AMHW_FSL_ADC_SC1_CHAN_MASK   (0x1FUL)        /**< \brief é€šé“æ©ç  */
 
-#define AMHW_FSL_ADC_SC1_INT_EN_CFG  (1UL << 6)      /**< \brief ÖĞ¶ÏÊ¹ÄÜÅäÖÃ */
-#define AMHW_FSL_ADC_SC1_DIFF_EN_CFG (1UL << 5)      /**< \brief ²î·ÖÊäÈëÊ¹ÄÜÅäÖÃ */
-/** \brief Í¨µÀÑ¡ÔñÅäÖÃ */
+#define AMHW_FSL_ADC_SC1_INT_EN_CFG  (1UL << 6)      /**< \brief ä¸­æ–­ä½¿èƒ½é…ç½® */
+#define AMHW_FSL_ADC_SC1_DIFF_EN_CFG (1UL << 5)      /**< \brief å·®åˆ†è¾“å…¥ä½¿èƒ½é…ç½® */
+/** \brief é€šé“é€‰æ‹©é…ç½® */
 #define AMHW_FSL_ADC_SC1_CHAN_SEL_CFG(x) ((x) & AMHW_FSL_ADC_SC1_CHAN_MASK)
 /** @} */
 
 /**
- * \brief Ê¹ÄÜADC×ª»»Íê³ÉÖĞ¶Ï
+ * \brief ä½¿èƒ½ADCè½¬æ¢å®Œæˆä¸­æ–­
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] index    : ĞòÁĞË÷Òı
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] index    : åºåˆ—ç´¢å¼•
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_int_enable (amhw_fsl_adc_t           *p_hw_adc,
@@ -211,11 +211,11 @@ void amhw_fsl_adc_int_enable (amhw_fsl_adc_t           *p_hw_adc,
 }
 
 /**
- * \brief ½ûÄÜADC×ª»»Íê³ÉÖĞ¶Ï
+ * \brief ç¦èƒ½ADCè½¬æ¢å®Œæˆä¸­æ–­
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] index    : ĞòÁĞË÷Òı
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] index    : åºåˆ—ç´¢å¼•
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_int_disable (amhw_fsl_adc_t           *p_hw_adc,
@@ -224,11 +224,11 @@ void amhw_fsl_adc_int_disable (amhw_fsl_adc_t           *p_hw_adc,
     p_hw_adc->sc1[index] &= ~AMHW_FSL_ADC_SC1_INT_EN_CFG;
 }
 /**
- * \brief Ê¹ÄÜ²î·ÖÊäÈë
+ * \brief ä½¿èƒ½å·®åˆ†è¾“å…¥
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] index    : ĞòÁĞË÷Òı
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] index    : åºåˆ—ç´¢å¼•
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_diff_enable (amhw_fsl_adc_t           *p_hw_adc,
@@ -238,11 +238,11 @@ void amhw_fsl_adc_diff_enable (amhw_fsl_adc_t           *p_hw_adc,
 }
 
 /**
- * \brief ½ûÄÜ²î·ÖÊäÈë£¬Ê¹ÓÃµ¥¶ËÊäÈë
+ * \brief ç¦èƒ½å·®åˆ†è¾“å…¥ï¼Œä½¿ç”¨å•ç«¯è¾“å…¥
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] index    : ĞòÁĞË÷Òı
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] index    : åºåˆ—ç´¢å¼•
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_diff_disable (amhw_fsl_adc_t           *p_hw_adc,
@@ -252,12 +252,12 @@ void amhw_fsl_adc_diff_disable (amhw_fsl_adc_t           *p_hw_adc,
 }
 
 /**
- * \brief ÉèÖÃÍ¨µÀ
+ * \brief è®¾ç½®é€šé“
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] index    : ĞòÁĞË÷Òı
- * \param[in] chan     : ADCÍ¨µÀ £¬ /ref grp_amhw_fsl_adc_chan
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] index    : åºåˆ—ç´¢å¼•
+ * \param[in] chan     : ADCé€šé“ ï¼Œ /ref grp_amhw_fsl_adc_chan
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_chan_set (amhw_fsl_adc_t          *p_hw_adc,
@@ -269,11 +269,11 @@ void amhw_fsl_adc_chan_set (amhw_fsl_adc_t          *p_hw_adc,
 }
 
 /**
- * \brief »ñÈ¡Í¨µÀ
+ * \brief è·å–é€šé“
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] index    : ĞòÁĞË÷Òı
- * \return ADCÍ¨µÀ /ref grp_amhw_fsl_adc_chan
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] index    : åºåˆ—ç´¢å¼•
+ * \return ADCé€šé“ /ref grp_amhw_fsl_adc_chan
  */
 am_static_inline
 uint32_t amhw_fsl_adc_chan_get (amhw_fsl_adc_t          *p_hw_adc,
@@ -283,13 +283,13 @@ uint32_t amhw_fsl_adc_chan_get (amhw_fsl_adc_t          *p_hw_adc,
 }
 
 /**
- * \brief »ñÈ¡ADC×ª»»Íê³É±êÖ¾Î»
+ * \brief è·å–ADCè½¬æ¢å®Œæˆæ ‡å¿—ä½
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] index    : ĞòÁĞË÷Òı
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] index    : åºåˆ—ç´¢å¼•
  *
- * \retval AM_TRUE  : ×ª»»Íê³É±êÖ¾Î»ÖÃÎ»
- * \retval AM_FALSE : ×ª»»Íê³É±êÖ¾Î»Î´ÖÃÎ»
+ * \retval AM_TRUE  : è½¬æ¢å®Œæˆæ ‡å¿—ä½ç½®ä½
+ * \retval AM_FALSE : è½¬æ¢å®Œæˆæ ‡å¿—ä½æœªç½®ä½
  *
  */
 am_static_inline
@@ -300,12 +300,12 @@ uint32_t amhw_fsl_adc_complete_is (amhw_fsl_adc_t          *p_hw_adc,
 }
 
 /**
- * \brief ÅäÖÃ×´Ì¬¿ØÖÆ¼Ä´æÆ÷1
+ * \brief é…ç½®çŠ¶æ€æ§åˆ¶å¯„å­˜å™¨1
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] index    : ĞòÁĞË÷Òı
- * \param[in] cfg      : ÅäÖÃ²ÎÊı £¬ /ref grp_amhw_fsl_adc_sc1
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] index    : åºåˆ—ç´¢å¼•
+ * \param[in] cfg      : é…ç½®å‚æ•° ï¼Œ /ref grp_amhw_fsl_adc_sc1
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_sc1_cfg (amhw_fsl_adc_t          *p_hw_adc,
@@ -316,11 +316,11 @@ void amhw_fsl_adc_sc1_cfg (amhw_fsl_adc_t          *p_hw_adc,
 }
 
 /**
- * \brief »ñÈ¡ÅäÖÃ×´Ì¬¿ØÖÆ¼Ä´æÆ÷1
+ * \brief è·å–é…ç½®çŠ¶æ€æ§åˆ¶å¯„å­˜å™¨1
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] index    : ĞòÁĞË÷Òı
- * \return  ÅäÖÃ×´Ì¬¿ØÖÆ¼Ä´æÆ÷1
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] index    : åºåˆ—ç´¢å¼•
+ * \return  é…ç½®çŠ¶æ€æ§åˆ¶å¯„å­˜å™¨1
  */
 am_static_inline
 uint32_t amhw_fsl_adc_sc1_get (amhw_fsl_adc_t          *p_hw_adc,
@@ -329,66 +329,66 @@ uint32_t amhw_fsl_adc_sc1_get (amhw_fsl_adc_t          *p_hw_adc,
     return p_hw_adc->sc1[index] ;
 }
 /**
- * \brief ADC Ê±ÖÓ·ÖÆµÏµÊı
+ * \brief ADC æ—¶é’Ÿåˆ†é¢‘ç³»æ•°
  */
 typedef enum amhw_fsl_adc_clk_div {
-    AMHW_FSL_ADC_CLK_DIV_1 = 0,                      /**< \brief ·ÖÆµÏµÊıÎª1    */
-    AMHW_FSL_ADC_CLK_DIV_2 = 1,                      /**< \brief ·ÖÆµÏµÊıÎª2    */
-    AMHW_FSL_ADC_CLK_DIV_4 = 2,                      /**< \brief ·ÖÆµÏµÊıÎª4    */
-    AMHW_FSL_ADC_CLK_DIV_8 = 3,                      /**< \brief ·ÖÆµÏµÊıÎª8    */
+    AMHW_FSL_ADC_CLK_DIV_1 = 0,                      /**< \brief åˆ†é¢‘ç³»æ•°ä¸º1    */
+    AMHW_FSL_ADC_CLK_DIV_2 = 1,                      /**< \brief åˆ†é¢‘ç³»æ•°ä¸º2    */
+    AMHW_FSL_ADC_CLK_DIV_4 = 2,                      /**< \brief åˆ†é¢‘ç³»æ•°ä¸º4    */
+    AMHW_FSL_ADC_CLK_DIV_8 = 3,                      /**< \brief åˆ†é¢‘ç³»æ•°ä¸º8    */
 } amhw_fsl_adc_clk_div_t;
 
 /**
- * \brief ADC Ê±ÖÓÔ´
+ * \brief ADC æ—¶é’Ÿæº
  */
 typedef enum amhw_fsl_adc_clk_src {
-    AMHW_FSL_ADC_CLK_SRC_BUS     = 0,            /**< \brief bus×ÜÏßÊ±ÖÓ    */
+    AMHW_FSL_ADC_CLK_SRC_BUS     = 0,            /**< \brief busæ€»çº¿æ—¶é’Ÿ    */
     AMHW_FSL_ADC_CLK_SRC_ALTCLK2 = 1,            /**< \brief bus/2    */
-    AMHW_FSL_ADC_CLK_SRC_ALTCLK  = 2,            /**< \brief ¿ÉÑ¡Ê±ÖÓ    */
-    AMHW_FSL_ADC_CLK_SRC_ADACK   = 3,            /**< \brief Òì²½Ê±ÖÓ    */
+    AMHW_FSL_ADC_CLK_SRC_ALTCLK  = 2,            /**< \brief å¯é€‰æ—¶é’Ÿ    */
+    AMHW_FSL_ADC_CLK_SRC_ADACK   = 3,            /**< \brief å¼‚æ­¥æ—¶é’Ÿ    */
 } amhw_fsl_adc_clk_src_t;
 
 /**
- * \name ADC ·Ö±æÂÊ¶¨Òå
+ * \name ADC åˆ†è¾¨ç‡å®šä¹‰
  * \anchor grp_amhw_fsl_adc_resolution
  * @{
  */
-#define AMHW_FSL_ADC_BITS_8    0                      /**< \brief 8Î»    */
-#define AMHW_FSL_ADC_BITS_9    0                      /**< \brief 9Î»    */
-#define AMHW_FSL_ADC_BITS_10   2                      /**< \brief 10Î»    */
-#define AMHW_FSL_ADC_BITS_11   2                      /**< \brief 11Î»    */
-#define AMHW_FSL_ADC_BITS_12   1                      /**< \brief 12Î»    */
-#define AMHW_FSL_ADC_BITS_13   1                      /**< \brief 13Î»    */
-#define AMHW_FSL_ADC_BITS_16   3                      /**< \brief 16Î»    */
+#define AMHW_FSL_ADC_BITS_8    0                      /**< \brief 8ä½    */
+#define AMHW_FSL_ADC_BITS_9    0                      /**< \brief 9ä½    */
+#define AMHW_FSL_ADC_BITS_10   2                      /**< \brief 10ä½    */
+#define AMHW_FSL_ADC_BITS_11   2                      /**< \brief 11ä½    */
+#define AMHW_FSL_ADC_BITS_12   1                      /**< \brief 12ä½    */
+#define AMHW_FSL_ADC_BITS_13   1                      /**< \brief 13ä½    */
+#define AMHW_FSL_ADC_BITS_16   3                      /**< \brief 16ä½    */
 /** @} */
 
 /**
- * \name ADC ÅäÖÃ¼Ä´æÆ÷1Î»Óò¶¨Òå
+ * \name ADC é…ç½®å¯„å­˜å™¨1ä½åŸŸå®šä¹‰
  * \anchor grp_amhw_fsl_adc_cfg1
  * @{
  */
-#define AMHW_FSL_ADC_CFG1_LPC_MASK   (1UL << 7)      /**< \brief µÍ¹¦ºÄÊ¹ÄÜÑÚÂë */
-#define AMHW_FSL_ADC_CFG1_DIV_MASK   (3UL << 5)      /**< \brief Ê±ÖÓ·ÖÆµÑÚÂë */
-#define AMHW_FSL_ADC_CFG1_LSMP_MASK  (1UL << 4)      /**< \brief ³¤²ÉÑùÊ±¼äÑÚÂë */
-#define AMHW_FSL_ADC_CFG1_MODE_MASK  (3UL << 2)      /**< \brief ·Ö±æÂÊÑÚÂë */
-#define AMHW_FSL_ADC_CFG1_ICLK_MASK  (3UL << 0)      /**< \brief ÊäÈëÊ±ÖÓÑÚÂë */
+#define AMHW_FSL_ADC_CFG1_LPC_MASK   (1UL << 7)      /**< \brief ä½åŠŸè€—ä½¿èƒ½æ©ç  */
+#define AMHW_FSL_ADC_CFG1_DIV_MASK   (3UL << 5)      /**< \brief æ—¶é’Ÿåˆ†é¢‘æ©ç  */
+#define AMHW_FSL_ADC_CFG1_LSMP_MASK  (1UL << 4)      /**< \brief é•¿é‡‡æ ·æ—¶é—´æ©ç  */
+#define AMHW_FSL_ADC_CFG1_MODE_MASK  (3UL << 2)      /**< \brief åˆ†è¾¨ç‡æ©ç  */
+#define AMHW_FSL_ADC_CFG1_ICLK_MASK  (3UL << 0)      /**< \brief è¾“å…¥æ—¶é’Ÿæ©ç  */
 
-#define AMHW_FSL_ADC_CFG1_LPC_EN_CFG  (1UL << 7)      /**< \brief µÍ¹¦ºÄÊ¹ÄÜÅäÖÃ */
-/** \brief ·ÖÆµÏµÊıÅäÖÃ             */
+#define AMHW_FSL_ADC_CFG1_LPC_EN_CFG  (1UL << 7)      /**< \brief ä½åŠŸè€—ä½¿èƒ½é…ç½® */
+/** \brief åˆ†é¢‘ç³»æ•°é…ç½®             */
 #define AMHW_FSL_ADC_CFG1_DIV_CFG(x)  (((x) << 5) & AMHW_FSL_ADC_CFG1_DIV_MASK)
-/** \brief ³¤²ÉÑùÊ±¼äÊ¹ÄÜÅäÖÃ */
+/** \brief é•¿é‡‡æ ·æ—¶é—´ä½¿èƒ½é…ç½® */
 #define AMHW_FSL_ADC_CFG1_LSMP_EN_CFG (1UL << 4)
-/** \brief ·Ö±æÂÊÅäÖÃ                 */
+/** \brief åˆ†è¾¨ç‡é…ç½®                 */
 #define AMHW_FSL_ADC_CFG1_MODE_CFG(x) (((x) << 2) & AMHW_FSL_ADC_CFG1_MODE_MASK)
-/** \brief ÊäÈëÊ±ÖÓÅäÖÃ              */
+/** \brief è¾“å…¥æ—¶é’Ÿé…ç½®              */
 #define AMHW_FSL_ADC_CFG1_ICLK_CFG(x) (((x) << 0) & AMHW_FSL_ADC_CFG1_ICLK_MASK)
 /** @} */
 
 /**
- * \brief Ê¹ÄÜµÍ¹¦ºÄÄ£Ê½
+ * \brief ä½¿èƒ½ä½åŠŸè€—æ¨¡å¼
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_lowpower_enable (amhw_fsl_adc_t *p_hw_adc)
@@ -397,10 +397,10 @@ void amhw_fsl_adc_lowpower_enable (amhw_fsl_adc_t *p_hw_adc)
 }
 
 /**
- * \brief ½ûÄÜµÍ¹¦ºÄÄ£Ê½£¬½øÈëÕı³£¹¦ºÄÄ£Ê½
+ * \brief ç¦èƒ½ä½åŠŸè€—æ¨¡å¼ï¼Œè¿›å…¥æ­£å¸¸åŠŸè€—æ¨¡å¼
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_lowpower_disable (amhw_fsl_adc_t *p_hw_adc)
@@ -409,11 +409,11 @@ void amhw_fsl_adc_lowpower_disable (amhw_fsl_adc_t *p_hw_adc)
 }
 
 /**
- * \brief ÉèÖÃÊ±ÖÓ·ÖÆµÏµÊı
+ * \brief è®¾ç½®æ—¶é’Ÿåˆ†é¢‘ç³»æ•°
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] div      : Ê±ÖÓ·ÖÆµÏµÊı
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] div      : æ—¶é’Ÿåˆ†é¢‘ç³»æ•°
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_clkdiv_set (amhw_fsl_adc_t          *p_hw_adc,
@@ -424,10 +424,10 @@ void amhw_fsl_adc_clkdiv_set (amhw_fsl_adc_t          *p_hw_adc,
 }
 
 /**
- * \brief »ñÈ¡Ê±ÖÓ·ÖÆµÏµÊı
+ * \brief è·å–æ—¶é’Ÿåˆ†é¢‘ç³»æ•°
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return Ê±ÖÓ·ÖÆµÏµÊı
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return æ—¶é’Ÿåˆ†é¢‘ç³»æ•°
  */
 am_static_inline
 uint32_t amhw_fsl_adc_clkdiv_get (amhw_fsl_adc_t *p_hw_adc)
@@ -436,10 +436,10 @@ uint32_t amhw_fsl_adc_clkdiv_get (amhw_fsl_adc_t *p_hw_adc)
 }
 
 /**
- * \brief  Ê¹ÄÜ³¤²ÉÑùÊ±¼ä
+ * \brief  ä½¿èƒ½é•¿é‡‡æ ·æ—¶é—´
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_lsmp_enable (amhw_fsl_adc_t *p_hw_adc)
@@ -448,10 +448,10 @@ void amhw_fsl_adc_lsmp_enable (amhw_fsl_adc_t *p_hw_adc)
 }
 
 /**
- * \brief ½ûÄÜ³¤²ÉÑùÊ±¼ä£¬½øÈë¶Ì²ÉÑùÊ±¼äÄ£Ê½
+ * \brief ç¦èƒ½é•¿é‡‡æ ·æ—¶é—´ï¼Œè¿›å…¥çŸ­é‡‡æ ·æ—¶é—´æ¨¡å¼
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_lsmp_disable (amhw_fsl_adc_t *p_hw_adc)
@@ -460,11 +460,11 @@ void amhw_fsl_adc_lsmp_disable (amhw_fsl_adc_t *p_hw_adc)
 }
 
 /**
- * \brief ÉèÖÃ·Ö±æÂÊÄ£Ê½
+ * \brief è®¾ç½®åˆ†è¾¨ç‡æ¨¡å¼
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] res      : ·Ö±æÂÊ£¬/ref grp_amhw_fsl_adc_resolution
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] res      : åˆ†è¾¨ç‡ï¼Œ/ref grp_amhw_fsl_adc_resolution
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_mode_set (amhw_fsl_adc_t *p_hw_adc, uint32_t res)
@@ -474,10 +474,10 @@ void amhw_fsl_adc_mode_set (amhw_fsl_adc_t *p_hw_adc, uint32_t res)
 }
 
 /**
- * \brief »ñÈ¡·Ö±æÂÊÄ£Ê½
+ * \brief è·å–åˆ†è¾¨ç‡æ¨¡å¼
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ·Ö±æÂÊ£¬/ref grp_amhw_fsl_adc_resolution
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return åˆ†è¾¨ç‡ï¼Œ/ref grp_amhw_fsl_adc_resolution
  */
 am_static_inline
 uint32_t amhw_fsl_adc_mode_get (amhw_fsl_adc_t *p_hw_adc)
@@ -486,11 +486,11 @@ uint32_t amhw_fsl_adc_mode_get (amhw_fsl_adc_t *p_hw_adc)
 }
 
 /**
- * \brief ÉèÖÃÄ£¿éÊ±ÖÓÔ´
+ * \brief è®¾ç½®æ¨¡å—æ—¶é’Ÿæº
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] src      : Ê±ÖÓÔ´
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] src      : æ—¶é’Ÿæº
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_clksrc_set (amhw_fsl_adc_t         *p_hw_adc,
@@ -501,9 +501,9 @@ void amhw_fsl_adc_clksrc_set (amhw_fsl_adc_t         *p_hw_adc,
 }
 
 /**
- * \brief »ñÈ¡Ä£¿éÊ±ÖÓÔ´
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return Ê±ÖÓÔ´
+ * \brief è·å–æ¨¡å—æ—¶é’Ÿæº
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return æ—¶é’Ÿæº
  */
 am_static_inline
 uint32_t amhw_fsl_adc_clksrc_get (amhw_fsl_adc_t *p_hw_adc)
@@ -512,11 +512,11 @@ uint32_t amhw_fsl_adc_clksrc_get (amhw_fsl_adc_t *p_hw_adc)
 }
 
 /**
- * \brief ÉèÖÃÅäÖÃ¼Ä´æÆ÷1
+ * \brief è®¾ç½®é…ç½®å¯„å­˜å™¨1
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] cfg      : ÅäÖÃ²ÎÊı £¬ /ref grp_amhw_fsl_adc_cfg1
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] cfg      : é…ç½®å‚æ•° ï¼Œ /ref grp_amhw_fsl_adc_cfg1
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_cfg1_cfg (amhw_fsl_adc_t *p_hw_adc, uint32_t cfg)
@@ -525,10 +525,10 @@ void amhw_fsl_adc_cfg1_cfg (amhw_fsl_adc_t *p_hw_adc, uint32_t cfg)
 }
 
 /**
- * \brief »ñÈ¡ÅäÖÃ¼Ä´æÆ÷1
+ * \brief è·å–é…ç½®å¯„å­˜å™¨1
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ÅäÖÃ¼Ä´æÆ÷1
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return é…ç½®å¯„å­˜å™¨1
  */
 am_static_inline
 uint32_t amhw_fsl_adc_cfg1_get (amhw_fsl_adc_t *p_hw_adc)
@@ -537,47 +537,47 @@ uint32_t amhw_fsl_adc_cfg1_get (amhw_fsl_adc_t *p_hw_adc)
 }
 
 /**
- * \brief ADC ³¤²ÉÑùÊ±¼äÑ¡Ôñ
+ * \brief ADC é•¿é‡‡æ ·æ—¶é—´é€‰æ‹©
  */
 typedef enum amhw_fsl_adc_lsts {
-    AMHW_FSL_ADC_LSTS_20ADCK  = 0,            /**< \brief Ôö¼Ó20¸öADCKÊ±ÖÓ    */
-    AMHW_FSL_ADC_LSTS_12ADCK  = 1,            /**< \brief Ôö¼Ó12¸öADCKÊ±ÖÓ    */
-    AMHW_FSL_ADC_LSTS_6ADCK   = 2,            /**< \brief Ôö¼Ó6¸öADCKÊ±ÖÓ    */
-    AMHW_FSL_ADC_LSTS_2ADCK   = 3,            /**< \brief Ôö¼Ó2¸öADCKÊ±ÖÓ    */
+    AMHW_FSL_ADC_LSTS_20ADCK  = 0,            /**< \brief å¢åŠ 20ä¸ªADCKæ—¶é’Ÿ    */
+    AMHW_FSL_ADC_LSTS_12ADCK  = 1,            /**< \brief å¢åŠ 12ä¸ªADCKæ—¶é’Ÿ    */
+    AMHW_FSL_ADC_LSTS_6ADCK   = 2,            /**< \brief å¢åŠ 6ä¸ªADCKæ—¶é’Ÿ    */
+    AMHW_FSL_ADC_LSTS_2ADCK   = 3,            /**< \brief å¢åŠ 2ä¸ªADCKæ—¶é’Ÿ    */
 } amhw_fsl_adc_lsts_t;
 
 /**
- * \brief Í¨µÀa/bÑ¡Ôñ
+ * \brief é€šé“a/bé€‰æ‹©
  */
 typedef enum amhw_fsl_adc_muxsel {
-    AMHW_FSL_ADC_MUXSEL_A = 0,               /**< \brief Ñ¡ÔñADxxaÍ¨µÀ */
-    AMHW_FSL_ADC_MUXSEL_B = 1,               /**< \brief Ñ¡ÔñADxxbÍ¨µÀ */
+    AMHW_FSL_ADC_MUXSEL_A = 0,               /**< \brief é€‰æ‹©ADxxaé€šé“ */
+    AMHW_FSL_ADC_MUXSEL_B = 1,               /**< \brief é€‰æ‹©ADxxbé€šé“ */
 } amhw_fsl_adc_muxsel_t;
 
 /**
- * \name ADC ÅäÖÃ¼Ä´æÆ÷1Î»Óò¶¨Òå
+ * \name ADC é…ç½®å¯„å­˜å™¨1ä½åŸŸå®šä¹‰
  * \anchor grp_amhw_fsl_adc_cfg2
  * @{
  */
-#define AMHW_FSL_ADC_CFG2_MUXSEL_MASK  (1UL << 4)  /**< \brief ĞòÁĞÊ¹ÄÜÑÚÂë */
-#define AMHW_FSL_ADC_CFG2_ACK_MASK     (1UL << 3)  /**< \brief Òì²½Ê±ÖÓÊä³öÊ¹ÄÜÑÚÂë */
-#define AMHW_FSL_ADC_CFG2_HSC_MASK     (1UL << 2)  /**< \brief ¸ßËÙ×ª»»ÅäÖÃÑÚÂë */
-#define AMHW_FSL_ADC_CFG2_LSTS_MASK    (3UL << 0)  /**< \brief ³¤²ÉÑùÊ±¼äÅäÖÃÑÚÂë */
+#define AMHW_FSL_ADC_CFG2_MUXSEL_MASK  (1UL << 4)  /**< \brief åºåˆ—ä½¿èƒ½æ©ç  */
+#define AMHW_FSL_ADC_CFG2_ACK_MASK     (1UL << 3)  /**< \brief å¼‚æ­¥æ—¶é’Ÿè¾“å‡ºä½¿èƒ½æ©ç  */
+#define AMHW_FSL_ADC_CFG2_HSC_MASK     (1UL << 2)  /**< \brief é«˜é€Ÿè½¬æ¢é…ç½®æ©ç  */
+#define AMHW_FSL_ADC_CFG2_LSTS_MASK    (3UL << 0)  /**< \brief é•¿é‡‡æ ·æ—¶é—´é…ç½®æ©ç  */
 
 
-#define AMHW_FSL_ADC_CFG2_MUXSEL_CFG(x)  ((x) << 4) /**< \brief ĞòÁĞBÊ¹ÄÜÅäÖÃ */
-#define AMHW_FSL_ADC_CFG2_ACK_EN_CFG     (1UL << 3) /**< \brief Òì²½Ê±ÖÓÊä³öÊ¹ÄÜÅäÖÃ */
-#define AMHW_FSL_ADC_CFG2_HSC_EN_CFG     (1UL << 2) /**< \brief ¸ßËÙ×ª»»Ê¹ÄÜÅäÖÃ */
-/** \brief ³¤²ÉÑùÊ±¼äÑ¡ÔñÅäÖÃ */
+#define AMHW_FSL_ADC_CFG2_MUXSEL_CFG(x)  ((x) << 4) /**< \brief åºåˆ—Bä½¿èƒ½é…ç½® */
+#define AMHW_FSL_ADC_CFG2_ACK_EN_CFG     (1UL << 3) /**< \brief å¼‚æ­¥æ—¶é’Ÿè¾“å‡ºä½¿èƒ½é…ç½® */
+#define AMHW_FSL_ADC_CFG2_HSC_EN_CFG     (1UL << 2) /**< \brief é«˜é€Ÿè½¬æ¢ä½¿èƒ½é…ç½® */
+/** \brief é•¿é‡‡æ ·æ—¶é—´é€‰æ‹©é…ç½® */
 #define AMHW_FSL_ADC_CFG2_LSTS_CFG(x)    ((x) & AMHW_FSL_ADC_CFG2_LSTS_MASK)
 /** @} */
 
 /**
- * \brief ÉèÖÃÑ¡ÔñÍ¨µÀa/b
+ * \brief è®¾ç½®é€‰æ‹©é€šé“a/b
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] index    : ĞòÁĞË÷Òı
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] index    : åºåˆ—ç´¢å¼•
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_seq_set (amhw_fsl_adc_t        *p_hw_adc,
@@ -588,10 +588,10 @@ void amhw_fsl_adc_seq_set (amhw_fsl_adc_t        *p_hw_adc,
 }
 
 /**
- * \brief »ñÈ¡ÉúĞ§µÄĞòÁĞÍ¨µÀ
+ * \brief è·å–ç”Ÿæ•ˆçš„åºåˆ—é€šé“
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return  Ê¹ÓÃµÄÍ¨µÀºÅ£¬a»òÕßb
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return  ä½¿ç”¨çš„é€šé“å·ï¼Œaæˆ–è€…b
  */
 am_static_inline
 uint32_t amhw_fsl_adc_seq_get (amhw_fsl_adc_t *p_hw_adc)
@@ -600,10 +600,10 @@ uint32_t amhw_fsl_adc_seq_get (amhw_fsl_adc_t *p_hw_adc)
 }
 
 /**
- * \brief  Ê¹ÄÜÒì²½Ê±ÖÓÊä³ö
+ * \brief  ä½¿èƒ½å¼‚æ­¥æ—¶é’Ÿè¾“å‡º
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_ack_enable (amhw_fsl_adc_t *p_hw_adc)
@@ -612,10 +612,10 @@ void amhw_fsl_adc_ack_enable (amhw_fsl_adc_t *p_hw_adc)
 }
 
 /**
- * \brief ½ûÄÜÒì²½Ê±ÖÓÊä³ö
+ * \brief ç¦èƒ½å¼‚æ­¥æ—¶é’Ÿè¾“å‡º
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_ack_disable (amhw_fsl_adc_t *p_hw_adc)
@@ -623,10 +623,10 @@ void amhw_fsl_adc_ack_disable (amhw_fsl_adc_t *p_hw_adc)
     p_hw_adc->cfg2 &= ~AMHW_FSL_ADC_CFG2_ACK_MASK;
 }
 /**
- * \brief  Ê¹ÄÜ¸ßËÙ×ª»»
+ * \brief  ä½¿èƒ½é«˜é€Ÿè½¬æ¢
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_hsc_enable (amhw_fsl_adc_t *p_hw_adc)
@@ -635,10 +635,10 @@ void amhw_fsl_adc_hsc_enable (amhw_fsl_adc_t *p_hw_adc)
 }
 
 /**
- * \brief ½ûÄÜ¸ßËÙ×ª»»
+ * \brief ç¦èƒ½é«˜é€Ÿè½¬æ¢
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_hsc_disable (amhw_fsl_adc_t *p_hw_adc)
@@ -647,11 +647,11 @@ void amhw_fsl_adc_hsc_disable (amhw_fsl_adc_t *p_hw_adc)
 }
 
 /**
- * \brief ÉèÖÃ³¤²ÉÑùÊ±¼ä
+ * \brief è®¾ç½®é•¿é‡‡æ ·æ—¶é—´
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] time     : ÑÓÊ±²ÎÊı
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] time     : å»¶æ—¶å‚æ•°
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_lsts_set (amhw_fsl_adc_t *p_hw_adc, amhw_fsl_adc_lsts_t time)
@@ -661,10 +661,10 @@ void amhw_fsl_adc_lsts_set (amhw_fsl_adc_t *p_hw_adc, amhw_fsl_adc_lsts_t time)
 }
 
 /**
- * \brief »ñÈ¡³¤²ÉÑùÊ±¼ä
+ * \brief è·å–é•¿é‡‡æ ·æ—¶é—´
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return  ĞòÁĞË÷Òı
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return  åºåˆ—ç´¢å¼•
  */
 am_static_inline
 uint32_t amhw_fsl_adc_lsts_get (amhw_fsl_adc_t *p_hw_adc)
@@ -673,11 +673,11 @@ uint32_t amhw_fsl_adc_lsts_get (amhw_fsl_adc_t *p_hw_adc)
 }
 
 /**
- * \brief ÅäÖÃÅäÖÃ¼Ä´æÆ÷2
+ * \brief é…ç½®é…ç½®å¯„å­˜å™¨2
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] cfg      : ÅäÖÃ²ÎÊı £¬ /ref grp_amhw_fsl_adc_cfg2
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] cfg      : é…ç½®å‚æ•° ï¼Œ /ref grp_amhw_fsl_adc_cfg2
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_cfg2_cfg (amhw_fsl_adc_t *p_hw_adc, uint32_t cfg)
@@ -686,10 +686,10 @@ void amhw_fsl_adc_cfg2_cfg (amhw_fsl_adc_t *p_hw_adc, uint32_t cfg)
 }
 
 /**
- * \brief »ñÈ¡ÅäÖÃ¼Ä´æÆ÷2
+ * \brief è·å–é…ç½®å¯„å­˜å™¨2
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ÅäÖÃ¼Ä´æÆ÷2
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return é…ç½®å¯„å­˜å™¨2
  */
 am_static_inline
 uint32_t amhw_fsl_adc_cfg2_get (amhw_fsl_adc_t *p_hw_adc)
@@ -698,14 +698,14 @@ uint32_t amhw_fsl_adc_cfg2_get (amhw_fsl_adc_t *p_hw_adc)
 }
 
 /**
- * \brief »ñÈ¡Êı¾İ¼Ä´æÆ÷ÊıÖµ
+ * \brief è·å–æ•°æ®å¯„å­˜å™¨æ•°å€¼
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] index    : ĞòÁĞË÷Òı
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] index    : åºåˆ—ç´¢å¼•
  *
- * \return ADC×ª»»ºóÊı¾İ
+ * \return ADCè½¬æ¢åæ•°æ®
  *
- * \note ·Ç²î·ÖÄ£Ê½ÏÂÊı¾İÎªÓÒ¶ÔÆë
+ * \note éå·®åˆ†æ¨¡å¼ä¸‹æ•°æ®ä¸ºå³å¯¹é½
  */
 am_static_inline
 uint16_t amhw_fsl_adc_dat_get (amhw_fsl_adc_t          *p_hw_adc,
@@ -715,11 +715,11 @@ uint16_t amhw_fsl_adc_dat_get (amhw_fsl_adc_t          *p_hw_adc,
 }
 
 /**
- * \brief ÉèÖÃãĞÖµ1¼Ä´æÆ÷ÄÚÈİ
+ * \brief è®¾ç½®é˜ˆå€¼1å¯„å­˜å™¨å†…å®¹
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] dat      : ÅäÖÃÄÚÈİ
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] dat      : é…ç½®å†…å®¹
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_cv1_set (amhw_fsl_adc_t *p_hw_adc, uint16_t dat)
@@ -728,10 +728,10 @@ void amhw_fsl_adc_cv1_set (amhw_fsl_adc_t *p_hw_adc, uint16_t dat)
 }
 
 /**
- * \brief »ñÈ¡ãĞÖµ1¼Ä´æÆ÷ÄÚÈİ
+ * \brief è·å–é˜ˆå€¼1å¯„å­˜å™¨å†…å®¹
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return æ— 
  */
 am_static_inline
 uint16_t amhw_fsl_adc_cv1_get (amhw_fsl_adc_t *p_hw_adc)
@@ -740,11 +740,11 @@ uint16_t amhw_fsl_adc_cv1_get (amhw_fsl_adc_t *p_hw_adc)
 }
 
 /**
- * \brief ÉèÖÃãĞÖµ2¼Ä´æÆ÷ÄÚÈİ
+ * \brief è®¾ç½®é˜ˆå€¼2å¯„å­˜å™¨å†…å®¹
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] dat      : ÅäÖÃÄÚÈİ
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] dat      : é…ç½®å†…å®¹
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_cv2_set (amhw_fsl_adc_t *p_hw_adc, uint16_t dat)
@@ -753,10 +753,10 @@ void amhw_fsl_adc_cv2_set (amhw_fsl_adc_t *p_hw_adc, uint16_t dat)
 }
 
 /**
- * \brief »ñÈ¡ãĞÖµ2¼Ä´æÆ÷ÄÚÈİ
+ * \brief è·å–é˜ˆå€¼2å¯„å­˜å™¨å†…å®¹
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return æ— 
  */
 am_static_inline
 uint16_t amhw_fsl_adc_cv2_get (amhw_fsl_adc_t *p_hw_adc)
@@ -766,41 +766,41 @@ uint16_t amhw_fsl_adc_cv2_get (amhw_fsl_adc_t *p_hw_adc)
 
 
 /**
- * \brief ADC ³¤²ÉÑùÊ±¼äÑ¡Ôñ
+ * \brief ADC é•¿é‡‡æ ·æ—¶é—´é€‰æ‹©
  */
 typedef enum amhw_fsl_adc_ref {
-    AMHW_FSL_ADC_REF_VREFHL = 0,     /**< \brief VREFH¡¢VREFL×ö²Î¿¼µçÑ¹ */
-    AMHW_FSL_ADC_REF_ALTHL  = 1,     /**< \brief VALTH¡¢VALTL×ö²Î¿¼µçÑ¹    */
+    AMHW_FSL_ADC_REF_VREFHL = 0,     /**< \brief VREFHã€VREFLåšå‚è€ƒç”µå‹ */
+    AMHW_FSL_ADC_REF_ALTHL  = 1,     /**< \brief VALTHã€VALTLåšå‚è€ƒç”µå‹    */
 } amhw_fsl_adc_ref_t;
 
 /**
- * \name ADC ×´Ì¬¿ØÖÆ¼Ä´æÆ÷2Î»Óò¶¨Òå
+ * \name ADC çŠ¶æ€æ§åˆ¶å¯„å­˜å™¨2ä½åŸŸå®šä¹‰
  * \anchor grp_amhw_fsl_adc_sc2
  * @{
  */
-#define AMHW_FSL_ADC_SC2_ACT_MASK      (1UL << 7)   /**< \brief ÕıÔÚ×ª»»±êÖ¾ÑÚÂë */
-#define AMHW_FSL_ADC_SC2_HWTRG_MASK    (1UL << 6)   /**< \brief ´¥·¢·½Ê½±êÖ¾ÑÚÂë */
-#define AMHW_FSL_ADC_SC2_CMP_MASK      (1UL << 5)   /**< \brief ±È½Ï¹¦ÄÜ±êÖ¾ÑÚÂë */
-#define AMHW_FSL_ADC_SC2_CMPGT_MASK    (1UL << 4)   /**< \brief ±È½Ï¹¦ÄÜ´óÓÚÑÚÂë */
-#define AMHW_FSL_ADC_SC2_CMPR_MASK     (1UL << 3)   /**< \brief ±È½Ï¹¦ÄÜ·¶Î§ÑÚÂë */
-#define AMHW_FSL_ADC_SC2_DMA_MASK      (1UL << 2)   /**< \brief DMA´«ÊäÑÚÂë        */
-#define AMHW_FSL_ADC_SC2_REF_MASK      (3UL << 0)   /**< \brief ²Î¿¼µçÑ¹Ñ¡ÔñÑÚÂë */
+#define AMHW_FSL_ADC_SC2_ACT_MASK      (1UL << 7)   /**< \brief æ­£åœ¨è½¬æ¢æ ‡å¿—æ©ç  */
+#define AMHW_FSL_ADC_SC2_HWTRG_MASK    (1UL << 6)   /**< \brief è§¦å‘æ–¹å¼æ ‡å¿—æ©ç  */
+#define AMHW_FSL_ADC_SC2_CMP_MASK      (1UL << 5)   /**< \brief æ¯”è¾ƒåŠŸèƒ½æ ‡å¿—æ©ç  */
+#define AMHW_FSL_ADC_SC2_CMPGT_MASK    (1UL << 4)   /**< \brief æ¯”è¾ƒåŠŸèƒ½å¤§äºæ©ç  */
+#define AMHW_FSL_ADC_SC2_CMPR_MASK     (1UL << 3)   /**< \brief æ¯”è¾ƒåŠŸèƒ½èŒƒå›´æ©ç  */
+#define AMHW_FSL_ADC_SC2_DMA_MASK      (1UL << 2)   /**< \brief DMAä¼ è¾“æ©ç         */
+#define AMHW_FSL_ADC_SC2_REF_MASK      (3UL << 0)   /**< \brief å‚è€ƒç”µå‹é€‰æ‹©æ©ç  */
 
-#define AMHW_FSL_ADC_SC2_HWTRG_EN_CFG  (1UL << 6)   /**< \brief Ó²¼ş´¥·¢Ê¹ÄÜÅäÖÃ */
-#define AMHW_FSL_ADC_SC2_CMP_EN_CFG    (1UL << 5)   /**< \brief ±È½Ï¹¦ÄÜÊ¹ÄÜÅäÖÃ */
-#define AMHW_FSL_ADC_SC2_CMPGT_EN_CFG  (1UL << 4)   /**< \brief ±È½Ï¹¦ÄÜ´óÓÚÅäÖÃ */
-#define AMHW_FSL_ADC_SC2_CMPR_EN_CFG   (1UL << 3)   /**< \brief ±È½Ï¹¦ÄÜ·¶Î§ÅäÖÃ */
-#define AMHW_FSL_ADC_SC2_DMA_EN_CFG    (1UL << 2)   /**< \brief Ê¹ÄÜDMA´«ÊäÅäÖÃ */
-#define AMHW_FSL_ADC_SC2_REF_CFG(x) ((x) & AMHW_FSL_ADC_SC2_REF_MASK) /**< \brief ²Î¿¼µçÑ¹Ñ¡ÔñÅäÖÃ */
+#define AMHW_FSL_ADC_SC2_HWTRG_EN_CFG  (1UL << 6)   /**< \brief ç¡¬ä»¶è§¦å‘ä½¿èƒ½é…ç½® */
+#define AMHW_FSL_ADC_SC2_CMP_EN_CFG    (1UL << 5)   /**< \brief æ¯”è¾ƒåŠŸèƒ½ä½¿èƒ½é…ç½® */
+#define AMHW_FSL_ADC_SC2_CMPGT_EN_CFG  (1UL << 4)   /**< \brief æ¯”è¾ƒåŠŸèƒ½å¤§äºé…ç½® */
+#define AMHW_FSL_ADC_SC2_CMPR_EN_CFG   (1UL << 3)   /**< \brief æ¯”è¾ƒåŠŸèƒ½èŒƒå›´é…ç½® */
+#define AMHW_FSL_ADC_SC2_DMA_EN_CFG    (1UL << 2)   /**< \brief ä½¿èƒ½DMAä¼ è¾“é…ç½® */
+#define AMHW_FSL_ADC_SC2_REF_CFG(x) ((x) & AMHW_FSL_ADC_SC2_REF_MASK) /**< \brief å‚è€ƒç”µå‹é€‰æ‹©é…ç½® */
 /** @} */
 
 /**
- * \brief ÊÇ·ñÕıÔÚ×ª»»µ±ÖĞ
+ * \brief æ˜¯å¦æ­£åœ¨è½¬æ¢å½“ä¸­
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \retval AM_TRUE  : ÕıÔÚ×ª»»
- * \retval AM_FALSE : ¿ÕÏĞ
+ * \retval AM_TRUE  : æ­£åœ¨è½¬æ¢
+ * \retval AM_FALSE : ç©ºé—²
  *
  */
 am_static_inline
@@ -810,10 +810,10 @@ uint32_t amhw_fsl_adc_busy_is (amhw_fsl_adc_t *p_hw_adc)
 }
 
 /**
- * \brief  Ê¹ÄÜÓ²¼ş´¥·¢
+ * \brief  ä½¿èƒ½ç¡¬ä»¶è§¦å‘
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_hwtrg_enable (amhw_fsl_adc_t *p_hw_adc)
@@ -822,10 +822,10 @@ void amhw_fsl_adc_hwtrg_enable (amhw_fsl_adc_t *p_hw_adc)
 }
 
 /**
- * \brief ½ûÄÜÓ²¼ş´¥·¢£¬Ê¹ÓÃÈí¼ş´¥·¢
+ * \brief ç¦èƒ½ç¡¬ä»¶è§¦å‘ï¼Œä½¿ç”¨è½¯ä»¶è§¦å‘
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_hwtrg_disable (amhw_fsl_adc_t *p_hw_adc)
@@ -834,10 +834,10 @@ void amhw_fsl_adc_hwtrg_disable (amhw_fsl_adc_t *p_hw_adc)
 }
 
 /**
- * \brief  Ê¹ÄÜ±È½Ï¹¦ÄÜ
+ * \brief  ä½¿èƒ½æ¯”è¾ƒåŠŸèƒ½
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_cmp_enable (amhw_fsl_adc_t *p_hw_adc)
@@ -846,10 +846,10 @@ void amhw_fsl_adc_cmp_enable (amhw_fsl_adc_t *p_hw_adc)
 }
 
 /**
- * \brief ½ûÄÜ±È½Ï¹¦ÄÜ
+ * \brief ç¦èƒ½æ¯”è¾ƒåŠŸèƒ½
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_cmp_disable (amhw_fsl_adc_t *p_hw_adc)
@@ -858,11 +858,11 @@ void amhw_fsl_adc_cmp_disable (amhw_fsl_adc_t *p_hw_adc)
 }
 
 /**
- * \brief Ê¹ÄÜ´óÓÚ±È½Ï¹¦ÄÜ
- * \note ¸úCV1´óÓÚ»òµÈÓÚ±È½Ï£¬¸úCV2Ğ¡ÓÚ±È½Ï£¨Èç¹ûÆô¶¯·¶Î§±È½ÏµÄ»°£©
+ * \brief ä½¿èƒ½å¤§äºæ¯”è¾ƒåŠŸèƒ½
+ * \note è·ŸCV1å¤§äºæˆ–ç­‰äºæ¯”è¾ƒï¼Œè·ŸCV2å°äºæ¯”è¾ƒï¼ˆå¦‚æœå¯åŠ¨èŒƒå›´æ¯”è¾ƒçš„è¯ï¼‰
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_cmpgt_enable (amhw_fsl_adc_t *p_hw_adc)
@@ -871,11 +871,11 @@ void amhw_fsl_adc_cmpgt_enable (amhw_fsl_adc_t *p_hw_adc)
 }
 
 /**
- * \brief ½ûÄÜ´óÓÚ±È½Ï¹¦ÄÜ
- * \note  ¸úCV1Ğ¡ÓÚ±È½Ï£¬¸úCV2´óÓÚ»òµÈÓÚ±È½Ï£¨Èç¹ûÆô¶¯·¶Î§±È½ÏµÄ»°£©
+ * \brief ç¦èƒ½å¤§äºæ¯”è¾ƒåŠŸèƒ½
+ * \note  è·ŸCV1å°äºæ¯”è¾ƒï¼Œè·ŸCV2å¤§äºæˆ–ç­‰äºæ¯”è¾ƒï¼ˆå¦‚æœå¯åŠ¨èŒƒå›´æ¯”è¾ƒçš„è¯ï¼‰
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_cmpgt_disable (amhw_fsl_adc_t *p_hw_adc)
@@ -884,10 +884,10 @@ void amhw_fsl_adc_cmpgt_disable (amhw_fsl_adc_t *p_hw_adc)
 }
 
 /**
- * \brief  Ê¹ÄÜ·¶Î§±È½Ï
+ * \brief  ä½¿èƒ½èŒƒå›´æ¯”è¾ƒ
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_cmpr_enable (amhw_fsl_adc_t *p_hw_adc)
@@ -896,10 +896,10 @@ void amhw_fsl_adc_cmpr_enable (amhw_fsl_adc_t *p_hw_adc)
 }
 
 /**
- * \brief ½ûÄÜ·¶Î§±È½Ï
+ * \brief ç¦èƒ½èŒƒå›´æ¯”è¾ƒ
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_cmpr_disable (amhw_fsl_adc_t *p_hw_adc)
@@ -908,10 +908,10 @@ void amhw_fsl_adc_cmpr_disable (amhw_fsl_adc_t *p_hw_adc)
 }
 
 /**
- * \brief  Ê¹ÄÜDMA´«Êä
+ * \brief  ä½¿èƒ½DMAä¼ è¾“
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_dma_enable (amhw_fsl_adc_t *p_hw_adc)
@@ -920,10 +920,10 @@ void amhw_fsl_adc_dma_enable (amhw_fsl_adc_t *p_hw_adc)
 }
 
 /**
- * \brief ½ûÄÜDMA´«Êä
+ * \brief ç¦èƒ½DMAä¼ è¾“
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_dma_disable (amhw_fsl_adc_t *p_hw_adc)
@@ -932,11 +932,11 @@ void amhw_fsl_adc_dma_disable (amhw_fsl_adc_t *p_hw_adc)
 }
 
 /**
- * \brief ÉèÖÃ²Î¿¼µçÑ¹
+ * \brief è®¾ç½®å‚è€ƒç”µå‹
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] ref      : ²Î¿¼µçÑ¹Ñ¡ÔñÏî
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] ref      : å‚è€ƒç”µå‹é€‰æ‹©é¡¹
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_ref_set (amhw_fsl_adc_t *p_hw_adc, amhw_fsl_adc_ref_t ref)
@@ -946,10 +946,10 @@ void amhw_fsl_adc_ref_set (amhw_fsl_adc_t *p_hw_adc, amhw_fsl_adc_ref_t ref)
 }
 
 /**
- * \brief »ñÈ¡²Î¿¼µçÑ¹
+ * \brief è·å–å‚è€ƒç”µå‹
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ²Î¿¼µçÑ¹Ñ¡ÔñÏî
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return å‚è€ƒç”µå‹é€‰æ‹©é¡¹
  */
 am_static_inline
 amhw_fsl_adc_ref_t amhw_fsl_adc_ref_get (amhw_fsl_adc_t *p_hw_adc)
@@ -958,11 +958,11 @@ amhw_fsl_adc_ref_t amhw_fsl_adc_ref_get (amhw_fsl_adc_t *p_hw_adc)
 }
 
 /**
- * \brief ÅäÖÃ×´Ì¬¿ØÖÆ¼Ä´æÆ÷2
+ * \brief é…ç½®çŠ¶æ€æ§åˆ¶å¯„å­˜å™¨2
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] cfg      : ÅäÖÃ²ÎÊı £¬ /ref grp_amhw_fsl_adc_sc2
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] cfg      : é…ç½®å‚æ•° ï¼Œ /ref grp_amhw_fsl_adc_sc2
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_sc2_cfg (amhw_fsl_adc_t *p_hw_adc, uint32_t cfg)
@@ -971,37 +971,37 @@ void amhw_fsl_adc_sc2_cfg (amhw_fsl_adc_t *p_hw_adc, uint32_t cfg)
 }
 
 /**
- * \brief ADC Ó²¼şÆ½¾ù¸öÊı
+ * \brief ADC ç¡¬ä»¶å¹³å‡ä¸ªæ•°
  */
 typedef enum amhw_fsl_adc_avgs {
-    AMHW_FSL_ADC_AVGS_4  = 0,     /**< \brief 4¸ö²ÉÑùÖµ×öÆ½¾ù */
-    AMHW_FSL_ADC_AVGS_8  = 1,     /**< \brief 8¸ö²ÉÑùÖµ×öÆ½¾ù    */
-    AMHW_FSL_ADC_AVGS_16 = 2,     /**< \brief 16¸ö²ÉÑùÖµ×öÆ½¾ù    */
-    AMHW_FSL_ADC_AVGS_32 = 3,     /**< \brief 32¸ö²ÉÑùÖµ×öÆ½¾ù    */
+    AMHW_FSL_ADC_AVGS_4  = 0,     /**< \brief 4ä¸ªé‡‡æ ·å€¼åšå¹³å‡ */
+    AMHW_FSL_ADC_AVGS_8  = 1,     /**< \brief 8ä¸ªé‡‡æ ·å€¼åšå¹³å‡    */
+    AMHW_FSL_ADC_AVGS_16 = 2,     /**< \brief 16ä¸ªé‡‡æ ·å€¼åšå¹³å‡    */
+    AMHW_FSL_ADC_AVGS_32 = 3,     /**< \brief 32ä¸ªé‡‡æ ·å€¼åšå¹³å‡    */
 } amhw_fsl_adc_avgs_t;
 
 /**
- * \name ADC ×´Ì¬¿ØÖÆ¼Ä´æÆ÷3Î»Óò¶¨Òå
+ * \name ADC çŠ¶æ€æ§åˆ¶å¯„å­˜å™¨3ä½åŸŸå®šä¹‰
  * \anchor grp_amhw_fsl_adc_sc3
  * @{
  */
-#define AMHW_FSL_ADC_SC3_CAL_MASK      (1UL << 7)    /**< \brief ½ÃÕı±êÖ¾ÑÚÂë */
-#define AMHW_FSL_ADC_SC3_CALF_MASK     (1UL << 6)    /**< \brief ½ÃÕıÊ§°ÜÑÚÂë */
-#define AMHW_FSL_ADC_SC3_CONT_MASK     (1UL << 3)    /**< \brief Á¬Ğø×ª»»±êÖ¾ÑÚÂë */
-#define AMHW_FSL_ADC_SC3_AVG_MASK      (1UL << 2)    /**< \brief Ó²¼şÆ½¾ùÑÚÂë */
-#define AMHW_FSL_ADC_SC3_AVGS_MASK     (3UL << 0)    /**< \brief Ó²¼şÆ½¾ù¸öÊıÑÚÂë */
+#define AMHW_FSL_ADC_SC3_CAL_MASK      (1UL << 7)    /**< \brief çŸ«æ­£æ ‡å¿—æ©ç  */
+#define AMHW_FSL_ADC_SC3_CALF_MASK     (1UL << 6)    /**< \brief çŸ«æ­£å¤±è´¥æ©ç  */
+#define AMHW_FSL_ADC_SC3_CONT_MASK     (1UL << 3)    /**< \brief è¿ç»­è½¬æ¢æ ‡å¿—æ©ç  */
+#define AMHW_FSL_ADC_SC3_AVG_MASK      (1UL << 2)    /**< \brief ç¡¬ä»¶å¹³å‡æ©ç  */
+#define AMHW_FSL_ADC_SC3_AVGS_MASK     (3UL << 0)    /**< \brief ç¡¬ä»¶å¹³å‡ä¸ªæ•°æ©ç  */
 
-#define AMHW_FSL_ADC_SC3_CAL_EN_CFG    (1UL << 7)   /**< \brief ½ÃÕıÊ¹ÄÜÅäÖÃ */
-#define AMHW_FSL_ADC_SC3_CONT_EN_CFG   (1UL << 3)   /**< \brief Á¬Ğø×ª»»Ê¹ÄÜÅäÖÃ */
-#define AMHW_FSL_ADC_SC3_AVG_EN_CFG    (1UL << 2)   /**< \brief Ó²¼şÆ½¾ùÊ¹ÄÜÅäÖÃ */
-#define AMHW_FSL_ADC_SC3_AVGS_CFG(x) ((x) & AMHW_FSL_ADC_SC3_AVGS_MASK) /**< \brief Ó²¼şÆ½¾ù¸öÊıÅäÖÃ */
+#define AMHW_FSL_ADC_SC3_CAL_EN_CFG    (1UL << 7)   /**< \brief çŸ«æ­£ä½¿èƒ½é…ç½® */
+#define AMHW_FSL_ADC_SC3_CONT_EN_CFG   (1UL << 3)   /**< \brief è¿ç»­è½¬æ¢ä½¿èƒ½é…ç½® */
+#define AMHW_FSL_ADC_SC3_AVG_EN_CFG    (1UL << 2)   /**< \brief ç¡¬ä»¶å¹³å‡ä½¿èƒ½é…ç½® */
+#define AMHW_FSL_ADC_SC3_AVGS_CFG(x) ((x) & AMHW_FSL_ADC_SC3_AVGS_MASK) /**< \brief ç¡¬ä»¶å¹³å‡ä¸ªæ•°é…ç½® */
 /** @} */
 
 /**
- * \brief  Ê¹ÄÜ½ÃÕı£¨Æô¶¯½ÃÕı£©
+ * \brief  ä½¿èƒ½çŸ«æ­£ï¼ˆå¯åŠ¨çŸ«æ­£ï¼‰
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_cal_enable (amhw_fsl_adc_t *p_hw_adc)
@@ -1010,10 +1010,10 @@ void amhw_fsl_adc_cal_enable (amhw_fsl_adc_t *p_hw_adc)
 }
 
 /**
- * \brief ½ûÄÜ½ÃÕı
+ * \brief ç¦èƒ½çŸ«æ­£
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_cal_disable (amhw_fsl_adc_t *p_hw_adc)
@@ -1022,12 +1022,12 @@ void amhw_fsl_adc_cal_disable (amhw_fsl_adc_t *p_hw_adc)
 }
 
 /**
- * \brief ÊÇ·ñÔÚ½ÃÕıÖĞ
+ * \brief æ˜¯å¦åœ¨çŸ«æ­£ä¸­
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \retval AM_TRUE  : ÕıÔÚ½ÃÕı
- * \retval AM_FALSE : ½ÃÕıÍê³É
+ * \retval AM_TRUE  : æ­£åœ¨çŸ«æ­£
+ * \retval AM_FALSE : çŸ«æ­£å®Œæˆ
  *
  */
 am_static_inline
@@ -1037,12 +1037,12 @@ uint32_t amhw_fsl_adc_cal_get (amhw_fsl_adc_t *p_hw_adc)
 }
 
 /**
- * \brief ½ÃÕıÊÇ·ñÊ§°Ü
+ * \brief çŸ«æ­£æ˜¯å¦å¤±è´¥
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \retval AM_TRUE  : ½ÃÕıÊ§°Ü
- * \retval AM_FALSE : ½ÃÕıÕı³£Íê³É
+ * \retval AM_TRUE  : çŸ«æ­£å¤±è´¥
+ * \retval AM_FALSE : çŸ«æ­£æ­£å¸¸å®Œæˆ
  *
  */
 am_static_inline
@@ -1052,10 +1052,10 @@ uint32_t amhw_fsl_adc_cal_fail_is (amhw_fsl_adc_t *p_hw_adc)
 }
 
 /**
- * \brief  Çå³ı½ÃÕıÊ§°Ü±êÖ¾Î»
+ * \brief  æ¸…é™¤çŸ«æ­£å¤±è´¥æ ‡å¿—ä½
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_calf_clr (amhw_fsl_adc_t *p_hw_adc)
@@ -1064,10 +1064,10 @@ void amhw_fsl_adc_calf_clr (amhw_fsl_adc_t *p_hw_adc)
 }
 
 /**
- * \brief  Ê¹ÄÜÁ¬Ğø×ª»»Ä£Ê½
+ * \brief  ä½¿èƒ½è¿ç»­è½¬æ¢æ¨¡å¼
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_continue_enable (amhw_fsl_adc_t *p_hw_adc)
@@ -1076,10 +1076,10 @@ void amhw_fsl_adc_continue_enable (amhw_fsl_adc_t *p_hw_adc)
 }
 
 /**
- * \brief ½ûÄÜÁ¬Ğø×ª»»Ä£Ê½
+ * \brief ç¦èƒ½è¿ç»­è½¬æ¢æ¨¡å¼
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_continue_disable (amhw_fsl_adc_t *p_hw_adc)
@@ -1088,10 +1088,10 @@ void amhw_fsl_adc_continue_disable (amhw_fsl_adc_t *p_hw_adc)
 }
 
 /**
- * \brief  Ê¹ÄÜÓ²¼şÆ½¾ù
+ * \brief  ä½¿èƒ½ç¡¬ä»¶å¹³å‡
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_avg_enable (amhw_fsl_adc_t *p_hw_adc)
@@ -1100,10 +1100,10 @@ void amhw_fsl_adc_avg_enable (amhw_fsl_adc_t *p_hw_adc)
 }
 
 /**
- * \brief ½ûÄÜÓ²¼şÆ½¾ù
+ * \brief ç¦èƒ½ç¡¬ä»¶å¹³å‡
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_avg_disable (amhw_fsl_adc_t *p_hw_adc)
@@ -1112,11 +1112,11 @@ void amhw_fsl_adc_avg_disable (amhw_fsl_adc_t *p_hw_adc)
 }
 
 /**
- * \brief ÉèÖÃÓ²¼şÆ½¾ùµÄ²ÉÑù¸öÊı
+ * \brief è®¾ç½®ç¡¬ä»¶å¹³å‡çš„é‡‡æ ·ä¸ªæ•°
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] avgs     : Æ½¾ùµÄ²ÉÑù¸öÊı
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] avgs     : å¹³å‡çš„é‡‡æ ·ä¸ªæ•°
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_avgs_set (amhw_fsl_adc_t *p_hw_adc, amhw_fsl_adc_avgs_t avgs)
@@ -1126,10 +1126,10 @@ void amhw_fsl_adc_avgs_set (amhw_fsl_adc_t *p_hw_adc, amhw_fsl_adc_avgs_t avgs)
 }
 
 /**
- * \brief »ñÈ¡Ó²¼şÆ½¾ùµÄ²ÉÑù¸öÊı
+ * \brief è·å–ç¡¬ä»¶å¹³å‡çš„é‡‡æ ·ä¸ªæ•°
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return Æ½¾ùµÄ²ÉÑù¸öÊı
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return å¹³å‡çš„é‡‡æ ·ä¸ªæ•°
  */
 am_static_inline
 amhw_fsl_adc_avgs_t amhw_fsl_adc_avgs_get (amhw_fsl_adc_t *p_hw_adc)
@@ -1138,11 +1138,11 @@ amhw_fsl_adc_avgs_t amhw_fsl_adc_avgs_get (amhw_fsl_adc_t *p_hw_adc)
 }
 
 /**
- * \brief ÅäÖÃ×´Ì¬¿ØÖÆ¼Ä´æÆ÷3
+ * \brief é…ç½®çŠ¶æ€æ§åˆ¶å¯„å­˜å™¨3
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] cfg      : ÅäÖÃ²ÎÊı £¬ /ref grp_amhw_fsl_adc_sc3
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] cfg      : é…ç½®å‚æ•° ï¼Œ /ref grp_amhw_fsl_adc_sc3
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_sc3_cfg (amhw_fsl_adc_t *p_hw_adc, uint32_t cfg)
@@ -1152,11 +1152,11 @@ void amhw_fsl_adc_sc3_cfg (amhw_fsl_adc_t *p_hw_adc, uint32_t cfg)
 
 
 /**
- * \brief ÉèÖÃÆ«ÒÆÎó²î½ÃÕıÖµ
+ * \brief è®¾ç½®åç§»è¯¯å·®çŸ«æ­£å€¼
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] val      : Æ«ÒÆÎó²îÖµ
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] val      : åç§»è¯¯å·®å€¼
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_ofs_set (amhw_fsl_adc_t *p_hw_adc, uint16_t val)
@@ -1165,10 +1165,10 @@ void amhw_fsl_adc_ofs_set (amhw_fsl_adc_t *p_hw_adc, uint16_t val)
 }
 
 /**
- * \brief »ñÈ¡Æ«ÒÆÎó²î½ÃÕıÖµ
+ * \brief è·å–åç§»è¯¯å·®çŸ«æ­£å€¼
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return  Æ«ÒÆÎó²îÖµ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return  åç§»è¯¯å·®å€¼
  */
 am_static_inline
 uint16_t amhw_fsl_adc_ofs_get (amhw_fsl_adc_t *p_hw_adc)
@@ -1177,11 +1177,11 @@ uint16_t amhw_fsl_adc_ofs_get (amhw_fsl_adc_t *p_hw_adc)
 }
 
 /**
- * \brief ÉèÖÃPlus-SideÔöÒæ¼Ä´æÆ÷Öµ
+ * \brief è®¾ç½®Plus-Sideå¢ç›Šå¯„å­˜å™¨å€¼
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] val      : ÔöÒæÖµ
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] val      : å¢ç›Šå€¼
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_pg_set (amhw_fsl_adc_t *p_hw_adc, uint16_t val)
@@ -1190,10 +1190,10 @@ void amhw_fsl_adc_pg_set (amhw_fsl_adc_t *p_hw_adc, uint16_t val)
 }
 
 /**
- * \brief »ñÈ¡Plus-SideÔöÒæ¼Ä´æÆ÷Öµ
+ * \brief è·å–Plus-Sideå¢ç›Šå¯„å­˜å™¨å€¼
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return  ÔöÒæÖµ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return  å¢ç›Šå€¼
  */
 am_static_inline
 uint16_t amhw_fsl_adc_pg_get (amhw_fsl_adc_t *p_hw_adc)
@@ -1202,11 +1202,11 @@ uint16_t amhw_fsl_adc_pg_get (amhw_fsl_adc_t *p_hw_adc)
 }
 
 /**
- * \brief ÉèÖÃMinus-SideÔöÒæ¼Ä´æÆ÷Öµ
+ * \brief è®¾ç½®Minus-Sideå¢ç›Šå¯„å­˜å™¨å€¼
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] val      : ÔöÒæÖµ
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] val      : å¢ç›Šå€¼
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_mg_set (amhw_fsl_adc_t *p_hw_adc, uint16_t val)
@@ -1215,10 +1215,10 @@ void amhw_fsl_adc_mg_set (amhw_fsl_adc_t *p_hw_adc, uint16_t val)
 }
 
 /**
- * \brief »ñÈ¡Minus-SideÔöÒæ¼Ä´æÆ÷Öµ
+ * \brief è·å–Minus-Sideå¢ç›Šå¯„å­˜å™¨å€¼
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return  ÔöÒæÖµ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return  å¢ç›Šå€¼
  */
 am_static_inline
 uint16_t amhw_fsl_adc_mg_get (amhw_fsl_adc_t *p_hw_adc)
@@ -1227,12 +1227,12 @@ uint16_t amhw_fsl_adc_mg_get (amhw_fsl_adc_t *p_hw_adc)
 }
 
 /**
- * \brief ÉèÖÃPlus-SideÔöÒæ¼Ä´æÆ÷Öµ
+ * \brief è®¾ç½®Plus-Sideå¢ç›Šå¯„å­˜å™¨å€¼
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] index    : ½ÃÕı¼Ä´æÆ÷Ë÷ÒıÖµ
- * \param[in] val      : ½ÃÕıÖµ
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] index    : çŸ«æ­£å¯„å­˜å™¨ç´¢å¼•å€¼
+ * \param[in] val      : çŸ«æ­£å€¼
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_clp_set (amhw_fsl_adc_t *p_hw_adc, uint8_t index, uint16_t val)
@@ -1243,12 +1243,12 @@ void amhw_fsl_adc_clp_set (amhw_fsl_adc_t *p_hw_adc, uint8_t index, uint16_t val
 }
 
 /**
- * \brief »ñÈ¡Plus-SideÔöÒæ¼Ä´æÆ÷Öµ
+ * \brief è·å–Plus-Sideå¢ç›Šå¯„å­˜å™¨å€¼
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] index    : ½ÃÕı¼Ä´æÆ÷Ë÷ÒıÖµ£¬Öµ·¶Î§Îª[0,6]Ö®¼ä
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] index    : çŸ«æ­£å¯„å­˜å™¨ç´¢å¼•å€¼ï¼Œå€¼èŒƒå›´ä¸º[0,6]ä¹‹é—´
  *
- * \return  ½ÃÕıÖµ
+ * \return  çŸ«æ­£å€¼
  */
 am_static_inline
 uint16_t amhw_fsl_adc_clp_get (amhw_fsl_adc_t *p_hw_adc, uint8_t index)
@@ -1257,12 +1257,12 @@ uint16_t amhw_fsl_adc_clp_get (amhw_fsl_adc_t *p_hw_adc, uint8_t index)
 }
 
 /**
- * \brief ÉèÖÃMinus-Side¼Ä´æÆ÷Öµ
+ * \brief è®¾ç½®Minus-Sideå¯„å­˜å™¨å€¼
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] index    : ½ÃÕı¼Ä´æÆ÷Ë÷ÒıÖµ£¬Öµ·¶Î§Îª[0,6]Ö®¼ä
- * \param[in] val      : ½ÃÕıÖµ
- * \return ÎŞ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] index    : çŸ«æ­£å¯„å­˜å™¨ç´¢å¼•å€¼ï¼Œå€¼èŒƒå›´ä¸º[0,6]ä¹‹é—´
+ * \param[in] val      : çŸ«æ­£å€¼
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_adc_clm_set (amhw_fsl_adc_t *p_hw_adc, uint8_t index, uint16_t val)
@@ -1273,11 +1273,11 @@ void amhw_fsl_adc_clm_set (amhw_fsl_adc_t *p_hw_adc, uint8_t index, uint16_t val
 }
 
 /**
- * \brief »ñÈ¡Minus-Side¼Ä´æÆ÷Öµ
+ * \brief è·å–Minus-Sideå¯„å­˜å™¨å€¼
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] index    : ½ÃÕı¼Ä´æÆ÷Ë÷ÒıÖµ£¬Öµ·¶Î§Îª[0,6]Ö®¼ä
- * \return  ½ÃÕıÖµ
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] index    : çŸ«æ­£å¯„å­˜å™¨ç´¢å¼•å€¼ï¼Œå€¼èŒƒå›´ä¸º[0,6]ä¹‹é—´
+ * \return  çŸ«æ­£å€¼
  */
 am_static_inline
 uint16_t amhw_fsl_adc_clm_get (amhw_fsl_adc_t *p_hw_adc, uint8_t index)
@@ -1287,17 +1287,17 @@ uint16_t amhw_fsl_adc_clm_get (amhw_fsl_adc_t *p_hw_adc, uint8_t index)
 
 
 /**
- * \brief ADC Ğ£Ñé, Ä¬ÈÏ½ÃÕıÊ±ÖÓÆµÂÊÎª2M
+ * \brief ADC æ ¡éªŒ, é»˜è®¤çŸ«æ­£æ—¶é’Ÿé¢‘ç‡ä¸º2M
  *
- * \param[in] p_hw_adc : Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] clk_id   : ADCËùÊ¹ÓÃµÄÊ±ÖÓÔ´
- * \retval AM_TRUE  : ½ÃÕı³É¹¦
- * \retval AM_FALSE : ½ÃÕıÊ§°Ü
+ * \param[in] p_hw_adc : æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] clk_id   : ADCæ‰€ä½¿ç”¨çš„æ—¶é’Ÿæº
+ * \retval AM_TRUE  : çŸ«æ­£æˆåŠŸ
+ * \retval AM_FALSE : çŸ«æ­£å¤±è´¥
  */
 uint8_t amhw_fsl_adc_calibrate (amhw_fsl_adc_t *p_hw_adc, am_clk_id_t clk_id);
 
 /**
- * \brief Ê¹ÓÃÄäÃûÁªºÏÌå¶Î½áÊø
+ * \brief ä½¿ç”¨åŒ¿åè”åˆä½“æ®µç»“æŸ
  * @{
  */
 
@@ -1305,13 +1305,13 @@ uint8_t amhw_fsl_adc_calibrate (amhw_fsl_adc_t *p_hw_adc, am_clk_id_t clk_id);
   #pragma pop
 #elif defined(__ICCARM__)
 
-  /* ÔÊĞíÄäÃûÁªºÏÌåÊ¹ÄÜ */
+  /* å…è®¸åŒ¿åè”åˆä½“ä½¿èƒ½ */
 #elif defined(__GNUC__)
 
-  /* Ä¬ÈÏÊ¹ÓÃÄäÃûÁªºÏÌå */
+  /* é»˜è®¤ä½¿ç”¨åŒ¿åè”åˆä½“ */
 #elif defined(__TMS470__)
 
-  /* Ä¬ÈÏÊ¹ÓÃÄäÃûÁªºÏÌå */
+  /* é»˜è®¤ä½¿ç”¨åŒ¿åè”åˆä½“ */
 #elif defined(__TASKING__)
   #pragma warning restore
 #else

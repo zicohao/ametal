@@ -13,20 +13,20 @@
 
 /**
  * \file
- * \brief LPC82x ÔÚÓ¦ÓÃÖĞ±à³Ì(IAP)Ó²¼ş²Ù×÷½Ó¿Ú
+ * \brief LPC82x åœ¨åº”ç”¨ä¸­ç¼–ç¨‹(IAP)ç¡¬ä»¶æ“ä½œæ¥å£
  *
- * IAP - Í¨¹ıROMµÄº¯ÊıÊµÏÖ£¬Ìá¹©¶ÔFLASH½øĞĞ²Ù×÷µÄÒ»ÏµÁĞ½Ó¿Úº¯Êı¡£
- * ½Ó¿Úº¯ÊıÖ÷Òª°üÀ¨ÒÔÏÂ¼¸ÖÖ£º
- *     - ÉÈÇøĞ´²Ù×÷Ç°µÄ×¼±¸¹¤×÷½Ó¿Úº¯Êı£»
- *     - ´ÓRAM¸´ÖÆÄÚÈİµ½FLASH½Ó¿Úº¯Êı£»
- *     - ÉÈÇø²Á³ı½Ó¿Úº¯Êı£»
- *     - ÉÈÇø¿Õ°×¼ì²é½Ó¿Úº¯Êı£»
- *     - ¶ÁÈ¡PartID½Ó¿Úº¯Êı£»
- *     - ¶ÁÈ¡BOOT_VERSION½Ó¿Úº¯Êı£»
- *     - Êı¾İ±È½Ï½Ó¿Úº¯Êı£»
- *     - ÖØĞÂ½øÈëISPÄ£Ê½½Ó¿Úº¯Êı£»
- *     - ¶ÁÈ¡UID½Ó¿Úº¯Êı£»
- *     - Ò³²Á³ı½Ó¿Úº¯Êı¡£
+ * IAP - é€šè¿‡ROMçš„å‡½æ•°å®ç°ï¼Œæä¾›å¯¹FLASHè¿›è¡Œæ“ä½œçš„ä¸€ç³»åˆ—æ¥å£å‡½æ•°ã€‚
+ * æ¥å£å‡½æ•°ä¸»è¦åŒ…æ‹¬ä»¥ä¸‹å‡ ç§ï¼š
+ *     - æ‰‡åŒºå†™æ“ä½œå‰çš„å‡†å¤‡å·¥ä½œæ¥å£å‡½æ•°ï¼›
+ *     - ä»RAMå¤åˆ¶å†…å®¹åˆ°FLASHæ¥å£å‡½æ•°ï¼›
+ *     - æ‰‡åŒºæ“¦é™¤æ¥å£å‡½æ•°ï¼›
+ *     - æ‰‡åŒºç©ºç™½æ£€æŸ¥æ¥å£å‡½æ•°ï¼›
+ *     - è¯»å–PartIDæ¥å£å‡½æ•°ï¼›
+ *     - è¯»å–BOOT_VERSIONæ¥å£å‡½æ•°ï¼›
+ *     - æ•°æ®æ¯”è¾ƒæ¥å£å‡½æ•°ï¼›
+ *     - é‡æ–°è¿›å…¥ISPæ¨¡å¼æ¥å£å‡½æ•°ï¼›
+ *     - è¯»å–UIDæ¥å£å‡½æ•°ï¼›
+ *     - é¡µæ“¦é™¤æ¥å£å‡½æ•°ã€‚
  *
  *
  * \internal
@@ -53,77 +53,77 @@ extern "C" {
  * @{
  */
 
-/** IAP ROM APIº¯Êı */
+/** IAP ROM APIå‡½æ•° */
 typedef void (*amhw_lpc82x_iap_entry_t)(uint32_t[], uint32_t[]);
 
 /**
- * \name IAPÖ¸Áîºê
+ * \name IAPæŒ‡ä»¤å®
  * @{
  */
 
-/** \brief ÉÈÇø×¼±¸¹¤×÷         */    
+/** \brief æ‰‡åŒºå‡†å¤‡å·¥ä½œ         */    
 #define AMHW_LPC82X_IAP_CMD_PREPARE             50  
-/** \brief ´ÓRAM¸´ÖÆÄÚÈİµ½FLASH */
+/** \brief ä»RAMå¤åˆ¶å†…å®¹åˆ°FLASH */
 #define AMHW_LPC82X_IAP_CMD_COPY_RAM_TO_FLASH   51  
-/** \brief ÉÈÇø²Á³öÃüÁî         */
+/** \brief æ‰‡åŒºæ“¦å‡ºå‘½ä»¤         */
 #define AMHW_LPC82X_IAP_CMD_ERASE_SECTOR        52  
-/** \brief ÉÈÇø²é¿ÕÃüÁî         */
+/** \brief æ‰‡åŒºæŸ¥ç©ºå‘½ä»¤         */
 #define AMHW_LPC82X_IAP_CMD_BLANK_CHECK         53  
-/** \brief ¶ÁÈ¡PartIDÃüÁî       */
+/** \brief è¯»å–PartIDå‘½ä»¤       */
 #define AMHW_LPC82X_IAP_CMD_PARTID_READ         54  
-/** \brief ¶ÁÈ¡BOOT_VERSION     */
+/** \brief è¯»å–BOOT_VERSION     */
 #define AMHW_LPC82X_IAP_CMD_BOOT_VER_READ       55  
-/** \brief Êı¾İ±È½ÏÖ¸Áî         */
+/** \brief æ•°æ®æ¯”è¾ƒæŒ‡ä»¤         */
 #define AMHW_LPC82X_IAP_CMD_COMPARE             56  
-/** \brief ÖØĞÂ½øÈëISPÄ£Ê½      */
+/** \brief é‡æ–°è¿›å…¥ISPæ¨¡å¼      */
 #define AMHW_LPC82X_IAP_CMD_REINVOKE_ISP        57  
-/** \brief ¶ÁUID                */
+/** \brief è¯»UID                */
 #define AMHW_LPC82X_IAP_CMD_READ_UID            58  
-/** \brief Ò³²Á³ıÖ¸Áî           */
+/** \brief é¡µæ“¦é™¤æŒ‡ä»¤           */
 #define AMHW_LPC82X_IAP_CMD_ERASE_PAGE          59  
 
 /** @} */
 
 /**
- * \brief IAP×´Ì¬
+ * \brief IAPçŠ¶æ€
  */
 typedef enum amhw_lpc82x_iap_stat {
     
-    /** \brief Ö¸ÁîÖ´ĞĞ³É¹¦          */
+    /** \brief æŒ‡ä»¤æ‰§è¡ŒæˆåŠŸ          */
     AMHW_LPC82X_IAP_STAT_SUCCESS             = 0,  
-    /** \brief ÎŞĞ§Ö¸Áî              */
+    /** \brief æ— æ•ˆæŒ‡ä»¤              */
     AMHW_LPC82X_IAP_STAT_INVALID_CMD         = 1,  
-    /** \brief Ô´µØÖ·Î´°´×Ö¶ÔÆë      */
+    /** \brief æºåœ°å€æœªæŒ‰å­—å¯¹é½      */
     AMHW_LPC82X_IAP_STAT_SRC_ADDR_ERROR      = 2,  
-    /** \brief Ä¿±êµØÖ·¶ÔÆë´íÎó      */
+    /** \brief ç›®æ ‡åœ°å€å¯¹é½é”™è¯¯      */
     AMHW_LPC82X_IAP_STAT_DST_ADDR_ERROR      = 3,  
-    /** \brief Ô´µØÖ·²»ÔÚÄÚ´æÓ³ÉäÖĞ  */
+    /** \brief æºåœ°å€ä¸åœ¨å†…å­˜æ˜ å°„ä¸­  */
     AMHW_LPC82X_IAP_STAT_SRC_ADDR_NOT_MAPPED = 4,  
-    /** \brief Ä¿±êµØÖ·Î´ÔÚÄÚ´æÓ³Éä  */
+    /** \brief ç›®æ ‡åœ°å€æœªåœ¨å†…å­˜æ˜ å°„  */
     AMHW_LPC82X_IAP_STAT_DST_ADDR_NOT_MAPPED = 5,  
-    /** \brief ×Ö½Ú¸öÊıÖµ´íÎó        */
+    /** \brief å­—èŠ‚ä¸ªæ•°å€¼é”™è¯¯        */
     AMHW_LPC82X_IAP_STAT_COUNT_ERROR         = 6,  
-    /** \brief ÉÈÇøÖµ´íÎó            */
+    /** \brief æ‰‡åŒºå€¼é”™è¯¯            */
     AMHW_LPC82X_IAP_STAT_INVALID_SECTOR      = 7,  
-    /** \brief ÉÈÇø·Ç¿Õ              */
+    /** \brief æ‰‡åŒºéç©º              */
     AMHW_LPC82X_IAP_STAT_SECTOR_NOT_BLANK    = 8,  
-    /** \brief ÉÈÇø×¼±¸Ö¸ÁîÃ»ÓĞÖ´ĞĞ  */
+    /** \brief æ‰‡åŒºå‡†å¤‡æŒ‡ä»¤æ²¡æœ‰æ‰§è¡Œ  */
     AMHW_LPC82X_IAP_STAT_SECTOR_NOT_PREPARED = 9,  
-    /** \brief Ô´ºÍÄ¿±êµØÖ·Êı¾İ²»Í¬  */
+    /** \brief æºå’Œç›®æ ‡åœ°å€æ•°æ®ä¸åŒ  */
     AMHW_LPC82X_IAP_STAT_COMPARE_ERROR       = 10, 
-    /** \brief FLASHÃ¦×´Ì¬           */
+    /** \brief FLASHå¿™çŠ¶æ€           */
     AMHW_LPC82X_IAP_STAT_BUSY                = 11
     
 } amhw_lpc82x_iap_stat_t;
 
 
 /**
- * \brief ¸Ãº¯ÊıÓÃÓÚÖ±½Óµ÷ÓÃROM APIº¯Êı
+ * \brief è¯¥å‡½æ•°ç”¨äºç›´æ¥è°ƒç”¨ROM APIå‡½æ•°
  *
- * \param[in]  cmd_param     : Ö¸ÁîÏà¹ØÊı¾İ
- * \param[out] status_result : Ö¸ÁîÖ´ĞĞ½á¹ûµÄÏà¹ØÊı¾İ
+ * \param[in]  cmd_param     : æŒ‡ä»¤ç›¸å…³æ•°æ®
+ * \param[out] status_result : æŒ‡ä»¤æ‰§è¡Œç»“æœçš„ç›¸å…³æ•°æ®
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_lpc82x_iap_entry (uint32_t cmd_param[], uint32_t status_result[])
@@ -133,117 +133,117 @@ void amhw_lpc82x_iap_entry (uint32_t cmd_param[], uint32_t status_result[])
 }
 
 /**
- * \brief Ğ´²Ù×÷Ç°µÄÉÈÇø×¼±¸º¯Êı
+ * \brief å†™æ“ä½œå‰çš„æ‰‡åŒºå‡†å¤‡å‡½æ•°
  *
- * \param[in] start_sec : ÆğÊ¼ÉÈÇøºÅ
- * \param[in] end_sec   : ½áÊøÉÈÇøºÅ
+ * \param[in] start_sec : èµ·å§‹æ‰‡åŒºå·
+ * \param[in] end_sec   : ç»“æŸæ‰‡åŒºå·
  *
- * \return IAPÖ¸ÁîÖ´ĞĞµÄ×´Ì¬
+ * \return IAPæŒ‡ä»¤æ‰§è¡Œçš„çŠ¶æ€
  *
- * \note ½áÊøÉÈÇøºÅ±ØĞë´óÓÚ»òµÈÓÚÆğÊ¼ÉÈÇøºÅ
+ * \note ç»“æŸæ‰‡åŒºå·å¿…é¡»å¤§äºæˆ–ç­‰äºèµ·å§‹æ‰‡åŒºå·
  *
  */
 amhw_lpc82x_iap_stat_t amhw_lpc82x_iap_prepare (uint32_t start_sec, 
                                                 uint32_t end_sec);
 
 /**
- * \brief ¸´ÖÆRAMÖĞÊı¾İÖÁFLASHÖĞ£¬Ïàµ±ÓÚFLASHĞ´²Ù×÷
+ * \brief å¤åˆ¶RAMä¸­æ•°æ®è‡³FLASHä¸­ï¼Œç›¸å½“äºFLASHå†™æ“ä½œ
  *
- * \param[in] dst_addr : Ä¿±êFLASHµØÖ·£¬Ó¦¸ÃÒÔ 256 ×Ö½Ú¶ÔÆë
- * \param[in] src_addr : Êı¾İÔ´RAMµÄµØÖ·£¬Ó¦¸ÃÒÔ×Ö¶ÔÆë
- * \param[in] nbytes   : ¸´ÖÆµÄÊı¾İ¸öÊı, Ó¦¸ÃÊÇ 256¡¢512 ¡¢1024 »òÕß 4096
+ * \param[in] dst_addr : ç›®æ ‡FLASHåœ°å€ï¼Œåº”è¯¥ä»¥ 256 å­—èŠ‚å¯¹é½
+ * \param[in] src_addr : æ•°æ®æºRAMçš„åœ°å€ï¼Œåº”è¯¥ä»¥å­—å¯¹é½
+ * \param[in] nbytes   : å¤åˆ¶çš„æ•°æ®ä¸ªæ•°, åº”è¯¥æ˜¯ 256ã€512 ã€1024 æˆ–è€… 4096
  *
- * \return IAPÖ¸ÁîÖ´ĞĞµÄ×´Ì¬
+ * \return IAPæŒ‡ä»¤æ‰§è¡Œçš„çŠ¶æ€
  *
- * \note ¸Ãº¯Êı²Ù×÷µ½µÄFLASHÉÈÇø±ØĞëÔÚµ÷ÓÃ¸Ãº¯ÊıÇ°µ÷ÓÃ
- *        amhw_lpc82x_iap_prepare()º¯Êı½øĞĞĞ´Èë×¼±¸²Ù×÷
+ * \note è¯¥å‡½æ•°æ“ä½œåˆ°çš„FLASHæ‰‡åŒºå¿…é¡»åœ¨è°ƒç”¨è¯¥å‡½æ•°å‰è°ƒç”¨
+ *        amhw_lpc82x_iap_prepare()å‡½æ•°è¿›è¡Œå†™å…¥å‡†å¤‡æ“ä½œ
  */
 amhw_lpc82x_iap_stat_t amhw_lpc82x_iap_copy (uint32_t dst_addr,
                                              uint32_t src_addr,
                                              uint32_t nbytes);
 
 /**
- * \brief ÉÈÇø²Á³ı
+ * \brief æ‰‡åŒºæ“¦é™¤
  *
- * \param[in] start_sec : ÆğÊ¼ÉÈÇøºÅ
- * \param[in] end_sec   : ½áÊøÉÈÇøºÅ
+ * \param[in] start_sec : èµ·å§‹æ‰‡åŒºå·
+ * \param[in] end_sec   : ç»“æŸæ‰‡åŒºå·
  *
- * \return IAPÖ¸ÁîÖ´ĞĞµÄ×´Ì¬
+ * \return IAPæŒ‡ä»¤æ‰§è¡Œçš„çŠ¶æ€
  *
- * \note ½áÊøÉÈÇøºÅ±ØĞë´óÓÚ»òµÈÓÚÆğÊ¼ÉÈÇøºÅ£¬¸Ãº¯Êı²Ù×÷µ½µÄFLASHÉÈÇø±ØĞëÔÚµ÷ÓÃ¸Ã
- *       º¯ÊıÇ°µ÷ÓÃamhw_lpc82x_iap_prepare()º¯Êı½øĞĞ×¼±¸²Ù×÷
+ * \note ç»“æŸæ‰‡åŒºå·å¿…é¡»å¤§äºæˆ–ç­‰äºèµ·å§‹æ‰‡åŒºå·ï¼Œè¯¥å‡½æ•°æ“ä½œåˆ°çš„FLASHæ‰‡åŒºå¿…é¡»åœ¨è°ƒç”¨è¯¥
+ *       å‡½æ•°å‰è°ƒç”¨amhw_lpc82x_iap_prepare()å‡½æ•°è¿›è¡Œå‡†å¤‡æ“ä½œ
  */
 amhw_lpc82x_iap_stat_t amhw_lpc82x_iap_erase_sector (uint32_t start_sec,
                                                      uint32_t end_sec);
 
 /**
- * \brief Ò³²Á³ı£¬µ¥Ò³»ò¶àÒ³²Á³ı
+ * \brief é¡µæ“¦é™¤ï¼Œå•é¡µæˆ–å¤šé¡µæ“¦é™¤
  *
- * \param[in] start_page : ÆğÊ¼Ò³ºÅ
- * \param[in] end_page   : ½áÊøÒ³ºÅ
+ * \param[in] start_page : èµ·å§‹é¡µå·
+ * \param[in] end_page   : ç»“æŸé¡µå·
  *
- * \return IAPÖ¸ÁîÖ´ĞĞµÄ×´Ì¬
+ * \return IAPæŒ‡ä»¤æ‰§è¡Œçš„çŠ¶æ€
  *
- * \note ½áÊøÒ³ºÅ±ØĞë´óÓÚ»òµÈÓÚÆğÊ¼Ò³ºÅ£¬¸Ãº¯Êı²Ù×÷µ½µÄFLASHÉÈÇø±ØĞëÔÚµ÷ÓÃ¸Ã
- *       º¯ÊıÇ°µ÷ÓÃamhw_lpc82x_iap_prepare()º¯Êı½øĞĞ×¼±¸²Ù×÷
+ * \note ç»“æŸé¡µå·å¿…é¡»å¤§äºæˆ–ç­‰äºèµ·å§‹é¡µå·ï¼Œè¯¥å‡½æ•°æ“ä½œåˆ°çš„FLASHæ‰‡åŒºå¿…é¡»åœ¨è°ƒç”¨è¯¥
+ *       å‡½æ•°å‰è°ƒç”¨amhw_lpc82x_iap_prepare()å‡½æ•°è¿›è¡Œå‡†å¤‡æ“ä½œ
  */
 amhw_lpc82x_iap_stat_t amhw_lpc82x_iap_erase_page (uint32_t start_page,
                                                    uint32_t end_page);
 
 /**
- * \brief µ¥¸öÉÈÇø»ò¶à¸öÉÈÇø²é¿Õ
+ * \brief å•ä¸ªæ‰‡åŒºæˆ–å¤šä¸ªæ‰‡åŒºæŸ¥ç©º
  *
- * \param[in] start_sec : ÆğÊ¼ÉÈÇøºÅ
- * \param[in] end_sec   : ½áÊøÉÈÇøºÅ
+ * \param[in] start_sec : èµ·å§‹æ‰‡åŒºå·
+ * \param[in] end_sec   : ç»“æŸæ‰‡åŒºå·
  *
- * \return IAPÖ¸ÁîÖ´ĞĞµÄ×´Ì¬£¬Ö´ĞĞÈç¹û³É¹¦(AMHW_LPC82X_IAP_STAT_SUCCESS)±íÃ÷ÉÈÇøÎª¿Õ¡£
+ * \return IAPæŒ‡ä»¤æ‰§è¡Œçš„çŠ¶æ€ï¼Œæ‰§è¡Œå¦‚æœæˆåŠŸ(AMHW_LPC82X_IAP_STAT_SUCCESS)è¡¨æ˜æ‰‡åŒºä¸ºç©ºã€‚
  *
- * \note ½áÊøÉÈÇøºÅ±ØĞë´óÓÚ»òµÈÓÚÆğÊ¼ÉÈÇøºÅ
+ * \note ç»“æŸæ‰‡åŒºå·å¿…é¡»å¤§äºæˆ–ç­‰äºèµ·å§‹æ‰‡åŒºå·
  */
 amhw_lpc82x_iap_stat_t amhw_lpc82x_iap_blank_check (uint32_t start_sec, 
                                                     uint32_t end_sec);
 
 /**
- * \brief ¶ÁPart IDÖµ
- * \return Part IDÖµ
+ * \brief è¯»Part IDå€¼
+ * \return Part IDå€¼
  */
 uint32_t amhw_lpc82x_iap_part_id_read (void);
 
 /**
- * \brief ¶Áboot code°æ±¾ºÅ
- * \return boot code°æ±¾ºÅ, °æ±¾ºÅ¸ñÊ½£º<×Ö½Ú1(Ö÷°æ±¾ºÅ)>.<×Ö½Ú0(´Î°æ±¾ºÅ)>
+ * \brief è¯»boot codeç‰ˆæœ¬å·
+ * \return boot codeç‰ˆæœ¬å·, ç‰ˆæœ¬å·æ ¼å¼ï¼š<å­—èŠ‚1(ä¸»ç‰ˆæœ¬å·)>.<å­—èŠ‚0(æ¬¡ç‰ˆæœ¬å·)>
  */
 uint16_t amhw_lpc82x_iap_boot_ver_read (void);
 
 /**
- * \brief ±È½ÏÁ½´¦ÄÚ´æÖĞµÄÊı¾İ
+ * \brief æ¯”è¾ƒä¸¤å¤„å†…å­˜ä¸­çš„æ•°æ®
  *
- * \param[in] dst_addr : Êı¾İ±È½ÏµÄÊı¾İÄ¿±êµØÖ·£¬¿ÉÒÔÊÇFLASHµØÖ·»òÕßRAMµØÖ·
- * \param[in] src_addr : Êı¾İ±È½ÏµÄÊı¾İÔ´µØÖ·£¬¿ÉÒÔÊÇFLASHµØÖ·»òÕßRAMµØÖ·
- * \param[in] nbytes   : Êı¾İ±È½ÏµÄ¸öÊı
+ * \param[in] dst_addr : æ•°æ®æ¯”è¾ƒçš„æ•°æ®ç›®æ ‡åœ°å€ï¼Œå¯ä»¥æ˜¯FLASHåœ°å€æˆ–è€…RAMåœ°å€
+ * \param[in] src_addr : æ•°æ®æ¯”è¾ƒçš„æ•°æ®æºåœ°å€ï¼Œå¯ä»¥æ˜¯FLASHåœ°å€æˆ–è€…RAMåœ°å€
+ * \param[in] nbytes   : æ•°æ®æ¯”è¾ƒçš„ä¸ªæ•°
  *
- * \return IAPÖ¸ÁîÖ´ĞĞµÄ×´Ì¬
+ * \return IAPæŒ‡ä»¤æ‰§è¡Œçš„çŠ¶æ€
  *
- * \note µØÖ·Ó¦¸ÃÒÔ×Ö¶ÔÆë£¬×Ö½Ú¸öÊıÓ¦¸ÃÊÇ4µÄÕûÊı±¶
+ * \note åœ°å€åº”è¯¥ä»¥å­—å¯¹é½ï¼Œå­—èŠ‚ä¸ªæ•°åº”è¯¥æ˜¯4çš„æ•´æ•°å€
  */
 amhw_lpc82x_iap_stat_t amhw_lpc82x_iap_compare (uint32_t dst_addr,
                                                 uint32_t src_addr,
                                                 uint32_t nbytes);
 
 /**
- * \brief Í¨¹ıIAP½« boot loaderÖØĞÂÇĞ»»µ½ISPÄ£Ê½
- * \return ÎŞ
+ * \brief é€šè¿‡IAPå°† boot loaderé‡æ–°åˆ‡æ¢åˆ°ISPæ¨¡å¼
+ * \return æ— 
  */
 void amhw_lpc82x_iap_reinvoke_isp (void);
 
 /**
- * \brief ¶ÁÆ÷¼şµÄUID(¹²128Î»)
+ * \brief è¯»å™¨ä»¶çš„UID(å…±128ä½)
  * \param[out] uid :
- *              - uid[0] : µÚÒ»¸ö32Î»Êı¾İ (×îµÍµØÖ·£¬×îµÍÎ»0~31£©
- *              - uid[1] : µÚ¶ş¸ö32Î»Êı¾İ
- *              - uid[2] : µÚÈı¸ö32Î»Êı¾İ
- *              - uid[3] : µÚËÄ¸ö32Î»Êı¾İ
- * \return IAPÖ¸ÁîÖ´ĞĞµÄ×´Ì¬
+ *              - uid[0] : ç¬¬ä¸€ä¸ª32ä½æ•°æ® (æœ€ä½åœ°å€ï¼Œæœ€ä½ä½0~31ï¼‰
+ *              - uid[1] : ç¬¬äºŒä¸ª32ä½æ•°æ®
+ *              - uid[2] : ç¬¬ä¸‰ä¸ª32ä½æ•°æ®
+ *              - uid[3] : ç¬¬å››ä¸ª32ä½æ•°æ®
+ * \return IAPæŒ‡ä»¤æ‰§è¡Œçš„çŠ¶æ€
  */
 amhw_lpc82x_iap_stat_t amhw_lpc82x_iap_unique_id_read (uint32_t uid[4]);
 

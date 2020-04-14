@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ·äÃùÆ÷ÓÃ»§ÅäÖÃÎÄ¼þ£¨PWMÇý¶¯£©
+ * \brief èœ‚é¸£å™¨ç”¨æˆ·é…ç½®æ–‡ä»¶ï¼ˆPWMé©±åŠ¨ï¼‰
  *
  * \internal
  * \par Modification history
@@ -30,14 +30,14 @@ extern "C" {
 #include "am_pwm.h"
 
 /**
- * \brief ·äÃùÆ÷ÊµÀý³õÊ¼»¯
+ * \brief èœ‚é¸£å™¨å®žä¾‹åˆå§‹åŒ–
  *
- * µ±Ê¹ÓÃ·äÃùÆ÷Ê±£¬Ä¬ÈÏ½«Ê¹ÓÃ TIM3 µÄ OUT1 Êä³ö PWM ²¨ÐÎ£¬Òò´ËÒÑ¾­½« TIM3 ³õÊ¼»¯Îª
- * PWM ¹¦ÄÜ
+ * å½“ä½¿ç”¨èœ‚é¸£å™¨æ—¶ï¼Œé»˜è®¤å°†ä½¿ç”¨ TIM3 çš„ OUT1 è¾“å‡º PWM æ³¢å½¢ï¼Œå› æ­¤å·²ç»å°† TIM3 åˆå§‹åŒ–ä¸º
+ * PWM åŠŸèƒ½
  *
- * \param ÎÞ
+ * \param æ— 
  *
- * \return PWM ±ê×¼·þÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return PWM æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜Žåˆå§‹åŒ–å¤±è´¥
  */
 am_pwm_handle_t am_buzzer_pwm_inst_init (void);
 

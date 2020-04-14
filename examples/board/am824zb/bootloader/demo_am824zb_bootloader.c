@@ -12,18 +12,18 @@
 
 /**
  * \file
- * \brief ZM516ÎŞÏß¹Ì¼şÉı¼¶Àı³Ì£¬±¾demoÊµÏÖzigbee¹Ì¼ş½ÓÊÕ£¬ÊÇ×÷ÎªB°åµÄbootloader¡£
+ * \brief ZM516æ— çº¿å›ºä»¶å‡çº§ä¾‹ç¨‹ï¼Œæœ¬demoå®ç°zigbeeå›ºä»¶æ¥æ”¶ï¼Œæ˜¯ä½œä¸ºBæ¿çš„bootloaderã€‚
  * \note
- *    1. ´®¿Ú0ĞèÒªÓëPCÁ¬½Ó£¬Í¨¹ı´®¿ÚÖúÊÖ·¢ËÍ¹Ì¼ş£¬²¨ÌØÂÊÎª115200£¬Òı½ÅÁ¬½Ó¹ØÏµÈçÏÂ£º
+ *    1. ä¸²å£0éœ€è¦ä¸PCè¿æ¥ï¼Œé€šè¿‡ä¸²å£åŠ©æ‰‹å‘é€å›ºä»¶ï¼Œæ³¢ç‰¹ç‡ä¸º115200ï¼Œå¼•è„šè¿æ¥å…³ç³»å¦‚ä¸‹ï¼š
  * <pre>
  *           PIO0_0   <-->  PC_TX
  *           PIO0_4   <-->  PC_RX
  *
- *    ×¢Òâ£º  B°å³ÌĞòÏÂÔØÔËĞĞºó»á´®¿Ú´òÓ¡5sµ¹¼ÆÊ±µÄĞÅÏ¢£¬
- *            ĞèÒªÔÚÕâ5sÄÚ·¢ËÍÈÎÒâÃüÁî(Í¨A°å·¢ËÍ´®¿ÚÈÎÒâ×Ö·û£¬²»ÄÜ³¬¹ı64×Ö½Ú)£¬ÕâÊ±½øÈë¹Ì¼ş
- *            ½ÓÊÕ×´Ì¬£¬´ËÊ±»áµÈ´ı³¬Ê±10s£¬µÈ´ı½ÓÊÕ¹Ì¼ş¡£Èç¹ûA°åÃ»ÓĞ·¢ËÍÈÎÒâ×Ö·û£¬Ôò¸Ã
- *            ³ÌĞò»á¼ì²âB°åµÄflashÓÃ»§´úÂëÇøÊÇ·ñÓĞ¿ÉÖ´ĞĞµÄ´úÂë£¬Èç¹ûÓĞÔòÌø×ªµ½¸Ã´úÂë´¦ÔËĞĞ£¬
- *            ·ñÔò³ÌĞò»áÖØĞÂµÈ´ı¹Ì¼ş½ÓÊÕÃüÁî(´òÓ¡µ¹¼ÆÊ±5sĞÅÏ¢)¡£
+ *    æ³¨æ„ï¼š  Bæ¿ç¨‹åºä¸‹è½½è¿è¡Œåä¼šä¸²å£æ‰“å°5så€’è®¡æ—¶çš„ä¿¡æ¯ï¼Œ
+ *            éœ€è¦åœ¨è¿™5så†…å‘é€ä»»æ„å‘½ä»¤(é€šAæ¿å‘é€ä¸²å£ä»»æ„å­—ç¬¦ï¼Œä¸èƒ½è¶…è¿‡64å­—èŠ‚)ï¼Œè¿™æ—¶è¿›å…¥å›ºä»¶
+ *            æ¥æ”¶çŠ¶æ€ï¼Œæ­¤æ—¶ä¼šç­‰å¾…è¶…æ—¶10sï¼Œç­‰å¾…æ¥æ”¶å›ºä»¶ã€‚å¦‚æœAæ¿æ²¡æœ‰å‘é€ä»»æ„å­—ç¬¦ï¼Œåˆ™è¯¥
+ *            ç¨‹åºä¼šæ£€æµ‹Bæ¿çš„flashç”¨æˆ·ä»£ç åŒºæ˜¯å¦æœ‰å¯æ‰§è¡Œçš„ä»£ç ï¼Œå¦‚æœæœ‰åˆ™è·³è½¬åˆ°è¯¥ä»£ç å¤„è¿è¡Œï¼Œ
+ *            å¦åˆ™ç¨‹åºä¼šé‡æ–°ç­‰å¾…å›ºä»¶æ¥æ”¶å‘½ä»¤(æ‰“å°å€’è®¡æ—¶5sä¿¡æ¯)ã€‚
  *
  *
  * \internal
@@ -50,44 +50,44 @@
 #include <string.h>
 #include "am_lpc824_boot_firmware_flash.h"
 
-/* ÊÇ·ñÍ¨¹ıÔ¶³Ì½ÓÊÕµÄÃüÁîĞŞ¸Ä±¾µØµØÖ· */
+/* æ˜¯å¦é€šè¿‡è¿œç¨‹æ¥æ”¶çš„å‘½ä»¤ä¿®æ”¹æœ¬åœ°åœ°å€ */
 #define  CHANGE_MY_ADDR             0
 
 /**
- * \name bootloader×´Ì¬
+ * \name bootloaderçŠ¶æ€
  * @{
  */
-/** \brief Æô¶¯ÑÓÊ±µÈ´ı×´Ì¬ */
+/** \brief å¯åŠ¨å»¶æ—¶ç­‰å¾…çŠ¶æ€ */
 #define BOOT_WAIT_STATE             0
 
-/** \brief bootloaderÆô¶¯×´Ì¬ */
+/** \brief bootloaderå¯åŠ¨çŠ¶æ€ */
 #define BOOT_STARTUP_STATE          1
 
-/** \brief Ó¦ÓÃÆô¶¯×´Ì¬ */
+/** \brief åº”ç”¨å¯åŠ¨çŠ¶æ€ */
 #define APP_STARTUP_STATE           2
 
-/** \brief Ó¦ÓÃ¹Ì¼ş½ÓÊÕ×´Ì¬ */
+/** \brief åº”ç”¨å›ºä»¶æ¥æ”¶çŠ¶æ€ */
 #define APP_RECEIVE_STATE           3
 
-/** \brief Ó¦ÓÃ¹Ì¼ş½ÓÊÕ½áÊø×´Ì¬ */
+/** \brief åº”ç”¨å›ºä»¶æ¥æ”¶ç»“æŸçŠ¶æ€ */
 #define APP_RECEIVE_END             4
 /** @} */
 
 
-/** \brief Æô¶¯ÑÓÊ±Ê±¼ä£¨Ãë£© */
+/** \brief å¯åŠ¨å»¶æ—¶æ—¶é—´ï¼ˆç§’ï¼‰ */
 #define BOOT_WAITE_TIME             5
 
-/** \brief ¶¨Ê±Æ÷¶¨Ê±Ê±¼ä */
+/** \brief å®šæ—¶å™¨å®šæ—¶æ—¶é—´ */
 static volatile uint16_t timer = BOOT_WAITE_TIME;
 
-/** \brief bootloader×´Ì¬*/
+/** \brief bootloaderçŠ¶æ€*/
 static volatile uint8_t boot_state = BOOT_WAIT_STATE;
 
-/** \brief Ò»Ãë³¬Ê±±êÖ¾ */
+/** \brief ä¸€ç§’è¶…æ—¶æ ‡å¿— */
 static volatile uint8_t second_flag   = 0;
 
 /**
- * \brief  Æô¶¯ÑÓÊ±µÈ´ıÈí¼ş¶¨Ê±Æ÷»Øµ÷º¯Êı
+ * \brief  å¯åŠ¨å»¶æ—¶ç­‰å¾…è½¯ä»¶å®šæ—¶å™¨å›è°ƒå‡½æ•°
  */
 static void __startup_wait_timer_handle(void *p_arg)
 {
@@ -107,7 +107,7 @@ static void __delay(void)
 static uint8_t __attribute__((aligned(256))) recv_buf[64] = {0};
 
 /**
- * \brief bootloader demoÈë¿Ú
+ * \brief bootloader demoå…¥å£
  */
 void demo_am824zb_bootloader_entry (void)
 {
@@ -117,19 +117,19 @@ void demo_am824zb_bootloader_entry (void)
 
     am_zm516x_handle_t zm516x_handle = am_zm516x_inst_init();  
   
-	/** \brief bootloaderÆô¶¯ÑÓÊ±Èí¼ş¶¨Ê±Æ÷½á¹¹Ìå */
+	/** \brief bootloaderå¯åŠ¨å»¶æ—¶è½¯ä»¶å®šæ—¶å™¨ç»“æ„ä½“ */
     am_softimer_t        startup_wait_timer;
 	
     int      ret;
 	  uint32_t count   = 0; 
 		
-    /* »ñÈ¡ ZigBee Ä£¿éµÄÅäÖÃĞÅÏ¢£¨ÓÀ¾ÃÃüÁî£ºD1£© */
+    /* è·å– ZigBee æ¨¡å—çš„é…ç½®ä¿¡æ¯ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šD1ï¼‰ */
     if (am_zm516x_cfg_info_get(zm516x_handle, &zm516x_cfg_info) != AM_OK) {
 		    am_kprintf("zm516x_cfg_info_get fiald\r\n");
 		}
 
 	  zm516x_cfg_info.chan         = 20;
-    zm516x_cfg_info.serial_rate  = 3; /* ²¨ÌØÂÊ9600 */
+    zm516x_cfg_info.serial_rate  = 3; /* æ³¢ç‰¹ç‡9600 */
 		
 		zm516x_cfg_info.dst_addr[0]  = 0x00;
 	  zm516x_cfg_info.dst_addr[1]  = 0x00;
@@ -140,12 +140,12 @@ void demo_am824zb_bootloader_entry (void)
 	  zm516x_cfg_info.my_addr[0]   = 0x20;
 	  zm516x_cfg_info.my_addr[1]   = 0x02;
 		
-    /* ĞŞ¸Ä ZigBee Ä£¿éµÄÅäÖÃĞÅÏ¢£¨ÓÀ¾ÃÃüÁî£ºD6£©£¬ÉèÖÃ³É¹¦Ğè¸´Î» */
+    /* ä¿®æ”¹ ZigBee æ¨¡å—çš„é…ç½®ä¿¡æ¯ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šD6ï¼‰ï¼Œè®¾ç½®æˆåŠŸéœ€å¤ä½ */
     if (am_zm516x_cfg_info_set(zm516x_handle, &zm516x_cfg_info) != AM_OK) {
 				am_kprintf("zm516x_cfg_info_set fiald\r\n");
 		}
 		
-    /* Ê¹ ZigBee Ä£¿é¸´Î»£¨ÓÀ¾ÃÃüÁî£ºD9£© */
+    /* ä½¿ ZigBee æ¨¡å—å¤ä½ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šD9ï¼‰ */
     am_zm516x_reset(zm516x_handle);
     __delay();
 		
@@ -153,18 +153,18 @@ void demo_am824zb_bootloader_entry (void)
 		              AM_UART_BAUD_SET, 
 		              (void *)9600);
 		
-    /* bootloader flash³õÊ¼»¯  */
+    /* bootloader flashåˆå§‹åŒ–  */
     am_boot_flash_handle_t flash_handle = am_lpc824_boot_flash_inst_init();
-    /* ¹Ì¼ş´æ·Å±ê×¼½Ó¿Ú³õÊ¼»¯  */
+    /* å›ºä»¶å­˜æ”¾æ ‡å‡†æ¥å£åˆå§‹åŒ–  */
     firmware_handle = am_lpc824_boot_firmware_flash(flash_handle);
 	
-      /* bootloader ±ê×¼½Ó¿Ú³õÊ¼»¯  */
+      /* bootloader æ ‡å‡†æ¥å£åˆå§‹åŒ–  */
     am_lpc824_std_boot_inst_init(flash_handle);
 	
     am_uart_handle_t uart_handle = am_lpc82x_usart0_inst_init();
     am_debug_init(uart_handle, 115200);
 		
-    /* Æô¶¯ÑÓÊ±»Øµ÷¶¨Ê±Æ÷³õÊ¼»¯  */
+    /* å¯åŠ¨å»¶æ—¶å›è°ƒå®šæ—¶å™¨åˆå§‹åŒ–  */
     am_softimer_init(&startup_wait_timer, __startup_wait_timer_handle, &startup_wait_timer);
 		
 		am_softimer_start(&startup_wait_timer, 1000);
@@ -172,23 +172,23 @@ void demo_am824zb_bootloader_entry (void)
 		am_kprintf("Device will enter application, if don't input anything after %ds\r\n",timer);
 		
 		timer = 0;
-		/* ÑÓÊ±µÈ´ı£¬Èç¹ûÓÃ»§ÓĞÊı¾İ·¢À´£¬¾Í½øÈëbootloader£¬·ñÕßÌø×ªµ½Ó¦ÓÃ³ÌĞò */
+		/* å»¶æ—¶ç­‰å¾…ï¼Œå¦‚æœç”¨æˆ·æœ‰æ•°æ®å‘æ¥ï¼Œå°±è¿›å…¥bootloaderï¼Œå¦è€…è·³è½¬åˆ°åº”ç”¨ç¨‹åº */
 		while(boot_state == BOOT_WAIT_STATE) {
 			
-		    /* Èô½ÓÊÕµ½Êı¾İ£¬ÔòÇĞ»»µ½Bootloader×´Ì¬ */
+		    /* è‹¥æ¥æ”¶åˆ°æ•°æ®ï¼Œåˆ™åˆ‡æ¢åˆ°BootloaderçŠ¶æ€ */
 		    ret = am_zm516x_receive(zm516x_handle, (uint8_t *)&recv_buf, sizeof(recv_buf));
 				if (ret > 0) {
 					boot_state = BOOT_STARTUP_STATE;
 					break;
 			  }
 			
-			  /* Èô³¬Ê±£¬ Ôò½øÈëÓÃ»§´úÂëÇø */
+			  /* è‹¥è¶…æ—¶ï¼Œ åˆ™è¿›å…¥ç”¨æˆ·ä»£ç åŒº */
 				if (timer > BOOT_WAITE_TIME){
 					boot_state = APP_STARTUP_STATE;
 					break;
 				}
 			
-				/* Ã¿Ãë´òÓ¡Ò»´Î */
+				/* æ¯ç§’æ‰“å°ä¸€æ¬¡ */
 				if(timer < BOOT_WAITE_TIME && second_flag == 1){
 			      am_kprintf("Device will enter application, if don't input anything after %ds\r\n", BOOT_WAITE_TIME - timer);	
 					  second_flag = 0;
@@ -198,10 +198,10 @@ void demo_am824zb_bootloader_entry (void)
     while(1) {
 		    am_kprintf("bootloader : running...\r\n");
 
-		    /* Èç¹û½øÈë¹Ì¼ş½ÓÊÕ×´Ì¬ */
+		    /* å¦‚æœè¿›å…¥å›ºä»¶æ¥æ”¶çŠ¶æ€ */
 		    if (boot_state == BOOT_STARTUP_STATE) {
 			 
-			 	    /* ×¼±¸¹Ì¼ş´æ·Å */
+			 	    /* å‡†å¤‡å›ºä»¶å­˜æ”¾ */
             am_boot_firmware_store_start(firmware_handle, 18 * 1024);
 			      am_kprintf("bootloader : firmware transmission is ready\r\n");
 
@@ -217,7 +217,7 @@ void demo_am824zb_bootloader_entry (void)
 				    while(boot_state == BOOT_STARTUP_STATE) {		
 						    ret = am_zm516x_receive(zm516x_handle, recv_buf, sizeof(recv_buf));					  
 						    if (ret > 0) {
-						        /* ¹Ì¼ş´æ·Å  £¬Ã¿´Î´æ·Å×Ö½Ú */ 
+						        /* å›ºä»¶å­˜æ”¾  ï¼Œæ¯æ¬¡å­˜æ”¾å­—èŠ‚ */ 
 							      am_boot_firmware_store_bytes(firmware_handle, recv_buf, sizeof(recv_buf));
 
 							      timer = 0;
@@ -233,15 +233,15 @@ void demo_am824zb_bootloader_entry (void)
 				    }
         }
 		  
-        /* Èç¹û¹Ì¼ş½ÓÊÕ½áÊø */
+        /* å¦‚æœå›ºä»¶æ¥æ”¶ç»“æŸ */
 			  if (boot_state == APP_RECEIVE_END) {
-				    /* ¹Ì¼ş´æ·Å½áÊø  */
+				    /* å›ºä»¶å­˜æ”¾ç»“æŸ  */
             am_boot_firmware_store_final(firmware_handle);
 
-			      /* ´òÓ¡½ÓÊÕµÄÊı¾İ´óĞ¡£¬¼õÈ¥2×Ö½ÚµÄmy_addr ¼ÓÉÏ8×Ö½ÚÍ·*/
+			      /* æ‰“å°æ¥æ”¶çš„æ•°æ®å¤§å°ï¼Œå‡å»2å­—èŠ‚çš„my_addr åŠ ä¸Š8å­—èŠ‚å¤´*/
             am_kprintf("bootloader : firmware receive successful\r\n");
 				
-            /* ¹Ì¼şĞ£Ñé  */
+            /* å›ºä»¶æ ¡éªŒ  */
             ret = am_boot_firmware_verify(firmware_handle, &firmware_head);
             if(ret != AM_OK) {
                 am_kprintf("bootloader : firmware verify error, bootloader will restart!\r\n");
@@ -252,18 +252,18 @@ void demo_am824zb_bootloader_entry (void)
 				    boot_state = APP_STARTUP_STATE;
 								
 #if CHANGE_MY_ADDR				
-				/* »ñÈ¡ ZigBee Ä£¿éµÄÅäÖÃĞÅÏ¢£¨ÓÀ¾ÃÃüÁî£ºD1£© */
+				/* è·å– ZigBee æ¨¡å—çš„é…ç½®ä¿¡æ¯ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šD1ï¼‰ */
         am_zm516x_cfg_info_get(zm516x_handle, &zm516x_cfg_info);
 				
 				zm516x_cfg_info.my_addr[0] = recv_buf[1];
 				zm516x_cfg_info.my_addr[1] = recv_buf[0];
 				
-				    /* ĞŞ¸Ä ZigBee Ä£¿éµÄÅäÖÃĞÅÏ¢£¨ÓÀ¾ÃÃüÁî£ºD6£©£¬ÉèÖÃ³É¹¦Ğè¸´Î» */
+				    /* ä¿®æ”¹ ZigBee æ¨¡å—çš„é…ç½®ä¿¡æ¯ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šD6ï¼‰ï¼Œè®¾ç½®æˆåŠŸéœ€å¤ä½ */
 				if (am_zm516x_cfg_info_set(zm516x_handle, &zm516x_cfg_info) != AM_OK) {
 					am_kprintf("addr set error!!!\r\n");
 				}
 	
-				/* Ê¹ ZigBee Ä£¿é¸´Î»£¨ÓÀ¾ÃÃüÁî£ºD9£© */
+				/* ä½¿ ZigBee æ¨¡å—å¤ä½ï¼ˆæ°¸ä¹…å‘½ä»¤ï¼šD9ï¼‰ */
 				am_zm516x_reset(zm516x_handle);
 				am_mdelay(10);
 				
@@ -276,7 +276,7 @@ void demo_am824zb_bootloader_entry (void)
 
             __delay();
             am_lpc82x_usart0_inst_deinit(uart_handle);
-            /* Ìø×ªµ½Ó¦ÓÃ³ÌĞò  */
+            /* è·³è½¬åˆ°åº”ç”¨ç¨‹åº  */
             if(AM_OK != am_boot_go_application()){
 					      count = 0;
 							  boot_state = BOOT_STARTUP_STATE;

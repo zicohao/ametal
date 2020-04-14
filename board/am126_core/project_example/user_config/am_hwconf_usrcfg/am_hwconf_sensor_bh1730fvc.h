@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ´«¸ĞÆ÷ BH1730FVC ÅäÖÃÎÄ¼ş
+ * \brief ä¼ æ„Ÿå™¨ BH1730FVC é…ç½®æ–‡ä»¶
  *
  * \internal
  * \par Modification history
@@ -31,12 +31,12 @@ extern "C" {
 #endif
 
 /**
- * \brief ´«¸ĞÆ÷ BH1730FVC Éè±¸ÊµÀı»¯
+ * \brief ä¼ æ„Ÿå™¨ BH1730FVC è®¾å¤‡å®ä¾‹åŒ–
  */
 am_sensor_handle_t am_sensor_bh1730fvc_inst_init (void);
 
 /**
- * \brief ´«¸ĞÆ÷ BH1730FVC ÊµÀı½â³õÊ¼»¯
+ * \brief ä¼ æ„Ÿå™¨ BH1730FVC å®ä¾‹è§£åˆå§‹åŒ–
  */
 am_err_t am_sensor_bh1730fvc_inst_deinit (am_sensor_handle_t handle);
 

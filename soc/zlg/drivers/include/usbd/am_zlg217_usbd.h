@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief USB DEVICEÇý¶¯
+ * \brief USB DEVICEé©±åŠ¨
  *
  * \internal
  * \par Modification History
@@ -35,13 +35,13 @@ extern "C" {
  * \brief
  */
 typedef struct am_zlg227_usbd_devinfo{
-    uint32_t usb_regbase;          /**< \brief usb »ùµØÖ·*/
+    uint32_t usb_regbase;          /**< \brief usb åŸºåœ°å€*/
 
-    int inum;                      /**< \brief ÖÐ¶ÏºÅ */
+    int inum;                      /**< \brief ä¸­æ–­å· */
 
-    void (*pfn_plfm_init)(void);   /**< \brief Æ½Ì¨³õÊ¼»¯º¯Êý  */
+    void (*pfn_plfm_init)(void);   /**< \brief å¹³å°åˆå§‹åŒ–å‡½æ•°  */
 
-    void (*pfn_plfm_deinit)(void); /**< \brief Æ½Ì¨È¥³õÊ¼»¯º¯Êý */
+    void (*pfn_plfm_deinit)(void); /**< \brief å¹³å°åŽ»åˆå§‹åŒ–å‡½æ•° */
 
     const am_usbd_devinfo_t *p_devinfo;
 
@@ -57,9 +57,9 @@ struct am_zlg227_usbd_dev {
     /**< \brief Device handle used to identify the device object belongs to */
     am_usbd_dev_t  device;
 
-    /**< \brief ·¢ÉúÖÐ¶ÏµÄ¶Ëµã£¬Îª1±íÊ¾·¢ÉúÖÐ¶Ï£¬Îª0±íÊ¾Ã»ÓÐ·¢ÉúÖÐ¶Ï
-     *   D7:D5  ±£Áô
-     *   D4~D0  ¶ÔÓ¦·¢ÉúÖÐ¶ÏµÄ¶Ëµã4~¶Ëµã0¡£
+    /**< \brief å‘ç”Ÿä¸­æ–­çš„ç«¯ç‚¹ï¼Œä¸º1è¡¨ç¤ºå‘ç”Ÿä¸­æ–­ï¼Œä¸º0è¡¨ç¤ºæ²¡æœ‰å‘ç”Ÿä¸­æ–­
+     *   D7:D5  ä¿ç•™
+     *   D4~D0  å¯¹åº”å‘ç”Ÿä¸­æ–­çš„ç«¯ç‚¹4~ç«¯ç‚¹0ã€‚
      */
     union {
         uint8_t int_ep_flag;
@@ -72,15 +72,15 @@ struct am_zlg227_usbd_dev {
         }int_ep_flag_field;
     }int_ep_union;
 
-    /**< \brief ¶ËµãÖÐ¶ÏµÄÀàÐÍ£¬Îª1±íÊ¾·¢ÉúÖÐ¶Ï£¬Îª0±íÊ¾Ã»ÓÐ·¢ÉúÖÐ¶Ï
+    /**< \brief ç«¯ç‚¹ä¸­æ–­çš„ç±»åž‹ï¼Œä¸º1è¡¨ç¤ºå‘ç”Ÿä¸­æ–­ï¼Œä¸º0è¡¨ç¤ºæ²¡æœ‰å‘ç”Ÿä¸­æ–­
      *   D7:OUT_STALL
      *   D6:OUT_ACK
      *   D5:OUT_NACK
      *   D4:IN_STALL
      *   D3:IN_ACK
      *   D2:IN_NACK
-     *   D1:END       ¶Ëµã´«ÊäÍê³É
-     *   D0:SETUP     ½ÓÊÕµ½SETUP°ü
+     *   D1:END       ç«¯ç‚¹ä¼ è¾“å®Œæˆ
+     *   D0:SETUP     æŽ¥æ”¶åˆ°SETUPåŒ…
      */
     union {
         uint8_t ep_int_type[AM_USBD_MAX_EP_CNT];
@@ -96,14 +96,14 @@ struct am_zlg227_usbd_dev {
         }ep_int_type_field[AM_USBD_MAX_EP_CNT];
     }ep_int_type_union;
 
-    /**< \brief Éè±¸ÐÅÏ¢½á¹¹Ö¸Õë */
+    /**< \brief è®¾å¤‡ä¿¡æ¯ç»“æž„æŒ‡é’ˆ */
     const am_zlg227_usbd_devinfo_t         *p_info;
 };
 
 
 
 ///*******************************************************************************
-//   Íâ²¿ÉùÃ÷º¯Êý
+//   å¤–éƒ¨å£°æ˜Žå‡½æ•°
 //*******************************************************************************/
 
 

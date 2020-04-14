@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZLG72128Í¨ÓÃ½Ó¿Ú£¨°üÀ¨ÊýÂë¹Ü½Ó¿ÚºÍ°´¼ü½Ó¿Ú£©Çý¶¯ÊµÏÖ
+ * \brief ZLG72128é€šç”¨æŽ¥å£ï¼ˆåŒ…æ‹¬æ•°ç ç®¡æŽ¥å£å’ŒæŒ‰é”®æŽ¥å£ï¼‰é©±åŠ¨å®žçŽ°
  *
  * \internal
  * \par Modification History
@@ -37,7 +37,7 @@
     Local Functions
 *******************************************************************************/
 
-/* »ñÈ¡Ö¸¶¨ÐÐ¡¢ÁÐ¶ÔÓ¦°´¼üµÄ¼üÂë£¨key_code£©*/
+/* èŽ·å–æŒ‡å®šè¡Œã€åˆ—å¯¹åº”æŒ‰é”®çš„é”®ç ï¼ˆkey_codeï¼‰*/
 static int __zlg72128_key_code_get (am_zlg72128_std_dev_t *p_dev,
                                     int                    row,
                                     int                    col,
@@ -79,7 +79,7 @@ static int __zlg72128_key_code_get (am_zlg72128_std_dev_t *p_dev,
         return AM_OK;
     }
 
-    return -AM_ENOENT;                                        /* ¸Ã°´¼üÎ´Ê¹ÄÜ */
+    return -AM_ENOENT;                                        /* è¯¥æŒ‰é”®æœªä½¿èƒ½ */
 }
 
 /******************************************************************************/
@@ -98,7 +98,7 @@ static void __zlg72128_key_process (void    *p_arg,
     int     keep_time;
 
     /*
-     * ÆÕÍ¨°´¼ü´¦Àí
+     * æ™®é€šæŒ‰é”®å¤„ç†
      */
     if (key_val != 0x00) {
         key_val--;                     /* let the key_code start from 0       */
@@ -108,18 +108,18 @@ static void __zlg72128_key_process (void    *p_arg,
         if (__zlg72128_key_code_get(p_dev, row, col, &key_code) == AM_OK) {
 
             /*
-             * ÆÕÍ¨°´¼ü£¬Ö±½ÓÉÏ±¨¼üÖµºÍ°´¼ü±£³ÖÊ±¼ä
+             * æ™®é€šæŒ‰é”®ï¼Œç›´æŽ¥ä¸ŠæŠ¥é”®å€¼å’ŒæŒ‰é”®ä¿æŒæ—¶é—´
              *
-             * ÆÕÍ¨°´¼ü³¤°´ÊÂ¼þÉÏ±¨¹æÔò£¬°´×¡ 2s ºó£¬ Ã¿¸ô 200ms ÉÏ±¨Ò»´Î°´¼ü
+             * æ™®é€šæŒ‰é”®é•¿æŒ‰äº‹ä»¶ä¸ŠæŠ¥è§„åˆ™ï¼ŒæŒ‰ä½ 2s åŽï¼Œ æ¯éš” 200ms ä¸ŠæŠ¥ä¸€æ¬¡æŒ‰é”®
              *
-             * °´¼ü±£³ÖÊ±¼ä¼´Îª£º 2000 + 200 * repeat_cnt
+             * æŒ‰é”®ä¿æŒæ—¶é—´å³ä¸ºï¼š 2000 + 200 * repeat_cnt
              *
-             * repeat_cnt  Êµ¼ÊÊ±¼ä
-             *     0      0£¨Ê×´Î°´ÏÂ£©
-             *     1      2000£¨°´¼ü´ïµ½2s£©
+             * repeat_cnt  å®žé™…æ—¶é—´
+             *     0      0ï¼ˆé¦–æ¬¡æŒ‰ä¸‹ï¼‰
+             *     1      2000ï¼ˆæŒ‰é”®è¾¾åˆ°2sï¼‰
              *     2      2200
              *     3      2400
-             *    ...     ...  (Ã¿¸ô200msÉÏ±¨Ò»´Î°´¼üÊÂ¼þ)
+             *    ...     ...  (æ¯éš”200msä¸ŠæŠ¥ä¸€æ¬¡æŒ‰é”®äº‹ä»¶)
              */
             if (repeat_cnt == 0) {
                 keep_time = 0;
@@ -133,7 +133,7 @@ static void __zlg72128_key_process (void    *p_arg,
     }
 
     /*
-     * ¹¦ÄÜ°´¼ü´¦Àí
+     * åŠŸèƒ½æŒ‰é”®å¤„ç†
      */
     if (p_dev->p_info->key_use_row_flags & AM_ZLG72128_STD_KEY_ROW_3) {
 
@@ -147,11 +147,11 @@ static void __zlg72128_key_process (void    *p_arg,
 
                     if (__zlg72128_key_code_get(p_dev, 3, i, &key_code) == AM_OK) {
 
-                        if (funkey_val & (1 << i)) {              /* °´¼üÊÍ·Å */
+                        if (funkey_val & (1 << i)) {              /* æŒ‰é”®é‡Šæ”¾ */
 
                             am_event_input_key_released(key_code);
 
-                        } else {                                  /* °´¼ü°´ÏÂ */
+                        } else {                                  /* æŒ‰é”®æŒ‰ä¸‹ */
 
                             am_event_input_key_pressed(key_code);
                         }

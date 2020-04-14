@@ -23,7 +23,7 @@
 #include "hw/amhw_zmf159_can.h"
 
 /**
- * \brief can Ä£Ê½ÉèÖÃ
+ * \brief can æ¨¡å¼è®¾ç½®
  */
 void amhw_zmf159_can_mode_set (amhw_zmf159_can_t      *p_hw_can,
                                  amhw_zmf159_can_type_t type,
@@ -34,12 +34,12 @@ void amhw_zmf159_can_mode_set (amhw_zmf159_can_t      *p_hw_can,
         return;
     }
 
-    /* ¸üĞÂÄ£Ê½ºÍÔ­Ä£Ê½ÏàµÈÔòÖ±½ÓÍË³ö */
+    /* æ›´æ–°æ¨¡å¼å’ŒåŸæ¨¡å¼ç›¸ç­‰åˆ™ç›´æ¥é€€å‡º */
     if (update == *p_now) {
         return;
     }
 
-    /* Èç¹ûCAN´¦ÓÚË¯ÃßÄ£Ê½£¬ÇÒ½«ÉèÖÃÎªÆäËûÄ£Ê½£¬ÔòÏÈ»½ĞÑCAN£¬½«²ÎÉú»½ĞÑÖĞ¶Ï */
+    /* å¦‚æœCANå¤„äºç¡çœ æ¨¡å¼ï¼Œä¸”å°†è®¾ç½®ä¸ºå…¶ä»–æ¨¡å¼ï¼Œåˆ™å…ˆå”¤é†’CANï¼Œå°†å‚ç”Ÿå”¤é†’ä¸­æ–­ */
     if (*p_now == AMHW_ZMF159_CAN_MODE_SLEEP) {
         if (AMHW_ZMF159_CAN_BASIC_CAN == type) {
             amhw_zmf159_basic_can_wake_up(p_hw_can);
@@ -49,17 +49,17 @@ void amhw_zmf159_can_mode_set (amhw_zmf159_can_t      *p_hw_can,
         }
     }
 
-    /* basic CANÄ£Ê½ */
+    /* basic CANæ¨¡å¼ */
     if (AMHW_ZMF159_CAN_BASIC_CAN == type) {
 
-        /* ÇĞ»»×´Ì¬µ½Õı³£Ä£Ê½ */
+        /* åˆ‡æ¢çŠ¶æ€åˆ°æ­£å¸¸æ¨¡å¼ */
         if (AMHW_ZMF159_CAN_MODE_RESET == *p_now) {
             amhw_zmf159_basic_can_reset_clr(p_hw_can);
         } else if (AMHW_ZMF159_CAN_MODE_SLEEP == *p_now) {
             amhw_zmf159_basic_can_wake_up(p_hw_can);
         }
 
-        /* ÉèÖÃ×´Ì¬ */
+        /* è®¾ç½®çŠ¶æ€ */
         if (AMHW_ZMF159_CAN_MODE_RESET == update) {
             amhw_zmf159_basic_can_reset_set(p_hw_can);
         } else if (AMHW_ZMF159_CAN_MODE_SLEEP == *p_now) {
@@ -68,16 +68,16 @@ void amhw_zmf159_can_mode_set (amhw_zmf159_can_t      *p_hw_can,
 
     } else {
 
-        /* peli CAN,ÇĞ»»µ½Õı³£Ä£Ê½ */
+        /* peli CAN,åˆ‡æ¢åˆ°æ­£å¸¸æ¨¡å¼ */
         amhw_zmf159_peli_can_mod_clr(p_hw_can, *p_now);
 
-        /* Ö»ÌıÄ£Ê½Ö»ÄÜÔÚ¸´Î»Ä£Ê½ÏÂ½øÈë */
+        /* åªå¬æ¨¡å¼åªèƒ½åœ¨å¤ä½æ¨¡å¼ä¸‹è¿›å…¥ */
         if (AMHW_ZMF159_CAN_MODE_ONLY_LISTEN == update) {
             amhw_zmf159_peli_can_mod_set(p_hw_can,
                                            AMHW_ZMF159_CAN_MODE_RESET);
         }
 
-        /* ÉèÖÃÄ£Ê½ */
+        /* è®¾ç½®æ¨¡å¼ */
         if (AMHW_ZMF159_CAN_MODE_RUN != update) {
             amhw_zmf159_peli_can_mod_set(p_hw_can, update);
         }

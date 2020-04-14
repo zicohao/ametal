@@ -11,15 +11,15 @@
 *******************************************************************************/
 /**
  * \file
- * \brief zml166_adc²âÁ¿¹Ì¶¨µçÑ¹£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief zml166_adcæµ‹é‡å›ºå®šç”µå‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Á¬½ÓºÃ´®¿Ú£¬²¢½«²âÁ¿µçÑ¹ÊäÈë¶ÔÓ¦µÄÍ¨µÀ¡£
- *   2. Ñ¡Ôñ¶ÔÓ¦µÄÔöÒæ±¶Êı£¬±»²âµçÑ¹*ÔöÒæÓ¦Ğ¡ÓÚ»ù×¼µçÑ¹
- *   3. ´®¿Ú½«»á´òÓ¡³öµçÑ¹Öµ
- *   4. ¿ÉÔÚ³ÌĞòÔËĞĞÖĞÇĞ»»µçÑ¹Öµ  Ö±½ÓÊäÈëÏàÓ¦µÄÊı×Ö¼´¿É¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. è¿æ¥å¥½ä¸²å£ï¼Œå¹¶å°†æµ‹é‡ç”µå‹è¾“å…¥å¯¹åº”çš„é€šé“ã€‚
+ *   2. é€‰æ‹©å¯¹åº”çš„å¢ç›Šå€æ•°ï¼Œè¢«æµ‹ç”µå‹*å¢ç›Šåº”å°äºåŸºå‡†ç”µå‹
+ *   3. ä¸²å£å°†ä¼šæ‰“å°å‡ºç”µå‹å€¼
+ *   4. å¯åœ¨ç¨‹åºè¿è¡Œä¸­åˆ‡æ¢ç”µå‹å€¼  ç›´æ¥è¾“å…¥ç›¸åº”çš„æ•°å­—å³å¯ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet dome_AM_ZML166_ADC_adjust_vol_entry.c src_dome_AM_ZML166_ADC_adjust_vol_entry
  *
  * \internal
@@ -32,13 +32,13 @@
  * \addtogroup demo_if_AM_ZML166_ADC_adjust_vol_entry
  * \copydoc dome_AM_ZML166_ADC_adjust_vol_entry.c
  */
-/*\brief  Í·ÎÄ¼ş*/
+/*\brief  å¤´æ–‡ä»¶*/
 #include "ametal.h"
 #include "string.h"
 #include "am_vdebug.h"
 #include "am_zml166_adc.h"
 
-/*\brief  ºê¶¨Òå*/
+/*\brief  å®å®šä¹‰*/
 #define AM_ADJUST_RANGE_ADJUST_1    (0.01)
 #define AM_ADJUST_RANGE_ADJUST_2    (0.09)
 #define AM_ADJUST_RANGE_ADJUST_3    (0.5)
@@ -47,7 +47,7 @@
 const static uint8_t __g_pag[8] = {1, 2, 4, 8, 16, 32, 64, 128};
 
 /**
- * \brief ´®¿Ú»ñÈ¡ÒÔ'\n'½áÎ²µÄ×Ö·û´®
+ * \brief ä¸²å£è·å–ä»¥'\n'ç»“å°¾çš„å­—ç¬¦ä¸²
  */
 static void __uart_str_get(am_uart_handle_t handle, char *buffer)
 {
@@ -62,7 +62,7 @@ static void __uart_str_get(am_uart_handle_t handle, char *buffer)
     }
 }
 /**
- * \brief ´òÓ¡Ğ£×¼ÏµÊı¹«Ê½
+ * \brief æ‰“å°æ ¡å‡†ç³»æ•°å…¬å¼
  */
 static void __print_adjust_function(uint8_t pag_index,float para_1, float para_2)
 {
@@ -88,7 +88,7 @@ static void __print_adjust_function(uint8_t pag_index,float para_1, float para_2
     }
 }
 /*
- * \brief  È¡³ö×Ö·û´®ÖĞ¸¡µãÊı  ÊıÇ°±êÖ¾Î» '-'
+ * \brief  å–å‡ºå­—ç¬¦ä¸²ä¸­æµ®ç‚¹æ•°  æ•°å‰æ ‡å¿—ä½ '-'
  */
 static float __atof(char *str_a)
 {
@@ -127,7 +127,7 @@ static float __atof(char *str_a)
     }
 }
 /**
- * \brief ×Ö·û´®±È½Ï
+ * \brief å­—ç¬¦ä¸²æ¯”è¾ƒ
  */
 static int __str_cmp(char *p_str1, char *p_str2, int count)
 {
@@ -149,7 +149,7 @@ static int __str_cmp(char *p_str1, char *p_str2, int count)
 }
 
 /**
- * \brief AML166µçÑ¹Ğ£×¼º¯Êı£¨7ÖÖÔöÒæÏÂĞŞµ÷ÏµÊı ²»º¬128±¶£©
+ * \brief AML166ç”µå‹æ ¡å‡†å‡½æ•°ï¼ˆ7ç§å¢ç›Šä¸‹ä¿®è°ƒç³»æ•° ä¸å«128å€ï¼‰
  */
 void am_zml166_adc_adjust_entry(void                    *p_handle,
                                 am_uart_handle_t         uart_handle,
@@ -164,7 +164,7 @@ void am_zml166_adc_adjust_entry(void                    *p_handle,
     am_kprintf("Entry ADC adjust mode \r\n\r\n");
 
     while(AM_OK != __str_cmp(uart_data, "V0:", 3)){
-        am_kprintf("Please input input cali0-cali1 voltage(mV). (eg:¡®V0:3.145\\n¡¯)\r\n");
+        am_kprintf("Please input input cali0-cali1 voltage(mV). (eg:â€˜V0:3.145\\nâ€™)\r\n");
         __uart_str_get(uart_handle, uart_data);
     }
     cail0_vol = __atof(&uart_data[3]);
@@ -174,7 +174,7 @@ void am_zml166_adc_adjust_entry(void                    *p_handle,
 
 
     while(AM_OK != __str_cmp(uart_data, "V1:", 3)){
-        am_kprintf("Please input cali2-cali1 voltage(mV). (eg:¡®V1:30.755\\n¡¯)\r\n");
+        am_kprintf("Please input cali2-cali1 voltage(mV). (eg:â€˜V1:30.755\\nâ€™)\r\n");
         __uart_str_get(uart_handle, uart_data);
     }
     cail1_vol = __atof(&uart_data[3]);
@@ -184,7 +184,7 @@ void am_zml166_adc_adjust_entry(void                    *p_handle,
 
     am_kprintf("Please config V0 measure(A12-cali0  A13-cali1)\n");
     while(AM_OK != __str_cmp(uart_data, "Y", 1)){
-        am_kprintf("Are you do it? (Intput ¡®Y\\n¡¯ to ensure you have do it) \r\n");
+        am_kprintf("Are you do it? (Intput â€˜Y\\nâ€™ to ensure you have do it) \r\n");
         __uart_str_get(uart_handle, uart_data);
     }
     am_kprintf("Y\r\n\r\n");
@@ -204,7 +204,7 @@ void am_zml166_adc_adjust_entry(void                    *p_handle,
 
     am_kprintf("Please config V1 measure(A12-cali2  A13-cail1)\n");
     while(AM_OK != __str_cmp(uart_data, "Y", 1)){
-        am_kprintf("Are you do it? (Intput ¡®Y\\n¡¯ to ensure you have do it) \r\n");
+        am_kprintf("Are you do it? (Intput â€˜Y\\nâ€™ to ensure you have do it) \r\n");
         __uart_str_get(uart_handle, uart_data);
     }
     am_kprintf("Y\r\n\r\n");
@@ -223,11 +223,11 @@ void am_zml166_adc_adjust_entry(void                    *p_handle,
             p_para[2 * i] = (cail1_vol - cail0_vol) / (x2[i] - x1[i]);
             p_para[2 * i + 1] = (cail1_vol) - p_para[2 * i] * x2[i];
 
-            //ÅĞ¶Ï³£ÊıÏîÎó²îÊÇ·ñÔÚÔÊĞí·¶Î§ÄÚ
+            //åˆ¤æ–­å¸¸æ•°é¡¹è¯¯å·®æ˜¯å¦åœ¨å…è®¸èŒƒå›´å†…
             if(p_para[2 * i + 1] < AM_ADJUST_RANGE_ADJUST_3 &&
                     p_para[2 * i + 1] > (-1 * AM_ADJUST_RANGE_ADJUST_3)){
 
-                //ÅĞ¶Ï1 16 32±¶Ê±ÏµÊıÎó²îÊÇ·ñÔÚÔÊĞí·¶Î§ÄÚ
+                //åˆ¤æ–­1 16 32å€æ—¶ç³»æ•°è¯¯å·®æ˜¯å¦åœ¨å…è®¸èŒƒå›´å†…
                 if(i == 0 || i == 4 || i == 5 ){
                     if(p_para[2 * i] < (1 + AM_ADJUST_RANGE_ADJUST_1)
                             && p_para[2 * i] > (1 - AM_ADJUST_RANGE_ADJUST_1) ){
@@ -237,7 +237,7 @@ void am_zml166_adc_adjust_entry(void                    *p_handle,
                         p_para[2 * i] = 1;
                         p_para[2 * i + 1] = 0;
                     }
-                //ÅĞ¶Ï³ı1 16 32ÒÔÍâ±¶ÊıÊ±ÏµÊıÎó²îÊÇ·ñÔÚÔÊĞí·¶Î§ÄÚ
+                //åˆ¤æ–­é™¤1 16 32ä»¥å¤–å€æ•°æ—¶ç³»æ•°è¯¯å·®æ˜¯å¦åœ¨å…è®¸èŒƒå›´å†…
                 }else{
                     if(p_para[2 * i] < (1 + AM_ADJUST_RANGE_ADJUST_2) &&
                             p_para[2 * i] > (1 - AM_ADJUST_RANGE_ADJUST_1) ){
@@ -262,7 +262,7 @@ void am_zml166_adc_adjust_entry(void                    *p_handle,
 }
 
 /*
- * \brief ADC½øĞĞÏµÊıĞ£×¼Demo
+ * \brief ADCè¿›è¡Œç³»æ•°æ ¡å‡†Demo
  */
 void demo_zml166_adc_vol_para_adjuet_entry(am_zml166_adc_handle_t  handle,
                                            am_uart_handle_t        uart_handle,
@@ -271,7 +271,7 @@ void demo_zml166_adc_vol_para_adjuet_entry(am_zml166_adc_handle_t  handle,
     char uart_data[20];
 
     while(uart_data[0] <'0' || uart_data[0] >'2'){
-        am_kprintf("Please choose your option. eg: ¡®1\\n¡¯  \r\n");
+        am_kprintf("Please choose your option. eg: â€˜1\\nâ€™  \r\n");
         am_kprintf("1. Enter calibration mode.\r\n");
         am_kprintf("2. Check parameters.  \r\n");
         __uart_str_get(uart_handle, uart_data);

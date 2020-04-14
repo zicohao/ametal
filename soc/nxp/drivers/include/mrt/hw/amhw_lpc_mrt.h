@@ -301,12 +301,12 @@ void amhw_lpc_mrt_int_pending_clr (amhw_lpc_mrt_t *p_hw_mrt, uint8_t chan)
 }
 
 /**
- * \brief Çå³ıÍ¨µÀµÄÖĞ¶Ï¹ÒÆğ×´Ì¬
+ * \brief æ¸…é™¤é€šé“çš„ä¸­æ–­æŒ‚èµ·çŠ¶æ€
  *
- * \param[in] p_hw_mrt : Ö¸ÏòMRT¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] masks    : Í¨µÀÑÚÂë£¬bit-n¶ÔÓ¦Í¨µÀn£¬Îª1µÄÎ»ÖĞ¶Ï¹ÒÆğ×´Ì¬±»Çå³ı
+ * \param[in] p_hw_mrt : æŒ‡å‘MRTå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] masks    : é€šé“æ©ç ï¼Œbit-nå¯¹åº”é€šé“nï¼Œä¸º1çš„ä½ä¸­æ–­æŒ‚èµ·çŠ¶æ€è¢«æ¸…é™¤
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_lpc_mrt_int_pending_maks_clr (amhw_lpc_mrt_t *p_hw_mrt,
@@ -316,13 +316,13 @@ void amhw_lpc_mrt_int_pending_maks_clr (amhw_lpc_mrt_t *p_hw_mrt,
 }
 
 /**
- * \brief ÅĞ¶ÏÖ¸¶¨Í¨µÀµÄÖĞ¶ÏÊÇ·ñ¹ÒÆğ
+ * \brief åˆ¤æ–­æŒ‡å®šé€šé“çš„ä¸­æ–­æ˜¯å¦æŒ‚èµ·
  *
- * \param[in] p_hw_mrt : Ö¸ÏòMRT¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] chan     : Í¨µÀ±àºÅ£¬AMHW_LPC_MRT_CH(n) (# AMHW_LPC_MRT_CH(0))
+ * \param[in] p_hw_mrt : æŒ‡å‘MRTå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] chan     : é€šé“ç¼–å·ï¼ŒAMHW_LPC_MRT_CH(n) (# AMHW_LPC_MRT_CH(0))
  *
- * \retval TRUE  : ÖĞ¶Ï¹ÒÆğ
- * \retval FALSE : ÖĞ¶ÏÎ´¹ÒÆğ
+ * \retval TRUE  : ä¸­æ–­æŒ‚èµ·
+ * \retval FALSE : ä¸­æ–­æœªæŒ‚èµ·
  */
 am_static_inline
 am_bool_t amhw_lpc_mrt_chan_pending_chk (amhw_lpc_mrt_t *p_hw_mrt, uint8_t chan)

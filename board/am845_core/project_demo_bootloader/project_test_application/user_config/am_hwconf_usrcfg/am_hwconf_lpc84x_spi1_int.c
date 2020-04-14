@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief LPC84X SPI (ÖĞ¶Ï·½Ê½) ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief LPC84X SPI (ä¸­æ–­æ–¹å¼) ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_lpc84x_spi1_int.c
  *
  * \internal
@@ -36,7 +36,7 @@
  */
 
 /**
- * \brief SPI1 Æ½Ì¨³õÊ¼»¯
+ * \brief SPI1 å¹³å°åˆå§‹åŒ–
  */
 am_local void __lpc84x_spi1_int_plfm_init (void)
 {
@@ -44,7 +44,7 @@ am_local void __lpc84x_spi1_int_plfm_init (void)
     am_gpio_pin_cfg(PIO0_18, PIO_FUNC_SPI1_MOSI);
     am_gpio_pin_cfg(PIO0_19, PIO_FUNC_SPI1_MISO);
 
-    /* CS_Pin ÓÉÓÃ»§µ÷ÓÃ STD º¯ÊıÊ±×ÔĞĞ´«Èë£¬´Ë´¦²»ĞèÅäÖÃ */
+    /* CS_Pin ç”±ç”¨æˆ·è°ƒç”¨ STD å‡½æ•°æ—¶è‡ªè¡Œä¼ å…¥ï¼Œæ­¤å¤„ä¸éœ€é…ç½® */
 
     amhw_lpc84x_clk_spi1_clk_sel_set (AMHW_LPC84X_CLK_DEVICE_FRG0CLK);
     amhw_lpc84x_clk_periph_enable(AMHW_LPC84X_CLK_SPI1);
@@ -52,7 +52,7 @@ am_local void __lpc84x_spi1_int_plfm_init (void)
 }
 
 /**
- * \brief SPI1 Æ½Ì¨½â³õÊ¼»¯
+ * \brief SPI1 å¹³å°è§£åˆå§‹åŒ–
  */
 am_local void __lpc84x_spi1_int_plfm_deinit (void)
 {
@@ -64,20 +64,20 @@ am_local void __lpc84x_spi1_int_plfm_deinit (void)
     am_gpio_pin_cfg(PIO0_9, AM_GPIO_PULLUP | AM_GPIO_INPUT);
 }
 
-/** \brief SPI1 (ÖĞ¶Ï·½Ê½) Éè±¸ĞÅÏ¢ */
+/** \brief SPI1 (ä¸­æ–­æ–¹å¼) è®¾å¤‡ä¿¡æ¯ */
 am_local am_const struct am_lpc_spi_int_devinfo __g_lpc84x_spi1_int_devinfo = {
-    LPC84X_SPI1_BASE,                /* SPI1 ¼Ä´æÆ÷¿é»ùµØÖ· */
-    INUM_SPI1,                       /* SPI1 ÖĞ¶ÏºÅ */
-    CLK_SPI1,                        /* SPI1 Ê±ÖÓºÅ */
-    __lpc84x_spi1_int_plfm_init,     /* Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __lpc84x_spi1_int_plfm_deinit    /* Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    LPC84X_SPI1_BASE,                /* SPI1 å¯„å­˜å™¨å—åŸºåœ°å€ */
+    INUM_SPI1,                       /* SPI1 ä¸­æ–­å· */
+    CLK_SPI1,                        /* SPI1 æ—¶é’Ÿå· */
+    __lpc84x_spi1_int_plfm_init,     /* å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __lpc84x_spi1_int_plfm_deinit    /* å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 };
 
-/** \brief SPI1 (ÖĞ¶Ï·½Ê½) Éè±¸ÊµÀı */
+/** \brief SPI1 (ä¸­æ–­æ–¹å¼) è®¾å¤‡å®ä¾‹ */
 am_local am_lpc_spi_int_dev_t __g_lpc84x_spi1_int_dev;
 
 /**
- * \brief SP0I (ÖĞ¶Ï·½Ê½) ÊµÀı³õÊ¼»¯
+ * \brief SP0I (ä¸­æ–­æ–¹å¼) å®ä¾‹åˆå§‹åŒ–
  */
 am_spi_handle_t am_lpc84x_spi1_int_inst_init (void)
 {
@@ -86,7 +86,7 @@ am_spi_handle_t am_lpc84x_spi1_int_inst_init (void)
 }
 
 /**
- * \brief SPI1 (ÖĞ¶Ï·½Ê½) ÊµÀı½â³õÊ¼»¯
+ * \brief SPI1 (ä¸­æ–­æ–¹å¼) å®ä¾‹è§£åˆå§‹åŒ–
  */
 void am_lpc84x_spi1_int_inst_deinit (am_spi_handle_t handle)
 {

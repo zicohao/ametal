@@ -11,16 +11,16 @@
 *******************************************************************************/
 /**
  * \file
- * \brief SPIÖ÷»úÑÝÊ¾Àý³Ì£¬Í¨¹ýHW²ãµÄ½Ó¿ÚÊµÏÖ
+ * \brief SPIä¸»æœºæ¼”ç¤ºä¾‹ç¨‹ï¼Œé€šè¿‡HWå±‚çš„æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè:
- *   1. ½«SPIµÄPIOC_6ºÍPIOC_7ÓÃÏßÏàÁ¬£¬Ä£Äâ´Ó»úÉè±¸£¬»Ø»·²âÊÔ£»
+ * - æ“ä½œæ­¥éª¤:
+ *   1. å°†SPIçš„PIOC_6å’ŒPIOC_7ç”¨çº¿ç›¸è¿žï¼Œæ¨¡æ‹Ÿä»Žæœºè®¾å¤‡ï¼Œå›žçŽ¯æµ‹è¯•ï¼›
  *
- * - ÊµÑéÏÖÏó:
- *   1. Ö÷»úÍ¨¹ýMOSI·¢ËÍÊý¾Ý£¬·¢³öµÄÊý¾Ý´ÓMOSI¶Á»Ø£»
- *   2. ±È½Ï·¢³öºÍ¶Á»ØµÄÊý¾Ý£¬Èç¹ûÏàÍ¬LED0Ò»Ö±³£ÁÁ,·ñÔòÒÔ200msÊ±¼ä¼ä¸ôÉÁË¸£»
+ * - å®žéªŒçŽ°è±¡:
+ *   1. ä¸»æœºé€šè¿‡MOSIå‘é€æ•°æ®ï¼Œå‘å‡ºçš„æ•°æ®ä»ŽMOSIè¯»å›žï¼›
+ *   2. æ¯”è¾ƒå‘å‡ºå’Œè¯»å›žçš„æ•°æ®ï¼Œå¦‚æžœç›¸åŒLED0ä¸€ç›´å¸¸äº®,å¦åˆ™ä»¥200msæ—¶é—´é—´éš”é—ªçƒï¼›
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_amks16z_core_hw_spi_master.c src_amks16z_core_hw_spi_master
  *
  * \internal
@@ -46,10 +46,10 @@
 #include "../../../../soc/freescale/kl26/kl26_pin.h"
 #include "demo_amks16z_core_all_entries.h"
 
-#define SPI_CS_PIN          PIOC_4     /**< \brief Æ¬Ñ¡Òý½Å             */
+#define SPI_CS_PIN          PIOC_4     /**< \brief ç‰‡é€‰å¼•è„š             */
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_amks16z_core_hw_spi_master_entry (void)
 {
@@ -57,10 +57,10 @@ void demo_amks16z_core_hw_spi_master_entry (void)
 
     AM_DBG_INFO("demo amks16z_core hw spi master!\r\n");
 
-    /* ¿ªÆôÊ±ÖÓ */
+    /* å¼€å¯æ—¶é’Ÿ */
     amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_SPI0);
 
-    /* ÅäÖÃÒý½Å */
+    /* é…ç½®å¼•è„š */
     am_gpio_pin_cfg(SPI_CS_PIN, AM_GPIO_OUTPUT_INIT_HIGH | AM_GPIO_PULLUP);
     am_gpio_pin_cfg(PIOC_5, PIOC_5_SPI0_SCK  | AM_GPIO_PULLUP);
     am_gpio_pin_cfg(PIOC_6, PIOC_6_SPI0_MISO | AM_GPIO_PULLUP);

@@ -12,20 +12,20 @@
 
 /**
  * \file
- * \brief µôµç¼ì²âÀý³Ì£¬Í¨¹ý HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief æŽ‰ç”µæ£€æµ‹ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æŽ¥å£å®žçŽ°
  *
- * - ÊµÑé²½Öè£º
- *   1. ¸Ä±ä¹©µçµçÑ¹£¬Ê¹Ö®µÍÓÚ 2.85V¡£
+ * - å®žéªŒæ­¥éª¤ï¼š
+ *   1. æ”¹å˜ä¾›ç”µç”µåŽ‹ï¼Œä½¿ä¹‹ä½ŽäºŽ 2.85Vã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ÈôÍâ²¿Òý½ÅÒýÆðµÄ¸´Î»£¬´®¿ÚÊä³ö "Reset by External Reset Pin"£»
- *   2. Èôµôµç¼ì²âÒýÆðµÄ¸´Î»£¬´®¿ÚÊä³ö "Reset by BOD"£»
- *   3. Õý³£¹©µçÏÂ£¬LED0 ²»ÁÁ£¬Èô¹©µçµçÑ¹²»¶Ï½µµÍ£¬µÍÓÚ 2.85V Ê±£¬LED0 ÁÁ¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. è‹¥å¤–éƒ¨å¼•è„šå¼•èµ·çš„å¤ä½ï¼Œä¸²å£è¾“å‡º "Reset by External Reset Pin"ï¼›
+ *   2. è‹¥æŽ‰ç”µæ£€æµ‹å¼•èµ·çš„å¤ä½ï¼Œä¸²å£è¾“å‡º "Reset by BOD"ï¼›
+ *   3. æ­£å¸¸ä¾›ç”µä¸‹ï¼ŒLED0 ä¸äº®ï¼Œè‹¥ä¾›ç”µç”µåŽ‹ä¸æ–­é™ä½Žï¼Œä½ŽäºŽ 2.85V æ—¶ï¼ŒLED0 äº®ã€‚
  *
  * \note
- *    LED0 ÐèÒª¶Ì½Ó J9 ÌøÏßÃ±£¬²ÅÄÜ±» PIO0_20 ¿ØÖÆ¡£
+ *    LED0 éœ€è¦çŸ­æŽ¥ J9 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIO0_20 æŽ§åˆ¶ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_lpc824_hw_bod.c src_lpc824_hw_bod
  *
  * \internal
@@ -48,11 +48,11 @@
 #include "hw/amhw_lpc82x_syscon.h"
 
 /**
- * \brief BOD ÖÐ¶Ï´¦Àíº¯Êý
+ * \brief BOD ä¸­æ–­å¤„ç†å‡½æ•°
  *
- * \param[in] p_arg ÖÐ¶ÏÈë¿Ú²ÎÊý
+ * \param[in] p_arg ä¸­æ–­å…¥å£å‚æ•°
  *
- * \return ÎÞ
+ * \return æ— 
  */
 am_local void __bod_irq_callback (void *p_arg)
 {
@@ -60,12 +60,12 @@ am_local void __bod_irq_callback (void *p_arg)
 }
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_lpc824_hw_bod_entry (void)
 {
 
-    /* Èôµôµç¼ì²âÒýÆð¸´Î»£¬´®¿ÚÊä³öÌáÊ¾×Ö·û£¬LED0 ÁÁ */
+    /* è‹¥æŽ‰ç”µæ£€æµ‹å¼•èµ·å¤ä½ï¼Œä¸²å£è¾“å‡ºæç¤ºå­—ç¬¦ï¼ŒLED0 äº® */
     if ((amhw_lpc82x_syscon_rst_stat_get() &
          AMHW_LPC82X_SYSCON_RSTSTAT_BOD) != 0) {
 
@@ -81,7 +81,7 @@ void demo_lpc824_hw_bod_entry (void)
 
     amhw_lpc82x_syscon_powerup(AMHW_LPC82X_SYSCON_PD_BOD);
 
-    /* Éè¶¨µôµç¼ì²âÖÐ¶ÏµçÑ¹ 2.85V£¬Éè±¸¸´Î»µçÑ¹ 1.46V */
+    /* è®¾å®šæŽ‰ç”µæ£€æµ‹ä¸­æ–­ç”µåŽ‹ 2.85Vï¼Œè®¾å¤‡å¤ä½ç”µåŽ‹ 1.46V */
     amhw_lpc82x_syscon_bod_level_set(AMHW_LPC82X_SYSCON_BODRSTLVL_1_46V,
                                      AMHW_LPC82X_SYSCON_BODINTLVL_2_85V);
 

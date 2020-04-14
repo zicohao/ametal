@@ -12,20 +12,20 @@
 
 /**
  * \file
- * \brief GPIOÒý½ÅÖÐ¶ÏÀý³Ì£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief GPIOå¼•è„šä¸­æ–­ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷£º
- * - 1.½«J14µÄkeyºÍPIOC_0¶Ì½ÓÔÚÒ»Æð;
- *   2.½«J9µÄLED0ºÍPIOC_4¶Ì½ÓÔÚÒ»Æð;
- *   3.½«J10µÄLED1ºÍPIOC_8¶Ì½ÓÔÚÒ»Æð;
- *   4.PIOA_1 Òý½ÅÁ¬½ÓPC´®¿ÚµÄTXD;
- *   5.PIOA_2 Òý½ÅÁ¬½ÓPC´®¿ÚµÄRXD;
- *   6.ÅäÖÃÉÏÎ»»ú´®¿Ú²¨ÌØÂÊÎª115200£¬8Î»Êý¾Ý³¤¶È 1Î»Í£Ö¹Î» ÎÞÆæÅ¼Ð£Ñé;
+ * - æ“ä½œï¼š
+ * - 1.å°†J14çš„keyå’ŒPIOC_0çŸ­æŽ¥åœ¨ä¸€èµ·;
+ *   2.å°†J9çš„LED0å’ŒPIOC_4çŸ­æŽ¥åœ¨ä¸€èµ·;
+ *   3.å°†J10çš„LED1å’ŒPIOC_8çŸ­æŽ¥åœ¨ä¸€èµ·;
+ *   4.PIOA_1 å¼•è„šè¿žæŽ¥PCä¸²å£çš„TXD;
+ *   5.PIOA_2 å¼•è„šè¿žæŽ¥PCä¸²å£çš„RXD;
+ *   6.é…ç½®ä¸Šä½æœºä¸²å£æ³¢ç‰¹çŽ‡ä¸º115200ï¼Œ8ä½æ•°æ®é•¿åº¦ 1ä½åœæ­¢ä½ æ— å¥‡å¶æ ¡éªŒ;
  *
- *- ÊµÏÖÏÖÏó£º³ÌÐòÏÂÔØµ½demo°åºó£¬°´ÏÂ°´¼ü£¬demo°åÉÏµÄLED0»áÉÁ,
- *          Í¬Ê±´®¿ÚÊä³ö "the gpio interrupt happen!"
+ *- å®žçŽ°çŽ°è±¡ï¼šç¨‹åºä¸‹è½½åˆ°demoæ¿åŽï¼ŒæŒ‰ä¸‹æŒ‰é”®ï¼Œdemoæ¿ä¸Šçš„LED0ä¼šé—ª,
+ *          åŒæ—¶ä¸²å£è¾“å‡º "the gpio interrupt happen!"
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_kl26_hw_gpio_int.c src_kl26_hw_gpio_int
  * 
  * \internal
@@ -52,45 +52,45 @@
 
 
 /** 
- * \brief Òý½ÅÖÐ¶Ï·þÎñº¯Êý
+ * \brief å¼•è„šä¸­æ–­æœåŠ¡å‡½æ•°
  */
 static void hw_gpio_isr (void *p_arg)
 {
     amhw_kl26_port_t *p_hw_port = (amhw_kl26_port_t *)p_arg;
 
-    /* Çå³ýÖÐ¶Ï±êÖ¾ */
+    /* æ¸…é™¤ä¸­æ–­æ ‡å¿— */
     amhw_kl26_port_pin_isf_clr(p_hw_port, PIOC_0);
-    /* Òý½ÅÊä³ö×´Ì¬·­×ª */
+    /* å¼•è„šè¾“å‡ºçŠ¶æ€ç¿»è½¬ */
     am_gpio_toggle(PIOC_4);
 
     AM_DBG_INFO("the gpio interrupt happen!\r\n");
 }
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_kl26_hw_gpio_int_entry (void)
 {
-    /* ÉèÖÃ PORTC 0,4ºÅ¹Ü½ÅÎªGPIO¹¦ÄÜ */
+    /* è®¾ç½® PORTC 0,4å·ç®¡è„šä¸ºGPIOåŠŸèƒ½ */
     amhw_kl26_port_pin_func_cfg(KL26_PORT, PIOC_4, 0x1);
     amhw_kl26_port_pin_func_cfg(KL26_PORT, PIOC_0, 0x1);
 
-    /* ÉèÖÃGPIOC 4ºÅ¹Ü½ÅÎªÊä³ö·½Ïò */
+    /* è®¾ç½®GPIOC 4å·ç®¡è„šä¸ºè¾“å‡ºæ–¹å‘ */
     amhw_kl26_gpio_pin_dir_output(KL26_GPIO, PIOC_4);
-    /* ÅäÖÃGPIOC 0Òý½Å·½ÏòÎªÊäÈë */
+    /* é…ç½®GPIOC 0å¼•è„šæ–¹å‘ä¸ºè¾“å…¥ */
     amhw_kl26_gpio_pin_dir_input(KL26_GPIO, PIOC_0);
 
-    /* ÉèÖÃGPIOC 4ºÅ¹Ü½Å³õÊ¼µçÆ½ */
+    /* è®¾ç½®GPIOC 4å·ç®¡è„šåˆå§‹ç”µå¹³ */
     amhw_kl26_gpio_pin_init_out_low(KL26_GPIO, PIOC_4);
 
-    /* ÅäÖÃGPIOC 0Òý½ÅÎªÉÏÀ­ */
+    /* é…ç½®GPIOC 0å¼•è„šä¸ºä¸Šæ‹‰ */
     amhw_kl26_port_pin_pull_enable(KL26_PORT, PIOC_0);
     amhw_kl26_port_pin_pull_up(KL26_PORT, PIOC_0);
 
-    /* ÅäÖÃGPIOC 0ÎªÏÂ½µÑØ´¥·¢ */
+    /* é…ç½®GPIOC 0ä¸ºä¸‹é™æ²¿è§¦å‘ */
     amhw_kl26_port_pin_irq_cfg(KL26_PORT, PIOC_0, AMHW_KL26_INT_FALLING);
 
-    /* Á¬½ÓÖÐ¶Ï·þÎñº¯Êý */
+    /* è¿žæŽ¥ä¸­æ–­æœåŠ¡å‡½æ•° */
     am_gpio_trigger_connect(PIOC_0, hw_gpio_isr, (void *)KL26_PORT);
 
     while (1) {

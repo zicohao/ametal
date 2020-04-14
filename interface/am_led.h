@@ -12,17 +12,17 @@
 
 /**
  * \file
- * \brief  LED±ê×¼½Ó¿Ú
+ * \brief  LEDæ ‡å‡†æ¥å£
  * 
- * \par Ê¹ÓÃÊ¾Àı
+ * \par ä½¿ç”¨ç¤ºä¾‹
  * \code
  * #include "am_led.h"
  *
- * am_led_set(0, AM_TRUE);     // µãÁÁLED0
- * am_led_set(0, AM_FALSE);    // Ï¨ÃğLED0
+ * am_led_set(0, AM_TRUE);     // ç‚¹äº®LED0
+ * am_led_set(0, AM_FALSE);    // ç†„ç­LED0
  *
- * am_led_on(1);               // µãÁÁLED1
- * am_led_off(1);              // Ï¨ÃğLED1
+ * am_led_on(1);               // ç‚¹äº®LED1
+ * am_led_off(1);              // ç†„ç­LED1
  *
  * \endcode
  *
@@ -50,43 +50,43 @@ extern "C" {
  */
 
 /**
- * \brief ÉèÖÃLEDµÄ×´Ì¬
+ * \brief è®¾ç½®LEDçš„çŠ¶æ€
  *
- * \param[in] led_id : LED±àºÅ, ¿ÉÓÃ±àºÅÓÉ¾ßÌåÆ½Ì¨¾ö¶¨
- * \param[in] state  : AM_TRUE : LEDÁÁ£»AM_FALSE : LEDÃğ
+ * \param[in] led_id : LEDç¼–å·, å¯ç”¨ç¼–å·ç”±å…·ä½“å¹³å°å†³å®š
+ * \param[in] state  : AM_TRUE : LEDäº®ï¼›AM_FALSE : LEDç­
  *
- * \retval  AM_OK     : ²Ù×÷³É¹¦
- * \retval -AM_ENODEV : Éè±¸²»´æÔÚ
+ * \retval  AM_OK     : æ“ä½œæˆåŠŸ
+ * \retval -AM_ENODEV : è®¾å¤‡ä¸å­˜åœ¨
  */
 int am_led_set (int led_id, am_bool_t state);
 
 /**
- * \brief µãÁÁLED
+ * \brief ç‚¹äº®LED
  *
- * \param[in] led_id : LED±àºÅ
+ * \param[in] led_id : LEDç¼–å·
  *
- * \retval  AM_OK     : ²Ù×÷³É¹¦
- * \retval -AM_ENODEV : Éè±¸²»´æÔÚ
+ * \retval  AM_OK     : æ“ä½œæˆåŠŸ
+ * \retval -AM_ENODEV : è®¾å¤‡ä¸å­˜åœ¨
  */
 int am_led_on(int led_id);
 
 /**
- * \brief Ï¨ÃğLED
+ * \brief ç†„ç­LED
  *
- * \param[in] led_id : LED±àºÅ
+ * \param[in] led_id : LEDç¼–å·
  *
- * \retval  AM_OK     : ²Ù×÷³É¹¦
- * \retval -AM_ENODEV : Éè±¸²»´æÔÚ
+ * \retval  AM_OK     : æ“ä½œæˆåŠŸ
+ * \retval -AM_ENODEV : è®¾å¤‡ä¸å­˜åœ¨
  */
 int am_led_off(int led_id);
 
 /**
- * \brief ·­×ªÖ¸¶¨LEDµÄ×´Ì¬
+ * \brief ç¿»è½¬æŒ‡å®šLEDçš„çŠ¶æ€
  *
- * \param[in] led_id : LED±àºÅ
+ * \param[in] led_id : LEDç¼–å·
  *
- * \retval  AM_OK     : ²Ù×÷³É¹¦
- * \retval -AM_ENODEV : Éè±¸²»´æÔÚ
+ * \retval  AM_OK     : æ“ä½œæˆåŠŸ
+ * \retval -AM_ENODEV : è®¾å¤‡ä¸å­˜åœ¨
  */
 int am_led_toggle(int led_id);
 

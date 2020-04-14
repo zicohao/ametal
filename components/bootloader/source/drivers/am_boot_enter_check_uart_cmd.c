@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ½øÈëÓ¦ÓÃ³ÌĞò±ê×¼½Ó¿ÚÊµÏÖ£¨´®¿ÚÖ¸¶¨ÃüÁîÇı¶¯£©
+ * \brief è¿›å…¥åº”ç”¨ç¨‹åºæ ‡å‡†æ¥å£å®ç°ï¼ˆä¸²å£æŒ‡å®šå‘½ä»¤é©±åŠ¨ï¼‰
  *
  * \internal
  * \par Modification history
@@ -28,21 +28,21 @@
 #define CMD_ERROR                0
 #define CMD_RIGHT                1
 
-/** \brief ÓÃ»§ÃüÁî³¤¶È */
+/** \brief ç”¨æˆ·å‘½ä»¤é•¿åº¦ */
 #define USER_COMMAND_LEN         5
 
-/** \brief ÓÃ»§¿ÉÒÔ¶¨ÒåµÄÃüÁî, ÃüÁîÒÔ0x5a,0xa6×÷ÎªÖ¡Í·£¬ÃüÁîÒÔ0x0d½áÎ²£¬¿ÉÒÔ×Ô¶¨ÒåÖĞ¼äµÄÁ½¸ö¸ö×Ö·û  */
+/** \brief ç”¨æˆ·å¯ä»¥å®šä¹‰çš„å‘½ä»¤, å‘½ä»¤ä»¥0x5a,0xa6ä½œä¸ºå¸§å¤´ï¼Œå‘½ä»¤ä»¥0x0dç»“å°¾ï¼Œå¯ä»¥è‡ªå®šä¹‰ä¸­é—´çš„ä¸¤ä¸ªä¸ªå­—ç¬¦  */
 static char user_command[USER_COMMAND_LEN] = {0x5a, 0xa6, 0x11, 0x66, 0x0d};
 
-/** \brief ÓÃÀ´´æ·Å½ÓÊÕµÄÃüÁî */
+/** \brief ç”¨æ¥å­˜æ”¾æ¥æ”¶çš„å‘½ä»¤ */
 static char command_rec[USER_COMMAND_LEN + 1] = {0};
 volatile static uint8_t command_error = 0, index_t = 0, cmd_flag = CMD_ERROR;
 
-/** \brief Êı¾İ½ÓÊÕ³¬Ê±Èí¼ş¶¨Ê±Æ÷½á¹¹Ìå  */
+/** \brief æ•°æ®æ¥æ”¶è¶…æ—¶è½¯ä»¶å®šæ—¶å™¨ç»“æ„ä½“  */
 static am_softimer_t    receive_callback_timer;
 
 /**
- * \brief ´®¿Ú½ÓÊÕ»Øµ÷º¯Êı
+ * \brief ä¸²å£æ¥æ”¶å›è°ƒå‡½æ•°
  */
 static void __uart_rec_callback(void *p_arg, char inchar)
 {
@@ -53,12 +53,12 @@ static void __uart_rec_callback(void *p_arg, char inchar)
 }
 
 /**
- * \brief ´®¿Ú½ÓÊÕÊı¾İÈí¼ş¶¨Ê±Æ÷»Øµ÷º¯Êı
+ * \brief ä¸²å£æ¥æ”¶æ•°æ®è½¯ä»¶å®šæ—¶å™¨å›è°ƒå‡½æ•°
  */
 static void __callback_timer_handle(void *p_arg)
 {
     int i;
-    /* \brief ½ÓÊÕµÄÃüÁî×Ö·û¸öÊı³ö´í  */
+    /* \brief æ¥æ”¶çš„å‘½ä»¤å­—ç¬¦ä¸ªæ•°å‡ºé”™  */
     if(index_t != USER_COMMAND_LEN) {
         command_error = 1;
     } else {
@@ -68,7 +68,7 @@ static void __callback_timer_handle(void *p_arg)
                 break;
             }
         }
-        /* ½ÓÊÕµ½ÓÃ»§µÄÃüÁîÕıÈ· £¬Ôò½øÈë¹Ì¼ş½ÓÊÕ×´Ì¬ */
+        /* æ¥æ”¶åˆ°ç”¨æˆ·çš„å‘½ä»¤æ­£ç¡® ï¼Œåˆ™è¿›å…¥å›ºä»¶æ¥æ”¶çŠ¶æ€ */
         if(i == USER_COMMAND_LEN){
             cmd_flag = CMD_RIGHT;
         }
@@ -95,9 +95,9 @@ static void __enter_check_uart_cmd_reinit(void *p_drv)
 {
     am_boot_enter_check_uart_cmd_dev_t *p_dev = (am_boot_enter_check_uart_cmd_dev_t *)p_drv;
 
-    /* Ê¹ÄÜ´®¿ÚÖĞ¶ÏÄ£Ê½ */
+    /* ä½¿èƒ½ä¸²å£ä¸­æ–­æ¨¡å¼ */
     am_uart_ioctl(p_dev->uart_handle, AM_UART_MODE_SET, (void *)AM_UART_MODE_INT);
-    /* ×¢²á·¢ËÍ»Øµ÷º¯Êı */
+    /* æ³¨å†Œå‘é€å›è°ƒå‡½æ•° */
     am_uart_callback_set(p_dev->uart_handle, AM_UART_CALLBACK_RXCHAR_PUT, __uart_rec_callback, NULL);
 
     am_softimer_init(&receive_callback_timer, __callback_timer_handle, NULL);
@@ -115,9 +115,9 @@ am_boot_enter_check_handle_t am_boot_enter_check_uart_cmd_init(am_uart_handle_t 
     __g_enter_check_uart_cmd_dev.enter_check_serv.p_funcs = &__g_enter_check_uart_cmd_drv_funcs;
     __g_enter_check_uart_cmd_dev.uart_handle              = uart_handle;
 
-    /* Ê¹ÄÜ´®¿ÚÖĞ¶ÏÄ£Ê½ */
+    /* ä½¿èƒ½ä¸²å£ä¸­æ–­æ¨¡å¼ */
     am_uart_ioctl(uart_handle, AM_UART_MODE_SET, (void *)AM_UART_MODE_INT);
-    /* ×¢²á·¢ËÍ»Øµ÷º¯Êı */
+    /* æ³¨å†Œå‘é€å›è°ƒå‡½æ•° */
     am_uart_callback_set(uart_handle, AM_UART_CALLBACK_RXCHAR_PUT, __uart_rec_callback, NULL);
 
     am_softimer_init(&receive_callback_timer, __callback_timer_handle, NULL);

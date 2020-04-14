@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥5.108
+ * \brief ç¨‹åºæ¸…å•5.108
  *
- * \note ¸ÃÀú³ÌĞèÒªÓÃµ½miniportÍØÕ¹°å,¿ÉÒÔÓÃLED¿´Ğ§¹û
+ * \note è¯¥å†ç¨‹éœ€è¦ç”¨åˆ°miniportæ‹“å±•æ¿,å¯ä»¥ç”¨LEDçœ‹æ•ˆæœ
  * 
  * \internal
  * \par Modification history
@@ -35,7 +35,7 @@ static int         g_tx_cnt = 0;
 static int __uart_txchar_get (void *p_arg, char *p_outchar)
 {
     if (g_tx_index == -1)        return -AM_EEMPTY;
-    if (g_tx_cnt == 10) {      // µ±Ç°»º³åÇøÖĞµÄÊı¾İ·¢ËÍÍê±Ï
+    if (g_tx_cnt == 10) {      // å½“å‰ç¼“å†²åŒºä¸­çš„æ•°æ®å‘é€å®Œæ¯•
         g_tx_cnt = 0;
         return -AM_EEMPTY;
     }
@@ -49,16 +49,16 @@ static int __uart_txchar_get (void *p_arg, char *p_outchar)
 
 static int __uart_rxchar_put (void *p_arg, char inchar)
 {
-    if (g_rx_index == 0) {                   // ½«Êı¾İ´æ·Åµ½»º³åÇø0
+    if (g_rx_index == 0) {                   // å°†æ•°æ®å­˜æ”¾åˆ°ç¼“å†²åŒº0
         g_buf0[g_rx_cnt++] = inchar;
-    } else {                                 // ½«Êı¾İ´æ·Åµ½»º³åÇø1
+    } else {                                 // å°†æ•°æ®å­˜æ”¾åˆ°ç¼“å†²åŒº1
         g_buf1[g_rx_cnt++] = inchar;
     }
-    if (g_rx_cnt == 10) {                    // »º³åÇø´æÂú£¬·¢ËÍ»º³åÇøÖĞµÄÊı¾İ
+    if (g_rx_cnt == 10) {                    // ç¼“å†²åŒºå­˜æ»¡ï¼Œå‘é€ç¼“å†²åŒºä¸­çš„æ•°æ®
         g_rx_cnt   = 0;
-        g_tx_index = g_rx_index;             // ·¢ËÍ¸Ã»º³åÇøÖĞµÄÊı¾İ
-        g_rx_index = !g_rx_index;            // ½ÓÏÂÀ´µÄÊı¾İ´æ·Åµ½ÁíÍâÒ»¸ö»º³åÇøÖĞ
-        am_uart_tx_startup(p_arg);           // Æô¶¯´®¿Ú·¢ËÍ
+        g_tx_index = g_rx_index;             // å‘é€è¯¥ç¼“å†²åŒºä¸­çš„æ•°æ®
+        g_rx_index = !g_rx_index;            // æ¥ä¸‹æ¥çš„æ•°æ®å­˜æ”¾åˆ°å¦å¤–ä¸€ä¸ªç¼“å†²åŒºä¸­
+        am_uart_tx_startup(p_arg);           // å¯åŠ¨ä¸²å£å‘é€
     }
     return AM_OK;
 }
@@ -70,7 +70,7 @@ int am_main (void)
         uart_handle, AM_UART_CALLBACK_TXCHAR_GET, __uart_txchar_get, uart_handle);
     am_uart_callback_set(
         uart_handle, AM_UART_CALLBACK_RXCHAR_PUT, __uart_rxchar_put, uart_handle);
-    // ÉèÖÃÎªÖĞ¶ÏÄ£Ê½
+    // è®¾ç½®ä¸ºä¸­æ–­æ¨¡å¼
     am_uart_ioctl(uart_handle,AM_UART_MODE_SET, (void *)AM_UART_MODE_INT);
     while(1) {
     }

@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief MicroPort-DS1302 ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief MicroPort-DS1302 ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_microport_ds1302.c
  *
  * \internal
@@ -33,22 +33,22 @@
  * @{
  */
 
-/** \brief MicroPort-DS1302 Éè±¸ĞÅÏ¢ */
+/** \brief MicroPort-DS1302 è®¾å¤‡ä¿¡æ¯ */
 am_local am_const am_ds1302_gpio_devinfo_t __g_microport_ds1302_gpio_devinfo = {
-    PIO0_15,    /* SCLK Òı½Å */
-    PIO0_14,    /* CE Òı½Å */
-    PIO0_13,    /* IO Òı½Å */
+    PIO0_15,    /* SCLK å¼•è„š */
+    PIO0_14,    /* CE å¼•è„š */
+    PIO0_13,    /* IO å¼•è„š */
 };
 
 /*******************************************************************************
-  MicroPort-DS1302 ÊµÀı³õÊ¼»¯£¨Ê¹ÓÃĞ¾Æ¬ÌØÊâ¹¦ÄÜ£©
+  MicroPort-DS1302 å®ä¾‹åˆå§‹åŒ–ï¼ˆä½¿ç”¨èŠ¯ç‰‡ç‰¹æ®ŠåŠŸèƒ½ï¼‰
 *******************************************************************************/
 
-/** \brief MicroPort-DS1302 (GPIO Ä£Ê½) Éè±¸ÊµÀı */
+/** \brief MicroPort-DS1302 (GPIO æ¨¡å¼) è®¾å¤‡å®ä¾‹ */
 am_local am_ds1302_gpio_dev_t __g_microport_ds1302_gpio_dev;
 
 /**
- * \brief MicroPort-DS1302 ÊµÀı³õÊ¼»¯£¨Ê¹ÓÃĞ¾Æ¬ÌØÊâ¹¦ÄÜ£©
+ * \brief MicroPort-DS1302 å®ä¾‹åˆå§‹åŒ–ï¼ˆä½¿ç”¨èŠ¯ç‰‡ç‰¹æ®ŠåŠŸèƒ½ï¼‰
  */
 am_ds1302_handle_t am_microport_ds1302_inst_init (void)
 {
@@ -57,13 +57,13 @@ am_ds1302_handle_t am_microport_ds1302_inst_init (void)
 }
 
 /*******************************************************************************
-  MicroPort-DS1302 ÊµÀı³õÊ¼»¯ £¨Ê¹ÓÃÍ¨ÓÃµÄ RTC ¹¦ÄÜ£©
+  MicroPort-DS1302 å®ä¾‹åˆå§‹åŒ– ï¼ˆä½¿ç”¨é€šç”¨çš„ RTC åŠŸèƒ½ï¼‰
 *******************************************************************************/
 
-/** \brief MicroPort-DS1302 (RTC ±ê×¼·şÎñ) Éè±¸ÊµÀı */
+/** \brief MicroPort-DS1302 (RTC æ ‡å‡†æœåŠ¡) è®¾å¤‡å®ä¾‹ */
 am_local am_rtc_serv_t __g_microport_ds1302_rtc;
 
-/** \brief MicroPort-DS1302 ÊµÀı³õÊ¼»¯£¨Ê¹ÓÃÍ¨ÓÃµÄ RTC ¹¦ÄÜ£© */
+/** \brief MicroPort-DS1302 å®ä¾‹åˆå§‹åŒ–ï¼ˆä½¿ç”¨é€šç”¨çš„ RTC åŠŸèƒ½ï¼‰ */
 am_rtc_handle_t am_microport_ds1302_rtc_inst_init (void)
 {
     am_ds1302_handle_t handle = am_microport_ds1302_inst_init();
@@ -77,17 +77,17 @@ am_rtc_handle_t am_microport_ds1302_rtc_inst_init (void)
 }
 
 /*******************************************************************************
-  MicroPort-DS1302 ÊµÀı³õÊ¼»¯ £¨½« DS1302 ÓÃ×÷ÏµÍ³Ê±¼ä£©
+  MicroPort-DS1302 å®ä¾‹åˆå§‹åŒ– ï¼ˆå°† DS1302 ç”¨ä½œç³»ç»Ÿæ—¶é—´ï¼‰
 *******************************************************************************/
 
-/** \brief Ã¿ 1ms(1000000ns) ¸ù¾İÏµÍ³Ê±ÖÓ¸üĞÂÒ»´ÎÏµÍ³Ê±¼äÖµ */
+/** \brief æ¯ 1ms(1000000ns) æ ¹æ®ç³»ç»Ÿæ—¶é’Ÿæ›´æ–°ä¸€æ¬¡ç³»ç»Ÿæ—¶é—´å€¼ */
 #define __UPDATE_SYSCLK_NS    1000000
 
-/** \brief Ã¿ 10s ¸ù¾İ RTC ¸üĞÂÒ»´ÎÏµÍ³Ê±¼äÖµ */
+/** \brief æ¯ 10s æ ¹æ® RTC æ›´æ–°ä¸€æ¬¡ç³»ç»Ÿæ—¶é—´å€¼ */
 #define __UPDATE_RTC_S        10
 
 /**
- * \brief MicroPort-DS1302 ÊµÀı³õÊ¼»¯£¨½« DS1302 ÓÃ×÷ÏµÍ³Ê±¼ä£©
+ * \brief MicroPort-DS1302 å®ä¾‹åˆå§‹åŒ–ï¼ˆå°† DS1302 ç”¨ä½œç³»ç»Ÿæ—¶é—´ï¼‰
  */
 int am_microport_ds1302_time_inst_init (void)
 {

@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief ͨ�ù��ߺ궨��ͷ�ļ�
+ * \brief 通用工具宏定义头文件
  *
- * ���ļ��ṩ���õĹ��ߺ꣬���磺 min(), max(), offsetof()����������
- * ��ο��� \ref am_if_common ��
+ * 本文件提供常用的工具宏，例如： min(), max(), offsetof()。更多内容
+ * 请参考： \ref am_if_common 。
  *
  * \internal
  * \par Modification history:
@@ -41,45 +41,45 @@ extern "C" {
 /******************************************************************************/
 
 /**
- * \name ͨ�ó�������
+ * \name 通用常量定义
  * @{
  */
 
 #define AM_OK               0         /**< \brief OK               */
-#define AM_ERROR          (-1)        /**< \brief һ�����         */
+#define AM_ERROR          (-1)        /**< \brief 一般错误         */
 
-#define AM_NO_WAIT          0         /**< \brief ��ʱ�����ȴ�     */
-#define AM_WAIT_FOREVER   (-1)        /**< \brief ��ʱ����Զ�ȴ�   */
+#define AM_NO_WAIT          0         /**< \brief 超时：不等待     */
+#define AM_WAIT_FOREVER   (-1)        /**< \brief 超时：永远等待   */
 
 #ifndef EOF
-#define EOF               (-1)        /**< \brief �ļ�����         */
+#define EOF               (-1)        /**< \brief 文件结束         */
 #endif
 
-#define NONE              (-1)        /**< \brief ÿ��Ϊ��ʱ��ִ�� */
-#define EOS               '\0'        /**< \brief C�ַ�������      */
+#define NONE              (-1)        /**< \brief 每当为空时不执行 */
+#define EOS               '\0'        /**< \brief C字符串结束      */
 
 #ifndef NULL
-#define NULL             ((void *)0)  /**< \brief ��ָ��           */
+#define NULL             ((void *)0)  /**< \brief 空指针           */
 #endif
 
-#define AM_LITTLE_ENDIAN  1234        /**< \brief С��ģʽ         */
-#define AM_BIG_ENDIAN     3412        /**< \brief ���ģʽ         */
+#define AM_LITTLE_ENDIAN  1234        /**< \brief 小端模式         */
+#define AM_BIG_ENDIAN     3412        /**< \brief 大端模式         */
 
 /** @} */
 
 /******************************************************************************/
 
 /**
- * \name ���ú궨��
+ * \name 常用宏定义
  * @{
  */
 
 /**
- * \brief ��ṹ���Ա��ƫ��
- * \attention ��ͬƽ̨�ϣ����ڳ�Ա��С���ڴ�����ԭ��
- *            ͬһ�ṹ���Ա��ƫ�ƿ����ǲ�һ����
+ * \brief 求结构体成员的偏移
+ * \attention 不同平台上，由于成员大小和内存对齐等原因，
+ *            同一结构体成员的偏移可能是不一样的
  *
- * \par ʾ��
+ * \par 示例
  * \code
  *  struct my_struct = {
  *      int  m1;
@@ -92,19 +92,19 @@ extern "C" {
  */
 #define AM_OFFSET(structure, member)    ((size_t)(&(((structure *)0)->member)))
 
-/** \brief ��ṹ���Ա��ƫ�ƣ�ͬ \ref AM_OFFSET һ�� */
+/** \brief 求结构体成员的偏移，同 \ref AM_OFFSET 一样 */
 #ifndef offsetof
 #define offsetof(type, member)           AM_OFFSET(type, member)
 #endif
 
 /**
- * \brief ͨ���ṹ���Աָ���ȡ�����ýṹ���Ա�Ľṹ��
+ * \brief 通过结构体成员指针获取包含该结构体成员的结构体
  *
- * \param ptr    ָ��ṹ���Ա��ָ��
- * \param type   �ṹ������
- * \param member �ṹ���иó�Ա������
+ * \param ptr    指向结构体成员的指针
+ * \param type   结构体类型
+ * \param member 结构体中该成员的名称
  *
- * \par ʾ��
+ * \par 示例
  * \code
  *  struct my_struct = {
  *      int  m1;
@@ -119,20 +119,20 @@ extern "C" {
             ((type *)((char *)(ptr) - offsetof(type,member)))
 
 /**
- * \brief ͨ���ṹ���Աָ���ȡ�����ýṹ���Ա�Ľṹ�壬
- *        ͬ \ref AM_CONTAINER_OF һ��
+ * \brief 通过结构体成员指针获取包含该结构体成员的结构体，
+ *        同 \ref AM_CONTAINER_OF 一样
  */
 #ifndef container_of
 #define container_of(ptr, type, member)     AM_CONTAINER_OF(ptr, type, member)
 #endif
 
-/** \brief Ԥȡ */
+/** \brief 预取 */
 #ifndef prefetch
 #define prefetch(x) (void)0
 #endif
 
 /**
- * \brief ����ṹ���Ա�Ĵ�С
+ * \brief 计算结构体成员的大小
  *
  * \code
  *  struct a = {
@@ -147,7 +147,7 @@ extern "C" {
 #define AM_MEMBER_SIZE(structure, member)  (sizeof(((structure *)0)->member))
 
 /**
- * \brief ��������Ԫ�ظ���
+ * \brief 计算数组元素个数
  *
  * \code
  *  int a[] = {0, 1, 2, 3};
@@ -157,15 +157,15 @@ extern "C" {
 #define AM_NELEMENTS(array)               (sizeof (array) / sizeof ((array) [0]))
 
 /**
- * \brief ����ѭ��
+ * \brief 永久循环
  *
- * д��Զѭ��������ʱ�󲿷ֳ���Աϲ����while(1)��������䣬
- * ����Щϲ����for(;;)��������䡣while(1)��ĳЩ�ϵĻ��ϸ�ı�������
- * ���ܻ���־��棬��Ϊ1�����ֶ������߼�����ʽ
+ * 写永远循环的语句块时大部分程序员喜欢用while(1)这样的语句，
+ * 而有些喜欢用for(;;)这样的语句。while(1)在某些老的或严格的编译器上
+ * 可能会出现警告，因为1是数字而不是逻辑表达式
  *
  * \code
  * AM_FOREVER {
- *     ; // ѭ����һЩ���������ĳЩ����������
+ *     ; // 循环做一些事情或满足某些条件后跳出
  * }
  * \endcode
  */
@@ -174,27 +174,27 @@ extern "C" {
 /******************************************************************************/
 
 /**
- * \brief min �� max �� C++ �ı�׼�������� C++ �Ŀ��ṩ��
+ * \brief min 和 max 是 C++ 的标准函数，由 C++ 的库提供。
  */
 #ifndef __cplusplus
 
 /**
- * \brief ��ȡ2�����еĽϴ����ֵ
- * \param x ����1
- * \param y ����2
- * \return 2�����еĽϴ����ֵ
- * \note ��������ʹ��++��--����
+ * \brief 获取2个数中的较大的数值
+ * \param x 数字1
+ * \param y 数字2
+ * \return 2个数中的较大的数值
+ * \note 参数不能使用++或--操作
  */
 #ifndef max
 #define max(x, y)               (((x) < (y)) ? (y) : (x))
 #endif
 
 /**
- * \brief ��ȡ2�����еĽ�С����ֵ
- * \param x ����1
- * \param y ����2
- * \return 2�����еĽ�С��ֵ
- * \note ��������ʹ��++��--����
+ * \brief 获取2个数中的较小的数值
+ * \param x 数字1
+ * \param y 数字2
+ * \return 2个数中的较小数值
+ * \note 参数不能使用++或--操作
  */
 #ifndef min
 #define min(x, y)               (((x) < (y)) ? (x) : (y))
@@ -203,10 +203,10 @@ extern "C" {
 #endif /* __cplusplus */
 
 /**
- * \brief ��������
+ * \brief 向上舍入
  *
- * \param x     ���������
- * \param align �������أ�����Ϊ2�ĳ˷�
+ * \param x     被运算的数
+ * \param align 对齐因素，必须为2的乘方
  *
  * \code
  * int size = AM_ROUND_UP(15, 4);   // size = 16
@@ -215,10 +215,10 @@ extern "C" {
 #define AM_ROUND_UP(x, align)   (((int) (x) + (align - 1)) & ~(align - 1))
 
 /**
- * \brief ��������
+ * \brief 向下舍入
  *
- * \param x     ���������
- * \param align �������أ�����Ϊ2�ĳ˷�
+ * \param x     被运算的数
+ * \param align 对齐因素，必须为2的乘方
  *
  * \code
  * int size = AM_ROUND_DOWN(15, 4);   // size = 12
@@ -226,20 +226,20 @@ extern "C" {
  */
 #define AM_ROUND_DOWN(x, align) ((int)(x) & ~(align - 1))
 
-/** \brief ������������ */
+/** \brief 倍数向上舍入 */
 #define AM_DIV_ROUND_UP(n, d)   (((n) + (d) - 1) / (d))
 
 /**
- * \brief �����Ƿ����
+ * \brief 测试是否对齐
  *
- * \param x     ���������
- * \param align �������أ�����Ϊ2�ĳ˷�
+ * \param x     被运算的数
+ * \param align 对齐因素，必须为2的乘方
  *
  * \code
  * if (AM_ALIGNED(x, 4) {
- *     ; // x����
+ *     ; // x对齐
  * } else {
- *     ; // x������
+ *     ; // x不对齐
  * }
  * \endcode
  */
@@ -247,18 +247,18 @@ extern "C" {
 
 /******************************************************************************/
 
-/** \brief �ѷ���ת��Ϊ�ַ��� */
+/** \brief 把符号转换为字符串 */
 #define AM_STR(s)               #s
 
-/** \brief �Ѻ�չ����Ľ��ת��Ϊ�ַ��� */
+/** \brief 把宏展开后的结果转换为字符串 */
 #define AM_XSTR(s)              AM_STR(s)
 
 /******************************************************************************/
 
-/** \brief ��1�ֽ�BCD����ת��Ϊ16�������� */
+/** \brief 将1字节BCD数据转换为16进制数据 */
 #define AM_BCD_TO_HEX(val)     (((val) & 0x0f) + ((val) >> 4) * 10)
 
-/** \brief ��1�ֽ�16��������ת��ΪBCD���� */
+/** \brief 将1字节16进制数据转换为BCD数据 */
 #define AM_HEX_TO_BCD(val)     ((((val) / 10) << 4) + (val) % 10)
 
 /** @} */

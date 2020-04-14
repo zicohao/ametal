@@ -22,7 +22,7 @@ typedef int (*table_remove_t)(table_t* table, table_const_key_t key);
 typedef int (*table_reset_t)(table_t* table);
 typedef int (*table_close_t)(table_t* table);
 
-/* KV Êı¾İ¿âµÄ½Ó¿Ú*/
+/* KV æ•°æ®åº“çš„æ¥å£*/
 struct _table_t {
     table_get_t     get;
     table_set_t     set;
@@ -31,14 +31,14 @@ struct _table_t {
 };
 
 /**
- * \brief »ñÈ¡Key/Value¡£
+ * \brief è·å–Key/Valueã€‚
  *
- * \param[in] table  £º Êı¾İ¿â¶ÔÏó
- * \param[in] key    £º ¼ü
- * \param[out] value £º Öµ¡£ÓÉµ÷ÓÃÕß·ÖÅä²»Ğ¡ÓÚvalue_size£¨Îª0Ê±£¬¸ÃÖµÎªNULL£©µÄ¿Õ¼ä¡£
+ * \param[in] table  ï¼š æ•°æ®åº“å¯¹è±¡
+ * \param[in] key    ï¼š é”®
+ * \param[out] value ï¼š å€¼ã€‚ç”±è°ƒç”¨è€…åˆ†é…ä¸å°äºvalue_sizeï¼ˆä¸º0æ—¶ï¼Œè¯¥å€¼ä¸ºNULLï¼‰çš„ç©ºé—´ã€‚
  *
- * \retval TRUE  ³É¹¦
- * \retval FALSE Ê§°Ü
+ * \retval TRUE  æˆåŠŸ
+ * \retval FALSE å¤±è´¥
  */
 am_static_inline
 int table_get (table_t* table, table_const_key_t key, table_value_t value)
@@ -50,14 +50,14 @@ int table_get (table_t* table, table_const_key_t key, table_value_t value)
 }
 
 /**
- * \brief ÉèÖÃKey/Value¡£
+ * \brief è®¾ç½®Key/Valueã€‚
  *
- * \param[in] table      £º Êı¾İ¿â¶ÔÏó
- * \param[in] key        £º ¼ü
- * \param[in] value      £º Öµ
+ * \param[in] table      ï¼š æ•°æ®åº“å¯¹è±¡
+ * \param[in] key        ï¼š é”®
+ * \param[in] value      ï¼š å€¼
  *
- * \retval TRUE  ³É¹¦
- * \retval FALSE Ê§°Ü
+ * \retval TRUE  æˆåŠŸ
+ * \retval FALSE å¤±è´¥
  */
 am_static_inline
 int table_set (table_t* table, table_const_key_t key, table_const_key_t value)
@@ -69,13 +69,13 @@ int table_set (table_t* table, table_const_key_t key, table_const_key_t value)
 }
 
 /**
-* \brief É¾³ıÖ¸¶¨µÄKey¡£
+* \brief åˆ é™¤æŒ‡å®šçš„Keyã€‚
 *
-* \param[in] table      £º Êı¾İ¿â¶ÔÏó
-* \param[in] key        £º ¼ü
+* \param[in] table      ï¼š æ•°æ®åº“å¯¹è±¡
+* \param[in] key        ï¼š é”®
 *
-* \retval TRUE  ³É¹¦
-* \retval FALSE Ê§°Ü
+* \retval TRUE  æˆåŠŸ
+* \retval FALSE å¤±è´¥
 */
 am_static_inline
 int table_remove(table_t* table, table_const_key_t key)
@@ -87,13 +87,13 @@ int table_remove(table_t* table, table_const_key_t key)
 }
 
 /**
-* \brief Çå³ıÈ«²¿¼ÇÂ¼
+* \brief æ¸…é™¤å…¨éƒ¨è®°å½•
 *
-* \param[in] table      £º Êı¾İ¿â¶ÔÏó
-* \param[in] key        £º ¼ü
+* \param[in] table      ï¼š æ•°æ®åº“å¯¹è±¡
+* \param[in] key        ï¼š é”®
 *
-* \retval TRUE  ³É¹¦
-* \retval FALSE Ê§°Ü
+* \retval TRUE  æˆåŠŸ
+* \retval FALSE å¤±è´¥
 */
 am_static_inline
 int table_reset(table_t* table)

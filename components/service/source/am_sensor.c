@@ -28,7 +28,7 @@
 *******************************************************************************/
 am_local uint32_t __pow10 (int n)
 {
-    /* 32Î»Êý×î´ó±íÊ¾£º 4 294 967 296£¬ ×î¶à·µ»Ø£º10^9 £¬¼´ £º1 000 000 000 */
+    /* 32ä½æ•°æœ€å¤§è¡¨ç¤ºï¼š 4 294 967 296ï¼Œ æœ€å¤šè¿”å›žï¼š10^9 ï¼Œå³ ï¼š1 000 000 000 */
     am_local const uint32_t pow10[] = {
         1UL,                  /* 0 */
         10UL,                 /* 1 */
@@ -52,25 +52,25 @@ am_local uint32_t __pow10 (int n)
 am_local am_err_t __sensor_val_unit_convert (am_sensor_val_t *p_val, int32_t to_unit)
 {
     uint32_t max_val;
-    if (p_val->val != 0) {                   /* ÖµÎª0£¬µ¥Î»ÉèÖÃÎªÄ¿±êµ¥Î»¼´¿É */
+    if (p_val->val != 0) {                   /* å€¼ä¸º0ï¼Œå•ä½è®¾ç½®ä¸ºç›®æ ‡å•ä½å³å¯ */
 
         uint32_t mul;
 
         int unit_err = to_unit - p_val->unit;
 
-        if (unit_err < 0) {                                    /* µ¥Î»ËõÐ¡    */
+        if (unit_err < 0) {                                    /* å•ä½ç¼©å°    */
 
             unit_err = (-1) * unit_err;
 
-            if (unit_err > 9) {                                /* ³¬³ö·¶Î§    */
+            if (unit_err > 9) {                                /* è¶…å‡ºèŒƒå›´    */
 
                 return -AM_ERANGE;
 
             } else {
 
-                mul = __pow10(unit_err);                       /* À©´óµÄ±¶Êý  */
+                mul = __pow10(unit_err);                       /* æ‰©å¤§çš„å€æ•°  */
 
-                /* Ö»ÓÐµ±  val Öµ ²»³¬¹ý max_val Ê±£¬²Å²»»á³¬¹ý·¶Î§ */
+                /* åªæœ‰å½“  val å€¼ ä¸è¶…è¿‡ max_val æ—¶ï¼Œæ‰ä¸ä¼šè¶…è¿‡èŒƒå›´ */
                 max_val = 2147483647 / mul;
 
                 if ((p_val->val > 0) && (p_val->val > max_val)) {
@@ -81,18 +81,18 @@ am_local am_err_t __sensor_val_unit_convert (am_sensor_val_t *p_val, int32_t to_
                     return -AM_ERANGE;
                 }
 
-                p_val->val *= mul;                              /* valÖµÀ©´ó  */
+                p_val->val *= mul;                              /* valå€¼æ‰©å¤§  */
             }
 
-        } else if (unit_err > 0) {                              /* µ¥Î»À©´ó   */
+        } else if (unit_err > 0) {                              /* å•ä½æ‰©å¤§   */
 
-            if (unit_err > 9) {                                 /* ³¬³ö·¶Î§   */
+            if (unit_err > 9) {                                 /* è¶…å‡ºèŒƒå›´   */
                 p_val->val = 0;
             } else {
 
-                mul = __pow10(unit_err);                        /* ËõÐ¡µÄ±¶Êý */
+                mul = __pow10(unit_err);                        /* ç¼©å°çš„å€æ•° */
 
-                /* val ÖµËõÐ¡ £¬±£Ö¤ËÄÉáÎåÈë */
+                /* val å€¼ç¼©å° ï¼Œä¿è¯å››èˆäº”å…¥ */
                 p_val->val = (p_val->val + (mul / 2)) / mul;
             }
         }
@@ -109,23 +109,23 @@ am_local am_err_t __sensor_val_unit_convert (am_sensor_val_t *p_val, int32_t to_
 *******************************************************************************/
 
 /**
- * \brief ¸¨Öúº¯Êý£¬»ñÈ¡Ò»¸öµ¥Î»¶ÔÓ¦µÄÇ°×º·ûºÅ£¬Èç"M"£¨Õ×£©¡¢"k"£¨Ç§£©
+ * \brief è¾…åŠ©å‡½æ•°ï¼ŒèŽ·å–ä¸€ä¸ªå•ä½å¯¹åº”çš„å‰ç¼€ç¬¦å·ï¼Œå¦‚"M"ï¼ˆå…†ï¼‰ã€"k"ï¼ˆåƒï¼‰
  */
 const char *am_sensor_unit_symbol_get (int32_t unit)
 {
-    /* µ¥Î»´ÓÐ¡µ½´óµÄË³ÐòÅÅÁÐ */
+    /* å•ä½ä»Žå°åˆ°å¤§çš„é¡ºåºæŽ’åˆ— */
     static const char *symbol[] = {
-        "y",  "z", "a", "f", "p", "n", "¦Ì", "m",     /* ¼ä¸ô 3, offset = 0    */
-        "c",  "d",                                   /* ¼ä¸ô 1, offset = 8    */
+        "y",  "z", "a", "f", "p", "n", "Î¼", "m",     /* é—´éš” 3, offset = 0    */
+        "c",  "d",                                   /* é—´éš” 1, offset = 8    */
         "",                                          /* 0, offset = 10        */
-        "da", "h",                                   /* ¼ä¸ô 1, offset = 11   */
-        "k",  "M", "G", "T", "P", "E", "Z", "Y",     /* ¼ä¸ô 3, offset = 13   */
+        "da", "h",                                   /* é—´éš” 1, offset = 11   */
+        "k",  "M", "G", "T", "P", "E", "Z", "Y",     /* é—´éš” 3, offset = 13   */
     };
 
-    /* µ±Ç°µ¥Î»ÓÐÐ§·¶Î§ */
+    /* å½“å‰å•ä½æœ‰æ•ˆèŒƒå›´ */
     if ((unit >= AM_SENSOR_UNIT_YOCTO) && (unit <= AM_SENSOR_UNIT_YOTTA)) {
 
-        /* Àå  ~ °Ù */
+        /* åŽ˜  ~ ç™¾ */
         if ((unit >= AM_SENSOR_UNIT_CENTI) && (unit <= AM_SENSOR_UNIT_HECTO)) {
             return symbol[10 + unit];
         } else if ((unit % 3) == 0) {
@@ -141,7 +141,7 @@ const char *am_sensor_unit_symbol_get (int32_t unit)
 }
 
 /**
- * \brief ´«¸ÐÆ÷µ¥Î»µÄ×ª»»
+ * \brief ä¼ æ„Ÿå™¨å•ä½çš„è½¬æ¢
  */
 am_err_t am_sensor_val_unit_convert (am_sensor_val_t *p_buf, int num, int32_t to_unit)
 {

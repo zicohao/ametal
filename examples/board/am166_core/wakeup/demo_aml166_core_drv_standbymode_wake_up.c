@@ -12,22 +12,22 @@
 
 /**
  * \file
- * \brief ����ģʽ���̣�ͨ��������ӿ�ʵ��
+ * \brief 待机模式例程，通过驱动层接口实现
  *
- * - �������裺
- *   1. �ϵ�ǰ�� WAKE_UP(PIOA_0) ���ӵ��͵�ƽ��
- *   2. �ȴ� MCU �������ģʽ��
- *   3. �� PIOA_0 ���ӵ��ߵ�ƽ��ʹ PIOA_0 �ϲ��������ػ��� MCU��
+ * - 操作步骤：
+ *   1. 上电前将 WAKE_UP(PIOA_0) 连接到低电平；
+ *   2. 等待 MCU 进入待机模式；
+ *   3. 将 PIOA_0 连接到高电平，使 PIOA_0 上产生上升沿唤醒 MCU。
  *
- * - ʵ������
- *   1. �ɹ��������ģʽʱ���������"enter standby!"���� J-Link ���ԶϿ���
- *      ���򴮿����"WAKE_UP(PIOA_0) must be low!"��
- *   2. PIOA_0 ���������غ�MCU ��λ���С�
+ * - 实现现象
+ *   1. 成功进入待机模式时，串口输出"enter standby!"，且 J-Link 调试断开；
+ *      否则串口输出"WAKE_UP(PIOA_0) must be low!"；
+ *   2. PIOA_0 产生上升沿后，MCU 复位运行。
  *
  * \note
- *    ֻ���� WAKE_UP(PIOA_0) Ϊ�͵�ƽ��ʱ����ܽ������ģʽ
+ *    只有在 WAKE_UP(PIOA_0) 为低电平的时候才能进入待机模式
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_aml166_core_drv_standbymode_wake_up.c src_aml166_core_drv_standbymode_wake_up
  *
  * \internal
@@ -49,7 +49,7 @@
 #include "demo_aml166_core_entries.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_aml166_core_drv_standbymode_wake_up_entry (void)
 {

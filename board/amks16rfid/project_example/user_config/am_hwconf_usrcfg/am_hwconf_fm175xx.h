@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief FM175xx ÅäÖÃÎÄ¼ş
+ * \brief FM175xx é…ç½®æ–‡ä»¶
  *
  * \internal
  * \par Modification history
@@ -30,8 +30,8 @@ extern "C" {
 #endif
 
 /**
- * \brief fm175xxÊµÀı³õÊ¼»¯
- * \return fm175xx·şÎñ¾ä±ú£¬ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief fm175xxå®ä¾‹åˆå§‹åŒ–
+ * \return fm175xxæœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_fm175xx_handle_t am_fm175xx_inst_init (void);
 

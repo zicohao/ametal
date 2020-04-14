@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ´íÎóºÅÏà¹Ø¶¨ÒåÍ·ÎÄ¼ş
+ * \brief é”™è¯¯å·ç›¸å…³å®šä¹‰å¤´æ–‡ä»¶
  *
  * \internal
  * \par Modification history
@@ -35,169 +35,169 @@ extern "C" {
  */
  
 /**
- * \name ´íÎó±àÂëÊı¾İÀàĞÍ
+ * \name é”™è¯¯ç¼–ç æ•°æ®ç±»å‹
  * @{
  */
-typedef int error_t;    /* ¼æÈİPOSIX´íÎóÀàĞÍ */
-typedef int am_err_t;   /* Apollo´íÎóÀàĞÍ */
+typedef int error_t;    /* å…¼å®¹POSIXé”™è¯¯ç±»å‹ */
+typedef int am_err_t;   /* Apolloé”™è¯¯ç±»å‹ */
 /** @} */
 
 /**
- * \name POSIX´íÎóÖµ
+ * \name POSIXé”™è¯¯å€¼
  * @{
  */
-#define AM_EPERM           1       /**< \brief ²Ù×÷²»ÔÊĞí          */
-#define AM_ENOENT          2       /**< \brief ÎÄ¼ş»òÄ¿Â¼²»´æÔÚ    */
-#define AM_ESRCH           3       /**< \brief ½ø³Ì²»´æÔÚ          */
-#define AM_EINTR           4       /**< \brief µ÷ÓÃ±»ÖĞ¶Ï          */
-#define AM_EIO             5       /**< \brief I/O ´íÎó            */
-#define AM_ENXIO           6       /**< \brief Éè±¸»òµØÖ·²»´æÔÚ    */
-#define AM_E2BIG           7       /**< \brief ²ÎÊıÁĞ±íÌ«³¤        */
-#define AM_ENOEXEC         8       /**< \brief ¿ÉÖ´ĞĞÎÄ¼ş¸ñÊ½´íÎó  */
-#define AM_EBADF           9       /**< \brief ÎÄ¼şÃèÊö·ûËğ»µ      */
-#define AM_ECHILD          10      /**< \brief Ã»ÓĞ×Ó½ø³Ì          */
-#define AM_EAGAIN          11      /**< \brief ×ÊÔ´²»¿ÉÓÃ£¬ĞèÖØÊÔ  */
-#define AM_ENOMEM          12      /**< \brief ¿Õ¼ä£¨ÄÚ´æ£©²»×ã    */
-#define AM_EACCES          13      /**< \brief È¨ÏŞ²»¹»            */
-#define AM_EFAULT          14      /**< \brief µØÖ·´íÎó            */
-#define AM_ENOTEMPTY       15      /**< \brief Ä¿Â¼·Ç¿Õ            */
-#define AM_EBUSY           16      /**< \brief Éè±¸»ò×ÊÔ´Ã¦        */
-#define AM_EEXIST          17      /**< \brief ÎÄ¼şÒÑ¾­´æÔÚ        */
-#define AM_EXDEV           18      /**< \brief ¿çÉè±¸Á¬½Ó          */
-#define AM_ENODEV          19      /**< \brief Éè±¸²»´æÔÚ          */
-#define AM_ENOTDIR         20      /**< \brief ²»ÊÇÄ¿Â¼            */
-#define AM_EISDIR          21      /**< \brief ÊÇÄ¿Â¼              */
-#define AM_EINVAL          22      /**< \brief ÎŞĞ§²ÎÊı            */
-#define AM_ENFILE          23      /**< \brief ÏµÍ³´ò¿ªÎÄ¼şÌ«¶à£¬ÃèÊö·û²»¹»ÓÃ */
-#define AM_EMFILE          24      /**< \brief ´ò¿ªµÄÎÄ¼şÌ«¶à      */
-#define AM_ENOTTY          25      /**< \brief ²»ºÏÊÊµÄI/O¿ØÖÆ²Ù×÷ */
-#define AM_ENAMETOOLONG    26      /**< \brief ÎÄ¼şÃûÌ«³¤          */
-#define AM_EFBIG           27      /**< \brief ÎÄ¼şÌ«´ó            */
-#define AM_ENOSPC          28      /**< \brief Éè±¸Ê£Óà¿Õ¼ä²»×ã    */
-#define AM_ESPIPE          29      /**< \brief ÎŞĞ§µÄËÑË÷£¨Invalid seek£© */
-#define AM_EROFS           30      /**< \brief ÎÄ¼şÏµÍ³Ö»¶Á        */
-#define AM_EMLINK          31      /**< \brief Á´½ÓÌ«¶à            */
-#define AM_EPIPE           32      /**< \brief Ëğ»µµÄ¹ÜµÀ          */
-#define AM_EDEADLK         33      /**< \brief ×ÊÔ´¿ÉÄÜËÀËø        */
-#define AM_ENOLCK          34      /**< \brief ÎŞ¿ÉÓÃ£¨¿ÕÏĞ£©µÄËø  */
-#define AM_ENOTSUP         35      /**< \brief ²»Ö§³Ö              */
-#define AM_EMSGSIZE        36      /**< \brief ÏûÏ¢Ì«´ó            */
+#define AM_EPERM           1       /**< \brief æ“ä½œä¸å…è®¸          */
+#define AM_ENOENT          2       /**< \brief æ–‡ä»¶æˆ–ç›®å½•ä¸å­˜åœ¨    */
+#define AM_ESRCH           3       /**< \brief è¿›ç¨‹ä¸å­˜åœ¨          */
+#define AM_EINTR           4       /**< \brief è°ƒç”¨è¢«ä¸­æ–­          */
+#define AM_EIO             5       /**< \brief I/O é”™è¯¯            */
+#define AM_ENXIO           6       /**< \brief è®¾å¤‡æˆ–åœ°å€ä¸å­˜åœ¨    */
+#define AM_E2BIG           7       /**< \brief å‚æ•°åˆ—è¡¨å¤ªé•¿        */
+#define AM_ENOEXEC         8       /**< \brief å¯æ‰§è¡Œæ–‡ä»¶æ ¼å¼é”™è¯¯  */
+#define AM_EBADF           9       /**< \brief æ–‡ä»¶æè¿°ç¬¦æŸå      */
+#define AM_ECHILD          10      /**< \brief æ²¡æœ‰å­è¿›ç¨‹          */
+#define AM_EAGAIN          11      /**< \brief èµ„æºä¸å¯ç”¨ï¼Œéœ€é‡è¯•  */
+#define AM_ENOMEM          12      /**< \brief ç©ºé—´ï¼ˆå†…å­˜ï¼‰ä¸è¶³    */
+#define AM_EACCES          13      /**< \brief æƒé™ä¸å¤Ÿ            */
+#define AM_EFAULT          14      /**< \brief åœ°å€é”™è¯¯            */
+#define AM_ENOTEMPTY       15      /**< \brief ç›®å½•éç©º            */
+#define AM_EBUSY           16      /**< \brief è®¾å¤‡æˆ–èµ„æºå¿™        */
+#define AM_EEXIST          17      /**< \brief æ–‡ä»¶å·²ç»å­˜åœ¨        */
+#define AM_EXDEV           18      /**< \brief è·¨è®¾å¤‡è¿æ¥          */
+#define AM_ENODEV          19      /**< \brief è®¾å¤‡ä¸å­˜åœ¨          */
+#define AM_ENOTDIR         20      /**< \brief ä¸æ˜¯ç›®å½•            */
+#define AM_EISDIR          21      /**< \brief æ˜¯ç›®å½•              */
+#define AM_EINVAL          22      /**< \brief æ— æ•ˆå‚æ•°            */
+#define AM_ENFILE          23      /**< \brief ç³»ç»Ÿæ‰“å¼€æ–‡ä»¶å¤ªå¤šï¼Œæè¿°ç¬¦ä¸å¤Ÿç”¨ */
+#define AM_EMFILE          24      /**< \brief æ‰“å¼€çš„æ–‡ä»¶å¤ªå¤š      */
+#define AM_ENOTTY          25      /**< \brief ä¸åˆé€‚çš„I/Oæ§åˆ¶æ“ä½œ */
+#define AM_ENAMETOOLONG    26      /**< \brief æ–‡ä»¶åå¤ªé•¿          */
+#define AM_EFBIG           27      /**< \brief æ–‡ä»¶å¤ªå¤§            */
+#define AM_ENOSPC          28      /**< \brief è®¾å¤‡å‰©ä½™ç©ºé—´ä¸è¶³    */
+#define AM_ESPIPE          29      /**< \brief æ— æ•ˆçš„æœç´¢ï¼ˆInvalid seekï¼‰ */
+#define AM_EROFS           30      /**< \brief æ–‡ä»¶ç³»ç»Ÿåªè¯»        */
+#define AM_EMLINK          31      /**< \brief é“¾æ¥å¤ªå¤š            */
+#define AM_EPIPE           32      /**< \brief æŸåçš„ç®¡é“          */
+#define AM_EDEADLK         33      /**< \brief èµ„æºå¯èƒ½æ­»é”        */
+#define AM_ENOLCK          34      /**< \brief æ— å¯ç”¨ï¼ˆç©ºé—²ï¼‰çš„é”  */
+#define AM_ENOTSUP         35      /**< \brief ä¸æ”¯æŒ              */
+#define AM_EMSGSIZE        36      /**< \brief æ¶ˆæ¯å¤ªå¤§            */
 
 /** @} */
 
 /**
- * \name ANSI´íÎóÖµ
+ * \name ANSIé”™è¯¯å€¼
  * @{
  */
 
-#define AM_EDOM            37      /**< \brief ÊıÑ§º¯Êı²ÎÊı³¬³ö·¶Î§ */
-#define AM_ERANGE          38      /**< \brief ÊıÑ§º¯Êı¼ÆËã½á¹ûÌ«´ó */
-#define AM_EILSEQ          39      /**< \brief ·Ç·¨µÄ×Ö½ÚË³Ğò       */
+#define AM_EDOM            37      /**< \brief æ•°å­¦å‡½æ•°å‚æ•°è¶…å‡ºèŒƒå›´ */
+#define AM_ERANGE          38      /**< \brief æ•°å­¦å‡½æ•°è®¡ç®—ç»“æœå¤ªå¤§ */
+#define AM_EILSEQ          39      /**< \brief éæ³•çš„å­—èŠ‚é¡ºåº       */
  
 /** @} */
 
 /**
- * \name ÍøÂç²ÎÊı´íÎóÏà¹Ø
+ * \name ç½‘ç»œå‚æ•°é”™è¯¯ç›¸å…³
  * @{
  */
 
-#define AM_EDESTADDRREQ    40      /**< \brief ĞèÒªÄ¿±êµØÖ·         */
-#define AM_EPROTOTYPE      41      /**< \brief socketĞ­ÒéÀàĞÍ´íÎó   */
-#define AM_ENOPROTOOPT     42      /**< \brief Ğ­Òé²»¿ÉÓÃ           */
-#define AM_EPROTONOSUPPORT 43      /**< \brief Ğ­Òé²»Ö§³Ö           */
-#define AM_ESOCKTNOSUPPORT 44      /**< \brief SocketÀàĞÍ²»Ö§³Ö     */
-#define AM_EOPNOTSUPP      45      /**< \brief socket²»Ö§³Ö¸Ã²Ù×÷   */
-#define AM_EPFNOSUPPORT    46      /**< \brief Ğ­Òé×å²»Ö§³Ö         */
-#define AM_EAFNOSUPPORT    47      /**< \brief µØÖ·´Ø²»Ö§³Ö         */
-#define AM_EADDRINUSE      48      /**< \brief µØÖ·ÒÑ¾­±»Õ¼ÓÃ       */
-#define AM_EADDRNOTAVAIL   49      /**< \brief µØÖ·²»¿ÉÓÃ           */
-#define AM_ENOTSOCK        50      /**< \brief ±»²Ù×÷¶ÔÏó²»ÊÇsocket */
+#define AM_EDESTADDRREQ    40      /**< \brief éœ€è¦ç›®æ ‡åœ°å€         */
+#define AM_EPROTOTYPE      41      /**< \brief socketåè®®ç±»å‹é”™è¯¯   */
+#define AM_ENOPROTOOPT     42      /**< \brief åè®®ä¸å¯ç”¨           */
+#define AM_EPROTONOSUPPORT 43      /**< \brief åè®®ä¸æ”¯æŒ           */
+#define AM_ESOCKTNOSUPPORT 44      /**< \brief Socketç±»å‹ä¸æ”¯æŒ     */
+#define AM_EOPNOTSUPP      45      /**< \brief socketä¸æ”¯æŒè¯¥æ“ä½œ   */
+#define AM_EPFNOSUPPORT    46      /**< \brief åè®®æ—ä¸æ”¯æŒ         */
+#define AM_EAFNOSUPPORT    47      /**< \brief åœ°å€ç°‡ä¸æ”¯æŒ         */
+#define AM_EADDRINUSE      48      /**< \brief åœ°å€å·²ç»è¢«å ç”¨       */
+#define AM_EADDRNOTAVAIL   49      /**< \brief åœ°å€ä¸å¯ç”¨           */
+#define AM_ENOTSOCK        50      /**< \brief è¢«æ“ä½œå¯¹è±¡ä¸æ˜¯socket */
 
 /** @} */
 
 /**
- * \name ¿ÉÑ¡ÔñÊµÏÖµÄ´íÎóÖµ
+ * \name å¯é€‰æ‹©å®ç°çš„é”™è¯¯å€¼
  * @{
  */
 
-#define AM_ENETUNREACH     51        /**< \brief ÍøÂç²»¿É´ï         */
-#define AM_ENETRESET       52        /**< \brief ÍøÂçÖĞ¶ÏÁËÁ¬½Ó     */
-#define AM_ECONNABORTED    53        /**< \brief Á¬½ÓÖĞ¶Ï           */
-#define AM_ECONNRESET      54        /**< \brief Á¬½Ó¸´Î»           */
-#define AM_ENOBUFS         55        /**< \brief »º³å¿Õ¼ä²»×ã       */
-#define AM_EISCONN         56        /**< \brief SocketÒÑ¾­Á¬½Ó     */
-#define AM_ENOTCONN        57        /**< \brief SocketÃ»ÓĞÁ¬½Ó     */
-#define AM_ESHUTDOWN       58        /**< \brief SocketÒÑ¾­¹Ø±Õ£¬²»ÄÜ·¢ËÍÊı¾İ */
-#define AM_ETOOMANYREFS    59        /**< \brief ÒıÓÃÌ«¶à£¬ÎŞ·¨Æ´½Ó */
-#define AM_ETIMEDOUT       60        /**< \brief Á¬½Ó³¬Ê±           */
-#define AM_ECONNREFUSED    61        /**< \brief Á¬½Ó±»¾Ü¾ø         */
-#define AM_ENETDOWN        62        /**< \brief ÍøÂçÒÑ¾­Í£Ö¹       */
-#define AM_ETXTBSY         63        /**< \brief ÎÄ±¾ÎÄ¼şÃ¦         */
-#define AM_ELOOP           64        /**< \brief ·ûºÅÁ´½Ó¼¶ÊıÌ«¶à   */
-#define AM_EHOSTUNREACH    65        /**< \brief Ö÷»ú²»¿É´ï         */
-#define AM_ENOTBLK         66        /**< \brief ·Ç¿éÉè±¸           */
-#define AM_EHOSTDOWN       67        /**< \brief Ö÷»úÒÑ¾­¹Ø±Õ       */
+#define AM_ENETUNREACH     51        /**< \brief ç½‘ç»œä¸å¯è¾¾         */
+#define AM_ENETRESET       52        /**< \brief ç½‘ç»œä¸­æ–­äº†è¿æ¥     */
+#define AM_ECONNABORTED    53        /**< \brief è¿æ¥ä¸­æ–­           */
+#define AM_ECONNRESET      54        /**< \brief è¿æ¥å¤ä½           */
+#define AM_ENOBUFS         55        /**< \brief ç¼“å†²ç©ºé—´ä¸è¶³       */
+#define AM_EISCONN         56        /**< \brief Socketå·²ç»è¿æ¥     */
+#define AM_ENOTCONN        57        /**< \brief Socketæ²¡æœ‰è¿æ¥     */
+#define AM_ESHUTDOWN       58        /**< \brief Socketå·²ç»å…³é—­ï¼Œä¸èƒ½å‘é€æ•°æ® */
+#define AM_ETOOMANYREFS    59        /**< \brief å¼•ç”¨å¤ªå¤šï¼Œæ— æ³•æ‹¼æ¥ */
+#define AM_ETIMEDOUT       60        /**< \brief è¿æ¥è¶…æ—¶           */
+#define AM_ECONNREFUSED    61        /**< \brief è¿æ¥è¢«æ‹’ç»         */
+#define AM_ENETDOWN        62        /**< \brief ç½‘ç»œå·²ç»åœæ­¢       */
+#define AM_ETXTBSY         63        /**< \brief æ–‡æœ¬æ–‡ä»¶å¿™         */
+#define AM_ELOOP           64        /**< \brief ç¬¦å·é“¾æ¥çº§æ•°å¤ªå¤š   */
+#define AM_EHOSTUNREACH    65        /**< \brief ä¸»æœºä¸å¯è¾¾         */
+#define AM_ENOTBLK         66        /**< \brief éå—è®¾å¤‡           */
+#define AM_EHOSTDOWN       67        /**< \brief ä¸»æœºå·²ç»å…³é—­       */
 
 /** @} */
 
 /**
- * \name ·Ç×èÈûºÍÖĞ¶ÏI/O´íÎóÖµ
+ * \name éé˜»å¡å’Œä¸­æ–­I/Oé”™è¯¯å€¼
  * @{
  */
 
-#define AM_EINPROGRESS     68         /**< \brief ²Ù×÷ÕıÔÚ½øĞĞÖĞ */
-#define AM_EALREADY        69         /**< \brief Á¬½ÓÕı±»Ê¹ÓÃÖĞ */
+#define AM_EINPROGRESS     68         /**< \brief æ“ä½œæ­£åœ¨è¿›è¡Œä¸­ */
+#define AM_EALREADY        69         /**< \brief è¿æ¥æ­£è¢«ä½¿ç”¨ä¸­ */
 
 /* 70 */
 
-#define AM_EWOULDBLOCK     AM_EAGAIN  /**< \brief ²Ù×÷»á×èÈû£¨Í¬EAGAIN£© */
-#define AM_ENOSYS          71         /**< \brief ²»Ö§³ÖµÄ¹¦ÄÜ£¨¹¦ÄÜÎ´ÊµÏÖ£©*/
+#define AM_EWOULDBLOCK     AM_EAGAIN  /**< \brief æ“ä½œä¼šé˜»å¡ï¼ˆåŒEAGAINï¼‰ */
+#define AM_ENOSYS          71         /**< \brief ä¸æ”¯æŒçš„åŠŸèƒ½ï¼ˆåŠŸèƒ½æœªå®ç°ï¼‰*/
  
 /** @} */
 
 /**
- * \name Òì²½I/O´íÎóÖµ
+ * \name å¼‚æ­¥I/Oé”™è¯¯å€¼
  * @{
  */
-#define AM_ECANCELED       72         /**< \brief ²Ù×÷ÒÑ¾­È¡Ïû */
+#define AM_ECANCELED       72         /**< \brief æ“ä½œå·²ç»å–æ¶ˆ */
 
 /* 73 */
 /** @} */
 
 /**
- * \name Á÷Ïà¹Ø´íÎóÖµ
+ * \name æµç›¸å…³é”™è¯¯å€¼
  * @{
  */
-#define AM_ENOSR           74        /**< \brief Ã»ÓĞÁ÷×ÊÔ´ */
-#define AM_ENOSTR          75        /**< \brief ²»ÊÇÁ÷Éè±¸ */
-#define AM_EPROTO          76        /**< \brief Ğ­Òé´íÎó */
-#define AM_EBADMSG         77        /**< \brief Ëğ»µµÄÏûÏ¢ */
-#define AM_ENODATA         78        /**< \brief Á÷ÖĞÎŞÊı¾İ */
-#define AM_ETIME           79        /**< \brief Á÷ioctl()³¬Ê± */
-#define AM_ENOMSG          80        /**< \brief Ã»ÓĞËùĞèµÄÏûÏ¢ÀàĞÍ */
-#define AM_EUCLEAN         81        /**< \brief StructureĞèÒªÇåÀí */
+#define AM_ENOSR           74        /**< \brief æ²¡æœ‰æµèµ„æº */
+#define AM_ENOSTR          75        /**< \brief ä¸æ˜¯æµè®¾å¤‡ */
+#define AM_EPROTO          76        /**< \brief åè®®é”™è¯¯ */
+#define AM_EBADMSG         77        /**< \brief æŸåçš„æ¶ˆæ¯ */
+#define AM_ENODATA         78        /**< \brief æµä¸­æ— æ•°æ® */
+#define AM_ETIME           79        /**< \brief æµioctl()è¶…æ—¶ */
+#define AM_ENOMSG          80        /**< \brief æ²¡æœ‰æ‰€éœ€çš„æ¶ˆæ¯ç±»å‹ */
+#define AM_EUCLEAN         81        /**< \brief Structureéœ€è¦æ¸…ç† */
 /** @} */                            
 
 /**
-* \name ÆäËü×Ô¶¨Òå´íÎóÖµ
+* \name å…¶å®ƒè‡ªå®šä¹‰é”™è¯¯å€¼
  * @{
  */
  
-#define AM_EFULL           100     /**< \brief Âú               */ 
-#define AM_EEMPTY          101     /**< \brief ¿Õ               */
-#define AM_ERXOV           102     /**< \brief ½ÓÊÕÒç³ö         */
-#define AM_ETXUR           103     /**< \brief ·¢ËÍUnderrun´íÎó */
-#define AM_ESSA            104     /**< \brief ´Ó»ú¶ÏÑÔ         */
-#define AM_ESSD            105     /**< \brief ´Ó»ú½â³ı¶ÏÑÔ     */
-#define AM_EHIGH           106     /**< \brief Öµ¹ı¸ß           */
-#define AM_ELOW            107     /**< \brief Öµ¹ıµÍ           */
+#define AM_EFULL           100     /**< \brief æ»¡               */ 
+#define AM_EEMPTY          101     /**< \brief ç©º               */
+#define AM_ERXOV           102     /**< \brief æ¥æ”¶æº¢å‡º         */
+#define AM_ETXUR           103     /**< \brief å‘é€Underruné”™è¯¯ */
+#define AM_ESSA            104     /**< \brief ä»æœºæ–­è¨€         */
+#define AM_ESSD            105     /**< \brief ä»æœºè§£é™¤æ–­è¨€     */
+#define AM_EHIGH           106     /**< \brief å€¼è¿‡é«˜           */
+#define AM_ELOW            107     /**< \brief å€¼è¿‡ä½           */
 
 /** @} */
 
-/** \brief ÓÃ»§×Ô¶¨Òå´íÎóÆğÊ¼Öµ */
+/** \brief ç”¨æˆ·è‡ªå®šä¹‰é”™è¯¯èµ·å§‹å€¼ */
 #define AM_ERRNO_USER_START 2000
 
-/** \brief ÓÃ»§×Ô¶¨Òå´íÎóÖµ */
+/** \brief ç”¨æˆ·è‡ªå®šä¹‰é”™è¯¯å€¼ */
 #define AM_ERRNO_USER(x)    (AM_ERRNO_USER_START + (x))
 
 /** @} */

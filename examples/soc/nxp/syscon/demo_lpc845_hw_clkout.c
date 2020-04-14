@@ -12,19 +12,19 @@
 
 /**
  * \file
- * \brief ʱ��Ƶ��������̣�ͨ�� HW ��ӿ�ʵ��
+ * \brief 时钟频率输出例程，通过 HW 层接口实现
  *
- * - ʵ������
- *   1. ���ڴ�ӡ "The CLKOUT  rate is  xxx Hz\r\n"��xxx Ϊ��ǰƵ�ʣ�
- *   2. PIO0_27 ���ţ�Ĭ������ CLKOUT ��������������ǰʱ��Ƶ�� 2.5MHz��
- *   3. LED0 �� 0.2s ��ʱ������˸��
+ * - 实验现象：
+ *   1. 串口打印 "The CLKOUT  rate is  xxx Hz\r\n"，xxx 为当前频率；
+ *   2. PIO0_27 引脚（默认配置 CLKOUT 引脚输出）输出当前时钟频率 2.5MHz；
+ *   3. LED0 以 0.2s 的时间间隔闪烁。
  *
  * \note
- *    1. LED0 ��Ҫ�̽� J9 ����ñ�����ܱ� PIO0_20 ���ƣ�
- *    2. ����۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIO0_0 �������� PC ���ڵ� TXD��
- *       PIO0_4 �������� PC ���ڵ� RXD��
+ *    1. LED0 需要短接 J9 跳线帽，才能被 PIO0_20 控制；
+ *    2. 如需观察串口打印的调试信息，需要将 PIO0_0 引脚连接 PC 串口的 TXD，
+ *       PIO0_4 引脚连接 PC 串口的 RXD。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_lpc824_hw_clkout.c src_lpc824_hw_clkout
  *
  * \internal
@@ -45,23 +45,23 @@
 #include "hw/amhw_lpc84x_clk.h"
 
 
-/** \brief ʱ��Դ���� */
+/** \brief 时钟源定义 */
 #define __CLKOUT_SRC  AMHW_LPC84X_CLKOUT_SRC_MAIN
 
-/** \brief ʱ�ӷ�Ƶ�������� */
+/** \brief 时钟分频参数定义 */
 #define __CLKOUT_DIV  10
 
-/** \brief ʱ�ӷ�Ƶ�������� */
+/** \brief 时钟分频参数定义 */
 #define __RETE        2
 
 #define __DIV         2
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_lpc845_hw_clkout_entry (void)
 {
-    /* �����ڲ� IRC */
+    /* 开启内部 IRC */
     am_kprintf("demo am845 hw clkout!\r\n");
 
     /* Configure the SWM for clock out */

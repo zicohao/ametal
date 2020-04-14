@@ -37,114 +37,114 @@ extern "C" {
  * @{
  */
 
-#define  AM_ZLG217_RTC_CALLBACK_SECOND  (1 << 0)  /**< \brief RTC ÃëÖÐ¶Ï»Øµ÷º¯Êý±àºÅ */
-#define  AM_ZLG217_RTC_CALLBACK_ALARM   (1 << 1)  /**< \brief RTC ÄÖÖÓÖÐ¶Ï»Øµ÷º¯Êý±àºÅ */
-#define  AM_ZLG217_RTC_CALLBACK_OVER    (1 << 2)  /**< \brief RTC Òç³öÖÐ¶Ï»Øµ÷º¯Êý±àºÅ */
+#define  AM_ZLG217_RTC_CALLBACK_SECOND  (1 << 0)  /**< \brief RTC ç§’ä¸­æ–­å›žè°ƒå‡½æ•°ç¼–å· */
+#define  AM_ZLG217_RTC_CALLBACK_ALARM   (1 << 1)  /**< \brief RTC é—¹é’Ÿä¸­æ–­å›žè°ƒå‡½æ•°ç¼–å· */
+#define  AM_ZLG217_RTC_CALLBACK_OVER    (1 << 2)  /**< \brief RTC æº¢å‡ºä¸­æ–­å›žè°ƒå‡½æ•°ç¼–å· */
 
 /**
- * \brief ZLG217 RTC Éè±¸ÐÅÏ¢
+ * \brief ZLG217 RTC è®¾å¤‡ä¿¡æ¯
  */
 typedef struct am_zlg217_rtc_devinfo {
-    uint32_t rtc_regbase;            /**< \brief RTC ¼Ä´æÆ÷»ùµØÖ· */
-    uint32_t pwr_regbase;            /**< \brief PWR ¼Ä´æÆ÷»ùµØÖ· */
-    uint32_t bkp_regbase;            /**< \brief BKP ¼Ä´æÆ÷»ùµØÖ· */
-    uint32_t rtc_clk_sour;           /**< \brief RTC Ê±ÖÓÔ´ */
-    int      rtc_inum;               /**< \brief RTC ÖÐ¶ÏºÅ */
-    void   (*pfn_plfm_init)(void);   /**< \brief Æ½Ì¨³õÊ¼»¯º¯Êý */
-    void   (*pfn_plfm_deinit)(void); /**< \brief Æ½Ì¨½â³õÊ¼»¯º¯Êý */
+    uint32_t rtc_regbase;            /**< \brief RTC å¯„å­˜å™¨åŸºåœ°å€ */
+    uint32_t pwr_regbase;            /**< \brief PWR å¯„å­˜å™¨åŸºåœ°å€ */
+    uint32_t bkp_regbase;            /**< \brief BKP å¯„å­˜å™¨åŸºåœ°å€ */
+    uint32_t rtc_clk_sour;           /**< \brief RTC æ—¶é’Ÿæº */
+    int      rtc_inum;               /**< \brief RTC ä¸­æ–­å· */
+    void   (*pfn_plfm_init)(void);   /**< \brief å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    void   (*pfn_plfm_deinit)(void); /**< \brief å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 } am_zlg217_rtc_devinfo_t;
 
 /**
- * \brief ZLG217 RTC Éè±¸
+ * \brief ZLG217 RTC è®¾å¤‡
  */
 typedef struct am_zlg217_rtc_dev {
-    am_rtc_serv_t                  rtc_serv;        /**< \brief RTC ±ê×¼·þÎñ */
-    uint8_t                        int_state;       /**< \brief ÖÐ¶ÏÊ¹ÄÜ±êÖ¾ */
-    am_bool_t                      rtc_continue;    /**< \brief RTC ÊÇ·ñ¼ÌÐøÔËÐÐ */
-    am_pfnvoid_t                   pfn_callback[3]; /**< \brief »Øµ÷º¯Êý */
-    void                          *p_arg[3];        /**< \brief »Øµ÷º¯Êý²ÎÊý */
-    const am_zlg217_rtc_devinfo_t *p_devinfo;       /**< \brief RTC Éè±¸ÐÅÏ¢ */
+    am_rtc_serv_t                  rtc_serv;        /**< \brief RTC æ ‡å‡†æœåŠ¡ */
+    uint8_t                        int_state;       /**< \brief ä¸­æ–­ä½¿èƒ½æ ‡å¿— */
+    am_bool_t                      rtc_continue;    /**< \brief RTC æ˜¯å¦ç»§ç»­è¿è¡Œ */
+    am_pfnvoid_t                   pfn_callback[3]; /**< \brief å›žè°ƒå‡½æ•° */
+    void                          *p_arg[3];        /**< \brief å›žè°ƒå‡½æ•°å‚æ•° */
+    const am_zlg217_rtc_devinfo_t *p_devinfo;       /**< \brief RTC è®¾å¤‡ä¿¡æ¯ */
 }am_zlg217_rtc_dev_t;
 
 /**
- * \brief RTC ×´Ì¬»ñÈ¡£¬¿ÉÒÔÓÃÀ´ÅÐ¶Ï±¾´ÎÔËÐÐÇ°±¸·ÝÇøÓòÊÇ·ñ¶Ïµç
+ * \brief RTC çŠ¶æ€èŽ·å–ï¼Œå¯ä»¥ç”¨æ¥åˆ¤æ–­æœ¬æ¬¡è¿è¡Œå‰å¤‡ä»½åŒºåŸŸæ˜¯å¦æ–­ç”µ
  *
- * \param[in] handle RTC ±ê×¼·þÎñ²Ù×÷¾ä±ú
+ * \param[in] handle RTC æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  *
- * \retval AM_TRUE  ±¸·ÝÇøÓòÎ´¶Ïµç£¬RTC ¼ÆÊýÆ÷½Ó×ÅÉÏÒ»´ÎµÄ×´Ì¬ÔËÐÐ
- * \retval AM_FALSE ±¸·ÝÇøÓò¶Ïµç£¬RTC ¼ÆÊýÆ÷´Ó 0 ¿ªÊ¼ÔËÐÐ
+ * \retval AM_TRUE  å¤‡ä»½åŒºåŸŸæœªæ–­ç”µï¼ŒRTC è®¡æ•°å™¨æŽ¥ç€ä¸Šä¸€æ¬¡çš„çŠ¶æ€è¿è¡Œ
+ * \retval AM_FALSE å¤‡ä»½åŒºåŸŸæ–­ç”µï¼ŒRTC è®¡æ•°å™¨ä»Ž 0 å¼€å§‹è¿è¡Œ
  */
 am_bool_t am_zlg217_rtc_state_get (am_rtc_handle_t handle);
 
 /**
- * \brief RTC Í¬²½±êÖ¾¸´Î»£¬µ± APB1 Ôø¾­±»½ûÖ¹¹ý£¬ÐèÒªµ÷ÓÃ´Ë½Ó¿Ú
+ * \brief RTC åŒæ­¥æ ‡å¿—å¤ä½ï¼Œå½“ APB1 æ›¾ç»è¢«ç¦æ­¢è¿‡ï¼Œéœ€è¦è°ƒç”¨æ­¤æŽ¥å£
  *
- * \param[in] handle RTC ±ê×¼·þÎñ²Ù×÷¾ä±ú
+ * \param[in] handle RTC æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  *
- * \retval  AM_OK     ³É¹¦
- * \retval -AM_EINVAL ²ÎÊý´íÎó
+ * \retval  AM_OK     æˆåŠŸ
+ * \retval -AM_EINVAL å‚æ•°é”™è¯¯
  *
- * \note ·¢ÉúÏµÍ³¸´Î»»òµçÔ´¸´Î»¡¢ÏµÍ³¸Õ´Ó´ý»úÄ£Ê½»½ÐÑ¡¢
- *       ÏµÍ³¸Õ´ÓÍ£»úÄ£Ê½»½ÐÑÊ±£¬Ó¦¸Ãµ÷ÓÃ´Ë½Ó¿Ú
+ * \note å‘ç”Ÿç³»ç»Ÿå¤ä½æˆ–ç”µæºå¤ä½ã€ç³»ç»Ÿåˆšä»Žå¾…æœºæ¨¡å¼å”¤é†’ã€
+ *       ç³»ç»Ÿåˆšä»Žåœæœºæ¨¡å¼å”¤é†’æ—¶ï¼Œåº”è¯¥è°ƒç”¨æ­¤æŽ¥å£
  */
 am_err_t am_zlg217_rtc_apb1_reflush (am_rtc_handle_t handle);
 
 /**
- * \brief »ñÈ¡ RTC ¼ÆÊýÆ÷Öµ
+ * \brief èŽ·å– RTC è®¡æ•°å™¨å€¼
  *
- * \param[in]  handle RTC ±ê×¼·þÎñ²Ù×÷¾ä±ú
- * \param[out] p_cnt  Ö¸Ïò´æ´¢»ñÈ¡µ½µÄ RTC ¼ÆÊýÆ÷ÖµµÄÖ¸Õë
+ * \param[in]  handle RTC æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[out] p_cnt  æŒ‡å‘å­˜å‚¨èŽ·å–åˆ°çš„ RTC è®¡æ•°å™¨å€¼çš„æŒ‡é’ˆ
  *
- * \retval  AM_OK     ³É¹¦
- * \retval -AM_EINVAL ²ÎÊý´íÎó
+ * \retval  AM_OK     æˆåŠŸ
+ * \retval -AM_EINVAL å‚æ•°é”™è¯¯
  */
 am_err_t am_zlg217_rtc_cnt_get (am_rtc_handle_t handle, uint32_t *p_cnt);
 
 /**
- * \brief ÉèÖÃ RTC ¼ÆÊýÆ÷Öµ
+ * \brief è®¾ç½® RTC è®¡æ•°å™¨å€¼
  *
- * \param[in] handle RTC ±ê×¼·þÎñ²Ù×÷¾ä±ú
- * \param[in] cnt    RTC ¼ÆÊýÆ÷Öµ
+ * \param[in] handle RTC æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] cnt    RTC è®¡æ•°å™¨å€¼
  *
- * \retval  AM_OK     ³É¹¦
- * \retval -AM_EINVAL ²ÎÊý´íÎó
+ * \retval  AM_OK     æˆåŠŸ
+ * \retval -AM_EINVAL å‚æ•°é”™è¯¯
  */
 am_err_t am_zlg217_rtc_cnt_set (am_rtc_handle_t handle, uint32_t cnt);
 
 /**
- * \brief ÉèÖÃ RTC ÄÖÖÓÖµ
+ * \brief è®¾ç½® RTC é—¹é’Ÿå€¼
  *
- * \param[in] handle RTC ±ê×¼·þÎñ²Ù×÷¾ä±ú
- * \param[in] alr    RTC ÄÖÖÓÖµ
+ * \param[in] handle RTC æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] alr    RTC é—¹é’Ÿå€¼
  *
- * \retval  AM_OK     ³É¹¦
- * \retval -AM_EINVAL ²ÎÊý´íÎó
+ * \retval  AM_OK     æˆåŠŸ
+ * \retval -AM_EINVAL å‚æ•°é”™è¯¯
  */
 am_err_t am_zlg217_rtc_alr_set (am_rtc_handle_t handle, uint32_t alr);
 
 /**
- * \brief ÉèÖÃ RTC ÄÖÖÓÊ±¼ä
+ * \brief è®¾ç½® RTC é—¹é’Ÿæ—¶é—´
  *
- * \param[in] handle RTC ±ê×¼·þÎñ²Ù×÷¾ä±ú
- * \param[in] p_tm   ÐèÒªÉèÖÃµÄÊ±¼ä
+ * \param[in] handle RTC æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] p_tm   éœ€è¦è®¾ç½®çš„æ—¶é—´
  *
- * \retval  AM_OK     ³É¹¦
- * \retval -AM_EINVAL ²ÎÊý´íÎó
+ * \retval  AM_OK     æˆåŠŸ
+ * \retval -AM_EINVAL å‚æ•°é”™è¯¯
  */
 am_err_t am_zlg217_rtc_alarm_set (am_rtc_handle_t handle, am_tm_t *p_tm);
 
 /**
- * \brief ÉèÖÃ RTC ÖÐ¶Ï»Øµ÷
+ * \brief è®¾ç½® RTC ä¸­æ–­å›žè°ƒ
  *
- * \param[in] handle       RTC ±ê×¼·þÎñ²Ù×÷¾ä±ú
- * \param[in] type         ÖÐ¶ÏÀàÐÍ£¬¿ÉÑ¡ AM_ZLG217_RTC_CALLBACK_SECOND
+ * \param[in] handle       RTC æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] type         ä¸­æ–­ç±»åž‹ï¼Œå¯é€‰ AM_ZLG217_RTC_CALLBACK_SECOND
  *                                       AM_ZLG217_RTC_CALLBACK_ALARM
  *                                       AM_ZLG217_RTC_CALLBACK_OVER
- * \param[in] pfn_callback »Øµ÷º¯Êý
- * \param[in] p_arg        »Øµ÷º¯Êý²ÎÊý
+ * \param[in] pfn_callback å›žè°ƒå‡½æ•°
+ * \param[in] p_arg        å›žè°ƒå‡½æ•°å‚æ•°
  *
- * \retval  AM_OK     ³É¹¦
- * \retval -AM_EINVAL ²ÎÊý´íÎó
+ * \retval  AM_OK     æˆåŠŸ
+ * \retval -AM_EINVAL å‚æ•°é”™è¯¯
  */
 am_err_t am_zlg217_rtc_callback_set (am_rtc_handle_t handle,
                                      uint8_t         type,
@@ -152,49 +152,49 @@ am_err_t am_zlg217_rtc_callback_set (am_rtc_handle_t handle,
                                      void           *p_arg);
 
 /**
- * \brief RTC ÖÐ¶ÏÊ¹ÄÜ
+ * \brief RTC ä¸­æ–­ä½¿èƒ½
  *
- * \param[in] handle RTC ±ê×¼·þÎñ²Ù×÷¾ä±ú
- * \param[in] type   ÖÐ¶ÏÀàÐÍ£¬¿ÉÑ¡ AM_ZLG217_RTC_CALLBACK_SECOND
+ * \param[in] handle RTC æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] type   ä¸­æ–­ç±»åž‹ï¼Œå¯é€‰ AM_ZLG217_RTC_CALLBACK_SECOND
  *                                 AM_ZLG217_RTC_CALLBACK_ALARM
  *                                 AM_ZLG217_RTC_CALLBACK_OVER
  *
- * \retval  AM_OK     ³É¹¦
- * \retval -AM_EINVAL ²ÎÊý´íÎó
+ * \retval  AM_OK     æˆåŠŸ
+ * \retval -AM_EINVAL å‚æ•°é”™è¯¯
  */
 am_err_t am_zlg217_rtc_int_enable (am_rtc_handle_t handle,
                                    uint8_t         type);
 
 /**
- * \brief RTC ÖÐ¶ÏÊ§ÄÜ
+ * \brief RTC ä¸­æ–­å¤±èƒ½
  *
- * \param[in] handle RTC ±ê×¼·þÎñ²Ù×÷¾ä±ú
- * \param[in] type   ÖÐ¶ÏÀàÐÍ£¬¿ÉÑ¡ AM_ZLG217_RTC_CALLBACK_SECOND
+ * \param[in] handle RTC æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] type   ä¸­æ–­ç±»åž‹ï¼Œå¯é€‰ AM_ZLG217_RTC_CALLBACK_SECOND
  *                                 AM_ZLG217_RTC_CALLBACK_ALARM
  *                                 AM_ZLG217_RTC_CALLBACK_OVER
  *
- * \retval  AM_OK     ³É¹¦
- * \retval -AM_EINVAL ²ÎÊý´íÎó
+ * \retval  AM_OK     æˆåŠŸ
+ * \retval -AM_EINVAL å‚æ•°é”™è¯¯
  */
 am_err_t am_zlg217_rtc_int_disable (am_rtc_handle_t handle,
                                     uint8_t         type);
 /**
- * \brief ³õÊ¼»¯ RTC
+ * \brief åˆå§‹åŒ– RTC
  *
- * \param[in] p_dev     Ö¸Ïò RTC Éè±¸µÄÖ¸Õë
- * \param[in] p_devinfo Ö¸Ïò RTC Éè±¸ÐÅÏ¢µÄÖ¸Õë
+ * \param[in] p_dev     æŒ‡å‘ RTC è®¾å¤‡çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo æŒ‡å‘ RTC è®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ
  *
- * \return RTC ±ê×¼·þÎñ²Ù×÷¾ä±ú£¬Èç¹ûÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return RTC æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„ï¼Œå¦‚æžœä¸º NULLï¼Œè¡¨æ˜Žåˆå§‹åŒ–å¤±è´¥
  */
 am_rtc_handle_t am_zlg217_rtc_init (am_zlg217_rtc_dev_t           *p_dev,
                                     const am_zlg217_rtc_devinfo_t *p_devinfo);
 
 /**
- * \brief ½â³õÊ¼»¯ RTC
+ * \brief è§£åˆå§‹åŒ– RTC
  *
- * \param[in] handle Ê¹ÓÃ am_zlg217_rtc_init() »ñÈ¡µ½µÄ RTC ±ê×¼·þÎñ²Ù×÷¾ä±ú
+ * \param[in] handle ä½¿ç”¨ am_zlg217_rtc_init() èŽ·å–åˆ°çš„ RTC æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  *
- * \return ÎÞ
+ * \return æ— 
  */
 void am_zlg217_rtc_deinit (am_rtc_handle_t handle);
 

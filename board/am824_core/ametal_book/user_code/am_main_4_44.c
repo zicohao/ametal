@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥4.44
+ * \brief ç¨‹åºæ¸…å•4.44
  *
- * \note ¸ÃÀú³ÌĞèÒªÓÃµ½miniportÍØÕ¹°å
+ * \note è¯¥å†ç¨‹éœ€è¦ç”¨åˆ°miniportæ‹“å±•æ¿
  *
  * \internal
  * \par Modification history
@@ -27,19 +27,19 @@
 #include "am_delay.h"
 #include "matrixkey.h"
 
-static void key_process (uint8_t code)       // °´¼ü´¦Àí³ÌĞò
+static void key_process (uint8_t code)       // æŒ‰é”®å¤„ç†ç¨‹åº
 {
-    if ((code & 0x80) == 0) {                // °´¼ü°´ÏÂÊÂ¼ş£¬°´¼üÊÍ·ÅÊ±·äÃùÆ÷²»½Ğ
+    if ((code & 0x80) == 0) {                // æŒ‰é”®æŒ‰ä¸‹äº‹ä»¶ï¼ŒæŒ‰é”®é‡Šæ”¾æ—¶èœ‚é¸£å™¨ä¸å«
         buzzer_beep_async(100);
     }
     switch (code) {
-    case 0:                                 // KEY0°´ÏÂ£¬ÏÔÊ¾00
+    case 0:                                 // KEY0æŒ‰ä¸‹ï¼Œæ˜¾ç¤º00
         led_off(0); led_off(1);  break;     
-    case 1:                                // KEY1°´ÏÂ£¬ÏÔÊ¾01
+    case 1:                                // KEY1æŒ‰ä¸‹ï¼Œæ˜¾ç¤º01
         led_on(0);  led_off(1);  break;      
-    case 2:                                // KEY2°´ÏÂ£¬ÏÔÊ¾10
+    case 2:                                // KEY2æŒ‰ä¸‹ï¼Œæ˜¾ç¤º10
         led_on(1);  led_off(0);  break;      
-    case 3:                                // KEY3°´ÏÂ£¬ÏÔÊ¾11
+    case 3:                                // KEY3æŒ‰ä¸‹ï¼Œæ˜¾ç¤º11
         led_on(0);  led_on(1);   break;
     default:
         break;
@@ -54,7 +54,7 @@ int am_main (void)
     while(1) {
         key_return = matrixkey_scan();
         if (key_return!= 0xFF) {
-            // ²úÉú°´¼üÊÂ¼ş
+            // äº§ç”ŸæŒ‰é”®äº‹ä»¶
             key_process(key_return);
         }
         am_mdelay(10);

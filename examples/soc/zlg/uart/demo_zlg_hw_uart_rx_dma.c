@@ -12,16 +12,16 @@
 
 /**
  * \file
- * \brief UART DMA ½ÓÊÕÀı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief UART DMA æ¥æ”¶ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè£º
- *   1. Í¨¹ıÉÏÎ»»ú´®¿ÚÒ»´ÎĞÔÏò MCU ·¢ËÍ 5 ¸ö×Ö·û¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. é€šè¿‡ä¸Šä½æœºä¸²å£ä¸€æ¬¡æ€§å‘ MCU å‘é€ 5 ä¸ªå­—ç¬¦ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Ö¸¶¨´®¿Ú´òÓ¡³ö½ÓÊÕµ½µÄÊı¾İ£»
- *   2. È»ºóÖ¸¶¨´®¿Ú´òÓ¡³ö "DMA transfer done!"¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. æŒ‡å®šä¸²å£æ‰“å°å‡ºæ¥æ”¶åˆ°çš„æ•°æ®ï¼›
+ *   2. ç„¶åæŒ‡å®šä¸²å£æ‰“å°å‡º "DMA transfer done!"ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_zlg_hw_uart_rx_dma.c src_zlg_hw_uart_rx_dma
  *
  *
@@ -44,27 +44,27 @@
 #include "hw/amhw_zlg_uart.h"
 
 /*******************************************************************************
-  ºê¶¨Òå
+  å®å®šä¹‰
 *******************************************************************************/
-#define UART_BAUDRATE      (115200)             /**< \brief ²¨ÌØÂÊ */
+#define UART_BAUDRATE      (115200)             /**< \brief æ³¢ç‰¹ç‡ */
 
 /*******************************************************************************
-  È«¾Ö±äÁ¿
+  å…¨å±€å˜é‡
 *******************************************************************************/
-static amhw_zlg_dma_xfer_desc_t g_desc;                  /**< \brief DMA ÖØÔØÃèÊö·û */
-static volatile am_bool_t       g_trans_done = AM_FALSE; /**< \brief ´«ÊäÍê³É±êÖ¾ */
-static uint8_t                  g_buf_dst[5] = {0};      /**< \brief Ä¿±ê¶ËÊı¾İ»º³åÇø */
-static int32_t                  g_dma_chan = 0;          /**< \brief DMA Í¨µÀºÅ */
-static amhw_zlg_uart_t         *gp_hw_uart = NULL;       /**< \brief UART ÍâÉè */
+static amhw_zlg_dma_xfer_desc_t g_desc;                  /**< \brief DMA é‡è½½æè¿°ç¬¦ */
+static volatile am_bool_t       g_trans_done = AM_FALSE; /**< \brief ä¼ è¾“å®Œæˆæ ‡å¿— */
+static uint8_t                  g_buf_dst[5] = {0};      /**< \brief ç›®æ ‡ç«¯æ•°æ®ç¼“å†²åŒº */
+static int32_t                  g_dma_chan = 0;          /**< \brief DMA é€šé“å· */
+static amhw_zlg_uart_t         *gp_hw_uart = NULL;       /**< \brief UART å¤–è®¾ */
 
 /**
- * \brief DMA ÖĞ¶Ï·şÎñ³ÌĞò
+ * \brief DMA ä¸­æ–­æœåŠ¡ç¨‹åº
  *
- * \param[in] p_arg : ÓÃ»§×Ô¶¨Òå²ÎÊı£¬Í¨¹ı am_zlg_dma_isr_connect() º¯Êı´«µİ
- * \param[in] flag  : DMAÖĞ¶Ï±êÖ¾£¬ÓÉµ×²ãÇı¶¯´«Èë£¬¸Ã²ÎÊıµÄ¿ÉÄÜÈ¡Öµ£º
- *                    (#AM_ZLG116_DMA_INT_ERROR) »ò (#AM_ZLG116_DMA_INT_NORMAL)
+ * \param[in] p_arg : ç”¨æˆ·è‡ªå®šä¹‰å‚æ•°ï¼Œé€šè¿‡ am_zlg_dma_isr_connect() å‡½æ•°ä¼ é€’
+ * \param[in] flag  : DMAä¸­æ–­æ ‡å¿—ï¼Œç”±åº•å±‚é©±åŠ¨ä¼ å…¥ï¼Œè¯¥å‚æ•°çš„å¯èƒ½å–å€¼ï¼š
+ *                    (#AM_ZLG116_DMA_INT_ERROR) æˆ– (#AM_ZLG116_DMA_INT_NORMAL)
  *
- * \return ÎŞ
+ * \return æ— 
  */
 static void uart_dma_isr (void *p_arg , uint32_t flag)
 {
@@ -73,21 +73,21 @@ static void uart_dma_isr (void *p_arg , uint32_t flag)
     if (flag == AM_ZLG_DMA_INT_NORMAL) {
         if (flag_chan == g_dma_chan) {
 
-            /* ½ûÄÜUART½ÓÊÕ */
+            /* ç¦èƒ½UARTæ¥æ”¶ */
             amhw_zlg_uart_rx_enable(gp_hw_uart, AM_FALSE);
 
-            /* ½ûÄÜUART·¢ËÍÊ±Ê¹ÓÃDMA´«Êä */
+            /* ç¦èƒ½UARTå‘é€æ—¶ä½¿ç”¨DMAä¼ è¾“ */
             amhw_zlg_uart_dma_mode_enable(gp_hw_uart, AM_FALSE);
 
             g_trans_done = AM_TRUE;
         }
     } else {
-        /* ÓÃ»§×Ô¶¨ÒåÖ´ĞĞ´úÂë */
+        /* ç”¨æˆ·è‡ªå®šä¹‰æ‰§è¡Œä»£ç  */
     }
 }
 
 /**
- * \brief UART½ÓÊÕDMA´«ÊäÅäÖÃ
+ * \brief UARTæ¥æ”¶DMAä¼ è¾“é…ç½®
  */
 static int uart_rx_dma_tran_cfg (amhw_zlg_uart_t *p_hw_uart,
                                  int32_t          dma_chan,
@@ -100,39 +100,39 @@ static int uart_rx_dma_tran_cfg (amhw_zlg_uart_t *p_hw_uart,
         g_buf_dst[i] = 0;
     }
 
-    /* DMA´«ÊäÅäÖÃ */
-    flags = AMHW_ZLG_DMA_CHAN_PRIORITY_HIGH         |  /* ÍâÉèÇëÇóÔ´½ûÄÜ */
-            AMHW_ZLG_DMA_CHAN_MEM_SIZE_8BIT         |  /* Ô´µØÖ·1×Ö½Ú */
-            AMHW_ZLG_DMA_CHAN_PER_SIZE_8BIT         |  /* Ä¿µÄµØÖ·1×Ö½ÚĞ´Èë */
-            AMHW_ZLG_DMA_CHAN_MEM_ADD_INC_ENABLE    |  /* ÇëÇóÓĞÓ°Ïì */
-            AMHW_ZLG_DMA_CHAN_PER_ADD_INC_DISABLE   |  /* ÎŞÍ¨µÀÁ¬½Ó */
-            AMHW_ZLG_DMA_CHAN_CIRCULAR_MODE_DISABLE ,  /* DMAÖĞ¶ÏÊ¹ÄÜ */
+    /* DMAä¼ è¾“é…ç½® */
+    flags = AMHW_ZLG_DMA_CHAN_PRIORITY_HIGH         |  /* å¤–è®¾è¯·æ±‚æºç¦èƒ½ */
+            AMHW_ZLG_DMA_CHAN_MEM_SIZE_8BIT         |  /* æºåœ°å€1å­—èŠ‚ */
+            AMHW_ZLG_DMA_CHAN_PER_SIZE_8BIT         |  /* ç›®çš„åœ°å€1å­—èŠ‚å†™å…¥ */
+            AMHW_ZLG_DMA_CHAN_MEM_ADD_INC_ENABLE    |  /* è¯·æ±‚æœ‰å½±å“ */
+            AMHW_ZLG_DMA_CHAN_PER_ADD_INC_DISABLE   |  /* æ— é€šé“è¿æ¥ */
+            AMHW_ZLG_DMA_CHAN_CIRCULAR_MODE_DISABLE ,  /* DMAä¸­æ–­ä½¿èƒ½ */
 
-    /* Á¬½ÓDMAÖĞ¶Ï·şÎñº¯Êı */
+    /* è¿æ¥DMAä¸­æ–­æœåŠ¡å‡½æ•° */
     am_zlg_dma_isr_connect(dma_chan, uart_dma_isr, (void *)dma_chan);
 
 
-    /* ½¨Á¢Í¨µÀÃèÊö·û */
-    am_zlg_dma_xfer_desc_build(&g_desc,                      /* Í¨µÀÃèÊö·û */
-                                   (uint32_t)(&(p_hw_uart->rdr)), /* Ô´¶ËÊı¾İ»º³å */
-                                   (uint32_t)(g_buf_dst),       /* Ä¿±êÊı¾İ»º³å */
-                                   (uint32_t)dma_tran_len,      /* ´«Êä×Ö½ÚÊı */
-                                   flags);                      /* ´«ÊäÅäÖÃ */
+    /* å»ºç«‹é€šé“æè¿°ç¬¦ */
+    am_zlg_dma_xfer_desc_build(&g_desc,                      /* é€šé“æè¿°ç¬¦ */
+                                   (uint32_t)(&(p_hw_uart->rdr)), /* æºç«¯æ•°æ®ç¼“å†² */
+                                   (uint32_t)(g_buf_dst),       /* ç›®æ ‡æ•°æ®ç¼“å†² */
+                                   (uint32_t)dma_tran_len,      /* ä¼ è¾“å­—èŠ‚æ•° */
+                                   flags);                      /* ä¼ è¾“é…ç½® */
 
-    /* Æô¶¯DMA´«Êä£¬ÂíÉÏ¿ªÊ¼´«Êä */
+    /* å¯åŠ¨DMAä¼ è¾“ï¼Œé©¬ä¸Šå¼€å§‹ä¼ è¾“ */
     if (am_zlg_dma_xfer_desc_chan_cfg(&g_desc,
-                                          AMHW_ZLG_DMA_PER_TO_MER, /* ÍâÉèµ½ ÄÚ´æ */
+                                          AMHW_ZLG_DMA_PER_TO_MER, /* å¤–è®¾åˆ° å†…å­˜ */
                                           (uint8_t)dma_chan) == AM_ERROR) {
         return AM_ERROR;
     } else {
-        /* ¿ªÆô´«Êä */
+        /* å¼€å¯ä¼ è¾“ */
     }
 
     return AM_OK;
 }
 
 /**
- * \brief UART ³õÊ¼»¯
+ * \brief UART åˆå§‹åŒ–
  */
 static void uart_hw_init (amhw_zlg_uart_t *p_hw_uart, uint32_t clk_rate)
 {
@@ -142,26 +142,26 @@ static void uart_hw_init (amhw_zlg_uart_t *p_hw_uart, uint32_t clk_rate)
     amhw_zlg_uart_data_length(p_hw_uart, AMHW_ZLG_UART_DATA_8BIT);
     amhw_zlg_uart_parity_bit_sel(p_hw_uart,  AMHW_ZLG_UART_PARITY_NO);
 
-    /* Ê¹ÄÜ´®¿Ú */
+    /* ä½¿èƒ½ä¸²å£ */
     amhw_zlg_uart_tx_enable(p_hw_uart, AM_TRUE);
     amhw_zlg_uart_rx_enable(p_hw_uart, AM_TRUE);
     amhw_zlg_uart_enable(p_hw_uart);
 }
 
 /**
- * \brief UART½ÓÊÕ´«ÊäÊ±DMA³õÊ¼»¯
+ * \brief UARTæ¥æ”¶ä¼ è¾“æ—¶DMAåˆå§‹åŒ–
  */
 static void uart_hw_dma_init (amhw_zlg_uart_t *p_hw_uart)
 {
-    /* ´®¿Ú·¢ËÍDMA´«ÊäÊ¹ÄÜ */
+    /* ä¸²å£å‘é€DMAä¼ è¾“ä½¿èƒ½ */
     amhw_zlg_uart_dma_mode_enable(p_hw_uart, AM_TRUE);
 
-    /* Ê¹ÄÜ´®¿Ú */
+    /* ä½¿èƒ½ä¸²å£ */
     amhw_zlg_uart_enable(p_hw_uart);
 }
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_zlg_hw_uart_rx_dma_entry (amhw_zlg_uart_t *p_hw_uart,
                                     uint32_t         clk_rate,
@@ -170,20 +170,20 @@ void demo_zlg_hw_uart_rx_dma_entry (amhw_zlg_uart_t *p_hw_uart,
     gp_hw_uart = p_hw_uart;
     g_dma_chan = dma_chan;
 
-    /* UART³õÊ¼»¯ */
+    /* UARTåˆå§‹åŒ– */
     uart_hw_init(p_hw_uart, clk_rate);
 
-    /* UART½ÓÊÕDMA´«ÊäµÄ³õÊ¼»¯ */
+    /* UARTæ¥æ”¶DMAä¼ è¾“çš„åˆå§‹åŒ– */
     uart_hw_dma_init(p_hw_uart);
 
     amhw_zlg_uart_poll_send(p_hw_uart,
                             (uint8_t *)"UART DMA RX start:\r\n",
                             (uint32_t)sizeof("UART DMA RX start:\r\n") - 1);
-    /* ¿ªÊ¼DMA´«Êä */
+    /* å¼€å§‹DMAä¼ è¾“ */
     uart_rx_dma_tran_cfg(p_hw_uart, dma_chan, sizeof(g_buf_dst));
     am_zlg_dma_chan_start(dma_chan);
 
-    /* µÈ´ı´«ÊäÍê³É */
+    /* ç­‰å¾…ä¼ è¾“å®Œæˆ */
     while (g_trans_done == AM_FALSE);
 
     g_trans_done = AM_FALSE;

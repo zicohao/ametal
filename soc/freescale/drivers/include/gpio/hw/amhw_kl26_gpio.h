@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief GPIO Ӳ�������ӿ�
+ * \brief GPIO 硬件操作接口
  *
- * 1. �����ϣ�GPIOģ�鹦���������ʿɴ�24M��
- *    FGPIOģ�鹦���������ʿɴ�48M
+ * 1. 理论上，GPIO模块功能运行速率可达24M，
+ *    FGPIO模块功能运行速率可达48M
  *
  * \internal
  * \par Modification history
@@ -43,39 +43,39 @@ extern "C" {
  */
 
 /**
- * \brief GPIO �˿ڼĴ����ṹ��
+ * \brief GPIO 端口寄存器结构体
  */
 typedef struct gpio_reg {
-    __IO uint32_t pdor;         /**< \brief �˿���������Ĵ��� */
-    __O  uint32_t psor;         /**< \brief �˿���������Ĵ��� */
-    __O  uint32_t pcor;         /**< \brief �˿���������Ĵ��� */
-    __O  uint32_t ptor;         /**< \brief �˿ڷ�ת����Ĵ��� */
-    __I  uint32_t pdir;         /**< \brief �˿���������Ĵ��� */
-    __IO uint32_t pddr;         /**< \brief �˿����ݷ���Ĵ��� */
-    __IO uint32_t reserve[10];  /**< \brief ���� */
+    __IO uint32_t pdor;         /**< \brief 端口数据输出寄存器 */
+    __O  uint32_t psor;         /**< \brief 端口设置输出寄存器 */
+    __O  uint32_t pcor;         /**< \brief 端口清零输出寄存器 */
+    __O  uint32_t ptor;         /**< \brief 端口翻转输出寄存器 */
+    __I  uint32_t pdir;         /**< \brief 端口数据输入寄存器 */
+    __IO uint32_t pddr;         /**< \brief 端口数据方向寄存器 */
+    __IO uint32_t reserve[10];  /**< \brief 保留 */
 } gpio_reg_t;
 
 /**
- * \brief GPIO �Ĵ�����ṹ��
+ * \brief GPIO 寄存器块结构体
  */
 typedef struct amhw_kl26_gpio {
-    gpio_reg_t    gpio[5];      /**< \brief GPIO �˿� */
+    gpio_reg_t    gpio[5];      /**< \brief GPIO 端口 */
 } amhw_kl26_gpio_t;
 
 /**
- * \brief GPIO �Ĵ�����ṹ��
+ * \brief GPIO 寄存器块结构体
  */
 typedef struct amhw_kl26_fgpio {
-    gpio_reg_t    fgpio[5];     /**< \brief FGPIO �˿� */
+    gpio_reg_t    fgpio[5];     /**< \brief FGPIO 端口 */
 } amhw_kl26_fgpio_t;
 
 /**
- * \brief ����GPIO���ų�ʼ��ƽΪ��
+ * \brief 设置GPIO引脚初始电平为低
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] pin       : ���ű��,ֵΪ PIO* (#PIOA_0)
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] pin       : 引脚编号,值为 PIO* (#PIOA_0)
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_kl26_gpio_pin_init_out_low (amhw_kl26_gpio_t *p_hw_gpio, int pin)
@@ -84,12 +84,12 @@ void amhw_kl26_gpio_pin_init_out_low (amhw_kl26_gpio_t *p_hw_gpio, int pin)
 }
 
 /**
- * \brief ����GPIO���ų�ʼ��ƽΪ��
+ * \brief 设置GPIO引脚初始电平为高
  *
- * \param[in] p_hw_gpio :ָ��GPIO�Ĵ������ָ��
- * \param[in] pin       : ���ű��,ֵΪ PIO* (#PIOA_0)
+ * \param[in] p_hw_gpio :指向GPIO寄存器块的指针
+ * \param[in] pin       : 引脚编号,值为 PIO* (#PIOA_0)
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_kl26_gpio_pin_init_out_high (amhw_kl26_gpio_t *p_hw_gpio, int pin)
@@ -98,13 +98,13 @@ void amhw_kl26_gpio_pin_init_out_high (amhw_kl26_gpio_t *p_hw_gpio, int pin)
 }
 
 /**
- * \brief ��GPIO���ų�ʼ��ƽ
+ * \brief 读GPIO引脚初始电平
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] pin       : ���ű��,ֵΪ PIO* (#PIOA_0)
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] pin       : 引脚编号,值为 PIO* (#PIOA_0)
  *
- * \retval 0 : �͵�ƽ
- * \retval 1 : �ߵ�ƽ
+ * \retval 0 : 低电平
+ * \retval 1 : 高电平
  */
 am_static_inline
 int amhw_kl26_gpio_pin_init_get (amhw_kl26_gpio_t *p_hw_gpio, int pin)
@@ -114,14 +114,14 @@ int amhw_kl26_gpio_pin_init_get (amhw_kl26_gpio_t *p_hw_gpio, int pin)
 }
 
 /**
- * \brief ����GPIO���ŵ�ƽΪ��
+ * \brief 设置GPIO引脚电平为高
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] pin       : ���ű��,ֵΪ PIO* (#PIOA_0)
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] pin       : 引脚编号,值为 PIO* (#PIOA_0)
  *
- * \note  ��PSOR�Ĵ���д1��дPDOR�Ĵ�����ʹ�ܽ������ƽΪ��
+ * \note  向PSOR寄存器写1，写PDOR寄存器，使管脚输出电平为高
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_kl26_gpio_pin_out_high (amhw_kl26_gpio_t *p_hw_gpio, int pin)
@@ -130,14 +130,14 @@ void amhw_kl26_gpio_pin_out_high (amhw_kl26_gpio_t *p_hw_gpio, int pin)
 }
 
 /**
- * \brief ����GPIO���ŵ�ƽΪ��
+ * \brief 设置GPIO引脚电平为低
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] pin       : ���ű��,ֵΪ PIO* (#PIOA_0)
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] pin       : 引脚编号,值为 PIO* (#PIOA_0)
  *
- * \note   ��PCOR�Ĵ���д1����PDOR�Ĵ�����ʹ�ܽ������ƽΪ��
+ * \note   向PCOR寄存器写1，清PDOR寄存器，使管脚输出电平为低
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_kl26_gpio_pin_out_low (amhw_kl26_gpio_t *p_hw_gpio, int pin)
@@ -146,14 +146,14 @@ void amhw_kl26_gpio_pin_out_low (amhw_kl26_gpio_t *p_hw_gpio, int pin)
 }
 
 /**
- * \brief ��תGPIO���ŵ�ƽ
+ * \brief 翻转GPIO引脚电平
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] pin       : ���ű��,ֵΪ PIO* (#PIOA_0)
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] pin       : 引脚编号,值为 PIO* (#PIOA_0)
  *
- * \note   ��PTOR�Ĵ���д1����תPDOR�Ĵ�����ֵ��ʹ�ܽ������ƽ��ת
+ * \note   向PTOR寄存器写1，翻转PDOR寄存器的值，使管脚输出电平翻转
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_kl26_gpio_pin_out_toggle (amhw_kl26_gpio_t *p_hw_gpio, int pin)
@@ -162,13 +162,13 @@ void amhw_kl26_gpio_pin_out_toggle (amhw_kl26_gpio_t *p_hw_gpio, int pin)
 }
 
 /**
- * \brief ��GPIO���������ƽ
+ * \brief 读GPIO引脚输入电平
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] pin       : ���ű��,ֵΪ PIO* (#PIOA_0)
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] pin       : 引脚编号,值为 PIO* (#PIOA_0)
  *
- * \retval 0 : �͵�ƽ
- * \retval 1 : �ߵ�ƽ
+ * \retval 0 : 低电平
+ * \retval 1 : 高电平
  */
 am_static_inline
 int amhw_kl26_gpio_pin_input_get (amhw_kl26_gpio_t *p_hw_gpio, int pin)
@@ -178,12 +178,12 @@ int amhw_kl26_gpio_pin_input_get (amhw_kl26_gpio_t *p_hw_gpio, int pin)
 }
 
 /**
- * \brief ����GPIO����Ϊ���뷽��
+ * \brief 设置GPIO引脚为输入方向
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] pin       : ���ű��,ֵΪ PIO* (#PIOA_0)
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] pin       : 引脚编号,值为 PIO* (#PIOA_0)
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_kl26_gpio_pin_dir_input (amhw_kl26_gpio_t *p_hw_gpio, int pin)
@@ -192,12 +192,12 @@ void amhw_kl26_gpio_pin_dir_input (amhw_kl26_gpio_t *p_hw_gpio, int pin)
 }
 
 /**
- * \brief ����GPIO����Ϊ�������
+ * \brief 设置GPIO引脚为输出方向
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] pin       : ���ű��,ֵΪ PIO* (#PIOA_0)
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] pin       : 引脚编号,值为 PIO* (#PIOA_0)
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_kl26_gpio_pin_dir_output (amhw_kl26_gpio_t *p_hw_gpio, int pin)
@@ -206,13 +206,13 @@ void amhw_kl26_gpio_pin_dir_output (amhw_kl26_gpio_t *p_hw_gpio, int pin)
 }
 
 /**
- * \brief ��GPIO��������\�������
+ * \brief 读GPIO引脚输入\输出方向
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] pin       : ���ű��,ֵΪ PIO* (#PIOA_0)
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] pin       : 引脚编号,值为 PIO* (#PIOA_0)
  *
- * \retval 0 : ����
- * \retval 1 : ���
+ * \retval 0 : 输入
+ * \retval 1 : 输出
  */
 am_static_inline
 int amhw_kl26_gpio_pin_dir_get (amhw_kl26_gpio_t *p_hw_gpio, int pin)
@@ -223,16 +223,16 @@ int amhw_kl26_gpio_pin_dir_get (amhw_kl26_gpio_t *p_hw_gpio, int pin)
 
 
 /*******************************************************************************
-                    FGPIO��������
+                    FGPIO驱动函数
 ********************************************************************************/
 
 /**
- * \brief ����FGPIO���ų�ʼ��ƽΪ��
+ * \brief 设置FGPIO引脚初始电平为低
  *
- * \param[in] p_hw_fgpio : ָ��FGPIO�Ĵ������ָ��
- * \param[in] pin        : ���ű��
+ * \param[in] p_hw_fgpio : 指向FGPIO寄存器块的指针
+ * \param[in] pin        : 引脚编号
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_kl26_fgpio_pin_init_out_low (amhw_kl26_fgpio_t *p_hw_fgpio, int pin)
@@ -241,12 +241,12 @@ void amhw_kl26_fgpio_pin_init_out_low (amhw_kl26_fgpio_t *p_hw_fgpio, int pin)
 }
 
 /**
- * \brief ����FGPIO���ų�ʼ��ƽΪ��
+ * \brief 设置FGPIO引脚初始电平为高
  *
- * \param[in] p_hw_fgpio : ָ��FGPIO�Ĵ������ָ��
- * \param[in] pin        : ���ű��,ֵΪ PIO* (#PIOA_0)
+ * \param[in] p_hw_fgpio : 指向FGPIO寄存器块的指针
+ * \param[in] pin        : 引脚编号,值为 PIO* (#PIOA_0)
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_kl26_fgpio_pin_init_out_high (amhw_kl26_fgpio_t *p_hw_fgpio, int pin)
@@ -255,13 +255,13 @@ void amhw_kl26_fgpio_pin_init_out_high (amhw_kl26_fgpio_t *p_hw_fgpio, int pin)
 }
 
 /**
- * \brief ��FGPIO���ų�ʼ��ƽ
+ * \brief 读FGPIO引脚初始电平
  *
- * \param[in] p_hw_fgpio : ָ��FGPIO�Ĵ������ָ��
- * \param[in] pin        : ���ű��,ֵΪ PIO* (#PIOA_0)
+ * \param[in] p_hw_fgpio : 指向FGPIO寄存器块的指针
+ * \param[in] pin        : 引脚编号,值为 PIO* (#PIOA_0)
  *
- * \retval 0 : �͵�ƽ
- * \retval 1 : �ߵ�ƽ
+ * \retval 0 : 低电平
+ * \retval 1 : 高电平
  */
 am_static_inline
 int amhw_kl26_fgpio_pin_init_get (amhw_kl26_fgpio_t *p_hw_fgpio, int pin)
@@ -271,14 +271,14 @@ int amhw_kl26_fgpio_pin_init_get (amhw_kl26_fgpio_t *p_hw_fgpio, int pin)
 }
 
 /**
- * \brief ����FGPIO���ŵ�ƽΪ��
+ * \brief 设置FGPIO引脚电平为高
  *
- * \param[in] p_hw_fgpio : ָ��FGPIO�Ĵ������ָ��
- * \param[in] pin        : ���ű��,ֵΪ PIO* (#PIOA_0)
+ * \param[in] p_hw_fgpio : 指向FGPIO寄存器块的指针
+ * \param[in] pin        : 引脚编号,值为 PIO* (#PIOA_0)
  *
- * \note   ��PSOR�Ĵ���д1��дPDOR�Ĵ�����ʹ�ܽ������ƽΪ��
+ * \note   向PSOR寄存器写1，写PDOR寄存器，使管脚输出电平为高
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_kl26_fgpio_pin_out_high (amhw_kl26_fgpio_t *p_hw_fgpio, int pin)
@@ -287,14 +287,14 @@ void amhw_kl26_fgpio_pin_out_high (amhw_kl26_fgpio_t *p_hw_fgpio, int pin)
 }
 
 /**
- * \brief ����FGPIO���ŵ�ƽΪ��
+ * \brief 设置FGPIO引脚电平为低
  *
- * \param[in] p_hw_fgpio : ָ��FGPIO�Ĵ������ָ��
- * \param[in] pin        : ���ű��,ֵΪ PIO* (#PIOA_0)
+ * \param[in] p_hw_fgpio : 指向FGPIO寄存器块的指针
+ * \param[in] pin        : 引脚编号,值为 PIO* (#PIOA_0)
  *
- * \note   ��PCOR�Ĵ���д1����PDOR�Ĵ�����ʹ�ܽ������ƽΪ��
+ * \note   向PCOR寄存器写1，清PDOR寄存器，使管脚输出电平为低
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_kl26_fgpio_pin_out_low (amhw_kl26_fgpio_t *p_hw_fgpio, int pin)
@@ -303,14 +303,14 @@ void amhw_kl26_fgpio_pin_out_low (amhw_kl26_fgpio_t *p_hw_fgpio, int pin)
 }
 
 /**
- * \brief ��תFGPIO���ŵ�ƽ
+ * \brief 翻转FGPIO引脚电平
  *
- * \param[in] p_hw_fgpio : ָ��FGPIO�Ĵ������ָ��
- * \param[in] pin        : ���ű��,ֵΪ PIO* (#PIOA_0)
+ * \param[in] p_hw_fgpio : 指向FGPIO寄存器块的指针
+ * \param[in] pin        : 引脚编号,值为 PIO* (#PIOA_0)
  *
- * \note   ��PTOR�Ĵ���д1����תPDOR�Ĵ�����ֵ��ʹ�ܽ������ƽ��ת
+ * \note   向PTOR寄存器写1，翻转PDOR寄存器的值，使管脚输出电平翻转
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_kl26_fgpio_pin_out_toggle (amhw_kl26_fgpio_t *p_hw_fgpio, int pin)
@@ -319,13 +319,13 @@ void amhw_kl26_fgpio_pin_out_toggle (amhw_kl26_fgpio_t *p_hw_fgpio, int pin)
 }
 
 /**
- * \brief ��FGPIO���������ƽ
+ * \brief 读FGPIO引脚输入电平
  *
- * \param[in] p_hw_fgpio : ָ��FGPIO�Ĵ������ָ��
- * \param[in] pin        : ���ű��,ֵΪ PIO* (#PIOA_0)
+ * \param[in] p_hw_fgpio : 指向FGPIO寄存器块的指针
+ * \param[in] pin        : 引脚编号,值为 PIO* (#PIOA_0)
  *
- * \retval 0 : �͵�ƽ
- * \retval 1 : �ߵ�ƽ
+ * \retval 0 : 低电平
+ * \retval 1 : 高电平
  */
 am_static_inline
 int amhw_kl26_fgpio_pin_input_get (amhw_kl26_fgpio_t *p_hw_fgpio, int pin)
@@ -335,12 +335,12 @@ int amhw_kl26_fgpio_pin_input_get (amhw_kl26_fgpio_t *p_hw_fgpio, int pin)
 }
 
 /**
- * \brief ����FGPIO����Ϊ���뷽��
+ * \brief 设置FGPIO引脚为输入方向
  *
- * \param[in] p_hw_fgpio : ָ��FGPIO�Ĵ������ָ��
- * \param[in] pin        : ���ű��,ֵΪ PIO* (#PIOA_0)
+ * \param[in] p_hw_fgpio : 指向FGPIO寄存器块的指针
+ * \param[in] pin        : 引脚编号,值为 PIO* (#PIOA_0)
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_kl26_fgpio_pin_dir_input (amhw_kl26_fgpio_t *p_hw_fgpio, int pin)
@@ -349,12 +349,12 @@ void amhw_kl26_fgpio_pin_dir_input (amhw_kl26_fgpio_t *p_hw_fgpio, int pin)
 }
 
 /**
- * \brief ����FGPIO����Ϊ�������
+ * \brief 设置FGPIO引脚为输出方向
  *
- * \param[in] p_hw_fgpio : ָ��FGPIO�Ĵ������ָ��
- * \param[in] pin        : ���ű��,ֵΪ PIO* (#PIOA_0)
+ * \param[in] p_hw_fgpio : 指向FGPIO寄存器块的指针
+ * \param[in] pin        : 引脚编号,值为 PIO* (#PIOA_0)
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_kl26_fgpio_pin_dir_output (amhw_kl26_fgpio_t *p_hw_fgpio, int pin)
@@ -363,13 +363,13 @@ void amhw_kl26_fgpio_pin_dir_output (amhw_kl26_fgpio_t *p_hw_fgpio, int pin)
 }
 
 /**
- * \brief ��FGPIO��������\�������
+ * \brief 读FGPIO引脚输入\输出方向
  *
- * \param[in] p_hw_fgpio : ָ��FGPIO�Ĵ������ָ��
- * \param[in] pin        : ���ű��,ֵΪ PIO* (#PIOA_0)
+ * \param[in] p_hw_fgpio : 指向FGPIO寄存器块的指针
+ * \param[in] pin        : 引脚编号,值为 PIO* (#PIOA_0)
  *
- * \retval 0 : ����
- * \retval 1 : ���
+ * \retval 0 : 输入
+ * \retval 1 : 输出
  */
 am_static_inline
 int amhw_kl26_fgpio_pin_dir_get (amhw_kl26_fgpio_t *p_hw_fgpio, int pin)

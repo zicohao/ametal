@@ -53,7 +53,7 @@
 #include "am_bsp_newlib.h"
 #endif
 
-/** \brief SRAM ĞÅÏ¢,Ê¹ÓÃ ARMCC Ê±ĞèÒªÌá¹© SRAM½áÊøµØÖ· */
+/** \brief SRAM ä¿¡æ¯,ä½¿ç”¨ ARMCC æ—¶éœ€è¦æä¾› SRAMç»“æŸåœ°å€ */
 #ifdef __CC_ARM
 #define SRAM_SIZE   8
 #define SRAM_START  0x10000000
@@ -61,27 +61,27 @@
 #endif /* __CC_ARM */
 
 /*******************************************************************************
-  È«¾Ö±äÁ¿
+  å…¨å±€å˜é‡
 *******************************************************************************/
 
 /**
- * \brief SCT0_PWM µÄhandle
+ * \brief SCT0_PWM çš„handle
  *
- * µ±Ê¹ÓÃ·äÃùÆ÷Ê±£¬Ä¬ÈÏ½«Ê¹ÓÃSCTµÄOUT1Êä³öPWM²¨ĞÎ£¬Òò´ËÒÑ¾­½«SCT³õÊ¼»¯ÎªPWM¹¦ÄÜ£¬
- * ÓÉÓÚSCT¿ÉÒÔÊä³öÁùÂ·PWM£¬Òò´Ë¿ÉÒÔÊ¹ÓÃ¸Ãhandle£¬ÒÔ±ãÊ¹ÓÃÆäËü5Â·PWM¡£
+ * å½“ä½¿ç”¨èœ‚é¸£å™¨æ—¶ï¼Œé»˜è®¤å°†ä½¿ç”¨SCTçš„OUT1è¾“å‡ºPWMæ³¢å½¢ï¼Œå› æ­¤å·²ç»å°†SCTåˆå§‹åŒ–ä¸ºPWMåŠŸèƒ½ï¼Œ
+ * ç”±äºSCTå¯ä»¥è¾“å‡ºå…­è·¯PWMï¼Œå› æ­¤å¯ä»¥ä½¿ç”¨è¯¥handleï¼Œä»¥ä¾¿ä½¿ç”¨å…¶å®ƒ5è·¯PWMã€‚
  */
 am_pwm_handle_t g_sct0_pwm_handle;
 
 /**
- * \brief MRT µÄhandle
+ * \brief MRT çš„handle
  *
- * µ±Ê¹ÓÃÈí¼ş¶¨Ê±Æ÷Ê±£¬Ä¬ÈÏ½«Ê¹ÓÃMRT×÷Îª»ù´¡¶¨Ê±µ¥Ôª£¬Òò´ËÒÑ¾­½«MRT³õÊ¼»¯Îª¶¨Ê±Æ÷
- * ¹¦ÄÜ£¬ÓÉÓÚMRT¿ÉÒÔÖ§³Ö4Â·¶¨Ê±£¬Òò´Ë¿ÉÒÔÊ¹ÓÃ¸Ã handle£¬ÒÔ±ãÊ¹ÓÃÆäËü3Â· handle
+ * å½“ä½¿ç”¨è½¯ä»¶å®šæ—¶å™¨æ—¶ï¼Œé»˜è®¤å°†ä½¿ç”¨MRTä½œä¸ºåŸºç¡€å®šæ—¶å•å…ƒï¼Œå› æ­¤å·²ç»å°†MRTåˆå§‹åŒ–ä¸ºå®šæ—¶å™¨
+ * åŠŸèƒ½ï¼Œç”±äºMRTå¯ä»¥æ”¯æŒ4è·¯å®šæ—¶ï¼Œå› æ­¤å¯ä»¥ä½¿ç”¨è¯¥ handleï¼Œä»¥ä¾¿ä½¿ç”¨å…¶å®ƒ3è·¯ handle
  */
 am_timer_handle_t g_mrt_handle;
 
 /*******************************************************************************
-  °åÉÏLEDÏà¹ØĞÅÏ¢
+  æ¿ä¸ŠLEDç›¸å…³ä¿¡æ¯
 *******************************************************************************/
 
 #if (AM_CFG_LED_ENABLE == 1)
@@ -91,7 +91,7 @@ am_timer_handle_t g_mrt_handle;
 #endif /* (AM_CFG_LED_ENABLE == 1) */
 
 /*******************************************************************************
-  °åÉÏÎŞÔ´·äÃùÆ÷Ïà¹ØĞÅÏ¢
+  æ¿ä¸Šæ— æºèœ‚é¸£å™¨ç›¸å…³ä¿¡æ¯
 *******************************************************************************/
 
 #if (AM_CFG_BUZZER_ENABLE == 1)
@@ -107,18 +107,18 @@ am_timer_handle_t g_mrt_handle;
 #endif /* (AM_CFG_BUZZER_ENABLE == 1) */
 
 /*******************************************************************************
-  ¹«¹²º¯Êı
+  å…¬å…±å‡½æ•°
 *******************************************************************************/
 
 #if (AM_CFG_SYSTEM_TICK_ENABLE == 1)
 
-/* ÏµÍ³¶¨Ê±Æ÷£¬ÓÃÓÚ²úÉúÏµÍ³µÎ´ğ£¬Çı¶¯Èí¼ş¶¨Ê±Æ÷µÈµÈ */
+/* ç³»ç»Ÿå®šæ—¶å™¨ï¼Œç”¨äºäº§ç”Ÿç³»ç»Ÿæ»´ç­”ï¼Œé©±åŠ¨è½¯ä»¶å®šæ—¶å™¨ç­‰ç­‰ */
 static void __system_timer_callback (void *p_arg)
 {
-    am_system_module_tick();       /* Çı¶¯ÏµÍ³µÎ´ğ */
+    am_system_module_tick();       /* é©±åŠ¨ç³»ç»Ÿæ»´ç­” */
 
 #if (AM_CFG_SOFTIMER_ENABLE == 1)
-    am_softimer_module_tick();     /* Çı¶¯Èí¼ş¶¨Ê±Æ÷ */
+    am_softimer_module_tick();     /* é©±åŠ¨è½¯ä»¶å®šæ—¶å™¨ */
 #endif /* (AM_CFG_SOFTIMER_ENABLE == 1) */
 
 }
@@ -126,7 +126,7 @@ static void __system_timer_callback (void *p_arg)
 #endif /* (AM_CFG_SYSTEM_TICK_ENABLE == 1) */
 
 /**
- * \brief °å¼¶³õÊ¼»¯
+ * \brief æ¿çº§åˆå§‹åŒ–
  */
 void am_board_init (void)
 {
@@ -147,21 +147,21 @@ void am_board_init (void)
     int *heap_end   = (int *)SRAM_END;
 #endif
 
-    /* ÏµÍ³¶ÑÕ»³õÊ¼»¯ */
+    /* ç³»ç»Ÿå †æ ˆåˆå§‹åŒ– */
     am_bsp_system_heap_init((void *)heap_start, (void *)heap_end);
 
 /*
- * ÈôÊ¹ÄÜÑÓÊ±º¯ÊıµÄÊ¹ÓÃ£¬ÔòÖ´ĞĞ³õÊ¼»¯£¬Ä¬ÈÏÊµÏÖÎªÊ¹ÓÃ Systick ¶¨Ê±Æ÷
+ * è‹¥ä½¿èƒ½å»¶æ—¶å‡½æ•°çš„ä½¿ç”¨ï¼Œåˆ™æ‰§è¡Œåˆå§‹åŒ–ï¼Œé»˜è®¤å®ç°ä¸ºä½¿ç”¨ Systick å®šæ—¶å™¨
  */
 #if (AM_CFG_DELAY_ENABLE == 1)
     am_bsp_delay_timer_init(am_arm_systick_inst_init(), 0);
 #endif /* (AM_CFG_DELAY_ENABLE == 1) */
 
 /**
- * \brief Èç¹ûÎª1£¬Ôò³õÊ¼»¯ledµÄÏà¹Ø¹¦ÄÜ£¬°åÉÏÄ¬ÈÏÓĞÁ½¸öLED
+ * \brief å¦‚æœä¸º1ï¼Œåˆ™åˆå§‹åŒ–ledçš„ç›¸å…³åŠŸèƒ½ï¼Œæ¿ä¸Šé»˜è®¤æœ‰ä¸¤ä¸ªLED
  *
- * ID: 0 --- PIO0.8 £¨ĞèÒª¶Ì½ÓÌøÏßÃ± J9£©
- * ID: 1 --- PIO0.9 £¨ĞèÒª¶Ì½ÓÌøÏßÃ± J10£©
+ * ID: 0 --- PIO0.8 ï¼ˆéœ€è¦çŸ­æ¥è·³çº¿å¸½ J9ï¼‰
+ * ID: 1 --- PIO0.9 ï¼ˆéœ€è¦çŸ­æ¥è·³çº¿å¸½ J10ï¼‰
  */
 #if (AM_CFG_LED_ENABLE == 1)
     am_led_gpio_inst_init();
@@ -174,7 +174,7 @@ void am_board_init (void)
 
 	dbg_handle = am_lpc82x_usart0_inst_init();
 
-	/* µ÷ÊÔ³õÊ¼»¯ */
+	/* è°ƒè¯•åˆå§‹åŒ– */
 	am_debug_init(dbg_handle, AM_CFG_DEBUG_BAUDRATE);
 
 #endif /* (AM_CFG_DEBUG_UART == 0) */
@@ -183,7 +183,7 @@ void am_board_init (void)
 
     dbg_handle = am_lpc82x_usart1_inst_init();
 
-    /* µ÷ÊÔ³õÊ¼»¯ */
+    /* è°ƒè¯•åˆå§‹åŒ– */
     am_debug_init(dbg_handle, AM_CFG_DEBUG_BAUDRATE);
 
 #endif /* (AM_CFG_DEBUG_UART == 1) */
@@ -192,7 +192,7 @@ void am_board_init (void)
 
     dbg_handle = am_lpc82x_usart2_inst_init();
 
-    /* µ÷ÊÔ³õÊ¼»¯ */
+    /* è°ƒè¯•åˆå§‹åŒ– */
     am_debug_init(dbg_handle, AM_CFG_DEBUG_BAUDRATE);
 
 #endif /* (AM_CFG_DEBUG_UART == 2) */
@@ -204,29 +204,29 @@ void am_board_init (void)
     #ifdef __CC_ARM
         #ifdef __MICROLIB
 
-            /* ³õÊ¼»¯Micro LIB */
+            /* åˆå§‹åŒ–Micro LIB */
             am_bsp_microlib_init(dbg_handle);
         #else
 
-            /* ³õÊ¼»¯ARM LIB */
+            /* åˆå§‹åŒ–ARM LIB */
             am_bsp_armlib_init(dbg_handle);
         #endif /* __MICROLIB */
 
     #elif defined(__GNUC__)
 
-        /* ³õÊ¼»¯ NEW LIB ¿â */
+        /* åˆå§‹åŒ– NEW LIB åº“ */
         am_bsp_newlib_init(dbg_handle);
     #endif
 #endif /* (AM_CFG_STDLIB_ENABLE == 2) */
 
 #if (AM_CFG_SYSTEM_TICK_ENABLE == 1)
 
-    /* Ê¹ÄÜÒ»¸ö¶¨Ê±Æ÷×÷ÎªÏµÍ³TICK */
+    /* ä½¿èƒ½ä¸€ä¸ªå®šæ—¶å™¨ä½œä¸ºç³»ç»ŸTICK */
     {
 
         g_mrt_handle = am_lpc82x_mrt_inst_init();
 
-        /* ½«Èí¼ş¶¨Ê±Æ÷µÄÖĞ¶ÏÓÅÏÈ¼¶ÉèÖÃÎª×îµÍ */
+        /* å°†è½¯ä»¶å®šæ—¶å™¨çš„ä¸­æ–­ä¼˜å…ˆçº§è®¾ç½®ä¸ºæœ€ä½ */
         am_arm_nvic_priority_set(INUM_MRT, 0x03, 0x03);
 
         am_timer_callback_set(g_mrt_handle,
@@ -249,30 +249,30 @@ void am_board_init (void)
 #endif /* (AM_CFG_SYSTEM_TICK_ENABLE == 1) */
 
     /**
-     * \brief Èç¹ûÎª1£¬Ôò³õÊ¼»¯·äÃùÆ÷µÄÏà¹Ø¹¦ÄÜ£¬°åÉÏÄ¬ÈÏÓĞÒ»¸ö·äÃùÆ÷
+     * \brief å¦‚æœä¸º1ï¼Œåˆ™åˆå§‹åŒ–èœ‚é¸£å™¨çš„ç›¸å…³åŠŸèƒ½ï¼Œæ¿ä¸Šé»˜è®¤æœ‰ä¸€ä¸ªèœ‚é¸£å™¨
      *
-     * Ä¬ÈÏÊ¹ÓÃSCT_OU1 £¨PIO0_2£©Êä³öPWM £¨ĞèÒª¶Ì½ÓÌøÏßÃ± J7£©
+     * é»˜è®¤ä½¿ç”¨SCT_OU1 ï¼ˆPIO0_2ï¼‰è¾“å‡ºPWM ï¼ˆéœ€è¦çŸ­æ¥è·³çº¿å¸½ J7ï¼‰
      */
 #if (AM_CFG_BUZZER_ENABLE == 1)
 
     g_sct0_pwm_handle = am_lpc82x_sct0_pwm_inst_init();
 
     am_buzzer_pwm_init(g_sct0_pwm_handle,
-                       1,                    /* Ê¹ÓÃÍ¨µÀ1, SCT_OUT1, PIO0_2 */
+                       1,                    /* ä½¿ç”¨é€šé“1, SCT_OUT1, PIO0_2 */
                       __BUZZER_PWM_DUTY_NS,
                       __BUZZER_PWM_PERIOD_NS);
 
 #endif /* (AM_CFG_BUZZER_ENABLE == 1) */
 
 #if (AM_CFG_KEY_ENABLE == 1) || (AM_CFG_KEY_GPIO_ENABLE == 1)
-    am_event_input_inst_init();                   /* ÊÂ¼şÊäÈë¹ÜÀíÆ÷·şÎñ³õÊ¼»¯ */
+    am_event_input_inst_init();                   /* äº‹ä»¶è¾“å…¥ç®¡ç†å™¨æœåŠ¡åˆå§‹åŒ– */
 #endif /* (AM_CFG_KEY_ENABLE == 1) || (AM_CFG_KEY_GPIO_ENABLE == 1) */
 
 #if (AM_CFG_KEY_GPIO_ENABLE == 1)
     am_key_gpio_inst_init();
 #endif /* (AM_CFG_KEY_GPIO_ENABLE == 1) */
 
-    /* ÆäËüÄÚÈİ´ıÌí¼Ó */
+    /* å…¶å®ƒå†…å®¹å¾…æ·»åŠ  */
 
 }
 

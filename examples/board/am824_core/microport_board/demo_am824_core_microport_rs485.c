@@ -12,21 +12,21 @@
 
 /**
  * \file
- * \brief MicroPort-RS485 Àý³Ì£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MicroPort-RS485 ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. ½« MicroPort-RS485 À©Õ¹°åÁ¬½Óµ½ AM824-Core µÄ MicroPort ½Ó¿Ú¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. å°† MicroPort-RS485 æ‰©å±•æ¿è¿žæŽ¥åˆ° AM824-Core çš„ MicroPort æŽ¥å£ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿ÚÊä³ö "MicroPort-RS485 Test:"£»
- *   2. ´®¿ÚÊä³ö½ÓÊÕµ½µÄ×Ö·û´®¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. ä¸²å£è¾“å‡º "MicroPort-RS485 Test:"ï¼›
+ *   2. ä¸²å£è¾“å‡ºæŽ¥æ”¶åˆ°çš„å­—ç¬¦ä¸²ã€‚
  *
  * \note
- *   1. TP8485E Îª RS485 ×ª´®¿ÚÐ¾Æ¬£»
- *   2. Àý³ÌÊ¹ÓÃ USART0£¬Óë DEBUG µ÷ÊÔÊ¹ÓÃ´®¿ÚÏàÍ¬£¬ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬Ðè
- *      Òª½« PIO0_0 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬PIO0_4 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
+ *   1. TP8485E ä¸º RS485 è½¬ä¸²å£èŠ¯ç‰‡ï¼›
+ *   2. ä¾‹ç¨‹ä½¿ç”¨ USART0ï¼Œä¸Ž DEBUG è°ƒè¯•ä½¿ç”¨ä¸²å£ç›¸åŒï¼Œå¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€
+ *      è¦å°† PIO0_0 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼ŒPIO0_4 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am824_core_microport_rs485.c src_am824_core_microport_rs485
  *
  * \internal
@@ -49,7 +49,7 @@
 
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am824_core_microport_rs485_entry (void)
 {

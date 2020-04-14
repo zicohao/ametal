@@ -12,15 +12,15 @@
 
 /**
  * \file
- * \brief ADC INT Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief ADC INT ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè£º
- *   1. ½«Ö¸¶¨ADCÍ¨µÀ¶ÔÓ¦µÄÒı½ÅÁ¬½ÓÄ£ÄâÊäÈë¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. å°†æŒ‡å®šADCé€šé“å¯¹åº”çš„å¼•è„šè¿æ¥æ¨¡æ‹Ÿè¾“å…¥ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. µ÷ÊÔ´®¿ÚÊä³öµçÑ¹²ÉÑùÖµ¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. è°ƒè¯•ä¸²å£è¾“å‡ºç”µå‹é‡‡æ ·å€¼ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_zlg_hw_adc_int.c src_zlg_hw_adc_int
  *
  * \internal
@@ -41,11 +41,11 @@
 #include "am_int.h"
 #include "hw/amhw_zlg_adc.h"
 
-static volatile uint16_t  __g_adc_dat[10];              /**< \brief ²ÉÑùÖµ»º´æ */
+static volatile uint16_t  __g_adc_dat[10];              /**< \brief é‡‡æ ·å€¼ç¼“å­˜ */
 static volatile am_bool_t __g_adc_complete = AM_FALSE;
 
 /**
- * \brief ADC ÖĞ¶Ï·şÎñº¯Êı
+ * \brief ADC ä¸­æ–­æœåŠ¡å‡½æ•°
  */
 static void __adc_isr (void *p_arg)
 {
@@ -68,14 +68,14 @@ static void __adc_isr (void *p_arg)
     }
 }
 
-/** \brief Àı³ÌÈë¿Ú  */
+/** \brief ä¾‹ç¨‹å…¥å£  */
 void demo_zlg_hw_adc_int_entry (amhw_zlg_adc_t *p_hw_adc,
                                 int             int_num,
                                 int             chan,
                                 uint32_t        vref_mv)
 {
     uint8_t  i      = 0;
-    uint32_t adc_mv = 0;    /* ²ÉÑùµçÑ¹ */
+    uint32_t adc_mv = 0;    /* é‡‡æ ·ç”µå‹ */
     uint32_t sum    = 0;
 
     am_kprintf("The ADC HW Int Demo\r\n");
@@ -83,7 +83,7 @@ void demo_zlg_hw_adc_int_entry (amhw_zlg_adc_t *p_hw_adc,
     amhw_zlg_adc_data_resolution(p_hw_adc, AMHW_ZLG_ADC_DATA_VALID_12BIT);
     amhw_zlg_adc_prescaler_val(p_hw_adc, 4);
 
-    /* Á¬½Ó×ª»»Íê³ÉÖĞ¶Ï */
+    /* è¿æ¥è½¬æ¢å®Œæˆä¸­æ–­ */
     am_int_connect(int_num, __adc_isr, p_hw_adc);
     am_int_enable(int_num);
 
@@ -95,7 +95,7 @@ void demo_zlg_hw_adc_int_entry (amhw_zlg_adc_t *p_hw_adc,
 
         amhw_zlg_adc_data_transfer_set(p_hw_adc, AMHW_ZLG_ADC_DATA_TRANSFER_START);
 
-        /* µÈ´ı×ª»»Íê³É */
+        /* ç­‰å¾…è½¬æ¢å®Œæˆ */
         while (__g_adc_complete == AM_FALSE);
 
         for (sum = 0,i = 0; i < 10 ; i++) {
@@ -104,7 +104,7 @@ void demo_zlg_hw_adc_int_entry (amhw_zlg_adc_t *p_hw_adc,
 
         sum = sum / 10;
 
-        /* ×ª»»ÎªµçÑ¹Öµ¶ÔÓ¦µÄÕûÊıÖµ */
+        /* è½¬æ¢ä¸ºç”µå‹å€¼å¯¹åº”çš„æ•´æ•°å€¼ */
         adc_mv = sum * 3300 / ((1UL << 12) -1);
 
         am_kprintf("Sample : %d, Vol: %d mv\r\n", sum, adc_mv);

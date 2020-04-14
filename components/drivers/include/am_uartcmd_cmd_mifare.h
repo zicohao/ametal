@@ -36,55 +36,55 @@ extern "C" {
 
 typedef struct uartcmd_cmd_mifare_var {
 
-    /** \brief ¿¨Æ¬ÀàĞÍ */
+    /** \brief å¡ç‰‡ç±»å‹ */
     uint8_t card_type;
 
-    /** \brief CPU PLUS±ê×¼·şÎñ¾ä±ú */
+    /** \brief CPU PLUSæ ‡å‡†æœåŠ¡å¥æŸ„ */
     am_ic_cpu_plus_handle_t cpu_plus_handle;
 
-    /** \brief Mifare±ê×¼·şÎñ¾ä±ú */
+    /** \brief Mifareæ ‡å‡†æœåŠ¡å¥æŸ„ */
     am_ic_mifare_handle_t   mifare_handle;
 
-    /** \brief ISO14443±ê×¼·şÎñ¾ä±ú */
+    /** \brief ISO14443æ ‡å‡†æœåŠ¡å¥æŸ„ */
     am_ic_iso14443_handle_t iso14443_handle;
 
-    /** \brief ¶Á¿¨Ğ¾Æ¬·şÎñ¾ä±ú */
+    /** \brief è¯»å¡èŠ¯ç‰‡æœåŠ¡å¥æŸ„ */
     am_reader_card_handle_t reader_card_handle;
 
-    /** \brief ÓÃÓÚ×Ô¶¯¼ì²â */
+    /** \brief ç”¨äºè‡ªåŠ¨æ£€æµ‹ */
     uartcmd_auto_detest_info_t auto_detest;
 
-    /** \brief ×Ô¶¯¼ì²âÊı¾İ´æ·ÅµÄ»º³åÇøµØÖ· */
+    /** \brief è‡ªåŠ¨æ£€æµ‹æ•°æ®å­˜æ”¾çš„ç¼“å†²åŒºåœ°å€ */
     uint8_t  auto_buf[260];
 
-    /** \brief ÁÙÊ±»º³åÇø */
+    /** \brief ä¸´æ—¶ç¼“å†²åŒº */
     uint8_t  auto_tmp_buf[260];
 
-    /** \brief ÁÙÊ±»º³åÇø¼ÆÊı */
+    /** \brief ä¸´æ—¶ç¼“å†²åŒºè®¡æ•° */
     uint32_t auto_tmp_count;
 
-    /** \brief ×Ô¶¯¼ì²âÊı¾İµÄ³¤¶È£¬Ç°ÌáÊÇÓĞÊı¾İ´æÔÚ */
+    /** \brief è‡ªåŠ¨æ£€æµ‹æ•°æ®çš„é•¿åº¦ï¼Œå‰ææ˜¯æœ‰æ•°æ®å­˜åœ¨ */
     uint32_t auto_nbytes;
 
-    /** \brief ×Ô¶¯¼ì¿¨ÃüÁîµÄ²¿·Ö²ÎÊı */
+    /** \brief è‡ªåŠ¨æ£€å¡å‘½ä»¤çš„éƒ¨åˆ†å‚æ•° */
     struct am_uartcmd_frame auto_frame;
 
 } uartcmd_cmd_mifare_var_t;
 
 /**
- * \brief Mifare ÀàÃüÁî³õÊ¼»¯
+ * \brief Mifare ç±»å‘½ä»¤åˆå§‹åŒ–
  *
- * \param[in] handle             : UARTCMD·şÎñ¾ä±ú
- * \param[in] p_cmd              : Éè±¸¿ØÖÆÀàÃüÁî½á¹¹ÌåÖ¸Õë
- * \param[in] p_var              : MifareÃüÁî²ÎÊı½á¹¹ÌåÖ¸Õë
- * \param[in] mifare_handle      : Mifare·şÎñ¾ä±ú
- * \param[in] iso14443_handle    : ISO14443·şÎñ¾ä±ú
- * \param[in] cpu_plus_handle    : CPU PLUS¿¨·şÎñ¾ä±ú
- * \param[in] reader_card_handle : ¶Á¿¨Æ÷·şÎñ¾ä±ú
- * \param[in] cmd_class          : ÃüÁîÀàĞÍ
+ * \param[in] handle             : UARTCMDæœåŠ¡å¥æŸ„
+ * \param[in] p_cmd              : è®¾å¤‡æ§åˆ¶ç±»å‘½ä»¤ç»“æ„ä½“æŒ‡é’ˆ
+ * \param[in] p_var              : Mifareå‘½ä»¤å‚æ•°ç»“æ„ä½“æŒ‡é’ˆ
+ * \param[in] mifare_handle      : MifareæœåŠ¡å¥æŸ„
+ * \param[in] iso14443_handle    : ISO14443æœåŠ¡å¥æŸ„
+ * \param[in] cpu_plus_handle    : CPU PLUSå¡æœåŠ¡å¥æŸ„
+ * \param[in] reader_card_handle : è¯»å¡å™¨æœåŠ¡å¥æŸ„
+ * \param[in] cmd_class          : å‘½ä»¤ç±»å‹
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 int uartcmd_cmd_mifare_init (am_uartcmd_handle_t       handle,
                              uartcmd_cmd_t            *p_cmd,
@@ -96,18 +96,18 @@ int uartcmd_cmd_mifare_init (am_uartcmd_handle_t       handle,
                              uint8_t                   cmd_class);
 
 /**
- * \brief Mifare ÀàÃüÁîÈ¥³ı³õÊ¼»¯
+ * \brief Mifare ç±»å‘½ä»¤å»é™¤åˆå§‹åŒ–
  *
- * \param[in] handle : UARTCMD·şÎñ¾ä±ú
- * \param[in] p_cmd  : Éè±¸¿ØÖÆÀàÃüÁî½á¹¹ÌåÖ¸Õë
+ * \param[in] handle : UARTCMDæœåŠ¡å¥æŸ„
+ * \param[in] p_cmd  : è®¾å¤‡æ§åˆ¶ç±»å‘½ä»¤ç»“æ„ä½“æŒ‡é’ˆ
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 void uartcmd_cmd_mifare_deinit (am_uartcmd_handle_t handle, uartcmd_cmd_t *p_cmd);
 
 /**
- * \brief ×Ô¶¯¼ì²âÄ£Ê½
+ * \brief è‡ªåŠ¨æ£€æµ‹æ¨¡å¼
  */
 int uartcmd_cmd_mifare_auto_detest (am_uartcmd_handle_t handle);
 

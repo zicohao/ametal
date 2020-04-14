@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief °´¼üÊäÈëÊÂ¼ş£¨ÊµÏÖÁË±ê×¼½Ó¿ÚÎÄ¼ş am_input.h£©
+ * \brief æŒ‰é”®è¾“å…¥äº‹ä»¶ï¼ˆå®ç°äº†æ ‡å‡†æ¥å£æ–‡ä»¶ am_input.hï¼‰
  *
  * \internal
  * \par modification history:
@@ -30,17 +30,17 @@
 /*******************************************************************************
   Local defines
 *******************************************************************************/
-#define  __KEEP_TIME_INVALID   -1   /**< \brief  ÎŞĞ§¼ÆÊ±Öµ                   */
+#define  __KEEP_TIME_INVALID   -1   /**< \brief  æ— æ•ˆè®¡æ—¶å€¼                   */
 
 /*******************************************************************************
   Local type defines
 *******************************************************************************/
 
-/** \brief °´¼üÊı¾İ */
+/** \brief æŒ‰é”®æ•°æ® */
 typedef struct am_event_input_key_data {
-    int     key_code;              /**< \brief  °´¼üÀàĞÍÂë                    */
-    int     key_state;             /**< \brief  °´¼ü×´Ì¬, DOWN : 0, UP : ·Ç0  */
-    int     keep_time;             /**< \brief  °´¼ü±£³ÖÊ±¼ä                  */
+    int     key_code;              /**< \brief  æŒ‰é”®ç±»å‹ç                     */
+    int     key_state;             /**< \brief  æŒ‰é”®çŠ¶æ€, DOWN : 0, UP : é0  */
+    int     keep_time;             /**< \brief  æŒ‰é”®ä¿æŒæ—¶é—´                  */
 } am_event_input_key_data_t;
 
 /*******************************************************************************
@@ -55,7 +55,7 @@ static const am_event_input_key_info_t  *__gp_event_input_key_info = NULL;
   Local functions
 *******************************************************************************/
 
-/* °´¼üÊäÈëÊÂ¼ş»Øµ÷º¯Êı£¬·Ö·¢¼üÖµ */
+/* æŒ‰é”®è¾“å…¥äº‹ä»¶å›è°ƒå‡½æ•°ï¼Œåˆ†å‘é”®å€¼ */
 static void __event_input_key_handle (am_event_type_t *p_evt_type,
                                       void            *p_evt_data,
                                       void            *p_hdl_data)
@@ -71,7 +71,7 @@ static void __event_input_key_handle (am_event_type_t *p_evt_type,
 
 /******************************************************************************/
 
-/* ¼üÖµµÄÉÏ±¨ */
+/* é”®å€¼çš„ä¸ŠæŠ¥ */
 static int __event_input_key_report (int key_code, int key_state, int keep_time)
 {
     am_event_input_key_data_t  data;
@@ -87,7 +87,7 @@ static int __event_input_key_report (int key_code, int key_state, int keep_time)
 
 /******************************************************************************/
 
-/* ³¤°´¶¨Ê±Æ÷»Øµ÷º¯Êı */
+/* é•¿æŒ‰å®šæ—¶å™¨å›è°ƒå‡½æ•° */
 static void __key_long_press_softimer_cb (void *p_arg)
 {
     const am_event_input_key_info_t *p_info       = __gp_event_input_key_info;
@@ -97,13 +97,13 @@ static void __key_long_press_softimer_cb (void *p_arg)
 
         p_long_press->keep_time = p_info->key_long_press_time_start_ms;
 
-        /* ´ïµ½ÉÏ±¨³¤°´ÊÂ¼şµÄÆô¶¯Ê±¼ä£¬¶¨Ê±Ê±¼äÇĞ»»ÎªÖÜÆÚĞÔÉÏ±¨Ê±¼ä */
+        /* è¾¾åˆ°ä¸ŠæŠ¥é•¿æŒ‰äº‹ä»¶çš„å¯åŠ¨æ—¶é—´ï¼Œå®šæ—¶æ—¶é—´åˆ‡æ¢ä¸ºå‘¨æœŸæ€§ä¸ŠæŠ¥æ—¶é—´ */
         am_softimer_start(&p_long_press->timer,
                            p_info->key_long_press_time_period_ms);
 
     } else {
 
-        /* Ôö¼ÓÖµÇ°£¬±ÜÃâÊı¾İÒç³ö */
+        /* å¢åŠ å€¼å‰ï¼Œé¿å…æ•°æ®æº¢å‡º */
         if ((p_long_press->keep_time + p_info->key_long_press_time_period_ms)
              > p_long_press->keep_time) {
 
@@ -111,7 +111,7 @@ static void __key_long_press_softimer_cb (void *p_arg)
         }
     }
 
-    /* ÉÏ±¨°´¼ü(³¤°´)ÊÂ¼ş£¬°´¼üÊ±¼äÓÉ keep_time ´«µİ */
+    /* ä¸ŠæŠ¥æŒ‰é”®(é•¿æŒ‰)äº‹ä»¶ï¼ŒæŒ‰é”®æ—¶é—´ç”± keep_time ä¼ é€’ */
     __event_input_key_report(p_long_press->key_code,
                              AM_INPUT_KEY_STATE_PRESSED,
                              p_long_press->keep_time);
@@ -119,7 +119,7 @@ static void __key_long_press_softimer_cb (void *p_arg)
 
 /******************************************************************************/
 
-/* ÎªÖ¸¶¨°´¼üÆô¶¯³¤°´¼ÆÊ± */
+/* ä¸ºæŒ‡å®šæŒ‰é”®å¯åŠ¨é•¿æŒ‰è®¡æ—¶ */
 static int __key_long_press_timing_start (int key_code)
 {
     const am_event_input_key_info_t *p_info       = __gp_event_input_key_info;
@@ -135,9 +135,9 @@ static int __key_long_press_timing_start (int key_code)
 
         if (p_info->p_buf[i].keep_time == __KEEP_TIME_INVALID) {
 
-            p_long_press = &p_info->p_buf[i];                /* ¿ÕÏĞ»º´æ      */
+            p_long_press = &p_info->p_buf[i];                /* ç©ºé—²ç¼“å­˜      */
 
-        } else if (p_info->p_buf[i].key_code == key_code) {  /* ÒÑ¾­¿ªÊ¼¼ÆÊ±  */
+        } else if (p_info->p_buf[i].key_code == key_code) {  /* å·²ç»å¼€å§‹è®¡æ—¶  */
 
             return AM_OK;
         }
@@ -154,12 +154,12 @@ static int __key_long_press_timing_start (int key_code)
         return AM_OK;
     }
 
-    return -AM_EAGAIN;                                      /* ÔİÎŞ¿ÉÓÃ×ÊÔ´   */
+    return -AM_EAGAIN;                                      /* æš‚æ— å¯ç”¨èµ„æº   */
 }
 
 /******************************************************************************/
 
-/* Í£Ö¹Ö¸¶¨°´¼üµÄ³¤°´¼ÆÊ± */
+/* åœæ­¢æŒ‡å®šæŒ‰é”®çš„é•¿æŒ‰è®¡æ—¶ */
 static int __key_long_press_timing_stop (int key_code)
 {
     const am_event_input_key_info_t *p_info       = __gp_event_input_key_info;
@@ -176,7 +176,7 @@ static int __key_long_press_timing_stop (int key_code)
         if ((p_info->p_buf[i].keep_time != __KEEP_TIME_INVALID) &&
             (p_info->p_buf[i].key_code  == key_code)) {
 
-            p_long_press = &p_info->p_buf[i];               /* ¿ÕÏĞ»º´æ       */
+            p_long_press = &p_info->p_buf[i];               /* ç©ºé—²ç¼“å­˜       */
 
             am_softimer_stop(&p_long_press->timer);
 
@@ -186,7 +186,7 @@ static int __key_long_press_timing_stop (int key_code)
         }
     }
 
-    return -AM_ENOENT;                                      /* ¸Ã°´¼ü²»´æÔÚ   */
+    return -AM_ENOENT;                                      /* è¯¥æŒ‰é”®ä¸å­˜åœ¨   */
 }
 
 /*******************************************************************************
@@ -207,7 +207,7 @@ void am_event_input_key_init (const am_event_input_key_info_t *p_info)
 
         for (i = 0; i < p_info->key_long_press_max_num; i++) {
 
-            p_info->p_buf[i].keep_time = __KEEP_TIME_INVALID;   /* Î´¼ÆÊ±     */
+            p_info->p_buf[i].keep_time = __KEEP_TIME_INVALID;   /* æœªè®¡æ—¶     */
 
             am_softimer_init(&p_info->p_buf[i].timer,
                              __key_long_press_softimer_cb,
@@ -258,10 +258,10 @@ int am_input_key_handler_unregister (am_input_key_handler_t *p_handler)
 *******************************************************************************/
 int am_event_input_key_pressed  (int key_code)
 {
-    /* ¿ªÊ¼³¤°´¼ÆÊ± */
+    /* å¼€å§‹é•¿æŒ‰è®¡æ—¶ */
     int ret = __key_long_press_timing_start(key_code);
 
-    /* Èô·µ»ØÖµĞ¡ÓÚ0£¬Ôò±íÃ÷ÎŞ·¨Ö§³Ö¸Ã°´¼üµÄ³¤°´¼ÆÊ±£¬keep_timeÉè¶¨Îª-1   */
+    /* è‹¥è¿”å›å€¼å°äº0ï¼Œåˆ™è¡¨æ˜æ— æ³•æ”¯æŒè¯¥æŒ‰é”®çš„é•¿æŒ‰è®¡æ—¶ï¼Œkeep_timeè®¾å®šä¸º-1   */
     return __event_input_key_report(key_code,
                                     AM_INPUT_KEY_STATE_PRESSED,
                                     (ret < 0) ? -1 : 0);
@@ -271,21 +271,21 @@ int am_event_input_key_pressed  (int key_code)
 int am_event_input_key_released (int key_code)
 {
     /*
-     * Í£Ö¹³¤°´¼ÆÊ±
+     * åœæ­¢é•¿æŒ‰è®¡æ—¶
      *
-     * ÈçÊ¹ÓÃ am_event_input_key_pressed_without_timing() ÉÏ±¨µÄ°´¼ü°´ÏÂÊÂ¼ş£¬
-     * Ôò¸Ã°´¼ü¿ÉÄÜ²¢Î´Æô¶¯³¤°´¼ÆÊ±£¬ÄÚ²¿´¦ÀíÓ¦¸Ã¿¼ÂÇµ½ÕâÖÖÇé¿ö¡£
+     * å¦‚ä½¿ç”¨ am_event_input_key_pressed_without_timing() ä¸ŠæŠ¥çš„æŒ‰é”®æŒ‰ä¸‹äº‹ä»¶ï¼Œ
+     * åˆ™è¯¥æŒ‰é”®å¯èƒ½å¹¶æœªå¯åŠ¨é•¿æŒ‰è®¡æ—¶ï¼Œå†…éƒ¨å¤„ç†åº”è¯¥è€ƒè™‘åˆ°è¿™ç§æƒ…å†µã€‚
      */
     __key_long_press_timing_stop(key_code);
 
-    /* ÉÏ±¨°´¼üÊÍ·ÅÊÂ¼ş */
+    /* ä¸ŠæŠ¥æŒ‰é”®é‡Šæ”¾äº‹ä»¶ */
     return __event_input_key_report(key_code, AM_INPUT_KEY_STATE_RELEASED, 0);
 }
 
 /******************************************************************************/
 int am_event_input_key_pressed_without_timing (int key_code, int keep_time)
 {
-    /* ¼òµ¥ÉÏ±¨ÊÂ¼ş¼´¿É */
+    /* ç®€å•ä¸ŠæŠ¥äº‹ä»¶å³å¯ */
     return __event_input_key_report(key_code, AM_INPUT_KEY_STATE_PRESSED, keep_time);
 }
 

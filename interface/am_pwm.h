@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief PWM±ê×¼½Ó¿Ú
+ * \brief PWMæ ‡å‡†æ¥å£
  *
  * \internal
  * \par Modification History
@@ -36,48 +36,48 @@ extern "C" {
  */
 
 /**
- * \brief PWMÇı¶¯º¯Êı½á¹¹Ìå
+ * \brief PWMé©±åŠ¨å‡½æ•°ç»“æ„ä½“
  */
 struct am_pwm_drv_funcs {
 
-    /** \brief ÅäÖÃÒ»¸öPWMÍ¨µÀ  */
+    /** \brief é…ç½®ä¸€ä¸ªPWMé€šé“  */
     int (*pfn_pwm_config) (void          *p_drv,
                            int            chan,
                            unsigned long  duty_ns,
                            unsigned long  period_ns);
     
-    /** \brief Ê¹ÄÜPWMÊä³ö     */
+    /** \brief ä½¿èƒ½PWMè¾“å‡º     */
     int (*pfn_pwm_enable) (void *p_drv, int chan);
     
-    /** \brief ½ûÄÜPWMÊä³ö     */
+    /** \brief ç¦èƒ½PWMè¾“å‡º     */
     int (*pfn_pwm_disable) (void *p_drv,int chan);
 };
 
 /** 
- * \brief PWM·şÎñ
+ * \brief PWMæœåŠ¡
  */
 typedef struct am_pwm_serv {
 
-    /** \brief PWMÇı¶¯º¯Êı½á¹¹ÌåÖ¸Õë   */
+    /** \brief PWMé©±åŠ¨å‡½æ•°ç»“æ„ä½“æŒ‡é’ˆ   */
     struct am_pwm_drv_funcs   *p_funcs;
     
-    /** \brief ÓÃÓÚÇı¶¯º¯ÊıµÄµÚÒ»¸ö²ÎÊı */
+    /** \brief ç”¨äºé©±åŠ¨å‡½æ•°çš„ç¬¬ä¸€ä¸ªå‚æ•° */
     void                      *p_drv; 
 } am_pwm_serv_t;
 
-/** \brief PWM±ê×¼·şÎñ²Ù×÷¾ä±úÀàĞÍ¶¨Òå */
+/** \brief PWMæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„ç±»å‹å®šä¹‰ */
 typedef am_pwm_serv_t *am_pwm_handle_t;
 
 /** 
- * \brief ÅäÖÃÒ»¸öPWMÍ¨µÀ
+ * \brief é…ç½®ä¸€ä¸ªPWMé€šé“
  * 
- * \param[in] handle    : PWM±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \param[in] chan      : PWMÍ¨µÀ
- * \param[in] duty_ns   : PWMÂö¿íÊ±¼ä£¨µ¥Î»£»ÄÉÃë£©
- * \param[in] period_ns : PWMÖÜÆÚÊ±¼ä£¨µ¥Î»£»ÄÉÃë£©
+ * \param[in] handle    : PWMæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] chan      : PWMé€šé“
+ * \param[in] duty_ns   : PWMè„‰å®½æ—¶é—´ï¼ˆå•ä½ï¼›çº³ç§’ï¼‰
+ * \param[in] period_ns : PWMå‘¨æœŸæ—¶é—´ï¼ˆå•ä½ï¼›çº³ç§’ï¼‰
  *
- * \retval  AM_OK       : ÅäÖÃPWMÍ¨µÀ³É¹¦
- * \retval -AM_EINVAL   : ÅäÖÃÊ§°Ü, ²ÎÊı´íÎó
+ * \retval  AM_OK       : é…ç½®PWMé€šé“æˆåŠŸ
+ * \retval -AM_EINVAL   : é…ç½®å¤±è´¥, å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_pwm_config (am_pwm_handle_t handle, 
@@ -92,13 +92,13 @@ int am_pwm_config (am_pwm_handle_t handle,
 }
 
 /** 
- * \brief Ê¹ÄÜPWMÊä³ö
+ * \brief ä½¿èƒ½PWMè¾“å‡º
  * 
- * \param[in] handle  : PWM±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \param[in] chan    : PWMÍ¨µÀ
+ * \param[in] handle  : PWMæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] chan    : PWMé€šé“
  *
- * \retval  AM_OK     : Ê¹ÄÜPWMÊä³ö³É¹¦
- * \retval -AM_EINVAL : Ê§°Ü, ²ÎÊı´íÎó
+ * \retval  AM_OK     : ä½¿èƒ½PWMè¾“å‡ºæˆåŠŸ
+ * \retval -AM_EINVAL : å¤±è´¥, å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_pwm_enable (am_pwm_handle_t handle, int chan)
@@ -107,13 +107,13 @@ int am_pwm_enable (am_pwm_handle_t handle, int chan)
 }
 
 /** 
- * \brief ½ûÄÜPWMÊä³ö
+ * \brief ç¦èƒ½PWMè¾“å‡º
  * 
- * \param[in] handle  : PWM±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \param[in] chan    : PWMÍ¨µÀ
+ * \param[in] handle  : PWMæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] chan    : PWMé€šé“
  *
- * \retval  AM_OK     : ½ûÄÜPWMÊä³ö³É¹¦
- * \retval -AM_EINVAL : Ê§°Ü, ²ÎÊı´íÎó
+ * \retval  AM_OK     : ç¦èƒ½PWMè¾“å‡ºæˆåŠŸ
+ * \retval -AM_EINVAL : å¤±è´¥, å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_pwm_disable (am_pwm_handle_t handle, int chan)

@@ -31,19 +31,19 @@ extern "C" {
 #include "am_uartcmd.h"
 
 /**
- * \brief Ö¡´¦ÀíÍ¨ÓÃº¯Êı
+ * \brief å¸§å¤„ç†é€šç”¨å‡½æ•°
  */
 struct uartcmd_frame_funcs {
     
-    /** \brief Ö¡¼ì²âº¯Êı */
+    /** \brief å¸§æ£€æµ‹å‡½æ•° */
     int (*pfn_frame_check)(const void *p_buf, uint32_t nbytes);
     
-    /** \brief Ö¡´¦Àíº¯Êı */
+    /** \brief å¸§å¤„ç†å‡½æ•° */
     int (*pfn_frame_execute)(am_uartcmd_handle_t  handle,
                              void                *p_buf,
                              uint32_t             nbytes);
     
-    /** \brief »ñÈ¡Ö¡ÖĞµÄÊı¾İĞÅÏ¢µÄ³¤¶ÈºÍÖ¡³¤ */
+    /** \brief è·å–å¸§ä¸­çš„æ•°æ®ä¿¡æ¯çš„é•¿åº¦å’Œå¸§é•¿ */
     int (*pfn_frame_info_get)(const void *p_buf,
                               uint32_t   *p_frame_len,
                               uint32_t   *p_info_len);
@@ -51,62 +51,62 @@ struct uartcmd_frame_funcs {
 };
 
 /**
- * \brief Í¨ÓÃÖ¡ÀàĞÍ
+ * \brief é€šç”¨å¸§ç±»å‹
  */
 typedef struct uartcmd_frame {
     
-    /** \brief Ö¡´¦ÀíÍ¨ÓÃº¯Êı */
+    /** \brief å¸§å¤„ç†é€šç”¨å‡½æ•° */
     struct uartcmd_frame_funcs *p_funcs;
     
-    /** \brief Ö¡ÀàĞÍ */
+    /** \brief å¸§ç±»å‹ */
     uint8_t                frame_type;
     
-    /** \brief Á´±í½áµã */
+    /** \brief é“¾è¡¨ç»“ç‚¹ */
     struct am_list_head    node;
 
 } uartcmd_frame_t;
 
 /**
- * \brief ×¢²áÒ»¸öĞÂµÄÖ¡ÀàĞÍ
+ * \brief æ³¨å†Œä¸€ä¸ªæ–°çš„å¸§ç±»å‹
  * 
- * \param[in] handle  : UARTCMD·şÎñ¾ä±ú
- * \param[in] p_frame : ÃüÁîÖ¡½á¹¹ÌåÖ¸Õë
+ * \param[in] handle  : UARTCMDæœåŠ¡å¥æŸ„
+ * \param[in] p_frame : å‘½ä»¤å¸§ç»“æ„ä½“æŒ‡é’ˆ
  * 
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 int uartcmd_frame_class_register (am_uartcmd_handle_t  handle,
                                   uartcmd_frame_t     *p_frame);
 
 /**
- * \brief ×¢ÏúÒ»¸öĞÂµÄÖ¡ÀàĞÍ
+ * \brief æ³¨é”€ä¸€ä¸ªæ–°çš„å¸§ç±»å‹
  *
- * \param[in] handle  : UARTCMD·şÎñ¾ä±ú
- * \param[in] p_frame : ÃüÁîÖ¡½á¹¹ÌåÖ¸Õë
+ * \param[in] handle  : UARTCMDæœåŠ¡å¥æŸ„
+ * \param[in] p_frame : å‘½ä»¤å¸§ç»“æ„ä½“æŒ‡é’ˆ
  * 
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 int uartcmd_frame_class_unregister (am_uartcmd_handle_t  handle,
                                     uartcmd_frame_t     *p_frame);
 
 /**
- * \brief Ö¡´¦Àíº¯Êı
+ * \brief å¸§å¤„ç†å‡½æ•°
  *
- * \param[in] handle : UARTCMD·şÎñ¾ä±ú
+ * \param[in] handle : UARTCMDæœåŠ¡å¥æŸ„
  * 
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 int uartcmd_frame_execute (am_uartcmd_handle_t handle);
 
 /**
- * \brief ´¦ÀíÉÏÒ»¸öÖ¡µÄÃüÁî£¨ÓÃÓÚ×Ô¶¯¼ì²âÄ£Ê½£©
+ * \brief å¤„ç†ä¸Šä¸€ä¸ªå¸§çš„å‘½ä»¤ï¼ˆç”¨äºè‡ªåŠ¨æ£€æµ‹æ¨¡å¼ï¼‰
  *
- * \param[in] handle : UARTCMD·şÎñ¾ä±ú
+ * \param[in] handle : UARTCMDæœåŠ¡å¥æŸ„
  * 
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 int uartcmd_frame_last_execute (am_uartcmd_handle_t handle);
 

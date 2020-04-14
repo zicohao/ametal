@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief FTFAÄ£¿éµÄÇı¶¯²ãÊµÏÖ
+ * \brief FTFAæ¨¡å—çš„é©±åŠ¨å±‚å®ç°
  *
  * \internal
  * \par Modification History
@@ -27,18 +27,18 @@
 #include "hw/amhw_fsl_ftfa.h"
 
 
-#define SECTOR_SIZE (1024UL / 4)     /**< \brief ÉÈÇø´óĞ¡ ÒÔ×Ö(32bit)Îªµ¥Î»     */
+#define SECTOR_SIZE (1024UL / 4)     /**< \brief æ‰‡åŒºå¤§å° ä»¥å­—(32bit)ä¸ºå•ä½     */
 
-#define FLASH_SIZE  (1024*128UL)      /**< \brief flashµÄ´óĞ¡ ÒÔ×Ö½Ú(8bit)Îªµ¥Î» */
+#define FLASH_SIZE  (1024*128UL)      /**< \brief flashçš„å¤§å° ä»¥å­—èŠ‚(8bit)ä¸ºå•ä½ */
 
 /******************************************************************************
-*   º¯Êı¶¨Òå
+*   å‡½æ•°å®šä¹‰
 ******************************************************************************/
 
 /**
- *  \brief FTFAÄ£¿é³õÊ¼»¯
+ *  \brief FTFAæ¨¡å—åˆå§‹åŒ–
  *
- *  \return ÎŞ
+ *  \return æ— 
  */
 void am_fsl_ftfa_init (void)
 {
@@ -47,11 +47,11 @@ void am_fsl_ftfa_init (void)
 }
 
 /**
- *  \brief ²Á³ıÉÈÇø
+ *  \brief æ“¦é™¤æ‰‡åŒº
  *
- *  \param start_addr ÉÈÇøµÄÆğÊ¼µØÖ·
+ *  \param start_addr æ‰‡åŒºçš„èµ·å§‹åœ°å€
  *
- *  \return >0: Ö´ĞĞ½á¹û, -AM_EINVAL: ÊäÈëµØÖ·¹ı´ó
+ *  \return >0: æ‰§è¡Œç»“æœ, -AM_EINVAL: è¾“å…¥åœ°å€è¿‡å¤§
  */
 int32_t am_fsl_ftfa_sector_erase (amhw_fsl_ftfa_t * AMHW_FSL_FTFA,uint32_t start_addr)
 {
@@ -63,17 +63,17 @@ int32_t am_fsl_ftfa_sector_erase (amhw_fsl_ftfa_t * AMHW_FSL_FTFA,uint32_t start
 }
 
 /**
- *  \brief ¶ÔÉÈÇø±à³Ì»ò²¿·ÖÉÈÇø±à³Ì
+ *  \brief å¯¹æ‰‡åŒºç¼–ç¨‹æˆ–éƒ¨åˆ†æ‰‡åŒºç¼–ç¨‹
  *
- *  \param dst_addr Ğ´Èëµ½flashµÄÆğÊ¼µØÖ·
- *  \param p_src ÒªĞ´Èëµ½flashÖĞµÄÊı¾İµÄÆğÊ¼µØÖ·
- *  \param size Ğ´Èë×Ö(32bit)µÄ¸öÊı
+ *  \param dst_addr å†™å…¥åˆ°flashçš„èµ·å§‹åœ°å€
+ *  \param p_src è¦å†™å…¥åˆ°flashä¸­çš„æ•°æ®çš„èµ·å§‹åœ°å€
+ *  \param size å†™å…¥å­—(32bit)çš„ä¸ªæ•°
  *
- *  \retval >=0 Êµ¼Ê³É¹¦Ğ´ÈëµÄ×ÖÊı
- *  \retval -AM_EINVAL ÊäÈëµÄĞ´Èë×ÖÊı¹ı´ó
- *  \retval -AM_EINVAL Ö¸¶¨µÄÇøÓò´æÔÚÎ´²Á³ıÇøÓò
- *  \retval -AM_EAGAIN Ğè±à³ÌµÄflash»¹Î´²Á³ı£¬Çë²Á³ıºóÖØÊÔ
- *  \retval -AM_ERROR  Î´Öª´íÎó
+ *  \retval >=0 å®é™…æˆåŠŸå†™å…¥çš„å­—æ•°
+ *  \retval -AM_EINVAL è¾“å…¥çš„å†™å…¥å­—æ•°è¿‡å¤§
+ *  \retval -AM_EINVAL æŒ‡å®šçš„åŒºåŸŸå­˜åœ¨æœªæ“¦é™¤åŒºåŸŸ
+ *  \retval -AM_EAGAIN éœ€ç¼–ç¨‹çš„flashè¿˜æœªæ“¦é™¤ï¼Œè¯·æ“¦é™¤åé‡è¯•
+ *  \retval -AM_ERROR  æœªçŸ¥é”™è¯¯
  */
 int32_t am_fsl_ftfa_flash_program (amhw_fsl_ftfa_t * AMHW_FSL_FTFA,
 									uint32_t  dst_addr,
@@ -83,22 +83,22 @@ int32_t am_fsl_ftfa_flash_program (amhw_fsl_ftfa_t * AMHW_FSL_FTFA,
     uint32_t status;
     int      i;
 
-    /** size²»ÄÜ´óÓÚÉÈÇøµÄ´óĞ¡ */
+    /** sizeä¸èƒ½å¤§äºæ‰‡åŒºçš„å¤§å° */
     if (size > SECTOR_SIZE || dst_addr >= FLASH_SIZE) {
         return -AM_EINVAL;
     }
 
-    /** ÑéÖ¤flashÒÑ²Á³ı */
+    /** éªŒè¯flashå·²æ“¦é™¤ */
     status = amhw_fsl_ftfa_1s_read(AMHW_FSL_FTFA,
                                     dst_addr,
                                     size,
                                     0);
 
-    /** ¶Ôflash±à³Ì */
+    /** å¯¹flashç¼–ç¨‹ */
     if (0 == status) {
         for (i = 0; i < size; i++) {
 
-            /** ±à³Ì1¸ö×Ö */
+            /** ç¼–ç¨‹1ä¸ªå­— */
             status = amhw_fsl_ftfa_word_program(AMHW_FSL_FTFA,
                                                  dst_addr + (i*4),
                                                  p_src[i]);
@@ -107,7 +107,7 @@ int32_t am_fsl_ftfa_flash_program (amhw_fsl_ftfa_t * AMHW_FSL_FTFA,
                 break;
             }
 
-            /** ¼ì²âĞ´ÈëµÄÊÇ·ñÕıÈ· */
+            /** æ£€æµ‹å†™å…¥çš„æ˜¯å¦æ­£ç¡® */
             status = amhw_fsl_ftfa_program_check(AMHW_FSL_FTFA,
                                                   dst_addr + i*4,
                                                   p_src[i],
@@ -120,22 +120,22 @@ int32_t am_fsl_ftfa_flash_program (amhw_fsl_ftfa_t * AMHW_FSL_FTFA,
         }
 
         if (i <= size && i > 0) {
-            return i;          /** ²¿·ÖĞ´Èë³É¹¦·µ»Ø i           */
+            return i;          /** éƒ¨åˆ†å†™å…¥æˆåŠŸè¿”å› i           */
         }
 
         if (0 == i) {
-            return -AM_EAGAIN; /** ÍêÈ«Ã»ÓĞĞ´Èë ·µ»Ø -AM_EAGAIN */
+            return -AM_EAGAIN; /** å®Œå…¨æ²¡æœ‰å†™å…¥ è¿”å› -AM_EAGAIN */
         }
-    } else {                   /** ²Á³ıĞ£Ñé´íÎó ·µ»Ø -AM_EAGAIN */
+    } else {                   /** æ“¦é™¤æ ¡éªŒé”™è¯¯ è¿”å› -AM_EAGAIN */
         return -AM_EAGAIN;
     }
     return -AM_ERROR;
 }
 
 /**
- *  \brief ²Á³ıËùÓĞÉÈÇø
+ *  \brief æ“¦é™¤æ‰€æœ‰æ‰‡åŒº
  *
- *  \return Ö´ĞĞ½á¹û
+ *  \return æ‰§è¡Œç»“æœ
  *
  */
 uint32_t am_fsl_ftfa_all_sector_erase (amhw_fsl_ftfa_t * AMHW_FSL_FTFA)

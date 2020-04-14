@@ -12,20 +12,20 @@
 
 /**
  * \file
- * \brief UART ÂÖÑ¯·½Ê½Àý³Ì£¬Í¨¹ý HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief UART è½®è¯¢æ–¹å¼ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æŽ¥å£å®žçŽ°
  *
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿ÚÊä³ö "HW example---UART test in polling mode:"£»
- *   2. ´®¿ÚÊä³ö½ÓÊÕµ½µÄ×Ö·û´®¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. ä¸²å£è¾“å‡º "HW example---UART test in polling mode:"ï¼›
+ *   2. ä¸²å£è¾“å‡ºæŽ¥æ”¶åˆ°çš„å­—ç¬¦ä¸²ã€‚
  *
  * \note
- *    1. ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIOA_10 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *       PIOA_9 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD£»
- *    2. Èç¹ûµ÷ÊÔ´®¿ÚÊ¹ÓÃÓë±¾Àý³ÌÏàÍ¬£¬Ôò²»Ó¦ÔÚºóÐø¼ÌÐøÊ¹ÓÃµ÷ÊÔÐÅÏ¢Êä³öº¯Êý
- *      £¨Èç£ºAM_DBG_INFO()£©¡£
+ *    1. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIOA_10 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *       PIOA_9 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDï¼›
+ *    2. å¦‚æžœè°ƒè¯•ä¸²å£ä½¿ç”¨ä¸Žæœ¬ä¾‹ç¨‹ç›¸åŒï¼Œåˆ™ä¸åº”åœ¨åŽç»­ç»§ç»­ä½¿ç”¨è°ƒè¯•ä¿¡æ¯è¾“å‡ºå‡½æ•°
+ *      ï¼ˆå¦‚ï¼šAM_DBG_INFO()ï¼‰ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_zlg217_hw_uart_polling.c src_zlg217_hw_uart_polling
  *
  * \internal
@@ -48,20 +48,20 @@
 #include "demo_am217_core_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_zlg217_core_hw_uart_polling_entry (void)
 {
     AM_DBG_INFO("demo am217_core hw uart polling!\r\n");
 
-     /* µÈ´ý·¢ËÍÊý¾ÝÍê³É */
+     /* ç­‰å¾…å‘é€æ•°æ®å®Œæˆ */
     am_mdelay(100);
 
-    /* ³õÊ¼»¯Òý½Å */
+    /* åˆå§‹åŒ–å¼•è„š */
     am_gpio_pin_cfg(PIOA_9, PIOA_9_UART1_TX_REMAP0 | PIOA_9_AF_PP);
     am_gpio_pin_cfg(PIOA_10, PIOA_10_UART1_RX_REMAP0| PIOA_10_INPUT_FLOAT);
 
-    /* Ê¹ÄÜÊ±ÖÓ */
+    /* ä½¿èƒ½æ—¶é’Ÿ */
     am_clk_enable(CLK_UART1);
 
     demo_zlg_hw_uart_polling_entry(ZLG217_UART1, am_clk_rate_get(CLK_UART1));

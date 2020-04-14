@@ -12,13 +12,13 @@
 
 /**
  * \file
- * \brief MiniPort-View ¡¢ MiniPort-Key ºÍ  MiniPort-595 ÁªºÏÊ¹ÓÃ
+ * \brief MiniPort-View ã€ MiniPort-Key å’Œ  MiniPort-595 è”åˆä½¿ç”¨
  *
- * ±¾Çý¶¯ÊÊºÏÒÔÏÂÇé¿ö£º
- * 1. ÊýÂë¹Ü¶ÎÂëÊ¹ÓÃGPIOÇý¶¯
- * 2. ÊýÂë¹ÜÎ»ÂëÊ¹ÓÃHC595Çý¶¯
- * 3. ¾ØÕó¼üÅÌ²ÉÓÃÁÐÉ¨Ãè·½Ê½£¬ÁÐÏßÓëÊýÂë¹ÜÎ»Ñ¡Ïß¸´ÓÃ
- * 4. ¾ØÕó¼üÅÌµÄ¼üÖµ¶ÁÈ¡Ê¹ÓÃGPIO¶ÁÈ¡£¨¸ÃGPIOÓëÊýÂë¹Ü¶ÀÁ¢£©
+ * æœ¬é©±åŠ¨é€‚åˆä»¥ä¸‹æƒ…å†µï¼š
+ * 1. æ•°ç ç®¡æ®µç ä½¿ç”¨GPIOé©±åŠ¨
+ * 2. æ•°ç ç®¡ä½ç ä½¿ç”¨HC595é©±åŠ¨
+ * 3. çŸ©é˜µé”®ç›˜é‡‡ç”¨åˆ—æ‰«ææ–¹å¼ï¼Œåˆ—çº¿ä¸Žæ•°ç ç®¡ä½é€‰çº¿å¤ç”¨
+ * 4. çŸ©é˜µé”®ç›˜çš„é”®å€¼è¯»å–ä½¿ç”¨GPIOè¯»å–ï¼ˆè¯¥GPIOä¸Žæ•°ç ç®¡ç‹¬ç«‹ï¼‰
  *
  * \internal
  * \par modification history:
@@ -43,16 +43,16 @@ extern "C" {
  */
 
 /**
- * \brief MiniPort-View + MiniPort-Key + MiniPort-595 ÁªºÏÊ¹ÓÃÏà¹ØÐÅÏ¢
+ * \brief MiniPort-View + MiniPort-Key + MiniPort-595 è”åˆä½¿ç”¨ç›¸å…³ä¿¡æ¯
  */
 typedef struct am_miniport_view_key_595_info {
-    am_digitron_scan_hc595_gpio_info_t scan_info;  /**< \brief ÊýÂë¹Ü¶¯Ì¬É¨ÃèÏà¹ØÐÅÏ¢ */
-    am_key_matrix_base_info_t          key_info;   /**< \brief °´¼ü»ù´¡ÐÅÏ¢ */
-    const int                         *p_pins_row; /**< \brief ÐÐÏßÒý½Å£¨ÁÐÏß¸´ÓÃ£©  */
+    am_digitron_scan_hc595_gpio_info_t scan_info;  /**< \brief æ•°ç ç®¡åŠ¨æ€æ‰«æç›¸å…³ä¿¡æ¯ */
+    am_key_matrix_base_info_t          key_info;   /**< \brief æŒ‰é”®åŸºç¡€ä¿¡æ¯ */
+    const int                         *p_pins_row; /**< \brief è¡Œçº¿å¼•è„šï¼ˆåˆ—çº¿å¤ç”¨ï¼‰  */
 } am_miniport_view_key_595_info_t;
 
 /**
- * \brief MiniPort View + MiniPort Key + MiniPort-595 ÁªºÏÊ¹ÓÃÉè±¸
+ * \brief MiniPort View + MiniPort Key + MiniPort-595 è”åˆä½¿ç”¨è®¾å¤‡
  */
 typedef struct am_miniport_view_key_595_dev {
     am_digitron_scan_hc595_gpio_dev_t      scan_hc595_gpio_dev;
@@ -62,26 +62,26 @@ typedef struct am_miniport_view_key_595_dev {
 } am_miniport_view_key_595_dev_t;
 
 /**
- * \brief ¶¯Ì¬É¨ÃèÀàÊýÂë¹Ü³õÊ¼»¯
+ * \brief åŠ¨æ€æ‰«æç±»æ•°ç ç®¡åˆå§‹åŒ–
  *
- * \param[in] p_dev  : ¶¯Ì¬É¨ÃèÀàÊýÂë¹ÜÉè±¸ÊµÀý
- * \param[in] p_info : ¶¯Ì¬É¨ÃèÀàÊýÂë¹ÜÉè±¸ÊµÀýÐÅÏ¢
- * \param[in] handle : HC595·þÎñ¾ä±ú
+ * \param[in] p_dev  : åŠ¨æ€æ‰«æç±»æ•°ç ç®¡è®¾å¤‡å®žä¾‹
+ * \param[in] p_info : åŠ¨æ€æ‰«æç±»æ•°ç ç®¡è®¾å¤‡å®žä¾‹ä¿¡æ¯
+ * \param[in] handle : HC595æœåŠ¡å¥æŸ„
  *
- * \retval AM_OK      : ³õÊ¼»¯³É¹¦
- * \retval -AM_EINVAL £º³õÊ¼»¯Ê§°Ü£¬²ÎÊý´æÔÚ´íÎó
+ * \retval AM_OK      : åˆå§‹åŒ–æˆåŠŸ
+ * \retval -AM_EINVAL ï¼šåˆå§‹åŒ–å¤±è´¥ï¼Œå‚æ•°å­˜åœ¨é”™è¯¯
  */
 int am_miniport_view_key_595_init (am_miniport_view_key_595_dev_t        *p_dev,
                                    const am_miniport_view_key_595_info_t *p_info,
                                    am_hc595_handle_t                      handle);
 
 /**
- * \brief ¶¯Ì¬É¨ÃèÀàÊýÂë¹Ü½â³õÊ¼»¯
+ * \brief åŠ¨æ€æ‰«æç±»æ•°ç ç®¡è§£åˆå§‹åŒ–
  *
- * \param[in] p_dev : ¶¯Ì¬É¨ÃèÀàÊýÂë¹ÜÉè±¸ÊµÀý
+ * \param[in] p_dev : åŠ¨æ€æ‰«æç±»æ•°ç ç®¡è®¾å¤‡å®žä¾‹
  *
- * \retval AM_OK      : ½â³õÊ¼»¯³É¹¦
- * \retval -AM_EINVAL £º½â³õÊ¼»¯Ê§°Ü£¬²ÎÊý´æÔÚ´íÎó
+ * \retval AM_OK      : è§£åˆå§‹åŒ–æˆåŠŸ
+ * \retval -AM_EINVAL ï¼šè§£åˆå§‹åŒ–å¤±è´¥ï¼Œå‚æ•°å­˜åœ¨é”™è¯¯
  */
 int am_miniport_view_key_595_deinit (am_miniport_view_key_595_dev_t *p_dev);
 

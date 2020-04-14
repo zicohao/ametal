@@ -12,21 +12,21 @@
 
 /**
  * \file
- * \brief fm175xx��B�࿨��ID��ͨ�������ӿ�ʵ��
+ * \brief fm175xx读B类卡的ID，通过驱动接口实现
  *
- * - �������裺
- *   1. ��ȷ���Ӳ����úô��ڡ�
- *   2. ��ȷ���Ӻ����ߡ�
- *   3. ��B�࿨�����������֤���������߸�Ӧ����
+ * - 操作步骤：
+ *   1. 正确连接并配置好串口。
+ *   2. 正确连接好天线。
+ *   3. 将B类卡（如二代身份证）置于天线感应区。
  *
- * - ʵ������
- *   1. ����Ƭ�������߸�Ӧ���󴮿ڴ�ӡ����Ƭ��ID��
+ * - 实验现象：
+ *   1. 将卡片放置天线感应区后串口打印出卡片的ID。
  *
- * - ע�⣺
- *   1. ����Ƭ�������߸�Ӧ���󴮿�ֻ�ܴ�ӡһ��ID����Ҫ�ٴδ�ӡID��Ҫ����Ƭ�Ƴ���Ӧ��������;
- *   2. fm17510��֧��B�࿨�Ķ�д��
+ * - 注意：
+ *   1. 将卡片放置天线感应区后串口只能打印一次ID，若要再次打印ID需要将卡片移除感应区再移入;
+ *   2. fm17510不支持B类卡的读写。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_zlg217_dr_fm175xx_piccb_read_id.c src_zlg217_dr_fm175xx_piccb_read_id
  *
  * \internal
@@ -49,7 +49,7 @@
 #include "demo_am217_core_entries.h"
 
 /**
- * \brief B�࿨����������
+ * \brief B类卡读卡号例程
  */
 void demo_zlg217_core_dr_fm175xx_piccb_read_id (void)
 {

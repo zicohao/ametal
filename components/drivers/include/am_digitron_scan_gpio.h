@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ´¿GPIOÇı¶¯µÄ¶¯Ì¬É¨ÃèÊıÂë¹ÜÇı¶¯£¨Î»Ñ¡ºÍ¶ÎÂë¾ùÎªGPIOÇı¶¯£©
+ * \brief çº¯GPIOé©±åŠ¨çš„åŠ¨æ€æ‰«ææ•°ç ç®¡é©±åŠ¨ï¼ˆä½é€‰å’Œæ®µç å‡ä¸ºGPIOé©±åŠ¨ï¼‰
  * 
  * \internal
  * \par modification history:
@@ -42,17 +42,17 @@ extern "C" {
  */
 
 /**
- * \brief ¶¯Ì¬É¨ÃèÀàÊıÂë¹ÜĞÅÏ¢£¨GPIOÇı¶¯£©
+ * \brief åŠ¨æ€æ‰«æç±»æ•°ç ç®¡ä¿¡æ¯ï¼ˆGPIOé©±åŠ¨ï¼‰
  */
 typedef struct am_digitron_scan_info {
-    am_digitron_scan_devinfo_t  scan_info;  /** \brief ÊıÂë¹Ü¶¯Ì¬É¨ÃèÏà¹ØĞÅÏ¢ */
-    am_digitron_base_info_t     base_info;  /**< \brief ÊıÂë¹Ü»ù´¡ĞÅÏ¢  */
-    const int                  *p_seg_pins; /**< \brief ¶ÎÂë GPIOÇı¶¯ Òı½Å */
-    const int                  *p_com_pins; /**< \brief Î»Âë GPIOÇı¶¯ Òı½Å */
+    am_digitron_scan_devinfo_t  scan_info;  /** \brief æ•°ç ç®¡åŠ¨æ€æ‰«æç›¸å…³ä¿¡æ¯ */
+    am_digitron_base_info_t     base_info;  /**< \brief æ•°ç ç®¡åŸºç¡€ä¿¡æ¯  */
+    const int                  *p_seg_pins; /**< \brief æ®µç  GPIOé©±åŠ¨ å¼•è„š */
+    const int                  *p_com_pins; /**< \brief ä½ç  GPIOé©±åŠ¨ å¼•è„š */
 } am_digitron_scan_gpio_info_t;
 
 /**
- * \brief ¶¯Ì¬É¨ÃèÀàÊıÂë¹ÜÉè±¸£¨GPIOÇı¶¯£©
+ * \brief åŠ¨æ€æ‰«æç±»æ•°ç ç®¡è®¾å¤‡ï¼ˆGPIOé©±åŠ¨ï¼‰
  */
 typedef struct am_digitron_scan_gpio_dev {
     am_digitron_scan_dev_t           scan_dev;
@@ -62,40 +62,40 @@ typedef struct am_digitron_scan_gpio_dev {
 } am_digitron_scan_gpio_dev_t;
 
 /**
- * \brief ¶¯Ì¬É¨ÃèÀàÊıÂë¹Ü³õÊ¼»¯
+ * \brief åŠ¨æ€æ‰«æç±»æ•°ç ç®¡åˆå§‹åŒ–
  *
- * \param[in] p_dev  : GPIOÇı¶¯ĞÍ¶¯Ì¬É¨ÃèÀàÊıÂë¹ÜÉè±¸ÊµÀı
- * \param[in] p_info : GPIOÇı¶¯ĞÍ¶¯Ì¬É¨ÃèÀàÊıÂë¹ÜÉè±¸ÊµÀıĞÅÏ¢
+ * \param[in] p_dev  : GPIOé©±åŠ¨å‹åŠ¨æ€æ‰«æç±»æ•°ç ç®¡è®¾å¤‡å®ä¾‹
+ * \param[in] p_info : GPIOé©±åŠ¨å‹åŠ¨æ€æ‰«æç±»æ•°ç ç®¡è®¾å¤‡å®ä¾‹ä¿¡æ¯
  *
- * \retval AM_OK      : ³õÊ¼»¯³É¹¦
- * \retval -AM_EINVAL £º³õÊ¼»¯Ê§°Ü£¬²ÎÊı´æÔÚ´íÎó
+ * \retval AM_OK      : åˆå§‹åŒ–æˆåŠŸ
+ * \retval -AM_EINVAL ï¼šåˆå§‹åŒ–å¤±è´¥ï¼Œå‚æ•°å­˜åœ¨é”™è¯¯
  */
 int am_digitron_scan_gpio_init (am_digitron_scan_gpio_dev_t        *p_dev,
                                 const am_digitron_scan_gpio_info_t *p_info);
 
 /**
- * \brief ÉèÖÃÊıÂë¹ÜÉ¨Ãè»Øµ÷º¯Êı£¨½ö¿ÉÉèÖÃÒ»¸ö£©
+ * \brief è®¾ç½®æ•°ç ç®¡æ‰«æå›è°ƒå‡½æ•°ï¼ˆä»…å¯è®¾ç½®ä¸€ä¸ªï¼‰
  *
- *     µ±Ò»¸öĞÂµÄÊıÂë¹ÜÎ»¿ªÊ¼É¨ÃèÊ±£¬»áµ÷ÓÃ¸Ã»Øµ÷º¯Êı
+ *     å½“ä¸€ä¸ªæ–°çš„æ•°ç ç®¡ä½å¼€å§‹æ‰«ææ—¶ï¼Œä¼šè°ƒç”¨è¯¥å›è°ƒå‡½æ•°
  *
- * \param[in] p_dev  : GPIOÇı¶¯ĞÍ¶¯Ì¬É¨ÃèÀàÊıÂë¹ÜÉè±¸ÊµÀı
- * \param[in] pfn_cb : »Øµ÷º¯Êı
- * \param[in] p_arg  : »Øµ÷º¯ÊıÓÃ»§²ÎÊı
+ * \param[in] p_dev  : GPIOé©±åŠ¨å‹åŠ¨æ€æ‰«æç±»æ•°ç ç®¡è®¾å¤‡å®ä¾‹
+ * \param[in] pfn_cb : å›è°ƒå‡½æ•°
+ * \param[in] p_arg  : å›è°ƒå‡½æ•°ç”¨æˆ·å‚æ•°
  *
- * \retval AM_OK      : ÉèÖÃ³É¹¦
- * \retval -AM_EINVAL £ºÉèÖÃÊ§°Ü£¬²ÎÊı´æÔÚ´íÎó
+ * \retval AM_OK      : è®¾ç½®æˆåŠŸ
+ * \retval -AM_EINVAL ï¼šè®¾ç½®å¤±è´¥ï¼Œå‚æ•°å­˜åœ¨é”™è¯¯
  */
 int am_digitron_scan_gpio_cb_set (am_digitron_scan_gpio_dev_t *p_dev,
                                   am_digitron_scan_cb_t        pfn_cb,
                                   void                        *p_arg);
 
 /**
- * \brief ¶¯Ì¬É¨ÃèÀàÊıÂë¹Ü½â³õÊ¼»¯
+ * \brief åŠ¨æ€æ‰«æç±»æ•°ç ç®¡è§£åˆå§‹åŒ–
  *
- * \param[in] p_dev   : GPIOÇı¶¯ĞÍ¶¯Ì¬É¨ÃèÀàÊıÂë¹ÜÉè±¸ÊµÀı
+ * \param[in] p_dev   : GPIOé©±åŠ¨å‹åŠ¨æ€æ‰«æç±»æ•°ç ç®¡è®¾å¤‡å®ä¾‹
  *
- * \retval AM_OK      : ½â³õÊ¼»¯³É¹¦
- * \retval -AM_EINVAL £º½â³õÊ¼»¯Ê§°Ü£¬²ÎÊı´æÔÚ´íÎó
+ * \retval AM_OK      : è§£åˆå§‹åŒ–æˆåŠŸ
+ * \retval -AM_EINVAL ï¼šè§£åˆå§‹åŒ–å¤±è´¥ï¼Œå‚æ•°å­˜åœ¨é”™è¯¯
  */
 int am_digitron_scan_gpio_deinit (am_digitron_scan_gpio_dev_t *p_dev);
 

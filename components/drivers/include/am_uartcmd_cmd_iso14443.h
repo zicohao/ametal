@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief UARTCMD ISO14443ÀàÃüÁî´¦Àíº¯Êı
+ * \brief UARTCMD ISO14443ç±»å‘½ä»¤å¤„ç†å‡½æ•°
  *
  * \internal
  * \par Modification History
@@ -33,15 +33,15 @@ extern "C" {
 #include "am_reader_card.h"
 
 /**
- * \brief ISO14443ÀàÃüÁî³õÊ¼»¯º¯Êı
+ * \brief ISO14443ç±»å‘½ä»¤åˆå§‹åŒ–å‡½æ•°
  *
- * \param[in] handle       : UARTCMD·şÎñ¾ä±ú
- * \param[in] p_cmd        : Éè±¸¿ØÖÆÀàÃüÁî½á¹¹ÌåÖ¸Õë
- * \param[in] p_iso_handle : ISO±ê×¼Ğ­ÒéÀàĞÍ¾ä±ú
- * \param[in] cmd_class    : ÃüÁîÀàĞÍ
+ * \param[in] handle       : UARTCMDæœåŠ¡å¥æŸ„
+ * \param[in] p_cmd        : è®¾å¤‡æ§åˆ¶ç±»å‘½ä»¤ç»“æ„ä½“æŒ‡é’ˆ
+ * \param[in] p_iso_handle : ISOæ ‡å‡†åè®®ç±»å‹å¥æŸ„
+ * \param[in] cmd_class    : å‘½ä»¤ç±»å‹
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 int uartcmd_cmd_iso14443_init (am_uartcmd_handle_t      handle,
                                uartcmd_cmd_t           *p_cmd,
@@ -50,12 +50,12 @@ int uartcmd_cmd_iso14443_init (am_uartcmd_handle_t      handle,
                                uint8_t                  cmd_class);
 
 /**
- * \brief ISO14443ÀàÃüÁî½â³ı³õÊ¼»¯º¯Êı
+ * \brief ISO14443ç±»å‘½ä»¤è§£é™¤åˆå§‹åŒ–å‡½æ•°
  *
- * \param[in] handle : UARTCMD·şÎñ¾ä±ú
- * \param[in] p_cmd  : Éè±¸¿ØÖÆÀàÃüÁî½á¹¹ÌåÖ¸Õë
+ * \param[in] handle : UARTCMDæœåŠ¡å¥æŸ„
+ * \param[in] p_cmd  : è®¾å¤‡æ§åˆ¶ç±»å‘½ä»¤ç»“æ„ä½“æŒ‡é’ˆ
  *
- * return ÎŞ
+ * return æ— 
  */
 void uartcmd_cmd_iso14443_deinit (am_uartcmd_handle_t      handle,
                                   uartcmd_cmd_t           *p_cmd);

@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief GPIOÇı¶¯ĞÍ¾ØÕó¼üÅÌÇı¶¯ÊµÏÖ
+ * \brief GPIOé©±åŠ¨å‹çŸ©é˜µé”®ç›˜é©±åŠ¨å®ç°
  *
  * \internal
  * \par Modification history

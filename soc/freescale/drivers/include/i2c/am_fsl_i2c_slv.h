@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief I2C´Ó»úÇı¶¯£¬·şÎñI2C´Ó»ú±ê×¼½Ó¿Ú
+ * \brief I2Cä»æœºé©±åŠ¨ï¼ŒæœåŠ¡I2Cä»æœºæ ‡å‡†æ¥å£
  *
  * \internal
  * \par Modification History
@@ -72,14 +72,14 @@ extern "C" {
 #define kL16_I2C_START_DETECT_FLAG        I2C_FLT_STARTF_MASK << 8 /*!< I2C start detect flag. */
 
 /**
- * \brief I2CÉè±¸ĞÅÏ¢²ÎÊı½á¹¹Ìå
+ * \brief I2Cè®¾å¤‡ä¿¡æ¯å‚æ•°ç»“æ„ä½“
  */
 typedef struct am_fsl_i2c_slv_devinfo {
 
-    /** \brief I2C ¼Ä´æÆ÷¿é»ùÖ· */
+    /** \brief I2C å¯„å­˜å™¨å—åŸºå€ */
 	struct amhw_fsl_i2c  *i2c_regbase;
 
-    /** \brief I2C ¿ØÖÆÆ÷µÄÖĞ¶ÏºÅ */
+    /** \brief I2C æ§åˆ¶å™¨çš„ä¸­æ–­å· */
     uint16_t  inum;
 
     uint32_t  clk_id;
@@ -87,36 +87,36 @@ typedef struct am_fsl_i2c_slv_devinfo {
     /* Set default SCL stop hold time to 4us which is minimum requirement in I2C spec. */
     uint32_t sclStopHoldTime_ns;
 
-    /** \brief Æ½Ì¨³õÊ¼»¯º¯Êı */
+    /** \brief å¹³å°åˆå§‹åŒ–å‡½æ•° */
     void     (*pfn_plfm_init)(void);
 
-    /** \brief Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    /** \brief å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
     void     (*pfn_plfm_deinit)(void);
 
 } am_fsl_i2c_slv_devinfo_t;
 
 
 /**
- * \brief I2CÉè±¸½á¹¹Ìå
+ * \brief I2Cè®¾å¤‡ç»“æ„ä½“
  */
 typedef struct am_fsl_i2c_slv_dev {
 
-    /** \brief ±ê×¼I2C´ÓÉè±¸·şÎñ */
+    /** \brief æ ‡å‡†I2Cä»è®¾å¤‡æœåŠ¡ */
     am_i2c_slv_serv_t                  i2c_slv_serv;
 
-   /** \brief ´Ó»úÉè±¸,Ö»ÄÜ´æÒ»¸ö´Ó»úµØÖ·,Ö»ÄÜÉú³ÉÒ»¸öÉè±¸ */
+   /** \brief ä»æœºè®¾å¤‡,åªèƒ½å­˜ä¸€ä¸ªä»æœºåœ°å€,åªèƒ½ç”Ÿæˆä¸€ä¸ªè®¾å¤‡ */
     am_i2c_slv_device_t               *p_i2c_slv_dev[1];
 
-    /** \brief ZLG¿ÉÉú³É×î¶àµÄ´Ó»ú¸öÊı¼´¿É·Å¶àÉÙ¸ö´Ó»úµØÖ·,Óë p_i2c_slv_devÊı×é¸öÊı±£³ÖÒ»ÖÂ, */
+    /** \brief ZLGå¯ç”Ÿæˆæœ€å¤šçš„ä»æœºä¸ªæ•°å³å¯æ”¾å¤šå°‘ä¸ªä»æœºåœ°å€,ä¸ p_i2c_slv_devæ•°ç»„ä¸ªæ•°ä¿æŒä¸€è‡´, */
     uint8_t                            fsl_i2c_slv_dev_num;
 
-    /** \brief ¹ã²¥ºô½Ğ ±êÖ¾ */
+    /** \brief å¹¿æ’­å‘¼å« æ ‡å¿— */
     am_bool_t                          is_gen_call;
 
-    /** Èí¼ş¶¨Ê±Æ÷,ÓÃÓÚ³¬Ê±´¦Àí */
+    /** è½¯ä»¶å®šæ—¶å™¨,ç”¨äºè¶…æ—¶å¤„ç† */
     am_softimer_t                      softimer;
 
-    /** \brief Ö¸ÏòI2CÉè±¸ĞÅÏ¢µÄÖ¸Õë */
+    /** \brief æŒ‡å‘I2Cè®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ */
     const am_fsl_i2c_slv_devinfo_t    *p_devinfo;
 
 } am_fsl_i2c_slv_dev_t;
@@ -124,20 +124,20 @@ typedef struct am_fsl_i2c_slv_dev {
 
 
 /**
- * \brief I2C³õÊ¼»¯
+ * \brief I2Cåˆå§‹åŒ–
  *
- * \param[in] p_dev     : Ö¸Ïò´ÓI2CÉè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[in] p_devinfo : Ö¸Ïò´ÓI2CÉè±¸ĞÅÏ¢½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] p_dev     : æŒ‡å‘ä»I2Cè®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo : æŒ‡å‘ä»I2Cè®¾å¤‡ä¿¡æ¯ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return ´ÓI2C±ê×¼·şÎñ²Ù×÷¾ä±ú
+ * \return ä»I2Cæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  */
 am_i2c_slv_handle_t am_fsl_i2c_slv_init (am_fsl_i2c_slv_dev_t           *p_dev,
                                          const am_fsl_i2c_slv_devinfo_t *p_devinfo);
 
 /**
- * \brief ½â³ıI2C³õÊ¼»¯
- * \param[in] handle : Óë´ÓÉè±¸¹ØÁªµÄ´ÓI2C±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \return ÎŞ
+ * \brief è§£é™¤I2Cåˆå§‹åŒ–
+ * \param[in] handle : ä¸ä»è®¾å¤‡å…³è”çš„ä»I2Cæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \return æ— 
  */
 void am_fsl_i2c_slv_deinit (am_i2c_slv_handle_t handle);
 

@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief lpc824 bootloader ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief lpc824 bootloader ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_bootconf_lpc824_firmware_flash.c
  *
  * \internal
@@ -27,53 +27,53 @@
 #include "am_lpc824_boot.h"
 
 /*******************************************************************************
- * flashÅäÖÃ
+ * flashé…ç½®
  ******************************************************************************/
 /**
- * < \brief bootloader flash Éè±¸ĞÅÏ¢
+ * < \brief bootloader flash è®¾å¤‡ä¿¡æ¯
  */
 static am_lpc824_boot_flash_devinfo_t __g_flash_devinfo = {
-    /** \brief flashµÄÆğÊ¼µØÖ· */
+    /** \brief flashçš„èµ·å§‹åœ°å€ */
     0,
-    /** \brief flashµÄ×ÜµÄ´óĞ¡ */
+    /** \brief flashçš„æ€»çš„å¤§å° */
     32 * 1024,
-    /** \brief flashÉÈÇø´óĞ¡ */
+    /** \brief flashæ‰‡åŒºå¤§å° */
     1024,
-    /** \brief flashÉÈÇøÊı */
+    /** \brief flashæ‰‡åŒºæ•° */
     32,
-    /** \brief Æ½Ì¨³õÊ¼»¯º¯Êı */
+    /** \brief å¹³å°åˆå§‹åŒ–å‡½æ•° */
     NULL,
-    /** \brief Æ½Ì¨³õ½âÊ¼»¯º¯Êı */
+    /** \brief å¹³å°åˆè§£å§‹åŒ–å‡½æ•° */
     NULL,
 };
 
 /**
- * < \brief bootloader flash Éè±¸ÊµÀı
+ * < \brief bootloader flash è®¾å¤‡å®ä¾‹
  */
 static am_lpc824_boot_flash_dev_t __g_flash_dev;
 
 /**
- * \brief bootloader flashÊµÀı³õÊ¼»¯£¬»ñµÃÆä±ê×¼·şÎñ¾ä±ú
+ * \brief bootloader flashå®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—å…¶æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return bootloader flash±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return bootloader flashæ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_boot_flash_handle_t am_lpc824_boot_flash_inst_init(void)
 {
     return am_lpc824_boot_flash_init(&__g_flash_dev, &__g_flash_devinfo);
 }
 /*******************************************************************************
- * ¹Ì¼şÒÔflashµÄ·½Ê½´æ´¢ÅäÖÃ
+ * å›ºä»¶ä»¥flashçš„æ–¹å¼å­˜å‚¨é…ç½®
  ******************************************************************************/
 static am_lpc824_boot_firmware_flash_devinfo_t __g_firmware_flash_devinfo = {
-    /** \brief ¹Ì¼şÔÚflashÖĞ´æ·ÅµÄÆğÊ¼µØÖ· */
+    /** \brief å›ºä»¶åœ¨flashä¸­å­˜æ”¾çš„èµ·å§‹åœ°å€ */
     0x3800,
-    /** \brief Çı¶¯´æ·Å¹Ì¼ş»º³åÇø´óĞ¡£¬Ò²ÊÇflash×îĞ¡Ğ´ÈëµÄ×Ö½ÚÊı£¬×î´ó²»¿É³¬¹ı1024 */
+    /** \brief é©±åŠ¨å­˜æ”¾å›ºä»¶ç¼“å†²åŒºå¤§å°ï¼Œä¹Ÿæ˜¯flashæœ€å°å†™å…¥çš„å­—èŠ‚æ•°ï¼Œæœ€å¤§ä¸å¯è¶…è¿‡1024 */
     64,
-    /** \brief Æ½Ì¨³õÊ¼»¯º¯Êı */
+    /** \brief å¹³å°åˆå§‹åŒ–å‡½æ•° */
     NULL,
-    /** \brief Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    /** \brief å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
     NULL,
 };
 
@@ -88,32 +88,32 @@ am_boot_firmware_handle_t am_lpc824_boot_firmware_flash(am_boot_flash_handle_t f
 
 
 /*******************************************************************************
- * ±ê×¼bootloader½Ó¿ÚÅäÖÃ
+ * æ ‡å‡†bootloaderæ¥å£é…ç½®
  ******************************************************************************/
 /**
- * < \brief bootloader±ê×¼Éè±¸ĞÅÏ¢
+ * < \brief bootloaderæ ‡å‡†è®¾å¤‡ä¿¡æ¯
  */
 static am_lpc824_boot_devinfo_t __g_lpc824_boot_devinfo = {
-    /** \brief Ó¦ÓÃ´úÂëÆğÊ¼µØÖ·*/
+    /** \brief åº”ç”¨ä»£ç èµ·å§‹åœ°å€*/
     0x3800,
-    /**< \brief Éı¼¶±êÖ¾µÄ´æ·ÅµØÖ·*/
+    /**< \brief å‡çº§æ ‡å¿—çš„å­˜æ”¾åœ°å€*/
     0x7C00,
-    /** \brief flashÆğÊ¼µØÖ·*/
+    /** \brief flashèµ·å§‹åœ°å€*/
     0,
-    /** \brief flash´óĞ¡ */
+    /** \brief flashå¤§å° */
     32 * 1024,
-    /** \brief ramÆğÊ¼µØÖ· */
+    /** \brief ramèµ·å§‹åœ°å€ */
     0x10000000,
-    /** \brief ram´óĞ¡ */
+    /** \brief ramå¤§å° */
     8 * 1024,
-    /** \brief Æ½Ì¨³õÊ¼»¯º¯Êı */
+    /** \brief å¹³å°åˆå§‹åŒ–å‡½æ•° */
     NULL,
-    /** \brief Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    /** \brief å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
     NULL,
 };
 
 /**
- * < \brief bootloader±ê×¼Éè±¸ÊµÀı
+ * < \brief bootloaderæ ‡å‡†è®¾å¤‡å®ä¾‹
  */
 static am_lpc824_boot_dev_t __g_lpc824_boot_dev;
 

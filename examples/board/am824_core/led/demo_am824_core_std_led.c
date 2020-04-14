@@ -12,17 +12,17 @@
 
 /**
  * \file
- * \brief LED ���̣�ͨ����׼�ӿ�ʵ��
+ * \brief LED 例程，通过标准接口实现
  *
- * - ʵ������
- *   1. LED0 �� LED1 �� 0.5s ��ʱ������˸��
+ * - 实验现象：
+ *   1. LED0 和 LED1 以 0.5s 的时间间隔闪烁。
  *
  * \note
- *    1. LED0/LED1 ��Ҫ�̽� J9/J10 ����ñ�����ֱܷ� PIO0_20/PIO0_21 ���ƣ�
- *    2. ���Ա����̱����� am_prj_config.h �ڽ� AM_CFG_LED_ENABLE ����Ϊ 1�����ú�
- *       �Ѿ�Ĭ������Ϊ 1�� �û������ٴ����á�
+ *    1. LED0/LED1 需要短接 J9/J10 跳线帽，才能分别被 PIO0_20/PIO0_21 控制；
+ *    2. 测试本例程必须在 am_prj_config.h 内将 AM_CFG_LED_ENABLE 定义为 1，但该宏
+ *       已经默认配置为 1， 用户不必再次配置。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_am824_std_led.c src_am824_std_led
  *
  * \internal
@@ -43,7 +43,7 @@
 #include "demo_std_entries.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_am824_core_std_led_entry (void)
 {

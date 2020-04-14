@@ -10,10 +10,10 @@ am_zlg600_handle_t  am_zlg600_uart_inst_init (void);
 //	      am_i2c_handle_t              	 	 i2c_handle);
 //	
 //typedef struct am_zlg600_i2c_dev_info {
-//    int                	 pin;				// 中断引脚
-//    uint8_t            	 local_addr;		// 从机地址
-//    uint8_t            	 now_mode;		    // ZLG600A模式
-//    am_i2c_transfer_t 	*p_trans;			// I2C传输缓存
-//    uint8_t           	 trans_len;			// 缓存长度
+//    int                	 pin;				// 涓柇寮曡剼
+//    uint8_t            	 local_addr;		// 浠庢満鍦板潃
+//    uint8_t            	 now_mode;		    // ZLG600A妯″紡
+//    am_i2c_transfer_t 	*p_trans;			// I2C浼犺緭缂撳瓨
+//    uint8_t           	 trans_len;			// 缂撳瓨闀垮害
 //} am_zlg600_i2c_dev_info_t;
 

@@ -35,45 +35,45 @@ extern "C" {
  */
 
 /**
- * \name ISO14443ÃüÁî
+ * \name ISO14443å‘½ä»¤
  * @{
  */
 
-#define AM_IC_A_REQUEST_EN       1   /**< \brief ÇëÇóÃüÁî */
-#define AM_IC_A_ANTICOLL_EN      1   /**< \brief ·ÀÅö×²ÃüÁî */
-#define AM_IC_A_SELECT_EN        1   /**< \brief Ñ¡Ôñ¿¨ÃüÁî */
-#define AM_IC_A_HALT_EN          1   /**< \brief ¹ÒÆğÃüÁî */
-#define AM_IC_A_ACTIVATE_EN      1   /**< \brief ¼¤»î */
+#define AM_IC_A_REQUEST_EN       1   /**< \brief è¯·æ±‚å‘½ä»¤ */
+#define AM_IC_A_ANTICOLL_EN      1   /**< \brief é˜²ç¢°æ’å‘½ä»¤ */
+#define AM_IC_A_SELECT_EN        1   /**< \brief é€‰æ‹©å¡å‘½ä»¤ */
+#define AM_IC_A_HALT_EN          1   /**< \brief æŒ‚èµ·å‘½ä»¤ */
+#define AM_IC_A_ACTIVATE_EN      1   /**< \brief æ¿€æ´» */
 
-#define AM_IC_B_REQUEST_EN       1   /**< \brief ISO14443-3B¿¨ÇëÇó */
-#define AM_IC_B_SLOT_MARKER_EN   0   /**< \brief ISO14443-3B¿¨Ê±Ï¶·ÀÅö×² */
-#define AM_IC_B_ATTRIB_EN        1   /**< \brief ISO14443-3B¿¨Ñ¡Ôñ */
-#define AM_IC_B_HALT_EN          1   /**< \brief ISO14443-3B¿¨¹ÒÆğ */
-#define AM_IC_B_ACTIVATE_EN      1   /**< \brief ISO14443-3B¿¨¼¤»î */
+#define AM_IC_B_REQUEST_EN       1   /**< \brief ISO14443-3Bå¡è¯·æ±‚ */
+#define AM_IC_B_SLOT_MARKER_EN   0   /**< \brief ISO14443-3Bå¡æ—¶éš™é˜²ç¢°æ’ */
+#define AM_IC_B_ATTRIB_EN        1   /**< \brief ISO14443-3Bå¡é€‰æ‹© */
+#define AM_IC_B_HALT_EN          1   /**< \brief ISO14443-3Bå¡æŒ‚èµ· */
+#define AM_IC_B_ACTIVATE_EN      1   /**< \brief ISO14443-3Bå¡æ¿€æ´» */
 
 #define AM_IC_A_RATS_EN          1   /**< \brief RATS           (ISO14443A) */
 #define AM_IC_A_PPS_EN           1   /**< \brief PPS            (ISO14443A) */
 #define AM_IC_A_DESELECT_EN      1   /**< \brief DESELECT       (ISO14443A) */
-#define AM_IC_B_PROT_PARSE_EN    1   /**< \brief BĞÍ¿¨²ÎÊı½âÎö       (ISO14443B) */
+#define AM_IC_B_PROT_PARSE_EN    1   /**< \brief Bå‹å¡å‚æ•°è§£æ       (ISO14443B) */
 #define AM_IC_TPCL_EN            1   /**< \brief TPCL           (ISO14443)  */
 
 /** @} */
 
 /**
- * \name ISO14443Ğ­ÒéÃüÁîÂë -- AĞÍ¿¨ÃüÁî´úÂë
+ * \name ISO14443åè®®å‘½ä»¤ç  -- Aå‹å¡å‘½ä»¤ä»£ç 
  * @{
  */
 
-#define AM_IC_ISO14443_3A_REQALL            0x52    /**< \brief ÇëÇóËùÓĞµÄ¿¨ */
-#define AM_IC_ISO14443_3A_REQIDL            0x26    /**< \brief ÇëÇó¿ÕÏĞµÄ¿¨ */
-#define AM_IC_ISO14443_3A_SELECT_LEVEL_1    0x93    /**< \brief Ò»¼¶·ÀÅö×²/Ñ¡Ôñ */
-#define AM_IC_ISO14443_3A_SELECT_LEVEL_2    0x95    /**< \brief ¶ş¼¶·ÀÅö×²/Ñ¡Ôñ */
-#define AM_IC_ISO14443_3A_SELECT_LEVEL_3    0x97    /**< \brief Èı¼¶·ÀÅö×²/Ñ¡Ôñ */
+#define AM_IC_ISO14443_3A_REQALL            0x52    /**< \brief è¯·æ±‚æ‰€æœ‰çš„å¡ */
+#define AM_IC_ISO14443_3A_REQIDL            0x26    /**< \brief è¯·æ±‚ç©ºé—²çš„å¡ */
+#define AM_IC_ISO14443_3A_SELECT_LEVEL_1    0x93    /**< \brief ä¸€çº§é˜²ç¢°æ’/é€‰æ‹© */
+#define AM_IC_ISO14443_3A_SELECT_LEVEL_2    0x95    /**< \brief äºŒçº§é˜²ç¢°æ’/é€‰æ‹© */
+#define AM_IC_ISO14443_3A_SELECT_LEVEL_3    0x97    /**< \brief ä¸‰çº§é˜²ç¢°æ’/é€‰æ‹© */
 
 /** @} */
 
 /**
- * \name ISO14443Ğ­ÒéÃüÁîÂë -- BĞÍ¿¨ÃüÁî´úÂë
+ * \name ISO14443åè®®å‘½ä»¤ç  -- Bå‹å¡å‘½ä»¤ä»£ç 
  * @{
  */
 
@@ -83,7 +83,7 @@ extern "C" {
 /** @} */
 
 /**
- * \brief ISO14443×ÓĞ­ÒéÀàĞÍ
+ * \brief ISO14443å­åè®®ç±»å‹
  */
 typedef enum am_ic_iso14443_subprot_type {
     AM_IC_ISO14443A_106       = 0x00,     /**< \brief ISO14443A */
@@ -97,38 +97,38 @@ typedef enum am_ic_iso14443_subprot_type {
 } am_ic_iso14443_subprot_type_t;
 
 /**
- * \brief ISO14443-3A¿¨¼¤»îµÄ»ØÓ¦ĞÅÏ¢(²»°üÀ¨RATS)
- *        ISO14443Ğ­Òé¿¨Æ¬ÌØÓĞÊı¾İ½á¹¹Ìå¶¨Òå
+ * \brief ISO14443-3Aå¡æ¿€æ´»çš„å›åº”ä¿¡æ¯(ä¸åŒ…æ‹¬RATS)
+ *        ISO14443åè®®å¡ç‰‡ç‰¹æœ‰æ•°æ®ç»“æ„ä½“å®šä¹‰
  */
 typedef struct am_ic_a_reset_info {
-    uint8_t     atq[2];         /**< \brief ÇëÇóÓ¦´ğ */
-    uint8_t     sak;            /**< \brief Ñ¡Ôñ»ØÓ¦ */
-    uint8_t     n_uid_len;      /**< \brief UID(¿¨Î¨Ò»ĞòÁĞºÅ)³¤¶È£¬4¡¢7¡¢10 */
+    uint8_t     atq[2];         /**< \brief è¯·æ±‚åº”ç­” */
+    uint8_t     sak;            /**< \brief é€‰æ‹©å›åº” */
+    uint8_t     n_uid_len;      /**< \brief UID(å¡å”¯ä¸€åºåˆ—å·)é•¿åº¦ï¼Œ4ã€7ã€10 */
     uint8_t     uid[10];        /**< \brief UID */
 } am_ic_a_reset_info_t;
 
 /**
- * \brief ISO14443-3B¿¨¼¤»îµÄ»ØÓ¦ĞÅÏ¢
- *        ISO14443Ğ­Òé¿¨Æ¬ÌØÓĞÊı¾İ½á¹¹Ìå¶¨Òå
+ * \brief ISO14443-3Bå¡æ¿€æ´»çš„å›åº”ä¿¡æ¯
+ *        ISO14443åè®®å¡ç‰‡ç‰¹æœ‰æ•°æ®ç»“æ„ä½“å®šä¹‰
  */
 typedef struct am_ic_b_reset_info {
-    uint8_t     pupi[4];        /**< \brief Î±Î¨Ò»PICC ±êÊ¶·û */
-    uint8_t     app_data[4];    /**< \brief Ó¦ÓÃÊı¾İ */
-    uint8_t     prot_info[4];   /**< \brief ²ÎÊıĞÅÏ¢,»ù±¾Îª3×Ö½Ú,À©Õ¹µÄÎª4×Ö½Ú */
+    uint8_t     pupi[4];        /**< \brief ä¼ªå”¯ä¸€PICC æ ‡è¯†ç¬¦ */
+    uint8_t     app_data[4];    /**< \brief åº”ç”¨æ•°æ® */
+    uint8_t     prot_info[4];   /**< \brief å‚æ•°ä¿¡æ¯,åŸºæœ¬ä¸º3å­—èŠ‚,æ‰©å±•çš„ä¸º4å­—èŠ‚ */
 } am_ic_b_reset_info_t;
 
 /**
- * \brief ISO14443Çı¶¯º¯Êı½á¹¹Ìå
+ * \brief ISO14443é©±åŠ¨å‡½æ•°ç»“æ„ä½“
  */
 struct am_ic_iso14443_drv_funcs {
 
-    /** \brief ISO14443-3 A¿¨ÇëÇó */
+    /** \brief ISO14443-3 Aå¡è¯·æ±‚ */
     int (*pfn_ic_a_request) (void     *p_drv,
                              uint8_t   req_code,
                              uint8_t  *p_atq,
                              uint32_t *p_nbytes);
 
-    /** \brief ISO14443-3 A¿¨Î»·½Ê½·ÀÅö×² */
+    /** \brief ISO14443-3 Aå¡ä½æ–¹å¼é˜²ç¢°æ’ */
     int (*pfn_ic_a_anticoll) (void     *p_drv,
                               uint8_t   mode,
                               uint8_t   level,
@@ -136,64 +136,64 @@ struct am_ic_iso14443_drv_funcs {
                               uint8_t   bits,
                               uint32_t *p_nbytes);
 
-    /** \brief ISO14443-3 A¿¨Ñ¡Ôñ¿¨Æ¬ */
+    /** \brief ISO14443-3 Aå¡é€‰æ‹©å¡ç‰‡ */
     int (*pfn_ic_a_select) (void          *p_drv,
                             uint8_t        sel_code,
                             const uint8_t *p_uid,
                             uint32_t       nbytes,
                             uint8_t       *p_sak);
 
-    /** \brief ISO14443-3 A¿¨ÖÃÎªHALT×´Ì¬ */
+    /** \brief ISO14443-3 Aå¡ç½®ä¸ºHALTçŠ¶æ€ */
     int (*pfn_ic_a_halt) (void *p_drv);
 
-    /** \brief ISO14443-3 A¿¨¼¤»î */
+    /** \brief ISO14443-3 Aå¡æ¿€æ´» */
     int (*pfn_ic_a_activate) (void                 *p_drv,
                               uint8_t               mode,
                               uint8_t               req_code,
                               am_ic_a_reset_info_t *p_reset_info);
 
-    /** \brief ISO14443-3 B¿¨ÇëÇó */
+    /** \brief ISO14443-3 Bå¡è¯·æ±‚ */
     int (*pfn_ic_b_request) (void                 *p_drv,
                              uint8_t               req_code,
                              uint8_t               afi,
                              uint8_t               n,
                              am_ic_b_reset_info_t *p_reset_info);
 
-    /** \brief ISO14443-3 B¿¨Ê±Ï¶±ê¼Ç·ÀÅö×² */
+    /** \brief ISO14443-3 Bå¡æ—¶éš™æ ‡è®°é˜²ç¢°æ’ */
     int (*pfn_ic_b_slot_mark) (void                 *p_drv,
                                uint8_t               n,
                                am_ic_b_reset_info_t *p_reset_info);
 
-    /** \brief ISO14443-3 B¿¨ĞŞ¸ÄÊôĞÔ²¢Ñ¡Ôñ */
+    /** \brief ISO14443-3 Bå¡ä¿®æ”¹å±æ€§å¹¶é€‰æ‹© */
     int (*pfn_ic_b_attrib_set) (void       *p_drv,
                                 const void *p_pupi,
                                 uint32_t    nbytes,
                                 uint8_t     cid,
                                 uint8_t     pro_type);
 
-    /** \brief ISO14443-3 B¿¨ÖÃÎªHALT×´Ì¬ */
+    /** \brief ISO14443-3 Bå¡ç½®ä¸ºHALTçŠ¶æ€ */
     int (*pfn_ic_b_halt) (void *p_drv, uint8_t *p_pupi, uint32_t nbytes);
 
-    /** \brief ISO14443-3 B¿¨¼¤»î */
+    /** \brief ISO14443-3 Bå¡æ¿€æ´» */
     int (*pfn_ic_b_activate) (void                 *p_drv,
                               uint8_t               req_code,
                               uint8_t               afi,
                               am_ic_b_reset_info_t *p_reset_info);
 
-    /** \brief ISO14443-4 A¿¨ÇëÇóÓ¦´ğÒÔÏìÓ¦*/
+    /** \brief ISO14443-4 Aå¡è¯·æ±‚åº”ç­”ä»¥å“åº”*/
     int (*pfn_ic_a_rats_get) (void     *p_drv,
                               uint8_t   cid,
                               void     *p_rats,
                               uint32_t  buf_size,
                               uint32_t *p_nbytes);
 
-    /** \brief ISO14443-4 A¿¨Ğ­ÒéºÍ²ÎÊıÑ¡ÔñÇëÇó */
+    /** \brief ISO14443-4 Aå¡åè®®å’Œå‚æ•°é€‰æ‹©è¯·æ±‚ */
     int (*pfn_ic_a_pps_set) (void *p_drv, uint8_t flags);
 
-    /** \brief ISO14443-4 A¿¨È¡ÏûÑ¡Ôñ */
+    /** \brief ISO14443-4 Aå¡å–æ¶ˆé€‰æ‹© */
     int (*pfn_ic_a_deselect) (void *p_drv);
 
-    /** \brief ISO14443 ´«Êä£¨T=CL£©*/
+    /** \brief ISO14443 ä¼ è¾“ï¼ˆT=CLï¼‰*/
     int (*pfn_ic_transfer) (void       *p_drv,
                             const void *p_txbuf,
                             uint32_t    n_tx,
@@ -204,32 +204,32 @@ struct am_ic_iso14443_drv_funcs {
 };
 
 /**
- * \brief ISO14443 ·şÎñ½á¹¹Ìå
+ * \brief ISO14443 æœåŠ¡ç»“æ„ä½“
  */
 typedef struct am_ic_iso14443_serv {
 
-    /** \brief ISO14443Çı¶¯º¯Êı½á¹¹ÌåÖ¸Õë */
+    /** \brief ISO14443é©±åŠ¨å‡½æ•°ç»“æ„ä½“æŒ‡é’ˆ */
     struct am_ic_iso14443_drv_funcs *p_funcs;
 
-    /** \brief ÓÃÓÚÇı¶¯º¯ÊıµÄµÚÒ»¸ö²ÎÊı */
+    /** \brief ç”¨äºé©±åŠ¨å‡½æ•°çš„ç¬¬ä¸€ä¸ªå‚æ•° */
     void                            *p_drv;
 } am_ic_iso14443_serv_t;
 
-/** \brief ÉùÃ÷ISO14443ÃüÁî·şÎñ¾ä±ú */
+/** \brief å£°æ˜ISO14443å‘½ä»¤æœåŠ¡å¥æŸ„ */
 typedef am_ic_iso14443_serv_t *am_ic_iso14443_handle_t;
 
 /**
- * \brief ISO14443-3 A¿¨ÇëÇó
+ * \brief ISO14443-3 Aå¡è¯·æ±‚
  *
- * \param[in]  handle   : ISO14443·şÎñ¾ä±ú
- * \param[in]  req_code : ÇëÇó´úÂë
- *                       - AM_IC_ISO14443_3A_REQIDL ÇëÇó¿ÕÏĞ¿¨
- *                       - AM_IC_ISO14443_3A_REQALL ÇëÇóËùÓĞ¿¨
- * \param[out] p_atq    : ÇëÇó·µ»ØĞÅÏ¢
- * \param[out] p_nbytes : ÇëÇó·µ»ØĞÅÏ¢µÄ×Ö½ÚÊı
+ * \param[in]  handle   : ISO14443æœåŠ¡å¥æŸ„
+ * \param[in]  req_code : è¯·æ±‚ä»£ç 
+ *                       - AM_IC_ISO14443_3A_REQIDL è¯·æ±‚ç©ºé—²å¡
+ *                       - AM_IC_ISO14443_3A_REQALL è¯·æ±‚æ‰€æœ‰å¡
+ * \param[out] p_atq    : è¯·æ±‚è¿”å›ä¿¡æ¯
+ * \param[out] p_nbytes : è¯·æ±‚è¿”å›ä¿¡æ¯çš„å­—èŠ‚æ•°
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_ic_iso14443_a_request (am_ic_iso14443_handle_t  handle,
@@ -244,22 +244,22 @@ int am_ic_iso14443_a_request (am_ic_iso14443_handle_t  handle,
 }
 
 /**
- * \brief ISO14443-3 A¿¨Î»·½Ê½·ÀÅö×²
+ * \brief ISO14443-3 Aå¡ä½æ–¹å¼é˜²ç¢°æ’
  *
- * \param[in] handle : ISO14443·şÎñ¾ä±ú
- * \param[in] mode   : ·ÀÅö×²Ä£Ê½
- *                       - 0x00 -- Ö´ĞĞ·ÀÅö×²Ñ­»·£¬
- *                       - 0x01 -- Ö»Ö´ĞĞÒ»´Î·ÀÅö×²
- * \param[in] level  : ·ÀÅö×²µÈ¼¶
- *                       - 0x93£ºµÚ1¼¶
- *                       - 0x95£ºµÚ2¼¶
- *                       - 0x97£ºµÚ3¼¶
- * \param[in, out] p_uid  : ÊäÈëÒÑÖªµÄUID£¬·µ»ØÍêÕûUID
- * \param[in] bits        : ÒÑÖªUIDµÄÎ»Êı
- * \param[out] p_nbytes   : ÍêÕûUIDµÄ×Ö½ÚÊı
+ * \param[in] handle : ISO14443æœåŠ¡å¥æŸ„
+ * \param[in] mode   : é˜²ç¢°æ’æ¨¡å¼
+ *                       - 0x00 -- æ‰§è¡Œé˜²ç¢°æ’å¾ªç¯ï¼Œ
+ *                       - 0x01 -- åªæ‰§è¡Œä¸€æ¬¡é˜²ç¢°æ’
+ * \param[in] level  : é˜²ç¢°æ’ç­‰çº§
+ *                       - 0x93ï¼šç¬¬1çº§
+ *                       - 0x95ï¼šç¬¬2çº§
+ *                       - 0x97ï¼šç¬¬3çº§
+ * \param[in, out] p_uid  : è¾“å…¥å·²çŸ¥çš„UIDï¼Œè¿”å›å®Œæ•´UID
+ * \param[in] bits        : å·²çŸ¥UIDçš„ä½æ•°
+ * \param[out] p_nbytes   : å®Œæ•´UIDçš„å­—èŠ‚æ•°
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_ic_iso14443_a_anticoll (am_ic_iso14443_handle_t  handle,
@@ -278,19 +278,19 @@ int am_ic_iso14443_a_anticoll (am_ic_iso14443_handle_t  handle,
 }
 
 /**
- * \brief ISO14443-3 A¿¨Ñ¡Ôñ¿¨Æ¬
+ * \brief ISO14443-3 Aå¡é€‰æ‹©å¡ç‰‡
  *
- * \param[in] handle    : ISO14443·şÎñ¾ä±ú
- * \param[in] level     : ·ÀÅö×²µÈ¼¶
- *                         - 0x93£ºµÚ1¼¶
- *                         - 0x95£ºµÚ2¼¶
- *                         - 0x97£ºµÚ3¼¶
- * \param[in]  p_uid    : ÍêÕûUID
- * \param[out] nbytes   : UIDµÄ×Ö½ÚÊı
- * \param[out] p_sak    : Ñ¡ÔñÓ¦´ğ(1×Ö½Ú)
+ * \param[in] handle    : ISO14443æœåŠ¡å¥æŸ„
+ * \param[in] level     : é˜²ç¢°æ’ç­‰çº§
+ *                         - 0x93ï¼šç¬¬1çº§
+ *                         - 0x95ï¼šç¬¬2çº§
+ *                         - 0x97ï¼šç¬¬3çº§
+ * \param[in]  p_uid    : å®Œæ•´UID
+ * \param[out] nbytes   : UIDçš„å­—èŠ‚æ•°
+ * \param[out] p_sak    : é€‰æ‹©åº”ç­”(1å­—èŠ‚)
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_ic_iso14443_a_select (am_ic_iso14443_handle_t  handle,
@@ -307,12 +307,12 @@ int am_ic_iso14443_a_select (am_ic_iso14443_handle_t  handle,
 }
 
 /**
- * \brief ISO14443-3 A¿¨ÖÃÎªHALT×´Ì¬
+ * \brief ISO14443-3 Aå¡ç½®ä¸ºHALTçŠ¶æ€
  *
- * \param[in] handle : ISO14443·şÎñ¾ä±ú
+ * \param[in] handle : ISO14443æœåŠ¡å¥æŸ„
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_ic_iso14443_a_halt (am_ic_iso14443_handle_t handle)
@@ -321,19 +321,19 @@ int am_ic_iso14443_a_halt (am_ic_iso14443_handle_t handle)
 }
 
 /**
- * \brief ISO14443-3 A¿¨¼¤»î
+ * \brief ISO14443-3 Aå¡æ¿€æ´»
  *
- * \param[in] handle        : ISO14443·şÎñ¾ä±ú
- * \param[in] mode          : ·ÀÅö×²Ä£Ê½
- *                             - 0x00 -- Ö´ĞĞ·ÀÅö×²Ñ­»·£¬
- *                             - 0x01 -- Ö»Ö´ĞĞÒ»´Î·ÀÅö×²
- * \param[in] req_code      : ÇëÇó´úÂë
+ * \param[in] handle        : ISO14443æœåŠ¡å¥æŸ„
+ * \param[in] mode          : é˜²ç¢°æ’æ¨¡å¼
+ *                             - 0x00 -- æ‰§è¡Œé˜²ç¢°æ’å¾ªç¯ï¼Œ
+ *                             - 0x01 -- åªæ‰§è¡Œä¸€æ¬¡é˜²ç¢°æ’
+ * \param[in] req_code      : è¯·æ±‚ä»£ç 
  *                             - 0x26 IDLE
  *                             - 0x52 ALL
- * \param[out] p_reset_info : ISO14443-3 A¿¨¼¤»î»ØÓ¦ĞÅÏ¢
+ * \param[out] p_reset_info : ISO14443-3 Aå¡æ¿€æ´»å›åº”ä¿¡æ¯
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_ic_iso14443_a_activate (am_ic_iso14443_handle_t  handle,
@@ -348,18 +348,18 @@ int am_ic_iso14443_a_activate (am_ic_iso14443_handle_t  handle,
 }
 
 /**
- * \brief ISO14443-3 B¿¨ÇëÇó
+ * \brief ISO14443-3 Bå¡è¯·æ±‚
  *
- * \param[in] handle        : ISO14443·şÎñ¾ä±ú
- * \param[in] req_code      : ÇëÇó´úÂë
+ * \param[in] handle        : ISO14443æœåŠ¡å¥æŸ„
+ * \param[in] req_code      : è¯·æ±‚ä»£ç 
  *                             - 0x26 IDLE
  *                             - 0x52 ALL
- * \param[in] afi           : Ó¦ÓÃ±êÊ¶·û£¬0x00£ºÈ«Ñ¡
- * \param[in] n             : Ê±Ï¶×ÜÊı,È¡Öµ·¶Î§0--4
- * \param[out] p_reset_info : ISO14443-3 B¿¨¼¤»î»ØÓ¦ĞÅÏ¢
+ * \param[in] afi           : åº”ç”¨æ ‡è¯†ç¬¦ï¼Œ0x00ï¼šå…¨é€‰
+ * \param[in] n             : æ—¶éš™æ€»æ•°,å–å€¼èŒƒå›´0--4
+ * \param[out] p_reset_info : ISO14443-3 Bå¡æ¿€æ´»å›åº”ä¿¡æ¯
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_ic_iso14443_b_request (am_ic_iso14443_handle_t  handle,
@@ -376,14 +376,14 @@ int am_ic_iso14443_b_request (am_ic_iso14443_handle_t  handle,
 }
 
 /**
- * \brief ISO14443-3 B¿¨Ê±Ï¶±ê¼Ç·ÀÅö×²
+ * \brief ISO14443-3 Bå¡æ—¶éš™æ ‡è®°é˜²ç¢°æ’
  *
- * \param[in] handle       : ISO14443·şÎñ¾ä±ú
- * \param[in] n            : Ê±Ï¶±ê¼Ç£¬È¡Öµ·¶Î§2-16
- * \param[in] p_reset_info : ISO14443-3 B¿¨¼¤»î»ØÓ¦ĞÅÏ¢
+ * \param[in] handle       : ISO14443æœåŠ¡å¥æŸ„
+ * \param[in] n            : æ—¶éš™æ ‡è®°ï¼Œå–å€¼èŒƒå›´2-16
+ * \param[in] p_reset_info : ISO14443-3 Bå¡æ¿€æ´»å›åº”ä¿¡æ¯
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_ic_iso14443_b_slot_mark (am_ic_iso14443_handle_t  handle,
@@ -396,27 +396,27 @@ int am_ic_iso14443_b_slot_mark (am_ic_iso14443_handle_t  handle,
 }
 
 /**
- * \brief ISO14443-3 B¿¨ĞŞ¸ÄÊôĞÔ²¢Ñ¡Ôñ
+ * \brief ISO14443-3 Bå¡ä¿®æ”¹å±æ€§å¹¶é€‰æ‹©
  *
- * \param[in] handle   : ISO14443·şÎñ¾ä±ú
- * \param[in] p_pupi   : ICÎ¨Ò»±êÊ¶·û
- * \param[in] nbytes   : ±êÊ¶·û×Ö½ÚÊı
- * \param[in] cid      : È¡Öµ·¶Î§Îª 0 - 14, Èô²»Ö§³ÖCID£¬ÔòÉèÖÃÎª0
- * \param[in] pro_type : Ö§³ÖµÄĞ­Òé£¬ÓÉÇëÇó»ØÓ¦ÖĞµÄProtocolTypeÖ¸¶¨
- *                        - pro_type.3      -- PCD ÓëPICC ÊÇ·ñ¼ÌĞøÍ¨ĞÅ
- *                            - 1              -- PCD ÖĞÖ¹ÓëPICC ¼ÌĞøÍ¨ĞÅ
- *                            - 0              -- PCD ÓëPICC ¼ÌĞøÍ¨ĞÅ
- *                        - pro_type.2:1    -- PICC EOF ºÍPCD SOF¼äµÄ×îĞ¡ÑÓ³Ù
+ * \param[in] handle   : ISO14443æœåŠ¡å¥æŸ„
+ * \param[in] p_pupi   : ICå”¯ä¸€æ ‡è¯†ç¬¦
+ * \param[in] nbytes   : æ ‡è¯†ç¬¦å­—èŠ‚æ•°
+ * \param[in] cid      : å–å€¼èŒƒå›´ä¸º 0 - 14, è‹¥ä¸æ”¯æŒCIDï¼Œåˆ™è®¾ç½®ä¸º0
+ * \param[in] pro_type : æ”¯æŒçš„åè®®ï¼Œç”±è¯·æ±‚å›åº”ä¸­çš„ProtocolTypeæŒ‡å®š
+ *                        - pro_type.3      -- PCD ä¸PICC æ˜¯å¦ç»§ç»­é€šä¿¡
+ *                            - 1              -- PCD ä¸­æ­¢ä¸PICC ç»§ç»­é€šä¿¡
+ *                            - 0              -- PCD ä¸PICC ç»§ç»­é€šä¿¡
+ *                        - pro_type.2:1    -- PICC EOF å’ŒPCD SOFé—´çš„æœ€å°å»¶è¿Ÿ
  *                            - 11             -- 10 etu + 512 / fs
  *                            - 10             -- 10 etu + 256 / fs
  *                            - 01             -- 10 etu + 128 / fs
  *                            - 00             -- 10 etu + 32 / fs
- *                        - pro_type.0      -- ÊÇ·ñ×ñÑ­ISO14443-4
- *                            - 1              -- ×ñÑ­ISO14443-4;
- *                            - 0              -- ²»×ñÑ­ISO14443-4. (¶ş´úÖ¤±ØĞëÎª1)
+ *                        - pro_type.0      -- æ˜¯å¦éµå¾ªISO14443-4
+ *                            - 1              -- éµå¾ªISO14443-4;
+ *                            - 0              -- ä¸éµå¾ªISO14443-4. (äºŒä»£è¯å¿…é¡»ä¸º1)
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_ic_iso14443_b_attrib_set (am_ic_iso14443_handle_t  handle,
@@ -433,14 +433,14 @@ int am_ic_iso14443_b_attrib_set (am_ic_iso14443_handle_t  handle,
 }
 
 /**
- * \brief ISO14443-3 B¿¨ÖÃÎªHALT×´Ì¬
+ * \brief ISO14443-3 Bå¡ç½®ä¸ºHALTçŠ¶æ€
  *
- * \param[in] handle : ISO14443·şÎñ¾ä±ú
- * \param[in] p_pupi : ICÎ¨Ò»±êÊ¶·û
- * \param[in] nbytes : ±êÊ¶·û×Ö½ÚÊı
+ * \param[in] handle : ISO14443æœåŠ¡å¥æŸ„
+ * \param[in] p_pupi : ICå”¯ä¸€æ ‡è¯†ç¬¦
+ * \param[in] nbytes : æ ‡è¯†ç¬¦å­—èŠ‚æ•°
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_ic_iso14443_b_halt (am_ic_iso14443_handle_t  handle,
@@ -453,17 +453,17 @@ int am_ic_iso14443_b_halt (am_ic_iso14443_handle_t  handle,
 }
 
 /**
- * \brief ISO14443-3 B¿¨¼¤»î
+ * \brief ISO14443-3 Bå¡æ¿€æ´»
  *
- * \param[in] handle        : ISO14443·şÎñ¾ä±ú
- * \param[in] req_code      : ÇëÇó´úÂë
- *                           - 0x00 -- ¿ÕÏĞµÄ¿¨
- *                           - 0x08 -- ËùÓĞµÄ¿¨
- * \param[in] afi           : Ó¦ÓÃ±êÊ¶·û£¬0x00£ºÈ«Ñ¡
- * \param[out] p_reset_info : ISO14443-3 B¿¨¼¤»î»ØÓ¦ĞÅÏ¢
+ * \param[in] handle        : ISO14443æœåŠ¡å¥æŸ„
+ * \param[in] req_code      : è¯·æ±‚ä»£ç 
+ *                           - 0x00 -- ç©ºé—²çš„å¡
+ *                           - 0x08 -- æ‰€æœ‰çš„å¡
+ * \param[in] afi           : åº”ç”¨æ ‡è¯†ç¬¦ï¼Œ0x00ï¼šå…¨é€‰
+ * \param[out] p_reset_info : ISO14443-3 Bå¡æ¿€æ´»å›åº”ä¿¡æ¯
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_ic_iso14443_b_activate (am_ic_iso14443_handle_t  handle,
@@ -478,15 +478,15 @@ int am_ic_iso14443_b_activate (am_ic_iso14443_handle_t  handle,
 }
 
 /**
- * \brief ISO14443-4 A¿¨ÇëÇóÓ¦´ğÒÔÏìÓ¦
+ * \brief ISO14443-4 Aå¡è¯·æ±‚åº”ç­”ä»¥å“åº”
  *
- * \param[in]  handle   : ISO14443·şÎñ¾ä±ú
- * \param[in]  cid      : ¿¨Ê¶±ğºÅ£¬È¡Öµ·¶Î§0--14
- * \param[out] p_rats   : ÇëÇóÓ¦´ğÒÔÏìÓ¦ĞÅÏ¢
- * \param[out] p_nbytes : ÇëÇóÓ¦´ğÒÔÏìÓ¦ĞÅÏ¢µÄ×Ö½ÚÊı
+ * \param[in]  handle   : ISO14443æœåŠ¡å¥æŸ„
+ * \param[in]  cid      : å¡è¯†åˆ«å·ï¼Œå–å€¼èŒƒå›´0--14
+ * \param[out] p_rats   : è¯·æ±‚åº”ç­”ä»¥å“åº”ä¿¡æ¯
+ * \param[out] p_nbytes : è¯·æ±‚åº”ç­”ä»¥å“åº”ä¿¡æ¯çš„å­—èŠ‚æ•°
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_ic_iso14443_a_rats_get (am_ic_iso14443_handle_t  handle,
@@ -503,19 +503,19 @@ int am_ic_iso14443_a_rats_get (am_ic_iso14443_handle_t  handle,
 }
 
 /**
- * \brief ISO14443-4 A¿¨Ğ­ÒéºÍ²ÎÊıÑ¡ÔñÇëÇó
+ * \brief ISO14443-4 Aå¡åè®®å’Œå‚æ•°é€‰æ‹©è¯·æ±‚
  *
- * \param[in] handle : ISO14443·şÎñ¾ä±ú
- * \param[in] flags  : Î»ÂÊ±àÂë
- *                      - b3:2 -- PCD  -> PICCµÄÎ»ÂÊ±àÂë
- *                      - b1:0 -- PICC -> PCD µÄÎ»ÂÊ±àÂë
+ * \param[in] handle : ISO14443æœåŠ¡å¥æŸ„
+ * \param[in] flags  : ä½ç‡ç¼–ç 
+ *                      - b3:2 -- PCD  -> PICCçš„ä½ç‡ç¼–ç 
+ *                      - b1:0 -- PICC -> PCD çš„ä½ç‡ç¼–ç 
  *                          - (00)b -> 106Kb
  *                          - (01)b -> 212Kb
  *                          - (10)b -> 424Kb
  *                          - (11)b -> 847Kb
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_ic_iso14443_a_pps_set (am_ic_iso14443_handle_t handle,
@@ -525,12 +525,12 @@ int am_ic_iso14443_a_pps_set (am_ic_iso14443_handle_t handle,
 }
 
 /**
- * \brief ISO14443-4 A¿¨È¡ÏûÑ¡Ôñ
+ * \brief ISO14443-4 Aå¡å–æ¶ˆé€‰æ‹©
  *
- * \param[in] handle : ISO14443·şÎñ¾ä±ú
+ * \param[in] handle : ISO14443æœåŠ¡å¥æŸ„
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_ic_iso14443_a_deselect (am_ic_iso14443_handle_t handle)
@@ -539,16 +539,16 @@ int am_ic_iso14443_a_deselect (am_ic_iso14443_handle_t handle)
 }
 
 /**
- * \brief ISO14443 ´«Êä£¨T=CL£©
+ * \brief ISO14443 ä¼ è¾“ï¼ˆT=CLï¼‰
  *
- * \param[in] handle  : ISO14443·şÎñ¾ä±ú
- * \param[in] p_txbuf : ´«ÊäµÄÊı¾İ»º³åÇø
- * \param[in] n_tx    : ĞèÒª´«ÊäµÄÊı¾İ×Ö½ÚÊı
- * \param[in] p_rxbuf : ½ÓÊÕÊı¾İµÄ»º³åÇø
- * \param[in] n_rx    : ĞèÒª½ÓÊÕµÄ×Ö½ÚÊı
+ * \param[in] handle  : ISO14443æœåŠ¡å¥æŸ„
+ * \param[in] p_txbuf : ä¼ è¾“çš„æ•°æ®ç¼“å†²åŒº
+ * \param[in] n_tx    : éœ€è¦ä¼ è¾“çš„æ•°æ®å­—èŠ‚æ•°
+ * \param[in] p_rxbuf : æ¥æ”¶æ•°æ®çš„ç¼“å†²åŒº
+ * \param[in] n_rx    : éœ€è¦æ¥æ”¶çš„å­—èŠ‚æ•°
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_ic_iso14443_transfer (am_ic_iso14443_handle_t  handle,

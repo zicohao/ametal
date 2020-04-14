@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief 程序清单5.7
+ * \brief 绋嬪簭娓呭崟5.7
  *
  *
  * \internal
@@ -25,9 +25,9 @@
 #include "am_lpc82x.h"
 int am_main (void)
 {
-    // 配置GPIO为输出模式，并初始化为高电平
+    // 閰嶇疆GPIO涓鸿緭鍑烘ā寮忥紝骞跺垵濮嬪寲涓洪珮鐢靛钩
     am_gpio_pin_cfg(PIO0_20, AM_GPIO_OUTPUT_INIT_HIGH);
-    am_gpio_set(PIO0_20, 0);                        // 输出低电平，点亮LED
+    am_gpio_set(PIO0_20, 0);                        // 杈撳嚭浣庣數骞筹紝鐐逛寒LED
     while (1) {
     }
 }

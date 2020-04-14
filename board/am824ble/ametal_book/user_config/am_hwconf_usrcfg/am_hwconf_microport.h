@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief MicroPort ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief MicroPort ç”¨æˆ·é…ç½®æ–‡ä»¶
  *
  * \internal
  * \par Modification history
@@ -40,186 +40,186 @@ extern "C" {
 #include "am_alarm_clk.h"
 
 /*******************************************************************************
-  MicroPort-DS1302 ÊµÀı³õÊ¼»¯
+  MicroPort-DS1302 å®ä¾‹åˆå§‹åŒ–
 *******************************************************************************/
 
 /**
- * \brief MicroPort-DS1302 ÊµÀı³õÊ¼»¯£¨Ê¹ÓÃĞ¾Æ¬ÌØÊâ¹¦ÄÜ£©
+ * \brief MicroPort-DS1302 å®ä¾‹åˆå§‹åŒ–ï¼ˆä½¿ç”¨èŠ¯ç‰‡ç‰¹æ®ŠåŠŸèƒ½ï¼‰
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return DS1302 ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return DS1302 æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_ds1302_handle_t am_microport_ds1302_inst_init (void);
 
 /**
- * \brief MicroPort-DS1302 ÊµÀı³õÊ¼»¯£¨Ê¹ÓÃÍ¨ÓÃµÄ RTC ¹¦ÄÜ£©
+ * \brief MicroPort-DS1302 å®ä¾‹åˆå§‹åŒ–ï¼ˆä½¿ç”¨é€šç”¨çš„ RTC åŠŸèƒ½ï¼‰
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return RTC ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return RTC æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_rtc_handle_t am_microport_ds1302_rtc_inst_init (void);
 
 /**
- * \brief MicroPort-DS1302 ÊµÀı³õÊ¼»¯£¨½« DS1302 ÓÃ×÷ÏµÍ³Ê±¼ä£©
+ * \brief MicroPort-DS1302 å®ä¾‹åˆå§‹åŒ–ï¼ˆå°† DS1302 ç”¨ä½œç³»ç»Ÿæ—¶é—´ï¼‰
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \retval AW_OK ³õÊ¼»¯³É¹¦
- * \retval  < 0  ³õÊ¼»¯Ê§°Ü£¬Çë¼ì²é am_hwconf_microport_ds1302.c ÎÄ¼şÖĞµÄÅäÖÃ
- *               ÊÇ·ñÕıÈ·
+ * \retval AW_OK åˆå§‹åŒ–æˆåŠŸ
+ * \retval  < 0  åˆå§‹åŒ–å¤±è´¥ï¼Œè¯·æ£€æŸ¥ am_hwconf_microport_ds1302.c æ–‡ä»¶ä¸­çš„é…ç½®
+ *               æ˜¯å¦æ­£ç¡®
  */
 int am_microport_ds1302_time_inst_init (void);
 
 /*******************************************************************************
-  MicroPort-RTC(PCF85063) ÊµÀı³õÊ¼»¯
+  MicroPort-RTC(PCF85063) å®ä¾‹åˆå§‹åŒ–
 *******************************************************************************/
 
 /**
- * \brief MicroPort-RTC(PCF85063) ÊµÀı³õÊ¼»¯£¨Ê¹ÓÃĞ¾Æ¬ÌØÊâ¹¦ÄÜ£©
+ * \brief MicroPort-RTC(PCF85063) å®ä¾‹åˆå§‹åŒ–ï¼ˆä½¿ç”¨èŠ¯ç‰‡ç‰¹æ®ŠåŠŸèƒ½ï¼‰
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return PCF85063 ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return PCF85063 æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_pcf85063_handle_t am_microport_rtc_inst_init (void);
 
 /**
- * \brief MicroPort-RTC(PCF85063) ÊµÀı³õÊ¼»¯£¨Ê¹ÓÃÍ¨ÓÃµÄ RTC ¹¦ÄÜ£©
+ * \brief MicroPort-RTC(PCF85063) å®ä¾‹åˆå§‹åŒ–ï¼ˆä½¿ç”¨é€šç”¨çš„ RTC åŠŸèƒ½ï¼‰
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return RTC ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return RTC æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_rtc_handle_t am_microport_rtc_rtc_inst_init (void);
 
 /**
- * \brief MicroPort-RTC(PCF85063) ÊµÀı³õÊ¼»¯£¨Ê¹ÓÃÍ¨ÓÃµÄÄÖÖÓ¹¦ÄÜ£©
+ * \brief MicroPort-RTC(PCF85063) å®ä¾‹åˆå§‹åŒ–ï¼ˆä½¿ç”¨é€šç”¨çš„é—¹é’ŸåŠŸèƒ½ï¼‰
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ALARM_CLK ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return ALARM_CLK æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_alarm_clk_handle_t am_microport_rtc_alarm_clk_inst_init (void);
 
 /**
- * \brief MicroPort-RTC(PCF85063) ÊµÀı³õÊ¼»¯£¨½« PCF85063 ÓÃ×÷ÏµÍ³Ê±¼ä£©
+ * \brief MicroPort-RTC(PCF85063) å®ä¾‹åˆå§‹åŒ–ï¼ˆå°† PCF85063 ç”¨ä½œç³»ç»Ÿæ—¶é—´ï¼‰
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \retval AW_OK ³õÊ¼»¯³É¹¦
- * \retval  < 0  ³õÊ¼»¯Ê§°Ü£¬Çë¼ì²é am_hwconf_microport_rtc.c ÎÄ¼şÖĞµÄÅäÖÃÊÇ·ñÕıÈ·
+ * \retval AW_OK åˆå§‹åŒ–æˆåŠŸ
+ * \retval  < 0  åˆå§‹åŒ–å¤±è´¥ï¼Œè¯·æ£€æŸ¥ am_hwconf_microport_rtc.c æ–‡ä»¶ä¸­çš„é…ç½®æ˜¯å¦æ­£ç¡®
  */
 int am_microport_rtc_time_inst_init (void);
 
 /*******************************************************************************
-  MicroPort-RX8025T ÊµÀı³õÊ¼»¯
+  MicroPort-RX8025T å®ä¾‹åˆå§‹åŒ–
 *******************************************************************************/
 
 /**
- * \brief MicroPort-RX8025T ÊµÀı³õÊ¼»¯£¨Ê¹ÓÃĞ¾Æ¬ÌØÊâ¹¦ÄÜ£©
+ * \brief MicroPort-RX8025T å®ä¾‹åˆå§‹åŒ–ï¼ˆä½¿ç”¨èŠ¯ç‰‡ç‰¹æ®ŠåŠŸèƒ½ï¼‰
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return RX8025T ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return RX8025T æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_rx8025t_handle_t am_microport_rx8025t_inst_init (void);
 
 /**
- * \brief MicroPort-RX8025T ÊµÀı³õÊ¼»¯£¨Ê¹ÓÃÍ¨ÓÃµÄ RTC ¹¦ÄÜ£©
+ * \brief MicroPort-RX8025T å®ä¾‹åˆå§‹åŒ–ï¼ˆä½¿ç”¨é€šç”¨çš„ RTC åŠŸèƒ½ï¼‰
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return RTC ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return RTC æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_rtc_handle_t am_microport_rx8025t_rtc_inst_init (void);
 
 /**
- * \brief MicroPort-RX8025T ÊµÀı³õÊ¼»¯£¨Ê¹ÓÃÍ¨ÓÃµÄÄÖÖÓ¹¦ÄÜ£©
+ * \brief MicroPort-RX8025T å®ä¾‹åˆå§‹åŒ–ï¼ˆä½¿ç”¨é€šç”¨çš„é—¹é’ŸåŠŸèƒ½ï¼‰
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ALARM_CLK ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return ALARM_CLK æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_alarm_clk_handle_t  am_microport_rx8025t_alarm_clk_inst_init (void);
 
 /**
- * \brief MicroPort-RX8025T ÊµÀı³õÊ¼»¯£¨½« RX8025T ÓÃ×÷ÏµÍ³Ê±¼ä£©
+ * \brief MicroPort-RX8025T å®ä¾‹åˆå§‹åŒ–ï¼ˆå°† RX8025T ç”¨ä½œç³»ç»Ÿæ—¶é—´ï¼‰
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \retval AW_OK ³õÊ¼»¯³É¹¦
- * \retval  < 0  ³õÊ¼»¯Ê§°Ü£¬Çë¼ì²é am_hwconf_microport_rx8025t.c ÎÄ¼şÖĞµÄÅäÖÃ
- *               ÊÇ·ñÕıÈ·
+ * \retval AW_OK åˆå§‹åŒ–æˆåŠŸ
+ * \retval  < 0  åˆå§‹åŒ–å¤±è´¥ï¼Œè¯·æ£€æŸ¥ am_hwconf_microport_rx8025t.c æ–‡ä»¶ä¸­çš„é…ç½®
+ *               æ˜¯å¦æ­£ç¡®
  */
 int am_microport_rx8025t_time_inst_init (void);
 
 /*******************************************************************************
-  MicroPort-FLASH(MX25xx) ÊµÀı³õÊ¼»¯
+  MicroPort-FLASH(MX25xx) å®ä¾‹åˆå§‹åŒ–
 *******************************************************************************/
 
 /**
- * \brief MicroPort-FLASH(MX25xx) ÊµÀı³õÊ¼»¯
+ * \brief MicroPort-FLASH(MX25xx) å®ä¾‹åˆå§‹åŒ–
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return MX25XX ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return MX25XX æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_mx25xx_handle_t am_microport_flash_inst_init (void);
 
 /**
- * \brief MicroPort-FLASH(MX25xx) ÊµÀı³õÊ¼»¯£¨Ê¹ÓÃ MTD ±ê×¼½Ó¿Ú£©
+ * \brief MicroPort-FLASH(MX25xx) å®ä¾‹åˆå§‹åŒ–ï¼ˆä½¿ç”¨ MTD æ ‡å‡†æ¥å£ï¼‰
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return MTD ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return MTD æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_mtd_handle_t am_microport_flash_mtd_inst_init (void);
 
 /**
- * \brief MicroPort-FLASH(MX25xx) ÊµÀı³õÊ¼»¯£¨Ê¹ÓÃ FTL ±ê×¼½Ó¿Ú£©
+ * \brief MicroPort-FLASH(MX25xx) å®ä¾‹åˆå§‹åŒ–ï¼ˆä½¿ç”¨ FTL æ ‡å‡†æ¥å£ï¼‰
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return FTL ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return FTL æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_ftl_handle_t am_microport_flash_ftl_inst_init (void);
 
 /*******************************************************************************
-  MicroPort-EEPROM ÊµÀı³õÊ¼»¯
+  MicroPort-EEPROM å®ä¾‹åˆå§‹åŒ–
 *******************************************************************************/
 
 /**
- * \brief MicroPort-EEPROM ÊµÀı³õÊ¼»¯£¨Ê¹ÓÃĞ¾Æ¬¹¦ÄÜ£©
+ * \brief MicroPort-EEPROM å®ä¾‹åˆå§‹åŒ–ï¼ˆä½¿ç”¨èŠ¯ç‰‡åŠŸèƒ½ï¼‰
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return EP24CXX ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return EP24CXX æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_ep24cxx_handle_t am_microport_eeprom_inst_init (void);
 
 /**
- * \brief MicroPort-EEPROM ÊµÀı³õÊ¼»¯£¨½« FM24C02 ÓÃ×÷±ê×¼µÄ NVRAM Éè±¸£©
+ * \brief MicroPort-EEPROM å®ä¾‹åˆå§‹åŒ–ï¼ˆå°† FM24C02 ç”¨ä½œæ ‡å‡†çš„ NVRAM è®¾å¤‡ï¼‰
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \retval AW_OK ³õÊ¼»¯³É¹¦
- * \retval  < 0  ³õÊ¼»¯Ê§°Ü£¬Çë¼ì²é am_hwconf_microport_eeprom.c ÎÄ¼şÖĞµÄÅäÖÃ
- *               ÊÇ·ñÕıÈ·
+ * \retval AW_OK åˆå§‹åŒ–æˆåŠŸ
+ * \retval  < 0  åˆå§‹åŒ–å¤±è´¥ï¼Œè¯·æ£€æŸ¥ am_hwconf_microport_eeprom.c æ–‡ä»¶ä¸­çš„é…ç½®
+ *               æ˜¯å¦æ­£ç¡®
  */
 int am_microport_eeprom_nvram_inst_init (void);
 
 /*******************************************************************************
-  MicroPort-RS485 ÊµÀı³õÊ¼»¯
+  MicroPort-RS485 å®ä¾‹åˆå§‹åŒ–
 *******************************************************************************/
 
 /**
- * \brief MicroPort-RS485 ÊµÀı³õÊ¼»¯
+ * \brief MicroPort-RS485 å®ä¾‹åˆå§‹åŒ–
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return UART ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return UART æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_uart_handle_t am_microport_rs485_inst_init (void);
 

@@ -11,7 +11,7 @@
 *******************************************************************************/
 /**
  * \file
- * \brief am824 ËùÓĞÀı³Ìº¯ÊıÈë¿ÚÉùÃ÷
+ * \brief am824 æ‰€æœ‰ä¾‹ç¨‹å‡½æ•°å…¥å£å£°æ˜
  * \sa demo_am824_core_all_entries.h
  *
  * \internal
@@ -28,467 +28,467 @@ extern "C" {
 #endif
 
 /**
- * \brief Ä£Äâ±È½ÏÆ÷Àı³Ì£¨ÖĞ¶ÏÄ£Ê½£©£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief æ¨¡æ‹Ÿæ¯”è¾ƒå™¨ä¾‹ç¨‹ï¼ˆä¸­æ–­æ¨¡å¼ï¼‰ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_am824_core_hw_acmp_int_entry (void);
 
 /**
- * \brief Ä£Äâ±È½ÏÆ÷Àı³Ì£¨µçÑ¹½×Ìİ£©£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief æ¨¡æ‹Ÿæ¯”è¾ƒå™¨ä¾‹ç¨‹ï¼ˆç”µå‹é˜¶æ¢¯ï¼‰ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_am824_core_hw_acmp_lad_entry (void);
 
 /**
- * \brief Ä£Äâ±È½ÏÆ÷Àı³Ì£¨²éÑ¯Ä£Ê½£©£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief æ¨¡æ‹Ÿæ¯”è¾ƒå™¨ä¾‹ç¨‹ï¼ˆæŸ¥è¯¢æ¨¡å¼ï¼‰ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_am824_core_hw_acmp_poll_entry (void);
 
 /**
- * \brief ADC Àı³Ì£¬×ª»»½á¹ûÊı¾İÍ¨¹ı DMA ´«Êä£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief ADC ä¾‹ç¨‹ï¼Œè½¬æ¢ç»“æœæ•°æ®é€šè¿‡ DMA ä¼ è¾“ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_am824_core_hw_adc_dma_entry (void);
 
 /**
- * \brief ADC ãĞÖµ±È½ÏÀı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief ADC é˜ˆå€¼æ¯”è¾ƒä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_am824_core_hw_adc_thcmp_entry (void);
 
 /**
- * \brief ADC DMA Àı³Ì£¨ÖĞ¶Ï·½Ê½£©£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief ADC DMA ä¾‹ç¨‹ï¼ˆä¸­æ–­æ–¹å¼ï¼‰ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_std_adc_dma_int_entry (void);
 
 /**
- * \brief ADC DMA Àı³Ì£¨ÂÖÑ¯·½Ê½£©£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief ADC DMA ä¾‹ç¨‹ï¼ˆè½®è¯¢æ–¹å¼ï¼‰ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_std_adc_dma_poll_entry (void);
 
 /**
- * \brief ADC Àı³Ì£¨ÖĞ¶Ï·½Ê½£©£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief ADC ä¾‹ç¨‹ï¼ˆä¸­æ–­æ–¹å¼ï¼‰ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_std_adc_int_entry (void);
 
 /**
- * \brief ADC ÀûÓÃ°åÔØÈÈÃôµç×è (NTC) ½øĞĞÎÂ¶È²âÁ¿Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief ADC åˆ©ç”¨æ¿è½½çƒ­æ•ç”µé˜» (NTC) è¿›è¡Œæ¸©åº¦æµ‹é‡ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_std_adc_ntc_entry (void);
 
 /**
- * \brief ADC Àı³Ì£¨ÂÖÑ¯·½Ê½£©£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief ADC ä¾‹ç¨‹ï¼ˆè½®è¯¢æ–¹å¼ï¼‰ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_std_adc_poll_entry (void);
 
 /**
- * \brief ·äÃùÆ÷Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief èœ‚é¸£å™¨ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_std_buzzer_entry (void);
 
 /**
- * \brief CRC Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief CRC ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_am824_core_hw_crc_entry (void);
 
 /**
- * \brief CRCÀı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief CRCä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_std_crc_entry (void);
 
 /**
- * \brief DMA Ó²¼ş´¥·¢Àı³Ì£¬Í¨¹ıÇı¶¯²ã½Ó¿ÚÊµÏÖ
+ * \brief DMA ç¡¬ä»¶è§¦å‘ä¾‹ç¨‹ï¼Œé€šè¿‡é©±åŠ¨å±‚æ¥å£å®ç°
  */
 void demo_am824_core_drv_dma_hwtrigger_burst_entry (void);
 
 /**
- * \brief ÄÚ´æµ½ÄÚ´æµÄ DMA ´«ÊäÀı³Ì£¬Í¨¹ıÇı¶¯²ã½Ó¿ÚÊµÏÖ
+ * \brief å†…å­˜åˆ°å†…å­˜çš„ DMA ä¼ è¾“ä¾‹ç¨‹ï¼Œé€šè¿‡é©±åŠ¨å±‚æ¥å£å®ç°
  */
 void demo_am824_core_drv_dma_m2m_entry (void);
 
 /**
- * \brief DMA Æ¹ÅÒ´«ÊäÀı³Ì£¬Í¨¹ıÇı¶¯²ã½Ó¿ÚÊµÏÖ
+ * \brief DMA ä¹’ä¹“ä¼ è¾“ä¾‹ç¨‹ï¼Œé€šè¿‡é©±åŠ¨å±‚æ¥å£å®ç°
  */
 void demo_am824_core_drv_dma_ping_pong_entry (void);
 
 /**
- * \brief ÉÁ´æ¿ØÖÆÆ÷Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief é—ªå­˜æ§åˆ¶å™¨ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_am824_core_hw_flash_ctrl_entry (void);
 
 /**
- * \brief GPIO Òı½ÅÖĞ¶ÏÀı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief GPIO å¼•è„šä¸­æ–­ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_hw_gpio_int_entry (void);
 
 /**
- * \brief GPIO Ä£Ê½Æ¥ÅäÒıÇæÑİÊ¾Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief GPIO æ¨¡å¼åŒ¹é…å¼•æ“æ¼”ç¤ºä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_am824_core_hw_gpio_pmatch_entry (void);
 
 /**
- * \brief GPIO Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief GPIO ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_am824_core_hw_gpio_entry (void);
 
 /**
- * \brief GPIO Òı½ÅÖĞ¶ÏÀı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief GPIO å¼•è„šä¸­æ–­ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_std_gpio_int_entry (void);
 
 /**
- * \brief GPIO °´¼üÀı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief GPIO æŒ‰é”®ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_std_gpio_key_entry (void);
 
 /**
- * \brief GPIO Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief GPIO ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_std_gpio_entry (void);
 
 /**
- * \brief I2C ¶ÁĞ´ EEPROM Àı³Ì£¨DMA ·½Ê½£©£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief I2C è¯»å†™ EEPROM ä¾‹ç¨‹ï¼ˆDMA æ–¹å¼ï¼‰ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_am824_core_hw_i2c_master_dma_entry (void);
 
 /**
- * \brief I2C ¶ÁĞ´ EEPROM Àı³Ì£¨ÂÖÑ¯·½Ê½£©£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief I2C è¯»å†™ EEPROM ä¾‹ç¨‹ï¼ˆè½®è¯¢æ–¹å¼ï¼‰ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_am824_core_hw_i2c_master_poll_entry (void);
 
 /**
- * \brief I2C ´Ó»úÀı³Ì£¨DMA ·½Ê½£©£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief I2C ä»æœºä¾‹ç¨‹ï¼ˆDMA æ–¹å¼ï¼‰ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_am824_core_hw_i2c_slave_dma_entry (void);
 
 /**
- * \brief I2C ´Ó»úÀı³Ì£¨ÖĞ¶Ï·½Ê½£©£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief I2C ä»æœºä¾‹ç¨‹ï¼ˆä¸­æ–­æ–¹å¼ï¼‰ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_am824_core_hw_i2c_slave_int_entry (void);
 
 /**
- * \brief I2C ´Ó»úÀı³Ì£¨ÂÖÑ¯·½Ê½£©£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief I2C ä»æœºä¾‹ç¨‹ï¼ˆè½®è¯¢æ–¹å¼ï¼‰ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_am824_core_hw_i2c_slave_poll_entry (void);
 
 /**
- * \brief I2C Ö÷»ú´Ó LM75 ´«¸ĞÆ÷¶ÁÈ¡ÎÂ¶ÈÖµÀı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief I2C ä¸»æœºä» LM75 ä¼ æ„Ÿå™¨è¯»å–æ¸©åº¦å€¼ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_std_i2c_lm75_entry (void);
 
 /**
- * \brief I2C Ö÷»ú¶ÁĞ´ EEPROM Àı³Ì£¬Í¨¹ıÒì²½±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief I2C ä¸»æœºè¯»å†™ EEPROM ä¾‹ç¨‹ï¼Œé€šè¿‡å¼‚æ­¥æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_std_i2c_master_async_entry (void);
 
 /**
- * \brief I2C Ö÷»ú¶ÁĞ´ EEPROM Àı³Ì£¬Í¨¹ıÍ¬²½±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief I2C ä¸»æœºè¯»å†™ EEPROM ä¾‹ç¨‹ï¼Œé€šè¿‡åŒæ­¥æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_std_i2c_master_sync_entry (void);
 
 /**
- * \brief IAP Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief IAP ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_am824_core_hw_iap_entry (void);
 
 /**
- * \brief °´¼üÊäÈëÀı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief æŒ‰é”®è¾“å…¥ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_std_key_input_event_entry (void);
 
 /**
- * \brief LED Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief LED ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_std_led_entry (void);
 
 /**
- * \brief ¶àÆµÂÊ¶¨Ê±Æ÷£¨MRT£©Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief å¤šé¢‘ç‡å®šæ—¶å™¨ï¼ˆMRTï¼‰ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_am824_core_hw_mrt_entry (void);
 
 /**
- * \brief ¶àÆµÂÊ¶¨Ê±Æ÷£¨MRT£©Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief å¤šé¢‘ç‡å®šæ—¶å™¨ï¼ˆMRTï¼‰ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_std_mrt_timer_entry (void);
 
 /**
- * \brief PLL Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief PLL ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_am824_core_hw_pll_entry (void);
 
 /**
- * \brief PMU Éî¶ÈµôµçÄ£Ê½Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief PMU æ·±åº¦æ‰ç”µæ¨¡å¼ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_am824_core_hw_pmu_deeppowerdown_entry (void);
 
 /**
- * \brief PMU Éî¶ÈË¯ÃßÄ£Ê½Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief PMU æ·±åº¦ç¡çœ æ¨¡å¼ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_am824_core_hw_pmu_deepsleep_entry (void);
 
 /**
- * \brief PMU µôµçÄ£Ê½Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief PMU æ‰ç”µæ¨¡å¼ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_am824_core_hw_pmu_powerdown_entry (void);
 
 /**
- * \brief PMU Ë¯ÃßÄ£Ê½Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief PMU ç¡çœ æ¨¡å¼ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_am824_core_hw_pmu_sleep_entry (void);
 
 /**
- * \brief SCT 32 Î» PWM Àı³Ì£¬Í¨¹ıÇı¶¯²ã½Ó¿ÚÊµÏÖ
+ * \brief SCT 32 ä½ PWM ä¾‹ç¨‹ï¼Œé€šè¿‡é©±åŠ¨å±‚æ¥å£å®ç°
  */
 void demo_am824_core_drv_sct_timing_pwm_entry (void);
 
 /**
- * \brief SCT 32 Î» PWM Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief SCT 32 ä½ PWM ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_am824_core_hw_sct_1_32bit_pwm_entry (void);
 
 /**
- * \brief SCT 32 Î»¶¨Ê±Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief SCT 32 ä½å®šæ—¶ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_am824_core_hw_sct_1_32bit_timing_entry (void);
 
 /**
- * \brief SCT ×÷Îª 2 ¸ö 16 Î»¶¨Ê±Æ÷Êä³ö PWM Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief SCT ä½œä¸º 2 ä¸ª 16 ä½å®šæ—¶å™¨è¾“å‡º PWM ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_am824_core_hw_sct_2_16bit_pwm_entry (void);
 
 /**
- * \brief SCT ×÷Îª 2 ¸ö 16 Î»¶¨Ê±Æ÷¶¨Ê±Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief SCT ä½œä¸º 2 ä¸ª 16 ä½å®šæ—¶å™¨å®šæ—¶ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_am824_core_hw_sct_2_16bit_timing_entry (void);
 
 /**
- * \brief SCT 32 Î»²¶»ñÀı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief SCT 32 ä½æ•è·ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_am824_core_hw_sct_cap_entry (void);
 
 /**
- * \brief SCT ²Ù×÷¶à×´Ì¬Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief SCT æ“ä½œå¤šçŠ¶æ€ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_am824_core_hw_sct_multi_states_entry (void);
 
 /**
- * \brief SCT ²¶»ñÀı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief SCT æ•è·ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_std_sct_cap_entry (void);
 
 /**
- * \brief SCT PWM Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief SCT PWM ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_std_sct_pwm_entry (void);
 
 /**
- * \brief SCT ¶¨Ê±Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief SCT å®šæ—¶ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_std_sct_timer_entry (void);
 
 /**
- * \brief SPI Ö÷»ú·¢ËÍÊı¾İÀı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief SPI ä¸»æœºå‘é€æ•°æ®ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_am824_core_hw_spi_master_entry (void);
 
 /**
- * \brief SPI ´Ó»ú½ÓÊÕÊı¾İÀı³Ì£¨DMA ·½Ê½£©£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief SPI ä»æœºæ¥æ”¶æ•°æ®ä¾‹ç¨‹ï¼ˆDMA æ–¹å¼ï¼‰ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_am824_core_hw_spi_slave_dma_entry (void);
 
 /**
- * \brief SPI ´Ó»ú½ÓÊÕÊı¾İÀı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief SPI ä»æœºæ¥æ”¶æ•°æ®ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_am824_core_hw_spi_slave_entry (void);
 
 /**
- * \brief SPI ¶ÁĞ´ FLASH(MX25L3206E) Àı³Ì£¨DMA ·½Ê½£©£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief SPI è¯»å†™ FLASH(MX25L3206E) ä¾‹ç¨‹ï¼ˆDMA æ–¹å¼ï¼‰ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_std_spi_flash_dma_entry (void);
 
 /**
- * \brief SPI ¶ÁĞ´ FLASH(MX25L3206E) Àı³Ì£¨ÖĞ¶Ï·½Ê½£©£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief SPI è¯»å†™ FLASH(MX25L3206E) ä¾‹ç¨‹ï¼ˆä¸­æ–­æ–¹å¼ï¼‰ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_std_spi_flash_int_entry (void);
 
 /**
- * \brief SPI »Ø»·Àı³Ì£¨DMA ·½Ê½£©£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief SPI å›ç¯ä¾‹ç¨‹ï¼ˆDMA æ–¹å¼ï¼‰ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_std_spi_master_dma_entry (void);
 
 /**
- * \brief SPI »Ø»·Àı³Ì£¨ÖĞ¶Ï·½Ê½£©£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief SPI å›ç¯ä¾‹ç¨‹ï¼ˆä¸­æ–­æ–¹å¼ï¼‰ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_std_spi_master_int_entry (void);
 
 /**
- * \brief µôµç¼ì²âÀı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief æ‰ç”µæ£€æµ‹ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_am824_core_hw_bod_entry (void);
 
 /**
- * \brief Ê±ÖÓÆµÂÊÊä³öÀı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief æ—¶é’Ÿé¢‘ç‡è¾“å‡ºä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_am824_core_hw_clkout_entry (void);
 
 /**
- * \brief Systick ÑÓÊ±Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief Systick å»¶æ—¶ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_std_delay_entry (void);
 
 /**
- * \brief Systick Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief Systick ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_std_systick_timer_entry (void);
 
 /**
- * \brief USART ×Ô¶¯Æ¥Åä²¨ÌØÂÊÀı³Ì£¬Í¨¹ıÓ²¼ş²ã½Ó¿ÚÊµÏÖ
+ * \brief USART è‡ªåŠ¨åŒ¹é…æ³¢ç‰¹ç‡ä¾‹ç¨‹ï¼Œé€šè¿‡ç¡¬ä»¶å±‚æ¥å£å®ç°
  */
 void demo_am824_core_hw_usart_autobaud_entry (void);
 
 /**
- * \brief USART Àı³Ì£¨ÂÖÑ¯·½Ê½£©£¬Í¨¹ıÓ²¼ş²ã½Ó¿ÚÊµÏÖ
+ * \brief USART ä¾‹ç¨‹ï¼ˆè½®è¯¢æ–¹å¼ï¼‰ï¼Œé€šè¿‡ç¡¬ä»¶å±‚æ¥å£å®ç°
  */
 void demo_am824_core_hw_usart_poll_entry (void);
 
 /**
- * \brief USART ½ÓÊÕÊı¾İÀı³Ì£¨DMA ·½Ê½£©£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief USART æ¥æ”¶æ•°æ®ä¾‹ç¨‹ï¼ˆDMA æ–¹å¼ï¼‰ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_am824_core_hw_usart_rx_dma_entry (void);
 
 /**
- * \brief USART ·¢ËÍÊı¾İÀı³Ì£¨DMA ·½Ê½£©£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief USART å‘é€æ•°æ®ä¾‹ç¨‹ï¼ˆDMA æ–¹å¼ï¼‰ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_am824_core_hw_usart_tx_dma_entry (void);
 
 /**
- * \brief USART Á÷¿ØÖÆÀı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief USART æµæ§åˆ¶ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_std_usart_flowctrl_entry (void);
 
 /**
- * \brief USART Àı³Ì£¨ÂÖÑ¯·½Ê½£©£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief USART ä¾‹ç¨‹ï¼ˆè½®è¯¢æ–¹å¼ï¼‰ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_std_usart_poll_entry (void);
 
 /**
- * \brief USART »·ĞÎ»º³åÇøÀı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief USART ç¯å½¢ç¼“å†²åŒºä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_std_usart_rngbuf_entry (void);
 
 /**
- * \brief WKT Éî¶Èµôµç»½ĞÑÀı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief WKT æ·±åº¦æ‰ç”µå”¤é†’ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_am824_core_hw_wkt_deeppowerdown_wakeup_entry (void);
 
 /**
- * \brief WKT ¶¨Ê±Æ÷Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief WKT å®šæ—¶å™¨ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_am824_core_hw_wkt_timer_entry (void);
 
 /**
- * \brief WKT ¶¨Ê±Æ÷Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief WKT å®šæ—¶å™¨ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_std_wkt_timer_entry (void);
 
 /**
- * \brief WWDT Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief WWDT ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  */
 void demo_am824_core_hw_wwdt_entry (void);
 
 /**
- * \brief WWDT Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief WWDT ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_std_wwdt_entry (void);
 
 /**
- * \brief MicroPort-DS1302 Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MicroPort-DS1302 ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_microport_ds1302_entry (void);
 
 /**
- * \brief MicroPort-EEPROM Àı³Ì£¬Í¨¹ı NVRAM ±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MicroPort-EEPROM ä¾‹ç¨‹ï¼Œé€šè¿‡ NVRAM æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_microport_eeprom_nvram_entry (void);
 
 /**
- * \brief MicroPort-EEPROM Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MicroPort-EEPROM ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_microport_eeprom_entry (void);
 
 /**
- * \brief MicroPort-FLASH Àı³Ì£¬Í¨¹ı FTL ±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MicroPort-FLASH ä¾‹ç¨‹ï¼Œé€šè¿‡ FTL æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_microport_flash_ftl_entry (void);
 
 /**
- * \brief MicroPort-FLASH Àı³Ì£¬Í¨¹ı MTD ±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MicroPort-FLASH ä¾‹ç¨‹ï¼Œé€šè¿‡ MTD æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_microport_flash_mtd_entry (void);
 
 /**
- * \brief MicroPort-FLASH Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MicroPort-FLASH ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_microport_flash_entry (void);
 
 /**
- * \brief MicroPort-RS485 Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MicroPort-RS485 ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_microport_rs485_entry (void);
 
 /**
- * \brief MicroPort-RTC(PCF85063) Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MicroPort-RTC(PCF85063) ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_microport_rtc_entry (void);
 
 /**
- * \brief MicroPort-RX8025T Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MicroPort-RX8025T ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_microport_rx8025t_entry (void);
 
 /**
- * \brief MicroPort USB(XR21V141x) Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MicroPort USB(XR21V141x) ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_microport_usb_entry (void);
 
 /**
- * \brief MiniPort-View Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MiniPort-View ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_miniport_digitron_entry (void);
 
 /**
- * \brief MiniPort-595 + MiniPort-View + MiniPort-KEY Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MiniPort-595 + MiniPort-View + MiniPort-KEY ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_miniport_hc595_digitron_key_entry (void);
 
 /**
- * \brief MiniPort-595 + MiniPort-View + °åÔØ LM75 Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MiniPort-595 + MiniPort-View + æ¿è½½ LM75 ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_miniport_hc595_digitron_temp_entry (void);
 
 /**
- * \brief MiniPort-595 + MiniPort-View Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MiniPort-595 + MiniPort-View ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_miniport_hc595_digitron_entry (void);
 
 /**
- * \brief MiniPort-595 + MiniPort-LED Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MiniPort-595 + MiniPort-LED ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_miniport_hc595_led_entry (void);
 
 /**
- * \brief MiniPort-KEY + MiniPort-View Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MiniPort-KEY + MiniPort-View ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_miniport_key_digitron_entry (void);
 
 /**
- * \brief MiniPort-KEY Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MiniPort-KEY ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_miniport_key_entry (void);
 
 /**
- * \brief MiniPort-LED Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MiniPort-LED ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_miniport_led_entry (void);
 
 /**
- * \brief MiniPort-ZLG72128 Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MiniPort-ZLG72128 ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  */
 void demo_am824_core_miniport_zlg72128_entry (void);
 

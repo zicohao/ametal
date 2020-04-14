@@ -12,13 +12,13 @@
 
 /**
  * \file
- * \brief simÀı³Ì£¬Í¨¹ıHW²ã½Ó¿ÚÊµÏÖ
+ * \brief simä¾‹ç¨‹ï¼Œé€šè¿‡HWå±‚æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿Ú´òÓ¡Í¨ÓÃÎ¨Ò»±êÊ¶·ûUID¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. ä¸²å£æ‰“å°é€šç”¨å”¯ä¸€æ ‡è¯†ç¬¦UIDã€‚
  *
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_kl26_hw_sim_uid.c src_kl26_hw_sim_uid
  *
  * \internal
@@ -43,7 +43,7 @@
 #include "../../../../soc/freescale/kl26/am_kl26.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_kl26_hw_sim_uid_entry (void)
 {

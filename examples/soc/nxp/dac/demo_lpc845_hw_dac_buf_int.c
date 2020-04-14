@@ -12,15 +12,15 @@
 
 /**
  * \file
- * \brief DACÊıÄ£×ª»»Àı³Ì£¬Í¨¹ıHW½Ó¿ÚÊµÏÖ
+ * \brief DACæ•°æ¨¡è½¬æ¢ä¾‹ç¨‹ï¼Œé€šè¿‡HWæ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ÅäÖÃPIOE_30ÎªDACÄ£ÄâÊä³ö
- *   2. ÓÃÊ¾²¨Æ÷²É¼¯ÊıÄ£×ª»»µÄÊä³ö¿ÚPE30µÄĞÅºÅÊä³ö
- *   3. Ê¾²¨Æ÷ÏÔÊ¾PIOE_30µÄÄ£ÄâÊä³öÖÜÆÚ´ó¸ÅÎª7ÃëµÄÕıÏÒ²¨¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. é…ç½®PIOE_30ä¸ºDACæ¨¡æ‹Ÿè¾“å‡º
+ *   2. ç”¨ç¤ºæ³¢å™¨é‡‡é›†æ•°æ¨¡è½¬æ¢çš„è¾“å‡ºå£PE30çš„ä¿¡å·è¾“å‡º
+ *   3. ç¤ºæ³¢å™¨æ˜¾ç¤ºPIOE_30çš„æ¨¡æ‹Ÿè¾“å‡ºå‘¨æœŸå¤§æ¦‚ä¸º7ç§’çš„æ­£å¼¦æ³¢ã€‚
  *
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_lpc_hw_dac_buf_int.c src_lpc_hw_dac_buf_int
  *
  * \internal
@@ -71,7 +71,7 @@ static const uint32_t waveform[] = {32768, 39160, 45307, 50972,
 #endif
 
 /**
- * \brief DAC ÖĞ¶Ï·şÎñº¯Êı
+ * \brief DAC ä¸­æ–­æœåŠ¡å‡½æ•°
  */
 static void __lpc_dac_int (void *p_arg)
 {
@@ -86,18 +86,18 @@ static void __lpc_dac_int (void *p_arg)
 }
 
 /**
- * \brief DAC ÖĞ¶ÏÊä³öÕıÏÒ²¨ĞÅºÅ£¬HW²ãÊµÏÖ
- * \return ÎŞ
+ * \brief DAC ä¸­æ–­è¾“å‡ºæ­£å¼¦æ³¢ä¿¡å·ï¼ŒHWå±‚å®ç°
+ * \return æ— 
  */
 void demo_lpc_hw_dac_buf_int_entry (amhw_lpc_dac_t *p_hw_dac,
                                     int             inum)
 {
 
-    /* DACÊı¾İ»º´æÇø³õÊ¼»¯ */
+    /* DACæ•°æ®ç¼“å­˜åŒºåˆå§‹åŒ– */
     extern int am_int_connect (int inum, am_pfnvoid_t pfn_isr, void *p_arg);
     extern int am_int_enable (int inum);
 
-    /* DAC³õÊ¼»¯ */
+    /* DACåˆå§‹åŒ– */
 	amhw_lpc84x_clk_periph_enable(AMHW_LPC84X_CLK_DAC0);
 	amhw_lpc84x_syscon_periph_reset(AMHW_LPC84X_RESET_DAC0);
     amhw_lpc84x_clk_periph_enable(AMHW_LPC84X_CLK_SWM);
@@ -113,10 +113,10 @@ void demo_lpc_hw_dac_buf_int_entry (amhw_lpc_dac_t *p_hw_dac,
     amhw_lpc84x_dac_cntval_set (p_hw_dac, FREQ);
     amhw_lpc84x_syscon_powerup(AMHW_LPC84X_SYSCON_PD_DAC0);
 
-    /* DACÖĞ¶ÏÁ´½Óº¯Êı */
+    /* DACä¸­æ–­é“¾æ¥å‡½æ•° */
     am_int_connect(inum, __lpc_dac_int, p_hw_dac);
 
-    /* Ê¹ÄÜDACÊä³ö */
+    /* ä½¿èƒ½DACè¾“å‡º */
     amhw_lpc84x_dac_dblbuf_set(p_hw_dac, AMHW_LPC84x_DAC_DBLBUF_EN);
     amhw_lpc84x_dac_cnt_set(p_hw_dac, AMHW_LPC84x_DAC_CNT_EN);
     amhw_lpc84x_dac_dma_int_req_set(p_hw_dac, AMHW_LPC84x_DAC_DMA_EN);

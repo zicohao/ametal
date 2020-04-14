@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ��ʱ����׼�ӿ�
+ * \brief 定时器标准接口
  *
  * \internal
  * \par Modification History
@@ -37,48 +37,48 @@ extern "C" {
  */
 
 /**
- * \name ��ʱ������
+ * \name 定时器特性
  *  
- *  - ��8λ������ʱ��λ������32λ��ʱ�������8λֵΪ32
- *  - 8 ~ 15 λ��ʾ��ʱ��ͨ����
- *  - ������ʱ�����Խ�ռһλ���ӵ�16λ��ʼ�� AM_TIMER_FEATURE(0) ~ AM_TIMER_FEATURE(15)
+ *  - 低8位代表定时器位数，如32位定时器，则低8位值为32
+ *  - 8 ~ 15 位表示定时器通道数
+ *  - 其它定时器特性仅占一位，从第16位开始。 AM_TIMER_FEATURE(0) ~ AM_TIMER_FEATURE(15)
  * @{
  */
  
-/** \brief ����������ʱ�����Զ���         */
+/** \brief 用于其它定时器特性定义         */
 #define AM_TIMER_FEATURE(feature_id)           ((uint32_t)(1u << (feature_id)))
 
-/** \brief ��ʱ�����Բ����ж�             */
+/** \brief 定时器可以产生中断             */
 #define AM_TIMER_CAN_INTERRUPT                  AM_TIMER_FEATURE(0)
 
-/** \brief ��ʱ�����Զ�ȡ��ǰ��������ֵ   */
+/** \brief 定时器可以读取当前计数器的值   */
 #define AM_TIMER_INTERMEDIATE_COUNT             AM_TIMER_FEATURE(1)
 
-/** \brief ��ʱ�����ܱ�ֹͣ               */
+/** \brief 定时器不能被停止               */
 #define AM_TIMER_CANNOT_DISABLE                 AM_TIMER_FEATURE(2)
 
-/** \brief ��ʱ���ڶ�ȡ����ֵʱ��ֹͣ     */
+/** \brief 定时器在读取计数值时会停止     */
 #define AM_TIMER_STOP_WHILE_READ                AM_TIMER_FEATURE(3)
 
-/** \brief ��ʱ��֧���Զ���װ�ؼ���ֵ     */
+/** \brief 定时器支持自动重装载计数值     */
 #define AM_TIMER_AUTO_RELOAD                    AM_TIMER_FEATURE(4)
 
-/** \brief ��ʱ���������У����ܸı䷭תֵ */
+/** \brief 定时器自由运行，不能改变翻转值 */
 #define AM_TIMER_CANNOT_MODIFY_ROLLOVER         AM_TIMER_FEATURE(5)
  
 /** 
- * \brief ��ʱ����Ԥ��Ƶֵ֧��1�����ֵ֮�������ֵ
+ * \brief 定时器的预分频值支持1至最大值之间的任意值
  * 
- * - ����ʱ��֧�ָ����ԣ���ʱ����Ϣ�е� prescaler (am_timer_info_t)��ʾ֧�ֵ�
- *   ���Ԥ��Ƶֵ�����磬prescaler��ֵΪ 256����ʾ֧�� 1 ~ 256 ����Ԥ��Ƶֵ��
+ * - 若定时器支持该特性，则定时器信息中的 prescaler (am_timer_info_t)表示支持的
+ *   最大预分频值，例如，prescaler的值为 256，表示支持 1 ~ 256 所有预分频值；
  *
- * - ����ʱ����֧�ָ����ԣ���ʱ����Ϣ�е� prescaler ��ʾ����֧����ЩԤ��Ƶֵ��
- *   ����Nλ��N�ķ�Χ�� 0 ~ 31��Ϊ 1�����ʾ֧��Ԥ��Ƶֵ��2 �� N�η������磬
- *   prescaler��ֵΪ0xF��bit0��1��2��3��ֵΪ1����֧�ֵķ�Ƶֵ�У�1(2^0)��2(2^1)��
- *   4(2^2)��8(2^3)
+ * - 若定时器不支持该特性，则定时器信息中的 prescaler 表示具体支持哪些预分频值，
+ *   若第N位（N的范围： 0 ~ 31）为 1，则表示支持预分频值：2 的 N次方。例如，
+ *   prescaler的值为0xF，bit0、1、2、3的值为1，则支持的分频值有：1(2^0)、2(2^1)、
+ *   4(2^2)、8(2^3)
  *
- * - �ر�أ��� prescaler ��ֵΪ0����ʾ��ʱ����֧��Ԥ��Ƶ�����������Ӧ�� prescaler
- *   ����Ϊ 0x01��
+ * - 特别地，若 prescaler 的值为0，表示定时器不支持预分频。这种情况不应将 prescaler
+ *   设置为 0x01。
  */
 #define AM_TIMER_SUPPORT_ALL_PRESCALE_1_TO_MAX  AM_TIMER_FEATURE(6)
 
@@ -86,19 +86,19 @@ extern "C" {
 
 
 /** 
- * \brief ��ʱ����Ϣ�ṹ��
+ * \brief 定时器信息结构体
  */
 typedef struct am_timer_info {
 
-    uint8_t   counter_width;               /**< \brief ��ʱ��λ��             */
-    uint8_t   chan_num;                    /**< \brief ��ʱ��ͨ����           */
-    uint16_t  features;                    /**< \brief ��ʱ������             */
+    uint8_t   counter_width;               /**< \brief 定时器位数             */
+    uint8_t   chan_num;                    /**< \brief 定时器通道数           */
+    uint16_t  features;                    /**< \brief 定时器特性             */
  
     /** 
-     * \brief Ԥ��Ƶ����Ϣ
+     * \brief 预分频器信息
      *
-     * ��ֵ��ʾԤ��Ƶ��֧�ֵ�Ԥ��Ƶֵ����ֵ�ĺ����붨ʱ����Ԥ��Ƶ��������أ�
-     * ��������ԵĽ��� #AM_TIMER_SUPPORT_ALL_PRESCALE_1_TO_MAX
+     * 该值表示预分频器支持的预分频值，该值的含义与定时器的预分频器特性相关，
+     * 详见该特性的解释 #AM_TIMER_SUPPORT_ALL_PRESCALE_1_TO_MAX
      */
     uint32_t   prescaler; 
     
@@ -106,71 +106,71 @@ typedef struct am_timer_info {
 
 
 /**
- * \brief ��ʱ�����������ṹ��
+ * \brief 定时器驱动函数结构体
  */
 struct am_timer_drv_funcs {
 
     /**
-     * \brief ��ȡ��ʱ��������Ϣ
+     * \brief 获取定时器基础信息
      *
-     * ����Ϣ�Ƕ�ʱ���Ĺ������ԣ��������ڲ���ɶ��壬�ú������Է���ָ��ó�����
-     * Ϣ��ָ�룬�Ա��û�ʹ�á�
+     * 该信息是定时器的固有属性，在驱动内部完成定义，该函数用以返回指向该常量信
+     * 息的指针，以便用户使用。
      */
     const am_timer_info_t * (*pfn_info_get) (void *p_drv);
     
     /**
-     * \brief ��ȡ��ʱ��������ʱ��Ƶ�ʣ����ж�ʱ��ͨ������һ������Ƶ�ʣ�
+     * \brief 获取定时器的输入时钟频率（所有定时器通道共用一个输入频率）
      *
-     * ����ʱ��Ƶ����ʱ�����á�����Ӳ������أ���Ƶ�ʲ��Ƕ�ʱ���ļ�ʱƵ�ʣ���ʱ
-     * ����ʵ�ʼ�ʱƵ�ʿ�����ͨ��һ��Ԥ��Ƶ����Ƶ���Ƶ�ʡ�
+     * 输入时钟频率与时钟设置、具体硬件等相关，该频率并非定时器的计时频率，定时
+     * 器的实际计时频率可能是通过一个预分频器分频后的频率。
      */
     int (*pfn_clkin_freq_get) (void *p_drv, uint32_t *p_freq);
     
     /**
-     * \brief ���ö�ʱ����Ԥ��Ƶֵ
+     * \brief 设置定时器的预分频值
      *
-     * ����ʱ����֧��Ԥ��Ƶ���� �ú�������Ϊ NULL��
+     * 若定时器不支持预分频，则 该函数可以为 NULL。
      */
     int (*pfn_prescale_set) (void *p_drv, uint8_t chan, uint32_t prescale);
 
     /**
-     * \brief ��ȡ��ʱ����ǰʹ�õ�Ԥ��Ƶֵ
+     * \brief 获取定时器当前使用的预分频值
      *
-     * ʹ������Ƶ�ʳ��Ը�Ԥ��Ƶֵ�����ɵõ���ʱ���ļ���Ƶ��
+     * 使用输入频率除以该预分频值，即可得到定时器的计数频率
      */
     int (*pfn_prescale_get) (void *p_drv, uint8_t chan, uint32_t *p_prescale);
 
     /**
-     * \brief ��ȡ��ǰ��ʱ������ֵ
+     * \brief 获取当前定时器计数值
      *
-     * ����ʱ����λ��������32λ����  p_count Ϊ  uint32_t* ����
-     * ����ʱ����λ������32λ����  p_count Ϊ  uint64_t* ����
+     * 若定时器的位数不超过32位，则  p_count 为  uint32_t* 类型
+     * 若定时器的位数超过32位，则  p_count 为  uint64_t* 类型
      */
     int (*pfn_count_get) (void *p_drv, uint8_t chan, void *p_count);
 
     /** 
-     * \brief ��ȡ��ʱ����תֵ
+     * \brief 获取定时器翻转值
      * 
-     * ����ʱ����λ��������32λ����  p_count Ϊ  uint32_t* ����
-     * ����ʱ����λ������32λ����  p_count Ϊ  uint64_t* ����
+     * 若定时器的位数不超过32位，则  p_count 为  uint32_t* 类型
+     * 若定时器的位数超过32位，则  p_count 为  uint64_t* 类型
      */
     int (*pfn_rollover_get) (void *p_drv, uint8_t chan, void *p_rollover);
  
     /** 
-     * \brief ʹ�ܶ�ʱ����ͬʱ�趨��ʱcountֵ
+     * \brief 使能定时器，同时设定定时count值
      *
-     * ����ʱ����λ��������32λ����  p_count Ϊ  uint32_t* ����
-     * ����ʱ����λ������32λ����  p_count Ϊ  uint64_t* ����
+     * 若定时器的位数不超过32位，则  p_count 为  uint32_t* 类型
+     * 若定时器的位数超过32位，则  p_count 为  uint64_t* 类型
      *
-     * ��������0��ʼ�������ﵽ��ֵʱ�������û��趨�Ļص����������ص�������Ч��
-     * ͬʱ����������ֵ�ص�0���¿�ʼ������
+     * 计数器从0开始计数，达到该值时将调用用户设定的回调函数（若回调函数有效）
+     * 同时，计数器的值回到0重新开始计数。
      */
     int (*pfn_enable) (void *p_drv, uint8_t chan, void *p_count);
 
-    /** \brief ���ܶ�ʱ��                         */
+    /** \brief 禁能定时器                         */
     int (*pfn_disable) (void *p_drv, uint8_t chan);
 
-    /** \brief ���ûص�������ÿ��һ����ʱ�������ʱ���� */
+    /** \brief 设置回调函数，每当一个定时周期完成时调用 */
     int (*pfn_callback_set)(void    *p_drv,
                             uint8_t  chan,
                             void   (*pfn_callback)(void *),
@@ -178,24 +178,24 @@ struct am_timer_drv_funcs {
 };
 
 /** 
- * \brief ��ʱ������
+ * \brief 定时器服务
  */
 typedef struct am_timer_serv {
 
-    /** \brief ��ʱ�����������ṹ��ָ�� */
+    /** \brief 定时器驱动函数结构体指针 */
     struct am_timer_drv_funcs *p_funcs; 
     
-    /** \brief �������������ĵ�һ������ */
+    /** \brief 用于驱动函数的第一个参数 */
     void                      *p_drv;   
 } am_timer_serv_t;
 
-/** \brief ��ʱ����׼�������������Ͷ��� */
+/** \brief 定时器标准服务操作句柄类型定义 */
 typedef am_timer_serv_t *am_timer_handle_t;
 
 /** 
- * \brief ��ȡ��ʱ����Ϣ
- * \param[in]  handle : ��ʱ����׼����������
- * \return ָ��ʱ����Ϣ������ָ�룬��ΪNULL�����ʾ��Ϣ��ȡʧ��
+ * \brief 获取定时器信息
+ * \param[in]  handle : 定时器标准服务操作句柄
+ * \return 指向定时器信息常量的指针，若为NULL，则表示信息获取失败
  */
 am_static_inline
 const am_timer_info_t * am_timer_info_get (am_timer_handle_t handle)
@@ -204,16 +204,16 @@ const am_timer_info_t * am_timer_info_get (am_timer_handle_t handle)
 }
 
 /**
- * \brief ��ȡ��ǰ��ʱ��������ʱ��Ƶ�ʣ����ж�ʱ��ͨ������һ������Ƶ�ʣ�
+ * \brief 获取当前定时器的输入时钟频率（所有定时器通道共用一个输入频率）
  *
- * ��ʱ��������Ƶ�ʲ��Ƕ�ʱ���ļ���Ƶ�ʣ�ʵ�ʶ�ʱ������Ƶ�����ɸ�Ƶ�ʷ�Ƶ�Ľ����
- * ֧�ֵķ�Ƶֵ������ԣ�#AM_TIMER_SUPPORT_ALL_PRESCALE_1_TO_MAX �������������Ƶ
- * ֵ����ͨ��  am_timer_prescale_set() �ӿ����á�
+ * 定时器的输入频率并非定时器的计数频率，实际定时器计数频率是由该频率分频的结果，
+ * 支持的分频值详见特性：#AM_TIMER_SUPPORT_ALL_PRESCALE_1_TO_MAX 的描述。具体分频
+ * 值可以通过  am_timer_prescale_set() 接口设置。
  *
- * \param[in]  handle : ��ʱ����׼����������
- * \param[out] p_freq : ��ȡ��ʱ������Ƶ�ʵ�ָ��
+ * \param[in]  handle : 定时器标准服务操作句柄
+ * \param[out] p_freq : 获取定时器输入频率的指针
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 int am_timer_clkin_freq_get (am_timer_handle_t handle, uint32_t *p_freq)
@@ -222,15 +222,15 @@ int am_timer_clkin_freq_get (am_timer_handle_t handle, uint32_t *p_freq)
 }
 
 /** 
- * \brief ���ö�ʱ����Ԥ��Ƶֵ
+ * \brief 设置定时器的预分频值
  *
- * \param[in] handle   : ��ʱ����׼����������
- * \param[in] chan     : ��ʱ��ͨ��
- * \param[in] prescale : Ԥ��Ƶֵ
+ * \param[in] handle   : 定时器标准服务操作句柄
+ * \param[in] chan     : 定时器通道
+ * \param[in] prescale : 预分频值
  *
- * \retval  AM_OK      : ���óɹ�
- * \retval -AM_EINVAL  : ����ʧ��, ��������
- * \retval -AM_ENOTSUP : ����ʧ�ܣ���֧�ֵ�Ԥ��Ƶֵ��֧�ֵ�Ԥ��Ƶֵ�����ʱ����Ϣ
+ * \retval  AM_OK      : 设置成功
+ * \retval -AM_EINVAL  : 设置失败, 参数错误
+ * \retval -AM_ENOTSUP : 设置失败，不支持的预分频值，支持的预分频值详见定时器信息
  */
 am_static_inline
 int am_timer_prescale_set (am_timer_handle_t handle, 
@@ -241,15 +241,15 @@ int am_timer_prescale_set (am_timer_handle_t handle,
 }
 
 /** 
- * \brief ���ö�ʱ����Ԥ��Ƶֵ
+ * \brief 设置定时器的预分频值
  *
- * \param[in] handle   : ��ʱ����׼����������
- * \param[in] chan     : ��ʱ��ͨ��
- * \param[in] prescale : Ԥ��Ƶֵ
+ * \param[in] handle   : 定时器标准服务操作句柄
+ * \param[in] chan     : 定时器通道
+ * \param[in] prescale : 预分频值
  *
- * \retval  AM_OK      : ���óɹ�
- * \retval -AM_EINVAL  : ����ʧ��, ��������
- * \retval -AM_ENOTSUP : ����ʧ�ܣ���֧�ֵ�Ԥ��Ƶֵ��֧�ֵ�Ԥ��Ƶֵ�����ʱ����Ϣ
+ * \retval  AM_OK      : 设置成功
+ * \retval -AM_EINVAL  : 设置失败, 参数错误
+ * \retval -AM_ENOTSUP : 设置失败，不支持的预分频值，支持的预分频值详见定时器信息
  */
 am_static_inline
 int am_timer_prescale_get (am_timer_handle_t   handle,
@@ -260,30 +260,30 @@ int am_timer_prescale_get (am_timer_handle_t   handle,
 }
 
 /**
- * \brief ��ȡ��ʱ����ǰ�ļ���Ƶ��
+ * \brief 获取定时器当前的计数频率
  *
- * \param[in]  handle  : ��ʱ����׼����������
- * \param[in]  chan    : ��ʱ��ͨ��
- * \param[out] p_freq  : ���ڻ�ȡ��ʱ����ǰ����Ƶ�ʵ�ָ��
+ * \param[in]  handle  : 定时器标准服务操作句柄
+ * \param[in]  chan    : 定时器通道
+ * \param[out] p_freq  : 用于获取定时器当前计数频率的指针
  *
- * \retval  AM_OK      : ��ȡ��ʱ����ǰ����ֵ�ɹ�
- * \retval -AM_EINVAL  : ��ȡʧ��, ��������
+ * \retval  AM_OK      : 获取定时器当前计数值成功
+ * \retval -AM_EINVAL  : 获取失败, 参数错误
  */
 int am_timer_count_freq_get (am_timer_handle_t handle,
                              uint8_t           chan,
                              uint32_t         *p_freq);
 
 /** 
- * \brief ��ȡ��ʱ����ǰ�ļ���ֵ
+ * \brief 获取定时器当前的计数值
  * 
- * ���صļ���ֵӦ���Ǽ��趨ʱ�����������ϼ���ģʽ�µĵ�ǰ����ֵ
+ * 返回的计数值应该是假设定时器工作在向上计数模式下的当前计数值
  *
- * \param[in]  handle  : ��ʱ����׼����������
- * \param[in]  chan    : ��ʱ��ͨ��
- * \param[out] p_count : ���ڻ�ȡ��ʱ����ǰ����ֵ��ָ��
+ * \param[in]  handle  : 定时器标准服务操作句柄
+ * \param[in]  chan    : 定时器通道
+ * \param[out] p_count : 用于获取定时器当前计数值的指针
  *
- * \retval  AM_OK      : ��ȡ��ʱ����ǰ����ֵ�ɹ�
- * \retval -AM_EINVAL  : ��ȡʧ��, ��������
+ * \retval  AM_OK      : 获取定时器当前计数值成功
+ * \retval -AM_EINVAL  : 获取失败, 参数错误
  */
 am_static_inline
 int am_timer_count_get (am_timer_handle_t handle, 
@@ -294,14 +294,14 @@ int am_timer_count_get (am_timer_handle_t handle,
 }
 
 /** 
- * \brief ��ȡ��ʱ����תֵ
+ * \brief 获取定时器翻转值
  *
- * \param[in]  handle     : ��ʱ����׼����������
- * \param[in]  chan       : ��ʱ��ͨ��
- * \param[out] p_rollover : ���ڻ�ȡ��ʱ����תֵ��ָ��
+ * \param[in]  handle     : 定时器标准服务操作句柄
+ * \param[in]  chan       : 定时器通道
+ * \param[out] p_rollover : 用于获取定时器翻转值的指针
  *
- * \retval  AM_OK         : ��ȡ��ʱ����תֵ�ɹ�
- * \retval -AM_EINVAL     : ��ȡʧ��, ��������
+ * \retval  AM_OK         : 获取定时器翻转值成功
+ * \retval -AM_EINVAL     : 获取失败, 参数错误
  */
 am_static_inline
 int am_timer_rollover_get (am_timer_handle_t  handle, 
@@ -314,13 +314,13 @@ int am_timer_rollover_get (am_timer_handle_t  handle,
 }
 
 /** 
- * \brief ���ܶ�ʱ����ֹͣ��ʱ��
+ * \brief 禁能定时器（停止计时）
  *
- * \param[in] handle  : ��ʱ����׼����������
- * \param[in] chan    : ��ʱ��ͨ��
+ * \param[in] handle  : 定时器标准服务操作句柄
+ * \param[in] chan    : 定时器通道
  *
- * \retval  AM_OK     : ���ܶ�ʱ���ɹ�
- * \retval -AM_EINVAL : ����ʧ��, ��������
+ * \retval  AM_OK     : 禁能定时器成功
+ * \retval -AM_EINVAL : 禁能失败, 参数错误
  */
 am_static_inline
 int am_timer_disable (am_timer_handle_t handle, uint8_t chan)
@@ -329,17 +329,17 @@ int am_timer_disable (am_timer_handle_t handle, uint8_t chan)
 }
 
 /** 
- * \brief ʹ�ܶ�ʱ����ͬʱ�趨��ʱcountֵ 
+ * \brief 使能定时器，同时设定定时count值 
  *
- * \param[in] handle : ��ʱ����׼����������
- * \param[in] chan   : ��ʱ��ͨ��
- * \param[in] count  : ��ʱcountֵ 
+ * \param[in] handle : 定时器标准服务操作句柄
+ * \param[in] chan   : 定时器通道
+ * \param[in] count  : 定时count值 
  *
- * \retval  AM_OK     : ʹ�ܳɹ�
- * \retval -AM_EINVAL : ʧ��, ��������
+ * \retval  AM_OK     : 使能成功
+ * \retval -AM_EINVAL : 失败, 参数错误
  *
- * \note ��ʱ������ֵ�ﵽ�趨�Ķ�ʱcountֵʱ��������жϡ�ͬʱ����λ����ֵ
- *       Ϊ0�������ż�����ʱ��
+ * \note 定时器计数值达到设定的定时count值时，会产生中断。同时，复位计数值
+ *       为0，紧接着继续计时。
  */
 am_static_inline
 int am_timer_enable (am_timer_handle_t handle, uint8_t chan, uint32_t count)
@@ -348,15 +348,15 @@ int am_timer_enable (am_timer_handle_t handle, uint8_t chan, uint32_t count)
 }
 
 /** 
- * \brief ���ûص�������ÿ��һ����ʱ�������ʱ����
+ * \brief 设置回调函数，每当一个定时周期完成时调用
  *
- * \param[in] handle       : ��ʱ����׼����������
- * \param[in] chan         : ��ʱ��ͨ��
- * \param[in] pfn_callback : �ص�����
- * \param[in] p_arg        : �ص��������û�����
+ * \param[in] handle       : 定时器标准服务操作句柄
+ * \param[in] chan         : 定时器通道
+ * \param[in] pfn_callback : 回调函数
+ * \param[in] p_arg        : 回调函数的用户参数
  *
- * \retval  AM_OK     : ���óɹ�
- * \retval -AM_EINVAL : ����ʧ��, ��������
+ * \retval  AM_OK     : 设置成功
+ * \retval -AM_EINVAL : 设置失败, 参数错误
  *
  */
 am_static_inline
@@ -372,18 +372,18 @@ int am_timer_callback_set (am_timer_handle_t  handle,
 }
 
 /** 
- * \brief ��ȡ33 ~ 64λ��ʱ���ĵ�ǰ����ֵ
+ * \brief 获取33 ~ 64位定时器的当前计数值
  *
- * ���صļ���ֵӦ���Ǽ��趨ʱ�����������ϼ���ģʽ�µĵ�ǰ����ֵ
+ * 返回的计数值应该是假设定时器工作在向上计数模式下的当前计数值
  *
- * \param[in]  handle  : ��ʱ����׼����������
- * \param[in]  chan    : ��ʱ��ͨ��
- * \param[out] p_count : ���ڻ�ȡ��ʱ����ǰ����ֵ��ָ��
+ * \param[in]  handle  : 定时器标准服务操作句柄
+ * \param[in]  chan    : 定时器通道
+ * \param[out] p_count : 用于获取定时器当前计数值的指针
  *
- * \retval  AM_OK      : ��ȡ���ĵ�ǰ��ʱ������ֵ
- * \retval -AM_EINVAL  : ��ȡʧ��, ��������
+ * \retval  AM_OK      : 获取到的当前定时器计数值
+ * \retval -AM_EINVAL  : 获取失败, 参数错误
  *
- * \note �����ʱ��λ����33��64֮�䣬������øú�����ȡ��ʱ���ĵ�ǰ����ֵ
+ * \note 如果定时器位数在33到64之间，必须调用该函数获取定时器的当前计数值
  */
 am_static_inline
 int am_timer_count_get64 (am_timer_handle_t  handle, 
@@ -394,16 +394,16 @@ int am_timer_count_get64 (am_timer_handle_t  handle,
 }
 
 /** 
- * \brief ��ȡ33 ~ 64λ��ʱ���ķ�תֵ
+ * \brief 获取33 ~ 64位定时器的翻转值
  *
- * \param[in]  handle     : ��ʱ����׼����������
- * \param[in]  chan       : ��ʱ��ͨ��
- * \param[out] p_rollover : ���ڻ�ȡ��ʱ����תֵ��ָ��
+ * \param[in]  handle     : 定时器标准服务操作句柄
+ * \param[in]  chan       : 定时器通道
+ * \param[out] p_rollover : 用于获取定时器翻转值的指针
  *
- * \retval  AM_OK         : ��ȡ��תֵ�ɹ�
- * \retval -AM_EINVAL     : ��ȡ��תֵʧ��, ��������
+ * \retval  AM_OK         : 获取翻转值成功
+ * \retval -AM_EINVAL     : 获取翻转值失败, 参数错误
  *
- * \note �����ʱ��λ����33��64֮�䣬������øú�����ȡ��תֵ
+ * \note 如果定时器位数在33到64之间，必须调用该函数获取翻转值
  */
 am_static_inline
 int am_timer_rollover_get64 (am_timer_handle_t  handle, 
@@ -416,16 +416,16 @@ int am_timer_rollover_get64 (am_timer_handle_t  handle,
 }
 
 /** 
- * \brief ʹ��33��64λ��ʱ���������ö�ʱcountֵ
+ * \brief 使能33到64位定时器，并设置定时count值
  *
- * \param[in] handle : ��ʱ����׼����������
- * \param[in] chan   : ��ʱ��ͨ��
- * \param[in] count  : ��ʱ��countֵ
+ * \param[in] handle : 定时器标准服务操作句柄
+ * \param[in] chan   : 定时器通道
+ * \param[in] count  : 定时器count值
  *
- * \retval  AM_OK     : ʹ�ܳɹ�
- * \retval -AM_EINVAL : ʹ��ʧ��, ��������
+ * \retval  AM_OK     : 使能成功
+ * \retval -AM_EINVAL : 使能失败, 参数错误
  *
- * \note �����ʱ��λ����33��64֮�䣬������øú���ʹ�ܶ�ʱ��
+ * \note 如果定时器位数在33到64之间，必须调用该函数使能定时器
  */
 am_static_inline
 int am_timer_enable64 (am_timer_handle_t handle, uint8_t chan, uint64_t count)
@@ -434,30 +434,30 @@ int am_timer_enable64 (am_timer_handle_t handle, uint8_t chan, uint64_t count)
 }
 
 /** 
- * \brief ʹ�ܶ�ʱ����ֱ���趨��ʱʱ��
+ * \brief 使能定时器，直接设定定时时间
  *
- * һ������£��û���Ҫʹ��һ����ʱʱ�䣬��Ҫ��������Ƶ�ʺͶ�ʱ��λ���������Ԥ
- * ��Ƶֵ�Ͷ�ʱ count ֵ��Ȼ��ʹ�� am_timer_prescale_set() ����Ԥ��Ƶֵ�����ʹ
- * �� am_timer_enable() �� am_timer_enable64() ���ö�ʱcountֵ��ʹ�ܶ�ʱ����
+ * 一般情况下，用户需要使用一个定时时间，需要根据输入频率和定时器位数，计算好预
+ * 分频值和定时 count 值，然后使用 am_timer_prescale_set() 设置预分频值，最后使
+ * 用 am_timer_enable() 或 am_timer_enable64() 设置定时count值并使能定时器。
  * 
- * �ֶ�������Ҫ���Ƕ�ʱ������Ƶ�ʡ���ʱ��λ������ʱ�����ԣ����ֶ�ʱ�����ܲ�֧��
- * ��ֻ֧�ּ���Ԥ��Ƶֵ������Ϊ���������ڴˣ��û�����ֱ��ʹ�øú�������ָ����ʱ
- * ��ֵ����λ��us��ʹ�ܶ�ʱ����ϵͳ���Զ����ݶ�ʱ��λ������ʱ�����Ե����úö�ʱ
- * ����
+ * 手动计算需要考虑定时器输入频率、定时器位数、定时器特性（部分定时器可能不支持
+ * 或只支持几种预分频值），较为繁琐。基于此，用户可以直接使用该函数按照指定的时
+ * 间值（单位：us）使能定时器。系统会自动根据定时器位数、定时器特性等设置好定时
+ * 器。
  *
- * ��ʱʱ����ܴ���ƫ�ʵ�ʶ�ʱʱ������� ����Ƶ�� �� ��תֵ �õ�����תֵ����
- * ����Ƶ�ʵĵ������ɡ�
+ * 计时时间可能存在偏差，实际定时时间可以由 计数频率 和 翻转值 得到：翻转值乘以
+ * 计数频率的倒数即可。
  *
- * ���ڶ�ʱʱ�䵽������жϣ���ˣ������齫��ʱ�����õù��̣�����Ӧ�ڼ���us������
- * ���õ� ms ����
+ * 由于定时时间到会产生中断，因此，不建议将该时间设置得过短，至少应在几百us，建议
+ * 设置到 ms 级别。
  *
- * \param[in] handle : ��ʱ����׼����������
- * \param[in] chan   : ��ʱ��ͨ��
- * \param[in] nus    : ���õĶ�ʱʱ�䣨��λ��us��
+ * \param[in] handle : 定时器标准服务操作句柄
+ * \param[in] chan   : 定时器通道
+ * \param[in] nus    : 设置的定时时间（单位：us）
  *
- * \retval  AM_OK     : ʹ�ܳɹ�
- * \retval -AM_EINVAL : ʧ��, ��������
- * \retval -AM_NOTSUP ����֧�ָö�ʱʱ�䣬ʱ��̫������ʱ��λ��������
+ * \retval  AM_OK     : 使能成功
+ * \retval -AM_EINVAL : 失败, 参数错误
+ * \retval -AM_NOTSUP ：不支持该定时时间，时间太长（定时器位数不够）
  */
 int am_timer_enable_us (am_timer_handle_t handle, uint8_t chan, uint32_t nus);
 

@@ -12,19 +12,19 @@
 
 /**
  * \file
- * \brief Ê±ÖÓÆµÂÊÊä³öÀý³Ì£¬Í¨¹ý HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief æ—¶é’Ÿé¢‘çŽ‡è¾“å‡ºä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æŽ¥å£å®žçŽ°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿Ú´òÓ¡ "The CLKOUT  rate is  xxx Hz\r\n"£¬xxx Îªµ±Ç°ÆµÂÊ£»
- *   2. PIO0_27 Òý½Å£¨Ä¬ÈÏÅäÖÃ CLKOUT Òý½ÅÊä³ö£©Êä³öµ±Ç°Ê±ÖÓÆµÂÊ 2.5MHz£»
- *   3. LED0 ÒÔ 0.2s µÄÊ±¼ä¼ä¸ôÉÁË¸¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. ä¸²å£æ‰“å° "The CLKOUT  rate is  xxx Hz\r\n"ï¼Œxxx ä¸ºå½“å‰é¢‘çŽ‡ï¼›
+ *   2. PIO0_27 å¼•è„šï¼ˆé»˜è®¤é…ç½® CLKOUT å¼•è„šè¾“å‡ºï¼‰è¾“å‡ºå½“å‰æ—¶é’Ÿé¢‘çŽ‡ 2.5MHzï¼›
+ *   3. LED0 ä»¥ 0.2s çš„æ—¶é—´é—´éš”é—ªçƒã€‚
  *
  * \note
- *    1. LED0 ÐèÒª¶Ì½Ó J9 ÌøÏßÃ±£¬²ÅÄÜ±» PIO0_20 ¿ØÖÆ£»
- *    2. ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIO0_0 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *       PIO0_4 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
+ *    1. LED0 éœ€è¦çŸ­æŽ¥ J9 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIO0_20 æŽ§åˆ¶ï¼›
+ *    2. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO0_0 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *       PIO0_4 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am824_hw_clkout.c src_am824_hw_clkout
  *
  * \internal
@@ -46,12 +46,12 @@
 #include "demo_nxp_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am824_core_hw_clkout_entry (void)
 {
     am_kprintf("demo am824 hw clkout!\r\n");
-    /* ÅäÖÃÒý½ÅÎªÊ±ÖÓÊä³ö */
+    /* é…ç½®å¼•è„šä¸ºæ—¶é’Ÿè¾“å‡º */
     am_gpio_pin_cfg(PIO0_27, PIO_FUNC_CLKOUT);
 
     demo_lpc824_hw_clkout_entry();

@@ -13,13 +13,13 @@
 /**
  * \file
  * \brief
- * - ÊµÑéÏÖÏó£º
- *   1. Á¬½ÓºÃ´®¿Ú£¬´®¿Ú½«´òÓ¡ÌáÊ¾ÏûÏ¢¡£
- *   2. °´ÕÕÌáÊ¾ÏûÏ¢½øĞĞ²Ù×÷£¬¼´¿ÉÍê³ÉµçÑ¹Ğ£×¼£¬Íê³Éºó»áÊä³öĞ£×¼º¯Êı
- *   3. Ğ£×¼ÏµÊı»á×Ô¶¯±£´æÖÁflashÖĞ¡£
- *   4. ½«»áµ÷ÓÃ¹Ì¶¨µçÑ¹²âÊÔÀı³Ì£¬¶Ô¹Ì¶¨µçÑ¹½øĞĞ²âÊÔºóÍ¨¹ıº¯ÊıĞŞÕıºó½øĞĞ´òÓ¡Êä³ö¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. è¿æ¥å¥½ä¸²å£ï¼Œä¸²å£å°†æ‰“å°æç¤ºæ¶ˆæ¯ã€‚
+ *   2. æŒ‰ç…§æç¤ºæ¶ˆæ¯è¿›è¡Œæ“ä½œï¼Œå³å¯å®Œæˆç”µå‹æ ¡å‡†ï¼Œå®Œæˆåä¼šè¾“å‡ºæ ¡å‡†å‡½æ•°
+ *   3. æ ¡å‡†ç³»æ•°ä¼šè‡ªåŠ¨ä¿å­˜è‡³flashä¸­ã€‚
+ *   4. å°†ä¼šè°ƒç”¨å›ºå®šç”µå‹æµ‹è¯•ä¾‹ç¨‹ï¼Œå¯¹å›ºå®šç”µå‹è¿›è¡Œæµ‹è¯•åé€šè¿‡å‡½æ•°ä¿®æ­£åè¿›è¡Œæ‰“å°è¾“å‡ºã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_aml166_core_adc24_vol_para_adjuet.c src_aml166_core_adc24_vol_para_adjuet
  *
  * \internal
@@ -46,7 +46,7 @@
 #include "demo_zlg_entries.h"
 
 /**
- * \brief ZML166 24Î»ADC Ğ£×¼²ÎÊı»ñÈ¡Àı³Ì
+ * \brief ZML166 24ä½ADC æ ¡å‡†å‚æ•°è·å–ä¾‹ç¨‹
  */
 void demo_aml166_core_zml166_adc_vol_para_adjuet (void)
 {
@@ -55,13 +55,13 @@ void demo_aml166_core_zml166_adc_vol_para_adjuet (void)
     am_zml166_adc_handle_t  handle       = am_zml166_adc_inst_init();
     am_uart_handle_t        uart_handle  = am_zlg116_uart1_inst_init();
 
-    /* ½øĞĞµçÑ¹ÏµÊıĞŞµ÷  */
+    /* è¿›è¡Œç”µå‹ç³»æ•°ä¿®è°ƒ  */
     demo_zml166_adc_vol_para_adjuet_entry(handle, uart_handle, para);
 
-    /* ¶Ôflash½øĞĞ³õÊ¼»¯ */
+    /* å¯¹flashè¿›è¡Œåˆå§‹åŒ– */
     am_zlg_flash_init(ZLG116_FLASH);
 
-    /* ÖØĞ´µçÑ¹Ğ£×¼ÏµÊıÇ°£¬ÏÈ±£´æPT100Ğ£×¼ÏµÊı */
+    /* é‡å†™ç”µå‹æ ¡å‡†ç³»æ•°å‰ï¼Œå…ˆä¿å­˜PT100æ ¡å‡†ç³»æ•° */
     memcpy((void *)mem_data, (uint32_t *)PT100_PARA_SAVE_ADDRESS, 4 * 2);
 
     am_zlg_flash_sector_erase(ZLG116_FLASH, (1024 * FLASH_BLOCK_NUM));

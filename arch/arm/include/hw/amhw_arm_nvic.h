@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ¿ÉÇ¶Ì×ÏòÁ¿ÖĞ¶Ï¿ØÖÆÆ÷(NVIC) Ó²¼ş²Ù×÷½Ó¿Ú
+ * \brief å¯åµŒå¥—å‘é‡ä¸­æ–­æ§åˆ¶å™¨(NVIC) ç¡¬ä»¶æ“ä½œæ¥å£
  *
  * \internal
  * \par Modification history
@@ -99,8 +99,8 @@ typedef struct
 #endif
 
 /**
- * \brief »ñÈ¡µ±Ç°ÖĞ¶ÏºÅ
- * \return ÖĞ¶ÏºÅ
+ * \brief è·å–å½“å‰ä¸­æ–­å·
+ * \return ä¸­æ–­å·
  */
 am_static_inline 
 int amhw_inum_get (void)
@@ -109,11 +109,11 @@ int amhw_inum_get (void)
 }
 
 /**
- * \brief Ê¹ÄÜÖĞ¶Ï
+ * \brief ä½¿èƒ½ä¸­æ–­
  *
- * \param[in] inum     : ÖĞ¶ÏºÅ
+ * \param[in] inum     : ä¸­æ–­å·
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline 
 void amhw_arm_nvic_enable (int inum)
@@ -123,11 +123,11 @@ void amhw_arm_nvic_enable (int inum)
 }
 
 /**
- * \brief ½ûÄÜÖĞ¶Ï
+ * \brief ç¦èƒ½ä¸­æ–­
  *
- * \param[in] inum     : ÖĞ¶ÏºÅ
+ * \param[in] inum     : ä¸­æ–­å·
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline 
 void amhw_arm_nvic_disable (int inum)
@@ -136,11 +136,11 @@ void amhw_arm_nvic_disable (int inum)
 }
 
 /**
- * \brief ÖÃÎ»ÖĞ¶ÏµÈ´ı
+ * \brief ç½®ä½ä¸­æ–­ç­‰å¾…
  *
- * \param[in] inum     : ÖĞ¶ÏºÅ
+ * \param[in] inum     : ä¸­æ–­å·
  *
- * \return    ÎŞ
+ * \return    æ— 
  */
 am_static_inline 
 void amhw_arm_nvic_pending_set (int inum)
@@ -149,11 +149,11 @@ void amhw_arm_nvic_pending_set (int inum)
 }
 
 /**
- * \brief Çå³ıµÈ´ıÖĞ¶Ï
+ * \brief æ¸…é™¤ç­‰å¾…ä¸­æ–­
  *
- * \param[in] inum     : ÖĞ¶ÏºÅ
+ * \param[in] inum     : ä¸­æ–­å·
  *
- * \return    ÎŞ
+ * \return    æ— 
  */
 am_static_inline 
 void amhw_arm_nvic_pending_clr (int inum)
@@ -162,13 +162,13 @@ void amhw_arm_nvic_pending_clr (int inum)
 }
 
 /**
- * \brief ÉèÖÃÖĞ¶ÏÓÅÏÈ¼¶
+ * \brief è®¾ç½®ä¸­æ–­ä¼˜å…ˆçº§
  *
- * \param[in] inum      : ÖĞ¶ÏºÅ
- * \param[in] prio      : ÖĞ¶ÏÓÅÏÈ¼¶
- * \param[in] prio_bits : ÓÅÏÈ¼¶Î»Êı.
+ * \param[in] inum      : ä¸­æ–­å·
+ * \param[in] prio      : ä¸­æ–­ä¼˜å…ˆçº§
+ * \param[in] prio_bits : ä¼˜å…ˆçº§ä½æ•°.
  * 
- * \return   ÎŞ
+ * \return   æ— 
  */
 am_static_inline 
 void amhw_arm_nvic_m0_priority_set (int inum, uint32_t prio, uint8_t prio_bits)
@@ -186,13 +186,13 @@ void amhw_arm_nvic_m0_priority_set (int inum, uint32_t prio, uint8_t prio_bits)
 }
 
 /**
- * \brief ÉèÖÃÖĞ¶ÏÓÅÏÈ¼¶
+ * \brief è®¾ç½®ä¸­æ–­ä¼˜å…ˆçº§
  *
- * \param[in] inum      : ÖĞ¶ÏºÅ
- * \param[in] prio      : ÖĞ¶ÏÓÅÏÈ¼¶
- * \param[in] prio_bits : ÓÅÏÈ¼¶Î»Êı.
+ * \param[in] inum      : ä¸­æ–­å·
+ * \param[in] prio      : ä¸­æ–­ä¼˜å…ˆçº§
+ * \param[in] prio_bits : ä¼˜å…ˆçº§ä½æ•°.
  *
- * \return   ÎŞ
+ * \return   æ— 
  */
 am_static_inline
 void amhw_arm_nvic_m3m4_priority_set (int inum, uint32_t prio, uint8_t prio_bits)
@@ -206,12 +206,12 @@ void amhw_arm_nvic_m3m4_priority_set (int inum, uint32_t prio, uint8_t prio_bits
 }
 
 /**
- * \brief »ñÈ¡ÖĞ¶ÏÓĞĞ§×´Ì¬
+ * \brief è·å–ä¸­æ–­æœ‰æ•ˆçŠ¶æ€
  *
- * \param[in] inum     : ÖĞ¶ÏºÅ
+ * \param[in] inum     : ä¸­æ–­å·
  * 
- * \retval TRUE  : ÓĞĞ§ÖĞ¶Ï
- * \retval FALSE : ÎŞĞ§ÖĞ¶Ï
+ * \retval TRUE  : æœ‰æ•ˆä¸­æ–­
+ * \retval FALSE : æ— æ•ˆä¸­æ–­
  */
 am_static_inline 
 am_bool_t amhw_arm_nvic_active_state_get (int inum)
@@ -220,11 +220,11 @@ am_bool_t amhw_arm_nvic_active_state_get (int inum)
 }
 
 /**
- * \brief ÉèÖÃ×éÖĞ¶ÏÓÅÏÈ¼¶
+ * \brief è®¾ç½®ç»„ä¸­æ–­ä¼˜å…ˆçº§
  *
- * \param[in] group   : ×éÖĞ¶Ï
+ * \param[in] group   : ç»„ä¸­æ–­
  * 
- * \return   ÎŞ
+ * \return   æ— 
  */
 am_static_inline 
 void amhw_arm_nvic_priority_group_set (uint32_t group)
@@ -242,14 +242,14 @@ void amhw_arm_nvic_priority_group_set (uint32_t group)
 
 
 /**
- * \brief	±àÂëÓÅÏÈ¼¶¼Ä´æÆ÷Öµ
+ * \brief	ç¼–ç ä¼˜å…ˆçº§å¯„å­˜å™¨å€¼
  *
- * \param[in]	priority_group   : ÓÅÏÈ¼¶×é
- * \param[in]   preempt_priority : ÇÀÕ¼ÓÅÏÈ¼¶.
- * \param[in]   sub_priority     : ´ÎÓÅÏÈ¼¶.
- * \param[in]   prio_bits        : ÓÅÏÈ¼¶Î»Êı.
+ * \param[in]	priority_group   : ä¼˜å…ˆçº§ç»„
+ * \param[in]   preempt_priority : æŠ¢å ä¼˜å…ˆçº§.
+ * \param[in]   sub_priority     : æ¬¡ä¼˜å…ˆçº§.
+ * \param[in]   prio_bits        : ä¼˜å…ˆçº§ä½æ•°.
  *
- * \return	ÓÅÏÈ¼¶¼Ä´æÆ÷Öµ
+ * \return	ä¼˜å…ˆçº§å¯„å­˜å™¨å€¼
  *
  * \note
  */

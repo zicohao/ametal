@@ -12,13 +12,13 @@
 
 /**
  * \file
- * \brief TPMÊµÏÖPWM¹¦ÄÜ£¬Í¨¹ıHW²ãµÄ½Ó¿ÚÊµÏÖ
+ * \brief TPMå®ç°PWMåŠŸèƒ½ï¼Œé€šè¿‡HWå±‚çš„æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. PIOD_0(TPM_OUT0)Êä³ö4kHzµÄPWM£¬Õ¼¿Õ±ÈÎª50%£»
- *   2. PIOD_1(TPM_OUT1)Êä³ö4kHzµÄPWM£¬Õ¼¿Õ±ÈÎª25%¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. PIOD_0(TPM_OUT0)è¾“å‡º4kHzçš„PWMï¼Œå ç©ºæ¯”ä¸º50%ï¼›
+ *   2. PIOD_1(TPM_OUT1)è¾“å‡º4kHzçš„PWMï¼Œå ç©ºæ¯”ä¸º25%ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_amks16z_core_hw_tpm_pwm.c src_amks16z_core_hw_tpm_pwm
  *
  * \internal
@@ -47,14 +47,14 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_amks16z_core_hw_tpm_pwm_entry (void)
 {
 
     uint32_t tpm_clk;
 
-    /* Æ½Ì¨³õÊ¼»¯ */
+    /* å¹³å°åˆå§‹åŒ– */
     amhw_kl26_sim_tpm_src_set(KL26_SIM_TPMSRC_PLLFLLCLK);
     amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_TPM0);
 

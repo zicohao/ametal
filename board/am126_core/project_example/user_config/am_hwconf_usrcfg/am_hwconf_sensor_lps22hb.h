@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ´«¸ĞÆ÷ LPS22HB ÅäÖÃÎÄ¼ş
+ * \brief ä¼ æ„Ÿå™¨ LPS22HB é…ç½®æ–‡ä»¶
  *
  * \internal
  * \par Modification history
@@ -30,12 +30,12 @@ extern "C" {
 #endif
 
 /**
- * \brief ´«¸ĞÆ÷ LPS22HB Éè±¸ÊµÀı»¯
+ * \brief ä¼ æ„Ÿå™¨ LPS22HB è®¾å¤‡å®ä¾‹åŒ–
  */
 am_sensor_handle_t am_sensor_lps22hb_inst_init (void);
 
 /**
- * \brief ´«¸ĞÆ÷ LPS22HB ÊµÀı½â³õÊ¼»¯
+ * \brief ä¼ æ„Ÿå™¨ LPS22HB å®ä¾‹è§£åˆå§‹åŒ–
  */
 am_err_t am_sensor_lps22hb_inst_deinit (am_sensor_handle_t handle);
 

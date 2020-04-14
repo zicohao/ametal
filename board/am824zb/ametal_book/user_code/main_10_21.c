@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥10.21
+ * \brief ç¨‹åºæ¸…å•10.21
  *
- * \note ¸ÃÀú³ÌĞèÒªÓÃµ½miniportÍØÕ¹°å
+ * \note è¯¥å†ç¨‹éœ€è¦ç”¨åˆ°miniportæ‹“å±•æ¿
  * 
  * \internal
  * \par Modification history
@@ -33,11 +33,11 @@ int am_main (void)
     am_zm516x_cfg_info_t    zm516x_cfg_info;
     am_zm516x_handle_t      zm516x_handle = am_zm516x_inst_init();
 
-    // »ñÈ¡ZM516XÄ£¿éµÄÅäÖÃĞÅÏ¢
+    // è·å–ZM516Xæ¨¡å—çš„é…ç½®ä¿¡æ¯
     if (am_zm516x_cfg_info_get(zm516x_handle, &zm516x_cfg_info) != AM_OK) {
         return AM_ERROR;
     }
-    // ĞŞ¸ÄZM516XÄ£¿éµÄÅäÖÃĞÅÏ¢£¬±¾µØµØÖ·£º 0x2002£¬Ä¿±êµØÖ·£º0x2001
+    // ä¿®æ”¹ZM516Xæ¨¡å—çš„é…ç½®ä¿¡æ¯ï¼Œæœ¬åœ°åœ°å€ï¼š 0x2002ï¼Œç›®æ ‡åœ°å€ï¼š0x2001
     zm516x_cfg_info.my_addr[0]  = 0x20;
     zm516x_cfg_info.my_addr[1]  = 0x02;
     zm516x_cfg_info.dst_addr[0] = 0x20;
@@ -45,13 +45,13 @@ int am_main (void)
     if (am_zm516x_cfg_info_set(zm516x_handle, &zm516x_cfg_info) != AM_OK) {
         return AM_ERROR;
     }
-    // Ê¹ZM516XÄ£¿é¸´Î»£¬ÒÔÊ¹ÉèÖÃÉúĞ§
+    // ä½¿ZM516Xæ¨¡å—å¤ä½ï¼Œä»¥ä½¿è®¾ç½®ç”Ÿæ•ˆ
     am_zm516x_reset(zm516x_handle);
     am_mdelay(10);
     while (1) {
         int ret = am_zm516x_receive(zm516x_handle, buf, 100);
         if (ret > 0) {
-            buf[ret] = '\0';                   // Ä©Î²Ìí¼Ó½áÊø·û
+            buf[ret] = '\0';                   // æœ«å°¾æ·»åŠ ç»“æŸç¬¦
             am_kprintf("%s", buf);
         }
     }

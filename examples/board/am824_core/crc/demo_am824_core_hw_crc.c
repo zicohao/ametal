@@ -12,18 +12,18 @@
 
 /**
  * \file
- * \brief CRC Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief CRC ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿Ú´òÓ¡ "CRC-16 result is     : 0xbb3d\r\n"£»
- *   2. ´®¿Ú´òÓ¡ "CRC-CCITT result is  : 0x29b1\r\n"£»
- *   3. ´®¿Ú´òÓ¡ "CRC-32 result is     : 0xcbf43926\r\n"¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. ä¸²å£æ‰“å° "CRC-16 result is     : 0xbb3d\r\n"ï¼›
+ *   2. ä¸²å£æ‰“å° "CRC-CCITT result is  : 0x29b1\r\n"ï¼›
+ *   3. ä¸²å£æ‰“å° "CRC-32 result is     : 0xcbf43926\r\n"ã€‚
  *
  * \note
- *    ÈçĞè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔĞÅÏ¢£¬ĞèÒª½« PIO0_0 Òı½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *    PIO0_4 Òı½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
+ *    å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO0_0 å¼•è„šè¿æ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *    PIO0_4 å¼•è„šè¿æ¥ PC ä¸²å£çš„ RXDã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am824_hw_crc.c src_am824_hw_crc
  *
  * \internal
@@ -47,21 +47,21 @@
 #include "hw/amhw_lpc82x_clk.h"
 #include "demo_nxp_entries.h"
 
-/** \brief CRC ²âÊÔÊı¾İ */
+/** \brief CRC æµ‹è¯•æ•°æ® */
 am_local char __g_data_test[] = {'1', '2', '3', '4', '5', '6', '7', '8', '9'};
 
-/** \brief CRC ²âÊÔÊı¾İµÄ³¤¶È */
+/** \brief CRC æµ‹è¯•æ•°æ®çš„é•¿åº¦ */
 am_local uint32_t __g_length_test = AM_NELEMENTS(__g_data_test);
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am824_core_hw_crc_entry (void)
 {
 
     am_kprintf("demo am824_core hw crc!\r\n");
 
-    /* Ê¹ÄÜ²¢¸´Î» CRC Ê±ÖÓ */
+    /* ä½¿èƒ½å¹¶å¤ä½ CRC æ—¶é’Ÿ */
     amhw_lpc82x_clk_periph_enable(AMHW_LPC82X_CLK_CRC);
 
     demo_lpc_hw_crc_entry(LPC82X_CRC, 

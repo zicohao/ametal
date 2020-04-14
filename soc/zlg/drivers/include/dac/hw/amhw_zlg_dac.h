@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief DAC操作接口
+ * \brief DAC鎿嶄綔鎺ュ彛
  * \internal
  * \par Modification History
  * - 1.00 17-8-28  fra, first implementation
@@ -55,12 +55,12 @@ typedef struct amhw_zlg_dac {
 } amhw_zlg_dac_t;
 
 /**
- * \brief DAC 通道编号
+ * \brief DAC 閫氶亾缂栧彿
  *
- * \note 通道1对应DAC1 通道2对对应DAC2
+ * \note 閫氶亾1瀵瑰簲DAC1 閫氶亾2瀵瑰搴擠AC2
  */
-#define AMHW_ZLG_DAC_CHAN_1          0      /**< \brief DAC通道 1 */
-#define AMHW_ZLG_DAC_CHAN_2          1      /**< \brief DAC通道 2 */
+#define AMHW_ZLG_DAC_CHAN_1          0      /**< \brief DAC閫氶亾 1 */
+#define AMHW_ZLG_DAC_CHAN_2          1      /**< \brief DAC閫氶亾 2 */
 
 /**
  * \brief DAC channel2 DMA enable

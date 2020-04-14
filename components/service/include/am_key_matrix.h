@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief Í¨ÓÃ¾ØÕó¼üÅÌÇı¶¯½Ó¿Ú£¨¸÷¾ßÌåÇı¶¯¸ù¾İ×ÔÉíÊµÏÖ¾ßÌåµÄ¼üÖµ¶ÁÈ¡º¯Êı£©
+ * \brief é€šç”¨çŸ©é˜µé”®ç›˜é©±åŠ¨æ¥å£ï¼ˆå„å…·ä½“é©±åŠ¨æ ¹æ®è‡ªèº«å®ç°å…·ä½“çš„é”®å€¼è¯»å–å‡½æ•°ï¼‰
  *
  * \internal
  * \par modification history:
@@ -37,36 +37,36 @@ extern "C" {
 #endif
 
 /**
- * \brief ¼üÖµ»ñÈ¡»·¾³×¼±¸
+ * \brief é”®å€¼è·å–ç¯å¢ƒå‡†å¤‡
  */
 typedef struct am_key_matrix_prepare {
     
-    /** \brief ¶ÁÈ¡¼üÖµ×¼±¸£¬¸Ãº¯ÊıÔÚ¼üÖµ¶ÁÈ¡Ç°µ÷ÓÃ */
+    /** \brief è¯»å–é”®å€¼å‡†å¤‡ï¼Œè¯¥å‡½æ•°åœ¨é”®å€¼è¯»å–å‰è°ƒç”¨ */
     int (*pfn_prepare) (void *p_cookie, int idx);
 
-    /** \brief ¶ÁÈ¡¼üÖµ½áÊø£¬¸Ãº¯ÊıÔÚ¼üÖµ¶ÁÈ¡ºóµ÷ÓÃ */
+    /** \brief è¯»å–é”®å€¼ç»“æŸï¼Œè¯¥å‡½æ•°åœ¨é”®å€¼è¯»å–åè°ƒç”¨ */
     int (*pfn_finish) (void *p_cookie, int idx); 
     
-    /** \brief º¯Êı×Ô¶¨Òå²ÎÊı */
+    /** \brief å‡½æ•°è‡ªå®šä¹‰å‚æ•° */
     void *p_cookie;
 
 } am_key_matrix_prepare_t;
 
 /**
- * \brief ¼üÖµ¶ÁÈ¡£¨¶ÁÈ¡Ò»ĞĞ»òÒ»ÁĞµÄ¼üÖµ£©
+ * \brief é”®å€¼è¯»å–ï¼ˆè¯»å–ä¸€è¡Œæˆ–ä¸€åˆ—çš„é”®å€¼ï¼‰
  */
 typedef struct am_key_matrix_read {
 
-    /** \brief ¼üÖµ¶ÁÈ¡º¯Êı£¬¶ÁÈ¡Ò»ĞĞ»òÒ»ÁĞµÄ¼üÖµ */
+    /** \brief é”®å€¼è¯»å–å‡½æ•°ï¼Œè¯»å–ä¸€è¡Œæˆ–ä¸€åˆ—çš„é”®å€¼ */
     uint32_t (*pfn_val_read) (void *p_cookie, int idx);
 
-    /** \brief º¯Êı×Ô¶¨Òå²ÎÊı */
+    /** \brief å‡½æ•°è‡ªå®šä¹‰å‚æ•° */
     void      *p_cookie;
 
 } am_key_matrix_read_t;
 
 
-/** \brief ¾ØÕó¼üÅÌÉè±¸  */
+/** \brief çŸ©é˜µé”®ç›˜è®¾å¤‡  */
 typedef struct am_key_matrix {
     const am_key_matrix_base_info_t *p_info;
     uint32_t                         key_samp_last;
@@ -77,14 +77,14 @@ typedef struct am_key_matrix {
 } am_key_matrix_t;
 
 /**
- * \brief °´¼üÉè±¸³õÊ¼»¯
+ * \brief æŒ‰é”®è®¾å¤‡åˆå§‹åŒ–
  *
- * \param[in] p_dev      : °´¼üÉè±¸ÊµÀı
- * \param[in] p_info     : °´¼üĞÅÏ¢
- * \param[in] p_prepare  : ¼üÖµ¶ÁÈ¡µÄ×¼±¸¹¤×÷£¬ÈôÎŞ×¼±¸¹¤×÷£¬ÔòÉèÖÃÎªNULL
- * \param[in] p_read     : ¼üÖµ¶ÁÈ¡Æ÷
+ * \param[in] p_dev      : æŒ‰é”®è®¾å¤‡å®ä¾‹
+ * \param[in] p_info     : æŒ‰é”®ä¿¡æ¯
+ * \param[in] p_prepare  : é”®å€¼è¯»å–çš„å‡†å¤‡å·¥ä½œï¼Œè‹¥æ— å‡†å¤‡å·¥ä½œï¼Œåˆ™è®¾ç½®ä¸ºNULL
+ * \param[in] p_read     : é”®å€¼è¯»å–å™¨
  *
- * \return  AM_OK£¬³õÊ¼»¯³É¹¦; ÆäËüÖµ£¬³õÊ¼»¯Ê§°Ü£¬Ê§°ÜÔ­ÒòÇë²é¿´´íÎóºÅ
+ * \return  AM_OKï¼Œåˆå§‹åŒ–æˆåŠŸ; å…¶å®ƒå€¼ï¼Œåˆå§‹åŒ–å¤±è´¥ï¼Œå¤±è´¥åŸå› è¯·æŸ¥çœ‹é”™è¯¯å·
  */
 int am_key_matrix_init (am_key_matrix_t                 *p_dev,
                         const am_key_matrix_base_info_t *p_info,
@@ -92,20 +92,20 @@ int am_key_matrix_init (am_key_matrix_t                 *p_dev,
                         am_key_matrix_read_t            *p_read);
 
 /**
- * \brief Ö´ĞĞÒ»´ÎÉ¨Ãè£¬É¨ÃèÒ»ĞĞ»òÒ»ÁĞ£¨²»×Ô¶¯É¨Ãè£¬Ò»°ãÓÃÓÚÓëÊıÂë¹Ü¸´ÓÃÒı½ÅÊ±£©
+ * \brief æ‰§è¡Œä¸€æ¬¡æ‰«æï¼Œæ‰«æä¸€è¡Œæˆ–ä¸€åˆ—ï¼ˆä¸è‡ªåŠ¨æ‰«æï¼Œä¸€èˆ¬ç”¨äºä¸æ•°ç ç®¡å¤ç”¨å¼•è„šæ—¶ï¼‰
  *
- * \param[in] p_dev    : °´¼üÉè±¸ÊµÀı
- * \param[in] scan_idx : ±¾´ÎÉ¨ÃèµÄĞĞºÅ»òÁĞºÅ
+ * \param[in] p_dev    : æŒ‰é”®è®¾å¤‡å®ä¾‹
+ * \param[in] scan_idx : æœ¬æ¬¡æ‰«æçš„è¡Œå·æˆ–åˆ—å·
  *
- * \return  AM_OK£¬³õÊ¼»¯³É¹¦; ÆäËüÖµ£¬³õÊ¼»¯Ê§°Ü£¬Ê§°ÜÔ­ÒòÇë²é¿´´íÎóºÅ
- * \note É¨Ãè¸ÃĞĞ£¨ÁĞ£©Ç°£¬ĞèÈ·±£Êı¾İ¾ßÓĞÕıÈ·¶ÁÈ¡µÄÓĞĞ§»·¾³
+ * \return  AM_OKï¼Œåˆå§‹åŒ–æˆåŠŸ; å…¶å®ƒå€¼ï¼Œåˆå§‹åŒ–å¤±è´¥ï¼Œå¤±è´¥åŸå› è¯·æŸ¥çœ‹é”™è¯¯å·
+ * \note æ‰«æè¯¥è¡Œï¼ˆåˆ—ï¼‰å‰ï¼Œéœ€ç¡®ä¿æ•°æ®å…·æœ‰æ­£ç¡®è¯»å–çš„æœ‰æ•ˆç¯å¢ƒ
  */
 int am_key_matrix_scan (am_key_matrix_t *p_dev, int scan_idx);
 
 /**
- * \brief »ñÈ¡×î´óÉ¨ÃèË÷Òı
- * \param[in] p_dev  : °´¼üÉè±¸ÊµÀı
- * \return  ×î´óÉ¨ÃèË÷Òı
+ * \brief è·å–æœ€å¤§æ‰«æç´¢å¼•
+ * \param[in] p_dev  : æŒ‰é”®è®¾å¤‡å®ä¾‹
+ * \return  æœ€å¤§æ‰«æç´¢å¼•
  */
 int am_key_matrix_scan_idx_max_get (am_key_matrix_t *p_dev);
 

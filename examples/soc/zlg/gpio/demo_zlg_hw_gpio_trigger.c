@@ -12,15 +12,15 @@
 
 /**
  * \file
- * \brief GPIO Òı½ÅÖĞ¶ÏÀı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief GPIO å¼•è„šä¸­æ–­ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè£º
- *   1. Ê¹¶ÔÓ¦µÄÖĞ¶ÏÒı½ÅÉÏ²úÉúÏÂ½µÑØ¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. ä½¿å¯¹åº”çš„ä¸­æ–­å¼•è„šä¸Šäº§ç”Ÿä¸‹é™æ²¿ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ÖĞ¶Ï²úÉúÊ±µ÷ÊÔ´®¿ÚÊä³ö "the gpio interrupt happen!"¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. ä¸­æ–­äº§ç”Ÿæ—¶è°ƒè¯•ä¸²å£è¾“å‡º "the gpio interrupt happen!"ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_zlg_hw_gpio_trigger.c src_zlg_hw_gpio_trigger
  *
  * \internal
@@ -43,7 +43,7 @@
 #include "hw/amhw_zlg_syscfg.h"
 
 /**
- * \brief Òı½ÅÖĞ¶Ï·şÎñº¯Êı
+ * \brief å¼•è„šä¸­æ–­æœåŠ¡å‡½æ•°
  */
 static void __gpio_isr (void *p_arg)
 {
@@ -51,7 +51,7 @@ static void __gpio_isr (void *p_arg)
 }
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_zlg_hw_gpio_trigger_entry (amhw_zlg_gpio_t         *p_hw_gpio,
                                      amhw_zlg_syscfg_t       *p_hw_syscfg,
@@ -62,40 +62,40 @@ void demo_zlg_hw_gpio_trigger_entry (amhw_zlg_gpio_t         *p_hw_gpio,
                                      amhw_zlg_exti_line_num_t exti_line_num)
 {
 
-    /* È¡ÏûÒı½Å¸´ÓÃ¹¦ÄÜ */
+    /* å–æ¶ˆå¼•è„šå¤ç”¨åŠŸèƒ½ */
     amhw_zlg_gpio_pin_afr_set(p_hw_gpio, AMHW_ZLG_GPIO_AF_DEFAULT, pin);
 
-    /* ÉèÖÃÒı½Å·½ÏòÎªÊäÈë¼°ÉèÖÃÒı½ÅµÄÄ£Ê½ */
+    /* è®¾ç½®å¼•è„šæ–¹å‘ä¸ºè¾“å…¥åŠè®¾ç½®å¼•è„šçš„æ¨¡å¼ */
     amhw_zlg_gpio_pin_set(p_hw_gpio, AMHW_ZLG_GPIO_MODE_IPU << 2 | 0x00, pin);
 
-    /* Ê¹ÄÜÒı½ÅÉÏÀ­µç×è */
+    /* ä½¿èƒ½å¼•è„šä¸Šæ‹‰ç”µé˜» */
     amhw_zlg_gpio_pin_out_high(p_hw_gpio, pin);
 
     /*
-     * ÖĞ¶ÏÏß 0 Ö»ÄÜÁ¬Ò»¸ö¶Ë¿Ú±àºÅÎª 0 µÄ GPIO Òı½Å£¬±ÈÈçËµ£¬PIOA_0 Á¬½Óµ½ÁËÖĞ¶ÏÏß 0£¬
-     * PIOB_0¡¢PIOC_0¡¢PIOD_0 ¾Í²»ÄÜÁ¬µ½ÖĞ¶ÏÏß 0, µ«´ËÊ± PIOA_1 ¿ÉÒÔÁ¬½Óµ½ÖĞ¶ÏÏß 1¡£
-     * ¶ÔÓ¦¹ØÏµ: PIOA_8 ¶ÔÓ¦ÓÚÍâ²¿ÖĞ¶ÏµÄÒı½ÅÔ´Îª AMHW_ZLG_EXTI_PINSOURCE8
+     * ä¸­æ–­çº¿ 0 åªèƒ½è¿ä¸€ä¸ªç«¯å£ç¼–å·ä¸º 0 çš„ GPIO å¼•è„šï¼Œæ¯”å¦‚è¯´ï¼ŒPIOA_0 è¿æ¥åˆ°äº†ä¸­æ–­çº¿ 0ï¼Œ
+     * PIOB_0ã€PIOC_0ã€PIOD_0 å°±ä¸èƒ½è¿åˆ°ä¸­æ–­çº¿ 0, ä½†æ­¤æ—¶ PIOA_1 å¯ä»¥è¿æ¥åˆ°ä¸­æ–­çº¿ 1ã€‚
+     * å¯¹åº”å…³ç³»: PIOA_8 å¯¹åº”äºå¤–éƒ¨ä¸­æ–­çš„å¼•è„šæºä¸º AMHW_ZLG_EXTI_PINSOURCE8
      */
     amhw_zlg_syscfg_exti_line_config(p_hw_syscfg, portsource, pinsource);
 
-    /* Çå³ıÖĞ¶ÏÏßÅäÖÃ */
+    /* æ¸…é™¤ä¸­æ–­çº¿é…ç½® */
     amhw_zlg_exti_imr_clear(p_hw_exti, exti_line_num);
     amhw_zlg_exti_emr_clear(p_hw_exti, exti_line_num);
 
-    /* Çå³ıÖĞ¶ÏÏß´¥·¢·½Ê½ÅäÖÃ */
+    /* æ¸…é™¤ä¸­æ–­çº¿è§¦å‘æ–¹å¼é…ç½® */
     amhw_zlg_exti_rtsr_clear(p_hw_exti, exti_line_num);
     amhw_zlg_exti_ftsr_clear(p_hw_exti, exti_line_num);
 
-    /* ÏÂ½µÑØ´¥·¢ */
+    /* ä¸‹é™æ²¿è§¦å‘ */
     amhw_zlg_exti_ftsr_set(p_hw_exti, exti_line_num);
 
-    /* ÇåÒı½ÅÖĞ¶ÏÏß±êÖ¾Î» */
+    /* æ¸…å¼•è„šä¸­æ–­çº¿æ ‡å¿—ä½ */
     amhw_zlg_exti_pending_clear(p_hw_exti, exti_line_num);
 
-    /* Á¬½ÓÓÃ»§×¢²áµÄÖĞ¶Ï»Øµ÷º¯Êı */
+    /* è¿æ¥ç”¨æˆ·æ³¨å†Œçš„ä¸­æ–­å›è°ƒå‡½æ•° */
     am_gpio_trigger_connect(pin, __gpio_isr, NULL);
 
-    /* ÉèÖÃ¿ª·ÅÖĞ¶ÏÏßÇëÇó */
+    /* è®¾ç½®å¼€æ”¾ä¸­æ–­çº¿è¯·æ±‚ */
     amhw_zlg_exti_imr_set(p_hw_exti,  exti_line_num);
 
     AM_FOREVER {

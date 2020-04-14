@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief LM75ÎÂ¶È´«¸ÐÆ÷Çý¶¯
+ * \brief LM75æ¸©åº¦ä¼ æ„Ÿå™¨é©±åŠ¨
  * 
  * \internal
  * \par Modification history

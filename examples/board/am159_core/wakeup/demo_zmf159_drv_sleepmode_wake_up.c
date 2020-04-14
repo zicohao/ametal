@@ -11,21 +11,21 @@
 *******************************************************************************/
 /**
  * \file
- * \brief ˯��ģʽ���̣�ͨ��������ӿ�ʵ��
+ * \brief 睡眠模式例程，通过驱动层接口实现
  *
- * - �������裺
- *   1. �� J14 �� KEY �� PIOC_7 �̽���һ��
+ * - 操作步骤：
+ *   1. 将 J14 的 KEY 和 PIOC_7 短接在一起。
  *
- * - ʵ������
- *   1. MCU ����ֹͣģʽʱ�� J-Link ���ԶϿ���
- *   2. ���� KEY/RES ������ MCU��������� wake_up������������С�
+ * - 实现现象
+ *   1. MCU 进入停止模式时， J-Link 调试断开；
+ *   2. 按下 KEY/RES 键唤醒 MCU，串口输出 wake_up，程序继续运行。
  *
  * \note
- *   ���� TIM4 Ĭ�ϳ�ʼ������Ϊϵͳ�δ�ʹ�ã��ᶨ�ڲ����жϵ��»��ѣ� ���Ա�����
- *   ֮ǰӦ�� am_prj_config.h �еĺ� AM_CFG_SYSTEM_TICK_ENABLE��
- *   AM_CFG_SOFTIMER_ENABLE ��   AM_CFG_KEY_GPIO_ENABLE ����Ϊ 0��
+ *   由于 TIM4 默认初始化并作为系统滴答使用，会定期产生中断导致唤醒， 测试本例程
+ *   之前应将 am_prj_config.h 中的宏 AM_CFG_SYSTEM_TICK_ENABLE、
+ *   AM_CFG_SOFTIMER_ENABLE 和   AM_CFG_KEY_GPIO_ENABLE 设置为 0。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_zmf159_drv_sleepmode_wake_up.c src_zmf159_drv_sleepmode_wake_up
  *
  * \internal
@@ -53,7 +53,7 @@
 #include "am_zmf159_inst_init.h"
 
 /**
- * \brief �����жϷ�����
+ * \brief 引脚中断服务函数
  */
 static void gpio_isr (void *p_arg)
 {
@@ -61,7 +61,7 @@ static void gpio_isr (void *p_arg)
 }
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_zmf159_drv_sleepmode_wake_up_entry (void)
 {
@@ -71,21 +71,21 @@ void demo_zmf159_drv_sleepmode_wake_up_entry (void)
 
     am_zmf159_pwr_inst_init();
 
-    /* �������� */
+    /* 唤醒配置 */
     am_zmf159_wake_up_cfg(AM_ZMF159_PWR_MODE_SLEEP, gpio_isr, (void *)0);
 
     for (i = 0; i < 5; i++) {
         am_mdelay(1000);
     }
 
-    /* ����˯��ģʽ */
+    /* 进入睡眠模式 */
     am_zmf159_pwr_mode_into(AM_ZMF159_PWR_MODE_SLEEP);
 
     AM_DBG_INFO("wake_up!\r\n");
 
     while (1) {
 
-        /* ָʾ��ָʾʱ���Ƿ�ָ����� */
+        /* 指示灯指示时钟是否恢复正常 */
         am_led_on(LED0);
         am_mdelay(500);
         am_led_off(LED0);

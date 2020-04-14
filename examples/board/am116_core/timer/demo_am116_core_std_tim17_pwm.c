@@ -12,12 +12,12 @@
 
 /**
  * \file
- * \brief TIM17 ¶¨Ê±Æ÷ PWM Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief TIM17 å®šæ—¶å™¨ PWM ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. PIOA_7(TIM17_CH1) PIOB_7(TIM17_CH1N)Êä³ö»¥²¹ 2KHz µÄ PWM£¬Õ¼¿Õ±ÈÎª 50%£»
+ * - å®éªŒç°è±¡ï¼š
+ *   1. PIOA_7(TIM17_CH1) PIOB_7(TIM17_CH1N)è¾“å‡ºäº’è¡¥ 2KHz çš„ PWMï¼Œå ç©ºæ¯”ä¸º 50%ï¼›
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am116_core_std_tim17_pwm.c src_am116_core_std_tim17_pwm
  *
  * \internal
@@ -40,7 +40,7 @@
 #include "demo_am116_core_entries.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am116_core_std_tim17_pwm_entry (void)
 {

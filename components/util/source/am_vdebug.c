@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief µ÷ÊÔĞÅÏ¢Êä³ö£¨Ê¹ÓÃUART£©³õÊ¼»¯
+ * \brief è°ƒè¯•ä¿¡æ¯è¾“å‡ºï¼ˆä½¿ç”¨UARTï¼‰åˆå§‹åŒ–
  *
  * \internal
  * \par Modification history
@@ -27,7 +27,7 @@
 #include "am_koutput.h"
  
 /**
- * \brief Êä³öÒ»¸ö×Ö·û
+ * \brief è¾“å‡ºä¸€ä¸ªå­—ç¬¦
  */
 static int __dbg_fputc (const char c, void *fil)
 {  
@@ -45,7 +45,7 @@ static int __dbg_fputc (const char c, void *fil)
 }
 
 /**
- * \brief Êä³öÒ»¸ö×Ö·û´®
+ * \brief è¾“å‡ºä¸€ä¸ªå­—ç¬¦ä¸²
  */
 static int __dbg_fputs (const char *s, void *fil)
 {    
@@ -62,7 +62,7 @@ static int __dbg_fputs (const char *s, void *fil)
 am_uart_handle_t  g_dbg_handle;
 
 /**
- * \brief debug³õÊ¼»¯
+ * \brief debugåˆå§‹åŒ–
  */
 void am_debug_init (am_uart_handle_t handle, uint32_t baudrate)
 {   

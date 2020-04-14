@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief KL26 DMA ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief KL26 DMA ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_kl26_hwconfig_dma.c
  *
  * \internal
@@ -32,7 +32,7 @@
  */
 
 /**
- * \brief DMA Æ½Ì¨³õÊ¼»¯¡£
+ * \brief DMA å¹³å°åˆå§‹åŒ–ã€‚
  */
 void __kl26_plfm_dma_init (void)
 {
@@ -41,7 +41,7 @@ void __kl26_plfm_dma_init (void)
 }
 
 /**
- * \brief DMA Æ½Ì¨È¥³õÊ¼»¯¡£
+ * \brief DMA å¹³å°å»åˆå§‹åŒ–ã€‚
  */
 void __kl26_plfm_dma_deinit (void)
 {
@@ -49,26 +49,26 @@ void __kl26_plfm_dma_deinit (void)
     amhw_kl26_sim_periph_clock_disable(KL26_SIM_SCGC_DMA);
 }
 
-/** \brief DMA Éè±¸ĞÅÏ¢ */
+/** \brief DMA è®¾å¤‡ä¿¡æ¯ */
 static const am_kl26_dma_devinfo_t __g_dma_devinfo = {
-    KL26_DMAMUX,                   /**< \brief Ö¸ÏòDMAMUX¼Ä´æÆ÷¿éµÄÖ¸Õë  */
-    KL26_DMA,                      /**< \brief Ö¸ÏòDMA¼Ä´æÆ÷¿éµÄÖ¸Õë          */
-    INUM_DMA_CH0,                  /**< \brief DMAÍ¨µÀ0ÖĞ¶ÏÏòÁ¿ºÅ                 */
+    KL26_DMAMUX,                   /**< \brief æŒ‡å‘DMAMUXå¯„å­˜å™¨å—çš„æŒ‡é’ˆ  */
+    KL26_DMA,                      /**< \brief æŒ‡å‘DMAå¯„å­˜å™¨å—çš„æŒ‡é’ˆ          */
+    INUM_DMA_CH0,                  /**< \brief DMAé€šé“0ä¸­æ–­å‘é‡å·                 */
 
     __kl26_plfm_dma_init,
     __kl26_plfm_dma_deinit
 };
 
-/** \brief DMAÉè±¸ÊµÀı */
+/** \brief DMAè®¾å¤‡å®ä¾‹ */
 static am_kl26_dma_dev_t __g_dma_dev;
 
-/** \brief DMA ÊµÀı³õÊ¼»¯£¬»ñµÃADC±ê×¼·şÎñ¾ä±ú */
+/** \brief DMA å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—ADCæ ‡å‡†æœåŠ¡å¥æŸ„ */
 int am_kl26_dma_inst_init (void)
 {
     return am_kl26_dma_init(&__g_dma_dev, &__g_dma_devinfo);
 }
 
-/** \brief DMA ÊµÀı½â³õÊ¼»¯ */
+/** \brief DMA å®ä¾‹è§£åˆå§‹åŒ– */
 void am_kl26_dma_inst_deinit (void)
 {
     am_kl26_dma_deinit();

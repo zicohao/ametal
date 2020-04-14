@@ -12,17 +12,17 @@
 
 /**
  * \file
- * \brief I2S ·¢ËÍ£¨²éÑ¯·½Ê½£©Àı³Ì£¬Í¨¹ıHW²ã½Ó¿ÚÊµÏÖ
+ * \brief I2S å‘é€ï¼ˆæŸ¥è¯¢æ–¹å¼ï¼‰ä¾‹ç¨‹ï¼Œé€šè¿‡HWå±‚æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè£º
- *   1. °´ÕÕI2S Ïà¹ØÒı½Å½ÓÏßTX_D0¡¢TX_FS¡¢TX_BCLKµ½Âß¼­·ÖÎöÒÇ¡£
- *   2. µ÷ÊÔ³ÌĞò¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. æŒ‰ç…§I2S ç›¸å…³å¼•è„šæ¥çº¿TX_D0ã€TX_FSã€TX_BCLKåˆ°é€»è¾‘åˆ†æä»ªã€‚
+ *   2. è°ƒè¯•ç¨‹åºã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ¿ÉÒÔÔÚÂß¼­·ÖÎöÒÇÉÏ¿´µ½TX_D0¡¢TX_FS¡¢TX_BCLKµÄÊı¾İ£»
- *   2. ÆäÖĞTX_D0Îª·¢ËÍÊı¾İµÄ²¹Âë£¬TX_FSÊÇÖ¡Ê±ÖÓ£¬TX_BCLKÊÇÎ»Ê±ÖÓ¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. å¯ä»¥åœ¨é€»è¾‘åˆ†æä»ªä¸Šçœ‹åˆ°TX_D0ã€TX_FSã€TX_BCLKçš„æ•°æ®ï¼›
+ *   2. å…¶ä¸­TX_D0ä¸ºå‘é€æ•°æ®çš„è¡¥ç ï¼ŒTX_FSæ˜¯å¸§æ—¶é’Ÿï¼ŒTX_BCLKæ˜¯ä½æ—¶é’Ÿã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_amks16z_core_hw_i2s_polling.c src_amks16z_core_hw_i2s_polling
  *
  * \internal
@@ -49,16 +49,16 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief i2sÊı¾İ·¢ËÍ£¬µ÷ÓÃHW²ã½Ó¿Úº¯ÊıÊµÏÖ
- * \return ÎŞ
+ * \brief i2sæ•°æ®å‘é€ï¼Œè°ƒç”¨HWå±‚æ¥å£å‡½æ•°å®ç°
+ * \return æ— 
  */
 void demo_amks16z_core_hw_i2s_polling_entry (void)
 {
 
-    /** \brief I2SÊ±ÖÓÅäÖÃ */
+    /** \brief I2Sæ—¶é’Ÿé…ç½® */
     static amhw_fsl_i2s_clock_cfg_t i2s0_clk;
 
-    /* ÅäÖÃI2S ¹¦ÄÜÒı½Å */
+    /* é…ç½®I2S åŠŸèƒ½å¼•è„š */
     am_gpio_pin_cfg(PIOC_1, PIOC_1_I2S0_TXD0);     /* TX_D0   */
     am_gpio_pin_cfg(PIOC_2, PIOC_2_I2S0_TX_FS);    /* TX_FS   */
     am_gpio_pin_cfg(PIOC_3, PIOC_3_I2S0_TX_BCLK);  /* TX_BCLK */
@@ -67,7 +67,7 @@ void demo_amks16z_core_hw_i2s_polling_entry (void)
     am_gpio_pin_cfg(PIOC_6, PIOC_6_I2S0_RX_BCLK);  /* RX_BCLK */
     am_gpio_pin_cfg(PIOC_7, PIOC_7_I2S0_RX_FS);    /* RX_FS   */
 
-    /* Ê¹ÄÜI2S Ê±ÖÓÃÅ¿Ø */
+    /* ä½¿èƒ½I2S æ—¶é’Ÿé—¨æ§ */
     amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_I2S);
 
     i2s0_clk.mclk_src_freq = am_kl26_clk_core_clkrate_get();

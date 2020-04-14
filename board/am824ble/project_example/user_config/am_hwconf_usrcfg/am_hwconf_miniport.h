@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief MiniPort ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief MiniPort ç”¨æˆ·é…ç½®æ–‡ä»¶
  *
  * \internal
  * \par Modification history
@@ -32,118 +32,118 @@ extern "C" {
 #include "am_hc595.h"
 
 /*******************************************************************************
-  MiniPort-595 ÊµÀı³õÊ¼»¯
+  MiniPort-595 å®ä¾‹åˆå§‹åŒ–
 *******************************************************************************/
 
 /**
- * \brief MiniPort-595 ÊµÀı³õÊ¼»¯
+ * \brief MiniPort-595 å®ä¾‹åˆå§‹åŒ–
  *
- * param ÎŞ
+ * param æ— 
  *
- * \return HC595 ±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return HC595 æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_hc595_handle_t am_miniport_595_inst_init (void);
 
 /*******************************************************************************
-  MiniPort-KEY ÊµÀı³õÊ¼»¯
+  MiniPort-KEY å®ä¾‹åˆå§‹åŒ–
 *******************************************************************************/
 
 /**
- * \brief MiniPort-KEY ÊµÀı³õÊ¼»¯£¨µ¥¶ÀÊ¹ÓÃ£©
+ * \brief MiniPort-KEY å®ä¾‹åˆå§‹åŒ–ï¼ˆå•ç‹¬ä½¿ç”¨ï¼‰
  *
- * param ÎŞ
+ * param æ— 
  *
- * \retval AW_OK ³õÊ¼»¯³É¹¦
- * \retval  < 0  ³õÊ¼»¯Ê§°Ü£¬Çë¼ì²é am_hwconf_miniport_key.c ÎÄ¼şÖĞµÄÅäÖÃÊÇ·ñÕıÈ·
+ * \retval AW_OK åˆå§‹åŒ–æˆåŠŸ
+ * \retval  < 0  åˆå§‹åŒ–å¤±è´¥ï¼Œè¯·æ£€æŸ¥ am_hwconf_miniport_key.c æ–‡ä»¶ä¸­çš„é…ç½®æ˜¯å¦æ­£ç¡®
  */
 int am_miniport_key_inst_init (void);
 
 /*******************************************************************************
-  MiniPort-KEY ÊµÀı³õÊ¼»¯
+  MiniPort-KEY å®ä¾‹åˆå§‹åŒ–
 *******************************************************************************/
 
 /**
- * \brief MiniPort-LED ÊµÀı³õÊ¼»¯£¨µ¥¶ÀÊ¹ÓÃ£©
+ * \brief MiniPort-LED å®ä¾‹åˆå§‹åŒ–ï¼ˆå•ç‹¬ä½¿ç”¨ï¼‰
  *
- * param ÎŞ
+ * param æ— 
  *
- * \retval AW_OK ³õÊ¼»¯³É¹¦
- * \retval  < 0  ³õÊ¼»¯Ê§°Ü£¬Çë¼ì²é am_hwconf_miniport_led.c ÎÄ¼şÖĞµÄÅäÖÃÊÇ·ñÕıÈ·
+ * \retval AW_OK åˆå§‹åŒ–æˆåŠŸ
+ * \retval  < 0  åˆå§‹åŒ–å¤±è´¥ï¼Œè¯·æ£€æŸ¥ am_hwconf_miniport_led.c æ–‡ä»¶ä¸­çš„é…ç½®æ˜¯å¦æ­£ç¡®
  */
 int am_miniport_led_inst_init (void);
 
 /**
- * \brief MiniPort-595 + MiniPort-LED ÊµÀı³õÊ¼»¯
+ * \brief MiniPort-595 + MiniPort-LED å®ä¾‹åˆå§‹åŒ–
  *
- * param ÎŞ
+ * param æ— 
  *
- * \retval AW_OK ³õÊ¼»¯³É¹¦
- * \retval  < 0  ³õÊ¼»¯Ê§°Ü£¬Çë¼ì²é am_hwconf_miniport_led.c ÎÄ¼şÖĞµÄÅäÖÃÊÇ·ñÕıÈ·
+ * \retval AW_OK åˆå§‹åŒ–æˆåŠŸ
+ * \retval  < 0  åˆå§‹åŒ–å¤±è´¥ï¼Œè¯·æ£€æŸ¥ am_hwconf_miniport_led.c æ–‡ä»¶ä¸­çš„é…ç½®æ˜¯å¦æ­£ç¡®
  */
 int am_miniport_led_595_inst_init (void);
 
 /*******************************************************************************
-  MiniPort-View KEY ÊµÀı³õÊ¼»¯
+  MiniPort-View KEY å®ä¾‹åˆå§‹åŒ–
 *******************************************************************************/
 
 /**
- * \brief MiniPort-KEY + MiniPort-View ÊµÀı³õÊ¼»¯
+ * \brief MiniPort-KEY + MiniPort-View å®ä¾‹åˆå§‹åŒ–
  *
- * param ÎŞ
+ * param æ— 
  *
- * \retval AW_OK ³õÊ¼»¯³É¹¦
- * \retval  < 0  ³õÊ¼»¯Ê§°Ü£¬Çë¼ì²é am_hwconf_miniport_view_key.c ÎÄ¼şÖĞµÄÅäÖÃ
- *               ÊÇ·ñÕıÈ·
+ * \retval AW_OK åˆå§‹åŒ–æˆåŠŸ
+ * \retval  < 0  åˆå§‹åŒ–å¤±è´¥ï¼Œè¯·æ£€æŸ¥ am_hwconf_miniport_view_key.c æ–‡ä»¶ä¸­çš„é…ç½®
+ *               æ˜¯å¦æ­£ç¡®
  */
 int am_miniport_view_key_inst_init (void);
 
 /**
- * \brief MiniPort-595 + MiniPort-KEY + MiniPort-View ÊµÀı³õÊ¼»¯
+ * \brief MiniPort-595 + MiniPort-KEY + MiniPort-View å®ä¾‹åˆå§‹åŒ–
  *
- * param ÎŞ
+ * param æ— 
  *
- * \retval AW_OK ³õÊ¼»¯³É¹¦
- * \retval  < 0  ³õÊ¼»¯Ê§°Ü£¬Çë¼ì²é am_hwconf_miniport_view_key.c ÎÄ¼şÖĞµÄÅäÖÃ
- *               ÊÇ·ñÕıÈ·
+ * \retval AW_OK åˆå§‹åŒ–æˆåŠŸ
+ * \retval  < 0  åˆå§‹åŒ–å¤±è´¥ï¼Œè¯·æ£€æŸ¥ am_hwconf_miniport_view_key.c æ–‡ä»¶ä¸­çš„é…ç½®
+ *               æ˜¯å¦æ­£ç¡®
  */
 int am_miniport_view_key_595_inst_init (void);
 
 /*******************************************************************************
-  MiniPort-View ÊµÀı³õÊ¼»¯
+  MiniPort-View å®ä¾‹åˆå§‹åŒ–
 *******************************************************************************/
 
 /**
- * \brief MiniPort-View ÊµÀı³õÊ¼»¯£¨µ¥¶ÀÊ¹ÓÃ£©
+ * \brief MiniPort-View å®ä¾‹åˆå§‹åŒ–ï¼ˆå•ç‹¬ä½¿ç”¨ï¼‰
  *
- * param ÎŞ
+ * param æ— 
  *
- * \retval AW_OK ³õÊ¼»¯³É¹¦
- * \retval  < 0  ³õÊ¼»¯Ê§°Ü£¬Çë¼ì²é am_hwconf_miniport_view.c ÎÄ¼şÖĞµÄÅäÖÃÊÇ·ñÕıÈ·
+ * \retval AW_OK åˆå§‹åŒ–æˆåŠŸ
+ * \retval  < 0  åˆå§‹åŒ–å¤±è´¥ï¼Œè¯·æ£€æŸ¥ am_hwconf_miniport_view.c æ–‡ä»¶ä¸­çš„é…ç½®æ˜¯å¦æ­£ç¡®
  */
 int am_miniport_view_inst_init (void);
 
 /**
- * \brief MiniPort-595 + MiniPort-View ÊµÀı³õÊ¼»¯
+ * \brief MiniPort-595 + MiniPort-View å®ä¾‹åˆå§‹åŒ–
  *
- * param ÎŞ
+ * param æ— 
  *
- * \retval AW_OK ³õÊ¼»¯³É¹¦
- * \retval  < 0  ³õÊ¼»¯Ê§°Ü£¬Çë¼ì²é am_hwconf_miniport_view.c ÎÄ¼şÖĞµÄÅäÖÃÊÇ·ñÕıÈ·
+ * \retval AW_OK åˆå§‹åŒ–æˆåŠŸ
+ * \retval  < 0  åˆå§‹åŒ–å¤±è´¥ï¼Œè¯·æ£€æŸ¥ am_hwconf_miniport_view.c æ–‡ä»¶ä¸­çš„é…ç½®æ˜¯å¦æ­£ç¡®
  */
 int am_miniport_view_595_inst_init (void);
 
 /*******************************************************************************
-  MiniPort-ZLG72128 ÊµÀı³õÊ¼»¯
+  MiniPort-ZLG72128 å®ä¾‹åˆå§‹åŒ–
 *******************************************************************************/
 
 /**
- * \brief MiniPort-ZLG72128 ÊµÀı³õÊ¼»¯
+ * \brief MiniPort-ZLG72128 å®ä¾‹åˆå§‹åŒ–
  *
- * param ÎŞ
+ * param æ— 
  *
- * \retval AW_OK ³õÊ¼»¯³É¹¦
- * \retval  < 0  ³õÊ¼»¯Ê§°Ü£¬Çë¼ì²é am_hwconf_miniport_zlg72128.c ÎÄ¼şÖĞµÄÅäÖÃ
- *               ÊÇ·ñÕıÈ·
+ * \retval AW_OK åˆå§‹åŒ–æˆåŠŸ
+ * \retval  < 0  åˆå§‹åŒ–å¤±è´¥ï¼Œè¯·æ£€æŸ¥ am_hwconf_miniport_zlg72128.c æ–‡ä»¶ä¸­çš„é…ç½®
+ *               æ˜¯å¦æ­£ç¡®
  */
 int am_miniport_zlg72128_inst_init (void);
 

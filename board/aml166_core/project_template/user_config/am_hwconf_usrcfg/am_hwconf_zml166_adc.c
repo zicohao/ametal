@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief zml166_adc ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief zml166_adc ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_zml166_adc.c
  *
  * \internal
@@ -33,16 +33,16 @@
  * @{
  */
 
-/** \brief zml166_adc Éè±¸ĞÅÏ¢ */
+/** \brief zml166_adc è®¾å¤‡ä¿¡æ¯ */
 am_local am_const am_zml166_adc_devinfo_t __g_zml166_adc_devinfo = {
-    2500,                           /* ADC ²Î¿¼µçÑ¹£¬µ¥Î»£ºmV£¬¡À2.5V£¬¼´ 5V */
-    5000,                           /* ³¬Ê±Ê±¼ä£¬µ¥Î»ÎªºÁÃë */
+    2500,                           /* ADC å‚è€ƒç”µå‹ï¼Œå•ä½ï¼šmVï¼ŒÂ±2.5Vï¼Œå³ 5V */
+    5000,                           /* è¶…æ—¶æ—¶é—´ï¼Œå•ä½ä¸ºæ¯«ç§’ */
 };
 
-/** \brief zml166_adc Éè±¸ÊµÀı */
+/** \brief zml166_adc è®¾å¤‡å®ä¾‹ */
 am_local am_zml166_adc_dev_t __g_zml166_adc_dev;
 /**
- * \brief zml166_adc ÊµÀı³õÊ¼»¯
+ * \brief zml166_adc å®ä¾‹åˆå§‹åŒ–
  */
 am_zml166_adc_handle_t am_zml166_adc_inst_init (void)
 {
@@ -50,7 +50,7 @@ am_zml166_adc_handle_t am_zml166_adc_inst_init (void)
 }
 
 /**
- * \brief zml166_adc ÊµÀı½â³õÊ¼»¯
+ * \brief zml166_adc å®ä¾‹è§£åˆå§‹åŒ–
  */
 void am_zml166_adc_inst_deinit (am_zml166_adc_handle_t handle)
 {

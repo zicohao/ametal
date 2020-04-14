@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief  CAN±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief  CANæ ‡å‡†æ¥å£å®ç°
  * 
  * \internal
  * \par Modification history
@@ -38,144 +38,144 @@ extern "C" {
  */
 
 /**
- * \name CAN±êÖ¾µÄ¶¨Òå
+ * \name CANæ ‡å¿—çš„å®šä¹‰
  * \anchor grp_am_can_flag
  * @{
  */
 
-/** \brief flags ±¨ÎÄĞÅÏ¢µÄ±êÖ¾
+/** \brief flags æŠ¥æ–‡ä¿¡æ¯çš„æ ‡å¿—
  * -----------------------------------------------------------
  * | 15:10                             | 9:8 controller type |
  * -----------------------------------------------------------
  * -----------------------------------------------------------
  * | 7:reseverd |6:reseverd | 5:SEF | 4:SDF | 3 : 0 sendtype |
  * -----------------------------------------------------------
- * bit7:reseverd ±£Áô
- * bit6:reseverd ±£Áô
- * bit5:SEF Ö¡¸ñÊ½ (1:extendedÀ©Õ¹Ö¡ 0:std ±ê×¼Ö¡)
- * bit4:SDF Ö¡ÀàĞÍ (1:remoteÔ¶³ÌÖ¡   0:dataÊı¾İÖ¡)
- * bit0~3:·¢ËÍÀàĞÍ  (sendtype:¼ûºê¶¨Òå)
+ * bit7:reseverd ä¿ç•™
+ * bit6:reseverd ä¿ç•™
+ * bit5:SEF å¸§æ ¼å¼ (1:extendedæ‰©å±•å¸§ 0:std æ ‡å‡†å¸§)
+ * bit4:SDF å¸§ç±»å‹ (1:remoteè¿œç¨‹å¸§   0:dataæ•°æ®å¸§)
+ * bit0~3:å‘é€ç±»å‹  (sendtype:è§å®å®šä¹‰)
  */
-typedef uint16_t am_can_flag_t;            /**< \brief CAN±êÖ¾             */
-#define AM_CAN_NORMAL_SEND_FLAG     0X00   /**< \brief Õı³£·¢ËÍ           */
-#define AM_CAN_ONCE_SEND_FLAG       0X01   /**< \brief µ¥´Î·¢ËÍ           */
-#define AM_CAN_SELF_SEND_FLAG       0X02   /**< \brief ×Ô·¢×ÔÊÕ           */
-#define AM_CAN_SELFONCE_SEND_FLAG   0X03   /**< \brief µ¥´Î×Ô·¢×ÔÊÕ */
-#define AM_CAN_REMOTE_FLAG		    0X10   /**< \brief Ô¶³ÌÖ¡±êÖ¾Î» */
-#define AM_CAN_EXTERN_FLAG		    0X20   /**< \brief À©Õ¹Ö¡±êÖ¾Î» */
-#define AM_CAN_FD_CTRL_FLAG         0x0100 /**< \brief CANFD±êÖ¾Î»   */
+typedef uint16_t am_can_flag_t;            /**< \brief CANæ ‡å¿—             */
+#define AM_CAN_NORMAL_SEND_FLAG     0X00   /**< \brief æ­£å¸¸å‘é€           */
+#define AM_CAN_ONCE_SEND_FLAG       0X01   /**< \brief å•æ¬¡å‘é€           */
+#define AM_CAN_SELF_SEND_FLAG       0X02   /**< \brief è‡ªå‘è‡ªæ”¶           */
+#define AM_CAN_SELFONCE_SEND_FLAG   0X03   /**< \brief å•æ¬¡è‡ªå‘è‡ªæ”¶ */
+#define AM_CAN_REMOTE_FLAG		    0X10   /**< \brief è¿œç¨‹å¸§æ ‡å¿—ä½ */
+#define AM_CAN_EXTERN_FLAG		    0X20   /**< \brief æ‰©å±•å¸§æ ‡å¿—ä½ */
+#define AM_CAN_FD_CTRL_FLAG         0x0100 /**< \brief CANFDæ ‡å¿—ä½   */
 
 /** @} */
 
-/** \brief CAN ½ÓÊÕ·¢ËÍ ĞÅÏ¢  */
+/** \brief CAN æ¥æ”¶å‘é€ ä¿¡æ¯  */
 typedef struct am_can_message {
-	uint32_t	     id;                    /**< \brief id Ö¡ID              */
-    am_can_flag_t    flags;                 /**< \brief flags      ±êÖ¾Î»     	 */
-	uint16_t	     msglen;                /**< \brief msglen     ±¨ÎÄ³¤¶È  	 */
-	uint8_t		     msgdata[8];            /**< \brief msgdata    ±¨ÎÄ»º³åÇø  */
+	uint32_t	     id;                    /**< \brief id å¸§ID              */
+    am_can_flag_t    flags;                 /**< \brief flags      æ ‡å¿—ä½     	 */
+	uint16_t	     msglen;                /**< \brief msglen     æŠ¥æ–‡é•¿åº¦  	 */
+	uint8_t		     msgdata[8];            /**< \brief msgdata    æŠ¥æ–‡ç¼“å†²åŒº  */
 } am_can_message_t;
 
 
-/** \brief ½ÓÊÕĞÅÏ¢  */
+/** \brief æ¥æ”¶ä¿¡æ¯  */
 typedef struct am_canfd_message {
-	am_can_message_t can_msg;               /**< \brief CANĞÅÏ¢                                   */
-    uint8_t msgdata[64-8];                  /**< \brief CANFD Êı¾İ³¤¶ÈÎª64B	*/
+	am_can_message_t can_msg;               /**< \brief CANä¿¡æ¯                                   */
+    uint8_t msgdata[64-8];                  /**< \brief CANFD æ•°æ®é•¿åº¦ä¸º64B	*/
 } am_canfd_message_t;
 
 
 /**
- * \name CAN´íÎóÀàĞÍ
+ * \name CANé”™è¯¯ç±»å‹
  * \anchor grp_am_can_err_t
  * @{
  */
 
-typedef uint32_t am_can_err_t;                 /**< \brief ´íÎóÀàĞÍ   */
-#define AM_CAN_NOERROR                 	0x00   /**< \brief ÎŞ´íÎó   */
-#define AM_CAN_NOTINITIALIZED          	0x01   /**< \brief Î´³õÊ¼»¯   */
-#define AM_CAN_ILLEGAL_CHANNEL_NO      	0x02   /**< \brief ·Ç·¨Í¨µÀºÅ   */
-#define AM_CAN_ILLEGAL_CONFIG          	0x03   /**< \brief ·Ç·¨ÅäÖÃ   */
-#define AM_CAN_ILLEGAL_DATA_LENGTH     	0x04   /**< \brief ·Ç·¨Êı¾İ³¤¶È   */
-#define AM_CAN_ILLEGAL_MASK_VALUE      	0x05   /**< \brief ·Ç·¨ÆÁ±ÎÂë   */
-#define AM_CAN_NO_AVAIL_CHANNELS       	0x06   /**< \brief Í¨µÀ²»¿ÉÓÃ   */
-#define AM_CAN_INVALID_PARAMETER       	0x07   /**< \brief ÎŞĞ§²ÎÊı  */
-#define AM_CAN_ILLEGAL_OFFSET          	0x08   /**< \brief ÎŞĞ§µÄÆ«ÖÃ   */
-#define AM_CAN_CANNOT_SET_ERRINT       	0x09   /**< \brief Î´Ê¹ÄÜ´íÎóÖĞ¶Ï   */
-#define AM_CAN_CANNOT_SET_BOFFINT      	0x10   /**< \brief Î´Ê¹ÄÜ×ÜÏß¹Ø±ÕÖĞ¶Ï   */
-#define AM_CAN_CANNOT_SET_WAKEUPINT    	0x11   /**< \brief Î´Ê¹ÄÜ»½ĞÑÖĞ¶Ï   */
-#define AM_CAN_INCOMPATIBLE_TYPE       	0x12   /**< \brief ÀàĞÍ²»¼æÈİ   */
-#define AM_CAN_BAUDRATE_ERROR          	0x13   /**< \brief ²¨ÌØÂÊ´íÎó   */
+typedef uint32_t am_can_err_t;                 /**< \brief é”™è¯¯ç±»å‹   */
+#define AM_CAN_NOERROR                 	0x00   /**< \brief æ— é”™è¯¯   */
+#define AM_CAN_NOTINITIALIZED          	0x01   /**< \brief æœªåˆå§‹åŒ–   */
+#define AM_CAN_ILLEGAL_CHANNEL_NO      	0x02   /**< \brief éæ³•é€šé“å·   */
+#define AM_CAN_ILLEGAL_CONFIG          	0x03   /**< \brief éæ³•é…ç½®   */
+#define AM_CAN_ILLEGAL_DATA_LENGTH     	0x04   /**< \brief éæ³•æ•°æ®é•¿åº¦   */
+#define AM_CAN_ILLEGAL_MASK_VALUE      	0x05   /**< \brief éæ³•å±è”½ç    */
+#define AM_CAN_NO_AVAIL_CHANNELS       	0x06   /**< \brief é€šé“ä¸å¯ç”¨   */
+#define AM_CAN_INVALID_PARAMETER       	0x07   /**< \brief æ— æ•ˆå‚æ•°  */
+#define AM_CAN_ILLEGAL_OFFSET          	0x08   /**< \brief æ— æ•ˆçš„åç½®   */
+#define AM_CAN_CANNOT_SET_ERRINT       	0x09   /**< \brief æœªä½¿èƒ½é”™è¯¯ä¸­æ–­   */
+#define AM_CAN_CANNOT_SET_BOFFINT      	0x10   /**< \brief æœªä½¿èƒ½æ€»çº¿å…³é—­ä¸­æ–­   */
+#define AM_CAN_CANNOT_SET_WAKEUPINT    	0x11   /**< \brief æœªä½¿èƒ½å”¤é†’ä¸­æ–­   */
+#define AM_CAN_INCOMPATIBLE_TYPE       	0x12   /**< \brief ç±»å‹ä¸å…¼å®¹   */
+#define AM_CAN_BAUDRATE_ERROR          	0x13   /**< \brief æ³¢ç‰¹ç‡é”™è¯¯   */
 
 /** @} */
 
 /**
- * \name CAN×ÜÏß´íÎóÀàĞÍ 
+ * \name CANæ€»çº¿é”™è¯¯ç±»å‹ 
  * \anchor grp_am_can_bus_err
  * @{
  */
  
-typedef uint32_t am_can_bus_err_t;              /**< \brief CAN×ÜÏß´íÎóÀàĞÍ    */
-#define AM_CAN_BUS_ERR_NONE    			0x00	/**< \brief ÎŞ´íÎó   */
-#define AM_CAN_BUS_ERR_BIT     			0x01	/**< \brief Î»´íÎó   */
-#define AM_CAN_BUS_ERR_ACK     			0x02	/**< \brief Ó¦´ğ´íÎó */
-#define AM_CAN_BUS_ERR_CRC     			0x04	/**< \brief CRC´íÎó  */
-#define AM_CAN_BUS_ERR_FORM    			0x08	/**< \brief ¸ñÊ½´íÎó */
-#define AM_CAN_BUS_ERR_STUFF  	 		0x10	/**< \brief Ìî³ä´íÎó */
-#define AM_CAN_BUS_ERR_UNKNOWN 			0x20	/**< \brief Î´Öª´íÎó */
+typedef uint32_t am_can_bus_err_t;              /**< \brief CANæ€»çº¿é”™è¯¯ç±»å‹    */
+#define AM_CAN_BUS_ERR_NONE    			0x00	/**< \brief æ— é”™è¯¯   */
+#define AM_CAN_BUS_ERR_BIT     			0x01	/**< \brief ä½é”™è¯¯   */
+#define AM_CAN_BUS_ERR_ACK     			0x02	/**< \brief åº”ç­”é”™è¯¯ */
+#define AM_CAN_BUS_ERR_CRC     			0x04	/**< \brief CRCé”™è¯¯  */
+#define AM_CAN_BUS_ERR_FORM    			0x08	/**< \brief æ ¼å¼é”™è¯¯ */
+#define AM_CAN_BUS_ERR_STUFF  	 		0x10	/**< \brief å¡«å……é”™è¯¯ */
+#define AM_CAN_BUS_ERR_UNKNOWN 			0x20	/**< \brief æœªçŸ¥é”™è¯¯ */
 
 /** @} */
 
 /**
- * \name CANÖĞ¶ÏÀàĞÍ
+ * \name CANä¸­æ–­ç±»å‹
  * \anchor grp_am_can_int_type
  * @{
  */
 
-typedef uint32_t am_can_int_type_t;                /**< \brief ÖĞ¶ÏÀàĞÍ             */
-#define AM_CAN_INT_NONE     			0x00       /**< \brief ÎŞÀàĞÍ                  */
-#define AM_CAN_INT_ERROR    			0x01       /**< \brief ´íÎóÖĞ¶Ï             */
-#define AM_CAN_INT_BUS_OFF  			0x02       /**< \brief ×ÜÏß¹Ø±ÕÖĞ¶Ï   */
-#define AM_CAN_INT_WAKE_UP  			0x04       /**< \brief »½ĞÑÖĞ¶Ï             */
-#define AM_CAN_INT_TX       			0x08       /**< \brief ·¢ËÍÖĞ¶Ï             */
-#define AM_CAN_INT_RX       			0x10       /**< \brief ½ÓÊÕÖĞ¶Ï             */
-#define AM_CAN_INT_DATAOVER             0x20       /**< \brief ×ÜÏß³¬ÔØÖĞ¶Ï   */
-#define AM_CAN_INT_WARN    			    0x40       /**< \brief ¾¯¸æÖĞ¶Ï             */
-#define AM_CAN_INT_ERROR_PASSIVE        0x80       /**< \brief ´íÎó±»¶¯ÖĞ¶Ï   */
-#define AM_CAN_INT_ALL      			0xffffffff /**< \brief ËùÓĞÖĞ¶Ï             */
+typedef uint32_t am_can_int_type_t;                /**< \brief ä¸­æ–­ç±»å‹             */
+#define AM_CAN_INT_NONE     			0x00       /**< \brief æ— ç±»å‹                  */
+#define AM_CAN_INT_ERROR    			0x01       /**< \brief é”™è¯¯ä¸­æ–­             */
+#define AM_CAN_INT_BUS_OFF  			0x02       /**< \brief æ€»çº¿å…³é—­ä¸­æ–­   */
+#define AM_CAN_INT_WAKE_UP  			0x04       /**< \brief å”¤é†’ä¸­æ–­             */
+#define AM_CAN_INT_TX       			0x08       /**< \brief å‘é€ä¸­æ–­             */
+#define AM_CAN_INT_RX       			0x10       /**< \brief æ¥æ”¶ä¸­æ–­             */
+#define AM_CAN_INT_DATAOVER             0x20       /**< \brief æ€»çº¿è¶…è½½ä¸­æ–­   */
+#define AM_CAN_INT_WARN    			    0x40       /**< \brief è­¦å‘Šä¸­æ–­             */
+#define AM_CAN_INT_ERROR_PASSIVE        0x80       /**< \brief é”™è¯¯è¢«åŠ¨ä¸­æ–­   */
+#define AM_CAN_INT_ALL      			0xffffffff /**< \brief æ‰€æœ‰ä¸­æ–­             */
 
 /** @} */
 
 /**
- * \name CANÄ£Ê½ÀàĞÍ 
+ * \name CANæ¨¡å¼ç±»å‹ 
  * \anchor grp_am_can_mode_type
  * @{
  */
  
-typedef uint8_t am_can_mode_type_t;             /**< \brief CANÄ£Ê½ÀàĞÍ  */
-#define AM_CAN_MODE_NROMAL				0x00	/**< \brief Õı³£¹¤×÷Ä£Ê½ */
-#define AM_CAN_MODE_LISTEN_ONLY		    0x01	/**< \brief Ö»Ìı¹¤×÷Ä£Ê½ */
+typedef uint8_t am_can_mode_type_t;             /**< \brief CANæ¨¡å¼ç±»å‹  */
+#define AM_CAN_MODE_NROMAL				0x00	/**< \brief æ­£å¸¸å·¥ä½œæ¨¡å¼ */
+#define AM_CAN_MODE_LISTEN_ONLY		    0x01	/**< \brief åªå¬å·¥ä½œæ¨¡å¼ */
 
 /** @} */
 
-/** \brief ´íÎó¼ÆÊı */
+/** \brief é”™è¯¯è®¡æ•° */
 typedef struct am_can_err_cnt {
-	uint8_t rx_error_cnt; 	                    /**< \brief ½ÓÊÕ´íÎó¼ÆÊıÆ÷ */
-	uint8_t tx_error_cnt; 	                    /**< \brief ·¢ËÍ´íÎó¼ÆÊıÆ÷ */
+	uint8_t rx_error_cnt; 	                    /**< \brief æ¥æ”¶é”™è¯¯è®¡æ•°å™¨ */
+	uint8_t tx_error_cnt; 	                    /**< \brief å‘é€é”™è¯¯è®¡æ•°å™¨ */
 } am_can_err_cnt_t;
 
-/** \brief ²¨ÌØÂÊ²ÎÊı */
+/** \brief æ³¢ç‰¹ç‡å‚æ•° */
 typedef struct am_can_bps_param {
-	uint8_t   	tesg1;  		                /**< \brief tseg1 ÏàÎ»¶Î1    */
-	uint8_t   	tesg2;  		                /**< \brief tseg2 ÏàÎ»¶Î2    */   
-	uint8_t   	sjw;    		                /**< \brief sjw Í¬²½Ìø×ª¿í¶È  */
-	uint8_t     smp;                            /**< \brief smp ²ÉÑùÄ£Ê½            */
-	uint16_t    brp;                            /**< \brief brp ·ÖÆµÖµ                 */
+	uint8_t   	tesg1;  		                /**< \brief tseg1 ç›¸ä½æ®µ1    */
+	uint8_t   	tesg2;  		                /**< \brief tseg2 ç›¸ä½æ®µ2    */   
+	uint8_t   	sjw;    		                /**< \brief sjw åŒæ­¥è·³è½¬å®½åº¦  */
+	uint8_t     smp;                            /**< \brief smp é‡‡æ ·æ¨¡å¼            */
+	uint16_t    brp;                            /**< \brief brp åˆ†é¢‘å€¼                 */
 } am_can_bps_param_t;
 
 /**
  * \brief CAN reconfigure information .
  */
 typedef struct am_can_cfg_info {
-    am_can_mode_type_t        can_mode;         /**< \brief CAN Ä£Ê½    */
+    am_can_mode_type_t        can_mode;         /**< \brief CAN æ¨¡å¼    */
 } am_can_cfg_info_t;
 
 /**
@@ -183,106 +183,106 @@ typedef struct am_can_cfg_info {
  */
 struct am_can_drv_funcs {
 
-	/** \brief CANÆô¶¯ */
+	/** \brief CANå¯åŠ¨ */
 	am_can_err_t (*pfn_can_start)(void *p_drv);
     
-    /** \brief CAN¸´Î»£¨Í£Ö¹£© */
+    /** \brief CANå¤ä½ï¼ˆåœæ­¢ï¼‰ */
 	am_can_err_t (*pfn_can_reset)(void *p_drv);
     
-    /** \brief CANĞİÃß  */
+    /** \brief CANä¼‘çœ   */
 	am_can_err_t (*pfn_can_sleep)(void *p_drv);
 
-    /** \brief CAN»½ĞÑ */
+    /** \brief CANå”¤é†’ */
 	am_can_err_t (*pfn_can_wakeup)(void *p_drv);
 
-    /** \brief ÖĞ¶ÏÊ¹ÄÜ */
+    /** \brief ä¸­æ–­ä½¿èƒ½ */
 	am_can_err_t (*pfn_can_int_enable)(void *p_drv, am_can_int_type_t int_mask);
 
-    /** \brief ÖĞ¶Ï½ûÄÜ*/
+    /** \brief ä¸­æ–­ç¦èƒ½*/
 	am_can_err_t (*pfn_can_int_disable)(void *p_drv, am_can_int_type_t int_mask);
 
-	/** \brief Ä£Ê½ÉèÖÃ */
+	/** \brief æ¨¡å¼è®¾ç½® */
 	am_can_err_t (*pfn_can_mode_set)(void *p_drv, am_can_mode_type_t mode);
 
-    /** \brief ²¨ÌØÂÊÉèÖÃ */
+    /** \brief æ³¢ç‰¹ç‡è®¾ç½® */
 	am_can_err_t (*pfn_can_baudrate_set)(void               *p_drv,
 										 am_can_bps_param_t *p_can_baudrate);
 
-    /** \brief ²¨ÌØÂÊ»ñÈ¡ */
+    /** \brief æ³¢ç‰¹ç‡è·å– */
     am_can_err_t (*pfn_can_baudrate_get)(void               *p_drv,
                                          am_can_bps_param_t *p_can_baudrate);
    
-    /** \brief »ñÈ¡´íÎó¼ÆÊı */
+    /** \brief è·å–é”™è¯¯è®¡æ•° */
 	am_can_err_t (*pfn_can_err_cnt_get)(void             *p_drv,
 										am_can_err_cnt_t *p_can_err_reg);
     
-    /** \brief Çå³ı´íÎó¼ÆÊı */
+    /** \brief æ¸…é™¤é”™è¯¯è®¡æ•° */
 	am_can_err_t (*pfn_can_err_cnt_clr)(void *p_drv);
 
-    /** \brief ·¢ËÍĞÅÏ¢   */
+    /** \brief å‘é€ä¿¡æ¯   */
 	am_can_err_t (*pfn_can_msg_send)(void *p_drv, am_can_message_t *p_txmsg);
 
-    /** \brief ½ÓÊÕĞÅÏ¢   */
+    /** \brief æ¥æ”¶ä¿¡æ¯   */
 	am_can_err_t (*pfn_can_msg_recv)(void *p_drv, am_can_message_t *p_rxmsg);
 
-    /** \brief Í£Ö¹·¢ËÍĞÅÏ¢   */
+    /** \brief åœæ­¢å‘é€ä¿¡æ¯   */
 	am_can_err_t (*pfn_can_stop_msg_snd)(void *p_drv);
 
-    /** \brief ÉèÖÃÂË²¨º¯Êı */
+    /** \brief è®¾ç½®æ»¤æ³¢å‡½æ•° */
 	am_can_err_t (*pfn_can_filter_tab_set)(void    *p_drv,
 	                                       uint8_t *p_filterbuff,
 	                                       size_t   lenth);
 
-    /** \brief »ñÈ¡ÂË²¨º¯Êı*/
+    /** \brief è·å–æ»¤æ³¢å‡½æ•°*/
 	am_can_err_t (*pfn_can_filter_tab_get)(void    *p_drv,
 	                                       uint8_t *p_filterbuff,
 	                                       size_t  *p_lenth);
 
-    /** \brief CAN ×´Ì¬ */
+    /** \brief CAN çŠ¶æ€ */
 	am_can_err_t (*pfn_can_status_get)(void              *p_drv,
                                        am_can_int_type_t *p_int_type,
                                        am_can_bus_err_t  *p_bus_err);
 
-    /** \brief ÖĞ¶ÏÁ¬½Ó */
+    /** \brief ä¸­æ–­è¿æ¥ */
     am_can_err_t (*pfn_can_connect)(void 		 *p_drv,
     								am_pfnvoid_t  pfn_isr,
     								void         *p_arg);
 
-    /** \brief É¾³ıÖĞ¶ÏÁ¬½Ó */
+    /** \brief åˆ é™¤ä¸­æ–­è¿æ¥ */
     am_can_err_t (*pfn_can_disconnect)(void         *p_drv,
                                        am_pfnvoid_t  pfn_isr,
                                        void         *p_arg);
 		
-    /** \brief ÖĞ¶Ï»Øµ÷º¯ÊıµÄÁ¬½Ó */
+    /** \brief ä¸­æ–­å›è°ƒå‡½æ•°çš„è¿æ¥ */
     am_can_err_t (*pfn_can_intcb_connect)(void              *p_drv,
     									  am_can_int_type_t  inttype,
     									  am_pfnvoid_t       pfn_callback,
     									  void              *p_arg);
-    /** \brief É¾³ıÖĞ¶Ï»Øµ÷º¯ÊıµÄÁ¬½Ó */
+    /** \brief åˆ é™¤ä¸­æ–­å›è°ƒå‡½æ•°çš„è¿æ¥ */
     am_can_err_t (*pfn_can_intcb_disconnect)(void              *p_drv,
     										 am_can_int_type_t  inttype);
 };
 
 /**
- * \brief CAN Éè±¸.
+ * \brief CAN è®¾å¤‡.
  */
 typedef struct am_can_serv {
 
-    struct am_can_drv_funcs   *p_drv_funcs;    /**< \brief  Çı¶¯º¯Êı */
-    void                      *p_drv;          /**< \brief  Çı¶¯Éè±¸ */
+    struct am_can_drv_funcs   *p_drv_funcs;    /**< \brief  é©±åŠ¨å‡½æ•° */
+    void                      *p_drv;          /**< \brief  é©±åŠ¨è®¾å¤‡ */
 
 } am_can_serv_t;
 
-/** \brief handle ±ê×¼·şÎñ */
+/** \brief handle æ ‡å‡†æœåŠ¡ */
 typedef am_can_serv_t *am_can_handle_t;
 
 /**
- * \brief CAN Æô¶¯.
+ * \brief CAN å¯åŠ¨.
  *
- * \param[in] handle : CAN ±ê×¼·şÎñ handle.
+ * \param[in] handle : CAN æ ‡å‡†æœåŠ¡ handle.
  *
- * \retval  AM_CAN_NOERROR            :  ³É¹¦.
- * \retval  -AM_CAN_INVALID_PARAMETER : ²ÎÊı´íÎó
+ * \retval  AM_CAN_NOERROR            :  æˆåŠŸ.
+ * \retval  -AM_CAN_INVALID_PARAMETER : å‚æ•°é”™è¯¯
  */
 am_static_inline
 am_can_err_t am_can_start (am_can_handle_t handle)
@@ -291,12 +291,12 @@ am_can_err_t am_can_start (am_can_handle_t handle)
 }
 
 /**
- * \brief CAN ¸´Î».
+ * \brief CAN å¤ä½.
  *
- * \param[in] handle : CAN ±ê×¼·şÎñ handle.
+ * \param[in] handle : CAN æ ‡å‡†æœåŠ¡ handle.
  *
- * \retval  AM_CAN_NOERROR            :  ³É¹¦.
- * \retval  -AM_CAN_INVALID_PARAMETER : ²ÎÊı´íÎó
+ * \retval  AM_CAN_NOERROR            :  æˆåŠŸ.
+ * \retval  -AM_CAN_INVALID_PARAMETER : å‚æ•°é”™è¯¯
  */
 am_static_inline
 am_can_err_t am_can_reset (am_can_handle_t handle)
@@ -305,12 +305,12 @@ am_can_err_t am_can_reset (am_can_handle_t handle)
 }
 
 /**
- * \brief CAN Ë¯Ãß.
+ * \brief CAN ç¡çœ .
  *
- * \param[in] handle : CAN ±ê×¼·şÎñ handle.
+ * \param[in] handle : CAN æ ‡å‡†æœåŠ¡ handle.
  *
- * \retval  AM_CAN_NOERROR            :  ³É¹¦.
- * \retval  -AM_CAN_INVALID_PARAMETER : ²ÎÊı´íÎó
+ * \retval  AM_CAN_NOERROR            :  æˆåŠŸ.
+ * \retval  -AM_CAN_INVALID_PARAMETER : å‚æ•°é”™è¯¯
  */
 am_static_inline
 am_can_err_t am_can_sleep (am_can_handle_t handle)
@@ -319,12 +319,12 @@ am_can_err_t am_can_sleep (am_can_handle_t handle)
 }
 
 /**
- * \brief CAN »½ĞÑ.
+ * \brief CAN å”¤é†’.
  *
- * \param[in] handle : CAN ±ê×¼·şÎñ handle.
+ * \param[in] handle : CAN æ ‡å‡†æœåŠ¡ handle.
  *
- * \retval  AM_CAN_NOERROR            :  ³É¹¦.
- * \retval  -AM_CAN_INVALID_PARAMETER : ²ÎÊı´íÎó
+ * \retval  AM_CAN_NOERROR            :  æˆåŠŸ.
+ * \retval  -AM_CAN_INVALID_PARAMETER : å‚æ•°é”™è¯¯
  */
 am_static_inline
 am_can_err_t am_can_wakeup (am_can_handle_t handle)
@@ -333,13 +333,13 @@ am_can_err_t am_can_wakeup (am_can_handle_t handle)
 }
 
 /**
- * \brief CAN ÖĞ¶ÏÊ¹ÄÜ.
+ * \brief CAN ä¸­æ–­ä½¿èƒ½.
  *
- * \param[in] handle : CAN ±ê×¼·şÎñ handle.
- * \param[in] mask   : ÖĞ¶ÏÀàĞÍ
+ * \param[in] handle : CAN æ ‡å‡†æœåŠ¡ handle.
+ * \param[in] mask   : ä¸­æ–­ç±»å‹
  *
- * \retval  AM_CAN_NOERROR            :  ³É¹¦.
- * \retval  -AM_CAN_INVALID_PARAMETER : ²ÎÊı´íÎó
+ * \retval  AM_CAN_NOERROR            :  æˆåŠŸ.
+ * \retval  -AM_CAN_INVALID_PARAMETER : å‚æ•°é”™è¯¯
  */
 am_static_inline
 am_can_err_t am_can_int_enable (am_can_handle_t handle, am_can_int_type_t mask)
@@ -348,13 +348,13 @@ am_can_err_t am_can_int_enable (am_can_handle_t handle, am_can_int_type_t mask)
 }
 
 /**
- * \brief CAN ÖĞ¶ÏÊ§ÄÜ.
+ * \brief CAN ä¸­æ–­å¤±èƒ½.
  *
- * \param[in] handle : CAN ±ê×¼·şÎñ handle.
- * \param[in] mask   : ÖĞ¶ÏÀàĞÍ
+ * \param[in] handle : CAN æ ‡å‡†æœåŠ¡ handle.
+ * \param[in] mask   : ä¸­æ–­ç±»å‹
  *
- * \retval  AM_CAN_NOERROR            :  ³É¹¦.
- * \retval  -AM_CAN_INVALID_PARAMETER : ²ÎÊı´íÎó
+ * \retval  AM_CAN_NOERROR            :  æˆåŠŸ.
+ * \retval  -AM_CAN_INVALID_PARAMETER : å‚æ•°é”™è¯¯
  */
 am_static_inline
 am_can_err_t am_can_int_disable (am_can_handle_t handle, am_can_int_type_t mask)
@@ -363,13 +363,13 @@ am_can_err_t am_can_int_disable (am_can_handle_t handle, am_can_int_type_t mask)
 }
 
 /**
- * \brief CAN ÉèÖÃÄ£Ê½.
+ * \brief CAN è®¾ç½®æ¨¡å¼.
  *
- * \param[in] handle : CAN ±ê×¼·şÎñ handle.
- * \param[in] mode   : ¹¤×÷Ä£Ê½
+ * \param[in] handle : CAN æ ‡å‡†æœåŠ¡ handle.
+ * \param[in] mode   : å·¥ä½œæ¨¡å¼
  *
- * \retval  AM_CAN_NOERROR            :  ³É¹¦.
- * \retval  -AM_CAN_INVALID_PARAMETER : ²ÎÊı´íÎó
+ * \retval  AM_CAN_NOERROR            :  æˆåŠŸ.
+ * \retval  -AM_CAN_INVALID_PARAMETER : å‚æ•°é”™è¯¯
  */
 am_static_inline
 am_can_err_t am_can_mode_set (am_can_handle_t    handle,
@@ -379,13 +379,13 @@ am_can_err_t am_can_mode_set (am_can_handle_t    handle,
 }
 
 /**
- * \brief CAN ÉèÖÃ²¨ÌØÂÊ.
+ * \brief CAN è®¾ç½®æ³¢ç‰¹ç‡.
  *
- * \param[in] handle           : CAN ±ê×¼·şÎñ handle.
- * \param[in] p_can_baudrate   : ²¨ÌØÂÊ
+ * \param[in] handle           : CAN æ ‡å‡†æœåŠ¡ handle.
+ * \param[in] p_can_baudrate   : æ³¢ç‰¹ç‡
  *
- * \retval  AM_CAN_NOERROR            :  ³É¹¦.
- * \retval  -AM_CAN_INVALID_PARAMETER : ²ÎÊı´íÎó
+ * \retval  AM_CAN_NOERROR            :  æˆåŠŸ.
+ * \retval  -AM_CAN_INVALID_PARAMETER : å‚æ•°é”™è¯¯
  */
 am_static_inline
 am_can_err_t am_can_baudrate_set (am_can_handle_t          handle,
@@ -396,13 +396,13 @@ am_can_err_t am_can_baudrate_set (am_can_handle_t          handle,
 } 
 
 /**
- * \brief CAN »ñÈ¡²¨ÌØÂÊ.
+ * \brief CAN è·å–æ³¢ç‰¹ç‡.
  *
- * \param[in] handle           : CAN ±ê×¼·şÎñ handle.
- * \param[out] p_can_baudrate   : ²¨ÌØÂÊ
+ * \param[in] handle           : CAN æ ‡å‡†æœåŠ¡ handle.
+ * \param[out] p_can_baudrate   : æ³¢ç‰¹ç‡
  *
- * \retval  AM_CAN_NOERROR            :  ³É¹¦.
- * \retval  -AM_CAN_INVALID_PARAMETER : ²ÎÊı´íÎó
+ * \retval  AM_CAN_NOERROR            :  æˆåŠŸ.
+ * \retval  -AM_CAN_INVALID_PARAMETER : å‚æ•°é”™è¯¯
  */
 am_static_inline
 am_can_err_t am_can_baudrate_get (am_can_handle_t          handle,
@@ -413,13 +413,13 @@ am_can_err_t am_can_baudrate_get (am_can_handle_t          handle,
 }
 
 /**
- * \brief CAN »ñÈ¡´íÎó¼ÆÊı
+ * \brief CAN è·å–é”™è¯¯è®¡æ•°
  *
- * \param[in] handle         : CAN ±ê×¼·şÎñ handle.
- * \param[out] p_can_err_cnt : ´íÎó¼ÆÊı
+ * \param[in] handle         : CAN æ ‡å‡†æœåŠ¡ handle.
+ * \param[out] p_can_err_cnt : é”™è¯¯è®¡æ•°
  *
- * \retval  AM_CAN_NOERROR            :  ³É¹¦.
- * \retval  -AM_CAN_INVALID_PARAMETER : ²ÎÊı´íÎó
+ * \retval  AM_CAN_NOERROR            :  æˆåŠŸ.
+ * \retval  -AM_CAN_INVALID_PARAMETER : å‚æ•°é”™è¯¯
  */
 am_static_inline
 am_can_err_t am_can_err_cnt_get (am_can_handle_t        handle,
@@ -430,12 +430,12 @@ am_can_err_t am_can_err_cnt_get (am_can_handle_t        handle,
 } 
 
 /**
- * \brief CAN Çå³ı´íÎó¼ÆÊı
+ * \brief CAN æ¸…é™¤é”™è¯¯è®¡æ•°
  *
- * \param[in] handle : CAN ±ê×¼·şÎñ handle.
+ * \param[in] handle : CAN æ ‡å‡†æœåŠ¡ handle.
  *
- * \retval  AM_CAN_NOERROR            :  ³É¹¦.
- * \retval  -AM_CAN_INVALID_PARAMETER : ²ÎÊı´íÎó
+ * \retval  AM_CAN_NOERROR            :  æˆåŠŸ.
+ * \retval  -AM_CAN_INVALID_PARAMETER : å‚æ•°é”™è¯¯
  */
 am_static_inline
 am_can_err_t am_can_err_cnt_clr (am_can_handle_t handle)
@@ -444,13 +444,13 @@ am_can_err_t am_can_err_cnt_clr (am_can_handle_t handle)
 } 
 
 /**
- * \brief CAN ·¢ËÍĞÅÏ¢.
+ * \brief CAN å‘é€ä¿¡æ¯.
  *
- * \param[in] handle  : CAN ±ê×¼·şÎñ handle.
- * \param[in] p_txmsg : ·¢ËÍµÄÏûÏ¢
+ * \param[in] handle  : CAN æ ‡å‡†æœåŠ¡ handle.
+ * \param[in] p_txmsg : å‘é€çš„æ¶ˆæ¯
  *
- * \retval  AM_CAN_NOERROR            :  ³É¹¦.
- * \retval  -AM_CAN_INVALID_PARAMETER : ²ÎÊı´íÎó
+ * \retval  AM_CAN_NOERROR            :  æˆåŠŸ.
+ * \retval  -AM_CAN_INVALID_PARAMETER : å‚æ•°é”™è¯¯
  */
 am_static_inline
 am_can_err_t am_can_msg_send (am_can_handle_t handle, am_can_message_t *p_txmsg)
@@ -459,13 +459,13 @@ am_can_err_t am_can_msg_send (am_can_handle_t handle, am_can_message_t *p_txmsg)
 }
 
 /**
- * \brief CAN ½ÓÊÕÏûÏ¢
+ * \brief CAN æ¥æ”¶æ¶ˆæ¯
  *
- * \param[in] handle   : CAN ±ê×¼·şÎñ handle.
- * \param[out] p_rxmsg : ½ÓÊÕµÄÏûÏ¢
+ * \param[in] handle   : CAN æ ‡å‡†æœåŠ¡ handle.
+ * \param[out] p_rxmsg : æ¥æ”¶çš„æ¶ˆæ¯
  *
- * \retval  AM_CAN_NOERROR            :  ³É¹¦.
- * \retval  -AM_CAN_INVALID_PARAMETER : ²ÎÊı´íÎó
+ * \retval  AM_CAN_NOERROR            :  æˆåŠŸ.
+ * \retval  -AM_CAN_INVALID_PARAMETER : å‚æ•°é”™è¯¯
  */
 am_static_inline
 am_can_err_t am_can_msg_recv(am_can_handle_t handle, am_can_message_t *p_rxmsg)
@@ -474,12 +474,12 @@ am_can_err_t am_can_msg_recv(am_can_handle_t handle, am_can_message_t *p_rxmsg)
 }
 
 /**
- * \brief CAN Í£Ö¹·¢ËÍ
+ * \brief CAN åœæ­¢å‘é€
  *
- * \param[in] handle   : CAN ±ê×¼·şÎñ handle.
+ * \param[in] handle   : CAN æ ‡å‡†æœåŠ¡ handle.
  *
- * \retval  AM_CAN_NOERROR            :  ³É¹¦.
- * \retval  -AM_CAN_INVALID_PARAMETER : ²ÎÊı´íÎó
+ * \retval  AM_CAN_NOERROR            :  æˆåŠŸ.
+ * \retval  -AM_CAN_INVALID_PARAMETER : å‚æ•°é”™è¯¯
  */
 am_static_inline
 am_can_err_t am_can_msg_stop_send(am_can_handle_t handle)
@@ -488,14 +488,14 @@ am_can_err_t am_can_msg_stop_send(am_can_handle_t handle)
 }
 
 /**
- * \brief CAN ÉèÖÃÂË²¨
+ * \brief CAN è®¾ç½®æ»¤æ³¢
  *
- * \param[in] handle  : CAN ±ê×¼·şÎñ handle.
- * \param[in] p_filterbuff : ÂË²¨±íÊ×µØÖ·
- * \param[in] lenth        : ÂË²¨±í³¤¶È
+ * \param[in] handle  : CAN æ ‡å‡†æœåŠ¡ handle.
+ * \param[in] p_filterbuff : æ»¤æ³¢è¡¨é¦–åœ°å€
+ * \param[in] lenth        : æ»¤æ³¢è¡¨é•¿åº¦
  *
- * \retval  AM_CAN_NOERROR            :  ³É¹¦.
- * \retval  -AM_CAN_INVALID_PARAMETER : ²ÎÊı´íÎó
+ * \retval  AM_CAN_NOERROR            :  æˆåŠŸ.
+ * \retval  -AM_CAN_INVALID_PARAMETER : å‚æ•°é”™è¯¯
  */
 am_static_inline
 am_can_err_t am_can_filter_tab_set (am_can_handle_t  handle,
@@ -508,14 +508,14 @@ am_can_err_t am_can_filter_tab_set (am_can_handle_t  handle,
 }
 
 /**
- * \brief CAN »ñÈ¡ÂË²¨±íÉèÖÃ
+ * \brief CAN è·å–æ»¤æ³¢è¡¨è®¾ç½®
  *
- * \param[in]  handle          : CAN ±ê×¼·şÎñ handle.
- * \param[out] p_filterbuff    : ÂË²¨±íÊ×µØÖ·
- * \param[out] p_lenth         : ÂË²¨±í³¤¶È
+ * \param[in]  handle          : CAN æ ‡å‡†æœåŠ¡ handle.
+ * \param[out] p_filterbuff    : æ»¤æ³¢è¡¨é¦–åœ°å€
+ * \param[out] p_lenth         : æ»¤æ³¢è¡¨é•¿åº¦
  *
- * \retval  AM_CAN_NOERROR            :  ³É¹¦.
- * \retval  -AM_CAN_INVALID_PARAMETER : ²ÎÊı´íÎó
+ * \retval  AM_CAN_NOERROR            :  æˆåŠŸ.
+ * \retval  -AM_CAN_INVALID_PARAMETER : å‚æ•°é”™è¯¯
  */
 am_static_inline
 am_can_err_t am_can_filter_tab_get (am_can_handle_t  handle,
@@ -528,14 +528,14 @@ am_can_err_t am_can_filter_tab_get (am_can_handle_t  handle,
 }
 
 /**
- * \brief CAN »ñÈ¡×´Ì¬
+ * \brief CAN è·å–çŠ¶æ€
  *
- * \param[in] handle      : CAN ±ê×¼·şÎñ handle.
- * \param[out] p_int_type : ÖĞ¶ÏÀàĞÍ.
- * \param[out] p_bus_err  : ×ÜÏß´íÎóÀàĞÍ.
+ * \param[in] handle      : CAN æ ‡å‡†æœåŠ¡ handle.
+ * \param[out] p_int_type : ä¸­æ–­ç±»å‹.
+ * \param[out] p_bus_err  : æ€»çº¿é”™è¯¯ç±»å‹.
  *
- * \retval  AM_CAN_NOERROR            :  ³É¹¦.
- * \retval  -AM_CAN_INVALID_PARAMETER : ²ÎÊı´íÎó
+ * \retval  AM_CAN_NOERROR            :  æˆåŠŸ.
+ * \retval  -AM_CAN_INVALID_PARAMETER : å‚æ•°é”™è¯¯
  */
 am_static_inline
 am_can_err_t am_can_status_get (am_can_handle_t    handle,
@@ -548,14 +548,14 @@ am_can_err_t am_can_status_get (am_can_handle_t    handle,
 }
 
 /**
- * \brief CAN ÖĞ¶ÏÁ¬½Ó
+ * \brief CAN ä¸­æ–­è¿æ¥
  *
- * \param[in] handle  : CAN ±ê×¼·şÎñ handle.
- * \param[in] pfn_isr : CAN ÖĞ¶Ï·şÎñº¯Êı£¨NULLÊ±ÔòÊ¹ÓÃÄÚ²¿ÖĞ¶Ï·şÎñ£©.
- * \param[in] p_arg   : CAN ÖĞ¶Ï·şÎñº¯Êı²ÎÊı.
+ * \param[in] handle  : CAN æ ‡å‡†æœåŠ¡ handle.
+ * \param[in] pfn_isr : CAN ä¸­æ–­æœåŠ¡å‡½æ•°ï¼ˆNULLæ—¶åˆ™ä½¿ç”¨å†…éƒ¨ä¸­æ–­æœåŠ¡ï¼‰.
+ * \param[in] p_arg   : CAN ä¸­æ–­æœåŠ¡å‡½æ•°å‚æ•°.
  *
- * \retval  AM_CAN_NOERROR            :  ³É¹¦.
- * \retval  -AM_CAN_INVALID_PARAMETER : ²ÎÊı´íÎó
+ * \retval  AM_CAN_NOERROR            :  æˆåŠŸ.
+ * \retval  -AM_CAN_INVALID_PARAMETER : å‚æ•°é”™è¯¯
  */
 am_static_inline
 am_can_err_t am_can_connect (am_can_handle_t  handle,
@@ -566,14 +566,14 @@ am_can_err_t am_can_connect (am_can_handle_t  handle,
 }
 
 /**
- * \brief CAN É¾³ıÖĞ¶ÏÁ¬½Ó
+ * \brief CAN åˆ é™¤ä¸­æ–­è¿æ¥
  *
- * \param[in] handle  : CAN ±ê×¼·şÎñ handle.
- * \param[in] pfn_isr : CAN ÖĞ¶Ï·şÎñº¯Êı.
- * \param[in] p_arg   : CAN ÖĞ¶Ï·şÎñº¯Êı²ÎÊı.
+ * \param[in] handle  : CAN æ ‡å‡†æœåŠ¡ handle.
+ * \param[in] pfn_isr : CAN ä¸­æ–­æœåŠ¡å‡½æ•°.
+ * \param[in] p_arg   : CAN ä¸­æ–­æœåŠ¡å‡½æ•°å‚æ•°.
  *
- * \retval  AM_CAN_NOERROR            :  ³É¹¦.
- * \retval  -AM_CAN_INVALID_PARAMETER : ²ÎÊı´íÎó
+ * \retval  AM_CAN_NOERROR            :  æˆåŠŸ.
+ * \retval  -AM_CAN_INVALID_PARAMETER : å‚æ•°é”™è¯¯
  */
 am_static_inline
 am_can_err_t am_can_disconnect (am_can_handle_t  handle,
@@ -586,16 +586,16 @@ am_can_err_t am_can_disconnect (am_can_handle_t  handle,
 }
 
 /**
- * \brief CAN ×¢²áÖĞ¶Ï»Øµ÷º¯Êı
+ * \brief CAN æ³¨å†Œä¸­æ–­å›è°ƒå‡½æ•°
  *
- * \param[in] handle			 : CAN ±ê×¼·şÎñ handle.
- * \param[in] inttype			 : ÖĞ¶ÏÀàĞÍ
- * \param[in] pfn_callback       : ÖĞ¶Ï»Øµ÷º¯Êı
- * \param[in] p_arg 			 : »Øµ÷º¯Êı²ÎÊı
+ * \param[in] handle			 : CAN æ ‡å‡†æœåŠ¡ handle.
+ * \param[in] inttype			 : ä¸­æ–­ç±»å‹
+ * \param[in] pfn_callback       : ä¸­æ–­å›è°ƒå‡½æ•°
+ * \param[in] p_arg 			 : å›è°ƒå‡½æ•°å‚æ•°
  *
- * \retval  AM_CAN_NOERROR              : ³É¹¦.
- * \retval  -AM_CAN_INVALID_PARAMETER   : ²ÎÊı´íÎó
- * \retval  -AM_CAN_ILLEGAL_MASK_VALUE  : ÖĞ¶ÏÀàĞÍ²»ºÏ·¨
+ * \retval  AM_CAN_NOERROR              : æˆåŠŸ.
+ * \retval  -AM_CAN_INVALID_PARAMETER   : å‚æ•°é”™è¯¯
+ * \retval  -AM_CAN_ILLEGAL_MASK_VALUE  : ä¸­æ–­ç±»å‹ä¸åˆæ³•
  */
 am_static_inline
 am_can_err_t am_can_intcb_connect (am_can_handle_t    handle,
@@ -609,14 +609,14 @@ am_can_err_t am_can_intcb_connect (am_can_handle_t    handle,
 }
 
 /**
- * \brief CAN ½â³ıÖĞ¶Ï»Øµ÷º¯ÊıµÄ×¢²á
+ * \brief CAN è§£é™¤ä¸­æ–­å›è°ƒå‡½æ•°çš„æ³¨å†Œ
  *
- * \param[in] handle			 : CAN ±ê×¼·şÎñ handle.
- * \param[in] inttype			 : ÖĞ¶ÏÀàĞÍ
+ * \param[in] handle			 : CAN æ ‡å‡†æœåŠ¡ handle.
+ * \param[in] inttype			 : ä¸­æ–­ç±»å‹
  *
- * \retval  AM_CAN_NOERROR                : ³É¹¦.
- * \retval  -AM_CAN_INVALID_PARAMETER     : ²ÎÊı´íÎó
- * \retval  -AM_CAN_ILLEGAL_MASK_VALUE    : ÖĞ¶ÏÀàĞÍ²»ºÏ·¨
+ * \retval  AM_CAN_NOERROR                : æˆåŠŸ.
+ * \retval  -AM_CAN_INVALID_PARAMETER     : å‚æ•°é”™è¯¯
+ * \retval  -AM_CAN_ILLEGAL_MASK_VALUE    : ä¸­æ–­ç±»å‹ä¸åˆæ³•
  */
 am_static_inline
 am_can_err_t am_can_intcb_disconnect (am_can_handle_t    handle,

@@ -12,15 +12,15 @@
 
 /**
  * \file
- * \brief SPI ´Ó»úÀı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief SPI ä»æœºä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè£º
- *   1. ½« SPI Ö÷»úÓë´Ó»úÁ¬½Ó¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. å°† SPI ä¸»æœºä¸ä»æœºè¿æ¥ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´«ÊäÍê³ÉÖ®ºó´Ó»ú´òÓ¡½ÓÊÕ»º³åÇøµÄÊı¾İ¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. ä¼ è¾“å®Œæˆä¹‹åä»æœºæ‰“å°æ¥æ”¶ç¼“å†²åŒºçš„æ•°æ®ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_std_spi_slave.c src_std_spi_slave
  *
  * \internal
@@ -39,13 +39,13 @@
 #include "am_vdebug.h"
 #include "am_spi_slv.h"
 
-#define __REG_SIZE 40 /**< \brief »º³åÇø´óĞ¡ */
+#define __REG_SIZE 40 /**< \brief ç¼“å†²åŒºå¤§å° */
 
-uint8_t g_spi_slve_rxbuf[__REG_SIZE]; /**< \brief ´Ó»ú½ÓÊÕ»º³åÇø */
-uint8_t g_spi_slve_txbuf[__REG_SIZE]; /**< \brief ´Ó»ú·¢ËÍ»º³åÇø */
+uint8_t g_spi_slve_rxbuf[__REG_SIZE]; /**< \brief ä»æœºæ¥æ”¶ç¼“å†²åŒº */
+uint8_t g_spi_slve_txbuf[__REG_SIZE]; /**< \brief ä»æœºå‘é€ç¼“å†²åŒº */
 
 /**
- * \brief ´«Êä¿ªÊ¼»Øµ÷
+ * \brief ä¼ è¾“å¼€å§‹å›è°ƒ
  */
 static int __cs_active (void *p_arg)
 {
@@ -64,7 +64,7 @@ static int __transfer_data (void *p_arg, am_spi_slv_transfer_t *p_trans)
 }
 
 /**
- * \brief ´«Êä½áÊø»Øµ÷
+ * \brief ä¼ è¾“ç»“æŸå›è°ƒ
  */
 static int __cs_inactive (void *p_arg, size_t n)
 {
@@ -85,7 +85,7 @@ static int __cs_inactive (void *p_arg, size_t n)
 }
 
 /**
- * \brief SPI´ÓÉè±¸»Øµ÷º¯ÊıÀàĞÍ
+ * \brief SPIä»è®¾å¤‡å›è°ƒå‡½æ•°ç±»å‹
  */
 static am_spi_slv_cb_funs_t __g_spi_slv_cb_funs = {
     __cs_active,
@@ -94,14 +94,14 @@ static am_spi_slv_cb_funs_t __g_spi_slv_cb_funs = {
 };
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_std_spi_slave_entry (am_spi_slv_handle_t handle)
 {
     uint8_t             i;
     am_spi_slv_device_t spi_slv_dev;
 
-    /* ¹¹Ôì·¢ËÍµÄÊı¾İ */
+    /* æ„é€ å‘é€çš„æ•°æ® */
     for (i = 0; i < __REG_SIZE; i++) {
         g_spi_slve_txbuf[i] = i + 4;
     }

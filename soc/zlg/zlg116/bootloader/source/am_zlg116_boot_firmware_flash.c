@@ -28,7 +28,7 @@ static int __firmware_flash_bytes(void *p_drv, uint8_t *p_data, uint32_t firmwar
 static int __firmware_flash_final(void *p_drv);
 static int __firmware_verify(void *p_drv, am_boot_firmware_verify_info_t *p_verify_info);
 /**
- * \brief BootLoader ¹Ì¼ş´æ·Åµ½flashµÄ±ê×¼½Ó¿ÚµÄÊµÏÖ
+ * \brief BootLoader å›ºä»¶å­˜æ”¾åˆ°flashçš„æ ‡å‡†æ¥å£çš„å®ç°
  */
 static struct am_boot_firmware_drv_funcs __g_firmware_flash_drv_funcs = {
     __firmware_flash_start,
@@ -38,14 +38,14 @@ static struct am_boot_firmware_drv_funcs __g_firmware_flash_drv_funcs = {
 };
 
 /**
- * \brief ¹Ì¼ş´æ·Åµ½flashµÄ¿ªÊ¼º¯Êı
+ * \brief å›ºä»¶å­˜æ”¾åˆ°flashçš„å¼€å§‹å‡½æ•°
  */
 static int __firmware_flash_start (void *p_drv, uint32_t firmware_size)
 {
     am_zlg116_boot_firmware_flash_dev_t *p_dev = (am_zlg116_boot_firmware_flash_dev_t *)p_drv;
     p_dev->firmware_size_is_unknow = AM_FALSE;
     int ret;
-    /*Èç¹ûÓÃ»§µ÷ÓÃ¿ªÊ¼º¯ÊıÊ±Ã»ÓĞ´«Èë¹Ì¼şµÄ´óĞ¡£¬¾ÍĞèÒª±ß¶Á±ß²Á³ıflash£¬´«ÈëÁË¹Ì¼ş´óĞ¡¾ÍÒ»´ÎĞÔ²Á³ı*/
+    /*å¦‚æœç”¨æˆ·è°ƒç”¨å¼€å§‹å‡½æ•°æ—¶æ²¡æœ‰ä¼ å…¥å›ºä»¶çš„å¤§å°ï¼Œå°±éœ€è¦è¾¹è¯»è¾¹æ“¦é™¤flashï¼Œä¼ å…¥äº†å›ºä»¶å¤§å°å°±ä¸€æ¬¡æ€§æ“¦é™¤*/
     if( firmware_size <= 0) {
         p_dev->firmware_size_is_unknow = AM_TRUE;
     }
@@ -94,24 +94,24 @@ static int __firmware_flash_start (void *p_drv, uint32_t firmware_size)
 }
 
 /**
- * \brief ´æ´¢¹Ì¼ş
+ * \brief å­˜å‚¨å›ºä»¶
  */
 static int __firmware_flash_bytes (void *p_drv, uint8_t *p_data, uint32_t firmware_size)
 {
     if(p_data == NULL || firmware_size <= 0) {
         return AM_EINVAL;
     }
-    int      leave_size;   /* Ê£Óà */
+    int      leave_size;   /* å‰©ä½™ */
     int      ret, i;
-    uint32_t program_size; /* Ã¿´ÎĞ´ÈëflashµÄµÄÊı¾İ´óĞ¡  */
+    uint32_t program_size; /* æ¯æ¬¡å†™å…¥flashçš„çš„æ•°æ®å¤§å°  */
 
-    /* µ±»º³åÇøÀïÃæ»¹ÓĞÊı¾İÊ±£¬ĞèÒª½«»º³åÇøÓÃĞÂ´«ÈëµÄ¹Ì¼şÊı¾İÌîÂú£¬ data_program_start_index Ö¸ÏòÌîÍê»º³åÇøºó£¬
-     * ¹Ì¼şÊı¾İµÄÆğÊ¼ÏÂ±ê£¬Ò²¼´Ã»·ÅÈë»º³åÇøµÄÊı¾İµÄÆğÊ¼ÏÂ±ê
+    /* å½“ç¼“å†²åŒºé‡Œé¢è¿˜æœ‰æ•°æ®æ—¶ï¼Œéœ€è¦å°†ç¼“å†²åŒºç”¨æ–°ä¼ å…¥çš„å›ºä»¶æ•°æ®å¡«æ»¡ï¼Œ data_program_start_index æŒ‡å‘å¡«å®Œç¼“å†²åŒºåï¼Œ
+     * å›ºä»¶æ•°æ®çš„èµ·å§‹ä¸‹æ ‡ï¼Œä¹Ÿå³æ²¡æ”¾å…¥ç¼“å†²åŒºçš„æ•°æ®çš„èµ·å§‹ä¸‹æ ‡
      */
     uint32_t data_program_start_index = 0;
 
-    /* Èç¹û°´ÕÕ»º³åÇø´óĞ¡µÄÕûÊı±¶Ğ´Èëflashºó£¬¹Ì¼şÊ£ÓàµÄÊı¾İ²»×ã»º³åµÄ´óĞ¡£¬¾ÍÒªÔİÊ±·ÅÔÚ»º³åÇøÖĞ£¬
-     * µÈ´ıÏÂ´ÎÊı¾İ¹ıÀ´ºó´ÕÂú»º³åÇø´óĞ¡µÄÊı¾İÔÚĞ´Èëflash£¬leave_firmware_index¾ÍÊÇÖ¸ÏòÒªÔİÊ±´æÈë»º³åÇøµÄÊı¾İµÄÆğÊ¼ÏÂ±ê
+    /* å¦‚æœæŒ‰ç…§ç¼“å†²åŒºå¤§å°çš„æ•´æ•°å€å†™å…¥flashåï¼Œå›ºä»¶å‰©ä½™çš„æ•°æ®ä¸è¶³ç¼“å†²çš„å¤§å°ï¼Œå°±è¦æš‚æ—¶æ”¾åœ¨ç¼“å†²åŒºä¸­ï¼Œ
+     * ç­‰å¾…ä¸‹æ¬¡æ•°æ®è¿‡æ¥åå‡‘æ»¡ç¼“å†²åŒºå¤§å°çš„æ•°æ®åœ¨å†™å…¥flashï¼Œleave_firmware_indexå°±æ˜¯æŒ‡å‘è¦æš‚æ—¶å­˜å…¥ç¼“å†²åŒºçš„æ•°æ®çš„èµ·å§‹ä¸‹æ ‡
      */
     uint32_t leave_firmware_index;
     am_zlg116_boot_firmware_flash_dev_t *p_dev = (am_zlg116_boot_firmware_flash_dev_t *)p_drv;
@@ -130,7 +130,7 @@ static int __firmware_flash_bytes (void *p_drv, uint8_t *p_data, uint32_t firmwa
     }
 
     if(p_dev->firmware_size_is_unknow == AM_TRUE) {
-        /* ¹Ì¼şµÄ´óĞ¡¼ÓÉÏÒÑ¾­²Á³ıµÄ´óĞ¡£¬ */
+        /* å›ºä»¶çš„å¤§å°åŠ ä¸Šå·²ç»æ“¦é™¤çš„å¤§å°ï¼Œ */
         uint32_t add_len = p_dev->curr_program_flash_addr - p_dev->erase_sector_start_addr + firmware_size;
 
         if(add_len >= flash_info->flash_sector_size) {
@@ -152,7 +152,7 @@ static int __firmware_flash_bytes (void *p_drv, uint8_t *p_data, uint32_t firmwa
                                               flash_info->flash_sector_size;
         }
     }
-    /* µ±»º³åÇø»¹Ê£ÓàÊı¾İÃ»±»Ğ´Èëflash */
+    /* å½“ç¼“å†²åŒºè¿˜å‰©ä½™æ•°æ®æ²¡è¢«å†™å…¥flash */
     if(p_dev->curr_buf_data_size != 0) {
         for(i = 0; (p_dev->curr_buf_data_size < p_dev->buf_data_size) && (i < firmware_size); i++) {
             p_dev->buf_data[p_dev->curr_buf_data_size++] = p_data[i];
@@ -200,14 +200,14 @@ static int __firmware_flash_bytes (void *p_drv, uint8_t *p_data, uint32_t firmwa
     return AM_OK;
 }
 /**
- * \brief ¹Ì¼ş´æ´¢½áÊø
+ * \brief å›ºä»¶å­˜å‚¨ç»“æŸ
  */
 static int __firmware_flash_final(void *p_drv)
 {
     am_zlg116_boot_firmware_flash_dev_t *p_dev = (am_zlg116_boot_firmware_flash_dev_t *)p_drv;
     int ret;
     if(p_dev->curr_buf_data_size != 0) {
-        /* Èç¹û½áÊø¹Ì¼ş´æ·ÅÊ±£¬»º³åÇøÖĞ»¹ÓĞÊı¾İ £¬ÇÒ²»ÂúÊ±£¬ÒªÓÃ0½«»º³åÇøÌîÂúÔÙ½«Ê£ÓàµÄÊı¾İĞ´Èëflash*/
+        /* å¦‚æœç»“æŸå›ºä»¶å­˜æ”¾æ—¶ï¼Œç¼“å†²åŒºä¸­è¿˜æœ‰æ•°æ® ï¼Œä¸”ä¸æ»¡æ—¶ï¼Œè¦ç”¨0å°†ç¼“å†²åŒºå¡«æ»¡å†å°†å‰©ä½™çš„æ•°æ®å†™å…¥flash*/
         while(p_dev->curr_buf_data_size < p_dev->buf_data_size) {
             p_dev->buf_data[p_dev->curr_buf_data_size++] = 0xff;
         }
@@ -229,7 +229,7 @@ static int __firmware_flash_final(void *p_drv)
 }
 
 /**
- * \brief ¹Ì¼ş¼òµ¥Ğ£Ñé
+ * \brief å›ºä»¶ç®€å•æ ¡éªŒ
  */
 static int __firmware_verify(void *p_drv, am_boot_firmware_verify_info_t *p_verify_info)
 {
@@ -256,7 +256,7 @@ static int __firmware_verify(void *p_drv, am_boot_firmware_verify_info_t *p_veri
 }
 
 /**
- * \brief ¹Ì¼şflash´æ´¢³õÊ¼»¯
+ * \brief å›ºä»¶flashå­˜å‚¨åˆå§‹åŒ–
  */
 am_boot_firmware_handle_t am_zlg116_boot_firmware_flash_init (
     am_zlg116_boot_firmware_flash_dev_t     *p_dev,
@@ -273,7 +273,7 @@ am_boot_firmware_handle_t am_zlg116_boot_firmware_flash_init (
     return &p_dev->firmware_flash_serv;
 }
 /**
- * \brief ¹Ì¼şflash´æ´¢½â³õÊ¼»¯
+ * \brief å›ºä»¶flashå­˜å‚¨è§£åˆå§‹åŒ–
  */
 void am_zlg116_boot_firmware_flash_deint(void)
 {

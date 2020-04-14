@@ -15,34 +15,34 @@
  * \file
  * \brief Timing driver implementation for SCT
  *
- * 1. SCT£¨×´Ì¬¿ÉÅäÖÃ¶¨Ê±Æ÷£©ÊÇÒ»¸öÒÔ¼ÆÊıÆ÷Îª»ù´¡£¬ÒÔÊÂ¼şÎªÖĞĞÄ£¬×´Ì¬×´Ì¬¿ÉÅäÖÃµÄ¶¨Ê±Æ÷
- * 2. SCT¼ÆÊıÆ÷
- *    - Ò»¸ö×î´ó32Î»¼ÆÊıµÄ¼ÆÊıÆ÷£»
- *    - ¿ÉÊµÏÖµ¥ÏòµİÔö¼ÆÊı»òÕßË«Ïò¼ÆÊı£»
- *    - ¿É±»SCTÊÂ¼şÓ²¼şÉÏ×Ô¶¯ÏŞÖÆ£¨ÇåÁã»ò·´Ïò¼ÆÊı£©¡¢Í£Ö¹¡¢Æô¶¯¡¢Í£Ö¹£»
- *    - ¿É±»SCTÊÂ¼şÓ²¼şÉÏ×Ô¶¯¸ú×ÙÉè¶¨µÄÆ¥ÅäÖµ¡¢ÅĞ¶ÏÊÇ·ñÆ¥Åä£»
- *    - ¿É±»SCTÊÂ¼şÓ²¼şÉÏ×Ô¶¯»ñÈ¡¼ÆÊıÖµ£¬ÒÔ±ãÊµÏÖ²¶»ñÂß¼­¡£
- * 3. SCTÊÂ¼ş
- *    - ÊÂ¼şÏà»¥¶ÀÁ¢£¬ÊÂ¼şÊıÄ¿¸ß´ï13¸ö£»
- *    - ¿ÉÈí¼şÅäÖÃÊÂ¼ş²úÉúµÄÌõ¼ş£¬Ìõ¼ş¿ÉÄÜÊÇIOÌõ¼ş¡¢Æ¥ÅäÌõ¼ş¡¢²¶»ñÌõ¼ş»òÕßIO¸úÆ¥ÅäÌõ¼ş×éºÏ£»
- *    - ¿ÉÈí¼şÅäÖÃÊÂ¼şÔÚÄÄĞ©SCT×´Ì¬ÏÂ¿ÉÒÔ²úÉúµÄ£»
- *    - ¿ÉÈí¼şÅäÖÃÊÂ¼ş²úÉúÊ±£¬¶Ô¼ÆÊıÆ÷µÄ²Ù×÷£¬ÈçÏŞÖÆ£¨ÇåÁã»ò·´Ïò¼ÆÊı£©¡¢ÖÕÖ¹¡¢Æô¶¯¡¢ÖÕÖ¹£»
- *    - ¿ÉÈí¼şÅäÖÃÊÂ¼ş²úÉúÊ±£¬ÊÇ·ñ´¥·¢DMA´«ÊäÇëÇó£¬Ö§³ÖÁ½¸öDMA´¥·¢Í¨µÀ£»
- *    - ¿ÉÈí¼şÅäÖÃÊÂ¼ş²úÉúÊ±£¬¶ÔÊä³öIOÍ¨µÀ½øĞĞ¿ØÖÆ£»
- *    - ¿ÉÈí¼şÅäÖÃÊÂ¼ş²úÉúÊ±£¬²úÉúSCTÊÂ¼şÖĞ¶Ï£»
- *    - ¿ÉÈí¼şÅäÖÃÊÂ¼ş²úÉúºó£¬¶ÔSCT×´Ì¬µÄÓ°Ïì¡£
- * 4. SCT×´Ì¬
- *    - SCTÌá¹©ÁË13¸ö×´Ì¬
- *    - ¿ÉÒÔÅäÖÃSCT´¦ÓÚÄÄ¸ö×´Ì¬£»
- *    - ×´Ì¬Ö®¼ä¿ÉÍ¨¹ıSCTÊÂ¼ş½øĞĞ×Ô¶¯ÇĞ»»¡£
- * 5. SCT ÊäÈëIOÍ¨µÀ
- *    - Ìá¹©ÁË8¸öÊäÈëIOÍ¨µÀ£»
- *    - Ã¿¸öÍ¨µÀ¾ù¿ÉÓÃÓÚ×÷ÎªSCTÊÂ¼ş´¥·¢µÄIOÌõ¼ş»òÕß²¶»ñÒı½Å×´Ì¬µÄÊäÈë£»
- *    - 4¸öÍ¨µÀ¿ÉÍ¨¹ı¿ª¹Ø¾ØÕó½øĞĞ¹ØÁªµ½ÈÎÒâÒı½Å¡£
- * 6. SCT Êä³öIOÍ¨µÀ
- *    - Ìá¹©ÁË8¸öÊäÈëIOÍ¨µÀ£»
- *    - Ã¿¸öÍ¨µÀ¾ù¿ÉÓÃÓÚ×÷ÎªSCTÊÂ¼ş´¥·¢µÄIOÌõ¼ş»òÕßÊÂ¼ş²úÉúÊ±£¬±»¿ØÖÆµÄÊä³öIOÍ¨µÀ£»
- *    - µ±¶à¸öÊÂ¼ş£¬Í¬Ê±²Ù×÷Í¬Ò»¸öÊä³öÍ¨µÀÊ±£¬ÇÒ·¢ÉúÁËµçÆ½³åÍ»£¬Ôò¿ÉÒÔÅäÖÃÕâÖÖ³åÍ»µÄ½â¾ö·½·¨¡£
+ * 1. SCTï¼ˆçŠ¶æ€å¯é…ç½®å®šæ—¶å™¨ï¼‰æ˜¯ä¸€ä¸ªä»¥è®¡æ•°å™¨ä¸ºåŸºç¡€ï¼Œä»¥äº‹ä»¶ä¸ºä¸­å¿ƒï¼ŒçŠ¶æ€çŠ¶æ€å¯é…ç½®çš„å®šæ—¶å™¨
+ * 2. SCTè®¡æ•°å™¨
+ *    - ä¸€ä¸ªæœ€å¤§32ä½è®¡æ•°çš„è®¡æ•°å™¨ï¼›
+ *    - å¯å®ç°å•å‘é€’å¢è®¡æ•°æˆ–è€…åŒå‘è®¡æ•°ï¼›
+ *    - å¯è¢«SCTäº‹ä»¶ç¡¬ä»¶ä¸Šè‡ªåŠ¨é™åˆ¶ï¼ˆæ¸…é›¶æˆ–åå‘è®¡æ•°ï¼‰ã€åœæ­¢ã€å¯åŠ¨ã€åœæ­¢ï¼›
+ *    - å¯è¢«SCTäº‹ä»¶ç¡¬ä»¶ä¸Šè‡ªåŠ¨è·Ÿè¸ªè®¾å®šçš„åŒ¹é…å€¼ã€åˆ¤æ–­æ˜¯å¦åŒ¹é…ï¼›
+ *    - å¯è¢«SCTäº‹ä»¶ç¡¬ä»¶ä¸Šè‡ªåŠ¨è·å–è®¡æ•°å€¼ï¼Œä»¥ä¾¿å®ç°æ•è·é€»è¾‘ã€‚
+ * 3. SCTäº‹ä»¶
+ *    - äº‹ä»¶ç›¸äº’ç‹¬ç«‹ï¼Œäº‹ä»¶æ•°ç›®é«˜è¾¾13ä¸ªï¼›
+ *    - å¯è½¯ä»¶é…ç½®äº‹ä»¶äº§ç”Ÿçš„æ¡ä»¶ï¼Œæ¡ä»¶å¯èƒ½æ˜¯IOæ¡ä»¶ã€åŒ¹é…æ¡ä»¶ã€æ•è·æ¡ä»¶æˆ–è€…IOè·ŸåŒ¹é…æ¡ä»¶ç»„åˆï¼›
+ *    - å¯è½¯ä»¶é…ç½®äº‹ä»¶åœ¨å“ªäº›SCTçŠ¶æ€ä¸‹å¯ä»¥äº§ç”Ÿçš„ï¼›
+ *    - å¯è½¯ä»¶é…ç½®äº‹ä»¶äº§ç”Ÿæ—¶ï¼Œå¯¹è®¡æ•°å™¨çš„æ“ä½œï¼Œå¦‚é™åˆ¶ï¼ˆæ¸…é›¶æˆ–åå‘è®¡æ•°ï¼‰ã€ç»ˆæ­¢ã€å¯åŠ¨ã€ç»ˆæ­¢ï¼›
+ *    - å¯è½¯ä»¶é…ç½®äº‹ä»¶äº§ç”Ÿæ—¶ï¼Œæ˜¯å¦è§¦å‘DMAä¼ è¾“è¯·æ±‚ï¼Œæ”¯æŒä¸¤ä¸ªDMAè§¦å‘é€šé“ï¼›
+ *    - å¯è½¯ä»¶é…ç½®äº‹ä»¶äº§ç”Ÿæ—¶ï¼Œå¯¹è¾“å‡ºIOé€šé“è¿›è¡Œæ§åˆ¶ï¼›
+ *    - å¯è½¯ä»¶é…ç½®äº‹ä»¶äº§ç”Ÿæ—¶ï¼Œäº§ç”ŸSCTäº‹ä»¶ä¸­æ–­ï¼›
+ *    - å¯è½¯ä»¶é…ç½®äº‹ä»¶äº§ç”Ÿåï¼Œå¯¹SCTçŠ¶æ€çš„å½±å“ã€‚
+ * 4. SCTçŠ¶æ€
+ *    - SCTæä¾›äº†13ä¸ªçŠ¶æ€
+ *    - å¯ä»¥é…ç½®SCTå¤„äºå“ªä¸ªçŠ¶æ€ï¼›
+ *    - çŠ¶æ€ä¹‹é—´å¯é€šè¿‡SCTäº‹ä»¶è¿›è¡Œè‡ªåŠ¨åˆ‡æ¢ã€‚
+ * 5. SCT è¾“å…¥IOé€šé“
+ *    - æä¾›äº†8ä¸ªè¾“å…¥IOé€šé“ï¼›
+ *    - æ¯ä¸ªé€šé“å‡å¯ç”¨äºä½œä¸ºSCTäº‹ä»¶è§¦å‘çš„IOæ¡ä»¶æˆ–è€…æ•è·å¼•è„šçŠ¶æ€çš„è¾“å…¥ï¼›
+ *    - 4ä¸ªé€šé“å¯é€šè¿‡å¼€å…³çŸ©é˜µè¿›è¡Œå…³è”åˆ°ä»»æ„å¼•è„šã€‚
+ * 6. SCT è¾“å‡ºIOé€šé“
+ *    - æä¾›äº†8ä¸ªè¾“å…¥IOé€šé“ï¼›
+ *    - æ¯ä¸ªé€šé“å‡å¯ç”¨äºä½œä¸ºSCTäº‹ä»¶è§¦å‘çš„IOæ¡ä»¶æˆ–è€…äº‹ä»¶äº§ç”Ÿæ—¶ï¼Œè¢«æ§åˆ¶çš„è¾“å‡ºIOé€šé“ï¼›
+ *    - å½“å¤šä¸ªäº‹ä»¶ï¼ŒåŒæ—¶æ“ä½œåŒä¸€ä¸ªè¾“å‡ºé€šé“æ—¶ï¼Œä¸”å‘ç”Ÿäº†ç”µå¹³å†²çªï¼Œåˆ™å¯ä»¥é…ç½®è¿™ç§å†²çªçš„è§£å†³æ–¹æ³•ã€‚
  *
  * \internal
  * \par Modification history
@@ -57,11 +57,11 @@
 #include "hw/amhw_lpc_sct.h"
 #include "am_clk.h"
 /******************************************************************************/
-/** \brief ÖĞ¶ÏÎ´Á¬½Ó±êÊ¶ */
+/** \brief ä¸­æ–­æœªè¿æ¥æ ‡è¯† */
 #define __INT_NOT_CONNECTED      0xFF
 
 
-/* SCTÖĞ¶Ï´¦Àíº¯Êı */
+/* SCTä¸­æ–­å¤„ç†å‡½æ•° */
 void __sct_int (void *handle)
 {
     const am_lpc_sct_devinfo_t  *p_devinfo =
@@ -91,20 +91,20 @@ void __sct_int (void *handle)
             if (pfn_isr != NULL) {
                 pfn_isr(p_arg);
             }
-            /* Çå³ıÖĞ¶Ï */
+            /* æ¸…é™¤ä¸­æ–­ */
             amhw_lpc_sct_event_flag_clr(p_hw_sct, evt_num);
         }
     }
 }
 
 /**
- * \brief SCTÊÂ¼ş¿ØÖÆ¼ÆÊ±Æ÷ÅäÖÃ
+ * \brief SCTäº‹ä»¶æ§åˆ¶è®¡æ—¶å™¨é…ç½®
  */
 static void __sct_evt_ctrl_cnt_cfgs(amhw_lpc_sct_t  *p_hw_sct,
                                     uint8_t             evt_num,
                                     uint8_t             out_cnt_flags)
 {
-    /* ÏŞÖÆ¼ÆÊıÆ÷ */
+    /* é™åˆ¶è®¡æ•°å™¨ */
     if(AM_BIT_ISSET(out_cnt_flags, AM_LPC_SCT_LIMIT_BITS_START)) {
         amhw_lpc_sct_event_limit_enable(p_hw_sct,
                                          AMHW_LPC_SCT_MODE_UNIFY, evt_num);
@@ -112,7 +112,7 @@ static void __sct_evt_ctrl_cnt_cfgs(amhw_lpc_sct_t  *p_hw_sct,
         amhw_lpc_sct_event_limit_disable(p_hw_sct,
                                          AMHW_LPC_SCT_MODE_UNIFY, evt_num);
     }
-    /* Í£Ö¹¼ÆÊıÆ÷ */
+    /* åœæ­¢è®¡æ•°å™¨ */
     if(AM_BIT_ISSET(out_cnt_flags, AM_LPC_SCT_STOP_BITS_START)) {
         amhw_lpc_sct_event_stop_enable(p_hw_sct,
                                         AMHW_LPC_SCT_MODE_UNIFY, evt_num);
@@ -120,7 +120,7 @@ static void __sct_evt_ctrl_cnt_cfgs(amhw_lpc_sct_t  *p_hw_sct,
         amhw_lpc_sct_event_stop_disable(p_hw_sct,
                                          AMHW_LPC_SCT_MODE_UNIFY, evt_num);
     }
-    /* Æô¶¯¼ÆÊıÆ÷ */
+    /* å¯åŠ¨è®¡æ•°å™¨ */
     if(AM_BIT_ISSET(out_cnt_flags, AM_LPC_SCT_START_BITS_START)) {
         amhw_lpc_sct_event_start_enable(p_hw_sct,
                                          AMHW_LPC_SCT_MODE_UNIFY, evt_num);
@@ -128,7 +128,7 @@ static void __sct_evt_ctrl_cnt_cfgs(amhw_lpc_sct_t  *p_hw_sct,
         amhw_lpc_sct_event_start_disable(p_hw_sct,
                                           AMHW_LPC_SCT_MODE_UNIFY, evt_num);
     }
-    /* ÖÕÖ¹¼ÆÊıÆ÷ */
+    /* ç»ˆæ­¢è®¡æ•°å™¨ */
     if(AM_BIT_ISSET(out_cnt_flags, AM_LPC_SCT_HALT_BITS_START)) {
         amhw_lpc_sct_event_halt_enable(p_hw_sct,
                                         AMHW_LPC_SCT_MODE_UNIFY, evt_num);
@@ -139,7 +139,7 @@ static void __sct_evt_ctrl_cnt_cfgs(amhw_lpc_sct_t  *p_hw_sct,
 }
 
 /**
- * \brief SCTÊÂ¼ş¿ØÖÆÊä³öIOÅäÖÃ
+ * \brief SCTäº‹ä»¶æ§åˆ¶è¾“å‡ºIOé…ç½®
  */
 static void __sct_evt_ctrl_io_cfgs(am_lpc_sct_handle_t sct_handle,
                                    uint8_t             evt_num,
@@ -153,7 +153,7 @@ static void __sct_evt_ctrl_io_cfgs(am_lpc_sct_handle_t sct_handle,
 
     p_hw_sct = (amhw_lpc_sct_t *)(sct_handle->p_devinfo->sct_regbase);
 
-    /* ÉèÖÃÊä³öÍ¨µÀÖÃÎ» */
+    /* è®¾ç½®è¾“å‡ºé€šé“ç½®ä½ */
     ch = AM_BITS_GET(out_io_flags, AM_LPC_SCT_IOSET_CH_BITS_START,
                                sct_handle->p_devinfo->sct_out_num);
 
@@ -165,7 +165,7 @@ static void __sct_evt_ctrl_io_cfgs(am_lpc_sct_handle_t sct_handle,
         }
     }
 
-    /* ÉèÖÃÊä³öÍ¨µÀÇåÁã */
+    /* è®¾ç½®è¾“å‡ºé€šé“æ¸…é›¶ */
     ch = AM_BITS_GET(out_io_flags,
             AM_LPC_SCT_IOCLR_CH_BITS_START,
       sct_handle->p_devinfo->sct_out_num);
@@ -180,7 +180,7 @@ static void __sct_evt_ctrl_io_cfgs(am_lpc_sct_handle_t sct_handle,
 }
 
 /**
- * \brief SCTÊÂ¼şÆ¥Åä»ò²¶»ñÀ´ÉèÖÃ
+ * \brief SCTäº‹ä»¶åŒ¹é…æˆ–æ•è·æ¥è®¾ç½®
  */
 static void __sct_evt_matchcap_cfgs(amhw_lpc_sct_t  *p_hw_sct,
                                       uint8_t      evt_num,
@@ -189,7 +189,7 @@ static void __sct_evt_matchcap_cfgs(amhw_lpc_sct_t  *p_hw_sct,
     uint32_t tmp;
     uint8_t matcap_num;
 
-    /* »ñÈ¡Í¨µÀ */
+    /* è·å–é€šé“ */
     matcap_num     = AM_BITS_GET(cond_flags,
                                  AM_LPC_SCT_MATCAP_CH_BITS_START,
                                  AM_LPC_SCT_MATCAP_CH_BITS_LEN);
@@ -199,18 +199,18 @@ static void __sct_evt_matchcap_cfgs(amhw_lpc_sct_t  *p_hw_sct,
                        AMHW_LPC_SCT_MATCAP_CAPTURE :
                        AMHW_LPC_SCT_MATCAP_MATCH;
 
-    /* ÅäÖÃÆ¥Åä/²¶»ñ¼Ä´æÆ÷ÎªÆ¥ÅäÄ£Ê½  */
+    /* é…ç½®åŒ¹é…/æ•è·å¯„å­˜å™¨ä¸ºåŒ¹é…æ¨¡å¼  */
     amhw_lpc_sct_regmode_config(p_hw_sct,
                                    AMHW_LPC_SCT_MODE_UNIFY,
                                    matcap_num,
                                    (amhw_lpc_sct_matcap_mode_t)tmp);
 
-    /* Èç¹ûÊÇÆ¥ÅäÌõ¼ş */
+    /* å¦‚æœæ˜¯åŒ¹é…æ¡ä»¶ */
     if (tmp == AMHW_LPC_SCT_MATCAP_MATCH) {
         tmp = (cond_flags >> AM_LPC_SCT_MAT_VAL_BITS_START) &
                0xFFFFFFFF;
 
-        /* Æ¥ÅäÊÂ¼ş£¬ÉèÖÃÆ¥ÅäÖµ */
+        /* åŒ¹é…äº‹ä»¶ï¼Œè®¾ç½®åŒ¹é…å€¼ */
         if (amhw_lpc_sct_halt_check(p_hw_sct, AMHW_LPC_SCT_MODE_UNIFY)) {
 
             amhw_lpc_sct_mat_val_set(p_hw_sct,
@@ -218,7 +218,7 @@ static void __sct_evt_matchcap_cfgs(amhw_lpc_sct_t  *p_hw_sct,
                                         matcap_num,
                                         tmp - 1);
         }
-        /* ÉèÖÃÆ¥ÅäÖÜÆÚÖØÔØÖµ  */
+        /* è®¾ç½®åŒ¹é…å‘¨æœŸé‡è½½å€¼  */
         amhw_lpc_sct_mat_reload_val_set(p_hw_sct,
                                            AMHW_LPC_SCT_MODE_UNIFY,
                                            matcap_num,
@@ -229,7 +229,7 @@ static void __sct_evt_matchcap_cfgs(amhw_lpc_sct_t  *p_hw_sct,
 
 
 /**
- * \brief SCTÊÂ¼şÖĞ¶ÏÅäÖÃ
+ * \brief SCTäº‹ä»¶ä¸­æ–­é…ç½®
  */
 static void __sct_evt_ctrl_int_cfg (am_lpc_sct_handle_t sct_handle,
                                     uint8_t                evt_num,
@@ -249,12 +249,12 @@ static void __sct_evt_ctrl_int_cfg (am_lpc_sct_handle_t sct_handle,
 
         if (p_hw_sct->even == 0) {
             am_int_connect(p_devinfo->inum, __sct_int, (void *)sct_handle);
-            am_int_enable(p_devinfo->inum);       /* Ê¹ÄÜÖĞ¶Ï */
+            am_int_enable(p_devinfo->inum);       /* ä½¿èƒ½ä¸­æ–­ */
         }
         amhw_lpc_sct_event_int_enable(p_hw_sct, evt_num);
     } else {
         amhw_lpc_sct_event_int_disable(p_hw_sct, evt_num);
-        if (p_hw_sct->even == 0) { /* Èç¹ûÈç¹ûÃ»ÓĞÊÂ¼ş¿ªÆôÖĞ¶Ï£¬¹Ø±ÕÖĞ¶Ï */
+        if (p_hw_sct->even == 0) { /* å¦‚æœå¦‚æœæ²¡æœ‰äº‹ä»¶å¼€å¯ä¸­æ–­ï¼Œå…³é—­ä¸­æ–­ */
             am_int_disable(p_devinfo->inum);
             am_int_disconnect(p_devinfo->inum, __sct_int, (void *)sct_handle);
         }
@@ -268,7 +268,7 @@ static void __sct_evt_ctrl_int_cfg (am_lpc_sct_handle_t sct_handle,
 }
 
 /**
- * \brief SCTÊÂ¼ş¿ØÖÆDMAÅäÖÃ
+ * \brief SCTäº‹ä»¶æ§åˆ¶DMAé…ç½®
  */
 static void __sct_evt_ctrl_dma_cfgs (am_lpc_sct_handle_t sct_handle,
                                      uint8_t            evt_num,
@@ -283,7 +283,7 @@ static void __sct_evt_ctrl_dma_cfgs (am_lpc_sct_handle_t sct_handle,
     p_hw_sct = (amhw_lpc_sct_t *)(p_devinfo->sct_regbase);
 
 
-    /* ÉèÖÃÊä³öÍ¨µÀÇåÁã */
+    /* è®¾ç½®è¾“å‡ºé€šé“æ¸…é›¶ */
     ch = AM_BITS_GET(out_dma_flags, AM_LPC_SCT_DMA_REQ_CH_BITS_START,
                  p_devinfo->sct_dma_req_num);
 
@@ -296,7 +296,7 @@ static void __sct_evt_ctrl_dma_cfgs (am_lpc_sct_handle_t sct_handle,
     }
 }
 /**
- * \brief Ìí¼ÓSCTÊÂ¼ş
+ * \brief æ·»åŠ SCTäº‹ä»¶
  */
 int am_lpc_sct_evt_add (am_lpc_sct_handle_t sct_handle,
                            uint8_t                evt_num,
@@ -305,7 +305,7 @@ int am_lpc_sct_evt_add (am_lpc_sct_handle_t sct_handle,
   am_lpc_sct_dev_t *p_dev = (am_lpc_sct_dev_t *)sct_handle;
 
     amhw_lpc_sct_t *p_hw_sct        = NULL;
-    uint32_t           evt_ctrl_cfgs   = 0;  /* ÊÂ¼ş¿ØÖÆÅäÖÃ²ÎÊı */
+    uint32_t           evt_ctrl_cfgs   = 0;  /* äº‹ä»¶æ§åˆ¶é…ç½®å‚æ•° */
     uint8_t            matcap_num      = 0;
     int                slot            = __INT_NOT_CONNECTED;
     int                i               = 0;
@@ -320,12 +320,12 @@ int am_lpc_sct_evt_add (am_lpc_sct_handle_t sct_handle,
         return -AM_EINVAL;
     }
 
-    /* ÅĞ¶ÏÅäÖÃÊÂ¼şµÄ²úÉúÌõ¼şÓĞĞ§ĞÔ */
+    /* åˆ¤æ–­é…ç½®äº‹ä»¶çš„äº§ç”Ÿæ¡ä»¶æœ‰æ•ˆæ€§ */
     if (p_evt->cond_flags == 0) {
         return -AM_EINVAL;
     }
 
-    /* ÅĞ¶ÏÊÇ·ñÅäÖÃÖĞ¶Ï£¬ÊÇ·ñÓ³ÉäÄÚ´æÊÇ·ñ×ã¹» */
+    /* åˆ¤æ–­æ˜¯å¦é…ç½®ä¸­æ–­ï¼Œæ˜¯å¦æ˜ å°„å†…å­˜æ˜¯å¦è¶³å¤Ÿ */
     tmp = p_evt->out_int_flag & 0xFFFFFFFF;
     if (0 != tmp) {
         if (NULL == sct_handle->p_devinfo->p_isrmap  ||
@@ -343,70 +343,70 @@ int am_lpc_sct_evt_add (am_lpc_sct_handle_t sct_handle,
             }
         }
         if (slot == __INT_NOT_CONNECTED) {
-            return -AM_EPERM;                           /* Ã»ÓĞ¿ÕµÄÄÚ´æÓ³Éä */
+            return -AM_EPERM;                           /* æ²¡æœ‰ç©ºçš„å†…å­˜æ˜ å°„ */
         }
     }
 
     p_hw_sct = (amhw_lpc_sct_t *)(sct_handle->p_devinfo->sct_regbase);
 
-    /* ÅäÖÃÊÂ¼şÇ°£¬ÏÈ¹Ø±Õ¸ÃÊÂ¼ş */
+    /* é…ç½®äº‹ä»¶å‰ï¼Œå…ˆå…³é—­è¯¥äº‹ä»¶ */
     amhw_lpc_sct_event_state_cfg(p_hw_sct, evt_num, 0);
 
-    /* ÊÂ¼ş¶ÔÖĞ¶ÏÅäÖÃµÄ¿ØÖÆ */
+    /* äº‹ä»¶å¯¹ä¸­æ–­é…ç½®çš„æ§åˆ¶ */
     __sct_evt_ctrl_int_cfg(sct_handle, evt_num,
                           (am_pfnvoid_t)tmp,
                           (void *)((uint32_t)(p_evt->out_int_flag >>
                                    AM_LPC_SCT_CBPARAM_BITS_START)),
                           slot);
 
-    /* ´ÓÊäÈëÅäÖÃ²ÎÊı£¬ÌáÈ¡³ö¼Ä´æÆ÷ÅäÖÃ²ÎÊı */
+    /* ä»è¾“å…¥é…ç½®å‚æ•°ï¼Œæå–å‡ºå¯„å­˜å™¨é…ç½®å‚æ•° */
     /*
-     * ÌáÈ¡IOÅäÖÃ²ÎÊı
-     * 0x1FFÎªIOÌõ¼şÅäÖÃµÄÎ»Óò³¤¶È
-     * 5ÎªIOÌõ¼şÅäÖÃÔÚSCTÊÂ¼ş¿ØÖÆ¼Ä´æÆ÷£¨EV[0:7]_CTRL£©ÖĞµÄÎ»ÓòÆ«ÒÆ
+     * æå–IOé…ç½®å‚æ•°
+     * 0x1FFä¸ºIOæ¡ä»¶é…ç½®çš„ä½åŸŸé•¿åº¦
+     * 5ä¸ºIOæ¡ä»¶é…ç½®åœ¨SCTäº‹ä»¶æ§åˆ¶å¯„å­˜å™¨ï¼ˆEV[0:7]_CTRLï¼‰ä¸­çš„ä½åŸŸåç§»
      */
     evt_ctrl_cfgs |= AM_SBF(p_evt->cond_flags & 0x1FF, 5) ;
 
-    /* ÌáÈ¡Æ¥Åä»ò²¶»ñÍ¨µÀ */
+    /* æå–åŒ¹é…æˆ–æ•è·é€šé“ */
     matcap_num     = AM_BITS_GET(p_evt->cond_flags,
                                  AM_LPC_SCT_MATCAP_CH_BITS_START,
                                  AM_LPC_SCT_MATCAP_CH_BITS_LEN);
     evt_ctrl_cfgs |= matcap_num;
 
     /*
-     * ÌáÈ¡ÊÂ¼ş¿ØÖÆSCT×´Ì¬µÄ±ä»¯
-     * 0x3FÎª×´Ì¬±ä»¯ÅäÖÃµÄÎ»Óò³¤¶È
-     * 14Îª×´Ì¬±ä»¯ÅäÖÃÔÚSCTÊÂ¼ş¿ØÖÆ¼Ä´æÆ÷£¨EV[0:7]_CTRL£©ÖĞµÄÎ»ÓòÆ«ÒÆ
+     * æå–äº‹ä»¶æ§åˆ¶SCTçŠ¶æ€çš„å˜åŒ–
+     * 0x3Fä¸ºçŠ¶æ€å˜åŒ–é…ç½®çš„ä½åŸŸé•¿åº¦
+     * 14ä¸ºçŠ¶æ€å˜åŒ–é…ç½®åœ¨SCTäº‹ä»¶æ§åˆ¶å¯„å­˜å™¨ï¼ˆEV[0:7]_CTRLï¼‰ä¸­çš„ä½åŸŸåç§»
      */
     evt_ctrl_cfgs |= AM_SBF(((uint32_t)p_evt->out_stat_flag & 0x3F), 14);
 
-    /* ÅäÖÃÊÂ¼ş */
+    /* é…ç½®äº‹ä»¶ */
     amhw_lpc_sct_event_ctrl(p_hw_sct, evt_num, evt_ctrl_cfgs);
 
-    /* ÊÇ·ñÉèÖÃÁË²¶»ñ»òÕßÆ¥ÅäÊÂ¼ş */
+    /* æ˜¯å¦è®¾ç½®äº†æ•è·æˆ–è€…åŒ¹é…äº‹ä»¶ */
     if(AM_BIT_ISSET(p_evt->cond_flags, AM_LPC_SCT_MATCAP_ISSET_BITS_START)) {
         __sct_evt_matchcap_cfgs(p_hw_sct, evt_num, p_evt->cond_flags);
     }
 
-    /* ÊÂ¼ş¶Ô¼ÆÊıÆ÷µÄ¿ØÖÆ */
+    /* äº‹ä»¶å¯¹è®¡æ•°å™¨çš„æ§åˆ¶ */
     __sct_evt_ctrl_cnt_cfgs(p_hw_sct, evt_num, p_evt->out_cnt_flags);
 
-    /* ÊÂ¼ş¶ÔIOÊä³öµÄ¿ØÖÆ */
+    /* äº‹ä»¶å¯¹IOè¾“å‡ºçš„æ§åˆ¶ */
     __sct_evt_ctrl_io_cfgs(sct_handle, evt_num, p_evt->out_io_flags);
 
-    /* ÊÂ¼ş¶ÔDMA´¥·¢µÄ¿ØÖÆ */
+    /* äº‹ä»¶å¯¹DMAè§¦å‘çš„æ§åˆ¶ */
     __sct_evt_ctrl_dma_cfgs(sct_handle, evt_num, p_evt->out_dma_flags);
 
-    /* Ê¹ÄÜÒ»¸öÊÂ¼şÔÚÄ³Ğ©×´Ì¬ÖĞ·¢Éú */
+    /* ä½¿èƒ½ä¸€ä¸ªäº‹ä»¶åœ¨æŸäº›çŠ¶æ€ä¸­å‘ç”Ÿ */
     amhw_lpc_sct_event_state_cfg(p_hw_sct, evt_num, p_evt->stat_en_flags);
 
-    AM_BIT_SET(sct_handle->evt_stat, evt_num);        /* ¼ÇÂ¼¸ÃÊÂ¼şÒÑ±»Ê¹ÓÃ */
+    AM_BIT_SET(sct_handle->evt_stat, evt_num);        /* è®°å½•è¯¥äº‹ä»¶å·²è¢«ä½¿ç”¨ */
 
     return AM_OK;
 }
 
 /**
- * \brief É¾³ıSCTÊÂ¼ş
+ * \brief åˆ é™¤SCTäº‹ä»¶
  */
 int am_lpc_sct_evt_del (am_lpc_sct_handle_t   sct_handle,
                              uint8_t                  evt_num)
@@ -427,19 +427,19 @@ int am_lpc_sct_evt_del (am_lpc_sct_handle_t   sct_handle,
 
     amhw_lpc_sct_event_state_cfg(p_hw_sct, evt_num, 0);
 
-    /* ¹Ø±Õ¸ÃÊÂ¼ş×¢²áµÄÖĞ¶Ï */
+    /* å…³é—­è¯¥äº‹ä»¶æ³¨å†Œçš„ä¸­æ–­ */
     __sct_evt_ctrl_int_cfg (sct_handle, evt_num,
                             NULL, NULL,
                             sct_handle->p_devinfo->p_isrmap[evt_num]);
 
-    AM_BIT_CLR(sct_handle->evt_stat, evt_num);        /* ¼ÇÂ¼¸ÃÊÂ¼şÎ´Ê¹ÓÃ */
+    AM_BIT_CLR(sct_handle->evt_stat, evt_num);        /* è®°å½•è¯¥äº‹ä»¶æœªä½¿ç”¨ */
 
     return AM_OK;
 }
 
 
 /**
- * \brief ÖÕÖ¹SCT
+ * \brief ç»ˆæ­¢SCT
  */
 int am_lpc_sct_halt (am_lpc_sct_handle_t sct_handle)
 {
@@ -450,14 +450,14 @@ int am_lpc_sct_halt (am_lpc_sct_handle_t sct_handle)
     }
     p_hw_sct = (amhw_lpc_sct_t *)(sct_handle->p_devinfo->sct_regbase);
 
-    /* ÉèÖÃÖÕÖ¹Î»£¬ÖÕÖ¹ SCT */
+    /* è®¾ç½®ç»ˆæ­¢ä½ï¼Œç»ˆæ­¢ SCT */
     amhw_lpc_sct_ctrl_set(p_hw_sct, AMHW_LPC_SCT_CTRL_HALT_L);
 
     return AM_OK;
 }
 
 /**
- * \brief Í£Ö¹SCT
+ * \brief åœæ­¢SCT
  *
  */
 int am_lpc_sct_stop (am_lpc_sct_handle_t sct_handle)
@@ -469,13 +469,13 @@ int am_lpc_sct_stop (am_lpc_sct_handle_t sct_handle)
     }
     p_hw_sct = (amhw_lpc_sct_t *)(sct_handle->p_devinfo->sct_regbase);
 
-    /* ÉèÖÃÍ£Ö¹Î»£¬ÔİÍ£ SCT */
+    /* è®¾ç½®åœæ­¢ä½ï¼Œæš‚åœ SCT */
     amhw_lpc_sct_ctrl_set(p_hw_sct, AMHW_LPC_SCT_CTRL_STOP_L);
     return AM_OK;
 }
 
 /**
- * \brief Æô¶¯SCT
+ * \brief å¯åŠ¨SCT
  */
 int am_lpc_sct_start (am_lpc_sct_handle_t sct_handle)
 {
@@ -487,7 +487,7 @@ int am_lpc_sct_start (am_lpc_sct_handle_t sct_handle)
 
     p_hw_sct = (amhw_lpc_sct_t *)(sct_handle->p_devinfo->sct_regbase);
 
-    /* Çå³ıÖÕÖ¹ºÍÍ£Ö¹Î»£¬Æô¶¯ SCT */
+    /* æ¸…é™¤ç»ˆæ­¢å’Œåœæ­¢ä½ï¼Œå¯åŠ¨ SCT */
     amhw_lpc_sct_ctrl_clr(p_hw_sct,
                              AMHW_LPC_SCT_CTRL_STOP_L |
                              AMHW_LPC_SCT_CTRL_HALT_L);
@@ -497,7 +497,7 @@ int am_lpc_sct_start (am_lpc_sct_handle_t sct_handle)
 
 
 /**
- * \brief ½â¾öÊä³öÒı½Å³åÍ»
+ * \brief è§£å†³è¾“å‡ºå¼•è„šå†²çª
  */
 int am_lpc_sct_conflict_res_config (am_lpc_sct_handle_t sct_handle,
                                        uint8_t                out_num,
@@ -536,7 +536,7 @@ int am_lpc_sct_state_set (am_lpc_sct_handle_t sct_handle,
 }
 
 /**
- * \brief Í¨¹ıÊ±¼ä£¬»ñÈ¡ĞèÒªÉè¶¨µÄÆ¥ÅäÖµ
+ * \brief é€šè¿‡æ—¶é—´ï¼Œè·å–éœ€è¦è®¾å®šçš„åŒ¹é…å€¼
  */
 uint32_t am_lpc_sct_time_to_match(am_lpc_sct_handle_t sct_handle,
                                   uint32_t               period_ns)
@@ -546,11 +546,11 @@ uint32_t am_lpc_sct_time_to_match(am_lpc_sct_handle_t sct_handle,
 
     clkfreq = am_clk_rate_get(sct_handle->p_devinfo->clk_id);
 
-    /* ½«Ê±¼ä×ª±äÎªÖÜÆÚ Æ¥ÅäÖµ */
+    /* å°†æ—¶é—´è½¬å˜ä¸ºå‘¨æœŸ åŒ¹é…å€¼ */
     period_mat = (uint64_t)(period_ns) * (clkfreq) /
                (uint64_t)1000000000;
 
-    /* ÖÜÆÚÖÁÉÙÎª1 */
+    /* å‘¨æœŸè‡³å°‘ä¸º1 */
     if (period_mat == 0) {
         period_mat = 1;
     } else if (period_mat > 4294967295UL) {
@@ -561,7 +561,7 @@ uint32_t am_lpc_sct_time_to_match(am_lpc_sct_handle_t sct_handle,
 }
 
 /**
- * \brief ÉèÖÃSCTÊä³öÍ¨µÀµÄ×´Ì¬
+ * \brief è®¾ç½®SCTè¾“å‡ºé€šé“çš„çŠ¶æ€
  */
 int am_lpc_sct_out_state_set (am_lpc_sct_handle_t sct_handle,
                                  uint8_t                out_num,
@@ -606,7 +606,7 @@ am_lpc_sct_handle_t am_lpc_sct_init (am_lpc_sct_dev_t     *p_dev,
 
     p_hw_sct                  = (amhw_lpc_sct_t *)(p_devinfo->sct_regbase);
     p_dev->p_devinfo          = p_devinfo;
-    p_dev->evt_stat           = 0;               /* ËùÓĞÊÂ¼şÎ´±»Ê¹ÓÃ  */
+    p_dev->evt_stat           = 0;               /* æ‰€æœ‰äº‹ä»¶æœªè¢«ä½¿ç”¨  */
     p_dev->valid_flg          = AM_TRUE;
 
     if ((p_devinfo->p_isrmap != NULL) && (p_devinfo->p_isrinfo != NULL)) {
@@ -619,19 +619,19 @@ am_lpc_sct_handle_t am_lpc_sct_init (am_lpc_sct_dev_t     *p_dev,
         }
     }
 
-    /* ÏÈÖÕÖ¹SCT */
+    /* å…ˆç»ˆæ­¢SCT */
     amhw_lpc_sct_ctrl_set(p_hw_sct, AMHW_LPC_SCT_CTRL_STOP_L |
                                        AMHW_LPC_SCT_CTRL_HALT_L);
 
-    /* ÅäÖÃ SCT Æ¥Åä¼Ä´æÆ÷0 Îª×Ô¶¯ÏŞÖÆ£¬SCTÎª32Î»¶¨Ê±Æ÷ */
+    /* é…ç½® SCT åŒ¹é…å¯„å­˜å™¨0 ä¸ºè‡ªåŠ¨é™åˆ¶ï¼ŒSCTä¸º32ä½å®šæ—¶å™¨ */
     amhw_lpc_sct_config(p_hw_sct,
-                AMHW_LPC_SCT_CONFIG_32BIT_COUNTER  | /* 32Îª¶¨Ê±Æ÷            */
-          AMHW_LPC_SCT_CONFIG_CLKMODE_SYSCLK); /* ÏµÍ³Ê±ÖÓ              */
+                AMHW_LPC_SCT_CONFIG_32BIT_COUNTER  | /* 32ä¸ºå®šæ—¶å™¨            */
+          AMHW_LPC_SCT_CONFIG_CLKMODE_SYSCLK); /* ç³»ç»Ÿæ—¶é’Ÿ              */
 
-    /* ÉèÖÃÔ¤·ÖÆµÎª0.Ê¹ÓÃÏµÍ³Ê±ÖÓ£¬·ÖÆµÎª0 */
+    /* è®¾ç½®é¢„åˆ†é¢‘ä¸º0.ä½¿ç”¨ç³»ç»Ÿæ—¶é’Ÿï¼Œåˆ†é¢‘ä¸º0 */
     amhw_lpc_sct_prescale_set(p_hw_sct, AMHW_LPC_SCT_MODE_UNIFY, 0);
 
-    /* SCT×´Ì¬Ä¬ÈÏÎª×´Ì¬0 */
+    /* SCTçŠ¶æ€é»˜è®¤ä¸ºçŠ¶æ€0 */
     amhw_lpc_sct_state_set(p_hw_sct, AMHW_LPC_SCT_MODE_UNIFY, 0);
 
     return p_dev;
@@ -657,12 +657,12 @@ void am_lpc_sct_deinit (am_lpc_sct_handle_t handle)
     am_int_disable(p_dev->p_devinfo->inum);
     am_int_disconnect(p_dev->p_devinfo->inum, __sct_int, (void *)p_dev);
 
-    /* ¹Ø±ÕËùÓĞÊÂ¼ş */
+    /* å…³é—­æ‰€æœ‰äº‹ä»¶ */
     for (evt_num = 0; evt_num < p_dev->p_devinfo->evt_isr_cnt; evt_num++) {
         amhw_lpc_sct_event_state_cfg(p_hw_sct, evt_num, 0);
     }
-    p_dev->evt_stat  = 0;               /* ËùÓĞÊÂ¼şÎ´±»Ê¹ÓÃ  */
-    p_dev->valid_flg = AM_FALSE;        /* ²ÎÊıÎŞĞ§ */
+    p_dev->evt_stat  = 0;               /* æ‰€æœ‰äº‹ä»¶æœªè¢«ä½¿ç”¨  */
+    p_dev->valid_flg = AM_FALSE;        /* å‚æ•°æ— æ•ˆ */
 
     if (p_dev->p_devinfo->pfn_plfm_deinit) {
         p_dev->p_devinfo->pfn_plfm_deinit();

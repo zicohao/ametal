@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief bootloader µ¥ÇøÊ¹ÓÃ´®¿ÚÍ¨ĞÅ,Ê¹ÓÃ´®¿ÚÖúÊÖ·¢ËÍ¹Ì¼şµÄÀı³Ì
+ * \brief bootloader å•åŒºä½¿ç”¨ä¸²å£é€šä¿¡,ä½¿ç”¨ä¸²å£åŠ©æ‰‹å‘é€å›ºä»¶çš„ä¾‹ç¨‹
  *
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_std_single_bootloader.c src_std_single_bootloader
  *
  * \internal
@@ -40,20 +40,20 @@ void demo_std_single_bootloader_entry(am_boot_firwa_recv_handle_t  firwa_recv_ha
                                       am_boot_enter_check_handle_t enter_check_handle)
 {
     int ret;
-    /* ÅĞ¶ÏÊÇ·ñ½øÈëÓ¦ÓÃ³ÌĞò£¬²¢ÅĞ¶ÏÓ¦ÓÃ³ÌĞòÇø³ÌĞòÊÇ·ñÓĞĞ§ */
+    /* åˆ¤æ–­æ˜¯å¦è¿›å…¥åº”ç”¨ç¨‹åºï¼Œå¹¶åˆ¤æ–­åº”ç”¨ç¨‹åºåŒºç¨‹åºæ˜¯å¦æœ‰æ•ˆ */
     if(am_boot_enter_check(enter_check_handle) && am_boot_app_is_ready()) {
-        /* Ìø×ªµ½Ó¦ÓÃ³ÌĞò */
+        /* è·³è½¬åˆ°åº”ç”¨ç¨‹åº */
         am_boot_go_application();
     }
 
     while(1) {
-        /* ½ÓÊÕ¹Ì¼ş */
+        /* æ¥æ”¶å›ºä»¶ */
         ret = am_boot_firmware_recv(firwa_recv_handle);
         if(ret == AM_OK) {
-            /* ½ÓÊÕ³É¹¦¾ÍÊÇÌø³öÑ­»· */
+            /* æ¥æ”¶æˆåŠŸå°±æ˜¯è·³å‡ºå¾ªç¯ */
             break;
         } else {
-            /* ½ÓÊÕÊ§°Ü£¬ÖØĞÂ½ÓÊÕ¹Ì¼ş */
+            /* æ¥æ”¶å¤±è´¥ï¼Œé‡æ–°æ¥æ”¶å›ºä»¶ */
             am_kprintf("boot : firmware receive fail,restart receive firmware\r\n");
         }
     }

@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief HC595±ê×¼Éè±¸ÊµÏÖ£¨GPIOÇý¶¯£©
+ * \brief HC595æ ‡å‡†è®¾å¤‡å®žçŽ°ï¼ˆGPIOé©±åŠ¨ï¼‰
  *
  * \internal
  * \par modification history:

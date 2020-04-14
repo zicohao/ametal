@@ -12,18 +12,18 @@
 
 /**
  * \file
- * \brief ADCÀı³Ì£¬Èí¼ş´¥·¢×ª»»£¬DMA´«Êä×ª»»½á¹û£¬Ê¹ÓÃ¶à¸ö´«ÊäÃèÊö·û£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief ADCä¾‹ç¨‹ï¼Œè½¯ä»¶è§¦å‘è½¬æ¢ï¼ŒDMAä¼ è¾“è½¬æ¢ç»“æœï¼Œä½¿ç”¨å¤šä¸ªä¼ è¾“æè¿°ç¬¦ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè£º
- *   1. PIOA_1Òı½ÅÁ¬½ÓPC´®¿ÚµÄTXD£»
- *   2. PIOA_2Òı½ÅÁ¬½ÓPC´®¿ÚµÄRXD£»
- *   3. J12ÌøÏßÃ±¶Ì½Ó£¨´ËÊ±²Î¿¼µçÑ¹Îª2.5v£©£»
- *   4. PIOE_20(ADCÍ¨µÀ0) Á¬½ÓÄ£ÄâÊäÈë¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. PIOA_1å¼•è„šè¿æ¥PCä¸²å£çš„TXDï¼›
+ *   2. PIOA_2å¼•è„šè¿æ¥PCä¸²å£çš„RXDï¼›
+ *   3. J12è·³çº¿å¸½çŸ­æ¥ï¼ˆæ­¤æ—¶å‚è€ƒç”µå‹ä¸º2.5vï¼‰ï¼›
+ *   4. PIOE_20(ADCé€šé“0) è¿æ¥æ¨¡æ‹Ÿè¾“å…¥ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿ÚÊä³öµçÑ¹²ÉÑùÖµ¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. ä¸²å£è¾“å‡ºç”µå‹é‡‡æ ·å€¼ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_amks16z_core_std_adc_descs_st.c src_amks16z_core_std_adc_descs_st
  *
  * \internal
@@ -48,8 +48,8 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief adcÈí¼ş´¥·¢£¬DMA´«Êä½á¹û£¬Ò»´Î²ÉÑùÁ½¸öADCÃèÊö·û
- * \return ÎŞ
+ * \brief adcè½¯ä»¶è§¦å‘ï¼ŒDMAä¼ è¾“ç»“æœï¼Œä¸€æ¬¡é‡‡æ ·ä¸¤ä¸ªADCæè¿°ç¬¦
+ * \return æ— 
  */
 void demo_amks16z_core_std_adc_descs_st_entry (void)
 {
@@ -57,8 +57,8 @@ void demo_amks16z_core_std_adc_descs_st_entry (void)
 
     AM_DBG_INFO("demo amks16z_core std adc descs!\r\n");
 
-    am_kl26_dma_inst_init();        /* DMAÊµÀı³õÊ¼»¯ */
-    adc0_handle = am_kl26_adc0_inst_init(); /* ADCÊµÀı³õÊ¼»¯£¬²¢»ñÈ¡ADC¾ä±úÖµ */
+    am_kl26_dma_inst_init();        /* DMAå®ä¾‹åˆå§‹åŒ– */
+    adc0_handle = am_kl26_adc0_inst_init(); /* ADCå®ä¾‹åˆå§‹åŒ–ï¼Œå¹¶è·å–ADCå¥æŸ„å€¼ */
 
     demo_fsl_std_adc_descs_st_entry(adc0_handle);
 

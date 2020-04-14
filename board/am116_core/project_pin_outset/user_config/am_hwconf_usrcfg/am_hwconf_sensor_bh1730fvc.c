@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ´«¸ĞÆ÷ BH1730FVC ÅäÖÃÎÄ¼ş
+ * \brief ä¼ æ„Ÿå™¨ BH1730FVC é…ç½®æ–‡ä»¶
  *
  * \internal
  * \par Modification history
@@ -25,16 +25,16 @@
 #include "zlg116_pin.h"
 #include "am_zlg116_inst_init.h"
 
-/** \brief ´«¸ĞÆ÷ BH1730FVC Éè±¸ĞÅÏ¢ÊµÀı */
+/** \brief ä¼ æ„Ÿå™¨ BH1730FVC è®¾å¤‡ä¿¡æ¯å®ä¾‹ */
 am_const am_local struct am_sensor_bh1730fvc_devinfo __g_bh1730fvc_info = {
-    PIOB_0,            /*< \brief ´¥·¢Òı½Å¶¨Òå    */
-    0x29               /*< \breif BH1730FVC I2CµØÖ· */
+    PIOB_0,            /*< \brief è§¦å‘å¼•è„šå®šä¹‰    */
+    0x29               /*< \breif BH1730FVC I2Cåœ°å€ */
 };
 
-/** \breif ´«¸ĞÆ÷ BH1730FVC Éè±¸½á¹¹Ìå¶¨Òå */
+/** \breif ä¼ æ„Ÿå™¨ BH1730FVC è®¾å¤‡ç»“æ„ä½“å®šä¹‰ */
 am_local struct am_sensor_bh1730fvc_dev __g_bh1730fvc_dev;
 
-/** \brief ´«¸ĞÆ÷ BH1730FVC Éè±¸ÊµÀı»¯ */
+/** \brief ä¼ æ„Ÿå™¨ BH1730FVC è®¾å¤‡å®ä¾‹åŒ– */
 am_sensor_handle_t am_sensor_bh1730fvc_inst_init (void)
 {
     return am_sensor_bh1730fvc_init(&__g_bh1730fvc_dev,
@@ -42,7 +42,7 @@ am_sensor_handle_t am_sensor_bh1730fvc_inst_init (void)
                                     am_zlg116_i2c1_inst_init());
 }
 
-/** \brief ´«¸ĞÆ÷ BH1730FVC ÊµÀı½â³õÊ¼»¯ */
+/** \brief ä¼ æ„Ÿå™¨ BH1730FVC å®ä¾‹è§£åˆå§‹åŒ– */
 am_err_t am_sensor_bh1730fvc_inst_deinit (am_sensor_handle_t handle)
 {
     return am_sensor_bh1730fvc_deinit(handle);

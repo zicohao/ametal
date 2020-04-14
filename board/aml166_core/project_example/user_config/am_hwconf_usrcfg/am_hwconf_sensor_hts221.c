@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ´«¸ĞÆ÷ HTS221 ÅäÖÃÎÄ¼ş
+ * \brief ä¼ æ„Ÿå™¨ HTS221 é…ç½®æ–‡ä»¶
  *
  * \internal
  * \par Modification history
@@ -25,16 +25,16 @@
 #include "am_common.h"
 #include "zlg116_pin.h"
 
-/** \brief ´«¸ĞÆ÷ HTS221 Éè±¸ĞÅÏ¢ÊµÀı */
+/** \brief ä¼ æ„Ÿå™¨ HTS221 è®¾å¤‡ä¿¡æ¯å®ä¾‹ */
 am_const am_local struct am_sensor_hts221_devinfo __g_hts221_info = {
-        PIOB_0,            /*< \brief ´¥·¢Òı½Å¶¨Òå   */
-        0x5f               /*< \breif HTS221 I2CµØÖ· */
+        PIOB_0,            /*< \brief è§¦å‘å¼•è„šå®šä¹‰   */
+        0x5f               /*< \breif HTS221 I2Cåœ°å€ */
 };
 
-/** \breif ´«¸ĞÆ÷ HTS221 Éè±¸½á¹¹Ìå¶¨Òå */
+/** \breif ä¼ æ„Ÿå™¨ HTS221 è®¾å¤‡ç»“æ„ä½“å®šä¹‰ */
 am_local struct am_sensor_hts221_dev __g_hts221_dev;
 
-/** \brief ´«¸ĞÆ÷ HTS221 Éè±¸ÊµÀı»¯ */
+/** \brief ä¼ æ„Ÿå™¨ HTS221 è®¾å¤‡å®ä¾‹åŒ– */
 am_sensor_handle_t am_sensor_hts221_inst_init (void)
 {
     return am_sensor_hts221_init(&__g_hts221_dev,
@@ -42,7 +42,7 @@ am_sensor_handle_t am_sensor_hts221_inst_init (void)
                                  am_zlg116_i2c1_inst_init());
 }
 
-/** \brief ´«¸ĞÆ÷ HTS221 ÊµÀı½â³õÊ¼»¯ */
+/** \brief ä¼ æ„Ÿå™¨ HTS221 å®ä¾‹è§£åˆå§‹åŒ– */
 am_err_t am_sensor_hts221_inst_deinit (am_sensor_handle_t handle)
 {
     return am_sensor_hts221_deinit(handle);

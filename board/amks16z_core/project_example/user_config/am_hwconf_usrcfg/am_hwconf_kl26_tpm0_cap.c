@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief KL26 TPM0ÓÃÓÚ²¶»ñ¹¦ÄÜµÄÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief KL26 TPM0ç”¨äºæ•è·åŠŸèƒ½çš„ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_kl26_hwconfig_tpm0_cap.c
  * 
  * \internal
@@ -34,51 +34,51 @@
  * @{
  */
 
-/** \brief TPM0ÓÃÓÚ²¶»ñ¹¦ÄÜµÄÆ½Ì¨³õÊ¼»¯ */
+/** \brief TPM0ç”¨äºæ•è·åŠŸèƒ½çš„å¹³å°åˆå§‹åŒ– */
 void __kl26_plfm_tpm0_cap_init (void)
 {
     amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_TPM0);
     amhw_kl26_sim_tpm_src_set(KL26_SIM_TPMSRC_PLLFLLCLK);
 }
 
-/** \brief  ½â³ıTPM0Æ½Ì¨³õÊ¼»¯ */
+/** \brief  è§£é™¤TPM0å¹³å°åˆå§‹åŒ– */
 void __kl26_plfm_tpm0_cap_deinit (void)
 {
     amhw_kl26_sim_periph_clock_disable(KL26_SIM_SCGC_TPM0);
 }
 
-/** \brief TPM0ÓÃÓÚ²¶»ñ¹¦ÄÜµÄÒı½ÅÅäÖÃĞÅÏ¢ÁĞ±í */
+/** \brief TPM0ç”¨äºæ•è·åŠŸèƒ½çš„å¼•è„šé…ç½®ä¿¡æ¯åˆ—è¡¨ */
 am_fsl_tpm_cap_ioinfo_t __g_tpm0_cap_ioinfo_list[] = {
-    {PIOD_0, PIOD_0_TPM0_CH0, PIOD_0_GPIO | AM_GPIO_INPUT}, /**< \brief Í¨µÀ 0 */
-    {PIOD_1, PIOD_1_TPM0_CH1, PIOD_1_GPIO | AM_GPIO_INPUT}, /**< \brief Í¨µÀ 1 */
-    {PIOD_2, PIOD_2_TPM0_CH2, PIOD_2_GPIO | AM_GPIO_INPUT}, /**< \brief Í¨µÀ 2 */
-    {PIOD_3, PIOD_3_TPM0_CH3, PIOD_3_GPIO | AM_GPIO_INPUT}, /**< \brief Í¨µÀ 3 */
-    {PIOD_4, PIOD_4_TPM0_CH4, PIOD_4_GPIO | AM_GPIO_INPUT}, /**< \brief Í¨µÀ 4 */
-    {PIOD_5, PIOD_5_TPM0_CH5, PIOD_5_GPIO | AM_GPIO_INPUT}, /**< \brief Í¨µÀ 5 */
+    {PIOD_0, PIOD_0_TPM0_CH0, PIOD_0_GPIO | AM_GPIO_INPUT}, /**< \brief é€šé“ 0 */
+    {PIOD_1, PIOD_1_TPM0_CH1, PIOD_1_GPIO | AM_GPIO_INPUT}, /**< \brief é€šé“ 1 */
+    {PIOD_2, PIOD_2_TPM0_CH2, PIOD_2_GPIO | AM_GPIO_INPUT}, /**< \brief é€šé“ 2 */
+    {PIOD_3, PIOD_3_TPM0_CH3, PIOD_3_GPIO | AM_GPIO_INPUT}, /**< \brief é€šé“ 3 */
+    {PIOD_4, PIOD_4_TPM0_CH4, PIOD_4_GPIO | AM_GPIO_INPUT}, /**< \brief é€šé“ 4 */
+    {PIOD_5, PIOD_5_TPM0_CH5, PIOD_5_GPIO | AM_GPIO_INPUT}, /**< \brief é€šé“ 5 */
 };
 
-/** \brief TPM0ÓÃÓÚ²¶»ñ¹¦ÄÜµÄÉè±¸ĞÅÏ¢ */
+/** \brief TPM0ç”¨äºæ•è·åŠŸèƒ½çš„è®¾å¤‡ä¿¡æ¯ */
 const am_fsl_tpm_cap_devinfo_t  __g_tpm0_cap_devinfo = {
-    KL26_TPM0,                      /**< \brief Ö¸ÏòTPM0¼Ä´æÆ÷¿éµÄÖ¸Õë */
-    INUM_TPM0,                      /**< \brief TPM0ÖĞ¶Ï±àºÅ */
-    6,                              /**< \brief 6¸ö²¶»ñÍ¨µÀ  */
-    CLK_TPM0,                       /**< \brief Ê±ÖÓºÅ */
+    KL26_TPM0,                      /**< \brief æŒ‡å‘TPM0å¯„å­˜å™¨å—çš„æŒ‡é’ˆ */
+    INUM_TPM0,                      /**< \brief TPM0ä¸­æ–­ç¼–å· */
+    6,                              /**< \brief 6ä¸ªæ•è·é€šé“  */
+    CLK_TPM0,                       /**< \brief æ—¶é’Ÿå· */
     &__g_tpm0_cap_ioinfo_list[0],
-    __kl26_plfm_tpm0_cap_init,      /**< \brief Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __kl26_plfm_tpm0_cap_deinit     /**< \brief Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    __kl26_plfm_tpm0_cap_init,      /**< \brief å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __kl26_plfm_tpm0_cap_deinit     /**< \brief å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 };
 
-/** \brief TPM0ÓÃÓÚ²¶»ñ¹¦ÄÜµÄÉè±¸¶¨Òå */
+/** \brief TPM0ç”¨äºæ•è·åŠŸèƒ½çš„è®¾å¤‡å®šä¹‰ */
 am_fsl_tpm_cap_dev_t  __g_tpm0_cap_dev;
 
-/** \brief tpm0 cap ÊµÀı³õÊ¼»¯£¬»ñµÃcap±ê×¼·şÎñ¾ä±ú */
+/** \brief tpm0 cap å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—capæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_cap_handle_t am_kl26_tpm0_cap_inst_init (void)
 {
     return am_fsl_tpm_cap_init(&__g_tpm0_cap_dev,
                                &__g_tpm0_cap_devinfo);
 }
 
-/** \brief tpm0 cap ÊµÀı½â³õÊ¼»¯ */
+/** \brief tpm0 cap å®ä¾‹è§£åˆå§‹åŒ– */
 void am_kl26_tpm0_cap_inst_deinit (am_cap_handle_t handle)
 {
     am_fsl_tpm_cap_deinit(handle);

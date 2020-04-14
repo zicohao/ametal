@@ -12,18 +12,18 @@
 
 /**
  * \file
- * \brief fm175xx¶ÔCPU¿¨½øÐÐ²âÊÔ£¬Í¨¹ýÇý¶¯½Ó¿ÚÊµÏÖ
+ * \brief fm175xxå¯¹CPUå¡è¿›è¡Œæµ‹è¯•ï¼Œé€šè¿‡é©±åŠ¨æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. ÕýÈ·Á¬½Ó²¢ÅäÖÃºÃ´®¿Ú£»
- *   2. ÕýÈ·Á¬½ÓºÃÌìÏß£»
- *   3. ½«CPU¿¨ÖÃÓÚÌìÏß¸ÐÓ¦Çø¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. æ­£ç¡®è¿žæŽ¥å¹¶é…ç½®å¥½ä¸²å£ï¼›
+ *   2. æ­£ç¡®è¿žæŽ¥å¥½å¤©çº¿ï¼›
+ *   3. å°†CPUå¡ç½®äºŽå¤©çº¿æ„Ÿåº”åŒºã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ½«¿¨Æ¬·ÅÖÃÌìÏß¸ÐÓ¦Çøºó´®¿Ú´òÓ¡³ö¿¨Æ¬µÄID£»
- *   2. Èç¹û·ÅÖÃµÄ¿¨Æ¬ÊÇCPU¿¨£¬½«´òÓ¡ATSºÍCOSÖ¸ÁîµÄ²Ù×÷½á¹û¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. å°†å¡ç‰‡æ”¾ç½®å¤©çº¿æ„Ÿåº”åŒºåŽä¸²å£æ‰“å°å‡ºå¡ç‰‡çš„IDï¼›
+ *   2. å¦‚æžœæ”¾ç½®çš„å¡ç‰‡æ˜¯CPUå¡ï¼Œå°†æ‰“å°ATSå’ŒCOSæŒ‡ä»¤çš„æ“ä½œç»“æžœã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am116_dr_fm175xx_cpu_card.c src_am116_dr_fm175xx_cpu_card
  *
  * \internal
@@ -46,7 +46,7 @@
 #include "demo_am116_core_entries.h"
 
 /**
- * \brief ¶ÁCPU¿¨Àý³Ì
+ * \brief è¯»CPUå¡ä¾‹ç¨‹
  */
 void demo_am116_core_dr_fm175xx_cpu_card (void)
 {

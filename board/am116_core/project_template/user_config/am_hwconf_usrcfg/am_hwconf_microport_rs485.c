@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief MicroPort RS485 ”√ªß≈‰÷√Œƒº˛
+ * \brief MicroPort RS485 Áî®Êà∑ÈÖçÁΩÆÊñá‰ª∂
  * \sa am_hwconf_microport_rs485.c
  *
  * \internal
@@ -36,64 +36,64 @@
  * @{
  */
 
-/** \brief RS485 ∑ΩœÚøÿ÷∆“˝Ω≈ */
+/** \brief RS485 ÊñπÂêëÊéßÂà∂ÂºïËÑö */
 #define __MICROPORT_RS485_DIR_PIN   PIOA_15
 
 /**
- * \brief RS485 ∑ΩœÚøÿ÷∆∫Ø ˝
+ * \brief RS485 ÊñπÂêëÊéßÂà∂ÂáΩÊï∞
  *
- * \param[in] is_txmode AM_TRUE: ∑¢ÀÕƒ£ Ω£¨ AM_FALSE: Ω” ’ƒ£ Ω
+ * \param[in] is_txmode AM_TRUE: ÂèëÈÄÅÊ®°ÂºèÔºå AM_FALSE: Êé•Êî∂Ê®°Âºè
  */
 void __microport_rs485_dir (am_bool_t is_txmode)
 {
     am_gpio_set(__MICROPORT_RS485_DIR_PIN, (int)is_txmode);
 }
 
-/** \brief MicroPort RS485 ∆ΩÃ®≥ı ºªØ */
+/** \brief MicroPort RS485 Âπ≥Âè∞ÂàùÂßãÂåñ */
 am_local void __microport_rs485_plfm_init (void)
 {
 
-    /* “˝Ω≈≥ı ºªØ PIOA_9 -> UART1_TX  PIOA_10 -> UART1_RX */
+    /* ÂºïËÑöÂàùÂßãÂåñ PIOA_9 -> UART1_TX  PIOA_10 -> UART1_RX */
     am_gpio_pin_cfg(PIOA_9, PIOA_9_UART1_TX | PIOA_9_AF_PP);
     am_gpio_pin_cfg(PIOA_10, PIOA_10_UART1_RX | PIOA_10_INPUT_FLOAT);
 
     am_gpio_pin_cfg(__MICROPORT_RS485_DIR_PIN, AM_GPIO_OUTPUT_INIT_LOW);
 }
 
-/** \brief Ω‚≥˝ MicroPort RS485 ∆ΩÃ®≥ı ºªØ */
+/** \brief Ëß£Èô§ MicroPort RS485 Âπ≥Âè∞ÂàùÂßãÂåñ */
 am_local void __microport_rs485_plfm_deinit (void)
 {
 
-    /* πÿ±’ UART1  ±÷” */
+    /* ÂÖ≥Èó≠ UART1 Êó∂Èíü */
     am_clk_disable(CLK_UART1);
 
     am_gpio_pin_cfg(PIOA_9, AM_GPIO_INPUT);
     am_gpio_pin_cfg(PIOA_10, AM_GPIO_INPUT);
 }
 
-/** \brief MicroPort RS485 …Ë±∏–≈œ¢ */
+/** \brief MicroPort RS485 ËÆæÂ§á‰ø°ÊÅØ */
 am_local am_const am_zlg_uart_devinfo_t __g_microport_rs485_devinfo = {
-    ZLG116_UART1_BASE,              /**< \brief ¥Æø⁄ 1 */
-    INUM_UART1,                     /**< \brief ¥Æø⁄ 1 µƒ÷–∂œ±‡∫≈ */
-    CLK_UART1,                      /**< \brief ¥Æø⁄ 1 µƒ ±÷” */
+    ZLG116_UART1_BASE,              /**< \brief ‰∏≤Âè£ 1 */
+    INUM_UART1,                     /**< \brief ‰∏≤Âè£ 1 ÁöÑ‰∏≠Êñ≠ÁºñÂè∑ */
+    CLK_UART1,                      /**< \brief ‰∏≤Âè£ 1 ÁöÑÊó∂Èíü */
 
-    AMHW_ZLG_UART_DATA_8BIT |       /**< \brief 8 Œª ˝æ› */
-    AMHW_ZLG_UART_PARITY_NO |       /**< \brief Œﬁº´–‘ */
-    AMHW_ZLG_UART_STOP_1BIT,        /**< \brief 1 ∏ˆÕ£÷πŒª */
+    AMHW_ZLG_UART_DATA_8BIT |       /**< \brief 8 ‰ΩçÊï∞ÊçÆ */
+    AMHW_ZLG_UART_PARITY_NO |       /**< \brief Êó†ÊûÅÊÄß */
+    AMHW_ZLG_UART_STOP_1BIT,        /**< \brief 1 ‰∏™ÂÅúÊ≠¢‰Ωç */
 
-    115200,                         /**< \brief …Ë÷√µƒ≤®Ãÿ¬  */
+    115200,                         /**< \brief ËÆæÁΩÆÁöÑÊ≥¢ÁâπÁéá */
 
-    0,                              /**< \brief Œﬁ∆‰À˚÷–∂œ */
+    0,                              /**< \brief Êó†ÂÖ∂‰ªñ‰∏≠Êñ≠ */
 
-    __microport_rs485_dir,          /**< \brief RS485 ∑ΩœÚ«–ªª∫Ø ˝ */
-    __microport_rs485_plfm_init,    /**< \brief UART1 µƒ∆ΩÃ®≥ı ºªØ */
-    __microport_rs485_plfm_deinit,  /**< \brief UART1 µƒ∆ΩÃ®»•≥ı ºªØ */
+    __microport_rs485_dir,          /**< \brief RS485 ÊñπÂêëÂàáÊç¢ÂáΩÊï∞ */
+    __microport_rs485_plfm_init,    /**< \brief UART1 ÁöÑÂπ≥Âè∞ÂàùÂßãÂåñ */
+    __microport_rs485_plfm_deinit,  /**< \brief UART1 ÁöÑÂπ≥Âè∞ÂéªÂàùÂßãÂåñ */
 };
 
-/** \brief ∂®“Â MicroPort RS485 …Ë±∏ */
+/** \brief ÂÆö‰πâ MicroPort RS485 ËÆæÂ§á */
 am_local am_zlg_uart_dev_t __g_microport_rs485_dev;
 
-/** \brief MicroPort RS485  µ¿˝≥ı ºªØ£¨ªÒµ√ UART ±Í◊º∑˛ŒÒæ‰±˙ */
+/** \brief MicroPort RS485 ÂÆû‰æãÂàùÂßãÂåñÔºåËé∑Âæó UART Ê†áÂáÜÊúçÂä°Âè•ÊüÑ */
 am_uart_handle_t am_microport_rs485_inst_init (void)
 {
     am_uart_handle_t handle;

@@ -58,14 +58,14 @@ static int __mrt_connect(void *p_drv);
 #endif
  
                               
-/* ��ʱ����Ϣ */
+/* 定时器信息 */
 static const am_timer_info_t __g_mrt_timing_info = {
-    24,                                      /* 24λ��ʱ��               */
-    4,                                       /* 4ͨ��                   */
-    AM_TIMER_CAN_INTERRUPT      |            /* ���Բ����ж�             */
-    AM_TIMER_AUTO_RELOAD        |            /* ֧���Զ�����             */
-    AM_TIMER_INTERMEDIATE_COUNT ,            /* ��ǰ������ֵ�ɶ�         */
-    0                                    /* Ԥ��Ƶ���ֵ��65536      */
+    24,                                      /* 24位定时器               */
+    4,                                       /* 4通道                   */
+    AM_TIMER_CAN_INTERRUPT      |            /* 可以产生中断             */
+    AM_TIMER_AUTO_RELOAD        |            /* 支持自动重载             */
+    AM_TIMER_INTERMEDIATE_COUNT ,            /* 当前计数器值可读         */
+    0                                    /* 预分频最大值：65536      */
 };
 
 /** \brief sio driver functions */

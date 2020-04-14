@@ -13,18 +13,18 @@
 
 /**
  * \file
- * \brief FM175xx LPCDģʽ
+ * \brief FM175xx LPCD模式
  *
- * - �������裺
- *   1. ��ȷ���Ӳ����úô��ڡ�
- *   2. ��ȷ���Ӻ����ߡ�
+ * - 操作步骤：
+ *   1. 正确连接并配置好串口。
+ *   2. 正确连接好天线。
  *
- * - ʵ������
- *   1. ��ִ�в�������1 2�� ��󿨽���͹����Զ���Ƭ��⣨LPCD��ģʽ
- *   2. �������ø�Ӧ����FM175xx�豸�������������жϱ�־��ִ����Ӧ�趨������
- *   3. �ƿ���Ƭ�󣬴ﵽ�趨��AUTO_WUP_TIME��ʱ��ʱ��FM175xx�Զ��˳�LPCDģʽ���Զ����е�У��
+ * - 实验现象：
+ *   1. 在执行操作步骤1 2后， 随后卡进入低功耗自动卡片检测（LPCD）模式
+ *   2. 将卡放置感应区，FM175xx设备将产生卡进场中断标志，执行相应设定操作。
+ *   3. 移开卡片后，达到设定的AUTO_WUP_TIME的时间时，FM175xx自动退出LPCD模式，自动进行调校。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_amks16rfid8_m175xx_picca_lpcd_mode.c demo_amks16rfid8_fm175xx_picca_lpcd_mode
  *
  * \internal
@@ -52,17 +52,17 @@
 #include "demo_amks16rfid8_entries.h"
 
 /**
- * \name ������İ���ع̶�����
+ * \name 定义核心板相关固定引脚
  * @{
  */
-#define __CD4051_PIN_EN  PIOB_19         /**< \brief   CD4051ͨ������оƬ ʹ������  */
-#define __CD4051_PIN_S2  PIOB_18         /**< \brief   CD4051ͨ������оƬS2����  */
-#define __CD4051_PIN_S1  PIOB_17         /**< \brief   CD4051ͨ������оƬS1����  */
-#define __CD4051_PIN_S0  PIOB_16         /**< \brief   CD4051ͨ������оƬS0����  */
+#define __CD4051_PIN_EN  PIOB_19         /**< \brief   CD4051通道控制芯片 使能引脚  */
+#define __CD4051_PIN_S2  PIOB_18         /**< \brief   CD4051通道控制芯片S2引脚  */
+#define __CD4051_PIN_S1  PIOB_17         /**< \brief   CD4051通道控制芯片S1引脚  */
+#define __CD4051_PIN_S0  PIOB_16         /**< \brief   CD4051通道控制芯片S0引脚  */
 
-#define __ANT_ENABLE_PIN PIOE_29         /**<\brief   ������ѹоƬʹ������  */
+#define __ANT_ENABLE_PIN PIOE_29         /**<\brief   天线升压芯片使能引脚  */
 
-/* ���� fm175xx �����л���Ϣ */
+/* 定义 fm175xx 天线切换信息 */
 static am_antenna_info_t  __g_antenna_info = {
     {
         __CD4051_PIN_EN,
@@ -74,18 +74,18 @@ static am_antenna_info_t  __g_antenna_info = {
 };
 
 /**
- * \brief LPCDģʽ
+ * \brief LPCD模式
  */
 void demo_amks16rfid8_fm175xx_lpcd_read_id (void)
 {
     am_fm175xx_handle_t handle;
 
-    /* B�汾���İ���ڴ�����   ��Ҫ����ʹ������
-     * ��ΪA�汾���İ���ɶԸ��д������ע��
+    /* B版本核心板存在此引脚   需要拉高使能天线
+     * 若为A版本核心板则可对该行代码进行注释
      */
     am_gpio_pin_cfg(__ANT_ENABLE_PIN, AM_GPIO_OUTPUT_INIT_HIGH);
 
-    /* ��ʼ�����߲�ѡ������1   ע��˴�һ��Ҫ��ѡ������*/
+    /* 初始化天线并选择天线1   注意此处一定要先选择天线*/
     am_cd4051_pin_init(&__g_antenna_info);
     am_cd4051_channel_selected(&__g_antenna_info, 0);
 

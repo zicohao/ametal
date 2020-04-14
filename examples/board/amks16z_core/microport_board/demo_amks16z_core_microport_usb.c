@@ -12,23 +12,23 @@
 
 /**
  * \file
- * \brief MicroPort USB(XR21V141x) Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MicroPort USB(XR21V141x) ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè£º
- *   1. ½« MicroPort USB Åä°åÁ¬½Óµ½ AMKS16RFID µÄ MicroPort ½Ó¿Ú£»
- *   2. ½«  MicroPort USB Åä°åÉÏµÄ USB ½Ó¿ÚÓë PC Á¬½Ó²¢Í¨¹ı´®¿ÚÖúÊÖ´ò¿ª¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. å°† MicroPort USB é…æ¿è¿æ¥åˆ° AMKS16RFID çš„ MicroPort æ¥å£ï¼›
+ *   2. å°†  MicroPort USB é…æ¿ä¸Šçš„ USB æ¥å£ä¸ PC è¿æ¥å¹¶é€šè¿‡ä¸²å£åŠ©æ‰‹æ‰“å¼€ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿ÚÊä³ö"MicroPort USB Test:"£»
- *   2. ´®¿ÚÊä³ö½ÓÊÕµ½µÄ×Ö·û´®¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. ä¸²å£è¾“å‡º"MicroPort USB Test:"ï¼›
+ *   2. ä¸²å£è¾“å‡ºæ¥æ”¶åˆ°çš„å­—ç¬¦ä¸²ã€‚
  *
  * \note
- *   1. XR21V141x Îª USB ×ª´®¿ÚĞ¾Æ¬£¬Ê¹ÓÃÇ°ĞèÒª°²×°Çı¶¯³ÌĞò¡£ÓÃ»§¿ÉÒÔÔÚ EXAR
- *      ¹Ù·½ÍøÕ¾(http://www.exarcorp.cn/design-tools/software-drivers)ÏÂÔØ£»
- *   2. Àı³ÌÊ¹ÓÃ USART0£¬ÔÚam_heconf_kl26_uart.cÎÄ¼şÖĞ£¬am_kl26_uart0_inst_init
- *      º¯ÊıÓ¦¸Ã³õÊ¼»¯µÄÒı½ÅÊÇPIOA_1ºÍPIOA_2
+ *   1. XR21V141x ä¸º USB è½¬ä¸²å£èŠ¯ç‰‡ï¼Œä½¿ç”¨å‰éœ€è¦å®‰è£…é©±åŠ¨ç¨‹åºã€‚ç”¨æˆ·å¯ä»¥åœ¨ EXAR
+ *      å®˜æ–¹ç½‘ç«™(http://www.exarcorp.cn/design-tools/software-drivers)ä¸‹è½½ï¼›
+ *   2. ä¾‹ç¨‹ä½¿ç”¨ USART0ï¼Œåœ¨am_heconf_kl26_uart.cæ–‡ä»¶ä¸­ï¼Œam_kl26_uart0_inst_init
+ *      å‡½æ•°åº”è¯¥åˆå§‹åŒ–çš„å¼•è„šæ˜¯PIOA_1å’ŒPIOA_2
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_microport_usb.c src_microport_usb
  *
  * \internal
@@ -50,11 +50,11 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief MicroPort USB Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MicroPort USB ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_amks16z_core_microport_usb_entry (void)
 {

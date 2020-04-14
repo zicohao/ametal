@@ -29,7 +29,7 @@
 
 static void __i2c_callback (void *p_arg)
 {
-    /* 结束等待序列 */
+    /* 缁撴潫绛夊緟搴忓垪 */
     am_wait_done((am_wait_t *)p_arg);
 }
 
@@ -46,7 +46,7 @@ static int __i2c_rw_sync (am_i2c_device_t *p_dev,
     am_i2c_transfer_t trans[3];
     am_wait_t         trans_wait;
     am_i2c_message_t  msg;
-    uint8_t           subaddr_buf[2];  /* 用于存放2bytes期间内子地址 */
+    uint8_t           subaddr_buf[2];  /* 鐢ㄤ簬瀛樻斁2bytes鏈熼棿鍐呭瓙鍦板潃 */
     int               ret;
     
     am_wait_init(&trans_wait);

@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ´«¸ĞÆ÷ bme280 ÅäÖÃÎÄ¼ş
+ * \brief ä¼ æ„Ÿå™¨ bme280 é…ç½®æ–‡ä»¶
  *
  * \internal
  * \par Modification history
@@ -25,15 +25,15 @@
 #include "zlg116_pin.h"
 #include "am_zlg116_inst_init.h"
 
-/** \brief ´«¸ĞÆ÷ bme280 Éè±¸ĞÅÏ¢ÊµÀı */
+/** \brief ä¼ æ„Ÿå™¨ bme280 è®¾å¤‡ä¿¡æ¯å®ä¾‹ */
 am_const am_local struct am_sensor_bme280_devinfo __g_bme280_info = {
-        0x76               /*< \breif bme280 I2CµØÖ· */
+        0x76               /*< \breif bme280 I2Cåœ°å€ */
 };
 
-/** \breif ´«¸ĞÆ÷ bme280 Éè±¸½á¹¹Ìå¶¨Òå */
+/** \breif ä¼ æ„Ÿå™¨ bme280 è®¾å¤‡ç»“æ„ä½“å®šä¹‰ */
 am_local struct am_sensor_bme280_dev __g_bme280_dev;
 
-/** \brief ´«¸ĞÆ÷ bme280 Éè±¸ÊµÀı»¯ */
+/** \brief ä¼ æ„Ÿå™¨ bme280 è®¾å¤‡å®ä¾‹åŒ– */
 am_sensor_handle_t am_sensor_bme280_inst_init (void)
 {
     return am_sensor_bme280_init(&__g_bme280_dev,
@@ -41,7 +41,7 @@ am_sensor_handle_t am_sensor_bme280_inst_init (void)
                                  am_zlg116_i2c1_inst_init());
 }
 
-/** \brief ´«¸ĞÆ÷ bme280 ÊµÀı½â³õÊ¼»¯ */
+/** \brief ä¼ æ„Ÿå™¨ bme280 å®ä¾‹è§£åˆå§‹åŒ– */
 am_err_t am_sensor_bme280_inst_deinit (am_sensor_handle_t handle)
 {
     return am_sensor_bme280_deinit(handle);

@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief MicroPort RTC(PCF85063) ÅäÖÃÎÄ¼ş
+ * \brief MicroPort RTC(PCF85063) é…ç½®æ–‡ä»¶
  * \sa am_hwconf_microport_rtc.c
  *
  * \internal
@@ -35,20 +35,20 @@
  * @{
  */
 
-/** \brief Éè±¸ĞÅÏ¢ */
+/** \brief è®¾å¤‡ä¿¡æ¯ */
 am_local am_const am_pcf85063_devinfo_t __g_microport_rtc_devinfo = {
-    PIOA_12,   /**< \brief INT ¶ÔÓ¦µÄ IO Òı½ÅºÅ */
-    -1,        /**< \brief CLK_EN Î´Ê¹ÓÃ */
+    PIOA_12,   /**< \brief INT å¯¹åº”çš„ IO å¼•è„šå· */
+    -1,        /**< \brief CLK_EN æœªä½¿ç”¨ */
 };
 
 /*******************************************************************************
-  MicroPort PCF85063 ÊµÀı³õÊ¼»¯£¨Ê¹ÓÃĞ¾Æ¬ÌØÊâ¹¦ÄÜ£©
+  MicroPort PCF85063 å®ä¾‹åˆå§‹åŒ–ï¼ˆä½¿ç”¨èŠ¯ç‰‡ç‰¹æ®ŠåŠŸèƒ½ï¼‰
 *******************************************************************************/
 
-/** \brief Éè±¸¶¨Òå */
+/** \brief è®¾å¤‡å®šä¹‰ */
 am_local am_pcf85063_dev_t __g_microport_rtc_dev;
 
-/** \brief ÊµÀı³õÊ¼»¯ */
+/** \brief å®ä¾‹åˆå§‹åŒ– */
 am_pcf85063_handle_t am_microport_rtc_inst_init (void)
 {
     am_i2c_handle_t             i2c_handle           = am_kl26_i2c0_inst_init();
@@ -64,13 +64,13 @@ am_pcf85063_handle_t am_microport_rtc_inst_init (void)
 }
 
 /*******************************************************************************
-  MicroPort PCF85063 ÊµÀı³õÊ¼»¯ £¨Ê¹ÓÃÍ¨ÓÃµÄ RTC ¹¦ÄÜ£©
+  MicroPort PCF85063 å®ä¾‹åˆå§‹åŒ– ï¼ˆä½¿ç”¨é€šç”¨çš„ RTC åŠŸèƒ½ï¼‰
 *******************************************************************************/
 
-/** \brief Éè±¸¶¨Òå */
+/** \brief è®¾å¤‡å®šä¹‰ */
 am_local am_rtc_serv_t __g_microport_rtc_rtc;
 
-/** \brief ÊµÀı³õÊ¼»¯ */
+/** \brief å®ä¾‹åˆå§‹åŒ– */
 am_rtc_handle_t am_microport_rtc_rtc_inst_init (void)
 {
     am_pcf85063_handle_t microport_rtc_handle = am_microport_rtc_inst_init();
@@ -79,13 +79,13 @@ am_rtc_handle_t am_microport_rtc_rtc_inst_init (void)
 }
 
 /*******************************************************************************
-  MicroPort PCF85063 ÊµÀı³õÊ¼»¯ £¨Ê¹ÓÃÍ¨ÓÃµÄÄÖÖÓ¹¦ÄÜ£©
+  MicroPort PCF85063 å®ä¾‹åˆå§‹åŒ– ï¼ˆä½¿ç”¨é€šç”¨çš„é—¹é’ŸåŠŸèƒ½ï¼‰
 *******************************************************************************/
 
-/** \brief Éè±¸¶¨Òå */
+/** \brief è®¾å¤‡å®šä¹‰ */
 am_local am_alarm_clk_serv_t __g_microport_rtc_alarm_clk;
 
-/** \brief ÊµÀı³õÊ¼»¯ */
+/** \brief å®ä¾‹åˆå§‹åŒ– */
 am_alarm_clk_handle_t am_microport_rtc_alarm_clk_inst_init (void)
 {
     am_pcf85063_handle_t microport_rtc_handle = am_microport_rtc_inst_init();
@@ -94,16 +94,16 @@ am_alarm_clk_handle_t am_microport_rtc_alarm_clk_inst_init (void)
 }
 
 /*******************************************************************************
-  MicroPort PCF85063 ÊµÀı³õÊ¼»¯ £¨½« PCF85063 ÓÃ×÷ÏµÍ³Ê±¼ä£©
+  MicroPort PCF85063 å®ä¾‹åˆå§‹åŒ– ï¼ˆå°† PCF85063 ç”¨ä½œç³»ç»Ÿæ—¶é—´ï¼‰
 *******************************************************************************/
 
-/** \brief Ã¿ 1ms(1000000ns) ¸ù¾İÏµÍ³Ê±ÖÓ¸üĞÂÒ»´ÎÏµÍ³Ê±¼äÖµ */
+/** \brief æ¯ 1ms(1000000ns) æ ¹æ®ç³»ç»Ÿæ—¶é’Ÿæ›´æ–°ä¸€æ¬¡ç³»ç»Ÿæ—¶é—´å€¼ */
 #define __UPDATE_SYSCLK_NS   1000000
 
-/** \brief Ã¿ 10s ¸ù¾İ RTC ¸üĞÂÒ»´ÎÏµÍ³Ê±¼äÖµ */
+/** \brief æ¯ 10s æ ¹æ® RTC æ›´æ–°ä¸€æ¬¡ç³»ç»Ÿæ—¶é—´å€¼ */
 #define __UPDATE_RTC_S       10
 
-/** \brief ÊµÀı³õÊ¼»¯ */
+/** \brief å®ä¾‹åˆå§‹åŒ– */
 int am_microport_rtc_time_inst_init (void)
 {
     am_rtc_handle_t rtc_handle = am_microport_rtc_rtc_inst_init();

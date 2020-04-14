@@ -11,24 +11,24 @@
 *******************************************************************************/
 /**
  * \file
- * \brief I2C ������д EEPROM ���̣�ͨ���첽��׼�ӿ�ʵ��
+ * \brief I2C 主机读写 EEPROM 例程，通过异步标准接口实现
  *
- * - �������裺
- *   1. PIO0_10 �������� EEPROM �� SCL ���ţ�
- *   2. PIO0_11 �������� EEPROM �� SDA ���š�
+ * - 操作步骤：
+ *   1. PIO0_10 引脚连接 EEPROM 的 SCL 引脚；
+ *   2. PIO0_11 引脚连接 EEPROM 的 SDA 引脚。
  *
- * - ʵ������
- *   1. ����д��ַ�����ݵ��ӻ���
- *   2. �������մӻ����ݣ���ͨ�����ڴ�ӡ������
- *   3. ����д������ݺͽ��յ��Ĵӻ��ӻ�����һ�£�
- *   4. LED0 �� 200ms ʱ������˸��
+ * - 实验现象：
+ *   1. 主机写地址和数据到从机；
+ *   2. 主机接收从机数据，并通过串口打印处理；
+ *   3. 主机写入的数据和接收到的从机从机数据一致；
+ *   4. LED0 以 200ms 时间间隔闪烁。
  *
  * \note
- *    1. LED0 ��Ҫ�̽� J9 ����ñ�����ܱ� PIO0_20 ���ƣ�
- *    2. ����۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIO0_14 �������� PC ���ڵ� TXD��
- *       PIO0_23 �������� PC ���ڵ� RXD��
+ *    1. LED0 需要短接 J9 跳线帽，才能被 PIO0_20 控制；
+ *    2. 如需观察串口打印的调试信息，需要将 PIO0_14 引脚连接 PC 串口的 TXD，
+ *       PIO0_23 引脚连接 PC 串口的 RXD。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_am845_core_std_i2c_master_async.c src_am845_core_std_i2c_master_async
  *
  * \internal
@@ -52,13 +52,13 @@
 #include "demo_std_entries.h"
 
 /*******************************************************************************
-  �궨��
+  宏定义
 *******************************************************************************/
-#define __EEPROM_ADDR    0x50   /**< \brief EEPROM �豸�ĵ�ַ */
-#define __TEST_LEN       8      /**< \brief ���Զ�д���ֽ���(���ܴ���ҳ��С) */
+#define __EEPROM_ADDR    0x50   /**< \brief EEPROM 设备的地址 */
+#define __TEST_LEN       8      /**< \brief 测试读写的字节数(不能大于页大小) */
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_am845_core_std_i2c_master_async_entry (void)
 {

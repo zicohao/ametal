@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief ÊýÄ£×ª»»£¨DAC£©²Ù×÷½Ó¿Ú
- * 1. Æ¬ÉÏ¿É±à³ÌÊä³ö²úÉúÆ÷(µçÑ¹Êä³ö´Ó 1mv µ½  3300mv)
- * 2. ÔÚÕý³£Í£»úÄ£Ê½µÄ¾²Ì¬²Ù×÷
- * 3. Ö§³Ö DMA
+ * \brief æ•°æ¨¡è½¬æ¢ï¼ˆDACï¼‰æ“ä½œæŽ¥å£
+ * 1. ç‰‡ä¸Šå¯ç¼–ç¨‹è¾“å‡ºäº§ç”Ÿå™¨(ç”µåŽ‹è¾“å‡ºä»Ž 1mv åˆ°  3300mv)
+ * 2. åœ¨æ­£å¸¸åœæœºæ¨¡å¼çš„é™æ€æ“ä½œ
+ * 3. æ”¯æŒ DMA
  *
  * \internal
  * \par Modification History
@@ -39,41 +39,41 @@ extern "C" {
  */
 
 /**
- * \brief dac ¼Ä´æÆ÷¿é½á¹¹Ìå
+ * \brief dac å¯„å­˜å™¨å—ç»“æž„ä½“
  */
 typedef struct amhw_lpc_dac {
-    __IO uint32_t cr;            /**< \brief DAC¿ØÖÆ¼Ä´æÆ÷0     */
-    __IO uint32_t ctrl;          /**< \brief DAC¿ØÖÆ¼Ä´æÆ÷ 1     */
-    __IO uint32_t cntval;        /**< \brief DAC¿ØÖÆ¼Ä´æÆ÷ 2     */
+    __IO uint32_t cr;            /**< \brief DACæŽ§åˆ¶å¯„å­˜å™¨0     */
+    __IO uint32_t ctrl;          /**< \brief DACæŽ§åˆ¶å¯„å­˜å™¨ 1     */
+    __IO uint32_t cntval;        /**< \brief DACæŽ§åˆ¶å¯„å­˜å™¨ 2     */
 } amhw_lpc_dac_t;
 
 
 /**
- * \brief DAC Í¨µÀ±àºÅ
+ * \brief DAC é€šé“ç¼–å·
  */
-#define AMHW_LPC_DAC0_CHAN_0          0      /**< \brief DAC Í¨µÀ 0 */
+#define AMHW_LPC_DAC0_CHAN_0          0      /**< \brief DAC é€šé“ 0 */
 
 /**
- * \brief DAC »º³åÇø´óÐ¡
+ * \brief DAC ç¼“å†²åŒºå¤§å°
  */
-#define AMHW_LPC_DAC_DATL_COUNT       2      /**< \brief DAC »º´æÇø´óÐ¡ */
+#define AMHW_LPC_DAC_DATL_COUNT       2      /**< \brief DAC ç¼“å­˜åŒºå¤§å° */
 
 
 /**
- * \name DACÊý¾Ý¼Ä´æÆ÷ÉèÖÃÎ»ºê¶¨Òå
+ * \name DACæ•°æ®å¯„å­˜å™¨è®¾ç½®ä½å®å®šä¹‰
  * @{
  */
 
 /**
- * \brief DAC ²Î¿¼µçÑ¹Ñ¡ÔñË÷Òý
+ * \brief DAC å‚è€ƒç”µåŽ‹é€‰æ‹©ç´¢å¼•
  */
 typedef enum amhw_lpc_dac_bias_sel {
-    AMHW_LPC84X_DAC_UPDATA_1MHZ = 0,                    /**< \brief  DACREF_1 ×÷Îª²Î¿¼µçÑ¹ */
-	AMHW_LPC84X_DAC_UPDATA_400KHZ,                    /**< \brief  DACREF_2 ×÷Îª²Î¿¼µçÑ¹ */
+    AMHW_LPC84X_DAC_UPDATA_1MHZ = 0,                    /**< \brief  DACREF_1 ä½œä¸ºå‚è€ƒç”µåŽ‹ */
+	AMHW_LPC84X_DAC_UPDATA_400KHZ,                    /**< \brief  DACREF_2 ä½œä¸ºå‚è€ƒç”µåŽ‹ */
 } amhw_lpc_dac_vref_sel_t;
 
 
-/** \brief DACÊ¹ÄÜ                                                        */
+/** \brief DACä½¿èƒ½                                                        */
 
 #define AMHW_LPC84x_DAC_DBLBUF_EN       1
 #define AMHW_LPC84x_DAC_DBLBUF_DISEN    0
@@ -86,12 +86,12 @@ typedef enum amhw_lpc_dac_bias_sel {
 /** @} */
 
 /**
- * \brief ÅäÖÃDACÊä³öÖµº¯Êý
+ * \brief é…ç½®DACè¾“å‡ºå€¼å‡½æ•°
  *
- * \param[in] p_hw_dac : Ö¸ÏòDAC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] value    : Êä³öµçÑ¹Îª(VREFP) * value/1024
+ * \param[in] p_hw_dac : æŒ‡å‘DACå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] value    : è¾“å‡ºç”µåŽ‹ä¸º(VREFP) * value/1024
  *
- * \return ÎÞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_lpc84x_dac_cr_set (amhw_lpc_dac_t *p_hw_dac, uint32_t value)
@@ -107,12 +107,12 @@ void amhw_lpc84x_dac_cr_set (amhw_lpc_dac_t *p_hw_dac, uint32_t value)
 
 
 /**
- * \brief ÅäÖÃDAC¼ÆÊýÖµº¯Êý
+ * \brief é…ç½®DACè®¡æ•°å€¼å‡½æ•°
  *
- * \param[in] p_hw_dac : Ö¸ÏòDAC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] value    : ¼ÆÊýÖµ
+ * \param[in] p_hw_dac : æŒ‡å‘DACå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] value    : è®¡æ•°å€¼
  *
- * \return ÎÞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_lpc84x_dac_cntval_set (amhw_lpc_dac_t *p_hw_dac, uint32_t value)
@@ -122,12 +122,12 @@ void amhw_lpc84x_dac_cntval_set (amhw_lpc_dac_t *p_hw_dac, uint32_t value)
 
 
 /**
- * \brief bias¹¦ÄÜÑ¡Ôñ
+ * \brief biasåŠŸèƒ½é€‰æ‹©
  *
- * \param[in] p_hw_dac  : Ö¸ÏòDAC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] bias      : AMHW_LPC84X_DAC_UPDATA_1MHZ »òÕß AMHW_LPC84X_DAC_UPDATA_1MHZ
+ * \param[in] p_hw_dac  : æŒ‡å‘DACå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] bias      : AMHW_LPC84X_DAC_UPDATA_1MHZ æˆ–è€… AMHW_LPC84X_DAC_UPDATA_1MHZ
  *
- * \return ÎÞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_lpc84x_dac_bias_set (amhw_lpc_dac_t *p_hw_dac, uint8_t bias)
@@ -136,12 +136,12 @@ void amhw_lpc84x_dac_bias_set (amhw_lpc_dac_t *p_hw_dac, uint8_t bias)
 }
 
 /**
- * \brief ÊÇ·ñ¿ªÆôDMAÖÐ¶Ï
+ * \brief æ˜¯å¦å¼€å¯DMAä¸­æ–­
  *
- * \param[in] p_hw_dac  : Ö¸ÏòDAC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] int_dma   : AMHW_LPC84x_DAC_DMA_EN »òÕß AMHW_LPC84x_DAC_DMA_DIS
+ * \param[in] p_hw_dac  : æŒ‡å‘DACå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] int_dma   : AMHW_LPC84x_DAC_DMA_EN æˆ–è€… AMHW_LPC84x_DAC_DMA_DIS
  *
- * \return ÎÞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_lpc84x_dac_dma_int_req_set (amhw_lpc_dac_t *p_hw_dac,uint8_t int_dma)
@@ -150,13 +150,13 @@ void amhw_lpc84x_dac_dma_int_req_set (amhw_lpc_dac_t *p_hw_dac,uint8_t int_dma)
 }
 
 /**
- * \brief ÊÇ·ñ¿ªÆôdblbuf
+ * \brief æ˜¯å¦å¼€å¯dblbuf
  *
- * \param[in] p_hw_dac  : Ö¸ÏòDAC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] dblbuf    : AMHW_LPC84x_DAC_DBLBUF_EN »òÕß AMHW_LPC84x_DAC_DBLBUF_DIS
- * \param[in] dat       : datÖµ
+ * \param[in] p_hw_dac  : æŒ‡å‘DACå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] dblbuf    : AMHW_LPC84x_DAC_DBLBUF_EN æˆ–è€… AMHW_LPC84x_DAC_DBLBUF_DIS
+ * \param[in] dat       : datå€¼
  *
- * \return ÎÞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_lpc84x_dac_dblbuf_set (amhw_lpc_dac_t *p_hw_dac,uint8_t dblbuf)
@@ -167,11 +167,11 @@ void amhw_lpc84x_dac_dblbuf_set (amhw_lpc_dac_t *p_hw_dac,uint8_t dblbuf)
 
 
 /**
- * \brief ÊÇ·ñ¿ªÆô¼ÆÊýÖÐ¶Ï
+ * \brief æ˜¯å¦å¼€å¯è®¡æ•°ä¸­æ–­
  *
- * \param[in] p_hw_dac : Ö¸ÏòDAC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] cnt      £º AMHW_LPC84x_DAC_CNT_EN »òÕß AMHW_LPC84x_DAC_CNT_EN
- * \return ÎÞ
+ * \param[in] p_hw_dac : æŒ‡å‘DACå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] cnt      ï¼š AMHW_LPC84x_DAC_CNT_EN æˆ–è€… AMHW_LPC84x_DAC_CNT_EN
+ * \return æ— 
  */
 am_static_inline
 void amhw_lpc84x_dac_cnt_set (amhw_lpc_dac_t *p_hw_dac,uint8_t cnt)
@@ -181,11 +181,11 @@ void amhw_lpc84x_dac_cnt_set (amhw_lpc_dac_t *p_hw_dac,uint8_t cnt)
 
 
 /**
- * \brief ½ûÄÜDAC¹¦ÄÜº¯Êý
+ * \brief ç¦èƒ½DACåŠŸèƒ½å‡½æ•°
  *
- * \param[in] p_hw_dac : Ö¸ÏòDAC¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_dac : æŒ‡å‘DACå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎÞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_lpc84x_dac_cnt_en_set (amhw_lpc_dac_t *p_hw_dac,uint8_t dma_en)

@@ -40,19 +40,19 @@ typedef struct _model{
 	slist_head_t  head;
 } model_t;
 
-// ÊÓÍ¼³õÊ¼»¯
+// è§†å›¾åˆå§‹åŒ–
 int view_init(observer_t *p_this,update_view_t pfn_update_view);
 
-// Ä£ĞÍ³õÊ¼»¯
+// æ¨¡å‹åˆå§‹åŒ–
 int model_init(model_t *p_this);
 
-// Ìí¼ÓÊÓÍ¼
+// æ·»åŠ è§†å›¾
 int model_attach(model_t *p_this, observer_t *p_observer);
 
-// É¾³ıÊÓÍ¼
+// åˆ é™¤è§†å›¾
 int model_detach(model_t *p_this, observer_t *p_observer);
 
-// Í¨Öª²¢¸üĞÂÊÓÍ¼
+// é€šçŸ¥å¹¶æ›´æ–°è§†å›¾
 int model_notify(model_t *p_this);
 
 

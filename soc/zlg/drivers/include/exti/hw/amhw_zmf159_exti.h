@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief EXTI ½Ó¿Ú
+ * \brief EXTI æ¥å£
  *
  * \internal
  * \par Modification history
@@ -31,7 +31,7 @@ extern "C" {
 #include "hw/amhw_zlg_exti.h"
 
 /*
- * \brief ÄäÃû½á¹¹Ìå¶ÎµÄ¿ªÊ¼
+ * \brief åŒ¿åç»“æ„ä½“æ®µçš„å¼€å§‹
  */
 #if defined(__CC_ARM)
   #pragma push
@@ -53,41 +53,41 @@ extern "C" {
  */
 
 /**
- * \brief EXTI¼Ä´æÆ÷¿é½á¹¹Ìå
+ * \brief EXTIå¯„å­˜å™¨å—ç»“æ„ä½“
  */
 typedef amhw_zlg_exti_t amhw_zmf159_exti_t;
 
 /**
- * \brief Ïß±àºÅÃ¶¾Ù
+ * \brief çº¿ç¼–å·æšä¸¾
  */
 typedef enum {
-    AMHW_ZMF159_LINE_NUM0  = (1ul << 0),    /**< \brief Ïß0 */
-    AMHW_ZMF159_LINE_NUM1  = (1ul << 1),    /**< \brief Ïß1 */
-    AMHW_ZMF159_LINE_NUM2  = (1ul << 2),    /**< \brief Ïß2 */
-    AMHW_ZMF159_LINE_NUM3  = (1ul << 3),    /**< \brief Ïß3 */
-    AMHW_ZMF159_LINE_NUM4  = (1ul << 4),    /**< \brief Ïß4 */
-    AMHW_ZMF159_LINE_NUM5  = (1ul << 5),    /**< \brief Ïß5 */
-    AMHW_ZMF159_LINE_NUM6  = (1ul << 6),    /**< \brief Ïß6 */
-    AMHW_ZMF159_LINE_NUM7  = (1ul << 7),    /**< \brief Ïß7 */
-    AMHW_ZMF159_LINE_NUM8  = (1ul << 8),    /**< \brief Ïß8 */
-    AMHW_ZMF159_LINE_NUM9  = (1ul << 9),    /**< \brief Ïß9 */
-    AMHW_ZMF159_LINE_NUM10 = (1ul << 10),   /**< \brief Ïß10 */
-    AMHW_ZMF159_LINE_NUM11 = (1ul << 11),   /**< \brief Ïß11 */
-    AMHW_ZMF159_LINE_NUM12 = (1ul << 12),   /**< \brief Ïß12 */
-    AMHW_ZMF159_LINE_NUM13 = (1ul << 13),   /**< \brief Ïß13 */
-    AMHW_ZMF159_LINE_NUM14 = (1ul << 14),   /**< \brief Ïß14 */
-    AMHW_ZMF159_LINE_NUM15 = (1ul << 15),   /**< \brief Ïß15 */
-    AMHW_ZMF159_LINE_NUM16 = (1ul << 16),   /**< \brief Ïß16Á¬½Óµ½ PVD Êä³ö */
-    AMHW_ZMF159_LINE_NUM17 = (1ul << 17),   /**< \brief Ïß17Á¬½Óµ½RTCÄÖÖÓÊÂ¼ş */
-    AMHW_ZMF159_LINE_NUM18 = (1ul << 18),   /**< \brief Ïß18Á´½Óµ½USB»½ĞÑÊÂ¼ş */
-    AMHW_ZMF159_LINE_NUM19 = (1ul << 19),   /**< \brief Ïß19Á¬½Óµ½±È½ÏÆ÷1Êä³ö */
-    AMHW_ZMF159_LINE_NUM20 = (1ul << 20),   /**< \brief Ïß20Á¬½Óµ½±È½ÏÆ÷2Êä³ö */
-    AMHW_ZMF159_LINE_NUM21 = (1ul << 21),   /**< \brief Ïß21Á¬½Óµ½IWDGÖĞ¶Ï */
+    AMHW_ZMF159_LINE_NUM0  = (1ul << 0),    /**< \brief çº¿0 */
+    AMHW_ZMF159_LINE_NUM1  = (1ul << 1),    /**< \brief çº¿1 */
+    AMHW_ZMF159_LINE_NUM2  = (1ul << 2),    /**< \brief çº¿2 */
+    AMHW_ZMF159_LINE_NUM3  = (1ul << 3),    /**< \brief çº¿3 */
+    AMHW_ZMF159_LINE_NUM4  = (1ul << 4),    /**< \brief çº¿4 */
+    AMHW_ZMF159_LINE_NUM5  = (1ul << 5),    /**< \brief çº¿5 */
+    AMHW_ZMF159_LINE_NUM6  = (1ul << 6),    /**< \brief çº¿6 */
+    AMHW_ZMF159_LINE_NUM7  = (1ul << 7),    /**< \brief çº¿7 */
+    AMHW_ZMF159_LINE_NUM8  = (1ul << 8),    /**< \brief çº¿8 */
+    AMHW_ZMF159_LINE_NUM9  = (1ul << 9),    /**< \brief çº¿9 */
+    AMHW_ZMF159_LINE_NUM10 = (1ul << 10),   /**< \brief çº¿10 */
+    AMHW_ZMF159_LINE_NUM11 = (1ul << 11),   /**< \brief çº¿11 */
+    AMHW_ZMF159_LINE_NUM12 = (1ul << 12),   /**< \brief çº¿12 */
+    AMHW_ZMF159_LINE_NUM13 = (1ul << 13),   /**< \brief çº¿13 */
+    AMHW_ZMF159_LINE_NUM14 = (1ul << 14),   /**< \brief çº¿14 */
+    AMHW_ZMF159_LINE_NUM15 = (1ul << 15),   /**< \brief çº¿15 */
+    AMHW_ZMF159_LINE_NUM16 = (1ul << 16),   /**< \brief çº¿16è¿æ¥åˆ° PVD è¾“å‡º */
+    AMHW_ZMF159_LINE_NUM17 = (1ul << 17),   /**< \brief çº¿17è¿æ¥åˆ°RTCé—¹é’Ÿäº‹ä»¶ */
+    AMHW_ZMF159_LINE_NUM18 = (1ul << 18),   /**< \brief çº¿18é“¾æ¥åˆ°USBå”¤é†’äº‹ä»¶ */
+    AMHW_ZMF159_LINE_NUM19 = (1ul << 19),   /**< \brief çº¿19è¿æ¥åˆ°æ¯”è¾ƒå™¨1è¾“å‡º */
+    AMHW_ZMF159_LINE_NUM20 = (1ul << 20),   /**< \brief çº¿20è¿æ¥åˆ°æ¯”è¾ƒå™¨2è¾“å‡º */
+    AMHW_ZMF159_LINE_NUM21 = (1ul << 21),   /**< \brief çº¿21è¿æ¥åˆ°IWDGä¸­æ–­ */
 
 }amhw_zmf159_exti_line_num_t;
 
 /**
- * \brief ÖĞ¶Ï/ÊÂ¼ş´¥·¢Ã¶¾Ù
+ * \brief ä¸­æ–­/äº‹ä»¶è§¦å‘æšä¸¾
  */
 typedef enum
 {
@@ -97,17 +97,17 @@ typedef enum
 }amwh_zmf159_extitrigger_type_t;
 
 /**
- * \brief ¿ª·ÅÀ´×ÔÏß xÉÏµÄÖĞ¶ÏÇëÇó
+ * \brief å¼€æ”¾æ¥è‡ªçº¿ xä¸Šçš„ä¸­æ–­è¯·æ±‚
  *
- * \param[in]   p_hw_exti : Ö¸ÏòÍâ²¿ÖĞ¶Ï/ÊÂ¼ş¿ØÖÆ¿éµÄÖ¸Õë
- * \param[in]   num : Ïß±àºÅ
- *              AMHW_ZMF159_LINE_NUM* ºêÖµ»ò
- *              ¶à¸öAMHW_ZMF159_LINE_NUM*ºêµÄ»òÖµ
- *              Èç:
+ * \param[in]   p_hw_exti : æŒ‡å‘å¤–éƒ¨ä¸­æ–­/äº‹ä»¶æ§åˆ¶å—çš„æŒ‡é’ˆ
+ * \param[in]   num : çº¿ç¼–å·
+ *              AMHW_ZMF159_LINE_NUM* å®å€¼æˆ–
+ *              å¤šä¸ªAMHW_ZMF159_LINE_NUM*å®çš„æˆ–å€¼
+ *              å¦‚:
  *               - AMHW_ZMF159_LINE_NUM0
  *               - AMHW_ZMF159_LINE_NUM0 | AMHW_ZMF159_LINE_NUM1
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zmf159_exti_imr_set(amhw_zmf159_exti_t     *p_hw_exti,
@@ -117,17 +117,17 @@ void amhw_zmf159_exti_imr_set(amhw_zmf159_exti_t     *p_hw_exti,
 }
 
 /**
- * \brief ÆÁ±ÎÀ´×ÔÏß xÉÏµÄÖĞ¶ÏÇëÇó
+ * \brief å±è”½æ¥è‡ªçº¿ xä¸Šçš„ä¸­æ–­è¯·æ±‚
  *
- * \param[in]   p_hw_exti : Ö¸ÏòÍâ²¿ÖĞ¶Ï/ÊÂ¼ş¿ØÖÆ¿éµÄÖ¸Õë
- * \param[in]   num : Ïß±àºÅ
- *              AMHW_ZMF159_LINE_NUM* ºêÖµ»ò
- *              ¶à¸öAMHW_ZMF159_LINE_NUM*ºêµÄ»òÖµ
- *              Èç:
+ * \param[in]   p_hw_exti : æŒ‡å‘å¤–éƒ¨ä¸­æ–­/äº‹ä»¶æ§åˆ¶å—çš„æŒ‡é’ˆ
+ * \param[in]   num : çº¿ç¼–å·
+ *              AMHW_ZMF159_LINE_NUM* å®å€¼æˆ–
+ *              å¤šä¸ªAMHW_ZMF159_LINE_NUM*å®çš„æˆ–å€¼
+ *              å¦‚:
  *               - AMHW_ZMF159_LINE_NUM0
  *               - AMHW_ZMF159_LINE_NUM0 | AMHW_ZMF159_LINE_NUM1
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zmf159_exti_imr_clear(amhw_zmf159_exti_t     *p_hw_exti,
@@ -137,17 +137,17 @@ void amhw_zmf159_exti_imr_clear(amhw_zmf159_exti_t     *p_hw_exti,
 }
 
 /**
- * \brief ¿ª·ÅÀ´×ÔÏß xÉÏµÄÊÂ¼şÇëÇó
+ * \brief å¼€æ”¾æ¥è‡ªçº¿ xä¸Šçš„äº‹ä»¶è¯·æ±‚
  *
- * \param[in]   p_hw_exti : Ö¸ÏòÍâ²¿ÖĞ¶Ï/ÊÂ¼ş¿ØÖÆ¿éµÄÖ¸Õë
- * \param[in]    num : Ïß±àºÅ
- *              AMHW_ZMF159_LINE_NUM* ºêÖµ»ò
- *              ¶à¸öAMHW_ZMF159_LINE_NUM*ºêµÄ»òÖµ
- *              Èç:
+ * \param[in]   p_hw_exti : æŒ‡å‘å¤–éƒ¨ä¸­æ–­/äº‹ä»¶æ§åˆ¶å—çš„æŒ‡é’ˆ
+ * \param[in]    num : çº¿ç¼–å·
+ *              AMHW_ZMF159_LINE_NUM* å®å€¼æˆ–
+ *              å¤šä¸ªAMHW_ZMF159_LINE_NUM*å®çš„æˆ–å€¼
+ *              å¦‚:
  *               - AMHW_ZMF159_LINE_NUM0
  *               - AMHW_ZMF159_LINE_NUM0 | AMHW_ZMF159_LINE_NUM1
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zmf159_exti_emr_set(amhw_zmf159_exti_t    *p_hw_exti,
@@ -157,17 +157,17 @@ void amhw_zmf159_exti_emr_set(amhw_zmf159_exti_t    *p_hw_exti,
 }
 
 /**
- * \brief ÆÁ±ÎÀ´×ÔÏß xÉÏµÄÊÂ¼şÇëÇó
+ * \brief å±è”½æ¥è‡ªçº¿ xä¸Šçš„äº‹ä»¶è¯·æ±‚
  *
- * \param[in]   p_hw_exti : Ö¸ÏòÍâ²¿ÖĞ¶Ï/ÊÂ¼ş¿ØÖÆ¿éµÄÖ¸Õë
- * \param[in]   num : Ïß±àºÅ
- *              AMHW_ZMF159_LINE_NUM* ºêÖµ»ò
- *              ¶à¸öAMHW_ZMF159_LINE_NUM*ºêµÄ»òÖµ
- *              Èç:
+ * \param[in]   p_hw_exti : æŒ‡å‘å¤–éƒ¨ä¸­æ–­/äº‹ä»¶æ§åˆ¶å—çš„æŒ‡é’ˆ
+ * \param[in]   num : çº¿ç¼–å·
+ *              AMHW_ZMF159_LINE_NUM* å®å€¼æˆ–
+ *              å¤šä¸ªAMHW_ZMF159_LINE_NUM*å®çš„æˆ–å€¼
+ *              å¦‚:
  *               - AMHW_ZMF159_LINE_NUM0
  *               - AMHW_ZMF159_LINE_NUM0 | AMHW_ZMF159_LINE_NUM1
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zmf159_exti_emr_clear(amhw_zmf159_exti_t     *p_hw_exti,
@@ -177,17 +177,17 @@ void amhw_zmf159_exti_emr_clear(amhw_zmf159_exti_t     *p_hw_exti,
 }
 
 /**
- * \brief ÔÊĞíÊäÈëÏß xÉÏµÄÉÏÉıÑØ´¥·¢£¨ÖĞ¶ÏºÍÊÂ¼ş£©
+ * \brief å…è®¸è¾“å…¥çº¿ xä¸Šçš„ä¸Šå‡æ²¿è§¦å‘ï¼ˆä¸­æ–­å’Œäº‹ä»¶ï¼‰
  *
- * \param[in]   p_hw_exti : Ö¸ÏòÍâ²¿ÖĞ¶Ï/ÊÂ¼ş¿ØÖÆ¿éµÄÖ¸Õë
- * \param[in]   num : Ïß±àºÅ
- *              AMHW_ZMF159_LINE_NUM* ºêÖµ»ò
- *              ¶à¸öAMHW_ZMF159_LINE_NUM*ºêµÄ»òÖµ
- *              Èç:
+ * \param[in]   p_hw_exti : æŒ‡å‘å¤–éƒ¨ä¸­æ–­/äº‹ä»¶æ§åˆ¶å—çš„æŒ‡é’ˆ
+ * \param[in]   num : çº¿ç¼–å·
+ *              AMHW_ZMF159_LINE_NUM* å®å€¼æˆ–
+ *              å¤šä¸ªAMHW_ZMF159_LINE_NUM*å®çš„æˆ–å€¼
+ *              å¦‚:
  *               - AMHW_ZMF159_LINE_NUM0
  *               - AMHW_ZMF159_LINE_NUM0 | AMHW_ZMF159_LINE_NUM1
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zmf159_exti_rtsr_set(amhw_zmf159_exti_t     *p_hw_exti,
@@ -197,17 +197,17 @@ void amhw_zmf159_exti_rtsr_set(amhw_zmf159_exti_t     *p_hw_exti,
 }
 
 /**
- * \brief ½ûÖ¹ÊäÈëÏß xÉÏµÄÉÏÉıÑØ´¥·¢£¨ÖĞ¶ÏºÍÊÂ¼ş£©
+ * \brief ç¦æ­¢è¾“å…¥çº¿ xä¸Šçš„ä¸Šå‡æ²¿è§¦å‘ï¼ˆä¸­æ–­å’Œäº‹ä»¶ï¼‰
  *
- * \param[in]   p_hw_exti : Ö¸ÏòÍâ²¿ÖĞ¶Ï/ÊÂ¼ş¿ØÖÆ¿éµÄÖ¸Õë
- * \param[in]   num : Ïß±àºÅ
- *              AMHW_ZMF159_LINE_NUM* ºêÖµ»ò
- *              ¶à¸öAMHW_ZMF159_LINE_NUM*ºêµÄ»òÖµ
- *              Èç:
+ * \param[in]   p_hw_exti : æŒ‡å‘å¤–éƒ¨ä¸­æ–­/äº‹ä»¶æ§åˆ¶å—çš„æŒ‡é’ˆ
+ * \param[in]   num : çº¿ç¼–å·
+ *              AMHW_ZMF159_LINE_NUM* å®å€¼æˆ–
+ *              å¤šä¸ªAMHW_ZMF159_LINE_NUM*å®çš„æˆ–å€¼
+ *              å¦‚:
  *               - AMHW_ZMF159_LINE_NUM0
  *               - AMHW_ZMF159_LINE_NUM0 | AMHW_ZMF159_LINE_NUM1
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zmf159_exti_rtsr_clear(amhw_zmf159_exti_t     *p_hw_exti,
@@ -217,17 +217,17 @@ void amhw_zmf159_exti_rtsr_clear(amhw_zmf159_exti_t     *p_hw_exti,
 }
 
 /**
- * \brief ÔÊĞíÊäÈëÏß xÉÏµÄÏÂ½µÑØ´¥·¢£¨ÖĞ¶ÏºÍÊÂ¼ş£©
+ * \brief å…è®¸è¾“å…¥çº¿ xä¸Šçš„ä¸‹é™æ²¿è§¦å‘ï¼ˆä¸­æ–­å’Œäº‹ä»¶ï¼‰
  *
- * \param[in]   p_hw_exti : Ö¸ÏòÍâ²¿ÖĞ¶Ï/ÊÂ¼ş¿ØÖÆ¿éµÄÖ¸Õë
- * \param[in]   num : Ïß±àºÅ
- *              AMHW_ZMF159_LINE_NUM* ºêÖµ»ò
- *              ¶à¸öAMHW_ZMF159_LINE_NUM*ºêµÄ»òÖµ
- *              Èç:
+ * \param[in]   p_hw_exti : æŒ‡å‘å¤–éƒ¨ä¸­æ–­/äº‹ä»¶æ§åˆ¶å—çš„æŒ‡é’ˆ
+ * \param[in]   num : çº¿ç¼–å·
+ *              AMHW_ZMF159_LINE_NUM* å®å€¼æˆ–
+ *              å¤šä¸ªAMHW_ZMF159_LINE_NUM*å®çš„æˆ–å€¼
+ *              å¦‚:
  *               - AMHW_ZMF159_LINE_NUM0
  *               - AMHW_ZMF159_LINE_NUM0 | AMHW_ZMF159_LINE_NUM1
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zmf159_exti_ftsr_set(amhw_zmf159_exti_t     *p_hw_exti,
@@ -237,17 +237,17 @@ void amhw_zmf159_exti_ftsr_set(amhw_zmf159_exti_t     *p_hw_exti,
 }
 
 /**
- * \brief ½ûÖ¹ÊäÈëÏß xÉÏµÄÏÂ½µÑØ´¥·¢£¨ÖĞ¶ÏºÍÊÂ¼ş£©
+ * \brief ç¦æ­¢è¾“å…¥çº¿ xä¸Šçš„ä¸‹é™æ²¿è§¦å‘ï¼ˆä¸­æ–­å’Œäº‹ä»¶ï¼‰
  *
- * \param[in]   p_hw_exti : Ö¸ÏòÍâ²¿ÖĞ¶Ï/ÊÂ¼ş¿ØÖÆ¿éµÄÖ¸Õë
- * \param[in]   num : Ïß±àºÅ
- *              AMHW_ZMF159_LINE_NUM* ºêÖµ»ò
- *              ¶à¸öAMHW_ZMF159_LINE_NUM*ºêµÄ»òÖµ
- *              Èç:
+ * \param[in]   p_hw_exti : æŒ‡å‘å¤–éƒ¨ä¸­æ–­/äº‹ä»¶æ§åˆ¶å—çš„æŒ‡é’ˆ
+ * \param[in]   num : çº¿ç¼–å·
+ *              AMHW_ZMF159_LINE_NUM* å®å€¼æˆ–
+ *              å¤šä¸ªAMHW_ZMF159_LINE_NUM*å®çš„æˆ–å€¼
+ *              å¦‚:
  *               - AMHW_ZMF159_LINE_NUM0
  *               - AMHW_ZMF159_LINE_NUM0 | AMHW_ZMF159_LINE_NUM1
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zmf159_exti_ftsr_clear(amhw_zmf159_exti_t     *p_hw_exti,
@@ -257,17 +257,17 @@ void amhw_zmf159_exti_ftsr_clear(amhw_zmf159_exti_t     *p_hw_exti,
 }
 
 /**
- * \brief ²úÉúÏß xÉÏµÄÈí¼şÖĞ¶Ï
+ * \brief äº§ç”Ÿçº¿ xä¸Šçš„è½¯ä»¶ä¸­æ–­
  *
- * \param[in]   p_hw_exti : Ö¸ÏòÍâ²¿ÖĞ¶Ï/ÊÂ¼ş¿ØÖÆ¿éµÄÖ¸Õë
- * \param[in]   num : Ïß±àºÅ
- *              AMHW_ZMF159_LINE_NUM* ºêÖµ»ò
- *              ¶à¸öAMHW_ZMF159_LINE_NUM*ºêµÄ»òÖµ
- *              Èç:
+ * \param[in]   p_hw_exti : æŒ‡å‘å¤–éƒ¨ä¸­æ–­/äº‹ä»¶æ§åˆ¶å—çš„æŒ‡é’ˆ
+ * \param[in]   num : çº¿ç¼–å·
+ *              AMHW_ZMF159_LINE_NUM* å®å€¼æˆ–
+ *              å¤šä¸ªAMHW_ZMF159_LINE_NUM*å®çš„æˆ–å€¼
+ *              å¦‚:
  *               - AMHW_ZMF159_LINE_NUM0
  *               - AMHW_ZMF159_LINE_NUM0 | AMHW_ZMF159_LINE_NUM1
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zmf159_exti_swier_set(amhw_zmf159_exti_t     *p_hw_exti,
@@ -277,17 +277,17 @@ void amhw_zmf159_exti_swier_set(amhw_zmf159_exti_t     *p_hw_exti,
 }
 
 /**
- * \brief Çå³ıÖĞ¶Ï±êÖ¾
+ * \brief æ¸…é™¤ä¸­æ–­æ ‡å¿—
  *
- * \param[in]   p_hw_exti : Ö¸ÏòÍâ²¿ÖĞ¶Ï/ÊÂ¼ş¿ØÖÆ¿éµÄÖ¸Õë
- * \param[in]   num : Ïß±àºÅ
- *              AMHW_ZMF159_LINE_NUM* ºêÖµ»ò
- *              ¶à¸öAMHW_ZMF159_LINE_NUM*ºêµÄ»òÖµ
- *              Èç:
+ * \param[in]   p_hw_exti : æŒ‡å‘å¤–éƒ¨ä¸­æ–­/äº‹ä»¶æ§åˆ¶å—çš„æŒ‡é’ˆ
+ * \param[in]   num : çº¿ç¼–å·
+ *              AMHW_ZMF159_LINE_NUM* å®å€¼æˆ–
+ *              å¤šä¸ªAMHW_ZMF159_LINE_NUM*å®çš„æˆ–å€¼
+ *              å¦‚:
  *               - AMHW_ZMF159_LINE_NUM0
  *               - AMHW_ZMF159_LINE_NUM0 | AMHW_ZMF159_LINE_NUM1
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zmf159_exti_pending_clear(amhw_zmf159_exti_t     *p_hw_exti,
@@ -297,15 +297,15 @@ void amhw_zmf159_exti_pending_clear(amhw_zmf159_exti_t     *p_hw_exti,
 }
 
 /**
- * \brief »ñÈ¡Íâ²¿ÖĞ¶Ï±êÖ¾
+ * \brief è·å–å¤–éƒ¨ä¸­æ–­æ ‡å¿—
  *
- * \param[in]   p_hw_exti : Ö¸ÏòÍâ²¿ÖĞ¶Ï/ÊÂ¼ş¿ØÖÆ¿éµÄÖ¸Õë
- * \param[in]   num : Ïß±àºÅ
+ * \param[in]   p_hw_exti : æŒ‡å‘å¤–éƒ¨ä¸­æ–­/äº‹ä»¶æ§åˆ¶å—çš„æŒ‡é’ˆ
+ * \param[in]   num : çº¿ç¼–å·
  *
- * \return ²úÉúµÄÖĞ¶Ï±êÖ¾
- *              AMHW_ZMF159_LINE_NUM* ºêÖµ»ò
- *              ¶à¸öAMHW_ZMF159_LINE_NUM*ºêµÄ»òÖµ
- *              Èç:
+ * \return äº§ç”Ÿçš„ä¸­æ–­æ ‡å¿—
+ *              AMHW_ZMF159_LINE_NUM* å®å€¼æˆ–
+ *              å¤šä¸ªAMHW_ZMF159_LINE_NUM*å®çš„æˆ–å€¼
+ *              å¦‚:
  *               - AMHW_ZMF159_LINE_NUM0
  *               - AMHW_ZMF159_LINE_NUM0 | AMHW_ZMF159_LINE_NUM1
  *
@@ -320,7 +320,7 @@ uint32_t amhw_zmf159_exti_pr_read(amhw_zmf159_exti_t     *p_hw_exti,
  * @}
  */
 /*
- * \brief ÄäÃû½á¹¹Ìå¶ÎµÄ½áÊø
+ * \brief åŒ¿åç»“æ„ä½“æ®µçš„ç»“æŸ
  */
 
 #if defined(__CC_ARM)

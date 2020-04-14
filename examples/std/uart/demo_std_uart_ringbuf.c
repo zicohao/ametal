@@ -12,16 +12,16 @@
 
 /**
  * \file
- * \brief UART »·ÐÎ»º³åÇø·½Ê½ÏÂ½ÓÊÕ·¢ËÍÊý¾ÝÀý³Ì£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief UART çŽ¯å½¢ç¼“å†²åŒºæ–¹å¼ä¸‹æŽ¥æ”¶å‘é€æ•°æ®ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿ÚÊä³ö "UART interrupt mode(Add ring buffer) test:"£»
- *   2. ´®¿ÚÊä³ö½ÓÊÕµ½µÄ×Ö·û´®¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. ä¸²å£è¾“å‡º "UART interrupt mode(Add ring buffer) test:"ï¼›
+ *   2. ä¸²å£è¾“å‡ºæŽ¥æ”¶åˆ°çš„å­—ç¬¦ä¸²ã€‚
  *
- * \note£º Èç¹ûµ÷ÊÔ´®¿ÚÊ¹ÓÃÓë±¾Àý³ÌÏàÍ¬£¬Ôò²»Ó¦ÔÚºóÐø¼ÌÐøÊ¹ÓÃµ÷ÊÔÐÅÏ¢Êä³öº¯Êý
- *       £¨Èç£ºAM_DBG_INFO()£©
+ * \noteï¼š å¦‚æžœè°ƒè¯•ä¸²å£ä½¿ç”¨ä¸Žæœ¬ä¾‹ç¨‹ç›¸åŒï¼Œåˆ™ä¸åº”åœ¨åŽç»­ç»§ç»­ä½¿ç”¨è°ƒè¯•ä¿¡æ¯è¾“å‡ºå‡½æ•°
+ *       ï¼ˆå¦‚ï¼šAM_DBG_INFO()ï¼‰
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_std_uart_ringbuf.c src_std_uart_ringbuf
  *
  * \internal
@@ -41,36 +41,36 @@
 #include "am_uart_rngbuf.h"
 
 /*******************************************************************************
-  ºê¶¨Òå
+  å®å®šä¹‰
 *******************************************************************************/
-#define UART_RX_BUF_SIZE  128  /**< \brief ½ÓÊÕ»·ÐÎ»º³åÇø´óÐ¡£¬Ó¦¸ÃÎª2^n  */
-#define UART_TX_BUF_SIZE  128  /**< \brief ·¢ËÍ»·ÐÎ»º³åÇø´óÐ¡£¬Ó¦¸ÃÎª2^n  */
+#define UART_RX_BUF_SIZE  128  /**< \brief æŽ¥æ”¶çŽ¯å½¢ç¼“å†²åŒºå¤§å°ï¼Œåº”è¯¥ä¸º2^n  */
+#define UART_TX_BUF_SIZE  128  /**< \brief å‘é€çŽ¯å½¢ç¼“å†²åŒºå¤§å°ï¼Œåº”è¯¥ä¸º2^n  */
 
 /*******************************************************************************
-  È«¾Ö±äÁ¿
+  å…¨å±€å˜é‡
 *******************************************************************************/
 
-/** \brief UART ½ÓÊÕ»·ÐÎ»º³åÇø  */
+/** \brief UART æŽ¥æ”¶çŽ¯å½¢ç¼“å†²åŒº  */
 static uint8_t __uart_rxbuf[UART_RX_BUF_SIZE];
 
-/** \brief UART ·¢ËÍ»·ÐÎ»º³åÇø  */
+/** \brief UART å‘é€çŽ¯å½¢ç¼“å†²åŒº  */
 static uint8_t __uart_txbuf[UART_TX_BUF_SIZE];
 
-/** \brief ³õÊ¼»¯ÏÔÊ¾×Ö·û  */
+/** \brief åˆå§‹åŒ–æ˜¾ç¤ºå­—ç¬¦  */
 static const uint8_t __ch[] = {"UART interrupt mode(Add ring buffer) test:\r\n"};
 
-/** \brief ´®¿Ú»º³åÇøÉè±¸ */
+/** \brief ä¸²å£ç¼“å†²åŒºè®¾å¤‡ */
 static am_uart_rngbuf_dev_t __g_uart_ringbuf_dev;
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_std_uart_ringbuf_entry (am_uart_handle_t uart_handle)
 {
-    uint8_t                 uart1_buf[5];   /* Êý¾Ý»º³åÇø */
-    am_uart_rngbuf_handle_t handle = NULL;  /* ´®¿Ú»·ÐÎ»º³åÇø·þÎñ¾ä±ú */
+    uint8_t                 uart1_buf[5];   /* æ•°æ®ç¼“å†²åŒº */
+    am_uart_rngbuf_handle_t handle = NULL;  /* ä¸²å£çŽ¯å½¢ç¼“å†²åŒºæœåŠ¡å¥æŸ„ */
 
-    /* UART ³õÊ¼»¯Îª»·ÐÎ»º³åÇøÄ£Ê½ */
+    /* UART åˆå§‹åŒ–ä¸ºçŽ¯å½¢ç¼“å†²åŒºæ¨¡å¼ */
     handle = am_uart_rngbuf_init(&__g_uart_ringbuf_dev,
                                   uart_handle,
                                   __uart_rxbuf,
@@ -82,10 +82,10 @@ void demo_std_uart_ringbuf_entry (am_uart_handle_t uart_handle)
 
     while (1) {
 
-        /* ´Ó½ÓÊÕ»º³åÇøÈ¡³öÒ»¸öÊý¾Ýµ½ buf£¬½ÓÊÕÊý¾Ý */
+        /* ä»ŽæŽ¥æ”¶ç¼“å†²åŒºå–å‡ºä¸€ä¸ªæ•°æ®åˆ° bufï¼ŒæŽ¥æ”¶æ•°æ® */
         am_uart_rngbuf_receive(handle, uart1_buf, 1);
 
-        /* ½« buf µÄÒ»¸öÊý¾Ý·ÅÈë»·ÐÎ»º³åÇø£¬·¢ËÍÊý¾Ý */
+        /* å°† buf çš„ä¸€ä¸ªæ•°æ®æ”¾å…¥çŽ¯å½¢ç¼“å†²åŒºï¼Œå‘é€æ•°æ® */
         am_uart_rngbuf_send(handle, uart1_buf, 1);
     }
 }

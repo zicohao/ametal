@@ -12,24 +12,24 @@
 
 /**
  * \file
- * \brief ADC INT ���̣�ͨ�� HW ��ӿ�ʵ��
+ * \brief ADC INT 例程，通过 HW 层接口实现
  *
- * - �������裺
- *   1. PIOA_4 (ADC ͨ�� 4) ����ģ�����롣
- *   2. PIOA_5 (ADC ͨ�� 5) ����ģ�����롣
+ * - 操作步骤：
+ *   1. PIOA_4 (ADC 通道 4) 连接模拟输入。
+ *   2. PIOA_5 (ADC 通道 5) 连接模拟输入。
  *
- * - ʵ������
- *   1. ���������ѹ����ֵ��
+ * - 实验现象：
+ *   1. 串口输出电压采样值。
  *
  * \note
- *    1. ʹ�� ADC ģ�鹦�ܣ����뱣֤ ADC ģ���ϵ磻
- *    2. ��Ҫ��֤��Ӧͨ�����ŵĳ�ʼ��ע�ʹ򿪣�
- *    3. ����۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIOA_10 �������� PC ���ڵ� TXD��
- *       PIOA_9 �������� PC ���ڵ� RXD��
- *    4. ���û��û���Ҫ����ADC��ѯ��ȡͨ������Ŀ�����߱����ȡͨ����˳��ֻ���޸�
- *       adc_chan[]�����е�ͨ��ֵ���ɣ�ע����Ҫ��ͨ�����ŵĳ�ʼ��ע�ʹ򿪡�
+ *    1. 使用 ADC 模块功能，必须保证 ADC 模块上电；
+ *    2. 需要保证对应通道引脚的初始化注释打开；
+ *    3. 如需观察串口打印的调试信息，需要将 PIOA_10 引脚连接 PC 串口的 TXD，
+ *       PIOA_9 引脚连接 PC 串口的 RXD。
+ *    4. 若用户用户需要添加ADC轮询读取通道的数目，或者变更读取通道的顺序，只需修改
+ *       adc_chan[]数组中的通道值即可，注意需要将通道引脚的初始化注释打开。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_zmf159_hw_adc_dma.c src_zmf159_hw_adc_dma
  *
  * \internal
@@ -53,10 +53,10 @@
 #include "demo_zlg_entries.h"
 #include "demo_zmf159_core_entries.h"
 
-#define  __ADC1_DMA_CHAN1         DMA1_CHAN_1 /* ADC��ӦDMA1ͨ��1 */
+#define  __ADC1_DMA_CHAN1         DMA1_CHAN_1 /* ADC对应DMA1通道1 */
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_zmf159_core_hw_adc_dma_entry (void)
 {
@@ -64,15 +64,15 @@ void demo_zmf159_core_hw_adc_dma_entry (void)
 
     int adc_chan[] = {4, 5};
 
-    /* ����Ӳ��������ǰ�Ļ������� ���������ţ�ʹ��ʱ�ӵ� */
-//    am_gpio_pin_cfg(PIOA_0, PIOA_0_AIN | PIOA_0_ADC_IN0); /* ADC1ͨ��0 */
-//    am_gpio_pin_cfg(PIOA_1, PIOA_1_AIN | PIOA_1_ADC_IN1); /* ADC1ͨ��1 */
-//    am_gpio_pin_cfg(PIOA_2, PIOA_2_AIN | PIOA_2_ADC_IN2); /* ADC1ͨ��2 */
-//    am_gpio_pin_cfg(PIOA_3, PIOA_3_AIN | PIOA_3_ADC_IN3); /* ADC1ͨ��3 */
-    am_gpio_pin_cfg(PIOA_4, PIOA_4_AIN | PIOA_4_ADC_IN4); /* ADC1ͨ��4 */
-    am_gpio_pin_cfg(PIOA_5, PIOA_5_AIN | PIOA_5_ADC_IN5); /* ADC1ͨ��5 */
-//    am_gpio_pin_cfg(PIOA_6, PIOA_6_AIN | PIOA_6_ADC_IN6); /* ADC1ͨ��6 */
-//    am_gpio_pin_cfg(PIOA_7, PIOA_7_AIN | PIOA_7_ADC_IN7); /* ADC1ͨ��7 */
+    /* 运行硬件层例程前的环境设置 ，配置引脚，使能时钟等 */
+//    am_gpio_pin_cfg(PIOA_0, PIOA_0_AIN | PIOA_0_ADC_IN0); /* ADC1通道0 */
+//    am_gpio_pin_cfg(PIOA_1, PIOA_1_AIN | PIOA_1_ADC_IN1); /* ADC1通道1 */
+//    am_gpio_pin_cfg(PIOA_2, PIOA_2_AIN | PIOA_2_ADC_IN2); /* ADC1通道2 */
+//    am_gpio_pin_cfg(PIOA_3, PIOA_3_AIN | PIOA_3_ADC_IN3); /* ADC1通道3 */
+    am_gpio_pin_cfg(PIOA_4, PIOA_4_AIN | PIOA_4_ADC_IN4); /* ADC1通道4 */
+    am_gpio_pin_cfg(PIOA_5, PIOA_5_AIN | PIOA_5_ADC_IN5); /* ADC1通道5 */
+//    am_gpio_pin_cfg(PIOA_6, PIOA_6_AIN | PIOA_6_ADC_IN6); /* ADC1通道6 */
+//    am_gpio_pin_cfg(PIOA_7, PIOA_7_AIN | PIOA_7_ADC_IN7); /* ADC1通道7 */
 
 
     am_clk_enable(CLK_ADC1);

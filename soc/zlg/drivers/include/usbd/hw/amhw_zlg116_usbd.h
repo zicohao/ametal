@@ -37,65 +37,65 @@ extern "C" {
  */
 
 /**
- *  \brief USB ¼Ä´æÆ÷½á¹¹Ìå¶¨Òå
+ *  \brief USB å¯„å­˜å™¨ç»“æ„ä½“å®šä¹‰
  */
 typedef struct amhw_zlg116_usb{
-    __IO  uint16_t top;              /* ÖĞ¶Ï×´Ì¬¼Ä´æÆ÷£¬Æ«ÒÆµØÖ·0x00 */
-          uint16_t reserve0;         /* ±£ÁôÎ» */
-    __IO  uint16_t int_state;        /* ÖĞ¶Ï×´Ì¬¼Ä´æÆ÷£¬Æ«ÒÆµØÖ·0x04 */
-          uint16_t reserve1;         /* ±£ÁôÎ» */
-    __IO  uint16_t ep_int_state;     /* ¶ËµãÖĞ¶Ï×´Ì¬¼Ä´æÆ÷£¬Æ«ÒÆµØÖ·0x08 */
-          uint16_t reserve2;         /* ±£ÁôÎ» */
-    __IO  uint16_t ep0_int_state;    /* ¶Ëµã0ÖĞ¶Ï×´Ì¬¼Ä´æÆ÷£¬Æ«ÒÆµØÖ·0xc0 */
-          uint16_t reserve3;         /* ±£ÁôÎ» */
-    __IO  uint16_t int_en;           /* ÖĞ¶ÏÊ¹ÄÜ¼Ä´æÆ÷£¬Æ«ÒÆµØÖ·0x10 */
-          uint16_t reserve4;         /* ±£ÁôÎ» */
-    __IO  uint16_t ep_int_en;        /* ¶ËµãÖĞ¶ÏÊ¹ÄÜ¼Ä´æÆ÷£¬Æ«ÒÆµØÖ·0x14 */
-          uint16_t reserve5;         /* ±£ÁôÎ» */
-    __IO  uint16_t ep0_int_en;       /* ¶Ëµã0ÖĞ¶ÏÊ¹ÄÜ¼Ä´æÆ÷£¬Æ«ÒÆµØÖ·0x18 */
-          uint16_t reserve6[3];      /* ±£ÁôÎ» */
+    __IO  uint16_t top;              /* ä¸­æ–­çŠ¶æ€å¯„å­˜å™¨ï¼Œåç§»åœ°å€0x00 */
+          uint16_t reserve0;         /* ä¿ç•™ä½ */
+    __IO  uint16_t int_state;        /* ä¸­æ–­çŠ¶æ€å¯„å­˜å™¨ï¼Œåç§»åœ°å€0x04 */
+          uint16_t reserve1;         /* ä¿ç•™ä½ */
+    __IO  uint16_t ep_int_state;     /* ç«¯ç‚¹ä¸­æ–­çŠ¶æ€å¯„å­˜å™¨ï¼Œåç§»åœ°å€0x08 */
+          uint16_t reserve2;         /* ä¿ç•™ä½ */
+    __IO  uint16_t ep0_int_state;    /* ç«¯ç‚¹0ä¸­æ–­çŠ¶æ€å¯„å­˜å™¨ï¼Œåç§»åœ°å€0xc0 */
+          uint16_t reserve3;         /* ä¿ç•™ä½ */
+    __IO  uint16_t int_en;           /* ä¸­æ–­ä½¿èƒ½å¯„å­˜å™¨ï¼Œåç§»åœ°å€0x10 */
+          uint16_t reserve4;         /* ä¿ç•™ä½ */
+    __IO  uint16_t ep_int_en;        /* ç«¯ç‚¹ä¸­æ–­ä½¿èƒ½å¯„å­˜å™¨ï¼Œåç§»åœ°å€0x14 */
+          uint16_t reserve5;         /* ä¿ç•™ä½ */
+    __IO  uint16_t ep0_int_en;       /* ç«¯ç‚¹0ä¸­æ–­ä½¿èƒ½å¯„å­˜å™¨ï¼Œåç§»åœ°å€0x18 */
+          uint16_t reserve6[3];      /* ä¿ç•™ä½ */
     struct {
     __IO  uint16_t epx_int_state;
           uint16_t reserved6;
-    }epx_int_state_arr[4];                 /* ¶ËµãxÖĞ¶Ï×´Ì¬¼Ä´æÆ÷£¬Æ«ÒÆµØÖ·0x20-0x2c */
-          uint16_t reserve7[8];            /* ±£ÁôÎ» */
+    }epx_int_state_arr[4];                 /* ç«¯ç‚¹xä¸­æ–­çŠ¶æ€å¯„å­˜å™¨ï¼Œåç§»åœ°å€0x20-0x2c */
+          uint16_t reserve7[8];            /* ä¿ç•™ä½ */
     struct {
     __IO  uint16_t epx_int_en;
           uint16_t reserved8;
-    } epx_int_en_arr[4];                   /* ¶ËµãxÖĞ¶ÏÊ¹ÄÜ¼Ä´æÆ÷£¬Æ«ÒÆµØÖ·0x40-0x4c */
-          uint16_t  reserve9[8];           /* ±£ÁôÎ» */
-    __IO  uint16_t addr;                   /* usbµØÖ·¼Ä´æÆ÷£¬Æ«ÒÆµØÖ·0x60 */
-          uint16_t reserve10;              /* ±£ÁôÎ» */
-    __IO  uint16_t ep_en;                  /* usb¶ËµãÊ¹ÄÜ¼Ä´æÆ÷£¬Æ«ÒÆµØÖ·0x64 */
-          uint16_t reserve11[9];           /* ±£ÁôÎ» */
-    __IO  uint16_t tog_crl1_4;             /* Êı¾İ·­×ª¿ØÖÆ¼Ä´æÆ÷£¬Æ«ÒÆµØÖ·0x78 */
-          uint16_t  reserve12[3];          /* ±£ÁôÎ» */
+    } epx_int_en_arr[4];                   /* ç«¯ç‚¹xä¸­æ–­ä½¿èƒ½å¯„å­˜å™¨ï¼Œåç§»åœ°å€0x40-0x4c */
+          uint16_t  reserve9[8];           /* ä¿ç•™ä½ */
+    __IO  uint16_t addr;                   /* usbåœ°å€å¯„å­˜å™¨ï¼Œåç§»åœ°å€0x60 */
+          uint16_t reserve10;              /* ä¿ç•™ä½ */
+    __IO  uint16_t ep_en;                  /* usbç«¯ç‚¹ä½¿èƒ½å¯„å­˜å™¨ï¼Œåç§»åœ°å€0x64 */
+          uint16_t reserve11[9];           /* ä¿ç•™ä½ */
+    __IO  uint16_t tog_crl1_4;             /* æ•°æ®ç¿»è½¬æ§åˆ¶å¯„å­˜å™¨ï¼Œåç§»åœ°å€0x78 */
+          uint16_t  reserve12[3];          /* ä¿ç•™ä½ */
     struct {
     __IO  uint16_t stupx;
           uint16_t reserved13;
-    }stupx_arr[8];                         /* ÉèÖÃ°üÊı¾İ¼Ä´æÆ÷£¬Æ«ÒÆµØÖ·0x80-0x9c */
-    __IO  uint16_t packet_size;            /* ´«Êä°ü´óĞ¡¼Ä´æÆ÷£¬Æ«ÒÆµØÖ·0xa0 */
-          uint16_t reserve14[47];          /* ±£ÁôÎ» */
+    }stupx_arr[8];                         /* è®¾ç½®åŒ…æ•°æ®å¯„å­˜å™¨ï¼Œåç§»åœ°å€0x80-0x9c */
+    __IO  uint16_t packet_size;            /* ä¼ è¾“åŒ…å¤§å°å¯„å­˜å™¨ï¼Œåç§»åœ°å€0xa0 */
+          uint16_t reserve14[47];          /* ä¿ç•™ä½ */
     struct {
     __IO  uint16_t epx_avai;
           uint16_t reserved15;
-    }epx_avail_arr[5];                     /* ¶ËµãxÓĞĞ§Êı¾İ¼Ä´æÆ÷£¬Æ«ÒÆµØÖ·0x100-0x110 */
-          uint16_t  reserve16[22];         /* ±£ÁôÎ» */
+    }epx_avail_arr[5];                     /* ç«¯ç‚¹xæœ‰æ•ˆæ•°æ®å¯„å­˜å™¨ï¼Œåç§»åœ°å€0x100-0x110 */
+          uint16_t  reserve16[22];         /* ä¿ç•™ä½ */
     struct {
     __IO  uint16_t epx_ctrl;
           uint16_t reserved17;
-    }epx_ctrl_arr[5];                      /* ¶Ëµãx¿ØÖÆ¼Ä´æÆ÷£¬Æ«ÒÆµØÖ·0x140-0x150 */
-          uint16_t reserve18[6];           /* ±£ÁôÎ» */
+    }epx_ctrl_arr[5];                      /* ç«¯ç‚¹xæ§åˆ¶å¯„å­˜å™¨ï¼Œåç§»åœ°å€0x140-0x150 */
+          uint16_t reserve18[6];           /* ä¿ç•™ä½ */
     struct {
     __IO  uint16_t epx_fifo;
           uint16_t reserved19;
-    }epx_fifo_arr[5];                      /* ¶Ëµãx fifo¼Ä´æÆ÷£¬Æ«ÒÆµØÖ·0x160-0x170 */
-          uint16_t reserve20[8];           /* ±£ÁôÎ» */
-    __IO  uint16_t ep_dma;                 /* ¶ËµãdmaÊ¹ÄÜ¼Ä´æÆ÷£¬Æ«ÒÆµØÖ·0x184 */
-          uint16_t reserve21;              /* ±£ÁôÎ» */
-    __IO  uint16_t ep_halt;                /* ¶ËµãÔİ´æ¼Ä´æÆ÷£¬Æ«ÒÆµØÖ·0x188 */
-          uint16_t reserve22[27];          /* ±£ÁôÎ» */
-    __IO  uint16_t power;                  /* ¹¦ºÄ¼Ä´æÆ÷£¬Æ«ÒÆµØÖ·0x1c0 */
+    }epx_fifo_arr[5];                      /* ç«¯ç‚¹x fifoå¯„å­˜å™¨ï¼Œåç§»åœ°å€0x160-0x170 */
+          uint16_t reserve20[8];           /* ä¿ç•™ä½ */
+    __IO  uint16_t ep_dma;                 /* ç«¯ç‚¹dmaä½¿èƒ½å¯„å­˜å™¨ï¼Œåç§»åœ°å€0x184 */
+          uint16_t reserve21;              /* ä¿ç•™ä½ */
+    __IO  uint16_t ep_halt;                /* ç«¯ç‚¹æš‚å­˜å¯„å­˜å™¨ï¼Œåç§»åœ°å€0x188 */
+          uint16_t reserve22[27];          /* ä¿ç•™ä½ */
+    __IO  uint16_t power;                  /* åŠŸè€—å¯„å­˜å™¨ï¼Œåç§»åœ°å€0x1c0 */
 }amhw_zlg116_usbd_t;
 
 /*******************  Bit definition for USB_TOP register  *******************/
@@ -115,19 +115,19 @@ typedef struct amhw_zlg116_usb{
 #define  AMHW_USB_ACTIVE           (1UL << AMHW_ZLG116_USB_TOP_ACTIVE)
 
 /**
- * \brief USBËÙÂÊÃ¶¾Ù
+ * \brief USBé€Ÿç‡æšä¸¾
  */
 typedef enum {
-    ZLG116_USB_SPEED_FULL,   /* È«ËÙ´«Êä */
-    ZLG116_USB_SPEED_LOW     /* µÍËÙ´«Êä */
+    ZLG116_USB_SPEED_FULL,   /* å…¨é€Ÿä¼ è¾“ */
+    ZLG116_USB_SPEED_LOW     /* ä½é€Ÿä¼ è¾“ */
 }zlg116_usb_speed_t;
 
 /**
- *  \brief ÉèÖÃusbËÙÂÊº¯Êı
+ *  \brief è®¾ç½®usbé€Ÿç‡å‡½æ•°
  *
- *  \param[in] speed  usbËÙÂÊ
+ *  \param[in] speed  usbé€Ÿç‡
  *
- *  \return ÎŞ
+ *  \return æ— 
  */
 am_static_inline
 void amhw_zlg116_usbd_speed_set (amhw_zlg116_usbd_t *p_usb, zlg116_usb_speed_t speed)
@@ -139,9 +139,9 @@ void amhw_zlg116_usbd_speed_set (amhw_zlg116_usbd_t *p_usb, zlg116_usb_speed_t s
 }
 
 /**
- *  \brief »ñµÃusbËÙÂÊº¯Êı
+ *  \brief è·å¾—usbé€Ÿç‡å‡½æ•°
  *
- *  \return usbËÙÂÊ
+ *  \return usbé€Ÿç‡
  */
 am_static_inline
 uint16_t amhw_zlg116_usbd_speed_get (amhw_zlg116_usbd_t *p_usb)
@@ -150,19 +150,19 @@ uint16_t amhw_zlg116_usbd_speed_get (amhw_zlg116_usbd_t *p_usb)
 }
 
 /**
- * \brief USBÁ¬½Ó×´Ì¬Ã¶¾Ù
+ * \brief USBè¿æ¥çŠ¶æ€æšä¸¾
  */
 typedef enum {
-    ZLG116_USB_DISCONNECT,   /* ¶Ï¿ªÁ¬½Ó */
-    ZLG116_USB_CONNECT       /* Á¬½Ó */
+    ZLG116_USB_DISCONNECT,   /* æ–­å¼€è¿æ¥ */
+    ZLG116_USB_CONNECT       /* è¿æ¥ */
 }zlg116_usb_connect_t;
 
 /**
- *  \brief ÉèÖÃusbÁ¬½Ó×´Ì¬º¯Êı
+ *  \brief è®¾ç½®usbè¿æ¥çŠ¶æ€å‡½æ•°
  *
- *  \param[in] connect  usbÁ¬½Ó×´Ì¬
+ *  \param[in] connect  usbè¿æ¥çŠ¶æ€
  *
- *  \return ÎŞ
+ *  \return æ— 
  */
 am_static_inline
 void amhw_zlg116_usbd_connect_set (amhw_zlg116_usbd_t *p_usb, zlg116_usb_connect_t connect)
@@ -174,9 +174,9 @@ void amhw_zlg116_usbd_connect_set (amhw_zlg116_usbd_t *p_usb, zlg116_usb_connect
 }
 
 /**
- *  \brief »ñµÃusbÁ¬½Ó×´Ì¬º¯Êı
+ *  \brief è·å¾—usbè¿æ¥çŠ¶æ€å‡½æ•°
  *
- *  \return usbÁ¬½Ó×´Ì¬
+ *  \return usbè¿æ¥çŠ¶æ€
  */
 am_static_inline
 uint16_t amhw_zlg116_usbd_connect_get (amhw_zlg116_usbd_t *p_usb)
@@ -185,19 +185,19 @@ uint16_t amhw_zlg116_usbd_connect_get (amhw_zlg116_usbd_t *p_usb)
 }
 
 /**
- * \brief USB¸´Î»×´Ì¬Ã¶¾Ù
+ * \brief USBå¤ä½çŠ¶æ€æšä¸¾
  */
 typedef enum {
-    ZLG116_USB_NORESET,   /* ²»¸´Î» */
-    ZLG116_USB_RESET      /* ¸´Î» */
+    ZLG116_USB_NORESET,   /* ä¸å¤ä½ */
+    ZLG116_USB_RESET      /* å¤ä½ */
 }zlg116_usb_reset_t;
 
 /**
- *  \brief ÉèÖÃusb¸´Î»º¯Êı
+ *  \brief è®¾ç½®usbå¤ä½å‡½æ•°
  *
- *  \param[in] reset  usb¸´Î»×´Ì¬
+ *  \param[in] reset  usbå¤ä½çŠ¶æ€
  *
- *  \return ÎŞ
+ *  \return æ— 
  */
 am_static_inline
 void amhw_zlg116_usbd_reset_set (amhw_zlg116_usbd_t *p_usb, zlg116_usb_reset_t reset)
@@ -209,9 +209,9 @@ void amhw_zlg116_usbd_reset_set (amhw_zlg116_usbd_t *p_usb, zlg116_usb_reset_t r
 }
 
 /**
- *  \brief »ñµÃusb¸´Î»º¯Êı
+ *  \brief è·å¾—usbå¤ä½å‡½æ•°
  *
- *  \return usb¸´Î»×´Ì¬
+ *  \return usbå¤ä½çŠ¶æ€
  */
 am_static_inline
 uint16_t amhw_zlg116_usbd_reset_get (amhw_zlg116_usbd_t *p_usb)
@@ -220,17 +220,17 @@ uint16_t amhw_zlg116_usbd_reset_get (amhw_zlg116_usbd_t *p_usb)
 }
 
 /**
- * \brief USB suspend×´Ì¬Ã¶¾Ù
+ * \brief USB suspendçŠ¶æ€æšä¸¾
  */
 typedef enum {
-    ZLG116_USB_SUSPEND_WORK,     /* ¹¤×÷×´Ì¬ */
-    ZLG116_USB_SUSPEND_PENDING   /* ¹ÒÆğ×´Ì¬ */
+    ZLG116_USB_SUSPEND_WORK,     /* å·¥ä½œçŠ¶æ€ */
+    ZLG116_USB_SUSPEND_PENDING   /* æŒ‚èµ·çŠ¶æ€ */
 }zlg116_usb_suspend_t;
 
 /**
- *  \brief »ñµÃusb suspend×´Ì¬º¯Êı
+ *  \brief è·å¾—usb suspendçŠ¶æ€å‡½æ•°
  *
- *  \return usb suspend×´Ì¬
+ *  \return usb suspendçŠ¶æ€
  */
 am_static_inline
 uint16_t amhw_zlg116_usbd_suspend_get (amhw_zlg116_usbd_t *p_usb)
@@ -239,9 +239,9 @@ uint16_t amhw_zlg116_usbd_suspend_get (amhw_zlg116_usbd_t *p_usb)
 }
 
 /**
- *  \brief »ñµÃusb dp/dmÏß×´Ì¬º¯Êı
+ *  \brief è·å¾—usb dp/dmçº¿çŠ¶æ€å‡½æ•°
  *
- *  \return usb dp/dm×´Ì¬
+ *  \return usb dp/dmçŠ¶æ€
  */
 am_static_inline
 uint16_t amhw_zlg116_usbd_dp_dm_get (amhw_zlg116_usbd_t *p_usb)
@@ -250,19 +250,19 @@ uint16_t amhw_zlg116_usbd_dp_dm_get (amhw_zlg116_usbd_t *p_usb)
 }
 
 /**
- * \brief USB ×ÜÏß»îÔ¾×´Ì¬
+ * \brief USB æ€»çº¿æ´»è·ƒçŠ¶æ€
  */
 typedef enum {
-    ZLG116_USB_INACTIVE,     /* ×ÜÏß²»»îÔ¾ */
-    ZLG116_USB_ACTIVE        /* ×ÜÏß»îÔ¾ */
+    ZLG116_USB_INACTIVE,     /* æ€»çº¿ä¸æ´»è·ƒ */
+    ZLG116_USB_ACTIVE        /* æ€»çº¿æ´»è·ƒ */
 }zlg116_usb_active_t;
 
 /**
- *  \brief ÉèÖÃusb×ÜÏß»îÔ¾×´Ì¬º¯Êı
+ *  \brief è®¾ç½®usbæ€»çº¿æ´»è·ƒçŠ¶æ€å‡½æ•°
  *
- *  \param[in] active  usb ×ÜÏß»îÔ¾×´Ì¬
+ *  \param[in] active  usb æ€»çº¿æ´»è·ƒçŠ¶æ€
  *
- *  \return ÎŞ
+ *  \return æ— 
  */
 am_static_inline
 void amhw_zlg116_usbd_active_set(amhw_zlg116_usbd_t *p_usb, zlg116_usb_active_t active)
@@ -274,9 +274,9 @@ void amhw_zlg116_usbd_active_set(amhw_zlg116_usbd_t *p_usb, zlg116_usb_active_t 
 }
 
 /**
- *  \brief »ñµÃusb×ÜÏß»îÔ¾×´Ì¬º¯Êı
+ *  \brief è·å¾—usbæ€»çº¿æ´»è·ƒçŠ¶æ€å‡½æ•°
  *
- *  \return usb ×ÜÏß»îÔ¾×´Ì¬
+ *  \return usb æ€»çº¿æ´»è·ƒçŠ¶æ€
  */
 am_static_inline
 uint16_t amhw_zlg116_usbd_active_get (amhw_zlg116_usbd_t *p_usb)
@@ -285,18 +285,18 @@ uint16_t amhw_zlg116_usbd_active_get (amhw_zlg116_usbd_t *p_usb)
 }
 
 /***********************  USB_INT_STATE Configuration  ************************/
-#define  AMHW_ZLG116_USB_INT_STATE_RSTF      (1UL << 0)   /* ×ÜÏß¸´Î»ÇëÇó */
-#define  AMHW_ZLG116_USB_INT_STATE_SUSPENDF  (1UL << 1)   /* ×ÜÏß¹ÒÆğ */
-#define  AMHW_ZLG116_USB_INT_STATE_RESUMF    (1UL << 2)   /* ×ÜÏß»½ĞÑ */
-#define  AMHW_ZLG116_USB_INT_STATE_SOFF      (1UL << 3)   /* ¼ì²âµ½SOF */
-#define  AMHW_ZLG116_USB_INT_STATE_EPINTF    (1UL << 4)   /* ¶ËµãÖĞ¶Ï */
+#define  AMHW_ZLG116_USB_INT_STATE_RSTF      (1UL << 0)   /* æ€»çº¿å¤ä½è¯·æ±‚ */
+#define  AMHW_ZLG116_USB_INT_STATE_SUSPENDF  (1UL << 1)   /* æ€»çº¿æŒ‚èµ· */
+#define  AMHW_ZLG116_USB_INT_STATE_RESUMF    (1UL << 2)   /* æ€»çº¿å”¤é†’ */
+#define  AMHW_ZLG116_USB_INT_STATE_SOFF      (1UL << 3)   /* æ£€æµ‹åˆ°SOF */
+#define  AMHW_ZLG116_USB_INT_STATE_EPINTF    (1UL << 4)   /* ç«¯ç‚¹ä¸­æ–­ */
 #define  AMHW_ZLG116_USB_INT_STATE_ALL        0X0F
 /**
- *  \brief usbÖĞ¶Ï×´Ì¬¼Ä´æÆ÷Çå³ıº¯Êı
+ *  \brief usbä¸­æ–­çŠ¶æ€å¯„å­˜å™¨æ¸…é™¤å‡½æ•°
  *
- *  \param[in] state  usb ÖĞ¶Ï×´Ì¬¼Ä´æÆ÷×´Ì¬Î»Ã¶¾Ù
+ *  \param[in] state  usb ä¸­æ–­çŠ¶æ€å¯„å­˜å™¨çŠ¶æ€ä½æšä¸¾
  *
- *  \return ÎŞ
+ *  \return æ— 
  */
 am_static_inline
 void amhw_zlg116_usbd_int_state_clear (amhw_zlg116_usbd_t *p_usb, uint16_t state)
@@ -305,9 +305,9 @@ void amhw_zlg116_usbd_int_state_clear (amhw_zlg116_usbd_t *p_usb, uint16_t state
 }
 
 /**
- *  \brief »ñµÃusbÖĞ¶Ï×´Ì¬¼Ä´æÆ÷×´Ì¬º¯Êı
+ *  \brief è·å¾—usbä¸­æ–­çŠ¶æ€å¯„å­˜å™¨çŠ¶æ€å‡½æ•°
  *
- *  \return usb ÖĞ¶Ï×´Ì¬¼Ä´æÆ÷×´Ì¬
+ *  \return usb ä¸­æ–­çŠ¶æ€å¯„å­˜å™¨çŠ¶æ€
  */
 am_static_inline
 uint16_t amhw_zlg116_usbd_int_state_get (amhw_zlg116_usbd_t *p_usb)
@@ -324,9 +324,9 @@ uint16_t amhw_zlg116_usbd_int_state_get (amhw_zlg116_usbd_t *p_usb)
 #define  AMHW_ZLG116_EP_INT_STATE_EP_ALL       0X1F
 
 /**
- *  \brief »ñµÃusb¶ËµãÖĞ¶Ï×´Ì¬¼Ä´æÆ÷×´Ì¬º¯Êı
+ *  \brief è·å¾—usbç«¯ç‚¹ä¸­æ–­çŠ¶æ€å¯„å­˜å™¨çŠ¶æ€å‡½æ•°
  *
- *  \return usb ÖĞ¶Ï×´Ì¬¼Ä´æÆ÷×´Ì¬
+ *  \return usb ä¸­æ–­çŠ¶æ€å¯„å­˜å™¨çŠ¶æ€
  */
 am_static_inline
 uint16_t amhw_zlg116_usbd_ep_int_state_get (amhw_zlg116_usbd_t *p_usb)
@@ -335,9 +335,9 @@ uint16_t amhw_zlg116_usbd_ep_int_state_get (amhw_zlg116_usbd_t *p_usb)
 }
 
 /**
- *  \brief Çå³ıusb¶ËµãÖĞ¶Ï×´Ì¬
+ *  \brief æ¸…é™¤usbç«¯ç‚¹ä¸­æ–­çŠ¶æ€
  *
- *  \param[in] ep ÒªÇå³ıµÄ¶Ëµã
+ *  \param[in] ep è¦æ¸…é™¤çš„ç«¯ç‚¹
  */
 am_static_inline
 uint16_t amhw_zlg116_usbd_ep_int_state_clear (amhw_zlg116_usbd_t *p_usb, uint16_t ep)
@@ -346,8 +346,8 @@ uint16_t amhw_zlg116_usbd_ep_int_state_clear (amhw_zlg116_usbd_t *p_usb, uint16_
 }
 
 /************************  EP0_INT_STATE Configuration  ***********************/
-#define  AMHW_ZLG116_EP0_INT_STATE_SETUP          (1UL << 0)  /* ½ÓÊÕµ½SETUP°ü */
-#define  AMHW_ZLG116_EP0_INT_STATE_END            (1UL << 1)  /* ¶Ëµã´«ÊäÍê³É */
+#define  AMHW_ZLG116_EP0_INT_STATE_SETUP          (1UL << 0)  /* æ¥æ”¶åˆ°SETUPåŒ… */
+#define  AMHW_ZLG116_EP0_INT_STATE_END            (1UL << 1)  /* ç«¯ç‚¹ä¼ è¾“å®Œæˆ */
 #define  AMHW_ZLG116_EP0_INT_STATE_IN_NACK        (1UL << 2)
 #define  AMHW_ZLG116_EP0_INT_STATE_IN_ACK         (1UL << 3)
 #define  AMHW_ZLG116_EP0_INT_STATE_IN_STALL       (1UL << 4)
@@ -357,9 +357,9 @@ uint16_t amhw_zlg116_usbd_ep_int_state_clear (amhw_zlg116_usbd_t *p_usb, uint16_
 #define  AMHW_ZLG116_EP0_INT_STATE_ALL             0XFF
 
 /**
- *  \brief »ñµÃusb¶Ëµã0ÖĞ¶Ï×´Ì¬¼Ä´æÆ÷×´Ì¬º¯Êı
+ *  \brief è·å¾—usbç«¯ç‚¹0ä¸­æ–­çŠ¶æ€å¯„å­˜å™¨çŠ¶æ€å‡½æ•°
  *
- *  \return usb ÖĞ¶Ï×´Ì¬¼Ä´æÆ÷×´Ì¬
+ *  \return usb ä¸­æ–­çŠ¶æ€å¯„å­˜å™¨çŠ¶æ€
  */
 am_static_inline
 uint16_t amhw_zlg116_usbd_ep0_int_state_get (amhw_zlg116_usbd_t *p_usb)
@@ -368,11 +368,11 @@ uint16_t amhw_zlg116_usbd_ep0_int_state_get (amhw_zlg116_usbd_t *p_usb)
 }
 
 /**
- *  \brief usb¶Ëµã0ÖĞ¶Ï×´Ì¬¼Ä´æÆ÷Çå³ıº¯Êı
+ *  \brief usbç«¯ç‚¹0ä¸­æ–­çŠ¶æ€å¯„å­˜å™¨æ¸…é™¤å‡½æ•°
  *
- *  \param[in] state  usb ÖĞ¶Ï×´Ì¬¼Ä´æÆ÷×´Ì¬Î»
+ *  \param[in] state  usb ä¸­æ–­çŠ¶æ€å¯„å­˜å™¨çŠ¶æ€ä½
  *
- *  \return ÎŞ
+ *  \return æ— 
  */
 am_static_inline
 void amhw_zlg116_usbd_ep0_int_state_clear (amhw_zlg116_usbd_t *p_usb, uint16_t state)
@@ -381,19 +381,19 @@ void amhw_zlg116_usbd_ep0_int_state_clear (amhw_zlg116_usbd_t *p_usb, uint16_t s
 }
 
 /************************  USB_INT_EN Configuration  ***********************/
-#define AMHW_ZLG116_USB_INT_EN_RSTIE       (1ul << 0)  /* USB ×ÜÏß¸´Î»ÖĞ¶ÏÊ¹ÄÜÎ» */
-#define AMHW_ZLG116_USB_INT_EN_SUSPENDIE   (1ul << 1)  /* USB ×ÜÏß¹ÒÆğÖĞ¶ÏÊ¹ÄÜÎ» */
-#define AMHW_ZLG116_USB_INT_EN_RESUMIE     (1ul << 2)  /* »½ĞÑÖĞ¶ÏÊ¹ÄÜÎ» */
-#define AMHW_ZLG116_USB_INT_EN_SOFIE       (1ul << 3)  /* SOF ¼ì²âÖĞ¶ÏÊ¹ÄÜÎ» */
-#define AMHW_ZLG116_USB_INT_EN_EPIE        (1ul << 4)  /* ¶ËµãÖĞ¶ÏÊ¹ÄÜÎ» */
+#define AMHW_ZLG116_USB_INT_EN_RSTIE       (1ul << 0)  /* USB æ€»çº¿å¤ä½ä¸­æ–­ä½¿èƒ½ä½ */
+#define AMHW_ZLG116_USB_INT_EN_SUSPENDIE   (1ul << 1)  /* USB æ€»çº¿æŒ‚èµ·ä¸­æ–­ä½¿èƒ½ä½ */
+#define AMHW_ZLG116_USB_INT_EN_RESUMIE     (1ul << 2)  /* å”¤é†’ä¸­æ–­ä½¿èƒ½ä½ */
+#define AMHW_ZLG116_USB_INT_EN_SOFIE       (1ul << 3)  /* SOF æ£€æµ‹ä¸­æ–­ä½¿èƒ½ä½ */
+#define AMHW_ZLG116_USB_INT_EN_EPIE        (1ul << 4)  /* ç«¯ç‚¹ä¸­æ–­ä½¿èƒ½ä½ */
 #define AMHW_ZLG116_USB_INT_EN_ALL          0X1F
 
 /**
- *  \brief Ê¹ÄÜUSBÖĞ¶Ï
+ *  \brief ä½¿èƒ½USBä¸­æ–­
  *
- *  \param[in] int_en               ÒªÊ¹ÄÜµÄUSBÖĞ¶Ï
+ *  \param[in] int_en               è¦ä½¿èƒ½çš„USBä¸­æ–­
  *
- *  \return ÎŞ
+ *  \return æ— 
  */
 am_static_inline
 void amhw_zlg116_usbd_int_enable (amhw_zlg116_usbd_t *p_usb, uint16_t int_en)
@@ -402,11 +402,11 @@ void amhw_zlg116_usbd_int_enable (amhw_zlg116_usbd_t *p_usb, uint16_t int_en)
 }
 
 /**
- *  \brief ½ûÄÜUSBÖĞ¶Ï
+ *  \brief ç¦èƒ½USBä¸­æ–­
  *
- *  \param[in] int_dis              Òª½ûÄÜµÄUSBÖĞ¶Ï
+ *  \param[in] int_dis              è¦ç¦èƒ½çš„USBä¸­æ–­
  *
- *  \return ÎŞ
+ *  \return æ— 
  */
 am_static_inline
 void amhw_zlg116_usbd_int_disable (amhw_zlg116_usbd_t *p_usb, uint16_t int_dis)
@@ -415,9 +415,9 @@ void amhw_zlg116_usbd_int_disable (amhw_zlg116_usbd_t *p_usb, uint16_t int_dis)
 }
 
 /**
- *  \brief »ñµÃusb¶Ëµã0ÖĞ¶Ï×´Ì¬¼Ä´æÆ÷×´Ì¬º¯Êı
+ *  \brief è·å¾—usbç«¯ç‚¹0ä¸­æ–­çŠ¶æ€å¯„å­˜å™¨çŠ¶æ€å‡½æ•°
  *
- *  \return usb ÖĞ¶Ï×´Ì¬¼Ä´æÆ÷×´Ì¬
+ *  \return usb ä¸­æ–­çŠ¶æ€å¯„å­˜å™¨çŠ¶æ€
  */
 am_static_inline
 uint16_t amhw_zlg116_usbd_int_en_get (amhw_zlg116_usbd_t *p_usb)
@@ -434,9 +434,9 @@ uint16_t amhw_zlg116_usbd_int_en_get (amhw_zlg116_usbd_t *p_usb)
 #define  AMHW_ZLG116_EP_INT_EN_ALL             0X1F
 
 /**
- *  \brief »ñµÃusb¶ËµãÖĞ¶ÏÊ¹ÄÜ¼Ä´æÆ÷×´Ì¬
+ *  \brief è·å¾—usbç«¯ç‚¹ä¸­æ–­ä½¿èƒ½å¯„å­˜å™¨çŠ¶æ€
  *
- *  \return usb ¶ËµãÖĞ¶ÏÊ¹ÄÜ¼Ä´æÆ÷×´Ì¬
+ *  \return usb ç«¯ç‚¹ä¸­æ–­ä½¿èƒ½å¯„å­˜å™¨çŠ¶æ€
  */
 am_static_inline
 uint16_t amhw_zlg116_usbd_ep_int_en_get (amhw_zlg116_usbd_t *p_usb)
@@ -445,9 +445,9 @@ uint16_t amhw_zlg116_usbd_ep_int_en_get (amhw_zlg116_usbd_t *p_usb)
 }
 
 /**
- *  \brief usb¶ËµãÖĞ¶ÏÊ¹ÄÜ
+ *  \brief usbç«¯ç‚¹ä¸­æ–­ä½¿èƒ½
  *
- *  \brief epx  ÒªÊ¹ÄÜµÄ¶Ëµã
+ *  \brief epx  è¦ä½¿èƒ½çš„ç«¯ç‚¹
  */
 am_static_inline
 void amhw_zlg116_usbd_ep_int_enable (amhw_zlg116_usbd_t *p_usb, uint16_t epx)
@@ -456,9 +456,9 @@ void amhw_zlg116_usbd_ep_int_enable (amhw_zlg116_usbd_t *p_usb, uint16_t epx)
 }
 
 /**
- *  \brief usb¶ËµãÖĞ¶Ï½ûÄÜ
+ *  \brief usbç«¯ç‚¹ä¸­æ–­ç¦èƒ½
  *
- *  \brief epx  Òª½ûÄÜµÄ¶Ëµã
+ *  \brief epx  è¦ç¦èƒ½çš„ç«¯ç‚¹
  */
 am_static_inline
 void amhw_zlg116_usbd_ep_int_disable (amhw_zlg116_usbd_t *p_usb, uint16_t epx)
@@ -467,20 +467,20 @@ void amhw_zlg116_usbd_ep_int_disable (amhw_zlg116_usbd_t *p_usb, uint16_t epx)
 }
 
 /**************************  EP0_INT_EN Configuration  ************************/
-#define  AMHW_ZLG116_EP0_INT_EN_SETUPIE        (1UL << 0) /* ½ÓÊÕµ½ SETUP °ü */
-#define  AMHW_ZLG116_EP0_INT_EN_ENDIE          (1UL << 1) /* ´«ÊäÍê³É */
-#define  AMHW_ZLG116_EP0_INT_EN_IN_NACKIE      (1UL << 2) /* IN °üÓ¦´ğ NACK */
-#define  AMHW_ZLG116_EP0_INT_EN_IN_ACKIE       (1UL << 3) /* IN °üÓ¦´ğ ACK */
-#define  AMHW_ZLG116_EP0_INT_EN_IN_STALLIE     (1UL << 4) /* IN °üÓ¦´ğ STALL */
-#define  AMHW_ZLG116_EP0_INT_EN_OUT_NACKIE     (1UL << 5) /* OUT °üÓ¦´ğ NACK */
-#define  AMHW_ZLG116_EP0_INT_EN_OUT_ACKIE      (1UL << 6) /* OUT °üÓ¦´ğ ACK */
-#define  AMHW_ZLG116_EP0_INT_EN_OUT_STALLIE    (1UL << 7) /* OUT °üÓ¦´ğ STALL */
+#define  AMHW_ZLG116_EP0_INT_EN_SETUPIE        (1UL << 0) /* æ¥æ”¶åˆ° SETUP åŒ… */
+#define  AMHW_ZLG116_EP0_INT_EN_ENDIE          (1UL << 1) /* ä¼ è¾“å®Œæˆ */
+#define  AMHW_ZLG116_EP0_INT_EN_IN_NACKIE      (1UL << 2) /* IN åŒ…åº”ç­” NACK */
+#define  AMHW_ZLG116_EP0_INT_EN_IN_ACKIE       (1UL << 3) /* IN åŒ…åº”ç­” ACK */
+#define  AMHW_ZLG116_EP0_INT_EN_IN_STALLIE     (1UL << 4) /* IN åŒ…åº”ç­” STALL */
+#define  AMHW_ZLG116_EP0_INT_EN_OUT_NACKIE     (1UL << 5) /* OUT åŒ…åº”ç­” NACK */
+#define  AMHW_ZLG116_EP0_INT_EN_OUT_ACKIE      (1UL << 6) /* OUT åŒ…åº”ç­” ACK */
+#define  AMHW_ZLG116_EP0_INT_EN_OUT_STALLIE    (1UL << 7) /* OUT åŒ…åº”ç­” STALL */
 #define  AMHW_ZLG116_EP0_INT_EN_ALL            0XFF
 
 /**
- *  \brief »ñµÃusb¶Ëµã0ÖĞ¶ÏÊ¹ÄÜ¼Ä´æÆ÷×´Ì¬
+ *  \brief è·å¾—usbç«¯ç‚¹0ä¸­æ–­ä½¿èƒ½å¯„å­˜å™¨çŠ¶æ€
  *
- *  \return usb ¶Ëµã0ÖĞ¶ÏÊ¹ÄÜ¼Ä´æÆ÷×´Ì¬
+ *  \return usb ç«¯ç‚¹0ä¸­æ–­ä½¿èƒ½å¯„å­˜å™¨çŠ¶æ€
  */
 am_static_inline
 uint16_t amhw_zlg116_usbd_ep0_int_en_get (amhw_zlg116_usbd_t *p_usb)
@@ -489,9 +489,9 @@ uint16_t amhw_zlg116_usbd_ep0_int_en_get (amhw_zlg116_usbd_t *p_usb)
 }
 
 /**
- *  \brief »ñµÃusb¶Ëµã0ÖĞ¶ÏÊ¹ÄÜ
+ *  \brief è·å¾—usbç«¯ç‚¹0ä¸­æ–­ä½¿èƒ½
  *
- *  \param   enable  ÒªÊ¹ÄÜµÄÖĞ¶ÏÀàĞÍ
+ *  \param   enable  è¦ä½¿èƒ½çš„ä¸­æ–­ç±»å‹
  */
 am_static_inline
 void amhw_zlg116_usbd_ep0_int_enable (amhw_zlg116_usbd_t *p_usb, uint16_t enable)
@@ -500,9 +500,9 @@ void amhw_zlg116_usbd_ep0_int_enable (amhw_zlg116_usbd_t *p_usb, uint16_t enable
 }
 
 /**
- *  \brief »ñµÃusb¶Ëµã0ÖĞ¶Ï½ûÄÜ
+ *  \brief è·å¾—usbç«¯ç‚¹0ä¸­æ–­ç¦èƒ½
  *
- *  \param   disable  Òª½ûÄÜµÄÖĞ¶ÏÀàĞÍ
+ *  \param   disable  è¦ç¦èƒ½çš„ä¸­æ–­ç±»å‹
  */
 am_static_inline
 void amhw_zlg116_usbd_ep0_int_disable (amhw_zlg116_usbd_t *p_usb, uint16_t disable)
@@ -511,17 +511,17 @@ void amhw_zlg116_usbd_ep0_int_disable (amhw_zlg116_usbd_t *p_usb, uint16_t disab
 }
 
 /*************************  EPX_INT_STATE Configuration  **********************/
-#define  AMHW_ZLG116_EPX_INT_STATE_ENDIE       (1UL << 1) /* ´«ÊäÍê³É */
-#define  AMHW_ZLG116_EPX_INT_STATE_IN_NACKIE   (1UL << 2) /* IN °üÓ¦´ğ NACK */
-#define  AMHW_ZLG116_EPX_INT_STATE_IN_ACKIE    (1UL << 3) /* IN °üÓ¦´ğ ACK */
-#define  AMHW_ZLG116_EPX_INT_STATE_IN_STALLIE  (1UL << 4) /* IN °üÓ¦´ğ STALL */
-#define  AMHW_ZLG116_EPX_INT_STATE_OUT_NACKIE  (1UL << 5) /* OUT °üÓ¦´ğ NACK */
-#define  AMHW_ZLG116_EPX_INT_STATE_OUT_ACKIE   (1UL << 6) /* OUT °üÓ¦´ğ ACK */
-#define  AMHW_ZLG116_EPX_INT_STATE_OUT_STALLIE (1UL << 7) /* OUT °üÓ¦´ğ STALL */
+#define  AMHW_ZLG116_EPX_INT_STATE_ENDIE       (1UL << 1) /* ä¼ è¾“å®Œæˆ */
+#define  AMHW_ZLG116_EPX_INT_STATE_IN_NACKIE   (1UL << 2) /* IN åŒ…åº”ç­” NACK */
+#define  AMHW_ZLG116_EPX_INT_STATE_IN_ACKIE    (1UL << 3) /* IN åŒ…åº”ç­” ACK */
+#define  AMHW_ZLG116_EPX_INT_STATE_IN_STALLIE  (1UL << 4) /* IN åŒ…åº”ç­” STALL */
+#define  AMHW_ZLG116_EPX_INT_STATE_OUT_NACKIE  (1UL << 5) /* OUT åŒ…åº”ç­” NACK */
+#define  AMHW_ZLG116_EPX_INT_STATE_OUT_ACKIE   (1UL << 6) /* OUT åŒ…åº”ç­” ACK */
+#define  AMHW_ZLG116_EPX_INT_STATE_OUT_STALLIE (1UL << 7) /* OUT åŒ…åº”ç­” STALL */
 #define  AMHW_ZLG116_EPX_INT_STATE_ALL          0XFE
 
 /**
- * \brief USB ¶Ëµã
+ * \brief USB ç«¯ç‚¹
  */
 typedef enum {
     ZLG116_USB_EP1,
@@ -531,11 +531,11 @@ typedef enum {
 }zlg116_usb_epx_t;
 
 /**
- *  \brief »ñµÃusb¶ËµãXÖĞ¶Ï×´Ì¬
+ *  \brief è·å¾—usbç«¯ç‚¹Xä¸­æ–­çŠ¶æ€
  *
- *  \param[in] epx                  Òª»ñÈ¡µÄ¶Ëµã
+ *  \param[in] epx                  è¦è·å–çš„ç«¯ç‚¹
  *
- *  \return usb ¶ËµãXÖĞ¶ÏÊ¹ÄÜ¼Ä´æÆ÷×´Ì¬
+ *  \return usb ç«¯ç‚¹Xä¸­æ–­ä½¿èƒ½å¯„å­˜å™¨çŠ¶æ€
  */
 am_static_inline
 uint16_t amhw_zlg116_usbd_epx_int_state_get (amhw_zlg116_usbd_t *p_usb, zlg116_usb_epx_t epx)
@@ -544,11 +544,11 @@ uint16_t amhw_zlg116_usbd_epx_int_state_get (amhw_zlg116_usbd_t *p_usb, zlg116_u
 }
 
 /**
- *  \brief usb¶ËµãXÖĞ¶Ï×´Ì¬Çå³ı
+ *  \brief usbç«¯ç‚¹Xä¸­æ–­çŠ¶æ€æ¸…é™¤
  *
- *  \param[in] epx                  ÒªÇå³ıµÄ¶Ëµã
- *  \param[in] clear                ÒªÇå³ıµÄÎ»£¨×´Ì¬£©
- *  \return ÎŞ
+ *  \param[in] epx                  è¦æ¸…é™¤çš„ç«¯ç‚¹
+ *  \param[in] clear                è¦æ¸…é™¤çš„ä½ï¼ˆçŠ¶æ€ï¼‰
+ *  \return æ— 
  */
 am_static_inline
 void amhw_zlg116_usbd_epx_int_state_clear (amhw_zlg116_usbd_t *p_usb, zlg116_usb_epx_t epx,
@@ -558,21 +558,21 @@ void amhw_zlg116_usbd_epx_int_state_clear (amhw_zlg116_usbd_t *p_usb, zlg116_usb
 }
 
 /**************************  EPX_INT_EN Configuration  ************************/
-#define  AMHW_ZLG116_EPX_INT_EN_ENDIE       (1UL << 1) /* ´«ÊäÍê³É */
-#define  AMHW_ZLG116_EPX_INT_EN_IN_NACKIE   (1UL << 2) /* IN °üÓ¦´ğ NACK */
-#define  AMHW_ZLG116_EPX_INT_EN_IN_ACKIE    (1UL << 3) /* IN °üÓ¦´ğ ACK */
-#define  AMHW_ZLG116_EPX_INT_EN_IN_STALLIE  (1UL << 4) /* IN °üÓ¦´ğ STALL */
-#define  AMHW_ZLG116_EPX_INT_EN_OUT_NACKIE  (1UL << 5) /* OUT °üÓ¦´ğ NACK */
-#define  AMHW_ZLG116_EPX_INT_EN_OUT_ACKIE   (1UL << 6) /* OUT °üÓ¦´ğ ACK */
-#define  AMHW_ZLG116_EPX_INT_EN_OUT_STALLIE (1UL << 7) /* OUT °üÓ¦´ğ STALL */
+#define  AMHW_ZLG116_EPX_INT_EN_ENDIE       (1UL << 1) /* ä¼ è¾“å®Œæˆ */
+#define  AMHW_ZLG116_EPX_INT_EN_IN_NACKIE   (1UL << 2) /* IN åŒ…åº”ç­” NACK */
+#define  AMHW_ZLG116_EPX_INT_EN_IN_ACKIE    (1UL << 3) /* IN åŒ…åº”ç­” ACK */
+#define  AMHW_ZLG116_EPX_INT_EN_IN_STALLIE  (1UL << 4) /* IN åŒ…åº”ç­” STALL */
+#define  AMHW_ZLG116_EPX_INT_EN_OUT_NACKIE  (1UL << 5) /* OUT åŒ…åº”ç­” NACK */
+#define  AMHW_ZLG116_EPX_INT_EN_OUT_ACKIE   (1UL << 6) /* OUT åŒ…åº”ç­” ACK */
+#define  AMHW_ZLG116_EPX_INT_EN_OUT_STALLIE (1UL << 7) /* OUT åŒ…åº”ç­” STALL */
 #define  AMHW_ZLG116_EPX_INT_EN_ALL          0XFE
 
 /**
- *  \brief »ñµÃusb¶ËµãXÖĞ¶ÏÊ¹ÄÜ¼Ä´æÆ÷×´Ì¬
+ *  \brief è·å¾—usbç«¯ç‚¹Xä¸­æ–­ä½¿èƒ½å¯„å­˜å™¨çŠ¶æ€
  *
- *  \param[in] epx                  Òª»ñÈ¡µÄ¶Ëµã
+ *  \param[in] epx                  è¦è·å–çš„ç«¯ç‚¹
  *
- *  \return usb ¶ËµãXÖĞ¶ÏÊ¹ÄÜ¼Ä´æÆ÷×´Ì¬
+ *  \return usb ç«¯ç‚¹Xä¸­æ–­ä½¿èƒ½å¯„å­˜å™¨çŠ¶æ€
  */
 am_static_inline
 uint16_t amhw_zlg116_usbd_epx_int_en_get (amhw_zlg116_usbd_t *p_usb, zlg116_usb_epx_t epx)
@@ -581,11 +581,11 @@ uint16_t amhw_zlg116_usbd_epx_int_en_get (amhw_zlg116_usbd_t *p_usb, zlg116_usb_
 }
 
 /**
- *  \brief usb¶ËµãXÖĞ¶ÏÊ¹ÄÜ
+ *  \brief usbç«¯ç‚¹Xä¸­æ–­ä½¿èƒ½
  *
- *  \param[in] epx                  ¶Ëµã
- *  \param[in] enable               ÒªÊ¹ÄÜµÄÎ»
- *  \return ÎŞ
+ *  \param[in] epx                  ç«¯ç‚¹
+ *  \param[in] enable               è¦ä½¿èƒ½çš„ä½
+ *  \return æ— 
  */
 am_static_inline
 void amhw_zlg116_usbd_epx_int_enable (amhw_zlg116_usbd_t *p_usb, zlg116_usb_epx_t epx,
@@ -595,11 +595,11 @@ void amhw_zlg116_usbd_epx_int_enable (amhw_zlg116_usbd_t *p_usb, zlg116_usb_epx_
 }
 
 /**
- *  \brief usb¶ËµãXÖĞ¶Ï½ûÄÜ
+ *  \brief usbç«¯ç‚¹Xä¸­æ–­ç¦èƒ½
  *
- *  \param[in] epx                  ¶Ëµã
- *  \param[in] disable              Òª½ûÄÜµÄÎ»
- *  \return ÎŞ
+ *  \param[in] epx                  ç«¯ç‚¹
+ *  \param[in] disable              è¦ç¦èƒ½çš„ä½
+ *  \return æ— 
  */
 am_static_inline
 void amhw_zlg116_usbd_epx_int_disable (amhw_zlg116_usbd_t *p_usb, zlg116_usb_epx_t epx,
@@ -611,11 +611,11 @@ void amhw_zlg116_usbd_epx_int_disable (amhw_zlg116_usbd_t *p_usb, zlg116_usb_epx
 /***************************  USB_ADDR Configuration  *************************/
 #define AMHW_ZLG116_USBD_ADDR_MASK     0X7F
 /**
- *  \brief ÉèÖÃUSBµÄµØÖ·
+ *  \brief è®¾ç½®USBçš„åœ°å€
  *
- *  \param[in] addr                 ÒªÉèÖÃµÄµØÖ·
+ *  \param[in] addr                 è¦è®¾ç½®çš„åœ°å€
  *
- *  \return usb ¶ËµãXÖĞ¶ÏÊ¹ÄÜ¼Ä´æÆ÷×´Ì¬
+ *  \return usb ç«¯ç‚¹Xä¸­æ–­ä½¿èƒ½å¯„å­˜å™¨çŠ¶æ€
  */
 am_static_inline
 uint16_t amhw_zlg116_usbd_addr_set (amhw_zlg116_usbd_t *p_usb, uint8_t addr)
@@ -624,9 +624,9 @@ uint16_t amhw_zlg116_usbd_addr_set (amhw_zlg116_usbd_t *p_usb, uint8_t addr)
 }
 
 /**
- *  \brief »ñµÃUSBµÄµØÖ·
+ *  \brief è·å¾—USBçš„åœ°å€
  *
- *  \return usb USBµØÖ·
+ *  \return usb USBåœ°å€
  */
 am_static_inline
 uint16_t amhw_zlg116_usbd_addr_get (amhw_zlg116_usbd_t *p_usb)
@@ -643,9 +643,9 @@ uint16_t amhw_zlg116_usbd_addr_get (amhw_zlg116_usbd_t *p_usb)
 #define  AMHW_ZLG116_USB_EP_ALL       0X1F
 
 /**
- *  \brief »ñµÃUSB¶ËµãÊ¹ÄÜ¼Ä´æÆ÷×´Ì¬
+ *  \brief è·å¾—USBç«¯ç‚¹ä½¿èƒ½å¯„å­˜å™¨çŠ¶æ€
  *
- *  \return usb USB¶ËµãÊ¹ÄÜ¼Ä´æÆ÷×´Ì¬
+ *  \return usb USBç«¯ç‚¹ä½¿èƒ½å¯„å­˜å™¨çŠ¶æ€
  */
 am_static_inline
 uint16_t amhw_zlg116_usbd_ep_en_get (amhw_zlg116_usbd_t *p_usb)
@@ -654,11 +654,11 @@ uint16_t amhw_zlg116_usbd_ep_en_get (amhw_zlg116_usbd_t *p_usb)
 }
 
 /**
- *  \brief usb¶ËµãÊ¹ÄÜ
+ *  \brief usbç«¯ç‚¹ä½¿èƒ½
  *
- *  \param[in] enable               ÒªÊ¹ÄÜµÄ¶Ëµã
+ *  \param[in] enable               è¦ä½¿èƒ½çš„ç«¯ç‚¹
  *
- *  \return ÎŞ
+ *  \return æ— 
  */
 am_static_inline
 void amhw_zlg116_usbd_ep_enable (amhw_zlg116_usbd_t *p_usb, uint16_t enable)
@@ -667,11 +667,11 @@ void amhw_zlg116_usbd_ep_enable (amhw_zlg116_usbd_t *p_usb, uint16_t enable)
 }
 
 /**
- *  \brief usb¶Ëµã½ûÄÜ
+ *  \brief usbç«¯ç‚¹ç¦èƒ½
  *
- *  \param[in] disable              Òª½ûÄÜµÄ¶Ëµã
+ *  \param[in] disable              è¦ç¦èƒ½çš„ç«¯ç‚¹
  *
- *  \return ÎŞ
+ *  \return æ— 
  */
 am_static_inline
 void amhw_zlg116_usbd_ep_disable (amhw_zlg116_usbd_t *p_usb, uint16_t disable)
@@ -680,14 +680,14 @@ void amhw_zlg116_usbd_ep_disable (amhw_zlg116_usbd_t *p_usb, uint16_t disable)
 }
 
 /****************************  TOG_CTRL Configuration  ************************/
-/**< \brief ¶ËµãÊı¾İ·­×ª */
+/**< \brief ç«¯ç‚¹æ•°æ®ç¿»è½¬ */
 #define  AMHW_ZLG116_USB_DTOG_MASK    0X55
 #define  AMHW_ZLG116_USB_DTOG1       (1UL << 0)
 #define  AMHW_ZLG116_USB_DTOG2       (1UL << 2)
 #define  AMHW_ZLG116_USB_DTOG3       (1UL << 4)
 #define  AMHW_ZLG116_USB_DTOG4       (1UL << 6)
 
-/**< \brief ¶ËµãÊı¾İ·­×ªÊ¹ÄÜÎ» */
+/**< \brief ç«¯ç‚¹æ•°æ®ç¿»è½¬ä½¿èƒ½ä½ */
 #define  AMHW_ZLG116_USB_DTOGEN_MASK  0XAA
 #define  AMHW_ZLG116_USB_DTOG1EN     (1UL << 1)
 #define  AMHW_ZLG116_USB_DTOG2EN     (1UL << 3)
@@ -695,11 +695,11 @@ void amhw_zlg116_usbd_ep_disable (amhw_zlg116_usbd_t *p_usb, uint16_t disable)
 #define  AMHW_ZLG116_USB_DTOG4EN     (1UL << 7)
 
 /**
- *  \brief ÉèÖÃUSB¶ËµãÊı¾İÉèÎªDATA0
+ *  \brief è®¾ç½®USBç«¯ç‚¹æ•°æ®è®¾ä¸ºDATA0
  *
- *  \param[in] ep  ÒªÉèÖÃµÄ¶ËµãºÅ
+ *  \param[in] ep  è¦è®¾ç½®çš„ç«¯ç‚¹å·
  *
- *  \note ¶ËµãºÅ²»¿É°´Î»»ò£¬¶ËµãºÅ·¶Î§Îª1~4´ú±í¶Ëµã1~4
+ *  \note ç«¯ç‚¹å·ä¸å¯æŒ‰ä½æˆ–ï¼Œç«¯ç‚¹å·èŒƒå›´ä¸º1~4ä»£è¡¨ç«¯ç‚¹1~4
  */
 am_static_inline
 void amhw_zlg116_usbd_dtog_data0 (amhw_zlg116_usbd_t *p_usb, uint16_t ep)
@@ -710,11 +710,11 @@ void amhw_zlg116_usbd_dtog_data0 (amhw_zlg116_usbd_t *p_usb, uint16_t ep)
 }
 
 /**
- *  \brief ÉèÖÃUSB¶ËµãÊı¾İÉèÎªDATA1
+ *  \brief è®¾ç½®USBç«¯ç‚¹æ•°æ®è®¾ä¸ºDATA1
  *
- *  \param[in] ep   ÒªÉèÖÃµÄ¶ËµãºÅ£¨²»¿É°´Î»»ò£©
+ *  \param[in] ep   è¦è®¾ç½®çš„ç«¯ç‚¹å·ï¼ˆä¸å¯æŒ‰ä½æˆ–ï¼‰
  *
- *  \note ¶ËµãºÅ²»¿É°´Î»»ò£¬¶ËµãºÅ·¶Î§Îª1~4´ú±í¶Ëµã1~4
+ *  \note ç«¯ç‚¹å·ä¸å¯æŒ‰ä½æˆ–ï¼Œç«¯ç‚¹å·èŒƒå›´ä¸º1~4ä»£è¡¨ç«¯ç‚¹1~4
  */
 am_static_inline
 void amhw_zlg116_usbd_dtog_data1 (amhw_zlg116_usbd_t *p_usb, uint16_t ep)
@@ -725,9 +725,9 @@ void amhw_zlg116_usbd_dtog_data1 (amhw_zlg116_usbd_t *p_usb, uint16_t ep)
 }
 
 /**
- *  \brief »ñµÃUSB¶ËµãÊı¾İ·­×ª×´Ì¬
+ *  \brief è·å¾—USBç«¯ç‚¹æ•°æ®ç¿»è½¬çŠ¶æ€
  *
- *  \return usb USB¶ËµãÊı¾İ·­×ªÊ¹ÄÜ×´Ì¬
+ *  \return usb USBç«¯ç‚¹æ•°æ®ç¿»è½¬ä½¿èƒ½çŠ¶æ€
  */
 am_static_inline
 uint16_t amhw_zlg116_usbd_dtog_get (amhw_zlg116_usbd_t *p_usb)
@@ -736,11 +736,11 @@ uint16_t amhw_zlg116_usbd_dtog_get (amhw_zlg116_usbd_t *p_usb)
 }
 
 /**
- *  \brief usb¶ËµãÊı¾İ·­×ªÊ¹ÄÜ
+ *  \brief usbç«¯ç‚¹æ•°æ®ç¿»è½¬ä½¿èƒ½
  *
- *  \param[in] ep     ÒªÊ¹ÄÜ·­×ªµÄ¶Ëµã
+ *  \param[in] ep     è¦ä½¿èƒ½ç¿»è½¬çš„ç«¯ç‚¹
  *
- *  \note ¶ËµãºÅ²»¿É°´Î»»ò£¬¶ËµãºÅ·¶Î§Îª1~4´ú±í¶Ëµã1~4
+ *  \note ç«¯ç‚¹å·ä¸å¯æŒ‰ä½æˆ–ï¼Œç«¯ç‚¹å·èŒƒå›´ä¸º1~4ä»£è¡¨ç«¯ç‚¹1~4
  */
 am_static_inline
 void amhw_zlg116_usbd_dtog_enable (amhw_zlg116_usbd_t *p_usb, uint16_t ep)
@@ -751,11 +751,11 @@ void amhw_zlg116_usbd_dtog_enable (amhw_zlg116_usbd_t *p_usb, uint16_t ep)
 }
 
 /**
- *  \brief usb¶ËµãÊı¾İ·­×ª½ûÄÜ
+ *  \brief usbç«¯ç‚¹æ•°æ®ç¿»è½¬ç¦èƒ½
  *
- *  \param[in] ep   Òª½ûÄÜ·­×ªµÄ¶Ëµã
+ *  \param[in] ep   è¦ç¦èƒ½ç¿»è½¬çš„ç«¯ç‚¹
  *
- *  \note ¶ËµãºÅ²»¿É°´Î»»ò£¬¶ËµãºÅ·¶Î§Îª1~4´ú±í¶Ëµã1~4
+ *  \note ç«¯ç‚¹å·ä¸å¯æŒ‰ä½æˆ–ï¼Œç«¯ç‚¹å·èŒƒå›´ä¸º1~4ä»£è¡¨ç«¯ç‚¹1~4
  */
 am_static_inline
 void amhw_zlg116_usbd_dtog_disable (amhw_zlg116_usbd_t *p_usb, uint16_t ep)
@@ -767,11 +767,11 @@ void amhw_zlg116_usbd_dtog_disable (amhw_zlg116_usbd_t *p_usb, uint16_t ep)
 
 /*****************************  SETUPX Configuration  *************************/
 /**
- *  \brief »ñÈ¡USBÊı¾İ°üÊı¾İ£¨ÇëÇóÃüÁî£©
+ *  \brief è·å–USBæ•°æ®åŒ…æ•°æ®ï¼ˆè¯·æ±‚å‘½ä»¤ï¼‰
  *
- *  \param[out] p_data              USBÊı¾İ°üÖĞµÄÊı¾İ
+ *  \param[out] p_data              USBæ•°æ®åŒ…ä¸­çš„æ•°æ®
  *
- *  \return ÎŞ
+ *  \return æ— 
  */
 am_static_inline
 void amhw_zlg116_usbd_setupdata_get (amhw_zlg116_usbd_t *p_usb, uint8_t *p_data)
@@ -786,13 +786,13 @@ void amhw_zlg116_usbd_setupdata_get (amhw_zlg116_usbd_t *p_usb, uint8_t *p_data)
 /**************************  PACKET_SIZE Configuration  ***********************/
 
 /**
- *  \brief ÉèÖÃUSB´«Êä°üµÄ´óĞ¡
+ *  \brief è®¾ç½®USBä¼ è¾“åŒ…çš„å¤§å°
  *
- *  \param[in] size                 USB´«Êä°üµÄ´óĞ¡
+ *  \param[in] size                 USBä¼ è¾“åŒ…çš„å¤§å°
  *
- *  \return ÎŞ
+ *  \return æ— 
  *
- *  \note ×î´ó¿ÉÒÔÉèÖÃ64×Ö½Ú
+ *  \note æœ€å¤§å¯ä»¥è®¾ç½®64å­—èŠ‚
  */
 am_static_inline
 void amhw_zlg116_usbd_packet_size_set (amhw_zlg116_usbd_t *p_usb, uint8_t size)
@@ -804,9 +804,9 @@ void amhw_zlg116_usbd_packet_size_set (amhw_zlg116_usbd_t *p_usb, uint8_t size)
 }
 
 /**
- *  \brief »ñÈ¡USB´«Êä°üµÄ´óĞ¡
+ *  \brief è·å–USBä¼ è¾“åŒ…çš„å¤§å°
  *
- *  \return USB´«Êä°üµÄ´óĞ¡
+ *  \return USBä¼ è¾“åŒ…çš„å¤§å°
  */
 am_static_inline
 uint8_t amhw_zlg116_usbd_packet_size_get (amhw_zlg116_usbd_t *p_usb)
@@ -816,7 +816,7 @@ uint8_t amhw_zlg116_usbd_packet_size_get (amhw_zlg116_usbd_t *p_usb)
 
 /***************************  EPX_AVAIL Configuration  ************************/
 /**
- * \brief USB ¶Ëµã
+ * \brief USB ç«¯ç‚¹
  */
 typedef enum {
     ZLG116_USB_EPX0,
@@ -824,12 +824,12 @@ typedef enum {
     ZLG116_USB_EPX2,
     ZLG116_USB_EPX3,
     ZLG116_USB_EPX4
-}zlg116_usb_epx2_t;  /* ºÍZLG116_USB_epx_t Çø·Ö */
+}zlg116_usb_epx2_t;  /* å’ŒZLG116_USB_epx_t åŒºåˆ† */
 
 /**
- *  \brief »ñµÃUSB¶ËµãX FIFOÓĞĞ§Êı¾İ¸öÊı
+ *  \brief è·å¾—USBç«¯ç‚¹X FIFOæœ‰æ•ˆæ•°æ®ä¸ªæ•°
  *
- *  \return USB¶ËµãX FIFOÓĞĞ§Êı¾İ¸öÊı
+ *  \return USBç«¯ç‚¹X FIFOæœ‰æ•ˆæ•°æ®ä¸ªæ•°
  */
 am_static_inline
 uint8_t amhw_zlg116_usbd_epx_avail_size_get (amhw_zlg116_usbd_t *p_usb, zlg116_usb_epx2_t epx)
@@ -840,15 +840,15 @@ uint8_t amhw_zlg116_usbd_epx_avail_size_get (amhw_zlg116_usbd_t *p_usb, zlg116_u
 /****************************  EPX_CTRL Configuration  ************************/
 #define AMHW_ZLG116_USB_EPX_TRANCOUNT_MASK    0X7F
 
-#define AMHW_ZLG116_USB_EPX_TRANEN    (1 << 7)    /* Ê¹ÄÜ´«Êä */
+#define AMHW_ZLG116_USB_EPX_TRANEN    (1 << 7)    /* ä½¿èƒ½ä¼ è¾“ */
 
 /**
- *  \brief ÉèÖÃ¶ËµãXµÄÊı¾İ´«Êä¸öÊı²¢Æô¶¯´«Êä
+ *  \brief è®¾ç½®ç«¯ç‚¹Xçš„æ•°æ®ä¼ è¾“ä¸ªæ•°å¹¶å¯åŠ¨ä¼ è¾“
  *
- *  \param[in] epx                  Òª½øĞĞ´«ÊäµÄ¶Ëµã
- *  \param[in] count                Òª´«ÊäµÄÊı¾İ¸öÊı
+ *  \param[in] epx                  è¦è¿›è¡Œä¼ è¾“çš„ç«¯ç‚¹
+ *  \param[in] count                è¦ä¼ è¾“çš„æ•°æ®ä¸ªæ•°
  *
- *  \return ÎŞ
+ *  \return æ— 
  */
 am_static_inline
 void amhw_zlg116_usbd_epx_transfer (amhw_zlg116_usbd_t *p_usb, zlg116_usb_epx2_t epx,
@@ -858,11 +858,11 @@ void amhw_zlg116_usbd_epx_transfer (amhw_zlg116_usbd_t *p_usb, zlg116_usb_epx2_t
 }
 
 /**
- *  \brief ÅĞ¶Ï¶ËµãXµÄUSBÊı¾İÊÇ·ñ´«ÊäÍê³É
+ *  \brief åˆ¤æ–­ç«¯ç‚¹Xçš„USBæ•°æ®æ˜¯å¦ä¼ è¾“å®Œæˆ
  *
- *  \param[in] epx                  Òª½øĞĞ´«ÊäµÄ¶Ëµã
+ *  \param[in] epx                  è¦è¿›è¡Œä¼ è¾“çš„ç«¯ç‚¹
  *
- *  \return ´«ÊäÍê³É·µ»Ø1£¬Î´Íê³É·µ»Ø0
+ *  \return ä¼ è¾“å®Œæˆè¿”å›1ï¼Œæœªå®Œæˆè¿”å›0
  */
 am_static_inline
 uint8_t amhw_zlg116_usbd_transfer_end(amhw_zlg116_usbd_t *p_usb, zlg116_usb_epx2_t epx)
@@ -874,12 +874,12 @@ uint8_t amhw_zlg116_usbd_transfer_end(amhw_zlg116_usbd_t *p_usb, zlg116_usb_epx2
 
 /****************************  EPX_FIFO Configuration  ************************/
 /**
- *  \brief ÏòUSB¶ËµãXµÄfifoÖĞĞ´ÈëÊı¾İ
+ *  \brief å‘USBç«¯ç‚¹Xçš„fifoä¸­å†™å…¥æ•°æ®
  *
- *  \param[in] epx                  ÒªÉèÖÃµÄ¶Ëµã
- *  \param[in] data                 ÒªĞ´ÈëµÄÊı¾İ
+ *  \param[in] epx                  è¦è®¾ç½®çš„ç«¯ç‚¹
+ *  \param[in] data                 è¦å†™å…¥çš„æ•°æ®
  *
- *  \return ÎŞ
+ *  \return æ— 
  */
 am_static_inline
 void amhw_zlg116_usbd_epx_fifo_write (amhw_zlg116_usbd_t *p_usb, zlg116_usb_epx2_t epx,
@@ -889,11 +889,11 @@ void amhw_zlg116_usbd_epx_fifo_write (amhw_zlg116_usbd_t *p_usb, zlg116_usb_epx2
 }
 
 /**
- *  \brief ´ÓUSB¶ËµãXµÄfifoÖĞ¶Á³öÊı¾İ
+ *  \brief ä»USBç«¯ç‚¹Xçš„fifoä¸­è¯»å‡ºæ•°æ®
  *
- *  \param[in] epx                  ÒªÉèÖÃµÄ¶Ëµã
+ *  \param[in] epx                  è¦è®¾ç½®çš„ç«¯ç‚¹
  *
- *  \return fifoÖĞµÄÊı¾İ
+ *  \return fifoä¸­çš„æ•°æ®
  */
 am_static_inline
 uint8_t amhw_zlg116_usbd_epx_fifo_read (amhw_zlg116_usbd_t *p_usb, zlg116_usb_epx2_t epx)
@@ -902,16 +902,16 @@ uint8_t amhw_zlg116_usbd_epx_fifo_read (amhw_zlg116_usbd_t *p_usb, zlg116_usb_ep
 }
 
 /*****************************  EP_DMA Configuration  *************************/
-/**< \brief ¶ËµãDMAÊ¹ÄÜÎ»£¨Ö»Ö§³Ö¶Ëµã1ºÍ¶Ëµã2£© */
+/**< \brief ç«¯ç‚¹DMAä½¿èƒ½ä½ï¼ˆåªæ”¯æŒç«¯ç‚¹1å’Œç«¯ç‚¹2ï¼‰ */
 #define  AMHW_ZLG116_USB_DMA1EN     (1UL << 0)
 #define  AMHW_ZLG116_USB_DMA2EN     (1UL << 1)
 
 /**
- *  \brief Ê¹ÄÜ¶ËµãDMA
+ *  \brief ä½¿èƒ½ç«¯ç‚¹DMA
  *
- *  \param[in] dma_epx              ÒªÊ¹ÄÜDMAµÄ¶Ëµã
+ *  \param[in] dma_epx              è¦ä½¿èƒ½DMAçš„ç«¯ç‚¹
  *
- *  \return ÎŞ
+ *  \return æ— 
  */
 am_static_inline
 void amhw_zlg116_usbd_ep_dma_enable (amhw_zlg116_usbd_t *p_usb, uint16_t dma_epx)
@@ -920,11 +920,11 @@ void amhw_zlg116_usbd_ep_dma_enable (amhw_zlg116_usbd_t *p_usb, uint16_t dma_epx
 }
 
 /**
- *  \brief ½ûÄÜ¶ËµãDMA
+ *  \brief ç¦èƒ½ç«¯ç‚¹DMA
  *
- *  \param[in] dma_epx              Òª½ûÄÜDMAµÄ¶Ëµã
+ *  \param[in] dma_epx              è¦ç¦èƒ½DMAçš„ç«¯ç‚¹
  *
- *  \return ÎŞ
+ *  \return æ— 
  */
 am_static_inline
 void amhw_zlg116_usbd_ep_dma_disable (amhw_zlg116_usbd_t *p_usb, uint16_t dma_epx)
@@ -933,9 +933,9 @@ void amhw_zlg116_usbd_ep_dma_disable (amhw_zlg116_usbd_t *p_usb, uint16_t dma_ep
 }
 
 /**
- *  \brief »ñÈ¡¶ËµãDMAµÄÊ¹ÄÜ×´Ì¬
+ *  \brief è·å–ç«¯ç‚¹DMAçš„ä½¿èƒ½çŠ¶æ€
  *
- *  \return ÎŞ
+ *  \return æ— 
  */
 am_static_inline
 uint8_t amhw_zlg116_usbd_ep_dma_get (amhw_zlg116_usbd_t *p_usb)
@@ -944,8 +944,8 @@ uint8_t amhw_zlg116_usbd_ep_dma_get (amhw_zlg116_usbd_t *p_usb)
 }
 
 /*****************************  EP_HALT Configuration  ************************/
-/**< \brief ¶ËµãÔİÍ£Î» */
-/**< \brief µ±¸ÃÎ»ÉèÎª¡®1¡¯£¬Éè±¸»áÔÚ IN/OUT ´«Êäºó×Ô¶¯ÏìÓ¦ STALL¡£µ±½ÓÊÕµ½ÁîÅÆ°üÊ±¸ÃÎ»»á±»Ó²¼ş×Ô¶¯ÇåÁã */
+/**< \brief ç«¯ç‚¹æš‚åœä½ */
+/**< \brief å½“è¯¥ä½è®¾ä¸ºâ€˜1â€™ï¼Œè®¾å¤‡ä¼šåœ¨ IN/OUT ä¼ è¾“åè‡ªåŠ¨å“åº” STALLã€‚å½“æ¥æ”¶åˆ°ä»¤ç‰ŒåŒ…æ—¶è¯¥ä½ä¼šè¢«ç¡¬ä»¶è‡ªåŠ¨æ¸…é›¶ */
 #define  AMHW_ZLG116_USB_EP_HALT0     (1UL << 0)
 #define  AMHW_ZLG116_USB_EP_HALT1     (1UL << 1)
 #define  AMHW_ZLG116_USB_EP_HALT2     (1UL << 2)
@@ -954,11 +954,11 @@ uint8_t amhw_zlg116_usbd_ep_dma_get (amhw_zlg116_usbd_t *p_usb)
 #define  AMHW_ZLG116_USB_EP_HALT_ALL   0X1F
 
 /**
- *  \brief ÉèÖÃ¶ËµãÔİÍ£
+ *  \brief è®¾ç½®ç«¯ç‚¹æš‚åœ
  *
- *  \param[in] halt                 ÒªÔİÍ£µÄÎ»
+ *  \param[in] halt                 è¦æš‚åœçš„ä½
  *
- *  \return ÎŞ
+ *  \return æ— 
  */
 am_static_inline
 void amhw_zlg116_usbd_ep_halt_set (amhw_zlg116_usbd_t *p_usb, uint16_t halt)
@@ -967,11 +967,11 @@ void amhw_zlg116_usbd_ep_halt_set (amhw_zlg116_usbd_t *p_usb, uint16_t halt)
 }
 
 /**
- *  \brief Çå³ı¶ËµãÔİÍ££¨²»ÔİÍ££©
+ *  \brief æ¸…é™¤ç«¯ç‚¹æš‚åœï¼ˆä¸æš‚åœï¼‰
  *
- *  \param[in] halt   ÒªÇå³ıµÄÔİÍ£Î»
+ *  \param[in] halt   è¦æ¸…é™¤çš„æš‚åœä½
  *
- *  \return ÎŞ
+ *  \return æ— 
  */
 am_static_inline
 void amhw_zlg116_usbd_ep_halt_reset (amhw_zlg116_usbd_t *p_usb, uint16_t halt)
@@ -980,9 +980,9 @@ void amhw_zlg116_usbd_ep_halt_reset (amhw_zlg116_usbd_t *p_usb, uint16_t halt)
 }
 
 /**
- *  \brief »ñÈ¡¶ËµãÔİÍ£×´Ì¬
+ *  \brief è·å–ç«¯ç‚¹æš‚åœçŠ¶æ€
  *
- *  \return ¶ËµãÔİÍ£×´Ì¬
+ *  \return ç«¯ç‚¹æš‚åœçŠ¶æ€
  */
 am_static_inline
 uint16_t amhw_zlg116_usbd_ep_halt_get (amhw_zlg116_usbd_t *p_usb)
@@ -995,21 +995,21 @@ uint16_t amhw_zlg116_usbd_ep_halt_get (amhw_zlg116_usbd_t *p_usb)
 #define  AMHW_ZLG116_USB_POWER_SUSP       (1UL << 1)
 #define  AMHW_ZLG116_USB_POWER_WKUP       (1UL << 3)
 
-/**< \brief ¹ÒÆğ¿ØÖÆºê */
-/**< \brief ×ÜÏßÊ¹ÄÜ¹ÒÆğºê */
-#define  AMHW_ZLG116_USB_SUSPDIS    0         /**< \brief ÓÉ¿ØÖÆÆ÷¿ØÖÆÊÇ·ñ¹ÒÆğ */
-#define  AMHW_ZLG116_USB_SUSPEN    (1 << 0)   /**< \brief ¸ù¾İ¹ÒÆğÄ£Ê½£¨Î»¹ÒÆğºê£©¿ØÖÆÊÇ·ñ¹ÒÆğ */
+/**< \brief æŒ‚èµ·æ§åˆ¶å® */
+/**< \brief æ€»çº¿ä½¿èƒ½æŒ‚èµ·å® */
+#define  AMHW_ZLG116_USB_SUSPDIS    0         /**< \brief ç”±æ§åˆ¶å™¨æ§åˆ¶æ˜¯å¦æŒ‚èµ· */
+#define  AMHW_ZLG116_USB_SUSPEN    (1 << 0)   /**< \brief æ ¹æ®æŒ‚èµ·æ¨¡å¼ï¼ˆä½æŒ‚èµ·å®ï¼‰æ§åˆ¶æ˜¯å¦æŒ‚èµ· */
 
-/**< \brief Î»¹ÒÆğºê */
-#define  AMHW_ZLG116_USB_SUSP       0         /**< \brief ¹ÒÆğÄ£Ê½ */
-#define  AMHW_ZLG116_USB_NORMAL    (1 << 1)   /**< \brief Õı³£¹¤×÷Ä£Ê½ */
+/**< \brief ä½æŒ‚èµ·å® */
+#define  AMHW_ZLG116_USB_SUSP       0         /**< \brief æŒ‚èµ·æ¨¡å¼ */
+#define  AMHW_ZLG116_USB_NORMAL    (1 << 1)   /**< \brief æ­£å¸¸å·¥ä½œæ¨¡å¼ */
 
 /**
- *  \brief ÉèÖÃUSB¹ÒÆğ×´Ì¬
+ *  \brief è®¾ç½®USBæŒ‚èµ·çŠ¶æ€
  *
- *  \param[in] susp ´«ÈëµÄÖµÓ¦¸ÃÊÇÒ»¸ö Î»¹ÒÆğºê ºÍ Ò»¸ö×ÜÏßÊ¹ÄÜ¹ÒÆğºêÏà»ò
+ *  \param[in] susp ä¼ å…¥çš„å€¼åº”è¯¥æ˜¯ä¸€ä¸ª ä½æŒ‚èµ·å® å’Œ ä¸€ä¸ªæ€»çº¿ä½¿èƒ½æŒ‚èµ·å®ç›¸æˆ–
  *
- *  \retval ·µ»Ø1±íÊ¾¿ØÖÆÆ÷´¦ÓÚÕı³£¹¤×÷Ä£Ê½£¬·µ»Ø0±íÊ¾¿ØÖÆÆ÷´¦ÓÚ¹ÒÆğÄ£Ê½
+ *  \retval è¿”å›1è¡¨ç¤ºæ§åˆ¶å™¨å¤„äºæ­£å¸¸å·¥ä½œæ¨¡å¼ï¼Œè¿”å›0è¡¨ç¤ºæ§åˆ¶å™¨å¤„äºæŒ‚èµ·æ¨¡å¼
  */
 am_static_inline
 void amhw_zlg116_usbd_susp_set (amhw_zlg116_usbd_t *p_usb, uint16_t susp)
@@ -1018,9 +1018,9 @@ void amhw_zlg116_usbd_susp_set (amhw_zlg116_usbd_t *p_usb, uint16_t susp)
 }
 
 /**
- *  \brief »ñÈ¡USB¹ÒÆğ×´Ì¬
+ *  \brief è·å–USBæŒ‚èµ·çŠ¶æ€
  *
- *  \retval ·µ»ØµÄÄÚÈİ°üº¬¹ÒÆğÊÇ·ñÊ¹ÄÜÒÔ¼°¹ÒÆğ×´Ì¬
+ *  \retval è¿”å›çš„å†…å®¹åŒ…å«æŒ‚èµ·æ˜¯å¦ä½¿èƒ½ä»¥åŠæŒ‚èµ·çŠ¶æ€
  */
 am_static_inline
 uint16_t amhw_zlg116_usbd_susp_get (amhw_zlg116_usbd_t *p_usb)
@@ -1029,7 +1029,7 @@ uint16_t amhw_zlg116_usbd_susp_get (amhw_zlg116_usbd_t *p_usb)
 }
 
 /**
- *  \brief ½«¿ØÖÆÆ÷´Ó¹ÒÆğ×´Ì¬»½ĞÑ
+ *  \brief å°†æ§åˆ¶å™¨ä»æŒ‚èµ·çŠ¶æ€å”¤é†’
  */
 am_static_inline
 void amhw_zlg116_usbd_wakeup (amhw_zlg116_usbd_t *p_usb)

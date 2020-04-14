@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief µ÷ÊÔ´®¿ÚÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief è°ƒè¯•ä¸²å£ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_debug_uart.c
  *
  * \internal
@@ -32,17 +32,17 @@
  */
 
 /**
- * \brief Ê¹ÓÃµÄµ÷ÊÔ´®¿Ú£¬Ä¬ÈÏ UART1
+ * \brief ä½¿ç”¨çš„è°ƒè¯•ä¸²å£ï¼Œé»˜è®¤ UART1
  * 1 - UART1; 2 - UART2; 3 - UART3;
  * 4 - UART4; 5 - UART5; 6 - UART6;
  * 7 - UART7; 8 - UART8
  */
 #define __DEBUG_UART            1
 
-/** \brief ÅäÖÃµ÷ÊÔ´®¿ÚÊä³öµÄ²¨ÌØÂÊ */
+/** \brief é…ç½®è°ƒè¯•ä¸²å£è¾“å‡ºçš„æ³¢ç‰¹ç‡ */
 #define __DEBUG_BAUDRATE        115200
 
-/** \brief µ÷ÊÔ´®¿ÚÊµÀı³õÊ¼»¯ */
+/** \brief è°ƒè¯•ä¸²å£å®ä¾‹åˆå§‹åŒ– */
 am_uart_handle_t am_debug_uart_inst_init (void)
 {
     am_uart_handle_t handle = NULL;
@@ -51,7 +51,7 @@ am_uart_handle_t am_debug_uart_inst_init (void)
 
     handle = am_zmf159_uart1_inst_init();
 
-    /* µ÷ÊÔ³õÊ¼»¯ */
+    /* è°ƒè¯•åˆå§‹åŒ– */
     am_debug_init(handle, __DEBUG_BAUDRATE);
 
 #endif /* (__DEBUG_UART == 1) */
@@ -60,7 +60,7 @@ am_uart_handle_t am_debug_uart_inst_init (void)
 
     handle = am_zmf159_uart2_inst_init();
 
-    /* µ÷ÊÔ³õÊ¼»¯ */
+    /* è°ƒè¯•åˆå§‹åŒ– */
     am_debug_init(handle, __DEBUG_BAUDRATE);
 
 #endif /* (__DEBUG_UART == 2) */
@@ -69,7 +69,7 @@ am_uart_handle_t am_debug_uart_inst_init (void)
 
     handle = am_zmf159_uart3_inst_init();
 
-    /* µ÷ÊÔ³õÊ¼»¯ */
+    /* è°ƒè¯•åˆå§‹åŒ– */
     am_debug_init(handle, __DEBUG_BAUDRATE);
 
 #endif /* (__DEBUG_UART == 3) */
@@ -78,7 +78,7 @@ am_uart_handle_t am_debug_uart_inst_init (void)
 
     handle = am_zmf159_uart4_inst_init();
 
-    /* µ÷ÊÔ³õÊ¼»¯ */
+    /* è°ƒè¯•åˆå§‹åŒ– */
     am_debug_init(handle, __DEBUG_BAUDRATE);
 
 #endif /* (__DEBUG_UART == 4) */
@@ -87,7 +87,7 @@ am_uart_handle_t am_debug_uart_inst_init (void)
 
     handle = am_zmf159_uart5_inst_init();
 
-    /* µ÷ÊÔ³õÊ¼»¯ */
+    /* è°ƒè¯•åˆå§‹åŒ– */
     am_debug_init(handle, __DEBUG_BAUDRATE);
 
 #endif /* (__DEBUG_UART == 5) */
@@ -96,7 +96,7 @@ am_uart_handle_t am_debug_uart_inst_init (void)
 
     handle = am_zmf159_uart6_inst_init();
 
-    /* µ÷ÊÔ³õÊ¼»¯ */
+    /* è°ƒè¯•åˆå§‹åŒ– */
     am_debug_init(handle, __DEBUG_BAUDRATE);
 
 #endif /* (__DEBUG_UART == 6) */
@@ -105,7 +105,7 @@ am_uart_handle_t am_debug_uart_inst_init (void)
 
     handle = am_zmf159_uart7_inst_init();
 
-    /* µ÷ÊÔ³õÊ¼»¯ */
+    /* è°ƒè¯•åˆå§‹åŒ– */
     am_debug_init(handle, __DEBUG_BAUDRATE);
 
 #endif /* (__DEBUG_UART == 7) */
@@ -114,7 +114,7 @@ am_uart_handle_t am_debug_uart_inst_init (void)
 
     handle = am_zmf159_uart8_inst_init();
 
-    /* µ÷ÊÔ³õÊ¼»¯ */
+    /* è°ƒè¯•åˆå§‹åŒ– */
     am_debug_init(handle, __DEBUG_BAUDRATE);
 
 #endif /* (__DEBUG_UART == 8) */

@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥6.84
+ * \brief ç¨‹åºæ¸…å•6.84
  *
- * \note ¸ÃÀú³ÌĞèÒªÓÃµ½miniportÍØÕ¹°å,¿ÉÒÔÓÃLED¿´Ğ§¹û
+ * \note è¯¥å†ç¨‹éœ€è¦ç”¨åˆ°miniportæ‹“å±•æ¿,å¯ä»¥ç”¨LEDçœ‹æ•ˆæœ
  * 
  * \internal
  * \par Modification history
@@ -30,10 +30,10 @@ int am_main (void)
     am_rx8025t_handle_t  rx8025t_handle =   am_microport_rx8025t_inst_init();
     uint8_t              data           =   0x00;
     
-    am_rx8025t_ram_write (rx8025t_handle,  0x55);  // Ğ´ÈëÊı¾İ0x55
-    am_rx8025t_ram_read (rx8025t_handle, &data);   // ¶ÁÈ¡Êı¾İ
+    am_rx8025t_ram_write (rx8025t_handle,  0x55);  // å†™å…¥æ•°æ®0x55
+    am_rx8025t_ram_read (rx8025t_handle, &data);   // è¯»å–æ•°æ®
     
-    if (data != 0x55) {            // ÈôÊı¾İ²»Îª0x55£¬±íÃæ¶ÁĞ´³ö´í£¬ÔòµãÁÁLED0
+    if (data != 0x55) {            // è‹¥æ•°æ®ä¸ä¸º0x55ï¼Œè¡¨é¢è¯»å†™å‡ºé”™ï¼Œåˆ™ç‚¹äº®LED0
         am_led_on(0);
     }
     while(1) {

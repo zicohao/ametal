@@ -12,14 +12,14 @@
 
 /**
  * \file
- * \brief �������ж϶�ʱ����PIT�������ӿ�
+ * \brief 周期性中断定时器（PIT）操作接口
  *
- * 1. ��ʱ������DMA�������������;
- * 2. ��ʱ�������жϵ�����;
- * 3. �������ж�;
- * 4. ÿ����ʱ�����ж����ĳ�ʱ����.
+ * 1. 定时器产生DMA触发脉冲的能力;
+ * 2. 定时器产生中断的能力;
+ * 3. 可屏蔽中断;
+ * 4. 每个定时器都有独立的超时周期.
  *
- * \note ��ģ��û���ⲿ����
+ * \note 该模块没有外部引脚
  *
  * \internal
  * \par Modification History
@@ -43,51 +43,51 @@ extern "C" {
  */
 
 /**
- * \brief TPMͨ����
+ * \brief TPM通道数
  */
 #define AMHW_FSL_PIT_CHANNELS_NUM    (2)
 
 /**
- * \brief PITͨ��ID,���ڲ��������ĳ��ͨ����
- * ��Ч��Χ��0 ~ (AMHW_FSL_PIT_CHANNELS_NUM - 1)
+ * \brief PIT通道ID,用于操作具体的某个通道，
+ * 有效范围：0 ~ (AMHW_FSL_PIT_CHANNELS_NUM - 1)
  */
 #define AMHW_FSL_PIT_CH(n)           ((n) < AMHW_FSL_PIT_CHANNELS_NUM ? (n) : 0)
 
 
 /**
- * \brief TPM �Ĵ�����ṹ��
+ * \brief TPM 寄存器块结构体
  */
 typedef struct amhw_fsl_pit {
-    __IO uint32_t module_ctl;           /**< \brief ģ����� */
-    __I  uint32_t reserved_0[55];       /**< \brief ��������Ӧʹ�� */
-    __I  uint32_t lifetime64_h;         /**< \brief �������ڶ�ʱ����32λ */
-    __I  uint32_t lifetime64_l;         /**< \brief �������ڶ�ʱ����32λ */
-    __I  uint32_t reserved_1[6];        /**< \brief ��������Ӧʹ�� */
+    __IO uint32_t module_ctl;           /**< \brief 模块控制 */
+    __I  uint32_t reserved_0[55];       /**< \brief 保留，不应使用 */
+    __I  uint32_t lifetime64_h;         /**< \brief 生命周期定时器高32位 */
+    __I  uint32_t lifetime64_l;         /**< \brief 生命周期定时器低32位 */
+    __I  uint32_t reserved_1[6];        /**< \brief 保留，不应使用 */
 
     struct {
-        __IO uint32_t load_value;           /**< \brief װ��ֵ */
-        __I  uint32_t current_value;        /**< \brief ��ǰֵ */
-        __IO uint32_t control;              /**< \brief ��ʱ������ */
-        __IO uint32_t flag;                 /**< \brief ��ʱ����־ */
-    } channel[2];                           /**< \brief tpmͨ������   */
+        __IO uint32_t load_value;           /**< \brief 装载值 */
+        __I  uint32_t current_value;        /**< \brief 当前值 */
+        __IO uint32_t control;              /**< \brief 定时器控制 */
+        __IO uint32_t flag;                 /**< \brief 定时器标志 */
+    } channel[2];                           /**< \brief tpm通道描述   */
 } amhw_fsl_pit_t;
 
 
 /**
- * \name ģ����ƼĴ���λ����(R/W)
+ * \name 模块控制寄存器位定义(R/W)
  * @{
  */
 
-#define AMHW_FSL_PIT_MSC_MASK     (0x3u)         /**< \brief ״̬�Ϳ��ƼĴ������� */
-#define AMHW_FSL_PIT_MSC_MDIS     (1UL << 1)     /**< \brief ģ��ʱ�ӽ��� */
-#define AMHW_FSL_PIT_MSC_FRZ      (1UL << 0)     /**< \brief ����ģʽ�¶�ʱ����ͣ */
+#define AMHW_FSL_PIT_MSC_MASK     (0x3u)         /**< \brief 状态和控制寄存器掩码 */
+#define AMHW_FSL_PIT_MSC_MDIS     (1UL << 1)     /**< \brief 模块时钟禁能 */
+#define AMHW_FSL_PIT_MSC_FRZ      (1UL << 0)     /**< \brief 调试模式下定时器暂停 */
 
 /** @} */
 
 /**
- * \brief PITģ��ʹ��
- * \param[in] p_hw_pit : ָ��PIT�Ĵ������ָ��
- * \return ��
+ * \brief PIT模块使能
+ * \param[in] p_hw_pit : 指向PIT寄存器块的指针
+ * \return 无
  */
 am_static_inline
 void amhw_fsl_pit_module_enable (amhw_fsl_pit_t *p_hw_pit)
@@ -96,9 +96,9 @@ void amhw_fsl_pit_module_enable (amhw_fsl_pit_t *p_hw_pit)
 }
 
 /**
- * \brief PITģ�����
- * \param[in] p_hw_pit : ָ��PIT�Ĵ������ָ��
- * \return ��
+ * \brief PIT模块禁能
+ * \param[in] p_hw_pit : 指向PIT寄存器块的指针
+ * \return 无
  */
 am_static_inline
 void amhw_fsl_pit_module_disable (amhw_fsl_pit_t *p_hw_pit)
@@ -107,19 +107,19 @@ void amhw_fsl_pit_module_disable (amhw_fsl_pit_t *p_hw_pit)
 }
 
 /**
- * \name �������ڼĴ���,��Ϊ�ߣ��������֣����һ��64λ��ʱ��(ֻ��)
+ * \name 声明周期寄存器,分为高，低两部分，组成一个64位定时器(只读)
  * @{
  */
 
-#define AMHW_FSL_PIT_LTH_MASK     (0xFFFFFFFFu)   /**< \brief �������ڶ�ʱ����λ���� */
-#define AMHW_FSL_PIT_LTL_MASK     (0xFFFFFFFFu)   /**< \brief �������ڶ�ʱ����λ���� */
+#define AMHW_FSL_PIT_LTH_MASK     (0xFFFFFFFFu)   /**< \brief 生命周期定时器高位部分 */
+#define AMHW_FSL_PIT_LTL_MASK     (0xFFFFFFFFu)   /**< \brief 生命周期定时器低位部分 */
 
 /** @} */
 
 /**
- * \brief ��ȡ�������ڶ�ʱ����32λ
- * \param[in] p_hw_pit : ָ��PIT�Ĵ������ָ��
- * \return �������ڶ�ʱ����32λ
+ * \brief 获取生命周期定时器高32位
+ * \param[in] p_hw_pit : 指向PIT寄存器块的指针
+ * \return 生命周期定时器高32位
  */
 am_static_inline
 uint32_t amhw_fsl_pit_ltmr64h_get (amhw_fsl_pit_t *p_hw_pit)
@@ -128,9 +128,9 @@ uint32_t amhw_fsl_pit_ltmr64h_get (amhw_fsl_pit_t *p_hw_pit)
 }
 
 /**
- * \brief ��ȡ�������ڶ�ʱ����λ
- * \param[in] p_hw_pit : ָ��PIT�Ĵ������ָ��
- * \return �������ڶ�ʱ����32λ
+ * \brief 获取生命周期定时器低位
+ * \param[in] p_hw_pit : 指向PIT寄存器块的指针
+ * \return 生命周期定时器低32位
  */
 am_static_inline
 uint32_t amhw_fsl_pit_ltmr64l_get (amhw_fsl_pit_t *p_hw_pit)
@@ -139,13 +139,13 @@ uint32_t amhw_fsl_pit_ltmr64l_get (amhw_fsl_pit_t *p_hw_pit)
 }
 
 /**
- * \brief װ��ֵ�趨
+ * \brief 装载值设定
  *
- * \param[in] p_hw_pit : ָ��PIT�Ĵ������ָ��
- * \param[in] chan     : ͨ��ID��ʹ�ú�#AMHW_FSL_PIT_CH(n)
- * \param[in] val      : ��Ҫд���ֵ
+ * \param[in] p_hw_pit : 指向PIT寄存器块的指针
+ * \param[in] chan     : 通道ID，使用宏#AMHW_FSL_PIT_CH(n)
+ * \param[in] val      : 需要写入的值
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_fsl_pit_ldval_set (amhw_fsl_pit_t *p_hw_pit,
@@ -156,12 +156,12 @@ void amhw_fsl_pit_ldval_set (amhw_fsl_pit_t *p_hw_pit,
 }
 
 /**
- * \brief װ��ֵ��ȡ
+ * \brief 装载值获取
  *
- * \param[in] p_hw_pit : ָ��PIT�Ĵ������ָ��
- * \param[in] chan     : ͨ��ID��ʹ�ú�#AMHW_FSL_PIT_CH(n)
+ * \param[in] p_hw_pit : 指向PIT寄存器块的指针
+ * \param[in] chan     : 通道ID，使用宏#AMHW_FSL_PIT_CH(n)
  *
- * \return װ��ֵ
+ * \return 装载值
  */
 am_static_inline
 uint32_t amhw_fsl_pit_ldval_get (amhw_fsl_pit_t *p_hw_pit, uint8_t chan)
@@ -170,12 +170,12 @@ uint32_t amhw_fsl_pit_ldval_get (amhw_fsl_pit_t *p_hw_pit, uint8_t chan)
 }
 
 /**
- * \brief ��ǰֵ��ȡ
+ * \brief 当前值获取
  *
- * \param[in] p_hw_pit : ָ��PIT�Ĵ������ָ��
- * \param[in] chan     : ͨ��ID��ʹ�ú�#AMHW_FSL_PIT_CH(n)
+ * \param[in] p_hw_pit : 指向PIT寄存器块的指针
+ * \param[in] chan     : 通道ID，使用宏#AMHW_FSL_PIT_CH(n)
  *
- * \return ��ǰֵ
+ * \return 当前值
  */
 am_static_inline
 uint32_t amhw_fsl_pit_cval_get (amhw_fsl_pit_t *p_hw_pit, uint8_t chan)
@@ -184,25 +184,25 @@ uint32_t amhw_fsl_pit_cval_get (amhw_fsl_pit_t *p_hw_pit, uint8_t chan)
 }
 
 /**
- * \name PIT���ƼĴ�������(R/W)
+ * \name PIT控制寄存器定义(R/W)
  * @{
  */
 
-#define AMHW_FSL_PIT_TCTL_MASK          (0x7u)           /**< \brief ģ������ */
-#define AMHW_FSL_PIT_TCTL_CHAIN_MODE    (1UL << 2)       /**< \brief ��ģʽ */
-#define AMHW_FSL_PIT_TCTL_TI_EN         (1UL << 1)       /**< \brief ��ʱ���ж�ʹ�� */
-#define AMHW_FSL_PIT_TCTL_TMR_EN        (1UL << 0)       /**< \brief ��ʱ��ʹ�� */
+#define AMHW_FSL_PIT_TCTL_MASK          (0x7u)           /**< \brief 模数掩码 */
+#define AMHW_FSL_PIT_TCTL_CHAIN_MODE    (1UL << 2)       /**< \brief 链模式 */
+#define AMHW_FSL_PIT_TCTL_TI_EN         (1UL << 1)       /**< \brief 定时器中断使能 */
+#define AMHW_FSL_PIT_TCTL_TMR_EN        (1UL << 0)       /**< \brief 定时器使能 */
 
 /** @} */
 
 /**
- * \brief ��ʱ�����ƼĴ�����λ
+ * \brief 定时器控制寄存器置位
  *
- * \param[in] p_hw_pit : ָ��PIT�Ĵ������ָ��
- * \param[in] chan     : ͨ��ID��ʹ�ú�#AMHW_FSL_PIT_CH(n)
- * \param[in] flags    : AMHW_FSL_PIT_TCTL_* ��ֵ����
- *                       AMHW_FSL_PIT_TCTL_*��� ��OR��ֵ(#AMHW_FSL_PIT_TCTL_TI_EN)
- * \return ��
+ * \param[in] p_hw_pit : 指向PIT寄存器块的指针
+ * \param[in] chan     : 通道ID，使用宏#AMHW_FSL_PIT_CH(n)
+ * \param[in] flags    : AMHW_FSL_PIT_TCTL_* 宏值或多个
+ *                       AMHW_FSL_PIT_TCTL_*宏的 或（OR）值(#AMHW_FSL_PIT_TCTL_TI_EN)
+ * \return 无
  */
 am_static_inline
 void amhw_fsl_pit_timer_ctrl_set (amhw_fsl_pit_t *p_hw_pit,
@@ -213,13 +213,13 @@ void amhw_fsl_pit_timer_ctrl_set (amhw_fsl_pit_t *p_hw_pit,
 }
 
 /**
- * \brief ��ʱ�����ƼĴ�������
+ * \brief 定时器控制寄存器清零
  *
- * \param[in] p_hw_pit : ָ��PIT�Ĵ������ָ��
- * \param[in] chan     : ͨ��ID��ʹ�ú�#AMHW_FSL_PIT_CH(n)
- * \param[in] flags    : AMHW_FSL_PIT_TCTL_* ��ֵ����
- *                       AMHW_FSL_PIT_TCTL_*��� ��OR��ֵ(#AMHW_FSL_PIT_TCTL_TI_EN)
- * \return ��
+ * \param[in] p_hw_pit : 指向PIT寄存器块的指针
+ * \param[in] chan     : 通道ID，使用宏#AMHW_FSL_PIT_CH(n)
+ * \param[in] flags    : AMHW_FSL_PIT_TCTL_* 宏值或多个
+ *                       AMHW_FSL_PIT_TCTL_*宏的 或（OR）值(#AMHW_FSL_PIT_TCTL_TI_EN)
+ * \return 无
  */
 am_static_inline
 void amhw_fsl_pit_timer_ctrl_clear (amhw_fsl_pit_t *p_hw_pit,
@@ -230,22 +230,22 @@ void amhw_fsl_pit_timer_ctrl_clear (amhw_fsl_pit_t *p_hw_pit,
 }
 
 /**
- * \name PIT��־�Ĵ�������(R/W)
+ * \name PIT标志寄存器定义(R/W)
  * @{
  */
 
-#define AMHW_FSL_PIT_TMR_FLAG        (1UL << 0)             /**< \brief ��ʱ��ʹ�� */
+#define AMHW_FSL_PIT_TMR_FLAG        (1UL << 0)             /**< \brief 定时器使能 */
 
 /** @} */
 
 /**
- * \brief ��ʱ���жϱ�־
+ * \brief 定时器中断标志
  *
- * \param[in] p_hw_pit : ָ��PIT�Ĵ������ָ��
- * \param[in] chan     : ͨ��ID��ʹ�ú�#AMHW_FSL_PIT_CH(n)
+ * \param[in] p_hw_pit : 指向PIT寄存器块的指针
+ * \param[in] chan     : 通道ID，使用宏#AMHW_FSL_PIT_CH(n)
  *
- * \retval  AM_TRUE  : ��ʱ�ѷ���
- * \retval  AM_FALSE : ��ʱδ����
+ * \retval  AM_TRUE  : 超时已发生
+ * \retval  AM_FALSE : 超时未发生
  */
 am_static_inline
 am_bool_t amhw_fsl_pit_timerout_flag_check (amhw_fsl_pit_t *p_hw_pit,
@@ -255,12 +255,12 @@ am_bool_t amhw_fsl_pit_timerout_flag_check (amhw_fsl_pit_t *p_hw_pit,
 }
 
 /**
- * \brief ��ʱ���жϱ�־���
+ * \brief 定时器中断标志清除
  *
- * \param[in] p_hw_pit : ָ��PIT�Ĵ������ָ��
- * \param[in] chan     : ͨ��ID��ʹ�ú�#AMHW_FSL_PIT_CH(n)
+ * \param[in] p_hw_pit : 指向PIT寄存器块的指针
+ * \param[in] chan     : 通道ID，使用宏#AMHW_FSL_PIT_CH(n)
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_fsl_pit_timerout_flag_clr (amhw_fsl_pit_t *p_hw_pit,

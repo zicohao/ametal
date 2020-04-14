@@ -66,7 +66,7 @@ typedef struct am_lpc_sct_cap_ioinfo {
  * \brief LPC5410x SCT for capture initialize parameter structure
  */
 typedef struct am_lpc_sct_cap_devinfo {
-    uint32_t                  sct_regbase;    /**< \brief SCT¼Ä´æÆ÷»ùµØÖ·.                             */
+    uint32_t                  sct_regbase;    /**< \brief SCTÂ¼Ã„Â´Ã¦Ã†Ã·Â»Ã¹ÂµÃ˜Ã–Â·.                             */
     uint8_t                   inum;           /**< \brief The SCT interrupt number                   */
     uint32_t                  clk_id;         /**< \brief SCT clk id                                 */
 

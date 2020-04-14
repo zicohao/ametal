@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief GPIOÇı¶¯£¬·şÎñGPIO±ê×¼½Ó¿Ú
+ * \brief GPIOé©±åŠ¨ï¼ŒæœåŠ¡GPIOæ ‡å‡†æ¥å£
  *
  * \internal
  * \par Modification history
@@ -29,25 +29,25 @@
 #include "zmf159_pin.h"
 
 /*******************************************************************************
-* Ë½ÓĞ¶¨Òå
+* ç§æœ‰å®šä¹‰
 *******************************************************************************/
 
-/** \brief ÖĞ¶ÏÎ´Á¬½Ó±êÊ¶ */
+/** \brief ä¸­æ–­æœªè¿æ¥æ ‡è¯† */
 #define AM_ZMF159_GPIO_INVALID_PIN_MAP    0xFF
 
-/** \brief ¶¨ÒåÖ¸ÏòGPIOÉè±¸ĞÅÏ¢µÄÖ¸Õë */
+/** \brief å®šä¹‰æŒ‡å‘GPIOè®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ */
 #define __GPIO_DEVINFO_DECL(p_gpio_devinfo, p_dev)  \
         const am_zmf159_gpio_devinfo_t *p_gpio_devinfo = p_dev->p_devinfo
 
 /******************************************************************************
-  È«¾Ö±äÁ¿
+  å…¨å±€å˜é‡
 ******************************************************************************/
 
-/** \bruef Ö¸ÏòGPIOÉè±¸µÄÖ¸Õë */
+/** \bruef æŒ‡å‘GPIOè®¾å¤‡çš„æŒ‡é’ˆ */
 am_zmf159_gpio_dev_t *__gp_gpio_dev;
 
 /**
- * \brief Íâ²¿ÖĞ¶ÏÏß0ÖĞ¶Ïº¯Êı
+ * \brief å¤–éƒ¨ä¸­æ–­çº¿0ä¸­æ–­å‡½æ•°
  */
 static void __port_exit0_int_isr (void * p_arg)
 {
@@ -61,7 +61,7 @@ static void __port_exit0_int_isr (void * p_arg)
 
     p_hw_exti   = (amhw_zmf159_exti_t   *)p_gpio_devinfo->exti_regbase;
 
-    /* »ñÈ¡ÓĞ¹Ø»Øµ÷º¯Êı¼°²ÎÊı */
+    /* è·å–æœ‰å…³å›è°ƒå‡½æ•°åŠå‚æ•° */
     pfn_isr   = p_gpio_devinfo->p_triginfo[slot].pfn_callback;
     p_arg_tmp = p_gpio_devinfo->p_triginfo[slot].p_arg;
 
@@ -72,13 +72,13 @@ static void __port_exit0_int_isr (void * p_arg)
         }
     }
 
-    /* ÇåÖĞ¶Ï±êÖ¾ */
+    /* æ¸…ä¸­æ–­æ ‡å¿— */
     amhw_zmf159_exti_pending_clear(p_hw_exti,
                                    (amhw_zmf159_exti_line_num_t)(1ul << slot));
 }
 
 /**
- * \brief Íâ²¿ÖĞ¶ÏÏß1ÖĞ¶Ïº¯Êı
+ * \brief å¤–éƒ¨ä¸­æ–­çº¿1ä¸­æ–­å‡½æ•°
  */
 static void __port_exit1_int_isr (void * p_arg)
 {
@@ -92,7 +92,7 @@ static void __port_exit1_int_isr (void * p_arg)
 
     p_hw_exti   = (amhw_zmf159_exti_t *)p_gpio_devinfo->exti_regbase;
 
-    /* »ñÈ¡ÓĞ¹Ø»Øµ÷º¯Êı¼°²ÎÊı */
+    /* è·å–æœ‰å…³å›è°ƒå‡½æ•°åŠå‚æ•° */
     pfn_isr   = p_gpio_devinfo->p_triginfo[slot].pfn_callback;
     p_arg_tmp = p_gpio_devinfo->p_triginfo[slot].p_arg;
 
@@ -103,13 +103,13 @@ static void __port_exit1_int_isr (void * p_arg)
         }
     }
 
-    /* ÇåÖĞ¶Ï±êÖ¾ */
+    /* æ¸…ä¸­æ–­æ ‡å¿— */
     amhw_zmf159_exti_pending_clear(p_hw_exti,
                                    (amhw_zmf159_exti_line_num_t)(1ul << slot));
 }
 
 /**
- * \brief Íâ²¿ÖĞ¶ÏÏß2ÖĞ¶Ïº¯Êı
+ * \brief å¤–éƒ¨ä¸­æ–­çº¿2ä¸­æ–­å‡½æ•°
  */
 static void __port_exit2_int_isr (void * p_arg)
 {
@@ -123,7 +123,7 @@ static void __port_exit2_int_isr (void * p_arg)
 
     p_hw_exti   = (amhw_zmf159_exti_t *)p_gpio_devinfo->exti_regbase;
 
-    /* »ñÈ¡ÓĞ¹Ø»Øµ÷º¯Êı¼°²ÎÊı */
+    /* è·å–æœ‰å…³å›è°ƒå‡½æ•°åŠå‚æ•° */
     pfn_isr   = p_gpio_devinfo->p_triginfo[slot].pfn_callback;
     p_arg_tmp = p_gpio_devinfo->p_triginfo[slot].p_arg;
 
@@ -134,13 +134,13 @@ static void __port_exit2_int_isr (void * p_arg)
         }
     }
 
-    /* ÇåÖĞ¶Ï±êÖ¾ */
+    /* æ¸…ä¸­æ–­æ ‡å¿— */
     amhw_zmf159_exti_pending_clear(p_hw_exti,
                                    (amhw_zmf159_exti_line_num_t)(1ul << slot));
 }
 
 /**
- * \brief Íâ²¿ÖĞ¶ÏÏß2ÖĞ¶Ïº¯Êı
+ * \brief å¤–éƒ¨ä¸­æ–­çº¿2ä¸­æ–­å‡½æ•°
  */
 static void __port_exit3_int_isr (void * p_arg)
 {
@@ -154,7 +154,7 @@ static void __port_exit3_int_isr (void * p_arg)
 
     p_hw_exti   = (amhw_zmf159_exti_t *)p_gpio_devinfo->exti_regbase;
 
-    /* »ñÈ¡ÓĞ¹Ø»Øµ÷º¯Êı¼°²ÎÊı */
+    /* è·å–æœ‰å…³å›è°ƒå‡½æ•°åŠå‚æ•° */
     pfn_isr   = p_gpio_devinfo->p_triginfo[slot].pfn_callback;
     p_arg_tmp = p_gpio_devinfo->p_triginfo[slot].p_arg;
 
@@ -165,13 +165,13 @@ static void __port_exit3_int_isr (void * p_arg)
         }
     }
 
-    /* ÇåÖĞ¶Ï±êÖ¾ */
+    /* æ¸…ä¸­æ–­æ ‡å¿— */
     amhw_zmf159_exti_pending_clear(p_hw_exti,
                                    (amhw_zmf159_exti_line_num_t)(1ul << slot));
 }
 
 /**
- * \brief Íâ²¿ÖĞ¶ÏÏß4ÖĞ¶Ïº¯Êı
+ * \brief å¤–éƒ¨ä¸­æ–­çº¿4ä¸­æ–­å‡½æ•°
  */
 static void __port_exit4_int_isr (void * p_arg)
 {
@@ -185,7 +185,7 @@ static void __port_exit4_int_isr (void * p_arg)
 
     p_hw_exti   = (amhw_zmf159_exti_t *)p_gpio_devinfo->exti_regbase;
 
-    /* »ñÈ¡ÓĞ¹Ø»Øµ÷º¯Êı¼°²ÎÊı */
+    /* è·å–æœ‰å…³å›è°ƒå‡½æ•°åŠå‚æ•° */
     pfn_isr   = p_gpio_devinfo->p_triginfo[slot].pfn_callback;
     p_arg_tmp = p_gpio_devinfo->p_triginfo[slot].p_arg;
 
@@ -196,13 +196,13 @@ static void __port_exit4_int_isr (void * p_arg)
         }
     }
 
-    /* ÇåÖĞ¶Ï±êÖ¾ */
+    /* æ¸…ä¸­æ–­æ ‡å¿— */
     amhw_zmf159_exti_pending_clear(p_hw_exti,
                                    (amhw_zmf159_exti_line_num_t)(1ul << slot));
 }
 
 /**
- * \brief Íâ²¿ÖĞ¶ÏÏß9_5ÖĞ¶Ïº¯Êı
+ * \brief å¤–éƒ¨ä¸­æ–­çº¿9_5ä¸­æ–­å‡½æ•°
  */
 static void __port_exit9_5_int_isr (void * p_arg)
 {
@@ -235,7 +235,7 @@ static void __port_exit9_5_int_isr (void * p_arg)
 }
 
 /**
- * \brief Íâ²¿ÖĞ¶ÏÏß5_10ÖĞ¶Ïº¯Êı
+ * \brief å¤–éƒ¨ä¸­æ–­çº¿5_10ä¸­æ–­å‡½æ•°
  */
 static void __port_exit15_10_int_isr (void * p_arg)
 {
@@ -268,22 +268,22 @@ static void __port_exit15_10_int_isr (void * p_arg)
 }
 
 /*******************************************************************************
-  ¹«¹²º¯Êı
+  å…¬å…±å‡½æ•°
 *******************************************************************************/
 
 /**
- * \brief Òı½Å¹¦ÄÜÅäÖÃ
+ * \brief å¼•è„šåŠŸèƒ½é…ç½®
  *
- * \param[in] pin       : Òı½Å±àºÅ£¬ÖµÎª PIO* (#PIOA_0)
- * \param[in] flags     : Òı½Å¹¦ÄÜ
+ * \param[in] pin       : å¼•è„šç¼–å·ï¼Œå€¼ä¸º PIO* (#PIOA_0)
+ * \param[in] flags     : å¼•è„šåŠŸèƒ½
  *
- * \return AM_OK     £ºÅäÖÃ³É¹¦
+ * \return AM_OK     ï¼šé…ç½®æˆåŠŸ
  */
 int am_gpio_pin_cfg (int pin, uint32_t flags)
 {
     __GPIO_DEVINFO_DECL(p_gpio_devinfo, __gp_gpio_dev);
 
-    /* IO¿Ú·½Ïò */
+    /* IOå£æ–¹å‘ */
     uint8_t dir = 0;
 
     uint32_t func = 0, mode = 0;
@@ -302,19 +302,19 @@ int am_gpio_pin_cfg (int pin, uint32_t flags)
     mode      = AM_GPIO_COM_MODE_GET(flags) << 3;
 
     /*
-     * ¹²ÓĞ¹¦ÄÜÅäÖÃ
+     * å…±æœ‰åŠŸèƒ½é…ç½®
      */
     if (func != 0x00) {
 
-        /* ±íÃ÷²»ĞèÒªÔÙÉèÖÃ·½Ïò */
+        /* è¡¨æ˜ä¸éœ€è¦å†è®¾ç½®æ–¹å‘ */
         flags &= ~AM_ZLG116_GPIO_DIR;
 
-        /* ±íÃ÷²»ĞèÒªÔÙÉèÖÃÒı½Å¸´ÓÃ¹¦ÄÜ£¬½öÊ¹ÓÃGPIO¹¦ÄÜ */
+        /* è¡¨æ˜ä¸éœ€è¦å†è®¾ç½®å¼•è„šå¤ç”¨åŠŸèƒ½ï¼Œä»…ä½¿ç”¨GPIOåŠŸèƒ½ */
         flags &= ~AM_ZMF159_GPIO_FUNEN;
 
         if (amhw_zlg_gpio_pin_afr_get(p_hw_gpio, pin) != AMHW_ZLG_GPIO_AF_DEFAULT) {
 
-            /* ¸´ÓÃ¹¦ÄÜ»Øµ½Ä¬ÈÏ×´Ì¬£¬±íÃ÷Ê¹ÓÃGPIO¹¦ÄÜ */
+            /* å¤ç”¨åŠŸèƒ½å›åˆ°é»˜è®¤çŠ¶æ€ï¼Œè¡¨æ˜ä½¿ç”¨GPIOåŠŸèƒ½ */
             amhw_zlg_gpio_pin_afr_set(p_hw_gpio, AMHW_ZLG_GPIO_AF_DEFAULT, pin);
 
         }
@@ -329,7 +329,7 @@ int am_gpio_pin_cfg (int pin, uint32_t flags)
 
             amhw_zlg_gpio_pin_out_high(p_hw_gpio, pin);
 
-            /* Êä³öÊ±£¬ÈôÎ´ÅäÖÃ¹Ü½ÅËÙÂÊÔòÄ¬ÈÏÎª 10MHz */
+            /* è¾“å‡ºæ—¶ï¼Œè‹¥æœªé…ç½®ç®¡è„šé€Ÿç‡åˆ™é»˜è®¤ä¸º 10MHz */
             if ((flags & AM_ZMF159_GPIO_OUTRES_RATE) == 0) {
                 AM_BITS_SET(iocon_cfg, 0, 2, AMHW_ZLG_GPIO_SPEED_10MHz);
             }
@@ -341,7 +341,7 @@ int am_gpio_pin_cfg (int pin, uint32_t flags)
         case AM_GPIO_OUTPUT_INIT_LOW:
             amhw_zlg_gpio_pin_out_low(p_hw_gpio, pin);
 
-            /* Êä³öÊ±£¬ÈôÎ´ÅäÖÃ¹Ü½ÅËÙÂÊÔòÄ¬ÈÏÎª 10MHz */
+            /* è¾“å‡ºæ—¶ï¼Œè‹¥æœªé…ç½®ç®¡è„šé€Ÿç‡åˆ™é»˜è®¤ä¸º 10MHz */
             if ((flags & AM_ZMF159_GPIO_OUTRES_RATE) == 0) {
                 AM_BITS_SET(iocon_cfg, 0, 2, AMHW_ZLG_GPIO_SPEED_10MHz);
             }
@@ -362,7 +362,7 @@ int am_gpio_pin_cfg (int pin, uint32_t flags)
         case AM_GPIO_PULLUP:
             if (dir != 1) {
 
-                /* Ê¹ODÎ»ÖÃÎª1, ±íÃ÷ÊÇÉÏÀ­ */
+                /* ä½¿ODä½ç½®ä¸º1, è¡¨æ˜æ˜¯ä¸Šæ‹‰ */
                 amhw_zlg_gpio_pin_out_high(p_hw_gpio, pin);
 
                 AM_BITS_SET(iocon_cfg, 2, 2, AMHW_ZLG_GPIO_MODE_IPU);
@@ -374,7 +374,7 @@ int am_gpio_pin_cfg (int pin, uint32_t flags)
         case AM_GPIO_PULLDOWN:
             if (dir != 1) {
 
-                /* Ê¹ODÎ»ÖÃÎª0, ±íÃ÷ÊÇÏÂÀ­ */
+                /* ä½¿ODä½ç½®ä¸º0, è¡¨æ˜æ˜¯ä¸‹æ‹‰ */
                 amhw_zlg_gpio_pin_out_low(p_hw_gpio, pin);
                 AM_BITS_SET(iocon_cfg, 2, 2, AMHW_ZLG_GPIO_MODE_IPD);
             } else {
@@ -412,10 +412,10 @@ int am_gpio_pin_cfg (int pin, uint32_t flags)
     }
 
     /*
-     * Æ½Ì¨Ïà¹ØÅäÖÃ
+     * å¹³å°ç›¸å…³é…ç½®
      */
 
-    /* ¹Ü½ÅµÄÄ£Ê½ */
+    /* ç®¡è„šçš„æ¨¡å¼ */
     if ((flags & AM_ZMF159_GPIO_MODE) != 0) {
 
        switch (AM_ZMF159_GPIO_MODE_GET(flags)) {
@@ -434,7 +434,7 @@ int am_gpio_pin_cfg (int pin, uint32_t flags)
 
        case 2:
 
-           /* Ê¹ODÎ»ÖÃÎª0, ±íÃ÷ÊÇÏÂÀ­ */
+           /* ä½¿ODä½ç½®ä¸º0, è¡¨æ˜æ˜¯ä¸‹æ‹‰ */
            amhw_zlg_gpio_pin_out_low(p_hw_gpio, pin);
            AM_BITS_SET(iocon_cfg, 0, 2, 0x00);
            AM_BITS_SET(iocon_cfg, 2, 2, AMHW_ZLG_GPIO_MODE_IPD);
@@ -443,7 +443,7 @@ int am_gpio_pin_cfg (int pin, uint32_t flags)
 
        case 3:
 
-           /* Ê¹ODÎ»ÖÃÎª1, ±íÃ÷ÊÇÉÏÀ­ */
+           /* ä½¿ODä½ç½®ä¸º1, è¡¨æ˜æ˜¯ä¸Šæ‹‰ */
            amhw_zlg_gpio_pin_out_high(p_hw_gpio, pin);
            AM_BITS_SET(iocon_cfg, 0, 2, 0x00);
            AM_BITS_SET(iocon_cfg, 2, 2, AMHW_ZLG_GPIO_MODE_IPU);
@@ -478,17 +478,17 @@ int am_gpio_pin_cfg (int pin, uint32_t flags)
        }
     }
 
-    /* ÉèÖÃ¹Ü½ÅµÄÊä³öËÙÂÊ */
+    /* è®¾ç½®ç®¡è„šçš„è¾“å‡ºé€Ÿç‡ */
     if ((flags & AM_ZMF159_GPIO_OUTRES_RATE) != 0) {
 
         AM_BITS_SET(iocon_cfg, 0, 2, AM_ZMF159_GPIO_OUTRES_RATE_GET(flags));
 
     }
 
-    /* ÉèÖÃ¸´ÓÃ¹¦ÄÜÊ±¹Ü½ÅÄ£Ê½ */
+    /* è®¾ç½®å¤ç”¨åŠŸèƒ½æ—¶ç®¡è„šæ¨¡å¼ */
     amhw_zlg_gpio_pin_set(p_hw_gpio, iocon_cfg, pin);
 
-    /* ÉèÖÃ¹Ü½ÅµÄ¸´ÓÃ¹¦ÄÜ */
+    /* è®¾ç½®ç®¡è„šçš„å¤ç”¨åŠŸèƒ½ */
     if ((flags & AM_ZMF159_GPIO_FUNEN) != 0) {
         amhw_zlg_gpio_pin_afr_set(p_hw_gpio, AM_ZMF159_GPIO_FUNC_GET(flags), pin);
     }
@@ -497,11 +497,11 @@ int am_gpio_pin_cfg (int pin, uint32_t flags)
 }
 
 /**
- * \brief »ñÈ¡Òı½Å×´Ì¬
+ * \brief è·å–å¼•è„šçŠ¶æ€
  *
- * \param[in] pin       : Òı½Å±àºÅ£¬ÖµÎª PIO* (#PIOA_0)
+ * \param[in] pin       : å¼•è„šç¼–å·ï¼Œå€¼ä¸º PIO* (#PIOA_0)
  *
- * \return ÎŞ
+ * \return æ— 
  */
 int am_gpio_get (int pin)
 {
@@ -513,12 +513,12 @@ int am_gpio_get (int pin)
 }
 
 /**
- * \brief ÉèÖÃÊä³öÒı½Å×´Ì¬
+ * \brief è®¾ç½®è¾“å‡ºå¼•è„šçŠ¶æ€
  *
- * \param[in] pin       : Òı½Å±àºÅ£¬ÖµÎª PIO* (#PIOA_0)
- * \param[in] value     : Òı½ÅÖµ
+ * \param[in] pin       : å¼•è„šç¼–å·ï¼Œå€¼ä¸º PIO* (#PIOA_0)
+ * \param[in] value     : å¼•è„šå€¼
  *
- * \return AM_OK     £ºÉèÖÃ³É¹¦
+ * \return AM_OK     ï¼šè®¾ç½®æˆåŠŸ
  */
 int am_gpio_set (int pin, int value)
 {
@@ -536,7 +536,7 @@ int am_gpio_set (int pin, int value)
 }
 
 /**
- * \brief Òı½ÅÊä³ö×´Ì¬·´×ª
+ * \brief å¼•è„šè¾“å‡ºçŠ¶æ€åè½¬
  */
 int am_gpio_toggle (int pin)
 {
@@ -550,7 +550,7 @@ int am_gpio_toggle (int pin)
 }
 
 /**
- * \brief Òı½Å´¥·¢ĞÎÊ½ÉèÖÃ
+ * \brief å¼•è„šè§¦å‘å½¢å¼è®¾ç½®
  */
 int am_gpio_trigger_cfg (int pin, uint32_t flag)
 {
@@ -567,9 +567,9 @@ int am_gpio_trigger_cfg (int pin, uint32_t flag)
         return -AM_ENXIO;
     }
 
-    port = pin >> 4;       /* »ñµÃÒı½Å¶ÔÓ¦µÄ¶Ë¿ÚºÅ */
+    port = pin >> 4;       /* è·å¾—å¼•è„šå¯¹åº”çš„ç«¯å£å· */
 
-    if (port > 3) {        /* ¶Ë¿Ú²»´æÔÚ */
+    if (port > 3) {        /* ç«¯å£ä¸å­˜åœ¨ */
         return -AM_EINVAL;
     }
 
@@ -577,54 +577,54 @@ int am_gpio_trigger_cfg (int pin, uint32_t flag)
     p_hw_syscfg = (amhw_zlg_syscfg_t *)p_gpio_devinfo->syscfg_regbase;
     p_hw_exti   = (amhw_zmf159_exti_t   *)p_gpio_devinfo->exti_regbase;
 
-    /* »¹Ã»ÓĞ¿ªÊ¼ÅäÖÃ¹Ü½Å */
+    /* è¿˜æ²¡æœ‰å¼€å§‹é…ç½®ç®¡è„š */
     if ((p_gpio_devinfo->p_infomap)[pin & 0x0f] == pin) {
         slot = pin & 0x0f;
     } else {
         return -AM_ENXIO;
     }
 
-    /* ¸´ÓÃ¹¦ÄÜ»Øµ½Ä¬ÈÏ×´Ì¬£¬±íÃ÷Ê¹ÓÃGPIO¹¦ÄÜ */
+    /* å¤ç”¨åŠŸèƒ½å›åˆ°é»˜è®¤çŠ¶æ€ï¼Œè¡¨æ˜ä½¿ç”¨GPIOåŠŸèƒ½ */
     amhw_zlg_gpio_pin_afr_set(p_hw_gpio, AMHW_ZLG_GPIO_AF_DEFAULT, pin);
 
-    /* ¿ÉÒÔÌí¼Ó¸ÃÖĞ¶ÏÒı½ÅÅäÖÃÎªGPIO¹¦ÄÜµÄº¯Êı´úÂë */
+    /* å¯ä»¥æ·»åŠ è¯¥ä¸­æ–­å¼•è„šé…ç½®ä¸ºGPIOåŠŸèƒ½çš„å‡½æ•°ä»£ç  */
 
-    /* ÉèÖÃ¹Ü½ÅÎªÊäÈë·½Ïò */
+    /* è®¾ç½®ç®¡è„šä¸ºè¾“å…¥æ–¹å‘ */
     amhw_zlg_gpio_pin_dir_input(p_hw_gpio, pin);
 
-    /* ¹Ü½ÅÎªÉÏÀ­/ÏÂÀ­Ä£Ê½ */
+    /* ç®¡è„šä¸ºä¸Šæ‹‰/ä¸‹æ‹‰æ¨¡å¼ */
     amhw_zlg_gpio_pin_mode_set(p_hw_gpio, AMHW_ZLG_GPIO_MODE_IPD, pin);
 
     /*
-     * ÖĞ¶ÏÏß0Ö»ÄÜÁ¬Ò»¸ö¶Ë¿Ú±àºÅÎª0µÄGPIOÒı½Å£¬±ÈÈçËµ£¬PIOA_0Á¬½Óµ½ÁËÖĞ¶ÏÏß0£¬
-     * PIOB_0¡¢PIOC_0¡¢PIOD_0¾Í²»ÄÜÁ¬µ½ÖĞ¶ÏÏß0, µ«´ËÊ±PIOA_1¿ÉÒÔÁ¬½Óµ½ÖĞ¶ÏÏß1¡£
+     * ä¸­æ–­çº¿0åªèƒ½è¿ä¸€ä¸ªç«¯å£ç¼–å·ä¸º0çš„GPIOå¼•è„šï¼Œæ¯”å¦‚è¯´ï¼ŒPIOA_0è¿æ¥åˆ°äº†ä¸­æ–­çº¿0ï¼Œ
+     * PIOB_0ã€PIOC_0ã€PIOD_0å°±ä¸èƒ½è¿åˆ°ä¸­æ–­çº¿0, ä½†æ­¤æ—¶PIOA_1å¯ä»¥è¿æ¥åˆ°ä¸­æ–­çº¿1ã€‚
      */
     amhw_zlg_syscfg_exti_line_config(p_hw_syscfg, port, slot);
 
-    /* Çå³ıÖĞ¶ÏÏßÅäÖÃ */
+    /* æ¸…é™¤ä¸­æ–­çº¿é…ç½® */
     amhw_zmf159_exti_imr_clear(p_hw_exti, (amhw_zmf159_exti_line_num_t)(1UL << slot));
     amhw_zmf159_exti_emr_clear(p_hw_exti, (amhw_zmf159_exti_line_num_t)(1UL << slot));
 
-    /* Çå³ıÖĞ¶ÏÏß´¥·¢·½Ê½ÅäÖÃ */
+    /* æ¸…é™¤ä¸­æ–­çº¿è§¦å‘æ–¹å¼é…ç½® */
     amhw_zmf159_exti_rtsr_clear(p_hw_exti, (amhw_zmf159_exti_line_num_t)(1UL << slot));
     amhw_zmf159_exti_ftsr_clear(p_hw_exti, (amhw_zmf159_exti_line_num_t)(1UL << slot));
 
     switch (flag) {
 
-    case AM_GPIO_TRIGGER_OFF:           /* ¹Ø±Õ´¥·¢ */
+    case AM_GPIO_TRIGGER_OFF:           /* å…³é—­è§¦å‘ */
         amhw_zmf159_exti_imr_clear(p_hw_exti, (amhw_zmf159_exti_line_num_t)(1UL << slot));
         amhw_zmf159_exti_emr_clear(p_hw_exti, (amhw_zmf159_exti_line_num_t)(1UL << slot));
         break;
 
-    case AM_GPIO_TRIGGER_HIGH:          /* ¸ßµçÆ½´¥·¢ */
+    case AM_GPIO_TRIGGER_HIGH:          /* é«˜ç”µå¹³è§¦å‘ */
         return -AM_ENOTSUP;
 
-    case AM_GPIO_TRIGGER_LOW:           /* µÍµçÆ½´¥·¢ */
+    case AM_GPIO_TRIGGER_LOW:           /* ä½ç”µå¹³è§¦å‘ */
         return -AM_ENOTSUP;
 
-    case AM_GPIO_TRIGGER_RISE:          /* ÉÏÉıÑØ´¥·¢ */
+    case AM_GPIO_TRIGGER_RISE:          /* ä¸Šå‡æ²¿è§¦å‘ */
 
-        /* Ê¹ODÎ»ÖÃÎª0, ±íÃ÷ÊÇÏÂÀ­ */
+        /* ä½¿ODä½ç½®ä¸º0, è¡¨æ˜æ˜¯ä¸‹æ‹‰ */
         amhw_zlg_gpio_pin_out_low(p_hw_gpio, pin);
 
         /* rising  edge */
@@ -632,9 +632,9 @@ int am_gpio_trigger_cfg (int pin, uint32_t flag)
 
         break;
 
-    case AM_GPIO_TRIGGER_FALL:          /* ÏÂ½µÑØ´¥·¢ */
+    case AM_GPIO_TRIGGER_FALL:          /* ä¸‹é™æ²¿è§¦å‘ */
 
-        /* Ê¹ODÎ»ÖÃÎª1, ±íÃ÷ÊÇÉÏÀ­ */
+        /* ä½¿ODä½ç½®ä¸º1, è¡¨æ˜æ˜¯ä¸Šæ‹‰ */
         amhw_zlg_gpio_pin_out_high(p_hw_gpio, pin);
 
         /* falling  edge */
@@ -642,9 +642,9 @@ int am_gpio_trigger_cfg (int pin, uint32_t flag)
 
         break;
 
-    case AM_GPIO_TRIGGER_BOTH_EDGES:    /* Ë«±ßÑØ´¥·¢ */
+    case AM_GPIO_TRIGGER_BOTH_EDGES:    /* åŒè¾¹æ²¿è§¦å‘ */
 
-        /* Ê¹ODÎ»ÖÃÎª1, ±íÃ÷ÊÇÉÏÀ­ */
+        /* ä½¿ODä½ç½®ä¸º1, è¡¨æ˜æ˜¯ä¸Šæ‹‰ */
         amhw_zlg_gpio_pin_out_high(p_hw_gpio, pin);
 
         /* rising falling edge */
@@ -661,7 +661,7 @@ int am_gpio_trigger_cfg (int pin, uint32_t flag)
 }
 
 /**
- * \brief Ê¹ÄÜÒı½ÅÖĞ¶Ï¡£
+ * \brief ä½¿èƒ½å¼•è„šä¸­æ–­ã€‚
  */
 int am_gpio_trigger_on (int pin)
 {
@@ -680,15 +680,15 @@ int am_gpio_trigger_on (int pin)
         return -AM_ENXIO;
     }
 
-    port = pin >> 4;       /* »ñµÃÒı½Å¶ÔÓ¦µÄ¶Ë¿ÚºÅ */
+    port = pin >> 4;       /* è·å¾—å¼•è„šå¯¹åº”çš„ç«¯å£å· */
 
-    if (port > 3) {        /* ¶Ë¿Ú²»´æÔÚ */
+    if (port > 3) {        /* ç«¯å£ä¸å­˜åœ¨ */
         return -AM_EINVAL;
     }
 
     extipinsource = pin & 0x0f;
 
-    /* »¹Ã»ÓĞ¿ªÊ¼ÅäÖÃ¹Ü½Å */
+    /* è¿˜æ²¡æœ‰å¼€å§‹é…ç½®ç®¡è„š */
     if ((p_gpio_devinfo->p_infomap)[extipinsource] == pin) {
         slot = extipinsource;
     } else {
@@ -697,17 +697,17 @@ int am_gpio_trigger_on (int pin)
 
     p_hw_exti   = (amhw_zmf159_exti_t   *)p_gpio_devinfo->exti_regbase;
 
-    /* ÇåÒı½ÅÖĞ¶ÏÏß±êÖ¾Î» */
+    /* æ¸…å¼•è„šä¸­æ–­çº¿æ ‡å¿—ä½ */
     amhw_zmf159_exti_pending_clear(p_hw_exti, (amhw_zmf159_exti_line_num_t)(1UL << slot));
 
-    /* ÉèÖÃ¿ª·ÅÖĞ¶ÏÏßÇëÇó */
+    /* è®¾ç½®å¼€æ”¾ä¸­æ–­çº¿è¯·æ±‚ */
     amhw_zmf159_exti_imr_set(p_hw_exti, (amhw_zmf159_exti_line_num_t)(1UL << slot));
 
     return err;
 }
 
 /**
- * \brief ½ûÄÜÒı½ÅÖĞ¶Ï¡£
+ * \brief ç¦èƒ½å¼•è„šä¸­æ–­ã€‚
  */
 int am_gpio_trigger_off (int pin)
 {
@@ -724,15 +724,15 @@ int am_gpio_trigger_off (int pin)
         return -AM_ENXIO;
     }
 
-    port = pin >> 4;       /* »ñµÃÒı½Å¶ÔÓ¦µÄ¶Ë¿ÚºÅ */
+    port = pin >> 4;       /* è·å¾—å¼•è„šå¯¹åº”çš„ç«¯å£å· */
 
-    if (port > 3) {        /* ¶Ë¿Ú²»´æÔÚ */
+    if (port > 3) {        /* ç«¯å£ä¸å­˜åœ¨ */
         return -AM_EINVAL;
     }
 
     extipinsource = pin & 0x0f;
 
-    /* »¹Ã»ÓĞ¿ªÊ¼ÅäÖÃ¹Ü½Å */
+    /* è¿˜æ²¡æœ‰å¼€å§‹é…ç½®ç®¡è„š */
     if ((p_gpio_devinfo->p_infomap)[extipinsource] == pin) {
         slot = extipinsource;
     } else {
@@ -741,7 +741,7 @@ int am_gpio_trigger_off (int pin)
 
     p_hw_exti = (amhw_zmf159_exti_t *)p_gpio_devinfo->exti_regbase;
 
-    /* ÆÁ±ÎÖĞ¶ÏÏßÇëÇó */
+    /* å±è”½ä¸­æ–­çº¿è¯·æ±‚ */
     amhw_zmf159_exti_imr_clear(p_hw_exti, (amhw_zmf159_exti_line_num_t)(1UL << slot));
     amhw_zmf159_exti_emr_clear(p_hw_exti, (amhw_zmf159_exti_line_num_t)(1UL << slot));
 
@@ -749,7 +749,7 @@ int am_gpio_trigger_off (int pin)
 }
 
 /**
- * \brief Á¬½ÓÒı½ÅÖĞ¶Ï»Øµ÷º¯Êı
+ * \brief è¿æ¥å¼•è„šä¸­æ–­å›è°ƒå‡½æ•°
  */
 int am_gpio_trigger_connect (int           pin,
                              am_pfnvoid_t  pfn_callback,
@@ -774,7 +774,7 @@ int am_gpio_trigger_connect (int           pin,
         return -AM_EINVAL;
     }
 
-    /* ¹Ø±ÕCPUÖĞ¶Ï */
+    /* å…³é—­CPUä¸­æ–­ */
     key = am_int_cpu_lock();
 
     if ((p_gpio_devinfo->p_infomap)[extipinsource] == AM_ZMF159_GPIO_INVALID_PIN_MAP) {
@@ -785,19 +785,19 @@ int am_gpio_trigger_connect (int           pin,
 
     if (already) {
 
-        /* ´ò¿ªCPUÖĞ¶Ï */
+        /* æ‰“å¼€CPUä¸­æ–­ */
         am_int_cpu_unlock(key);
         return -AM_EINVAL;
     }
 
     if (-1 != slot) {
 
-        /*  ±£´æ´¥·¢Òı½Å¼°»Øµ÷º¯Êı */
+        /*  ä¿å­˜è§¦å‘å¼•è„šåŠå›è°ƒå‡½æ•° */
         (p_gpio_devinfo->p_infomap)[slot]               = pin;
         (p_gpio_devinfo->p_triginfo)[slot].pfn_callback = pfn_callback;
         (p_gpio_devinfo->p_triginfo)[slot].p_arg        = p_arg;
 
-        /* ´ò¿ªÖĞ¶Ï */
+        /* æ‰“å¼€ä¸­æ–­ */
         am_int_cpu_unlock(key);
 
     }
@@ -806,7 +806,7 @@ int am_gpio_trigger_connect (int           pin,
 }
 
 /**
- * \brief É¾³ıÒı½ÅÖĞ¶Ï»Øµ÷º¯ÊıÁ¬½Ó
+ * \brief åˆ é™¤å¼•è„šä¸­æ–­å›è°ƒå‡½æ•°è¿æ¥
  */
 int am_gpio_trigger_disconnect (int           pin,
                                 am_pfnvoid_t  pfn_callback,
@@ -830,7 +830,7 @@ int am_gpio_trigger_disconnect (int           pin,
 
     extipinsource = pin & 0x0f;
 
-    /* ¹Ø±ÕCPUÖĞ¶Ï */
+    /* å…³é—­CPUä¸­æ–­ */
     key = am_int_cpu_lock();
 
     if ((p_gpio_devinfo->p_infomap)[extipinsource] == pin) {
@@ -839,7 +839,7 @@ int am_gpio_trigger_disconnect (int           pin,
 
     if (slot == -1) {
 
-        /* ´ò¿ªCPUÖĞ¶Ï */
+        /* æ‰“å¼€CPUä¸­æ–­ */
         am_int_cpu_unlock(key);
 
         return -AM_EINVAL;
@@ -848,19 +848,19 @@ int am_gpio_trigger_disconnect (int           pin,
     (p_gpio_devinfo->p_infomap)[slot]               = AM_ZMF159_GPIO_INVALID_PIN_MAP;
     (p_gpio_devinfo->p_triginfo)[slot].pfn_callback = NULL;
 
-    /* ´ò¿ªCPUÖĞ¶Ï */
+    /* æ‰“å¼€CPUä¸­æ–­ */
     am_int_cpu_unlock(key);
 
     return AM_OK;
 }
 
 /**
- * \brief GPIO³õÊ¼»¯
+ * \brief GPIOåˆå§‹åŒ–
  *
- * \param[in] p_dev     : Ö¸ÏòGPIOÉè±¸µÄÖ¸Õë
- * \param[in] p_devinfo : Ö¸ÏòGPIOÉè±¸ĞÅÏ¢µÄÖ¸Õë
+ * \param[in] p_dev     : æŒ‡å‘GPIOè®¾å¤‡çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo : æŒ‡å‘GPIOè®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ
  *
- * \retval AM_OK : ²Ù×÷³É¹¦
+ * \retval AM_OK : æ“ä½œæˆåŠŸ
  */
 int am_zmf159_gpio_init (am_zmf159_gpio_dev_t           *p_dev,
                          const am_zmf159_gpio_devinfo_t *p_devinfo)
@@ -924,11 +924,11 @@ int am_zmf159_gpio_init (am_zmf159_gpio_dev_t           *p_dev,
 }
 
 /**
- * \brief GPIOÈ¥³õÊ¼»¯
+ * \brief GPIOå»åˆå§‹åŒ–
  *
- * \param[in] ÎŞ
+ * \param[in] æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zmf159_gpio_deinit (void)
 {

@@ -816,7 +816,7 @@ static int __ftl_log_buf_victim_normal (am_ftl_serv_t  *p_ftl,
 
         status = __FTL_SECTOR_IGNORE;
 
-        /* »ñÈ¡Ò»¸ösector±êÇ©ĞÅÏ¢£¬ÒÔ²é¿´¸ÃsectorµÄ×´Ì¬(bci)  */
+        /* è·å–ä¸€ä¸ªsectoræ ‡ç­¾ä¿¡æ¯ï¼Œä»¥æŸ¥çœ‹è¯¥sectorçš„çŠ¶æ€(bci)  */
         if (__ftl_sci_read(p_ftl, p_log->pbn, i, &sci) >= 0) {
 
              if ((sci.stat_start == __FTL_SECTOR_STAT_START) &&
@@ -863,7 +863,7 @@ static int __ftl_log_buf_victim_normal (am_ftl_serv_t  *p_ftl,
 
             status = __FTL_SECTOR_IGNORE;
 
-            /* »ñÈ¡Ò»¸ösector±êÇ©ĞÅÏ¢£¬ÒÔ²é¿´¸ÃsectorµÄ×´Ì¬(bci)  */
+            /* è·å–ä¸€ä¸ªsectoræ ‡ç­¾ä¿¡æ¯ï¼Œä»¥æŸ¥çœ‹è¯¥sectorçš„çŠ¶æ€(bci)  */
             if (__ftl_sci_read(p_ftl, direct_eun, i, &sci) >= 0) {
 
                  if ((sci.stat_start == __FTL_SECTOR_STAT_START) &&
@@ -1134,7 +1134,7 @@ static int __ftl_readunit_check (am_ftl_serv_t *p_ftl,
         return -1;
     }
 
-    /* »ñÈ¡Ò»¸ösector±êÇ©ĞÅÏ¢£¬ÒÔ²é¿´¸ÃsectorµÄ×´Ì¬(sci)  */
+    /* è·å–ä¸€ä¸ªsectoræ ‡ç­¾ä¿¡æ¯ï¼Œä»¥æŸ¥çœ‹è¯¥sectorçš„çŠ¶æ€(sci)  */
     if (__ftl_sci_read(p_ftl, eun, sec, &sci) >= 0) {
          if ((sci.stat_start == __FTL_SECTOR_STAT_START) &&
              (sci.stat_data  == __FTL_SECTOR_STAT_DATA)) {
@@ -1237,7 +1237,7 @@ int __ftl_format_all (am_ftl_serv_t *p_ftl)
     Public fuctions
 *******************************************************************************/
 
-/* ¶ÁÈ¡Ò»¿éÊı¾İ£¬³¤¶È±ØĞëÎªÂß¼­¿é´óĞ¡  */
+/* è¯»å–ä¸€å—æ•°æ®ï¼Œé•¿åº¦å¿…é¡»ä¸ºé€»è¾‘å—å¤§å°  */
 int am_ftl_read (am_ftl_handle_t handle, unsigned int lbn, void *p_buf)
 {
     am_ftl_serv_t *p_ftl = (am_ftl_serv_t *)handle;

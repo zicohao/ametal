@@ -11,12 +11,12 @@
 *******************************************************************************/
 /**
  * \file
- * \brief DMAÄÚ´æµ½ÄÚ´æÀı³Ì£¬ÓÉDMAÇı¶¯²ãÊµÏÖ
+ * \brief DMAå†…å­˜åˆ°å†…å­˜ä¾‹ç¨‹ï¼Œç”±DMAé©±åŠ¨å±‚å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´«Êä³É¹¦Ôò´®¿Ú´òÓ¡"transfer success"£¬·ñÔò´òÓ¡"transfer failure"¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. ä¼ è¾“æˆåŠŸåˆ™ä¸²å£æ‰“å°"transfer success"ï¼Œå¦åˆ™æ‰“å°"transfer failure"ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_kl26_dr_dma_m2m.c src_kl26_dr_dma_m2m
  *
  * \internal
@@ -41,15 +41,15 @@
 extern void am_kl26_dma_inst_init (void);
 
 /**
- * \brief DMAÄÚ´æµ½ÄÚ´æ
- * \return ÎŞ
+ * \brief DMAå†…å­˜åˆ°å†…å­˜
+ * \return æ— 
  */
 void demo_amks16z_core_dr_dma_m2m_entry (void)
 {
 
     AM_DBG_INFO("demo amks16z_core hw dr dma m2m!\r\n");
 
-    /* DMA³õÊ¼»¯ */
+    /* DMAåˆå§‹åŒ– */
     am_kl26_dma_inst_init();
 
     demo_kl26_dr_dma_m2m_entry();

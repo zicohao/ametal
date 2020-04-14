@@ -12,8 +12,8 @@
 *******************************************************************************/
 /**
  * \file
- * \brief am824zb ËùÓĞÀı³Ìº¯ÊıÈë¿ÚÉùÃ÷£¬±¾ÎÄÖ»°üº¬bluetoothÏà¹Ødemo£¬
- *  ÆäËûdemoÇë²ÎÕÕam824_coreÖĞµÄdemo
+ * \brief am824zb æ‰€æœ‰ä¾‹ç¨‹å‡½æ•°å…¥å£å£°æ˜ï¼Œæœ¬æ–‡åªåŒ…å«bluetoothç›¸å…³demoï¼Œ
+ *  å…¶ä»–demoè¯·å‚ç…§am824_coreä¸­çš„demo
  * \sa demo_am824ble_entries.h
  *
  * \internal
@@ -23,20 +23,20 @@
  */
 
 /**
- * \brief ZM516X AM824BLE À¶ÑÀÄ£¿é×Ô¶¯²¨ÌØÂÊÀı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief ZM516X AM824BLE è“ç‰™æ¨¡å—è‡ªåŠ¨æ³¢ç‰¹ç‡ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_am824ble_std_zlg9021_baudrate_entry (void);
 
 /**
- * \brief AM824BLE À¶ÑÀÄ£¿é LED Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief AM824BLE è“ç‰™æ¨¡å— LED ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_am824ble_std_zlg9021_led_entry (void);
 

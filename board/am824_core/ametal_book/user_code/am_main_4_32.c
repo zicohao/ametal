@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥4.32
+ * \brief ç¨‹åºæ¸…å•4.32
  *
- * \note ¸ÃÀú³ÌĞèÒªÓÃµ½miniportÍØÕ¹°å
+ * \note è¯¥å†ç¨‹éœ€è¦ç”¨åˆ°miniportæ‹“å±•æ¿
  *
  * \internal
  * \par Modification history
@@ -27,16 +27,16 @@
 #include "am_vdebug.h"
 void timer_callback (void *p_arg)
 {
-    // ¶¨Ê±Ê±¼äµ½£¬µ÷ÓÃ»Øµ÷º¯ÊıÖ´ĞĞÓÃ»§×Ô¶¨ÒåµÄÈÎÎñ
+    // å®šæ—¶æ—¶é—´åˆ°ï¼Œè°ƒç”¨å›è°ƒå‡½æ•°æ‰§è¡Œç”¨æˆ·è‡ªå®šä¹‰çš„ä»»åŠ¡
 }
 
-static am_softimer_t timer;                            // ¶¨ÒåÒ»¸ö¶¨Ê±Æ÷ÊµÀı 
+static am_softimer_t timer;                            // å®šä¹‰ä¸€ä¸ªå®šæ—¶å™¨å®ä¾‹ 
 int am_main (void)
 {
-    am_softimer_init(&timer,timer_callback, NULL);     // ³õÊ¼»¯¶¨Ê±Æ÷
-    am_softimer_start(&timer, 5);                      // Æô¶¯¶¨Ê±Æ÷£¬¶¨Ê±Ê±¼äÎª5ms
+    am_softimer_init(&timer,timer_callback, NULL);     // åˆå§‹åŒ–å®šæ—¶å™¨
+    am_softimer_start(&timer, 5);                      // å¯åŠ¨å®šæ—¶å™¨ï¼Œå®šæ—¶æ—¶é—´ä¸º5ms
       // ...
-    am_softimer_stop(&timer);                          // Í£Ö¹¶¨Ê±Æ÷
+    am_softimer_stop(&timer);                          // åœæ­¢å®šæ—¶å™¨
     while(1) {
     }
 }

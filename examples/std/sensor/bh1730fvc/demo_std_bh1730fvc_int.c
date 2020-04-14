@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief ¹â´«¸ĞÆ÷ BH1730FVC Àı³Ì£¬Í¨¹ı´¥·¢Ä£Ê½ÊµÏÖ
+ * \brief å…‰ä¼ æ„Ÿå™¨ BH1730FVC ä¾‹ç¨‹ï¼Œé€šè¿‡è§¦å‘æ¨¡å¼å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. °´ÕÕÊı¾İ¸üĞÂËÙÂÊ£¬ÔÚÖĞ¶ÏÖĞ»ñÈ¡Êı¾İ£¬²¢Í¨¹ı´®¿Ú´òÓ¡
+ * - å®éªŒç°è±¡ï¼š
+ *   1. æŒ‰ç…§æ•°æ®æ›´æ–°é€Ÿç‡ï¼Œåœ¨ä¸­æ–­ä¸­è·å–æ•°æ®ï¼Œå¹¶é€šè¿‡ä¸²å£æ‰“å°
  *
  * \internal
  * \par Modification history
@@ -29,14 +29,14 @@
 #include "am_sensor_bh1730fvc.h"
 #include "am_delay.h"
 
-/** \brief BH1730FVC´«¸ĞÆ÷µÄID */
+/** \brief BH1730FVCä¼ æ„Ÿå™¨çš„ID */
 const static int __bh1730fvc_id[1] = {AM_BH1730FVC_CHAN_1};
 
-/** \breif BH1730FVC´«¸ĞÆ÷Êı¾İ */
+/** \breif BH1730FVCä¼ æ„Ÿå™¨æ•°æ® */
 static am_sensor_val_t __bh1730fvc_data[1];
 
 /**
- * \brief Í¨µÀ1£¬¹âÇ¿µÄ»Øµ÷º¯Êı
+ * \brief é€šé“1ï¼Œå…‰å¼ºçš„å›è°ƒå‡½æ•°
  */
 static void __pfn_light (void *p_arg, uint32_t trigger_src)
 {
@@ -53,21 +53,21 @@ static void __pfn_light (void *p_arg, uint32_t trigger_src)
 }
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_std_bh1730fvc_int_entry (am_sensor_handle_t handle)
 {
-    /* Ê¹ÄÜÁ½Â·Í¨µÀ */
+    /* ä½¿èƒ½ä¸¤è·¯é€šé“ */
     am_sensor_enable(handle, __bh1730fvc_id, 1, __bh1730fvc_data);
 
-    /* ÉèÖÃÍ¨µÀ0µÄ´¥·¢»Øµ÷º¯Êı */
+    /* è®¾ç½®é€šé“0çš„è§¦å‘å›è°ƒå‡½æ•° */
     am_sensor_trigger_cfg(handle,
                           __bh1730fvc_id[0],
                           AM_SENSOR_TRIGGER_DATA_READY,
                           __pfn_light,
                           (void*)handle);
 
-    /* ´ò¿ªÍ¨µÀ0µÄ´¥·¢Ä£Ê½ */
+    /* æ‰“å¼€é€šé“0çš„è§¦å‘æ¨¡å¼ */
     am_sensor_trigger_on(handle, __bh1730fvc_id[0]);
 }
 

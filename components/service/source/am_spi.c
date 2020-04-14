@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief SPI ¶Á/Ğ´º¯ÊıÊµÏÖ
+ * \brief SPI è¯»/å†™å‡½æ•°å®ç°
  * 
  * \internal
  * \par Modification history
@@ -24,18 +24,18 @@
 #include "am_wait.h"
 
 /**
- * \brief SPIÏûÏ¢Íê³É»Øµ÷º¯Êı
+ * \brief SPIæ¶ˆæ¯å®Œæˆå›è°ƒå‡½æ•°
  */
 static void __message_complete (void *p_arg)
 {
     am_wait_t *p_wait = (am_wait_t *)p_arg;
      
-    /* ½áÊøµÈ´ıĞòÁĞ */
+    /* ç»“æŸç­‰å¾…åºåˆ— */
     am_wait_done(p_wait);
 }
 
 /**
- * \brief ÏÈĞ´ºó¶Á
+ * \brief å…ˆå†™åè¯»
  */
 int am_spi_write_then_read (am_spi_device_t *p_dev,
                             const uint8_t   *p_txbuf,
@@ -99,7 +99,7 @@ int am_spi_write_then_read (am_spi_device_t *p_dev,
 }
 
 /**
- * \brief Ö´ĞĞÁ½´ÎĞ´²Ù×÷
+ * \brief æ‰§è¡Œä¸¤æ¬¡å†™æ“ä½œ
  */
 int am_spi_write_then_write (am_spi_device_t *p_dev,
                              const uint8_t   *p_txbuf0,

@@ -55,8 +55,8 @@ extern int am_kprintf(const char  *fmt_s, ...);
 
 #endif
 
-#define AM_USB_SHORT_GET_LOW(x)  (((uint16_t)x) & 0xFFU)                  /* »ñÈ¡¸ßµÍÎ» */
-#define AM_USB_SHORT_GET_HIGH(x) ((uint8_t)(((uint16_t)x) >> 8U) & 0xFFU) /* »ñÈ¡¸ßÎ». */
+#define AM_USB_SHORT_GET_LOW(x)  (((uint16_t)x) & 0xFFU)                  /* èŽ·å–é«˜ä½Žä½ */
+#define AM_USB_SHORT_GET_HIGH(x) ((uint8_t)(((uint16_t)x) >> 8U) & 0xFFU) /* èŽ·å–é«˜ä½. */
 
 #define AM_USB_LONG_GET_BYTE0(x) ((uint8_t)(((uint32_t)(x))) & 0xFFU)
 #define AM_USB_LONG_GET_BYTE1(x) ((uint8_t)(((uint32_t)(x)) >> 8U) & 0xFFU)

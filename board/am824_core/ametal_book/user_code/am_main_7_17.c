@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥7.17
+ * \brief ç¨‹åºæ¸…å•7.17
  *
  *
  * \internal
@@ -28,13 +28,13 @@
 int am_main(void)
 {
     am_hc595_handle_t  hc595_handle = am_miniport_595_inst_init();
-    uint8_t             data        = 0x01;        // ³õÊ¼»¯bit0Îª1£¬±íÊ¾µãÁÁLED0
+    uint8_t             data        = 0x01;        // åˆå§‹åŒ–bit0ä¸º1ï¼Œè¡¨ç¤ºç‚¹äº®LED0
     while(1) {
-       uint8_t temp = ~data;                       // dataÈ¡·´µãÁÁLED
+       uint8_t temp = ~data;                       // dataå–åç‚¹äº®LED
        am_hc595_send(hc595_handle, &temp, 1);
        am_mdelay(100);
        data <<= 1;
-       if (data == 0) {                            // 8´ÎÑ­»·½áÊø£¬ÖØĞÂ´Ó0x01¿ªÊ¼
+       if (data == 0) {                            // 8æ¬¡å¾ªç¯ç»“æŸï¼Œé‡æ–°ä»0x01å¼€å§‹
            data = 0x01;
        }
    }

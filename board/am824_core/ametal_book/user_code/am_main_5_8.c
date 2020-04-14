@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief �����嵥5.8
+ * \brief 程序清单5.8
  *
  *
  * \internal
@@ -27,13 +27,13 @@
 
 int am_main (void)
 {
-    // ����GPIOΪ���ģʽ������ʼ��Ϊ�ߵ�ƽ
+    // 配置GPIO为输出模式，并初始化为高电平
     am_gpio_pin_cfg(PIO0_20,AM_GPIO_OUTPUT_INIT_HIGH);
     while (1) {
-        am_gpio_set(PIO0_20,0);                    //����͵�ƽ������LED
-        am_mdelay(200);                            //����״̬����200ms
-        am_gpio_set(PIO0_20,1);                    //����ߵ�ƽ��Ϩ��LED
-        am_mdelay(200);                            //Ϩ��״̬����200ms
+        am_gpio_set(PIO0_20,0);                    //输出低电平，点亮LED
+        am_mdelay(200);                            //点亮状态保持200ms
+        am_gpio_set(PIO0_20,1);                    //输出高电平，熄灭LED
+        am_mdelay(200);                            //熄灭状态保持200ms
     }
 }
 

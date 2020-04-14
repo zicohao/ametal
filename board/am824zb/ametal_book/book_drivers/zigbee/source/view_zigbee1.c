@@ -56,11 +56,11 @@ int view_zigbee_init1 (view_zigbee_t *p_view_zigbee, am_zm516x_handle_t  zm516x_
     }
     view_init(&(p_view_zigbee->isa), __view_zigbee_update);
     p_view_zigbee->zm516x_handle = zm516x_handle;
-    // »ñÈ¡ZM516XÄ£¿éµÄÅäÖÃĞÅÏ¢
+    // è·å–ZM516Xæ¨¡å—çš„é…ç½®ä¿¡æ¯
     if (am_zm516x_cfg_info_get(zm516x_handle, &zm516x_cfg_info) != AM_OK) {
         return AM_ERROR;
     }
-    // ĞŞ¸ÄZM516XÄ£¿éµÄÅäÖÃĞÅÏ¢£¬±¾µØµØÖ·£º 0x2001£¬Ä¿±êµØÖ·£º0x2002
+    // ä¿®æ”¹ZM516Xæ¨¡å—çš„é…ç½®ä¿¡æ¯ï¼Œæœ¬åœ°åœ°å€ï¼š 0x2001ï¼Œç›®æ ‡åœ°å€ï¼š0x2002
     zm516x_cfg_info.my_addr[0]  = 0x20;
     zm516x_cfg_info.my_addr[1]  = 0x01;
     zm516x_cfg_info.dst_addr[0] = 0x20;
@@ -68,7 +68,7 @@ int view_zigbee_init1 (view_zigbee_t *p_view_zigbee, am_zm516x_handle_t  zm516x_
     if (am_zm516x_cfg_info_set(zm516x_handle, &zm516x_cfg_info) != AM_OK) {
         return AM_ERROR;
     }
-    // Ê¹ZM516XÄ£¿é¸´Î»£¬ÒÔÊ¹ÉèÖÃÉúĞ§
+    // ä½¿ZM516Xæ¨¡å—å¤ä½ï¼Œä»¥ä½¿è®¾ç½®ç”Ÿæ•ˆ
     am_zm516x_reset(zm516x_handle);
     am_mdelay(10);
     return 0;

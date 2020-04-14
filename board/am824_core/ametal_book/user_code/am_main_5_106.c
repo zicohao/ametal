@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥5.106
+ * \brief ç¨‹åºæ¸…å•5.106
  *
- * \note ¸ÃÀú³ÌĞèÒªÓÃµ½miniportÍØÕ¹°å,¿ÉÒÔÓÃLED¿´Ğ§¹û
+ * \note è¯¥å†ç¨‹éœ€è¦ç”¨åˆ°miniportæ‹“å±•æ¿,å¯ä»¥ç”¨LEDçœ‹æ•ˆæœ
  * 
  * \internal
  * \par Modification history
@@ -26,7 +26,7 @@
 #include "am_lpc82x_inst_init.h"
 static int __uart_txchar_get (void *p_arg, char *p_outchar)
 {
-    // *p_outchar = ? ¸³ÖµÎªĞèÒª·¢ËÍµÄÊı¾İ£¬Èç·¢ËÍ 0x55£¬*p_outchar = 0x55;
+    // *p_outchar = ? èµ‹å€¼ä¸ºéœ€è¦å‘é€çš„æ•°æ®ï¼Œå¦‚å‘é€ 0x55ï¼Œ*p_outchar = 0x55;
     *p_outchar = 0x55;
     return AM_OK;
 }

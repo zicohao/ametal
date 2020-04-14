@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief PORT Ó²¼ş²Ù×÷½Ó¿Ú
+ * \brief PORT ç¡¬ä»¶æ“ä½œæ¥å£
  *
  * \internal
  * \par Modification history
@@ -36,86 +36,86 @@
  */
  
 /**
- * \brief PORT ¶Ë¿Ú¼Ä´æÆ÷½á¹¹Ìå
+ * \brief PORT ç«¯å£å¯„å­˜å™¨ç»“æ„ä½“
  */
 typedef struct amhw_kl26_port_reg {
-    __IO uint32_t port_pcr[32];         /**< \brief ¶Ë¿Ú¹Ü½ÅÅäÖÃ¼Ä´æÆ÷ */
-    __O  uint32_t port_gpclr;           /**< \brief ¶Ë¿Ú¿ØÖÆµÍ×Ö½Ú¼Ä´æÆ÷ */
-    __O  uint32_t port_gpchr;           /**< \brief ¶Ë¿Ú¿ØÖÆ¸ß×Ö½Ú¼Ä´æÆ÷ */
-    __IO uint32_t reserve[6];           /**< \brief ¶Ë¿Ú±£ÁôÎ»*/
-    __IO uint32_t port_isfr;            /**< \brief ¶Ë¿ÚÖĞ×´Ì¬±êÖ¾¼Ä´æÆ÷ */
-    __IO uint32_t reserve1[983];        /**< \brief ¶Ë¿Ú±£ÁôÎ»*/
+    __IO uint32_t port_pcr[32];         /**< \brief ç«¯å£ç®¡è„šé…ç½®å¯„å­˜å™¨ */
+    __O  uint32_t port_gpclr;           /**< \brief ç«¯å£æ§åˆ¶ä½å­—èŠ‚å¯„å­˜å™¨ */
+    __O  uint32_t port_gpchr;           /**< \brief ç«¯å£æ§åˆ¶é«˜å­—èŠ‚å¯„å­˜å™¨ */
+    __IO uint32_t reserve[6];           /**< \brief ç«¯å£ä¿ç•™ä½*/
+    __IO uint32_t port_isfr;            /**< \brief ç«¯å£ä¸­çŠ¶æ€æ ‡å¿—å¯„å­˜å™¨ */
+    __IO uint32_t reserve1[983];        /**< \brief ç«¯å£ä¿ç•™ä½*/
 }amhw_kl26_port_reg_t;
 
 /**
- * \brief PORT ¼Ä´æÆ÷¿é½á¹¹Ìå
+ * \brief PORT å¯„å­˜å™¨å—ç»“æ„ä½“
  */
 typedef struct amhw_kl26_port {
 
-    amhw_kl26_port_reg_t port[5];            /**< \brief 5¸ö¶Ë¿Ú */
+    amhw_kl26_port_reg_t port[5];            /**< \brief 5ä¸ªç«¯å£ */
     
 } amhw_kl26_port_t;
 
 /**
- * \name  PORT_PCR¼Ä´æÆ÷Î»¶¨Òå
+ * \name  PORT_PCRå¯„å­˜å™¨ä½å®šä¹‰
  * @{
  */
  
-/** \brief  Òı½ÅÖĞ¶Ï×´Ì¬±êÖ¾Î» */
+/** \brief  å¼•è„šä¸­æ–­çŠ¶æ€æ ‡å¿—ä½ */
 #define KL26_PORT_PCR_ISF               (0x1UL << 24)
 
-/** \brief  DMAÉÏÉıÑØÖĞ¶ÏÇëÇó */
+/** \brief  DMAä¸Šå‡æ²¿ä¸­æ–­è¯·æ±‚ */
 #define AMHW_KL26_INT_DMA_RISING             (0x1UL)
 
-/** \brief  DMAÏÂ½µÑØÖĞ¶ÏÇëÇó */
+/** \brief  DMAä¸‹é™æ²¿ä¸­æ–­è¯·æ±‚ */
 #define AMHW_KL26_INT_DMA_FALLING            (0x2UL)
 
-/** \brief  DMAÉÏÉıÑØ»òÕßÏÂ½µÑØÖĞ¶ÏÇëÇó */
+/** \brief  DMAä¸Šå‡æ²¿æˆ–è€…ä¸‹é™æ²¿ä¸­æ–­è¯·æ±‚ */
 #define AMHW_KL26_INT_DMA_EITHER             (0x3UL)
 
-/** \brief  Òı½ÅµÍµçÆ½´¥·¢ÖĞ¶Ï */
+/** \brief  å¼•è„šä½ç”µå¹³è§¦å‘ä¸­æ–­ */
 #define AMHW_KL26_INT_LOW                    (0x8UL)
 
-/** \brief  Òı½ÅÉÏÉıÑØ´¥·¢ÖĞ¶Ï */
+/** \brief  å¼•è„šä¸Šå‡æ²¿è§¦å‘ä¸­æ–­ */
 #define AMHW_KL26_INT_RISING                 (0x9UL)
 
-/** \brief  Òı½ÅÏÂ½µÑØ´¥·¢ÖĞ¶Ï */
+/** \brief  å¼•è„šä¸‹é™æ²¿è§¦å‘ä¸­æ–­ */
 #define AMHW_KL26_INT_FALLING                (0xAUL)
 
-/** \brief  Òı½ÅÉÏÉıÑØ»òÕßÏÂ½µÑØ´¥·¢ÖĞ¶Ï */
+/** \brief  å¼•è„šä¸Šå‡æ²¿æˆ–è€…ä¸‹é™æ²¿è§¦å‘ä¸­æ–­ */
 #define AMHW_KL26_PINT_EITHER                (0xBUL)
 
-/** \brief  Òı½Å¸ßµçÆ½´¥·¢ÖĞ¶Ï */
+/** \brief  å¼•è„šé«˜ç”µå¹³è§¦å‘ä¸­æ–­ */
 #define AMHW_KL26_INT_HIGH                   (0xCUL)
 
-/** \brief  Òı½ÅÇ¿Çı¶¯ÄÜÁ¦ */
+/** \brief  å¼•è„šå¼ºé©±åŠ¨èƒ½åŠ› */
 #define KL26_PORT_DRIVE_HIGH            (0x1UL << 6)
 
-/** \brief  Òı½ÅÊäÈëÂË²¨ */
+/** \brief  å¼•è„šè¾“å…¥æ»¤æ³¢ */
 #define KL26_PORT_FILTER                (0x1UL << 4)
 
-/** \brief  Òı½Å×ª»»ËÙÂÊ */
+/** \brief  å¼•è„šè½¬æ¢é€Ÿç‡ */
 #define KL26_PORT_SLEW_SLOW             (0x1UL << 2)
 
-/** \brief  Òı½ÅÉÏ/ÏÂÀ­Ê¹ÄÜ */
+/** \brief  å¼•è„šä¸Š/ä¸‹æ‹‰ä½¿èƒ½ */
 #define KL26_PORT_PULL_EN               (0x1UL << 1)
 
-/** \brief  Òı½ÅÉÏÀ­Ñ¡Ôñ */
+/** \brief  å¼•è„šä¸Šæ‹‰é€‰æ‹© */
 #define KL26_PORT_PULL_SEL              (0x1UL << 0)
 
-/** \brief  Ä¬ÈÏGPIO¹¦ÄÜ */
+/** \brief  é»˜è®¤GPIOåŠŸèƒ½ */
 #define KL26_PORT_GPIO                  (0x1UL)
 
 /** @} */
 
 /**
- * \brief ¶ÁÒı½ÅÖĞ¶Ï×´Ì¬±êÖ¾Î»
+ * \brief è¯»å¼•è„šä¸­æ–­çŠ¶æ€æ ‡å¿—ä½
  *
- * \param[in] p_hw_port : Ö¸ÏòPORT¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] pin       : Òı½Å±àºÅ,ÖµÎª PIO* (#PIOA_0)
+ * \param[in] p_hw_port : æŒ‡å‘PORTå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] pin       : å¼•è„šç¼–å·,å€¼ä¸º PIO* (#PIOA_0)
  *
- * \retval 0 : Ã»ÓĞ´¥·¢ÖĞ¶Ï
- * \retval 1 : ´¥·¢ÁËÖĞ¶Ï
+ * \retval 0 : æ²¡æœ‰è§¦å‘ä¸­æ–­
+ * \retval 1 : è§¦å‘äº†ä¸­æ–­
  */
 am_static_inline
 int amhw_kl26_port_pin_isf_get (amhw_kl26_port_t *p_hw_port, int pin)
@@ -125,12 +125,12 @@ int amhw_kl26_port_pin_isf_get (amhw_kl26_port_t *p_hw_port, int pin)
 }
 
 /**
- * \brief ÇåÁãÒı½ÅÖĞ¶Ï×´Ì¬±êÖ¾Î»
+ * \brief æ¸…é›¶å¼•è„šä¸­æ–­çŠ¶æ€æ ‡å¿—ä½
  *
- * \param[in] p_hw_port : Ö¸ÏòPORT¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] pin       : Òı½Å±àºÅ,ÖµÎª PIO* (#PIOA_0)
+ * \param[in] p_hw_port : æŒ‡å‘PORTå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] pin       : å¼•è„šç¼–å·,å€¼ä¸º PIO* (#PIOA_0)
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_kl26_port_pin_isf_clr (amhw_kl26_port_t *p_hw_port, int pin)
@@ -139,13 +139,13 @@ void amhw_kl26_port_pin_isf_clr (amhw_kl26_port_t *p_hw_port, int pin)
 }
 
 /**
- * \brief ÉèÖÃÒı½ÅÖĞ¶Ï´¥·¢·½Ê½
+ * \brief è®¾ç½®å¼•è„šä¸­æ–­è§¦å‘æ–¹å¼
  *
- * \param[in] p_hw_port : Ö¸ÏòPORT¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] pin       : Òı½Å±àºÅ,ÖµÎª PIO* (#PIOA_0)
- * \param[in] irq       : ĞèÒªÉèÖÃµÄÒı½Å´¥·¢·½Ê½
+ * \param[in] p_hw_port : æŒ‡å‘PORTå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] pin       : å¼•è„šç¼–å·,å€¼ä¸º PIO* (#PIOA_0)
+ * \param[in] irq       : éœ€è¦è®¾ç½®çš„å¼•è„šè§¦å‘æ–¹å¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_kl26_port_pin_irq_cfg (amhw_kl26_port_t *p_hw_port, int pin, uint32_t irq)
@@ -154,12 +154,12 @@ void amhw_kl26_port_pin_irq_cfg (amhw_kl26_port_t *p_hw_port, int pin, uint32_t 
 }
 
 /**
- * \brief ½ûÄÜÒı½ÅÖĞ¶Ï
+ * \brief ç¦èƒ½å¼•è„šä¸­æ–­
  *
- * \param[in] p_hw_port : Ö¸ÏòPORT¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] pin       : Òı½Å±àºÅ,ÖµÎª PIO* (#PIOA_0)
+ * \param[in] p_hw_port : æŒ‡å‘PORTå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] pin       : å¼•è„šç¼–å·,å€¼ä¸º PIO* (#PIOA_0)
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_kl26_port_pin_irq_disable (amhw_kl26_port_t *p_hw_port, int pin)
@@ -168,13 +168,13 @@ void amhw_kl26_port_pin_irq_disable (amhw_kl26_port_t *p_hw_port, int pin)
 }
 
 /**
- * \brief ÉèÖÃÒı½Å¸´ÓÃ¹¦ÄÜ
+ * \brief è®¾ç½®å¼•è„šå¤ç”¨åŠŸèƒ½
  *
- * \param[in] p_hw_port : Ö¸ÏòPORT¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] pin       : Òı½Å±àºÅ,ÖµÎª PIO* (#PIOA_0)
- * \param[in] func      : ÒªÉèÖÃµÄÒı½Å¹¦ÄÜ
+ * \param[in] p_hw_port : æŒ‡å‘PORTå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] pin       : å¼•è„šç¼–å·,å€¼ä¸º PIO* (#PIOA_0)
+ * \param[in] func      : è¦è®¾ç½®çš„å¼•è„šåŠŸèƒ½
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_kl26_port_pin_func_cfg (amhw_kl26_port_t *p_hw_port, int pin, uint32_t func)
@@ -183,12 +183,12 @@ void amhw_kl26_port_pin_func_cfg (amhw_kl26_port_t *p_hw_port, int pin, uint32_t
 }
 
 /**
- * \brief ÉèÖÃÒı½ÅÇı¶¯ÄÜÁ¦Ç¿
+ * \brief è®¾ç½®å¼•è„šé©±åŠ¨èƒ½åŠ›å¼º
  *
- * \param[in] p_hw_port : Ö¸ÏòPORT¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] pin       : Òı½Å±àºÅ£¬ÖµÎª PIO* (#PIOA_0)
+ * \param[in] p_hw_port : æŒ‡å‘PORTå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] pin       : å¼•è„šç¼–å·ï¼Œå€¼ä¸º PIO* (#PIOA_0)
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_kl26_port_pin_drive_high (amhw_kl26_port_t *p_hw_port, int pin)
@@ -197,12 +197,12 @@ void amhw_kl26_port_pin_drive_high (amhw_kl26_port_t *p_hw_port, int pin)
 }
 
 /**
- * \brief ÉèÖÃÒı½ÅÇı¶¯ÄÜÁ¦Èõ
+ * \brief è®¾ç½®å¼•è„šé©±åŠ¨èƒ½åŠ›å¼±
  *
- * \param[in] p_hw_port : Ö¸ÏòPORT¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] pin       : Òı½Å±àºÅ,ÖµÎª PIO* (#PIOA_0)
+ * \param[in] p_hw_port : æŒ‡å‘PORTå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] pin       : å¼•è„šç¼–å·,å€¼ä¸º PIO* (#PIOA_0)
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_kl26_port_pin_drive_low (amhw_kl26_port_t *p_hw_port, int pin)
@@ -211,12 +211,12 @@ void amhw_kl26_port_pin_drive_low (amhw_kl26_port_t *p_hw_port, int pin)
 }
 
 /**
- * \brief ÉèÖÃÒı½ÅÊäÈëÂË²¨Ê¹ÄÜ
+ * \brief è®¾ç½®å¼•è„šè¾“å…¥æ»¤æ³¢ä½¿èƒ½
  *
- * \param[in] p_hw_port : Ö¸ÏòPORT¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] pin       : Òı½Å±àºÅ,ÖµÎª PIO* (#PIOA_0)
+ * \param[in] p_hw_port : æŒ‡å‘PORTå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] pin       : å¼•è„šç¼–å·,å€¼ä¸º PIO* (#PIOA_0)
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_kl26_port_pin_filter_enable (amhw_kl26_port_t *p_hw_port, int pin)
@@ -225,12 +225,12 @@ void amhw_kl26_port_pin_filter_enable (amhw_kl26_port_t *p_hw_port, int pin)
 }
 
 /**
- * \brief ÉèÖÃÒı½ÅÊäÈëÂË²¨½ûÄÜ
+ * \brief è®¾ç½®å¼•è„šè¾“å…¥æ»¤æ³¢ç¦èƒ½
  *
- * \param[in] p_hw_port : Ö¸ÏòPORT¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] pin       : Òı½Å±àºÅ,ÖµÎª PIO* (#PIOA_0)
+ * \param[in] p_hw_port : æŒ‡å‘PORTå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] pin       : å¼•è„šç¼–å·,å€¼ä¸º PIO* (#PIOA_0)
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_kl26_port_pin_filter_disable (amhw_kl26_port_t *p_hw_port, int pin)
@@ -239,12 +239,12 @@ void amhw_kl26_port_pin_filter_disable (amhw_kl26_port_t *p_hw_port, int pin)
 }
 
 /**
- * \brief ÉèÖÃÒı½Å×ª»»ËÙÂÊµÍ
+ * \brief è®¾ç½®å¼•è„šè½¬æ¢é€Ÿç‡ä½
  *
- * \param[in] p_hw_port : Ö¸ÏòPORT¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] pin       : Òı½Å±àºÅ,ÖµÎª PIO* (#PIOA_0)
+ * \param[in] p_hw_port : æŒ‡å‘PORTå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] pin       : å¼•è„šç¼–å·,å€¼ä¸º PIO* (#PIOA_0)
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_kl26_port_pin_slew_slow (amhw_kl26_port_t *p_hw_port, int pin)
@@ -253,12 +253,12 @@ void amhw_kl26_port_pin_slew_slow (amhw_kl26_port_t *p_hw_port, int pin)
 }
 
 /**
- * \brief ÉèÖÃÒı½Å×ª»»ËÙÂÊ¿ì
+ * \brief è®¾ç½®å¼•è„šè½¬æ¢é€Ÿç‡å¿«
  *
- * \param[in] p_hw_port : Ö¸ÏòPORT¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] pin       : Òı½Å±àºÅ,ÖµÎª PIO* (#PIOA_0)
+ * \param[in] p_hw_port : æŒ‡å‘PORTå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] pin       : å¼•è„šç¼–å·,å€¼ä¸º PIO* (#PIOA_0)
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_kl26_port_pin_slew_fast (amhw_kl26_port_t *p_hw_port, int pin)
@@ -267,12 +267,12 @@ void amhw_kl26_port_pin_slew_fast (amhw_kl26_port_t *p_hw_port, int pin)
 }
 
 /**
- * \brief ÉèÖÃÒı½ÅÉÏ/ÏÂÀ­Ê¹ÄÜ
+ * \brief è®¾ç½®å¼•è„šä¸Š/ä¸‹æ‹‰ä½¿èƒ½
  *
- * \param[in] p_hw_port : Ö¸ÏòPORT¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] pin       : Òı½Å±àºÅ,ÖµÎª PIO* (#PIOA_0)
+ * \param[in] p_hw_port : æŒ‡å‘PORTå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] pin       : å¼•è„šç¼–å·,å€¼ä¸º PIO* (#PIOA_0)
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_kl26_port_pin_pull_enable (amhw_kl26_port_t *p_hw_port, int pin)
@@ -282,12 +282,12 @@ void amhw_kl26_port_pin_pull_enable (amhw_kl26_port_t *p_hw_port, int pin)
 
 
 /**
- * \brief ÉèÖÃÒı½ÅÉÏ/ÏÂÀ­½ûÄÜ
+ * \brief è®¾ç½®å¼•è„šä¸Š/ä¸‹æ‹‰ç¦èƒ½
  *
- * \param[in] p_hw_port : Ö¸ÏòPORT¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] pin       : Òı½Å±àºÅ,ÖµÎª PIO* (#PIOA_0)
+ * \param[in] p_hw_port : æŒ‡å‘PORTå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] pin       : å¼•è„šç¼–å·,å€¼ä¸º PIO* (#PIOA_0)
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_kl26_port_pin_pull_disable (amhw_kl26_port_t *p_hw_port, int pin)
@@ -296,12 +296,12 @@ void amhw_kl26_port_pin_pull_disable (amhw_kl26_port_t *p_hw_port, int pin)
 }
 
 /**
- * \brief ÉèÖÃÒı½ÅÉÏÀ­
+ * \brief è®¾ç½®å¼•è„šä¸Šæ‹‰
  *
- * \param[in] p_hw_port : Ö¸ÏòPORT¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] pin       : Òı½Å±àºÅ,ÖµÎª PIO* (#PIOA_0)
+ * \param[in] p_hw_port : æŒ‡å‘PORTå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] pin       : å¼•è„šç¼–å·,å€¼ä¸º PIO* (#PIOA_0)
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_kl26_port_pin_pull_up (amhw_kl26_port_t *p_hw_port, int pin)
@@ -310,12 +310,12 @@ void amhw_kl26_port_pin_pull_up (amhw_kl26_port_t *p_hw_port, int pin)
 }
 
 /**
- * \brief ÉèÖÃÒı½ÅÏÂÀ­
+ * \brief è®¾ç½®å¼•è„šä¸‹æ‹‰
  *
- * \param[in] p_hw_port : Ö¸ÏòPORT¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] pin       : Òı½Å±àºÅ,ÖµÎª PIO* (#PIOA_0)
+ * \param[in] p_hw_port : æŒ‡å‘PORTå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] pin       : å¼•è„šç¼–å·,å€¼ä¸º PIO* (#PIOA_0)
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_kl26_port_pin_pull_down (amhw_kl26_port_t *p_hw_port, int pin)
@@ -324,14 +324,14 @@ void amhw_kl26_port_pin_pull_down (amhw_kl26_port_t *p_hw_port, int pin)
 }
 
 /**
- * \brief µÍ×Ö½ÚĞ´¶Ë¿Ú¹Ü½Åpin[15:0]
+ * \brief ä½å­—èŠ‚å†™ç«¯å£ç®¡è„špin[15:0]
  *
- * \param[in] p_hw_port : Ö¸ÏòPORT¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] pin       : Òı½Å±àºÅ,ÖµÎª PIO* (#PIOA_0)
- * \param[in] gpwe      : PORT¶Ë¿Ú¹Ü½ÅÊ¹ÄÜ
- * \param[in] gpwd      : ÒªÉèÖÃµÄPORT¶Ë¿Ú¹Ü½ÅÖµ
+ * \param[in] p_hw_port : æŒ‡å‘PORTå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] pin       : å¼•è„šç¼–å·,å€¼ä¸º PIO* (#PIOA_0)
+ * \param[in] gpwe      : PORTç«¯å£ç®¡è„šä½¿èƒ½
+ * \param[in] gpwd      : è¦è®¾ç½®çš„PORTç«¯å£ç®¡è„šå€¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_kl26_port_low_word_write (amhw_kl26_port_t *p_hw_port,
@@ -345,14 +345,14 @@ void amhw_kl26_port_low_word_write (amhw_kl26_port_t *p_hw_port,
 }
 
 /**
- * \brief ¸ß×Ö½ÚĞ´¶Ë¿Ú¹Ü½Åpin[31:16]
+ * \brief é«˜å­—èŠ‚å†™ç«¯å£ç®¡è„špin[31:16]
  *
- * \param[in] p_hw_port : Ö¸ÏòPORT¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] pin       : Òı½Å±àºÅ,ÖµÎª PIO* (#PIOA_0)
- * \param[in] gpwe      : PORT¶Ë¿Ú¹Ü½ÅÊ¹ÄÜ
- * \param[in] gpwd      : ÒªÉèÖÃµÄPORT¶Ë¿Ú¹Ü½ÅÖµ
+ * \param[in] p_hw_port : æŒ‡å‘PORTå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] pin       : å¼•è„šç¼–å·,å€¼ä¸º PIO* (#PIOA_0)
+ * \param[in] gpwe      : PORTç«¯å£ç®¡è„šä½¿èƒ½
+ * \param[in] gpwd      : è¦è®¾ç½®çš„PORTç«¯å£ç®¡è„šå€¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_kl26_port_high_word_write (amhw_kl26_port_t *p_hw_port,
@@ -366,12 +366,12 @@ void amhw_kl26_port_high_word_write (amhw_kl26_port_t *p_hw_port,
 }
 
 /**
- * \brief ¶Á¶Ë¿ÚÖĞ¶Ï×´Ì¬±êÖ¾
+ * \brief è¯»ç«¯å£ä¸­æ–­çŠ¶æ€æ ‡å¿—
  *
- * \param[in] p_hw_port : Ö¸ÏòPORT¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] pin       : Òı½Å±àºÅ,ÖµÎª PIO* (#PIOA_0)
+ * \param[in] p_hw_port : æŒ‡å‘PORTå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] pin       : å¼•è„šç¼–å·,å€¼ä¸º PIO* (#PIOA_0)
  *
- * \return ¶Ë¿ÚÖĞ¶Ï×´Ì¬±êÖ¾Öµ
+ * \return ç«¯å£ä¸­æ–­çŠ¶æ€æ ‡å¿—å€¼
  */
 am_static_inline
 int amhw_kl26_port_irq_flag_read (amhw_kl26_port_t *p_hw_port, int pin)
@@ -380,12 +380,12 @@ int amhw_kl26_port_irq_flag_read (amhw_kl26_port_t *p_hw_port, int pin)
 }
 
 /**
- * \brief ÇåÁã¶Ë¿ÚÖĞ¶Ï×´Ì¬±êÖ¾
+ * \brief æ¸…é›¶ç«¯å£ä¸­æ–­çŠ¶æ€æ ‡å¿—
  *
- * \param[in] p_hw_port : Ö¸ÏòPORT¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] pin       : Òı½Å±àºÅ,ÖµÎª PIO* (#PIOA_0)
+ * \param[in] p_hw_port : æŒ‡å‘PORTå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] pin       : å¼•è„šç¼–å·,å€¼ä¸º PIO* (#PIOA_0)
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_kl26_port_irq_flag_clr (amhw_kl26_port_t *p_hw_port, int pin)

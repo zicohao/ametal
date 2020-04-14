@@ -12,19 +12,19 @@
 
 /**
  * \file
- * \brief SCT 32 Î»¶¨Ê±Àý³Ì£¬Í¨¹ý HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief SCT 32 ä½å®šæ—¶ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æŽ¥å£å®žçŽ°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. LED0 ÒÔ 10Hz µÄÆµÂÊÉÁË¸¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. LED0 ä»¥ 10Hz çš„é¢‘çŽ‡é—ªçƒã€‚
  *
  * \note
- *    1. LED0 ÐèÒª¶Ì½Ó J9 ÌøÏßÃ±£¬²ÅÄÜ±» PIO0_20 ¿ØÖÆ£»
- *    2. ÓÉÓÚ SCT Ä¬ÈÏ×÷ÎªÇý¶¯·äÃùÆ÷£¬Ê¹ÓÃ²âÊÔ±¾ Demo Ç°ÐèÒª½« am_prj_config.h ÖÐ
- *       µÄ AM_CFG_BUZZER_ENABLE ¶¨ÒåÎª 0£¬²»Ê¹ÓÃ·äÃùÆ÷£»
- *    3. ±¾Àý³ÌÊ¹ÓÃÁË SCT ÊÂ¼þ 0£¬ÓÃÓÚ²úÉúÖÜÆÚÐÔÖÐ¶Ï£¬Ê¹ÓÃÆ¥ÅäÍ¨µÀ 0£¬ÊÂ¼þ·¢Éú¼ÆÊýÆ÷
- *       ÇåÁã¡£
+ *    1. LED0 éœ€è¦çŸ­æŽ¥ J9 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIO0_20 æŽ§åˆ¶ï¼›
+ *    2. ç”±äºŽ SCT é»˜è®¤ä½œä¸ºé©±åŠ¨èœ‚é¸£å™¨ï¼Œä½¿ç”¨æµ‹è¯•æœ¬ Demo å‰éœ€è¦å°† am_prj_config.h ä¸­
+ *       çš„ AM_CFG_BUZZER_ENABLE å®šä¹‰ä¸º 0ï¼Œä¸ä½¿ç”¨èœ‚é¸£å™¨ï¼›
+ *    3. æœ¬ä¾‹ç¨‹ä½¿ç”¨äº† SCT äº‹ä»¶ 0ï¼Œç”¨äºŽäº§ç”Ÿå‘¨æœŸæ€§ä¸­æ–­ï¼Œä½¿ç”¨åŒ¹é…é€šé“ 0ï¼Œäº‹ä»¶å‘ç”Ÿè®¡æ•°å™¨
+ *       æ¸…é›¶ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am824_hw_sct_1_32bit_timing.c src_am824_hw_sct_1_32bit_timing
  *
  * \internal
@@ -47,14 +47,14 @@
 #include "demo_nxp_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am824_core_hw_sct_1_32bit_timing_entry (void)
 {
     uint32_t frq = 0;
   
     AM_DBG_INFO("demo am824_core hw sct 1_32bit timing\r\n");
-    /* Æ½Ì¨³õÊ¼»¯ */
+    /* å¹³å°åˆå§‹åŒ– */
     amhw_lpc82x_clk_periph_enable(AMHW_LPC82X_CLK_SCT);
     amhw_lpc82x_syscon_periph_reset(AMHW_LPC82X_RESET_SCT);
 

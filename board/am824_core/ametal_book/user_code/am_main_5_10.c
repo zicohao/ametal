@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief �����嵥5.10
+ * \brief 程序清单5.10
  *
  *
  * \internal
@@ -26,10 +26,10 @@
 #include "am_delay.h"
 int am_main (void)
 {
-    // ��ʼ��PIO0_24Ϊ���ģʽ������ʼ��Ϊ�ߵ�ƽ���رշ�����
+    // 初始化PIO0_24为输出模式，并初始化为高电平，关闭蜂鸣器
     am_gpio_pin_cfg(PIO0_24, AM_GPIO_OUTPUT_INIT_HIGH);
     while(1) {
-        am_gpio_toggle(PIO0_24);                    // ��תPIO0_24��״̬
+        am_gpio_toggle(PIO0_24);                    // 翻转PIO0_24的状态
         am_udelay(500);
     }
 }

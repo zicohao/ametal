@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief KL26 TPM ÓÃÓÚPWMÊä³ö ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief KL26 TPM ç”¨äºPWMè¾“å‡º ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_fsl_hwconfig_tpm2_pwm.c
  * 
  * \internal
@@ -33,46 +33,46 @@
  * @{
  */
 
-/** \brief TPM2ÓÃÓÚPWMÊä³ö Æ½Ì¨³õÊ¼»¯ */
+/** \brief TPM2ç”¨äºPWMè¾“å‡º å¹³å°åˆå§‹åŒ– */
 void __kl26_plfm_tpm2_pwm_init (void)
 {
     amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_TPM2);
     amhw_kl26_sim_tpm_src_set(KL26_SIM_TPMSRC_PLLFLLCLK);
 }
 
-/** \brief ½â³ıTPM2Æ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤TPM2å¹³å°åˆå§‹åŒ– */
 void __kl26_plfm_tpm2_pwm_deinit (void)
 {
     amhw_kl26_sim_periph_clock_disable(KL26_SIM_SCGC_TPM2);
 }
 
-/** \brief TPM2ÓÃÓÚPWM¹¦ÄÜµÄÒı½ÅÅäÖÃĞÅÏ¢ÁĞ±í */
+/** \brief TPM2ç”¨äºPWMåŠŸèƒ½çš„å¼•è„šé…ç½®ä¿¡æ¯åˆ—è¡¨ */
 am_fsl_tpm_pwm_ioinfo_t __g_tpm2_pwm_ioinfo_list[] = {
-    {PIOE_22, PIOE_22_TPM2_CH0, PIOE_22_GPIO | AM_GPIO_INPUT},  /**< \brief Í¨µÀ0 */
-    {PIOE_23, PIOE_23_TPM2_CH1, PIOE_23_GPIO | AM_GPIO_INPUT},  /**< \brief Í¨µÀ1 */
+    {PIOE_22, PIOE_22_TPM2_CH0, PIOE_22_GPIO | AM_GPIO_INPUT},  /**< \brief é€šé“0 */
+    {PIOE_23, PIOE_23_TPM2_CH1, PIOE_23_GPIO | AM_GPIO_INPUT},  /**< \brief é€šé“1 */
 };
 
-/** \brief TPM2ÓÃÓÚPWMÉè±¸ĞÅÏ¢ */
+/** \brief TPM2ç”¨äºPWMè®¾å¤‡ä¿¡æ¯ */
 const am_fsl_tpm_pwm_devinfo_t  __g_tpm2_pwm_devinfo = {
-    KL26_TPM2,                  /**< \brief Ö¸ÏòTPM2¼Ä´æÆ÷¿éµÄÖ¸Õë */
-    2,                               /**< \brief 2¸öPWMÊä³öÍ¨µÀ */
-    CLK_TPM2,                        /**< \brief Ê±ÖÓºÅ */
+    KL26_TPM2,                  /**< \brief æŒ‡å‘TPM2å¯„å­˜å™¨å—çš„æŒ‡é’ˆ */
+    2,                               /**< \brief 2ä¸ªPWMè¾“å‡ºé€šé“ */
+    CLK_TPM2,                        /**< \brief æ—¶é’Ÿå· */
     &__g_tpm2_pwm_ioinfo_list[0],
-    __kl26_plfm_tpm2_pwm_init,       /**< \brief Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __kl26_plfm_tpm2_pwm_deinit      /**< \brief Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    __kl26_plfm_tpm2_pwm_init,       /**< \brief å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __kl26_plfm_tpm2_pwm_deinit      /**< \brief å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 };
 
-/** \brief  TPM2 ÓÃÓÚPWMÉè±¸¶¨Òå */
+/** \brief  TPM2 ç”¨äºPWMè®¾å¤‡å®šä¹‰ */
 am_fsl_tpm_pwm_dev_t  __g_tpm2_pwm_dev;
 
-/** \brief tpm2 Timer ÊµÀı³õÊ¼»¯£¬»ñµÃTimer±ê×¼·şÎñ¾ä±ú */
+/** \brief tpm2 Timer å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—Timeræ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_pwm_handle_t am_kl26_tpm2_pwm_inst_init (void)
 {
     return am_fsl_tpm_pwm_init(&__g_tpm2_pwm_dev,
                                &__g_tpm2_pwm_devinfo);
 }
 
-/** \brief tpm2 pwm ÊµÀı½â³õÊ¼»¯ */
+/** \brief tpm2 pwm å®ä¾‹è§£åˆå§‹åŒ– */
 void am_kl26_tpm2_pwm_inst_deinit (am_pwm_handle_t handle)
 {
     am_fsl_tpm_pwm_deinit(handle);

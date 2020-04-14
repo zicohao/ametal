@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief bootloader kboot KinetisFlashTool ÃüÁî½âÎöÄ£¿é
+ * \brief bootloader kboot KinetisFlashTool å‘½ä»¤è§£ææ¨¡å—
  *
- * Ö÷ÒªÊÇÍ¨¹ı×´Ì¬½âÎöÉÏÎ»»úKinetisFlashTool·¢ËÍ¹ıÀ´µÄµÄpacket£¬packet°üº¬ÃüÁî£¬Í¨¹ıÃüÁîÖ´ĞĞÏàÓ¦µÄhandleº¯Êı
+ * ä¸»è¦æ˜¯é€šè¿‡çŠ¶æ€è§£æä¸Šä½æœºKinetisFlashToolå‘é€è¿‡æ¥çš„çš„packetï¼ŒpacketåŒ…å«å‘½ä»¤ï¼Œé€šè¿‡å‘½ä»¤æ‰§è¡Œç›¸åº”çš„handleå‡½æ•°
  *
  * \internal
  * \par Modification history
@@ -33,16 +33,16 @@
 typedef struct am_boot_kft_command_dev  am_boot_kft_command_dev_t;
 
 /**
- * \name ÃüÁî×´Ì¬»ú×´Ì¬
+ * \name å‘½ä»¤çŠ¶æ€æœºçŠ¶æ€
  * @{
  */
-#define  AM_BOOT_KFT_COMMAND_STATE_COMMAND_PHASE  0   /** \BRIEF ÃüÁî½×¶Î */
-#define  AM_BOOT_KFT_COMMAND_STATE_DATA_PHASE     1   /** \brief Êı¾İ½×¶Î */
+#define  AM_BOOT_KFT_COMMAND_STATE_COMMAND_PHASE  0   /** \BRIEF å‘½ä»¤é˜¶æ®µ */
+#define  AM_BOOT_KFT_COMMAND_STATE_DATA_PHASE     1   /** \brief æ•°æ®é˜¶æ®µ */
 /** @} */
 
 
 /**
- * \brief ÃüÁî´¦Àí³ÌĞòÌõÄ¿µÄĞÎÊ½
+ * \brief å‘½ä»¤å¤„ç†ç¨‹åºæ¡ç›®çš„å½¢å¼
  */
 typedef struct am_boot_kft_command_handler_entry
 {
@@ -58,22 +58,22 @@ typedef struct am_boot_kft_command_handler_entry
 
 
 /**
- * \brief ÃüÁî´¦ÀíÆ÷Êı¾İ¸ñÊ½
+ * \brief å‘½ä»¤å¤„ç†å™¨æ•°æ®æ ¼å¼
  */
 typedef struct am_boot_kft_command_processor_data
 {
-    int32_t      state;                /** \brief µ±Ç°×´Ì¬»ú×´Ì¬  */
-    uint8_t     *p_packet;             /** \brief Ö¸ÏòÕıÔÚ´¦ÀíµÄÊı¾İ°üµÄÖ¸Õë  */
-    uint32_t     packet_length;        /** \brief ÕıÔÚ´¦ÀíµÄ°üµÄ³¤¶È  */
+    int32_t      state;                /** \brief å½“å‰çŠ¶æ€æœºçŠ¶æ€  */
+    uint8_t     *p_packet;             /** \brief æŒ‡å‘æ­£åœ¨å¤„ç†çš„æ•°æ®åŒ…çš„æŒ‡é’ˆ  */
+    uint32_t     packet_length;        /** \brief æ­£åœ¨å¤„ç†çš„åŒ…çš„é•¿åº¦  */
     struct data_phase {
-        uint8_t *p_data;               /** \brief Êı¾İ½×¶ÎµÄÊı¾İ  */
-        uint32_t count;                /** \brief Ê£Óà¼ÆÊıÉú²ú/Ïû·Ñ  */
-        uint32_t address;              /** \brief Êı¾İ½×¶ÎµÄµØÖ·  */
-        uint32_t data_bytes_available; /** \brief Êı¾İÖ¸Õë¿ÉÓÃµÄ×Ö½ÚÊı */
-        uint8_t  command_tag;          /** \brief ÔËĞĞÊı¾İ½×¶ÎµÄÃüÁî±êÖ¾  */
-        uint8_t  option;               /** \brief ÌØÊâÃüÁîÑ¡Ïî  */
+        uint8_t *p_data;               /** \brief æ•°æ®é˜¶æ®µçš„æ•°æ®  */
+        uint32_t count;                /** \brief å‰©ä½™è®¡æ•°ç”Ÿäº§/æ¶ˆè´¹  */
+        uint32_t address;              /** \brief æ•°æ®é˜¶æ®µçš„åœ°å€  */
+        uint32_t data_bytes_available; /** \brief æ•°æ®æŒ‡é’ˆå¯ç”¨çš„å­—èŠ‚æ•° */
+        uint8_t  command_tag;          /** \brief è¿è¡Œæ•°æ®é˜¶æ®µçš„å‘½ä»¤æ ‡å¿—  */
+        uint8_t  option;               /** \brief ç‰¹æ®Šå‘½ä»¤é€‰é¡¹  */
     } data_phase;
-    /** \brief Ö¸ÏòÕıÔÚ´¦ÀíµÄÊı¾İ°üµÄÊ÷Á¢³ÌĞò±íÌõÄ¿µÄÖ¸Õë  */
+    /** \brief æŒ‡å‘æ­£åœ¨å¤„ç†çš„æ•°æ®åŒ…çš„æ ‘ç«‹ç¨‹åºè¡¨æ¡ç›®çš„æŒ‡é’ˆ  */
     const am_boot_kft_command_handler_entry_t *p_handler_entry;
 }am_boot_kft_command_processor_data_t;
 
@@ -99,7 +99,7 @@ typedef struct am_boot_kft_command_dev {
 }am_boot_kft_command_dev_t;
 
 /**
- * \brief bootloader ÃüÁîÄ£¿é³õÊ¼»¯
+ * \brief bootloader å‘½ä»¤æ¨¡å—åˆå§‹åŒ–
  */
 am_boot_kft_command_handle_t am_boot_kft_command_init(am_boot_kft_packet_handle_t   packet_handle,
                                                       am_boot_mem_handle_t          memory_handle,

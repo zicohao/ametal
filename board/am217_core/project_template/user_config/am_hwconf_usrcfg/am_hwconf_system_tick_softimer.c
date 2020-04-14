@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ÏµÍ³µÎ´ğ¡¢Èí¼ş¶¨Ê±Æ÷ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief ç³»ç»Ÿæ»´ç­”ã€è½¯ä»¶å®šæ—¶å™¨ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_system_tick_softimer.c
  *
  * \internal
@@ -35,44 +35,44 @@
  */
 
 /**
- * \brief ÉèÖÃÏµÍ³µÎ´ğµÄÆµÂÊ£¬Ä¬ÈÏ 1KHz
+ * \brief è®¾ç½®ç³»ç»Ÿæ»´ç­”çš„é¢‘ç‡ï¼Œé»˜è®¤ 1KHz
  *
- * ÏµÍ³µÎ´ğµÄÊ¹ÓÃÏê¼û am_system.h
+ * ç³»ç»Ÿæ»´ç­”çš„ä½¿ç”¨è¯¦è§ am_system.h
  */
 #define __SYSTEM_TICK_RATE      1000
 
-/** \brief Ê¹ÓÃµÄ¶¨Ê±Æ÷µÄÖĞ¶ÏºÅ */
+/** \brief ä½¿ç”¨çš„å®šæ—¶å™¨çš„ä¸­æ–­å· */
 #define __TIMER_INUM            INUM_TIM4
 
-/** \brief Ê¹ÓÃ¶¨Ê±Æ÷Í¨µÀ 0 */
+/** \brief ä½¿ç”¨å®šæ—¶å™¨é€šé“ 0 */
 #define __TIMER_CHAN            0
 
-/** \brief ¶¨Ê±Æ÷»Øµ÷º¯Êı£¬ÓÃÓÚ²úÉúÏµÍ³µÎ´ğ */
+/** \brief å®šæ—¶å™¨å›è°ƒå‡½æ•°ï¼Œç”¨äºäº§ç”Ÿç³»ç»Ÿæ»´ç­” */
 am_local void __system_tick_callback (void *p_arg)
 {
-    am_system_module_tick();       /* Çı¶¯ÏµÍ³µÎ´ğ */
+    am_system_module_tick();       /* é©±åŠ¨ç³»ç»Ÿæ»´ç­” */
 }
 
-/** \brief ¶¨Ê±Æ÷»Øµ÷º¯Êı£¬ÓÃÓÚ²úÉúÏµÍ³µÎ´ğ£¬Çı¶¯Èí¼ş¶¨Ê±Æ÷µÈµÈ */
+/** \brief å®šæ—¶å™¨å›è°ƒå‡½æ•°ï¼Œç”¨äºäº§ç”Ÿç³»ç»Ÿæ»´ç­”ï¼Œé©±åŠ¨è½¯ä»¶å®šæ—¶å™¨ç­‰ç­‰ */
 am_local void __system_tick_softimer_callback (void *p_arg)
 {
-    am_system_module_tick();       /* Çı¶¯ÏµÍ³µÎ´ğ */
-    am_softimer_module_tick();     /* Çı¶¯Èí¼ş¶¨Ê±Æ÷ */
+    am_system_module_tick();       /* é©±åŠ¨ç³»ç»Ÿæ»´ç­” */
+    am_softimer_module_tick();     /* é©±åŠ¨è½¯ä»¶å®šæ—¶å™¨ */
 }
 
-/** \brief ÏµÍ³µÎ´ğÊµÀı³õÊ¼»¯(²»Ê¹ÓÃÈí¼ş¶¨Ê±Æ÷) */
+/** \brief ç³»ç»Ÿæ»´ç­”å®ä¾‹åˆå§‹åŒ–(ä¸ä½¿ç”¨è½¯ä»¶å®šæ—¶å™¨) */
 am_timer_handle_t am_system_tick_inst_init (void)
 {
     am_timer_handle_t        handle;
    
-    /* »ñÈ¡¶¨Ê±Æ÷ÆµÂÊ */
+    /* è·å–å®šæ—¶å™¨é¢‘ç‡ */
 	  uint32_t freq = 0;
 
     handle = am_zlg217_tim4_timing_inst_init();
 
     if (NULL != handle) {
 
-        /* ½«¶¨Ê±Æ÷µÄÖĞ¶ÏÓÅÏÈ¼¶ÉèÖÃÎª×îµÍ */
+        /* å°†å®šæ—¶å™¨çš„ä¸­æ–­ä¼˜å…ˆçº§è®¾ç½®ä¸ºæœ€ä½ */
         am_arm_nvic_priority_set(__TIMER_INUM, 0x03, 0x03);
 
         am_timer_callback_set(handle,
@@ -92,22 +92,22 @@ am_timer_handle_t am_system_tick_inst_init (void)
     return handle;
 }
 
-/** \brief ÏµÍ³µÎ´ğÊµÀı³õÊ¼»¯(Ê¹ÓÃÈí¼ş¶¨Ê±Æ÷) */
+/** \brief ç³»ç»Ÿæ»´ç­”å®ä¾‹åˆå§‹åŒ–(ä½¿ç”¨è½¯ä»¶å®šæ—¶å™¨) */
 am_timer_handle_t am_system_tick_softimer_inst_init (void)
 {
     am_timer_handle_t        handle;
 
-    /* »ñÈ¡¶¨Ê±Æ÷ÆµÂÊ */
+    /* è·å–å®šæ—¶å™¨é¢‘ç‡ */
 	  uint32_t freq = 0;
 
     handle = am_zlg217_tim4_timing_inst_init();
 
     if (NULL != handle) {
 
-        /* ³õÊ¼»¯Èí¼ş¶¨Ê±Æ÷ */
+        /* åˆå§‹åŒ–è½¯ä»¶å®šæ—¶å™¨ */
         am_softimer_module_init(__SYSTEM_TICK_RATE);
 
-        /* ½«¶¨Ê±Æ÷µÄÖĞ¶ÏÓÅÏÈ¼¶ÉèÖÃÎª×îµÍ */
+        /* å°†å®šæ—¶å™¨çš„ä¸­æ–­ä¼˜å…ˆçº§è®¾ç½®ä¸ºæœ€ä½ */
         am_arm_nvic_priority_set(__TIMER_INUM, 0x03, 0x03);
 
         am_timer_callback_set(handle,

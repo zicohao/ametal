@@ -12,19 +12,19 @@
 
 /**
  * \file
- * \brief LED Àý³Ì£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief LED ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. ¶Ì½Ó J9 ºÍ J10 ÌøÏßÃ±£¬PIOC_9 ºÍ PIOA_8 ·Ö±ð¿ØÖÆ LED0 ºÍ LED1¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. çŸ­æŽ¥ J9 å’Œ J10 è·³çº¿å¸½ï¼ŒPIOC_9 å’Œ PIOA_8 åˆ†åˆ«æŽ§åˆ¶ LED0 å’Œ LED1ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. LED0 ºÍ LED1 ÒÔ 0.3s µÄÊ±¼ä¼ä¸ôÉÁË¸¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. LED0 å’Œ LED1 ä»¥ 0.3s çš„æ—¶é—´é—´éš”é—ªçƒã€‚
  *
  * \note
- *    ²âÊÔ±¾ Demo ±ØÐëÔÚ am_prj_config.h ÄÚ½« AM_CFG_LED_ENABLE ¶¨ÒåÎª 1
- *    µ«ÕâÐ©ºêÒÑ¾­Ä¬ÈÏÅäÖÃÎª 1£¬ ÓÃ»§²»±ØÔÙ´ÎÅäÖÃ£»
+ *    æµ‹è¯•æœ¬ Demo å¿…é¡»åœ¨ am_prj_config.h å†…å°† AM_CFG_LED_ENABLE å®šä¹‰ä¸º 1
+ *    ä½†è¿™äº›å®å·²ç»é»˜è®¤é…ç½®ä¸º 1ï¼Œ ç”¨æˆ·ä¸å¿…å†æ¬¡é…ç½®ï¼›
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_zmf159_std_led.c src_std_led
  *
  * \internal
@@ -46,7 +46,7 @@
 #include "demo_std_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_zmf159_core_std_led_entry (void)
 {

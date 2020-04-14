@@ -11,17 +11,17 @@
 *******************************************************************************/
 /**
  * \file
- * \brief KL26ÏµÍ³Ä£Ê½ÅäÖÃÑİÊ¾Àı³Ì£¬Í¨¹ıPMUÇı¶¯²ãÊµÏÖ
+ * \brief KL26ç³»ç»Ÿæ¨¡å¼é…ç½®æ¼”ç¤ºä¾‹ç¨‹ï¼Œé€šè¿‡PMUé©±åŠ¨å±‚å®ç°
  *
- * - ²Ù×÷²½Öè:
- *   1. ¸ù¾İ´®¿ÚÊä³öÄÚÈİÌáÊ¾½øĞĞ²Ù×÷£»
- *   2. ²¨ÌØÂÊ£º115200¡£
+ * - æ“ä½œæ­¥éª¤:
+ *   1. æ ¹æ®ä¸²å£è¾“å‡ºå†…å®¹æç¤ºè¿›è¡Œæ“ä½œï¼›
+ *   2. æ³¢ç‰¹ç‡ï¼š115200ã€‚
  *
- * - ×¢Òâ:
- *   1. ½øÈëlls, vllsÖ®Ç°£¬lptmrÒ²»á¶¨Ê±»½ĞÑMCU£¬
- *   2. ÆäÖĞvllsÄ£Ê½»½ĞÑ»á¸´Î»
+ * - æ³¨æ„:
+ *   1. è¿›å…¥lls, vllsä¹‹å‰ï¼Œlptmrä¹Ÿä¼šå®šæ—¶å”¤é†’MCUï¼Œ
+ *   2. å…¶ä¸­vllsæ¨¡å¼å”¤é†’ä¼šå¤ä½
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_kl26_std_pmu_lowpower.c src_kl26_std_pmu_lowpower
  *
  * \internal
@@ -58,7 +58,7 @@
 #define UART_BAUDRATE  115200
 
 
-/* »ñÈ¡Ò»¸ö×Ö·û */
+/* è·å–ä¸€ä¸ªå­—ç¬¦ */
 #define GET_CHAR(c) amhw_fsl_uart_poll_receive(KL26_UART0, &(c), 1)
 
 void current_mode_print (void);
@@ -68,7 +68,7 @@ void uart0_baud_config (void);
 
 am_uart_handle_t __g_handle;
 /**
- * \brief °´¼üÖĞ¶Ï»Øµ÷º¯Êı
+ * \brief æŒ‰é”®ä¸­æ–­å›è°ƒå‡½æ•°
  */
 void gpio_irq_handle (void *p_arg)
 {
@@ -77,9 +77,9 @@ void gpio_irq_handle (void *p_arg)
 }
 
 /**
- * \brief  ¶¨Ê±Æ÷0»Øµ÷º¯Êı
- * \param[in] p_arg : ÓÃ»§×Ô¶¨Òå²ÎÊı£¬ÓÉam_timer_callback_set() º¯Êı´«µİ¡£
- * \return  ÎŞ
+ * \brief  å®šæ—¶å™¨0å›è°ƒå‡½æ•°
+ * \param[in] p_arg : ç”¨æˆ·è‡ªå®šä¹‰å‚æ•°ï¼Œç”±am_timer_callback_set() å‡½æ•°ä¼ é€’ã€‚
+ * \return  æ— 
  */
 static void __lptmr_timing_callback (void *p_arg)
 {
@@ -87,7 +87,7 @@ static void __lptmr_timing_callback (void *p_arg)
 }
 
 /**
- * \brief Ö÷º¯Êı
+ * \brief ä¸»å‡½æ•°
  */
 void demo_kl26_std_pmu_lowpower_entry (void)
 {
@@ -97,11 +97,11 @@ void demo_kl26_std_pmu_lowpower_entry (void)
 
     am_timer_handle_t lptmr_timing_handle = NULL;
 
-    /*LLWU»½ĞÑÔ´ĞÅÏ¢ */
+    /*LLWUå”¤é†’æºä¿¡æ¯ */
     am_kl26_pmu_llwu_src_info_t llwu_src_info[2];
 
 
-    /* ÅäÖÃUART0 ²¨ÌØÂÊ */
+    /* é…ç½®UART0 æ³¢ç‰¹ç‡ */
     uart0_baud_config();
     
     am_kprintf("\r\nChip rest...\r\n");
@@ -114,7 +114,7 @@ void demo_kl26_std_pmu_lowpower_entry (void)
     am_mdelay(1000);
     am_led_off(0);
 
-    /* ÅäÖÃ»½ĞÑÒı½Å PTB0 ÏÂ½µÑØLLWU »½ĞÑ */
+    /* é…ç½®å”¤é†’å¼•è„š PTB0 ä¸‹é™æ²¿LLWU å”¤é†’ */
     am_kl26_pmu_llwu_src_pin_mkinfo(&llwu_src_info[0],
                                     AMHW_FSL_LLWU_PIN_5_PTB0,
                                     AMHW_FSL_LLWU_PIN_ARG_FALLING);
@@ -123,7 +123,7 @@ void demo_kl26_std_pmu_lowpower_entry (void)
     
 
 
-    /* ÅäÖÃ»½ĞÑµÄÄÚ²¿Ä£¿éÎªLPTMR ¶¨Ê±»½ĞÑ */
+    /* é…ç½®å”¤é†’çš„å†…éƒ¨æ¨¡å—ä¸ºLPTMR å®šæ—¶å”¤é†’ */
     am_kl26_pmu_llwu_src_module_mkinfo(&llwu_src_info[1],
                                        AMHW_FSL_LLWU_MODULE_0_LPTMR0,
                                        AMHW_FSL_LLWU_MODULE_ARG_ENABLE);
@@ -137,11 +137,11 @@ void demo_kl26_std_pmu_lowpower_entry (void)
 
     am_timer_callback_set(lptmr_timing_handle, 0, __lptmr_timing_callback, NULL);
 
-    /* Éè¶¨ÖĞ¶ÏÆµÂÊ 1Hz
+    /* è®¾å®šä¸­æ–­é¢‘ç‡ 1Hz
      */
     am_timer_enable(lptmr_timing_handle, 0, clk_frequency);
 
-    /* ÅäÖÃÒ»¸öÆÕÍ¨°´¼üÖĞ¶Ï£¬µÈ´ıºÍÍ£Ö¹Ä£Ê½»½ĞÑ */
+    /* é…ç½®ä¸€ä¸ªæ™®é€šæŒ‰é”®ä¸­æ–­ï¼Œç­‰å¾…å’Œåœæ­¢æ¨¡å¼å”¤é†’ */
     am_gpio_pin_cfg(PIOC_0, AM_GPIO_INPUT);
     am_gpio_trigger_connect(PIOC_0, gpio_irq_handle, (void*)0);
     am_gpio_trigger_cfg(PIOC_0, AM_GPIO_TRIGGER_FALL);
@@ -252,7 +252,7 @@ void demo_kl26_std_pmu_lowpower_entry (void)
         case 'i':   /* LLS */
             am_kprintf("Enter LLS_MODE...\r\n");
             am_mdelay(100);
-            /* ¿ªÆô LLWU ÖĞ¶Ï*/
+            /* å¼€å¯ LLWU ä¸­æ–­*/
              am_int_connect(INUM_LLWU, (am_pfnvoid_t)am_kl26_pmu_llwu_irq_handle ,(void *)0);
              am_int_enable(INUM_LLWU);
 
@@ -263,7 +263,7 @@ void demo_kl26_std_pmu_lowpower_entry (void)
                 am_kprintf("Wake Up from LLS_MODE !\r\n");
             }
 
-            /* ¿ªÆô LLWU ÖĞ¶Ï*/
+            /* å¼€å¯ LLWU ä¸­æ–­*/
             am_int_connect(INUM_LLWU, (am_pfnvoid_t)am_kl26_pmu_llwu_irq_handle ,(void *)0);
             am_int_enable(INUM_LLWU);
 
@@ -304,7 +304,7 @@ void demo_kl26_std_pmu_lowpower_entry (void)
     }
 }
 /*
- * ´òÓ¡µ±Ç°Ä£Ê½
+ * æ‰“å°å½“å‰æ¨¡å¼
  */
 void current_mode_print ()
 {
@@ -323,14 +323,14 @@ void current_mode_print ()
 }
 
 /*
- * ´òÓ¡ÏµÍ³Ä£Ê½Ñ¡ÔñĞÅÏ¢
+ * æ‰“å°ç³»ç»Ÿæ¨¡å¼é€‰æ‹©ä¿¡æ¯
  */
 void system_mode_sel_print ()
 {
     am_kprintf("\r\n\r\n");
     am_kprintf("------------------------------------------------------------------------------------\r\n");
-    am_kprintf("PTC0`s falling edge is used as wake up source from WAIT¡¢VLPW¡¢VLPS and STOPx mode£¡\r\n");
-    am_kprintf("PTB0`s falling edge is used as wake up source from LLS¡¢VLLS3¡¢VLLS1ºÍVLSS0 mode£¡\r\n");
+    am_kprintf("PTC0`s falling edge is used as wake up source from WAITã€VLPWã€VLPS and STOPx modeï¼\r\n");
+    am_kprintf("PTB0`s falling edge is used as wake up source from LLSã€VLLS3ã€VLLS1å’ŒVLSS0 modeï¼\r\n");
     am_kprintf("\r\n---------System-Mode-Select------------\r\n");
     am_kprintf("Enter a  into RUN_MODE   \r\n");
     am_kprintf("      b  into VLPR_MODE  \r\n");
@@ -349,14 +349,14 @@ void system_mode_sel_print ()
 
 void uart0_baud_config (void)
 {
-    /* ´®¿Ú0Ê¹ÓÃÄÚ²¿²Î¿¼Ê±ÖÓ
-     * ÔÚam_kl26_hwconfig_uart.cÅäÖÃuart0µÄÊ±ÖÓÔ´ÎªKL26_SIM_UART0SRC_MCGIRCLK
+    /* ä¸²å£0ä½¿ç”¨å†…éƒ¨å‚è€ƒæ—¶é’Ÿ
+     * åœ¨am_kl26_hwconfig_uart.cé…ç½®uart0çš„æ—¶é’Ÿæºä¸ºKL26_SIM_UART0SRC_MCGIRCLK
      */
     amhw_kl26_mcg_irc_disable();
     amhw_kl26_mcg_irc_src_set(KL26_TPM2_IRC_SRC_FAST);
     amhw_kl26_mcg_irc_enable();
 
-    /* ²¨ÌØÂÊÉèÖÃ */
+    /* æ³¢ç‰¹ç‡è®¾ç½® */
     __g_handle = am_kl26_uart0_inst_init();
     am_debug_init(__g_handle,UART_BAUDRATE);
 

@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ÊäÈëÏµÍ³ÀàĞÍÂë¶¨Òå
+ * \brief è¾“å…¥ç³»ç»Ÿç±»å‹ç å®šä¹‰
  *
  * \internal
  * \par modification history
@@ -43,9 +43,9 @@ extern "C" {
  * \name input event type
  * @{
  */
-#define EV_KEY    0             /* °´¼üÊÂ¼ş */
-#define EV_ABS    1             /* ¾ø¶ÔÊÂ¼ş */
-#define EV_REL    2             /* Ïà¶ÔÊÂ¼ş */
+#define EV_KEY    0             /* æŒ‰é”®äº‹ä»¶ */
+#define EV_ABS    1             /* ç»å¯¹äº‹ä»¶ */
+#define EV_REL    2             /* ç›¸å¯¹äº‹ä»¶ */
 /** @} input event type */
 
 /**

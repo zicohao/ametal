@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief SDIO ¶Á/Ğ´º¯ÊıÊµÏÖ
+ * \brief SDIO è¯»/å†™å‡½æ•°å®ç°
  * 
  * \internal
  * \par Modification history
@@ -24,13 +24,13 @@
 #include "am_wait.h"
 
 /**
- * \brief SDIOÏûÏ¢Íê³É»Øµ÷º¯Êı
+ * \brief SDIOæ¶ˆæ¯å®Œæˆå›è°ƒå‡½æ•°
  */
 static void __message_complete (void *p_arg)
 {
     am_wait_t *p_wait = (am_wait_t *)p_arg;
      
-    /* ½áÊøµÈ´ıĞòÁĞ */
+    /* ç»“æŸç­‰å¾…åºåˆ— */
     am_wait_done(p_wait);
 }
 
@@ -78,7 +78,7 @@ static int __sdio_rw_sync (am_sdio_device_t *p_dev,
 }
 
 /**
- * \brief SDIOĞ´ÃüÁî
+ * \brief SDIOå†™å‘½ä»¤
  */
 int am_sdio_cmd_write (am_sdio_device_t *p_dev,
                        uint8_t           cmd,
@@ -117,7 +117,7 @@ int am_sdio_cmd_write (am_sdio_device_t *p_dev,
 }
 
 /**
- * \brief SDIOÏÈĞ´ÃüÁîÔÙ¶ÁÊı¾İ
+ * \brief SDIOå…ˆå†™å‘½ä»¤å†è¯»æ•°æ®
  */
 int am_sdio_write_then_read (am_sdio_device_t *p_dev,
                              uint8_t           cmd,
@@ -140,7 +140,7 @@ int am_sdio_write_then_read (am_sdio_device_t *p_dev,
 }
 
 /**
- * \brief SDIOÏÈĞ´ÃüÁîÔÙĞ´Êı¾İ
+ * \brief SDIOå…ˆå†™å‘½ä»¤å†å†™æ•°æ®
  */
 int am_sdio_write_then_write (am_sdio_device_t *p_dev,
                               uint8_t           cmd,

@@ -11,10 +11,10 @@
 *******************************************************************************/
 /**
  * \file
- * \brief SMC Ó²¼ş²Ù×÷½Ó¿Ú
+ * \brief SMC ç¡¬ä»¶æ“ä½œæ¥å£
  * 
- * 1. ÏµÍ³Ä£Ê½¿ØÖÆ£»
- * 2. ÏµÍ³Ä£Ê½»ñÈ¡¡£
+ * 1. ç³»ç»Ÿæ¨¡å¼æ§åˆ¶ï¼›
+ * 2. ç³»ç»Ÿæ¨¡å¼è·å–ã€‚
  *
  * \internal
  * \par Modification history
@@ -38,92 +38,92 @@ extern "C" {
  */
  
 /**
- * \brief SMC¼Ä´æÆ÷¿é½á¹¹Ìå
+ * \brief SMCå¯„å­˜å™¨å—ç»“æ„ä½“
  */
 typedef struct amhw_fsl_smc {
-    __IO uint8_t  pmprot;           /**< \brief SMC Ä£Ê½±£»¤¼Ä´æÆ÷ */
-    __IO uint8_t  pmctrl;           /**< \brief SMC Ä£Ê½¿ØÖÆ¼Ä´æÆ÷ */
-    __IO uint8_t  stopctrl;         /**< \brief SMC Í£Ö¹¿ØÖÆ¼Ä´æÆ÷ */
-    __I  uint8_t  pmstat;           /**< \brief SMC Ä£Ê½×´Ì¬¼Ä´æÆ÷ */
+    __IO uint8_t  pmprot;           /**< \brief SMC æ¨¡å¼ä¿æŠ¤å¯„å­˜å™¨ */
+    __IO uint8_t  pmctrl;           /**< \brief SMC æ¨¡å¼æ§åˆ¶å¯„å­˜å™¨ */
+    __IO uint8_t  stopctrl;         /**< \brief SMC åœæ­¢æ§åˆ¶å¯„å­˜å™¨ */
+    __I  uint8_t  pmstat;           /**< \brief SMC æ¨¡å¼çŠ¶æ€å¯„å­˜å™¨ */
 } amhw_fsl_smc_t;
 
 /**
- * \name ÏµÍ³ÔÊĞí½øÈëÄ£Ê½
+ * \name ç³»ç»Ÿå…è®¸è¿›å…¥æ¨¡å¼
  * @{
  */
 
-#define AMHW_FSL_SMC_PROTECT_AVLP_ALLOW  AM_BIT(5) /**< \brief ÔÊĞí½øÈëVLPxÄ£Ê½  */
-#define AMHW_FSL_SMC_PROTECT_ALLS_ALLOW  AM_BIT(3) /**< \brief ÔÊĞí½øÈëLLSÄ£Ê½   */
-#define AMHW_FSL_SMC_PROTECT_AVLLS_ALLOW AM_BIT(1) /**< \brief ÔÊĞí½øÈëVLLSxÄ£Ê½ */
+#define AMHW_FSL_SMC_PROTECT_AVLP_ALLOW  AM_BIT(5) /**< \brief å…è®¸è¿›å…¥VLPxæ¨¡å¼  */
+#define AMHW_FSL_SMC_PROTECT_ALLS_ALLOW  AM_BIT(3) /**< \brief å…è®¸è¿›å…¥LLSæ¨¡å¼   */
+#define AMHW_FSL_SMC_PROTECT_AVLLS_ALLOW AM_BIT(1) /**< \brief å…è®¸è¿›å…¥VLLSxæ¨¡å¼ */
 
 /** @} */
 
 /**
- * \name ÔËĞĞÄ£Ê½
+ * \name è¿è¡Œæ¨¡å¼
  * @{
  */
 
-#define AMHW_FSL_SMC_RUNMODE_RUN    AM_SBF(0x00, 5) /**< \brief Õı³£ÔËĞĞÄ£Ê½    */
-#define AMHW_FSL_SMC_RUNMODE_VLPR   AM_SBF(0x02, 5) /**< \brief µÍ¹¦ºÄÔËĞĞÄ£Ê½  */
+#define AMHW_FSL_SMC_RUNMODE_RUN    AM_SBF(0x00, 5) /**< \brief æ­£å¸¸è¿è¡Œæ¨¡å¼    */
+#define AMHW_FSL_SMC_RUNMODE_VLPR   AM_SBF(0x02, 5) /**< \brief ä½åŠŸè€—è¿è¡Œæ¨¡å¼  */
 
 /** @} */
 
 /**
- * \name Í£Ö¹Ä£Ê½
+ * \name åœæ­¢æ¨¡å¼
  * @{
  */
 
-/** \brief Õı³£Í£Ö¹Ä£Ê½ */
+/** \brief æ­£å¸¸åœæ­¢æ¨¡å¼ */
 #define AMHW_FSL_SMC_STOPMODE_STOP      (AM_SBF(0, 8) | AM_SBF(0, 6))
 
-/** \brief Í£Ö¹Ä£Ê½1 */
+/** \brief åœæ­¢æ¨¡å¼1 */
 #define AMHW_FSL_SMC_STOPMODE_STOP1     (AM_SBF(0, 8) | AM_SBF(1, 6))
 
-/** \brief Í£Ö¹Ä£Ê½2 */
+/** \brief åœæ­¢æ¨¡å¼2 */
 #define AMHW_FSL_SMC_STOPMODE_STOP2     (AM_SBF(0, 8) | AM_SBF(2, 6))
 
-/** \brief µÍ¹¦ºÄÍ£Ö¹Ä£Ê½ */
+/** \brief ä½åŠŸè€—åœæ­¢æ¨¡å¼ */
 #define AMHW_FSL_SMC_STOPMODE_VLPS      (AM_SBF(2, 8) | 0)
 
-/** \brief µÍÂ©µçÍ£Ö¹Ä£Ê½ */
+/** \brief ä½æ¼ç”µåœæ­¢æ¨¡å¼ */
 #define AMHW_FSL_SMC_STOPMODE_LLS       (AM_SBF(3, 8) | 0)
 
-/** \brief ³¬µÍÂ©µçÍ£Ö¹Ä£Ê½3 */
+/** \brief è¶…ä½æ¼ç”µåœæ­¢æ¨¡å¼3 */
 #define AMHW_FSL_SMC_STOPMODE_VLLS3     (AM_SBF(4, 8) | AM_SBF(3, 0))
 
-/** \brief ³¬µÍÂ©µçÍ£Ö¹Ä£Ê½1 */
+/** \brief è¶…ä½æ¼ç”µåœæ­¢æ¨¡å¼1 */
 #define AMHW_FSL_SMC_STOPMODE_VLLS1     (AM_SBF(4, 8) | AM_SBF(1, 0))
 
-/** \brief ³¬µÍÂ©µçÍ£Ö¹Ä£Ê½0 */
+/** \brief è¶…ä½æ¼ç”µåœæ­¢æ¨¡å¼0 */
 #define AMHW_FSL_SMC_STOPMODE_VLLS0     (AM_SBF(4, 8) | AM_SBF(0, 0))
 
 /** @} */
 
 /**
- * \name Ğ¾Æ¬Ä£Ê½
+ * \name èŠ¯ç‰‡æ¨¡å¼
  * @{
  */
 
-#define AMHW_FSL_SMC_MODE_RUN    AM_BIT(0)   /**< \brief ÔËĞĞÄ£Ê½        */
-#define AMHW_FSL_SMC_MODE_STOP   AM_BIT(1)   /**< \brief Í£Ö¹Ä£Ê½        */
-#define AMHW_FSL_SMC_MODE_VLPR   AM_BIT(2)   /**< \brief µÍ¹¦ºÄÔËĞĞÄ£Ê½  */
-#define AMHW_FSL_SMC_MODE_VLPW   AM_BIT(3)   /**< \brief µÍ¹¦ºÄµÈ´ıÄ£Ê½  */
-#define AMHW_FSL_SMC_MODE_VLPS   AM_BIT(4)   /**< \brief µÍ¹¦ºÄÍ£Ö¹Ä£Ê½  */
-#define AMHW_FSL_SMC_MODE_LLS    AM_BIT(5)   /**< \brief µØÂ©µçÄ£Ê½Ä£Ê½  */
-#define AMHW_FSL_SMC_MODE_VLLS   AM_BIT(6)   /**< \brief ³¬µÍÂ©µçÄ£Ê½    */
+#define AMHW_FSL_SMC_MODE_RUN    AM_BIT(0)   /**< \brief è¿è¡Œæ¨¡å¼        */
+#define AMHW_FSL_SMC_MODE_STOP   AM_BIT(1)   /**< \brief åœæ­¢æ¨¡å¼        */
+#define AMHW_FSL_SMC_MODE_VLPR   AM_BIT(2)   /**< \brief ä½åŠŸè€—è¿è¡Œæ¨¡å¼  */
+#define AMHW_FSL_SMC_MODE_VLPW   AM_BIT(3)   /**< \brief ä½åŠŸè€—ç­‰å¾…æ¨¡å¼  */
+#define AMHW_FSL_SMC_MODE_VLPS   AM_BIT(4)   /**< \brief ä½åŠŸè€—åœæ­¢æ¨¡å¼  */
+#define AMHW_FSL_SMC_MODE_LLS    AM_BIT(5)   /**< \brief åœ°æ¼ç”µæ¨¡å¼æ¨¡å¼  */
+#define AMHW_FSL_SMC_MODE_VLLS   AM_BIT(6)   /**< \brief è¶…ä½æ¼ç”µæ¨¡å¼    */
 
 /** @} */
 
 /**
- * \brief ÅäÖÃÏµÍ³ÔÊĞí½øÈëµÄÄ£Ê½
+ * \brief é…ç½®ç³»ç»Ÿå…è®¸è¿›å…¥çš„æ¨¡å¼
  *
- * \param[in] p_hw_smc : Ö¸ÏòSMC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] flags    : Ä£Ê½ÔÊĞíºê¶¨Òå£¬AMHW_SMC_PROTECT_*_ALLOWºêÖµ»ò¶à¸ö
- *                      £¨#AMHW_FSL_SMC_PROTECT_AVLP_ALLOW£©
+ * \param[in] p_hw_smc : æŒ‡å‘SMCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] flags    : æ¨¡å¼å…è®¸å®å®šä¹‰ï¼ŒAMHW_SMC_PROTECT_*_ALLOWå®å€¼æˆ–å¤šä¸ª
+ *                      ï¼ˆ#AMHW_FSL_SMC_PROTECT_AVLP_ALLOWï¼‰
  *
- * \return ÎŞ
+ * \return æ— 
  *
- * \note ¸´Î»ºó£¬Ö»¿ÉÒÔ²Ù×÷Ò»´Î
+ * \note å¤ä½åï¼Œåªå¯ä»¥æ“ä½œä¸€æ¬¡
  */
 am_static_inline
 void amhw_fsl_smc_mode_allow_cfg (amhw_fsl_smc_t *p_hw_smc, uint8_t flags)
@@ -132,13 +132,13 @@ void amhw_fsl_smc_mode_allow_cfg (amhw_fsl_smc_t *p_hw_smc, uint8_t flags)
 }
 
 /**
- * \brief ÔËĞĞÄ£Ê½Ñ¡Ôñ
+ * \brief è¿è¡Œæ¨¡å¼é€‰æ‹©
  *
- * \param[in] p_hw_smc : Ö¸ÏòSMC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] flags    : ÔËĞĞÄ£Ê½ºê¶¨Òå£¬AMHW_FSL_SMC_RUNMODE_*ºêÖµ
- *                      £¨#AMHW_FSL_SMC_RUNMODE_RUN£©
+ * \param[in] p_hw_smc : æŒ‡å‘SMCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] flags    : è¿è¡Œæ¨¡å¼å®å®šä¹‰ï¼ŒAMHW_FSL_SMC_RUNMODE_*å®å€¼
+ *                      ï¼ˆ#AMHW_FSL_SMC_RUNMODE_RUNï¼‰
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_smc_run_mdoe_sel (amhw_fsl_smc_t *p_hw_smc, uint8_t flags)
@@ -147,19 +147,19 @@ void amhw_fsl_smc_run_mdoe_sel (amhw_fsl_smc_t *p_hw_smc, uint8_t flags)
 }
 
 /**
- * \brief Í£Ö¹Ä£Ê½Ñ¡Ôñ
+ * \brief åœæ­¢æ¨¡å¼é€‰æ‹©
  *
- * \param[in] p_hw_smc : Ö¸ÏòSMC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] flags    : Í£Ö¹Ä£Ê½ºê¶¨Òå£¬AMHW_FSL_SMC_STOPMODE_*ºêÖµ
- *                      £¨#AMHW_FSL_SMC_STOPMODE_STOP£©
+ * \param[in] p_hw_smc : æŒ‡å‘SMCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] flags    : åœæ­¢æ¨¡å¼å®å®šä¹‰ï¼ŒAMHW_FSL_SMC_STOPMODE_*å®å€¼
+ *                      ï¼ˆ#AMHW_FSL_SMC_STOPMODE_STOPï¼‰
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_smc_stop_mdoe_sel (amhw_fsl_smc_t *p_hw_smc, uint16_t flags)
 {
     uint8_t pmctrl   = p_hw_smc->pmctrl & (~0x07);
-    uint8_t stopctrl = p_hw_smc->stopctrl & (~0xC7); /* stopÎ»ºÍVLLSÎ» */
+    uint8_t stopctrl = p_hw_smc->stopctrl & (~0xC7); /* stopä½å’ŒVLLSä½ */
 
     pmctrl   |= flags >> 8;
     stopctrl |= flags;
@@ -169,9 +169,9 @@ void amhw_fsl_smc_stop_mdoe_sel (amhw_fsl_smc_t *p_hw_smc, uint16_t flags)
 }
 
 /**
- * \brief ÅĞ¶Ï½øÈëÍ£Ö¹Ä£Ê½ÊÇ·ñ±»ÖĞ¶Ï
- * \param[in] p_hw_smc : Ö¸ÏòSMC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \retval AM_TRUE : ±»ÖĞ¶Ï£»AM_FALSE : Î´±»ÖĞ¶Ï
+ * \brief åˆ¤æ–­è¿›å…¥åœæ­¢æ¨¡å¼æ˜¯å¦è¢«ä¸­æ–­
+ * \param[in] p_hw_smc : æŒ‡å‘SMCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \retval AM_TRUE : è¢«ä¸­æ–­ï¼›AM_FALSE : æœªè¢«ä¸­æ–­
  */
 am_static_inline
 am_bool_t amhw_fsl_smc_stop_mdoe_isabort (amhw_fsl_smc_t *p_hw_smc)
@@ -180,9 +180,9 @@ am_bool_t amhw_fsl_smc_stop_mdoe_isabort (amhw_fsl_smc_t *p_hw_smc)
 }
 
 /**
- * \brief Ê¹ÄÜVLLS0Ä£Ê½µçÔ´¼ì²âµçÂ·
- * \param[in] p_hw_smc : Ö¸ÏòSMC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ÎŞ
+ * \brief ä½¿èƒ½VLLS0æ¨¡å¼ç”µæºæ£€æµ‹ç”µè·¯
+ * \param[in] p_hw_smc : æŒ‡å‘SMCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_smc_vlls0_por_enable (amhw_fsl_smc_t *p_hw_smc)
@@ -191,9 +191,9 @@ void amhw_fsl_smc_vlls0_por_enable (amhw_fsl_smc_t *p_hw_smc)
 }
 
 /**
- * \brief ½ûÄÜVLLS0Ä£Ê½µçÔ´¼ì²âµçÂ·
- * \param[in] p_hw_smc : Ö¸ÏòSMC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ÎŞ
+ * \brief ç¦èƒ½VLLS0æ¨¡å¼ç”µæºæ£€æµ‹ç”µè·¯
+ * \param[in] p_hw_smc : æŒ‡å‘SMCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_smc_vlls0_por_disable (amhw_fsl_smc_t *p_hw_smc)
@@ -202,9 +202,9 @@ void amhw_fsl_smc_vlls0_por_disable (amhw_fsl_smc_t *p_hw_smc)
 }
 
 /**
- * \brief »ñÈ¡µ±Ç°ÏµÍ³Ä£Ê½
- * \param[in] p_hw_smc : Ö¸ÏòSMC¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return Ğ¾Æ¬Ä£Ê½
+ * \brief è·å–å½“å‰ç³»ç»Ÿæ¨¡å¼
+ * \param[in] p_hw_smc : æŒ‡å‘SMCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return èŠ¯ç‰‡æ¨¡å¼
  */
 am_static_inline
 uint8_t amhw_fsl_smc_mode_get (amhw_fsl_smc_t *p_hw_smc)

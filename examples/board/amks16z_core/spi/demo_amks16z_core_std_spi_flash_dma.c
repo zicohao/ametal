@@ -12,22 +12,22 @@
 
 /**
  * \file
- * \brief ��SPI�ж�ģʽ�²���SPI_FLASH��ʾ���̣�ͨ����׼�ӿ�ʵ��
+ * \brief 在SPI中断模式下操作SPI_FLASH演示例程，通过标准接口实现
  *
- * - ��������:
- *   1. ��SPI�ӿں�SPI_FLASH��Ӧ�Ľӿ�����������
- *   2. ���Ӵ��ڣ�������Ϊ115200��8������λ��1ֹͣλ����У�飻
- *   3. ���������ص�demo�壬�����ϵ���߸�λ��
+ * - 操作步骤:
+ *   1. 将SPI接口和SPI_FLASH对应的接口连接起来；
+ *   2. 连接串口，波特率为115200、8个数据位、1停止位、无校验；
+ *   3. 将程序下载到demo板，重新上电或者复位。
  *
- * - ʵ������:
- *   1. ��SPI_FLASH�ж�ȡ�������ݣ�ͨ�����ڴ�ӡ������
- *   2. д�����ݺͶ�ȡ��������ͬ��SPI_FLASH��д���Գɹ���LED0��200ms�����˸��
+ * - 实验现象:
+ *   1. 从SPI_FLASH中读取到的数据，通过串口打印出来；
+ *   2. 写入数据和读取的数据相同，SPI_FLASH读写测试成功，LED0以200ms间隔闪烁。
  *
  * \note
- *   1. �ɼ������������£�ֱ��ʹ�� am_spi_write_then_read() �� 
- *      am_spi_write_then_write() �������ɡ�
+ *   1. 可见，大多数情况下，直接使用 am_spi_write_then_read() 和 
+ *      am_spi_write_then_write() 函数即可。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_amks16z_core_std_spi_flash_dma.c src_amks16z_core_std_spi_flash_dma
  *
  * \internal
@@ -55,12 +55,12 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief STD��SPI��дFlash���Ժ������
+ * \brief STD层SPI读写Flash测试函数入口
  *
- * \param[in] spi_handle : SPI��׼����������
- * \param[in] cs_pin     : �û��Զ���Ƭѡ��
+ * \param[in] spi_handle : SPI标准服务操作句柄
+ * \param[in] cs_pin     : 用户自定义片选脚
  *
- * \return ��
+ * \return 无
  */
 void demo_amks16z_core_std_spi_flash_dma_entry (void)
 {

@@ -12,13 +12,13 @@
 
 /**
  * \file
- * \brief ARM LIB ÊÊÅäÆ÷
+ * \brief ARM LIB é€‚é…å™¨
  *
- * \par ËµÃ÷
- * 1. ÄÚ´æ¹ÜÀí½Ó¿ÚÖ»ÄÜÔÚARM LIBÓëametalÏµÍ³½Ó¿ÚÖ®¼äÑ¡ÔñÒ»¸öÊ¹ÓÃ
+ * \par è¯´æ˜
+ * 1. å†…å­˜ç®¡ç†æ¥å£åªèƒ½åœ¨ARM LIBä¸ametalç³»ç»Ÿæ¥å£ä¹‹é—´é€‰æ‹©ä¸€ä¸ªä½¿ç”¨
  *
- * ÔÚÊ¹ÓÃÇ°£¬±ØĞëÔÚ"Project->Options for Target xxx->Target"ÖĞÈ¡Ïû¹´Ñ¡"Use MicroLIB"
- * ²¢³õÊ¼»¯ÊÊÅäÆ÷£¬ÈôÊ¹ÓÃUARTÊä³öĞÅÏ¢£¬Ôò³õÊ¼»¯º¯ÊıµÄµ÷ÓÃ·¶ÀıÈçÏÂ£º
+ * åœ¨ä½¿ç”¨å‰ï¼Œå¿…é¡»åœ¨"Project->Options for Target xxx->Target"ä¸­å–æ¶ˆå‹¾é€‰"Use MicroLIB"
+ * å¹¶åˆå§‹åŒ–é€‚é…å™¨ï¼Œè‹¥ä½¿ç”¨UARTè¾“å‡ºä¿¡æ¯ï¼Œåˆ™åˆå§‹åŒ–å‡½æ•°çš„è°ƒç”¨èŒƒä¾‹å¦‚ä¸‹ï¼š
  *
  * \code
  * static int __dbg_fputc (void *p_arg, const char ch)
@@ -72,29 +72,29 @@ extern "C" {
  */
 
 /**
- * \brief __FILE½á¹¹,ÔÚ<stdio.h>ÖĞ±»typedefÎªFILEÀàĞÍ
+ * \brief __FILEç»“æ„,åœ¨<stdio.h>ä¸­è¢«typedefä¸ºFILEç±»å‹
  */
 struct __FILE {
     
-    int handle; /**< \brief ÎÄ¼ş¾ä±ú */
+    int handle; /**< \brief æ–‡ä»¶å¥æŸ„ */
     
 };
 
 /**
- * \brief ÅäÖÃÑ¡Ïî£¬¸ù¾İÊµ¼ÊÓ²¼şÆ½Ì¨Ìá¹©
+ * \brief é…ç½®é€‰é¡¹ï¼Œæ ¹æ®å®é™…ç¡¬ä»¶å¹³å°æä¾›
  */
 typedef struct am_armlib_adapter_ops {
     
-    int (*pfn_putc) (void *p_arg, const char ch); /**< º¯ÊıÖ¸Õë£¬Êä³öÒ»¸ö×Ö·û */
-    int (*pfn_getc) (void *p_arg);                /**< º¯ÊıÖ¸Õë£¬ÊäÈëÒ»¸ö×Ö·û */
+    int (*pfn_putc) (void *p_arg, const char ch); /**< å‡½æ•°æŒ‡é’ˆï¼Œè¾“å‡ºä¸€ä¸ªå­—ç¬¦ */
+    int (*pfn_getc) (void *p_arg);                /**< å‡½æ•°æŒ‡é’ˆï¼Œè¾“å…¥ä¸€ä¸ªå­—ç¬¦ */
     
 } am_armlib_adapter_ops_t;
 
 /**
- * \brief ÊÊÅäÆ÷³õÊ¼»¯
+ * \brief é€‚é…å™¨åˆå§‹åŒ–
  *
- * \param[in] p_ops Çı¶¯º¯Êı
- * \param[in] p_arg Çı¶¯º¯Êı²ÎÊı
+ * \param[in] p_ops é©±åŠ¨å‡½æ•°
+ * \param[in] p_arg é©±åŠ¨å‡½æ•°å‚æ•°
  *
  * \return AM_OK
  */

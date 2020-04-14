@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief UART±ê×¼½Ó¿Ú
+ * \brief UARTæ ‡å‡†æ¥å£
  *
  * \internal
  * \par Modification History
@@ -37,130 +37,130 @@ extern "C" {
  */
 
 /**
- * \name UARTÄ£Ê½¶¨Òå
+ * \name UARTæ¨¡å¼å®šä¹‰
  * @{
  */
 
-#define AM_UART_MODE_POLL         1    /**< \brief UART ²éÑ¯Ä£Ê½ */
-#define AM_UART_MODE_INT          2    /**< \brief UART ÖĞ¶ÏÄ£Ê½ */
+#define AM_UART_MODE_POLL         1    /**< \brief UART æŸ¥è¯¢æ¨¡å¼ */
+#define AM_UART_MODE_INT          2    /**< \brief UART ä¸­æ–­æ¨¡å¼ */
 
 /** @} */
 
 /**
- * \name UARTÍ¨ÓÃ¿ØÖÆÖ¸Áî
+ * \name UARTé€šç”¨æ§åˆ¶æŒ‡ä»¤
  * @{
  */
 
-#define AM_UART_BAUD_SET          1   /**< \brief ÉèÖÃ²¨ÌØÂÊ                  */
-#define AM_UART_BAUD_GET          2   /**< \brief »ñÈ¡²¨ÌØÂÊ                  */
+#define AM_UART_BAUD_SET          1   /**< \brief è®¾ç½®æ³¢ç‰¹ç‡                  */
+#define AM_UART_BAUD_GET          2   /**< \brief è·å–æ³¢ç‰¹ç‡                  */
 
-#define AM_UART_OPTS_SET          3   /**< \brief ÉèÖÃÓ²¼ş²ÎÊıÉèÖÃ            */
-#define AM_UART_OPTS_GET          4   /**< \brief »ñÈ¡Ó²¼ş²ÎÊıÉèÖÃ            */
+#define AM_UART_OPTS_SET          3   /**< \brief è®¾ç½®ç¡¬ä»¶å‚æ•°è®¾ç½®            */
+#define AM_UART_OPTS_GET          4   /**< \brief è·å–ç¡¬ä»¶å‚æ•°è®¾ç½®            */
 
-#define AM_UART_MODE_SET          5   /**< \brief ÉèÖÃÄ£Ê½                    */
-#define AM_UART_MODE_GET          6   /**< \brief »ñÈ¡µ±Ç°Ä£Ê½                */
-#define AM_UART_AVAIL_MODES_GET   7   /**< \brief »ñÈ¡Ö§³ÖµÄÓĞĞ§Ä£Ê½          */
+#define AM_UART_MODE_SET          5   /**< \brief è®¾ç½®æ¨¡å¼                    */
+#define AM_UART_MODE_GET          6   /**< \brief è·å–å½“å‰æ¨¡å¼                */
+#define AM_UART_AVAIL_MODES_GET   7   /**< \brief è·å–æ”¯æŒçš„æœ‰æ•ˆæ¨¡å¼          */
 
-#define AM_UART_FLOWMODE_SET      8   /**< \brief ÉèÖÃÁ÷¿ØÄ£Ê½                */
-#define AM_UART_FLOWSTAT_RX_SET   9   /**< \brief ÉèÖÃ½ÓÊÕÆ÷Á÷¿Ø×´Ì¬          */
-#define AM_UART_FLOWSTAT_TX_GET   10  /**< \brief »ñÈ¡·¢ËÍÆ÷Á÷¿Ø×´Ì¬          */
+#define AM_UART_FLOWMODE_SET      8   /**< \brief è®¾ç½®æµæ§æ¨¡å¼                */
+#define AM_UART_FLOWSTAT_RX_SET   9   /**< \brief è®¾ç½®æ¥æ”¶å™¨æµæ§çŠ¶æ€          */
+#define AM_UART_FLOWSTAT_TX_GET   10  /**< \brief è·å–å‘é€å™¨æµæ§çŠ¶æ€          */
 
-#define AM_UART_RS485_SET         11  /**< \brief ÉèÖÃRS485Ä£Ê½(Ê¹ÄÜ »ò ½ûÄÜ) */
-#define AM_UART_RS485_GET         12  /**< \brief »ñÈ¡µ±Ç°µÄRS485Ä£Ê½×´Ì¬     */
+#define AM_UART_RS485_SET         11  /**< \brief è®¾ç½®RS485æ¨¡å¼(ä½¿èƒ½ æˆ– ç¦èƒ½) */
+#define AM_UART_RS485_GET         12  /**< \brief è·å–å½“å‰çš„RS485æ¨¡å¼çŠ¶æ€     */
 
 /** @} */
 
 /**
- * \name Ó²¼ş²ÎÊıÉèÖÃÑ¡Ïî£¬ÉèÖÃÓ²¼ş²ÎÊıÊ±£¬¿ÉÒÔÊÇ¶à¸öÑ¡ÏîµÄ»òÖµ
+ * \name ç¡¬ä»¶å‚æ•°è®¾ç½®é€‰é¡¹ï¼Œè®¾ç½®ç¡¬ä»¶å‚æ•°æ—¶ï¼Œå¯ä»¥æ˜¯å¤šä¸ªé€‰é¡¹çš„æˆ–å€¼
  * @{
  */
 
-#define AM_UART_CSIZE    0xc   /**< \brief Î»3 ~ Î»4ÎªÊı¾İ¿í¶È                */
-#define AM_UART_CS5      0x0   /**< \brief Êı¾İ¿í¶ÈÎª5Î»                      */
-#define AM_UART_CS6      0x4   /**< \brief Êı¾İ¿í¶ÈÎª6Î»                      */
-#define AM_UART_CS7      0x8   /**< \brief Êı¾İ¿í¶ÈÎª7Î»                      */
-#define AM_UART_CS8      0xc   /**< \brief Êı¾İ¿í¶ÈÎª8Î»                      */
+#define AM_UART_CSIZE    0xc   /**< \brief ä½3 ~ ä½4ä¸ºæ•°æ®å®½åº¦                */
+#define AM_UART_CS5      0x0   /**< \brief æ•°æ®å®½åº¦ä¸º5ä½                      */
+#define AM_UART_CS6      0x4   /**< \brief æ•°æ®å®½åº¦ä¸º6ä½                      */
+#define AM_UART_CS7      0x8   /**< \brief æ•°æ®å®½åº¦ä¸º7ä½                      */
+#define AM_UART_CS8      0xc   /**< \brief æ•°æ®å®½åº¦ä¸º8ä½                      */
 
-#define AM_UART_STOPB    0x20  /**< \brief ÉèÖÃÍ£Ö¹Î»Îª2Î»£¬Ä¬ÈÏÎª1Î»         */
-#define AM_UART_PARENB   0x40  /**< \brief Ê¹ÄÜÆæÅ¼Ğ£Ñé£¬Ä¬ÈÏÆæÅ¼Ğ£ÑéÊÇ¹Ø±ÕµÄ */
-#define AM_UART_PARODD   0x80  /**< \brief ÉèÖÃĞ£ÑéÎªÆæĞ£Ñé£¬Ä¬ÈÏÊÇÅ¼Ğ£Ñé     */
+#define AM_UART_STOPB    0x20  /**< \brief è®¾ç½®åœæ­¢ä½ä¸º2ä½ï¼Œé»˜è®¤ä¸º1ä½         */
+#define AM_UART_PARENB   0x40  /**< \brief ä½¿èƒ½å¥‡å¶æ ¡éªŒï¼Œé»˜è®¤å¥‡å¶æ ¡éªŒæ˜¯å…³é—­çš„ */
+#define AM_UART_PARODD   0x80  /**< \brief è®¾ç½®æ ¡éªŒä¸ºå¥‡æ ¡éªŒï¼Œé»˜è®¤æ˜¯å¶æ ¡éªŒ     */
 
 /** @} */
 
 /**
- * \name Á÷¿ØÖÆÉèÖÃÑ¡Ïî
+ * \name æµæ§åˆ¶è®¾ç½®é€‰é¡¹
  * @{
  */
 
-#define AM_UART_FLOWCTL_NO    0xa0    /**< \brief ÎŞÁ÷¿Ø             */
-#define AM_UART_FLOWCTL_HW    0xa1    /**< \brief Ó²¼şÁ÷¿Ø           */
-#define AM_UART_FLOWCTL_SW    0xa2    /**< \brief Èí¼şÁ÷¿Ø           */
+#define AM_UART_FLOWCTL_NO    0xa0    /**< \brief æ— æµæ§             */
+#define AM_UART_FLOWCTL_HW    0xa1    /**< \brief ç¡¬ä»¶æµæ§           */
+#define AM_UART_FLOWCTL_SW    0xa2    /**< \brief è½¯ä»¶æµæ§           */
 
-#define AM_UART_FLOWSTAT_ON   0xb0    /**< \brief ¿ªÁ÷£¬¼ÌĞøÊı¾İ´«Êä */
-#define AM_UART_FLOWSTAT_OFF  0xb1    /**< \brief ¹ØÁ÷£¬Í£Ö¹Êı¾İ´«Êä */
+#define AM_UART_FLOWSTAT_ON   0xb0    /**< \brief å¼€æµï¼Œç»§ç»­æ•°æ®ä¼ è¾“ */
+#define AM_UART_FLOWSTAT_OFF  0xb1    /**< \brief å…³æµï¼Œåœæ­¢æ•°æ®ä¼ è¾“ */
 
 /** @} */
 
 /**
- * \name ´®ĞĞÉè±¸»Øµ÷º¯ÊıÀàĞÍ±àÂë£¬ÓÃÓÚÖ¸¶¨×¢²áºÎÖÖ»Øµ÷º¯Êı
+ * \name ä¸²è¡Œè®¾å¤‡å›è°ƒå‡½æ•°ç±»å‹ç¼–ç ï¼Œç”¨äºæŒ‡å®šæ³¨å†Œä½•ç§å›è°ƒå‡½æ•°
  * @{
  */
 
-#define AM_UART_CALLBACK_TXCHAR_GET   0  /**< \brief »ñÈ¡Ò»¸ö·¢ËÍ×Ö·û      */
-#define AM_UART_CALLBACK_RXCHAR_PUT   1  /**< \brief Ìá½»Ò»¸ö½ÓÊÕµ½µÄ×Ö·û  */
-#define AM_UART_CALLBACK_ERROR        2  /**< \brief ´íÎó»Øµ÷º¯Êı          */
+#define AM_UART_CALLBACK_TXCHAR_GET   0  /**< \brief è·å–ä¸€ä¸ªå‘é€å­—ç¬¦      */
+#define AM_UART_CALLBACK_RXCHAR_PUT   1  /**< \brief æäº¤ä¸€ä¸ªæ¥æ”¶åˆ°çš„å­—ç¬¦  */
+#define AM_UART_CALLBACK_ERROR        2  /**< \brief é”™è¯¯å›è°ƒå‡½æ•°          */
 
 /** @} */
 
 /**
- * \name ´íÎó»Øµ÷º¯ÊıµÄ´íÎóÂë£¨code£©
+ * \name é”™è¯¯å›è°ƒå‡½æ•°çš„é”™è¯¯ç ï¼ˆcodeï¼‰
  * @{
  */
-#define AW_UART_ERR_CODE_NONE        (-1)        /**< \brief ÎŞ´íÎó          */
-#define AW_UART_ERR_CODE_FRAMING      0          /**< \brief Ö¡´íÎó          */
-#define AW_UART_ERR_CODE_PARITY       1          /**< \brief Ğ£Ñé´íÎó        */
-#define AW_UART_ERR_CODE_OFLOW        2          /**< \brief over flow ´íÎó  */
-#define AW_UART_ERR_CODE_UFLOW        3          /**< \brief under flow ´íÎó */
-#define AW_UART_ERR_CODE_CONNECT      4          /**< \brief Á¬½Ó´íÎó        */
-#define AW_UART_ERR_CODE_DISCONNECT   5          /**< \brief ¶Ï¿ªÁ¬½Ó´íÎó    */
-#define AW_UART_ERR_CODE_NO_CLK       6          /**< \brief ÎŞ¿ÉÓÃÊ±ÖÓ      */
-#define AW_UART_ERR_CODE_UNKNWN       7          /**< \brief Î´Öª´íÎó        */
+#define AW_UART_ERR_CODE_NONE        (-1)        /**< \brief æ— é”™è¯¯          */
+#define AW_UART_ERR_CODE_FRAMING      0          /**< \brief å¸§é”™è¯¯          */
+#define AW_UART_ERR_CODE_PARITY       1          /**< \brief æ ¡éªŒé”™è¯¯        */
+#define AW_UART_ERR_CODE_OFLOW        2          /**< \brief over flow é”™è¯¯  */
+#define AW_UART_ERR_CODE_UFLOW        3          /**< \brief under flow é”™è¯¯ */
+#define AW_UART_ERR_CODE_CONNECT      4          /**< \brief è¿æ¥é”™è¯¯        */
+#define AW_UART_ERR_CODE_DISCONNECT   5          /**< \brief æ–­å¼€è¿æ¥é”™è¯¯    */
+#define AW_UART_ERR_CODE_NO_CLK       6          /**< \brief æ— å¯ç”¨æ—¶é’Ÿ      */
+#define AW_UART_ERR_CODE_UNKNWN       7          /**< \brief æœªçŸ¥é”™è¯¯        */
 /** @} */
 
 /**
- * \name »Øµ÷º¯ÊıÀàĞÍ¶¨Òå
+ * \name å›è°ƒå‡½æ•°ç±»å‹å®šä¹‰
  * @{
  */
 
 /**
- * \brief »ñÈ¡Ò»¸ö´ı·¢ËÍ×Ö·û
+ * \brief è·å–ä¸€ä¸ªå¾…å‘é€å­—ç¬¦
  *
- * \param[in]  p_arg  £ºÉèÖÃ»Øµ÷º¯ÊıÊ±Ö¸¶¨µÄ×Ô¶¨Òå²ÎÊı
- * \param[out] p_char £º»ñÈ¡´ı·¢ËÍÊı¾İµÄÖ¸Õë
+ * \param[in]  p_arg  ï¼šè®¾ç½®å›è°ƒå‡½æ•°æ—¶æŒ‡å®šçš„è‡ªå®šä¹‰å‚æ•°
+ * \param[out] p_char ï¼šè·å–å¾…å‘é€æ•°æ®çš„æŒ‡é’ˆ
  *
- * \retval -AM_EEMPTY £º»ñÈ¡´ı·¢ËÍÊı¾İÊ§°Ü£¬ÎŞ¸ü¶àÊı¾İĞèÒª·¢ËÍ
- * \retval  AM_OK     £º»ñÈ¡´ı·¢ËÍÊı¾İ³É¹¦, p_char ÕıÈ·×°ÔØÁË´ı·¢ËÍµÄÊı¾İ
+ * \retval -AM_EEMPTY ï¼šè·å–å¾…å‘é€æ•°æ®å¤±è´¥ï¼Œæ— æ›´å¤šæ•°æ®éœ€è¦å‘é€
+ * \retval  AM_OK     ï¼šè·å–å¾…å‘é€æ•°æ®æˆåŠŸ, p_char æ­£ç¡®è£…è½½äº†å¾…å‘é€çš„æ•°æ®
  */
 typedef int (*am_uart_txchar_get_t)(void *p_arg, char *p_char);
 
 /**
- * \brief Ìá½»Ò»¸ö½ÓÊÕµ½µÄ×Ö·û
+ * \brief æäº¤ä¸€ä¸ªæ¥æ”¶åˆ°çš„å­—ç¬¦
  *
- * \param[in] p_arg  £ºÉèÖÃ»Øµ÷º¯ÊıÊ±Ö¸¶¨µÄ×Ô¶¨Òå²ÎÊı
- * \param[in] ch     £º½ÓÊÕµ½µÄÊı¾İ
+ * \param[in] p_arg  ï¼šè®¾ç½®å›è°ƒå‡½æ•°æ—¶æŒ‡å®šçš„è‡ªå®šä¹‰å‚æ•°
+ * \param[in] ch     ï¼šæ¥æ”¶åˆ°çš„æ•°æ®
  *
- * \retval -AM_EFULL  £º ÓÃ»§´¦Àí½ÓÊÕÊı¾İÊ§°Ü£¬Ã»ÓĞ×ã¹»µÄÄÚ´æ¿Õ¼ä
- * \retval  AM_OK     £º ÓÃ»§´¦Àí½ÓÊÕÊı¾İ³É¹¦
+ * \retval -AM_EFULL  ï¼š ç”¨æˆ·å¤„ç†æ¥æ”¶æ•°æ®å¤±è´¥ï¼Œæ²¡æœ‰è¶³å¤Ÿçš„å†…å­˜ç©ºé—´
+ * \retval  AM_OK     ï¼š ç”¨æˆ·å¤„ç†æ¥æ”¶æ•°æ®æˆåŠŸ
  */
 typedef int (*am_uart_rxchar_put_t)(void *p_arg, char  ch);
 
 /**
- * \brief ´íÎó»Øµ÷º¯Êı
+ * \brief é”™è¯¯å›è°ƒå‡½æ•°
  *
- * \param[in] p_arg  £ºÉèÖÃ»Øµ÷º¯ÊıÊ±Ö¸¶¨µÄ×Ô¶¨Òå²ÎÊı
- * \param[in] code   £º´íÎó´úÂë
- * \param[in] p_data £º¸½¼şµÄ´íÎóÕï¶ÏĞÅÏ¢£¨ÓÉÆ½Ì¨×Ô¶¨Òå£¬¿ÉÄÜÎªNULL£©
- * \param[in] size   : ´íÎóÕï¶ÏĞÅÏ¢µÄ³¤¶È£¨ÓÉÆ½Ì¨×Ô¶¨Òå£¬¿ÉÄÜÎª0£©
+ * \param[in] p_arg  ï¼šè®¾ç½®å›è°ƒå‡½æ•°æ—¶æŒ‡å®šçš„è‡ªå®šä¹‰å‚æ•°
+ * \param[in] code   ï¼šé”™è¯¯ä»£ç 
+ * \param[in] p_data ï¼šé™„ä»¶çš„é”™è¯¯è¯Šæ–­ä¿¡æ¯ï¼ˆç”±å¹³å°è‡ªå®šä¹‰ï¼Œå¯èƒ½ä¸ºNULLï¼‰
+ * \param[in] size   : é”™è¯¯è¯Šæ–­ä¿¡æ¯çš„é•¿åº¦ï¼ˆç”±å¹³å°è‡ªå®šä¹‰ï¼Œå¯èƒ½ä¸º0ï¼‰
  *
  * \return AM_OK
  */
@@ -170,72 +170,72 @@ typedef int (*am_uart_err_t)(void *p_arg, int code, void *p_data, int size);
 
 
 /**
- * \brief UARTÇı¶¯º¯Êı½á¹¹Ìå
+ * \brief UARTé©±åŠ¨å‡½æ•°ç»“æ„ä½“
  */
 struct am_uart_drv_funcs {
 
-    /**\brief UART¿ØÖÆº¯Êı     */
+    /**\brief UARTæ§åˆ¶å‡½æ•°     */
     int (*pfn_uart_ioctl)(void *p_drv,int request, void *p_arg);
 
-    /**\brief Æô¶¯UART·¢ËÍº¯Êı */
+    /**\brief å¯åŠ¨UARTå‘é€å‡½æ•° */
     int (*pfn_uart_tx_startup)(void *p_drv);
 
-    /**\brief ÉèÖÃ´®¿Ú»Øµ÷º¯Êı */
+    /**\brief è®¾ç½®ä¸²å£å›è°ƒå‡½æ•° */
     int (*pfn_uart_callback_set)(void  *p_drv,
                                  int    callback_type,
                                  void  *pfn_callback,
                                  void  *p_arg);
 
-    /**\brief ´Ó´®¿Ú»ñÈ¡Ò»¸ö×Ö·û£¨²éÑ¯Ä£Ê½£© */
+    /**\brief ä»ä¸²å£è·å–ä¸€ä¸ªå­—ç¬¦ï¼ˆæŸ¥è¯¢æ¨¡å¼ï¼‰ */
     int (*pfn_uart_poll_getchar)(void *p_drv, char *p_inchar);
 
-    /**\brief Êä³öÒ»¸ö×Ö·û£¨²éÑ¯Ä£Ê½£©       */
+    /**\brief è¾“å‡ºä¸€ä¸ªå­—ç¬¦ï¼ˆæŸ¥è¯¢æ¨¡å¼ï¼‰       */
     int (*pfn_uart_poll_putchar)(void *p_drv, char outchar);
 
 };
 
 /**
- * \brief UART·şÎñ
+ * \brief UARTæœåŠ¡
  */
 typedef struct am_uart_serv {
 
-    /** \brief UARTÇı¶¯º¯Êı½á¹¹ÌåÖ¸Õë    */
+    /** \brief UARTé©±åŠ¨å‡½æ•°ç»“æ„ä½“æŒ‡é’ˆ    */
     struct am_uart_drv_funcs *p_funcs;
 
-    /** \brief ÓÃÓÚÇı¶¯º¯ÊıµÄµÚÒ»¸ö²ÎÊı  */
+    /** \brief ç”¨äºé©±åŠ¨å‡½æ•°çš„ç¬¬ä¸€ä¸ªå‚æ•°  */
     void                     *p_drv;
 } am_uart_serv_t;
 
-/** \brief UART±ê×¼·şÎñ²Ù×÷¾ä±úÀàĞÍ¶¨Òå  */
+/** \brief UARTæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„ç±»å‹å®šä¹‰  */
 typedef am_uart_serv_t *am_uart_handle_t;
 
 /**
- * \brief ´®¿Ú¿ØÖÆº¯Êı
+ * \brief ä¸²å£æ§åˆ¶å‡½æ•°
  *
- * \param[in] handle  : UART±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \param[in] request : ¿ØÖÆÖ¸Áî
- *   - AM_UART_BAUD_SET : ÉèÖÃ²¨ÌØÂÊ, p_argÎª uint32_tÀàĞÍ,ÖµÎª²¨ÌØÂÊ
- *   - AM_UART_BAUD_GET : »ñÈ¡²¨ÌØÂÊ, p_argÎª uint32_tÖ¸ÕëÀàĞÍ
- *   - AM_UART_OPTS_SET £ºÉèÖÃÓ²¼ş²ÎÊı£¬p_arg Îª uint32_tÀàĞÍ£¨#AM_UART_CS8£©
- *   - AM_UART_OPTS_GET £º»ñÈ¡µ±Ç°µÄÓ²¼ş²ÎÊıÉèÖÃ£¬p_argÎª uint32_tÖ¸ÕëÀàĞÍ
- *   - AM_UART_MODE_SET : ÉèÖÃÄ£Ê½, p_argÖµÎª AM_UART_MODE_POLL»ò AM_UART_MODE_INT
- *   - AM_UART_MODE_GET : »ñÈ¡µ±Ç°Ä£Ê½, p_argÎª uint32_tÖ¸ÕëÀàĞÍ
- *   - AM_UART_AVAIL_MODES_GET : »ñÈ¡µ±Ç°¿ÉÓÃµÄÄ£Ê½, p_argÎª uint32_tÖ¸ÕëÀàĞÍ
- *   - AM_UART_FLOWMODE_SET    : ÉèÖÃÁ÷¿ØÄ£Ê½, p_arg Îª AM_UART_FLOWCTL_NO
- *                                                       »ò  AM_UART_FLOWCTL_OFF
- *   - AM_UART_FLOWSTAT_RX_SET : ÉèÖÃ½ÓÊÕÆ÷Á÷¿Ø×´Ì¬, p_arg ÎªAM_UART_FLOWSTAT_ON 
- *                                                       »ò AM_UART_FLOWSTAT_OFF
- *   - AM_UART_FLOWSTAT_TX_GET : »ñÈ¡·¢ËÍÆ÷Á÷¿Ø×´Ì¬, p_arg ÎªAM_UART_FLOWSTAT_ON 
- *                                                       »ò AM_UART_FLOWSTAT_OFF
+ * \param[in] handle  : UARTæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] request : æ§åˆ¶æŒ‡ä»¤
+ *   - AM_UART_BAUD_SET : è®¾ç½®æ³¢ç‰¹ç‡, p_argä¸º uint32_tç±»å‹,å€¼ä¸ºæ³¢ç‰¹ç‡
+ *   - AM_UART_BAUD_GET : è·å–æ³¢ç‰¹ç‡, p_argä¸º uint32_tæŒ‡é’ˆç±»å‹
+ *   - AM_UART_OPTS_SET ï¼šè®¾ç½®ç¡¬ä»¶å‚æ•°ï¼Œp_arg ä¸º uint32_tç±»å‹ï¼ˆ#AM_UART_CS8ï¼‰
+ *   - AM_UART_OPTS_GET ï¼šè·å–å½“å‰çš„ç¡¬ä»¶å‚æ•°è®¾ç½®ï¼Œp_argä¸º uint32_tæŒ‡é’ˆç±»å‹
+ *   - AM_UART_MODE_SET : è®¾ç½®æ¨¡å¼, p_argå€¼ä¸º AM_UART_MODE_POLLæˆ– AM_UART_MODE_INT
+ *   - AM_UART_MODE_GET : è·å–å½“å‰æ¨¡å¼, p_argä¸º uint32_tæŒ‡é’ˆç±»å‹
+ *   - AM_UART_AVAIL_MODES_GET : è·å–å½“å‰å¯ç”¨çš„æ¨¡å¼, p_argä¸º uint32_tæŒ‡é’ˆç±»å‹
+ *   - AM_UART_FLOWMODE_SET    : è®¾ç½®æµæ§æ¨¡å¼, p_arg ä¸º AM_UART_FLOWCTL_NO
+ *                                                       æˆ–  AM_UART_FLOWCTL_OFF
+ *   - AM_UART_FLOWSTAT_RX_SET : è®¾ç½®æ¥æ”¶å™¨æµæ§çŠ¶æ€, p_arg ä¸ºAM_UART_FLOWSTAT_ON 
+ *                                                       æˆ– AM_UART_FLOWSTAT_OFF
+ *   - AM_UART_FLOWSTAT_TX_GET : è·å–å‘é€å™¨æµæ§çŠ¶æ€, p_arg ä¸ºAM_UART_FLOWSTAT_ON 
+ *                                                       æˆ– AM_UART_FLOWSTAT_OFF
  *
- *   - AM_UART_RS485_SET : ÉèÖÃRS485Ä£Ê½£¬p_argÎªbool_tÀàĞÍ£¬TURE£¨Ê¹ÄÜ£©£¬FALSE£¨½ûÄÜ£©
- *   - AM_UART_RS485_GET £º»ñÈ¡µ±Ç°µÄRS485Ä£Ê½×´Ì¬£¬²ÎÊıÎª bool_t Ö¸ÕëÀàĞÍ
+ *   - AM_UART_RS485_SET : è®¾ç½®RS485æ¨¡å¼ï¼Œp_argä¸ºbool_tç±»å‹ï¼ŒTUREï¼ˆä½¿èƒ½ï¼‰ï¼ŒFALSEï¼ˆç¦èƒ½ï¼‰
+ *   - AM_UART_RS485_GET ï¼šè·å–å½“å‰çš„RS485æ¨¡å¼çŠ¶æ€ï¼Œå‚æ•°ä¸º bool_t æŒ‡é’ˆç±»å‹
  *
- * \param[in,out] p_arg : ¸ÃÖ¸Áî¶ÔÓ¦µÄ²ÎÊı
+ * \param[in,out] p_arg : è¯¥æŒ‡ä»¤å¯¹åº”çš„å‚æ•°
  *
- * \retval AM_OK       : ¿ØÖÆÖ¸ÁîÖ´ĞĞ³É¹¦
- * \retval -AM_EIO     : Ö´ĞĞ´íÎó
- * \retval -AM_ENOTSUP : Ö¸Áî²»Ö§³Ö
+ * \retval AM_OK       : æ§åˆ¶æŒ‡ä»¤æ‰§è¡ŒæˆåŠŸ
+ * \retval -AM_EIO     : æ‰§è¡Œé”™è¯¯
+ * \retval -AM_ENOTSUP : æŒ‡ä»¤ä¸æ”¯æŒ
  */
 am_static_inline
 int am_uart_ioctl (am_uart_handle_t handle,int request, void *p_arg)
@@ -244,9 +244,9 @@ int am_uart_ioctl (am_uart_handle_t handle,int request, void *p_arg)
 }
 
 /**
- * \brief Æô¶¯UARTÖĞ¶ÏÄ£Ê½Êı¾İ´«Êä
- * \param[in] handle : UART±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \retval AM_OK : Æô¶¯³É¹¦
+ * \brief å¯åŠ¨UARTä¸­æ–­æ¨¡å¼æ•°æ®ä¼ è¾“
+ * \param[in] handle : UARTæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \retval AM_OK : å¯åŠ¨æˆåŠŸ
  */
 am_static_inline
 int am_uart_tx_startup (am_uart_handle_t handle)
@@ -255,18 +255,18 @@ int am_uart_tx_startup (am_uart_handle_t handle)
 }
 
 /**
- * \brief ÉèÖÃUART»Øµ÷º¯Êı
+ * \brief è®¾ç½®UARTå›è°ƒå‡½æ•°
  *
- * \param[in] handle         : UART±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \param[in] callback_type  : Ö¸Ã÷ÉèÖÃµÄºÎÖÖ»Øµ÷º¯Êı
- *            - AM_UART_CALLBACK_GET_TX_CHAR  : »ñÈ¡Ò»¸ö·¢ËÍ×Ö·ûº¯Êı
- *            - AM_UART_CALLBACK_PUT_RCV_CHAR : Ìá½»Ò»¸ö½ÓÊÕµ½µÄ×Ö·û¸øÓ¦ÓÃ³ÌĞò
- *            - AM_UART_CALLBACK_ERROR        : ´íÎó»Øµ÷º¯Êı
- * \param[in] pfn_callback   : Ö¸Ïò»Øµ÷º¯ÊıµÄÖ¸Õë
- * \param[in] p_arg          : »Øµ÷º¯ÊıµÄÓÃ»§²ÎÊı
+ * \param[in] handle         : UARTæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] callback_type  : æŒ‡æ˜è®¾ç½®çš„ä½•ç§å›è°ƒå‡½æ•°
+ *            - AM_UART_CALLBACK_GET_TX_CHAR  : è·å–ä¸€ä¸ªå‘é€å­—ç¬¦å‡½æ•°
+ *            - AM_UART_CALLBACK_PUT_RCV_CHAR : æäº¤ä¸€ä¸ªæ¥æ”¶åˆ°çš„å­—ç¬¦ç»™åº”ç”¨ç¨‹åº
+ *            - AM_UART_CALLBACK_ERROR        : é”™è¯¯å›è°ƒå‡½æ•°
+ * \param[in] pfn_callback   : æŒ‡å‘å›è°ƒå‡½æ•°çš„æŒ‡é’ˆ
+ * \param[in] p_arg          : å›è°ƒå‡½æ•°çš„ç”¨æˆ·å‚æ•°
  *
- * \retval  AM_OK      : »Øµ÷º¯ÊıÉèÖÃ³É¹¦
- * \retval -AM_EINVAL  : ÉèÖÃÊ§°Ü£¬²ÎÊı´íÎó
+ * \retval  AM_OK      : å›è°ƒå‡½æ•°è®¾ç½®æˆåŠŸ
+ * \retval -AM_EINVAL  : è®¾ç½®å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_uart_callback_set (am_uart_handle_t  handle,
@@ -281,13 +281,13 @@ int am_uart_callback_set (am_uart_handle_t  handle,
 }
 
 /**
- * \brief UART½ÓÊÕÒ»¸öÊı¾İ(²éÑ¯Ä£Ê½)
+ * \brief UARTæ¥æ”¶ä¸€ä¸ªæ•°æ®(æŸ¥è¯¢æ¨¡å¼)
  *
- * \param[in]  handle   : UART±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \param[out] p_inchar : ÓÃÓÚ»ñÈ¡Êı¾İµÄÖ¸Õë
+ * \param[in]  handle   : UARTæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[out] p_inchar : ç”¨äºè·å–æ•°æ®çš„æŒ‡é’ˆ
  *
- * \retval  AM_OK       : ½ÓÊÕÊı¾İ³É¹¦
- * \retval -AM_EAGAIN   : ½ÓÊÕÊı¾İÎ´×¼±¸¾ÍĞ÷£¬ĞèÖØÊÔ
+ * \retval  AM_OK       : æ¥æ”¶æ•°æ®æˆåŠŸ
+ * \retval -AM_EAGAIN   : æ¥æ”¶æ•°æ®æœªå‡†å¤‡å°±ç»ªï¼Œéœ€é‡è¯•
  */
 am_static_inline
 int am_uart_poll_getchar (am_uart_handle_t handle, char *p_inchar)
@@ -296,13 +296,13 @@ int am_uart_poll_getchar (am_uart_handle_t handle, char *p_inchar)
 }
 
 /**
- * \brief UART·¢ËÍÒ»¸öÊı¾İ(²éÑ¯Ä£Ê½)
+ * \brief UARTå‘é€ä¸€ä¸ªæ•°æ®(æŸ¥è¯¢æ¨¡å¼)
  *
- * \param[in] handle  : UART±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \param[in] outchar : ´ı·¢ËÍµÄÊı¾İ
+ * \param[in] handle  : UARTæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] outchar : å¾…å‘é€çš„æ•°æ®
  *
- * \retval  AM_OK     : ·¢ËÍÊı¾İ³É¹¦
- * \retval -AM_EAGAIN : ·¢ËÍÎ´¾ÍĞ÷£¬ĞèÖØÊÔ
+ * \retval  AM_OK     : å‘é€æ•°æ®æˆåŠŸ
+ * \retval -AM_EAGAIN : å‘é€æœªå°±ç»ªï¼Œéœ€é‡è¯•
  */
 am_static_inline
 int am_uart_poll_putchar (am_uart_handle_t handle, char outchar)
@@ -311,13 +311,13 @@ int am_uart_poll_putchar (am_uart_handle_t handle, char outchar)
 }
 
 /**
- * \brief UARTÊı¾İ·¢ËÍ£¨²éÑ¯Ä£Ê½£©
+ * \brief UARTæ•°æ®å‘é€ï¼ˆæŸ¥è¯¢æ¨¡å¼ï¼‰
  *
- * \param[in] handle  : UART±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \param[in] p_txbuf : ·¢ËÍÊı¾İ»º³åÇø
- * \param[in] nbytes  : ´ı·¢ËÍÊı¾İµÄ¸öÊı
+ * \param[in] handle  : UARTæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] p_txbuf : å‘é€æ•°æ®ç¼“å†²åŒº
+ * \param[in] nbytes  : å¾…å‘é€æ•°æ®çš„ä¸ªæ•°
  *
- * \return ³É¹¦·¢ËÍÊı¾İµÄ¸öÊı
+ * \return æˆåŠŸå‘é€æ•°æ®çš„ä¸ªæ•°
  */
 int am_uart_poll_send(am_uart_handle_t  handle,
                       const uint8_t    *p_txbuf,
@@ -325,13 +325,13 @@ int am_uart_poll_send(am_uart_handle_t  handle,
 
 
 /**
- * \brief UARTÊı¾İ½ÓÊÕ£¨²éÑ¯Ä£Ê½£©
+ * \brief UARTæ•°æ®æ¥æ”¶ï¼ˆæŸ¥è¯¢æ¨¡å¼ï¼‰
  *
- * \param[in] handle  : UART±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \param[in] p_rxbuf : ½ÓÊÕÊı¾İ»º³åÇø
- * \param[in] nbytes  : ´ı½ÓÊÕÊı¾İµÄ¸öÊı
+ * \param[in] handle  : UARTæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] p_rxbuf : æ¥æ”¶æ•°æ®ç¼“å†²åŒº
+ * \param[in] nbytes  : å¾…æ¥æ”¶æ•°æ®çš„ä¸ªæ•°
  *
- * \return ³É¹¦½ÓÊÕÊı¾İµÄ¸öÊı
+ * \return æˆåŠŸæ¥æ”¶æ•°æ®çš„ä¸ªæ•°
  */
 int am_uart_poll_receive(am_uart_handle_t  handle,
                          uint8_t          *p_rxbuf,

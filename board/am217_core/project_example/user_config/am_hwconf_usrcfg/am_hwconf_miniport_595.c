@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief Miniport-595 ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief Miniport-595 ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_miniport_595.c
  *
  * \internal
@@ -36,13 +36,13 @@
    Public functions
 *******************************************************************************/
 static  am_hc595_spi_info_t __hc595_spi_info = {
-    PIOB_12,     /* Êı¾İËø´æÒı½Å */
-    -1,          /* Î´Ê¹ÓÃoeÒı½Å */
-    300000,      /* Ê±ÖÓ300KHZ */
-    AM_TRUE      /* Êı¾İµÍÎ»ÏÈ·¢ËÍ */
+    PIOB_12,     /* æ•°æ®é”å­˜å¼•è„š */
+    -1,          /* æœªä½¿ç”¨oeå¼•è„š */
+    300000,      /* æ—¶é’Ÿ300KHZ */
+    AM_TRUE      /* æ•°æ®ä½ä½å…ˆå‘é€ */
 };
 
-/* MiniPort-595 ÊµÀı³õÊ¼»¯ */
+/* MiniPort-595 å®ä¾‹åˆå§‹åŒ– */
 am_hc595_handle_t am_miniport_595_inst_init (void)
 {
 #if 0
@@ -51,8 +51,8 @@ am_hc595_handle_t am_miniport_595_inst_init (void)
         PIOB_15,
         PIOB_13,
         PIOB_12,
-        -1,                     /* OE¹Ì¶¨ÎªµÍµçÆ½£¬Î´Ê¹ÓÃ */
-        AM_TRUE                 /* µÍÎ»ÏÈ·¢ËÍ */
+        -1,                     /* OEå›ºå®šä¸ºä½ç”µå¹³ï¼Œæœªä½¿ç”¨ */
+        AM_TRUE                 /* ä½ä½å…ˆå‘é€ */
     };
 
     return  am_hc595_gpio_init(&miniport_595, &miniport_595_info);

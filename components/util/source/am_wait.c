@@ -24,15 +24,15 @@
 
 /******************************************************************************/
 
-/* Ê¹ÓÃÖµ¸½´øÐÅÏ¢ */
-#define __WAIT_VAL_INIT     0   /* ³õÊ¼ÖµÎª0                    */
-#define __WAIT_VAL_DONE     1   /* Ê¹ÓÃam_wait_done()ÉèÖÃÖµÎª 1 */
-#define __WAIT_VAL_TIMEOUT  2   /* ³¬Ê±Ê±£¬ÉèÖÃÖµÎª2             */
+/* ä½¿ç”¨å€¼é™„å¸¦ä¿¡æ¯ */
+#define __WAIT_VAL_INIT     0   /* åˆå§‹å€¼ä¸º0                    */
+#define __WAIT_VAL_DONE     1   /* ä½¿ç”¨am_wait_done()è®¾ç½®å€¼ä¸º 1 */
+#define __WAIT_VAL_TIMEOUT  2   /* è¶…æ—¶æ—¶ï¼Œè®¾ç½®å€¼ä¸º2             */
 
-/* ×´Ì¬ÓÃÒÔ±íÊ¾µ±Ç°µÈ´ý½á¹¹µÄ×´Ì¬ */
-#define __WAIT_STAT_INIT             0   /* ³õÊ¼×´Ì¬            */
-#define __WAIT_STAT_WAIT_ON          1   /* µÈ´ý×´Ì¬            */
-#define __WAIT_STAT_WAIT_ON_TIMEOUT  2   /* µÈ´ý×´Ì¬£¨´ø³¬Ê±£©   */
+/* çŠ¶æ€ç”¨ä»¥è¡¨ç¤ºå½“å‰ç­‰å¾…ç»“æž„çš„çŠ¶æ€ */
+#define __WAIT_STAT_INIT             0   /* åˆå§‹çŠ¶æ€            */
+#define __WAIT_STAT_WAIT_ON          1   /* ç­‰å¾…çŠ¶æ€            */
+#define __WAIT_STAT_WAIT_ON_TIMEOUT  2   /* ç­‰å¾…çŠ¶æ€ï¼ˆå¸¦è¶…æ—¶ï¼‰   */
 
 /******************************************************************************/
 
@@ -47,7 +47,7 @@ static void __timer_callback (void *p_arg)
 
 /******************************************************************************/
 
-/* µÈ´ýÐÅºÅ³õÊ¼»¯ */
+/* ç­‰å¾…ä¿¡å·åˆå§‹åŒ– */
 int am_wait_init (am_wait_t *p_wait)
 {
     if (p_wait == NULL) {
@@ -93,21 +93,21 @@ int am_wait_on_timeout(am_wait_t *p_wait, uint32_t timeout_ms)
 {
     int ret;
     
-    /* ¿ªÊ¼¼ÆÊ± */
+    /* å¼€å§‹è®¡æ—¶ */
     am_softimer_start(&p_wait->timer,timeout_ms);
     
     p_wait->stat = __WAIT_STAT_WAIT_ON_TIMEOUT;
     
     while(p_wait->val == __WAIT_VAL_INIT);
     
-    if (p_wait->val == __WAIT_VAL_DONE) {  /* ³É¹¦µÈµ½½áÊøÐÅºÅ */
+    if (p_wait->val == __WAIT_VAL_DONE) {  /* æˆåŠŸç­‰åˆ°ç»“æŸä¿¡å· */
         ret = AM_OK;
-    } else {                               /* ³¬Ê±ÐÅºÅ     */
+    } else {                               /* è¶…æ—¶ä¿¡å·     */
         ret = -AM_ETIME;
     }
     
     p_wait->val  = __WAIT_VAL_INIT;
-    p_wait->stat = __WAIT_STAT_INIT;       /* »Øµ½³õÊ¼Ì¬   */
+    p_wait->stat = __WAIT_STAT_INIT;       /* å›žåˆ°åˆå§‹æ€   */
     
     am_softimer_stop(&p_wait->timer);
     

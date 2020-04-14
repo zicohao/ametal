@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief CLKÇı¶¯£¬Ê±ÖÓ±ê×¼·şÎñ½Ó¿ÚÊµÏÖ
+ * \brief CLKé©±åŠ¨ï¼Œæ—¶é’Ÿæ ‡å‡†æœåŠ¡æ¥å£å®ç°
  *
  * \internal
  * \par Modification history
@@ -38,7 +38,7 @@ extern "C" {
 
 
 /**
-  * \brief Ê±ÖÓ¹¤×÷Ä£Ê½
+  * \brief æ—¶é’Ÿå·¥ä½œæ¨¡å¼
   */
 typedef enum am_kl26_clk_mode {
     AM_KL26_CLK_MODE_FEI   = 0,   /**< \brief FEI  */
@@ -54,133 +54,133 @@ typedef enum am_kl26_clk_mode {
 } am_kl26_clk_mode_t;
 
 /**
- * \brief CLK Éè±¸ĞÅÏ¢²ÎÊı½á¹¹Ìå
+ * \brief CLK è®¾å¤‡ä¿¡æ¯å‚æ•°ç»“æ„ä½“
  */
 
 typedef struct am_kl26_clk_devinfo {
-    /** \brief Ê±ÖÓ¹¤×÷Ä£Ê½ */
+    /** \brief æ—¶é’Ÿå·¥ä½œæ¨¡å¼ */
     am_kl26_clk_mode_t clk_mode;
 
-    /** \brief Íâ²¿¾§ÕñÆµÂÊ */
+    /** \brief å¤–éƒ¨æ™¶æŒ¯é¢‘ç‡ */
     uint32_t xtal_rate;
 
-    /* ÄÚºËÊ±ÖÓcore_clk·ÖÆµÏµÊı(1-16),
+    /* å†…æ ¸æ—¶é’Ÿcore_clkåˆ†é¢‘ç³»æ•°(1-16),
      * core_clk = MCGOUTCLK / outdiv1 ,core_clk upto 48MHz
      */
     uint8_t core_clk_div;
 
-    /** \brief Æ½Ì¨³õÊ¼»¯º¯Êı£¬ÅäÖÃÒı½ÅµÈ¹¤×÷ */
+    /** \brief å¹³å°åˆå§‹åŒ–å‡½æ•°ï¼Œé…ç½®å¼•è„šç­‰å·¥ä½œ */
     void  (*pfn_plfm_init)(void);
 
-    /** \brief Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    /** \brief å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
     void  (*pfn_plfm_deinit)(void);
 
 } am_kl26_clk_devinfo_t;
 
 /**
- * \brief CLK Éè±¸½á¹¹Ìå
+ * \brief CLK è®¾å¤‡ç»“æ„ä½“
  */
 typedef struct am_kl26_clk_dev {
 
-    /** \brief Ö¸ÏòCLK Éè±¸ĞÅÏ¢µÄÖ¸Õë   */
+    /** \brief æŒ‡å‘CLK è®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ   */
     const am_kl26_clk_devinfo_t *p_devinfo;
 
-    /* PLL·ÖÆµÏµÊı£¬ Ê¹µÃPLL ÊäÈëÆµÂÊÔÚ2-4MHz ¼ä*/
+    /* PLLåˆ†é¢‘ç³»æ•°ï¼Œ ä½¿å¾—PLL è¾“å…¥é¢‘ç‡åœ¨2-4MHz é—´*/
     uint8_t pll_div;
 
-    /* PLL±¶ÆµÏµÊı£¬MCGPLLCLK = 2MHz * (24 + pll_div), MCGPLLCLK upto 100MHz*/
+    /* PLLå€é¢‘ç³»æ•°ï¼ŒMCGPLLCLK = 2MHz * (24 + pll_div), MCGPLLCLK upto 100MHz*/
     uint8_t pll_mul;
 
-    /* FLL·ÖÆµÏµÊı£¬Ê¹µÃFLL ÊäÈëÆµÂÊÔÚ32.768K ×óÓÒ */
+    /* FLLåˆ†é¢‘ç³»æ•°ï¼Œä½¿å¾—FLL è¾“å…¥é¢‘ç‡åœ¨32.768K å·¦å³ */
     uint8_t fll_div;
 
-    /* FLLËøÆµÆµÂÊ£¬MCGFLLCLK = 24MHz»ò48MHz»ò72MHz»ò96MHz */
+    /* FLLé”é¢‘é¢‘ç‡ï¼ŒMCGFLLCLK = 24MHzæˆ–48MHzæˆ–72MHzæˆ–96MHz */
     uint32_t fll_rate;
 
-    /* ÄÚºËÊ±ÖÓcore_clk·ÖÆµÏµÊı(1-16),
+    /* å†…æ ¸æ—¶é’Ÿcore_clkåˆ†é¢‘ç³»æ•°(1-16),
     * core_clk = MCGOUTCLK / outdiv1 ,core_clk upto 48MHz
     */
     uint8_t outdiv1;
-    /* ×ÜÏßÊ±ÖÓbus_clk·ÖÆµÏµÊı(2-8)£¬
+    /* æ€»çº¿æ—¶é’Ÿbus_clkåˆ†é¢‘ç³»æ•°(2-8)ï¼Œ
     * bus_clk = core_clk / outdiv4, bus_clk upto 24MHz
     */
     uint8_t outdiv4;
 } am_kl26_clk_dev_t;
 
 /**
- * \brief CLK ³õÊ¼»¯
+ * \brief CLK åˆå§‹åŒ–
  *
- * \param[in] p_dev     : Ö¸ÏòCLKÉè±¸µÄÖ¸Õë
- * \param[in] p_devinfo : Ö¸ÏòCLKÉè±¸ĞÅÏ¢µÄÖ¸Õë
+ * \param[in] p_dev     : æŒ‡å‘CLKè®¾å¤‡çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo : æŒ‡å‘CLKè®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ
  *
- * \retval AM_OK : ²Ù×÷³É¹¦
+ * \retval AM_OK : æ“ä½œæˆåŠŸ
  */
 int am_kl26_clk_init (am_kl26_clk_dev_t           *p_dev,
                       const am_kl26_clk_devinfo_t *p_devinfo);
 
 /**
- * \brief µÃµ½core/platform/systemÊ±ÖÓÆµÂÊ
- * \return core/platform/systemÊ±ÖÓÆµÂÊ
+ * \brief å¾—åˆ°core/platform/systemæ—¶é’Ÿé¢‘ç‡
+ * \return core/platform/systemæ—¶é’Ÿé¢‘ç‡
  */
 uint32_t am_kl26_clk_core_clkrate_get(void);
 
 /**
- * \brief µÃµ½bus/flashÊ±ÖÓÆµÂÊ
- * \return bus/flashÊ±ÖÓÆµÂÊ
+ * \brief å¾—åˆ°bus/flashæ—¶é’Ÿé¢‘ç‡
+ * \return bus/flashæ—¶é’Ÿé¢‘ç‡
  */
 uint32_t am_kl26_clk_bus_clkrate_get(void);
 
 /**
- * \brief µÃµ½ÍâÉèµÄÊäÈëÆµÂÊ
+ * \brief å¾—åˆ°å¤–è®¾çš„è¾“å…¥é¢‘ç‡
  *
- * \param[in] p_periph : Ö¸ÏòÍâÉèµÄ¼Ä´æÆ÷¿é
+ * \param[in] p_periph : æŒ‡å‘å¤–è®¾çš„å¯„å­˜å™¨å—
  *
- * \return ÍâÉèµÄÊäÈëÆµÂÊ
+ * \return å¤–è®¾çš„è¾“å…¥é¢‘ç‡
  */
 uint32_t am_kl26_clk_periph_rate_get(void *p_periph);
 
 /**
- * \brief »ñÈ¡Ê±ÖÓ¹¤×÷Ä£Ê½
+ * \brief è·å–æ—¶é’Ÿå·¥ä½œæ¨¡å¼
  */
 am_kl26_clk_mode_t am_kl26_clk_mode_get (void);
 
 /**
- * \brief ÅäÖÃÊ±ÖÓ¹¤×÷Ä£Ê½PEEµ½BLPEÄ£Ê½£¨µÍ¹¦ºÄÄ£Ê½£©
- * \return ÎŞ
- * \note BLPEÄ£Ê½£¬CORE_CLK = 4MHZ
+ * \brief é…ç½®æ—¶é’Ÿå·¥ä½œæ¨¡å¼PEEåˆ°BLPEæ¨¡å¼ï¼ˆä½åŠŸè€—æ¨¡å¼ï¼‰
+ * \return æ— 
+ * \note BLPEæ¨¡å¼ï¼ŒCORE_CLK = 4MHZ
  *                 BUS_CLK = 1MHZ
  */
 int am_kl26_clk_mode_pee2blpe (void);
 
 /**
- * \brief ÅäÖÃÊ±ÖÓ¹¤×÷Ä£Ê½BLPEµ½PEEÄ£Ê½
- * \return ÎŞ
- * \note PEEÄ£Ê½,CORE_CLK = 48MHZ
+ * \brief é…ç½®æ—¶é’Ÿå·¥ä½œæ¨¡å¼BLPEåˆ°PEEæ¨¡å¼
+ * \return æ— 
+ * \note PEEæ¨¡å¼,CORE_CLK = 48MHZ
  *               BUS_CLK = 24MHZ
  */
 int am_kl26_clk_mode_blpe2pee (void);
 
 /**
- * \brief ÅäÖÃÊ±ÖÓ¹¤×÷Ä£Ê½PBEµ½PEEÄ£Ê½
- * \return ÎŞ
- * \note PEEÄ£Ê½,CORE_CLK = 48MHZ
+ * \brief é…ç½®æ—¶é’Ÿå·¥ä½œæ¨¡å¼PBEåˆ°PEEæ¨¡å¼
+ * \return æ— 
+ * \note PEEæ¨¡å¼,CORE_CLK = 48MHZ
  *               BUS_CLK = 24MHZ
  */
 int am_kl26_clk_mode_pbe2pee(void);
 
 /**
- * \brief ÅäÖÃÊ±ÖÓ¹¤×÷Ä£Ê½FEIµ½BLPIÄ£Ê½£¨µÍ¹¦ºÄÄ£Ê½£©
- * \return ÎŞ
- * \note BLPIÄ£Ê½,
+ * \brief é…ç½®æ—¶é’Ÿå·¥ä½œæ¨¡å¼FEIåˆ°BLPIæ¨¡å¼ï¼ˆä½åŠŸè€—æ¨¡å¼ï¼‰
+ * \return æ— 
+ * \note BLPIæ¨¡å¼,
  *       Core clock = 4MHz
  *       Bus clock  = 1MHz
  */
 int am_kl26_clk_mode_fei2blpi (void);
 
 /**
- * \brief ÅäÖÃÊ±ÖÓ¹¤×÷Ä£Ê½BLPIµ½FEIÄ£Ê½
- * \return ÎŞ
- * \note FBIÄ£Ê½
+ * \brief é…ç½®æ—¶é’Ÿå·¥ä½œæ¨¡å¼BLPIåˆ°FEIæ¨¡å¼
+ * \return æ— 
+ * \note FBIæ¨¡å¼
  *       Core clock = 20.97152MHz
  *       Bus clock  = 20.97152MHz
  */

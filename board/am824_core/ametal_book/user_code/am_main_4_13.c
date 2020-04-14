@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥4.13
+ * \brief ç¨‹åºæ¸…å•4.13
  *
- * \note ¸ÃÀú³ÌĞèÒªÓÃµ½miniportÍØÕ¹°å
+ * \note è¯¥å†ç¨‹éœ€è¦ç”¨åˆ°miniportæ‹“å±•æ¿
  *
  * \internal
  * \par Modification history
@@ -27,13 +27,13 @@
 #include "digitron0.h"
 int am_main (void)
 {
-    int i = 0;                     // Ãë¼ÆÊıÆ÷Çå0
+    int i = 0;                     // ç§’è®¡æ•°å™¨æ¸…0
 
     digitron_init();
     while(1) {
-        digitron_disp_num(0, i);   // com0ÏÔÊ¾i
-        am_mdelay(1000);           // ÑÓÊ±1s
-        i = (i + 1) % 10;          // Ãë¼ÆÊıÆ÷+1¼ÆÊı£¬·êÊ®½øÒ»
+        digitron_disp_num(0, i);   // com0æ˜¾ç¤ºi
+        am_mdelay(1000);           // å»¶æ—¶1s
+        i = (i + 1) % 10;          // ç§’è®¡æ•°å™¨+1è®¡æ•°ï¼Œé€¢åè¿›ä¸€
     }
 }
 

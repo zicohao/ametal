@@ -12,15 +12,15 @@
 
 /**
  * \file
- * \brief GPIO Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief GPIO ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè£º
- *   1. Ê¹ÊäÈëÒı½ÅÎªµÍµçÆ½¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. ä½¿è¾“å…¥å¼•è„šä¸ºä½ç”µå¹³ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   2. ÊäÈëÒı½ÅÎªµÍµçÆ½Ê±£¬Êä³öÒı½Å×´Ì¬·­×ª¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   2. è¾“å…¥å¼•è„šä¸ºä½ç”µå¹³æ—¶ï¼Œè¾“å‡ºå¼•è„šçŠ¶æ€ç¿»è½¬ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_std_gpio.c src_std_gpio
  *
  * \internal
@@ -40,16 +40,16 @@
 #include "am_delay.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_std_gpio_entry (int input_pin, int output_pin)
 {
     uint8_t dir_input = 0;
 
-    /* Ò»°ãÄ¬ÈÏ°´¼ü¶ÔÓ¦µÄ GPIO Òı½Å×÷ÎªÊäÈë */
+    /* ä¸€èˆ¬é»˜è®¤æŒ‰é”®å¯¹åº”çš„ GPIO å¼•è„šä½œä¸ºè¾“å…¥ */
     am_gpio_pin_cfg(input_pin, AM_GPIO_INPUT | AM_GPIO_PULLUP);
 
-    /* Ò»°ãÄ¬ÈÏ LED ¶ÔÓ¦µÄ GPIO Òı½Å×÷ÎªÊä³ö */
+    /* ä¸€èˆ¬é»˜è®¤ LED å¯¹åº”çš„ GPIO å¼•è„šä½œä¸ºè¾“å‡º */
     am_gpio_pin_cfg(output_pin, AM_GPIO_OUTPUT_INIT_LOW | AM_GPIO_PULLUP);
 
     while (1) {
@@ -57,10 +57,10 @@ void demo_std_gpio_entry (int input_pin, int output_pin)
          dir_input = am_gpio_get(input_pin);
          if (dir_input == 0) {
 
-             /*  Ïû³ı¶¶¶¯ */
+             /*  æ¶ˆé™¤æŠ–åŠ¨ */
              while (am_gpio_get(input_pin) == 0);
             
-             /* ·­×ªoutput_pin */
+             /* ç¿»è½¬output_pin */
              am_gpio_toggle(output_pin);
          }
     }

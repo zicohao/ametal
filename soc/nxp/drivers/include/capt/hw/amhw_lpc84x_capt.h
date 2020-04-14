@@ -176,7 +176,7 @@ void amhw_lpc84x_capt_trigger_mode_set (amhw_lpc84x_capt_t             *p_hw_cap
 *
 * \param[in] p_hw_capt: CAPT peripheral base address.
 * \param[in] flag:      0 : The next X measurement starts at the normal time.
-*                       1 : When the ISTOUCH bit in the TOUCH register equals ¡®1¡¯, the
+*                       1 : When the ISTOUCH bit in the TOUCH register equals Â¡Â®1Â¡Â¯, the
 *                           module will wait until the TOUCH register is read before starting
 *                           the next measurement. Other-wise, measurements continue.
 *
@@ -264,7 +264,7 @@ typedef enum amhw_lpc84x_capt_xpins {
 
 /**
 * \brief Selects which of the available X pins are enabled.
-*        Writing ¡®1¡¯ to a bit enables the corresponding X pin, ¡®0¡¯ disables.
+*        Writing Â¡Â®1Â¡Â¯ to a bit enables the corresponding X pin, Â¡Â®0Â¡Â¯ disables.
 *
 * \param[in] base CAPT peripheral base address.
 * \param[in] pins  Xpins.
@@ -449,7 +449,7 @@ void amhw_lpc84x_capt_poll_delay_set(amhw_lpc84x_capt_t *p_hw_capt,
 
 typedef enum amhw_lpc84x_capt_meas_delay
 {
-    KCAPT_MEASURE_NOWAIT     = 0U,         /**< \brief Don¡¯t wait. */
+    KCAPT_MEASURE_NOWAIT     = 0U,         /**< \brief DonÂ¡Â¯t wait. */
     KCAPT_MEASURE_WAIT3FCLKS = 1U,         /**< \brief Wait 3 divided FCLKs. */
     KCAPT_MEASURE_WAIT5FCLKS = 2U,         /**< \brief Wait 5 divided FCLKs. */
     KCAPT_MEASURE_WAIT9FCLKS = 3U,         /**< \brief Wait 9 divided FCLKs. */
@@ -541,8 +541,8 @@ uint8_t amhw_lpc84x_capt_touch_xval_get(amhw_lpc84x_capt_t *p_hw_capt)
 }
 
 /**
-* \brief ¡®1¡¯ if the trigger is due to a touch event,
-*        ¡®0¡¯ if the trigger is due to a no-touchevent.
+* \brief Â¡Â®1Â¡Â¯ if the trigger is due to a touch event,
+*        Â¡Â®0Â¡Â¯ if the trigger is due to a no-touchevent.
 *
 * \param[in] p_hw_capt: CAPT peripheral base address.
 * \return:   is touch or no-touch.
@@ -555,10 +555,10 @@ am_bool_t amhw_lpc84x_capt_istouch_get(amhw_lpc84x_capt_t *p_hw_capt)
 }
 
 /**
-* \brief ¡®1¡¯ if the measurement resulted in a time-out event, ¡®0¡¯ otherwise.
+* \brief Â¡Â®1Â¡Â¯ if the measurement resulted in a time-out event, Â¡Â®0Â¡Â¯ otherwise.
 *
 * \param[in] p_hw_capt: CAPT peripheral base address.
-* \return:   ¡®1¡¯ if the measurement resulted in a time-out event, ¡®0¡¯ otherwise.
+* \return:   Â¡Â®1Â¡Â¯ if the measurement resulted in a time-out event, Â¡Â®0Â¡Â¯ otherwise.
 */
 am_static_inline
 am_bool_t amhw_lpc84x_capt_isto_get(amhw_lpc84x_capt_t *p_hw_capt)
@@ -581,12 +581,12 @@ uint8_t amhw_lpc84x_capt_seq_get(amhw_lpc84x_capt_t *p_hw_capt)
 }
 
 /**
-* \brief Will be ¡®1¡¯ for one bus clock at the end of each X measurement
-*        while the data are changing, otherwise ¡®0¡¯.
+* \brief Will be Â¡Â®1Â¡Â¯ for one bus clock at the end of each X measurement
+*        while the data are changing, otherwise Â¡Â®0Â¡Â¯.
 *
 *
 * \param[in] p_hw_capt: CAPT peripheral base address.
-* \return:   Touch data read while this bit is ¡®1¡¯ are invalid.
+* \return:   Touch data read while this bit is Â¡Â®1Â¡Â¯ are invalid.
 */
 am_static_inline
 am_bool_t amhw_lpc84x_capt_change_get(amhw_lpc84x_capt_t *p_hw_capt)

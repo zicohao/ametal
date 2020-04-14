@@ -12,18 +12,18 @@
 
 /**
  * \file
- * \brief UART²éÑ¯·½Ê½ÏÂ½ÓÊÕ·¢ËÍÊı¾İÀı³Ì£¬Í¨¹ıHW²ãµÄ½Ó¿ÚÊµÏÖ
+ * \brief UARTæŸ¥è¯¢æ–¹å¼ä¸‹æ¥æ”¶å‘é€æ•°æ®ä¾‹ç¨‹ï¼Œé€šè¿‡HWå±‚çš„æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè£º
- *   1. PIOC_3 Òı½ÅÁ¬½ÓPC´®¿ÚµÄTXD;
- *   2. PIOC_4 Òı½ÅÁ¬½ÓPC´®¿ÚµÄRXD¡£
- *   3. ÅäÖÃÉÏÎ»»ú´®¿Ú²¨ÌØÂÊÎª115200£¬8Î»Êı¾İ³¤¶È 1Î»Í£Ö¹Î» ÎŞÆæÅ¼Ğ£Ñé;
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. PIOC_3 å¼•è„šè¿æ¥PCä¸²å£çš„TXD;
+ *   2. PIOC_4 å¼•è„šè¿æ¥PCä¸²å£çš„RXDã€‚
+ *   3. é…ç½®ä¸Šä½æœºä¸²å£æ³¢ç‰¹ç‡ä¸º115200ï¼Œ8ä½æ•°æ®é•¿åº¦ 1ä½åœæ­¢ä½ æ— å¥‡å¶æ ¡éªŒ;
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿ÚÊä³ö"HW example---UART test in polling mode:"£»
- *   2. ´®¿ÚÊä³ö½ÓÊÕµ½µÄ×Ö·û´®¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. ä¸²å£è¾“å‡º"HW example---UART test in polling mode:"ï¼›
+ *   2. ä¸²å£è¾“å‡ºæ¥æ”¶åˆ°çš„å­—ç¬¦ä¸²ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_amks16z_core_hw_uart_polling.c src_amks16z_core_hw_uart_polling
  *
  * \internal
@@ -51,27 +51,27 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief UARTÊ±ÖÓÊ¹ÄÜ³õÊ¼»¯
- * \param[in] p_hw_uart : Ö¸Ïò´®¿ÚÉè±¸¼Ä´æÆ÷½á¹¹Ìå, ÈçKL26_UART0.
+ * \brief UARTæ—¶é’Ÿä½¿èƒ½åˆå§‹åŒ–
+ * \param[in] p_hw_uart : æŒ‡å‘ä¸²å£è®¾å¤‡å¯„å­˜å™¨ç»“æ„ä½“, å¦‚KL26_UART0.
  */
 static void uart_polling_clock_init (void *p_hw_uart)
 {
     uint32_t base_addr = (uint32_t)(p_hw_uart);
 
     switch (base_addr) {
-    /* ´®¿Ú0Ê±ÖÓ³õÊ¼»¯ */
+    /* ä¸²å£0æ—¶é’Ÿåˆå§‹åŒ– */
     case KL26_UART0_BASE:
         amhw_kl26_sim_uart0_src_set(KL26_SIM_UART0SRC_PLLFLLCLK);
-        /* ¿ªÆôUART0Ê±ÖÓ                  */
+        /* å¼€å¯UART0æ—¶é’Ÿ                  */
         amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_UART0);
         break;
 
-    /* ´®¿Ú1Ê±ÖÓ³õÊ¼»¯ */
+    /* ä¸²å£1æ—¶é’Ÿåˆå§‹åŒ– */
     case KL26_UART1_BASE:
         amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_UART1);
         break;
 
-    /* ´®¿Ú2Ê±ÖÓ³õÊ¼»¯ */
+    /* ä¸²å£2æ—¶é’Ÿåˆå§‹åŒ– */
     case KL26_UART2_BASE:
         amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_UART2);
         break;
@@ -79,7 +79,7 @@ static void uart_polling_clock_init (void *p_hw_uart)
 }
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_amks16z_core_hw_uart_polling_entry (void)
 {
@@ -87,7 +87,7 @@ void demo_amks16z_core_hw_uart_polling_entry (void)
 
     uart_polling_clock_init(KL26_UART1);
 
-    /* Òı½Å³õÊ¼»¯      PIOC_3_UART1_RX  PIOC_4_UART1_TX     */
+    /* å¼•è„šåˆå§‹åŒ–      PIOC_3_UART1_RX  PIOC_4_UART1_TX     */
     am_gpio_pin_cfg (PIOC_3,PIOC_3_UART1_RX);
     am_gpio_pin_cfg (PIOC_4,PIOC_4_UART1_TX);
 

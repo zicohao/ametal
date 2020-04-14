@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief IWDGÇı¶¯²ã½Ó¿Ú
+ * \brief IWDGé©±åŠ¨å±‚æ¥å£
  * \internal
  * \par Modification history
  * - 1.00 15-07-10  sss, first implementation
@@ -31,14 +31,14 @@ static int __iwdg_feed (void *p_drv);
 static int __iwdg_enable (void *p_drv, uint32_t timeout);
 static int __iwdg_info_get (void *p_drv, am_wdt_info_t *p_info);
 
-/** \brief ¿´ÃÅ¹·±ê×¼·şÎñº¯Êı½á¹¹Ìå */
+/** \brief çœ‹é—¨ç‹—æ ‡å‡†æœåŠ¡å‡½æ•°ç»“æ„ä½“ */
 static const struct am_wdt_drv_funcs __g_iwdg_drv_funcs = {
     __iwdg_info_get,
     __iwdg_enable,
     __iwdg_feed
 };
 
-/** \brief »ñÈ¡¿´ÃÅ¹·ĞÅÏ¢ */
+/** \brief è·å–çœ‹é—¨ç‹—ä¿¡æ¯ */
 static int __iwdg_info_get (void *p_drv, am_wdt_info_t *p_info)
 {
     uint32_t wdt_freq      = 40000;
@@ -52,7 +52,7 @@ static int __iwdg_info_get (void *p_drv, am_wdt_info_t *p_info)
     return AM_OK;
 }
 
-/** \brief Î¹¹·²Ù×÷ */
+/** \brief å–‚ç‹—æ“ä½œ */
 static int __iwdg_feed (void *p_drv)
 {
     am_zlg_iwdg_dev_t *p_dev     = (am_zlg_iwdg_dev_t *)p_drv;
@@ -64,7 +64,7 @@ static int __iwdg_feed (void *p_drv)
     return AM_OK;
 }
 
-/** \brief ÅäÖÃ³¬Ê±Ê±¼ä²¢Æô¶¯¿´ÃÅ¹· */
+/** \brief é…ç½®è¶…æ—¶æ—¶é—´å¹¶å¯åŠ¨çœ‹é—¨ç‹— */
 static int __iwdg_enable (void *p_drv, uint32_t timeout_ms)
 {
     am_zlg_iwdg_dev_t *p_dev     = (am_zlg_iwdg_dev_t *)p_drv;
@@ -112,14 +112,14 @@ static int __iwdg_enable (void *p_drv, uint32_t timeout_ms)
     while(amhw_zlg_iwdg_status_get(p_hw_iwdg) & 0x2ul);
     amhw_zlg_iwdg_reload_set (p_hw_iwdg, ticks);
 
-    /* Æô¶¯¿´ÃÅ¹· */
+    /* å¯åŠ¨çœ‹é—¨ç‹— */
     amhw_zlg_iwdg_keyvalue_set(p_hw_iwdg, 0xAAAA);
     amhw_zlg_iwdg_keyvalue_set(p_hw_iwdg, 0xCCCC);
 
     return AM_OK;
 }
 
-/** \brief ³õÊ¼»¯IWDG£¬»ñÈ¡±ê×¼·şÎñ¾ä±ú */
+/** \brief åˆå§‹åŒ–IWDGï¼Œè·å–æ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_wdt_handle_t am_zlg_iwdg_init (am_zlg_iwdg_dev_t           *p_dev,
                                   const am_zlg_iwdg_devinfo_t *p_devinfo)
 {
@@ -132,7 +132,7 @@ am_wdt_handle_t am_zlg_iwdg_init (am_zlg_iwdg_dev_t           *p_dev,
     p_dev->wdt_serv.p_drv   = p_dev;
     p_dev->div              = 4;
 
-    /* ¿´ÃÅ¹·Æ½Ì¨³õÊ¼»¯ */
+    /* çœ‹é—¨ç‹—å¹³å°åˆå§‹åŒ– */
     if (p_devinfo->pfn_plfm_init) {
         p_devinfo->pfn_plfm_init();
     }
@@ -140,7 +140,7 @@ am_wdt_handle_t am_zlg_iwdg_init (am_zlg_iwdg_dev_t           *p_dev,
     return &(p_dev->wdt_serv);
 }
 
-/** \brief IWDG½â³õÊ¼»¯ */
+/** \brief IWDGè§£åˆå§‹åŒ– */
 void am_zlg_iwdg_deinit (am_wdt_handle_t handle)
 {
     am_zlg_iwdg_dev_t *p_dev = (am_zlg_iwdg_dev_t *)handle;

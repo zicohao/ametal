@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZSN60x配置文件
+ * \brief ZSN60x閰嶇疆鏂囦欢
  *
  * \internal
  * \par Modification history
@@ -29,10 +29,10 @@
 #include "am_zlg116_inst_init.h"
 #include "am_hwconf_zsn60x_i2c.h"
 
-/**< \brief ZSN60x(UART模式) 设备实例 */
+/**< \brief ZSN60x(UART妯″紡) 璁惧瀹炰緥 */
 static   zsn60x_uart_dev_t          __g_zsn60x_uart_dev;
 
-/**< \brief ZSN60x(UART模式) 设备信息 */
+/**< \brief ZSN60x(UART妯″紡) 璁惧淇℃伅 */
 static const zsn60x_uart_devinfo_t  __g_uart_info = {
      0xb2,
     {
@@ -43,7 +43,7 @@ static const zsn60x_uart_devinfo_t  __g_uart_info = {
         9600,
     }
 };
-/** \brief ZSN60x 实例初始化，获得ZSN60x标准服务句柄(UART模式) */
+/** \brief ZSN60x 瀹炰緥鍒濆鍖栵紝鑾峰緱ZSN60x鏍囧噯鏈嶅姟鍙ユ焺(UART妯″紡) */
 zsn60x_handle_t  am_zsn60x_uart_inst_init (void)
 {
     return zsn60x_uart_init(&__g_zsn60x_uart_dev, &__g_uart_info);

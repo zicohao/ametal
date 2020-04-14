@@ -30,17 +30,17 @@
 #include "am_timer.h"
 #include "am_vdebug.h"
 
-/** \brief LED ���� ID �� */
+/** \brief LED 索引 ID 号 */
 #define LED0          0
 #define LED1          1
 
 #if (AM_CFG_BUZZER_ENABLE == 1)
 
 /**
- * \brief ������ʹ�õĶ�ʱ���� handle
+ * \brief 蜂鸣器使用的定时器的 handle
  *
- * ��ʹ�÷�����ʱ��Ĭ�Ͻ�ʹ�� TIM3 �� OUT1 ��� PWM ���Σ�����Ѿ��� TIM3 ��ʼ��Ϊ
- * PWM ����
+ * 当使用蜂鸣器时，默认将使用 TIM3 的 OUT1 输出 PWM 波形，因此已经将 TIM3 初始化为
+ * PWM 功能
  */
 extern am_pwm_handle_t g_buzzer_pwm_handle;
 
@@ -49,21 +49,21 @@ extern am_pwm_handle_t g_buzzer_pwm_handle;
 #if (AM_CFG_SOFTIMER_ENABLE == 1)
 
 /**
- * \brief ϵͳ�δ�ʹ�õĶ�ʱ���� handle
+ * \brief 系统滴答使用的定时器的 handle
  *
- * ��ʹ��ϵͳ�δ�ʱ��Ĭ��ʹ�� TIM4 ��ͨ�� 0 ��Ϊ������ʱ��Ԫ������Ѿ��� TIM4 ��ʼ��
- * Ϊ��ʱ������
+ * 当使用系统滴答时，默认使用 TIM4 的通道 0 作为基础定时单元，因此已经将 TIM4 初始化
+ * 为定时器功能
  */
 extern am_timer_handle_t g_system_tick_timer_handle;
 
 #endif
 
 /**
- * \brief �弶��ʼ��
+ * \brief 板级初始化
  *
- * \return ��
+ * \return 无
  *
- * \note �ú������ʼ��ϵͳʱ�ӡ�GPIO���жϡ���������LED ����ʱ����
+ * \note 该函数会初始化系统时钟、GPIO、中断、蜂鸣器、LED 和延时函数
  */
 void am_board_init (void);
 

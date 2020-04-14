@@ -12,20 +12,20 @@
 
 /**
  * \file
- * \brief ETH���̣�ͨ��HW��ӿ�ʵ��
- * - �������裺
- *   1.ʹ�ñ�����֮ǰ����Ҫ������ֲLWIPЭ��ջ(�����ametal/3rdparty)��
- *     �������ù��̣�����ͷ�ļ�·��������IP6�ļ��У�.
- *   2.Demo��ʵ��tcp_server & tcp_client��ʹ�ú�AM_ZMF159_CORE_TCP_SERVER_TEST
-       & AM_ZMF159_CORE_TCP_CLIENT_TEST �����Ӧ����
- *   3.�û����޸������ļ����Թܽţ�IP��ַ, port�˿�, ���ʣ�˫����Ϣ�Ƚ�������
- *      (am_hwconf_zmf159_eth.c), �Ƽ�ʹ��Ĭ�����ã��������Զ�ʶ��PHY����
- * - ʵ������
- *   1.ʹ��tcp_server��ʹ��������Թ��ߴ����ͻ������Ӻ󣬿ɽ����շ�����.
- *   2.ʹ��tcp_client��ʹ��������Թ��ߴ��������������Ӻ󣬿ɽ����շ�����.
+ * \brief ETH例程，通过HW层接口实现
+ * - 操作步骤：
+ *   1.使用本例程之前，需要下载移植LWIP协议栈(存放于ametal/3rdparty)，
+ *     并在配置工程（添加头文件路径，屏蔽IP6文件夹）.
+ *   2.Demo已实现tcp_server & tcp_client，使用宏AM_ZMF159_CORE_TCP_SERVER_TEST
+       & AM_ZMF159_CORE_TCP_CLIENT_TEST 激活对应功能
+ *   3.用户可修改配置文件，对管脚，IP地址, port端口, 速率，双工信息等进行配置
+ *      (am_hwconf_zmf159_eth.c), 推荐使用默认配置，驱动将自动识别PHY功能
+ * - 实验现象
+ *   1.使用tcp_server，使用网络测试工具创建客户端连接后，可进行收发测试.
+ *   2.使用tcp_client，使用网络测试工具创建服务器端连接后，可进行收发测试.
  *
  *\note
- *   1.Ϊ��ʶETH�������ڹ���������LED1��ʵ��ʹ�ÿ���ȥ��
+ *   1.为标识ETH程序正在工作，点亮LED1，实际使用可以去掉
  *
  * \internal
  * \par Modification History
@@ -88,7 +88,7 @@ static void __tim_timing_callback (void *p_arg)
 static void __timer_init(am_timer_handle_t handle)
 {
     am_timer_callback_set(handle, 0, __tim_timing_callback, NULL);
-    /* ���ö�ʱʱ��Ϊ 0.01s */
+    /* 设置定时时间为 0.01s */
     am_timer_enable_us(handle, 0, 1000000 / 100);
 }
 

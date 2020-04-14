@@ -12,19 +12,19 @@
 
 /**
  * \file
- * \brief ADC Àý³Ì£¨ÂÖÑ¯·½Ê½£©£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief ADC ä¾‹ç¨‹ï¼ˆè½®è¯¢æ–¹å¼ï¼‰ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. PIO0_7(ADC Í¨µÀ 0) Á¬½ÓÄ£ÄâÊäÈëµçÑ¹¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. PIO0_7(ADC é€šé“ 0) è¿žæŽ¥æ¨¡æ‹Ÿè¾“å…¥ç”µåŽ‹ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿ÚÊä³öµçÑ¹²ÉÑùÖµ¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. ä¸²å£è¾“å‡ºç”µåŽ‹é‡‡æ ·å€¼ã€‚
  *
  * \note
- *    ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIO1_2 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *    PIO1_0 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
+ *    å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO1_2 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *    PIO1_0 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am845_core_std_adc_poll.c src_am845_core_std_adc_poll
  *
  * \internal
@@ -49,14 +49,14 @@
 #include "demo_nxp_entries.h"
 
 /*******************************************************************************
-  ºê¶¨Òå
+  å®å®šä¹‰
 *******************************************************************************/
 
-/** \brief Ê¹ÓÃµÄ ADC Í¨µÀ */
+/** \brief ä½¿ç”¨çš„ ADC é€šé“ */
 #define __ADC_CHAN         0
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am845_core_std_adc_poll_entry (void)
 {

@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief AMKS16RFID Ä£°å¹¤³Ì
+ * \brief AMKS16RFID æ¨¡æ¿å·¥ç¨‹
  *
- * - ÊµÑéÏÖÏó:
- *   Ä£°åÀı³Ì:LED0ÒÔ1ÃëµÄÆµÂÊÉÁË¸; demoÀı³ÌÈë¿Ú:Ïê¼ûdemoÈë¿Úº¯ÊıÎÄ¼ş½éÉÜ
+ * - å®éªŒç°è±¡:
+ *   æ¨¡æ¿ä¾‹ç¨‹:LED0ä»¥1ç§’çš„é¢‘ç‡é—ªçƒ; demoä¾‹ç¨‹å…¥å£:è¯¦è§demoå…¥å£å‡½æ•°æ–‡ä»¶ä»‹ç»
  *
  * \internal
  * \par Modification history
@@ -24,7 +24,7 @@
  */ 
 
 /**
- * \brief AMetal Ó¦ÓÃ³ÌĞòÈë¿Ú
+ * \brief AMetal åº”ç”¨ç¨‹åºå…¥å£
  */
 #include "ametal.h"
 #include "am_board.h"

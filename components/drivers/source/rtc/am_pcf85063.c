@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief PCF85063Èí¼ş°üÊµÏÖ
+ * \brief PCF85063è½¯ä»¶åŒ…å®ç°
  *
  * \internal
  * \par Modification history
@@ -25,113 +25,113 @@
 #include "am_gpio.h"
 
 /*****************************************************************************
- * ºê¶¨Òå
+ * å®å®šä¹‰
  ****************************************************************************/
 
-/** \brief PCF85063Éè±¸µØÖ· */
+/** \brief PCF85063è®¾å¤‡åœ°å€ */
 #define __PCF85063_ADDR               0x51
 
 /**
- * \name PCF85063 ¼Ä´æÆ÷µØÖ·
+ * \name PCF85063 å¯„å­˜å™¨åœ°å€
  * \anchor grp_pcf85063_reg_addr
  * @{
  */
 
 
-#define __PCF85063_REG_CTRL_STATUS1   0x00  /**< \brief ¿ØÖÆ×´Ì¬¼Ä´æÆ÷1 */
-#define __PCF85063_REG_CTRL_STATUS2   0x01  /**< \brief ¿ØÖÆ×´Ì¬¼Ä´æÆ÷2 */
+#define __PCF85063_REG_CTRL_STATUS1   0x00  /**< \brief æ§åˆ¶çŠ¶æ€å¯„å­˜å™¨1 */
+#define __PCF85063_REG_CTRL_STATUS2   0x01  /**< \brief æ§åˆ¶çŠ¶æ€å¯„å­˜å™¨2 */
 
-#define __PCF85063_REG_OFFSET         0x02  /**< \brief ĞŞÕı¼Ä´æÆ÷ */
-#define __PCF85063_REG_RAM_BYTE       0x03  /**< \brief RAM×Ö½Ú¼Ä´æÆ÷ */
+#define __PCF85063_REG_OFFSET         0x02  /**< \brief ä¿®æ­£å¯„å­˜å™¨ */
+#define __PCF85063_REG_RAM_BYTE       0x03  /**< \brief RAMå­—èŠ‚å¯„å­˜å™¨ */
 
-#define __PCF85063_REG_VL_SECONDS     0x04  /**< \brief Ê±¼ä-Ãë¼Ä´æÆ÷(SECONDS:0~59) */
-#define __PCF85063_REG_MINUTES        0x05  /**< \brief Ê±¼ä-·Ö¼Ä´æÆ÷(MINUTES:0~59) */
-#define __PCF85063_REG_HOURS          0x06  /**< \brief Ê±¼ä-Ê±¼Ä´æÆ÷(HOURS:0~23) */
-#define __PCF85063_REG_DAYS           0x07  /**< \brief ÈÕÆÚ-Ìì¼Ä´æÆ÷(DAYS:1~31) */
-#define __PCF85063_REG_WEEKDAYS       0x08  /**< \brief ÈÕÆÚ-ÖÜ¼¸¼Ä´æÆ÷(WEEKDAYS:0~6) */
-#define __PCF85063_REG_CENTURY_MONTHS 0x09  /**< \brief ÈÕÆÚ-ÔÂ¼Ä´æÆ÷(MONTHS:1~12) */
-#define __PCF85063_REG_YEAERS         0x0A  /**< \brief ÈÕÆÚ-Äê¼Ä´æÆ÷(YEARS:0~99) */
+#define __PCF85063_REG_VL_SECONDS     0x04  /**< \brief æ—¶é—´-ç§’å¯„å­˜å™¨(SECONDS:0~59) */
+#define __PCF85063_REG_MINUTES        0x05  /**< \brief æ—¶é—´-åˆ†å¯„å­˜å™¨(MINUTES:0~59) */
+#define __PCF85063_REG_HOURS          0x06  /**< \brief æ—¶é—´-æ—¶å¯„å­˜å™¨(HOURS:0~23) */
+#define __PCF85063_REG_DAYS           0x07  /**< \brief æ—¥æœŸ-å¤©å¯„å­˜å™¨(DAYS:1~31) */
+#define __PCF85063_REG_WEEKDAYS       0x08  /**< \brief æ—¥æœŸ-å‘¨å‡ å¯„å­˜å™¨(WEEKDAYS:0~6) */
+#define __PCF85063_REG_CENTURY_MONTHS 0x09  /**< \brief æ—¥æœŸ-æœˆå¯„å­˜å™¨(MONTHS:1~12) */
+#define __PCF85063_REG_YEAERS         0x0A  /**< \brief æ—¥æœŸ-å¹´å¯„å­˜å™¨(YEARS:0~99) */
 
-#define __PCF85063_REG_SECOND_ALARM   0x0B  /**< \brief ÃëÄÖÖÓ¼Ä´æÆ÷ */
-#define __PCF85063_REG_MINUTE_ALARM   0x0C  /**< \brief ·ÖÖÓÄÖÖÓ¼Ä´æÆ÷ */
-#define __PCF85063_REG_HOUR_ALARM     0x0D  /**< \brief Ğ¡Ê±ÄÖÖÓ¼Ä´æÆ÷ */
-#define __PCF85063_REG_DAY_ALARM      0x0E  /**< \brief ÌìÄÖÖÓ¼Ä´æÆ÷ */
-#define __PCF85063_REG_WEEKDAY_ALARM  0x0F  /**< \brief ÖÜ¼¸ÄÖÖÓ¼Ä´æÆ÷ */
+#define __PCF85063_REG_SECOND_ALARM   0x0B  /**< \brief ç§’é—¹é’Ÿå¯„å­˜å™¨ */
+#define __PCF85063_REG_MINUTE_ALARM   0x0C  /**< \brief åˆ†é’Ÿé—¹é’Ÿå¯„å­˜å™¨ */
+#define __PCF85063_REG_HOUR_ALARM     0x0D  /**< \brief å°æ—¶é—¹é’Ÿå¯„å­˜å™¨ */
+#define __PCF85063_REG_DAY_ALARM      0x0E  /**< \brief å¤©é—¹é’Ÿå¯„å­˜å™¨ */
+#define __PCF85063_REG_WEEKDAY_ALARM  0x0F  /**< \brief å‘¨å‡ é—¹é’Ÿå¯„å­˜å™¨ */
 
-#define __PCF85063_REG_TIMER_VALUE    0x10  /**< \brief ¶¨Ê±Æ÷¼Ä´æÆ÷ */
-#define __PCF85063_REG_TIMER_MODE     0x11  /**< \brief ¶¨Ê±Æ÷Ä£Ê½¼Ä´æÆ÷ */
+#define __PCF85063_REG_TIMER_VALUE    0x10  /**< \brief å®šæ—¶å™¨å¯„å­˜å™¨ */
+#define __PCF85063_REG_TIMER_MODE     0x11  /**< \brief å®šæ—¶å™¨æ¨¡å¼å¯„å­˜å™¨ */
 
 /**
  * @}
  */
 
 /**
- * \name PCF85063 ¼Ä´æÆ÷Î»ÓòÃèÊö
+ * \name PCF85063 å¯„å­˜å™¨ä½åŸŸæè¿°
  * \anchor grp_pcf85063_bitfield_descriptions
  * @{
  */
 
-#define __PCF85063_BF_STOP        0x20     /**< \brief RTCÍ£Ö¹ */
-#define __PCF85063_BF_12_24       0x02     /**< \brief 12/24Ğ¡Ê±ÖÆ(0:24 1:12) */
+#define __PCF85063_BF_STOP        0x20     /**< \brief RTCåœæ­¢ */
+#define __PCF85063_BF_12_24       0x02     /**< \brief 12/24å°æ—¶åˆ¶(0:24 1:12) */
 
-#define __PCF85063_BF_AIE         0x80     /**< \brief ÄÖÖÓÖĞ¶ÏÊ¹ÄÜ-AIE */
-#define __PCF85063_BF_AF          0x40     /**< \brief ÄÖÖÓÖĞ¶Ï±êÖ¾ */
-#define __PCF85063_BF_MI          0x20     /**< \brief ·ÖÖÓÖĞ¶ÏÄÖÖÓ */
-#define __PCF85063_BF_HMI         0x10     /**< \brief °ë·ÖÖÓÖĞ¶ÏÄÖÖÓ */
-#define __PCF85063_BF_TF          0x08     /**< \brief ¶¨Ê±Æ÷ÖĞ¶Ï±êÖ¾ */
-#define __PCF85063_BF_COF         0x07     /**< \brief Ê±ÖÓÊä³öÑÚÂë */
+#define __PCF85063_BF_AIE         0x80     /**< \brief é—¹é’Ÿä¸­æ–­ä½¿èƒ½-AIE */
+#define __PCF85063_BF_AF          0x40     /**< \brief é—¹é’Ÿä¸­æ–­æ ‡å¿— */
+#define __PCF85063_BF_MI          0x20     /**< \brief åˆ†é’Ÿä¸­æ–­é—¹é’Ÿ */
+#define __PCF85063_BF_HMI         0x10     /**< \brief åŠåˆ†é’Ÿä¸­æ–­é—¹é’Ÿ */
+#define __PCF85063_BF_TF          0x08     /**< \brief å®šæ—¶å™¨ä¸­æ–­æ ‡å¿— */
+#define __PCF85063_BF_COF         0x07     /**< \brief æ—¶é’Ÿè¾“å‡ºæ©ç  */
 
-#define __PCF85063_BF_ALARM_DIS   0x80     /**< \brief ÄÖÖÓ½ûÄÜ */
+#define __PCF85063_BF_ALARM_DIS   0x80     /**< \brief é—¹é’Ÿç¦èƒ½ */
 
-#define __PCF85063_BF_TIMER_TCF   0x18     /**< \brief ¶¨Ê±Æ÷Ê±ÖÓÔ´Î»ÓòÑÚÂë-TCF[1:0] */
-#define __PCF85063_BF_TE          0x04     /**< \brief ¶¨Ê±Æ÷Ê¹ÄÜ-TIE */
-#define __PCF85063_BF_TIE         0x02     /**< \brief ¶¨Ê±Æ÷ÖĞ¶ÏÑÚÂë-TIE */
-#define __PCF85063_BF_TI_TP       0x01     /**< \brief ¶¨Ê±Æ÷ÖĞ¶ÏTTL(0) or PULSE(1) */
+#define __PCF85063_BF_TIMER_TCF   0x18     /**< \brief å®šæ—¶å™¨æ—¶é’Ÿæºä½åŸŸæ©ç -TCF[1:0] */
+#define __PCF85063_BF_TE          0x04     /**< \brief å®šæ—¶å™¨ä½¿èƒ½-TIE */
+#define __PCF85063_BF_TIE         0x02     /**< \brief å®šæ—¶å™¨ä¸­æ–­æ©ç -TIE */
+#define __PCF85063_BF_TI_TP       0x01     /**< \brief å®šæ—¶å™¨ä¸­æ–­TTL(0) or PULSE(1) */
 
 /**
  * @}
  */
 
 /**
- * \name PCF85063 I2Cµ±Ç°×´Ì¬
+ * \name PCF85063 I2Cå½“å‰çŠ¶æ€
  * \anchor grp_pcf85063_i2c_operation
  * @{
  */
 
-#define __PCF85063_I2C_RD_C2_STATUS        0x00    /**< \brief ¶ÁÈ¡¿ØÖÆ¼Ä´æÆ÷×´Ì¬ */
-#define __PCF85063_I2C_WR_C2_STATUS        0x01    /**< \brief Çå³ı¿ØÖÆ¼Ä´æÆ÷ÏàÓ¦µÄ×´Ì¬Î» */
-#define __PCF85063_I2C_RD_WEEKDAYS         0x02    /**< \brief ¶ÁÈ¡ÖÜ¼¸¼Ä´æÆ÷µÄÖµ */
-#define __PCF85063_I2C_WR_WEEKDAYS         0x03    /**< \brief Ğ´ÈëÖÜ¼¸¼Ä´æÆ÷µÄÖµ*/
-#define __PCF85063_I2C_DATA_PROCESSING     0x04    /**< \brief Êı¾İ´¦Àí½×¶Î */
+#define __PCF85063_I2C_RD_C2_STATUS        0x00    /**< \brief è¯»å–æ§åˆ¶å¯„å­˜å™¨çŠ¶æ€ */
+#define __PCF85063_I2C_WR_C2_STATUS        0x01    /**< \brief æ¸…é™¤æ§åˆ¶å¯„å­˜å™¨ç›¸åº”çš„çŠ¶æ€ä½ */
+#define __PCF85063_I2C_RD_WEEKDAYS         0x02    /**< \brief è¯»å–å‘¨å‡ å¯„å­˜å™¨çš„å€¼ */
+#define __PCF85063_I2C_WR_WEEKDAYS         0x03    /**< \brief å†™å…¥å‘¨å‡ å¯„å­˜å™¨çš„å€¼*/
+#define __PCF85063_I2C_DATA_PROCESSING     0x04    /**< \brief æ•°æ®å¤„ç†é˜¶æ®µ */
 
 /**
  * @}
  */
 
 /**
- * \name PCF85063 Èí¼ş¸´Î»Âë
- * \note ĞèÒªÊ¹ÓÃÈí¼ş¸´Î»Ê±£¬Ö±½Ó½«¸Ã¸´Î»ÂëĞ´ÈëCS1¼Ä´æÆ÷
+ * \name PCF85063 è½¯ä»¶å¤ä½ç 
+ * \note éœ€è¦ä½¿ç”¨è½¯ä»¶å¤ä½æ—¶ï¼Œç›´æ¥å°†è¯¥å¤ä½ç å†™å…¥CS1å¯„å­˜å™¨
  * @{
  */
 
-#define __PCF85063_SOFTWARE_RESET_CODE  0x58    /**< \brief Èí¼ş¸´Î»Âë */
+#define __PCF85063_SOFTWARE_RESET_CODE  0x58    /**< \brief è½¯ä»¶å¤ä½ç  */
 
 /**
  * @}
  */
 /**
- * \name PCF85063 ÄÖÖÓÄ£Ê½
+ * \name PCF85063 é—¹é’Ÿæ¨¡å¼
  * @{
  */
 
-#define __PCF85063_ALARM_MODE_STANDARD     0x01    /**< \brief ÓÃ»§µ÷ÓÃµÄÊÇ±ê×¼µÄÄÖÖÓ½Ó¿Ú */
-#define __PCF85063_ALARM_MODE_NONSTANDARD  0x02    /**< \brief ÓÃ»§µ÷ÓÃµÄÊÇ·Ç±ê×¼µÄÄÖÖÓ½Ó¿Ú */
+#define __PCF85063_ALARM_MODE_STANDARD     0x01    /**< \brief ç”¨æˆ·è°ƒç”¨çš„æ˜¯æ ‡å‡†çš„é—¹é’Ÿæ¥å£ */
+#define __PCF85063_ALARM_MODE_NONSTANDARD  0x02    /**< \brief ç”¨æˆ·è°ƒç”¨çš„æ˜¯éæ ‡å‡†çš„é—¹é’Ÿæ¥å£ */
 /**
  * @}
  */
 
 /*****************************************************************************
- * ¾²Ì¬ÉùÃ÷
+ * é™æ€å£°æ˜
  ****************************************************************************/
 
 /* RTC driver function implementation */
@@ -146,7 +146,7 @@ static struct am_rtc_drv_funcs __g_rtc_drv_funcs = {
     __pcf85063_time_get
 };
 
-/* º¯ÊıÉùÃ÷ */
+/* å‡½æ•°å£°æ˜ */
 static void __pcf85063_eint_isr (void *p_arg);
 
 /* ALARM_CLK driver function implementation */
@@ -168,34 +168,34 @@ static struct am_alarm_clk_drv_funcs __g_alarm_clk_drv_funcs = {
 };
 
 /**
- * \brief ÈòÄêºÍÆ½ÄêÃ¿¸öÔÂ¶ÔÓ¦µÄÌìÊı
+ * \brief é—°å¹´å’Œå¹³å¹´æ¯ä¸ªæœˆå¯¹åº”çš„å¤©æ•°
  */
 static const uint8_t __mdays[2][12] = {
-    /* Æ½Äê */
+    /* å¹³å¹´ */
     {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31},
-    /* ÈòÄê */
+    /* é—°å¹´ */
     {31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31}
 };
 
 /**
- * \brief Æ«ÒÆ²¹³¥µÄ»ù×¼
+ * \brief åç§»è¡¥å¿çš„åŸºå‡†
  */
 static const float __offset_lsb_ppm[2] = {
-    4.34,       /* Õı³£Ä£Ê½ÏÂµÄppm»ù×¼ */
-    4.069       /* ¿ìËÙÄ£Ê½ÏÂµÄppm»ù×¼ */
+    4.34,       /* æ­£å¸¸æ¨¡å¼ä¸‹çš„ppmåŸºå‡† */
+    4.069       /* å¿«é€Ÿæ¨¡å¼ä¸‹çš„ppmåŸºå‡† */
 };
 
 /*****************************************************************************
- * ÄÚ²¿º¯ÊıÊµÏÖ
+ * å†…éƒ¨å‡½æ•°å®ç°
  ****************************************************************************/
 
 /**
- * \brief ÅĞ¶ÏÄê·İÊÇ·ñÎªÈòÄê
+ * \brief åˆ¤æ–­å¹´ä»½æ˜¯å¦ä¸ºé—°å¹´
  *
- * \param[in] year : Äê·İ
+ * \param[in] year : å¹´ä»½
  *
- * \retval 1 : ÈòÄê
- * \retval 0 : Æ½Äê
+ * \retval 1 : é—°å¹´
+ * \retval 0 : å¹³å¹´
  */
 static uint8_t __pcf85063_leap_year_check (uint16_t year)
 {
@@ -203,14 +203,14 @@ static uint8_t __pcf85063_leap_year_check (uint16_t year)
 }
 
 /**
- * \brief ¼ÆËãÕâÊÇÒ»ÄêÖĞµÄµÚ¼¸Ìì
+ * \brief è®¡ç®—è¿™æ˜¯ä¸€å¹´ä¸­çš„ç¬¬å‡ å¤©
  *
- * \param[in] year  : Äê·İ
- * \param[in] month : ÔÂ·İ
- * \param[in] day   : Ìì
+ * \param[in] year  : å¹´ä»½
+ * \param[in] month : æœˆä»½
+ * \param[in] day   : å¤©
  *
- * \retval 1 : ÈòÄê
- * \retval 0 : Æ½Äê
+ * \retval 1 : é—°å¹´
+ * \retval 0 : å¹³å¹´
  */
 static uint8_t __pcf85063_day_of_year (uint16_t year, uint8_t month, uint8_t day)
 {
@@ -230,12 +230,12 @@ static uint8_t __pcf85063_day_of_year (uint16_t year, uint8_t month, uint8_t day
 }
 
 /**
- * \brief ¼ìÑéÊ±¼äĞÅÏ¢µÄÓĞĞ§ĞÔ
+ * \brief æ£€éªŒæ—¶é—´ä¿¡æ¯çš„æœ‰æ•ˆæ€§
  *
- * \param[in] p_tm : Ö¸ÏòÊ±¼ä½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] p_tm : æŒ‡å‘æ—¶é—´ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \retval AM_OK      : ÉèÖÃ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : è®¾ç½®æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 int __pcf85063_time_validator (am_tm_t *p_tm)
 {
@@ -255,33 +255,33 @@ int __pcf85063_time_validator (am_tm_t *p_tm)
 }
 
 /**
- * \brief PCF85063Éè±¸³õÊ¼»¯
- * \param[in] p_dev : Ö¸ÏòPCF85063Éè±¸½á¹¹Ìå
- * \return AM_OK±íÊ¾³õÊ¼»¯³É¹¦, ÆäËûÊ§°Ü
+ * \brief PCF85063è®¾å¤‡åˆå§‹åŒ–
+ * \param[in] p_dev : æŒ‡å‘PCF85063è®¾å¤‡ç»“æ„ä½“
+ * \return AM_OKè¡¨ç¤ºåˆå§‹åŒ–æˆåŠŸ, å…¶ä»–å¤±è´¥
  */
 static int __pcf85063_init (am_pcf85063_dev_t *p_dev)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* Êı¾İ»º³åÇø */
+    /* æ•°æ®ç¼“å†²åŒº */
     uint8_t buf[1] = {0};
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = NULL;
 
-    /* ¼ìÑé²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* æ£€éªŒå‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == p_dev) {
         return -AM_EINVAL;
     }
 
-    /* ´ÓÉè±¸½á¹¹ÌåÖĞ»ñÈ¡i2cÉè±¸Ö¸Õë */
+    /* ä»è®¾å¤‡ç»“æ„ä½“ä¸­è·å–i2cè®¾å¤‡æŒ‡é’ˆ */
     p_i2c_dev = &(p_dev->i2c_dev);
 
-    /* ¿ØÖÆ×´Ì¬¼Ä´æÆ÷2Ê±ÖÓÊä³ö½ûÄÜ,Çå³ıÖĞ¶Ï±êÖ¾ */
+    /* æ§åˆ¶çŠ¶æ€å¯„å­˜å™¨2æ—¶é’Ÿè¾“å‡ºç¦èƒ½,æ¸…é™¤ä¸­æ–­æ ‡å¿— */
     buf[0] = 0;
 
-    /* ÀûÓÃI2C´«ÊäÊı¾İ */
+    /* åˆ©ç”¨I2Cä¼ è¾“æ•°æ® */
     ret = am_i2c_write(p_i2c_dev,
                        __PCF85063_REG_CTRL_STATUS2,
                        buf,
@@ -295,40 +295,40 @@ static int __pcf85063_init (am_pcf85063_dev_t *p_dev)
 }
 
 /**
- * \brief RTC±ê×¼²Ù×÷º¯Êı-Ê±¼äÉèÖÃÇı¶¯º¯Êı
+ * \brief RTCæ ‡å‡†æ“ä½œå‡½æ•°-æ—¶é—´è®¾ç½®é©±åŠ¨å‡½æ•°
  *
- * \param[in] p_drv : Ö¸ÏòÉè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[in] p_tm  : Ö¸ÏòÊ±¼ä½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] p_drv : æŒ‡å‘è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] p_tm  : æŒ‡å‘æ—¶é—´ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \retval AM_OK      : ÉèÖÃ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : è®¾ç½®æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 static int __pcf85063_time_set (void *p_drv, am_tm_t *p_tm)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* Êı¾İ»º³åÇø */
+    /* æ•°æ®ç¼“å†²åŒº */
     uint8_t buf[7] = {0};
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = NULL;
 
-    /* ¼ìÑé²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* æ£€éªŒå‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == p_drv || NULL == p_tm) {
         return -AM_EINVAL;
     }
 
-    /* ÑéÖ¤Ê±¼äĞÅÏ¢µÄÓĞĞ§ĞÔ */
+    /* éªŒè¯æ—¶é—´ä¿¡æ¯çš„æœ‰æ•ˆæ€§ */
     if ((AM_OK != __pcf85063_time_validator(p_tm)) ||
         (p_tm->tm_hour > 23) || (p_tm->tm_hour < 0)) {
         return -AM_EINVAL;
     }
 
-    /* ´ÓÉè±¸½á¹¹ÌåÖĞ»ñÈ¡i2cÉè±¸Ö¸Õë */
+    /* ä»è®¾å¤‡ç»“æ„ä½“ä¸­è·å–i2cè®¾å¤‡æŒ‡é’ˆ */
     p_i2c_dev = &(((am_pcf85063_dev_t *)p_drv)->i2c_dev);
 
-    /* ½«Ê±¼äÈÕÆÚĞÅÏ¢ÌîÈëbufÖĞ */
+    /* å°†æ—¶é—´æ—¥æœŸä¿¡æ¯å¡«å…¥bufä¸­ */
     buf[__PCF85063_REG_VL_SECONDS - __PCF85063_REG_VL_SECONDS] =
                                              AM_HEX_TO_BCD(p_tm->tm_sec);
     buf[__PCF85063_REG_MINUTES - __PCF85063_REG_VL_SECONDS] =
@@ -344,7 +344,7 @@ static int __pcf85063_time_set (void *p_drv, am_tm_t *p_tm)
     buf[__PCF85063_REG_YEAERS - __PCF85063_REG_VL_SECONDS] =
                                              AM_HEX_TO_BCD(p_tm->tm_year);
 
-    /* ÀûÓÃI2C´«ÊäÊı¾İ */
+    /* åˆ©ç”¨I2Cä¼ è¾“æ•°æ® */
     ret = am_i2c_write(p_i2c_dev,
                        __PCF85063_REG_VL_SECONDS,
                        buf,
@@ -358,34 +358,34 @@ static int __pcf85063_time_set (void *p_drv, am_tm_t *p_tm)
 }
 
 /**
- * \brief RTC±ê×¼²Ù×÷º¯Êı-Ê±¼ä»ñÈ¡Çı¶¯º¯Êı
+ * \brief RTCæ ‡å‡†æ“ä½œå‡½æ•°-æ—¶é—´è·å–é©±åŠ¨å‡½æ•°
  *
- * \param[in] p_drv : Ö¸ÏòÉè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[in] p_tm  : Ö¸ÏòÊ±¼ä½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] p_drv : æŒ‡å‘è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] p_tm  : æŒ‡å‘æ—¶é—´ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \retval AM_OK      : ÉèÖÃ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : è®¾ç½®æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 static int __pcf85063_time_get (void *p_drv, am_tm_t *p_tm)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* Êı¾İ»º³åÇø */
+    /* æ•°æ®ç¼“å†²åŒº */
     uint8_t buf[7] = {0};
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = NULL;
 
-    /* ¼ìÑé²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* æ£€éªŒå‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == p_drv || NULL == p_tm) {
         return -AM_EINVAL;
     }
 
-    /* ´ÓÉè±¸½á¹¹ÌåÖĞ»ñÈ¡i2cÉè±¸Ö¸Õë */
+    /* ä»è®¾å¤‡ç»“æ„ä½“ä¸­è·å–i2cè®¾å¤‡æŒ‡é’ˆ */
     p_i2c_dev = &(((am_pcf85063_dev_t *)p_drv)->i2c_dev);
 
-    /* Í¨¹ıI2C¶ÁÈ¡Êı¾İ */
+    /* é€šè¿‡I2Cè¯»å–æ•°æ® */
     ret = am_i2c_read(p_i2c_dev,
                       __PCF85063_REG_VL_SECONDS,
                       buf,
@@ -395,7 +395,7 @@ static int __pcf85063_time_get (void *p_drv, am_tm_t *p_tm)
         return -AM_EINVAL;
     }
 
-    /** ´ÓbufÖĞ»ñÈ¡Ê±¼äÈÕÆÚĞÅÏ¢ */
+    /** ä»bufä¸­è·å–æ—¶é—´æ—¥æœŸä¿¡æ¯ */
     p_tm->tm_sec  =
     AM_BCD_TO_HEX(buf[__PCF85063_REG_VL_SECONDS - __PCF85063_REG_VL_SECONDS] & 0x7F);
     p_tm->tm_min  =
@@ -415,89 +415,89 @@ static int __pcf85063_time_get (void *p_drv, am_tm_t *p_tm)
 }
 
 /**
- * \brief ALARM_CLK ±ê×¼²Ù×÷º¯Êı-ÄÖÖÓÊ±¼äÉèÖÃº¯Êı
+ * \brief ALARM_CLK æ ‡å‡†æ“ä½œå‡½æ•°-é—¹é’Ÿæ—¶é—´è®¾ç½®å‡½æ•°
  *
- * \param[in] p_drv : Ö¸ÏòÉè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[in] p_tm  : Ö¸ÏòÄÖÖÓÊ±¼ä½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] p_drv : æŒ‡å‘è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] p_tm  : æŒ‡å‘é—¹é’Ÿæ—¶é—´ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \retval AM_OK      : ÉèÖÃ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : è®¾ç½®æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 static int __pcf85063_alarm_clk_time_set (void *p_drv, am_alarm_clk_tm_t *p_tm)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    uint8_t temp;      /* ÁÙÊ±´æ·ÅÄÖÖÓÊ±¼äwdayµÄÖµ */
-    uint8_t count;     /* ÓÃÀ´´æ·Å½ñÌì»òÎ´À´×î½üµÄĞÇÆÚ¼¸¿ªÆôÁËÄÖÖÓ */
+    uint8_t temp;      /* ä¸´æ—¶å­˜æ”¾é—¹é’Ÿæ—¶é—´wdayçš„å€¼ */
+    uint8_t count;     /* ç”¨æ¥å­˜æ”¾ä»Šå¤©æˆ–æœªæ¥æœ€è¿‘çš„æ˜ŸæœŸå‡ å¼€å¯äº†é—¹é’Ÿ */
     uint8_t flag = 1;
 
-    /* Êı¾İ»º³åÇø */
+    /* æ•°æ®ç¼“å†²åŒº */
     uint8_t buf[4] = {0};
     am_tm_t current_tm;
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = NULL;
 
-    /* ¼ìÑé²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* æ£€éªŒå‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == p_drv || NULL == p_tm) {
         return -AM_EINVAL;
     }
 
-    /* ÑéÖ¤Ê±¼äĞÅÏ¢µÄÓĞĞ§ĞÔ */
+    /* éªŒè¯æ—¶é—´ä¿¡æ¯çš„æœ‰æ•ˆæ€§ */
     if ((p_tm->min  > 59) || (p_tm->min  < 0) ||
         (p_tm->hour > 23) || (p_tm->hour < 0) ||
         (( p_tm->wdays & 0x7F) == 0 )) {
         return -AM_EINVAL;
     }
 
-    /* ´ÓÉè±¸½á¹¹ÌåÖĞ»ñÈ¡i2cÉè±¸Ö¸Õë */
+    /* ä»è®¾å¤‡ç»“æ„ä½“ä¸­è·å–i2cè®¾å¤‡æŒ‡é’ˆ */
     p_i2c_dev = &(((am_pcf85063_dev_t *)p_drv)->i2c_dev);
 
-    /* ½«ÄÖÖÓµÄwdaysÊı¾İ´æ·ÅÆğÀ´ */
+    /* å°†é—¹é’Ÿçš„wdaysæ•°æ®å­˜æ”¾èµ·æ¥ */
     ((am_pcf85063_dev_t *)p_drv)->alarm_clk_wdays = p_tm->wdays;
 
-    /* ±ê¼ÇÓÃ»§µ÷ÓÃµÄÊÇ·Ç±ê×¼µÄÄÖÖÓ½Ó¿Ú */
+    /* æ ‡è®°ç”¨æˆ·è°ƒç”¨çš„æ˜¯éæ ‡å‡†çš„é—¹é’Ÿæ¥å£ */
     ((am_pcf85063_dev_t *)p_drv)->alarm_mode = __PCF85063_ALARM_MODE_STANDARD;
 
-    /* »ñÈ¡µ±Ç°Ê±¼ä */
+    /* è·å–å½“å‰æ—¶é—´ */
     __pcf85063_time_get(p_drv, &current_tm);
 
-    /* ½«Ê±¼äÈÕÆÚĞÅÏ¢ÌîÈëbufÖĞ  £¬×î¸ßÎ»Îª0±íÊ¾Ê¹ÄÜ¸Ã¼Ä´æÆ÷ */
+    /* å°†æ—¶é—´æ—¥æœŸä¿¡æ¯å¡«å…¥bufä¸­  ï¼Œæœ€é«˜ä½ä¸º0è¡¨ç¤ºä½¿èƒ½è¯¥å¯„å­˜å™¨ */
     buf[0] = AM_HEX_TO_BCD(p_tm->min);
     buf[1] = AM_HEX_TO_BCD(p_tm->hour);
-    buf[2] = 0X80;                           /* ¹Ø±ÕÌìÄÖÖÓ */
+    buf[2] = 0X80;                           /* å…³é—­å¤©é—¹é’Ÿ */
 
     /*
-     * \brief ÅĞ¶Ï½ñÌìµÄÊ±¼äÊÇ·ñ³¬¹ıÄÖÖÓµÄÊ±¼ä
-     * \note flag =1 ¹ıÁËÄÖÖÓÊ±¼ä£¬½ñÌìÄÖÖÓÎŞĞ§£¬Ö±½Ó´ÓÃ÷Ìì¿ªÊ¼ÅĞ¶Ï
-     *       flag =0 »¹Ã»ÓĞ¹ıÄÖÖÓÊ±¼ä£¬½ñÌìÄÖÖÓÓĞĞ§£¬´Ó½ñÌì¿ªÊ¼ÅĞ¶Ï
+     * \brief åˆ¤æ–­ä»Šå¤©çš„æ—¶é—´æ˜¯å¦è¶…è¿‡é—¹é’Ÿçš„æ—¶é—´
+     * \note flag =1 è¿‡äº†é—¹é’Ÿæ—¶é—´ï¼Œä»Šå¤©é—¹é’Ÿæ— æ•ˆï¼Œç›´æ¥ä»æ˜å¤©å¼€å§‹åˆ¤æ–­
+     *       flag =0 è¿˜æ²¡æœ‰è¿‡é—¹é’Ÿæ—¶é—´ï¼Œä»Šå¤©é—¹é’Ÿæœ‰æ•ˆï¼Œä»ä»Šå¤©å¼€å§‹åˆ¤æ–­
      */
     flag = 1;
     if ( p_tm->hour > current_tm.tm_hour ) {
-       flag = 0;    /* ½ñÌìµÄÄÖÖÓÓĞĞ§ */
+       flag = 0;    /* ä»Šå¤©çš„é—¹é’Ÿæœ‰æ•ˆ */
     } else if ( p_tm->hour == current_tm.tm_hour ) {
                 if (  p_tm->min > current_tm.tm_min ) {
-                     flag = 0;   /* ½ñÌìµÄÄÖÖÓÓĞĞ§ */
+                     flag = 0;   /* ä»Šå¤©çš„é—¹é’Ÿæœ‰æ•ˆ */
                 }
     }
-    temp = p_tm->wdays;                   /* ÄÖÖÓĞÇÆÚÖµ´æ·Åµ½ÁÙÊ±±äÁ¿ÖĞÔËËã  */
-    count = current_tm.tm_wday + flag;    /* ½«½ñÌì»òÕßÃ÷ÌìµÄĞÇÆÚÖµ´æ·ÅÆğÀ´ */
-    temp = temp >> count;                 /* ½«ÄÖÖÓÊ±¼äwdayÓÒÒÆÊ¹µÃ×îµÍÎ»´ú±í½ñÌì»òÃ÷ÌìµÄĞÇÆÚ¼¸ */
+    temp = p_tm->wdays;                   /* é—¹é’Ÿæ˜ŸæœŸå€¼å­˜æ”¾åˆ°ä¸´æ—¶å˜é‡ä¸­è¿ç®—  */
+    count = current_tm.tm_wday + flag;    /* å°†ä»Šå¤©æˆ–è€…æ˜å¤©çš„æ˜ŸæœŸå€¼å­˜æ”¾èµ·æ¥ */
+    temp = temp >> count;                 /* å°†é—¹é’Ÿæ—¶é—´wdayå³ç§»ä½¿å¾—æœ€ä½ä½ä»£è¡¨ä»Šå¤©æˆ–æ˜å¤©çš„æ˜ŸæœŸå‡  */
 
     while (! (temp & 0x1) ) {
-        temp = temp >> 1;                /* Èô½ñÌì»òÕßÃ÷ÌìÃ»ÓĞÉèÖÃÄÖÖÓ£¬ÄÇ¼ÌĞø²é¿´Ã÷Ìì»òºóÌì */
+        temp = temp >> 1;                /* è‹¥ä»Šå¤©æˆ–è€…æ˜å¤©æ²¡æœ‰è®¾ç½®é—¹é’Ÿï¼Œé‚£ç»§ç»­æŸ¥çœ‹æ˜å¤©æˆ–åå¤© */
         count++;
-        if( 7 == count) {                /* ÅĞ¶Ïµ½ĞÇÆÚÁù»¹Ã»ÓĞÉèÖÃÄÖÖÓµÄĞÇÆÚÖµ£¬ÓÖ´ÓĞÇÆÚÌì¿ªÊ¼ÅĞ¶Ï */
+        if( 7 == count) {                /* åˆ¤æ–­åˆ°æ˜ŸæœŸå…­è¿˜æ²¡æœ‰è®¾ç½®é—¹é’Ÿçš„æ˜ŸæœŸå€¼ï¼Œåˆä»æ˜ŸæœŸå¤©å¼€å§‹åˆ¤æ–­ */
             count = 0;
             temp  = p_tm->wdays;
         }
     }
 
-    buf[3] = count;  /* ×î½üÒªÄÖÖÓµÄĞÇÆÚÌìÊı */
+    buf[3] = count;  /* æœ€è¿‘è¦é—¹é’Ÿçš„æ˜ŸæœŸå¤©æ•° */
 
 
 
-    /* ÀûÓÃI2C´«ÊäÊı¾İ */
+    /* åˆ©ç”¨I2Cä¼ è¾“æ•°æ® */
     ret = am_i2c_write(p_i2c_dev,
                        __PCF85063_REG_MINUTE_ALARM,
                        buf,
@@ -512,29 +512,29 @@ static int __pcf85063_alarm_clk_time_set (void *p_drv, am_alarm_clk_tm_t *p_tm)
 
 
 /**
- * \brief ALARM_CLK ±ê×¼²Ù×÷º¯Êı-ÄÖÖÓ»Øµ÷º¯ÊıµÄÉèÖÃº¯Êı
+ * \brief ALARM_CLK æ ‡å‡†æ“ä½œå‡½æ•°-é—¹é’Ÿå›è°ƒå‡½æ•°çš„è®¾ç½®å‡½æ•°
  *
- * \param[in] p_drv         : Ö¸ÏòÉè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[in] pfn_callback  : Ö¸Ïò»Øµ÷º¯ÊıµÄÖ¸Õë
- * \param[in] p_arg         : Ö¸Ïò»Øµ÷º¯Êı²ÎÊıµÄÖ¸Õë
+ * \param[in] p_drv         : æŒ‡å‘è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] pfn_callback  : æŒ‡å‘å›è°ƒå‡½æ•°çš„æŒ‡é’ˆ
+ * \param[in] p_arg         : æŒ‡å‘å›è°ƒå‡½æ•°å‚æ•°çš„æŒ‡é’ˆ
  *
- * \retval AM_OK  : ÉèÖÃ³É¹¦
- * \retval ÆäËû             : ²é¿´´íÎóÂë
+ * \retval AM_OK  : è®¾ç½®æˆåŠŸ
+ * \retval å…¶ä»–             : æŸ¥çœ‹é”™è¯¯ç 
  */
 static int __pcf85063_alarm_clk_callback_set (void         *p_drv,
                                               am_pfnvoid_t  pfn_alarm_callback,
                                               void         *p_arg)
 {
-	/* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+	/* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* PCF85063 Éè±¸Ö¸Õë */
+    /* PCF85063 è®¾å¤‡æŒ‡é’ˆ */
     am_pcf85063_handle_t  pcf85063_handle = NULL;
 
-    /* Éè±¸ĞÅÏ¢Ö¸Õë */
+    /* è®¾å¤‡ä¿¡æ¯æŒ‡é’ˆ */
     const am_pcf85063_devinfo_t *p_devinfo = NULL;
 
-    /* ¼ìÑé²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* æ£€éªŒå‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == p_drv) {
         return -AM_EINVAL;
     }
@@ -546,10 +546,10 @@ static int __pcf85063_alarm_clk_callback_set (void         *p_drv,
         return -AM_ENOTSUP;
     }
 
-    /* conn_statÓÃÓÚ¼ÇÂ¼µ±Ç°ÖĞ¶ÏÁ¬½Ó×´Ì¬,±ÜÃâÖØ¸´µ÷ÓÃGPIOÁ¬½Óº¯Êı */
+    /* conn_statç”¨äºè®°å½•å½“å‰ä¸­æ–­è¿æ¥çŠ¶æ€,é¿å…é‡å¤è°ƒç”¨GPIOè¿æ¥å‡½æ•° */
     if (!(pcf85063_handle->conn_stat)) {
 
-        /* Á¬½ÓÒı½ÅÖĞ¶Ï»Øµ÷º¯Êı */
+        /* è¿æ¥å¼•è„šä¸­æ–­å›è°ƒå‡½æ•° */
         ret = am_gpio_trigger_connect(p_devinfo->int_pin,
         		                      __pcf85063_eint_isr,
 									  pcf85063_handle);
@@ -557,26 +557,26 @@ static int __pcf85063_alarm_clk_callback_set (void         *p_drv,
             return ret;
         }
 
-        /* ÉèÖÃÎªÏÂ½µÑØ´¥·¢ */
+        /* è®¾ç½®ä¸ºä¸‹é™æ²¿è§¦å‘ */
         am_gpio_trigger_cfg(p_devinfo->int_pin, AM_GPIO_TRIGGER_FALL);
         am_gpio_trigger_on(p_devinfo->int_pin);
 
-        /* ¸üĞÂconn_stat_inta×´Ì¬ÎªTRUE */
+        /* æ›´æ–°conn_stat_intaçŠ¶æ€ä¸ºTRUE */
         pcf85063_handle->conn_stat = AM_TRUE;
     }
 
-    /* Á¬½ÓÖĞ¶Ï»Øµ÷º¯Êı */
+    /* è¿æ¥ä¸­æ–­å›è°ƒå‡½æ•° */
     pcf85063_handle->triginfo[1].pfn_callback = pfn_alarm_callback;
     pcf85063_handle->triginfo[1].p_arg        = p_arg;
 
-    /* Èç¹ûËùÓĞµÄ»Øµ÷º¯Êı¶¼Îª¿Õ */
+    /* å¦‚æœæ‰€æœ‰çš„å›è°ƒå‡½æ•°éƒ½ä¸ºç©º */
     if ((pcf85063_handle->triginfo[0].pfn_callback == NULL) &&
     	(pcf85063_handle->triginfo[1].pfn_callback == NULL)) {
 
-        /* Èç¹ûconn_statÎªTRUEÔòµ÷ÓÃGPIO½â³ıÁ¬½Óº¯Êı */
+        /* å¦‚æœconn_statä¸ºTRUEåˆ™è°ƒç”¨GPIOè§£é™¤è¿æ¥å‡½æ•° */
         if (pcf85063_handle->conn_stat) {
 
-            /* É¾³ıÒı½ÅÖĞ¶Ï»Øµ÷º¯Êı */
+            /* åˆ é™¤å¼•è„šä¸­æ–­å›è°ƒå‡½æ•° */
             ret = am_gpio_trigger_disconnect(p_devinfo->int_pin,
                                              __pcf85063_eint_isr,
                                              pcf85063_handle);
@@ -585,10 +585,10 @@ static int __pcf85063_alarm_clk_callback_set (void         *p_drv,
                 return ret;
             }
 
-            /* ¹Ø±ÕÒı½Å´¥·¢ */
+            /* å…³é—­å¼•è„šè§¦å‘ */
             am_gpio_trigger_off(p_devinfo->int_pin);
 
-            /* ¸üĞÂconn_stat×´Ì¬ÎªFALSE */
+            /* æ›´æ–°conn_statçŠ¶æ€ä¸ºFALSE */
             pcf85063_handle->conn_stat = AM_FALSE;
         }
     }
@@ -596,35 +596,35 @@ static int __pcf85063_alarm_clk_callback_set (void         *p_drv,
 }
 
 /**
- * \brief ALARM_CLK ±ê×¼²Ù×÷º¯Êı-¿ªÆôÄÖÖÓº¯Êı
+ * \brief ALARM_CLK æ ‡å‡†æ“ä½œå‡½æ•°-å¼€å¯é—¹é’Ÿå‡½æ•°
  *
- * \param[in] p_drv : Ö¸ÏòÉè±¸½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] p_drv : æŒ‡å‘è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \retval AM_OK      : ÉèÖÃ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : è®¾ç½®æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 static int __pcf85063_alarm_clk_on (void *p_drv)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* Êı¾İ»º³åÇø */
+    /* æ•°æ®ç¼“å†²åŒº */
     uint8_t buf[1]     = {0};
     uint8_t buf_cs2[1] = {0};
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = NULL;
 
-    /* ÑéÖ¤²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* éªŒè¯å‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == p_drv) {
         return -AM_EINVAL;
     }
 
-    /* ´Óp_drvÖĞ»ñÈ¡i2cÉè±¸Ö¸Õë */
+    /* ä»p_drvä¸­è·å–i2cè®¾å¤‡æŒ‡é’ˆ */
     p_i2c_dev = &(((am_pcf85063_dev_t *)p_drv)->i2c_dev);
 
     buf[0] = __PCF85063_BF_ALARM_DIS;
-     /* ¹Ø±ÕÃëÄÖÖÓ */
+     /* å…³é—­ç§’é—¹é’Ÿ */
     ret = am_i2c_write(p_i2c_dev,
                        __PCF85063_REG_SECOND_ALARM,
                        buf,
@@ -634,7 +634,7 @@ static int __pcf85063_alarm_clk_on (void *p_drv)
         return ret;
     }
 
-    /* ¹Ø±ÕÌìÄÖÖÓ */
+    /* å…³é—­å¤©é—¹é’Ÿ */
     ret = am_i2c_write(p_i2c_dev,
                        __PCF85063_REG_DAY_ALARM,
                        buf,
@@ -644,7 +644,7 @@ static int __pcf85063_alarm_clk_on (void *p_drv)
         return ret;
     }
 
-    /* ¶ÁÈ¡¿ØÖÆ×´Ì¬¼Ä´æÆ÷2(ÓÃÀ´¿ØÖÆÄÖÖÓÖĞ¶Ï) */
+    /* è¯»å–æ§åˆ¶çŠ¶æ€å¯„å­˜å™¨2(ç”¨æ¥æ§åˆ¶é—¹é’Ÿä¸­æ–­) */
     ret = am_i2c_read(p_i2c_dev,
                       __PCF85063_REG_CTRL_STATUS2,
                       buf_cs2,
@@ -654,13 +654,13 @@ static int __pcf85063_alarm_clk_on (void *p_drv)
         return ret;
     }
 
-    /* ÄÖÖÓÖĞ¶ÏÊ¹ÄÜ */
+    /* é—¹é’Ÿä¸­æ–­ä½¿èƒ½ */
     buf_cs2[0] |= __PCF85063_BF_AIE;
 
-    /* Çå³ıAF±êÖ¾ */
+    /* æ¸…é™¤AFæ ‡å¿— */
     buf_cs2[0] &= ~__PCF85063_BF_AF;
 
-    /* ½«ÄÖÖÓÖĞ¶ÏĞÅÏ¢Ğ´Èë¿ØÖÆ×´Ì¬¼Ä´æÆ÷2 */
+    /* å°†é—¹é’Ÿä¸­æ–­ä¿¡æ¯å†™å…¥æ§åˆ¶çŠ¶æ€å¯„å­˜å™¨2 */
     ret = am_i2c_write(p_i2c_dev,
                        __PCF85063_REG_CTRL_STATUS2,
                        buf_cs2,
@@ -673,34 +673,34 @@ static int __pcf85063_alarm_clk_on (void *p_drv)
 }
 
 /**
- * \brief ALARM_CLK ±ê×¼²Ù×÷º¯Êı-¹Ø±ÕÄÖÖÓº¯Êı
+ * \brief ALARM_CLK æ ‡å‡†æ“ä½œå‡½æ•°-å…³é—­é—¹é’Ÿå‡½æ•°
  *
- * \param[in] p_drv : Ö¸ÏòÉè±¸½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] p_drv : æŒ‡å‘è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \retval AM_OK      : ÉèÖÃ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : è®¾ç½®æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 static int __pcf85063_alarm_clk_off (void *p_drv)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* Êı¾İ»º³åÇø */
+    /* æ•°æ®ç¼“å†²åŒº */
     uint8_t buf[5]     = {0};
     uint8_t buf_cs2[1] = {0};
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = NULL;
 
-    /* ÑéÖ¤²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* éªŒè¯å‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == p_drv) {
         return -AM_EINVAL;
     }
 
-    /* ´Óp_drvÖĞ»ñÈ¡i2cÉè±¸Ö¸Õë */
+    /* ä»p_drvä¸­è·å–i2cè®¾å¤‡æŒ‡é’ˆ */
     p_i2c_dev = &(((am_pcf85063_dev_t *)p_drv)->i2c_dev);
 
-    /* ¹Ø±ÕÃë¡¢·Ö¡¢Ğ¡Ê±¡¢Ìì¡¢ĞÇÆÚÄÖÖÓ */
+    /* å…³é—­ç§’ã€åˆ†ã€å°æ—¶ã€å¤©ã€æ˜ŸæœŸé—¹é’Ÿ */
     buf[0] = __PCF85063_BF_ALARM_DIS;
     buf[1] = __PCF85063_BF_ALARM_DIS;
     buf[2] = __PCF85063_BF_ALARM_DIS;
@@ -716,7 +716,7 @@ static int __pcf85063_alarm_clk_off (void *p_drv)
         return ret;
     }
 
-    /* ¶ÁÈ¡¿ØÖÆ×´Ì¬¼Ä´æÆ÷2(ÓÃÀ´¿ØÖÆÄÖÖÓÖĞ¶Ï) */
+    /* è¯»å–æ§åˆ¶çŠ¶æ€å¯„å­˜å™¨2(ç”¨æ¥æ§åˆ¶é—¹é’Ÿä¸­æ–­) */
     ret = am_i2c_read(p_i2c_dev,
                       __PCF85063_REG_CTRL_STATUS2,
                       buf_cs2,
@@ -726,13 +726,13 @@ static int __pcf85063_alarm_clk_off (void *p_drv)
         return ret;
     }
 
-    /* ÄÖÖÓÖĞ¶ÏÊ§ÄÜ */
+    /* é—¹é’Ÿä¸­æ–­å¤±èƒ½ */
     buf_cs2[0] &= ~__PCF85063_BF_AIE;
 
-    /* Çå³ıAF±êÖ¾ */
+    /* æ¸…é™¤AFæ ‡å¿— */
     buf_cs2[0] &= ~__PCF85063_BF_AF;
 
-    /* ½«ÄÖÖÓÖĞ¶ÏĞÅÏ¢Ğ´Èë¿ØÖÆ×´Ì¬¼Ä´æÆ÷2 */
+    /* å°†é—¹é’Ÿä¸­æ–­ä¿¡æ¯å†™å…¥æ§åˆ¶çŠ¶æ€å¯„å­˜å™¨2 */
     ret = am_i2c_write(p_i2c_dev,
                        __PCF85063_REG_CTRL_STATUS2,
                        buf_cs2,
@@ -745,12 +745,12 @@ static int __pcf85063_alarm_clk_off (void *p_drv)
 }
 
 /**
- * \brief ¸ù¾İÖĞ¶Ï±êÖ¾À´Ö´ĞĞÓÃ»§ÖĞ¶Ï»Øµ÷º¯Êı
+ * \brief æ ¹æ®ä¸­æ–­æ ‡å¿—æ¥æ‰§è¡Œç”¨æˆ·ä¸­æ–­å›è°ƒå‡½æ•°
  *
- * \param[in] p_dev     : Ö¸ÏòPCF85063Éè±¸µÄÖ¸Õë
- * \param[in] intr_flag : ÖĞ¶Ï±êÖ¾
+ * \param[in] p_dev     : æŒ‡å‘PCF85063è®¾å¤‡çš„æŒ‡é’ˆ
+ * \param[in] intr_flag : ä¸­æ–­æ ‡å¿—
  *
- * \return ÎŞ
+ * \return æ— 
  */
 static void __pcf85063_callback_exec (void    *p_drv,
                                       uint8_t  intr_flag)
@@ -759,14 +759,14 @@ static void __pcf85063_callback_exec (void    *p_drv,
     am_pfnvoid_t       pfn_callback = NULL;
     void              *p_arg        = NULL;
 
-    /* ¼ìÑé²ÎÊıÓĞĞ§ĞÔ */
+    /* æ£€éªŒå‚æ•°æœ‰æ•ˆæ€§ */
     if (0 == intr_flag || NULL == p_drv) {
         return;
     }
 
     p_dev = (am_pcf85063_dev_t *)p_drv;
 
-    /* Èç¹ûÊÇTIMERÖĞ¶Ï£¬ÔòÖ´ĞĞ¶ÔÓ¦ÓÃ»§ÖĞ¶Ï»Øµ÷º¯Êı */
+    /* å¦‚æœæ˜¯TIMERä¸­æ–­ï¼Œåˆ™æ‰§è¡Œå¯¹åº”ç”¨æˆ·ä¸­æ–­å›è°ƒå‡½æ•° */
     if (intr_flag & __PCF85063_BF_TF) {
         pfn_callback = p_dev->triginfo[0].pfn_callback;
         p_arg        = p_dev->triginfo[0].p_arg;
@@ -775,7 +775,7 @@ static void __pcf85063_callback_exec (void    *p_drv,
         }
     }
 
-    /* Èç¹ûÊÇALARMÖĞ¶Ï£¬ÔòÖ´ĞĞ¶ÔÓ¦ÓÃ»§ÖĞ¶Ï»Øµ÷º¯Êı */
+    /* å¦‚æœæ˜¯ALARMä¸­æ–­ï¼Œåˆ™æ‰§è¡Œå¯¹åº”ç”¨æˆ·ä¸­æ–­å›è°ƒå‡½æ•° */
     if (intr_flag & __PCF85063_BF_AF) {
         pfn_callback = p_dev->triginfo[1].pfn_callback;
         p_arg        = p_dev->triginfo[1].p_arg;
@@ -786,14 +786,14 @@ static void __pcf85063_callback_exec (void    *p_drv,
 }
 
 /**
- * \brief ÔÚÖĞ¶ÏÖĞ¶ÁÈ¡Êı¾İºóµÄ´¦Àíº¯Êı,ÅĞ¶ÏÖĞ¶ÏÀàĞÍ
+ * \brief åœ¨ä¸­æ–­ä¸­è¯»å–æ•°æ®åçš„å¤„ç†å‡½æ•°,åˆ¤æ–­ä¸­æ–­ç±»å‹
  *
- * \param[in,out] buf         : Êı¾İ»º³åÇø
- * \param[in]     p_intr_flag : ÖĞ¶Ï±êÖ¾  ²Î¼û \ref grp_pcf85063_intr_flag
+ * \param[in,out] buf         : æ•°æ®ç¼“å†²åŒº
+ * \param[in]     p_intr_flag : ä¸­æ–­æ ‡å¿—  å‚è§ \ref grp_pcf85063_intr_flag
  *
- * \return ÎŞ
+ * \return æ— 
  *
- * \note º¯ÊıÖĞbuf ¶ÔÓ¦ CTRL_STATUS2¼Ä´æÆ÷ //shauew buf¼Ä´æÆ÷ÊÇ·ñ¶ÔÓ¦
+ * \note å‡½æ•°ä¸­buf å¯¹åº” CTRL_STATUS2å¯„å­˜å™¨ //shauew bufå¯„å­˜å™¨æ˜¯å¦å¯¹åº”
  */
 static void __pcf85063_read_write_data_processing (void    *p_arg,
                                                    uint8_t *p_intr_flag)
@@ -808,20 +808,20 @@ static void __pcf85063_read_write_data_processing (void    *p_arg,
 
     *p_intr_flag = 0;
 
-    /* ÅĞ¶ÏÊÇ·ñÎªTF±êÖ¾ÖÃÎ» */
+    /* åˆ¤æ–­æ˜¯å¦ä¸ºTFæ ‡å¿—ç½®ä½ */
     if (p_dev->buf[0] & __PCF85063_BF_TF) {
 
-        /* ¼ÇÂ¼TIMERÖĞ¶Ï±êÖ¾ */
+        /* è®°å½•TIMERä¸­æ–­æ ‡å¿— */
         *p_intr_flag |= __PCF85063_BF_TF;
 
-        /* Çå³ıTF±êÖ¾ */
+        /* æ¸…é™¤TFæ ‡å¿— */
         p_dev->buf[0] &= ~__PCF85063_BF_TF;
     }
 
-    /* ÅĞ¶ÏÊÇ·ñÎªAF±êÖ¾ÖÃÎ» */
+    /* åˆ¤æ–­æ˜¯å¦ä¸ºAFæ ‡å¿—ç½®ä½ */
     if (p_dev->buf[0] & __PCF85063_BF_AF) {
         if (p_dev->buf[0] & __PCF85063_BF_AIE) {
-            /* ¼ÇÂ¼ÄÖÖÓÖĞ¶Ï±êÖ¾,²¢Çå³ıAF */
+            /* è®°å½•é—¹é’Ÿä¸­æ–­æ ‡å¿—,å¹¶æ¸…é™¤AF */
             *p_intr_flag |= __PCF85063_BF_AF;
             p_dev->buf[0] &= ~__PCF85063_BF_AF;
         }
@@ -833,8 +833,8 @@ static void __pcf85063_get_next_wday_processing (void *p_arg)
 {
     am_pcf85063_dev_t *p_dev = NULL;
     
-    uint8_t            temp;      /* ÁÙÊ±´æ·ÅÄÖÖÓÊ±¼äwdayµÄÖµ  */
-    uint8_t            count;     /* ÓÃÀ´´æ·Å½ñÌì»òÎ´À´×î½üµÄĞÇÆÚ¼¸¿ªÆôÁËÄÖÖÓ */
+    uint8_t            temp;      /* ä¸´æ—¶å­˜æ”¾é—¹é’Ÿæ—¶é—´wdayçš„å€¼  */
+    uint8_t            count;     /* ç”¨æ¥å­˜æ”¾ä»Šå¤©æˆ–æœªæ¥æœ€è¿‘çš„æ˜ŸæœŸå‡ å¼€å¯äº†é—¹é’Ÿ */
     
     if (NULL == p_arg) {
         return;
@@ -845,14 +845,14 @@ static void __pcf85063_get_next_wday_processing (void *p_arg)
         return;
     }
  
-    temp = p_dev->alarm_clk_wdays;   /* ÄÖÖÓĞÇÆÚÖµ´æ·Åµ½ÁÙÊ±±äÁ¿ÖĞÔËËã  */
-    count = p_dev->buf[0] + 1;    /* ½«Ã÷ÌìµÄĞÇÆÚÖµ´æ·ÅÆğÀ´ */
-    temp = temp >> count;                    /* ½«ÄÖÖÓÊ±¼äwdayÓÒÒÆÊ¹µÃ×îµÍÎ»´ú±íÃ÷ÌìµÄĞÇÆÚ¼¸ */
+    temp = p_dev->alarm_clk_wdays;   /* é—¹é’Ÿæ˜ŸæœŸå€¼å­˜æ”¾åˆ°ä¸´æ—¶å˜é‡ä¸­è¿ç®—  */
+    count = p_dev->buf[0] + 1;    /* å°†æ˜å¤©çš„æ˜ŸæœŸå€¼å­˜æ”¾èµ·æ¥ */
+    temp = temp >> count;                    /* å°†é—¹é’Ÿæ—¶é—´wdayå³ç§»ä½¿å¾—æœ€ä½ä½ä»£è¡¨æ˜å¤©çš„æ˜ŸæœŸå‡  */
 
     while (! (temp & 0x1) ) {
-        temp = temp >> 1;                /* ÈôÃ÷ÌìÃ»ÓĞÉèÖÃÄÖÖÓ£¬ÄÇ¼ÌĞø²é¿´ºóÌì */
+        temp = temp >> 1;                /* è‹¥æ˜å¤©æ²¡æœ‰è®¾ç½®é—¹é’Ÿï¼Œé‚£ç»§ç»­æŸ¥çœ‹åå¤© */
         count++;
-        if( 7 == count) {                /* ÅĞ¶Ïµ½ĞÇÆÚÁù»¹Ã»ÓĞÉèÖÃÄÖÖÓµÄĞÇÆÚÖµ£¬ÓÖ´ÓĞÇÆÚÌì¿ªÊ¼ÅĞ¶Ï */
+        if( 7 == count) {                /* åˆ¤æ–­åˆ°æ˜ŸæœŸå…­è¿˜æ²¡æœ‰è®¾ç½®é—¹é’Ÿçš„æ˜ŸæœŸå€¼ï¼Œåˆä»æ˜ŸæœŸå¤©å¼€å§‹åˆ¤æ–­ */
             count = 0;
             temp  =  p_dev->alarm_clk_wdays;
         }
@@ -860,36 +860,36 @@ static void __pcf85063_get_next_wday_processing (void *p_arg)
     p_dev->buf[0] = count;
 }
 /**
- * \brief I2C¶ÁĞ´¹ı³ÌÖĞµÄ×´Ì¬»ú
- * \param[in] p_arg : ²ÎÊı
- * \return ÎŞ
- * \note ×´Ì¬±ä»»Ë³Ğò   [1]´¦Àí¿ªÊ¼ --> [2]¶ÁÈ¡subaddr[0]µÄÖµ --> [3]´¦ÀíÊı¾İ£¬²¢Ğ´Èësubaddr[0]
- *     --> [4] ¶ÁÈ¡subaddr[1]µÄÖµ--> [5]´¦ÀíÊı¾İ£¬²¢Ğ´Èësubaddr[1]--> [6]´¦ÀíÊı¾İ--> [7]´¦ÀíÍê³É
+ * \brief I2Cè¯»å†™è¿‡ç¨‹ä¸­çš„çŠ¶æ€æœº
+ * \param[in] p_arg : å‚æ•°
+ * \return æ— 
+ * \note çŠ¶æ€å˜æ¢é¡ºåº   [1]å¤„ç†å¼€å§‹ --> [2]è¯»å–subaddr[0]çš„å€¼ --> [3]å¤„ç†æ•°æ®ï¼Œå¹¶å†™å…¥subaddr[0]
+ *     --> [4] è¯»å–subaddr[1]çš„å€¼--> [5]å¤„ç†æ•°æ®ï¼Œå¹¶å†™å…¥subaddr[1]--> [6]å¤„ç†æ•°æ®--> [7]å¤„ç†å®Œæˆ
  */
 static void __pcf85063_i2c_read_write_fsm (void *p_arg)
 {
-    /* I2CÉè±¸ */
+    /* I2Cè®¾å¤‡ */
     am_i2c_device_t *p_i2c_dev = NULL;
 
-    /* PCF85063Éè±¸  */
+    /* PCF85063è®¾å¤‡  */
     am_pcf85063_dev_t *p_pcf85063_dev = NULL;
 
-    /* ÅĞ¶Ï²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* åˆ¤æ–­å‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == p_arg) {
         return;
     }
 
     p_pcf85063_dev = (am_pcf85063_dev_t *)p_arg;
 
-    /*»ñÈ¡i2c_device */
+    /*è·å–i2c_device */
     p_i2c_dev = &(p_pcf85063_dev->i2c_dev);
 
     switch (p_pcf85063_dev->status) {
 
-    /* »ñÈ¡¿ØÖÆ¼Ä´æÆ÷2µÄÖµ */
+    /* è·å–æ§åˆ¶å¯„å­˜å™¨2çš„å€¼ */
     case __PCF85063_I2C_RD_C2_STATUS:
 
-        /* ¼ÓÔØÏÂÒ»×´Ì¬ */
+        /* åŠ è½½ä¸‹ä¸€çŠ¶æ€ */
         p_pcf85063_dev->status = __PCF85063_I2C_WR_C2_STATUS;
 
         am_i2c_mktrans(&p_pcf85063_dev->trans[0],
@@ -913,13 +913,13 @@ static void __pcf85063_i2c_read_write_fsm (void *p_arg)
         am_i2c_msg_start(p_i2c_dev->handle, &p_pcf85063_dev->msg);
         break;
 
-    /* Çå³ı¿ØÖÆ¼Ä´æÆ÷2ÏàÓ¦µÄ×´Ì¬ */
+    /* æ¸…é™¤æ§åˆ¶å¯„å­˜å™¨2ç›¸åº”çš„çŠ¶æ€ */
     case __PCF85063_I2C_WR_C2_STATUS:
 
-        /* ¼ÓÔØÏÂÒ»×´Ì¬ */
+        /* åŠ è½½ä¸‹ä¸€çŠ¶æ€ */
         p_pcf85063_dev->status = __PCF85063_I2C_RD_WEEKDAYS;
 
-        /* ´¦ÀíÊı¾İ£¬»ñÈ¡ÖĞ¶Ï×´Ì¬ */
+        /* å¤„ç†æ•°æ®ï¼Œè·å–ä¸­æ–­çŠ¶æ€ */
         __pcf85063_read_write_data_processing(p_arg, &p_pcf85063_dev->intr_flag);
 
         am_i2c_mktrans(&p_pcf85063_dev->trans[0],
@@ -943,10 +943,10 @@ static void __pcf85063_i2c_read_write_fsm (void *p_arg)
         am_i2c_msg_start(p_i2c_dev->handle, &p_pcf85063_dev->msg);
         break;
 
-     /* »ñÈ¡ĞÇÆÚ¼Ä´æÆ÷µÄÖµ  */
+     /* è·å–æ˜ŸæœŸå¯„å­˜å™¨çš„å€¼  */
     case __PCF85063_I2C_RD_WEEKDAYS:
 
-        /* ¼ÓÔØÏÂÒ»×´Ì¬ */
+        /* åŠ è½½ä¸‹ä¸€çŠ¶æ€ */
         p_pcf85063_dev->status = __PCF85063_I2C_WR_WEEKDAYS;
 
         am_i2c_mktrans(&p_pcf85063_dev->trans[0],
@@ -970,13 +970,13 @@ static void __pcf85063_i2c_read_write_fsm (void *p_arg)
         am_i2c_msg_start(p_i2c_dev->handle, &p_pcf85063_dev->msg);
         break;
 
-    /* ÉèÖÃĞÇÆÚ¼Ä´æÆ÷  */
+    /* è®¾ç½®æ˜ŸæœŸå¯„å­˜å™¨  */
     case __PCF85063_I2C_WR_WEEKDAYS:
 
-        /* ¼ÓÔØÏÂÒ»×´Ì¬ */
+        /* åŠ è½½ä¸‹ä¸€çŠ¶æ€ */
         p_pcf85063_dev->status = __PCF85063_I2C_DATA_PROCESSING;
 
-        /* »ñÈ¡ÏÂÒ»¸öÒªÄÖÖÓµÄĞÇÆÚ¼¸*/
+        /* è·å–ä¸‹ä¸€ä¸ªè¦é—¹é’Ÿçš„æ˜ŸæœŸå‡ */
         __pcf85063_get_next_wday_processing(p_arg);
 
         am_i2c_mktrans(&p_pcf85063_dev->trans[0],
@@ -1000,16 +1000,16 @@ static void __pcf85063_i2c_read_write_fsm (void *p_arg)
         am_i2c_msg_start(p_i2c_dev->handle, &p_pcf85063_dev->msg);
         break;
 
-        /* Êı¾İ´¦Àí */
+        /* æ•°æ®å¤„ç† */
     case __PCF85063_I2C_DATA_PROCESSING:
 
-        /* ¼ÓÔØÏÂÒ»×´Ì¬ */
+        /* åŠ è½½ä¸‹ä¸€çŠ¶æ€ */
         p_pcf85063_dev->status = __PCF85063_I2C_RD_C2_STATUS;
 
-        /* Ö´ĞĞÓÃ»§ÖĞ¶ÏÖĞ¶Ï»Øµ÷º¯Êı */
+        /* æ‰§è¡Œç”¨æˆ·ä¸­æ–­ä¸­æ–­å›è°ƒå‡½æ•° */
         __pcf85063_callback_exec(p_arg, p_pcf85063_dev->intr_flag);
 
-        /* ¿ªÆôGPIOÖĞ¶Ï */
+        /* å¼€å¯GPIOä¸­æ–­ */
         am_gpio_trigger_on(p_pcf85063_dev->p_devinfo->int_pin);
         break;
 
@@ -1019,9 +1019,9 @@ static void __pcf85063_i2c_read_write_fsm (void *p_arg)
 }
 
 /**
- * \brief PCF85063ÖĞ¶Ï»Øµ÷º¯Êı
- * \param[in] p_arg : ÖĞ¶Ï»Øµ÷º¯Êı²ÎÊı
- * \return ÎŞ
+ * \brief PCF85063ä¸­æ–­å›è°ƒå‡½æ•°
+ * \param[in] p_arg : ä¸­æ–­å›è°ƒå‡½æ•°å‚æ•°
+ * \return æ— 
  */
 static void __pcf85063_eint_isr (void *p_arg)
 {
@@ -1031,43 +1031,43 @@ static void __pcf85063_eint_isr (void *p_arg)
         return;
     }
 
-    /* ¹Ø±ÕGPIOÖĞ¶Ï */
+    /* å…³é—­GPIOä¸­æ–­ */
     am_gpio_trigger_off(p_dev->p_devinfo->int_pin);
 
     if (p_dev->status == __PCF85063_I2C_RD_C2_STATUS) {
 
-        /* Æô¶¯¶ÁĞ´×´Ì¬»ú */
+        /* å¯åŠ¨è¯»å†™çŠ¶æ€æœº */
         __pcf85063_i2c_read_write_fsm(p_arg);
     }
 }
 
 /*****************************************************************************
- * Íâ²¿º¯ÊıÊµÏÖ
+ * å¤–éƒ¨å‡½æ•°å®ç°
  ****************************************************************************/
 
 /**
- * \brief PCF85063 Éè±¸³õÊ¼»¯
+ * \brief PCF85063 è®¾å¤‡åˆå§‹åŒ–
  */
 am_pcf85063_handle_t am_pcf85063_init (am_pcf85063_dev_t           *p_dev,
                                        const am_pcf85063_devinfo_t *p_devinfo,
                                        am_i2c_handle_t              i2c_handle)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
     int i;
 
-    /* ÑéÖ¤²ÎÊıÓĞĞ§ĞÔ */
+    /* éªŒè¯å‚æ•°æœ‰æ•ˆæ€§ */
     if (NULL == p_dev || NULL == i2c_handle) {
         return NULL;
     }
 
-    /* ¹¹Ôìi2cÉè±¸ */
+    /* æ„é€ i2cè®¾å¤‡ */
     am_i2c_mkdev(&(p_dev->i2c_dev),
                  i2c_handle,
                  __PCF85063_ADDR,
                  AM_I2C_ADDR_7BIT | AM_I2C_SUBADDR_1BYTE);
 
-    /* ³õÊ¼»¯Éè±¸ĞÅÏ¢ */
+    /* åˆå§‹åŒ–è®¾å¤‡ä¿¡æ¯ */
     p_dev->conn_stat = AM_FALSE;
     p_dev->p_devinfo = p_devinfo;
 
@@ -1075,19 +1075,19 @@ am_pcf85063_handle_t am_pcf85063_init (am_pcf85063_dev_t           *p_dev,
         p_dev->triginfo[i].pfn_callback = NULL;
         p_dev->triginfo[i].p_arg        = NULL;
     }
-    p_dev->status      = __PCF85063_I2C_RD_C2_STATUS;   /* ³õÊ¼×´Ì¬ */
-    p_dev->sub_addr[0] = __PCF85063_REG_CTRL_STATUS2;   /* ´ı²Ù×÷µÄ¿ØÖÆ¼Ä´æÆ÷µØÖ· */
-    p_dev->sub_addr[1] = __PCF85063_REG_WEEKDAYS;       /* ´ı²Ù×÷µÄĞÇÆÚ¼Ä´æÆ÷µØÖ· */
-    p_dev->nbytes   = 1;                                /* ĞèÒª¶ÁÈ¡µÄÊı¾İ¸öÊı */
+    p_dev->status      = __PCF85063_I2C_RD_C2_STATUS;   /* åˆå§‹çŠ¶æ€ */
+    p_dev->sub_addr[0] = __PCF85063_REG_CTRL_STATUS2;   /* å¾…æ“ä½œçš„æ§åˆ¶å¯„å­˜å™¨åœ°å€ */
+    p_dev->sub_addr[1] = __PCF85063_REG_WEEKDAYS;       /* å¾…æ“ä½œçš„æ˜ŸæœŸå¯„å­˜å™¨åœ°å€ */
+    p_dev->nbytes   = 1;                                /* éœ€è¦è¯»å–çš„æ•°æ®ä¸ªæ•° */
 
-    /* ³õÊ¼»¯PCF85063Éè±¸ */
+    /* åˆå§‹åŒ–PCF85063è®¾å¤‡ */
     ret = __pcf85063_init(p_dev);
     if (AM_OK != ret) {
         return NULL;
     }
-    /* ³õÊ¼»¯clk_en_pin µÄGPIO¿Ú */
+    /* åˆå§‹åŒ–clk_en_pin çš„GPIOå£ */
     if (p_dev->p_devinfo->clk_en_pin != -1) {
-         am_gpio_pin_cfg(p_dev->p_devinfo->clk_en_pin, AM_GPIO_PUSH_PULL);  /* ÅäÖÃÎªÍÆÍìÊä³ö */
+         am_gpio_pin_cfg(p_dev->p_devinfo->clk_en_pin, AM_GPIO_PUSH_PULL);  /* é…ç½®ä¸ºæ¨æŒ½è¾“å‡º */
          am_gpio_set(p_dev->p_devinfo->clk_en_pin, AM_GPIO_LEVEL_LOW);
     }
     return p_dev;
@@ -1096,7 +1096,7 @@ am_pcf85063_handle_t am_pcf85063_init (am_pcf85063_dev_t           *p_dev,
 
 
 /**
- * \brief PCF85063 Éè±¸½â³õÊ¼»¯
+ * \brief PCF85063 è®¾å¤‡è§£åˆå§‹åŒ–
  */
 void am_pcf85063_deinit (am_pcf85063_handle_t handle)
 {
@@ -1104,7 +1104,7 @@ void am_pcf85063_deinit (am_pcf85063_handle_t handle)
 }
 
 /**
- * \brief »ñÈ¡PCF85063 RTC±ê×¼·şÎñ
+ * \brief è·å–PCF85063 RTCæ ‡å‡†æœåŠ¡
  */
 am_rtc_handle_t am_pcf85063_rtc_init (am_pcf85063_handle_t  handle,
                                       am_rtc_serv_t        *p_rtc)
@@ -1115,7 +1115,7 @@ am_rtc_handle_t am_pcf85063_rtc_init (am_pcf85063_handle_t  handle,
 }
 
 /**
- * \brief »ñÈ¡PCF85063 ALARM_CLK±ê×¼·şÎñ
+ * \brief è·å–PCF85063 ALARM_CLKæ ‡å‡†æœåŠ¡
  */
 am_alarm_clk_handle_t am_pcf85063_alarm_clk_init (am_pcf85063_handle_t   handle,
 		                                         am_alarm_clk_serv_t    *p_alarm_clk)
@@ -1126,25 +1126,25 @@ am_alarm_clk_handle_t am_pcf85063_alarm_clk_init (am_pcf85063_handle_t   handle,
 }
 
 /**
- * \brief Èí¼ş¸´Î»PCF85063
+ * \brief è½¯ä»¶å¤ä½PCF85063
  */
 int am_pcf85063_software_reset (am_pcf85063_handle_t handle)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* Êı¾İ»º³åÇø */
+    /* æ•°æ®ç¼“å†²åŒº */
     uint8_t buf[1] = {__PCF85063_SOFTWARE_RESET_CODE};
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = &(handle->i2c_dev);
 
-    /* ÑéÖ¤²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* éªŒè¯å‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == handle) {
         return -AM_EINVAL;
     }
 
-    /* ÀûÓÃI2C´«ÊäÊı¾İ */
+    /* åˆ©ç”¨I2Cä¼ è¾“æ•°æ® */
     ret = am_i2c_write(p_i2c_dev,
                        __PCF85063_REG_CTRL_STATUS1,
                        buf,
@@ -1158,25 +1158,25 @@ int am_pcf85063_software_reset (am_pcf85063_handle_t handle)
 }
 
 /**
- * \brief ÖĞÖ¹PCF85063
+ * \brief ä¸­æ­¢PCF85063
  */
 int am_pcf85063_stop (am_pcf85063_handle_t handle)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* Êı¾İ»º³åÇø */
+    /* æ•°æ®ç¼“å†²åŒº */
     uint8_t buf[1] = {0};
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = &(handle->i2c_dev);
 
-    /* ÑéÖ¤²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* éªŒè¯å‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == handle) {
         return -AM_EINVAL;
     }
 
-    /* ¶ÁÈ¡CS1 */
+    /* è¯»å–CS1 */
     ret = am_i2c_read(p_i2c_dev,
                       __PCF85063_REG_CTRL_STATUS1,
                       buf,
@@ -1186,10 +1186,10 @@ int am_pcf85063_stop (am_pcf85063_handle_t handle)
         return ret;
     }
 
-    /* ÖÃSTOPÎ» */
+    /* ç½®STOPä½ */
     buf[0] |= __PCF85063_BF_STOP;
 
-    /* Ğ´STOPµ½CS1 */
+    /* å†™STOPåˆ°CS1 */
     ret = am_i2c_write(p_i2c_dev,
                        __PCF85063_REG_CTRL_STATUS1,
                        buf,
@@ -1203,34 +1203,34 @@ int am_pcf85063_stop (am_pcf85063_handle_t handle)
 }
 
 /**
- * \brief Æô¶¯PCF85063(¸´Î»Ê±PCF85063ÒÑÆô¶¯£¬¸Ã½Ó¿ÚÖ÷ÒªÊÇÕë¶Ô am_pcf85063_stop())
+ * \brief å¯åŠ¨PCF85063(å¤ä½æ—¶PCF85063å·²å¯åŠ¨ï¼Œè¯¥æ¥å£ä¸»è¦æ˜¯é’ˆå¯¹ am_pcf85063_stop())
  */
 int am_pcf85063_start (am_pcf85063_handle_t handle)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* Êı¾İ»º³åÇø */
+    /* æ•°æ®ç¼“å†²åŒº */
     uint8_t buf[1] = {0};
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = &(handle->i2c_dev);
 
-    /* ÑéÖ¤²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* éªŒè¯å‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == handle) {
         return -AM_EINVAL;
     }
 
-    /* ¶ÁÈ¡CS1 */
+    /* è¯»å–CS1 */
     ret = am_i2c_read(p_i2c_dev,
                       __PCF85063_REG_CTRL_STATUS1,
                       buf,
                       1);
 
-    /* ÇåSTOPÎ» */
+    /* æ¸…STOPä½ */
     buf[0] &= ~__PCF85063_BF_STOP;
 
-    /* Çå³ıCS1ÖĞµÄSTOP */
+    /* æ¸…é™¤CS1ä¸­çš„STOP */
     ret = am_i2c_write(p_i2c_dev,
                        __PCF85063_REG_CTRL_STATUS1,
                        buf,
@@ -1244,22 +1244,22 @@ int am_pcf85063_start (am_pcf85063_handle_t handle)
 }
 
 /**
- * \brief Ğ´ PCF85063 RAM_Byte ¼Ä´æÆ÷
+ * \brief å†™ PCF85063 RAM_Byte å¯„å­˜å™¨
  */
 int am_pcf85063_ram_write (am_pcf85063_handle_t handle, uint8_t data)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = &(handle->i2c_dev);
 
-    /* ÑéÖ¤²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* éªŒè¯å‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == handle) {
         return -AM_EINVAL;
     }
 
-    /* ÀûÓÃI2C´«ÊäÊı¾İ */
+    /* åˆ©ç”¨I2Cä¼ è¾“æ•°æ® */
     ret = am_i2c_write(p_i2c_dev,
                        __PCF85063_REG_RAM_BYTE,
                        &data,
@@ -1273,22 +1273,22 @@ int am_pcf85063_ram_write (am_pcf85063_handle_t handle, uint8_t data)
 }
 
 /**
- * \brief ¶Á PCF85063 RAM_Byte ¼Ä´æÆ÷
+ * \brief è¯» PCF85063 RAM_Byte å¯„å­˜å™¨
  */
 int am_pcf85063_ram_read (am_pcf85063_handle_t handle, uint8_t *p_data)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = &(handle->i2c_dev);
 
-    /* ÑéÖ¤²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* éªŒè¯å‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == handle) {
         return -AM_EINVAL;
     }
 
-    /* ÀûÓÃI2C¶ÁÈ¡Êı¾İ */
+    /* åˆ©ç”¨I2Cè¯»å–æ•°æ® */
     ret = am_i2c_read(p_i2c_dev,
                       __PCF85063_REG_RAM_BYTE,
                       p_data,
@@ -1302,33 +1302,33 @@ int am_pcf85063_ram_read (am_pcf85063_handle_t handle, uint8_t *p_data)
 }
 
 /**
- * \brief PCF85063Ê±¼äÈÕÆÚÉèÖÃº¯Êı
+ * \brief PCF85063æ—¶é—´æ—¥æœŸè®¾ç½®å‡½æ•°
  */
 int am_pcf85063_time_set (am_pcf85063_handle_t handle, am_tm_t *p_tm)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* Êı¾İ»º³åÇø */
+    /* æ•°æ®ç¼“å†²åŒº */
     uint8_t buf[7]     = {0};
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = NULL;
 
-    /* ¼ìÑé²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* æ£€éªŒå‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == handle || NULL == p_tm) {
         return -AM_EINVAL;
     }
 
-    /* ÑéÖ¤Ê±¼äĞÅÏ¢µÄÓĞĞ§ĞÔ */
+    /* éªŒè¯æ—¶é—´ä¿¡æ¯çš„æœ‰æ•ˆæ€§ */
     if (AM_OK != __pcf85063_time_validator(p_tm)) {
         return -AM_EINVAL;
     }
 
-    /* ´ÓÉè±¸½á¹¹ÌåÖĞ»ñÈ¡i2cÉè±¸Ö¸Õë */
+    /* ä»è®¾å¤‡ç»“æ„ä½“ä¸­è·å–i2cè®¾å¤‡æŒ‡é’ˆ */
     p_i2c_dev = &(handle->i2c_dev);
 
-    /* ½«Ê±¼äÈÕÆÚĞÅÏ¢ÌîÈëbufÖĞ */
+    /* å°†æ—¶é—´æ—¥æœŸä¿¡æ¯å¡«å…¥bufä¸­ */
     buf[__PCF85063_REG_VL_SECONDS - __PCF85063_REG_VL_SECONDS] =
                                              AM_HEX_TO_BCD(p_tm->tm_sec);
     buf[__PCF85063_REG_MINUTES - __PCF85063_REG_VL_SECONDS] =
@@ -1344,7 +1344,7 @@ int am_pcf85063_time_set (am_pcf85063_handle_t handle, am_tm_t *p_tm)
     buf[__PCF85063_REG_YEAERS - __PCF85063_REG_VL_SECONDS] =
                                              AM_HEX_TO_BCD(p_tm->tm_year);
 
-    /* ÀûÓÃI2C´«ÊäÊ±¼äÒÔ¼°ÈÕÆÚÊı¾İ */
+    /* åˆ©ç”¨I2Cä¼ è¾“æ—¶é—´ä»¥åŠæ—¥æœŸæ•°æ® */
     ret = am_i2c_write(p_i2c_dev,
                        __PCF85063_REG_VL_SECONDS,
                        buf,
@@ -1358,28 +1358,28 @@ int am_pcf85063_time_set (am_pcf85063_handle_t handle, am_tm_t *p_tm)
 }
 
 /**
- * \brief PCF85063Ê±¼äÈÕÆÚ»ñÈ¡º¯Êı
+ * \brief PCF85063æ—¶é—´æ—¥æœŸè·å–å‡½æ•°
  */
 int am_pcf85063_time_get (am_pcf85063_handle_t handle, am_tm_t *p_tm)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* Êı¾İ»º³åÇø */
+    /* æ•°æ®ç¼“å†²åŒº */
     uint8_t buf[7]     = {0};
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = NULL;
 
-    /* ¼ìÑé²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* æ£€éªŒå‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == handle || NULL == p_tm) {
         return -AM_EINVAL;
     }
 
-    /* ´ÓÉè±¸½á¹¹ÌåÖĞ»ñÈ¡i2cÉè±¸Ö¸Õë */
+    /* ä»è®¾å¤‡ç»“æ„ä½“ä¸­è·å–i2cè®¾å¤‡æŒ‡é’ˆ */
     p_i2c_dev = &(handle->i2c_dev);
 
-    /* Í¨¹ıI2C¶ÁÈ¡Êı¾İ */
+    /* é€šè¿‡I2Cè¯»å–æ•°æ® */
     ret = am_i2c_read(p_i2c_dev,
                       __PCF85063_REG_VL_SECONDS,
                       buf,
@@ -1389,7 +1389,7 @@ int am_pcf85063_time_get (am_pcf85063_handle_t handle, am_tm_t *p_tm)
         return ret;
     }
 
-    /* ´ÓbufÖĞ»ñÈ¡Ê±¼äÈÕÆÚĞÅÏ¢ */
+    /* ä»bufä¸­è·å–æ—¶é—´æ—¥æœŸä¿¡æ¯ */
     p_tm->tm_sec  =
     AM_BCD_TO_HEX(buf[__PCF85063_REG_VL_SECONDS - __PCF85063_REG_VL_SECONDS] & 0x7F);
     p_tm->tm_min  =
@@ -1410,24 +1410,24 @@ int am_pcf85063_time_get (am_pcf85063_handle_t handle, am_tm_t *p_tm)
 }
 
 /**
- * \brief PCF85063Ê±ÖÓÔ´²¹³¥ÉèÖÃ
+ * \brief PCF85063æ—¶é’Ÿæºè¡¥å¿è®¾ç½®
  */
 int am_pcf85063_offset_set (am_pcf85063_handle_t handle, uint8_t mode, float ppm)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* Êı¾İ»º³åÇø */
+    /* æ•°æ®ç¼“å†²åŒº */
     uint8_t buf[1] = {0};
 
-    /* Æ«ÒÆÁ¿ */
+    /* åç§»é‡ */
     float  offset_val = 0.0;
     int8_t result     = 0;
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = NULL;
 
-    /* ¼ìÑé²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* æ£€éªŒå‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == handle || ((mode != AM_PCF85063_OFFSET_MODE_NORMAL)
                        && (mode != AM_PCF85063_OFFSET_MODE_COURSE))) {
         return -AM_EINVAL;
@@ -1443,31 +1443,31 @@ int am_pcf85063_offset_set (am_pcf85063_handle_t handle, uint8_t mode, float ppm
         return -AM_EINVAL;
     }
 
-    /* ´ÓÉè±¸½á¹¹ÌåÖĞ»ñÈ¡i2cÉè±¸Ö¸Õë */
+    /* ä»è®¾å¤‡ç»“æ„ä½“ä¸­è·å–i2cè®¾å¤‡æŒ‡é’ˆ */
     p_i2c_dev = &(handle->i2c_dev);
 
-    /* ¶ÔÆ«ÒÆÁ¿½øĞĞ¼ÆËã */
+    /* å¯¹åç§»é‡è¿›è¡Œè®¡ç®— */
     offset_val = ppm / __offset_lsb_ppm[mode];
 
-    /* Õı¸ºÊı´¦Àí */
+    /* æ­£è´Ÿæ•°å¤„ç† */
     if (offset_val > 0) {
 
-        /* ¶ÔÆ«ÒÆÁ¿½øĞĞËÄÉáÎåÈë */
+        /* å¯¹åç§»é‡è¿›è¡Œå››èˆäº”å…¥ */
         result = offset_val + 0.5f;
 
     } else {
 
-        /* ¶ÔÆ«ÒÆÁ¿½øĞĞËÄÉáÎåÈë */
+        /* å¯¹åç§»é‡è¿›è¡Œå››èˆäº”å…¥ */
         result = offset_val - 0.5f;
 
-        /* ·ûºÅÎ»ÎªµÚ7Î» */
+        /* ç¬¦å·ä½ä¸ºç¬¬7ä½ */
         result = (result & 0x3F) | 0x40;
     }
 
-    /* ½«¼ÆËã½á¹ûÌîÈëbuf */
+    /* å°†è®¡ç®—ç»“æœå¡«å…¥buf */
     buf[0] = mode << 7 | result;
 
-    /* Í¨¹ıI2C¶ÁÈ¡Êı¾İ */
+    /* é€šè¿‡I2Cè¯»å–æ•°æ® */
     ret = am_i2c_write(p_i2c_dev,
                        __PCF85063_REG_OFFSET,
                        buf,
@@ -1481,27 +1481,27 @@ int am_pcf85063_offset_set (am_pcf85063_handle_t handle, uint8_t mode, float ppm
 }
 
 /**
- * \brief Ê¹ÄÜPCF85063
+ * \brief ä½¿èƒ½PCF85063
  */
 int am_pcf85063_alarm_enable (am_pcf85063_handle_t      handle,
                               am_pcf85063_alarm_info_t *p_alarm_info)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* Êı¾İ»º³åÇø */
+    /* æ•°æ®ç¼“å†²åŒº */
     uint8_t buf[5]     = {0};
     uint8_t buf_cs2[1] = {0};
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = NULL;
 
-    /* ÑéÖ¤²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* éªŒè¯å‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == handle || NULL == p_alarm_info) {
         return -AM_EINVAL;
     }
 
-    /* ÑéÖ¤ÄÖÖÓĞÅÏ¢ÉèÖÃÖµµÄÓĞĞ§ĞÔ */
+    /* éªŒè¯é—¹é’Ÿä¿¡æ¯è®¾ç½®å€¼çš„æœ‰æ•ˆæ€§ */
     if (p_alarm_info->mday > 31 || p_alarm_info->mday < 0 ||
         p_alarm_info->wday > 6  || p_alarm_info->wday < 0 ||
         p_alarm_info->hour > 23 || p_alarm_info->hour < 0 ||
@@ -1510,16 +1510,16 @@ int am_pcf85063_alarm_enable (am_pcf85063_handle_t      handle,
         return -AM_EINVAL;
     }
 
-    /* ´ÓhandleÖĞ»ñÈ¡i2cÉè±¸Ö¸Õë */
+    /* ä»handleä¸­è·å–i2cè®¾å¤‡æŒ‡é’ˆ */
     p_i2c_dev = &(handle->i2c_dev);
 
-    /* ±ê¼ÇÓÃ»§µ÷ÓÃµÄÊÇ·Ç±ê×¼µÄÄÖÖÓ½Ó¿Ú */
+    /* æ ‡è®°ç”¨æˆ·è°ƒç”¨çš„æ˜¯éæ ‡å‡†çš„é—¹é’Ÿæ¥å£ */
     handle->alarm_mode = __PCF85063_ALARM_MODE_NONSTANDARD;
 
-    /* ÌîÈëALARM_SECONDĞÅÏ¢ */
+    /* å¡«å…¥ALARM_SECONDä¿¡æ¯ */
     if (p_alarm_info->enable & AM_PCF85063_ALARM_SECOND_ENABLE) {
 
-        /* Ê¹ÄÜ²¢ÉèÖÃÄÖÖÓÖµ */
+        /* ä½¿èƒ½å¹¶è®¾ç½®é—¹é’Ÿå€¼ */
         buf[__PCF85063_REG_SECOND_ALARM - __PCF85063_REG_SECOND_ALARM] &=
                                                  ~__PCF85063_BF_ALARM_DIS;
         buf[__PCF85063_REG_SECOND_ALARM - __PCF85063_REG_SECOND_ALARM] |=
@@ -1527,15 +1527,15 @@ int am_pcf85063_alarm_enable (am_pcf85063_handle_t      handle,
 
     } else {
 
-        /* ½ûÄÜÄÖÖÓ */
+        /* ç¦èƒ½é—¹é’Ÿ */
         buf[__PCF85063_REG_SECOND_ALARM - __PCF85063_REG_SECOND_ALARM] |=
                                                     __PCF85063_BF_ALARM_DIS;
     }
 
-    /* ÌîÈëALARM_MINUTEĞÅÏ¢ */
+    /* å¡«å…¥ALARM_MINUTEä¿¡æ¯ */
     if (p_alarm_info->enable & AM_PCF85063_ALARM_MINUTE_ENABLE) {
 
-        /* Ê¹ÄÜ²¢ÉèÖÃÄÖÖÓÖµ */
+        /* ä½¿èƒ½å¹¶è®¾ç½®é—¹é’Ÿå€¼ */
         buf[__PCF85063_REG_MINUTE_ALARM - __PCF85063_REG_SECOND_ALARM] &=
                                                  ~__PCF85063_BF_ALARM_DIS;
         buf[__PCF85063_REG_MINUTE_ALARM - __PCF85063_REG_SECOND_ALARM] |=
@@ -1543,15 +1543,15 @@ int am_pcf85063_alarm_enable (am_pcf85063_handle_t      handle,
 
     } else {
 
-        /* ½ûÄÜÄÖÖÓ */
+        /* ç¦èƒ½é—¹é’Ÿ */
         buf[__PCF85063_REG_MINUTE_ALARM - __PCF85063_REG_SECOND_ALARM] |=
                                                     __PCF85063_BF_ALARM_DIS;
     }
 
-    /* ÌîÈëALARM_HOURĞÅÏ¢ */
+    /* å¡«å…¥ALARM_HOURä¿¡æ¯ */
     if (p_alarm_info->enable & AM_PCF85063_ALARM_HOUR_ENABLE) {
 
-        /* Ê¹ÄÜ²¢ÉèÖÃÄÖÖÓÖµ */
+        /* ä½¿èƒ½å¹¶è®¾ç½®é—¹é’Ÿå€¼ */
         buf[__PCF85063_REG_HOUR_ALARM - __PCF85063_REG_SECOND_ALARM] &=
                                                  ~__PCF85063_BF_ALARM_DIS;
         buf[__PCF85063_REG_HOUR_ALARM - __PCF85063_REG_SECOND_ALARM] |=
@@ -1559,15 +1559,15 @@ int am_pcf85063_alarm_enable (am_pcf85063_handle_t      handle,
 
     } else {
 
-        /* ½ûÄÜÄÖÖÓ */
+        /* ç¦èƒ½é—¹é’Ÿ */
         buf[__PCF85063_REG_HOUR_ALARM - __PCF85063_REG_SECOND_ALARM] |=
                                                     __PCF85063_BF_ALARM_DIS;
     }
 
-    /* ÌîÈëALARM_DAYĞÅÏ¢ */
+    /* å¡«å…¥ALARM_DAYä¿¡æ¯ */
     if (p_alarm_info->enable & AM_PCF85063_ALARM_DAY_ENABLE) {
 
-        /* Ê¹ÄÜ²¢ÉèÖÃÄÖÖÓÖµ */
+        /* ä½¿èƒ½å¹¶è®¾ç½®é—¹é’Ÿå€¼ */
         buf[__PCF85063_REG_DAY_ALARM - __PCF85063_REG_SECOND_ALARM] &=
                                                  ~__PCF85063_BF_ALARM_DIS;
         buf[__PCF85063_REG_DAY_ALARM - __PCF85063_REG_SECOND_ALARM] |=
@@ -1575,15 +1575,15 @@ int am_pcf85063_alarm_enable (am_pcf85063_handle_t      handle,
 
     } else {
 
-        /* ½ûÄÜÄÖÖÓ */
+        /* ç¦èƒ½é—¹é’Ÿ */
         buf[__PCF85063_REG_DAY_ALARM - __PCF85063_REG_SECOND_ALARM] |=
                                                     __PCF85063_BF_ALARM_DIS;
     }
 
-    /* ÌîÈëALARM_WEEKDAYĞÅÏ¢ */
+    /* å¡«å…¥ALARM_WEEKDAYä¿¡æ¯ */
     if (p_alarm_info->enable & AM_PCF85063_ALARM_WEEKDAY_ENABLE) {
 
-        /* Ê¹ÄÜ²¢ÉèÖÃÄÖÖÓÖµ */
+        /* ä½¿èƒ½å¹¶è®¾ç½®é—¹é’Ÿå€¼ */
         buf[__PCF85063_REG_WEEKDAY_ALARM - __PCF85063_REG_SECOND_ALARM] &=
                                                  ~__PCF85063_BF_ALARM_DIS;
         buf[__PCF85063_REG_WEEKDAY_ALARM - __PCF85063_REG_SECOND_ALARM] |=
@@ -1591,12 +1591,12 @@ int am_pcf85063_alarm_enable (am_pcf85063_handle_t      handle,
 
     } else {
 
-        /* ½ûÄÜÄÖÖÓ */
+        /* ç¦èƒ½é—¹é’Ÿ */
         buf[__PCF85063_REG_WEEKDAY_ALARM - __PCF85063_REG_SECOND_ALARM] |=
                                                     __PCF85063_BF_ALARM_DIS;
     }
 
-    /* ÀûÓÃI2C´«ÊäÊı¾İ */
+    /* åˆ©ç”¨I2Cä¼ è¾“æ•°æ® */
     ret = am_i2c_write(p_i2c_dev,
                        __PCF85063_REG_SECOND_ALARM,
                        buf,
@@ -1606,7 +1606,7 @@ int am_pcf85063_alarm_enable (am_pcf85063_handle_t      handle,
         return ret;
     }
 
-    /* ¶ÁÈ¡¿ØÖÆ×´Ì¬¼Ä´æÆ÷2(ÓÃÀ´¿ØÖÆÄÖÖÓÖĞ¶Ï) */
+    /* è¯»å–æ§åˆ¶çŠ¶æ€å¯„å­˜å™¨2(ç”¨æ¥æ§åˆ¶é—¹é’Ÿä¸­æ–­) */
     ret = am_i2c_read(p_i2c_dev,
                       __PCF85063_REG_CTRL_STATUS2,
                       buf_cs2,
@@ -1616,13 +1616,13 @@ int am_pcf85063_alarm_enable (am_pcf85063_handle_t      handle,
         return ret;
     }
 
-    /* ÄÖÖÓÖĞ¶ÏÊ¹ÄÜ */
+    /* é—¹é’Ÿä¸­æ–­ä½¿èƒ½ */
     buf_cs2[0] |= __PCF85063_BF_AIE;
 
-    /* Çå³ıAF±êÖ¾ */
+    /* æ¸…é™¤AFæ ‡å¿— */
     buf_cs2[0] &= ~__PCF85063_BF_AF;
 
-    /* ½«ÄÖÖÓÖĞ¶ÏĞÅÏ¢Ğ´Èë¿ØÖÆ×´Ì¬¼Ä´æÆ÷2 */
+    /* å°†é—¹é’Ÿä¸­æ–­ä¿¡æ¯å†™å…¥æ§åˆ¶çŠ¶æ€å¯„å­˜å™¨2 */
     ret = am_i2c_write(p_i2c_dev,
                        __PCF85063_REG_CTRL_STATUS2,
                        buf_cs2,
@@ -1636,29 +1636,29 @@ int am_pcf85063_alarm_enable (am_pcf85063_handle_t      handle,
 }
 
 /**
- * \brief ½ûÄÜPCF85063ÄÖÖÓ
+ * \brief ç¦èƒ½PCF85063é—¹é’Ÿ
  */
 int am_pcf85063_alarm_disable (am_pcf85063_handle_t handle)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* Êı¾İ»º³åÇø */
+    /* æ•°æ®ç¼“å†²åŒº */
     uint8_t buf[5]     = {0};
     uint8_t buf_cs2[1] = {0};
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = NULL;
 
-    /* ÑéÖ¤²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* éªŒè¯å‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == handle) {
         return -AM_EINVAL;
     }
 
-    /* ´ÓhandleÖĞ»ñÈ¡i2cÉè±¸Ö¸Õë */
+    /* ä»handleä¸­è·å–i2cè®¾å¤‡æŒ‡é’ˆ */
     p_i2c_dev = &(handle->i2c_dev);
 
-    /* ½ûÄÜÄÖÖÓ */
+    /* ç¦èƒ½é—¹é’Ÿ */
     buf[__PCF85063_REG_SECOND_ALARM - __PCF85063_REG_SECOND_ALARM]  |=
                                                         __PCF85063_BF_ALARM_DIS;
     buf[__PCF85063_REG_MINUTE_ALARM - __PCF85063_REG_SECOND_ALARM]  |=
@@ -1670,7 +1670,7 @@ int am_pcf85063_alarm_disable (am_pcf85063_handle_t handle)
     buf[__PCF85063_REG_WEEKDAY_ALARM - __PCF85063_REG_SECOND_ALARM] |=
                                                         __PCF85063_BF_ALARM_DIS;
 
-    /* ÀûÓÃI2C´«ÊäÊı¾İ */
+    /* åˆ©ç”¨I2Cä¼ è¾“æ•°æ® */
     ret = am_i2c_write(p_i2c_dev,
                        __PCF85063_REG_SECOND_ALARM,
                        buf,
@@ -1680,7 +1680,7 @@ int am_pcf85063_alarm_disable (am_pcf85063_handle_t handle)
         return ret;
     }
 
-    /* ¶ÁÈ¡¿ØÖÆ×´Ì¬¼Ä´æÆ÷2(ÓÃÀ´¿ØÖÆÄÖÖÓÖĞ¶Ï) */
+    /* è¯»å–æ§åˆ¶çŠ¶æ€å¯„å­˜å™¨2(ç”¨æ¥æ§åˆ¶é—¹é’Ÿä¸­æ–­) */
     ret = am_i2c_read(p_i2c_dev,
                       __PCF85063_REG_CTRL_STATUS2,
                       buf_cs2,
@@ -1690,13 +1690,13 @@ int am_pcf85063_alarm_disable (am_pcf85063_handle_t handle)
         return ret;
     }
 
-    /* ÄÖÖÓÖĞ¶Ï½ûÄÜ */
+    /* é—¹é’Ÿä¸­æ–­ç¦èƒ½ */
     buf[0] &= ~__PCF85063_BF_AIE;
 
-    /* Çå³ıAF±êÖ¾ */
+    /* æ¸…é™¤AFæ ‡å¿— */
     buf_cs2[0] &= ~__PCF85063_BF_AF;
 
-    /* ½«ÄÖÖÓÖĞ¶ÏĞÅÏ¢Ğ´Èë¿ØÖÆ×´Ì¬¼Ä´æÆ÷2 */
+    /* å°†é—¹é’Ÿä¸­æ–­ä¿¡æ¯å†™å…¥æ§åˆ¶çŠ¶æ€å¯„å­˜å™¨2 */
     ret = am_i2c_write(p_i2c_dev,
                        __PCF85063_REG_CTRL_STATUS2,
                        buf_cs2,
@@ -1710,28 +1710,28 @@ int am_pcf85063_alarm_disable (am_pcf85063_handle_t handle)
 }
 
 /**
- * \brief ÉèÖÃPCF85063Ê±ÖÓÊä³ö
+ * \brief è®¾ç½®PCF85063æ—¶é’Ÿè¾“å‡º
  */
 int am_pcf85063_clkout_set (am_pcf85063_handle_t handle, uint8_t freq)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* Êı¾İ»º³åÇø */
+    /* æ•°æ®ç¼“å†²åŒº */
     uint8_t buf[1] = {0};
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = NULL;
 
-    /* ÑéÖ¤²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* éªŒè¯å‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == handle || freq > AM_PCA85063A_CLKOUT_FREQ_DISABLE) {
         return -AM_EINVAL;
     }
 
-    /* ´ÓhandleÖĞ»ñÈ¡i2cÉè±¸Ö¸Õë */
+    /* ä»handleä¸­è·å–i2cè®¾å¤‡æŒ‡é’ˆ */
     p_i2c_dev = &(handle->i2c_dev);
 
-    /* ¶ÁÈ¡µ±Ç°×´Ì¬¼Ä´æÆ÷2µÄÖµ */
+    /* è¯»å–å½“å‰çŠ¶æ€å¯„å­˜å™¨2çš„å€¼ */
     ret = am_i2c_read(p_i2c_dev,
                       __PCF85063_REG_CTRL_STATUS2,
                       buf,
@@ -1741,16 +1741,16 @@ int am_pcf85063_clkout_set (am_pcf85063_handle_t handle, uint8_t freq)
         return ret;
     }
 
-    buf[0] &= ~__PCF85063_BF_COF;           /* Çå³ıclockout¶Î */
-    buf[0] |= __PCF85063_BF_COF & freq;     /* ÌîÈëĞÂµÄclock */
+    buf[0] &= ~__PCF85063_BF_COF;           /* æ¸…é™¤clockoutæ®µ */
+    buf[0] |= __PCF85063_BF_COF & freq;     /* å¡«å…¥æ–°çš„clock */
 
-    /* Ğ´Èë×´Ì¬¼Ä´æÆ÷2 */
+    /* å†™å…¥çŠ¶æ€å¯„å­˜å™¨2 */
     ret = am_i2c_write(p_i2c_dev,
                        __PCF85063_REG_CTRL_STATUS2,
                        buf,
                        1);
 
-    /* ½« FOEÒı½ÅÖÃ¸ß£¬Ê¹ÄÜCLKÊä³ö */
+    /* å°† FOEå¼•è„šç½®é«˜ï¼Œä½¿èƒ½CLKè¾“å‡º */
     if( handle->p_devinfo->clk_en_pin != -1) {
         ret = am_gpio_set(handle->p_devinfo->clk_en_pin, AM_GPIO_LEVEL_HIGH);
     }
@@ -1763,14 +1763,14 @@ int am_pcf85063_clkout_set (am_pcf85063_handle_t handle, uint8_t freq)
 }
 
 /**
- * \brief ¹Ø±ÕÆµÂÊµÄÊä³ö
+ * \brief å…³é—­é¢‘ç‡çš„è¾“å‡º
  */
 int am_pcf85063_clkout_close(am_pcf85063_handle_t handle)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* ½« FOEÒı½ÅÖÃµÍ£¬¹Ø±ÕCLKÊä³ö */
+    /* å°† FOEå¼•è„šç½®ä½ï¼Œå…³é—­CLKè¾“å‡º */
     if( handle->p_devinfo->clk_en_pin != -1) {
         ret = am_gpio_set(handle->p_devinfo->clk_en_pin, AM_GPIO_LEVEL_LOW);
     }
@@ -1782,30 +1782,30 @@ int am_pcf85063_clkout_close(am_pcf85063_handle_t handle)
 }
 
 /**
- * \brief Ê¹ÄÜPCF85063¶¨Ê±Æ÷
+ * \brief ä½¿èƒ½PCF85063å®šæ—¶å™¨
  */
 int am_pcf85063_timer_enable (am_pcf85063_handle_t handle,
                               uint8_t              clk_freq,
                               uint8_t              max_timer_count)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* Êı¾İ»º³åÇø */
+    /* æ•°æ®ç¼“å†²åŒº */
     uint8_t buf[2] = {0};
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = NULL;
 
-    /* ÑéÖ¤²ÎÊıÓĞĞ§ĞÔ */
+    /* éªŒè¯å‚æ•°æœ‰æ•ˆæ€§ */
     if (NULL == handle) {
         return -AM_EINVAL;
     }
 
-    /* ´ÓhandleÖĞ»ñÈ¡i2cÉè±¸Ö¸Õë */
+    /* ä»handleä¸­è·å–i2cè®¾å¤‡æŒ‡é’ˆ */
     p_i2c_dev = &(handle->i2c_dev);
 
-    /* ÀûÓÃI2C¶ÁÈ¡Êı¾İ */
+    /* åˆ©ç”¨I2Cè¯»å–æ•°æ® */
     ret = am_i2c_read(p_i2c_dev,
                       __PCF85063_REG_TIMER_VALUE,
                       buf,
@@ -1815,10 +1815,10 @@ int am_pcf85063_timer_enable (am_pcf85063_handle_t handle,
         return ret;
     }
 
-    /* ×°ÔØ¼ÆÊıÖµ */
+    /* è£…è½½è®¡æ•°å€¼ */
     buf[__PCF85063_REG_TIMER_VALUE - __PCF85063_REG_TIMER_VALUE] = max_timer_count;
 
-    /* Ñ¡ÔñÊ±ÖÓÆµÂÊÒÔ¼°Ê¹ÄÜ¶¨Ê±Æ÷ */
+    /* é€‰æ‹©æ—¶é’Ÿé¢‘ç‡ä»¥åŠä½¿èƒ½å®šæ—¶å™¨ */
     buf[__PCF85063_REG_TIMER_MODE - __PCF85063_REG_TIMER_VALUE] &=
                                                ~__PCF85063_BF_TIMER_TCF;
     buf[__PCF85063_REG_TIMER_MODE - __PCF85063_REG_TIMER_VALUE] |=
@@ -1826,7 +1826,7 @@ int am_pcf85063_timer_enable (am_pcf85063_handle_t handle,
                                                 __PCF85063_BF_TI_TP |
                                                 __PCF85063_BF_TE;
 
-    /* ÀûÓÃI2C´«ÊäÊı¾İ */
+    /* åˆ©ç”¨I2Cä¼ è¾“æ•°æ® */
     ret = am_i2c_write(p_i2c_dev,
                        __PCF85063_REG_TIMER_VALUE,
                        buf,
@@ -1840,28 +1840,28 @@ int am_pcf85063_timer_enable (am_pcf85063_handle_t handle,
 }
 
 /**
- * \brief ½ûÄÜPCF85063¶¨Ê±Æ÷
+ * \brief ç¦èƒ½PCF85063å®šæ—¶å™¨
  */
 int am_pcf85063_timer_disable (am_pcf85063_handle_t handle)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* Êı¾İ»º³åÇø */
+    /* æ•°æ®ç¼“å†²åŒº */
     uint8_t buf[1] = {0};
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = NULL;
 
-    /* ÑéÖ¤²ÎÊıÓĞĞ§ĞÔ */
+    /* éªŒè¯å‚æ•°æœ‰æ•ˆæ€§ */
     if (NULL == handle) {
         return -AM_EINVAL;
     }
 
-    /* ´ÓhandleÖĞ»ñÈ¡i2cÉè±¸Ö¸Õë */
+    /* ä»handleä¸­è·å–i2cè®¾å¤‡æŒ‡é’ˆ */
     p_i2c_dev = &(handle->i2c_dev);
 
-    /* ÀûÓÃI2C¶ÁÈ¡Êı¾İ */
+    /* åˆ©ç”¨I2Cè¯»å–æ•°æ® */
     ret = am_i2c_read(p_i2c_dev,
                       __PCF85063_REG_TIMER_MODE,
                       buf,
@@ -1871,10 +1871,10 @@ int am_pcf85063_timer_disable (am_pcf85063_handle_t handle)
         return ret;
     }
 
-    /* Çå³ı¶¨Ê±Æ÷Ê¹ÄÜÎ» */
+    /* æ¸…é™¤å®šæ—¶å™¨ä½¿èƒ½ä½ */
     buf[0] &= ~__PCF85063_BF_TE;
 
-    /* ÀûÓÃI2C´«ÊäÊı¾İ */
+    /* åˆ©ç”¨I2Cä¼ è¾“æ•°æ® */
     ret = am_i2c_write(p_i2c_dev,
                        __PCF85063_REG_TIMER_MODE,
                        buf,
@@ -1890,21 +1890,21 @@ int am_pcf85063_timer_disable (am_pcf85063_handle_t handle)
 int am_pcf85063_timer_count_get (am_pcf85063_handle_t  handle,
                                  uint8_t              *p_count)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = NULL;
 
-    /* ÑéÖ¤²ÎÊıÓĞĞ§ĞÔ */
+    /* éªŒè¯å‚æ•°æœ‰æ•ˆæ€§ */
     if (NULL == handle) {
         return -AM_EINVAL;
     }
 
-    /* ´ÓhandleÖĞ»ñÈ¡i2cÉè±¸Ö¸Õë */
+    /* ä»handleä¸­è·å–i2cè®¾å¤‡æŒ‡é’ˆ */
     p_i2c_dev = &(handle->i2c_dev);
 
-    /* ÀûÓÃI2C¶ÁÈ¡Êı¾İ */
+    /* åˆ©ç”¨I2Cè¯»å–æ•°æ® */
     ret = am_i2c_read(p_i2c_dev,
                       __PCF85063_REG_TIMER_VALUE,
                       p_count,
@@ -1918,29 +1918,29 @@ int am_pcf85063_timer_count_get (am_pcf85063_handle_t  handle,
 }
 
 /**
- * \brief Ê¹ÄÜPCF85063·ÖÖÓ/¶¨Ê±Æ÷ÖĞ¶Ï
+ * \brief ä½¿èƒ½PCF85063åˆ†é’Ÿ/å®šæ—¶å™¨ä¸­æ–­
  */
 int am_pcf85063_minute_timer_int_enable (am_pcf85063_handle_t handle,
                                          uint8_t              flags)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* Êı¾İ»º³åÇø buf´æ´¢¼Ä´æÆ÷Öµ */
+    /* æ•°æ®ç¼“å†²åŒº bufå­˜å‚¨å¯„å­˜å™¨å€¼ */
     uint8_t buf[2] = {0};
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = NULL;
 
-    /* ÑéÖ¤²ÎÊıÓĞĞ§ĞÔ */
+    /* éªŒè¯å‚æ•°æœ‰æ•ˆæ€§ */
     if (NULL == handle) {
         return -AM_EINVAL;
     }
 
-    /* ´ÓhandleÖĞ»ñÈ¡i2cÉè±¸Ö¸Õë */
+    /* ä»handleä¸­è·å–i2cè®¾å¤‡æŒ‡é’ˆ */
     p_i2c_dev = &(handle->i2c_dev);
 
-    /* ¶ÁÈ¡¿ØÖÆ×´Ì¬¼Ä´æÆ÷2(ÓÃÀ´Çå³ıÖĞ¶Ï±êÖ¾ÒÔ¼°·ÖÖÓÀàÖĞ¶ÏµÄÊ¹ÄÜ) */
+    /* è¯»å–æ§åˆ¶çŠ¶æ€å¯„å­˜å™¨2(ç”¨æ¥æ¸…é™¤ä¸­æ–­æ ‡å¿—ä»¥åŠåˆ†é’Ÿç±»ä¸­æ–­çš„ä½¿èƒ½) */
     ret = am_i2c_read(p_i2c_dev,
                       __PCF85063_REG_CTRL_STATUS2,
                       &buf[0],
@@ -1950,7 +1950,7 @@ int am_pcf85063_minute_timer_int_enable (am_pcf85063_handle_t handle,
         return ret;
     }
 
-    /* ¶ÁÈ¡¶¨Ê±Æ÷Ä£Ê½¼Ä´æÆ÷(ÓÃÀ´¿ØÖÆ¶¨Ê±Æ÷ÖĞ¶Ï) */
+    /* è¯»å–å®šæ—¶å™¨æ¨¡å¼å¯„å­˜å™¨(ç”¨æ¥æ§åˆ¶å®šæ—¶å™¨ä¸­æ–­) */
     ret = am_i2c_read(p_i2c_dev,
                       __PCF85063_REG_TIMER_MODE,
                       &buf[1],
@@ -1960,27 +1960,27 @@ int am_pcf85063_minute_timer_int_enable (am_pcf85063_handle_t handle,
         return ret;
     }
 
-    /* ¸ù¾İ²»Í¬µÄÖĞ¶ÏÀàĞÍÀ´´¦Àí */
+    /* æ ¹æ®ä¸åŒçš„ä¸­æ–­ç±»å‹æ¥å¤„ç† */
 
     if (flags & AM_PCF85063_INT_TIMER) {
-        /* ¶¨Ê±Æ÷ÖĞ¶ÏÊ¹ÄÜ,TFÉú³ÉÂö³å */
+        /* å®šæ—¶å™¨ä¸­æ–­ä½¿èƒ½,TFç”Ÿæˆè„‰å†² */
         buf[1] |= __PCF85063_BF_TIE;
     }
 
     if (flags & AM_PCF85063_INT_HMINUTE) {
-        /* °ë·ÖÖÓÖĞ¶ÏÊ¹ÄÜ */
+        /* åŠåˆ†é’Ÿä¸­æ–­ä½¿èƒ½ */
         buf[0] |= __PCF85063_BF_HMI;
     }
 
     if (flags & AM_PCF85063_INT_MINUTE) {
-        /*  Ò»·ÖÖÓÖĞ¶ÏÊ¹ÄÜ */
+        /*  ä¸€åˆ†é’Ÿä¸­æ–­ä½¿èƒ½ */
         buf[0] |= __PCF85063_BF_MI;
     }
 
-    /* Çå³ıTF±êÖ¾ */
+    /* æ¸…é™¤TFæ ‡å¿— */
     buf[0] &= ~__PCF85063_BF_TF;
 
-    /* ½«TF±êÖ¾Óë·ÖÖÓÀàÖĞ¶ÏĞÅÏ¢Ğ´Èë¿ØÖÆ×´Ì¬¼Ä´æÆ÷2 */
+    /* å°†TFæ ‡å¿—ä¸åˆ†é’Ÿç±»ä¸­æ–­ä¿¡æ¯å†™å…¥æ§åˆ¶çŠ¶æ€å¯„å­˜å™¨2 */
     ret = am_i2c_write(p_i2c_dev,
                        __PCF85063_REG_CTRL_STATUS2,
                        &buf[0],
@@ -1990,7 +1990,7 @@ int am_pcf85063_minute_timer_int_enable (am_pcf85063_handle_t handle,
         return ret;
     }
 
-    /* ½«¶¨Ê±Æ÷ĞÅÏ¢Ğ´Èë¶¨Ê±Æ÷Ä£Ê½¼Ä´æÆ÷ */
+    /* å°†å®šæ—¶å™¨ä¿¡æ¯å†™å…¥å®šæ—¶å™¨æ¨¡å¼å¯„å­˜å™¨ */
     ret = am_i2c_write(p_i2c_dev,
                        __PCF85063_REG_TIMER_MODE,
                        &buf[1],
@@ -2004,29 +2004,29 @@ int am_pcf85063_minute_timer_int_enable (am_pcf85063_handle_t handle,
 }
 
 /**
- * \brief ½ûÄÜPCF85063·ÖÖÓ/¶¨Ê±Æ÷ÖĞ¶Ï
+ * \brief ç¦èƒ½PCF85063åˆ†é’Ÿ/å®šæ—¶å™¨ä¸­æ–­
  */
 int am_pcf85063_minute_timer_int_disable (am_pcf85063_handle_t handle,
                                           uint8_t              flags)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* Êı¾İ»º³åÇø buf´æ´¢¼Ä´æÆ÷Öµ */
+    /* æ•°æ®ç¼“å†²åŒº bufå­˜å‚¨å¯„å­˜å™¨å€¼ */
     uint8_t buf[2] = {0};
 
-    /* I2CÉè±¸Ö¸Õë */
+    /* I2Cè®¾å¤‡æŒ‡é’ˆ */
     am_i2c_device_t *p_i2c_dev = NULL;
 
-    /* ÑéÖ¤²ÎÊıÓĞĞ§ĞÔ */
+    /* éªŒè¯å‚æ•°æœ‰æ•ˆæ€§ */
     if (NULL == handle) {
         return -AM_EINVAL;
     }
 
-    /* ´ÓhandleÖĞ»ñÈ¡i2cÉè±¸Ö¸Õë */
+    /* ä»handleä¸­è·å–i2cè®¾å¤‡æŒ‡é’ˆ */
     p_i2c_dev = &(handle->i2c_dev);
 
-    /* ¶ÁÈ¡¿ØÖÆ×´Ì¬¼Ä´æÆ÷2(ÓÃÀ´Çå³ıÖĞ¶Ï±êÖ¾ÒÔ¼°·ÖÖÓÀàÖĞ¶ÏµÄÊ¹ÄÜ) */
+    /* è¯»å–æ§åˆ¶çŠ¶æ€å¯„å­˜å™¨2(ç”¨æ¥æ¸…é™¤ä¸­æ–­æ ‡å¿—ä»¥åŠåˆ†é’Ÿç±»ä¸­æ–­çš„ä½¿èƒ½) */
     ret = am_i2c_read(p_i2c_dev,
                       __PCF85063_REG_CTRL_STATUS2,
                       &buf[0],
@@ -2036,7 +2036,7 @@ int am_pcf85063_minute_timer_int_disable (am_pcf85063_handle_t handle,
         return ret;
     }
 
-    /* ¶ÁÈ¡¶¨Ê±Æ÷Ä£Ê½¼Ä´æÆ÷(ÓÃÀ´¿ØÖÆ¶¨Ê±Æ÷ÖĞ¶Ï) */
+    /* è¯»å–å®šæ—¶å™¨æ¨¡å¼å¯„å­˜å™¨(ç”¨æ¥æ§åˆ¶å®šæ—¶å™¨ä¸­æ–­) */
     ret = am_i2c_read(p_i2c_dev,
                       __PCF85063_REG_TIMER_MODE,
                       &buf[1],
@@ -2046,27 +2046,27 @@ int am_pcf85063_minute_timer_int_disable (am_pcf85063_handle_t handle,
         return ret;
     }
 
-    /* ¸ù¾İ²»Í¬µÄÖĞ¶ÏÀàĞÍÀ´´¦Àí */
+    /* æ ¹æ®ä¸åŒçš„ä¸­æ–­ç±»å‹æ¥å¤„ç† */
 
     if (flags & AM_PCF85063_INT_TIMER) {
-        /* ¶¨Ê±Æ÷ÖĞ¶Ï½ûÄÜ */
+        /* å®šæ—¶å™¨ä¸­æ–­ç¦èƒ½ */
         buf[1] &= ~__PCF85063_BF_TIE;
     }
 
     if (flags & AM_PCF85063_INT_HMINUTE) {
-        /* °ë·ÖÖÓÖĞ¶Ï½ûÄÜ */
+        /* åŠåˆ†é’Ÿä¸­æ–­ç¦èƒ½ */
         buf[0] &= ~__PCF85063_BF_HMI;
     }
 
     if (flags & AM_PCF85063_INT_MINUTE) {
-        /*  Ò»·ÖÖÓÖĞ¶Ï½ûÄÜ */
+        /*  ä¸€åˆ†é’Ÿä¸­æ–­ç¦èƒ½ */
         buf[0] &= ~__PCF85063_BF_MI;
     }
 
-    /* Çå³ıTF±êÖ¾ */
+    /* æ¸…é™¤TFæ ‡å¿— */
     buf[0] &= ~__PCF85063_BF_TF;
 
-    /* ½«TF±êÖ¾Óë·ÖÖÓÀàÖĞ¶ÏĞÅÏ¢Ğ´Èë¿ØÖÆ×´Ì¬¼Ä´æÆ÷2 */
+    /* å°†TFæ ‡å¿—ä¸åˆ†é’Ÿç±»ä¸­æ–­ä¿¡æ¯å†™å…¥æ§åˆ¶çŠ¶æ€å¯„å­˜å™¨2 */
     ret = am_i2c_write(p_i2c_dev,
                        __PCF85063_REG_CTRL_STATUS2,
                        &buf[0],
@@ -2076,7 +2076,7 @@ int am_pcf85063_minute_timer_int_disable (am_pcf85063_handle_t handle,
         return ret;
     }
 
-    /* ½«¶¨Ê±Æ÷ĞÅÏ¢Ğ´Èë¶¨Ê±Æ÷Ä£Ê½¼Ä´æÆ÷ */
+    /* å°†å®šæ—¶å™¨ä¿¡æ¯å†™å…¥å®šæ—¶å™¨æ¨¡å¼å¯„å­˜å™¨ */
     ret = am_i2c_write(p_i2c_dev,
                        __PCF85063_REG_TIMER_MODE,
                        &buf[1],
@@ -2090,34 +2090,34 @@ int am_pcf85063_minute_timer_int_disable (am_pcf85063_handle_t handle,
 }
 
 /**
- * \brief PCF85063 ·ÖÖÓ/¶¨Ê±Æ÷»Øµ÷º¯ÊıÉèÖÃ
+ * \brief PCF85063 åˆ†é’Ÿ/å®šæ—¶å™¨å›è°ƒå‡½æ•°è®¾ç½®
  */
 int am_pcf85063_minute_timer_cb_set (am_pcf85063_handle_t  handle,
                                      am_pfnvoid_t          pfn_minute_timer_callback,
                                      void                 *p_minute_timer_arg)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* Éè±¸ĞÅÏ¢Ö¸Õë */
+    /* è®¾å¤‡ä¿¡æ¯æŒ‡é’ˆ */
     const am_pcf85063_devinfo_t *p_devinfo = NULL;
 
-    /* ¼ìÑé²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* æ£€éªŒå‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == handle) {
         return -AM_EINVAL;
     }
 
-    /* ´ÓÉè±¸½á¹¹ÌåÖĞ»ñÈ¡Éè±¸ĞÅÏ¢ */
+    /* ä»è®¾å¤‡ç»“æ„ä½“ä¸­è·å–è®¾å¤‡ä¿¡æ¯ */
     p_devinfo = handle->p_devinfo;
 
     if (-1 == p_devinfo->int_pin) {
         return -AM_ENOTSUP;
     }
 
-    /* conn_statÓÃÓÚ¼ÇÂ¼µ±Ç°ÖĞ¶ÏÁ¬½Ó×´Ì¬,±ÜÃâÖØ¸´µ÷ÓÃGPIOÁ¬½Óº¯Êı */
+    /* conn_statç”¨äºè®°å½•å½“å‰ä¸­æ–­è¿æ¥çŠ¶æ€,é¿å…é‡å¤è°ƒç”¨GPIOè¿æ¥å‡½æ•° */
     if (!(handle->conn_stat)) {
 
-        /* Á¬½ÓÒı½ÅÖĞ¶Ï»Øµ÷º¯Êı */
+        /* è¿æ¥å¼•è„šä¸­æ–­å›è°ƒå‡½æ•° */
         ret = am_gpio_trigger_connect(p_devinfo->int_pin,
                                       __pcf85063_eint_isr,
                                       handle);
@@ -2125,27 +2125,27 @@ int am_pcf85063_minute_timer_cb_set (am_pcf85063_handle_t  handle,
             return ret;
         }
 
-        /* ÉèÖÃÎªÏÂ½µÑØ´¥·¢ */
+        /* è®¾ç½®ä¸ºä¸‹é™æ²¿è§¦å‘ */
         am_gpio_trigger_cfg(p_devinfo->int_pin, AM_GPIO_TRIGGER_FALL);
         am_gpio_trigger_on(p_devinfo->int_pin);
 
-        /* ¸üĞÂconn_stat×´Ì¬ÎªTRUE */
+        /* æ›´æ–°conn_statçŠ¶æ€ä¸ºTRUE */
         handle->conn_stat = AM_TRUE;
 
     }
 
-    /* Á¬½ÓÖĞ¶Ï»Øµ÷º¯Êı */
+    /* è¿æ¥ä¸­æ–­å›è°ƒå‡½æ•° */
     handle->triginfo[0].pfn_callback = pfn_minute_timer_callback;
     handle->triginfo[0].p_arg        = p_minute_timer_arg;
 
-    /* Èç¹ûËùÓĞµÄ»Øµ÷º¯Êı¶¼Îª¿Õ */
+    /* å¦‚æœæ‰€æœ‰çš„å›è°ƒå‡½æ•°éƒ½ä¸ºç©º */
     if ((handle->triginfo[0].pfn_callback == NULL) &&
         (handle->triginfo[1].pfn_callback == NULL)) {
 
-        /* Èç¹ûconn_statÎªTRUEÔòµ÷ÓÃGPIO½â³ıÁ¬½Óº¯Êı */
+        /* å¦‚æœconn_statä¸ºTRUEåˆ™è°ƒç”¨GPIOè§£é™¤è¿æ¥å‡½æ•° */
         if (handle->conn_stat) {
 
-            /* É¾³ıÒı½ÅÖĞ¶Ï»Øµ÷º¯Êı */
+            /* åˆ é™¤å¼•è„šä¸­æ–­å›è°ƒå‡½æ•° */
             ret = am_gpio_trigger_disconnect(p_devinfo->int_pin,
                                              __pcf85063_eint_isr,
                                              handle);
@@ -2154,10 +2154,10 @@ int am_pcf85063_minute_timer_cb_set (am_pcf85063_handle_t  handle,
                 return ret;
             }
 
-            /* ¹Ø±ÕÒı½Å´¥·¢ */
+            /* å…³é—­å¼•è„šè§¦å‘ */
             am_gpio_trigger_off(p_devinfo->int_pin);
 
-            /* ¸üĞÂconn_stat×´Ì¬ÎªFALSE */
+            /* æ›´æ–°conn_statçŠ¶æ€ä¸ºFALSE */
             handle->conn_stat = AM_FALSE;
         }
     }
@@ -2166,34 +2166,34 @@ int am_pcf85063_minute_timer_cb_set (am_pcf85063_handle_t  handle,
 }
 
 /**
- * \brief PCF85063 ÄÖÖÓ»Øµ÷º¯ÊıÉèÖÃ
+ * \brief PCF85063 é—¹é’Ÿå›è°ƒå‡½æ•°è®¾ç½®
  */
 int am_pcf85063_alarm_cb_set (am_pcf85063_handle_t  handle,
                               am_pfnvoid_t          pfn_alarm_callback,
                               void                 *p_alarm_arg)
 {
-    /* º¯Êıµ÷ÓÃ·µ»ØÖµ */
+    /* å‡½æ•°è°ƒç”¨è¿”å›å€¼ */
     int ret = AM_OK;
 
-    /* Éè±¸ĞÅÏ¢Ö¸Õë */
+    /* è®¾å¤‡ä¿¡æ¯æŒ‡é’ˆ */
     const am_pcf85063_devinfo_t *p_devinfo = NULL;
 
-    /* ¼ìÑé²ÎÊıµÄÓĞĞ§ĞÔ */
+    /* æ£€éªŒå‚æ•°çš„æœ‰æ•ˆæ€§ */
     if (NULL == handle) {
         return -AM_EINVAL;
     }
 
-    /* ´ÓÉè±¸½á¹¹ÌåÖĞ»ñÈ¡Éè±¸ĞÅÏ¢ */
+    /* ä»è®¾å¤‡ç»“æ„ä½“ä¸­è·å–è®¾å¤‡ä¿¡æ¯ */
     p_devinfo = handle->p_devinfo;
 
     if (-1 == p_devinfo->int_pin) {
         return -AM_ENOTSUP;
     }
 
-    /* conn_statÓÃÓÚ¼ÇÂ¼µ±Ç°ÖĞ¶ÏÁ¬½Ó×´Ì¬,±ÜÃâÖØ¸´µ÷ÓÃGPIOÁ¬½Óº¯Êı */
+    /* conn_statç”¨äºè®°å½•å½“å‰ä¸­æ–­è¿æ¥çŠ¶æ€,é¿å…é‡å¤è°ƒç”¨GPIOè¿æ¥å‡½æ•° */
     if (!(handle->conn_stat)) {
 
-        /* Á¬½ÓÒı½ÅÖĞ¶Ï»Øµ÷º¯Êı */
+        /* è¿æ¥å¼•è„šä¸­æ–­å›è°ƒå‡½æ•° */
         ret = am_gpio_trigger_connect(p_devinfo->int_pin,
                                       __pcf85063_eint_isr,
                                       handle);
@@ -2201,27 +2201,27 @@ int am_pcf85063_alarm_cb_set (am_pcf85063_handle_t  handle,
             return ret;
         }
 
-        /* ÉèÖÃÎªÏÂ½µÑØ´¥·¢ */
+        /* è®¾ç½®ä¸ºä¸‹é™æ²¿è§¦å‘ */
         am_gpio_trigger_cfg(p_devinfo->int_pin, AM_GPIO_TRIGGER_FALL);
         am_gpio_trigger_on(p_devinfo->int_pin);
 
-        /* ¸üĞÂconn_stat×´Ì¬ÎªTRUE */
+        /* æ›´æ–°conn_statçŠ¶æ€ä¸ºTRUE */
         handle->conn_stat = AM_TRUE;
 
     }
 
-    /* Á¬½ÓÖĞ¶Ï»Øµ÷º¯Êı */
+    /* è¿æ¥ä¸­æ–­å›è°ƒå‡½æ•° */
     handle->triginfo[1].pfn_callback = pfn_alarm_callback;
     handle->triginfo[1].p_arg        = p_alarm_arg;
 
-    /* Èç¹ûËùÓĞµÄ»Øµ÷º¯Êı¶¼Îª¿Õ */
+    /* å¦‚æœæ‰€æœ‰çš„å›è°ƒå‡½æ•°éƒ½ä¸ºç©º */
     if ((handle->triginfo[0].pfn_callback == NULL) &&
         (handle->triginfo[1].pfn_callback == NULL)) {
 
-        /* Èç¹ûconn_statÎªTRUEÔòµ÷ÓÃGPIO½â³ıÁ¬½Óº¯Êı */
+        /* å¦‚æœconn_statä¸ºTRUEåˆ™è°ƒç”¨GPIOè§£é™¤è¿æ¥å‡½æ•° */
         if (handle->conn_stat) {
 
-            /* É¾³ıÒı½ÅÖĞ¶Ï»Øµ÷º¯Êı */
+            /* åˆ é™¤å¼•è„šä¸­æ–­å›è°ƒå‡½æ•° */
             ret = am_gpio_trigger_disconnect(p_devinfo->int_pin,
                                              __pcf85063_eint_isr,
                                              handle);
@@ -2230,10 +2230,10 @@ int am_pcf85063_alarm_cb_set (am_pcf85063_handle_t  handle,
                 return ret;
             }
 
-            /* ¹Ø±ÕÒı½Å´¥·¢ */
+            /* å…³é—­å¼•è„šè§¦å‘ */
             am_gpio_trigger_off(p_devinfo->int_pin);
 
-            /* ¸üĞÂconn_stat×´Ì¬ÎªFALSE */
+            /* æ›´æ–°conn_statçŠ¶æ€ä¸ºFALSE */
             handle->conn_stat = AM_FALSE;
         }
     }

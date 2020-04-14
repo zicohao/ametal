@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief ÔÚÓ¦ÓÃÖĞ±à³Ì(IAP) HW²ãÊµÏÖ.
+ * \brief åœ¨åº”ç”¨ä¸­ç¼–ç¨‹(IAP) HWå±‚å®ç°.
  * 
  * \internal
  * \par Modification history
@@ -31,7 +31,7 @@
 *******************************************************************************/
 
 /**
- * \brief Ğ´²Ù×÷Ç°µÄÉÈÇø×¼±¸º¯Êı
+ * \brief å†™æ“ä½œå‰çš„æ‰‡åŒºå‡†å¤‡å‡½æ•°
  */
 amhw_lpc84x_iap_stat_t amhw_lpc84x_iap_prepare (uint32_t start_sec,
                                                 uint32_t end_sec)
@@ -48,7 +48,7 @@ amhw_lpc84x_iap_stat_t amhw_lpc84x_iap_prepare (uint32_t start_sec,
 }
 
 /**
- * \brief ¸´ÖÆRAMÖĞÊı¾İÖÁFLASHÖĞ£¬Ïàµ±ÓÚFLASHĞ´²Ù×÷
+ * \brief å¤åˆ¶RAMä¸­æ•°æ®è‡³FLASHä¸­ï¼Œç›¸å½“äºFLASHå†™æ“ä½œ
  */
 amhw_lpc84x_iap_stat_t amhw_lpc84x_iap_copy (uint32_t dst_addr,
                                              uint32_t src_addr, 
@@ -68,7 +68,7 @@ amhw_lpc84x_iap_stat_t amhw_lpc84x_iap_copy (uint32_t dst_addr,
 }
 
 /**
- * \brief ÉÈÇø²Á³ı
+ * \brief æ‰‡åŒºæ“¦é™¤
  */
 amhw_lpc84x_iap_stat_t amhw_lpc84x_iap_erase_sector (uint32_t start_sec,
                                                      uint32_t end_sec)
@@ -86,7 +86,7 @@ amhw_lpc84x_iap_stat_t amhw_lpc84x_iap_erase_sector (uint32_t start_sec,
 }
 
 /**
- * \brief Ò³²Á³ı£¬µ¥Ò³»ò¶àÒ³²Á³ı
+ * \brief é¡µæ“¦é™¤ï¼Œå•é¡µæˆ–å¤šé¡µæ“¦é™¤
  */
 amhw_lpc84x_iap_stat_t amhw_lpc84x_iap_erase_page (uint32_t start_page,
                                                    uint32_t end_page)
@@ -104,7 +104,7 @@ amhw_lpc84x_iap_stat_t amhw_lpc84x_iap_erase_page (uint32_t start_page,
 }
 
 /**
- * \brief µ¥¸öÉÈÇø»ò¶à¸öÉÈÇø²é¿Õ
+ * \brief å•ä¸ªæ‰‡åŒºæˆ–å¤šä¸ªæ‰‡åŒºæŸ¥ç©º
  */
 amhw_lpc84x_iap_stat_t amhw_lpc84x_iap_blank_check (uint32_t start_sec,
                                                     uint32_t end_sec)
@@ -121,7 +121,7 @@ amhw_lpc84x_iap_stat_t amhw_lpc84x_iap_blank_check (uint32_t start_sec,
 }
 
 /**
- * \brief ¶ÁPart IDÖµ
+ * \brief è¯»Part IDå€¼
  */
 uint32_t amhw_lpc84x_iap_part_id_read (void)
 {
@@ -135,7 +135,7 @@ uint32_t amhw_lpc84x_iap_part_id_read (void)
 }
 
 /**
- * \brief ¶Áboot code°æ±¾ºÅ
+ * \brief è¯»boot codeç‰ˆæœ¬å·
  */
 uint16_t amhw_lpc84x_iap_boot_ver_read (void)
 {
@@ -149,7 +149,7 @@ uint16_t amhw_lpc84x_iap_boot_ver_read (void)
 }
 
 /**
- * \brief ±È½ÏÁ½´¦ÄÚ´æÖĞµÄÊı¾İ
+ * \brief æ¯”è¾ƒä¸¤å¤„å†…å­˜ä¸­çš„æ•°æ®
  */
  
 amhw_lpc84x_iap_stat_t amhw_lpc84x_iap_compare (uint32_t dst_addr,
@@ -169,7 +169,7 @@ amhw_lpc84x_iap_stat_t amhw_lpc84x_iap_compare (uint32_t dst_addr,
 }
 
 /**
- * \brief Í¨¹ıIAP½« boot loaderÖØĞÂÇĞ»»µ½ISPÄ£Ê½
+ * \brief é€šè¿‡IAPå°† boot loaderé‡æ–°åˆ‡æ¢åˆ°ISPæ¨¡å¼
  */
 void amhw_lpc84x_iap_reinvoke_isp (void)
 {
@@ -181,7 +181,7 @@ void amhw_lpc84x_iap_reinvoke_isp (void)
 }
 
 /**
- * \brief ¶ÁÆ÷¼şµÄUID(¹²128Î»)
+ * \brief è¯»å™¨ä»¶çš„UID(å…±128ä½)
  */
 amhw_lpc84x_iap_stat_t amhw_lpc84x_iap_unique_id_read (uint32_t uid[4])
 {

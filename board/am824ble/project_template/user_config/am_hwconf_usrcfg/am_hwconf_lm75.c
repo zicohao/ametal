@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief LM75 ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief LM75 ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_lm75.c
  *
  * \internal
@@ -33,16 +33,16 @@
  * @{
  */
 
-/** \brief LM75 Éè±¸ĞÅÏ¢ */
+/** \brief LM75 è®¾å¤‡ä¿¡æ¯ */
 am_local am_const am_temp_lm75_info_t __g_temp_lm75_devinfo = {
-    0x48    /* LM75 I2C 7 Î»µØÖ·  */
+    0x48    /* LM75 I2C 7 ä½åœ°å€  */
 };
 
-/** \brief LM75 Éè±¸ÊµÀı */
+/** \brief LM75 è®¾å¤‡å®ä¾‹ */
 am_local am_temp_lm75_t __g_temp_lm75_dev;
 
 /**
- * \brief LM75 ÊµÀı³õÊ¼»¯
+ * \brief LM75 å®ä¾‹åˆå§‹åŒ–
  */
 am_temp_handle_t am_temp_lm75_inst_init (void)
 {

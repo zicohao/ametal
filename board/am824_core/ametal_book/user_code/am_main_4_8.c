@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥4.8
+ * \brief ç¨‹åºæ¸…å•4.8
  *
- * \note ¸ÃÀú³ÌĞèÒªÓÃµ½miniportÍØÕ¹°å
+ * \note è¯¥å†ç¨‹éœ€è¦ç”¨åˆ°miniportæ‹“å±•æ¿
  *
  * \internal
  * \par Modification history
@@ -29,11 +29,11 @@ int am_main (void)
 {
     int i = 0;
 
-    led_init();                 // °å¼¶³õÊ¼»¯
+    led_init();                 // æ¿çº§åˆå§‹åŒ–
     while(1) {                  
-        led_on(i);              // µãÁÁLED(i) 
-        am_mdelay(100);         // ÑÓÊ±100ms 
-        led_off(i);             // Ï¨ÃğLED(i) 
+        led_on(i);              // ç‚¹äº®LED(i) 
+        am_mdelay(100);         // å»¶æ—¶100ms 
+        led_off(i);             // ç†„ç­LED(i) 
         i = (i + 1) % 8;
     }
 }

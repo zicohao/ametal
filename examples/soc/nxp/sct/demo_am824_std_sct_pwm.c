@@ -12,19 +12,19 @@
 
 /**
  * \file
- * \brief SCT PWM ���̣�ͨ����׼�ӿ�ʵ��
+ * \brief SCT PWM 例程，通过标准接口实现
  *
- * - ʵ������
- *   1. PIO0_23(SCT_OUT0) ��� 4KHz �� PWM��ռ�ձ�Ϊ 50%��
- *   2. PIO0_27(SCT_OUT4) ��� 4KHz �� PWM��ռ�ձ�Ϊ 25%��
- *   3. LED0 �� 0.2s ��ʱ������˸��
+ * - 实验现象：
+ *   1. PIO0_23(SCT_OUT0) 输出 4KHz 的 PWM，占空比为 50%；
+ *   2. PIO0_27(SCT_OUT4) 输出 4KHz 的 PWM，占空比为 25%；
+ *   3. LED0 以 0.2s 的时间间隔闪烁。
  *
  * \note
- *    1. LED0 ��Ҫ�̽� J9 ����ñ�����ܱ� PIO0_20 ���ƣ�
- *    2. ���� SCT Ĭ����Ϊ������������ʹ�ò��Ա� Demo ǰ��Ҫ�� am_prj_config.h ��
- *       �� AM_CFG_BUZZER_ENABLE ����Ϊ 0����ʹ�÷�������
+ *    1. LED0 需要短接 J9 跳线帽，才能被 PIO0_20 控制；
+ *    2. 由于 SCT 默认作为驱动蜂鸣器，使用测试本 Demo 前需要将 am_prj_config.h 中
+ *       的 AM_CFG_BUZZER_ENABLE 定义为 0，不使用蜂鸣器。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_lpc82x_std_sct_pwm.c src_lpc82x_std_sct_pwm
  *
  * \internal
@@ -46,7 +46,7 @@
 #include "am_lpc82x_inst_init.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_lpc82x_std_sct_pwm_entry (void)
 {
@@ -60,11 +60,11 @@ void demo_lpc82x_std_sct_pwm_entry (void)
 
     sct_pwm_handle = am_lpc82x_sct0_pwm_inst_init();
 
-    /* ͨ�� 0 ʹ�� PIO0_23 */
+    /* 通道 0 使用 PIO0_23 */
     am_pwm_config(sct_pwm_handle, 0, 125000, 250000);
     am_pwm_enable(sct_pwm_handle, 0);
 
-    /* ͨ�� 4 ʹ�� PIO0_27 */
+    /* 通道 4 使用 PIO0_27 */
     am_pwm_config(sct_pwm_handle, 4, 62500, 250000);
     am_pwm_enable(sct_pwm_handle, 4);
 

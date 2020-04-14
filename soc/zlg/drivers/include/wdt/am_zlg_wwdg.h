@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief WWDGÇı¶¯²ã½Ó¿Ú
+ * \brief WWDGé©±åŠ¨å±‚æ¥å£
  *
  * \internal
  * \par Modification history
@@ -37,59 +37,59 @@ extern "C" {
  */
 
 /**
- * \brief WWDG£¨°æ±¾0£©Éè±¸ĞÅÏ¢½á¹¹Ìå
+ * \brief WWDGï¼ˆç‰ˆæœ¬0ï¼‰è®¾å¤‡ä¿¡æ¯ç»“æ„ä½“
  */
 typedef struct am_zlg_wwdg_devinfo {
 
-    /** \brief WWDG¼Ä´æÆ÷¿é»ùµØÖ· */
+    /** \brief WWDGå¯„å­˜å™¨å—åŸºåœ°å€ */
     uint32_t  wwdg_regbase;
 
-    /** \brief Ê±ÖÓID */
+    /** \brief æ—¶é’ŸID */
     int       clk_num;
 
-    /** \brief Æ½Ì¨³õÊ¼»¯º¯Êı */
+    /** \brief å¹³å°åˆå§‹åŒ–å‡½æ•° */
     void    (*pfn_plfm_init)(void);
 
-    /** \brief Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    /** \brief å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
     void    (*pfn_plfm_deinit)(void);
 
 } am_zlg_wwdg_devinfo_t;
 
 /**
- * \brief WWDG£¨°æ±¾0£©Éè±¸½á¹¹Ìå
+ * \brief WWDGï¼ˆç‰ˆæœ¬0ï¼‰è®¾å¤‡ç»“æ„ä½“
  */
 typedef struct am_zlg_wwdg_dev {
 
-    /** \brief WWDGÌá¹©µÄ±ê×¼·şÎñ */
+    /** \brief WWDGæä¾›çš„æ ‡å‡†æœåŠ¡ */
     am_wdt_serv_t                   wdt_serv;
 
-    /** \brief Ô¤·ÖÆµÒò×Ó */
+    /** \brief é¢„åˆ†é¢‘å› å­ */
     uint16_t                        div;
 
-    /** \brief ¼ÆÊıÖµ */
+    /** \brief è®¡æ•°å€¼ */
     uint8_t                         count;
 
-    /** \brief Ö¸ÏòWWDG£¨°æ±¾0£©Éè±¸µÄĞÅÏ¢Ö¸Õë */
+    /** \brief æŒ‡å‘WWDGï¼ˆç‰ˆæœ¬0ï¼‰è®¾å¤‡çš„ä¿¡æ¯æŒ‡é’ˆ */
     const am_zlg_wwdg_devinfo_t *p_devinfo;
 } am_zlg_wwdg_dev_t;
 
 /**
- * \brief WWDG£¨°æ±¾0£©³õÊ¼»¯
+ * \brief WWDGï¼ˆç‰ˆæœ¬0ï¼‰åˆå§‹åŒ–
  *
- * \param[in] p_dev     : Ö¸ÏòWWDG£¨°æ±¾0£©Éè±¸
- * \param[in] p_devinfo : Ö¸ÏòWWDG£¨°æ±¾0£©Éè±¸ĞÅÏ¢
+ * \param[in] p_dev     : æŒ‡å‘WWDGï¼ˆç‰ˆæœ¬0ï¼‰è®¾å¤‡
+ * \param[in] p_devinfo : æŒ‡å‘WWDGï¼ˆç‰ˆæœ¬0ï¼‰è®¾å¤‡ä¿¡æ¯
  *
- * \return WWDG±ê×¼·şÎñ¾ä±ú£¬Ê§°ÜÔò·µ»ØNULL
+ * \return WWDGæ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œå¤±è´¥åˆ™è¿”å›NULL
  */
 am_wdt_handle_t am_zlg_wwdg_init (am_zlg_wwdg_dev_t               *p_dev,
                                      const am_zlg_wwdg_devinfo_t  *p_devinfo);
 
 /**
- * \brief ½â³ıWWDG£¨°æ±¾0£©Éè±¸³õÊ¼»¯
+ * \brief è§£é™¤WWDGï¼ˆç‰ˆæœ¬0ï¼‰è®¾å¤‡åˆå§‹åŒ–
  *
- * \param[in] handle : Ê¹ÓÃWWDG£¨°æ±¾0£©³õÊ¼»¯º¯Êıam_zlg_wwdg_init()»ñÈ¡µ½µÄhandle
+ * \param[in] handle : ä½¿ç”¨WWDGï¼ˆç‰ˆæœ¬0ï¼‰åˆå§‹åŒ–å‡½æ•°am_zlg_wwdg_init()è·å–åˆ°çš„handle
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg_wwdg_deinit (am_wdt_handle_t handle);
 

@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥5.42
+ * \brief ç¨‹åºæ¸…å•5.42
  *
- * \note ¸ÃÀú³ÌĞèÒªÓÃµ½miniportÍØÕ¹°å
+ * \note è¯¥å†ç¨‹éœ€è¦ç”¨åˆ°miniportæ‹“å±•æ¿
  * 
  * \internal
  * \par Modification history
@@ -26,20 +26,20 @@
 #include "am_delay.h"
 int am_main (void)
 {
-    int i = 0, sec = 0;                               // Ãë¼ÆÊıÆ÷Çå0
+    int i = 0, sec = 0;                               // ç§’è®¡æ•°å™¨æ¸…0
 
     digitron2_init();
-    digitron2_disp_char_set(0, '0');                   // ÏÔÊ¾Æ÷Ê®Î»Çå0
-    digitron2_disp_char_set(1, '0');                   // ÏÔÊ¾Æ÷¸öÎ»Çå0
+    digitron2_disp_char_set(0, '0');                   // æ˜¾ç¤ºå™¨åä½æ¸…0
+    digitron2_disp_char_set(1, '0');                   // æ˜¾ç¤ºå™¨ä¸ªä½æ¸…0
     while(1) {
-        digitron2_disp_scan();                         // Ã¿¸ô5msµ÷ÓÃÉ¨Ãèº¯Êı
+        digitron2_disp_scan();                         // æ¯éš”5msè°ƒç”¨æ‰«æå‡½æ•°
         am_mdelay(5);
          i++;
-         if (i == 200) {                              // Ã¿´ÎÑ­»·5ms£¬Ñ­»·200´Î£¬¼´Îª1s
+         if (i == 200) {                              // æ¯æ¬¡å¾ªç¯5msï¼Œå¾ªç¯200æ¬¡ï¼Œå³ä¸º1s
             i = 0;
-            sec = (sec + 1) % 60;                     // Ãë¼ÆÊıÆ÷+1
-            digitron2_disp_char_set(0,sec / 10 + '0'); // ¸üĞÂÏÔÊ¾Æ÷µÄÊ®Î»
-            digitron2_disp_char_set(1,sec % 10 + '0'); // ¸üĞÂÏÔÊ¾Æ÷µÄ¸öÎ»
+            sec = (sec + 1) % 60;                     // ç§’è®¡æ•°å™¨+1
+            digitron2_disp_char_set(0,sec / 10 + '0'); // æ›´æ–°æ˜¾ç¤ºå™¨çš„åä½
+            digitron2_disp_char_set(1,sec % 10 + '0'); // æ›´æ–°æ˜¾ç¤ºå™¨çš„ä¸ªä½
          }
      }
 }

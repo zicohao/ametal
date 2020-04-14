@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief MiniPort-View ºÍ MiniPort-KEY ÅäºÏÊ¹ÓÃ£¬ÒÔ¸´ÓÃÎ»Ñ¡Òı½Å
+ * \brief MiniPort-View å’Œ MiniPort-KEY é…åˆä½¿ç”¨ï¼Œä»¥å¤ç”¨ä½é€‰å¼•è„š
  * \sa am_hwconf_miniport_view_key.c
  *
- * µ±Ç°Ö§³ÖµÄÓÃ·¨ÓĞ£º
+ * å½“å‰æ”¯æŒçš„ç”¨æ³•æœ‰ï¼š
  * 1. MiniPort-KEY + MiniPort-View                : am_miniport_view_key_inst_init();
  * 2. MiniPort-595 + MiniPort-View + MiniPort-KEY : am_miniport_view_key_595_inst_init();
  *
@@ -38,87 +38,87 @@
  * @{
  */
 
-/** \brief ÏÔÊ¾»º´æ£¬´óĞ¡ÎªÊıÂë¹Ü¸öÊı£¬¼´ 2 */
+/** \brief æ˜¾ç¤ºç¼“å­˜ï¼Œå¤§å°ä¸ºæ•°ç ç®¡ä¸ªæ•°ï¼Œå³ 2 */
 am_local uint8_t __g_miniport_view_key_disp_buf[2];
 
-/** \brief É¨Ãè»º´æ£¬Ã¿´Î½ö¿ÉÉ¨ÃèÒ»¸öÊıÂë¹Ü£¬Òò´Ë´óĞ¡Îª 1 */
+/** \brief æ‰«æç¼“å­˜ï¼Œæ¯æ¬¡ä»…å¯æ‰«æä¸€ä¸ªæ•°ç ç®¡ï¼Œå› æ­¤å¤§å°ä¸º 1 */
 am_local uint8_t __g_miniport_view_key_scan_buf[1];
 
-/** \brief MiniPort-View ÊıÂë¹Ü¶ÎÑ¡Òı½Å */
+/** \brief MiniPort-View æ•°ç ç®¡æ®µé€‰å¼•è„š */
 am_local am_const int __g_miniport_view_key_seg_pins[8] = {
-    PIO0_8,     /* SEG A Òı½Å */
-    PIO0_9,     /* SEG B Òı½Å */
-    PIO0_10,    /* SEG C Òı½Å */
-    PIO0_11,    /* SEG D Òı½Å */
-    PIO0_12,    /* SEG E Òı½Å */
-    PIO0_13,    /* SEG F Òı½Å */
-    PIO0_14,    /* SEG G Òı½Å */
-    PIO0_15     /* SEG DP Òı½Å */
+    PIO0_8,     /* SEG A å¼•è„š */
+    PIO0_9,     /* SEG B å¼•è„š */
+    PIO0_10,    /* SEG C å¼•è„š */
+    PIO0_11,    /* SEG D å¼•è„š */
+    PIO0_12,    /* SEG E å¼•è„š */
+    PIO0_13,    /* SEG F å¼•è„š */
+    PIO0_14,    /* SEG G å¼•è„š */
+    PIO0_15     /* SEG DP å¼•è„š */
 };
 
-/** \brief MiniPort-View ÊıÂë¹ÜÎ»Ñ¡Òı½Å */
+/** \brief MiniPort-View æ•°ç ç®¡ä½é€‰å¼•è„š */
 am_local am_const int __g_miniport_view_key_com_pins[] = {
-    PIO0_17,    /* COM 0 Òı½Å */
-    PIO0_23     /* COM 1 Òı½Å */
+    PIO0_17,    /* COM 0 å¼•è„š */
+    PIO0_23     /* COM 1 å¼•è„š */
 };
 
-/** \brief MiniPort-KEY °´¼ü±àÂëĞÅÏ¢ */
+/** \brief MiniPort-KEY æŒ‰é”®ç¼–ç ä¿¡æ¯ */
 am_local am_const int __g_miniport_view_key_codes[]    = {
-    KEY_0,    /* °´¼ü KEY0 µÄ¼üÖµ */
-    KEY_1,    /* °´¼ü KEY1 µÄ¼üÖµ */
-    KEY_2,    /* °´¼ü KEY2 µÄ¼üÖµ */
-    KEY_3     /* °´¼ü KEY3 µÄ¼üÖµ */
+    KEY_0,    /* æŒ‰é”® KEY0 çš„é”®å€¼ */
+    KEY_1,    /* æŒ‰é”® KEY1 çš„é”®å€¼ */
+    KEY_2,    /* æŒ‰é”® KEY2 çš„é”®å€¼ */
+    KEY_3     /* æŒ‰é”® KEY3 çš„é”®å€¼ */
 };
 
-/** \brief MiniPort-KEY °´¼üĞĞÏßÒı½Å */
+/** \brief MiniPort-KEY æŒ‰é”®è¡Œçº¿å¼•è„š */
 am_local am_const int __g_miniport_view_pins_row[] = {
-    PIO0_6,    /* µÚ 0 ĞĞÒı½Å */
-    PIO0_7     /* µÚ 1 ĞĞÒı½Å */
+    PIO0_6,    /* ç¬¬ 0 è¡Œå¼•è„š */
+    PIO0_7     /* ç¬¬ 1 è¡Œå¼•è„š */
 };
 
 /*******************************************************************************
-  MiniPort-KEY ºÍ MiniPort-View ÁªºÏÊ¹ÓÃ
+  MiniPort-KEY å’Œ MiniPort-View è”åˆä½¿ç”¨
 *******************************************************************************/
 
-/** \brief MiniPort-KEY + MiniPort-View Éè±¸ĞÅÏ¢ */
+/** \brief MiniPort-KEY + MiniPort-View è®¾å¤‡ä¿¡æ¯ */
 am_local am_const am_miniport_view_key_info_t __g_miniport_view_key_devinfo = {
     {
         {
             {
-                0,                          /* ÊıÂë¹Ü¶ÔÓ¦µÄÊıÂë¹ÜÏÔÊ¾Æ÷ ID Îª 0 */
+                0,                          /* æ•°ç ç®¡å¯¹åº”çš„æ•°ç ç®¡æ˜¾ç¤ºå™¨ ID ä¸º 0 */
             },
-            50,                             /* É¨ÃèÆµÂÊ£¬50Hz */
-            500,                            /* ÉÁË¸Ê±ÁÁµÄÊ±³¤£º500ms */
-            500,                            /* ÉÁË¸Ê±ÃğµÄÊ±³¤£º500ms */
-            __g_miniport_view_key_disp_buf, /* ÏÔÊ¾»º´æ */
-            __g_miniport_view_key_scan_buf, /* É¨Ãè»º´æ */
+            50,                             /* æ‰«æé¢‘ç‡ï¼Œ50Hz */
+            500,                            /* é—ªçƒæ—¶äº®çš„æ—¶é•¿ï¼š500ms */
+            500,                            /* é—ªçƒæ—¶ç­çš„æ—¶é•¿ï¼š500ms */
+            __g_miniport_view_key_disp_buf, /* æ˜¾ç¤ºç¼“å­˜ */
+            __g_miniport_view_key_scan_buf, /* æ‰«æç¼“å­˜ */
         },
         {
-            8,                              /* 8 ¶ÎÊıÂë¹Ü */
-            1,                              /* ½öµ¥ĞĞÊıÂë¹Ü */
-            2,                              /* Á½ÁĞÊıÂë¹Ü */
-            AM_DIGITRON_SCAN_MODE_COL,      /* É¨Ãè·½Ê½£¬°´ÁĞÉ¨Ãè */
-            AM_TRUE,                        /* ¶ÎÂëµÍµçÆ½ÓĞĞ§ */
-            AM_TRUE,                        /* Î»Ñ¡µÍµçÆ½ÓĞĞ§ */
+            8,                              /* 8 æ®µæ•°ç ç®¡ */
+            1,                              /* ä»…å•è¡Œæ•°ç ç®¡ */
+            2,                              /* ä¸¤åˆ—æ•°ç ç®¡ */
+            AM_DIGITRON_SCAN_MODE_COL,      /* æ‰«ææ–¹å¼ï¼ŒæŒ‰åˆ—æ‰«æ */
+            AM_TRUE,                        /* æ®µç ä½ç”µå¹³æœ‰æ•ˆ */
+            AM_TRUE,                        /* ä½é€‰ä½ç”µå¹³æœ‰æ•ˆ */
         },
-        __g_miniport_view_key_seg_pins,     /* ÊıÂë¹Ü¶ÎÑ¡Òı½Å */
-        __g_miniport_view_key_com_pins,     /* ÊıÂë¹ÜÎ»Ñ¡Òı½Å */
+        __g_miniport_view_key_seg_pins,     /* æ•°ç ç®¡æ®µé€‰å¼•è„š */
+        __g_miniport_view_key_com_pins,     /* æ•°ç ç®¡ä½é€‰å¼•è„š */
     },
     {
-        2,                                  /* 2 ĞĞ°´¼ü */
-        2,                                  /* 2 ÁĞ°´¼ü */
-        __g_miniport_view_key_codes,        /* °´¼ü±àÂëĞÅÏ¢ */
-        AM_TRUE,                            /* °´¼ü°´ÏÂÎªµÍµçÆ½ */
-        AM_KEY_MATRIX_SCAN_MODE_COL,        /* É¨Ãè·½Ê½£¬°´ÁĞÉ¨Ãè£¨±ãÓÚÁĞÏßÒı½Å¸´ÓÃ£© */
+        2,                                  /* 2 è¡ŒæŒ‰é”® */
+        2,                                  /* 2 åˆ—æŒ‰é”® */
+        __g_miniport_view_key_codes,        /* æŒ‰é”®ç¼–ç ä¿¡æ¯ */
+        AM_TRUE,                            /* æŒ‰é”®æŒ‰ä¸‹ä¸ºä½ç”µå¹³ */
+        AM_KEY_MATRIX_SCAN_MODE_COL,        /* æ‰«ææ–¹å¼ï¼ŒæŒ‰åˆ—æ‰«æï¼ˆä¾¿äºåˆ—çº¿å¼•è„šå¤ç”¨ï¼‰ */
     },
-    __g_miniport_view_pins_row,             /* °´¼üĞĞÏßÒı½Å */
+    __g_miniport_view_pins_row,             /* æŒ‰é”®è¡Œçº¿å¼•è„š */
 };
 
-/** \brief MiniPort-KEY + MiniPort-View Éè±¸ÊµÀı */
+/** \brief MiniPort-KEY + MiniPort-View è®¾å¤‡å®ä¾‹ */
 am_local am_miniport_view_key_dev_t __g_miniport_view_key_dev;
 
 /**
- * \brief MiniPort-KEY + MiniPort-View ÊµÀı³õÊ¼»¯
+ * \brief MiniPort-KEY + MiniPort-View å®ä¾‹åˆå§‹åŒ–
  */
 int am_miniport_view_key_inst_init (void)
 {
@@ -128,48 +128,48 @@ int am_miniport_view_key_inst_init (void)
 
 
 /*******************************************************************************
-  MiniPort-595 ºÍ MiniPort-KEY ºÍ MiniPort-View ÁªºÏÊ¹ÓÃ
+  MiniPort-595 å’Œ MiniPort-KEY å’Œ MiniPort-View è”åˆä½¿ç”¨
 *******************************************************************************/
 
-/** \brief MiniPort-595 + MiniPort-KEY + MiniPort-View Éè±¸ĞÅÏ¢ */
+/** \brief MiniPort-595 + MiniPort-KEY + MiniPort-View è®¾å¤‡ä¿¡æ¯ */
 am_local am_const
 am_miniport_view_key_595_info_t __g_miniport_view_key_595_devinfo = {
     {
         {
             {
-                0,                          /* ÊıÂë¹Ü¶ÔÓ¦µÄÊıÂë¹ÜÏÔÊ¾Æ÷ ID Îª 0 */
+                0,                          /* æ•°ç ç®¡å¯¹åº”çš„æ•°ç ç®¡æ˜¾ç¤ºå™¨ ID ä¸º 0 */
             },
-            50,                             /* É¨ÃèÆµÂÊ£¬ 50Hz */
-            500,                            /* ÉÁË¸Ê±ÁÁµÄÊ±³¤£º500ms */
-            500,                            /* ÉÁË¸Ê±ÃğµÄÊ±³¤£º500ms */
-            __g_miniport_view_key_disp_buf, /* ÏÔÊ¾»º´æ */
-            __g_miniport_view_key_scan_buf, /* É¨Ãè»º´æ */
+            50,                             /* æ‰«æé¢‘ç‡ï¼Œ 50Hz */
+            500,                            /* é—ªçƒæ—¶äº®çš„æ—¶é•¿ï¼š500ms */
+            500,                            /* é—ªçƒæ—¶ç­çš„æ—¶é•¿ï¼š500ms */
+            __g_miniport_view_key_disp_buf, /* æ˜¾ç¤ºç¼“å­˜ */
+            __g_miniport_view_key_scan_buf, /* æ‰«æç¼“å­˜ */
         },
         {
-            8,                              /* 8 ¶ÎÊıÂë¹Ü */
-            1,                              /* ½öµ¥ĞĞÊıÂë¹Ü */
-            2,                              /* Á½ÁĞÊıÂë¹Ü */
-            AM_DIGITRON_SCAN_MODE_COL,      /* É¨Ãè·½Ê½£¬°´ÁĞÉ¨Ãè */
-            AM_TRUE,                        /* ¶ÎÂëµÍµçÆ½ÓĞĞ§ */
-            AM_TRUE,                        /* Î»Ñ¡µÍµçÆ½ÓĞĞ§ */
+            8,                              /* 8 æ®µæ•°ç ç®¡ */
+            1,                              /* ä»…å•è¡Œæ•°ç ç®¡ */
+            2,                              /* ä¸¤åˆ—æ•°ç ç®¡ */
+            AM_DIGITRON_SCAN_MODE_COL,      /* æ‰«ææ–¹å¼ï¼ŒæŒ‰åˆ—æ‰«æ */
+            AM_TRUE,                        /* æ®µç ä½ç”µå¹³æœ‰æ•ˆ */
+            AM_TRUE,                        /* ä½é€‰ä½ç”µå¹³æœ‰æ•ˆ */
         },
-        __g_miniport_view_key_com_pins,     /* ÊıÂë¹ÜÎ»Ñ¡Òı½Å */
+        __g_miniport_view_key_com_pins,     /* æ•°ç ç®¡ä½é€‰å¼•è„š */
     },
     {
-        2,                                  /* 2 ĞĞ°´¼ü */
-        2,                                  /* 2 ÁĞ°´¼ü */
-        __g_miniport_view_key_codes,        /* °´¼ü±àÂëĞÅÏ¢ */
-        AM_TRUE,                            /* °´¼ü°´ÏÂÎªµÍµçÆ½ */
-        AM_KEY_MATRIX_SCAN_MODE_COL,        /* É¨Ãè·½Ê½£¬°´ÁĞÉ¨Ãè£¨±ãÓÚÁĞÏßÒı½Å¸´ÓÃ£© */
+        2,                                  /* 2 è¡ŒæŒ‰é”® */
+        2,                                  /* 2 åˆ—æŒ‰é”® */
+        __g_miniport_view_key_codes,        /* æŒ‰é”®ç¼–ç ä¿¡æ¯ */
+        AM_TRUE,                            /* æŒ‰é”®æŒ‰ä¸‹ä¸ºä½ç”µå¹³ */
+        AM_KEY_MATRIX_SCAN_MODE_COL,        /* æ‰«ææ–¹å¼ï¼ŒæŒ‰åˆ—æ‰«æï¼ˆä¾¿äºåˆ—çº¿å¼•è„šå¤ç”¨ï¼‰ */
     },
-    __g_miniport_view_pins_row,             /* °´¼üĞĞÏßÒı½Å */
+    __g_miniport_view_pins_row,             /* æŒ‰é”®è¡Œçº¿å¼•è„š */
 };
 
-/** \brief MiniPort-595 + MiniPort-KEY + MiniPort-View Éè±¸ÊµÀı */
+/** \brief MiniPort-595 + MiniPort-KEY + MiniPort-View è®¾å¤‡å®ä¾‹ */
 am_local am_miniport_view_key_595_dev_t __g_miniport_view_key_595_dev;
 
 /**
- * \brief MiniPort-595 + MiniPort-KEY + MiniPort-View ÊµÀı³õÊ¼»¯
+ * \brief MiniPort-595 + MiniPort-KEY + MiniPort-View å®ä¾‹åˆå§‹åŒ–
  */
 int am_miniport_view_key_595_inst_init (void)
 {

@@ -33,7 +33,7 @@ static int __boot_flash_program(void      *p_drv,
                                 uint32_t   size);
 static void __boot_flash_info_get(void *p_drv, am_boot_flash_info_t **pp_flash_info);
 /**
- * \brief BootLoader flash±ê×¼²ã½Ó¿ÚÊµÏÖ
+ * \brief BootLoader flashæ ‡å‡†å±‚æ¥å£å®ç°
  */
 static struct am_boot_flash_drv_funcs __g_flash_drv_funcs = {
     __boot_flash_erase_region,
@@ -42,7 +42,7 @@ static struct am_boot_flash_drv_funcs __g_flash_drv_funcs = {
     NULL,
 };
 /**
- * \brief flashÇøÓò²Á³ı
+ * \brief flashåŒºåŸŸæ“¦é™¤
  */
 static int __boot_flash_erase_region(void     *p_drv,
                                      uint32_t  start_addr,
@@ -82,7 +82,7 @@ static int __boot_flash_erase_region(void     *p_drv,
 }
 
 /**
- * \brief ¶ÔflashµÄĞ´²Ù×÷
+ * \brief å¯¹flashçš„å†™æ“ä½œ
  */
 static int __boot_flash_program(void      *p_drv,
                                 uint32_t   dst_addr,
@@ -127,7 +127,7 @@ static int __boot_flash_program(void      *p_drv,
 }
 
 /**
- * \brief »ñÈ¡flashµÄĞÅÏ¢
+ * \brief è·å–flashçš„ä¿¡æ¯
  */
 static void __boot_flash_info_get(void *p_drv, am_boot_flash_info_t **pp_flash_info)
 {
@@ -137,7 +137,7 @@ static void __boot_flash_info_get(void *p_drv, am_boot_flash_info_t **pp_flash_i
 }
 
 /**
- * \brief BootLoader flash³õÊ¼»¯º¯Êı
+ * \brief BootLoader flashåˆå§‹åŒ–å‡½æ•°
  */
 am_boot_flash_handle_t am_lpc82x_boot_flash_init(am_lpc82x_boot_flash_dev_t     *p_dev,
                                                  am_lpc82x_boot_flash_devinfo_t *p_devinfo)

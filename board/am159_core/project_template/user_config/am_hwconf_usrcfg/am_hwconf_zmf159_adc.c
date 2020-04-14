@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZMF159 ADC ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief ZMF159 ADC ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_zmf159_adc.c
  *
  * \internal
@@ -34,45 +34,45 @@
  * @{
  */
 
-/** \brief ADCÆ½Ì¨³õÊ¼»¯ */
+/** \brief ADCå¹³å°åˆå§‹åŒ– */
 static void __zlg_plfm_adc1_init (void)
 {
     am_gpio_pin_cfg(PIOA_4, PIOA_4_AIN);
     am_clk_enable(CLK_ADC1);
 }
 
-/** \brief ½â³ıADCÆ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤ADCå¹³å°åˆå§‹åŒ– */
 static void __zlg_plfm_adc1_deinit (void)
 {
     am_gpio_pin_cfg(PIOA_4, PIOA_4_INPUT_FLOAT);
     am_clk_disable (CLK_ADC1);
 }
 
-/** \brief Éè±¸ĞÅÏ¢ */
+/** \brief è®¾å¤‡ä¿¡æ¯ */
 static const am_zlg_adc_devinfo_t __g_adc1_devinfo = {
 
     ZMF159_ADC1_BASE,                 /**< \brief ADC */
-    INUM_ADC1_2,                      /**< \brief ADCµÄÖĞ¶Ï±àºÅ */
-    CLK_ADC1,                         /**< \brief ADCÊ±ÖÓºÅ */
+    INUM_ADC1_2,                      /**< \brief ADCçš„ä¸­æ–­ç¼–å· */
+    CLK_ADC1,                         /**< \brief ADCæ—¶é’Ÿå· */
 
-    3300,                             /**< \brief ²Î¿¼µçÑ¹ */
-    AMHW_ZLG_ADC_DATA_VALID_12BIT, /**< \brief ×ª»»¾«¶È */
+    3300,                             /**< \brief å‚è€ƒç”µå‹ */
+    AMHW_ZLG_ADC_DATA_VALID_12BIT, /**< \brief è½¬æ¢ç²¾åº¦ */
 
-    __zlg_plfm_adc1_init,             /**< \brief ADC1µÄÆ½Ì¨³õÊ¼»¯ */
-    __zlg_plfm_adc1_deinit,           /**< \brief ADC1µÄÆ½Ì¨È¥³õÊ¼»¯ */
+    __zlg_plfm_adc1_init,             /**< \brief ADC1çš„å¹³å°åˆå§‹åŒ– */
+    __zlg_plfm_adc1_deinit,           /**< \brief ADC1çš„å¹³å°å»åˆå§‹åŒ– */
 
 };
 
-/**< \brief Éè±¸ÊµÀı */
+/**< \brief è®¾å¤‡å®ä¾‹ */
 static am_zlg_adc_dev_t  __g_adc1_dev;
 
-/** \brief ADCÊµÀı³õÊ¼»¯£¬»ñµÃADC±ê×¼·şÎñ¾ä±ú */
+/** \brief ADCå®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—ADCæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_adc_handle_t am_zlg217_adc1_inst_init (void)
 {
     return am_zlg_adc_init(&__g_adc1_dev, &__g_adc1_devinfo);
 }
 
-/** \brief ADCÊµÀı½â³õÊ¼»¯ */
+/** \brief ADCå®ä¾‹è§£åˆå§‹åŒ– */
 void am_zlg217_adc1_inst_deinit (am_adc_handle_t handle)
 {
     am_zlg_adc_deinit(handle);

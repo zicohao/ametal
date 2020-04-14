@@ -12,16 +12,16 @@
 
 /**
  * \file
- * \brief RTC ���̣�ͨ����׼�ӿ�ʵ��
+ * \brief RTC 例程，通过标准接口实现
  *
- * - ʵ������
- *   1. ���ڴ�ӡ�����õ�ʱ�䣬�Ժ�ÿ���ӡһ��ʱ�䡣
+ * - 实验现象：
+ *   1. 串口打印出设置的时间，以后每秒打印一次时间。
  *
  * \note
- *    ����۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIOA_10 �������� PC ���ڵ� TXD��
- *    PIOA_9 �������� PC ���ڵ� RXD��
+ *    如需观察串口打印的调试信息，需要将 PIOA_10 引脚连接 PC 串口的 TXD，
+ *    PIOA_9 引脚连接 PC 串口的 RXD。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_zlg217_std_rtc.c src_zlg217_std_rtc
  *
  * \internal
@@ -44,7 +44,7 @@
 #include "demo_am217_core_entries.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_zlg217_core_std_rtc_entry (void)
 {

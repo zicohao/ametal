@@ -43,50 +43,50 @@ extern "C" {
 
 
 
-/** \brief mscÀàÉè±¸´úÂë±êÊ¶  */
+/** \brief mscç±»è®¾å¤‡ä»£ç æ ‡è¯†  */
 #define AM_USBD_CONFIG_MSC_CLASS_CODE                     (0x08U)
 #define AM_USBD_MSC_SUBCLASS                              (0x06U)
 #define AM_USBD_MSC_PROTOCOL                              (0x50U)
 
-/** \brief µÃµ½×î´óµÄLUN */
+/** \brief å¾—åˆ°æœ€å¤§çš„LUN */
 #define AM_USBD_MSC_GET_MAX_LUN                           (0xFEU)
-/** \brief ½öÅúÁ¿´óÈİÁ¿´¢´æÖØÖÃ  */
+/** \brief ä»…æ‰¹é‡å¤§å®¹é‡å‚¨å­˜é‡ç½®  */
 #define AM_USBD_MSC_BULK_ONLY_MASS_STORAGE_RESET          (0xFFU)
 
 
 
 /*******************************************************************************
-  ºêº¯Êı¶¨Òå
+  å®å‡½æ•°å®šä¹‰
 *******************************************************************************/
 
-/**< \brief Çó³ö16Î»Ê±¼ä¸ñÊ½µÄ¸ß×Ö½Ú */
+/**< \brief æ±‚å‡º16ä½æ—¶é—´æ ¼å¼çš„é«˜å­—èŠ‚ */
 #define AM_TIME_HB(H,M,S) (((((H)<<11))|((M)<<5)|(S))>>8)
 
-/**< \brief Çó³ö16Î»Ê±¼ä¸ñÊ½µÄµÍ×Ö½Ú */
+/**< \brief æ±‚å‡º16ä½æ—¶é—´æ ¼å¼çš„ä½å­—èŠ‚ */
 #define AM_TIME_LB(H,M,S) ((((H)<<11))|((M)<<5)|(S))
 
-/**< \brief Çó³ö16Î»ÈÕÆÚ¸ñÊ½µÄ¸ß×Ö½Ú */
+/**< \brief æ±‚å‡º16ä½æ—¥æœŸæ ¼å¼çš„é«˜å­—èŠ‚ */
 #define AM_DATE_HB(Y,M,D) (((((Y)-1980)<<9)|((M)<<5)|(D))>>8)
 
-/**< \brief Çó³ö16Î»ÈÕÆÚ¸ñÊ½µÄµÍ×Ö½Ú */
+/**< \brief æ±‚å‡º16ä½æ—¥æœŸæ ¼å¼çš„ä½å­—èŠ‚ */
 #define AM_DATE_LB(Y,M,D) ((((Y)-1980)<<9)|((M)<<5)|(D))
 
-//#define AM_BULK_MAX_PACKET_SIZE           (0x40)       /**< \brief ¶¨ÒåÅúÁ¿´«ÊäµÄ×î´ó×Ö½ÚÊı */
-#define AM_SCSI_COMMAND_SIZE              (0x1f)         /**< \brief ¶¨ÒåSISIÃüÁî×Ö½ÚÊı */
+//#define AM_BULK_MAX_PACKET_SIZE           (0x40)       /**< \brief å®šä¹‰æ‰¹é‡ä¼ è¾“çš„æœ€å¤§å­—èŠ‚æ•° */
+#define AM_SCSI_COMMAND_SIZE              (0x1f)         /**< \brief å®šä¹‰SISIå‘½ä»¤å­—èŠ‚æ•° */
 
-#define AM_USBD_MSC_DISD_SIZE             (32748 * 1024U)  /**< \brief Ä£ÄâUÅÌµÄ×ÜÄÚ´æ´óĞ¡   256K~32748K*/
-#define AM_USBD_MSC_SECTOR_SIZE           (512U)         /**< \brief ÉÈÇø´óĞ¡ */
-#define AM_USBD_MSC_USE_DATE_OFST         (2048U)        /**< \brief ÓÃ»§Êı¾İÔÚFATÊı¾İÇøÆ«ÒÆÎ»ÖÃ */
-#define AM_USBD_MSC_FAT1_OFST             (512U)         /**< \brief FAT1ÔÚFAT±íÖĞµÄÆ«ÒÆÎ»ÖÃ */
+#define AM_USBD_MSC_DISD_SIZE             (32748 * 1024U)  /**< \brief æ¨¡æ‹ŸUç›˜çš„æ€»å†…å­˜å¤§å°   256K~32748K*/
+#define AM_USBD_MSC_SECTOR_SIZE           (512U)         /**< \brief æ‰‡åŒºå¤§å° */
+#define AM_USBD_MSC_USE_DATE_OFST         (2048U)        /**< \brief ç”¨æˆ·æ•°æ®åœ¨FATæ•°æ®åŒºåç§»ä½ç½® */
+#define AM_USBD_MSC_FAT1_OFST             (512U)         /**< \brief FAT1åœ¨FATè¡¨ä¸­çš„åç§»ä½ç½® */
 
-/**< \brief CBW ±êÊ¶·û */
+/**< \brief CBW æ ‡è¯†ç¬¦ */
 #define AM_BOT_CBW_SIGNATURE              (0x43425355)
 
-/**< \brief CSW ±êÊ¶·û */
+/**< \brief CSW æ ‡è¯†ç¬¦ */
 #define AM_BOT_CSW_SIGNATURE              (0x53425355)
 
 /*******************************************************************************
-  SBU_MSC SCSIÃüÁîÔËĞĞ½×¶Î
+  SBU_MSC SCSIå‘½ä»¤è¿è¡Œé˜¶æ®µ
 *******************************************************************************/
 
 #define AM_USBD_MSC_IDLE                  (0)  /**< \brief Idle state */
@@ -97,28 +97,28 @@ extern "C" {
 #define AM_USBD_MSC_DATA_ERROR            (5)  /**< \brief error state */
 
 /*******************************************************************************
-  CSW×´Ì¬·µ»ØÊı¾İ³¤¶È/Öµ
+  CSWçŠ¶æ€è¿”å›æ•°æ®é•¿åº¦/å€¼
 *******************************************************************************/
 
-/**< \brief BYTCHK ×Ö½Ú¼ì²éÎ» */
+/**< \brief BYTCHK å­—èŠ‚æ£€æŸ¥ä½ */
 #define AM_USBD_MSC_BLKVFY                          (0x04)
-/**< \brief Éè±¸²»´æÔÚ  */
+/**< \brief è®¾å¤‡ä¸å­˜åœ¨  */
 #define AM_USBD_MSC_MEDIUM_NOT_PRESENT              (0x3A)
-/**< \brief µØÖ·³¬³ö·¶Î§  */
+/**< \brief åœ°å€è¶…å‡ºèŒƒå›´  */
 #define AM_USBD_MSC_ADDRESS_OUT_OF_RANGE            (0x21)
-/**< \brief ÃüÁî²ÎÊı±í³¤¶È´íÎó  */
+/**< \brief å‘½ä»¤å‚æ•°è¡¨é•¿åº¦é”™è¯¯  */
 #define AM_USBD_MSC_PARAMETER_LIST_LENGTH_ERROR     (0x1A)
-/**< \brief REQUEST_SENSE_DATA CSWÊı¾İ³¤¶È */
+/**< \brief REQUEST_SENSE_DATA CSWæ•°æ®é•¿åº¦ */
 #define AM_USBD_MSC_REQUEST_SENSE_DATA_LEN          (0x12)
-/**< \brief MODE_SENSE10_DATA CSWÊı¾İ³¤¶È */
+/**< \brief MODE_SENSE10_DATA CSWæ•°æ®é•¿åº¦ */
 #define AM_USBD_MSC_MODE_SENSE10_DATA_LEN           (0x08)
-/**< \brief READ_FORMAT_CAPACITY_DATA CSWÊı¾İ³¤¶È */
+/**< \brief READ_FORMAT_CAPACITY_DATA CSWæ•°æ®é•¿åº¦ */
 #define AM_USBD_MSC_READ_FORMAT_CAPACITY_DATA_LEN   (0x0C)
-/**< \brief READ_CAPACITY10_DATA CSWÊı¾İ³¤¶È */
+/**< \brief READ_CAPACITY10_DATA CSWæ•°æ®é•¿åº¦ */
 #define AM_USBD_MSC_READ_CAPACITY10_DATA_LEN        (0x08)
-/**< \brief MODE_SENSE6_DATA CSWÊı¾İ³¤¶È */
+/**< \brief MODE_SENSE6_DATA CSWæ•°æ®é•¿åº¦ */
 #define AM_USBD_MSC_MODE_SENSE6_DATA_LEN            (0x04)
-/**< \brief STANDARD_INQUIRY_DATA CSWÊı¾İ³¤¶È */
+/**< \brief STANDARD_INQUIRY_DATA CSWæ•°æ®é•¿åº¦ */
 #define AM_USBD_MSC_STANDARD_INQUIRY_DATA_LEN       (0x24)
 
 
@@ -126,104 +126,104 @@ extern "C" {
   SCSI Commands
 *******************************************************************************/
 
-#define AM_SCSI_FORMAT_UNIT                (0x04)  /**< \brief ¸ñÊ½»¯´¢´æÃüÁî */
-#define AM_SCSI_INQUIRY                    (0x12)  /**< \brief ²éÑ¯Éè±¸ĞÅÏ¢ÃüÁî */
-#define AM_SCSI_MODE_SENSE6                (0x1A)  /**< \brief Ä£Ê½¸ĞÖªÃüÁî */
-#define AM_SCSI_MODE_SENSE10               (0x5A)  /**< \brief ·µ»Ø²ÎÊıÃüÁî */
-#define AM_SCSI_ALLOW_MEDIUM_REMOVAL       (0x1E)  /**< \brief Ğ´±£»¤ÃüÁî */
-#define AM_SCSI_READ10                     (0x28)  /**< \brief ´ÓÉè±¸¶ÁÈ¡Êı¾İÃüÁî */
-#define AM_SCSI_READ_CAPACITY10            (0x25)  /**< \brief ¶ÁÈ¡Éè±¸ÈİÁ¿ÃüÁî */
-#define AM_SCSI_REQUEST_SENSE              (0x03)  /**< \brief »ñÈ¡×´Ì¬ĞÅÏ¢ÃüÁî */
-#define AM_SCSI_START_STOP_UNIT            (0x1B)  /**< \brief ¿ªÊ¼/Í£Ö¹ÃüÁî */
-#define AM_SCSI_TEST_UNIT_READY            (0x00)  /**< \brief ²éÑ¯Éè±¸ÊÇ·ñreadyÃüÁî */
-#define AM_SCSI_WRITE10                    (0x2A)  /**< \brief Ğ´Êı¾İµ½´¢´æÉè±¸ÃüÁî */
-#define AM_SCSI_VERIFY10                   (0x2F)  /**< \brief ÑéÖ¤ÃüÁî */
-#define AM_SCSI_READ_FORMAT_CAPACITIES     (0x23)  /**< \brief ¶ÁÈ¡µ±Ç°Éè±¸ÈİÁ¿ºÍ¿É¸ñÊ½»¯ÃüÁî */
+#define AM_SCSI_FORMAT_UNIT                (0x04)  /**< \brief æ ¼å¼åŒ–å‚¨å­˜å‘½ä»¤ */
+#define AM_SCSI_INQUIRY                    (0x12)  /**< \brief æŸ¥è¯¢è®¾å¤‡ä¿¡æ¯å‘½ä»¤ */
+#define AM_SCSI_MODE_SENSE6                (0x1A)  /**< \brief æ¨¡å¼æ„ŸçŸ¥å‘½ä»¤ */
+#define AM_SCSI_MODE_SENSE10               (0x5A)  /**< \brief è¿”å›å‚æ•°å‘½ä»¤ */
+#define AM_SCSI_ALLOW_MEDIUM_REMOVAL       (0x1E)  /**< \brief å†™ä¿æŠ¤å‘½ä»¤ */
+#define AM_SCSI_READ10                     (0x28)  /**< \brief ä»è®¾å¤‡è¯»å–æ•°æ®å‘½ä»¤ */
+#define AM_SCSI_READ_CAPACITY10            (0x25)  /**< \brief è¯»å–è®¾å¤‡å®¹é‡å‘½ä»¤ */
+#define AM_SCSI_REQUEST_SENSE              (0x03)  /**< \brief è·å–çŠ¶æ€ä¿¡æ¯å‘½ä»¤ */
+#define AM_SCSI_START_STOP_UNIT            (0x1B)  /**< \brief å¼€å§‹/åœæ­¢å‘½ä»¤ */
+#define AM_SCSI_TEST_UNIT_READY            (0x00)  /**< \brief æŸ¥è¯¢è®¾å¤‡æ˜¯å¦readyå‘½ä»¤ */
+#define AM_SCSI_WRITE10                    (0x2A)  /**< \brief å†™æ•°æ®åˆ°å‚¨å­˜è®¾å¤‡å‘½ä»¤ */
+#define AM_SCSI_VERIFY10                   (0x2F)  /**< \brief éªŒè¯å‘½ä»¤ */
+#define AM_SCSI_READ_FORMAT_CAPACITIES     (0x23)  /**< \brief è¯»å–å½“å‰è®¾å¤‡å®¹é‡å’Œå¯æ ¼å¼åŒ–å‘½ä»¤ */
 
 /*******************************************************************************
   CSW Status Definitions
 *******************************************************************************/
 
-#define AM_USBD_MSC_CSW_DATA_LENGTH     (0x000D) /**< \brief CSWÊı¾İ³¤¶È */
-#define AM_USBD_MSC_CSW_CMD_PASSED      (0x00)   /**< \brief ÃüÁîÖ´ĞĞ³É¹¦ */
-#define AM_USBD_MSC_CSW_CMD_FAILED      (0x01)   /**< \brief ÃüÁîÖ´ĞĞÊ§°Ü */
-#define AM_USBD_MSC_CSW_PHASE_ERROR     (0x02)   /**< \brief ÃüÁîÖ´ĞĞÊ§°Ü */
-#define AM_USBD_MSC_SEND_CSW_DISABLE    (0)      /**< \brief SCW·¢ËÍÊ§°Ü */
-#define AM_USBD_MSC_SEND_CSW_ENABLE     (1)      /**< \brief SCW·¢ËÍ³É¹¦ */
-#define AM_USBD_MSC_ILLEGAL_REQUEST     (5)      /**< \brief Sence KeyÖµ */
-#define AM_USBD_MSC_NOT_READY           (2)      /**< \brief Sence KeyÖµ */
-#define AM_USBD_MSC_Max_LUN             (0)      /**< \brief ×î´óÂß¼­µ¥Ôª */
-#define AM_USBD_MSC_TXFR_IDLE           (0)      /**< \brief ¿ÕÏĞ×´Ì¬ */
-#define AM_USBD_MSC_TXFR_ONGOING        (1)      /**< \brief ÔËĞĞ×´Ì¬ */
-#define AM_USBD_MSC_NO_SENSE            (0)      /**< \brief ÎŞÒâÒå */
-#define AM_USBD_MSC_INVALID_CMD         (0x24)   /**< \brief ÎŞĞ§µÄÃüÁî */
+#define AM_USBD_MSC_CSW_DATA_LENGTH     (0x000D) /**< \brief CSWæ•°æ®é•¿åº¦ */
+#define AM_USBD_MSC_CSW_CMD_PASSED      (0x00)   /**< \brief å‘½ä»¤æ‰§è¡ŒæˆåŠŸ */
+#define AM_USBD_MSC_CSW_CMD_FAILED      (0x01)   /**< \brief å‘½ä»¤æ‰§è¡Œå¤±è´¥ */
+#define AM_USBD_MSC_CSW_PHASE_ERROR     (0x02)   /**< \brief å‘½ä»¤æ‰§è¡Œå¤±è´¥ */
+#define AM_USBD_MSC_SEND_CSW_DISABLE    (0)      /**< \brief SCWå‘é€å¤±è´¥ */
+#define AM_USBD_MSC_SEND_CSW_ENABLE     (1)      /**< \brief SCWå‘é€æˆåŠŸ */
+#define AM_USBD_MSC_ILLEGAL_REQUEST     (5)      /**< \brief Sence Keyå€¼ */
+#define AM_USBD_MSC_NOT_READY           (2)      /**< \brief Sence Keyå€¼ */
+#define AM_USBD_MSC_Max_LUN             (0)      /**< \brief æœ€å¤§é€»è¾‘å•å…ƒ */
+#define AM_USBD_MSC_TXFR_IDLE           (0)      /**< \brief ç©ºé—²çŠ¶æ€ */
+#define AM_USBD_MSC_TXFR_ONGOING        (1)      /**< \brief è¿è¡ŒçŠ¶æ€ */
+#define AM_USBD_MSC_NO_SENSE            (0)      /**< \brief æ— æ„ä¹‰ */
+#define AM_USBD_MSC_INVALID_CMD         (0x24)   /**< \brief æ— æ•ˆçš„å‘½ä»¤ */
 
 
 /**
- * \brief SICI Command Block Wrapper Êı¾İ½á¹¹
+ * \brief SICI Command Block Wrapper æ•°æ®ç»“æ„
  *
- * \note Ğ¡¶Ë×Ö½Ú (µÍ×Ö½ÚÔÚÏÈ)
+ * \note å°ç«¯å­—èŠ‚ (ä½å­—èŠ‚åœ¨å…ˆ)
  */
 typedef struct am_bulk_only_cbw {
-    uint32_t dsignature;    /**< \brief ¸Ã×Ö¶ÎÎªCBW ±êÖ¾ */
-    uint32_t dtag;          /**< \brief CBW±êÇ©£¬ÓÉÖ÷»úËæ»ú·ÖÅä£¬ĞèÒªÔÚCSWÖĞµÄdtagÌîÈë¸Ã±êÇ© */
-    uint32_t ddata_length;  /**< \brief ĞèÒªÔÚÊı¾İ´«Êä½×¶Î´«ÊäµÄÊı¾İ³¤¶È */
-    uint8_t  bm_flags;      /**< \brief ±íÊ¾Êı¾İ´«Êä·½Ïò (D7Î»Îª1£ºÊäÈëÊı¾İ£¬D7Î»Îª0£ºÊä³öÊı¾İ) */
-    uint8_t  blun;          /**< \brief Âß¼­µ¥ÔªµÄ±àºÅ£¬(ÉèÖÃÎª0) */
-    uint8_t  bcb_length;    /**< \brief ĞèÒªÖ´ĞĞµÄÃüÁîµÄ³¤¶È ÓĞĞ§·¶Î§1-16 */
-    uint8_t  cb[16];        /**< \brief ĞèÒªÖ´ĞĞµÄ¾ßÌåÃüÁî */
+    uint32_t dsignature;    /**< \brief è¯¥å­—æ®µä¸ºCBW æ ‡å¿— */
+    uint32_t dtag;          /**< \brief CBWæ ‡ç­¾ï¼Œç”±ä¸»æœºéšæœºåˆ†é…ï¼Œéœ€è¦åœ¨CSWä¸­çš„dtagå¡«å…¥è¯¥æ ‡ç­¾ */
+    uint32_t ddata_length;  /**< \brief éœ€è¦åœ¨æ•°æ®ä¼ è¾“é˜¶æ®µä¼ è¾“çš„æ•°æ®é•¿åº¦ */
+    uint8_t  bm_flags;      /**< \brief è¡¨ç¤ºæ•°æ®ä¼ è¾“æ–¹å‘ (D7ä½ä¸º1ï¼šè¾“å…¥æ•°æ®ï¼ŒD7ä½ä¸º0ï¼šè¾“å‡ºæ•°æ®) */
+    uint8_t  blun;          /**< \brief é€»è¾‘å•å…ƒçš„ç¼–å·ï¼Œ(è®¾ç½®ä¸º0) */
+    uint8_t  bcb_length;    /**< \brief éœ€è¦æ‰§è¡Œçš„å‘½ä»¤çš„é•¿åº¦ æœ‰æ•ˆèŒƒå›´1-16 */
+    uint8_t  cb[16];        /**< \brief éœ€è¦æ‰§è¡Œçš„å…·ä½“å‘½ä»¤ */
 } am_bulk_only_cbw_t;
 
 /**
- * \brief SICI Command Status Wrapper Êı¾İ½á¹¹
+ * \brief SICI Command Status Wrapper æ•°æ®ç»“æ„
  *
  */
 typedef struct am_bulk_only_csw {
-    uint32_t dsignature;    /**< \brief ¸Ã×Ö¶ÎÎªCSW ±êÖ¾ */
-    uint32_t dtag;          /**< \brief ¸ÃÃüÁî×´Ì¬·â×°°üµÄ±êÇ© ÆäÖµÎª CBW ÖĞµÄ dtag Ò»ÖÂ */
-    uint32_t ddata_residue; /**< \brief ¼ÇÂ¼»¹ĞèÒª´«ÊäµÄ×Ö½ÚÊı */
-    uint8_t  bstatus;       /**< \brief ÃüÁîÖ´ĞĞµÄ×´Ì¬ */
+    uint32_t dsignature;    /**< \brief è¯¥å­—æ®µä¸ºCSW æ ‡å¿— */
+    uint32_t dtag;          /**< \brief è¯¥å‘½ä»¤çŠ¶æ€å°è£…åŒ…çš„æ ‡ç­¾ å…¶å€¼ä¸º CBW ä¸­çš„ dtag ä¸€è‡´ */
+    uint32_t ddata_residue; /**< \brief è®°å½•è¿˜éœ€è¦ä¼ è¾“çš„å­—èŠ‚æ•° */
+    uint8_t  bstatus;       /**< \brief å‘½ä»¤æ‰§è¡Œçš„çŠ¶æ€ */
 } am_bulk_only_csw_t;
 
 /**
- * \brief usb_msc uÅÌĞÅÏ¢
+ * \brief usb_msc uç›˜ä¿¡æ¯
  *
- * \note ²»Í¬ÈİÁ¿µÄuÅÌ ¸÷¸öÇøµÄµØÖ·²»Ò»Ñù
+ * \note ä¸åŒå®¹é‡çš„uç›˜ å„ä¸ªåŒºçš„åœ°å€ä¸ä¸€æ ·
  */
 typedef struct am_usb_msc_diskinfo {
-    uint8_t        is_win10;           /**< \brief µ±Ç°PCÖ÷»úÊÇ·ñÎªWIN10*/
+    uint8_t        is_win10;           /**< \brief å½“å‰PCä¸»æœºæ˜¯å¦ä¸ºWIN10*/
 
-    uint8_t        max_lun;            /**< \brief ×î´óLUNÊı*/
+    uint8_t        max_lun;            /**< \brief æœ€å¤§LUNæ•°*/
 
-    uint32_t       memory_size;        /**< \brief UÅÌÈİÁ¿´óĞ¡ */
-    uint16_t       block_size;         /**< \brief UÅÌÉÈÇø´óĞ¡ */
-    uint32_t       block_count;        /**< \brief UÅÌÉÈÇø×ÜÊı */
-    uint32_t       fat1_offset;        /**< \brief FAT1µÄµØÖ·×î´óÆ«ÒÆÁ¿ */
-    uint32_t       fat2_offset;        /**< \brief FAT2µÄµØÖ·×î´óÆ«ÒÆÁ¿ */
-    uint32_t       root_offset;        /**< \brief ¸ùÄ¿Â¼µÄµØÖ·×î´óÆ«ÒÆÁ¿ */
+    uint32_t       memory_size;        /**< \brief Uç›˜å®¹é‡å¤§å° */
+    uint16_t       block_size;         /**< \brief Uç›˜æ‰‡åŒºå¤§å° */
+    uint32_t       block_count;        /**< \brief Uç›˜æ‰‡åŒºæ€»æ•° */
+    uint32_t       fat1_offset;        /**< \brief FAT1çš„åœ°å€æœ€å¤§åç§»é‡ */
+    uint32_t       fat2_offset;        /**< \brief FAT2çš„åœ°å€æœ€å¤§åç§»é‡ */
+    uint32_t       root_offset;        /**< \brief æ ¹ç›®å½•çš„åœ°å€æœ€å¤§åç§»é‡ */
 
-    uint8_t       *p_cmd_buffer;       /**< \brief ½ÓÊÕÃüÁîÊı¾İ»º³åÇø*/
+    uint8_t       *p_cmd_buffer;       /**< \brief æ¥æ”¶å‘½ä»¤æ•°æ®ç¼“å†²åŒº*/
 
-    const uint8_t *p_root_dir;         /**< \brief ¸ùÄ¿Â¼Êı¾İĞÅÏ¢*/
-    uint32_t       rootdir_size;       /**< \brief ¸ùÄ¿Â¼Êı¾İ´óĞ¡*/
+    const uint8_t *p_root_dir;         /**< \brief æ ¹ç›®å½•æ•°æ®ä¿¡æ¯*/
+    uint32_t       rootdir_size;       /**< \brief æ ¹ç›®å½•æ•°æ®å¤§å°*/
 
-    const uint8_t *p_readme;           /**< \brief READMEÎÄ¼şĞÅÏ¢*/
-    uint32_t       readme_size;        /**< \brief READMEÎÄ¼şÊı¾İ´óĞ¡*/
+    const uint8_t *p_readme;           /**< \brief READMEæ–‡ä»¶ä¿¡æ¯*/
+    uint32_t       readme_size;        /**< \brief READMEæ–‡ä»¶æ•°æ®å¤§å°*/
 
 } am_usbd_msc_diskinfo_t;
 
 /**
- * \brief usb_msc ´«Êä×´Ì¬ĞÅÏ¢
+ * \brief usb_msc ä¼ è¾“çŠ¶æ€ä¿¡æ¯
  *
- * \note usbÃ¶¾Ù³É¹¦ÒÔºó£¬Í¨ĞÅµÄÖ÷Òª¹ı³Ì£º
- *       Ö÷»ú·¢ËÍCBWÃüÁî->Éè±¸·¢ËÍÊı¾İ(ĞèÒª´«ÊäÊı¾İÊ±²ÅÓĞ´Ë¹ı³Ì)->Éè±¸·¢ËÍCSW×´Ì¬
+ * \note usbæšä¸¾æˆåŠŸä»¥åï¼Œé€šä¿¡çš„ä¸»è¦è¿‡ç¨‹ï¼š
+ *       ä¸»æœºå‘é€CBWå‘½ä»¤->è®¾å¤‡å‘é€æ•°æ®(éœ€è¦ä¼ è¾“æ•°æ®æ—¶æ‰æœ‰æ­¤è¿‡ç¨‹)->è®¾å¤‡å‘é€CSWçŠ¶æ€
  */
 typedef struct am_usb_msc_state {
-    uint8_t     transfer_state;        /**< \brief Êı¾İ¿ªÊ¼´«Êä±êÖ¾ */
-    uint8_t     bot_state;             /**< \brief UÅÌ´«ÊäµÄ×´Ì¬¹ı³Ì */
-    uint32_t    block_offset;          /**< \brief ¼ÇÂ¼¶Á/Ğ´Î»ÖÃµÄÆ«ÒÆÁ¿ */
-    uint32_t    scsi_lab;              /**< \brief ´æ·Åµ±Ç°¶Á/Ğ´Êı¾İµÄÂß¼­¿éµØÖ· */
-    uint32_t    scsi_blk_len;          /**< \brief ´æ·Åµ±Ç°¶Á/Ğ´Êı¾İµÄÂß¼­¿é¸öÊı */
+    uint8_t     transfer_state;        /**< \brief æ•°æ®å¼€å§‹ä¼ è¾“æ ‡å¿— */
+    uint8_t     bot_state;             /**< \brief Uç›˜ä¼ è¾“çš„çŠ¶æ€è¿‡ç¨‹ */
+    uint32_t    block_offset;          /**< \brief è®°å½•è¯»/å†™ä½ç½®çš„åç§»é‡ */
+    uint32_t    scsi_lab;              /**< \brief å­˜æ”¾å½“å‰è¯»/å†™æ•°æ®çš„é€»è¾‘å—åœ°å€ */
+    uint32_t    scsi_blk_len;          /**< \brief å­˜æ”¾å½“å‰è¯»/å†™æ•°æ®çš„é€»è¾‘å—ä¸ªæ•° */
 } am_usb_msc_state_t;
 
 typedef struct am_usbd_msc_endpoint {
@@ -246,38 +246,38 @@ typedef struct am_usbd_msc {
     am_bulk_only_csw_t     csw;
     am_usb_msc_state_t     state;
 
-    volatile uint8_t       int_status_in;    /**< \brief ÊäÈëÖĞ¶Ï×´Ì¬ */
-    volatile uint8_t       int_status_out;   /**< \brief Êä³öÖĞ¶Ï×´Ì¬ */
+    volatile uint8_t       int_status_in;    /**< \brief è¾“å…¥ä¸­æ–­çŠ¶æ€ */
+    volatile uint8_t       int_status_out;   /**< \brief è¾“å‡ºä¸­æ–­çŠ¶æ€ */
 
-    uint32_t               w_offset;         /**< \brief Ä¿Ç°ĞèÒªĞ´Êı¾İµÄµØÖ·Æ«ÒÆÁ¿ */
-    uint32_t               w_length;         /**< \brief Ä¿Ç°»¹ĞèÒªĞ´Êı¾İµÄ×Ö½ÚÊı */
+    uint32_t               w_offset;         /**< \brief ç›®å‰éœ€è¦å†™æ•°æ®çš„åœ°å€åç§»é‡ */
+    uint32_t               w_length;         /**< \brief ç›®å‰è¿˜éœ€è¦å†™æ•°æ®çš„å­—èŠ‚æ•° */
 
-    uint32_t               r_offset;         /**< \brief Ä¿Ç°ĞèÒª¶ÁÊı¾İµÄµØÖ·Æ«ÒÆÁ¿ */
-    uint32_t               r_length;         /**< \brief Ä¿Ç°»¹ĞèÒª¶ÁÊı¾İµÄ×Ö½ÚÊı */
+    uint32_t               r_offset;         /**< \brief ç›®å‰éœ€è¦è¯»æ•°æ®çš„åœ°å€åç§»é‡ */
+    uint32_t               r_length;         /**< \brief ç›®å‰è¿˜éœ€è¦è¯»æ•°æ®çš„å­—èŠ‚æ•° */
 
-    am_usbd_msc_endpoint_t endpoint;         /**< \brief ¶ËµãĞÅÏ¢ */
+    am_usbd_msc_endpoint_t endpoint;         /**< \brief ç«¯ç‚¹ä¿¡æ¯ */
 
-    am_usbd_msc_cb_t       msc_cb;           /**< \brief ½ÓÊÕµ½Êı¾İµÄ»Øµ÷º¯Êı */
+    am_usbd_msc_cb_t       msc_cb;           /**< \brief æ¥æ”¶åˆ°æ•°æ®çš„å›è°ƒå‡½æ•° */
 
-    const am_usbd_msc_diskinfo_t *p_info;    /**< \brief FAT16ÎÄ¼şÏµÍ³Ïà¹ØĞÅÏ¢ */
+    const am_usbd_msc_diskinfo_t *p_info;    /**< \brief FAT16æ–‡ä»¶ç³»ç»Ÿç›¸å…³ä¿¡æ¯ */
 }am_usbd_msc_t;
 
 typedef am_usbd_msc_t *am_usbd_msc_handle;
 /**
- * \brief usbÅúÁ¿Êä³ö¶Ëµã2ÖĞ¶Ïº¯Êı´¦Àí
+ * \brief usbæ‰¹é‡è¾“å‡ºç«¯ç‚¹2ä¸­æ–­å‡½æ•°å¤„ç†
  *
- * \param[in] p_dev : Ö¸ÏòusbÉè±¸µÄÖ¸Õë
+ * \param[in] p_dev : æŒ‡å‘usbè®¾å¤‡çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_usb_msc_enpoint2_bulk_out (void *p_arg);
 
 /**
- * \brief usbÅúÁ¿ÊäÈë¶Ëµã1ÖĞ¶Ïº¯Êı´¦Àí
+ * \brief usbæ‰¹é‡è¾“å…¥ç«¯ç‚¹1ä¸­æ–­å‡½æ•°å¤„ç†
  *
- * \param[in] p_dev : Ö¸ÏòusbÉè±¸µÄÖ¸Õë
+ * \param[in] p_dev : æŒ‡å‘usbè®¾å¤‡çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_usb_msc_enpoint1_bulk_in (void *p_arg);
 

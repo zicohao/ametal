@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief HC595Çı¶¯ĞÍLED
+ * \brief HC595é©±åŠ¨å‹LED
  *
  * \internal
  * \par modification history:
@@ -38,26 +38,26 @@ extern "C" {
  */
 
 /**
- * \brief LEDĞÅÏ¢£¨HC595Çı¶¯£©
+ * \brief LEDä¿¡æ¯ï¼ˆHC595é©±åŠ¨ï¼‰
  */
 typedef struct am_led_hc595_info {
 
-    /** \brief LED»ù´¡·şÎñĞÅÏ¢ £¬°üº¬ÆğÊ¼±àºÅºÍ½áÊø±àºÅ     */
+    /** \brief LEDåŸºç¡€æœåŠ¡ä¿¡æ¯ ï¼ŒåŒ…å«èµ·å§‹ç¼–å·å’Œç»“æŸç¼–å·     */
     am_led_servinfo_t  serv_info;
 
-    /** \brief HC595µÄ¼¶Á¬¸öÊı  */
+    /** \brief HC595çš„çº§è¿ä¸ªæ•°  */
     int                hc595_num;
 
-    /** \brief Êı¾İ»º´æ£¬´óĞ¡ÓëHC595µÄ¼¶Á¬¸öÊıÏàÍ¬ */
+    /** \brief æ•°æ®ç¼“å­˜ï¼Œå¤§å°ä¸HC595çš„çº§è¿ä¸ªæ•°ç›¸åŒ */
     uint8_t           *p_buf;
 
-    /** \brief LEDÊÇ·ñÊÇµÍµçÆ½µãÁÁ  */
+    /** \brief LEDæ˜¯å¦æ˜¯ä½ç”µå¹³ç‚¹äº®  */
     am_bool_t          active_low;
 
 } am_led_hc595_info_t;
 
 /**
- * \brief LEDÉè±¸£¨GPIOÇı¶¯£©
+ * \brief LEDè®¾å¤‡ï¼ˆGPIOé©±åŠ¨ï¼‰
  */
 typedef struct am_led_hc595_dev {
     am_led_dev_t                isa;
@@ -66,26 +66,26 @@ typedef struct am_led_hc595_dev {
 } am_led_hc595_dev_t;
 
 /**
- * \brief LEDÉè±¸³õÊ¼»¯£¨HC595Çı¶¯£©
+ * \brief LEDè®¾å¤‡åˆå§‹åŒ–ï¼ˆHC595é©±åŠ¨ï¼‰
  *
- * \param[in] p_dev  : LEDÉè±¸
- * \param[in] p_info : LEDÉè±¸ĞÅÏ¢
- * \param[in] handle : HC595¾ä±ú
+ * \param[in] p_dev  : LEDè®¾å¤‡
+ * \param[in] p_info : LEDè®¾å¤‡ä¿¡æ¯
+ * \param[in] handle : HC595å¥æŸ„
  *
- * \retval AM_OK      : ³õÊ¼»¯³É¹¦
- * \retval -AM_EINVAL : ³õÊ¼»¯Ê§°Ü
+ * \retval AM_OK      : åˆå§‹åŒ–æˆåŠŸ
+ * \retval -AM_EINVAL : åˆå§‹åŒ–å¤±è´¥
  */
 int am_led_hc595_init (am_led_hc595_dev_t         *p_dev,
                        const am_led_hc595_info_t  *p_info,
                        am_hc595_handle_t           handle);
 
 /**
- * \brief LEDÉè±¸½â³õÊ¼»¯£¨HC595Çı¶¯£©
+ * \brief LEDè®¾å¤‡è§£åˆå§‹åŒ–ï¼ˆHC595é©±åŠ¨ï¼‰
  *
- * \param[in] p_dev  : LEDÉè±¸
+ * \param[in] p_dev  : LEDè®¾å¤‡
  *
- * \retval AM_OK      : ½â³õÊ¼»¯³É¹¦
- * \retval -AM_EINVAL : ½â³õÊ¼»¯Ê§°Ü
+ * \retval AM_OK      : è§£åˆå§‹åŒ–æˆåŠŸ
+ * \retval -AM_EINVAL : è§£åˆå§‹åŒ–å¤±è´¥
  */
 int am_led_hc595_deinit (am_led_hc595_dev_t *p_dev);
 

@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief KL26 GPIO ÓÃ»§ÅäÖÃÎÄ¼ş¡£
+ * \brief KL26 GPIO ç”¨æˆ·é…ç½®æ–‡ä»¶ã€‚
  * \sa am_kl26_hwconfig_gpio.c
  *
  * \internal
@@ -35,26 +35,26 @@
 #include "../../../../../soc/freescale/kl26/kl26_pin.h"
 
 /**
- * \brief Ê¹ÓÃµÄÖĞ¶ÏÍ¨µÀÊıÁ¿
+ * \brief ä½¿ç”¨çš„ä¸­æ–­é€šé“æ•°é‡
  *
- *        Ä¬ÈÏÊ¹ÓÃËùÓĞµÄÖĞ¶ÏÍ¨µÀ£¬ÓÃ»§¿ÉÒÔ¸ù¾İÊµ¼ÊÊ¹ÓÃÍ¨µÀÊı£¬
- *        ¸ü¸Ä´ËÖµ£¬¼õÉÙÄÚ´æµÄÕ¼ÓÃ
+ *        é»˜è®¤ä½¿ç”¨æ‰€æœ‰çš„ä¸­æ–­é€šé“ï¼Œç”¨æˆ·å¯ä»¥æ ¹æ®å®é™…ä½¿ç”¨é€šé“æ•°ï¼Œ
+ *        æ›´æ”¹æ­¤å€¼ï¼Œå‡å°‘å†…å­˜çš„å ç”¨
  *
- * \note Èç¹û´ËÖµÎª0£¬½«ÎŞ·¨Ê¹ÓÃGPIOÖĞ¶Ï¹¦ÄÜ£¬µ«ÊÇ¿ÉÒÔÊ¹ÓÃÆäËûGPIO¹¦ÄÜ
+ * \note å¦‚æœæ­¤å€¼ä¸º0ï¼Œå°†æ— æ³•ä½¿ç”¨GPIOä¸­æ–­åŠŸèƒ½ï¼Œä½†æ˜¯å¯ä»¥ä½¿ç”¨å…¶ä»–GPIOåŠŸèƒ½
  */
 #define __GPIO_PINT_USE_COUNT   PIN_INT_MAX
 
 
-/** \brief Òı½Å´¥·¢ĞÅÏ¢ÄÚ´æ */
+/** \brief å¼•è„šè§¦å‘ä¿¡æ¯å†…å­˜ */
 static struct am_kl26_gpio_trigger_info g_gpio_triginfos[__GPIO_PINT_USE_COUNT];
 
-/** \brief Òı½Å´¥·¢ĞÅÏ¢Ó³Éä */
+/** \brief å¼•è„šè§¦å‘ä¿¡æ¯æ˜ å°„ */
 static uint8_t g_gpio_infomap[__GPIO_PINT_USE_COUNT];
 
-/** \brief GPIOÆ½Ì¨³õÊ¼»¯ */
+/** \brief GPIOå¹³å°åˆå§‹åŒ– */
 static void __kl26_plfm_gpio_init (void)
 {
-    /* Ê¹ÄÜGPIOÏà¹ØÍâÉèÊ±ÖÓ */
+    /* ä½¿èƒ½GPIOç›¸å…³å¤–è®¾æ—¶é’Ÿ */
     amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_PORTA);
     amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_PORTB);
     amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_PORTC);
@@ -62,10 +62,10 @@ static void __kl26_plfm_gpio_init (void)
     amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_PORTE);
 }
 
-/** \brief GPIOÆ½Ì¨È¥³õÊ¼»¯ */
+/** \brief GPIOå¹³å°å»åˆå§‹åŒ– */
 static void __kl26_plfm_gpio_deinit (void)
 {
-    /* ½ûÄÜGPIOÏà¹ØÍâÉèÊ±ÖÓ */
+    /* ç¦èƒ½GPIOç›¸å…³å¤–è®¾æ—¶é’Ÿ */
     amhw_kl26_sim_periph_clock_disable(KL26_SIM_SCGC_PORTA);
     amhw_kl26_sim_periph_clock_disable(KL26_SIM_SCGC_PORTB);
     amhw_kl26_sim_periph_clock_disable(KL26_SIM_SCGC_PORTC);
@@ -73,32 +73,32 @@ static void __kl26_plfm_gpio_deinit (void)
     amhw_kl26_sim_periph_clock_disable(KL26_SIM_SCGC_PORTE);
 }
 
-/** \brief GPIOÉè±¸ĞÅÏ¢     */
+/** \brief GPIOè®¾å¤‡ä¿¡æ¯     */
 static const am_kl26_gpio_devinfo_t __g_gpio_devinfo = {
-    KL26_PORT,               /**< \brief Ö¸ÏòGPIO¶Ë¿Ú¼Ä´æÆ÷¿éµÄÖ¸Õë.*/
-    KL26_GPIO,               /**< \brief Ö¸ÏòGPIO¼Ä´æÆ÷¿éµÄÖ¸Õë.    */
+    KL26_PORT,               /**< \brief æŒ‡å‘GPIOç«¯å£å¯„å­˜å™¨å—çš„æŒ‡é’ˆ.*/
+    KL26_GPIO,               /**< \brief æŒ‡å‘GPIOå¯„å­˜å™¨å—çš„æŒ‡é’ˆ.    */
     {
-        INUM_PORTA,          /**< \brief ¶Ë¿ÚAÖĞ¶Ï.                */
-        INUM_PORTC_PORTD,    /**< \brief ¶Ë¿ÚCÓë¶Ë¿ÚDÖĞ¶Ï.          */
+        INUM_PORTA,          /**< \brief ç«¯å£Aä¸­æ–­.                */
+        INUM_PORTC_PORTD,    /**< \brief ç«¯å£Cä¸ç«¯å£Dä¸­æ–­.          */
     },
-    __GPIO_PINT_USE_COUNT,   /**< \brief GPIOÖ§³ÖµÄÒı½ÅÖĞ¶ÏºÅÊıÁ¿.  */
-    g_gpio_infomap,          /**< \brief Òı½Å´¥·¢ĞÅÏ¢Ó³Éä.          */
-    g_gpio_triginfos,        /**< \brief Òı½Å´¥·¢ĞÅÏ¢ÄÚ´æ.          */
+    __GPIO_PINT_USE_COUNT,   /**< \brief GPIOæ”¯æŒçš„å¼•è„šä¸­æ–­å·æ•°é‡.  */
+    g_gpio_infomap,          /**< \brief å¼•è„šè§¦å‘ä¿¡æ¯æ˜ å°„.          */
+    g_gpio_triginfos,        /**< \brief å¼•è„šè§¦å‘ä¿¡æ¯å†…å­˜.          */
 
-    __kl26_plfm_gpio_init,   /**< \brief GPIOÆ½Ì¨³õÊ¼»¯.            */
-    __kl26_plfm_gpio_deinit  /**< \brief GPIOÆ½Ì¨È¥³õÊ¼»¯.          */
+    __kl26_plfm_gpio_init,   /**< \brief GPIOå¹³å°åˆå§‹åŒ–.            */
+    __kl26_plfm_gpio_deinit  /**< \brief GPIOå¹³å°å»åˆå§‹åŒ–.          */
 };
 
-/** \brief GPIOÉè±¸ÊµÀı   */
+/** \brief GPIOè®¾å¤‡å®ä¾‹   */
 am_kl26_gpio_dev_t __g_gpio_dev;
 
-/** \brief GPIO ÊµÀı³õÊ¼»¯ */
+/** \brief GPIO å®ä¾‹åˆå§‹åŒ– */
 int am_kl26_gpio_inst_init (void)
 {
     return am_kl26_gpio_init(&__g_gpio_dev, &__g_gpio_devinfo);
 }
 
-/** \brief GPIO ÊµÀı½â³õÊ¼»¯ */
+/** \brief GPIO å®ä¾‹è§£åˆå§‹åŒ– */
 void am_kl26_gpio_inst_deinit (void)
 {
     am_kl26_gpio_deinit();

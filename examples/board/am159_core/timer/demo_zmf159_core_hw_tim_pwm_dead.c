@@ -12,13 +12,13 @@
 
 /**
  * \file
- * \brief ¶¨Ê±Æ÷´øËÀÇøÊ±¼äµÄ»¥²¹ PWM Êä³öÀı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief å®šæ—¶å™¨å¸¦æ­»åŒºæ—¶é—´çš„äº’è¡¥ PWM è¾“å‡ºä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. PIOA_8(TIM1_CH1) ºÍ PIOA_7(TIM1_CH1N) Êä³ö»¥²¹ PWM£¬ÆµÂÊÎª 100KHz£¬
- *      Õ¼¿Õ±ÈÎª 40%£¬ËÀÇøÊ±¼äÎª 100ns¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. PIOA_8(TIM1_CH1) å’Œ PIOA_7(TIM1_CH1N) è¾“å‡ºäº’è¡¥ PWMï¼Œé¢‘ç‡ä¸º 100KHzï¼Œ
+ *      å ç©ºæ¯”ä¸º 40%ï¼Œæ­»åŒºæ—¶é—´ä¸º 100nsã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am159_core_hw_tim_pwm_dead.c src_am159_core_hw_tim_pwm_dead
  *
  * \internal
@@ -44,20 +44,20 @@
 #include "demo_zlg_entries.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_zmf159_core_hw_tim_pwm_dead_entry (void)
 {
     AM_DBG_INFO("demo am159_core hw tim pwm dead!\r\n");
 
-    /* ÅäÖÃÒı½Å¹¦ÄÜ */
+    /* é…ç½®å¼•è„šåŠŸèƒ½ */
     am_gpio_pin_cfg(PIOA_7, PIOA_7_TIM1_CH1N | PIOA_7_AF_PP);
     am_gpio_pin_cfg(PIOA_8, PIOA_8_TIM1_CH1 | PIOA_8_AF_PP);
 
-    /* Ê¹ÄÜ¶¨Ê±Æ÷Ê±ÖÓ */
+    /* ä½¿èƒ½å®šæ—¶å™¨æ—¶é’Ÿ */
     am_clk_enable(CLK_TIM1);
 
-    /* ¸´Î»¶¨Ê±Æ÷ */
+    /* å¤ä½å®šæ—¶å™¨ */
     am_zmf159_clk_reset(CLK_TIM1);
 
     demo_zlg_hw_tim_pwm_dead_entry(ZMF159_TIM1,

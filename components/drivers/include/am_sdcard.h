@@ -11,7 +11,7 @@
 *******************************************************************************/
 /**
  * \file
- * \brief SDCard½Ó¿Ú
+ * \brief SDCardæ¥å£
  *
  * \internal
  * \par Modification history
@@ -31,7 +31,7 @@ extern "C" {
 #include "am_wait.h"
 
 /**
- * \name SD¿¨°æ±¾
+ * \name SDå¡ç‰ˆæœ¬
  * @{
  */
 #define AM_SDCARD_VERSION        0x00E0
@@ -41,84 +41,84 @@ extern "C" {
 /** @} */
 
 /**
- * \name SD¿¨ÈİÁ¿·ÖÀà
+ * \name SDå¡å®¹é‡åˆ†ç±»
  * @{
  */
 #define AM_SDCARD_CAPACITY_VER   0x0300
-#define AM_SDCARD_SDSC           0x0100        /** <\brief ±ê×¼ÈİÁ¿SD´¢´æ¿¨£¨<2GB£© */
-#define AM_SDCARD_SDHC           0x0200        /** <\brief ´óÈİÁ¿SD´¢´æ¿¨£¨2GB~32GB£© */
-#define AM_SDCARD_SDXC           0x0400        /** <\brief ³¬´óÈİÁ¿SD´¢´æ¿¨£¨32GB~2TB£©*/
+#define AM_SDCARD_SDSC           0x0100        /** <\brief æ ‡å‡†å®¹é‡SDå‚¨å­˜å¡ï¼ˆ<2GBï¼‰ */
+#define AM_SDCARD_SDHC           0x0200        /** <\brief å¤§å®¹é‡SDå‚¨å­˜å¡ï¼ˆ2GB~32GBï¼‰ */
+#define AM_SDCARD_SDXC           0x0400        /** <\brief è¶…å¤§å®¹é‡SDå‚¨å­˜å¡ï¼ˆ32GB~2TBï¼‰*/
 /** @} */
 
 #define AM_SD_OCR_ERRORBITS      0xFDFFE008
 
 /**
- * \name SD¿¨´«ÊäËÙÂÊ·ÖÀà
+ * \name SDå¡ä¼ è¾“é€Ÿç‡åˆ†ç±»
  * @{
  */
 #define AN_SDCARD_SPEED_CLASS    0x001F
-#define AN_SDCARD_CLASS_0        0x0001        /** <\brief ÕâÀà¿¨Æ¬²»Ö¸¶¨ĞÔÄÜ */
-#define AN_SDCARD_CLASS_2        0x0002        /** <\brief ²»µÍÓÚ2MB/S */
-#define AN_SDCARD_CLASS_4        0x0004        /** <\brief ²»µÍÓÚ4MB/S */
-#define AN_SDCARD_CLASS_6        0x0008        /** <\brief ²»µÍÓÚ6MB/S */
-#define AN_SDCARD_CLASS_10       0x0010        /** <\brief ²»µÍÓÚ10MB/S */
+#define AN_SDCARD_CLASS_0        0x0001        /** <\brief è¿™ç±»å¡ç‰‡ä¸æŒ‡å®šæ€§èƒ½ */
+#define AN_SDCARD_CLASS_2        0x0002        /** <\brief ä¸ä½äº2MB/S */
+#define AN_SDCARD_CLASS_4        0x0004        /** <\brief ä¸ä½äº4MB/S */
+#define AN_SDCARD_CLASS_6        0x0008        /** <\brief ä¸ä½äº6MB/S */
+#define AN_SDCARD_CLASS_10       0x0010        /** <\brief ä¸ä½äº10MB/S */
 /** @} */
 
 /**
- * \name OCR¼Ä´æÆ÷
+ * \name OCRå¯„å­˜å™¨
  * \anchor grp_awbl_sd_ocr_range
  * @{
  */
 
-/** \brief VDD µçÑ¹ 1.65 - 1.95 */
+/** \brief VDD ç”µå‹ 1.65 - 1.95 */
 #define AM_SD_OCR_VDD_165_195    0x00000080
 
-/** \brief VDD µçÑ¹ 2.0 ~ 2.1 */
+/** \brief VDD ç”µå‹ 2.0 ~ 2.1 */
 #define AM_SD_OCR_VDD_20_21      0x00000100
 
-/** \brief VDD µçÑ¹ 2.1 ~ 2.2 */
+/** \brief VDD ç”µå‹ 2.1 ~ 2.2 */
 #define AM_SD_OCR_VDD_21_22      0x00000200
 
-/** \brief VDD µçÑ¹ 2.2 ~ 2.3 */
+/** \brief VDD ç”µå‹ 2.2 ~ 2.3 */
 #define AM_SD_OCR_VDD_22_23      0x00000400
 
-/** \brief VDD µçÑ¹ 2.3 ~ 2.4 */
+/** \brief VDD ç”µå‹ 2.3 ~ 2.4 */
 #define AM_SD_OCR_VDD_23_24      0x00000800
 
-/** \brief VDD µçÑ¹ 2.4 ~ 2.5 */
+/** \brief VDD ç”µå‹ 2.4 ~ 2.5 */
 #define AM_SD_OCR_VDD_24_25      0x00001000
 
-/** \brief VDD µçÑ¹ 2.5 ~ 2.6 */
+/** \brief VDD ç”µå‹ 2.5 ~ 2.6 */
 #define AM_SD_OCR_VDD_25_26      0x00002000
 
-/** \brief VDD µçÑ¹ 2.6 ~ 2.7 */
+/** \brief VDD ç”µå‹ 2.6 ~ 2.7 */
 #define AM_SD_OCR_VDD_26_27      0x00004000
 
-/** \brief VDD µçÑ¹ 2.7 ~ 2.8 */
+/** \brief VDD ç”µå‹ 2.7 ~ 2.8 */
 #define AM_SD_OCR_VDD_27_28      0x00008000
 
-/** \brief VDD µçÑ¹ 2.8 ~ 2.9 */
+/** \brief VDD ç”µå‹ 2.8 ~ 2.9 */
 #define AM_SD_OCR_VDD_28_29      0x00010000
 
-/** \brief VDD µçÑ¹ 2.9 ~ 3.0 */
+/** \brief VDD ç”µå‹ 2.9 ~ 3.0 */
 #define AM_SD_OCR_VDD_29_30      0x00020000
 
-/** \brief VDD µçÑ¹ 3.0 ~ 3.1 */
+/** \brief VDD ç”µå‹ 3.0 ~ 3.1 */
 #define AM_SD_OCR_VDD_30_31      0x00040000
 
-/** \brief VDD µçÑ¹ 3.1 ~ 3.2 */
+/** \brief VDD ç”µå‹ 3.1 ~ 3.2 */
 #define AM_SD_OCR_VDD_31_32      0x00080000
 
-/** \brief VDD µçÑ¹ 3.2 ~ 3.3 */
+/** \brief VDD ç”µå‹ 3.2 ~ 3.3 */
 #define AM_SD_OCR_VDD_32_33      0x00100000
 
-/** \brief VDD µçÑ¹ 3.3 ~ 3.4 */
+/** \brief VDD ç”µå‹ 3.3 ~ 3.4 */
 #define AM_SD_OCR_VDD_33_34      0x00200000
 
-/** \brief VDD µçÑ¹ 3.4 ~ 3.5 */
+/** \brief VDD ç”µå‹ 3.4 ~ 3.5 */
 #define AM_SD_OCR_VDD_34_35      0x00400000
 
-/** \brief VDD µçÑ¹ 3.5 ~ 3.6 */
+/** \brief VDD ç”µå‹ 3.5 ~ 3.6 */
 #define AM_SD_OCR_VDD_35_36      0x00800000
 
 /** \brief 1.8V switching request */
@@ -194,56 +194,56 @@ typedef struct awbl_sdcard_csd {
  * \brief SD Card information
  */
 typedef struct am_sdcard_mem_info{
-    am_sdcard_csd_t csd;                    /**< \brief CSD¼Ä´æÆ÷ */
-    am_sdcard_cid_t cid;                    /**< \brief CID¼Ä´æÆ÷ */
-    am_sdcard_ssr_t ssr;                    /**< \brief SSR¼Ä´æÆ÷ */
-    am_sdcard_scr_t scr;                    /**< \brief SCR¼Ä´æÆ÷ */
+    am_sdcard_csd_t csd;                    /**< \brief CSDå¯„å­˜å™¨ */
+    am_sdcard_cid_t cid;                    /**< \brief CIDå¯„å­˜å™¨ */
+    am_sdcard_ssr_t ssr;                    /**< \brief SSRå¯„å­˜å™¨ */
+    am_sdcard_scr_t scr;                    /**< \brief SCRå¯„å­˜å™¨ */
 
-    uint32_t        ocr;                    /**< \brief OCR¼Ä´æÆ÷ */
-    uint32_t        rca;                    /**< \brief RCA¼Ä´æÆ÷ */
-    uint16_t        attribute;              /**< \brief SD CardÊôĞÔÃèÊö*/
+    uint32_t        ocr;                    /**< \brief OCRå¯„å­˜å™¨ */
+    uint32_t        rca;                    /**< \brief RCAå¯„å­˜å™¨ */
+    uint16_t        attribute;              /**< \brief SD Cardå±æ€§æè¿°*/
 } am_sdcard_mem_info_t;
 
 /**
- * \brief SDCARD Éè±¸ĞÅÏ¢½á¹¹Ìå
+ * \brief SDCARD è®¾å¤‡ä¿¡æ¯ç»“æ„ä½“
  */
 typedef struct am_sdcard_devinfo{
-    uint16_t         mode;                  /**< \brief Éè±¸µÄSDIOÄ£Ê½±êÖ¾£¬Çë²Î¿¼¡°SDIOÄ£Ê½±êÖ¾¡±*/
-    uint32_t         speed;                 /**< \brief SDIOËÙÂÊ*/
-    am_bool_t        sdio_crc_en;           /**< \brief SDIO CRCÊ¹ÄÜ±êÖ¾*/
-    uint32_t         ocr_valid;             /**< \brief SD CardÖ§³ÖµÄORC£¨µçÑ¹·¶Î§£© */
+    uint16_t         mode;                  /**< \brief è®¾å¤‡çš„SDIOæ¨¡å¼æ ‡å¿—ï¼Œè¯·å‚è€ƒâ€œSDIOæ¨¡å¼æ ‡å¿—â€*/
+    uint32_t         speed;                 /**< \brief SDIOé€Ÿç‡*/
+    am_bool_t        sdio_crc_en;           /**< \brief SDIO CRCä½¿èƒ½æ ‡å¿—*/
+    uint32_t         ocr_valid;             /**< \brief SD Cardæ”¯æŒçš„ORCï¼ˆç”µå‹èŒƒå›´ï¼‰ */
 }am_sdcard_devinfo_t;
 
 /**
- * \brief SDCARD Éè±¸½á¹¹Ìå
+ * \brief SDCARD è®¾å¤‡ç»“æ„ä½“
  */
 typedef struct am_sdcard_dev{
-    am_sdio_device_t           sdio_dev;    /**< \brief SDIOÉè±¸*/
-    const am_sdcard_devinfo_t *p_devinfo;   /**< \brief Ö¸ÏòSD CardÉè±¸ĞÅÏ¢ÊµÀıµÄÖ¸Õë*/
-    uint32_t                   blk_size;    /**< \brief SD Card ¿é´óĞ¡*/
-    am_sdcard_mem_info_t       sdcard_info; /**< \brief SD Card µÄÊôĞÔĞÅÏ¢*/
-    am_wait_t                  wait;        /**< \brief wait µÈ´ı*/
+    am_sdio_device_t           sdio_dev;    /**< \brief SDIOè®¾å¤‡*/
+    const am_sdcard_devinfo_t *p_devinfo;   /**< \brief æŒ‡å‘SD Cardè®¾å¤‡ä¿¡æ¯å®ä¾‹çš„æŒ‡é’ˆ*/
+    uint32_t                   blk_size;    /**< \brief SD Card å—å¤§å°*/
+    am_sdcard_mem_info_t       sdcard_info; /**< \brief SD Card çš„å±æ€§ä¿¡æ¯*/
+    am_wait_t                  wait;        /**< \brief wait ç­‰å¾…*/
 }am_sdcard_dev_t;
 
-/** \brief SDIO ±ê×¼·şÎñ²Ù×÷¾ä±ú¶¨Òå */
+/** \brief SDIO æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„å®šä¹‰ */
 typedef am_sdcard_dev_t *am_sdcard_handle_t;
 
 /**
- * \brief Í¬²½´Ó´æ´¢¿¨ÖĞ¶ÁÈ¡Êı¾İ¿é
+ * \brief åŒæ­¥ä»å­˜å‚¨å¡ä¸­è¯»å–æ•°æ®å—
  *
- * \param[in]  handle       : SDIOÉè±¸
- * \param[in]  p_buf        : Êı¾İ»º³åÇø
- * \param[in]  blk_start    : ÆğÊ¼¿éºÅ
- * \param[in]  blk_num      : ¿é¸öÊı
+ * \param[in]  handle       : SDIOè®¾å¤‡
+ * \param[in]  p_buf        : æ•°æ®ç¼“å†²åŒº
+ * \param[in]  blk_start    : èµ·å§‹å—å·
+ * \param[in]  blk_num      : å—ä¸ªæ•°
  *
- * \retval AM_OK            : ´«Êä³É¹¦
- * \retval -AM_ENOMEM       : ÄÚ´æ¿Õ¼ä²»×ã
- * \retval -AM_ECANCELED    : ²Ù×÷±»È¡Ïû
- * \retval -AM_EIO          : SDIO×ÜÏßI/O´íÎó
- * \retval -AM_EBUSY        : SDIO HOSTÃ¦£¬ÕıÔÚ´¦ÀíÆäËûmsg
- * \retval -AM_EINVAL       : ²ÎÊı´íÎó
- * \retval -AM_ETIME        : HOST´¦Àí³¬Ê±
- * \retval -AM_ENOTSUP      : HOST²»Ö§³Ö¸Ã¹¦ÄÜ
+ * \retval AM_OK            : ä¼ è¾“æˆåŠŸ
+ * \retval -AM_ENOMEM       : å†…å­˜ç©ºé—´ä¸è¶³
+ * \retval -AM_ECANCELED    : æ“ä½œè¢«å–æ¶ˆ
+ * \retval -AM_EIO          : SDIOæ€»çº¿I/Oé”™è¯¯
+ * \retval -AM_EBUSY        : SDIO HOSTå¿™ï¼Œæ­£åœ¨å¤„ç†å…¶ä»–msg
+ * \retval -AM_EINVAL       : å‚æ•°é”™è¯¯
+ * \retval -AM_ETIME        : HOSTå¤„ç†è¶…æ—¶
+ * \retval -AM_ENOTSUP      : HOSTä¸æ”¯æŒè¯¥åŠŸèƒ½
  */
 int am_sdcard_blocks_read (am_sdcard_handle_t handle,
                            uint8_t           *p_buf,
@@ -251,21 +251,21 @@ int am_sdcard_blocks_read (am_sdcard_handle_t handle,
                            uint32_t           blk_num);
 
 /**
- * \brief Í¬²½´Ó´æ´¢¿¨ÖĞĞ´ÈëÊı¾İ¿é
+ * \brief åŒæ­¥ä»å­˜å‚¨å¡ä¸­å†™å…¥æ•°æ®å—
  *
- * \param[in]  handle       : SD Card ¾ä±ú
- * \param[in]  p_buf        : Êı¾İ»º³åÇø
- * \param[in]  blk_start    : ÆğÊ¼¿éºÅ
- * \param[in]  blk          : ĞèÒªĞ´ÈëµÄ¿éÊıÁ¿
+ * \param[in]  handle       : SD Card å¥æŸ„
+ * \param[in]  p_buf        : æ•°æ®ç¼“å†²åŒº
+ * \param[in]  blk_start    : èµ·å§‹å—å·
+ * \param[in]  blk          : éœ€è¦å†™å…¥çš„å—æ•°é‡
  *
- * \retval AM_OK            : ´«Êä³É¹¦
- * \retval -AM_ENOMEM       : ÄÚ´æ¿Õ¼ä²»×ã
- * \retval -AM_ECANCELED    : ²Ù×÷±»È¡Ïû
- * \retval -AM_EIO          : SDIO×ÜÏßI/O´íÎó
- * \retval -AM_EBUSY        : SDIO HOSTÃ¦£¬ÕıÔÚ´¦ÀíÆäËûmsg
- * \retval -AM_EINVAL       : ²ÎÊı´íÎó
- * \retval -AM_ETIME        : HOST´¦Àí³¬Ê±
- * \retval -AM_ENOTSUP      : HOST²»Ö§³Ö¸Ã¹¦ÄÜ
+ * \retval AM_OK            : ä¼ è¾“æˆåŠŸ
+ * \retval -AM_ENOMEM       : å†…å­˜ç©ºé—´ä¸è¶³
+ * \retval -AM_ECANCELED    : æ“ä½œè¢«å–æ¶ˆ
+ * \retval -AM_EIO          : SDIOæ€»çº¿I/Oé”™è¯¯
+ * \retval -AM_EBUSY        : SDIO HOSTå¿™ï¼Œæ­£åœ¨å¤„ç†å…¶ä»–msg
+ * \retval -AM_EINVAL       : å‚æ•°é”™è¯¯
+ * \retval -AM_ETIME        : HOSTå¤„ç†è¶…æ—¶
+ * \retval -AM_ENOTSUP      : HOSTä¸æ”¯æŒè¯¥åŠŸèƒ½
  */
 int am_sdcard_blocks_write (am_sdcard_handle_t  handle,
                             uint8_t            *p_buf,
@@ -273,68 +273,68 @@ int am_sdcard_blocks_write (am_sdcard_handle_t  handle,
                             uint32_t            blk_num);
 
 /**
- * \brief ²Á³ı¿é(CMD38)
+ * \brief æ“¦é™¤å—(CMD38)
  *
- * \param[in]  handle       : SD Card ¾ä±ú
- * \param[in]  blk_start    : ĞèÒª²Á³ıµÄÆğÊ¼¿éºÅ
- * \param[in]  blk_num      : ĞèÒª²Á³ıµÄ¿éÊıÁ¿
+ * \param[in]  handle       : SD Card å¥æŸ„
+ * \param[in]  blk_start    : éœ€è¦æ“¦é™¤çš„èµ·å§‹å—å·
+ * \param[in]  blk_num      : éœ€è¦æ“¦é™¤çš„å—æ•°é‡
  *
- * \retval AM_OK            : ´«Êä³É¹¦
- * \retval -AM_ENOMEM       : ÄÚ´æ¿Õ¼ä²»×ã
- * \retval -AM_ECANCELED    : ²Ù×÷±»È¡Ïû
- * \retval -AM_EIO          : SDIO×ÜÏßI/O´íÎó
- * \retval -AM_EBUSY        : SDIO HOSTÃ¦£¬ÕıÔÚ´¦ÀíÆäËûmsg
- * \retval -AM_EINVAL       : ²ÎÊı´íÎó
- * \retval -AM_ETIME        : HOST´¦Àí³¬Ê±
- * \retval -AM_ENOTSUP      : HOST²»Ö§³Ö¸Ã¹¦ÄÜ
+ * \retval AM_OK            : ä¼ è¾“æˆåŠŸ
+ * \retval -AM_ENOMEM       : å†…å­˜ç©ºé—´ä¸è¶³
+ * \retval -AM_ECANCELED    : æ“ä½œè¢«å–æ¶ˆ
+ * \retval -AM_EIO          : SDIOæ€»çº¿I/Oé”™è¯¯
+ * \retval -AM_EBUSY        : SDIO HOSTå¿™ï¼Œæ­£åœ¨å¤„ç†å…¶ä»–msg
+ * \retval -AM_EINVAL       : å‚æ•°é”™è¯¯
+ * \retval -AM_ETIME        : HOSTå¤„ç†è¶…æ—¶
+ * \retval -AM_ENOTSUP      : HOSTä¸æ”¯æŒè¯¥åŠŸèƒ½
  */
 int am_sdcard_blocks_erase (am_sdcard_handle_t handle,
                             uint32_t           blk_start,
                             uint32_t           blk_num);
 
 /**
- * \brief SD Card ¸´Î»
+ * \brief SD Card å¤ä½
  *
- * \param[in]  handle       : SD Card ¾ä±ú
+ * \param[in]  handle       : SD Card å¥æŸ„
  *
- * \retval AM_OK            : ¸´Î»³É¹¦
+ * \retval AM_OK            : å¤ä½æˆåŠŸ
  */
 int am_sdcard_rest (am_sdcard_handle_t handle);
 
 /**
- * \brief Ó¦ÓÃ³ÌĞò³õÊ¼»¯(CMD8)
+ * \brief åº”ç”¨ç¨‹åºåˆå§‹åŒ–(CMD8)
  *
- * \param[in]   handle      : SDIOÉè±¸
- * \param[in]   ocr         : SDIO HOSTÖ§³ÖµÄOCR·¶Î§
+ * \param[in]   handle      : SDIOè®¾å¤‡
+ * \param[in]   ocr         : SDIO HOSTæ”¯æŒçš„OCRèŒƒå›´
  *
- * \retval AM_OK            : ´«Êä³É¹¦
- * \retval -AM_ENOMEM       : ÄÚ´æ¿Õ¼ä²»×ã
- * \retval -AM_ECANCELED    : ²Ù×÷±»È¡Ïû
- * \retval -AM_EIO          : SDIO×ÜÏßI/O´íÎó
- * \retval -AM_EBUSY        : SDIO HOSTÃ¦£¬ÕıÔÚ´¦ÀíÆäËûmsg
- * \retval -AM_EINVAL       : ²ÎÊı´íÎó
- * \retval -AM_ETIME        : HOST´¦Àí³¬Ê±
- * \retval -AM_ENOTSUP      : HOST²»Ö§³Ö¸Ã¹¦ÄÜ
+ * \retval AM_OK            : ä¼ è¾“æˆåŠŸ
+ * \retval -AM_ENOMEM       : å†…å­˜ç©ºé—´ä¸è¶³
+ * \retval -AM_ECANCELED    : æ“ä½œè¢«å–æ¶ˆ
+ * \retval -AM_EIO          : SDIOæ€»çº¿I/Oé”™è¯¯
+ * \retval -AM_EBUSY        : SDIO HOSTå¿™ï¼Œæ­£åœ¨å¤„ç†å…¶ä»–msg
+ * \retval -AM_EINVAL       : å‚æ•°é”™è¯¯
+ * \retval -AM_ETIME        : HOSTå¤„ç†è¶…æ—¶
+ * \retval -AM_ENOTSUP      : HOSTä¸æ”¯æŒè¯¥åŠŸèƒ½
  */
 int am_sdcard_send_if_cond (am_sdcard_handle_t handle,
                             uint32_t           ocr);
 
 /**
- * \brief Ó¦ÓÃ³ÌĞò³õÊ¼»¯(CMD55 + ACMD41)
+ * \brief åº”ç”¨ç¨‹åºåˆå§‹åŒ–(CMD55 + ACMD41)
  *
- * \param[in]   handle      : SDIOÉè±¸
- * \param[in]   rca         : Ïà¶ÔµØÖ·
- * \param[in]   ocr         : SDIO HOSTÖ§³ÖµÄOCR·¶Î§
- * \param[in]   p_rocr      : »ñÈ¡µ½SDIOÉè±¸Ö§³ÖµÄOCR·¶Î§
+ * \param[in]   handle      : SDIOè®¾å¤‡
+ * \param[in]   rca         : ç›¸å¯¹åœ°å€
+ * \param[in]   ocr         : SDIO HOSTæ”¯æŒçš„OCRèŒƒå›´
+ * \param[in]   p_rocr      : è·å–åˆ°SDIOè®¾å¤‡æ”¯æŒçš„OCRèŒƒå›´
  *
- * \retval AM_OK            : ´«Êä³É¹¦
- * \retval -AM_ENOMEM       : ÄÚ´æ¿Õ¼ä²»×ã
- * \retval -AM_ECANCELED    : ²Ù×÷±»È¡Ïû
- * \retval -AM_EIO          : SDIO×ÜÏßI/O´íÎó
- * \retval -AM_EBUSY        : SDIO HOSTÃ¦£¬ÕıÔÚ´¦ÀíÆäËûmsg
- * \retval -AM_EINVAL       : ²ÎÊı´íÎó
- * \retval -AM_ETIME        : HOST´¦Àí³¬Ê±
- * \retval -AM_ENOTSUP      : HOST²»Ö§³Ö¸Ã¹¦ÄÜ
+ * \retval AM_OK            : ä¼ è¾“æˆåŠŸ
+ * \retval -AM_ENOMEM       : å†…å­˜ç©ºé—´ä¸è¶³
+ * \retval -AM_ECANCELED    : æ“ä½œè¢«å–æ¶ˆ
+ * \retval -AM_EIO          : SDIOæ€»çº¿I/Oé”™è¯¯
+ * \retval -AM_EBUSY        : SDIO HOSTå¿™ï¼Œæ­£åœ¨å¤„ç†å…¶ä»–msg
+ * \retval -AM_EINVAL       : å‚æ•°é”™è¯¯
+ * \retval -AM_ETIME        : HOSTå¤„ç†è¶…æ—¶
+ * \retval -AM_ENOTSUP      : HOSTä¸æ”¯æŒè¯¥åŠŸèƒ½
  */
 int am_sdcard_send_app_op_cond (am_sdcard_handle_t handle,
                                 uint32_t           rca,
@@ -342,194 +342,194 @@ int am_sdcard_send_app_op_cond (am_sdcard_handle_t handle,
                                 uint32_t          *p_rocr);
 
 /**
- * \brief »ñÈ¡´æ´¢¿¨ËùÓĞµÄCID(CMD2)
+ * \brief è·å–å­˜å‚¨å¡æ‰€æœ‰çš„CID(CMD2)
  *
- * \param[in]   handle      : SDIOÉè±¸
- * \param[in]   p_cid       : ¼Ä´æÆ÷cidËùÓĞÊı¾İ
+ * \param[in]   handle      : SDIOè®¾å¤‡
+ * \param[in]   p_cid       : å¯„å­˜å™¨cidæ‰€æœ‰æ•°æ®
  *
- * \retval AM_OK            : ´«Êä³É¹¦
- * \retval -AM_ENOMEM       : ÄÚ´æ¿Õ¼ä²»×ã
- * \retval -AM_ECANCELED    : ²Ù×÷±»È¡Ïû
- * \retval -AM_EIO          : SDIO×ÜÏßI/O´íÎó
- * \retval -AM_EBUSY        : SDIO HOSTÃ¦£¬ÕıÔÚ´¦ÀíÆäËûmsg
- * \retval -AM_EINVAL       : ²ÎÊı´íÎó
- * \retval -AM_ETIME        : HOST´¦Àí³¬Ê±
- * \retval -AM_ENOTSUP      : HOST²»Ö§³Ö¸Ã¹¦ÄÜ
+ * \retval AM_OK            : ä¼ è¾“æˆåŠŸ
+ * \retval -AM_ENOMEM       : å†…å­˜ç©ºé—´ä¸è¶³
+ * \retval -AM_ECANCELED    : æ“ä½œè¢«å–æ¶ˆ
+ * \retval -AM_EIO          : SDIOæ€»çº¿I/Oé”™è¯¯
+ * \retval -AM_EBUSY        : SDIO HOSTå¿™ï¼Œæ­£åœ¨å¤„ç†å…¶ä»–msg
+ * \retval -AM_EINVAL       : å‚æ•°é”™è¯¯
+ * \retval -AM_ETIME        : HOSTå¤„ç†è¶…æ—¶
+ * \retval -AM_ENOTSUP      : HOSTä¸æ”¯æŒè¯¥åŠŸèƒ½
  */
 int am_sdcard_all_cid_get (am_sdcard_handle_t handle,
                            uint32_t          *p_cid);
 
 /**
- * \brief »ñÈ¡´æ´¢¿¨Ïà¶ÔµØÖ·(CMD3)
+ * \brief è·å–å­˜å‚¨å¡ç›¸å¯¹åœ°å€(CMD3)
  *
- * \param[in]   handle      : SDIOÉè±¸
- * \param[out]  p_rca       : ´æ´¢¿¨·µ»ØµÄrcaÖµ
+ * \param[in]   handle      : SDIOè®¾å¤‡
+ * \param[out]  p_rca       : å­˜å‚¨å¡è¿”å›çš„rcaå€¼
  *
- * \retval AM_OK            : ´«Êä³É¹¦
- * \retval -AM_ENOMEM       : ÄÚ´æ¿Õ¼ä²»×ã
- * \retval -AM_ECANCELED    : ²Ù×÷±»È¡Ïû
- * \retval -AM_EIO          : SDIO×ÜÏßI/O´íÎó
- * \retval -AM_EBUSY        : SDIO HOSTÃ¦£¬ÕıÔÚ´¦ÀíÆäËûmsg
- * \retval -AM_EINVAL       : ²ÎÊı´íÎó
- * \retval -AM_ETIME        : HOST´¦Àí³¬Ê±
- * \retval -AM_ENOTSUP      : HOST²»Ö§³Ö¸Ã¹¦ÄÜ
+ * \retval AM_OK            : ä¼ è¾“æˆåŠŸ
+ * \retval -AM_ENOMEM       : å†…å­˜ç©ºé—´ä¸è¶³
+ * \retval -AM_ECANCELED    : æ“ä½œè¢«å–æ¶ˆ
+ * \retval -AM_EIO          : SDIOæ€»çº¿I/Oé”™è¯¯
+ * \retval -AM_EBUSY        : SDIO HOSTå¿™ï¼Œæ­£åœ¨å¤„ç†å…¶ä»–msg
+ * \retval -AM_EINVAL       : å‚æ•°é”™è¯¯
+ * \retval -AM_ETIME        : HOSTå¤„ç†è¶…æ—¶
+ * \retval -AM_ENOTSUP      : HOSTä¸æ”¯æŒè¯¥åŠŸèƒ½
  */
 int am_sdio_relative_addr_get (am_sdcard_handle_t handle,
                                uint32_t          *p_rca);
 
 /**
- * \brief Ñ¡¶¨Ö¸¶¨Ïà¶ÔµØÖ·µÄ¿¨(CMD7)
+ * \brief é€‰å®šæŒ‡å®šç›¸å¯¹åœ°å€çš„å¡(CMD7)
  *
- * \param[in]   p_card      : SDIOÉè±¸
- * \param[in]   rca         : ´æ´¢¿¨Ïà¶ÔµØÖ·
- * \param[out]  select      : Ñ¡Ôñ¿¨£¨1£© / È¡Ïû¿¨£¨ 0£©
+ * \param[in]   p_card      : SDIOè®¾å¤‡
+ * \param[in]   rca         : å­˜å‚¨å¡ç›¸å¯¹åœ°å€
+ * \param[out]  select      : é€‰æ‹©å¡ï¼ˆ1ï¼‰ / å–æ¶ˆå¡ï¼ˆ 0ï¼‰
  *
- * \retval AW_OK            : ´«Êä³É¹¦
- * \retval -AW_ENOMEM       : ÄÚ´æ¿Õ¼ä²»×ã
- * \retval -AW_ECANCELED    : ²Ù×÷±»È¡Ïû
- * \retval -AW_EIO          : SDIO×ÜÏßI/O´íÎó
- * \retval -AW_EBUSY        : SDIO HOSTÃ¦£¬ÕıÔÚ´¦ÀíÆäËûmsg
- * \retval -AW_EINVAL       : ²ÎÊı´íÎó
- * \retval -AW_ETIME        : HOST´¦Àí³¬Ê±
- * \retval -AW_ENOTSUP      : HOST²»Ö§³Ö¸Ã¹¦ÄÜ
+ * \retval AW_OK            : ä¼ è¾“æˆåŠŸ
+ * \retval -AW_ENOMEM       : å†…å­˜ç©ºé—´ä¸è¶³
+ * \retval -AW_ECANCELED    : æ“ä½œè¢«å–æ¶ˆ
+ * \retval -AW_EIO          : SDIOæ€»çº¿I/Oé”™è¯¯
+ * \retval -AW_EBUSY        : SDIO HOSTå¿™ï¼Œæ­£åœ¨å¤„ç†å…¶ä»–msg
+ * \retval -AW_EINVAL       : å‚æ•°é”™è¯¯
+ * \retval -AW_ETIME        : HOSTå¤„ç†è¶…æ—¶
+ * \retval -AW_ENOTSUP      : HOSTä¸æ”¯æŒè¯¥åŠŸèƒ½
  */
 int am_sdcard_card_select (am_sdcard_handle_t handle,
                            uint32_t           rca,
                            uint8_t            select);
 
 /**
- * \brief »ñÈ¡´æ´¢¿¨¼Ä´æÆ÷CSDÖµ(CMD9)
+ * \brief è·å–å­˜å‚¨å¡å¯„å­˜å™¨CSDå€¼(CMD9)
  *
- * \param[in]   handle      : SDIOÉè±¸
- * \param[in]   rca         : ´æ´¢¿¨Ïà¶ÔµØÖ·
- * \param[out]  p_csd       : ¼Ä´æÆ÷csdÖµ
+ * \param[in]   handle      : SDIOè®¾å¤‡
+ * \param[in]   rca         : å­˜å‚¨å¡ç›¸å¯¹åœ°å€
+ * \param[out]  p_csd       : å¯„å­˜å™¨csdå€¼
  *
- * \retval AM_OK            : ´«Êä³É¹¦
- * \retval -AM_ENOMEM       : ÄÚ´æ¿Õ¼ä²»×ã
- * \retval -AM_ECANCELED    : ²Ù×÷±»È¡Ïû
- * \retval -AM_EIO          : SDIO×ÜÏßI/O´íÎó
- * \retval -AM_EBUSY        : SDIO HOSTÃ¦£¬ÕıÔÚ´¦ÀíÆäËûmsg
- * \retval -AM_EINVAL       : ²ÎÊı´íÎó
- * \retval -AM_ETIME        : HOST´¦Àí³¬Ê±
- * \retval -AM_ENOTSUP      : HOST²»Ö§³Ö¸Ã¹¦ÄÜ
+ * \retval AM_OK            : ä¼ è¾“æˆåŠŸ
+ * \retval -AM_ENOMEM       : å†…å­˜ç©ºé—´ä¸è¶³
+ * \retval -AM_ECANCELED    : æ“ä½œè¢«å–æ¶ˆ
+ * \retval -AM_EIO          : SDIOæ€»çº¿I/Oé”™è¯¯
+ * \retval -AM_EBUSY        : SDIO HOSTå¿™ï¼Œæ­£åœ¨å¤„ç†å…¶ä»–msg
+ * \retval -AM_EINVAL       : å‚æ•°é”™è¯¯
+ * \retval -AM_ETIME        : HOSTå¤„ç†è¶…æ—¶
+ * \retval -AM_ENOTSUP      : HOSTä¸æ”¯æŒè¯¥åŠŸèƒ½
  */
 int am_sdcard_csd_get (am_sdcard_handle_t handle,
                        uint32_t           rca,
                        uint32_t          *p_csd);
 
 /**
- * \brief »ñÈ¡´æ´¢¿¨¼Ä´æÆ÷SCRÖµ(CMD55 + ACMD51)
+ * \brief è·å–å­˜å‚¨å¡å¯„å­˜å™¨SCRå€¼(CMD55 + ACMD51)
  *
- * \param[in]   p_card      : SDIOÉè±¸
- * \param[in]   rca         : ´æ´¢¿¨Ïà¶ÔµØÖ·
- * \param[out]  p_scr       : ¼Ä´æÆ÷scrÖµ
+ * \param[in]   p_card      : SDIOè®¾å¤‡
+ * \param[in]   rca         : å­˜å‚¨å¡ç›¸å¯¹åœ°å€
+ * \param[out]  p_scr       : å¯„å­˜å™¨scrå€¼
  *
- * \retval AM_OK            : ´«Êä³É¹¦
- * \retval -AM_ENOMEM       : ÄÚ´æ¿Õ¼ä²»×ã
- * \retval -AM_ECANCELED    : ²Ù×÷±»È¡Ïû
- * \retval -AM_EIO          : SDIO×ÜÏßI/O´íÎó
- * \retval -AM_EBUSY        : SDIO HOSTÃ¦£¬ÕıÔÚ´¦ÀíÆäËûmsg
- * \retval -AM_EINVAL       : ²ÎÊı´íÎó
- * \retval -AM_ETIME        : HOST´¦Àí³¬Ê±
- * \retval -AM_ENOTSUP      : HOST²»Ö§³Ö¸Ã¹¦ÄÜ
+ * \retval AM_OK            : ä¼ è¾“æˆåŠŸ
+ * \retval -AM_ENOMEM       : å†…å­˜ç©ºé—´ä¸è¶³
+ * \retval -AM_ECANCELED    : æ“ä½œè¢«å–æ¶ˆ
+ * \retval -AM_EIO          : SDIOæ€»çº¿I/Oé”™è¯¯
+ * \retval -AM_EBUSY        : SDIO HOSTå¿™ï¼Œæ­£åœ¨å¤„ç†å…¶ä»–msg
+ * \retval -AM_EINVAL       : å‚æ•°é”™è¯¯
+ * \retval -AM_ETIME        : HOSTå¤„ç†è¶…æ—¶
+ * \retval -AM_ENOTSUP      : HOSTä¸æ”¯æŒè¯¥åŠŸèƒ½
  */
 int am_sdcard_scr_get (am_sdcard_handle_t handle,
                        uint32_t           rca,
                        uint32_t          *p_scr);
 
 /**
- * \brief ÉèÖÃ´æ´¢¿¨×ÜÏß¿í¶È(CMD55 + ACMD6)
+ * \brief è®¾ç½®å­˜å‚¨å¡æ€»çº¿å®½åº¦(CMD55 + ACMD6)
  *
- * \param[in]  handle       : SDIOÉè±¸
- * \param[in]  rca          : ´æ´¢¿¨Ïà¶ÔµØÖ·
- * \param[out] width        : ×ÜÏß¿í¶È
+ * \param[in]  handle       : SDIOè®¾å¤‡
+ * \param[in]  rca          : å­˜å‚¨å¡ç›¸å¯¹åœ°å€
+ * \param[out] width        : æ€»çº¿å®½åº¦
  *
- * \retval AW_OK            : ´«Êä³É¹¦
- * \retval -AW_ENOMEM       : ÄÚ´æ¿Õ¼ä²»×ã
- * \retval -AW_ECANCELED    : ²Ù×÷±»È¡Ïû
- * \retval -AW_EIO          : SDIO×ÜÏßI/O´íÎó
- * \retval -AW_EBUSY        : SDIO HOSTÃ¦£¬ÕıÔÚ´¦ÀíÆäËûmsg
- * \retval -AW_EINVAL       : ²ÎÊı´íÎó
- * \retval -AW_ETIME        : HOST´¦Àí³¬Ê±
- * \retval -AW_ENOTSUP      : HOST²»Ö§³Ö¸Ã¹¦ÄÜ
+ * \retval AW_OK            : ä¼ è¾“æˆåŠŸ
+ * \retval -AW_ENOMEM       : å†…å­˜ç©ºé—´ä¸è¶³
+ * \retval -AW_ECANCELED    : æ“ä½œè¢«å–æ¶ˆ
+ * \retval -AW_EIO          : SDIOæ€»çº¿I/Oé”™è¯¯
+ * \retval -AW_EBUSY        : SDIO HOSTå¿™ï¼Œæ­£åœ¨å¤„ç†å…¶ä»–msg
+ * \retval -AW_EINVAL       : å‚æ•°é”™è¯¯
+ * \retval -AW_ETIME        : HOSTå¤„ç†è¶…æ—¶
+ * \retval -AW_ENOTSUP      : HOSTä¸æ”¯æŒè¯¥åŠŸèƒ½
  */
 int am_sdcard_bus_width_set (am_sdcard_handle_t  handle,
                              uint32_t            rca,
                              uint8_t             width);
 
 /**
- * \brief SD Card ÉèÖÃ¿é´óĞ¡
+ * \brief SD Card è®¾ç½®å—å¤§å°
  *
- * \param[in]  handle       : SD Card ¾ä±ú
- * \param[in]  blk_size     : ĞèÒªÉèÖÃµÄ¿é´óĞ¡£¨µ¥Î»£º×Ö½Ú£©
+ * \param[in]  handle       : SD Card å¥æŸ„
+ * \param[in]  blk_size     : éœ€è¦è®¾ç½®çš„å—å¤§å°ï¼ˆå•ä½ï¼šå­—èŠ‚ï¼‰
  *
- * \retval AM_OK            : ´«Êä³É¹¦
- * \retval -AM_ENOMEM       : ÄÚ´æ¿Õ¼ä²»×ã
- * \retval -AM_ECANCELED    : ²Ù×÷±»È¡Ïû
- * \retval -AM_EIO          : SDIO×ÜÏßI/O´íÎó
- * \retval -AM_EBUSY        : SDIO HOSTÃ¦£¬ÕıÔÚ´¦ÀíÆäËûmsg
- * \retval -AM_EINVAL       : ²ÎÊı´íÎó
- * \retval -AM_ETIME        : HOST´¦Àí³¬Ê±
- * \retval -AM_ENOTSUP      : HOST²»Ö§³Ö¸Ã¹¦ÄÜ
+ * \retval AM_OK            : ä¼ è¾“æˆåŠŸ
+ * \retval -AM_ENOMEM       : å†…å­˜ç©ºé—´ä¸è¶³
+ * \retval -AM_ECANCELED    : æ“ä½œè¢«å–æ¶ˆ
+ * \retval -AM_EIO          : SDIOæ€»çº¿I/Oé”™è¯¯
+ * \retval -AM_EBUSY        : SDIO HOSTå¿™ï¼Œæ­£åœ¨å¤„ç†å…¶ä»–msg
+ * \retval -AM_EINVAL       : å‚æ•°é”™è¯¯
+ * \retval -AM_ETIME        : HOSTå¤„ç†è¶…æ—¶
+ * \retval -AM_ENOTSUP      : HOSTä¸æ”¯æŒè¯¥åŠŸèƒ½
  */
 int am_sdcard_block_size_set(am_sdcard_handle_t handle,
                              uint32_t           blk_size);
 
 /**
- * \brief Í£Ö¹´«Êä(CMD12)
+ * \brief åœæ­¢ä¼ è¾“(CMD12)
  *
- * \param[in]  handle       : SD Card ¾ä±ú
+ * \param[in]  handle       : SD Card å¥æŸ„
  *
- * \retval AM_OK            : ´«Êä³É¹¦
- * \retval -AM_ENOMEM       : ÄÚ´æ¿Õ¼ä²»×ã
- * \retval -AM_ECANCELED    : ²Ù×÷±»È¡Ïû
- * \retval -AM_EIO          : SDIO×ÜÏßI/O´íÎó
- * \retval -AM_EBUSY        : SDIO HOSTÃ¦£¬ÕıÔÚ´¦ÀíÆäËûmsg
- * \retval -AM_EINVAL       : ²ÎÊı´íÎó
- * \retval -AM_ETIME        : HOST´¦Àí³¬Ê±
- * \retval -AM_ENOTSUP      : HOST²»Ö§³Ö¸Ã¹¦ÄÜ
+ * \retval AM_OK            : ä¼ è¾“æˆåŠŸ
+ * \retval -AM_ENOMEM       : å†…å­˜ç©ºé—´ä¸è¶³
+ * \retval -AM_ECANCELED    : æ“ä½œè¢«å–æ¶ˆ
+ * \retval -AM_EIO          : SDIOæ€»çº¿I/Oé”™è¯¯
+ * \retval -AM_EBUSY        : SDIO HOSTå¿™ï¼Œæ­£åœ¨å¤„ç†å…¶ä»–msg
+ * \retval -AM_EINVAL       : å‚æ•°é”™è¯¯
+ * \retval -AM_ETIME        : HOSTå¤„ç†è¶…æ—¶
+ * \retval -AM_ENOTSUP      : HOSTä¸æ”¯æŒè¯¥åŠŸèƒ½
  */
 int am_sdcard_transfer_stop (am_sdcard_handle_t handle);
 
 /**
- * \brief »ñÈ¡¿¨×´Ì¬(CMD13)
+ * \brief è·å–å¡çŠ¶æ€(CMD13)
  *
- * \param[in]  handle       : SDIOÉè±¸
- * \param[in]  rca          : ´æ´¢¿¨Ïà¶ÔµØÖ·
- * \param[out] p_status     : ´æ´¢¿¨×´Ì¬
+ * \param[in]  handle       : SDIOè®¾å¤‡
+ * \param[in]  rca          : å­˜å‚¨å¡ç›¸å¯¹åœ°å€
+ * \param[out] p_status     : å­˜å‚¨å¡çŠ¶æ€
  *
- * \retval AM_OK            : ´«Êä³É¹¦
- * \retval -AM_ENOMEM       : ÄÚ´æ¿Õ¼ä²»×ã
- * \retval -AM_ECANCELED    : ²Ù×÷±»È¡Ïû
- * \retval -AM_EIO          : SDIO×ÜÏßI/O´íÎó
- * \retval -AM_EBUSY        : SDIO HOSTÃ¦£¬ÕıÔÚ´¦ÀíÆäËûmsg
- * \retval -AM_EINVAL       : ²ÎÊı´íÎó
- * \retval -AM_ETIME        : HOST´¦Àí³¬Ê±
- * \retval -AM_ENOTSUP      : HOST²»Ö§³Ö¸Ã¹¦ÄÜ
+ * \retval AM_OK            : ä¼ è¾“æˆåŠŸ
+ * \retval -AM_ENOMEM       : å†…å­˜ç©ºé—´ä¸è¶³
+ * \retval -AM_ECANCELED    : æ“ä½œè¢«å–æ¶ˆ
+ * \retval -AM_EIO          : SDIOæ€»çº¿I/Oé”™è¯¯
+ * \retval -AM_EBUSY        : SDIO HOSTå¿™ï¼Œæ­£åœ¨å¤„ç†å…¶ä»–msg
+ * \retval -AM_EINVAL       : å‚æ•°é”™è¯¯
+ * \retval -AM_ETIME        : HOSTå¤„ç†è¶…æ—¶
+ * \retval -AM_ENOTSUP      : HOSTä¸æ”¯æŒè¯¥åŠŸèƒ½
  */
 int am_sdcard_status_get (am_sdcard_handle_t handle,
                           uint32_t           rca,
                           uint32_t          *p_status);
 
 /**
- * \brief SDCard Éè±¸³õÊ¼»¯
+ * \brief SDCard è®¾å¤‡åˆå§‹åŒ–
  *
- * \param[in]  p_dev       : SDCardÉè±¸
- * \param[in]  p_devinfo   : SDCardÉè±¸ĞÅÏ¢½á¹¹ÌåÖ¸Õë
- * \param[out] sdio_handle : SDIO±ê×¼¾ä±ú
+ * \param[in]  p_dev       : SDCardè®¾å¤‡
+ * \param[in]  p_devinfo   : SDCardè®¾å¤‡ä¿¡æ¯ç»“æ„ä½“æŒ‡é’ˆ
+ * \param[out] sdio_handle : SDIOæ ‡å‡†å¥æŸ„
  *
- * \return ³É¹¦Ôò·µ»ØSDCardÉè±¸²Ù×÷¾ä±ú£¬Ê§°Ü·µ»ØNULL
+ * \return æˆåŠŸåˆ™è¿”å›SDCardè®¾å¤‡æ“ä½œå¥æŸ„ï¼Œå¤±è´¥è¿”å›NULL
  */
 am_sdcard_handle_t am_sdcard_init(am_sdcard_dev_t           *p_dev,
                                   const am_sdcard_devinfo_t *p_devinfo,
                                   am_sdio_handle_t           sdio_handle);
 
 /**
- * \brief SDCard Éè±¸½â³õÊ¼»¯
+ * \brief SDCard è®¾å¤‡è§£åˆå§‹åŒ–
  *
- * \param[in]  handle : SDCardÉè±¸²Ù×÷¾ä±ú
+ * \param[in]  handle : SDCardè®¾å¤‡æ“ä½œå¥æŸ„
  *
- * \retval AM_OK²Ù×÷³É¹¦£¬·ñÔòÊ§°Ü
+ * \retval AM_OKæ“ä½œæˆåŠŸï¼Œå¦åˆ™å¤±è´¥
  */
 int am_sdcard_deinit (am_sdcard_handle_t handle);
 

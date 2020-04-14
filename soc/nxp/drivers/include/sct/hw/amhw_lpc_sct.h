@@ -711,14 +711,14 @@ void amhw_lpc_sct_event_state_disable (amhw_lpc_sct_t *p_hw_sct,
 }
 
 /**
- * \brief ÅäÖÃÊ¹ÄÜÒ»¸öÊÂ¼şÔÚÄ³Ğ©×´Ì¬ÖĞ·¢Éú
+ * \brief é…ç½®ä½¿èƒ½ä¸€ä¸ªäº‹ä»¶åœ¨æŸäº›çŠ¶æ€ä¸­å‘ç”Ÿ
  *
- * \param[in] p_hw_sct  : Ö¸ÏòSCT¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] evt_num   : ÊÂ¼şºÅ£¬0 ~ AMHW_LPC82X_SCT_EVT_NUM - 1
- * \param[in] states    : ×´Ì¬²ÎÊı£¬statesµÄbit0´ú±í×´Ì¬0£¬bit0=1Ê±£¬ÊÂ¼şÔÚ×´Ì¬0Ê¹ÄÜ£¬
- *                        bit1=1Ê±£¬ÊÂ¼şÔÚ×´Ì¬1Ê¹ÄÜ£¬ÆäËûÎ»¿ÉÀàÍÆ
+ * \param[in] p_hw_sct  : æŒ‡å‘SCTå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] evt_num   : äº‹ä»¶å·ï¼Œ0 ~ AMHW_LPC82X_SCT_EVT_NUM - 1
+ * \param[in] states    : çŠ¶æ€å‚æ•°ï¼Œstatesçš„bit0ä»£è¡¨çŠ¶æ€0ï¼Œbit0=1æ—¶ï¼Œäº‹ä»¶åœ¨çŠ¶æ€0ä½¿èƒ½ï¼Œ
+ *                        bit1=1æ—¶ï¼Œäº‹ä»¶åœ¨çŠ¶æ€1ä½¿èƒ½ï¼Œå…¶ä»–ä½å¯ç±»æ¨
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_lpc_sct_event_state_cfg (amhw_lpc_sct_t *p_hw_sct,

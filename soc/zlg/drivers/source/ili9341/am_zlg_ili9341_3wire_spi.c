@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief zlg ÈýÏß½Ó¿ÚÇý¶¯º¯ÊýÊµÏÖ
+ * \brief zlg ä¸‰çº¿æŽ¥å£é©±åŠ¨å‡½æ•°å®žçŽ°
  *
  * \internal
  * \par Modification history
@@ -25,7 +25,7 @@
 #include "am_zlg_ili9341_3wire_spi.h"
 
 /**
- * \brief ·¢ËÍ8Î»ÃüÁî
+ * \brief å‘é€8ä½å‘½ä»¤
  */
 static  int __zlg_ili9341_3wire_cmd_write (void *p_drv, uint8_t cmd)
 {
@@ -34,16 +34,16 @@ static  int __zlg_ili9341_3wire_cmd_write (void *p_drv, uint8_t cmd)
 
     uint32_t temp = 0;
 
-    /* µûÊ½½»»» */
+    /* è¶å¼äº¤æ¢ */
     cmd = ( cmd >> 4) | ( cmd << 4 );
     cmd = ((cmd >> 2) & 0X33) | ( (cmd << 2) & 0XCC);
     cmd = ((cmd >> 1) & 0X55) | ( (cmd << 1) & 0XAA);
 
     temp = cmd;
-    /* ´ú±í·¢ËÍÃüÁî */
+    /* ä»£è¡¨å‘é€å‘½ä»¤ */
     temp <<=1 ;
 
-    /* Ð´ÈëÊý¾Ý */
+    /* å†™å…¥æ•°æ® */
     p_spi_reg_base->txreg = temp;
     p_spi_reg_base->txreg = temp >> 8;
     while ( 0 == ( p_spi_reg_base->cstat & 0x01) );
@@ -52,7 +52,7 @@ static  int __zlg_ili9341_3wire_cmd_write (void *p_drv, uint8_t cmd)
 }
 
 /**
- * \brief ·¢ËÍ8Î»Êý¾Ý
+ * \brief å‘é€8ä½æ•°æ®
  */
 static int __zlg_ili9341_3wire_data_u8_write (void *p_drv,uint8_t data)
 {
@@ -61,16 +61,16 @@ static int __zlg_ili9341_3wire_data_u8_write (void *p_drv,uint8_t data)
 
    uint32_t temp = 0;
 
-   /* µûÊ½½»»» */
+   /* è¶å¼äº¤æ¢ */
    data = ( data >> 4) | ( data << 4 );
    data = ((data >> 2) & 0X33) | ( (data << 2) & 0XCC);
    data = ((data >> 1) & 0X55) | ( (data << 1) & 0XAA);
 
    temp = data;
-   /* ´ú±í·¢ËÍÃüÁî */
+   /* ä»£è¡¨å‘é€å‘½ä»¤ */
     temp = ( temp << 1 ) | 0X1 ;
 
-    /* Ð´ÈëÊý¾Ý */
+    /* å†™å…¥æ•°æ® */
     p_spi_reg_base->txreg = temp;
     p_spi_reg_base->txreg = temp >> 8;
     while ( 0 == ( p_spi_reg_base->cstat & 0x01) );
@@ -79,7 +79,7 @@ static int __zlg_ili9341_3wire_data_u8_write (void *p_drv,uint8_t data)
 }
 
 /**
- * \brief ·¢ËÍ16Î»Êý¾Ý
+ * \brief å‘é€16ä½æ•°æ®
  */
 static int __zlg_ili9341_3wire_data_u16_write(void *p_drv,uint16_t data)
 {
@@ -90,30 +90,30 @@ static int __zlg_ili9341_3wire_data_u16_write(void *p_drv,uint16_t data)
     uint8_t data1 = (uint8_t)(data >> 8);
     uint8_t data2 = (uint8_t) data;
 
-    /* µûÊ½½»»» */
+    /* è¶å¼äº¤æ¢ */
     data1 = ( data1 >> 4) | ( data1 << 4 );
     data1 = ((data1 >> 2) & 0X33) | ( (data1 << 2) & 0XCC);
     data1 = ((data1 >> 1) & 0X55) | ( (data1 << 1) & 0XAA);
 
     temp = data1;
-    /* ´ú±í·¢ËÍÃüÁî */
+    /* ä»£è¡¨å‘é€å‘½ä»¤ */
     temp = ( temp << 1 ) | 0X1 ;
 
-    /* Ð´ÈëÊý¾Ý */
+    /* å†™å…¥æ•°æ® */
     p_spi_reg_base->txreg = temp;
     p_spi_reg_base->txreg = temp >> 8;
     while ( 0 == ( p_spi_reg_base->cstat & 0x01) );
 
-    /* µûÊ½½»»» */
+    /* è¶å¼äº¤æ¢ */
     data2 = ( data2 >> 4) | ( data2 << 4 );
     data2 = ((data2 >> 2) & 0X33) | ( (data2 << 2) & 0XCC);
     data2 = ((data2 >> 1) & 0X55) | ( (data2 << 1) & 0XAA);
 
-    temp = data2; /* ²»ÐèÒªÇå³ýtemp */
-    /* ´ú±í·¢ËÍÃüÁî */
+    temp = data2; /* ä¸éœ€è¦æ¸…é™¤temp */
+    /* ä»£è¡¨å‘é€å‘½ä»¤ */
     temp = ( temp << 1 ) | 0X1 ;
 
-    /* Ð´ÈëÊý¾Ý */
+    /* å†™å…¥æ•°æ® */
     p_spi_reg_base->txreg = temp;
     p_spi_reg_base->txreg = temp >> 8;
     while ( 0 == ( p_spi_reg_base->cstat & 0x01) );
@@ -130,7 +130,7 @@ static struct am_ili9341_drv_funcs __g_ili9341_funcs = {
 };
 
 /**
- * \brief ³õÊ¼»¯
+ * \brief åˆå§‹åŒ–
  */
 
 am_ili9341_serv_t *am_zlg_ili9341_intfc_3wire_init (
@@ -147,18 +147,18 @@ am_ili9341_serv_t *am_zlg_ili9341_intfc_3wire_init (
     am_gpio_pin_cfg(p_devinfo->cs_pin,   p_devinfo->cs_func);
 
     /**
-     *  Í¨¹ý¼Ä´æÆ÷ÅäÖÃSPI
+     *  é€šè¿‡å¯„å­˜å™¨é…ç½®SPI
      */
-    /* ¿ªÆôÊ±ÖÓ */
+    /* å¼€å¯æ—¶é’Ÿ */
     am_clk_enable(p_devinfo->clk_spi);
 
-    /* ÅäÖÃÒý½Å  ,Ä¬ÈÏ50MÊä³ö */
+    /* é…ç½®å¼•è„š  ,é»˜è®¤50Mè¾“å‡º */
     am_gpio_pin_cfg(p_devinfo->miso_pin, p_devinfo->miso_func);
     am_gpio_pin_cfg(p_devinfo->mosi_pin, p_devinfo->mosi_func);
     am_gpio_pin_cfg(p_devinfo->sck_pin,  p_devinfo->sck_func);
 
     amhw_zlg_spi_mode_sel(p_devinfo->spi_reg_base, AMHW_ZLG_SPI_MODE_MASTER);
-    /* ÉèÖÃËÙ¶È */
+    /* è®¾ç½®é€Ÿåº¦ */
     best_pdiv = am_clk_rate_get(p_devinfo->clk_spi) / p_devinfo->speed_hz;
     amhw_zlg_spi_baud_rate_set(p_devinfo->spi_reg_base, best_pdiv);
 
@@ -170,13 +170,13 @@ am_ili9341_serv_t *am_zlg_ili9341_intfc_3wire_init (
     amhw_zlg_spi_data_len_sel(p_devinfo->spi_reg_base, AMHW_ZLG_SPI_DATA_LEN_8BIT);
     amhw_zlg_spi_valid_data_sel(p_devinfo->spi_reg_base,AMHW_ZLG_SPI_VALID_DATA_8BIT);
 
-    /* ÉèÖÃ9Î» */
+    /* è®¾ç½®9ä½ */
     amhw_zlg_spi_extlen_set(p_devinfo->spi_reg_base, 9);
 
-    /* ÅäÖÃÊ±ÖÓÏàÎ»ºÍ¼«ÐÔ Ä£Ê½1 */
+    /* é…ç½®æ—¶é’Ÿç›¸ä½å’Œæžæ€§ æ¨¡å¼1 */
     amhw_zlg_spi_clk_mode_set(p_devinfo->spi_reg_base, 1);
 
-    /* ÉèÖÃ Æ¬Ñ¡ÓÐÐ§ */
+    /* è®¾ç½® ç‰‡é€‰æœ‰æ•ˆ */
     amhw_zlg_spi_cs_sel(p_devinfo->spi_reg_base, AM_TRUE);
     amhw_zlg_spi_nss_ctrl_sel(p_devinfo->spi_reg_base,AMHW_ZLG_SPI_NSS_CTRL_BT_HD);
 

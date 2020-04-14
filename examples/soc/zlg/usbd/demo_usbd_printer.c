@@ -13,15 +13,15 @@
 
 /**
  * \file
- * \brief USB printer_counter Àý³Ì
+ * \brief USB printer_counter ä¾‹ç¨‹
  *
- * - ÊµÑéÏÖÏó£º
- * 1.½«USBµÄÁí¶Ëµã½ÓÈëPC»ú¡£
- * 2.¸ø°å×ÓÉÕÂ¼¸ÃÀý³Ì£¬µÈ´ý3Ãë(³ÌÐòÖÐÓÐ3ÃëÑÓÊ±£¬ÎªÁËÄ£ÄâUSB°Î³ö¹ý³Ì)£¬3Ãëºópc»ú»áÌáÊ¾°²×°Çý¶¯£¬
- *   ÕâÀïÄ¬ÈÏ°²×°windows Í¨ÓÃ´òÓ¡»úÇý¶¯£¬ÏêÏ¸¿É¿´Çý¶¯°²×°ËµÃ÷ÎÄµµ£¬Èç¹ûÓÃ»§ÏëÒªÓÃ×Ô¼ºµÄÇý¶¯£¬¿ÉÒÔ×ÔÐÐ¸üÐÂ¡£
- * 3.ÔÚµçÄÔ×ÀÃæÐÂ½¨Ò»¸ötxtÎÄ¼þ£¬ÊäÈë×Ö·û´®,Ö®ºóµã»÷ÎÄ¼þ´òÓ¡£¬¼´ÔÚ´®¿ÚÖÐ¿ÉÒÔ¿´µ½ÎÄ¼þÄÚÈÝ.
+ * - å®žéªŒçŽ°è±¡ï¼š
+ * 1.å°†USBçš„å¦ç«¯ç‚¹æŽ¥å…¥PCæœºã€‚
+ * 2.ç»™æ¿å­çƒ§å½•è¯¥ä¾‹ç¨‹ï¼Œç­‰å¾…3ç§’(ç¨‹åºä¸­æœ‰3ç§’å»¶æ—¶ï¼Œä¸ºäº†æ¨¡æ‹ŸUSBæ‹”å‡ºè¿‡ç¨‹)ï¼Œ3ç§’åŽpcæœºä¼šæç¤ºå®‰è£…é©±åŠ¨ï¼Œ
+ *   è¿™é‡Œé»˜è®¤å®‰è£…windows é€šç”¨æ‰“å°æœºé©±åŠ¨ï¼Œè¯¦ç»†å¯çœ‹é©±åŠ¨å®‰è£…è¯´æ˜Žæ–‡æ¡£ï¼Œå¦‚æžœç”¨æˆ·æƒ³è¦ç”¨è‡ªå·±çš„é©±åŠ¨ï¼Œå¯ä»¥è‡ªè¡Œæ›´æ–°ã€‚
+ * 3.åœ¨ç”µè„‘æ¡Œé¢æ–°å»ºä¸€ä¸ªtxtæ–‡ä»¶ï¼Œè¾“å…¥å­—ç¬¦ä¸²,ä¹‹åŽç‚¹å‡»æ–‡ä»¶æ‰“å°ï¼Œå³åœ¨ä¸²å£ä¸­å¯ä»¥çœ‹åˆ°æ–‡ä»¶å†…å®¹.
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_usbd_printer.c src_usbd_printer
  *
  * \internal
@@ -46,34 +46,34 @@
 #include "am_usbd_printer.h"
 #include "demo_zlg_entries.h"
 
-#define __RNG_BUFF_SIZE    1024                  /**< »º³åÇø´óÐ¡. */
+#define __RNG_BUFF_SIZE    1024                  /**< ç¼“å†²åŒºå¤§å°. */
 
-static char __g_rng_buff[__RNG_BUFF_SIZE] = {0}; /**< \brief »·ÐÎ»º³åÇøbuff*/
+static char __g_rng_buff[__RNG_BUFF_SIZE] = {0}; /**< \brief çŽ¯å½¢ç¼“å†²åŒºbuff*/
 
-static char __g_buff[__RNG_BUFF_SIZE]     = {0}; /**< \brief Êý¾Ý¶ÁÈ¡buff*/
+static char __g_buff[__RNG_BUFF_SIZE]     = {0}; /**< \brief æ•°æ®è¯»å–buff*/
 
-static struct am_rngbuf __g_rngbuff;             /**< \brief ¶¨ÒåÒ»¸ö»·ÐÎ»º³åÇøÊµÀý*/
+static struct am_rngbuf __g_rngbuff;             /**< \brief å®šä¹‰ä¸€ä¸ªçŽ¯å½¢ç¼“å†²åŒºå®žä¾‹*/
 
 /**
- * \brief ´òÓ¡»ú½ÓÊÕÖÐ¶ÏÇëÇó»Øµ÷º¯Êý
+ * \brief æ‰“å°æœºæŽ¥æ”¶ä¸­æ–­è¯·æ±‚å›žè°ƒå‡½æ•°
  *
- * param[in] p_arg  : »Øµ÷º¯Êý²ÎÊý
- * param[in] p_data : ½ÓÊÕÊý¾Ýbuff
- * param[in] len    : ½ÓÊÕÊý¾ÝµÄÓÐÐ§³¤¶È£¨Êý¾ÝÁ¿£©
+ * param[in] p_arg  : å›žè°ƒå‡½æ•°å‚æ•°
+ * param[in] p_data : æŽ¥æ”¶æ•°æ®buff
+ * param[in] len    : æŽ¥æ”¶æ•°æ®çš„æœ‰æ•ˆé•¿åº¦ï¼ˆæ•°æ®é‡ï¼‰
  */
 static void __printer_recv_callback(void *p_arg, uint8_t *p_data, uint8_t len)
 {
-    am_rngbuf_put(&__g_rngbuff, (char *)p_data, len); /* Ìî³ä»·ÐÎ»º³åÇø*/
+    am_rngbuf_put(&__g_rngbuff, (char *)p_data, len); /* å¡«å……çŽ¯å½¢ç¼“å†²åŒº*/
 }
 
 /**
- * \brief ´òÓ¡»ú·¢ËÍÖÐ¶ÏÇëÇó»Øµ÷º¯Êý
+ * \brief æ‰“å°æœºå‘é€ä¸­æ–­è¯·æ±‚å›žè°ƒå‡½æ•°
  *
- * param[in] p_arg  : »Øµ÷º¯Êý²ÎÊý
+ * param[in] p_arg  : å›žè°ƒå‡½æ•°å‚æ•°
  */
 static void __printer_send_callback(void *p_arg)
 {
-    //¸Ãº¯ÊýÎª´òÓ¡»ú·¢ËÍÇëÇó,¼´Ö÷»úÓÐÇëÇóUSB device ·¢ËÍÊý¾Ý(¶¨ÒåµÄ¶ËµãÊý¾Ý)Ê±£¬¾Í»á½øÈë¸Ãº¯Êý
+    //è¯¥å‡½æ•°ä¸ºæ‰“å°æœºå‘é€è¯·æ±‚,å³ä¸»æœºæœ‰è¯·æ±‚USB device å‘é€æ•°æ®(å®šä¹‰çš„ç«¯ç‚¹æ•°æ®)æ—¶ï¼Œå°±ä¼šè¿›å…¥è¯¥å‡½æ•°
     uint8_t data[] = "ZLG printer demo test string";
     am_usbd_printer_handle handle = (am_usbd_printer_handle)p_arg;
 
@@ -81,23 +81,23 @@ static void __printer_send_callback(void *p_arg)
 }
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_usbd_printer_entry (void* p_handle)
 {
     uint32_t key = 0;
     am_usbd_printer_handle handle = p_handle;
-    am_mdelay(3000);                               /* Ä£ÄâUSBÉè±¸°Î³öµÄ¶¯×÷ */
+    am_mdelay(3000);                               /* æ¨¡æ‹ŸUSBè®¾å¤‡æ‹”å‡ºçš„åŠ¨ä½œ */
 
-    /* ³õÊ¼»¯»·ÐÎ»º³åÇø*/
+    /* åˆå§‹åŒ–çŽ¯å½¢ç¼“å†²åŒº*/
     am_rngbuf_init(&__g_rngbuff, __g_rng_buff, __RNG_BUFF_SIZE);
 
-    /* ¶¨ÒåÈí¼þ¶¨Ê±Æ÷½ÓÊÕºÍ·¢ËÍÇëÇó»Øµ÷º¯Êý*/
+    /* å®šä¹‰è½¯ä»¶å®šæ—¶å™¨æŽ¥æ”¶å’Œå‘é€è¯·æ±‚å›žè°ƒå‡½æ•°*/
     am_usbd_printer_recv_request_callback(handle, __printer_recv_callback, handle);
     am_usbd_printer_send_request_callback(handle, __printer_send_callback, handle);
 
     while (1) {
-        /* Èç¹û»·ÐÎ»º³åÇø²»Îª¿Õ£¬´¦ÀíÊý¾Ý*/
+        /* å¦‚æžœçŽ¯å½¢ç¼“å†²åŒºä¸ä¸ºç©ºï¼Œå¤„ç†æ•°æ®*/
         if (!am_rngbuf_isempty(&__g_rngbuff)) {
             key = am_int_cpu_lock();
             am_rngbuf_get(&__g_rngbuff, __g_buff, __RNG_BUFF_SIZE);

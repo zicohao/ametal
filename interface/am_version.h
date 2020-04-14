@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief �汾�ű�׼�ӿ�
+ * \brief 版本号标准接口
  *
  * \internal
  * \par modification history:

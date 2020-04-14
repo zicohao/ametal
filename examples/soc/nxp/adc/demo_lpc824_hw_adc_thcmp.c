@@ -12,22 +12,22 @@
 
 /**
  * \file
- * \brief ADC ��ֵ�Ƚ����̣�ͨ�� HW ��ӿ�ʵ��
+ * \brief ADC 阈值比较例程，通过 HW 层接口实现
  *
- * - ������չʾ�� 2 ����ֵ�Ƚϣ�
- *   1. ��ֵ�Ƚ� 0: ��Χ�Ƚϣ�
- *   2. ��ֵ�Ƚ� 1: ��Խ�Ƚϡ�
+ * - 本例程展示了 2 种阈值比较：
+ *   1. 阈值比较 0: 范围比较；
+ *   2. 阈值比较 1: 穿越比较。
  *
  *
- * - ʵ������
- *   1. ģ������ 1 �ĵ�ѹ���� 1100mV ����� 2000mV ʱ�����ڻ������ѹֵ���ȽϽ����
- *   2. ģ������ 2 �ĵ�ѹ�仯���� 1100mV ʱ�����ڻ������ѹֵ���ȽϽ����
+ * - 实验现象：
+ *   1. 模拟输入 1 的电压低于 1100mV 或高于 2000mV 时，串口会输出电压值及比较结果；
+ *   2. 模拟输入 2 的电压变化经过 1100mV 时，串口会输出电压值及比较结果。
  *
  * \note
- *    ����۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIO0_0 �������� PC ���ڵ� TXD��
- *    PIO0_4 �������� PC ���ڵ� RXD��
+ *    如需观察串口打印的调试信息，需要将 PIO0_0 引脚连接 PC 串口的 TXD，
+ *    PIO0_4 引脚连接 PC 串口的 RXD。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_lpc824_hw_adc_thcmp.c src_lpc824_hw_adc_thcmp
  *
  * \internal
@@ -50,27 +50,27 @@
 #include "hw/amhw_lpc82x_adc.h"
 
 /*******************************************************************************
-  �궨��
+  宏定义
 *******************************************************************************/
 
-/** \brief �ͱȽ���ֵ(mV) */
+/** \brief 低比较阈值(mV) */
 #define __THRE_LOW            ((1100 * 4095) / vref_mv)
 
-/** \brief �߱Ƚ���ֵ(mV) */
+/** \brief 高比较阈值(mV) */
 #define __THRE_HIGH           ((2000 * 4095) / vref_mv)
 
 /*******************************************************************************
-  ����ȫ�ֱ�������
+  本地全局变量定义
 *******************************************************************************/
 
-am_local volatile am_bool_t __g_tc0_flag; /** \brief ��ֵ�Ƚ� 0 �жϱ�־ */
-am_local volatile am_bool_t __g_tc1_flag; /** \brief ��ֵ�Ƚ� 1 �жϱ�־ */
+am_local volatile am_bool_t __g_tc0_flag; /** \brief 阈值比较 0 中断标志 */
+am_local volatile am_bool_t __g_tc1_flag; /** \brief 阈值比较 1 中断标志 */
 
-am_local volatile uint32_t __g_val_chan0; /** \brief ADC ͨ�� 0 ���ݻ����� */
-am_local volatile uint32_t __g_val_chan1; /** \brief ADC ͨ�� 1 ���ݻ����� */
+am_local volatile uint32_t __g_val_chan0; /** \brief ADC 通道 0 数据缓冲区 */
+am_local volatile uint32_t __g_val_chan1; /** \brief ADC 通道 1 数据缓冲区 */
 
 /**
- * \brief ADC �жϷ�����
+ * \brief ADC 中断服务函数
  */
 am_local void __adc_isr (void *p_arg)
 {
@@ -79,10 +79,10 @@ am_local void __adc_isr (void *p_arg)
   
     int_flags = amhw_lpc82x_adc_flags_get(p_hw_adc);
 
-    /* �Ƿ�Ϊ��ֵ�Ƚ��ж� */
+    /* 是否为阈值比较中断 */
     if (int_flags & AMHW_LPC82X_ADC_FLAGS_THCMP_INT_MASK) {
 
-        /* �ж��Ƿ�Ϊ ADC ͨ�� 0 ��ֵ�Ƚ��ж� */
+        /* 判断是否为 ADC 通道 0 阈值比较中断 */
         if (int_flags &
             AMHW_LPC82X_ADC_FLAGS_THCMP_MASK(AMHW_LPC82X_ADC_CHAN_0)) {
             __g_tc0_flag  = AM_TRUE;
@@ -93,7 +93,7 @@ am_local void __adc_isr (void *p_arg)
                 AMHW_LPC82X_ADC_FLAGS_THCMP_MASK(AMHW_LPC82X_ADC_CHAN_0));
         }
 
-        /* �ж��Ƿ�Ϊ ADC ͨ�� 1 ��ֵ�Ƚ��ж� */
+        /* 判断是否为 ADC 通道 1 阈值比较中断 */
         if (int_flags &
             AMHW_LPC82X_ADC_FLAGS_THCMP_MASK(AMHW_LPC82X_ADC_CHAN_1)) {
             __g_tc1_flag  = AM_TRUE;
@@ -110,7 +110,7 @@ am_local void __adc_isr (void *p_arg)
 }
 
 /**
- * \brief ADC ����
+ * \brief ADC 配置
  */
 am_local void __adc_config (amhw_lpc82x_adc_t  *p_hw_adc, 
                             uint32_t            vref_mv)
@@ -118,31 +118,31 @@ am_local void __adc_config (amhw_lpc82x_adc_t  *p_hw_adc,
     uint32_t adc_flags = 0;
     uint32_t seq_flags = 0;
 
-    adc_flags = AMHW_LPC82X_ADC_CTRL_CLK_DIV(0);   /* ʱ�ӷ�ƵΪ0��1 ��Ƶ�� */
+    adc_flags = AMHW_LPC82X_ADC_CTRL_CLK_DIV(0);   /* 时钟分频为0（1 分频） */
 
-    /* ADC ���� */
+    /* ADC 配置 */
     amhw_lpc82x_adc_config(p_hw_adc, adc_flags);
 
-    seq_flags = AMHW_LPC82X_ADC_SEQ_CTRL_TRIG_POL_POS |  /* ʹ�������ش�����ʽ */
-                AMHW_LPC82X_ADC_SEQ_CTRL_MODE_EOS     |  /* ����ת��ģʽ */
-                AMHW_LPC82X_ADC_SEQ_CTRL_ENABLE_CH(1) |  /* ʹ�� ADC ͨ�� 1 */
-                AMHW_LPC82X_ADC_SEQ_CTRL_ENABLE_CH(0);   /* ʹ�� ADC ͨ�� 0 */
+    seq_flags = AMHW_LPC82X_ADC_SEQ_CTRL_TRIG_POL_POS |  /* 使用正边沿触发方式 */
+                AMHW_LPC82X_ADC_SEQ_CTRL_MODE_EOS     |  /* 序列转换模式 */
+                AMHW_LPC82X_ADC_SEQ_CTRL_ENABLE_CH(1) |  /* 使能 ADC 通道 1 */
+                AMHW_LPC82X_ADC_SEQ_CTRL_ENABLE_CH(0);   /* 使能 ADC 通道 0 */
 
-    /* ADC ���� A ���� */
+    /* ADC 序列 A 配置 */
     amhw_lpc82x_adc_seq_config(p_hw_adc,
                                AMHW_LPC82X_ADC_SEQ_A, seq_flags);
 
-    /* ʹ���ж� */
+    /* 使能中断 */
     amhw_lpc82x_adc_int_enable(
         p_hw_adc,
         AMHW_LPC82X_ADC_INTEN_CMP_OUTSIDETH(AMHW_LPC82X_ADC_CHAN_0) |
         AMHW_LPC82X_ADC_INTEN_CMP_CROSSTH(AMHW_LPC82X_ADC_CHAN_1));
 
-    /* Ϊͨ��ѡ����ֵ�Ƚ� */
+    /* 为通道选择阈值比较 */
     amhw_lpc82x_adc_thr0_sel(p_hw_adc, AMHW_LPC82X_ADC_CHAN_0);
     amhw_lpc82x_adc_thr1_sel(p_hw_adc, AMHW_LPC82X_ADC_CHAN_1);
 
-    /* ���ñȽ���ֵ */
+    /* 设置比较阈值 */
     amhw_lpc82x_adc_thr_low_set(p_hw_adc,
                                 AMHW_LPC82X_ADC_COMP_THRE_0,
                                 __THRE_LOW);
@@ -154,7 +154,7 @@ am_local void __adc_config (amhw_lpc82x_adc_t  *p_hw_adc,
                                 AMHW_LPC82X_ADC_COMP_THRE_1,
                                 __THRE_LOW);
 
-    /* ʹ������ A */
+    /* 使能序列 A */
     amhw_lpc82x_adc_seq_enable(p_hw_adc, AMHW_LPC82X_ADC_SEQ_A);
 }
 
@@ -162,11 +162,11 @@ void demo_lpc824_hw_adc_thcmp_entry(amhw_lpc82x_adc_t  *p_hw_adc,
                                     int                 inum,
                                     uint32_t            vref_mv)
 {
-    /* ���� ADC �жϷ���������ʹ���ж� */
+    /* 连接 ADC 中断服务函数，并使能中断 */
     am_int_connect(inum, __adc_isr, (void *)p_hw_adc);
     am_int_enable(inum);
 
-    /* ADC ���� */
+    /* ADC 配置 */
     __adc_config(p_hw_adc, vref_mv);
 
     AM_FOREVER {
@@ -178,7 +178,7 @@ void demo_lpc824_hw_adc_thcmp_entry(amhw_lpc82x_adc_t  *p_hw_adc,
             AM_DBG_INFO("The ADC channel 0 voltage: %4d mV \r\n",
                         AMHW_LPC82X_ADC_DR_RESULT(__g_val_chan0) * vref_mv / 4095);
 
-            /* �ж�ͨ�� 0 ��ֵ�ȽϽ�� */
+            /* 判断通道 0 阈值比较结果 */
             if (AMHW_LPC82X_ADC_DR_THCMPRANGE(__g_val_chan0) == 0x00) {
                 AM_DBG_INFO("The ADC channel 0 voltage is in range.\r\n");
 
@@ -196,7 +196,7 @@ void demo_lpc824_hw_adc_thcmp_entry(amhw_lpc82x_adc_t  *p_hw_adc,
             AM_DBG_INFO("The ADC channel 1 voltage: %4d mV \r\n",
                         AMHW_LPC82X_ADC_DR_RESULT(__g_val_chan1) * vref_mv / 4095);
 
-            /* �ж�ͨ�� 1 ��ֵ�ȽϽ�� */
+            /* 判断通道 1 阈值比较结果 */
             if (AMHW_LPC82X_ADC_DR_THCMPCROSS(__g_val_chan1) == 0x00) {
                 AM_DBG_INFO("The ADC channel 1 voltage "
                             "no threshold Crossing detected.\r\n");

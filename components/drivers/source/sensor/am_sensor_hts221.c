@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ´«¸ĞÆ÷ HTS221 Çı¶¯ÎÄ¼ş
+ * \brief ä¼ æ„Ÿå™¨ HTS221 é©±åŠ¨æ–‡ä»¶
  *
  * \internal
  * \par Modification history
@@ -25,138 +25,138 @@
 #include "am_vdebug.h"
 
 /*******************************************************************************
- * ºê¶¨Òå
+ * å®å®šä¹‰
  ******************************************************************************/
-#define __HTS221_REG_WHO_IM_I     (0x0F)    /*< \brief Éè±¸IDµØÖ·             */
-#define __HTS221_MY_ID            (0xBC)    /*< \brief Éè±¸ID                 */
-#define __HTS221_REG_AV_CONF      (0x10)    /*< \brief ÉèÖÃ²ÉÑùÑù±¾µÄÖµµØÖ·   */
-#define __HTS221_REG_CTRL_REG1    (0x20)    /*< \brief ¿ØÖÆ¼Ä´æÆ÷1µØÖ·        */
-#define __HTS221_REG_CTRL_REG2    (0x21)    /*< \brief ¿ØÖÆ¼Ä´æÆ÷2µØÖ·        */
-#define __HTS221_REG_CTRL_REG3    (0x22)    /*< \brief ¿ØÖÆ¼Ä´æÆ÷3µØÖ·        */
-#define __HTS221_REG_STATUS       (0x27)    /*< \brief ×´Ì¬¼Ä´æÆ÷µØÖ·         */
-#define __HTS221_REG_H_OUT_L      (0x28)    /*< \brief Êª¶ÈµÍ×Ö½ÚµØÖ·         */
-#define __HTS221_REG_H_OUT_H      (0x29)    /*< \brief Êª¶È¸ß×Ö½ÚµØÖ·         */
-#define __HTS221_REG_T_OUT_L      (0x2A)    /*< \brief ÎÂ¶ÈµÍ×Ö½ÚµØÖ·         */
-#define __HTS221_REG_T_OUT_H      (0x2B)    /*< \brief ÎÂ¶È¸ß×Ö½ÚµØÖ·         */
+#define __HTS221_REG_WHO_IM_I     (0x0F)    /*< \brief è®¾å¤‡IDåœ°å€             */
+#define __HTS221_MY_ID            (0xBC)    /*< \brief è®¾å¤‡ID                 */
+#define __HTS221_REG_AV_CONF      (0x10)    /*< \brief è®¾ç½®é‡‡æ ·æ ·æœ¬çš„å€¼åœ°å€   */
+#define __HTS221_REG_CTRL_REG1    (0x20)    /*< \brief æ§åˆ¶å¯„å­˜å™¨1åœ°å€        */
+#define __HTS221_REG_CTRL_REG2    (0x21)    /*< \brief æ§åˆ¶å¯„å­˜å™¨2åœ°å€        */
+#define __HTS221_REG_CTRL_REG3    (0x22)    /*< \brief æ§åˆ¶å¯„å­˜å™¨3åœ°å€        */
+#define __HTS221_REG_STATUS       (0x27)    /*< \brief çŠ¶æ€å¯„å­˜å™¨åœ°å€         */
+#define __HTS221_REG_H_OUT_L      (0x28)    /*< \brief æ¹¿åº¦ä½å­—èŠ‚åœ°å€         */
+#define __HTS221_REG_H_OUT_H      (0x29)    /*< \brief æ¹¿åº¦é«˜å­—èŠ‚åœ°å€         */
+#define __HTS221_REG_T_OUT_L      (0x2A)    /*< \brief æ¸©åº¦ä½å­—èŠ‚åœ°å€         */
+#define __HTS221_REG_T_OUT_H      (0x2B)    /*< \brief æ¸©åº¦é«˜å­—èŠ‚åœ°å€         */
 
-#define __HTS221_REG_H0_OUT       (0x36)    /*< \brief Êª¶ÈĞ£×¼Öµ0µØÖ·        */
-#define __HTS221_REG_H0_OUT_LEN   (2)       /*< \brief Êª¶ÈĞ£×¼Öµ0µØÖ·³¤¶È    */
-#define __HTS221_REG_H1_OUT       (0x3A)    /*< \brief Êª¶ÈĞ£×¼Öµ1µØÖ·        */
-#define __HTS221_REG_H1_OUT_LEN   (2)       /*< \brief Êª¶ÈĞ£×¼Öµ1µØÖ·³¤¶È    */
-#define __HTS221_REG_H0_rH_2      (0x30)    /*< \brief Êª¶ÈĞ£×¼²ÎÊı0µØÖ·      */
-#define __HTS221_REG_H1_rH_2      (0x31)    /*< \brief Êª¶ÈĞ£×¼²ÎÊı1µØÖ·      */
+#define __HTS221_REG_H0_OUT       (0x36)    /*< \brief æ¹¿åº¦æ ¡å‡†å€¼0åœ°å€        */
+#define __HTS221_REG_H0_OUT_LEN   (2)       /*< \brief æ¹¿åº¦æ ¡å‡†å€¼0åœ°å€é•¿åº¦    */
+#define __HTS221_REG_H1_OUT       (0x3A)    /*< \brief æ¹¿åº¦æ ¡å‡†å€¼1åœ°å€        */
+#define __HTS221_REG_H1_OUT_LEN   (2)       /*< \brief æ¹¿åº¦æ ¡å‡†å€¼1åœ°å€é•¿åº¦    */
+#define __HTS221_REG_H0_rH_2      (0x30)    /*< \brief æ¹¿åº¦æ ¡å‡†å‚æ•°0åœ°å€      */
+#define __HTS221_REG_H1_rH_2      (0x31)    /*< \brief æ¹¿åº¦æ ¡å‡†å‚æ•°1åœ°å€      */
 
-#define __HTS221_REG_T0_OUT       (0x3C)    /*< \brief ÎÂ¶ÈĞ£×¼Öµ0µØÖ·        */
-#define __HTS221_REG_T0_OUT_LEN   (2)       /*< \brief ÎÂ¶ÈĞ£×¼Öµ0µØÖ·³¤¶È    */
-#define __HTS221_REG_T1_OUT       (0x3E)    /*< \brief ÎÂ¶ÈĞ£×¼Öµ1µØÖ·        */
-#define __HTS221_REG_T1_OUT_LEN   (2)       /*< \brief ÎÂ¶ÈĞ£×¼Öµ1µØÖ·³¤¶È    */
-#define __HTS221_REG_T0_degC_8    (0x32)    /*< \brief ÎÂ¶ÈĞ£×¼²ÎÊı0µØÖ·      */
-#define __HTS221_REG_T1_degC_8    (0x33)    /*< \brief ÎÂ¶ÈĞ£×¼²ÎÊı1µØÖ·      */
+#define __HTS221_REG_T0_OUT       (0x3C)    /*< \brief æ¸©åº¦æ ¡å‡†å€¼0åœ°å€        */
+#define __HTS221_REG_T0_OUT_LEN   (2)       /*< \brief æ¸©åº¦æ ¡å‡†å€¼0åœ°å€é•¿åº¦    */
+#define __HTS221_REG_T1_OUT       (0x3E)    /*< \brief æ¸©åº¦æ ¡å‡†å€¼1åœ°å€        */
+#define __HTS221_REG_T1_OUT_LEN   (2)       /*< \brief æ¸©åº¦æ ¡å‡†å€¼1åœ°å€é•¿åº¦    */
+#define __HTS221_REG_T0_degC_8    (0x32)    /*< \brief æ¸©åº¦æ ¡å‡†å‚æ•°0åœ°å€      */
+#define __HTS221_REG_T1_degC_8    (0x33)    /*< \brief æ¸©åº¦æ ¡å‡†å‚æ•°1åœ°å€      */
 
-#define __HTS221_REG_T1_T0_MSB    (0x35)    /*< \brief ÎÂ¶È¸ßÎ»²ÎÊıµØÖ·       */
+#define __HTS221_REG_T1_T0_MSB    (0x35)    /*< \brief æ¸©åº¦é«˜ä½å‚æ•°åœ°å€       */
 
-/** \brief ÀûÓÃĞ£×¼Öµx0£¬y0£¬x1£¬y1 ¼ÆËã³ö´«ÈëxµÄÎÂ¶ÈÊª¶ÈÊµ¼ÊÖµ ²¢À©´ó10^6±¶ */
+/** \brief åˆ©ç”¨æ ¡å‡†å€¼x0ï¼Œy0ï¼Œx1ï¼Œy1 è®¡ç®—å‡ºä¼ å…¥xçš„æ¸©åº¦æ¹¿åº¦å®é™…å€¼ å¹¶æ‰©å¤§10^6å€ */
 #define __GET_VALUE(x, x0, y0, x1, y1)                                 \
         ((int32_t)(1000000 * (int64_t)(((y1)-(y0))*(x) + (x1)*(y0) -   \
          (x0)*(y1)) / ((x1) - (x0))))
 
-/** \brief ½«Á½¸öint8×ª»»ÎªÒ»¸öint16ÀàĞÍ */
+/** \brief å°†ä¸¤ä¸ªint8è½¬æ¢ä¸ºä¸€ä¸ªint16ç±»å‹ */
 #define __HTS221_UINT8_TO_UINT16(buff) ((int16_t)((buff[1] << 8) | buff[0]))
 
-/** \brief ³ÖĞø¶ÁÈ¡¼Ä´æÆ÷ */
+/** \brief æŒç»­è¯»å–å¯„å­˜å™¨ */
 #define __HTS221_IIC_CONTINUE_READ     (0x80)
 
-/** \brief ÉèÖÃÆµÂÊÎªÒ»´Î */
+/** \brief è®¾ç½®é¢‘ç‡ä¸ºä¸€æ¬¡ */
 #define __HTS221_RATE_SET_ONE(data)    (((data) & (~0x3)) | 0x0)
 
-/** \brief ÉèÖÃÆµÂÊÎª1 */
+/** \brief è®¾ç½®é¢‘ç‡ä¸º1 */
 #define __HTS221_RATE_SET_1S(data)     (((data) & (~0x3)) | 0x1)
 
-/** \brief ÉèÖÃÆµÂÊÎª7 */
+/** \brief è®¾ç½®é¢‘ç‡ä¸º7 */
 #define __HTS221_RATE_SET_7S(data)     (((data) & (~0x3)) | 0x2)
 
-/** \brief ÉèÖÃÆµÂÊÎª12 */
+/** \brief è®¾ç½®é¢‘ç‡ä¸º12 */
 #define __HTS221_RATE_SET_12S(data)    (((data) & (~0x3)) | 0x3)
 
-/** \brief ¿ªÊ¼Ò»´ÎÊı¾İ²É¼¯ */
+/** \brief å¼€å§‹ä¸€æ¬¡æ•°æ®é‡‡é›† */
 #define __HTS221_ONE_SHOT_START        (0x1)
 
-/** \brief Ä£¿éÆô¶¯ */
+/** \brief æ¨¡å—å¯åŠ¨ */
 #define __HTS221_START                 (0x1<<7)
 
-/** \brief Ä£¿é¹Ø±Õ */
+/** \brief æ¨¡å—å…³é—­ */
 #define __HTS221_CLOSE                 (~(0x1<<7))
 
-/** \brief »ñÈ¡HUM×´Ì¬Î» */
+/** \brief è·å–HUMçŠ¶æ€ä½ */
 #define __HTS221_GET_HUM_STATUS(reg)   (((reg) >> 1) & 0x1)
 
-/** \brief »ñÈ¡TEM×´Ì¬Î» */
+/** \brief è·å–TEMçŠ¶æ€ä½ */
 #define __HTS221_GET_TEM_STATUS(reg)   ((reg) & 0x1)
 
-/** \brief Ê¹ÄÜÊı¾İ¿É¶Á´¥·¢ */
+/** \brief ä½¿èƒ½æ•°æ®å¯è¯»è§¦å‘ */
 #define __HTS221_TRIGGER_READ          (0x1<<2)
 
-/** \brief ½ûÄÜÊı¾İ¿É¶Á´¥·¢ */
+/** \brief ç¦èƒ½æ•°æ®å¯è¯»è§¦å‘ */
 #define __HTS221_TRIGGER_CLOSE         (~(0x1<<2))
 
-/** \brief »ñÈ¡ÎÂ¶ÈĞ£×¼Öµ1 */
+/** \brief è·å–æ¸©åº¦æ ¡å‡†å€¼1 */
 #define __HTS221_GET_TEM_VALUE1(val, data) \
                       ((int8_t)(((((val) & 0x3) << 8) | (data)) >> 3))
 
-/** \brief »ñÈ¡ÎÂ¶ÈĞ£×¼Öµ2 */
+/** \brief è·å–æ¸©åº¦æ ¡å‡†å€¼2 */
 #define __HTS221_GET_TEM_VALUE2(val, data) \
                       ((int8_t)(((((val) & 0xc) << 6) | (data)) >> 3))
 
 /*******************************************************************************
- * ±¾µØº¯ÊıÉùÃ÷
+ * æœ¬åœ°å‡½æ•°å£°æ˜
  ******************************************************************************/
-/** \brief »ñÈ¡¸Ã´«¸ĞÆ÷Ä³Ò»Í¨µÀµÄÀàĞÍ */
+/** \brief è·å–è¯¥ä¼ æ„Ÿå™¨æŸä¸€é€šé“çš„ç±»å‹ */
 am_local am_err_t __pfn_type_get (void *p_drv, int id);
 
-/** \brief »ñÈ¡´«¸ĞÆ÷Í¨µÀ²ÉÑùÊı¾İ */
+/** \brief è·å–ä¼ æ„Ÿå™¨é€šé“é‡‡æ ·æ•°æ® */
 am_local am_err_t __pfn_data_get (void            *p_drv,
                                   const int       *p_ids,
                                   int              num,
                                   am_sensor_val_t *p_buf);
 
-/** \brief Ê¹ÄÜ´«¸ĞÆ÷Í¨µÀ */
+/** \brief ä½¿èƒ½ä¼ æ„Ÿå™¨é€šé“ */
 am_local am_err_t __pfn_enable (void            *p_drv,
                                 const int       *p_ids,
                                 int              num,
                                 am_sensor_val_t *p_result);
 
-/** \brief ½ûÄÜ´«¸ĞÆ÷Í¨µÀ */
+/** \brief ç¦èƒ½ä¼ æ„Ÿå™¨é€šé“ */
 am_local am_err_t __pfn_disable (void            *p_drv,
                                  const int       *p_ids,
                                  int              num,
                                  am_sensor_val_t *p_result);
 
-/** \brief ÅäÖÃ´«¸ĞÆ÷Í¨µÀÊôĞÔ */
+/** \brief é…ç½®ä¼ æ„Ÿå™¨é€šé“å±æ€§ */
 am_local am_err_t __pfn_attr_set (void                  *p_drv,
                                   int                    id,
                                   int                    attr,
                                   const am_sensor_val_t *p_val);
 
-/** \brief »ñÈ¡´«¸ĞÆ÷Í¨µÀÊôĞÔ */
+/** \brief è·å–ä¼ æ„Ÿå™¨é€šé“å±æ€§ */
 am_local am_err_t __pfn_attr_get (void            *p_drv,
                                   int              id,
                                   int              attr,
                                   am_sensor_val_t *p_val);
 
-/** \brief ÉèÖÃ´¥·¢£¬Ò»¸öÍ¨µÀ½öÄÜÉèÖÃÒ»¸ö´¥·¢»Øµ÷º¯Êı */
+/** \brief è®¾ç½®è§¦å‘ï¼Œä¸€ä¸ªé€šé“ä»…èƒ½è®¾ç½®ä¸€ä¸ªè§¦å‘å›è°ƒå‡½æ•° */
 am_local am_err_t __pfn_trigger_cfg (void                   *p_drv,
                                      int                     id,
                                      uint32_t                flags,
                                      am_sensor_trigger_cb_t  pfn_cb,
                                      void                   *p_arg);
 
-/** \brief ´ò¿ª´¥·¢ */
+/** \brief æ‰“å¼€è§¦å‘ */
 am_local am_err_t __pfn_trigger_on (void *p_drv, int id);
 
-/** \brief ¹Ø±Õ´¥·¢ */
+/** \brief å…³é—­è§¦å‘ */
 am_local am_err_t __pfn_trigger_off (void *p_drv, int id);
 
-/** \brief ´«¸ĞÆ÷±ê×¼·şÎñ */
+/** \brief ä¼ æ„Ÿå™¨æ ‡å‡†æœåŠ¡ */
 am_local am_const struct am_sensor_drv_funcs __g_sensor_hts221_funcs = {
         __pfn_type_get,
         __pfn_data_get,
@@ -173,7 +173,7 @@ am_local am_const struct am_sensor_drv_funcs __g_sensor_hts221_funcs = {
   Local functions
 *******************************************************************************/
 /*
- * \brief hts221 Ğ´Êı¾İ
+ * \brief hts221 å†™æ•°æ®
  */
 am_local am_err_t __hts221_write (am_sensor_hts221_dev_t *p_this,
                                   uint32_t                subaddr,
@@ -187,7 +187,7 @@ am_local am_err_t __hts221_write (am_sensor_hts221_dev_t *p_this,
 }
 
 /*
- * \brief hts221 ¶ÁÊı¾İ
+ * \brief hts221 è¯»æ•°æ®
  */
 am_local am_err_t __hts221_read (am_sensor_hts221_dev_t *p_this,
                                  uint32_t                subaddr,
@@ -200,15 +200,15 @@ am_local am_err_t __hts221_read (am_sensor_hts221_dev_t *p_this,
                        nbytes);
 }
 
-/** \breif ÖĞ¶Ï»Øµ÷º¯Êı */
+/** \breif ä¸­æ–­å›è°ƒå‡½æ•° */
 am_local void __hts221_alarm_callback (void *p_arg)
 {
     am_sensor_hts221_dev_t* p_this = (am_sensor_hts221_dev_t*)p_arg;
 
-    am_isr_defer_job_add(&p_this->g_myjob);   /*< \brief Ìí¼ÓÖĞ¶ÏÑÓ³Ù´¦ÀíÈÎÎñ */
+    am_isr_defer_job_add(&p_this->g_myjob);   /*< \brief æ·»åŠ ä¸­æ–­å»¶è¿Ÿå¤„ç†ä»»åŠ¡ */
 }
 
-/** \breif ÖĞ¶ÏÑÓ³Ùº¯Êı */
+/** \breif ä¸­æ–­å»¶è¿Ÿå‡½æ•° */
 am_local void __am_pfnvoid_t (void *p_arg)
 {
     am_sensor_hts221_dev_t* p_this = (am_sensor_hts221_dev_t*)p_arg;
@@ -222,10 +222,10 @@ am_local void __am_pfnvoid_t (void *p_arg)
     int16_t hum_data = 0;
     int16_t tem_data = 0;
 
-    /* ¶Á³öÊı¾İºó£¬×Ô¶¯ÇåÖĞ¶Ï±êÖ¾Î» */
+    /* è¯»å‡ºæ•°æ®åï¼Œè‡ªåŠ¨æ¸…ä¸­æ–­æ ‡å¿—ä½ */
     __hts221_read(p_this, __HTS221_REG_H_OUT_L, current_data, 4);
 
-    /* »ñÈ¡Êª¶È */
+    /* è·å–æ¹¿åº¦ */
     hum_data = __HTS221_UINT8_TO_UINT16(current_data);
     p_this->data[0].val = __GET_VALUE(hum_data,
                                       hum->x0,
@@ -234,7 +234,7 @@ am_local void __am_pfnvoid_t (void *p_arg)
                                       hum->y1);
     p_this->data[0].unit = AM_SENSOR_UNIT_MICRO;
 
-    /* »ñÈ¡ÎÂ¶È */
+    /* è·å–æ¸©åº¦ */
     tem_data = __HTS221_UINT8_TO_UINT16(p_current_data);
     p_this->data[1].val = __GET_VALUE(tem_data,
                                       tem->x0,
@@ -257,7 +257,7 @@ am_local void __am_pfnvoid_t (void *p_arg)
 }
 
 /*
- * \brief ÅäÖÃÑ¡Ôñ
+ * \brief é…ç½®é€‰æ‹©
  */
 am_local am_err_t  __reg_attr_set (am_sensor_hts221_dev_t *p_this, uint8_t rate)
 {
@@ -291,7 +291,7 @@ am_local am_err_t  __reg_attr_set (am_sensor_hts221_dev_t *p_this, uint8_t rate)
 }
 
 /*
- * \brief »ñÈ¡Êª¶ÈĞ£×¼Öµ
+ * \brief è·å–æ¹¿åº¦æ ¡å‡†å€¼
  */
 am_local am_err_t __hts221_get_hum_cal (am_sensor_hts221_dev_t *p_this)
 {
@@ -300,7 +300,7 @@ am_local am_err_t __hts221_get_hum_cal (am_sensor_hts221_dev_t *p_this)
     am_err_t ret = AM_OK;
 
     /*
-     * \brief ÒÔÏÂÎª»ñÈ¡Êª¶ÈµÄĞ£×¼Êı¾İµÄ2×é
+     * \brief ä»¥ä¸‹ä¸ºè·å–æ¹¿åº¦çš„æ ¡å‡†æ•°æ®çš„2ç»„
      */
     ret = __hts221_read(p_this,
                         __HTS221_REG_H0_OUT,
@@ -336,7 +336,7 @@ am_local am_err_t __hts221_get_hum_cal (am_sensor_hts221_dev_t *p_this)
 }
 
 /*
- * \brief »ñÈ¡ÎÂ¶ÈĞ£×¼Öµ
+ * \brief è·å–æ¸©åº¦æ ¡å‡†å€¼
  */
 am_local am_err_t __hts221_get_tem_cal (am_sensor_hts221_dev_t *p_this)
 {
@@ -347,7 +347,7 @@ am_local am_err_t __hts221_get_tem_cal (am_sensor_hts221_dev_t *p_this)
     am_err_t ret = AM_OK;
 
     /*
-     * \brief ÒÔÏÂÎª»ñÈ¡ÎÂ¶ÈµÄĞ£×¼Êı¾İµÄ2×é
+     * \brief ä»¥ä¸‹ä¸ºè·å–æ¸©åº¦çš„æ ¡å‡†æ•°æ®çš„2ç»„
      */
     ret = __hts221_read(p_this, __HTS221_REG_T1_T0_MSB, &buff[0], 1);
     if (ret != AM_OK) {
@@ -388,7 +388,7 @@ am_local am_err_t __hts221_get_tem_cal (am_sensor_hts221_dev_t *p_this)
     return ret;
 }
 
-/** \brief »ñÈ¡¸Ã´«¸ĞÆ÷Ä³Ò»Í¨µÀµÄÀàĞÍ */
+/** \brief è·å–è¯¥ä¼ æ„Ÿå™¨æŸä¸€é€šé“çš„ç±»å‹ */
 am_local am_err_t __pfn_type_get (void *p_drv, int id)
 {
     if (p_drv == NULL) {
@@ -404,7 +404,7 @@ am_local am_err_t __pfn_type_get (void *p_drv, int id)
     }
 }
 
-/** \brief »ñÈ¡´«¸ĞÆ÷Í¨µÀ²ÉÑùÊı¾İ */
+/** \brief è·å–ä¼ æ„Ÿå™¨é€šé“é‡‡æ ·æ•°æ® */
 am_local am_err_t __pfn_data_get (void            *p_drv,
                                   const int       *p_ids,
                                   int              num,
@@ -439,10 +439,10 @@ am_local am_err_t __pfn_data_get (void            *p_drv,
         p_buf[i].unit = AM_SENSOR_UNIT_INVALID;
     }
 
-    /* ÈôÎª1£¬Ôò¿ÉÄÜÔÚÊı¾İ×¼±¸¾ÍĞ÷´¥·¢»Øµ÷º¯ÊıÖĞÊ¹ÓÃ */
+    /* è‹¥ä¸º1ï¼Œåˆ™å¯èƒ½åœ¨æ•°æ®å‡†å¤‡å°±ç»ªè§¦å‘å›è°ƒå‡½æ•°ä¸­ä½¿ç”¨ */
     if (num == 1) {
         cur_id = p_ids[0];
-        /* Èô´ò¿ªÊı¾İ×¼±¸¾ÍĞ÷´¥·¢·½Ê½£¬ÔòÖ±½Ó¸³Öµ */
+        /* è‹¥æ‰“å¼€æ•°æ®å‡†å¤‡å°±ç»ªè§¦å‘æ–¹å¼ï¼Œåˆ™ç›´æ¥èµ‹å€¼ */
         if ((AM_BIT_GET(p_this->trigger, 2)) &&
                 ((p_this->flags[0] & AM_SENSOR_TRIGGER_DATA_READY) ||
                  (p_this->flags[1] & AM_SENSOR_TRIGGER_DATA_READY))) {
@@ -452,7 +452,7 @@ am_local am_err_t __pfn_data_get (void            *p_drv,
         }
     }
 
-    /** \brief »ñÈ¡¿É¶Á×´Ì¬Öµ */
+    /** \brief è·å–å¯è¯»çŠ¶æ€å€¼ */
     do {
         ret = __hts221_read(p_this, __HTS221_REG_STATUS, &status_val, 1);
         if (ret != AM_OK) {
@@ -467,7 +467,7 @@ am_local am_err_t __pfn_data_get (void            *p_drv,
 
         if (cur_id == 0) {
 
-            /** \brief »ñÈ¡Êª¶È*/
+            /** \brief è·å–æ¹¿åº¦*/
             ret = __hts221_read(p_this, __HTS221_REG_H_OUT_L, reg_data, 2);
             if (ret != AM_OK) {
                 return ret;
@@ -477,12 +477,12 @@ am_local am_err_t __pfn_data_get (void            *p_drv,
                                         hum->x0,
                                         hum->y0,
                                         hum->x1,
-                                        hum->y1); /*< \brief Êª¶È */
-            p_buf[i].unit = AM_SENSOR_UNIT_MICRO; /*< \brief µ¥Î»Ä¬ÈÏÎª-6:10^(-6)*/
+                                        hum->y1); /*< \brief æ¹¿åº¦ */
+            p_buf[i].unit = AM_SENSOR_UNIT_MICRO; /*< \brief å•ä½é»˜è®¤ä¸º-6:10^(-6)*/
 
         } else if (cur_id == 1) {
 
-            /** \brief »ñÈ¡ÎÂ¶È */
+            /** \brief è·å–æ¸©åº¦ */
             ret = __hts221_read(p_this, __HTS221_REG_T_OUT_L, reg_data, 2);
             if (ret != AM_OK) {
                 return ret;
@@ -492,11 +492,11 @@ am_local am_err_t __pfn_data_get (void            *p_drv,
                                         tem->x0,
                                         tem->y0,
                                         tem->x1,
-                                        tem->y1); /*< \brief ÎÂ¶È */
-            p_buf[i].unit = AM_SENSOR_UNIT_MICRO; /*< \brief µ¥Î»Ä¬ÈÏÎª-6:10^(-6)*/
+                                        tem->y1); /*< \brief æ¸©åº¦ */
+            p_buf[i].unit = AM_SENSOR_UNIT_MICRO; /*< \brief å•ä½é»˜è®¤ä¸º-6:10^(-6)*/
 
         } else {
-            return -AM_ENODEV;  /*< \brief Èô´Ë´ÎÍ¨µÀ²»ÊôÓÚ¸Ã´«¸ĞÆ÷£¬Ö±½Ó·µ»Ø */
+            return -AM_ENODEV;  /*< \brief è‹¥æ­¤æ¬¡é€šé“ä¸å±äºè¯¥ä¼ æ„Ÿå™¨ï¼Œç›´æ¥è¿”å› */
         }
     }
 
@@ -514,7 +514,7 @@ am_local am_err_t __pfn_data_get (void            *p_drv,
     return ret;
 }
 
-/** \brief Ê¹ÄÜ´«¸ĞÆ÷Í¨µÀ */
+/** \brief ä½¿èƒ½ä¼ æ„Ÿå™¨é€šé“ */
 am_local am_err_t __pfn_enable (void            *p_drv,
                                 const int       *p_ids,
                                 int              num,
@@ -552,7 +552,7 @@ am_local am_err_t __pfn_enable (void            *p_drv,
         }
     }
 
-    if (ret != AM_OK) {     /*< \breif Èç¹û±¾´ÎÃ»ÓĞ¸Ã´«¸ĞÆ÷µÄÍ¨µÀ´«Èë£¬ÔòÍË³ö */
+    if (ret != AM_OK) {     /*< \breif å¦‚æœæœ¬æ¬¡æ²¡æœ‰è¯¥ä¼ æ„Ÿå™¨çš„é€šé“ä¼ å…¥ï¼Œåˆ™é€€å‡º */
         return curent_ret;
     }
 
@@ -561,7 +561,7 @@ am_local am_err_t __pfn_enable (void            *p_drv,
         curent_ret = ret;
     }
 
-    /** \brief Ê¹ÄÜ¸ÃÍ¨µÀ */
+    /** \brief ä½¿èƒ½è¯¥é€šé“ */
     ctrl_reg1 |= __HTS221_START;
     ret = __hts221_write(p_this, __HTS221_REG_CTRL_REG1, &ctrl_reg1, 1);
     if (ret != AM_OK) {
@@ -588,7 +588,7 @@ am_local am_err_t __pfn_enable (void            *p_drv,
     return curent_ret;
 }
 
-/** \brief ½ûÄÜ´«¸ĞÆ÷Í¨µÀ */
+/** \brief ç¦èƒ½ä¼ æ„Ÿå™¨é€šé“ */
 am_local am_err_t __pfn_disable (void            *p_drv,
                                  const int       *p_ids,
                                  int              num,
@@ -639,7 +639,7 @@ am_local am_err_t __pfn_disable (void            *p_drv,
             cur_ret = ret;
         }
 
-        /** \brief ¹Ø±Õ¸ÃÍ¨µÀ */
+        /** \brief å…³é—­è¯¥é€šé“ */
         ctrl_reg &= __HTS221_CLOSE;
         ret = __hts221_write(p_this, __HTS221_REG_CTRL_REG1, &ctrl_reg, 1);
         if (ret != AM_OK){
@@ -654,7 +654,7 @@ am_local am_err_t __pfn_disable (void            *p_drv,
     return cur_ret;
 }
 
-/** \brief ÅäÖÃ´«¸ĞÆ÷Í¨µÀÊôĞÔ */
+/** \brief é…ç½®ä¼ æ„Ÿå™¨é€šé“å±æ€§ */
 am_local am_err_t __pfn_attr_set (void                  *p_drv,
                                   int                    id,
                                   int                    attr,
@@ -681,7 +681,7 @@ am_local am_err_t __pfn_attr_set (void                  *p_drv,
 
     switch (attr) {
 
-    /* ĞŞ¸ÄÆµÂÊ */
+    /* ä¿®æ”¹é¢‘ç‡ */
     case AM_SENSOR_ATTR_SAMPLING_RATE:
 
         if (sensor_val.val < 0 || sensor_val.val > 13) {
@@ -725,7 +725,7 @@ am_local am_err_t __pfn_attr_set (void                  *p_drv,
     return cur_ret;
 }
 
-/** \brief »ñÈ¡´«¸ĞÆ÷Í¨µÀÊôĞÔ */
+/** \brief è·å–ä¼ æ„Ÿå™¨é€šé“å±æ€§ */
 am_local am_err_t __pfn_attr_get (void            *p_drv,
                                   int              id,
                                   int              attr,
@@ -745,7 +745,7 @@ am_local am_err_t __pfn_attr_get (void            *p_drv,
 
     switch (attr) {
 
-    /* »ñÈ¡²ÉÑùÆµÂÊ */
+    /* è·å–é‡‡æ ·é¢‘ç‡ */
     case AM_SENSOR_ATTR_SAMPLING_RATE:
 
         p_val->val  = p_this->sam_rate.val;
@@ -761,7 +761,7 @@ am_local am_err_t __pfn_attr_get (void            *p_drv,
     return ret;
 }
 
-/** \brief ÉèÖÃ´¥·¢£¬Ò»¸öÍ¨µÀ½öÄÜÉèÖÃÒ»¸ö´¥·¢»Øµ÷º¯Êı */
+/** \brief è®¾ç½®è§¦å‘ï¼Œä¸€ä¸ªé€šé“ä»…èƒ½è®¾ç½®ä¸€ä¸ªè§¦å‘å›è°ƒå‡½æ•° */
 am_local am_err_t __pfn_trigger_cfg (void                   *p_drv,
                                      int                     id,
                                      uint32_t                flags,
@@ -792,7 +792,7 @@ am_local am_err_t __pfn_trigger_cfg (void                   *p_drv,
     return AM_OK;
 }
 
-/** \brief ´ò¿ª´¥·¢ */
+/** \brief æ‰“å¼€è§¦å‘ */
 am_local am_err_t __pfn_trigger_on (void *p_drv, int id)
 {
     am_sensor_hts221_dev_t* p_this = (am_sensor_hts221_dev_t*)p_drv;
@@ -819,7 +819,7 @@ am_local am_err_t __pfn_trigger_on (void *p_drv, int id)
         cur_ret = ret;
     }
 
-    /** \brief Ê¹ÄÜÊı¾İ¿É¶Á´¥·¢ */
+    /** \brief ä½¿èƒ½æ•°æ®å¯è¯»è§¦å‘ */
     reg_data |= __HTS221_TRIGGER_READ;
     ret = __hts221_write(p_this, __HTS221_REG_CTRL_REG3, &reg_data, 1);
     if ( ret != AM_OK) {
@@ -846,7 +846,7 @@ am_local am_err_t __pfn_trigger_on (void *p_drv, int id)
     return cur_ret;
 }
 
-/** \brief ¹Ø±Õ´¥·¢ */
+/** \brief å…³é—­è§¦å‘ */
 am_local am_err_t __pfn_trigger_off (void *p_drv, int id)
 {
     am_sensor_hts221_dev_t* p_this = (am_sensor_hts221_dev_t*)p_drv;
@@ -879,7 +879,7 @@ am_local am_err_t __pfn_trigger_off (void *p_drv, int id)
             cur_ret = ret;
         }
 
-        /** \brief ½ûÄÜÊı¾İ¿É¶Á´¥·¢ */
+        /** \brief ç¦èƒ½æ•°æ®å¯è¯»è§¦å‘ */
         reg_data &= __HTS221_TRIGGER_CLOSE;
         ret = __hts221_write(p_this, __HTS221_REG_CTRL_REG3, &reg_data, 1);
         if (ret != AM_OK) {
@@ -910,7 +910,7 @@ am_local am_err_t __pfn_trigger_off (void *p_drv, int id)
   Public functions
 *******************************************************************************/
 /**
- * \brief ´«¸ĞÆ÷ HTS221 ³õÊ¼»¯
+ * \brief ä¼ æ„Ÿå™¨ HTS221 åˆå§‹åŒ–
  */
 am_sensor_handle_t am_sensor_hts221_init (
         am_sensor_hts221_dev_t           *p_dev,
@@ -962,13 +962,13 @@ am_sensor_handle_t am_sensor_hts221_init (
         cur_ret = ret;
     } else {
 
-        /* »ñÈ¡Êª¶ÈĞ£×¼Öµ */
+        /* è·å–æ¹¿åº¦æ ¡å‡†å€¼ */
         ret = __hts221_get_hum_cal(p_dev);
         if (ret != AM_OK) {
             cur_ret = ret;
         }
 
-        /* »ñÈ¡ÎÂ¶ÈĞ£×¼Öµ */
+        /* è·å–æ¸©åº¦æ ¡å‡†å€¼ */
         ret = __hts221_get_tem_cal(p_dev);
         if (ret != AM_OK) {
             cur_ret = ret;
@@ -984,7 +984,7 @@ am_sensor_handle_t am_sensor_hts221_init (
 }
 
 /**
- * \brief ´«¸ĞÆ÷ HTS221 È¥³õÊ¼»¯
+ * \brief ä¼ æ„Ÿå™¨ HTS221 å»åˆå§‹åŒ–
  */
 am_err_t am_sensor_hts221_deinit (am_sensor_handle_t handle)
 {

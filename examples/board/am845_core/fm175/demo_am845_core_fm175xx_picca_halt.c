@@ -12,18 +12,18 @@
 
 /**
  * \file
- * \brief fm175xxʹ�ò�ͬ�ķ�����ȡ��Ƭ��Ϣ��ͨ�������ӿ�ʵ��
+ * \brief fm175xx使用不同的方法读取卡片信息，通过驱动接口实现
  *
- * - �������裺
- *   1. ��ȷ���Ӳ����úô��ڡ�
- *   2. ��ȷ���Ӻ����ߡ�
- *   3. ��A�࿨�������߸�Ӧ����
+ * - 操作步骤：
+ *   1. 正确连接并配置好串口。
+ *   2. 正确连接好天线。
+ *   3. 将A类卡置于天线感应区。
  *
- * - ʵ������
- *   1. �����Ƭ֧��haltָ���ÿ�����½����������߸�Ӧ���󣬴���ֻ�ܴ�ӡ�����ο�Ƭ��Ϣ��
- *   2. �����Ƭ��֧��haltָ��򽫿��������߸�Ӧ���󣬴������������ϵĴ�ӡ����Ƭ��Ϣ��
+ * - 实验现象：
+ *   1. 如果卡片支持halt指令，则每次重新将卡放置天线感应区后，串口只能打印出两次卡片信息。
+ *   2. 如果卡片不支持halt指令，则将卡放置天线感应区后，串口能连续不断的打印出卡片信息。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_am845_corefid_dr_fm175xx_picca_halt.c src_am845_corefid_dr_fm175xx_picca_halt
  *
  * \internal
@@ -45,7 +45,7 @@
 #include "demo_components_entries.h"
 
 /**
- * \brief A�࿨�����߿�����
+ * \brief A类卡读休眠卡例程
  */
 void demo_am845_core_fm175xx_picca_halt (void)
 {

@@ -12,18 +12,18 @@
 
 /**
  * \file
- * \brief UART »·ÐÎ»º³åÇøÀý³Ì£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief UART çŽ¯å½¢ç¼“å†²åŒºä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿ÚÊä³ö "UART interrupt mode(Add ring buffer) test:"£»
- *   2. ´®¿ÚÊä³ö½ÓÊÕµ½µÄ×Ö·û´®¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. ä¸²å£è¾“å‡º "UART interrupt mode(Add ring buffer) test:"ï¼›
+ *   2. ä¸²å£è¾“å‡ºæŽ¥æ”¶åˆ°çš„å­—ç¬¦ä¸²ã€‚
  *
  * \note
- *    1. ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIOA_9 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD£»
- *    2. Èç¹ûµ÷ÊÔ´®¿ÚÊ¹ÓÃÓë±¾Àý³ÌÏàÍ¬£¬Ôò²»Ó¦ÔÚºóÐø¼ÌÐøÊ¹ÓÃµ÷ÊÔÐÅÏ¢Êä³öº¯Êý
- *      £¨Èç£ºAM_DBG_INFO()£©¡£
+ *    1. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIOA_9 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDï¼›
+ *    2. å¦‚æžœè°ƒè¯•ä¸²å£ä½¿ç”¨ä¸Žæœ¬ä¾‹ç¨‹ç›¸åŒï¼Œåˆ™ä¸åº”åœ¨åŽç»­ç»§ç»­ä½¿ç”¨è°ƒè¯•ä¿¡æ¯è¾“å‡ºå‡½æ•°
+ *      ï¼ˆå¦‚ï¼šAM_DBG_INFO()ï¼‰ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am116_core_std_uart_ringbuf.c src_am116_core_std_uart_ringbuf
  *
  * \internal
@@ -45,7 +45,7 @@
 #include "demo_am116_core_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am116_core_std_uart_ringbuf_entry (void)
 {

@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief lpc845 kboot KinetisFlashTool ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief lpc845 kboot KinetisFlashTool ç”¨æˆ·é…ç½®æ–‡ä»¶
  *
  *
  *
@@ -23,40 +23,40 @@
  */
 
 /**
- * \brief bootloader flashÊµÀı³õÊ¼»¯£¬»ñµÃÆä±ê×¼·şÎñ¾ä±ú
+ * \brief bootloader flashå®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—å…¶æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return bootloader flash±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return bootloader flashæ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 
 #include "am_boot_firmware.h"
 #include "am_boot_flash.h"
 #include "am_boot_msg_flag.h"
 /**
- * \brief bootloader flashÊµÀı³õÊ¼»¯£¬»ñµÃÆä±ê×¼·şÎñ¾ä±ú
+ * \brief bootloader flashå®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—å…¶æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return bootloader flash±ê×¼·şÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return bootloader flashæ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_boot_flash_handle_t am_lpc84x_boot_flash_inst_init(void);
 
 /**
- * \brief bootloader ±ê×¼ÊµÀı³õÊ¼»¯
+ * \brief bootloader æ ‡å‡†å®ä¾‹åˆå§‹åŒ–
  *
  *
- * \return ÈôÎª AM_OK£¬±íÃ÷³õÊ¼»¯³É¹¦
+ * \return è‹¥ä¸º AM_OKï¼Œè¡¨æ˜åˆå§‹åŒ–æˆåŠŸ
  */
 int am_lpc84x_boot_inst_init(void);
 
 /**
- * \brief bootloader ¹Ì¼ş´æ·Å ÊµÀı³õÊ¼»¯
+ * \brief bootloader å›ºä»¶å­˜æ”¾ å®ä¾‹åˆå§‹åŒ–
  */
 am_boot_firmware_handle_t am_lpc84x_boot_firmware_flash_inst_init(void);
 
 /**
- * \brief bootloader Í¨¹ı±êÖ¾ÉèÖÃÏûÏ¢  ÊµÀı³õÊ¼»¯
+ * \brief bootloader é€šè¿‡æ ‡å¿—è®¾ç½®æ¶ˆæ¯  å®ä¾‹åˆå§‹åŒ–
  */
 am_boot_msg_handle_t am_lpc84x_boot_msg_flag_inst_init(void);
 

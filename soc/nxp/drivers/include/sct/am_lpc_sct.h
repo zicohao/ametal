@@ -13,36 +13,36 @@
 
 /**
  * \file
- * \brief SCTÇı¶¯
+ * \brief SCTé©±åŠ¨
  *
- * 1. SCT£¨×´Ì¬¿ÉÅäÖÃ¶¨Ê±Æ÷£©ÊÇÒ»¸öÒÔ¼ÆÊıÆ÷Îª»ù´¡£¬ÒÔÊÂ¼şÎªÖĞĞÄ£¬×´Ì¬×´Ì¬¿ÉÅäÖÃµÄ¶¨Ê±Æ÷
- * 2. SCT¼ÆÊıÆ÷
- *    - Ò»¸ö×î´ó32Î»¼ÆÊıµÄ¼ÆÊıÆ÷£»
- *    - ¿ÉÊµÏÖµ¥ÏòµİÔö¼ÆÊı»òÕßË«Ïò¼ÆÊı£»
- *    - ¿É±»SCTÊÂ¼şÓ²¼şÉÏ×Ô¶¯ÏŞÖÆ£¨ÇåÁã»ò·´Ïò¼ÆÊı£©¡¢Í£Ö¹¡¢Æô¶¯¡¢ÖÕÖ¹£»
- *    - ¿É±»SCTÊÂ¼şÓ²¼şÉÏ×Ô¶¯¸ú×ÙÉè¶¨µÄÆ¥ÅäÖµ¡¢ÅĞ¶ÏÊÇ·ñÆ¥Åä£»
- *    - ¿É±»SCTÊÂ¼şÓ²¼şÉÏ×Ô¶¯»ñÈ¡¼ÆÊıÖµ£¬ÒÔ±ãÊµÏÖ²¶»ñÂß¼­¡£
- * 3. SCTÊÂ¼ş
- *    - ÊÂ¼şÏà»¥¶ÀÁ¢£¬ÊÂ¼şÊıÄ¿¸ß´ï13¸ö£»
- *    - ¿ÉÈí¼şÅäÖÃÊÂ¼ş²úÉúµÄÌõ¼ş£¬Ìõ¼ş¿ÉÄÜÊÇIOÌõ¼ş¡¢Æ¥ÅäÌõ¼ş¡¢²¶»ñÌõ¼ş»òÕßIO¸úÆ¥ÅäÌõ¼ş×éºÏ£»
- *    - ¿ÉÈí¼şÅäÖÃÊÂ¼şÔÚÄÄĞ©SCT×´Ì¬ÏÂ¿ÉÒÔ²úÉúµÄ£»
- *    - ¿ÉÈí¼şÅäÖÃÊÂ¼ş²úÉúÊ±£¬¶Ô¼ÆÊıÆ÷µÄ²Ù×÷£¬ÈçÏŞÖÆ£¨ÇåÁã»ò·´Ïò¼ÆÊı£©¡¢Í£Ö¹¡¢Æô¶¯¡¢ÖÕÖ¹£»
- *    - ¿ÉÈí¼şÅäÖÃÊÂ¼ş²úÉúÊ±£¬ÊÇ·ñ´¥·¢DMA´«ÊäÇëÇó£¬Ö§³ÖÁ½¸öDMA´¥·¢Í¨µÀ£»
- *    - ¿ÉÈí¼şÅäÖÃÊÂ¼ş²úÉúÊ±£¬¶ÔÊä³öIOÍ¨µÀ½øĞĞ¿ØÖÆ£»
- *    - ¿ÉÈí¼şÅäÖÃÊÂ¼ş²úÉúÊ±£¬²úÉúSCTÊÂ¼şÖĞ¶Ï£»
- *    - ¿ÉÈí¼şÅäÖÃÊÂ¼ş²úÉúºó£¬¶ÔSCT×´Ì¬µÄÓ°Ïì¡£
- * 4. SCT×´Ì¬
- *    - SCTÌá¹©ÁË13¸ö×´Ì¬
- *    - ¿ÉÒÔÅäÖÃSCT´¦ÓÚÄÄ¸ö×´Ì¬£»
- *    - ×´Ì¬Ö®¼ä¿ÉÍ¨¹ıSCTÊÂ¼ş½øĞĞ×Ô¶¯ÇĞ»»¡£
- * 5. SCT ÊäÈëIOÍ¨µÀ
- *    - Ìá¹©ÁË8¸öÊäÈëIOÍ¨µÀ£»
- *    - Ã¿¸öÍ¨µÀ¾ù¿ÉÓÃÓÚ×÷ÎªSCTÊÂ¼ş´¥·¢µÄIOÌõ¼ş»òÕß²¶»ñÒı½Å×´Ì¬µÄÊäÈë£»
- * 6. SCT Êä³öIOÍ¨µÀ
- *    - Ìá¹©ÁË8¸öÊäÈëIOÍ¨µÀ£»
- *    - Ã¿¸öÍ¨µÀ¾ù¿ÉÓÃÓÚ×÷ÎªSCTÊÂ¼ş´¥·¢µÄIOÌõ¼ş»òÕßÊÂ¼ş²úÉúÊ±£¬±»¿ØÖÆµÄÊä³öIOÍ¨µÀ£»
- *    - Êä³öIOÍ¨µÀ3£¬¿ÉÓÃÓÚ´¥·¢ADC×ª»»£¬¶øÆäËûÍ¨µÀÎŞ´Ë¹¦ÄÜ£»
- *    - µ±¶à¸öÊÂ¼şÍ¬Ê±²Ù×÷Í¬Ò»¸öÊä³öÍ¨µÀÊ±£¬ÇÒ·¢ÉúÁËµçÆ½³åÍ»£¬Ôò¿ÉÒÔÅäÖÃÕâÖÖ³åÍ»µÄ½â¾ö·½·¨¡£
+ * 1. SCTï¼ˆçŠ¶æ€å¯é…ç½®å®šæ—¶å™¨ï¼‰æ˜¯ä¸€ä¸ªä»¥è®¡æ•°å™¨ä¸ºåŸºç¡€ï¼Œä»¥äº‹ä»¶ä¸ºä¸­å¿ƒï¼ŒçŠ¶æ€çŠ¶æ€å¯é…ç½®çš„å®šæ—¶å™¨
+ * 2. SCTè®¡æ•°å™¨
+ *    - ä¸€ä¸ªæœ€å¤§32ä½è®¡æ•°çš„è®¡æ•°å™¨ï¼›
+ *    - å¯å®ç°å•å‘é€’å¢è®¡æ•°æˆ–è€…åŒå‘è®¡æ•°ï¼›
+ *    - å¯è¢«SCTäº‹ä»¶ç¡¬ä»¶ä¸Šè‡ªåŠ¨é™åˆ¶ï¼ˆæ¸…é›¶æˆ–åå‘è®¡æ•°ï¼‰ã€åœæ­¢ã€å¯åŠ¨ã€ç»ˆæ­¢ï¼›
+ *    - å¯è¢«SCTäº‹ä»¶ç¡¬ä»¶ä¸Šè‡ªåŠ¨è·Ÿè¸ªè®¾å®šçš„åŒ¹é…å€¼ã€åˆ¤æ–­æ˜¯å¦åŒ¹é…ï¼›
+ *    - å¯è¢«SCTäº‹ä»¶ç¡¬ä»¶ä¸Šè‡ªåŠ¨è·å–è®¡æ•°å€¼ï¼Œä»¥ä¾¿å®ç°æ•è·é€»è¾‘ã€‚
+ * 3. SCTäº‹ä»¶
+ *    - äº‹ä»¶ç›¸äº’ç‹¬ç«‹ï¼Œäº‹ä»¶æ•°ç›®é«˜è¾¾13ä¸ªï¼›
+ *    - å¯è½¯ä»¶é…ç½®äº‹ä»¶äº§ç”Ÿçš„æ¡ä»¶ï¼Œæ¡ä»¶å¯èƒ½æ˜¯IOæ¡ä»¶ã€åŒ¹é…æ¡ä»¶ã€æ•è·æ¡ä»¶æˆ–è€…IOè·ŸåŒ¹é…æ¡ä»¶ç»„åˆï¼›
+ *    - å¯è½¯ä»¶é…ç½®äº‹ä»¶åœ¨å“ªäº›SCTçŠ¶æ€ä¸‹å¯ä»¥äº§ç”Ÿçš„ï¼›
+ *    - å¯è½¯ä»¶é…ç½®äº‹ä»¶äº§ç”Ÿæ—¶ï¼Œå¯¹è®¡æ•°å™¨çš„æ“ä½œï¼Œå¦‚é™åˆ¶ï¼ˆæ¸…é›¶æˆ–åå‘è®¡æ•°ï¼‰ã€åœæ­¢ã€å¯åŠ¨ã€ç»ˆæ­¢ï¼›
+ *    - å¯è½¯ä»¶é…ç½®äº‹ä»¶äº§ç”Ÿæ—¶ï¼Œæ˜¯å¦è§¦å‘DMAä¼ è¾“è¯·æ±‚ï¼Œæ”¯æŒä¸¤ä¸ªDMAè§¦å‘é€šé“ï¼›
+ *    - å¯è½¯ä»¶é…ç½®äº‹ä»¶äº§ç”Ÿæ—¶ï¼Œå¯¹è¾“å‡ºIOé€šé“è¿›è¡Œæ§åˆ¶ï¼›
+ *    - å¯è½¯ä»¶é…ç½®äº‹ä»¶äº§ç”Ÿæ—¶ï¼Œäº§ç”ŸSCTäº‹ä»¶ä¸­æ–­ï¼›
+ *    - å¯è½¯ä»¶é…ç½®äº‹ä»¶äº§ç”Ÿåï¼Œå¯¹SCTçŠ¶æ€çš„å½±å“ã€‚
+ * 4. SCTçŠ¶æ€
+ *    - SCTæä¾›äº†13ä¸ªçŠ¶æ€
+ *    - å¯ä»¥é…ç½®SCTå¤„äºå“ªä¸ªçŠ¶æ€ï¼›
+ *    - çŠ¶æ€ä¹‹é—´å¯é€šè¿‡SCTäº‹ä»¶è¿›è¡Œè‡ªåŠ¨åˆ‡æ¢ã€‚
+ * 5. SCT è¾“å…¥IOé€šé“
+ *    - æä¾›äº†8ä¸ªè¾“å…¥IOé€šé“ï¼›
+ *    - æ¯ä¸ªé€šé“å‡å¯ç”¨äºä½œä¸ºSCTäº‹ä»¶è§¦å‘çš„IOæ¡ä»¶æˆ–è€…æ•è·å¼•è„šçŠ¶æ€çš„è¾“å…¥ï¼›
+ * 6. SCT è¾“å‡ºIOé€šé“
+ *    - æä¾›äº†8ä¸ªè¾“å…¥IOé€šé“ï¼›
+ *    - æ¯ä¸ªé€šé“å‡å¯ç”¨äºä½œä¸ºSCTäº‹ä»¶è§¦å‘çš„IOæ¡ä»¶æˆ–è€…äº‹ä»¶äº§ç”Ÿæ—¶ï¼Œè¢«æ§åˆ¶çš„è¾“å‡ºIOé€šé“ï¼›
+ *    - è¾“å‡ºIOé€šé“3ï¼Œå¯ç”¨äºè§¦å‘ADCè½¬æ¢ï¼Œè€Œå…¶ä»–é€šé“æ— æ­¤åŠŸèƒ½ï¼›
+ *    - å½“å¤šä¸ªäº‹ä»¶åŒæ—¶æ“ä½œåŒä¸€ä¸ªè¾“å‡ºé€šé“æ—¶ï¼Œä¸”å‘ç”Ÿäº†ç”µå¹³å†²çªï¼Œåˆ™å¯ä»¥é…ç½®è¿™ç§å†²çªçš„è§£å†³æ–¹æ³•ã€‚
  *
  * \internal
  * \par Modification history
@@ -65,213 +65,213 @@ extern "C" {
  * @{
  */
 
-/** \brief SCTÊÂ¼şÖĞ¶ÏĞÅÏ¢ */
+/** \brief SCTäº‹ä»¶ä¸­æ–­ä¿¡æ¯ */
 struct am_lpc_sct_evt_isr_info {
 
-    /** \brief ´¥·¢»Øµ÷º¯Êı */
+    /** \brief è§¦å‘å›è°ƒå‡½æ•° */
     am_pfnvoid_t  pfn_isr;
 
-    /** \brief »Øµ÷º¯ÊıµÄ²ÎÊı */
+    /** \brief å›è°ƒå‡½æ•°çš„å‚æ•° */
     void         *p_arg;
 };
 
 
 /**
- * \brief SCT¶¨Ê±¹¦ÄÜÏà¹ØµÄÉè±¸ĞÅÏ¢
+ * \brief SCTå®šæ—¶åŠŸèƒ½ç›¸å…³çš„è®¾å¤‡ä¿¡æ¯
  */
 typedef struct am_lpc_sct_devinfo {
 
-    /** \brief SCT¼Ä´æÆ÷¿éµÄ»ùµØÖ·*/
+    /** \brief SCTå¯„å­˜å™¨å—çš„åŸºåœ°å€*/
     uint32_t                           sct_regbase;
 
-    /** \brief SCTÖĞ¶ÏºÅ */
+    /** \brief SCTä¸­æ–­å· */
     uint8_t                            inum;
 
-    /** \brief SCTÊ±ÖÓ±àºÅ */
+    /** \brief SCTæ—¶é’Ÿç¼–å· */
     uint32_t                           clk_id;
 
-    /** \brief ×ÜÊÂ¼şÖĞ¶ÏÊıÁ¿ */
+    /** \brief æ€»äº‹ä»¶ä¸­æ–­æ•°é‡ */
     int                                evt_isr_cnt;
 
-    /** \brief ISRĞÅÏ¢Ó³Éä(´óĞ¡Óë evt_isr_cnt Ò»ÖÂ) */
+    /** \brief ISRä¿¡æ¯æ˜ å°„(å¤§å°ä¸ evt_isr_cnt ä¸€è‡´) */
     uint8_t                           *p_isrmap;
 
-    /** \brief ISRĞÅÏ¢ÊıÁ¿ */
+    /** \brief ISRä¿¡æ¯æ•°é‡ */
     int                                isrinfo_cnt;
 
 
-    /** \brief ISRĞÅÏ¢Ó³ÉäÄÚ´æ(´óĞ¡Óë isrinfo_cnt Ò»ÖÂ) */
+    /** \brief ISRä¿¡æ¯æ˜ å°„å†…å­˜(å¤§å°ä¸ isrinfo_cnt ä¸€è‡´) */
     struct am_lpc_sct_evt_isr_info *p_isrinfo;
 
-    /** \brief Êä³öÍ¨µÀÊıÁ¿ */
+    /** \brief è¾“å‡ºé€šé“æ•°é‡ */
     int                                 sct_out_num;
 
-    /** \brief DMAÇëÇóÍ¨µÀÊıÁ¿  */
+    /** \brief DMAè¯·æ±‚é€šé“æ•°é‡  */
     int                                 sct_dma_req_num;
 
-    /** \brief Æ½Ì¨³õÊ¼»¯º¯Êı£¬Èç´ò¿ªÊ±ÖÓ£¬ÅäÖÃÒı½ÅµÈ¹¤×÷ */
+    /** \brief å¹³å°åˆå§‹åŒ–å‡½æ•°ï¼Œå¦‚æ‰“å¼€æ—¶é’Ÿï¼Œé…ç½®å¼•è„šç­‰å·¥ä½œ */
     void     (*pfn_plfm_init)(void);
 
-    /** \brief Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    /** \brief å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
     void     (*pfn_plfm_deinit)(void);
 } am_lpc_sct_devinfo_t;
 
 /**
- * \brief SCT¶¨Ê±¹¦ÄÜÉè±¸
+ * \brief SCTå®šæ—¶åŠŸèƒ½è®¾å¤‡
  */
 typedef struct am_lpc_sct_dev {
 
-    /** \brief Ö¸ÏòSCT(¶¨Ê±¹¦ÄÜ)Éè±¸ĞÅÏ¢³£Á¿µÄÖ¸Õë */
+    /** \brief æŒ‡å‘SCT(å®šæ—¶åŠŸèƒ½)è®¾å¤‡ä¿¡æ¯å¸¸é‡çš„æŒ‡é’ˆ */
     const am_lpc_sct_devinfo_t  *p_devinfo;
 
-    /** \brief ËùÓĞÊÂ¼şµÄ×´Ì¬
+    /** \brief æ‰€æœ‰äº‹ä»¶çš„çŠ¶æ€
      *  bit0 = event0, bit1 = event1...
-     *  µ±bit0 = 1Ê±£¬ÊÂ¼ş0ÒÑ±»Ê¹ÓÃ
-     *  µ±bit0 = 0Ê±£¬ÊÂ¼ş0Î´Ê¹ÓÃ
+     *  å½“bit0 = 1æ—¶ï¼Œäº‹ä»¶0å·²è¢«ä½¿ç”¨
+     *  å½“bit0 = 0æ—¶ï¼Œäº‹ä»¶0æœªä½¿ç”¨
      */
     uint8_t                         evt_stat;
 
-    /** \brief ²ÎÊıÓĞĞ§±êÖ¾ */
+    /** \brief å‚æ•°æœ‰æ•ˆæ ‡å¿— */
     am_bool_t                       valid_flg;
 } am_lpc_sct_dev_t;
 
-/** \brief SCT·şÎñ²Ù×÷¾ä±úÀàĞÍ¶¨Òå */
+/** \brief SCTæœåŠ¡æ“ä½œå¥æŸ„ç±»å‹å®šä¹‰ */
 typedef am_lpc_sct_dev_t *am_lpc_sct_handle_t;
 
 /**
- * \brief SCTÊÂ¼ş
+ * \brief SCTäº‹ä»¶
  */
 typedef struct am_lpc_sct_evt {
-    uint64_t    cond_flags;          /**< \brief ÊÂ¼ş·¢ÉúµÄÌõ¼şÅäÖÃÏî        */
-    uint8_t     stat_en_flags;       /**< \brief ÊÂ¼şÔÚÄÄĞ©SCT×´Ì¬ÏÂÉúĞ§ÅäÖÃÏî     */
-    uint8_t     out_stat_flag;       /**< \brief ÊÂ¼ş·¢ÉúÊ±SCT×´Ì¬¿ØÖÆÊä³öÅäÖÃÏî */
-    uint8_t     out_cnt_flags;      /**< \brief ÊÂ¼ş·¢ÉúÊ±¿ØÖÆ¼ÆÊıÆ÷µÄÅäÖÃÏî   */
-    uint8_t     out_dma_flags;       /**< \brief ÊÂ¼ş·¢ÉúÊ±¿ØÖÆDMAÇëÇóÅäÖÃÏî   */
-    uint16_t    out_io_flags;        /**< \brief ÊÂ¼ş·¢ÉúÊ±¿ØÖÆIOµÄÅäÖÃÏî        */
-    uint64_t    out_int_flag;        /**< \brief ÊÂ¼ş·¢ÉúÊ±ÖĞ¶ÏÅäÖÃÏî        */
+    uint64_t    cond_flags;          /**< \brief äº‹ä»¶å‘ç”Ÿçš„æ¡ä»¶é…ç½®é¡¹        */
+    uint8_t     stat_en_flags;       /**< \brief äº‹ä»¶åœ¨å“ªäº›SCTçŠ¶æ€ä¸‹ç”Ÿæ•ˆé…ç½®é¡¹     */
+    uint8_t     out_stat_flag;       /**< \brief äº‹ä»¶å‘ç”Ÿæ—¶SCTçŠ¶æ€æ§åˆ¶è¾“å‡ºé…ç½®é¡¹ */
+    uint8_t     out_cnt_flags;      /**< \brief äº‹ä»¶å‘ç”Ÿæ—¶æ§åˆ¶è®¡æ•°å™¨çš„é…ç½®é¡¹   */
+    uint8_t     out_dma_flags;       /**< \brief äº‹ä»¶å‘ç”Ÿæ—¶æ§åˆ¶DMAè¯·æ±‚é…ç½®é¡¹   */
+    uint16_t    out_io_flags;        /**< \brief äº‹ä»¶å‘ç”Ÿæ—¶æ§åˆ¶IOçš„é…ç½®é¡¹        */
+    uint64_t    out_int_flag;        /**< \brief äº‹ä»¶å‘ç”Ÿæ—¶ä¸­æ–­é…ç½®é¡¹        */
 } am_lpc_sct_evt_t;
 
 
 /**
- * \name ÊÂ¼şÅäÖÃcond_flags bit[63:0]¹¦ÄÜÂëÎ»Óò¶¨Òå
+ * \name äº‹ä»¶é…ç½®cond_flags bit[63:0]åŠŸèƒ½ç ä½åŸŸå®šä¹‰
  * @{
  */
-#define AM_LPC_SCT_ISOUT_BITS_START        0   /**< \brief IO·½ÏòÑ¡ÔñÆğÊ¼Î»ÖÃ  */
-#define AM_LPC_SCT_IOSEL_CH_BITS_START     1   /**< \brief IOÍ¨µÀÆğÊ¼Î»ÖÃ  */
-#define AM_LPC_SCT_IOCOND_BITS_START       5   /**< \brief IOÌõ¼şÆğÊ¼Î»ÖÃ  */
-#define AM_LPC_SCT_COND_OPR_BITS_START     7   /**< \brief Ìõ¼şÔËËãÆğÊ¼Î»ÖÃ  */
-#define AM_LPC_SCT_MATCAP_CH_BITS_START    16  /**< \brief Æ¥ÅäÍ¨µÀÆğÊ¼Î»ÖÃ  */
-#define AM_LPC_SCT_MATCAP_ISCAP_BITS_START 24  /**< \brief ÊÇ·ñÉèÖÃÆ¥Åä   */
-#define AM_LPC_SCT_MATCAP_ISSET_BITS_START 25  /**< \brief ÊÇ·ñÆ¥Åä¹¦ÄÜ   */
-#define AM_LPC_SCT_MAT_VAL_BITS_START      32  /**< \brief Æ¥ÅäÖµÎ»ÓòÆğÊ¼Î»ÖÃ*/
-#define AM_LPC_SCT_MATCAP_CH_BITS_LEN      4   /**< \brief Æ¥ÅäÍ¨µÀÎ»Óò³¤¶È   */
+#define AM_LPC_SCT_ISOUT_BITS_START        0   /**< \brief IOæ–¹å‘é€‰æ‹©èµ·å§‹ä½ç½®  */
+#define AM_LPC_SCT_IOSEL_CH_BITS_START     1   /**< \brief IOé€šé“èµ·å§‹ä½ç½®  */
+#define AM_LPC_SCT_IOCOND_BITS_START       5   /**< \brief IOæ¡ä»¶èµ·å§‹ä½ç½®  */
+#define AM_LPC_SCT_COND_OPR_BITS_START     7   /**< \brief æ¡ä»¶è¿ç®—èµ·å§‹ä½ç½®  */
+#define AM_LPC_SCT_MATCAP_CH_BITS_START    16  /**< \brief åŒ¹é…é€šé“èµ·å§‹ä½ç½®  */
+#define AM_LPC_SCT_MATCAP_ISCAP_BITS_START 24  /**< \brief æ˜¯å¦è®¾ç½®åŒ¹é…   */
+#define AM_LPC_SCT_MATCAP_ISSET_BITS_START 25  /**< \brief æ˜¯å¦åŒ¹é…åŠŸèƒ½   */
+#define AM_LPC_SCT_MAT_VAL_BITS_START      32  /**< \brief åŒ¹é…å€¼ä½åŸŸèµ·å§‹ä½ç½®*/
+#define AM_LPC_SCT_MATCAP_CH_BITS_LEN      4   /**< \brief åŒ¹é…é€šé“ä½åŸŸé•¿åº¦   */
 /** @} */
 
 /**
- * \name ÊÂ¼ş¿ØÖÆ×´Ì¬±ä»¯ÅäÖÃout_stat_flag bit[7:0]¹¦ÄÜÂëÎ»Óò¶¨Òå
+ * \name äº‹ä»¶æ§åˆ¶çŠ¶æ€å˜åŒ–é…ç½®out_stat_flag bit[7:0]åŠŸèƒ½ç ä½åŸŸå®šä¹‰
  * @{
  */
-#define AM_LPC_SCT_ISRELOAD_BITS_START    0  /**< \brief ÊÇ·ñÖØ×°×´Ì¬ÆğÊ¼Î»ÖÃ  */
-#define AM_LPC_SCT_STAT_VAL_BITS_START    1  /**< \brief ×´Ì¬ÖµÆğÊ¼Î»ÖÃ  */
+#define AM_LPC_SCT_ISRELOAD_BITS_START    0  /**< \brief æ˜¯å¦é‡è£…çŠ¶æ€èµ·å§‹ä½ç½®  */
+#define AM_LPC_SCT_STAT_VAL_BITS_START    1  /**< \brief çŠ¶æ€å€¼èµ·å§‹ä½ç½®  */
 /** @} */
 
 /**
- * \name ÊÂ¼ş¿ØÖÆ¼ÆÊıÆ÷ÅäÖÃout_cnt_flags bit[8:0]¹¦ÄÜÂëÎ»Óò¶¨Òå
+ * \name äº‹ä»¶æ§åˆ¶è®¡æ•°å™¨é…ç½®out_cnt_flags bit[8:0]åŠŸèƒ½ç ä½åŸŸå®šä¹‰
  * @{
  */
-#define AM_LPC_SCT_LIMIT_BITS_START   0   /**< \brief ÏŞÖÆ¶¨Ê±Æ÷ÆğÊ¼Î»ÖÃ  */
-#define AM_LPC_SCT_STOP_BITS_START    1   /**< \brief Í£Ö¹¶¨Ê±Æ÷ÆğÊ¼Î»ÖÃ  */
-#define AM_LPC_SCT_START_BITS_START   2   /**< \brief Æô¶¯¶¨Ê±Æ÷ÆğÊ¼Î»ÖÃ  */
-#define AM_LPC_SCT_HALT_BITS_START    3   /**< \brief ÖÕÖ¹¶¨Ê±Æ÷ÆğÊ¼Î»ÖÃ  */
+#define AM_LPC_SCT_LIMIT_BITS_START   0   /**< \brief é™åˆ¶å®šæ—¶å™¨èµ·å§‹ä½ç½®  */
+#define AM_LPC_SCT_STOP_BITS_START    1   /**< \brief åœæ­¢å®šæ—¶å™¨èµ·å§‹ä½ç½®  */
+#define AM_LPC_SCT_START_BITS_START   2   /**< \brief å¯åŠ¨å®šæ—¶å™¨èµ·å§‹ä½ç½®  */
+#define AM_LPC_SCT_HALT_BITS_START    3   /**< \brief ç»ˆæ­¢å®šæ—¶å™¨èµ·å§‹ä½ç½®  */
 /** @} */
 
 /**
- * \name ÊÂ¼ş¿ØÖÆIOÊä³öÅäÖÃout_io_flags bit[15:0]¹¦ÄÜÂëÎ»Óò¶¨Òå
+ * \name äº‹ä»¶æ§åˆ¶IOè¾“å‡ºé…ç½®out_io_flags bit[15:0]åŠŸèƒ½ç ä½åŸŸå®šä¹‰
  * @{
  */
-#define AM_LPC_SCT_IOSET_CH_BITS_START    0   /**< \brief ÖÃÎ»IOÍ¨µÀÆğÊ¼Î»ÖÃ  */
-#define AM_LPC_SCT_IOCLR_CH_BITS_START    8   /**< \brief ÇåÁãIOÍ¨µÀÆğÊ¼Î»ÖÃ  */
+#define AM_LPC_SCT_IOSET_CH_BITS_START    0   /**< \brief ç½®ä½IOé€šé“èµ·å§‹ä½ç½®  */
+#define AM_LPC_SCT_IOCLR_CH_BITS_START    8   /**< \brief æ¸…é›¶IOé€šé“èµ·å§‹ä½ç½®  */
 /** @} */
 
 /**
- * \name ÊÂ¼ş¿ØÖÆÖĞ¶ÏÅäÖÃout_int_flag bit[63:0]¹¦ÄÜÂëÎ»Óò¶¨Òå
+ * \name äº‹ä»¶æ§åˆ¶ä¸­æ–­é…ç½®out_int_flag bit[63:0]åŠŸèƒ½ç ä½åŸŸå®šä¹‰
  * @{
  */
-#define AM_LPC_SCT_CALLBACK_BITS_START    0  /**< \brief »Øµ÷º¯ÊıÆğÊ¼Î»ÖÃ  */
-#define AM_LPC_SCT_CBPARAM_BITS_START     32 /**< \brief »Øµ÷º¯Êı²ÎÊıÆğÊ¼Î»ÖÃ  */
-#define AM_LPC_SCT_CALLBACK_BITS_LEN      32  /**< \brief »Øµ÷º¯Êı³¤¶È  */
-#define AM_LPC_SCT_CBPARAM_BITS_LEN       32  /**< \brief »Øµ÷º¯Êı²ÎÊı³¤¶È  */
+#define AM_LPC_SCT_CALLBACK_BITS_START    0  /**< \brief å›è°ƒå‡½æ•°èµ·å§‹ä½ç½®  */
+#define AM_LPC_SCT_CBPARAM_BITS_START     32 /**< \brief å›è°ƒå‡½æ•°å‚æ•°èµ·å§‹ä½ç½®  */
+#define AM_LPC_SCT_CALLBACK_BITS_LEN      32  /**< \brief å›è°ƒå‡½æ•°é•¿åº¦  */
+#define AM_LPC_SCT_CBPARAM_BITS_LEN       32  /**< \brief å›è°ƒå‡½æ•°å‚æ•°é•¿åº¦  */
 /** @} */
 
 /**
- * \name ÊÂ¼ş¿ØÖÆDMA´¥·¢ÅäÖÃout_dma_flags bit[7:0]¹¦ÄÜÂëÎ»Óò¶¨Òå
+ * \name äº‹ä»¶æ§åˆ¶DMAè§¦å‘é…ç½®out_dma_flags bit[7:0]åŠŸèƒ½ç ä½åŸŸå®šä¹‰
  * @{
  */
-#define AM_LPC_SCT_DMA_REQ_CH_BITS_START    0 /**< \brief DMA´¥·¢Í¨µÀÆğÊ¼Î»ÖÃ  */
+#define AM_LPC_SCT_DMA_REQ_CH_BITS_START    0 /**< \brief DMAè§¦å‘é€šé“èµ·å§‹ä½ç½®  */
 /** @} */
 
 /**
- * \name SCTËùÓĞµÄÊä³öIOÍ¨µÀ±àºÅ
+ * \name SCTæ‰€æœ‰çš„è¾“å‡ºIOé€šé“ç¼–å·
  * \anchor grp_am_lpc_sct_io_chan_out
  * @{
  */
-#define    AM_LPC_SCT_IO_CHAN_OUT0   0   /**< \brief SCTÊä³öÍ¨µÀ0     */
-#define    AM_LPC_SCT_IO_CHAN_OUT1   1   /**< \brief SCTÊä³öÍ¨µÀ1     */
-#define    AM_LPC_SCT_IO_CHAN_OUT2   2   /**< \brief SCTÊä³öÍ¨µÀ2     */
-#define    AM_LPC_SCT_IO_CHAN_OUT3   3   /**< \brief SCTÊä³öÍ¨µÀ3     */
-#define    AM_LPC_SCT_IO_CHAN_OUT4   4   /**< \brief SCTÊä³öÍ¨µÀ4     */
-#define    AM_LPC_SCT_IO_CHAN_OUT5   5   /**< \brief SCTÊä³öÍ¨µÀ5     */
-#define    AM_LPC_SCT_IO_CHAN_OUT6   6   /**< \brief SCTÊä³öÍ¨µÀ6     */
-#define    AM_LPC_SCT_IO_CHAN_OUT7   7   /**< \brief SCTÊä³öÍ¨µÀ7     */
+#define    AM_LPC_SCT_IO_CHAN_OUT0   0   /**< \brief SCTè¾“å‡ºé€šé“0     */
+#define    AM_LPC_SCT_IO_CHAN_OUT1   1   /**< \brief SCTè¾“å‡ºé€šé“1     */
+#define    AM_LPC_SCT_IO_CHAN_OUT2   2   /**< \brief SCTè¾“å‡ºé€šé“2     */
+#define    AM_LPC_SCT_IO_CHAN_OUT3   3   /**< \brief SCTè¾“å‡ºé€šé“3     */
+#define    AM_LPC_SCT_IO_CHAN_OUT4   4   /**< \brief SCTè¾“å‡ºé€šé“4     */
+#define    AM_LPC_SCT_IO_CHAN_OUT5   5   /**< \brief SCTè¾“å‡ºé€šé“5     */
+#define    AM_LPC_SCT_IO_CHAN_OUT6   6   /**< \brief SCTè¾“å‡ºé€šé“6     */
+#define    AM_LPC_SCT_IO_CHAN_OUT7   7   /**< \brief SCTè¾“å‡ºé€šé“7     */
 
 /** @} */
 
 /**
- * \name SCTËùÓĞµÄÊäÈëIOÍ¨µÀ±àºÅ
+ * \name SCTæ‰€æœ‰çš„è¾“å…¥IOé€šé“ç¼–å·
  * \anchor grp_am_lpc_sct_io_chan_in
  * @{
  */
-#define    AM_LPC_SCT_IO_CHAN_IN0    0    /**< \brief SCTÊäÈëÍ¨µÀ0 */
-#define    AM_LPC_SCT_IO_CHAN_IN1    1    /**< \brief SCTÊäÈëÍ¨µÀ1 */
-#define    AM_LPC_SCT_IO_CHAN_IN2    2    /**< \brief SCTÊäÈëÍ¨µÀ2 */
-#define    AM_LPC_SCT_IO_CHAN_IN3    3    /**< \brief SCTÊäÈëÍ¨µÀ3 */
-#define    AM_LPC_SCT_IO_CHAN_IN4    4    /**< \brief SCTÊäÈëÍ¨µÀ4 */
-#define    AM_LPC_SCT_IO_CHAN_IN5    5    /**< \brief SCTÊäÈëÍ¨µÀ5 */
-#define    AM_LPC_SCT_IO_CHAN_IN6    6    /**< \brief SCTÊäÈëÍ¨µÀ6 */
-#define    AM_LPC_SCT_IO_CHAN_IN7    7    /**< \brief SCTÊäÈëÍ¨µÀ7 */
+#define    AM_LPC_SCT_IO_CHAN_IN0    0    /**< \brief SCTè¾“å…¥é€šé“0 */
+#define    AM_LPC_SCT_IO_CHAN_IN1    1    /**< \brief SCTè¾“å…¥é€šé“1 */
+#define    AM_LPC_SCT_IO_CHAN_IN2    2    /**< \brief SCTè¾“å…¥é€šé“2 */
+#define    AM_LPC_SCT_IO_CHAN_IN3    3    /**< \brief SCTè¾“å…¥é€šé“3 */
+#define    AM_LPC_SCT_IO_CHAN_IN4    4    /**< \brief SCTè¾“å…¥é€šé“4 */
+#define    AM_LPC_SCT_IO_CHAN_IN5    5    /**< \brief SCTè¾“å…¥é€šé“5 */
+#define    AM_LPC_SCT_IO_CHAN_IN6    6    /**< \brief SCTè¾“å…¥é€šé“6 */
+#define    AM_LPC_SCT_IO_CHAN_IN7    7    /**< \brief SCTè¾“å…¥é€šé“7 */
 
 /** @} */
 
 /**
- * \name SCTËùÓĞ¿É¹©¼ì²âµÄIOÌõ¼ş
+ * \name SCTæ‰€æœ‰å¯ä¾›æ£€æµ‹çš„IOæ¡ä»¶
  * \anchor grp_am_lpc_sct_io_cond
  * @{
  */
-#define    AM_LPC_SCT_IO_COND_LOW     0    /**< \brief µÍµçÆ½¼ì²â     */
-#define    AM_LPC_SCT_IO_COND_RISE    1    /**< \brief ÉÏÉıÑØ¼ì²â     */
-#define    AM_LPC_SCT_IO_COND_FALL    2    /**< \brief ÏÂ½µÑØ¼ì²â     */
-#define    AM_LPC_SCT_IO_COND_HIGH    3    /**< \brief ¸ßµçÆ½¼ì²â     */
+#define    AM_LPC_SCT_IO_COND_LOW     0    /**< \brief ä½ç”µå¹³æ£€æµ‹     */
+#define    AM_LPC_SCT_IO_COND_RISE    1    /**< \brief ä¸Šå‡æ²¿æ£€æµ‹     */
+#define    AM_LPC_SCT_IO_COND_FALL    2    /**< \brief ä¸‹é™æ²¿æ£€æµ‹     */
+#define    AM_LPC_SCT_IO_COND_HIGH    3    /**< \brief é«˜ç”µå¹³æ£€æµ‹     */
 /** @} */
 
 
 /**
- * \name SCTÊÂ¼şÌõ¼şÅäÖÃºê
+ * \name SCTäº‹ä»¶æ¡ä»¶é…ç½®å®
  *
- * \note ÌØ¶¨µÄIO±ßÑØ»òµçÆ½£¬Ö¸¶¨µÄ²¶»ñµçÆ½»òÕßÄ³¸öÆ¥ÅäÖµ¾ù¿É´¥·¢SCTÊÂ¼ş·¢Éú£»
- * - #AM_LPC_SCT_EVT_COND_MAT ¿ÉÒÔ¸ú #AM_LPC_SCT_EVT_COND_IO_OUT »ò
- *   #AM_LPC_SCT_EVT_COND_IO_IN ÆäÖĞÒ»¸ö½øĞĞ¡®»ò¡¯»ò¡®Óë¡¯ÔËËã£¬×é³ÉµÄÖµ×÷ÎªÌõ¼şÅäÖÃÏî£»
- * - #AM_LPC_SCT_EVT_COND_IO_OUT ºÍ #AM_LPC_SCT_EVT_COND_IO_IN
- *   ²»ÄÜÍ¬Ê±ÓÃÓÚÅäÖÃÌõ¼ş£»
- * - Ê¹ÓÃ #AM_LPC_SCT_EVT_COND_CAP ×ö²¶»ñÌõ¼şÊ±£¬ÓëÆäËûÌõ¼şºê»¥³â£¬
- *   ÆäËûºê²»ÄÜÓë¸Ãºê½øĞĞ»òÔËËã×é³ÉÌõ¼şÅäÖÃÏî¡£
+ * \note ç‰¹å®šçš„IOè¾¹æ²¿æˆ–ç”µå¹³ï¼ŒæŒ‡å®šçš„æ•è·ç”µå¹³æˆ–è€…æŸä¸ªåŒ¹é…å€¼å‡å¯è§¦å‘SCTäº‹ä»¶å‘ç”Ÿï¼›
+ * - #AM_LPC_SCT_EVT_COND_MAT å¯ä»¥è·Ÿ #AM_LPC_SCT_EVT_COND_IO_OUT æˆ–
+ *   #AM_LPC_SCT_EVT_COND_IO_IN å…¶ä¸­ä¸€ä¸ªè¿›è¡Œâ€˜æˆ–â€™æˆ–â€˜ä¸â€™è¿ç®—ï¼Œç»„æˆçš„å€¼ä½œä¸ºæ¡ä»¶é…ç½®é¡¹ï¼›
+ * - #AM_LPC_SCT_EVT_COND_IO_OUT å’Œ #AM_LPC_SCT_EVT_COND_IO_IN
+ *   ä¸èƒ½åŒæ—¶ç”¨äºé…ç½®æ¡ä»¶ï¼›
+ * - ä½¿ç”¨ #AM_LPC_SCT_EVT_COND_CAP åšæ•è·æ¡ä»¶æ—¶ï¼Œä¸å…¶ä»–æ¡ä»¶å®äº’æ–¥ï¼Œ
+ *   å…¶ä»–å®ä¸èƒ½ä¸è¯¥å®è¿›è¡Œæˆ–è¿ç®—ç»„æˆæ¡ä»¶é…ç½®é¡¹ã€‚
  * \anchor grp_am_lpc_sct_evt_cond_flags
  * @{
  */
 
 /**
- *  \brief Æ¥ÅäÌõ¼şºê(µ±SCT¼ÆÊıÆ÷µÈÓÚ¸ÃÆ¥ÅäÖµÊ±£¬ÊÂ¼ş·¢Éú)
- *         mat_chÎªÖ¸¶¨µÄÆ¥Åä¼Ä´æÆ÷µÄĞòºÅ£¬·¶Î§Îª0~7
- *         mat_valÎªÆ¥ÅäÖµ£¬È¡Öµ·¶Î§Îª0~0xFFFFFFFF
+ *  \brief åŒ¹é…æ¡ä»¶å®(å½“SCTè®¡æ•°å™¨ç­‰äºè¯¥åŒ¹é…å€¼æ—¶ï¼Œäº‹ä»¶å‘ç”Ÿ)
+ *         mat_chä¸ºæŒ‡å®šçš„åŒ¹é…å¯„å­˜å™¨çš„åºå·ï¼ŒèŒƒå›´ä¸º0~7
+ *         mat_valä¸ºåŒ¹é…å€¼ï¼Œå–å€¼èŒƒå›´ä¸º0~0xFFFFFFFF
  */
 #define AM_LPC_SCT_EVT_COND_MAT(mat_ch, mat_val)  \
                   (AM_BIT(AM_LPC_SCT_MATCAP_ISSET_BITS_START) | \
@@ -279,9 +279,9 @@ typedef struct am_lpc_sct_evt {
                    AM_SBF((uint64_t)mat_val, AM_LPC_SCT_MAT_VAL_BITS_START))
 
 /**
- * \brief Êä³öIOÌõ¼şºê£¨µ±Ö¸¶¨IOÍ¨µÀµÄÌØ¶¨¶¯×÷±»¼ì²âµ½Ê±£¬ÊÂ¼ş·¢Éú£©
- *        io_ch_outÎªÊä³öIOÍ¨µÀĞòºÅ£¬²Î¼û\ref grp_am_lpc_sct_io_chan_out,
- *        io_condÎªÖ¸¶¨¼ì²âµÄIO¶¯×÷£¬²Î¼û\ref grp_am_lpc_sct_io_cond
+ * \brief è¾“å‡ºIOæ¡ä»¶å®ï¼ˆå½“æŒ‡å®šIOé€šé“çš„ç‰¹å®šåŠ¨ä½œè¢«æ£€æµ‹åˆ°æ—¶ï¼Œäº‹ä»¶å‘ç”Ÿï¼‰
+ *        io_ch_outä¸ºè¾“å‡ºIOé€šé“åºå·ï¼Œå‚è§\ref grp_am_lpc_sct_io_chan_out,
+ *        io_condä¸ºæŒ‡å®šæ£€æµ‹çš„IOåŠ¨ä½œï¼Œå‚è§\ref grp_am_lpc_sct_io_cond
  */
 #define AM_LPC_SCT_EVT_COND_IO_OUT(io_ch_out, io_cond)  \
                     (AM_BIT(AM_LPC_SCT_ISOUT_BITS_START) | \
@@ -289,18 +289,18 @@ typedef struct am_lpc_sct_evt {
                      AM_SBF(io_cond, AM_LPC_SCT_IOCOND_BITS_START))
 
 /**
- * \brief ÊäÈëIOÌõ¼şºê£¨µ±Ö¸¶¨IOÍ¨µÀµÄÌØ¶¨¶¯×÷±»¼ì²âµ½Ê±£¬ÊÂ¼ş·¢Éú£©
- *        io_ch_inÎªÊäÈëIOÍ¨µÀĞòºÅ£¬²Î¼û\ref grp_am_lpc_sct_io_chan_in
- *        io_condÎªÖ¸¶¨¼ì²âµÄIO¶¯×÷£¬²Î¼û\ref grp_am_lpc_sct_io_cond
+ * \brief è¾“å…¥IOæ¡ä»¶å®ï¼ˆå½“æŒ‡å®šIOé€šé“çš„ç‰¹å®šåŠ¨ä½œè¢«æ£€æµ‹åˆ°æ—¶ï¼Œäº‹ä»¶å‘ç”Ÿï¼‰
+ *        io_ch_inä¸ºè¾“å…¥IOé€šé“åºå·ï¼Œå‚è§\ref grp_am_lpc_sct_io_chan_in
+ *        io_condä¸ºæŒ‡å®šæ£€æµ‹çš„IOåŠ¨ä½œï¼Œå‚è§\ref grp_am_lpc_sct_io_cond
  */
 #define AM_LPC_SCT_EVT_COND_IO_IN(io_ch_in, io_cond) \
                       (AM_SBF(io_ch_input, AM_LPC_SCT_IOSEL_CH_BITS_START) |\
                        AM_SBF(io_cond, AM_LPC_SCT_IOCOND_BITS_START))
 /**
- * \brief ²¶»ñÌõ¼şºê£¨µ±Ö¸¶¨ÊäÈëIOÍ¨µÀµÄÌØ¶¨¶¯×÷±»¼ì²âµ½Ê±£¬ÊÂ¼ş·¢Éú£©
- *        cap_chÎª²¶»ñÍ¨µÀĞòºÅ£¬·¶Î§Îª0~7
- *        io_ch_inÎªÊäÈëIOÍ¨µÀĞòºÅ£¬²Î¼û\ref grp_am_lpc_sct_io_chan_in
- *        io_condÎªÖ¸¶¨²¶»ñµÄIO¶¯×÷£¬²Î¼û\ref grp_am_lpc_sct_io_cond
+ * \brief æ•è·æ¡ä»¶å®ï¼ˆå½“æŒ‡å®šè¾“å…¥IOé€šé“çš„ç‰¹å®šåŠ¨ä½œè¢«æ£€æµ‹åˆ°æ—¶ï¼Œäº‹ä»¶å‘ç”Ÿï¼‰
+ *        cap_chä¸ºæ•è·é€šé“åºå·ï¼ŒèŒƒå›´ä¸º0~7
+ *        io_ch_inä¸ºè¾“å…¥IOé€šé“åºå·ï¼Œå‚è§\ref grp_am_lpc_sct_io_chan_in
+ *        io_condä¸ºæŒ‡å®šæ•è·çš„IOåŠ¨ä½œï¼Œå‚è§\ref grp_am_lpc_sct_io_cond
  */
 #define AM_LPC_SCT_EVT_COND_CAP(cap_ch, io_ch_in, io_cond) \
                       (AM_BIT(AM_LPC_SCT_MATCAP_ISSET_BITS_START) | \
@@ -309,119 +309,119 @@ typedef struct am_lpc_sct_evt {
                        AM_LPC_SCT_COND_IO_IN(io_ch_input, io_cond))
 
 
-/** \brief Ìõ¼ş»òÔËËã£¬Ö¸¶¨Æ¥ÅäÌõ¼ş¡¢IO¼ì²âÌõ¼şÈÎÒâÒ»¸ö·¢ÉúÊ±£¬ÊÂ¼ş·¢Éú */
+/** \brief æ¡ä»¶æˆ–è¿ç®—ï¼ŒæŒ‡å®šåŒ¹é…æ¡ä»¶ã€IOæ£€æµ‹æ¡ä»¶ä»»æ„ä¸€ä¸ªå‘ç”Ÿæ—¶ï¼Œäº‹ä»¶å‘ç”Ÿ */
 #define AM_LPC_SCT_EVT_COND_OPR_OR      \
                                     AM_SBF(0, AM_LPC_SCT_COND_OPR_BITS_START)
 
-/** \brief Ö»¼ì²âÆ¥ÅäÌõ¼ş£¬ºöÂÔIO¼ì²âÌõ¼ş£¬Ö¸¶¨Æ¥ÅäÌõ¼ş·¢ÉúÊ±£¬ÊÂ¼ş·¢Éú*/
+/** \brief åªæ£€æµ‹åŒ¹é…æ¡ä»¶ï¼Œå¿½ç•¥IOæ£€æµ‹æ¡ä»¶ï¼ŒæŒ‡å®šåŒ¹é…æ¡ä»¶å‘ç”Ÿæ—¶ï¼Œäº‹ä»¶å‘ç”Ÿ*/
 #define AM_LPC_SCT_EVT_COND_OPR_MATCH   \
                                     AM_SBF(1, AM_LPC_SCT_COND_OPR_BITS_START)
 
-/** \brief Ö»¼ì²âÆ¥ÅäÌõ¼ş£¬ºöÂÔIO¼ì²âÌõ¼ş£¬Ö¸¶¨IOÌõ¼ş·¢ÉúÊ±£¬ÊÂ¼ş·¢Éú*/
+/** \brief åªæ£€æµ‹åŒ¹é…æ¡ä»¶ï¼Œå¿½ç•¥IOæ£€æµ‹æ¡ä»¶ï¼ŒæŒ‡å®šIOæ¡ä»¶å‘ç”Ÿæ—¶ï¼Œäº‹ä»¶å‘ç”Ÿ*/
 #define AM_LPC_SCT_EVT_COND_OPR_IO      \
                                     AM_SBF(2, AM_LPC_SCT_COND_OPR_BITS_START)
 
-/** \brief Ìõ¼şÓëÔËËã£¬Ö¸¶¨Æ¥ÅäÌõ¼şºÍIO¼ì²âÌõ¼şÍ¬Ê±·¢ÉúÊ±£¬ÊÂ¼ş·¢Éú*/
+/** \brief æ¡ä»¶ä¸è¿ç®—ï¼ŒæŒ‡å®šåŒ¹é…æ¡ä»¶å’ŒIOæ£€æµ‹æ¡ä»¶åŒæ—¶å‘ç”Ÿæ—¶ï¼Œäº‹ä»¶å‘ç”Ÿ*/
 #define AM_LPC_SCT_EVT_COND_OPR_AND     \
                                     AM_SBF(3, AM_LPC_SCT_COND_OPR_BITS_START)
 /** @} */
 
 /**
- * \name SCTÊÂ¼ş×´Ì¬Ê¹ÄÜÅäÖÃºê
+ * \name SCTäº‹ä»¶çŠ¶æ€ä½¿èƒ½é…ç½®å®
  *
- * \note Ò»¸öSCT×´Ì¬¿ÉÒÔ²úÉú¶à¸öSCTÊÂ¼ş£¬Ò»¸öÊÂ¼ş¿ÉÒÔÔÚ²»Í¬SCT×´Ì¬ÏÂ²úÉú
+ * \note ä¸€ä¸ªSCTçŠ¶æ€å¯ä»¥äº§ç”Ÿå¤šä¸ªSCTäº‹ä»¶ï¼Œä¸€ä¸ªäº‹ä»¶å¯ä»¥åœ¨ä¸åŒSCTçŠ¶æ€ä¸‹äº§ç”Ÿ
  *
  * \anchor grp_am_lpc_sct_evt_stat_en_flags
  * @{
  */
 
-/** \brief ÊÂ¼şÔÚÖ¸¶¨×´Ì¬¿ÉÒÔ²úÉú£¬stat_numÈ¡ÖµÎª0~7 */
+/** \brief äº‹ä»¶åœ¨æŒ‡å®šçŠ¶æ€å¯ä»¥äº§ç”Ÿï¼Œstat_numå–å€¼ä¸º0~7 */
 #define AM_LPC_SCT_EVT_STAT_EN(stat_num)         AM_SBF(1, stat_num)
 
-/** \brief ÊÂ¼şÔÚÖ¸¶¨×´Ì¬·¶Î§ÏÂ¿ÉÒÔ²úÉú
- *         stat_maskµÄbit0´ú±í×´Ì¬0£¬bit0=1Ê±£¬ÊÂ¼şÔÚ×´Ì¬0Ê¹ÄÜ£¬
- *                                 bit1=1Ê±£¬ÊÂ¼şÔÚ×´Ì¬1Ê¹ÄÜ£¬ÆäËûÎ»¿ÉÀàÍÆ
+/** \brief äº‹ä»¶åœ¨æŒ‡å®šçŠ¶æ€èŒƒå›´ä¸‹å¯ä»¥äº§ç”Ÿ
+ *         stat_maskçš„bit0ä»£è¡¨çŠ¶æ€0ï¼Œbit0=1æ—¶ï¼Œäº‹ä»¶åœ¨çŠ¶æ€0ä½¿èƒ½ï¼Œ
+ *                                 bit1=1æ—¶ï¼Œäº‹ä»¶åœ¨çŠ¶æ€1ä½¿èƒ½ï¼Œå…¶ä»–ä½å¯ç±»æ¨
  */
 #define AM_LPC_SCT_EVT_STAT_EN_MASK(stat_mask)   (stat_mask)
 /** @} */
 
 
 /**
- * \name SCTÊÂ¼ş¿ØÖÆ×´Ì¬ÅäÖÃºê
+ * \name SCTäº‹ä»¶æ§åˆ¶çŠ¶æ€é…ç½®å®
  *
- * \note ÊÂ¼ş·¢Éúºó£¬ÅäÖÃSCTµÄ×´Ì¬±ä»¯£¬
- *       µ«ÊÇ½öµ±¸ÃÊÂ¼şÊÇµ±Ç°×´Ì¬ÏÂÔÊĞí·¢ÉúµÄÊÂ¼şÖĞÊÂ¼şºÅ×î¸ßÊ±£¬²Å°´´ËÅäÖÃ¸Ä±äSCT×´Ì¬
+ * \note äº‹ä»¶å‘ç”Ÿåï¼Œé…ç½®SCTçš„çŠ¶æ€å˜åŒ–ï¼Œ
+ *       ä½†æ˜¯ä»…å½“è¯¥äº‹ä»¶æ˜¯å½“å‰çŠ¶æ€ä¸‹å…è®¸å‘ç”Ÿçš„äº‹ä»¶ä¸­äº‹ä»¶å·æœ€é«˜æ—¶ï¼Œæ‰æŒ‰æ­¤é…ç½®æ”¹å˜SCTçŠ¶æ€
  * \anchor grp_am_lpc_sct_evt_out_stat_flags
  * @{
  */
 
-/** \brief ÊÂ¼ş·¢Éúºó£¬ÖØ×°×´Ì¬Öµ£¬SCT×´Ì¬±äÎªstat£¬statÈ¡ÖµÎª0~7 */
+/** \brief äº‹ä»¶å‘ç”Ÿåï¼Œé‡è£…çŠ¶æ€å€¼ï¼ŒSCTçŠ¶æ€å˜ä¸ºstatï¼Œstatå–å€¼ä¸º0~7 */
 #define AM_LPC_SCT_EVT_OUT_STAT_RELOAD(stat)   \
                               (AM_BIT(AM_LPC_SCT_ISRELOAD_BITS_START) |\
                                AM_SBF(stat, AM_LPC_SCT_STAT_VAL_BITS_START))
 
-/** \brief ÊÂ¼ş·¢Éúºó£¬µş¼Ó×´Ì¬Öµ£¬SCT×´Ì¬±äÎª(old_state + stat)£¬statÈ¡ÖµÎª0~7 */
+/** \brief äº‹ä»¶å‘ç”Ÿåï¼Œå åŠ çŠ¶æ€å€¼ï¼ŒSCTçŠ¶æ€å˜ä¸º(old_state + stat)ï¼Œstatå–å€¼ä¸º0~7 */
 #define AM_LPC_SCT_EVT_OUT_STAT_ADD(stat)      \
                                AM_SBF(stat, AM_LPC_SCT_STAT_VAL_BITS_START)
 /** @} */
 
 /**
- * \name SCTÊÂ¼ş¿ØÖÆ¼ÆÊıÆ÷ÅäÖÃºê
+ * \name SCTäº‹ä»¶æ§åˆ¶è®¡æ•°å™¨é…ç½®å®
  *
- * \note Ò»¸öSCTÊÂ¼ş¿ÉÒÔÍ¬Ê±¿ØÖÆ¼ÆÊıÆ÷ÏŞÖÆ¡¢Í£Ö¹¡¢Æô¶¯¡¢ÖÕÖ¹£»
- *       - ÏŞÖÆ¼ÆÊıÆ÷ÊÇÖ¸¼ÆÊıÆ÷ÇåÁã»òÕß·´Ïò¼ÆÊı£¬È¡¾öÓÚSCT¼ÆÊıÆ÷µÄÅäÖÃ£»
- *       - Í£Ö¹¼ÆÊıÆ÷ÊÇÖ¸¼ÆÊıÆ÷Í£Ö¹¼ÆÊı£¬µ«ÊÇÓëIOÏà¹ØµÄÊäÈë»òÊä³öÈÔÓĞĞ§£¬Ö»ÊÇÆ¥ÅäºÍ²¶»ñÊ§Ğ§£¬
- *                                 ¿ÉÒÔÓ²¼şÖØĞÂÆô¶¯£»
- *       - Æô¶¯¼ÆÊıÆ÷ÊÇÖ¸¼ÆÊıÆ÷¿ªÊ¼¼ÆÊı£¬½«´¦ÔÚÍ£Ö¹×´Ì¬ÏÂµÄ¼ÆÊıÆ÷£¬ÖØĞÂÆô¶¯¼ÆÊı£»
- *       - ÖÕÖ¹¼ÆÊıÆ÷ÊÇ¹Ø±ÕSCTËùÓĞÊ±Ğò£¬ÓëÍ£Ö¹¼ÆÊıÆ÷µÄÇø±ğÊÇ´ËÊ±IOÏà¹Ø¶¯×÷Ò²Ê§Ğ§£¬
- *                                 ²¢ÇÒÓ²¼şÎŞ·¨»½ĞÑ£¬±ØĞëÊ¹ÓÃÈí¼şÇå³ıÒÔÖØĞÂÆô¶¯SCT¡£
+ * \note ä¸€ä¸ªSCTäº‹ä»¶å¯ä»¥åŒæ—¶æ§åˆ¶è®¡æ•°å™¨é™åˆ¶ã€åœæ­¢ã€å¯åŠ¨ã€ç»ˆæ­¢ï¼›
+ *       - é™åˆ¶è®¡æ•°å™¨æ˜¯æŒ‡è®¡æ•°å™¨æ¸…é›¶æˆ–è€…åå‘è®¡æ•°ï¼Œå–å†³äºSCTè®¡æ•°å™¨çš„é…ç½®ï¼›
+ *       - åœæ­¢è®¡æ•°å™¨æ˜¯æŒ‡è®¡æ•°å™¨åœæ­¢è®¡æ•°ï¼Œä½†æ˜¯ä¸IOç›¸å…³çš„è¾“å…¥æˆ–è¾“å‡ºä»æœ‰æ•ˆï¼Œåªæ˜¯åŒ¹é…å’Œæ•è·å¤±æ•ˆï¼Œ
+ *                                 å¯ä»¥ç¡¬ä»¶é‡æ–°å¯åŠ¨ï¼›
+ *       - å¯åŠ¨è®¡æ•°å™¨æ˜¯æŒ‡è®¡æ•°å™¨å¼€å§‹è®¡æ•°ï¼Œå°†å¤„åœ¨åœæ­¢çŠ¶æ€ä¸‹çš„è®¡æ•°å™¨ï¼Œé‡æ–°å¯åŠ¨è®¡æ•°ï¼›
+ *       - ç»ˆæ­¢è®¡æ•°å™¨æ˜¯å…³é—­SCTæ‰€æœ‰æ—¶åºï¼Œä¸åœæ­¢è®¡æ•°å™¨çš„åŒºåˆ«æ˜¯æ­¤æ—¶IOç›¸å…³åŠ¨ä½œä¹Ÿå¤±æ•ˆï¼Œ
+ *                                 å¹¶ä¸”ç¡¬ä»¶æ— æ³•å”¤é†’ï¼Œå¿…é¡»ä½¿ç”¨è½¯ä»¶æ¸…é™¤ä»¥é‡æ–°å¯åŠ¨SCTã€‚
  * \anchor grp_am_lpc_sct_evt_out_cnt_flags
  * @{
  */
-/** \brief ÊÂ¼ş·¢ÉúÊ±£¬ÏŞÖÆ¼ÆÊıÆ÷¼ÆÊı   */
+/** \brief äº‹ä»¶å‘ç”Ÿæ—¶ï¼Œé™åˆ¶è®¡æ•°å™¨è®¡æ•°   */
 #define AM_LPC_SCT_EVT_OUT_CNT_LIMIT  AM_BIT(AM_LPC_SCT_LIMIT_BITS_START)
 
-/** \brief ÊÂ¼ş·¢ÉúÊ±£¬Í£Ö¹¼ÆÊıÆ÷¼ÆÊı   */
+/** \brief äº‹ä»¶å‘ç”Ÿæ—¶ï¼Œåœæ­¢è®¡æ•°å™¨è®¡æ•°   */
 #define AM_LPC_SCT_EVT_OUT_CNT_STOP   AM_BIT(AM_LPC_SCT_STOP_BITS_START)
 
-/** \brief ÊÂ¼ş·¢ÉúÊ±£¬Æô¶¯¼ÆÊıÆ÷¼ÆÊı   */
+/** \brief äº‹ä»¶å‘ç”Ÿæ—¶ï¼Œå¯åŠ¨è®¡æ•°å™¨è®¡æ•°   */
 #define AM_LPC_SCT_EVT_OUT_CNT_START  AM_BIT(AM_LPC_SCT_START_BITS_START)
 
-/** \brief ÊÂ¼ş·¢ÉúÊ±£¬ÖÕÖ¹¼ÆÊıÆ÷¼ÆÊı   */
+/** \brief äº‹ä»¶å‘ç”Ÿæ—¶ï¼Œç»ˆæ­¢è®¡æ•°å™¨è®¡æ•°   */
 #define AM_LPC_SCT_EVT_OUT_CNT_HALT   AM_BIT(AM_LPC_SCT_HALT_BITS_START)
 /** @} */
 
 /**
- * \name SCTÊÂ¼ş¿ØÖÆDMA´¥·¢ÅäÖÃºê
+ * \name SCTäº‹ä»¶æ§åˆ¶DMAè§¦å‘é…ç½®å®
  *
- * \note SCTÊÂ¼ş¿ÉÍ¬Ê±´¥·¢DMAÊä³öÇëÇó0»òDMAÊä³öÇëÇó1
+ * \note SCTäº‹ä»¶å¯åŒæ—¶è§¦å‘DMAè¾“å‡ºè¯·æ±‚0æˆ–DMAè¾“å‡ºè¯·æ±‚1
  * \anchor grp_am_lpc_sct_evt_out_dma_flags
  * @{
  */
 /**
- * \brief ÊÂ¼ş·¢ÉúÊ±£¬´¥·¢DMAÇëÇó
+ * \brief äº‹ä»¶å‘ç”Ÿæ—¶ï¼Œè§¦å‘DMAè¯·æ±‚
  *
- *        dma_req_outÎªDMAÇëÇóÊä³öÍ¨µÀ±àºÅ£¬ÖµÎª0»ò1
+ *        dma_req_outä¸ºDMAè¯·æ±‚è¾“å‡ºé€šé“ç¼–å·ï¼Œå€¼ä¸º0æˆ–1
  */
 #define AM_LPC_SCT_EVT_OUT_DMA(dma_req_out) AM_BIT(dma_req_out)
 /** @} */
 
 /**
- * \name SCTÊÂ¼ş¿ØÖÆIOÊä³öÅäÖÃºê
+ * \name SCTäº‹ä»¶æ§åˆ¶IOè¾“å‡ºé…ç½®å®
  *
- * \note SCTÊÂ¼ş¿ÉÒÔÍ¬Ê±¿ØÖÆ¶à¸öIOÊä³öÍ¨µÀÖÃÎ»»òÇåÁã
+ * \note SCTäº‹ä»¶å¯ä»¥åŒæ—¶æ§åˆ¶å¤šä¸ªIOè¾“å‡ºé€šé“ç½®ä½æˆ–æ¸…é›¶
  * \anchor grp_am_lpc_sct_evt_out_io_flags
  * @{
  */
 /**
- * \brief ÊÂ¼ş·¢ÉúÊ±£¬½«Ä³Êä³öIOÍ¨µÀÒı½ÅÖÃÎ»
- *        io_ch_outÎªÊä³öIOÍ¨µÀĞòºÅ£¬²Î¼û\ref grp_am_lpc_sct_io_chan_out,
+ * \brief äº‹ä»¶å‘ç”Ÿæ—¶ï¼Œå°†æŸè¾“å‡ºIOé€šé“å¼•è„šç½®ä½
+ *        io_ch_outä¸ºè¾“å‡ºIOé€šé“åºå·ï¼Œå‚è§\ref grp_am_lpc_sct_io_chan_out,
  */
 #define AM_LPC_SCT_EVT_OUT_IO_SET(io_ch_out) AM_BIT(io_ch_out)
 
 /**
- * \brief ÊÂ¼ş·¢ÉúÊ±£¬½«Ä³Êä³öIOÍ¨µÀÒı½ÅÇåÁã
- *        io_ch_outÎªÊä³öIOÍ¨µÀĞòºÅ£¬²Î¼û\ref grp_am_lpc_sct_io_chan_out,
+ * \brief äº‹ä»¶å‘ç”Ÿæ—¶ï¼Œå°†æŸè¾“å‡ºIOé€šé“å¼•è„šæ¸…é›¶
+ *        io_ch_outä¸ºè¾“å‡ºIOé€šé“åºå·ï¼Œå‚è§\ref grp_am_lpc_sct_io_chan_out,
  */
 #define AM_LPC_SCT_EVT_OUT_IO_CLR(io_ch_out)  \
                            AM_BIT(io_ch_out + AM_LPC_SCT_IOCLR_CH_BITS_START)
@@ -429,15 +429,15 @@ typedef struct am_lpc_sct_evt {
 
 
 /**
- * \name SCTÊÂ¼şÖĞ¶ÏÅäÖÃºê
+ * \name SCTäº‹ä»¶ä¸­æ–­é…ç½®å®
  *
- * \note SCTÊÂ¼ş×î¶àÖ»¿ÉÒÔÅäÖÃÒ»¸öÖĞ¶Ï»Øµ÷º¯Êı
+ * \note SCTäº‹ä»¶æœ€å¤šåªå¯ä»¥é…ç½®ä¸€ä¸ªä¸­æ–­å›è°ƒå‡½æ•°
  * \anchor grp_am_lpc_sct_evt_out_int_flags
  * @{
  */
 /**
- * \brief ÊÂ¼ş·¢ÉúÊ±£¬²úÉúÖĞ¶Ï
- *        callbackÎª»Øµ÷º¯Êı£¬p_argÎª»Øµ÷º¯ÊıµÄ²ÎÊı
+ * \brief äº‹ä»¶å‘ç”Ÿæ—¶ï¼Œäº§ç”Ÿä¸­æ–­
+ *        callbackä¸ºå›è°ƒå‡½æ•°ï¼Œp_argä¸ºå›è°ƒå‡½æ•°çš„å‚æ•°
  */
 #define AM_LPC_SCT_EVT_OUT_INT(callback, p_arg)    \
                        (AM_SBF((uint64_t)((uint32_t)p_arg), \
@@ -447,29 +447,29 @@ typedef struct am_lpc_sct_evt {
 
 
 /**
- * \brief ³õÊ¼»¯SCT
+ * \brief åˆå§‹åŒ–SCT
  *
- * \param[in] p_dev     : Ö¸ÏòSCTÉè±¸µÄÖ¸Õë
- * \param[in] p_devinfo : Ö¸ÏòSCTÉè±¸ĞÅÏ¢³£Á¿µÄÖ¸Õë
+ * \param[in] p_dev     : æŒ‡å‘SCTè®¾å¤‡çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo : æŒ‡å‘SCTè®¾å¤‡ä¿¡æ¯å¸¸é‡çš„æŒ‡é’ˆ
  *
- * \return SCT·şÎñ²Ù×÷¾ä±ú£¬ÖµÎªNULLÊ±±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return SCTæœåŠ¡æ“ä½œå¥æŸ„ï¼Œå€¼ä¸ºNULLæ—¶è¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_lpc_sct_handle_t am_lpc_sct_init (am_lpc_sct_dev_t      *p_dev,
                                      const am_lpc_sct_devinfo_t  *p_devinfo);
 
 /**
- * \brief ²»Ê¹ÓÃSCT£¬½â³õÊ¼»¯SCT£¬ÊÍ·ÅÏà¹Ø×ÊÔ´
+ * \brief ä¸ä½¿ç”¨SCTï¼Œè§£åˆå§‹åŒ–SCTï¼Œé‡Šæ”¾ç›¸å…³èµ„æº
  *
- * \param[in] handle : am_lpc_sct_init() ³õÊ¼»¯º¯Êı»ñµÃµÄSCT·şÎñ¾ä±ú
+ * \param[in] handle : am_lpc_sct_init() åˆå§‹åŒ–å‡½æ•°è·å¾—çš„SCTæœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_lpc_sct_deinit (am_lpc_sct_handle_t handle);
 
 /**
- * \brief ³õÊ¼»¯SCTÊÂ¼şÅäÖÃ
+ * \brief åˆå§‹åŒ–SCTäº‹ä»¶é…ç½®
  *
- * \param[in] p_evt : Ö¸ÏòÒª³õÊ¼»¯µÄÊÂ¼ş
+ * \param[in] p_evt : æŒ‡å‘è¦åˆå§‹åŒ–çš„äº‹ä»¶
  *
  */
 am_static_inline
@@ -485,37 +485,37 @@ void am_lpc_sct_evt_init (am_lpc_sct_evt_t *p_evt)
     p_evt->out_int_flag   = 0;
 }
 
-/** \brief Ä³SCTÊÂ¼ş¹¦ÄÜ²»Ê¹ÓÃÅäÖÃºê */
+/** \brief æŸSCTäº‹ä»¶åŠŸèƒ½ä¸ä½¿ç”¨é…ç½®å® */
 #define AM_LPC_SCT_EVT_FUNCS_NOT_USE   0
 
 /**
- * \brief ½¨Á¢SCTÊÂ¼ş
+ * \brief å»ºç«‹SCTäº‹ä»¶
  *
- * \param[in] p_evt          : Ö¸ÏòÒª½¨Á¢µÄÊÂ¼ş
+ * \param[in] p_evt          : æŒ‡å‘è¦å»ºç«‹çš„äº‹ä»¶
  *
- * \param[in] cond_flags     : ²úÉúÊÂ¼şµÄÌõ¼şÅäÖÃ
- *                             ²Î¼û\ref grp_am_lpc_sct_evt_cond_flags
+ * \param[in] cond_flags     : äº§ç”Ÿäº‹ä»¶çš„æ¡ä»¶é…ç½®
+ *                             å‚è§\ref grp_am_lpc_sct_evt_cond_flags
  *
- * \param[in] stat_en_flags  : ÊÂ¼şÔÚÄÄĞ©SCT×´Ì¬ÏÂÉúĞ§ÅäÖÃ
- *                             ²Î¼û\ref grp_am_lpc_sct_evt_stat_en_flags
+ * \param[in] stat_en_flags  : äº‹ä»¶åœ¨å“ªäº›SCTçŠ¶æ€ä¸‹ç”Ÿæ•ˆé…ç½®
+ *                             å‚è§\ref grp_am_lpc_sct_evt_stat_en_flags
  *
- * \param[in] out_stat_flag  : ÊÂ¼ş·¢ÉúÊ±SCT×´Ì¬¿ØÖÆÊä³öÅäÖÃ
- *                             ²Î¼û\ref grp_am_lpc_sct_evt_out_stat_flags
+ * \param[in] out_stat_flag  : äº‹ä»¶å‘ç”Ÿæ—¶SCTçŠ¶æ€æ§åˆ¶è¾“å‡ºé…ç½®
+ *                             å‚è§\ref grp_am_lpc_sct_evt_out_stat_flags
  *
- * \param[in] out_cnt_flags  : ÊÂ¼ş·¢ÉúÊ±¿ØÖÆ¼ÆÊıÆ÷µÄÅäÖÃ
- *                             ²Î¼û\ref grp_am_lpc_sct_evt_out_cnt_flags
+ * \param[in] out_cnt_flags  : äº‹ä»¶å‘ç”Ÿæ—¶æ§åˆ¶è®¡æ•°å™¨çš„é…ç½®
+ *                             å‚è§\ref grp_am_lpc_sct_evt_out_cnt_flags
  *
- * \param[in] out_dma_flags  : ÊÂ¼ş·¢ÉúÊ±DMA¿ØÖÆÊä³öÅäÖÃ
- *                             ²Î¼û\ref grp_am_lpc_sct_evt_out_dma_flags
+ * \param[in] out_dma_flags  : äº‹ä»¶å‘ç”Ÿæ—¶DMAæ§åˆ¶è¾“å‡ºé…ç½®
+ *                             å‚è§\ref grp_am_lpc_sct_evt_out_dma_flags
  *
- * \param[in] out_io_flags   : ÊÂ¼ş·¢ÉúÊ±¿ØÖÆIOµÄÅäÖÃ
- *                             ²Î¼û\ref grp_am_lpc_sct_evt_out_io_flags
+ * \param[in] out_io_flags   : äº‹ä»¶å‘ç”Ÿæ—¶æ§åˆ¶IOçš„é…ç½®
+ *                             å‚è§\ref grp_am_lpc_sct_evt_out_io_flags
  *
- * \param[in] out_int_flag   : ÊÂ¼ş·¢ÉúÊ±ÖĞ¶ÏÅäÖÃ
- *                             ²Î¼û\ref grp_am_lpc_sct_evt_out_int_flags
- * \return ÎŞ
+ * \param[in] out_int_flag   : äº‹ä»¶å‘ç”Ÿæ—¶ä¸­æ–­é…ç½®
+ *                             å‚è§\ref grp_am_lpc_sct_evt_out_int_flags
+ * \return æ— 
  *
- * \note Èô²»Ê¹ÓÃÄ³Ïî¹¦ÄÜÅäÖÃÊ±£¬¾ù¿ÉÓÃºê #AM_LPC_SCT_EVT_FUNCS_NOT_USE Ö¸¶¨¡£
+ * \note è‹¥ä¸ä½¿ç”¨æŸé¡¹åŠŸèƒ½é…ç½®æ—¶ï¼Œå‡å¯ç”¨å® #AM_LPC_SCT_EVT_FUNCS_NOT_USE æŒ‡å®šã€‚
  */
 am_static_inline
 void am_lpc_sct_evt_build (am_lpc_sct_evt_t *p_evt,
@@ -537,15 +537,15 @@ void am_lpc_sct_evt_build (am_lpc_sct_evt_t *p_evt,
 }
 
 /**
- * \brief Ìí¼ÓSCTÊÂ¼ş
+ * \brief æ·»åŠ SCTäº‹ä»¶
  *
- * \param[in] sct_handle : SCT·şÎñ²Ù×÷¾ä±ú
- * \param[in] evt_num    : ÊÂ¼şºÅ£¬È¡Öµ·¶Î§0~7
- * \param[in] p_evt      : Ö¸ÏòÒªÌí¼ÓµÄÊÂ¼ş
+ * \param[in] sct_handle : SCTæœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] evt_num    : äº‹ä»¶å·ï¼Œå–å€¼èŒƒå›´0~7
+ * \param[in] p_evt      : æŒ‡å‘è¦æ·»åŠ çš„äº‹ä»¶
  *
- * \retval  AM_OK        : Ìí¼Ó³É¹¦
- * \retval -AM_EINVAL    : Ìí¼ÓÊ§°Ü, ²ÎÊı´íÎó
- * \retval -AM_EPERM     : Ã»ÓĞ¿ÕµÄÄÚ´æÓ³Éä£¬»Øµ÷º¯Êı³¬¹ıÉè¶¨µÄÏŞÖÆ
+ * \retval  AM_OK        : æ·»åŠ æˆåŠŸ
+ * \retval -AM_EINVAL    : æ·»åŠ å¤±è´¥, å‚æ•°é”™è¯¯
+ * \retval -AM_EPERM     : æ²¡æœ‰ç©ºçš„å†…å­˜æ˜ å°„ï¼Œå›è°ƒå‡½æ•°è¶…è¿‡è®¾å®šçš„é™åˆ¶
  *
  */
 int am_lpc_sct_evt_add (am_lpc_sct_handle_t   sct_handle,
@@ -553,13 +553,13 @@ int am_lpc_sct_evt_add (am_lpc_sct_handle_t   sct_handle,
                            am_lpc_sct_evt_t     *p_evt);
 
 /**
- * \brief É¾³ıSCTÊÂ¼ş
+ * \brief åˆ é™¤SCTäº‹ä»¶
  *
- * \param[in] sct_handle : SCT·şÎñ²Ù×÷¾ä±ú
- * \param[in] evt_num    : ÊÂ¼şºÅ£¬È¡Öµ·¶Î§0~7
+ * \param[in] sct_handle : SCTæœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] evt_num    : äº‹ä»¶å·ï¼Œå–å€¼èŒƒå›´0~7
  *
- * \retval  AM_OK        : É¾³ı³É¹¦
- * \retval -AM_EINVAL    : É¾³ıÊ§°Ü, ²ÎÊı´íÎó
+ * \retval  AM_OK        : åˆ é™¤æˆåŠŸ
+ * \retval -AM_EINVAL    : åˆ é™¤å¤±è´¥, å‚æ•°é”™è¯¯
  *
  */
 int am_lpc_sct_evt_del (am_lpc_sct_handle_t   sct_handle,
@@ -567,111 +567,111 @@ int am_lpc_sct_evt_del (am_lpc_sct_handle_t   sct_handle,
 
 
 /**
- * \brief Æô¶¯SCT
+ * \brief å¯åŠ¨SCT
  *
- * \param[in] sct_handle : SCT·şÎñ²Ù×÷¾ä±ú
+ * \param[in] sct_handle : SCTæœåŠ¡æ“ä½œå¥æŸ„
  *
- * \retval  AM_OK        : Æô¶¯³É¹¦
- * \retval -AM_EINVAL    : Æô¶¯Ê§°Ü, ²ÎÊı´íÎó
+ * \retval  AM_OK        : å¯åŠ¨æˆåŠŸ
+ * \retval -AM_EINVAL    : å¯åŠ¨å¤±è´¥, å‚æ•°é”™è¯¯
  *
  */
 int am_lpc_sct_start (am_lpc_sct_handle_t   sct_handle);
 
 /**
- * \brief Í£Ö¹SCT
+ * \brief åœæ­¢SCT
  *
- * \param[in] sct_handle : SCT·şÎñ²Ù×÷¾ä±ú
+ * \param[in] sct_handle : SCTæœåŠ¡æ“ä½œå¥æŸ„
  *
- * \retval  AM_OK        : Í£Ö¹³É¹¦
- * \retval -AM_EINVAL    : Í£Ö¹Ê§°Ü, ²ÎÊı´íÎó
+ * \retval  AM_OK        : åœæ­¢æˆåŠŸ
+ * \retval -AM_EINVAL    : åœæ­¢å¤±è´¥, å‚æ•°é”™è¯¯
  *
  */
 int am_lpc_sct_stop (am_lpc_sct_handle_t   sct_handle);
 
 /**
- * \brief ÖÕÖ¹SCT
+ * \brief ç»ˆæ­¢SCT
  *
- * \param[in] sct_handle : SCT·şÎñ²Ù×÷¾ä±ú
+ * \param[in] sct_handle : SCTæœåŠ¡æ“ä½œå¥æŸ„
  *
- * \retval  AM_OK        : ÖÕÖ¹³É¹¦
- * \retval -AM_EINVAL    : ÖÕÖ¹Ê§°Ü, ²ÎÊı´íÎó
+ * \retval  AM_OK        : ç»ˆæ­¢æˆåŠŸ
+ * \retval -AM_EINVAL    : ç»ˆæ­¢å¤±è´¥, å‚æ•°é”™è¯¯
  *
  */
 int am_lpc_sct_halt (am_lpc_sct_handle_t   sct_handle);
 
 
 /**
- * \name SCTÊä³öÍ¨µÀµçÆ½³åÍ»µÄ½â¾ö·½·¨ÅäÖÃºê
+ * \name SCTè¾“å‡ºé€šé“ç”µå¹³å†²çªçš„è§£å†³æ–¹æ³•é…ç½®å®
  * \anchor grp_am_lpc_sct_res_flags
  * @{
  */
-#define AM_LPC_SCT_RES_OUT_NOCHANGE     (0)    /**< \brief ³åÍ»Ê±ÎŞ±ä»¯     */
-#define AM_LPC_SCT_RES_OUT_SET          (1)    /**< \brief ³åÍ»Ê±ÖÃÎ»Êä³ö   */
-#define AM_LPC_SCT_RES_OUT_CLR          (2)    /**< \brief ³åÍ»Ê±ÇåÁãÊä³ö   */
-#define AM_LPC_SCT_RES_OUT_TOG          (3)    /**< \brief ³åÍ»Ê±·­×ªÊä³ö   */
+#define AM_LPC_SCT_RES_OUT_NOCHANGE     (0)    /**< \brief å†²çªæ—¶æ— å˜åŒ–     */
+#define AM_LPC_SCT_RES_OUT_SET          (1)    /**< \brief å†²çªæ—¶ç½®ä½è¾“å‡º   */
+#define AM_LPC_SCT_RES_OUT_CLR          (2)    /**< \brief å†²çªæ—¶æ¸…é›¶è¾“å‡º   */
+#define AM_LPC_SCT_RES_OUT_TOG          (3)    /**< \brief å†²çªæ—¶ç¿»è½¬è¾“å‡º   */
 /**
  * @}
  */
 
 /**
- * \brief ÅäÖÃÊä³öÍ¨µÀµçÆ½³åÍ»Ê±µÄ½â¾ö·½·¨
+ * \brief é…ç½®è¾“å‡ºé€šé“ç”µå¹³å†²çªæ—¶çš„è§£å†³æ–¹æ³•
  *
- * \param[in] sct_handle : SCT·şÎñ²Ù×÷¾ä±ú
- * \param[in] output_num : Êä³öÍ¨µÀºÅ£¬0 ~ 5
- * \param[in] value      : ³åÍ»½â¾ö·½Ê½£º\ref grp_am_lpc_sct_res_flags
- *                          - #AM_LPC_SCT_RES_OUT_NOCHANGE : Êä³öÎŞ±ä»¯
- *                          - #AM_LPC_SCT_RES_OUT_SET      : Êä³ö¸ßµçÆ½
- *                          - #AM_LPC_SCT_RES_OUT_CLR      : Êä³öµÍµçÆ½
- *                          - #AM_LPC_SCT_RES_OUT_TOG      : ·­×ªÊä³öµçÆ½
+ * \param[in] sct_handle : SCTæœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] output_num : è¾“å‡ºé€šé“å·ï¼Œ0 ~ 5
+ * \param[in] value      : å†²çªè§£å†³æ–¹å¼ï¼š\ref grp_am_lpc_sct_res_flags
+ *                          - #AM_LPC_SCT_RES_OUT_NOCHANGE : è¾“å‡ºæ— å˜åŒ–
+ *                          - #AM_LPC_SCT_RES_OUT_SET      : è¾“å‡ºé«˜ç”µå¹³
+ *                          - #AM_LPC_SCT_RES_OUT_CLR      : è¾“å‡ºä½ç”µå¹³
+ *                          - #AM_LPC_SCT_RES_OUT_TOG      : ç¿»è½¬è¾“å‡ºç”µå¹³
  *
- * \retval  AM_OK        : ÅäÖÃ³É¹¦
- * \retval -AM_EINVAL    : ÅäÖÃÊ§°Ü, ²ÎÊı´íÎó
+ * \retval  AM_OK        : é…ç½®æˆåŠŸ
+ * \retval -AM_EINVAL    : é…ç½®å¤±è´¥, å‚æ•°é”™è¯¯
  */
 int am_lpc_sct_conflict_res_config (am_lpc_sct_handle_t sct_handle,
                                        uint8_t                output_num,
                                        uint8_t                value);
 
 /**
- * \brief ÉèÖÃSCT×´Ì¬Öµ
+ * \brief è®¾ç½®SCTçŠ¶æ€å€¼
  *
- * \param[in] sct_handle : SCT·şÎñ²Ù×÷¾ä±ú
- * \param[in] state    : ×´Ì¬Öµ
+ * \param[in] sct_handle : SCTæœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] state    : çŠ¶æ€å€¼
  *
- * \note ÉèÖÃ×´Ì¬ÖµÊ±£¬±ØĞëÈ·±£ÏàÓ¦µÄ¼ÆÊıÆ÷´¦ÓÚÖÕÖ¹(HALT)×´Ì¬£¬·ñÔòÉè¶¨Ê§°Ü
+ * \note è®¾ç½®çŠ¶æ€å€¼æ—¶ï¼Œå¿…é¡»ç¡®ä¿ç›¸åº”çš„è®¡æ•°å™¨å¤„äºç»ˆæ­¢(HALT)çŠ¶æ€ï¼Œå¦åˆ™è®¾å®šå¤±è´¥
  *
- * \retval  AM_OK        : ÉèÖÃ³É¹¦
- * \retval -AM_EINVAL    : ÉèÖÃÊ§°Ü, ²ÎÊı´íÎó
- * \retval -AM_EPERM     : Î´´¦ÓÚHALT×´Ì¬£¬ÉèÖÃÊ§°Ü
+ * \retval  AM_OK        : è®¾ç½®æˆåŠŸ
+ * \retval -AM_EINVAL    : è®¾ç½®å¤±è´¥, å‚æ•°é”™è¯¯
+ * \retval -AM_EPERM     : æœªå¤„äºHALTçŠ¶æ€ï¼Œè®¾ç½®å¤±è´¥
  */
 int am_lpc_sct_state_set (am_lpc_sct_handle_t sct_handle,
                              uint16_t               state);
 
 /**
- * \brief Í¨¹ıÊ±¼ä»ñÈ¡ĞèÒªÉè¶¨µÄÆ¥ÅäÖµ
+ * \brief é€šè¿‡æ—¶é—´è·å–éœ€è¦è®¾å®šçš„åŒ¹é…å€¼
  *
- * \param[in] sct_handle : SCT·şÎñ²Ù×÷¾ä±ú
- * \param[in] period_ns  : ÖÜÆÚ£¬µ¥Î»ns
+ * \param[in] sct_handle : SCTæœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] period_ns  : å‘¨æœŸï¼Œå•ä½ns
  *
- * \return Æ¥ÅäÖµ
+ * \return åŒ¹é…å€¼
  *
- * \note Èç¹û´ïµ½¿ÉÅäÖÃµÄ¼«ÏŞ£¬¼´Æ¥ÅäÖÜÆÚ¹ıĞ¡»ò¹ı´ó£¬ÄÇÃ´Êä³ö×Ô¶¯ÏŞÖÆÎª1£¨ÖÜÆÚ¹ıĞ¡£©
- *       »ò4294967295£¨ÖÜÆÚ¹ı´ó£©¡£
+ * \note å¦‚æœè¾¾åˆ°å¯é…ç½®çš„æé™ï¼Œå³åŒ¹é…å‘¨æœŸè¿‡å°æˆ–è¿‡å¤§ï¼Œé‚£ä¹ˆè¾“å‡ºè‡ªåŠ¨é™åˆ¶ä¸º1ï¼ˆå‘¨æœŸè¿‡å°ï¼‰
+ *       æˆ–4294967295ï¼ˆå‘¨æœŸè¿‡å¤§ï¼‰ã€‚
  */
 uint32_t am_lpc_sct_time_to_match(am_lpc_sct_handle_t sct_handle,
                                      uint32_t               period_ns);
 
 /**
- * \brief ¶ÔÖ¸¶¨µÄÊä³öÍ¨µÀÉèÖÃÊä³öµçÆ½
+ * \brief å¯¹æŒ‡å®šçš„è¾“å‡ºé€šé“è®¾ç½®è¾“å‡ºç”µå¹³
  *
- * \param[in] sct_handle : SCT·şÎñ²Ù×÷¾ä±ú
- * \param[in] output_num : Êä³öÍ¨µÀºÅ£¬0 ~ 5
- * \param[in] value      : Òı½Å×´Ì¬£¬²Î¼û \ref grp_am_gpio_pin_level
+ * \param[in] sct_handle : SCTæœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] output_num : è¾“å‡ºé€šé“å·ï¼Œ0 ~ 5
+ * \param[in] value      : å¼•è„šçŠ¶æ€ï¼Œå‚è§ \ref grp_am_gpio_pin_level
  *
- * \note Ğ´SCTÊä³ö¼Ä´æÆ÷±ØĞëÈ·±£ËùÓĞµÄ¼ÆÊıÆ÷´¦ÓÚÖÕÖ¹(HALT)×´Ì¬£¬·ñÔòÉè¶¨Ê§°Ü
+ * \note å†™SCTè¾“å‡ºå¯„å­˜å™¨å¿…é¡»ç¡®ä¿æ‰€æœ‰çš„è®¡æ•°å™¨å¤„äºç»ˆæ­¢(HALT)çŠ¶æ€ï¼Œå¦åˆ™è®¾å®šå¤±è´¥
  *
- * \retval  AM_OK        : ÉèÖÃ³É¹¦
- * \retval -AM_EINVAL    : ÉèÖÃÊ§°Ü, ²ÎÊı´íÎó
- * \retval -AM_EPERM     : Î´´¦ÓÚHALT×´Ì¬£¬ÉèÖÃÊ§°Ü
+ * \retval  AM_OK        : è®¾ç½®æˆåŠŸ
+ * \retval -AM_EINVAL    : è®¾ç½®å¤±è´¥, å‚æ•°é”™è¯¯
+ * \retval -AM_EPERM     : æœªå¤„äºHALTçŠ¶æ€ï¼Œè®¾ç½®å¤±è´¥
  */
 
 int am_lpc_sct_out_state_set (am_lpc_sct_handle_t sct_handle,

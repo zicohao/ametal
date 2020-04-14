@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZLG217 bootloader工程
+ * \brief ZLG217 bootloader宸ョ▼
  *
  * \internal
  * \par Modification history
@@ -31,13 +31,13 @@
 int am_main (void)
 {
 
-    /* 单区bootloader demo */
+    /* 鍗曞尯bootloader demo */
     //demo_zlg217_core_single_bootloader_uart_entry();
 
-    /* 双区bootloader demo */
+    /* 鍙屽尯bootloader demo */
     demo_zlg217_core_double_bootloader_uart_entry();
 
-    /* 基于上位机的 bootloader demo */
+    /* 鍩轰簬涓婁綅鏈虹殑 bootloader demo */
     //demo_zlg217_core_bootloader_kft_entry();
 
     while (1) {

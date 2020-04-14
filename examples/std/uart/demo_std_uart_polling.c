@@ -12,16 +12,16 @@
 
 /**
  * \file
- * \brief UART ²éÑ¯·½Ê½ÏÂ½ÓÊÕ·¢ËÍÊı¾İÀı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief UART æŸ¥è¯¢æ–¹å¼ä¸‹æ¥æ”¶å‘é€æ•°æ®ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿ÚÊä³ö "STD-UART test in polling mode:"£»
- *   2. ´®¿ÚÊä³ö½ÓÊÕµ½µÄ×Ö·û´®¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. ä¸²å£è¾“å‡º "STD-UART test in polling mode:"ï¼›
+ *   2. ä¸²å£è¾“å‡ºæ¥æ”¶åˆ°çš„å­—ç¬¦ä¸²ã€‚
  *
- * \note£º Èç¹ûµ÷ÊÔ´®¿ÚÊ¹ÓÃÓë±¾Àı³ÌÏàÍ¬£¬Ôò²»Ó¦ÔÚºóĞø¼ÌĞøÊ¹ÓÃµ÷ÊÔĞÅÏ¢Êä³öº¯Êı
- *       £¨Èç£ºAM_DBG_INFO()£©
+ * \noteï¼š å¦‚æœè°ƒè¯•ä¸²å£ä½¿ç”¨ä¸æœ¬ä¾‹ç¨‹ç›¸åŒï¼Œåˆ™ä¸åº”åœ¨åç»­ç»§ç»­ä½¿ç”¨è°ƒè¯•ä¿¡æ¯è¾“å‡ºå‡½æ•°
+ *       ï¼ˆå¦‚ï¼šAM_DBG_INFO()ï¼‰
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_std_uart_polling.c src_std_uart_polling
  *
  * \internal
@@ -39,24 +39,24 @@
 #include "ametal.h"
 #include "am_uart.h"
 
-/** \brief ĞèÒª·¢ËÍµÄ×Ö·û´® */
+/** \brief éœ€è¦å‘é€çš„å­—ç¬¦ä¸² */
 static const uint8_t __ch[] = {"STD-UART test in polling mode:\r\n"};
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_std_uart_polling_entry (am_uart_handle_t handle)
 {
-    uint8_t uart1_buf[5];    /* Êı¾İ»º³åÇø */
+    uint8_t uart1_buf[5];    /* æ•°æ®ç¼“å†²åŒº */
 
     am_uart_poll_send(handle, __ch, sizeof(__ch));
 
     while (1) {
 
-        /* ½ÓÊÕ×Ö·û */
+        /* æ¥æ”¶å­—ç¬¦ */
         am_uart_poll_receive(handle, uart1_buf, 1);
 
-        /* ·¢ËÍ¸Õ¸Õ½ÓÊÕµÄ×Ö·û */
+        /* å‘é€åˆšåˆšæ¥æ”¶çš„å­—ç¬¦ */
         am_uart_poll_send(handle, uart1_buf, 1);
 
     }

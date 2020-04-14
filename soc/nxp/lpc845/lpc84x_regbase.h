@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief LPC84X оƬ����Ĵ�����ַ����
+ * \brief LPC84X 芯片外设寄存器基址定义
  *
  * \internal
  * \par Modification history
@@ -35,107 +35,107 @@ extern "C" {
  */
 
 /**
- * \name �����ڴ�ӳ���ַ����
+ * \name 外设内存映射地址定义
  * @{
  */
  
-/** \brief NVIC����ַ          */
+/** \brief NVIC基地址          */
 #define LPC84X_NVIC_BASE           (0xE000E100UL)
 
-/** \brief SYSTICK����ַ       */
+/** \brief SYSTICK基地址       */
 #define LPC84X_SYSTICK_BASE        (0xE000E010UL)
 
-/** \brief WWDT����ַ          */
+/** \brief WWDT基地址          */
 #define LPC84X_WWDT_BASE           (0x40000000UL)
 
-/** \brief MRT ����ַ          */
+/** \brief MRT 基地址          */
 #define LPC84X_MRT_BASE            (0x40004000UL)
 
-/** \brief WKT ����ַ          */
+/** \brief WKT 基地址          */
 #define LPC84X_WKT_BASE            (0x40008000UL)
 
-/** \brief SWM ����ַ          */
+/** \brief SWM 基地址          */
 #define LPC84X_SWM_BASE            (0x4000C000UL)
 
-/** \brief ADC ����ַ          */
+/** \brief ADC 基地址          */
 #define LPC84X_ADC0_BASE           (0x4001C000UL)
 
-/** \brief PMU ����ַ          */
+/** \brief PMU 基地址          */
 #define LPC84X_PMU_BASE            (0x40020000UL)
 
-/** \brief CMP ����ַ          */
+/** \brief CMP 基地址          */
 #define LPC84X_ACMP_BASE           (0x40024000UL)
 
-/** \brief ���븴�û���ַ      */
+/** \brief 输入复用基地址      */
 #define LPC84X_INMUX_BASE          (0x4002C000UL)
 
-/** \brief FMC ����ַ         */
+/** \brief FMC 基地址         */
 #define LPC84X_FMC_BASE            (0x40040000UL)
 
-/** \brief IOCON����ַ        */
+/** \brief IOCON基地址        */
 #define LPC84X_IOCON_BASE          (0x40044000UL)
 
-/** \brief SYSCON����ַ       */
+/** \brief SYSCON基地址       */
 #define LPC84X_SYSCON_BASE         (0x40048000UL)
 
-/** \brief I2C0����ַ         */
+/** \brief I2C0基地址         */
 #define LPC84X_I2C0_BASE           (0x40050000UL)
 
-/** \brief I2C1����ַ         */
+/** \brief I2C1基地址         */
 #define LPC84X_I2C1_BASE           (0x40054000UL)
 
-/** \brief I2C2����ַ         */
+/** \brief I2C2基地址         */
 #define LPC84X_I2C2_BASE           (0x40070000UL)
                                         
-/** \brief I2C3����ַ         */        
+/** \brief I2C3基地址         */        
 #define LPC84X_I2C3_BASE           (0x40074000UL)
 
-/** \brief SPI0����ַ         */
+/** \brief SPI0基地址         */
 #define LPC84X_SPI0_BASE           (0x40058000UL)
 
-/** \brief SPI1����ַ         */ 
+/** \brief SPI1基地址         */ 
 #define LPC84X_SPI1_BASE           (0x4005C000UL)
 
-/** \brief USART0����ַ       */ 
+/** \brief USART0基地址       */ 
 #define LPC84X_USART0_BASE         (0x40064000UL)
 
-/** \brief USART1����ַ       */ 
+/** \brief USART1基地址       */ 
 #define LPC84X_USART1_BASE         (0x40068000UL)
 
-/** \brief USART2����ַ       */ 
+/** \brief USART2基地址       */ 
 #define LPC84X_USART2_BASE         (0x4006C000UL)
 
-/** \brief USART3����ַ       */
+/** \brief USART3基地址       */
 #define LPC84X_USART3_BASE         (0x40070000UL)
 
-/** \brief USART4����ַ       */
+/** \brief USART4基地址       */
 #define LPC84X_USART4_BASE         (0x40074000UL)
 
-/** \brief CRC ����ַ         */
+/** \brief CRC 基地址         */
 #define LPC84X_CRC_BASE            (0x50000000UL)
 
-/** \brief DMA ����ַ         */ 
+/** \brief DMA 基地址         */ 
 #define LPC84X_DMA_BASE            (0x50008000UL)
 
-/** \brief GPIOͨ������ַ     */
+/** \brief GPIO通道基地址     */
 #define LPC84X_GPIO_BASE           (0xA0000000UL)
 
-/** \brief PIN_INT����ַ      */
+/** \brief PIN_INT基地址      */
 #define LPC84X_PINT_BASE           (0xA0004000UL)
 
-/** \brief SCT0�Ļ���ַ       */
+/** \brief SCT0的基地址       */
 #define LPC84X_SCT0_BASE           (0x50004000UL)
 
-/** \brief IAP API��ַ        */
+/** \brief IAP API地址        */
 #define LPC84X_IAP_ENTRY_LOCATION  (0x0F001FF1UL)
 
-/** \brief IAP DAC0��ַ        */
+/** \brief IAP DAC0地址        */
 #define LPC84X_DAC0_BASE           (0x40014000UL)
 
-/** \brief IAP DAC1��ַ        */
+/** \brief IAP DAC1地址        */
 #define LPC84X_DAC1_BASE           (0x40018000UL)
 
-/** \brief IAP CAPT��ַ        */
+/** \brief IAP CAPT地址        */
 #define LPC84X_CAPT_BASE           (0x40060000UL)
 
 /** @} */    

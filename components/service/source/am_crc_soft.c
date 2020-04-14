@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief CRC(Cyclic Redundancy Check)Ñ­»·ÈßÓàĞ£Ñé Èí¼ş¼ÆËã·½·¨ÊµÏÖ
+ * \brief CRC(Cyclic Redundancy Check)å¾ªç¯å†—ä½™æ ¡éªŒ è½¯ä»¶è®¡ç®—æ–¹æ³•å®ç°
  *
  * \internal
  * \par modification history:
@@ -32,13 +32,13 @@
     Local functions
 *******************************************************************************/
 
-/* 8Î»Êı×Öbit·´Ğò(ÄÚ²¿Ê¹ÓÃ) */
+/* 8ä½æ•°å­—bitååº(å†…éƒ¨ä½¿ç”¨) */
 static uint8_t __reflect8(uint8_t data)
 {
     uint8_t value = 0;
     uint8_t i = 1;
 
-    // ½»»» bit0 ºÍ bit7£¬bit1 ºÍ bit6£¬ÀàÍÆ
+    // äº¤æ¢ bit0 å’Œ bit7ï¼Œbit1 å’Œ bit6ï¼Œç±»æ¨
     for(; i < 9; i++)
     {
         if(data & 1) {
@@ -51,13 +51,13 @@ static uint8_t __reflect8(uint8_t data)
 
 /******************************************************************************/
 
-/* nÎ»Êı×Öbit·´Ğò(ÄÚ²¿Ê¹ÓÃ)  */
+/* nä½æ•°å­—bitååº(å†…éƒ¨ä½¿ç”¨)  */
 static uint32_t __reflectn(uint32_t data,uint8_t n)
 {
     uint32_t value = 0;
     uint8_t i = 1;
 
-    // ½»»» bit0 ºÍ bit7£¬bit1 ºÍ bit6£¬ÀàÍÆ
+    // äº¤æ¢ bit0 å’Œ bit7ï¼Œbit1 å’Œ bit6ï¼Œç±»æ¨
     for(; i < (n + 1); i++)
     {
         if(data & 1) {
@@ -70,7 +70,7 @@ static uint32_t __reflectn(uint32_t data,uint8_t n)
 
 /******************************************************************************/
 
-/* CRC¼ÆËã 8Î» */
+/* CRCè®¡ç®— 8ä½ */
 static int __crc_soft_cal_8 (void *p_drv, const uint8_t *p_data, uint32_t nbytes)
 {
     am_crc_soft_t    *p_crc     = (am_crc_soft_t  *)p_drv;
@@ -90,7 +90,7 @@ static int __crc_soft_cal_8 (void *p_drv, const uint8_t *p_data, uint32_t nbytes
 
 /******************************************************************************/
 
-/* CRC¼ÆËã 16Î» */
+/* CRCè®¡ç®— 16ä½ */
 static int __crc_soft_cal_16 (void *p_drv, const uint8_t *p_data, uint32_t nbytes)
 {
     am_crc_soft_t    *p_crc     = (am_crc_soft_t  *)p_drv;
@@ -114,7 +114,7 @@ static int __crc_soft_cal_16 (void *p_drv, const uint8_t *p_data, uint32_t nbyte
 
 /******************************************************************************/
 
-/* CRC¼ÆËã 16Î», REF */
+/* CRCè®¡ç®— 16ä½, REF */
 static int __crc_soft_cal_16_ref (void *p_drv, const uint8_t *p_data, uint32_t nbytes)
 {
     am_crc_soft_t    *p_crc     = (am_crc_soft_t  *)p_drv;
@@ -134,7 +134,7 @@ static int __crc_soft_cal_16_ref (void *p_drv, const uint8_t *p_data, uint32_t n
 
 /******************************************************************************/
 
-/* CRC¼ÆËã 32Î» */
+/* CRCè®¡ç®— 32ä½ */
 static int __crc_soft_cal_32 (void *p_drv, const uint8_t *p_data, uint32_t nbytes)
 {
     am_crc_soft_t    *p_crc     = (am_crc_soft_t  *)p_drv;
@@ -157,7 +157,7 @@ static int __crc_soft_cal_32 (void *p_drv, const uint8_t *p_data, uint32_t nbyte
 
 /******************************************************************************/
 
-/* CRC¼ÆËã 32Î»  REF */
+/* CRCè®¡ç®— 32ä½  REF */
 static int __crc_soft_cal_32_ref (void *p_drv, const uint8_t *p_data, uint32_t nbytes)
 {
     am_crc_soft_t    *p_crc     = (am_crc_soft_t  *)p_drv;
@@ -184,7 +184,7 @@ static int __crc_soft_init (void *p_drv, am_crc_pattern_t *p_pattern)
         return -AM_EINVAL;
     }
 
-    /* Ä£ĞÍÓë TABLE ±íĞÅÏ¢±ØĞë±£³ÖÒ»ÖÂ  */
+    /* æ¨¡å‹ä¸ TABLE è¡¨ä¿¡æ¯å¿…é¡»ä¿æŒä¸€è‡´  */
     if ((p_pattern->width != p_crc->p_table->width) ||
         (p_pattern->poly  != p_crc->p_table->poly)  ||
         (p_pattern->refin != p_crc->p_table->refin)) {
@@ -193,8 +193,8 @@ static int __crc_soft_init (void *p_drv, am_crc_pattern_t *p_pattern)
     }
 
     /*
-     * ³õÊ¼Öµ,Î»Êı²»×ã8Î»Ê±£¬Ó¦¸ÃÏò¸ßÎ»¶ÔÆë (ref = false )
-     *                      Ó¦¸ÃÏòµÍÎ»¶ÔÆë(ref = true  )
+     * åˆå§‹å€¼,ä½æ•°ä¸è¶³8ä½æ—¶ï¼Œåº”è¯¥å‘é«˜ä½å¯¹é½ (ref = false )
+     *                      åº”è¯¥å‘ä½ä½å¯¹é½(ref = true  )
      */
     if ((p_pattern->refin == AM_FALSE) && (p_pattern->width < 8)) {
 
@@ -217,28 +217,28 @@ static int __crc_soft_final (void *p_drv, uint32_t *p_value)
 
     uint32_t crc = p_crc->value;
 
-    if (p_pattern == NULL) {   /* Î´Éè¶¨¼ÆËãµÄCRCÄ£ĞÍ£¬ÎŞ·¨¼ÆËã */
+    if (p_pattern == NULL) {   /* æœªè®¾å®šè®¡ç®—çš„CRCæ¨¡å‹ï¼Œæ— æ³•è®¡ç®— */
         return -AM_EPERM;
     }
 
     /*
-     * Ğ¡ÓÚ8Î»Ê±,²¢ÇÒÃ»ÓĞ·´ÏòÊ±£¬¼ÆËã¹ı³ÌÖĞ£¬ÆäÏò¸ßÎ»¶ÔÆë
-     * ĞèÒªÒÆÎ»£¬±£³Ö×îÖÕ½á¹û°´µÍÎ»¶ÔÆë
+     * å°äº8ä½æ—¶,å¹¶ä¸”æ²¡æœ‰åå‘æ—¶ï¼Œè®¡ç®—è¿‡ç¨‹ä¸­ï¼Œå…¶å‘é«˜ä½å¯¹é½
+     * éœ€è¦ç§»ä½ï¼Œä¿æŒæœ€ç»ˆç»“æœæŒ‰ä½ä½å¯¹é½
      */
     if ((p_pattern->refin == AM_FALSE) && (p_pattern->width < 8)) {
         crc >>= (8 - p_pattern->width);
     }
 
-    /* Í¨³££¬²»»á³öÏÖ¸ÃÇé¿ö */
+    /* é€šå¸¸ï¼Œä¸ä¼šå‡ºç°è¯¥æƒ…å†µ */
     if (p_pattern->refin != p_pattern->refout) {
-        crc = __reflectn(crc,p_pattern->width);    /* Ğ¡ÓÚ8Î»Ò²ÊÇ°´µÍÎ»¶ÔÆëµÄ */
+        crc = __reflectn(crc,p_pattern->width);    /* å°äº8ä½ä¹Ÿæ˜¯æŒ‰ä½ä½å¯¹é½çš„ */
     }
 
-    crc = crc ^ p_pattern->xorout;                 /* Òì»òÊä³öÖµ  */
+    crc = crc ^ p_pattern->xorout;                 /* å¼‚æˆ–è¾“å‡ºå€¼  */
 
     *p_value = crc;
 
-    /* ¼ÆËã½áÊø£¬ CRC Ä£ĞÍÖØÖÃÎªNULL£¬Ö»ÓĞÖØĞÂ³õÊ¼»¯ºó·½ÄÜÕı³£Ê¹ÓÃ */
+    /* è®¡ç®—ç»“æŸï¼Œ CRC æ¨¡å‹é‡ç½®ä¸ºNULLï¼Œåªæœ‰é‡æ–°åˆå§‹åŒ–åæ–¹èƒ½æ­£å¸¸ä½¿ç”¨ */
     p_crc->p_pattern = NULL;
 
     return AM_OK;
@@ -297,14 +297,14 @@ int am_crc_table_create (am_crc_table_t  *p_table,
     }
 
     if (width > 32 || width == 0) {
-        return -AM_EINVAL;                                    /* ·Ç·¨µÄ¿í¶È     */
+        return -AM_EINVAL;                                    /* éæ³•çš„å®½åº¦     */
     }
 
     p_table->width = width;
     p_table->poly  = poly;
     p_table->refin = refin;
 
-    /* CRC ¿í¶È´óÓÚ8Ê±  */
+    /* CRC å®½åº¦å¤§äº8æ—¶  */
     if (width >= 8) {
 
         topbit = (1ul << (width - 1));
@@ -332,10 +332,10 @@ int am_crc_table_create (am_crc_table_t  *p_table,
                 data = __reflectn(data,width);
             }
 
-            /* ±ÜÃâ32Î»Ê±ÒÆÎ»³ö½ç */
+            /* é¿å…32ä½æ—¶ç§»ä½å‡ºç•Œ */
             data = data & ((((1ul << (width - 1)) - 1) << 1) | 1);
 
-            /* ½«Êı¾İ·ÅÈëÊı×éÖĞ */
+            /* å°†æ•°æ®æ”¾å…¥æ•°ç»„ä¸­ */
             if (width <= 8) {
                 ((uint8_t *)p_data)[i] = data;
             } else if (width <= 16){
@@ -345,7 +345,7 @@ int am_crc_table_create (am_crc_table_t  *p_table,
             }
         }
 
-    } else {                               /* CRC¿í¶ÈĞ¡ÓÚ8Ê±,ĞèÒªÌØÊâ´¦Àí  */
+    } else {                               /* CRCå®½åº¦å°äº8æ—¶,éœ€è¦ç‰¹æ®Šå¤„ç†  */
 
         for (i = 0; i < 256; i++) {
 
@@ -353,15 +353,15 @@ int am_crc_table_create (am_crc_table_t  *p_table,
             if (refin == AM_TRUE) {
                 temp = __reflect8(i);
             }
-            data = temp << (width);       /* ÕâÀï²»¼õÈ¥8 */
+            data = temp << (width);       /* è¿™é‡Œä¸å‡å»8 */
 
             for (j = 0; j < 8; j++) {
 
                 topbit = 1ul << (8 + width -1 - j);
 
-                if (data & topbit) {                  /* ´ËÎ»Îª1£¬½«ÆäÒì»òÎª0             */
-                    data &= ~topbit;                  /* ¸ÃÎ»¿É²»ÇåÁã£¬ºóÃæÖ»È¡widthÎ»¼´¿É  */
-                    data = data ^ (poly << (7 - j));  /* ±£Ö¤¶ÔÆë                                 */
+                if (data & topbit) {                  /* æ­¤ä½ä¸º1ï¼Œå°†å…¶å¼‚æˆ–ä¸º0             */
+                    data &= ~topbit;                  /* è¯¥ä½å¯ä¸æ¸…é›¶ï¼Œåé¢åªå–widthä½å³å¯  */
+                    data = data ^ (poly << (7 - j));  /* ä¿è¯å¯¹é½                                 */
                 }
             }
             if (refin == AM_TRUE) {
@@ -370,9 +370,9 @@ int am_crc_table_create (am_crc_table_t  *p_table,
             data = data & ((1ul << width) - 1);
 
             if (refin == AM_FALSE) {
-                data <<= (8 - width);     /* Ïò¸ßÎ»¶ÔÆë£¬²¹ÆëÎª8Î» £¬µÍÎ»²¹0 */
+                data <<= (8 - width);     /* å‘é«˜ä½å¯¹é½ï¼Œè¡¥é½ä¸º8ä½ ï¼Œä½ä½è¡¥0 */
             }
-            //ÎªTRUEÊ±£¬ÏòµÍÎ»²¹Æë£¬Ä¬ÈÏ...
+            //ä¸ºTRUEæ—¶ï¼Œå‘ä½ä½è¡¥é½ï¼Œé»˜è®¤...
             ((uint8_t *)p_data)[i] = data;
         }
     }

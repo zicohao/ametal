@@ -12,19 +12,19 @@
 
 /**
  * \file
- * \brief TIM3 ��ʱ�� TIMING ���̣�ͨ����׼�ӿ�ʵ��
+ * \brief TIM3 定时器 TIMING 例程，通过标准接口实现
  *
- * - ʵ������
- *   1. LED0 �� 10Hz ��Ƶ�ʷ�ת��
+ * - 实验现象：
+ *   1. LED0 以 10Hz 的频率翻转。
  *
  * \note
- *    1. LED0 ��Ҫ�̽� J9 ����ñ�����ܱ� PIOC_9 ���ƣ�
- *    2. 16 λ��ʱ����ʱ����ֵ��Ϊ 65536 �ı�������ʱ����һЩƫ�
- *    3. ���� TIM3 Ĭ�ϳ�ʼ������Ϊ������ PWM ʹ�ã�ʹ�ñ� Demo ֮ǰ������
- *       am_prj_config.h �ڽ� AM_CFG_BUZZER_ENABLE ����Ϊ 0��
+ *    1. LED0 需要短接 J9 跳线帽，才能被 PIOC_9 控制；
+ *    2. 16 位定时器定时计数值不为 65536 的倍数，则定时会有一些偏差；
+ *    3. 由于 TIM3 默认初始化并作为蜂鸣器 PWM 使用，使用本 Demo 之前必须在
+ *       am_prj_config.h 内将 AM_CFG_BUZZER_ENABLE 定义为 0。
  *
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_zlg217_std_tim3_timing.c src_zlg217_std_tim3_timing
  *
  * \internal
@@ -46,7 +46,7 @@
 #include "demo_am217_core_entries.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_zlg217_core_std_tim3_timing_entry (void)
 {

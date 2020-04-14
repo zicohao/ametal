@@ -12,16 +12,16 @@
 
 /**
  * \file
- * \brief Systick Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief Systick ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿Ú ÒÔ 10Hz µÄÆµÂÊ´òÓ¡¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. ä¸²å£ ä»¥ 10Hz çš„é¢‘ç‡æ‰“å°ã€‚
  *
  * \note
- *    1. ÓÉÓÚ Systick Ä¬ÈÏ×÷ÎªÏµÍ³ÑÓÊ±Ê¹ÓÃ£¬Ê¹ÓÃ²âÊÔ±¾ Demo Ç°ĞèÒª½«
- *       am_prj_config.h ÖĞµÄ AM_CFG_DELAY_ENABLE ¶¨ÒåÎª 0£¬²»Ê¹ÓÃÏµÍ³ÑÓÊ±¡£
+ *    1. ç”±äº Systick é»˜è®¤ä½œä¸ºç³»ç»Ÿå»¶æ—¶ä½¿ç”¨ï¼Œä½¿ç”¨æµ‹è¯•æœ¬ Demo å‰éœ€è¦å°†
+ *       am_prj_config.h ä¸­çš„ AM_CFG_DELAY_ENABLE å®šä¹‰ä¸º 0ï¼Œä¸ä½¿ç”¨ç³»ç»Ÿå»¶æ—¶ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am845_core_std_systick_timer.c src_am845_core_std_systick_timer
  *
  * \internal
@@ -43,7 +43,7 @@
 #include "demo_std_entries.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am845_core_std_systick_timer_entry (void)
 {

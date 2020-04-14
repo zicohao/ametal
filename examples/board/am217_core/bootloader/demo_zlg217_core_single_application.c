@@ -12,35 +12,35 @@
 
 /**
  * \file
- * \brief bootloader Àý³Ì£¬±¾demoÊÇ×÷Îªµ¥ÇøµÄÓ¦ÓÃ³ÌÐò£¨ÎÞ·¨ÔÚÓ¦ÓÃ³ÌÐòÖÐÉý¼¶£©¡£
+ * \brief bootloader ä¾‹ç¨‹ï¼Œæœ¬demoæ˜¯ä½œä¸ºå•åŒºçš„åº”ç”¨ç¨‹åºï¼ˆæ— æ³•åœ¨åº”ç”¨ç¨‹åºä¸­å‡çº§ï¼‰ã€‚
  *
- * - ²Ù×÷²½Öè:
- *   1.eclipse¹¤³Ì´ò¿ªdemo_am217_core_boot_application.ldÎÄ¼þ£¬´ò¿ª:
+ * - æ“ä½œæ­¥éª¤:
+ *   1.eclipseå·¥ç¨‹æ‰“å¼€demo_am217_core_boot_application.ldæ–‡ä»¶ï¼Œæ‰“å¼€:
  *
  *       FLASH (rx)  : ORIGIN = 0x08007000, LENGTH = 100K  //single
  *
- *     µÄÅäÖÃ, ÆÁ±ÎÆäËûflashÅäÖÃ¡£
+ *     çš„é…ç½®, å±è”½å…¶ä»–flashé…ç½®ã€‚
  *
- *     keil¹¤³Ì´ò¿ªdemo_am217_core_application.sctÎÄ¼þ£¬´ò¿ªµ¥ÇøµÄÅäÖÃ£¬ÆÁ±ÎÆäËûÅäÖÃ
+ *     keilå·¥ç¨‹æ‰“å¼€demo_am217_core_application.sctæ–‡ä»¶ï¼Œæ‰“å¼€å•åŒºçš„é…ç½®ï¼Œå±è”½å…¶ä»–é…ç½®
  *
- *   2.±àÒë¹¤³Ì
- *   3.¹Ì¼þ´¦Àí£¬²Î¿¼ÏÂÃænoteÌáÊ¾
+ *   2.ç¼–è¯‘å·¥ç¨‹
+ *   3.å›ºä»¶å¤„ç†ï¼Œå‚è€ƒä¸‹é¢noteæç¤º
  *
- * - Àý³ÌÏÖÏó£º
- *   1. LEDµÆÉÁË¸£¬´®¿ÚÑ­»·´òÓ¡¡£
+ * - ä¾‹ç¨‹çŽ°è±¡ï¼š
+ *   1. LEDç¯é—ªçƒï¼Œä¸²å£å¾ªçŽ¯æ‰“å°ã€‚
  *   
  *
  * \note
- *    ¹¤³Ì±àÒëºó»áÉú³É¶ÔÓ¦µÄ¹¤³ÌbinÎÄ¼þ£¬ÐèÒª½«binÎÄ¼þ½øÐÐ´¦Àíºó²ÅÄÜ×÷Îª¹Ì¼þ·¢ËÍ
+ *    å·¥ç¨‹ç¼–è¯‘åŽä¼šç”Ÿæˆå¯¹åº”çš„å·¥ç¨‹binæ–‡ä»¶ï¼Œéœ€è¦å°†binæ–‡ä»¶è¿›è¡Œå¤„ç†åŽæ‰èƒ½ä½œä¸ºå›ºä»¶å‘é€
  *
- *    ¹Ì¼þ´¦Àí£º
+ *    å›ºä»¶å¤„ç†ï¼š
  *
- *    ´ò¿ªÔÚametal/tools/bootloader/¹Ì¼þÐ£Ñé/ ÎÄ¼þ¼Ð£¬Ä¿Â¼ÏÂÓÐÒ»¸öbin_chek_sum.binµÄÖ´ÐÐÎÄ¼þ£¬
- *    ½«±¾¹¤³Ì±àÒë³öµÄbinÎÄ¼þ¿½±´µ½ºÍbin_chek_sum.binÍ¬Ò»¸öÄ¿Â¼ÏÂ£¬
- *    ÔÚ¸ÃÄ¿Â¼ÏÂ´ò¿ªcmd£¬ÔÚÃüÁîÐÐÖÐÒÀ´ÎÊäÈë£º
- *         bin_chek_sum.bin  xxx.bin£¨±àÒëºóµÄbinÎÄ¼þÃû³Æ£© xxx.bin£¨Ä¿±êÊä³öÎÄ¼þ£¬Ãû×ÖÈÎÒâÈ¡£©
+ *    æ‰“å¼€åœ¨ametal/tools/bootloader/å›ºä»¶æ ¡éªŒ/ æ–‡ä»¶å¤¹ï¼Œç›®å½•ä¸‹æœ‰ä¸€ä¸ªbin_chek_sum.binçš„æ‰§è¡Œæ–‡ä»¶ï¼Œ
+ *    å°†æœ¬å·¥ç¨‹ç¼–è¯‘å‡ºçš„binæ–‡ä»¶æ‹·è´åˆ°å’Œbin_chek_sum.binåŒä¸€ä¸ªç›®å½•ä¸‹ï¼Œ
+ *    åœ¨è¯¥ç›®å½•ä¸‹æ‰“å¼€cmdï¼Œåœ¨å‘½ä»¤è¡Œä¸­ä¾æ¬¡è¾“å…¥ï¼š
+ *         bin_chek_sum.bin  xxx.binï¼ˆç¼–è¯‘åŽçš„binæ–‡ä»¶åç§°ï¼‰ xxx.binï¼ˆç›®æ ‡è¾“å‡ºæ–‡ä»¶ï¼Œåå­—ä»»æ„å–ï¼‰
  *
- *    Ö´ÐÐÃüÁîºó»áÉú³ÉÒ»¸öÓÉÓÃ»§×Ô¼ºÈ¡ÃûµÄÄ¿±êÊä³öÎÄ¼þ£¬Õâ¸öÎÄ¼þ¾ÍÊÇÐèÒª·¢ËÍµÄ¹Ì¼þ¡£
+ *    æ‰§è¡Œå‘½ä»¤åŽä¼šç”Ÿæˆä¸€ä¸ªç”±ç”¨æˆ·è‡ªå·±å–åçš„ç›®æ ‡è¾“å‡ºæ–‡ä»¶ï¼Œè¿™ä¸ªæ–‡ä»¶å°±æ˜¯éœ€è¦å‘é€çš„å›ºä»¶ã€‚
  *
  *
  * \internal

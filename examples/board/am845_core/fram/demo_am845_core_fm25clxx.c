@@ -12,13 +12,13 @@
 
 /**
  * \file
- * \brief F-RAM Àý³Ì£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief F-RAM ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Ö÷»úÐ´Êý¾Ýµ½ F-RAM£»
- *   2. Ö÷»ú´Ó F-RAM ¶ÁÈ¡Êý¾Ý£¬²¢Í¨¹ý´®¿Ú´òÓ¡´¦Àí£»
- *   3. ´®¿Ú´òÓ¡³ö²âÊÔ½á¹û¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. ä¸»æœºå†™æ•°æ®åˆ° F-RAMï¼›
+ *   2. ä¸»æœºä»Ž F-RAM è¯»å–æ•°æ®ï¼Œå¹¶é€šè¿‡ä¸²å£æ‰“å°å¤„ç†ï¼›
+ *   3. ä¸²å£æ‰“å°å‡ºæµ‹è¯•ç»“æžœã€‚
  *
  * \internal
  * \par Modification history
@@ -39,7 +39,7 @@
 
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am845_core_fm25clxx_entry (void)
 {

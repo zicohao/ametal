@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief KL26 TPM0 ÓÃÓÚPWMÊä³ö ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief KL26 TPM0 ç”¨äºPWMè¾“å‡º ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_fsl_hwconfig_tpm0_pwm.c
  * 
  * \internal
@@ -33,50 +33,50 @@
  * @{
  */
 
-/** \brief TPM0ÓÃÓÚPWMÊä³ö Æ½Ì¨³õÊ¼»¯ */
+/** \brief TPM0ç”¨äºPWMè¾“å‡º å¹³å°åˆå§‹åŒ– */
 void __kl26_plfm_tpm0_pwm_init (void)
 {
     amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_TPM0);
     amhw_kl26_sim_tpm_src_set(KL26_SIM_TPMSRC_PLLFLLCLK);
 }
 
-/** \brief ½â³ıTPM0Æ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤TPM0å¹³å°åˆå§‹åŒ– */
 void __kl26_plfm_tpm0_pwm_deinit (void)
 {
     amhw_kl26_sim_periph_clock_disable(KL26_SIM_SCGC_TPM0);
 }
 
-/** \brief TPM0ÓÃÓÚPWM¹¦ÄÜµÄÒı½ÅÅäÖÃĞÅÏ¢ÁĞ±í */
+/** \brief TPM0ç”¨äºPWMåŠŸèƒ½çš„å¼•è„šé…ç½®ä¿¡æ¯åˆ—è¡¨ */
 am_fsl_tpm_pwm_ioinfo_t __g_tpm0_pwm_ioinfo_list[] = {
-    {PIOD_0, PIOD_0_TPM0_CH0, PIOD_0_GPIO | AM_GPIO_INPUT},  /**< \brief Í¨µÀ0 */
-    {PIOD_1, PIOD_1_TPM0_CH1, PIOD_1_GPIO | AM_GPIO_INPUT},  /**< \brief Í¨µÀ1 */
-    {PIOC_3, PIOC_3_TPM0_CH2, PIOC_3_GPIO | AM_GPIO_INPUT},  /**< \brief Í¨µÀ2 */
-    {PIOD_3, PIOD_3_TPM0_CH3, PIOD_3_GPIO | AM_GPIO_INPUT},  /**< \brief Í¨µÀ3 */
-    {PIOD_4, PIOD_4_TPM0_CH4, PIOD_4_GPIO | AM_GPIO_INPUT},  /**< \brief Í¨µÀ4 */
-    {PIOD_5, PIOD_5_TPM0_CH5, PIOD_5_GPIO | AM_GPIO_INPUT},  /**< \brief Í¨µÀ5 */
+    {PIOD_0, PIOD_0_TPM0_CH0, PIOD_0_GPIO | AM_GPIO_INPUT},  /**< \brief é€šé“0 */
+    {PIOD_1, PIOD_1_TPM0_CH1, PIOD_1_GPIO | AM_GPIO_INPUT},  /**< \brief é€šé“1 */
+    {PIOC_3, PIOC_3_TPM0_CH2, PIOC_3_GPIO | AM_GPIO_INPUT},  /**< \brief é€šé“2 */
+    {PIOD_3, PIOD_3_TPM0_CH3, PIOD_3_GPIO | AM_GPIO_INPUT},  /**< \brief é€šé“3 */
+    {PIOD_4, PIOD_4_TPM0_CH4, PIOD_4_GPIO | AM_GPIO_INPUT},  /**< \brief é€šé“4 */
+    {PIOD_5, PIOD_5_TPM0_CH5, PIOD_5_GPIO | AM_GPIO_INPUT},  /**< \brief é€šé“5 */
 };
 
-/** \brief TPM0ÓÃÓÚPWMÉè±¸ĞÅÏ¢ */
+/** \brief TPM0ç”¨äºPWMè®¾å¤‡ä¿¡æ¯ */
 const am_fsl_tpm_pwm_devinfo_t  __g_tpm0_pwm_devinfo = {
-    KL26_TPM0,                       /**< \brief Ö¸ÏòTPM0¼Ä´æÆ÷¿éµÄÖ¸Õë */
-    6,                               /**< \brief 6¸öPWMÊä³öÍ¨µÀ */
-    CLK_TPM0,                        /**< \brief Ê±ÖÓºÅ */
+    KL26_TPM0,                       /**< \brief æŒ‡å‘TPM0å¯„å­˜å™¨å—çš„æŒ‡é’ˆ */
+    6,                               /**< \brief 6ä¸ªPWMè¾“å‡ºé€šé“ */
+    CLK_TPM0,                        /**< \brief æ—¶é’Ÿå· */
     &__g_tpm0_pwm_ioinfo_list[0],
-    __kl26_plfm_tpm0_pwm_init,       /**< \brief Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __kl26_plfm_tpm0_pwm_deinit      /**< \brief Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    __kl26_plfm_tpm0_pwm_init,       /**< \brief å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __kl26_plfm_tpm0_pwm_deinit      /**< \brief å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 };
 
-/** \brief TPM0ÓÃÓÚPWMÉè±¸¶¨Òå */
+/** \brief TPM0ç”¨äºPWMè®¾å¤‡å®šä¹‰ */
 am_fsl_tpm_pwm_dev_t  __g_tpm0_pwm_dev;
 
-/** \brief tpm0 Timer ÊµÀı³õÊ¼»¯£¬»ñµÃTimer±ê×¼·şÎñ¾ä±ú */
+/** \brief tpm0 Timer å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—Timeræ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_pwm_handle_t am_kl26_tpm0_pwm_inst_init (void)
 {
     return am_fsl_tpm_pwm_init(&__g_tpm0_pwm_dev,
                                &__g_tpm0_pwm_devinfo);
 }
 
-/** \brief tpm0 pwm ÊµÀı½â³õÊ¼»¯ */
+/** \brief tpm0 pwm å®ä¾‹è§£åˆå§‹åŒ– */
 void am_kl26_tpm0_pwm_inst_deinit (am_pwm_handle_t handle)
 {
     am_fsl_tpm_pwm_deinit(handle);

@@ -11,23 +11,23 @@
 *******************************************************************************/
 /**
  * \file
- * \brief MicroPort FLASH ���̣�ͨ�� MTD �ӿ�ʵ�֡�
+ * \brief MicroPort FLASH 例程，通过 MTD 接口实现。
  *
- * ���� MX25L1606 �ǵ��͵� FLASH �洢�ڼ䣬��˿���ʹ�� MTD �ӿڶ�д��
- * ʹ֮����������޹أ�ʵ�ֿ�ƽ̨���á�
+ * 由于 MX25L1606 是典型的 FLASH 存储期间，因此可以使用 MTD 接口读写，
+ * 使之与具体器件无关，实现跨平台调用。
  *
- * - �������裺
- *   1. �� MicroPort FLASH ������ӵ� AM116-Core �� MicroPort �ӿڡ�
+ * - 操作步骤：
+ *   1. 将 MicroPort FLASH 配板连接到 AM116-Core 的 MicroPort 接口。
  *
- * - ʵ������
- *   1. ����д���ݵ� FLASH��
- *   2. ������ FLASH ��ȡ���ݣ���ͨ�����ڴ�ӡ������
- *   3. ���ڴ�ӡ�����Խ����
+ * - 实验现象：
+ *   1. 主机写数据到 FLASH；
+ *   2. 主机从 FLASH 读取数据，并通过串口打印处理；
+ *   3. 串口打印出测试结果。
  *
  * \note
- *    ����۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIOA_9 �������� PC ���ڵ� RXD��
+ *    如需观察串口打印的调试信息，需要将 PIOA_9 引脚连接 PC 串口的 RXD。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_am116_core_microport_flash_mtd.c src_am116_core_microport_flash_mtd
  *
  * \internal
@@ -49,7 +49,7 @@
 #include "demo_am116_core_entries.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_am116_core_microport_flash_mtd_entry (void)
 {

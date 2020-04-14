@@ -12,20 +12,20 @@
 
 /**
  * \file
- * \brief uartcmd¶Á¿¨ID£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief uartcmdè¯»å¡IDï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ²Ù×÷£º
- * - 1. ×¼±¸Á½¿éAMKS16RFID-8ÆÀ¹À°å£¬³ÆÎª°å1ºÍ°å2£»
- *   2. °å1Ğè²åÈëÌìÏß£¬Ö´ĞĞprojects_keil5\examples_uart_cmd_read_card\demo_kl26_uartcmd_handleÖĞµÄÀı³Ì£»
- *   3. ½«°å1µÄPIOC_3Óë°å2µÄPIOC_4Á¬½Ó£¬°å1µÄPIOC_4Óë°å2µÄPIOC_3Á¬½Ó£¬°å1Óë°å2¹²µØ£»
- *   4. ½«°å2µÄPIOE_20ÓëµçÄÔ´®¿Ú½ÓÊÕ¶ËÁ¬½Ó£»
- *   5. Á½¿é°å×ÓÉÏµçºó°´ÏÂÁ½¿é°å×ÓµÄ¸´Î»¼ü£¬È»ºóÏÈËÉ¿ª°å1µÄ¸´Î»¼ü£¬1ÃëºóÔÙËÉ¿ª°å2
- *      µÄ¸´Î»¼ü¡£
- *   6. ½«Mifare UltraLight¿¨Æ¬ÖÁÓÚ°å1µÄÌìÏß¸ĞÓ¦Çø¡£
+ * - æ“ä½œï¼š
+ * - 1. å‡†å¤‡ä¸¤å—AMKS16RFID-8è¯„ä¼°æ¿ï¼Œç§°ä¸ºæ¿1å’Œæ¿2ï¼›
+ *   2. æ¿1éœ€æ’å…¥å¤©çº¿ï¼Œæ‰§è¡Œprojects_keil5\examples_uart_cmd_read_card\demo_kl26_uartcmd_handleä¸­çš„ä¾‹ç¨‹ï¼›
+ *   3. å°†æ¿1çš„PIOC_3ä¸æ¿2çš„PIOC_4è¿æ¥ï¼Œæ¿1çš„PIOC_4ä¸æ¿2çš„PIOC_3è¿æ¥ï¼Œæ¿1ä¸æ¿2å…±åœ°ï¼›
+ *   4. å°†æ¿2çš„PIOE_20ä¸ç”µè„‘ä¸²å£æ¥æ”¶ç«¯è¿æ¥ï¼›
+ *   5. ä¸¤å—æ¿å­ä¸Šç”µåæŒ‰ä¸‹ä¸¤å—æ¿å­çš„å¤ä½é”®ï¼Œç„¶åå…ˆæ¾å¼€æ¿1çš„å¤ä½é”®ï¼Œ1ç§’åå†æ¾å¼€æ¿2
+ *      çš„å¤ä½é”®ã€‚
+ *   6. å°†Mifare UltraLightå¡ç‰‡è‡³äºæ¿1çš„å¤©çº¿æ„Ÿåº”åŒºã€‚
  *
- * - ÊµÏÖÏÖÏó£º¿´´®¿Ú£¨PIOE_20£©´òÓ¡ĞÅÏ¢¡£
+ * - å®ç°ç°è±¡ï¼šçœ‹ä¸²å£ï¼ˆPIOE_20ï¼‰æ‰“å°ä¿¡æ¯ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_kl26_std_uartcmd_ultralight_write_block.c src_kl26_std_uartcmd_ultralight_write_block
  *
  * \internal
@@ -50,7 +50,7 @@
 #include "string.h"
 
 #ifndef AM_VDEBUG
-#define AM_VDEBUG           /* ¿ªÆôµ÷ÊÔÄ£Ê½ */
+#define AM_VDEBUG           /* å¼€å¯è°ƒè¯•æ¨¡å¼ */
 #endif
 
 #include "am_vdebug.h"
@@ -59,11 +59,11 @@ static uint8_t __g_uartcmd_uart_txbuf[128];
 static uint8_t __g_uartcmd_uart_rxbuf[128];
 
 static const am_uartcmd_uart_dev_info_t __g_uartcmd_uart_devinfo = {
-    __g_uartcmd_uart_rxbuf,     /* ÓÃÓÚ´®¿Ú½ÓÊÕµÄ»º³åÇø      */
-    __g_uartcmd_uart_txbuf,     /* ÓÃÓÚ´®¿Ú·¢ËÍµÄ»º³åÇø      */
-    128,                       /* ½ÓÊÕÊı¾İ»º³åÇøµÄ´óĞ¡      */
-    128,                       /* ·¢ËÍÊı¾İ»º³åÇøµÄ´óĞ¡      */
-    AM_UARTCMD_BAUDRATE_115200, /* ÓëUARTCMDÍ¨ĞÅµÄ²¨ÌØÂÊ      */
+    __g_uartcmd_uart_rxbuf,     /* ç”¨äºä¸²å£æ¥æ”¶çš„ç¼“å†²åŒº      */
+    __g_uartcmd_uart_txbuf,     /* ç”¨äºä¸²å£å‘é€çš„ç¼“å†²åŒº      */
+    128,                       /* æ¥æ”¶æ•°æ®ç¼“å†²åŒºçš„å¤§å°      */
+    128,                       /* å‘é€æ•°æ®ç¼“å†²åŒºçš„å¤§å°      */
+    AM_UARTCMD_BAUDRATE_115200, /* ä¸UARTCMDé€šä¿¡çš„æ³¢ç‰¹ç‡      */
     AM_UARTCMD_MODE_AUTO_CHECK,
     0x59
 };
@@ -76,7 +76,7 @@ static void __error_happen(int line)
 }
 
 /**
- * \brief uartcmd ¶ÁÈ¡Ğ´ultralight¿é
+ * \brief uartcmd è¯»å–å†™ultralightå—
  */
 void demo_amks16rfid8_uartcmd_ultralight_write_block_entry (void)
 {
@@ -85,15 +85,15 @@ void demo_amks16rfid8_uartcmd_ultralight_write_block_entry (void)
     uint16_t atq;
     uint8_t  saq;
     uint8_t  uid_len;
-    uint8_t  uid[10];   /* UID×î´ó³¤¶ÈÎª10 */
+    uint8_t  uid[10];   /* UIDæœ€å¤§é•¿åº¦ä¸º10 */
     am_uart_handle_t          uart1_handle;
     am_uartcmd_uart_dev_t     uartcmd_uart_dev;
     am_uartcmd_send_handle_t  uartcmd_handle;
     uint8_t ntag213[6] = {0x06, 0x1b, 0xff, 0xff, 0xff, 0xff};
     uint8_t rx_buf[16] = { 0 };
-    uint8_t block_num = 4;                       /* ¿¨¿éºÅ */
-    uint8_t block_dat[4] = {0x88, 0x88, 0x88, 0x88};   /* ¿éÊı¾İ */
-    /* Ê¹ÓÃUARTÍ¨Ñ¶Ä£Ê½ */
+    uint8_t block_num = 4;                       /* å¡å—å· */
+    uint8_t block_dat[4] = {0x88, 0x88, 0x88, 0x88};   /* å—æ•°æ® */
+    /* ä½¿ç”¨UARTé€šè®¯æ¨¡å¼ */
     uart1_handle  = am_kl26_uart1_inst_init();
     uartcmd_handle = am_uartcmd_uart_new_init(&uartcmd_uart_dev,
                                                uart1_handle,
@@ -104,16 +104,16 @@ void demo_amks16rfid8_uartcmd_ultralight_write_block_entry (void)
     }
 
     while (1) {
-        /* ÂÖÑ¯¼¤»î¿¨Æ¬ */
+        /* è½®è¯¢æ¿€æ´»å¡ç‰‡ */
         ret = uartcmd_card_active(uartcmd_handle,
-                                  AM_UARTCMD_MIFARE_CARD_REQ_IDLE, /* ÇëÇó¿ÕÏĞµÄ¿¨ */
+                                  AM_UARTCMD_MIFARE_CARD_REQ_IDLE, /* è¯·æ±‚ç©ºé—²çš„å¡ */
                                   &atq,
                                   &saq,
                                   &uid_len,
                                   uid,
                                   10);
         if (ret == AM_OK) {
-            AM_DBG_INFO("¼ì²âµ½¿¨£¬¿¨IDÎª %d bytes £º \r\n", uid_len);
+            AM_DBG_INFO("æ£€æµ‹åˆ°å¡ï¼Œå¡IDä¸º %d bytes ï¼š \r\n", uid_len);
             for (i = 0; i < uid_len; i++) {
                 AM_DBG_INFO("%02x   ", uid[i]);
             }
@@ -126,8 +126,8 @@ void demo_amks16rfid8_uartcmd_ultralight_write_block_entry (void)
                                                    sizeof(rx_buf));
 
             if (ret == AM_OK) {
-                AM_DBG_INFO("NTAG213ÃÜÔ¿ÑéÖ¤³É¹¦ \r\n", uid_len);
-                AM_DBG_INFO("Íù¿é %d ÖĞĞ´Êı¾İ£º%02x %02x %02x %02x\r\n",
+                AM_DBG_INFO("NTAG213å¯†é’¥éªŒè¯æˆåŠŸ \r\n", uid_len);
+                AM_DBG_INFO("å¾€å— %d ä¸­å†™æ•°æ®ï¼š%02x %02x %02x %02x\r\n",
                             block_num,
                             block_dat[0],
                             block_dat[1],
@@ -138,26 +138,26 @@ void demo_amks16rfid8_uartcmd_ultralight_write_block_entry (void)
                                                        block_num,
                                                        block_dat);
                 if (ret == AM_OK) {
-                    AM_DBG_INFO("Ğ´¿éÊı¾İ³É¹¦ \r\n");
-                    AM_DBG_INFO("¶Á¿é %d Êı¾İ \r\n", block_num);
+                    AM_DBG_INFO("å†™å—æ•°æ®æˆåŠŸ \r\n");
+                    AM_DBG_INFO("è¯»å— %d æ•°æ® \r\n", block_num);
 
                     ret = am_uartcmd_mifare_card_read(uartcmd_handle,
                                                       block_num,
                                                       rx_buf);
                     if (ret == AM_OK) {
-                        AM_DBG_INFO("¶Á¿éÊı¾İ³É¹¦ £º");
+                        AM_DBG_INFO("è¯»å—æ•°æ®æˆåŠŸ ï¼š");
                         for (i = 0; i < sizeof(rx_buf); i++) {
                             AM_DBG_INFO("%02x ", rx_buf[i]);
                         }
                         AM_DBG_INFO("\r\n");
                     } else {
-                        AM_DBG_INFO("¶Á¿éÊı¾İÊ§°Ü \r\n");
+                        AM_DBG_INFO("è¯»å—æ•°æ®å¤±è´¥ \r\n");
                     }
                 } else {
-                    AM_DBG_INFO("Ğ´¿éÊı¾İÊ§°Ü \r\n");
+                    AM_DBG_INFO("å†™å—æ•°æ®å¤±è´¥ \r\n");
                 }
             } else {
-                AM_DBG_INFO("NTAG213ÃÜÔ¿ÑéÖ¤Ê§°Ü \r\n");
+                AM_DBG_INFO("NTAG213å¯†é’¥éªŒè¯å¤±è´¥ \r\n");
             }
         }
         am_mdelay(500);

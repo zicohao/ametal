@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥4.10
+ * \brief ç¨‹åºæ¸…å•4.10
  *
- * \note ¸ÃÀú³ÌĞèÒªÓÃµ½miniportÍØÕ¹°å
+ * \note è¯¥å†ç¨‹éœ€è¦ç”¨åˆ°miniportæ‹“å±•æ¿
  *
  * \internal
  * \par Modification history
@@ -27,16 +27,16 @@
 #include "buzzer.h"
 
 /**
- * \brief AMetal Ó¦ÓÃ³ÌĞòÈë¿Ú
+ * \brief AMetal åº”ç”¨ç¨‹åºå…¥å£
  */
 int am_main (void)
 {
-    buzzer_init();         // ·äÃùÆ÷³õÊ¼»¯£¬Ä¬ÈÏÎª1KHzÆµÂÊ
+    buzzer_init();         // èœ‚é¸£å™¨åˆå§‹åŒ–ï¼Œé»˜è®¤ä¸º1KHzé¢‘ç‡
     while (1) {               
-        buzzer_on();       // ´ò¿ª·äÃùÆ÷ 
-        am_mdelay(1000);    // ÑÓÊ±100ms 
-        buzzer_off();      // ¹Ø±Õ·äÃùÆ÷ 
-        am_mdelay(1000);    // ÑÓÊ±100ms 
+        buzzer_on();       // æ‰“å¼€èœ‚é¸£å™¨ 
+        am_mdelay(1000);    // å»¶æ—¶100ms 
+        buzzer_off();      // å…³é—­èœ‚é¸£å™¨ 
+        am_mdelay(1000);    // å»¶æ—¶100ms 
     }
 }
 

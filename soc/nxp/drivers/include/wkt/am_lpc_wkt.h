@@ -13,9 +13,9 @@
 
 /**
  * \file
- * \brief WKTÇı¶¯£¬·şÎñTimer±ê×¼½Ó¿Ú
+ * \brief WKTé©±åŠ¨ï¼ŒæœåŠ¡Timeræ ‡å‡†æ¥å£
  *
- * ¸ÃÇı¶¯ÊµÏÖÁËWKTµÄ¶¨Ê±¹¦ÄÜ
+ * è¯¥é©±åŠ¨å®ç°äº†WKTçš„å®šæ—¶åŠŸèƒ½
  *
  * \internal
  * \par Modification History
@@ -41,59 +41,59 @@ extern "C" {
  */
 
 /**
- * \brief WKTÉè±¸ĞÅÏ¢½á¹¹Ìå
+ * \brief WKTè®¾å¤‡ä¿¡æ¯ç»“æ„ä½“
  */
 typedef struct am_lpc_wkt_devinfo {
-    uint32_t                      wkt_regbase;  /**< \brief WKT¼Ä´æÆ÷¿éµÄ»ùµØÖ· */
-    uint8_t                       inum;         /**< \brief WKTÖĞ¶ÏºÅ */
-    uint8_t                       channel_nums; /**< \brief Ö§³ÖµÄÍ¨µÀÊı£¬×î´óÎª1 */
-    amhw_lpc_wkt_clksel_str_t  clksel_str;   /**< \brief Ñ¡ÔñWKTÊ±ÖÓÔ´ */
+    uint32_t                      wkt_regbase;  /**< \brief WKTå¯„å­˜å™¨å—çš„åŸºåœ°å€ */
+    uint8_t                       inum;         /**< \brief WKTä¸­æ–­å· */
+    uint8_t                       channel_nums; /**< \brief æ”¯æŒçš„é€šé“æ•°ï¼Œæœ€å¤§ä¸º1 */
+    amhw_lpc_wkt_clksel_str_t  clksel_str;   /**< \brief é€‰æ‹©WKTæ—¶é’Ÿæº */
 
-    /** \brief WKTÊ¹ÓÃÍâ²¿Ê±ÖÓÆµÂÊ£¨Ã»ÓĞÊ¹ÓÃWKTÍâ²¿Ê±ÖÓÔòÅäÖÃÎª0£© */
+    /** \brief WKTä½¿ç”¨å¤–éƒ¨æ—¶é’Ÿé¢‘ç‡ï¼ˆæ²¡æœ‰ä½¿ç”¨WKTå¤–éƒ¨æ—¶é’Ÿåˆ™é…ç½®ä¸º0ï¼‰ */
     uint32_t                      wkt_ext_clock_freq;
 
-    /** \brief WKTÆ½Ì¨Ê±ÖÓ³õÊ¼»¯º¯Êı*/
+    /** \brief WKTå¹³å°æ—¶é’Ÿåˆå§‹åŒ–å‡½æ•°*/
     void     (*pfn_plfm_clk_init)(const struct am_lpc_wkt_devinfo * p_devinfo);
 
-    /** \brief WKTÆ½Ì¨³õÊ¼»¯º¯Êı£¬Èç´ò¿ªÊ±ÖÓ£¬ÅäÖÃÒı½ÅµÈ¹¤×÷ */
+    /** \brief WKTå¹³å°åˆå§‹åŒ–å‡½æ•°ï¼Œå¦‚æ‰“å¼€æ—¶é’Ÿï¼Œé…ç½®å¼•è„šç­‰å·¥ä½œ */
     void     (*pfn_plfm_init)(void);
 
-    /** \brief WKTÆ½Ì¨½â³õÊ¼»¯º¯Êı */
+    /** \brief WKTå¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
     void     (*pfn_plfm_deinit)(void);
 
 } am_lpc_wkt_devinfo_t;
 
 
 /**
- * \brief WKTÉè±¸
+ * \brief WKTè®¾å¤‡
  */
 typedef struct am_lpc_wkt_dev {
-    am_timer_serv_t                timer_serv; /**< \brief ±ê×¼¶¨Ê±(Timer)·şÎñ */
+    am_timer_serv_t                timer_serv; /**< \brief æ ‡å‡†å®šæ—¶(Timer)æœåŠ¡ */
     struct {
-        void (*pfn_callback)(void *);          /**< \brief »Øµ÷º¯Êı */
-        void *p_arg;                           /**< \brief »Øµ÷º¯ÊıµÄÓÃ»§²ÎÊı */
-    } callback_info;                           /**< \brief »Øµ÷º¯ÊıĞÅÏ¢ */
+        void (*pfn_callback)(void *);          /**< \brief å›è°ƒå‡½æ•° */
+        void *p_arg;                           /**< \brief å›è°ƒå‡½æ•°çš„ç”¨æˆ·å‚æ•° */
+    } callback_info;                           /**< \brief å›è°ƒå‡½æ•°ä¿¡æ¯ */
 
-    /** \brief Ö¸ÏòWKTÉè±¸ĞÅÏ¢³£Á¿µÄÖ¸Õë */
+    /** \brief æŒ‡å‘WKTè®¾å¤‡ä¿¡æ¯å¸¸é‡çš„æŒ‡é’ˆ */
     const am_lpc_wkt_devinfo_t *p_devinfo;
 } am_lpc_wkt_dev_t;
 
 
 /**
- * \brief ³õÊ¼»¯WKTÎª¶¨Ê±¹¦ÄÜ
+ * \brief åˆå§‹åŒ–WKTä¸ºå®šæ—¶åŠŸèƒ½
  *
- * \param[in] p_dev     : Ö¸ÏòWKTÉè±¸µÄÖ¸Õë
- * \param[in] p_devinfo : Ö¸ÏòWKTÉè±¸ĞÅÏ¢³£Á¿µÄÖ¸Õë
+ * \param[in] p_dev     : æŒ‡å‘WKTè®¾å¤‡çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo : æŒ‡å‘WKTè®¾å¤‡ä¿¡æ¯å¸¸é‡çš„æŒ‡é’ˆ
  *
- * \return Timer±ê×¼·şÎñ²Ù×÷¾ä±ú£¬ÖµÎªNULLÊ±±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return Timeræ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„ï¼Œå€¼ä¸ºNULLæ—¶è¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_timer_handle_t am_lpc_wkt_init (am_lpc_wkt_dev_t     *p_dev,
                                 const am_lpc_wkt_devinfo_t *p_devinfo);
 
 /**
- * \brief ²»Ê¹ÓÃWKTÊ±£¬½â³õÊ¼»¯WKT£¬ÊÍ·ÅÏà¹Ø×ÊÔ´
- * \param[in] handle : ¶¨Ê±Æ÷±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \return ÎŞ
+ * \brief ä¸ä½¿ç”¨WKTæ—¶ï¼Œè§£åˆå§‹åŒ–WKTï¼Œé‡Šæ”¾ç›¸å…³èµ„æº
+ * \param[in] handle : å®šæ—¶å™¨æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \return æ— 
  */
 void am_lpc_wkt_deinit (am_timer_handle_t handle);
 

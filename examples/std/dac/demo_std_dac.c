@@ -12,13 +12,13 @@
 
 /**
  * \file
- * \brief DACÊıÄ£×ª»»Àı³Ì£¬Í¨¹ıSTD½Ó¿ÚÊµÏÖ
+ * \brief DACæ•°æ¨¡è½¬æ¢ä¾‹ç¨‹ï¼Œé€šè¿‡STDæ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. DACÊä³ö1523mvµçÑ¹¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. DACè¾“å‡º1523mvç”µå‹ã€‚
  *
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_std_dac.c src_std_dac
  *
  * \internal
@@ -40,8 +40,8 @@
 #include "am_int.h"
 
 /**
- * \brief DACÊä³öµçÑ¹£¬±ê×¼½Ó¿Ú²ãÊµÏÖ
- * \return ÎŞ
+ * \brief DACè¾“å‡ºç”µå‹ï¼Œæ ‡å‡†æ¥å£å±‚å®ç°
+ * \return æ— 
  */
 void demo_std_dac_entry (am_dac_handle_t dac0_handle,
                          uint8_t         channel,
@@ -50,15 +50,15 @@ void demo_std_dac_entry (am_dac_handle_t dac0_handle,
     uint32_t        dac_bits    = 0;
     uint32_t        dac_vref    = 0;
 
-    /* »ñÈ¡DAC×ª»»¾«¶È */
+    /* è·å–DACè½¬æ¢ç²¾åº¦ */
     dac_bits = am_dac_bits_get(dac0_handle);
 
-    /* »ñÈ¡DAC²Î¿¼µçÑ¹£¬µ¥Î»£ºmV */
+    /* è·å–DACå‚è€ƒç”µå‹ï¼Œå•ä½ï¼šmV */
     dac_vref = am_dac_vref_get(dac0_handle);
 
     am_dac_mv_set(dac0_handle, channel, mv_out);
 
-    /* Ê¹ÄÜDACÊä³ö */
+    /* ä½¿èƒ½DACè¾“å‡º */
 
     am_kprintf("DAC Std Demo test\n");
 

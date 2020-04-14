@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZLG217 Ğ¾Æ¬ÍâÉè¼Ä´æÆ÷»ùÖ·¶¨Òå
+ * \brief ZLG217 èŠ¯ç‰‡å¤–è®¾å¯„å­˜å™¨åŸºå€å®šä¹‰
  *
  * \internal
  * \par Modification history
@@ -34,116 +34,116 @@ extern "C" {
  */
 
 /**
- * \name ÍâÉèÄÚ´æÓ³ÉäµØÖ·¶¨Òå
+ * \name å¤–è®¾å†…å­˜æ˜ å°„åœ°å€å®šä¹‰
  * @{
  */
 
-/** \brief GPIO»ùµØÖ· */
+/** \brief GPIOåŸºåœ°å€ */
 #define ZLG217_GPIO_BASE              (0x40010800UL)
 
-/** \brief GPIOA»ùµØÖ· */
+/** \brief GPIOAåŸºåœ°å€ */
 #define ZLG217_GPIOA_BASE             (0x40010800UL)
 
-/** \brief GPIOB»ùµØÖ· */
+/** \brief GPIOBåŸºåœ°å€ */
 #define ZLG217_GPIOB_BASE             (0x40010C00UL)
 
-/** \brief GPIOC»ùµØÖ· */
+/** \brief GPIOCåŸºåœ°å€ */
 #define ZLG217_GPIOC_BASE             (0x40011000UL)
 
-/** \brief GPIOD»ùµØÖ· */
+/** \brief GPIODåŸºåœ°å€ */
 #define ZLG217_GPIOD_BASE             (0x40011400UL)
 
-/** \brief GPIOE»ùµØÖ· */
+/** \brief GPIOEåŸºåœ°å€ */
 #define ZLG217_GPIOE_BASE             (0x40011800UL)
 
-/** \brief AFIOA»ùµØÖ· */
+/** \brief AFIOAåŸºåœ°å€ */
 #define ZLG217_AFIO_BASE              (0x40010000UL)
 
-/** \brief ¸ß¼¶¿ØÖÆ¶¨Ê±Æ÷1»ùµØÖ· */
+/** \brief é«˜çº§æ§åˆ¶å®šæ—¶å™¨1åŸºåœ°å€ */
 #define ZLG217_TIM1_BASE              (0x40012C00UL)
 
-/** \brief Í¨ÓÃ¶¨Ê±Æ÷2»ùµØÖ· */
+/** \brief é€šç”¨å®šæ—¶å™¨2åŸºåœ°å€ */
 #define ZLG217_TIM2_BASE              (0x40000000UL)
 
-/** \brief Í¨ÓÃ¶¨Ê±Æ÷3»ùµØÖ· */
+/** \brief é€šç”¨å®šæ—¶å™¨3åŸºåœ°å€ */
 #define ZLG217_TIM3_BASE              (0x40000400UL)
 
-/** \brief Í¨ÓÃ¶¨Ê±Æ÷4»ùµØÖ· */
+/** \brief é€šç”¨å®šæ—¶å™¨4åŸºåœ°å€ */
 #define ZLG217_TIM4_BASE              (0x40000800UL)
 
-/** \brief RTC»ùµØÖ· */
+/** \brief RTCåŸºåœ°å€ */
 #define ZLG217_RTC_BASE               (0x40002800UL)
 
-/** \brief µçÔ´¿ØÖÆPWR»ùµØÖ· */
+/** \brief ç”µæºæ§åˆ¶PWRåŸºåœ°å€ */
 #define ZLG217_PWR_BASE               (0x40007000UL)
 
-/** \brief ±¸·İ¿ØÖÆBKP»ùµØÖ· */
+/** \brief å¤‡ä»½æ§åˆ¶BKPåŸºåœ°å€ */
 #define ZLG217_BKP_BASE               (0x40006C00UL)
 
-/** \brief UART1 »ùµØÖ· */
+/** \brief UART1 åŸºåœ°å€ */
 #define ZLG217_UART1_BASE             (0x40013800UL)
 
-/** \brief UART2 »ùµØÖ· */
+/** \brief UART2 åŸºåœ°å€ */
 #define ZLG217_UART2_BASE             (0x40004400UL)
 
-/** \brief UART3 »ùµØÖ· */
+/** \brief UART3 åŸºåœ°å€ */
 #define ZLG217_UART3_BASE             (0x40004800UL)
 
-/** \brief ADC1 »ùµØÖ· */
+/** \brief ADC1 åŸºåœ°å€ */
 #define ZLG217_ADC1_BASE              (0x40012400UL)
 
-/** \brief ADC2 »ùµØÖ· */
+/** \brief ADC2 åŸºåœ°å€ */
 #define ZLG217_ADC2_BASE              (0x40012800UL)
 
-/** \brief DAC »ùµØÖ· */
+/** \brief DAC åŸºåœ°å€ */
 #define ZLG217_DAC_BASE               (0x40007400UL)
 
-/** \brief DMA »ùµØÖ· */
+/** \brief DMA åŸºåœ°å€ */
 #define ZLG217_DMA_BASE               (0x40020000UL)
 
-/** \brief RCC¿ØÖÆÆ÷»ùµØÖ· */
+/** \brief RCCæ§åˆ¶å™¨åŸºåœ°å€ */
 #define ZLG217_RCC_BASE               (0x40021000UL)
 
-/** \brief SPI1¿ØÖÆÆ÷»ùµØÖ· */
+/** \brief SPI1æ§åˆ¶å™¨åŸºåœ°å€ */
 #define ZLG217_SPI1_BASE              (0x40013000UL)
 
-/** \brief SPI2¿ØÖÆÆ÷»ùµØÖ· */
+/** \brief SPI2æ§åˆ¶å™¨åŸºåœ°å€ */
 #define ZLG217_SPI2_BASE              (0x40003800UL)
 
-/** \brief I2C1»ùµØÖ· */
+/** \brief I2C1åŸºåœ°å€ */
 #define ZLG217_I2C1_BASE              (0x40005400UL)
 
-/** \brief I2C2»ùµØÖ· */
+/** \brief I2C2åŸºåœ°å€ */
 #define ZLG217_I2C2_BASE              (0x40005800UL)
 
-/** \brief IWDG¿ØÖÆÆ÷»ùµØÖ· */
+/** \brief IWDGæ§åˆ¶å™¨åŸºåœ°å€ */
 #define ZLG217_IWDG_BASE              (0x40003000UL)
 
-/** \brief WWDG¿ØÖÆÆ÷»ùµØÖ· */
+/** \brief WWDGæ§åˆ¶å™¨åŸºåœ°å€ */
 #define ZLG217_WWDG_BASE              (0x40002C00UL)
 
-/** \brief CAN¿ØÖÆÆ÷»ùµØÖ· */
+/** \brief CANæ§åˆ¶å™¨åŸºåœ°å€ */
 #define ZLG217_CAN_BASE               (0x40006400UL)
 
-/** \brief USB¿ØÖÆÆ÷»ùµØÖ· */
+/** \brief USBæ§åˆ¶å™¨åŸºåœ°å€ */
 #define ZLG217_USB_BASE               (0x40005C00UL)
 
-/** \brief Íâ²¿ÖĞ¶Ï(ÊÂ¼ş)¿ØÖÆÆ÷EXTI»ùµØÖ· */
+/** \brief å¤–éƒ¨ä¸­æ–­(äº‹ä»¶)æ§åˆ¶å™¨EXTIåŸºåœ°å€ */
 #define ZLG217_EXTI_BASE              (0x40010400UL)
 
-/** \brief FLASH»ùµØÖ· */
+/** \brief FLASHåŸºåœ°å€ */
 #define ZLG217_FLASH_BASE             (0x40022000UL)
 
-/** \brief SRAM»ùµØÖ· */
+/** \brief SRAMåŸºåœ°å€ */
 #define ZLG217_SRAM_BASE              (0x20000000UL)
 
-/** \brief FLASH»ùµØÖ· */
+/** \brief FLASHåŸºåœ°å€ */
 #define ZLG217_FLASH_UID_BASE         (0x1FFFF7E8UL)
 
-/** \brief CRC»ùµØÖ· */
+/** \brief CRCåŸºåœ°å€ */
 #define ZLG217_CRC_BASE               (0x40023000UL)
 
-/** \brief SYSTICK»ùµØÖ· */
+/** \brief SYSTICKåŸºåœ°å€ */
 #define ZLG217_SYSTICK                (0xE000E010UL)
 
 /** @} */

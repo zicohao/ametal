@@ -12,30 +12,30 @@
 
 /**
  * \file
- * \brief DMA Ó²¼ş´¥·¢Àı³Ì£¬Í¨¹ıÇı¶¯²ã½Ó¿ÚÊµÏÖ
+ * \brief DMA ç¡¬ä»¶è§¦å‘ä¾‹ç¨‹ï¼Œé€šè¿‡é©±åŠ¨å±‚æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè£º
- *   1. ½« PIO0_17 ºÍ PIO0_18 ¶Ì½Ó£»
- *   2. ¹Û²ì´®¿ÚÊä³öĞÅÏ¢£¬µ±´®¿ÚÊä³ö "Press any key to finish level test!" ºó£¬
- *      Í¨¹ı´®¿ÚÊäÈëÈÎÒâ×Ö·ûÒÔ¼ÌĞø²âÊÔ£»
- *   3. ¹Û²ì´®¿ÚÊä³öĞÅÏ¢£¬µ±´®¿ÚÊä³ö "Enter the trigger count to make burst!" ºó£¬
- *      Í¨¹ı´®¿ÚÒÔ×Ö·û´®µÄ·½Ê½ÊäÈë´ı´¥·¢µÄ´ÎÊı£¬Ã¿´Î´¥·¢´«ËÍ 8 ×Ö½ÚµÄÊı¾İ£»
- *   4. ¹Û²ì´®¿ÚÊä³öĞÅÏ¢£¬µ±´®¿ÚÊä³ö "Press any key to finish edge test!" ºó£¬Í¨¹ı
- *      ´®¿ÚÊäÈëÈÎÒâ×Ö·ûÒÔ¼ÌĞø²âÊÔ£»
- *   5. ¹Û²ì´®¿ÚÊä³öĞÅÏ¢£¬µ±´®¿ÚÊä³ö "Enter any key make a burst!" ºó£¬Í¨¹ı´®¿ÚÊä
- *      ÈëÈÎÒâ×Ö·ûÒÔ¼ÌĞø²âÊÔ¡£ÖØ¸´´Ë¹ı³Ì 6 ´Î¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. å°† PIO0_17 å’Œ PIO0_18 çŸ­æ¥ï¼›
+ *   2. è§‚å¯Ÿä¸²å£è¾“å‡ºä¿¡æ¯ï¼Œå½“ä¸²å£è¾“å‡º "Press any key to finish level test!" åï¼Œ
+ *      é€šè¿‡ä¸²å£è¾“å…¥ä»»æ„å­—ç¬¦ä»¥ç»§ç»­æµ‹è¯•ï¼›
+ *   3. è§‚å¯Ÿä¸²å£è¾“å‡ºä¿¡æ¯ï¼Œå½“ä¸²å£è¾“å‡º "Enter the trigger count to make burst!" åï¼Œ
+ *      é€šè¿‡ä¸²å£ä»¥å­—ç¬¦ä¸²çš„æ–¹å¼è¾“å…¥å¾…è§¦å‘çš„æ¬¡æ•°ï¼Œæ¯æ¬¡è§¦å‘ä¼ é€ 8 å­—èŠ‚çš„æ•°æ®ï¼›
+ *   4. è§‚å¯Ÿä¸²å£è¾“å‡ºä¿¡æ¯ï¼Œå½“ä¸²å£è¾“å‡º "Press any key to finish edge test!" åï¼Œé€šè¿‡
+ *      ä¸²å£è¾“å…¥ä»»æ„å­—ç¬¦ä»¥ç»§ç»­æµ‹è¯•ï¼›
+ *   5. è§‚å¯Ÿä¸²å£è¾“å‡ºä¿¡æ¯ï¼Œå½“ä¸²å£è¾“å‡º "Enter any key make a burst!" åï¼Œé€šè¿‡ä¸²å£è¾“
+ *      å…¥ä»»æ„å­—ç¬¦ä»¥ç»§ç»­æµ‹è¯•ã€‚é‡å¤æ­¤è¿‡ç¨‹ 6 æ¬¡ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. DMA Í¨µÀ 0 ´«ÊäÅäÖÃÎªÖĞ¶ÏÊäÈëµçÆ½´¥·¢£¬Ã»ÓĞÓ²¼ş´¥·¢Ìõ¼şÏÂ£¬Êı¾İ²»±»´«ËÍ£»
- *   2. DMA Í¨µÀ 0 ´«ÊäÅäÖÃÎªÖĞ¶ÏÊäÈë±ßÑØ´¥·¢£¬Ã¿´ÎÓ²¼ş´¥·¢´«Êä´óĞ¡ÎªÅäÖÃµÄÍ»·¢³¤¶È£»
- *   3. DMA Í¨µÀ 0 ´«ÊäÅäÖÃÎªÖĞ¶ÏÊäÈë±ßÑØ´¥·¢£¬Ä¿±êµØÖ·»·ÈÆ£¬Ã¿´ÎÓ²¼ş´¥·¢£¬
- *      Ö»ÔÚ×îºóµÄÍ»·¢´óĞ¡µÄµØÖ··¶Î§ÄÚ´«ÊäÊı¾İ¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. DMA é€šé“ 0 ä¼ è¾“é…ç½®ä¸ºä¸­æ–­è¾“å…¥ç”µå¹³è§¦å‘ï¼Œæ²¡æœ‰ç¡¬ä»¶è§¦å‘æ¡ä»¶ä¸‹ï¼Œæ•°æ®ä¸è¢«ä¼ é€ï¼›
+ *   2. DMA é€šé“ 0 ä¼ è¾“é…ç½®ä¸ºä¸­æ–­è¾“å…¥è¾¹æ²¿è§¦å‘ï¼Œæ¯æ¬¡ç¡¬ä»¶è§¦å‘ä¼ è¾“å¤§å°ä¸ºé…ç½®çš„çªå‘é•¿åº¦ï¼›
+ *   3. DMA é€šé“ 0 ä¼ è¾“é…ç½®ä¸ºä¸­æ–­è¾“å…¥è¾¹æ²¿è§¦å‘ï¼Œç›®æ ‡åœ°å€ç¯ç»•ï¼Œæ¯æ¬¡ç¡¬ä»¶è§¦å‘ï¼Œ
+ *      åªåœ¨æœ€åçš„çªå‘å¤§å°çš„åœ°å€èŒƒå›´å†…ä¼ è¾“æ•°æ®ã€‚
  *
  * \note
- *    ÈçĞè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔĞÅÏ¢£¬ĞèÒª½« PIO0_14 Òı½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *    PIO0_23 Òı½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
+ *    å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO0_14 å¼•è„šè¿æ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *    PIO0_23 å¼•è„šè¿æ¥ PC ä¸²å£çš„ RXDã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_lpc845_drv_dma_hwtrigger_burst.c src_lpc845_drv_dma_hwtrigger_burst
  *
  * \internal
@@ -63,13 +63,13 @@
 #define __GET_CHAR(ch) \
             amhw_lpc_usart_poll_receive(LPC84X_USART0, (&ch), 1);
 
-#define __TEST_COUNT   48               /**< \brief ²âÊÔÊı¾İ´óĞ¡ */
+#define __TEST_COUNT   48               /**< \brief æµ‹è¯•æ•°æ®å¤§å° */
 
-am_local uint8_t __g_buf_src[__TEST_COUNT] = {0}; /**< \brief Ô´¶ËÊı¾İ»º³åÇø */
-am_local uint8_t __g_buf_dst[__TEST_COUNT] = {0}; /**< \brief Í¨µÀ 0 Ä¿±êÊı¾İ»º³åÇø */
+am_local uint8_t __g_buf_src[__TEST_COUNT] = {0}; /**< \brief æºç«¯æ•°æ®ç¼“å†²åŒº */
+am_local uint8_t __g_buf_dst[__TEST_COUNT] = {0}; /**< \brief é€šé“ 0 ç›®æ ‡æ•°æ®ç¼“å†²åŒº */
 
 /**
- * \brief »º³åÇø´òÓ¡º¯Êı
+ * \brief ç¼“å†²åŒºæ‰“å°å‡½æ•°
  */
 am_local void __buffer_printf (uint8_t *p_buf, uint16_t count)
 {
@@ -86,7 +86,7 @@ am_local void __buffer_printf (uint8_t *p_buf, uint16_t count)
 }
 
 /**
- * \brief Ó²¼ş´¥·¢µçÆ½Í»·¢Ä£Ê½²âÊÔ
+ * \brief ç¡¬ä»¶è§¦å‘ç”µå¹³çªå‘æ¨¡å¼æµ‹è¯•
  */
 am_local void __dma_hwtrigger_bust_level_test (uint8_t  chan, int pin)
 {
@@ -109,17 +109,17 @@ am_local void __dma_hwtrigger_bust_level_test (uint8_t  chan, int pin)
     AM_DBG_INFO("Dst buffer init data:\r\n");
     __buffer_printf(__g_buf_dst, __TEST_COUNT);
 
-    /* ÅäÖÃ PINT ¸ßµçÆ½´¥·¢(²»Òª¿ªÆô NVIC ÖĞ¶Ï) */
+    /* é…ç½® PINT é«˜ç”µå¹³è§¦å‘(ä¸è¦å¼€å¯ NVIC ä¸­æ–­) */
     amhw_lpc82x_pint_trigger_set(LPC84X_PINT,
                                  AMHW_LPC82X_PINT_CHAN_4,
                                  AMHW_LPC82X_PINT_TRIGGER_HIGH);
 
     p_ctr = am_lpc84x_dma_controller_get(
-                chan,                             /* DMA Í¨µÀ 0 */
-                DMA_CHAN_OPT_PRIO_0             | /* ÓÅÏÈ¼¶ 0 */
-                DMA_CHAN_OPT_HWTRIG_MODE_HIGH   | /* ĞÅºÅ¸ßµçÆ½´¥·¢ */
-                DMA_CHAN_OPT_HWTRIG_SRC_PININT4 | /* ÖĞ¶ÏÊäÈë 4 ´¥·¢ */
-                DMA_CHAN_OPT_HWTRIG_BURST_EN);    /* Ê¹ÄÜÍ»·¢Ä£Ê½ */
+                chan,                             /* DMA é€šé“ 0 */
+                DMA_CHAN_OPT_PRIO_0             | /* ä¼˜å…ˆçº§ 0 */
+                DMA_CHAN_OPT_HWTRIG_MODE_HIGH   | /* ä¿¡å·é«˜ç”µå¹³è§¦å‘ */
+                DMA_CHAN_OPT_HWTRIG_SRC_PININT4 | /* ä¸­æ–­è¾“å…¥ 4 è§¦å‘ */
+                DMA_CHAN_OPT_HWTRIG_BURST_EN);    /* ä½¿èƒ½çªå‘æ¨¡å¼ */
 
     if (p_ctr == NULL) {
         AM_DBG_INFO("Geting a Controller Faild!\r\n");
@@ -127,34 +127,34 @@ am_local void __dma_hwtrigger_bust_level_test (uint8_t  chan, int pin)
     }
 
     am_lpc84x_dma_transfer_build(
-       &transfer,                          /* ´«Êä½á¹¹Ìå */
-        (uint32_t)__g_buf_src,             /* Ô´µØÖ· */
-        (uint32_t)__g_buf_dst,             /* Ä¿±êµØÖ· */
-        __TEST_COUNT,                      /* ´«Êä×Ö½ÚÊı */
-        AM_LPC84X_DMA_TRANS_WIDTH_8BIT  |  /* ´«Êä¿í¶È */
-        AM_LPC84X_DMA_TRANS_SRCINC_1X   |  /* Ô´µØÖ·Ôö 1 */
-        AM_LPC84X_DMA_TRANS_DSTINC_1X);    /* Ä¿±êµØÖ·Ôö 1 */
+       &transfer,                          /* ä¼ è¾“ç»“æ„ä½“ */
+        (uint32_t)__g_buf_src,             /* æºåœ°å€ */
+        (uint32_t)__g_buf_dst,             /* ç›®æ ‡åœ°å€ */
+        __TEST_COUNT,                      /* ä¼ è¾“å­—èŠ‚æ•° */
+        AM_LPC84X_DMA_TRANS_WIDTH_8BIT  |  /* ä¼ è¾“å®½åº¦ */
+        AM_LPC84X_DMA_TRANS_SRCINC_1X   |  /* æºåœ°å€å¢ 1 */
+        AM_LPC84X_DMA_TRANS_DSTINC_1X);    /* ç›®æ ‡åœ°å€å¢ 1 */
 
     am_lpc84x_dma_transfer(p_ctr, &transfer, NULL, (void*)0);
 
-    /* ÑÓ³ÙÒ»¶ÎÊ±¼ä */
+    /* å»¶è¿Ÿä¸€æ®µæ—¶é—´ */
     am_mdelay(100);
 
-    /* ´òÓ¡»º³åÇøÊı¾İ */
+    /* æ‰“å°ç¼“å†²åŒºæ•°æ® */
     AM_DBG_INFO("Dest buffer data: (transfered but not triggered)\r\n");
     __buffer_printf(__g_buf_dst, __TEST_COUNT);
 
-    /* ´¥·¢ DMA ´«Êä */
+    /* è§¦å‘ DMA ä¼ è¾“ */
     AM_DBG_INFO("Make a trigger...");
     am_gpio_set(pin, AM_GPIO_LEVEL_HIGH);
     am_mdelay(10);
     am_gpio_set(pin, AM_GPIO_LEVEL_LOW);
 
-    /* ´òÓ¡»º³åÇøÊı¾İ */
+    /* æ‰“å°ç¼“å†²åŒºæ•°æ® */
     AM_DBG_INFO("Dest buffer data: (transfered and triggered)\r\n");
     __buffer_printf(__g_buf_dst, __TEST_COUNT);
 
-    /* ÊÍ·Å DMA */
+    /* é‡Šæ”¾ DMA */
     AM_DBG_INFO("Release DMA resource!\r\n");
     am_lpc84x_dma_controller_release(p_ctr);
 
@@ -163,7 +163,7 @@ am_local void __dma_hwtrigger_bust_level_test (uint8_t  chan, int pin)
 }
 
 /**
- * \brief DAM ±ßÑØÓ²¼şÍ»·¢Ä£Ê½²âÊÔ
+ * \brief DAM è¾¹æ²¿ç¡¬ä»¶çªå‘æ¨¡å¼æµ‹è¯•
  */
 am_local void __dma_hwtrigger_bust_edge_test (uint8_t  chan, int pin)
 {
@@ -186,41 +186,41 @@ am_local void __dma_hwtrigger_bust_edge_test (uint8_t  chan, int pin)
     AM_DBG_INFO("Dst buffer init data:\r\n");
     __buffer_printf(__g_buf_dst, __TEST_COUNT);
 
-    /* ÅäÖÃ PINT ÉÏÉıÑØ´¥·¢ */
+    /* é…ç½® PINT ä¸Šå‡æ²¿è§¦å‘ */
    amhw_lpc82x_pint_trigger_set(LPC84X_PINT,
                                 AMHW_LPC82X_PINT_CHAN_4,
                                 AMHW_LPC82X_PINT_TRIGGER_RISE);
 
     p_ctr = am_lpc84x_dma_controller_get(
                 chan,
-                DMA_CHAN_OPT_PRIO_0              | /* ÓÅÏÈ¼¶ 0 */
-                DMA_CHAN_OPT_HWTRIG_MODE_RISE    | /* Ó²¼şÉÏÉıÑØ´¥·¢ */
-                DMA_CHAN_OPT_HWTRIG_BURST_8      | /* Í»·¢´«Êä´óĞ¡Îª 8 */
-                DMA_CHAN_OPT_HWTRIG_SRC_PININT4  | /* ÖĞ¶ÏÊäÈë 0 ´¥·¢ */
-                DMA_CHAN_OPT_HWTRIG_BURST_EN);     /* Ê¹ÄÜÍ»·¢Ä£Ê½ */
+                DMA_CHAN_OPT_PRIO_0              | /* ä¼˜å…ˆçº§ 0 */
+                DMA_CHAN_OPT_HWTRIG_MODE_RISE    | /* ç¡¬ä»¶ä¸Šå‡æ²¿è§¦å‘ */
+                DMA_CHAN_OPT_HWTRIG_BURST_8      | /* çªå‘ä¼ è¾“å¤§å°ä¸º 8 */
+                DMA_CHAN_OPT_HWTRIG_SRC_PININT4  | /* ä¸­æ–­è¾“å…¥ 0 è§¦å‘ */
+                DMA_CHAN_OPT_HWTRIG_BURST_EN);     /* ä½¿èƒ½çªå‘æ¨¡å¼ */
 
     if (p_ctr == NULL) {
         AM_DBG_INFO("Geting a controller faild!\r\n");
         AM_FOREVER {};
     }
     am_lpc84x_dma_transfer_build(
-       &transfer,                          /* ´«Êä½á¹¹Ìå */
-        (uint32_t)__g_buf_src,             /* Ô´µØÖ· */
-        (uint32_t)__g_buf_dst,             /* Ä¿±êµØÖ· */
-        __TEST_COUNT,                      /* ´«Êä×Ö½ÚÊı */
-        AM_LPC84X_DMA_TRANS_WIDTH_8BIT  |  /* ´«Êä¿í¶È */
-        AM_LPC84X_DMA_TRANS_SRCINC_1X   |  /* Ô´µØÖ·Ôö 1 */
-        AM_LPC84X_DMA_TRANS_DSTINC_1X);    /* Ä¿±êµØÖ·Ôö 1 */
+       &transfer,                          /* ä¼ è¾“ç»“æ„ä½“ */
+        (uint32_t)__g_buf_src,             /* æºåœ°å€ */
+        (uint32_t)__g_buf_dst,             /* ç›®æ ‡åœ°å€ */
+        __TEST_COUNT,                      /* ä¼ è¾“å­—èŠ‚æ•° */
+        AM_LPC84X_DMA_TRANS_WIDTH_8BIT  |  /* ä¼ è¾“å®½åº¦ */
+        AM_LPC84X_DMA_TRANS_SRCINC_1X   |  /* æºåœ°å€å¢ 1 */
+        AM_LPC84X_DMA_TRANS_DSTINC_1X);    /* ç›®æ ‡åœ°å€å¢ 1 */
 
     am_lpc84x_dma_transfer(p_ctr, &transfer, NULL, (void*)0);
 
     am_mdelay(10);
 
-    /* ´òÓ¡»º³åÇøÊı¾İ */
+    /* æ‰“å°ç¼“å†²åŒºæ•°æ® */
     AM_DBG_INFO("Dest buffer data: (transfered but not triggered)\r\n");
     __buffer_printf(__g_buf_dst, __TEST_COUNT);
 
-    /* ²úÉúÊäÈë count ´Î±ßÑØ´¥·¢ DAM ´«Êä */
+    /* äº§ç”Ÿè¾“å…¥ count æ¬¡è¾¹æ²¿è§¦å‘ DAM ä¼ è¾“ */
     do {
         AM_DBG_INFO("Enter the trigger count to make burst!\r\n");
         __GET_CHAR(ch);
@@ -228,7 +228,7 @@ am_local void __dma_hwtrigger_bust_edge_test (uint8_t  chan, int pin)
 
     while ((ch--) > 48) {
 
-        /* ´¥·¢ DMA ´«Êä */
+        /* è§¦å‘ DMA ä¼ è¾“ */
         am_mdelay(10);
         am_gpio_set(pin, AM_GPIO_LEVEL_HIGH);
         am_mdelay(10);
@@ -237,15 +237,15 @@ am_local void __dma_hwtrigger_bust_edge_test (uint8_t  chan, int pin)
 
     am_mdelay(100);
 
-    /* ´òÓ¡»º³åÇøÊı¾İ */
+    /* æ‰“å°ç¼“å†²åŒºæ•°æ® */
     AM_DBG_INFO("Dest buffer data:(transfered and triggered)\r\n");
     __buffer_printf(__g_buf_dst, __TEST_COUNT);
 
-    /* Êı¾İ»¹Ã»´«Íê£¬µ«ÊÇ¿ÉÒÔÖÕÖ¹´«Êä */
+    /* æ•°æ®è¿˜æ²¡ä¼ å®Œï¼Œä½†æ˜¯å¯ä»¥ç»ˆæ­¢ä¼ è¾“ */
     AM_DBG_INFO("Abort the Transfer!\r\n");
     am_lpc84x_dma_controller_abort(p_ctr);
 
-    /* ÊÍ·Å DMA */
+    /* é‡Šæ”¾ DMA */
     AM_DBG_INFO("Release DMA resource!\r\n");
     am_lpc84x_dma_controller_release(p_ctr);
 
@@ -254,7 +254,7 @@ am_local void __dma_hwtrigger_bust_edge_test (uint8_t  chan, int pin)
 }
 
 /**
- * \brief DAM ±ßÑØÓ²¼şÍ»·¢µØÖ·»·ÈÆ²âÊÔ
+ * \brief DAM è¾¹æ²¿ç¡¬ä»¶çªå‘åœ°å€ç¯ç»•æµ‹è¯•
  */
 am_local void __dma_hwtrigger_bust_wrap_test (uint8_t chan, int pin)
 {
@@ -277,32 +277,32 @@ am_local void __dma_hwtrigger_bust_wrap_test (uint8_t chan, int pin)
     AM_DBG_INFO("Dst buffer init data:\r\n");
     __buffer_printf(__g_buf_dst, __TEST_COUNT);
 
-    /* ÅäÖÃ PINT ÉÏÉıÑØ´¥·¢ */
+    /* é…ç½® PINT ä¸Šå‡æ²¿è§¦å‘ */
     amhw_lpc82x_pint_trigger_set(LPC84X_PINT,
     		                     AMHW_LPC82X_PINT_CHAN_4,
     		                     AMHW_LPC82X_PINT_TRIGGER_RISE);
 
     p_ctr = am_lpc84x_dma_controller_get(
                 chan,
-                DMA_CHAN_OPT_PRIO_0                | /* ÓÅÏÈ¼¶ 0 */
-                DMA_CHAN_OPT_HWTRIG_MODE_FALL      | /* Ó²¼şÉÏÉıÑØ´¥·¢ */
-                DMA_CHAN_OPT_HWTRIG_BURST_8        | /* Í»·¢´«Êä´óĞ¡Îª 8 */
-                DMA_CHAN_OPT_HWTRIG_BURST_DST_WRAP | /* Ä¿±êµØÖ·»·ÈÆ */
-                DMA_CHAN_OPT_HWTRIG_SRC_PININT4    | /* ÖĞ¶ÏÊäÈë 4 ´¥·¢ */
-                DMA_CHAN_OPT_HWTRIG_BURST_EN);       /* Ê¹ÄÜÍ»·¢Ä£Ê½ */
+                DMA_CHAN_OPT_PRIO_0                | /* ä¼˜å…ˆçº§ 0 */
+                DMA_CHAN_OPT_HWTRIG_MODE_FALL      | /* ç¡¬ä»¶ä¸Šå‡æ²¿è§¦å‘ */
+                DMA_CHAN_OPT_HWTRIG_BURST_8        | /* çªå‘ä¼ è¾“å¤§å°ä¸º 8 */
+                DMA_CHAN_OPT_HWTRIG_BURST_DST_WRAP | /* ç›®æ ‡åœ°å€ç¯ç»• */
+                DMA_CHAN_OPT_HWTRIG_SRC_PININT4    | /* ä¸­æ–­è¾“å…¥ 4 è§¦å‘ */
+                DMA_CHAN_OPT_HWTRIG_BURST_EN);       /* ä½¿èƒ½çªå‘æ¨¡å¼ */
 
     if (p_ctr == NULL) {
         AM_DBG_INFO("Geting a controller faild!\r\n");
         AM_FOREVER {};
     }
     am_lpc84x_dma_transfer_build(
-       &transfer,                          /* ´«Êä½á¹¹Ìå */
-        (uint32_t)__g_buf_src,             /* Ô´µØÖ· */
-        (uint32_t)__g_buf_dst,             /* Ä¿±êµØÖ· */
-        __TEST_COUNT,                      /* ´«Êä×Ö½ÚÊı */
-        AM_LPC84X_DMA_TRANS_WIDTH_8BIT  |  /* ´«Êä¿í¶È */
-        AM_LPC84X_DMA_TRANS_SRCINC_1X   |  /* Ô´µØÖ·Ôö 1 */
-        AM_LPC84X_DMA_TRANS_DSTINC_1X);    /* Ä¿±êµØÖ·Ôö 1 */
+       &transfer,                          /* ä¼ è¾“ç»“æ„ä½“ */
+        (uint32_t)__g_buf_src,             /* æºåœ°å€ */
+        (uint32_t)__g_buf_dst,             /* ç›®æ ‡åœ°å€ */
+        __TEST_COUNT,                      /* ä¼ è¾“å­—èŠ‚æ•° */
+        AM_LPC84X_DMA_TRANS_WIDTH_8BIT  |  /* ä¼ è¾“å®½åº¦ */
+        AM_LPC84X_DMA_TRANS_SRCINC_1X   |  /* æºåœ°å€å¢ 1 */
+        AM_LPC84X_DMA_TRANS_DSTINC_1X);    /* ç›®æ ‡åœ°å€å¢ 1 */
 
     am_lpc84x_dma_transfer(p_ctr, &transfer, NULL, (void*)0);
 
@@ -310,7 +310,7 @@ am_local void __dma_hwtrigger_bust_wrap_test (uint8_t chan, int pin)
         AM_DBG_INFO("Enter any key make a burst!\r\n");
         __GET_CHAR(ch);
 
-        /* ´¥·¢ DMA ´«Êä */
+        /* è§¦å‘ DMA ä¼ è¾“ */
         am_mdelay(10);
         am_gpio_set(pin, AM_GPIO_LEVEL_LOW);
         am_mdelay(10);
@@ -320,7 +320,7 @@ am_local void __dma_hwtrigger_bust_wrap_test (uint8_t chan, int pin)
         __buffer_printf(__g_buf_dst, __TEST_COUNT);
     }
 
-    /* ÊÍ·Å DMA */
+    /* é‡Šæ”¾ DMA */
     AM_DBG_INFO("Release DMA resource!\r\n");
     am_lpc84x_dma_controller_release(p_ctr);
 
@@ -333,18 +333,18 @@ void demo_lpc845_drv_dma_hwtrigger_burst_entry (uint8_t  chan,
 {
     int i = 0;
 
-    /* ¹¹Ôì´ı´«ÊäµÄÊı¾İ */
+    /* æ„é€ å¾…ä¼ è¾“çš„æ•°æ® */
     for (i = 0; i < __TEST_COUNT; i++) {
         __g_buf_src[i] = i+1;
     }
 
-    /* Ó²¼ş´¥·¢µçÆ½Í»·¢Ä£Ê½²âÊÔ */
+    /* ç¡¬ä»¶è§¦å‘ç”µå¹³çªå‘æ¨¡å¼æµ‹è¯• */
     __dma_hwtrigger_bust_level_test(chan, pin);
 
-    /* Ó²¼ş´¥·¢±ßÑØÍ»·¢Ä£Ê½²âÊÔ */
+    /* ç¡¬ä»¶è§¦å‘è¾¹æ²¿çªå‘æ¨¡å¼æµ‹è¯• */
     __dma_hwtrigger_bust_edge_test(chan, pin);
 
-    /* Ó²¼ş´¥·¢Í»·¢»·ÈÆÄ£Ê½²âÊÔ */
+    /* ç¡¬ä»¶è§¦å‘çªå‘ç¯ç»•æ¨¡å¼æµ‹è¯• */
     __dma_hwtrigger_bust_wrap_test(chan, pin);
 
     AM_DBG_INFO("Finish all test!\r\n");

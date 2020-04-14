@@ -12,22 +12,22 @@
 
 /**
  * \file
- * \brief MicroPort RX8025T ���̣�ͨ�� RX8025T оƬʵ��
- *        RTC�����ӵĹ��ܣ�ͨ����׼�ӿ�ʵ��
+ * \brief MicroPort RX8025T 例程，通过 RX8025T 芯片实现
+ *        RTC、闹钟的功能，通过标准接口实现
  *
- * - �������裺
- *   1. �� MicroPort RX8025T ������ӵ� AMKS16RFID �� MicroPort �ӿڡ�
+ * - 操作步骤：
+ *   1. 将 MicroPort RX8025T 配板连接到 AMKS16RFID 的 MicroPort 接口。
  *
- * - ʵ������
- *   1. ���Դ��ڽ�ÿһ���ʱ����Ϣ��ӡ������
+ * - 实验现象：
+ *   1. 调试串口将每一秒的时间信息打印出来。
  *
  * \note
- *    ����۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIOA_1 �������� PC ���ڵ� TXD��
- *    PIOA_2 �������� PC ���ڵ� RXD��������Ҫ�鿴���Դ����Ƿ�ʹ����485��
- *    ���ʹ����485������485�����ݷ���������Ż�� MicroPort RX8025T����
- *    �����Ų�����ͻ��
+ *    如需观察串口打印的调试信息，需要将 PIOA_1 引脚连接 PC 串口的 TXD，
+ *    PIOA_2 引脚连接 PC 串口的 RXD。并且需要查看调试串口是否使用了485，
+ *    如果使用了485，可能485的数据方向控制引脚会和 MicroPort RX8025T的中
+ *    断引脚产生冲突。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_microport_rx8025t.c src_microport_rx8025t
  *
  * \internal
@@ -48,11 +48,11 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief MicroPort RX8025T ���̣�ͨ����׼�ӿ�ʵ��
+ * \brief MicroPort RX8025T 例程，通过标准接口实现
  *
- * \param ��
+ * \param 无
  *
- * \return ��
+ * \return 无
  */
 void demo_amks16z_core_microport_rx8025t_entry (void)
 {

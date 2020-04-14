@@ -12,24 +12,24 @@
 
 /**
  * \file
- * \brief °´¼üÀı³Ì£¬Ê¹ÓÃÊıÂë¹ÜÊµÊ±ÏÔÊ¾µ±Ç°°´ÏÂµÄ°´¼ü£¨°´¼üÊÂ¼ş»º´æµ½»·ĞÎ»º³åÇøÖĞ£©
+ * \brief æŒ‰é”®ä¾‹ç¨‹ï¼Œä½¿ç”¨æ•°ç ç®¡å®æ—¶æ˜¾ç¤ºå½“å‰æŒ‰ä¸‹çš„æŒ‰é”®ï¼ˆæŒ‰é”®äº‹ä»¶ç¼“å­˜åˆ°ç¯å½¢ç¼“å†²åŒºä¸­ï¼‰
  *
- *  ±¾Ó¦ÓÃĞèÒªÊ¹ÓÃµ½Á½Î»ÊıÂë¹Ü£¬Ö¸¶¨µÄÊıÂë¹ÜÏÔÊ¾Æ÷±ØĞëÖÁÉÙ°üº¬Á½Î»ÊıÂë¹Ü¡£Í¬Ê±£¬
- *  Ê¹ÓÃµ½4¸ö°´¼ü£¬ 4¸ö°´¼ü¶ÔÓ¦µÄ°´¼ü±àÂë¹Ì¶¨Îª£ºKEY_0¡¢KEY_1¡¢KEY_2¡¢KEY_3¡£
- *  ÔËĞĞ¸ÃÀı³ÌÊ±£¬Ó¦È·±£ÏµÍ³ÓĞ4¸ö°´¼ü£¬ÇÒËüÃÇ¶ÔÓ¦µÄ°´¼ü±àÂëÎª£ºKEY_0 ~ KEY_4
+ *  æœ¬åº”ç”¨éœ€è¦ä½¿ç”¨åˆ°ä¸¤ä½æ•°ç ç®¡ï¼ŒæŒ‡å®šçš„æ•°ç ç®¡æ˜¾ç¤ºå™¨å¿…é¡»è‡³å°‘åŒ…å«ä¸¤ä½æ•°ç ç®¡ã€‚åŒæ—¶ï¼Œ
+ *  ä½¿ç”¨åˆ°4ä¸ªæŒ‰é”®ï¼Œ 4ä¸ªæŒ‰é”®å¯¹åº”çš„æŒ‰é”®ç¼–ç å›ºå®šä¸ºï¼šKEY_0ã€KEY_1ã€KEY_2ã€KEY_3ã€‚
+ *  è¿è¡Œè¯¥ä¾‹ç¨‹æ—¶ï¼Œåº”ç¡®ä¿ç³»ç»Ÿæœ‰4ä¸ªæŒ‰é”®ï¼Œä¸”å®ƒä»¬å¯¹åº”çš„æŒ‰é”®ç¼–ç ä¸ºï¼šKEY_0 ~ KEY_4
  * 
- *  °´¼ü»Øµ÷Í¨³£ÔÚÖĞ¶Ï»·¾³ÖĞÔËĞĞ£¬Òò´Ë£¬²»½¨ÒéÔÚ°´¼ü»Øµ÷ÖĞ×÷¹ı¶àµÄ´¦Àí£¬ÌØ±ğÊÇ
- *  Ò»Ğ©ºÄÊ±½Ï³¤µÄ´¦Àí¡£´ËÊ±£¬¿ÉÒÔ½«°´¼ü»º´æµ½»·ĞÎ»º³åÇøÖĞ£¬ÔÚmain()º¯ÊıÖĞÔÙÒÀ´Î
- *  ´¦Àí¡£
+ *  æŒ‰é”®å›è°ƒé€šå¸¸åœ¨ä¸­æ–­ç¯å¢ƒä¸­è¿è¡Œï¼Œå› æ­¤ï¼Œä¸å»ºè®®åœ¨æŒ‰é”®å›è°ƒä¸­ä½œè¿‡å¤šçš„å¤„ç†ï¼Œç‰¹åˆ«æ˜¯
+ *  ä¸€äº›è€—æ—¶è¾ƒé•¿çš„å¤„ç†ã€‚æ­¤æ—¶ï¼Œå¯ä»¥å°†æŒ‰é”®ç¼“å­˜åˆ°ç¯å½¢ç¼“å†²åŒºä¸­ï¼Œåœ¨main()å‡½æ•°ä¸­å†ä¾æ¬¡
+ *  å¤„ç†ã€‚
  * 
- * - ²Ù×÷²½Öè
- *   1. µ÷ÓÃÈë¿Úº¯Êı
+ * - æ“ä½œæ­¥éª¤
+ *   1. è°ƒç”¨å…¥å£å‡½æ•°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. °´ÏÂÒ»¸ö°´¼ü£¬Á½Î»ÊıÂë¹ÜÏÔÊ¾°´¼ü±àºÅ 0 ~ 4£»
- *   2. Å¼Êı±àºÅÊ±£¬ÊıÂë¹ÜÉÁË¸£¬ÆæÊı±àºÅÊ±£¬ÊıÂë¹Ü²»ÉÁË¸¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. æŒ‰ä¸‹ä¸€ä¸ªæŒ‰é”®ï¼Œä¸¤ä½æ•°ç ç®¡æ˜¾ç¤ºæŒ‰é”®ç¼–å· 0 ~ 4ï¼›
+ *   2. å¶æ•°ç¼–å·æ—¶ï¼Œæ•°ç ç®¡é—ªçƒï¼Œå¥‡æ•°ç¼–å·æ—¶ï¼Œæ•°ç ç®¡ä¸é—ªçƒã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_std_key_digitron_rngbuf.c src_std_key_digitron_rngbuf
  *
  * \internal
@@ -51,15 +51,15 @@
 #include "am_digitron_disp.h"
 #include "am_rngbuf.h"
  
-static char             __g_key_buf[256];              /* ¶¨Òå 256 ×Ö½ÚµÄ»º´æ */
-static struct am_rngbuf __g_key_rngbuf;                /* ¶¨Òå»·ĞÎ»º³åÇøÊµÀı  */
+static char             __g_key_buf[256];              /* å®šä¹‰ 256 å­—èŠ‚çš„ç¼“å­˜ */
+static struct am_rngbuf __g_key_rngbuf;                /* å®šä¹‰ç¯å½¢ç¼“å†²åŒºå®ä¾‹  */
  
 static void __digitron_disp_key_code (int id, int code)
 {
-    am_digitron_disp_char_at(id, 0, '0' + code / 10);  /* Ê®Î»                */
-    am_digitron_disp_char_at(id, 1, '0' + code % 10);  /* ¸öÎ»                */
+    am_digitron_disp_char_at(id, 0, '0' + code / 10);  /* åä½                */
+    am_digitron_disp_char_at(id, 1, '0' + code % 10);  /* ä¸ªä½                */
  
-    if ((code & 0x01) == 0) {                          /* Å¼ÊıÊ±ÊıÂë¹ÜÉÁË¸    */
+    if ((code & 0x01) == 0) {                          /* å¶æ•°æ—¶æ•°ç ç®¡é—ªçƒ    */
         am_digitron_disp_blink_set(id, 0, AM_TRUE);
         am_digitron_disp_blink_set(id, 1, AM_TRUE);
     } else {
@@ -68,7 +68,7 @@ static void __digitron_disp_key_code (int id, int code)
     }
 }
   
-/* °´¼üÊµ¼Ê´¦Àíº¯Êı */
+/* æŒ‰é”®å®é™…å¤„ç†å‡½æ•° */
 static void __input_key_proc (int id, int key_code, int key_state, int keep_time)
 {
     AM_DBG_INFO("key_code: %d, key_state :%d, keep_time is %d \r\n",
@@ -97,12 +97,12 @@ static void __input_key_proc (int id, int key_code, int key_state, int keep_time
     }
 }
 
-/* °´¼ü»Øµ÷º¯Êı */
+/* æŒ‰é”®å›è°ƒå‡½æ•° */
 static void __input_key_cb (void *p_arg, int key_code, int key_state, int keep_time)
 {
     if (am_rngbuf_freebytes(&__g_key_rngbuf) < (sizeof(int) * 3)) {
         
-        /* Ê£Óà¿Õ¼ä²»ÄÜ´æ·ÅÏÂ°´¼üÊÂ¼ş£¬ °´¼üÊÂ¼ş¶ªÆú */
+        /* å‰©ä½™ç©ºé—´ä¸èƒ½å­˜æ”¾ä¸‹æŒ‰é”®äº‹ä»¶ï¼Œ æŒ‰é”®äº‹ä»¶ä¸¢å¼ƒ */
         AM_DBG_INFO("Buffer full, the key event discard!\r\n");
         
     } else {
@@ -114,16 +114,16 @@ static void __input_key_cb (void *p_arg, int key_code, int key_state, int keep_t
 }
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_std_key_digitron_rngbuf_entry (int32_t id)
 {
     static am_input_key_handler_t key_handler;
 
-    /* ³õÊ¼»¯£¬ÉèÖÃ 8 ¶Î ASCII ½âÂë */
+    /* åˆå§‹åŒ–ï¼Œè®¾ç½® 8 æ®µ ASCII è§£ç  */
     am_digitron_disp_decode_set(id, am_digitron_seg8_ascii_decode);
     
-    /* ³õÊ¼ÎŞ°´¼ü°´ÏÂ£¬ÏÔÊ¾ -- */
+    /* åˆå§‹æ— æŒ‰é”®æŒ‰ä¸‹ï¼Œæ˜¾ç¤º -- */
     am_digitron_disp_char_at(id, 0, '-');
     am_digitron_disp_char_at(id, 1, '-');
 
@@ -137,10 +137,10 @@ void demo_std_key_digitron_rngbuf_entry (int32_t id)
         int key_state;
         int keep_time;
         
-        /* key_code ÊÇ int ÀàĞÍ
+        /* key_code æ˜¯ int ç±»å‹
          *
-         * Ö»Òª»º´æ³¬¹ı 3 ¸ö int ËùÕ¼×Ö½ÚÊı£¨key_state ºÍ key_code£©
-         * ±íÃ÷´æÔÚ°´¼üÊÂ¼ş 
+         * åªè¦ç¼“å­˜è¶…è¿‡ 3 ä¸ª int æ‰€å å­—èŠ‚æ•°ï¼ˆkey_state å’Œ key_codeï¼‰
+         * è¡¨æ˜å­˜åœ¨æŒ‰é”®äº‹ä»¶ 
          */
         if (am_rngbuf_nbytes(&__g_key_rngbuf) >= (sizeof(int) * 3)) {
             

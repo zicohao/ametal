@@ -11,12 +11,12 @@
 *******************************************************************************/
 /**
  * \file
- * \brief PMU Ӳ�������ӿ�
+ * \brief PMU 硬件操作接口
  * 
- * 1. ֧�ֵ͵�ѹ�����жϣ�
- * 2. ֧�ֵ͵�ѹ��λ��
- * 3. VLLSx����ȷ�Ͽ��ƣ�
- * 4. �ܴ�϶(����)ʹ�ܿ��ơ�
+ * 1. 支持低电压报警中断；
+ * 2. 支持低电压复位；
+ * 3. VLLSx唤醒确认控制；
+ * 4. 能带隙(缓冲)使能控制。
  *
  * \internal
  * \par Modification history
@@ -40,64 +40,64 @@ extern "C" {
  */
 
 /**
- * \brief PMC�Ĵ�����ṹ��
+ * \brief PMC寄存器块结构体
  */
 typedef struct amhw_fsl_puc {
-    __IO uint8_t lvdsc1;      /**< \brief PMC �͵�ѹ״̬���ƼĴ���1 */
-    __IO uint8_t lvdsc2;      /**< \brief PMC �͵�ѹ״̬���ƼĴ���2 */
-    __IO uint8_t regsc;       /**< \brief PMC �������ƼĴ���        */
+    __IO uint8_t lvdsc1;      /**< \brief PMC 低电压状态控制寄存器1 */
+    __IO uint8_t lvdsc2;      /**< \brief PMC 低电压状态控制寄存器2 */
+    __IO uint8_t regsc;       /**< \brief PMC 调整控制寄存器        */
 } amhw_fsl_pmc_t;
 
 /**
- * \name PMC�жϱ�־
+ * \name PMC中断标志
  * @{
  */
 
-#define AMHW_FSL_PMC_FLAG_LVDF  AM_BIT(7)   /**< \brief �͵�ѹ����־ */
-#define AMHW_FSL_PMC_FLAG_LVWF  AM_BIT(6)   /**< \brief �͵�ѹ������־ */
+#define AMHW_FSL_PMC_FLAG_LVDF  AM_BIT(7)   /**< \brief 低电压检测标志 */
+#define AMHW_FSL_PMC_FLAG_LVWF  AM_BIT(6)   /**< \brief 低电压报警标志 */
 
 /** @} */
 
 /**
- * \name PMC�ж�ѡ��
+ * \name PMC中断选项
  * @{
  */
 
-#define AMHW_FSL_PMC_IRQ_LVD    AM_BIT(7)   /**< \brief �͵�ѹ����ж� */
-#define AMHW_FSL_PMC_IRQ_LVW    AM_BIT(6)   /**< \brief �͵�ѹ�����ж� */
+#define AMHW_FSL_PMC_IRQ_LVD    AM_BIT(7)   /**< \brief 低电压检测中断 */
+#define AMHW_FSL_PMC_IRQ_LVW    AM_BIT(6)   /**< \brief 低电压报警中断 */
 
 /** @} */
 
 /**
- * \name PMCȷ��ѡ��
+ * \name PMC确认选项
  * @{
  */
 
-#define AMHW_FSL_PMC_ACK_LVD    AM_BIT(7)   /**< \brief �͵�ѹ���ȷ�� */
-#define AMHW_FSL_PMC_ACK_LVW    AM_BIT(6)   /**< \brief �͵�ѹ����ȷ�� */
-#define AMHW_FSL_PMC_ACK_VLLS   AM_BIT(5)   /**< \brief VLLS����ȷ��   */
+#define AMHW_FSL_PMC_ACK_LVD    AM_BIT(7)   /**< \brief 低电压检测确认 */
+#define AMHW_FSL_PMC_ACK_LVW    AM_BIT(6)   /**< \brief 低电压报警确认 */
+#define AMHW_FSL_PMC_ACK_VLLS   AM_BIT(5)   /**< \brief VLLS唤醒确认   */
 
 /** @} */
 
-/** \brief �͵�ѹ�����ֵ */
+/** \brief 低电压检测阈值 */
 typedef enum amhw_fsl_pmc_lvd_sel {
-    AMHW_FSL_PMC_LVD_VLDL = 0,              /**< \brief ����ֵ��� */
-    AMHW_FSL_PMC_LVD_VLDH                   /**< \brief ����ֵ��� */
+    AMHW_FSL_PMC_LVD_VLDL = 0,              /**< \brief 低阈值检测 */
+    AMHW_FSL_PMC_LVD_VLDH                   /**< \brief 高阈值检测 */
 } amhw_fsl_pmc_lvd_sel_t;
 
-/** \brief �͵�ѹ������ֵ */
+/** \brief 低电压报警阈值 */
 typedef enum amhw_fsl_pmc_lvw_sel {
-    AMHW_FSL_PMC_LVW_VLW1 = 0,              /**< \brief ������ֵ1 */
-    AMHW_FSL_PMC_LVW_VLW2,                  /**< \brief ������ֵ2 */
-    AMHW_FSL_PMC_LVW_VLW3,                  /**< \brief ������ֵ3 */
-    AMHW_FSL_PMC_LVW_VLW4                   /**< \brief ������ֵ4 */
+    AMHW_FSL_PMC_LVW_VLW1 = 0,              /**< \brief 报警阈值1 */
+    AMHW_FSL_PMC_LVW_VLW2,                  /**< \brief 报警阈值2 */
+    AMHW_FSL_PMC_LVW_VLW3,                  /**< \brief 报警阈值3 */
+    AMHW_FSL_PMC_LVW_VLW4                   /**< \brief 报警阈值4 */
 } amhw_fsl_pmc_lvw_sel_t;
 
 
 /**
- * \brief ��ȡPMC�жϱ�־
- * \param[in] p_hw_pmc : ָ��PMC�Ĵ������ָ��
- * \return �жϱ�־
+ * \brief 获取PMC中断标志
+ * \param[in] p_hw_pmc : 指向PMC寄存器块的指针
+ * \return 中断标志
  */
 am_static_inline
 uint8_t amhw_fsl_pmc_int_flags_get (amhw_fsl_pmc_t *p_hw_pmc)
@@ -110,12 +110,12 @@ uint8_t amhw_fsl_pmc_int_flags_get (amhw_fsl_pmc_t *p_hw_pmc)
 }
 
 /**
- * \brief ʹ��PMC�ж�
+ * \brief 使能PMC中断
  *
- * \param[in] p_hw_pmc  : ָ��PMC�Ĵ������ָ��
- * \param[in] irq_flags : �ж϶��壬AMHW_FSL_PMC_IRQ_*��ֵ(#AMHW_FSL_PMC_IRQ_LVW)
+ * \param[in] p_hw_pmc  : 指向PMC寄存器块的指针
+ * \param[in] irq_flags : 中断定义，AMHW_FSL_PMC_IRQ_*宏值(#AMHW_FSL_PMC_IRQ_LVW)
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_fsl_pmc_int_enable (amhw_fsl_pmc_t *p_hw_pmc, uint8_t irq_flags)
@@ -129,12 +129,12 @@ void amhw_fsl_pmc_int_enable (amhw_fsl_pmc_t *p_hw_pmc, uint8_t irq_flags)
 }
 
 /**
- * \brief ����PMC�ж�
+ * \brief 禁能PMC中断
  *
- * \param[in] p_hw_pmc  : ָ��PMC�Ĵ������ָ��
- * \param[in] irq_flags : �ж϶��壬AMHW_FSL_PMC_IRQ_*��ֵ(#AMHW_FSL_PMC_IRQ_LVW)
+ * \param[in] p_hw_pmc  : 指向PMC寄存器块的指针
+ * \param[in] irq_flags : 中断定义，AMHW_FSL_PMC_IRQ_*宏值(#AMHW_FSL_PMC_IRQ_LVW)
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_fsl_pmc_int_disable (amhw_fsl_pmc_t *p_hw_pmc, uint8_t irq_flags)
@@ -148,9 +148,9 @@ void amhw_fsl_pmc_int_disable (amhw_fsl_pmc_t *p_hw_pmc, uint8_t irq_flags)
 }
 
 /**
- * \brief ʹ�ܵ͵�ѹ��λ����
- * \param[in] p_hw_pmc  : ָ��PMC�Ĵ������ָ��
- * \return ��
+ * \brief 使能低电压复位功能
+ * \param[in] p_hw_pmc  : 指向PMC寄存器块的指针
+ * \return 无
  */
 am_static_inline
 void amhw_fsl_pmc_lvdrest_enable (amhw_fsl_pmc_t *p_hw_pmc)
@@ -159,9 +159,9 @@ void amhw_fsl_pmc_lvdrest_enable (amhw_fsl_pmc_t *p_hw_pmc)
 }
 
 /**
- * \brief ���ܵ͵�ѹ��λ����
- * \param[in] p_hw_pmc  : ָ��PMC�Ĵ������ָ��
- * \return ��
+ * \brief 禁能低电压复位功能
+ * \param[in] p_hw_pmc  : 指向PMC寄存器块的指针
+ * \return 无
  */
 am_static_inline
 void amhw_fsl_pmc_lvdrest_disable (amhw_fsl_pmc_t *p_hw_pmc)
@@ -170,12 +170,12 @@ void amhw_fsl_pmc_lvdrest_disable (amhw_fsl_pmc_t *p_hw_pmc)
 }
 
 /**
- * \brief ACKȷ�ϲ���
+ * \brief ACK确认操作
  *
- * \param[in] p_hw_pmc  : ָ��PMC�Ĵ������ָ��
- * \param[in] ack_flags : ACKȷ��ѡ���־��AMHW_FSL_PMC_ACK_*��ֵ(#AMHW_FSL_PMC_ACK_LVD)
+ * \param[in] p_hw_pmc  : 指向PMC寄存器块的指针
+ * \param[in] ack_flags : ACK确认选项标志，AMHW_FSL_PMC_ACK_*宏值(#AMHW_FSL_PMC_ACK_LVD)
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_fsl_pmc_ack_set (amhw_fsl_pmc_t *p_hw_pmc, uint8_t ack_flags)
@@ -192,12 +192,12 @@ void amhw_fsl_pmc_ack_set (amhw_fsl_pmc_t *p_hw_pmc, uint8_t ack_flags)
 }
 
 /**
- * \brief �͵�ѹ�����ֵѡ��
+ * \brief 低电压检测阈值选择
  *
- * \param[in] p_hw_pmc : ָ��PMC�Ĵ������ָ��
- * \param[in] sel      : ��ֵѡ��
+ * \param[in] p_hw_pmc : 指向PMC寄存器块的指针
+ * \param[in] sel      : 阈值选择
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_fsl_pmc_lvd_cfg (amhw_fsl_pmc_t *p_hw_pmc, amhw_fsl_pmc_lvd_sel_t sel)
@@ -206,12 +206,12 @@ void amhw_fsl_pmc_lvd_cfg (amhw_fsl_pmc_t *p_hw_pmc, amhw_fsl_pmc_lvd_sel_t sel)
 }
 
 /**
- * \brief �͵�ѹ������ֵѡ��
+ * \brief 低电压报警阈值选择
  *
- * \param[in] p_hw_pmc : ָ��PMC�Ĵ������ָ��
- * \param[in] sel      : ��ֵѡ��
+ * \param[in] p_hw_pmc : 指向PMC寄存器块的指针
+ * \param[in] sel      : 阈值选择
  *
- * \return ��
+ * \return 无
  */
 am_static_inline
 void amhw_fsl_pmc_lvw_cfg (amhw_fsl_pmc_t *p_hw_pmc, amhw_fsl_pmc_lvw_sel_t sel)
@@ -220,9 +220,9 @@ void amhw_fsl_pmc_lvw_cfg (amhw_fsl_pmc_t *p_hw_pmc, amhw_fsl_pmc_lvw_sel_t sel)
 }
 
 /**
- * \brief ʹ���ܴ�϶��������VLPXģʽ
- * \param[in] p_hw_pmc : ָ��PMC�Ĵ������ָ��
- * \return ��
+ * \brief 使能能带隙，当处于VLPX模式
+ * \param[in] p_hw_pmc : 指向PMC寄存器块的指针
+ * \return 无
  */
 am_static_inline
 void amhw_fsl_pmc_bandgap_enable (amhw_fsl_pmc_t *p_hw_pmc)
@@ -231,9 +231,9 @@ void amhw_fsl_pmc_bandgap_enable (amhw_fsl_pmc_t *p_hw_pmc)
 }
 
 /**
- * \brief �����ܴ�϶��������VLPXģʽ
- * \param[in] p_hw_pmc : ָ��PMC�Ĵ������ָ��
- * \return ��
+ * \brief 禁能能带隙，当处于VLPX模式
+ * \param[in] p_hw_pmc : 指向PMC寄存器块的指针
+ * \return 无
  */
 am_static_inline
 void amhw_fsl_pmc_bandgap_disable (amhw_fsl_pmc_t *p_hw_pmc)
@@ -242,9 +242,9 @@ void amhw_fsl_pmc_bandgap_disable (amhw_fsl_pmc_t *p_hw_pmc)
 }
 
 /**
- * \brief ʹ���ܴ�϶������
- * \param[in] p_hw_pmc : ָ��PMC�Ĵ������ָ��
- * \return ��
+ * \brief 使能能带隙缓冲区
+ * \param[in] p_hw_pmc : 指向PMC寄存器块的指针
+ * \return 无
  */
 am_static_inline
 void amhw_fsl_pmc_bandgap_buf_enable (amhw_fsl_pmc_t *p_hw_pmc)
@@ -253,9 +253,9 @@ void amhw_fsl_pmc_bandgap_buf_enable (amhw_fsl_pmc_t *p_hw_pmc)
 }
 
 /**
- * \brief �����ܴ�϶������
- * \param[in] p_hw_pmc : ָ��PMC�Ĵ������ָ��
- * \return ��
+ * \brief 禁能能带隙缓冲区
+ * \param[in] p_hw_pmc : 指向PMC寄存器块的指针
+ * \return 无
  */
 am_static_inline
 void amhw_fsl_pmc_bandgap_buf_disable (amhw_fsl_pmc_t *p_hw_pmc)
@@ -264,12 +264,12 @@ void amhw_fsl_pmc_bandgap_buf_disable (amhw_fsl_pmc_t *p_hw_pmc)
 }
 
 /**
- * \brief ���ص���������״̬
+ * \brief 返回调整器工作状态
  *
- * \param[in] p_hw_pmc : ָ��PMC�Ĵ������ָ��
+ * \param[in] p_hw_pmc : 指向PMC寄存器块的指针
  *
- * \retval AM_TRUE  : ����������
- * \retval AM_FALSE : ������û�й��������ڹ���״̬
+ * \retval AM_TRUE  : 调整器工作
+ * \retval AM_FALSE : 调整器没有工作或者在过渡状态
  */
 am_static_inline
 am_bool_t amhw_fsl_pmc_regulator_wstat_get (amhw_fsl_pmc_t *p_hw_pmc)

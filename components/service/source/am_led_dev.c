@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief 通用LED设备管理
+ * \brief 閫氱敤LED璁惧绠＄悊
  *
  * \internal
  * \par modification history:

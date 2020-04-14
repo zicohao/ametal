@@ -12,12 +12,12 @@
 
 /**
  * \file
- * \brief ¶¨Ê±Æ÷ PWM Êä³ö¹¦ÄÜ£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief å®šæ—¶å™¨ PWM è¾“å‡ºåŠŸèƒ½ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ¶¨Ê±Æ÷Í¨µÀ¶ÔÓ¦µÄÒı½ÅÊä³öÆµÂÊÎª 2KHz£¬Õ¼¿Õ±ÈÎª 50% µÄ PWM ²¨
+ * - å®éªŒç°è±¡ï¼š
+ *   1. å®šæ—¶å™¨é€šé“å¯¹åº”çš„å¼•è„šè¾“å‡ºé¢‘ç‡ä¸º 2KHzï¼Œå ç©ºæ¯”ä¸º 50% çš„ PWM æ³¢
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_std_timer_pwm.c src_std_timer_pwm
  *
  * \internal
@@ -36,11 +36,11 @@
 #include "am_pwm.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_std_timer_pwm_entry (am_pwm_handle_t pwm_handle, int pwm_chan)
 {
-    am_pwm_config(pwm_handle, pwm_chan, 500000 / 2, 500000); /* ÆµÂÊÎª 1000000000 / 500000 = 2KHz */
+    am_pwm_config(pwm_handle, pwm_chan, 500000 / 2, 500000); /* é¢‘ç‡ä¸º 1000000000 / 500000 = 2KHz */
     am_pwm_enable(pwm_handle, pwm_chan);
 
     AM_FOREVER {

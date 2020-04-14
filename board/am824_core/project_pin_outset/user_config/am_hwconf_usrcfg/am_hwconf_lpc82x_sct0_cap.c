@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief LPC82X SCT0 CAP �û������ļ�
+ * \brief LPC82X SCT0 CAP 用户配置文件
  * \sa am_hwconf_lpc82x_sct0_cap.c
  *
  * \internal
@@ -35,16 +35,16 @@
  * @{
  */
 
-/** \brief SCT0 ���� CAP ������������Ϣ�б���CAP ���������Ϊ 4 �� */
+/** \brief SCT0 用于 CAP 的引脚配置信息列表，CAP 的输入个数为 4 个 */
 am_local am_lpc_sct_cap_ioinfo_t __g_sct0_cap_ioinfo_list[] = {
-    {__SCT0_CAP_PIN0, PIO_FUNC_SCT_PIN0, AM_LPC82X_GPIO_FUNC_GPIO | AM_GPIO_INPUT}, /* ͨ�� 0 */
-    {__SCT0_CAP_PIN1, PIO_FUNC_SCT_PIN1, AM_LPC82X_GPIO_FUNC_GPIO | AM_GPIO_INPUT}, /* ͨ�� 1 */
-    {__SCT0_CAP_PIN2, PIO_FUNC_SCT_PIN2, AM_LPC82X_GPIO_FUNC_GPIO | AM_GPIO_INPUT}, /* ͨ�� 2 */
-    {__SCT0_CAP_PIN3, PIO_FUNC_SCT_PIN3, AM_LPC82X_GPIO_FUNC_GPIO | AM_GPIO_INPUT}, /* ͨ�� 3 */
+    {__SCT0_CAP_PIN0, PIO_FUNC_SCT_PIN0, AM_LPC82X_GPIO_FUNC_GPIO | AM_GPIO_INPUT}, /* 通道 0 */
+    {__SCT0_CAP_PIN1, PIO_FUNC_SCT_PIN1, AM_LPC82X_GPIO_FUNC_GPIO | AM_GPIO_INPUT}, /* 通道 1 */
+    {__SCT0_CAP_PIN2, PIO_FUNC_SCT_PIN2, AM_LPC82X_GPIO_FUNC_GPIO | AM_GPIO_INPUT}, /* 通道 2 */
+    {__SCT0_CAP_PIN3, PIO_FUNC_SCT_PIN3, AM_LPC82X_GPIO_FUNC_GPIO | AM_GPIO_INPUT}, /* 通道 3 */
 };
 
 /**
- * \brief SCT0 CAP ƽ̨��ʼ��
+ * \brief SCT0 CAP 平台初始化
  */
 am_local void __lpc82x_sct0_cap_plfm_init ()
 {
@@ -52,8 +52,8 @@ am_local void __lpc82x_sct0_cap_plfm_init ()
     amhw_lpc82x_syscon_periph_reset(AMHW_LPC82X_RESET_SCT);
 
     /*
-     * һ���� 4 ������ͨ��, ÿ��ͨ����ѡ������빦�ܴﵽ 8 ��,
-     * ����Ĺ��ܿ��Բο��� amhw_lpc82x_inmux.h �ļ��й��� SCT �Ķ���
+     * 一共有 4 个输入通道, 每个通道可选择的输入功能达到 8 个,
+     * 具体的功能可以参考在 amhw_lpc82x_inmux.h 文件中关于 SCT 的定义
      */
     amhw_lpc82x_inmux_sct_trig_set(LPC82X_INMUX,
                                    0,
@@ -70,7 +70,7 @@ am_local void __lpc82x_sct0_cap_plfm_init ()
 }
 
 /**
- * \brief SCT0 ƽ̨���ʼ��
+ * \brief SCT0 平台解初始化
  */
 am_local void __lpc82x_sct0_cap_plfm_deinit (void)
 {
@@ -78,22 +78,22 @@ am_local void __lpc82x_sct0_cap_plfm_deinit (void)
     amhw_lpc82x_clk_periph_disable(AMHW_LPC82X_CLK_SCT);
 }
 
-/** \brief SCT0 CAP �豸��Ϣ */
+/** \brief SCT0 CAP 设备信息 */
 am_local am_const am_lpc_sct_cap_devinfo_t __g_lpc82x_cap_devinfo = {
-    LPC82X_SCT0_BASE,                 /* SCT0 �Ĵ��������ַ */
-    INUM_SCT0,                        /* SCT0 �жϺ� */
-    CLK_SCT,                          /* SCT0 ʱ�Ӻ� */
-    4,                                /* 4 ������ͨ�� */
-    &__g_sct0_cap_ioinfo_list[0],     /* ���� PWM ����������Ϣ�����׵�ַ�������� */
-    __lpc82x_sct0_cap_plfm_init,      /* ƽ̨��ʼ������ */
-    __lpc82x_sct0_cap_plfm_deinit,    /* ƽ̨���ʼ������ */
+    LPC82X_SCT0_BASE,                 /* SCT0 寄存器块基地址 */
+    INUM_SCT0,                        /* SCT0 中断号 */
+    CLK_SCT,                          /* SCT0 时钟号 */
+    4,                                /* 4 个捕获通道 */
+    &__g_sct0_cap_ioinfo_list[0],     /* 所有 PWM 引脚配置信息，用首地址参数传递 */
+    __lpc82x_sct0_cap_plfm_init,      /* 平台初始化函数 */
+    __lpc82x_sct0_cap_plfm_deinit,    /* 平台解初始化函数 */
 };
 
-/** \brief SCT0 CAP �豸ʵ�� */
+/** \brief SCT0 CAP 设备实例 */
 am_local am_lpc_sct_cap_dev_t __g_lpc82x_cap_dev;
 
 /**
- * \brief SCT0 CAP ʵ����ʼ��
+ * \brief SCT0 CAP 实例初始化
  */
 am_cap_handle_t am_lpc82x_sct0_cap_inst_init (void)
 {
@@ -101,7 +101,7 @@ am_cap_handle_t am_lpc82x_sct0_cap_inst_init (void)
 }
 
 /**
- * \brief SCT0 CAP ʵ�����ʼ��
+ * \brief SCT0 CAP 实例解初始化
  */
 void am_lpc82x_sct0_cap_inst_deinit (am_cap_handle_t handle)
 {

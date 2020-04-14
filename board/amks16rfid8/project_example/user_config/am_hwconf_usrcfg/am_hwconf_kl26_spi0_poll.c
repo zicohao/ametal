@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief KL16 SPI0 ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief KL16 SPI0 ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_kl26_spi0_poll.c
  *
  * \internal
@@ -35,7 +35,7 @@
  * @{
  */
 
-/** \brief SPI0 Æ½Ì¨³õÊ¼»¯ */
+/** \brief SPI0 å¹³å°åˆå§‹åŒ– */
 static void __kl26_plfm_spi0_poll_init (void)
 {
     am_gpio_pin_cfg(PIOE_17, PIOE_17_SPI0_SCK  | AM_GPIO_PULLUP);
@@ -45,10 +45,10 @@ static void __kl26_plfm_spi0_poll_init (void)
     amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_SPI0);
 }
 
-/** \brief ½â³ıSPI0 Æ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤SPI0 å¹³å°åˆå§‹åŒ– */
 static void __kl26_plfm_spi0_poll_deinit (void)
 {
-    /* ÊÍ·ÅÒı½ÅÎªÊäÈëÄ£Ê½ */
+    /* é‡Šæ”¾å¼•è„šä¸ºè¾“å…¥æ¨¡å¼ */
     am_gpio_pin_cfg(PIOE_17, AM_GPIO_INPUT);
     am_gpio_pin_cfg(PIOE_18, AM_GPIO_INPUT);
     am_gpio_pin_cfg(PIOE_19, AM_GPIO_INPUT);
@@ -57,25 +57,25 @@ static void __kl26_plfm_spi0_poll_deinit (void)
 }
 
 /**
- * \brief SPI0 Éè±¸ĞÅÏ¢
+ * \brief SPI0 è®¾å¤‡ä¿¡æ¯
  */
 const  struct am_kl26_spi_poll_devinfo  __g_spi0_poll_devinfo = {
-    KL26_SPI0_BASE,                    /**< \brief SPI0¼Ä´æÆ÷Ö¸Õë   */
-    AM_KL26_SPI_POLL_CFG_WIAT_EN,      /**< \brief SPI ÅäÖÃ±êÊ¶    */
-    __kl26_plfm_spi0_poll_init,        /**< \brief SPI0Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __kl26_plfm_spi0_poll_deinit       /**< \brief SPI0Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    KL26_SPI0_BASE,                    /**< \brief SPI0å¯„å­˜å™¨æŒ‡é’ˆ   */
+    AM_KL26_SPI_POLL_CFG_WIAT_EN,      /**< \brief SPI é…ç½®æ ‡è¯†    */
+    __kl26_plfm_spi0_poll_init,        /**< \brief SPI0å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __kl26_plfm_spi0_poll_deinit       /**< \brief SPI0å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 };
 
-/** \brief SPI0 Éè±¸ÊµÀı */
+/** \brief SPI0 è®¾å¤‡å®ä¾‹ */
 static am_kl26_spi_poll_dev_t __g_spi0_poll_dev;
 
-/** \brief SPI0 ÊµÀı³õÊ¼»¯£¬»ñµÃSPI±ê×¼·şÎñ¾ä±ú */
+/** \brief SPI0 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—SPIæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_spi_handle_t am_kl26_spi0_poll_inst_init (void)
 {
     return am_kl26_spi_poll_init(&__g_spi0_poll_dev, &__g_spi0_poll_devinfo);
 }
 
-/** \brief SPI0 ÊµÀı½â³õÊ¼»¯ */
+/** \brief SPI0 å®ä¾‹è§£åˆå§‹åŒ– */
 void am_kl26_spi0_poll_inst_deinit (am_spi_handle_t handle)
 {
     am_kl26_spi_poll_deinit(handle);

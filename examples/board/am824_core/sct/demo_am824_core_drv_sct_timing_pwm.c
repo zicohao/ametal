@@ -12,23 +12,23 @@
 
 /**
  * \file
- * \brief SCT 32 λ PWM ���̣�ͨ��������ӿ�ʵ��
+ * \brief SCT 32 位 PWM 例程，通过驱动层接口实现
  *
- * - ʵ������
- *   1. PIO0_23(SCT_OUT0) ��� 500Hz �� PWM��ռ�ձ�Ϊ 25%��
- *   2. LED0 ״̬��תƵ��Ϊ 500Hz��
+ * - 实验现象：
+ *   1. PIO0_23(SCT_OUT0) 输出 500Hz 的 PWM，占空比为 25%；
+ *   2. LED0 状态翻转频率为 500Hz。
  *
  * \note
- *    1. LED0 ��Ҫ�̽� J9 ����ñ�����ܱ� PIO0_20 ���ƣ�
- *    2. �������£��¼� 0 ÿ 2000000ns ����� IO ͨ�� 0 �øߣ��������жϣ��������ڣ�
- *       �¼� 1 ÿ 500000ns��ռ���� 25%������� IO ͨ�� 0 ���㣬����ռ�ձȣ�
- *    3. �������£�ÿ�����¼� 0 ʱ���¼� 1 Ҳ��ͬʱ��������ʱ�����¼���������� IO
- *       ͨ�� 0���Ҳ�����ƽ��ͻ����ʱ��Ҫ�ƶ������ͻ�İ취������ָ�����������ϴ�
- *       ��ƽ���䣻
- *    4. ���� SCT Ĭ����Ϊ������������ʹ�ò��Ա� Demo ǰ��Ҫ�� am_prj_config.h ��
- *       �� AM_CFG_BUZZER_ENABLE ����Ϊ 0����ʹ�÷�������
+ *    1. LED0 需要短接 J9 跳线帽，才能被 PIO0_20 控制；
+ *    2. 该例程下，事件 0 每 2000000ns 将输出 IO 通道 0 置高，并产生中断，用作周期，
+ *       事件 1 每 500000ns（占周期 25%）将输出 IO 通道 0 清零，用作占空比；
+ *    3. 该例程下，每发生事件 0 时，事件 1 也会同时发生，此时两个事件均控制输出 IO
+ *       通道 0，且产生电平冲突，此时需要制定解决冲突的办法，若不指定，将保持上次
+ *       电平不变；
+ *    4. 由于 SCT 默认作为驱动蜂鸣器，使用测试本 Demo 前需要将 am_prj_config.h 中
+ *       的 AM_CFG_BUZZER_ENABLE 定义为 0，不使用蜂鸣器。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_am824_drv_sct_timing_pwm.c src_am824_drv_sct_timing_pwm
  *
  * \internal
@@ -52,7 +52,7 @@
 
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_am824_core_drv_sct_timing_pwm_entry (void)
 {
@@ -64,10 +64,10 @@ void demo_am824_core_drv_sct_timing_pwm_entry (void)
 
     lpc82x_sct_handle = am_lpc82x_sct0_inst_init();
 
-    /* �� PIO0_23 ������ SCT �����ͨ�� 0 */
+    /* 将 PIO0_23 关联到 SCT 的输出通道 0 */
     am_gpio_pin_cfg(PIO0_23, PIO_FUNC_SCT_OUT0);
 
-    /* ���� SCT ״̬Ϊ 0 */
+    /* 设置 SCT 状态为 0 */
     am_lpc_sct_state_set(lpc82x_sct_handle, 0);
 
   

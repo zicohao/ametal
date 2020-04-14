@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief NVICÊµÏÖ
+ * \brief NVICå®ç°
  *
  * \internal
  * \par Modification history
@@ -26,14 +26,14 @@
 #include "hw/amhw_arm_nvic.h"
 
 /*******************************************************************************
-* Ë½ÓĞ¶¨Òå
+* ç§æœ‰å®šä¹‰
 *******************************************************************************/
 
-/** \brief ÖĞ¶ÏÎ´Á¬½Ó±êÊ¶ */
+/** \brief ä¸­æ–­æœªè¿æ¥æ ‡è¯† */
 #define __INT_NOT_CONNECTED      0xFF
 
 /*******************************************************************************
-  È«¾Ö±äÁ¿
+  å…¨å±€å˜é‡
 *******************************************************************************/
 #ifdef __GNUC__
 static void  __enable_isr()
@@ -42,14 +42,14 @@ static void  __enable_isr()
 }
 #endif
 
-/** \brief Ö¸ÏòÖĞ¶ÏÉè±¸µÄÖ¸Õë */
+/** \brief æŒ‡å‘ä¸­æ–­è®¾å¤‡çš„æŒ‡é’ˆ */
 static am_arm_nvic_dev_t *__gp_nvic_dev = NULL;
 
 /******************************************************************************
-  ¹«¹²º¯Êı
+  å…¬å…±å‡½æ•°
 *******************************************************************************/
 
-/* ÖĞ¶Ï³õÊ¼»¯ */
+/* ä¸­æ–­åˆå§‹åŒ– */
 int am_arm_nvic_init (am_arm_nvic_dev_t           *p_dev,
                       const am_arm_nvic_devinfo_t *p_devinfo)
 {
@@ -86,7 +86,7 @@ int am_arm_nvic_init (am_arm_nvic_dev_t           *p_dev,
     return AM_OK;
 }
 
-/* ÖĞ¶ÏÈ¥³õÊ¼»¯ */
+/* ä¸­æ–­å»åˆå§‹åŒ– */
 void am_arm_nvic_deinit (void)
 {
     int i;
@@ -113,7 +113,7 @@ void am_arm_nvic_deinit (void)
     }
 }
 
-/* ÖĞ¶Ï´¦Àíº¯Êı */
+/* ä¸­æ–­å¤„ç†å‡½æ•° */
 void am_exc_eint_handler (void)
 {
     const am_arm_nvic_devinfo_t *p_nvic_devinfo = NULL;
@@ -149,7 +149,7 @@ void am_exc_eint_handler (void)
     }
 }
 
-/* Á¬½ÓÖĞ¶Ï»Øµ÷º¯Êı */
+/* è¿æ¥ä¸­æ–­å›è°ƒå‡½æ•° */
 int am_int_connect (int inum, am_pfnvoid_t pfn_isr, void *p_arg)
 {
     const am_arm_nvic_devinfo_t *p_nvic_devinfo = NULL;
@@ -195,13 +195,13 @@ int am_int_connect (int inum, am_pfnvoid_t pfn_isr, void *p_arg)
     }
 
     if (slot == __INT_NOT_CONNECTED) {
-        return -AM_EPERM;                           /* Ã»ÓĞ¿ÕµÄÄÚ´æÓ³Éä */
+        return -AM_EPERM;                           /* æ²¡æœ‰ç©ºçš„å†…å­˜æ˜ å°„ */
     }
 
     return AM_OK;
 }
 
-/* É¾³ıÖĞ¶Ï»Øµ÷º¯ÊıÁ¬½Ó */
+/* åˆ é™¤ä¸­æ–­å›è°ƒå‡½æ•°è¿æ¥ */
 int am_int_disconnect (int inum, am_pfnvoid_t pfn_isr, void *p_arg)
 {
     const am_arm_nvic_devinfo_t *p_nvic_devinfo = NULL;
@@ -233,7 +233,7 @@ int am_int_disconnect (int inum, am_pfnvoid_t pfn_isr, void *p_arg)
     return AM_OK;
 }
 
-/* Ê¹ÄÜÖĞ¶Ï */
+/* ä½¿èƒ½ä¸­æ–­ */
 int am_int_enable (int inum)
 {
     if (NULL == __gp_nvic_dev) {
@@ -245,7 +245,7 @@ int am_int_enable (int inum)
     return AM_OK;
 }
 
-/* ½ûÄÜÖĞ¶Ï */
+/* ç¦èƒ½ä¸­æ–­ */
 int am_int_disable (int inum)
 {
     if (NULL == __gp_nvic_dev) {
@@ -257,7 +257,7 @@ int am_int_disable (int inum)
     return AM_OK;
 }
 
-/* ÉèÖÃÖĞ¶ÏÓÅÏÈ¼¶ */
+/* è®¾ç½®ä¸­æ–­ä¼˜å…ˆçº§ */
 int am_arm_nvic_priority_set(int inum,
                              uint32_t preempt_priority,
                              uint32_t sub_priority)

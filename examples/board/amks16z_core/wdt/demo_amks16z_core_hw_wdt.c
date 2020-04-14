@@ -11,16 +11,16 @@
 *******************************************************************************/
 /**
  * \file
- * \brief WDT ι���͸�λ���ӣ�ͨ��Ӳ����ʵ��
+ * \brief WDT 喂狗和复位例子，通过硬件层实现
  *
- * - ʵ������
- *   1. ���Ź����ó�ʱʱ��Ϊ256ms����ʱ50ms��ι������������ִ�У�
- *      ���ڴ�ӡι����Ϣ��
- *   2. ����ִ�е���ʱ1sʱ��ι����ʱ��ϵͳ��λ���������¿�ʼִ�С�
+ * - 实验现象：
+ *   1. 看门狗设置超时时间为256ms，延时50ms后喂狗，程序正常执行，
+ *      串口打印喂狗信息；
+ *   2. 程序执行到延时1s时，喂狗超时，系统复位，程序重新开始执行。
  *
- * \note ���Կ��Ź�����ʱ�뽫am_prj_config.h�ļ��еĺ�AM_CFG_SIM_COP��Ϊ1
+ * \note 测试看门狗例程时请将am_prj_config.h文件中的宏AM_CFG_SIM_COP置为1
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_amks16z_core_hw_wdt.c src_amks16z_core_hw_wdt
  *
  * \internal
@@ -44,11 +44,11 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief WDT��ں�����HW��ʵ��
+ * \brief WDT入口函数，HW层实现
  *
- * \note ���Կ��Ź�����ʱ�뽫am_prj_config.h�ļ��еĺ�AM_CFG_SIM_COP��Ϊ1
+ * \note 测试看门狗例程时请将am_prj_config.h文件中的宏AM_CFG_SIM_COP置为1
  *
- * \return ��
+ * \return 无
  */
 void demo_amks16z_core_hw_wdt_entry (void)
 {

@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief KL26 RTC ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief KL26 RTC ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_kl26_hwconfig_rtc.c
  *
  * \internal
@@ -34,53 +34,53 @@
  */
 
 /**
- *  \brief RTC Æ½Ì¨³õÊ¼»¯
- *  \return ÎŞ
+ *  \brief RTC å¹³å°åˆå§‹åŒ–
+ *  \return æ— 
  */
 void __kl26_plfm_rtc_init(void)
 {
-    /** RTC Ê±ÖÓÔ´Ñ¡ÔñÎªÍâ²¿RTCÊ±ÖÓÔ´ */
+    /** RTC æ—¶é’Ÿæºé€‰æ‹©ä¸ºå¤–éƒ¨RTCæ—¶é’Ÿæº */
     amhw_kl26_sim_ercclk32k_src_set(KL26_SIM_OSC32KSEL_CLKIN);
 
-    /** RTC Ä£¿éÊ±ÖÓÊ¹ÄÜ */
+    /** RTC æ¨¡å—æ—¶é’Ÿä½¿èƒ½ */
     amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_RTC);
 
-    /** PORTC Ê±ÖÓÒı½ÅÊ¹ÄÜ */
+    /** PORTC æ—¶é’Ÿå¼•è„šä½¿èƒ½ */
     amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_PORTC);
 
-    /** PTC1 ¸´ÓÃÎ» RTC_CLK_INPUT */
+    /** PTC1 å¤ç”¨ä½ RTC_CLK_INPUT */
     amhw_kl26_port_pin_func_cfg(KL26_PORT, PIOC_1, 1);
 }
 
 /**
- *  \brief ½â³ı RTC Æ½Ì¨³õÊ¼»¯
- *  \return ÎŞ
+ *  \brief è§£é™¤ RTC å¹³å°åˆå§‹åŒ–
+ *  \return æ— 
  */
 void __kl26_plfm_rtc_deinit(void)
 {
-    /** RTC Ä£¿éÊ±ÖÓÊ¹ÄÜ */
+    /** RTC æ¨¡å—æ—¶é’Ÿä½¿èƒ½ */
     amhw_kl26_sim_periph_clock_disable(KL26_SIM_SCGC_RTC);
 }
 
-/** \brief RTCÉè±¸ĞÅÏ¢ */
+/** \brief RTCè®¾å¤‡ä¿¡æ¯ */
 const struct am_fsl_rtc_devinfo __g_rtc_devinfo = {
     KL26_RTC,
     __kl26_plfm_rtc_init,
     __kl26_plfm_rtc_deinit
 };
 
-/** \brief RTCÉè±¸     */
+/** \brief RTCè®¾å¤‡     */
 am_fsl_rtc_dev_t __g_rtc_dev;
 
-/** \brief rtc ÊµÀı³õÊ¼»¯£¬»ñµÃrtc±ê×¼·şÎñ¾ä±ú */
+/** \brief rtc å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—rtcæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_rtc_handle_t am_kl26_rtc_inst_init (void)
 {
     return am_fsl_rtc_init(&__g_rtc_dev, &__g_rtc_devinfo);
 }
 
 /**
- * \brief rtc ÊµÀı½â³õÊ¼»¯
- * \param[in] handle : rtc¾ä±úÖµ
+ * \brief rtc å®ä¾‹è§£åˆå§‹åŒ–
+ * \param[in] handle : rtcå¥æŸ„å€¼
  */
 void am_kl26_rtc_inst_deinit (am_rtc_handle_t handle)
 {

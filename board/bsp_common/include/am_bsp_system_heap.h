@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief ϵͳ�����䣬ѡ����ʵ��ڴ���Ϊϵͳ��
+ * \brief 系统堆适配，选择合适的内存作为系统堆
  *
- * ��ʼ���󣬼���ʹ�� am_mem.h �ļ��е���ؽӿ�
+ * 初始化后，即可使用 am_mem.h 文件中的相关接口
  *
  * \internal
  * \par Modification History
@@ -30,7 +30,7 @@ extern "C" {
 #endif
 
 /**
- * \brief ��������ʼ��
+ * \brief 适配器初始化
  */
 void am_bsp_system_heap_init (void *, void *);
 

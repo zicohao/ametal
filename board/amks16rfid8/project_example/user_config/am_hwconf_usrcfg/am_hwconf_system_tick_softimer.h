@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ϵͳ�δ�������ʱ�������ļ�
+ * \brief 系统滴答、软件定时器配置文件
  *
  * \internal
  * \par Modification history
@@ -30,28 +30,28 @@ extern "C" {
 #endif
 
 /**
- * \brief ϵͳ�δ�ʵ����ʼ��(��ʹ��������ʱ��)
+ * \brief 系统滴答实例初始化(不使用软件定时器)
  *
- * ��ʹ��ϵͳ�δ�ʱ��Ĭ��ʹ�� MRT ��ͨ�� 0 ��Ϊ������ʱ��Ԫ������Ѿ��� MRT ��ʼ��Ϊ
- * ��ʱ�����ܣ����� MRT ����֧�� 4 ·��ʱ����˿���ʹ�ñ��������ص� handle���Ա�ʹ��
- * ���� 3 ·��ʱͨ��
+ * 当使用系统滴答时，默认使用 MRT 的通道 0 作为基础定时单元，因此已经将 MRT 初始化为
+ * 定时器功能，由于 MRT 可以支持 4 路定时，因此可以使用本函数返回的 handle，以便使用
+ * 其它 3 路定时通道
  *
- * \param ��
+ * \param 无
  *
- * \return TIMER ��׼����������Ϊ NULL��������ʼ��ʧ��
+ * \return TIMER 标准服务句柄，若为 NULL，表明初始化失败
  */
 am_timer_handle_t am_system_tick_inst_init (void);
 
 /**
- * \brief ϵͳ�δ�ʵ����ʼ��(ʹ��������ʱ��)
+ * \brief 系统滴答实例初始化(使用软件定时器)
  *
- * ��ʹ��ϵͳ�δ�ʱ��Ĭ��ʹ�� MRT ��ͨ�� 0 ��Ϊ������ʱ��Ԫ������Ѿ��� MRT ��ʼ��Ϊ
- * ��ʱ�����ܣ����� MRT ����֧�� 4 ·��ʱ����˿���ʹ�ñ��������ص� handle���Ա�ʹ��
- * ���� 3 ·��ʱͨ��
+ * 当使用系统滴答时，默认使用 MRT 的通道 0 作为基础定时单元，因此已经将 MRT 初始化为
+ * 定时器功能，由于 MRT 可以支持 4 路定时，因此可以使用本函数返回的 handle，以便使用
+ * 其它 3 路定时通道
  *
- * \param ��
+ * \param 无
  *
- * \return TIMER ��׼����������Ϊ NULL��������ʼ��ʧ��
+ * \return TIMER 标准服务句柄，若为 NULL，表明初始化失败
  */
 am_timer_handle_t am_system_tick_softimer_inst_init (void);
 

@@ -40,7 +40,7 @@ extern "C" {
 #endif
 
 
-/** \brief MTD Éè±¸µÄÀàĞÍ */
+/** \brief MTD è®¾å¤‡çš„ç±»å‹ */
 enum am_mtd_type {
     
     AM_MTD_TYPE_ABSENT          = 0,  
@@ -91,7 +91,7 @@ enum am_mtd_erase_status {
     AM_MTD_ERASE_FAILED     = 0x10,
 };
 
-/** \brief ²Á³ıÊ§°ÜÊ±£¬ Ê§°ÜµØÖ·Î´Öª  */
+/** \brief æ“¦é™¤å¤±è´¥æ—¶ï¼Œ å¤±è´¥åœ°å€æœªçŸ¥  */
 #define AM_MTD_ERASE_FAIL_ADDR_UNKNOWN  -1LL
 
 /**
@@ -112,16 +112,16 @@ struct am_mtd_erase_info {
 /** \brief MTD driver operations */
 struct am_mtd_ops {
     
-    /** \brief ²Á³ıº¯Êı */
+    /** \brief æ“¦é™¤å‡½æ•° */
     int (*pfn_mtd_erase) (void *p_drv, struct am_mtd_erase_info *i);
 
-    /** \brief ¶ÁÊı¾İº¯Êı */
+    /** \brief è¯»æ•°æ®å‡½æ•° */
     int (*pfn_mtd_read)  (void               *p_drv,
                           uint32_t            addr,
                           void               *p_buf,
                           uint32_t            len);
 
-    /** \brief Ğ´ÈëÊı¾İº¯Êı */
+    /** \brief å†™å…¥æ•°æ®å‡½æ•° */
     int (*pfn_mtd_write) (void               *p_drv,
                           uint32_t            addr,
                           const void         *p_buf,
@@ -129,18 +129,18 @@ struct am_mtd_ops {
 };
 
 /** 
- * \brief MTD ·şÎñ½á¹¹ÌåÀàĞÍ¶¨Òå
+ * \brief MTD æœåŠ¡ç»“æ„ä½“ç±»å‹å®šä¹‰
  */
 typedef struct am_mtd_serv {
 
-    enum am_mtd_type    type;            /**< \brief MTDÉè±¸µÄÀàĞÍ      */
-    uint32_t            flags;           /**< \brief MTDÉè±¸µÄ±êÖ¾      */
-    size_t              size;            /**< \brief MTD×ÜÈİÁ¿´óĞ¡      */
-    unsigned int        erase_size;      /**< \brief ²Á³ı´óĞ¡           */
+    enum am_mtd_type    type;            /**< \brief MTDè®¾å¤‡çš„ç±»å‹      */
+    uint32_t            flags;           /**< \brief MTDè®¾å¤‡çš„æ ‡å¿—      */
+    size_t              size;            /**< \brief MTDæ€»å®¹é‡å¤§å°      */
+    unsigned int        erase_size;      /**< \brief æ“¦é™¤å¤§å°           */
     
     /**
-     * \brief ×îĞ¡µÄĞ´Èëµ¥Ôª´óĞ¡
-     * ×¢Òâ£¬0Îª·Ç·¨Öµ£¬ÓĞĞ§ÖµÎª1»ò¸ü´ó¡£
+     * \brief æœ€å°çš„å†™å…¥å•å…ƒå¤§å°
+     * æ³¨æ„ï¼Œ0ä¸ºéæ³•å€¼ï¼Œæœ‰æ•ˆå€¼ä¸º1æˆ–æ›´å¤§ã€‚
      */
     unsigned int        write_size;
     
@@ -155,56 +155,56 @@ typedef struct am_mtd_serv {
      */
     unsigned int        write_buf_size;
 
-    /** \brief Çı¶¯º¯Êı                           */
+    /** \brief é©±åŠ¨å‡½æ•°                           */
     const struct am_mtd_ops *p_ops;
 
-    /** \brief Çı¶¯³ÌĞòË½ÓĞÊı¾İ       */
+    /** \brief é©±åŠ¨ç¨‹åºç§æœ‰æ•°æ®       */
     void                    *p_drv;
 
 } am_mtd_serv_t;
 
-/** \brief MTD ·şÎñ¾ä±ú  */
+/** \brief MTD æœåŠ¡å¥æŸ„  */
 typedef am_mtd_serv_t *am_mtd_handle_t;
 
 /**
- * \brief »ñÈ¡²Á³ıµ¥ÔªµÄ´óĞ¡£¨×Ö½ÚÊı£©
- * \param[in] handle : MX25XX ÊµÀı¾ä±ú
- * \return ²Á³ıµ¥ÔªµÄ´óĞ¡£¨×Ö½ÚÊı£©
+ * \brief è·å–æ“¦é™¤å•å…ƒçš„å¤§å°ï¼ˆå­—èŠ‚æ•°ï¼‰
+ * \param[in] handle : MX25XX å®ä¾‹å¥æŸ„
+ * \return æ“¦é™¤å•å…ƒçš„å¤§å°ï¼ˆå­—èŠ‚æ•°ï¼‰
  */
 #define AM_MTD_ERASE_UNIT_SIZE_GET(handle) \
     (handle->erase_size)
 
 /**
- * \brief »ñÈ¡MTDµÄÈİÁ¿´óĞ¡£¨×Ö½ÚÊı£©
- * \param[in] handle : MX25XX ÊµÀı¾ä±ú
- * \return MTDµÄÈİÁ¿´óĞ¡£¨×Ö½ÚÊı£©
+ * \brief è·å–MTDçš„å®¹é‡å¤§å°ï¼ˆå­—èŠ‚æ•°ï¼‰
+ * \param[in] handle : MX25XX å®ä¾‹å¥æŸ„
+ * \return MTDçš„å®¹é‡å¤§å°ï¼ˆå­—èŠ‚æ•°ï¼‰
  */
 #define AM_MTD_CHIP_SIZE_GET(handle) \
     (handle->size)
 
 /**
- * \brief ²Á³ı
+ * \brief æ“¦é™¤
  *
- * \param[in] handle : MX25XX ²Ù×÷¾ä±ú
- * \param[in] addr   : ²Á³ıÇøÓòµÄÊ×µØÖ·£¬±ØĞëÎªÄ³ÉÈÇøµÄÆğÊ¼µØÖ·
- * \param[in] len    : ²Á³ıÇøÓòµÄ³¤¶È£¬±ØĞëÎªÉÈÇø´óĞ¡µÄÕûÊı±¶
+ * \param[in] handle : MX25XX æ“ä½œå¥æŸ„
+ * \param[in] addr   : æ“¦é™¤åŒºåŸŸçš„é¦–åœ°å€ï¼Œå¿…é¡»ä¸ºæŸæ‰‡åŒºçš„èµ·å§‹åœ°å€
+ * \param[in] len    : æ“¦é™¤åŒºåŸŸçš„é•¿åº¦ï¼Œå¿…é¡»ä¸ºæ‰‡åŒºå¤§å°çš„æ•´æ•°å€
  *
- * \return  AM_OK£¬²Á³ı³É¹¦; ÆäËüÖµ£¬²Á³ıÊ§°Ü
+ * \return  AM_OKï¼Œæ“¦é™¤æˆåŠŸ; å…¶å®ƒå€¼ï¼Œæ“¦é™¤å¤±è´¥
  */
 int am_mtd_erase (am_mtd_handle_t     handle,
                   uint32_t            addr,
                   uint32_t            len);
 
 /**
- * \brief ¶ÁÈ¡Êı¾İ
+ * \brief è¯»å–æ•°æ®
  *
- * \param[in] handle : MTD±ê×¼Éè±¸ÊµÀıµÄ¾ä±ú
- * \param[in] addr   : ¶ÁÈ¡Êı¾İµÄÊ×µØÖ·
- * \param[in] p_buf  : ¶ÁÈ¡Êı¾İ´æ·ÅµÄ»º³åÇø
- * \param[in] len    : ¶ÁÈ¡Êı¾İµÄ³¤¶È
+ * \param[in] handle : MTDæ ‡å‡†è®¾å¤‡å®ä¾‹çš„å¥æŸ„
+ * \param[in] addr   : è¯»å–æ•°æ®çš„é¦–åœ°å€
+ * \param[in] p_buf  : è¯»å–æ•°æ®å­˜æ”¾çš„ç¼“å†²åŒº
+ * \param[in] len    : è¯»å–æ•°æ®çš„é•¿åº¦
  *
- * \retval  ·Ç¸ºÊı : ³É¹¦¶ÁÈ¡µÄ×Ö½ÚÊı
- * \retval  ¸ºÊı      : ¶ÁÈ¡Ê§°Ü
+ * \retval  éè´Ÿæ•° : æˆåŠŸè¯»å–çš„å­—èŠ‚æ•°
+ * \retval  è´Ÿæ•°      : è¯»å–å¤±è´¥
  */
 int am_mtd_read (am_mtd_handle_t     handle,
                  uint32_t            addr,
@@ -212,15 +212,15 @@ int am_mtd_read (am_mtd_handle_t     handle,
                  uint32_t            len);
 
 /**
- * \brief Ğ´ÈëÊı¾İ
+ * \brief å†™å…¥æ•°æ®
  *
- * \param[in] handle : MTD±ê×¼Éè±¸ÊµÀıµÄ¾ä±ú
- * \param[in] addr   : Ğ´ÈëÊı¾İµÄÊ×µØÖ·
- * \param[in] p_buf  : Ğ´ÈëÊı¾İ´æ·ÅµÄ»º³åÇø
- * \param[in] len    : Ğ´ÈëÊı¾İµÄ³¤¶È
+ * \param[in] handle : MTDæ ‡å‡†è®¾å¤‡å®ä¾‹çš„å¥æŸ„
+ * \param[in] addr   : å†™å…¥æ•°æ®çš„é¦–åœ°å€
+ * \param[in] p_buf  : å†™å…¥æ•°æ®å­˜æ”¾çš„ç¼“å†²åŒº
+ * \param[in] len    : å†™å…¥æ•°æ®çš„é•¿åº¦
  *
- * \retval  ·Ç¸ºÊı : ³É¹¦Ğ´ÈëµÄ×Ö½ÚÊı
- * \retval  ¸ºÊı      : Ğ´ÈëÊ§°Ü
+ * \retval  éè´Ÿæ•° : æˆåŠŸå†™å…¥çš„å­—èŠ‚æ•°
+ * \retval  è´Ÿæ•°      : å†™å…¥å¤±è´¥
  */
 int am_mtd_write (am_mtd_handle_t     handle,
                   uint32_t            addr,

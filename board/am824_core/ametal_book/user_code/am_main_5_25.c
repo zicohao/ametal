@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥5.25
+ * \brief ç¨‹åºæ¸…å•5.25
  *
- * \note ¸ÃÀú³ÌĞèÒªÓÃµ½miniportÍØÕ¹°å
+ * \note è¯¥å†ç¨‹éœ€è¦ç”¨åˆ°miniportæ‹“å±•æ¿
  * 
  * \internal
  * \par Modification history
@@ -39,15 +39,15 @@ int am_main (void)
     int i;
 
     for (i = 0; i < 2; i++) {
-        // ½«com¶Ë¶ÔÓ¦Òı½ÅÉèÖÃÎªÊä³ö£¬²¢³õÊ¼»¯Îª¸ßµçÆ½
+        // å°†comç«¯å¯¹åº”å¼•è„šè®¾ç½®ä¸ºè¾“å‡ºï¼Œå¹¶åˆå§‹åŒ–ä¸ºé«˜ç”µå¹³
         am_gpio_pin_cfg(g_digitron_com[i], AM_GPIO_OUTPUT_INIT_HIGH);
     }
     for (i = 0; i < 8; i++) {
-        // ½«¶ÎÑ¡¶Ë¶ÔÓ¦Òı½ÅÉèÖÃÎªÊä³ö£¬²¢³õÊ¼»¯Îª¸ßµçÆ½
+        // å°†æ®µé€‰ç«¯å¯¹åº”å¼•è„šè®¾ç½®ä¸ºè¾“å‡ºï¼Œå¹¶åˆå§‹åŒ–ä¸ºé«˜ç”µå¹³
         am_gpio_pin_cfg(g_digitron_seg[i], AM_GPIO_OUTPUT_INIT_HIGH);
     }
-    digitron_com_sel(0);                         // Ñ¡Ôñcom0ÊıÂë¹Ü
-    digitron_segcode_set(g_segcode_list[1]);     // ´«ËÍÊı×Ö1µÄ¶ÎÂë
+    digitron_com_sel(0);                         // é€‰æ‹©com0æ•°ç ç®¡
+    digitron_segcode_set(g_segcode_list[1]);     // ä¼ é€æ•°å­—1çš„æ®µç 
     while (1) {
     }
 }

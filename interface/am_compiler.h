@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief 编译器相关定义头文件
+ * \brief 缂栬瘧鍣ㄧ浉鍏冲畾涔夊ご鏂囦欢
  *
  * \internal
  * \par modification history:
@@ -28,10 +28,10 @@
 #include "aw_psp_compiler.h"
 
 
-#define aw_inline			aw_psp_inline			/** \brief inline 定义  */
-#define aw_static_inline	aw_psp_static_inline	/** \biref static inline 定义 */
+#define aw_inline			aw_psp_inline			/** \brief inline 瀹氫箟  */
+#define aw_static_inline	aw_psp_static_inline	/** \biref static inline 瀹氫箟 */
 
-#define aw_section(x)		aw_psp_section(x)		/** \brief __section() 定义 */
+#define aw_section(x)		aw_psp_section(x)		/** \brief __section() 瀹氫箟 */
 
 #define aw_inline			aw_psp_inline
 #define aw_static_inline 	aw_psp_static_inline

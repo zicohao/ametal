@@ -12,20 +12,20 @@
 
 /**
  * \file
- * \brief UART0Í¨¹ýDMA·½Ê½½ÓÊÕÊý¾Ý£¬Í¨¹ýHW²ãµÄ½Ó¿ÚÊµÏÖ
+ * \brief UART0é€šè¿‡DMAæ–¹å¼æŽ¥æ”¶æ•°æ®ï¼Œé€šè¿‡HWå±‚çš„æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. PIOC_3 Òý½ÅÁ¬½ÓPC´®¿ÚµÄTXD;
- *   2. PIOC_4 Òý½ÅÁ¬½ÓPC´®¿ÚµÄRXD;
- *   3. ÅäÖÃÉÏÎ»»ú´®¿Ú²¨ÌØÂÊÎª115200£¬8Î»Êý¾Ý³¤¶È 1Î»Í£Ö¹Î» ÎÞÆæÅ¼Ð£Ñé;
- *   4. Í¨¹ýÉÏÎ»»ú´®¿ÚÒ»´ÎÐÔÏòMCU·¢ËÍ5¸ö×Ö·û¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. PIOC_3 å¼•è„šè¿žæŽ¥PCä¸²å£çš„TXD;
+ *   2. PIOC_4 å¼•è„šè¿žæŽ¥PCä¸²å£çš„RXD;
+ *   3. é…ç½®ä¸Šä½æœºä¸²å£æ³¢ç‰¹çŽ‡ä¸º115200ï¼Œ8ä½æ•°æ®é•¿åº¦ 1ä½åœæ­¢ä½ æ— å¥‡å¶æ ¡éªŒ;
+ *   4. é€šè¿‡ä¸Šä½æœºä¸²å£ä¸€æ¬¡æ€§å‘MCUå‘é€5ä¸ªå­—ç¬¦ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿Ú´òÓ¡³ö½ÓÊÕµ½µÄÊý¾Ý;
- *   2. È»ºó´®¿Ú´òÓ¡³ö¡°DMA transfer done!¡±¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. ä¸²å£æ‰“å°å‡ºæŽ¥æ”¶åˆ°çš„æ•°æ®;
+ *   2. ç„¶åŽä¸²å£æ‰“å°å‡ºâ€œDMA transfer done!â€ã€‚
 
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_amks16z_core_hw_uart_rx_dma.c src_amks16z_core_hw_uart_rx_dma
  *
  *
@@ -48,7 +48,7 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_amks16z_core_hw_uart_rx_dma_entry (void)
 {

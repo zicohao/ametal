@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ÏµÍ³µÎ´ğ¡¢Èí¼ş¶¨Ê±Æ÷ÅäÖÃÎÄ¼ş
+ * \brief ç³»ç»Ÿæ»´ç­”ã€è½¯ä»¶å®šæ—¶å™¨é…ç½®æ–‡ä»¶
  *
  * \internal
  * \par Modification history
@@ -30,12 +30,12 @@ extern "C" {
 #endif
 
 /**
- * \brief ÏµÍ³µÎ´ğÊµÀı³õÊ¼»¯(²»Ê¹ÓÃÈí¼ş¶¨Ê±Æ÷)
+ * \brief ç³»ç»Ÿæ»´ç­”å®ä¾‹åˆå§‹åŒ–(ä¸ä½¿ç”¨è½¯ä»¶å®šæ—¶å™¨)
  */
 void am_system_tick_inst_init (void);
 
 /**
- * \brief ÏµÍ³µÎ´ğÊµÀı³õÊ¼»¯(Ê¹ÓÃÈí¼ş¶¨Ê±Æ÷)
+ * \brief ç³»ç»Ÿæ»´ç­”å®ä¾‹åˆå§‹åŒ–(ä½¿ç”¨è½¯ä»¶å®šæ—¶å™¨)
  */
 void am_system_tick_softimer_inst_init (void);
 

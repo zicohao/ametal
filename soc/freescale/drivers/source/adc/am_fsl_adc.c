@@ -24,7 +24,7 @@
 #include "am_int.h"
 #include "math.h"
 /*******************************************************************************
-* Ë½ÓĞ¶¨Òå
+* ç§æœ‰å®šä¹‰
 *******************************************************************************/
 #define __ADC_HW_DECL(p_hw_adc, p_drv)    \
         amhw_fsl_adc_t *p_hw_adc =               \
@@ -35,15 +35,15 @@
 
 
 /*******************************************************************************
-* º¯ÊıÉùÃ÷
+* å‡½æ•°å£°æ˜
 *******************************************************************************/
 /**
- * \brief DMA´«ÊäÅäÖÃ
+ * \brief DMAä¼ è¾“é…ç½®
  */
 extern int am_fsl_adc_dma_tran_cfg (am_fsl_adc_dev_t *p_dev,
 									am_adc_buf_desc_t *p_desc);
 
-/** \brief Æô¶¯ADC×ª»»        */
+/** \brief å¯åŠ¨ADCè½¬æ¢        */
 static int __am_fsl_adc_adc_start  (void                   *p_drv,
                                      int                     chan,
                                      am_adc_buf_desc_t      *p_desc,
@@ -53,27 +53,27 @@ static int __am_fsl_adc_adc_start  (void                   *p_drv,
                                      am_adc_seq_cb_t  pfn_callback,
                                      void                   *p_arg);
 
-/** \brief Í£Ö¹ADC×ª»» */
+/** \brief åœæ­¢ADCè½¬æ¢ */
 static int __am_fsl_adc_stop (void *p_drv, int chan);
 
-/** \brief »ñÈ¡ADCµÄ²ÉÑùÂÊ    */
+/** \brief è·å–ADCçš„é‡‡æ ·ç‡    */
 static int __am_fsl_adc_rate_get (void       *p_drv,
                                    int         chan,
                                    uint32_t   *p_rate);
 
-/** \brief ÉèÖÃADCµÄ²ÉÑùÂÊ£¬Êµ¼Ê²ÉÑùÂÊ¿ÉÄÜ´æÔÚ²îÒì */
+/** \brief è®¾ç½®ADCçš„é‡‡æ ·ç‡ï¼Œå®é™…é‡‡æ ·ç‡å¯èƒ½å­˜åœ¨å·®å¼‚ */
 static int __am_fsl_adc_rate_set (void     *p_drv,
                                    int       chan,
                                    uint32_t  rate);
 
-/** \brief »ñÈ¡ADC×ª»»¾«¶È */
+/** \brief è·å–ADCè½¬æ¢ç²¾åº¦ */
 static uint32_t __am_fsl_adc_bits_get(void *p_drv, int chan);
 
-/** \brief »ñÈ¡ADC²Î¿¼µçÑ¹ */
+/** \brief è·å–ADCå‚è€ƒç”µå‹ */
 static uint32_t __am_fsl_adc_vref_get(void *p_drv, int chan);
 
 /**
- * \brief ADC·şÎñº¯Êı
+ * \brief ADCæœåŠ¡å‡½æ•°
  */
 static const struct am_adc_drv_funcs __g_adc_drvfuncs = {
 
@@ -88,7 +88,7 @@ static const struct am_adc_drv_funcs __g_adc_drvfuncs = {
 
 
 /**
- * \brief ADC¶ÁÈ¡Êı¾İ
+ * \brief ADCè¯»å–æ•°æ®
  */
 static void __adc_int(void *p_arg)
 {
@@ -103,20 +103,20 @@ static void __adc_int(void *p_arg)
         return;
     }
 
-    /* »ñÈ¡Êı¾İ */
+    /* è·å–æ•°æ® */
     dat   = amhw_fsl_adc_dat_get(p_dev->p_devinfo->p_hw_adc, p_dev->p_devinfo->seq);
 
 
     if ( p_dev->p_devinfo->is_diff == AM_TRUE ) {
-        /* 16Î»¡¢13Î»¡¢11Î»¡¢9Î»²î·ÖÊäÈë´æ·Åµ½  int16_t ÀàĞÍµÄbufÀï */
+        /* 16ä½ã€13ä½ã€11ä½ã€9ä½å·®åˆ†è¾“å…¥å­˜æ”¾åˆ°  int16_t ç±»å‹çš„bufé‡Œ */
         p_buf16[p_dev->index] = dat;
 
     } else if ( p_dev->p_devinfo->bits == 8 ) {
-        /* 8Î»µ¥¶ËÊäÈë ´æ·Åµ½uint8_tÀàĞÍµÄbufÀï */
+        /* 8ä½å•ç«¯è¾“å…¥ å­˜æ”¾åˆ°uint8_tç±»å‹çš„bufé‡Œ */
 
         p_bufu8[p_dev->index] = (uint8_t)dat;
     } else {
-        /* 16Î»¡¢12Î»¡¢10Î» µ¥¶ËÊäÈë ´æ·Åµ½ uint16_t ÀàĞÍµÄbufÀï */
+        /* 16ä½ã€12ä½ã€10ä½ å•ç«¯è¾“å…¥ å­˜æ”¾åˆ° uint16_t ç±»å‹çš„bufé‡Œ */
 
         if ( AM_ADC_DATA_ALIGN_LEFT &  p_dev->flags) {
             p_bufu16[p_dev->index] = dat << ( 16 - p_dev->p_devinfo->bits);
@@ -127,7 +127,7 @@ static void __adc_int(void *p_arg)
 
     (p_dev->index)++;
 
-    /* Íê³ÉÒ»¸öÃèÊöÊı»º³åÇøµÄ½ÓÊÕ*/
+    /* å®Œæˆä¸€ä¸ªæè¿°æ•°ç¼“å†²åŒºçš„æ¥æ”¶*/
     if (p_dev->index >= p_dev->p_desc[p_dev->desc_pos].length) {
         p_dev->index = 0;
         if (NULL != p_dev->p_desc[p_dev->desc_pos].pfn_complete) {
@@ -135,24 +135,24 @@ static void __adc_int(void *p_arg)
         }
 
         p_dev->desc_pos++;
-        if (p_dev->desc_pos == p_dev->desc_num) { /* ÒÑ¾­½ÓÊÕÍê³É */
+        if (p_dev->desc_pos == p_dev->desc_num) { /* å·²ç»æ¥æ”¶å®Œæˆ */
             p_dev->desc_pos = 0;
 
             if (NULL != p_dev->pfn_callback) {
                 p_dev->pfn_callback(p_dev->p_arg, AM_OK);
             }
-            p_dev->count_pos++; /* ×ª»»ĞòÁĞ±ê×¼ */
+            p_dev->count_pos++; /* è½¬æ¢åºåˆ—æ ‡å‡† */
             if (p_dev->count != 0 && p_dev->count_pos == p_dev->count) {
                 p_dev->count_pos = 0;
-                __am_fsl_adc_stop(p_dev, p_dev->chan);  /* ¹Ø±ÕÄ£¿é */
-                return ; /* ·µ»Ø */
+                __am_fsl_adc_stop(p_dev, p_dev->chan);  /* å…³é—­æ¨¡å— */
+                return ; /* è¿”å› */
             }
         }
     }
 }
 
 /**
- * \brief Æô¶¯ADC×ª»»
+ * \brief å¯åŠ¨ADCè½¬æ¢
  */
 static int __am_fsl_adc_adc_start  (void                   *p_drv,
                                      int                     chan,
@@ -183,10 +183,10 @@ static int __am_fsl_adc_adc_start  (void                   *p_drv,
     p_dev->count_pos    = 0;
 
     cfg = 0;
-    if (p_dev->p_devinfo->dma_chan == -1) { /* ·ÇDMAÄ£Ê½ÏÂÊ¹ÄÜÖĞ¶Ï */
+    if (p_dev->p_devinfo->dma_chan == -1) { /* éDMAæ¨¡å¼ä¸‹ä½¿èƒ½ä¸­æ–­ */
        cfg |= AMHW_FSL_ADC_SC1_INT_EN_CFG;
     } else {
-       /* DMA´«ÊäÅäÖÃ */
+       /* DMAä¼ è¾“é…ç½® */
        am_fsl_adc_dma_tran_cfg(p_dev, &p_desc[0]);
        amhw_fsl_adc_dma_enable(p_dev->p_devinfo->p_hw_adc);
     }
@@ -196,14 +196,14 @@ static int __am_fsl_adc_adc_start  (void                   *p_drv,
         cfg |= AMHW_FSL_ADC_SC1_DIFF_EN_CFG;
     }
 
-    /* ÅäÖÃµ¥¶Ë¡¢²î·ÖÄ£Ê½£¬ÒÔ¼°Í¨µÀ£¬ Æô¶¯×ª»»*/
+    /* é…ç½®å•ç«¯ã€å·®åˆ†æ¨¡å¼ï¼Œä»¥åŠé€šé“ï¼Œ å¯åŠ¨è½¬æ¢*/
     amhw_fsl_adc_sc1_cfg(p_dev->p_devinfo->p_hw_adc, p_dev->p_devinfo->seq, cfg);
 
     return AM_OK;
 }
 
 /**
- * \brief Í£Ö¹×ª»»
+ * \brief åœæ­¢è½¬æ¢
  */
 static int __am_fsl_adc_stop (void *p_drv, int chan)
 {
@@ -224,13 +224,13 @@ static int __am_fsl_adc_stop (void *p_drv, int chan)
 }
 
 /**
- * \brief »ñÈ¡BCT£¨Î»Êı¶ÔFADCKµÄÒªÇó£©
+ * \brief è·å–BCTï¼ˆä½æ•°å¯¹FADCKçš„è¦æ±‚ï¼‰
  */
 uint8_t __am_fsl_adc_rate_bct_get(uint8_t bits, uint8_t diff)
 {
     uint8_t bct = 0;
 
-    /* Î»ÊıÓ°ÏìµÄFADCKÊ±ÖÓ¸öÊı */
+    /* ä½æ•°å½±å“çš„FADCKæ—¶é’Ÿä¸ªæ•° */
     switch (bits) {
 
     case 8:
@@ -267,7 +267,7 @@ uint8_t __am_fsl_adc_rate_bct_get(uint8_t bits, uint8_t diff)
 }
 
 /**
- * \brief »ñÈ¡ADCµÄ²ÉÑùÂÊ
+ * \brief è·å–ADCçš„é‡‡æ ·ç‡
  */
 static int __am_fsl_adc_rate_get (void       *p_drv,
                                   int         chan,
@@ -289,19 +289,19 @@ static int __am_fsl_adc_rate_get (void       *p_drv,
     adc_clkdiv = amhw_fsl_adc_clkdiv_get(p_dev->p_devinfo->p_hw_adc);
     adc_clkdiv = 0x1 << adc_clkdiv;
 
-    /* »ñÈ¡FADCÊ±ÖÓ */
+    /* è·å–FADCæ—¶é’Ÿ */
     bus_clk /= adc_clkdiv;
 
-    /* »ñÈ¡Î»ÊıÓ°ÏìµÄFADCK¸öÊı */
+    /* è·å–ä½æ•°å½±å“çš„FADCKä¸ªæ•° */
     fadck  = __am_fsl_adc_rate_bct_get(p_dev->p_devinfo->bits,
                                         p_dev->p_devinfo->is_diff);
-    /* »ñÈ¡¸ßËÙÄ£Ê½ÏÂÓ°ÏìµÄFADCK¸öÊı */
+    /* è·å–é«˜é€Ÿæ¨¡å¼ä¸‹å½±å“çš„FADCKä¸ªæ•° */
     if (amhw_fsl_adc_cfg2_get(p_dev->p_devinfo->p_hw_adc) &
                                AMHW_FSL_ADC_CFG2_HSC_EN_CFG) {
         fadck += 2;
     }
 
-    /* »ñÈ¡³¤²ÉÑùÓ°ÏìµÄFADCK¸öÊı */
+    /* è·å–é•¿é‡‡æ ·å½±å“çš„FADCKä¸ªæ•° */
     if (amhw_fsl_adc_cfg1_get(p_dev->p_devinfo->p_hw_adc) &
                                AMHW_FSL_ADC_CFG1_LSMP_EN_CFG) {
 
@@ -329,40 +329,40 @@ static int __am_fsl_adc_rate_get (void       *p_drv,
         }
     }
 
-    /* Ó²¼şÆ½¾ùÓ°ÏìµÄFADCK¸öÊı */
+    /* ç¡¬ä»¶å¹³å‡å½±å“çš„FADCKä¸ªæ•° */
     if (p_dev->p_devinfo->p_adc_avg_info != NULL) {
         if (p_dev->p_devinfo->p_adc_avg_info->enable == AM_FSL_ADC_AVG_EN) {
             fadck <<= ((uint8_t)(p_dev->p_devinfo->p_adc_avg_info->avgs_num) + 2);
         }
     }
 
-    /* Ê×´Î×ª»»µÄÓ°Ïì */
+    /* é¦–æ¬¡è½¬æ¢çš„å½±å“ */
     fadck += 5;
     if (amhw_fsl_adc_cfg1_get(p_dev->p_devinfo->p_hw_adc) &
                                AMHW_FSL_ADC_CFG1_LSMP_EN_CFG) {
-        fadck -= 2; /* ³¤²ÉÑùÊ±¼äÊ±fadckÎª3¸öFADCK£¬Òò´Ë¼õÈ¥2¸ö */
+        fadck -= 2; /* é•¿é‡‡æ ·æ—¶é—´æ—¶fadckä¸º3ä¸ªFADCKï¼Œå› æ­¤å‡å»2ä¸ª */
     }
 
-    *p_rate = bus_clk / fadck; /* µÃµ½²ÉÑùÂÊ */
+    *p_rate = bus_clk / fadck; /* å¾—åˆ°é‡‡æ ·ç‡ */
 
     return AM_OK;
 }
 
 /**
- * \brief Çó³öÁ½¸öÊı×éµÄ³Ë·¨×éºÏ¸úÖ¸¶¨ÖµµÄ×î¼ÑÆ¥ÅäÊ±µÄÊı×éË÷Òı
+ * \brief æ±‚å‡ºä¸¤ä¸ªæ•°ç»„çš„ä¹˜æ³•ç»„åˆè·ŸæŒ‡å®šå€¼çš„æœ€ä½³åŒ¹é…æ—¶çš„æ•°ç»„ç´¢å¼•
  *
- * \param[in] p_nums   : Ö¸Ïò²»Í¬Ä£Ê½Ê±ADCKµÄÊı×é£¬Êı×é´ÓĞ¡µ½´óÅÅÁĞ
- * \param[in] nums_len : ADCKµÄÊı×éÔªËØ¸öÊı
- * \param[in] p_divs   : Ö¸Ïò²»Í¬·ÖÆµÖµµÄÊı×é£¬Êı×é´ÓĞ¡µ½´óÅÅÁĞ
- * \param[in] nums_len : ²»Í¬·ÖÆµÖµµÄÊı×éÔªËØ¸öÊı
- * \param[in] rate     : Ö¸¶¨Æ¥ÅäÖµ£¨bus_clk/rate£©
- * \param[in] bct      : ²»Í¬Î»ÊıÊ±µÄADCKÊı
- * \param[in] avgs     : Ó²¼şÆ½¾ù²ÎÊı£¨²ÎÊı=Æ½¾ù¸öÊı£¬0=1£¬ 2=4£¬ 3=8£¬4=16£¬5=32£©
- * \param[in] base     : µÚÒ»´Î×ª»»µÄ»ù´¡ADCK¸öÊı£¨³¤²ÉÑùÊÇÎª3£¬ ¶Ì²ÉÑùÎª5£©
- * \param[out] p_nums_n : ×î¼ÑµÄnumsÊı×éÖĞµÄË÷Òı
- * \param[out] p_nums_n : ×î¼ÑµÄdivsÊı×éÖĞµÄË÷Òı
+ * \param[in] p_nums   : æŒ‡å‘ä¸åŒæ¨¡å¼æ—¶ADCKçš„æ•°ç»„ï¼Œæ•°ç»„ä»å°åˆ°å¤§æ’åˆ—
+ * \param[in] nums_len : ADCKçš„æ•°ç»„å…ƒç´ ä¸ªæ•°
+ * \param[in] p_divs   : æŒ‡å‘ä¸åŒåˆ†é¢‘å€¼çš„æ•°ç»„ï¼Œæ•°ç»„ä»å°åˆ°å¤§æ’åˆ—
+ * \param[in] nums_len : ä¸åŒåˆ†é¢‘å€¼çš„æ•°ç»„å…ƒç´ ä¸ªæ•°
+ * \param[in] rate     : æŒ‡å®šåŒ¹é…å€¼ï¼ˆbus_clk/rateï¼‰
+ * \param[in] bct      : ä¸åŒä½æ•°æ—¶çš„ADCKæ•°
+ * \param[in] avgs     : ç¡¬ä»¶å¹³å‡å‚æ•°ï¼ˆå‚æ•°=å¹³å‡ä¸ªæ•°ï¼Œ0=1ï¼Œ 2=4ï¼Œ 3=8ï¼Œ4=16ï¼Œ5=32ï¼‰
+ * \param[in] base     : ç¬¬ä¸€æ¬¡è½¬æ¢çš„åŸºç¡€ADCKä¸ªæ•°ï¼ˆé•¿é‡‡æ ·æ˜¯ä¸º3ï¼Œ çŸ­é‡‡æ ·ä¸º5ï¼‰
+ * \param[out] p_nums_n : æœ€ä½³çš„numsæ•°ç»„ä¸­çš„ç´¢å¼•
+ * \param[out] p_nums_n : æœ€ä½³çš„divsæ•°ç»„ä¸­çš„ç´¢å¼•
  *
- * \return ×îĞ¡Îó²î£¨Ïà²îADCK¸öÊı£©
+ * \return æœ€å°è¯¯å·®ï¼ˆç›¸å·®ADCKä¸ªæ•°ï¼‰
  */
 uint32_t __find_minerr (const uint32_t *p_nums,   uint8_t  nums_len,
                         const uint32_t *p_divs,   uint8_t  divs_len,
@@ -384,8 +384,8 @@ uint32_t __find_minerr (const uint32_t *p_nums,   uint8_t  nums_len,
     for (first = 0; first < nums_len && last >= 0; ) {
         now = (base + ((p_nums[first] + bct) << avgs)) * p_divs[last];
         yerr = now - rate;
-        if (yerr < 0) { /* ÊÇ·ñÎª¸ºÊı */
-            yerr = ~yerr + 1;      /* È¡²¹Âë */
+        if (yerr < 0) { /* æ˜¯å¦ä¸ºè´Ÿæ•° */
+            yerr = ~yerr + 1;      /* å–è¡¥ç  */
         }
         err = yerr;
         if (err < minerr || ((err == minerr) && (now < rate))) {
@@ -412,21 +412,21 @@ uint32_t __find_minerr (const uint32_t *p_nums,   uint8_t  nums_len,
 
 
 /**
- * \brief ÉèÖÃ²ÉÑùÂÊ
+ * \brief è®¾ç½®é‡‡æ ·ç‡
  * \note
- *       fadck = (BUS_CLK / BUS_DIV)  //µÃ³öÄ£¿éÊ±ÖÓ
- *       num   =  FSCAdder + AVGS * (BCT + LSTAdder + HSCAdder) //Ò»¸ö×ª»»ĞèÒªµÄÄ£¿éÊ±ÖÓ¸öÊı
- *       rate  = fadck / num                                    //²ÉÑùÂÊ
- *       Òò·â×°½Ï¶à²ã£¬ÇÒÑ°Ö·½Ï¶à£¬Ó°ÏìÁË²É¼¯´¦ÀíµÄËÙ¶È£¨ËÙ¶ÈÒªÇó¸ß£¬½¨ÒéÊ¹ÓÃDMA´«ÊäÄ£Ê½£©
- *       ²ÉÑùÂÊÉèÖÃ·¶Î§Îª20~140kHz£¨¶ÔËùÓĞÎ»Êı£¬ËùÓĞÄ£Ê½Í¨ÓÃ£©£¬DMAÄ£Ê½ÏÂ×î¸ß´ï818kHz
+ *       fadck = (BUS_CLK / BUS_DIV)  //å¾—å‡ºæ¨¡å—æ—¶é’Ÿ
+ *       num   =  FSCAdder + AVGS * (BCT + LSTAdder + HSCAdder) //ä¸€ä¸ªè½¬æ¢éœ€è¦çš„æ¨¡å—æ—¶é’Ÿä¸ªæ•°
+ *       rate  = fadck / num                                    //é‡‡æ ·ç‡
+ *       å› å°è£…è¾ƒå¤šå±‚ï¼Œä¸”å¯»å€è¾ƒå¤šï¼Œå½±å“äº†é‡‡é›†å¤„ç†çš„é€Ÿåº¦ï¼ˆé€Ÿåº¦è¦æ±‚é«˜ï¼Œå»ºè®®ä½¿ç”¨DMAä¼ è¾“æ¨¡å¼ï¼‰
+ *       é‡‡æ ·ç‡è®¾ç½®èŒƒå›´ä¸º20~140kHzï¼ˆå¯¹æ‰€æœ‰ä½æ•°ï¼Œæ‰€æœ‰æ¨¡å¼é€šç”¨ï¼‰ï¼ŒDMAæ¨¡å¼ä¸‹æœ€é«˜è¾¾818kHz
  */
 static int __am_fsl_adc_rate_set(void     *p_drv,
                                  int       chan,
                                  uint32_t  rate)
 {
-    const uint32_t nums1[] = {2, 4, 6, 8, 12, 14, 20, 22}; /* ³¤²ÉÑù*/
-    const uint32_t nums2[] = {0, 2};                       /* ¶Ì²ÉÑù */
-    const uint32_t divs[]  = {1, 2, 4, 8, 16};             /* ·ÖÆµÊı×é */
+    const uint32_t nums1[] = {2, 4, 6, 8, 12, 14, 20, 22}; /* é•¿é‡‡æ ·*/
+    const uint32_t nums2[] = {0, 2};                       /* çŸ­é‡‡æ · */
+    const uint32_t divs[]  = {1, 2, 4, 8, 16};             /* åˆ†é¢‘æ•°ç»„ */
 
     uint8_t         bct = 0,   avgs = 0, sel = 0;
     uint8_t         nums_n[2], divs_n[2];
@@ -439,7 +439,7 @@ static int __am_fsl_adc_rate_set(void     *p_drv,
     }
     p_dev = (am_fsl_adc_dev_t *)p_drv;
 
-    /* ²ÉÑùÂÊÖ§³ÖÅĞ¶Ï */
+    /* é‡‡æ ·ç‡æ”¯æŒåˆ¤æ–­ */
     if ((p_dev->p_devinfo->bits) == 16) {
         if (rate < 37037 || rate > 461467) {
             return -AM_EINVAL;
@@ -450,11 +450,11 @@ static int __am_fsl_adc_rate_set(void     *p_drv,
         }
     }
 
-    /* »ñÈ¡BCT */
+    /* è·å–BCT */
     bct = __am_fsl_adc_rate_bct_get(p_dev->p_devinfo->bits,
                                      p_dev->p_devinfo->is_diff);
 
-    /* Ó²¼şÆ½¾ùÓ°ÏìÒ»´Î²ÉÑùÖµµÄÊ±¼ä */
+    /* ç¡¬ä»¶å¹³å‡å½±å“ä¸€æ¬¡é‡‡æ ·å€¼çš„æ—¶é—´ */
     if (p_dev->p_devinfo->p_adc_avg_info != NULL) {
        if (p_dev->p_devinfo->p_adc_avg_info->enable == AM_FSL_ADC_AVG_EN) {
            avgs = (uint8_t)(p_dev->p_devinfo->p_adc_avg_info->avgs_num);
@@ -464,26 +464,26 @@ static int __am_fsl_adc_rate_set(void     *p_drv,
        }
     }
 
-    /* Ê¹ÓÃ¶Ì²ÉÑù£¬µÍËÙÄ£Ê½ */
+    /* ä½¿ç”¨çŸ­é‡‡æ ·ï¼Œä½é€Ÿæ¨¡å¼ */
     bus_clk = am_clk_rate_get(p_dev->p_devinfo->clk_id);
     rate = bus_clk / rate; /* adc_clk_rate/div / num = rate*/
-    /* ¶Ì²ÉÑùÄ£Ê½ÏÂ£¬²ÉÑùÂÊÎó²î */
+    /* çŸ­é‡‡æ ·æ¨¡å¼ä¸‹ï¼Œé‡‡æ ·ç‡è¯¯å·® */
     err1 = __find_minerr(nums2, sizeof(nums2)/sizeof(nums2[0]),
                          divs, sizeof(divs)/sizeof(divs[0]),
                          rate, bct, avgs, 5,
                          &nums_n[0], &divs_n[0]);
-    /* ³¤²ÉÑùÄ£Ê½ÏÂ£¬²ÉÑùÂÊÎó²î */
+    /* é•¿é‡‡æ ·æ¨¡å¼ä¸‹ï¼Œé‡‡æ ·ç‡è¯¯å·® */
     err2 = __find_minerr(nums1, sizeof(nums1)/sizeof(nums1[0]),
                          divs, sizeof(divs)/sizeof(divs[0]),
                          rate, bct, avgs, 3,
                          &nums_n[1], &divs_n[1]);
 
-    /* ¸ù¾İ²»Í¬µÄÄ£Ê½ÉèÖÃ¼Ä´æÆ÷ */
+    /* æ ¹æ®ä¸åŒçš„æ¨¡å¼è®¾ç½®å¯„å­˜å™¨ */
     if (err1 > err2) {
         sel = 1;
-        /* Ê¹ÓÃ³¤²ÉÑùÄ£Ê½ */
+        /* ä½¿ç”¨é•¿é‡‡æ ·æ¨¡å¼ */
         amhw_fsl_adc_lsmp_enable(p_dev->p_devinfo->p_hw_adc);
-        /* Çó³öLSTS */
+        /* æ±‚å‡ºLSTS */
         if (nums1[nums_n[1]] <= 4) {
             amhw_fsl_adc_lsts_set(p_dev->p_devinfo->p_hw_adc,
                                    AMHW_FSL_ADC_LSTS_2ADCK);
@@ -499,29 +499,29 @@ static int __am_fsl_adc_rate_set(void     *p_drv,
         }
     } else {
         sel = 0;
-        /* Ê¹ÓÃ¶Ì²ÉÑùÄ£Ê½ */
+        /* ä½¿ç”¨çŸ­é‡‡æ ·æ¨¡å¼ */
         amhw_fsl_adc_lsmp_disable(p_dev->p_devinfo->p_hw_adc);
     }
 
-    /* ÉèÖÃÊÇ·ñÊ¹ÓÃ¸ßËÙ²ÉÑù */
+    /* è®¾ç½®æ˜¯å¦ä½¿ç”¨é«˜é€Ÿé‡‡æ · */
     if (nums_n[sel] % 2 == 0) {
         amhw_fsl_adc_hsc_disable(p_dev->p_devinfo->p_hw_adc);
     } else {
         amhw_fsl_adc_hsc_enable(p_dev->p_devinfo->p_hw_adc);
     }
-    if (divs[divs_n[sel]] == 16) { /* ĞèÒªÑ¡Ôñbus/2Ê±ÖÓÔ´£¬·ÖÆµÖµÎª8 */
+    if (divs[divs_n[sel]] == 16) { /* éœ€è¦é€‰æ‹©bus/2æ—¶é’Ÿæºï¼Œåˆ†é¢‘å€¼ä¸º8 */
         amhw_fsl_adc_clksrc_set(p_dev->p_devinfo->p_hw_adc,
                                  AMHW_FSL_ADC_CLK_SRC_ALTCLK2);
         amhw_fsl_adc_clkdiv_set(p_dev->p_devinfo->p_hw_adc,
                                  AMHW_FSL_ADC_CLK_DIV_8);
     } else {
-        /* Ñ¡Ôñ×ÜÏßÊ±ÖÓÔ´ */
+        /* é€‰æ‹©æ€»çº¿æ—¶é’Ÿæº */
         amhw_fsl_adc_clksrc_set(p_dev->p_devinfo->p_hw_adc,
                                  AMHW_FSL_ADC_CLK_SRC_BUS);
         amhw_fsl_adc_clkdiv_set(p_dev->p_devinfo->p_hw_adc,
                                 (amhw_fsl_adc_clk_div_t)divs_n[sel]);
     }
-    /* Ê¹ÓÃ×î¸ßÆµÂÊ£¬±ØĞëÓĞÈçÏÂÊ¹ÄÜ£¬´ËÊ±¿ÉÄÜÒ²»áÒıÈëÎó²î~*/
+    /* ä½¿ç”¨æœ€é«˜é¢‘ç‡ï¼Œå¿…é¡»æœ‰å¦‚ä¸‹ä½¿èƒ½ï¼Œæ­¤æ—¶å¯èƒ½ä¹Ÿä¼šå¼•å…¥è¯¯å·®~*/
     bus_clk = bus_clk / divs[divs_n[sel]];
     if (bus_clk == 18000000UL || (bus_clk == 12000000UL &&
         p_dev->p_devinfo->bits == 16)) {
@@ -533,7 +533,7 @@ static int __am_fsl_adc_rate_set(void     *p_drv,
 }
 
 /**
- * \brief »ñÈ¡ADC×ª»»¾«¶È
+ * \brief è·å–ADCè½¬æ¢ç²¾åº¦
  */
 static uint32_t __am_fsl_adc_bits_get(void *p_drv, int chan)
 {
@@ -551,7 +551,7 @@ static uint32_t __am_fsl_adc_bits_get(void *p_drv, int chan)
 }
 
 /**
- * \brief ÉèÖÃADC×ª»»¾«¶È
+ * \brief è®¾ç½®ADCè½¬æ¢ç²¾åº¦
  */
 static int __am_fsl_adc_bits_set(am_fsl_adc_dev_t *p_dev)
 {
@@ -628,7 +628,7 @@ static int __am_fsl_adc_bits_set(am_fsl_adc_dev_t *p_dev)
     return AM_OK;
 }
 /**
- * \brief »ñÈ¡ADC²Î¿¼µçÑ¹
+ * \brief è·å–ADCå‚è€ƒç”µå‹
  */
 static uint32_t __am_fsl_adc_vref_get(void *p_drv, int chan)
 {
@@ -644,7 +644,7 @@ static uint32_t __am_fsl_adc_vref_get(void *p_drv, int chan)
 }
 
 /**
- * \brief ADC³õÊ¼»¯
+ * \brief ADCåˆå§‹åŒ–
  */
 am_adc_handle_t am_fsl_adc_init (am_fsl_adc_dev_t           *p_dev,
                                   const am_fsl_adc_devinfo_t *p_devinfo)
@@ -654,7 +654,7 @@ am_adc_handle_t am_fsl_adc_init (am_fsl_adc_dev_t           *p_dev,
 
     if (NULL == p_devinfo || NULL == p_dev ||
         p_devinfo->dma_chan > 3 || p_devinfo->dma_chan < -1
-    		) { /* ²ÎÊıÓĞĞ§ĞÔ¼ì²é */
+    		) { /* å‚æ•°æœ‰æ•ˆæ€§æ£€æŸ¥ */
         return NULL;
     }
 
@@ -668,31 +668,31 @@ am_adc_handle_t am_fsl_adc_init (am_fsl_adc_dev_t           *p_dev,
     p_dev->desc_num          = 0;
     p_dev->flags             = 0;
     p_dev->count             = 0;
-    p_dev->chan              = AMHW_FSL_ADC_CHAN_CLOSE; /* Ä¬ÈÏ¹Ø±Õ */
+    p_dev->chan              = AMHW_FSL_ADC_CHAN_CLOSE; /* é»˜è®¤å…³é—­ */
     p_dev->desc_pos          = 0;
 
     if (p_devinfo->pfn_plfm_init) {
         p_devinfo->pfn_plfm_init();
     }
 
-    /* Ä¬ÈÏ100k²ÉÑùÂÊ, ÅäÖÃÄ£¿éÊ±ÖÓ */
-    __am_fsl_adc_rate_set(p_dev, 0, 1000000); /* ²ÉÑùÂÊ100K */
+    /* é»˜è®¤100ké‡‡æ ·ç‡, é…ç½®æ¨¡å—æ—¶é’Ÿ */
+    __am_fsl_adc_rate_set(p_dev, 0, 1000000); /* é‡‡æ ·ç‡100K */
 
-    /* ÉèÖÃADC·Ö±æÂÊ */
+    /* è®¾ç½®ADCåˆ†è¾¨ç‡ */
     if (AM_OK != __am_fsl_adc_bits_set(p_dev)) {
         return NULL;
     }
-    /* Ñ¡ÔñĞòÁĞ */
+    /* é€‰æ‹©åºåˆ— */
 //    amhw_fsl_adc_seq_set(p_dev->p_devinfo->p_hw_adc, p_dev->p_devinfo->seq);
 
-    /* Ó²¼ş´¥·¢¹¦ÄÜÅäÖÃ */
+    /* ç¡¬ä»¶è§¦å‘åŠŸèƒ½é…ç½® */
     if (p_dev->p_devinfo->mode_trg == AM_FSL_ADC_MODE_TRG_HW) {
         cfg |= AMHW_FSL_ADC_SC2_HWTRG_EN_CFG;
     }
-    /* ±È½Ï¹¦ÄÜÅäÖÃ */
+    /* æ¯”è¾ƒåŠŸèƒ½é…ç½® */
     if (p_dev->p_devinfo->p_adc_cmp_info != NULL) {
         if (p_dev->p_devinfo->p_adc_cmp_info->enable == AM_FSL_ADC_CMP_EN) {
-            cfg |= AMHW_FSL_ADC_SC2_CMP_EN_CFG; /* Ê¹ÄÜ±È½Ï¹¦ÄÜ */
+            cfg |= AMHW_FSL_ADC_SC2_CMP_EN_CFG; /* ä½¿èƒ½æ¯”è¾ƒåŠŸèƒ½ */
             switch (p_dev->p_devinfo->p_adc_cmp_info->cmp_mode) {
 
             case AM_FSL_ADC_CMP_MODE_1:
@@ -754,22 +754,22 @@ am_adc_handle_t am_fsl_adc_init (am_fsl_adc_dev_t           *p_dev,
             amhw_fsl_adc_cv2_set(p_dev->p_devinfo->p_hw_adc, cv2);
         }/* if enable */
     }/* if not CMP func NULL*/
-    amhw_fsl_adc_sc2_cfg(p_dev->p_devinfo->p_hw_adc, cfg); /* ÅäÖÃ´¥·¢Ä£Ê½ÒÔ¼°±È½Ï¹¦ÄÜ*/
+    amhw_fsl_adc_sc2_cfg(p_dev->p_devinfo->p_hw_adc, cfg); /* é…ç½®è§¦å‘æ¨¡å¼ä»¥åŠæ¯”è¾ƒåŠŸèƒ½*/
 
     if (p_dev->p_devinfo->mode_trg == AM_FSL_ADC_MODE_TRG_HW) {
         cfg = 0;
     } else {
-        cfg = AMHW_FSL_ADC_SC3_CONT_EN_CFG;  /* Ê¹ÄÜÁ¬Ğø×ª»»¹¦ÄÜ */
+        cfg = AMHW_FSL_ADC_SC3_CONT_EN_CFG;  /* ä½¿èƒ½è¿ç»­è½¬æ¢åŠŸèƒ½ */
     }
 
-    /* Ó²¼şÆ½¾ù¹¦ÄÜÅäÖÃ */
+    /* ç¡¬ä»¶å¹³å‡åŠŸèƒ½é…ç½® */
     if (p_dev->p_devinfo->p_adc_avg_info != NULL) {
         if (p_dev->p_devinfo->p_adc_avg_info->enable == AM_FSL_ADC_AVG_EN) {
-            cfg |= AMHW_FSL_ADC_SC3_AVG_EN_CFG; /* Ê¹ÄÜÓ²¼şÆ½¾ù¹¦ÄÜ */
+            cfg |= AMHW_FSL_ADC_SC3_AVG_EN_CFG; /* ä½¿èƒ½ç¡¬ä»¶å¹³å‡åŠŸèƒ½ */
             cfg |= AMHW_FSL_ADC_SC3_AVGS_CFG(p_dev->p_devinfo->p_adc_avg_info->avgs_num);
         }
     }
-    amhw_fsl_adc_sc3_cfg(p_dev->p_devinfo->p_hw_adc, cfg); /* ÅäÖÃÓ²¼şÆ½¾ù¸öÊı»òÕßÁ¬ĞøÄ£Ê½ */
+    amhw_fsl_adc_sc3_cfg(p_dev->p_devinfo->p_hw_adc, cfg); /* é…ç½®ç¡¬ä»¶å¹³å‡ä¸ªæ•°æˆ–è€…è¿ç»­æ¨¡å¼ */
 
     cfg = 0;
     cfg |= AMHW_FSL_ADC_SC1_CHAN_SEL_CFG(p_dev->chan);
@@ -777,20 +777,20 @@ am_adc_handle_t am_fsl_adc_init (am_fsl_adc_dev_t           *p_dev,
         cfg |= AMHW_FSL_ADC_SC1_DIFF_EN_CFG;
     }
 
-    if (p_dev->p_devinfo->dma_chan == -1) { /* ·ÇDMAÄ£Ê½ÏÂÊ¹ÄÜÖĞ¶Ï */
+    if (p_dev->p_devinfo->dma_chan == -1) { /* éDMAæ¨¡å¼ä¸‹ä½¿èƒ½ä¸­æ–­ */
         cfg |= AMHW_FSL_ADC_SC1_INT_EN_CFG;
         am_int_connect(p_dev->p_devinfo->inum, __adc_int, p_dev);
         am_int_enable(p_dev->p_devinfo->inum);
         cfg |= AMHW_FSL_ADC_SC1_INT_EN_CFG;
     }
 
-    /* ÅäÖÃµ¥¶Ë¡¢²î·ÖÄ£Ê½£¬ÒÔ¼°Í¨µÀ £¨³õÊ¼»¯ºó£¬Í¨µÀÄ¬ÈÏ¹Ø±Õ£©*/
+    /* é…ç½®å•ç«¯ã€å·®åˆ†æ¨¡å¼ï¼Œä»¥åŠé€šé“ ï¼ˆåˆå§‹åŒ–åï¼Œé€šé“é»˜è®¤å…³é—­ï¼‰*/
     amhw_fsl_adc_sc1_cfg(p_dev->p_devinfo->p_hw_adc, p_dev->p_devinfo->seq, cfg);
     return (am_adc_handle_t)(&(p_dev->adc_serv));
 }
 
 /**
- * \brief ADCÈ¥³õÊ¼»¯
+ * \brief ADCå»åˆå§‹åŒ–
  */
 void am_fsl_adc_deinit (am_adc_handle_t handle)
 {

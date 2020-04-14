@@ -11,23 +11,23 @@
 *******************************************************************************/
 /**
  * \file
- * \brief I2C ¶ÁÐ´ EEPROM Àý³Ì£¨ÂÖÑ¯·½Ê½£©£¬Í¨¹ý HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief I2C è¯»å†™ EEPROM ä¾‹ç¨‹ï¼ˆè½®è¯¢æ–¹å¼ï¼‰ï¼Œé€šè¿‡ HW å±‚æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. PIO0_10 Òý½ÅÁ¬½Ó EEPROM µÄ SCL Òý½Å£»
- *   2. PIO0_11 Òý½ÅÁ¬½Ó EEPROM µÄ SDA Òý½Å¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. PIO0_10 å¼•è„šè¿žæŽ¥ EEPROM çš„ SCL å¼•è„šï¼›
+ *   2. PIO0_11 å¼•è„šè¿žæŽ¥ EEPROM çš„ SDA å¼•è„šã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Ïò EEPROM Éè±¸Ð´Èë __TEST_LENTH ×Ö½ÚÊý¾Ý£»
- *   2. ¶ÁÈ¡ EEPROM ÖÐµÄÊý¾ÝÍ¨¹ý´®¿Ú´òÓ¡³öÀ´£»
- *   3. ÈôÐ´ÈëÊý¾ÝºÍ¶ÁÈ¡µÄÊý¾ÝÒ»ÖÂ£¬Ð£ÑéÍ¨¹ý£¬LED0 ÒÔ 200ms ¼ä¸ôÉÁË¸¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. å‘ EEPROM è®¾å¤‡å†™å…¥ __TEST_LENTH å­—èŠ‚æ•°æ®ï¼›
+ *   2. è¯»å– EEPROM ä¸­çš„æ•°æ®é€šè¿‡ä¸²å£æ‰“å°å‡ºæ¥ï¼›
+ *   3. è‹¥å†™å…¥æ•°æ®å’Œè¯»å–çš„æ•°æ®ä¸€è‡´ï¼Œæ ¡éªŒé€šè¿‡ï¼ŒLED0 ä»¥ 200ms é—´éš”é—ªçƒã€‚
  *
  * \note
- *    1. LED0 ÐèÒª¶Ì½Ó J9 ÌøÏßÃ±£¬²ÅÄÜ±» PIO0_20 ¿ØÖÆ£»
- *    2. ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIO0_0 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *       PIO0_4 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
+ *    1. LED0 éœ€è¦çŸ­æŽ¥ J9 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIO0_20 æŽ§åˆ¶ï¼›
+ *    2. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO0_0 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *       PIO0_4 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am824_hw_i2c_master_poll.c src_am824_hw_i2c_master_poll
  *
  * \internal
@@ -49,22 +49,22 @@
 #include "demo_nxp_entries.h"
 
 /*******************************************************************************
-  ºê¶¨Òå
+  å®å®šä¹‰
 *******************************************************************************/
 
-#define __I2C_MASTER    LPC82X_I2C0      /**< \brief I2C Ö÷»ú¿ØÖÆÆ÷Í¨µÀºÅ¶¨Òå */
-#define __I2C_SPEED     400000           /**< \brief I2C ¿ØÖÆÆ÷ËÙ¶È²ÎÊý¶¨Òå */
-#define __I2C_CLKDIV    6                /**< \brief I2C ¿ØÖÆÆ÷Ê±ÖÓ·ÖÆµ²ÎÊý¶¨Òå */
-#define __EEPROM_ADDR   0x50             /**< \brief EEPROM Éè±¸µØÖ·¶¨Òå */
+#define __I2C_MASTER    LPC82X_I2C0      /**< \brief I2C ä¸»æœºæŽ§åˆ¶å™¨é€šé“å·å®šä¹‰ */
+#define __I2C_SPEED     400000           /**< \brief I2C æŽ§åˆ¶å™¨é€Ÿåº¦å‚æ•°å®šä¹‰ */
+#define __I2C_CLKDIV    6                /**< \brief I2C æŽ§åˆ¶å™¨æ—¶é’Ÿåˆ†é¢‘å‚æ•°å®šä¹‰ */
+#define __EEPROM_ADDR   0x50             /**< \brief EEPROM è®¾å¤‡åœ°å€å®šä¹‰ */
 
 
 /**
- * \brief I2C Ö÷»úËÙÂÊÉèÖÃ
+ * \brief I2C ä¸»æœºé€ŸçŽ‡è®¾ç½®
  *
- * \param[in] p_hw_i2c Ö¸Ïò I2C ¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] speed    Ö÷»úËÙ¶È²ÎÊý
+ * \param[in] p_hw_i2c æŒ‡å‘ I2C å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] speed    ä¸»æœºé€Ÿåº¦å‚æ•°
  *
- * \retval AM_OK ÉèÖÃÍê³É
+ * \retval AM_OK è®¾ç½®å®Œæˆ
  */
 am_local int __i2c_speed_set (amhw_lpc_i2c_t *p_hw_i2c, uint32_t speed)
 {
@@ -99,7 +99,7 @@ am_local int __i2c_speed_set (amhw_lpc_i2c_t *p_hw_i2c, uint32_t speed)
 
   
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am824_core_hw_i2c_master_poll_entry (void)
 {
@@ -111,7 +111,7 @@ void demo_am824_core_hw_i2c_master_poll_entry (void)
     amhw_lpc82x_clk_periph_enable(AMHW_LPC82X_CLK_I2C0);
     amhw_lpc82x_syscon_periph_reset(AMHW_LPC82X_RESET_I2C0);
 
-    /* ÉèÖÃËÙÂÊ */
+    /* è®¾ç½®é€ŸçŽ‡ */
     __i2c_speed_set(__I2C_MASTER, __I2C_SPEED);
 
     demo_lpc_hw_i2c_master_poll_entey(__I2C_MASTER, __I2C_CLKDIV, __EEPROM_ADDR);

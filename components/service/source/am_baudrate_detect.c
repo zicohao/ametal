@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief ÊµÏÖ×Ô¶¯²¨ÌØÂÊ·şÎñ
+ * \brief å®ç°è‡ªåŠ¨æ³¢ç‰¹ç‡æœåŠ¡
  *
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet am_baudrate_detect.c src_am_baudrate_detect
  *
  * \internal
@@ -36,18 +36,18 @@
 #include "am_softimer.h"
 
 /*******************************************************************************
-  ºê¶¨Òå
+  å®å®šä¹‰
 *******************************************************************************/
 
 #define  __TIMER_OVERFLOW(count1, count2, width)  \
          (count2 < count1 ? (count2 + (1ul << width) - 1) : count2);
 
 /*******************************************************************************
-  ¾²Ì¬º¯Êı
+  é™æ€å‡½æ•°
 *******************************************************************************/
 
 /**
- * \brief ²¶»ñ»Øµ÷º¯Êı
+ * \brief æ•è·å›è°ƒå‡½æ•°
  */
 static void __cap_callback (void *p_arg, unsigned int cap_now_val)
 {
@@ -58,7 +58,7 @@ static void __cap_callback (void *p_arg, unsigned int cap_now_val)
     }
 #endif
     am_baudrate_detect_dev_t *p_dev = (am_baudrate_detect_dev_t *)p_arg;
-    /* Ö»ĞèÒª´¦ÀíÒ»¸ö×Ö½Ú  */
+    /* åªéœ€è¦å¤„ç†ä¸€ä¸ªå­—èŠ‚  */
     if (p_dev->data_edge <= 9) {
         p_dev->data_pulse_width[p_dev->data_edge++] = cap_now_val;
     }
@@ -68,7 +68,7 @@ static void __cap_callback (void *p_arg, unsigned int cap_now_val)
 }
 
 /**
- * \brief ¶¨Ê±Æ÷»Øµ÷º¯Êı
+ * \brief å®šæ—¶å™¨å›è°ƒå‡½æ•°
  */
 static void __softimer_callback (void *p_arg)
 {
@@ -85,7 +85,7 @@ static void __softimer_callback (void *p_arg)
 }
 
 /**
- * \brief »ñÈ¡²¨ÌØÂÊº¯Êı
+ * \brief è·å–æ³¢ç‰¹ç‡å‡½æ•°
  */
 static int __baudrate_get (am_baudrate_detect_dev_t *p_dev,
                            uint32_t               *p_baudrate)
@@ -129,7 +129,7 @@ static int __baudrate_get (am_baudrate_detect_dev_t *p_dev,
         }
     }
 
-    /* È¥µôÒ»Î»Í£Ö¹Î» */
+    /* å»æ‰ä¸€ä½åœæ­¢ä½ */
     p_dev->uart_data  = p_dev->uart_data >> 1;
 
     //__data_analysis(handle, data_pulses - 1, min_pulse_width);
@@ -139,7 +139,7 @@ static int __baudrate_get (am_baudrate_detect_dev_t *p_dev,
 
     p_dev->uart_data = 0;
 
-    /* ²»Ö§³ÖµÄ·¶Î§ */
+    /* ä¸æ”¯æŒçš„èŒƒå›´ */
     if (min_pulse_width < 2000 || min_pulse_width > 1000000) {
         return AM_ERROR;
     }
@@ -152,11 +152,11 @@ static int __baudrate_get (am_baudrate_detect_dev_t *p_dev,
 }
 
 /*******************************************************************************
-  ½Ó¿Úº¯Êı
+  æ¥å£å‡½æ•°
 *******************************************************************************/
 
 /**
- * \brief »ñÈ¡²¨ÌØÂÊº¯Êı½Ó¿Ú
+ * \brief è·å–æ³¢ç‰¹ç‡å‡½æ•°æ¥å£
  */
 int am_baudrate_get (am_baudrate_detect_handle_t handle, uint32_t *p_baudrate)
 {
@@ -173,7 +173,7 @@ int am_baudrate_get (am_baudrate_detect_handle_t handle, uint32_t *p_baudrate)
 
 
 /**
- * \brief ×Ô¶¯²¨ÌØÂÊ³õÊ¼»¯º¯Êı
+ * \brief è‡ªåŠ¨æ³¢ç‰¹ç‡åˆå§‹åŒ–å‡½æ•°
  */
 am_baudrate_detect_handle_t am_baudrate_detect_init (am_baudrate_detect_dev_t     *p_dev,
                                                      am_baudrate_detect_devinfo_t *p_devinfo,
@@ -202,7 +202,7 @@ am_baudrate_detect_handle_t am_baudrate_detect_init (am_baudrate_detect_dev_t   
         p_devinfo->pfn_plfm_init();
     }
 
-    /* ²¶»ñÊäÈëÅäÖÃ */
+    /* æ•è·è¾“å…¥é…ç½® */
     am_cap_config(cap_handle,
                   p_devinfo->cap_chanel,
                   p_devinfo->cap_trigger,
@@ -221,7 +221,7 @@ am_baudrate_detect_handle_t am_baudrate_detect_init (am_baudrate_detect_dev_t   
 }
 
 /**
- * \brief ×Ô¶¯²¨ÌØÂÊ³õ½âÊ¼»¯º¯Êı
+ * \brief è‡ªåŠ¨æ³¢ç‰¹ç‡åˆè§£å§‹åŒ–å‡½æ•°
  */
 void am_baudrate_detect_deinit (am_baudrate_detect_handle_t handle)
 {

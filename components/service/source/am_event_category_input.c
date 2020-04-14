@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ÊäÈëÊÂ¼şÖÖÀà
+ * \brief è¾“å…¥äº‹ä»¶ç§ç±»
  *
  * \internal
  * \par modification history:
@@ -39,8 +39,8 @@ static void __input_event_manager (am_event_type_t *p_evt_type,
                                    void            *p_usr_data)
 {
     /*
-     * Ö´ĞĞevent_typeµÄhandlerÖ®Ç°, ÏÈÖ´ĞĞ¸ÃcategoryµÄhandler
-     * input categoryµÄhandlerÔİÊ±²»´¦ÀíÈÎºÎÊÂÎñ, Ô¤Áô¸øÎ´À´Ê¹ÓÃ
+     * æ‰§è¡Œevent_typeçš„handlerä¹‹å‰, å…ˆæ‰§è¡Œè¯¥categoryçš„handler
+     * input categoryçš„handleræš‚æ—¶ä¸å¤„ç†ä»»ä½•äº‹åŠ¡, é¢„ç•™ç»™æœªæ¥ä½¿ç”¨
      */
 }
 
@@ -50,16 +50,16 @@ static void __input_event_manager (am_event_type_t *p_evt_type,
 
 void am_event_category_input_init (void)
 {
-    /* ³õÊ¼»¯Ò»¸öÊÂ¼şÀà±ğ : InputÀà±ğ */
+    /* åˆå§‹åŒ–ä¸€ä¸ªäº‹ä»¶ç±»åˆ« : Inputç±»åˆ« */
     am_event_category_init(&__g_category_input);
 
-    /* ÎªInputÀà±ğ³õÊ¼»¯Ò»¸öhandler */
+    /* ä¸ºInputç±»åˆ«åˆå§‹åŒ–ä¸€ä¸ªhandler */
     am_event_handler_init(&__g_handler_cat_input,
                            __input_event_manager,
                            "cat_input",
-                           0);                                 /* ÎŞÌØÊâ±êÖ¾   */
+                           0);                                 /* æ— ç‰¹æ®Šæ ‡å¿—   */
 
-    /* °ÑhandlerÓëInputÀà±ğ°ó¶¨ */
+    /* æŠŠhandlerä¸Inputç±»åˆ«ç»‘å®š */
     am_event_category_handler_register(&__g_category_input,
                                        &__g_handler_cat_input);
 }

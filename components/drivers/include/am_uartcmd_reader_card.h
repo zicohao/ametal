@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief Ö§³ÖÉè±¸¿ØÖÆÀàÖ¸ÁîµÄ±ê×¼½Ó¿Ú
+ * \brief æ”¯æŒè®¾å¤‡æ§åˆ¶ç±»æŒ‡ä»¤çš„æ ‡å‡†æ¥å£
  *
  * \internal
  * \par Modification History
@@ -30,40 +30,40 @@ extern "C" {
 #include "am_uartcmd_includes.h"
 #include "am_uartcmd_cd4051.h"
 /**
- * \brief ¶Á¿¨Ğ¾Æ¬Éè±¸½á¹¹Ìå
+ * \brief è¯»å¡èŠ¯ç‰‡è®¾å¤‡ç»“æ„ä½“
  */
 typedef struct amdr_reader_card_dev {
     
-    /** \brief ¶Á¿¨Ğ¾Æ¬·şÎñ½á¹¹Ìå */
+    /** \brief è¯»å¡èŠ¯ç‰‡æœåŠ¡ç»“æ„ä½“ */
     am_reader_card_serv_t  serv;
     
-    /** \brief ¶Á¿¨Ğ¾Æ¬Éè±¸½á¹¹ÌåÖ¸Õë */
+    /** \brief è¯»å¡èŠ¯ç‰‡è®¾å¤‡ç»“æ„ä½“æŒ‡é’ˆ */
     am_fm175xx_dev_t      *p_fm17550s_dev;
 
-    /*  \brief Ğ¾Æ¬ÌìÏßÉè±¸½á¹¹ÌåÖ¸Õë*/
+    /*  \brief èŠ¯ç‰‡å¤©çº¿è®¾å¤‡ç»“æ„ä½“æŒ‡é’ˆ*/
     am_antenna_info_t     *p_antenna_info;
 
 } amdr_reader_card_dev_t;
 
 /**
- * \brief ¶Á¿¨Ğ¾Æ¬Çı¶¯²ã³õÊ¼»¯º¯Êı 
+ * \brief è¯»å¡èŠ¯ç‰‡é©±åŠ¨å±‚åˆå§‹åŒ–å‡½æ•° 
  *
- * \param[in] p_dev : ¶Á¿¨Ğ¾Æ¬Éè±¸½á¹¹ÌåÖ¸Õë
+ * \param[in] p_dev : è¯»å¡èŠ¯ç‰‡è®¾å¤‡ç»“æ„ä½“æŒ‡é’ˆ
  *
- * \retval AM_OK : ³É¹¦
- * \retval -AM_EIINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK : æˆåŠŸ
+ * \retval -AM_EIINVAL : å‚æ•°é”™è¯¯
  */
 am_reader_card_handle_t amdr_reader_card_init (amdr_reader_card_dev_t   *p_dev,
                                                am_fm175xx_dev_t         *p_fm17550s_dev,
                                                am_antenna_info_t       *p_cd4051_dev);
 
 /**
- * \brief ¶Á¿¨Ğ¾Æ¬Çı¶¯²ãÈ¥³õÊ¼»¯º¯Êı 
+ * \brief è¯»å¡èŠ¯ç‰‡é©±åŠ¨å±‚å»åˆå§‹åŒ–å‡½æ•° 
  *
- * \param[in] p_dev : ¶Á¿¨Ğ¾Æ¬Éè±¸½á¹¹ÌåÖ¸Õë
+ * \param[in] p_dev : è¯»å¡èŠ¯ç‰‡è®¾å¤‡ç»“æ„ä½“æŒ‡é’ˆ
  *
- * \retval AM_OK : ³É¹¦
- * \retval -AM_EIINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK : æˆåŠŸ
+ * \retval -AM_EIINVAL : å‚æ•°é”™è¯¯
  */
 int amdr_reader_card_deinit (amdr_reader_card_dev_t *p_dev);
     

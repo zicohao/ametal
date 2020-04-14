@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief UARTÇı¶¯£¬·şÎñÓÚDMAË«»º³åÄ£Ê½
+ * \brief UARTé©±åŠ¨ï¼ŒæœåŠ¡äºDMAåŒç¼“å†²æ¨¡å¼
  *
  *
  * \internal
@@ -33,47 +33,47 @@
 
 typedef struct am_kl26_uart_dma_devinfo {
 
-    const am_fsl_uart_devinfo_t      *p_uart_devinfo;    /**< \brief ´®¿ÚÉè±¸ĞÅÏ¢ */
-    amhw_kl26_dma_t                  *p_hw_dma;          /**< \brief DMA¼Ä´æÆ÷¿éµÄ»ùµØÖ· */
-    uint8_t                           dma_chan_rx;       /**< \brief DMA½ÓÊÕÍ¨µÀºÅ */
-    char                             *p_dma_buffer;      /**< \brief DMA Ó³ÉäµÄÄÚ´æ */
-    char                             *p_rec_buffer;      /**< \brief ´®¿Ú½ÓÊÕµ½Êı¾İµÄ»º³åÇø */
-    amhw_kl26_dma_buffer_size_set_t   dma_circular_size; /**< \brief DMA ×Ô¶¯»·ĞÎ»º³å´óĞ¡ */
-    uint16_t                          dmabuffer_size;    /**< \brief DMA »º´æ´óĞ¡ */
-    uint16_t                          recbuffer_size;    /**< \brief ´®¿Ú½ÓÊÕ»º´æ´óĞ¡ */
+    const am_fsl_uart_devinfo_t      *p_uart_devinfo;    /**< \brief ä¸²å£è®¾å¤‡ä¿¡æ¯ */
+    amhw_kl26_dma_t                  *p_hw_dma;          /**< \brief DMAå¯„å­˜å™¨å—çš„åŸºåœ°å€ */
+    uint8_t                           dma_chan_rx;       /**< \brief DMAæ¥æ”¶é€šé“å· */
+    char                             *p_dma_buffer;      /**< \brief DMA æ˜ å°„çš„å†…å­˜ */
+    char                             *p_rec_buffer;      /**< \brief ä¸²å£æ¥æ”¶åˆ°æ•°æ®çš„ç¼“å†²åŒº */
+    amhw_kl26_dma_buffer_size_set_t   dma_circular_size; /**< \brief DMA è‡ªåŠ¨ç¯å½¢ç¼“å†²å¤§å° */
+    uint16_t                          dmabuffer_size;    /**< \brief DMA ç¼“å­˜å¤§å° */
+    uint16_t                          recbuffer_size;    /**< \brief ä¸²å£æ¥æ”¶ç¼“å­˜å¤§å° */
 }am_kl26_uart_dma_devinfo_t;
 
 
 typedef struct am_kl26_uart_dma_dev {
-    am_fsl_uart_dev_t                 uart_dev;       /**< \brief ´®¿ÚÉè±¸ */
-    const am_kl26_uart_dma_devinfo_t *p_devinfo;      /**< \brief DMA´®¿ÚÉè±¸ĞÅÏ¢ */
+    am_fsl_uart_dev_t                 uart_dev;       /**< \brief ä¸²å£è®¾å¤‡ */
+    const am_kl26_uart_dma_devinfo_t *p_devinfo;      /**< \brief DMAä¸²å£è®¾å¤‡ä¿¡æ¯ */
 
-    struct am_rngbuf  rngbuf;                         /**< \brief »·ĞÎ»º³åÇø*/
-    uint32_t          buffer_size;                    /**< \brief »º´æÇø´óĞ¡*/
-    uint32_t          dma_size;                       /**< \brief DMA»º³åÇø´óĞ¡ */
+    struct am_rngbuf  rngbuf;                         /**< \brief ç¯å½¢ç¼“å†²åŒº*/
+    uint32_t          buffer_size;                    /**< \brief ç¼“å­˜åŒºå¤§å°*/
+    uint32_t          dma_size;                       /**< \brief DMAç¼“å†²åŒºå¤§å° */
 
-    char             *p_rec_buffer;                   /**< \brief ´®¿Ú½ÓÊÕ»º³åÇø */
-    char             *p_dma_buffer;                   /**< \brief DMA½ÓÊÕ»º³åÇø */
-    uint32_t          count ;                         /**< \brief DMA»·ĞÎ»º³åÇø¼ÆÊıÖµ*/
-    am_softimer_t     timer;                          /**< \brief ¶¨Ê±Æ÷£¬ÓÃÓÚÔÚÃ»´¥·¢DMAÖĞ¶Ï¶ÁÈ¡Êı¾İ*/
+    char             *p_rec_buffer;                   /**< \brief ä¸²å£æ¥æ”¶ç¼“å†²åŒº */
+    char             *p_dma_buffer;                   /**< \brief DMAæ¥æ”¶ç¼“å†²åŒº */
+    uint32_t          count ;                         /**< \brief DMAç¯å½¢ç¼“å†²åŒºè®¡æ•°å€¼*/
+    am_softimer_t     timer;                          /**< \brief å®šæ—¶å™¨ï¼Œç”¨äºåœ¨æ²¡è§¦å‘DMAä¸­æ–­è¯»å–æ•°æ®*/
 
 }am_kl26_uart_dma_dev_t;
 
 /**
- * \brief ³õÊ¼»¯UART£¬·µ»ØUART±ê×¼·şÎñ²Ù×÷¾ä±ú
+ * \brief åˆå§‹åŒ–UARTï¼Œè¿”å›UARTæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  *
- * \param[in] p_dev     : Ö¸Ïò´®¿ÚÉè±¸µÄÖ¸Õë
- * \param[in] p_devinfo : Ö¸Ïò´®¿ÚÉè±¸ĞÅÏ¢³£Á¿µÄÖ¸Õë
+ * \param[in] p_dev     : æŒ‡å‘ä¸²å£è®¾å¤‡çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo : æŒ‡å‘ä¸²å£è®¾å¤‡ä¿¡æ¯å¸¸é‡çš„æŒ‡é’ˆ
  *
- * \return DMA UART±ê×¼·şÎñ²Ù×÷¾ä±ú£¬ÖµÎªNULLÊ±±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return DMA UARTæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„ï¼Œå€¼ä¸ºNULLæ—¶è¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_uart_handle_t am_uart_dma_init (
                      am_kl26_uart_dma_dev_t           *p_dev,
                      const am_kl26_uart_dma_devinfo_t *p_devinfo);
 
 /**
- * \brief ²»Ê¹ÓÃUARTÊ±£¬½â³õÊ¼»¯UART£¬ÊÍ·ÅÏà¹Ø×ÊÔ´
- * \param[in] p_dev : Ö¸ÏòDMA´®¿ÚÉè±¸µÄÖ¸Õë
+ * \brief ä¸ä½¿ç”¨UARTæ—¶ï¼Œè§£åˆå§‹åŒ–UARTï¼Œé‡Šæ”¾ç›¸å…³èµ„æº
+ * \param[in] p_dev : æŒ‡å‘DMAä¸²å£è®¾å¤‡çš„æŒ‡é’ˆ
  */
 void am_uart_dma_deinit (am_fsl_uart_dev_t  *p_drv);
 

@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief »ùÓÚÍ¨ÓÃ¶¨Ê±Æ÷ÊµÏÖµÄÑÓÊ±º¯Êı
+ * \brief åŸºäºé€šç”¨å®šæ—¶å™¨å®ç°çš„å»¶æ—¶å‡½æ•°
  *
  * \internal
  * \par Modification history
@@ -30,7 +30,7 @@
   Local macro define
 *******************************************************************************/
 
-/* µÍÓÚ400usÊ±£¬Ê¹ÓÃwhile(i--)µÄĞÎÊ½½øĞĞÑÓÊ± */
+/* ä½äº400usæ—¶ï¼Œä½¿ç”¨while(i--)çš„å½¢å¼è¿›è¡Œå»¶æ—¶ */
 #define __DELAY_DEC_TIME_US         500
 
 /*******************************************************************************
@@ -38,26 +38,26 @@
 *******************************************************************************/
 
 /**
- * \brief ÑÓÊ±¶¨Ê±Æ÷Ïà¹ØĞÅÏ¢¶¨Òå
+ * \brief å»¶æ—¶å®šæ—¶å™¨ç›¸å…³ä¿¡æ¯å®šä¹‰
  */
 static struct __delay_timer {
-    am_timer_handle_t handle;           /**< \brief ÑÓÊ±¶¨Ê±Æ÷²Ù×÷¾ä±ú        */
-    uint8_t           chan;             /**< \brief ÑÓÊ±¶¨Ê±Æ÷Í¨µÀ            */
-    uint32_t          freq;             /**< \brief ÑÓÊ±¶¨Ê±Æ÷ÆµÂÊ            */
-    uint32_t          max_ticks;        /**< \brief ÑÓÊ±¶¨Ê±Æ÷×î´ó¼ÆÊıÖµ      */
-    uint32_t          cali_ticks;       /**< \brief ÑÓÊ±¶¨Ê±Æ÷±»µ÷ÓÃµÄ´ÎÊı    */
-    uint32_t          count_get_ticks;  /**< \brief count get ËùÏûºÄµÄ tick   */
-    uint32_t          dec_factor;       /**< \brief ÑÓÊ±Òò×Ó                  */
-    uint32_t          dec_cali_factor1; /**< \brief µİ¼õ·¨ÑÓÊ±ĞŞÕıÖµ1         */
-    uint32_t          dec_cali_factor2; /**< \brief µİ¼õ·¨ÑÓÊ±ĞŞÕıÖµ2         */
-    uint32_t          dec_cali_us;      /**< \brief µİ¼õ·¨ÑÓÊ±ĞŞÕıÖµ          */
+    am_timer_handle_t handle;           /**< \brief å»¶æ—¶å®šæ—¶å™¨æ“ä½œå¥æŸ„        */
+    uint8_t           chan;             /**< \brief å»¶æ—¶å®šæ—¶å™¨é€šé“            */
+    uint32_t          freq;             /**< \brief å»¶æ—¶å®šæ—¶å™¨é¢‘ç‡            */
+    uint32_t          max_ticks;        /**< \brief å»¶æ—¶å®šæ—¶å™¨æœ€å¤§è®¡æ•°å€¼      */
+    uint32_t          cali_ticks;       /**< \brief å»¶æ—¶å®šæ—¶å™¨è¢«è°ƒç”¨çš„æ¬¡æ•°    */
+    uint32_t          count_get_ticks;  /**< \brief count get æ‰€æ¶ˆè€—çš„ tick   */
+    uint32_t          dec_factor;       /**< \brief å»¶æ—¶å› å­                  */
+    uint32_t          dec_cali_factor1; /**< \brief é€’å‡æ³•å»¶æ—¶ä¿®æ­£å€¼1         */
+    uint32_t          dec_cali_factor2; /**< \brief é€’å‡æ³•å»¶æ—¶ä¿®æ­£å€¼2         */
+    uint32_t          dec_cali_us;      /**< \brief é€’å‡æ³•å»¶æ—¶ä¿®æ­£å€¼          */
 } __g_delay_timer = {NULL, 0, 0, 0, 0, 0, 0, 0};
 
 /*******************************************************************************
   Local Functions
 *******************************************************************************/
 
-/* »ñÈ¡¶¨Ê±Æ÷µ±Ç°¼ÆÊıÖµ */
+/* è·å–å®šæ—¶å™¨å½“å‰è®¡æ•°å€¼ */
 static uint32_t __timer_count_get (void)
 {
     uint32_t ticks;
@@ -71,7 +71,7 @@ static uint32_t __timer_count_get (void)
 
 /******************************************************************************/
 
-/* ¼ÆËãÒ»¶Î³ÌĞò¶ÎËùÏûºÄµÄ ticks */
+/* è®¡ç®—ä¸€æ®µç¨‹åºæ®µæ‰€æ¶ˆè€—çš„ ticks */
 static uint32_t __time_ticks_cal (uint32_t start_ticks, uint32_t end_ticks)
 {
     uint32_t ticks;
@@ -85,7 +85,7 @@ static uint32_t __time_ticks_cal (uint32_t start_ticks, uint32_t end_ticks)
     if (ticks >= __g_delay_timer.count_get_ticks) {
         ticks -= __g_delay_timer.count_get_ticks;
     } else {
-        ticks = 0;                                     /* ²»Ó¦¸Ã³öÏÖÕâÖÖÇé¿ö  */
+        ticks = 0;                                     /* ä¸åº”è¯¥å‡ºç°è¿™ç§æƒ…å†µ  */
     }
 
     return ticks;
@@ -93,7 +93,7 @@ static uint32_t __time_ticks_cal (uint32_t start_ticks, uint32_t end_ticks)
 
 /******************************************************************************/
 
-/* ¼ÆËãam_timer_count_get() ËùÏûºÄµÄÊ±¼ä */
+/* è®¡ç®—am_timer_count_get() æ‰€æ¶ˆè€—çš„æ—¶é—´ */
 static void __delay_count_get_ticks_cal (void)
 {
     uint32_t           start_ticks;
@@ -108,7 +108,7 @@ static void __delay_count_get_ticks_cal (void)
 }
 
 /******************************************************************************/
-/* ¼ÆËã»ùÓÚ Ticks ÑÓÊ±µÄ¹ÌÓĞÆ«²î */
+/* è®¡ç®—åŸºäº Ticks å»¶æ—¶çš„å›ºæœ‰åå·® */
 static void __delay_cali_ticks_cal (void)
 {
     uint32_t           start_ticks;
@@ -117,20 +117,20 @@ static void __delay_cali_ticks_cal (void)
     __g_delay_timer.cali_ticks = 0xFFFFFFFF;            /* set to max         */
 
     /* 
-     * ´ÖÂÔÆÀ¹ÀÑÓÊ±Îó²î, 
-     * ¶ÔÓÚARMCC£¬Ê¹ÓÃÎ¢¿âÊ±£¬64Î»ÊıµÄ¼ÆËã·Ç³£ºÄÊ±£¬½«µ¼ÖÂÎó²îÔö´ó 
+     * ç²—ç•¥è¯„ä¼°å»¶æ—¶è¯¯å·®, 
+     * å¯¹äºARMCCï¼Œä½¿ç”¨å¾®åº“æ—¶ï¼Œ64ä½æ•°çš„è®¡ç®—éå¸¸è€—æ—¶ï¼Œå°†å¯¼è‡´è¯¯å·®å¢å¤§ 
      */
-    start_ticks = __timer_count_get();                  /* ĞŞÕı¼ÇÂ¼ÆğÊ¼Î»ÖÃ´¦ */
+    start_ticks = __timer_count_get();                  /* ä¿®æ­£è®°å½•èµ·å§‹ä½ç½®å¤„ */
     am_udelay(__DELAY_DEC_TIME_US + 1);
-    cur_ticks   = __timer_count_get();                  /* ĞŞÕı¼ÇÂ¼½áÊøÎ»ÖÃ´¦ */
+    cur_ticks   = __timer_count_get();                  /* ä¿®æ­£è®°å½•ç»“æŸä½ç½®å¤„ */
 
-    /* ÒÑ¾­¼ÇÁË¶àÉÙticks, ×÷ÎªÑÓÊ±Îó²îĞŞÕıÖµ */
+    /* å·²ç»è®°äº†å¤šå°‘ticks, ä½œä¸ºå»¶æ—¶è¯¯å·®ä¿®æ­£å€¼ */
     __g_delay_timer.cali_ticks = __time_ticks_cal(start_ticks, cur_ticks);
 }
 
 /******************************************************************************/
 
-/* while(i--), ×÷Îª us ¼¶±ğÑÓÊ±µÄºËĞÄº¯Êı£¬²»¿ÉÓÅ»¯£¬²»¿É±»ÄÚÁª´¦Àí */
+/* while(i--), ä½œä¸º us çº§åˆ«å»¶æ—¶çš„æ ¸å¿ƒå‡½æ•°ï¼Œä¸å¯ä¼˜åŒ–ï¼Œä¸å¯è¢«å†…è”å¤„ç† */
 static void __delay_by_factor (uint32_t dec_factor) __attribute__ ((noinline));
  
 static void __delay_by_factor (uint32_t dec_factor)
@@ -138,7 +138,7 @@ static void __delay_by_factor (uint32_t dec_factor)
     volatile uint32_t factor = dec_factor;
 
     /*
-     * Ôö¼Ó ISB Ö¸Áî£¬Çå¿ÕÁ÷Ë®Ïß£¬±ÜÃâ·ÖÖ§Ô¤²â¶ÔÑÓÊ±Ôì³ÉÓ°Ïì£¬½ø¶øÌá¸ßÑÓÊ±¾«¶È
+     * å¢åŠ  ISB æŒ‡ä»¤ï¼Œæ¸…ç©ºæµæ°´çº¿ï¼Œé¿å…åˆ†æ”¯é¢„æµ‹å¯¹å»¶æ—¶é€ æˆå½±å“ï¼Œè¿›è€Œæé«˜å»¶æ—¶ç²¾åº¦
      */
     while(factor--) {
         __asm volatile ("isb");
@@ -159,7 +159,7 @@ static uint32_t  __delay_by_factor_ticks_cal (uint32_t dec_factor)
 }
 
 /******************************************************************************/
-/* ¼ÆËãµİ¼õ·¨ÑÓÊ±Òò×Ó */
+/* è®¡ç®—é€’å‡æ³•å»¶æ—¶å› å­ */
 static void __delay_by_fator_cal (void)
 {
     uint32_t           ticks, ticks1, ticks2;
@@ -170,29 +170,29 @@ static void __delay_by_fator_cal (void)
 
         ticks1 = __delay_by_factor_ticks_cal(dec_factor);
 
-        /* ticks ³¬¹ı100 us ¶ÔÓ¦µÄticks ²Å¼ÆËã£¬Ê¹¼ÆËãÎó²î < 0.01us */
+        /* ticks è¶…è¿‡100 us å¯¹åº”çš„ticks æ‰è®¡ç®—ï¼Œä½¿è®¡ç®—è¯¯å·® < 0.01us */
         if (ticks1 > __g_delay_timer.freq / 10000) {
 
             ticks2 = __delay_by_factor_ticks_cal(dec_factor * 2);
 
-            /* Ôö¼Ódec_factorËùºÄ·ÑµÄticks¼´ÎªÑÓÊ±dec_factorËù¶ÔÓ¦µÄ ticks */
+            /* å¢åŠ dec_factoræ‰€è€—è´¹çš„tickså³ä¸ºå»¶æ—¶dec_factoræ‰€å¯¹åº”çš„ ticks */
             ticks = ticks2 - ticks1;
 
             /*
-             * ticks ¶ÔÓ¦µÄusÊı: us = ticks / (__g_delay_timer.freq / 1000000)
-             *               ¼´£ºus = 1000000 * ticks / __g_delay_timer.freq
+             * ticks å¯¹åº”çš„usæ•°: us = ticks / (__g_delay_timer.freq / 1000000)
+             *               å³ï¼šus = 1000000 * ticks / __g_delay_timer.freq
              *
-             * 1us ¶ÔÓ¦µÄÑÓÊ±Òò×Ó £ºdec_factor / us
+             * 1us å¯¹åº”çš„å»¶æ—¶å› å­ ï¼šdec_factor / us
              *
-             * 256us £¨±ãÓÚ×÷ÒÆÎ»ÔËËã£©¶ÔÓ¦µÄÑÓÊ±Òò×Ó£º 256 * dec_factor / us
+             * 256us ï¼ˆä¾¿äºä½œç§»ä½è¿ç®—ï¼‰å¯¹åº”çš„å»¶æ—¶å› å­ï¼š 256 * dec_factor / us
              *
-             * ¼´£º256 * dec_factor / (1000000 * ticks / __g_delay_timer.freq)
+             * å³ï¼š256 * dec_factor / (1000000 * ticks / __g_delay_timer.freq)
              *
-             * ¼´£º256 * dec_factor * __g_delay_timer.freq / (1000000 * ticks)
+             * å³ï¼š256 * dec_factor * __g_delay_timer.freq / (1000000 * ticks)
              *
-             * ±ÜÃâÒç³ö£º
+             * é¿å…æº¢å‡ºï¼š
              *
-             * ¼´£º4 * dec_factor * __g_delay_timer.freq / (15625 * ticks)
+             * å³ï¼š4 * dec_factor * __g_delay_timer.freq / (15625 * ticks)
              *     4 * dec_factor * (__g_delay_timer.freq / 15625) / ticks
              */
             __g_delay_timer.dec_factor = 4 * dec_factor * \
@@ -204,7 +204,7 @@ static void __delay_by_fator_cal (void)
     }
 
     /*
-      * ¼ÆËã dec_cali_us
+      * è®¡ç®— dec_cali_us
       */
      __g_delay_timer.dec_cali_us = 0xFFFFFFFF;           /* set to max */
 
@@ -214,12 +214,12 @@ static void __delay_by_fator_cal (void)
 
     ticks1 = __time_ticks_cal(ticks1, ticks2);
 
-    /* ticks1 ¶ÔÓ¦µÄus, ËÄÉáÎåÈë */
+    /* ticks1 å¯¹åº”çš„us, å››èˆäº”å…¥ */
     __g_delay_timer.dec_cali_us = \
             (ticks1 * 1000 + (__g_delay_timer.freq / 2000)) / \
                                                 (__g_delay_timer.freq / 1000);
     /*
-      * ¼ÆËã delay º¯Êı¹ÌÓĞÑÓÊ±1
+      * è®¡ç®— delay å‡½æ•°å›ºæœ‰å»¶æ—¶1
       */
      __g_delay_timer.dec_cali_factor1 = 0xFFFFFFFF;          /* set to max */
 
@@ -232,24 +232,24 @@ static void __delay_by_fator_cal (void)
     ticks1 = __time_ticks_cal(ticks1, ticks2);
 
     /*
-     * ½« ticks1 ×ª»»Îª¶ÔÓ¦µÄ ÑÓÊ±Òò×Ó
+     * å°† ticks1 è½¬æ¢ä¸ºå¯¹åº”çš„ å»¶æ—¶å› å­
      *
-     * ÑÓÊ± ticks ¶ÔÓ¦µÄÑÓÊ±Òò×ÓÎª£º dec_factor
+     * å»¶æ—¶ ticks å¯¹åº”çš„å»¶æ—¶å› å­ä¸ºï¼š dec_factor
      *
-     * ticks ¶ÔÓ¦µÄÑÓÊ±Òò×Ó¼´Îª£º ticks1 * dec_factor / ticks
+     * ticks å¯¹åº”çš„å»¶æ—¶å› å­å³ä¸ºï¼š ticks1 * dec_factor / ticks
      *
-     * Ò²¿ÉÑ¡Ôñ½« ticks ×ª»»Îª us£º
+     * ä¹Ÿå¯é€‰æ‹©å°† ticks è½¬æ¢ä¸º usï¼š
      * (ticks * 1000 + (__g_delay_timer.freq / 2000))
      *                                        / (__g_delay_timer.freq / 1000);
      */
     __g_delay_timer.dec_cali_factor1 = (ticks1 * dec_factor + ticks / 2) / ticks;
 
     /*
-     * ¼ÆËã delay º¯Êı¹ÌÓĞÑÓÊ±2
+     * è®¡ç®— delay å‡½æ•°å›ºæœ‰å»¶æ—¶2
      */
     __g_delay_timer.dec_cali_factor2 = 0xFFFFFFFF;          /* set to max */
 
-    /* ±ØĞëÊ±ÑÓÊ±Êı³¬¹ı dec_cali_factor1 */
+    /* å¿…é¡»æ—¶å»¶æ—¶æ•°è¶…è¿‡ dec_cali_factor1 */
     delay_us = (__g_delay_timer.dec_cali_factor1 + 1) * 256 /   \
                                      __g_delay_timer.dec_factor + 1;
 
@@ -259,7 +259,7 @@ static void __delay_by_fator_cal (void)
 
     ticks1 = __time_ticks_cal(ticks1, ticks2);
 
-    /* ½« ticks1 ×ª»»Îª¶ÔÓ¦µÄ ÑÓÊ±Òò×Ó */
+    /* å°† ticks1 è½¬æ¢ä¸ºå¯¹åº”çš„ å»¶æ—¶å› å­ */
     __g_delay_timer.dec_cali_factor2 = (ticks1 * dec_factor + ticks / 2) / ticks;
 }
 
@@ -270,14 +270,14 @@ static void __delay (uint64_t ticks)
     uint32_t   max_ticks            = __g_delay_timer.max_ticks;
     uint32_t   half_count_get_ticks = __g_delay_timer.count_get_ticks / 2;
 
-    uint32_t   start_ticks;     /* ¼ÇÂ¼Öµ */
-    uint32_t   cur_ticks;       /* µ±Ç°Öµ */
-    uint32_t   cnt_ticks;       /* ¼ÆÊıÖµ */
+    uint32_t   start_ticks;     /* è®°å½•å€¼ */
+    uint32_t   cur_ticks;       /* å½“å‰å€¼ */
+    uint32_t   cnt_ticks;       /* è®¡æ•°å€¼ */
 
-    /* ¼ÇÂ¼µ±Ç°ticksÖµ */
+    /* è®°å½•å½“å‰tickså€¼ */
     start_ticks = __timer_count_get();
 
-    /* ÖÁ´Ë£¬¿ÉÒÔÈÏÎªÒÑ¾­ÏûºÄÁË cali_ticks, ¼ì²éÊÇ·ñÒÑ¾­¼ÆÊ±½áÊø */
+    /* è‡³æ­¤ï¼Œå¯ä»¥è®¤ä¸ºå·²ç»æ¶ˆè€—äº† cali_ticks, æ£€æŸ¥æ˜¯å¦å·²ç»è®¡æ—¶ç»“æŸ */
     if (ticks <= __g_delay_timer.cali_ticks) {
         return;
     } else {
@@ -286,10 +286,10 @@ static void __delay (uint64_t ticks)
 
     while (1) {
 
-        /* »ñÈ¡µ±Ç°ticksÖµ */
+        /* è·å–å½“å‰tickså€¼ */
         cur_ticks = __timer_count_get();
 
-        /* ÒÑ¾­¼ÇÁË¶àÉÙticks */
+        /* å·²ç»è®°äº†å¤šå°‘ticks */
         if (cur_ticks >= start_ticks) {
             cnt_ticks = cur_ticks - start_ticks;
         } else {
@@ -297,8 +297,8 @@ static void __delay (uint64_t ticks)
         }
 
         /*
-         * ¼ì²éÊÇ·ñÒÑ¾­¼ÆÊ±½áÊø,
-         * ÌØ±ğµØ£¬Ê£ÓàÊ±¼ä²»µ½ count »ñÈ¡ºÄÊ±µÄÒ»°ë£¬Ò²½áÊø£¬¼õĞ¡Îó²î
+         * æ£€æŸ¥æ˜¯å¦å·²ç»è®¡æ—¶ç»“æŸ,
+         * ç‰¹åˆ«åœ°ï¼Œå‰©ä½™æ—¶é—´ä¸åˆ° count è·å–è€—æ—¶çš„ä¸€åŠï¼Œä¹Ÿç»“æŸï¼Œå‡å°è¯¯å·®
          */
         if (cnt_ticks >= ticks) {
             break;
@@ -317,7 +317,7 @@ static void __delay (uint64_t ticks)
 *******************************************************************************/
 
 /**
- * \brief ÑÓÊ±º¯Êı³õÊ¼»¯
+ * \brief å»¶æ—¶å‡½æ•°åˆå§‹åŒ–
  */
 void am_bsp_delay_timer_init (am_timer_handle_t handle, uint8_t chan)
 {
@@ -325,51 +325,51 @@ void am_bsp_delay_timer_init (am_timer_handle_t handle, uint8_t chan)
 
     int key;
 
-    /* ²ÎÊıÓĞĞ§ĞÔÅĞ¶Ï */
+    /* å‚æ•°æœ‰æ•ˆæ€§åˆ¤æ–­ */
     if (NULL == handle) {
         return;
     }
 
-    /* »ñÈ¡µ±Ç°¶¨Ê±Æ÷ĞÅÏ¢ */
+    /* è·å–å½“å‰å®šæ—¶å™¨ä¿¡æ¯ */
     p_info = am_timer_info_get(handle);
 
-    /* ¶¨Ê±Æ÷ÌØĞÔÅĞ¶Ï */
-    if ((!(AM_TIMER_INTERMEDIATE_COUNT & p_info->features)) || /* ²»Ö§³Ö¶ÁÈ¡µ±Ç°¼ÆÊıÖµ */
-        (AM_TIMER_CANNOT_DISABLE & p_info->features) ||        /* ²»ÄÜ±»½ûÄÜ */
-        (AM_TIMER_STOP_WHILE_READ & p_info->features) ||       /* ¶ÁÈ¡Ê±»áÍ£Ö¹ */
-        (!(AM_TIMER_AUTO_RELOAD & p_info->features))) {        /* ²»Ö§³Ö×Ô¶¯ÖØÔØ */
+    /* å®šæ—¶å™¨ç‰¹æ€§åˆ¤æ–­ */
+    if ((!(AM_TIMER_INTERMEDIATE_COUNT & p_info->features)) || /* ä¸æ”¯æŒè¯»å–å½“å‰è®¡æ•°å€¼ */
+        (AM_TIMER_CANNOT_DISABLE & p_info->features) ||        /* ä¸èƒ½è¢«ç¦èƒ½ */
+        (AM_TIMER_STOP_WHILE_READ & p_info->features) ||       /* è¯»å–æ—¶ä¼šåœæ­¢ */
+        (!(AM_TIMER_AUTO_RELOAD & p_info->features))) {        /* ä¸æ”¯æŒè‡ªåŠ¨é‡è½½ */
         return;
     }
 
-    /* ¶¨Ê±Æ÷Í¨µÀºÏÀíĞÔÅĞ¶Ï */
+    /* å®šæ—¶å™¨é€šé“åˆç†æ€§åˆ¤æ–­ */
     if (chan >= p_info->chan_num) {
         return;
     }
 
-    /* ¶ÔÈ«¾Ö__g_delay_timer¸³Öµ */
+    /* å¯¹å…¨å±€__g_delay_timerèµ‹å€¼ */
     __g_delay_timer.handle    = handle;
     __g_delay_timer.chan      = chan;
 
     am_timer_count_freq_get(handle, chan, &__g_delay_timer.freq);
     am_timer_rollover_get(handle, chan, &__g_delay_timer.max_ticks);
 
-    /* ÈôÎŞÆäËüÓ¦ÓÃÊ¹ÓÃÑÓÊ±¶¨Ê±Æ÷£¬ÔòÉèÖÃÖØÔØÖµÎª×î´óÖµ */
+    /* è‹¥æ— å…¶å®ƒåº”ç”¨ä½¿ç”¨å»¶æ—¶å®šæ—¶å™¨ï¼Œåˆ™è®¾ç½®é‡è½½å€¼ä¸ºæœ€å¤§å€¼ */
     if (__g_delay_timer.max_ticks == 0) {
         __g_delay_timer.max_ticks = (1 << p_info->counter_width) - 1;
     }
     am_timer_enable(handle, chan, __g_delay_timer.max_ticks);
 
-    /* ÆÀ¹ÀÒ»Ğ©ÖØÒªÊ±¼äÊ±£¬¹Ø±ÕÖĞ¶Ï */
+    /* è¯„ä¼°ä¸€äº›é‡è¦æ—¶é—´æ—¶ï¼Œå…³é—­ä¸­æ–­ */
     key = am_int_cpu_lock();
-    __delay_count_get_ticks_cal();             /* ¼ÆËãcount_get()ĞèÒªµÄticks  */
+    __delay_count_get_ticks_cal();             /* è®¡ç®—count_get()éœ€è¦çš„ticks  */
     am_int_cpu_unlock(key);
 
     key = am_int_cpu_lock();
-    __delay_cali_ticks_cal();                  /* ¼ÆËã»ùÓÚticksÑÓÊ±Îó²îĞŞÕıÖµ */
+    __delay_cali_ticks_cal();                  /* è®¡ç®—åŸºäºtickså»¶æ—¶è¯¯å·®ä¿®æ­£å€¼ */
     am_int_cpu_unlock(key);
 
     key = am_int_cpu_lock();
-    __delay_by_fator_cal();                    /* ¼ÆËãµİ¼õ·¨ÑÓÊ±Òò×Ó          */
+    __delay_by_fator_cal();                    /* è®¡ç®—é€’å‡æ³•å»¶æ—¶å› å­          */
     am_int_cpu_unlock(key);
 }
 

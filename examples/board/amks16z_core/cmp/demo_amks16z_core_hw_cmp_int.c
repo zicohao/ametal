@@ -12,17 +12,17 @@
 
 /**
  * \file
- * \brief ģ��Ƚ����Ƚϵ�ѹ���̣�ͨ��HW��Ľӿ��жϷ�ʽʵ��
+ * \brief 模拟比较器比较电压例程，通过HW层的接口中断方式实现
 
- * - �������裺
- *   1. PIOA_1��������PC���ڵ�TXD��
- *   2. PIOA_2��������PC���ڵ�RXD��
- *   3. PIOC_6��ӿɵ��ĵ�ѹ���루���û�������������
- * - ʵ������
- *   �������ѹ����1.65v����ʱ��LED��ת�������ڹ����⣩�����ڴ�ӡ��Ϣ����CMP INT����
+ * - 操作步骤：
+ *   1. PIOA_1引脚连接PC串口的TXD；
+ *   2. PIOA_2引脚连接PC串口的RXD；
+ *   3. PIOC_6外接可调的电压输入（可用滑动变阻器）。
+ * - 实验现象：
+ *   当输入电压经过1.65v附近时，LED翻转（类似于过零检测），串口打印信息：“CMP INT！”
  *
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_amks16z_core_hw_cmp_int.c src_amks16z_core_hw_cmp_int
  *
  * \internal
@@ -47,20 +47,20 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief CMP�Ƚ���HW���ж�����
- * \return ��
+ * \brief CMP比较器HW层中断例程
+ * \return 无
  */
 void demo_amks16z_core_hw_cmp_int_entry (void)
 {
     AM_DBG_INFO("demo amks16z_core hw cmp int!\r\n");
 
-    /* ʹ��CMPʱ�� */
+    /* 使能CMP时钟 */
     amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_CMP);
 
-    /* PIOC_6ΪCMP0_IN0   */
+    /* PIOC_6为CMP0_IN0   */
     am_gpio_pin_cfg (PIOC_6, PIOC_6_CMP0_IN0);
 
-    /* PIOE_0����ΪCMP0_OUT */
+    /* PIOE_0配置为CMP0_OUT */
     am_gpio_pin_cfg (PIOE_0, PIOE_0_CMP0_OUT);
 
     demo_fsl_hw_cmp_int_entry(KL26_CMP0,

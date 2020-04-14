@@ -12,20 +12,20 @@
 
 /**
  * \file
- * \brief MiniPort-KEY Àý³Ì£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MiniPort-KEY ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè
- *   1. ½« MiniPort-KEY °å×ÓÖ±½ÓÓë AM116-Core µÄ MiniPort½Ó¿ÚÏàÁ¬½Ó¡£
+ * - æ“ä½œæ­¥éª¤
+ *   1. å°† MiniPort-KEY æ¿å­ç›´æŽ¥ä¸Ž AM116-Core çš„ MiniPortæŽ¥å£ç›¸è¿žæŽ¥ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. °´ÏÂ°´¼üÊ±£¬µ÷ÊÔ´®¿Ú´òÓ¡µ±Ç°°´¼üÐÅÏ¢¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. æŒ‰ä¸‹æŒ‰é”®æ—¶ï¼Œè°ƒè¯•ä¸²å£æ‰“å°å½“å‰æŒ‰é”®ä¿¡æ¯ã€‚
  *
  * \note
- *    ²âÊÔ±¾ Demo ±ØÐëÔÚ am_prj_config.h ÄÚ½« AM_CFG_KEY_GPIO_ENABLE¡¢
- *    AM_CFG_KEY_ENABLE ºÍ AM_CFG_SOFTIMER_ENABLE ¶¨ÒåÎª 1¡£µ«ÕâÐ©ºê
- *    ÒÑ¾­Ä¬ÈÏÅäÖÃÎª 1£¬ ÓÃ»§²»±ØÔÙ´ÎÅäÖÃ¡£
+ *    æµ‹è¯•æœ¬ Demo å¿…é¡»åœ¨ am_prj_config.h å†…å°† AM_CFG_KEY_GPIO_ENABLEã€
+ *    AM_CFG_KEY_ENABLE å’Œ AM_CFG_SOFTIMER_ENABLE å®šä¹‰ä¸º 1ã€‚ä½†è¿™äº›å®
+ *    å·²ç»é»˜è®¤é…ç½®ä¸º 1ï¼Œ ç”¨æˆ·ä¸å¿…å†æ¬¡é…ç½®ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am116_core_miniport_key.c src_am116_core_miniport_key
  *
  * \internal
@@ -47,7 +47,7 @@
 #include "demo_am116_core_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am116_core_miniport_key_entry (void)
 {

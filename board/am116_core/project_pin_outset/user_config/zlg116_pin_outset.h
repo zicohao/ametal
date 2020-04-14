@@ -13,17 +13,17 @@
 
 /**
  * \file
- * \brief ZLG116 Òý½Å¼°ÅäÖÃ
+ * \brief ZLG116 å¼•è„šåŠé…ç½®
  * 
- * \note 1. ¿É×ªÒÆ¹¦ÄÜ¿ÉÒÔÅäÖÃËùÓÐI/OÒý½Å£»
- *          GPIO¹¦ÄÜºÍÌØÊâ¹¦ÄÜÊôÓÚ¹Ì¶¨¹¦ÄÜ£¬Ö»ÄÜ´îÅä¶ÔÓ¦µÄÒý½ÅÊ¹ÓÃ \n
- *          Ê¾Àý£ºPIO0_0Òý½Å¹¦ÄÜÅäÖÃ£º \n 
- *          - ÅäÖÃÎªGPIO¹¦ÄÜÊ¹ÓÃºê£º      PIO0_0_GPIO \n
- *          - ÅäÖÃÎª±È½ÏÆ÷ÊäÈë¹¦ÄÜÊ¹ÓÃºê£ºPIO0_0_ACMP_I1 \n
- *          - ÅäÖÃ´®¿Ú·¢ËÍÒý½Å¹¦ÄÜÊ¹ÓÃºê£ºPIO_FUNC_U0_TXD
+ * \note 1. å¯è½¬ç§»åŠŸèƒ½å¯ä»¥é…ç½®æ‰€æœ‰I/Oå¼•è„šï¼›
+ *          GPIOåŠŸèƒ½å’Œç‰¹æ®ŠåŠŸèƒ½å±žäºŽå›ºå®šåŠŸèƒ½ï¼Œåªèƒ½æ­é…å¯¹åº”çš„å¼•è„šä½¿ç”¨ \n
+ *          ç¤ºä¾‹ï¼šPIO0_0å¼•è„šåŠŸèƒ½é…ç½®ï¼š \n 
+ *          - é…ç½®ä¸ºGPIOåŠŸèƒ½ä½¿ç”¨å®ï¼š      PIO0_0_GPIO \n
+ *          - é…ç½®ä¸ºæ¯”è¾ƒå™¨è¾“å…¥åŠŸèƒ½ä½¿ç”¨å®ï¼šPIO0_0_ACMP_I1 \n
+ *          - é…ç½®ä¸²å£å‘é€å¼•è„šåŠŸèƒ½ä½¿ç”¨å®ï¼šPIO_FUNC_U0_TXD
  *
- * \note 2. ¸´ÓÃ¹¦ÄÜ·½ÏòÓÉ×ÔÉí¾ö¶¨£¬PIOx_x_GPIO_INPUT»òPIOx_x_GPIO_OUTPUT
- *          »á½«Òý½ÅÅäÖÃÎªÆÕÍ¨IOÊäÈëÊä³ö¹¦ÄÜ 
+ * \note 2. å¤ç”¨åŠŸèƒ½æ–¹å‘ç”±è‡ªèº«å†³å®šï¼ŒPIOx_x_GPIO_INPUTæˆ–PIOx_x_GPIO_OUTPUT
+ *          ä¼šå°†å¼•è„šé…ç½®ä¸ºæ™®é€šIOè¾“å…¥è¾“å‡ºåŠŸèƒ½ 
  *
  * \internal
  * \par Modification History
@@ -42,7 +42,7 @@ extern "C" {
 #include "ZLG116_pin.h"
 
 /** 
- * \name UART1Òý½ÅÅäÖÃ
+ * \name UART1å¼•è„šé…ç½®
  * @{
  */
 #define __UART1_RX            PIOA_10    //PIOA_10 PIOA_9  PIOB_7
@@ -50,7 +50,7 @@ extern "C" {
 /** @} */
 
 /** 
- * \name UART2Òý½ÅÅäÖÃ
+ * \name UART2å¼•è„šé…ç½®
  * @{
  */
 #define __UART2_RX            PIOA_15    //PIOA_3  PIOA_15
@@ -58,7 +58,7 @@ extern "C" {
 /** @} */
 
 /** 
- * \name SPI1Òý½ÅÅäÖÃ
+ * \name SPI1å¼•è„šé…ç½®
  * @{
  */
 #define __SPI1_SCK            PIOA_5     //PIOA_5  PIOB_3  PIOB_13
@@ -67,7 +67,7 @@ extern "C" {
 /** @} */
 
 /** 
- * \name ADCÒý½ÅÅäÖÃ
+ * \name ADCå¼•è„šé…ç½®
  * @{
  */
 #define __ADC_IN0_GPIO        PIOA_0
@@ -83,7 +83,7 @@ extern "C" {
 /** @} */
 
 /** 
- * \name I2CÒý½ÅÅäÖÃ
+ * \name I2Cå¼•è„šé…ç½®
  * @{
  */          
 #define __I2C_SCL             PIOB_6     //PIOA_9  PIOA_11  PIOB_6  PIOB_8  PIOB_10  PIOB_13  PIOD_1
@@ -91,7 +91,7 @@ extern "C" {
 /** @} */
 
 /** 
- * \name LEDÒý½ÅÅäÖÃ
+ * \name LEDå¼•è„šé…ç½®
  * @{
  */
 #define __LED0_GPIO           PIOB_1
@@ -99,14 +99,14 @@ extern "C" {
 /** @} */
 
 /** 
- * \name KEYÒý½ÅÅäÖÃ
+ * \name KEYå¼•è„šé…ç½®
  * @{
  */
 #define __KEY_KP0_GPIO        PIOA_8
 /** @} */
 
 /** 
- * \name TIM1Òý½ÅÅäÖÃ
+ * \name TIM1å¼•è„šé…ç½®
  * @{
  */
 #define __TIM1_BKIN_GPIO      PIOA_6     //PIOA_6  PIOB_12
@@ -121,7 +121,7 @@ extern "C" {
 /** @} */
 
 /** 
- * \name TIM2Òý½ÅÅäÖÃ
+ * \name TIM2å¼•è„šé…ç½®
  * @{
  */
 #define __TIM2_CH2_GPIO       PIOA_1     //PIOA_1  PIOB_3 
@@ -131,7 +131,7 @@ extern "C" {
 /** @} */
 
 /** 
- * \name TIM3Òý½ÅÅäÖÃ
+ * \name TIM3å¼•è„šé…ç½®
  * @{
  */
 #define __TIM3_CH1_GPIO       PIOA_6     //PIOA_6  PIOB_4
@@ -141,14 +141,14 @@ extern "C" {
 /** @} */
 
 /** 
- * \name TIM14Òý½ÅÅäÖÃ
+ * \name TIM14å¼•è„šé…ç½®
  * @{
  */
 #define __TIM14_CH1_GPIO      PIOA_4     //PIOA_4 PIOA_7 PIOB_1
 /** @} */
 
 /** 
- * \name TIM16Òý½ÅÅäÖÃ
+ * \name TIM16å¼•è„šé…ç½®
  * @{
  */
 #define __TIM16_CH1_GPIO      PIOA_6     //PIOA_6  PIOB_8
@@ -159,7 +159,7 @@ extern "C" {
 /** @} */
 
 /** 
- * \name TIM17Òý½ÅÅäÖÃ
+ * \name TIM17å¼•è„šé…ç½®
  * @{
  */
 #define __TIM17_CH1_GPIO      PIOA_7     //PIOA_7   PIOB_9

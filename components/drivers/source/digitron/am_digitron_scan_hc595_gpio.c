@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ÊýÂë¹ÜÇý¶¯£º¶ÎÂëHC595Çý¶¯£¬Î»ÂëGPIOÇý¶¯
+ * \brief æ•°ç ç®¡é©±åŠ¨ï¼šæ®µç HC595é©±åŠ¨ï¼Œä½ç GPIOé©±åŠ¨
  *
  * \internal
  * \par modification history:
@@ -35,7 +35,7 @@ int am_digitron_scan_hc595_gpio_init (
         return -AM_EINVAL;
     }
 
-    /* ¶ÎÂëºÍÎ»Âë¶ÀÁ¢·¢ËÍ  */
+    /* æ®µç å’Œä½ç ç‹¬ç«‹å‘é€  */
     p_dev->scan_ops.p_send_seg = am_digitron_seg_hc595_init(&p_dev->seg_dev,
                                                             &p_info->base_info,
                                                              handle);
@@ -69,7 +69,7 @@ int am_digitron_scan_hc595_gpio_deinit (am_digitron_scan_hc595_gpio_dev_t *p_dev
         return -AM_EINVAL;
     }
 
-    /* É¾³ý±ê×¼µÄÊýÂë¹ÜÉè±¸  */
+    /* åˆ é™¤æ ‡å‡†çš„æ•°ç ç®¡è®¾å¤‡  */
     return am_digitron_scan_deinit(&p_dev->scan_dev);
 }
 

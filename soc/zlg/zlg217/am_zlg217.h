@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZLG217 Ğ¾Æ¬ÌØĞÔÏà¹ØÍ·ÎÄ¼ş¶¨Òå
+ * \brief ZLG217 èŠ¯ç‰‡ç‰¹æ€§ç›¸å…³å¤´æ–‡ä»¶å®šä¹‰
  *
  * \internal
  * \par Modification history
@@ -27,26 +27,26 @@
 extern "C" {
 #endif
 
-/** \brief Ğ¾Æ¬Òı½Å¶¨Òå */
+/** \brief èŠ¯ç‰‡å¼•è„šå®šä¹‰ */
 #include "zlg217_pin.h"
 
-/** \brief Ğ¾Æ¬ÖĞ¶Ï±àºÅ¶¨Òå */
+/** \brief èŠ¯ç‰‡ä¸­æ–­ç¼–å·å®šä¹‰ */
 #include "zlg217_inum.h"
 
-/** \brief Ğ¾Æ¬ÍâÉè¼Ä´æÆ÷»ùÖ·¶¨Òå */
+/** \brief èŠ¯ç‰‡å¤–è®¾å¯„å­˜å™¨åŸºå€å®šä¹‰ */
 #include "zlg217_regbase.h"
 
-/** \brief Ğ¾Æ¬ÍâÉèÓ³Éä */
+/** \brief èŠ¯ç‰‡å¤–è®¾æ˜ å°„ */
 #include "zlg217_periph_map.h"
 
-/** \brief Ê±ÖÓID¶¨Òå */
+/** \brief æ—¶é’ŸIDå®šä¹‰ */
 #include "zlg217_clk.h"
 
-/** \brief DMAÍ¨µÀºÅ¶¨Òå */
+/** \brief DMAé€šé“å·å®šä¹‰ */
 #include "zlg217_dma_chan.h"
 
 /**
- * \name Cortex-M3 ÄÚºË´¦ÀíÆ÷ºÍÍâÉèÉèÖÃ
+ * \name Cortex-M3 å†…æ ¸å¤„ç†å™¨å’Œå¤–è®¾è®¾ç½®
  * @{
  */
 #ifndef AM_CORTEX_M3
@@ -55,9 +55,9 @@ extern "C" {
 
 #if defined AM_CORTEX_M3
 
-#define __MPU_PRESENT            0  /**< \brief M3 ºËÎŞ MPU */
-#define __NVIC_PRIO_BITS         4  /**< \brief M3 ºËÎª 4 */
-#define __Vendor_SysTickConfig   0  /**< \brief ÉèÖÃÎª 1 ¿ÉÒÔÅäÖÃ SysTick */
+#define __MPU_PRESENT            0  /**< \brief M3 æ ¸æ—  MPU */
+#define __NVIC_PRIO_BITS         4  /**< \brief M3 æ ¸ä¸º 4 */
+#define __Vendor_SysTickConfig   0  /**< \brief è®¾ç½®ä¸º 1 å¯ä»¥é…ç½® SysTick */
 
 #include "core_cm3.h"
 

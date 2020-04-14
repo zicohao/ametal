@@ -31,28 +31,28 @@ extern "C" {
 //#define UARTCMD_COMM_MODE_SPI       0x02
 
 #define UARTCMD_PROTOCOL_OLD_FRAME
-#define UARTCMD_PROTOCOL_OLD_LENGTH   6     /**< \brief ¾ÉÍ¨Ñ¶Ö¡Ð­Òé³¤¶È */
-#define UARTCMD_PROTOCOL_LENGTH       10    /**< \brief Í¨Ñ¶Ö¡Ð­Òé³¤¶È */
+#define UARTCMD_PROTOCOL_OLD_LENGTH   6     /**< \brief æ—§é€šè®¯å¸§åè®®é•¿åº¦ */
+#define UARTCMD_PROTOCOL_LENGTH       10    /**< \brief é€šè®¯å¸§åè®®é•¿åº¦ */
 
-#define UARTCMD_COMM_STATUS_IDLE           0x00  /**< \brief UARTCMD ´¦ÓÚ¿ÕÏÐ×´Ì¬ */
-#define UARTCMD_COMM_STATUS_RX_BUSY        0x01  /**< \brief Ö¡´¦ÓÚ½ÓÊÕ×´Ì¬ */
-#define UARTCMD_COMM_STATUS_RX_OK          0x02  /**< \brief Ö¡½ÓÊÕÍê±Ï */
-#define UARTCMD_COMM_STATUS_TX_BUSY        0x03  /**< \brief Ö¡´¦ÓÚ·¢ËÍ×´Ì¬ */
-#define UARTCMD_COMM_STATUS_TX_OK          0x04  /**< \brief Ö¡·¢ËÍÍê±Ï */
-#define UARTCMD_COMM_STATUS_EXECUTING      0x05  /**< \brief Ö¡ÕýÔÚ´¦Àí */
-#define UARTCMD_COMM_STATUS_EXECUTED       0x06  /**< \brief Ö¡´¦Àí½áÊø */
+#define UARTCMD_COMM_STATUS_IDLE           0x00  /**< \brief UARTCMD å¤„äºŽç©ºé—²çŠ¶æ€ */
+#define UARTCMD_COMM_STATUS_RX_BUSY        0x01  /**< \brief å¸§å¤„äºŽæŽ¥æ”¶çŠ¶æ€ */
+#define UARTCMD_COMM_STATUS_RX_OK          0x02  /**< \brief å¸§æŽ¥æ”¶å®Œæ¯• */
+#define UARTCMD_COMM_STATUS_TX_BUSY        0x03  /**< \brief å¸§å¤„äºŽå‘é€çŠ¶æ€ */
+#define UARTCMD_COMM_STATUS_TX_OK          0x04  /**< \brief å¸§å‘é€å®Œæ¯• */
+#define UARTCMD_COMM_STATUS_EXECUTING      0x05  /**< \brief å¸§æ­£åœ¨å¤„ç† */
+#define UARTCMD_COMM_STATUS_EXECUTED       0x06  /**< \brief å¸§å¤„ç†ç»“æŸ */
 
-#define UARTCMD_RX_TIMEOUT            4440  /**< \brief Ö¡½ÓÊÕ³¬Ê±4.44ms */
+#define UARTCMD_RX_TIMEOUT            4440  /**< \brief å¸§æŽ¥æ”¶è¶…æ—¶4.44ms */
 
-#define UARTCMD_FRAME_EXT             0x03  /**< \brief Ö¡½áÊø·û */
+#define UARTCMD_FRAME_EXT             0x03  /**< \brief å¸§ç»“æŸç¬¦ */
 
-#define UARTCMD_VERSION_SIZE          20    /**< \brief ÃèÊö°æ±¾µÄ×Ö½ÚÊý */
-#define UARTCMD_SN_SIZE               16    /**< \brief ÃèÊöÐòÁÐºÅµÄ×Ö½ÚÊý */
-#define UARTCMD_RECORD_SIZE           128   /**< \brief ²âÊÔ¼ÇÂ¼ÎÄ¼þµÄ´óÐ¡ */
+#define UARTCMD_VERSION_SIZE          20    /**< \brief æè¿°ç‰ˆæœ¬çš„å­—èŠ‚æ•° */
+#define UARTCMD_SN_SIZE               16    /**< \brief æè¿°åºåˆ—å·çš„å­—èŠ‚æ•° */
+#define UARTCMD_RECORD_SIZE           128   /**< \brief æµ‹è¯•è®°å½•æ–‡ä»¶çš„å¤§å° */
 
 
-#define UARTCMD_COMM_MODE_MASK        0x0F  /**< \brief Í¨ÐÅÄ£Ê½ÑÚÂë */
-#define UARTCMD_COMM_MODE_AUTO        0x00  /**< \brief ×Ô¶¯¼ì²â */
+#define UARTCMD_COMM_MODE_MASK        0x0F  /**< \brief é€šä¿¡æ¨¡å¼æŽ©ç  */
+#define UARTCMD_COMM_MODE_AUTO        0x00  /**< \brief è‡ªåŠ¨æ£€æµ‹ */
 #define UARTCMD_COMM_MODE_I2C         0x01  /**< \brief I2C */
 #define UARTCMD_COMM_MODE_UART        0x02  /**< \brief UART */
 #define UARTCMD_COMM_MODE_WG          0x03  /**< \brief WG */

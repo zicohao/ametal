@@ -12,17 +12,17 @@
 
 /**
  * \file
- * \brief CLK Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief CLK ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿Ú´òÓ¡¸÷×ÜÏßÆµÂÊ£»
- *   2. ¶Ï¿ªJ10ÌøÏßÃ±£¬PLL Ê±ÖÓ 2 ·ÖÆµºó´Ó PIOA_8 Êä³ö¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. ä¸²å£æ‰“å°å„æ€»çº¿é¢‘ç‡ï¼›
+ *   2. æ–­å¼€J10è·³çº¿å¸½ï¼ŒPLL æ—¶é’Ÿ 2 åˆ†é¢‘åä» PIOA_8 è¾“å‡ºã€‚
  *
  * \note
- *    1. ÈçĞè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔĞÅÏ¢£¬ĞèÒª½« PIOA_10 Òı½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *       PIOA_9 Òı½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
+ *    1. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIOA_10 å¼•è„šè¿æ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *       PIOA_9 å¼•è„šè¿æ¥ PC ä¸²å£çš„ RXDã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_zmf159_hw_clk.c src_zmf159_hw_clk
  *
  * \internal
@@ -46,11 +46,11 @@
 #include "demo_zlg_entries.h"
 #include "demo_zmf159_core_entries.h"
 
-/** \brief ÅäÖÃµ÷ÊÔ´®¿ÚÊä³öµÄ²¨ÌØÂÊ */
+/** \brief é…ç½®è°ƒè¯•ä¸²å£è¾“å‡ºçš„æ³¢ç‰¹ç‡ */
 #define __DEBUG_BAUDRATE        115200
 
 /**
- * \brief ³õÊ¼»¯´®¿Ú 2 Îªµ÷ÊÔ´®¿Ú
+ * \brief åˆå§‹åŒ–ä¸²å£ 2 ä¸ºè°ƒè¯•ä¸²å£
  */
 am_local void __uart_init (void)
 {
@@ -58,13 +58,13 @@ am_local void __uart_init (void)
 
     handle = am_zmf159_uart2_inst_init();
 
-    /* µ÷ÊÔ³õÊ¼»¯ */
+    /* è°ƒè¯•åˆå§‹åŒ– */
     am_debug_init(handle, __DEBUG_BAUDRATE);
 }
 
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_zmf159_core_hw_clk_entry (void)
 {

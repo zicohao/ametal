@@ -12,16 +12,16 @@
 
 /**
  * \file
- * \brief ¶¨Ê±Æ÷ TIMING Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief å®šæ—¶å™¨ TIMING ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. LED0 ÒÔ 10Hz µÄÆµÂÊ½øĞĞ·­×ª¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. LED0 ä»¥ 10Hz çš„é¢‘ç‡è¿›è¡Œç¿»è½¬ã€‚
  *
  * \note
- *    1. LED0 ĞèÒª¶Ì½Ó J9 ÌøÏßÃ±£¬²ÅÄÜ±» PIOC_9 ¿ØÖÆ£»
- *    2. 16 Î»¶¨Ê±Æ÷¶¨Ê±¼ÆÊıÖµ²»Îª 65536 µÄ±¶Êı£¬Ôò¶¨Ê±»áÓĞÒ»Ğ©Æ«²î¡£
+ *    1. LED0 éœ€è¦çŸ­æ¥ J9 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIOC_9 æ§åˆ¶ï¼›
+ *    2. 16 ä½å®šæ—¶å™¨å®šæ—¶è®¡æ•°å€¼ä¸ä¸º 65536 çš„å€æ•°ï¼Œåˆ™å®šæ—¶ä¼šæœ‰ä¸€äº›åå·®ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_zlg217_hw_tim_timing.c src_zlg217_hw_tim_timing
  *
  * \internal
@@ -45,16 +45,16 @@
 #include "demo_am217_core_entries.h"
 
 /**
- * \brief ¶¨Ê±Æ÷timing HW²ãÀı³ÌÈë¿Ú
+ * \brief å®šæ—¶å™¨timing HWå±‚ä¾‹ç¨‹å…¥å£
  */
 void demo_zlg217_core_hw_tim_timing_entry (void)
 {
     AM_DBG_INFO("demo am217_core hw tim timing!\r\n");
 
-    /* Ê¹ÄÜ¶¨Ê±Æ÷Ê±ÖÓ */
+    /* ä½¿èƒ½å®šæ—¶å™¨æ—¶é’Ÿ */
     am_clk_enable(CLK_TIM2);
 
-    /* ¸´Î»¶¨Ê±Æ÷ */
+    /* å¤ä½å®šæ—¶å™¨ */
     am_zlg217_clk_reset(CLK_TIM2);
 
     demo_zlg_hw_tim_timing_entry(ZLG217_TIM2,

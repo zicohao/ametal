@@ -11,21 +11,21 @@
 *******************************************************************************/
 /**
  * \file
- * \brief ˯��ģʽ���̣�ͨ��������ӿ�ʵ��
+ * \brief 睡眠模式例程，通过驱动层接口实现
  *
- * - �������裺
- *   1. �� J14 �� KEY �� PIOA_8 �̽���һ��
+ * - 操作步骤：
+ *   1. 将 J14 的 KEY 和 PIOA_8 短接在一起。
  *
- * - ʵ������
- *   1. MCU ����ֹͣģʽʱ�� J-Link ���ԶϿ���
- *   2. ���� KEY/RES ������ MCU��������� wake_up������������С�
+ * - 实现现象
+ *   1. MCU 进入停止模式时， J-Link 调试断开；
+ *   2. 按下 KEY/RES 键唤醒 MCU，串口输出 wake_up，程序继续运行。
  *
  * \note
- *   ���� TIM14 Ĭ�ϳ�ʼ������Ϊϵͳ�δ�ʹ�ã��ᶨ�ڲ����жϵ��»��ѣ� ���Ա�����
- *   ֮ǰӦ�� am_prj_config.h �еĺ� AM_CFG_SYSTEM_TICK_ENABLE��
- *   AM_CFG_SOFTIMER_ENABLE ��   AM_CFG_KEY_GPIO_ENABLE ����Ϊ 0��
+ *   由于 TIM14 默认初始化并作为系统滴答使用，会定期产生中断导致唤醒， 测试本例程
+ *   之前应将 am_prj_config.h 中的宏 AM_CFG_SYSTEM_TICK_ENABLE、
+ *   AM_CFG_SOFTIMER_ENABLE 和   AM_CFG_KEY_GPIO_ENABLE 设置为 0。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_am116_core_drv_sleepmode_wake_up.c src_am116_core_drv_sleepmode_wake_up
  *
  * \internal
@@ -47,7 +47,7 @@
 #include "demo_am116_core_entries.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_am116_core_drv_sleepmode_wake_up_entry (void)
 {

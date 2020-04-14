@@ -12,15 +12,15 @@
 
 /**
  * \file
- * \brief UART ²¨ÌØÂÊ¼ì²âÀı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ(±¾Àı³Ì²¨ÌØÂÊÖ§³Ö·¶Î§ 1200~12800)
+ * \brief UART æ³¢ç‰¹ç‡æ£€æµ‹ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°(æœ¬ä¾‹ç¨‹æ³¢ç‰¹ç‡æ”¯æŒèŒƒå›´ 1200~12800)
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿ÚÊä³ö "uart connect success"£»
- *   2. ´®¿ÚÊä³ö½ÓÊÕµ½µÄ×Ö·û´®¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. ä¸²å£è¾“å‡º "uart connect success"ï¼›
+ *   2. ä¸²å£è¾“å‡ºæ¥æ”¶åˆ°çš„å­—ç¬¦ä¸²ã€‚
  *
- * \note£º Èç¹ûÎŞ·¨¼ì²âµ½ÉÏÎ»»úµÄ²¨ÌØÂÊ£¬»áÒ»Ö±Ñ­»·¼ì²â£¬´®¿ÚÖúÊÖÒ²¿´²»µ½ÈÎºÎ»ØÓ¦
+ * \noteï¼š å¦‚æœæ— æ³•æ£€æµ‹åˆ°ä¸Šä½æœºçš„æ³¢ç‰¹ç‡ï¼Œä¼šä¸€ç›´å¾ªç¯æ£€æµ‹ï¼Œä¸²å£åŠ©æ‰‹ä¹Ÿçœ‹ä¸åˆ°ä»»ä½•å›åº”
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_amks16z_core_uart_auto_baudrate.c src_amks16z_core_uart_auto_baudrate
  *
  * \internal
@@ -45,7 +45,7 @@
 static const uint8_t __ch[] = {"uart connect success\r\n"};
 
 /**
- * \brief ´®¿Ú²¨ÌØÂÊ¼ì²âÀı³ÌÈë¿Ú
+ * \brief ä¸²å£æ³¢ç‰¹ç‡æ£€æµ‹ä¾‹ç¨‹å…¥å£
  */
 void demo_amks16z_core_uart_auto_baudrate_entry (void)
 {
@@ -55,14 +55,14 @@ void demo_amks16z_core_uart_auto_baudrate_entry (void)
     uint32_t baudrate;
     baudrate_hande = am_kl26_baudrate_detect_inst_init();
 
-    /** \brief ĞèÒª·¢ËÍµÄ×Ö·û´® */
+    /** \brief éœ€è¦å‘é€çš„å­—ç¬¦ä¸² */
 
     while(AM_OK != am_baudrate_get(baudrate_hande, &baudrate)) {
     }
-    /* ²¨ÌØÂÊ»ñÈ¡³É¹¦ºóÒª½â³õÊ¼»¯£¬²ÅÄÜÖØĞÂ³õÊ¼»¯´®¿Ú */
+    /* æ³¢ç‰¹ç‡è·å–æˆåŠŸåè¦è§£åˆå§‹åŒ–ï¼Œæ‰èƒ½é‡æ–°åˆå§‹åŒ–ä¸²å£ */
     am_kl26_baudrate_detect_inst_deinit(baudrate_hande);
 
-    /* UART³õÊ¼»¯ ,Ö»ÄÜÓÃ´®¿Ú2£¬»ñÈ¡²¨ÌØÂÊ»ñÈ¡µÄÊÇ´®¿Ú2µÄ½ÓÊÕÒı½Å*/
+    /* UARTåˆå§‹åŒ– ,åªèƒ½ç”¨ä¸²å£2ï¼Œè·å–æ³¢ç‰¹ç‡è·å–çš„æ˜¯ä¸²å£2çš„æ¥æ”¶å¼•è„š*/
     uart_handle = am_kl26_uart2_inst_init();
 
     am_uart_ioctl(uart_handle, AM_UART_BAUD_SET, (void *)baudrate);
@@ -71,13 +71,13 @@ void demo_amks16z_core_uart_auto_baudrate_entry (void)
                       __ch,
                       sizeof(__ch));
 
-    uint8_t uart1_buf[5];    /* Êı¾İ»º³åÇø */
+    uint8_t uart1_buf[5];    /* æ•°æ®ç¼“å†²åŒº */
 
     while(1) {
-        /* ½ÓÊÕ×Ö·û */
+        /* æ¥æ”¶å­—ç¬¦ */
         am_uart_poll_receive(uart_handle, uart1_buf, 1);
 
-        /* ·¢ËÍ¸Õ¸Õ½ÓÊÕµÄ×Ö·û */
+        /* å‘é€åˆšåˆšæ¥æ”¶çš„å­—ç¬¦ */
         am_uart_poll_send(uart_handle, uart1_buf, 1);
     }
 }

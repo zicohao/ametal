@@ -25,16 +25,16 @@
 #include "ametal.h"
 #include "mvc.h"
 
-//ÅÉÉúmodel_bool_tÄ£ĞÍÀà
+//æ´¾ç”Ÿmodel_bool_tæ¨¡å‹ç±»
 typedef struct _model_bool{
     model_t         isa;
-    am_bool_t       value;                    // boolÄ£ĞÍµÄÊı¾İ
+    am_bool_t       value;                    // boolæ¨¡å‹çš„æ•°æ®
 }model_bool_t;
 
 
-int model_bool_init (model_bool_t *p_this, am_bool_t init_value);  // Ä£ĞÍ³õÊ¼»¯
-int model_bool_set (model_bool_t *p_this, am_bool_t value);        // ÉèÖÃÄ£ĞÍµÄvalueÖµ
-int model_bool_get (model_bool_t *p_this, am_bool_t *p_value);     // »ñÈ¡Ä£ĞÍµÄvalueÖµ
+int model_bool_init (model_bool_t *p_this, am_bool_t init_value);  // æ¨¡å‹åˆå§‹åŒ–
+int model_bool_set (model_bool_t *p_this, am_bool_t value);        // è®¾ç½®æ¨¡å‹çš„valueå€¼
+int model_bool_get (model_bool_t *p_this, am_bool_t *p_value);     // è·å–æ¨¡å‹çš„valueå€¼
 
 
 

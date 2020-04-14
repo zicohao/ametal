@@ -112,7 +112,7 @@ void (* const gVectors[])(void) =
    am_exc_eint_handler
 }; /* gVectors */
 
-/**< \brief ÏÂÃæÕâÈý¸öºêÖ»ÄÜ´ò¿ªÒ»¸ö */
+/**< \brief ä¸‹é¢è¿™ä¸‰ä¸ªå®åªèƒ½æ‰“å¼€ä¸€ä¸ª */
 //#define AM_KL26_FLASH_SEC
 //#define AM_KL26_FLASH_UNSEC
 #define AM_KL26_FLASH_SEC_BACKDOOR
@@ -127,11 +127,11 @@ void (* const gVectors[])(void) =
 __attribute__ ((section(".FlashConfig"), used))
 void (* const gFlashConfig[])(void) =
 {
-   /*¡¡Ç°Ãæ8¸ö×Ö½ÚÎªºóÃÅ°²È«ÃÜÔ¿ */
+   /*ã€€å‰é¢8ä¸ªå­—èŠ‚ä¸ºåŽé—¨å®‰å…¨å¯†é’¥ */
    (void *)0x34333231,
    (void *)0x38373635,
 
-   /* flash±£»¤±êÊ¶£¬Ò»Î»¶ÔÓ¦1/32µÄflash£¬¶ÔÓÚ128kµÄflahs¶øÑÔÊÇ4k£¬Îª1±íÊ¾²»±£»¤ */
+   /* flashä¿æŠ¤æ ‡è¯†ï¼Œä¸€ä½å¯¹åº”1/32çš„flashï¼Œå¯¹äºŽ128kçš„flahsè€Œè¨€æ˜¯4kï¼Œä¸º1è¡¨ç¤ºä¸ä¿æŠ¤ */
    (void *)0xFFFFFFFF,
 
 #ifdef AM_KL26_FLASH_SEC

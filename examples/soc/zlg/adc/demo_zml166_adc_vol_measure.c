@@ -11,15 +11,15 @@
 *******************************************************************************/
 /**
  * \file
- * \brief AM_ZML166_ADC�����̶���ѹ��ͨ����׼�ӿ�ʵ��
+ * \brief AM_ZML166_ADC测量固定电压，通过标准接口实现
  *
- * - ʵ������
- *   1. ���Ӻô��ڣ�����������ѹ�����Ӧ��ͨ��(������ͨ��ΪAIN3 ������ͨ��ΪAIN2)��
- *   2. ѡ���Ӧ�����汶���������ѹ*����ӦС�ڻ�׼��ѹ
- *   3. ���ڽ����ӡ����ѹֵ
- *   4. ���ڳ����������л���ѹֵ  ֱ��������Ӧ�����ּ��ɡ�
+ * - 实验现象：
+ *   1. 连接好串口，并将测量电压输入对应的通道(正输入通道为AIN3 负输入通道为AIN2)。
+ *   2. 选择对应的增益倍数，被测电压*增益应小于基准电压
+ *   3. 串口将会打印出电压值
+ *   4. 可在程序运行中切换电压值  直接输入相应的数字即可。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet dome_zml166_adc_adjust_vol_entry.c src_dome_zml166_adc_adjust_vol_entry
  *
  * \internal
@@ -38,7 +38,7 @@
 #include "am_zml166_adc.h"
 #include "demo_zlg_entries.h"
 /**
- * \brief AM_ZML166_ADC��ѹ��������
+ * \brief AM_ZML166_ADC电压测试例程
  */
 void dome_zml166_adc_vol_measure_entry(void                   *p_handle,
                                        float                  *p_para,

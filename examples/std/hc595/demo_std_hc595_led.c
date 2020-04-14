@@ -12,12 +12,12 @@
 
 /**
  * \file
- * \brief HC595 Êä³öÀı³Ì£¬Îª±ãÓÚ¹Û²ìÏÖÏó£¬½¨Òé½«HC595µÄ8¸öÊä³öÁ¬½Óµ½LEDµÆ
+ * \brief HC595 è¾“å‡ºä¾‹ç¨‹ï¼Œä¸ºä¾¿äºè§‚å¯Ÿç°è±¡ï¼Œå»ºè®®å°†HC595çš„8ä¸ªè¾“å‡ºè¿æ¥åˆ°LEDç¯
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Á÷Ë®µÆÏÖÏó¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. æµæ°´ç¯ç°è±¡ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_std_hc595_led.c src_std_hc595_led
  *
  * \internal
@@ -38,7 +38,7 @@
 #include "am_vdebug.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_std_hc595_led_entry (am_hc595_handle_t hc595_handle)
 {
@@ -47,12 +47,12 @@ void demo_std_hc595_led_entry (am_hc595_handle_t hc595_handle)
 
     while(1) {
         buf = ~(1ul << i);
-        am_hc595_send(hc595_handle, &buf, 1); /* µãÁÁµ±Ç°Î»ÖÃ LED µÆ £¨µÍµçÆ½µãÁÁ£©*/
-        am_mdelay(150);                       /* ÑÓÊ± 150ms */
+        am_hc595_send(hc595_handle, &buf, 1); /* ç‚¹äº®å½“å‰ä½ç½® LED ç¯ ï¼ˆä½ç”µå¹³ç‚¹äº®ï¼‰*/
+        am_mdelay(150);                       /* å»¶æ—¶ 150ms */
         buf = 0xFF;
-        am_hc595_send(hc595_handle, &buf, 1); /* Ï¨Ãğµ±Ç°Î»ÖÃ LED µÆ£¨¸ßµçÆ½Ï¨Ãğ£© */
+        am_hc595_send(hc595_handle, &buf, 1); /* ç†„ç­å½“å‰ä½ç½® LED ç¯ï¼ˆé«˜ç”µå¹³ç†„ç­ï¼‰ */
 
-        i = (i + 1) % 8;                      /* ÇĞ»»µ½ÏÂÒ»Î»ÖÃ */
+        i = (i + 1) % 8;                      /* åˆ‡æ¢åˆ°ä¸‹ä¸€ä½ç½® */
     }
 }
 /** [src_std_hc595_led] */

@@ -12,16 +12,16 @@
 
 /**
  * \file
- * \brief GPIO Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief GPIO ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ¼ä¸ô 0.5s£¬LED0 ÉÁË¸ 5 ´Î£»
- *   2. Ö®ºó£¬LED0 ÒÔ 0.2s µÄ¼ä¸ôÒ»Ö±ÉÁË¸¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. é—´éš” 0.5sï¼ŒLED0 é—ªçƒ 5 æ¬¡ï¼›
+ *   2. ä¹‹åï¼ŒLED0 ä»¥ 0.2s çš„é—´éš”ä¸€ç›´é—ªçƒã€‚
  *
  * \note
- *    LED0 ĞèÒª¶Ì½Ó J9 ÌøÏßÃ±£¬²ÅÄÜ±» PIO0_20 ¿ØÖÆ¡£
+ *    LED0 éœ€è¦çŸ­æ¥ J9 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIO0_20 æ§åˆ¶ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am824_hw_gpio.c src_am824_hw_gpio
  *
  * \internal
@@ -43,18 +43,18 @@
 #include "lpc82x_periph_map.h"
 #include "demo_nxp_entries.h"
 
-/** \brief LED0 Òı½Å */
+/** \brief LED0 å¼•è„š */
 #define __LED0_PIN  PIO0_20
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am824_core_hw_gpio_entry (void)
 {
   
     am_kprintf("demo am824_core hw gpio!\r\n");
   
-    /* ÅäÖÃÒı½Å·½ÏòÎªÊä³ö */
+    /* é…ç½®å¼•è„šæ–¹å‘ä¸ºè¾“å‡º */
     amhw_lpc82x_gpio_pin_dir_output(LPC82X_GPIO, __LED0_PIN);
 
     demo_lpc824_hw_gpio_entry(LPC82X_GPIO, __LED0_PIN);

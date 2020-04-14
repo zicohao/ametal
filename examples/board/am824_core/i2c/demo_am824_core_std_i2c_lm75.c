@@ -11,19 +11,19 @@
 *******************************************************************************/
 /**
  * \file
- * \brief I2C Ö÷»ú´Ó LM75 ´«¸ÐÆ÷¶ÁÈ¡ÎÂ¶ÈÖµÀý³Ì£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief I2C ä¸»æœºä»Ž LM75 ä¼ æ„Ÿå™¨è¯»å–æ¸©åº¦å€¼ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿ÚÊä³öÎÂ¶ÈÖµ£»
- *   2. °´ÏÂ RES °´¼ü£¬¹ýÒ»»á¶ù£¬´®¿ÚÊä³öÎÂ¶ÈÖµÉý¸ß¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. ä¸²å£è¾“å‡ºæ¸©åº¦å€¼ï¼›
+ *   2. æŒ‰ä¸‹ RES æŒ‰é”®ï¼Œè¿‡ä¸€ä¼šå„¿ï¼Œä¸²å£è¾“å‡ºæ¸©åº¦å€¼å‡é«˜ã€‚
  *
  * \note
- *    1. ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIO0_0 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *       PIO0_4 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD£»
- *    2. °´¼üÐèÒª½« J14 ÌøÏßÃ±µÄ KEY ºÍ RES ¶Ì½Ó²ÅÄÜÊ¹ÓÃ£»
- *    3. ÐèÒª¶Ì½Ó J11 ºÍ J13 ÌøÏßÃ±£¬I2C1 ²Å»áÓë LM75 Á¬½Ó¡£
+ *    1. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO0_0 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *       PIO0_4 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDï¼›
+ *    2. æŒ‰é”®éœ€è¦å°† J14 è·³çº¿å¸½çš„ KEY å’Œ RES çŸ­æŽ¥æ‰èƒ½ä½¿ç”¨ï¼›
+ *    3. éœ€è¦çŸ­æŽ¥ J11 å’Œ J13 è·³çº¿å¸½ï¼ŒI2C1 æ‰ä¼šä¸Ž LM75 è¿žæŽ¥ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am824_std_i2c_lm75.c src_am824_std_i2c_lm75
  *
  * \internal
@@ -46,7 +46,7 @@
 #include "demo_std_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am824_core_std_i2c_lm75_entry (void)
 {

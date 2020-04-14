@@ -29,7 +29,7 @@ int  (*gpfunc_kputc)(const char  c, void *fil) = NULL;
 int  (*gpfunc_kputs)(const char *s, void *fil) = NULL;
 
 /**
- * \brief 设置输出信息函数
+ * \brief 璁剧疆杈撳嚭淇℃伅鍑芥暟
  */
 void am_koutput_set (void  *fil,
                      int  (*f_putc) (const char  c, void *fil),

@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief LM75ÎÂ¶È´«¸ĞÆ÷Çı¶¯
+ * \brief LM75æ¸©åº¦ä¼ æ„Ÿå™¨é©±åŠ¨
  *
  * \internal
  * \par modification history:
@@ -38,14 +38,14 @@ extern "C" {
  */
 
 /**
- * \brief LM75ĞÅÏ¢
+ * \brief LM75ä¿¡æ¯
  */
 typedef struct am_temp_lm75_info {
-    uint8_t            i2c_addr;        /** <\brief 7-bit ´Ó»úµØÖ·  */
+    uint8_t            i2c_addr;        /** <\brief 7-bit ä»æœºåœ°å€  */
 } am_temp_lm75_info_t;
 
 /**
- * \brief LEDÉè±¸£¨GPIOÇı¶¯£©
+ * \brief LEDè®¾å¤‡ï¼ˆGPIOé©±åŠ¨ï¼‰
  */
 typedef struct am_temp_lm75 {
     am_temp_dev_t               isa;
@@ -54,26 +54,26 @@ typedef struct am_temp_lm75 {
 } am_temp_lm75_t;
 
 /**
- * \brief LM75ÎÂ¶È´«¸ĞÆ÷³õÊ¼»¯
+ * \brief LM75æ¸©åº¦ä¼ æ„Ÿå™¨åˆå§‹åŒ–
  *
- * \param[in] p_lm75  : LM75ÎÂ¶È´«¸ĞÆ÷Éè±¸
- * \param[in] p_info  : LM75ÎÂ¶È´«¸ĞÆ÷ĞÅÏ¢
- * \param[in] handle  : I2C±ê×¼·şÎñ¾ä±ú
+ * \param[in] p_lm75  : LM75æ¸©åº¦ä¼ æ„Ÿå™¨è®¾å¤‡
+ * \param[in] p_info  : LM75æ¸©åº¦ä¼ æ„Ÿå™¨ä¿¡æ¯
+ * \param[in] handle  : I2Cæ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \retval AM_OK      : ³õÊ¼»¯³É¹¦
- * \retval -AM_EINVAL : ³õÊ¼»¯Ê§°Ü
+ * \retval AM_OK      : åˆå§‹åŒ–æˆåŠŸ
+ * \retval -AM_EINVAL : åˆå§‹åŒ–å¤±è´¥
  */
 am_temp_handle_t am_temp_lm75_init (am_temp_lm75_t            *p_lm75,
                                     const am_temp_lm75_info_t *p_info,
                                     am_i2c_handle_t            handle);
 
 /**
- * \brief LM75ÎÂ¶È´«¸ĞÆ÷½â³õÊ¼»¯
+ * \brief LM75æ¸©åº¦ä¼ æ„Ÿå™¨è§£åˆå§‹åŒ–
  *
- * \param[in] p_lm75  : LM75ÎÂ¶È´«¸ĞÆ÷Éè±¸
+ * \param[in] p_lm75  : LM75æ¸©åº¦ä¼ æ„Ÿå™¨è®¾å¤‡
  *
- * \retval AM_OK      : ½â³õÊ¼»¯³É¹¦
- * \retval -AM_EINVAL : ½â³õÊ¼»¯Ê§°Ü
+ * \retval AM_OK      : è§£åˆå§‹åŒ–æˆåŠŸ
+ * \retval -AM_EINVAL : è§£åˆå§‹åŒ–å¤±è´¥
  */
 int am_temp_lm75_deinit (am_temp_lm75_t *p_lm75);
 

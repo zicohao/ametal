@@ -7,49 +7,49 @@
 #include "am_baudrate_detect.h"
 
 /**
- * \name ×Ô¶¯²¨ÌØÂÊ¼ì²âºê¶¨Òå
+ * \name è‡ªåŠ¨æ³¢ç‰¹ç‡æ£€æµ‹å®å®šä¹‰
  * @{
  */
 
-/** \brief ĞèÒªÓÃµ½µÄ¶¨Ê±Æ÷Î»Êı */
+/** \brief éœ€è¦ç”¨åˆ°çš„å®šæ—¶å™¨ä½æ•° */
 #define     TIMER_WIDTH           16
 static am_cap_handle_t            cap_handle;
 /** @} */
 
 /*******************************************************************************
- * ×Ô¶¯²¨ÌØÂÊ¼ì²âÅäÖÃ
+ * è‡ªåŠ¨æ³¢ç‰¹ç‡æ£€æµ‹é…ç½®
  ******************************************************************************/
 
 
 
-/** \brief ×Ô¶¯²¨ÌØÂÊµÄÆ½Ì¨³õÊ¼»¯ */
+/** \brief è‡ªåŠ¨æ³¢ç‰¹ç‡çš„å¹³å°åˆå§‹åŒ– */
 void __zlg217_plfm_baudrate_detect_init (void)
 {
-    /* Ô¤·ÖÆµÖµÔ½µÍ£¬¸üÈİÒ×¼ì²â¸üµÍµÄ²¨ÌØÂÊ£»Ïà·´Ô¤·ÖÆµÖµ¸ß£¬ÄÜ¹»¼ì²â¸ü¸ßµÄ²¨ÌØÂÊ */
+    /* é¢„åˆ†é¢‘å€¼è¶Šä½ï¼Œæ›´å®¹æ˜“æ£€æµ‹æ›´ä½çš„æ³¢ç‰¹ç‡ï¼›ç›¸åé¢„åˆ†é¢‘å€¼é«˜ï¼Œèƒ½å¤Ÿæ£€æµ‹æ›´é«˜çš„æ³¢ç‰¹ç‡ */
     amhw_zlg_tim_prescale_set((amhw_zlg_tim_t *)ZLG217_TIM2_BASE, (uint16_t)8);
 }
 
-/** \brief ×Ô¶¯²¨ÌØÂÊµÄÆ½Ì¨½â³õÊ¼»¯  */
+/** \brief è‡ªåŠ¨æ³¢ç‰¹ç‡çš„å¹³å°è§£åˆå§‹åŒ–  */
 void __zlg217_plfm_baudrate_detect_deinit (void)
 {
     am_zlg217_tim1_cap_inst_deinit (cap_handle);
 }
 
-/** \brief ×Ô¶¯²¨ÌØÂÊµÄÉè±¸ĞÅÏ¢ÊµÀı */
+/** \brief è‡ªåŠ¨æ³¢ç‰¹ç‡çš„è®¾å¤‡ä¿¡æ¯å®ä¾‹ */
 static am_baudrate_detect_devinfo_t __g_zlg217_baudrate_detect_devinfo = {
-    PIOA_10,                            /**< \brief ±»²¶»ñÒı½Å */
-    2,                                 /**< \brief CAP²¶»ñÍ¨µÀºÅ */
-    TIMER_WIDTH,                       /**< \brief TIMER¶¨Ê±Æ÷Î»Êı */
-    10,                                /**< \brief ½ÓÊÕÒ»´ÎÊı¾İµÄ³¬Ê±Ê±¼ä(ms)*/
-    AM_CAP_TRIGGER_BOTH_EDGES,               /**< \brief CAP²¶»ñ´¥·¢·½Ê½ */
-    __zlg217_plfm_baudrate_detect_init,  /**< \brief Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __zlg217_plfm_baudrate_detect_deinit,/**< \brief Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    PIOA_10,                            /**< \brief è¢«æ•è·å¼•è„š */
+    2,                                 /**< \brief CAPæ•è·é€šé“å· */
+    TIMER_WIDTH,                       /**< \brief TIMERå®šæ—¶å™¨ä½æ•° */
+    10,                                /**< \brief æ¥æ”¶ä¸€æ¬¡æ•°æ®çš„è¶…æ—¶æ—¶é—´(ms)*/
+    AM_CAP_TRIGGER_BOTH_EDGES,               /**< \brief CAPæ•è·è§¦å‘æ–¹å¼ */
+    __zlg217_plfm_baudrate_detect_init,  /**< \brief å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __zlg217_plfm_baudrate_detect_deinit,/**< \brief å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 };
 
-/** \brief ×Ô¶¯²¨ÌØÂÊ¹¦ÄÜµÄÉè±¸ÊµÀı */
+/** \brief è‡ªåŠ¨æ³¢ç‰¹ç‡åŠŸèƒ½çš„è®¾å¤‡å®ä¾‹ */
 am_baudrate_detect_dev_t  __g_zlg217_baudrate_detect_dev;
 
-/** \brief ÊµÀı³õÊ¼»¯£¬»ñµÃ×Ô¶¯²¨ÌØÂÊ·şÎñ¾ä±ú */
+/** \brief å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—è‡ªåŠ¨æ³¢ç‰¹ç‡æœåŠ¡å¥æŸ„ */
 am_baudrate_detect_handle_t am_zlg217_baudrate_detect_inst_init (void)
 {
     cap_handle = am_zlg217_tim1_cap_inst_init();
@@ -59,7 +59,7 @@ am_baudrate_detect_handle_t am_zlg217_baudrate_detect_inst_init (void)
                                     cap_handle);
 }
 
-/** \brief ÊµÀı½â³õÊ¼»¯*/
+/** \brief å®ä¾‹è§£åˆå§‹åŒ–*/
 void am_zlg217_baudrate_detect_inst_deinit(am_baudrate_detect_handle_t handle)
 {
     am_baudrate_detect_deinit(handle);

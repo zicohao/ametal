@@ -11,13 +11,13 @@
 *******************************************************************************/
 /**
  * \file
- * \brief ZLG116 bootloader Ó¦ÓÃ¹Ì¼ş¹¤³Ì
+ * \brief ZLG116 bootloader åº”ç”¨å›ºä»¶å·¥ç¨‹
  *
- * - ²Ù×÷²½Öè£º
- *    ²Î¿¼ {sdk}\ametal\documents\am116_coreÄ¿Â¼ÏÂ zlg116 bootloader ²Ù×÷ÊÖ²á¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *    å‚è€ƒ {sdk}\ametal\documents\am116_coreç›®å½•ä¸‹ zlg116 bootloader æ“ä½œæ‰‹å†Œã€‚
  *
  * \note
- *    ¸ÃÀı³ÌÎª¹Ì¼ş³ÌĞò£¬ÎŞ·¨Ö±½ÓÔÚÔËĞĞ
+ *    è¯¥ä¾‹ç¨‹ä¸ºå›ºä»¶ç¨‹åºï¼Œæ— æ³•ç›´æ¥åœ¨è¿è¡Œ
  *
  * \internal
  * \par Modification history
@@ -32,7 +32,7 @@
 #include "demo_am116_core_entries.h"
 
 /**
- * \brief AMetal Ó¦ÓÃ³ÌĞòÈë¿Ú
+ * \brief AMetal åº”ç”¨ç¨‹åºå…¥å£
  */
 int am_main (void)
 {

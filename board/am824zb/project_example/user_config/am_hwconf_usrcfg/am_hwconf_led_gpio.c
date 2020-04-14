@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief LED ÅäÖÃÎÄ¼ş£¨GPIOÖ±½ÓÇı¶¯£©
+ * \brief LED é…ç½®æ–‡ä»¶ï¼ˆGPIOç›´æ¥é©±åŠ¨ï¼‰
  * \sa am_hwconf_led_gpio.c
  *
  * \internal
@@ -32,17 +32,17 @@
  * @{
  */
 
-/* ¶¨ÒåGPIO LED ÊµÀı */
+/* å®šä¹‰GPIO LED å®ä¾‹ */
 static am_led_gpio_dev_t  __g_led_gpio;
 
-/* ·Ö±ğ¶ÔÓ¦LED0, LED1, LED5 */
+/* åˆ†åˆ«å¯¹åº”LED0, LED1, LED5 */
 static const int __g_led_pins[] = {PIO0_8, PIO0_9, PIO0_16};
 
-/* ¶¨ÒåGPIO°´¼üÊµÀıĞÅÏ¢ */
+/* å®šä¹‰GPIOæŒ‰é”®å®ä¾‹ä¿¡æ¯ */
 static const am_led_gpio_info_t __g_led_gpio_info = {
     {
-        0,                              /* ÆğÊ¼±àºÅ0 */
-        AM_NELEMENTS(__g_led_pins) - 1  /* ½áÊø±àºÅ2£¬¹²¼Æ3¸öLED */
+        0,                              /* èµ·å§‹ç¼–å·0 */
+        AM_NELEMENTS(__g_led_pins) - 1  /* ç»“æŸç¼–å·2ï¼Œå…±è®¡3ä¸ªLED */
     },
     __g_led_pins,
     AM_TRUE

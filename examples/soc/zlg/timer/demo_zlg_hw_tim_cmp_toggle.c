@@ -12,13 +12,13 @@
 
 /**
  * \file
- * \brief ¶¨Ê±Æ÷Í¨µÀ±È½ÏÆ¥ÅäÒı½Å·­×ªÀı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief å®šæ—¶å™¨é€šé“æ¯”è¾ƒåŒ¹é…å¼•è„šç¿»è½¬ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Ö¸¶¨Òı½ÅÒÔ 10Hz µÄÆµÂÊ½øĞĞ·­×ª¡£
- *   2. LED0 ·­×ª¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. æŒ‡å®šå¼•è„šä»¥ 10Hz çš„é¢‘ç‡è¿›è¡Œç¿»è½¬ã€‚
+ *   2. LED0 ç¿»è½¬ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_zlg_hw_tim_cmp_toggle.c src_zlg_hw_tim_cmp_toggle
  *
  * \internal
@@ -43,7 +43,7 @@
 #define LED0          0
 
 /**
- * \brief CMP ÖĞ¶Ï·şÎñº¯Êı
+ * \brief CMP ä¸­æ–­æœåŠ¡å‡½æ•°
  */
 static void __zlg_tim_cmp_irq_handler (void *p_arg)
 {
@@ -55,14 +55,14 @@ static void __zlg_tim_cmp_irq_handler (void *p_arg)
 
             am_led_toggle(LED0);
 
-            /* Çå³ıÍ¨µÀi±êÖ¾ */
+            /* æ¸…é™¤é€šé“iæ ‡å¿— */
             amhw_zlg_tim_status_flg_clr(p_hw_tim, (1UL << i));
         }
     }
 }
 
 /**
- * \brief ÅäÖÃ¶¨Ê±Æ÷Êä³ö±È½ÏÄ£Ê½£¬Æ¥ÅäºóµçÆ½·¢Éú·­×ª
+ * \brief é…ç½®å®šæ—¶å™¨è¾“å‡ºæ¯”è¾ƒæ¨¡å¼ï¼ŒåŒ¹é…åç”µå¹³å‘ç”Ÿç¿»è½¬
  */
 static void tim_cmp_toggle_chan_config (amhw_zlg_tim_t *p_hw_tim,
                                         uint32_t        chan,
@@ -75,46 +75,46 @@ static void tim_cmp_toggle_chan_config (amhw_zlg_tim_t *p_hw_tim,
     {
         temp = cnt;
 
-        /* 16Î»¼ÆÊıÆ÷×î´óÖµ65536, ·ÖÆµÆ÷×î´óÖµ65536 */
+        /* 16ä½è®¡æ•°å™¨æœ€å¤§å€¼65536, åˆ†é¢‘å™¨æœ€å¤§å€¼65536 */
         if (temp  > 4294967295UL) {
             return ;
         }
 
-        /* µ±¼ÆÊıĞ¡ÓÚ65536Ê±£¬²»·ÖÆµ(ÖµÎª1,1´ú±íÎª1·ÖÆµ) */
+        /* å½“è®¡æ•°å°äº65536æ—¶ï¼Œä¸åˆ†é¢‘(å€¼ä¸º1,1ä»£è¡¨ä¸º1åˆ†é¢‘) */
         temp = cnt  / 65536 + 1;
 
-        /* 16Î»¶¨Ê±Æ÷ĞèÒªÔËËãÈ¡µÃºÏÊÊµÄ·ÖÆµÖµ */
+        /* 16ä½å®šæ—¶å™¨éœ€è¦è¿ç®—å–å¾—åˆé€‚çš„åˆ†é¢‘å€¼ */
         for (pre_real = 1; pre_real < temp; ) {
-            pre_reg++;           /* ¼ÆËãĞ´Èë¼Ä´æÆ÷µÄ·ÖÆµÖµ0,1,2,... */
-            pre_real++;          /* ·ÖÆµÊı */
+            pre_reg++;           /* è®¡ç®—å†™å…¥å¯„å­˜å™¨çš„åˆ†é¢‘å€¼0,1,2,... */
+            pre_real++;          /* åˆ†é¢‘æ•° */
         }
     }
 
-    /* ¼ÆËã×Ô¶¯ÖØÔØÖµ */
+    /* è®¡ç®—è‡ªåŠ¨é‡è½½å€¼ */
     match = cnt / pre_real ;
 
-    /* ÉèÖÃ·ÖÆµÖµ */
+    /* è®¾ç½®åˆ†é¢‘å€¼ */
     amhw_zlg_tim_prescale_set(p_hw_tim, pre_reg);
 
-    /* ÉèÖÃ×Ô¶¯ÖØ×°¼Ä´æÆ÷µÄÖµ */
+    /* è®¾ç½®è‡ªåŠ¨é‡è£…å¯„å­˜å™¨çš„å€¼ */
     amhw_zlg_tim_arr_set(p_hw_tim, match - 1);
 
-    /* ÉèÖÃ±È½ÏÊä³öÍ¨µÀµÄÆ¥ÅäÖµ */
+    /* è®¾ç½®æ¯”è¾ƒè¾“å‡ºé€šé“çš„åŒ¹é…å€¼ */
     amhw_zlg_tim_ccr_ouput_reload_val_set(p_hw_tim,  match / 2 - 1, chan);
 
-    /* ¼ÆÊıÆ÷Çå0 */
+    /* è®¡æ•°å™¨æ¸…0 */
     amhw_zlg_tim_count_set(p_hw_tim, 0);
 
-    /* Ñ¡Ôñ¸ÃÍ¨µÀÎªÊä³ö */
+    /* é€‰æ‹©è¯¥é€šé“ä¸ºè¾“å‡º */
     amhw_zlg_tim_ccs_set(p_hw_tim, 0, chan);
 
-    /* Ñ¡Ôñ¸ÃÍ¨µÀµÄÄ£Ê½ÎªCMP_TOGGLE */
+    /* é€‰æ‹©è¯¥é€šé“çš„æ¨¡å¼ä¸ºCMP_TOGGLE */
     amhw_zlg_tim_ocm_set(p_hw_tim, AMHW_ZLG_TIM_TOGGLE, chan);
 
-    /* ½ûÖ¹Ô¤×°ÔØ */
+    /* ç¦æ­¢é¢„è£…è½½ */
     amhw_zlg_tim_ccs_ocpe_disable(p_hw_tim, chan);
 
-    /* ÉèÖÃ±È½ÏÊä³öÍ¨µÀccp¸ßµçÆ½¼«ĞÔÓĞĞ§ */
+    /* è®¾ç½®æ¯”è¾ƒè¾“å‡ºé€šé“ccpé«˜ç”µå¹³ææ€§æœ‰æ•ˆ */
     amhw_zlg_tim_ccp_output_set(p_hw_tim, 0, chan);
 }
 
@@ -124,10 +124,10 @@ void tim_cmp_toggle_enable (amhw_zlg_tim_t      *p_hw_tim,
                             uint8_t              int_num)
 {
 
-    /* Ê¹ÄÜÍ¨µÀ±È½ÏÊä³ö */
+    /* ä½¿èƒ½é€šé“æ¯”è¾ƒè¾“å‡º */
     amhw_zlg_tim_cce_output_enable(p_hw_tim, chan);
 
-    /* ¸ß¼¶¶¨Ê±Æ÷Ê¹ÄÜÖ÷Êä³ö MOE */
+    /* é«˜çº§å®šæ—¶å™¨ä½¿èƒ½ä¸»è¾“å‡º MOE */
     if ((AMHW_ZLG_TIM_TYPE0 == type) ||
         (AMHW_ZLG_TIM_TYPE2 == type) ||
         (AMHW_ZLG_TIM_TYPE3 == type)) {
@@ -135,50 +135,50 @@ void tim_cmp_toggle_enable (amhw_zlg_tim_t      *p_hw_tim,
         amhw_zlg_tim_bdtr_enable(p_hw_tim, AMHW_ZLG_TIM_MOE);
     }
 
-    /* ²úÉú¸üĞÂÊÂ¼ş£¬ÖØĞÂ³õÊ¼»¯Prescaler¼ÆÊıÆ÷ ¼°Repetition¼ÆÊıÆ÷ */
+    /* äº§ç”Ÿæ›´æ–°äº‹ä»¶ï¼Œé‡æ–°åˆå§‹åŒ–Prescalerè®¡æ•°å™¨ åŠRepetitionè®¡æ•°å™¨ */
     amhw_zlg_tim_egr_set(p_hw_tim, AMHW_ZLG_TIM_UG);
 
     if (amhw_zlg_tim_status_flg_get(p_hw_tim, AMHW_ZLG_TIM_UG) != 0) {
 
-        /* ¸üĞÂ¶¨Ê±Æ÷Ê±»á²úÉú¸üĞÂÊÂ¼ş,Çå³ı±êÖ¾Î» */
+        /* æ›´æ–°å®šæ—¶å™¨æ—¶ä¼šäº§ç”Ÿæ›´æ–°äº‹ä»¶,æ¸…é™¤æ ‡å¿—ä½ */
         amhw_zlg_tim_status_flg_clr(p_hw_tim, AMHW_ZLG_TIM_UG);
     }
 
-    /* Á¬½ÓÖĞ¶Ï»Øµ÷º¯Êı */
+    /* è¿æ¥ä¸­æ–­å›è°ƒå‡½æ•° */
     am_int_connect(int_num, __zlg_tim_cmp_irq_handler, (void *)p_hw_tim);
 
-    /* Ê¹ÄÜÖĞ¶Ï */
+    /* ä½¿èƒ½ä¸­æ–­ */
     amhw_zlg_tim_int_enable(p_hw_tim, (1ul << (chan + 1)));
 
     am_int_enable(int_num);
 
-    /*¡¡Ê¹ÄÜ¶¨Ê±Æ÷TIMÔÊĞí¼ÆÊı */
+    /*ã€€ä½¿èƒ½å®šæ—¶å™¨TIMå…è®¸è®¡æ•° */
     amhw_zlg_tim_enable(p_hw_tim);
 }
 
 /**
- * \brief ¶¨Ê±Æ÷ TIM Êä³ö±È½ÏÍ¨µÀ·­×ª³õÊ¼»¯º¯Êı
+ * \brief å®šæ—¶å™¨ TIM è¾“å‡ºæ¯”è¾ƒé€šé“ç¿»è½¬åˆå§‹åŒ–å‡½æ•°
  */
 void tim_cmp_toggle_init (amhw_zlg_tim_t *p_hw_tim, amhw_zlg_tim_type_t type)
 {
     if ((AMHW_ZLG_TIM_TYPE0 == type) || (AMHW_ZLG_TIM_TYPE1 == type)) {
 
-        /* ±ßÑØ¶ÔÆëÄ£Ê½ */
+        /* è¾¹æ²¿å¯¹é½æ¨¡å¼ */
         amhw_zlg_tim_cms_set(p_hw_tim, 0);
 
-        /* ÏòÉÏ¼ÆÊı */
+        /* å‘ä¸Šè®¡æ•° */
         amhw_zlg_tim_dir_set(p_hw_tim, 0);
     }
 
-    /* ÉèÖÃÊ±ÖÓ·Ö¸î:TDTS = Tck_tin */
+    /* è®¾ç½®æ—¶é’Ÿåˆ†å‰²:TDTS = Tck_tin */
     amhw_zlg_tim_ckd_set(p_hw_tim, 0);
 
-    /* ÔÊĞí¸üĞÂÊÂ¼ş */
+    /* å…è®¸æ›´æ–°äº‹ä»¶ */
     amhw_zlg_tim_udis_enable(p_hw_tim);
 }
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_zlg_hw_tim_cmp_toggle_entry (amhw_zlg_tim_t      *p_hw_tim,
                                        amhw_zlg_tim_type_t  type,
@@ -187,7 +187,7 @@ void demo_zlg_hw_tim_cmp_toggle_entry (amhw_zlg_tim_t      *p_hw_tim,
                                        uint8_t              inum)
 {
 
-    /* ³õÊ¼»¯¶¨Ê±Æ÷ÎªÊä³ö±È½ÏÍ¨µÀ·­×ª¹¦ÄÜ */
+    /* åˆå§‹åŒ–å®šæ—¶å™¨ä¸ºè¾“å‡ºæ¯”è¾ƒé€šé“ç¿»è½¬åŠŸèƒ½ */
     tim_cmp_toggle_init(p_hw_tim, type);
     tim_cmp_toggle_chan_config(p_hw_tim, chan, clk_rate / 10);
     tim_cmp_toggle_enable(p_hw_tim, type, chan, inum);

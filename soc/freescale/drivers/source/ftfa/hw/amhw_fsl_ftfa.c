@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief FLASH ÄÚ´æÄ£¿éÓ²¼ş²ã½Ó¿Ú
+ * \brief FLASH å†…å­˜æ¨¡å—ç¡¬ä»¶å±‚æ¥å£
  *
  * \internal
  * \par Modification History
@@ -24,8 +24,8 @@
 #include "ametal.h"
 
 /**
- *  brief amhw_fsl_ftfa_cmd_launchº¯Êı±àÒëºóÊı¾İ¿½±´
- *  µ½RAMĞèÒªµÄ¿Õ¼ä´óĞ¡ £¨ÒÔ°ë×Ö 16bit ¼Æ£©
+ *  brief amhw_fsl_ftfa_cmd_launchå‡½æ•°ç¼–è¯‘åæ•°æ®æ‹·è´
+ *  åˆ°RAMéœ€è¦çš„ç©ºé—´å¤§å° ï¼ˆä»¥åŠå­— 16bit è®¡ï¼‰
  */
 #define CMD_LAUNCH_FUNC_SIZE    (40)
 
@@ -34,27 +34,27 @@ static uint16_t amhw_fsl_ftfa_cmd_launch_ram_context[CMD_LAUNCH_FUNC_SIZE];
 static uint32_t (* amhw_fsl_ftfa_cmd_launch_ram) (amhw_fsl_ftfa_t *);
 
 /**
- *  \brief Ö´ĞĞflashÃüÁî
+ *  \brief æ‰§è¡Œflashå‘½ä»¤
  *
- *  \param p_hw_ftfa Ö¸Ïò¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
+ *  \param p_hw_ftfa æŒ‡å‘å¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- *  \return 0 ±íÊ¾ÃüÁî³É¹¦Ö´ĞĞ£¬ÆäËû±íÊ¾ÃüÁîÃ»ÓĞ³É¹¦Ö´ĞĞ
+ *  \return 0 è¡¨ç¤ºå‘½ä»¤æˆåŠŸæ‰§è¡Œï¼Œå…¶ä»–è¡¨ç¤ºå‘½ä»¤æ²¡æœ‰æˆåŠŸæ‰§è¡Œ
  */
 static uint32_t amhw_fsl_ftfa_cmd_launch (amhw_fsl_ftfa_t *p_hw_ftfa)
 {
-    /** µÈ´ıÖ®Ç°µÄ²Ù×÷Íê³É»òÕß³¬Ê± */
+    /** ç­‰å¾…ä¹‹å‰çš„æ“ä½œå®Œæˆæˆ–è€…è¶…æ—¶ */
     while (!(p_hw_ftfa->fstat & AMHW_FSL_FTFA_CCIF)) {
         ;
     }
 
-    /** Çå³ı´íÎó±êÖ¾ */
+    /** æ¸…é™¤é”™è¯¯æ ‡å¿— */
     p_hw_ftfa->fstat = AMHW_FSL_FTFA_FPVIOL  |
                        AMHW_FSL_FTFA_ACCERR  |
                        AMHW_FSL_FTFA_RDCOLERR;
 
     p_hw_ftfa->fstat = AMHW_FSL_FTFA_CCIF;
 
-    /** ÃüÁîÍê³É */
+    /** å‘½ä»¤å®Œæˆ */
     while (!(p_hw_ftfa->fstat & AMHW_FSL_FTFA_CCIF)) {
         ;
     }
@@ -63,46 +63,46 @@ static uint32_t amhw_fsl_ftfa_cmd_launch (amhw_fsl_ftfa_t *p_hw_ftfa)
 }
 
 /**
- *  \brief ½«amhw_fsl_ftfa_cmd_launch º¯Êı¿½±´µ½RAMÖĞ
+ *  \brief å°†amhw_fsl_ftfa_cmd_launch å‡½æ•°æ‹·è´åˆ°RAMä¸­
  *
- *  \return ÎŞ
+ *  \return æ— 
  *
- *  \note FLASH¿ØÖÆÆ÷ÔÚĞŞ¸ÄflashÊ±£¬´úÂëÒªÔÚRAMÖĞÔËĞĞ
+ *  \note FLASHæ§åˆ¶å™¨åœ¨ä¿®æ”¹flashæ—¶ï¼Œä»£ç è¦åœ¨RAMä¸­è¿è¡Œ
  */
 void amhw_fsl_ftfa_func_copy (void)
 {
     uint16_t *p;
     uint32_t i;
 
-    /** ½«º¯ÊıµØÖ·µ÷ÕûÎª2×Ö½Ú¶ÔÆë£¬²¢Ç¿ÖÆ×ª»¯Îª (uint16_t *) */
+    /** å°†å‡½æ•°åœ°å€è°ƒæ•´ä¸º2å­—èŠ‚å¯¹é½ï¼Œå¹¶å¼ºåˆ¶è½¬åŒ–ä¸º (uint16_t *) */
     p = (uint16_t *)(((uint32_t)&amhw_fsl_ftfa_cmd_launch) & (~0x1));
 
-    /** ½«º¯ÊıµÄÖ¸Áî¿½±´µ½RAMÖĞ */
+    /** å°†å‡½æ•°çš„æŒ‡ä»¤æ‹·è´åˆ°RAMä¸­ */
     for (i = 0; i < CMD_LAUNCH_FUNC_SIZE; i++) {
         amhw_fsl_ftfa_cmd_launch_ram_context[i] = *p;
         p++;
     }
 
-    /** ½«RAMÖĞº¯ÊıµÄÆğÊ¼µØÖ·¸ø amhw_fsl_ftfa_cmd_launch_ram
-     *  ÓÉÓÚCortex M0+ Ö»Ö§³Ö thumbÖ¸Áî
-     *  ËùÒÔ amhw_fsl_ftfa_cmd_launch_ram µÄ×îµÍÎ»Îª 1
+    /** å°†RAMä¸­å‡½æ•°çš„èµ·å§‹åœ°å€ç»™ amhw_fsl_ftfa_cmd_launch_ram
+     *  ç”±äºCortex M0+ åªæ”¯æŒ thumbæŒ‡ä»¤
+     *  æ‰€ä»¥ amhw_fsl_ftfa_cmd_launch_ram çš„æœ€ä½ä½ä¸º 1
      */
     amhw_fsl_ftfa_cmd_launch_ram
-        = (uint32_t (*) (amhw_fsl_ftfa_t *))       /** Ç¿ÖÆ×ª»¯Îªº¯ÊıÖ¸Õë */
+        = (uint32_t (*) (amhw_fsl_ftfa_t *))       /** å¼ºåˆ¶è½¬åŒ–ä¸ºå‡½æ•°æŒ‡é’ˆ */
           (
-           (uint32_t)                          /** Ç¿ÖÆ×ª»¯ÎªÕûĞÍ±ãÓÚÔËËã */
+           (uint32_t)                          /** å¼ºåˆ¶è½¬åŒ–ä¸ºæ•´å‹ä¾¿äºè¿ç®— */
            amhw_fsl_ftfa_cmd_launch_ram_context | 0x01
           );
 }
 /**
- *  \brief ·¢ËÍÅĞ¶ÏÉÈÇøÊÇ·ñÎªÈ«1ÃüÁî
+ *  \brief å‘é€åˆ¤æ–­æ‰‡åŒºæ˜¯å¦ä¸ºå…¨1å‘½ä»¤
  *
- *  \param p_hw_ftfa Ö¸Ïò¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
- *  \param start_addr ÉÈÇøÆğÊ¼µØÖ·
- *  \param n_words ×Ö(32bit)µÄ¸öÊı
- *  \param margin ¸½¼ÓÑ¡Ïî
+ *  \param p_hw_ftfa æŒ‡å‘å¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
+ *  \param start_addr æ‰‡åŒºèµ·å§‹åœ°å€
+ *  \param n_words å­—(32bit)çš„ä¸ªæ•°
+ *  \param margin é™„åŠ é€‰é¡¹
  *
- *  \return 0 ±íÊ¾ÃüÁî³É¹¦Ö´ĞĞ£¬ÆäËû±íÊ¾ÃüÁîÃ»ÓĞ³É¹¦Ö´ĞĞ
+ *  \return 0 è¡¨ç¤ºå‘½ä»¤æˆåŠŸæ‰§è¡Œï¼Œå…¶ä»–è¡¨ç¤ºå‘½ä»¤æ²¡æœ‰æˆåŠŸæ‰§è¡Œ
  */
 uint32_t amhw_fsl_ftfa_1s_read (amhw_fsl_ftfa_t *p_hw_ftfa,
                                  uint32_t          start_addr,
@@ -121,15 +121,15 @@ uint32_t amhw_fsl_ftfa_1s_read (amhw_fsl_ftfa_t *p_hw_ftfa,
 }
 
 /**
- *  \brief ×Ö(32bit)±à³Ì½á¹ûÕıÈ·Óë·ñµÄÅĞ¶Ï
+ *  \brief å­—(32bit)ç¼–ç¨‹ç»“æœæ­£ç¡®ä¸å¦çš„åˆ¤æ–­
  *
- *  \param p_hw_ftfa Ö¸Ïò¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
- *  \param addr ÒªÅĞ¶ÏµÄµØÖ·
- *  \param context ÆÚÍûµÄÊı¾İÄÚÈİ
- *  \param margin ¸½¼ÓÑ¡Ïî
- *          #¿ÉÑ¡ 0x01, 0x02
+ *  \param p_hw_ftfa æŒ‡å‘å¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
+ *  \param addr è¦åˆ¤æ–­çš„åœ°å€
+ *  \param context æœŸæœ›çš„æ•°æ®å†…å®¹
+ *  \param margin é™„åŠ é€‰é¡¹
+ *          #å¯é€‰ 0x01, 0x02
  *
- *  \return 0 ±íÊ¾ÃüÁî³É¹¦Ö´ĞĞ£¬ÆäËû±íÊ¾ÃüÁîÃ»ÓĞ³É¹¦Ö´ĞĞ
+ *  \return 0 è¡¨ç¤ºå‘½ä»¤æˆåŠŸæ‰§è¡Œï¼Œå…¶ä»–è¡¨ç¤ºå‘½ä»¤æ²¡æœ‰æˆåŠŸæ‰§è¡Œ
  */
 uint32_t amhw_fsl_ftfa_program_check (amhw_fsl_ftfa_t *p_hw_ftfa,
                                        uint32_t          addr,
@@ -150,16 +150,16 @@ uint32_t amhw_fsl_ftfa_program_check (amhw_fsl_ftfa_t *p_hw_ftfa,
 }
 
 /**
- *  \brief ¶ÁÈ¡ÌØÊâ¹¦ÄÜÇøFLASH
+ *  \brief è¯»å–ç‰¹æ®ŠåŠŸèƒ½åŒºFLASH
  *
- *  \param p_hw_ftfa Ö¸Ïò¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
- *  \parma addr flashµØÖ·
- *  \param p_context Ö¸Ïò»º´æ¶ÁÈ¡ÄÚÈİµÄ»º´æÇøµÄÖ¸Õë
- *  \param resrc_select ×ÊÔ´Ñ¡Ôñ
+ *  \param p_hw_ftfa æŒ‡å‘å¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
+ *  \parma addr flashåœ°å€
+ *  \param p_context æŒ‡å‘ç¼“å­˜è¯»å–å†…å®¹çš„ç¼“å­˜åŒºçš„æŒ‡é’ˆ
+ *  \param resrc_select èµ„æºé€‰æ‹©
  *          - 0x00 Program Flash 0 IFR
  *          - 0x01 Version ID
  *
- *  \return 0: ±íÊ¾ÃüÁî³É¹¦Ö´ĞĞ£¬ÆäËû: ±íÊ¾ÃüÁîÃ»ÓĞ³É¹¦Ö´ĞĞ
+ *  \return 0: è¡¨ç¤ºå‘½ä»¤æˆåŠŸæ‰§è¡Œï¼Œå…¶ä»–: è¡¨ç¤ºå‘½ä»¤æ²¡æœ‰æˆåŠŸæ‰§è¡Œ
  */
 uint32_t amhw_fsl_ftfa_resrc_read (amhw_fsl_ftfa_t *p_hw_ftfa,
                                     uint32_t          addr,
@@ -188,13 +188,13 @@ uint32_t amhw_fsl_ftfa_resrc_read (amhw_fsl_ftfa_t *p_hw_ftfa,
 }
 
 /**
- *  \brief ¶ÔÒ»¸ö×Ö±à³Ì
+ *  \brief å¯¹ä¸€ä¸ªå­—ç¼–ç¨‹
  *
- *  \param p_hw_ftfa Ö¸Ïò¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
- *  \param addr FLASH×ÖµØÖ·
- *  \param word Ğ´Èë×ÖµÄÄÚÈİ
+ *  \param p_hw_ftfa æŒ‡å‘å¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
+ *  \param addr FLASHå­—åœ°å€
+ *  \param word å†™å…¥å­—çš„å†…å®¹
  *
- *  \return 0 ±íÊ¾ÃüÁî³É¹¦Ö´ĞĞ£¬ÆäËû±íÊ¾ÃüÁîÃ»ÓĞ³É¹¦Ö´ĞĞ
+ *  \return 0 è¡¨ç¤ºå‘½ä»¤æˆåŠŸæ‰§è¡Œï¼Œå…¶ä»–è¡¨ç¤ºå‘½ä»¤æ²¡æœ‰æˆåŠŸæ‰§è¡Œ
  */
 uint32_t amhw_fsl_ftfa_word_program (amhw_fsl_ftfa_t *p_hw_ftfa,
                                       uint32_t          addr,
@@ -214,12 +214,12 @@ uint32_t amhw_fsl_ftfa_word_program (amhw_fsl_ftfa_t *p_hw_ftfa,
 }
 
 /**
- *  \brief ²Á³ıÉÈÇø
+ *  \brief æ“¦é™¤æ‰‡åŒº
  *
- *  \param p_hw_ftfa Ö¸Ïò¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
- *  \param addr ÉÈÇøÆğÊ¼µØÖ·
+ *  \param p_hw_ftfa æŒ‡å‘å¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
+ *  \param addr æ‰‡åŒºèµ·å§‹åœ°å€
  *
- *  \return 0 ±íÊ¾ÃüÁî³É¹¦Ö´ĞĞ£¬ÆäËû±íÊ¾ÃüÁîÃ»ÓĞ³É¹¦Ö´ĞĞ
+ *  \return 0 è¡¨ç¤ºå‘½ä»¤æˆåŠŸæ‰§è¡Œï¼Œå…¶ä»–è¡¨ç¤ºå‘½ä»¤æ²¡æœ‰æˆåŠŸæ‰§è¡Œ
  */
 uint32_t amhw_fsl_ftfa_sector_erase (amhw_fsl_ftfa_t *p_hw_ftfa,
                                       uint32_t          addr)
@@ -233,13 +233,13 @@ uint32_t amhw_fsl_ftfa_sector_erase (amhw_fsl_ftfa_t *p_hw_ftfa,
 }
 
 /**
- *  \brief ÅĞ¶ÏËùÓĞÉÈÇøÊÇ·ñÎªÈ«1
+ *  \brief åˆ¤æ–­æ‰€æœ‰æ‰‡åŒºæ˜¯å¦ä¸ºå…¨1
  *
- *  \param p_hw_ftfa Ö¸Ïò¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
- *  \param margin ¸½¼ÓÑ¡Ïî
- *          ¿ÉÑ¡²ÎÊı 0x0 - 0x2
+ *  \param p_hw_ftfa æŒ‡å‘å¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
+ *  \param margin é™„åŠ é€‰é¡¹
+ *          å¯é€‰å‚æ•° 0x0 - 0x2
  *
- *  \return 0 ±íÊ¾ÃüÁî³É¹¦Ö´ĞĞ£¬ÆäËû±íÊ¾ÃüÁîÃ»ÓĞ³É¹¦Ö´ĞĞ
+ *  \return 0 è¡¨ç¤ºå‘½ä»¤æˆåŠŸæ‰§è¡Œï¼Œå…¶ä»–è¡¨ç¤ºå‘½ä»¤æ²¡æœ‰æˆåŠŸæ‰§è¡Œ
  */
 uint32_t amhw_fsl_ftfa_all_blocks_1s_read (amhw_fsl_ftfa_t *p_hw_ftfa,
                                             uint8_t           margin)
@@ -251,13 +251,13 @@ uint32_t amhw_fsl_ftfa_all_blocks_1s_read (amhw_fsl_ftfa_t *p_hw_ftfa,
 }
 
 /**
- *  \brief ¶ÁÈ¡64×Ö½Ú±£ÁôÇøÖĞµÄÒ»¸ö×Ö
+ *  \brief è¯»å–64å­—èŠ‚ä¿ç•™åŒºä¸­çš„ä¸€ä¸ªå­—
  *
- *  \param p_hw_ftfa Ö¸Ïò¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
- *  \param index Ë÷Òı±àºÅ 0x00-0x0f
- *  \param p_value Ö¸Ïò¶ÁÈ¡½á¹û»º³åµÄÖ¸Õë
+ *  \param p_hw_ftfa æŒ‡å‘å¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
+ *  \param index ç´¢å¼•ç¼–å· 0x00-0x0f
+ *  \param p_value æŒ‡å‘è¯»å–ç»“æœç¼“å†²çš„æŒ‡é’ˆ
  *
- *  \return 0 ±íÊ¾ÃüÁî³É¹¦Ö´ĞĞ£¬ÆäËû±íÊ¾ÃüÁîÃ»ÓĞ³É¹¦Ö´ĞĞ
+ *  \return 0 è¡¨ç¤ºå‘½ä»¤æˆåŠŸæ‰§è¡Œï¼Œå…¶ä»–è¡¨ç¤ºå‘½ä»¤æ²¡æœ‰æˆåŠŸæ‰§è¡Œ
  */
 uint32_t amhw_fsl_ftfa_once_read (amhw_fsl_ftfa_t *p_hw_ftfa,
                                    uint8_t           index,
@@ -283,13 +283,13 @@ uint32_t amhw_fsl_ftfa_once_read (amhw_fsl_ftfa_t *p_hw_ftfa,
 }
 
 /**
- *  \brief ¶Ô±£ÁôÇøÒ»¸ö×Ö½øĞĞÒ»´ÎĞÔ±à³Ì
+ *  \brief å¯¹ä¿ç•™åŒºä¸€ä¸ªå­—è¿›è¡Œä¸€æ¬¡æ€§ç¼–ç¨‹
  *
- *  \param p_hw_ftfa Ö¸Ïò¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
- *  \param index Ë÷Òı±àºÅ 0x00-0x0f
- *  \param value Ï£ÍûĞ´ÈëµÄÖµ
+ *  \param p_hw_ftfa æŒ‡å‘å¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
+ *  \param index ç´¢å¼•ç¼–å· 0x00-0x0f
+ *  \param value å¸Œæœ›å†™å…¥çš„å€¼
  *
- *  \return 0 ±íÊ¾ÃüÁî³É¹¦Ö´ĞĞ£¬ÆäËû ±íÊ¾ÃüÁîÃ»ÓĞ³É¹¦Ö´ĞĞ
+ *  \return 0 è¡¨ç¤ºå‘½ä»¤æˆåŠŸæ‰§è¡Œï¼Œå…¶ä»– è¡¨ç¤ºå‘½ä»¤æ²¡æœ‰æˆåŠŸæ‰§è¡Œ
  */
 uint32_t amhw_fsl_ftfa_once_program (amhw_fsl_ftfa_t *p_hw_ftfa,
                                       uint8_t           index,
@@ -307,11 +307,11 @@ uint32_t amhw_fsl_ftfa_once_program (amhw_fsl_ftfa_t *p_hw_ftfa,
 }
 
 /**
- *  \brief ²Á³ıËùÓĞÉÈÇø
+ *  \brief æ“¦é™¤æ‰€æœ‰æ‰‡åŒº
  *
- *  \param p_hw_ftfa Ö¸Ïò¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
+ *  \param p_hw_ftfa æŒ‡å‘å¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- *  \return 0 ±íÊ¾ÃüÁî³É¹¦Ö´ĞĞ£¬ÆäËû±íÊ¾ÃüÁîÃ»ÓĞ³É¹¦Ö´ĞĞ
+ *  \return 0 è¡¨ç¤ºå‘½ä»¤æˆåŠŸæ‰§è¡Œï¼Œå…¶ä»–è¡¨ç¤ºå‘½ä»¤æ²¡æœ‰æˆåŠŸæ‰§è¡Œ
  */
 uint32_t amhw_fsl_ftfa_all_blocks_erase (amhw_fsl_ftfa_t *p_hw_ftfa)
 {
@@ -321,12 +321,12 @@ uint32_t amhw_fsl_ftfa_all_blocks_erase (amhw_fsl_ftfa_t *p_hw_ftfa)
 }
 
 /**
- *  \brief ÑéÖ¤ºóÃÅÃÜÔ¿È¨ÏŞ
+ *  \brief éªŒè¯åé—¨å¯†é’¥æƒé™
  *
- *  \param p_hw_ftfa Ö¸Ïò¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
- *  \param key ÃÜÔ¿Êı×é
+ *  \param p_hw_ftfa æŒ‡å‘å¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
+ *  \param key å¯†é’¥æ•°ç»„
  *
- *  \return 0 ±íÊ¾ÃüÁî³É¹¦Ö´ĞĞ£¬ÆäËû±íÊ¾ÃüÁîÃ»ÓĞ³É¹¦Ö´ĞĞ
+ *  \return 0 è¡¨ç¤ºå‘½ä»¤æˆåŠŸæ‰§è¡Œï¼Œå…¶ä»–è¡¨ç¤ºå‘½ä»¤æ²¡æœ‰æˆåŠŸæ‰§è¡Œ
  */
 uint32_t
 amhw_fsl_ftfa_backdoor_access_key_verify (amhw_fsl_ftfa_t *p_hw_ftfa,

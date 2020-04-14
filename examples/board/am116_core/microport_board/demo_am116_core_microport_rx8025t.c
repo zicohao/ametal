@@ -12,22 +12,22 @@
 
 /**
  * \file
- * \brief MicroPort RX8025T ���̣�ͨ�� RX8025T оƬʵ��
- *        RTC�����ӵĹ��ܣ�ͨ����׼�ӿ�ʵ��
+ * \brief MicroPort RX8025T 例程，通过 RX8025T 芯片实现
+ *        RTC、闹钟的功能，通过标准接口实现
  *
- * - �������裺
- *   1. �� MicroPort RX8025T ������ӵ� AM116-Core �� MicroPort �ӿڡ�
+ * - 操作步骤：
+ *   1. 将 MicroPort RX8025T 配板连接到 AM116-Core 的 MicroPort 接口。
  *
- * - ʵ������
- *   1. ���ڽ�ÿһ���ʱ����Ϣ��ӡ������
- *   2. ����ʱ��һ���ͻ�ִ�����ӻص�������
- *   3. ÿ�ֻ�ʵ��ʱ������жϵĻص�������
- *   4. ÿ�����оͻ�ִ�ж�ʱ���жϵĻص�������
+ * - 实验现象：
+ *   1. 串口将每一秒的时间信息打印出来；
+ *   2. 闹钟时间一到就会执行闹钟回调函数；
+ *   3. 每分会实行时间更新中断的回调函数；
+ *   4. 每五秒中就会执行定时器中断的回调函数。
  *
  * \note
- *    ����۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIOA_9 �������� PC ���ڵ� RXD��
+ *    如需观察串口打印的调试信息，需要将 PIOA_9 引脚连接 PC 串口的 RXD。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_am116_core_microport_rx8025t.c src_am116_core_microport_rx8025t
  *
  * \internal
@@ -49,7 +49,7 @@
 #include "demo_am116_core_entries.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_am116_core_microport_rx8025t_entry (void)
 {

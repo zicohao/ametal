@@ -97,13 +97,13 @@ extern "C" {
 #endif
 
 
-// ½ÓÊÕ»Øµ÷º¯ÊıÀàĞÍ
+// æ¥æ”¶å›è°ƒå‡½æ•°ç±»å‹
 typedef void (*pfn_cdc_vcom_recv_cb_t)(void *p_arg, uint8_t *p_buf, uint8_t len);
 
 typedef void (*pfn_cdc_vcom_send_cb_t)(void *p_arg);
 
 
-/** \brief ´òÓ¡»úĞÅÏ¢½á¹¹Ìå */
+/** \brief æ‰“å°æœºä¿¡æ¯ç»“æ„ä½“ */
 typedef struct am_usbd_cdc_vcom_info {
 
     uint8_t interrupt_in_ep;
@@ -116,8 +116,8 @@ typedef struct am_usbd_cdc_vcom_info {
 
 /** \brief usb device printer struct */
 typedef struct am_usbd_cdc_vcom {
-    am_usbd_dev_t                 *p_dev;      /**< \brief ±£´æusbÉè±¸ÀàÖ¸Õë*/
-    const am_usbd_cdc_vcom_info_t *p_info;     /**< \brief ´®¿ÚÉè±¸ĞÅÏ¢*/
+    am_usbd_dev_t                 *p_dev;      /**< \brief ä¿å­˜usbè®¾å¤‡ç±»æŒ‡é’ˆ*/
+    const am_usbd_cdc_vcom_info_t *p_info;     /**< \brief ä¸²å£è®¾å¤‡ä¿¡æ¯*/
 
     line_coding_t                  cfg;
 
@@ -133,21 +133,21 @@ typedef am_usbd_cdc_vcom_t  *am_usbd_cdc_vcom_handle;
 
 
 /**
- * \brief ³õÊ¼»¯USB
+ * \brief åˆå§‹åŒ–USB
  *
- * \param[in] p_dev     : Ö¸ÏòUSBÉè±¸
- * \param[in] p_info    : Ö¸ÏòUSBÉè±¸ĞÅÏ¢
+ * \param[in] p_dev     : æŒ‡å‘USBè®¾å¤‡
+ * \param[in] p_info    : æŒ‡å‘USBè®¾å¤‡ä¿¡æ¯
  *
- * \return USB±ê×¼·şÎñ²Ù×÷¾ä±ú¡£Èç¹ûÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü¡£
+ * \return USBæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„ã€‚å¦‚æœä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥ã€‚
  */
 am_usbd_cdc_vcom_handle am_usbd_cdc_vcom_init (am_usbd_cdc_vcom_t            *p_dev,
                                                const am_usbd_cdc_vcom_info_t *p_info,
                                                am_usbd_dev_t                 *p_usbd);
 
 /**
- * \brief USB Device È¥³õÊ¼»¯
+ * \brief USB Device å»åˆå§‹åŒ–
  *
- * \param[in] p_info : Ö¸ÏòUSBÉè±¸ĞÅÏ¢
+ * \param[in] p_info : æŒ‡å‘USBè®¾å¤‡ä¿¡æ¯
  */
 void am_usbd_cdc_vcom_deinit (am_usbd_cdc_vcom_t *p_dev);
 
@@ -156,7 +156,7 @@ am_usb_status_t am_usbd_cdc_vcom_send(am_usbd_cdc_vcom_handle handle,
                                       uint8_t                *p_buff,
                                       uint8_t                 len);
 
-// ½ÓÊÕ»Øµ÷º¯Êı
+// æ¥æ”¶å›è°ƒå‡½æ•°
 am_usb_status_t am_usbd_cdc_vcom_recv_cb (am_usbd_cdc_vcom_handle     handle,
                                           pfn_cdc_vcom_recv_cb_t       pfn,
                                           void                       *p_arg);

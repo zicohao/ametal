@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZMF159 SDIO ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief ZMF159 SDIO ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_zmf159_sdio.c
  *
  * \internal
@@ -35,7 +35,7 @@
  * @{
  */
 
-/** \brief SDIO Æ½Ì¨³õÊ¼»¯º¯Êı */
+/** \brief SDIO å¹³å°åˆå§‹åŒ–å‡½æ•° */
 static void __zmf159_sdio_plfm_init (void)
 {
 
@@ -50,29 +50,29 @@ static void __zmf159_sdio_plfm_init (void)
     am_zmf159_clk_reset(CLK_SDIO);
 }
 
-/** \brief ½â³ıSDIO Æ½Ì¨³õÊ¼»¯º¯Êı */
+/** \brief è§£é™¤SDIO å¹³å°åˆå§‹åŒ–å‡½æ•° */
 static void __zmf159_sdio_plfm_deinit (void)
 {
     am_clk_disable(CLK_SDIO);
 }
 
 /**
- * \brief I2C1 Éè±¸ĞÅÏ¢
+ * \brief I2C1 è®¾å¤‡ä¿¡æ¯
  */
 static const am_zmf159_sdio_devinfo_t __g_sdio_devinfo = {
 
-    ZMF159_SDIO_BASE,                 /**< \brief ¼Ä´æÆ÷¿é»ùÖ· */
-    INUM_SDIO,                        /**< \brief ÖĞ¶Ï±àºÅ */
-    CLK_SDIO,                         /**< \brief Ê±ÖÓIDÖµ */
-    AMHW_ZLG_SDIO_SPEED_MODE_LOW,     /**< \brief µÍËÙÄ£Ê½ */
-    __zmf159_sdio_plfm_init,          /**< \brief Æ½Ì¨³õÊ¼»¯ */
-    __zmf159_sdio_plfm_deinit         /**< \brief Æ½Ì¨È¥³õÊ¼»¯ */
+    ZMF159_SDIO_BASE,                 /**< \brief å¯„å­˜å™¨å—åŸºå€ */
+    INUM_SDIO,                        /**< \brief ä¸­æ–­ç¼–å· */
+    CLK_SDIO,                         /**< \brief æ—¶é’ŸIDå€¼ */
+    AMHW_ZLG_SDIO_SPEED_MODE_LOW,     /**< \brief ä½é€Ÿæ¨¡å¼ */
+    __zmf159_sdio_plfm_init,          /**< \brief å¹³å°åˆå§‹åŒ– */
+    __zmf159_sdio_plfm_deinit         /**< \brief å¹³å°å»åˆå§‹åŒ– */
 };
 
-static am_zmf159_sdio_dev_t __g_sdio_dev;        /**< \brief  Éè±¸ÊµÀı */
-static am_sdio_handle_t  __g_sdio_handle = NULL; /**< \brief  ±ê×¼·şÎñ¾ä±ú */
+static am_zmf159_sdio_dev_t __g_sdio_dev;        /**< \brief  è®¾å¤‡å®ä¾‹ */
+static am_sdio_handle_t  __g_sdio_handle = NULL; /**< \brief  æ ‡å‡†æœåŠ¡å¥æŸ„ */
 
-/** \brief SDIO ÊµÀı³õÊ¼»¯£¬»ñµÃSDIO±ê×¼·şÎñ¾ä±ú */
+/** \brief SDIO å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—SDIOæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_sdio_handle_t am_zmf159_sdio_inst_init (void)
 {
     if (NULL == __g_sdio_handle) {
@@ -82,7 +82,7 @@ am_sdio_handle_t am_zmf159_sdio_inst_init (void)
     return __g_sdio_handle;
 }
 
-/** \brief I2C1 ÊµÀı½â³õÊ¼»¯ */
+/** \brief I2C1 å®ä¾‹è§£åˆå§‹åŒ– */
 void am_zmf159_sdio_inst_deinit (am_sdio_handle_t handle)
 {
     am_zmf159_sdio_deinit(handle);

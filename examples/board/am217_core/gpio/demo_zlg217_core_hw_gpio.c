@@ -12,18 +12,18 @@
 
 /**
  * \file
- * \brief GPIO Àý³Ì£¬Í¨¹ý HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief GPIO ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. ½« J14 µÄ KEY ºÍ PIOC_9 ¶Ì½ÓÔÚÒ»Æð¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. å°† J14 çš„ KEY å’Œ PIOC_9 çŸ­æŽ¥åœ¨ä¸€èµ·ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. °´Ò»´Î°´¼ü LED0 µÆÏ¨Ãð£¬ÔÙ°´Ò»´Î°´¼ü LED0 µÆÁÁ£¬Èç´Ë·´¸´¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. æŒ‰ä¸€æ¬¡æŒ‰é”® LED0 ç¯ç†„ç­ï¼Œå†æŒ‰ä¸€æ¬¡æŒ‰é”® LED0 ç¯äº®ï¼Œå¦‚æ­¤åå¤ã€‚
  *
  * \note
- *    LED0 ÐèÒª¶Ì½Ó J9 ÌøÏßÃ±£¬²ÅÄÜ±» PIOC_7 ¿ØÖÆ¡£
+ *    LED0 éœ€è¦çŸ­æŽ¥ J9 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIOC_7 æŽ§åˆ¶ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_zlg217_hw_gpio.c src_zlg217_hw_gpio
  *
  * \internal
@@ -46,21 +46,21 @@
 #include "demo_zlg_entries.h"
 #include "demo_am217_core_entries.h"
 
-#define INPUT_PIN  PIOC_6 /**< \brief ÊäÈëÒý½Å */
-#define OUTPUT_PIN PIOC_9 /**< \brief Êä³öÒý½Å */
+#define INPUT_PIN  PIOC_6 /**< \brief è¾“å…¥å¼•è„š */
+#define OUTPUT_PIN PIOC_9 /**< \brief è¾“å‡ºå¼•è„š */
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_zlg217_core_hw_gpio_entry (void)
 {
 
     AM_DBG_INFO("demo am217_core hw gpio!\r\n");
 
-    /* ¿ªÆô GPIOC ¶Ë¿ÚÊ±ÖÓ */
+    /* å¼€å¯ GPIOC ç«¯å£æ—¶é’Ÿ */
     am_clk_enable(CLK_IOPC);
 
-    /* ¿ªÆôÏµÍ³ÅäÖÃµÄÊ±ÖÓ */
+    /* å¼€å¯ç³»ç»Ÿé…ç½®çš„æ—¶é’Ÿ */
     am_clk_enable(CLK_AFIO);
 
     demo_zlg_hw_gpio_entry((amhw_zlg_gpio_t*)ZLG217_GPIO, INPUT_PIN, OUTPUT_PIN);

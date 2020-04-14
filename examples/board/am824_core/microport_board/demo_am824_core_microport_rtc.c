@@ -12,21 +12,21 @@
 
 /**
  * \file
- * \brief MicroPort-RTC(PCF85063) ���̣�ͨ����׼�ӿ�ʵ��
+ * \brief MicroPort-RTC(PCF85063) 例程，通过标准接口实现
  *
- * - �������裺
- *   1. �� MicroPort-RTC ��չ�����ӵ� AM824-Core �� MicroPort �ӿڡ�
+ * - 操作步骤：
+ *   1. 将 MicroPort-RTC 扩展板连接到 AM824-Core 的 MicroPort 接口。
  *
- * - ʵ������
- *   1. ���ڽ�ÿһ���ʱ����Ϣ��ӡ������
- *   2. ����ʱ��һ���ͻ�ִ�����ӻص�������
- *   3. �жϲ���ʱ������жϻص�������
+ * - 实验现象：
+ *   1. 串口将每一秒的时间信息打印出来；
+ *   2. 闹钟时间一到就会执行闹钟回调函数；
+ *   3. 中断产生时会调用中断回调函数。
  *
  * \note
- *    ����۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIO0_0 �������� PC ���ڵ� TXD��
- *    PIO0_4 �������� PC ���ڵ� RXD��
+ *    如需观察串口打印的调试信息，需要将 PIO0_0 引脚连接 PC 串口的 TXD，
+ *    PIO0_4 引脚连接 PC 串口的 RXD。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_microport_rtc.c src_microport_rtc
  *
  * \internal
@@ -47,7 +47,7 @@
 #include "demo_std_entries.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_am824_core_microport_rtc_entry (void)
 {

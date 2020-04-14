@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief KL26 WDT ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief KL26 WDT ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_kl26_hwconfig_wdt.c
  *
  * \internal
@@ -29,21 +29,21 @@
  * @{
  */
 
-/** \brief WDT Æ½Ì¨³õÊ¼»¯ */
+/** \brief WDT å¹³å°åˆå§‹åŒ– */
 static void __kl26_wdt_plfm_init (void)
 {
-    /* ²»ĞèÒª×öÆäËû²Ù×÷ */
+    /* ä¸éœ€è¦åšå…¶ä»–æ“ä½œ */
 }
 
-/** \brief ½â³ıWDT Æ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤WDT å¹³å°åˆå§‹åŒ– */
 static void __kl26_wdt_plfm_deinit (void)
 {
-    /* ²»ĞèÒª×öÆäËû²Ù×÷ */
+    /* ä¸éœ€è¦åšå…¶ä»–æ“ä½œ */
 }
 
-/** \brief WDT Éè±¸ĞÅÏ¢ */
+/** \brief WDT è®¾å¤‡ä¿¡æ¯ */
 static const am_kl26_wdt_devinfo_t  __g_wdt_devinfo = {
-		KL26_SIM,  /* Ö¸ÏòSIM¼Ä´æÆ÷¿éµÄÖ¸Õë */
+		KL26_SIM,  /* æŒ‡å‘SIMå¯„å­˜å™¨å—çš„æŒ‡é’ˆ */
 
 		__kl26_wdt_plfm_init,
 
@@ -51,13 +51,13 @@ static const am_kl26_wdt_devinfo_t  __g_wdt_devinfo = {
 
 };
 
-/** \brief WDTÉè±¸ÊµÀı  */
+/** \brief WDTè®¾å¤‡å®ä¾‹  */
 static am_kl26_wdt_dev_t            __g_wdt_dev;
 
 /**
- * \brief  WDT ÊµÀı³õÊ¼»¯£¬»ñµÃWDT±ê×¼·şÎñ¾ä±ú
+ * \brief  WDT å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—WDTæ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return WDT¾ä±úÖµ
+ * \return WDTå¥æŸ„å€¼
  */
 am_wdt_handle_t am_kl26_wdt_inst_init (void)
 {
@@ -65,9 +65,9 @@ am_wdt_handle_t am_kl26_wdt_inst_init (void)
 }
 
 /**
- * \brief WDT ÊµÀı½â³õÊ¼»¯
+ * \brief WDT å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle : WDT¿´ÃÅ¹·¾ä±úÖµ
+ * \param[in] handle : WDTçœ‹é—¨ç‹—å¥æŸ„å€¼
  */
 void am_kl26_wdt_inst_deinit (am_wdt_handle_t handle)
 {

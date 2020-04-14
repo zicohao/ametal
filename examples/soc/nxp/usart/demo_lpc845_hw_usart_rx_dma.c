@@ -12,23 +12,23 @@
 
 /**
  * \file
- * \brief USART ½ÓÊÕÊı¾İÀı³Ì£¨DMA ·½Ê½£©£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief USART æ¥æ”¶æ•°æ®ä¾‹ç¨‹ï¼ˆDMA æ–¹å¼ï¼‰ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè£º
- *   1. µ±ÉÏÎ»»ú½ÓÊÕµ½ "DMA rx transfer start:" Ê±£¬Í¨¹ıÉÏÎ»»úÒ»´ÎĞÔÏò MCU ·¢ËÍ
- *      16 ¸ö×Ö·û¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. å½“ä¸Šä½æœºæ¥æ”¶åˆ° "DMA rx transfer start:" æ—¶ï¼Œé€šè¿‡ä¸Šä½æœºä¸€æ¬¡æ€§å‘ MCU å‘é€
+ *      16 ä¸ªå­—ç¬¦ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1  ´®¿Ú´òÓ¡ "DMA rx transfer start:"£»
- *   1. ´®¿Ú´òÓ¡³ö½ÓÊÕµ½µÄÊı¾İ£»
- *   2. ´®¿Ú´òÓ¡ "DMA transfer done!"¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1  ä¸²å£æ‰“å° "DMA rx transfer start:"ï¼›
+ *   1. ä¸²å£æ‰“å°å‡ºæ¥æ”¶åˆ°çš„æ•°æ®ï¼›
+ *   2. ä¸²å£æ‰“å° "DMA transfer done!"ã€‚
  *
  * \note
- *    1. Àı³ÌÊ¹ÓÃ USART0£¬Óë DEBUG µ÷ÊÔÊ¹ÓÃ´®¿ÚÏàÍ¬£»
- *    2. ÈçĞè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔĞÅÏ¢£¬ĞèÒª½« PIO0_0 Òı½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *       PIO0_4 Òı½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
+ *    1. ä¾‹ç¨‹ä½¿ç”¨ USART0ï¼Œä¸ DEBUG è°ƒè¯•ä½¿ç”¨ä¸²å£ç›¸åŒï¼›
+ *    2. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO0_0 å¼•è„šè¿æ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *       PIO0_4 å¼•è„šè¿æ¥ PC ä¸²å£çš„ RXDã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_lpc824_hw_usart_rx_dma.c src_lpc824_hw_usart_rx_dma
  *
  *
@@ -51,46 +51,46 @@
 #include "hw/amhw_lpc84x_clk.h"
 
 /*******************************************************************************
-  ºê¶¨Òå
+  å®å®šä¹‰
 *******************************************************************************/
 
 /**
- * \brief »ù±¾ÊäÈëÆµÂÊÉèÖÃ£¨»ù±¾ÊäÈëÆµÂÊ±ØĞëĞ¡ÓÚÏµÍ³Ê±ÖÓÆµÂÊÇÒÓ¦Îª²¨ÌØÂÊµÄÕûÊı±¶£©
+ * \brief åŸºæœ¬è¾“å…¥é¢‘ç‡è®¾ç½®ï¼ˆåŸºæœ¬è¾“å…¥é¢‘ç‡å¿…é¡»å°äºç³»ç»Ÿæ—¶é’Ÿé¢‘ç‡ä¸”åº”ä¸ºæ³¢ç‰¹ç‡çš„æ•´æ•°å€ï¼‰
  *
- * ÎªÁËÉèÖÃ²¨ÌØÂÊÎª 115200£¬¹ÊÉèÖÃ´®¿Ú»ù±¾ÊäÈëÆµÂÊÎª£º
- * 11059200Hz(11059200 = 115200 * 96)¡£
- * ´®¿Ú»ù±¾ÊäÈëÆµÂÊÉèÖÃÎª 11.059200MHz£¬¿ÉÂú×ã´ó¶àÊı²¨ÌØÂÊµÄÉèÖÃ (9600,4800,115200)
+ * ä¸ºäº†è®¾ç½®æ³¢ç‰¹ç‡ä¸º 115200ï¼Œæ•…è®¾ç½®ä¸²å£åŸºæœ¬è¾“å…¥é¢‘ç‡ä¸ºï¼š
+ * 11059200Hz(11059200 = 115200 * 96)ã€‚
+ * ä¸²å£åŸºæœ¬è¾“å…¥é¢‘ç‡è®¾ç½®ä¸º 11.059200MHzï¼Œå¯æ»¡è¶³å¤§å¤šæ•°æ³¢ç‰¹ç‡çš„è®¾ç½® (9600,4800,115200)
  *
- * \note  USART0\1\2 ¹²ÓÃÒ»¸ö»ù±¾ÊäÈëÆµÂÊ,²»ÒªÇáÒ×¸Ä¶¯
+ * \note  USART0\1\2 å…±ç”¨ä¸€ä¸ªåŸºæœ¬è¾“å…¥é¢‘ç‡,ä¸è¦è½»æ˜“æ”¹åŠ¨
  */
 #define  __LPC84X_UASART_BASE_RATE  11059200
 
-/** \brief DMA ´®¿Ú½ÓÊÕ´óĞ¡ */
+/** \brief DMA ä¸²å£æ¥æ”¶å¤§å° */
 #define __USART_RX_BYTES            16
 
 /*******************************************************************************
-  ±¾µØÈ«¾Ö±äÁ¿¶¨Òå
+  æœ¬åœ°å…¨å±€å˜é‡å®šä¹‰
 *******************************************************************************/
-am_local uint8_t __g_buf_dst[256];             /**< \brief Ä¿±ê¶ËÊı¾İ»º³åÇø */
-am_local am_lpc84x_dma_controller_t *__gp_ctr = NULL; /**< \brief DMAÍ¨µÀ¿ØÖÆÆ÷ */
+am_local uint8_t __g_buf_dst[256];             /**< \brief ç›®æ ‡ç«¯æ•°æ®ç¼“å†²åŒº */
+am_local am_lpc84x_dma_controller_t *__gp_ctr = NULL; /**< \brief DMAé€šé“æ§åˆ¶å™¨ */
 
 /**
- * \brief DMA ´«ÊäÍê³É»Øµ÷º¯Êı
+ * \brief DMA ä¼ è¾“å®Œæˆå›è°ƒå‡½æ•°
  *
- * \param[in] p_arg ÓÃ»§×Ô¶¨Òå²ÎÊı
- * \param[in] stat  DMA ´«ÊäÍê³É×´Ì¬±êÖ¾£¬¸Ã²ÎÊıµÄ¿ÉÄÜÈ¡Öµ£º
+ * \param[in] p_arg ç”¨æˆ·è‡ªå®šä¹‰å‚æ•°
+ * \param[in] stat  DMA ä¼ è¾“å®ŒæˆçŠ¶æ€æ ‡å¿—ï¼Œè¯¥å‚æ•°çš„å¯èƒ½å–å€¼ï¼š
  *                      AM_LPC84X_DMA_STAT_INTA
  *                      AM_LPC84X_DMA_STAT_INTB
  *                      AM_LPC84X_DMA_STAT_INTERR
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_local void __rx_dma_callback (void *p_arg, int stat)
 {
     amhw_lpc_usart_t *p_hw_usart = (amhw_lpc_usart_t *)p_arg;
     if (stat & AM_LPC84X_DMA_STAT_INTA) {
 
-        /* DMA ´«ÊäÍê³É */
+        /* DMA ä¼ è¾“å®Œæˆ */
         am_lpc84x_dma_controller_release(__gp_ctr);
 
         amhw_lpc_usart_poll_send(p_hw_usart, __g_buf_dst, __USART_RX_BYTES);
@@ -102,12 +102,12 @@ am_local void __rx_dma_callback (void *p_arg, int stat)
 
     if (stat & AM_LPC84X_DMA_STAT_INTERR) {
 
-        /* ´«Êä´íÎóÖ´ĞĞ´úÂë */
+        /* ä¼ è¾“é”™è¯¯æ‰§è¡Œä»£ç  */
     }
 }
 
 /**
- * \brief USART Í¨¹ı DMA ½ÓÊÕÊı¾İ
+ * \brief USART é€šè¿‡ DMA æ¥æ”¶æ•°æ®
  */
 am_local void __usart_dma_receive (amhw_lpc_usart_t *p_hw_usart,
                                    am_const uint8_t *p_rxbuf, 
@@ -116,11 +116,11 @@ am_local void __usart_dma_receive (amhw_lpc_usart_t *p_hw_usart,
 {
     am_lpc84x_dma_transfer_t transfer;
 
-    /* ÅäÖÃ DMA ¿ØÖÆÆ÷ */
+    /* é…ç½® DMA æ§åˆ¶å™¨ */
     __gp_ctr = am_lpc84x_dma_controller_get(chan,
                                             DMA_CHAN_OPT_PRIO_3 |
                                             DMA_CHAN_OPT_PERIPH_REQ_EN);
-    /* ½¨Á¢ DMA ´«ÊäÃèÊö·û */
+    /* å»ºç«‹ DMA ä¼ è¾“æè¿°ç¬¦ */
     am_lpc84x_dma_transfer_build(&transfer,
                                   (uint32_t)&(p_hw_usart->rxdat),
                                   (uint32_t)p_rxbuf,
@@ -129,7 +129,7 @@ am_local void __usart_dma_receive (amhw_lpc_usart_t *p_hw_usart,
                                   AM_LPC84X_DMA_TRANS_SRCINC_NOINC |
                                   AM_LPC84X_DMA_TRANS_DSTINC_1X);
 
-    /* ¿ªÊ¼ DMA ´«Êä */
+    /* å¼€å§‹ DMA ä¼ è¾“ */
     am_lpc84x_dma_transfer(__gp_ctr,
                           &transfer,
                            __rx_dma_callback,
@@ -137,7 +137,7 @@ am_local void __usart_dma_receive (amhw_lpc_usart_t *p_hw_usart,
 }
 
 /**
- * \brief USART ³õÊ¼»¯
+ * \brief USART åˆå§‹åŒ–
  */
 void demo_lpc845_hw_usart_rx_dma_entry (amhw_lpc_usart_t *p_hw_usart,
                                         uint32_t          uclk,
@@ -145,28 +145,28 @@ void demo_lpc845_hw_usart_rx_dma_entry (amhw_lpc_usart_t *p_hw_usart,
                                         int               chan)
 {
 
-    /* USART0 8 Î»Êı¾İ³¤¶È 1 Î»Í£Ö¹Î» ÎŞÆæÅ¼Ğ£Ñé */
+    /* USART0 8 ä½æ•°æ®é•¿åº¦ 1 ä½åœæ­¢ä½ æ— å¥‡å¶æ ¡éªŒ */
     amhw_lpc_usart_config(p_hw_usart,
                           AMHW_LPC_USART_CFG_8BIT |
                           AMHW_LPC_USART_CFG_STOP_1 |
                           AMHW_LPC_USART_CFG_PARITY_NO);
 
-   /* ²¨ÌØÂÊ 115200 */
+   /* æ³¢ç‰¹ç‡ 115200 */
     amhw_lpc_usart_baudrate_set(p_hw_usart,
                                 uclk,
                                 baudrate);
 
-    /* Ê¹ÄÜ´®¿Ú */
+    /* ä½¿èƒ½ä¸²å£ */
     amhw_lpc_usart_enable(p_hw_usart);
     amhw_lpc_usart_poll_send(p_hw_usart,
                              (am_const uint8_t *)"DMA rx transfer start:\r\n",
                              sizeof("DMA rx transfer start:\r\n") - 1);
 
-    /* µÈ´ı´®¿Ú·¢ËÍ¿ÕÏĞ */
+    /* ç­‰å¾…ä¸²å£å‘é€ç©ºé—² */
     while ((amhw_lpc_usart_stat_get(p_hw_usart) &
             AMHW_LPC_USART_STAT_TXIDLE) == 0);
 
-    /* ¿ªÊ¼ DMA ´«Êä£¬½ÓÊÕÊı¾İ */
+    /* å¼€å§‹ DMA ä¼ è¾“ï¼Œæ¥æ”¶æ•°æ® */
     __usart_dma_receive(p_hw_usart, __g_buf_dst, __USART_RX_BYTES, chan);
 
     AM_FOREVER {

@@ -12,23 +12,23 @@
 
 /**
  * \file
- * \brief USART ×Ô¶¯Æ¥Åä²¨ÌØÂÊÀý³Ì£¬Í¨¹ýÓ²¼þ²ã½Ó¿ÚÊµÏÖ
+ * \brief USART è‡ªåŠ¨åŒ¹é…æ³¢ç‰¹çŽ‡ä¾‹ç¨‹ï¼Œé€šè¿‡ç¡¬ä»¶å±‚æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. µ±ÉÏÎ»»ú½ÓÊÕµ½ "please set a new baudrate and then input '5'"Ê±£¬¸Ä±ä
- *      ÉÏÎ»»úµÄ²¨ÌØÂÊÎª 4800 »ò 9600,È»ºóÊäÈë×Ö·û 'a' »ò '5'¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. å½“ä¸Šä½æœºæŽ¥æ”¶åˆ° "please set a new baudrate and then input '5'"æ—¶ï¼Œæ”¹å˜
+ *      ä¸Šä½æœºçš„æ³¢ç‰¹çŽ‡ä¸º 4800 æˆ– 9600,ç„¶åŽè¾“å…¥å­—ç¬¦ 'a' æˆ– '5'ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ×Ô¶¯²¨ÌØÂÊÆ¥Åä³É¹¦ºó£¬´®¿Ú´òÓ¡ "The usart baudrate is xxx"£¬·ñÔòÂÒÂë£»
- *   2. ´®¿ÚÊä³ö½ÓÊÕµ½µÄ×Ö·û´®¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. è‡ªåŠ¨æ³¢ç‰¹çŽ‡åŒ¹é…æˆåŠŸåŽï¼Œä¸²å£æ‰“å° "The usart baudrate is xxx"ï¼Œå¦åˆ™ä¹±ç ï¼›
+ *   2. ä¸²å£è¾“å‡ºæŽ¥æ”¶åˆ°çš„å­—ç¬¦ä¸²ã€‚
  *
  * \note
- *    1. ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIO0_14 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *       PIO0_23 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
- *    2. Àý³ÌÔ­Àí£¬MCU Ó²¼þÍ¨¹ý²âÁ¿ RXD Òý½Å½ÓÊÜÊý¾ÝÊ±ÉÏÉýÑØÓëÏÂ½µÑØÖ®¼äµÄÊ±ÖÓ
- *       ¿í¶È×Ô¶¯¼ÆËã²¨ÌØÂÊ£¬ËùÒÔÒªÇóÉÏÎ»»ú·¢ËÍµÄÊý¾Ý£¨'a' »ò '5'£©¡£
+ *    1. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO0_14 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *       PIO0_23 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDã€‚
+ *    2. ä¾‹ç¨‹åŽŸç†ï¼ŒMCU ç¡¬ä»¶é€šè¿‡æµ‹é‡ RXD å¼•è„šæŽ¥å—æ•°æ®æ—¶ä¸Šå‡æ²¿ä¸Žä¸‹é™æ²¿ä¹‹é—´çš„æ—¶é’Ÿ
+ *       å®½åº¦è‡ªåŠ¨è®¡ç®—æ³¢ç‰¹çŽ‡ï¼Œæ‰€ä»¥è¦æ±‚ä¸Šä½æœºå‘é€çš„æ•°æ®ï¼ˆ'a' æˆ– '5'ï¼‰ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am845_core_hw_usart_autobaud.c src_am845_core_hw_usart_autobaud
  *
  * \internal
@@ -49,7 +49,7 @@
 #include "demo_nxp_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am845_core_hw_usart_autobaud_entry (void)
 {

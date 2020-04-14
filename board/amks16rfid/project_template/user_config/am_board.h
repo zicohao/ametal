@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief KL26 ºËĞÄ°å
+ * \brief KL26 æ ¸å¿ƒæ¿
  *
  * \internal
  * \par Modification history
@@ -28,17 +28,17 @@
 #include "am_buzzer_pwm.h"
 #include "am_timer.h"
 
-/** \brief LED Ë÷ÒıIDºÅ */
+/** \brief LED ç´¢å¼•IDå· */
 #define LED0          0
 #define LED1          1
 
 #if (AM_CFG_BUZZER_ENABLE == 1)
 
 /** 
- * \brief TPM_PWM µÄhandle
+ * \brief TPM_PWM çš„handle
  *
- * µ±Ê¹ÓÃ·äÃùÆ÷Ê±£¬Ä¬ÈÏ½«Ê¹ÓÃTPM0µÄOUT2Êä³öPWM²¨ĞÎ£¬Òò´ËÒÑ¾­½«TPM0³õÊ¼»¯ÎªPWM¹¦ÄÜ£¬
- * ÓÉÓÚTPM0ÒÔÊä³öÁùÂ·PWM£¬Òò´Ë¿ÉÒÔÊ¹ÓÃ¸Ãhandle£¬ÒÔ±ãÊ¹ÓÃÆäËü5Â·PWM¡£
+ * å½“ä½¿ç”¨èœ‚é¸£å™¨æ—¶ï¼Œé»˜è®¤å°†ä½¿ç”¨TPM0çš„OUT2è¾“å‡ºPWMæ³¢å½¢ï¼Œå› æ­¤å·²ç»å°†TPM0åˆå§‹åŒ–ä¸ºPWMåŠŸèƒ½ï¼Œ
+ * ç”±äºTPM0ä»¥è¾“å‡ºå…­è·¯PWMï¼Œå› æ­¤å¯ä»¥ä½¿ç”¨è¯¥handleï¼Œä»¥ä¾¿ä½¿ç”¨å…¶å®ƒ5è·¯PWMã€‚
  */
 extern am_pwm_handle_t g_sct0_pwm_handle;
 
@@ -47,9 +47,9 @@ extern am_pwm_handle_t g_sct0_pwm_handle;
 #if (AM_CFG_SOFTIMER_ENABLE == 1)
 
 /** 
- * \brief PIT µÄhandle
+ * \brief PIT çš„handle
  *
- * µ±Ê¹ÓÃÈí¼ş¶¨Ê±Æ÷Ê±£¬Ä¬ÈÏ½«Ê¹ÓÃPIT×÷Îª»ù´¡¶¨Ê±µ¥Ôª£¬Òò´ËÒÑ¾­½«PIT³õÊ¼»¯Îª¶¨Ê±Æ÷¹¦ÄÜ£¬
+ * å½“ä½¿ç”¨è½¯ä»¶å®šæ—¶å™¨æ—¶ï¼Œé»˜è®¤å°†ä½¿ç”¨PITä½œä¸ºåŸºç¡€å®šæ—¶å•å…ƒï¼Œå› æ­¤å·²ç»å°†PITåˆå§‹åŒ–ä¸ºå®šæ—¶å™¨åŠŸèƒ½ï¼Œ
 
  */
 extern am_timer_handle_t g_mrt_handle;
@@ -58,9 +58,9 @@ extern am_timer_handle_t g_mrt_handle;
 
 
 /**
- * \brief °å¼¶³õÊ¼»¯(kl26)
- * \return ÎŞ
- * \note ¸Ãº¯Êı»á³õÊ¼»¯ÏµÍ³Ê±ÖÓ¡¢GPIO¡¢ÖĞ¶Ï¡¢·äÃùÆ÷¡¢LEDºÍÑÓÊ±º¯Êı
+ * \brief æ¿çº§åˆå§‹åŒ–(kl26)
+ * \return æ— 
+ * \note è¯¥å‡½æ•°ä¼šåˆå§‹åŒ–ç³»ç»Ÿæ—¶é’Ÿã€GPIOã€ä¸­æ–­ã€èœ‚é¸£å™¨ã€LEDå’Œå»¶æ—¶å‡½æ•°
  */
 void am_board_init(void);
     

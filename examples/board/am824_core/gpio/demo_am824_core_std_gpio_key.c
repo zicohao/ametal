@@ -12,16 +12,16 @@
 
 /**
  * \file
- * \brief GPIO °´¼üÀý³Ì£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief GPIO æŒ‰é”®ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. °´Ò»´Î°´¼ü LED0 µÆÏ¨Ãð£¬ÔÙ°´Ò»´Î°´¼ü LED0 µÆÁÁ£¬Èç´Ë·´¸´¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. æŒ‰ä¸€æ¬¡æŒ‰é”® LED0 ç¯ç†„ç­ï¼Œå†æŒ‰ä¸€æ¬¡æŒ‰é”® LED0 ç¯äº®ï¼Œå¦‚æ­¤åå¤ã€‚
  *
  * \note
- *    1. LED0 ÐèÒª¶Ì½Ó J9 ÌøÏßÃ±£¬²ÅÄÜ±» PIO0_20 ¿ØÖÆ£»
- *    2. °´¼üÐèÒª½« J14 ÌøÏßÃ±µÄ KEY ºÍ PIO0_1 ¶Ì½Ó²ÅÄÜÊ¹ÓÃ¡£
+ *    1. LED0 éœ€è¦çŸ­æŽ¥ J9 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIO0_20 æŽ§åˆ¶ï¼›
+ *    2. æŒ‰é”®éœ€è¦å°† J14 è·³çº¿å¸½çš„ KEY å’Œ PIO0_1 çŸ­æŽ¥æ‰èƒ½ä½¿ç”¨ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am824_std_gpio_key.c src_am824_std_gpio_key
  *
  * \internal
@@ -43,11 +43,11 @@
 #include "am_lpc82x_gpio.h"
 #include "demo_nxp_entries.h"
 
-/** \brief °´¼üÒý½Å */
+/** \brief æŒ‰é”®å¼•è„š */
 #define __KEY_PIN  PIO0_1
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am824_core_std_gpio_key_entry (void)
 {

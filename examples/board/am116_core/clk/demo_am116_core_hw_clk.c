@@ -12,18 +12,18 @@
 
 /**
  * \file
- * \brief CLK ���̣�ͨ�� HW ��ӿ�ʵ��
+ * \brief CLK 例程，通过 HW 层接口实现
  *
- * - ʵ������
- *   1. ���ڴ�ӡ������Ƶ�ʣ�
- *   2. PIOA_9 ���ϵͳʱ�ӣ�SYSCLK����
+ * - 实验现象：
+ *   1. 串口打印各总线频率；
+ *   2. PIOA_9 输出系统时钟（SYSCLK）。
  *
  * \note
- *    1. ����Ĭ�ϵ��Դ��� TXD Ϊ PIOA_9����ʱ��������ų�ͻ�����Ա������еĵ�����Ϣ
- *       ͨ�� PIOA_2 ���������۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIOA_2 �������� PC ��
- *       �ڵ� RXD��
+ *    1. 由于默认调试串口 TXD 为 PIOA_9，与时钟输出引脚冲突，所以本例程中的调试信息
+ *       通过 PIOA_2 输出，如需观察串口打印的调试信息，需要将 PIOA_2 引脚连接 PC 串
+ *       口的 RXD。
  * 
- * \par Դ����
+ * \par 源代码
  * \snippet demo_am116_core_hw_clk.c src_am116_core_hw_clk
  * 
  * \internal
@@ -45,11 +45,11 @@
 #include "demo_zlg_entries.h"
 #include "demo_am116_core_entries.h"
 
-/** \brief ���õ��Դ�������Ĳ����� */
+/** \brief 配置调试串口输出的波特率 */
 #define __DEBUG_BAUDRATE        115200
 
 /**
- * \brief ��ʼ������ 2 Ϊ���Դ���
+ * \brief 初始化串口 2 为调试串口
  */
 am_local void __uart_init (void)
 {
@@ -57,12 +57,12 @@ am_local void __uart_init (void)
 
     handle = am_zlg116_uart2_inst_init();
 
-    /* ���Գ�ʼ�� */
+    /* 调试初始化 */
     am_debug_init(handle, __DEBUG_BAUDRATE);
 }
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_am116_core_hw_clk_entry (void)
 {

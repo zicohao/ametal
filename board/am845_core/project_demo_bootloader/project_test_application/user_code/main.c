@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief LPC84X bootloader ÓÃÓÚ²âÊÔµÄÓ¦ÓÃ³ÌĞò¹¤³Ì
+ * \brief LPC84X bootloader ç”¨äºæµ‹è¯•çš„åº”ç”¨ç¨‹åºå·¥ç¨‹
  *
  * \note
- * ²¨ÌØÂÊÊ¹ÓÃ9600
+ * æ³¢ç‰¹ç‡ä½¿ç”¨9600
  *
  * \internal
  * \par Modification history
@@ -32,7 +32,7 @@
 #include "demo_am845_core_entries.h"
 
 /**
- * \brief AMetal Ó¦ÓÃ³ÌĞòÈë¿Ú
+ * \brief AMetal åº”ç”¨ç¨‹åºå…¥å£
  */
 void am_main (void) 
 {

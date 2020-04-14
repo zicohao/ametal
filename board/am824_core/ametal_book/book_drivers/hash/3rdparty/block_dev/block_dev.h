@@ -5,7 +5,7 @@
 
 BEGIN_C_DECLS
 
-//¿éÉè±¸µ¥¿éµÄ´óÐ¡£¬Ò»°ãÑ¡Ôñ256µÄÕûÊý±¶¡£
+//å—è®¾å¤‡å•å—çš„å¤§å°ï¼Œä¸€èˆ¬é€‰æ‹©256çš„æ•´æ•°å€ã€‚
 #ifndef BLOCK_SIZE
 #define BLOCK_SIZE 256
 #endif//BLOCK_SIZE
@@ -22,7 +22,7 @@ typedef void   (*block_dev_close_t)(block_dev_t* dev);
 
 
 /*
-* ¿éÉè±¸µÄ½Ó¿Ú¡£
+* å—è®¾å¤‡çš„æŽ¥å£ã€‚
 */
 
 struct _block_dev_t {
@@ -33,11 +33,11 @@ struct _block_dev_t {
 };
 
 /**
-* \brief »ñÈ¡¿éÉè±¸ÖÐ×Ü¹²µÄ¿éÊý¡£
+* \brief èŽ·å–å—è®¾å¤‡ä¸­æ€»å…±çš„å—æ•°ã€‚
 *
-* \param[in] dev      £º ¿éÉè±¸¶ÔÏó
+* \param[in] dev      ï¼š å—è®¾å¤‡å¯¹è±¡
 *
-* \retval ¿éÉè±¸ÖÐ×Ü¹²µÄ¿éÊý
+* \retval å—è®¾å¤‡ä¸­æ€»å…±çš„å—æ•°
 */
 am_static_inline block_num_t block_dev_get_block_nr(block_dev_t* dev) {
 	return_value_if_fail(dev != NULL && dev->get_block_nr != NULL, 0);
@@ -46,14 +46,14 @@ am_static_inline block_num_t block_dev_get_block_nr(block_dev_t* dev) {
 }
 
 /**
-* \brief ´Ó¿éÉè±¸ÖÐ¶ÁÈ¡Ö¸¶¨¿éµÄÊý¾Ý¡£
+* \brief ä»Žå—è®¾å¤‡ä¸­è¯»å–æŒ‡å®šå—çš„æ•°æ®ã€‚
 *
-* \param[in] dev        £º ¿éÉè±¸¶ÔÏó
-* \param[in] block_num  £º ¿éºÅ
-* \param[out] buff      £º ·µ»ØÊý¾ÝµÄbuff£¬ÓÉÍâÃæÌá¹©²»Ð¡ÓÚBLOCK_SIZE´óÐ¡µÄ¿Õ¼ä¡£
+* \param[in] dev        ï¼š å—è®¾å¤‡å¯¹è±¡
+* \param[in] block_num  ï¼š å—å·
+* \param[out] buff      ï¼š è¿”å›žæ•°æ®çš„buffï¼Œç”±å¤–é¢æä¾›ä¸å°äºŽBLOCK_SIZEå¤§å°çš„ç©ºé—´ã€‚
 *
-* \retval TRUE  ³É¹¦
-* \retval FALSE Ê§°Ü
+* \retval TRUE  æˆåŠŸ
+* \retval FALSE å¤±è´¥
 */
 am_static_inline am_bool_t block_dev_read_block(block_dev_t* dev, block_num_t block_num, void* buff) {
 	return_value_if_fail(dev != NULL && dev->read_block != NULL 
@@ -63,14 +63,14 @@ am_static_inline am_bool_t block_dev_read_block(block_dev_t* dev, block_num_t bl
 }
 
 /**
-* \brief Ïò¿éÉè±¸ÖÐÐ´ÈëÖ¸¶¨¿éµÄÊý¾Ý¡£
+* \brief å‘å—è®¾å¤‡ä¸­å†™å…¥æŒ‡å®šå—çš„æ•°æ®ã€‚
 *
-* \param[in] dev        £º ¿éÉè±¸¶ÔÏó
-* \param[in] block_num  £º ¿éºÅ
-* \param[in] buff       £º ´ýÐ´ÈëÊý¾ÝµÄbuff£¬´óÐ¡²»Ð¡ÓÚBLOCK_SIZE¡£
+* \param[in] dev        ï¼š å—è®¾å¤‡å¯¹è±¡
+* \param[in] block_num  ï¼š å—å·
+* \param[in] buff       ï¼š å¾…å†™å…¥æ•°æ®çš„buffï¼Œå¤§å°ä¸å°äºŽBLOCK_SIZEã€‚
 *
-* \retval TRUE  ³É¹¦
-* \retval FALSE Ê§°Ü
+* \retval TRUE  æˆåŠŸ
+* \retval FALSE å¤±è´¥
 */
 am_static_inline am_bool_t block_dev_write_block(block_dev_t* dev, block_num_t block_num, const void* buff) {
 	return_value_if_fail(dev != NULL && dev->write_block != NULL 
@@ -80,11 +80,11 @@ am_static_inline am_bool_t block_dev_write_block(block_dev_t* dev, block_num_t b
 }
 
 /**
-* \brief ¹Ø±Õ¿éÉè±¸£¬ÊÍ·ÅÏà¹Ø×ÊÔ´¡£
+* \brief å…³é—­å—è®¾å¤‡ï¼Œé‡Šæ”¾ç›¸å…³èµ„æºã€‚
 *
-* \param[in] dev        £º ¿éÉè±¸¶ÔÏó
+* \param[in] dev        ï¼š å—è®¾å¤‡å¯¹è±¡
 *
-* \retval ÎÞ
+* \retval æ— 
 */
 am_static_inline void block_dev_close(block_dev_t* dev) {
 	return_if_fail(dev != NULL && dev->close != NULL);

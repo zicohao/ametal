@@ -12,17 +12,17 @@
 
 /**
  * \file
- * \brief TIM4 ��ʱ�� PWM ���̣�ͨ����׼�ӿ�ʵ��
+ * \brief TIM4 定时器 PWM 例程，通过标准接口实现
  *
- * - ʵ������
- *   1. PIOB_6(TIM4_CH1)��� 2KHz �� PWM��ռ�ձ�Ϊ 50%��
+ * - 实验现象：
+ *   1. PIOB_6(TIM4_CH1)输出 2KHz 的 PWM，占空比为 50%；
  *
  * \note
- *    ���� TIM4 Ĭ�ϳ�ʼ������Ϊϵͳ�δ�ʹ�ã�ʹ�ñ� Demo ֮ǰ������
- *    am_prj_config.h �ڽ� AM_CFG_KEY_GPIO_ENABLE��AM_CFG_SOFTIMER_ENABLE
- *    �� AM_CFG_SYSTEM_TICK_ENABLE ����Ϊ 0��
+ *    由于 TIM4 默认初始化并作为系统滴答使用，使用本 Demo 之前必须在
+ *    am_prj_config.h 内将 AM_CFG_KEY_GPIO_ENABLE、AM_CFG_SOFTIMER_ENABLE
+ *    和 AM_CFG_SYSTEM_TICK_ENABLE 定义为 0。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_zlg217_std_tim4_pwm.c src_zlg217_std_tim4_pwm
  *
  * \internal
@@ -46,7 +46,7 @@
 #include "demo_am217_core_entries.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_zlg217_core_std_tim4_pwm_entry (void)
 {

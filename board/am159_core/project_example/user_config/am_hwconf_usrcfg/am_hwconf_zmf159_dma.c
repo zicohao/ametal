@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZMF159 DMA ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief ZMF159 DMA ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_zmf159_dma.c
  *
  * \internal
@@ -31,7 +31,7 @@
  */
 
 /**
- * \brief DMA1 Æ½Ì¨³õÊ¼»¯¡£
+ * \brief DMA1 å¹³å°åˆå§‹åŒ–ã€‚
  */
 static void __zmf159_plfm_dma1_init (void)
 {
@@ -39,28 +39,28 @@ static void __zmf159_plfm_dma1_init (void)
 }
 
 /**
- * \brief DMA1 Æ½Ì¨È¥³õÊ¼»¯¡£
+ * \brief DMA1 å¹³å°å»åˆå§‹åŒ–ã€‚
  */
 static void __zmf159_plfm_dma1_deinit (void)
 {
     am_clk_disable(CLK_DMA1);
 }
 
-/** \brief DMA1 Éè±¸ĞÅÏ¢ */
+/** \brief DMA1 è®¾å¤‡ä¿¡æ¯ */
 static const am_zlg_dma_devinfo_t __g_dma1_devinfo = {
-    ZMF159_DMA1_BASE,          /**< \brief Ö¸ÏòDMA1¼Ä´æÆ÷¿éµÄÖ¸Õë */
-    INUM_DMA1_1,               /**< \brief DMAÖĞ¶ÏÏòÁ¿ºÅ¿ªÊ¼ */
-    INUM_DMA1_7,               /**< \brief DMAÖĞ¶ÏÏòÁ¿ºÅ½áÊø */
-    __zmf159_plfm_dma1_init,   /**< \brief DMAÆ½Ì¨³õÊ¼»¯ */
-    __zmf159_plfm_dma1_deinit  /**< \brief DMAÆ½Ì¨½â³õÊ¼»¯ */
+    ZMF159_DMA1_BASE,          /**< \brief æŒ‡å‘DMA1å¯„å­˜å™¨å—çš„æŒ‡é’ˆ */
+    INUM_DMA1_1,               /**< \brief DMAä¸­æ–­å‘é‡å·å¼€å§‹ */
+    INUM_DMA1_7,               /**< \brief DMAä¸­æ–­å‘é‡å·ç»“æŸ */
+    __zmf159_plfm_dma1_init,   /**< \brief DMAå¹³å°åˆå§‹åŒ– */
+    __zmf159_plfm_dma1_deinit  /**< \brief DMAå¹³å°è§£åˆå§‹åŒ– */
 };
 
-/** \brief DMA1Éè±¸ÊµÀı */
+/** \brief DMA1è®¾å¤‡å®ä¾‹ */
 static am_zlg_dma_dev_t __g_dma1_dev;
 
 /**
- * \brief DMA1 ÊµÀı³õÊ¼»¯
- * \return ÎŞ
+ * \brief DMA1 å®ä¾‹åˆå§‹åŒ–
+ * \return æ— 
  */
 int am_zmf159_dma1_inst_init (void)
 {
@@ -68,8 +68,8 @@ int am_zmf159_dma1_inst_init (void)
 }
 
 /**
- * \brief DMA1 ÊµÀı½â³õÊ¼»¯
- * \return ÎŞ
+ * \brief DMA1 å®ä¾‹è§£åˆå§‹åŒ–
+ * \return æ— 
  */
 void am_zmf159_dma1_inst_deinit (void)
 {
@@ -79,7 +79,7 @@ void am_zmf159_dma1_inst_deinit (void)
 /*******************************************************************************/
 
 /**
- * \brief DMA2 Æ½Ì¨³õÊ¼»¯¡£
+ * \brief DMA2 å¹³å°åˆå§‹åŒ–ã€‚
  */
 static void __zmf159_plfm_dma2_init (void)
 {
@@ -87,28 +87,28 @@ static void __zmf159_plfm_dma2_init (void)
 }
 
 /**
- * \brief DMA2 Æ½Ì¨È¥³õÊ¼»¯¡£
+ * \brief DMA2 å¹³å°å»åˆå§‹åŒ–ã€‚
  */
 static void __zmf159_plfm_dma2_deinit (void)
 {
     am_clk_disable(CLK_DMA2);
 }
 
-/** \brief DMA2 Éè±¸ĞÅÏ¢ */
+/** \brief DMA2 è®¾å¤‡ä¿¡æ¯ */
 static const am_zlg_dma_devinfo_t __g_dma2_devinfo = {
-    ZMF159_DMA2_BASE,          /**< \brief Ö¸ÏòDMA2¼Ä´æÆ÷¿éµÄÖ¸Õë */
-    INUM_DMA2_1,               /**< \brief DMAÖĞ¶ÏÏòÁ¿ºÅ¿ªÊ¼ */
-    INUM_DMA2_5,               /**< \brief DMAÖĞ¶ÏÏòÁ¿ºÅ½áÊø */
-    __zmf159_plfm_dma2_init,   /**< \brief DMAÆ½Ì¨³õÊ¼»¯ */
-    __zmf159_plfm_dma2_deinit  /**< \brief DMAÆ½Ì¨½â³õÊ¼»¯ */
+    ZMF159_DMA2_BASE,          /**< \brief æŒ‡å‘DMA2å¯„å­˜å™¨å—çš„æŒ‡é’ˆ */
+    INUM_DMA2_1,               /**< \brief DMAä¸­æ–­å‘é‡å·å¼€å§‹ */
+    INUM_DMA2_5,               /**< \brief DMAä¸­æ–­å‘é‡å·ç»“æŸ */
+    __zmf159_plfm_dma2_init,   /**< \brief DMAå¹³å°åˆå§‹åŒ– */
+    __zmf159_plfm_dma2_deinit  /**< \brief DMAå¹³å°è§£åˆå§‹åŒ– */
 };
 
-/** \brief DMA2Éè±¸ÊµÀı */
+/** \brief DMA2è®¾å¤‡å®ä¾‹ */
 static am_zlg_dma_dev_t __g_dma2_dev;
 
 /**
- * \brief DMA2 ÊµÀı³õÊ¼»¯
- * \return ÎŞ
+ * \brief DMA2 å®ä¾‹åˆå§‹åŒ–
+ * \return æ— 
  */
 int am_zmf159_dma2_inst_init (void)
 {
@@ -116,8 +116,8 @@ int am_zmf159_dma2_inst_init (void)
 }
 
 /**
- * \brief DMA2 ÊµÀı½â³õÊ¼»¯
- * \return ÎŞ
+ * \brief DMA2 å®ä¾‹è§£åˆå§‹åŒ–
+ * \return æ— 
  */
 void am_zmf159_dma2_inst_deinit (void)
 {

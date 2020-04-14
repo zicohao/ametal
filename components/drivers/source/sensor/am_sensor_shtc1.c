@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ´«¸ĞÆ÷ SHTC1 Çı¶¯ÎÄ¼ş
+ * \brief ä¼ æ„Ÿå™¨ SHTC1 é©±åŠ¨æ–‡ä»¶
  *
  * \internal
  * \par Modification history
@@ -26,18 +26,18 @@
 #include "am_delay.h"
 
 /*******************************************************************************
- * SHTC1 I2CÃüÁî
+ * SHTC1 I2Cå‘½ä»¤
  ******************************************************************************/
-const uint8_t __SHTC1_RESET[] = {0x80, 0x5D};   /** \brief Éè±¸¸´Î»ÃüÁî       */
-const uint8_t __SHTC1_ID[]    = {0xEF, 0xC8};   /** \brief ¶ÁÈ¡IDÃüÁî         */
-const uint8_t __SHTC1_CSE_T[] = {0x7C, 0xA2};   /** \brief Á¬Ğø¶ÁÈ¡ÎÂ¶ÈÃüÁî   */
-const uint8_t __SHTC1_CSE_H[] = {0x5C, 0x24};   /** \brief Á¬Ğø¶ÁÈ¡Êª¶ÈÃüÁî   */
-const uint8_t __SHTC1_CSD_T[] = {0x78, 0x66};   /** \brief ÖØĞÂ¶ÁÈ¡ÎÂ¶ÈÃüÁî   */
-const uint8_t __SHTC1_CSD_H[] = {0x58, 0xE0};   /** \brief ÖØĞÂ¶ÁÈ¡ÎÂ¶ÈÃüÁî   */
+const uint8_t __SHTC1_RESET[] = {0x80, 0x5D};   /** \brief è®¾å¤‡å¤ä½å‘½ä»¤       */
+const uint8_t __SHTC1_ID[]    = {0xEF, 0xC8};   /** \brief è¯»å–IDå‘½ä»¤         */
+const uint8_t __SHTC1_CSE_T[] = {0x7C, 0xA2};   /** \brief è¿ç»­è¯»å–æ¸©åº¦å‘½ä»¤   */
+const uint8_t __SHTC1_CSE_H[] = {0x5C, 0x24};   /** \brief è¿ç»­è¯»å–æ¹¿åº¦å‘½ä»¤   */
+const uint8_t __SHTC1_CSD_T[] = {0x78, 0x66};   /** \brief é‡æ–°è¯»å–æ¸©åº¦å‘½ä»¤   */
+const uint8_t __SHTC1_CSD_H[] = {0x58, 0xE0};   /** \brief é‡æ–°è¯»å–æ¸©åº¦å‘½ä»¤   */
 
-#define  __SHTC1_MY_ID           0x07           /** \brief IDÖµ               */
+#define  __SHTC1_MY_ID           0x07           /** \brief IDå€¼               */
 
-/** \brief ½«Á½¸öuint8×ª»»ÎªÒ»¸öuint16_tÀàĞÍ */
+/** \brief å°†ä¸¤ä¸ªuint8è½¬æ¢ä¸ºä¸€ä¸ªuint16_tç±»å‹ */
 #define  __SHTC1_UINT8_TO_UINT16(data)  ((uint16_t)(data[0] << 8 | data[1]))
 
 #define  __SHTC1_GET_HUM(data)   (((uint32_t)(data) * 100 / \
@@ -46,55 +46,55 @@ const uint8_t __SHTC1_CSD_H[] = {0x58, 0xE0};   /** \brief ÖØĞÂ¶ÁÈ¡ÎÂ¶ÈÃüÁî   */
                                                   (1 << 16) - 45) * 1000000)
 
 /*******************************************************************************
- * ±¾µØº¯ÊıÉùÃ÷
+ * æœ¬åœ°å‡½æ•°å£°æ˜
  ******************************************************************************/
-/** \brief »ñÈ¡¸Ã´«¸ĞÆ÷Ä³Ò»Í¨µÀµÄÀàĞÍ */
+/** \brief è·å–è¯¥ä¼ æ„Ÿå™¨æŸä¸€é€šé“çš„ç±»å‹ */
 am_local am_err_t __pfn_type_get (void *p_drv, int id);
 
-/** \brief »ñÈ¡´«¸ĞÆ÷Í¨µÀ²ÉÑùÊı¾İ */
+/** \brief è·å–ä¼ æ„Ÿå™¨é€šé“é‡‡æ ·æ•°æ® */
 am_local am_err_t __pfn_data_get (void            *p_drv,
                                   const int       *p_ids,
                                   int              num,
                                   am_sensor_val_t *p_buf);
 
-/** \brief Ê¹ÄÜ´«¸ĞÆ÷Í¨µÀ */
+/** \brief ä½¿èƒ½ä¼ æ„Ÿå™¨é€šé“ */
 am_local am_err_t __pfn_enable (void            *p_drv,
                                 const int       *p_ids,
                                 int              num,
                                 am_sensor_val_t *p_result);
 
-/** \brief ½ûÄÜ´«¸ĞÆ÷Í¨µÀ */
+/** \brief ç¦èƒ½ä¼ æ„Ÿå™¨é€šé“ */
 am_local am_err_t __pfn_disable (void            *p_drv,
                                  const int       *p_ids,
                                  int              num,
                                  am_sensor_val_t *p_result);
 
-/** \brief ÅäÖÃ´«¸ĞÆ÷Í¨µÀÊôĞÔ */
+/** \brief é…ç½®ä¼ æ„Ÿå™¨é€šé“å±æ€§ */
 am_local am_err_t __pfn_attr_set (void                  *p_drv,
                                   int                    id,
                                   int                    attr,
                                   const am_sensor_val_t *p_val);
 
-/** \brief »ñÈ¡´«¸ĞÆ÷Í¨µÀÊôĞÔ */
+/** \brief è·å–ä¼ æ„Ÿå™¨é€šé“å±æ€§ */
 am_local am_err_t __pfn_attr_get (void            *p_drv,
                                   int              id,
                                   int              attr,
                                   am_sensor_val_t *p_val);
 
-/** \brief ÉèÖÃ´¥·¢£¬Ò»¸öÍ¨µÀ½öÄÜÉèÖÃÒ»¸ö´¥·¢»Øµ÷º¯Êı */
+/** \brief è®¾ç½®è§¦å‘ï¼Œä¸€ä¸ªé€šé“ä»…èƒ½è®¾ç½®ä¸€ä¸ªè§¦å‘å›è°ƒå‡½æ•° */
 am_local am_err_t __pfn_trigger_cfg (void                   *p_drv,
                                      int                     id,
                                      uint32_t                flags,
                                      am_sensor_trigger_cb_t  pfn_cb,
                                      void                   *p_arg);
 
-/** \brief ´ò¿ª´¥·¢ */
+/** \brief æ‰“å¼€è§¦å‘ */
 am_local am_err_t __pfn_trigger_on (void *p_drv, int id);
 
-/** \brief ¹Ø±Õ´¥·¢ */
+/** \brief å…³é—­è§¦å‘ */
 am_local am_err_t __pfn_trigger_off (void *p_drv, int id);
 
-/** \brief ´«¸ĞÆ÷±ê×¼·şÎñ */
+/** \brief ä¼ æ„Ÿå™¨æ ‡å‡†æœåŠ¡ */
 am_local am_const struct am_sensor_drv_funcs __g_sensor_shtc1_funcs = {
         __pfn_type_get,
         __pfn_data_get,
@@ -111,7 +111,7 @@ am_local am_const struct am_sensor_drv_funcs __g_sensor_shtc1_funcs = {
   Local functions
 *******************************************************************************/
 /*
- * \brief shtc1 Ğ´Êı¾İ
+ * \brief shtc1 å†™æ•°æ®
  */
 am_local am_err_t __shtc1_write (am_sensor_shtc1_dev_t  *p_this,
                                  uint8_t                *p_buf,
@@ -121,7 +121,7 @@ am_local am_err_t __shtc1_write (am_sensor_shtc1_dev_t  *p_this,
 }
 
 /*
- * \brief shtc1 ¶ÁÊı¾İ
+ * \brief shtc1 è¯»æ•°æ®
  */
 am_local am_err_t __shtc1_read (am_sensor_shtc1_dev_t  *p_this,
                                 uint8_t                *p_buf,
@@ -130,7 +130,7 @@ am_local am_err_t __shtc1_read (am_sensor_shtc1_dev_t  *p_this,
     return am_i2c_read(&p_this->i2c_dev, 0x00, p_buf, nbytes);
 }
 
-/** \brief »ñÈ¡¸Ã´«¸ĞÆ÷Ä³Ò»Í¨µÀµÄÀàĞÍ */
+/** \brief è·å–è¯¥ä¼ æ„Ÿå™¨æŸä¸€é€šé“çš„ç±»å‹ */
 am_local am_err_t __pfn_type_get (void *p_drv, int id)
 {
     if (p_drv == NULL) {
@@ -146,7 +146,7 @@ am_local am_err_t __pfn_type_get (void *p_drv, int id)
     }
 }
 
-/** \brief »ñÈ¡´«¸ĞÆ÷Í¨µÀ²ÉÑùÊı¾İ */
+/** \brief è·å–ä¼ æ„Ÿå™¨é€šé“é‡‡æ ·æ•°æ® */
 am_local am_err_t __pfn_data_get (void            *p_drv,
                                   const int       *p_ids,
                                   int              num,
@@ -175,7 +175,7 @@ am_local am_err_t __pfn_data_get (void            *p_drv,
         p_buf[i].unit = AM_SENSOR_UNIT_INVALID;
     }
 
-    /* ¶ÁÈ¡²âÁ¿½á¹û */
+    /* è¯»å–æµ‹é‡ç»“æœ */
     ret = __shtc1_read (p_this, reg_data, 6);
     
     if (ret != AM_OK) {
@@ -189,27 +189,27 @@ am_local am_err_t __pfn_data_get (void            *p_drv,
         if (cur_id == 0) {
             
             hum_data = __SHTC1_UINT8_TO_UINT16((&reg_data[0]));
-            p_buf[i].val  = __SHTC1_GET_HUM(hum_data); /*< \brief Êª¶È */
-            p_buf[i].unit = AM_SENSOR_UNIT_MICRO; /*< \brief µ¥Î»Ä¬ÈÏÎª-6:10^(-6)*/
+            p_buf[i].val  = __SHTC1_GET_HUM(hum_data); /*< \brief æ¹¿åº¦ */
+            p_buf[i].unit = AM_SENSOR_UNIT_MICRO; /*< \brief å•ä½é»˜è®¤ä¸º-6:10^(-6)*/
 
         } else if (cur_id == 1) {
 
             tem_data = __SHTC1_UINT8_TO_UINT16((&reg_data[3]));
-            p_buf[i].val  = __SHTC1_GET_TEMP(tem_data); /*< \brief ÎÂ¶È */
-            p_buf[i].unit = AM_SENSOR_UNIT_MICRO; /*< \brief µ¥Î»Ä¬ÈÏÎª-6:10^(-6)*/
+            p_buf[i].val  = __SHTC1_GET_TEMP(tem_data); /*< \brief æ¸©åº¦ */
+            p_buf[i].unit = AM_SENSOR_UNIT_MICRO; /*< \brief å•ä½é»˜è®¤ä¸º-6:10^(-6)*/
 
         } else {
-            return -AM_ENODEV;  /*< \brief Èô´Ë´ÎÍ¨µÀ²»ÊôÓÚ¸Ã´«¸ĞÆ÷£¬Ö±½Ó·µ»Ø */
+            return -AM_ENODEV;  /*< \brief è‹¥æ­¤æ¬¡é€šé“ä¸å±äºè¯¥ä¼ æ„Ÿå™¨ï¼Œç›´æ¥è¿”å› */
         }
     }
 
-    /* Ğ´²âÁ¿ÃüÁî */
+    /* å†™æµ‹é‡å‘½ä»¤ */
     __shtc1_write (p_this, (uint8_t *)(__SHTC1_CSE_H), 2);
     
     return ret;
 }
 
-/** \brief Ê¹ÄÜ´«¸ĞÆ÷Í¨µÀ */
+/** \brief ä½¿èƒ½ä¼ æ„Ÿå™¨é€šé“ */
 am_local am_err_t __pfn_enable (void            *p_drv,
                                 const int       *p_ids,
                                 int              num,
@@ -244,7 +244,7 @@ am_local am_err_t __pfn_enable (void            *p_drv,
         }
     }
 
-    if (ret != AM_OK) {     /*< \breif Èç¹û±¾´ÎÃ»ÓĞ¸Ã´«¸ĞÆ÷µÄÍ¨µÀ´«Èë£¬ÔòÍË³ö */
+    if (ret != AM_OK) {     /*< \breif å¦‚æœæœ¬æ¬¡æ²¡æœ‰è¯¥ä¼ æ„Ÿå™¨çš„é€šé“ä¼ å…¥ï¼Œåˆ™é€€å‡º */
         return curent_ret;
     }
 
@@ -254,13 +254,13 @@ am_local am_err_t __pfn_enable (void            *p_drv,
         AM_BIT_SET(p_this->trigger, 5);
     }
 
-    /* Ğ´²âÁ¿ÃüÁî */
+    /* å†™æµ‹é‡å‘½ä»¤ */
     __shtc1_write (p_this, (uint8_t *)(__SHTC1_CSE_H), 2);
 
     return curent_ret;
 }
 
-/** \brief ½ûÄÜ´«¸ĞÆ÷Í¨µÀ */
+/** \brief ç¦èƒ½ä¼ æ„Ÿå™¨é€šé“ */
 am_local am_err_t __pfn_disable (void            *p_drv,
                                  const int       *p_ids,
                                  int              num,
@@ -312,7 +312,7 @@ am_local am_err_t __pfn_disable (void            *p_drv,
     return cur_ret;
 }
 
-/** \brief ÅäÖÃ´«¸ĞÆ÷Í¨µÀÊôĞÔ */
+/** \brief é…ç½®ä¼ æ„Ÿå™¨é€šé“å±æ€§ */
 am_local am_err_t __pfn_attr_set (void                  *p_drv,
                                   int                    id,
                                   int                    attr,
@@ -321,7 +321,7 @@ am_local am_err_t __pfn_attr_set (void                  *p_drv,
     return -AM_ENOTSUP;
 }
 
-/** \brief »ñÈ¡´«¸ĞÆ÷Í¨µÀÊôĞÔ */
+/** \brief è·å–ä¼ æ„Ÿå™¨é€šé“å±æ€§ */
 am_local am_err_t __pfn_attr_get (void            *p_drv,
                                   int              id,
                                   int              attr,
@@ -330,7 +330,7 @@ am_local am_err_t __pfn_attr_get (void            *p_drv,
     return -AM_ENOTSUP;
 }
 
-/** \brief ÉèÖÃ´¥·¢£¬Ò»¸öÍ¨µÀ½öÄÜÉèÖÃÒ»¸ö´¥·¢»Øµ÷º¯Êı */
+/** \brief è®¾ç½®è§¦å‘ï¼Œä¸€ä¸ªé€šé“ä»…èƒ½è®¾ç½®ä¸€ä¸ªè§¦å‘å›è°ƒå‡½æ•° */
 am_local am_err_t __pfn_trigger_cfg (void                   *p_drv,
                                      int                     id,
                                      uint32_t                flags,
@@ -340,13 +340,13 @@ am_local am_err_t __pfn_trigger_cfg (void                   *p_drv,
     return -AM_ENOTSUP;
 }
 
-/** \brief ´ò¿ª´¥·¢ */
+/** \brief æ‰“å¼€è§¦å‘ */
 am_local am_err_t __pfn_trigger_on (void *p_drv, int id)
 {
     return -AM_ENOTSUP;
 }
 
-/** \brief ¹Ø±Õ´¥·¢ */
+/** \brief å…³é—­è§¦å‘ */
 am_local am_err_t __pfn_trigger_off (void *p_drv, int id)
 {
     return -AM_ENOTSUP;
@@ -356,7 +356,7 @@ am_local am_err_t __pfn_trigger_off (void *p_drv, int id)
   Public functions
 *******************************************************************************/
 /**
- * \brief ´«¸ĞÆ÷ SHTC1 ³õÊ¼»¯
+ * \brief ä¼ æ„Ÿå™¨ SHTC1 åˆå§‹åŒ–
  */
 am_sensor_handle_t am_sensor_shtc1_init (
         am_sensor_shtc1_dev_t            *p_dev,
@@ -387,7 +387,7 @@ am_sensor_handle_t am_sensor_shtc1_init (
     p_dev->data[1].val        = 0;
     p_dev->data[1].unit       = AM_SENSOR_UNIT_INVALID;
 
-    /* ¶ÁÈ¡ID */
+    /* è¯»å–ID */
     __shtc1_write(p_dev, (uint8_t*)(__SHTC1_ID), 2);
 
     ret = __shtc1_read(p_dev, shtc1_id, 2);
@@ -408,7 +408,7 @@ am_sensor_handle_t am_sensor_shtc1_init (
 }
 
 /**
- * \brief ´«¸ĞÆ÷ SHTC1 È¥³õÊ¼»¯
+ * \brief ä¼ æ„Ÿå™¨ SHTC1 å»åˆå§‹åŒ–
  */
 am_err_t am_sensor_shtc1_deinit (am_sensor_handle_t handle)
 {

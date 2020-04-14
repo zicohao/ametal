@@ -75,28 +75,28 @@
   fixed options defines
 *******************************************************************************/
 
-/* ÊýÂë¹Ü×î´óÓÐÐ§Êý*/
+/* æ•°ç ç®¡æœ€å¤§æœ‰æ•ˆæ•°*/
 #define __ZLG72128_DIGITRON_NUM_MAX  12
 
 /**
- * \name ´«Êä»º´æµÄ×´Ì¬
+ * \name ä¼ è¾“ç¼“å­˜çš„çŠ¶æ€
  * @{
  */
 
-#define __ZLG72128_TRANS_BUF_NONE     0   /* ´«Êä»º´æÖÐÎÞ´ý´«ÊäµÄÊý¾Ý */
-#define __ZLG72128_TRANS_BUF_FILLING  1   /* ´«ÊäÐÅÏ¢Ìî³äÖÐ           */
-#define __ZLG72128_TRANS_BUF_FILLED   2   /* ´«ÊäÐÅÏ¢ÒÑÌî³ä£¬µÈ´ý·¢ËÍ */
+#define __ZLG72128_TRANS_BUF_NONE     0   /* ä¼ è¾“ç¼“å­˜ä¸­æ— å¾…ä¼ è¾“çš„æ•°æ® */
+#define __ZLG72128_TRANS_BUF_FILLING  1   /* ä¼ è¾“ä¿¡æ¯å¡«å……ä¸­           */
+#define __ZLG72128_TRANS_BUF_FILLED   2   /* ä¼ è¾“ä¿¡æ¯å·²å¡«å……ï¼Œç­‰å¾…å‘é€ */
 
 /** @} */
 
 
 /**
- * \brief   I2C µ±Ç°µÄ×´Ì¬
+ * \brief   I2C å½“å‰çš„çŠ¶æ€
  * @{
  */
 
-#define __ZLG72128_I2C_IDLE  0        /* I2Cµ±Ç°¿ÕÏÐ   */
-#define __ZLG72128_I2C_BUSY  1        /* I2CÕýÔÚ´«ÊäÖÐ */
+#define __ZLG72128_I2C_IDLE  0        /* I2Cå½“å‰ç©ºé—²   */
+#define __ZLG72128_I2C_BUSY  1        /* I2Cæ­£åœ¨ä¼ è¾“ä¸­ */
 
 /** @} */
 
@@ -213,9 +213,9 @@ int zlg72128_digitron_flash_ctrl (zlg72128_handle_t  handle,
         return -2;
     }
 
-    /* µÍ×Ö½Ú¿ØÖÆµÄ¸ß8Î»£¬¸ß×Ö½Ú¿ØÖÆµÄµÍ8Î» */
-    ctrl[0] = (ctrl_val >> 8) & 0xF;      /**< \brief ¸ß8Î»ºó·¢ËÍ */
-    ctrl[1] =  ctrl_val & 0xFF;           /**< \brief µÍ8Î»ºó·¢ËÍ */
+    /* ä½Žå­—èŠ‚æŽ§åˆ¶çš„é«˜8ä½ï¼Œé«˜å­—èŠ‚æŽ§åˆ¶çš„ä½Ž8ä½ */
+    ctrl[0] = (ctrl_val >> 8) & 0xF;      /**< \brief é«˜8ä½åŽå‘é€ */
+    ctrl[1] =  ctrl_val & 0xFF;           /**< \brief ä½Ž8ä½åŽå‘é€ */
 
     return __zlg72128_data_trans(handle,
                                  __ZLG72128_REGADDR_FLASH_CTRL0,
@@ -233,9 +233,9 @@ int zlg72128_digitron_disp_ctrl (zlg72128_handle_t  handle,
         return -2;
     }
 
-    /* µÍ×Ö½Ú¿ØÖÆµÄ¸ß8Î»£¬¸ß×Ö½Ú¿ØÖÆµÄµÍ8Î» */
-    ctrl[0] = (ctrl_val >> 8) & 0xF;  /**< \brief ¸ß8Î»ºó·¢ËÍ */
-    ctrl[1] =  ctrl_val & 0xFF;       /**< \brief µÍ8Î»ºó·¢ËÍ */
+    /* ä½Žå­—èŠ‚æŽ§åˆ¶çš„é«˜8ä½ï¼Œé«˜å­—èŠ‚æŽ§åˆ¶çš„ä½Ž8ä½ */
+    ctrl[0] = (ctrl_val >> 8) & 0xF;  /**< \brief é«˜8ä½åŽå‘é€ */
+    ctrl[1] =  ctrl_val & 0xFF;       /**< \brief ä½Ž8ä½åŽå‘é€ */
 
     return __zlg72128_data_trans(handle,
                                  __ZLG72128_REGADDR_DISP_CTRL0,
@@ -418,7 +418,7 @@ int zlg72128_digitron_seg_ctrl (zlg72128_handle_t  handle,
 {
     uint8_t cmd[2];
 
-    /* ²ÎÊýÓÐÐ§»¯¼ì²â*/
+    /* å‚æ•°æœ‰æ•ˆåŒ–æ£€æµ‹*/
     if ((handle == NULL) || \
         (seg >= 8)       || \
         (pos >= __ZLG72128_DIGITRON_NUM_MAX)) {
@@ -452,7 +452,7 @@ int zlg72128_digitron_shift (zlg72128_handle_t  handle,
         return -2;
     }
 
-    /* µÍ4Î»ÎªÒÆÎ»µÄÎ»Êý, dir (0-right£¬1-left) */
+    /* ä½Ž4ä½ä¸ºç§»ä½çš„ä½æ•°, dir (0-rightï¼Œ1-left) */
     cmd = __ZLG72128_DIGITRON_CMD_SHIFT(dir, is_cyclic, num);
 
     return __zlg72128_data_trans(handle,
@@ -476,7 +476,7 @@ int zlg72128_digitron_scan_set (zlg72128_handle_t  handle,
         num = 12;
     }
 
-    /* µÍ4Î»ÎªÉ¨ÃèµÄÎ»Êý */
+    /* ä½Ž4ä½ä¸ºæ‰«æçš„ä½æ•° */
     cmd = __ZLG72128_DIGTRON_CMD_SCAN(num);
 
     return __zlg72128_data_trans(handle,
@@ -526,7 +526,7 @@ int zlg72128_deinit(zlg72128_handle_t handle)
         return -2;
     }
 
-    /* Æ½Ì¨½â³õÊ¼»¯*/
+    /* å¹³å°è§£åˆå§‹åŒ–*/
     return zlg72128_plfm_deinit(&handle->plfm);
 }
 

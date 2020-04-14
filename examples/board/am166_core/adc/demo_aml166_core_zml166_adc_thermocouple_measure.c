@@ -12,15 +12,15 @@
 
 /**
  * \file
- * \brief ZML166ºËĞÄ°å 24Î»adc²âÈÈµãÅ¼ÎÂ¶È
+ * \brief ZML166æ ¸å¿ƒæ¿ 24ä½adcæµ‹çƒ­ç‚¹å¶æ¸©åº¦
  *
- * - ²Ù×÷²½Öè£º
- *   1. Á¬½ÓºÃÉè¶¨µÄÈÈµçÅ¼Ö®ºó£¬´ò¿ª´®¿Ú PA9 PA10¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. è¿æ¥å¥½è®¾å®šçš„çƒ­ç”µå¶ä¹‹åï¼Œæ‰“å¼€ä¸²å£ PA9 PA10ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿Ú½«»á´òÓ¡²âÁ¿ÎÂ¶È¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. ä¸²å£å°†ä¼šæ‰“å°æµ‹é‡æ¸©åº¦ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_aml166_core_adc24_thermistor_measure.c src_aml166_core_adc24_thermistor_measure
  *
  * \internal
@@ -47,7 +47,7 @@
 #include "demo_aml166_core_entries.h"
 
 /**
- * \brief ÈÈµçÅ¼²âÎÂÀı³Ì
+ * \brief çƒ­ç”µå¶æµ‹æ¸©ä¾‹ç¨‹
  */
 void demo_aml166_core_zml166_adc_thermocouple_measure (void)
 {

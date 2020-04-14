@@ -12,18 +12,18 @@
 
 /**
  * \file
- * \brief ÒÔSPIÎªÀı£¬ÑİÊ¾ÁËSPIÖĞTransferµÄÊ¹ÓÃ·½·¨£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief ä»¥SPIä¸ºä¾‹ï¼Œæ¼”ç¤ºäº†SPIä¸­Transferçš„ä½¿ç”¨æ–¹æ³•ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè:
- *   1. ½«SPI MOSIºÍMISO¶Ì½Ó(PIOD2 == PIOD_3),ĞéÄâ´Ó»úÉè±¸Á¬½Ó
- *   2. °´ÏÂ°´¼ü´«ÊäÒ»´ÎÊı¾İ
+ * - æ“ä½œæ­¥éª¤:
+ *   1. å°†SPI MOSIå’ŒMISOçŸ­æ¥(PIOD2 == PIOD_3),è™šæ‹Ÿä»æœºè®¾å¤‡è¿æ¥
+ *   2. æŒ‰ä¸‹æŒ‰é”®ä¼ è¾“ä¸€æ¬¡æ•°æ®
  *
- * - ÊµÑéÏÖÏó:
+ * - å®éªŒç°è±¡:
  * \note
- *   1. Ö÷»úÍ¨¹ı MOSI ·¢ËÍÊı¾İ£¬·¢³öµÄÊı¾İ´Ó MOSI ¶Á»Ø£»
- *   2. µ÷ÊÔ´®¿Ú´òÓ¡²âÊÔ½á¹û¡£
+ *   1. ä¸»æœºé€šè¿‡ MOSI å‘é€æ•°æ®ï¼Œå‘å‡ºçš„æ•°æ®ä» MOSI è¯»å›ï¼›
+ *   2. è°ƒè¯•ä¸²å£æ‰“å°æµ‹è¯•ç»“æœã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_amks16z_core_std_spi_master_int.c src_amks16z_core_std_spi_master_int
  *
  * \internal
@@ -51,7 +51,7 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_amks16z_core_std_spi_master_int_entry (void)
 {

@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief CAT823 WDT 用户配置文件
+ * \brief CAT823 WDT 鐢ㄦ埛閰嶇疆鏂囦欢
  * \sa am_hwconf_cat823.c
  *
  * \internal
@@ -32,16 +32,16 @@
  * @{
  */
 
-/** \brief WDT 设备信息 */
+/** \brief WDT 璁惧淇℃伅 */
 static const am_cat823_devinfo_t  __g_wdt_devinfo = {
-    PIO0_22,                /* CAT823 WDI 引脚 */
+    PIO0_22,                /* CAT823 WDI 寮曡剼 */
 };
 
-/** \brief WDT设备实例 */
+/** \brief WDT璁惧瀹炰緥 */
 static am_cat823_dev_t __g_wdt_dev;
 
 /**
- * \brief  WDT 实例初始化，获得WDT标准服务句柄
+ * \brief  WDT 瀹炰緥鍒濆鍖栵紝鑾峰緱WDT鏍囧噯鏈嶅姟鍙ユ焺
  */
 am_wdt_handle_t am_cat823_inst_init (void)
 {
@@ -49,7 +49,7 @@ am_wdt_handle_t am_cat823_inst_init (void)
 }
 
 /**
- * \brief WDT 实例解初始化
+ * \brief WDT 瀹炰緥瑙ｅ垵濮嬪寲
  */
 void am_cat823_inst_deinit (am_wdt_handle_t handle)
 {

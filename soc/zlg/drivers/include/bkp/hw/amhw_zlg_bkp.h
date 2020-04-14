@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ±¸·İ¼Ä´æÆ÷½Ó¿Ú
+ * \brief å¤‡ä»½å¯„å­˜å™¨æ¥å£
  *
  * \internal
  * \par History
@@ -42,22 +42,22 @@ extern "C" {
 #define AMHW_BKP_CSR_CTI_SET       ((uint16_t)0x0002)
 
 /**
-  * \brief ÏµÍ³¿ØÖÆ¼Ä´æÆ÷¿é½á¹¹Ìå
+  * \brief ç³»ç»Ÿæ§åˆ¶å¯„å­˜å™¨å—ç»“æ„ä½“
   */
 typedef struct amhw_zlg_bkp {
-    __I  uint32_t reserve;        /**< \brief ±£Áô */
-    __IO uint32_t reserve_dr[10]; /**< \brief ±¸·İÇøÓòÊı¾İ¼Ä´æÆ÷.(±£Áô) */
-    __IO uint32_t rtc_cr;         /**< \brief rtc¿ØÖÆ¼Ä´æÆ÷ */
-    __IO uint32_t cr;             /**< \brief BKP¿ØÖÆ¼Ä´æÆ÷ */
-    __IO uint32_t csr;            /**< \brief Ê±ÖÓ¼à¿Ø×´Ì¬¼Ä´æÆ÷ */
-    __I  uint32_t reserve1[6];    /**< \brief ±£Áô */
-    __IO uint32_t dr[10];         /**< \brief ±¸·İÇøÓòÊı¾İ¼Ä´æÆ÷, offest 0x50 */
+    __I  uint32_t reserve;        /**< \brief ä¿ç•™ */
+    __IO uint32_t reserve_dr[10]; /**< \brief å¤‡ä»½åŒºåŸŸæ•°æ®å¯„å­˜å™¨.(ä¿ç•™) */
+    __IO uint32_t rtc_cr;         /**< \brief rtcæ§åˆ¶å¯„å­˜å™¨ */
+    __IO uint32_t cr;             /**< \brief BKPæ§åˆ¶å¯„å­˜å™¨ */
+    __IO uint32_t csr;            /**< \brief æ—¶é’Ÿç›‘æ§çŠ¶æ€å¯„å­˜å™¨ */
+    __I  uint32_t reserve1[6];    /**< \brief ä¿ç•™ */
+    __IO uint32_t dr[10];         /**< \brief å¤‡ä»½åŒºåŸŸæ•°æ®å¯„å­˜å™¨, offest 0x50 */
 } amhw_zlg_bkp_t;
 
 /**
  * \brief Clears Tamper Pin Event pending flag.
  *
- * \param[in] p_hw_bkp : Ö¸ÏòÏµÍ³ÅäÖÃ¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_bkp : æŒ‡å‘ç³»ç»Ÿé…ç½®å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  * \param[in] flag     : see AMHW_BKP_CSR_CTE_SET or AMHW_BKP_CSR_CTI_SET
  *
  * \return None
@@ -70,13 +70,13 @@ void amhw_zlg_bkp_clear_flag (amhw_zlg_bkp_t *p_hw_bkp, uint32_t flag)
 }
 
 /**
- * \brief Ğ´±¸·İÇøÓòÊı¾İ¼Ä´æÆ÷
+ * \brief å†™å¤‡ä»½åŒºåŸŸæ•°æ®å¯„å­˜å™¨
  *
- * \param[in] p_hw_bkp £ºÖ¸ÏòÏµÍ³ÅäÖÃ¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] index    : ±¸·İÇøÓòÊı¾İ¼Ä´æÆ÷Ë÷Òı£¬ÖµÎª 0 ~ 9
- * \param[in] value    : Ğ´Èë±¸·İÇø»òÊı¾İ¼Ä´æÆ÷µÄÖµ£¬ÖµÎª 0 ~ 65536
+ * \param[in] p_hw_bkp ï¼šæŒ‡å‘ç³»ç»Ÿé…ç½®å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] index    : å¤‡ä»½åŒºåŸŸæ•°æ®å¯„å­˜å™¨ç´¢å¼•ï¼Œå€¼ä¸º 0 ~ 9
+ * \param[in] value    : å†™å…¥å¤‡ä»½åŒºæˆ–æ•°æ®å¯„å­˜å™¨çš„å€¼ï¼Œå€¼ä¸º 0 ~ 65536
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_bkp_dr_write (amhw_zlg_bkp_t    *p_hw_bkp,
@@ -87,12 +87,12 @@ void amhw_zlg_bkp_dr_write (amhw_zlg_bkp_t    *p_hw_bkp,
 }
 
 /**
- * \brief Ğ´±¸·İÇøÓòÊı¾İ¼Ä´æÆ÷
+ * \brief å†™å¤‡ä»½åŒºåŸŸæ•°æ®å¯„å­˜å™¨
  *
- * \param[in] index    : ±¸·İÇøÓòÊı¾İ¼Ä´æÆ÷Ë÷Òı£¬ÖµÎª 0 ~ 9
- * \param[in] p_hw_bkp £ºÖ¸ÏòÏµÍ³ÅäÖÃ¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] index    : å¤‡ä»½åŒºåŸŸæ•°æ®å¯„å­˜å™¨ç´¢å¼•ï¼Œå€¼ä¸º 0 ~ 9
+ * \param[in] p_hw_bkp ï¼šæŒ‡å‘ç³»ç»Ÿé…ç½®å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ·µ»Ø¶ÔÓ¦±¸·İ¼Ä´æÆ÷µÄÖµ
+ * \return è¿”å›å¯¹åº”å¤‡ä»½å¯„å­˜å™¨çš„å€¼
  */
 am_static_inline
 uint32_t amhw_zlg_bkp_dr_read (amhw_zlg_bkp_t *p_hw_bkp, uint8_t index)

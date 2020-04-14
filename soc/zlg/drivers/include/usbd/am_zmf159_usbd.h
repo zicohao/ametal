@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief USB DEVICEÇý¶¯
+ * \brief USB DEVICEé©±åŠ¨
  *
  * \internal
  * \par Modification History
@@ -70,13 +70,13 @@ typedef enum _CONTROL_STATE {
  * \brief
  */
 typedef struct am_zmf159_usbd_devinfo{
-    uint32_t usb_regbase;          /**< \brief usb »ùµØÖ·*/
+    uint32_t usb_regbase;          /**< \brief usb åŸºåœ°å€*/
 
-    int inum;                      /**< \brief ÖÐ¶ÏºÅ */
+    int inum;                      /**< \brief ä¸­æ–­å· */
 
-    void (*pfn_plfm_init)(void);   /**< \brief Æ½Ì¨³õÊ¼»¯º¯Êý  */
+    void (*pfn_plfm_init)(void);   /**< \brief å¹³å°åˆå§‹åŒ–å‡½æ•°  */
 
-    void (*pfn_plfm_deinit)(void); /**< \brief Æ½Ì¨È¥³õÊ¼»¯º¯Êý */
+    void (*pfn_plfm_deinit)(void); /**< \brief å¹³å°åŽ»åˆå§‹åŒ–å‡½æ•° */
 
     const am_usbd_devinfo_t *p_devinfo;
 
@@ -121,13 +121,13 @@ typedef struct am_zmf159_usbd_dev
 
 
 ///*******************************************************************************
-//   Íâ²¿ÉùÃ÷º¯Êý
+//   å¤–éƒ¨å£°æ˜Žå‡½æ•°
 //*******************************************************************************/
 
 //void  am_endpoint_ack(void                *p_arg,
 //                      uint8_t              ep);
 
-// ÁÙÊ±
+// ä¸´æ—¶
 am_usbd_dev_t *am_zmf159_usbd_init(am_zmf159_device_t             *,
                                        const am_zmf159_usbd_devinfo_t *);
 

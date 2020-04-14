@@ -12,16 +12,16 @@
 
 /**
  * \file
- * \brief zsn60x A�࿨���Գ���
+ * \brief zsn60x A类卡测试程序
  *
- * - �������裺
- *   1. ��ȷ���Ӳ����úô��ڣ�
- *   2. ��A�࿨���������߸�Ӧ����
+ * - 操作步骤：
+ *   1. 正确连接并配置好串口；
+ *   2. 将A类卡放置于天线感应区。
  *
- * - ʵ������
- *   1. MCU�����ӡ��A�࿨�������Ϣ
+ * - 实验现象：
+ *   1. MCU将会打印出A类卡的相关信息
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_am116_zsn60x_picca_test.c src_am116_zsn60x_picca_test
  *
  * \internal

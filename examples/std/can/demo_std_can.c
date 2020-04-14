@@ -12,26 +12,26 @@
 
 /**
  * \file
- * \brief CANÑÝÊ¾Àý³Ì
+ * \brief CANæ¼”ç¤ºä¾‹ç¨‹
  *
- * - ²Ù×÷²½Öè£º
- *   1. ±¾Àý³ÌÐèÔÚam_prj_params.hÍ·ÎÄ¼þÀïÊ¹ÄÜ
- *   - ¶ÔÓ¦Æ½Ì¨µÄCANÉè±¸ºê(AM_DEV_XXXXX_CAN1);
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. æœ¬ä¾‹ç¨‹éœ€åœ¨am_prj_params.hå¤´æ–‡ä»¶é‡Œä½¿èƒ½
+ *   - å¯¹åº”å¹³å°çš„CANè®¾å¤‡å®(AM_DEV_XXXXX_CAN1);
  *   - AM_COM_CONSOLE;
- *   -  ¶ÔÓ¦Æ½Ì¨µÄ´®¿ÚÉè±¸ºê(AM_DEV_XXXXX_UART1)¡£
- *   2. Á¬½ÓCAN1µÄÏà¹ØÒý½Åµ½CANÊÕ·¢Æ÷£¬ÔÙ½«CANÊÕ·¢Æ÷½Ó¿ÚÓëUSBCAN-IIÉè±¸ÏàÁ¬¡£
- *   3. ´ò¿ªCANÉÏÎ»»úºó£¬ÉèÖÃ²¨ÌØÂÊÎª250k¡£
- *   4. ´ò¿ª´®¿Úµ÷ÊÔÖÕ¶Ë£¬²¨ÌØÂÊ115200-8-N-1.
+ *   -  å¯¹åº”å¹³å°çš„ä¸²å£è®¾å¤‡å®(AM_DEV_XXXXX_UART1)ã€‚
+ *   2. è¿žæŽ¥CAN1çš„ç›¸å…³å¼•è„šåˆ°CANæ”¶å‘å™¨ï¼Œå†å°†CANæ”¶å‘å™¨æŽ¥å£ä¸ŽUSBCAN-IIè®¾å¤‡ç›¸è¿žã€‚
+ *   3. æ‰“å¼€CANä¸Šä½æœºåŽï¼Œè®¾ç½®æ³¢ç‰¹çŽ‡ä¸º250kã€‚
+ *   4. æ‰“å¼€ä¸²å£è°ƒè¯•ç»ˆç«¯ï¼Œæ³¢ç‰¹çŽ‡115200-8-N-1.
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ÉÏÎ»»ú·¢ËÍÊý¾Ýºó£¬ÊÕµ½·¢ËÍµÄÊý¾Ý¡£
- *   2. ´®¿Ú´òÓ¡Ïà¹Øµ÷ÊÔÐÅÏ¢¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. ä¸Šä½æœºå‘é€æ•°æ®åŽï¼Œæ”¶åˆ°å‘é€çš„æ•°æ®ã€‚
+ *   2. ä¸²å£æ‰“å°ç›¸å…³è°ƒè¯•ä¿¡æ¯ã€‚
  *
- * - ±¸×¢£º
- *   1. ÆäÖÐ CAN ID ºÍ ²¨ÌØÂÊÅäÖÃ ÐèÒª¸ù¾Ý¾ßÌåÓ²¼þÆ½Ì¨ÐÞ¸Ä¡£
- *   2. ÔÙbasicÄ£Ê½ÏÂ²»Ö§³ÖÀ©Õ¹Ö¡¡£
+ * - å¤‡æ³¨ï¼š
+ *   1. å…¶ä¸­ CAN ID å’Œ æ³¢ç‰¹çŽ‡é…ç½® éœ€è¦æ ¹æ®å…·ä½“ç¡¬ä»¶å¹³å°ä¿®æ”¹ã€‚
+ *   2. å†basicæ¨¡å¼ä¸‹ä¸æ”¯æŒæ‰©å±•å¸§ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_std_crc.c src_std_can
  *
  * \internal
@@ -51,34 +51,34 @@
 #include "am_delay.h"
 #include "am_vdebug.h"
 
-/**\brief ÂË²¨±í */
+/**\brief æ»¤æ³¢è¡¨ */
 static uint8_t table[8] = {0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff, 0xff};
 
 /**
- * \brief ´íÎóÅÐ¶Ï
+ * \brief é”™è¯¯åˆ¤æ–­
  */
 void __can_err_sta( am_can_bus_err_t err)
 {
 
-    if (err & AM_CAN_BUS_ERR_BIT) {    /**< \brief Î»´íÎó */
+    if (err & AM_CAN_BUS_ERR_BIT) {    /**< \brief ä½é”™è¯¯ */
         am_kprintf(("AM_CAN_BUS_ERR_BIT\n"));
     }
-    if (err &AM_CAN_BUS_ERR_ACK) {     /**< \brief Ó¦´ð´íÎó */
+    if (err &AM_CAN_BUS_ERR_ACK) {     /**< \brief åº”ç­”é”™è¯¯ */
         am_kprintf(("AM_CAN_BUS_ERR_ACK\n"));
     }
-    if (err &AM_CAN_BUS_ERR_CRC) {     /**< \brief CRC´íÎó */
+    if (err &AM_CAN_BUS_ERR_CRC) {     /**< \brief CRCé”™è¯¯ */
         am_kprintf(("AM_CAN_BUS_ERR_CRC\n"));
     }
-    if (err &AM_CAN_BUS_ERR_FORM) {    /**< \brief ¸ñÊ½´íÎó */
+    if (err &AM_CAN_BUS_ERR_FORM) {    /**< \brief æ ¼å¼é”™è¯¯ */
         am_kprintf(("AM_CAN_BUS_ERR_FORM\n"));
     }
-    if (err &AM_CAN_BUS_ERR_STUFF) {   /**< \brief Ìî³ä´íÎó */
+    if (err &AM_CAN_BUS_ERR_STUFF) {   /**< \brief å¡«å……é”™è¯¯ */
         am_kprintf(("AM_CAN_BUS_ERR_STUFF\n"));
     }
 }
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_std_can_entry (am_can_handle_t can_handle, am_can_bps_param_t  *can_btr_baud)
 {
@@ -88,7 +88,7 @@ void demo_std_can_entry (am_can_handle_t can_handle, am_can_bps_param_t  *can_bt
     am_can_bus_err_t    can_bus_err_status;
     am_can_int_type_t   can_int_status;
 
-    /* ÅäÖÃ²¨ÌØÂÊ */
+    /* é…ç½®æ³¢ç‰¹çŽ‡ */
     ret = am_can_baudrate_set (can_handle, can_btr_baud);
 
     if (ret == AM_CAN_NOERROR) {
@@ -97,7 +97,7 @@ void demo_std_can_entry (am_can_handle_t can_handle, am_can_bps_param_t  *can_bt
         am_kprintf("\r\nCAN: controller baudrate set error! %d \r\n", ret);
     }
 
-    /* ÅäÖÃÂË²¨±í */
+    /* é…ç½®æ»¤æ³¢è¡¨ */
     ret = am_can_filter_tab_set(can_handle,table, 8);
 
     if (ret == AM_CAN_NOERROR) {
@@ -106,7 +106,7 @@ void demo_std_can_entry (am_can_handle_t can_handle, am_can_bps_param_t  *can_bt
         am_kprintf("\r\nCAN: controller filter tab set error! %d \r\n", ret);
     }
 
-    /* Æô¶¯can */
+    /* å¯åŠ¨can */
     ret = am_can_start (can_handle);
 
     if (ret == AM_CAN_NOERROR) {

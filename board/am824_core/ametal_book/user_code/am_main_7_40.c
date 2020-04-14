@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥7.40
+ * \brief ç¨‹åºæ¸…å•7.40
  *
  *
  * \internal
@@ -26,8 +26,8 @@
 
 int am_main (void)
 {
-    am_miniport_key_inst_init();   // MiniPort-ZLG72128ÊµÀı³õÊ¼»¯
-    app_key_code_led_show();       // Ê¹ÓÃLED0ºÍLED1¶Ô°´¼ü±àÂë½øĞĞ¶ş½øÖÆÏÔÊ¾
+    am_miniport_key_inst_init();   // MiniPort-ZLG72128å®ä¾‹åˆå§‹åŒ–
+    app_key_code_led_show();       // ä½¿ç”¨LED0å’ŒLED1å¯¹æŒ‰é”®ç¼–ç è¿›è¡ŒäºŒè¿›åˆ¶æ˜¾ç¤º
     while (1) {
     }
 }

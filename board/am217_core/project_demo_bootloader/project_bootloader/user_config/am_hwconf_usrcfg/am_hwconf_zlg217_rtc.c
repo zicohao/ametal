@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZLG117 RTC ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief ZLG117 RTC ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_zlg217_rtc.c
  *
  * \internal
@@ -38,67 +38,67 @@
  * @{
  */
 
-/** \brief RTC Æ½Ì¨³õÊ¼»¯ */
+/** \brief RTC å¹³å°åˆå§‹åŒ– */
 void __zlg217_plfm_rtc_init()
 {
-    amhw_zlg217_rcc_apb1_enable(AMHW_ZLG217_RCC_APB1_PWR); /* Ê¹ÄÜµçÔ´Ê±ÖÓ */
-    amhw_zlg217_rcc_apb1_enable(AMHW_ZLG217_RCC_APB1_BKP); /* Ê¹ÄÜ±¸·İÊ±ÖÓ */
-    amhw_zlg_pwr_bkp_access_enable(ZLG217_PWR,1);          /* È¡Ïû±¸·İÓòµÄĞ´±£»¤ */
-    amhw_zlg217_rcc_bdcr_bdrst_reset();                    /* ±¸·İÇøÓòÈí¼ş¸´Î» */
+    amhw_zlg217_rcc_apb1_enable(AMHW_ZLG217_RCC_APB1_PWR); /* ä½¿èƒ½ç”µæºæ—¶é’Ÿ */
+    amhw_zlg217_rcc_apb1_enable(AMHW_ZLG217_RCC_APB1_BKP); /* ä½¿èƒ½å¤‡ä»½æ—¶é’Ÿ */
+    amhw_zlg_pwr_bkp_access_enable(ZLG217_PWR,1);          /* å–æ¶ˆå¤‡ä»½åŸŸçš„å†™ä¿æŠ¤ */
+    amhw_zlg217_rcc_bdcr_bdrst_reset();                    /* å¤‡ä»½åŒºåŸŸè½¯ä»¶å¤ä½ */
     am_udelay(5);
-    amhw_zlg217_rcc_bdcr_bdrst_reset_end();                /* ±¸·İÓòÈí¼ş¸´Î»½áÊø */
-    amhw_zlg217_rcc_bdcr_rtc_clk_set((amhw_zlg217_rtc_clk_src)RTC_CLK_SOUR);/* RTC Ê±ÖÓÔ´Ñ¡ÔñÎªÍâ²¿RTCÊ±ÖÓÔ´ */
+    amhw_zlg217_rcc_bdcr_bdrst_reset_end();                /* å¤‡ä»½åŸŸè½¯ä»¶å¤ä½ç»“æŸ */
+    amhw_zlg217_rcc_bdcr_rtc_clk_set((amhw_zlg217_rtc_clk_src)RTC_CLK_SOUR);/* RTC æ—¶é’Ÿæºé€‰æ‹©ä¸ºå¤–éƒ¨RTCæ—¶é’Ÿæº */
     am_mdelay(1);
-    amhw_zlg217_rcc_bdcr_rtc_enable();                     /* RTCÊ±ÖÓÊ¹ÄÜ */
+    amhw_zlg217_rcc_bdcr_rtc_enable();                     /* RTCæ—¶é’Ÿä½¿èƒ½ */
 
 }
 
-/** ½â³ı RTC Æ½Ì¨³õÊ¼»¯ */
+/** è§£é™¤ RTC å¹³å°åˆå§‹åŒ– */
 void __zlg217_plfm_rtc_deinit(void)
 {
-    amhw_zlg217_rcc_apb1_disable(AMHW_ZLG217_RCC_APB1_PWR); /* ½ûÄÜµçÔ´Ê±ÖÓ */
-    amhw_zlg217_rcc_apb1_disable(AMHW_ZLG217_RCC_APB1_BKP); /* ½ûÄÜ±¸·İÊ±ÖÓ */
-    amhw_zlg_pwr_bkp_access_enable(ZLG217_PWR,0);           /* ±¸·İÓòµÄĞ´±£»¤ */
-    amhw_zlg217_rcc_bdcr_rtc_disable();                     /* RTCÊ±ÖÓ½ûÄÜ */
+    amhw_zlg217_rcc_apb1_disable(AMHW_ZLG217_RCC_APB1_PWR); /* ç¦èƒ½ç”µæºæ—¶é’Ÿ */
+    amhw_zlg217_rcc_apb1_disable(AMHW_ZLG217_RCC_APB1_BKP); /* ç¦èƒ½å¤‡ä»½æ—¶é’Ÿ */
+    amhw_zlg_pwr_bkp_access_enable(ZLG217_PWR,0);           /* å¤‡ä»½åŸŸçš„å†™ä¿æŠ¤ */
+    amhw_zlg217_rcc_bdcr_rtc_disable();                     /* RTCæ—¶é’Ÿç¦èƒ½ */
 }
 
-/** \brief RTCÉè±¸ĞÅÏ¢ */
+/** \brief RTCè®¾å¤‡ä¿¡æ¯ */
 const struct am_zlg217_rtc_devinfo __g_rtc_devinfo = {
 
-    /** \brief RTCÉè±¸»ùµØÖ· */
+    /** \brief RTCè®¾å¤‡åŸºåœ°å€ */
     ZLG217_RTC_BASE,
 
-	/** \brief µçÔ´¿ØÖÆPWR»ùµØÖ· */
+	/** \brief ç”µæºæ§åˆ¶PWRåŸºåœ°å€ */
 	ZLG217_PWR_BASE,
 
-	/** \brief ±¸·İ¿ØÖÆBKP»ùµØÖ· */
+	/** \brief å¤‡ä»½æ§åˆ¶BKPåŸºåœ°å€ */
 	ZLG217_BKP_BASE,
 
-	/**< \brief RTC ÖĞ¶ÏºÅ */
+	/**< \brief RTC ä¸­æ–­å· */
 	INUM_RTC,
 
-    /** \brief RTCÉè±¸Ê±ÖÓÔ´ */
+    /** \brief RTCè®¾å¤‡æ—¶é’Ÿæº */
 	RTC_CLK_SOUR,
 
-    /** \brief Æ½Ì¨³õÊ¼»¯º¯Êı */
+    /** \brief å¹³å°åˆå§‹åŒ–å‡½æ•° */
     __zlg217_plfm_rtc_init,
 
-    /** \brief Æ½Ì¨È¥³õÊ¼»¯º¯Êı */
+    /** \brief å¹³å°å»åˆå§‹åŒ–å‡½æ•° */
     __zlg217_plfm_rtc_deinit
 };
 
-/** \brief RTCÉè±¸ */
+/** \brief RTCè®¾å¤‡ */
 am_zlg217_rtc_dev_t __g_rtc_dev;
 
-/** \brief rtc ÊµÀı³õÊ¼»¯£¬»ñµÃrtc±ê×¼·şÎñ¾ä±ú */
+/** \brief rtc å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—rtcæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_rtc_handle_t am_zlg217_rtc_inst_init (void)
 {
     return am_zlg217_rtc_init(&__g_rtc_dev, &__g_rtc_devinfo);
 }
 
 /**
- * \brief rtc ÊµÀı½â³õÊ¼»¯
- * \param[in] handle : rtc¾ä±úÖµ
+ * \brief rtc å®ä¾‹è§£åˆå§‹åŒ–
+ * \param[in] handle : rtcå¥æŸ„å€¼
  */
 void am_zlg217_rtc_inst_deinit (am_rtc_handle_t handle)
 {

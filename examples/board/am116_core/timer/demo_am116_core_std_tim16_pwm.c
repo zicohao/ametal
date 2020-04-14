@@ -12,16 +12,16 @@
 
 /**
  * \file
- * \brief TIM16 ��ʱ�� PWM ���̣�ͨ����׼�ӿ�ʵ��
+ * \brief TIM16 定时器 PWM 例程，通过标准接口实现
  *
- * - ʵ������
- *   1. PIOB_8(TIM16_CH1) PIOB_6(TIM16_CH1N)��������� 2KHz �� PWM��ռ�ձ�Ϊ 50%��
+ * - 实验现象：
+ *   1. PIOB_8(TIM16_CH1) PIOB_6(TIM16_CH1N)输出互补的 2KHz 的 PWM，占空比为 50%；
  *
  * \note
- *    ���� TIM16 Ĭ�ϳ�ʼ������Ϊ������ PWM ʹ�ã�ʹ�ñ� Demo ֮ǰ������
- *    am_prj_config.h �ڽ� AM_CFG_BUZZER_ENABLE ����Ϊ 0��
+ *    由于 TIM16 默认初始化并作为蜂鸣器 PWM 使用，使用本 Demo 之前必须在
+ *    am_prj_config.h 内将 AM_CFG_BUZZER_ENABLE 定义为 0。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_am116_core_std_tim16_pwm.c src_am116_core_std_tim16_pwm
  *
  * \internal
@@ -44,7 +44,7 @@
 #include "demo_am116_core_entries.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_am116_core_std_tim16_pwm_entry (void)
 {

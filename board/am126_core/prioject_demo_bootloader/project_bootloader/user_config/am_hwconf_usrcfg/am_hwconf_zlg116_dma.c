@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZLG116 DMA ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief ZLG116 DMA ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_zlg116_dma.c
  *
  * \internal
@@ -33,40 +33,40 @@
  */
 
 /**
- * \brief DMA Æ½Ì¨³õÊ¼»¯¡£
+ * \brief DMA å¹³å°åˆå§‹åŒ–ã€‚
  */
 void __zlg116_plfm_dma_init (void)
 {
 
-    /* Ê±ÄÜDMAÏà¹ØÄ£¿éÊ±ÖÓ»òµçÔ´ */
+    /* æ—¶èƒ½DMAç›¸å…³æ¨¡å—æ—¶é’Ÿæˆ–ç”µæº */
     am_clk_enable(CLK_DMA);
 }
 
 /**
- * \brief EDMA Æ½Ì¨È¥³õÊ¼»¯¡£
+ * \brief EDMA å¹³å°å»åˆå§‹åŒ–ã€‚
  */
 void __zlg116_plfm_dma_deinit (void)
 {
 
-    /* Ê±ÄÜDMAÏà¹ØÄ£¿éÊ±ÖÓ»òµçÔ´ */
+    /* æ—¶èƒ½DMAç›¸å…³æ¨¡å—æ—¶é’Ÿæˆ–ç”µæº */
     am_clk_disable(CLK_DMA);
 }
 
-/** \brief DMA Éè±¸ĞÅÏ¢ */
+/** \brief DMA è®¾å¤‡ä¿¡æ¯ */
 static const am_zlg_dma_devinfo_t __g_dma_devinfo = {
-    ZLG116_DMA_BASE,         /**< \brief Ö¸ÏòDMA¼Ä´æÆ÷¿éµÄÖ¸Õë */
-    INUM_DMA1_1,             /**< \brief DMAÖĞ¶ÏÏòÁ¿ºÅ¿ªÊ¼ */
-    INUM_DMA1_4_5,           /**< \brief DMAÖĞ¶ÏÏòÁ¿ºÅ½áÊø */
-    __zlg116_plfm_dma_init,  /**< \brief DMAÆ½Ì¨³õÊ¼»¯ */
-    __zlg116_plfm_dma_deinit /**< \brief DMAÆ½Ì¨½â³õÊ¼»¯ */
+    ZLG116_DMA_BASE,         /**< \brief æŒ‡å‘DMAå¯„å­˜å™¨å—çš„æŒ‡é’ˆ */
+    INUM_DMA1_1,             /**< \brief DMAä¸­æ–­å‘é‡å·å¼€å§‹ */
+    INUM_DMA1_4_5,           /**< \brief DMAä¸­æ–­å‘é‡å·ç»“æŸ */
+    __zlg116_plfm_dma_init,  /**< \brief DMAå¹³å°åˆå§‹åŒ– */
+    __zlg116_plfm_dma_deinit /**< \brief DMAå¹³å°è§£åˆå§‹åŒ– */
 };
 
-/** \brief DMAÉè±¸ÊµÀı */
+/** \brief DMAè®¾å¤‡å®ä¾‹ */
 static am_zlg_dma_dev_t __g_dma_dev;
 
 /**
- * \brief DMA ÊµÀı³õÊ¼»¯
- * \return ÎŞ
+ * \brief DMA å®ä¾‹åˆå§‹åŒ–
+ * \return æ— 
  */
 int am_zlg116_dma_inst_init (void)
 {
@@ -74,8 +74,8 @@ int am_zlg116_dma_inst_init (void)
 }
 
 /**
- * \brief DMA ÊµÀı½â³õÊ¼»¯
- * \return ÎŞ
+ * \brief DMA å®ä¾‹è§£åˆå§‹åŒ–
+ * \return æ— 
  */
 void am_zlg116_dma_inst_deinit (void)
 {

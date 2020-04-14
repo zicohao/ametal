@@ -12,13 +12,13 @@
 
 /**
  * \file
- * \brief GPIO Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief GPIO ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ¼ä¸ô 0.5s£¬LED0 ÉÁË¸ 5 ´Î£»
- *   2. Ö®ºó£¬LED0 ÒÔ 0.2s µÄ¼ä¸ôÒ»Ö±ÉÁË¸¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. é—´éš” 0.5sï¼ŒLED0 é—ªçƒ 5 æ¬¡ï¼›
+ *   2. ä¹‹åï¼ŒLED0 ä»¥ 0.2s çš„é—´éš”ä¸€ç›´é—ªçƒã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am845_core_hw_gpio.c src_am845_core_hw_gpio
  *
  * \internal
@@ -40,21 +40,21 @@
 #include "demo_nxp_entries.h"
 #include "lpc84x_periph_map.h"
 #include "lpc84x_pin.h"
-/** \brief LED0 Òı½Å */
+/** \brief LED0 å¼•è„š */
 #define __LED_PIN  PIO1_8
 
 extern void demo_lpc845_hw_gpio_entry (amhw_lpc84x_gpio_t *p_hw_gpio,
                                        int                 pin);
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am845_core_hw_gpio_entry (void)
 {
   
     am_kprintf("demo am845_core hw gpio!\r\n");
   
-    /* ÅäÖÃÒı½Å·½ÏòÎªÊä³ö */
+    /* é…ç½®å¼•è„šæ–¹å‘ä¸ºè¾“å‡º */
     amhw_lpc84x_gpio_pin_dir_output(LPC84X_GPIO, __LED_PIN);
 
     demo_lpc845_hw_gpio_entry(LPC84X_GPIO, __LED_PIN);

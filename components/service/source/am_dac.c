@@ -27,13 +27,13 @@
 *******************************************************************************/
 
 /**
- * \brief ÉèÖÃDACÍ¨µÀµÄµçÑ¹Öµ£¨µ¥Î»£ºmV£©
+ * \brief è®¾ç½®DACé€šé“çš„ç”µå‹å€¼ï¼ˆå•ä½ï¼šmVï¼‰
  *
- * \param[in] handle : DAC±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \param[in] chan   : DACÍ¨µÀºÅ
+ * \param[in] handle : DACæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] chan   : DACé€šé“å·
  *
- * \retval   AM_OK      ²Ù×÷³É¹¦
- * \retval  -AM_ENXIO   DACÍ¨µÀºÅ²»´æÔÚ
+ * \retval   AM_OK      æ“ä½œæˆåŠŸ
+ * \retval  -AM_ENXIO   DACé€šé“å·ä¸å­˜åœ¨
  */
 int am_dac_mv_set (am_dac_handle_t handle, int chan, uint32_t mv)
 {

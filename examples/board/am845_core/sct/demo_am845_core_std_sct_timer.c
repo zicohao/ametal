@@ -12,16 +12,16 @@
 
 /**
  * \file
- * \brief SCT ��ʱ���̣�ͨ����׼�ӿ�ʵ��
+ * \brief SCT 定时例程，通过标准接口实现
  *
- * - ʵ������
- *   1. LED0 ��״̬�� 3s Ϊ�����ڶ�ʱ��ת��ֹͣ��ת����״̬���л���
+ * - 实验现象：
+ *   1. LED0 的状态以 3s 为周期在定时翻转和停止翻转两个状态间切换。
  *
  * \note
- *    1. ���� SCT Ĭ����Ϊ������������ʹ�ò��Ա� Demo ǰ��Ҫ�� am_prj_config.h ��
- *       �� AM_CFG_BUZZER_ENABLE ����Ϊ 0����ʹ�÷�������
+ *    1. 由于 SCT 默认作为驱动蜂鸣器，使用测试本 Demo 前需要将 am_prj_config.h 中
+ *       的 AM_CFG_BUZZER_ENABLE 定义为 0，不使用蜂鸣器。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_am845_core_std_sct_timer.c src_am845_core_std_sct_timer
  *
  * \internal
@@ -44,7 +44,7 @@
 #include "demo_std_entries.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_am845_core_std_sct_timer_entry (void)
 {

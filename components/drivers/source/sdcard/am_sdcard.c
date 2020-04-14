@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief SD¿¨Çı¶¯
+ * \brief SDå¡é©±åŠ¨
  *
  * \internal
  * \par Modification history
@@ -140,7 +140,7 @@ static int __sdcard_decode_csd (am_sdcard_mem_info_t *p_mem_info,
     structure = __get_bits_str(p_csd, 126, 2);
     if (p_mem_info->attribute & AM_SDCARD_MMC) {
         if (structure == 0) {
-            /* ¸Ã°æ±¾ÎŞ·¨Ê¶±ğ */
+            /* è¯¥ç‰ˆæœ¬æ— æ³•è¯†åˆ« */
             return -AM_EINVAL;
         }
         p_mem_info->csd.mmca_vsn   = __get_bits_str(p_csd, 122, 4);
@@ -295,7 +295,7 @@ static int __sdcard_hard_init (am_sdcard_dev_t *p_dev)
 
     } while(current_status != 3);
 
-    /* ÉèÖÃÆµÂÊ */
+    /* è®¾ç½®é¢‘ç‡ */
     ret = am_sdio_cmd_write(&p_dev->sdio_dev,
                             AM_SDIO_CMD4,
                             0x04040000,
@@ -305,7 +305,7 @@ static int __sdcard_hard_init (am_sdcard_dev_t *p_dev)
         return ret;
     }
 
-    /* Ñ¡Ôñ¿¨ */
+    /* é€‰æ‹©å¡ */
     ret = am_sdcard_card_select(p_dev, p_dev->sdcard_info.rca, 1);
     if (ret != AM_OK) {
         return ret;
@@ -329,7 +329,7 @@ static int __sdcard_hard_init (am_sdcard_dev_t *p_dev)
     } while(current_status != 4);
 
 
-    /* ÉèÖÃbus¿í¶È */
+    /* è®¾ç½®buså®½åº¦ */
     ret = am_sdcard_bus_width_set(p_dev,
                                   p_dev->sdcard_info.rca,
                                   p_dev->sdio_dev.mode);
@@ -352,7 +352,7 @@ static int __sdcard_hard_init (am_sdcard_dev_t *p_dev)
 }
 
 /**
- * \brief Ó¦ÓÃ³ÌĞò³õÊ¼»¯(CMD8)
+ * \brief åº”ç”¨ç¨‹åºåˆå§‹åŒ–(CMD8)
  */
 int am_sdcard_send_if_cond (am_sdcard_handle_t handle,
                             uint32_t           ocr)
@@ -392,7 +392,7 @@ int am_sdcard_send_if_cond (am_sdcard_handle_t handle,
 }
 
 /**
- * \brief Ó¦ÓÃ³ÌĞò³õÊ¼»¯(CMD55 + ACMD41)
+ * \brief åº”ç”¨ç¨‹åºåˆå§‹åŒ–(CMD55 + ACMD41)
  */
 int am_sdcard_send_app_op_cond (am_sdcard_handle_t handle,
                                 uint32_t           rca,
@@ -465,7 +465,7 @@ int am_sdcard_send_app_op_cond (am_sdcard_handle_t handle,
 }
 
 /**
- * \brief »ñÈ¡´æ´¢¿¨ËùÓĞµÄCID(CMD2)
+ * \brief è·å–å­˜å‚¨å¡æ‰€æœ‰çš„CID(CMD2)
  */
 int am_sdcard_all_cid_get (am_sdcard_handle_t handle,
                            uint32_t          *p_cid)
@@ -497,7 +497,7 @@ int am_sdcard_all_cid_get (am_sdcard_handle_t handle,
 }
 
 /**
- * \brief »ñÈ¡´æ´¢¿¨Ïà¶ÔµØÖ·(CMD3)
+ * \brief è·å–å­˜å‚¨å¡ç›¸å¯¹åœ°å€(CMD3)
  */
 int am_sdio_relative_addr_get (am_sdcard_handle_t handle,
                                uint32_t          *p_rca)
@@ -528,7 +528,7 @@ int am_sdio_relative_addr_get (am_sdcard_handle_t handle,
 }
 
 /**
- * \brief Ñ¡¶¨Ö¸¶¨Ïà¶ÔµØÖ·µÄ¿¨(CMD7)
+ * \brief é€‰å®šæŒ‡å®šç›¸å¯¹åœ°å€çš„å¡(CMD7)
  */
 int am_sdcard_card_select (am_sdcard_handle_t handle,
                            uint32_t           rca,
@@ -561,7 +561,7 @@ int am_sdcard_card_select (am_sdcard_handle_t handle,
 }
 
 /**
- * \brief »ñÈ¡´æ´¢¿¨¼Ä´æÆ÷CSDÖµ(CMD9)
+ * \brief è·å–å­˜å‚¨å¡å¯„å­˜å™¨CSDå€¼(CMD9)
  */
 int am_sdcard_csd_get (am_sdcard_handle_t handle,
                        uint32_t           rca,
@@ -622,7 +622,7 @@ int am_sdcard_csd_get (am_sdcard_handle_t handle,
 }
 
 /**
- * \brief »ñÈ¡´æ´¢¿¨¼Ä´æÆ÷SCRÖµ(CMD55 + ACMD51)
+ * \brief è·å–å­˜å‚¨å¡å¯„å­˜å™¨SCRå€¼(CMD55 + ACMD51)
  */
 int am_sdcard_scr_get (am_sdcard_handle_t handle,
                        uint32_t           rca,
@@ -674,7 +674,7 @@ int am_sdcard_scr_get (am_sdcard_handle_t handle,
 }
 
 /**
- * \brief ÉèÖÃ´æ´¢¿¨×ÜÏß¿í¶È(CMD55 + ACMD6)
+ * \brief è®¾ç½®å­˜å‚¨å¡æ€»çº¿å®½åº¦(CMD55 + ACMD6)
  */
 int am_sdcard_bus_width_set (am_sdcard_handle_t handle,
                              uint32_t           rca,
@@ -728,7 +728,7 @@ int am_sdcard_bus_width_set (am_sdcard_handle_t handle,
 }
 
 /**
- * \brief SD Card ¸´Î»
+ * \brief SD Card å¤ä½
  */
 int am_sdcard_rest (am_sdcard_handle_t handle)
 {
@@ -747,7 +747,7 @@ int am_sdcard_rest (am_sdcard_handle_t handle)
 }
 
 /**
- * \brief SD Card ÉèÖÃ¿é´óĞ¡
+ * \brief SD Card è®¾ç½®å—å¤§å°
  */
 int am_sdcard_block_size_set(am_sdcard_handle_t handle,
                              uint32_t           blk_size)
@@ -771,7 +771,7 @@ int am_sdcard_block_size_set(am_sdcard_handle_t handle,
 }
 
 /**
- * \brief Í¬²½´Ó´æ´¢¿¨ÖĞ¶ÁÈ¡Êı¾İ¿é
+ * \brief åŒæ­¥ä»å­˜å‚¨å¡ä¸­è¯»å–æ•°æ®å—
  */
 int am_sdcard_blocks_read (am_sdcard_handle_t handle,
                            uint8_t           *p_buf,
@@ -830,7 +830,7 @@ int am_sdcard_blocks_read (am_sdcard_handle_t handle,
 }
 
 /**
- * \brief Í¬²½´Ó´æ´¢¿¨ÖĞĞ´ÈëÊı¾İ¿é
+ * \brief åŒæ­¥ä»å­˜å‚¨å¡ä¸­å†™å…¥æ•°æ®å—
  */
 int am_sdcard_blocks_write (am_sdcard_handle_t  handle,
                             uint8_t            *p_buf,
@@ -919,7 +919,7 @@ int am_sdcard_blocks_write (am_sdcard_handle_t  handle,
 }
 
 /**
- * \brief ²Á³ı¿é(CMD38)
+ * \brief æ“¦é™¤å—(CMD38)
  */
 int am_sdcard_blocks_erase (am_sdcard_handle_t handle,
                             uint32_t           blk_start,
@@ -996,7 +996,7 @@ int am_sdcard_blocks_erase (am_sdcard_handle_t handle,
 }
 
 /**
- * \brief Í£Ö¹´«Êä(CMD12)
+ * \brief åœæ­¢ä¼ è¾“(CMD12)
  */
 int am_sdcard_transfer_stop (am_sdcard_handle_t handle)
 {
@@ -1016,7 +1016,7 @@ int am_sdcard_transfer_stop (am_sdcard_handle_t handle)
 }
 
 /**
- * \brief »ñÈ¡¿¨×´Ì¬(CMD13)
+ * \brief è·å–å¡çŠ¶æ€(CMD13)
  */
 int am_sdcard_status_get (am_sdcard_handle_t handle,
                               uint32_t           rca,

@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief Í¨ÓÃ¾ØÕó¼üÅÌ»ù´¡ĞÅÏ¢
+ * \brief é€šç”¨çŸ©é˜µé”®ç›˜åŸºç¡€ä¿¡æ¯
  *
  * \internal
  * \par modification history:
@@ -36,36 +36,36 @@ extern "C" {
 #endif
 
 /**
- * \name Ê¹ÓÃµÄÉ¨Ãè·½Ê½
+ * \name ä½¿ç”¨çš„æ‰«ææ–¹å¼
  *
- * ¾ßÌåÉ¨Ãè·½Ê½ÓëÓ²¼şÏà¹Ø
+ * å…·ä½“æ‰«ææ–¹å¼ä¸ç¡¬ä»¶ç›¸å…³
  *
  * @{
  */
 
-/** \brief °´ĞĞÉ¨Ãè£¬Ã¿´ÎÉ¨ÃèÒ»ĞĞ°´¼ü  */
+/** \brief æŒ‰è¡Œæ‰«æï¼Œæ¯æ¬¡æ‰«æä¸€è¡ŒæŒ‰é”®  */
 #define AM_KEY_MATRIX_SCAN_MODE_ROW      0
 
-/** \brief °´ÁĞÉ¨Ãè£¬Ã¿´ÎÉ¨ÃèÒ»ÁĞ°´¼ü  */
+/** \brief æŒ‰åˆ—æ‰«æï¼Œæ¯æ¬¡æ‰«æä¸€åˆ—æŒ‰é”®  */
 #define AM_KEY_MATRIX_SCAN_MODE_COL      1
 
 /** @} */
 
 /**
- * \brief ¾ØÕó¼üÅÌ»ù´¡ĞÅÏ¢
+ * \brief çŸ©é˜µé”®ç›˜åŸºç¡€ä¿¡æ¯
  */
 typedef struct am_key_matrix_base_info {
-    int          row;         /**< \brief ĞĞÊıÄ¿ */
-    int          col;         /**< \brief ÁĞÊıÄ¿ */
-    const int   *p_codes;     /**< \brief ¸÷¸ö°´¼ü¶ÔÓ¦µÄ±àÂë£¬°´ĞĞµÄË³ĞòÒÀ´Î¶ÔÓ¦  */
-    am_bool_t    active_low;  /**< \brief °´¼ü°´ÏÂºóÊÇ·ñÎªµÍµçÆ½ */
-    uint8_t      scan_mode;   /**< \brief É¨Ãè·½Ê½ £¨°´ĞĞÉ¨Ãè»ò°´ÁĞÉ¨Ãè£©*/
+    int          row;         /**< \brief è¡Œæ•°ç›® */
+    int          col;         /**< \brief åˆ—æ•°ç›® */
+    const int   *p_codes;     /**< \brief å„ä¸ªæŒ‰é”®å¯¹åº”çš„ç¼–ç ï¼ŒæŒ‰è¡Œçš„é¡ºåºä¾æ¬¡å¯¹åº”  */
+    am_bool_t    active_low;  /**< \brief æŒ‰é”®æŒ‰ä¸‹åæ˜¯å¦ä¸ºä½ç”µå¹³ */
+    uint8_t      scan_mode;   /**< \brief æ‰«ææ–¹å¼ ï¼ˆæŒ‰è¡Œæ‰«ææˆ–æŒ‰åˆ—æ‰«æï¼‰*/
 } am_key_matrix_base_info_t;
 
 /**
- * \brief »ñÈ¡°´¼üÊıÄ¿
- * \param[in] p_info : ¾ØÕó¼üÅÌ»ù´¡ĞÅÏ¢
- * \return °´¼üÊıÄ¿
+ * \brief è·å–æŒ‰é”®æ•°ç›®
+ * \param[in] p_info : çŸ©é˜µé”®ç›˜åŸºç¡€ä¿¡æ¯
+ * \return æŒ‰é”®æ•°ç›®
  */
 am_static_inline
 int  am_key_matrix_num_key_get (const am_key_matrix_base_info_t *p_info)
@@ -77,9 +77,9 @@ int  am_key_matrix_num_key_get (const am_key_matrix_base_info_t *p_info)
 }
 
 /**
- * \brief »ñÈ¡ĞĞÊı
- * \param[in] p_info : ¾ØÕó¼üÅÌ»ù´¡ĞÅÏ¢
- * \return ĞĞÊı
+ * \brief è·å–è¡Œæ•°
+ * \param[in] p_info : çŸ©é˜µé”®ç›˜åŸºç¡€ä¿¡æ¯
+ * \return è¡Œæ•°
  */
 am_static_inline
 int  am_key_matrix_num_row_get (const am_key_matrix_base_info_t *p_info)
@@ -91,9 +91,9 @@ int  am_key_matrix_num_row_get (const am_key_matrix_base_info_t *p_info)
 }
 
 /**
- * \brief »ñÈ¡ÁĞÊı
- * \param[in] p_info : ¾ØÕó¼üÅÌ»ù´¡ĞÅÏ¢
- * \return ÁĞÊı
+ * \brief è·å–åˆ—æ•°
+ * \param[in] p_info : çŸ©é˜µé”®ç›˜åŸºç¡€ä¿¡æ¯
+ * \return åˆ—æ•°
  */
 am_static_inline
 int  am_key_matrix_num_col_get (const am_key_matrix_base_info_t *p_info)
@@ -105,9 +105,9 @@ int  am_key_matrix_num_col_get (const am_key_matrix_base_info_t *p_info)
 }
 
 /**
- * \brief »ñÈ¡ĞòºÅÎª idx °´¼ü¶ÔÓ¦µÄ±àÂë
- * \param[in] p_info : ¾ØÕó¼üÅÌ»ù´¡ĞÅÏ¢
- * \return °´¼ü±àÂë
+ * \brief è·å–åºå·ä¸º idx æŒ‰é”®å¯¹åº”çš„ç¼–ç 
+ * \param[in] p_info : çŸ©é˜µé”®ç›˜åŸºç¡€ä¿¡æ¯
+ * \return æŒ‰é”®ç¼–ç 
  */
 am_static_inline
 int  am_key_matrix_code_get (const am_key_matrix_base_info_t *p_info, int idx)
@@ -119,9 +119,9 @@ int  am_key_matrix_code_get (const am_key_matrix_base_info_t *p_info, int idx)
 }
 
 /**
- * \brief °´¼ü°´ÏÂºó£¬ÊÇ·ñÎªµÍµçÆ½
- * \param[in] p_info : ¾ØÕó¼üÅÌ»ù´¡ĞÅÏ¢
- * \return °´¼ü°´ÏÂºó£¬ÊÇ·ñÎªµÍµçÆ½
+ * \brief æŒ‰é”®æŒ‰ä¸‹åï¼Œæ˜¯å¦ä¸ºä½ç”µå¹³
+ * \param[in] p_info : çŸ©é˜µé”®ç›˜åŸºç¡€ä¿¡æ¯
+ * \return æŒ‰é”®æŒ‰ä¸‹åï¼Œæ˜¯å¦ä¸ºä½ç”µå¹³
  */
 am_static_inline
 am_bool_t  am_key_matrix_active_low_get (const am_key_matrix_base_info_t *p_info)
@@ -133,9 +133,9 @@ am_bool_t  am_key_matrix_active_low_get (const am_key_matrix_base_info_t *p_info
 }
 
 /**
- * \brief »ñÈ¡¼üÅÌµÄÉ¨Ãè·½Ê½
- * \param[in] p_info : ¾ØÕó¼üÅÌ»ù´¡ĞÅÏ¢
- * \return °´¼ü°´ÏÂºó£¬ÊÇ·ñÎªµÍµçÆ½
+ * \brief è·å–é”®ç›˜çš„æ‰«ææ–¹å¼
+ * \param[in] p_info : çŸ©é˜µé”®ç›˜åŸºç¡€ä¿¡æ¯
+ * \return æŒ‰é”®æŒ‰ä¸‹åï¼Œæ˜¯å¦ä¸ºä½ç”µå¹³
  */
 am_static_inline
 uint8_t  am_key_matrix_scan_mode_get (const am_key_matrix_base_info_t *p_info)

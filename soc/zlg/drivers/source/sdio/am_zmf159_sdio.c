@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief SDIOÇı¶¯£¬·şÎñSDIO±ê×¼½Ó¿Ú
+ * \brief SDIOé©±åŠ¨ï¼ŒæœåŠ¡SDIOæ ‡å‡†æ¥å£
  *
  * \internal
  * \par Modification History
@@ -21,7 +21,7 @@
  */
 
 /*******************************************************************************
-  Í·ÎÄ¼ş
+  å¤´æ–‡ä»¶
 *******************************************************************************/
 #include "ametal.h"
 #include "am_clk.h"
@@ -33,7 +33,7 @@
 #include "am_zmf159_sdio.h"
 #include "hw/amhw_zmf159_sdio.h"
 
-/** \brief SDIO ÖĞ¶Ï´¦Àíº¯Êı */
+/** \brief SDIO ä¸­æ–­å¤„ç†å‡½æ•° */
 static void __sdio_irq_handler (void *p_arg);
 
 static int __sdio_setup (void *p_drv, struct am_sdio_device *p_device);
@@ -42,14 +42,14 @@ static int __sdio_msg_start (void                  *p_drv,
                              struct am_sdio_msg    *p_msg);
 
 /**
- * \brief SDIO Çı¶¯º¯Êı¶¨Òå
+ * \brief SDIO é©±åŠ¨å‡½æ•°å®šä¹‰
  */
 static am_const struct am_sdio_drv_funcs __g_sdio_drv_funcs = {
      __sdio_setup,
      __sdio_msg_start
 };
 
-/** \brief SDIO ÖĞ¶Ï´¦Àíº¯Êı */
+/** \brief SDIO ä¸­æ–­å¤„ç†å‡½æ•° */
 static void __sdio_irq_handler (void *p_arg)
 {
     am_zmf159_sdio_dev_t *p_dev     = (am_zmf159_sdio_dev_t *)p_arg;
@@ -302,15 +302,15 @@ static int __sdio_setup (void *p_drv, struct am_sdio_device *p_device)
     am_zmf159_sdio_dev_t *p_zlg_sdio_dev = (am_zmf159_sdio_dev_t *)p_drv;
     amhw_zlg_sdio_t   *p_hw_sdio      = (amhw_zlg_sdio_t *)p_zlg_sdio_dev->p_devinfo->regbase;
 
-    /* Ê¹ÄÜclkÊ±ÖÓ */
+    /* ä½¿èƒ½clkæ—¶é’Ÿ */
     amhw_zlg_sdio_set_cardclk_enable(p_hw_sdio, AM_TRUE);
 
-    /* ÅäÖÃ·ÖÆµÖµ */
+    /* é…ç½®åˆ†é¢‘å€¼ */
     card_clkdiv = (am_clk_rate_get (CLK_PLLOUT)/(p_device->speed * 2)) - 1;
 
     amhw_zlg_sdio_set_cardclk_div (p_hw_sdio, card_clkdiv);
 
-    /* Ê¹ÄÜCRC¿ØÖÆ */
+    /* ä½¿èƒ½CRCæ§åˆ¶ */
     if (p_device->crc_enable) {
         amhw_zlg_sdio_set_cardctrl_enable(p_hw_sdio, AM_TRUE);
         amhw_zlg_sdio_set_crcctl_enable(p_hw_sdio, ZMF159_SDIO_CMDCRC | ZMF159_SDIO_DATCRC);
@@ -397,7 +397,7 @@ am_sdio_handle_t am_zmf159_sdio_init (am_zmf159_sdio_dev_t           *p_dev,
 
     am_wait_init(&p_dev->wait);
 
-    /* Á¬½ÓÖĞ¶Ï */
+    /* è¿æ¥ä¸­æ–­ */
     am_int_connect(p_dev->p_devinfo->inum, __sdio_irq_handler, (void *)p_dev);
     am_int_enable(p_dev->p_devinfo->inum);
 

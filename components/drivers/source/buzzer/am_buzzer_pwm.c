@@ -34,7 +34,7 @@ typedef struct __buzzer_pwm_dev {
     am_pwm_handle_t       handle;
 } __buzzer_pwm_dev_t;
 
-/* µ¥ÊµÀý */
+/* ÂµÂ¥ÃŠÂµÃ€Ã½ */
 static struct __buzzer_pwm_dev __g_buzzer_pwm_dev;
 
 /*******************************************************************************

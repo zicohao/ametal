@@ -12,18 +12,18 @@
 
 /**
  * \file
- * \brief USART Àý³Ì£¨ÂÖÑ¯·½Ê½£©£¬Í¨¹ýÓ²¼þ²ã½Ó¿ÚÊµÏÖ
+ * \brief USART ä¾‹ç¨‹ï¼ˆè½®è¯¢æ–¹å¼ï¼‰ï¼Œé€šè¿‡ç¡¬ä»¶å±‚æŽ¥å£å®žçŽ°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿ÚÊä³ö "USART hw_poll mode test:"£»
- *   2. ´®¿ÚÊä³ö½ÓÊÕµ½µÄ×Ö·û´®¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. ä¸²å£è¾“å‡º "USART hw_poll mode test:"ï¼›
+ *   2. ä¸²å£è¾“å‡ºæŽ¥æ”¶åˆ°çš„å­—ç¬¦ä¸²ã€‚
  *
  * \note
- *    1. Àý³ÌÊ¹ÓÃ USART0£¬Óë DEBUG µ÷ÊÔÊ¹ÓÃ´®¿ÚÏàÍ¬£»
- *    2. ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIO0_0 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *       PIO0_4 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
+ *    1. ä¾‹ç¨‹ä½¿ç”¨ USART0ï¼Œä¸Ž DEBUG è°ƒè¯•ä½¿ç”¨ä¸²å£ç›¸åŒï¼›
+ *    2. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO0_0 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *       PIO0_4 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am824_hw_usart_poll.c src_am824_hw_usart_poll
  *
  * \internal
@@ -45,31 +45,31 @@
 #include "demo_nxp_entries.h"
 
 /**
- * \brief »ù±¾ÊäÈëÆµÂÊÉèÖÃ£¨»ù±¾ÊäÈëÆµÂÊ±ØÐëÐ¡ÓÚÏµÍ³Ê±ÖÓÆµÂÊÇÒÓ¦Îª²¨ÌØÂÊµÄÕûÊý±¶£©
+ * \brief åŸºæœ¬è¾“å…¥é¢‘çŽ‡è®¾ç½®ï¼ˆåŸºæœ¬è¾“å…¥é¢‘çŽ‡å¿…é¡»å°äºŽç³»ç»Ÿæ—¶é’Ÿé¢‘çŽ‡ä¸”åº”ä¸ºæ³¢ç‰¹çŽ‡çš„æ•´æ•°å€ï¼‰
  *
- * ÎªÁËÉèÖÃ²¨ÌØÂÊÎª 115200£¬¹ÊÉèÖÃ´®¿Ú»ù±¾ÊäÈëÆµÂÊÎª£º
- * 11059200Hz(11059200 = 115200 * 96)¡£
- * ´®¿Ú»ù±¾ÊäÈëÆµÂÊÉèÖÃÎª 11.059200MHz£¬¿ÉÂú×ã´ó¶àÊý²¨ÌØÂÊµÄÉèÖÃ (9600,4800,115200)
+ * ä¸ºäº†è®¾ç½®æ³¢ç‰¹çŽ‡ä¸º 115200ï¼Œæ•…è®¾ç½®ä¸²å£åŸºæœ¬è¾“å…¥é¢‘çŽ‡ä¸ºï¼š
+ * 11059200Hz(11059200 = 115200 * 96)ã€‚
+ * ä¸²å£åŸºæœ¬è¾“å…¥é¢‘çŽ‡è®¾ç½®ä¸º 11.059200MHzï¼Œå¯æ»¡è¶³å¤§å¤šæ•°æ³¢ç‰¹çŽ‡çš„è®¾ç½® (9600,4800,115200)
  *
- * \note  USART0\1\2 ¹²ÓÃÒ»¸ö»ù±¾ÊäÈëÆµÂÊ,²»ÒªÇáÒ×¸Ä¶¯
+ * \note  USART0\1\2 å…±ç”¨ä¸€ä¸ªåŸºæœ¬è¾“å…¥é¢‘çŽ‡,ä¸è¦è½»æ˜“æ”¹åŠ¨
  */
 #define  __LPC82X_UASART_BASE_RATE  11059200
   
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am824_core_hw_usart_poll_entry (void)
 {
 
     am_kprintf("demo am824 hw usart poll !\r\n");
-    /* ÉèÖÃ´®¿Ú»ù´¡Ê±ÖÓ */
+    /* è®¾ç½®ä¸²å£åŸºç¡€æ—¶é’Ÿ */
     amhw_lpc82x_clk_usart_baseclkrate_set(__LPC82X_UASART_BASE_RATE);
 
-    /* Ê¹ÄÜ´®¿Ú 0 Ê±ÖÓ²¢¸´Î» */
+    /* ä½¿èƒ½ä¸²å£ 0 æ—¶é’Ÿå¹¶å¤ä½ */
     amhw_lpc82x_clk_periph_enable(AMHW_LPC82X_CLK_UART0);
     amhw_lpc82x_syscon_periph_reset(AMHW_LPC82X_RESET_UART0);
 
-    /* ÅäÖÃÒý½Å¸´ÓÃ */
+    /* é…ç½®å¼•è„šå¤ç”¨ */
     am_gpio_pin_cfg(PIO0_4, PIO_FUNC_U0_TXD);
     am_gpio_pin_cfg(PIO0_0, PIO_FUNC_U0_RXD);
 

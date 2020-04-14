@@ -12,18 +12,18 @@
 
 /**
  * \file
- * \brief CRC Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief CRC ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿Ú´òÓ¡ "CRC-16 result is     : 0xbb3d\r\n"£»
- *   2. ´®¿Ú´òÓ¡ "CRC-CCITT result is  : 0x29b1\r\n"£»
- *   3. ´®¿Ú´òÓ¡ "CRC-32 result is     : 0xcbf43926\r\n"¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. ä¸²å£æ‰“å° "CRC-16 result is     : 0xbb3d\r\n"ï¼›
+ *   2. ä¸²å£æ‰“å° "CRC-CCITT result is  : 0x29b1\r\n"ï¼›
+ *   3. ä¸²å£æ‰“å° "CRC-32 result is     : 0xcbf43926\r\n"ã€‚
  *
  * \note
- *    ÈçĞè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔĞÅÏ¢£¬ĞèÒª½« PIO0_0 Òı½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *    PIO0_4 Òı½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
+ *    å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO0_0 å¼•è„šè¿æ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *    PIO0_4 å¼•è„šè¿æ¥ PC ä¸²å£çš„ RXDã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_lpc_hw_crc.c src_lpc_hw_crc
  *
  * \internal
@@ -45,19 +45,19 @@
 #include "demo_nxp_entries.h"
 
 /**
- * \brief CRC-CCITT ¼ÆËã
+ * \brief CRC-CCITT è®¡ç®—
  *
- * \param[in] p_data Ö¸Ïò CRC ¼ÆËãÊı¾İ»º³åÇøµÄÖ¸Õë
- * \param[in] nbytes ¼ÆËãÊı¾İµÄ³¤¶È
+ * \param[in] p_data æŒ‡å‘ CRC è®¡ç®—æ•°æ®ç¼“å†²åŒºçš„æŒ‡é’ˆ
+ * \param[in] nbytes è®¡ç®—æ•°æ®çš„é•¿åº¦
  *
- * \return CRC-CCITT ¼ÆËãµÄ½á¹û
+ * \return CRC-CCITT è®¡ç®—çš„ç»“æœ
  */
 am_local uint16_t __crc_ccitt (amhw_lpc_crc_t     *p_hw_crc, 
                                am_const uint8_t   *p_data, 
                                uint32_t            nbytes)
 {
 
-    /* Ã»ÓĞ±êÖ¾ĞèÒªÖÃÎ»£¬±êÖ¾ÖµÎª 0 */
+    /* æ²¡æœ‰æ ‡å¿—éœ€è¦ç½®ä½ï¼Œæ ‡å¿—å€¼ä¸º 0 */
     amhw_lpc_crc_mode_set(p_hw_crc, AMHW_LPC_CRC_POLY_CCITT, 0);
 
     amhw_lpc_crc_seed_set(p_hw_crc, 0xFFFF);
@@ -68,12 +68,12 @@ am_local uint16_t __crc_ccitt (amhw_lpc_crc_t     *p_hw_crc,
 }
 
 /**
- * \brief CRC-16 ¼ÆËã
+ * \brief CRC-16 è®¡ç®—
  *
- * \param[in] p_data Ö¸Ïò CRC ¼ÆËãÊı¾İ»º³åÇøµÄÖ¸Õë
- * \param[in] nbytes ¼ÆËãÊı¾İµÄ³¤¶È
+ * \param[in] p_data æŒ‡å‘ CRC è®¡ç®—æ•°æ®ç¼“å†²åŒºçš„æŒ‡é’ˆ
+ * \param[in] nbytes è®¡ç®—æ•°æ®çš„é•¿åº¦
  *
- * \return CRC-16 ¼ÆËãµÄ½á¹û
+ * \return CRC-16 è®¡ç®—çš„ç»“æœ
  */
 am_local uint16_t __crc_16 (amhw_lpc_crc_t     *p_hw_crc, 
                             am_const uint8_t   *p_data, 
@@ -92,12 +92,12 @@ am_local uint16_t __crc_16 (amhw_lpc_crc_t     *p_hw_crc,
 }
 
 /**
- * \brief CRC-32 ¼ÆËã
+ * \brief CRC-32 è®¡ç®—
  *
- * \param[in] p_data Ö¸Ïò CRC ¼ÆËãÊı¾İ»º³åÇøµÄÖ¸Õë
- * \param[in] nbytes ¼ÆËãÊı¾İµÄ³¤¶È
+ * \param[in] p_data æŒ‡å‘ CRC è®¡ç®—æ•°æ®ç¼“å†²åŒºçš„æŒ‡é’ˆ
+ * \param[in] nbytes è®¡ç®—æ•°æ®çš„é•¿åº¦
  *
- * \return CRC-32 ¼ÆËãµÄ½á¹û
+ * \return CRC-32 è®¡ç®—çš„ç»“æœ
  */
 am_local uint32_t __crc_32 (amhw_lpc_crc_t     *p_hw_crc, 
                             am_const uint8_t   *p_data, 
@@ -125,16 +125,16 @@ void demo_lpc_hw_crc_entry(amhw_lpc_crc_t     *p_hw_crc,
     uint16_t result_crc_ccitt = 0;
     uint32_t result_crc32     = 0;
   
-    /* ¼ÆËã½á¹ûÓ¦Îª£º0xbb3d */
+    /* è®¡ç®—ç»“æœåº”ä¸ºï¼š0xbb3d */
     result_crc16 = __crc_16(p_hw_crc, (am_const uint8_t *)p_data, nbytes);
     AM_DBG_INFO("CRC-16 result is     : 0x%x \r\n", result_crc16);
 
-    /* ¼ÆËã½á¹ûÓ¦Îª£º0x29b1 */
+    /* è®¡ç®—ç»“æœåº”ä¸ºï¼š0x29b1 */
     result_crc_ccitt = __crc_ccitt(p_hw_crc, (am_const uint8_t *)p_data,
                                    nbytes);
     AM_DBG_INFO("CRC-CCITT result is  : 0x%x \r\n", result_crc_ccitt);
 
-    /* ¼ÆËã½á¹ûÓ¦Îª£º0xcbf43926 */
+    /* è®¡ç®—ç»“æœåº”ä¸ºï¼š0xcbf43926 */
     result_crc32 = __crc_32(p_hw_crc, (am_const uint8_t *)p_data, nbytes);
     AM_DBG_INFO("CRC-32 result is     : 0x%x \r\n", result_crc32);
 }

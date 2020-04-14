@@ -14,16 +14,16 @@
  * \file
  * \brief
  *
- * - ²Ù×÷²½Öè£º
- *      - PTC1Òı½ÅÍâ½Ó32.786kHzµÄÊ±ÖÓÊäÈë
- *      - Ê¹ÓÃµ÷ÊÔ´®¿Ú´òÓ¡
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *      - PTC1å¼•è„šå¤–æ¥32.786kHzçš„æ—¶é’Ÿè¾“å…¥
+ *      - ä½¿ç”¨è°ƒè¯•ä¸²å£æ‰“å°
  *
  *
- * - ÊµÑéÏÖÏó£º
- *      - ´®¿Ú´òÓ¡³öÉèÖÃµÄÊ±¼ä
- *      - ÒÔºóÃ¿Ãë´òÓ¡Ò»´ÎÊ±¼ä
+ * - å®éªŒç°è±¡ï¼š
+ *      - ä¸²å£æ‰“å°å‡ºè®¾ç½®çš„æ—¶é—´
+ *      - ä»¥åæ¯ç§’æ‰“å°ä¸€æ¬¡æ—¶é—´
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_amks16z_core_std_rtc.c src_amks16z_core_std_rtc
  *
  * \internal
@@ -47,11 +47,11 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief AMetal Ó¦ÓÃ³ÌĞòÈë¿Ú
+ * \brief AMetal åº”ç”¨ç¨‹åºå…¥å£
  */
 void demo_amks16z_core_std_rtc_entry (void)
 {
-    /** RTC ·şÎñ¾ä±ú */
+    /** RTC æœåŠ¡å¥æŸ„ */
     am_rtc_handle_t rtc_handler = am_kl26_rtc_inst_init();
 
     demo_std_rtc_entry(rtc_handler);

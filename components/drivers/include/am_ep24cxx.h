@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief ep24cxx ͨ��EEPROM����
+ * \brief ep24cxx 通用EEPROM驱动
  *
- * EP24CXX ��ָ�볣����CAT24C02��CAT24C08��һϵ��EEPROM����оƬ��оƬ������
- * 1kbit �� 1Mbit��
+ * EP24CXX 是指与常见的CAT24C02、CAT24C08这一系列EEPROM兼容芯片。芯片容量从
+ * 1kbit 到 1Mbit。
  *
  * \internal
  * \par modification history:
@@ -42,58 +42,58 @@ extern "C" {
  */
 
 /**
- * \brief ���� EEPROM оƬ���Զ���һ��оƬ
+ * \brief 根据 EEPROM 芯片属性定义一款芯片
  *
- *     ��ͬоƬ֮���һЩ���ԣ�������ҳ��С�ȣ����ܴ��ڲ��죬ͨ������������ԣ�
- * ����ȷ��һ��оƬ��һϵ��������ͬ��оƬ������������6�����ԣ�
+ *     不同芯片之间的一些属性（容量、页大小等）可能存在差异，通过定义各个属性，
+ * 即可确定一款芯片或一系列属性相同的芯片。定义了如下6种属性：
  *
- * 1. ҳ��С
- *     ��AT24C02�з�ҳ��ҳ��СΪ8�ֽڣ���AT24C1024��ҳ��СΪ256�ֽڡ��޷�ҳʱ��
- * ��������Ч��
+ * 1. 页大小
+ *     如AT24C02有分页，页大小为8字节；而AT24C1024的页大小为256字节。无分页时，
+ * 该属性无效。
  *
- * 2. ���޷�ҳ
- *     ��AT24C02�з�ҳ��ҳ��СΪ8�ֽڣ������繫˾��FRAM�޷�ҳ��
+ * 2. 有无分页
+ *     如AT24C02有分页，页大小为8字节；而铁电公司的FRAM无分页。
  *
- * 3. ���ݵ�ַ��������ַ�е�λ�� 
- *     һ��أ���AT24C02��������ַ�в��������ݵ�ַ��������AT24C1024��
- * ���������ϴ󣬹���1024Kbit����128K = 2 ^ 17��������ݵ�ַ��Ҫ17 bits��оƬ��
- * ��ʱ��Ϊ�˽�ʡͨ���ֽ������Ĵ�����ַʹ��2�ֽڣ�16 bits�������Ա�ʾ���ݵ�ַ��
- * ��16λ�����ݵ�ַ�����λ��ŵ�������ַ�С���ʱ�������Ե�ֵ��Ϊ1��
+ * 3. 数据地址在器件地址中的位数 
+ *     一般地，如AT24C02，器件地址中不包含数据地址；而对于AT24C1024，
+ * 由于容量较大，共计1024Kbit，即128K = 2 ^ 17，因此数据地址需要17 bits，芯片设
+ * 计时，为了节省通信字节数，寄存器地址使用2字节（16 bits），用以表示数据地址的
+ * 低16位，数据地址的最高位存放到器件地址中。此时，该属性的值即为1。
  *
- * 4. �Ĵ�����ַ���ֽ���
- *     ��AT24C02���Ĵ�����ַΪ1�ֽڣ����Ա�ʾ���ݵ�ַ����ʱ�������Ե�ֵΪ1������
- * ��AT24C1024���Ĵ�����ַΪ2�ֽڣ����Ա�ʾ���ݵ�ַ�ĵ�16λ����ʱ�������Ե�ֵ��
- * Ϊ2��
+ * 4. 寄存器地址的字节数
+ *     如AT24C02，寄存器地址为1字节，用以表示数据地址，此时，该属性的值为1；而对
+ * 于AT24C1024，寄存器地址为2字节，用以表示数据地址的低16位，此时，该属性的值则
+ * 为2。
  *
- * 5. оƬ������byte��
- *     ��AT24C02������Ϊ2K bit��������Ϊ 256 �ֽڡ�������AT24C1024������1024K
- * bit����128K �ֽڡ�������������һ���Ĺ��ɣ���Ϊ128�ֽڵ�2���ݴ���������
- *     �������� = (2^n) * 128
- * ��ˣ�ʵ�ʱ�ʾ����ʱ����ʹ������ֵn����ʾ����������AT24C02����nֵΪ1������
- * AT24C1024���� n ֵΪ 10��
+ * 5. 芯片容量（byte）
+ *     如AT24C02，容量为2K bit，即容量为 256 字节。而对于AT24C1024，容量1024K
+ * bit，即128K 字节。由于容量呈现一定的规律，均为128字节的2的幂次整数倍。
+ *     即：容量 = (2^n) * 128
+ * 因此，实际表示容量时，仅使用整数值n来表示容量，对于AT24C02，则n值为1，对于
+ * AT24C1024，则 n 值为 10。
  *
- * 6. д��ʱ��
- *     EEPROM��оƬд��ʱ����в��죬��AT24C02��д��ʱ��Ϊ 5ms�������繫˾��FRAM
- * �޷�ҳд��ʱ��Ϊ0,����ȴ���
+ * 6. 写入时间
+ *     EEPROM的芯片写入时间各有差异，如AT24C02，写入时间为 5ms，而铁电公司的FRAM
+ * 无分页写入时间为0,无需等待。
  *
- *     ��6�����Լ���ȷ���Ķ���һ��оƬ��һϵ����ͬ���Ե�оƬ������ʹ��һ��32λ
- * ������ͳһ�ı�ʾ��Щ���ԡ�32λ���ݵ�λ�������£�
+ *     这6个属性即可确定的定义一个芯片或一系列相同属性的芯片。这里使用一个32位
+ * 数据来统一的表示这些属性。32位数据的位分配如下：
  *
- * - bit[15:0]  ��ҳ��С
- * - bit[18:16] �����ݵ�ַ��������ַ�е�λ�� 
- * - bit[19]    ���Ĵ�����ַ���ֽ�����0: ���ֽ�  1: ˫�ֽ�
- * - bit[23:20] ��оƬ����, (2^n)*128 bytes, n = 0 ~ 15
- * - bit[31:24] ��д��ʱ�䣬��λms����Чֵ��0 ~ 255
+ * - bit[15:0]  ：页大小
+ * - bit[18:16] ：数据地址在器件地址中的位数 
+ * - bit[19]    ：寄存器地址的字节数，0: 单字节  1: 双字节
+ * - bit[23:20] ：芯片容量, (2^n)*128 bytes, n = 0 ~ 15
+ * - bit[31:24] ：写入时间，单位ms，有效值，0 ~ 255
  *
- * \param[in] page_size                  : ҳ��С��
- * \param[in] data_addr_bits_in_slv_addr : ���ݵ�ַ��������ַ�е�λ��
- * \param[in] reg_addr_double_bytes      : �Ĵ�����ַ˫�ֽڡ�0�����ֽڣ�1:��˫�ֽ�
- * \param[in] chip_size                  : оƬ������size = (2^n)*128 bytes
- * \param[in] write_time                 : д��ʱ�䣬��λms 
+ * \param[in] page_size                  : 页大小。
+ * \param[in] data_addr_bits_in_slv_addr : 数据地址在器件地址中的位数
+ * \param[in] reg_addr_double_bytes      : 寄存器地址双字节。0，单字节；1:，双字节
+ * \param[in] chip_size                  : 芯片容量。size = (2^n)*128 bytes
+ * \param[in] write_time                 : 写入时间，单位ms 
  *
- * \return 32λ���ݣ���ʾһ���ض���оƬ��һϵ��������ͬ��оƬ��
+ * \return 32位数据，表示一款特定的芯片或一系列属性相同的芯片。
  * 
- * \note һ��أ��û�����ֱ��ʹ�øú꣬Ӧʹ���Ѿ�����õ�оƬ�ͺš�
+ * \note 一般地，用户无需直接使用该宏，应使用已经定义好的芯片型号。
  */
 #define AM_EP24CXX_TYPE_DEF(page_size,                  \
                             data_addr_bits_in_slv_addr, \
@@ -107,10 +107,10 @@ extern "C" {
         ((write_time)     << 24))
  
 /**
- * \name ��֪��һЩоƬ�ͺŶ���
+ * \name 已知的一些芯片型号定义
  *
- *     ��ʹ�õ�оƬ�ͺŴ˴�δ���壬����ʹ�� \sa AM_EP24CXX_CHIP_DEF() �궨��һ
- * ���µ�оƬ��
+ *     若使用的芯片型号此处未定义，可以使用 \sa AM_EP24CXX_CHIP_DEF() 宏定义一
+ * 个新的芯片。
  * 
  * @{
  */
@@ -196,69 +196,69 @@ extern "C" {
 /** @} */
 
 /**
- * \brief ep24cxx�豸��Ϣ�ṹ�嶨��
+ * \brief ep24cxx设备信息结构体定义
  */
 typedef struct am_ep24cxx_devinfo {
     
-    /** \brief �豸 7-bit �ӻ���ַ */
+    /** \brief 设备 7-bit 从机地址 */
     uint8_t                        slv_addr;
 
-    /** \brief оƬ�ͺţ��磺 \sa #AM_EP24CXX_AT24C02 */
+    /** \brief 芯片型号，如： \sa #AM_EP24CXX_AT24C02 */
     uint32_t                       type;
     
 } am_ep24cxx_devinfo_t;
  
 /**
- * \brief ep24cxx�豸�ṹ�嶨��
+ * \brief ep24cxx设备结构体定义
  */
 typedef struct am_ep24cxx_dev {
 
-    /** \brief I2C�ӻ��豸             */
+    /** \brief I2C从机设备             */
     am_i2c_device_t                i2c_dev;
  
-    /** \brief ep24cxx�豸�ṩ�� NVRAM ��׼���� */
+    /** \brief ep24cxx设备提供的 NVRAM 标准服务 */
     am_nvram_dev_t                *p_serv;
     
-    /** \brief ָ���豸��Ϣ��ָ��      */
+    /** \brief 指向设备信息的指针      */
     const am_ep24cxx_devinfo_t    *p_devinfo;
     
 } am_ep24cxx_dev_t;
 
-/** \brief ep24cxx ����������� */
+/** \brief ep24cxx 操作句柄定义 */
 typedef am_ep24cxx_dev_t *am_ep24cxx_handle_t;
  
 /**
- * \brief ep24cxx��ʼ������
+ * \brief ep24cxx初始化函数
  *
- * ep24xx�����ṩ��׼�� NVRAM ���񣬸ó�ʼ���������ر�׼�� NVRAM ��������
+ * ep24xx可以提供标准的 NVRAM 服务，该初始化函数返回标准的 NVRAM 服务句柄。
  *
- * \param[in] p_dev      : ָ��ep24cxx�豸��ָ��
- * \param[in] p_devinfo  : ָ��ep24cxx�豸��Ϣ��ָ��
- * \param[in] i2c_handle : I2C��׼������������ʹ�ø�I2C�����ep24cxxͨ�ţ�
+ * \param[in] p_dev      : 指向ep24cxx设备的指针
+ * \param[in] p_devinfo  : 指向ep24cxx设备信息的指针
+ * \param[in] i2c_handle : I2C标准服务操作句柄（使用该I2C句柄与ep24cxx通信）
  *
- * \return ����ep24cxx��handle������ʼ��ʧ�ܣ��򷵻�ֵΪNULL��
+ * \return 操作ep24cxx的handle，若初始化失败，则返回值为NULL。
  *
- * \note �豸ָ��p_devָ����豸ֻ��Ҫ���壬����Ҫ�ڵ��ñ�����ǰ��ʼ����
+ * \note 设备指针p_dev指向的设备只需要定义，不需要在调用本函数前初始化。
  */
 am_ep24cxx_handle_t am_ep24cxx_init (am_ep24cxx_dev_t           *p_dev,
                                      const am_ep24cxx_devinfo_t *p_devinfo,
                                      am_i2c_handle_t             i2c_handle);
                                    
 /**
- * \brief ��ʼ��EP24CXX��NVRAM���ܣ���ϵͳ�ṩ  NVRAM ��׼����
+ * \brief 初始化EP24CXX的NVRAM功能，向系统提供  NVRAM 标准服务
  * 
- *   �ú�����EP24CXX�豸��Ϊ��׼��NVRAM�豸ע�ᵽϵͳ��
+ *   该函数将EP24CXX设备作为标准的NVRAM设备注册到系统中
  * 
- * \param[in] handle      : ep24cxx�������
- * \param[in] p_dev       : NVRAM ��׼�豸
- * \param[in] p_dev_name  : NVRAM ��׼�豸���豸��
+ * \param[in] handle      : ep24cxx操作句柄
+ * \param[in] p_dev       : NVRAM 标准设备
+ * \param[in] p_dev_name  : NVRAM 标准设备的设备名
  *
- * \return AM_OK, �ṩNVRAM����ɹ�������ֵ���ṩNVRAM����ʧ�ܡ�
+ * \return AM_OK, 提供NVRAM服务成功；其它值，提供NVRAM服务失败。
  *
- * \note ʹ�øú����󣬼���ʹ��NVRAM��׼�ӿ� am_nvram_set() �� am_nvram_get() ����
- * EP24CXX�洢����ʹ�õĶα����� am_nvram_cfg.c�ļ��ж��壬�洢���������豸������
- * ��дΪ�˴� p_name ָ�������֣��� p_name Ϊ  "fm24c02", �������g_nvram_segs[]��
- * �����б�����������5���洢�Σ�����Ϊʾ������
+ * \note 使用该函数后，即可使用NVRAM标准接口 am_nvram_set() 和 am_nvram_get() 访问
+ * EP24CXX存储器，使用的段必须在 am_nvram_cfg.c文件中定义，存储段依赖的设备名即可
+ * 填写为此处 p_name 指定的名字，如 p_name 为  "fm24c02", 这可以向g_nvram_segs[]存
+ * 储段列表中增加如下5个存储段（仅作为示例）：
  *    {"ip",         0,  0,  4,   "fm24c02"},
  *    {"ip",         1,  4,  4,   "fm24c02"},
  *    {"temp_limit", 0,  8,  4,   "fm24c02"},
@@ -270,14 +270,14 @@ int am_ep24cxx_nvram_init (am_ep24cxx_handle_t   handle,
                            const char           *p_dev_name);
 
 /**
- * \brief ����д��
+ * \brief 数据写入
  * 
- * \param[in] handle     : ep24cxx�������
- * \param[in] start_addr : ����д�����ʼ��ַ
- * \param[in] p_buf      : ��д�������
- * \param[in] len        ��д�����ݳ���
+ * \param[in] handle     : ep24cxx操作句柄
+ * \param[in] start_addr : 数据写入的起始地址
+ * \param[in] p_buf      : 待写入的数据
+ * \param[in] len        ：写入数据长度
  *
- * \return AM_OK, ����д��ɹ�������ֵ������д��ʧ�ܡ�
+ * \return AM_OK, 数据写入成功；其它值，数据写入失败。
  */                      
 int am_ep24cxx_write (am_ep24cxx_handle_t  handle, 
                       int                  start_addr, 
@@ -286,14 +286,14 @@ int am_ep24cxx_write (am_ep24cxx_handle_t  handle,
 
   
 /**
- * \brief ���ݶ�ȡ
+ * \brief 数据读取
  * 
- * \param[in]  handle    : ep24cxx�������
- * \param[in]  start_addr: ���ݶ�ȡ����ʼ��ַ
- * \param[out] p_buf     : ��Ŷ�ȡ���ݵĻ�����
- * \param[in]  len       ����ȡ���ݵĳ���
+ * \param[in]  handle    : ep24cxx操作句柄
+ * \param[in]  start_addr: 数据读取的起始地址
+ * \param[out] p_buf     : 存放读取数据的缓冲区
+ * \param[in]  len       ：读取数据的长度
  *
- * \return AM_OK, ���ݶ�ȡ�ɹ�������ֵ�����ݶ�ȡʧ�ܡ�
+ * \return AM_OK, 数据读取成功；其它值，数据读取失败。
  */
 int am_ep24cxx_read (am_ep24cxx_handle_t handle,
                      int                 start_addr, 
@@ -301,13 +301,13 @@ int am_ep24cxx_read (am_ep24cxx_handle_t handle,
                      int                 len);
                               
 /**
- * \brief ep24cxx���ʼ������
+ * \brief ep24cxx解初始化函数
  *
- * ������ʹ��ָ����ep24cxx�豸ʱ������ʹ�øú������ʼ�����豸�����ͷ������Դ
+ * 当不再使用指定的ep24cxx设备时，可以使用该函数解初始化该设备，以释放相关资源
  *
- * \param[in] handle : ep24cxx�������
+ * \param[in] handle : ep24cxx操作句柄
  *
- * \return AM_OK, ���ʼ���ɹ�������ֵ�����ʼ��ʧ�ܡ�
+ * \return AM_OK, 解初始化成功；其它值，解初始化失败。
  */                              
 int am_ep24cxx_deinit (am_ep24cxx_handle_t handle);
                               

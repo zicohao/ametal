@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥7.63
+ * \brief ç¨‹åºæ¸…å•7.63
  *
  *
  * \internal
@@ -32,10 +32,10 @@
 #include "am_hwconf_miniport.h"
 #include "string.h"
 
-static uint8_t g_temp_high = 30;            // ÎÂ¶ÈÉÏÏŞÖµ£¬³õÊ¼Îª30¶È
-static uint8_t g_temp_low  = 25;            // ÎÂ¶ÈÏÂÏŞÖµ£¬³õÊ¼Îª28¶È
-static uint8_t adj_state   = 0;             // 0-Õı³£×´Ì¬£¬1-µ÷½ÚÉÏÏŞ×´Ì¬, 2-µ÷½ÚÏÂÏŞ×´Ì¬
-static uint8_t adj_pos;                     // µ±Ç°µ÷½ÚµÄÎ»£¬ÇĞ»»Îªµ÷½ÚÄ£Ê½Ê±£¬³õÊ¼Îªµ÷½Ú¸öÎ»
+static uint8_t g_temp_high = 30;            // æ¸©åº¦ä¸Šé™å€¼ï¼Œåˆå§‹ä¸º30åº¦
+static uint8_t g_temp_low  = 25;            // æ¸©åº¦ä¸‹é™å€¼ï¼Œåˆå§‹ä¸º28åº¦
+static uint8_t adj_state   = 0;             // 0-æ­£å¸¸çŠ¶æ€ï¼Œ1-è°ƒèŠ‚ä¸Šé™çŠ¶æ€, 2-è°ƒèŠ‚ä¸‹é™çŠ¶æ€
+static uint8_t adj_pos;                     // å½“å‰è°ƒèŠ‚çš„ä½ï¼Œåˆ‡æ¢ä¸ºè°ƒèŠ‚æ¨¡å¼æ—¶ï¼Œåˆå§‹ä¸ºè°ƒèŠ‚ä¸ªä½
 
 static void __digitron_disp_num (int num)
 {
@@ -44,84 +44,84 @@ static void __digitron_disp_num (int num)
     am_digitron_disp_str(0, 0, strlen(buf), buf);
 }
 
-static void key_state_process (void)       // ×´Ì¬´¦Àíº¯Êı£¬KEY0
+static void key_state_process (void)       // çŠ¶æ€å¤„ç†å‡½æ•°ï¼ŒKEY0
 {
-    adj_state = (adj_state + 1) % 3;       // ×´Ì¬ÇĞ»»£¬0 ~ 2
+    adj_state = (adj_state + 1) % 3;       // çŠ¶æ€åˆ‡æ¢ï¼Œ0 ~ 2
     if (adj_state == 1) {
-        // ×´Ì¬ÇĞ»»µ½µ÷½ÚÉÏÏŞ×´Ì¬
+        // çŠ¶æ€åˆ‡æ¢åˆ°è°ƒèŠ‚ä¸Šé™çŠ¶æ€
         am_led_on(0);
         am_led_off(1);
         adj_pos = 1;
-        am_digitron_disp_blink_set(0, adj_pos, AM_TRUE);    // µ÷½ÚÎ»¸öÎ»ÉÁË¸
-        __digitron_disp_num(g_temp_high);                   // ÏÔÊ¾ÎÂ¶ÈÉÏÏŞÖµ
+        am_digitron_disp_blink_set(0, adj_pos, AM_TRUE);    // è°ƒèŠ‚ä½ä¸ªä½é—ªçƒ
+        __digitron_disp_num(g_temp_high);                   // æ˜¾ç¤ºæ¸©åº¦ä¸Šé™å€¼
     } else if (adj_state == 2) {
-        // ×´Ì¬ÇĞ»»µ½µ÷½ÚÏÂÏŞ×´Ì¬
+        // çŠ¶æ€åˆ‡æ¢åˆ°è°ƒèŠ‚ä¸‹é™çŠ¶æ€
         am_led_on(1);
         am_led_off(0);
-        am_digitron_disp_blink_set(0, adj_pos, AM_FALSE);   // µ±Ç°µ÷½ÚÎ»Í£Ö¹ÉÁË¸
-        adj_pos = 1;                                        // µ÷½ÚÎ»»Ö¸´Îª¸öÎ»
+        am_digitron_disp_blink_set(0, adj_pos, AM_FALSE);   // å½“å‰è°ƒèŠ‚ä½åœæ­¢é—ªçƒ
+        adj_pos = 1;                                        // è°ƒèŠ‚ä½æ¢å¤ä¸ºä¸ªä½
         am_digitron_disp_blink_set(0, adj_pos, AM_TRUE);
-        __digitron_disp_num(g_temp_low);                    // ÏÔÊ¾ÎÂ¶ÈÏÂÏŞÖµ
+        __digitron_disp_num(g_temp_low);                    // æ˜¾ç¤ºæ¸©åº¦ä¸‹é™å€¼
     } else {
-        // ÇĞ»»ÎªÕı³£×´Ì¬
+        // åˆ‡æ¢ä¸ºæ­£å¸¸çŠ¶æ€
         am_led_off(0);
         am_led_off(1);
-        am_digitron_disp_blink_set(0, adj_pos, AM_FALSE);   // µ±Ç°µ÷½ÚÎ»Í£Ö¹ÉÁË¸
-        adj_pos = 1;                                        // µ÷½ÚÎ»»Ö¸´Îª¸öÎ»
+        am_digitron_disp_blink_set(0, adj_pos, AM_FALSE);   // å½“å‰è°ƒèŠ‚ä½åœæ­¢é—ªçƒ
+        adj_pos = 1;                                        // è°ƒèŠ‚ä½æ¢å¤ä¸ºä¸ªä½
     }
 }
 
 #define VAL_ADJ_TYPE_ADD    1
 #define VAL_ADJ_TYPE_SUB    0
 
-static void key_val_process(uint8_t type)                  // µ÷½ÚÖµÉèÖÃº¯Êı£¨1-¼Ó£¬0-¼õ£©
+static void key_val_process(uint8_t type)                  // è°ƒèŠ‚å€¼è®¾ç½®å‡½æ•°ï¼ˆ1-åŠ ï¼Œ0-å‡ï¼‰
 {
-    uint8_t num_single    =     0;                         // µ÷½ÚÊıÖµÊ±£¬ÁÙÊ±¼ÇÂ¼¸öÎ»µ÷½Ú
-    uint8_t num_ten     =     0;                           // µ÷½ÚÊıÖµÊ±£¬ÁÙÊ±¼ÇÂ¼Ê®Î»µ÷½Ú
+    uint8_t num_single    =     0;                         // è°ƒèŠ‚æ•°å€¼æ—¶ï¼Œä¸´æ—¶è®°å½•ä¸ªä½è°ƒèŠ‚
+    uint8_t num_ten     =     0;                           // è°ƒèŠ‚æ•°å€¼æ—¶ï¼Œä¸´æ—¶è®°å½•åä½è°ƒèŠ‚
 
-    if (adj_state == 0)                                    // Õı³£×´Ì¬£¬²»ÔÊĞíµ÷½Ú
+    if (adj_state == 0)                                    // æ­£å¸¸çŠ¶æ€ï¼Œä¸å…è®¸è°ƒèŠ‚
         return;
     if (adj_state == 1) {
-        num_single = g_temp_high % 10;                     // µ÷½ÚÉÏÏŞÖµ
+        num_single = g_temp_high % 10;                     // è°ƒèŠ‚ä¸Šé™å€¼
         num_ten    = g_temp_high / 10;
     } else if (adj_state == 2){
-        num_single = g_temp_low % 10;                      // µ÷½ÚÏÂÏŞÖµ
+        num_single = g_temp_low % 10;                      // è°ƒèŠ‚ä¸‹é™å€¼
         num_ten    = g_temp_low / 10;
     }
-    if (type == VAL_ADJ_TYPE_ADD) {                        // ¼Ó1²Ù×÷
+    if (type == VAL_ADJ_TYPE_ADD) {                        // åŠ 1æ“ä½œ
         if (adj_pos == 1) {
-            num_single = (num_single + 1) % 10;            // ¸öÎ»¼Ó1£¬0 ~ 9
+            num_single = (num_single + 1) % 10;            // ä¸ªä½åŠ 1ï¼Œ0 ~ 9
         } else {
-            num_ten   = (num_ten + 1) % 10;                // Ê®Î»¼Ó1£¬0 ~ 9
+            num_ten   = (num_ten + 1) % 10;                // åä½åŠ 1ï¼Œ0 ~ 9
         }
-    } else {                                               // ¼õ1²Ù×÷
+    } else {                                               // å‡1æ“ä½œ
         if (adj_pos == 1) {
-            num_single = (num_single - 1 + 10) % 10;       // ¸öÎ»¼õ1£¬0 ~ 9
+            num_single = (num_single - 1 + 10) % 10;       // ä¸ªä½å‡1ï¼Œ0 ~ 9
         } else {
-            num_ten   = (num_ten - 1 + 10) % 10;           // Ê®Î»¼õ1£¬0 ~ 9
+            num_ten   = (num_ten - 1 + 10) % 10;           // åä½å‡1ï¼Œ0 ~ 9
         }
     }
 
     if (adj_state == 1) {
         if (num_ten * 10 + num_single >= g_temp_low) {
-            g_temp_high = num_ten * 10 + num_single;       // È·±£ÊÇÓĞĞ§µÄÉèÖÃ
+            g_temp_high = num_ten * 10 + num_single;       // ç¡®ä¿æ˜¯æœ‰æ•ˆçš„è®¾ç½®
         } else {
-            num_ten    = g_temp_high / 10;                 // ÎŞĞ§µÄÉèÖÃ£¬Öµ²»±ä
+            num_ten    = g_temp_high / 10;                 // æ— æ•ˆçš„è®¾ç½®ï¼Œå€¼ä¸å˜
             num_single = g_temp_high % 10;
         }
-        __digitron_disp_num(g_temp_high);                  // ÏÔÊ¾ÎÂ¶ÈÉÏÏŞÖµ
+        __digitron_disp_num(g_temp_high);                  // æ˜¾ç¤ºæ¸©åº¦ä¸Šé™å€¼
     } else if (adj_state == 2) {
         if (num_ten * 10 + num_single <= g_temp_high) {
-            g_temp_low = num_ten * 10 + num_single;        // È·±£ÊÇÓĞĞ§µÄÉèÖÃ
+            g_temp_low = num_ten * 10 + num_single;        // ç¡®ä¿æ˜¯æœ‰æ•ˆçš„è®¾ç½®
         }
-        __digitron_disp_num(g_temp_low);                   // ÏÔÊ¾ÎÂ¶ÈÏÂÏŞÖµ
+        __digitron_disp_num(g_temp_low);                   // æ˜¾ç¤ºæ¸©åº¦ä¸‹é™å€¼
     }
 }
 
-static void key_pos_process(void)                           // µ÷½ÚÎ»ÇĞ»»
+static void key_pos_process(void)                           // è°ƒèŠ‚ä½åˆ‡æ¢
 {
     if (adj_state != 0) {
-        // µ±Ç°ÊÇÔÚµ÷½ÚÄ£Ê½ÖĞ²ÅÔÊĞíÇĞ»»µ÷½ÚÎ»
+        // å½“å‰æ˜¯åœ¨è°ƒèŠ‚æ¨¡å¼ä¸­æ‰å…è®¸åˆ‡æ¢è°ƒèŠ‚ä½
         am_digitron_disp_blink_set(0, adj_pos, AM_FALSE);
         adj_pos = !adj_pos;
         am_digitron_disp_blink_set(0, adj_pos, AM_TRUE);
@@ -132,16 +132,16 @@ static void key_callback (void *p_arg,int key_code, int key_state, int keep_time
 {
     if (key_state == AM_INPUT_KEY_STATE_PRESSED) {
         switch (key_code) {
-        case KEY_0:                       // µ÷½Ú×´Ì¬ÇĞ»»
+        case KEY_0:                       // è°ƒèŠ‚çŠ¶æ€åˆ‡æ¢
             key_state_process();
             break;
-        case KEY_1:                       // µ±Ç°µ÷½ÚÎ»¼Ó1
+        case KEY_1:                       // å½“å‰è°ƒèŠ‚ä½åŠ 1
             key_val_process(VAL_ADJ_TYPE_ADD);
             break;
-        case KEY_2:                      // ÇĞ»»µ±Ç°µ÷½ÚÎ»
+        case KEY_2:                      // åˆ‡æ¢å½“å‰è°ƒèŠ‚ä½
             key_pos_process();
             break;
-        case KEY_3:                      // µ±Ç°µ÷½ÚÎ»¼õ1
+        case KEY_3:                      // å½“å‰è°ƒèŠ‚ä½å‡1
             key_val_process(VAL_ADJ_TYPE_SUB);
             break;
         default:
@@ -152,22 +152,22 @@ static void key_callback (void *p_arg,int key_code, int key_state, int keep_time
 
 int am_main (void)
 {
-    am_temp_handle_t         temp_handle = am_temp_lm75_inst_init();; // ÎÂ¶È´«¸ĞÆ÷¾ä±ú
+    am_temp_handle_t         temp_handle = am_temp_lm75_inst_init();; // æ¸©åº¦ä¼ æ„Ÿå™¨å¥æŸ„
     am_input_key_handler_t   key_handler;
     int32_t                  temp;
 
-    // ³õÊ¼»¯£¬²¢ÉèÖÃ8¶ÎASCII½âÂë
+    // åˆå§‹åŒ–ï¼Œå¹¶è®¾ç½®8æ®µASCIIè§£ç 
     am_miniport_view_key_inst_init();
     am_digitron_disp_decode_set(0, am_digitron_seg8_ascii_decode);
     am_input_key_handler_register(&key_handler, key_callback, NULL);
     while(1) {
-        // ÎÂ¶È¶ÁÈ¡Ä£¿é,Õı³£Ä£Ê½ÏÂ£¬ÏÔÊ¾ÎÂ¶ÈÖµ£¬500msÖ´ĞĞÒ»´Î£¬LEDÉÁË¸
+        // æ¸©åº¦è¯»å–æ¨¡å—,æ­£å¸¸æ¨¡å¼ä¸‹ï¼Œæ˜¾ç¤ºæ¸©åº¦å€¼ï¼Œ500msæ‰§è¡Œä¸€æ¬¡ï¼ŒLEDé—ªçƒ
         if (adj_state == 0) {
             am_temp_read(temp_handle, &temp);
             if (temp < 0) {
-                temp = -1 * temp;            // ÎÂ¶ÈÎª¸ºÊ±£¬Ò²Ö»ÏÔÊ¾ÎÂ¶ÈÊıÖµ
+                temp = -1 * temp;            // æ¸©åº¦ä¸ºè´Ÿæ—¶ï¼Œä¹Ÿåªæ˜¾ç¤ºæ¸©åº¦æ•°å€¼
             }
-            temp = temp / 1000;              //  temp_cur Ö»±£ÁôÎÂ¶ÈÕûÊı²¿·Ö
+            temp = temp / 1000;              //  temp_cur åªä¿ç•™æ¸©åº¦æ•´æ•°éƒ¨åˆ†
             __digitron_disp_num(temp);
             if (temp > g_temp_high || temp < g_temp_low ) {
                 am_buzzer_on();

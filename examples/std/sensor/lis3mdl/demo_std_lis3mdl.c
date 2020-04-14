@@ -12,12 +12,12 @@
 
 /**
  * \file
- * \brief ÈıÖá´Å´«¸ĞÆ÷´«¸ĞÆ÷ LIS3MDL Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief ä¸‰è½´ç£ä¼ æ„Ÿå™¨ä¼ æ„Ÿå™¨ LIS3MDL ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Ã¿¹ıÒ»Ãë£¬Í¨¹ı´®¿Ú´òÓ¡ÈıÖá´Å´«¸ĞÆ÷ºÍÎÂ¶ÈµÄÖµ
+ * - å®éªŒç°è±¡ï¼š
+ *   1. æ¯è¿‡ä¸€ç§’ï¼Œé€šè¿‡ä¸²å£æ‰“å°ä¸‰è½´ç£ä¼ æ„Ÿå™¨å’Œæ¸©åº¦çš„å€¼
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_std_lis3mdl.c src_std_lis3mdl
  *
  * \internal
@@ -38,24 +38,26 @@
 #include "am_delay.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_std_lis3mdl_entry (am_sensor_handle_t handle)
 {
     uint8_t i = 0;
     
-    /* LIS3MDLÌá¹©µÄËùÓĞÍ¨µÀIDÁĞ¾Ù */
+    /* LIS3MDLæä¾›çš„æ‰€æœ‰é€šé“IDåˆ—ä¸¾ */
     const int id[4] = {AM_LIS3MDL_CHAN_1, AM_LIS3MDL_CHAN_2,
                        AM_LIS3MDL_CHAN_3, AM_LIS3MDL_CHAN_4};
 
-    /* ´¢´æËÄ¸öÍ¨µÀÊı¾İµÄ»º´æ */
+    /* å‚¨å­˜å››ä¸ªé€šé“æ•°æ®çš„ç¼“å­˜ */
     am_sensor_val_t data[4];
 
     /*
-     * ÁĞ³öËÄ¸öÍ¨µÀ£¨´Å´«¸ĞÆ÷ºÍÎÂ¶È£©Êı¾İµÄÃû×ÖºÍµ¥Î»×Ö·û´®£¬±ãÓÚ´òÓ¡
+     * åˆ—å‡ºå››ä¸ªé€šé“ï¼ˆç£ä¼ æ„Ÿå™¨å’Œæ¸©åº¦ï¼‰æ•°æ®çš„åå­—å’Œå•ä½å­—ç¬¦ä¸²ï¼Œä¾¿äºæ‰“å°
      */
     const char *data_name_string[] = {"MAG_X", "MAG_Y", "MAG_Z", "temperature"};
-    const char *data_unit_string[] = {"gauss", "gauss", "gauss", "¡æ"};
+//    const char *data_unit_string[] = {"gauss", "gauss", "gauss", "â„ƒ"};
+    //TODO
+    const char *data_unit_string[] = {"gauss", "gauss", "gauss", "C"};
 
     am_sensor_enable(handle, id, 4, data);
 
@@ -63,16 +65,16 @@ void demo_std_lis3mdl_entry (am_sensor_handle_t handle)
         am_sensor_data_get(handle, id, 4, data);
 
         for (i = 0; i < 4; i++) {
-            if (AM_SENSOR_VAL_IS_VALID(data[i])) { /* ¸ÃÍ¨µÀÊı¾İÓĞĞ§£¬¿ÉÒÔÕı³£Ê¹ÓÃ */
+            if (AM_SENSOR_VAL_IS_VALID(data[i])) { /* è¯¥é€šé“æ•°æ®æœ‰æ•ˆï¼Œå¯ä»¥æ­£å¸¸ä½¿ç”¨ */
 
-                /* µ¥Î»×ª»»Îª AM_SENSOR_UNIT_MICRO£¬ÒÔ´òÓ¡ÏÔÊ¾6Î»Ğ¡Êı */
+                /* å•ä½è½¬æ¢ä¸º AM_SENSOR_UNIT_MICROï¼Œä»¥æ‰“å°æ˜¾ç¤º6ä½å°æ•° */
                 am_sensor_val_unit_convert(&data[i], 1, AM_SENSOR_UNIT_MICRO);
                 am_kprintf("The %s is : %d.%06d %s.\r\n", 
                                     data_name_string[i],
                                    (data[i].val)/1000000,
                                    (uint32_t)(data[i].val)%1000000,
                                     data_unit_string[i]);
-            } else {       //¸ÃÍ¨µÀÊı¾İÎŞĞ§£¬Êı¾İ»ñÈ¡Ê§°Ü
+            } else {       //è¯¥é€šé“æ•°æ®æ— æ•ˆï¼Œæ•°æ®è·å–å¤±è´¥
                 am_kprintf("The %s get failed!\r\n", data_name_string[i]);
             }
         }

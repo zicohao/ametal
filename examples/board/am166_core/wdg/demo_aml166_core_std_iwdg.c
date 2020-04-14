@@ -12,13 +12,13 @@
 
 /**
  * \file
- * \brief IWDG ���̣�ͨ����׼�ӿ�ʵ��
+ * \brief IWDG 例程，通过标准接口实现
  *
- * - ʵ������
- *   1. �޸ĺ궨�� __IWDG_FEED_TIME_MS ��ֵ������ 1500ms(���� 5ms ���)��оƬ��λ��
- *   2. �޸ĺ궨�� __IWDG_FEED_TIME_MS ��ֵ��С�� 1500ms(���� 5ms ���)�������������С�
+ * - 实验现象：
+ *   1. 修改宏定义 __IWDG_FEED_TIME_MS 的值，超过 1500ms(存在 5ms 误差)，芯片复位；
+ *   2. 修改宏定义 __IWDG_FEED_TIME_MS 的值，小于 1500ms(存在 5ms 误差)，程序正常运行。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_aml166_core_std_iwdg.c src_aml166_core_std_iwdg
  *
  * \internal
@@ -40,21 +40,21 @@
 #include "demo_aml166_core_entries.h"
 
 /**
- * \brief ���Ź���ʱʱ��
+ * \brief 看门狗超时时间
  *
- * \note ��Ϊ���Ź��ڲ�ʱ��WDTOSC����������__IWDG_TIMEOUT_MS��Ӧ��ʵ��ʱ��
- *       ������
+ * \note 因为看门狗内部时钟WDTOSC存在误差，所以__IWDG_TIMEOUT_MS对应的实际时间
+ *       存在误差。
  */
 #define __IWDG_TIMEOUT_MS       1500
 
 /**
- * \brief ���Ź�ι��ʱ�䣬��ι��ʱ�䳬��IWDG_TIMEOUT_MS��ֵ������5ms���ϣ�,
- *        ��������Ź��¼���
+ * \brief 看门狗喂狗时间，若喂狗时间超过IWDG_TIMEOUT_MS的值（大于5ms以上）,
+ *        会产生看门狗事件。
  */
 #define __IWDG_FEED_TIME_MS     2000
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_aml166_core_std_iwdg_entry (void)
 {

@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ILI9341 ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief ILI9341 ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_lcd_ili9341.c
  *
  * \internal
@@ -34,36 +34,36 @@
  * @{
  */
 
-/** \brief ili9341Éè±¸ĞÅÏ¢ */
+/** \brief ili9341è®¾å¤‡ä¿¡æ¯ */
 static const am_ili9341_devinfo_t __g_ili9341_devinfo = {
-    PIOD_2,   /**< \brief ¸´Î»Òı½Å */
-    PIOC_11,  /**< \brief ±³¹âÒı½Å */
-    0,        /**< \brief ÊúÆÁ */
+    PIOD_2,   /**< \brief å¤ä½å¼•è„š */
+    PIOC_11,  /**< \brief èƒŒå…‰å¼•è„š */
+    0,        /**< \brief ç«–å± */
 };
 
-/** \brief Éè±¸ĞÅÏ¢ */
+/** \brief è®¾å¤‡ä¿¡æ¯ */
 static const am_zlg_ili9341_intfc_3wire_devinfo_t __g_ili9341_intfc_devinfo = {
         PIOB_12,                                 /**< \brief CS */
         PIOB_13,                                 /**< \brief CLK */
-        PIOB_13_SPI2_SCK | PIOB_13_AF_PP,        /**< \brief SCK¹¦ÄÜ */
+        PIOB_13_SPI2_SCK | PIOB_13_AF_PP,        /**< \brief SCKåŠŸèƒ½ */
         PIOB_15,                                 /**< \brief MOSI */
-        PIOB_15_SPI2_MOSI | PIOB_15_AF_PP,       /**< \brief MOSI¹¦ÄÜ */
+        PIOB_15_SPI2_MOSI | PIOB_15_AF_PP,       /**< \brief MOSIåŠŸèƒ½ */
         PIOB_14,                                 /**< \brief MISO */
-        PIOB_14_SPI2_MISO | PIOB_14_INPUT_FLOAT, /**< \brief MISO¹¦ÄÜ */
-        PIOB_12_SPI2_NSS | PIOB_12_AF_PP,        /**< \brief CS¹¦ÄÜ */
-        ZLG217_SPI2,                             /**< \brief SPI2µÄ»ùµØÖ· */
-        CLK_SPI2,                                /**< \brief SPIµÄÊ±ÖÓºÅ */
-        24000000,                                /**< \brief ×î´óËÙ¶ÈÎª24MHz */
+        PIOB_14_SPI2_MISO | PIOB_14_INPUT_FLOAT, /**< \brief MISOåŠŸèƒ½ */
+        PIOB_12_SPI2_NSS | PIOB_12_AF_PP,        /**< \brief CSåŠŸèƒ½ */
+        ZLG217_SPI2,                             /**< \brief SPI2çš„åŸºåœ°å€ */
+        CLK_SPI2,                                /**< \brief SPIçš„æ—¶é’Ÿå· */
+        24000000,                                /**< \brief æœ€å¤§é€Ÿåº¦ä¸º24MHz */
 };
 
-/** \brief ILI9341 Éè±¸ÊµÀı */
+/** \brief ILI9341 è®¾å¤‡å®ä¾‹ */
 static am_ili9341_dev_t __g_ili9341_dev;
 
-/**< \brief ILI9341 ÈıÏß½Ó¿ÚÉè±¸ÊµÀı */
+/**< \brief ILI9341 ä¸‰çº¿æ¥å£è®¾å¤‡å®ä¾‹ */
 static am_zlg_ili9341_intfc_3wire_dev_t  __g_ili9341_intfc_dev;
 
 /*******************************************************************************
-  ²»Ê¹ÓÃ EMWIN Ê±³õÊ¼»¯º¯Êı
+  ä¸ä½¿ç”¨ EMWIN æ—¶åˆå§‹åŒ–å‡½æ•°
 *******************************************************************************/
 
 am_ili9341_handle_t am_zlg217_ili9341_inst_init (void)
@@ -79,12 +79,12 @@ void am_zlg217_ili9341_inst_deinit (am_ili9341_handle_t handle)
 }
 
 /*******************************************************************************
-  ÒÆÖ² EMWIN ËùĞèÒªµÄº¯Êı
+  ç§»æ¤ EMWIN æ‰€éœ€è¦çš„å‡½æ•°
 *******************************************************************************/
 
 static am_ili9341_handle_t __g_handle_ili9341;
 
-/** \brief ³õÊ¼»¯ÆÁÄ» */
+/** \brief åˆå§‹åŒ–å±å¹• */
 void am_lcd_init (void)
 {
     am_ili9341_serv_t *p_serv = am_zlg_ili9341_intfc_3wire_init(
@@ -96,13 +96,13 @@ void am_lcd_init (void)
                                           p_serv);
 }
 
-/** \brief »­Ò»µãµÄÑÕÉ« */
+/** \brief ç”»ä¸€ç‚¹çš„é¢œè‰² */
 void am_lcd_draw_point (uint16_t x, uint16_t y, uint16_t color)
 {
     am_ili9341_draw_point (__g_handle_ili9341, x, y, color);
 }
 
-/** \brief ¸øÒ»Æ¬ÇøÓòÌî³äÑÕÉ« */
+/** \brief ç»™ä¸€ç‰‡åŒºåŸŸå¡«å……é¢œè‰² */
 void am_lcd_color_fill (uint16_t x1,
                         uint16_t y1,
                         uint16_t x2,
@@ -112,7 +112,7 @@ void am_lcd_color_fill (uint16_t x1,
     am_ili9341_color_fill(__g_handle_ili9341, x1, y1, x2, y2, color);
 }
 
-/** \brief ¸øÒ»Æ¬ÇøÓòÌî³äÌØ¶¨µÄÑÕÉ« */
+/** \brief ç»™ä¸€ç‰‡åŒºåŸŸå¡«å……ç‰¹å®šçš„é¢œè‰² */
 void am_lcd_area_draw_color (uint16_t x0,
                              uint16_t y0,
                              uint16_t x1,
@@ -131,13 +131,13 @@ void am_lcd_area_draw_color (uint16_t x0,
                                reverse);
 }
 
-/** \brief ¿ªÆôÏÔÊ¾ */
+/** \brief å¼€å¯æ˜¾ç¤º */
 void am_lcd_on (void)
 {
     am_ili9341_on(__g_handle_ili9341);
 }
 
-/** \brief ¹Ø±ÕÏÔÊ¾ */
+/** \brief å…³é—­æ˜¾ç¤º */
 void am_lcd_off (void)
 {
     am_ili9341_off(__g_handle_ili9341);

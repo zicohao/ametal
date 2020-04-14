@@ -13,7 +13,7 @@ typedef struct _ram_dev_t {
     block_num_t     num_lbn;
 } block_dev_ftl_t;
 
-/* 初始化，创建一个块设备  */
+/* 鍒濆鍖栵紝鍒涘缓涓�涓潡璁惧  */
 block_dev_t* block_dev_ftl_init (block_dev_ftl_t *p_dev,
                                  am_ftl_handle_t  handle,
                                  uint32_t         start_lbn,

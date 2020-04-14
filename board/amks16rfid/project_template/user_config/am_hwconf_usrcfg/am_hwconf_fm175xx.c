@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief FM175XX 配置文件
+ * \brief FM175XX 閰嶇疆鏂囦欢
  * \sa am_hwconf_fm175xx.c
  *
  * \internal
@@ -31,10 +31,10 @@
  * @{
  */
 
-/* 定义 fm175xx 实例 */
+/* 瀹氫箟 fm175xx 瀹炰緥 */
 static am_fm175xx_dev_t  __g_fm175xx_dev;
 
-/* 配置FM175xx LPCD模式参数 */
+/* 閰嶇疆FM175xx LPCD妯″紡鍙傛暟 */
 am_local am_const am_fm175xx_lpcd_cfginfo_t  __g_lpcd_cfg_info = {
     AM_FM175XX_LCPD_SLEEP500MS,
     AM_FM175XX_LCPD_DETECT47US,
@@ -48,7 +48,7 @@ am_local am_const am_fm175xx_lpcd_cfginfo_t  __g_lpcd_cfg_info = {
     AM_FM175XX_BIAS_CURRENT_150NA
 };
 
-/* 定义 fm175xx 实例信息 */
+/* 瀹氫箟 fm175xx 瀹炰緥淇℃伅 */
 am_local am_const am_fm175xx_devinfo_t __g_fm175xx_devinfo = {
     PIOE_1,
     PIOE_16,

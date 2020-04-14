@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief IWDGÇı¶¯²ã½Ó¿Ú
+ * \brief IWDGé©±åŠ¨å±‚æ¥å£
  *
  * \internal
  * \par Modification history
@@ -37,53 +37,53 @@ extern "C" {
  */
 
 /**
- * \brief IWDGÉè±¸ĞÅÏ¢½á¹¹Ìå
+ * \brief IWDGè®¾å¤‡ä¿¡æ¯ç»“æ„ä½“
  */
 typedef struct am_zlg_iwdg_devinfo {
 
-    /** \brief IWDG¼Ä´æÆ÷¿é»ùµØÖ· */
+    /** \brief IWDGå¯„å­˜å™¨å—åŸºåœ°å€ */
     uint32_t iwdg_regbase;
 
-    /** \brief Æ½Ì¨³õÊ¼»¯º¯Êı */
+    /** \brief å¹³å°åˆå§‹åŒ–å‡½æ•° */
     void   (*pfn_plfm_init)(void);
 
-    /** \brief Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    /** \brief å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
     void   (*pfn_plfm_deinit)(void);
 
 } am_zlg_iwdg_devinfo_t;
 
 /**
- * \brief IWDGÉè±¸½á¹¹Ìå
+ * \brief IWDGè®¾å¤‡ç»“æ„ä½“
  */
 typedef struct am_zlg_iwdg_dev {
 
-    /** \brief IWDGÌá¹©µÄ±ê×¼·şÎñ */
+    /** \brief IWDGæä¾›çš„æ ‡å‡†æœåŠ¡ */
     am_wdt_serv_t                 wdt_serv;
 
-    /** \brief Ô¤·ÖÆµÒò×Ó */
+    /** \brief é¢„åˆ†é¢‘å› å­ */
     uint16_t                      div;
 
-    /** \brief Ö¸ÏòIWDGÉè±¸µÄĞÅÏ¢Ö¸Õë */
+    /** \brief æŒ‡å‘IWDGè®¾å¤‡çš„ä¿¡æ¯æŒ‡é’ˆ */
     const am_zlg_iwdg_devinfo_t  *p_devinfo;
 } am_zlg_iwdg_dev_t;
 
 /**
- * \brief IWDG³õÊ¼»¯
+ * \brief IWDGåˆå§‹åŒ–
  *
- * \param[in] p_dev     : Ö¸ÏòIWDGÉè±¸
- * \param[in] p_devinfo : Ö¸ÏòIWDGÉè±¸ĞÅÏ¢
+ * \param[in] p_dev     : æŒ‡å‘IWDGè®¾å¤‡
+ * \param[in] p_devinfo : æŒ‡å‘IWDGè®¾å¤‡ä¿¡æ¯
  *
- * \return IWDG±ê×¼·şÎñ¾ä±ú£¬Ê§°ÜÔò·µ»ØNULL
+ * \return IWDGæ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œå¤±è´¥åˆ™è¿”å›NULL
  */
 am_wdt_handle_t am_zlg_iwdg_init (am_zlg_iwdg_dev_t              *p_dev,
                                      const am_zlg_iwdg_devinfo_t *p_devinfo);
 
 /**
- * \brief ½â³ıIWDGÉè±¸³õÊ¼»¯
+ * \brief è§£é™¤IWDGè®¾å¤‡åˆå§‹åŒ–
  *
- * \param[in] handle : Ê¹ÓÃIWDG³õÊ¼»¯º¯Êıam_zlg_iwdg_init()»ñÈ¡µ½µÄhandle
+ * \param[in] handle : ä½¿ç”¨IWDGåˆå§‹åŒ–å‡½æ•°am_zlg_iwdg_init()è·å–åˆ°çš„handle
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg_iwdg_deinit (am_wdt_handle_t handle);
 

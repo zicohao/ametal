@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief ÈıÖá¼ÓËÙ¶È´«¸ĞÆ÷ BMA253 Àı³Ì£¬Í¨¹ı´¥·¢Ä£Ê½ÊµÏÖ
+ * \brief ä¸‰è½´åŠ é€Ÿåº¦ä¼ æ„Ÿå™¨ BMA253 ä¾‹ç¨‹ï¼Œé€šè¿‡è§¦å‘æ¨¡å¼å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ¸ù¾İÊı¾İ¸üĞÂËÙ¶È£¬ÔÚÖĞ¶ÏÖĞ»ñÈ¡Êı¾İ£¬²¢Í¨¹ı´®¿Ú´òÓ¡
+ * - å®éªŒç°è±¡ï¼š
+ *   1. æ ¹æ®æ•°æ®æ›´æ–°é€Ÿåº¦ï¼Œåœ¨ä¸­æ–­ä¸­è·å–æ•°æ®ï¼Œå¹¶é€šè¿‡ä¸²å£æ‰“å°
  *
  * \internal
  * \par Modification history
@@ -29,15 +29,15 @@
 #include "am_sensor_bma253.h"
 #include "am_delay.h"
 
-/** \brief BMA253´«¸ĞÆ÷µÄID */
+/** \brief BMA253ä¼ æ„Ÿå™¨çš„ID */
 const static int __bma253_id[4] = {AM_BMA253_CHAN_1, AM_BMA253_CHAN_2,
                                    AM_BMA253_CHAN_3, AM_BMA253_CHAN_4};
 
-/* \breif BMA253´«¸ĞÆ÷Êı¾İ */
+/* \breif BMA253ä¼ æ„Ÿå™¨æ•°æ® */
 static am_sensor_val_t __bma253_data[4];
 
 /**
- * \brief Í¨µÀ1£¬XÖá¼ÓËÙ¶ÈµÄ»Øµ÷º¯Êı
+ * \brief é€šé“1ï¼ŒXè½´åŠ é€Ÿåº¦çš„å›è°ƒå‡½æ•°
  */
 static void __pfn_accel_x (void *p_arg, uint32_t trigger_src)
 {
@@ -53,7 +53,7 @@ static void __pfn_accel_x (void *p_arg, uint32_t trigger_src)
 }
 
 /**
- * \brief Í¨µÀ2£¬YÖá¼ÓËÙ¶ÈµÄ»Øµ÷º¯Êı
+ * \brief é€šé“2ï¼ŒYè½´åŠ é€Ÿåº¦çš„å›è°ƒå‡½æ•°
  */
 static void __pfn_accel_y (void *p_arg, uint32_t trigger_src)
 {
@@ -69,7 +69,7 @@ static void __pfn_accel_y (void *p_arg, uint32_t trigger_src)
 }
 
 /**
- * \brief Í¨µÀ3£¬ZÖá¼ÓËÙ¶ÈµÄ»Øµ÷º¯Êı
+ * \brief é€šé“3ï¼ŒZè½´åŠ é€Ÿåº¦çš„å›è°ƒå‡½æ•°
  */
 static void __pfn_accel_z (void *p_arg, uint32_t trigger_src)
 {
@@ -85,7 +85,7 @@ static void __pfn_accel_z (void *p_arg, uint32_t trigger_src)
 }
 
 /**
- * \brief Í¨µÀ4£¬ÎÂ¶ÈµÄ»Øµ÷º¯Êı
+ * \brief é€šé“4ï¼Œæ¸©åº¦çš„å›è°ƒå‡½æ•°
  */
 static void __pfn_temprature (void *p_arg, uint32_t trigger_src)
 {
@@ -93,7 +93,9 @@ static void __pfn_temprature (void *p_arg, uint32_t trigger_src)
     if (trigger_src & AM_SENSOR_TRIGGER_DATA_READY) {
         am_sensor_data_get(handle, &__bma253_id[3], 1, &__bma253_data[3]);
         am_sensor_val_unit_convert(&__bma253_data[3], 1, AM_SENSOR_UNIT_MICRO);
-        am_kprintf("The channel %d,type is temprature, value is: %d.%06d  ¡æ!\r\n",
+        //TODO
+//        am_kprintf("The channel %d,type is temprature, value is: %d.%06d  â„ƒ!\r\n",
+        am_kprintf("The channel %d,type is temprature, value is: %d.%06d  C!\r\n",
                    __bma253_id[3],
                    (__bma253_data[3].val)/1000000,
                    (uint32_t)(__bma253_data[3].val)%1000000);
@@ -101,11 +103,11 @@ static void __pfn_temprature (void *p_arg, uint32_t trigger_src)
 }
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_std_bma253_int_entry (am_sensor_handle_t handle)
 {
-    /* ÉèÖÃ¸Ã´«¸ĞÆ÷µÄÁ¿³ÌÎª¡À2G£¨ÈıÍ¨µÀÍ¬²½£© */
+    /* è®¾ç½®è¯¥ä¼ æ„Ÿå™¨çš„é‡ç¨‹ä¸ºÂ±2Gï¼ˆä¸‰é€šé“åŒæ­¥ï¼‰ */
     am_sensor_val_t bma253_range = {2, AM_SENSOR_UNIT_BASE};
     
     am_err_t ret = AM_OK;
@@ -118,10 +120,10 @@ void demo_std_bma253_int_entry (am_sensor_handle_t handle)
         am_kprintf("sensor_attr_set faild!\r\n");
     }
 
-    /* Ê¹ÄÜËÄÂ·Í¨µÀ */
+    /* ä½¿èƒ½å››è·¯é€šé“ */
     am_sensor_enable(handle, __bma253_id, 4, __bma253_data);
 
-    /* ÉèÖÃÍ¨µÀ0,1,2,3µÄ´¥·¢»Øµ÷º¯Êı */
+    /* è®¾ç½®é€šé“0,1,2,3çš„è§¦å‘å›è°ƒå‡½æ•° */
     am_sensor_trigger_cfg(handle,
                           __bma253_id[0],
                           AM_SENSOR_TRIGGER_DATA_READY,
@@ -143,7 +145,7 @@ void demo_std_bma253_int_entry (am_sensor_handle_t handle)
                           __pfn_temprature,
                           (void*)handle);
 
-    /* ´ò¿ªÍ¨µÀ0,1,2,3µÄ´¥·¢Ä£Ê½ */
+    /* æ‰“å¼€é€šé“0,1,2,3çš„è§¦å‘æ¨¡å¼ */
     am_sensor_trigger_on(handle, __bma253_id[0]);
     am_sensor_trigger_on(handle, __bma253_id[1]);
     am_sensor_trigger_on(handle, __bma253_id[2]);

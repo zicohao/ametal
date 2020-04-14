@@ -12,12 +12,12 @@
 
 /**
  * \file
- * \brief ¹â´«¸ĞÆ÷ BH1730FVC Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief å…‰ä¼ æ„Ÿå™¨ BH1730FVC ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Ã¿¹ıÒ»Ãë£¬Í¨¹ı´®¿Ú´òÓ¡¹âÇ¿Öµ
+ * - å®éªŒç°è±¡ï¼š
+ *   1. æ¯è¿‡ä¸€ç§’ï¼Œé€šè¿‡ä¸²å£æ‰“å°å…‰å¼ºå€¼
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_std_bh1730fvc.c src_std_bh1730fvc
  *
  * \internal
@@ -38,18 +38,18 @@
 #include "am_delay.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_std_bh1730fvc_entry (am_sensor_handle_t handle)
 {
-    /* BH1730FVCÌá¹©µÄËùÓĞÍ¨µÀIDÁĞ¾Ù */
+    /* BH1730FVCæä¾›çš„æ‰€æœ‰é€šé“IDåˆ—ä¸¾ */
     const int id[2] = {AM_BH1730FVC_CHAN_1};
 
-    /* ´¢´æÍ¨µÀÊı¾İµÄ»º´æ */
+    /* å‚¨å­˜é€šé“æ•°æ®çš„ç¼“å­˜ */
     am_sensor_val_t data[1];
 
     /*
-     * ÁĞ³ö¹âÕÕÊı¾İµÄÃû×ÖºÍµ¥Î»×Ö·û´®£¬±ãÓÚ´òÓ¡
+     * åˆ—å‡ºå…‰ç…§æ•°æ®çš„åå­—å’Œå•ä½å­—ç¬¦ä¸²ï¼Œä¾¿äºæ‰“å°
      */
     const char *data_name_string[] = {"Light"};
     const char *data_unit_string[] = {"Lux"};
@@ -59,11 +59,11 @@ void demo_std_bh1730fvc_entry (am_sensor_handle_t handle)
     while(1) {
         am_sensor_data_get(handle, id, 1, data);
 
-        if (AM_SENSOR_VAL_IS_VALID(data[0])) { /* ¸ÃÍ¨µÀÊı¾İÓĞĞ§£¬¿ÉÒÔÕı³£Ê¹ÓÃ */
+        if (AM_SENSOR_VAL_IS_VALID(data[0])) { /* è¯¥é€šé“æ•°æ®æœ‰æ•ˆï¼Œå¯ä»¥æ­£å¸¸ä½¿ç”¨ */
                 am_kprintf("The %s is : %d %s.\r\n", data_name_string[0],
                                                      data[0].val,
                                                      data_unit_string[0]);   
-        } else {       //¸ÃÍ¨µÀÊı¾İÎŞĞ§£¬Êı¾İ»ñÈ¡Ê§°Ü
+        } else {       //è¯¥é€šé“æ•°æ®æ— æ•ˆï¼Œæ•°æ®è·å–å¤±è´¥
             am_kprintf("The %s get failed!\r\n", data_name_string[0]);
         }
         am_mdelay(1000);

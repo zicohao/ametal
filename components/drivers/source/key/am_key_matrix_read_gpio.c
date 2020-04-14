@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ¾ØÕó¼üÅÌGPIO¼üÖµ¶ÁÈ¡
+ * \brief çŸ©é˜µé”®ç›˜GPIOé”®å€¼è¯»å–
  *
  * \internal
  * \par Modification history
@@ -72,7 +72,7 @@ am_key_matrix_read_t * am_key_matrix_read_gpio_init (
                   AM_GPIO_PULLUP :
                   AM_GPIO_PULLDOWN);
 
-    /* ½«ËùÓĞÁĞÏßÉèÖÃÎªÊäÈë×´Ì¬ */
+    /* å°†æ‰€æœ‰åˆ—çº¿è®¾ç½®ä¸ºè¾“å…¥çŠ¶æ€ */
     for (i = 0; i < p_dev->pin_num; i++) {
         am_gpio_pin_cfg(p_pins[i], cfg_flags);
     }

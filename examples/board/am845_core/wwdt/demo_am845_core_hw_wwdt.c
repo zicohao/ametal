@@ -12,22 +12,22 @@
 
 /**
  * \file
- * \brief WWDT ���̣�ͨ�� HW ��ӿ�ʵ��
+ * \brief WWDT 例程，通过 HW 层接口实现
  *
- * - ʵ������
- *   1. ��Ļ��ӡ���Ź�ʱ��Ƶ�ʣ�
- *   2. ǰ 5 �α����жϷ���ʱ����ִ��ι������,���ڴ�ӡ��ǰι��������
- *   3. �� 6 �α����жϷ���ʱ����ִ��ι���������ᷢ�����Ź���λ��
- *   4. ��λ��LED0 �� 500ms�����ڴ�ӡ "Watchdog reset occurred!"��
+ * - 实验现象：
+ *   1. 屏幕打印看门狗时钟频率；
+ *   2. 前 5 次报警中断发生时，会执行喂狗操作,串口打印当前喂狗次数；
+ *   3. 第 6 次报警中断发生时，不执行喂狗操作，会发生看门狗复位；
+ *   4. 复位后，LED0 亮 500ms，串口打印 "Watchdog reset occurred!"。
  *
  * \note
- *    1. LED0 ��Ҫ�̽� J9 ����ñ�����ܱ� PIO1_8 ���ƣ�
- *    2. ����۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIO1_2 �������� PC ���ڵ� TXD��
- *       PIO1_0 �������� PC ���ڵ� RXD��
- *    3. WDT ʱ�ӣ�0.6MHz��64 ��Ƶ��ʱ��Ƶ�� 9.375KHz��WDT �������̶� 4 ��Ƶʱ�ӣ�
- *       �� WDT ʱ��Ƶ�ʴ��� 400K ʱ��WDT ���ڹ��ܲ�������ʹ�á�
+ *    1. LED0 需要短接 J9 跳线帽，才能被 PIO1_8 控制；
+ *    2. 如需观察串口打印的调试信息，需要将 PIO1_2 引脚连接 PC 串口的 TXD，
+ *       PIO1_0 引脚连接 PC 串口的 RXD；
+ *    3. WDT 时钟，0.6MHz，64 分频，时钟频率 9.375KHz，WDT 计数器固定 4 分频时钟，
+ *       当 WDT 时钟频率大于 400K 时，WDT 窗口功能不能正常使用。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_am845_core_hw_wwdt.c src_am845_core_hw_wwdt
  *
  * \internal
@@ -52,7 +52,7 @@
 #include "demo_nxp_entries.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_am845_core_hw_wwdt_entry (void)
 {
@@ -60,10 +60,10 @@ void demo_am845_core_hw_wwdt_entry (void)
   
     am_kprintf("demo am845_core hw wwdt!\r\n");
 
-    /* ʹ�� WWDT ʱ�� */
+    /* 使能 WWDT 时钟 */
     amhw_lpc84x_clk_periph_enable(AMHW_LPC84X_CLK_WWDT);
 
-    /* ���� WDT ʱ�ӣ�0.6MHz��64 ��Ƶ��ʱ��Ƶ�� 9.375KHz */
+    /* 设置 WDT 时钟，0.6MHz，64 分频，时钟频率 9.375KHz */
     amhw_lpc84x_clk_wdtoscc_cfg(AMHW_LPC84X_CLK_WDTOSC_RATE_0_6MHZ, 64);
 
     amhw_lpc84x_syscon_powerup(AMHW_LPC84X_SYSCON_PD_WDT_OSC);
@@ -71,10 +71,10 @@ void demo_am845_core_hw_wwdt_entry (void)
     AM_DBG_INFO("\r\nThe wdt osc freq is %d .\r\n",
                 amhw_lpc84x_clk_wdt_rate_get());
 
-    /* ���Ź���ʱ��Ƶ��Ϊ����ʱ��Ƶ�� 4 ��Ƶ */
+    /* 看门狗定时器频率为输入时钟频率 4 分频 */
     wdt_freq = amhw_lpc84x_clk_wdt_rate_get() / 4;
 
-    /* �ر� LED0 */
+    /* 关闭 LED0 */
     am_led_off(LED0);
 
     demo_lpc_hw_wwdt_entry(LPC84X_WWDT, INUM_WDT, wdt_freq);

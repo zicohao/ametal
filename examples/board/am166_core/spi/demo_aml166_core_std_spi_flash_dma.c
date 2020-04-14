@@ -12,22 +12,22 @@
 
 /**
  * \file
- * \brief SPI ���� DMA ��ʽ�� FLASH ͨ�����̣�ͨ����׼�ӿ�ʵ��
+ * \brief SPI 主机 DMA 方式与 FLASH 通信例程，通过标准接口实现
  *
- * - �������裺
- *   1. �� SPI �ӿں� SPI FLASH ��Ӧ�Ľӿ�����������
+ * - 操作步骤：
+ *   1. 将 SPI 接口和 SPI FLASH 对应的接口连接起来。
  *
- * - ʵ������
- *   1. д���ݵ� FLASH��
- *   2. �����ղ�д������ݣ�
- *   3. ���Դ��ڴ�ӡ���Խ����
+ * - 实验现象：
+ *   1. 写数据到 FLASH；
+ *   2. 读出刚才写入的数据；
+ *   3. 调试串口打印测试结果。
  *
  * \note
- *    1. ����۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIOA_9 �������� PC ���ڵ� RXD��
- *    2. ���������£�ֱ��ʹ�� am_spi_write_then_read() ��
- *       am_spi_write_then_write() �������ɡ�
+ *    1. 如需观察串口打印的调试信息，需要将 PIOA_9 引脚连接 PC 串口的 RXD；
+ *    2. 大多数情况下，直接使用 am_spi_write_then_read() 和
+ *       am_spi_write_then_write() 函数即可。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_aml166_core_std_spi_flash_dma.c src_aml166_core_std_spi_flash_dma
  *
  * \internal
@@ -50,7 +50,7 @@
 #include "demo_aml166_core_entries.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_aml166_core_std_spi_flash_dma_entry (void)
 {

@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief UART(Ê¹ÓÃring bufferµÄÖĞ¶ÏÄ£Ê½)±ê×¼½Ó¿Ú
+ * \brief UART(ä½¿ç”¨ring bufferçš„ä¸­æ–­æ¨¡å¼)æ ‡å‡†æ¥å£
  *
- * ¸ÃÎÄ¼şº¯Êı½Ó¿ÚµÄÊµÏÖ»ùÓÚUART±ê×¼½Ó¿Ú£¬Îª·½±ãÓÃ»§Ê¹ÓÃÉè¼Æ£¬¿É×÷ÎªUART½Ó¿Úº¯Êı
- * µÄÊ¹ÓÃ·¶Àı¡£
+ * è¯¥æ–‡ä»¶å‡½æ•°æ¥å£çš„å®ç°åŸºäºUARTæ ‡å‡†æ¥å£ï¼Œä¸ºæ–¹ä¾¿ç”¨æˆ·ä½¿ç”¨è®¾è®¡ï¼Œå¯ä½œä¸ºUARTæ¥å£å‡½æ•°
+ * çš„ä½¿ç”¨èŒƒä¾‹ã€‚
  *
  * \internal
  * \par Modification History
@@ -42,30 +42,30 @@ extern "C" {
  */
 
 /**
- * \name UART£¨´ø»º³åÇø£©µÄ¿ØÖÆÖ¸Áî
+ * \name UARTï¼ˆå¸¦ç¼“å†²åŒºï¼‰çš„æ§åˆ¶æŒ‡ä»¤
  * @{
  */
 
-#define AM_UART_RNGBUF_NREAD     0x0100   /**< \brief ¿É¶ÁÊı¾İ¸öÊı        */
-#define AM_UART_RNGBUF_NWRITE    0x0200   /**< \brief ÒÑ¾­Ğ´ÈëµÄÊı¾İ¸öÊı  */
-#define AM_UART_RNGBUF_FLUSH     0x0300   /**< \brief Çå¿Õ¶Á/Ğ´»º³åÇø     */
-#define AM_UART_RNGBUF_WFLUSH    0x0400   /**< \brief Çå¿ÕĞ´»º³åÇø        */
-#define AM_UART_RNGBUF_RFLUSH    0x0500   /**< \brief Çå¿Õ¶Á»º³åÇø        */
-#define AM_UART_RNGBUF_TIMEOUT   0x0600   /**< \brief ÉèÖÃµÈ´ı³¬Ê±        */
+#define AM_UART_RNGBUF_NREAD     0x0100   /**< \brief å¯è¯»æ•°æ®ä¸ªæ•°        */
+#define AM_UART_RNGBUF_NWRITE    0x0200   /**< \brief å·²ç»å†™å…¥çš„æ•°æ®ä¸ªæ•°  */
+#define AM_UART_RNGBUF_FLUSH     0x0300   /**< \brief æ¸…ç©ºè¯»/å†™ç¼“å†²åŒº     */
+#define AM_UART_RNGBUF_WFLUSH    0x0400   /**< \brief æ¸…ç©ºå†™ç¼“å†²åŒº        */
+#define AM_UART_RNGBUF_RFLUSH    0x0500   /**< \brief æ¸…ç©ºè¯»ç¼“å†²åŒº        */
+#define AM_UART_RNGBUF_TIMEOUT   0x0600   /**< \brief è®¾ç½®ç­‰å¾…è¶…æ—¶        */
 
 /** 
- * \brief ÉèÖÃÁ÷¹ØµÄãĞÖµ£¨×Ö½ÚÊı£©
+ * \brief è®¾ç½®æµå…³çš„é˜ˆå€¼ï¼ˆå­—èŠ‚æ•°ï¼‰
  *
- * ¶ÔÓ¦ÉèÖÃµÄÖµÓÉ¸ÃÃüÁî¶ÔÓ¦µÄ²ÎÊıÉè¶¨£¬µ±»º³åÇø¿ÕÏĞ×Ö½ÚÊıĞ¡ÓÚ¸ÃÖµÊ±Á÷¹Ø£¬
- * Î´ÉèÖÃÊ±£¬¸ÃÖµÄ¬ÈÏÎª 20% ¡Á »º³åÇø´óĞ¡
+ * å¯¹åº”è®¾ç½®çš„å€¼ç”±è¯¥å‘½ä»¤å¯¹åº”çš„å‚æ•°è®¾å®šï¼Œå½“ç¼“å†²åŒºç©ºé—²å­—èŠ‚æ•°å°äºè¯¥å€¼æ—¶æµå…³ï¼Œ
+ * æœªè®¾ç½®æ—¶ï¼Œè¯¥å€¼é»˜è®¤ä¸º 20% Ã— ç¼“å†²åŒºå¤§å°
  */                                               
 #define AM_UART_RNGBUF_RX_FLOW_OFF_THR    0x0700
     
 /**
- * \brief ÉèÖÃÁ÷¿ªµÄãĞÖµ£¨×Ö½ÚÊı£©
+ * \brief è®¾ç½®æµå¼€çš„é˜ˆå€¼ï¼ˆå­—èŠ‚æ•°ï¼‰
  *
- * ¶ÔÓ¦ÉèÖÃµÄÖµÓÉ¸ÃÃüÁî¶ÔÓ¦µÄ²ÎÊıÉè¶¨£¬µ±»º³åÇø¿ÕÏĞ×Ö½ÚÊı´óÓÚ¸ÃÖµÊ±Á÷¿ª£¬
- * Î´ÉèÖÃÊ±£¬¸ÃÖµÄ¬ÈÏÎª 80% ¡Á »º³åÇø´óĞ¡
+ * å¯¹åº”è®¾ç½®çš„å€¼ç”±è¯¥å‘½ä»¤å¯¹åº”çš„å‚æ•°è®¾å®šï¼Œå½“ç¼“å†²åŒºç©ºé—²å­—èŠ‚æ•°å¤§äºè¯¥å€¼æ—¶æµå¼€ï¼Œ
+ * æœªè®¾ç½®æ—¶ï¼Œè¯¥å€¼é»˜è®¤ä¸º 80% Ã— ç¼“å†²åŒºå¤§å°
  *
  */
 #define AM_UART_RNGBUF_RX_FLOW_ON_THR     0x0800
@@ -73,76 +73,76 @@ extern "C" {
 /** @} */
 
 /**
- * \brief UART£¨´øring bufferµÄÖĞ¶ÏÄ£Ê½£©Éè±¸½á¹¹Ìå
+ * \brief UARTï¼ˆå¸¦ring bufferçš„ä¸­æ–­æ¨¡å¼ï¼‰è®¾å¤‡ç»“æ„ä½“
  */
 typedef struct am_uart_rngbuf_dev {
 
-    /** \brief UART±ê×¼·şÎñ²Ù×÷¾ä±ú    */
+    /** \brief UARTæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„    */
     am_uart_handle_t  handle;
 
-    /** \brief ½ÓÊÕÊı¾İ»·ĞÎ»º³åÇø      */
+    /** \brief æ¥æ”¶æ•°æ®ç¯å½¢ç¼“å†²åŒº      */
     struct am_rngbuf  rx_rngbuf;
 
-    /** \brief ·¢ËÍÊı¾İ»·ĞÎ»º³åÇø      */
+    /** \brief å‘é€æ•°æ®ç¯å½¢ç¼“å†²åŒº      */
     struct am_rngbuf  tx_rngbuf;
     
-    /** \brief ¿ÕÏĞ×Ö½ÚÊı¸ßÓÚ¸ÃÖµÊ±Á÷¿ª  */
+    /** \brief ç©ºé—²å­—èŠ‚æ•°é«˜äºè¯¥å€¼æ—¶æµå¼€  */
     uint32_t          xon_threshold;
     
-    /** \brief ¿ÕÏĞ×Ö½ÚÊıµÍÓÚ¸ÃÖµÊ±Á÷¹Ø  */
+    /** \brief ç©ºé—²å­—èŠ‚æ•°ä½äºè¯¥å€¼æ—¶æµå…³  */
     uint32_t          xoff_threshold;
     
-    /** \brief ¶Á³¬Ê±                 */
+    /** \brief è¯»è¶…æ—¶                 */
     uint32_t          timeout_ms;
     
-    /** \brief µ±Ç°µÄÁ÷¿Ø×´Ì¬ TRUE-´ò¿ª£¬FALSE-¹Ø±Õ */
+    /** \brief å½“å‰çš„æµæ§çŠ¶æ€ TRUE-æ‰“å¼€ï¼ŒFALSE-å…³é—­ */
     am_bool_t         flow_stat;
     
-    /** \brief ÓÃÓÚ½ÓÊÕµÈ´ı           */
+    /** \brief ç”¨äºæ¥æ”¶ç­‰å¾…           */
     am_wait_t         rx_wait;
 
-    /** \brief ½ÓÊÕ´¥·¢Ê¹ÄÜ */
+    /** \brief æ¥æ”¶è§¦å‘ä½¿èƒ½ */
     am_bool_t         rx_trigger_enable;
 
-    /** \brief ·¢ËÍ´¥·¢Ê¹ÄÜ */
+    /** \brief å‘é€è§¦å‘ä½¿èƒ½ */
     am_bool_t         tx_trigger_enable;
 
-    /** \brief ½ÓÊÕ×Ö½ÚÊı¸ßÓÚ¸ÃÖµÊ±´¥·¢½ÓÊÕ»Øµ÷º¯Êı */
+    /** \brief æ¥æ”¶å­—èŠ‚æ•°é«˜äºè¯¥å€¼æ—¶è§¦å‘æ¥æ”¶å›è°ƒå‡½æ•° */
     uint32_t          rx_trigger_threshold;
 
-    /** \brief ½ÓÊÕ»Øµ÷º¯Êı */
+    /** \brief æ¥æ”¶å›è°ƒå‡½æ•° */
     am_pfnvoid_t      pfn_rx_callback;
 
-    /** \brief ½ÓÊÕ»Øµ÷º¯Êı²ÎÊı */
+    /** \brief æ¥æ”¶å›è°ƒå‡½æ•°å‚æ•° */
     void             *p_rx_arg;
 
-    /** \brief ¿ÕÏĞ×Ö½ÚÊı¸ßÓÚ¸ÃÖµÊ±´¥·¢·¢ËÍ»Øµ÷º¯Êı */
+    /** \brief ç©ºé—²å­—èŠ‚æ•°é«˜äºè¯¥å€¼æ—¶è§¦å‘å‘é€å›è°ƒå‡½æ•° */
     uint32_t          tx_trigger_threshold;
 
-    /** \brief ·¢ËÍ»Øµ÷º¯Êı */
+    /** \brief å‘é€å›è°ƒå‡½æ•° */
     am_pfnvoid_t      pfn_tx_callback;
 
-    /** \brief ·¢ËÍ»Øµ÷º¯Êı²ÎÊı */
+    /** \brief å‘é€å›è°ƒå‡½æ•°å‚æ•° */
     void             *p_tx_arg;
 
 } am_uart_rngbuf_dev_t;
 
-/** \brief UART£¨´øring bufferµÄÖĞ¶ÏÄ£Ê½£©±ê×¼·şÎñ²Ù×÷¾ä±úÀàĞÍ¶¨Òå */
+/** \brief UARTï¼ˆå¸¦ring bufferçš„ä¸­æ–­æ¨¡å¼ï¼‰æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„ç±»å‹å®šä¹‰ */
 typedef struct am_uart_rngbuf_dev * am_uart_rngbuf_handle_t;
 
 
 /**
- * \brief ³õÊ¼»¯UARTÎª´øring bufferµÄÖĞ¶ÏÄ£Ê½
+ * \brief åˆå§‹åŒ–UARTä¸ºå¸¦ring bufferçš„ä¸­æ–­æ¨¡å¼
  *
- * \param[in] p_dev      : UART£¨´øring bufferµÄÖĞ¶ÏÄ£Ê½£©Éè±¸½á¹¹ÌåÖ¸Õë
- * \param[in] handle     : UART±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \param[in] p_rxbuf    : Ö¸Ïò½ÓÊÕ»º³åÇøµÄÖ¸Õë£¬ÓÃÓÚÊµÏÖ½ÓÊÕ»·ĞÎ»º³åÇø
- * \param[in] rxbuf_size : ½ÓÊÕ»º³åÇøµÄ´óĞ¡£¨´óĞ¡±ØĞëÊÇ2^n£©
- * \param[in] p_txbuf    : Ö¸Ïò·¢ËÍ»º³åÇøµÄÖ¸Õë£¬ÓÃÓÚÊµÏÖ·¢ËÍ»·ĞÎ»º³åÇø
- * \param[in] txbuf_size : ·¢ËÍ»º³åÇøµÄ´óĞ¡£¨´óĞ¡±ØĞëÊÇ2^n£©
+ * \param[in] p_dev      : UARTï¼ˆå¸¦ring bufferçš„ä¸­æ–­æ¨¡å¼ï¼‰è®¾å¤‡ç»“æ„ä½“æŒ‡é’ˆ
+ * \param[in] handle     : UARTæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] p_rxbuf    : æŒ‡å‘æ¥æ”¶ç¼“å†²åŒºçš„æŒ‡é’ˆï¼Œç”¨äºå®ç°æ¥æ”¶ç¯å½¢ç¼“å†²åŒº
+ * \param[in] rxbuf_size : æ¥æ”¶ç¼“å†²åŒºçš„å¤§å°ï¼ˆå¤§å°å¿…é¡»æ˜¯2^nï¼‰
+ * \param[in] p_txbuf    : æŒ‡å‘å‘é€ç¼“å†²åŒºçš„æŒ‡é’ˆï¼Œç”¨äºå®ç°å‘é€ç¯å½¢ç¼“å†²åŒº
+ * \param[in] txbuf_size : å‘é€ç¼“å†²åŒºçš„å¤§å°ï¼ˆå¤§å°å¿…é¡»æ˜¯2^nï¼‰
  *
- * \return UART£¨´øring bufferµÄÖĞ¶ÏÄ£Ê½£©±ê×¼·şÎñ²Ù×÷¾ä±ú£¬Èç¹ûÖµÎªNULL£¬
- *         ±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return UARTï¼ˆå¸¦ring bufferçš„ä¸­æ–­æ¨¡å¼ï¼‰æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„ï¼Œå¦‚æœå€¼ä¸ºNULLï¼Œ
+ *         è¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_uart_rngbuf_handle_t am_uart_rngbuf_init(am_uart_rngbuf_dev_t *p_dev,
                                             am_uart_handle_t      handle,
@@ -153,83 +153,83 @@ am_uart_rngbuf_handle_t am_uart_rngbuf_init(am_uart_rngbuf_dev_t *p_dev,
                                               
                                               
 /**
- * \brief UART£¨´øring bufferµÄÖĞ¶ÏÄ£Ê½£©´®¿Ú¿ØÖÆ
+ * \brief UARTï¼ˆå¸¦ring bufferçš„ä¸­æ–­æ¨¡å¼ï¼‰ä¸²å£æ§åˆ¶
  *
- *     ËùÓĞUART¿ØÖÆµÄÃüÁî¾ùÖ§³Ö£¬Èç³£¼ûµÄ²¨ÌØÂÊÉèÖÃ¡¢Ó²¼ş²ÎÊıÉèÖÃµÈ£¬¾ù¿ÉÖ±½ÓÊ¹ÓÃ¡£
- * ÖµµÃ×¢ÒâµÄÊÇ£¬´ø»º³åÇøÊ±£¬´®¿Ú±ØĞë¹¤×÷ÔÚÖĞ¶ÏÄ£Ê½£¬²»ÄÜ¹¤×÷ÔÚ²éÑ¯Ä£Ê½¡£Ä£Ê½ÉèÖÃ
- * Ö¸Áî½«±»ºöÂÔ¡£
+ *     æ‰€æœ‰UARTæ§åˆ¶çš„å‘½ä»¤å‡æ”¯æŒï¼Œå¦‚å¸¸è§çš„æ³¢ç‰¹ç‡è®¾ç½®ã€ç¡¬ä»¶å‚æ•°è®¾ç½®ç­‰ï¼Œå‡å¯ç›´æ¥ä½¿ç”¨ã€‚
+ * å€¼å¾—æ³¨æ„çš„æ˜¯ï¼Œå¸¦ç¼“å†²åŒºæ—¶ï¼Œä¸²å£å¿…é¡»å·¥ä½œåœ¨ä¸­æ–­æ¨¡å¼ï¼Œä¸èƒ½å·¥ä½œåœ¨æŸ¥è¯¢æ¨¡å¼ã€‚æ¨¡å¼è®¾ç½®
+ * æŒ‡ä»¤å°†è¢«å¿½ç•¥ã€‚
  *
  *
- * \param[in] handle  : UART±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \param[in] request : ¿ØÖÆÖ¸Áî
- *            - AM_UART_RNGBUF_NREAD   : ¿É¶ÁÊı¾İ¸öÊı£¬²ÎÊıÎªuint32_tĞÍÖ¸Õë
- *            - AM_UART_RNGBUF_NWRITE  : ÒÑ¾­Ğ´ÈëµÄÊı¾İ¸öÊı£¬²ÎÊıÎªuint32_tĞÍÖ¸Õë
- *            - AM_UART_RNGBUF_FLUSH   £ºÇå¿ÕÊäÈëºÍÊä³ö»º³å£¬ÎŞ²ÎÊı
- *            - AM_UART_RNGBUF_WFLUSH  £ºÇå¿ÕĞ´»º³å£¬ÎŞ²ÎÊı
- *            - AM_UART_RNGBUF_RFLUSH  : Çå¿Õ¶Á»º³å£¬ÎŞ²ÎÊı
- *            - AM_UART_RNGBUF_TIMEOUT : ÉèÖÃ¶ÁµÄ³¬Ê±Ê±¼ä(ms)£¬²ÎÊıÎªuint32_tÕûÊı,
- *                                        0Îª¹Ø±Õ³¬Ê±ÉèÖÃ£¬¼´ÎªÒ»Ö±µÈ´ı¡£
- *            - AM_UART_RNGBUF_FLOWMODE_SET : ÉèÖÃÁ÷¿ØÄ£Ê½£¬²ÎÊı¿ÉÓÃÏÂÁĞºê£º
+ * \param[in] handle  : UARTæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] request : æ§åˆ¶æŒ‡ä»¤
+ *            - AM_UART_RNGBUF_NREAD   : å¯è¯»æ•°æ®ä¸ªæ•°ï¼Œå‚æ•°ä¸ºuint32_tå‹æŒ‡é’ˆ
+ *            - AM_UART_RNGBUF_NWRITE  : å·²ç»å†™å…¥çš„æ•°æ®ä¸ªæ•°ï¼Œå‚æ•°ä¸ºuint32_tå‹æŒ‡é’ˆ
+ *            - AM_UART_RNGBUF_FLUSH   ï¼šæ¸…ç©ºè¾“å…¥å’Œè¾“å‡ºç¼“å†²ï¼Œæ— å‚æ•°
+ *            - AM_UART_RNGBUF_WFLUSH  ï¼šæ¸…ç©ºå†™ç¼“å†²ï¼Œæ— å‚æ•°
+ *            - AM_UART_RNGBUF_RFLUSH  : æ¸…ç©ºè¯»ç¼“å†²ï¼Œæ— å‚æ•°
+ *            - AM_UART_RNGBUF_TIMEOUT : è®¾ç½®è¯»çš„è¶…æ—¶æ—¶é—´(ms)ï¼Œå‚æ•°ä¸ºuint32_tæ•´æ•°,
+ *                                        0ä¸ºå…³é—­è¶…æ—¶è®¾ç½®ï¼Œå³ä¸ºä¸€ç›´ç­‰å¾…ã€‚
+ *            - AM_UART_RNGBUF_FLOWMODE_SET : è®¾ç½®æµæ§æ¨¡å¼ï¼Œå‚æ•°å¯ç”¨ä¸‹åˆ—å®ï¼š
  *                                               - AM_RNGBUF_UART_FLOWCTL_NO
  *                                               - AM_RNGBUF_UART_FLOWCTL_HW
  *                                               - AM_RNGBUF_UART_FLOWCTL_SW
- *            - AM_UART_RNGBUF_RX_FLOW_OFF_THR £ºÉèÖÃÁ÷¹ØµÄãĞÖµ£¨×Ö½ÚÊı£©
- *            - AM_UART_RNGBUF_RX_FLOW_ON_THR  £ºÉèÖÃÁ÷¿ªµÄãĞÖµ£¨×Ö½ÚÊı£©
+ *            - AM_UART_RNGBUF_RX_FLOW_OFF_THR ï¼šè®¾ç½®æµå…³çš„é˜ˆå€¼ï¼ˆå­—èŠ‚æ•°ï¼‰
+ *            - AM_UART_RNGBUF_RX_FLOW_ON_THR  ï¼šè®¾ç½®æµå¼€çš„é˜ˆå€¼ï¼ˆå­—èŠ‚æ•°ï¼‰
  *
- * \param[in,out] p_arg : ¸ÃÖ¸Áî¶ÔÓ¦µÄ²ÎÊı
+ * \param[in,out] p_arg : è¯¥æŒ‡ä»¤å¯¹åº”çš„å‚æ•°
  *
- * \retval AM_OK       : ¿ØÖÆÖ¸ÁîÖ´ĞĞ³É¹¦
- * \retval -AM_EIO     : Ö´ĞĞ´íÎó
- * \retval -AM_ENOTSUP : Ö¸Áî²»Ö§³Ö
+ * \retval AM_OK       : æ§åˆ¶æŒ‡ä»¤æ‰§è¡ŒæˆåŠŸ
+ * \retval -AM_EIO     : æ‰§è¡Œé”™è¯¯
+ * \retval -AM_ENOTSUP : æŒ‡ä»¤ä¸æ”¯æŒ
  */
 int am_uart_rngbuf_ioctl(am_uart_rngbuf_handle_t   handle,
                          int                       request,
                          void                     *p_arg);
 
 /**
- * \brief UARTÊı¾İ·¢ËÍ£¨´øring bufferµÄÖĞ¶ÏÄ£Ê½£©
+ * \brief UARTæ•°æ®å‘é€ï¼ˆå¸¦ring bufferçš„ä¸­æ–­æ¨¡å¼ï¼‰
  *
- * \param[in] handle  : UART£¨´øring bufferµÄÖĞ¶ÏÄ£Ê½£©±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \param[in] p_txbuf : ·¢ËÍÊı¾İ»º³åÇø
- * \param[in] nbytes  : ´ı·¢ËÍÊı¾İµÄ¸öÊı
+ * \param[in] handle  : UARTï¼ˆå¸¦ring bufferçš„ä¸­æ–­æ¨¡å¼ï¼‰æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] p_txbuf : å‘é€æ•°æ®ç¼“å†²åŒº
+ * \param[in] nbytes  : å¾…å‘é€æ•°æ®çš„ä¸ªæ•°
  * 
- * \retval    >0      £º³É¹¦·¢ËÍÊı¾İµÄ¸öÊı
- * \retval -AM_EINVAL : ¶ÁÈ¡Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Êı¾İ´«Êä³ö´í
+ * \retval    >0      ï¼šæˆåŠŸå‘é€æ•°æ®çš„ä¸ªæ•°
+ * \retval -AM_EINVAL : è¯»å–å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : æ•°æ®ä¼ è¾“å‡ºé”™
  */
 int am_uart_rngbuf_send(am_uart_rngbuf_handle_t  handle,
                         const uint8_t           *p_txbuf,
                         uint32_t                 nbytes);
 
 /**
- * \brief UARTÊı¾İ½ÓÊÕ£¨´øring bufferµÄÖĞ¶ÏÄ£Ê½£©
+ * \brief UARTæ•°æ®æ¥æ”¶ï¼ˆå¸¦ring bufferçš„ä¸­æ–­æ¨¡å¼ï¼‰
  *
- * \param[in] handle  : UART£¨´øring bufferµÄÖĞ¶ÏÄ£Ê½£©±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \param[in] p_rxbuf : ½ÓÊÕÊı¾İ»º³åÇø
- * \param[in] nbytes  : ´ı½ÓÊÕÊı¾İµÄ¸öÊı
+ * \param[in] handle  : UARTï¼ˆå¸¦ring bufferçš„ä¸­æ–­æ¨¡å¼ï¼‰æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] p_rxbuf : æ¥æ”¶æ•°æ®ç¼“å†²åŒº
+ * \param[in] nbytes  : å¾…æ¥æ”¶æ•°æ®çš„ä¸ªæ•°
  *
- * \retval    >0      £º³É¹¦½ÓÊÕÊı¾İµÄ¸öÊı
- * \retval -AM_EINVAL : ¶ÁÈ¡Ê§°Ü£¬²ÎÊı´íÎó
- * \retval -AM_EIO    : Êı¾İ´«Êä³ö´í
+ * \retval    >0      ï¼šæˆåŠŸæ¥æ”¶æ•°æ®çš„ä¸ªæ•°
+ * \retval -AM_EINVAL : è¯»å–å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
+ * \retval -AM_EIO    : æ•°æ®ä¼ è¾“å‡ºé”™
  *
- * \note ÈçÉèÖÃÁË³¬Ê±£¬Ôò³¬Ê±Ê±»á·µ»Ø£¬¿ÉÒÔÍ¨¹ı·µ»ØÖµÅĞ¶ÏÊµ¼Ê¶ÁÈ¡µ½µÄ×Ö½ÚÊı¡£
+ * \note å¦‚è®¾ç½®äº†è¶…æ—¶ï¼Œåˆ™è¶…æ—¶æ—¶ä¼šè¿”å›ï¼Œå¯ä»¥é€šè¿‡è¿”å›å€¼åˆ¤æ–­å®é™…è¯»å–åˆ°çš„å­—èŠ‚æ•°ã€‚
  */
 int am_uart_rngbuf_receive(am_uart_rngbuf_handle_t  handle,
                            uint8_t                 *p_rxbuf,
                            uint32_t                 nbytes);
 
 /**
- * \brief UART½ÓÊÕ´¥·¢ÅäÖÃ
+ * \brief UARTæ¥æ”¶è§¦å‘é…ç½®
  *
- * \param[in] handle            : UART£¨´øring bufferµÄÖĞ¶ÏÄ£Ê½£©±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \param[in] trigger_threshold : ´¥·¢ãĞÖµ
- * \param[in] pfn_callback      : »Øµ÷º¯Êı
- * \param[in] p_arg             : »Øµ÷º¯Êı²ÎÊı
+ * \param[in] handle            : UARTï¼ˆå¸¦ring bufferçš„ä¸­æ–­æ¨¡å¼ï¼‰æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] trigger_threshold : è§¦å‘é˜ˆå€¼
+ * \param[in] pfn_callback      : å›è°ƒå‡½æ•°
+ * \param[in] p_arg             : å›è°ƒå‡½æ•°å‚æ•°
  *
- * \retval AW_OK      : ÅäÖÃ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AW_OK      : é…ç½®æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  *
- * \note Èç¹û½ÓÊÕµ½µÄ×Ö½ÚÊı´óÓÚ¸ø¶¨µÄãĞÖµ£¬ÇÒÊ¹ÄÜÁËtrigger£¬Ôò»á»Øµ÷·Ç¿ÕµÄ»Øµ÷º¯Êı¡£
+ * \note å¦‚æœæ¥æ”¶åˆ°çš„å­—èŠ‚æ•°å¤§äºç»™å®šçš„é˜ˆå€¼ï¼Œä¸”ä½¿èƒ½äº†triggerï¼Œåˆ™ä¼šå›è°ƒéç©ºçš„å›è°ƒå‡½æ•°ã€‚
  */
 int am_uart_rngbuf_rx_trigger_cfg (am_uart_rngbuf_handle_t  handle,
                                    uint32_t                 trigger_threshold,
@@ -237,37 +237,37 @@ int am_uart_rngbuf_rx_trigger_cfg (am_uart_rngbuf_handle_t  handle,
                                    void                    *p_arg);
 
 /**
- * \brief UART½ÓÊÕ´¥·¢Ê¹ÄÜ
+ * \brief UARTæ¥æ”¶è§¦å‘ä½¿èƒ½
  *
- * \param[in] handle : UART£¨´øring bufferµÄÖĞ¶ÏÄ£Ê½£©±ê×¼·şÎñ²Ù×÷¾ä±ú
+ * \param[in] handle : UARTï¼ˆå¸¦ring bufferçš„ä¸­æ–­æ¨¡å¼ï¼‰æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  *
- * \retval AW_OK      : ÅäÖÃ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AW_OK      : é…ç½®æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 int am_uart_rngbuf_rx_trigger_enable (am_uart_rngbuf_handle_t  handle);
 
 /**
- * \brief UART½ÓÊÕ´¥·¢½ûÄÜ
+ * \brief UARTæ¥æ”¶è§¦å‘ç¦èƒ½
  *
- * \param[in] handle : UART£¨´øring bufferµÄÖĞ¶ÏÄ£Ê½£©±ê×¼·şÎñ²Ù×÷¾ä±ú
+ * \param[in] handle : UARTï¼ˆå¸¦ring bufferçš„ä¸­æ–­æ¨¡å¼ï¼‰æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  *
- * \retval AW_OK      : ÅäÖÃ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AW_OK      : é…ç½®æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 int am_uart_rngbuf_rx_trigger_disable (am_uart_rngbuf_handle_t  handle);
 
 /**
- * \brief UART·¢ËÍ´¥·¢ÅäÖÃ
+ * \brief UARTå‘é€è§¦å‘é…ç½®
  *
- * \param[in] handle            : UART£¨´øring bufferµÄÖĞ¶ÏÄ£Ê½£©±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \param[in] trigger_threshold : ´¥·¢ãĞÖµ
- * \param[in] pfn_callback      : »Øµ÷º¯Êı
- * \param[in] p_arg             : »Øµ÷º¯Êı²ÎÊı
+ * \param[in] handle            : UARTï¼ˆå¸¦ring bufferçš„ä¸­æ–­æ¨¡å¼ï¼‰æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] trigger_threshold : è§¦å‘é˜ˆå€¼
+ * \param[in] pfn_callback      : å›è°ƒå‡½æ•°
+ * \param[in] p_arg             : å›è°ƒå‡½æ•°å‚æ•°
  *
- * \retval AW_OK      : ÅäÖÃ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AW_OK      : é…ç½®æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  *
- * \note Èç¹û¿ÕÏĞµ½µÄ×Ö½ÚÊı´óÓÚ¸ø¶¨µÄãĞÖµ£¬ÇÒÊ¹ÄÜÁËtrigger£¬Ôò»á»Øµ÷·Ç¿ÕµÄ»Øµ÷º¯Êı¡£
+ * \note å¦‚æœç©ºé—²åˆ°çš„å­—èŠ‚æ•°å¤§äºç»™å®šçš„é˜ˆå€¼ï¼Œä¸”ä½¿èƒ½äº†triggerï¼Œåˆ™ä¼šå›è°ƒéç©ºçš„å›è°ƒå‡½æ•°ã€‚
  */
 int am_uart_rngbuf_tx_trigger_cfg (am_uart_rngbuf_handle_t  handle,
                                    uint32_t                 trigger_threshold,
@@ -275,22 +275,22 @@ int am_uart_rngbuf_tx_trigger_cfg (am_uart_rngbuf_handle_t  handle,
                                    void                    *p_arg);
 
 /**
- * \brief UART·¢ËÍ´¥·¢Ê¹ÄÜ
+ * \brief UARTå‘é€è§¦å‘ä½¿èƒ½
  *
- * \param[in] handle : UART£¨´øring bufferµÄÖĞ¶ÏÄ£Ê½£©±ê×¼·şÎñ²Ù×÷¾ä±ú
+ * \param[in] handle : UARTï¼ˆå¸¦ring bufferçš„ä¸­æ–­æ¨¡å¼ï¼‰æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  *
- * \retval AW_OK      : ÅäÖÃ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AW_OK      : é…ç½®æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 int am_uart_rngbuf_tx_trigger_enable (am_uart_rngbuf_handle_t  handle);
 
 /**
- * \brief UART·¢ËÍ´¥·¢½ûÄÜ
+ * \brief UARTå‘é€è§¦å‘ç¦èƒ½
  *
- * \param[in] handle : UART£¨´øring bufferµÄÖĞ¶ÏÄ£Ê½£©±ê×¼·şÎñ²Ù×÷¾ä±ú
+ * \param[in] handle : UARTï¼ˆå¸¦ring bufferçš„ä¸­æ–­æ¨¡å¼ï¼‰æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  *
- * \retval AW_OK      : ÅäÖÃ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AW_OK      : é…ç½®æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 int am_uart_rngbuf_tx_trigger_disable (am_uart_rngbuf_handle_t  handle);
 

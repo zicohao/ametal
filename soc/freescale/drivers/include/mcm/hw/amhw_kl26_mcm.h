@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief MCMÄ£¿éµÄÓ²¼ş²ã½Ó¿Ú
+ * \brief MCMæ¨¡å—çš„ç¡¬ä»¶å±‚æ¥å£
  *
  * \internal
  * \par Modification History
@@ -36,56 +36,56 @@ extern "C" {
  * @{
  */
 
-#define KL26_MCM_ESFC       (1UL << 16)  /**< \brief FLASHÃ¦ÑÓÊ±±êÖ¾Î»      */
+#define KL26_MCM_ESFC       (1UL << 16)  /**< \brief FLASHå¿™å»¶æ—¶æ ‡å¿—ä½      */
 
-#define KL26_MCM_CFCC       (1UL << 10)  /**< \brief FLASH¸ßËÙ»º´æÇå³ıÎ»    */
+#define KL26_MCM_CFCC       (1UL << 10)  /**< \brief FLASHé«˜é€Ÿç¼“å­˜æ¸…é™¤ä½    */
 
-#define KL26_MCM_ARB        (1UL << 9 )  /**< \brief ÖÙ²Ã·½Ê½Ñ¡ÔñÎ»         */
+#define KL26_MCM_ARB        (1UL << 9 )  /**< \brief ä»²è£æ–¹å¼é€‰æ‹©ä½         */
 
-#define KL26_MCM_CPOWOI     (1UL << 2 )  /**< \brief ÖĞ¶Ï»½ĞÑ¼ÆËã²Ù×÷Ê¹ÄÜÎ» */
+#define KL26_MCM_CPOWOI     (1UL << 2 )  /**< \brief ä¸­æ–­å”¤é†’è®¡ç®—æ“ä½œä½¿èƒ½ä½ */
 
-#define KL26_MCM_CPOACK     (1UL << 1 )  /**< \brief ¼ÆËã²Ù×÷Ó¦´ğ±êÖ¾Î»     */
+#define KL26_MCM_CPOACK     (1UL << 1 )  /**< \brief è®¡ç®—æ“ä½œåº”ç­”æ ‡å¿—ä½     */
 
-#define KL26_MCM_CPOREQ     (1UL << 0 )  /**< \brief ¼ÆËã²Ù×÷ÇëÇó±êÖ¾Î»     */
+#define KL26_MCM_CPOREQ     (1UL << 0 )  /**< \brief è®¡ç®—æ“ä½œè¯·æ±‚æ ‡å¿—ä½     */
 
 /**
- *  \name ÖÙ²ÃÄ£Ê½
+ *  \name ä»²è£æ¨¡å¼
  *  @{
  */
-#define AMHW_KL26_FIX_PRIO            (0)          /**< \brief ¹Ì¶¨ÓÅÏÈÈ¨ */
-#define AMHW_KL26_ROUND_ROBIN         (1)          /**< \brief Ñ­»·Ä£Ê½   */
+#define AMHW_KL26_FIX_PRIO            (0)          /**< \brief å›ºå®šä¼˜å…ˆæƒ */
+#define AMHW_KL26_ROUND_ROBIN         (1)          /**< \brief å¾ªç¯æ¨¡å¼   */
 /**
  *  @}
  */
 
 /**
- *  \name Ô¤²â»º´æÄ£Ê½
+ *  \name é¢„æµ‹ç¼“å­˜æ¨¡å¼
  *  @{
  */
-#define AMHW_KL26_SEECULATE_CODE      (0)         /**< \brief ¿ªÆôÖ¸ÁîÔ¤²â»º´æ             */
-#define AMHW_KL26_SPECULATE_CODE_DATA (1)         /**< \brief ¿ªÆôÖ¸ÁîºÍÊı¾İÔ¤²â»º´æ */
-#define AMHW_KL26_SPECULATE_NONE      (2)         /**< \brief ÎŞÔ¤²â»º´æ                          */
+#define AMHW_KL26_SEECULATE_CODE      (0)         /**< \brief å¼€å¯æŒ‡ä»¤é¢„æµ‹ç¼“å­˜             */
+#define AMHW_KL26_SPECULATE_CODE_DATA (1)         /**< \brief å¼€å¯æŒ‡ä»¤å’Œæ•°æ®é¢„æµ‹ç¼“å­˜ */
+#define AMHW_KL26_SPECULATE_NONE      (2)         /**< \brief æ— é¢„æµ‹ç¼“å­˜                          */
 /**
  *  @}
  */
 
 /**
- *  \brief MCM ¼Ä´æÆ÷½á¹¹Ìå¶¨Òå
+ *  \brief MCM å¯„å­˜å™¨ç»“æ„ä½“å®šä¹‰
  */
 typedef struct amhw_kl26_mcm {
-    __I  uint32_t reserve0[2];      /**< \brief ±£Áô                        */
-    __I  uint16_t plasc;            /**< \brief ½»²æ¿ª¹Ø´Ó»úÅäÖÃ¼Ä´æÆ÷ (RO) */
-    __I  uint16_t plamc;            /**< \brief ½»²æ¿ª¹ØÖ÷»úÅäÖÃ¼Ä´æÆ÷ (RO) */
-    __IO uint32_t placr;            /**< \brief Æ½Ì¨¿ØÖÆ¼Ä´æÆ÷              */
-    __I  uint32_t reserve1[12];     /**< \brief ±£Áô                        */
-    __IO uint32_t cpo;              /**< \brief ¼ÆËã²Ù×÷¼Ä´æÆ÷              */
+    __I  uint32_t reserve0[2];      /**< \brief ä¿ç•™                        */
+    __I  uint16_t plasc;            /**< \brief äº¤å‰å¼€å…³ä»æœºé…ç½®å¯„å­˜å™¨ (RO) */
+    __I  uint16_t plamc;            /**< \brief äº¤å‰å¼€å…³ä¸»æœºé…ç½®å¯„å­˜å™¨ (RO) */
+    __IO uint32_t placr;            /**< \brief å¹³å°æ§åˆ¶å¯„å­˜å™¨              */
+    __I  uint32_t reserve1[12];     /**< \brief ä¿ç•™                        */
+    __IO uint32_t cpo;              /**< \brief è®¡ç®—æ“ä½œå¯„å­˜å™¨              */
 } amhw_kl26_mcm_t;
 
 /**
- *  \brief »ñÈ¡´Ó»úaxbsµÄÅäÖÃÇé¿ö
+ *  \brief è·å–ä»æœºaxbsçš„é…ç½®æƒ…å†µ
  *
- *  \param p_hw_mcm Ö¸ÏòMCMÄ£¿é¼Ä´æÆ÷µÄÖ¸Õë
- *  \return ÎŞ
+ *  \param p_hw_mcm æŒ‡å‘MCMæ¨¡å—å¯„å­˜å™¨çš„æŒ‡é’ˆ
+ *  \return æ— 
  */
 am_static_inline
 uint16_t amhw_kl26_mcm_axbs_slave_config_get (amhw_kl26_mcm_t *p_hw_mcm)
@@ -94,10 +94,10 @@ uint16_t amhw_kl26_mcm_axbs_slave_config_get (amhw_kl26_mcm_t *p_hw_mcm)
 }
 
 /**
- *  \brief »ñÈ¡Ö÷»úaxbsµÄÅäÖÃÇé¿ö
+ *  \brief è·å–ä¸»æœºaxbsçš„é…ç½®æƒ…å†µ
  *
- *  \param p_hw_mcm Ö¸ÏòMCMÄ£¿é¼Ä´æÆ÷µÄÖ¸Õë
- *  \return ÎŞ
+ *  \param p_hw_mcm æŒ‡å‘MCMæ¨¡å—å¯„å­˜å™¨çš„æŒ‡é’ˆ
+ *  \return æ— 
  */
 am_static_inline
 uint16_t amhw_kl26_mcm_axbs_master_config_get (amhw_kl26_mcm_t *p_hw_mcm)
@@ -106,10 +106,10 @@ uint16_t amhw_kl26_mcm_axbs_master_config_get (amhw_kl26_mcm_t *p_hw_mcm)
 }
 
 /**
- *  \brief Ê¹ÄÜflashÃ¦Ê±ÑÓÊ±
+ *  \brief ä½¿èƒ½flashå¿™æ—¶å»¶æ—¶
  *
- *  \param p_hw_mcm Ö¸ÏòMCMÄ£¿é¼Ä´æÆ÷µÄÖ¸Õë
- *  \return ÎŞ
+ *  \param p_hw_mcm æŒ‡å‘MCMæ¨¡å—å¯„å­˜å™¨çš„æŒ‡é’ˆ
+ *  \return æ— 
  */
 am_static_inline
 void amhw_kl26_mcm_flash_stalling_enable (amhw_kl26_mcm_t *p_hw_mcm)
@@ -118,10 +118,10 @@ void amhw_kl26_mcm_flash_stalling_enable (amhw_kl26_mcm_t *p_hw_mcm)
 }
 
 /**
- *  \brief ¹Ø±ÕflashÃ¦Ê±ÑÓÊ±
+ *  \brief å…³é—­flashå¿™æ—¶å»¶æ—¶
  *
- *  \param p_hw_mcm Ö¸ÏòMCMÄ£¿é¼Ä´æÆ÷µÄÖ¸Õë
- *  \return ÎŞ
+ *  \param p_hw_mcm æŒ‡å‘MCMæ¨¡å—å¯„å­˜å™¨çš„æŒ‡é’ˆ
+ *  \return æ— 
  */
 am_static_inline
 void amhw_kl26_mcm_flash_stalling_disable (amhw_kl26_mcm_t *p_hw_mcm)
@@ -130,14 +130,14 @@ void amhw_kl26_mcm_flash_stalling_disable (amhw_kl26_mcm_t *p_hw_mcm)
 }
 
 /**
- *  \brief ÅäÖÃFLASHÔ¤²â»º´æ
+ *  \brief é…ç½®FLASHé¢„æµ‹ç¼“å­˜
  *
- *  \param p_hw_mcm Ö¸ÏòMCMÄ£¿é¼Ä´æÆ÷µÄÖ¸Õë
- *  \param config ÅäÖÃÄ£Ê½
- *      - SEECULATE_CODE:      ¿ªÆôÖ¸ÁîÔ¤²â»º´æµ«¹Ø±ÕÊı¾İÔ¤²â»º´æ
- *      - SPECULATE_CODE_DATA: ¿ªÆôÖ¸ÁîºÍÊı¾İÔ¤²â»º´æ
- *      - SPECULATE_NONE:      ¹Ø±ÕÔ¤²â»º´æ
- *  \return ÎŞ
+ *  \param p_hw_mcm æŒ‡å‘MCMæ¨¡å—å¯„å­˜å™¨çš„æŒ‡é’ˆ
+ *  \param config é…ç½®æ¨¡å¼
+ *      - SEECULATE_CODE:      å¼€å¯æŒ‡ä»¤é¢„æµ‹ç¼“å­˜ä½†å…³é—­æ•°æ®é¢„æµ‹ç¼“å­˜
+ *      - SPECULATE_CODE_DATA: å¼€å¯æŒ‡ä»¤å’Œæ•°æ®é¢„æµ‹ç¼“å­˜
+ *      - SPECULATE_NONE:      å…³é—­é¢„æµ‹ç¼“å­˜
+ *  \return æ— 
  */
 am_static_inline
 void amhw_kl26_mcm_speculation_buffer_config (amhw_kl26_mcm_t *p_hw_mcm,
@@ -147,16 +147,16 @@ void amhw_kl26_mcm_speculation_buffer_config (amhw_kl26_mcm_t *p_hw_mcm,
 }
 
 /**
- *  \brief ÅäÖÃFLASH¸ßËÙ»º´æ
+ *  \brief é…ç½®FLASHé«˜é€Ÿç¼“å­˜
  *
- *  \param p_hw_mcm Ö¸ÏòMCMÄ£¿é¼Ä´æÆ÷µÄÖ¸Õë
- *  \param config ÅäÖÃÄ£Ê½
- *      - 0: »º´æÖ¸ÁîºÍÊı¾İ
- *      - 1: »º´æÖ¸Áî¡¢²»»º´æÊı¾İ
- *      - 2: ²»»º´æÖ¸Áî¡¢»º´æÊı¾İ
- *      - 3: Ö¸ÁîºÍÊı¾İ¶¼²»»º´æ
- *      - 4: ¹Ø±Õ»º´æ
- *  \return ÎŞ
+ *  \param p_hw_mcm æŒ‡å‘MCMæ¨¡å—å¯„å­˜å™¨çš„æŒ‡é’ˆ
+ *  \param config é…ç½®æ¨¡å¼
+ *      - 0: ç¼“å­˜æŒ‡ä»¤å’Œæ•°æ®
+ *      - 1: ç¼“å­˜æŒ‡ä»¤ã€ä¸ç¼“å­˜æ•°æ®
+ *      - 2: ä¸ç¼“å­˜æŒ‡ä»¤ã€ç¼“å­˜æ•°æ®
+ *      - 3: æŒ‡ä»¤å’Œæ•°æ®éƒ½ä¸ç¼“å­˜
+ *      - 4: å…³é—­ç¼“å­˜
+ *  \return æ— 
  */
 am_static_inline
 void amhw_kl26_mcm_cache_config (amhw_kl26_mcm_t *p_hw_mcm, uint32_t config)
@@ -165,10 +165,10 @@ void amhw_kl26_mcm_cache_config (amhw_kl26_mcm_t *p_hw_mcm, uint32_t config)
 }
 
 /**
- *  \brief Çå³ı¸ßËÙ»º´æ(cache)
+ *  \brief æ¸…é™¤é«˜é€Ÿç¼“å­˜(cache)
  *
- *  \param p_hw_mcm Ö¸ÏòMCMÄ£¿é¼Ä´æÆ÷µÄÖ¸Õë
- *  \return ÎŞ
+ *  \param p_hw_mcm æŒ‡å‘MCMæ¨¡å—å¯„å­˜å™¨çš„æŒ‡é’ˆ
+ *  \return æ— 
  */
 am_static_inline
 void amhw_mcm_cache_clear (amhw_kl26_mcm_t *p_hw_mcm)
@@ -177,13 +177,13 @@ void amhw_mcm_cache_clear (amhw_kl26_mcm_t *p_hw_mcm)
 }
 
 /**
- *  \brief Ñ¡Ôñ½»²æ¿ª¹ØÖ÷»úÖÙ²Ã·½Ê½
+ *  \brief é€‰æ‹©äº¤å‰å¼€å…³ä¸»æœºä»²è£æ–¹å¼
  *
- *  \param p_hw_mcm Ö¸ÏòMCMÄ£¿é¼Ä´æÆ÷µÄÖ¸Õë
- *  \param sel ÖÙ²Ã·½Ê½
- *          - AMHW_KL26_FIX_PRIO ¹Ì¶¨ÓÅÏÈ¼¶
- *          - AMHW_KL26_ROUND_ROBIN Ñ­»·Ä£Ê½
- *  \return ÎŞ
+ *  \param p_hw_mcm æŒ‡å‘MCMæ¨¡å—å¯„å­˜å™¨çš„æŒ‡é’ˆ
+ *  \param sel ä»²è£æ–¹å¼
+ *          - AMHW_KL26_FIX_PRIO å›ºå®šä¼˜å…ˆçº§
+ *          - AMHW_KL26_ROUND_ROBIN å¾ªç¯æ¨¡å¼
+ *  \return æ— 
  */
 am_static_inline
 void amhw_kl26_mcm_arbiration_select (amhw_kl26_mcm_t *p_hw_mcm, uint8_t sel)
@@ -192,10 +192,10 @@ void amhw_kl26_mcm_arbiration_select (amhw_kl26_mcm_t *p_hw_mcm, uint8_t sel)
 }
 
 /**
- *  \brief ÖĞ¶Ï»½ĞÑ¼ÆËã²Ù×÷Ê¹ÄÜ
+ *  \brief ä¸­æ–­å”¤é†’è®¡ç®—æ“ä½œä½¿èƒ½
  *
- *  \param p_hw_mcm Ö¸ÏòMCMÄ£¿é¼Ä´æÆ÷µÄÖ¸Õë
- *  \return ÎŞ
+ *  \param p_hw_mcm æŒ‡å‘MCMæ¨¡å—å¯„å­˜å™¨çš„æŒ‡é’ˆ
+ *  \return æ— 
  */
 am_static_inline
 void amhw_kl26_mcm_compute_operation_enable (amhw_kl26_mcm_t *p_hw_mcm)
@@ -204,10 +204,10 @@ void amhw_kl26_mcm_compute_operation_enable (amhw_kl26_mcm_t *p_hw_mcm)
 }
 
 /**
- *  \brief ÖĞ¶Ï»½ĞÑ¼ÆËã²Ù×÷³ıÄÜ
+ *  \brief ä¸­æ–­å”¤é†’è®¡ç®—æ“ä½œé™¤èƒ½
  *
- *  \param p_hw_mcm Ö¸ÏòMCMÄ£¿é¼Ä´æÆ÷µÄÖ¸Õë
- *  \return ÎŞ
+ *  \param p_hw_mcm æŒ‡å‘MCMæ¨¡å—å¯„å­˜å™¨çš„æŒ‡é’ˆ
+ *  \return æ— 
  */
 am_static_inline
 void amhw_kl26_mcm_compute_operation_disable (amhw_kl26_mcm_t *p_hw_mcm)
@@ -216,12 +216,12 @@ void amhw_kl26_mcm_compute_operation_disable (amhw_kl26_mcm_t *p_hw_mcm)
 }
 
 /**
- *  \brief ¼ÆËã²Ù×÷×´Ì¬»ñÈ¡
+ *  \brief è®¡ç®—æ“ä½œçŠ¶æ€è·å–
  *
- *  \param p_hw_mcm Ö¸ÏòMCMÄ£¿é¼Ä´æÆ÷µÄÖ¸Õë
+ *  \param p_hw_mcm æŒ‡å‘MCMæ¨¡å—å¯„å­˜å™¨çš„æŒ‡é’ˆ
  *
- *  \retval 0: ¼ÆËã²Ù×÷Î´½øÈë»òÒÔ½áÊø
- *  \retval AMHW_MCM_CPOACK: ÒÑ½øÈë¼ÆËã²Ù×÷»ò²Ù×÷Î´½áÊø
+ *  \retval 0: è®¡ç®—æ“ä½œæœªè¿›å…¥æˆ–ä»¥ç»“æŸ
+ *  \retval AMHW_MCM_CPOACK: å·²è¿›å…¥è®¡ç®—æ“ä½œæˆ–æ“ä½œæœªç»“æŸ
  */
 am_static_inline
 uint8_t amhw_kl26_mcm_compute_status_get (amhw_kl26_mcm_t *p_hw_mcm)
@@ -230,12 +230,12 @@ uint8_t amhw_kl26_mcm_compute_status_get (amhw_kl26_mcm_t *p_hw_mcm)
 }
 
 /**
- *  \brief ¼ÆËã²Ù×÷×´Ì¬ÇëÇó×´Ì¬»ñÈ¡
+ *  \brief è®¡ç®—æ“ä½œçŠ¶æ€è¯·æ±‚çŠ¶æ€è·å–
  *
- *  \param p_hw_mcm Ö¸ÏòMCMÄ£¿é¼Ä´æÆ÷µÄÖ¸Õë
+ *  \param p_hw_mcm æŒ‡å‘MCMæ¨¡å—å¯„å­˜å™¨çš„æŒ‡é’ˆ
  *
- *  \retval 0: ÇëÇó±»Çå³ı
- *  \retval AMHW_MCM_CPOREQ: ÇëÇó¼ÆËã²Ù×÷
+ *  \retval 0: è¯·æ±‚è¢«æ¸…é™¤
+ *  \retval AMHW_MCM_CPOREQ: è¯·æ±‚è®¡ç®—æ“ä½œ
  */
 am_static_inline
 uint8_t amhw_kl26_mcm_compute_request_get (amhw_kl26_mcm_t *p_hw_mcm)
@@ -244,11 +244,11 @@ uint8_t amhw_kl26_mcm_compute_request_get (amhw_kl26_mcm_t *p_hw_mcm)
 }
 
 /**
- *  \brief ÇëÇó¼ÆËã²Ù×÷
+ *  \brief è¯·æ±‚è®¡ç®—æ“ä½œ
  *
- *  \param p_hw_mcm Ö¸ÏòMCMÄ£¿é¼Ä´æÆ÷µÄÖ¸Õë
+ *  \param p_hw_mcm æŒ‡å‘MCMæ¨¡å—å¯„å­˜å™¨çš„æŒ‡é’ˆ
  *
- *  \return ÎŞ
+ *  \return æ— 
  */
 am_static_inline
 void amhw_kl26_mcm_compute_request (amhw_kl26_mcm_t *p_hw_mcm)

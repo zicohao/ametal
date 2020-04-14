@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief GPIO±ê×¼½Ó¿Ú
+ * \brief GPIOæ ‡å‡†æ¥å£
  *
  * \internal
  * \par Modification History
@@ -37,188 +37,188 @@ extern "C" {
  */
 
 /**
- * \name GPIO Òı½Å¹¦ÄÜ
+ * \name GPIO å¼•è„šåŠŸèƒ½
  * \anchor grp_am_gpio_pin_function
  * @{
  */
 
-/** \brief GPIO Òı½ÅÊäÈë */
+/** \brief GPIO å¼•è„šè¾“å…¥ */
 #define AM_GPIO_INPUT                AM_GPIO_COM_FUNC_CODE(AM_GPIO_INPUT_VAL)
 
-/** \brief GPIO Òı½ÅÊä³ö¸ßµçÆ½ */
+/** \brief GPIO å¼•è„šè¾“å‡ºé«˜ç”µå¹³ */
 #define AM_GPIO_OUTPUT_INIT_HIGH     AM_GPIO_COM_FUNC_CODE(AM_GPIO_OUTPUT_INIT_HIGH_VAL)
 
-/** \brief GPIO Òı½ÅÊä³öµÍµçÆ½ */
+/** \brief GPIO å¼•è„šè¾“å‡ºä½ç”µå¹³ */
 #define AM_GPIO_OUTPUT_INIT_LOW      AM_GPIO_COM_FUNC_CODE(AM_GPIO_OUTPUT_INIT_LOW_VAL)
 
 /** @} */
 
 
 /**
- * \name GPIO Òı½ÅÄ£Ê½
+ * \name GPIO å¼•è„šæ¨¡å¼
  * \anchor grp_am_gpio_pin_mode
  * @{
  */
 
-/** \brief ÉÏÀ­Ä£Ê½ */
+/** \brief ä¸Šæ‹‰æ¨¡å¼ */
 #define AM_GPIO_PULLUP               AM_GPIO_COM_MODE_CODE(AM_GPIO_PULL_UP_VAL)
 
-/** \brief ÏÂÀ­Ä£Ê½ */
+/** \brief ä¸‹æ‹‰æ¨¡å¼ */
 #define AM_GPIO_PULLDOWN             AM_GPIO_COM_MODE_CODE(AM_GPIO_PULL_DOWN_VAL)
 
-/** \brief ¸¡¶¯Ä£Ê½ */
+/** \brief æµ®åŠ¨æ¨¡å¼ */
 #define AM_GPIO_FLOAT                AM_GPIO_COM_MODE_CODE(AM_GPIO_FLOAT_VAL)
 
-/** \brief ¿ªÂ©Ä£Ê½ */
+/** \brief å¼€æ¼æ¨¡å¼ */
 #define AM_GPIO_OPEN_DRAIN           AM_GPIO_COM_MODE_CODE(AM_GPIO_OPEN_DRAIN_VAL)
 
-/** \brief ÍÆÍìÄ£Ê½ */
+/** \brief æ¨æŒ½æ¨¡å¼ */
 #define AM_GPIO_PUSH_PULL            AM_GPIO_COM_MODE_CODE(AM_GPIO_PUSH_PULL_VAL)
 
 /** @} */
 
 
 /**
- * \name GPIO Òı½Å´¥·¢¹¦ÄÜ
+ * \name GPIO å¼•è„šè§¦å‘åŠŸèƒ½
  * \anchor grp_am_gpio_pin_trigger_function
  * @{
  */
 
-/** \brief ¹Ø±Õ´¥·¢ */
+/** \brief å…³é—­è§¦å‘ */
 #define AM_GPIO_TRIGGER_OFF          0
 
-/** \brief ¸ßµçÆ½´¥·¢ */
+/** \brief é«˜ç”µå¹³è§¦å‘ */
 #define AM_GPIO_TRIGGER_HIGH         1
 
-/** \brief µÍµçÆ½´¥·¢ */
+/** \brief ä½ç”µå¹³è§¦å‘ */
 #define AM_GPIO_TRIGGER_LOW          2
 
-/** \brief ÉÏÉıÑØ´¥·¢ */
+/** \brief ä¸Šå‡æ²¿è§¦å‘ */
 #define AM_GPIO_TRIGGER_RISE         3
 
-/** \brief ÏÂ½µÑØ´¥·¢ */
+/** \brief ä¸‹é™æ²¿è§¦å‘ */
 #define AM_GPIO_TRIGGER_FALL         4
 
-/** \brief Ë«±ßÑØ´¥·¢ */
+/** \brief åŒè¾¹æ²¿è§¦å‘ */
 #define AM_GPIO_TRIGGER_BOTH_EDGES   5
 
 /** @} */
 
 /**
- * \name GPIO Òı½ÅµçÆ½
+ * \name GPIO å¼•è„šç”µå¹³
  * \anchor grp_am_gpio_pin_level
  * @{
  */
  
-/** \brief µÍµçÆ½ */
+/** \brief ä½ç”µå¹³ */
 #define AM_GPIO_LEVEL_LOW            0
 
-/** \brief ¸ßµçÆ½ */
+/** \brief é«˜ç”µå¹³ */
 #define AM_GPIO_LEVEL_HIGH           1
 
 /** @} */
 
 
 /**
- * \brief ÅäÖÃGPIOÒı½Å¹¦ÄÜ
+ * \brief é…ç½®GPIOå¼•è„šåŠŸèƒ½
  *
- * Í¨¹ı²ÎÊı \a flags ÅäÖÃÒı½Å¹¦ÄÜ \a flags µÄ¸ñÊ½Îª:
- * (¹¦ÄÜ | Ä£Ê½ | Æ½Ì¨), 
- * - ¹¦ÄÜ£º
+ * é€šè¿‡å‚æ•° \a flags é…ç½®å¼•è„šåŠŸèƒ½ \a flags çš„æ ¼å¼ä¸º:
+ * (åŠŸèƒ½ | æ¨¡å¼ | å¹³å°), 
+ * - åŠŸèƒ½ï¼š
  *   - \ref grp_am_gpio_pin_function
- * - Ä£Ê½£º
+ * - æ¨¡å¼ï¼š
  *   - \ref grp_am_gpio_pin_mode
- * - Æ½Ì¨£º
+ * - å¹³å°ï¼š
  *   - xxx_pin.h 
  *
- * Èç¹ûÅäÖÃÒı½ÅµÄ¹¦ÄÜºÍÄ£Ê½ÓëÆ½Ì¨µÄÅäÖÃ³åÍ»£¬¹¦ÄÜÓòºÍÄ£Ê½ÓòµÄÓÅÏÈ¼¶×î¸ß£¬¶ø
- * ºöÂÔÆ½Ì¨µÄÏà¹ØÅäÖÃ¡£
+ * å¦‚æœé…ç½®å¼•è„šçš„åŠŸèƒ½å’Œæ¨¡å¼ä¸å¹³å°çš„é…ç½®å†²çªï¼ŒåŠŸèƒ½åŸŸå’Œæ¨¡å¼åŸŸçš„ä¼˜å…ˆçº§æœ€é«˜ï¼Œè€Œ
+ * å¿½ç•¥å¹³å°çš„ç›¸å…³é…ç½®ã€‚
  * 
- * \param[in] pin      : Òı½Å±àºÅ£¬ÖµÎª PIO* (#PIO0_0)
- * \param[in] flags    : ÅäÖÃ²ÎÊı£¬²Î¼û
- *                       \ref grp_am_gpio_pin_function ºÍ
- *                       \ref grp_am_gpio_pin_mode ºÍ xxx_pin.h
+ * \param[in] pin      : å¼•è„šç¼–å·ï¼Œå€¼ä¸º PIO* (#PIO0_0)
+ * \param[in] flags    : é…ç½®å‚æ•°ï¼Œå‚è§
+ *                       \ref grp_am_gpio_pin_function å’Œ
+ *                       \ref grp_am_gpio_pin_mode å’Œ xxx_pin.h
  * 
- * \retval  AM_OK      : ÅäÖÃ³É¹¦
- * \retval -AM_ENOTSUP : ²»Ö§³Ö¸Ã¹¦ÄÜ
+ * \retval  AM_OK      : é…ç½®æˆåŠŸ
+ * \retval -AM_ENOTSUP : ä¸æ”¯æŒè¯¥åŠŸèƒ½
  */
 int am_gpio_pin_cfg(int pin, uint32_t flags);
 
 /**
- * \brief »ñÈ¡GPIOÒı½Å×´Ì¬
- * \param[in] pin : Òı½Å±àºÅ£¬ÖµÎª PIO* (#PIO0_0)
- * \return          Òı½Å×´Ì¬
+ * \brief è·å–GPIOå¼•è„šçŠ¶æ€
+ * \param[in] pin : å¼•è„šç¼–å·ï¼Œå€¼ä¸º PIO* (#PIO0_0)
+ * \return          å¼•è„šçŠ¶æ€
  */
 int am_gpio_get(int pin);
 
 /**
- * \brief ÉèÖÃÒı½ÅÊä³ö×´Ì¬
+ * \brief è®¾ç½®å¼•è„šè¾“å‡ºçŠ¶æ€
  *
- * \param[in] pin   : Òı½Å±àºÅ£¬ÖµÎª PIO* (#PIO0_0)
- * \param[in] value : Òı½Å×´Ì¬£¬²Î¼û
+ * \param[in] pin   : å¼•è„šç¼–å·ï¼Œå€¼ä¸º PIO* (#PIO0_0)
+ * \param[in] value : å¼•è„šçŠ¶æ€ï¼Œå‚è§
  *                    \ref grp_am_gpio_pin_level
  *
- * \retval  AM_OK   : ²Ù×÷³É¹¦
+ * \retval  AM_OK   : æ“ä½œæˆåŠŸ
  */
 int am_gpio_set(int pin, int value);
 
 /**
- * \brief ·­×ªGPIOÒı½ÅÊä³ö×´Ì¬
- * \param[in] pin : Òı½Å±àºÅ£¬ÖµÎª PIO* (#PIO0_0)
- * \retval  AM_OK : ²Ù×÷³É¹¦
+ * \brief ç¿»è½¬GPIOå¼•è„šè¾“å‡ºçŠ¶æ€
+ * \param[in] pin : å¼•è„šç¼–å·ï¼Œå€¼ä¸º PIO* (#PIO0_0)
+ * \retval  AM_OK : æ“ä½œæˆåŠŸ
  */
 int am_gpio_toggle(int pin);
 
 /**
- * \brief ÅäÖÃGPIOÒı½Å´¥·¢¹¦ÄÜ
+ * \brief é…ç½®GPIOå¼•è„šè§¦å‘åŠŸèƒ½
  * 
- * \param[in] pin  : Òı½Å±àºÅ£¬ÖµÎª PIO* (#PIO0_0)
- * \param[in] flag : ÅäÖÃ²ÎÊı£¬²Î¼û
+ * \param[in] pin  : å¼•è„šç¼–å·ï¼Œå€¼ä¸º PIO* (#PIO0_0)
+ * \param[in] flag : é…ç½®å‚æ•°ï¼Œå‚è§
  *                   \ref grp_am_gpio_pin_trigger_function
- * \note: 1. Ê¹ÓÃ¸Ã½Ó¿Ú£¬Ó¦ÏÈµ÷ÓÃam_gpio_pin_cfgÉèÖÃgpioµÄÒı½ÅÎªÊäÈë²¢ÇÒÑ¡ÔñºÏÊÊµÄÒı½ÅÄ£Ê½
- *        2. Ê¹ÓÃ¸Ã½Ó¿Ú£¬Ó¦Ê×ÏÈµ÷ÓÃam_gpio_trigger_connectÁ¬½ÓÒı½ÅµÄÖĞ¶Ï»Øµ÷º¯Êı
+ * \note: 1. ä½¿ç”¨è¯¥æ¥å£ï¼Œåº”å…ˆè°ƒç”¨am_gpio_pin_cfgè®¾ç½®gpioçš„å¼•è„šä¸ºè¾“å…¥å¹¶ä¸”é€‰æ‹©åˆé€‚çš„å¼•è„šæ¨¡å¼
+ *        2. ä½¿ç”¨è¯¥æ¥å£ï¼Œåº”é¦–å…ˆè°ƒç”¨am_gpio_trigger_connectè¿æ¥å¼•è„šçš„ä¸­æ–­å›è°ƒå‡½æ•°
  *
- * \retval AM_OK   : ÅäÖÃ³É¹¦
+ * \retval AM_OK   : é…ç½®æˆåŠŸ
  */
 int am_gpio_trigger_cfg(int pin, uint32_t flag);
 
 /**
- * \brief Á¬½Ó»Øµ÷º¯Êıµ½Òı½Å
+ * \brief è¿æ¥å›è°ƒå‡½æ•°åˆ°å¼•è„š
  *
- * \param[in] pin          : Òı½Å±àºÅ£¬ÖµÎª PIO* (#PIO0_0)
- * \param[in] pfn_callback : »Øµ÷º¯ÊıÖ¸Õë
- * \param[in] p_arg        : »Øµ÷º¯ÊıµÄÈë¿Ú²ÎÊı
+ * \param[in] pin          : å¼•è„šç¼–å·ï¼Œå€¼ä¸º PIO* (#PIO0_0)
+ * \param[in] pfn_callback : å›è°ƒå‡½æ•°æŒ‡é’ˆ
+ * \param[in] p_arg        : å›è°ƒå‡½æ•°çš„å…¥å£å‚æ•°
  *
- * \retval  AM_OK          : ²Ù×÷³É¹¦
+ * \retval  AM_OK          : æ“ä½œæˆåŠŸ
  */
 int am_gpio_trigger_connect(int           pin,
                             am_pfnvoid_t  pfn_callback,
                             void         *p_arg);
 
 /**
- * \brief É¾³ıÁ¬½Óµ½Òı½ÅµÄ»Øµ÷º¯Êı
+ * \brief åˆ é™¤è¿æ¥åˆ°å¼•è„šçš„å›è°ƒå‡½æ•°
  *
- * \param[in] pin          : Òı½Å±àºÅ£¬ÖµÎª PIO* (#PIO0_0)
- * \param[in] pfn_callback : »Øµ÷º¯ÊıÖ¸Õë
- * \param[in] p_arg        : »Øµ÷º¯ÊıµÄÈë¿Ú²ÎÊı
+ * \param[in] pin          : å¼•è„šç¼–å·ï¼Œå€¼ä¸º PIO* (#PIO0_0)
+ * \param[in] pfn_callback : å›è°ƒå‡½æ•°æŒ‡é’ˆ
+ * \param[in] p_arg        : å›è°ƒå‡½æ•°çš„å…¥å£å‚æ•°
  *
- * \retval  AM_OK          : ²Ù×÷³É¹¦
+ * \retval  AM_OK          : æ“ä½œæˆåŠŸ
  */
 int am_gpio_trigger_disconnect(int           pin,
                                am_pfnvoid_t  pfn_callback,
                                void         *p_arg);
 
 /**
- * \brief Ê¹ÄÜÒı½Å´¥·¢ÖĞ¶Ï
- * \param[in] pin : Òı½Å±àºÅ£¬ÖµÎª PIO* (#PIO0_0)
- * \retval  AM_OK : ²Ù×÷³É¹¦
+ * \brief ä½¿èƒ½å¼•è„šè§¦å‘ä¸­æ–­
+ * \param[in] pin : å¼•è„šç¼–å·ï¼Œå€¼ä¸º PIO* (#PIO0_0)
+ * \retval  AM_OK : æ“ä½œæˆåŠŸ
  */
 int am_gpio_trigger_on(int pin);
 
 /**
- * \brief ½ûÄÜÒı½Å´¥·¢ÖĞ¶Ï
- * \param[in] pin : Òı½Å±àºÅ£¬ÖµÎª PIO* (#PIO0_0)
- * \retval  AM_OK : ²Ù×÷³É¹¦
+ * \brief ç¦èƒ½å¼•è„šè§¦å‘ä¸­æ–­
+ * \param[in] pin : å¼•è„šç¼–å·ï¼Œå€¼ä¸º PIO* (#PIO0_0)
+ * \retval  AM_OK : æ“ä½œæˆåŠŸ
  */
 int am_gpio_trigger_off(int pin);
 

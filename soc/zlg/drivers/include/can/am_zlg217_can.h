@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief CANÇı¶¯²ãÊµÏÖ
+ * \brief CANé©±åŠ¨å±‚å®ç°
  *
  * \internal
  * \par Modification history
@@ -42,46 +42,46 @@ extern "C" {
 #define AM_ZLG217_FILTER_IDE_0_ID_START (18)
 
 /**
- * \brief ÖĞ¶Ï»Øµ÷ĞÅÏ¢
+ * \brief ä¸­æ–­å›è°ƒä¿¡æ¯
  */
 typedef struct am_zlg217_can_intcb_info {
 
-    /** \brief ´¥·¢»Øµ÷º¯Êı */
+    /** \brief è§¦å‘å›è°ƒå‡½æ•° */
     am_pfnvoid_t  pfn_callback;
 
-    /** \brief »Øµ÷º¯ÊıµÄ²ÎÊı */
+    /** \brief å›è°ƒå‡½æ•°çš„å‚æ•° */
     void         *p_arg;
 } am_zlg217_can_intcb_info_t;
 
 /**
- * \brief CAN Éè±¸ĞÅÏ¢
+ * \brief CAN è®¾å¤‡ä¿¡æ¯
  */
 typedef struct am_zlg217_can_devinfo {
 
-    /** \brief ¼Ä´æÆ÷»ùµØÖ· */
+    /** \brief å¯„å­˜å™¨åŸºåœ°å€ */
     uint32_t                       regbase;
 
-    /** \brief ÖĞ¶ÏºÅ */
+    /** \brief ä¸­æ–­å· */
     uint32_t                       int_num;
 
-    /** \brief ÔËĞĞÀàĞÍ */
+    /** \brief è¿è¡Œç±»å‹ */
     amhw_zlg217_can_type_t         type;
 
-    /** \brief »Øµ÷ĞÅÏ¢ */
+    /** \brief å›è°ƒä¿¡æ¯ */
     am_zlg217_can_intcb_info_t    *p_intcb_info;
 
-    /** \brief »Øµ÷ĞÅÏ¢ÄÚ´æ´óĞ¡ */
+    /** \brief å›è°ƒä¿¡æ¯å†…å­˜å¤§å° */
     uint8_t                        p_intcb_num;
 
-    /** \brief Æ½Ì¨³õÊ¼»¯º¯Êı */
+    /** \brief å¹³å°åˆå§‹åŒ–å‡½æ•° */
     void                         (*pfn_plfm_init)(void);
 
-    /** \brief Æ½Ì¨È¥³õÊ¼»¯º¯Êı */
+    /** \brief å¹³å°å»åˆå§‹åŒ–å‡½æ•° */
     void                         (*pfn_plfm_deinit)(void);
 } am_zlg217_can_devinfo_t;
 
 /**
- * \brief Éè±¸
+ * \brief è®¾å¤‡
  */
 typedef struct am_zlg217_can_dev {
     am_can_serv_t                   handle;
@@ -92,10 +92,10 @@ typedef struct am_zlg217_can_dev {
 } am_zlg217_can_dev_t;
 
 /**
- * \brief CAN³õÊ¼»¯
+ * \brief CANåˆå§‹åŒ–
  *
- * \param[in] p_dev     : Éè±¸ÊµÀı
- * \param[in] p_devinfo : Éè±¸ĞÅÏ¢
+ * \param[in] p_dev     : è®¾å¤‡å®ä¾‹
+ * \param[in] p_devinfo : è®¾å¤‡ä¿¡æ¯
  *
  * \return handle
  */
@@ -103,11 +103,11 @@ am_can_handle_t am_zlg217_can_init (am_zlg217_can_dev_t           *p_dev,
                                     const am_zlg217_can_devinfo_t *p_devinfo);
 
 /**
- * \brief ½â³õÊ¼»¯
+ * \brief è§£åˆå§‹åŒ–
  *
- * \param[in] p_dev     : Éè±¸ÊµÀı
+ * \param[in] p_dev     : è®¾å¤‡å®ä¾‹
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_zlg217_can_deinit (am_zlg217_can_dev_t *p_dev);
 

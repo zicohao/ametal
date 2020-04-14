@@ -13,26 +13,26 @@
 
 /**
  * \file
- * \brief ZM516X ģ�� GPIO ���̣�ͨ����׼�ӿ�ʵ��
+ * \brief ZM516X 模块 GPIO 例程，通过标准接口实现
  *
- * - ʵ������
- *   1. ZM516X ģ���ʼ�������óɹ��� LED0 �����������ʼ��ʧ�ܣ�LED0 ��˸��
- *   2. ���ڴ�ӡ��ȡ����ģ��������Ϣ��
- *   3. ��ȡ IO1(JOIN) ���ŵĵ�ƽ������ͬ�ĵ�ƽ����� IO2(DETECH) ���š�
+ * - 实验现象：
+ *   1. ZM516X 模块初始化并配置成功后 LED0 长亮，如果初始化失败，LED0 闪烁；
+ *   2. 串口打印读取到的模块配置信息；
+ *   3. 读取 IO1(JOIN) 引脚的电平并将相同的电平输出到 IO2(DETECH) 引脚。
  *
  * \note
- *    1. LED0 ��Ҫ�̽� J9 ����ñ�����ܱ� PIO0_8 ���ƣ�
- *    2. ����۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIO0_0 �������� PC ���ڵ� TXD��
- *       PIO0_4 �������� PC ���ڵ� RXD��
- *    3. ZigBee ģ�������ӹ�ϵ���£�
+ *    1. LED0 需要短接 J9 跳线帽，才能被 PIO0_8 控制；
+ *    2. 如需观察串口打印的调试信息，需要将 PIO0_0 引脚连接 PC 串口的 TXD，
+ *       PIO0_4 引脚连接 PC 串口的 RXD；
+ *    3. ZigBee 模块内连接关系如下：
  * <pre>
  *           PIO0_26  <-->  ZigBee_TX
  *           PIO0_27  <-->  ZigBee_RX
  *           PIO0_28  <-->  ZigBee_RST
  * </pre>
- *        �����Ҫʹ�� ZigBee����Щ IO �ڲ�������������;��
+ *        如果需要使用 ZigBee，这些 IO 口不能用作其它用途。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_am824zb_std_zm516x_gpio.c src_am824zb_std_zm516x_gpio
  *
  * \internal
@@ -54,7 +54,7 @@
 #include "am_lpc82x_inst_init.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_am824zb_std_zm516x_gpio_entry (void)
 {

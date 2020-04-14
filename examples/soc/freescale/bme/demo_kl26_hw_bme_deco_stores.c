@@ -11,15 +11,15 @@
 *******************************************************************************/
 /**
  * \file
- * \brief BME��װʽ�洢ָ��ʵ������
+ * \brief BME封装式存储指令实现例子
  *
- * - ������
- *   1.PIOA_1 ��������PC���ڵ�TXD;
- *   2.PIOA_2 ��������PC���ڵ�RXD;
- *   3.������λ�����ڲ�����Ϊ115200��8λ���ݳ��� 1λֹͣλ ����żУ��;
+ * - 操作：
+ *   1.PIOA_1 引脚连接PC串口的TXD;
+ *   2.PIOA_2 引脚连接PC串口的RXD;
+ *   3.配置上位机串口波特率为115200，8位数据长度 1位停止位 无奇偶校验;
  *
- * -ʵ�����󣺴������δ�ӡ�������ַ���������C����ʵ����BMEָ��ִ��Ч���ϵĲ��
- *         ���Կ���BMEָ��ʵ�ֵ�ִ��Ч�ʸ���Ч
+ * -实现现象：串口依次打印出以下字符串，用于C语言实现与BME指令执行效率上的差别，
+ *         可以看出BME指令实现的执行效率更高效
  *
  *         systick start value: 0xff9d6a
  *
@@ -51,10 +51,10 @@
  *
  *         actual execution cycle for BFI operation with BME macro: 0xf
  *
- * \note BME ָ�����GPIOģ��ģ�Ӧ��ʹ��KL26_GPIO_BASE�ı�����ַΪ 0x4000_F000
+ * \note BME 指令操作GPIO模块的，应该使用KL26_GPIO_BASE的别名地址为 0x4000_F000
  *
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_kl26_hw_bme_deco_stores.c src_kl26_hw_bme_deco_stores
  *
  * \internal
@@ -82,21 +82,21 @@
 #include "../../../../soc/freescale/kl26/am_kl26.h"
 
 /*******************************************************************************
-  �궨��
+  宏定义
 *******************************************************************************/
-#define  GPIO_PORT_MUX_SHIFT    8      /** <\brief GPIO�ܽŸ��ú궨��  */
+#define  GPIO_PORT_MUX_SHIFT    8      /** <\brief GPIO管脚复用宏定义  */
 
-/** \brief GPIOģ�������ַ(����BME��BFI��UBFXָ��ʹ��) */
+/** \brief GPIO模块别名地址(仅限BME的BFI与UBFX指令使用) */
 #define KL26_GPIO_ALIASED  ((amhw_kl26_gpio_t    *)0x4000F000UL)
 
 /*******************************************************************************
-  ȫ�ֱ���
+  全局变量
 *******************************************************************************/
-static volatile uint32_t __overhead = 0;     /** <\brief ���ڼ���δ�ʱ�Ӽ���  */
+static volatile uint32_t __overhead = 0;     /** <\brief 用于计算滴答时钟计数  */
 
 
 /**
- * \brief �������κ��м����ʱ�δ�ʱ�Ӽ���ֵ
+ * \brief 计算无任何中间代码时滴答时钟计数值
  */
 static void __cal_systick_read_overhead(void)
 {
@@ -117,24 +117,24 @@ static void __cal_systick_read_overhead(void)
 }
 
 /**
- * \brief ������BME XORָ������GPIOʱ�ĵδ�ʱ�Ӽ���ֵ
+ * \brief 计算用BME XOR指令设置GPIO时的滴答时钟计数值
  */
 static void __gpio_xor_op_with_bme_macros(void)
 {
     uint32_t cnt_start_value;
     uint32_t cnt_end_value;
 
-    /* ʵ��ִ�в��������ʱ������ */
+    /* 实际执行操作所需的时间周期 */
     uint32_t execution_cycle;
 
 
-    /* ���� PORTC4�Źܽ�ΪGPIO���� */
+    /* 设置 PORTC4号管脚为GPIO功能 */
     amhw_kl26_port_pin_func_cfg(KL26_PORT, PIOC_4, 0x1);
 
-    /* ����GPIOC 4�Źܽ�Ϊ������� */
+    /* 设置GPIOC 4号管脚为输出方向 */
     amhw_kl26_gpio_pin_dir_output(KL26_GPIO, PIOC_4);
 
-    /* ����GPIOC 4�Źܽų�ʼ��ƽ */
+    /* 设置GPIOC 4号管脚初始电平 */
     amhw_kl26_gpio_pin_init_out_low(KL26_GPIO, PIOC_4);
 
     cnt_start_value = AMHW_ARM_SYSTICK->val;
@@ -153,24 +153,24 @@ static void __gpio_xor_op_with_bme_macros(void)
 }
 
 /**
- * \brief ������C����xor��������GPIOʱ�ĵδ�ʱ�Ӽ���ֵ
+ * \brief 计算用C语言xor代码设置GPIO时的滴答时钟计数值
  */
 static void __gpio_xor_op_with_normalc(void)
 {
     uint32_t cnt_start_value;
     uint32_t cnt_end_value;
 
-    /* ʵ��ִ�в��������ʱ������ */
+    /* 实际执行操作所需的时间周期 */
     uint32_t execution_cycle;
 
 
-    /* ���� PORTC4�Źܽ�ΪGPIO���� */
+    /* 设置 PORTC4号管脚为GPIO功能 */
     amhw_kl26_port_pin_func_cfg(KL26_PORT, PIOC_4, 0x1);
 
-    /* ����GPIOC4�Źܽ�Ϊ������� */
+    /* 设置GPIOC4号管脚为输出方向 */
     amhw_kl26_gpio_pin_dir_output(KL26_GPIO, PIOC_4);
 
-    /* ����GPIOC4�Źܽų�ʼ��ƽ */
+    /* 设置GPIOC4号管脚初始电平 */
     amhw_kl26_gpio_pin_init_out_low(KL26_GPIO, PIOC_4);
 
     cnt_start_value = AMHW_ARM_SYSTICK->val;
@@ -189,25 +189,25 @@ static void __gpio_xor_op_with_normalc(void)
 }
 
 /**
- * \brief ������BME bfiָ�����ùܽŸ��ù���ΪGPIOʱ�ĵδ�ʱ�Ӽ���ֵ
+ * \brief 计算用BME bfi指令设置管脚复用功能为GPIO时的滴答时钟计数值
  */
 static void __gpio_bfi_op_with_bme_macros(void)
 {
     uint32_t cnt_start_value;
     uint32_t cnt_end_value;
 
-    /* ʵ��ִ�в��������ʱ������ */
+    /* 实际执行操作所需的时间周期 */
     uint32_t execution_cycle;
 
     amhw_kl26_port_pin_func_cfg(KL26_PORT, PIOC_4, 0x0);
 
     cnt_start_value = AMHW_ARM_SYSTICK->val;
 
-    /* ���ݵ�λ����λƫ�Ƶ�λ�ö��� */
-    AMHW_KL26_BME_BFI_W(&KL26_PORT->port[2].port_pcr[4], /* �����ַΪPTC4�ܽſ��ƼĴ��� */
-                        1 << GPIO_PORT_MUX_SHIFT,             /* ���� */
-                        GPIO_PORT_MUX_SHIFT,                  /* �ӵڼ���λ��ʼ�滻 */
-                        3);                                   /* ���滻λ�ĳ��� */
+    /* 数据的位置与位偏移的位置对齐 */
+    AMHW_KL26_BME_BFI_W(&KL26_PORT->port[2].port_pcr[4], /* 外设地址为PTC4管脚控制寄存器 */
+                        1 << GPIO_PORT_MUX_SHIFT,             /* 数据 */
+                        GPIO_PORT_MUX_SHIFT,                  /* 从第几个位开始替换 */
+                        3);                                   /* 被替换位的长度 */
 
     cnt_end_value = AMHW_ARM_SYSTICK->val;
 
@@ -222,7 +222,7 @@ static void __gpio_bfi_op_with_bme_macros(void)
 }
 
 /**
- * \brief ��������C������ʵ��BFIָ�����ùܽŸ��ù���ΪGPIOʱ�ĵδ�ʱ�Ӽ���ֵ
+ * \brief 计算用用C语言来实现BFI指令设置管脚复用功能为GPIO时的滴答时钟计数值
  */
 static void __gpio_bfi_op_with_normalc(volatile uint32_t  *p_addr,
                                        uint32_t wdata,
@@ -235,14 +235,14 @@ static void __gpio_bfi_op_with_normalc(volatile uint32_t  *p_addr,
     uint32_t cnt_start_value;
     uint32_t cnt_end_value;
 
-    /* ʵ��ִ�в��������ʱ������ */
+    /* 实际执行操作所需的时间周期 */
     uint32_t execution_cycle;
 
     amhw_kl26_port_pin_func_cfg(KL26_PORT, PIOC_4, 0x0);
 
     cnt_start_value = AMHW_ARM_SYSTICK->val;
 
-    /* C����ʵ��BFIָ�����ͬ���� */
+    /* C语言实现BFI指令的相同功能 */
     reg_val = *p_addr;
     mask    = ((1 << (fieldwidth)) - 1) << bitpos;
     reg_val = (reg_val & ~mask) | ((wdata) & mask);
@@ -261,44 +261,44 @@ static void __gpio_bfi_op_with_normalc(volatile uint32_t  *p_addr,
 
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_kl26_hw_bme_deco_stores_entry (void)
 {
-    /* �������κ��м����ʱ�δ�ʱ�Ӽ���ֵ */
-    amhw_arm_systick_enable(AMHW_ARM_SYSTICK);      /* ʹ�����¼���  */
-    __cal_systick_read_overhead();                  /* ������ͨ���� */
-    amhw_arm_systick_disable(AMHW_ARM_SYSTICK);     /* �������¼���  */
-    amhw_arm_systick_val_set(AMHW_ARM_SYSTICK, 0);  /* �������ֵ   */
+    /* 计算无任何中间代码时滴答时钟计数值 */
+    amhw_arm_systick_enable(AMHW_ARM_SYSTICK);      /* 使能向下计数  */
+    __cal_systick_read_overhead();                  /* 两次普通计数 */
+    amhw_arm_systick_disable(AMHW_ARM_SYSTICK);     /* 禁能向下计数  */
+    amhw_arm_systick_val_set(AMHW_ARM_SYSTICK, 0);  /* 清零计数值   */
 
-    /* ����ʹ��C����ʵ��XOR��������ʱ�ĵδ�ʱ�Ӽ���ֵ */
-    amhw_arm_systick_enable(AMHW_ARM_SYSTICK);      /* ʹ�����¼���   */
-    __gpio_xor_op_with_normalc();                   /* C����XOR���� */
-    amhw_arm_systick_disable(AMHW_ARM_SYSTICK);     /* �������¼���   */
-    amhw_arm_systick_val_set(AMHW_ARM_SYSTICK, 0);  /* �������ֵ   */
+    /* 计算使用C语言实现XOR操作设置时的滴答时钟计数值 */
+    amhw_arm_systick_enable(AMHW_ARM_SYSTICK);      /* 使能向下计数   */
+    __gpio_xor_op_with_normalc();                   /* C语言XOR操作 */
+    amhw_arm_systick_disable(AMHW_ARM_SYSTICK);     /* 禁能向下计数   */
+    amhw_arm_systick_val_set(AMHW_ARM_SYSTICK, 0);  /* 清零计数值   */
 
-    /* ����ʹ��BME XORָ������ʱ�ĵδ�ʱ�Ӽ���ֵ */
-    amhw_arm_systick_enable(AMHW_ARM_SYSTICK);      /* ʹ�����¼���   */
-    __gpio_xor_op_with_bme_macros();                /* BMEָ��XOR���� */
-    amhw_arm_systick_disable(AMHW_ARM_SYSTICK);     /* �������¼���   */
-    amhw_arm_systick_val_set(AMHW_ARM_SYSTICK, 0);  /* �������ֵ   */
+    /* 计算使用BME XOR指令设置时的滴答时钟计数值 */
+    amhw_arm_systick_enable(AMHW_ARM_SYSTICK);      /* 使能向下计数   */
+    __gpio_xor_op_with_bme_macros();                /* BME指令XOR操作 */
+    amhw_arm_systick_disable(AMHW_ARM_SYSTICK);     /* 禁能向下计数   */
+    amhw_arm_systick_val_set(AMHW_ARM_SYSTICK, 0);  /* 清零计数值   */
 
-    /* ����ʹ��C����ʵ��BFI��������ʱ�ĵδ�ʱ�Ӽ���ֵ */
-    amhw_arm_systick_enable(AMHW_ARM_SYSTICK);      /* ʹ�����¼���   */
+    /* 计算使用C语言实现BFI操作设置时的滴答时钟计数值 */
+    amhw_arm_systick_enable(AMHW_ARM_SYSTICK);      /* 使能向下计数   */
 
-    /* C����ʵ��BFI���� */
+    /* C语言实现BFI操作 */
     __gpio_bfi_op_with_normalc(&KL26_PORT->port[2].port_pcr[4],
                                1 << GPIO_PORT_MUX_SHIFT,
                                GPIO_PORT_MUX_SHIFT,
                                3);
-    amhw_arm_systick_disable(AMHW_ARM_SYSTICK);     /* �������¼���   */
-    amhw_arm_systick_val_set(AMHW_ARM_SYSTICK, 0);  /* �������ֵ   */
+    amhw_arm_systick_disable(AMHW_ARM_SYSTICK);     /* 禁能向下计数   */
+    amhw_arm_systick_val_set(AMHW_ARM_SYSTICK, 0);  /* 清零计数值   */
 
-    /* ����ʹ��BME BFIָ������ʱ�ĵδ�ʱ�Ӽ���ֵ */
-    amhw_arm_systick_enable(AMHW_ARM_SYSTICK);      /* ʹ�����¼���   */
-    __gpio_bfi_op_with_bme_macros();                /* BMEָ��BFI���� */
-    amhw_arm_systick_disable(AMHW_ARM_SYSTICK);     /* �������¼���   */
-    amhw_arm_systick_val_set(AMHW_ARM_SYSTICK, 0);  /* �������ֵ   */
+    /* 计算使用BME BFI指令设置时的滴答时钟计数值 */
+    amhw_arm_systick_enable(AMHW_ARM_SYSTICK);      /* 使能向下计数   */
+    __gpio_bfi_op_with_bme_macros();                /* BME指令BFI操作 */
+    amhw_arm_systick_disable(AMHW_ARM_SYSTICK);     /* 禁能向下计数   */
+    amhw_arm_systick_val_set(AMHW_ARM_SYSTICK, 0);  /* 清零计数值   */
 
     while (1) {
         ;

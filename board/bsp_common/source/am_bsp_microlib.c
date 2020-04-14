@@ -27,12 +27,12 @@
 #include "am_microlib_adapter.h"
 
 /**
- * \brief Êä³öÒ»¸ö×Ö·û
+ * \brief è¾“å‡ºä¸€ä¸ªå­—ç¬¦
  *
- * \param[in] p_arg UART±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \param[in] ch    ĞèÒªÊä³öµÄ×Ö·û
+ * \param[in] p_arg UARTæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] ch    éœ€è¦è¾“å‡ºçš„å­—ç¬¦
  *
- * \return ±»Êä³öµÄ×Ö·û
+ * \return è¢«è¾“å‡ºçš„å­—ç¬¦
  */
 static int __dbg_fputc (void *p_arg, const char ch)
 {
@@ -44,11 +44,11 @@ static int __dbg_fputc (void *p_arg, const char ch)
 }
 
 /**
- * \brief ÊäÈëÒ»¸ö×Ö·û
+ * \brief è¾“å…¥ä¸€ä¸ªå­—ç¬¦
  *
- * \param[in] p_arg UART±ê×¼·şÎñ²Ù×÷¾ä±ú
+ * \param[in] p_arg UARTæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  *
- * \return ÊäÈëµÄ×Ö·û¡£·ñÔò·µ»ØEOF
+ * \return è¾“å…¥çš„å­—ç¬¦ã€‚å¦åˆ™è¿”å›EOF
  */
 static int __dbg_fgetc (void *p_arg)
 {
@@ -62,7 +62,7 @@ static int __dbg_fgetc (void *p_arg)
 }
 
 /**
- * \brief ³õÊ¼»¯Micro LIBÊÊÅäÆ÷½á¹¹
+ * \brief åˆå§‹åŒ–Micro LIBé€‚é…å™¨ç»“æ„
  */
 static am_microlib_adapter_ops_t g_microlib_adapter_ops = {
     __dbg_fputc,
@@ -70,9 +70,9 @@ static am_microlib_adapter_ops_t g_microlib_adapter_ops = {
 };
 
 /**
- * \brief Micro LIB³õÊ¼»¯
+ * \brief Micro LIBåˆå§‹åŒ–
  *
- * \param[in] uart_handle UART·şÎñ
+ * \param[in] uart_handle UARTæœåŠ¡
  *
  * \return AM_OK
  */

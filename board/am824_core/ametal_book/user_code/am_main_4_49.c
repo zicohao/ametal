@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥4.49
+ * \brief ç¨‹åºæ¸…å•4.49
  *
- * \note ¸ÃÀú³ÌĞèÒªÓÃµ½miniportÍØÕ¹°å
+ * \note è¯¥å†ç¨‹éœ€è¦ç”¨åˆ°miniportæ‹“å±•æ¿
  *
  * \internal
  * \par Modification history
@@ -27,14 +27,14 @@
 
 int am_main(void)
 {
-    uint8_t data = 0x01;                      // ³õÊ¼»¯bit0Îª1£¬±íÊ¾µãÁÁLED0
+    uint8_t data = 0x01;                      // åˆå§‹åŒ–bit0ä¸º1ï¼Œè¡¨ç¤ºç‚¹äº®LED0
 
     hc595_init();
     while(1) {
-        hc595_send_data(~data);               // dataÈ¡·´µãÁÁLED
+        hc595_send_data(~data);               // dataå–åç‚¹äº®LED
         am_mdelay(100);
         data <<= 1;
-        if (data == 0) {                      // 8´ÎÑ­»·½áÊø£¬ÖØĞÂ´Ó0x01¿ªÊ¼
+        if (data == 0) {                      // 8æ¬¡å¾ªç¯ç»“æŸï¼Œé‡æ–°ä»0x01å¼€å§‹
             data = 0x01;
         }
     }

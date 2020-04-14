@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief LPC82X ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief LPC82X ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_prj_config.c
  *
  * \internal
@@ -55,7 +55,7 @@ am_gpio_pin_cfg(PIO0_22, AM_GPIO_FLOAT);
     am_nvram_inst_init();
 #endif /* (AM_CFG_NVRAM_ENABLE == 1) */
 
-    /* °å¼¶³õÊ¼»¯ */
+    /* æ¿çº§åˆå§‹åŒ– */
     am_board_init();
     __enable_irq();
     return am_main();

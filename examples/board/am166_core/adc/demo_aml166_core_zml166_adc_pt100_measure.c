@@ -14,11 +14,11 @@
  * \file
  * \brief
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Á¬½ÓºÃ´®¿Ú£¬½«PT100µç×è½ÓÈëRTDCÓëRTDBÖ®¼ä£¬²¢¶Ì½ÓRTDA¡£
- *   2. ´®¿Ú½«»á´òÓ¡³öPT100²âÁ¿ÎÂ¶ÈÖµ
+ * - å®éªŒç°è±¡ï¼š
+ *   1. è¿æ¥å¥½ä¸²å£ï¼Œå°†PT100ç”µé˜»æ¥å…¥RTDCä¸RTDBä¹‹é—´ï¼Œå¹¶çŸ­æ¥RTDAã€‚
+ *   2. ä¸²å£å°†ä¼šæ‰“å°å‡ºPT100æµ‹é‡æ¸©åº¦å€¼
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_aml166_core_adc24_pt100_measure.c src_aml166_core_adc24_pt100_measure
  *
  * \internal
@@ -44,16 +44,16 @@
 #include "am_hwconf_zml166_adc.h"
 #include "demo_zlg_entries.h"
 /**
- * \brief ZML166 24Î»ADC  PT100²âÎÂÀı³Ì
+ * \brief ZML166 24ä½ADC  PT100æµ‹æ¸©ä¾‹ç¨‹
  */
 void demo_aml166_core_zml166_adc_pt100_measure (void)
 {
     float para[2];
     am_zml166_adc_handle_t  handle = am_zml166_adc_inst_init();
-    /* ´ÓflashÖĞ»ñÈ¡PT100µç×èµÄĞŞÕıÏµÊı */
+    /* ä»flashä¸­è·å–PT100ç”µé˜»çš„ä¿®æ­£ç³»æ•° */
     am_zlg_flash_init(ZLG116_FLASH);
     memcpy((void *)para, (uint32_t *)PT100_PARA_SAVE_ADDRESS, 4 * 2);
-    /* ÈôflashÖĞÎ´±£´æÏµÊı */
+    /* è‹¥flashä¸­æœªä¿å­˜ç³»æ•° */
     if(!(para[0] < 1.02 && para[0] > 0.98)){
         para[0] = 1;
     }

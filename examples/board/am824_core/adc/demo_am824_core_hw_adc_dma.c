@@ -12,20 +12,20 @@
 
 /**
  * \file
- * \brief ADC ���̣�ת���������ͨ�� DMA ���䣬ͨ�� HW ��ӿ�ʵ��
+ * \brief ADC 例程，转换结果数据通过 DMA 传输，通过 HW 层接口实现
  *
- * - �������裺
- *   1. �̽� J12 ����ñ��ʹ�òο���ѹΪ 2.5V��
- *   2. PIO0_7(ADC ͨ�� 0) ����ģ�����롣
+ * - 操作步骤：
+ *   1. 短接 J12 跳线帽，使得参考电压为 2.5V；
+ *   2. PIO0_7(ADC 通道 0) 连接模拟输入。
  *
- * - ʵ������
- *   1. ADC ת����� 100 �Σ����ڴ�ӡ�� 100 ��������ѹֵ��
+ * - 实验现象：
+ *   1. ADC 转换完成 100 次，串口打印出 100 个采样电压值。
  *
  * \note
- *    ����۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIO0_0 �������� PC ���ڵ� TXD��
- *    PIO0_4 �������� PC ���ڵ� RXD��
+ *    如需观察串口打印的调试信息，需要将 PIO0_0 引脚连接 PC 串口的 TXD，
+ *    PIO0_4 引脚连接 PC 串口的 RXD。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_am824_core_hw_adc_dma.c src_am824_core_hw_adc_dma
  *
  * \internal
@@ -48,17 +48,17 @@
 #include "demo_nxp_entries.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_am824_core_hw_adc_dma_entry (void)
 {
     am_kprintf("demo am824_core hw adc dma!\r\n");
 
-    /* ƽ̨��ʼ�� */
+    /* 平台初始化 */
     amhw_lpc82x_syscon_powerup(AMHW_LPC82X_SYSCON_PD_ADC0);
     amhw_lpc82x_clk_periph_enable(AMHW_LPC82X_CLK_ADC0);
 	
-    /* ����ͨ����ʹ��ͨ�� 0����������Ϊ����ģʽ INACTIVE */
+    /* 配置通道，使用通道 0，引脚配置为消极模式 INACTIVE */
     am_gpio_pin_cfg(PIO0_7, PIO0_7_ADC_0 | PIO0_7_INACTIVE);
 
     demo_lpc824_hw_adc_dma_entry(LPC82X_ADC0, 0, 2500);

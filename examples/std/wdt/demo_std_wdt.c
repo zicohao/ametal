@@ -12,13 +12,13 @@
 
 /**
  * \file
- * \brief WDT ÑİÊ¾Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief WDT æ¼”ç¤ºä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. feed_time_ms ³¬¹ı time_out_ms£¬Ğ¾Æ¬¸´Î»£»
- *   2. feed_time_ms Ğ¡ÓÚ time_out_ms£¬³ÌĞòÕı³£ÔËĞĞ¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. feed_time_ms è¶…è¿‡ time_out_msï¼ŒèŠ¯ç‰‡å¤ä½ï¼›
+ *   2. feed_time_ms å°äº time_out_msï¼Œç¨‹åºæ­£å¸¸è¿è¡Œã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_std_wdt.c src_std_wdt
  *
  * \internal
@@ -39,7 +39,7 @@
 #include "am_vdebug.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_std_wdt_entry (am_wdt_handle_t handle,
                          uint32_t        time_out_ms,
@@ -58,10 +58,10 @@ void demo_std_wdt_entry (am_wdt_handle_t handle,
 
     while (1) {
 
-        /* Î¹¹·²Ù×÷ */
+        /* å–‚ç‹—æ“ä½œ */
         am_wdt_feed(handle);
 
-        /* ÑÓÊ±£¬µ±ÑÓÊ±´óÓÚÎ¹¹·Ê±¼äÊ±,»á²úÉú¿´ÃÅ¹·ÊÂ¼ş£¬MCU ¸´Î» */
+        /* å»¶æ—¶ï¼Œå½“å»¶æ—¶å¤§äºå–‚ç‹—æ—¶é—´æ—¶,ä¼šäº§ç”Ÿçœ‹é—¨ç‹—äº‹ä»¶ï¼ŒMCU å¤ä½ */
         am_mdelay(feed_time_ms);
 
     }

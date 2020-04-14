@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief »ùÓÚ¹şÏ£±íµÄÎ¢ĞÍÊı¾İ¿â
+ * \brief åŸºäºå“ˆå¸Œè¡¨çš„å¾®å‹æ•°æ®åº“
  *
  *
  * \internal
@@ -34,7 +34,7 @@
 extern "C" {
 #endif
 
-/* ¼ÇÂ¼×î´ó³¤¶È£ºkey_size + value_size + sizeof(hash_kv_addr_t)*/
+/* è®°å½•æœ€å¤§é•¿åº¦ï¼škey_size + value_size + sizeof(hash_kv_addr_t)*/
 #define MAX_RECORD_SIZE  128
 
  
@@ -45,29 +45,29 @@ typedef int (*hash_func_t)(const void* data, size_t len);
 typedef int (*compare_func_t)(const void* a, const void* b, size_t len);
 typedef am_bool_t (*visit_func_t)(void* ctx, const void* data);
 
-/* »ùÓÚÎÄ¼ş¹şÏ£±íµÄÊı¾İ¿â*/
+/* åŸºäºæ–‡ä»¶å“ˆå¸Œè¡¨çš„æ•°æ®åº“*/
 typedef struct _db_micro_hash_kv_t {
-    FILE                       *fp;                  // ÎÄ¼ş¾ä±ú
-    const char                 *p_file_name;         // ÎÄ¼şÃû
-    hash_kv_func_t              pfn_hash;            // ¹şÏ£º¯Êı
-    uint32_t                    dirty;               // Êı¾İĞŞ¸Ä¼ÆÊıÆ÷
-    uint16_t                    size;                // ¹şÏ£±íµÄ´óĞ¡£¬Ö±½ÓÓ°ÏìĞÔÄÜ£¬Ò»°ãÉèÖÃÎªÔ¤¼Æ×î´ó¼ÇÂ¼ÊıµÄ1/4µ½1±¶¡£
-    uint16_t                    key_size;            // ¼üµÄ³¤¶È
-    uint16_t                    value_size;          // ÖµµÄ³¤¶È
-    hash_kv_addr_t              free_record_head;    // »ØÊÕÕ¾Á´±íµÄ±íÍ·
+    FILE                       *fp;                  // æ–‡ä»¶å¥æŸ„
+    const char                 *p_file_name;         // æ–‡ä»¶å
+    hash_kv_func_t              pfn_hash;            // å“ˆå¸Œå‡½æ•°
+    uint32_t                    dirty;               // æ•°æ®ä¿®æ”¹è®¡æ•°å™¨
+    uint16_t                    size;                // å“ˆå¸Œè¡¨çš„å¤§å°ï¼Œç›´æ¥å½±å“æ€§èƒ½ï¼Œä¸€èˆ¬è®¾ç½®ä¸ºé¢„è®¡æœ€å¤§è®°å½•æ•°çš„1/4åˆ°1å€ã€‚
+    uint16_t                    key_size;            // é”®çš„é•¿åº¦
+    uint16_t                    value_size;          // å€¼çš„é•¿åº¦
+    hash_kv_addr_t              free_record_head;    // å›æ”¶ç«™é“¾è¡¨çš„è¡¨å¤´
 } hash_kv_t;
 
 /**
- * \brief ³õÊ¼»¯ÎÄ¼ş¹şÏ£±í£¬Ö»ÓĞ³õÊ¼»¯Ö®ºó£¬²ÅÄÜµ÷ÓÃÆäËüº¯Êı¡£
+ * \brief åˆå§‹åŒ–æ–‡ä»¶å“ˆå¸Œè¡¨ï¼Œåªæœ‰åˆå§‹åŒ–ä¹‹åï¼Œæ‰èƒ½è°ƒç”¨å…¶å®ƒå‡½æ•°ã€‚
  *
- * \param[in] kv         £º Êı¾İ¿â¶ÔÏó
- * \param[in] size       £º ¹şÏ£±íµÄ´óĞ¡£¬Ö±½ÓÓ°ÏìĞÔÄÜ£¬Ò»°ãÉèÖÃÎªÔ¤¼Æ×î´ó¼ÇÂ¼ÊıµÄ1/4µ½1±¶¡£
- * \param[in] key_size   £º ¼üµÄ³¤¶È 
- * \param[in] value_size £º ÖµµÄ³¤¶È 
- * \param[in] hash       £º ¹şÏ£º¯Êı
- * \param[in] file_name  £ºÓÃÒÔ´æ´¢ ¹şÏ£Êı¾İ¿âÏà¹ØĞÅÏ¢µÄÎÄ¼şÃû
+ * \param[in] kv         ï¼š æ•°æ®åº“å¯¹è±¡
+ * \param[in] size       ï¼š å“ˆå¸Œè¡¨çš„å¤§å°ï¼Œç›´æ¥å½±å“æ€§èƒ½ï¼Œä¸€èˆ¬è®¾ç½®ä¸ºé¢„è®¡æœ€å¤§è®°å½•æ•°çš„1/4åˆ°1å€ã€‚
+ * \param[in] key_size   ï¼š é”®çš„é•¿åº¦ 
+ * \param[in] value_size ï¼š å€¼çš„é•¿åº¦ 
+ * \param[in] hash       ï¼š å“ˆå¸Œå‡½æ•°
+ * \param[in] file_name  ï¼šç”¨ä»¥å­˜å‚¨ å“ˆå¸Œæ•°æ®åº“ç›¸å…³ä¿¡æ¯çš„æ–‡ä»¶å
  *
- * \retval AW_OK  ³É¹¦
+ * \retval AW_OK  æˆåŠŸ
  */
 int hash_kv_init (hash_kv_t      *p_db,
                   uint16_t        size,
@@ -77,72 +77,72 @@ int hash_kv_init (hash_kv_t      *p_db,
                   const char     *file_name);
 
 /**
- * \brief Ìí¼ÓÒ»Ìõ¼ÇÂ¼£¨°üº¬ Key ºÍ  Value£©
+ * \brief æ·»åŠ ä¸€æ¡è®°å½•ï¼ˆåŒ…å« Key å’Œ  Valueï¼‰
  *
- * \param[in] p_db     £º Êı¾İ¿â¶ÔÏó
- * \param[in] key        £º ¼ü
- * \param[in] value      £º Öµ
+ * \param[in] p_db     ï¼š æ•°æ®åº“å¯¹è±¡
+ * \param[in] key        ï¼š é”®
+ * \param[in] value      ï¼š å€¼
  *
- * \retval AW_OK  ³É¹¦
+ * \retval AW_OK  æˆåŠŸ
  *
- * \note ÉèÖÃÊ±£¬Ó¦¸Ã±£Ö¤µ±Ç°¹Ø¼ü×ÖµÄ¼ÇÂ¼²»´æÔÚ
+ * \note è®¾ç½®æ—¶ï¼Œåº”è¯¥ä¿è¯å½“å‰å…³é”®å­—çš„è®°å½•ä¸å­˜åœ¨
  */
 int hash_kv_add (hash_kv_t  *p_db,
                  const void *key,
                  const void *value);
 
 /**
- * \brief »ñÈ¡Key/Value¡£
+ * \brief è·å–Key/Valueã€‚
  *
- * \param[in]  p_db    £º Êı¾İ¿â¶ÔÏó
- * \param[in]  key       £º ¼ü
- * \param[out] value     £º Öµ¡£ÓÉµ÷ÓÃÕß·ÖÅä²»Ğ¡ÓÚvalue_sizeµÄ¿Õ¼ä¡£
+ * \param[in]  p_db    ï¼š æ•°æ®åº“å¯¹è±¡
+ * \param[in]  key       ï¼š é”®
+ * \param[out] value     ï¼š å€¼ã€‚ç”±è°ƒç”¨è€…åˆ†é…ä¸å°äºvalue_sizeçš„ç©ºé—´ã€‚
  *
- * \retval AW_OK  ³É¹¦
- * \retval ÆäËüÖµ   Ê§°Ü
+ * \retval AW_OK  æˆåŠŸ
+ * \retval å…¶å®ƒå€¼   å¤±è´¥
  */
 int hash_kv_search (hash_kv_t     *p_db,
                     const void    *p_key,
                     void          *p_value);
 /**
- * \brief É¾³ıÖ¸¶¨µÄ  Key µÄ¼ÇÂ¼
+ * \brief åˆ é™¤æŒ‡å®šçš„  Key çš„è®°å½•
  *
- * \param[in] kv         £º Êı¾İ¿â¶ÔÏó
- * \param[in] key        £º ¼ü
+ * \param[in] kv         ï¼š æ•°æ®åº“å¯¹è±¡
+ * \param[in] key        ï¼š é”®
  *
- * \retval AW_OK  ³É¹¦
- * \retval ÆäËüÖµ   Ê§°Ü
+ * \retval AW_OK  æˆåŠŸ
+ * \retval å…¶å®ƒå€¼   å¤±è´¥
  */
 int hash_kv_del (hash_kv_t   *p_db,
                              const void              *p_key);
 
 /**
- * \brief ¸´Î»Êı¾İ¿â£¬½«É¾³ıËùÓĞÊı¾İ
+ * \brief å¤ä½æ•°æ®åº“ï¼Œå°†åˆ é™¤æ‰€æœ‰æ•°æ®
  *
- * \param[in] p_db £º Êı¾İ¿â¶ÔÏó
+ * \param[in] p_db ï¼š æ•°æ®åº“å¯¹è±¡
  *
- * \retval AW_OK  ³É¹¦
- * \retval ÆäËüÖµ   Ê§°Ü
+ * \retval AW_OK  æˆåŠŸ
+ * \retval å…¶å®ƒå€¼   å¤±è´¥
  */
 int hash_kv_reset (hash_kv_t *p_db);
 
 /**
- * \brief Èç¹ûÊı¾İ¿âÓĞĞŞ¸Ä£¬Í¬²½µ½¿éÉè±¸¡£
+ * \brief å¦‚æœæ•°æ®åº“æœ‰ä¿®æ”¹ï¼ŒåŒæ­¥åˆ°å—è®¾å¤‡ã€‚
  *
- * \param[in] p_db  £º Êı¾İ¿â¶ÔÏó
+ * \param[in] p_db  ï¼š æ•°æ®åº“å¯¹è±¡
  *
- * \retval AW_OK  ³É¹¦
- * \retval ÆäËüÖµ   Ê§°Ü
+ * \retval AW_OK  æˆåŠŸ
+ * \retval å…¶å®ƒå€¼   å¤±è´¥
  */
 int hash_kv_flush (hash_kv_t *p_db);
 
 /**
- * \brief ½â³õÊ¼»¯£¬¹Ø±Õ³õÊ¼»¯Ê±´ò¿ªµÄÎÄ¼ş£¬ÊÍ·ÅÏà¹Ø×ÊÔ´
+ * \brief è§£åˆå§‹åŒ–ï¼Œå…³é—­åˆå§‹åŒ–æ—¶æ‰“å¼€çš„æ–‡ä»¶ï¼Œé‡Šæ”¾ç›¸å…³èµ„æº
  *
- * \param[in] p_db £º Êı¾İ¿â¶ÔÏó
+ * \param[in] p_db ï¼š æ•°æ®åº“å¯¹è±¡
  *
- * \retval AW_OK  ³É¹¦
- * \retval ÆäËüÖµ   Ê§°Ü
+ * \retval AW_OK  æˆåŠŸ
+ * \retval å…¶å®ƒå€¼   å¤±è´¥
  */
 int hash_kv_deinit (hash_kv_t *p_db);
 

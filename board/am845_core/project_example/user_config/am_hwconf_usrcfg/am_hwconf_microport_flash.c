@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief MicroPort-FLASH(MX25xx) ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief MicroPort-FLASH(MX25xx) ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_microport_flash.c
  *
  * \internal
@@ -34,23 +34,23 @@
  * @{
  */
 
-/** \brief MicroPort-FLASH Éè±¸ĞÅÏ¢ */
+/** \brief MicroPort-FLASH è®¾å¤‡ä¿¡æ¯ */
 am_local am_const am_mx25xx_devinfo_t __g_microport_flash_devinfo = {
-    AM_SPI_MODE_0,         /* Ê¹ÓÃÄ£Ê½ 0 */
-    PIO0_1,                /* Æ¬Ñ¡Òı½Å */
-    30000000,              /* ×ÜÏßËÙÂÊ */
-    AM_MX25XX_MX25L1606    /* Æ÷¼şĞÍºÅ */
+    AM_SPI_MODE_0,         /* ä½¿ç”¨æ¨¡å¼ 0 */
+    PIO0_1,                /* ç‰‡é€‰å¼•è„š */
+    30000000,              /* æ€»çº¿é€Ÿç‡ */
+    AM_MX25XX_MX25L1606    /* å™¨ä»¶å‹å· */
 };
 
 /*******************************************************************************
-  MicroPort-FLASH(MX25xx) ÊµÀı³õÊ¼»¯
+  MicroPort-FLASH(MX25xx) å®ä¾‹åˆå§‹åŒ–
 *******************************************************************************/
 
-/** \brief MicroPort-FLASH Éè±¸ÊµÀı */
+/** \brief MicroPort-FLASH è®¾å¤‡å®ä¾‹ */
 am_local am_mx25xx_dev_t __g_microport_flash_dev;
 
 /**
- * \brief MicroPort-FLASH ÊµÀı³õÊ¼»¯
+ * \brief MicroPort-FLASH å®ä¾‹åˆå§‹åŒ–
  */
 am_mx25xx_handle_t am_microport_flash_inst_init (void)
 {
@@ -62,14 +62,14 @@ am_mx25xx_handle_t am_microport_flash_inst_init (void)
 }
 
 /*******************************************************************************
-  MTD ÊµÀı³õÊ¼»¯
+  MTD å®ä¾‹åˆå§‹åŒ–
 *******************************************************************************/
 
-/** \brief MicroPort-FLASH (MTD) Éè±¸ÊµÀı */
+/** \brief MicroPort-FLASH (MTD) è®¾å¤‡å®ä¾‹ */
 am_local am_mtd_serv_t __g_microport_flash_mtd_serv;
 
 /**
- * \brief MicroPort-FLASH ÊµÀı³õÊ¼»¯£¨Ê¹ÓÃ MTD ±ê×¼½Ó¿Ú£©
+ * \brief MicroPort-FLASH å®ä¾‹åˆå§‹åŒ–ï¼ˆä½¿ç”¨ MTD æ ‡å‡†æ¥å£ï¼‰
  */
 am_mtd_handle_t am_microport_flash_mtd_inst_init (void)
 {
@@ -81,37 +81,37 @@ am_mtd_handle_t am_microport_flash_mtd_inst_init (void)
 }
 
 /*******************************************************************************
-  FTL ÊµÀı³õÊ¼»¯
+  FTL å®ä¾‹åˆå§‹åŒ–
 *******************************************************************************/
 
-#define __FTL_LOGIC_BLOCK_SZIE    256          /**< \brief Âß¼­¿é´óĞ¡ */
-#define __FTL_LOG_BLOCK_NUM       2            /**< \brief ÈÕÖ¾¿é¸öÊı£¨2~10£© */
+#define __FTL_LOGIC_BLOCK_SZIE    256          /**< \brief é€»è¾‘å—å¤§å° */
+#define __FTL_LOG_BLOCK_NUM       2            /**< \brief æ—¥å¿—å—ä¸ªæ•°ï¼ˆ2~10ï¼‰ */
 
-#define __CHIP_SZIE          (2 * 1024 * 1024) /**< \brief ×ÜÈİÁ¿ */
-#define __ERASE_UNIT_SZIE    4096              /**< \brief ×îĞ¡²Á³ıµ¥Ôª´óĞ¡ */
+#define __CHIP_SZIE          (2 * 1024 * 1024) /**< \brief æ€»å®¹é‡ */
+#define __ERASE_UNIT_SZIE    4096              /**< \brief æœ€å°æ“¦é™¤å•å…ƒå¤§å° */
 
-/** \brief MicroPort-FLASH (FTL) Éè±¸ÊµÀı */
+/** \brief MicroPort-FLASH (FTL) è®¾å¤‡å®ä¾‹ */
 am_local am_ftl_serv_t __g_microport_flash_ftl_serv;
 
 /**
- * \brief MicroPort-FLASH RAM »º³åÇø¶¨Òå
+ * \brief MicroPort-FLASH RAM ç¼“å†²åŒºå®šä¹‰
  */
 am_local uint8_t __g_ftl_buf[AM_FTL_RAM_SIZE_GET(__CHIP_SZIE,
                                                  __ERASE_UNIT_SZIE,
                                                  __FTL_LOGIC_BLOCK_SZIE,
                                                  __FTL_LOG_BLOCK_NUM)];
 
-/** \brief MicroPort-FLASH FTL ĞÅÏ¢ */
+/** \brief MicroPort-FLASH FTL ä¿¡æ¯ */
 am_local am_const am_ftl_info_t __g_ftl_info = {
-    __g_ftl_buf,               /* RAM »º³åÇø */
-    sizeof(__g_ftl_buf),       /* RAM »º³åÇø´óĞ¡ */
-    __FTL_LOGIC_BLOCK_SZIE,    /* Âß¼­¿éµÄ´óĞ¡ */
-    __FTL_LOG_BLOCK_NUM,       /* ÈÕÖ¾¿é¸öÊı */
-    0                          /* ±£ÁôµÄÎïÀí¿é£¨²Á³ıµ¥Ôª£©¸öÊı */
+    __g_ftl_buf,               /* RAM ç¼“å†²åŒº */
+    sizeof(__g_ftl_buf),       /* RAM ç¼“å†²åŒºå¤§å° */
+    __FTL_LOGIC_BLOCK_SZIE,    /* é€»è¾‘å—çš„å¤§å° */
+    __FTL_LOG_BLOCK_NUM,       /* æ—¥å¿—å—ä¸ªæ•° */
+    0                          /* ä¿ç•™çš„ç‰©ç†å—ï¼ˆæ“¦é™¤å•å…ƒï¼‰ä¸ªæ•° */
 };
 
 /**
- * \brief MicroPort-FLASH ÊµÀı³õÊ¼»¯£¨Ê¹ÓÃ FTL ±ê×¼½Ó¿Ú£©
+ * \brief MicroPort-FLASH å®ä¾‹åˆå§‹åŒ–ï¼ˆä½¿ç”¨ FTL æ ‡å‡†æ¥å£ï¼‰
  */
 am_ftl_handle_t am_microport_flash_ftl_inst_init (void)
 {

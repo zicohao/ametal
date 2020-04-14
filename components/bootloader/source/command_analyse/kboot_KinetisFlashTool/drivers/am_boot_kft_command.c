@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief bootloader kboot KinetisFlashTool ÃüÁî½âÎöÄ£¿éÊµÏÖ
+ * \brief bootloader kboot KinetisFlashTool å‘½ä»¤è§£ææ¨¡å—å®ç°
  *
- * Ö÷ÒªÊÇÍ¨¹ı×´Ì¬½âÎöÉÏÎ»»úKinetisFlashTool·¢ËÍ¹ıÀ´µÄµÄpacket£¬packet°üº¬ÃüÁî£¬Í¨¹ıÃüÁîÖ´ĞĞÏàÓ¦µÄhandleº¯Êı
+ * ä¸»è¦æ˜¯é€šè¿‡çŠ¶æ€è§£æä¸Šä½æœºKinetisFlashToolå‘é€è¿‡æ¥çš„çš„packetï¼ŒpacketåŒ…å«å‘½ä»¤ï¼Œé€šè¿‡å‘½ä»¤æ‰§è¡Œç›¸åº”çš„handleå‡½æ•°
  *
  * \internal
  * \par Modification history
@@ -33,14 +33,14 @@
 #include "am_boot.h"
 
 /**
- * \brief ×´Ì¬»ú
+ * \brief çŠ¶æ€æœº
  */
 static int32_t __handle_command(am_boot_kft_command_dev_t *p_dev,uint8_t *p_packet, uint32_t packet_length);
 static int32_t __handle_data(am_boot_kft_command_dev_t *p_dev,am_bool_t *p_has_more_data);
 static int32_t __command_pump(void *p_arg);
 
 /**
- * \name ÃüÁî´¦Àíº¯Êı
+ * \name å‘½ä»¤å¤„ç†å‡½æ•°
  * @{
  */
 void handle_reset(am_boot_kft_command_dev_t *p_dev, uint8_t *p_packet, uint32_t packet_length);
@@ -57,7 +57,7 @@ void handle_write_memory(am_boot_kft_command_dev_t *p_dev, uint8_t *p_packet, ui
 /** @} */
 
 /**
- * \name ÃüÁîÏìÓ¦º¯Êı
+ * \name å‘½ä»¤å“åº”å‡½æ•°
  * @{
  */
 void send_read_memory_response(am_boot_kft_command_dev_t *p_dev, uint32_t command_status, uint32_t length);
@@ -68,7 +68,7 @@ void send_generic_response(am_boot_kft_command_dev_t *p_dev, uint32_t command_st
 /** @} */
 
 /**
- * \brief Êı¾İ½×¶Î
+ * \brief æ•°æ®é˜¶æ®µ
  */
 void    reset_data_phase(am_boot_kft_command_dev_t *p_dev);
 void    finalize_data_phase(am_boot_kft_command_dev_t *p_dev, int32_t status);
@@ -76,7 +76,7 @@ int32_t handle_data_producer(am_boot_kft_command_dev_t *p_dev, am_bool_t *p_has_
 int32_t handle_data_consumer(am_boot_kft_command_dev_t *p_dev, am_bool_t *p_has_more_data);
 
 /**
- * \brief ÃüÁî´¦Àí»Øµ÷º¯Êı±í
+ * \brief å‘½ä»¤å¤„ç†å›è°ƒå‡½æ•°è¡¨
  */
 static am_boot_kft_command_handler_entry_t __g_command_handler_table[] = {
     { NULL , NULL },                               // KFT_CommandTag_FlashEraseAll = 0x01
@@ -122,7 +122,7 @@ static struct am_boot_kft_command_funcs __g_command_funcs = {
 static am_boot_kft_command_dev_t __g_command_dev;
 
 /**
- * \brief bootloader ÃüÁîÄ£¿é³õÊ¼»¯
+ * \brief bootloader å‘½ä»¤æ¨¡å—åˆå§‹åŒ–
 */
 am_boot_kft_command_handle_t am_boot_kft_command_init(am_boot_kft_packet_handle_t   packet_handle,
                                                       am_boot_mem_handle_t          memory_handle,
@@ -143,9 +143,9 @@ am_boot_kft_command_handle_t am_boot_kft_command_init(am_boot_kft_packet_handle_
 }
 
 /**
- * \brief  Ö´ĞĞÃüÁî×´Ì¬»ú
+ * \brief  æ‰§è¡Œå‘½ä»¤çŠ¶æ€æœº
  *
- * \note Ö´ĞĞÒ»´ÎÃüÁî»òÕßÊı¾İµÄ´«Êä
+ * \note æ‰§è¡Œä¸€æ¬¡å‘½ä»¤æˆ–è€…æ•°æ®çš„ä¼ è¾“
 */
 int32_t __command_pump(void *p_arg)
 {
@@ -201,9 +201,9 @@ int32_t __command_pump(void *p_arg)
 }
 
 /**
- * \brief Ñ°ÕÒÃüÁî´¦Àíº¯Êı
+ * \brief å¯»æ‰¾å‘½ä»¤å¤„ç†å‡½æ•°
  *
- * \note Èç¹ûÃ»ÓĞÃüÁî´¦Àíº¯Êı·µ»ØNULL
+ * \note å¦‚æœæ²¡æœ‰å‘½ä»¤å¤„ç†å‡½æ•°è¿”å›NULL
 */
 static const am_boot_kft_command_handler_entry_t *find_entry(
     am_boot_kft_command_dev_t *p_dev,uint8_t tag)
@@ -218,7 +218,7 @@ static const am_boot_kft_command_handler_entry_t *find_entry(
 }
 
 /**
- * \brief ´¦ÀíÃüÁî
+ * \brief å¤„ç†å‘½ä»¤
 */
 static int32_t __handle_command(am_boot_kft_command_dev_t *p_dev,uint8_t *p_packet, uint32_t packet_length)
 {
@@ -244,7 +244,7 @@ static int32_t __handle_command(am_boot_kft_command_dev_t *p_dev,uint8_t *p_pack
 }
 
 /**
- * \brief ´¦ÀíÊı¾İ
+ * \brief å¤„ç†æ•°æ®
 */
 static int32_t __handle_data(am_boot_kft_command_dev_t *p_dev,am_bool_t *p_has_more_data)
 {
@@ -265,7 +265,7 @@ static int32_t __handle_data(am_boot_kft_command_dev_t *p_dev,am_bool_t *p_has_m
 ////////////////////////////////////////////////////////////////////////////////
 
 /**
- * \brief ÖØÆôÃüÁî
+ * \brief é‡å¯å‘½ä»¤
 */
 void handle_reset(am_boot_kft_command_dev_t *p_dev,uint8_t *p_packet, uint32_t packet_length)
 {
@@ -289,7 +289,7 @@ void reset_data_phase(am_boot_kft_command_dev_t *p_dev)
 }
 
 /**
- * \brief flash²Á³ı²¿·ÖµÄÃüÁî´¦Àí
+ * \brief flashæ“¦é™¤éƒ¨åˆ†çš„å‘½ä»¤å¤„ç†
 */
 void handle_flash_erase_region(am_boot_kft_command_dev_t *p_dev,
                                uint8_t                   *p_packet,
@@ -308,7 +308,7 @@ void handle_flash_erase_region(am_boot_kft_command_dev_t *p_dev,
 }
 
 /**
- * \brief BootLoaderÊôĞÔ»ñÈ¡ÃüÁî´¦Àí
+ * \brief BootLoaderå±æ€§è·å–å‘½ä»¤å¤„ç†
  *
 */
 void handle_get_property(am_boot_kft_command_dev_t *p_dev,uint8_t *p_packet, uint32_t packet_length)
@@ -334,7 +334,7 @@ void handle_get_property(am_boot_kft_command_dev_t *p_dev,uint8_t *p_packet, uin
 
 
 /**
- * \brief BootLoaderÊôĞÔÉèÖÃÃüÁî´¦Àí
+ * \brief BootLoaderå±æ€§è®¾ç½®å‘½ä»¤å¤„ç†
  *
 */
 void handle_set_property(am_boot_kft_command_dev_t *p_dev,uint8_t *p_packet, uint32_t packet_length)
@@ -351,7 +351,7 @@ void handle_set_property(am_boot_kft_command_dev_t *p_dev,uint8_t *p_packet, uin
 }
 
 /**
- * \brief Ğ´ÄÚ´æµÄÃüÁî´¦Àí
+ * \brief å†™å†…å­˜çš„å‘½ä»¤å¤„ç†
  *
 */
 void handle_write_memory(am_boot_kft_command_dev_t *p_dev,uint8_t *p_packet, uint32_t packet_length)
@@ -369,7 +369,7 @@ void handle_write_memory(am_boot_kft_command_dev_t *p_dev,uint8_t *p_packet, uin
 }
 
 /**
- * \brief ¶ÁÄÚ´æµÄÃüÁî´¦Àí
+ * \brief è¯»å†…å­˜çš„å‘½ä»¤å¤„ç†
 */
 void handle_read_memory(am_boot_kft_command_dev_t *p_dev,uint8_t *p_packet, uint32_t packet_length)
 {
@@ -384,7 +384,7 @@ void handle_read_memory(am_boot_kft_command_dev_t *p_dev,uint8_t *p_packet, uint
 }
 
 /**
- * \brief Íê³ÉÊı¾İ½×¶Î£¬Ñ¡ÔñĞÔ·¢ËÍÒ»¸ö»ØÓ¦
+ * \brief å®Œæˆæ•°æ®é˜¶æ®µï¼Œé€‰æ‹©æ€§å‘é€ä¸€ä¸ªå›åº”
 */
 void finalize_data_phase(am_boot_kft_command_dev_t *p_dev,int32_t status)
 {
@@ -402,7 +402,7 @@ void finalize_data_phase(am_boot_kft_command_dev_t *p_dev,int32_t status)
 }
 
 /**
- * \brief ´¦ÀíÊı¾İµÄÊı¾İ½×¶Î£¨´ÓÖ÷»ú¶ÁÈ¡£©
+ * \brief å¤„ç†æ•°æ®çš„æ•°æ®é˜¶æ®µï¼ˆä»ä¸»æœºè¯»å–ï¼‰
 */
 int32_t handle_data_consumer(am_boot_kft_command_dev_t *p_dev,am_bool_t *p_has_more_data)
 {
@@ -470,7 +470,7 @@ int32_t handle_data_consumer(am_boot_kft_command_dev_t *p_dev,am_bool_t *p_has_m
 }
 
 /**
- * \brief ´¦ÀíÊı¾İÉú³ÉÆ÷µÄÊı¾İ½×¶Î£¨·¢ËÍµ½Ö÷»ú£©
+ * \brief å¤„ç†æ•°æ®ç”Ÿæˆå™¨çš„æ•°æ®é˜¶æ®µï¼ˆå‘é€åˆ°ä¸»æœºï¼‰
 */
 int32_t handle_data_producer(am_boot_kft_command_dev_t *p_dev, am_bool_t *p_has_more_data)
 {
@@ -549,7 +549,7 @@ int32_t handle_data_producer(am_boot_kft_command_dev_t *p_dev, am_bool_t *p_has_
 
 
 /**
- * \brief Ìî³äÄÚ´æÃüÁî´¦Àí³ÌĞò
+ * \brief å¡«å……å†…å­˜å‘½ä»¤å¤„ç†ç¨‹åº
  *
 */
 void handle_fill_memory(am_boot_kft_command_dev_t *p_dev, uint8_t *p_packet, uint32_t packet_Length)
@@ -561,7 +561,7 @@ void handle_fill_memory(am_boot_kft_command_dev_t *p_dev, uint8_t *p_packet, uin
 
 #if 0
 /**
- * \brief Ö´ĞĞÃüÁî´¦Àí³ÌĞò
+ * \brief æ‰§è¡Œå‘½ä»¤å¤„ç†ç¨‹åº
 */
 void handle_execute(am_boot_kft_command_dev_t *p_dev, uint8_t *p_packet, uint32_t packet_length)
 {
@@ -616,7 +616,7 @@ void handle_execute(am_boot_kft_command_dev_t *p_dev, uint8_t *p_packet, uint32_
 
 
 /**
- * \brief µ÷ÓÃÃüÁî´¦Àí³ÌĞò
+ * \brief è°ƒç”¨å‘½ä»¤å¤„ç†ç¨‹åº
  *
 */
 void handle_call(am_boot_kft_command_dev_t *p_dev, uint8_t *p_packet, uint32_t packet_length)
@@ -639,7 +639,7 @@ void handle_call(am_boot_kft_command_dev_t *p_dev, uint8_t *p_packet, uint32_t p
 
 
 /**
- * \brief flash¶Á×ÊÔ´ÃüÁî´¦Àí³ÌĞò
+ * \brief flashè¯»èµ„æºå‘½ä»¤å¤„ç†ç¨‹åº
 */
 void handle_flash_read_resource(am_boot_kft_command_dev_t *p_dev,
                                 uint8_t                   *p_packet,
@@ -660,7 +660,7 @@ void handle_flash_read_resource(am_boot_kft_command_dev_t *p_dev,
 
 
 /**
- * \brief ·¢ËÍ»ñÈ¡ÊôĞÔµÄ»ØÓ¦
+ * \brief å‘é€è·å–å±æ€§çš„å›åº”
 */
 void send_get_property_response(am_boot_kft_command_dev_t *p_dev,
                                 uint32_t                   command_status,
@@ -693,7 +693,7 @@ void send_get_property_response(am_boot_kft_command_dev_t *p_dev,
 }
 
 /**
- * \brief ·¢ËÍÒ»¸ö¶ÁÄÚ´æµÄ»ØÓ¦°ü
+ * \brief å‘é€ä¸€ä¸ªè¯»å†…å­˜çš„å›åº”åŒ…
 */
 void send_read_memory_response(am_boot_kft_command_dev_t *p_dev,
                                uint32_t                   command_status,
@@ -718,7 +718,7 @@ void send_read_memory_response(am_boot_kft_command_dev_t *p_dev,
 }
 
 /**
- * \brief ·¢ËÍÒ»¸öflash¶ÁÒ»´ÎµÄ»ØÓ¦°ü
+ * \brief å‘é€ä¸€ä¸ªflashè¯»ä¸€æ¬¡çš„å›åº”åŒ…
 */
 void send_flash_read_once_response(am_boot_kft_command_dev_t *p_dev,
                                    uint32_t                   command_status,
@@ -757,7 +757,7 @@ void send_flash_read_once_response(am_boot_kft_command_dev_t *p_dev,
 }
 
 /**
- * \brief ·¢ËÍ flash ¶Á×ÊÔ´µÄ»ØÓ¦
+ * \brief å‘é€ flash è¯»èµ„æºçš„å›åº”
 */
 void send_flash_read_resource_response(am_boot_kft_command_dev_t *p_dev, uint32_t command_status, uint32_t length)
 {
@@ -781,7 +781,7 @@ void send_flash_read_resource_response(am_boot_kft_command_dev_t *p_dev, uint32_
 }
 
 /**
- * \brief ·¢ËÍÒ»¸öÆÕÍ¨»ØÓ¦
+ * \brief å‘é€ä¸€ä¸ªæ™®é€šå›åº”
 */
 void send_generic_response(am_boot_kft_command_dev_t *p_dev, uint32_t command_status, uint32_t command_tag)
 {

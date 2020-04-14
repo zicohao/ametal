@@ -14,11 +14,11 @@
  * \file
  * \brief WWDT drivers implementation
  *
- * 1. ¿´ÃÅ¹·µÄÅäÖÃ¼Ä´æÆ÷Ö»ÄÜĞ´Ò»´Î£¬ËùÒÔÔÚÊ¹ÓÃKS16XXĞ¾Æ¬Ê±£¬µ±²»ĞèÒªÊ¹
- *    ÓÃ¿´ÃÅ¹·ÍâÉèÊ±½«¹¤³ÌÅäÖÃÎÄ¼şÀïµÄ¿´ÃÅ¹·¿ª¹ØºêÖÃÎª0£¬ÏµÍ³½«ÔÚ°å¼¶³õ
- *    Ê¼»¯Ê±¹Ø±Õ¿´ÃÅ¹·£¬µ±ĞèÒªÊ¹ÓÃ¿´ÃÅ¹·ÍâÉèÊ±£¬½«¿´ÃÅ¹·¿ª¹ØºêÖÃ1£¬ÏµÍ³½«
- *    ÔÚ¿´ÃÅ¹·Ê¹ÄÜº¯ÊıÖĞÅäÖÃ¿´ÃÅ¹·£¬Ê¹Ö®Õı³£¹¤×÷¡£
- * 2. ¿´ÃÅ¹·µÄ³¬Ê±Ê±¼äÖ»ÄÜÉèÖÃÎª32ms,256ms,1024msÕâÈı¸öÊ±¼äÖĞµÄÒ»¸ö¡£
+ * 1. çœ‹é—¨ç‹—çš„é…ç½®å¯„å­˜å™¨åªèƒ½å†™ä¸€æ¬¡ï¼Œæ‰€ä»¥åœ¨ä½¿ç”¨KS16XXèŠ¯ç‰‡æ—¶ï¼Œå½“ä¸éœ€è¦ä½¿
+ *    ç”¨çœ‹é—¨ç‹—å¤–è®¾æ—¶å°†å·¥ç¨‹é…ç½®æ–‡ä»¶é‡Œçš„çœ‹é—¨ç‹—å¼€å…³å®ç½®ä¸º0ï¼Œç³»ç»Ÿå°†åœ¨æ¿çº§åˆ
+ *    å§‹åŒ–æ—¶å…³é—­çœ‹é—¨ç‹—ï¼Œå½“éœ€è¦ä½¿ç”¨çœ‹é—¨ç‹—å¤–è®¾æ—¶ï¼Œå°†çœ‹é—¨ç‹—å¼€å…³å®ç½®1ï¼Œç³»ç»Ÿå°†
+ *    åœ¨çœ‹é—¨ç‹—ä½¿èƒ½å‡½æ•°ä¸­é…ç½®çœ‹é—¨ç‹—ï¼Œä½¿ä¹‹æ­£å¸¸å·¥ä½œã€‚
+ * 2. çœ‹é—¨ç‹—çš„è¶…æ—¶æ—¶é—´åªèƒ½è®¾ç½®ä¸º32ms,256ms,1024msè¿™ä¸‰ä¸ªæ—¶é—´ä¸­çš„ä¸€ä¸ªã€‚
  *
  * \internal
  * \par Modification history
@@ -46,16 +46,16 @@ static const struct am_wdt_drv_funcs __g_wwdt_drv_funcs = {
 
 static int __wdt_info_get(void *p_drv, am_wdt_info_t *p_info)
 {
-    p_info->min_timeout_ms = 32;    /* 2µÄ5´Î·½  LPO */
-    p_info->max_timeout_ms = 1024;  /* 2µÄ10´Î·½ LPO */
+    p_info->min_timeout_ms = 32;    /* 2çš„5æ¬¡æ–¹  LPO */
+    p_info->max_timeout_ms = 1024;  /* 2çš„10æ¬¡æ–¹ LPO */
 
     return AM_OK;
 }
 
 static int __wdt_feed(void *p_drv)
 {
-    amhw_kl26_sim_srvcop_set(0x55);     /* Î¹¹·£¬ÏÈĞ´0x55 */
-    amhw_kl26_sim_srvcop_set(0XAA);     /* Î¹¹·£¬ÔÙĞ´0xAA */
+    amhw_kl26_sim_srvcop_set(0x55);     /* å–‚ç‹—ï¼Œå…ˆå†™0x55 */
+    amhw_kl26_sim_srvcop_set(0XAA);     /* å–‚ç‹—ï¼Œå†å†™0xAA */
 
     return AM_OK;
 }
@@ -63,16 +63,16 @@ static int __wdt_feed(void *p_drv)
 static int __wdt_enable(void *p_drv, uint32_t timeout_ms)
 {
     if (timeout_ms == 32) {
-        timeout_ms = KL26_SIM_COP_TIMOUT_VALUE1;   /* 2µÄ5´Î·½LPO 32ms*/
+        timeout_ms = KL26_SIM_COP_TIMOUT_VALUE1;   /* 2çš„5æ¬¡æ–¹LPO 32ms*/
     } else if (timeout_ms == 256) {
-        timeout_ms = KL26_SIM_COP_TIMOUT_VALUE2;   /* 2µÄ8´Î·½LPO 256ms*/
+        timeout_ms = KL26_SIM_COP_TIMOUT_VALUE2;   /* 2çš„8æ¬¡æ–¹LPO 256ms*/
     } else if (timeout_ms == 1024) {
-        timeout_ms = KL26_SIM_COP_TIMOUT_VALUE3;   /* 2µÄ10´Î·½LPO 1024ms*/
+        timeout_ms = KL26_SIM_COP_TIMOUT_VALUE3;   /* 2çš„10æ¬¡æ–¹LPO 1024ms*/
     } else {
         return -AM_EINVAL;
     }
     
-    /* ÅäÖÃÎªÆÕÍ¨Ä£Ê½£¬Ê±ÖÓÎªÄÚ²¿1KHZ */
+    /* é…ç½®ä¸ºæ™®é€šæ¨¡å¼ï¼Œæ—¶é’Ÿä¸ºå†…éƒ¨1KHZ */
     amhw_kl26_sim_cop_cfg(KL26_SIM_COP_MODE_NORMAL,
                           KL26_SIM_COP_CLK_INTERNAL,
                           (amhw_kl26_sim_cop_timeout_t)timeout_ms);
@@ -99,7 +99,7 @@ void am_kl26_wdt_deinit (am_wdt_handle_t handle)
     /* The WWDT can not deinit */
     am_kl26_wdt_dev_t *p_dev = (am_kl26_wdt_dev_t *)handle;
 
-    /* ½ûÄÜÈí¼ş¿´ÃÅ¹· */
+    /* ç¦èƒ½è½¯ä»¶çœ‹é—¨ç‹— */
     amhw_kl26_sim_cop_cfg(KL26_SIM_COP_MODE_NORMAL,
                           KL26_SIM_COP_CLK_INTERNAL,
                           KL26_SIM_COP_DISABLED);

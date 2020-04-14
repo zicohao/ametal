@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief AM824-Core ���İ�
+ * \brief AM824-Core 核心板
  *
  * \internal
  * \par Modification history
@@ -35,17 +35,17 @@ extern "C" {
 #include "am_bsp_delay_timer.h"
 #include "am_prj_config.h"
 
-/** \brief LED ���� ID �� */
+/** \brief LED 索引 ID 号 */
 #define LED0          0
 #define LED1          1
 
 #if (AM_CFG_BUZZER_ENABLE == 1)
 
 /**
- * \brief ������ʹ�õĶ�ʱ���� handle
+ * \brief 蜂鸣器使用的定时器的 handle
  *
- * ��ʹ�÷�����ʱ��Ĭ�Ͻ�ʹ�� SCT �� OUT1 ��� PWM ���Σ�����Ѿ��� SCT ��ʼ��Ϊ
- * PWM ���ܣ����� SCT ���������· PWM����˿���ʹ�ø� handle���Ա�ʹ������ 5 · PWM
+ * 当使用蜂鸣器时，默认将使用 SCT 的 OUT1 输出 PWM 波形，因此已经将 SCT 初始化为
+ * PWM 功能，由于 SCT 可以输出六路 PWM，因此可以使用该 handle，以便使用其它 5 路 PWM
  */
 extern am_pwm_handle_t g_buzzer_pwm_handle;
 #endif
@@ -53,22 +53,22 @@ extern am_pwm_handle_t g_buzzer_pwm_handle;
 #if (AM_CFG_SOFTIMER_ENABLE == 1)
 
 /**
- * \brief ϵͳ�δ�ʹ�õĶ�ʱ���� handle
+ * \brief 系统滴答使用的定时器的 handle
  *
- * ��ʹ��ϵͳ�δ�ʱ��Ĭ��ʹ�� MRT ��ͨ�� 0 ��Ϊ������ʱ��Ԫ������Ѿ��� MRT ��ʼ��Ϊ
- * ��ʱ�����ܣ����� MRT ����֧�� 4 ·��ʱ����˿���ʹ�ø� handle���Ա�ʹ������ 3 ·
- * ��ʱͨ��
+ * 当使用系统滴答时，默认使用 MRT 的通道 0 作为基础定时单元，因此已经将 MRT 初始化为
+ * 定时器功能，由于 MRT 可以支持 4 路定时，因此可以使用该 handle，以便使用其它 3 路
+ * 定时通道
  */
 extern am_timer_handle_t g_system_tick_timer_handle;
 #endif
 
 /**
- * \brief �弶��ʼ��
+ * \brief 板级初始化
  *
- * \return ��
+ * \return 无
  *
- * \note �ú������ʼ����ʱ������LED�����Դ��ڡ�C �⡢ϵͳ�δ�������ʱ������������
- *       �������ж��ӳٴ���
+ * \note 该函数会初始化延时函数、LED、调试串口、C 库、系统滴答、软件定时器、蜂鸣器、
+ *       按键和中断延迟处理
  */
 void am_board_init (void);
 

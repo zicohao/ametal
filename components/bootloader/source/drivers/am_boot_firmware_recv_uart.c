@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ¹Ì¼þ½ÓÊÕ£¨´®¿ÚÇý¶¯£©
+ * \brief å›ºä»¶æŽ¥æ”¶ï¼ˆä¸²å£é©±åŠ¨ï¼‰
  *
  * \internal
  * \par Modification history
@@ -27,24 +27,24 @@
 #include "am_softimer.h"
 #include "am_boot_firmware_recv_uart.h"
 
-/** \brief ´®¿ÚÊý¾Ý½ÓÊÕ»º´æ´óÐ¡  */
+/** \brief ä¸²å£æ•°æ®æŽ¥æ”¶ç¼“å­˜å¤§å°  */
 #define UART_CALLBACK_BUF_SIZE      512
 
 #define READ_BUF_SIZE               4
 
-/** \brief ¹Ì¼þ´«Êä³¬Ê±±êÖ¾ */
+/** \brief å›ºä»¶ä¼ è¾“è¶…æ—¶æ ‡å¿— */
 volatile static uint8_t firmware_timeout = 0;
 
 volatile static uint32_t write_offset = 0, read_offset = 0;
 
-/** \brief bootloaderÆô¶¯ÑÓÊ±Èí¼þ¶¨Ê±Æ÷½á¹¹Ìå */
+/** \brief bootloaderå¯åŠ¨å»¶æ—¶è½¯ä»¶å®šæ—¶å™¨ç»“æž„ä½“ */
 static am_softimer_t timeout_timer;
 
-/** \brief ´®¿ÚÖÐ¶Ï»Øµ÷Êý¾Ý½ÓÊÕ»º´æ */
+/** \brief ä¸²å£ä¸­æ–­å›žè°ƒæ•°æ®æŽ¥æ”¶ç¼“å­˜ */
 static uint8_t  uart_callback_buffer[UART_CALLBACK_BUF_SIZE] = {0};
 
 /**
- * \brief ¶¨Ê±Æ÷»Øµ÷º¯Êý
+ * \brief å®šæ—¶å™¨å›žè°ƒå‡½æ•°
  */
 static void __timer_handle(void *p_arg)
 {
@@ -58,7 +58,7 @@ am_local void __uart_callback(void *p_arg, char inchar)
 }
 
 /**
- * \brief  ´Ó´®¿Ú½ÓÊÕ»º³åÇø¶ÁÊý¾Ý
+ * \brief  ä»Žä¸²å£æŽ¥æ”¶ç¼“å†²åŒºè¯»æ•°æ®
  */
 static int __read_data(uint8_t *p_buffer, uint32_t byte_count)
 {
@@ -92,16 +92,16 @@ int __firmware_recv_uart(void *p_drv)
         return AM_ERROR;
     }
 
-    /* Ê¹ÄÜ´®¿ÚÖÐ¶ÏÄ£Ê½  */
+    /* ä½¿èƒ½ä¸²å£ä¸­æ–­æ¨¡å¼  */
     am_uart_ioctl(p_dev->uart_handle, AM_UART_MODE_SET, (void *)AM_UART_MODE_INT);
-    /* ×¢²á·¢ËÍ»Øµ÷º¯Êý  */
+    /* æ³¨å†Œå‘é€å›žè°ƒå‡½æ•°  */
     am_uart_callback_set(p_dev->uart_handle, AM_UART_CALLBACK_RXCHAR_PUT, __uart_callback, NULL);
 
-    /* Æô¶¯ÑÓÊ±»Øµ÷¶¨Ê±Æ÷³õÊ¼»¯  */
+    /* å¯åŠ¨å»¶æ—¶å›žè°ƒå®šæ—¶å™¨åˆå§‹åŒ–  */
     am_softimer_init(&timeout_timer, __timer_handle, NULL);
 
     am_kprintf("ready for firmware\r\n");
-    /* ´Ó´®¿ÚÊý¾Ý»º³åÇøÖÐ¶ÁÈ¡¹Ì¼þµÄÍ·²¿ÐÅÏ¢  */
+    /* ä»Žä¸²å£æ•°æ®ç¼“å†²åŒºä¸­è¯»å–å›ºä»¶çš„å¤´éƒ¨ä¿¡æ¯  */
     if(AM_OK != __read_data((uint8_t *)&firmware_head, sizeof(firmware_head))) {
         am_kprintf("firmware transmission is timeout\r\n");
         return AM_ERROR;
@@ -139,10 +139,10 @@ int __firmware_recv_uart(void *p_drv)
         return AM_ERROR;
     }
 
-    /* ¹Ì¼þ´æ·Å½áÊø  */
+    /* å›ºä»¶å­˜æ”¾ç»“æŸ  */
     am_boot_firmware_store_final(p_dev->firmware_handle);
     am_kprintf("firmware receive successful\r\n");
-    /* ¹Ì¼þÐ£Ñé  */
+    /* å›ºä»¶æ ¡éªŒ  */
     ret = am_boot_firmware_verify(p_dev->firmware_handle, &firmware_head);
     if(ret != AM_OK) {
         am_kprintf("firmware verify error\r\n");

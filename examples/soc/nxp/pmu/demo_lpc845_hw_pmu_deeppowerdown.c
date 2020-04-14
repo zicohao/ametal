@@ -12,24 +12,24 @@
 
 /**
  * \file
- * \brief PMU ��ȵ���ģʽ���̣�ͨ�� HW ��ӿ�ʵ��
+ * \brief PMU 深度掉电模式例程，通过 HW 层接口实现
  *
- * - ʵ������
- *   1. ���г���һ��� LED0 ��˸һ�κ������ȵ���ģʽ��
- *   2. �ȴ� 5s ��WKT ��ʱʱ�䵽��CPU �����ѣ����ͨ�üĴ�������У����ȷ��LED0
- *      ��˸һ�Σ����ͨ�üĴ�������У�����LED0 ������˸��
+ * - 实验现象：
+ *   1. 运行程序，一秒后 LED0 闪烁一次后进入深度掉电模式；
+ *   2. 等待 5s 后，WKT 计时时间到，CPU 被唤醒，如果通用寄存器数据校验正确，LED0
+ *      闪烁一次；如果通用寄存器数据校验错误，LED0 持续闪烁。
  *
  * \note
- *    1. LED0 ��Ҫ�̽� J9 ����ñ�����ܱ� PIO0_20 ���ƣ�
- *    2. ������ȵ���ģʽ��ֻ�� WAKEUP ���ź� WKT ��ʱ���ܻ���оƬ������Ĭ��״̬��
- *       WAKEUP ���Ż���ʹ�ܣ�����һ��ȷ�� WAKEUP �ⲿ��������Դ����֤��Ч�ĸߵ�ƽ
- *       ״̬��������������Ѳ��������۲첻�� WKT ���� CPU���������̽� WAKEUP ����
- *       (PIO0_4)���ѹ��ܽ�ֹ�ˣ����Բ���Ҫ�� PIO0_4 ������
- *    3. ʹ�øó���󣬻ᵼ���´γ�����д��ʱ���ⲻ��оƬ������оƬ������ȵ���
- *       ģʽ�� SWD ����ģʽ�رգ����´�����ʱ�� P0_12 ���ͻ򰴶���λ��֮��һ����
- *       �����������ص��ԡ�
+ *    1. LED0 需要短接 J9 跳线帽，才能被 PIO0_20 控制；
+ *    2. 进入深度掉电模式后，只有 WAKEUP 引脚和 WKT 定时器能唤醒芯片。对于默认状态，
+ *       WAKEUP 引脚唤醒使能，所以一定确保 WAKEUP 外部上拉到电源，保证有效的高电平
+ *       状态，否则会引起误唤醒操作，而观察不到 WKT 唤醒 CPU；而本例程将 WAKEUP 引脚
+ *       (PIO0_4)唤醒功能禁止了，所以不需要将 PIO0_4 上拉；
+ *    3. 使用该程序后，会导致下次程序烧写的时候检测不到芯片（由于芯片进入深度掉电
+ *       模式将 SWD 调试模式关闭），下次下载时将 P0_12 拉低或按动复位键之后一秒内
+ *       即可正常下载调试。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_lpc824_hw_pmu_deeppowerdown.c src_lpc824_hw_pmu_deeppowerdown
  *
  * \internal
@@ -55,46 +55,46 @@
 #include "hw/amhw_lpc84x_clk.h"
 
 /*******************************************************************************
-  ����ȫ�ֱ�������
+  本地全局变量定义
 *******************************************************************************/
 
-/** \brief �жϱ�־���� */
+/** \brief 中断标志变量 */
 am_local volatile uint8_t __g_deeppowerdown_wkt_flag = 0;
 
 /*******************************************************************************
-  ���غ�������
+  本地函数定义
 *******************************************************************************/
 
 /**
- * \brief WKT �жϷ�����
+ * \brief WKT 中断服务函数
  */
 am_local void __deeppowerdown_wkt_isr (void *p_arg)
 {
     if (amhw_lpc_wkt_alarmflag_get(LPC84X_WKT)) {
-        amhw_lpc_wkt_alarmflag_clear(LPC84X_WKT); /* ����жϱ�־ */
-        __g_deeppowerdown_wkt_flag = 1;                /* �ı��жϱ�־���� */
+        amhw_lpc_wkt_alarmflag_clear(LPC84X_WKT); /* 清除中断标志 */
+        __g_deeppowerdown_wkt_flag = 1;                /* 改变中断标志变量 */
     }
 }
 
 /**
- * \brief PMU ��ȵ���ģʽ��ʼ��
+ * \brief PMU 深度掉电模式初始化
  */
 void demo_lpc845_hw_pmu_deeppowerdown_entry (amhw_lpc82x_pmu_t  *p_hw_pmu,
                                              am_timer_handle_t  wkt_handle)
 {
   
-    /* ��ʱһ�룬�����´����س��� */
+    /* 延时一秒，方便下次下载程序 */
     am_mdelay(1000);
 
-    /* LED0 ��˸һ�� */
+    /* LED0 闪烁一次 */
     am_led_on(LED0);
     am_mdelay(500);
     am_led_off(LED0);
 
-    /* �Ѿ�����ȵ����л��� */
+    /* 已经从深度掉电中唤醒 */
     if (amhw_lpc82x_pmu_dpdflag_get(p_hw_pmu) != 0x0) {
 
-        /* �����ȵ���ģʽ��־λ */
+        /* 清除深度掉电模式标志位 */
         amhw_lpc82x_pmu_dpdflag_clear(p_hw_pmu);
 
         if ((amhw_lpc82x_pmu_gpdata_get(p_hw_pmu, GP_REG_0) != 0x12345678) ||
@@ -102,37 +102,37 @@ void demo_lpc845_hw_pmu_deeppowerdown_entry (amhw_lpc82x_pmu_t  *p_hw_pmu,
             (amhw_lpc82x_pmu_gpdata_get(p_hw_pmu, GP_REG_2) != 0x56781234) ||
             (amhw_lpc82x_pmu_gpdata_get(p_hw_pmu, GP_REG_3) != 0x43218765)) {
 
-            /* ����ȵ��绽�Ѻ�ͨ�üĴ������ݼ��ʧ�ܣ�LED0 ������˸ */
+            /* 从深度掉电唤醒后，通用寄存器数据检查失败，LED0 持续闪烁 */
             AM_FOREVER {
 
-                /* LED0 �� 0.5s �ļ��һֱ��˸ */
+                /* LED0 以 0.5s 的间隔一直闪烁 */
                 am_led_toggle(LED0);
                 am_mdelay(500);
             }
         }
     } else {
 
-        /* δ������ȵ���ģʽ������ͨ�üĴ������ݣ����ڲ��� */
+        /* 未进入深度掉电模式，设置通用寄存器数据，用于测试 */
         amhw_lpc82x_pmu_gpdata_save(p_hw_pmu, GP_REG_0, 0x12345678);
         amhw_lpc82x_pmu_gpdata_save(p_hw_pmu, GP_REG_1, 0x87654321);
         amhw_lpc82x_pmu_gpdata_save(p_hw_pmu, GP_REG_2, 0x56781234);
         amhw_lpc82x_pmu_gpdata_save(p_hw_pmu, GP_REG_3, 0x43218765);
 
-        /* �������� PIO0_4 �ϵĻ��ѹ��� */
+        /* 禁用引脚 PIO0_4 上的唤醒功能 */
         amhw_lpc82x_pmu_wakepad_disable(p_hw_pmu);
 
         amhw_lpc84x_lowpower_mode_set(p_hw_pmu, AMHW_LPC82X_PMU_PCON_MODE_DEEPPD);
 
-        /* WKT �����жϻص� */
+        /* WKT 连接中断回调 */
         am_timer_callback_set(wkt_handle, 0, __deeppowerdown_wkt_isr, NULL);
 
-        /* ���� WKT ��ʱʱ�� 5s */
+        /* 设置 WKT 定时时间 5s */
         am_timer_enable_us(wkt_handle, 0, 5000000);
 
-        /* ������ȵ���ģʽ */
+        /* 进入深度掉电模式 */
         __WFI();
     }
-    /* ����ȵ���ģʽ���Ѻ�ͨ�üĴ������ݼ����ȷ��LED0 ��˸һ�� */
+    /* 从深度掉电模式唤醒后，通用寄存器数据检查正确，LED0 闪烁一次 */
     am_led_on(LED0);
     am_mdelay(500);
     am_led_off(LED0);

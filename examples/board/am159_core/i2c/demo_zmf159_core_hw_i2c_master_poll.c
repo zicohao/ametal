@@ -11,25 +11,25 @@
 *******************************************************************************/
 /**
  * \file
- * \brief I2C ÂÖÑ¯Ä£Ê½ÏÂ²Ù×÷ EEPROM Àý³Ì£¬Í¨¹ý HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief I2C è½®è¯¢æ¨¡å¼ä¸‹æ“ä½œ EEPROM ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. PIOC_8 Òý½ÅÁ¬½Ó EEPROM µÄ SCL Òý½Å£»
- *   2. PIOC_9 Òý½ÅÁ¬½Ó EEPROM µÄ SDA Òý½Å¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. PIOC_8 å¼•è„šè¿žæŽ¥ EEPROM çš„ SCL å¼•è„šï¼›
+ *   2. PIOC_9 å¼•è„šè¿žæŽ¥ EEPROM çš„ SDA å¼•è„šã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Ïò EEPROM Éè±¸Ð´Èë 8×Ö½Ú£¨Ð¡ÓÚ»òµÈÓÚÒ»Ò³£©Êý¾Ý£»
- *   2. ¶ÁÈ¡ EEPROM ÖÐµÄÊý¾ÝÍ¨¹ý´®¿Ú´òÓ¡³öÀ´£»
- *   3. ÈôÐ´ÈëÊý¾ÝºÍ¶ÁÈ¡µÄÊý¾ÝÒ»ÖÂ£¬Ð£ÑéÍ¨¹ý£¬LED0 ÒÔ 200ms ¼ä¸ôÉÁË¸¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. å‘ EEPROM è®¾å¤‡å†™å…¥ 8å­—èŠ‚ï¼ˆå°äºŽæˆ–ç­‰äºŽä¸€é¡µï¼‰æ•°æ®ï¼›
+ *   2. è¯»å– EEPROM ä¸­çš„æ•°æ®é€šè¿‡ä¸²å£æ‰“å°å‡ºæ¥ï¼›
+ *   3. è‹¥å†™å…¥æ•°æ®å’Œè¯»å–çš„æ•°æ®ä¸€è‡´ï¼Œæ ¡éªŒé€šè¿‡ï¼ŒLED0 ä»¥ 200ms é—´éš”é—ªçƒã€‚
  *
  * \note
- *    1. LED0 ÐèÒª¶Ì½Ó J9 ÌøÏßÃ±£¬²ÅÄÜ±» PIOC_9 ¿ØÖÆ£»
- *    2. ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIOA_10 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *       PIOA_9 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD£»
- *    3. µ±Ç° I2C µÄ SCL Òý½ÅÊ¹ÓÃµÄÊÇ PIOB_6£¬SDA Òý½ÅÊ¹ÓÃµÄÊÇ PIOB_7£¬
- *       ¿É¸ù¾ÝÊµ¼ÊÇé¿ö¸ü»»Òý½Å¡£
+ *    1. LED0 éœ€è¦çŸ­æŽ¥ J9 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIOC_9 æŽ§åˆ¶ï¼›
+ *    2. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIOA_10 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *       PIOA_9 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDï¼›
+ *    3. å½“å‰ I2C çš„ SCL å¼•è„šä½¿ç”¨çš„æ˜¯ PIOB_6ï¼ŒSDA å¼•è„šä½¿ç”¨çš„æ˜¯ PIOB_7ï¼Œ
+ *       å¯æ ¹æ®å®žé™…æƒ…å†µæ›´æ¢å¼•è„šã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_zmf159_hw_i2c_master_poll.c src_zmf159_hw_i2c_master_poll
  *
  * \internal
@@ -54,10 +54,10 @@
 #include "demo_zlg_entries.h"
 #include "demo_zmf159_core_entries.h"
 
-#define I2C_MASTER    (amhw_zlg_i2c_t *)ZMF159_I2C2_BASE   /**< \brief I2CÖ÷»ú¿ØÖÆÆ÷Í¨µÀºÅ¶¨Òå */
+#define I2C_MASTER    (amhw_zlg_i2c_t *)ZMF159_I2C2_BASE   /**< \brief I2Cä¸»æœºæŽ§åˆ¶å™¨é€šé“å·å®šä¹‰ */
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_zmf159_core_hw_i2c_master_poll_entry (void)
 {

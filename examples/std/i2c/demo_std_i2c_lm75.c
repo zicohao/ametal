@@ -12,12 +12,12 @@
 
 /**
  * \file
- * \brief I2C Ö÷»ú¶ÁÈ¡ÎÂ¶È´«¸ĞÆ÷ LM75 Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief I2C ä¸»æœºè¯»å–æ¸©åº¦ä¼ æ„Ÿå™¨ LM75 ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿ÚÊä³öÎÂ¶ÈÖµ¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. ä¸²å£è¾“å‡ºæ¸©åº¦å€¼ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_std_i2c_lm75.c src_std_i2c_lm75
  *
  * \internal
@@ -38,7 +38,7 @@
 #include "am_vdebug.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_std_i2c_lm75_entry (am_temp_handle_t handle)
 {
@@ -48,7 +48,7 @@ void demo_std_i2c_lm75_entry (am_temp_handle_t handle)
         if (am_temp_read(handle, &temperature) != AM_OK) {
             AM_DBG_INFO("am_temp_read failed!\r\n");
         } else {
-            AM_DBG_INFO("Current temperature is %d.%1d¡ãC\r\n",
+            AM_DBG_INFO("Current temperature is %d.%1dÂ°C\r\n",
                         (int)temperature / 1000,
                         (int)(temperature - temperature / 1000 * 1000) / 100);
         }

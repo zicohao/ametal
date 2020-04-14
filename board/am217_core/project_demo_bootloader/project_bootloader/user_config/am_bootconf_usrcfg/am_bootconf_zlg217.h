@@ -4,25 +4,25 @@
 #include "am_boot_firmware.h"
 #include "am_boot_msg.h"
 
-/** \brief µ¥ÇøBootLoader±ê×¼½Ó¿ÚÊµÀı³õÊ¼»¯*/
+/** \brief å•åŒºBootLoaderæ ‡å‡†æ¥å£å®ä¾‹åˆå§‹åŒ–*/
 int am_zlg217_boot_single_inst_init(void);
 
-/** \brief µ¥Çø¹Ì¼ş´æ·ÅÊµÀı³õÊ¼»¯ */
+/** \brief å•åŒºå›ºä»¶å­˜æ”¾å®ä¾‹åˆå§‹åŒ– */
 am_boot_firmware_handle_t am_zlg217_boot_single_firmware_flash_inst_init(void);
 
 /******************************************************************************/
 
-/** \brief Ë«Çø¹Ì¼ş´æ·ÅÊµÀı³õÊ¼»¯ */
+/** \brief åŒåŒºå›ºä»¶å­˜æ”¾å®ä¾‹åˆå§‹åŒ– */
 am_boot_firmware_handle_t am_zlg217_boot_double_firmware_flash_inst_init(void);
-/** \brief ÏûÏ¢£¨±êÖ¾µÄ·½Ê½£©ÊµÀı³õÊ¼»¯ */
+/** \brief æ¶ˆæ¯ï¼ˆæ ‡å¿—çš„æ–¹å¼ï¼‰å®ä¾‹åˆå§‹åŒ– */
 am_boot_msg_handle_t am_zlg217_boot_msg_flag_inst_init(void);
-/** \brief Ë«ÇøBootLoader±ê×¼½Ó¿ÚÊµÀı³õÊ¼»¯ */
+/** \brief åŒåŒºBootLoaderæ ‡å‡†æ¥å£å®ä¾‹åˆå§‹åŒ– */
 int am_zlg217_boot_double_inst_init(void);
 
 /******************************************************************************/
-/** \brief flashÊµÀı³õÊ¼»¯ */
+/** \brief flashå®ä¾‹åˆå§‹åŒ– */
 am_boot_flash_handle_t am_zlg217_boot_kft_flash_inst_init(void);
-/** \brief kftÉÏÎ»»úÊµÀı³õÊ¼»¯ */
+/** \brief kftä¸Šä½æœºå®ä¾‹åˆå§‹åŒ– */
 int am_zlg217_boot_kft_inst_init(void);
 
 /* end of file */

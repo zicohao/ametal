@@ -11,24 +11,24 @@
 *******************************************************************************/
 /**
  * \file
- * \brief SPI ´Ó»ú½ÓÊÕÊý¾ÝÀý³Ì£¬Í¨¹ý HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief SPI ä»ŽæœºæŽ¥æ”¶æ•°æ®ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. ±¾Àý³Ì×÷Îª´Ó»ú SPI£¬½«Ö÷»úÓë´Ó»ú SPI ½øÐÐÎïÀíÁ¬½Ó¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. æœ¬ä¾‹ç¨‹ä½œä¸ºä»Žæœº SPIï¼Œå°†ä¸»æœºä¸Žä»Žæœº SPI è¿›è¡Œç‰©ç†è¿žæŽ¥ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. SPI ½ÓÊÕµ½Êý¾Ý£¬Í¨¹ý´®¿Ú½«Êý¾Ý´òÓ¡³öÀ´£¬²¢Èç¹û½ÓÊÕµ½µÄÊý¾ÝÊÇ "nihao"£¬
- *      Ôò LED0 »áÉÁË¸¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. SPI æŽ¥æ”¶åˆ°æ•°æ®ï¼Œé€šè¿‡ä¸²å£å°†æ•°æ®æ‰“å°å‡ºæ¥ï¼Œå¹¶å¦‚æžœæŽ¥æ”¶åˆ°çš„æ•°æ®æ˜¯ "nihao"ï¼Œ
+ *      åˆ™ LED0 ä¼šé—ªçƒã€‚
  *
  * \note
- *    1. LED0 ÐèÒª¶Ì½Ó J9 ÌøÏßÃ±£¬²ÅÄÜ±» PIO0_20 ¿ØÖÆ£»
- *    2. ±¾³ÌÐòÐèÒªÓë demo_am824_hw_spi_master.c Ò»Í¬µ÷ÊÔ£»
- *    3. ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIO0_0 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *       PIO0_4 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD£»
- *    4. ÓÉÓÚ PIO0_12 À­µÍ»áµ¼ÖÂµ¥Æ¬»ú¸´Î»Ê±½øÈë ISP Ä£Ê½£¬ËùÒÔ PIO0_12 Ó¦
- *       µ¥Æ¬»ú¸´Î»ºóÔÙÁ¬½Ó¡£
+ *    1. LED0 éœ€è¦çŸ­æŽ¥ J9 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIO0_20 æŽ§åˆ¶ï¼›
+ *    2. æœ¬ç¨‹åºéœ€è¦ä¸Ž demo_am824_hw_spi_master.c ä¸€åŒè°ƒè¯•ï¼›
+ *    3. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO0_0 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *       PIO0_4 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDï¼›
+ *    4. ç”±äºŽ PIO0_12 æ‹‰ä½Žä¼šå¯¼è‡´å•ç‰‡æœºå¤ä½æ—¶è¿›å…¥ ISP æ¨¡å¼ï¼Œæ‰€ä»¥ PIO0_12 åº”
+ *       å•ç‰‡æœºå¤ä½åŽå†è¿žæŽ¥ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_lpc_hw_spi_slave.c src_lpc_hw_spi_slave
  *
  * \internal
@@ -50,106 +50,106 @@
 #include "hw/amhw_lpc_spi.h"
 #include <string.h>
 
-#define __SPI_SPEED        100000  /**< \brief SPI ËÙÂÊºê¶¨Òå */
-#define __SPI_PRE_DELAY    0       /**< \brief SSEL ÖÃÎ»ÓëÆðÊ¼Ö¡¼äÑÓÊ± */
-#define __SPI_POST_DELAY   0       /**< \brief Ö¡Ä©Î²Óë SSEL ½â³ýÖÃÎ»¼äÑÓÊ± */
-#define __SPI_FRAME_DELAY  0       /**< \brief SPI ÏàÁÚÊý¾ÝÖ¡¼äÑÓÊ± */
-#define __SPI_TRANS_DELAY  0       /**< \brief Á½´Î´«Êä SSEL ½â³ýÖÃÎ»¼äÑÓÊ± */
+#define __SPI_SPEED        100000  /**< \brief SPI é€ŸçŽ‡å®å®šä¹‰ */
+#define __SPI_PRE_DELAY    0       /**< \brief SSEL ç½®ä½ä¸Žèµ·å§‹å¸§é—´å»¶æ—¶ */
+#define __SPI_POST_DELAY   0       /**< \brief å¸§æœ«å°¾ä¸Ž SSEL è§£é™¤ç½®ä½é—´å»¶æ—¶ */
+#define __SPI_FRAME_DELAY  0       /**< \brief SPI ç›¸é‚»æ•°æ®å¸§é—´å»¶æ—¶ */
+#define __SPI_TRANS_DELAY  0       /**< \brief ä¸¤æ¬¡ä¼ è¾“ SSEL è§£é™¤ç½®ä½é—´å»¶æ—¶ */
 
-#define __TIME1            100000  /**< \brief ºê¶¨ÒåÎªÊ±ÖÓµÈ´ýÊ±¼ä£¨Ñ­»·´ÎÊý£© */
+#define __TIME1            100000  /**< \brief å®å®šä¹‰ä¸ºæ—¶é’Ÿç­‰å¾…æ—¶é—´ï¼ˆå¾ªçŽ¯æ¬¡æ•°ï¼‰ */
 
-am_local uint8_t __g_spi_rev_buf[255] = {0}; /**< \brief SPI½ÓÊÕ»º³åÊý×é±äÁ¿ */
+am_local uint8_t __g_spi_rev_buf[255] = {0}; /**< \brief SPIæŽ¥æ”¶ç¼“å†²æ•°ç»„å˜é‡ */
 
 /**
- * \brief SPI0 Ó²¼þ³õÊ¼»¯
+ * \brief SPI0 ç¡¬ä»¶åˆå§‹åŒ–
  *
- * \param[in] p_hw_spi Ö¸Ïò SPI ¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_spi æŒ‡å‘ SPI å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎÞ
+ * \return æ— 
  */
 am_local void __spi_slave_hard_init (amhw_lpc_spi_t *p_hw_spi,
                                      uint32_t        clk)
 {
 
-    /* ÅäÖÃ SPI ·ÖÆµÖµ */
+    /* é…ç½® SPI åˆ†é¢‘å€¼ */
     amhw_lpc_spi_div_set(p_hw_spi, (clk / __SPI_SPEED));
 
-    /* ÅäÖÃ SPI ´«ÊäÑÓÊ± */
+    /* é…ç½® SPI ä¼ è¾“å»¶æ—¶ */
     amhw_lpc_spi_pre_delay(p_hw_spi, __SPI_PRE_DELAY);
     amhw_lpc_spi_post_delay(p_hw_spi, __SPI_POST_DELAY);
     amhw_lpc_spi_frame_delay(p_hw_spi, __SPI_FRAME_DELAY);
     amhw_lpc_spi_trans_delay(p_hw_spi, __SPI_TRANS_DELAY);
 
-    /* ÅäÖÃ SPI ´«Êä²ÎÊý */
+    /* é…ç½® SPI ä¼ è¾“å‚æ•° */
     amhw_lpc_spi_cfg_set(p_hw_spi, AMHW_LPC_SPI_CFG_CHANGE);
     amhw_lpc_spi_enable(p_hw_spi);
 
-    /* ÉèÖÃ SPI Ò»¸öÊý¾Ý³¤¶ÈÎª 8 Î» */
+    /* è®¾ç½® SPI ä¸€ä¸ªæ•°æ®é•¿åº¦ä¸º 8 ä½ */
     amhw_lpc_spi_data_flen_set(p_hw_spi, 8);
 }
 
 /**
- * \brief SPI ½ÓÊÕ×Ö·û´®º¯Êý
+ * \brief SPI æŽ¥æ”¶å­—ç¬¦ä¸²å‡½æ•°
  *
- * \param[in] p_hw_spi Ö¸Ïò SPI ¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_spi æŒ‡å‘ SPI å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ½ÓÊÕ»º³åÊý×éÊ×µØÖ·
+ * \return æŽ¥æ”¶ç¼“å†²æ•°ç»„é¦–åœ°å€
  */
 am_local uint8_t *__spi_recive (amhw_lpc_spi_t *p_hw_spi)
 {
-    am_local uint8_t  i;                               /* ÉùÃ÷¼ÆÊý±äÁ¿ i */
-    volatile uint32_t timer1 = __TIME1;                /* ÉùÃ÷ÎªÊ±ÖÓ±äÁ¿ */
+    am_local uint8_t  i;                               /* å£°æ˜Žè®¡æ•°å˜é‡ i */
+    volatile uint32_t timer1 = __TIME1;                /* å£°æ˜Žä¸ºæ—¶é’Ÿå˜é‡ */
 
     AM_FOREVER {
 
-        /* ÔÚÒ»¶ÎÊ±¼äÄÚµÈ´ý½ÓÊÕµ½Êý¾Ý×´Ì¬ÖÃÎ» */
+        /* åœ¨ä¸€æ®µæ—¶é—´å†…ç­‰å¾…æŽ¥æ”¶åˆ°æ•°æ®çŠ¶æ€ç½®ä½ */
         while (!(amhw_lpc_spi_stat_get(p_hw_spi) & AMHW_LPC_SPI_STAT_RXRDY)
                && --timer1) {};
 
-        /* ½ÓÊÕµ½Êý¾Ý¶ø²¢·Ç³¬Ê±Ìø³öµÈ´ý */
+        /* æŽ¥æ”¶åˆ°æ•°æ®è€Œå¹¶éžè¶…æ—¶è·³å‡ºç­‰å¾… */
         if (timer1 != 0) {
 
-            /* ½«Êý¾ÝÐ´Èë»º³åÊý×é±äÁ¿ÖÐ */
+            /* å°†æ•°æ®å†™å…¥ç¼“å†²æ•°ç»„å˜é‡ä¸­ */
             __g_spi_rev_buf[i] = (uint8_t)amhw_lpc_spi_rxdat_with_flags(p_hw_spi);
             i++;
-            __g_spi_rev_buf[i] = 0;   /* ¶Ô½ÓÊÕµ½µÄÊý¾ÝÄ©Î²Ð´ 0 ±£»¤×Ö·û´® */
-            timer1 = __TIME1;         /* ÖØÖÃµÈ´ýÎªÊ±ÖÓÊ±¼ä */
-        } else {                      /* µ±³¬Ê±Ìø³öµÈ´ýÊ±£¬ÍË³ö½ÓÊÕÊý¾Ý */
+            __g_spi_rev_buf[i] = 0;   /* å¯¹æŽ¥æ”¶åˆ°çš„æ•°æ®æœ«å°¾å†™ 0 ä¿æŠ¤å­—ç¬¦ä¸² */
+            timer1 = __TIME1;         /* é‡ç½®ç­‰å¾…ä¸ºæ—¶é’Ÿæ—¶é—´ */
+        } else {                      /* å½“è¶…æ—¶è·³å‡ºç­‰å¾…æ—¶ï¼Œé€€å‡ºæŽ¥æ”¶æ•°æ® */
             i = 0;
-            break;                    /* Ìø³ö while£¨1£© */
+            break;                    /* è·³å‡º whileï¼ˆ1ï¼‰ */
         }
     }
 
-    return __g_spi_rev_buf;           /* ·µ»Ø½ÓÊÕ»º³åÊý×é±äÁ¿Ê×µØÖ· */
+    return __g_spi_rev_buf;           /* è¿”å›žæŽ¥æ”¶ç¼“å†²æ•°ç»„å˜é‡é¦–åœ°å€ */
 }
 
 void demo_lpc_hw_spi_slave_entry (amhw_lpc_spi_t *p_hw_spi,
                                   uint32_t        clk)
 {
-    /* SPI0 Ó²¼þ³õÊ¼»¯ */
+    /* SPI0 ç¡¬ä»¶åˆå§‹åŒ– */
     __spi_slave_hard_init(p_hw_spi, clk);
     
-    /* ½ÓÊÕ¾ÍÐ÷ */
+    /* æŽ¥æ”¶å°±ç»ª */
     AM_DBG_INFO("recv ready!\r\n");
   
     AM_FOREVER {
 
-        /* ½ÓÊÕ SPI Êý¾Ý */
+        /* æŽ¥æ”¶ SPI æ•°æ® */
         __spi_recive(p_hw_spi);
 
         if ('\0' != __g_spi_rev_buf[0]) {
 
-            /* Í¨¹ý´®¿Ú·¢³ö SPI Êý¾Ý */
+            /* é€šè¿‡ä¸²å£å‘å‡º SPI æ•°æ® */
             AM_DBG_INFO("SPI: %s\r\n", __g_spi_rev_buf);
         }
 
-        /* ÅÐ¶Ï´Ó SPI ½ÓÊÕµ½ "nihao" */
+        /* åˆ¤æ–­ä»Ž SPI æŽ¥æ”¶åˆ° "nihao" */
         if (strstr((am_const char *)__g_spi_rev_buf, "nihao")) {
 
-            /* ·­×ª LED ×´Ì¬ */
+            /* ç¿»è½¬ LED çŠ¶æ€ */
             am_led_toggle(LED0);
         }
-        /* Çå¿Õ½ÓÊÕ»º³åÊý×é */
+        /* æ¸…ç©ºæŽ¥æ”¶ç¼“å†²æ•°ç»„ */
         __g_spi_rev_buf[0] = 0;
     }
 }

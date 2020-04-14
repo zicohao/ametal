@@ -12,22 +12,22 @@
 
 /**
  * \file
- * \brief MiniPort-595 + MiniPort-View + °åÔØ LM75 Àý³Ì£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MiniPort-595 + MiniPort-View + æ¿è½½ LM75 ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè
- *   1. ÏÈ½« MiniPort-595 À©Õ¹°åÖ±½ÓÓë AM824-Core µÄ MiniPort ÏàÁ¬½Ó£»
- *   2. ½« MiniPort-View À©Õ¹°åÓë MiniPort-595 ½Ó¿ÚÏàÁ¬½Ó¡£
+ * - æ“ä½œæ­¥éª¤
+ *   1. å…ˆå°† MiniPort-595 æ‰©å±•æ¿ç›´æŽ¥ä¸Ž AM824-Core çš„ MiniPort ç›¸è¿žæŽ¥ï¼›
+ *   2. å°† MiniPort-View æ‰©å±•æ¿ä¸Ž MiniPort-595 æŽ¥å£ç›¸è¿žæŽ¥ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ÊýÂë¹ÜÏÔÊ¾µ±Ç°ÎÂ¶È£»
- *   2. °´ÏÂ RES °´¼ü£¬¹ýÒ»»á¶ù£¬ÊýÂë¹ÜÏÔÊ¾ÎÂ¶ÈÖµÉý¸ß¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. æ•°ç ç®¡æ˜¾ç¤ºå½“å‰æ¸©åº¦ï¼›
+ *   2. æŒ‰ä¸‹ RES æŒ‰é”®ï¼Œè¿‡ä¸€ä¼šå„¿ï¼Œæ•°ç ç®¡æ˜¾ç¤ºæ¸©åº¦å€¼å‡é«˜ã€‚
  *
  * \note
- *    1. ÐèÒª¶Ì½Ó J11 ºÍ J13 ÌøÏßÃ±£¬I2C1 ²Å»áÓë LM75 Á¬½Ó£»
- *    2. °´¼üÐèÒª½« J14 ÌøÏßÃ±µÄ KEY ºÍ RES ¶Ì½Ó²ÅÄÜÊ¹ÓÃ£»
+ *    1. éœ€è¦çŸ­æŽ¥ J11 å’Œ J13 è·³çº¿å¸½ï¼ŒI2C1 æ‰ä¼šä¸Ž LM75 è¿žæŽ¥ï¼›
+ *    2. æŒ‰é”®éœ€è¦å°† J14 è·³çº¿å¸½çš„ KEY å’Œ RES çŸ­æŽ¥æ‰èƒ½ä½¿ç”¨ï¼›
  *
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am824_core_miniport_hc595_digitron_temp.c src_am824_core_miniport_hc595_digitron_temp
  *
  * \internal
@@ -49,7 +49,7 @@
 #include "demo_std_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am824_core_miniport_hc595_digitron_temp_entry (void)
 {

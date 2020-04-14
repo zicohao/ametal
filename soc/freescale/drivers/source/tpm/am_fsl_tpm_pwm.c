@@ -12,15 +12,15 @@
 
 /**
  * \file
- * \brief TPMÇı¶¯£¬PWMÇı¶¯²ãÊµÏÖ
+ * \brief TPMé©±åŠ¨ï¼ŒPWMé©±åŠ¨å±‚å®ç°
  *
- * 1. TPMÖ§³ÖÌá¹©ÈçÏÂÈıÖÖ±ê×¼·şÎñ£¬±¾Çı¶¯Ìá¹©µÄÊÇ·şÎñ"PWMÊä³ö"±ê×¼·şÎñµÄÇı¶¯
- *     - ¶¨Ê±
- *     - PWMÊä³ö
- *     - ²¶»ñ
+ * 1. TPMæ”¯æŒæä¾›å¦‚ä¸‹ä¸‰ç§æ ‡å‡†æœåŠ¡ï¼Œæœ¬é©±åŠ¨æä¾›çš„æ˜¯æœåŠ¡"PWMè¾“å‡º"æ ‡å‡†æœåŠ¡çš„é©±åŠ¨
+ *     - å®šæ—¶
+ *     - PWMè¾“å‡º
+ *     - æ•è·
  *
- * \note Ò»¸öTPMµÄËùÓĞÍ¨µÀ¹²ÓÃÒ»¸öÖÜÆÚÖµ£¬Ò²¾ÍÊÇËµÍ¬Ò»¸öTPM²»Í¬µÄÍ¨µÀµÄPWMÖÜÆÚÏàÍ¬
- *          £¨TPM0ÓĞ6¸öÍ¨µÀ£¬TPM1ºÍTPM1¸÷ÓĞ2¸öÍ¨µÀ£©
+ * \note ä¸€ä¸ªTPMçš„æ‰€æœ‰é€šé“å…±ç”¨ä¸€ä¸ªå‘¨æœŸå€¼ï¼Œä¹Ÿå°±æ˜¯è¯´åŒä¸€ä¸ªTPMä¸åŒçš„é€šé“çš„PWMå‘¨æœŸç›¸åŒ
+ *          ï¼ˆTPM0æœ‰6ä¸ªé€šé“ï¼ŒTPM1å’ŒTPM1å„æœ‰2ä¸ªé€šé“ï¼‰
  *
  * \internal
  * \par Modification history
@@ -34,22 +34,22 @@
 #include "am_gpio.h"
 
 /*******************************************************************************
-* º¯ÊıÉùÃ÷
+* å‡½æ•°å£°æ˜
 *******************************************************************************/
 
-/** \brief ÅäÖÃPWM  */
+/** \brief é…ç½®PWM  */
 static int __tpm_pwm_config (void          *p_drv,
                              int            chan,
                              unsigned long  duty_ns,
                              unsigned long  period_ns);
 
-/** \brief Ê¹ÄÜPWMÊä³ö */
+/** \brief ä½¿èƒ½PWMè¾“å‡º */
 static int __tpm_pwm_enable (void *p_drv, int chan);
 
-/** \brief ½ûÄÜPWMÊä³ö */
+/** \brief ç¦èƒ½PWMè¾“å‡º */
 static int __tpm_pwm_disable (void *p_drv, int chan);
 
-/** \brief PWMÇı¶¯º¯Êı */
+/** \brief PWMé©±åŠ¨å‡½æ•° */
 static const struct am_pwm_drv_funcs __g_tpm_pwm_drv_funcs = {
     __tpm_pwm_config,
     __tpm_pwm_enable,
@@ -57,7 +57,7 @@ static const struct am_pwm_drv_funcs __g_tpm_pwm_drv_funcs = {
 };
 
 /******************************************************************************/
-/** \brief ÅäÖÃPWM  */
+/** \brief é…ç½®PWM  */
 static int __tpm_pwm_config (void          *p_drv,
                              int            chan,
                              unsigned long  duty_ns,
@@ -70,12 +70,12 @@ static int __tpm_pwm_config (void          *p_drv,
     uint32_t period_c, duty_c;
     uint8_t  pre_real, pre_reg = 0, temp;
 
-    /* ²ÎÊı²»ºÏ·¨ */
+    /* å‚æ•°ä¸åˆæ³• */
     if ((period_ns == 0) || (duty_ns > period_ns)) {
         return -AM_EINVAL;
     }
 
-    /* ÓĞĞ§Í¨µÀ·¶Î§ 0 ~ (channels_num - 1) */
+    /* æœ‰æ•ˆé€šé“èŒƒå›´ 0 ~ (channels_num - 1) */
     if (chan >= p_dev->p_devinfo->channels_num) {
         return -AM_EINVAL;
     }
@@ -85,23 +85,23 @@ static int __tpm_pwm_config (void          *p_drv,
     period_c = (uint64_t)(period_ns) * (clkfreq) / (uint64_t)1000000000;
     duty_c   = (uint64_t)(duty_ns)   * (clkfreq) / (uint64_t)1000000000;
 
-    /* 16Î»¶¨Ê±Æ÷£¬×î´ó128·ÖÆµ */
+    /* 16ä½å®šæ—¶å™¨ï¼Œæœ€å¤§128åˆ†é¢‘ */
     if (period_c > (0xffffu * 128)) {
         return -AM_EINVAL;
     }
 
-    temp = period_c / 0xffffu + 1;          /* ¼ÆËã·ÖÆµ´óĞ¡ */
+    temp = period_c / 0xffffu + 1;          /* è®¡ç®—åˆ†é¢‘å¤§å° */
 
-    /* Ö»Ö§³Ö·ÖÆµ´óĞ¡1,2,4,8...128£¬ÇóµÃ´óÓÚ·ÖÆµÊıÖĞ×îĞ¡µÄÊı2^n */
+    /* åªæ”¯æŒåˆ†é¢‘å¤§å°1,2,4,8...128ï¼Œæ±‚å¾—å¤§äºåˆ†é¢‘æ•°ä¸­æœ€å°çš„æ•°2^n */
     for (pre_real = 1; pre_real < temp; ) {
-        pre_reg++;                        /* ¼ÆËãĞ´Èë¼Ä´æÆ÷µÄ·ÖÆµÖµ0,1,2,... */
-        pre_real = pre_real << 1;           /* ·ÖÆµÊı2^n */
+        pre_reg++;                        /* è®¡ç®—å†™å…¥å¯„å­˜å™¨çš„åˆ†é¢‘å€¼0,1,2,... */
+        pre_real = pre_real << 1;           /* åˆ†é¢‘æ•°2^n */
     }
     amhw_fsl_tpm_prescale_set(p_hw_tpm, (amhw_fsl_tpm_prescale_t)pre_reg);
 
     period_c = period_c / pre_real;
 
-    /* ÖÜÆÚ×îÉÙÎª1 */
+    /* å‘¨æœŸæœ€å°‘ä¸º1 */
     if (period_c == 0) {
         period_c = 1;
     }
@@ -121,7 +121,7 @@ static int __tpm_pwm_config (void          *p_drv,
 }
 
 /**
- * \brief Ê¹ÄÜPWMÍ¨µÀÊä³ö
+ * \brief ä½¿èƒ½PWMé€šé“è¾“å‡º
  */
 static int __tpm_pwm_enable (void *p_drv, int chan)
 {
@@ -129,12 +129,12 @@ static int __tpm_pwm_enable (void *p_drv, int chan)
     amhw_fsl_tpm_t          *p_hw_tpm = p_dev->p_devinfo->p_hw_tpm;
     am_fsl_tpm_pwm_ioinfo_t *p_ioinfo = p_dev->p_devinfo->p_ioinfo;
 
-    /* ÓĞĞ§Í¨µÀ·¶Î§ 0 ~ (channels_num - 1) */
+    /* æœ‰æ•ˆé€šé“èŒƒå›´ 0 ~ (channels_num - 1) */
     if (chan >= p_dev->p_devinfo->channels_num) {
         return -AM_EINVAL;
     }
 
-    /* Ñ¡ÔñÏòÉÏ¼ÆÊı */
+    /* é€‰æ‹©å‘ä¸Šè®¡æ•° */
     amhw_fsl_tpm_ch_mode(p_hw_tpm, chan, AMHW_FSL_TPM_COUNTING_UP,
                      AMHW_FSL_TPM_CHSC_MS(2) | AMHW_FSL_TPM_CHSC_EL_SEL(2));
 
@@ -146,7 +146,7 @@ static int __tpm_pwm_enable (void *p_drv, int chan)
 }
 
 /**
- * \brief ½ûÄÜPWMÍ¨µÀÊä³ö
+ * \brief ç¦èƒ½PWMé€šé“è¾“å‡º
  */
 static int __tpm_pwm_disable (void *p_drv, int chan)
 {
@@ -154,7 +154,7 @@ static int __tpm_pwm_disable (void *p_drv, int chan)
     amhw_fsl_tpm_t          *p_hw_tpm   = p_dev->p_devinfo->p_hw_tpm;
     am_fsl_tpm_pwm_ioinfo_t *p_ioinfo   = p_dev->p_devinfo->p_ioinfo;
 
-    /* ÓĞĞ§Í¨µÀ·¶Î§ 0 ~ (channels_num - 1) */
+    /* æœ‰æ•ˆé€šé“èŒƒå›´ 0 ~ (channels_num - 1) */
     if (chan >= p_dev->p_devinfo->channels_num) {
         return -AM_EINVAL;
     }
@@ -166,19 +166,19 @@ static int __tpm_pwm_disable (void *p_drv, int chan)
 }
 
 /**
-  * \brief pwm³õÊ¼»¯
+  * \brief pwmåˆå§‹åŒ–
   */
 void __tpm_pwm_init (amhw_fsl_tpm_t *p_hw_tpm)
 {
-    /* ÔİÍ£¼ÆÊıÆ÷ */
+    /* æš‚åœè®¡æ•°å™¨ */
     amhw_fsl_tpm_clock_mode(p_hw_tpm, AMHW_FSL_TPM_CLK_SRC_NONE);
 
-    /* Ê¹ÓÃÏµÍ³Ê±ÖÓ£¬²»½øĞĞ·ÖÆµ */
+    /* ä½¿ç”¨ç³»ç»Ÿæ—¶é’Ÿï¼Œä¸è¿›è¡Œåˆ†é¢‘ */
     amhw_fsl_tpm_prescale_set(p_hw_tpm, AMHW_FSL_TPM_DIVIDED_BY_1);
 }
 
 /**
-  * \brief tpm pwm·şÎñ³õÊ¼»¯
+  * \brief tpm pwmæœåŠ¡åˆå§‹åŒ–
   */
 am_pwm_handle_t am_fsl_tpm_pwm_init (am_fsl_tpm_pwm_dev_t           *p_dev,
                                      const am_fsl_tpm_pwm_devinfo_t *p_devinfo)

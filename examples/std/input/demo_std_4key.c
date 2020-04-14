@@ -12,19 +12,19 @@
 
 /**
  * \file
- * \brief °´¼üÀý³Ì£¨4¸ö°´¼ü£©
+ * \brief æŒ‰é”®ä¾‹ç¨‹ï¼ˆ4ä¸ªæŒ‰é”®ï¼‰
  *
- * ±¾Àý³ÌÕ¹Ê¾ÁË 4¸ö°´¼üµÄ°´ÏÂÓëÊÍ·Å´¦Àí£¨½ö´òÓ¡ÐÅÏ¢×÷Îª´¦ÀíÊ¾Àý£©£¬4¸ö°´¼ü¶ÔÓ¦µÄ
- * °´¼ü±àÂë¹Ì¶¨Îª£ºKEY_0¡¢KEY_1¡¢KEY_2¡¢KEY_3¡£ÔËÐÐ¸ÃÀý³ÌÊ±£¬Ó¦È·±£ÏµÍ³ÓÐ4¸ö°´¼ü£¬
- * ÇÒËüÃÇ¶ÔÓ¦µÄ°´¼ü±àÂëÎª£ºKEY_0 ~ KEY_4
+ * æœ¬ä¾‹ç¨‹å±•ç¤ºäº† 4ä¸ªæŒ‰é”®çš„æŒ‰ä¸‹ä¸Žé‡Šæ”¾å¤„ç†ï¼ˆä»…æ‰“å°ä¿¡æ¯ä½œä¸ºå¤„ç†ç¤ºä¾‹ï¼‰ï¼Œ4ä¸ªæŒ‰é”®å¯¹åº”çš„
+ * æŒ‰é”®ç¼–ç å›ºå®šä¸ºï¼šKEY_0ã€KEY_1ã€KEY_2ã€KEY_3ã€‚è¿è¡Œè¯¥ä¾‹ç¨‹æ—¶ï¼Œåº”ç¡®ä¿ç³»ç»Ÿæœ‰4ä¸ªæŒ‰é”®ï¼Œ
+ * ä¸”å®ƒä»¬å¯¹åº”çš„æŒ‰é”®ç¼–ç ä¸ºï¼šKEY_0 ~ KEY_4
  *
- * - ²Ù×÷²½Öè
- *   1. µ÷ÓÃÈë¿Úº¯Êý
+ * - æ“ä½œæ­¥éª¤
+ *   1. è°ƒç”¨å…¥å£å‡½æ•°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. °´ÏÂ°´¼üÊ±£¬µ÷ÊÔ´®¿Ú´òÓ¡µ±Ç°°´¼üÐÅÏ¢¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. æŒ‰ä¸‹æŒ‰é”®æ—¶ï¼Œè°ƒè¯•ä¸²å£æ‰“å°å½“å‰æŒ‰é”®ä¿¡æ¯ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_std_4key.c src_std_4key
  *
  * \internal
@@ -92,7 +92,7 @@ static void __input_key_proc (void *p_arg, int key_code, int key_state, int keep
  }
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_std_4key_entry (void)
 {

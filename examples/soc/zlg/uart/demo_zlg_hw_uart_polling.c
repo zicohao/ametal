@@ -12,13 +12,13 @@
 
 /**
  * \file
- * \brief UART ÂÖÑ¯·½Ê½Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief UART è½®è¯¢æ–¹å¼ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Ö¸¶¨´®¿ÚÊä³ö "HW example---UART test in polling mode:"£»
- *   2. Ö¸¶¨´®¿ÚÊä³ö½ÓÊÕµ½µÄ×Ö·û´®¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. æŒ‡å®šä¸²å£è¾“å‡º "HW example---UART test in polling mode:"ï¼›
+ *   2. æŒ‡å®šä¸²å£è¾“å‡ºæ¥æ”¶åˆ°çš„å­—ç¬¦ä¸²ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_zlg_hw_uart_polling.c src_zlg_hw_uart_polling
  *
  * \internal
@@ -38,56 +38,56 @@
 #include "hw/amhw_zlg_uart.h"
 
 /*******************************************************************************
-  ºê¶¨Òå
+  å®å®šä¹‰
 *******************************************************************************/
-#define UART_BAUDRATE     (115200)              /** <\brief ²¨ÌØÂÊ */
+#define UART_BAUDRATE     (115200)              /** <\brief æ³¢ç‰¹ç‡ */
 
 /*******************************************************************************
-  È«¾Ö±äÁ¿
+  å…¨å±€å˜é‡
 *******************************************************************************/
 static const uint8_t uart_hw_str[] =
                                 {"HW example---UART test in polling mode:\r\n"};
 
 /**
- * \brief UART HW ²éÑ¯ÊÕ·¢³õÊ¼»¯
+ * \brief UART HW æŸ¥è¯¢æ”¶å‘åˆå§‹åŒ–
  */
 static void uart_polling_init (amhw_zlg_uart_t *p_hw_uart, uint32_t clk_rate)
 {
 
-    /* ÉèÖÃ´®¿Ú²¨ÌØÂÊ */
+    /* è®¾ç½®ä¸²å£æ³¢ç‰¹ç‡ */
     amhw_zlg_uart_baudrate_set(p_hw_uart, clk_rate, UART_BAUDRATE);
 
     amhw_zlg_uart_stop_bit_sel(p_hw_uart, AMHW_ZLG_UART_STOP_1BIT);
     amhw_zlg_uart_data_length(p_hw_uart, AMHW_ZLG_UART_DATA_8BIT);
     amhw_zlg_uart_parity_bit_sel(p_hw_uart,  AMHW_ZLG_UART_PARITY_NO);
 
-    /* Ê¹ÄÜ´®¿Ú */
+    /* ä½¿èƒ½ä¸²å£ */
     amhw_zlg_uart_rx_enable(p_hw_uart,AM_TRUE);
     amhw_zlg_uart_tx_enable(p_hw_uart,AM_TRUE);
     amhw_zlg_uart_enable(p_hw_uart);
 }
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_zlg_hw_uart_polling_entry (amhw_zlg_uart_t *p_hw_uart,
                                      uint32_t         clk_rate)
 {
 
-    /* Êı¾İ»º³åÇø */
+    /* æ•°æ®ç¼“å†²åŒº */
     uint8_t buf_src[256];
 
-    /* UART²éÑ¯³õÊ¼»¯ */
+    /* UARTæŸ¥è¯¢åˆå§‹åŒ– */
     uart_polling_init(p_hw_uart, clk_rate);
 
     amhw_zlg_uart_poll_send(p_hw_uart, uart_hw_str, sizeof(uart_hw_str));
 
     while (1) {
 
-        /* ½ÓÊÕ×Ö·û */
+        /* æ¥æ”¶å­—ç¬¦ */
         amhw_zlg_uart_poll_receive(p_hw_uart, buf_src, 1);
 
-        /* ·¢ËÍ¸Õ¸Õ½ÓÊÕµÄ×Ö·û */
+        /* å‘é€åˆšåˆšæ¥æ”¶çš„å­—ç¬¦ */
         amhw_zlg_uart_poll_send(p_hw_uart, buf_src, 1);
     }
 }

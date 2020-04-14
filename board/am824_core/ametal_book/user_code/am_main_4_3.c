@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥4.3
+ * \brief ç¨‹åºæ¸…å•4.3
  *
- * \note ¸ÃÀú³ÌĞèÒªÓÃµ½miniportÍØÕ¹°å
+ * \note è¯¥å†ç¨‹éœ€è¦ç”¨åˆ°miniportæ‹“å±•æ¿
  *
  * \internal
  * \par Modification history
@@ -26,12 +26,12 @@
 #include "led.h"
 
 /**
- * \brief AMetal Ó¦ÓÃ³ÌĞòÈë¿Ú
+ * \brief AMetal åº”ç”¨ç¨‹åºå…¥å£
  */
 int am_main (void) 
 {
-    led_init();             // °å¼¶³õÊ¼»¯£¬Ï¨Ãğled 
-    led_on(0);              //µãÁÁLED0 
+    led_init();             // æ¿çº§åˆå§‹åŒ–ï¼Œç†„ç­led 
+    led_on(0);              //ç‚¹äº®LED0 
     while(1){
 		}
 }

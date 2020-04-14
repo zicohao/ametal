@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZMF159 SPI ´ÓÉè±¸ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief ZMF159 SPI ä»è®¾å¤‡ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_zmf159_spi_slv_dma.c
  *
  * \internal
@@ -35,7 +35,7 @@
  * @{
  */
 
-/** \brief SPI1 ´ÓÉè±¸Æ½Ì¨³õÊ¼»¯ */
+/** \brief SPI1 ä»è®¾å¤‡å¹³å°åˆå§‹åŒ– */
 static void __zmf159_spi1_slv_dma_plfm_init (void)
 {
     am_gpio_pin_cfg(PIOA_5, PIOA_5_SPI1_SCK | PIOA_5_INPUT_FLOAT);
@@ -45,35 +45,35 @@ static void __zmf159_spi1_slv_dma_plfm_init (void)
     am_clk_enable(CLK_SPI1);
 }
 
-/** \brief ½â³ı SPI1 ´ÓÉè±¸Æ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤ SPI1 ä»è®¾å¤‡å¹³å°åˆå§‹åŒ– */
 static void __zmf159_spi1_slv_dma_plfm_deinit (void)
 {
     am_clk_disable(CLK_SPI1);
 }
 
 /**
- * \brief SPI1 ´ÓÉè±¸Éè±¸ĞÅÏ¢
+ * \brief SPI1 ä»è®¾å¤‡è®¾å¤‡ä¿¡æ¯
  */
 const  am_zlg_spi_slv_dma_devinfo_t __g_spi1_slv_devinfo = {
-    ZMF159_SPI1_BASE,                      /* SPI1 ¼Ä´æÆ÷Ö¸Õë */
-    CLK_SPI1,                              /* Ê±ÖÓ ID ºÅ */
+    ZMF159_SPI1_BASE,                      /* SPI1 å¯„å­˜å™¨æŒ‡é’ˆ */
+    CLK_SPI1,                              /* æ—¶é’Ÿ ID å· */
     DMA_CHAN_SPI1_TX,
     DMA_CHAN_SPI1_RX,
     PIOA_4,
-    __zmf159_spi1_slv_dma_plfm_init,       /* SPI1 Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __zmf159_spi1_slv_dma_plfm_deinit      /* SPI1 Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    __zmf159_spi1_slv_dma_plfm_init,       /* SPI1 å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __zmf159_spi1_slv_dma_plfm_deinit      /* SPI1 å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 };
 
-/** \brief SPI1 ´Ó»úÉè±¸ÊµÀı */
+/** \brief SPI1 ä»æœºè®¾å¤‡å®ä¾‹ */
 static am_zlg_spi_slv_dma_dev_t __g_spi1_slv_dev;
 
-/** \brief SPI1 ´Ó»úÊµÀı³õÊ¼»¯£¬»ñµÃ SPI ´Ó»ú±ê×¼·şÎñ¾ä±ú */
+/** \brief SPI1 ä»æœºå®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— SPI ä»æœºæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_spi_slv_handle_t am_zmf159_spi1_slv_dma_inst_init (void)
 {
     return am_zlg_spi_slv_dma_init(&__g_spi1_slv_dev, &__g_spi1_slv_devinfo);
 }
 
-/** \brief SPI1 ´ÓÉè±¸ÊµÀı½â³õÊ¼»¯ */
+/** \brief SPI1 ä»è®¾å¤‡å®ä¾‹è§£åˆå§‹åŒ– */
 void am_zmf159_spi1_slv_dma_inst_deinit (am_spi_slv_handle_t handle)
 {
     am_zlg_spi_slv_dma_deinit(handle);
@@ -81,7 +81,7 @@ void am_zmf159_spi1_slv_dma_inst_deinit (am_spi_slv_handle_t handle)
 
 /*******************************************************************************/
 
-/** \brief SPI2 ´ÓÉè±¸Æ½Ì¨³õÊ¼»¯ */
+/** \brief SPI2 ä»è®¾å¤‡å¹³å°åˆå§‹åŒ– */
 static void __zmf159_spi2_slv_dma_plfm_init (void)
 {
     am_gpio_pin_cfg(PIOB_13, PIOB_13_SPI2_SCK | PIOB_13_AF_PP);
@@ -91,35 +91,35 @@ static void __zmf159_spi2_slv_dma_plfm_init (void)
     am_clk_enable(CLK_SPI2);
 }
 
-/** \brief ½â³ı SPI1 ´ÓÉè±¸Æ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤ SPI1 ä»è®¾å¤‡å¹³å°åˆå§‹åŒ– */
 static void __zmf159_spi2_slv_dma_plfm_deinit (void)
 {
     am_clk_disable(CLK_SPI2);
 }
 
 /**
- * \brief SPI1 ´ÓÉè±¸Éè±¸ĞÅÏ¢
+ * \brief SPI1 ä»è®¾å¤‡è®¾å¤‡ä¿¡æ¯
  */
 const am_zlg_spi_slv_dma_devinfo_t __g_spi2_slv_devinfo = {
-    ZMF159_SPI2_BASE,                      /* SPI2 ¼Ä´æÆ÷Ö¸Õë   */
-    CLK_SPI2,                              /* Ê±ÖÓ ID ºÅ   */
+    ZMF159_SPI2_BASE,                      /* SPI2 å¯„å­˜å™¨æŒ‡é’ˆ   */
+    CLK_SPI2,                              /* æ—¶é’Ÿ ID å·   */
     DMA_CHAN_SPI2_TX,
     DMA_CHAN_SPI2_RX,
     PIOB_12,
-    __zmf159_spi2_slv_dma_plfm_init,       /* SPI2 Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __zmf159_spi2_slv_dma_plfm_deinit      /* SPI2 Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    __zmf159_spi2_slv_dma_plfm_init,       /* SPI2 å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __zmf159_spi2_slv_dma_plfm_deinit      /* SPI2 å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 };
 
-/** \brief SPI2 ´Ó»úÉè±¸ÊµÀı */
+/** \brief SPI2 ä»æœºè®¾å¤‡å®ä¾‹ */
 static am_zlg_spi_slv_dma_dev_t __g_spi2_slv_dev;
 
-/** \brief SPI2 ´Ó»úÊµÀı³õÊ¼»¯£¬»ñµÃ SPI ´Ó»ú±ê×¼·şÎñ¾ä±ú */
+/** \brief SPI2 ä»æœºå®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— SPI ä»æœºæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_spi_slv_handle_t am_zmf159_spi2_slv_dma_inst_init (void)
 {
     return am_zlg_spi_slv_dma_init(&__g_spi2_slv_dev, &__g_spi2_slv_devinfo);
 }
 
-/** \brief SPI1 ´ÓÉè±¸ÊµÀı½â³õÊ¼»¯ */
+/** \brief SPI1 ä»è®¾å¤‡å®ä¾‹è§£åˆå§‹åŒ– */
 void am_zmf159_spi2_slv_dma_inst_deinit (am_spi_slv_handle_t handle)
 {
     am_zlg_spi_slv_dma_deinit(handle);
@@ -127,7 +127,7 @@ void am_zmf159_spi2_slv_dma_inst_deinit (am_spi_slv_handle_t handle)
 
 /*******************************************************************************/
 
-/** \brief SPI3 ´ÓÉè±¸Æ½Ì¨³õÊ¼»¯ */
+/** \brief SPI3 ä»è®¾å¤‡å¹³å°åˆå§‹åŒ– */
 static void __zmf159_spi3_slv_dma_plfm_init (void)
 {
     am_gpio_pin_cfg(PIOB_13, PIOB_13_SPI2_SCK | PIOB_13_AF_PP);
@@ -137,35 +137,35 @@ static void __zmf159_spi3_slv_dma_plfm_init (void)
     am_clk_enable(CLK_SPI3);
 }
 
-/** \brief ½â³ı SPI3 ´ÓÉè±¸Æ½Ì¨³õÊ¼»¯ */
+/** \brief è§£é™¤ SPI3 ä»è®¾å¤‡å¹³å°åˆå§‹åŒ– */
 static void __zmf159_spi3_slv_dma_plfm_deinit (void)
 {
     am_clk_disable(CLK_SPI3);
 }
 
 /**
- * \brief SPI3 ´ÓÉè±¸Éè±¸ĞÅÏ¢
+ * \brief SPI3 ä»è®¾å¤‡è®¾å¤‡ä¿¡æ¯
  */
 const am_zlg_spi_slv_dma_devinfo_t __g_spi3_slv_devinfo = {
-    ZMF159_SPI3_BASE,                      /* SPI3 ¼Ä´æÆ÷Ö¸Õë   */
-    CLK_SPI3,                              /* Ê±ÖÓ ID ºÅ   */
+    ZMF159_SPI3_BASE,                      /* SPI3 å¯„å­˜å™¨æŒ‡é’ˆ   */
+    CLK_SPI3,                              /* æ—¶é’Ÿ ID å·   */
     DMA_CHAN_SPI3_TX,
     DMA_CHAN_SPI3_RX,
     PIOB_12,
-    __zmf159_spi3_slv_dma_plfm_init,       /* SPI3 Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __zmf159_spi3_slv_dma_plfm_deinit      /* SPI3 Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    __zmf159_spi3_slv_dma_plfm_init,       /* SPI3 å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __zmf159_spi3_slv_dma_plfm_deinit      /* SPI3 å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 };
 
-/** \brief SPI3 ´Ó»úÉè±¸ÊµÀı */
+/** \brief SPI3 ä»æœºè®¾å¤‡å®ä¾‹ */
 static am_zlg_spi_slv_dma_dev_t __g_spi3_slv_dev;
 
-/** \brief SPI3 ´Ó»úÊµÀı³õÊ¼»¯£¬»ñµÃ SPI ´Ó»ú±ê×¼·şÎñ¾ä±ú */
+/** \brief SPI3 ä»æœºå®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾— SPI ä»æœºæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_spi_slv_handle_t am_zmf159_spi3_slv_dma_inst_init (void)
 {
     return am_zlg_spi_slv_dma_init(&__g_spi3_slv_dev, &__g_spi3_slv_devinfo);
 }
 
-/** \brief SPI3 ´ÓÉè±¸ÊµÀı½â³õÊ¼»¯ */
+/** \brief SPI3 ä»è®¾å¤‡å®ä¾‹è§£åˆå§‹åŒ– */
 void am_zmf159_spi3_slv_dma_inst_deinit (am_spi_slv_handle_t handle)
 {
     am_zlg_spi_slv_dma_deinit(handle);

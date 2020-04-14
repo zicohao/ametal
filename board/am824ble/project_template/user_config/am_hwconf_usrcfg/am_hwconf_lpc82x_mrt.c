@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief LPC82X MRT ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief LPC82X MRT ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_lpc82x_mrt.c
  *
  * \internal
@@ -36,7 +36,7 @@
  */
 
 /**
- * \brief MRT Æ½Ì¨³õÊ¼»¯
+ * \brief MRT å¹³å°åˆå§‹åŒ–
  */
 am_local void __lpc82x_mrt_plfm_init (void)
 {
@@ -45,7 +45,7 @@ am_local void __lpc82x_mrt_plfm_init (void)
 }
 
 /**
- * \brief MRT Æ½Ì¨½â³õÊ¼»¯
+ * \brief MRT å¹³å°è§£åˆå§‹åŒ–
  */
 am_local void __lpc82x_mrt_plfm_deinit (void)
 {
@@ -53,21 +53,21 @@ am_local void __lpc82x_mrt_plfm_deinit (void)
     amhw_lpc82x_clk_periph_disable(AMHW_LPC82X_CLK_MRT);
 }
 
-/** \brief MRT Éè±¸ĞÅÏ¢ */
+/** \brief MRT è®¾å¤‡ä¿¡æ¯ */
 am_local am_const am_lpc_mrt_devinfo_t __g_lpc82x_mrt_devinfo = {
-    LPC82X_MRT_BASE,             /* MRT ¼Ä´æÆ÷¿é»ùÖ· */
-    INUM_MRT,                    /* MRT ÖĞ¶ÏºÅ */
-    CLK_MRT,                     /* MRT Ê±ÖÓºÅ */
-    4,                           /* Ê¹ÓÃµÄÍ¨µÀÊı */
-    __lpc82x_mrt_plfm_init,      /* Æ½Ì¨³õÊ¼»¯º¯Êı */
-    __lpc82x_mrt_plfm_deinit,    /* Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    LPC82X_MRT_BASE,             /* MRT å¯„å­˜å™¨å—åŸºå€ */
+    INUM_MRT,                    /* MRT ä¸­æ–­å· */
+    CLK_MRT,                     /* MRT æ—¶é’Ÿå· */
+    4,                           /* ä½¿ç”¨çš„é€šé“æ•° */
+    __lpc82x_mrt_plfm_init,      /* å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    __lpc82x_mrt_plfm_deinit,    /* å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 };
 
-/** \brief MRT Éè±¸ÊµÀı */
+/** \brief MRT è®¾å¤‡å®ä¾‹ */
 am_local am_lpc_mrt_dev_t __g_lpc82x_mrt_dev;
 
 /**
- * \brief MRT ÊµÀı³õÊ¼»¯
+ * \brief MRT å®ä¾‹åˆå§‹åŒ–
  */
 am_timer_handle_t am_lpc82x_mrt_inst_init (void)
 {
@@ -75,7 +75,7 @@ am_timer_handle_t am_lpc82x_mrt_inst_init (void)
 }
 
 /**
- * \brief MRT ÊµÀı½â³õÊ¼»¯
+ * \brief MRT å®ä¾‹è§£åˆå§‹åŒ–
  */
 void am_lpc82x_mrt_inst_deinit (am_timer_handle_t handle)
 {

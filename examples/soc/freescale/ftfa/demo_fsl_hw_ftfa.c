@@ -12,17 +12,17 @@
 
 /**
  * \file
- * \brief FTFAÀı³Ì,Í¨¹ıHW²ãµÄ½Ó¿ÚÊµÏÖ
+ * \brief FTFAä¾‹ç¨‹,é€šè¿‡HWå±‚çš„æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè£º
- *      - Ê¹ÓÃµ÷ÊÔ´®¿Ú´òÓ¡ĞÅÏ¢
- *      - Ğ´ÈëÊ§°ÜÊ±£º´òÓ¡ ¡°write error!¡±
- *      - Ğ´Èë´íÎóÊ±£º´òÓ¡ ¡°data not wrote correct!¡±
- *      - ³É¹¦Ğ´ÈëÊ±£º´òÓ¡Ğ´ÈëµÄÊı¾İ(32bit)ºÍ ¡°flash test finished¡±
- * - ÊµÑéÏÖÏó£º
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *      - ä½¿ç”¨è°ƒè¯•ä¸²å£æ‰“å°ä¿¡æ¯
+ *      - å†™å…¥å¤±è´¥æ—¶ï¼šæ‰“å° â€œwrite error!â€
+ *      - å†™å…¥é”™è¯¯æ—¶ï¼šæ‰“å° â€œdata not wrote correct!â€
+ *      - æˆåŠŸå†™å…¥æ—¶ï¼šæ‰“å°å†™å…¥çš„æ•°æ®(32bit)å’Œ â€œflash test finishedâ€
+ * - å®éªŒç°è±¡ï¼š
  *
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_fsl_hw_ftfa.c src_fsl_hw_ftfa
  *
  * \internal
@@ -52,16 +52,16 @@ void deme_fsl_hw_ftfa_entry (amhw_fsl_ftfa_t *p_hw_ftfa)
     uint32_t key = 0;
 
     key = am_int_cpu_lock();
-    /** ½«flashÃüÁîÖ´ĞĞº¯Êı¿½±´µ½RAM */
+    /** å°†flashå‘½ä»¤æ‰§è¡Œå‡½æ•°æ‹·è´åˆ°RAM */
     amhw_fsl_ftfa_func_copy();
     am_int_cpu_unlock (key);
 
     key = am_int_cpu_lock();
-    /** ²Á³ı60ÉÈÇø  */
+    /** æ“¦é™¤60æ‰‡åŒº  */
     status = amhw_fsl_ftfa_sector_erase(p_hw_ftfa, 60 * 1024);
     am_int_cpu_unlock (key);
 
-    /** ÉÈÇø²Á³ı³ö´í£¬ ³ÌĞòÍ£ÔÚ´Ë´¦ */
+    /** æ‰‡åŒºæ“¦é™¤å‡ºé”™ï¼Œ ç¨‹åºåœåœ¨æ­¤å¤„ */
     if (0 != status) {
         AM_DBG_INFO("erase error!\r\n");
 
@@ -71,7 +71,7 @@ void deme_fsl_hw_ftfa_entry (amhw_fsl_ftfa_t *p_hw_ftfa)
     }
 
     key = am_int_cpu_lock();
-    /** ÅĞ¶Ï60ÉÈÇøÊÇ·ñÈ«Îª1£¬¼´¿É±à³Ì */
+    /** åˆ¤æ–­60æ‰‡åŒºæ˜¯å¦å…¨ä¸º1ï¼Œå³å¯ç¼–ç¨‹ */
     status = amhw_fsl_ftfa_1s_read(p_hw_ftfa, 60 * 1024, 1024 / 4, 0x00);
     am_int_cpu_unlock (key);
 
@@ -83,7 +83,7 @@ void deme_fsl_hw_ftfa_entry (amhw_fsl_ftfa_t *p_hw_ftfa)
                                                 i);
             am_int_cpu_unlock (key);
 
-            /** Ğ´Èë²»³É¹¦Ê±³ÌĞòÍ£ÔÚ´Ë´¦ */
+            /** å†™å…¥ä¸æˆåŠŸæ—¶ç¨‹åºåœåœ¨æ­¤å¤„ */
             if (0 != status) {
                 AM_DBG_INFO("write error!\r\n");
 
@@ -97,7 +97,7 @@ void deme_fsl_hw_ftfa_entry (amhw_fsl_ftfa_t *p_hw_ftfa)
                                                  0x1);
             am_int_cpu_unlock (key);
 
-            /** Ğ´Èë²»ÕıÈ·Ê±³ÌĞòÍ£ÔÚ´Ë´¦ */
+            /** å†™å…¥ä¸æ­£ç¡®æ—¶ç¨‹åºåœåœ¨æ­¤å¤„ */
             if (0 != status) {
                 AM_DBG_INFO("data not wrote correct!\r\n");
 
@@ -113,7 +113,7 @@ void deme_fsl_hw_ftfa_entry (amhw_fsl_ftfa_t *p_hw_ftfa)
 
     AM_DBG_INFO("flash test finished\r\n");
 
-    /** ËÀÑ­»·£¬·ÀÖ¹MCUÖØÆô */
+    /** æ­»å¾ªç¯ï¼Œé˜²æ­¢MCUé‡å¯ */
     while (1) {
         i++;
     }

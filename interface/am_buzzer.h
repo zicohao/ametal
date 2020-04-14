@@ -12,20 +12,20 @@
 
 /**
  * \file
- * \brief ·äÃùÆ÷²Ù×÷½Ó¿Ú
+ * \brief èœ‚é¸£å™¨æ“ä½œæ¥å£
  *
- * Ê¹ÓÃ±¾·şÎñĞèÒª°üº¬ÒÔÏÂÍ·ÎÄ¼ş:
+ * ä½¿ç”¨æœ¬æœåŠ¡éœ€è¦åŒ…å«ä»¥ä¸‹å¤´æ–‡ä»¶:
  * \code
  * #include "am_buzzer.h"
  * \endcode
  *
- * \par Ê¹ÓÃÊ¾Àı
+ * \par ä½¿ç”¨ç¤ºä¾‹
  * \code
  * #include "am_buzzer.h"
  *
- * am_buzzer_on();      // ·äÃùÆ÷Ãù½Ğ
- * am_buzzer_off();     // ¹Ø±Õ·äÃùÆ÷Ãù½Ğ
- * am_buzzer_beep(100); // ·äÃùÆ÷Ãù½Ğ100ºÁÃë
+ * am_buzzer_on();      // èœ‚é¸£å™¨é¸£å«
+ * am_buzzer_off();     // å…³é—­èœ‚é¸£å™¨é¸£å«
+ * am_buzzer_beep(100); // èœ‚é¸£å™¨é¸£å«100æ¯«ç§’
  *
  * \endcode
  *
@@ -51,38 +51,38 @@ extern "C" {
  */
 
 /**
- * \brief ´ò¿ª·äÃùÆ÷£¨¿ªÊ¼Ãù½Ğ£©
+ * \brief æ‰“å¼€èœ‚é¸£å™¨ï¼ˆå¼€å§‹é¸£å«ï¼‰
  *
- * \retval  AM_OK     : ´ò¿ª³É¹¦
- * \retval -AM_ENODEV : ²»´æÔÚ·äÃùÆ÷Éè±¸
+ * \retval  AM_OK     : æ‰“å¼€æˆåŠŸ
+ * \retval -AM_ENODEV : ä¸å­˜åœ¨èœ‚é¸£å™¨è®¾å¤‡
  */ 
 int am_buzzer_on(void);
 
 /**
- * \brief ¹Ø±Õ·äÃùÆ÷
+ * \brief å…³é—­èœ‚é¸£å™¨
  *
- * \retval  AM_OK     : ¹Ø±Õ³É¹¦
- * \retval -AM_ENODEV : ²»´æÔÚ·äÃùÆ÷Éè±¸
+ * \retval  AM_OK     : å…³é—­æˆåŠŸ
+ * \retval -AM_ENODEV : ä¸å­˜åœ¨èœ‚é¸£å™¨è®¾å¤‡
  */ 
 int am_buzzer_off(void);
 
 /**
- * \brief ·äÃùÆ÷Ãù½ĞÖ¸¶¨Ê±¼ä£¨Ê±¼äµ¥Î»£ººÁÃë£©£¬Ãù½Ğ½áÊøºó·µ»Ø
+ * \brief èœ‚é¸£å™¨é¸£å«æŒ‡å®šæ—¶é—´ï¼ˆæ—¶é—´å•ä½ï¼šæ¯«ç§’ï¼‰ï¼Œé¸£å«ç»“æŸåè¿”å›
  *
- * \param[in] ms : Ãù½ĞÊ±¼ä
+ * \param[in] ms : é¸£å«æ—¶é—´
  *
- * \retval  AM_OK     : ²Ù×÷³É¹¦
- * \retval -AM_ENODEV : ²»´æÔÚ·äÃùÆ÷Éè±¸
+ * \retval  AM_OK     : æ“ä½œæˆåŠŸ
+ * \retval -AM_ENODEV : ä¸å­˜åœ¨èœ‚é¸£å™¨è®¾å¤‡
  */ 
 int am_buzzer_beep(uint32_t ms);
 
 /**
- * \brief ·äÃùÆ÷Ãù½ĞÖ¸¶¨Ê±¼ä£¨Ê±¼äµ¥Î»£ººÁÃë£©£¬º¯Êı»áÁ¢¼´·µ»Ø
+ * \brief èœ‚é¸£å™¨é¸£å«æŒ‡å®šæ—¶é—´ï¼ˆæ—¶é—´å•ä½ï¼šæ¯«ç§’ï¼‰ï¼Œå‡½æ•°ä¼šç«‹å³è¿”å›
  *
- * \param[in] ms : Ãù½ĞÊ±¼ä
+ * \param[in] ms : é¸£å«æ—¶é—´
  *
- * \retval  AM_OK     : ²Ù×÷³É¹¦
- * \retval -AM_ENODEV : ²»´æÔÚ·äÃùÆ÷Éè±¸
+ * \retval  AM_OK     : æ“ä½œæˆåŠŸ
+ * \retval -AM_ENODEV : ä¸å­˜åœ¨èœ‚é¸£å™¨è®¾å¤‡
  */
 int am_buzzer_beep_async (uint32_t ms);
  

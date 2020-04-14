@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief SDIO Ó²¼ş²Ù×÷½Ó¿Ú
+ * \brief SDIO ç¡¬ä»¶æ“ä½œæ¥å£
  * \internal
  * \par Modification history
  * - 1.00 17-04-13  ari, first implementation
@@ -81,98 +81,98 @@ typedef struct amhw_zlg_sdio {
 } amhw_zlg_sdio_t;
 
 /**
- * \brief sdioµÄDATÏßÎ»¿í
+ * \brief sdioçš„DATçº¿ä½å®½
  */
 typedef enum amhw_zlg_sdio_width {
-    AMHW_ZLG_SDIO_WIDTH_1BIT      = 0x0,   /**< \brief 1Î» */
-	AMHW_ZLG_SDIO_WIDTH_4BIT      = 0x2,   /**< \brief 4Î» */
+    AMHW_ZLG_SDIO_WIDTH_1BIT      = 0x0,   /**< \brief 1ä½ */
+	AMHW_ZLG_SDIO_WIDTH_4BIT      = 0x2,   /**< \brief 4ä½ */
 } amhw_zlg_sdio_width_t;
 
 /**
- * \brief sdioËÙ¶ÈÄ£Ê½ÅäÖÃ
+ * \brief sdioé€Ÿåº¦æ¨¡å¼é…ç½®
  */
 typedef enum amhw_zlg_sdio_speed_mode {
-    AMHW_ZLG_SDIO_SPEED_MODE_LOW      = 0x0,   /**< \brief µÍËÙÄ£Ê½ */
-	AMHW_ZLG_SDIO_SPEED_MODE_HIGH     = 0x1,   /**< \brief ¸ßËÙÄ£Ê½ */
+    AMHW_ZLG_SDIO_SPEED_MODE_LOW      = 0x0,   /**< \brief ä½é€Ÿæ¨¡å¼ */
+	AMHW_ZLG_SDIO_SPEED_MODE_HIGH     = 0x1,   /**< \brief é«˜é€Ÿæ¨¡å¼ */
 } amhw_zlg_sdio_speed_mode_t;
 
 /**
- * \brief sdio¶Ë¿ÚÊ±ÖÓÅäÖÃ
+ * \brief sdioç«¯å£æ—¶é’Ÿé…ç½®
  */
 typedef enum amhw_zlg_port_clk_mode {
-    AMHW_ZLG_SDIO_PORT_CLK_MODE_1_2BASECLK      = 0x0,   /**< \brief 1/2±¶»ù´¡Ê±ÖÓËÙÄ£Ê½ */
-    AMHW_ZLG_SDIO_PORT_CLK_MODE_1_4BASECLK      = 0x1,   /**< \brief 1/4±¶»ù´¡Ê±ÖÓËÙÄ£Ê½ */
-    AMHW_ZLG_SDIO_PORT_CLK_MODE_1_6BASECLK      = 0x2,   /**< \brief 1/6±¶»ù´¡Ê±ÖÓËÙÄ£Ê½ */
-    AMHW_ZLG_SDIO_PORT_CLK_MODE_1_8BASECLK      = 0x3,   /**< \brief 1/8±¶»ù´¡Ê±ÖÓËÙÄ£Ê½ */
-	AMHW_ZLG_SDIO_PORT_CLK_MODE_1_10BASECLK     = 0x4,   /**< \brief 1/10±¶»ù´¡Ê±ÖÓËÙÄ£Ê½ */
-    AMHW_ZLG_SDIO_PORT_CLK_MODE_1_12BASECLK     = 0x5,   /**< \brief 1/12±¶»ù´¡Ê±ÖÓËÙÄ£Ê½ */
-    AMHW_ZLG_SDIO_PORT_CLK_MODE_1_14BASECLK     = 0x6,   /**< \brief 1/14±¶»ù´¡Ê±ÖÓËÙÄ£Ê½ */
-    AMHW_ZLG_SDIO_PORT_CLK_MODE_1_16BASECLK     = 0x7,   /**< \brief 1/16±¶»ù´¡Ê±ÖÓËÙÄ£Ê½ */
+    AMHW_ZLG_SDIO_PORT_CLK_MODE_1_2BASECLK      = 0x0,   /**< \brief 1/2å€åŸºç¡€æ—¶é’Ÿé€Ÿæ¨¡å¼ */
+    AMHW_ZLG_SDIO_PORT_CLK_MODE_1_4BASECLK      = 0x1,   /**< \brief 1/4å€åŸºç¡€æ—¶é’Ÿé€Ÿæ¨¡å¼ */
+    AMHW_ZLG_SDIO_PORT_CLK_MODE_1_6BASECLK      = 0x2,   /**< \brief 1/6å€åŸºç¡€æ—¶é’Ÿé€Ÿæ¨¡å¼ */
+    AMHW_ZLG_SDIO_PORT_CLK_MODE_1_8BASECLK      = 0x3,   /**< \brief 1/8å€åŸºç¡€æ—¶é’Ÿé€Ÿæ¨¡å¼ */
+	AMHW_ZLG_SDIO_PORT_CLK_MODE_1_10BASECLK     = 0x4,   /**< \brief 1/10å€åŸºç¡€æ—¶é’Ÿé€Ÿæ¨¡å¼ */
+    AMHW_ZLG_SDIO_PORT_CLK_MODE_1_12BASECLK     = 0x5,   /**< \brief 1/12å€åŸºç¡€æ—¶é’Ÿé€Ÿæ¨¡å¼ */
+    AMHW_ZLG_SDIO_PORT_CLK_MODE_1_14BASECLK     = 0x6,   /**< \brief 1/14å€åŸºç¡€æ—¶é’Ÿé€Ÿæ¨¡å¼ */
+    AMHW_ZLG_SDIO_PORT_CLK_MODE_1_16BASECLK     = 0x7,   /**< \brief 1/16å€åŸºç¡€æ—¶é’Ÿé€Ÿæ¨¡å¼ */
 } amhw_zlg_port_clk_mode_t;
 
 /**
- * \brief sdio¶Ë¿ÚÊ±ÖÓÅäÖÃ
+ * \brief sdioç«¯å£æ—¶é’Ÿé…ç½®
  */
 typedef enum amhw_zlg_output_selection_mode {
-    AMHW_ZLG_SDIO_OUTPUT_SELECTION_OD_MODE    = 0x1,   /**< \brief Êä³öÊ¹ÓÃ*/
-	AMHW_ZLG_SDIO_OUTPUT_SELECTION_PP_MODE    = 0x0,   /**< \brief Ê¹ÓÃmmc_portÄ£Ê½ */
+    AMHW_ZLG_SDIO_OUTPUT_SELECTION_OD_MODE    = 0x1,   /**< \brief è¾“å‡ºä½¿ç”¨*/
+	AMHW_ZLG_SDIO_OUTPUT_SELECTION_PP_MODE    = 0x0,   /**< \brief ä½¿ç”¨mmc_portæ¨¡å¼ */
 } amhw_zlg_output_selection_mode_t;
 
 /**
- * \brief sdio¶Ë¿ÚÊ±ÖÓÅäÖÃ
+ * \brief sdioç«¯å£æ—¶é’Ÿé…ç½®
  */
 typedef enum amhw_zlg_signal_mode {
-	AMHW_ZLG_SDIO_SIGNAL_MMC_PORT_MODE    = 0x0,   /**< \brief Ê¹ÓÃmmc_portÄ£Ê½ */
-    AMHW_ZLG_SDIO_SIGNAL_AUTO_MODE        = 0x1,   /**< \brief ×Ô¶¯´«ÊäÄ£Ê½*/
+	AMHW_ZLG_SDIO_SIGNAL_MMC_PORT_MODE    = 0x0,   /**< \brief ä½¿ç”¨mmc_portæ¨¡å¼ */
+    AMHW_ZLG_SDIO_SIGNAL_AUTO_MODE        = 0x1,   /**< \brief è‡ªåŠ¨ä¼ è¾“æ¨¡å¼*/
 } amhw_zlg_signal_mode_t;
 
 /**
- * \brief sdio¶Ë¿Ú²Ù×÷Ä£Ê½Ñ¡Ôñ
+ * \brief sdioç«¯å£æ“ä½œæ¨¡å¼é€‰æ‹©
  */
 typedef enum amhw_zlg_sdio_port_operation_mode {
-	AMHW_ZLG_SDIO_PORT_OPER_SPI_MODE    = 0x0,   /**< \brief Ê¹ÓÃSPI_Ä£Ê½ */
-	AMHW_ZLG_SDIO_PORT_OPER_SDIO_MODE   = 0x1,   /**< \brief SDIO/SD/MMCÄ£Ê½*/
+	AMHW_ZLG_SDIO_PORT_OPER_SPI_MODE    = 0x0,   /**< \brief ä½¿ç”¨SPI_æ¨¡å¼ */
+	AMHW_ZLG_SDIO_PORT_OPER_SDIO_MODE   = 0x1,   /**< \brief SDIO/SD/MMCæ¨¡å¼*/
 } amhw_zlg_sdio_port_operation_mode_t;
 
 /**
- * \brief sdio¶Ë¿Ú²Ù×÷Ä£Ê½Ñ¡Ôñ
+ * \brief sdioç«¯å£æ“ä½œæ¨¡å¼é€‰æ‹©
  */
 typedef enum amhw_zlg_sdio_pclkg_mode {
-	AMHW_ZLG_SDIO_PCLKG_SEL_REORSEND    = 0x0,   /**< \brief ¶Ë¿Ú²úÉú8¸ö¿ÕÊ±ÖÓ */
-	AMHW_ZLG_SDIO_PCLKG_8FREE_CLK       = 0x1,   /**< \brief Ñ¡Ôñ½ÓÊÕÏìÓ¦/·¢ËÍÃüÁî*/
+	AMHW_ZLG_SDIO_PCLKG_SEL_REORSEND    = 0x0,   /**< \brief ç«¯å£äº§ç”Ÿ8ä¸ªç©ºæ—¶é’Ÿ */
+	AMHW_ZLG_SDIO_PCLKG_8FREE_CLK       = 0x1,   /**< \brief é€‰æ‹©æ¥æ”¶å“åº”/å‘é€å‘½ä»¤*/
 } amhw_zlg_sdio_pclkg_t;
 
 /**
- * \brief sdio¶Ë¿Ú²Ù×÷Ä£Ê½Ñ¡Ôñ
+ * \brief sdioç«¯å£æ“ä½œæ¨¡å¼é€‰æ‹©
  */
 typedef enum amhw_zlg_resive_or_send_mode {
-    AMHW_ZLG_SDIO_SEND_MODE       = 0x0,   /**< \brief Ê¹ÓÃ·¢ËÍÄ£Ê½*/
-	AMHW_ZLG_SDIO_RECEIVE_MODE     = 0x1,   /**< \brief Ê¹ÓÃ½ÓÊÕÄ£Ê½ */
+    AMHW_ZLG_SDIO_SEND_MODE       = 0x0,   /**< \brief ä½¿ç”¨å‘é€æ¨¡å¼*/
+	AMHW_ZLG_SDIO_RECEIVE_MODE     = 0x1,   /**< \brief ä½¿ç”¨æ¥æ”¶æ¨¡å¼ */
 } amhw_zlg_resive_or_send_mode_t;
 
 
 /**
- * \brief sdio¶Ë¿Ú²Ù×÷Ä£Ê½Ñ¡Ôñ
+ * \brief sdioç«¯å£æ“ä½œæ¨¡å¼é€‰æ‹©
  */
 typedef enum amhw_zlg_transfer_mode {
-	AMHW_ZLG_SDIO_WRITE_MODE      = 0x0,   /**< \brief Ğ´Ä£Ê½ */
-	AMHW_ZLG_SDIO_READ_MODE       = 0x1,   /**< \brief ¶ÁÄ£Ê½*/
+	AMHW_ZLG_SDIO_WRITE_MODE      = 0x0,   /**< \brief å†™æ¨¡å¼ */
+	AMHW_ZLG_SDIO_READ_MODE       = 0x1,   /**< \brief è¯»æ¨¡å¼*/
 } amhw_zlg_transfer_mode_t;
 
 /**
- * \brief sdio¶Ë¿Ú²Ù×÷Ä£Ê½Ñ¡Ôñ
+ * \brief sdioç«¯å£æ“ä½œæ¨¡å¼é€‰æ‹©
  */
 typedef enum amhw_zlg_clk_selete_bety {
-	AMHW_ZLG_SDIO_UP_PUSH_DOWN_PULL      = 0x0,   /**< \brief Ğ´Ä£Ê½ */
-	AMHW_ZLG_SDIO_UP_PULL_DOWN_PUSH      = 0x1,   /**< \brief ¶ÁÄ£Ê½*/
+	AMHW_ZLG_SDIO_UP_PUSH_DOWN_PULL      = 0x0,   /**< \brief å†™æ¨¡å¼ */
+	AMHW_ZLG_SDIO_UP_PULL_DOWN_PUSH      = 0x1,   /**< \brief è¯»æ¨¡å¼*/
 } amhw_zlg_clk_selete_bety_t;
 
 
 /**
- * \brief ¶ÁµÈ´ıÊ¹ÄÜº¯Êı
+ * \brief è¯»ç­‰å¾…ä½¿èƒ½å‡½æ•°
  *
- * \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
- * \return ÎŞ
+ * \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_sdio_read_wait_enable (amhw_zlg_sdio_t              *p_hw_sdio)
@@ -181,11 +181,11 @@ void amhw_zlg_sdio_read_wait_enable (amhw_zlg_sdio_t              *p_hw_sdio)
 }
 
 /**
-* \brief ¶ÁµÈ´ı½ûÄÜº¯Êı
+* \brief è¯»ç­‰å¾…ç¦èƒ½å‡½æ•°
 *
-* \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
+* \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
 *
-* \return ÎŞ
+* \return æ— 
 */
 am_static_inline
 void amhw_zlg_sdio_read_wait_disable (amhw_zlg_sdio_t             *p_hw_sdio)
@@ -194,11 +194,11 @@ void amhw_zlg_sdio_read_wait_disable (amhw_zlg_sdio_t             *p_hw_sdio)
 }
 
 /**
- * \brief ÖĞ¶ÏÊ¹ÄÜº¯Êı
+ * \brief ä¸­æ–­ä½¿èƒ½å‡½æ•°
  *
- * \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_sdio_int_enable (amhw_zlg_sdio_t              *p_hw_sdio)
@@ -207,11 +207,11 @@ void amhw_zlg_sdio_int_enable (amhw_zlg_sdio_t              *p_hw_sdio)
 }
 
 /**
-* \brief ÖĞ¶Ï½ûÄÜº¯Êı
+* \brief ä¸­æ–­ç¦èƒ½å‡½æ•°
 *
-* \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
+* \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
 *
-* \return ÎŞ
+* \return æ— 
 */
 am_static_inline
 void amhw_zlg_sdio_int_disable (amhw_zlg_sdio_t             *p_hw_sdio)
@@ -220,11 +220,11 @@ void amhw_zlg_sdio_int_disable (amhw_zlg_sdio_t             *p_hw_sdio)
 }
 
 /**
- * \brief SDIOÊ¹ÄÜº¯Êı
+ * \brief SDIOä½¿èƒ½å‡½æ•°
  *
- * \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_sdio_mode_enable (amhw_zlg_sdio_t              *p_hw_sdio)
@@ -233,11 +233,11 @@ void amhw_zlg_sdio_mode_enable (amhw_zlg_sdio_t              *p_hw_sdio)
 }
 
 /**
-* \brief SDIO½ûÄÜº¯Êı
+* \brief SDIOç¦èƒ½å‡½æ•°
 *
-* \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
+* \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
 *
-* \return ÎŞ
+* \return æ— 
 */
 am_static_inline
 void amhw_zlg_sdio_mode_disable (amhw_zlg_sdio_t             *p_hw_sdio)
@@ -246,12 +246,12 @@ void amhw_zlg_sdio_mode_disable (amhw_zlg_sdio_t             *p_hw_sdio)
 }
 
 /**
- * \brief ×ÜÏßÎ»¿íÉèÖÃÄÜº¯Êı
+ * \brief æ€»çº¿ä½å®½è®¾ç½®èƒ½å‡½æ•°
  *
- * \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
- * \param[in] width    p_hw_sdio ¿ØÖÆ¼Ä´æÆ÷Î»¿íÃ¶¾Ù
+ * \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
+ * \param[in] width    p_hw_sdio æ§åˆ¶å¯„å­˜å™¨ä½å®½æšä¸¾
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_sdio_bus_width_set (amhw_zlg_sdio_t *p_hw_sdio, amhw_zlg_sdio_width_t width)
@@ -265,12 +265,12 @@ void amhw_zlg_sdio_bus_width_set (amhw_zlg_sdio_t *p_hw_sdio, amhw_zlg_sdio_widt
 }
 
 /**
- * \brief ËÙÂÊÑ¡Ôñ´«Êäº¯Êı
+ * \brief é€Ÿç‡é€‰æ‹©ä¼ è¾“å‡½æ•°
  *
- * \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
- * \param[in] permit   SDIO ¿ØÖÆ´«ÊäÅäÖÃÃ¶¾Ù
+ * \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
+ * \param[in] permit   SDIO æ§åˆ¶ä¼ è¾“é…ç½®æšä¸¾
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_sdio_speed_mode_set (amhw_zlg_sdio_t *p_hw_sdio, amhw_zlg_sdio_speed_mode_t mode)
@@ -284,12 +284,12 @@ void amhw_zlg_sdio_speed_mode_set (amhw_zlg_sdio_t *p_hw_sdio, amhw_zlg_sdio_spe
 }
 
 /**
- * \brief ËÙÂÊÑ¡ÔñÅäÖÃº¯Êı
+ * \brief é€Ÿç‡é€‰æ‹©é…ç½®å‡½æ•°
  *
- * \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
- * \param[in] permit   SDIO ¿ØÖÆ¼Ä´æÆ÷CLKËÙÂÊÑ¡ÔñÃ¶¾Ù
+ * \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
+ * \param[in] permit   SDIO æ§åˆ¶å¯„å­˜å™¨CLKé€Ÿç‡é€‰æ‹©æšä¸¾
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_sdio_prot_clk_set (amhw_zlg_sdio_t *p_hw_sdio, amhw_zlg_port_clk_mode_t speed)
@@ -298,12 +298,12 @@ void amhw_zlg_sdio_prot_clk_set (amhw_zlg_sdio_t *p_hw_sdio, amhw_zlg_port_clk_m
 }
 
 /**
- * \brief Êä³öÅäÖÃº¯Êı
+ * \brief è¾“å‡ºé…ç½®å‡½æ•°
  *
- * \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
- * \param[in] mode   SDIO ¿ØÖÆ¼Ä´æÆ÷Êä³öÅäÖÃÃ¶¾Ù
+ * \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
+ * \param[in] mode   SDIO æ§åˆ¶å¯„å­˜å™¨è¾“å‡ºé…ç½®æšä¸¾
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_sdio_output_mode_set (amhw_zlg_sdio_t *p_hw_sdio, amhw_zlg_output_selection_mode_t mode)
@@ -317,12 +317,12 @@ void amhw_zlg_sdio_output_mode_set (amhw_zlg_sdio_t *p_hw_sdio, amhw_zlg_output_
 
 
 /**
- * \brief ĞÅºÅÑ¡Ôñº¯Êı
+ * \brief ä¿¡å·é€‰æ‹©å‡½æ•°
  *
- * \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
- * \param[in] permit   SDIO ¿ØÖÆ¼Ä´æÆ÷¸ßÎ»ÖĞ¶ÏÔÊĞíÃ¶¾Ù
+ * \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
+ * \param[in] permit   SDIO æ§åˆ¶å¯„å­˜å™¨é«˜ä½ä¸­æ–­å…è®¸æšä¸¾
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_sdio_signal_mode_set (amhw_zlg_sdio_t *p_hw_sdio, amhw_zlg_signal_mode_t mode)
@@ -335,12 +335,12 @@ void amhw_zlg_sdio_signal_mode_set (amhw_zlg_sdio_t *p_hw_sdio, amhw_zlg_signal_
 }
 
 /**
- * \brief ¶Ë¿ÚÄ£Ê½Ñ¡ÔñÎ»ÅäÖÃº¯Êı
+ * \brief ç«¯å£æ¨¡å¼é€‰æ‹©ä½é…ç½®å‡½æ•°
  *
- * \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
- * \param[in] permit   SDIO ¿ØÖÆ¼Ä´æÆ÷¸ßÎ»¶Ë¿ÚÄ£Ê½Ã¶¾Ù
+ * \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
+ * \param[in] permit   SDIO æ§åˆ¶å¯„å­˜å™¨é«˜ä½ç«¯å£æ¨¡å¼æšä¸¾
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_sdio_port_operation_set (amhw_zlg_sdio_t *p_hw_sdio, amhw_zlg_sdio_port_operation_mode_t mode)
@@ -355,10 +355,10 @@ void amhw_zlg_sdio_port_operation_set (amhw_zlg_sdio_t *p_hw_sdio, amhw_zlg_sdio
 /**
  * \brief
  *
- * \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
- * \param[in] permit   SDIO ¿ØÖÆ¼Ä´æÆ÷¸ßÎ»cmdÖÕÖ¹±êÖ¾
+ * \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
+ * \param[in] permit   SDIO æ§åˆ¶å¯„å­˜å™¨é«˜ä½cmdç»ˆæ­¢æ ‡å¿—
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_sdio_cmd12_io_flag_set (amhw_zlg_sdio_t *p_hw_sdio, am_bool_t cmd_stop)
@@ -373,10 +373,10 @@ void amhw_zlg_sdio_cmd12_io_flag_set (amhw_zlg_sdio_t *p_hw_sdio, am_bool_t cmd_
 /**
  * \brief
  *
- * \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
  *
- * \return AM_TRUE  ÊÇcmd12/IOÖÕÖ¹ÃüÁî
- *         AM_FALSE ²»ÊÇcmd12/IOÖÕÖ¹ÃüÁî
+ * \return AM_TRUE  æ˜¯cmd12/IOç»ˆæ­¢å‘½ä»¤
+ *         AM_FALSE ä¸æ˜¯cmd12/IOç»ˆæ­¢å‘½ä»¤
  */
 am_static_inline
 am_bool_t amhw_zlg_sdio_cmd12_io_flag_get (amhw_zlg_sdio_t *p_hw_sdio)
@@ -391,10 +391,10 @@ am_bool_t amhw_zlg_sdio_cmd12_io_flag_get (amhw_zlg_sdio_t *p_hw_sdio)
 /**
  * \brief
  *
- * \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
- * \param[in] flg       AM_TRUE  µ±Ç°Ö¸Áîºó¸úÊı¾İ¿é
- *                      AM_FALSE µ±Ç°Ö¸Áîºó²»¸úÊı¾İ¿é
- * \return ÎŞ
+ * \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
+ * \param[in] flg       AM_TRUE  å½“å‰æŒ‡ä»¤åè·Ÿæ•°æ®å—
+ *                      AM_FALSE å½“å‰æŒ‡ä»¤åä¸è·Ÿæ•°æ®å—
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_sdio_cmdch_flag_set (amhw_zlg_sdio_t *p_hw_sdio,
@@ -404,11 +404,11 @@ void amhw_zlg_sdio_cmdch_flag_set (amhw_zlg_sdio_t *p_hw_sdio,
 }
 
 /**
- * \brief Ê¹ÄÜµ¥¸öÊı¾İ¿é
+ * \brief ä½¿èƒ½å•ä¸ªæ•°æ®å—
  *
- * \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_sdio_attoclkg_enable (amhw_zlg_sdio_t *p_hw_sdio)
@@ -417,11 +417,11 @@ void amhw_zlg_sdio_attoclkg_enable (amhw_zlg_sdio_t *p_hw_sdio)
 }
 
 /**
- * \brief ½ûÄÜµ¥¸öÊı¾İ¿é
+ * \brief ç¦èƒ½å•ä¸ªæ•°æ®å—
  *
- * \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_sdio_attoclkg_disable (amhw_zlg_sdio_t *p_hw_sdio)
@@ -431,11 +431,11 @@ void amhw_zlg_sdio_attoclkg_disable (amhw_zlg_sdio_t *p_hw_sdio)
 
 
 /**
- * \brief Æô¶¯ÃüÁîºó×Ô¶¯½ÓÊÕÏìÓ¦
+ * \brief å¯åŠ¨å‘½ä»¤åè‡ªåŠ¨æ¥æ”¶å“åº”
  *
- * \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_sdio_enrresp_enable (amhw_zlg_sdio_t *p_hw_sdio)
@@ -444,11 +444,11 @@ void amhw_zlg_sdio_enrresp_enable (amhw_zlg_sdio_t *p_hw_sdio)
 }
 
 /**
- * \brief ½ûÄÜÃüÁîºó×Ô¶¯½ÓÊÕÏìÓ¦
+ * \brief ç¦èƒ½å‘½ä»¤åè‡ªåŠ¨æ¥æ”¶å“åº”
  *
- * \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_sdio_enrresp_disable (amhw_zlg_sdio_t *p_hw_sdio)
@@ -472,12 +472,12 @@ void amhw_zlg_sdio_get_cid_csd(amhw_zlg_sdio_t *p_hw_sdio)
 }
 
 /**
- * \brief ÉèÖÃ¶Ë¿ÚÊ±ÖÓÏß
+ * \brief è®¾ç½®ç«¯å£æ—¶é’Ÿçº¿
  *
- * \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
- * \param[in] mode   SDIO ¿ØÖÆ¼Ä´æÆ÷¶Ë¿ÚÊ±ÖÓÑ¡ÔñÃ¶¾Ù
+ * \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
+ * \param[in] mode   SDIO æ§åˆ¶å¯„å­˜å™¨ç«¯å£æ—¶é’Ÿé€‰æ‹©æšä¸¾
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_sdio_pclkg_set (amhw_zlg_sdio_t *p_hw_sdio, amhw_zlg_resive_or_send_mode_t mode)
@@ -486,11 +486,11 @@ void amhw_zlg_sdio_pclkg_set (amhw_zlg_sdio_t *p_hw_sdio, amhw_zlg_resive_or_sen
 }
 
 /**
- * \brief ÊÇ·ñÊ¹ÄÜ×Ô¶¯ÏìÓ¦´«Êä
+ * \brief æ˜¯å¦ä½¿èƒ½è‡ªåŠ¨å“åº”ä¼ è¾“
  *
- * \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_sdio_autotr_enable (amhw_zlg_sdio_t *p_hw_sdio, am_bool_t flg)
@@ -499,11 +499,11 @@ void amhw_zlg_sdio_autotr_enable (amhw_zlg_sdio_t *p_hw_sdio, am_bool_t flg)
 }
 
 /**
- * \brief ½ûÄÜ×Ô¶¯ÏìÓ¦´«Êä
+ * \brief ç¦èƒ½è‡ªåŠ¨å“åº”ä¼ è¾“
  *
- * \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_sdio_autotr_disable (amhw_zlg_sdio_t *p_hw_sdio)
@@ -512,12 +512,12 @@ void amhw_zlg_sdio_autotr_disable (amhw_zlg_sdio_t *p_hw_sdio)
 }
 
 /**
- * \brief ÅäÖÃ¶ÁĞ´Ä£Ê½
+ * \brief é…ç½®è¯»å†™æ¨¡å¼
  *
- * \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
- * \param[in] mode   SDIO ¿ØÖÆ¼Ä´æÆ÷¶ÁĞ´Ã¶¾Ù
+ * \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
+ * \param[in] mode   SDIO æ§åˆ¶å¯„å­˜å™¨è¯»å†™æšä¸¾
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_sdio_transfdir_set (amhw_zlg_sdio_t *p_hw_sdio, amhw_zlg_transfer_mode_t mode)
@@ -532,9 +532,9 @@ void amhw_zlg_sdio_transfdir_set (amhw_zlg_sdio_t *p_hw_sdio, amhw_zlg_transfer_
 /**
  * \brief
  *
- * \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_sdio_autodattr_enable (amhw_zlg_sdio_t *p_hw_sdio)
@@ -545,9 +545,9 @@ void amhw_zlg_sdio_autodattr_enable (amhw_zlg_sdio_t *p_hw_sdio)
 /**
  * \brief
  *
- * \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_sdio_autodattr_disable (amhw_zlg_sdio_t *p_hw_sdio)
@@ -557,11 +557,11 @@ void amhw_zlg_sdio_autodattr_disable (amhw_zlg_sdio_t *p_hw_sdio)
 
 
 /**
- * \brief ÉèÖÃ³õÊ¼´«Êä×Ö½Ú¼ÆÊıÖµ
+ * \brief è®¾ç½®åˆå§‹ä¼ è¾“å­—èŠ‚è®¡æ•°å€¼
  *
- * \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_sdio_set_cnt (amhw_zlg_sdio_t *p_hw_sdio, uint16_t cnt)
@@ -570,11 +570,11 @@ void amhw_zlg_sdio_set_cnt (amhw_zlg_sdio_t *p_hw_sdio, uint16_t cnt)
 }
 
 /**
- * \brief »ñÈ¡´«Êä×Ö½Ú¼ÆÊıÖµ
+ * \brief è·å–ä¼ è¾“å­—èŠ‚è®¡æ•°å€¼
  *
- * \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
  *
- * \return »ñÈ¡µ½µÄ¼ÆÊıÖµ
+ * \return è·å–åˆ°çš„è®¡æ•°å€¼
  */
 am_static_inline
 uint16_t amhw_zlg_sdio_get_cnt (amhw_zlg_sdio_t *p_hw_sdio)
@@ -583,11 +583,11 @@ uint16_t amhw_zlg_sdio_get_cnt (amhw_zlg_sdio_t *p_hw_sdio)
 }
 
 /**
- * \brief »ñÈ¡´«Êä×Ö½Ú¼ÆÊıÖµ
+ * \brief è·å–ä¼ è¾“å­—èŠ‚è®¡æ•°å€¼
  *
- * \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_sdio_get_blockcnt (amhw_zlg_sdio_t *p_hw_sdio, uint16_t *cnt)
@@ -596,11 +596,11 @@ void amhw_zlg_sdio_get_blockcnt (amhw_zlg_sdio_t *p_hw_sdio, uint16_t *cnt)
 }
 
 /**
- * \brief ÉèÖÃCRC¿ØÖÆ
+ * \brief è®¾ç½®CRCæ§åˆ¶
  *
- * \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_sdio_set_crcctl_enable (amhw_zlg_sdio_t *p_hw_sdio, uint8_t flags)
@@ -609,11 +609,11 @@ void amhw_zlg_sdio_set_crcctl_enable (amhw_zlg_sdio_t *p_hw_sdio, uint8_t flags)
 }
 
 /**
- * \brief ÉèÖÃCRC¿ØÖÆ
+ * \brief è®¾ç½®CRCæ§åˆ¶
  *
- * \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_sdio_set_crcctl_disable (amhw_zlg_sdio_t *p_hw_sdio, uint8_t flags)
@@ -623,11 +623,11 @@ void amhw_zlg_sdio_set_crcctl_disable (amhw_zlg_sdio_t *p_hw_sdio, uint8_t flags
 
 
 /**
- * \brief ÉèÖÃCRC¿ØÖÆ
+ * \brief è®¾ç½®CRCæ§åˆ¶
  *
- * \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_sdio_get_cmdcrc (amhw_zlg_sdio_t *p_hw_sdio, uint8_t *cmdcrc)
@@ -636,11 +636,11 @@ void amhw_zlg_sdio_get_cmdcrc (amhw_zlg_sdio_t *p_hw_sdio, uint8_t *cmdcrc)
 }
 
 /**
- * \brief ÉèÖÃCRC¿ØÖÆ
+ * \brief è®¾ç½®CRCæ§åˆ¶
  *
- * \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_sdio_get_datcrc (amhw_zlg_sdio_t *p_hw_sdio, uint16_t *dat_crc)
@@ -649,11 +649,11 @@ void amhw_zlg_sdio_get_datcrc (amhw_zlg_sdio_t *p_hw_sdio, uint16_t *dat_crc)
 }
 
 /**
- * \brief ÉèÖÃCRC¿ØÖÆ
+ * \brief è®¾ç½®CRCæ§åˆ¶
  *
- * \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_sdio_set_autotime_enable (amhw_zlg_sdio_t *p_hw_sdio, am_bool_t is_enable)
@@ -662,11 +662,11 @@ void amhw_zlg_sdio_set_autotime_enable (amhw_zlg_sdio_t *p_hw_sdio, am_bool_t is
 }
 
 /**
- * \brief ÉèÖÃ³õÊ¼´«Êä×Ö½Ú¼ÆÊıÖµ
+ * \brief è®¾ç½®åˆå§‹ä¼ è¾“å­—èŠ‚è®¡æ•°å€¼
  *
- * \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_sdio_set_outtime_cnt (amhw_zlg_sdio_t *p_hw_sdio, uint8_t cnt)
@@ -676,11 +676,11 @@ void amhw_zlg_sdio_set_outtime_cnt (amhw_zlg_sdio_t *p_hw_sdio, uint8_t cnt)
 }
 
 /**
- * \brief ÉèÖÃ³õÊ¼´«Êä×Ö½Ú¼ÆÊıÖµ
+ * \brief è®¾ç½®åˆå§‹ä¼ è¾“å­—èŠ‚è®¡æ•°å€¼
  *
- * \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_sdio_get_outtime_cnt (amhw_zlg_sdio_t *p_hw_sdio, uint8_t *cnt)
@@ -689,11 +689,11 @@ void amhw_zlg_sdio_get_outtime_cnt (amhw_zlg_sdio_t *p_hw_sdio, uint8_t *cnt)
 }
 
 /**
- * \brief ÉèÖÃCRC¿ØÖÆ
+ * \brief è®¾ç½®CRCæ§åˆ¶
  *
- * \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_sdio_set_int_enable (amhw_zlg_sdio_t *p_hw_sdio, uint8_t flags)
@@ -702,11 +702,11 @@ void amhw_zlg_sdio_set_int_enable (amhw_zlg_sdio_t *p_hw_sdio, uint8_t flags)
 }
 
 /**
- * \brief ÉèÖÃCRC¿ØÖÆ
+ * \brief è®¾ç½®CRCæ§åˆ¶
  *
- * \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_sdio_set_int_disable (amhw_zlg_sdio_t *p_hw_sdio, uint8_t flags)
@@ -715,11 +715,11 @@ void amhw_zlg_sdio_set_int_disable (amhw_zlg_sdio_t *p_hw_sdio, uint8_t flags)
 }
 
 /**
- * \brief ÉèÖÃCRC¿ØÖÆ
+ * \brief è®¾ç½®CRCæ§åˆ¶
  *
- * \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_sdio_get_int_status (amhw_zlg_sdio_t *p_hw_sdio, uint16_t *status)
@@ -728,11 +728,11 @@ void amhw_zlg_sdio_get_int_status (amhw_zlg_sdio_t *p_hw_sdio, uint16_t *status)
 }
 
 /**
- * \brief ÉèÖÃCRC¿ØÖÆ
+ * \brief è®¾ç½®CRCæ§åˆ¶
  *
- * \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_sdio_clr_int_status (amhw_zlg_sdio_t *p_hw_sdio, uint16_t flags)
@@ -741,11 +741,11 @@ void amhw_zlg_sdio_clr_int_status (amhw_zlg_sdio_t *p_hw_sdio, uint16_t flags)
 }
 
 /**
- * \brief ÉèÖÃCRC¿ØÖÆ
+ * \brief è®¾ç½®CRCæ§åˆ¶
  *
- * \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_sdio_set_cardctrl_enable (amhw_zlg_sdio_t *p_hw_sdio, am_bool_t is_enable)
@@ -754,11 +754,11 @@ void amhw_zlg_sdio_set_cardctrl_enable (amhw_zlg_sdio_t *p_hw_sdio, am_bool_t is
 }
 
 /**
- * \brief ÉèÖÃCRC¿ØÖÆ
+ * \brief è®¾ç½®CRCæ§åˆ¶
  *
- * \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_sdio_set_cardclk_enable (amhw_zlg_sdio_t *p_hw_sdio, am_bool_t is_enable)
@@ -767,11 +767,11 @@ void amhw_zlg_sdio_set_cardclk_enable (amhw_zlg_sdio_t *p_hw_sdio, am_bool_t is_
 }
 
 /**
- * \brief ÉèÖÃCRC¿ØÖÆ
+ * \brief è®¾ç½®CRCæ§åˆ¶
  *
- * \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_sdio_set_cardclk_div (amhw_zlg_sdio_t *p_hw_sdio, uint8_t clk_div)
@@ -782,11 +782,11 @@ void amhw_zlg_sdio_set_cardclk_div (amhw_zlg_sdio_t *p_hw_sdio, uint8_t clk_div)
 }
 
 /**
- * \brief ÉèÖÃCRC¿ØÖÆ
+ * \brief è®¾ç½®CRCæ§åˆ¶
  *
- * \param[in] p_hw_sdio Ö¸Ïò amhw_zlg_sdio_t ½á¹¹µÄÖ¸Õë
+ * \param[in] p_hw_sdio æŒ‡å‘ amhw_zlg_sdio_t ç»“æ„çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_sdio_clk_selete_bety_set (amhw_zlg_sdio_t *p_hw_sdio, amhw_zlg_clk_selete_bety_t flag)
@@ -869,11 +869,11 @@ void amhw_zlg_sdio_fifo_status_disable (amhw_zlg_sdio_t *p_hw_sdio)
 }
 
 /**
- * \brief sdio¶Ë¿Ú²Ù×÷Ä£Ê½Ñ¡Ôñ
+ * \brief sdioç«¯å£æ“ä½œæ¨¡å¼é€‰æ‹©
  */
 typedef enum {
-    AMHW_ZLG_SDIO_BUF_DIR_READ       = 0x0,   /**< \brief ¶ÁÄ£Ê½*/
-    AMHW_ZLG_SDIO_BUF_DIR_WRITE      = 0x1,   /**< \brief Ğ´Ä£Ê½ */
+    AMHW_ZLG_SDIO_BUF_DIR_READ       = 0x0,   /**< \brief è¯»æ¨¡å¼*/
+    AMHW_ZLG_SDIO_BUF_DIR_WRITE      = 0x1,   /**< \brief å†™æ¨¡å¼ */
 } amhw_zlg_sdio_buf_dir_t;
 
 am_static_inline

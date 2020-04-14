@@ -12,16 +12,16 @@
 
 /**
  * \file
- * \brief PIT ¶¨Ê±Æ÷ÊµÏÖ(32Î»)¶¨Ê±¹¦ÄÜµÄÀı³Ì£¬Í¨¹ıHW²ãµÄ½Ó¿ÚÊµÏÖ
+ * \brief PIT å®šæ—¶å™¨å®ç°(32ä½)å®šæ—¶åŠŸèƒ½çš„ä¾‹ç¨‹ï¼Œé€šè¿‡HWå±‚çš„æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. LEDÒÔ10HzµÄÆµÂÊÉÁË¸¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. LEDä»¥10Hzçš„é¢‘ç‡é—ªçƒã€‚
  *
- * - ×¢Òâ£º
- *    Èç¹ûÒªÔËĞĞ´ËÀı³Ì£¬ĞèÒª½«am_prj_config.hÖĞAM_CFG_SOFTIMER_ENABLE¡¢
- *    AM_CFG_KEY_GPIO_ENABLEºÍAM_CFG_SYSTEM_TICK_ENABLEÈı¸öºêµÄÖµ¶¼ÉèÎª0¡£
+ * - æ³¨æ„ï¼š
+ *    å¦‚æœè¦è¿è¡Œæ­¤ä¾‹ç¨‹ï¼Œéœ€è¦å°†am_prj_config.hä¸­AM_CFG_SOFTIMER_ENABLEã€
+ *    AM_CFG_KEY_GPIO_ENABLEå’ŒAM_CFG_SYSTEM_TICK_ENABLEä¸‰ä¸ªå®çš„å€¼éƒ½è®¾ä¸º0ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_fsl_hw_pit_1_32bit_timing.c src_fsl_hw_pit_1_32bit_timing
  *
  * \internal
@@ -45,30 +45,30 @@
 #include "demo_fsl_entrys.h"
 
 /**
- * \brief  PIT0ÖĞ¶Ï·şÎñº¯Êı
- * \param[in]  p_arg : ÓÃ»§×Ô¶¨Òå²ÎÊı£¬ÓÉ am_int_connect() º¯Êı´«µİ¡£
- * \return  ÎŞ
+ * \brief  PIT0ä¸­æ–­æœåŠ¡å‡½æ•°
+ * \param[in]  p_arg : ç”¨æˆ·è‡ªå®šä¹‰å‚æ•°ï¼Œç”± am_int_connect() å‡½æ•°ä¼ é€’ã€‚
+ * \return  æ— 
  */
 void pit0_irq_handler(void *p_arg)
 {
     amhw_fsl_pit_t *p_hw_pit = (amhw_fsl_pit_t *)p_arg;
-    /* Í¨µÀ0²úÉúÖĞ¶Ï */
+    /* é€šé“0äº§ç”Ÿä¸­æ–­ */
     if (amhw_fsl_pit_timerout_flag_check(p_hw_pit , AMHW_FSL_PIT_CH(0)) == AM_TRUE ) {
 
         am_led_toggle(LED0);
 
-        /* Çå³ı±êÖ¾ */
+        /* æ¸…é™¤æ ‡å¿— */
         amhw_fsl_pit_timerout_flag_clr(p_hw_pit , AMHW_FSL_PIT_CH(0));
     }
 }
 
 /**
- * \brief ³õÊ¼»¯PITÎª¶¨Ê±Æ÷¹¦ÄÜ¡£
+ * \brief åˆå§‹åŒ–PITä¸ºå®šæ—¶å™¨åŠŸèƒ½ã€‚
  *
- * \param[in] p_pit : Ö¸ÏòPIT¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] freq  : ÖĞ¶ÏÆµÂÊ¡£
+ * \param[in] p_pit : æŒ‡å‘PITå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] freq  : ä¸­æ–­é¢‘ç‡ã€‚
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void pit_timer_init (amhw_fsl_pit_t *p_hw_pit,
                      uint32_t        freq,
@@ -79,13 +79,13 @@ void pit_timer_init (amhw_fsl_pit_t *p_hw_pit,
 
     load_val = pit_clk / freq;
 
-    /* Ê¹ÄÜPITÄ£¿é */
+    /* ä½¿èƒ½PITæ¨¡å— */
     amhw_fsl_pit_module_enable(p_hw_pit);
 
-    /* ÉèÖÃ×°ÔØÖµ */
+    /* è®¾ç½®è£…è½½å€¼ */
     amhw_fsl_pit_ldval_set(p_hw_pit, AMHW_FSL_PIT_CH(0), load_val);
 
-    /* ´ò¿ªÖĞ¶Ï²¢Ê¹ÄÜ¼ÆÊı */
+    /* æ‰“å¼€ä¸­æ–­å¹¶ä½¿èƒ½è®¡æ•° */
     amhw_fsl_pit_timer_ctrl_set(p_hw_pit,
                                  AMHW_FSL_PIT_CH(0),
                                  AMHW_FSL_PIT_TCTL_TI_EN | AMHW_FSL_PIT_TCTL_TMR_EN);
@@ -96,33 +96,33 @@ void pit_timer_init (amhw_fsl_pit_t *p_hw_pit,
 
 
 /**
- * \brief Ê¹ÄÜPITÎª¶¨Ê±Æ÷(¿ªÊ¼¼ÆÊı)
- * \param[in] p_pit : Ö¸ÏòPIT¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ÎŞ
+ * \brief ä½¿èƒ½PITä¸ºå®šæ—¶å™¨(å¼€å§‹è®¡æ•°)
+ * \param[in] p_pit : æŒ‡å‘PITå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return æ— 
  */
 void pit_timer_enable (amhw_fsl_pit_t *p_hw_pit)
 {
-    /* ¿ªÊ¼ÔËĞĞ */
+    /* å¼€å§‹è¿è¡Œ */
     amhw_fsl_pit_timer_ctrl_set(p_hw_pit,
                                  AMHW_FSL_PIT_CH(0),
                                  AMHW_FSL_PIT_TCTL_TMR_EN);
 }
 
 /**
- * \brief  ½ûÖ¹PITÎª¶¨Ê±Æ÷(Í£Ö¹¼ÆÊı)
- * \param[in] p_pit : Ö¸ÏòPIT¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return  ÎŞ
+ * \brief  ç¦æ­¢PITä¸ºå®šæ—¶å™¨(åœæ­¢è®¡æ•°)
+ * \param[in] p_pit : æŒ‡å‘PITå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return  æ— 
  */
 void pit_timer_disable (amhw_fsl_pit_t *p_hw_pit)
 {
-    /* ÖÃÍ£Ö¹Î»£¬PITÍ£Ö¹ÔËĞĞ */
+    /* ç½®åœæ­¢ä½ï¼ŒPITåœæ­¢è¿è¡Œ */
     amhw_fsl_pit_timer_ctrl_clear(p_hw_pit,
                                    AMHW_FSL_PIT_CH(0),
                                    AMHW_FSL_PIT_TCTL_TMR_EN);
 }
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_fsl_hw_pit_1_32bit_timing_entry (amhw_fsl_pit_t *p_hw_pit,
                                            int             inum,
@@ -132,10 +132,10 @@ void demo_fsl_hw_pit_1_32bit_timing_entry (amhw_fsl_pit_t *p_hw_pit,
     AM_DBG_INFO("The demo for PIT timing:\r\n");
     AM_DBG_INFO("The led toggle in 10Hz \r\n");
 
-    /* Ê¹ÓÃPITÊµÏÖ¶¨Ê±¹¦ÄÜ£¬ÖĞ¶ÏÆµÂÊÎª10Hz */
+    /* ä½¿ç”¨PITå®ç°å®šæ—¶åŠŸèƒ½ï¼Œä¸­æ–­é¢‘ç‡ä¸º10Hz */
     pit_timer_init(p_hw_pit , 10, inum, pit_clk);
 
-    /* Ê¹ÄÜPIT¼ÆÊı */
+    /* ä½¿èƒ½PITè®¡æ•° */
     pit_timer_enable(p_hw_pit);
 
     while (1) {

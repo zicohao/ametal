@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief ARM NVIC сц╩╖еДжцнд╪Ч
+ * \brief ARM NVIC Г■╗Ф┬╥И┘█Г╫╝Ф√┤Д╩╤
  * \sa am_hwconf_arm_nvic.c
  *
  * \internal
@@ -32,42 +32,42 @@
  * @{
  */
 
-/** \brief жп╤опео╒йЩа© */
+/** \brief Д╦╜Ф√╜Д©║Ф│╞Ф∙╟И┤▐ */
 #define __ISRINFO_COUNT    INUM_INTERNAL_COUNT
 
-/** \brief жп╤опео╒сЁиД */
+/** \brief Д╦╜Ф√╜Д©║Ф│╞Ф≤═Е╟└ */
 am_local uint8_t __nvic_isr_map[INUM_INTERNAL_COUNT];
 
-/** \brief жп╤опео╒сЁиДдз╢Ф */
+/** \brief Д╦╜Ф√╜Д©║Ф│╞Ф≤═Е╟└Е├┘Е╜≤ */
 am_local struct am_arm_nvic_isr_info __nvic_isr_infor[__ISRINFO_COUNT];
 
-/** \brief жп╤оиХ╠╦пео╒ */
+/** \brief Д╦╜Ф√╜Х╝╬Е╓┤Д©║Ф│╞ */
 am_local am_const am_arm_nvic_devinfo_t __g_arm_nvic_devinfo =
 {
     {
-        INUM_INTERNAL_MIN,   /* фПй╪жп╤о╨е */
-        INUM_INTERNAL_MAX    /* д╘н╡жп╤о╨е */
+        INUM_INTERNAL_MIN,   /* Х╣╥Е╖▀Д╦╜Ф√╜Е▐╥ */
+        INUM_INTERNAL_MAX    /* Ф°╚Е╟╬Д╦╜Ф√╜Е▐╥ */
     },
 
-    AM_ARM_NVIC_CORE_M0PLUS, /* Cortex-M0+ дз╨к */
+    AM_ARM_NVIC_CORE_M0PLUS, /* Cortex-M0+ Е├┘Ф═╦ */
 
-    2,                       /* ╫Жспвссеох╪╤ё╛грвссеох╪╤сп 2 н╩ */
-    0,                       /* вИжп╤о */
+    2,                       /* Д╩┘Ф°┴Е╜░Д╪≤Е┘┬Г╨╖О╪▄Д╦■Е╜░Д╪≤Е┘┬Г╨╖Ф°┴ 2 Д╫█ */
+    0,                       /* Г╩└Д╦╜Ф√╜ */
 
-    INUM_INTERNAL_COUNT,     /* вэжп╤ойЩа© */
-    __nvic_isr_map,          /* жп╤опео╒сЁиД */
-    __ISRINFO_COUNT,         /* жп╤опео╒йЩа© */
-    __nvic_isr_infor,        /* жп╤опео╒сЁиДдз╢Ф */
+    INUM_INTERNAL_COUNT,     /* Ф─╩Д╦╜Ф√╜Ф∙╟И┤▐ */
+    __nvic_isr_map,          /* Д╦╜Ф√╜Д©║Ф│╞Ф≤═Е╟└ */
+    __ISRINFO_COUNT,         /* Д╦╜Ф√╜Д©║Ф│╞Ф∙╟И┤▐ */
+    __nvic_isr_infor,        /* Д╦╜Ф√╜Д©║Ф│╞Ф≤═Е╟└Е├┘Е╜≤ */
 
-    NULL,                    /* нчпХф╫л╗ЁУй╪╩╞╨╞йЩ */
-    NULL                     /* нчпХф╫л╗╫БЁУй╪╩╞╨╞йЩ */
+    NULL,                    /* Ф≈═И°─Е╧ЁЕ▐╟Е┬²Е╖▀Е▄√Е┤╫Ф∙╟ */
+    NULL                     /* Ф≈═И°─Е╧ЁЕ▐╟Х╖ёЕ┬²Е╖▀Е▄√Е┤╫Ф∙╟ */
 };
 
-/** \brief жп╤оиХ╠╦й╣юЩ */
+/** \brief Д╦╜Ф√╜Х╝╬Е╓┤Е╝·Д╬▀ */
 am_local am_arm_nvic_dev_t __g_arm_nvic_dev;
 
 /**
- * \brief жп╤ой╣юЩЁУй╪╩╞ё╛ЁУй╪╩╞жп╤огЩ╤╞
+ * \brief Д╦╜Ф√╜Е╝·Д╬▀Е┬²Е╖▀Е▄√О╪▄Е┬²Е╖▀Е▄√Д╦╜Ф√╜И╘╠Е┼╗
  */
 int am_arm_nvic_inst_init (void)
 {
@@ -75,7 +75,7 @@ int am_arm_nvic_inst_init (void)
 }
 
 /**
- * \brief жп╤ой╣юЩ╫БЁУй╪╩╞
+ * \brief Д╦╜Ф√╜Е╝·Д╬▀Х╖ёЕ┬²Е╖▀Е▄√
  */
 void am_arm_nvic_inst_deinit (void)
 {

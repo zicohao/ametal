@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief DACÇı¶¯ÊµÏÖ
+ * \brief DACé©±åŠ¨å®ç°
  *
  * \internal
  * \par Modification history
@@ -24,7 +24,7 @@
 #include "am_int.h"
 
 /*******************************************************************************
-* Ë½ÓĞ¶¨Òå
+* ç§æœ‰å®šä¹‰
 *******************************************************************************/
 
 #define __LPC_DAC_HW_DECL(p_hw_dac, p_drv)    \
@@ -38,7 +38,7 @@
         (((am_lpc_dac_dev_t *)p_drv)->p_devinfo->vref)
 
 /*******************************************************************************
-* º¯ÊıÉùÃ÷
+* å‡½æ•°å£°æ˜
 *******************************************************************************/
 static uint32_t __lpc_dac_get_bits (void *p_drv);
 
@@ -51,7 +51,7 @@ static int __lpc_dac_enable (void *p_drv, int chan );
 static int __lpc_dac_disable (void *p_drv, int chan );
 
 /**
- * \brief DAC·şÎñº¯Êı
+ * \brief DACæœåŠ¡å‡½æ•°
  */
 static const struct am_dac_drv_funcs __g_dac_drvfuncs = {
        __lpc_dac_get_bits,
@@ -63,7 +63,7 @@ static const struct am_dac_drv_funcs __g_dac_drvfuncs = {
 
 /******************************************************************************/
 /**
- * \brief »ñÈ¡DAC×ª»»¾«¶È¡£
+ * \brief è·å–DACè½¬æ¢ç²¾åº¦ã€‚
  */
 static uint32_t __lpc_dac_get_bits (void *p_drv)
 {
@@ -71,7 +71,7 @@ static uint32_t __lpc_dac_get_bits (void *p_drv)
 }
 
 /**
- * \brief »ñÈ¡DAC²Î¿¼µçÑ¹¡£
+ * \brief è·å–DACå‚è€ƒç”µå‹ã€‚
  */
 static uint32_t __lpc_dac_get_vref (void *p_drv)
 {
@@ -79,7 +79,7 @@ static uint32_t __lpc_dac_get_vref (void *p_drv)
 }
 
 /**
- * \brief ÉèÖÃÍ¨µÀµÄDAC×ª»»Öµ¡£
+ * \brief è®¾ç½®é€šé“çš„DACè½¬æ¢å€¼ã€‚
  */
 int __lpc_dac_val_set (void *p_drv, int chan, uint32_t value)
 {
@@ -91,7 +91,7 @@ int __lpc_dac_val_set (void *p_drv, int chan, uint32_t value)
     }
 
     if (chan != 0) {
-        return -AM_ENXIO;       /* ÎŞĞ§µÄÍ¨µÀÖµ      */
+        return -AM_ENXIO;       /* æ— æ•ˆçš„é€šé“å€¼      */
     }
 
     amhw_lpc84x_dac_cr_set(p_hw_dac, value);
@@ -100,7 +100,7 @@ int __lpc_dac_val_set (void *p_drv, int chan, uint32_t value)
 }
 
 /**
- * \brief Æô¶¯DAC×ª»»
+ * \brief å¯åŠ¨DACè½¬æ¢
  */
 static int __lpc_dac_enable (void *p_drv, int chan )
 {
@@ -112,12 +112,12 @@ static int __lpc_dac_enable (void *p_drv, int chan )
     }
 
     if (chan != 0) {
-        return -AM_ENXIO;       /* ÎŞĞ§µÄÍ¨µÀÖµ       */
+        return -AM_ENXIO;       /* æ— æ•ˆçš„é€šé“å€¼       */
     }
 
     p_dev->chan = chan;
 
-    /* Ê¹ÄÜDAC     */
+    /* ä½¿èƒ½DAC     */
     amhw_lpc84x_dac_dblbuf_set(p_hw_dac, AMHW_LPC84x_DAC_DBLBUF_EN);
     amhw_lpc84x_dac_cnt_set(p_hw_dac, AMHW_LPC84x_DAC_CNT_EN);
     amhw_lpc84x_dac_dma_int_req_set(p_hw_dac, AMHW_LPC84x_DAC_DMA_EN);
@@ -126,7 +126,7 @@ static int __lpc_dac_enable (void *p_drv, int chan )
 }
 
 /**
- * \brief ½ûÖ¹DAC×ª»»
+ * \brief ç¦æ­¢DACè½¬æ¢
  */
 static int __lpc_dac_disable (void *p_drv, int chan )
 {
@@ -138,12 +138,12 @@ static int __lpc_dac_disable (void *p_drv, int chan )
     }
 
     if (chan != 0) {
-        return -AM_ENXIO;         /* ÎŞĞ§µÄÍ¨µÀÖµ */
+        return -AM_ENXIO;         /* æ— æ•ˆçš„é€šé“å€¼ */
     }
 
     p_dev->chan = chan;
 
-    /* ½ûÄÜDAC        */
+    /* ç¦èƒ½DAC        */
     amhw_lpc84x_dac_dblbuf_set(p_hw_dac, AMHW_LPC84x_DAC_DBLBUF_DISEN);
     amhw_lpc84x_dac_cnt_set(p_hw_dac, AMHW_LPC84x_DAC_CNT_DISEN);
     return AM_OK;
@@ -151,7 +151,7 @@ static int __lpc_dac_disable (void *p_drv, int chan )
 
 
 /**
- * \brief DAC³õÊ¼»¯
+ * \brief DACåˆå§‹åŒ–
  */
 am_dac_handle_t am_lpc_dac_init (am_lpc_dac_dev_t           *p_dev,
                                   const am_lpc_dac_devinfo_t *p_devinfo)
@@ -174,7 +174,7 @@ am_dac_handle_t am_lpc_dac_init (am_lpc_dac_dev_t           *p_dev,
 }
 
 /**
- * \brief DACÈ¥³õÊ¼»¯
+ * \brief DACå»åˆå§‹åŒ–
  */
 void am_lpc_dac_deinit (am_dac_handle_t handle)
 {

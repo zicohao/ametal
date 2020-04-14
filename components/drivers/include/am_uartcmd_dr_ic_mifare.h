@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief Mifare¿¨±ê×¼·şÎñÇı¶¯²ã
+ * \brief Mifareå¡æ ‡å‡†æœåŠ¡é©±åŠ¨å±‚
  *
  * \internal
  * \par Modification History
@@ -30,36 +30,36 @@ extern "C" {
 #include "am_uartcmd_includes.h"
 
 /**
- * \brief Mifare¿¨Éè±¸½á¹¹Ìå
+ * \brief Mifareå¡è®¾å¤‡ç»“æ„ä½“
  */
 typedef struct amdr_ic_mifare_dev {
 
-    /** \brief Mifare¿¨±ê×¼·şÎñ½á¹¹Ìå */
+    /** \brief Mifareå¡æ ‡å‡†æœåŠ¡ç»“æ„ä½“ */
     am_ic_mifare_serv_t     serv;
 
-    /** \brief ISO14443±ê×¼·şÎñ¾ä±ú */
+    /** \brief ISO14443æ ‡å‡†æœåŠ¡å¥æŸ„ */
     am_ic_iso14443_handle_t iso14443_handle;
 
-    /** \brief ¶Á¿¨Ğ¾Æ¬Çı¶¯½á¹¹Ìå */
+    /** \brief è¯»å¡èŠ¯ç‰‡é©±åŠ¨ç»“æ„ä½“ */
     am_fm175xx_dev_t       *p_fm17550s_dev;
 } amdr_ic_mifare_dev_t;
 
 /**
- * \brief Mifare¿¨Çı¶¯³õÊ¼»¯
+ * \brief Mifareå¡é©±åŠ¨åˆå§‹åŒ–
  *
- * \param[in] p_dev           : Mifare¿¨Éè±¸½á¹¹ÌåÖ¸Õë
- * \param[in] iso14443_handle : ISO14443±ê×¼·şÎñ¾ä±ú
+ * \param[in] p_dev           : Mifareå¡è®¾å¤‡ç»“æ„ä½“æŒ‡é’ˆ
+ * \param[in] iso14443_handle : ISO14443æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return Mifare±ê×¼·şÎñ¾ä±ú
+ * \return Mifareæ ‡å‡†æœåŠ¡å¥æŸ„
  */
 am_ic_mifare_handle_t amdr_ic_mifare_init (amdr_ic_mifare_dev_t    *p_dev,
                                            am_ic_iso14443_handle_t  iso14443_handle,
                                            am_fm175xx_dev_t        *p_fm17550s_dev);
 
 /**
- * \brief MifareÇı¶¯½â³ı³õÊ¼»¯
- * \param[in] p_dev : Mifare¿¨Éè±¸½á¹¹ÌåÖ¸Õë
- * \return ÎŞ
+ * \brief Mifareé©±åŠ¨è§£é™¤åˆå§‹åŒ–
+ * \param[in] p_dev : Mifareå¡è®¾å¤‡ç»“æ„ä½“æŒ‡é’ˆ
+ * \return æ— 
  */
 void amdr_ic_mifare_deinit (amdr_ic_mifare_dev_t *p_dev);
 

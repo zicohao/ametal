@@ -12,17 +12,17 @@
 
 /**
  * \file
- * \brief Ä£Äâ±È½ÏÆ÷±È½ÏµçÑ¹Àı³Ì£¬Í¨¹ıHW²ãµÄ½Ó¿ÚÖĞ¶Ï·½Ê½ÊµÏÖ
+ * \brief æ¨¡æ‹Ÿæ¯”è¾ƒå™¨æ¯”è¾ƒç”µå‹ä¾‹ç¨‹ï¼Œé€šè¿‡HWå±‚çš„æ¥å£ä¸­æ–­æ–¹å¼å®ç°
 
- * - ²Ù×÷²½Öè£º
- *   1. PIOA_1Òı½ÅÁ¬½ÓPC´®¿ÚµÄTXD£»
- *   2. PIOA_2Òı½ÅÁ¬½ÓPC´®¿ÚµÄRXD£»
- *   3. PIOC_6Íâ½Ó¿Éµ÷µÄµçÑ¹ÊäÈë£¨¿ÉÓÃ»¬¶¯±ä×èÆ÷£©¡£
- * - ÊµÑéÏÖÏó£º
- *   µ±ÊäÈëµçÑ¹¾­¹ı1.65v¸½½üÊ±£¬LED·­×ª£¨ÀàËÆÓÚ¹ıÁã¼ì²â£©£¬´®¿Ú´òÓ¡ĞÅÏ¢£º¡°CMP INT£¡¡±
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. PIOA_1å¼•è„šè¿æ¥PCä¸²å£çš„TXDï¼›
+ *   2. PIOA_2å¼•è„šè¿æ¥PCä¸²å£çš„RXDï¼›
+ *   3. PIOC_6å¤–æ¥å¯è°ƒçš„ç”µå‹è¾“å…¥ï¼ˆå¯ç”¨æ»‘åŠ¨å˜é˜»å™¨ï¼‰ã€‚
+ * - å®éªŒç°è±¡ï¼š
+ *   å½“è¾“å…¥ç”µå‹ç»è¿‡1.65vé™„è¿‘æ—¶ï¼ŒLEDç¿»è½¬ï¼ˆç±»ä¼¼äºè¿‡é›¶æ£€æµ‹ï¼‰ï¼Œä¸²å£æ‰“å°ä¿¡æ¯ï¼šâ€œCMP INTï¼â€
  *
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_fsl_hw_cmp_int.c src_fsl_hw_cmp_int
  *
  * \internal
@@ -44,14 +44,14 @@
 #include "am_board.h"
 #include "demo_fsl_entrys.h"
 /**
- * \brief CMPÖĞ¶Ï»Øµ÷º¯Êı
- * \param[in] p_arg : »Øµ÷º¯Êı²ÎÊı
+ * \brief CMPä¸­æ–­å›è°ƒå‡½æ•°
+ * \param[in] p_arg : å›è°ƒå‡½æ•°å‚æ•°
  */
 static void cmp_complete(void *p_arg)
 {
     amhw_fsl_cmp_t *p_hw_cmp = (amhw_fsl_cmp_t *)p_arg;
 
-    /* Çå³ıÖĞ¶Ï±êÖ¾Î»         */
+    /* æ¸…é™¤ä¸­æ–­æ ‡å¿—ä½         */
     amhw_fsl_cmp_cff_clr(p_hw_cmp);
 
     am_kprintf("CMP INIT!\r\n");
@@ -59,59 +59,59 @@ static void cmp_complete(void *p_arg)
 }
 
 /**
- * \brief  CMP ÅäÖÃº¯Êı
- * \param[in] ÎŞ
- * \return    ÎŞ
+ * \brief  CMP é…ç½®å‡½æ•°
+ * \param[in] æ— 
+ * \return    æ— 
  */
 static void cmp_init (amhw_fsl_cmp_t *p_hw_cmp,
                       int             inum)
 {
-    /* ÅäÖÃ6Î»DAC */
-    /* Ñ¡ÔñVDD£¨Vin2£©×÷ÎªDAC²Î¿¼ÊäÈëµçÑ¹Vin */
+    /* é…ç½®6ä½DAC */
+    /* é€‰æ‹©VDDï¼ˆVin2ï¼‰ä½œä¸ºDACå‚è€ƒè¾“å…¥ç”µå‹Vin */
     amhw_fsl_cmp_dac_vin2_enable(p_hw_cmp);
 
-    /* ÅäÖÃµçÑ¹Êä³öÎª1.65V = (3.3 / 64) * (31 + 1))*/
+    /* é…ç½®ç”µå‹è¾“å‡ºä¸º1.65V = (3.3 / 64) * (31 + 1))*/
     amhw_fsl_cmp_dac_vol_set(p_hw_cmp, 31);
 
-    /* Ê¹ÄÜ6Î»DAC */
+    /* ä½¿èƒ½6ä½DAC */
     amhw_fsl_cmp_dac_enable(p_hw_cmp);
 
-    /* 6Î»DACÊä³öÁ¬½Óµ½·´ÏòÊäÈë¶Ë */
+    /* 6ä½DACè¾“å‡ºè¿æ¥åˆ°åå‘è¾“å…¥ç«¯ */
     amhw_fsl_cmp_msel_set(p_hw_cmp, 7);
 
-    /* CMP0_IN0Êä³öÁ¬½Óµ½Í¬ÏàÊäÈë¶Ë */
+    /* CMP0_IN0è¾“å‡ºè¿æ¥åˆ°åŒç›¸è¾“å…¥ç«¯ */
     amhw_fsl_cmp_psel_set(p_hw_cmp, 0);
 
-    /* Ê¹ÄÜ±È½ÏÊä³öÒı½Å */
+    /* ä½¿èƒ½æ¯”è¾ƒè¾“å‡ºå¼•è„š */
     amhw_fsl_cmp_ope_enable(p_hw_cmp);
 
-    /* Ê¹ÄÜ±È½ÏÏÂ½µÑØÖĞ¶Ï */
+    /* ä½¿èƒ½æ¯”è¾ƒä¸‹é™æ²¿ä¸­æ–­ */
     amhw_fsl_cmp_ief_enable(p_hw_cmp);
 
-    /* Çå³ıÖĞ¶Ï±êÖ¾ */
+    /* æ¸…é™¤ä¸­æ–­æ ‡å¿— */
     amhw_fsl_cmp_cff_clr(p_hw_cmp);
 
     extern int am_int_connect (int inum, am_pfnvoid_t pfn_isr, void *p_arg);
     extern int am_int_enable (int inum);
 
-    /* Á¬½ÓÖĞ¶Ï */
+    /* è¿æ¥ä¸­æ–­ */
     am_int_connect(inum, cmp_complete, p_hw_cmp);
     am_int_enable(inum);
 
-    /* Ê¹ÄÜCMPÄ£¿é*/
+    /* ä½¿èƒ½CMPæ¨¡å—*/
     amhw_fsl_cmp_enable(p_hw_cmp);
 }
 
 /**
- * \brief CMP±È½ÏÆ÷HW²ãÖĞ¶ÏÀı³Ì
- * \return ÎŞ
+ * \brief CMPæ¯”è¾ƒå™¨HWå±‚ä¸­æ–­ä¾‹ç¨‹
+ * \return æ— 
  */
 void demo_fsl_hw_cmp_int_entry (amhw_fsl_cmp_t *p_hw_cmp,
                                 int             inum)
 {
     am_kprintf("CMP Demo:\r\n");
 
-    /* ³õÊ¼»¯CMPÄ£¿é */
+    /* åˆå§‹åŒ–CMPæ¨¡å— */
     cmp_init(p_hw_cmp, inum);
 
     while (1) {

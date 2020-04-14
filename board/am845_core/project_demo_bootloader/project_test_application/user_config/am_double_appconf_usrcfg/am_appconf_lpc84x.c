@@ -38,41 +38,41 @@
 
 static am_boot_flash_handle_t flash_handle;
 /*******************************************************************************
- * flash≈‰÷√
+ * flashÈÖçÁΩÆ
  ******************************************************************************/
 /**
- * < \brief bootloader flash …Ë±∏–≈œ¢
+ * < \brief bootloader flash ËÆæÂ§á‰ø°ÊÅØ
  */
 static am_lpc84x_boot_flash_devinfo_t __g_flash_devinfo = {
 
     {
-        /** \brief flashµƒ∆ ºµÿ÷∑ */
+        /** \brief flashÁöÑËµ∑ÂßãÂú∞ÂùÄ */
         0x0,
-        /** \brief flashµƒ◊‹µƒ¥Û–° */
+        /** \brief flashÁöÑÊÄªÁöÑÂ§ßÂ∞è */
         64 * 1024,
-        /** \brief flash…»«¯¥Û–° */
+        /** \brief flashÊâáÂå∫Â§ßÂ∞è */
         1024,
-        /** \brief flash“≥¥Û–° */
+        /** \brief flashÈ°µÂ§ßÂ∞è */
         64,
     },
 
-    /** \brief ∆ΩÃ®≥ı ºªØ∫Ø ˝ */
+    /** \brief Âπ≥Âè∞ÂàùÂßãÂåñÂáΩÊï∞ */
     NULL,
-    /** \brief ∆ΩÃ®≥ıΩ‚ ºªØ∫Ø ˝ */
+    /** \brief Âπ≥Âè∞ÂàùËß£ÂßãÂåñÂáΩÊï∞ */
     NULL,
 };
 
 /**
- * < \brief bootloader flash …Ë±∏ µ¿˝
+ * < \brief bootloader flash ËÆæÂ§áÂÆû‰æã
  */
 static am_lpc84x_boot_flash_dev_t __g_flash_dev;
 
 /**
- * \brief bootloader flash µ¿˝≥ı ºªØ£¨ªÒµ√∆‰±Í◊º∑˛ŒÒæ‰±˙
+ * \brief bootloader flashÂÆû‰æãÂàùÂßãÂåñÔºåËé∑ÂæóÂÖ∂Ê†áÂáÜÊúçÂä°Âè•ÊüÑ
  *
- * \param Œﬁ
+ * \param Êó†
  *
- * \return bootloader flash±Í◊º∑˛ŒÒæ‰±˙£¨»ÙŒ™ NULL£¨±Ì√˜≥ı ºªØ ß∞‹
+ * \return bootloader flashÊ†áÂáÜÊúçÂä°Âè•ÊüÑÔºåËã•‰∏∫ NULLÔºåË°®ÊòéÂàùÂßãÂåñÂ§±Ë¥•
  */
 am_boot_flash_handle_t am_lpc84x_boot_flash_inst_init(void)
 {
@@ -80,17 +80,17 @@ am_boot_flash_handle_t am_lpc84x_boot_flash_inst_init(void)
 }
 
 /*******************************************************************************
- * “‘flag∑Ω Ωµƒœ˚œ¢¥´µ›
+ * ‰ª•flagÊñπÂºèÁöÑÊ∂àÊÅØ‰º†ÈÄí
  ******************************************************************************/
 
 static am_boot_msg_flag_devinfo_t __g_boot_msg_flag_info = {
-    /** \brief ±∏∑›«¯∆ ºµÿ÷∑ */
+    /** \brief Â§á‰ªΩÂå∫Ëµ∑ÂßãÂú∞ÂùÄ */
     0x9C00,
-    /** \brief ”¶”√«¯¥Û–° */
+    /** \brief Â∫îÁî®Âå∫Â§ßÂ∞è */
     25 * 1024,
-    /** \brief ±Í÷æ¥Ê∑≈µÿ÷∑ */
+    /** \brief Ê†áÂøóÂ≠òÊîæÂú∞ÂùÄ */
     0x3800 - 64,
-    /** \brief ±Í÷æ’º”√µƒ µº ¥Û–°£¨“ª∞„Œ™ƒ⁄¥Ê◊Ó–°µƒ–¥»Îµ•‘™£¨»Áπ˚ π”√flashƒ⁄¥Ê£¨‘ÚŒ™◊Ó–°µƒ≤¡≥˝µ•‘™*/
+    /** \brief Ê†áÂøóÂç†Áî®ÁöÑÂÆûÈôÖÂ§ßÂ∞èÔºå‰∏ÄËà¨‰∏∫ÂÜÖÂ≠òÊúÄÂ∞èÁöÑÂÜôÂÖ•ÂçïÂÖÉÔºåÂ¶ÇÊûú‰ΩøÁî®flashÂÜÖÂ≠òÔºåÂàô‰∏∫ÊúÄÂ∞èÁöÑÊì¶Èô§ÂçïÂÖÉ*/
     64,
 
     NULL,
@@ -104,18 +104,18 @@ am_boot_msg_handle_t am_lpc84x_boot_msg_flag_inst_init()
 }
 
 /*******************************************************************************
- * πÃº˛“‘flashµƒ∑Ω Ω¥Ê¥¢≈‰÷√
+ * Âõ∫‰ª∂‰ª•flashÁöÑÊñπÂºèÂ≠òÂÇ®ÈÖçÁΩÆ
  ******************************************************************************/
 static am_boot_firmware_flash_devinfo_t __g_firmware_flash_devinfo = {
-    /** \brief πÃº˛‘⁄ƒ⁄¥Ê÷–¥Ê∑≈µƒ∆ ºµÿ÷∑ */
+    /** \brief Âõ∫‰ª∂Âú®ÂÜÖÂ≠ò‰∏≠Â≠òÊîæÁöÑËµ∑ÂßãÂú∞ÂùÄ */
     0x9C00,
-    /**< \brief πÃº˛¥Ê∑≈«¯µƒ◊‹¥Û–° */
+    /**< \brief Âõ∫‰ª∂Â≠òÊîæÂå∫ÁöÑÊÄªÂ§ßÂ∞è */
     25 * 1024,
-    /** \brief «˝∂Ø¥Ê∑≈πÃº˛ª∫≥Â«¯¥Û–° , ÷µŒ™ƒ⁄¥Ê–¥»Î◊Ó–°¥Û–°µƒ’˚ ˝±∂ */
+    /** \brief È©±Âä®Â≠òÊîæÂõ∫‰ª∂ÁºìÂÜ≤Âå∫Â§ßÂ∞è , ÂÄº‰∏∫ÂÜÖÂ≠òÂÜôÂÖ•ÊúÄÂ∞èÂ§ßÂ∞èÁöÑÊï¥Êï∞ÂÄç */
     64,
-    /** \brief ∆ΩÃ®≥ı ºªØ∫Ø ˝ */
+    /** \brief Âπ≥Âè∞ÂàùÂßãÂåñÂáΩÊï∞ */
     NULL,
-    /** \brief ∆ΩÃ®Ω‚≥ı ºªØ∫Ø ˝ */
+    /** \brief Âπ≥Âè∞Ëß£ÂàùÂßãÂåñÂáΩÊï∞ */
     NULL,
 };
 
@@ -131,20 +131,20 @@ am_boot_firmware_handle_t am_lpc84x_boot_firmware_flash_inst_init()
 
 
 /*******************************************************************************
- * ±Í◊ºbootloader”√ªß≈‰÷√
+ * Ê†áÂáÜbootloaderÁî®Êà∑ÈÖçÁΩÆ
  ******************************************************************************/
 
-/* ‘⁄’˚∏ˆbootloader÷–”√µΩµƒ◊ ‘¥∂º“™Ω”≥ı ºªØ≤¢ Õ∑≈£¨≥£º˚µƒ»Á∂® ±∆˜£¨¥Æø⁄µ» */
+/* Âú®Êï¥‰∏™bootloader‰∏≠Áî®Âà∞ÁöÑËµÑÊ∫êÈÉΩË¶ÅÊé•ÂàùÂßãÂåñÂπ∂ÈáäÊîæÔºåÂ∏∏ËßÅÁöÑÂ¶ÇÂÆöÊó∂Âô®Ôºå‰∏≤Âè£Á≠â */
 void __lpc84x_boot_plfm_deinit()
 {
     volatile uint32_t i = 1000000;
 
     uint8_t  channel_nums = 4;
-    /* ¥Æø⁄Ω‚≥ı ºªØ £¨Ω‚≥ı ºªØ«∞–Ë“™–°∂Œµƒ—” ±£¨±£÷§ºƒ¥Ê∆˜»ŒŒÒ“—æ≠ÕÍ≥…*/
+    /* ‰∏≤Âè£Ëß£ÂàùÂßãÂåñ ÔºåËß£ÂàùÂßãÂåñÂâçÈúÄË¶ÅÂ∞èÊÆµÁöÑÂª∂Êó∂Ôºå‰øùËØÅÂØÑÂ≠òÂô®‰ªªÂä°Â∑≤ÁªèÂÆåÊàê*/
     while(i--){
 
     }
-    /* ¥Æø⁄Ω‚≥ı ºªØ */
+    /* ‰∏≤Âè£Ëß£ÂàùÂßãÂåñ */
     amhw_lpc_usart_disable((amhw_lpc_usart_t *)LPC84X_USART0_BASE);
     am_int_disable(INUM_USART0);
     amhw_lpc84x_syscon_periph_reset(AMHW_LPC84X_RESET_UART0);
@@ -153,7 +153,7 @@ void __lpc84x_boot_plfm_deinit()
     am_gpio_pin_cfg(PIO0_28, PIO0_28_GPIO);
     am_gpio_pin_cfg(PIO1_20, PIO1_20_GPIO);
 
-    /* »Ìº˛∂® ±∆˜Ω‚≥ı ºªØ*/
+    /* ËΩØ‰ª∂ÂÆöÊó∂Âô®Ëß£ÂàùÂßãÂåñ*/
     for (i = 0; i < channel_nums; i++) {
         amhw_lpc_mrt_intval_set((amhw_lpc_mrt_t *)LPC84X_MRT_BASE, i, 0, AM_TRUE);
 
@@ -167,13 +167,13 @@ void __lpc84x_boot_plfm_deinit()
     amhw_lpc84x_syscon_periph_reset(AMHW_LPC84X_RESET_MRT);
     amhw_lpc84x_clk_periph_disable(AMHW_LPC84X_CLK_MRT);
 
-    /*  ±÷”Ω‚≥ı ºªØ */
+    /* Êó∂ÈíüËß£ÂàùÂßãÂåñ */
     amhw_lpc84x_clk_periph_disable(AMHW_LPC84X_CLK_SWM);
     amhw_lpc84x_swm_fixed_func_disable(LPC84X_SWM,
                                       AMHW_LPC84X_SWM_PIO0_8_XTALIN);
     amhw_lpc84x_swm_fixed_func_disable(LPC84X_SWM,
                                       AMHW_LPC84X_SWM_PIO0_9_XTALOUT);
-    /* «–ªª÷˜ ±÷”‘¥ */
+    /* ÂàáÊç¢‰∏ªÊó∂ÈíüÊ∫ê */
     amhw_lpc84x_clk_mainclk_set( AMHW_LPC84X_MAIN_CLK_PLLIN_SRC_MAIN_CLK_PRE_PLL);
 
     am_arm_nvic_deinit();
@@ -181,18 +181,18 @@ void __lpc84x_boot_plfm_deinit()
 }
 
 /**
- * < \brief bootloader±Í◊º…Ë±∏–≈œ¢
+ * < \brief bootloaderÊ†áÂáÜËÆæÂ§á‰ø°ÊÅØ
  */
 static am_arm_boot_devinfo_t __g_lpc84x_boot_devinfo = {
-    /**< \brief ”¶”√¥˙¬Î«¯∆ ºµÿ÷∑*/
+    /**< \brief Â∫îÁî®‰ª£Á†ÅÂå∫Ëµ∑ÂßãÂú∞ÂùÄ*/
     0x3800,
-    /** \brief ram∆ ºµÿ÷∑ */
+    /** \brief ramËµ∑ÂßãÂú∞ÂùÄ */
     0x10000000,
-    /** \brief ram¥Û–° */
+    /** \brief ramÂ§ßÂ∞è */
     16 * 1024,
-    /** \brief ∆ΩÃ®≥ı ºªØ∫Ø ˝ */
+    /** \brief Âπ≥Âè∞ÂàùÂßãÂåñÂáΩÊï∞ */
     NULL,
-    /** \brief ∆ΩÃ®Ω‚≥ı ºªØ∫Ø ˝ */
+    /** \brief Âπ≥Âè∞Ëß£ÂàùÂßãÂåñÂáΩÊï∞ */
     __lpc84x_boot_plfm_deinit,
 };
 

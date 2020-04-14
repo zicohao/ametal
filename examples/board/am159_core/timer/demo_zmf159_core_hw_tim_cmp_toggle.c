@@ -12,17 +12,17 @@
 
 /**
  * \file
- * \brief ��ʱ��ͨ���Ƚ�ƥ�����ŷ�ת���̣�ͨ�� HW ��ӿ�ʵ��
+ * \brief 定时器通道比较匹配引脚翻转例程，通过 HW 层接口实现
  *
- * - ʵ������
- *   1. PIOB_8 ������ 10Hz ��Ƶ�ʽ��з�ת��
+ * - 实验现象：
+ *   1. PIOB_8 引脚以 10Hz 的频率进行翻转。
  *
  * \note
- *    ���� TIM4 Ĭ�ϳ�ʼ������Ϊϵͳ�δ�ʹ�ã�ʹ�ñ� Demo ֮ǰ������
- *    am_prj_config.h �ڽ� AM_CFG_KEY_GPIO_ENABLE��AM_CFG_SOFTIMER_ENABLE
- *    �� AM_CFG_SYSTEM_TICK_ENABLE ����Ϊ 0��
+ *    由于 TIM4 默认初始化并作为系统滴答使用，使用本 Demo 之前必须在
+ *    am_prj_config.h 内将 AM_CFG_KEY_GPIO_ENABLE、AM_CFG_SOFTIMER_ENABLE
+ *    和 AM_CFG_SYSTEM_TICK_ENABLE 定义为 0。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_zmf159_core_hw_tim_cmp_toggle.c src_zmf159_core_hw_tim_cmp_toggle
  *
  * \internal
@@ -48,19 +48,19 @@
 #include "demo_zlg_entries.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_zmf159_core_hw_tim_cmp_toggle_entry (void)
 {
     AM_DBG_INFO("demo zmf159_core hw tim cmp toggle!\r\n");
 
-    /* ��ʼ������ */
+    /* 初始化引脚 */
     am_gpio_pin_cfg(PIOB_8, PIOB_8_TIM4_CH3 | PIOB_8_AF_PP);
 
-    /* ʹ�ܶ�ʱ��ʱ�� */
+    /* 使能定时器时钟 */
     am_clk_enable(CLK_TIM4);
 
-    /* ��λ��ʱ�� */
+    /* 复位定时器 */
     am_zmf159_clk_reset(CLK_TIM4);
 
     demo_zlg_hw_tim_cmp_toggle_entry(ZMF159_TIM4,

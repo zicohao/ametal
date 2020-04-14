@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief KL26 I2C1 ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief KL26 I2C1 ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_kl26_hwconfig_i2c1.c
  *
  * \internal
@@ -38,15 +38,15 @@
  */
 
 /**
- * \name I2C1 ¿ØÖÆÆ÷²ÎÊı¶¨Òå
+ * \name I2C1 æ§åˆ¶å™¨å‚æ•°å®šä¹‰
  * @{
  */
 
-#define BUS_SPEED_I2C1     (100000)     /**< \brief I2C1 ×ÜÏßËÙÂÊ²ÎÊı¶¨Òå */
+#define BUS_SPEED_I2C1     (100000)     /**< \brief I2C1 æ€»çº¿é€Ÿç‡å‚æ•°å®šä¹‰ */
 
 /** @} */
 
-/** \brief I2C1 Æ½Ì¨³õÊ¼»¯º¯Êı */
+/** \brief I2C1 å¹³å°åˆå§‹åŒ–å‡½æ•° */
 void amhw_kl26_plfm_i2c1_init (void)
 {
     am_gpio_pin_cfg (__I2C1_SDA, __GPIO_I2C1_SDA);
@@ -55,7 +55,7 @@ void amhw_kl26_plfm_i2c1_init (void)
     amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_I2C1);
 }
 
-/** \brief ½â³ıI2C1 Æ½Ì¨³õÊ¼»¯º¯Êı */
+/** \brief è§£é™¤I2C1 å¹³å°åˆå§‹åŒ–å‡½æ•° */
 void amhw_kl26_plfm_i2c1_deinit (void)
 {
     amhw_kl26_sim_periph_clock_disable(KL26_SIM_SCGC_I2C1);
@@ -63,27 +63,27 @@ void amhw_kl26_plfm_i2c1_deinit (void)
 
 
 /**
- * \brief I2C1 Éè±¸ĞÅÏ¢
+ * \brief I2C1 è®¾å¤‡ä¿¡æ¯
  */
 const  struct am_fsl_i2c_devinfo  __g_i2c1_devinfo = {
-    KL26_I2C1,                             /**< \brief Ö¸ÏòI2C1¼Ä´æÆ÷¿éµÄÖ¸Õë */
+    KL26_I2C1,                             /**< \brief æŒ‡å‘I2C1å¯„å­˜å™¨å—çš„æŒ‡é’ˆ */
     BUS_SPEED_I2C1,
-    INUM_I2C1,                             /**< \brief I2C1 ÖĞ¶Ï±àºÅ */
-	CLK_I2C1,                              /**< \brief I2C1  Ê±ÖÓºÅ */
-    10,                                    /**< \brief I2C1 ³¬Ê±Ê±¼äÉèÖÃ */
-    amhw_kl26_plfm_i2c1_init,              /** \brief I2C1 Æ½Ì¨³õÊ¼»¯º¯Êı */
-    amhw_kl26_plfm_i2c1_deinit             /** \brief ½â³ıI2C1 Æ½Ì¨³õÊ¼»¯º¯Êı */
+    INUM_I2C1,                             /**< \brief I2C1 ä¸­æ–­ç¼–å· */
+	CLK_I2C1,                              /**< \brief I2C1  æ—¶é’Ÿå· */
+    10,                                    /**< \brief I2C1 è¶…æ—¶æ—¶é—´è®¾ç½® */
+    amhw_kl26_plfm_i2c1_init,              /** \brief I2C1 å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    amhw_kl26_plfm_i2c1_deinit             /** \brief è§£é™¤I2C1 å¹³å°åˆå§‹åŒ–å‡½æ•° */
 };
 
-am_fsl_i2c_dev_t __g_i2c1_dev;            /**< \brief I2C1 Éè±¸ÊµÀı */
+am_fsl_i2c_dev_t __g_i2c1_dev;            /**< \brief I2C1 è®¾å¤‡å®ä¾‹ */
 
-/** \brief i2c1ÊµÀı³õÊ¼»¯£¬»ñµÃi2c±ê×¼·şÎñ¾ä±ú */
+/** \brief i2c1å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—i2cæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_i2c_handle_t am_kl26_i2c1_inst_init (void)
 {
     return am_fsl_i2c_init(&__g_i2c1_dev, &__g_i2c1_devinfo);
 }
 
-/** \brief i2c1ÊµÀı½â³õÊ¼»¯ */
+/** \brief i2c1å®ä¾‹è§£åˆå§‹åŒ– */
 void am_kl26_i2c1_inst_deinit (am_i2c_handle_t handle)
 {
     am_fsl_i2c_deinit(handle);

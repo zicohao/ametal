@@ -11,14 +11,14 @@
 *******************************************************************************/
 /**
  * \file
- * \brief  NVRAM ½Ó¿ÚÀı³Ì
+ * \brief  NVRAM æ¥å£ä¾‹ç¨‹
  *
- *  ²âÊÔÊ¹ÓÃµÄ´æ´¢¶ÎĞèÔÚ __g_nvram_segs[] ÁĞ±íÖĞ¶¨Òå£¨am_nvram_cfg.c ÎÄ¼şÖĞ£©
+ *  æµ‹è¯•ä½¿ç”¨çš„å­˜å‚¨æ®µéœ€åœ¨ __g_nvram_segs[] åˆ—è¡¨ä¸­å®šä¹‰ï¼ˆam_nvram_cfg.c æ–‡ä»¶ä¸­ï¼‰
  *
- * - ÊµÑéÏÖÏó£º
- *   1. µ÷ÊÔ´®¿Ú´òÓ¡³ö²âÊÔ½á¹û¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. è°ƒè¯•ä¸²å£æ‰“å°å‡ºæµ‹è¯•ç»“æœã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_std_nvram.c src_std_nvram
  *
  * \internal
@@ -39,15 +39,15 @@
 #include "am_vdebug.h"
 #include "am_ep24cxx.h"
 
-#define __BUF_SIZE 16 /**< \brief »º³åÇø´óĞ¡ */
+#define __BUF_SIZE 16 /**< \brief ç¼“å†²åŒºå¤§å° */
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_std_nvram_entry (char *p_nvram_name, int32_t nvram_unit, int32_t test_lenth)
 {
-    uint8_t  wr_buf[__BUF_SIZE] = {0}; /* Ğ´Êı¾İ»º´æ¶¨Òå */
-    uint8_t  rd_buf[__BUF_SIZE] = {0}; /* ¶ÁÊı¾İ»º´æ¶¨Òå */
+    uint8_t  wr_buf[__BUF_SIZE] = {0}; /* å†™æ•°æ®ç¼“å­˜å®šä¹‰ */
+    uint8_t  rd_buf[__BUF_SIZE] = {0}; /* è¯»æ•°æ®ç¼“å­˜å®šä¹‰ */
     uint16_t i;
     int      ret;
 
@@ -55,12 +55,12 @@ void demo_std_nvram_entry (char *p_nvram_name, int32_t nvram_unit, int32_t test_
         test_lenth = __BUF_SIZE;
     }
 
-    /* Ìî³ä·¢ËÍ»º³åÇø */
+    /* å¡«å……å‘é€ç¼“å†²åŒº */
     for (i = 0;i < test_lenth; i++) {
         wr_buf[i] = i;
     }
 
-    /* Ğ´Êı¾İ */
+    /* å†™æ•°æ® */
     ret = am_nvram_set(p_nvram_name,
                        nvram_unit,
                       &wr_buf[0],
@@ -73,7 +73,7 @@ void demo_std_nvram_entry (char *p_nvram_name, int32_t nvram_unit, int32_t test_
     }
     am_mdelay(5);
 
-    /* ¶ÁÊı¾İ */
+    /* è¯»æ•°æ® */
     ret = am_nvram_get(p_nvram_name,
                        nvram_unit,
                       &rd_buf[0],
@@ -85,11 +85,11 @@ void demo_std_nvram_entry (char *p_nvram_name, int32_t nvram_unit, int32_t test_
         return;
     }
 
-    /* Ğ£ÑéĞ´ÈëºÍ¶ÁÈ¡µÄÊı¾İÊÇ·ñÒ»ÖÂ */
+    /* æ ¡éªŒå†™å…¥å’Œè¯»å–çš„æ•°æ®æ˜¯å¦ä¸€è‡´ */
     for (i = 0; i < test_lenth; i++) {
         AM_DBG_INFO("Read EEPROM the %2dth data is 0x%02x\r\n", i ,rd_buf[i]);
 
-        /* Ğ£ÑéÊ§°Ü */
+        /* æ ¡éªŒå¤±è´¥ */
         if(wr_buf[i] != rd_buf[i]) {
             AM_DBG_INFO("verify failed at index %d.\r\n", i);
             break;

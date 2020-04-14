@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief bootloader flash²Ù×÷±ê×¼½Ó¿Ú
+ * \brief bootloader flashæ“ä½œæ ‡å‡†æ¥å£
  *
  * \internal
  * \par Modification History
@@ -30,61 +30,61 @@ extern "C" {
 #include "ametal.h"
 
 typedef struct am_boot_flash_info {
-    /**< \brief flashÆğÊ¼µØÖ· */
+    /**< \brief flashèµ·å§‹åœ°å€ */
     uint32_t  flash_start_addr;
 
-    /**< \brief flashµÄ´óĞ¡ */
+    /**< \brief flashçš„å¤§å° */
     uint32_t  flash_size;
 
-    /**< \brief flashÉÈÇø´óĞ¡ */
+    /**< \brief flashæ‰‡åŒºå¤§å° */
     uint32_t  flash_sector_size;
 
-    /**< \brief flashÒ³´óĞ¡ */
+    /**< \brief flashé¡µå¤§å° */
     uint32_t  flash_page_size;
 
 }am_boot_flash_info_t;
 
 struct am_boot_flash_drv_funcs {
-    /**< \brief flashÇøÓò²Á³ı */
+    /**< \brief flashåŒºåŸŸæ“¦é™¤ */
     int  (*pfn_flash_erase_region) (void     *p_drv,
                                     uint32_t  start_addr,
                                     uint32_t  length);
 
-    /**< \brief flashĞ´ */
+    /**< \brief flashå†™ */
     int  (*pfn_flash_program) (void      *p_drv,
                                uint32_t   dst_addr,
                                void      *p_src,
                                uint32_t   size);
 
-    /**< \brief »ñÈ¡flashµÄĞÅÏ¢ */
+    /**< \brief è·å–flashçš„ä¿¡æ¯ */
     void (*pfn_flash_info_get) (void     *p_drv,am_boot_flash_info_t  **p_info );
 
-    /**< \brief ²Á³öÕû¸öflash */
+    /**< \brief æ“¦å‡ºæ•´ä¸ªflash */
     int (*pfn_flash_erase_all)(void      *p_drv);
 };
 
 typedef struct am_boot_flash_serv {
-    /**< \brief flash·şÎñÇı¶¯º¯Êı½á¹¹ÌåÖ¸Õë */
+    /**< \brief flashæœåŠ¡é©±åŠ¨å‡½æ•°ç»“æ„ä½“æŒ‡é’ˆ */
     struct am_boot_flash_drv_funcs *p_funcs;
 
-    /**< \brief flash·şÎñÇı¶¯º¯ÊıµÄµÚÒ»¸ö²ÎÊı */
+    /**< \brief flashæœåŠ¡é©±åŠ¨å‡½æ•°çš„ç¬¬ä¸€ä¸ªå‚æ•° */
     void                           *p_drv;
 }am_boot_flash_serv_t;
 
-/**< \brief flash±ê×¼·şÎñ²Ù×÷¾ä±úÀàĞÍ¶¨Òå */
+/**< \brief flashæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„ç±»å‹å®šä¹‰ */
 typedef am_boot_flash_serv_t *am_boot_flash_handle_t;
 
 /**
- * \brief flashÇøÓò²Á³ı
+ * \brief flashåŒºåŸŸæ“¦é™¤
  *
- * ×¢Òâ£ºÈç¹û²Á³ıµÄ³¤¶ÈĞ¡ÓÚflashµÄ²Á³ı×îĞ¡´óĞ¡£¬½«°´ÕÕ²Á³ı×îĞ¡´óĞ¡²Á³ı
+ * æ³¨æ„ï¼šå¦‚æœæ“¦é™¤çš„é•¿åº¦å°äºflashçš„æ“¦é™¤æœ€å°å¤§å°ï¼Œå°†æŒ‰ç…§æ“¦é™¤æœ€å°å¤§å°æ“¦é™¤
  *
- * \param[in] start_addr : ÆğÊ¼µØÖ·
- * \param[in] length     : ²Á³ı³¤¶È
+ * \param[in] start_addr : èµ·å§‹åœ°å€
+ * \param[in] length     : æ“¦é™¤é•¿åº¦
  *
- * \retval AM_OK    ²Á³ı³É¹¦
- * \retval AM_ERROR ´«ÈëµÄ²ÎÊıÓĞÎó
- * \retval >0       ³ö´íÉÈÇøºÅ
+ * \retval AM_OK    æ“¦é™¤æˆåŠŸ
+ * \retval AM_ERROR ä¼ å…¥çš„å‚æ•°æœ‰è¯¯
+ * \retval >0       å‡ºé”™æ‰‡åŒºå·
  */
 am_static_inline
 int am_boot_flash_erase_region(am_boot_flash_handle_t handle,
@@ -96,15 +96,15 @@ int am_boot_flash_erase_region(am_boot_flash_handle_t handle,
                                                    length);
 }
 /**
- * \brief flash±à³Ì
+ * \brief flashç¼–ç¨‹
  *
- * \param[in] dst_addr : Ä¿±êµØÖ·
- * \param[in] p_src    : Êı¾İÔ´µØÖ·
- * \param[in] size     : Ğ´ÈëµÄÊı¾İµÄ´óĞ¡
+ * \param[in] dst_addr : ç›®æ ‡åœ°å€
+ * \param[in] p_src    : æ•°æ®æºåœ°å€
+ * \param[in] size     : å†™å…¥çš„æ•°æ®çš„å¤§å°
  *
- * \retval AM_OK    Ğ´Èë³É¹¦
- * \retval AM_ERROR ´«ÈëµÄ²ÎÊıÓĞÎó
- * \retval >0       ³ö´íÉÈÇøºÅ
+ * \retval AM_OK    å†™å…¥æˆåŠŸ
+ * \retval AM_ERROR ä¼ å…¥çš„å‚æ•°æœ‰è¯¯
+ * \retval >0       å‡ºé”™æ‰‡åŒºå·
  */
 am_static_inline
 int am_boot_flash_program(am_boot_flash_handle_t handle,
@@ -119,10 +119,10 @@ int am_boot_flash_program(am_boot_flash_handle_t handle,
 }
 
 /**
- * \brief »ñÈ¡flashµÄĞÅÏ¢
+ * \brief è·å–flashçš„ä¿¡æ¯
  *
- * \param[in] p_info : ´æ·Å»ñÈ¡ºóµÄĞÅÏ¢
- * \retval ÎŞ
+ * \param[in] p_info : å­˜æ”¾è·å–åçš„ä¿¡æ¯
+ * \retval æ— 
  */
 am_static_inline
 void am_boot_flash_info_get(am_boot_flash_handle_t  handle,
@@ -136,10 +136,10 @@ void am_boot_flash_info_get(am_boot_flash_handle_t  handle,
 }
 
 /**
- * \brief ²Á³ıÕû¸öflash
+ * \brief æ“¦é™¤æ•´ä¸ªflash
  *
- * \retval AM_OK    : ³É¹¦
- * \retval AM_ERROR : Ê§°Ü
+ * \retval AM_OK    : æˆåŠŸ
+ * \retval AM_ERROR : å¤±è´¥
  *
  */
 am_static_inline

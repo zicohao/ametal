@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief AMetal±ê×¼Í·ÎÄ¼ş
+ * \brief AMetalæ ‡å‡†å¤´æ–‡ä»¶
  * 
- * ÔÚËùÓĞĞèÒªÊ¹ÓÃAMetalµÄÈÎºÎ·şÎñµÄÄ£¿é(*.<b>c</b>ÎÄ¼ş)ÖĞ£¬¸ÃÎÄ¼ş±ØĞë±»Ö±½Ó
- * »ò¼ä½ÓµØ°üº¬¡£
+ * åœ¨æ‰€æœ‰éœ€è¦ä½¿ç”¨AMetalçš„ä»»ä½•æœåŠ¡çš„æ¨¡å—(*.<b>c</b>æ–‡ä»¶)ä¸­ï¼Œè¯¥æ–‡ä»¶å¿…é¡»è¢«ç›´æ¥
+ * æˆ–é—´æ¥åœ°åŒ…å«ã€‚
  *
  * \internal
  * \par Modification history
@@ -30,8 +30,8 @@
 extern "C" {
 #endif /* __cplusplus  */
     
-#include "am_common.h"  /* ±ê×¼¶¨ÒåÍ·ÎÄ¼ş */
-#include "am_version.h" /* °æ±¾ĞÅÏ¢½Ó¿ÚÍ·ÎÄ¼ş */
+#include "am_common.h"  /* æ ‡å‡†å®šä¹‰å¤´æ–‡ä»¶ */
+#include "am_version.h" /* ç‰ˆæœ¬ä¿¡æ¯æ¥å£å¤´æ–‡ä»¶ */
     
 #ifdef __cplusplus
 }

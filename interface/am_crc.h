@@ -11,7 +11,7 @@
 *******************************************************************************/
 /**
  * \file
- * \brief Ñ­»·ÈßÓàĞ£Ñé(CRC)±ê×¼½Ó¿Ú
+ * \brief å¾ªç¯å†—ä½™æ ¡éªŒ(CRC)æ ‡å‡†æ¥å£
  *
  * \internal
  * \par modification history
@@ -34,58 +34,58 @@ extern "C" {
 #include "am_common.h"
 
 /**
- * \brief CRC Ä£ĞÍ
+ * \brief CRC æ¨¡å‹
  */
 typedef struct am_crc_pattern {
-    uint8_t    width;     /**< \brief CRC¿í¶È(Èç£ºCRC5 µÄ¿í¶ÈÎª 5)            */
-    uint32_t   poly;      /**< \brief CRCÉú³É¶àÏîÊ½                           */
-    uint32_t   initvalue; /**< \brief CRC³õÊ¼Öµ                               */
-    am_bool_t  refin;     /**< \brief Èç¹ûÊäÈëÊı¾İĞèÒªÎ»·´×ª£¬Ôò¸ÃÖµÎªTRUE    */
-    am_bool_t  refout;    /**< \brief Èç¹ûÊä³ö½á¹ûÖµĞèÒªÎ»·´×ª£¬Ôò¸ÃÖµÎªTRUE  */
-    uint32_t   xorout;    /**< \brief Êä³öÒì»òÖµ                              */
+    uint8_t    width;     /**< \brief CRCå®½åº¦(å¦‚ï¼šCRC5 çš„å®½åº¦ä¸º 5)            */
+    uint32_t   poly;      /**< \brief CRCç”Ÿæˆå¤šé¡¹å¼                           */
+    uint32_t   initvalue; /**< \brief CRCåˆå§‹å€¼                               */
+    am_bool_t  refin;     /**< \brief å¦‚æœè¾“å…¥æ•°æ®éœ€è¦ä½åè½¬ï¼Œåˆ™è¯¥å€¼ä¸ºTRUE    */
+    am_bool_t  refout;    /**< \brief å¦‚æœè¾“å‡ºç»“æœå€¼éœ€è¦ä½åè½¬ï¼Œåˆ™è¯¥å€¼ä¸ºTRUE  */
+    uint32_t   xorout;    /**< \brief è¾“å‡ºå¼‚æˆ–å€¼                              */
 } am_crc_pattern_t;
 
 
 /**
- * \brief CRCÇı¶¯º¯Êı½á¹¹Ìå
+ * \brief CRCé©±åŠ¨å‡½æ•°ç»“æ„ä½“
  */
 struct am_crc_drv_funcs {
 
-    /** \brief ¸ù¾İCRCÄ£ĞÍ³õÊ¼»¯CRC£¬ÎªCRC¼ÆËã×öºÃ×¼±¸ */
+    /** \brief æ ¹æ®CRCæ¨¡å‹åˆå§‹åŒ–CRCï¼Œä¸ºCRCè®¡ç®—åšå¥½å‡†å¤‡ */
     int (*pfn_crc_init) (void *p_cookie, am_crc_pattern_t *p_pattern);
 
-    /** \brief CRC¼ÆËã                                 */
+    /** \brief CRCè®¡ç®—                                 */
     int (*pfn_crc_cal) (void *p_cookie,const uint8_t *p_data, uint32_t nbytes);
 
-    /** \brief »ñÈ¡CRC¼ÆËã½á¹û                         */
+    /** \brief è·å–CRCè®¡ç®—ç»“æœ                         */
     int (*pfn_crc_final) (void *p_cookie, uint32_t *p_value);
 };
 
 /** 
- * \brief CRC·şÎñ
+ * \brief CRCæœåŠ¡
  */
 typedef struct am_crc_serv {
 
-    /** \brief CRCÇı¶¯º¯Êı½á¹¹ÌåÖ¸Õë    */
+    /** \brief CRCé©±åŠ¨å‡½æ•°ç»“æ„ä½“æŒ‡é’ˆ    */
     struct am_crc_drv_funcs *p_funcs;
     
-    /** \brief ÓÃÓÚÇı¶¯º¯ÊıµÄµÚÒ»¸ö²ÎÊı */
+    /** \brief ç”¨äºé©±åŠ¨å‡½æ•°çš„ç¬¬ä¸€ä¸ªå‚æ•° */
     void                    *p_drv;     
 } am_crc_serv_t;
 
-/** \brief CRC±ê×¼·şÎñ²Ù×÷¾ä±úÀàĞÍ¶¨Òå  */
+/** \brief CRCæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„ç±»å‹å®šä¹‰  */
 typedef am_crc_serv_t *am_crc_handle_t;
 
 
 /** 
- * \brief ¸ù¾İCRCÄ£ĞÍ³õÊ¼»¯CRC£¬ÎªCRC¼ÆËã×öºÃ×¼±¸
+ * \brief æ ¹æ®CRCæ¨¡å‹åˆå§‹åŒ–CRCï¼Œä¸ºCRCè®¡ç®—åšå¥½å‡†å¤‡
  * 
- * \param[in] handle    : CRC±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \param[in] p_pattern : Ö¸ÏòCRCÄ£ĞÍĞÅÏ¢½á¹¹ÌåÖ¸Õë
+ * \param[in] handle    : CRCæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] p_pattern : æŒ‡å‘CRCæ¨¡å‹ä¿¡æ¯ç»“æ„ä½“æŒ‡é’ˆ
  *
- * \retval  AM_OK       : ³õÊ¼»¯³É¹¦
- * \retval -AM_EINVAL   : ³õÊ¼»¯Ê§°Ü, ²ÎÊı´íÎó
- * \retval -AM_ENOTSUP  : ³õÊ¼»¯Ê§°Ü, CRCÄ£ĞÍ²»Ö§³Ö
+ * \retval  AM_OK       : åˆå§‹åŒ–æˆåŠŸ
+ * \retval -AM_EINVAL   : åˆå§‹åŒ–å¤±è´¥, å‚æ•°é”™è¯¯
+ * \retval -AM_ENOTSUP  : åˆå§‹åŒ–å¤±è´¥, CRCæ¨¡å‹ä¸æ”¯æŒ
  */
 am_static_inline
 int am_crc_init (am_crc_handle_t handle, am_crc_pattern_t *p_pattern)
@@ -94,14 +94,14 @@ int am_crc_init (am_crc_handle_t handle, am_crc_pattern_t *p_pattern)
 }
 
 /** 
- * \brief CRC¼ÆËã(Êı¾İ´¦Àí)
+ * \brief CRCè®¡ç®—(æ•°æ®å¤„ç†)
  * 
- * \param[in] handle  : CRC±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \param[in] p_data  : Ö¸Ïò´ı¼ÆËãÊı¾İ»º³åÇø
- * \param[in] nbytes  : ´ı¼ÆËãÊı¾İµÄ¸öÊı
+ * \param[in] handle  : CRCæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] p_data  : æŒ‡å‘å¾…è®¡ç®—æ•°æ®ç¼“å†²åŒº
+ * \param[in] nbytes  : å¾…è®¡ç®—æ•°æ®çš„ä¸ªæ•°
  *
- * \retval  AM_OK     : CRC¼ÆËã³É¹¦
- * \retval -AM_EINVAL : CRC¼ÆËãÊ§°Ü, ²ÎÊı´íÎó
+ * \retval  AM_OK     : CRCè®¡ç®—æˆåŠŸ
+ * \retval -AM_EINVAL : CRCè®¡ç®—å¤±è´¥, å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_crc_cal (am_crc_handle_t handle, const uint8_t *p_data, uint32_t nbytes)
@@ -110,13 +110,13 @@ int am_crc_cal (am_crc_handle_t handle, const uint8_t *p_data, uint32_t nbytes)
 }
 
 /** 
- * \brief »ñÈ¡CRC¼ÆËã½á¹ûÖµ
+ * \brief è·å–CRCè®¡ç®—ç»“æœå€¼
  *
- * \param[in]  handle  : CRC±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \param[out] p_value : ÓÃÓÚ»ñÈ¡CRC¼ÆËã½á¹ûÖµ
+ * \param[in]  handle  : CRCæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[out] p_value : ç”¨äºè·å–CRCè®¡ç®—ç»“æœå€¼
  *
- * \retval  AM_OK      : »ñÈ¡CRC¼ÆËã½á¹ûÖµ³É¹¦
- * \retval -AM_EINVAL  : »ñÈ¡CRC¼ÆËã½á¹ûÖµÊ§°Ü, ²ÎÊı´íÎó
+ * \retval  AM_OK      : è·å–CRCè®¡ç®—ç»“æœå€¼æˆåŠŸ
+ * \retval -AM_EINVAL  : è·å–CRCè®¡ç®—ç»“æœå€¼å¤±è´¥, å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_crc_final (am_crc_handle_t handle, uint32_t *p_value) 

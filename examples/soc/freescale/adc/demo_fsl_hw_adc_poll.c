@@ -12,19 +12,19 @@
 
 /**
  * \file
- * \brief ADCÀı³Ì£¬ÀûÓÃ²éÑ¯·½Ê½»ñÈ¡Èí¼ş´¥·¢µÄADC×ª»»½á¹û£¬Í¨¹ıHW²ã½Ó¿ÚÊµÏÖ
+ * \brief ADCä¾‹ç¨‹ï¼Œåˆ©ç”¨æŸ¥è¯¢æ–¹å¼è·å–è½¯ä»¶è§¦å‘çš„ADCè½¬æ¢ç»“æœï¼Œé€šè¿‡HWå±‚æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè£º
- *   1. PIOA_1Òı½ÅÁ¬½ÓPC´®¿ÚµÄTXD£»
- *   2. PIOA_2Òı½ÅÁ¬½ÓPC´®¿ÚµÄRXD£»
- *   3. J12ÌøÏßÃ±¶Ì½Ó£¨²Î¿¼µçÑ¹µÄ´óĞ¡ºÍĞ¾Æ¬VREF¹Ü½ÅÁ¬½ÓµÄµçÆ½ÓĞ¹Ø£¬´Ë´¦µÄ²Î¿¼µçÑ¹Îª2.5V£©£»
- *   4. PIOE_20(ADCÍ¨µÀ0£¬µ¥Í¨µÀÊäÈë) Á¬½ÓÄ£ÄâÊäÈë¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. PIOA_1å¼•è„šè¿æ¥PCä¸²å£çš„TXDï¼›
+ *   2. PIOA_2å¼•è„šè¿æ¥PCä¸²å£çš„RXDï¼›
+ *   3. J12è·³çº¿å¸½çŸ­æ¥ï¼ˆå‚è€ƒç”µå‹çš„å¤§å°å’ŒèŠ¯ç‰‡VREFç®¡è„šè¿æ¥çš„ç”µå¹³æœ‰å…³ï¼Œæ­¤å¤„çš„å‚è€ƒç”µå‹ä¸º2.5Vï¼‰ï¼›
+ *   4. PIOE_20(ADCé€šé“0ï¼Œå•é€šé“è¾“å…¥) è¿æ¥æ¨¡æ‹Ÿè¾“å…¥ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ADCÄ£¿éÒÔ444.44kHz²ÉÑùÂÊ(×ÜÏßÊ±ÖÓÎª24MHz)£¬½øĞĞ16Î»²ÉÑù;
- *   2. ´®¿ÚÊä³öµçÑ¹²ÉÑùÖµ¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. ADCæ¨¡å—ä»¥444.44kHzé‡‡æ ·ç‡(æ€»çº¿æ—¶é’Ÿä¸º24MHz)ï¼Œè¿›è¡Œ16ä½é‡‡æ ·;
+ *   2. ä¸²å£è¾“å‡ºç”µå‹é‡‡æ ·å€¼ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_fsl_hw_adc_poll.c src_fsl_hw_adc_poll
  *
  * \internal
@@ -46,39 +46,39 @@
 #include "am_board.h"
 
 /**
- * \brief  ADC ÅäÖÃº¯Êı
- * \param[in] ÎŞ
- * \return    ÎŞ
+ * \brief  ADC é…ç½®å‡½æ•°
+ * \param[in] æ— 
+ * \return    æ— 
  */
 static void adc_config (amhw_fsl_adc_t     *p_hw_adc)
 {
-    /* ÉèÖÃADCÄ£¿é²ÉÑùÂÊ»òÊ±ÖÓ */
+    /* è®¾ç½®ADCæ¨¡å—é‡‡æ ·ç‡æˆ–æ—¶é’Ÿ */
     amhw_fsl_adc_clkdiv_set(p_hw_adc, AMHW_FSL_ADC_CLK_DIV_2);
     amhw_fsl_adc_clksrc_set(p_hw_adc, AMHW_FSL_ADC_CLK_SRC_BUS);
 
-    /* ÉèÖÃ·Ö±æÂÊ */
+    /* è®¾ç½®åˆ†è¾¨ç‡ */
     amhw_fsl_adc_mode_set(p_hw_adc, AMHW_FSL_ADC_BITS_16);
 
-    /* Ê¹ÓÃÈí¼ş´¥·¢ , Ä¬ÈÏÊ¹ÓÃĞòÁĞA*/
+    /* ä½¿ç”¨è½¯ä»¶è§¦å‘ , é»˜è®¤ä½¿ç”¨åºåˆ—A*/
     amhw_fsl_adc_hwtrg_disable(p_hw_adc);
 
-    /* Ê¹ÄÜÁ¬Ğø²ÉÑùÄ£Ê½ */
+    /* ä½¿èƒ½è¿ç»­é‡‡æ ·æ¨¡å¼ */
     amhw_fsl_adc_continue_enable(p_hw_adc);
 
-    /* Ê¹ÄÜ¸ßËÙ×ª»»Ä£Ê½ */
+    /* ä½¿èƒ½é«˜é€Ÿè½¬æ¢æ¨¡å¼ */
     amhw_fsl_adc_hsc_enable(p_hw_adc);
 
-    /* ²»Ê¹ÄÜµÍ¹¦ºÄ */
+    /* ä¸ä½¿èƒ½ä½åŠŸè€— */
     amhw_fsl_adc_lowpower_disable(p_hw_adc);
 
-    /* ¹Ø±ÕÓ²¼şÆ½¾ùºÍ±È½Ï¹¦ÄÜ */
+    /* å…³é—­ç¡¬ä»¶å¹³å‡å’Œæ¯”è¾ƒåŠŸèƒ½ */
     amhw_fsl_adc_cmp_disable(p_hw_adc);
     amhw_fsl_adc_avg_disable(p_hw_adc);
 
     /**
-     * ÅäÖÃ³Éµ¥¶ËÄ£Ê½£¬ Í¨µÀÎª0£¬²»¿ªÖĞ¶Ï£¬
-     * Èí¼ş´¥·¢ADC×ª»»Ä£Ê½Ê±£¬Ğ´ÈëADC×ª»»Í¨µÀÖµ£¬
-     * ¼´¿ªÆôADC×ª»»£¬´Ë´¦ÏÈ²»Æô¶¯×ª»»
+     * é…ç½®æˆå•ç«¯æ¨¡å¼ï¼Œ é€šé“ä¸º0ï¼Œä¸å¼€ä¸­æ–­ï¼Œ
+     * è½¯ä»¶è§¦å‘ADCè½¬æ¢æ¨¡å¼æ—¶ï¼Œå†™å…¥ADCè½¬æ¢é€šé“å€¼ï¼Œ
+     * å³å¼€å¯ADCè½¬æ¢ï¼Œæ­¤å¤„å…ˆä¸å¯åŠ¨è½¬æ¢
      */
     amhw_fsl_adc_sc1_cfg(p_hw_adc,
                           AMHW_FSL_ADC_SEQ_A,
@@ -86,9 +86,9 @@ static void adc_config (amhw_fsl_adc_t     *p_hw_adc)
 }
 
 /**
- * \brief  ADC Èí¼şÆô¶¯×ª»»º¯Êı
- * \param[in] ÎŞ
- * \return    ÎŞ
+ * \brief  ADC è½¯ä»¶å¯åŠ¨è½¬æ¢å‡½æ•°
+ * \param[in] æ— 
+ * \return    æ— 
  */
 static void adc_start (amhw_fsl_adc_t     *p_hw_adc,
                        amhw_fsl_adc_chan_t chan)
@@ -97,42 +97,42 @@ static void adc_start (amhw_fsl_adc_t     *p_hw_adc,
 }
 
 /**
- * \brief ADC²éÑ¯»ñÈ¡²ÉÑùÖµ£¬Ê¹ÓÃHW²ã½Ó¿Úº¯Êı
- * \return ÎŞ
+ * \brief ADCæŸ¥è¯¢è·å–é‡‡æ ·å€¼ï¼Œä½¿ç”¨HWå±‚æ¥å£å‡½æ•°
+ * \return æ— 
  */
 void demo_fsl_hw_adc_poll_entry (amhw_fsl_adc_t     *p_hw_adc,
                                  amhw_fsl_adc_chan_t chan,
                                  uint32_t            clk_bus,
                                  uint32_t            vref_mv)
 {
-    uint32_t adc_mv;                /**< \brief ²ÉÑùµçÑ¹ */
-    uint32_t adc_dat;               /**< \brief ²ÉÑùÖµ */
-    uint32_t cnt = 0;               /**< \brief »ñÈ¡´ÎÊı */
+    uint32_t adc_mv;                /**< \brief é‡‡æ ·ç”µå‹ */
+    uint32_t adc_dat;               /**< \brief é‡‡æ ·å€¼ */
+    uint32_t cnt = 0;               /**< \brief è·å–æ¬¡æ•° */
 
-    /* ADCĞ£×¼ */
+    /* ADCæ ¡å‡† */
     amhw_fsl_adc_calibrate(p_hw_adc, clk_bus);
 
-    /* ADCÅäÖÃ³õÊ¼»¯ */
+    /* ADCé…ç½®åˆå§‹åŒ– */
     adc_config(p_hw_adc);
 
     am_kprintf("The ADC HW Poll Demo\r\n");
 
-    /* Á¬Ğø×ª»»Ê¹ÄÜ */
+    /* è¿ç»­è½¬æ¢ä½¿èƒ½ */
     amhw_fsl_adc_continue_enable(p_hw_adc);
 
-    /* Ñ¡ÔñÍ¨µÀ0 */
+    /* é€‰æ‹©é€šé“0 */
     adc_start(p_hw_adc, chan);
 
     while(1) {
 
-        while (!amhw_fsl_adc_complete_is(p_hw_adc, AMHW_FSL_ADC_SEQ_A));    /* µÈ´ıADC×ª»»Íê³É */
+        while (!amhw_fsl_adc_complete_is(p_hw_adc, AMHW_FSL_ADC_SEQ_A));    /* ç­‰å¾…ADCè½¬æ¢å®Œæˆ */
         am_led_toggle(LED1);
         adc_dat = amhw_fsl_adc_dat_get(p_hw_adc, AMHW_FSL_ADC_SEQ_A);
         cnt++;
-        if (cnt >= 2000UL) { /* ÑÓÊ±£¬¿ØÖÆ´®¿Ú´òÓ¡¿ìÂı  */
+        if (cnt >= 2000UL) { /* å»¶æ—¶ï¼Œæ§åˆ¶ä¸²å£æ‰“å°å¿«æ…¢  */
             cnt = 0;
             adc_mv = adc_dat * vref_mv / ((1UL << 16) - 1);
-            /* ´®¿ÚÊä³ö²ÉÑùµçÑ¹Öµ */
+            /* ä¸²å£è¾“å‡ºé‡‡æ ·ç”µå‹å€¼ */
             am_kprintf("Vol: %d mv\r\n", adc_mv);
         }
     }

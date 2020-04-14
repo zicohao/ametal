@@ -12,11 +12,11 @@
 
 /**
  * \file
- * \brief ������̻���׼����GPIO��
+ * \brief 矩阵键盘环境准备（GPIO）
  *
- * �԰���ɨ��Ϊ����ÿ�ο��Զ�ȡһ�а����ļ�ֵ���ڶ�ȡ֮ǰ����Ҫ�����еĹ�����
- * ����Ϊ�͵�ƽ����ߵ�ƽ�����Ա�����������İ��¡�һ�а����������󣬱���
- * �ָ���ƽ���Ա�����һ�а�����
+ * 以按列扫描为例，每次可以读取一列按键的键值，在读取之前，需要将该列的公共端
+ * 设置为低电平（或高电平），以便检测各个按键的按下。一列按键检测结束后，必须
+ * 恢复电平，以便检测下一列按键。
  *
  * \internal
  * \par modification history:
@@ -109,7 +109,7 @@ am_key_matrix_prepare_t * am_key_matrix_prepare_gpio_init (
                  AM_GPIO_OUTPUT_INIT_HIGH :
                  AM_GPIO_OUTPUT_INIT_LOW;
 
-    /* ��������������Ϊ���״̬ */
+    /* 将所有引脚设置为输出状态 */
     for (i = 0; i < p_dev->pin_num; i++) {
         am_gpio_pin_cfg(p_pins[i], cfg_flags);
     }

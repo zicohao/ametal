@@ -12,18 +12,18 @@
 
 /**
  * \file
- * \brief ÒÔSPIÎªÀý£¬ÑÝÊ¾ÁËSPIÖÐTransferµÄÊ¹ÓÃ·½·¨£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief ä»¥SPIä¸ºä¾‹ï¼Œæ¼”ç¤ºäº†SPIä¸­Transferçš„ä½¿ç”¨æ–¹æ³•ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè:
- *   1. ½«SPI MOSIºÍMISO¶Ì½Ó(PIOD_2 == PIOD_3),ÐéÄâ´Ó»úÉè±¸Á¬½Ó
- *   2. °´ÏÂ°´¼ü´«ÊäÒ»´ÎÊý¾Ý
+ * - æ“ä½œæ­¥éª¤:
+ *   1. å°†SPI MOSIå’ŒMISOçŸ­æŽ¥(PIOD_2 == PIOD_3),è™šæ‹Ÿä»Žæœºè®¾å¤‡è¿žæŽ¥
+ *   2. æŒ‰ä¸‹æŒ‰é”®ä¼ è¾“ä¸€æ¬¡æ•°æ®
  *
- * - ÊµÑéÏÖÏó:
+ * - å®žéªŒçŽ°è±¡:
  * \note
- *   1. Ö÷»úÍ¨¹ý MOSI ·¢ËÍÊý¾Ý£¬·¢³öµÄÊý¾Ý´Ó MOSI ¶Á»Ø£»
- *   2. µ÷ÊÔ´®¿Ú´òÓ¡²âÊÔ½á¹û¡£
+ *   1. ä¸»æœºé€šè¿‡ MOSI å‘é€æ•°æ®ï¼Œå‘å‡ºçš„æ•°æ®ä»Ž MOSI è¯»å›žï¼›
+ *   2. è°ƒè¯•ä¸²å£æ‰“å°æµ‹è¯•ç»“æžœã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_amks16z_core_std_spi_master_dma.c src_amks16z_core_std_spi_master_dma
  *
  * \internal
@@ -50,10 +50,10 @@
 #include "../../../../soc/freescale/kl26/kl26_pin.h"
 #include "demo_amks16z_core_all_entries.h"
 
-#define KEY_PIN     PIOC_0    /**< \brief °´¼üÒý½Å       */
+#define KEY_PIN     PIOC_0    /**< \brief æŒ‰é”®å¼•è„š       */
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_amks16z_core_std_spi_master_dma_entry (void)
 {

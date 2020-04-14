@@ -13,12 +13,12 @@
 
 /**
  * \file
- * \brief GPIO Ӳ�������ӿ�
+ * \brief GPIO 硬件操作接口
  * 
- * 1. �ɵ�������ÿ�����ŵķ��������ĵ�ƽ��������λ�����㣬��ת��
- * 2. ��ͬʱ����ÿ���˿��������ŵķ��������ĵ�ƽ��������λ�����㣬��ת��
- * 3. �ɵ�����ȡ���ŵ�ƽ��ͬʱ��ȡ�˿��������ŵ�ƽ��
- * 4. ��ͨ���������úͻ�ȡ�˿����ŵ�ƽ��
+ * 1. 可单独配置每个引脚的方向和输出的电平，包括置位，清零，反转；
+ * 2. 可同时操作每个端口所有引脚的方向和输出的电平，包括置位，清零，反转；
+ * 3. 可单独获取引脚电平或同时获取端口所有引脚电平；
+ * 4. 可通过掩码设置和获取端口引脚电平。
  *
  * \internal
  * \par Modification history
@@ -43,58 +43,58 @@ extern "C" {
  */
     
 /**
- * \brief GPIO �Ĵ�����ṹ��
+ * \brief GPIO 寄存器块结构体
  */
 typedef struct amhw_lpc82x_gpio {
-    __IO uint8_t  b[128][32];       /**< \brief �����ֽڼĴ���       */
-    __IO uint32_t w[32][32];        /**< \brief �����ּĴ���         */
-    __IO uint32_t dir[32];          /**< \brief ����Ĵ���           */
-    __IO uint32_t mask[32];         /**< \brief ����Ĵ�             */
-    __IO uint32_t pin[32];          /**< \brief �˿����żĴ���       */
-    __IO uint32_t mpin[32];         /**< \brief �˿�����Ĵ���       */
-    __IO uint32_t set[32];          /**< \brief ����Ķ�����λ�Ĵ��� */
-    __O  uint32_t clr[32];          /**< \brief �˿�����Ĵ���       */
-    __O  uint32_t not0[32];         /**< \brief �˿ڷ�ת�Ĵ���       */
-    __O  uint32_t dirset[32];       /**< \brief �˿ڷ�����λ�Ĵ���   */
-    __O  uint32_t dirclr[32];       /**< \brief �˿ڷ�������Ĵ���   */
-    __O  uint32_t dirnot[32];       /**< \brief �˿ڷ���ת�Ĵ���   */
+    __IO uint8_t  b[128][32];       /**< \brief 引脚字节寄存器       */
+    __IO uint32_t w[32][32];        /**< \brief 引脚字寄存器         */
+    __IO uint32_t dir[32];          /**< \brief 方向寄存器           */
+    __IO uint32_t mask[32];         /**< \brief 掩码寄存             */
+    __IO uint32_t pin[32];          /**< \brief 端口引脚寄存器       */
+    __IO uint32_t mpin[32];         /**< \brief 端口掩码寄存器       */
+    __IO uint32_t set[32];          /**< \brief 输出的读或置位寄存器 */
+    __O  uint32_t clr[32];          /**< \brief 端口清除寄存器       */
+    __O  uint32_t not0[32];         /**< \brief 端口翻转寄存器       */
+    __O  uint32_t dirset[32];       /**< \brief 端口方向置位寄存器   */
+    __O  uint32_t dirclr[32];       /**< \brief 端口方向清零寄存器   */
+    __O  uint32_t dirnot[32];       /**< \brief 端口方向翻转寄存器   */
 } amhw_lpc82x_gpio_t;
 
 /**
- * \name GPIO ���ŵ�ƽ
+ * \name GPIO 引脚电平
  * \anchor grp_amhw_lpc82x_gpio_pin_level
  * @{
  */
  
-#define AMHW_LPC82X_GPIO_LEVEL_LOW     0        /**< \brief �͵�ƽ */
-#define AMHW_LPC82X_GPIO_LEVEL_HIGH    1        /**< \brief �ߵ�ƽ */
+#define AMHW_LPC82X_GPIO_LEVEL_LOW     0        /**< \brief 低电平 */
+#define AMHW_LPC82X_GPIO_LEVEL_HIGH    1        /**< \brief 高电平 */
 
 /** @} */
 
 /**
- * \name GPIO ���ŷ���
+ * \name GPIO 引脚方向
  * \anchor grp_amhw_lpc82x_gpio_pin_dir
  * @{
  */
  
-#define AMHW_LPC82X_GPIO_DIR_INPUT     0        /**< \brief ����Ϊ���� */
-#define AMHW_LPC82X_GPIO_DIR_OUTPUT    1        /**< \brief ����Ϊ��� */
+#define AMHW_LPC82X_GPIO_DIR_INPUT     0        /**< \brief 方向为输入 */
+#define AMHW_LPC82X_GPIO_DIR_OUTPUT    1        /**< \brief 方向为输出 */
 
 /** @} */
 
 
 /**
- * \brief ����GPIO���ŵ������ƽ
+ * \brief 设置GPIO引脚的输出电平
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] pin       : ���ű�ţ�ֵΪ PIO* (#PIO0_0)
- * \param[in] level     : ��ƽ״̬
- *      \arg AMHW_LPC82X_GPIO_LEVEL_LOW  �� �͵�ƽ
- *      \arg AMHW_LPC82X_GPIO_LEVEL_HIGH �� �ߵ�ƽ
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] pin       : 引脚编号，值为 PIO* (#PIO0_0)
+ * \param[in] level     : 电平状态
+ *      \arg AMHW_LPC82X_GPIO_LEVEL_LOW  ： 低电平
+ *      \arg AMHW_LPC82X_GPIO_LEVEL_HIGH ： 高电平
  *
- * \return ��
+ * \return 无
  *
- * \note �ù��ܽ�����������Ϊ�����GPIO����
+ * \note 该功能仅限于已设置为输出的GPIO引脚
  */
 am_static_inline 
 void amhw_lpc82x_gpio_pin_out_set (amhw_lpc82x_gpio_t *p_hw_gpio, 
@@ -105,14 +105,14 @@ void amhw_lpc82x_gpio_pin_out_set (amhw_lpc82x_gpio_t *p_hw_gpio,
 }
 
 /**
- * \brief ����GPIO��������ߵ�ƽ
+ * \brief 设置GPIO引脚输出高电平
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] pin       : ���ű�ţ�ֵΪ PIO* (#PIO0_0)
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] pin       : 引脚编号，值为 PIO* (#PIO0_0)
  *
- * \return ��
+ * \return 无
  *
- * \note �ù��ܽ�����������Ϊ�����GPIO����
+ * \note 该功能仅限于已设置为输出的GPIO引脚
  */
 am_static_inline 
 void amhw_lpc82x_gpio_pin_out_high (amhw_lpc82x_gpio_t *p_hw_gpio, int pin)
@@ -121,14 +121,14 @@ void amhw_lpc82x_gpio_pin_out_high (amhw_lpc82x_gpio_t *p_hw_gpio, int pin)
 }
 
 /**
- * \brief ����GPIO��������͵�ƽ
+ * \brief 设置GPIO引脚输出低电平
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] pin       : ���ű�ţ�ֵΪ PIO* (#PIO0_0)
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] pin       : 引脚编号，值为 PIO* (#PIO0_0)
  *
- * \return ��
+ * \return 无
  *
- * \note �ù��ܽ�����������Ϊ�����GPIO����
+ * \note 该功能仅限于已设置为输出的GPIO引脚
  */
 am_static_inline 
 void amhw_lpc82x_gpio_pin_out_low (amhw_lpc82x_gpio_t *p_hw_gpio, int pin)
@@ -137,14 +137,14 @@ void amhw_lpc82x_gpio_pin_out_low (amhw_lpc82x_gpio_t *p_hw_gpio, int pin)
 }
 
 /**
- * \brief ��תGPIO���������ƽ
+ * \brief 翻转GPIO引脚输出电平
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] pin       : ���ű�ţ�ֵΪ PIO* (#PIO0_0)
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] pin       : 引脚编号，值为 PIO* (#PIO0_0)
  *
- * \return ��
+ * \return 无
  *
- * \note �ù��ܽ�����������Ϊ�����GPIO����
+ * \note 该功能仅限于已设置为输出的GPIO引脚
  */
 am_static_inline 
 void amhw_lpc82x_gpio_pin_out_tog (amhw_lpc82x_gpio_t *p_hw_gpio, int pin)
@@ -153,17 +153,17 @@ void amhw_lpc82x_gpio_pin_out_tog (amhw_lpc82x_gpio_t *p_hw_gpio, int pin)
 }
 
 /**
- * \brief ��ȡָ�����ŵĵ�ƽ״̬
+ * \brief 获取指定引脚的电平状态
  *
-��
+。
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] pin       : ���ű�ţ�ֵΪ PIO* (#PIO0_0)
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] pin       : 引脚编号，值为 PIO* (#PIO0_0)
  *
- * \retval AMHW_LPC82X_GPIO_LEVEL_LOW  : �͵�ƽ
- * \retval AMHW_LPC82X_GPIO_LEVEL_HIGH : �ߵ�ƽ
+ * \retval AMHW_LPC82X_GPIO_LEVEL_LOW  : 低电平
+ * \retval AMHW_LPC82X_GPIO_LEVEL_HIGH : 高电平
  *
- * \note ���˸���������Ϊģ��I/Oʱ������Ϊ0�����������¶����Ի�ȡ���ŵĵ�ƽ״̬
+ * \note 除了该引脚配置为模拟I/O时，读总为0，其他条件下都可以获取引脚的电平状态
  */
 am_static_inline 
 int amhw_lpc82x_gpio_pin_level_get (amhw_lpc82x_gpio_t *p_hw_gpio, int pin)
@@ -172,15 +172,15 @@ int amhw_lpc82x_gpio_pin_level_get (amhw_lpc82x_gpio_t *p_hw_gpio, int pin)
 }
 
 /**
- * \brief ����GPIO���ŷ���
+ * \brief 设置GPIO引脚方向
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] pin       : ���ű�ţ�ֵΪ PIO* (#PIO0_0)
- * \param[in] dir       : ���ŷ���
- *      \arg AMHW_LPC82X_GPIO_DIR_INPUT  �� ����Ϊ����
- *      \arg AMHW_LPC82X_GPIO_DIR_OUTPUT �� ����Ϊ���
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] pin       : 引脚编号，值为 PIO* (#PIO0_0)
+ * \param[in] dir       : 引脚方向
+ *      \arg AMHW_LPC82X_GPIO_DIR_INPUT  ： 方向为输入
+ *      \arg AMHW_LPC82X_GPIO_DIR_OUTPUT ： 方向为输出
  *
- * \return ��
+ * \return 无
  */
 am_static_inline 
 void amhw_lpc82x_gpio_pin_dir_set (amhw_lpc82x_gpio_t *p_hw_gpio, 
@@ -196,12 +196,12 @@ void amhw_lpc82x_gpio_pin_dir_set (amhw_lpc82x_gpio_t *p_hw_gpio,
 
 
 /**
- * \brief ����GPIO���ŷ���Ϊ���
+ * \brief 设置GPIO引脚方向为输出
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] pin       : ���ű�ţ�ֵΪ PIO* (#PIO0_0)
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] pin       : 引脚编号，值为 PIO* (#PIO0_0)
  *
- * \return ��
+ * \return 无
  */
 am_static_inline 
 void amhw_lpc82x_gpio_pin_dir_output (amhw_lpc82x_gpio_t *p_hw_gpio, int pin)
@@ -210,12 +210,12 @@ void amhw_lpc82x_gpio_pin_dir_output (amhw_lpc82x_gpio_t *p_hw_gpio, int pin)
 }
 
 /**
- * \brief ����GPIO���ŷ���Ϊ����
+ * \brief 设置GPIO引脚方向为输入
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] pin       : ���ű�ţ�ֵΪ PIO* (#PIO0_0)
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] pin       : 引脚编号，值为 PIO* (#PIO0_0)
  *
- * \return ��
+ * \return 无
  */
 am_static_inline 
 void amhw_lpc82x_gpio_pin_dir_input (amhw_lpc82x_gpio_t *p_hw_gpio, int pin)
@@ -224,12 +224,12 @@ void amhw_lpc82x_gpio_pin_dir_input (amhw_lpc82x_gpio_t *p_hw_gpio, int pin)
 }
 
 /**
- * \brief ��תGPIO���ŷ���
+ * \brief 反转GPIO引脚方向
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] pin       : ���ű�ţ�ֵΪ PIO* (#PIO0_0)
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] pin       : 引脚编号，值为 PIO* (#PIO0_0)
  *
- * \return ��
+ * \return 无
  */
 am_static_inline 
 void amhw_lpc82x_gpio_pin_dir_tog (amhw_lpc82x_gpio_t *p_hw_gpio, int pin)
@@ -238,13 +238,13 @@ void amhw_lpc82x_gpio_pin_dir_tog (amhw_lpc82x_gpio_t *p_hw_gpio, int pin)
 }
 
 /**
- * \brief ��ȡ���ŵķ���
+ * \brief 获取引脚的方向
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] pin       : ���ű�ţ�ֵΪ PIO* (#PIO0_0)
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] pin       : 引脚编号，值为 PIO* (#PIO0_0)
  *
- * \retval AMHW_LPC82X_GPIO_DIR_INPUT  : ����Ϊ����
- * \retval AMHW_LPC82X_GPIO_DIR_OUTPUT : ����Ϊ���
+ * \retval AMHW_LPC82X_GPIO_DIR_INPUT  : 方向为输入
+ * \retval AMHW_LPC82X_GPIO_DIR_OUTPUT : 方向为输出
  */
 am_static_inline
 uint8_t amhw_lpc82x_gpio_pin_dir_get (amhw_lpc82x_gpio_t *p_hw_gpio, int pin)
@@ -253,13 +253,13 @@ uint8_t amhw_lpc82x_gpio_pin_dir_get (amhw_lpc82x_gpio_t *p_hw_gpio, int pin)
 }
 
 /**
- * \brief ���ö˿����ŵ�״̬
+ * \brief 设置端口引脚的状态
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] value     : ����״̬������n��Ӧbit_n,��bit_nΪ1,�������ŵ�ƽΪ�ߣ�
- *                        ��֮������Ϊ�͵�ƽ
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] value     : 引脚状态，引脚n对应bit_n,如bit_n为1,则置引脚电平为高，
+ *                        反之置引脚为低电平
  *
- * \return ��
+ * \return 无
  */
 am_static_inline 
 void amhw_lpc82x_gpio_port_out_set (amhw_lpc82x_gpio_t *p_hw_gpio, 
@@ -269,13 +269,13 @@ void amhw_lpc82x_gpio_port_out_set (amhw_lpc82x_gpio_t *p_hw_gpio,
 }
 
 /**
- * \brief ���ö˿�GPIO��������ߵ�ƽ
+ * \brief 设置端口GPIO引脚输出高电平
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] pin_mask  : ����n��Ӧbit_n,��bit_nΪ1,�������ŵ�ƽΪ�ߣ�
- *                        ��bit_nΪ0��������������
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] pin_mask  : 引脚n对应bit_n,如bit_n为1,则置引脚电平为高，
+ *                        如bit_n为0，不操作该引脚
  *
- * \return ��
+ * \return 无
  */
 am_static_inline 
 void amhw_lpc82x_gpio_port_out_high (amhw_lpc82x_gpio_t *p_hw_gpio, 
@@ -285,13 +285,13 @@ void amhw_lpc82x_gpio_port_out_high (amhw_lpc82x_gpio_t *p_hw_gpio,
 }
 
 /**
- * \brief ���ö˿�GPIO��������͵�ƽ
+ * \brief 设置端口GPIO引脚输出低电平
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] pin_mask  : ����n��Ӧbit_n,��bit_nΪ1,�������ŵ�ƽΪ�ͣ�
- *                        ��bit_nΪ0��������������
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] pin_mask  : 引脚n对应bit_n,如bit_n为1,则置引脚电平为低，
+ *                        如bit_n为0，不操作该引脚
  *
- * \return ��
+ * \return 无
  */
 am_static_inline 
 void amhw_lpc82x_gpio_port_out_low (amhw_lpc82x_gpio_t *p_hw_gpio, 
@@ -301,13 +301,13 @@ void amhw_lpc82x_gpio_port_out_low (amhw_lpc82x_gpio_t *p_hw_gpio,
 }
 
 /**
- * \brief ��ת�˿�GPIO���������ƽ
+ * \brief 反转端口GPIO引脚输出电平
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] pin_mask  : ����n��Ӧbit_n,��bit_nΪ1,��ת���ŵ�ƽ��
- *                        ��bit_nΪ0��������������
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] pin_mask  : 引脚n对应bit_n,如bit_n为1,则反转引脚电平，
+ *                        如bit_n为0，不操作该引脚
  *
- * \return ��
+ * \return 无
  */
 am_static_inline 
 void amhw_lpc82x_gpio_port_out_tog (amhw_lpc82x_gpio_t *p_hw_gpio, 
@@ -317,14 +317,14 @@ void amhw_lpc82x_gpio_port_out_tog (amhw_lpc82x_gpio_t *p_hw_gpio,
 }
 
 /**
- * \brief ��ȡ�˿�GPIO���ŵ�ƽ
+ * \brief 获取端口GPIO引脚电平
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
  *
- * \return �˿ڵ�����״̬������n��Ӧbit_n,��bit_nΪ1,������n��ƽΪ�ߣ�
- *         ��֮����nΪ�͵�ƽ
+ * \return 端口的引脚状态，引脚n对应bit_n,如bit_n为1,则引脚n电平为高，
+ *         反之引脚n为低电平
  *
- * \note ���˸���������Ϊģ��I/Oʱ������Ϊ0�����������¶����Ի�ȡ���ŵĵ�ƽ״̬
+ * \note 除了该引脚配置为模拟I/O时，读总为0，其他条件下都可以获取引脚的电平状态
  */
 am_static_inline 
 uint32_t amhw_lpc82x_gpio_port_levle_get (amhw_lpc82x_gpio_t *p_hw_gpio)
@@ -333,13 +333,13 @@ uint32_t amhw_lpc82x_gpio_port_levle_get (amhw_lpc82x_gpio_t *p_hw_gpio)
 }
 
 /**
- * \brief ���ö˿�GPIO���ŵķ���
+ * \brief 设置端口GPIO引脚的方向
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] value     : ���ŷ�������n��Ӧbit_n,��bit_nΪ1,
- *                        ���������ŷ���Ϊ�������֮�����ŷ���Ϊ����
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] value     : 引脚方向，引脚n对应bit_n,如bit_n为1,
+ *                        则设置引脚方向为输出，反之置引脚方向为输入
  *
- * \return ��
+ * \return 无
  */
 am_static_inline 
 void amhw_lpc82x_gpio_port_dir_set (amhw_lpc82x_gpio_t *p_hw_gpio, 
@@ -349,13 +349,13 @@ void amhw_lpc82x_gpio_port_dir_set (amhw_lpc82x_gpio_t *p_hw_gpio,
 }
 
 /**
- * \brief ���ö˿�GPIO���ŷ���Ϊ���
+ * \brief 设置端口GPIO引脚方向为输出
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] pin_mask  : ����n��Ӧbit_n,��bit_nΪ1,���������ŷ���Ϊ�����
- *                        ��bit_nΪ0��������������
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] pin_mask  : 引脚n对应bit_n,如bit_n为1,则设置引脚方向为输出，
+ *                        如bit_n为0，不操作该引脚
  *
- * \return ��
+ * \return 无
  */
 am_static_inline 
 void amhw_lpc82x_gpio_port_dir_output (amhw_lpc82x_gpio_t *p_hw_gpio, 
@@ -365,13 +365,13 @@ void amhw_lpc82x_gpio_port_dir_output (amhw_lpc82x_gpio_t *p_hw_gpio,
 }
 
 /**
- * \brief ���ö˿�GPIO��������͵�ƽ
+ * \brief 设置端口GPIO引脚输出低电平
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] pin_mask  : ����n��Ӧbit_n,��bit_nΪ1,���������ŷ���Ϊ���룬
- *                        ��bit_nΪ0��������������
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] pin_mask  : 引脚n对应bit_n,如bit_n为1,则设置引脚方向为输入，
+ *                        如bit_n为0，不操作该引脚
  *
- * \return ��
+ * \return 无
  */
 am_static_inline 
 void amhw_lpc82x_gpio_port_dir_input (amhw_lpc82x_gpio_t *p_hw_gpio, 
@@ -381,13 +381,13 @@ void amhw_lpc82x_gpio_port_dir_input (amhw_lpc82x_gpio_t *p_hw_gpio,
 }
 
 /**
- * \brief ��ת�˿�GPIO���ŷ���
+ * \brief 反转端口GPIO引脚方向
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] pin_mask  : ����n��Ӧbit_n,��bit_nΪ1,��ת���ŷ���
- *                        ��bit_nΪ0��������������
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] pin_mask  : 引脚n对应bit_n,如bit_n为1,则反转引脚方向，
+ *                        如bit_n为0，不操作该引脚
  *
- * \return ��
+ * \return 无
  */
 am_static_inline 
 void amhw_lpc82x_gpio_port_dir_tog (amhw_lpc82x_gpio_t *p_hw_gpio, 
@@ -397,12 +397,12 @@ void amhw_lpc82x_gpio_port_dir_tog (amhw_lpc82x_gpio_t *p_hw_gpio,
 }
 
 /**
- * \brief ��ȡ�˿�GPIO���ŷ���
+ * \brief 获取端口GPIO引脚方向
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
  *
- * \return �˿ڵ����ŷ�������n��Ӧbit_n,��bit_nΪ1,������n����Ϊ�����
- *         ��֮����n����Ϊ����
+ * \return 端口的引脚方向，引脚n对应bit_n,如bit_n为1,则引脚n方向为输出，
+ *         反之引脚n方向为输入
  */
 am_static_inline 
 uint32_t amhw_lpc82x_gpio_port_dir_get (amhw_lpc82x_gpio_t *p_hw_gpio)
@@ -411,12 +411,12 @@ uint32_t amhw_lpc82x_gpio_port_dir_get (amhw_lpc82x_gpio_t *p_hw_gpio)
 }
 
 /**
- * \brief ���ö˿ڵ�GPIO�������룬���ڿ��ƶ˿ڵĶ���д
+ * \brief 设置端口的GPIO引脚掩码，用于控制端口的读和写
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] mask      : �˿�����ֵ������n��Ӧbit_n
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] mask      : 端口掩码值，引脚n对应bit_n
  * 
- * \return ��
+ * \return 无
  */
 am_static_inline 
 void amhw_lpc82x_gpio_mask_set (amhw_lpc82x_gpio_t *p_hw_gpio, 
@@ -426,11 +426,11 @@ void amhw_lpc82x_gpio_mask_set (amhw_lpc82x_gpio_t *p_hw_gpio,
 }
 
 /**
- * \brief ��ȡ�˿�GPIO��������
+ * \brief 获取端口GPIO引脚掩码
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ�� 
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针 
  *
- * \return �˿ڵ�GPIO�������룬����n��Ӧbit_n
+ * \return 端口的GPIO引脚掩码，引脚n对应bit_n
  */
 am_static_inline 
 uint32_t amhw_lpc82x_gpio_mask_get (amhw_lpc82x_gpio_t *p_hw_gpio)
@@ -439,14 +439,14 @@ uint32_t amhw_lpc82x_gpio_mask_get (amhw_lpc82x_gpio_t *p_hw_gpio)
 }
 
 /**
- * \brief ������������GPIO�˿ڵ�����״̬
+ * \brief 根据掩码设置GPIO端口的引脚状态
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
- * \param[in] value     : ����״̬������n��Ӧbit_n����bit_nΪ1����������
- *                        ��ƽΪ�ߣ���֮������Ϊ�͵�ƽ�������Ӧ��MASKֵΪ1��
- *                        �����Ϊ������Ӱ��
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
+ * \param[in] value     : 引脚状态，引脚n对应bit_n，如bit_n为1，则置引脚
+ *                        电平为高，反之置引脚为低电平，如果对应的MASK值为1，
+ *                        该输出为将不受影响
  *
- * \return ��
+ * \return 无
  */
 am_static_inline 
 void amhw_lpc82x_gpio_port_masked_out_set (amhw_lpc82x_gpio_t *p_hw_gpio,  
@@ -456,14 +456,14 @@ void amhw_lpc82x_gpio_port_masked_out_set (amhw_lpc82x_gpio_t *p_hw_gpio,
 }
 
 /**
- * \brief ���������ȡ�˿�GPIO����״̬
+ * \brief 根据掩码获取端口GPIO引脚状态
  *
- * \param[in] p_hw_gpio : ָ��GPIO�Ĵ������ָ��
+ * \param[in] p_hw_gpio : 指向GPIO寄存器块的指针
  *
- * \return ������GPIO�˿�����״̬
+ * \return 掩码后的GPIO端口引脚状态
  *
- * \note ���ĳһλ��Ӧ��MASK�Ĵ���ֵΪ0���üĴ���������ȡ�����ŵ�ƽ״̬��
- *       ��Ӧ��MASK�Ĵ���ֵΪ1ʱ������Ϊ0
+ * \note 如果某一位对应的MASK寄存器值为0，该寄存器正常读取该引脚电平状态，
+ *       对应的MASK寄存器值为1时，读总为0
  */
 am_static_inline 
 uint32_t amhw_lpc82x_gpio_port_masked_level_get (amhw_lpc82x_gpio_t *p_hw_gpio)

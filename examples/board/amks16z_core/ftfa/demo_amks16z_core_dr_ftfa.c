@@ -12,17 +12,17 @@
 
 /**
  * \file
- * \brief FTFAÀý³Ì,Í¨¹ýÇý¶¯²ãµÄ½Ó¿ÚÊµÏÖ
+ * \brief FTFAä¾‹ç¨‹,é€šè¿‡é©±åŠ¨å±‚çš„æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *      - ´®¿Ú½Óµ÷ÊÔ´®¿Ú
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *      - ä¸²å£æŽ¥è°ƒè¯•ä¸²å£
  *
- * - ÊµÑéÏÖÏó£º
- *      - ²Á³ý³ö´í£º´®¿Ú´òÓ¡ ¡°erase error!¡±
- *      - Ð´Èë³ö´í£º´®¿Ú´òÓ¡ "program error!"
- *      - Ð´Èë³É¹¦£º´®¿Ú´òÓ¡ 55ÉÈÇøµÄ (1024/4) ¸ö32bitÊ®Áù½øÖÆÊý¾Ý
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *      - æ“¦é™¤å‡ºé”™ï¼šä¸²å£æ‰“å° â€œerase error!â€
+ *      - å†™å…¥å‡ºé”™ï¼šä¸²å£æ‰“å° "program error!"
+ *      - å†™å…¥æˆåŠŸï¼šä¸²å£æ‰“å° 55æ‰‡åŒºçš„ (1024/4) ä¸ª32bitåå…­è¿›åˆ¶æ•°æ®
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_amks16z_core_dr_ftfa.c src_amks16z_core_dr_ftfa
  *
  * \internal

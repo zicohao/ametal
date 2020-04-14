@@ -12,12 +12,12 @@
 
 /**
  * \file
- * \brief TIM3 ¶¨Ê±Æ÷ PWM Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief TIM3 å®šæ—¶å™¨ PWM ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. PIOB_0(TIM3_CH3)Êä³ö 2KHz µÄ PWM£¬Õ¼¿Õ±ÈÎª 50%£»
+ * - å®éªŒç°è±¡ï¼š
+ *   1. PIOB_0(TIM3_CH3)è¾“å‡º 2KHz çš„ PWMï¼Œå ç©ºæ¯”ä¸º 50%ï¼›
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am116_core_std_tim3_pwm.c src_am116_core_std_tim3_pwm
  *
  * \internal
@@ -40,7 +40,7 @@
 #include "demo_am116_core_entries.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am116_core_std_tim3_pwm_entry (void)
 {

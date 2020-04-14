@@ -22,7 +22,7 @@
  
 #include "amhw_zlg217_rcc.h"
 
-/* Ê¹ÄÜ»ò½ûÄÜÍâÉè */
+/* ä½¿èƒ½æˆ–ç¦èƒ½å¤–è®¾ */
 static void __rcc_ahb_cmd(amhw_zlg217_ahb_peripheral peri, uint8_t cmd)
 {
     uint32_t temp = 0;
@@ -41,11 +41,11 @@ static void __rcc_ahb_cmd(amhw_zlg217_ahb_peripheral peri, uint8_t cmd)
 }
 
 /**
- * \brief Ê¹ÄÜAHBÍâÉè
+ * \brief ä½¿èƒ½AHBå¤–è®¾
  *
- * \param[in]  peri £ºĞèÒªÊ¹ÄÜµÄÍâÉè
+ * \param[in]  peri ï¼šéœ€è¦ä½¿èƒ½çš„å¤–è®¾
  *
- * \return ÎŞ
+ * \return æ— 
  *
  */
 void amhw_zlg217_rcc_ahb_enable (amhw_zlg217_ahb_peripheral peri)
@@ -54,11 +54,11 @@ void amhw_zlg217_rcc_ahb_enable (amhw_zlg217_ahb_peripheral peri)
 }
 
 /**
- * \brief ½ûÄÜAHBÍâÉè
+ * \brief ç¦èƒ½AHBå¤–è®¾
  *
- * \param[in]  peri £ºĞèÒª½ûÄÜµÄÍâÉè
+ * \param[in]  peri ï¼šéœ€è¦ç¦èƒ½çš„å¤–è®¾
  *
- * \return ÎŞ
+ * \return æ— 
  *
  */
 void amhw_zlg217_rcc_ahb_disable (amhw_zlg217_ahb_peripheral peri)

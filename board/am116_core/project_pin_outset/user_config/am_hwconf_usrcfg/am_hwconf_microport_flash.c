@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief MicroPort FLASH(MX25xx) ÅäÖÃÎÄ¼ş
+ * \brief MicroPort FLASH(MX25xx) é…ç½®æ–‡ä»¶
  * \sa am_hwconf_microport_flash.c
  *
  * \internal
@@ -32,26 +32,26 @@
  * @{
  */
 
-/** \brief Éè±¸ĞÅÏ¢ */
+/** \brief è®¾å¤‡ä¿¡æ¯ */
 am_local am_const am_mx25xx_devinfo_t __g_microport_flash_devinfo = {
-    AM_SPI_MODE_0,          /**< \brief Ê¹ÓÃÄ£Ê½ 0 */
-    PIOA_4,                 /**< \brief Æ¬Ñ¡Òı½Å */
-    30000000,               /**< \brief ×ÜÏßËÙÂÊ */
-    AM_MX25XX_MX25L1606     /**< \brief Æ÷¼şĞÍºÅ */
+    AM_SPI_MODE_0,          /**< \brief ä½¿ç”¨æ¨¡å¼ 0 */
+    PIOA_4,                 /**< \brief ç‰‡é€‰å¼•è„š */
+    30000000,               /**< \brief æ€»çº¿é€Ÿç‡ */
+    AM_MX25XX_MX25L1606     /**< \brief å™¨ä»¶å‹å· */
 };
 
 /*******************************************************************************
-  MicroPort FLASH(MX25xx) ÊµÀı³õÊ¼»¯
+  MicroPort FLASH(MX25xx) å®ä¾‹åˆå§‹åŒ–
 *******************************************************************************/
 
-/** \brief Éè±¸¶¨Òå */
+/** \brief è®¾å¤‡å®šä¹‰ */
 am_local am_mx25xx_dev_t __g_microport_flash_dev;
 
-/** \brief ÊµÀı³õÊ¼»¯ */
+/** \brief å®ä¾‹åˆå§‹åŒ– */
 am_mx25xx_handle_t am_microport_flash_inst_init (void)
 {
 
-    /* »ñÈ¡ SPI0 ÊµÀı¾ä±ú */
+    /* è·å– SPI0 å®ä¾‹å¥æŸ„ */
     am_spi_handle_t spi_handle = am_zlg116_spi1_dma_inst_init();
 
     return am_mx25xx_init(&__g_microport_flash_dev,
@@ -60,13 +60,13 @@ am_mx25xx_handle_t am_microport_flash_inst_init (void)
 }
 
 /*******************************************************************************
-  MTD ÊµÀı³õÊ¼»¯
+  MTD å®ä¾‹åˆå§‹åŒ–
 *******************************************************************************/
 
-/** \brief Éè±¸¶¨Òå */
+/** \brief è®¾å¤‡å®šä¹‰ */
 am_local am_mtd_serv_t __g_microport_flash_mtd;
 
-/** \brief ÊµÀı³õÊ¼»¯ */
+/** \brief å®ä¾‹åˆå§‹åŒ– */
 am_mtd_handle_t am_microport_flash_mtd_inst_init (void)
 {
     am_mx25xx_handle_t microport_flash_handle = am_microport_flash_inst_init();
@@ -77,39 +77,39 @@ am_mtd_handle_t am_microport_flash_mtd_inst_init (void)
 }
 
 /*******************************************************************************
-  FTL ÊµÀı³õÊ¼»¯
+  FTL å®ä¾‹åˆå§‹åŒ–
 *******************************************************************************/
 
 #include "am_ftl.h"
 
-#define  MX25XX_FTL_LOGIC_BLOCK_SZIE  256 /**< \brief Âß¼­¿é´óĞ¡£¨×Ô¶¨Òå£©  */
-#define  MX25XX_FTL_LOG_BLOCK_NUM     2   /**< \brief ÈÕÖ¾¿é¸öÊı£¨2 ~ 10,×Ô¶¨Òå£©*/
+#define  MX25XX_FTL_LOGIC_BLOCK_SZIE  256 /**< \brief é€»è¾‘å—å¤§å°ï¼ˆè‡ªå®šä¹‰ï¼‰  */
+#define  MX25XX_FTL_LOG_BLOCK_NUM     2   /**< \brief æ—¥å¿—å—ä¸ªæ•°ï¼ˆ2 ~ 10,è‡ªå®šä¹‰ï¼‰*/
 
 /*
- * Æ÷¼ş AM_MX25XX_MX25L1606 ¶ÔÓ¦µÄÏà¹ØĞÅÏ¢
+ * å™¨ä»¶ AM_MX25XX_MX25L1606 å¯¹åº”çš„ç›¸å…³ä¿¡æ¯
  */
-#define  MX25XX_CHIP_SZIE        (2 * 1024 * 1024) /**< \brief ×ÜÈİÁ¿ */
-#define  MX25XX_ERASE_UNIT_SZIE   4096             /**< \brief ×îĞ¡²Á³ıµ¥Ôª´óĞ¡ */
+#define  MX25XX_CHIP_SZIE        (2 * 1024 * 1024) /**< \brief æ€»å®¹é‡ */
+#define  MX25XX_ERASE_UNIT_SZIE   4096             /**< \brief æœ€å°æ“¦é™¤å•å…ƒå¤§å° */
 
-/** \brief Éè±¸¶¨Òå */
+/** \brief è®¾å¤‡å®šä¹‰ */
 am_local am_ftl_serv_t __g_ftl;
 
-/** \brief RAM »º³åÇø¶¨Òå */
+/** \brief RAM ç¼“å†²åŒºå®šä¹‰ */
 am_local uint8_t __g_ftl_buf[AM_FTL_RAM_SIZE_GET(MX25XX_CHIP_SZIE,
                                                  MX25XX_ERASE_UNIT_SZIE,
                                                  MX25XX_FTL_LOGIC_BLOCK_SZIE,
                                                  MX25XX_FTL_LOG_BLOCK_NUM)];
 
-/** \brief FTL ĞÅÏ¢ */
+/** \brief FTL ä¿¡æ¯ */
 am_local am_const am_ftl_info_t __g_ftl_info = {
-    __g_ftl_buf,                 /**< \brief RAM »º³åÇø  */
-    sizeof(__g_ftl_buf),         /**< \brief RAM »º³åÇø´óĞ¡  */
-    MX25XX_FTL_LOGIC_BLOCK_SZIE, /**< \brief Âß¼­¿éµÄ´óĞ¡  */
-    MX25XX_FTL_LOG_BLOCK_NUM,    /**< \brief ÈÕÖ¾¿é¸öÊı  */
-    0                            /**< \brief ±£ÁôµÄÎïÀí¿é£¨²Á³ıµ¥Ôª£©¸öÊı */
+    __g_ftl_buf,                 /**< \brief RAM ç¼“å†²åŒº  */
+    sizeof(__g_ftl_buf),         /**< \brief RAM ç¼“å†²åŒºå¤§å°  */
+    MX25XX_FTL_LOGIC_BLOCK_SZIE, /**< \brief é€»è¾‘å—çš„å¤§å°  */
+    MX25XX_FTL_LOG_BLOCK_NUM,    /**< \brief æ—¥å¿—å—ä¸ªæ•°  */
+    0                            /**< \brief ä¿ç•™çš„ç‰©ç†å—ï¼ˆæ“¦é™¤å•å…ƒï¼‰ä¸ªæ•° */
 };
 
-/** \brief ÊµÀı³õÊ¼»¯ */
+/** \brief å®ä¾‹åˆå§‹åŒ– */
 am_ftl_handle_t am_microport_flash_ftl_inst_init (void)
 {
     return am_ftl_init(&__g_ftl,

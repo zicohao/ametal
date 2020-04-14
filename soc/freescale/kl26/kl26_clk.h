@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief KL26 Ê±ÖÓID¶¨Òå
+ * \brief KL26 æ—¶é’ŸIDå®šä¹‰
  *
  * \internal
  * \par Modification History
@@ -35,77 +35,77 @@ extern "C" {
 
 
 /**
- * \name ÏµÍ³»òÍâÉèµÄÊ±ÖÓID
+ * \name ç³»ç»Ÿæˆ–å¤–è®¾çš„æ—¶é’ŸID
  * \anchor grp_clk_id
  * @{
  */
 
-#define CLK_SLOW_IRC    (4 << 8 | 0)  /**< \brief ÂýËÙIRCÊ±ÖÓ */
-#define CLK_FAST_IRC    (4 << 8 | 1)  /**< \brief ¿ìËÙIRCÊ±ÖÓ */
+#define CLK_SLOW_IRC    (4 << 8 | 0)  /**< \brief æ…¢é€ŸIRCæ—¶é’Ÿ */
+#define CLK_FAST_IRC    (4 << 8 | 1)  /**< \brief å¿«é€ŸIRCæ—¶é’Ÿ */
 #define CLK_XTAL        (4 << 8 | 2)  /**< \brief XTAL */
-#define CLK_CLKIN       (4 << 8 | 3)  /**< \brief ÊäÈëÊ±ÖÓ */
+#define CLK_CLKIN       (4 << 8 | 3)  /**< \brief è¾“å…¥æ—¶é’Ÿ */
 
-#define CLK_CORE        (4 << 8 | 4)  /**< \brief ÄÚºËÊ±ÖÓ */
-#define CLK_SYSTEM      (4 << 8 | 5)  /**< \brief ÏµÍ³Ê±ÖÓ */
-#define CLK_BUS         (4 << 8 | 6)  /**< \brief ×ÜÏßÊ±ÖÓ */
-#define CLK_FLASH       (4 << 8 | 7)  /**< \brief FlashÊ±ÖÓ */
-#define CLK_PERIPH      (4 << 8 | 8)  /**< \brief ÍâÉèÊ±ÖÓ */
-#define CLK_SYSTICK     (4 << 8 | 9)  /**< \brief ÏµÍ³µÎ´ðÊ±ÖÓ */
+#define CLK_CORE        (4 << 8 | 4)  /**< \brief å†…æ ¸æ—¶é’Ÿ */
+#define CLK_SYSTEM      (4 << 8 | 5)  /**< \brief ç³»ç»Ÿæ—¶é’Ÿ */
+#define CLK_BUS         (4 << 8 | 6)  /**< \brief æ€»çº¿æ—¶é’Ÿ */
+#define CLK_FLASH       (4 << 8 | 7)  /**< \brief Flashæ—¶é’Ÿ */
+#define CLK_PERIPH      (4 << 8 | 8)  /**< \brief å¤–è®¾æ—¶é’Ÿ */
+#define CLK_SYSTICK     (4 << 8 | 9)  /**< \brief ç³»ç»Ÿæ»´ç­”æ—¶é’Ÿ */
 
-#define CLK_OSC32K      (4 << 8 | 10) /**< \brief OSC32KÊ±ÖÓ */
-#define CLK_OSCERC      (4 << 8 | 11) /**< \brief OSCERCÊ±ÖÓ */
+#define CLK_OSC32K      (4 << 8 | 10) /**< \brief OSC32Kæ—¶é’Ÿ */
+#define CLK_OSCERC      (4 << 8 | 11) /**< \brief OSCERCæ—¶é’Ÿ */
 
 /** \brief rtc out clocks*/
-#define CLK_RTCOUT      (4 << 8 | 12) /**< \brief RTCÊä³öÊ±ÖÓ */
+#define CLK_RTCOUT      (4 << 8 | 12) /**< \brief RTCè¾“å‡ºæ—¶é’Ÿ */
 
 /** \brief mcg clocks*/
-#define CLK_MCGFLL      (4 << 8 | 13) /**< \brief FLLÊ±ÖÓ */
-#define CLK_MCGPLL      (4 << 8 | 14) /**< \brief PLLÊ±ÖÓ */
-#define CLK_MCGEXT      (4 << 8 | 15) /**< \brief EXTÊ±ÖÓ */
-#define CLK_MCGIRC      (4 << 8 | 16) /**< \brief IRCÊ±ÖÓ */
-#define CLK_MCGOUT      (4 << 8 | 17) /**< \brief MCGÊä³öÊ±ÖÓ */
+#define CLK_MCGFLL      (4 << 8 | 13) /**< \brief FLLæ—¶é’Ÿ */
+#define CLK_MCGPLL      (4 << 8 | 14) /**< \brief PLLæ—¶é’Ÿ */
+#define CLK_MCGEXT      (4 << 8 | 15) /**< \brief EXTæ—¶é’Ÿ */
+#define CLK_MCGIRC      (4 << 8 | 16) /**< \brief IRCæ—¶é’Ÿ */
+#define CLK_MCGOUT      (4 << 8 | 17) /**< \brief MCGè¾“å‡ºæ—¶é’Ÿ */
 
 /** \brief LPO clock */
-#define CLK_LPO         (4 << 8 | 18) /**< \brief LPOÊ±ÖÓ */
-#define CLK_WDT         (4 << 8 | 19) /**< \brief WDTÊ±ÖÓ */
+#define CLK_LPO         (4 << 8 | 18) /**< \brief LPOæ—¶é’Ÿ */
+#define CLK_WDT         (4 << 8 | 19) /**< \brief WDTæ—¶é’Ÿ */
 
 /** \brief periph clk */
-#define CLK_I2C0        (0 << 8 | 6)  /**< \brief I2C0Ê±ÖÓ */
-#define CLK_I2C1        (0 << 8 | 7)  /**< \brief I2C1Ê±ÖÓ */
-#define CLK_UART0       (0 << 8 | 10) /**< \brief UART0Ê±ÖÓ */
-#define CLK_UART1       (0 << 8 | 11) /**< \brief UART1Ê±ÖÓ */
-#define CLK_UART2       (0 << 8 | 12) /**< \brief UART2Ê±ÖÓ */
-#define CLK_USBOTG      (0 << 8 | 18) /**< \brief USBÊ±ÖÓ */
-#define CLK_CMP         (0 << 8 | 19) /**< \brief CMPÊ±ÖÓ */
-#define CLK_SPI0        (0 << 8 | 22) /**< \brief SPI0Ê±ÖÓ */
-#define CLK_SPI1        (0 << 8 | 23) /**< \brief SPI1Ê±ÖÓ */
+#define CLK_I2C0        (0 << 8 | 6)  /**< \brief I2C0æ—¶é’Ÿ */
+#define CLK_I2C1        (0 << 8 | 7)  /**< \brief I2C1æ—¶é’Ÿ */
+#define CLK_UART0       (0 << 8 | 10) /**< \brief UART0æ—¶é’Ÿ */
+#define CLK_UART1       (0 << 8 | 11) /**< \brief UART1æ—¶é’Ÿ */
+#define CLK_UART2       (0 << 8 | 12) /**< \brief UART2æ—¶é’Ÿ */
+#define CLK_USBOTG      (0 << 8 | 18) /**< \brief USBæ—¶é’Ÿ */
+#define CLK_CMP         (0 << 8 | 19) /**< \brief CMPæ—¶é’Ÿ */
+#define CLK_SPI0        (0 << 8 | 22) /**< \brief SPI0æ—¶é’Ÿ */
+#define CLK_SPI1        (0 << 8 | 23) /**< \brief SPI1æ—¶é’Ÿ */
 
 /** \brief  SCGC5 */
-#define CLK_LPTMR       (1 << 8 | 0)  /**< \brief LPTMRÊ±ÖÓ */
-#define CLK_TSI         (1 << 8 | 5)  /**< \brief TSIÊ±ÖÓ */
-#define CLK_PORTA       (1 << 8 | 9)  /**< \brief PORTAÊ±ÖÓ */
-#define CLK_PORTB       (1 << 8 | 10) /**< \brief PORTBÊ±ÖÓ */
-#define CLK_PORTC       (1 << 8 | 11) /**< \brief PORTCÊ±ÖÓ */
-#define CLK_PORTD       (1 << 8 | 12) /**< \brief PORTDÊ±ÖÓ */
-#define CLK_PORTE       (1 << 8 | 13) /**< \brief PORTEÊ±ÖÓ */
+#define CLK_LPTMR       (1 << 8 | 0)  /**< \brief LPTMRæ—¶é’Ÿ */
+#define CLK_TSI         (1 << 8 | 5)  /**< \brief TSIæ—¶é’Ÿ */
+#define CLK_PORTA       (1 << 8 | 9)  /**< \brief PORTAæ—¶é’Ÿ */
+#define CLK_PORTB       (1 << 8 | 10) /**< \brief PORTBæ—¶é’Ÿ */
+#define CLK_PORTC       (1 << 8 | 11) /**< \brief PORTCæ—¶é’Ÿ */
+#define CLK_PORTD       (1 << 8 | 12) /**< \brief PORTDæ—¶é’Ÿ */
+#define CLK_PORTE       (1 << 8 | 13) /**< \brief PORTEæ—¶é’Ÿ */
 
 /** \brief  SCGC6 */
-#define CLK_FTF         (2 << 8 | 0)  /**< \brief FTFÊ±ÖÓ */
-#define CLK_DMAMUX      (2 << 8 | 1)  /**< \brief DMAMUXÊ±ÖÓ */
-#define CLK_I2S         (2 << 8 | 15) /**< \brief I2SÊ±ÖÓ */
-#define CLK_PIT         (2 << 8 | 23) /**< \brief PITÊ±ÖÓ */
-#define CLK_TPM0        (2 << 8 | 24) /**< \brief TPM0Ê±ÖÓ */
-#define CLK_TPM1        (2 << 8 | 25) /**< \brief TPM1Ê±ÖÓ */
-#define CLK_TPM2        (2 << 8 | 26) /**< \brief TPM2Ê±ÖÓ */
-#define CLK_ADC0        (2 << 8 | 27) /**< \brief ADC0Ê±ÖÓ */
-#define CLK_RTC         (2 << 8 | 29) /**< \brief RTCÊ±ÖÓ */
-#define CLK_DAC0        (2 << 8 | 31) /**< \brief DAC0Ê±ÖÓ */
+#define CLK_FTF         (2 << 8 | 0)  /**< \brief FTFæ—¶é’Ÿ */
+#define CLK_DMAMUX      (2 << 8 | 1)  /**< \brief DMAMUXæ—¶é’Ÿ */
+#define CLK_I2S         (2 << 8 | 15) /**< \brief I2Sæ—¶é’Ÿ */
+#define CLK_PIT         (2 << 8 | 23) /**< \brief PITæ—¶é’Ÿ */
+#define CLK_TPM0        (2 << 8 | 24) /**< \brief TPM0æ—¶é’Ÿ */
+#define CLK_TPM1        (2 << 8 | 25) /**< \brief TPM1æ—¶é’Ÿ */
+#define CLK_TPM2        (2 << 8 | 26) /**< \brief TPM2æ—¶é’Ÿ */
+#define CLK_ADC0        (2 << 8 | 27) /**< \brief ADC0æ—¶é’Ÿ */
+#define CLK_RTC         (2 << 8 | 29) /**< \brief RTCæ—¶é’Ÿ */
+#define CLK_DAC0        (2 << 8 | 31) /**< \brief DAC0æ—¶é’Ÿ */
 
 /** \brief  SCGC7 */
-#define CLK_DMA         (3 << 8 | 8)  /**< \brief DMAÊ±ÖÓ */
+#define CLK_DMA         (3 << 8 | 8)  /**< \brief DMAæ—¶é’Ÿ */
 
-#define CLK_PERIPH_ID_MIN CLK_I2C0    /**< \brief ÍâÉèÊ±ÖÓID×îÐ¡Öµ */
-#define CLK_PERIPH_ID_MAX CLK_DMA     /**< \brief ÍâÉèÊ±ÖÓID×î´óÖµ */
+#define CLK_PERIPH_ID_MIN CLK_I2C0    /**< \brief å¤–è®¾æ—¶é’ŸIDæœ€å°å€¼ */
+#define CLK_PERIPH_ID_MAX CLK_DMA     /**< \brief å¤–è®¾æ—¶é’ŸIDæœ€å¤§å€¼ */
 
 /**
  * @}

@@ -12,22 +12,22 @@
 
 /**
  * \file
- * \brief PITÊµÏÖ±ê×¼¶¨Ê±Æ÷Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief PITå®ç°æ ‡å‡†å®šæ—¶å™¨ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. LEDÒÔ10HzµÄÆµÂÊÉÁË¸¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. LEDä»¥10Hzçš„é¢‘ç‡é—ªçƒã€‚
  *
- * - ×¢Òâ£º
- *    Èç¹ûÒªÔËĞĞ´ËÀı³Ì£¬ĞèÒª½«am_prj_config.hÖĞAM_CFG_SOFTIMER_ENABLE¡¢
- *    AM_CFG_KEY_GPIO_ENABLEºÍAM_CFG_SYSTEM_TICK_ENABLEÈı¸öºêµÄÖµ¶¼ÉèÎª0¡£
+ * - æ³¨æ„ï¼š
+ *    å¦‚æœè¦è¿è¡Œæ­¤ä¾‹ç¨‹ï¼Œéœ€è¦å°†am_prj_config.hä¸­AM_CFG_SOFTIMER_ENABLEã€
+ *    AM_CFG_KEY_GPIO_ENABLEå’ŒAM_CFG_SYSTEM_TICK_ENABLEä¸‰ä¸ªå®çš„å€¼éƒ½è®¾ä¸º0ã€‚
  *
- *    Ê¹ÓÃ´ËdemoĞèÒª½«am_kl26_hwconfig_pit_timing.cÓÃ»§ÅäÖÃÎÄ¼şÖĞµÄÉè±¸ĞÅÏ¢½á¹¹Ìå
- *    ÖĞµÄpitÅäÖÃ±êÖ¾ÉèÎªAM_FSL_PIT_TIMING_1_64BIT
+ *    ä½¿ç”¨æ­¤demoéœ€è¦å°†am_kl26_hwconfig_pit_timing.cç”¨æˆ·é…ç½®æ–‡ä»¶ä¸­çš„è®¾å¤‡ä¿¡æ¯ç»“æ„ä½“
+ *    ä¸­çš„pité…ç½®æ ‡å¿—è®¾ä¸ºAM_FSL_PIT_TIMING_1_64BIT
  *
- * \note ¼ÙÈçPIT¼ÆÊıÊ±ÖÓÔ´Îª24M,Ôò32Î»¶¨Ê±Æ÷×î³¤¿É¼ÆÊ± 
- *           0xFFFFFFFF / 20M = 179Ãë£¬²ÉÓÃ64Î»¶¨Ê±Æ÷Ôò¿É¶¨¸ü³¤Ê±¼ä¡£
+ * \note å‡å¦‚PITè®¡æ•°æ—¶é’Ÿæºä¸º24M,åˆ™32ä½å®šæ—¶å™¨æœ€é•¿å¯è®¡æ—¶ 
+ *           0xFFFFFFFF / 20M = 179ç§’ï¼Œé‡‡ç”¨64ä½å®šæ—¶å™¨åˆ™å¯å®šæ›´é•¿æ—¶é—´ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_amks16z_core_std_pit_2_64bit_timing.c src_amks16z_core_std_pit_2_64bit_timing
  *
  * \internal
@@ -50,7 +50,7 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_amks16z_core_std_pit_2_64bit_timing_entry (void)
 {
@@ -58,7 +58,7 @@ void demo_amks16z_core_std_pit_2_64bit_timing_entry (void)
 
     AM_DBG_INFO("demo amks16z_core std pit 1 64 bit timing!\r\n");
 
-    /* »ñÈ¡PIT TIMER²Ù×÷¾ä±ú */
+    /* è·å–PIT TIMERæ“ä½œå¥æŸ„ */
     pit_timing_handle = am_kl26_pit_timing_inst_init();
 
     demo_std_timer_timing_entry(pit_timing_handle, 0);

@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief ÊµÀı³õÊ¼»¯º¯ÊıÉùÃ÷
+ * \brief å®ä¾‹åˆå§‹åŒ–å‡½æ•°å£°æ˜
  *
- * ËùÓĞÍâÉèÉè±¸£¨I2C¡¢SPI¡¢ADC...£©µÄÊµÀı³õÊ¼»¯º¯Êı¾ùÔÚ±¾Í·ÎÄ¼şÖĞÉùÃ÷£¬Ê¹ÓÃÊµÀı
- * ³õÊ¼»¯º¯Êı£¬¿ÉÒÔÇáËÉ»ñµÃÒ»¸öÍâÉèµÄ¾ä±ú£¬È»ºóÊ¹ÓÃÏà¹ØµÄ½Ó¿Úº¯Êı¶ÔÍâÉè½øĞĞ²Ù×÷¡£
+ * æ‰€æœ‰å¤–è®¾è®¾å¤‡ï¼ˆI2Cã€SPIã€ADC...ï¼‰çš„å®ä¾‹åˆå§‹åŒ–å‡½æ•°å‡åœ¨æœ¬å¤´æ–‡ä»¶ä¸­å£°æ˜ï¼Œä½¿ç”¨å®ä¾‹
+ * åˆå§‹åŒ–å‡½æ•°ï¼Œå¯ä»¥è½»æ¾è·å¾—ä¸€ä¸ªå¤–è®¾çš„å¥æŸ„ï¼Œç„¶åä½¿ç”¨ç›¸å…³çš„æ¥å£å‡½æ•°å¯¹å¤–è®¾è¿›è¡Œæ“ä½œã€‚
  *
  * \sa am_kl26_inst_init.h
  * \internal
@@ -62,407 +62,407 @@
  */
 
 /**
- * \brief  ÖĞ¶ÏÊµÀı³õÊ¼»¯£¬³õÊ¼»¯ÖĞ¶ÏÇı¶¯
- * \retval AM_OKÎªÊµÀı»¯³É¹¦£¬ÆäËûÊ§°Ü
+ * \brief  ä¸­æ–­å®ä¾‹åˆå§‹åŒ–ï¼Œåˆå§‹åŒ–ä¸­æ–­é©±åŠ¨
+ * \retval AM_OKä¸ºå®ä¾‹åŒ–æˆåŠŸï¼Œå…¶ä»–å¤±è´¥
  */
 int am_kl26_nvic_inst_init (void);
 
 /**
- * \brief  ÖĞ¶ÏÊµÀı½â³õÊ¼»¯
- * \retval ÎŞ
+ * \brief  ä¸­æ–­å®ä¾‹è§£åˆå§‹åŒ–
+ * \retval æ— 
  */
 void am_kl26_nvic_inst_deinit (void);
 
 /**
- * \brief  tpm0 Timer ÊµÀı³õÊ¼»¯ »ñÈ¡Timer±ê×¼·şÎñ¾ä±ú
- * \retval Timer±ê×¼·şÎñ¾ä±ú  ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief  tpm0 Timer å®ä¾‹åˆå§‹åŒ– è·å–Timeræ ‡å‡†æœåŠ¡å¥æŸ„
+ * \retval Timeræ ‡å‡†æœåŠ¡å¥æŸ„  è‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_timer_handle_t am_kl26_tpm0_timing_inst_init (void);
 
 /**
- * \brief  tpm0 Timer ÊµÀı½â³õÊ¼»¯
- * \param[in] handle : Í¨¹ı am_kl26_tpm0_timing_inst_init() º¯Êı»ñµÃµÄTimer¾ä±ú
- * \retval ÎŞ
+ * \brief  tpm0 Timer å®ä¾‹è§£åˆå§‹åŒ–
+ * \param[in] handle : é€šè¿‡ am_kl26_tpm0_timing_inst_init() å‡½æ•°è·å¾—çš„Timerå¥æŸ„
+ * \retval æ— 
  */
 void am_kl26_tpm0_timing_inst_deinit (am_timer_handle_t handle);
 
 /**
- * \brief  tpm1 Timer ÊµÀı³õÊ¼»¯ »ñÈ¡Timer±ê×¼·şÎñ¾ä±ú
- * \retval Timer±ê×¼·şÎñ¾ä±ú  ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief  tpm1 Timer å®ä¾‹åˆå§‹åŒ– è·å–Timeræ ‡å‡†æœåŠ¡å¥æŸ„
+ * \retval Timeræ ‡å‡†æœåŠ¡å¥æŸ„  è‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_timer_handle_t am_kl26_tpm1_timing_inst_init (void);
 
 /**
- * \brief  tpm1 Timer ÊµÀı½â³õÊ¼»¯
- * \param[in] handle : Í¨¹ı am_kl26_tpm0_timing_inst_init() º¯Êı»ñµÃµÄTimer¾ä±ú
- * \retval ÎŞ
+ * \brief  tpm1 Timer å®ä¾‹è§£åˆå§‹åŒ–
+ * \param[in] handle : é€šè¿‡ am_kl26_tpm0_timing_inst_init() å‡½æ•°è·å¾—çš„Timerå¥æŸ„
+ * \retval æ— 
  */
 void am_kl26_tpm1_timing_inst_deinit (am_timer_handle_t handle);
 
 /**
- * \brief  tpm2 Timer ÊµÀı³õÊ¼»¯ »ñÈ¡Timer±ê×¼·şÎñ¾ä±ú
- * \retval Timer±ê×¼·şÎñ¾ä±ú  ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief  tpm2 Timer å®ä¾‹åˆå§‹åŒ– è·å–Timeræ ‡å‡†æœåŠ¡å¥æŸ„
+ * \retval Timeræ ‡å‡†æœåŠ¡å¥æŸ„  è‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_timer_handle_t am_kl26_tpm2_timing_inst_init (void);
 
 
 /**
- * \brief  tpm2 Timer ÊµÀı½â³õÊ¼»¯
- * \param[in] handle : Í¨¹ı am_kl26_tpm0_timing_inst_init() º¯Êı»ñµÃµÄTimer¾ä±ú
- * \retval ÎŞ
+ * \brief  tpm2 Timer å®ä¾‹è§£åˆå§‹åŒ–
+ * \param[in] handle : é€šè¿‡ am_kl26_tpm0_timing_inst_init() å‡½æ•°è·å¾—çš„Timerå¥æŸ„
+ * \retval æ— 
  */
 void am_kl26_tpm2_timing_inst_deinit (am_timer_handle_t handle);
 
 /**
- * \brief  tpm0 pwm ÊµÀı³õÊ¼»¯ »ñÈ¡Timer±ê×¼·şÎñ¾ä±ú
- * \retval pwm±ê×¼·şÎñ¾ä±ú  ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief  tpm0 pwm å®ä¾‹åˆå§‹åŒ– è·å–Timeræ ‡å‡†æœåŠ¡å¥æŸ„
+ * \retval pwmæ ‡å‡†æœåŠ¡å¥æŸ„  è‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_pwm_handle_t am_kl26_tpm0_pwm_inst_init (void);
 
 /**
- * \brief  tpm0 pwm ÊµÀı½â³õÊ¼»¯
- * \param[in] handle : Í¨¹ı am_kl26_tpm0_pwm_inst_init() º¯Êı»ñµÃµÄpwm¾ä±ú
- * \retval ÎŞ
+ * \brief  tpm0 pwm å®ä¾‹è§£åˆå§‹åŒ–
+ * \param[in] handle : é€šè¿‡ am_kl26_tpm0_pwm_inst_init() å‡½æ•°è·å¾—çš„pwmå¥æŸ„
+ * \retval æ— 
  */
 void am_kl26_tpm0_pwm_inst_deinit (am_pwm_handle_t handle);
 
 /**
- * \brief  tpm1 pwm ÊµÀı³õÊ¼»¯ »ñÈ¡Timer±ê×¼·şÎñ¾ä±ú
- * \retval pwm±ê×¼·şÎñ¾ä±ú  ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief  tpm1 pwm å®ä¾‹åˆå§‹åŒ– è·å–Timeræ ‡å‡†æœåŠ¡å¥æŸ„
+ * \retval pwmæ ‡å‡†æœåŠ¡å¥æŸ„  è‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_pwm_handle_t am_kl26_tpm1_pwm_inst_init (void);
 
 /**
- * \brief  tpm1 pwm ÊµÀı½â³õÊ¼»¯
- * \param[in] handle : Í¨¹ı am_kl26_tpm1_pwm_inst_init() º¯Êı»ñµÃµÄpwm¾ä±ú
- * \retval ÎŞ
+ * \brief  tpm1 pwm å®ä¾‹è§£åˆå§‹åŒ–
+ * \param[in] handle : é€šè¿‡ am_kl26_tpm1_pwm_inst_init() å‡½æ•°è·å¾—çš„pwmå¥æŸ„
+ * \retval æ— 
  */
 void am_kl26_tpm1_pwm_inst_deinit (am_pwm_handle_t handle);
 
 /**
- * \brief  tpm2 pwm ÊµÀı³õÊ¼»¯ »ñÈ¡Timer±ê×¼·şÎñ¾ä±ú
- * \retval pwm±ê×¼·şÎñ¾ä±ú  ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief  tpm2 pwm å®ä¾‹åˆå§‹åŒ– è·å–Timeræ ‡å‡†æœåŠ¡å¥æŸ„
+ * \retval pwmæ ‡å‡†æœåŠ¡å¥æŸ„  è‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_pwm_handle_t am_kl26_tpm2_pwm_inst_init (void);
 
 /**
- * \brief  tpm2 pwm ÊµÀı½â³õÊ¼»¯
- * \param[in] handle : Í¨¹ı am_kl26_tpm2_pwm_inst_init() º¯Êı»ñµÃµÄpwm¾ä±ú
- * \retval ÎŞ
+ * \brief  tpm2 pwm å®ä¾‹è§£åˆå§‹åŒ–
+ * \param[in] handle : é€šè¿‡ am_kl26_tpm2_pwm_inst_init() å‡½æ•°è·å¾—çš„pwmå¥æŸ„
+ * \retval æ— 
  */
 void am_kl26_tpm2_pwm_inst_deinit (am_pwm_handle_t handle);
 
 /**
- * \brief  tpm0 cap ÊµÀı³õÊ¼»¯ »ñÈ¡Timer±ê×¼·şÎñ¾ä±ú
- * \retval cap±ê×¼·şÎñ¾ä±ú  ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief  tpm0 cap å®ä¾‹åˆå§‹åŒ– è·å–Timeræ ‡å‡†æœåŠ¡å¥æŸ„
+ * \retval capæ ‡å‡†æœåŠ¡å¥æŸ„  è‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_cap_handle_t am_kl26_tpm0_cap_inst_init (void);
 
 /**
- * \brief  tpm0 cap ÊµÀı½â³õÊ¼»¯
- * \param[in] handle : Í¨¹ı am_kl26_tpm0_cap_inst_init() º¯Êı»ñµÃµÄcap¾ä±ú
- * \retval ÎŞ
+ * \brief  tpm0 cap å®ä¾‹è§£åˆå§‹åŒ–
+ * \param[in] handle : é€šè¿‡ am_kl26_tpm0_cap_inst_init() å‡½æ•°è·å¾—çš„capå¥æŸ„
+ * \retval æ— 
  */
 void am_kl26_tpm0_cap_inst_deinit (am_cap_handle_t handle);
 
 /**
- * \brief  tpm1 cap ÊµÀı³õÊ¼»¯ »ñÈ¡Timer±ê×¼·şÎñ¾ä±ú
- * \retval cap±ê×¼·şÎñ¾ä±ú  ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief  tpm1 cap å®ä¾‹åˆå§‹åŒ– è·å–Timeræ ‡å‡†æœåŠ¡å¥æŸ„
+ * \retval capæ ‡å‡†æœåŠ¡å¥æŸ„  è‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_cap_handle_t am_kl26_tpm1_cap_inst_init (void);
 
 /**
- * \brief  tpm1 cap ÊµÀı½â³õÊ¼»¯
- * \param[in] handle : Í¨¹ı am_kl26_tpm1_cap_inst_init() º¯Êı»ñµÃµÄcap¾ä±ú
- * \retval ÎŞ
+ * \brief  tpm1 cap å®ä¾‹è§£åˆå§‹åŒ–
+ * \param[in] handle : é€šè¿‡ am_kl26_tpm1_cap_inst_init() å‡½æ•°è·å¾—çš„capå¥æŸ„
+ * \retval æ— 
  */
 void am_kl26_tpm1_cap_inst_deinit (am_cap_handle_t handle);
 
 /**
- * \brief  tpm2 cap ÊµÀı³õÊ¼»¯ »ñÈ¡Timer±ê×¼·şÎñ¾ä±ú
- * \retval cap±ê×¼·şÎñ¾ä±ú  ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief  tpm2 cap å®ä¾‹åˆå§‹åŒ– è·å–Timeræ ‡å‡†æœåŠ¡å¥æŸ„
+ * \retval capæ ‡å‡†æœåŠ¡å¥æŸ„  è‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_cap_handle_t am_kl26_tpm2_cap_inst_init (void);
 
 /**
- * \brief  tpm2 cap ÊµÀı½â³õÊ¼»¯
- * \param[in] handle : Í¨¹ı am_kl26_tpm2_cap_inst_init() º¯Êı»ñµÃµÄcap¾ä±ú
- * \retval ÎŞ
+ * \brief  tpm2 cap å®ä¾‹è§£åˆå§‹åŒ–
+ * \param[in] handle : é€šè¿‡ am_kl26_tpm2_cap_inst_init() å‡½æ•°è·å¾—çš„capå¥æŸ„
+ * \retval æ— 
  */
 void am_kl26_tpm2_cap_inst_deinit (am_cap_handle_t handle);
 
 /**
- * \brief  pit Timer ÊµÀı³õÊ¼»¯ »ñÈ¡Timer±ê×¼·şÎñ¾ä±ú
- * \retval cap±ê×¼·şÎñ¾ä±ú  ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief  pit Timer å®ä¾‹åˆå§‹åŒ– è·å–Timeræ ‡å‡†æœåŠ¡å¥æŸ„
+ * \retval capæ ‡å‡†æœåŠ¡å¥æŸ„  è‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_timer_handle_t am_kl26_pit_timing_inst_init (void);
 
 /**
- * \brief  pit Timer ÊµÀı½â³õÊ¼»¯
- * \param[in] handle : Í¨¹ı am_kl26_pit_timing_inst_init() º¯Êı»ñµÃµÄTimer¾ä±ú
- * \retval ÎŞ
+ * \brief  pit Timer å®ä¾‹è§£åˆå§‹åŒ–
+ * \param[in] handle : é€šè¿‡ am_kl26_pit_timing_inst_init() å‡½æ•°è·å¾—çš„Timerå¥æŸ„
+ * \retval æ— 
  */
 void am_kl26_pit_timing_inst_deinit (am_timer_handle_t handle);
 
 /**
- * \brief  CLK ÊµÀı³õÊ¼»¯£¬³õÊ¼»¯ÏµÍ³Ê±ÖÓ
- * \retval AM_OK : Ê±ÖÓ³É¹¦³õÊ¼»¯
+ * \brief  CLK å®ä¾‹åˆå§‹åŒ–ï¼Œåˆå§‹åŒ–ç³»ç»Ÿæ—¶é’Ÿ
+ * \retval AM_OK : æ—¶é’ŸæˆåŠŸåˆå§‹åŒ–
  */
 int am_kl26_clk_inst_init (void);
 
 /**
- * \brief  PMU ÊµÀı³õÊ¼»¯£¬³õÊ¼»¯ÏµÍ³Ê±ÖÓ
- * \retval AM_OK : ³É¹¦³õÊ¼»¯
+ * \brief  PMU å®ä¾‹åˆå§‹åŒ–ï¼Œåˆå§‹åŒ–ç³»ç»Ÿæ—¶é’Ÿ
+ * \retval AM_OK : æˆåŠŸåˆå§‹åŒ–
  */
 int am_kl26_pmu_inst_init (void);
 
-/** \brief PMUÊµÀı½â³õÊ¼»¯ */
+/** \brief PMUå®ä¾‹è§£åˆå§‹åŒ– */
 void am_kl26_pmu_inst_deinit (void);
 
 /**
- * \brief  GPIO ÊµÀı³õÊ¼»¯
- * \retval AM_OK    : ³õÊ¼»¯³É¹¦
+ * \brief  GPIO å®ä¾‹åˆå§‹åŒ–
+ * \retval AM_OK    : åˆå§‹åŒ–æˆåŠŸ
  */
 int am_kl26_gpio_inst_init (void);
 
 /**
- * \brief GPIO ÊµÀı½â³õÊ¼»¯
- * \return ÎŞ
+ * \brief GPIO å®ä¾‹è§£åˆå§‹åŒ–
+ * \return æ— 
  */
 void am_kl26_gpio_inst_deinit (void);
 
 /**
- * \brief  USART0 ÊµÀı³õÊ¼»¯£¬»ñµÃUART±ê×¼·şÎñ¾ä±ú
- * \return UART±ê×¼·şÎñ¾ä±ú£¬ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief  USART0 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—UARTæ ‡å‡†æœåŠ¡å¥æŸ„
+ * \return UARTæ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_uart_handle_t am_kl26_uart0_inst_init (void);
 
 /**
- * \brief USART0 ÊµÀı½â³õÊ¼»¯
- * \param[in] handle : Í¨¹ı am_kl26_uart0_inst_init() º¯Êı»ñµÃµÄUART¾ä±ú
- * \return ÎŞ
+ * \brief USART0 å®ä¾‹è§£åˆå§‹åŒ–
+ * \param[in] handle : é€šè¿‡ am_kl26_uart0_inst_init() å‡½æ•°è·å¾—çš„UARTå¥æŸ„
+ * \return æ— 
  */
 void am_kl26_uart0_inst_deinit (am_uart_handle_t handle);
 
 /**
- * \brief  USART1 ÊµÀı³õÊ¼»¯£¬»ñµÃUART±ê×¼·şÎñ¾ä±ú
- * \return UART±ê×¼·şÎñ¾ä±ú£¬ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief  USART1 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—UARTæ ‡å‡†æœåŠ¡å¥æŸ„
+ * \return UARTæ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_uart_handle_t am_kl26_uart1_inst_init (void);
 
 /**
- * \brief     USART1 ÊµÀı½â³õÊ¼»¯
- * \param[in] handle : Í¨¹ı am_kl26_uart1_inst_init() º¯Êı»ñµÃµÄUART¾ä±ú
- * \return ÎŞ
+ * \brief     USART1 å®ä¾‹è§£åˆå§‹åŒ–
+ * \param[in] handle : é€šè¿‡ am_kl26_uart1_inst_init() å‡½æ•°è·å¾—çš„UARTå¥æŸ„
+ * \return æ— 
  */
 void am_kl26_uart1_inst_deinit (am_uart_handle_t handle);
 
 /**
- * \brief  USART2 ÊµÀı³õÊ¼»¯£¬»ñµÃUART±ê×¼·şÎñ¾ä±ú
- * \return UART±ê×¼·şÎñ¾ä±ú£¬ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief  USART2 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—UARTæ ‡å‡†æœåŠ¡å¥æŸ„
+ * \return UARTæ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_uart_handle_t am_kl26_uart2_inst_init (void);
 
 /**
- * \brief USART2 ÊµÀı½â³õÊ¼»¯
- * \param[in] handle : Í¨¹ı am_kl26_uart2_inst_init() º¯Êı»ñµÃµÄUART¾ä±ú
- * \return ÎŞ
+ * \brief USART2 å®ä¾‹è§£åˆå§‹åŒ–
+ * \param[in] handle : é€šè¿‡ am_kl26_uart2_inst_init() å‡½æ•°è·å¾—çš„UARTå¥æŸ„
+ * \return æ— 
  */
 void am_kl26_uart2_inst_deinit (am_uart_handle_t handle);
 
 /**
- * \brief  RTC ÊµÀı³õÊ¼»¯£¬»ñµÃRTC±ê×¼·şÎñ¾ä±ú
- * \return RTC ±ê×¼·şÎñ¾ä±ú£¬ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief  RTC å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—RTCæ ‡å‡†æœåŠ¡å¥æŸ„
+ * \return RTC æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_rtc_handle_t am_kl26_rtc_inst_init (void);
 
 /**
- * \brief RTC ÊµÀı½â³õÊ¼»¯
- * \param[in] handle : Í¨¹ı am_kl26_rtc_inst_init() º¯Êı»ñµÃµÄRTC¾ä±ú
- * \return ÎŞ
+ * \brief RTC å®ä¾‹è§£åˆå§‹åŒ–
+ * \param[in] handle : é€šè¿‡ am_kl26_rtc_inst_init() å‡½æ•°è·å¾—çš„RTCå¥æŸ„
+ * \return æ— 
  */
 void am_kl26_rtc_inst_deinit (am_rtc_handle_t handle);
 
 
 /**
- * \brief  LPTMR Timer ÊµÀı³õÊ¼»¯£¬»ñµÃTimer±ê×¼·şÎñ¾ä±ú
- * \return Timer ±ê×¼·şÎñ¾ä±ú£¬ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief  LPTMR Timer å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—Timeræ ‡å‡†æœåŠ¡å¥æŸ„
+ * \return Timer æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_timer_handle_t am_kl26_lptmr_timing_inst_init (void);
 
 /**
- * \brief LPTMR Timer ÊµÀı½â³õÊ¼»¯
- * \param[in] handle : Í¨¹ı am_kl26_lptmr_timing_inst_init() º¯Êı»ñµÃµÄTimer¾ä±ú
- * \return ÎŞ
+ * \brief LPTMR Timer å®ä¾‹è§£åˆå§‹åŒ–
+ * \param[in] handle : é€šè¿‡ am_kl26_lptmr_timing_inst_init() å‡½æ•°è·å¾—çš„Timerå¥æŸ„
+ * \return æ— 
  */
 void am_kl26_lptmr_timing_inst_deinit (am_timer_handle_t handle);
 
 /**
- * \brief ADC0 ÊµÀı³õÊ¼»¯£¬»ñµÃADC±ê×¼·şÎñ¾ä±ú
+ * \brief ADC0 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—ADCæ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_adc_handle_t am_kl26_adc0_inst_init (void);
 
 /**
- * \brief ADC0 ÊµÀı½â³õÊ¼»¯
- * \param[in] handle : ADC0¾ä±úÖµ
+ * \brief ADC0 å®ä¾‹è§£åˆå§‹åŒ–
+ * \param[in] handle : ADC0å¥æŸ„å€¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_kl26_adc0_inst_deinit (am_adc_handle_t handle);
 
 /**
- * \brief DMA ÊµÀı³õÊ¼»¯
- * \return ÎŞ
+ * \brief DMA å®ä¾‹åˆå§‹åŒ–
+ * \return æ— 
  */
 void am_kl26_dma_inst_init (void);
 
 /**
- * \brief DMA ÊµÀı½â³õÊ¼»¯
- * \return ÎŞ
+ * \brief DMA å®ä¾‹è§£åˆå§‹åŒ–
+ * \return æ— 
  */
 void am_kl26_dma_inst_deinit (void);
 
 /**
- * \brief I2C0 ÊµÀı³õÊ¼»¯
- * \return I2C¾ä±úÖµ
+ * \brief I2C0 å®ä¾‹åˆå§‹åŒ–
+ * \return I2Cå¥æŸ„å€¼
  */
 am_i2c_handle_t am_kl26_i2c0_inst_init (void);
 
 /**
- * \brief I2C0 ÊµÀı½â³õÊ¼»¯
- * \return ÎŞ
+ * \brief I2C0 å®ä¾‹è§£åˆå§‹åŒ–
+ * \return æ— 
  */
 void am_kl26_i2c0_inst_deinit (am_i2c_handle_t handle);
 
 /**
- * \brief I2C1 ÊµÀı³õÊ¼»¯
- * \return I2C¾ä±úÖµ
+ * \brief I2C1 å®ä¾‹åˆå§‹åŒ–
+ * \return I2Cå¥æŸ„å€¼
  */
 am_i2c_handle_t am_kl26_i2c1_inst_init (void);
 
 
 /**
- * \brief I2C1 ÊµÀı½â³õÊ¼»¯
- * \return ÎŞ
+ * \brief I2C1 å®ä¾‹è§£åˆå§‹åŒ–
+ * \return æ— 
  */
 void am_kl26_i2c1_inst_deinit (am_i2c_handle_t handle);
 
 
 /**
- * \brief SPI0 ÊµÀı³õÊ¼»¯£¬»ñµÃSPI±ê×¼·şÎñ¾ä±ú(INT·½Ê½)
- * \return SPI0¾ä±úÖµ£¬ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief SPI0 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—SPIæ ‡å‡†æœåŠ¡å¥æŸ„(INTæ–¹å¼)
+ * \return SPI0å¥æŸ„å€¼ï¼Œè‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_spi_handle_t am_kl26_spi0_int_inst_init (void);
 
 /**
- * \brief SPI0 ÊµÀı½â³õÊ¼»¯(INT·½Ê½)
- * \param[in] handle : Í¨¹ı am_kl26_spi0_int_inst_init() º¯Êı»ñµÃµÄSPI0¾ä±ú
- * \return ÎŞ
+ * \brief SPI0 å®ä¾‹è§£åˆå§‹åŒ–(INTæ–¹å¼)
+ * \param[in] handle : é€šè¿‡ am_kl26_spi0_int_inst_init() å‡½æ•°è·å¾—çš„SPI0å¥æŸ„
+ * \return æ— 
  */
 void am_kl26_spi0_int_inst_deinit (am_spi_handle_t handle);
 
 /**
- * \brief SPI1 ÊµÀı³õÊ¼»¯£¬»ñµÃSPI±ê×¼·şÎñ¾ä±ú(INT·½Ê½)
- * \return SPI1¾ä±úÖµ£¬ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief SPI1 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—SPIæ ‡å‡†æœåŠ¡å¥æŸ„(INTæ–¹å¼)
+ * \return SPI1å¥æŸ„å€¼ï¼Œè‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_spi_handle_t am_kl26_spi1_int_inst_init (void);
 
 /**
- * \brief SPI1 ÊµÀı½â³õÊ¼»¯(INT·½Ê½)
- * \param[in] handle : Í¨¹ı am_kl26_spi1_int_inst_init() º¯Êı»ñµÃµÄSPI0¾ä±ú
- * \return ÎŞ
+ * \brief SPI1 å®ä¾‹è§£åˆå§‹åŒ–(INTæ–¹å¼)
+ * \param[in] handle : é€šè¿‡ am_kl26_spi1_int_inst_init() å‡½æ•°è·å¾—çš„SPI0å¥æŸ„
+ * \return æ— 
  */
 void am_kl26_spi1_int_inst_deinit (am_spi_handle_t handle);
 
 
 /**
- * \brief SPI0 ÊµÀı³õÊ¼»¯£¬»ñµÃSPI±ê×¼·şÎñ¾ä±ú(DMA·½Ê½)
- * \return SPI0¾ä±úÖµ£¬ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief SPI0 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—SPIæ ‡å‡†æœåŠ¡å¥æŸ„(DMAæ–¹å¼)
+ * \return SPI0å¥æŸ„å€¼ï¼Œè‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_spi_handle_t am_kl26_spi0_dma_inst_init (void);
 
 /**
- * \brief SPI0 ÊµÀı½â³õÊ¼»¯(DMA·½Ê½)
- * \param[in] handle : Í¨¹ı am_kl26_spi0_dma_inst_init() º¯Êı»ñµÃµÄSPI0¾ä±ú
- * \return ÎŞ
+ * \brief SPI0 å®ä¾‹è§£åˆå§‹åŒ–(DMAæ–¹å¼)
+ * \param[in] handle : é€šè¿‡ am_kl26_spi0_dma_inst_init() å‡½æ•°è·å¾—çš„SPI0å¥æŸ„
+ * \return æ— 
  */
 void am_kl26_spi0_dma_inst_deinit (am_spi_handle_t handle);
 
 /**
- * \brief SPI1 ÊµÀı³õÊ¼»¯£¬»ñµÃSPI±ê×¼·şÎñ¾ä±ú(DMA·½Ê½)
- * \return SPI1¾ä±úÖµ£¬ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief SPI1 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—SPIæ ‡å‡†æœåŠ¡å¥æŸ„(DMAæ–¹å¼)
+ * \return SPI1å¥æŸ„å€¼ï¼Œè‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_spi_handle_t am_kl26_spi1_dma_inst_init (void);
 
 /**
- * \brief SPI1 ÊµÀı½â³õÊ¼»¯(DMA·½Ê½)
- * \param[in] handle : Í¨¹ı am_kl26_spi1_dma_inst_init() º¯Êı»ñµÃµÄSPI0¾ä±ú
- * \return ÎŞ
+ * \brief SPI1 å®ä¾‹è§£åˆå§‹åŒ–(DMAæ–¹å¼)
+ * \param[in] handle : é€šè¿‡ am_kl26_spi1_dma_inst_init() å‡½æ•°è·å¾—çš„SPI0å¥æŸ„
+ * \return æ— 
  */
 void am_kl26_spi1_dma_inst_deinit (am_spi_handle_t handle);
 /**
- * \brief TSIÊµÀı³õÊ¼»¯
+ * \brief TSIå®ä¾‹åˆå§‹åŒ–
  *
- * \param[in] ÎŞ
+ * \param[in] æ— 
  *
- * \retval AM_OK: ³õÊ¼»¯²Ù×÷³É¹¦
+ * \retval AM_OK: åˆå§‹åŒ–æ“ä½œæˆåŠŸ
  */
 int am_kl26_tsi_inst_init (void);
 
 /**
- * \brief TSIÊµÀı½â³õÊ¼»¯
+ * \brief TSIå®ä¾‹è§£åˆå§‹åŒ–
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_kl26_tsi_inst_deinit (void);
 
 /**
- * \brief DAC0 ÊµÀı³õÊ¼»¯
- * \return »ñµÃDAC±ê×¼·şÎñ¾ä±ú
+ * \brief DAC0 å®ä¾‹åˆå§‹åŒ–
+ * \return è·å¾—DACæ ‡å‡†æœåŠ¡å¥æŸ„
  */
 am_dac_handle_t am_kl26_dac0_inst_init (void);
 
 /**
- * \brief DAC0 ÊµÀı½â³õÊ¼»¯
- * \param[in] handle : DAC0¾ä±úÖµ
+ * \brief DAC0 å®ä¾‹è§£åˆå§‹åŒ–
+ * \param[in] handle : DAC0å¥æŸ„å€¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_kl26_dac0_inst_deinit (am_dac_handle_t handle);
 
 /**
- * \brief  WDT ÊµÀı³õÊ¼»¯£¬»ñµÃWDT±ê×¼·şÎñ¾ä±ú
+ * \brief  WDT å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—WDTæ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \return WDT¾ä±úÖµ
+ * \return WDTå¥æŸ„å€¼
  */
 am_wdt_handle_t am_kl26_wdt_inst_init (void);
 
 /**
- * \brief WDT ÊµÀı½â³õÊ¼»¯
+ * \brief WDT å®ä¾‹è§£åˆå§‹åŒ–
  *
- * \param[in] handle : WDT¿´ÃÅ¹·¾ä±úÖµ
+ * \param[in] handle : WDTçœ‹é—¨ç‹—å¥æŸ„å€¼
  */
 void am_kl26_wdt_inst_deinit (am_wdt_handle_t handle);
 
 /**
  * \brief GPIO LED instance init
  * \param[in] none
- * \return AM_OK: ³õÊ¼»¯³É¹¦
+ * \return AM_OK: åˆå§‹åŒ–æˆåŠŸ
  */
 int am_led_gpio_inst_init (void);
 
-/** \brief SYSTICK ÊµÀı³õÊ¼»¯£¬»ñµÃTimer±ê×¼·şÎñ¾ä±ú */
+/** \brief SYSTICK å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—Timeræ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_timer_handle_t am_kl26_systick_inst_init (void);
 
-/** \brief SYSTICK ÊµÀı½â³õÊ¼»¯ */
+/** \brief SYSTICK å®ä¾‹è§£åˆå§‹åŒ– */
 void am_kl26_systick_inst_deinit (am_timer_handle_t handle);
 
-/** \brief ÊµÀı³õÊ¼»¯£¬»ñµÃ×Ô¶¯²¨ÌØÂÊ·şÎñ¾ä±ú */
+/** \brief å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—è‡ªåŠ¨æ³¢ç‰¹ç‡æœåŠ¡å¥æŸ„ */
 am_baudrate_detect_handle_t am_kl26_baudrate_detect_inst_init (void);
 
-/** \brief ÊµÀı½â³õÊ¼»¯*/
+/** \brief å®ä¾‹è§£åˆå§‹åŒ–*/
 void am_kl26_baudrate_detect_inst_deinit(am_baudrate_detect_handle_t handle);
 /**
  * @}

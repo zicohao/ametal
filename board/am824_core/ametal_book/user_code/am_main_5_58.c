@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief 程序清单5.58
+ * \brief 绋嬪簭娓呭崟5.58
  *
  * 
  * \internal
@@ -28,8 +28,8 @@ int am_main(void)
 {
     am_pwm_handle_t  pwm_handle = am_lpc82x_sct0_pwm_inst_init ();
 
-    am_pwm_config(pwm_handle, 1, 500000, 1000000);    // PWM通道1对应PIO0_24
-    am_pwm_enable(pwm_handle, 1);                     // 使能PWM0 
+    am_pwm_config(pwm_handle, 1, 500000, 1000000);    // PWM閫氶亾1瀵瑰簲PIO0_24
+    am_pwm_enable(pwm_handle, 1);                     // 浣胯兘PWM0 
     while(1) {
     }
 }

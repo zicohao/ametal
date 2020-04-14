@@ -12,15 +12,15 @@
 
 /**
  * \file
- * \brief WKT ¶¨Ê±Æ÷Àı³Ì£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief WKT å®šæ—¶å™¨ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. LED0 ÒÔ 1s ¼ä¸ôÉÁË¸¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. LED0 ä»¥ 1s é—´éš”é—ªçƒã€‚
  *
  * \note
- *    LED0 ĞèÒª¶Ì½Ó J9 ÌøÏßÃ±£¬²ÅÄÜ±» PIO0_20 ¿ØÖÆ¡£
+ *    LED0 éœ€è¦çŸ­æ¥ J9 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIO0_20 æ§åˆ¶ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_lpc_hw_wkt_timer.c src_lpc_hw_wkt_timer
  *
  * \internal
@@ -42,26 +42,26 @@
 #include "hw/amhw_lpc_wkt.h"
 
 
-/* Ñ¡Ôñ IRC Ê±ÖÓ ÆµÂÊÎª 750kHz */
+/* é€‰æ‹© IRC æ—¶é’Ÿ é¢‘ç‡ä¸º 750kHz */
 #define __IRC_CLOCK_FREQ          750
 
-/* Ñ¡ÔñµÍ¹¦ºÄÊ±ÖÓ ÆµÂÊÎª 10kHz */
+/* é€‰æ‹©ä½åŠŸè€—æ—¶é’Ÿ é¢‘ç‡ä¸º 10kHz */
 #define __LOW_POWER_CLOCK_FREQ    10
 
-/* Ñ¡ÔñÍâ²¿Ê±ÖÓ ÆµÂÊÎª 10kHz */
+/* é€‰æ‹©å¤–éƒ¨æ—¶é’Ÿ é¢‘ç‡ä¸º 10kHz */
 #define __EXT_CLOCK_FREQ          10
 
 /**
- * \brief ÉèÖÃµ±Ç°¶¨Ê±Æ÷µÄ¼ÆÊıÖµ
+ * \brief è®¾ç½®å½“å‰å®šæ—¶å™¨çš„è®¡æ•°å€¼
  *
- * \param[in] delay_inms ÉèÖÃ¶¨Ê±Ê±¼ä delay_inms£ºÑÓÊ±Ê±¼ä(µ¥Î»£ºms)
+ * \param[in] delay_inms è®¾ç½®å®šæ—¶æ—¶é—´ delay_inmsï¼šå»¶æ—¶æ—¶é—´(å•ä½ï¼šms)
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void wkt_delayms (amhw_lpc_wkt_t *p_hw_wkt, uint32_t delay_inms)
 {
 
-    /* ÉèÖÃ WKT ¼ÆÊıÆ÷¼ÆÊıÖµ */
+    /* è®¾ç½® WKT è®¡æ•°å™¨è®¡æ•°å€¼ */
     if(amhw_lpc_wkt_clksel_get(p_hw_wkt) == 1) {
         amhw_lpc_wkt_count_set(p_hw_wkt,
                                __LOW_POWER_CLOCK_FREQ * delay_inms);
@@ -69,16 +69,16 @@ void wkt_delayms (amhw_lpc_wkt_t *p_hw_wkt, uint32_t delay_inms)
         amhw_lpc_wkt_count_set(p_hw_wkt, __IRC_CLOCK_FREQ * delay_inms);
     } else {
 
-    /* ´ËÖÖÇé¿öÊÇÊ¹ÓÃÍâ²¿Ê±ÖÓ,¾ßÌåÉèÖÃÊıÄ¿ĞèÓÉÓÃ»§Éè¶¨µÄÍâ²¿Ê±ÖÓÆµÂÊ¾ö¶¨ */
+    /* æ­¤ç§æƒ…å†µæ˜¯ä½¿ç”¨å¤–éƒ¨æ—¶é’Ÿ,å…·ä½“è®¾ç½®æ•°ç›®éœ€ç”±ç”¨æˆ·è®¾å®šçš„å¤–éƒ¨æ—¶é’Ÿé¢‘ç‡å†³å®š */
         amhw_lpc_wkt_count_set(p_hw_wkt, __EXT_CLOCK_FREQ * delay_inms);
     }
 
-    /* µÈ´ı³¬Ê± */
+    /* ç­‰å¾…è¶…æ—¶ */
     while(!(amhw_lpc_wkt_alarmflag_get(p_hw_wkt))) {
         ; /* VOID */
     }
 
-    /* Çå³ı³¬Ê±±êÖ¾ */
+    /* æ¸…é™¤è¶…æ—¶æ ‡å¿— */
     amhw_lpc_wkt_alarmflag_clear(p_hw_wkt);
 }
 
@@ -87,7 +87,7 @@ void demo_lpc_hw_wkt_timer(amhw_lpc_wkt_t *p_hw_wkt,
 {
     AM_FOREVER {
 
-        /* LED0 ÒÔ wkt_mdelays µÄ¼ä¸ôÒ»Ö±ÉÁË¸ */
+        /* LED0 ä»¥ wkt_mdelays çš„é—´éš”ä¸€ç›´é—ªçƒ */
         am_led_toggle(LED0);
 
         wkt_delayms(p_hw_wkt, wkt_mdelay);

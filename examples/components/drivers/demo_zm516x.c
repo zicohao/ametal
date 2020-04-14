@@ -13,34 +13,34 @@
 
 /**
  * \file
- * \brief ZM516X ģ����ʾ���̣�ͨ����׼�ӿ�ʵ��
+ * \brief ZM516X 模块演示例程，通过标准接口实现
  *
- * - �������裺
- *   1. ���Ա� Demo ��Ҫʹ������ AM824ZB �壬�������Ҫ���ز�ͬ�ĳ���
- *      ����һ�� AM824ZB ��򿪺� USE_BORD0���رպ� USE_BORD1�����벢���س���
- *      ����һ�� AM824ZB ��򿪺� USE_BORD1���رպ� USE_BORD0�����벢���س���
+ * - 操作步骤：
+ *   1. 测试本 Demo 需要使用两块 AM824ZB 板，两块板需要下载不同的程序，
+ *      其中一块 AM824ZB 板打开宏 USE_BORD0，关闭宏 USE_BORD1，编译并下载程序，
+ *      另外一块 AM824ZB 板打开宏 USE_BORD1，关闭宏 USE_BORD0，编译并下载程序。
  *
- * - ʵ������
- *   1. ������ʼ�������óɹ��� LED0 �����������ʼ��ʧ�ܣ�LED0 ��˸��
- *   2. ������� 1S ��Է�����һ�����ݣ����պ����յ��Է����͹��������ݺ󣬵��Դ���
- *      �����յ��������������������Ϊ "received data from 0x****: I'm 0x**"��
+ * - 实验现象：
+ *   1. 两块板初始化并配置成功后 LED0 长亮，如果初始化失败，LED0 闪烁；
+ *   2. 两块板间隔 1S 向对方发送一次数据，接收函数收到对方发送过来的数据后，调试串口
+ *      将接收到的数据内容输出，内容为 "received data from 0x****: I'm 0x**"。
  *
  * \note
- *    1. LED0 ��Ҫ�̽� J9 ����ñ�����ܱ� PIO0_8 ���ƣ�
- *    2. ʹ�ð���������Ҫ�� J14 �� KEY �� PIO0_1 �̽���һ��
- *    3. ����۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIO0_0 �������� PC ���ڵ� TXD��
- *       PIO0_4 �������� PC ���ڵ� RXD��
- *    4. ���Ա� Demo ������ am_prj_config.h �ڽ� AM_CFG_KEY_GPIO_ENABLE ����Ϊ 1
- *       ���ú��Ѿ�Ĭ������Ϊ 1�� �û������ٴ����ã�
- *    5. ZigBee ģ�������ӹ�ϵ���£�
+ *    1. LED0 需要短接 J9 跳线帽，才能被 PIO0_8 控制；
+ *    2. 使用按键功能需要将 J14 的 KEY 和 PIO0_1 短接在一起；
+ *    3. 如需观察串口打印的调试信息，需要将 PIO0_0 引脚连接 PC 串口的 TXD，
+ *       PIO0_4 引脚连接 PC 串口的 RXD；
+ *    4. 测试本 Demo 必须在 am_prj_config.h 内将 AM_CFG_KEY_GPIO_ENABLE 定义为 1
+ *       但该宏已经默认配置为 1， 用户不必再次配置；
+ *    5. ZigBee 模块内连接关系如下：
  * <pre>
  *           PIO0_26  <-->  ZigBee_TX
  *           PIO0_27  <-->  ZigBee_RX
  *           PIO0_28  <-->  ZigBee_RST
  * </pre>
- *        �����Ҫʹ�� ZigBee����Щ IO �ڲ�������������;��
+ *        如果需要使用 ZigBee，这些 IO 口不能用作其它用途。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_zm516x.c src_zm516x
  *
  * \internal
@@ -65,11 +65,11 @@
 #include <string.h>
 
 
-#define USE_BORD0            /**< \brief ʹ�øú�ʱ�����������ڵ��� 0 */
-//#define USE_BORD1          /**< \brief ʹ�øú�ʱ�����������ڵ��� 1 */
+#define USE_BORD0            /**< \brief 使用该宏时，本例程用于单板 0 */
+//#define USE_BORD1          /**< \brief 使用该宏时，本例程用于单板 1 */
 
 /**
- * \brief ��˸ LED0
+ * \brief 闪烁 LED0
  */
 static void flash_led (void)
 {
@@ -83,7 +83,7 @@ static void flash_led (void)
 }
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_zm516x_entry (am_zm516x_handle_t zm516x_handle)
 {
@@ -111,17 +111,17 @@ void demo_zm516x_entry (am_zm516x_handle_t zm516x_handle)
                 dst_addr[0],
                 dst_addr[1]);
 
-    /* �ָ� ZM516X ģ��������ã��������DA�������óɹ��踴λ */
+    /* 恢复 ZM516X 模块出厂设置（永久命令：DA），设置成功需复位 */
     if (am_zm516x_default_set(zm516x_handle) != AM_OK) {
         AM_DBG_INFO("am_zm516x_default_set failed\r\n");
         flash_led();
     }
 
-    /* ���óɹ�����λ ZM516X ģ�飨�������D9�� */
+    /* 设置成功，复位 ZM516X 模块（永久命令：D9） */
     am_zm516x_reset(zm516x_handle);
     am_mdelay(10);
 
-    /* ��ȡ ZigBee ģ���������Ϣ���������D1�� */
+    /* 获取 ZigBee 模块的配置信息（永久命令：D1） */
     if (am_zm516x_cfg_info_get(zm516x_handle, &zm516x_cfg_info) != AM_OK) {
         AM_DBG_INFO("am_zm516x_cfg_info_get failed\r\n");
         flash_led();
@@ -134,21 +134,21 @@ void demo_zm516x_entry (am_zm516x_handle_t zm516x_handle)
     zm516x_cfg_info.panid[0] = 0x10;
     zm516x_cfg_info.panid[1] = 0x01;
 
-    /* �޸� ZigBee ģ���������Ϣ���������D6�������óɹ��踴λ */
+    /* 修改 ZigBee 模块的配置信息（永久命令：D6），设置成功需复位 */
     if (am_zm516x_cfg_info_set(zm516x_handle, &zm516x_cfg_info) != AM_OK) {
         AM_DBG_INFO("am_zm516x_cfg_info_set failed\r\n");
         flash_led();
     }
 
-    /* ʹ ZigBee ģ�鸴λ���������D9�� */
+    /* 使 ZigBee 模块复位（永久命令：D9） */
     am_zm516x_reset(zm516x_handle);
     am_mdelay(10);
 
-    /* ����Ŀ���ַ */
+    /* 设置目标地址 */
     zb_addr.p_addr    = src_addr;
     zb_addr.addr_size = 2;
 
-    /* ���� ZigBee ģ����յ����ݰ���ͷ�Ƿ���ʾԴ��ַ���������DC�� */
+    /* 设置 ZigBee 模块接收的数据包包头是否显示源地址（永久命令：DC） */
     if (am_zm516x_cfg_display_head_set(zm516x_handle,
                                       &zb_addr,
                                        AM_TRUE) != AM_OK) {
@@ -156,23 +156,23 @@ void demo_zm516x_entry (am_zm516x_handle_t zm516x_handle)
         flash_led();
     }
 
-    /* ���óɹ�����λ ZM516X ģ�飨�������D9�� */
+    /* 设置成功，复位 ZM516X 模块（永久命令：D9） */
     am_zm516x_reset(zm516x_handle);
     am_mdelay(10);
 
-    /* ���� ZM516X ģ����յ����ݰ���ͷ�Ƿ���ʾԴ��ַ����ʱ���D3�� */
+    /* 设置 ZM516X 模块接收的数据包包头是否显示源地址（临时命令：D3） */
     if (am_zm516x_display_head_set(zm516x_handle, AM_TRUE) != AM_OK) {
         AM_DBG_INFO("am_zm516x_display_head_set failed\r\n");
         flash_led();
     }
 
     /**
-     * ���� ZigBee ģ�����˯��ģʽ����ʱ���D8������Ҫ�������ԣ�ZM516X ˯�ߺ�
-     * ֻ�ܸ�λģ����ģ��� WAKE ��������������ģ��
+     * 设置 ZigBee 模块进入睡眠模式（临时命令：D8），需要单独测试，ZM516X 睡眠后
+     * 只能复位模块或把模块的 WAKE 引脚拉低来唤醒模块
      */
 //    am_zm516x_enter_sleep(zm516x_handle);
 
-    /* ���в���ͨ�������� LED0 */
+    /* 所有测试通过，点亮 LED0 */
     am_led_on(LED0);
 
     AM_FOREVER {
@@ -183,7 +183,7 @@ void demo_zm516x_entry (am_zm516x_handle_t zm516x_handle)
             am_zm516x_send(zm516x_handle, send_buf, strlen(send_buf));
         }
 
-        /* am_zm516x_receive �����Ķ���ʱΪ 10ms */
+        /* am_zm516x_receive 函数的读超时为 10ms */
         ret = am_zm516x_receive(zm516x_handle, buf, sizeof(buf));
 
         if (ret > 0) {

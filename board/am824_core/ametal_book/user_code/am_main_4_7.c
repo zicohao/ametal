@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief �����嵥4.7
+ * \brief 程序清单4.7
  *
- * \note ��������Ҫ�õ�miniport��չ��,��Ҫ��led.h�ļ�����USE_MINIPORT_LED��Ϊ1
+ * \note 该历程需要用到miniport拓展板,需要在led.h文件将宏USE_MINIPORT_LED设为1
  *
  * \internal
  * \par Modification history
@@ -29,14 +29,14 @@ int am_main (void)
 {
     int i = 0;
 
-    led_init();               // �弶��ʼ�� 
+    led_init();               // 板级初始化 
     while(1) {
-        led_on(i);            // ����LED��i��
-        am_mdelay(100);       // ��ʱ100ms 
-        led_off(i);           // Ϩ��LED��i�� 
-        i++;                  // ָ����һ��LED         
-        if(i == 8) {          // LEDѭ��һ�κ�i = 8  
-            i = 0;            // ����i��ʼ��Ϊ0        
+        led_on(i);            // 点亮LED（i）
+        am_mdelay(100);       // 延时100ms 
+        led_off(i);           // 熄灭LED（i） 
+        i++;                  // 指向下一个LED         
+        if(i == 8) {          // LED循环一次后，i = 8  
+            i = 0;            // 即将i初始化为0        
         }
     }
 }

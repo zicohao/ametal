@@ -12,16 +12,16 @@
 
 /**
  * \file
- * \brief ��ʱ�� TIMING ���̣�ͨ�� HW ��ӿ�ʵ��
+ * \brief 定时器 TIMING 例程，通过 HW 层接口实现
  *
- * - ʵ������
- *   1. ���ж�ʱ���Դ��ڴ�ӡ��Ϣ��
+ * - 实验现象：
+ *   1. 在中断时调试串口打印信息。
  *
  * \note
- *    1. ����۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIOA_9 �������� PC ���ڵ� RXD��
- *    2. 16 λ��ʱ����ʱ����ֵ��Ϊ 65536 �ı�������ʱ����һЩƫ�
+ *    1. 如需观察串口打印的调试信息，需要将 PIOA_9 引脚连接 PC 串口的 RXD；
+ *    2. 16 位定时器定时计数值不为 65536 的倍数，则定时会有一些偏差。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_am116_core_hw_tim_timing.c src_am116_core_hw_tim_timing
  *
  * \internal
@@ -45,16 +45,16 @@
 #include "demo_am116_core_entries.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_am116_core_hw_tim_timing_entry (void)
 {
     AM_DBG_INFO("demo am116_core hw tim timing!\r\n");
 
-    /* ʹ�ܶ�ʱ��ʱ�� */
+    /* 使能定时器时钟 */
     am_clk_enable(CLK_TIM2);
 
-    /* ��λ��ʱ�� */
+    /* 复位定时器 */
     am_zlg116_clk_reset(CLK_TIM2);
 
     demo_zlg_hw_tim_timing_entry(ZLG116_TIM2,

@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ·äÃùÆ÷ÅäÖÃÎÄ¼ş£¨PWMÇı¶¯£©
+ * \brief èœ‚é¸£å™¨é…ç½®æ–‡ä»¶ï¼ˆPWMé©±åŠ¨ï¼‰
  * \sa am_hwconf_buzzer_pwm.c
  *
  * \internal
@@ -31,16 +31,16 @@
  * @{
  */
 
-/** \brief ·äÃùÆ÷µÄ PWM ÆµÂÊ£¬2500 ´ú±í 2500Hz */
+/** \brief èœ‚é¸£å™¨çš„ PWM é¢‘ç‡ï¼Œ2500 ä»£è¡¨ 2500Hz */
 #define __BUZZER_PWM_FREQ        2500
 
-/** \brief PWM µÄÕ¼¿Õ±È£¬50 ´ú±í 50% */
+/** \brief PWM çš„å ç©ºæ¯”ï¼Œ50 ä»£è¡¨ 50% */
 #define __BUZZER_PWM_DUTY        50
 
-/** \brief Ê¹ÓÃÍ¨µÀ 1, TIM16_CH1N, PIOB_6 */
+/** \brief ä½¿ç”¨é€šé“ 1, TIM16_CH1N, PIOB_6 */
 #define __BUZZER_TIMER_CHAN      (1 - 1)
 
-/** \brief ·äÃùÆ÷ÊµÀı³õÊ¼»¯ */
+/** \brief èœ‚é¸£å™¨å®ä¾‹åˆå§‹åŒ– */
 void am_buzzer_pwm_inst_init (void)
 {
     am_pwm_handle_t handle = am_zlg116_tim16_pwm_inst_init();

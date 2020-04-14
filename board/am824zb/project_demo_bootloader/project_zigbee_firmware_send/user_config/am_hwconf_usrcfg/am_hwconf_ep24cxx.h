@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief FM24C02 ÅäÖÃÎÄ¼ş
+ * \brief FM24C02 é…ç½®æ–‡ä»¶
  *
  * \internal
  * \par Modification history
@@ -28,16 +28,16 @@
 #include "am_ep24cxx.h"
 
 /**
- * \brief FM24C02 ÊµÀı³õÊ¼»¯£¨×Ö½ÚÊ¹ÓÃĞ¾Æ¬Ïà¹Ø½Ó¿Ú²Ù×÷FM24C02£©
- * \return FM24C02 Ğ¾Æ¬¾ä±ú£¬ÈôÎªNULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \brief FM24C02 å®ä¾‹åˆå§‹åŒ–ï¼ˆå­—èŠ‚ä½¿ç”¨èŠ¯ç‰‡ç›¸å…³æ¥å£æ“ä½œFM24C02ï¼‰
+ * \return FM24C02 èŠ¯ç‰‡å¥æŸ„ï¼Œè‹¥ä¸ºNULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_ep24cxx_handle_t am_fm24c02_inst_init (void);
 
 /**
- * \brief FM24C02 ÊµÀı³õÊ¼»¯ £¨ÓÃ×÷±ê×¼µÄNVRAMÆ÷¼ş£©
+ * \brief FM24C02 å®ä¾‹åˆå§‹åŒ– ï¼ˆç”¨ä½œæ ‡å‡†çš„NVRAMå™¨ä»¶ï¼‰
  *
- * \retval  AW_OK  ³õÊ¼»¯³É¹¦
- * \retval   < 0   ³õÊ¼»¯Ê§°Ü£¬Çë¼ìCÎÄ¼şÖĞ¸÷ÅäÖÃÏîÊÇ·ñºÏ·¨
+ * \retval  AW_OK  åˆå§‹åŒ–æˆåŠŸ
+ * \retval   < 0   åˆå§‹åŒ–å¤±è´¥ï¼Œè¯·æ£€Cæ–‡ä»¶ä¸­å„é…ç½®é¡¹æ˜¯å¦åˆæ³•
  */
 int am_fm24c02_nvram_inst_init (void);
 

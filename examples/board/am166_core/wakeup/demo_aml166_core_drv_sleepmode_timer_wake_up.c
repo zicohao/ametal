@@ -13,20 +13,20 @@
 
 /**
  * \file
- * \brief ˯��ģʽ���̣�ʹ�ö�ʱ�����ڻ��ѣ�ͨ��������ӿ�ʵ��
+ * \brief 睡眠模式例程，使用定时器周期唤醒，通过驱动层接口实现
  *
- * - ʵ������
- *   1. �������"enter sleep!"��ϵͳʱ��Դ�л�Ϊ LSI��������ʱ����
- *      ����˯��ģʽ��J-Link ���ԶϿ�����ʱ�û��ɲ���˯��ģʽ�Ĺ��ģ�
- *   2. �ȴ���ʱʱ�䵽��MCU �����ѣ��������"wake_up!"��Ȼ�����½���
- *      ˯��ģʽ��
+ * - 实现现象
+ *   1. 串口输出"enter sleep!"，系统时钟源切换为 LSI，启动定时器，
+ *      进入睡眠模式后，J-Link 调试断开，此时用户可测量睡眠模式的功耗；
+ *   2. 等待定时时间到，MCU 被唤醒，串口输出"wake_up!"，然后重新进入
+ *      睡眠模式。
  *
  * \note
- *   ���� TIM14 Ĭ�ϳ�ʼ������Ϊϵͳ�δ�ʹ�ã��ᶨ�ڲ����жϵ��»��ѣ� ���Ա�����
- *   ֮ǰӦ�� am_prj_config.h �еĺ� AM_CFG_SYSTEM_TICK_ENABLE��
- *   AM_CFG_SOFTIMER_ENABLE ��   AM_CFG_KEY_GPIO_ENABLE ����Ϊ 0��
+ *   由于 TIM14 默认初始化并作为系统滴答使用，会定期产生中断导致唤醒， 测试本例程
+ *   之前应将 am_prj_config.h 中的宏 AM_CFG_SYSTEM_TICK_ENABLE、
+ *   AM_CFG_SOFTIMER_ENABLE 和   AM_CFG_KEY_GPIO_ENABLE 设置为 0。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_aml166_core_drv_sleepmode_timer_wake_up.c src_aml166_core_drv_sleepmode_timer_wake_up
  *
  * \internal
@@ -47,17 +47,17 @@
 #include "demo_zlg_entries.h"
 #include "demo_aml166_core_entries.h"
 
-/** \brief LSI ʱ��Ƶ�� */
+/** \brief LSI 时钟频率 */
 #define    __LSI_CLK    (40000UL)
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_aml166_core_drv_sleepmode_timer_wake_up_entry (void)
 {
     AM_DBG_INFO("demo aml166_core drv sleepmode timer wake up!\r\n");
 
-    /* ��ʼ�� PWR */
+    /* 初始化 PWR */
     am_zlg116_pwr_inst_init();
 
     demo_zlg116_drv_sleepmode_timer_wake_up_entry(am_zlg116_tim14_timing_inst_init(),

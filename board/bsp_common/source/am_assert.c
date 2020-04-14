@@ -12,14 +12,14 @@
 
 /**
  * \file
- * \brief ¶ÏÑÔµÄ¼òµ¥ÊµÏÖ
+ * \brief æ–­è¨€çš„ç®€å•å®žçŽ°
  *
- * Ê¹ÓÃ±¾·þÎñÐèÒª°üº¬ÒÔÏÂÍ·ÎÄ¼þ£º
+ * ä½¿ç”¨æœ¬æœåŠ¡éœ€è¦åŒ…å«ä»¥ä¸‹å¤´æ–‡ä»¶ï¼š
  * \code
  * #include "am_assert.h"
  * \endcode
  *
- * // ¸ü¶àÄÚÈÝ´ýÌí¼Ó¡£¡£¡£
+ * // æ›´å¤šå†…å®¹å¾…æ·»åŠ ã€‚ã€‚ã€‚
  *
  * \internal
  * \par modification history

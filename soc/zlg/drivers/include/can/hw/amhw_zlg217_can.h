@@ -14,7 +14,7 @@
  * \file
  * \brief CAN hardware operation interface
  *
- * -note:ÔÚ¶ÔÍ¬Ò»¼Ä´æÆ÷½øĞĞ¶ÁĞ´Ê±ÆäËù¶ÔÓ¦µÄ¹¦ÄÜ²»Í¬
+ * -note:åœ¨å¯¹åŒä¸€å¯„å­˜å™¨è¿›è¡Œè¯»å†™æ—¶å…¶æ‰€å¯¹åº”çš„åŠŸèƒ½ä¸åŒ
  *
  * \internal
  * \par Modification history
@@ -40,72 +40,72 @@ extern "C" {
  */
 
 /**
- * \brief ZLG217 CAN¼Ä´æÆ÷¿é½á¹¹Ìå
+ * \brief ZLG217 CANå¯„å­˜å™¨å—ç»“æ„ä½“
  */
 typedef struct amhw_zlg217_can {
 
     union {
-        __IO  uint32_t cr;              /**< \brief 0x00 basic ¿ØÖÆ¼Ä´æÆ÷ */
-        __IO  uint32_t mod;             /**< \brief 0x00 peli Ä£Ê½¼Ä´æÆ÷ */
+        __IO  uint32_t cr;              /**< \brief 0x00 basic æ§åˆ¶å¯„å­˜å™¨ */
+        __IO  uint32_t mod;             /**< \brief 0x00 peli æ¨¡å¼å¯„å­˜å™¨ */
     }mode;
 
-    __IO  uint32_t cmr;                 /**< \brief 0x04 ÃüÁî¼Ä´æÆ÷ */
-    __IO  uint32_t sr;                  /**< \brief 0x08 ×´Ì¬¼Ä´æÆ÷ */
-    __I   uint32_t ir;                  /**< \brief 0x0c ÖĞ¶Ï¼Ä´æÆ÷ */
+    __IO  uint32_t cmr;                 /**< \brief 0x04 å‘½ä»¤å¯„å­˜å™¨ */
+    __IO  uint32_t sr;                  /**< \brief 0x08 çŠ¶æ€å¯„å­˜å™¨ */
+    __I   uint32_t ir;                  /**< \brief 0x0c ä¸­æ–­å¯„å­˜å™¨ */
 
     union {
 
         struct {
-            __IO  uint32_t acr;         /**< \brief 0x10 ÑéÊÕ´úÂë¼Ä´æÆ÷ */
-            __IO  uint32_t amr;         /**< \brief 0x14 ÑéÊÕÆÁ±Î¼Ä´æÆ÷ */
+            __IO  uint32_t acr;         /**< \brief 0x10 éªŒæ”¶ä»£ç å¯„å­˜å™¨ */
+            __IO  uint32_t amr;         /**< \brief 0x14 éªŒæ”¶å±è”½å¯„å­˜å™¨ */
         }basic;
 
         struct {
-            __IO  uint32_t ier;         /**< \brief 0x10 ÖĞ¶ÏÊ¹ÄÜ¼Ä´æÆ÷ */
+            __IO  uint32_t ier;         /**< \brief 0x10 ä¸­æ–­ä½¿èƒ½å¯„å­˜å™¨ */
                   uint32_t reserve0;
         }peli;
 
     }accept;
 
-    __IO  uint32_t btr0;                /**< \brief 0x18 ×ÜÏß¶¨Ê±Æ÷0 */
-    __IO  uint32_t btr1;                /**< \brief 0x1c ×ÜÏß¶¨Ê±Æ÷1 */
+    __IO  uint32_t btr0;                /**< \brief 0x18 æ€»çº¿å®šæ—¶å™¨0 */
+    __IO  uint32_t btr1;                /**< \brief 0x1c æ€»çº¿å®šæ—¶å™¨1 */
 
     union {
 
         struct {
-                  uint32_t reserve1[2]; /**< \brief ±£Áô */
+                  uint32_t reserve1[2]; /**< \brief ä¿ç•™ */
             __IO  uint32_t txid0;       /**< \brief 0x28 id10 ~ 3 */
             __IO  uint32_t txid1;       /**< \brief 0x2c id2 ~ 0/rtr/dlc0-4 */
             __IO  uint32_t txdr[8];     /**< \brief 0x30 DATA1 - 8 */
             __IO  uint32_t rxid0;       /**< \brief 0x50 id10 ~ 3 */
             __IO  uint32_t rxid1;       /**< \brief 0x54 id2 ~ 0/rtr/dlc0-4 */
             __IO  uint32_t rxdr[8];     /**< \brief 0x58 DATA1 - 8 */
-                  uint32_t reserve2;    /**< \brief 0x78 ±£Áô */
+                  uint32_t reserve2;    /**< \brief 0x78 ä¿ç•™ */
         }basic;
 
         struct {
-                  uint32_t reserve1[3]; /**< \brief ±£Áô */
-            __IO  uint32_t alc;         /**< \brief 0x2c ×Ü²Ã¶ªÊ§²¶×½¼Ä´æÆ÷ */
-            __IO  uint32_t ecc;         /**< \brief 0x30 ´íÎó´úÂë²¶×½¼Ä´æÆ÷ */
-            __IO  uint32_t ewlr;        /**< \brief 0x34 ´íÎó±¨¾¯ÏŞÖÆ¼Ä´æÆ÷ */
-            __IO  uint32_t rxerr;       /**< \brief 0x38 RX´íÎó¼ÆÊı¼Ä´æÆ÷ */
-            __IO  uint32_t txerr;       /**< \brief 0x3c TX´íÎó¼ÆÊı¼Ä´æÆ÷ */
-            __IO  uint32_t sff;         /**< \brief 0x40 RX/TXÖ¡ĞÅÏ¢¼Ä´æÆ÷ */
-            __IO  uint32_t id0;         /**< \brief 0x44 RX/TXÊ¶±ğÂë1 */
-            __IO  uint32_t id1;         /**< \brief 0x48 RX/TXÊ¶±ğÂë2 */
-            __IO  uint32_t data[10];    /**< \brief 0x4c RX/TXÊı¾İ */
-            __IO  uint32_t rmc;         /**< \brief 0x74 RXĞÅÏ¢¼ÆÊıÆ÷ */
-            __IO  uint32_t rbsa;        /**< \brief 0x78 RX»º³åÆÚÆğÊ¼µØÖ· */
+                  uint32_t reserve1[3]; /**< \brief ä¿ç•™ */
+            __IO  uint32_t alc;         /**< \brief 0x2c æ€»è£ä¸¢å¤±æ•æ‰å¯„å­˜å™¨ */
+            __IO  uint32_t ecc;         /**< \brief 0x30 é”™è¯¯ä»£ç æ•æ‰å¯„å­˜å™¨ */
+            __IO  uint32_t ewlr;        /**< \brief 0x34 é”™è¯¯æŠ¥è­¦é™åˆ¶å¯„å­˜å™¨ */
+            __IO  uint32_t rxerr;       /**< \brief 0x38 RXé”™è¯¯è®¡æ•°å¯„å­˜å™¨ */
+            __IO  uint32_t txerr;       /**< \brief 0x3c TXé”™è¯¯è®¡æ•°å¯„å­˜å™¨ */
+            __IO  uint32_t sff;         /**< \brief 0x40 RX/TXå¸§ä¿¡æ¯å¯„å­˜å™¨ */
+            __IO  uint32_t id0;         /**< \brief 0x44 RX/TXè¯†åˆ«ç 1 */
+            __IO  uint32_t id1;         /**< \brief 0x48 RX/TXè¯†åˆ«ç 2 */
+            __IO  uint32_t data[10];    /**< \brief 0x4c RX/TXæ•°æ® */
+            __IO  uint32_t rmc;         /**< \brief 0x74 RXä¿¡æ¯è®¡æ•°å™¨ */
+            __IO  uint32_t rbsa;        /**< \brief 0x78 RXç¼“å†²æœŸèµ·å§‹åœ°å€ */
         }peli;
 
     }info;
 
-    __IO  uint32_t cdr;                 /**< \brief 0x7c Ê±ÖÓ·ÖÆµÆ÷ */
+    __IO  uint32_t cdr;                 /**< \brief 0x7c æ—¶é’Ÿåˆ†é¢‘å™¨ */
 
 }amhw_zlg217_can_t;
 
 /**
- * \brief CANÄ£Ê½¶¨Òå
+ * \brief CANæ¨¡å¼å®šä¹‰
  */
 typedef enum amhw_zlg217_can_type {
     AMHW_ZLG217_CAN_BASIC_CAN = 0,        /**< \brief basic can */
@@ -113,68 +113,68 @@ typedef enum amhw_zlg217_can_type {
 }amhw_zlg217_can_type_t;
 
 /**
- * \brief CAN¹¦ÄÜ¶¨Òå
+ * \brief CANåŠŸèƒ½å®šä¹‰
  *
- * \note basic canÖ»ÖªÓĞ¸´Î»Ä£Ê½¡¢¹¤×÷Ä£Ê½¡¢Ë¯ÃßÄ£Ê½
+ * \note basic canåªçŸ¥æœ‰å¤ä½æ¨¡å¼ã€å·¥ä½œæ¨¡å¼ã€ç¡çœ æ¨¡å¼
  *
  */
 typedef enum amhw_zlg217_can_mode_func {
-    AMHW_ZLG217_CAN_MODE_RESET = 0,       /**< \brief ¸´Î»Ä£Ê½ */
-    AMHW_ZLG217_CAN_MODE_ONLY_LISTEN,     /**< \brief Ö»ÌıÄ£Ê½ */
-    AMHW_ZLG217_CAN_MODE_SELF_CHECK,      /**< \brief ×Ô¼ìÄ£Ê½ */
-    AMHW_ZLG217_CAN_MODE_SLEEP = 4,       /**< \brief Ë¯ÃßÄ£Ê½ */
-    AMHW_ZLG217_CAN_MODE_RUN,             /**< \brief ¹¤×÷Ä£Ê½ */
+    AMHW_ZLG217_CAN_MODE_RESET = 0,       /**< \brief å¤ä½æ¨¡å¼ */
+    AMHW_ZLG217_CAN_MODE_ONLY_LISTEN,     /**< \brief åªå¬æ¨¡å¼ */
+    AMHW_ZLG217_CAN_MODE_SELF_CHECK,      /**< \brief è‡ªæ£€æ¨¡å¼ */
+    AMHW_ZLG217_CAN_MODE_SLEEP = 4,       /**< \brief ç¡çœ æ¨¡å¼ */
+    AMHW_ZLG217_CAN_MODE_RUN,             /**< \brief å·¥ä½œæ¨¡å¼ */
 }amhw_zlg217_can_mode_t;
 
 /**
- * \brief CANÊı¾İ½ÓÊÕ·½Ê½
+ * \brief CANæ•°æ®æ¥æ”¶æ–¹å¼
  */
 typedef enum amhw_zlg217_can_recv_mode {
-    AMHW_ZLG217_CAN_RECV_POLL = 0,        /**< \brief ²éÑ¯½ÓÊÕÄ£Ê½ */
-    AMHW_ZLG217_CAN_RECV_INT,             /**< \brief ÖĞ¶Ï½ÓÊÕÄ£Ê½ */
+    AMHW_ZLG217_CAN_RECV_POLL = 0,        /**< \brief æŸ¥è¯¢æ¥æ”¶æ¨¡å¼ */
+    AMHW_ZLG217_CAN_RECV_INT,             /**< \brief ä¸­æ–­æ¥æ”¶æ¨¡å¼ */
 }amhw_zlg217_can_recv_mode_t;
 
 /**
- * \brief peli CANÂË²¨·½Ê½
+ * \brief peli CANæ»¤æ³¢æ–¹å¼
  */
 typedef enum amhw_zlg217_can_peli_filter_mode {
-    AMHW_ZLG217_CAN_PELI_SINGLE_FILTER,   /**< \brief peli can µ¥ÂË²¨Æ÷Ä£Ê½ */
-    AMHW_ZLG217_CAN_PELI_DOUBLE_FLITER,   /**< \brief peli can Ë«ÂË²¨Æ÷Ä£Ê½ */
+    AMHW_ZLG217_CAN_PELI_SINGLE_FILTER,   /**< \brief peli can å•æ»¤æ³¢å™¨æ¨¡å¼ */
+    AMHW_ZLG217_CAN_PELI_DOUBLE_FLITER,   /**< \brief peli can åŒæ»¤æ³¢å™¨æ¨¡å¼ */
 }amhw_zlg217_can_peli_filter_mode_t;
 
 /******************************************************************************/
 
 /**
- * \brief CANÖĞ¶Ï
+ * \brief CANä¸­æ–­
  *
- * \note basic canÖ»Ö§³ÖÇ°5ÖÖÖĞ¶Ï£¬ÆäÖĞ»½ĞÑÖĞ¶ÏÃ»ÓĞÊ¹ÄÜºÍ½ûÄÜÎ»£¬Ö»ÄÜÊ¹ÄÜ»òÕß½ûÄÜÇ°4ÖÖÖĞ¶Ï
+ * \note basic canåªæ”¯æŒå‰5ç§ä¸­æ–­ï¼Œå…¶ä¸­å”¤é†’ä¸­æ–­æ²¡æœ‰ä½¿èƒ½å’Œç¦èƒ½ä½ï¼Œåªèƒ½ä½¿èƒ½æˆ–è€…ç¦èƒ½å‰4ç§ä¸­æ–­
  *
  * @{
  */
 
 #define AMHW_ZLG217_CAN_INT_NUM              (8ul)
 
-#define AMHW_ZLG217_CAN_INT_BUS_ERR          (0x1 << 7ul)  /**< \brief ×ÜÏß´íÎóÖĞ¶Ï */
-#define AMHW_ZLG217_CAN_INT_ARBITRATION_LOST (0x1 << 6ul)  /**< \brief ÖÙ²Ã¶ªÊ§ÖĞ¶Ï */
-#define AMHW_ZLG217_CAN_INT_ERR_PASSIVE      (0x1 << 5ul)  /**< \brief ´íÎóÏû¼«ÖĞ¶Ï */
-#define AMHW_ZLG217_CAN_INT_WAKEUP           (0x1 << 4ul)  /**< \brief »½ĞÑÖĞ¶Ï */
-#define AMHW_ZLG217_CAN_INT_OVER             (0x1 << 3ul)  /**< \brief Êı¾İÒç³öÖĞ¶Ï */
-#define AMHW_ZLG217_CAN_INT_ERR              (0x1 << 2ul)  /**< \brief ´íÎóÖĞ¶Ï */
-#define AMHW_ZLG217_CAN_INT_TRAN             (0x1 << 1ul)  /**< \brief ·¢ËÍÖĞ¶Ï */
-#define AMHW_ZLG217_CAN_INT_RECV             (0x1 << 0ul)  /**< \brief ½ÓÊÕÖĞ¶Ï */
+#define AMHW_ZLG217_CAN_INT_BUS_ERR          (0x1 << 7ul)  /**< \brief æ€»çº¿é”™è¯¯ä¸­æ–­ */
+#define AMHW_ZLG217_CAN_INT_ARBITRATION_LOST (0x1 << 6ul)  /**< \brief ä»²è£ä¸¢å¤±ä¸­æ–­ */
+#define AMHW_ZLG217_CAN_INT_ERR_PASSIVE      (0x1 << 5ul)  /**< \brief é”™è¯¯æ¶ˆæä¸­æ–­ */
+#define AMHW_ZLG217_CAN_INT_WAKEUP           (0x1 << 4ul)  /**< \brief å”¤é†’ä¸­æ–­ */
+#define AMHW_ZLG217_CAN_INT_OVER             (0x1 << 3ul)  /**< \brief æ•°æ®æº¢å‡ºä¸­æ–­ */
+#define AMHW_ZLG217_CAN_INT_ERR              (0x1 << 2ul)  /**< \brief é”™è¯¯ä¸­æ–­ */
+#define AMHW_ZLG217_CAN_INT_TRAN             (0x1 << 1ul)  /**< \brief å‘é€ä¸­æ–­ */
+#define AMHW_ZLG217_CAN_INT_RECV             (0x1 << 0ul)  /**< \brief æ¥æ”¶ä¸­æ–­ */
 
 /**
  * @}
  */
 
 /**
- * \brief canÖĞ¶ÏÊ¹ÄÜ
+ * \brief canä¸­æ–­ä½¿èƒ½
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] type       : canÀàĞÍ£¬Ã¶¾Ùamhw_zlg217_can_mode_t¶¨Òå
- * \param[in] flag       : ÖĞ¶Ï±êÖ¾£¬²Î¿¼ºê¶¨ÒåAMHW_ZLG217_CAN_INT_
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] type       : canç±»å‹ï¼Œæšä¸¾amhw_zlg217_can_mode_tå®šä¹‰
+ * \param[in] flag       : ä¸­æ–­æ ‡å¿—ï¼Œå‚è€ƒå®å®šä¹‰AMHW_ZLG217_CAN_INT_
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_can_int_enable (amhw_zlg217_can_t      *p_hw_can,
@@ -189,13 +189,13 @@ void amhw_zlg217_can_int_enable (amhw_zlg217_can_t      *p_hw_can,
 }
 
 /**
- * \brief canÖĞ¶Ï½ûÄÜ
+ * \brief canä¸­æ–­ç¦èƒ½
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] type       : canÀàĞÍ£¬Ã¶¾Ùamhw_zlg217_can_mode_t¶¨Òå
- * \param[in] flag       : ÖĞ¶Ï±êÖ¾£¬²Î¿¼ºê¶¨ÒåAMHW_ZLG217_CAN_INT_
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] type       : canç±»å‹ï¼Œæšä¸¾amhw_zlg217_can_mode_tå®šä¹‰
+ * \param[in] flag       : ä¸­æ–­æ ‡å¿—ï¼Œå‚è€ƒå®å®šä¹‰AMHW_ZLG217_CAN_INT_
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_can_int_disable (amhw_zlg217_can_t      *p_hw_can,
@@ -210,11 +210,11 @@ void amhw_zlg217_can_int_disable (amhw_zlg217_can_t      *p_hw_can,
 }
 
 /**
- * \brief canÖĞ¶Ï±êÖ¾¶ÁÈ¡£¬ÅĞ¶ÏÖĞ¶Ï´¥·¢Ô´
+ * \brief canä¸­æ–­æ ‡å¿—è¯»å–ï¼Œåˆ¤æ–­ä¸­æ–­è§¦å‘æº
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ´¥·¢ÖĞ¶ÏµÄÖĞ¶ÏÔ´
+ * \return è§¦å‘ä¸­æ–­çš„ä¸­æ–­æº
  */
 am_static_inline
 uint8_t amhw_zlg217_can_int_status_get (amhw_zlg217_can_t *p_hw_can)
@@ -225,16 +225,16 @@ uint8_t amhw_zlg217_can_int_status_get (amhw_zlg217_can_t *p_hw_can)
 /******************************************************************************/
 
 /**
- * \brief can Ä£Ê½ÉèÖÃ
+ * \brief can æ¨¡å¼è®¾ç½®
  *
- * \param[in] p_hw_can Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] type     canÄ£Ê½£¬Ã¶¾Ùamhw_zlg217_can_type_t¶¨Òå
- * \param[in] p_now    µ±Ç°Ä£Ê½
- * \param[in] update   ´ıÉèÖÃÄ£Ê½
+ * \param[in] p_hw_can æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] type     canæ¨¡å¼ï¼Œæšä¸¾amhw_zlg217_can_type_tå®šä¹‰
+ * \param[in] p_now    å½“å‰æ¨¡å¼
+ * \param[in] update   å¾…è®¾ç½®æ¨¡å¼
  *
- * \return ÎŞ
+ * \return æ— 
  *
- * \note basic canÄ£Ê½Ö»Ö§³Ö¸´Î»¡¢Õı³£ÔËĞĞ¡¢Ë¯ÃßÈıÖÖÄ£Ê½
+ * \note basic canæ¨¡å¼åªæ”¯æŒå¤ä½ã€æ­£å¸¸è¿è¡Œã€ç¡çœ ä¸‰ç§æ¨¡å¼
  *
  */
 void amhw_zlg217_can_mode_set (amhw_zlg217_can_t      *p_hw_can,
@@ -245,33 +245,33 @@ void amhw_zlg217_can_mode_set (amhw_zlg217_can_t      *p_hw_can,
 /******************************************************************************/
 
 /**
- * \brief ÃüÁî¼Ä´æÆ÷Ïà¹ØÎ»¶¨Òå
+ * \brief å‘½ä»¤å¯„å­˜å™¨ç›¸å…³ä½å®šä¹‰
  *
- * \note ÃüÁî¼Ä´æÆ÷ÔÚbasic canÖĞ¶Á³öÈ«Îª0xff,ÔÚpeli canÖĞ¶Á³öÈ«Îª0x00
+ * \note å‘½ä»¤å¯„å­˜å™¨åœ¨basic canä¸­è¯»å‡ºå…¨ä¸º0xff,åœ¨peli canä¸­è¯»å‡ºå…¨ä¸º0x00
  *
  * @{
  */
 
 #define AMHW_ZLG217_CAN_CMR_MASK     (0x1F)
 
-#define AMHW_ZLG217_CAN_CMR_GTS      (4ul)  /**< \brief Ë¯Ãß(basic) */
-#define AMHW_ZLG217_CAN_CMR_SRR      (4ul)  /**< \brief ×Ô½ÓÊÕÇëÇó(peli) */
-#define AMHW_ZLG217_CAN_CMR_CDO      (3ul)  /**< \brief Çå³ıÊı¾İÒç³ö */
-#define AMHW_ZLG217_CAN_CMR_RRB      (2ul)  /**< \brief ÊÍ·Å½ÓÊÕ»º³åÆ÷ */
-#define AMHW_ZLG217_CAN_CMR_AT       (1ul)  /**< \brief ÖÕÖ¹´«Êä */
-#define AMHW_ZLG217_CAN_CMR_TR       (0ul)  /**< \brief ·¢ËÍÇëÇó */
+#define AMHW_ZLG217_CAN_CMR_GTS      (4ul)  /**< \brief ç¡çœ (basic) */
+#define AMHW_ZLG217_CAN_CMR_SRR      (4ul)  /**< \brief è‡ªæ¥æ”¶è¯·æ±‚(peli) */
+#define AMHW_ZLG217_CAN_CMR_CDO      (3ul)  /**< \brief æ¸…é™¤æ•°æ®æº¢å‡º */
+#define AMHW_ZLG217_CAN_CMR_RRB      (2ul)  /**< \brief é‡Šæ”¾æ¥æ”¶ç¼“å†²å™¨ */
+#define AMHW_ZLG217_CAN_CMR_AT       (1ul)  /**< \brief ç»ˆæ­¢ä¼ è¾“ */
+#define AMHW_ZLG217_CAN_CMR_TR       (0ul)  /**< \brief å‘é€è¯·æ±‚ */
 
 /**
  * @}
  */
 
 /**
- * \brief Ğ´ÈëcanÃüÁî
+ * \brief å†™å…¥canå‘½ä»¤
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] cmr        : ÃüÁîÏà¹Øºê¶¨Òå£¬²Î¿¼AMHW_ZLG217_CAN_CMR_
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] cmr        : å‘½ä»¤ç›¸å…³å®å®šä¹‰ï¼Œå‚è€ƒAMHW_ZLG217_CAN_CMR_
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_can_cmr_set (amhw_zlg217_can_t *p_hw_can, uint32_t cmr)
@@ -280,11 +280,11 @@ void amhw_zlg217_can_cmr_set (amhw_zlg217_can_t *p_hw_can, uint32_t cmr)
 }
 
 /**
- * \brief basic CAN½øÈëË¯ÃßÄ£Ê½
+ * \brief basic CANè¿›å…¥ç¡çœ æ¨¡å¼
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_basic_can_go_to_sleep (amhw_zlg217_can_t *p_hw_can)
@@ -293,11 +293,11 @@ void amhw_zlg217_basic_can_go_to_sleep (amhw_zlg217_can_t *p_hw_can)
 }
 
 /**
- * \brief basic CAN»½ĞÑ
+ * \brief basic CANå”¤é†’
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_basic_can_wake_up (amhw_zlg217_can_t *p_hw_can)
@@ -307,54 +307,54 @@ void amhw_zlg217_basic_can_wake_up (amhw_zlg217_can_t *p_hw_can)
 /******************************************************************************/
 
 /**
- * \brief ×´Ì¬¼Ä´æÆ÷Ïà¹ØÎ»¶¨Òå
+ * \brief çŠ¶æ€å¯„å­˜å™¨ç›¸å…³ä½å®šä¹‰
  * @{
  */
 
 #define AMHW_ZLG217_CAN_SR_MASK         (0xFF)
 
-#define AMHW_ZLG217_CAN_SR_BS           (0x1 << 7ul)  /**< \brief ×ÜÏß×´Ì¬Î» */
-#define AMHW_ZLG217_CAN_BUS_CLOSE       (1ul)         /**< \brief ×ÜÏß¹Ø±Õ */
-#define AMHW_ZLG217_CAN_BUS_OPEN        (0ul)         /**< \brief ×ÜÏß¿ªÆô */
+#define AMHW_ZLG217_CAN_SR_BS           (0x1 << 7ul)  /**< \brief æ€»çº¿çŠ¶æ€ä½ */
+#define AMHW_ZLG217_CAN_BUS_CLOSE       (1ul)         /**< \brief æ€»çº¿å…³é—­ */
+#define AMHW_ZLG217_CAN_BUS_OPEN        (0ul)         /**< \brief æ€»çº¿å¼€å¯ */
 
-#define AMHW_ZLG217_CAN_SR_ES           (0x1 << 6ul)  /**< \brief ³ö´í×´Ì¬Î» */
-#define AMHW_ZLG217_CAN_ERROR           (1ul)         /**< \brief ³ö´í */
+#define AMHW_ZLG217_CAN_SR_ES           (0x1 << 6ul)  /**< \brief å‡ºé”™çŠ¶æ€ä½ */
+#define AMHW_ZLG217_CAN_ERROR           (1ul)         /**< \brief å‡ºé”™ */
 #define AMHW_ZLG217_CAN_OK              (0ul)         /**< \brief OK */
 
-#define AMHW_ZLG217_CAN_SR_TS           (0x1 << 5ul)  /**< \brief ·¢ËÍ×´Ì¬Î» */
-#define AMHW_ZLG217_CAN_TRANS_RUN       (1ul)         /**< \brief ·¢ËÍ */
-#define AMHW_ZLG217_CAN_TRANS_IDLE      (0ul)         /**< \brief ¿ÕÏĞ */
+#define AMHW_ZLG217_CAN_SR_TS           (0x1 << 5ul)  /**< \brief å‘é€çŠ¶æ€ä½ */
+#define AMHW_ZLG217_CAN_TRANS_RUN       (1ul)         /**< \brief å‘é€ */
+#define AMHW_ZLG217_CAN_TRANS_IDLE      (0ul)         /**< \brief ç©ºé—² */
 
-#define AMHW_ZLG217_CAN_SR_RS           (0x1 << 4ul)  /**< \brief ½ÓÊÕ×´Ì¬Î» */
-#define AMHW_ZLG217_CAN_RECV_RUN        (1ul)         /**< \brief ½ÓÊÕ */
-#define AMHW_ZLG217_CAN_RECV_IDLE       (0ul)         /**< \brief ¿ÕÏĞ */
+#define AMHW_ZLG217_CAN_SR_RS           (0x1 << 4ul)  /**< \brief æ¥æ”¶çŠ¶æ€ä½ */
+#define AMHW_ZLG217_CAN_RECV_RUN        (1ul)         /**< \brief æ¥æ”¶ */
+#define AMHW_ZLG217_CAN_RECV_IDLE       (0ul)         /**< \brief ç©ºé—² */
 
-#define AMHW_ZLG217_CAN_SR_TCS          (0x1 << 3ul)  /**< \brief ·¢ËÍÍê±Ï×´Ì¬Î» */
-#define AMHW_ZLG217_CAN_TRANS_FINISH    (1ul)         /**< \brief ·¢ËÍÍê³É */
-#define AMHW_ZLG217_CAN_TRANS_FINISH_NO (0ul)         /**< \brief ·¢ËÍÎ´Íê³É */
+#define AMHW_ZLG217_CAN_SR_TCS          (0x1 << 3ul)  /**< \brief å‘é€å®Œæ¯•çŠ¶æ€ä½ */
+#define AMHW_ZLG217_CAN_TRANS_FINISH    (1ul)         /**< \brief å‘é€å®Œæˆ */
+#define AMHW_ZLG217_CAN_TRANS_FINISH_NO (0ul)         /**< \brief å‘é€æœªå®Œæˆ */
 
-#define AMHW_ZLG217_CAN_SR_TBS          (0x1 << 2ul)  /**< \brief ·¢ËÍ»º³åÆ÷×´Ì¬Î» */
-#define AMHW_ZLG217_CAN_TX_BUF_UNLOCK   (1ul)         /**< \brief ·¢ËÍ»º³åÆ÷ÊÍ·Å */
-#define AMHW_ZLG217_CAN_TX_BUF_LOCK     (0ul)         /**< \brief ·¢ËÍ»º³åÆ÷Ëø¶¨ */
+#define AMHW_ZLG217_CAN_SR_TBS          (0x1 << 2ul)  /**< \brief å‘é€ç¼“å†²å™¨çŠ¶æ€ä½ */
+#define AMHW_ZLG217_CAN_TX_BUF_UNLOCK   (1ul)         /**< \brief å‘é€ç¼“å†²å™¨é‡Šæ”¾ */
+#define AMHW_ZLG217_CAN_TX_BUF_LOCK     (0ul)         /**< \brief å‘é€ç¼“å†²å™¨é”å®š */
 
-#define AMHW_ZLG217_CAN_SR_DOS          (0x1 << 1ul)  /**< \brief Êı¾İÒç³ö×´Ì¬Î» */
-#define AMHW_ZLG217_CAN_DATA_OVER       (1ul)         /**< \brief Êı¾İÒç³ö */
-#define AMHW_ZLG217_CAN_DATA_OVER_NO    (0ul)         /**< \brief Êı¾İÒç³ö¿ÕÈ± */
+#define AMHW_ZLG217_CAN_SR_DOS          (0x1 << 1ul)  /**< \brief æ•°æ®æº¢å‡ºçŠ¶æ€ä½ */
+#define AMHW_ZLG217_CAN_DATA_OVER       (1ul)         /**< \brief æ•°æ®æº¢å‡º */
+#define AMHW_ZLG217_CAN_DATA_OVER_NO    (0ul)         /**< \brief æ•°æ®æº¢å‡ºç©ºç¼º */
 
-#define AMHW_ZLG217_CAN_SR_RBS          (0x1 << 0ul)  /**< \brief ½ÓÊÕ»º³åÆ÷×´Ì¬ */
-#define AMHW_ZLG217_CAN_RX_BUF_FULL     (1ul)         /**< \brief Âú */
-#define AMHW_ZLG217_CAN_RX_BUF_EMPTY    (0ul)         /**< \brief ¿Õ */
+#define AMHW_ZLG217_CAN_SR_RBS          (0x1 << 0ul)  /**< \brief æ¥æ”¶ç¼“å†²å™¨çŠ¶æ€ */
+#define AMHW_ZLG217_CAN_RX_BUF_FULL     (1ul)         /**< \brief æ»¡ */
+#define AMHW_ZLG217_CAN_RX_BUF_EMPTY    (0ul)         /**< \brief ç©º */
 
 /**
  * @}
  */
 
 /**
- * \brief »ñÈ¡CANµÄ×´Ì¬
+ * \brief è·å–CANçš„çŠ¶æ€
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return CANµÄÏà¹Ø×´Ì¬
+ * \return CANçš„ç›¸å…³çŠ¶æ€
  */
 am_static_inline
 uint32_t amhw_zlg217_can_status_get (amhw_zlg217_can_t *p_hw_can)
@@ -365,12 +365,12 @@ uint32_t amhw_zlg217_can_status_get (amhw_zlg217_can_t *p_hw_can)
 /******************************************************************************/
 
 /**
- * \brief ²¨ÌØÂÊÔ¤ÉèÖµÉèÖÃ
+ * \brief æ³¢ç‰¹ç‡é¢„è®¾å€¼è®¾ç½®
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] brp        : ²¨ÌØÂÊÔ¤ÉèÖµ£¬6bit¿í¶È
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] brp        : æ³¢ç‰¹ç‡é¢„è®¾å€¼ï¼Œ6bitå®½åº¦
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_can_brp_set (amhw_zlg217_can_t *p_hw_can, uint8_t brp)
@@ -379,11 +379,11 @@ void amhw_zlg217_can_brp_set (amhw_zlg217_can_t *p_hw_can, uint8_t brp)
 }
 
 /**
- * \brief »ñÈ¡²¨ÌØÂÊÔ¤ÉèÖµ
+ * \brief è·å–æ³¢ç‰¹ç‡é¢„è®¾å€¼
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ²¨ÌØÂÊÔ¤ÉèÖµ£¬6bit
+ * \return æ³¢ç‰¹ç‡é¢„è®¾å€¼ï¼Œ6bit
  */
 am_static_inline
 uint8_t amhw_zlg217_can_brp_get (amhw_zlg217_can_t *p_hw_can)
@@ -392,12 +392,12 @@ uint8_t amhw_zlg217_can_brp_get (amhw_zlg217_can_t *p_hw_can)
 }
 
 /**
- * \brief Í¬²½Ìø×ª¿í¶ÈÉèÖÃ
+ * \brief åŒæ­¥è·³è½¬å®½åº¦è®¾ç½®
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] sjw        : Í¬²½Ìø×ª¿í¶ÈÖµ£¬2bit¿í¶È
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] sjw        : åŒæ­¥è·³è½¬å®½åº¦å€¼ï¼Œ2bitå®½åº¦
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_can_sjw_set (amhw_zlg217_can_t *p_hw_can, uint8_t sjw)
@@ -406,11 +406,11 @@ void amhw_zlg217_can_sjw_set (amhw_zlg217_can_t *p_hw_can, uint8_t sjw)
 }
 
 /**
- * \brief »ñÈ¡Í¬²½Ìø×ª¿í¶È
+ * \brief è·å–åŒæ­¥è·³è½¬å®½åº¦
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return Í¬²½Ìø×ª¿í¶È£¬2bit
+ * \return åŒæ­¥è·³è½¬å®½åº¦ï¼Œ2bit
  */
 am_static_inline
 uint8_t amhw_zlg217_can_sjw_get (amhw_zlg217_can_t *p_hw_can)
@@ -419,13 +419,13 @@ uint8_t amhw_zlg217_can_sjw_get (amhw_zlg217_can_t *p_hw_can)
 }
 
 /**
- * \brief ²ÉÑùÄ£Ê½ÉèÖÃ
+ * \brief é‡‡æ ·æ¨¡å¼è®¾ç½®
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] sam        : ²ÉÑùÄ£Ê½Öµ£¬1bit¿í¶È£¬1 ×ÜÏß²ÉÑùÈı´Î
- *                                         0 ×ÜÏß²ÉÑùÒ»´Î
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] sam        : é‡‡æ ·æ¨¡å¼å€¼ï¼Œ1bitå®½åº¦ï¼Œ1 æ€»çº¿é‡‡æ ·ä¸‰æ¬¡
+ *                                         0 æ€»çº¿é‡‡æ ·ä¸€æ¬¡
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_can_sam_set (amhw_zlg217_can_t *p_hw_can, uint8_t sam)
@@ -434,12 +434,12 @@ void amhw_zlg217_can_sam_set (amhw_zlg217_can_t *p_hw_can, uint8_t sam)
 }
 
 /**
- * \brief »ñÈ¡²ÉÑùÄ£Ê½
+ * \brief è·å–é‡‡æ ·æ¨¡å¼
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \retval    0 ×ÜÏß²ÉÑùÒ»´Î
- *            1 ×ÜÏß²ÉÑùÈı´Î
+ * \retval    0 æ€»çº¿é‡‡æ ·ä¸€æ¬¡
+ *            1 æ€»çº¿é‡‡æ ·ä¸‰æ¬¡
  */
 am_static_inline
 uint8_t amhw_zlg217_can_sam_get (amhw_zlg217_can_t *p_hw_can)
@@ -448,12 +448,12 @@ uint8_t amhw_zlg217_can_sam_get (amhw_zlg217_can_t *p_hw_can)
 }
 
 /**
- * \brief Ê±¼ä¶Î1ÉèÖÃ
+ * \brief æ—¶é—´æ®µ1è®¾ç½®
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] tseg1        : ²ÉÑùÄ£Ê½Öµ£¬4bit¿í¶È
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] tseg1        : é‡‡æ ·æ¨¡å¼å€¼ï¼Œ4bitå®½åº¦
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_can_tseg1_set (amhw_zlg217_can_t *p_hw_can, uint8_t tseg1)
@@ -462,11 +462,11 @@ void amhw_zlg217_can_tseg1_set (amhw_zlg217_can_t *p_hw_can, uint8_t tseg1)
 }
 
 /**
- * \brief »ñÈ¡Ê±¼ä¶Î1
+ * \brief è·å–æ—¶é—´æ®µ1
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return Ê±¼ä¶Î1£¬4bit
+ * \return æ—¶é—´æ®µ1ï¼Œ4bit
  */
 am_static_inline
 uint8_t amhw_zlg217_can_tseg1_get (amhw_zlg217_can_t *p_hw_can)
@@ -475,12 +475,12 @@ uint8_t amhw_zlg217_can_tseg1_get (amhw_zlg217_can_t *p_hw_can)
 }
 
 /**
- * \brief Ê±¼ä¶Î2ÉèÖÃ
+ * \brief æ—¶é—´æ®µ2è®¾ç½®
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] tseg2        : ²ÉÑùÄ£Ê½Öµ£¬3bit¿í¶È
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] tseg2        : é‡‡æ ·æ¨¡å¼å€¼ï¼Œ3bitå®½åº¦
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_can_tseg2_set (amhw_zlg217_can_t *p_hw_can, uint8_t tseg2)
@@ -489,11 +489,11 @@ void amhw_zlg217_can_tseg2_set (amhw_zlg217_can_t *p_hw_can, uint8_t tseg2)
 }
 
 /**
- * \brief Ê±¼ä¶Î2ÉèÖÃ
+ * \brief æ—¶é—´æ®µ2è®¾ç½®
  *
- * \param[in] p_hw_can Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_can æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 uint8_t amhw_zlg217_can_tseg2_get (amhw_zlg217_can_t *p_hw_can)
@@ -504,11 +504,11 @@ uint8_t amhw_zlg217_can_tseg2_get (amhw_zlg217_can_t *p_hw_can)
 /******************************************************************************/
 
 /**
- * \brief basicCAN¸´Î»ÇëÇó
+ * \brief basicCANå¤ä½è¯·æ±‚
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_basic_can_reset_set (amhw_zlg217_can_t *p_hw_can)
@@ -517,11 +517,11 @@ void amhw_zlg217_basic_can_reset_set (amhw_zlg217_can_t *p_hw_can)
 }
 
 /**
- * \brief basicCAN¸´Î»ÇëÇóÇå³ı
+ * \brief basicCANå¤ä½è¯·æ±‚æ¸…é™¤
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_basic_can_reset_clr (amhw_zlg217_can_t *p_hw_can)
@@ -530,11 +530,11 @@ void amhw_zlg217_basic_can_reset_clr (amhw_zlg217_can_t *p_hw_can)
 }
 
 /**
- * \brief »ñÈ¡basicCAN¸´Î»±êÖ¾
+ * \brief è·å–basicCANå¤ä½æ ‡å¿—
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 am_bool_t amhw_zlg217_basic_can_reset_get (amhw_zlg217_can_t *p_hw_can)
@@ -543,12 +543,12 @@ am_bool_t amhw_zlg217_basic_can_reset_get (amhw_zlg217_can_t *p_hw_can)
 }
 
 /**
- * \brief basicCANÑéÊÕ´úÂëÉèÖÃ
+ * \brief basicCANéªŒæ”¶ä»£ç è®¾ç½®
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] ac         : ÑéÊÕ´úÂë
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] ac         : éªŒæ”¶ä»£ç 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_basic_can_ac_set (amhw_zlg217_can_t *p_hw_can, uint8_t ac)
@@ -557,11 +557,11 @@ void amhw_zlg217_basic_can_ac_set (amhw_zlg217_can_t *p_hw_can, uint8_t ac)
 }
 
 /**
- * \brief »ñÈ¡basicCANÑéÊÕ´úÂë
+ * \brief è·å–basicCANéªŒæ”¶ä»£ç 
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÑéÊÕ´úÂë
+ * \return éªŒæ”¶ä»£ç 
  */
 am_static_inline
 uint8_t amhw_zlg217_basic_can_ac_get (amhw_zlg217_can_t *p_hw_can)
@@ -570,12 +570,12 @@ uint8_t amhw_zlg217_basic_can_ac_get (amhw_zlg217_can_t *p_hw_can)
 }
 
 /**
- * \brief basicCANÑéÊÕÆÁ±ÎÖµÉèÖÃ
+ * \brief basicCANéªŒæ”¶å±è”½å€¼è®¾ç½®
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] am         : ÑéÊÕÆÁ±ÎÖµ
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] am         : éªŒæ”¶å±è”½å€¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_basic_can_am_set (amhw_zlg217_can_t *p_hw_can, uint8_t am)
@@ -584,11 +584,11 @@ void amhw_zlg217_basic_can_am_set (amhw_zlg217_can_t *p_hw_can, uint8_t am)
 }
 
 /**
- * \brief »ñÈ¡basicCANÑéÊÕÆÁ±ÎÖµ
+ * \brief è·å–basicCANéªŒæ”¶å±è”½å€¼
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÑéÊÕÆÁ±ÎÖµ
+ * \return éªŒæ”¶å±è”½å€¼
  */
 am_static_inline
 uint8_t amhw_zlg217_basic_can_am_get (amhw_zlg217_can_t *p_hw_can)
@@ -597,12 +597,12 @@ uint8_t amhw_zlg217_basic_can_am_get (amhw_zlg217_can_t *p_hw_can)
 }
 
 /**
- * \brief basicCANĞ´11Î»·¢ËÍ±êÊ¶·û
+ * \brief basicCANå†™11ä½å‘é€æ ‡è¯†ç¬¦
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] id         : ±êÊ¶·û11bit
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] id         : æ ‡è¯†ç¬¦11bit
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_basic_can_tx_id_write (amhw_zlg217_can_t *p_hw_can,
@@ -615,12 +615,12 @@ void amhw_zlg217_basic_can_tx_id_write (amhw_zlg217_can_t *p_hw_can,
 }
 
 /**
- * \brief basicCANÔ¶³Ì±êÖ¾Î»RTRĞ´Èë
+ * \brief basicCANè¿œç¨‹æ ‡å¿—ä½RTRå†™å…¥
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] rtr        : rtrÖµ£¬0/1
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] rtr        : rtrå€¼ï¼Œ0/1
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_basic_can_tx_rtr_write (amhw_zlg217_can_t *p_hw_can,
@@ -632,12 +632,12 @@ void amhw_zlg217_basic_can_tx_rtr_write (amhw_zlg217_can_t *p_hw_can,
 }
 
 /**
- * \brief basicCANĞ´·¢ËÍÊı¾İ³¤¶È
+ * \brief basicCANå†™å‘é€æ•°æ®é•¿åº¦
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] len        : Êı¾İ³¤¶È0-8bytes
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] len        : æ•°æ®é•¿åº¦0-8bytes
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_basic_can_tx_data_len_set (amhw_zlg217_can_t *p_hw_can,
@@ -648,13 +648,13 @@ void amhw_zlg217_basic_can_tx_data_len_set (amhw_zlg217_can_t *p_hw_can,
 }
 
 /**
- * \brief basicCANĞ´·¢ËÍÊı¾İ
+ * \brief basicCANå†™å‘é€æ•°æ®
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] offset     : Êı¾İÆ«ÒÆ0-8
- * \param[in] val        : Êı¾İÖµ
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] offset     : æ•°æ®åç§»0-8
+ * \param[in] val        : æ•°æ®å€¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_basic_can_tx_data_write (amhw_zlg217_can_t *p_hw_can,
@@ -665,11 +665,11 @@ void amhw_zlg217_basic_can_tx_data_write (amhw_zlg217_can_t *p_hw_can,
 }
 
 /**
- * \brief basicCAN¶Á11Î»½ÓÊÕ±êÊ¶·û
+ * \brief basicCANè¯»11ä½æ¥æ”¶æ ‡è¯†ç¬¦
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ±êÊ¶·û
+ * \return æ ‡è¯†ç¬¦
  */
 am_static_inline
 uint16_t amhw_zlg217_basic_can_rx_id_read (amhw_zlg217_can_t *p_hw_can)
@@ -679,11 +679,11 @@ uint16_t amhw_zlg217_basic_can_rx_id_read (amhw_zlg217_can_t *p_hw_can)
 }
 
 /**
- * \brief basicCAN¶ÁÔ¶³Ì±êÖ¾Î»RTR
+ * \brief basicCANè¯»è¿œç¨‹æ ‡å¿—ä½RTR
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return rtrÖµ
+ * \return rtrå€¼
  */
 am_static_inline
 uint8_t amhw_zlg217_basic_can_rx_rtr_read (amhw_zlg217_can_t *p_hw_can)
@@ -692,11 +692,11 @@ uint8_t amhw_zlg217_basic_can_rx_rtr_read (amhw_zlg217_can_t *p_hw_can)
 }
 
 /**
- * \brief basicCAN¶Á½ÓÊÕÊı¾İ³¤¶È
+ * \brief basicCANè¯»æ¥æ”¶æ•°æ®é•¿åº¦
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return Êı¾İ³¤¶È0-8bytes
+ * \return æ•°æ®é•¿åº¦0-8bytes
  */
 am_static_inline
 uint8_t amhw_zlg217_basic_can_rx_data_len_read (amhw_zlg217_can_t *p_hw_can)
@@ -705,12 +705,12 @@ uint8_t amhw_zlg217_basic_can_rx_data_len_read (amhw_zlg217_can_t *p_hw_can)
 }
 
 /**
- * \brief basicCAN¶Á½ÓÊÕµÄÊı¾İ
+ * \brief basicCANè¯»æ¥æ”¶çš„æ•°æ®
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] offset     : Êı¾İÆ«ÒÆ0-8
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] offset     : æ•°æ®åç§»0-8
  *
- * \return Êı¾İÖµ
+ * \return æ•°æ®å€¼
  */
 am_static_inline
 uint8_t amhw_zlg217_basic_can_rx_data_read (amhw_zlg217_can_t *p_hw_can,
@@ -722,27 +722,27 @@ uint8_t amhw_zlg217_basic_can_rx_data_read (amhw_zlg217_can_t *p_hw_can,
 /******************************************************************************/
 
 /**
- * \brief Ä£Ê½¼Ä´æÆ÷Ïà¹ØÎ»¶¨Òå
+ * \brief æ¨¡å¼å¯„å­˜å™¨ç›¸å…³ä½å®šä¹‰
  * @{
  */
 
-#define AMHW_ZLG217_CAN_PELI_MODE_SM       (4ul)  /**< \brief Ë¯ÃßÄ£Ê½ */
-#define AMHW_ZLG217_CAN_PELI_MODE_AFM      (3ul)  /**< \brief ÑéÊÕÂË²¨Æ÷Ä£Ê½ */
-#define AMHW_ZLG217_CAN_PELI_MODE_STM      (2ul)  /**< \brief ×Ô¼ì²âÄ£Ê½ */
-#define AMHW_ZLG217_CAN_PELI_MODE_LOM      (1ul)  /**< \brief Ö»ÌıÄ£Ê½ */
-#define AMHW_ZLG217_CAN_PELI_MODE_RM       (0ul)  /**< \brief ¸´Î»Ä£Ê½ */
+#define AMHW_ZLG217_CAN_PELI_MODE_SM       (4ul)  /**< \brief ç¡çœ æ¨¡å¼ */
+#define AMHW_ZLG217_CAN_PELI_MODE_AFM      (3ul)  /**< \brief éªŒæ”¶æ»¤æ³¢å™¨æ¨¡å¼ */
+#define AMHW_ZLG217_CAN_PELI_MODE_STM      (2ul)  /**< \brief è‡ªæ£€æµ‹æ¨¡å¼ */
+#define AMHW_ZLG217_CAN_PELI_MODE_LOM      (1ul)  /**< \brief åªå¬æ¨¡å¼ */
+#define AMHW_ZLG217_CAN_PELI_MODE_RM       (0ul)  /**< \brief å¤ä½æ¨¡å¼ */
 
 /**
  * @}
  */
 
 /**
- * \brief peli CANÄ£Ê½ÉèÖÃ
+ * \brief peli CANæ¨¡å¼è®¾ç½®
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] flag       : ²Î¿¼AMHW_ZLG217_CAN_PELI_MODE_
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] flag       : å‚è€ƒAMHW_ZLG217_CAN_PELI_MODE_
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_peli_can_mod_set (amhw_zlg217_can_t *p_hw_can,
@@ -752,12 +752,12 @@ void amhw_zlg217_peli_can_mod_set (amhw_zlg217_can_t *p_hw_can,
 }
 
 /**
- * \brief peli CANÄ£Ê½Çå³ı
+ * \brief peli CANæ¨¡å¼æ¸…é™¤
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] flag       : ²Î¿¼AMHW_ZLG217_CAN_PELI_MODE_
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] flag       : å‚è€ƒAMHW_ZLG217_CAN_PELI_MODE_
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_peli_can_mod_clr (amhw_zlg217_can_t *p_hw_can,
@@ -767,11 +767,11 @@ void amhw_zlg217_peli_can_mod_clr (amhw_zlg217_can_t *p_hw_can,
 }
 
 /**
- * \brief peli CANÄ£Ê½»ñÈ¡
+ * \brief peli CANæ¨¡å¼è·å–
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return Ä£Ê½
+ * \return æ¨¡å¼
  */
 am_static_inline
 uint8_t amhw_zlg217_peli_can_mod_get (amhw_zlg217_can_t *p_hw_can)
@@ -781,12 +781,12 @@ uint8_t amhw_zlg217_peli_can_mod_get (amhw_zlg217_can_t *p_hw_can)
 }
 
 /**
- * \brief peli CANÂË²¨Æ÷Ä£Ê½ÉèÖÃ
+ * \brief peli CANæ»¤æ³¢å™¨æ¨¡å¼è®¾ç½®
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] mode       : ²Î¿¼Ã¶¾Ùamhw_zlg217_can_peli_filter_mode_t
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] mode       : å‚è€ƒæšä¸¾amhw_zlg217_can_peli_filter_mode_t
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_peli_filter_mod_set (amhw_zlg217_can_t *p_hw_can,
@@ -800,11 +800,11 @@ void amhw_zlg217_peli_filter_mod_set (amhw_zlg217_can_t *p_hw_can,
 }
 
 /**
- * \brief »ñÈ¡peli CANÂË²¨Æ÷Ä£Ê½ÉèÖÃ
+ * \brief è·å–peli CANæ»¤æ³¢å™¨æ¨¡å¼è®¾ç½®
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ²Î¿¼Ã¶¾Ùamhw_zlg217_can_peli_filter_mode_t
+ * \return å‚è€ƒæšä¸¾amhw_zlg217_can_peli_filter_mode_t
  */
 am_static_inline amhw_zlg217_can_peli_filter_mode_t
 amhw_zlg217_peli_filter_mod_get (amhw_zlg217_can_t *p_hw_can)
@@ -815,17 +815,17 @@ amhw_zlg217_peli_filter_mod_get (amhw_zlg217_can_t *p_hw_can)
 }
 
 /**
- * \brief peli CAN ÖÙ²Ã¶ªÊ§²¶×½¼Ä´æÆ÷Öµ»ñÈ¡
+ * \brief peli CAN ä»²è£ä¸¢å¤±æ•æ‰å¯„å­˜å™¨å€¼è·å–
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ¼Ä´æÆ÷Öµ,Öµ¶ÔÓ¦ÈçÏÂ
+ * \return å¯„å­˜å™¨å€¼,å€¼å¯¹åº”å¦‚ä¸‹
  *
- * \note 1. 0 - 11±íÊ¾ÖÙ²Ã¶ªÊ§ÔÚÊ¶±ğÂëbit1 - bit11
- *       2. 11±íÊ¾ÖÙ²Ã¶ªÊ§ÔÚSRTRÎ»
- *       3. 12±íÊ¾ÖÙ²Ã¶ªÊ§ÔÚIDEÎ»
- *       4. 13 - 30±íÊ¾ÖÙ²Ã¶ªÊ§ÔÚÊ¶±ğÂëbit12 - bit29
- *       5. 31±íÊ¾ÖÙ²Ã¶ªÊ§ÔÚRTRÎ»
+ * \note 1. 0 - 11è¡¨ç¤ºä»²è£ä¸¢å¤±åœ¨è¯†åˆ«ç bit1 - bit11
+ *       2. 11è¡¨ç¤ºä»²è£ä¸¢å¤±åœ¨SRTRä½
+ *       3. 12è¡¨ç¤ºä»²è£ä¸¢å¤±åœ¨IDEä½
+ *       4. 13 - 30è¡¨ç¤ºä»²è£ä¸¢å¤±åœ¨è¯†åˆ«ç bit12 - bit29
+ *       5. 31è¡¨ç¤ºä»²è£ä¸¢å¤±åœ¨RTRä½
  */
 am_static_inline
 uint8_t amhw_zlg217_peli_can_alc_get (amhw_zlg217_can_t *p_hw_can)
@@ -834,16 +834,16 @@ uint8_t amhw_zlg217_peli_can_alc_get (amhw_zlg217_can_t *p_hw_can)
 }
 
 /**
- * \brief peli CAN´íÎó´úºÅ
+ * \brief peli CANé”™è¯¯ä»£å·
  * @{
  */
 
-#define AMHW_ZLG217_CAN_PELI_ECC_ERRC_MASK    (0x3)  /**< \brief ´íÎó´úÂëÑÚÂë */
-#define AMHW_ZLG217_CAN_PELI_ECC_ERRC_SHIFT   (6ul)  /**< \brief ´íÎó´úÂëÆğÊ¼Î» */
-#define AMHW_ZLG217_CAN_PELI_ECC_ERRC_BIT     (0ul)  /**< \brief Î»´íÎó */
-#define AMHW_ZLG217_CAN_PELI_ECC_ERRC_MODE    (1ul)  /**< \brief ¸ñÊ½´íÎó */
-#define AMHW_ZLG217_CAN_PELI_ECC_ERRC_FILL    (2ul)  /**< \brief Ìî³ä´íÎó */
-#define AMHW_ZLG217_CAN_PELI_ECC_ERRC_OTHER   (3ul)  /**< \brief ÆäËû´íÎó */
+#define AMHW_ZLG217_CAN_PELI_ECC_ERRC_MASK    (0x3)  /**< \brief é”™è¯¯ä»£ç æ©ç  */
+#define AMHW_ZLG217_CAN_PELI_ECC_ERRC_SHIFT   (6ul)  /**< \brief é”™è¯¯ä»£ç èµ·å§‹ä½ */
+#define AMHW_ZLG217_CAN_PELI_ECC_ERRC_BIT     (0ul)  /**< \brief ä½é”™è¯¯ */
+#define AMHW_ZLG217_CAN_PELI_ECC_ERRC_MODE    (1ul)  /**< \brief æ ¼å¼é”™è¯¯ */
+#define AMHW_ZLG217_CAN_PELI_ECC_ERRC_FILL    (2ul)  /**< \brief å¡«å……é”™è¯¯ */
+#define AMHW_ZLG217_CAN_PELI_ECC_ERRC_OTHER   (3ul)  /**< \brief å…¶ä»–é”™è¯¯ */
 
 /** \brief 1:RX;0:TX */
 #define AMHW_ZLG217_CAN_PELI_ECC_DIR_RX             (0x1 << 3ul)
@@ -853,51 +853,51 @@ uint8_t amhw_zlg217_peli_can_alc_get (amhw_zlg217_can_t *p_hw_can)
 
 /** \brief ID.28-ID.21 */
 #define AMHW_ZLG217_CAN_PELI_ECC_CODE_ID28_21       (2ul)
-/** \brief Ö¡¿ªÊ¼ */
+/** \brief å¸§å¼€å§‹ */
 #define AMHW_ZLG217_CAN_PELI_ECC_CODE_FRAME_STRAT   (3ul)
-/** \brief SRTRÎ» */
+/** \brief SRTRä½ */
 #define AMHW_ZLG217_CAN_PELI_ECC_CODE_SRTR          (4ul)
-/** \brief IDEÎ» */
+/** \brief IDEä½ */
 #define AMHW_ZLG217_CAN_PELI_ECC_CODE_IDE           (5ul)
 /** \brief ID.20-ID.18 */
 #define AMHW_ZLG217_CAN_PELI_ECC_CODE_ID20_18       (6ul)
 /** \brief ID.17-ID.13 */
 #define AMHW_ZLG217_CAN_PELI_ECC_CODE_ID17_13       (7ul)
-/** \brief CRCĞòÁĞ */
+/** \brief CRCåºåˆ— */
 #define AMHW_ZLG217_CAN_PELI_ECC_CODE_CRC_ARRAY     (8ul)
-/** \brief ±£ÁôÎ»0 */
+/** \brief ä¿ç•™ä½0 */
 #define AMHW_ZLG217_CAN_PELI_ECC_CODE_RESERVE0      (9ul)
-/** \brief Êı¾İÇø */
+/** \brief æ•°æ®åŒº */
 #define AMHW_ZLG217_CAN_PELI_ECC_CODE_DATA          (10ul)
-/** \brief Êı¾İ³¤¶È´úÂë */
+/** \brief æ•°æ®é•¿åº¦ä»£ç  */
 #define AMHW_ZLG217_CAN_PELI_ECC_CODE_DATA_LEN      (11ul)
-/** \brief RTRÎ» */
+/** \brief RTRä½ */
 #define AMHW_ZLG217_CAN_PELI_ECC_CODE_RTR           (12ul)
-/** \brief ±£ÁôÎ»1 */
+/** \brief ä¿ç•™ä½1 */
 #define AMHW_ZLG217_CAN_PELI_ECC_CODE_RESERVR1      (13ul)
 /** \brief ID.4-ID.0 */
 #define AMHW_ZLG217_CAN_PELI_ECC_CODE_ID4_0         (14ul)
 /** \brief ID.12-ID.5 */
 #define AMHW_ZLG217_CAN_PELI_ECC_CODE_ID12_5        (15ul)
-/** \brief »î¶¯´íÎó±êÖ¾ */
+/** \brief æ´»åŠ¨é”™è¯¯æ ‡å¿— */
 #define AMHW_ZLG217_CAN_PELI_ECC_CODE_ACTIVITY_ERR  (17ul)
-/** \brief ÖĞÖ¹ */
+/** \brief ä¸­æ­¢ */
 #define AMHW_ZLG217_CAN_PELI_ECC_CODE_BREAK_OFF     (18ul)
-/** \brief Ö§Åä£¨¿ØÖÆ£©Î»Îó²î */
+/** \brief æ”¯é…ï¼ˆæ§åˆ¶ï¼‰ä½è¯¯å·® */
 #define AMHW_ZLG217_CAN_PELI_ECC_CODE_CR_BIT        (19ul)
-/** \brief Ïû¼«´íÎó±êÖ¾ */
+/** \brief æ¶ˆæé”™è¯¯æ ‡å¿— */
 #define AMHW_ZLG217_CAN_PELI_ECC_CODE_PASSIVE       (22ul)
-/** \brief ´íÎó¶¨Òå·û */
+/** \brief é”™è¯¯å®šä¹‰ç¬¦ */
 #define AMHW_ZLG217_CAN_PELI_ECC_CODE_ERR           (23ul)
-/** \brief CRC¶¨Òå·û */
+/** \brief CRCå®šä¹‰ç¬¦ */
 #define AMHW_ZLG217_CAN_PELI_ECC_CODE_CRC           (24ul)
-/** \brief Ó¦´ğÍ¨µÀ */
+/** \brief åº”ç­”é€šé“ */
 #define AMHW_ZLG217_CAN_PELI_ECC_CODE_ACK_CH        (25ul)
-/** \brief Ö¡½áÊø */
+/** \brief å¸§ç»“æŸ */
 #define AMHW_ZLG217_CAN_PELI_ECC_CODE_FRAME_END     (26ul)
-/** \brief Ó¦´ğ¶¨Òå·û */
+/** \brief åº”ç­”å®šä¹‰ç¬¦ */
 #define AMHW_ZLG217_CAN_PELI_ECC_CODE_ACK           (27ul)
-/** \brief Òç³ö±êÖ¾ */
+/** \brief æº¢å‡ºæ ‡å¿— */
 #define AMHW_ZLG217_CAN_PELI_ECC_CODE_OVERFLOW      (28ul)
 
 /**
@@ -905,11 +905,11 @@ uint8_t amhw_zlg217_peli_can_alc_get (amhw_zlg217_can_t *p_hw_can)
  */
 
 /**
- * \brief peli CAN ´íÎó´úÂë²¶×½¼Ä´æÆ÷Öµ»ñÈ¡
+ * \brief peli CAN é”™è¯¯ä»£ç æ•æ‰å¯„å­˜å™¨å€¼è·å–
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ¼Ä´æÆ÷Öµ
+ * \return å¯„å­˜å™¨å€¼
  */
 am_static_inline
 uint8_t amhw_zlg217_peli_can_ecc_get (amhw_zlg217_can_t *p_hw_can)
@@ -918,12 +918,12 @@ uint8_t amhw_zlg217_peli_can_ecc_get (amhw_zlg217_can_t *p_hw_can)
 }
 
 /**
- * \brief peli CAN ´íÎó±¨¾¯ÏŞÖÆ¼Ä´æÆ÷Ğ´Èë
+ * \brief peli CAN é”™è¯¯æŠ¥è­¦é™åˆ¶å¯„å­˜å™¨å†™å…¥
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] val        : ÏŞÖÆÖµ
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] val        : é™åˆ¶å€¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_peli_can_ewlr_write (amhw_zlg217_can_t *p_hw_can,
@@ -933,11 +933,11 @@ void amhw_zlg217_peli_can_ewlr_write (amhw_zlg217_can_t *p_hw_can,
 }
 
 /**
- * \brief peli CAN ´íÎó±¨¾¯ÏŞÖÆ¼Ä´æÆ÷¶ÁÈ¡
+ * \brief peli CAN é”™è¯¯æŠ¥è­¦é™åˆ¶å¯„å­˜å™¨è¯»å–
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÏŞÖÆÖµ
+ * \return é™åˆ¶å€¼
  */
 am_static_inline
 uint8_t  amhw_zlg217_peli_can_ewlr_read (amhw_zlg217_can_t *p_hw_can)
@@ -946,12 +946,12 @@ uint8_t  amhw_zlg217_peli_can_ewlr_read (amhw_zlg217_can_t *p_hw_can)
 }
 
 /**
- * \brief peli CAN RX´íÎó¼ÆÊı¼Ä´æÆ÷Ğ´Èë
+ * \brief peli CAN RXé”™è¯¯è®¡æ•°å¯„å­˜å™¨å†™å…¥
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] init       : ³õÊ¼Öµ
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] init       : åˆå§‹å€¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_peli_can_rxerr_write (amhw_zlg217_can_t *p_hw_can,
@@ -961,11 +961,11 @@ void amhw_zlg217_peli_can_rxerr_write (amhw_zlg217_can_t *p_hw_can,
 }
 
 /**
- * \brief peli CAN RX´íÎó¼ÆÊı¼Ä´æÆ÷¶ÁÈ¡
+ * \brief peli CAN RXé”™è¯¯è®¡æ•°å¯„å­˜å™¨è¯»å–
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ´íÎó¼ÆÊıÆ÷µÄÖµ
+ * \return é”™è¯¯è®¡æ•°å™¨çš„å€¼
  */
 am_static_inline
 uint8_t  amhw_zlg217_peli_can_rxerr_read (amhw_zlg217_can_t *p_hw_can)
@@ -974,12 +974,12 @@ uint8_t  amhw_zlg217_peli_can_rxerr_read (amhw_zlg217_can_t *p_hw_can)
 }
 
 /**
- * \brief peli CAN TX´íÎó¼ÆÊı¼Ä´æÆ÷Ğ´Èë
+ * \brief peli CAN TXé”™è¯¯è®¡æ•°å¯„å­˜å™¨å†™å…¥
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] init       : ³õÊ¼Öµ
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] init       : åˆå§‹å€¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_peli_can_txerr_write (amhw_zlg217_can_t *p_hw_can,
@@ -989,11 +989,11 @@ void amhw_zlg217_peli_can_txerr_write (amhw_zlg217_can_t *p_hw_can,
 }
 
 /**
- * \brief peli CAN TX´íÎó¼ÆÊı¼Ä´æÆ÷¶ÁÈ¡
+ * \brief peli CAN TXé”™è¯¯è®¡æ•°å¯„å­˜å™¨è¯»å–
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ´íÎó¼ÆÊıÆ÷µÄÖµ
+ * \return é”™è¯¯è®¡æ•°å™¨çš„å€¼
  */
 am_static_inline
 uint8_t  amhw_zlg217_peli_can_txerr_read (amhw_zlg217_can_t *p_hw_can)
@@ -1002,30 +1002,30 @@ uint8_t  amhw_zlg217_peli_can_txerr_read (amhw_zlg217_can_t *p_hw_can)
 }
 
 /**
- * \brief ff¼Ä´æÆ÷Ïà¹ØÎ»¶¨Òå
+ * \brief ffå¯„å­˜å™¨ç›¸å…³ä½å®šä¹‰
  *
- * \note ff¼Ä´æÆ÷Ö»ÄÜÒ»´ÎÈ«²¿Ğ´Èë£¬²»¿ÉÒ»Î»Ò»Î»Ğ´Èë
+ * \note ffå¯„å­˜å™¨åªèƒ½ä¸€æ¬¡å…¨éƒ¨å†™å…¥ï¼Œä¸å¯ä¸€ä½ä¸€ä½å†™å…¥
  *
  * @{
  */
 
-#define AMHW_ZLG217_CAN_PELI_SFF_FF         (0x1 << 7)  /**< \brief Ô¶³Ì±êÖ¾Î» */
-#define AMHW_ZLG217_CAN_PELI_SFF_RTR        (0x1 << 6)  /**< \brief RTR±êÖ¾ */
+#define AMHW_ZLG217_CAN_PELI_SFF_FF         (0x1 << 7)  /**< \brief è¿œç¨‹æ ‡å¿—ä½ */
+#define AMHW_ZLG217_CAN_PELI_SFF_RTR        (0x1 << 6)  /**< \brief RTRæ ‡å¿— */
 
-#define AMHW_ZLG217_CAN_PELI_SFF_DLC_SHIFT  (0ul)       /**< \brief DLCÒÆ¶¯Î»Êı */
-#define AMHW_ZLG217_CAN_PELI_SFF_DLC_MASK   (0xf)       /**< \brief DLCÑÚÂë */
+#define AMHW_ZLG217_CAN_PELI_SFF_DLC_SHIFT  (0ul)       /**< \brief DLCç§»åŠ¨ä½æ•° */
+#define AMHW_ZLG217_CAN_PELI_SFF_DLC_MASK   (0xf)       /**< \brief DLCæ©ç  */
 
 /**
  * @}
  */
 
 /**
- * \brief peli CAN SFFÉèÖÃ
+ * \brief peli CAN SFFè®¾ç½®
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] val        : ´ıÉèÖÃÖµ
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] val        : å¾…è®¾ç½®å€¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg217_peli_can_sff_set (amhw_zlg217_can_t *p_hw_can,
@@ -1035,11 +1035,11 @@ void amhw_zlg217_peli_can_sff_set (amhw_zlg217_can_t *p_hw_can,
 }
 
 /**
- * \brief peli CAN SFF»ñÈ¡
+ * \brief peli CAN SFFè·å–
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ¼Ä´æÆ÷Öµ
+ * \return å¯„å­˜å™¨å€¼
  */
 am_static_inline
 uint8_t amhw_zlg217_peli_can_sff_get (amhw_zlg217_can_t *p_hw_can)
@@ -1048,13 +1048,13 @@ uint8_t amhw_zlg217_peli_can_sff_get (amhw_zlg217_can_t *p_hw_can)
 }
 
 /**
- * \brief peli CAN IDÉèÖÃ
+ * \brief peli CAN IDè®¾ç½®
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] is_extend  : AM_TRUE À©Õ¹Ö¡£»AM_FALSE ±ê×¼Ö¡
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] is_extend  : AM_TRUE æ‰©å±•å¸§ï¼›AM_FALSE æ ‡å‡†å¸§
  * \param[in] id         : id
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void  amhw_zlg217_peli_can_id_set (amhw_zlg217_can_t *p_hw_can,
@@ -1073,10 +1073,10 @@ void  amhw_zlg217_peli_can_id_set (amhw_zlg217_can_t *p_hw_can,
 }
 
 /**
- * \brief peli CAN ID»ñÈ¡
+ * \brief peli CAN IDè·å–
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] is_extend  : AM_TRUE À©Õ¹Ö¡£»AM_FALSE ±ê×¼Ö¡
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] is_extend  : AM_TRUE æ‰©å±•å¸§ï¼›AM_FALSE æ ‡å‡†å¸§
  *
  * \return id
  */
@@ -1100,14 +1100,14 @@ uint32_t amhw_zlg217_peli_can_id_get (amhw_zlg217_can_t *p_hw_can,
 }
 
 /**
- * \brief peli CAN Êı¾İĞ´Èë
+ * \brief peli CAN æ•°æ®å†™å…¥
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] is_extend  : AM_TRUE À©Õ¹Ö¡£»AM_FALSE ±ê×¼Ö¡
- * \param[in] offset     : Æ«ÒÆ
- * \param[in] val        : Êı¾İ
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] is_extend  : AM_TRUE æ‰©å±•å¸§ï¼›AM_FALSE æ ‡å‡†å¸§
+ * \param[in] offset     : åç§»
+ * \param[in] val        : æ•°æ®
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void  amhw_zlg217_peli_can_data_write (amhw_zlg217_can_t *p_hw_can,
@@ -1123,13 +1123,13 @@ void  amhw_zlg217_peli_can_data_write (amhw_zlg217_can_t *p_hw_can,
 }
 
 /**
- * \brief peli CAN Êı¾İ¶ÁÈ¡
+ * \brief peli CAN æ•°æ®è¯»å–
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] is_extend  : AM_TRUE À©Õ¹Ö¡£»AM_FALSE ±ê×¼Ö¡
- * \param[in] offset     : Æ«ÒÆ
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] is_extend  : AM_TRUE æ‰©å±•å¸§ï¼›AM_FALSE æ ‡å‡†å¸§
+ * \param[in] offset     : åç§»
  *
- * \return Êı¾İ
+ * \return æ•°æ®
  */
 am_static_inline
 uint8_t amhw_zlg217_peli_can_data_read (amhw_zlg217_can_t *p_hw_can,
@@ -1144,12 +1144,12 @@ uint8_t amhw_zlg217_peli_can_data_read (amhw_zlg217_can_t *p_hw_can,
 }
 
 /**
- * \brief peli CAN ÑéÊÕ´úÂëÉèÖÃ
+ * \brief peli CAN éªŒæ”¶ä»£ç è®¾ç½®
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] ac         : ÂË²¨Öµ
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] ac         : æ»¤æ³¢å€¼
  *
- * \return Êı¾İ
+ * \return æ•°æ®
  */
 am_static_inline
 void amhw_zlg217_peli_can_ac_set (amhw_zlg217_can_t *p_hw_can,
@@ -1162,9 +1162,9 @@ void amhw_zlg217_peli_can_ac_set (amhw_zlg217_can_t *p_hw_can,
 }
 
 /**
- * \brief peli CAN ÑéÊÕ´úÂë»ñÈ¡
+ * \brief peli CAN éªŒæ”¶ä»£ç è·å–
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
  * \return ac
  */
@@ -1182,12 +1182,12 @@ uint32_t amhw_zlg217_peli_can_ac_get (amhw_zlg217_can_t *p_hw_can)
 }
 
 /**
- * \brief peli CAN ÆÁ±Î¼Ä´æÆ÷ÉèÖÃ
+ * \brief peli CAN å±è”½å¯„å­˜å™¨è®¾ç½®
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] am         : ÆÁ±ÎÖµ
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] am         : å±è”½å€¼
  *
- * \return Êı¾İ
+ * \return æ•°æ®
  */
 am_static_inline
 void amhw_zlg217_peli_can_am_set (amhw_zlg217_can_t *p_hw_can,
@@ -1200,9 +1200,9 @@ void amhw_zlg217_peli_can_am_set (amhw_zlg217_can_t *p_hw_can,
 }
 
 /**
- * \brief peli CAN ÆÁ±Î¼Ä´æÆ÷»ñÈ¡
+ * \brief peli CAN å±è”½å¯„å­˜å™¨è·å–
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
  * \return am
  */
@@ -1222,10 +1222,10 @@ uint32_t amhw_zlg217_peli_can_am_get (amhw_zlg217_can_t *p_hw_can)
 /******************************************************************************/
 
 /**
- * \brief CANÄ£Ê½ÉèÖÃ£¬±ØĞëÔÚ¸´Î»¹¦ÄÜÏÂĞ´
+ * \brief CANæ¨¡å¼è®¾ç½®ï¼Œå¿…é¡»åœ¨å¤ä½åŠŸèƒ½ä¸‹å†™
  *
- * \param[in] p_hw_can   : Ö¸ÏòCAN¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] type       : Ã¶¾Ùamhw_zlg217_can_mode_t¶¨Òå
+ * \param[in] p_hw_can   : æŒ‡å‘CANå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] type       : æšä¸¾amhw_zlg217_can_mode_tå®šä¹‰
  *
  * \return wu
  */

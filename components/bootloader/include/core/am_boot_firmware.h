@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief bootloader ¹Ì¼ş´æ´¢µÄ½Ó¿Ú
+ * \brief bootloader å›ºä»¶å­˜å‚¨çš„æ¥å£
  *
  * \internal
  * \par Modification history
@@ -25,55 +25,55 @@
 
 #include "ametal.h"
 /**
- * \brief bootloader½ÓÊÕ¹Ì¼şÍ·²¿Êı¾İ
+ * \brief bootloaderæ¥æ”¶å›ºä»¶å¤´éƒ¨æ•°æ®
  */
 typedef struct am_boot_firmware_verify_info {
-    /** \brief ¹Ì¼ş±êÖ¾ */
+    /** \brief å›ºä»¶æ ‡å¿— */
     uint32_t flag;
 
-    /** \brief ¹Ì¼ş³¤¶È */
+    /** \brief å›ºä»¶é•¿åº¦ */
     uint32_t len;
 
-    /** \brief ¹Ì¼şĞ£ÑéÂë */
+    /** \brief å›ºä»¶æ ¡éªŒç  */
     uint32_t verify_value;
 
 } am_boot_firmware_verify_info_t;
 
 struct am_boot_firmware_drv_funcs {
-    /**< \brief ¹Ì¼ş´æ´¢¿ªÊ¼Çı¶¯º¯Êı*/
+    /**< \brief å›ºä»¶å­˜å‚¨å¼€å§‹é©±åŠ¨å‡½æ•°*/
     int (*pfn_store_start)(void *p_drv);
 
-    /**< \brief ¹Ì¼ş´æ´¢Çı¶¯º¯Êı*/
+    /**< \brief å›ºä»¶å­˜å‚¨é©±åŠ¨å‡½æ•°*/
     int (*pfn_store_bytes)(void *p_drv, uint8_t *p_data, uint32_t size);
 
-    /**< \brief ¹Ì¼ş´æ´¢½áÊøÇı¶¯º¯Êı*/
+    /**< \brief å›ºä»¶å­˜å‚¨ç»“æŸé©±åŠ¨å‡½æ•°*/
     int (*pfn_store_final)(void *p_drv);
 
-    /**< \brief ¹Ì¼şĞ£Ñé*/
+    /**< \brief å›ºä»¶æ ¡éªŒ*/
     int (*pfn_verify)(void *p_drv, am_boot_firmware_verify_info_t *p_verify_info);
 
 };
 
-/**< \brief ¹Ì¼ş´æ´¢±ê×¼·şÎñ */
+/**< \brief å›ºä»¶å­˜å‚¨æ ‡å‡†æœåŠ¡ */
 typedef struct am_boot_firmware_serv {
-    /**< \brief ±ê×¼·şÎñÇı¶¯º¯Êı½á¹¹ÌåÖ¸Õë */
+    /**< \brief æ ‡å‡†æœåŠ¡é©±åŠ¨å‡½æ•°ç»“æ„ä½“æŒ‡é’ˆ */
     struct am_boot_firmware_drv_funcs *pfn_funcs;
 
-    /**< \brief Çı¶¯º¯ÊıµÄµÚÒ»¸ö²ÎÊı */
+    /**< \brief é©±åŠ¨å‡½æ•°çš„ç¬¬ä¸€ä¸ªå‚æ•° */
     void                              *p_drv;
 } am_boot_firmware_serv_t;
 
-/**< \brief ¹Ì¼ş´æ´¢±ê×¼·şÎñ²Ù×÷¾ä±úµÄÀàĞÍ¶¨Òå */
+/**< \brief å›ºä»¶å­˜å‚¨æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„çš„ç±»å‹å®šä¹‰ */
 typedef am_boot_firmware_serv_t *am_boot_firmware_handle_t;
 
 /**
- * \brief ¹Ì¼ş´æ´¢µÄ¿ªÊ¼´¦Àí
+ * \brief å›ºä»¶å­˜å‚¨çš„å¼€å§‹å¤„ç†
  *
  *
- * \retval AM_ENOMEM   ¹Ì¼ş³¬³öÄÚ´æ´óĞ¡
- * \retval AM_EFAULT   ¹Ì¼ş´æ·ÅµÄµØÖ·ÓĞÎó£¨1.µØÖ·´íÎó£¬²»ÔÚÕı³£µÄ´æ´¢·¶Î§£¬2.²»ÊÇÉÈÇøµÄÊ×µØÖ·£©
- * \retval AM_EINVAL   ´«ÈëµÄ²ÎÊı²»ºÏ·¨
- * \retval AM_OK       ³É¹¦
+ * \retval AM_ENOMEM   å›ºä»¶è¶…å‡ºå†…å­˜å¤§å°
+ * \retval AM_EFAULT   å›ºä»¶å­˜æ”¾çš„åœ°å€æœ‰è¯¯ï¼ˆ1.åœ°å€é”™è¯¯ï¼Œä¸åœ¨æ­£å¸¸çš„å­˜å‚¨èŒƒå›´ï¼Œ2.ä¸æ˜¯æ‰‡åŒºçš„é¦–åœ°å€ï¼‰
+ * \retval AM_EINVAL   ä¼ å…¥çš„å‚æ•°ä¸åˆæ³•
+ * \retval AM_OK       æˆåŠŸ
  */
 am_static_inline
 int am_boot_firmware_store_start(am_boot_firmware_handle_t  handle)
@@ -82,17 +82,17 @@ int am_boot_firmware_store_start(am_boot_firmware_handle_t  handle)
 }
 
 /**
- * \brief ¹Ì¼şÊı¾İ´æ´¢
+ * \brief å›ºä»¶æ•°æ®å­˜å‚¨
  *
- * am_boot_firmware_store_bytes£¨£©º¯ÊıÖ´ĞĞĞèÒªÒ»¶¨µÄÊ±¼ä£¬µ÷ÓÃÊ±×¢Òâ¹Ì¼ş´«ÊäµÄÊ±¼ä£¬·ÀÖ¹Êı¾İ´«Êä¶ªÊ§¡£
+ * am_boot_firmware_store_bytesï¼ˆï¼‰å‡½æ•°æ‰§è¡Œéœ€è¦ä¸€å®šçš„æ—¶é—´ï¼Œè°ƒç”¨æ—¶æ³¨æ„å›ºä»¶ä¼ è¾“çš„æ—¶é—´ï¼Œé˜²æ­¢æ•°æ®ä¼ è¾“ä¸¢å¤±ã€‚
  *
- * \param[in] p_data        : ´«ÈëµÄ¹Ì¼şµÄÊ×µØÖ·
- * \param[in] firmware_size : ´«ÈëµÄ¹Ì¼ş³¤¶È
+ * \param[in] p_data        : ä¼ å…¥çš„å›ºä»¶çš„é¦–åœ°å€
+ * \param[in] firmware_size : ä¼ å…¥çš„å›ºä»¶é•¿åº¦
  *
- * \retval AM_EINVAL   ²ÎÊıÎŞĞ§
- * \retval AM_ENOMEM   ¿Õ¼ä£¨ÄÚ´æ£©²»×ã
- * \retval AM_ERROR    ²Á³ı»òĞ´ÈëÊ§°Ü
- * \retval AM_OK       ³É¹¦
+ * \retval AM_EINVAL   å‚æ•°æ— æ•ˆ
+ * \retval AM_ENOMEM   ç©ºé—´ï¼ˆå†…å­˜ï¼‰ä¸è¶³
+ * \retval AM_ERROR    æ“¦é™¤æˆ–å†™å…¥å¤±è´¥
+ * \retval AM_OK       æˆåŠŸ
  */
 am_static_inline
 int am_boot_firmware_store_bytes(am_boot_firmware_handle_t handle,
@@ -103,10 +103,10 @@ int am_boot_firmware_store_bytes(am_boot_firmware_handle_t handle,
 }
 
 /**
- * \brief ¹Ì¼ş´æ´¢µÄ½áÊø
+ * \brief å›ºä»¶å­˜å‚¨çš„ç»“æŸ
  *
- * \retval AM_ERROR ³ö´í
- * \retval AM_OK    ³É¹¦
+ * \retval AM_ERROR å‡ºé”™
+ * \retval AM_OK    æˆåŠŸ
  */
 am_static_inline
 int am_boot_firmware_store_final(am_boot_firmware_handle_t handle)
@@ -115,15 +115,15 @@ int am_boot_firmware_store_final(am_boot_firmware_handle_t handle)
 }
 
 /**
- * \brief ¹Ì¼şĞ£Ñé
+ * \brief å›ºä»¶æ ¡éªŒ
  *
- * Ğ£Ñé´«ÊäµÄ¹Ì¼şÊÇ·ñÕıÈ·
+ * æ ¡éªŒä¼ è¾“çš„å›ºä»¶æ˜¯å¦æ­£ç¡®
  *
- * \param[in] handle        : ²Ù×÷¾ä±ú
- * \param[in] p_verify_info : Ğ£ÑéĞÅÏ¢µÄ½á¹¹Ìå£¬°üº¬¹Ì¼ş³¤¶ÈºÍĞ£ÑéÂë
+ * \param[in] handle        : æ“ä½œå¥æŸ„
+ * \param[in] p_verify_info : æ ¡éªŒä¿¡æ¯çš„ç»“æ„ä½“ï¼ŒåŒ…å«å›ºä»¶é•¿åº¦å’Œæ ¡éªŒç 
  *
- * \retval AM_ERROR ³ö´í
- * \retval AM_OK    ³É¹¦
+ * \retval AM_ERROR å‡ºé”™
+ * \retval AM_OK    æˆåŠŸ
  */
 am_static_inline
 int am_boot_firmware_verify(am_boot_firmware_handle_t handle, am_boot_firmware_verify_info_t *p_verify_info)

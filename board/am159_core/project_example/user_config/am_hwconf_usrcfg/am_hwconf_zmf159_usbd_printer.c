@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief zmf159 USB_printer ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief zmf159 USB_printer ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_zmf159_hwconfig_usb_printer.c
  *
  * \internal
@@ -39,223 +39,223 @@
  */
 
 /*******************************************************************************
- * ÓÃ»§USBÃèÊö·ûÅäÖÃºê,ÓÃ»§ÅäÖÃÃèÊö·ûºê¼´¿É,ÎŞĞè¹ØĞÄUSBÃèÊö·û¡£
+ * ç”¨æˆ·USBæè¿°ç¬¦é…ç½®å®,ç”¨æˆ·é…ç½®æè¿°ç¬¦å®å³å¯,æ— éœ€å…³å¿ƒUSBæè¿°ç¬¦ã€‚
  ******************************************************************************/
 
-/** \brief USBÉè±¸ÃèÊöÅäÖÃºê*/
-#define __USBD_PRINTER_VENDOR_ID                 (0x1F22) /**< \brief ³§ÉÌ±àºÅ,×÷Îª²úÆ··¢²¼±ØĞëĞ´×Ô¼º¹«Ë¾µÄ³§ÉÌ±àºÅ£¬ÒÔÃâÇÖÈ¨£¬´Ë´¦ÌîÁËÒ»¸öÃ»ÓĞÔÚUSBĞ­»á×¢²áµÄ±àºÅ*/
-#define __USBD_PRINTER_PRODUCT_ID                (0x029B) /**< \brief ²úÆ·±àºÅ*/
-#define __USBD_PRINTER_DEVICE_ID                 (0x0101) /**< \brief Éè±¸±àºÅ*/
-#define __USBD_PRINTER_VENDOR_STRING_INDEX       (0x01)   /**< \brief ÃèÊö³§ÉÌµÄ×Ö·û´®Ë÷Òı*/
-#define __USBD_PRINTER_PRODUCT_STRING_INDEX      (0x02)   /**< \brief ÃèÊö²úÆ·µÄ×Ö·û´®Ë÷Òı */
-#define __USBD_PRINTER_CONFIG_COUNT              (1U)     /**< \brief ÅäÖÃÊı£¬Ò»°ãÉèÖÃÖ»ÓĞÒ»¸öÅäÖÃ*/
+/** \brief USBè®¾å¤‡æè¿°é…ç½®å®*/
+#define __USBD_PRINTER_VENDOR_ID                 (0x1F22) /**< \brief å‚å•†ç¼–å·,ä½œä¸ºäº§å“å‘å¸ƒå¿…é¡»å†™è‡ªå·±å…¬å¸çš„å‚å•†ç¼–å·ï¼Œä»¥å…ä¾µæƒï¼Œæ­¤å¤„å¡«äº†ä¸€ä¸ªæ²¡æœ‰åœ¨USBåä¼šæ³¨å†Œçš„ç¼–å·*/
+#define __USBD_PRINTER_PRODUCT_ID                (0x029B) /**< \brief äº§å“ç¼–å·*/
+#define __USBD_PRINTER_DEVICE_ID                 (0x0101) /**< \brief è®¾å¤‡ç¼–å·*/
+#define __USBD_PRINTER_VENDOR_STRING_INDEX       (0x01)   /**< \brief æè¿°å‚å•†çš„å­—ç¬¦ä¸²ç´¢å¼•*/
+#define __USBD_PRINTER_PRODUCT_STRING_INDEX      (0x02)   /**< \brief æè¿°äº§å“çš„å­—ç¬¦ä¸²ç´¢å¼• */
+#define __USBD_PRINTER_CONFIG_COUNT              (1U)     /**< \brief é…ç½®æ•°ï¼Œä¸€èˆ¬è®¾ç½®åªæœ‰ä¸€ä¸ªé…ç½®*/
 
-/** \brief USBÅäÖÃÃèÊö·ûÅäÖÃºê*/
-#define __USBD_PRINTER_INTERFACE_COUNT           (1U)     /**< \brief ½Ó¿ÚÊı*/
-#define __USBD_PRINTER_CONFIGURE_INDEX           (1U)     /**< \brief ÅäÖÃÃèÊö·ûË÷Òı*/
-#define __USBD_PRINTER_DEVICE_POWER               AM_USBD_MAX_POWER /**< \brief Éè±¸ÏòÖ÷»úÉêÇëµÄµçÁ÷£¬µ¥Î»2mA,×î´ó100mA*/
-/** \brief Éè±¸ÊôĞÔ£¬×Ô¹©µç£¬²»Ö§³ÖÔ¶³Ì»½ĞÑ*/
+/** \brief USBé…ç½®æè¿°ç¬¦é…ç½®å®*/
+#define __USBD_PRINTER_INTERFACE_COUNT           (1U)     /**< \brief æ¥å£æ•°*/
+#define __USBD_PRINTER_CONFIGURE_INDEX           (1U)     /**< \brief é…ç½®æè¿°ç¬¦ç´¢å¼•*/
+#define __USBD_PRINTER_DEVICE_POWER               AM_USBD_MAX_POWER /**< \brief è®¾å¤‡å‘ä¸»æœºç”³è¯·çš„ç”µæµï¼Œå•ä½2mA,æœ€å¤§100mA*/
+/** \brief è®¾å¤‡å±æ€§ï¼Œè‡ªä¾›ç”µï¼Œä¸æ”¯æŒè¿œç¨‹å”¤é†’*/
 #define __USBD_PRINTER_DEVICE_ATTRIBUTE          \
               (AM_USBD_CONFIG_SELF_POWER | AM_USBD_CONFIG_NOT_REMOTE_WAKEUP)
 
-/**\brief USB¶ËµãÃèÊö·ûÅäÖÃºê*/
-#define __USBD_PRINTER_ENDPOINT_IN                1  /**< \brief ÊäÈë¶ËµãºÅ*/
-#define __USBD_PRINTER_ENDPOINT_IN_PACKSIZE       AM_USBD_MAX_EP_DATA_CNT       /**< \brief ¶Ëµã°ü´óĞ¡,ÉèÖÃÎª64*/
-#define __USBD_PRINTER_ENDPOINT_IN_ATTRIBUTE      AM_USB_ENDPOINT_BULK          /**< \brief ÉèÖÃ¶ËµãÊôĞÔÎªÅúÁ¿´«Êä*/
-#define __USBD_PRINTER_ENDPOINT_IN_QUERY_TIME    (0x06)                         /**< \brief ÉèÖÃ¶Ëµã²éÑ¯Ê±¼äÎª10ms,µ¥Î»Îª1ms*/
+/**\brief USBç«¯ç‚¹æè¿°ç¬¦é…ç½®å®*/
+#define __USBD_PRINTER_ENDPOINT_IN                1  /**< \brief è¾“å…¥ç«¯ç‚¹å·*/
+#define __USBD_PRINTER_ENDPOINT_IN_PACKSIZE       AM_USBD_MAX_EP_DATA_CNT       /**< \brief ç«¯ç‚¹åŒ…å¤§å°,è®¾ç½®ä¸º64*/
+#define __USBD_PRINTER_ENDPOINT_IN_ATTRIBUTE      AM_USB_ENDPOINT_BULK          /**< \brief è®¾ç½®ç«¯ç‚¹å±æ€§ä¸ºæ‰¹é‡ä¼ è¾“*/
+#define __USBD_PRINTER_ENDPOINT_IN_QUERY_TIME    (0x06)                         /**< \brief è®¾ç½®ç«¯ç‚¹æŸ¥è¯¢æ—¶é—´ä¸º10ms,å•ä½ä¸º1ms*/
 
 #define __USBD_PRINTER_ENDPOINT_OUT               2
 #define __USBD_PRINTER_ENDPOINT_OUT_PACKSIZE      AM_USBD_MAX_EP_DATA_CNT
 #define __USBD_PRINTER_ENDPOINT_OUT_ATTRIBUTE     AM_USB_ENDPOINT_BULK
 #define __USBD_PRINTER_ENDPOINT_OUT_QUERY_TIME   (0x06)
 
-/**\brief USB½Ó¿ÚÃèÊö·ûÅäÖÃºê*/
-#define __USBD_PRINTER_ENDPOINT_COUNT            (2U)     /**< \brief ¶Ëµã¸öÊı,ÊäÈë¶ËµãÓëÊä³ö¶Ëµã(²»°üÀ¨¿ØÖÆ¶Ëµã)*/
+/**\brief USBæ¥å£æè¿°ç¬¦é…ç½®å®*/
+#define __USBD_PRINTER_ENDPOINT_COUNT            (2U)     /**< \brief ç«¯ç‚¹ä¸ªæ•°,è¾“å…¥ç«¯ç‚¹ä¸è¾“å‡ºç«¯ç‚¹(ä¸åŒ…æ‹¬æ§åˆ¶ç«¯ç‚¹)*/
 
 
 /*****************************************************************************
- * È«¾Ö±äÁ¿ºÍ³£Á¿
+ * å…¨å±€å˜é‡å’Œå¸¸é‡
  *****************************************************************************/
 
 /**
- * \brief ´òÓ¡»úÉè±¸id ×Ö·û´®¶¨Òå
- * Ç°Á½¸ö×Ö½ÚÎª×Ö·û´®Êı¾İ³¤¶È£¬´ó¶Ë¶ÔÆë.ËùÒÔ±£ÁôÇ°Á½¸ö×Ö·û´®×Ö·ûÊı¾İ£¬¸ÃidºÅÊÇ×÷ÎªÖ÷»ú¼ìË÷Çı¶¯Ê¹ÓÃµÄ±êÊ¶¡£
+ * \brief æ‰“å°æœºè®¾å¤‡id å­—ç¬¦ä¸²å®šä¹‰
+ * å‰ä¸¤ä¸ªå­—èŠ‚ä¸ºå­—ç¬¦ä¸²æ•°æ®é•¿åº¦ï¼Œå¤§ç«¯å¯¹é½.æ‰€ä»¥ä¿ç•™å‰ä¸¤ä¸ªå­—ç¬¦ä¸²å­—ç¬¦æ•°æ®ï¼Œè¯¥idå·æ˜¯ä½œä¸ºä¸»æœºæ£€ç´¢é©±åŠ¨ä½¿ç”¨çš„æ ‡è¯†ã€‚
  */
 static uint8_t __g_printer_id[] = "xxMFG:ZLG;MDL: usb printer;CMD:POSTSCRIPT";
 
 /**
- * \brief ´òÓ¡»úÊı¾İ´«Êäbuff¶¨Òå
- * \note ¸Ãbuff´óĞ¡±ØĞë´óÓÚ¶Ëµã×î´ó°ü´óĞ¡£¬²¢ÇÒbuff´óĞ¡Ó¦¸Ã´óÓÚ´òÓ¡»úid(__g_printer_id)×Ö·û´®³¤¶È,ÒÔÃâÊı¾İÒç³ö
+ * \brief æ‰“å°æœºæ•°æ®ä¼ è¾“buffå®šä¹‰
+ * \note è¯¥buffå¤§å°å¿…é¡»å¤§äºç«¯ç‚¹æœ€å¤§åŒ…å¤§å°ï¼Œå¹¶ä¸”buffå¤§å°åº”è¯¥å¤§äºæ‰“å°æœºid(__g_printer_id)å­—ç¬¦ä¸²é•¿åº¦,ä»¥å…æ•°æ®æº¢å‡º
  */
 static uint8_t __g_printer_buff[AM_USBD_MAX_EP_DATA_CNT + 1] = {0};
 
 /*****************************************************************************
- * USBÃèÊö·û(Éè±¸ÃèÊö·û,ÅäÖÃÃèÊö·û£¬½Ó¿ÚÃèÊö·û,¶ËµãÃèÊö·û),¸Ã²¿·ÖÓÃ»§Ö»ĞèÅäÖÃÉÏÊöºê¼´¿É
+ * USBæè¿°ç¬¦(è®¾å¤‡æè¿°ç¬¦,é…ç½®æè¿°ç¬¦ï¼Œæ¥å£æè¿°ç¬¦,ç«¯ç‚¹æè¿°ç¬¦),è¯¥éƒ¨åˆ†ç”¨æˆ·åªéœ€é…ç½®ä¸Šè¿°å®å³å¯
  *****************************************************************************/
 
-/* USB Éè±¸ÃèÊö·û */
+/* USB è®¾å¤‡æè¿°ç¬¦ */
 static const uint8_t __g_am_usbd_printer_desc_dev[AM_USB_DESC_LENGTH_DEVICE]  = {
-    AM_USB_DESC_LENGTH_DEVICE,        /* Éè±¸ÃèÊö·ûµÄ×Ö½ÚÊı */
-    AM_USB_DESC_TYPE_DEVICE,          /* Éè±¸ÃèÊö·ûÀàĞÍ±àºÅ£¬¹Ì¶¨Îª0x01 */
+    AM_USB_DESC_LENGTH_DEVICE,        /* è®¾å¤‡æè¿°ç¬¦çš„å­—èŠ‚æ•° */
+    AM_USB_DESC_TYPE_DEVICE,          /* è®¾å¤‡æè¿°ç¬¦ç±»å‹ç¼–å·ï¼Œå›ºå®šä¸º0x01 */
 
-    /* USB°æ±¾ USB2.0 */
+    /* USBç‰ˆæœ¬ USB2.0 */
     AM_USB_SHORT_GET_LOW(AM_USB_VERSION), AM_USB_SHORT_GET_HIGH(AM_USB_VERSION),
-    AM_USBD_CLASS,                          /* Í¨ĞÅÀà */
-    AM_USBD_SUBCLASS,                       /* Éè±¸×ÓÀà */
-    AM_USBD_PROTOCOL,                       /* Ğ­ÒéÂë */
-    AM_USBD_MAX_EP_DATA_CNT,                /* ¶Ëµã0µÄ×î´ó°ü´óĞ¡ */
+    AM_USBD_CLASS,                          /* é€šä¿¡ç±» */
+    AM_USBD_SUBCLASS,                       /* è®¾å¤‡å­ç±» */
+    AM_USBD_PROTOCOL,                       /* åè®®ç  */
+    AM_USBD_MAX_EP_DATA_CNT,                /* ç«¯ç‚¹0çš„æœ€å¤§åŒ…å¤§å° */
 
     /**
-     * ³§ÉÌ±àºÅ¡£ĞèÒªÏòUSBĞ­»áÉêÇë£¬Èç¹û×÷ÎªÑ§Ï°Ê¹ÓÃ¿ÉÒÔËæ±ãÑ¡Ò»¸öÒÑ¾­×¢²á¹ıµÄ£¬
-     * µ«ÊÇ×÷Îª²úÆ··¢²¼µÄ»°¾Í±ØĞëĞ´×Ô¼º¹«Ë¾µÄ³§ÉÌ±àºÅ£¬ÒÔÃâÇÖÈ¨£¬´Ë´¦ÌîÁËÒ»¸öÃ»ÓĞÔÚUSBĞ­»á×¢²áµÄ±àºÅ
+     * å‚å•†ç¼–å·ã€‚éœ€è¦å‘USBåä¼šç”³è¯·ï¼Œå¦‚æœä½œä¸ºå­¦ä¹ ä½¿ç”¨å¯ä»¥éšä¾¿é€‰ä¸€ä¸ªå·²ç»æ³¨å†Œè¿‡çš„ï¼Œ
+     * ä½†æ˜¯ä½œä¸ºäº§å“å‘å¸ƒçš„è¯å°±å¿…é¡»å†™è‡ªå·±å…¬å¸çš„å‚å•†ç¼–å·ï¼Œä»¥å…ä¾µæƒï¼Œæ­¤å¤„å¡«äº†ä¸€ä¸ªæ²¡æœ‰åœ¨USBåä¼šæ³¨å†Œçš„ç¼–å·
      */
     AM_USB_SHORT_GET_LOW(__USBD_PRINTER_VENDOR_ID), AM_USB_SHORT_GET_HIGH(__USBD_PRINTER_VENDOR_ID),
 
-    /* ²úÆ·±àºÅ */
+    /* äº§å“ç¼–å· */
     AM_USB_SHORT_GET_LOW(__USBD_PRINTER_PRODUCT_ID), AM_USB_SHORT_GET_HIGH(__USBD_PRINTER_PRODUCT_ID),
 
-    /* Éè±¸³ö³§±àºÅ */
+    /* è®¾å¤‡å‡ºå‚ç¼–å· */
     AM_USB_SHORT_GET_LOW(__USBD_PRINTER_DEVICE_ID), AM_USB_SHORT_GET_HIGH(__USBD_PRINTER_DEVICE_ID),
-    __USBD_PRINTER_VENDOR_STRING_INDEX,     /* ÃèÊö³§ÉÌµÄ×Ö·û´®Ë÷Òı */
-    __USBD_PRINTER_PRODUCT_STRING_INDEX,    /* ÃèÊö²úÆ·µÄ×Ö·û´®Ë÷Òı */
-    0x00,                                   /* ÃèÊöÉè±¸ĞòÁĞºÅµÄ×Ö·û´®Ë÷Òı */
-    __USBD_PRINTER_CONFIG_COUNT,            /* ÅäÖÃµÄÊıÁ¿£¨Ö»ÄÜÓĞÒ»¸ö£© */
+    __USBD_PRINTER_VENDOR_STRING_INDEX,     /* æè¿°å‚å•†çš„å­—ç¬¦ä¸²ç´¢å¼• */
+    __USBD_PRINTER_PRODUCT_STRING_INDEX,    /* æè¿°äº§å“çš„å­—ç¬¦ä¸²ç´¢å¼• */
+    0x00,                                   /* æè¿°è®¾å¤‡åºåˆ—å·çš„å­—ç¬¦ä¸²ç´¢å¼• */
+    __USBD_PRINTER_CONFIG_COUNT,            /* é…ç½®çš„æ•°é‡ï¼ˆåªèƒ½æœ‰ä¸€ä¸ªï¼‰ */
 };
 
-/* ÅäÖÃÃèÊö·û¼°ÆäÏÂ¼¶ÃèÊö·û£¨²»ÄÜÔ½¹ıÉÏ¼¶ÃèÊö·ûÖ±½ÓµÃµ½ÏÂ¼¶ÃèÊö·û£© */
+/* é…ç½®æè¿°ç¬¦åŠå…¶ä¸‹çº§æè¿°ç¬¦ï¼ˆä¸èƒ½è¶Šè¿‡ä¸Šçº§æè¿°ç¬¦ç›´æ¥å¾—åˆ°ä¸‹çº§æè¿°ç¬¦ï¼‰ */
 static uint8_t __g_am_usbd_printer_desc_conf[AM_USB_DESC_LENGTH_ALL(__USBD_PRINTER_ENDPOINT_COUNT)] = {
-    /* ÅäÖÃÃèÊö·û */
-    AM_USB_DESC_LENGTH_CONFIGURE,     /* ÅäÖÃÃèÊö·û×Ö½ÚÊı */
-    AM_USB_DESC_TYPE_CONFIGURE,       /* ÅäÖÃÃèÊö·ûÀàĞÍ±àºÅ£¬¹Ì¶¨Îª0x02 */
+    /* é…ç½®æè¿°ç¬¦ */
+    AM_USB_DESC_LENGTH_CONFIGURE,     /* é…ç½®æè¿°ç¬¦å­—èŠ‚æ•° */
+    AM_USB_DESC_TYPE_CONFIGURE,       /* é…ç½®æè¿°ç¬¦ç±»å‹ç¼–å·ï¼Œå›ºå®šä¸º0x02 */
 
-    /* ÅäÖÃÃèÊö·û¼°ÏÂÊôÃèÊö·ûµÄ×Ü³¤¶È(ÅäÖÃÃèÊö·û£¬½Ó¿ÚÃèÊö·ûºÅ£¬ºÍÁ½¸ö¶ËµãÃèÊö·û) */
+    /* é…ç½®æè¿°ç¬¦åŠä¸‹å±æè¿°ç¬¦çš„æ€»é•¿åº¦(é…ç½®æè¿°ç¬¦ï¼Œæ¥å£æè¿°ç¬¦å·ï¼Œå’Œä¸¤ä¸ªç«¯ç‚¹æè¿°ç¬¦) */
     AM_USB_SHORT_GET_LOW(AM_USB_DESC_LENGTH_ALL(__USBD_PRINTER_ENDPOINT_COUNT)),
     AM_USB_SHORT_GET_HIGH(AM_USB_DESC_LENGTH_ALL(__USBD_PRINTER_ENDPOINT_COUNT)),
-    __USBD_PRINTER_INTERFACE_COUNT,         /* ½Ó¿ÚÃèÊö·û¸öÊı */
-    __USBD_PRINTER_CONFIGURE_INDEX,         /* ÅäÖÃÖµ */
-    0x00,                                   /* ÃèÊö¸ÃÅäÖÃµÄ×Ö·û´®Ë÷Òı */
+    __USBD_PRINTER_INTERFACE_COUNT,         /* æ¥å£æè¿°ç¬¦ä¸ªæ•° */
+    __USBD_PRINTER_CONFIGURE_INDEX,         /* é…ç½®å€¼ */
+    0x00,                                   /* æè¿°è¯¥é…ç½®çš„å­—ç¬¦ä¸²ç´¢å¼• */
 
-    /* Éè±¸ÊôĞÔ£º×ÜÏß¹©µç£¬²»Ö§³ÖÔ¶³Ì»½ĞÑ */
+    /* è®¾å¤‡å±æ€§ï¼šæ€»çº¿ä¾›ç”µï¼Œä¸æ”¯æŒè¿œç¨‹å”¤é†’ */
     __USBD_PRINTER_DEVICE_ATTRIBUTE,
-    __USBD_PRINTER_DEVICE_POWER,            /* ´Ó×ÜÏß»ñÈ¡µÄ×î´óµçÁ÷£º100mA£¬ 2mAÒ»¸öµ¥Î» */
+    __USBD_PRINTER_DEVICE_POWER,            /* ä»æ€»çº¿è·å–çš„æœ€å¤§ç”µæµï¼š100mAï¼Œ 2mAä¸€ä¸ªå•ä½ */
 
-    /* ½Ó¿ÚÃèÊö·û */
-    AM_USB_DESC_LENGTH_INTERFACE,           /* ½Ó¿ÚÃèÊö·û×Ö½ÚÊı */
-    AM_USB_DESC_TYPE_INTERFACE,             /* ½Ó¿ÚÃèÊö·ûÀàĞÍ±àºÅ£¬¹Ì¶¨Îª0x04 */
-    0x00,                                   /* ¸Ã½Ó¿Ú±àºÅ */
-    0x00,                                   /* ¿ÉÑ¡ÉèÖÃµÄË÷ÒıÖµ£¨¸Ã½Ó¿ÚµÄ±¸ÓÃ±àºÅ£© */
-    __USBD_PRINTER_ENDPOINT_COUNT,          /* ¸Ã½Ó¿ÚÊ¹ÓÃµÄ¶ËµãÊı£¨²»°üÀ¨¶Ëµã0£© */
-    AM_USBD_CONFIG_PRINTER_CLASS_CODE,      /* printer_CLASSÀà */
-    AM_USBD_PRINTER_SUBCLASS,               /* printer×ÓÀàĞÍ */
-    AM_USBD_PRINTER_PROTOCOL,               /* printerĞ­ÒéÀàĞÍ */
-    0x00,                                   /* ÃèÊö¸Ã½Ó¿ÚµÄ×Ö·û´®Ë÷Òı */
+    /* æ¥å£æè¿°ç¬¦ */
+    AM_USB_DESC_LENGTH_INTERFACE,           /* æ¥å£æè¿°ç¬¦å­—èŠ‚æ•° */
+    AM_USB_DESC_TYPE_INTERFACE,             /* æ¥å£æè¿°ç¬¦ç±»å‹ç¼–å·ï¼Œå›ºå®šä¸º0x04 */
+    0x00,                                   /* è¯¥æ¥å£ç¼–å· */
+    0x00,                                   /* å¯é€‰è®¾ç½®çš„ç´¢å¼•å€¼ï¼ˆè¯¥æ¥å£çš„å¤‡ç”¨ç¼–å·ï¼‰ */
+    __USBD_PRINTER_ENDPOINT_COUNT,          /* è¯¥æ¥å£ä½¿ç”¨çš„ç«¯ç‚¹æ•°ï¼ˆä¸åŒ…æ‹¬ç«¯ç‚¹0ï¼‰ */
+    AM_USBD_CONFIG_PRINTER_CLASS_CODE,      /* printer_CLASSç±» */
+    AM_USBD_PRINTER_SUBCLASS,               /* printerå­ç±»å‹ */
+    AM_USBD_PRINTER_PROTOCOL,               /* printeråè®®ç±»å‹ */
+    0x00,                                   /* æè¿°è¯¥æ¥å£çš„å­—ç¬¦ä¸²ç´¢å¼• */
 
-    /* ÊäÈë¶ËµãÃèÊö·û */
-    AM_USB_DESC_LENGTH_ENDPOINT,            /* ¶ËµãÃèÊö·û×Ö½ÚÊı */
-    AM_USB_DESC_TYPE_ENDPOINT,              /* ¶ËµãÃèÊö·ûÀàĞÍ±àºÅ£¬¹Ì¶¨Îª0x05 */
+    /* è¾“å…¥ç«¯ç‚¹æè¿°ç¬¦ */
+    AM_USB_DESC_LENGTH_ENDPOINT,            /* ç«¯ç‚¹æè¿°ç¬¦å­—èŠ‚æ•° */
+    AM_USB_DESC_TYPE_ENDPOINT,              /* ç«¯ç‚¹æè¿°ç¬¦ç±»å‹ç¼–å·ï¼Œå›ºå®šä¸º0x05 */
 
-    /* D7 1:USB_IN  0:USB_OUT D3:D0 ¶ËµãºÅ */
+    /* D7 1:USB_IN  0:USB_OUT D3:D0 ç«¯ç‚¹å· */
     (__USBD_PRINTER_ENDPOINT_IN | (AM_USB_IN << AM_USB_REQ_TYPE_DIR_SHIFT)),
-    __USBD_PRINTER_ENDPOINT_IN_ATTRIBUTE,   /* ¶ËµãÊôĞÔ 02±íÊ¾ÅúÁ¿  */
+    __USBD_PRINTER_ENDPOINT_IN_ATTRIBUTE,   /* ç«¯ç‚¹å±æ€§ 02è¡¨ç¤ºæ‰¹é‡  */
 
     AM_USB_SHORT_GET_LOW(__USBD_PRINTER_ENDPOINT_IN_PACKSIZE),
-    AM_USB_SHORT_GET_HIGH(__USBD_PRINTER_ENDPOINT_IN_PACKSIZE), /* ¶ËµãÒ»´ÎĞÔÊÕ·¢µÄ×î´ó°ü´óĞ¡ */
+    AM_USB_SHORT_GET_HIGH(__USBD_PRINTER_ENDPOINT_IN_PACKSIZE), /* ç«¯ç‚¹ä¸€æ¬¡æ€§æ”¶å‘çš„æœ€å¤§åŒ…å¤§å° */
 
-    __USBD_PRINTER_ENDPOINT_IN_QUERY_TIME,  /* Ö÷»ú²éÑ¯¶ËµãÊ±µÄÊ±¼ä¼ä¸ô£º10ms  */
+    __USBD_PRINTER_ENDPOINT_IN_QUERY_TIME,  /* ä¸»æœºæŸ¥è¯¢ç«¯ç‚¹æ—¶çš„æ—¶é—´é—´éš”ï¼š10ms  */
 
-    /* Êä³ö¶ËµãÃèÊö·û */
-    AM_USB_DESC_LENGTH_ENDPOINT,            /* ¶ËµãÃèÊö·û×Ö½ÚÊı */
-    AM_USB_DESC_TYPE_ENDPOINT,              /* ¶ËµãÃèÊö·ûÀàĞÍ±àºÅ£¬¹Ì¶¨Îª0x05 */
+    /* è¾“å‡ºç«¯ç‚¹æè¿°ç¬¦ */
+    AM_USB_DESC_LENGTH_ENDPOINT,            /* ç«¯ç‚¹æè¿°ç¬¦å­—èŠ‚æ•° */
+    AM_USB_DESC_TYPE_ENDPOINT,              /* ç«¯ç‚¹æè¿°ç¬¦ç±»å‹ç¼–å·ï¼Œå›ºå®šä¸º0x05 */
 
-    /* ¶ËµãµØÖ·¼°Êä³öÊôĞÔ */
+    /* ç«¯ç‚¹åœ°å€åŠè¾“å‡ºå±æ€§ */
     (__USBD_PRINTER_ENDPOINT_OUT | (AM_USB_OUT << AM_USB_REQ_TYPE_DIR_SHIFT)),
 
-    __USBD_PRINTER_ENDPOINT_OUT_ATTRIBUTE,  /* ¶ËµãÊôĞÔ */
+    __USBD_PRINTER_ENDPOINT_OUT_ATTRIBUTE,  /* ç«¯ç‚¹å±æ€§ */
 
     AM_USB_SHORT_GET_LOW(__USBD_PRINTER_ENDPOINT_OUT_PACKSIZE),
-    AM_USB_SHORT_GET_HIGH(__USBD_PRINTER_ENDPOINT_OUT_PACKSIZE), /* ¶ËµãÒ»´ÎĞÔÊÕ·¢µÄ×î´ó°ü´óĞ¡ */
+    AM_USB_SHORT_GET_HIGH(__USBD_PRINTER_ENDPOINT_OUT_PACKSIZE), /* ç«¯ç‚¹ä¸€æ¬¡æ€§æ”¶å‘çš„æœ€å¤§åŒ…å¤§å° */
 
-    __USBD_PRINTER_ENDPOINT_OUT_QUERY_TIME  /* Ö÷»ú²éÑ¯¶ËµãÊ±µÄÊ±¼ä¼ä¸ô 10ms */
+    __USBD_PRINTER_ENDPOINT_OUT_QUERY_TIME  /* ä¸»æœºæŸ¥è¯¢ç«¯ç‚¹æ—¶çš„æ—¶é—´é—´éš” 10ms */
 };
 
 /*******************************************************************************
- * ×Ö·û´®ÃèÊö·û,Èç¹ûÓÃ»§ĞèÒªĞŞ¸ÄÃèÊö·ûĞÅÏ¢£¬×¢ÒâÊ¹ÓÃµÄÊÇUINCODEÂë(×¢Òâ´óĞ¡¶Ë)
+ * å­—ç¬¦ä¸²æè¿°ç¬¦,å¦‚æœç”¨æˆ·éœ€è¦ä¿®æ”¹æè¿°ç¬¦ä¿¡æ¯ï¼Œæ³¨æ„ä½¿ç”¨çš„æ˜¯UINCODEç (æ³¨æ„å¤§å°ç«¯)
  ******************************************************************************/
-/**< \brief ÃèÊö²úÆ·µÄ×Ö·û´®ÃèÊö·û */
+/**< \brief æè¿°äº§å“çš„å­—ç¬¦ä¸²æè¿°ç¬¦ */
 static const uint8_t __g_am_usbd_printer_desc_str_iproduct[18] = {
-    sizeof(__g_am_usbd_printer_desc_str_iproduct),       /* ×Ö·û´®ÃèÊö·û×Ö½ÚÊı */
-    AM_USB_DESC_TYPE_STRING,          /* ×Ö·û´®ÃèÊö·ûÀàĞÍ±àºÅ£¬¹Ì¶¨Îª0x03 */
+    sizeof(__g_am_usbd_printer_desc_str_iproduct),       /* å­—ç¬¦ä¸²æè¿°ç¬¦å­—èŠ‚æ•° */
+    AM_USB_DESC_TYPE_STRING,          /* å­—ç¬¦ä¸²æè¿°ç¬¦ç±»å‹ç¼–å·ï¼Œå›ºå®šä¸º0x03 */
 
      0x55, 0x00, /* U */
      0x42, 0x00, /* S */
      0x53, 0x00, /* B */
-     0x21, 0x6a, /* Ä£ */
-     0xdf, 0x62, /* Äâ */
-     0x53, 0x62, /* ´ò */
-     0x70, 0x53, /* Ó¡ */
-     0x73, 0x67, /* »ú */
+     0x21, 0x6a, /* æ¨¡ */
+     0xdf, 0x62, /* æ‹Ÿ */
+     0x53, 0x62, /* æ‰“ */
+     0x70, 0x53, /* å° */
+     0x73, 0x67, /* æœº */
 };
 
-/**< \brief ÓïÑÔID×Ö·û´®ÃèÊö·û */
-/**< \brief ÕâÀïÊ¹ÓÃÃÀÊ½Ó¢Óï£¬²»Ê¹ÓÃ¼òÌåÖĞÎÄµÄÔ­ÒòÊÇÈç¹ûÊ¹ÓÃ¼òÌåÖĞÎÄ£¬ÔòÖ÷»ú²»»áÏò´Ó»úÒª×Ö·û´®ÃèÊö·û */
-/**< \brief ÃÀÊ½Ó¢ÓïµÄÓïÑÔIDÎª0x0409£¬¼òÌåÖĞÎÄµÄÓïÑÔIDÎª0x0804£¬×¢Òâ´óĞ¡¶Ë¡£ */
+/**< \brief è¯­è¨€IDå­—ç¬¦ä¸²æè¿°ç¬¦ */
+/**< \brief è¿™é‡Œä½¿ç”¨ç¾å¼è‹±è¯­ï¼Œä¸ä½¿ç”¨ç®€ä½“ä¸­æ–‡çš„åŸå› æ˜¯å¦‚æœä½¿ç”¨ç®€ä½“ä¸­æ–‡ï¼Œåˆ™ä¸»æœºä¸ä¼šå‘ä»æœºè¦å­—ç¬¦ä¸²æè¿°ç¬¦ */
+/**< \brief ç¾å¼è‹±è¯­çš„è¯­è¨€IDä¸º0x0409ï¼Œç®€ä½“ä¸­æ–‡çš„è¯­è¨€IDä¸º0x0804ï¼Œæ³¨æ„å¤§å°ç«¯ã€‚ */
 static const uint8_t __g_am_usbd_printer_desc_str_language_id[4] = {
-    sizeof(__g_am_usbd_printer_desc_str_language_id),       /* ×Ö·û´®ÃèÊö·û×Ö½ÚÊı */
-    AM_USB_DESC_TYPE_STRING,          /* ×Ö·û´®ÃèÊö·ûÀàĞÍ±àºÅ£¬¹Ì¶¨Îª0x03 */
+    sizeof(__g_am_usbd_printer_desc_str_language_id),       /* å­—ç¬¦ä¸²æè¿°ç¬¦å­—èŠ‚æ•° */
+    AM_USB_DESC_TYPE_STRING,          /* å­—ç¬¦ä¸²æè¿°ç¬¦ç±»å‹ç¼–å·ï¼Œå›ºå®šä¸º0x03 */
     0x04,
-    0x08,       /* ¼òÌåÖĞÎÄ */
+    0x08,       /* ç®€ä½“ä¸­æ–‡ */
 };
 
-/**< \brief ÃèÊö³§ÉÌµÄ×Ö·û´®ÃèÊö·û */
+/**< \brief æè¿°å‚å•†çš„å­—ç¬¦ä¸²æè¿°ç¬¦ */
 static uint8_t __g_am_usbd_printer_desc_str_imanufacturer[22] = {
-    sizeof(__g_am_usbd_printer_desc_str_imanufacturer),       /* ×Ö·û´®ÃèÊö·û×Ö½ÚÊı */
-    AM_USB_DESC_TYPE_STRING,          /* ×Ö·û´®ÃèÊö·ûÀàĞÍ±àºÅ£¬¹Ì¶¨Îª0x03 */
-    0x7f, 0x5e, /* ¹ã */
-    0xde, 0x5d, /* Öİ */
-    0xf4, 0x81, /* ÖÂ */
-    0xdc, 0x8f, /* Ô¶ */
-    0x35, 0x75, /* µç */
-    0x50, 0x5b, /* ×Ó */
-    0x09, 0x67, /* ÓĞ */
-    0x50, 0x96, /* ÏŞ */
-    0x6c, 0x51, /* ¹« */
-    0xf8, 0x53, /* Ë¾ */
+    sizeof(__g_am_usbd_printer_desc_str_imanufacturer),       /* å­—ç¬¦ä¸²æè¿°ç¬¦å­—èŠ‚æ•° */
+    AM_USB_DESC_TYPE_STRING,          /* å­—ç¬¦ä¸²æè¿°ç¬¦ç±»å‹ç¼–å·ï¼Œå›ºå®šä¸º0x03 */
+    0x7f, 0x5e, /* å¹¿ */
+    0xde, 0x5d, /* å· */
+    0xf4, 0x81, /* è‡´ */
+    0xdc, 0x8f, /* è¿œ */
+    0x35, 0x75, /* ç”µ */
+    0x50, 0x5b, /* å­ */
+    0x09, 0x67, /* æœ‰ */
+    0x50, 0x96, /* é™ */
+    0x6c, 0x51, /* å…¬ */
+    0xf8, 0x53, /* å¸ */
 };
 
 
 /******************************************************************************
- * ¸÷ÃèÊö·ûĞÅÏ¢
+ * å„æè¿°ç¬¦ä¿¡æ¯
  *****************************************************************************/
 static const am_usbd_descriptor_t __g_am_usbd_printer_descriptor[] = {
-    /* Éè±¸ÃèÊö·û */
+    /* è®¾å¤‡æè¿°ç¬¦ */
     {
         (AM_USB_DESC_TYPE_DEVICE << 8) | (0x00),
         sizeof(__g_am_usbd_printer_desc_dev),
         __g_am_usbd_printer_desc_dev
     },
 
-    /* ÅäÖÃÃèÊö·û¼°ÆäÏÂ¼¶ÃèÊö·û */
+    /* é…ç½®æè¿°ç¬¦åŠå…¶ä¸‹çº§æè¿°ç¬¦ */
     {
         (AM_USB_DESC_TYPE_CONFIGURE << 8) | (0x00),
         sizeof(__g_am_usbd_printer_desc_conf),
         __g_am_usbd_printer_desc_conf
     },
 
-    /* ×Ö·û´®ÃèÊö·û0£¬ÃèÊöÓïÑÔid */
+    /* å­—ç¬¦ä¸²æè¿°ç¬¦0ï¼Œæè¿°è¯­è¨€id */
     {
         (AM_USB_DESC_TYPE_STRING << 8) | (0x00),
         sizeof(__g_am_usbd_printer_desc_str_language_id),
         __g_am_usbd_printer_desc_str_language_id
     },
 
-    /* ×Ö·û´®ÃèÊö·û1£¬ÃèÊö³§ÉÌ */
+    /* å­—ç¬¦ä¸²æè¿°ç¬¦1ï¼Œæè¿°å‚å•† */
     {
         (AM_USB_DESC_TYPE_STRING << 8) | __USBD_PRINTER_VENDOR_STRING_INDEX,
         sizeof(__g_am_usbd_printer_desc_str_imanufacturer),
         __g_am_usbd_printer_desc_str_imanufacturer
     },
 
-    /* ×Ö·û´®ÃèÊö·û2£¬ÃèÊö²úÆ· */
+    /* å­—ç¬¦ä¸²æè¿°ç¬¦2ï¼Œæè¿°äº§å“ */
     {
         (AM_USB_DESC_TYPE_STRING << 8) | __USBD_PRINTER_PRODUCT_STRING_INDEX,
         sizeof(__g_am_usbd_printer_desc_str_iproduct),
@@ -264,19 +264,19 @@ static const am_usbd_descriptor_t __g_am_usbd_printer_descriptor[] = {
 };
 
 /******************************************************************************
- * Æ½Ì¨³õÊ¼»¯º¯Êı¡¢½â³õÊ¼»¯º¯ÊıÒÑ¾­Éè±¸ĞÅÏ¢
+ * å¹³å°åˆå§‹åŒ–å‡½æ•°ã€è§£åˆå§‹åŒ–å‡½æ•°å·²ç»è®¾å¤‡ä¿¡æ¯
  ******************************************************************************/
 /**
- * \brief Æ½Ì¨³õÊ¼»¯
+ * \brief å¹³å°åˆå§‹åŒ–
  */
 static void __am_usbd_printer_init (void) {
-    /* Ê¹ÄÜÊ±ÖÓ */
+    /* ä½¿èƒ½æ—¶é’Ÿ */
     am_clk_enable(CLK_USB);
     amhw_zmf159_rcc_ahb2_enable(AMHW_ZMF159_RCC_AHB2_USBFS);
 }
 
 /**
- * \brief Æ½Ì¨È¥³õÊ¼»¯
+ * \brief å¹³å°å»åˆå§‹åŒ–
  */
 static void __am_usbd_printer_deinit (void) {
     am_clk_disable(CLK_USB);
@@ -284,33 +284,33 @@ static void __am_usbd_printer_deinit (void) {
 }
 
 static const am_usbd_devinfo_t __g_usbd_info = {
-        __g_am_usbd_printer_descriptor,                                                         /* ÃèÊö·ûµØÖ· */
-        sizeof(__g_am_usbd_printer_descriptor) / sizeof(__g_am_usbd_printer_descriptor[0]),     /* ÃèÊö·û¸öÊı */
+        __g_am_usbd_printer_descriptor,                                                         /* æè¿°ç¬¦åœ°å€ */
+        sizeof(__g_am_usbd_printer_descriptor) / sizeof(__g_am_usbd_printer_descriptor[0]),     /* æè¿°ç¬¦ä¸ªæ•° */
 };
 
-/**< \brief ¶¨ÒåUSBÉè±¸ĞÅÏ¢ */
+/**< \brief å®šä¹‰USBè®¾å¤‡ä¿¡æ¯ */
 static const am_zmf159_usbd_devinfo_t  __g_zmf159_usbd_printer_info = {
-    ZMF159_USB_BASE,                  /**< \brief ¼Ä´æÆ÷»ùµØÖ· */
-    INUM_USB_FS,                      /**< \brief ÖĞ¶ÏºÅ */
-    __am_usbd_printer_init,           /**< \brief Æ½Ì¨³õÊ¼»¯ */
-    __am_usbd_printer_deinit,         /**< \brief Æ½Ì¨È¥³õÊ¼»¯ */
+    ZMF159_USB_BASE,                  /**< \brief å¯„å­˜å™¨åŸºåœ°å€ */
+    INUM_USB_FS,                      /**< \brief ä¸­æ–­å· */
+    __am_usbd_printer_init,           /**< \brief å¹³å°åˆå§‹åŒ– */
+    __am_usbd_printer_deinit,         /**< \brief å¹³å°å»åˆå§‹åŒ– */
     &__g_usbd_info,
 };
 
-/** \brief USB´òÓ¡»úĞÅÏ¢½á¹¹Ìå*/
+/** \brief USBæ‰“å°æœºä¿¡æ¯ç»“æ„ä½“*/
 static am_usbd_printer_info_t __g_usbd_printer_info = {
-        __g_printer_id,               /**< \brief ´òÓ¡»úid */
-        sizeof(__g_printer_id) - 1,   /**< \brief ´òÓ¡»úid³¤¶È,(¼õÒ»ÎªÁËÏû³ı¡®\0¡¯)*/
-        __g_printer_buff,             /**< \brief ´òÓ¡»úÊ¹ÓÃbuff */
+        __g_printer_id,               /**< \brief æ‰“å°æœºid */
+        sizeof(__g_printer_id) - 1,   /**< \brief æ‰“å°æœºidé•¿åº¦,(å‡ä¸€ä¸ºäº†æ¶ˆé™¤â€˜\0â€™)*/
+        __g_printer_buff,             /**< \brief æ‰“å°æœºä½¿ç”¨buff */
 };
 
-/** \brief ´òÓ¡»úÊ¹ÓÃhandle(USBÉè±¸Àà) */
+/** \brief æ‰“å°æœºä½¿ç”¨handle(USBè®¾å¤‡ç±») */
 static am_usbd_printer_t     __g_usb_printer_dev;
 
-/** \brief ÓÃÓÚzmf159 µÄUSB handle*/
+/** \brief ç”¨äºzmf159 çš„USB handle*/
 static am_zmf159_usbd_dev_t  __g_zmf159_usb_printer_dev;
 
-/** \brief usb_printerÊµÀı³õÊ¼»¯£¬»ñµÃusb_printer±ê×¼·şÎñ¾ä±ú */
+/** \brief usb_printerå®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—usb_printeræ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_usbd_printer_handle am_zmf159_usbd_printer_inst_init (void)
 {
     return am_usbd_printer_init(&__g_usb_printer_dev,
@@ -319,7 +319,7 @@ am_usbd_printer_handle am_zmf159_usbd_printer_inst_init (void)
                                                      &__g_zmf159_usbd_printer_info));
 }
 
-/** \brief usb_printer½â³õÊ¼»¯£¬»ñµÃusb_printer±ê×¼·şÎñ¾ä±ú */
+/** \brief usb_printerè§£åˆå§‹åŒ–ï¼Œè·å¾—usb_printeræ ‡å‡†æœåŠ¡å¥æŸ„ */
 void am_zmf159_usbd_printer_inst_deinit (void)
 {
     am_usbd_printer_deinit(&__g_usb_printer_dev);

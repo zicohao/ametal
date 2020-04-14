@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief LPC82x Ê±ÖÓID¶¨Òå
+ * \brief LPC82x æ—¶é’ŸIDå®šä¹‰
  * 
  * \internal
  * \par Modification History
@@ -36,48 +36,48 @@ extern "C" {
  
  
 /**
- * \name ÏµÍ³»òÍâÉèµÄÊ±ÖÓID
+ * \name ç³»ç»Ÿæˆ–å¤–è®¾çš„æ—¶é’ŸID
  * \anchor grp_clk_id
  * @{
  */
  
-#define CLK_IRC        1            /**< \brief ÄÚ²¿IRCÊ±ÖÓ          */
-#define CLK_XTAL       2            /**< \brief Íâ²¿¾§ÕñÊ±ÖÓ         */
-#define CLK_CLKIN      3            /**< \brief ÍâÉèÒý½ÅÊäÈëÊ±ÖÓ     */
-#define CLK_WDTOSC     4            /**< \brief ¿´ÃÅ¹·Õñµ´Æ÷         */
-#define CLK_PLLIN      5            /**< \brief PLLÊäÈëÊ±ÖÓ          */
-#define CLK_PLLOUT     6            /**< \brief PLLÊä³öÊ±ÖÓ          */
-#define CLK_MAIN       7            /**< \brief Ö÷Ê±ÖÓ               */
-#define CLK_SYSTEM     8            /**< \brief ÏµÍ³Ê±ÖÓ             */
+#define CLK_IRC        1            /**< \brief å†…éƒ¨IRCæ—¶é’Ÿ          */
+#define CLK_XTAL       2            /**< \brief å¤–éƒ¨æ™¶æŒ¯æ—¶é’Ÿ         */
+#define CLK_CLKIN      3            /**< \brief å¤–è®¾å¼•è„šè¾“å…¥æ—¶é’Ÿ     */
+#define CLK_WDTOSC     4            /**< \brief çœ‹é—¨ç‹—æŒ¯è¡å™¨         */
+#define CLK_PLLIN      5            /**< \brief PLLè¾“å…¥æ—¶é’Ÿ          */
+#define CLK_PLLOUT     6            /**< \brief PLLè¾“å‡ºæ—¶é’Ÿ          */
+#define CLK_MAIN       7            /**< \brief ä¸»æ—¶é’Ÿ               */
+#define CLK_SYSTEM     8            /**< \brief ç³»ç»Ÿæ—¶é’Ÿ             */
 
-#define CLK_ROM         (1 << 8)     /**< \brief ROM Ê±ÖÓ             */
-#define CLK_SRAM0_1     (2 << 8)     /**< \brief SRAM0 SRAM1 Ê±ÖÓ     */
-#define CLK_FLASHREG    (3 << 8)     /**< \brief FLASH¼Ä´æÆ÷½Ó¿ÚÊ±ÖÓ  */
-#define CLK_FLASH       (4 << 8)     /**< \brief FLASH Ê±ÖÓ           */
-#define CLK_I2C0        (5 << 8)     /**< \brief I2C0Ê±ÖÓ             */
-#define CLK_GPIO        (6 << 8)     /**< \brief GPIO Ê±ÖÓ            */
-#define CLK_SWM         (7 << 8)     /**< \brief SWM Ê±ÖÓ             */
-#define CLK_SCT         (8 << 8)     /**< \brief SCT Ê±ÖÓ             */
-#define CLK_WKT         (9 << 8)     /**< \brief WKT Ê±ÖÓ             */
-#define CLK_MRT         (10 << 8)    /**< \brief MRTÊ±ÖÓ              */
-#define CLK_SPI0        (11 << 8)    /**< \brief SPI0 Ê±ÖÓ            */
-#define CLK_SPI1        (12 << 8)    /**< \brief SPI1 Ê±ÖÓ            */
-#define CLK_CRC         (13 << 8)    /**< \brief CRC Ê±ÖÓ             */
-#define CLK_UART0       (14 << 8)    /**< \brief UART0 Ê±ÖÓ           */
-#define CLK_UART1       (15 << 8)    /**< \brief UART1 Ê±ÖÓ           */
-#define CLK_UART2       (16 << 8)    /**< \brief UART2 Ê±ÖÓ           */
-#define CLK_WWDT        (17 << 8)    /**< \brief WWDT Ê±ÖÓ            */
-#define CLK_IOCON       (18 << 8)    /**< \brief IOCON Ê±ÖÓ           */
-#define CLK_ACMP        (19 << 8)    /**< \brief ACMP Ê±ÖÓ            */
-#define CLK_I2C1        (21 << 8)    /**< \brief I2C1 Ê±ÖÓ            */
-#define CLK_I2C2        (22 << 8)    /**< \brief I2C2 Ê±ÖÓ            */
-#define CLK_I2C3        (23 << 8)    /**< \brief I2C3 Ê±ÖÓ            */
-#define CLK_ADC0        (24 << 8)    /**< \brief ADC Ê±ÖÓ             */
-#define CLK_MTB         (26 << 8)    /**< \brief MTB Ê±ÖÓ             */
-#define CLK_DMA         (29 << 8)    /**< \brief DMA Ê±ÖÓ             */
+#define CLK_ROM         (1 << 8)     /**< \brief ROM æ—¶é’Ÿ             */
+#define CLK_SRAM0_1     (2 << 8)     /**< \brief SRAM0 SRAM1 æ—¶é’Ÿ     */
+#define CLK_FLASHREG    (3 << 8)     /**< \brief FLASHå¯„å­˜å™¨æŽ¥å£æ—¶é’Ÿ  */
+#define CLK_FLASH       (4 << 8)     /**< \brief FLASH æ—¶é’Ÿ           */
+#define CLK_I2C0        (5 << 8)     /**< \brief I2C0æ—¶é’Ÿ             */
+#define CLK_GPIO        (6 << 8)     /**< \brief GPIO æ—¶é’Ÿ            */
+#define CLK_SWM         (7 << 8)     /**< \brief SWM æ—¶é’Ÿ             */
+#define CLK_SCT         (8 << 8)     /**< \brief SCT æ—¶é’Ÿ             */
+#define CLK_WKT         (9 << 8)     /**< \brief WKT æ—¶é’Ÿ             */
+#define CLK_MRT         (10 << 8)    /**< \brief MRTæ—¶é’Ÿ              */
+#define CLK_SPI0        (11 << 8)    /**< \brief SPI0 æ—¶é’Ÿ            */
+#define CLK_SPI1        (12 << 8)    /**< \brief SPI1 æ—¶é’Ÿ            */
+#define CLK_CRC         (13 << 8)    /**< \brief CRC æ—¶é’Ÿ             */
+#define CLK_UART0       (14 << 8)    /**< \brief UART0 æ—¶é’Ÿ           */
+#define CLK_UART1       (15 << 8)    /**< \brief UART1 æ—¶é’Ÿ           */
+#define CLK_UART2       (16 << 8)    /**< \brief UART2 æ—¶é’Ÿ           */
+#define CLK_WWDT        (17 << 8)    /**< \brief WWDT æ—¶é’Ÿ            */
+#define CLK_IOCON       (18 << 8)    /**< \brief IOCON æ—¶é’Ÿ           */
+#define CLK_ACMP        (19 << 8)    /**< \brief ACMP æ—¶é’Ÿ            */
+#define CLK_I2C1        (21 << 8)    /**< \brief I2C1 æ—¶é’Ÿ            */
+#define CLK_I2C2        (22 << 8)    /**< \brief I2C2 æ—¶é’Ÿ            */
+#define CLK_I2C3        (23 << 8)    /**< \brief I2C3 æ—¶é’Ÿ            */
+#define CLK_ADC0        (24 << 8)    /**< \brief ADC æ—¶é’Ÿ             */
+#define CLK_MTB         (26 << 8)    /**< \brief MTB æ—¶é’Ÿ             */
+#define CLK_DMA         (29 << 8)    /**< \brief DMA æ—¶é’Ÿ             */
 
-#define CLK_PERIPH_MIN  CLK_ROM      /**< \brief ÍâÉèÊ±ÖÓ×îÐ¡IDÖµ     */
-#define CLK_PERIPH_MAX  CLK_DMA      /**< \brief ÍâÉèÊ±ÖÓ×î´óIDÖµ     */
+#define CLK_PERIPH_MIN  CLK_ROM      /**< \brief å¤–è®¾æ—¶é’Ÿæœ€å°IDå€¼     */
+#define CLK_PERIPH_MAX  CLK_DMA      /**< \brief å¤–è®¾æ—¶é’Ÿæœ€å¤§IDå€¼     */
 /**
  * @} 
  */ 

@@ -11,21 +11,21 @@
 *******************************************************************************/
 /**
  * \file
- * \brief MicroPort-FLASH Àý³Ì£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief MicroPort-FLASH ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. ½« MicroPort-FLASH À©Õ¹°åÁ¬½Óµ½ AM824-Core µÄ MicroPort ½Ó¿Ú¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. å°† MicroPort-FLASH æ‰©å±•æ¿è¿žæŽ¥åˆ° AM824-Core çš„ MicroPort æŽ¥å£ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Ö÷»úÐ´Êý¾Ýµ½ FLASH£»
- *   2. Ö÷»ú´Ó FLASH ¶ÁÈ¡Êý¾Ý£¬²¢Í¨¹ý´®¿Ú´òÓ¡´¦Àí£»
- *   3. ´®¿Ú´òÓ¡³ö²âÊÔ½á¹û¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. ä¸»æœºå†™æ•°æ®åˆ° FLASHï¼›
+ *   2. ä¸»æœºä»Ž FLASH è¯»å–æ•°æ®ï¼Œå¹¶é€šè¿‡ä¸²å£æ‰“å°å¤„ç†ï¼›
+ *   3. ä¸²å£æ‰“å°å‡ºæµ‹è¯•ç»“æžœã€‚
  *
  * \note
- *    ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIO0_0 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *    PIO0_4 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
+ *    å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO0_0 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *    PIO0_4 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_microport_flash.c src_microport_flash
  *
  * \internal
@@ -47,7 +47,7 @@
 
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am824_core_microport_flash_entry (void)
 {

@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief CPU PLUS¿¨±ê×¼·şÎñ½Ó¿Ú
+ * \brief CPU PLUSå¡æ ‡å‡†æœåŠ¡æ¥å£
  *
  * \internal
  * \par Modification History
@@ -29,195 +29,195 @@ extern "C" {
 #include "am_common.h"
 
 /**
- * \name SL3¶Á¿¨Ä£Ê½
+ * \name SL3è¯»å¡æ¨¡å¼
  * @{
  */
 
-/** \brief ¶Á¿¨Ä£Ê½0; ÃüÁîÓĞMAC; Êı¾İÃÜÎÄ; »ØÓ¦ÎŞMAC */
+/** \brief è¯»å¡æ¨¡å¼0; å‘½ä»¤æœ‰MAC; æ•°æ®å¯†æ–‡; å›åº”æ— MAC */
 #define AM_IC_CPU_PLUS_SL3_READ_MODE0           0x30
 
-/** \brief ¶Á¿¨Ä£Ê½1; ÃüÁîÓĞMAC; Êı¾İÃÜÎÄ; »ØÓ¦ÓĞMAC */
+/** \brief è¯»å¡æ¨¡å¼1; å‘½ä»¤æœ‰MAC; æ•°æ®å¯†æ–‡; å›åº”æœ‰MAC */
 #define AM_IC_CPU_PLUS_SL3_READ_MODE1           0x31
 
-/** \brief ¶Á¿¨Ä£Ê½2; ÃüÁîÓĞMAC; Êı¾İÃ÷ÎÄ; »ØÓ¦ÎŞMAC */
+/** \brief è¯»å¡æ¨¡å¼2; å‘½ä»¤æœ‰MAC; æ•°æ®æ˜æ–‡; å›åº”æ— MAC */
 #define AM_IC_CPU_PLUS_SL3_READ_MODE2           0x32
 
-/** \brief ¶Á¿¨Ä£Ê½3; ÃüÁîÓĞMAC; Êı¾İÃ÷ÎÄ; »ØÓ¦ÓĞMAC */
+/** \brief è¯»å¡æ¨¡å¼3; å‘½ä»¤æœ‰MAC; æ•°æ®æ˜æ–‡; å›åº”æœ‰MAC */
 #define AM_IC_CPU_PLUS_SL3_READ_MODE3           0x33
 
-/** \brief ¶Á¿¨Ä£Ê½4; ÃüÁîÎŞMAC; Êı¾İÃÜÎÄ; »ØÓ¦ÎŞMAC */
+/** \brief è¯»å¡æ¨¡å¼4; å‘½ä»¤æ— MAC; æ•°æ®å¯†æ–‡; å›åº”æ— MAC */
 #define AM_IC_CPU_PLUS_SL3_READ_MODE4           0x34
 
-/** \brief ¶Á¿¨Ä£Ê½5; ÃüÁîÎŞMAC; Êı¾İÃÜÎÄ; »ØÓ¦ÓĞMAC */
+/** \brief è¯»å¡æ¨¡å¼5; å‘½ä»¤æ— MAC; æ•°æ®å¯†æ–‡; å›åº”æœ‰MAC */
 #define AM_IC_CPU_PLUS_SL3_READ_MODE5           0x35
 
-/** \brief ¶Á¿¨Ä£Ê½6; ÃüÁîÎŞMAC; Êı¾İÃ÷ÎÄ; »ØÓ¦ÎŞMAC */
+/** \brief è¯»å¡æ¨¡å¼6; å‘½ä»¤æ— MAC; æ•°æ®æ˜æ–‡; å›åº”æ— MAC */
 #define AM_IC_CPU_PLUS_SL3_READ_MODE6           0x36
 
-/** \brief ¶Á¿¨Ä£Ê½7; ÃüÁîÎŞMAC; Êı¾İÃ÷ÎÄ; »ØÓ¦ÓĞMAC */
+/** \brief è¯»å¡æ¨¡å¼7; å‘½ä»¤æ— MAC; æ•°æ®æ˜æ–‡; å›åº”æœ‰MAC */
 #define AM_IC_CPU_PLUS_SL3_READ_MODE7           0x37
 
 /** @} */
 
 /**
- * \name SL3Ğ´¿¨Ä£Ê½
+ * \name SL3å†™å¡æ¨¡å¼
  * @{
  */
 
-/** \brief Ğ´¿¨Ä£Ê½0; ÃüÁîÓĞMAC; Êı¾İÃÜÎÄ; »ØÓ¦ÎŞMAC */
+/** \brief å†™å¡æ¨¡å¼0; å‘½ä»¤æœ‰MAC; æ•°æ®å¯†æ–‡; å›åº”æ— MAC */
 #define AM_IC_CPU_PLUS_SL3_WRITE_MODE0          0xA0
 
-/** \brief Ğ´¿¨Ä£Ê½1; ÃüÁîÓĞMAC; Êı¾İÃÜÎÄ; »ØÓ¦ÓĞMAC */
+/** \brief å†™å¡æ¨¡å¼1; å‘½ä»¤æœ‰MAC; æ•°æ®å¯†æ–‡; å›åº”æœ‰MAC */
 #define AM_IC_CPU_PLUS_SL3_WRITE_MODE1          0xA1
 
-/** \brief Ğ´¿¨Ä£Ê½2; ÃüÁîÓĞMAC; Êı¾İÃ÷ÎÄ; »ØÓ¦ÎŞMAC */
+/** \brief å†™å¡æ¨¡å¼2; å‘½ä»¤æœ‰MAC; æ•°æ®æ˜æ–‡; å›åº”æ— MAC */
 #define AM_IC_CPU_PLUS_SL3_WRITE_MODE2          0xA2
 
-/** \brief Ğ´¿¨Ä£Ê½3; ÃüÁîÓĞMAC; Êı¾İÃ÷ÎÄ; »ØÓ¦ÓĞMAC */
+/** \brief å†™å¡æ¨¡å¼3; å‘½ä»¤æœ‰MAC; æ•°æ®æ˜æ–‡; å›åº”æœ‰MAC */
 #define AM_IC_CPU_PLUS_SL3_WRITE_MODE3          0xA3
 
 /** @} */
 
 /**
- * \name SL3´«ÊäÄ£Ê½£¨´ø¼Ó/¼õ²Ù×÷£©
+ * \name SL3ä¼ è¾“æ¨¡å¼ï¼ˆå¸¦åŠ /å‡æ“ä½œï¼‰
  * @{
  */
 
-/** \brief ¼ÓÖµ´«ÊäÄ£Ê½0; »ØÓ¦ÎŞMAC */
+/** \brief åŠ å€¼ä¼ è¾“æ¨¡å¼0; å›åº”æ— MAC */
 #define AM_IC_CPU_PLUS_SL3_INC_TRAN_MODE0       0xB6
 
-/** \brief ¼ÓÖµ´«ÊäÄ£Ê½1; »ØÓ¦ÓĞMAC */
+/** \brief åŠ å€¼ä¼ è¾“æ¨¡å¼1; å›åº”æœ‰MAC */
 #define AM_IC_CPU_PLUS_SL3_INC_TRAN_MODE1       0xB7
 
-/** \brief ¼õÖµ´«ÊäÄ£Ê½0; »ØÓ¦ÎŞMAC */
+/** \brief å‡å€¼ä¼ è¾“æ¨¡å¼0; å›åº”æ— MAC */
 #define AM_IC_CPU_PLUS_SL3_DEC_TRAN_MODE0       0xB8
 
-/** \brief ¼õÖµ´«ÊäÄ£Ê½1; »ØÓ¦ÓĞMAC */
+/** \brief å‡å€¼ä¼ è¾“æ¨¡å¼1; å›åº”æœ‰MAC */
 #define AM_IC_CPU_PLUS_SL3_DEC_TRAN_MODE1       0xB9
 
 /** @} */
 
 /**
- * \name SL3¸´Î»Ä£Ê½
+ * \name SL3å¤ä½æ¨¡å¼
  * @{
  */
 
-/** \brief »Ö¸´Ä£Ê½0; »ØÓ¦ÎŞMAC */
+/** \brief æ¢å¤æ¨¡å¼0; å›åº”æ— MAC */
 #define AM_IC_CPU_PLUS_SL3_RESTORE_MODE0        0xC2
 
-/** \brief »Ö¸´Ä£Ê½1; »ØÓ¦ÓĞMAC */
+/** \brief æ¢å¤æ¨¡å¼1; å›åº”æœ‰MAC */
 #define AM_IC_CPU_PLUS_SL3_RESTORE_MODE1        0xC3
 
 /** @} */
 
 /**
- * \name SL3´«ÊäÄ£Ê½£¨²»´ø¼Ó/¼õ²Ù×÷£©
+ * \name SL3ä¼ è¾“æ¨¡å¼ï¼ˆä¸å¸¦åŠ /å‡æ“ä½œï¼‰
  * @{
  */
 
-/** \brief ´«ÊäÄ£Ê½0; »ØÓ¦ÎŞMAC */
+/** \brief ä¼ è¾“æ¨¡å¼0; å›åº”æ— MAC */
 #define AM_IC_CPU_PLUS_SL3_TRANSFER_MODE0        0xB4
 
-/** \brief ´«ÊäÄ£Ê½1; »ØÓ¦ÓĞMAC */
+/** \brief ä¼ è¾“æ¨¡å¼1; å›åº”æœ‰MAC */
 #define AM_IC_CPU_PLUS_SL3_TRANSFER_MODE1        0xB5
 
 /** @} */
 
 /**
- * \brief CPU PLUS¿¨±ê×¼·şÎñÇı¶¯º¯Êı
+ * \brief CPU PLUSå¡æ ‡å‡†æœåŠ¡é©±åŠ¨å‡½æ•°
  */
 struct am_ic_cpu_plus_drv_funcs {
 
-    /** \brief ¿¨Æ¬¸öÈË»¯Ê±Ğ´ÈëÊı¾İ»òÕßÃÜÔ¿(SL0×¨ÓÃÃüÁî) */
+    /** \brief å¡ç‰‡ä¸ªäººåŒ–æ—¶å†™å…¥æ•°æ®æˆ–è€…å¯†é’¥(SL0ä¸“ç”¨å‘½ä»¤) */
     int (*pfn_ic_personal_data_write) (void     *p_drv,
                                        uint32_t  addr,
                                        uint8_t  *p_buf);
 
-    /** \brief Ìá½»¸öÈË»¯(Ô¾Ç¨µ½SL1,SL0×¨ÓÃÃüÁî) */
+    /** \brief æäº¤ä¸ªäººåŒ–(è·ƒè¿åˆ°SL1,SL0ä¸“ç”¨å‘½ä»¤) */
     int (*pfn_ic_personal_commit) (void *p_drv);
 
-    /** \brief Ê×´ÎÑéÖ¤ÃÜÔ¿ */
+    /** \brief é¦–æ¬¡éªŒè¯å¯†é’¥ */
     int (*pfn_ic_first_key_auth) (void          *p_drv,
                                   uint32_t       key_addr,
                                   const uint8_t *p_key,
                                   uint32_t       nbytes);
 
-    /** \brief ¸úËæÑéÖ¤ÃÜÔ¿ */
+    /** \brief è·ŸéšéªŒè¯å¯†é’¥ */
     int (*pfn_ic_follow_key_auth) (void     *p_drv,
                                    uint32_t  key_addr,
                                    uint8_t  *p_key,
                                    uint32_t  nbytes);
 
-    /** \brief ¸´Î»ÑéÖ¤ */
+    /** \brief å¤ä½éªŒè¯ */
     int (*pfn_ic_reset_auth) (void *p_drv);
 
-    /** \brief SL3¶ÁÊı¾İÃüÁî */
+    /** \brief SL3è¯»æ•°æ®å‘½ä»¤ */
     int (*pfn_ic_data_read) (void     *p_drv,
                              uint8_t   mode,
                              uint8_t  *p_buf,
                              uint32_t  block_addr,
                              uint8_t   block_num);
 
-    /** \brief SL3Ğ´Êı¾İÃüÁî */
+    /** \brief SL3å†™æ•°æ®å‘½ä»¤ */
     int (*pfn_ic_data_write) (void          *p_drv,
                               uint8_t        mode,
                               const uint8_t *p_buf,
                               uint32_t       block_addr,
                               uint8_t        block_num);
 
-    /** \brief Öµ¿éĞ´Êı¾İ(SL3) */
+    /** \brief å€¼å—å†™æ•°æ®(SL3) */
     int (*pfn_ic_value_block_write) (void    *p_drv,
                                      uint8_t  mode,
                                      uint32_t addr,
                                      int32_t  value);
 
-    /** \brief »ñÈ¡Öµ¿éµÄÊı¾İ£¨SL3£©*/
+    /** \brief è·å–å€¼å—çš„æ•°æ®ï¼ˆSL3ï¼‰*/
     int (*pfn_ic_value_block_read) (void     *p_drv,
                                     uint8_t   mode,
                                     uint32_t  addr,
                                     int32_t  *p_value);
 
-    /** \brief Öµ¿é²Ù×÷(¼Ó/¼õ£¬×Ô´ø´«ÊäÄ£Ê½£¬SL3) */
+    /** \brief å€¼å—æ“ä½œ(åŠ /å‡ï¼Œè‡ªå¸¦ä¼ è¾“æ¨¡å¼ï¼ŒSL3) */
     int (*pfn_ic_value_operation) (void     *p_drv,
                                    uint8_t   mode,
                                    uint32_t  src_addr,
                                    uint32_t  dst_addr,
                                    int32_t   value);
 
-    /** \brief Öµ¿é»Ö¸´£¬½«Ö¸¶¨µØÖ·µÄÖµ¸´ÖÆµ½»º³åÇøÖĞ */
+    /** \brief å€¼å—æ¢å¤ï¼Œå°†æŒ‡å®šåœ°å€çš„å€¼å¤åˆ¶åˆ°ç¼“å†²åŒºä¸­ */
     int (*pfn_ic_restore) (void     *p_drv,
                            uint8_t   mode,
                            uint32_t  src_addr);
 
-    /** \brief Öµ¿é´«Êä£¬½«Öµ¿é²Ù×÷½á¹û(»º³åÇø)´«Êäµ½Ö¸¶¨µÄ¿é */
+    /** \brief å€¼å—ä¼ è¾“ï¼Œå°†å€¼å—æ“ä½œç»“æœ(ç¼“å†²åŒº)ä¼ è¾“åˆ°æŒ‡å®šçš„å— */
     int (*pfn_ic_transfer) (void     *p_drv,
                             uint8_t   mode,
                             uint32_t  dst_addr);
 };
 
 /**
- * \brief CPU PLUS¿¨±ê×¼·şÎñ½á¹¹Ìå
+ * \brief CPU PLUSå¡æ ‡å‡†æœåŠ¡ç»“æ„ä½“
  */
 typedef struct am_ic_cpu_plus_serv {
 
-    /** CPU PLUS¿¨±ê×¼·şÎñÇı¶¯º¯Êı½á¹¹ÌåÖ¸Õë */
+    /** CPU PLUSå¡æ ‡å‡†æœåŠ¡é©±åŠ¨å‡½æ•°ç»“æ„ä½“æŒ‡é’ˆ */
     struct am_ic_cpu_plus_drv_funcs *p_funcs;
 
-    /* \brief ÓÃÓÚÇı¶¯º¯ÊıµÄµÚÒ»¸ö²ÎÊı */
+    /* \brief ç”¨äºé©±åŠ¨å‡½æ•°çš„ç¬¬ä¸€ä¸ªå‚æ•° */
     void                            *p_drv;
 } am_ic_cpu_plus_serv_t;
 
 typedef am_ic_cpu_plus_serv_t *am_ic_cpu_plus_handle_t;
 
 /**
- * \brief ¿¨Æ¬¸öÈË»¯Ê±Ğ´ÈëÊı¾İ»òÕßÃÜÔ¿(SL0×¨ÓÃÃüÁî)
+ * \brief å¡ç‰‡ä¸ªäººåŒ–æ—¶å†™å…¥æ•°æ®æˆ–è€…å¯†é’¥(SL0ä¸“ç”¨å‘½ä»¤)
  *
- * \param[in] handle : CPU PLUS¿¨±ê×¼·şÎñ¾ä±ú
- * \param[in] addr   : Êı¾İ¿é»òÃÜÔ¿µØÖ·
- * \param[in] p_buf  : 16×Ö½ÚÊı¾İ»òÃÜÔ¿
+ * \param[in] handle : CPU PLUSå¡æ ‡å‡†æœåŠ¡å¥æŸ„
+ * \param[in] addr   : æ•°æ®å—æˆ–å¯†é’¥åœ°å€
+ * \param[in] p_buf  : 16å­—èŠ‚æ•°æ®æˆ–å¯†é’¥
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_ic_cpu_plus_personal_data_write (am_ic_cpu_plus_handle_t  handle,
@@ -230,12 +230,12 @@ int am_ic_cpu_plus_personal_data_write (am_ic_cpu_plus_handle_t  handle,
 }
 
 /**
- * \brief Ìá½»¸öÈË»¯(Ô¾Ç¨µ½SL1,SL0×¨ÓÃÃüÁî)
+ * \brief æäº¤ä¸ªäººåŒ–(è·ƒè¿åˆ°SL1,SL0ä¸“ç”¨å‘½ä»¤)
  *
- * \param[in] handle : CPU PLUS¿¨±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle : CPU PLUSå¡æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_ic_cpu_plus_personal_commit (am_ic_cpu_plus_handle_t handle)
@@ -244,15 +244,15 @@ int am_ic_cpu_plus_personal_commit (am_ic_cpu_plus_handle_t handle)
 }
 
 /**
- * \brief Ê×´ÎÑéÖ¤ÃÜÔ¿
+ * \brief é¦–æ¬¡éªŒè¯å¯†é’¥
  *
- * \param[in] handle   : CPU PLUS¿¨±ê×¼·şÎñ¾ä±ú
- * \param[in] key_addr : ÃÜÔ¿µØÖ·
- * \param[in] p_key    : 16×Ö½ÚÃÜÔ¿
- * \param[in] nbytes   : ÃÜÔ¿³¤¶È
+ * \param[in] handle   : CPU PLUSå¡æ ‡å‡†æœåŠ¡å¥æŸ„
+ * \param[in] key_addr : å¯†é’¥åœ°å€
+ * \param[in] p_key    : 16å­—èŠ‚å¯†é’¥
+ * \param[in] nbytes   : å¯†é’¥é•¿åº¦
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_ic_cpu_plus_first_key_auth (am_ic_cpu_plus_handle_t  handle,
@@ -267,15 +267,15 @@ int am_ic_cpu_plus_first_key_auth (am_ic_cpu_plus_handle_t  handle,
 }
 
 /**
- * \brief ¸úËæÑéÖ¤ÃÜÔ¿
+ * \brief è·ŸéšéªŒè¯å¯†é’¥
  *
- * \param[in] handle   : CPU PLUS¿¨±ê×¼·şÎñ¾ä±ú
- * \param[in] key_addr : ÃÜÔ¿µØÖ·
- * \param[in] p_key    : 16×Ö½ÚÃÜÔ¿
- * \param[in] nbytes   : ÃÜÔ¿³¤¶È
+ * \param[in] handle   : CPU PLUSå¡æ ‡å‡†æœåŠ¡å¥æŸ„
+ * \param[in] key_addr : å¯†é’¥åœ°å€
+ * \param[in] p_key    : 16å­—èŠ‚å¯†é’¥
+ * \param[in] nbytes   : å¯†é’¥é•¿åº¦
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_ic_cpu_plus_follow_key_auth (am_ic_cpu_plus_handle_t  handle,
@@ -290,12 +290,12 @@ int am_ic_cpu_plus_follow_key_auth (am_ic_cpu_plus_handle_t  handle,
 }
 
 /**
- * \brief ¸´Î»ÑéÖ¤
+ * \brief å¤ä½éªŒè¯
  *
- * \param[in] handle : CPU PLUS¿¨±ê×¼·şÎñ¾ä±ú
+ * \param[in] handle : CPU PLUSå¡æ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_ic_cpu_plus_reset_auth (am_ic_cpu_plus_handle_t handle)
@@ -304,24 +304,24 @@ int am_ic_cpu_plus_reset_auth (am_ic_cpu_plus_handle_t handle)
 }
 
 /**
- * \brief SL3¶ÁÊı¾İÃüÁî
+ * \brief SL3è¯»æ•°æ®å‘½ä»¤
  *
- * \param[in] handle    : CPU PLUS¿¨±ê×¼·şÎñ¾ä±ú
- * \param[in] mode      : Ä¬ÈÏÎªSL3_READ_MODE3  PLUS S¿¨Ö»Ö§³ÖÄ£Ê½SL3¶Á¿¨Ä£Ê½
- *                         - AM_IC_CPU_PLUS_SL3_READ_MODE0  -- ¶Á¿¨Ä£Ê½0
- *                         - AM_IC_CPU_PLUS_SL3_READ_MODE1  -- ¶Á¿¨Ä£Ê½1
- *                         - AM_IC_CPU_PLUS_SL3_READ_MODE2  -- ¶Á¿¨Ä£Ê½2
- *                         - AM_IC_CPU_PLUS_SL3_READ_MODE3  -- ¶Á¿¨Ä£Ê½3
- *                         - AM_IC_CPU_PLUS_SL3_READ_MODE4  -- ¶Á¿¨Ä£Ê½4
- *                         - AM_IC_CPU_PLUS_SL3_READ_MODE5  -- ¶Á¿¨Ä£Ê½5
- *                         - AM_IC_CPU_PLUS_SL3_READ_MODE6  -- ¶Á¿¨Ä£Ê½6
- *                         - AM_IC_CPU_PLUS_SL3_READ_MODE7  -- ¶Á¿¨Ä£Ê½7
- * \param[out] p_buf     : ¶Á³öµÄ16 * block_numÊı¾İ
- * \param[in] block_addr : ¶ÁµÄÆğÊ¼¿éµØÖ·
- * \param[in] block_num  : ¶ÁµÄ¿éÊı£¨È¡ÖµÎª1¡«216£©
+ * \param[in] handle    : CPU PLUSå¡æ ‡å‡†æœåŠ¡å¥æŸ„
+ * \param[in] mode      : é»˜è®¤ä¸ºSL3_READ_MODE3  PLUS Så¡åªæ”¯æŒæ¨¡å¼SL3è¯»å¡æ¨¡å¼
+ *                         - AM_IC_CPU_PLUS_SL3_READ_MODE0  -- è¯»å¡æ¨¡å¼0
+ *                         - AM_IC_CPU_PLUS_SL3_READ_MODE1  -- è¯»å¡æ¨¡å¼1
+ *                         - AM_IC_CPU_PLUS_SL3_READ_MODE2  -- è¯»å¡æ¨¡å¼2
+ *                         - AM_IC_CPU_PLUS_SL3_READ_MODE3  -- è¯»å¡æ¨¡å¼3
+ *                         - AM_IC_CPU_PLUS_SL3_READ_MODE4  -- è¯»å¡æ¨¡å¼4
+ *                         - AM_IC_CPU_PLUS_SL3_READ_MODE5  -- è¯»å¡æ¨¡å¼5
+ *                         - AM_IC_CPU_PLUS_SL3_READ_MODE6  -- è¯»å¡æ¨¡å¼6
+ *                         - AM_IC_CPU_PLUS_SL3_READ_MODE7  -- è¯»å¡æ¨¡å¼7
+ * \param[out] p_buf     : è¯»å‡ºçš„16 * block_numæ•°æ®
+ * \param[in] block_addr : è¯»çš„èµ·å§‹å—åœ°å€
+ * \param[in] block_num  : è¯»çš„å—æ•°ï¼ˆå–å€¼ä¸º1ï½216ï¼‰
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_ic_cpu_plus_data_read (am_ic_cpu_plus_handle_t  handle,
@@ -338,21 +338,21 @@ int am_ic_cpu_plus_data_read (am_ic_cpu_plus_handle_t  handle,
 }
 
 /**
- * \brief SL3Ğ´Êı¾İÃüÁî
+ * \brief SL3å†™æ•°æ®å‘½ä»¤
  *
- * \param[in] handle    : CPU PLUS¿¨±ê×¼·şÎñ¾ä±ú
- * \param[in] mode      : ²Î¿¼ËµÃ÷£¬Ğ´Ä£Ê½¶¨Òå
- *                           AM_IC_CPU_PLUS_SL3_WRITE_MODE0  Ğ´¿¨Ä£Ê½0
- *                           AM_IC_CPU_PLUS_SL3_WRITE_MODE1  Ğ´¿¨Ä£Ê½1
- *                           AM_IC_CPU_PLUS_SL3_WRITE_MODE2  Ğ´¿¨Ä£Ê½2
- *                           AM_IC_CPU_PLUS_SL3_WRITE_MODE3  Ğ´¿¨Ä£Ê½3
- *                           Ä¬ÈÏÎª SL3_WRITE_MODE3
- * \param[in] p_buf      : Ğ´ÈëµÄ16 * block_num×Ö½ÚÊı¾İ
- * \param[in] block_addr : Ğ´µÄÆğÊ¼¿éµØÖ·
- * \param[in] block_num  : Ğ´µÄ¿éÊı£¨È¡ÖµÎª1¡«3£©
+ * \param[in] handle    : CPU PLUSå¡æ ‡å‡†æœåŠ¡å¥æŸ„
+ * \param[in] mode      : å‚è€ƒè¯´æ˜ï¼Œå†™æ¨¡å¼å®šä¹‰
+ *                           AM_IC_CPU_PLUS_SL3_WRITE_MODE0  å†™å¡æ¨¡å¼0
+ *                           AM_IC_CPU_PLUS_SL3_WRITE_MODE1  å†™å¡æ¨¡å¼1
+ *                           AM_IC_CPU_PLUS_SL3_WRITE_MODE2  å†™å¡æ¨¡å¼2
+ *                           AM_IC_CPU_PLUS_SL3_WRITE_MODE3  å†™å¡æ¨¡å¼3
+ *                           é»˜è®¤ä¸º SL3_WRITE_MODE3
+ * \param[in] p_buf      : å†™å…¥çš„16 * block_numå­—èŠ‚æ•°æ®
+ * \param[in] block_addr : å†™çš„èµ·å§‹å—åœ°å€
+ * \param[in] block_num  : å†™çš„å—æ•°ï¼ˆå–å€¼ä¸º1ï½3ï¼‰
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_ic_cpu_plus_data_write (am_ic_cpu_plus_handle_t  handle,
@@ -369,15 +369,15 @@ int am_ic_cpu_plus_data_write (am_ic_cpu_plus_handle_t  handle,
 }
 
 /**
- * \brief Öµ¿éĞ´Êı¾İ(SL3)
+ * \brief å€¼å—å†™æ•°æ®(SL3)
  *
- * \param[in] handle : CPU PLUS¿¨±ê×¼·şÎñ¾ä±ú
- * \param[in] mode   : Ğ´ÈëµÄÄ£Ê½(ºÍam_ic_cpu_plus_data_write()ÏàÍ¬)
- * \param[in] addr   : Öµ´æ·ÅµØÖ·
- * \param[in] value  : Ğ´ÈëÖµ
+ * \param[in] handle : CPU PLUSå¡æ ‡å‡†æœåŠ¡å¥æŸ„
+ * \param[in] mode   : å†™å…¥çš„æ¨¡å¼(å’Œam_ic_cpu_plus_data_write()ç›¸åŒ)
+ * \param[in] addr   : å€¼å­˜æ”¾åœ°å€
+ * \param[in] value  : å†™å…¥å€¼
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_ic_cpu_plus_value_block_write (am_ic_cpu_plus_handle_t handle,
@@ -392,15 +392,15 @@ int am_ic_cpu_plus_value_block_write (am_ic_cpu_plus_handle_t handle,
 }
 
 /**
- * \brief »ñÈ¡Öµ¿éµÄÊı¾İ£¨SL3£©
+ * \brief è·å–å€¼å—çš„æ•°æ®ï¼ˆSL3ï¼‰
  *
- * \param[in] handle    : CPU PLUS¿¨±ê×¼·şÎñ¾ä±ú
- * \param[in] mode      : ¶ÁÈëÄ£Ê½£¨ºÍam_ic_cpu_plus_data_read()ÏàÍ¬£©
- * \param[in] addr      : Öµ´æ·ÅµØÖ·
- * \param[out] P_value  : ·µ»ØÊı¾İ
+ * \param[in] handle    : CPU PLUSå¡æ ‡å‡†æœåŠ¡å¥æŸ„
+ * \param[in] mode      : è¯»å…¥æ¨¡å¼ï¼ˆå’Œam_ic_cpu_plus_data_read()ç›¸åŒï¼‰
+ * \param[in] addr      : å€¼å­˜æ”¾åœ°å€
+ * \param[out] P_value  : è¿”å›æ•°æ®
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_ic_cpu_plus_value_block_read (am_ic_cpu_plus_handle_t  handle,
@@ -415,20 +415,20 @@ int am_ic_cpu_plus_value_block_read (am_ic_cpu_plus_handle_t  handle,
 }
 
 /**
- * \brief Öµ¿é²Ù×÷(¼Ó/¼õ£¬×Ô´ø´«ÊäÄ£Ê½£¬SL3)
+ * \brief å€¼å—æ“ä½œ(åŠ /å‡ï¼Œè‡ªå¸¦ä¼ è¾“æ¨¡å¼ï¼ŒSL3)
  *
- * \param[in] handle   : CPU PLUS¿¨±ê×¼·şÎñ¾ä±ú
- * \param[in] mode     : Öµ¿é²Ù×÷µÄÄ£Ê½, Ö»Ö§³ÖÒÔÏÂÄ£Ê½
- *                        AM_IC_CPU_PLUS_SL3_INC_TRAN_MODE0 ¼ÓÖµ´«ÊäÄ£Ê½0
- *                        AM_IC_CPU_PLUS_SL3_INC_TRAN_MODE1 ¼ÓÖµ´«ÊäÄ£Ê½1
- *                        AM_IC_CPU_PLUS_SL3_DEC_TRAN_MODE0 ¼õÖµ´«ÊäÄ£Ê½0
- *                        AM_IC_CPU_PLUS_SL3_DEC_TRAN_MODE1 ¼õÖµ´«ÊäÄ£Ê½1
- * \param[in] src_addr : Öµ´æ·ÅÔ´µØÖ·
- * \param[in] dst_addr : ²Ù×÷ºóÖµ´æ·ÅµÄµØÖ·
- * \param[in] value    : Öµ
+ * \param[in] handle   : CPU PLUSå¡æ ‡å‡†æœåŠ¡å¥æŸ„
+ * \param[in] mode     : å€¼å—æ“ä½œçš„æ¨¡å¼, åªæ”¯æŒä»¥ä¸‹æ¨¡å¼
+ *                        AM_IC_CPU_PLUS_SL3_INC_TRAN_MODE0 åŠ å€¼ä¼ è¾“æ¨¡å¼0
+ *                        AM_IC_CPU_PLUS_SL3_INC_TRAN_MODE1 åŠ å€¼ä¼ è¾“æ¨¡å¼1
+ *                        AM_IC_CPU_PLUS_SL3_DEC_TRAN_MODE0 å‡å€¼ä¼ è¾“æ¨¡å¼0
+ *                        AM_IC_CPU_PLUS_SL3_DEC_TRAN_MODE1 å‡å€¼ä¼ è¾“æ¨¡å¼1
+ * \param[in] src_addr : å€¼å­˜æ”¾æºåœ°å€
+ * \param[in] dst_addr : æ“ä½œåå€¼å­˜æ”¾çš„åœ°å€
+ * \param[in] value    : å€¼
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_ic_cpu_plus_value_operation (am_ic_cpu_plus_handle_t handle,
@@ -445,16 +445,16 @@ int am_ic_cpu_plus_value_operation (am_ic_cpu_plus_handle_t handle,
 }
 
 /**
- * \brief Öµ¿é»Ö¸´£¬½«Ö¸¶¨µØÖ·µÄÖµ¸´ÖÆµ½»º³åÇøÖĞ
+ * \brief å€¼å—æ¢å¤ï¼Œå°†æŒ‡å®šåœ°å€çš„å€¼å¤åˆ¶åˆ°ç¼“å†²åŒºä¸­
  *
- * \param[in] handle   : CPU PLUS¿¨±ê×¼·şÎñ¾ä±ú
- * \param[in] mode     : Öµ¿é²Ù×÷µÄÄ£Ê½, Ö»Ö§³ÖÒÔÏÂÄ£Ê½
- *                       AM_IC_CPU_PLUS_SL3_RESTORE_MODE0  »Ö¸´Ä£Ê½0
- *                       AM_IC_CPU_PLUS_SL3_RESTORE_MODE1  »Ö¸´Ä£Ê½1
- * \param[in] src_addr : Öµ²Ù×÷µÄÔ´µØÖ·
+ * \param[in] handle   : CPU PLUSå¡æ ‡å‡†æœåŠ¡å¥æŸ„
+ * \param[in] mode     : å€¼å—æ“ä½œçš„æ¨¡å¼, åªæ”¯æŒä»¥ä¸‹æ¨¡å¼
+ *                       AM_IC_CPU_PLUS_SL3_RESTORE_MODE0  æ¢å¤æ¨¡å¼0
+ *                       AM_IC_CPU_PLUS_SL3_RESTORE_MODE1  æ¢å¤æ¨¡å¼1
+ * \param[in] src_addr : å€¼æ“ä½œçš„æºåœ°å€
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_ic_cpu_plus_restore (am_ic_cpu_plus_handle_t handle,
@@ -467,16 +467,16 @@ int am_ic_cpu_plus_restore (am_ic_cpu_plus_handle_t handle,
 }
 
 /**
- * \brief Öµ¿é´«Êä£¬½«Öµ¿é²Ù×÷½á¹û(»º³åÇø)´«Êäµ½Ö¸¶¨µÄ¿é
+ * \brief å€¼å—ä¼ è¾“ï¼Œå°†å€¼å—æ“ä½œç»“æœ(ç¼“å†²åŒº)ä¼ è¾“åˆ°æŒ‡å®šçš„å—
  *
- * \param[in] handle   : CPU PLUS¿¨±ê×¼·şÎñ¾ä±ú
- * \param[in] mode     : Öµ¿é²Ù×÷µÄÄ£Ê½, Ö»Ö§³ÖÒÔÏÂÄ£Ê½
- *                       AM_IC_CPU_PLUS_SL3_TRANSFER_MODE0 ´«ÊäÄ£Ê½0
- *                       AM_IC_CPU_PLUS_SL3_TRANSFER_MODE1 ´«ÊäÄ£Ê½1
- * \param[in] dst_addr : Öµ²Ù×÷Ä¿µÄµØÖ·
+ * \param[in] handle   : CPU PLUSå¡æ ‡å‡†æœåŠ¡å¥æŸ„
+ * \param[in] mode     : å€¼å—æ“ä½œçš„æ¨¡å¼, åªæ”¯æŒä»¥ä¸‹æ¨¡å¼
+ *                       AM_IC_CPU_PLUS_SL3_TRANSFER_MODE0 ä¼ è¾“æ¨¡å¼0
+ *                       AM_IC_CPU_PLUS_SL3_TRANSFER_MODE1 ä¼ è¾“æ¨¡å¼1
+ * \param[in] dst_addr : å€¼æ“ä½œç›®çš„åœ°å€
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_ic_cpu_plus_transfer (am_ic_cpu_plus_handle_t handle,

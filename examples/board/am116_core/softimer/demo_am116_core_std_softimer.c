@@ -12,16 +12,16 @@
 
 /**
  * \file
- * \brief Èí¼þ¶¨Ê±Æ÷Àý³Ì£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief è½¯ä»¶å®šæ—¶å™¨ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Èí¼þ¶¨Ê±Æ÷°´ÕÕ 100ms µÄÖÜÆÚÖÐ¶Ï£¬²¢ÔÚÖÐ¶ÏÊ±´òÓ¡µ÷ÊÔÐÅÏ¢¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. è½¯ä»¶å®šæ—¶å™¨æŒ‰ç…§ 100ms çš„å‘¨æœŸä¸­æ–­ï¼Œå¹¶åœ¨ä¸­æ–­æ—¶æ‰“å°è°ƒè¯•ä¿¡æ¯ã€‚
  *
  * \note
- *    1. ²âÊÔ±¾ Demo ±ØÐëÔÚ am_prj_config.h ÄÚ½« AM_CFG_SOFTIMER_ENABLE ¶¨ÒåÎª 1¡£
- *       µ«¸ÃºêÒÑ¾­Ä¬ÈÏÅäÖÃÎª 1£¬ ÓÃ»§²»±ØÔÙ´ÎÅäÖÃ£»
+ *    1. æµ‹è¯•æœ¬ Demo å¿…é¡»åœ¨ am_prj_config.h å†…å°† AM_CFG_SOFTIMER_ENABLE å®šä¹‰ä¸º 1ã€‚
+ *       ä½†è¯¥å®å·²ç»é»˜è®¤é…ç½®ä¸º 1ï¼Œ ç”¨æˆ·ä¸å¿…å†æ¬¡é…ç½®ï¼›
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am116_core_std_softimer.c src_am116_core_std_softimer
  *
  * \internal
@@ -42,7 +42,7 @@
 #include "demo_am116_core_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am116_core_std_softimer_entry (void)
 {

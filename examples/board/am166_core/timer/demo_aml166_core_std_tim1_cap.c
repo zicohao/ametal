@@ -12,20 +12,20 @@
 
 /**
  * \file
- * \brief TIM1 ��ʱ�� CAP ���̣�ͨ����׼�ӿ�ʵ��
+ * \brief TIM1 定时器 CAP 例程，通过标准接口实现
  *
- * - �������裺
- *   1. ʹ�öŰ��ߣ��� PIOA_0 �� PIOA_11 ���ӡ�
+ * - 操作步骤：
+ *   1. 使用杜邦线，将 PIOA_0 与 PIOA_11 连接。
  *
- * - ʵ������
- *   1. TIM2 ͨ�� PIOA_0 ������� 2KHz �� PWM��
- *   2. TIM1 ��������ͨ�� 4 ʹ�� PIOA_11 ���Ų���
- *   3. ���ڴ�ӡ�����ò����ܵõ��� PWM �źŵ����ں�Ƶ�ʡ�
+ * - 实验现象：
+ *   1. TIM2 通过 PIOA_0 引脚输出 2KHz 的 PWM；
+ *   2. TIM1 捕获输入通道 4 使用 PIOA_11 引脚捕获；
+ *   3. 串口打印出利用捕获功能得到的 PWM 信号的周期和频率。
  *
  * \note
- *    ����۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIOA_9 �������� PC ���ڵ� RXD��
+ *    如需观察串口打印的调试信息，需要将 PIOA_9 引脚连接 PC 串口的 RXD。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_aml166_core_std_tim1_cap.c src_aml166_core_std_tim1_cap
  *
  * \internal
@@ -48,7 +48,7 @@
 #include "demo_aml166_core_entries.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_aml166_core_std_tim1_cap_entry (void)
 {
@@ -56,7 +56,7 @@ void demo_aml166_core_std_tim1_cap_entry (void)
 
     AM_DBG_INFO("demo aml166_core std tim1 cap!\r\n");
 
-    /* TIM2 ���Ƶ��Ϊ 2KHz �� PWM */
+    /* TIM2 输出频率为 2KHz 的 PWM */
     am_pwm_config(pwm_handle, 0, 500000 / 2, 500000);
     am_pwm_enable(pwm_handle, 0);
 

@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥4.1
+ * \brief ç¨‹åºæ¸…å•4.1
  *
  * \internal
  * \par Modification history
@@ -25,13 +25,13 @@
 #include "am_delay.h"
 
 /**
- * \brief AMetal Ó¦ÓÃ³ÌĞòÈë¿Ú
+ * \brief AMetal åº”ç”¨ç¨‹åºå…¥å£
  */
 void am_main (void)
 {
     while(1) {
-        am_led_toggle(0);           			// ·­×ªLED0µÄ×´Ì¬
-        am_mdelay(500);             			// ÑÓÊ±500ms
+        am_led_toggle(0);           			// ç¿»è½¬LED0çš„çŠ¶æ€
+        am_mdelay(500);             			// å»¶æ—¶500ms
 	    }
 }
 

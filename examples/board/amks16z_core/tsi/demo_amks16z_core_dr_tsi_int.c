@@ -11,18 +11,18 @@
 *******************************************************************************/
 /**
  * \file
- * \brief   TSI�����жϼ�⣬������ʵ��
+ * \brief   TSI触摸中断检测，驱动层实现
  *
- *  ʵ������
- *  1.ʵ������PIOA_1����ΪTSIͨ��2���ܣ����ֲ��Ӵ�PIOA_1����ʱ���ᴥ���ж�
- *  2.������PIOA_1���ź󣬵��ݼ����ڷ�ֵ����1ֵʱ�������жϣ�LED1״̬��ת
+ *  实验现象：
+ *  1.实验配置PIOA_1引脚为TSI通道2功能，当手不接触PIOA_1引脚时不会触发中断
+ *  2.当触摸PIOA_1引脚后，电容检测大于阀值上限1值时，进入中断，LED1状态翻转
  *
- *  ע�⣺
- *  1.��TSI����Ϊ��������ģʽʱ����Ҫִ����������ɨ�躯������ִ��һ��ɨ�裬����
- *  ��ʹ��ʱ��������Ϊ��������ģʽʱ����Ҫһֱ���߶�ʱִ������ɨ�躯����
- *  2.���и�����ʱPIOA_1�������óɴ������š�
+ *  注意：
+ *  1.当TSI设置为软件触发模式时，需要执行启动软件扫描函数才能执行一次扫描，所以
+ *  在使用时，当配置为软件触发模式时，需要一直或者定时执行启动扫描函数；
+ *  2.运行该例程时PIOA_1不能配置成串口引脚。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_amks16z_core_dr_tsi_int.c src_amks16z_core_dr_tsi_int
  *
  * \internal
@@ -47,13 +47,13 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief ���������
+ * \brief 主函数入口
  */
 void demo_amks16z_core_dr_tsi_int_entry (void)
 {
     AM_DBG_INFO("demo amks16z_core dr tsi int!\r\n");
 
-    /* TSI�豸��ʼ�� */
+    /* TSI设备初始化 */
     am_kl26_tsi_inst_init();
 
     demo_fsl_dr_tsi_int_entry();

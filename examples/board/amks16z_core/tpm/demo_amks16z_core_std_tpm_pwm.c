@@ -12,12 +12,12 @@
 
 /**
  * \file
- * \brief TPMÊµÏÖPWM±ê×¼½Ó¿ÚÀı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief TPMå®ç°PWMæ ‡å‡†æ¥å£ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ¶¨Ê±Æ÷Í¨µÀ¶ÔÓ¦µÄÒı½ÅÊä³öÆµÂÊÎª 2KHz£¬Õ¼¿Õ±ÈÎª 50% µÄ PWM ²¨
+ * - å®éªŒç°è±¡ï¼š
+ *   1. å®šæ—¶å™¨é€šé“å¯¹åº”çš„å¼•è„šè¾“å‡ºé¢‘ç‡ä¸º 2KHzï¼Œå ç©ºæ¯”ä¸º 50% çš„ PWM æ³¢
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_amks16z_core_std_tpm_pwm.c src_amks16z_core_std_tpm_pwm
  *
  * \internal
@@ -41,12 +41,12 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_amks16z_core_std_tpm_pwm_entry (void)
 {
 
-    /* ³õÊ¼»¯¶¨Ê±Æ÷0ÎªPWM¹¦ÄÜ */
+    /* åˆå§‹åŒ–å®šæ—¶å™¨0ä¸ºPWMåŠŸèƒ½ */
     am_pwm_handle_t tpm0_pwm_handle = am_kl26_tpm0_pwm_inst_init();
 
     demo_std_timer_pwm_entry(tpm0_pwm_handle, 0);

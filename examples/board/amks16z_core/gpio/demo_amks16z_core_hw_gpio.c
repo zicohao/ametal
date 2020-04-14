@@ -11,18 +11,18 @@
 *******************************************************************************/
 /**
  * \file
- * \brief KS16xx GPIO¡¢PORT HW²ãÀý×Ó
+ * \brief KS16xx GPIOã€PORT HWå±‚ä¾‹å­
  *
- * \brief GPIO Çý¶¯²ãÒý½ÅÊäÈëÊä³öÀý×Ó
- * - ²Ù×÷£º
- *   1.½«J14µÄkeyºÍPIOC_0¶Ì½ÓÔÚÒ»Æð;
- *   2.½«J9µÄLED0ºÍPIOC_4¶Ì½ÓÔÚÒ»Æð;
- *   3.½«J10µÄLED1ºÍPIOC_8¶Ì½ÓÔÚÒ»Æð;
+ * \brief GPIO é©±åŠ¨å±‚å¼•è„šè¾“å…¥è¾“å‡ºä¾‹å­
+ * - æ“ä½œï¼š
+ *   1.å°†J14çš„keyå’ŒPIOC_0çŸ­æŽ¥åœ¨ä¸€èµ·;
+ *   2.å°†J9çš„LED0å’ŒPIOC_4çŸ­æŽ¥åœ¨ä¸€èµ·;
+ *   3.å°†J10çš„LED1å’ŒPIOC_8çŸ­æŽ¥åœ¨ä¸€èµ·;
  *
- * -ÊµÏÖÏÖÏó£º³ÌÐòÏÂÔØµ½demo°åºó£¬°´ÏÂÒ»´Î°´¼üLED0»á½øÐÐÒ»´Î·­×ª£¬Èô³¤°´£¬demo°åÉÏµÄLED0»áÉÁ¡£
+ * -å®žçŽ°çŽ°è±¡ï¼šç¨‹åºä¸‹è½½åˆ°demoæ¿åŽï¼ŒæŒ‰ä¸‹ä¸€æ¬¡æŒ‰é”®LED0ä¼šè¿›è¡Œä¸€æ¬¡ç¿»è½¬ï¼Œè‹¥é•¿æŒ‰ï¼Œdemoæ¿ä¸Šçš„LED0ä¼šé—ªã€‚
  *
- * \par Ô´´úÂë
- * \par Ô´´úÂë
+ * \par æºä»£ç 
+ * \par æºä»£ç 
  * \snippet demo_amks16z_core_hw_gpio.c src_amks16z_core_hw_gpio
  *
  * \internal
@@ -44,7 +44,7 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_amks16z_core_hw_gpio_entry (void)
 {

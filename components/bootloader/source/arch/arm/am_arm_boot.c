@@ -25,7 +25,7 @@
 #include "am_boot.h"
 #include "hw/amhw_arm_nvic.h"
 
-/** \brief bootÉè±¸ÊµÀı */
+/** \brief bootè®¾å¤‡å®ä¾‹ */
 static am_arm_boot_dev_t __g_boot_dev;
 
 static void __set_msp(uint32_t top_mstack)
@@ -67,7 +67,7 @@ static void __system_reset()
 }
 
 /**
- * \brief ÅĞ¶ÏÓ¦ÓÃ´úÂëÊÇ·ñÓĞĞ§
+ * \brief åˆ¤æ–­åº”ç”¨ä»£ç æ˜¯å¦æœ‰æ•ˆ
  */
 am_bool_t __boot_app_is_ready(void)
 {
@@ -88,7 +88,7 @@ am_bool_t __boot_app_is_ready(void)
 }
 
 /**
- * \brief ÏµÍ³ÖØÆô
+ * \brief ç³»ç»Ÿé‡å¯
  */
 void __boot_reset(void)
 {
@@ -96,10 +96,10 @@ void __boot_reset(void)
 }
 
 /**
- * \brief »ñÈ¡Ó¦ÓÃ´úÂë´æ·ÅµÄÆğÊ¼µØÖ·
+ * \brief è·å–åº”ç”¨ä»£ç å­˜æ”¾çš„èµ·å§‹åœ°å€
  *
- * \retval > 0 ·µ»ØÓ¦ÓÃ´úÂë´æ·ÅµÄÆğÊ¼µØÖ·
- *         < 0 ÎŞ·¨»ñÈ¡µØÖ·
+ * \retval > 0 è¿”å›åº”ç”¨ä»£ç å­˜æ”¾çš„èµ·å§‹åœ°å€
+ *         < 0 æ— æ³•è·å–åœ°å€
  */
 static int __boot_get_app_addr(void)
 {
@@ -108,7 +108,7 @@ static int __boot_get_app_addr(void)
 }
 
 /**
- * \brief Ìø×ªµ½Ó¦ÓÃ´úÂë
+ * \brief è·³è½¬åˆ°åº”ç”¨ä»£ç 
  */
 int __boot_go_application(void)
 {
@@ -122,13 +122,13 @@ int __boot_go_application(void)
 
     __g_boot_dev.p_devinfo->pfn_plfm_deinit();
 
-    /* ÉèÖÃÕ»Ö¸Õë */
+    /* è®¾ç½®æ ˆæŒ‡é’ˆ */
     __set_msp(stack_addr);
     __set_psp(stack_addr);
 
-    /* Ìø×ªµ½Ó¦ÓÃ´úÂë */
+    /* è·³è½¬åˆ°åº”ç”¨ä»£ç  */
     farewell_bootloader();
-    /*Èç¹ûÕı³£Ìø×ª£¬´úÂë²»»áÖ´ĞĞµ½ÕâÀï*/
+    /*å¦‚æœæ­£å¸¸è·³è½¬ï¼Œä»£ç ä¸ä¼šæ‰§è¡Œåˆ°è¿™é‡Œ*/
     return -AM_ERROR;
 }
 
@@ -140,7 +140,7 @@ am_local struct am_boot_drv_funcs __g_drv_funcs = {
 };
 
 /**
- * \brief BootLoader³õÊ¼»¯º¯Êı
+ * \brief BootLoaderåˆå§‹åŒ–å‡½æ•°
  */
 int am_arm_boot_init(am_arm_boot_devinfo_t *p_devinfo)
 {

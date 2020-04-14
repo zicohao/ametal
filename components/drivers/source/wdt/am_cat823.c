@@ -78,7 +78,7 @@ am_wdt_handle_t am_cat823_init (am_cat823_dev_t           *p_dev,
     p_dev->wdt_serv.p_funcs = (struct am_wdt_drv_funcs *)&__g_iwdt_drv_funcs;
     p_dev->wdt_serv.p_drv   = (void *)p_dev;
 
-    /* �رտ��Ź� */
+    /* ¹Ø±Õ¿´ÃÅ¹· */
     am_gpio_pin_cfg(p_dev->p_devinfo->wdi_pin, AM_GPIO_FLOAT);
 
     return &(p_dev->wdt_serv);

@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief µ÷ÊÔ´®¿ÚÅäÖÃÎÄ¼ş
+ * \brief è°ƒè¯•ä¸²å£é…ç½®æ–‡ä»¶
  * \sa am_hwconf_debug_uart.c
  *
  * \internal
@@ -32,15 +32,15 @@
  */
 
 /**
- * \brief Ê¹ÓÃµÄµ÷ÊÔ´®¿Ú£¬Ä¬ÈÏ UART1
+ * \brief ä½¿ç”¨çš„è°ƒè¯•ä¸²å£ï¼Œé»˜è®¤ UART1
  * 1 - UART1; 2 - UART2
  */
 #define __DEBUG_UART            1
 
-/** \brief ÅäÖÃµ÷ÊÔ´®¿ÚÊä³öµÄ²¨ÌØÂÊ */
+/** \brief é…ç½®è°ƒè¯•ä¸²å£è¾“å‡ºçš„æ³¢ç‰¹ç‡ */
 #define __DEBUG_BAUDRATE        115200
 
-/** \brief µ÷ÊÔ´®¿ÚÊµÀı³õÊ¼»¯ */
+/** \brief è°ƒè¯•ä¸²å£å®ä¾‹åˆå§‹åŒ– */
 am_uart_handle_t am_debug_uart_inst_init (void)
 {
     am_uart_handle_t handle = NULL;
@@ -49,7 +49,7 @@ am_uart_handle_t am_debug_uart_inst_init (void)
 
     handle = am_zlg116_uart1_inst_init();
 
-    /* µ÷ÊÔ³õÊ¼»¯ */
+    /* è°ƒè¯•åˆå§‹åŒ– */
     am_debug_init(handle, __DEBUG_BAUDRATE);
 
 #endif /* (__DEBUG_UART == 1) */
@@ -58,7 +58,7 @@ am_uart_handle_t am_debug_uart_inst_init (void)
 
     handle = am_zlg116_uart2_inst_init();
 
-    /* µ÷ÊÔ³õÊ¼»¯ */
+    /* è°ƒè¯•åˆå§‹åŒ– */
     am_debug_init(handle, __DEBUG_BAUDRATE);
 
 #endif /* (__DEBUG_UART == 2) */

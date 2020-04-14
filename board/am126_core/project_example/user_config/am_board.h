@@ -31,16 +31,16 @@
 #include "am_bsp_delay_timer.h"
 
 
-/** \brief LED Ë÷ÒıIDºÅ */
+/** \brief LED ç´¢å¼•IDå· */
 #define LED0          0
 #define LED1          1
 
 /**
- * \brief °å¼¶³õÊ¼»¯
+ * \brief æ¿çº§åˆå§‹åŒ–
  *
- * \return ÎŞ
+ * \return æ— 
  *
- * \note ¸Ãº¯Êı»á³õÊ¼»¯ÏµÍ³Ê±ÖÓ¡¢GPIO¡¢ÖĞ¶Ï¡¢·äÃùÆ÷¡¢LEDºÍÑÓÊ±º¯Êı
+ * \note è¯¥å‡½æ•°ä¼šåˆå§‹åŒ–ç³»ç»Ÿæ—¶é’Ÿã€GPIOã€ä¸­æ–­ã€èœ‚é¸£å™¨ã€LEDå’Œå»¶æ—¶å‡½æ•°
  */
 void am_board_init (void);
 

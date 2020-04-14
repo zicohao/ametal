@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief �͹���ģʽӲ����ӿ�
+ * \brief 低功耗模式硬件层接口
  * 
  * \internal
  * \par Modification History
@@ -26,11 +26,11 @@
 #include "hw/amhw_lpc82x_syscon.h"
 
 /**
- * \brief ϵͳ���ƼĴ����趨
+ * \brief 系统控制寄存器设定
  *
- * \param[in] flags ϵͳ���ƼĴ����� (#AMHW_LPC82X_SCR_ISRBACK_NTO_SLP)
+ * \param[in] flags 系统控制寄存器宏 (#AMHW_LPC82X_SCR_ISRBACK_NTO_SLP)
  *
- * \return ��
+ * \return 无
  */
 am_local void __scb_scr_set (uint32_t flags)
 {
@@ -38,7 +38,7 @@ am_local void __scb_scr_set (uint32_t flags)
 }
 
 /**
- * \brief �͹���ģʽ����
+ * \brief 低功耗模式设置
  */
 int amhw_lpc82x_lowpower_mode_set (amhw_lpc82x_pmu_t       *p_hw_pmu,
                                    amhw_lpc82x_pmu_pm_src_t mode)
@@ -47,15 +47,15 @@ int amhw_lpc82x_lowpower_mode_set (amhw_lpc82x_pmu_t       *p_hw_pmu,
 
     switch (mode) {
         case AMHW_LPC82X_PMU_PCON_MODE_NORMAL:
-             flag = AMHW_LPC82X_SCR_ISRBACK_NTO_SLP| /* �жϷ���ʱ������˯��ģʽ */
-                    AMHW_LPC82X_SCR_LOWPWR_MODE_SLP| /* ˯��ģʽ��Ϊ�͹���ģʽ */
-                    AMHW_LPC82X_SCR_WKUP_BY_ENAISR;  /* ֻ��ʹ�ܵ��жϲ��ܻ��� */
+             flag = AMHW_LPC82X_SCR_ISRBACK_NTO_SLP| /* 中断返回时不进入睡眠模式 */
+                    AMHW_LPC82X_SCR_LOWPWR_MODE_SLP| /* 睡眠模式作为低功耗模式 */
+                    AMHW_LPC82X_SCR_WKUP_BY_ENAISR;  /* 只有使能的中断才能唤醒 */
             break;
         case AMHW_LPC82X_PMU_PCON_MODE_DEEPSLP:
         case AMHW_LPC82X_PMU_PCON_MODE_PD:
-            flag = AMHW_LPC82X_SCR_ISRBACK_NTO_SLP   | /* �жϷ���ʱ������˯��ģʽ */
-                   AMHW_LPC82X_SCR_LOWPWR_MODE_DPSLP | /* ���˯��ģʽ��Ϊ�͹���ģʽ */
-                   AMHW_LPC82X_SCR_WKUP_BY_ENAISR;     /* ֻ��ʹ�ܵ��жϲ��ܻ��� */
+            flag = AMHW_LPC82X_SCR_ISRBACK_NTO_SLP   | /* 中断返回时不进入睡眠模式 */
+                   AMHW_LPC82X_SCR_LOWPWR_MODE_DPSLP | /* 深度睡眠模式作为低功耗模式 */
+                   AMHW_LPC82X_SCR_WKUP_BY_ENAISR;     /* 只有使能的中断才能唤醒 */
             break;
         case AMHW_LPC82X_PMU_PCON_MODE_DEEPPD:
              flag = AMHW_LPC82X_SCR_LOWPWR_MODE_DPSLP;
@@ -66,22 +66,22 @@ int amhw_lpc82x_lowpower_mode_set (amhw_lpc82x_pmu_t       *p_hw_pmu,
 
     if (mode == AMHW_LPC82X_PMU_PCON_MODE_DEEPPD) {
 
-        /* ʹ�ܵ͹������� */
+        /* 使能低功耗振荡器 */
         amhw_lpc82x_pmu_lposcen_enable(p_hw_pmu);
 
-        /* ��ȵ���ģʽ��ʹ�ܵ͹������� */
+        /* 深度掉电模式下使能低功耗振荡器 */
         amhw_lpc82x_pmu_lposcdpden_enable(p_hw_pmu);
     } else {
 
-        /* ���û��ѼĴ��� */
+        /* 配置唤醒寄存器 */
         amhw_lpc82x_syscon_deepwakeup_cfg(amhw_lpc82x_syscon_powerstat_get());
 
-        /* BOD�ϵ磬���Ź�������Դ�ϵ� */
+        /* BOD上电，看门狗振荡器电源上电 */
         amhw_lpc82x_syscon_deepsleep_enable(AMHW_LPC82X_SYSCON_PD_BOD |
                                             AMHW_LPC82X_SYSCON_PD_WDT_OSC);
     }
 
-    /* ARM Cortex-M0+ �ں˵ĵ͹���ģʽ */
+    /* ARM Cortex-M0+ 内核的低功耗模式 */
     __scb_scr_set(flag);
 
     amhw_lpc82x_pmu_pm_cfg(p_hw_pmu, mode);

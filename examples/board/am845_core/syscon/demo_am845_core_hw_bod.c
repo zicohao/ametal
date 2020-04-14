@@ -12,17 +12,17 @@
 
 /**
  * \file
- * \brief µôµç¼ì²âÀý³Ì£¬Í¨¹ý HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief æŽ‰ç”µæ£€æµ‹ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æŽ¥å£å®žçŽ°
  *
- * - ÊµÑé²½Öè£º
- *   1. ¸Ä±ä¹©µçµçÑ¹£¬Ê¹Ö®µÍÓÚ 2.85V¡£
+ * - å®žéªŒæ­¥éª¤ï¼š
+ *   1. æ”¹å˜ä¾›ç”µç”µåŽ‹ï¼Œä½¿ä¹‹ä½ŽäºŽ 2.85Vã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ÈôÍâ²¿Òý½ÅÒýÆðµÄ¸´Î»£¬´®¿ÚÊä³ö "Reset by External Reset Pin"£»
- *   2. Èôµôµç¼ì²âÒýÆðµÄ¸´Î»£¬´®¿ÚÊä³ö "Reset by BOD"£»
- *   3. Õý³£¹©µçÏÂ£¬LED0 ²»ÁÁ£¬Èô¹©µçµçÑ¹²»¶Ï½µµÍ£¬µÍÓÚ 2.85V Ê±£¬LED0 ÁÁ¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. è‹¥å¤–éƒ¨å¼•è„šå¼•èµ·çš„å¤ä½ï¼Œä¸²å£è¾“å‡º "Reset by External Reset Pin"ï¼›
+ *   2. è‹¥æŽ‰ç”µæ£€æµ‹å¼•èµ·çš„å¤ä½ï¼Œä¸²å£è¾“å‡º "Reset by BOD"ï¼›
+ *   3. æ­£å¸¸ä¾›ç”µä¸‹ï¼ŒLED0 ä¸äº®ï¼Œè‹¥ä¾›ç”µç”µåŽ‹ä¸æ–­é™ä½Žï¼Œä½ŽäºŽ 2.85V æ—¶ï¼ŒLED0 äº®ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am845_core_hw_bod.c src_am845_hw_bod
  *
  * \internal
@@ -42,7 +42,7 @@
 #include "demo_nxp_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am845_core_hw_bod_entry (void)
 {

@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥ 9.53 
+ * \brief Â³ÃŒÃÃ²Ã‡Ã¥ÂµÂ¥ 9.53 
  * 
  * \internal
  * \par Modification history

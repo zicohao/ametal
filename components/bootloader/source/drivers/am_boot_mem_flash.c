@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief bootloader ÄÚ´æ²Ù×÷±ê×¼Éè±¸ÊµÏÖ£¨flashÇı¶¯£©
+ * \brief bootloader å†…å­˜æ“ä½œæ ‡å‡†è®¾å¤‡å®ç°ï¼ˆflashé©±åŠ¨ï¼‰
  *
  * \internal
  * \par modification history:

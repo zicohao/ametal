@@ -12,18 +12,18 @@
 
 /**
  * \file
- * \brief TIM16 ��ʱ�� TIMING ���̣�ͨ����׼�ӿ�ʵ��
+ * \brief TIM16 定时器 TIMING 例程，通过标准接口实现
  *
- * - ʵ������
- *   1. ���Դ��������ʱ���������Ϣ
- *   2. ��ʱ���ڵ���(Ĭ��Ϊ 2Hz)�����Դ��ڻ���� The timing frq is 2Hz;
+ * - 实验现象：
+ *   1. 调试串口输出定时器的相关信息
+ *   2. 定时周期到达(默认为 2Hz)，调试串口会输出 The timing frq is 2Hz;
  *
  * \note
- *    1. ���� TIM16 Ĭ�ϳ�ʼ������Ϊ������ PWM ʹ�ã�ʹ�ñ� Demo ֮ǰ������
- *       am_prj_config.h �ڽ� AM_CFG_BUZZER_ENABLE ����Ϊ 0��
- *    3. 16 λ��ʱ����ʱ����ֵ��Ϊ 65536 �ı�������ʱ����һЩƫ�
+ *    1. 由于 TIM16 默认初始化并作为蜂鸣器 PWM 使用，使用本 Demo 之前必须在
+ *       am_prj_config.h 内将 AM_CFG_BUZZER_ENABLE 定义为 0；
+ *    3. 16 位定时器定时计数值不为 65536 的倍数，则定时会有一些偏差。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_aml166_core_std_tim16_timing.c src_aml166_core_std_tim16_timing
  *
  * \internal
@@ -45,7 +45,7 @@
 #include "demo_aml166_core_entries.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_aml166_core_std_tim16_timing_entry (void)
 {

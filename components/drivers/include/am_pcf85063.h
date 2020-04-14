@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief  PCF85063 Ó¦ÓÃ½Ó¿ÚÎÄ¼þ
+ * \brief  PCF85063 åº”ç”¨æŽ¥å£æ–‡ä»¶
  *
  * \internal
  * \par Modification History
@@ -41,199 +41,199 @@ extern "C" {
 #include "am_i2c.h"
 
 /**
- * \brief PCF85063 Éè±¸ÐÅÏ¢½á¹¹Ìå
+ * \brief PCF85063 è®¾å¤‡ä¿¡æ¯ç»“æž„ä½“
  *
- * \note Ö÷ÒªÊÇÅäÖÃÒý½ÅºÅ
+ * \note ä¸»è¦æ˜¯é…ç½®å¼•è„šå·
  */
 typedef struct am_pcf85063_devinfo {
 
     /** 
-     * \brief PCF85063µÄÖÐ¶ÏINTÒý½ÅËùÁ¬½Óµ½µÄGPIOÒý½Å±àºÅ£¬
-     *        ²»ÐèÒªÊ±£¬¸³ÖµÎª -1 
+     * \brief PCF85063çš„ä¸­æ–­INTå¼•è„šæ‰€è¿žæŽ¥åˆ°çš„GPIOå¼•è„šç¼–å·ï¼Œ
+     *        ä¸éœ€è¦æ—¶ï¼Œèµ‹å€¼ä¸º -1 
      */
     int int_pin;
 
     /**
-     * \brief PCF85063µÄCLKOE(CLK_EN)Òý½ÅËùÁ¬½Óµ½µÄGPIOÒý½Å±àºÅ
-     *  ÓÃÓÚ¿ØÖÆCLKOUTÊÇ·ñÊä³öÆµÂÊ£¬²»ÐèÒªÊ±£¬¸³ÖµÎª -1
+     * \brief PCF85063çš„CLKOE(CLK_EN)å¼•è„šæ‰€è¿žæŽ¥åˆ°çš„GPIOå¼•è„šç¼–å·
+     *  ç”¨äºŽæŽ§åˆ¶CLKOUTæ˜¯å¦è¾“å‡ºé¢‘çŽ‡ï¼Œä¸éœ€è¦æ—¶ï¼Œèµ‹å€¼ä¸º -1
      */
     int clk_en_pin;
 
 } am_pcf85063_devinfo_t;
 
 /**
- * \brief PCF85063 Éè±¸½á¹¹Ìå
+ * \brief PCF85063 è®¾å¤‡ç»“æž„ä½“
  */
 typedef struct am_pcf85063_dev {
 
-    am_bool_t         conn_stat;      /**< \brief µ±Ç°INTÖÐ¶ÏÁ¬½Ó×´Ì¬ */
+    am_bool_t         conn_stat;      /**< \brief å½“å‰INTä¸­æ–­è¿žæŽ¥çŠ¶æ€ */
     
-    /** \brief ÓÃÓÚ´æ·Å±ê×¼ÄÖÖÓ½Ó¿ÚÄÖÖÓÊ±¼äwdaysµÄÖµ */
+    /** \brief ç”¨äºŽå­˜æ”¾æ ‡å‡†é—¹é’ŸæŽ¥å£é—¹é’Ÿæ—¶é—´wdaysçš„å€¼ */
     uint8_t           alarm_clk_wdays;
     
-     /** \brief ÓÃÓÚÇø·ÖÓÃ»§µ÷ÓÃµÄÊÇ±ê×¼ÄÖÖÓ½Ó¿Ú»¹ÊÇ·Ç±ê×¼µÄ */
+     /** \brief ç”¨äºŽåŒºåˆ†ç”¨æˆ·è°ƒç”¨çš„æ˜¯æ ‡å‡†é—¹é’ŸæŽ¥å£è¿˜æ˜¯éžæ ‡å‡†çš„ */
     uint8_t           alarm_mode;
 
-    uint8_t           status;        /**< \brief µ±Ç°×´Ì¬ */
-    uint8_t           intr_flag;     /**< \brief ÖÐ¶Ï±êÖ¾ */
-    uint8_t           sub_addr[2];   /**< \brief I2CÆ÷¼þ×ÓµØÖ· */
-    uint8_t           buf[1];        /**< \brief I2CÊý¾Ý»º³åÇø */
-    uint8_t           nbytes;        /**< \brief ²Ù×÷Êý¾Ý³¤¶È */
-    am_i2c_transfer_t trans[2];      /**< \brief PCF85063×´Ì¬»útransfer */
-    am_i2c_message_t  msg;           /**< \brief PCF85063×´Ì¬»úmsg */
+    uint8_t           status;        /**< \brief å½“å‰çŠ¶æ€ */
+    uint8_t           intr_flag;     /**< \brief ä¸­æ–­æ ‡å¿— */
+    uint8_t           sub_addr[2];   /**< \brief I2Cå™¨ä»¶å­åœ°å€ */
+    uint8_t           buf[1];        /**< \brief I2Cæ•°æ®ç¼“å†²åŒº */
+    uint8_t           nbytes;        /**< \brief æ“ä½œæ•°æ®é•¿åº¦ */
+    am_i2c_transfer_t trans[2];      /**< \brief PCF85063çŠ¶æ€æœºtransfer */
+    am_i2c_message_t  msg;           /**< \brief PCF85063çŠ¶æ€æœºmsg */
 
-    am_i2c_device_t  i2c_dev;        /**< \brief PCF85063 I2CÉè±¸ */
+    am_i2c_device_t  i2c_dev;        /**< \brief PCF85063 I2Cè®¾å¤‡ */
 
-    /** \brief INTÒý½ÅµÄ´¥·¢ÐÅÏ¢ÀàÐÍ */
+    /** \brief INTå¼•è„šçš„è§¦å‘ä¿¡æ¯ç±»åž‹ */
     struct am_pcf85063_trigger_info {
 
-        /** \brief ´¥·¢»Øµ÷º¯Êý */
+        /** \brief è§¦å‘å›žè°ƒå‡½æ•° */
         am_pfnvoid_t  pfn_callback;
 
-        /** \brief »Øµ÷º¯ÊýµÄ²ÎÊý */
+        /** \brief å›žè°ƒå‡½æ•°çš„å‚æ•° */
         void *p_arg;
 
-    } triginfo[2];                  /**< \brief INTÒý½ÅµÄ´¥·¢ÐÅÏ¢ */
+    } triginfo[2];                  /**< \brief INTå¼•è„šçš„è§¦å‘ä¿¡æ¯ */
 
-    /** \brief Ö¸ÏòÉè±¸ÐÅÏ¢³£Á¿µÄÖ¸Õë */
+    /** \brief æŒ‡å‘è®¾å¤‡ä¿¡æ¯å¸¸é‡çš„æŒ‡é’ˆ */
     const am_pcf85063_devinfo_t * p_devinfo;
 
 } am_pcf85063_dev_t;
 
 
-/** \brief PCF85063²Ù×÷¾ä±ú¶¨Òå */
+/** \brief PCF85063æ“ä½œå¥æŸ„å®šä¹‰ */
 typedef am_pcf85063_dev_t *am_pcf85063_handle_t;
 
 /**
- * \brief PCF85063 Éè±¸³õÊ¼»¯
+ * \brief PCF85063 è®¾å¤‡åˆå§‹åŒ–
  *
- * \param[in] p_dev      : Ö¸ÏòPCF85063Éè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[in] p_devinfo  : Ö¸ÏòPCF85063Éè±¸ÐÅÏ¢µÄÖ¸Õë
- * \param[in] i2c_handle : I2C±ê×¼·þÎñ²Ù×÷¾ä±ú
+ * \param[in] p_dev      : æŒ‡å‘PCF85063è®¾å¤‡ç»“æž„ä½“çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo  : æŒ‡å‘PCF85063è®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ
+ * \param[in] i2c_handle : I2Cæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  *
- * \return PCF85063·þÎñ²Ù×÷¾ä±ú,Èç¹ûÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return PCF85063æœåŠ¡æ“ä½œå¥æŸ„,å¦‚æžœä¸º NULLï¼Œè¡¨æ˜Žåˆå§‹åŒ–å¤±è´¥
  *
- * \note Èô²»ÐèÒªÓÃÆµÂÊÊä³ö¹¦ÄÜ£¬Éè±¸ÐÅÏ¢½á¹¹ÌåÖÐµÄclk_en_pin ¸³ÖµÎª -1 ¼´¿É£¬
+ * \note è‹¥ä¸éœ€è¦ç”¨é¢‘çŽ‡è¾“å‡ºåŠŸèƒ½ï¼Œè®¾å¤‡ä¿¡æ¯ç»“æž„ä½“ä¸­çš„clk_en_pin èµ‹å€¼ä¸º -1 å³å¯ï¼Œ
  */
 am_pcf85063_handle_t am_pcf85063_init (am_pcf85063_dev_t           *p_dev,
                                        const am_pcf85063_devinfo_t *p_devinfo,
                                        am_i2c_handle_t              i2c_handle);
 
 /**
- * \brief PCF85063 Éè±¸½â³õÊ¼»¯
- * \param[in] handle : PCF85063²Ù×÷¾ä±ú
- * \return ÎÞ
+ * \brief PCF85063 è®¾å¤‡è§£åˆå§‹åŒ–
+ * \param[in] handle : PCF85063æ“ä½œå¥æŸ„
+ * \return æ— 
  */
 void am_pcf85063_deinit (am_pcf85063_handle_t handle);
 
 
 /**
- * \brief »ñÈ¡RTC±ê×¼·þÎñ¾ä±ú
+ * \brief èŽ·å–RTCæ ‡å‡†æœåŠ¡å¥æŸ„
  *
- * \param[in] handle     : PCF85063²Ù×÷¾ä±ú
- * \param[in] p_rtc      : Ö¸ÏòRTC±ê×¼·þÎñ
+ * \param[in] handle     : PCF85063æ“ä½œå¥æŸ„
+ * \param[in] p_rtc      : æŒ‡å‘RTCæ ‡å‡†æœåŠ¡
  *
- * return RTC±ê×¼·þÎñ²Ù×÷¾ä±ú
+ * return RTCæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  */
 am_rtc_handle_t am_pcf85063_rtc_init (am_pcf85063_handle_t  handle,
                                       am_rtc_serv_t        *p_rtc);
 /**
- * \brief »ñÈ¡PCF85063 ALARM_CLK±ê×¼·þÎñ
+ * \brief èŽ·å–PCF85063 ALARM_CLKæ ‡å‡†æœåŠ¡
  *
- * \param[in] handle       : PCF85063²Ù×÷¾ä±ú
- * \param[in] p_alarm_clk  : Ö¸ÏòALARM_CLK±ê×¼·þÎñ
+ * \param[in] handle       : PCF85063æ“ä½œå¥æŸ„
+ * \param[in] p_alarm_clk  : æŒ‡å‘ALARM_CLKæ ‡å‡†æœåŠ¡
  *
- * return ALARM_CLK±ê×¼·þÎñ²Ù×÷¾ä±ú
+ * return ALARM_CLKæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  */
 am_alarm_clk_handle_t am_pcf85063_alarm_clk_init (am_pcf85063_handle_t   handle,
                                                   am_alarm_clk_serv_t    *p_alarm_clk);
 
 /**
- * \brief Èí¼þ¸´Î»PCF85063
+ * \brief è½¯ä»¶å¤ä½PCF85063
  *
- * \param[in] handle : PCF85063·þÎñ²Ù×÷¾ä±ú
+ * \param[in] handle : PCF85063æœåŠ¡æ“ä½œå¥æŸ„
  *
- * \retval AM_OK : ²Ù×÷³É¹¦
- * \retval ÆäËû  : ²Ù×÷´íÎó,¾ßÌå²é¿´·µ»Ø´íÎó±àÂë
+ * \retval AM_OK : æ“ä½œæˆåŠŸ
+ * \retval å…¶ä»–  : æ“ä½œé”™è¯¯,å…·ä½“æŸ¥çœ‹è¿”å›žé”™è¯¯ç¼–ç 
  */
 int am_pcf85063_software_reset (am_pcf85063_handle_t handle);
 
 /**
- * \brief ÖÐÖ¹PCF85063
+ * \brief ä¸­æ­¢PCF85063
  *
- * \param[in] handle : PCF85063·þÎñ²Ù×÷¾ä±ú
+ * \param[in] handle : PCF85063æœåŠ¡æ“ä½œå¥æŸ„
  *
- * \retval AM_OK : ²Ù×÷³É¹¦
- * \retval ÆäËû  : ²Ù×÷´íÎó,¾ßÌå²é¿´·µ»Ø´íÎó±àÂë
+ * \retval AM_OK : æ“ä½œæˆåŠŸ
+ * \retval å…¶ä»–  : æ“ä½œé”™è¯¯,å…·ä½“æŸ¥çœ‹è¿”å›žé”™è¯¯ç¼–ç 
  */
 int am_pcf85063_stop (am_pcf85063_handle_t handle);
 
 /**
- * \brief Æô¶¯PCF85063(¸´Î»Ê±PCF85063ÒÑÆô¶¯£¬¸Ã½Ó¿ÚÖ÷ÒªÊÇÕë¶Ô am_pcf85063_stop())
+ * \brief å¯åŠ¨PCF85063(å¤ä½æ—¶PCF85063å·²å¯åŠ¨ï¼Œè¯¥æŽ¥å£ä¸»è¦æ˜¯é’ˆå¯¹ am_pcf85063_stop())
  *
- * \param[in] handle : PCF85063·þÎñ²Ù×÷¾ä±ú
+ * \param[in] handle : PCF85063æœåŠ¡æ“ä½œå¥æŸ„
  *
- * \retval AM_OK : ²Ù×÷³É¹¦
- * \retval ÆäËû  : ²Ù×÷´íÎó,¾ßÌå²é¿´·µ»Ø´íÎó±àÂë
+ * \retval AM_OK : æ“ä½œæˆåŠŸ
+ * \retval å…¶ä»–  : æ“ä½œé”™è¯¯,å…·ä½“æŸ¥çœ‹è¿”å›žé”™è¯¯ç¼–ç 
  */
 int am_pcf85063_start (am_pcf85063_handle_t handle);
 
 /**
- * \brief Ð´ PCF85063 RAM_Byte ¼Ä´æÆ÷
+ * \brief å†™ PCF85063 RAM_Byte å¯„å­˜å™¨
  *
- * \param[in] handle   : PCF85063·þÎñ²Ù×÷¾ä±ú
- * \param[in] data     : ´ýÐ´Èë PCF85063 RAM_Byte ¼Ä´æÆ÷µÄÖµ
+ * \param[in] handle   : PCF85063æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] data     : å¾…å†™å…¥ PCF85063 RAM_Byte å¯„å­˜å™¨çš„å€¼
  *
- * \retval AM_OK : ²Ù×÷³É¹¦
- * \retval ÆäËû  : ²Ù×÷´íÎó,¾ßÌå²é¿´·µ»Ø´íÎó±àÂë
+ * \retval AM_OK : æ“ä½œæˆåŠŸ
+ * \retval å…¶ä»–  : æ“ä½œé”™è¯¯,å…·ä½“æŸ¥çœ‹è¿”å›žé”™è¯¯ç¼–ç 
  */
 int am_pcf85063_ram_write (am_pcf85063_handle_t handle, uint8_t data);
 
 /**
- * \brief ¶Á PCF85063 RAM_Byte ¼Ä´æÆ÷
+ * \brief è¯» PCF85063 RAM_Byte å¯„å­˜å™¨
  *
- * \param[in] handle      : PCF85063·þÎñ²Ù×÷¾ä±ú
- * \param[out] p_data     : ¶ÁÈ¡PCF85063 RAM_Byte ¼Ä´æÆ÷µÄ»º³åÇø
+ * \param[in] handle      : PCF85063æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[out] p_data     : è¯»å–PCF85063 RAM_Byte å¯„å­˜å™¨çš„ç¼“å†²åŒº
  *
- * \retval AM_OK : ²Ù×÷³É¹¦
- * \retval ÆäËû  : ²Ù×÷´íÎó,¾ßÌå²é¿´·µ»Ø´íÎó±àÂë
+ * \retval AM_OK : æ“ä½œæˆåŠŸ
+ * \retval å…¶ä»–  : æ“ä½œé”™è¯¯,å…·ä½“æŸ¥çœ‹è¿”å›žé”™è¯¯ç¼–ç 
  *
- * \note Ö»ÄÜ¶Á³öÒ»¸ö×Ö½ÚÊý¾ÝÀ´
+ * \note åªèƒ½è¯»å‡ºä¸€ä¸ªå­—èŠ‚æ•°æ®æ¥
  */
 int am_pcf85063_ram_read (am_pcf85063_handle_t handle, uint8_t *p_data);
 
 /**
- * \brief PCF85063Ê±¼äÈÕÆÚÉèÖÃº¯Êý
+ * \brief PCF85063æ—¶é—´æ—¥æœŸè®¾ç½®å‡½æ•°
  *
- * \param[in] handle : PCF85063·þÎñ²Ù×÷¾ä±ú
- * \param[in] p_tm   : Ö¸ÏòÊ±¼ä½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] handle : PCF85063æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] p_tm   : æŒ‡å‘æ—¶é—´ç»“æž„ä½“çš„æŒ‡é’ˆ
  *
- * \retval AM_OK      : ÉèÖÃ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊý´íÎó
+ * \retval AM_OK      : è®¾ç½®æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 int am_pcf85063_time_set (am_pcf85063_handle_t handle, am_tm_t *p_tm);
 
 /**
- * \brief PCF85063Ê±¼äÈÕÆÚ»ñÈ¡º¯Êý
+ * \brief PCF85063æ—¶é—´æ—¥æœŸèŽ·å–å‡½æ•°
  *
- * \param[in]  handle : PCF85063·þÎñ²Ù×÷¾ä±ú
- * \param[out] p_tm   : Ö¸ÏòÊ±¼ä½á¹¹ÌåµÄÖ¸Õë
+ * \param[in]  handle : PCF85063æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[out] p_tm   : æŒ‡å‘æ—¶é—´ç»“æž„ä½“çš„æŒ‡é’ˆ
  *
- * \retval AM_OK      : ÉèÖÃ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊý´íÎó
+ * \retval AM_OK      : è®¾ç½®æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 int am_pcf85063_time_get (am_pcf85063_handle_t handle, am_tm_t *p_tm);
 
 /**
- * \name PCF85063 Æ«ÒÆ²¹³¥¶¨Òå
+ * \name PCF85063 åç§»è¡¥å¿å®šä¹‰
  * \anchor grp_pcf85063_offset
  * @{
  */
 
-/** \brief Õý³£Ä£Ê½£¨Ã¿Á½Ð¡Ê±²¹³¥Ò»´Î£© */
+/** \brief æ­£å¸¸æ¨¡å¼ï¼ˆæ¯ä¸¤å°æ—¶è¡¥å¿ä¸€æ¬¡ï¼‰ */
 #define AM_PCF85063_OFFSET_MODE_NORMAL      0
 
-/** \brief ¿ìËÙÄ£Ê½£¨Ã¿ËÄ·ÖÖÓ²¹³¥Ò»´Î£© */
+/** \brief å¿«é€Ÿæ¨¡å¼ï¼ˆæ¯å››åˆ†é’Ÿè¡¥å¿ä¸€æ¬¡ï¼‰ */
 #define AM_PCF85063_OFFSET_MODE_COURSE      1
 
 /**
@@ -241,44 +241,44 @@ int am_pcf85063_time_get (am_pcf85063_handle_t handle, am_tm_t *p_tm);
  */
 
 /**
- * \brief PCF85063Ê±ÖÓÔ´²¹³¥ÉèÖÃ
+ * \brief PCF85063æ—¶é’Ÿæºè¡¥å¿è®¾ç½®
  *
- * \param[in] handle : PCF85063·þÎñ²Ù×÷¾ä±ú
- * \param[in] mode   : ²¹³¥Ä£Ê½ #AM_PCF85063_OFFSET_MODE_NORMAL ¼û grp_pcf85063_offset
- * \param[in] ppm    : Ê±ÖÓÔ´µÄppm(Èç¾§ÌåÕñµ´Æ÷ÊÖ²áÀïÃæ±ê×¢µÄppm)
+ * \param[in] handle : PCF85063æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] mode   : è¡¥å¿æ¨¡å¼ #AM_PCF85063_OFFSET_MODE_NORMAL è§ grp_pcf85063_offset
+ * \param[in] ppm    : æ—¶é’Ÿæºçš„ppm(å¦‚æ™¶ä½“æŒ¯è¡å™¨æ‰‹å†Œé‡Œé¢æ ‡æ³¨çš„ppm)
  *
- * \retval AM_OK      : ÉèÖÃ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊý´íÎó
+ * \retval AM_OK      : è®¾ç½®æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 int am_pcf85063_offset_set (am_pcf85063_handle_t handle, uint8_t mode, float ppm);
 
 /**
- * \name PCF85063 ÄÖÖÓÊ¹ÄÜºê
+ * \name PCF85063 é—¹é’Ÿä½¿èƒ½å®
  * \anchor grp_pcf85063_alarm_enable
  * @{
  */
 
-#define AM_PCF85063_ALARM_SECOND_ENABLE  0x01   /**< \brief ÃëÖÓÄÖÖÓÊ¹ÄÜ */
-#define AM_PCF85063_ALARM_MINUTE_ENABLE  0x02   /**< \brief ·ÖÖÓÄÖÖÓÊ¹ÄÜ */
-#define AM_PCF85063_ALARM_HOUR_ENABLE    0x04   /**< \brief Ð¡Ê±ÄÖÖÓÊ¹ÄÜ */
-#define AM_PCF85063_ALARM_DAY_ENABLE     0x08   /**< \brief ÈÕÄÖÖÓÊ¹ÄÜ */
-#define AM_PCF85063_ALARM_WEEKDAY_ENABLE 0x10   /**< \brief ÖÜ¼¸ÄÖÖÓÊ¹ÄÜ */
+#define AM_PCF85063_ALARM_SECOND_ENABLE  0x01   /**< \brief ç§’é’Ÿé—¹é’Ÿä½¿èƒ½ */
+#define AM_PCF85063_ALARM_MINUTE_ENABLE  0x02   /**< \brief åˆ†é’Ÿé—¹é’Ÿä½¿èƒ½ */
+#define AM_PCF85063_ALARM_HOUR_ENABLE    0x04   /**< \brief å°æ—¶é—¹é’Ÿä½¿èƒ½ */
+#define AM_PCF85063_ALARM_DAY_ENABLE     0x08   /**< \brief æ—¥é—¹é’Ÿä½¿èƒ½ */
+#define AM_PCF85063_ALARM_WEEKDAY_ENABLE 0x10   /**< \brief å‘¨å‡ é—¹é’Ÿä½¿èƒ½ */
 
 /**
  * @}
  */
 
 /**
- * \brief ÄÖÖÓÐÅÏ¢½á¹¹Ìå
+ * \brief é—¹é’Ÿä¿¡æ¯ç»“æž„ä½“
  *
- * \note enabledÓÉÄÖÖÓÊ¹ÄÜºê¹¹³É ²Î¼û \ref grp_pcf85063_alarm_enable
- *       ¿ÉÒÔÈ¡ËüÃÇµÄ»òÖµÀ´¹¹½¨£¬ÈçÊ¹ÄÜÊ±·ÖÄÖÖÓ£¬Ôò
- *       enable = AM_PCF85063_ALARM_MINUTE_ENABLE | AM_PCF85063_ALARM_HOUR_ENABLE£¬
- *       ÕâÒâÎ¶×Åµ±Ç°Ê±¼äÍ¬Ê±ÎÇºÏÄÖÖÓÉèÖÃµÄÊ±·ÖÐÅÏ¢Ê±£¬ÄÖÖÓ±ê¼Ç²Å»áÖÃÎ»¡£¼´enableÀïÃæËùÓÐ±êÖ¾
- *       ¶ÔÓ¦µÄÊ±¼ä¶¼Óëµ±Ç°Ê±¼äÎÇºÏÊ±£¬ÄÖÖÓ²Å»áÏìÓ¦¡£
+ * \note enabledç”±é—¹é’Ÿä½¿èƒ½å®æž„æˆ å‚è§ \ref grp_pcf85063_alarm_enable
+ *       å¯ä»¥å–å®ƒä»¬çš„æˆ–å€¼æ¥æž„å»ºï¼Œå¦‚ä½¿èƒ½æ—¶åˆ†é—¹é’Ÿï¼Œåˆ™
+ *       enable = AM_PCF85063_ALARM_MINUTE_ENABLE | AM_PCF85063_ALARM_HOUR_ENABLEï¼Œ
+ *       è¿™æ„å‘³ç€å½“å‰æ—¶é—´åŒæ—¶å»åˆé—¹é’Ÿè®¾ç½®çš„æ—¶åˆ†ä¿¡æ¯æ—¶ï¼Œé—¹é’Ÿæ ‡è®°æ‰ä¼šç½®ä½ã€‚å³enableé‡Œé¢æ‰€æœ‰æ ‡å¿—
+ *       å¯¹åº”çš„æ—¶é—´éƒ½ä¸Žå½“å‰æ—¶é—´å»åˆæ—¶ï¼Œé—¹é’Ÿæ‰ä¼šå“åº”ã€‚
  */
 typedef struct am_pcf85063_alarm_info {
-    uint8_t     enable;     /**< \brief ÄÖÖÓÊ¹ÄÜ */
+    uint8_t     enable;     /**< \brief é—¹é’Ÿä½¿èƒ½ */
     int         sec;        /**< \brief seconds after the minute     - [0, 59]  */
     int         min;        /**< \brief minutes after the hour       - [0, 59]  */
     int         hour;       /**< \brief hours after midnight         - [0, 23]  */
@@ -287,68 +287,68 @@ typedef struct am_pcf85063_alarm_info {
 } am_pcf85063_alarm_info_t;
 
 /**
- * \brief Ê¹ÄÜPCF85063ÄÖÖÓ
+ * \brief ä½¿èƒ½PCF85063é—¹é’Ÿ
  *
- * \param[in] handle       : PCF85063·þÎñ²Ù×÷¾ä±ú
- * \param[in] p_alarm_info : ÄÖÖÓÐÅÏ¢ÉèÖÃ
+ * \param[in] handle       : PCF85063æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] p_alarm_info : é—¹é’Ÿä¿¡æ¯è®¾ç½®
  *
- * \retval AM_OK : ²Ù×÷³É¹¦
- * \retval ÆäËû  : ²Ù×÷´íÎó,¾ßÌå²é¿´·µ»Ø´íÎó±àÂë
+ * \retval AM_OK : æ“ä½œæˆåŠŸ
+ * \retval å…¶ä»–  : æ“ä½œé”™è¯¯,å…·ä½“æŸ¥çœ‹è¿”å›žé”™è¯¯ç¼–ç 
  */
 int am_pcf85063_alarm_enable (am_pcf85063_handle_t      handle,
                               am_pcf85063_alarm_info_t *p_alarm_info);
 
 /**
- * \brief ½ûÄÜPCF85063ÄÖÖÓ
+ * \brief ç¦èƒ½PCF85063é—¹é’Ÿ
  *
- * \param[in] handle : PCF85063·þÎñ²Ù×÷¾ä±ú
+ * \param[in] handle : PCF85063æœåŠ¡æ“ä½œå¥æŸ„
  *
- * \retval AM_OK : ²Ù×÷³É¹¦
- * \retval ÆäËû  : ²Ù×÷´íÎó,¾ßÌå²é¿´·µ»Ø´íÎó±àÂë
+ * \retval AM_OK : æ“ä½œæˆåŠŸ
+ * \retval å…¶ä»–  : æ“ä½œé”™è¯¯,å…·ä½“æŸ¥çœ‹è¿”å›žé”™è¯¯ç¼–ç 
  */
 int am_pcf85063_alarm_disable (am_pcf85063_handle_t handle);
 
 /**
- * \name PCF85063 CLKOUTÊä³öÆµÂÊ±àÂë
+ * \name PCF85063 CLKOUTè¾“å‡ºé¢‘çŽ‡ç¼–ç 
  * \anchor grp_pcf85063_clkout_freq
  * @{
  */
 
-#define AM_PCF85063_CLKOUT_FREQ_32768HZ    0x00 /**< \brief Êä³öÆµÂÊ32768Hz */
-#define AM_PCF85063_CLKOUT_FREQ_16384HZ    0x01 /**< \brief Êä³öÆµÂÊ16384Hz */
-#define AM_PCF85063_CLKOUT_FREQ_8192HZ     0x02 /**< \brief Êä³öÆµÂÊ8192Hz */
-#define AM_PCF85063_CLKOUT_FREQ_4096HZ     0x03 /**< \brief Êä³öÆµÂÊ4096Hz */
-#define AM_PCF85063_CLKOUT_FREQ_2048HZ     0x04 /**< \brief Êä³öÆµÂÊ2048Hz */
-#define AM_PCF85063_CLKOUT_FREQ_1024HZ     0x05 /**< \brief Êä³öÆµÂÊ1024Hz */
-#define AM_PCF85063_CLKOUT_FREQ_1HZ        0x06 /**< \brief Êä³öÆµÂÊ1Hz */
-#define AM_PCA85063A_CLKOUT_FREQ_DISABLE   0x07 /**< \brief ½ûÄÜÊä³öÆµÂÊ */
+#define AM_PCF85063_CLKOUT_FREQ_32768HZ    0x00 /**< \brief è¾“å‡ºé¢‘çŽ‡32768Hz */
+#define AM_PCF85063_CLKOUT_FREQ_16384HZ    0x01 /**< \brief è¾“å‡ºé¢‘çŽ‡16384Hz */
+#define AM_PCF85063_CLKOUT_FREQ_8192HZ     0x02 /**< \brief è¾“å‡ºé¢‘çŽ‡8192Hz */
+#define AM_PCF85063_CLKOUT_FREQ_4096HZ     0x03 /**< \brief è¾“å‡ºé¢‘çŽ‡4096Hz */
+#define AM_PCF85063_CLKOUT_FREQ_2048HZ     0x04 /**< \brief è¾“å‡ºé¢‘çŽ‡2048Hz */
+#define AM_PCF85063_CLKOUT_FREQ_1024HZ     0x05 /**< \brief è¾“å‡ºé¢‘çŽ‡1024Hz */
+#define AM_PCF85063_CLKOUT_FREQ_1HZ        0x06 /**< \brief è¾“å‡ºé¢‘çŽ‡1Hz */
+#define AM_PCA85063A_CLKOUT_FREQ_DISABLE   0x07 /**< \brief ç¦èƒ½è¾“å‡ºé¢‘çŽ‡ */
 
 /**
  * @}
  */
 
 /**
- * \brief ÉèÖÃPCF85063Ê±ÖÓÊä³ö
+ * \brief è®¾ç½®PCF85063æ—¶é’Ÿè¾“å‡º
  *
- * \param[in] handle : PCF85063·þÎñ²Ù×÷¾ä±ú
- * \param[in] freq   : Ê±ÖÓÊä³öÆµÂÊ±àÂë ²Î¼û \ref grp_pcf85063_clkout_freq
+ * \param[in] handle : PCF85063æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] freq   : æ—¶é’Ÿè¾“å‡ºé¢‘çŽ‡ç¼–ç  å‚è§ \ref grp_pcf85063_clkout_freq
  *
- * \retval AM_OK : ²Ù×÷³É¹¦
- * \retval ÆäËû  : ²Ù×÷´íÎó,¾ßÌå²é¿´·µ»Ø´íÎó±àÂë
+ * \retval AM_OK : æ“ä½œæˆåŠŸ
+ * \retval å…¶ä»–  : æ“ä½œé”™è¯¯,å…·ä½“æŸ¥çœ‹è¿”å›žé”™è¯¯ç¼–ç 
  */
 int am_pcf85063_clkout_set (am_pcf85063_handle_t handle, uint8_t freq);
 
 /**
- * \brief  ¹Ø±Õ clkµÄÊä³ö
- * \param[in] handle     : PCF85063·þÎñ²Ù×÷¾ä±ú
+ * \brief  å…³é—­ clkçš„è¾“å‡º
+ * \param[in] handle     : PCF85063æœåŠ¡æ“ä½œå¥æŸ„
  *
- * \retval AM_OK : ²Ù×÷³É¹¦
- * \retval ÆäËû  : ²Ù×÷´íÎó,¾ßÌå²é¿´·µ»Ø´íÎó±àÂë
+ * \retval AM_OK : æ“ä½œæˆåŠŸ
+ * \retval å…¶ä»–  : æ“ä½œé”™è¯¯,å…·ä½“æŸ¥çœ‹è¿”å›žé”™è¯¯ç¼–ç 
  */
 int am_pcf85063_clkout_close(am_pcf85063_handle_t handle);
 
 /**
- * \name PCF85063 ¶¨Ê±Æ÷Ê±ÖÓÔ´ºê¶¨Òå
+ * \name PCF85063 å®šæ—¶å™¨æ—¶é’Ÿæºå®å®šä¹‰
  * \anchor grp_pcf85063_timer_src
  * @{
  */
@@ -363,16 +363,16 @@ int am_pcf85063_clkout_close(am_pcf85063_handle_t handle);
  */
 
 /**
- * \brief Ê¹ÄÜPCF85063¶¨Ê±Æ÷
+ * \brief ä½¿èƒ½PCF85063å®šæ—¶å™¨
  *
- * \param[in] handle          : PCF85063·þÎñ²Ù×÷¾ä±ú
- * \param[in] clk_freq        : Ê±ÖÓÆµÂÊÑ¡Ôñ ²Î¼û \ref grp_pcf85063_timer_src
- * \param[in] max_timer_count : ×î´ó¼ÆÊýÖµ
+ * \param[in] handle          : PCF85063æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] clk_freq        : æ—¶é’Ÿé¢‘çŽ‡é€‰æ‹© å‚è§ \ref grp_pcf85063_timer_src
+ * \param[in] max_timer_count : æœ€å¤§è®¡æ•°å€¼
  *
- * \retval AM_OK : ²Ù×÷³É¹¦
- * \retval ÆäËû  : ²Ù×÷´íÎó,¾ßÌå²é¿´·µ»Ø´íÎó±àÂë
+ * \retval AM_OK : æ“ä½œæˆåŠŸ
+ * \retval å…¶ä»–  : æ“ä½œé”™è¯¯,å…·ä½“æŸ¥çœ‹è¿”å›žé”™è¯¯ç¼–ç 
  *
- * \note ¾«¶È¼°²½½øÈçÏÂ:
+ * \note ç²¾åº¦åŠæ­¥è¿›å¦‚ä¸‹:
  *       4096Hz [244us    ~ 62.256ms]
  *       64Hz   [15.625ms ~ 3.984s]
  *       1Hz    [1s       ~ 255s]
@@ -383,97 +383,97 @@ int am_pcf85063_timer_enable (am_pcf85063_handle_t handle,
                               uint8_t              max_timer_count);
 
 /**
- * \brief ½ûÄÜPCF85063¶¨Ê±Æ÷
+ * \brief ç¦èƒ½PCF85063å®šæ—¶å™¨
  *
- * \param[in] handle : PCF85063·þÎñ²Ù×÷¾ä±ú
+ * \param[in] handle : PCF85063æœåŠ¡æ“ä½œå¥æŸ„
  *
- * \retval AM_OK : ²Ù×÷³É¹¦
- * \retval ÆäËû  : ²Ù×÷´íÎó,¾ßÌå²é¿´·µ»Ø´íÎó±àÂë
+ * \retval AM_OK : æ“ä½œæˆåŠŸ
+ * \retval å…¶ä»–  : æ“ä½œé”™è¯¯,å…·ä½“æŸ¥çœ‹è¿”å›žé”™è¯¯ç¼–ç 
  */
 int am_pcf85063_timer_disable (am_pcf85063_handle_t handle);
 
 /**
- * \brief »ñÈ¡¶¨Ê±Æ÷µ±Ç°µÄ¼ÆÊýÖµ
+ * \brief èŽ·å–å®šæ—¶å™¨å½“å‰çš„è®¡æ•°å€¼
  *
- * \param[in]  handle  : PCF85063·þÎñ²Ù×÷¾ä±ú
- * \param[out] p_count : ÓÃÓÚ»ñÈ¡¶¨Ê±Æ÷µ±Ç°¼ÆÊýÖµµÄÖ¸Õë
+ * \param[in]  handle  : PCF85063æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[out] p_count : ç”¨äºŽèŽ·å–å®šæ—¶å™¨å½“å‰è®¡æ•°å€¼çš„æŒ‡é’ˆ
  *
- * \retval AM_OK : ²Ù×÷³É¹¦
- * \retval ÆäËû  : ²Ù×÷´íÎó,¾ßÌå²é¿´·µ»Ø´íÎó±àÂë
+ * \retval AM_OK : æ“ä½œæˆåŠŸ
+ * \retval å…¶ä»–  : æ“ä½œé”™è¯¯,å…·ä½“æŸ¥çœ‹è¿”å›žé”™è¯¯ç¼–ç 
  */
 int am_pcf85063_timer_count_get (am_pcf85063_handle_t  handle,
                                  uint8_t              *p_count);
 
 /**
- * \name PCF85063 ·ÖÖÓ/¶¨Ê±Æ÷ÖÐ¶ÏÀàÐÍÐÅÏ¢
+ * \name PCF85063 åˆ†é’Ÿ/å®šæ—¶å™¨ä¸­æ–­ç±»åž‹ä¿¡æ¯
  * \anchor grp_pcf85063_int_type_info
  * @{
  */
 
-#define AM_PCF85063_INT_TIMER       0x1   /**< \brief ¶¨Ê±Æ÷ÖÐ¶ÏTI */
-#define AM_PCF85063_INT_HMINUTE     0x2   /**< \brief °ë·ÖÖÓÖÐ¶ÏHMI */
-#define AM_PCF85063_INT_MINUTE      0x4   /**< \brief Ò»·ÖÖÓÖÐ¶ÏMI */
+#define AM_PCF85063_INT_TIMER       0x1   /**< \brief å®šæ—¶å™¨ä¸­æ–­TI */
+#define AM_PCF85063_INT_HMINUTE     0x2   /**< \brief åŠåˆ†é’Ÿä¸­æ–­HMI */
+#define AM_PCF85063_INT_MINUTE      0x4   /**< \brief ä¸€åˆ†é’Ÿä¸­æ–­MI */
 
 /**
  * @}
  */
 
 /**
- * \brief Ê¹ÄÜPCF85063·ÖÖÓ/¶¨Ê±Æ÷ÖÐ¶Ï
+ * \brief ä½¿èƒ½PCF85063åˆ†é’Ÿ/å®šæ—¶å™¨ä¸­æ–­
  *
- * \param[in] handle : PCF85063·þÎñ²Ù×÷¾ä±ú
- * \param[in] flags  : ÖÐ¶Ï±êÖ¾£¬¿ÉÒÔÖ»´«Ò»¸ö²ÎÊý£¬Ò²¿ÉÒÔÍ¨¹ýÈ¡»òµÄÐÎÊ½´«Èë¶à¸ö²ÎÊý£¬
- *                     Èç AM_PCF85063_INT_TIMER | AM_PCF85063_INT_HMINUTE£»
- *                     ÖÐ¶Ï±êÖ¾²Î¼û \ref grp_pcf85063_int_type_info
+ * \param[in] handle : PCF85063æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] flags  : ä¸­æ–­æ ‡å¿—ï¼Œå¯ä»¥åªä¼ ä¸€ä¸ªå‚æ•°ï¼Œä¹Ÿå¯ä»¥é€šè¿‡å–æˆ–çš„å½¢å¼ä¼ å…¥å¤šä¸ªå‚æ•°ï¼Œ
+ *                     å¦‚ AM_PCF85063_INT_TIMER | AM_PCF85063_INT_HMINUTEï¼›
+ *                     ä¸­æ–­æ ‡å¿—å‚è§ \ref grp_pcf85063_int_type_info
  *
- * \retval AM_OK : ²Ù×÷³É¹¦
- * \retval ÆäËû  : ²Ù×÷´íÎó,¾ßÌå²é¿´·µ»Ø´íÎó±àÂë
+ * \retval AM_OK : æ“ä½œæˆåŠŸ
+ * \retval å…¶ä»–  : æ“ä½œé”™è¯¯,å…·ä½“æŸ¥çœ‹è¿”å›žé”™è¯¯ç¼–ç 
  *
- * \note °ë·ÖÖÓÖÐ¶Ï¡¢·ÖÖÓÖÐ¶ÏÒÔ¼°¶¨Ê±Æ÷ÖÐ¶Ï¹²ÓÃTF±ê¼Ç£¬Ã»·¨Çø·ÖÖÐ¶ÏÔ´£¬Òª×¢ÒâÍ¬Ê±Ê¹ÓÃµÄÇé¿ö
+ * \note åŠåˆ†é’Ÿä¸­æ–­ã€åˆ†é’Ÿä¸­æ–­ä»¥åŠå®šæ—¶å™¨ä¸­æ–­å…±ç”¨TFæ ‡è®°ï¼Œæ²¡æ³•åŒºåˆ†ä¸­æ–­æºï¼Œè¦æ³¨æ„åŒæ—¶ä½¿ç”¨çš„æƒ…å†µ
  */
 int am_pcf85063_minute_timer_int_enable (am_pcf85063_handle_t handle,
                                          uint8_t              flags);
 
 /**
- * \brief ½ûÄÜPCF85063·ÖÖÓ/¶¨Ê±Æ÷ÖÐ¶Ï
+ * \brief ç¦èƒ½PCF85063åˆ†é’Ÿ/å®šæ—¶å™¨ä¸­æ–­
  *
- * \param[in] handle : PCF85063·þÎñ²Ù×÷¾ä±ú
- * \param[in] flags  : ÖÐ¶Ï±êÖ¾£¬¿ÉÒÔÖ»´«Ò»¸ö²ÎÊý£¬Ò²¿ÉÒÔÍ¨¹ýÈ¡»òµÄÐÎÊ½´«Èë¶à¸ö²ÎÊý£¬
- *                     Èç AM_PCF85063_INT_TIMER | AM_PCF85063_INT_HMINUTE£»
- *                     ÖÐ¶Ï±êÖ¾²Î¼û \ref grp_pcf85063_int_type_info
+ * \param[in] handle : PCF85063æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] flags  : ä¸­æ–­æ ‡å¿—ï¼Œå¯ä»¥åªä¼ ä¸€ä¸ªå‚æ•°ï¼Œä¹Ÿå¯ä»¥é€šè¿‡å–æˆ–çš„å½¢å¼ä¼ å…¥å¤šä¸ªå‚æ•°ï¼Œ
+ *                     å¦‚ AM_PCF85063_INT_TIMER | AM_PCF85063_INT_HMINUTEï¼›
+ *                     ä¸­æ–­æ ‡å¿—å‚è§ \ref grp_pcf85063_int_type_info
  *
- * \retval AM_OK : ²Ù×÷³É¹¦
- * \retval ÆäËû  : ²Ù×÷´íÎó,¾ßÌå²é¿´·µ»Ø´íÎó±àÂë
+ * \retval AM_OK : æ“ä½œæˆåŠŸ
+ * \retval å…¶ä»–  : æ“ä½œé”™è¯¯,å…·ä½“æŸ¥çœ‹è¿”å›žé”™è¯¯ç¼–ç 
  *
- * \note °ë·ÖÖÓÖÐ¶Ï¡¢·ÖÖÓÖÐ¶ÏÒÔ¼°¶¨Ê±Æ÷ÖÐ¶Ï¹²ÓÃTF±ê¼Ç£¬Ã»·¨Çø·ÖÖÐ¶ÏÔ´£¬Òª×¢ÒâÍ¬Ê±Ê¹ÓÃµÄÇé¿ö
+ * \note åŠåˆ†é’Ÿä¸­æ–­ã€åˆ†é’Ÿä¸­æ–­ä»¥åŠå®šæ—¶å™¨ä¸­æ–­å…±ç”¨TFæ ‡è®°ï¼Œæ²¡æ³•åŒºåˆ†ä¸­æ–­æºï¼Œè¦æ³¨æ„åŒæ—¶ä½¿ç”¨çš„æƒ…å†µ
  */
 int am_pcf85063_minute_timer_int_disable (am_pcf85063_handle_t handle,
                                           uint8_t              flags);
 
 /**
- * \brief PCF85063 ·ÖÖÓ/¶¨Ê±Æ÷»Øµ÷º¯ÊýÉèÖÃ
+ * \brief PCF85063 åˆ†é’Ÿ/å®šæ—¶å™¨å›žè°ƒå‡½æ•°è®¾ç½®
  *
- * \param[in] handle                    : PCF85063·þÎñ²Ù×÷¾ä±ú
- * \param[in] pfn_minute_timer_callback : ·ÖÖÓ/¶¨Ê±Æ÷ÖÐ¶Ï»Øµ÷º¯Êý
- * \param[in] p_minute_timer_arg        : ·ÖÖÓ/¶¨Ê±Æ÷ÖÐ¶Ï»Øµ÷º¯Êý²ÎÊý
+ * \param[in] handle                    : PCF85063æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] pfn_minute_timer_callback : åˆ†é’Ÿ/å®šæ—¶å™¨ä¸­æ–­å›žè°ƒå‡½æ•°
+ * \param[in] p_minute_timer_arg        : åˆ†é’Ÿ/å®šæ—¶å™¨ä¸­æ–­å›žè°ƒå‡½æ•°å‚æ•°
  *
- * \return AM_OK-³É¹¦,ÆäËûÊ§°Ü
+ * \return AM_OK-æˆåŠŸ,å…¶ä»–å¤±è´¥
  *
- * \note ¶¨Ê±Æ÷ÖÐ¶Ï¡¢°ë·ÖÖÓÖÐ¶ÏÒÔ¼°Ò»·ÖÖÓÖÐ¶Ï¶¼´¥·¢TF±ê¼Ç£¬Ã»·¨Çø·ÖÖÐ¶ÏÔ´£¬
- *       Òò´Ë½«Èý¸öÖÐ¶ÏµÄ»Øµ÷º¯ÊýºÏ²¢ÎªÒ»¸ö¡£
+ * \note å®šæ—¶å™¨ä¸­æ–­ã€åŠåˆ†é’Ÿä¸­æ–­ä»¥åŠä¸€åˆ†é’Ÿä¸­æ–­éƒ½è§¦å‘TFæ ‡è®°ï¼Œæ²¡æ³•åŒºåˆ†ä¸­æ–­æºï¼Œ
+ *       å› æ­¤å°†ä¸‰ä¸ªä¸­æ–­çš„å›žè°ƒå‡½æ•°åˆå¹¶ä¸ºä¸€ä¸ªã€‚
  */
 int am_pcf85063_minute_timer_cb_set (am_pcf85063_handle_t  handle,
                                      am_pfnvoid_t          pfn_minute_timer_callback,
                                      void                 *p_minute_timer_arg);
 
 /**
- * \brief PCF85063 ÄÖÖÓ»Øµ÷º¯ÊýÉèÖÃ
+ * \brief PCF85063 é—¹é’Ÿå›žè°ƒå‡½æ•°è®¾ç½®
  *
- * \param[in] handle                    : PCF85063·þÎñ²Ù×÷¾ä±ú
- * \param[in] pfn_alarm_callback        : ÄÖÖÓÖÐ¶Ï»Øµ÷º¯Êý
- * \param[in] p_alarm_arg               : ÄÖÖÓÖÐ¶Ï»Øµ÷º¯Êý²ÎÊý
+ * \param[in] handle                    : PCF85063æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] pfn_alarm_callback        : é—¹é’Ÿä¸­æ–­å›žè°ƒå‡½æ•°
+ * \param[in] p_alarm_arg               : é—¹é’Ÿä¸­æ–­å›žè°ƒå‡½æ•°å‚æ•°
  *
- * \return AM_OK-³É¹¦,ÆäËûÊ§°Ü
+ * \return AM_OK-æˆåŠŸ,å…¶ä»–å¤±è´¥
  */
 int am_pcf85063_alarm_cb_set (am_pcf85063_handle_t  handle,
                               am_pfnvoid_t          pfn_alarm_callback,

@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief  SHT20 ÎÂÊª¶È´«¸ĞÆ÷Ó¦ÓÃ½Ó¿ÚÎÄ¼ş
+ * \brief  SHT20 æ¸©æ¹¿åº¦ä¼ æ„Ÿå™¨åº”ç”¨æ¥å£æ–‡ä»¶
  *
  * \internal
  * \par Modification History
@@ -39,59 +39,59 @@ extern "C" {
  */
 
 /**
- * \brief SHT20 Éè±¸½á¹¹Ìå
+ * \brief SHT20 è®¾å¤‡ç»“æ„ä½“
  */
 typedef struct am_sht20_dev {
-    am_i2c_device_t i2c_dev;       /**< \brief SHT20 I2CÉè±¸ */
+    am_i2c_device_t i2c_dev;       /**< \brief SHT20 I2Cè®¾å¤‡ */
 } am_sht20_dev_t;
 
-/** \brief PCF85063²Ù×÷¾ä±ú¶¨Òå */
+/** \brief PCF85063æ“ä½œå¥æŸ„å®šä¹‰ */
 typedef am_sht20_dev_t *am_sht20_handle_t;
 
 /**
- * \brief SHT20´«¸ĞÆ÷¶ÁÈ¡ÎÂ¶È
+ * \brief SHT20ä¼ æ„Ÿå™¨è¯»å–æ¸©åº¦
  *
- * \param[in]  handle        : SHT20·şÎñ²Ù×÷¾ä±ú
- * \param[out] p_temperature : Ö¸ÏòÎÂ¶ÈµÄÖ¸Õë
+ * \param[in]  handle        : SHT20æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[out] p_temperature : æŒ‡å‘æ¸©åº¦çš„æŒ‡é’ˆ
  *
- * \retval AM_OK : ¶ÁÈ¡³É¹¦
- * \retval OTHER : ¶ÁÈ¡Ê§°Ü
+ * \retval AM_OK : è¯»å–æˆåŠŸ
+ * \retval OTHER : è¯»å–å¤±è´¥
  */
 int am_sht20_temperature_read (am_sht20_handle_t handle, float *p_temperature);
 
 /**
- * \brief SHT20´«¸ĞÆ÷¶ÁÈ¡Êª¶È
+ * \brief SHT20ä¼ æ„Ÿå™¨è¯»å–æ¹¿åº¦
  *
- * \param[in]  handle     : SHT20·şÎñ²Ù×÷¾ä±ú
- * \param[out] p_humidity : Ö¸ÏòÏà¶ÔÊª¶ÈµÄÖ¸Õë
+ * \param[in]  handle     : SHT20æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[out] p_humidity : æŒ‡å‘ç›¸å¯¹æ¹¿åº¦çš„æŒ‡é’ˆ
  *
- * \retval AM_OK : ¶ÁÈ¡³É¹¦
- * \retval OTHER : ¶ÁÈ¡Ê§°Ü
+ * \retval AM_OK : è¯»å–æˆåŠŸ
+ * \retval OTHER : è¯»å–å¤±è´¥
  */
 int am_sht20_humidity_read (am_sht20_handle_t handle, float *p_humidity);
 
 /**
- * \brief SHT20´«¸ĞÆ÷Èí¼ş¸´Î»
- * \param[in]  handle : SHT20·şÎñ²Ù×÷¾ä±ú
- * \retval AM_OK : Èí¼ş¸´Î»³É¹¦
- * \retval OTHER : Èí¼ş¸´Î»Ê§°Ü
+ * \brief SHT20ä¼ æ„Ÿå™¨è½¯ä»¶å¤ä½
+ * \param[in]  handle : SHT20æœåŠ¡æ“ä½œå¥æŸ„
+ * \retval AM_OK : è½¯ä»¶å¤ä½æˆåŠŸ
+ * \retval OTHER : è½¯ä»¶å¤ä½å¤±è´¥
  */
 int am_sht20_soft_reset (am_sht20_handle_t handle);
 
 /**
- * \brief SHT20´«¸ĞÆ÷³õÊ¼»¯
+ * \brief SHT20ä¼ æ„Ÿå™¨åˆå§‹åŒ–
  *
- * \param[in] p_dev      : Ö¸ÏòSHT20Éè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[in] i2c_handle : I2C±ê×¼·şÎñ²Ù×÷¾ä±ú
+ * \param[in] p_dev      : æŒ‡å‘SHT20è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] i2c_handle : I2Cæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
  *
- * \return SHT20·şÎñ²Ù×÷¾ä±ú,Èç¹ûÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return SHT20æœåŠ¡æ“ä½œå¥æŸ„,å¦‚æœä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_sht20_handle_t am_sht20_init (am_sht20_dev_t *p_dev, am_i2c_handle_t i2c_handle);
 
 /**
- * \brief SHT20 Éè±¸½â³õÊ¼»¯
- * \param[in]  handle : SHT20·şÎñ²Ù×÷¾ä±ú
- * \return ÎŞ
+ * \brief SHT20 è®¾å¤‡è§£åˆå§‹åŒ–
+ * \param[in]  handle : SHT20æœåŠ¡æ“ä½œå¥æŸ„
+ * \return æ— 
  */
 void am_sht20_deinit (am_sht20_handle_t handle);
 

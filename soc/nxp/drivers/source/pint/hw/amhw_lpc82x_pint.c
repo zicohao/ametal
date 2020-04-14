@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief Òı½ÅÖĞ¶ÏÓ²¼ş½Ó¿ÚÊµÏÖ¡£
+ * \brief å¼•è„šä¸­æ–­ç¡¬ä»¶æ¥å£å®ç°ã€‚
  * 
  * \internal
  * \par Modification History
@@ -26,11 +26,11 @@
 #include "hw/amhw_lpc82x_pint.h"
 
 /******************************************************************************
-* ¹«¹²º¯Êı
+* å…¬å…±å‡½æ•°
 *******************************************************************************/
 
 /**
- * \brief ´¥·¢ĞÎÊ½Ñ¡Ôñ
+ * \brief è§¦å‘å½¢å¼é€‰æ‹©
  */
 void amhw_lpc82x_pint_trigger_set (amhw_lpc82x_pint_t          *p_hw_pint,
                                    uint8_t                      chan,
@@ -39,37 +39,37 @@ void amhw_lpc82x_pint_trigger_set (amhw_lpc82x_pint_t          *p_hw_pint,
 
     switch (mode) {
         
-    case AMHW_LPC82X_PINT_TRIGGER_HIGH:      /* ¸ßµçÆ½´¥·¢ */
+    case AMHW_LPC82X_PINT_TRIGGER_HIGH:      /* é«˜ç”µå¹³è§¦å‘ */
         AM_BIT_SET(p_hw_pint->isel, chan);        
         p_hw_pint->sienr = AM_BIT(chan);          
         p_hw_pint->sienf = AM_BIT(chan);          
         break;                                    
                                                   
-    case AMHW_LPC82X_PINT_TRIGGER_LOW:        /* µÍµçÆ½´¥·¢ */
+    case AMHW_LPC82X_PINT_TRIGGER_LOW:        /* ä½ç”µå¹³è§¦å‘ */
         AM_BIT_SET(p_hw_pint->isel, chan);        
         p_hw_pint->sienr = AM_BIT(chan);          
         p_hw_pint->cienf = AM_BIT(chan);          
         break;                                    
                                                   
-    case AMHW_LPC82X_PINT_TRIGGER_RISE:       /* ÉÏÉıÑØ´¥·¢ */
+    case AMHW_LPC82X_PINT_TRIGGER_RISE:       /* ä¸Šå‡æ²¿è§¦å‘ */
         AM_BIT_CLR(p_hw_pint->isel, chan);        
         p_hw_pint->sienr = AM_BIT(chan);          
         p_hw_pint->cienf = AM_BIT(chan);          
         break;                                    
                                                   
-    case AMHW_LPC82X_PINT_TRIGGER_FALL:       /* ÏÂ½µÑØ´¥·¢ */
+    case AMHW_LPC82X_PINT_TRIGGER_FALL:       /* ä¸‹é™æ²¿è§¦å‘ */
         AM_BIT_CLR(p_hw_pint->isel,  chan);       
         p_hw_pint->sienf = AM_BIT(chan);          
         p_hw_pint->cienr = AM_BIT(chan);          
         break;                                    
                                                   
-    case AMHW_LPC82X_PINT_TRIGGER_BOTH_EDGES: /* Ë«±ßÑØ´¥·¢ */
+    case AMHW_LPC82X_PINT_TRIGGER_BOTH_EDGES: /* åŒè¾¹æ²¿è§¦å‘ */
         AM_BIT_CLR(p_hw_pint->isel, chan);        
         p_hw_pint->sienr = AM_BIT(chan);          
         p_hw_pint->sienf = AM_BIT(chan);          
         break;                                    
                                                   
-    case AMHW_LPC82X_PINT_TRIGGER_OFF:       /* ¹Ø±Õ´¥·¢    */
+    case AMHW_LPC82X_PINT_TRIGGER_OFF:       /* å…³é—­è§¦å‘    */
         p_hw_pint->cienr = AM_BIT(chan);
         p_hw_pint->cienf = AM_BIT(chan);
         break;
@@ -80,7 +80,7 @@ void amhw_lpc82x_pint_trigger_set (amhw_lpc82x_pint_t          *p_hw_pint,
 }
 
 /**
- * \brief »ñÈ¡Í¨µÀµÄµ±Ç°´¥·¢Ä£Ê½
+ * \brief è·å–é€šé“çš„å½“å‰è§¦å‘æ¨¡å¼
  */
 amhw_lpc82x_pint_trigger_t 
 amhw_lpc82x_pint_trigger_get (amhw_lpc82x_pint_t *p_hw_pint, 
@@ -88,7 +88,7 @@ amhw_lpc82x_pint_trigger_get (amhw_lpc82x_pint_t *p_hw_pint,
 {
     uint8_t is_level = AM_BIT_GET(p_hw_pint->isel, chan);
     
-    /* µçÆ½ÖĞ¶Ï */
+    /* ç”µå¹³ä¸­æ–­ */
     if(is_level) {
         
         if (AM_BIT_GET(p_hw_pint->ienr, chan) == 0) {
@@ -101,7 +101,7 @@ amhw_lpc82x_pint_trigger_get (amhw_lpc82x_pint_t *p_hw_pint,
             return  AMHW_LPC82X_PINT_TRIGGER_HIGH;
         }
         
-    /* ±ßÑØÖĞ¶Ï */
+    /* è¾¹æ²¿ä¸­æ–­ */
     } else {
         if (AM_BIT_GET(p_hw_pint->ienr, chan) &&
             AM_BIT_GET(p_hw_pint->ienf, chan)) {
@@ -121,7 +121,7 @@ amhw_lpc82x_pint_trigger_get (amhw_lpc82x_pint_t *p_hw_pint,
 }
 
 /**
- * \brief ÅäÖÃÄ£Ê½Æ¥ÅäÒıÇæµÄÎ»Æ¬²ÎÊı
+ * \brief é…ç½®æ¨¡å¼åŒ¹é…å¼•æ“çš„ä½ç‰‡å‚æ•°
  */
 void amhw_lpc82x_pint_pmatch_slice_cfg (amhw_lpc82x_pint_t          *p_hw_pint,
                                         amhw_lpc82x_pint_bitslice_t  slice,

@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ili9341 ÈýÏß½Ó¿ÚÇý¶¯º¯ÊýÊµÏÖ
+ * \brief ili9341 ä¸‰çº¿æŽ¥å£é©±åŠ¨å‡½æ•°å®žçŽ°
  *
  * \internal
  * \par Modification history
@@ -24,7 +24,7 @@
 #include "am_gpio.h"
 
 /**
- * \brief ÔÚ±ê×¼µÄSPI½Ó¿ÚÖÐ²»ÓÃÆ¬Ñ¡ÐÅºÅ£¬ÎÒÃÇ×Ô¼ºÔÚµ÷ÓÃÊ±À­µÍÆ¬Ñ¡¼´¿É
+ * \brief åœ¨æ ‡å‡†çš„SPIæŽ¥å£ä¸­ä¸ç”¨ç‰‡é€‰ä¿¡å·ï¼Œæˆ‘ä»¬è‡ªå·±åœ¨è°ƒç”¨æ—¶æ‹‰ä½Žç‰‡é€‰å³å¯
  */
 static void __ili9341_no_use_cs(am_spi_device_t *p_dev, int pin)
 {
@@ -32,7 +32,7 @@ static void __ili9341_no_use_cs(am_spi_device_t *p_dev, int pin)
 }
 
 /**
- * \brief ·¢ËÍ8Î»ÃüÁî
+ * \brief å‘é€8ä½å‘½ä»¤
  */
 static  int __ili9341_3wire_cmd_write(void *p_drv, uint8_t cmd)
 {
@@ -45,18 +45,18 @@ static  int __ili9341_3wire_cmd_write(void *p_drv, uint8_t cmd)
     am_ili9341_intfc_3wire_dev_t *p_dev = (am_ili9341_intfc_3wire_dev_t *)p_drv;
     const am_ili9341_intfc_3wire_devinfo_t *p_devinfo = p_dev->p_devinfo;
 
-    /* À­µÍÆ¬Ñ¡  cs*/
+    /* æ‹‰ä½Žç‰‡é€‰  cs*/
     am_gpio_set( p_devinfo->cs_pin,AM_GPIO_LEVEL_LOW);
 
-    /* À­µÍmosiÒý½Å ±íÊ¾·¢ËÍ ÃüÁî */
+    /* æ‹‰ä½Žmosiå¼•è„š è¡¨ç¤ºå‘é€ å‘½ä»¤ */
     am_gpio_pin_cfg(p_devinfo->mosi_pin,AM_GPIO_OUTPUT_INIT_LOW );
 
-    /* ·¢ËÍÒ»¸öÊ±ÖÓÑØ */
+    /* å‘é€ä¸€ä¸ªæ—¶é’Ÿæ²¿ */
     am_gpio_pin_cfg(p_devinfo->sck_pin,AM_GPIO_OUTPUT_INIT_LOW | AM_GPIO_PUSH_PULL);
     am_gpio_set(p_devinfo->sck_pin, AM_GPIO_LEVEL_HIGH);
     am_gpio_set(p_devinfo->sck_pin, AM_GPIO_LEVEL_LOW);
 
-    /* ½«ÃüÁî·¢ËÍ³öÈ¥ */
+    /* å°†å‘½ä»¤å‘é€å‡ºåŽ» */
     am_gpio_pin_cfg(p_devinfo->sck_pin, p_devinfo->sck_func );
     am_gpio_pin_cfg(p_devinfo->mosi_pin, p_devinfo->mosi_func );
     ret = am_spi_write_then_read (&(p_dev->spi_dev),
@@ -65,7 +65,7 @@ static  int __ili9341_3wire_cmd_write(void *p_drv, uint8_t cmd)
                                   NULL,
                                   0);
 
-    /* À­¸ßÆ¬Ñ¡  cs*/
+    /* æ‹‰é«˜ç‰‡é€‰  cs*/
     am_gpio_set(p_devinfo->cs_pin, AM_GPIO_LEVEL_HIGH);
 
     if (AM_OK != ret) {
@@ -76,7 +76,7 @@ static  int __ili9341_3wire_cmd_write(void *p_drv, uint8_t cmd)
 }
 
 /**
- * \brief ·¢ËÍ8Î»Êý¾Ý
+ * \brief å‘é€8ä½æ•°æ®
  */
 static int __ili9341_3wire_data_u8_write(void *p_drv,uint8_t data)
 {
@@ -89,18 +89,18 @@ static int __ili9341_3wire_data_u8_write(void *p_drv,uint8_t data)
     am_ili9341_intfc_3wire_dev_t *p_dev = (am_ili9341_intfc_3wire_dev_t *)p_drv;
     const am_ili9341_intfc_3wire_devinfo_t *p_devinfo = p_dev->p_devinfo;
 
-    /* À­µÍÆ¬Ñ¡  cs*/
+    /* æ‹‰ä½Žç‰‡é€‰  cs*/
     am_gpio_set( p_devinfo->cs_pin,AM_GPIO_LEVEL_LOW);
 
-    /* À­¸ß mosiÒý½Å ±íÊ¾·¢ËÍ Êý¾Ý */
+    /* æ‹‰é«˜ mosiå¼•è„š è¡¨ç¤ºå‘é€ æ•°æ® */
     am_gpio_pin_cfg(p_devinfo->mosi_pin,AM_GPIO_OUTPUT_INIT_HIGH );
 
-    /* ·¢ËÍÒ»¸öÊ±ÖÓÑØ */
+    /* å‘é€ä¸€ä¸ªæ—¶é’Ÿæ²¿ */
     am_gpio_pin_cfg(p_devinfo->sck_pin,AM_GPIO_OUTPUT_INIT_LOW | AM_GPIO_PUSH_PULL);
     am_gpio_set(p_devinfo->sck_pin, AM_GPIO_LEVEL_HIGH);
     am_gpio_set(p_devinfo->sck_pin, AM_GPIO_LEVEL_LOW);
 
-    /* ½«Êý¾Ý·¢ËÍ³öÈ¥ */
+    /* å°†æ•°æ®å‘é€å‡ºåŽ» */
     am_gpio_pin_cfg(p_devinfo->sck_pin, p_devinfo->sck_func  );
     am_gpio_pin_cfg(p_devinfo->mosi_pin, p_devinfo->mosi_func);
     ret = am_spi_write_then_read (&(p_dev->spi_dev),
@@ -109,7 +109,7 @@ static int __ili9341_3wire_data_u8_write(void *p_drv,uint8_t data)
                                   NULL,
                                   0);
 
-    /* À­¸ßÆ¬Ñ¡  cs*/
+    /* æ‹‰é«˜ç‰‡é€‰  cs*/
     am_gpio_set(p_devinfo->cs_pin, AM_GPIO_LEVEL_HIGH);
 
     if (AM_OK != ret) {
@@ -119,7 +119,7 @@ static int __ili9341_3wire_data_u8_write(void *p_drv,uint8_t data)
 }
 
 /**
- * \brief ·¢ËÍ16Î»Êý¾Ý
+ * \brief å‘é€16ä½æ•°æ®
  */
 static int __ili9341_3wire_data_u16_write(void *p_drv,uint16_t data)
 {
@@ -151,15 +151,15 @@ am_ili9341_serv_t * am_ili9341_intfc_3wire_init(am_ili9341_intfc_3wire_dev_t *p_
 
     p_dev->p_devinfo = p_devinfo;
 
-    /* ¹¹ÔìspiÉè±¸ */
+    /* æž„é€ spiè®¾å¤‡ */
     am_spi_mkdev(&p_dev->spi_dev,
                   spi_handle,
-                  8,                    /* ×Ö´óÐ¡Îª8-bit */
+                  8,                    /* å­—å¤§å°ä¸º8-bit */
                   AM_SPI_MODE_0,
                   p_devinfo->max_speed_hz,
                   p_dev->p_devinfo->cs_pin,
                   __ili9341_no_use_cs);
-    /* ÉèÖÃÉè±¸ */
+    /* è®¾ç½®è®¾å¤‡ */
     ret = am_spi_setup( &(p_dev->spi_dev));
     if ( ret != AM_OK ) {
         return NULL;

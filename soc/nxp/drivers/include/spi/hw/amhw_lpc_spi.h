@@ -321,7 +321,7 @@ void amhw_lpc_spi_enable (amhw_lpc_spi_t *p_hw_spi)
  * \param[in] p_hw_spi :  Pointer to SPI register block
  * \param[in] flags    :  cfg parameter
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_lpc_spi_cfg_set (amhw_lpc_spi_t *p_hw_spi, uint32_t flags)
@@ -348,12 +348,12 @@ void amhw_lpc_spi_master_dly (amhw_lpc_spi_t           *p_hw_spi,
                      AMHW_LPC_SPI_INTERDELAY(p_spi_delay->transferdelay));
 } 
 /**
- * \brief PRE_DELAYÉèÖÃº¯Êı
+ * \brief PRE_DELAYè®¾ç½®å‡½æ•°
  *
- * \param[in] p_hw_spi : Ö¸ÏòSPI¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] delay    : ¿ØÖÆSSELÖÃÎ´ºÍÊı¾İÖ¡ÆğµãÖ®¼äµÄÊ±¼ä
+ * \param[in] p_hw_spi : æŒ‡å‘SPIå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] delay    : æ§åˆ¶SSELç½®æœªå’Œæ•°æ®å¸§èµ·ç‚¹ä¹‹é—´çš„æ—¶é—´
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_lpc_spi_pre_delay (amhw_lpc_spi_t *p_hw_spi, uint8_t delay)
@@ -362,12 +362,12 @@ void amhw_lpc_spi_pre_delay (amhw_lpc_spi_t *p_hw_spi, uint8_t delay)
 }
 
 /**
- * \brief POST_DELAYÉèÖÃº¯Êı
+ * \brief POST_DELAYè®¾ç½®å‡½æ•°
  *
- * \param[in] p_hw_spi : Ö¸ÏòSPI¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] delay    : ¿ØÖÆÊı¾İÖ¡Ä©Î²ºÍSSEL½â³ıÎ»Ö®¼äµÄÊ±¼ä
+ * \param[in] p_hw_spi : æŒ‡å‘SPIå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] delay    : æ§åˆ¶æ•°æ®å¸§æœ«å°¾å’ŒSSELè§£é™¤ä½ä¹‹é—´çš„æ—¶é—´
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_lpc_spi_post_delay (amhw_lpc_spi_t *p_hw_spi, uint8_t delay)
@@ -376,12 +376,12 @@ void amhw_lpc_spi_post_delay (amhw_lpc_spi_t *p_hw_spi, uint8_t delay)
 }
 
 /**
- * \brief FRAME_DELAYÉèÖÃº¯Êı
+ * \brief FRAME_DELAYè®¾ç½®å‡½æ•°
  *
- * \param[in] p_hw_spi : Ö¸ÏòSPI¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] delay    : ¿ØÖÆÏàÁÚÊı¾İÖ¡Ö®¼äµÄ×î¶ÌÊ±¼ä
+ * \param[in] p_hw_spi : æŒ‡å‘SPIå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] delay    : æ§åˆ¶ç›¸é‚»æ•°æ®å¸§ä¹‹é—´çš„æœ€çŸ­æ—¶é—´
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_lpc_spi_frame_delay (amhw_lpc_spi_t *p_hw_spi, uint8_t delay)
@@ -390,12 +390,12 @@ void amhw_lpc_spi_frame_delay (amhw_lpc_spi_t *p_hw_spi, uint8_t delay)
 }
 
 /**
- * \brief TRANSFER_DELAYÉèÖÃº¯Êı
+ * \brief TRANSFER_DELAYè®¾ç½®å‡½æ•°
  *
- * \param[in] p_hw_spi : Ö¸ÏòSPI¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] delay    : ¿ØÖÆÁ½´Î´«ÊäÖ®¼äSSEL½â³ıÖÃÎ»µÄ×î¶ÌÊ±¼ä
+ * \param[in] p_hw_spi : æŒ‡å‘SPIå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] delay    : æ§åˆ¶ä¸¤æ¬¡ä¼ è¾“ä¹‹é—´SSELè§£é™¤ç½®ä½çš„æœ€çŸ­æ—¶é—´
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_lpc_spi_trans_delay (amhw_lpc_spi_t *p_hw_spi, uint8_t delay)
@@ -458,7 +458,7 @@ void amhw_lpc_spi_txctl_set (amhw_lpc_spi_t *p_hw_spi, uint32_t flags)
  * \param[in] p_hw_spi : Pointer to SPI register block
  * \param[in] flen     : fram bit bpw
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_lpc_spi_data_flen_set (amhw_lpc_spi_t *p_hw_spi, uint8_t flen)
@@ -500,7 +500,7 @@ void amhw_lpc_spi_stat_clear (amhw_lpc_spi_t *p_hw_spi, uint32_t flags)
 
 /**
  * \brief get status register val
- * \param[in] p_hw_spi : Ö¸ÏòSPI¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_spi : æŒ‡å‘SPIå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  * \return SPI  status bit informatio
  */
 am_static_inline
@@ -543,14 +543,14 @@ uint16_t amhw_lpc_spi_rxdata_16bit_read (amhw_lpc_spi_t *p_hw_spi)
 }
 
 /**
- * \brief ¶ÁÈ¡SPI½ÓÊÕµ½µÄÊı¾İ£¨16bit£¬´øRXSSELNºÍSOT±êÖ¾Î»£©
- * \param[in] p_hw_spi : Ö¸ÏòSPI¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ·µ»Ø½ÓÊÕµ½µÄÊı¾İ£¨16bit£¬ÇÒ´øRXSSELNºÍSOT±êÖ¾Î»£©
+ * \brief è¯»å–SPIæ¥æ”¶åˆ°çš„æ•°æ®ï¼ˆ16bitï¼Œå¸¦RXSSELNå’ŒSOTæ ‡å¿—ä½ï¼‰
+ * \param[in] p_hw_spi : æŒ‡å‘SPIå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return è¿”å›æ¥æ”¶åˆ°çš„æ•°æ®ï¼ˆ16bitï¼Œä¸”å¸¦RXSSELNå’ŒSOTæ ‡å¿—ä½ï¼‰
  *
- * \note 0~15 Î»£ºÎª½ÓÊÕµ½µÄÊı¾İÎ»
- *       16~19Î»£ºÎª½ÓÊÕÊı¾İµÄ´Ó»úÑ¡Ôñ(RXSSELN)
- *       µÚ20 Î»£ºÎª´«ËÍ¿ªÊ¼±êÖ¾(SOT)
- *       ÆäËûÎ» £ºÎª±£ÁôÎ»ºãÎªÁã
+ * \note 0~15 ä½ï¼šä¸ºæ¥æ”¶åˆ°çš„æ•°æ®ä½
+ *       16~19ä½ï¼šä¸ºæ¥æ”¶æ•°æ®çš„ä»æœºé€‰æ‹©(RXSSELN)
+ *       ç¬¬20 ä½ï¼šä¸ºä¼ é€å¼€å§‹æ ‡å¿—(SOT)
+ *       å…¶ä»–ä½ ï¼šä¸ºä¿ç•™ä½æ’ä¸ºé›¶
  */
 am_static_inline
 uint32_t amhw_lpc_spi_rxdat_with_flags (amhw_lpc_spi_t *p_hw_spi)
@@ -616,21 +616,21 @@ void amhw_lpc_spi_ignore_recv_end_trans (amhw_lpc_spi_t *p_hw_spi)
 }
 
 /**
- * \brief SPI·¢ËÍÊı¾İ£¨´ø¿ØÖÆÖ¸Áî£©
+ * \brief SPIå‘é€æ•°æ®ï¼ˆå¸¦æ§åˆ¶æŒ‡ä»¤ï¼‰
  *
- * \param[in] p_hw_spi : Ö¸ÏòSPI¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] data     : Óû·¢ËÍµÄÊı¾İ
- * \param[in] flags    : ·¢ËÍÊ±µÄ²ÎÊı£¨¶à¸ö²ÎÊı¿É¡°»ò¡±ÔËËã£© AMHW_LPC_SPI_TXDATCTL_*(# AMHW_LPC_SPI_TXDATCTL_EOT)
- * \param[in] flen     : Êı¾İÖ¡³¤¶ÈÎ»Êı£¨1~16Î»£©
+ * \param[in] p_hw_spi : æŒ‡å‘SPIå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] data     : æ¬²å‘é€çš„æ•°æ®
+ * \param[in] flags    : å‘é€æ—¶çš„å‚æ•°ï¼ˆå¤šä¸ªå‚æ•°å¯â€œæˆ–â€è¿ç®—ï¼‰ AMHW_LPC_SPI_TXDATCTL_*(# AMHW_LPC_SPI_TXDATCTL_EOT)
+ * \param[in] flen     : æ•°æ®å¸§é•¿åº¦ä½æ•°ï¼ˆ1~16ä½ï¼‰
  *
- * \return ÎŞ
+ * \return æ— 
  *
- * \note ²ÎÊıflags ¿ÉÒÔÍ¨¹ı¡°»ò¡±ÔËËãÒ»Í¬´«µİ£¨¹²4¸ö²ÎÊı£©£¬Èç¹û4¸ö²ÎÊıÖĞ´æÔÚÄ³1¸ö
- *       ²ÎÊıÃ»ÓĞ¡°»ò¡±ÉÏ£¬ÔòÄ¬ÈÏ¸Ã²ÎÊıÎªÁã¡£Èç¹ûËùÓĞ²ÎÊı¶¼ÒªÉèÖÃÎª0£¬¿ÉÖ±½Ó¸³Öµ0
- *       µ½¸Ã²ÎÊıÉÏ¡£¸Ãº¯Êı¿ÉÓÃÓÚÆğÊ¼Ö¡µÄ·¢ËÍºÍ½áÊøÖ¡µÄ·¢ËÍ£¬µ¥´¿µÄÊı¾İ·¢ËÍ½¨ÒéÊ¹ÓÃ
- *       amhw_lpc_spi_txdat_write()£¬¸Ãº¯Êı²»»áÓ°Ïì·¢ËÍµÄÆäËû²ÎÊı£¬½ö»á¸Ä±ä·¢ËÍÆ÷ÖĞ
- *       µÄÊı¾İ¡£µ¥´¿µÄÊı¾İ·¢ËÍ²ÎÊıµÄ¸Ä±ä£¬½¨ÒéÊ¹ÓÃamhw_lpc_spi_txctl_set()ºÍ
- *       amhw_lpc_spi_txctl_clear()Ê¹ÄÜ»ò½ûÄÜ£¬ÕâÁ½¸öº¯ÊıÖ»»á¸Ä±ä·¢ËÍ¹ı³ÌµÄ²ÎÊı¡£
+ * \note å‚æ•°flags å¯ä»¥é€šè¿‡â€œæˆ–â€è¿ç®—ä¸€åŒä¼ é€’ï¼ˆå…±4ä¸ªå‚æ•°ï¼‰ï¼Œå¦‚æœ4ä¸ªå‚æ•°ä¸­å­˜åœ¨æŸ1ä¸ª
+ *       å‚æ•°æ²¡æœ‰â€œæˆ–â€ä¸Šï¼Œåˆ™é»˜è®¤è¯¥å‚æ•°ä¸ºé›¶ã€‚å¦‚æœæ‰€æœ‰å‚æ•°éƒ½è¦è®¾ç½®ä¸º0ï¼Œå¯ç›´æ¥èµ‹å€¼0
+ *       åˆ°è¯¥å‚æ•°ä¸Šã€‚è¯¥å‡½æ•°å¯ç”¨äºèµ·å§‹å¸§çš„å‘é€å’Œç»“æŸå¸§çš„å‘é€ï¼Œå•çº¯çš„æ•°æ®å‘é€å»ºè®®ä½¿ç”¨
+ *       amhw_lpc_spi_txdat_write()ï¼Œè¯¥å‡½æ•°ä¸ä¼šå½±å“å‘é€çš„å…¶ä»–å‚æ•°ï¼Œä»…ä¼šæ”¹å˜å‘é€å™¨ä¸­
+ *       çš„æ•°æ®ã€‚å•çº¯çš„æ•°æ®å‘é€å‚æ•°çš„æ”¹å˜ï¼Œå»ºè®®ä½¿ç”¨amhw_lpc_spi_txctl_set()å’Œ
+ *       amhw_lpc_spi_txctl_clear()ä½¿èƒ½æˆ–ç¦èƒ½ï¼Œè¿™ä¸¤ä¸ªå‡½æ•°åªä¼šæ”¹å˜å‘é€è¿‡ç¨‹çš„å‚æ•°ã€‚
  */
 am_static_inline
 void amhw_lpc_spi_txdatctl (amhw_lpc_spi_t *p_hw_spi,
@@ -647,7 +647,7 @@ void amhw_lpc_spi_txdatctl (amhw_lpc_spi_t *p_hw_spi,
  * \param[in] p_hw_spi : Pointer to SPI register block
  * \param[in] div      : div val
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_lpc_spi_div_set (amhw_lpc_spi_t *p_hw_spi, uint16_t div)

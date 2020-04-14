@@ -12,21 +12,21 @@
 
 /**
  * \file
- * \brief MiniPort-View + MiniPort-595 �¶���ʾ��ʹ�õװ�LM75BD��ȡ�¶ȣ�����
+ * \brief MiniPort-View + MiniPort-595 温度显示（使用底板LM75BD读取温度）程序
  *
- * - ��������
- *   1. Ҫʹ�õװ�(AMKS16Z-Core)�ϵ� LM75 �¶ȴ���������Ҫ�̽� J11��J13��
- *   2. �Ƚ� MiniPort-595 ����ֱ���� AMKS16Z-Core ���ΪJ4�� MiniPort �����ӣ�
- *   3. �� MiniPort-View ������ MiniPort-595 �ӿ������ӡ�
+ * - 操作步骤
+ *   1. 要使用底板(AMKS16Z-Core)上的 LM75 温度传感器，需要短接 J11和J13；
+ *   2. 先将 MiniPort-595 板子直接与 AMKS16Z-Core 标号为J4的 MiniPort 相连接；
+ *   3. 将 MiniPort-View 板子与 MiniPort-595 接口相连接。
  *
- * - ʵ������
- *   1. ���Կ����������ʾ��ǰ�¶ȣ���J14��ðѡ��̽� KEY �� RES�����µװ��ϵ�
- *      KEY/RES�������ʵ���ᷢ�ȣ������¶ȴ������ɼ������¶����ߡ�
+ * - 实验现象：
+ *   1. 可以看到数码管显示当前温度，若J14跳冒选择短接 KEY 和 RES，则按下底板上的
+ *      KEY/RES按键功率电阻会发热，导致温度传感器采集到的温度升高。
  *
- * - ����˵��
- *   1. �������ʹ��I2C��ȡLM75���¶ȣ�����ʹ�ò鿴I2C�µ��������
+ * - 其它说明
+ *   1. 具体如何使用I2C读取LM75的温度，可以使用查看I2C下的相关例程
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_miniport_hc595_digitron_temp.c src_miniport_hc595_digitron_temp
  *
  * \internal
@@ -48,7 +48,7 @@
 #include "am_kl26_inst_init.h"
 #include "demo_amks16z_core_all_entries.h"
 
-/* ������� */
+/* 例程入口 */
 void demo_amks16z_core_miniport_hc595_digitron_temp_entry (void)
 {
     AM_DBG_INFO("demo amks16z_core miniport hc595 digitron temp!\r\n");

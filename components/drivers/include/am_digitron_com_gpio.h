@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief Î»Ñ¡Æ÷Çı¶¯£¨GPIO£©
+ * \brief ä½é€‰å™¨é©±åŠ¨ï¼ˆGPIOï¼‰
  *
  * \internal
  * \par modification history:
@@ -37,7 +37,7 @@ extern "C" {
  */
 
 /**
- * \brief GPIOÎ»Ñ¡Æ÷Éè±¸
+ * \brief GPIOä½é€‰å™¨è®¾å¤‡
  */
 typedef struct am_digitron_com_gpio {
     am_digitron_base_selector_com_t    selector;
@@ -48,15 +48,15 @@ typedef struct am_digitron_com_gpio {
 } am_digitron_com_gpio_dev_t;
 
 /**
- * \brief GPIOÎ»Ñ¡Æ÷³õÊ¼»¯
+ * \brief GPIOä½é€‰å™¨åˆå§‹åŒ–
  *
- * \param[in] p_dev  : GPIOÎ»Ñ¡Æ÷Éè±¸ÊµÀı
- * \param[in] p_info : ÊıÂë¹Ü»ù´¡ĞÅÏ¢
- * \param[in] p_pins : Òı½Å±í£¬Òı½ÅÊıÄ¿ÓëÉ¨Ãè·½Ê½ºÍÊıÂë¹Ü¸öÊıÏà¹Ø
- *                     - ĞĞÉ¨ÃèÊ±£¬Òı½ÅÊıÓëĞĞÊıÏàµÈ£»
- *                     - ÁĞÉ¨ÃèÊ±£¬Òı½ÅÊıÓëÁĞÊıÏàµÈ¡£
+ * \param[in] p_dev  : GPIOä½é€‰å™¨è®¾å¤‡å®ä¾‹
+ * \param[in] p_info : æ•°ç ç®¡åŸºç¡€ä¿¡æ¯
+ * \param[in] p_pins : å¼•è„šè¡¨ï¼Œå¼•è„šæ•°ç›®ä¸æ‰«ææ–¹å¼å’Œæ•°ç ç®¡ä¸ªæ•°ç›¸å…³
+ *                     - è¡Œæ‰«ææ—¶ï¼Œå¼•è„šæ•°ä¸è¡Œæ•°ç›¸ç­‰ï¼›
+ *                     - åˆ—æ‰«ææ—¶ï¼Œå¼•è„šæ•°ä¸åˆ—æ•°ç›¸ç­‰ã€‚
  *
- * \return ±ê×¼µÄÎ»Ñ¡Æ÷£¨¿É¹©ÊıÂë¹ÜÉ¨ÃèÆ÷Ê¹ÓÃ£©
+ * \return æ ‡å‡†çš„ä½é€‰å™¨ï¼ˆå¯ä¾›æ•°ç ç®¡æ‰«æå™¨ä½¿ç”¨ï¼‰
  */
 am_digitron_base_selector_com_t *am_digitron_com_gpio_init (
         am_digitron_com_gpio_dev_t        *p_dev,

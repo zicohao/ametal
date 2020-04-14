@@ -12,15 +12,15 @@
 
 /**
  * \file
- * \brief ADCÀı³Ì£¬ÀûÓÃ²éÑ¯·½Ê½»ñÈ¡ADC×ª»»½á¹û£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief ADCä¾‹ç¨‹ï¼Œåˆ©ç”¨æŸ¥è¯¢æ–¹å¼è·å–ADCè½¬æ¢ç»“æœï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè£º
- *   1. ½«Ö¸¶¨ADCÍ¨µÀ¶ÔÓ¦µÄÒı½ÅÁ¬½ÓÄ£ÄâÊäÈë¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. å°†æŒ‡å®šADCé€šé“å¯¹åº”çš„å¼•è„šè¿æ¥æ¨¡æ‹Ÿè¾“å…¥ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿ÚÊä³öµçÑ¹²ÉÑùÖµ¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. ä¸²å£è¾“å‡ºç”µå‹é‡‡æ ·å€¼ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_std_adc.c src_std_adc
  *
  * \internal
@@ -41,7 +41,7 @@
 #include "am_adc.h"
 
 /**
- * \brief »ñÈ¡ ADC ×ª»»Öµ
+ * \brief è·å– ADC è½¬æ¢å€¼
  */
 static uint32_t __adc_code_get (am_adc_handle_t handle, int chan)
 {
@@ -50,26 +50,26 @@ static uint32_t __adc_code_get (am_adc_handle_t handle, int chan)
     uint32_t sum;
 
     /*
-     * Æô¶¯ADC×ª»»Æ÷£¬²É¼¯12´Î CODE Öµ
+     * å¯åŠ¨ADCè½¬æ¢å™¨ï¼Œé‡‡é›†12æ¬¡ CODE å€¼
      *
-     * Êµ¼ÊÓ¦ÓÃÖĞ£¬ËùÊ¹ÓÃµÄ ADC Î»ÊıÊÇÈ·¶¨µÄ£¬ÎŞĞèÕâÑù·Ö¶àÖÖÇé¿ö¿¼ÂÇ
+     * å®é™…åº”ç”¨ä¸­ï¼Œæ‰€ä½¿ç”¨çš„ ADC ä½æ•°æ˜¯ç¡®å®šçš„ï¼Œæ— éœ€è¿™æ ·åˆ†å¤šç§æƒ…å†µè€ƒè™‘
      */
     if (adc_bits <= 8) {
         uint8_t val_buf[12];
         am_adc_read(handle, chan, val_buf, 12);
-        for (sum = 0, i = 0; i < 12; i++) {       /* ¾ùÖµ´¦Àí */
+        for (sum = 0, i = 0; i < 12; i++) {       /* å‡å€¼å¤„ç† */
             sum += val_buf[i];
         }
     } else if (adc_bits <= 16) {
         uint16_t val_buf[12];
         am_adc_read(handle, chan, val_buf, 12);
-        for (sum = 0, i = 0; i < 12; i++) {       /* ¾ùÖµ´¦Àí */
+        for (sum = 0, i = 0; i < 12; i++) {       /* å‡å€¼å¤„ç† */
             sum += val_buf[i];
         }
     } else {
         uint32_t val_buf[12];
         am_adc_read(handle, chan, val_buf, 12);
-        for (sum = 0, i = 0; i < 12; i++) {       /* ¾ùÖµ´¦Àí */
+        for (sum = 0, i = 0; i < 12; i++) {       /* å‡å€¼å¤„ç† */
             sum += val_buf[i];
         }
     }
@@ -77,16 +77,16 @@ static uint32_t __adc_code_get (am_adc_handle_t handle, int chan)
 }
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_std_adc_entry (am_adc_handle_t handle, int chan)
 {
 
-    int adc_bits = am_adc_bits_get(handle , chan);        /* »ñÈ¡ADC×ª»»¾«¶È */
+    int adc_bits = am_adc_bits_get(handle , chan);        /* è·å–ADCè½¬æ¢ç²¾åº¦ */
     int adc_vref = am_adc_vref_get(handle , chan);
 
-    uint32_t adc_code;                                    /* ²ÉÑù Code Öµ   */
-    uint32_t adc_mv;                                      /* ²ÉÑùµçÑ¹ */
+    uint32_t adc_code;                                    /* é‡‡æ · Code å€¼   */
+    uint32_t adc_mv;                                      /* é‡‡æ ·ç”µå‹ */
 
     am_kprintf("The ADC value channel is %d: \r\n",chan);
 
@@ -100,7 +100,7 @@ void demo_std_adc_entry (am_adc_handle_t handle, int chan)
         adc_code = __adc_code_get(handle, chan);
         adc_mv   = adc_code * adc_vref / ((1UL << adc_bits) - 1);
 
-        /* ´®¿ÚÊä³ö²ÉÑùµçÑ¹Öµ */
+        /* ä¸²å£è¾“å‡ºé‡‡æ ·ç”µå‹å€¼ */
         am_kprintf("Sample : %d, Vol: %d mv\r\n", adc_code, adc_mv);
 
         am_mdelay(500);

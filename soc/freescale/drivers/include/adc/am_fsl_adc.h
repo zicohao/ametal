@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ADCÇı¶¯£¬·şÎñADC±ê×¼½Ó¿Ú
+ * \brief ADCé©±åŠ¨ï¼ŒæœåŠ¡ADCæ ‡å‡†æ¥å£
  *
  * \internal
  * \par Modification History
@@ -37,200 +37,200 @@ extern "C" {
  * \copydoc am_fsl_adc.h
  * @{
  */
-#define AM_FSL_ADC_AVG_DIS     0    /**< \brief ²»Ê¹ÓÃÓ²¼şÆ½¾ù¹¦ÄÜ */
-#define AM_FSL_ADC_AVG_EN      1    /**< \brief Ê¹ÓÃÓ²¼şÆ½¾ù¹¦ÄÜ */
-#define AM_FSL_ADC_CMP_DIS     0    /**< \brief ²»Ê¹ÓÃ±È½Ï¹¦ÄÜ */
-#define AM_FSL_ADC_CMP_EN      1    /**< \brief Ê¹ÓÃ±È½Ï¹¦ÄÜ */
+#define AM_FSL_ADC_AVG_DIS     0    /**< \brief ä¸ä½¿ç”¨ç¡¬ä»¶å¹³å‡åŠŸèƒ½ */
+#define AM_FSL_ADC_AVG_EN      1    /**< \brief ä½¿ç”¨ç¡¬ä»¶å¹³å‡åŠŸèƒ½ */
+#define AM_FSL_ADC_CMP_DIS     0    /**< \brief ä¸ä½¿ç”¨æ¯”è¾ƒåŠŸèƒ½ */
+#define AM_FSL_ADC_CMP_EN      1    /**< \brief ä½¿ç”¨æ¯”è¾ƒåŠŸèƒ½ */
 
 /**
- * \name ADC ÊäÈëÅäÖÃ±êÖ¾
+ * \name ADC è¾“å…¥é…ç½®æ ‡å¿—
  * \anchor grp_am_fsl_adc_diff
  * @{
  */
-#define AM_FSL_ADC_DIFF_EN      AM_TRUE    /**< \brief Ê¹ÓÃ²î·ÖÊäÈëÄ£Ê½ */
-#define AM_FSL_ADC_DIFF_DIS     AM_FALSE   /**< \brief Ê¹ÓÃµ¥¶ËÊäÈëÄ£Ê½ */
+#define AM_FSL_ADC_DIFF_EN      AM_TRUE    /**< \brief ä½¿ç”¨å·®åˆ†è¾“å…¥æ¨¡å¼ */
+#define AM_FSL_ADC_DIFF_DIS     AM_FALSE   /**< \brief ä½¿ç”¨å•ç«¯è¾“å…¥æ¨¡å¼ */
 /** @} */
 
 /**
- * \name ADC ´¥·¢Ä£Ê½ÅäÖÃ±êÖ¾
+ * \name ADC è§¦å‘æ¨¡å¼é…ç½®æ ‡å¿—
  * \anchor grp_am_fsl_adc_mode_trg
  * @{
  */
-#define AM_FSL_ADC_MODE_TRG_SF      0    /**< \brief Èí¼ş´¥·¢Ä£Ê½±êÖ¾ */
-#define AM_FSL_ADC_MODE_TRG_HW      1    /**< \brief Ó²¼ş´¥·¢Ä£Ê½ÅäÖÃ */
+#define AM_FSL_ADC_MODE_TRG_SF      0    /**< \brief è½¯ä»¶è§¦å‘æ¨¡å¼æ ‡å¿— */
+#define AM_FSL_ADC_MODE_TRG_HW      1    /**< \brief ç¡¬ä»¶è§¦å‘æ¨¡å¼é…ç½® */
 /** @} */
 
 /**
- * \name ADC ×´Ì¬¿ØÖÆ¼Ä´æÆ÷3Î»Óò¶¨Òå
+ * \name ADC çŠ¶æ€æ§åˆ¶å¯„å­˜å™¨3ä½åŸŸå®šä¹‰
  * \anchor grp_am_fsl_cmp_mode
  * @{
  */
-/** \brief ±È½ÏÌõ¼şÎª "res < cmp_val1" */
+/** \brief æ¯”è¾ƒæ¡ä»¶ä¸º "res < cmp_val1" */
 #define AM_FSL_ADC_CMP_MODE_1   0
 
-/** \brief ±È½ÏÌõ¼şÎª "res >= cmp_val1" */
+/** \brief æ¯”è¾ƒæ¡ä»¶ä¸º "res >= cmp_val1" */
 #define AM_FSL_ADC_CMP_MODE_2   1
 
-/** \brief ±È½ÏÌõ¼şÎª "res < a" »òÕß  "res > b" £¨a=min(cmp_val1, cmp_val2),b=max(cmp_val1, cmp_val2)£©*/
+/** \brief æ¯”è¾ƒæ¡ä»¶ä¸º "res < a" æˆ–è€…  "res > b" ï¼ˆa=min(cmp_val1, cmp_val2),b=max(cmp_val1, cmp_val2)ï¼‰*/
 #define AM_FSL_ADC_CMP_MODE_3   2
 
-/** \brief ±È½ÏÌõ¼şÎª " a < res < b" £¨a=min(cmp_val1, cmp_val2),b=max(cmp_val1, cmp_val2)£©*/
+/** \brief æ¯”è¾ƒæ¡ä»¶ä¸º " a < res < b" ï¼ˆa=min(cmp_val1, cmp_val2),b=max(cmp_val1, cmp_val2)ï¼‰*/
 #define AM_FSL_ADC_CMP_MODE_4   3
 
-/** \brief ±È½ÏÌõ¼şÎª " a <= res <= b" £¨a=min(cmp_val1, cmp_val2),b=max(cmp_val1, cmp_val2)£©*/
+/** \brief æ¯”è¾ƒæ¡ä»¶ä¸º " a <= res <= b" ï¼ˆa=min(cmp_val1, cmp_val2),b=max(cmp_val1, cmp_val2)ï¼‰*/
 #define AM_FSL_ADC_CMP_MODE_5   4
 
-/** \brief ±È½ÏÌõ¼şÎª "res <= a" »òÕß  "res >= b" £¨a=min(cmp_val1, cmp_val2),b=max(cmp_val1, cmp_val2)£©*/
+/** \brief æ¯”è¾ƒæ¡ä»¶ä¸º "res <= a" æˆ–è€…  "res >= b" ï¼ˆa=min(cmp_val1, cmp_val2),b=max(cmp_val1, cmp_val2)ï¼‰*/
 #define AM_FSL_ADC_CMP_MODE_6   5
 /** @} */
 
 /**
- * \brief ADC Ó²¼şÆ½¾ù¹¦ÄÜĞÅÏ¢½á¹¹Ìå
+ * \brief ADC ç¡¬ä»¶å¹³å‡åŠŸèƒ½ä¿¡æ¯ç»“æ„ä½“
  */
 typedef struct am_fsl_adc_avg_info {
-    /** \brief Ó²¼şÆ½¾ùÊ¹ÄÜ±êÖ¾ */
+    /** \brief ç¡¬ä»¶å¹³å‡ä½¿èƒ½æ ‡å¿— */
     uint8_t         enable;
-    /** \brief Æ½¾ùµÄ²ÉÑùÖµ¸öÊı */
+    /** \brief å¹³å‡çš„é‡‡æ ·å€¼ä¸ªæ•° */
     amhw_fsl_adc_avgs_t avgs_num;
 } am_fsl_adc_avg_info_t;
 
 /**
- * \brief ADC ±È½Ï¹¦ÄÜĞÅÏ¢½á¹¹Ìå
+ * \brief ADC æ¯”è¾ƒåŠŸèƒ½ä¿¡æ¯ç»“æ„ä½“
  */
 typedef struct am_fsl_adc_cmp_info {
-    /** \brief ±È½Ï¹¦ÄÜÊ¹ÄÜ±êÖ¾ */
+    /** \brief æ¯”è¾ƒåŠŸèƒ½ä½¿èƒ½æ ‡å¿— */
     uint8_t  enable;
 
-    /** \brief ±È½ÏÄ£Ê½ */
+    /** \brief æ¯”è¾ƒæ¨¡å¼ */
     uint16_t cmp_mode;
 
-    /** \brief ±È½Ï¹¦ÄÜãĞÖµ1 */
+    /** \brief æ¯”è¾ƒåŠŸèƒ½é˜ˆå€¼1 */
     uint16_t cmp_val1;
 
-    /** \brief ±È½Ï¹¦ÄÜãĞÖµ2 */
+    /** \brief æ¯”è¾ƒåŠŸèƒ½é˜ˆå€¼2 */
     uint16_t cmp_val2;
 
 } am_fsl_adc_cmp_info_t;
 
 /**
- * \brief ADC Éè±¸ĞÅÏ¢
+ * \brief ADC è®¾å¤‡ä¿¡æ¯
  */
 typedef struct am_fsl_adc_devinfo {
 
-    /** \brief Ö¸ÏòADC¼Ä´æÆ÷¿éµÄÖ¸Õë */
+    /** \brief æŒ‡å‘ADCå¯„å­˜å™¨å—çš„æŒ‡é’ˆ */
 	amhw_fsl_adc_t *p_hw_adc;
 
     /**
-     * \brief ADC²Î¿¼µçÑ¹£¬µ¥Î»£ºmV
+     * \brief ADCå‚è€ƒç”µå‹ï¼Œå•ä½ï¼šmV
      *
-     * ²Î¿¼µçÑ¹ Vref = (Vrefh - Vrefl)  ÎªÁËÔÚ×î´ó²ÉÑùËÙÂÊÊ±
-     * ÎÈ¶¨ÔËĞĞADC£¬È·±££ºVrefh = 1.13~VDDA£¬VreflµäĞÍÖµÎª£º Vss»ò Vssa
+     * å‚è€ƒç”µå‹ Vref = (Vrefh - Vrefl)  ä¸ºäº†åœ¨æœ€å¤§é‡‡æ ·é€Ÿç‡æ—¶
+     * ç¨³å®šè¿è¡ŒADCï¼Œç¡®ä¿ï¼šVrefh = 1.13~VDDAï¼ŒVreflå…¸å‹å€¼ä¸ºï¼š Vssæˆ– Vssa
      *
-     * \note ¸Ã²Î¿¼µçÑ¹ÓÉ¾ßÌåµÄµçÂ·¾ö¶¨
+     * \note è¯¥å‚è€ƒç”µå‹ç”±å…·ä½“çš„ç”µè·¯å†³å®š
      *
      */
     uint32_t   vref;
 
-    /** \brief ²ÉÑù¾«¶È£¨µ±is_diff=AM_TRUE£¬È¡ÖµÎª[9,11,13,16], ·ñÔòÈ¡ÖµÎª[8,10,12,16]£© */
+    /** \brief é‡‡æ ·ç²¾åº¦ï¼ˆå½“is_diff=AM_TRUEï¼Œå–å€¼ä¸º[9,11,13,16], å¦åˆ™å–å€¼ä¸º[8,10,12,16]ï¼‰ */
     uint8_t    bits;
 
-    /** \brief ÊÇ·ñÊ¹ÓÃ²î·ÖÄ£Ê½£¨/ref grp_amdr_adc_diff, µ±chan > 3,´ËÖµ»áºöÂÔ£©*/
+    /** \brief æ˜¯å¦ä½¿ç”¨å·®åˆ†æ¨¡å¼ï¼ˆ/ref grp_amdr_adc_diff, å½“chan > 3,æ­¤å€¼ä¼šå¿½ç•¥ï¼‰*/
     uint8_t    is_diff;
 
-    /** \brief ADCÖĞ¶ÏÏòÁ¿ºÅ */
+    /** \brief ADCä¸­æ–­å‘é‡å· */
     uint8_t    inum;
 
-    /** \brief ´¥·¢Ä£Ê½ ²Î¿¼/ref grp_amdr_adc_mode_trg */
+    /** \brief è§¦å‘æ¨¡å¼ å‚è€ƒ/ref grp_amdr_adc_mode_trg */
     uint8_t    mode_trg;
 
-    /** \brief Ê¹ÓÃµÄĞòÁĞ */
+    /** \brief ä½¿ç”¨çš„åºåˆ— */
     amhw_fsl_adc_seq_index_t  seq;
 
-    /** \brief DMA´«ÊäÍ¨µÀºÅ,ÈçDMA_CHAN_0£¬ÈôÎª-1Ö¸²»Ê¹ÓÃDMA´«Êä */
+    /** \brief DMAä¼ è¾“é€šé“å·,å¦‚DMA_CHAN_0ï¼Œè‹¥ä¸º-1æŒ‡ä¸ä½¿ç”¨DMAä¼ è¾“ */
     int       dma_chan;
 
-    /**< \brief ADC¹ÒÔØµÄÊ±ÖÓÔ´ */
+    /**< \brief ADCæŒ‚è½½çš„æ—¶é’Ÿæº */
     int       clk_id;
 
-    /** \brief Ö¸ÏòÓ²¼şÆ½¾ùĞÅÏ¢½á¹¹ÌåÖ¸Õë */
+    /** \brief æŒ‡å‘ç¡¬ä»¶å¹³å‡ä¿¡æ¯ç»“æ„ä½“æŒ‡é’ˆ */
     const am_fsl_adc_avg_info_t *p_adc_avg_info;
 
-    /** \brief Ö¸Ïò±È½Ï¹¦ÄÜĞÅÏ¢½á¹¹ÌåÖ¸Õë */
+    /** \brief æŒ‡å‘æ¯”è¾ƒåŠŸèƒ½ä¿¡æ¯ç»“æ„ä½“æŒ‡é’ˆ */
     const am_fsl_adc_cmp_info_t *p_adc_cmp_info;
 
-    /** \brief Æ½Ì¨³õÊ¼»¯º¯Êı£¬Èç´ò¿ªÊ±ÖÓ£¬ÅäÖÃÒı½ÅµÈ¹¤×÷ */
+    /** \brief å¹³å°åˆå§‹åŒ–å‡½æ•°ï¼Œå¦‚æ‰“å¼€æ—¶é’Ÿï¼Œé…ç½®å¼•è„šç­‰å·¥ä½œ */
     void     (*pfn_plfm_init)(void);
 
-    /** \brief Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    /** \brief å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
     void     (*pfn_plfm_deinit)(void);
 
 } am_fsl_adc_devinfo_t;
 
 /**
- * \brief ADCÉè±¸ÊµÀı
+ * \brief ADCè®¾å¤‡å®ä¾‹
  */
 typedef struct am_fsl_adc_dev {
 
-    /** \brief ADC±ê×¼·şÎñ */
+    /** \brief ADCæ ‡å‡†æœåŠ¡ */
     am_adc_serv_t             adc_serv;
 
-    /** \brief Ö¸ÏòADCÉè±¸ĞÅÏ¢µÄÖ¸Õë */
+    /** \brief æŒ‡å‘ADCè®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ */
     const am_fsl_adc_devinfo_t *p_devinfo;
 
-    /** \brief ´æ·ÅÓÃ»§Æô¶¯×ª»»ºóµÄ»Øµ÷º¯Êı */
+    /** \brief å­˜æ”¾ç”¨æˆ·å¯åŠ¨è½¬æ¢åçš„å›è°ƒå‡½æ•° */
     am_adc_seq_cb_t    pfn_callback;
 
-    /** \brief ÓÃ»§Æô¶¯»Øµ÷º¯ÊıµÄ»Øµ÷º¯Êı²ÎÊı */
+    /** \brief ç”¨æˆ·å¯åŠ¨å›è°ƒå‡½æ•°çš„å›è°ƒå‡½æ•°å‚æ•° */
     void                    *p_arg;
 
-    /** \brief µ±Ç°×ª»»µÄĞòÁĞÃèÊö·ûÊı×éÊ×µØÖ· */
+    /** \brief å½“å‰è½¬æ¢çš„åºåˆ—æè¿°ç¬¦æ•°ç»„é¦–åœ°å€ */
     am_adc_buf_desc_t       *p_desc;
 
-    /** \brief µ±Ç°×ª»»µÄĞòÁĞÃèÊö·ûÊıÁ¿ */
+    /** \brief å½“å‰è½¬æ¢çš„åºåˆ—æè¿°ç¬¦æ•°é‡ */
     uint32_t                desc_num;
 
-    /** \brief ×ª»»µÄ´ÎÊı */
+    /** \brief è½¬æ¢çš„æ¬¡æ•° */
     uint32_t                count;
 
-    /** \brief ×ª»»±êÖ¾   */
+    /** \brief è½¬æ¢æ ‡å¿—   */
     uint32_t                flags;
 
-    /** \brief µ±Ç°×ª»»µÄÍ¨µÀ */
+    /** \brief å½“å‰è½¬æ¢çš„é€šé“ */
     uint32_t                chan;
 
-    /** \brief Ö¸ÏòÃèÊö·û   */
+    /** \brief æŒ‡å‘æè¿°ç¬¦   */
     uint32_t                desc_pos;
 
-    /** \brief Ö¸Ïòµ±Ç°±£´æÊı¾İµÄÎ»ÖÃ */
+    /** \brief æŒ‡å‘å½“å‰ä¿å­˜æ•°æ®çš„ä½ç½® */
     uint32_t                index;
 
-    /** \brief µ±Ç°×ª»»´ÎÊı */
+    /** \brief å½“å‰è½¬æ¢æ¬¡æ•° */
     uint32_t                count_pos;
 
 } am_fsl_adc_dev_t;
 
 /**
- * \brief ADC³õÊ¼»¯
+ * \brief ADCåˆå§‹åŒ–
  *
- * Ä¬ÈÏ³õÊ¼»¯ĞòÁĞA
+ * é»˜è®¤åˆå§‹åŒ–åºåˆ—A
  *
- * \param[in] p_dev     : Ö¸ÏòADCÉè±¸µÄÖ¸Õë
- * \param[in] p_devinfo : Ö¸ÏòADCÉè±¸ĞÅÏ¢µÄÖ¸Õë
+ * \param[in] p_dev     : æŒ‡å‘ADCè®¾å¤‡çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo : æŒ‡å‘ADCè®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ
  *
- * \return ADC±ê×¼·şÎñ²Ù×÷¾ä±ú Èç¹ûÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
- * \note   Ä¬ÈÏÉèÖÃ100KHz²ÉÑùÂÊ£¨Ğèbus×ÜÏßÊ±ÖÓ×ã¹»´ó£©
+ * \return ADCæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„ å¦‚æœä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
+ * \note   é»˜è®¤è®¾ç½®100KHzé‡‡æ ·ç‡ï¼ˆéœ€busæ€»çº¿æ—¶é’Ÿè¶³å¤Ÿå¤§ï¼‰
  */
 am_adc_handle_t am_fsl_adc_init(am_fsl_adc_dev_t           *p_dev,
                               const am_fsl_adc_devinfo_t *p_devinfo);
 
 /**
- * \brief ADCÈ¥³õÊ¼»¯
+ * \brief ADCå»åˆå§‹åŒ–
  *
- * Ä¬ÈÏÈ¥³õÊ¼»¯ĞòÁĞA
+ * é»˜è®¤å»åˆå§‹åŒ–åºåˆ—A
  *
- * \param[in] handle : Ö¸ÏòADCÉè±¸µÄ¾ä±úÖµ
+ * \param[in] handle : æŒ‡å‘ADCè®¾å¤‡çš„å¥æŸ„å€¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_fsl_adc_deinit(am_adc_handle_t handle);
 

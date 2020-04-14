@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ZLG116 I2C´Ó»ú ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief ZLG116 I2Cä»æœº ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_fsl116_i2c_slv.c
  *
  * \internal
@@ -37,7 +37,7 @@
  * @{
  */
 
-/** \brief I2C0 Æ½Ì¨³õÊ¼»¯º¯Êı */
+/** \brief I2C0 å¹³å°åˆå§‹åŒ–å‡½æ•° */
 static void __fsl_i2c0_plfm_init (void)
 {
 
@@ -49,41 +49,41 @@ static void __fsl_i2c0_plfm_init (void)
     amhw_kl26_sim_periph_clock_enable(KL26_SIM_SCGC_I2C0);
 }
 
-/** \brief ½â³ıI2C0 Æ½Ì¨³õÊ¼»¯º¯Êı */
+/** \brief è§£é™¤I2C0 å¹³å°åˆå§‹åŒ–å‡½æ•° */
 static void __fsl_i2c0_plfm_deinit (void)
 {
     amhw_kl26_sim_periph_clock_disable(KL26_SIM_SCGC_I2C0);
 }
 
 /**
- * \name I2C0 ¿ØÖÆÆ÷²ÎÊı¶¨Òå
+ * \name I2C0 æ§åˆ¶å™¨å‚æ•°å®šä¹‰
  * @{
  */
 
 /** @} */
 
 /**
- * \brief I2C0´Ó Éè±¸ĞÅÏ¢
+ * \brief I2C0ä» è®¾å¤‡ä¿¡æ¯
  */
 static const am_fsl_i2c_slv_devinfo_t __g_i2c0_devinfo = {
-	KL26_I2C0,                /**< \brief I2C0¼Ä´æÆ÷¿é»ùÖ· */
-    INUM_I2C0,                /**< \brief I2C0 ÖĞ¶Ï±àºÅ */
-	CLK_I2C0,                 /**< \brief I2C0   Ê±ÖÓºÅ */
-	10000,                     /**< \brief I2C0  ±£³ÖÊ±¼ä */
-	__fsl_i2c0_plfm_init,     /**< \brief Æ½Ì¨³õÊ¼»¯ */
-	__fsl_i2c0_plfm_deinit    /**< \brief Æ½Ì¨È¥³õÊ¼»¯ */
+	KL26_I2C0,                /**< \brief I2C0å¯„å­˜å™¨å—åŸºå€ */
+    INUM_I2C0,                /**< \brief I2C0 ä¸­æ–­ç¼–å· */
+	CLK_I2C0,                 /**< \brief I2C0   æ—¶é’Ÿå· */
+	10000,                     /**< \brief I2C0  ä¿æŒæ—¶é—´ */
+	__fsl_i2c0_plfm_init,     /**< \brief å¹³å°åˆå§‹åŒ– */
+	__fsl_i2c0_plfm_deinit    /**< \brief å¹³å°å»åˆå§‹åŒ– */
 };
 
-static am_fsl_i2c_slv_dev_t __g_i2c0_dev; /**< \brief I2C0 Éè±¸ÊµÀı */
+static am_fsl_i2c_slv_dev_t __g_i2c0_dev; /**< \brief I2C0 è®¾å¤‡å®ä¾‹ */
 
 
-/** \brief I2C1 ÊµÀı³õÊ¼»¯£¬»ñµÃI2C±ê×¼·şÎñ¾ä±ú */
+/** \brief I2C1 å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—I2Cæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_i2c_slv_handle_t  am_fsl16_i2c0_slv_inst_init (void)
 {
     return am_fsl_i2c_slv_init(&__g_i2c0_dev, &__g_i2c0_devinfo);
 }
 
-/** \brief I2C1 ÊµÀı½â³õÊ¼»¯ */
+/** \brief I2C1 å®ä¾‹è§£åˆå§‹åŒ– */
 void am_fsl16_i2c0_slv_inst_deinit (am_i2c_slv_handle_t handle)
 {
     am_fsl_i2c_slv_deinit(handle);

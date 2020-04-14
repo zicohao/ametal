@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief AM824BLE Ä£°å¹¤³Ì
+ * \brief AM824BLE æ¨¡æ¿å·¥ç¨‹
  *
  *
  * \internal
@@ -29,17 +29,17 @@
 #include "demo_am824ble_entries.h"
 #include "demo_am824_core_entries.h"
 /**
- * \brief AMetal Ó¦ÓÃ³ÌĞòÈë¿Ú
+ * \brief AMetal åº”ç”¨ç¨‹åºå…¥å£
  */
 void am_main (void)
 {
     AM_DBG_INFO("Start up successful!\r\n");
     /*
-     * ÒÔÏÂÎªËùÓĞdemoµÄÈë¿Úº¯Êı£¬ĞèÒªÔËĞĞÄÄ¸ö demo£¬ ¾ÍÈ¡Ïû¶ÔÓ¦º¯Êıµ÷ÓÃĞĞµÄ×¢ÊÍ
+     * ä»¥ä¸‹ä¸ºæ‰€æœ‰demoçš„å…¥å£å‡½æ•°ï¼Œéœ€è¦è¿è¡Œå“ªä¸ª demoï¼Œ å°±å–æ¶ˆå¯¹åº”å‡½æ•°è°ƒç”¨è¡Œçš„æ³¨é‡Š
      *
-     * ÒÔÏÂdemo¿ÉÓëam824_core°å¸´ÓÃ£¬Ä¬ÈÏÔËĞĞµÄÊÇLEDÉÁË¸ demo¡£
+     * ä»¥ä¸‹demoå¯ä¸am824_coreæ¿å¤ç”¨ï¼Œé»˜è®¤è¿è¡Œçš„æ˜¯LEDé—ªçƒ demoã€‚
      *
-     * ×¢Òâ£ºÍ¬Ò»Ê±¿ÌÖ»ÄÜÔËĞĞÒ»¸ö demo£¬¼´Ö»ÄÜÊ¹Ä³Ò»ĞĞ´¦ÓÚÈ¡Ïû×¢ÊÍ×´Ì¬¡£
+     * æ³¨æ„ï¼šåŒä¸€æ—¶åˆ»åªèƒ½è¿è¡Œä¸€ä¸ª demoï¼Œå³åªèƒ½ä½¿æŸä¸€è¡Œå¤„äºå–æ¶ˆæ³¨é‡ŠçŠ¶æ€ã€‚
      */
 
     demo_am824_core_std_led_entry();
@@ -124,7 +124,7 @@ void am_main (void)
     //demo_am824_core_std_wkt_timer_entry();
 
     /*
-     * ÒÔÏÂdemoÎªam824ble°åÌØÓĞdemo
+     * ä»¥ä¸‹demoä¸ºam824bleæ¿ç‰¹æœ‰demo
      */
     //demo_am824ble_std_zlg9021_baudrate_entry();
     //demo_am824ble_std_zlg9021_led_entry();

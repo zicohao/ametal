@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ADCÇı¶¯ÊµÏÖ
+ * \brief ADCé©±åŠ¨å®ç°
  *
  * \internal
  * \par Modification history
@@ -29,7 +29,7 @@
 #include "hw/amhw_zlg_adc.h"
 
 /*******************************************************************************
-* Ë½ÓĞ¶¨Òå
+* ç§æœ‰å®šä¹‰
 *******************************************************************************/
 
 #define __ADC_HW_DECL(p_hw_adc, p_drv)   \
@@ -39,10 +39,10 @@
 #define __ADC_VREF_GET(p_drv)   (((am_zlg_adc_dev_t *)p_drv)->p_devinfo->vref)
 
 /*******************************************************************************
-* º¯ÊıÉùÃ÷
+* å‡½æ•°å£°æ˜
 *******************************************************************************/
 
-/** \brief Æô¶¯ADC×ª»» */
+/** \brief å¯åŠ¨ADCè½¬æ¢ */
 static int __fn_adc_start (void                   *p_drv,
                            int                     chan,
                            am_adc_buf_desc_t      *p_desc,
@@ -52,27 +52,27 @@ static int __fn_adc_start (void                   *p_drv,
                            am_adc_seq_cb_t         pfn_callback,
                            void                   *p_arg);
 
-/** \brief Í£Ö¹×ª»» */
+/** \brief åœæ­¢è½¬æ¢ */
 static int __fn_adc_stop (void *p_drv, int chan);
 
-/** \brief »ñÈ¡ADCµÄ²ÉÑùÂÊ */
+/** \brief è·å–ADCçš„é‡‡æ ·ç‡ */
 static int __fn_adc_rate_get (void       *p_drv,
                               int         chan,
                               uint32_t   *p_rate);
 
-/** \brief ÉèÖÃADCµÄ²ÉÑùÂÊ£¬Êµ¼Ê²ÉÑùÂÊ¿ÉÄÜ´æÔÚ²îÒì */
+/** \brief è®¾ç½®ADCçš„é‡‡æ ·ç‡ï¼Œå®é™…é‡‡æ ·ç‡å¯èƒ½å­˜åœ¨å·®å¼‚ */
 static int __fn_adc_rate_set (void     *p_drv,
                               int       chan,
                               uint32_t  rate);
 
-/** \brief »ñÈ¡ADC×ª»»¾«¶È */
+/** \brief è·å–ADCè½¬æ¢ç²¾åº¦ */
 static uint32_t __fn_bits_get (void *p_drv, int chan);
 
-/** \brief »ñÈ¡ADC²Î¿¼µçÑ¹ */
+/** \brief è·å–ADCå‚è€ƒç”µå‹ */
 static uint32_t __fn_vref_get (void *p_drv, int chan);
 
 /**
- * \brief ADC·şÎñº¯Êı
+ * \brief ADCæœåŠ¡å‡½æ•°
  */
 static const struct am_adc_drv_funcs __g_adc_drvfuncs = {
     __fn_adc_start,
@@ -86,14 +86,14 @@ static const struct am_adc_drv_funcs __g_adc_drvfuncs = {
 /******************************************************************************/
 
 /**
- * \brief ADCÊı¾İ×ª»»Íê³ÉÖĞ¶Ï
+ * \brief ADCæ•°æ®è½¬æ¢å®Œæˆä¸­æ–­
  */
 void __adc_irq_handle (void *p_arg)
 {
     am_zlg_adc_dev_t    *p_dev      = (am_zlg_adc_dev_t *)p_arg;
     amhw_zlg_adc_t      *p_hw_adc   =  NULL;
 
-    /* µ±Ç°×ª»»µÄĞòÁĞÃèÊö·û */
+    /* å½“å‰è½¬æ¢çš„åºåˆ—æè¿°ç¬¦ */
     am_adc_buf_desc_t *p_desc     = &(p_dev->p_desc[p_dev->desc_index]);
     uint16_t          *p_buf16    = (uint16_t *)p_desc->p_buf;
     uint8_t           *p_buf8     = (uint8_t  *)p_desc->p_buf;
@@ -105,17 +105,17 @@ void __adc_irq_handle (void *p_arg)
 
     p_hw_adc =  (amhw_zlg_adc_t *)(p_dev->p_devinfo->adc_reg_base);
 
-    /* ÅĞ¶ÏÊÇ·ñµ±Ç°Êı¾İÊÇÓĞĞ§µÄ */
+    /* åˆ¤æ–­æ˜¯å¦å½“å‰æ•°æ®æ˜¯æœ‰æ•ˆçš„ */
     if (p_dev->conv_cnt < p_desc->length) {
 
-        /* ´ÓÈ«¾ÖÊı¾İ¼Ä´æÆ÷ÖĞ¶ÁÈ¡Êı¾İ£¬ÒÔÇå³ıÖĞ¶Ï±êÖ¾ */
+        /* ä»å…¨å±€æ•°æ®å¯„å­˜å™¨ä¸­è¯»å–æ•°æ®ï¼Œä»¥æ¸…é™¤ä¸­æ–­æ ‡å¿— */
         amhw_zlg_adc_data_get (p_hw_adc, &adc_dat);
 
         if (p_dev->p_devinfo->bits_mode ==
                 AMHW_ZLG_ADC_DATA_VALID_8BIT) {
             p_buf8[p_dev->conv_cnt] =  adc_dat >> p_dev->right_bit;
         } else {
-            /* ±£´æÊı¾İ */
+            /* ä¿å­˜æ•°æ® */
             if (AM_ADC_DATA_ALIGN_LEFT & p_dev->flags) {
                 p_buf16[p_dev->conv_cnt] = adc_dat << 4;
             } else {
@@ -125,7 +125,7 @@ void __adc_irq_handle (void *p_arg)
 
         p_dev->conv_cnt++;
 
-        /* ÅĞ¶Ïµ±Ç°ĞòÁĞÃèÊö·ûÊÇ·ñÒÑ¾­Íê³É×ª»» */
+        /* åˆ¤æ–­å½“å‰åºåˆ—æè¿°ç¬¦æ˜¯å¦å·²ç»å®Œæˆè½¬æ¢ */
         if (p_dev->conv_cnt >= p_desc->length) {
 
             p_dev->conv_cnt = 0;
@@ -135,7 +135,7 @@ void __adc_irq_handle (void *p_arg)
 
             p_dev->desc_index++;
 
-            /* ÅĞ¶ÏÕû¸öĞòÁĞÃèÊö·ûÊÇ·ñÍê³ÉÒ»ÂÖ×ª»» */
+            /* åˆ¤æ–­æ•´ä¸ªåºåˆ—æè¿°ç¬¦æ˜¯å¦å®Œæˆä¸€è½®è½¬æ¢ */
             if (p_dev->desc_index == p_dev->desc_num) {
 
                 p_dev->desc_index = 0;
@@ -143,16 +143,16 @@ void __adc_irq_handle (void *p_arg)
                     p_dev->pfn_callback(p_dev->p_arg, AM_OK);
                 }
 
-                p_dev->seq_cnt++; /* Õû¸öĞòÁĞ×ª»»Íê³É */
+                p_dev->seq_cnt++; /* æ•´ä¸ªåºåˆ—è½¬æ¢å®Œæˆ */
                 if (p_dev->count != 0 && p_dev->seq_cnt == p_dev->count) {
                     p_dev->seq_cnt = 0;
 
                     if (amhw_zlg_adc_int_tran_complete_check(p_hw_adc)){
                         amhw_zlg_adc_int_tran_complete_clr(p_hw_adc);
                     }
-                    __fn_adc_stop (p_dev, p_dev->chan);  /* ¹Ø±ÕÄ£¿é */
+                    __fn_adc_stop (p_dev, p_dev->chan);  /* å…³é—­æ¨¡å— */
 
-                    return ; /* ·µ»Ø */
+                    return ; /* è¿”å› */
                 }
             }
         }
@@ -167,7 +167,7 @@ void __adc_irq_handle (void *p_arg)
     }
 }
 
-/** \brief Ö¸ÏòADCÖĞ¶ÏÁ¬½Óº¯Êı */
+/** \brief æŒ‡å‘ADCä¸­æ–­è¿æ¥å‡½æ•° */
 static int __fn_adc_connect (void *p_drv)
 {
     am_zlg_adc_dev_t *p_dev = NULL;
@@ -182,7 +182,7 @@ static int __fn_adc_connect (void *p_drv)
 
     amhw_zlg_adc_ctrl_reg_set(p_hw_adc, AMHW_ZLG_ADC_INT_EN_MASK);
 
-    /* Á¬½Ó×ª»»Íê³ÉÖĞ¶Ï */
+    /* è¿æ¥è½¬æ¢å®Œæˆä¸­æ–­ */
     am_int_connect(p_dev->p_devinfo->inum,
                    __adc_irq_handle,
                    (void *)p_dev);
@@ -192,7 +192,7 @@ static int __fn_adc_connect (void *p_drv)
 }
 
 /**
- * \brief ADC Ê¹ÓÃÖĞ¶ÏÄ£Ê½Ê±Æô¶¯ÅäÖÃ
+ * \brief ADC ä½¿ç”¨ä¸­æ–­æ¨¡å¼æ—¶å¯åŠ¨é…ç½®
  */
 static void __adc_int_work_startup (am_zlg_adc_dev_t *p_dev, uint32_t chan)
 {
@@ -204,7 +204,7 @@ static void __adc_int_work_startup (am_zlg_adc_dev_t *p_dev, uint32_t chan)
 }
 
 /**
- * \brief Æô¶¯ADC×ª»»
+ * \brief å¯åŠ¨ADCè½¬æ¢
  */
 static int __fn_adc_start (void                   *p_drv,
                            int                     chan,
@@ -234,14 +234,14 @@ static int __fn_adc_start (void                   *p_drv,
     p_dev->desc_index   = 0;
     p_dev->conv_cnt     = 0;
 
-    am_int_enable(p_dev->p_devinfo->inum); /* ¿ªÆôÖĞ¶Ï */
-    __adc_int_work_startup(p_dev,chan); /* ÖĞ¶Ï¹¤×÷Ä£Ê½Æô¶¯ÅäÖÃ */
+    am_int_enable(p_dev->p_devinfo->inum); /* å¼€å¯ä¸­æ–­ */
+    __adc_int_work_startup(p_dev,chan); /* ä¸­æ–­å·¥ä½œæ¨¡å¼å¯åŠ¨é…ç½® */
 
     return AM_OK;
 }
 
 /**
- * \brief Í£Ö¹×ª»»
+ * \brief åœæ­¢è½¬æ¢
  */
 static int __fn_adc_stop (void *p_drv, int chan)
 {
@@ -262,7 +262,7 @@ static int __fn_adc_stop (void *p_drv, int chan)
 }
 
 /**
- * \brief »ñÈ¡ADCµÄ²ÉÑùÂÊ
+ * \brief è·å–ADCçš„é‡‡æ ·ç‡
  */
 static int __fn_adc_rate_get (void     *p_drv,
                               int       chan,
@@ -296,7 +296,7 @@ static int __fn_adc_rate_get (void     *p_drv,
 }
 
 /**
- * \brief ÉèÖÃADCµÄ²ÉÑùÂÊ£¬Êµ¼Ê²ÉÑùÂÊ¿ÉÄÜ´æÔÚ²îÒì
+ * \brief è®¾ç½®ADCçš„é‡‡æ ·ç‡ï¼Œå®é™…é‡‡æ ·ç‡å¯èƒ½å­˜åœ¨å·®å¼‚
  */
 static int __fn_adc_rate_set (void     *p_drv,
                               int       chan,
@@ -373,7 +373,7 @@ static int __fn_adc_rate_set (void     *p_drv,
 }
 
 /**
- * \brief »ñÈ¡ADC×ª»»¾«¶È
+ * \brief è·å–ADCè½¬æ¢ç²¾åº¦
  */
 static uint32_t __fn_bits_get (void *p_drv, int chan)
 {
@@ -390,19 +390,19 @@ static uint32_t __fn_bits_get (void *p_drv, int chan)
 }
 
 /**
- * \brief »ñÈ¡ADC²Î¿¼µçÑ¹
+ * \brief è·å–ADCå‚è€ƒç”µå‹
  */
 static uint32_t __fn_vref_get (void *p_drv, int chan)
 {
     if (NULL == p_drv) {
-        return 0;   /* ×ÊÔ´ÒÑ¾­ÊÍ·Å£¬²Î¿¼µçÑ¹Î´Öª */
+        return 0;   /* èµ„æºå·²ç»é‡Šæ”¾ï¼Œå‚è€ƒç”µå‹æœªçŸ¥ */
     }
 
     return (uint32_t)__ADC_VREF_GET(p_drv);
 }
 
 /**
- * \brief ADC³õÊ¼»¯
+ * \brief ADCåˆå§‹åŒ–
  */
 am_adc_handle_t am_zlg_adc_init (am_zlg_adc_dev_t           *p_dev,
                                  const am_zlg_adc_devinfo_t *p_devinfo)
@@ -436,13 +436,13 @@ am_adc_handle_t am_zlg_adc_init (am_zlg_adc_dev_t           *p_dev,
 
     p_hw_adc = (amhw_zlg_adc_t *)(p_dev->p_devinfo->adc_reg_base);
 
-    /* ÉèÖÃ·Ö±æÂÊ */
+    /* è®¾ç½®åˆ†è¾¨ç‡ */
     amhw_zlg_adc_data_resolution(p_hw_adc, p_dev->p_devinfo->bits_mode);
 
     /*
-     *  ¾­Ö¤ÊµĞ¾Æ¬¶ÔÓÚ×óÓÒ¶ÔÆë¹¦ÄÜÎŞĞ§£¬
-     *  ²ÉÑùÂÊ¾«¶ÈÎª8,9,10,11,12Î»£¬Ğ¾Æ¬²É¼¯µÄÊı×ÖÖµ¶¼ÊÇ´Ó11bitÎ»¿ªÊ¼¶ÔÆë
-     *  ÈçÉèÖÃÎª9Î»¾«¶ÈÊı¾İÈçÏÂ£º
+     *  ç»è¯å®èŠ¯ç‰‡å¯¹äºå·¦å³å¯¹é½åŠŸèƒ½æ— æ•ˆï¼Œ
+     *  é‡‡æ ·ç‡ç²¾åº¦ä¸º8,9,10,11,12ä½ï¼ŒèŠ¯ç‰‡é‡‡é›†çš„æ•°å­—å€¼éƒ½æ˜¯ä»11bitä½å¼€å§‹å¯¹é½
+     *  å¦‚è®¾ç½®ä¸º9ä½ç²¾åº¦æ•°æ®å¦‚ä¸‹ï¼š
      *  |_15_~_12_|___9bit_data__|_2_~_0|
      */
     amhw_zlg_adc_align_way_sel(p_hw_adc, 0);
@@ -450,20 +450,20 @@ am_adc_handle_t am_zlg_adc_init (am_zlg_adc_dev_t           *p_dev,
     bit = __fn_bits_get(p_dev, 0);
     p_dev->right_bit = 12 - bit;
 
-    /* ÉèÖÃ²ÉÑùÂÊ */
+    /* è®¾ç½®é‡‡æ ·ç‡ */
     __fn_adc_rate_set(p_dev, 0,100000);
 
-    /* ×¢²áADCÏà¹ØÖĞ¶Ï */
+    /* æ³¨å†ŒADCç›¸å…³ä¸­æ–­ */
     __fn_adc_connect(p_dev);
 
-    /* ADCÊ¹ÄÜ */
+    /* ADCä½¿èƒ½ */
     amhw_zlg_adc_cgf_reg_set(p_hw_adc, AMHW_ZLG_ADC_MODULE_EN_MASK);
 
     return (am_adc_handle_t)(&(p_dev->adc_serve));
 }
 
 /**
- * \brief ADCÈ¥³õÊ¼»¯
+ * \brief ADCå»åˆå§‹åŒ–
  */
 void am_zlg_adc_deinit (am_adc_handle_t handle)
 {

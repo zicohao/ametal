@@ -12,10 +12,10 @@
 
 /**
  * \file
- * \brief Î»²Ù×÷Ïà¹Ø¶¨ÒåÍ·ÎÄ¼ş
+ * \brief ä½æ“ä½œç›¸å…³å®šä¹‰å¤´æ–‡ä»¶
  *
- * ¸ÃÎÄ¼şÌá¹©ÁË³£ÓÃµÄÎ»²Ù×÷¹¤¾ßºê£¬ÀıÈç£ºAM_BIT_SET()£¬ AM_BIT_GET()£¬¸ü¶àÄÚÈİ
- * Çë²Î¿¼ \ref am_if_bitops ¡£
+ * è¯¥æ–‡ä»¶æä¾›äº†å¸¸ç”¨çš„ä½æ“ä½œå·¥å…·å®ï¼Œä¾‹å¦‚ï¼šAM_BIT_SET()ï¼Œ AM_BIT_GET()ï¼Œæ›´å¤šå†…å®¹
+ * è¯·å‚è€ƒ \ref am_if_bitops ã€‚
  *
  * \internal
  * \par Modification history:
@@ -36,16 +36,16 @@
 /******************************************************************************/
 
 /**
- * \name Í¨ÓÃÎ»³£Êı¶¨Òå
+ * \name é€šç”¨ä½å¸¸æ•°å®šä¹‰
  * @{
  */
 
-/** \brief ³¤ÕûÊıÎ»Êı */
+/** \brief é•¿æ•´æ•°ä½æ•° */
 #ifndef AM_BITS_PER_LONG
 #define AM_BITS_PER_LONG       32
 #endif
 
-/** \brief ×Ö½ÚÎ»Êı */
+/** \brief å­—èŠ‚ä½æ•° */
 #define AM_BITS_PER_BYTE       8
 
 /** @} */
@@ -53,67 +53,67 @@
 /******************************************************************************/
 
 /**
- * \name Í¨ÓÃÎ»²Ù×÷
+ * \name é€šç”¨ä½æ“ä½œ
  * @{
  */
 
 #ifndef AM_BIT_MASK
 
-/** \brief ¼ÆËãn bitsÑÚÂë */
+/** \brief è®¡ç®—n bitsæ©ç  */
 #define AM_BIT_MASK(nr)              (1UL << ((nr) % BITS_PER_LONG))
 #endif
 
 #ifndef AM_BIT_WORD
 
-/** \brief bits×ª»»Îª×Ö¸öÊı */
+/** \brief bitsè½¬æ¢ä¸ºå­—ä¸ªæ•° */
 #define AM_BIT_WORD(nr)              ((nr) / BITS_PER_LONG)
 #endif
 
 #ifndef AM_BITS_TO_LONGS
 
-/** \brief bitÔÚlongĞÍbit mapÖĞµÄË÷Òı */
+/** \brief bitåœ¨longå‹bit mapä¸­çš„ç´¢å¼• */
 #define AM_BITS_TO_LONGS(nr)         AM_DIV_ROUND_UP(nr, BITS_PER_BYTE * sizeof(long))
 #endif
 
-/** \brief bitÒÆÎ» */
+/** \brief bitç§»ä½ */
 #define AM_BIT(bit)                  (1u << (bit))
 
-/** \brief ÖµÒÆÎ» */
+/** \brief å€¼ç§»ä½ */
 #define AM_SBF(value, field)         ((value) << (field))
 
-/** \brief bitÖÃÎ» */
+/** \brief bitç½®ä½ */
 #define AM_BIT_SET(data, bit)        ((data) |= AM_BIT(bit))
 
-/** \brief bitÇåÁã */
+/** \brief bitæ¸…é›¶ */
 #define AM_BIT_CLR(data, bit)        ((data) &= ~AM_BIT(bit))
 
-/** \brief bitÖÃÎ», ¸ù¾İ mask Ö¸¶¨µÄÎ» */
+/** \brief bitç½®ä½, æ ¹æ® mask æŒ‡å®šçš„ä½ */
 #define AM_BIT_SET_MASK(data, mask)  ((data) |= (mask))
 
-/** \brief bitÇåÁã, ¸ù¾İ mask Ö¸¶¨µÄÎ» */
+/** \brief bitæ¸…é›¶, æ ¹æ® mask æŒ‡å®šçš„ä½ */
 #define AM_BIT_CLR_MASK(data, mask)  ((data) &= ~(mask))
 
-/** \brief bit·­×ª */
+/** \brief bitç¿»è½¬ */
 #define AM_BIT_TOGGLE(data, bit)     ((data) ^= AM_BIT(bit))
 
-/** \brief bitĞŞ¸Ä */
+/** \brief bitä¿®æ”¹ */
 #define AM_BIT_MODIFY(data, bit, value) \
     ((value) ? AM_BIT_SET(data, bit) : AM_BIT_CLR(data, bit))
 
-/** \brief ²âÊÔbitÊÇ·ñÖÃÎ» */
+/** \brief æµ‹è¯•bitæ˜¯å¦ç½®ä½ */
 #define AM_BIT_ISSET(data, bit)      ((data) & AM_BIT(bit))
 
-/** \brief »ñÈ¡bitÖµ */
+/** \brief è·å–bitå€¼ */
 #define AM_BIT_GET(data, bit)        (AM_BIT_ISSET(data, bit) ? 1 : 0)
 
-/** \brief »ñÈ¡ n bits ÑÚÂëÖµ */
+/** \brief è·å– n bits æ©ç å€¼ */
 #define AM_BITS_MASK(n)              (~((~0u) << (n)))
 
-/** \brief »ñÈ¡Î»¶ÎÖµ */
+/** \brief è·å–ä½æ®µå€¼ */
 #define AM_BITS_GET(data, start, len)  \
     (((data) >> (start)) & AM_BITS_MASK(len))
 
-/** \brief ÉèÖÃÎ»¶ÎÖµ */
+/** \brief è®¾ç½®ä½æ®µå€¼ */
 #define AM_BITS_SET(data, start, len, value) \
     ((data) = (((data) & ~AM_SBF(AM_BITS_MASK(len), (start))) | \
         AM_SBF((value) & (AM_BITS_MASK(len)), (start))))

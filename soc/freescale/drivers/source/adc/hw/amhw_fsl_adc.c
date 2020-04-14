@@ -12,22 +12,22 @@
 
 /**
  * \file
- * \brief ADC Ӳ�������ӿ�ʵ�֡�
+ * \brief ADC 硬件操作接口实现。
  *
- * 1. 16λ��αƽ�����ģת������
- * 2. �ߴ�4�Բ�����룬24������ģ�����룻
- * 3. ���λ�����ת����ת������Զ���Χ����״̬��
- * 4. �����ò���ʱ�䣬ת���ٶȻ򹦺ģ�
- * 5. ��ѡ���/����ֵ�ȽϺ�Ӳ��ƽ����
- * 6. ת����ɻ�Ӳ��ƽ������ж�����
- * 7. �ĸ���ѡʱ��Դ��
- * 8. �Դ��¶ȴ�������
- * 9. ��ѡ�Ĳο���ѹԴ��
- * 10. Ӳ��У��ģʽ;
- * 11. 2������������ת�����У�
- * 12. ֧�����ģʽ�У�
- *     ---16λ��13λ��11λ��9λ�������ģʽ
- *     ---16λ��12λ��18λ��8λ��������ģʽ
+ * 1. 16位逐次逼近型数模转换器；
+ * 2. 高达4对差分输入，24个单端模拟输入；
+ * 3. 单次或连续转换，转换完成自动范围空闲状态；
+ * 4. 可配置采样时间，转换速度或功耗；
+ * 5. 可选择高/低阈值比较和硬件平均；
+ * 6. 转换完成或硬件平均完成中断请求；
+ * 7. 四个可选时钟源；
+ * 8. 自带温度传感器；
+ * 9. 可选的参考电压源；
+ * 10. 硬件校正模式;
+ * 11. 2个独立触发的转换序列；
+ * 12. 支持输出模式有：
+ *     ---16位、13位、11位、9位差分输入模式
+ *     ---16位、12位、18位、8位单端输入模式
  *
  *
  * \internal
@@ -45,7 +45,7 @@
 *******************************************************************************/
 
 /**
- * \brief ��ʱ����
+ * \brief 延时函数
  */
 void __amhw_adc_delay (int dly)
 {
@@ -59,7 +59,7 @@ void __amhw_adc_delay (int dly)
 }
 
 /**
- * \brief ADC У��, Ĭ�Ͻ���ʱ��Ƶ��Ϊ2M
+ * \brief ADC 校验, 默认矫正时钟频率为2M
  */
 
 uint8_t amhw_fsl_adc_calibrate (amhw_fsl_adc_t *p_hw_adc, am_clk_id_t clk_id)
@@ -69,7 +69,7 @@ uint8_t amhw_fsl_adc_calibrate (amhw_fsl_adc_t *p_hw_adc, am_clk_id_t clk_id)
     uint32_t bus_clk;
     uint8_t  adc_clkdiv;
 
-    bus_clk = am_clk_rate_get(clk_id);		/* ��ȡADC��ʱ��Ƶ�� */
+    bus_clk = am_clk_rate_get(clk_id);		/* 获取ADC的时钟频率 */
     adc_clkdiv = bus_clk / 2000000UL;
 
     if (adc_clkdiv <= 1) {
@@ -85,22 +85,22 @@ uint8_t amhw_fsl_adc_calibrate (amhw_fsl_adc_t *p_hw_adc, am_clk_id_t clk_id)
     amhw_fsl_adc_clksrc_set(p_hw_adc, AMHW_FSL_ADC_CLK_SRC_BUS);
 
 
-    /* ����Ӳ��ƽ�� */
+    /* 设置硬件平均 */
     amhw_fsl_adc_avgs_set(p_hw_adc, AMHW_FSL_ADC_AVGS_32);
     amhw_fsl_adc_avg_enable(p_hw_adc);
 
-    /* ����SC2, �������� */
+    /* 配置SC2, 软件触发 */
     amhw_fsl_adc_hwtrg_disable(p_hw_adc);
-    /* ʹ�ܽ��� �� ��ʼ���� */
+    /* 使能矫正 ， 开始矫正 */
     amhw_fsl_adc_cal_enable(p_hw_adc);
 
-    /* ѭ���ڵȴ� ��ֱ��������� */
-    while (amhw_fsl_adc_cal_get(p_hw_adc)) { /* ������������2ms���� */
+    /* 循环在等待 ，直到矫正完成 */
+    while (amhw_fsl_adc_cal_get(p_hw_adc)) { /* 正常矫正花费2ms左右 */
         __amhw_adc_delay(1);
     }
 
     if (amhw_fsl_adc_cal_fail_is(p_hw_adc)) {
-        /* ����ʧ�� */
+        /* 矫正失败 */
         return AM_FALSE;
     }
 

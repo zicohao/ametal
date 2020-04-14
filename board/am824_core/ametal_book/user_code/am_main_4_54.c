@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥4.54
+ * \brief ç¨‹åºæ¸…å•4.54
  *
- * \note ¸ÃÀú³ÌĞèÒªÓÃµ½miniportÍØÕ¹°å
+ * \note è¯¥å†ç¨‹éœ€è¦ç”¨åˆ°miniportæ‹“å±•æ¿
  *
  * \internal
  * \par Modification history
@@ -27,19 +27,19 @@
 #include "am_delay.h"
 int am_main(void)
 {
-    int16_t temp;                                       // ±£´æÎÂ¶ÈÖµ
+    int16_t temp;                                       // ä¿å­˜æ¸©åº¦å€¼
     int i = 0;
 
     digitron1_hc595_init();
     lm75_init();
     while(1) {
-        temp = lm75_read();                             // ¶ÁÈ¡ÎÂ¶ÈÖµ
+        temp = lm75_read();                             // è¯»å–æ¸©åº¦å€¼
         if (temp < 0)
-            temp = -1 * temp;                        // ÎÂ¶ÈÎª¸ºÊ±£¬Ò²Ö»ÏÔÊ¾ÎÂ¶ÈÊıÖµ
-        digitron1_disp_num_set(0, (temp >> 8) / 10); // ÏÔÊ¾ÎÂ¶ÈÕûÊı²¿·ÖµÄÊ®Î»
-        digitron1_disp_num_set(1, (temp >> 8) % 10); // ÏÔÊ¾ÎÂ¶ÈĞ¡Êı²¿·ÖµÄÊ®Î»
+            temp = -1 * temp;                        // æ¸©åº¦ä¸ºè´Ÿæ—¶ï¼Œä¹Ÿåªæ˜¾ç¤ºæ¸©åº¦æ•°å€¼
+        digitron1_disp_num_set(0, (temp >> 8) / 10); // æ˜¾ç¤ºæ¸©åº¦æ•´æ•°éƒ¨åˆ†çš„åä½
+        digitron1_disp_num_set(1, (temp >> 8) % 10); // æ˜¾ç¤ºæ¸©åº¦å°æ•°éƒ¨åˆ†çš„åä½
         for (i = 0; i < 100; i++) {
-            // Ñ­»·100´Î£¬ºÄÊ±500ms,Ê¹ÎÂ¶ÈÖµÒÔ500msµÄÊ±¼ä¼ä¸ô¸üĞÂ
+            // å¾ªç¯100æ¬¡ï¼Œè€—æ—¶500ms,ä½¿æ¸©åº¦å€¼ä»¥500msçš„æ—¶é—´é—´éš”æ›´æ–°
             digitron1_hc595_disp_scan();
             am_mdelay(5);
         }

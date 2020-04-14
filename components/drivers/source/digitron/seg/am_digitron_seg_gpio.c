@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ¶ÎÂëÇı¶¯£¨GPIO£©
+ * \brief æ®µç é©±åŠ¨ï¼ˆGPIOï¼‰
  *
  * \internal
  * \par modification history:
@@ -57,7 +57,7 @@ static int __seg_gpio_send (void   *p_cookie,
 
             for (bit = 0; bit < 8; bit++) {
 
-                /* seg_active_low? ÒÑ¾­ÔÚÉÏ²ã´¦Àí  */
+                /* seg_active_low? å·²ç»åœ¨ä¸Šå±‚å¤„ç†  */
                 if (AM_BIT_ISSET(seg, bit)) {
                     am_gpio_set(p_dev->p_pins[index--], 1);
                 } else {

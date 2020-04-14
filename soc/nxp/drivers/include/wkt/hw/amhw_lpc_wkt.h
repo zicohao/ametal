@@ -13,13 +13,13 @@
 
 /**
  * \file
- * \brief 82X WKT Ó²¼ş²Ù×÷½Ó¿ÚÃèÊö
+ * \brief 82X WKT ç¡¬ä»¶æ“ä½œæ¥å£æè¿°
  * 
- * 1. 32Î»¿É¼ÓÔØ¼õ·¨¼ÆÊıÆ÷¡£¼ÓÔØ¼ÆÊıÖµÊ±¼ÆÊıÆ÷»á×Ô¶¯Æô¶¯¡£³¬Ê±ÊÂ¼ş»áÉú³ÉÒ»¸ö
- *    ÖĞ¶Ï/»½ĞÑÇëÇó£»
- * 2. WKTÎ»ÓÚÒ»¸ö¶ÀÁ¢ÇÒÊ¼ÖÕÉÏµçµÄµçÔ´ÓòÖĞ£»
- * 3. WKTÖ§³ÖÁ½¸öÊ±ÖÓÔ´£¬Ò»¸öÊ±ÖÓÔ´À´Ô´ÓÚÊ¼ÖÕÉÏµçµÄµçÔ´Óò£»
- * 4. WKT¿ÉÓÃÓÚ½«Æ÷¼ş´ÓÈÎºÎµÍ¹¦ºÄÄ£Ê½(°üÀ¨Éî¶ÈµôµçÄ£Ê½)ÖĞ»½ĞÑ£¬Ò²¿ÉÓÃÓÚÍ¨ÓÃ¶¨Ê±¡£
+ * 1. 32ä½å¯åŠ è½½å‡æ³•è®¡æ•°å™¨ã€‚åŠ è½½è®¡æ•°å€¼æ—¶è®¡æ•°å™¨ä¼šè‡ªåŠ¨å¯åŠ¨ã€‚è¶…æ—¶äº‹ä»¶ä¼šç”Ÿæˆä¸€ä¸ª
+ *    ä¸­æ–­/å”¤é†’è¯·æ±‚ï¼›
+ * 2. WKTä½äºä¸€ä¸ªç‹¬ç«‹ä¸”å§‹ç»ˆä¸Šç”µçš„ç”µæºåŸŸä¸­ï¼›
+ * 3. WKTæ”¯æŒä¸¤ä¸ªæ—¶é’Ÿæºï¼Œä¸€ä¸ªæ—¶é’Ÿæºæ¥æºäºå§‹ç»ˆä¸Šç”µçš„ç”µæºåŸŸï¼›
+ * 4. WKTå¯ç”¨äºå°†å™¨ä»¶ä»ä»»ä½•ä½åŠŸè€—æ¨¡å¼(åŒ…æ‹¬æ·±åº¦æ‰ç”µæ¨¡å¼)ä¸­å”¤é†’ï¼Œä¹Ÿå¯ç”¨äºé€šç”¨å®šæ—¶ã€‚
  *
  * \internal
  * \par Modification History
@@ -43,45 +43,45 @@ extern "C" {
  * @{
  */
 
-/** \brief ×î´ó¼ÆÊ±Öµ£¬32Î»µÄ×î´óÖµ */
+/** \brief æœ€å¤§è®¡æ—¶å€¼ï¼Œ32ä½çš„æœ€å¤§å€¼ */
 #define AMHW_LPC_WKT_INVAL_MAX              (0xFFFFFFFFUL)
 
-/** \brief IRCÊ±ÖÓ 750kHz */
+/** \brief IRCæ—¶é’Ÿ 750kHz */
 #define AMHW_LPC_WKT_IRC_CLOCK_FREQ          750000
 
-/** \brief µÍ¹¦ºÄÊ±ÖÓ 10kHz */
+/** \brief ä½åŠŸè€—æ—¶é’Ÿ 10kHz */
 #define AMHW_LPC_WKT_LOW_POWER_CLOCK_FREQ    10000
 
-/** \brief Íâ²¿Ê±ÖÓÓÉÓÃ»§×Ô¶¨Òå */
+/** \brief å¤–éƒ¨æ—¶é’Ÿç”±ç”¨æˆ·è‡ªå®šä¹‰ */
 #define AMHW_LPC_WKT_EXT_CLOCK_FREQ          0
 
 /**
-  * \brief 82x WKT ¼Ä´æÆ÷¿é½á¹¹Ìå
+  * \brief 82x WKT å¯„å­˜å™¨å—ç»“æ„ä½“
  */
 typedef struct amhw_lpc_wkt {
-    __IO uint32_t ctrl;          /**< \brief ×Ô»½ĞÑ¶¨Ê±Æ÷¿ØÖÆ¼Ä´æÆ÷ (R/W) */
-    __IO uint32_t reserved0[2];  /**< \brief ±£Áô */
-    __IO uint32_t count;         /**< \brief ¼ÆÊıÆ÷¼Ä´æÆ÷ (R/W) */
+    __IO uint32_t ctrl;          /**< \brief è‡ªå”¤é†’å®šæ—¶å™¨æ§åˆ¶å¯„å­˜å™¨ (R/W) */
+    __IO uint32_t reserved0[2];  /**< \brief ä¿ç•™ */
+    __IO uint32_t count;         /**< \brief è®¡æ•°å™¨å¯„å­˜å™¨ (R/W) */
 } amhw_lpc_wkt_t;
 
-/** \brief WKT Ñ¡ÔñÊ±ÖÓÔ´ */
+/** \brief WKT é€‰æ‹©æ—¶é’Ÿæº */
 typedef enum amhw_lpc_wkt_clksel_str {
-    AMHW_LPC_WKT_IRC_CLOCK = 0,        /**< \brief ·ÖÆµIRCÊ±ÖÓ 750kHz */
-    AMHW_LPC_WKT_LOW_POWER_CLOCK ,     /**< \brief µÍ¹¦ºÄÊ±ÖÓ ±ê³Æ10kHz */
-    AMHW_LPC_WKT_EXT_CLOCK = AM_BIT(3) /**< \brief Íâ²¿Ê±ÖÓ */
+    AMHW_LPC_WKT_IRC_CLOCK = 0,        /**< \brief åˆ†é¢‘IRCæ—¶é’Ÿ 750kHz */
+    AMHW_LPC_WKT_LOW_POWER_CLOCK ,     /**< \brief ä½åŠŸè€—æ—¶é’Ÿ æ ‡ç§°10kHz */
+    AMHW_LPC_WKT_EXT_CLOCK = AM_BIT(3) /**< \brief å¤–éƒ¨æ—¶é’Ÿ */
 } amhw_lpc_wkt_clksel_str_t;
 
 
 /**
- * \brief WKT CLKSEL Ñ¡Ôñ×Ô»½ĞÑ¶¨Ê±Æ÷Ê±ÖÓÔ´
+ * \brief WKT CLKSEL é€‰æ‹©è‡ªå”¤é†’å®šæ—¶å™¨æ—¶é’Ÿæº
  *
- * \param[in] p_hw_wkt : Ö¸ÏòWKT¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] value    : ÅäÖÃ²ÎÊı ÖµÎª 0 »òÕß 1 (amhw_lpc_wkt_clksel_str_t)
- *                       È¡AMHW_LPC_WKT_IRC_CLOCK       (·ÖÆµIRCÊ±ÖÓ 750 kHz)
-*                        È¡AMHW_LPC_WKT_LOW_POWER_CLOCK (µÍ¹¦ºÄÊ±ÖÓ 10 kHz)
- *                       È¡AMHW_LPC_WKT_EXT_CLOCK       (Íâ²¿Ê±ÖÓ ÆµÂÊ×Ô¶¨Òå)
+ * \param[in] p_hw_wkt : æŒ‡å‘WKTå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] value    : é…ç½®å‚æ•° å€¼ä¸º 0 æˆ–è€… 1 (amhw_lpc_wkt_clksel_str_t)
+ *                       å–AMHW_LPC_WKT_IRC_CLOCK       (åˆ†é¢‘IRCæ—¶é’Ÿ 750 kHz)
+*                        å–AMHW_LPC_WKT_LOW_POWER_CLOCK (ä½åŠŸè€—æ—¶é’Ÿ 10 kHz)
+ *                       å–AMHW_LPC_WKT_EXT_CLOCK       (å¤–éƒ¨æ—¶é’Ÿ é¢‘ç‡è‡ªå®šä¹‰)
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_lpc_wkt_clksel_cfg (amhw_lpc_wkt_t            *p_hw_wkt,
@@ -92,11 +92,11 @@ void amhw_lpc_wkt_clksel_cfg (amhw_lpc_wkt_t            *p_hw_wkt,
 }
 
 /**
- * \brief WKT ALARMFLAG »ñÈ¡ ×Ô»½ĞÑ¶¨Ê±Æ÷Ê±ÖÓÔ´
- * \param[in] p_hw_wkt : Ö¸ÏòWKT¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \retval =0 : IRCÊ±ÖÓ
- * \retval =1 : µÍ¹¦ºÄÊ±ÖÓ
- * \retval >1 : Íâ²¿Ê±ÖÓ
+ * \brief WKT ALARMFLAG è·å– è‡ªå”¤é†’å®šæ—¶å™¨æ—¶é’Ÿæº
+ * \param[in] p_hw_wkt : æŒ‡å‘WKTå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \retval =0 : IRCæ—¶é’Ÿ
+ * \retval =1 : ä½åŠŸè€—æ—¶é’Ÿ
+ * \retval >1 : å¤–éƒ¨æ—¶é’Ÿ
  */
 am_static_inline
 int amhw_lpc_wkt_clksel_get (amhw_lpc_wkt_t *p_hw_wkt)
@@ -105,10 +105,10 @@ int amhw_lpc_wkt_clksel_get (amhw_lpc_wkt_t *p_hw_wkt)
 }
 
 /**
- * \brief WKT CLEARCTR ÇåÁã×Ô»½ĞÑ¶¨Ê±Æ÷
- * \param[in] p_hw_wkt : Ö¸ÏòWKT¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ÎŞ
- * \note ÇåÁã¼ÆÊıÆ÷¡£¼ÆÊıÔÚÔØÈëĞÂµÄ¼ÆÊıÖµÖ®Ç°²»»áÍ£Ö¹
+ * \brief WKT CLEARCTR æ¸…é›¶è‡ªå”¤é†’å®šæ—¶å™¨
+ * \param[in] p_hw_wkt : æŒ‡å‘WKTå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return æ— 
+ * \note æ¸…é›¶è®¡æ•°å™¨ã€‚è®¡æ•°åœ¨è½½å…¥æ–°çš„è®¡æ•°å€¼ä¹‹å‰ä¸ä¼šåœæ­¢
  */
 am_static_inline
 void amhw_lpc_wkt_clearctr_clr (amhw_lpc_wkt_t *p_hw_wkt)
@@ -117,10 +117,10 @@ void amhw_lpc_wkt_clearctr_clr (amhw_lpc_wkt_t *p_hw_wkt)
 }
 
 /**
- * \brief WKT ALARMFLAG »ñÈ¡»½ĞÑ»ò¾¯±¨¶¨Ê±Æ÷×´Ì¬
- * \param[in] p_hw_wkt : Ö¸ÏòWKT¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \retval 0 : Î´³¬Ê±
- * \retval 1 : ³¬Ê±
+ * \brief WKT ALARMFLAG è·å–å”¤é†’æˆ–è­¦æŠ¥å®šæ—¶å™¨çŠ¶æ€
+ * \param[in] p_hw_wkt : æŒ‡å‘WKTå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \retval 0 : æœªè¶…æ—¶
+ * \retval 1 : è¶…æ—¶
  */
 am_static_inline
 int amhw_lpc_wkt_alarmflag_get (amhw_lpc_wkt_t *p_hw_wkt)
@@ -129,9 +129,9 @@ int amhw_lpc_wkt_alarmflag_get (amhw_lpc_wkt_t *p_hw_wkt)
 }
 
 /**
- * \brief WKT ALARMFLAG Ğ´1Çå³ı»½ĞÑ»ò¾¯±¨¶¨Ê±Æ÷×´Ì¬
- * \param[in] p_hw_wkt : Ö¸ÏòWKT¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return ÎŞ
+ * \brief WKT ALARMFLAG å†™1æ¸…é™¤å”¤é†’æˆ–è­¦æŠ¥å®šæ—¶å™¨çŠ¶æ€
+ * \param[in] p_hw_wkt : æŒ‡å‘WKTå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return æ— 
  */
 am_static_inline
 void amhw_lpc_wkt_alarmflag_clear (amhw_lpc_wkt_t *p_hw_wkt)
@@ -140,12 +140,12 @@ void amhw_lpc_wkt_alarmflag_clear (amhw_lpc_wkt_t *p_hw_wkt)
 }
 
 /**
- * \brief ÉèÖÃµ±Ç°¶¨Ê±Æ÷µÄ¼ÆÊıÖµ
+ * \brief è®¾ç½®å½“å‰å®šæ—¶å™¨çš„è®¡æ•°å€¼
  *
- * \param[in] p_hw_wkt   : Ö¸ÏòWKT¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] value      : ÒªÉèÖÃ¶¨Ê±Æ÷µÄ¼ÆÊıÖµ
+ * \param[in] p_hw_wkt   : æŒ‡å‘WKTå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] value      : è¦è®¾ç½®å®šæ—¶å™¨çš„è®¡æ•°å€¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_lpc_wkt_count_set (amhw_lpc_wkt_t *p_hw_wkt, uint32_t value)
@@ -155,9 +155,9 @@ void amhw_lpc_wkt_count_set (amhw_lpc_wkt_t *p_hw_wkt, uint32_t value)
 
 
 /**
- * \brief µÃµ½µ±Ç°¶¨Ê±Æ÷µÄ¼ÆÊıÖµ
- * \param[in] p_hw_wkt : Ö¸ÏòWKT¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return µ±Ç°¶¨Ê±Æ÷µÄ¼ÆÊıÖµ
+ * \brief å¾—åˆ°å½“å‰å®šæ—¶å™¨çš„è®¡æ•°å€¼
+ * \param[in] p_hw_wkt : æŒ‡å‘WKTå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return å½“å‰å®šæ—¶å™¨çš„è®¡æ•°å€¼
  */
 am_static_inline
 uint32_t amhw_lpc_wkt_count_get (amhw_lpc_wkt_t *p_hw_wkt)

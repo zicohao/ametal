@@ -12,8 +12,8 @@
 *******************************************************************************/
 /**
  * \file
- * \brief am824zb ËùÓĞÀı³Ìº¯ÊıÈë¿ÚÉùÃ÷£¬±¾ÎÄÖ»°üº¬zigbeeÏà¹Ødemo£¬
- *  ÆäËûdemoÇë²ÎÕÕam824_coreÖĞµÄdemo
+ * \brief am824zb æ‰€æœ‰ä¾‹ç¨‹å‡½æ•°å…¥å£å£°æ˜ï¼Œæœ¬æ–‡åªåŒ…å«zigbeeç›¸å…³demoï¼Œ
+ *  å…¶ä»–demoè¯·å‚ç…§am824_coreä¸­çš„demo
  * \sa demo_am824zb_all_entries.h
  *
  * \internal
@@ -23,119 +23,119 @@
  */
 
 /**
- * \brief ZM516X Ä£¿é×Ô¶¯²¨ÌØÂÊÀı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief ZM516X æ¨¡å—è‡ªåŠ¨æ³¢ç‰¹ç‡ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_am824zb_std_zm516x_baudrate_entry(void);
 
 /**
- * \brief ZM516X Ä£¿é GPIO Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief ZM516X æ¨¡å— GPIO ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_am824zb_std_zm516x_gpio_entry (void);
 
 /**
- * \brief ZM516X Ä£¿é KEY LED Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief ZM516X æ¨¡å— KEY LED ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_am824zb_std_zm516x_key_led_entry (void);
 
 /**
- * \brief ZM516X Ä£¿é×éÍøÀı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief ZM516X æ¨¡å—ç»„ç½‘ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_am824zb_std_zm516x_network_entry (void);
 
 /**
- * \brief ZM516X Ä£¿éËÑË÷Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief ZM516X æ¨¡å—æœç´¢ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_am824zb_std_zm516x_search_entry(void);
 
 /**
- * \brief ZM516X Ä£¿éÑİÊ¾Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief ZM516X æ¨¡å—æ¼”ç¤ºä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_am824zb_std_zm516x_entry (void);
 
 /**
- * \brief ADC DMA ÑİÊ¾Àı³Ì£¬Í¨¹ıHW½Ó¿ÚÊµÏÖ
+ * \brief ADC DMA æ¼”ç¤ºä¾‹ç¨‹ï¼Œé€šè¿‡HWæ¥å£å®ç°
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_am824zb_hw_adc_dma_entry (void);
 
 /**
- * \brief ADC thcmp ÑİÊ¾Àı³Ì£¬Í¨¹ıHW½Ó¿ÚÊµÏÖ
+ * \brief ADC thcmp æ¼”ç¤ºä¾‹ç¨‹ï¼Œé€šè¿‡HWæ¥å£å®ç°
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_am824zb_hw_adc_thcmp_entry (void);
 
 /**
- * \brief ADC DMA ÖĞ¶ÏÑİÊ¾Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief ADC DMA ä¸­æ–­æ¼”ç¤ºä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_am824zb_std_adc_dma_int_entry (void);
 
 /**
- * \brief ADC DMA ÂÖÑ¯ÑİÊ¾Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief ADC DMA è½®è¯¢æ¼”ç¤ºä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_am824zb_std_adc_dma_poll_entry (void);
 
 /**
- * \brief  ADC ÖĞ¶ÏÑİÊ¾Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief  ADC ä¸­æ–­æ¼”ç¤ºä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_am824zb_std_adc_int_entry (void);
 
 /**
- * \brief  ADC ÈÈÃôµç×èÑİÊ¾Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief  ADC çƒ­æ•ç”µé˜»æ¼”ç¤ºä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_am824zb_std_adc_ntc_entry (void);
 
 /**
- * \brief  ADC DMA ÂÖÑ¯ÑİÊ¾Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief  ADC DMA è½®è¯¢æ¼”ç¤ºä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * \param ÎŞ
+ * \param æ— 
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void demo_am824zb_std_adc_poll_entry (void);
 

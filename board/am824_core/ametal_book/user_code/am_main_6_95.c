@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief ³ÌĞòÇåµ¥6.95
+ * \brief ç¨‹åºæ¸…å•6.95
  *
- * \note ¸ÃÀú³ÌĞèÒªÓÃµ½miniportÍØÕ¹°å,¿ÉÒÔÓÃLED¿´Ğ§¹û
+ * \note è¯¥å†ç¨‹éœ€è¦ç”¨åˆ°miniportæ‹“å±•æ¿,å¯ä»¥ç”¨LEDçœ‹æ•ˆæœ
  * 
  * \internal
  * \par Modification history
@@ -33,12 +33,12 @@ int am_main (void)
     for (i = 0; i < 31; i++) {
         data[i] = i;
     }
-    am_ds1302_ram_write (ds1302_handle, data, 31, 0);    // ´ÓÆğÊ¼µØÖ·0¿ªÊ¼Ğ´Èë31×Ö½ÚÊı¾İ
+    am_ds1302_ram_write (ds1302_handle, data, 31, 0);    // ä»èµ·å§‹åœ°å€0å¼€å§‹å†™å…¥31å­—èŠ‚æ•°æ®
     
     for (i = 0; i < 31; i++) {
         data[i] = 0;
     }
-    am_ds1302_ram_read (ds1302_handle, data, 31, 0);    // ´ÓÆğÊ¼µØÖ·0¿ªÊ¼¶Á³ö31×Ö½ÚÊı¾İ
+    am_ds1302_ram_read (ds1302_handle, data, 31, 0);    // ä»èµ·å§‹åœ°å€0å¼€å§‹è¯»å‡º31å­—èŠ‚æ•°æ®
     for (i = 0; i < 31; i++) {
         if (data[i] != i) {
             am_led_on(0);

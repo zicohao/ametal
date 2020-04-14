@@ -30,42 +30,42 @@ extern "C" {
 #include "am_uartcmd_ic_iso14443.h"
 
 /**
- * \name Mifare¿¨ÃÜÔ¿ÀàĞÍ
+ * \name Mifareå¡å¯†é’¥ç±»å‹
  * @{
  */
 
-#define AM_IC_MIFARE_KEY_TYPE_MASK    0x7F    /**< \brief ÃÜÔ¿ÀàĞÍÑÚÂë */
-#define AM_IC_MIFARE_KEY_TYPE_A       0x60    /**< \brief ÃÜÔ¿AÑéÖ¤ */
-#define AM_IC_MIFARE_KEY_TYPE_B       0x61    /**< \brief ÃÜÔ¿BÑéÖ¤ */
+#define AM_IC_MIFARE_KEY_TYPE_MASK    0x7F    /**< \brief å¯†é’¥ç±»å‹æ©ç  */
+#define AM_IC_MIFARE_KEY_TYPE_A       0x60    /**< \brief å¯†é’¥AéªŒè¯ */
+#define AM_IC_MIFARE_KEY_TYPE_B       0x61    /**< \brief å¯†é’¥BéªŒè¯ */
 
-#define AM_IC_MIFARE_KEY_SRC_MASK     0x80    /**< \brief ÃÜÔ¿ÊäÈëÔ´ÑÚÂë */
-#define AM_IC_MIFARE_KEY_SRC_EXT      0x00    /**< \brief Ê¹ÓÃÍâ²¿ÊäÈëµÄÃÜÔ¿ÑéÖ¤ */
-#define AM_IC_MIFARE_KEY_SRC_E2       0x80    /**< \brief Ê¹ÓÃÄÚ²¿E2µÄÃÜÔ¿ÑéÖ¤ */
+#define AM_IC_MIFARE_KEY_SRC_MASK     0x80    /**< \brief å¯†é’¥è¾“å…¥æºæ©ç  */
+#define AM_IC_MIFARE_KEY_SRC_EXT      0x00    /**< \brief ä½¿ç”¨å¤–éƒ¨è¾“å…¥çš„å¯†é’¥éªŒè¯ */
+#define AM_IC_MIFARE_KEY_SRC_E2       0x80    /**< \brief ä½¿ç”¨å†…éƒ¨E2çš„å¯†é’¥éªŒè¯ */
 
 /** @} */
 
 /**
- * \brief Mifare ¿¨ÃüÁî¶¨Òå
+ * \brief Mifare å¡å‘½ä»¤å®šä¹‰
  * @{
  */
-#define AM_IC_MIFARE1_CMD_READ            0x30    /**< \brief ¶ÁÃüÁî(16×Ö½Ú) */
-#define AM_IC_MIFARE1_CMD_WRITE           0xA0    /**< \brief Ğ´ÃüÁî(16×Ö½Ú) */
-#define AM_IC_MIFARE1_CMD_TRANSFER        0xB0    /**< \brief ´«ÊäÃüÁî */
-#define AM_IC_MIFARE1_CMD_NO_COMMAND      0x00    /**< \brief ¿ÕÃüÁî */
-#define AM_IC_MIFARE1_CMD_INCREMENT       0xC1    /**< \brief ÖµÔöÃüÁî */
-#define AM_IC_MIFARE1_CMD_DECREMENT       0xC0    /**< \brief Öµ¼õÃüÁî */
-#define AM_IC_MIFARE1_CMD_RESTORE         0xC2    /**< \brief ¸´ÖÆÃüÁî */
-#define AM_IC_MIFARE0_CMD_WRITE           0xA2    /**< \brief UltraLight Ğ´ÃüÁî(4×Ö½Ú) */
-#define AM_IC_MIFARE0_CMD_AUTH            0xA3    /**< \brief UltraLight ÑéÖ¤ÃüÁî */
+#define AM_IC_MIFARE1_CMD_READ            0x30    /**< \brief è¯»å‘½ä»¤(16å­—èŠ‚) */
+#define AM_IC_MIFARE1_CMD_WRITE           0xA0    /**< \brief å†™å‘½ä»¤(16å­—èŠ‚) */
+#define AM_IC_MIFARE1_CMD_TRANSFER        0xB0    /**< \brief ä¼ è¾“å‘½ä»¤ */
+#define AM_IC_MIFARE1_CMD_NO_COMMAND      0x00    /**< \brief ç©ºå‘½ä»¤ */
+#define AM_IC_MIFARE1_CMD_INCREMENT       0xC1    /**< \brief å€¼å¢å‘½ä»¤ */
+#define AM_IC_MIFARE1_CMD_DECREMENT       0xC0    /**< \brief å€¼å‡å‘½ä»¤ */
+#define AM_IC_MIFARE1_CMD_RESTORE         0xC2    /**< \brief å¤åˆ¶å‘½ä»¤ */
+#define AM_IC_MIFARE0_CMD_WRITE           0xA2    /**< \brief UltraLight å†™å‘½ä»¤(4å­—èŠ‚) */
+#define AM_IC_MIFARE0_CMD_AUTH            0xA3    /**< \brief UltraLight éªŒè¯å‘½ä»¤ */
 
 /** @} */
 
 /**
- * \brief Mifare¿¨±ê×¼·şÎñÇı¶¯º¯Êı
+ * \brief Mifareå¡æ ‡å‡†æœåŠ¡é©±åŠ¨å‡½æ•°
  */
 struct am_ic_mifare_drv_funcs {
 
-    /** \brief ÃÜÔ¿ÑéÖ¤ */
+    /** \brief å¯†é’¥éªŒè¯ */
     int (*pfn_ic_key_auth) (void       *p_drv,
                             uint8_t     mode,
                             const void *p_key,
@@ -74,54 +74,54 @@ struct am_ic_mifare_drv_funcs {
                             uint32_t    uid_nbytes,
                             uint8_t     block);
 
-    /** \brief Mifare¿¨À©Õ¹¼¤»î */
+    /** \brief Mifareå¡æ‰©å±•æ¿€æ´» */
     int (*pfn_ic_activate) (void                 *p_drv,
                             uint8_t               mode,
                             uint8_t               req_code,
                             am_ic_a_reset_info_t *p_reset_info);
 
-    /** \brief Mifare¿¨¶ÁÈ¡¶à¸ö¿éÊı¾İ */
+    /** \brief Mifareå¡è¯»å–å¤šä¸ªå—æ•°æ® */
     int (*pfn_ic_blocks_read) (void    *p_drv,
                                uint8_t  start_block,
                                uint8_t  block_num,
                                void    *p_buf);
 
-    /** \brief Mifare¿¨Ğ´¶à¸ö¿é */
+    /** \brief Mifareå¡å†™å¤šä¸ªå— */
     int (*pfn_ic_blocks_write) (void       *p_drv,
                                 uint8_t     start_block,
                                 uint8_t     block_num,
                                 const void *p_buf);
 
-    /** \brief Mifare¿¨»ñÈ¡Öµ¿éÊı¾İ */
+    /** \brief Mifareå¡è·å–å€¼å—æ•°æ® */
     int (*pfn_ic_value_block_get) (void    *p_drv,
                                    uint8_t  block,
                                    int32_t *p_value);
 
-    /** \brief Mifare¿¨ÉèÖÃÖµ¿éµÄÖµ */
+    /** \brief Mifareå¡è®¾ç½®å€¼å—çš„å€¼ */
     int (*pfn_ic_value_block_set) (void    *p_drv,
                                    uint8_t  block,
                                    int32_t  value);
 
-    /** \brief Mifare¿¨Öµ¿é²Ù×÷ */
+    /** \brief Mifareå¡å€¼å—æ“ä½œ */
     int (*pfn_ic_value_operation) (void    *p_drv,
                                    uint8_t  mode,
                                    uint8_t  src_block,
                                    int32_t  value,
                                    uint8_t  dst_block);
 
-    /** \brief Mifare UltraLight¿¨¶ÁÈ¡¶à¸ö¿éÊı¾İ */
+    /** \brief Mifare UltraLightå¡è¯»å–å¤šä¸ªå—æ•°æ® */
     int (*pfn_ic_ultralight_blocks_read) (void    *p_drv,
                                           uint8_t  start_block,
                                           uint8_t  block_num,
                                           void    *p_buf);
 
-    /** \brief Mifare UltraLight¿¨ÉèÖÃ¶à¸ö¿é */
+    /** \brief Mifare UltraLightå¡è®¾ç½®å¤šä¸ªå— */
     int (*pfn_ic_ultralight_blocks_write) (void       *p_drv,
                                            uint8_t     start_block,
                                            uint8_t     block_num,
                                            const void *p_buf);
 
-    /** \brief Mifare UltraLight¿¨´«Êä */
+    /** \brief Mifare UltraLightå¡ä¼ è¾“ */
     int (*pfn_ic_ultralight_transfer) (void       *p_drv,
                                        const void *p_txbuf,
                                        void       *p_rxbuf,
@@ -129,39 +129,39 @@ struct am_ic_mifare_drv_funcs {
 };
 
 /**
- * \brief Mifare±ê×¼·şÎñ½á¹¹Ìå
+ * \brief Mifareæ ‡å‡†æœåŠ¡ç»“æ„ä½“
  */
 typedef struct am_ic_mifare_serv {
 
-    /** Mifare¿¨±ê×¼·şÎñÇı¶¯º¯Êı½á¹¹ÌåÖ¸Õë */
+    /** Mifareå¡æ ‡å‡†æœåŠ¡é©±åŠ¨å‡½æ•°ç»“æ„ä½“æŒ‡é’ˆ */
     struct am_ic_mifare_drv_funcs *p_funcs;
 
-    /* \brief ÓÃÓÚÇı¶¯º¯ÊıµÄµÚÒ»¸ö²ÎÊı */
+    /* \brief ç”¨äºé©±åŠ¨å‡½æ•°çš„ç¬¬ä¸€ä¸ªå‚æ•° */
     void                          *p_drv;
 } am_ic_mifare_serv_t;
 
-/** \brief Mifare¿¨±ê×¼·şÎñ¾ä±ú */
+/** \brief Mifareå¡æ ‡å‡†æœåŠ¡å¥æŸ„ */
 typedef am_ic_mifare_serv_t *am_ic_mifare_handle_t;
 
 /**
- * \brief Mifare¿¨ÃÜÔ¿ÑéÖ¤
+ * \brief Mifareå¡å¯†é’¥éªŒè¯
  *
- * \param[in] handle     : Mifare¿¨±ê×¼·şÎñ¾ä±ú
- * \param[in] mode       : ÑéÖ¤Ä£Ê½
- *                         - mode.7         -- ÃÜÔ¿À´Ô´
- *                           - AM_IC_MIFARE_KEY_SRC_EXT Ê¹ÓÃÍâ²¿ÊäÈëµÄÃÜÔ¿
- *                           - AM_IC_MIFARE_KEY_SRC_E2  Ê¹ÓÃÄÚ²¿E2µÄÃÜÔ¿
- *                         - mode.6-0       -- ÃÜÔ¿ÀàĞÍ
- *                           - AM_IC_MIFARE_KEY_TYPE_A  ÃÜÔ¿A
- *                           - AM_IC_MIFARE_KEY_TYPE_B  ÃÜÔ¿B
- * \param[in] p_key      : ÃÜÔ¿
- * \param[in] key_nbytes : ÃÜÔ¿³¤¶È
+ * \param[in] handle     : Mifareå¡æ ‡å‡†æœåŠ¡å¥æŸ„
+ * \param[in] mode       : éªŒè¯æ¨¡å¼
+ *                         - mode.7         -- å¯†é’¥æ¥æº
+ *                           - AM_IC_MIFARE_KEY_SRC_EXT ä½¿ç”¨å¤–éƒ¨è¾“å…¥çš„å¯†é’¥
+ *                           - AM_IC_MIFARE_KEY_SRC_E2  ä½¿ç”¨å†…éƒ¨E2çš„å¯†é’¥
+ *                         - mode.6-0       -- å¯†é’¥ç±»å‹
+ *                           - AM_IC_MIFARE_KEY_TYPE_A  å¯†é’¥A
+ *                           - AM_IC_MIFARE_KEY_TYPE_B  å¯†é’¥B
+ * \param[in] p_key      : å¯†é’¥
+ * \param[in] key_nbytes : å¯†é’¥é•¿åº¦
  * \param[in] p_uid      : UID
- * \param[in] uid_nbytes : UID³¤¶È
- * \param[in] block      : ¿éºÅ
+ * \param[in] uid_nbytes : UIDé•¿åº¦
+ * \param[in] block      : å—å·
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_ic_mifare_key_auth (am_ic_mifare_handle_t  handle,
@@ -182,19 +182,19 @@ int am_ic_mifare_key_auth (am_ic_mifare_handle_t  handle,
 }
 
 /**
- * \brief Mifare¿¨¼¤»î
+ * \brief Mifareå¡æ¿€æ´»
  *
- * \param[in] handle       : Mifare¿¨±ê×¼·şÎñ¾ä±ú
- * \param[in] mode         : ·ÀÅö×²Ä£Ê½
- *                           - 0  Ö´ĞĞ·ÀÅö×²Ñ­»·£¬
- *                           - 1  Ö»Ö´ĞĞÒ»´Î·ÀÅö×²
- * \param[in] req_code     : ÇëÇó´úÂë
- *                           - AM_IC_ISO14443_3A_REQIDL ÇëÇó¿ÕÏĞ¿¨
- *                           - AM_IC_ISO14443_3A_REQALL ÇëÇóËùÓĞ¿¨
- * \param[in] p_reset_info : ISO14443-3A¿¨¼¤»î»ØÓ¦ĞÅÏ¢
+ * \param[in] handle       : Mifareå¡æ ‡å‡†æœåŠ¡å¥æŸ„
+ * \param[in] mode         : é˜²ç¢°æ’æ¨¡å¼
+ *                           - 0  æ‰§è¡Œé˜²ç¢°æ’å¾ªç¯ï¼Œ
+ *                           - 1  åªæ‰§è¡Œä¸€æ¬¡é˜²ç¢°æ’
+ * \param[in] req_code     : è¯·æ±‚ä»£ç 
+ *                           - AM_IC_ISO14443_3A_REQIDL è¯·æ±‚ç©ºé—²å¡
+ *                           - AM_IC_ISO14443_3A_REQALL è¯·æ±‚æ‰€æœ‰å¡
+ * \param[in] p_reset_info : ISO14443-3Aå¡æ¿€æ´»å›åº”ä¿¡æ¯
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_ic_mifare_activate (am_ic_mifare_handle_t  handle,
@@ -209,15 +209,15 @@ int am_ic_mifare_activate (am_ic_mifare_handle_t  handle,
 }
 
 /**
- * \brief Mifare¿¨¶ÁÈ¡¶à¸ö¿éÊı¾İ
+ * \brief Mifareå¡è¯»å–å¤šä¸ªå—æ•°æ®
  *
- * \param[in] handle       : Mifare¿¨±ê×¼·şÎñ¾ä±ú
- * \param[in] start_block  : ¶ÁµÄÆğÊ¼¿éºÅ
- * \param[in] block_num    : ¶ÁµÄ¿éÊı£¨ËùÓĞ¿é±ØĞëÔÚÍ¬Ò»ÉÈÇø£©
- * \param[in] p_buf        : ¶Á³öµÄ16 * block_num ×Ö½ÚÊı¾İ
+ * \param[in] handle       : Mifareå¡æ ‡å‡†æœåŠ¡å¥æŸ„
+ * \param[in] start_block  : è¯»çš„èµ·å§‹å—å·
+ * \param[in] block_num    : è¯»çš„å—æ•°ï¼ˆæ‰€æœ‰å—å¿…é¡»åœ¨åŒä¸€æ‰‡åŒºï¼‰
+ * \param[in] p_buf        : è¯»å‡ºçš„16 * block_num å­—èŠ‚æ•°æ®
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_ic_mifare_blocks_read (am_ic_mifare_handle_t  handle,
@@ -233,15 +233,15 @@ int am_ic_mifare_blocks_read (am_ic_mifare_handle_t  handle,
 }
 
 /**
- * \brief Mifare¿¨Ğ´¶à¸ö¿é
+ * \brief Mifareå¡å†™å¤šä¸ªå—
  *
- * \param[in] handle       : Mifare¿¨±ê×¼·şÎñ¾ä±ú
- * \param[in] start_block  : Ğ´µÄÆğÊ¼¿éºÅ
- * \param[in] block_num    : Ğ´µÄ¿éÊı£¨ËùÓĞ¿é±ØĞëÔÚÍ¬Ò»ÉÈÇø£©
- * \param[in] p_buf        : Ğ´ÈëµÄ16 * block_num ×Ö½ÚÊı¾İ
+ * \param[in] handle       : Mifareå¡æ ‡å‡†æœåŠ¡å¥æŸ„
+ * \param[in] start_block  : å†™çš„èµ·å§‹å—å·
+ * \param[in] block_num    : å†™çš„å—æ•°ï¼ˆæ‰€æœ‰å—å¿…é¡»åœ¨åŒä¸€æ‰‡åŒºï¼‰
+ * \param[in] p_buf        : å†™å…¥çš„16 * block_num å­—èŠ‚æ•°æ®
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_ic_mifare_blocks_write (am_ic_mifare_handle_t  handle,
@@ -256,14 +256,14 @@ int am_ic_mifare_blocks_write (am_ic_mifare_handle_t  handle,
 }
 
 /**
- * \brief Mifare¿¨»ñÈ¡Öµ¿éÊı¾İ
+ * \brief Mifareå¡è·å–å€¼å—æ•°æ®
  *
- * \param[in] handle  : Mifare¿¨±ê×¼·şÎñ¾ä±ú
- * \param[in] block   : ¿éºÅ
- * \param[in] p_value : Öµ(ÓĞ·ûºÅÊı)
+ * \param[in] handle  : Mifareå¡æ ‡å‡†æœåŠ¡å¥æŸ„
+ * \param[in] block   : å—å·
+ * \param[in] p_value : å€¼(æœ‰ç¬¦å·æ•°)
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_ic_mifare_value_block_get (am_ic_mifare_handle_t  handle,
@@ -276,14 +276,14 @@ int am_ic_mifare_value_block_get (am_ic_mifare_handle_t  handle,
 }
 
 /**
- * \brief Mifare¿¨ÉèÖÃÖµ¿éµÄÖµ
+ * \brief Mifareå¡è®¾ç½®å€¼å—çš„å€¼
  *
- * \param[in] handle : Mifare¿¨±ê×¼·şÎñ¾ä±ú
- * \param[in] block  : ¿éºÅ
- * \param[in] value  : Öµ(ÓĞ·ûºÅÊı)
+ * \param[in] handle : Mifareå¡æ ‡å‡†æœåŠ¡å¥æŸ„
+ * \param[in] block  : å—å·
+ * \param[in] value  : å€¼(æœ‰ç¬¦å·æ•°)
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_ic_mifare_value_block_set (am_ic_mifare_handle_t handle,
@@ -296,19 +296,19 @@ int am_ic_mifare_value_block_set (am_ic_mifare_handle_t handle,
 }
 
 /**
- * \brief Mifare¿¨Öµ¿é²Ù×÷
+ * \brief Mifareå¡å€¼å—æ“ä½œ
  *
- * \param[in] handle    : Mifare¿¨±ê×¼·şÎñ¾ä±ú
- * \param[in] mode      : Öµ²Ù×÷Ä£Ê½
- *                        - AM_IC_MIFARE1_CMD_INCREMENT ½«Ô´¿éµÄÖµ¼ÓÉÏÖ¸¶¨µÄÖµ´æ·Åµ½Ä¿µÄ¿é
- *                        - AM_IC_MIFARE1_CMD_DECREMENT ½«Ô´¿éµÄÖµ¼õÈ¥Ö¸¶¨µÄÖµ´æ·Åµ½Ä¿µÄ¿é
- *                        - AM_IC_MIFARE1_CMD_RESTORE   ½«Ô´¿éµÄÖµ¸´ÖÆµ½Ä¿µÄ¿é
- * \param[in] src_block : Ô´¿é
- * \param[in] value     : Öµ(×î¸ßÎ»ÎŞĞ§, ¼´Ã»ÓĞ·ûºÅÎ»)
- * \param[in] dst_block : Ä¿µÄ¿é
+ * \param[in] handle    : Mifareå¡æ ‡å‡†æœåŠ¡å¥æŸ„
+ * \param[in] mode      : å€¼æ“ä½œæ¨¡å¼
+ *                        - AM_IC_MIFARE1_CMD_INCREMENT å°†æºå—çš„å€¼åŠ ä¸ŠæŒ‡å®šçš„å€¼å­˜æ”¾åˆ°ç›®çš„å—
+ *                        - AM_IC_MIFARE1_CMD_DECREMENT å°†æºå—çš„å€¼å‡å»æŒ‡å®šçš„å€¼å­˜æ”¾åˆ°ç›®çš„å—
+ *                        - AM_IC_MIFARE1_CMD_RESTORE   å°†æºå—çš„å€¼å¤åˆ¶åˆ°ç›®çš„å—
+ * \param[in] src_block : æºå—
+ * \param[in] value     : å€¼(æœ€é«˜ä½æ— æ•ˆ, å³æ²¡æœ‰ç¬¦å·ä½)
+ * \param[in] dst_block : ç›®çš„å—
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_ic_mifare_value_operation (am_ic_mifare_handle_t handle,
@@ -325,15 +325,15 @@ int am_ic_mifare_value_operation (am_ic_mifare_handle_t handle,
 }
 
 /**
- * \brief Mifare UltraLight¿¨¶ÁÈ¡¶à¸ö¿éÊı¾İ
+ * \brief Mifare UltraLightå¡è¯»å–å¤šä¸ªå—æ•°æ®
  *
- * \param[in] handle      : Mifare¿¨±ê×¼·şÎñ¾ä±ú
- * \param[in] start_block : ¶ÁµÄÆğÊ¼¿éºÅ
- * \param[in] block_num   : ¶ÁµÄ¿éÊı
- * \param[in] p_buf       : ¶Á³öµÄ4 * block_num×Ö½ÚÊı¾İ
+ * \param[in] handle      : Mifareå¡æ ‡å‡†æœåŠ¡å¥æŸ„
+ * \param[in] start_block : è¯»çš„èµ·å§‹å—å·
+ * \param[in] block_num   : è¯»çš„å—æ•°
+ * \param[in] p_buf       : è¯»å‡ºçš„4 * block_numå­—èŠ‚æ•°æ®
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_ic_mifare_ultralight_blocks_read (am_ic_mifare_handle_t   handle,
@@ -348,15 +348,15 @@ int am_ic_mifare_ultralight_blocks_read (am_ic_mifare_handle_t   handle,
 }
 
 /**
- * \brief Mifare UltraLight¿¨ÉèÖÃ¶à¸ö¿é
+ * \brief Mifare UltraLightå¡è®¾ç½®å¤šä¸ªå—
  *
- * \param[in] handle      : Mifare¿¨±ê×¼·şÎñ¾ä±ú
- * \param[in] start_block : Ğ´µÄÆğÊ¼¿éºÅ
- * \param[in] block_num   : Ğ´µÄ¿éÊı
- * \param[in] p_buf       : Ğ´ÈëµÄ4 * block_num×Ö½ÚÊı¾İ
+ * \param[in] handle      : Mifareå¡æ ‡å‡†æœåŠ¡å¥æŸ„
+ * \param[in] start_block : å†™çš„èµ·å§‹å—å·
+ * \param[in] block_num   : å†™çš„å—æ•°
+ * \param[in] p_buf       : å†™å…¥çš„4 * block_numå­—èŠ‚æ•°æ®
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_ic_mifare_ultralight_blocks_write (am_ic_mifare_handle_t   handle,
@@ -371,15 +371,15 @@ int am_ic_mifare_ultralight_blocks_write (am_ic_mifare_handle_t   handle,
 }
 
 /**
- * \brief Mifare UltraLight¿¨´«Êä
+ * \brief Mifare UltraLightå¡ä¼ è¾“
  *
- * \param[in] handle      : Mifare¿¨±ê×¼·şÎñ¾ä±ú
- * \param[in] p_txbuf     : ·¢ËÍ»º³åÇø£¬´æ·ÅÒª·¢ËÍ¸ø¿¨Æ¬µÄÊı¾İ
- * \param[in] p_rxbuf     : ½ÓÊÕ»º³åÇø£¬´æ·Å´Ó¿¨Æ¬¶ÁÈ¡¹ıÀ´µÄÊı¾İ
- * \param[in] p_rx_nbytes : ½ÓÊÜµÄÊı¾İ³¤¶È£¨×Ö½Ú£©
+ * \param[in] handle      : Mifareå¡æ ‡å‡†æœåŠ¡å¥æŸ„
+ * \param[in] p_txbuf     : å‘é€ç¼“å†²åŒºï¼Œå­˜æ”¾è¦å‘é€ç»™å¡ç‰‡çš„æ•°æ®
+ * \param[in] p_rxbuf     : æ¥æ”¶ç¼“å†²åŒºï¼Œå­˜æ”¾ä»å¡ç‰‡è¯»å–è¿‡æ¥çš„æ•°æ®
+ * \param[in] p_rx_nbytes : æ¥å—çš„æ•°æ®é•¿åº¦ï¼ˆå­—èŠ‚ï¼‰
  *
- * \retval AM_OK      : ³É¹¦
- * \retval -AM_EINVAL : ²ÎÊı´íÎó
+ * \retval AM_OK      : æˆåŠŸ
+ * \retval -AM_EINVAL : å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_ic_mifare_ultralight_transfer (am_ic_mifare_handle_t   handle,

@@ -12,16 +12,16 @@
 
 /**
  * \file
- * \brief GPIO ���̣�ͨ�� HW ��ӿ�ʵ��
+ * \brief GPIO 例程，通过 HW 层接口实现
  *
- * - ʵ������
- *   1. ��� 0.5s��LED0 ��˸ 5 �Σ�
- *   2. ֮��LED0 �� 0.2s �ļ��һֱ��˸��
+ * - 实验现象：
+ *   1. 间隔 0.5s，LED0 闪烁 5 次；
+ *   2. 之后，LED0 以 0.2s 的间隔一直闪烁。
  *
  * \note
- *    LED0 ��Ҫ�̽� J9 ����ñ�����ܱ� PIO0_20 ���ơ�
+ *    LED0 需要短接 J9 跳线帽，才能被 PIO0_20 控制。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_lpc824_hw_gpio.c src_lpc824_hw_gpio
  *
  * \internal
@@ -46,7 +46,7 @@ void demo_lpc845_hw_gpio_entry (amhw_lpc84x_gpio_t *p_hw_gpio,
 {
     uint8_t i = 0;
   
-    /* ��� 0.5s��LED0 ��˸ 5 �� */
+    /* 间隔 0.5s，LED0 闪烁 5 次 */
     for (i = 0; i < 5; i++) {
         amhw_lpc84x_gpio_pin_out_low(p_hw_gpio, pin);
         am_mdelay(500);
@@ -57,7 +57,7 @@ void demo_lpc845_hw_gpio_entry (amhw_lpc84x_gpio_t *p_hw_gpio,
 
     AM_FOREVER {
 
-        /* LED0 �� 0.2s �ļ��һֱ��˸ */
+        /* LED0 以 0.2s 的间隔一直闪烁 */
         amhw_lpc84x_gpio_pin_out_tog(p_hw_gpio, pin);
         am_mdelay(200);
     }

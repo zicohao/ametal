@@ -11,12 +11,12 @@
 *******************************************************************************/
 /**
  * \file
- * \brief I2C ´Ó»úÄ£Äâ TMP100 Àı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief I2C ä»æœºæ¨¡æ‹Ÿ TMP100 ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè£º
- *   1. Á¬½Ó¶ÔÓ¦Òı½Å¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. è¿æ¥å¯¹åº”å¼•è„šã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_std_i2c_slave_subaddr.c src_std_i2c_slave_subaddr
  *
  * \internal
@@ -35,15 +35,15 @@
 #include "am_vdebug.h"
 #include "am_i2c_slv_subaddr.h"
 
-#define __I2C_SLV_DEV_ADDR   0X49     /**< \brief ´ÓÉè±¸µÄµØÖ· */
+#define __I2C_SLV_DEV_ADDR   0X49     /**< \brief ä»è®¾å¤‡çš„åœ°å€ */
 
-/** \brief ¼Ä´æÆ÷¶¨Òå */
+/** \brief å¯„å­˜å™¨å®šä¹‰ */
 static uint8_t __reg1[6] = {0X11, 0X22, 0X33, 0X44, 0X55, 0X66};
 static uint8_t __reg2[2] = {0X77, 0X88};
 static uint8_t __reg3[6] = {0X01, 0X02, 0X03, 0X04, 0X05, 0X06};
 static uint8_t __reg4[6] = {0X10, 0X20, 0X30, 0X40, 0X50, 0X60};
 
-/** \brief º¬ÓĞ×ÓµØÖ·µÄ¼Ä´æÆ÷ĞÅÏ¢½á¹¹Ìå */
+/** \brief å«æœ‰å­åœ°å€çš„å¯„å­˜å™¨ä¿¡æ¯ç»“æ„ä½“ */
 static am_i2c_slv_subaddr_reg_info_t __g_i2c_slv_dev_reg[4] = {
     {sizeof(__reg1), __reg1, NULL},
     {sizeof(__reg2), __reg2, NULL},
@@ -52,7 +52,7 @@ static am_i2c_slv_subaddr_reg_info_t __g_i2c_slv_dev_reg[4] = {
 };
 
 /**
- * \brief »Øµ÷º¯ÊıÉùÃ÷
+ * \brief å›è°ƒå‡½æ•°å£°æ˜
  */
 static void __i2c_slv_dev_tran_finish_callback (void     *p_arg,
                                                 am_bool_t is_rx,
@@ -60,14 +60,14 @@ static void __i2c_slv_dev_tran_finish_callback (void     *p_arg,
                                                 uint32_t  size);
 
 /**
- * \brief º¬ÓĞ×ÓµØÖ·Éè±¸µÄ»Øµ÷º¯Êı £¬ÓÃÓÚ·ÖÎö
+ * \brief å«æœ‰å­åœ°å€è®¾å¤‡çš„å›è°ƒå‡½æ•° ï¼Œç”¨äºåˆ†æ
  */static am_i2c_slv_subaddr_cb_funcs_t __g_tmp100_cb_funs = {
         NULL,
         __i2c_slv_dev_tran_finish_callback,
 };
 
 /**
- * \brief Ö÷»úÏò´Ó»ú¶ÁĞ´ÍêÊı¾İÊ±£¬ĞèÒªÓÃ»§·ÖÎö
+ * \brief ä¸»æœºå‘ä»æœºè¯»å†™å®Œæ•°æ®æ—¶ï¼Œéœ€è¦ç”¨æˆ·åˆ†æ
  */
 static void __i2c_slv_dev_tran_finish_callback (void     *p_arg,
                                                 am_bool_t is_rx,
@@ -79,7 +79,7 @@ static void __i2c_slv_dev_tran_finish_callback (void     *p_arg,
 }
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_std_i2c_slave_subaddr_entry (am_i2c_slv_handle_t handle)
 {
@@ -99,7 +99,7 @@ void demo_std_i2c_slave_subaddr_entry (am_i2c_slv_handle_t handle)
                               4,
                               AM_I2C_SLV_REG_IRREGULAR);
 
-    /* ¿ªÆô´ÓÉè±¸ */
+    /* å¼€å¯ä»è®¾å¤‡ */
     am_i2c_slv_setup(&tmp100_dev.i2c_slv_dev);
 
     AM_FOREVER {

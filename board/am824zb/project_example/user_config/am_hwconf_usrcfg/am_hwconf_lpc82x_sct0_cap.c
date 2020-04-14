@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief LPC82X SCT0 ÓÃÓÚ²¶»ñ¹¦ÄÜµÄÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief LPC82X SCT0 ç”¨äºæ•è·åŠŸèƒ½çš„ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_lpc82x_sct0_cap.c
  *
  * \internal
@@ -35,33 +35,33 @@
  * @{
  */
 
-/** \brief SCT0ÓÃÓÚCAPµÄÊä³öÒı½ÅÅäÖÃĞÅÏ¢ÁĞ±í  CAPµÄÊäÈë¸öÊıÎª4¸ö */
+/** \brief SCT0ç”¨äºCAPçš„è¾“å‡ºå¼•è„šé…ç½®ä¿¡æ¯åˆ—è¡¨  CAPçš„è¾“å…¥ä¸ªæ•°ä¸º4ä¸ª */
 static am_lpc_sct_cap_ioinfo_t __g_sct0_cap_ioinfo_list[] = {
 
-    /** \brief ÊäÈë 0 */
+    /** \brief è¾“å…¥ 0 */
     {PIO0_6, PIO_FUNC_SCT_PIN0 , PIO0_6_GPIO | PIO0_6_GPIO_INPUT},
 
-    /** \brief ÊäÈë 1 */
+    /** \brief è¾“å…¥ 1 */
     {PIO0_7, PIO_FUNC_SCT_PIN1 , PIO0_7_GPIO | PIO0_7_GPIO_INPUT},
 
-    /** \brief ÊäÈë 2 */
+    /** \brief è¾“å…¥ 2 */
     {PIO0_10, PIO_FUNC_SCT_PIN2 , PIO0_10_GPIO | PIO0_10_GPIO_INPUT},
 
-    /** \brief ÊäÈë 3 */
+    /** \brief è¾“å…¥ 3 */
     {PIO0_11, PIO_FUNC_SCT_PIN3 , PIO0_11_GPIO | PIO0_11_GPIO_INPUT},
 };
 
-/** \brief SCT0ÓÃÓÚ²¶»ñ¹¦ÄÜµÄÆ½Ì¨³õÊ¼»¯ */
+/** \brief SCT0ç”¨äºæ•è·åŠŸèƒ½çš„å¹³å°åˆå§‹åŒ– */
 static void __lpc82x_sct0_cap_plfm_init ()
 {
     amhw_lpc82x_clk_periph_enable(AMHW_LPC82X_CLK_SCT);
     amhw_lpc82x_syscon_periph_reset(AMHW_LPC82X_RESET_SCT);
 
     /**
-     * \brief Ò»¹²ÓĞ4¸öÊäÈëÍ¨µÀ, Ã¿¸öÍ¨µÀ¿ÉÑ¡ÔñµÄÊäÈë¹¦ÄÜ´ïµ½8¸ö,
-     *        ¾ßÌåµÄËùÓĞ¹¦ÄÜÔÚamhw_lpc82x_inmux.hÎÄ¼şÖĞ¹ØÓÚSCTµÄ¶¨Òå¡£
-     *        ÕâÀïÖ»ÅäÖÃÒ»°ã»áÓÃµ½µÄ, ¾ßÌå¿ÉÍ¨¹ıam_lpc82x_sct_cap_set_input
-     *        º¯ÊıÊäÈëµÄÒı½Å
+     * \brief ä¸€å…±æœ‰4ä¸ªè¾“å…¥é€šé“, æ¯ä¸ªé€šé“å¯é€‰æ‹©çš„è¾“å…¥åŠŸèƒ½è¾¾åˆ°8ä¸ª,
+     *        å…·ä½“çš„æ‰€æœ‰åŠŸèƒ½åœ¨amhw_lpc82x_inmux.hæ–‡ä»¶ä¸­å…³äºSCTçš„å®šä¹‰ã€‚
+     *        è¿™é‡Œåªé…ç½®ä¸€èˆ¬ä¼šç”¨åˆ°çš„, å…·ä½“å¯é€šè¿‡am_lpc82x_sct_cap_set_input
+     *        å‡½æ•°è¾“å…¥çš„å¼•è„š
      */
     amhw_lpc82x_inmux_sct_trig_set(LPC82X_INMUX, 0, AMHW_LPC82X_INMUX_SCTTRIG_SCT_PIN0);
     amhw_lpc82x_inmux_sct_trig_set(LPC82X_INMUX, 1, AMHW_LPC82X_INMUX_SCTTRIG_SCT_PIN1);
@@ -69,35 +69,35 @@ static void __lpc82x_sct0_cap_plfm_init ()
     amhw_lpc82x_inmux_sct_trig_set(LPC82X_INMUX, 3, AMHW_LPC82X_INMUX_SCTTRIG_SCT_PIN3);
 }
 
-/** \brief  ½â³ıSCT0Æ½Ì¨³õÊ¼»¯ */
+/** \brief  è§£é™¤SCT0å¹³å°åˆå§‹åŒ– */
 static void __lpc82x_sct0_cap_plfm_deinit (void)
 {
     amhw_lpc82x_syscon_periph_reset(AMHW_LPC82X_RESET_SCT);
     amhw_lpc82x_clk_periph_disable(AMHW_LPC82X_CLK_SCT);
 }
 
-/** \brief SCT0ÓÃÓÚ²¶»ñ¹¦ÄÜµÄÉè±¸ĞÅÏ¢ */
+/** \brief SCT0ç”¨äºæ•è·åŠŸèƒ½çš„è®¾å¤‡ä¿¡æ¯ */
 static const am_lpc_sct_cap_devinfo_t  __g_sct0_cap_devinfo = {
-    LPC82X_SCT0_BASE,            /**< \brief SCT0¼Ä´æÆ÷¿éµÄ»ùµØÖ· */
-    INUM_SCT0,                   /**< \brief SCT0ÖĞ¶Ï±àºÅ           */
-    CLK_SCT,                     /**< \brief SCT0Ê±ÖÓ±àºÅ           */
-    4,                           /**< \brief 4¸ö²¶»ñÍ¨µÀ            */
-    &__g_sct0_cap_ioinfo_list[0],/**< \brief ËùÓĞPWMÒı½ÅÅäÖÃĞÅÏ¢£¬ÓÃÊ×µØÖ·²ÎÊı´«µİ */
+    LPC82X_SCT0_BASE,            /**< \brief SCT0å¯„å­˜å™¨å—çš„åŸºåœ°å€ */
+    INUM_SCT0,                   /**< \brief SCT0ä¸­æ–­ç¼–å·           */
+    CLK_SCT,                     /**< \brief SCT0æ—¶é’Ÿç¼–å·           */
+    4,                           /**< \brief 4ä¸ªæ•è·é€šé“            */
+    &__g_sct0_cap_ioinfo_list[0],/**< \brief æ‰€æœ‰PWMå¼•è„šé…ç½®ä¿¡æ¯ï¼Œç”¨é¦–åœ°å€å‚æ•°ä¼ é€’ */
 
-    __lpc82x_sct0_cap_plfm_init,   /**< \brief Æ½Ì¨³õÊ¼»¯º¯Êı       */
-    __lpc82x_sct0_cap_plfm_deinit, /**< \brief Æ½Ì¨½â³õÊ¼»¯º¯Êı     */
+    __lpc82x_sct0_cap_plfm_init,   /**< \brief å¹³å°åˆå§‹åŒ–å‡½æ•°       */
+    __lpc82x_sct0_cap_plfm_deinit, /**< \brief å¹³å°è§£åˆå§‹åŒ–å‡½æ•°     */
 };
 
-/** \brief SCT0ÓÃÓÚ²¶»ñ¹¦ÄÜµÄÉè±¸¶¨Òå */
+/** \brief SCT0ç”¨äºæ•è·åŠŸèƒ½çš„è®¾å¤‡å®šä¹‰ */
 static am_lpc_sct_cap_dev_t  __g_sct0_cap_dev;
 
-/** \brief SCT0 CAP ÊµÀı³õÊ¼»¯£¬»ñµÃCAP±ê×¼·şÎñ¾ä±ú */
+/** \brief SCT0 CAP å®ä¾‹åˆå§‹åŒ–ï¼Œè·å¾—CAPæ ‡å‡†æœåŠ¡å¥æŸ„ */
 am_cap_handle_t am_lpc82x_sct0_cap_inst_init (void)
 {
     return am_lpc_sct_cap_init(&__g_sct0_cap_dev, &__g_sct0_cap_devinfo);
 }
 
-/** \brief SCT0 CAP ÊµÀı½â³õÊ¼»¯ */
+/** \brief SCT0 CAP å®ä¾‹è§£åˆå§‹åŒ– */
 void am_lpc82x_sct0_cap_inst_deinit (am_cap_handle_t handle)
 {
     am_lpc_sct_cap_deinit((am_lpc_sct_cap_dev_t *)handle);

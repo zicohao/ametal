@@ -11,9 +11,9 @@
 *******************************************************************************/
 /**
  * \file
- * \brief LLWU Ó²¼þ²Ù×÷½Ó¿Ú
+ * \brief LLWU ç¡¬ä»¶æ“ä½œæŽ¥å£
  * 
- * - ÅäÖÃLLSºÍVLLSxÄ£Ê½LLWU»½ÐÑÔ´£¬»½ÐÑÔ´¿ÉÎªÒý½Å£¬ÄÚ²¿Ä£¿é£¬ÂË²¨Í¨µÀ
+ * - é…ç½®LLSå’ŒVLLSxæ¨¡å¼LLWUå”¤é†’æºï¼Œå”¤é†’æºå¯ä¸ºå¼•è„šï¼Œå†…éƒ¨æ¨¡å—ï¼Œæ»¤æ³¢é€šé“
  *
  * \internal
  * \par Modification history
@@ -37,133 +37,133 @@ extern "C" {
  */
  
 /**
- * \brief LLWU ¼Ä´æÆ÷¿é½á¹¹Ìå
+ * \brief LLWU å¯„å­˜å™¨å—ç»“æž„ä½“
  */
 typedef struct amhw_fsl_llwu {
-    __IO uint8_t  pe[4];          /**< \brief LLWU »½ÐÑÒý½ÅÊ¹ÄÜ¼Ä´æÆ÷  */
-    __IO uint8_t  me;             /**< \brief LLWU »½ÐÑÄ£¿éÊ¹ÄÜ¼Ä´æÆ÷  */
-    __IO uint8_t  f[3];           /**< \brief LLWU »½ÐÑ±êÖ¾¼Ä´æÆ÷      */
-    __IO uint8_t  filt[2];        /**< \brief LLWU »½ÐÑÒý½ÅÂË²¨¼Ä´æÆ÷  */
+    __IO uint8_t  pe[4];          /**< \brief LLWU å”¤é†’å¼•è„šä½¿èƒ½å¯„å­˜å™¨  */
+    __IO uint8_t  me;             /**< \brief LLWU å”¤é†’æ¨¡å—ä½¿èƒ½å¯„å­˜å™¨  */
+    __IO uint8_t  f[3];           /**< \brief LLWU å”¤é†’æ ‡å¿—å¯„å­˜å™¨      */
+    __IO uint8_t  filt[2];        /**< \brief LLWU å”¤é†’å¼•è„šæ»¤æ³¢å¯„å­˜å™¨  */
 } amhw_fsl_llwu_t;
 
 /**
- * \brief LLWU »½ÐÑÒý½Å(_X±íÊ¾¸ÃÐ¾Æ¬²»Ö§³Ö)
+ * \brief LLWU å”¤é†’å¼•è„š(_Xè¡¨ç¤ºè¯¥èŠ¯ç‰‡ä¸æ”¯æŒ)
  */
 typedef enum amhw_fsl_llwu_pin {
-    AMHW_FSL_LLWU_PIN_0_X  = 0,     /**< \brief LLWU »½ÐÑÒý½ÅP0    */
-    AMHW_FSL_LLWU_PIN_1_X,          /**< \brief LLWU »½ÐÑÒý½ÅP1    */
-    AMHW_FSL_LLWU_PIN_2_X,          /**< \brief LLWU »½ÐÑÒý½ÅP2    */
-    AMHW_FSL_LLWU_PIN_3_X,          /**< \brief LLWU »½ÐÑÒý½ÅP3    */
-    AMHW_FSL_LLWU_PIN_4_X,          /**< \brief LLWU »½ÐÑÒý½ÅP4    */
-    AMHW_FSL_LLWU_PIN_5_PTB0,       /**< \brief LLWU »½ÐÑÒý½ÅP5    */
-    AMHW_FSL_LLWU_PIN_6_PTC1,       /**< \brief LLWU »½ÐÑÒý½ÅP6    */
-    AMHW_FSL_LLWU_PIN_7_PTC3,       /**< \brief LLWU »½ÐÑÒý½ÅP7    */
-    AMHW_FSL_LLWU_PIN_8_PTC4,       /**< \brief LLWU »½ÐÑÒý½ÅP8    */
-    AMHW_FSL_LLWU_PIN_9_PTC5,       /**< \brief LLWU »½ÐÑÒý½ÅP9    */
-    AMHW_FSL_LLWU_PIN_10_PTC6,      /**< \brief LLWU »½ÐÑÒý½ÅP10   */
-    AMHW_FSL_LLWU_PIN_11_X,         /**< \brief LLWU »½ÐÑÒý½ÅP11   */
-    AMHW_FSL_LLWU_PIN_12_X,         /**< \brief LLWU »½ÐÑÒý½ÅP12   */
-    AMHW_FSL_LLWU_PIN_13_X,         /**< \brief LLWU »½ÐÑÒý½ÅP13   */
-    AMHW_FSL_LLWU_PIN_14_PTD4,      /**< \brief LLWU »½ÐÑÒý½ÅP14   */
-    AMHW_FSL_LLWU_PIN_15_PTD6,      /**< \brief LLWU »½ÐÑÒý½ÅP15   */
+    AMHW_FSL_LLWU_PIN_0_X  = 0,     /**< \brief LLWU å”¤é†’å¼•è„šP0    */
+    AMHW_FSL_LLWU_PIN_1_X,          /**< \brief LLWU å”¤é†’å¼•è„šP1    */
+    AMHW_FSL_LLWU_PIN_2_X,          /**< \brief LLWU å”¤é†’å¼•è„šP2    */
+    AMHW_FSL_LLWU_PIN_3_X,          /**< \brief LLWU å”¤é†’å¼•è„šP3    */
+    AMHW_FSL_LLWU_PIN_4_X,          /**< \brief LLWU å”¤é†’å¼•è„šP4    */
+    AMHW_FSL_LLWU_PIN_5_PTB0,       /**< \brief LLWU å”¤é†’å¼•è„šP5    */
+    AMHW_FSL_LLWU_PIN_6_PTC1,       /**< \brief LLWU å”¤é†’å¼•è„šP6    */
+    AMHW_FSL_LLWU_PIN_7_PTC3,       /**< \brief LLWU å”¤é†’å¼•è„šP7    */
+    AMHW_FSL_LLWU_PIN_8_PTC4,       /**< \brief LLWU å”¤é†’å¼•è„šP8    */
+    AMHW_FSL_LLWU_PIN_9_PTC5,       /**< \brief LLWU å”¤é†’å¼•è„šP9    */
+    AMHW_FSL_LLWU_PIN_10_PTC6,      /**< \brief LLWU å”¤é†’å¼•è„šP10   */
+    AMHW_FSL_LLWU_PIN_11_X,         /**< \brief LLWU å”¤é†’å¼•è„šP11   */
+    AMHW_FSL_LLWU_PIN_12_X,         /**< \brief LLWU å”¤é†’å¼•è„šP12   */
+    AMHW_FSL_LLWU_PIN_13_X,         /**< \brief LLWU å”¤é†’å¼•è„šP13   */
+    AMHW_FSL_LLWU_PIN_14_PTD4,      /**< \brief LLWU å”¤é†’å¼•è„šP14   */
+    AMHW_FSL_LLWU_PIN_15_PTD6,      /**< \brief LLWU å”¤é†’å¼•è„šP15   */
 } amhw_fsl_llwu_pin_t;
 
 /**
- * \brief LLWU »½ÐÑÒý½Å²ÎÊý
+ * \brief LLWU å”¤é†’å¼•è„šå‚æ•°
  */
 typedef enum amhw_fsl_llwu_pin_arg{
-    AMHW_FSL_LLWU_PIN_ARG_DISABLE  = 0,  /**< \brief ²»Ê¹ÓÃ»½ÐÑÒý½Å */
-    AMHW_FSL_LLWU_PIN_ARG_RISING,        /**< \brief ÉÏÉýÑØ»½ÐÑ     */
-    AMHW_FSL_LLWU_PIN_ARG_FALLING,       /**< \brief ÏÂ½µÑØ»½ÐÑ     */
-    AMHW_FSL_LLWU_PIN_ARG_ANY            /**< \brief Òý½Å±ä»¯»½ÐÑ   */
+    AMHW_FSL_LLWU_PIN_ARG_DISABLE  = 0,  /**< \brief ä¸ä½¿ç”¨å”¤é†’å¼•è„š */
+    AMHW_FSL_LLWU_PIN_ARG_RISING,        /**< \brief ä¸Šå‡æ²¿å”¤é†’     */
+    AMHW_FSL_LLWU_PIN_ARG_FALLING,       /**< \brief ä¸‹é™æ²¿å”¤é†’     */
+    AMHW_FSL_LLWU_PIN_ARG_ANY            /**< \brief å¼•è„šå˜åŒ–å”¤é†’   */
 } amhw_fsl_llwu_pin_arg_t;
 
 /**
- * \brief LLWU »½ÐÑÄ£¿é(_X±íÊ¾¸ÃÐ¾Æ¬²»Ö§³Ö)
+ * \brief LLWU å”¤é†’æ¨¡å—(_Xè¡¨ç¤ºè¯¥èŠ¯ç‰‡ä¸æ”¯æŒ)
  */
 typedef enum amhw_fsl_llwu_module {
-    AMHW_FSL_LLWU_MODULE_0_LPTMR0  = 0,     /**< \brief LLWU »½ÐÑÄ£¿éM0   */
-    AMHW_FSL_LLWU_MODULE_1_CMP0,            /**< \brief LLWU »½ÐÑÄ£¿éM1   */
-    AMHW_FSL_LLWU_MODULE_2_X,               /**< \brief LLWU »½ÐÑÄ£¿éM2   */
-    AMHW_FSL_LLWU_MODULE_3_X,               /**< \brief LLWU »½ÐÑÄ£¿éM3   */
-    AMHW_FSL_LLWU_MODULE_4_TSI0,            /**< \brief LLWU »½ÐÑÄ£¿éM4   */
-    AMHW_FSL_LLWU_MODULE_5_RTCA,            /**< \brief LLWU »½ÐÑÄ£¿éM5   */
-    AMHW_FSL_LLWU_MODULE_6_X,               /**< \brief LLWU »½ÐÑÄ£¿éM6   */
-    AMHW_FSL_LLWU_MODULE_7_RTCS ,           /**< \brief LLWU »½ÐÑÄ£¿éM7   */
+    AMHW_FSL_LLWU_MODULE_0_LPTMR0  = 0,     /**< \brief LLWU å”¤é†’æ¨¡å—M0   */
+    AMHW_FSL_LLWU_MODULE_1_CMP0,            /**< \brief LLWU å”¤é†’æ¨¡å—M1   */
+    AMHW_FSL_LLWU_MODULE_2_X,               /**< \brief LLWU å”¤é†’æ¨¡å—M2   */
+    AMHW_FSL_LLWU_MODULE_3_X,               /**< \brief LLWU å”¤é†’æ¨¡å—M3   */
+    AMHW_FSL_LLWU_MODULE_4_TSI0,            /**< \brief LLWU å”¤é†’æ¨¡å—M4   */
+    AMHW_FSL_LLWU_MODULE_5_RTCA,            /**< \brief LLWU å”¤é†’æ¨¡å—M5   */
+    AMHW_FSL_LLWU_MODULE_6_X,               /**< \brief LLWU å”¤é†’æ¨¡å—M6   */
+    AMHW_FSL_LLWU_MODULE_7_RTCS ,           /**< \brief LLWU å”¤é†’æ¨¡å—M7   */
 } amhw_fsl_llwu_module_t;
 
 /**
- * \brief LLWU »½ÐÑÄ£¿é²ÎÊý
+ * \brief LLWU å”¤é†’æ¨¡å—å‚æ•°
  */
 typedef enum amhw_fsl_llwu_module_arg {
-    AMHW_FSL_LLWU_MODULE_ARG_DISABLE = 0,     /**< \brief LLWU »½ÐÑÄ£¿é½ûÄÜ   */
-    AMHW_FSL_LLWU_MODULE_ARG_ENABLE = 1       /**< \brief LLWU »½ÐÑÄ£¿éÊ¹ÄÜ   */
+    AMHW_FSL_LLWU_MODULE_ARG_DISABLE = 0,     /**< \brief LLWU å”¤é†’æ¨¡å—ç¦èƒ½   */
+    AMHW_FSL_LLWU_MODULE_ARG_ENABLE = 1       /**< \brief LLWU å”¤é†’æ¨¡å—ä½¿èƒ½   */
 } amhw_fsl_llwu_module_arg_t;
 
 /**
- * \brief LLWU ÂË²¨Í¨µÀ
+ * \brief LLWU æ»¤æ³¢é€šé“
  */
 typedef enum amhw_fsl_llwu_filt_chan {
-    AMHW_FSL_LLWU_FILT_CHAN1  = 0,     /**< \brief LLWU »½ÐÑÒý½ÅÂË²¨Í¨µÀ1   */
-    AMHW_FSL_LLWU_FILT_CHAN2,          /**< \brief LLWU »½ÐÑÒý½ÅÂË²¨Í¨µÀ2   */
+    AMHW_FSL_LLWU_FILT_CHAN1  = 0,     /**< \brief LLWU å”¤é†’å¼•è„šæ»¤æ³¢é€šé“1   */
+    AMHW_FSL_LLWU_FILT_CHAN2,          /**< \brief LLWU å”¤é†’å¼•è„šæ»¤æ³¢é€šé“2   */
 } amhw_fsl_llwu_filt_chan_t;
 
 /**
- * \brief LLWU ÂË²¨Í¨µÀ²ÎÊý
+ * \brief LLWU æ»¤æ³¢é€šé“å‚æ•°
  */
 typedef enum amhw_fsl_llwu_filt_chan_arg{
-    AMHW_FSL_LLWU_FILT_DETECT_DISABLE  = 0,  /**< \brief ²»Ê¹ÓÃÂË²¨Í¨µÀ */
-    AMHW_FSL_LLWU_FILT_DETECT_POSEDGE,       /**< \brief ÉÏÉýÑØ¼ì²â     */
-    AMHW_FSL_LLWU_FILT_DETECT_NEGEDGE,       /**< \brief ÏÂ½µÑØ¼ì²â     */
-    AMHW_FSL_LLWU_FILT_DETECT_ANYEDGE        /**< \brief Ë«±ßÑØ¼ì²â     */
+    AMHW_FSL_LLWU_FILT_DETECT_DISABLE  = 0,  /**< \brief ä¸ä½¿ç”¨æ»¤æ³¢é€šé“ */
+    AMHW_FSL_LLWU_FILT_DETECT_POSEDGE,       /**< \brief ä¸Šå‡æ²¿æ£€æµ‹     */
+    AMHW_FSL_LLWU_FILT_DETECT_NEGEDGE,       /**< \brief ä¸‹é™æ²¿æ£€æµ‹     */
+    AMHW_FSL_LLWU_FILT_DETECT_ANYEDGE        /**< \brief åŒè¾¹æ²¿æ£€æµ‹     */
 } amhw_fsl_llwu_filt_chan_arg_t;
 
 /**
- * \name LLWU »½ÐÑ±êÖ¾(_X±íÊ¾¸ÃÐ¾Æ¬²»Ö§³Ö)
+ * \name LLWU å”¤é†’æ ‡å¿—(_Xè¡¨ç¤ºè¯¥èŠ¯ç‰‡ä¸æ”¯æŒ)
  * @{
  */
 typedef enum amhw_fsl_llwu_wuf {
-    AMHW_FSL_LLWU_WUF_P0_X      = AM_BIT(0),    /**< \brief LLWU »½ÐÑ±êÖ¾P0   */
-    AMHW_FSL_LLWU_WUF_P1_X      = AM_BIT(1),    /**< \brief LLWU »½ÐÑ±êÖ¾P1   */
-    AMHW_FSL_LLWU_WUF_P2_X      = AM_BIT(2),    /**< \brief LLWU »½ÐÑ±êÖ¾P2   */
-    AMHW_FSL_LLWU_WUF_P3_X      = AM_BIT(3),    /**< \brief LLWU »½ÐÑ±êÖ¾P3   */
-    AMHW_FSL_LLWU_WUF_P4_X      = AM_BIT(4),    /**< \brief LLWU »½ÐÑ±êÖ¾P4   */
-    AMHW_FSL_LLWU_WUF_P5_PTB0   = AM_BIT(5),    /**< \brief LLWU »½ÐÑ±êÖ¾P5   */
-    AMHW_FSL_LLWU_WUF_P6_PTC1   = AM_BIT(6),    /**< \brief LLWU »½ÐÑ±êÖ¾P6   */
-    AMHW_FSL_LLWU_WUF_P7_PTC3   = AM_BIT(7),    /**< \brief LLWU »½ÐÑ±êÖ¾P7   */
-    AMHW_FSL_LLWU_WUF_P8_PTC4   = AM_BIT(8),    /**< \brief LLWU »½ÐÑ±êÖ¾P8   */
-    AMHW_FSL_LLWU_WUF_P9_PTC5   = AM_BIT(9),    /**< \brief LLWU »½ÐÑ±êÖ¾P9   */
-    AMHW_FSL_LLWU_WUF_P10_PTC6  = AM_BIT(10),   /**< \brief LLWU »½ÐÑ±êÖ¾P10  */
-    AMHW_FSL_LLWU_WUF_P11_X     = AM_BIT(11),   /**< \brief LLWU »½ÐÑ±êÖ¾P11  */
-    AMHW_FSL_LLWU_WUF_P12_X     = AM_BIT(12),   /**< \brief LLWU »½ÐÑ±êÖ¾P12  */
-    AMHW_FSL_LLWU_WUF_P13_X     = AM_BIT(13),   /**< \brief LLWU »½ÐÑ±êÖ¾P13  */
-    AMHW_FSL_LLWU_WUF_P14_PTD4  = AM_BIT(14),   /**< \brief LLWU »½ÐÑ±êÖ¾P14  */
-    AMHW_FSL_LLWU_WUF_P15_PTD6  = AM_BIT(15),   /**< \brief LLWU »½ÐÑ±êÖ¾P15  */
+    AMHW_FSL_LLWU_WUF_P0_X      = AM_BIT(0),    /**< \brief LLWU å”¤é†’æ ‡å¿—P0   */
+    AMHW_FSL_LLWU_WUF_P1_X      = AM_BIT(1),    /**< \brief LLWU å”¤é†’æ ‡å¿—P1   */
+    AMHW_FSL_LLWU_WUF_P2_X      = AM_BIT(2),    /**< \brief LLWU å”¤é†’æ ‡å¿—P2   */
+    AMHW_FSL_LLWU_WUF_P3_X      = AM_BIT(3),    /**< \brief LLWU å”¤é†’æ ‡å¿—P3   */
+    AMHW_FSL_LLWU_WUF_P4_X      = AM_BIT(4),    /**< \brief LLWU å”¤é†’æ ‡å¿—P4   */
+    AMHW_FSL_LLWU_WUF_P5_PTB0   = AM_BIT(5),    /**< \brief LLWU å”¤é†’æ ‡å¿—P5   */
+    AMHW_FSL_LLWU_WUF_P6_PTC1   = AM_BIT(6),    /**< \brief LLWU å”¤é†’æ ‡å¿—P6   */
+    AMHW_FSL_LLWU_WUF_P7_PTC3   = AM_BIT(7),    /**< \brief LLWU å”¤é†’æ ‡å¿—P7   */
+    AMHW_FSL_LLWU_WUF_P8_PTC4   = AM_BIT(8),    /**< \brief LLWU å”¤é†’æ ‡å¿—P8   */
+    AMHW_FSL_LLWU_WUF_P9_PTC5   = AM_BIT(9),    /**< \brief LLWU å”¤é†’æ ‡å¿—P9   */
+    AMHW_FSL_LLWU_WUF_P10_PTC6  = AM_BIT(10),   /**< \brief LLWU å”¤é†’æ ‡å¿—P10  */
+    AMHW_FSL_LLWU_WUF_P11_X     = AM_BIT(11),   /**< \brief LLWU å”¤é†’æ ‡å¿—P11  */
+    AMHW_FSL_LLWU_WUF_P12_X     = AM_BIT(12),   /**< \brief LLWU å”¤é†’æ ‡å¿—P12  */
+    AMHW_FSL_LLWU_WUF_P13_X     = AM_BIT(13),   /**< \brief LLWU å”¤é†’æ ‡å¿—P13  */
+    AMHW_FSL_LLWU_WUF_P14_PTD4  = AM_BIT(14),   /**< \brief LLWU å”¤é†’æ ‡å¿—P14  */
+    AMHW_FSL_LLWU_WUF_P15_PTD6  = AM_BIT(15),   /**< \brief LLWU å”¤é†’æ ‡å¿—P15  */
 
-    /* ÄÚ²¿Ä£¿é±êÖ¾²»¿ÉÒÔÖ±½ÓÇå³ý */
-    AMHW_FSL_LLWU_WUF_M0_LPTMR0 = AM_BIT(16),   /**< \brief LLWU »½ÐÑ±êÖ¾M0   */
-    AMHW_FSL_LLWU_WUF_M1_CMP0   = AM_BIT(17),   /**< \brief LLWU »½ÐÑ±êÖ¾M1   */
-    AMHW_FSL_LLWU_WUF_M2_X      = AM_BIT(18),   /**< \brief LLWU »½ÐÑ±êÖ¾M2   */
-    AMHW_FSL_LLWU_WUF_M3_X      = AM_BIT(19),   /**< \brief LLWU »½ÐÑ±êÖ¾M3   */
-    AMHW_FSL_LLWU_WUF_M4_TSI0   = AM_BIT(20),   /**< \brief LLWU »½ÐÑ±êÖ¾M4   */
-    AMHW_FSL_LLWU_WUF_M5_RTCA   = AM_BIT(21),   /**< \brief LLWU »½ÐÑ±êÖ¾M5   */
-    AMHW_FSL_LLWU_WUF_M6_X      = AM_BIT(22),   /**< \brief LLWU »½ÐÑ±êÖ¾M6   */
-    AMHW_FSL_LLWU_WUF_M7RTC     = AM_BIT(23),   /**< \brief LLWU »½ÐÑ±êÖ¾M7   */
+    /* å†…éƒ¨æ¨¡å—æ ‡å¿—ä¸å¯ä»¥ç›´æŽ¥æ¸…é™¤ */
+    AMHW_FSL_LLWU_WUF_M0_LPTMR0 = AM_BIT(16),   /**< \brief LLWU å”¤é†’æ ‡å¿—M0   */
+    AMHW_FSL_LLWU_WUF_M1_CMP0   = AM_BIT(17),   /**< \brief LLWU å”¤é†’æ ‡å¿—M1   */
+    AMHW_FSL_LLWU_WUF_M2_X      = AM_BIT(18),   /**< \brief LLWU å”¤é†’æ ‡å¿—M2   */
+    AMHW_FSL_LLWU_WUF_M3_X      = AM_BIT(19),   /**< \brief LLWU å”¤é†’æ ‡å¿—M3   */
+    AMHW_FSL_LLWU_WUF_M4_TSI0   = AM_BIT(20),   /**< \brief LLWU å”¤é†’æ ‡å¿—M4   */
+    AMHW_FSL_LLWU_WUF_M5_RTCA   = AM_BIT(21),   /**< \brief LLWU å”¤é†’æ ‡å¿—M5   */
+    AMHW_FSL_LLWU_WUF_M6_X      = AM_BIT(22),   /**< \brief LLWU å”¤é†’æ ‡å¿—M6   */
+    AMHW_FSL_LLWU_WUF_M7RTC     = AM_BIT(23),   /**< \brief LLWU å”¤é†’æ ‡å¿—M7   */
 
-    AMHW_FSL_LLWU_WUF_F1        = AM_BIT(24),   /**< \brief LLWU »½ÐÑ±êÖ¾F1   */
-    AMHW_FSL_LLWU_WUF_F2        = AM_BIT(25)    /**< \brief LLWU »½ÐÑ±êÖ¾F2   */
+    AMHW_FSL_LLWU_WUF_F1        = AM_BIT(24),   /**< \brief LLWU å”¤é†’æ ‡å¿—F1   */
+    AMHW_FSL_LLWU_WUF_F2        = AM_BIT(25)    /**< \brief LLWU å”¤é†’æ ‡å¿—F2   */
 } amhw_fsl_llwu_wuf_t;
 
 /** @} */
 
 /**
- * \brief ÅäÖÃÒý½Å»½ÐÑ¹¦ÄÜ
+ * \brief é…ç½®å¼•è„šå”¤é†’åŠŸèƒ½
  *
- * \param[in] p_hw_llwu : Ö¸ÏòLLWU¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] wu_pin    : »½ÐÑÒý½Å
- * \param[in] arg       : Òý½Å²ÎÊý
+ * \param[in] p_hw_llwu : æŒ‡å‘LLWUå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] wu_pin    : å”¤é†’å¼•è„š
+ * \param[in] arg       : å¼•è„šå‚æ•°
  *
- * \return ÎÞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_llwu_pin_cfg (amhw_fsl_llwu_t        *p_hw_llwu,
@@ -177,13 +177,13 @@ void amhw_fsl_llwu_pin_cfg (amhw_fsl_llwu_t        *p_hw_llwu,
 }
 
 /**
- * \brief ÅäÖÃÄÚ²¿Ä£¿é»½ÐÑ¹¦ÄÜ
+ * \brief é…ç½®å†…éƒ¨æ¨¡å—å”¤é†’åŠŸèƒ½
  *
- * \param[in] p_hw_llwu : Ö¸ÏòLLWU¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] module    : »½ÐÑÄ£¿é
- * \param[in] arg       : Ä£¿é²ÎÊý
+ * \param[in] p_hw_llwu : æŒ‡å‘LLWUå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] module    : å”¤é†’æ¨¡å—
+ * \param[in] arg       : æ¨¡å—å‚æ•°
  *
- * \return ÎÞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_llwu_module_cfg (amhw_fsl_llwu_t            *p_hw_llwu,
@@ -198,14 +198,14 @@ void amhw_fsl_llwu_module_cfg (amhw_fsl_llwu_t            *p_hw_llwu,
 }
 
 /**
- * \brief ÅäÖÃÂË²¨Í¨µÀ²ÎÊý
+ * \brief é…ç½®æ»¤æ³¢é€šé“å‚æ•°
  *
- * \param[in] p_hw_llwu : Ö¸ÏòLLWU¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] chan      : ÂË²¨Í¨µÀ
- * \param[in] wu_pin    : »½ÐÑÒý½Å
- * \param[in] arg       : ¼ì²â²ÎÊý
+ * \param[in] p_hw_llwu : æŒ‡å‘LLWUå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] chan      : æ»¤æ³¢é€šé“
+ * \param[in] wu_pin    : å”¤é†’å¼•è„š
+ * \param[in] arg       : æ£€æµ‹å‚æ•°
  *
- * \return ÎÞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_fsl_llwu_filt_cfg (amhw_fsl_llwu_t              *p_hw_llwu,
@@ -217,9 +217,9 @@ void amhw_fsl_llwu_filt_cfg (amhw_fsl_llwu_t              *p_hw_llwu,
 }
 
 /**
- * \brief »ñÈ¡LLWU»½ÐÑ±êÖ¾
- * \param[in] p_hw_llwu : Ö¸ÏòLLWU¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return »½ÐÑ±êÖ¾
+ * \brief èŽ·å–LLWUå”¤é†’æ ‡å¿—
+ * \param[in] p_hw_llwu : æŒ‡å‘LLWUå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return å”¤é†’æ ‡å¿—
  */
 am_static_inline
 uint32_t amhw_fsl_llwu_wuflags_get (amhw_fsl_llwu_t *p_hw_llwu)
@@ -234,24 +234,24 @@ uint32_t amhw_fsl_llwu_wuflags_get (amhw_fsl_llwu_t *p_hw_llwu)
 }
 
 /**
- * \brief Çå³ýLLWU»½ÐÑ±êÖ¾
+ * \brief æ¸…é™¤LLWUå”¤é†’æ ‡å¿—
  *
- * \param[in] p_hw_llwu : Ö¸ÏòLLWU¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] flags     : »½ÐÑ±êÖ¾ºê¶¨Òå£¬AMHW_FSL_LLWU_WUF_*ºêÖµ
- *                        £¨# AMHW_FSL_LLWU_WUF_P5_PTB0_£©
+ * \param[in] p_hw_llwu : æŒ‡å‘LLWUå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] flags     : å”¤é†’æ ‡å¿—å®å®šä¹‰ï¼ŒAMHW_FSL_LLWU_WUF_*å®å€¼
+ *                        ï¼ˆ# AMHW_FSL_LLWU_WUF_P5_PTB0_ï¼‰
  *
- * \return ÎÞ
+ * \return æ— 
  *
- * \note ÄÚ²¿Ä£¿é±êÖ¾Í¨¹ýÇå³ýÍâÉè±êÖ¾Çå³ý
+ * \note å†…éƒ¨æ¨¡å—æ ‡å¿—é€šè¿‡æ¸…é™¤å¤–è®¾æ ‡å¿—æ¸…é™¤
  */
 am_static_inline
 void amhw_fsl_llwu_wuflags_clr (amhw_fsl_llwu_t *p_hw_llwu, uint32_t flags)
 {
-    p_hw_llwu->f[0] = flags;                      /* Çå³ýPx */
+    p_hw_llwu->f[0] = flags;                      /* æ¸…é™¤Px */
     p_hw_llwu->f[1] = flags >> 8;
 
-    p_hw_llwu->filt[0] |= ((flags >> 17) & 0x80); /* Çå³ýF1 */
-    p_hw_llwu->filt[1] |= ((flags >> 18) & 0x80); /* Çå³ýF2 */
+    p_hw_llwu->filt[0] |= ((flags >> 17) & 0x80); /* æ¸…é™¤F1 */
+    p_hw_llwu->filt[1] |= ((flags >> 18) & 0x80); /* æ¸…é™¤F2 */
 }
 
 /** 

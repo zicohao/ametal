@@ -12,12 +12,12 @@
 
 /**
  * \file
- * \brief GPIO Òı½ÅÖĞ¶ÏÀı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief GPIO å¼•è„šä¸­æ–­ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. PIO1_11 µÄµçÆ½ÓÉ¸ßµçÆ½¸Ä±äÎªµÍµçÆ½£¨°´¼ü KEY/RES °´ÏÂ£©Ê±£¬LED0 ×´Ì¬¸Ä±ä¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. PIO1_11 çš„ç”µå¹³ç”±é«˜ç”µå¹³æ”¹å˜ä¸ºä½ç”µå¹³ï¼ˆæŒ‰é”® KEY/RES æŒ‰ä¸‹ï¼‰æ—¶ï¼ŒLED0 çŠ¶æ€æ”¹å˜ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am845_core_std_gpio_int.c src_am845_core_std_gpio_int
  *
  * \internal
@@ -39,11 +39,11 @@
 #include "am_lpc84x.h"
 #include "demo_std_entries.h"
 
-/** \brief °´¼üÒı½Å */
+/** \brief æŒ‰é”®å¼•è„š */
 #define __KEY_PIN  PIO1_11
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am845_core_std_gpio_int_entry (void)
 {

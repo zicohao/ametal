@@ -13,9 +13,9 @@
 
 /**
  * \file
- * \brief MiniPort-Key ÅäÖÃÎÄ¼ş
+ * \brief MiniPort-Key é…ç½®æ–‡ä»¶
  *
- * µ¥¶ÀÊ¹ÓÃ Miniport-KEY Ê±Ê¹ÓÃ¸ÃÎÄ¼şÌá¹©µÄÊµÀı³õÊ¼»¯º¯Êı
+ * å•ç‹¬ä½¿ç”¨ Miniport-KEY æ—¶ä½¿ç”¨è¯¥æ–‡ä»¶æä¾›çš„å®ä¾‹åˆå§‹åŒ–å‡½æ•°
  *
  * \internal
  * \par Modification history
@@ -33,10 +33,10 @@ extern "C" {
 #endif
 
 /**
- * \brief MiniPort-KEY ÊµÀı³õÊ¼»¯
+ * \brief MiniPort-KEY å®ä¾‹åˆå§‹åŒ–
  *
- * \retval  AW_OK  ³õÊ¼»¯³É¹¦
- * \retval   < 0   ³õÊ¼»¯Ê§°Ü£¬Çë¼ìCÎÄ¼şÖĞ¸÷ÅäÖÃÏîÊÇ·ñºÏ·¨
+ * \retval  AW_OK  åˆå§‹åŒ–æˆåŠŸ
+ * \retval   < 0   åˆå§‹åŒ–å¤±è´¥ï¼Œè¯·æ£€Cæ–‡ä»¶ä¸­å„é…ç½®é¡¹æ˜¯å¦åˆæ³•
  */
 int am_miniport_key_inst_init (void);
 

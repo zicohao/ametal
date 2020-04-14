@@ -12,12 +12,12 @@
 
 /**
  * \file
- * \brief MiniPort-LED ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief MiniPort-LED ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_miniport_led.c
  *
- * MiniPort-LED ¿ÉÒÔµ¥¶ÀÊ¹ÓÃ£¬Ò²¿ÉÒÔºÍ MiniPort-595 ÁªºÏÊ¹ÓÃ£¬ÒÔ½ÚÊ¡¿ØÖÆÒı½Å
+ * MiniPort-LED å¯ä»¥å•ç‹¬ä½¿ç”¨ï¼Œä¹Ÿå¯ä»¥å’Œ MiniPort-595 è”åˆä½¿ç”¨ï¼Œä»¥èŠ‚çœæ§åˆ¶å¼•è„š
  *
- * µ±Ç°Ö§³ÖµÄÓÃ·¨ÓĞ£º
+ * å½“å‰æ”¯æŒçš„ç”¨æ³•æœ‰ï¼š
  * 1. MiniPort-LED                : am_miniport_led_inst_init();
  * 2. MiniPort-LED + MiniPort-595 : am_miniport_led_595_inst_init();
  *
@@ -42,36 +42,36 @@
  */
 
 /*******************************************************************************
-  MiniPort-LED µ¥¶ÀÊ¹ÓÃ
+  MiniPort-LED å•ç‹¬ä½¿ç”¨
 *******************************************************************************/
 
-/** \brief MiniPort-LED Òı½Å */
+/** \brief MiniPort-LED å¼•è„š */
 am_local am_const int __g_miniport_led_pins[8] = {
-    PIO0_8,     /* LED0 Òı½Å */
-    PIO0_9,     /* LED1 Òı½Å */
-    PIO0_10,    /* LED2 Òı½Å */
-    PIO0_11,    /* LED3 Òı½Å */
-    PIO0_12,    /* LED4 Òı½Å */
-    PIO0_13,    /* LED5 Òı½Å */
-    PIO0_14,    /* LED6 Òı½Å */
-    PIO0_15     /* LED7 Òı½Å */
+    PIO0_8,     /* LED0 å¼•è„š */
+    PIO0_9,     /* LED1 å¼•è„š */
+    PIO0_10,    /* LED2 å¼•è„š */
+    PIO0_11,    /* LED3 å¼•è„š */
+    PIO0_12,    /* LED4 å¼•è„š */
+    PIO0_13,    /* LED5 å¼•è„š */
+    PIO0_14,    /* LED6 å¼•è„š */
+    PIO0_15     /* LED7 å¼•è„š */
 };
 
-/** \brief MiniPort-LED Éè±¸ĞÅÏ¢ */
+/** \brief MiniPort-LED è®¾å¤‡ä¿¡æ¯ */
 am_local am_const am_led_gpio_info_t __g_miniport_led_gpio_devinfo = {
     {
-        2,                    /* ÆğÊ¼±àºÅ 2 */
-        9                     /* ½áÊø±àºÅ 9£¬¹²¼Æ 8 ¸ö LED */
+        2,                    /* èµ·å§‹ç¼–å· 2 */
+        9                     /* ç»“æŸç¼–å· 9ï¼Œå…±è®¡ 8 ä¸ª LED */
     },
-    __g_miniport_led_pins,    /* LED Òı½Å */
-    AM_TRUE                   /* µÍµçÆ½µãÁÁ */
+    __g_miniport_led_pins,    /* LED å¼•è„š */
+    AM_TRUE                   /* ä½ç”µå¹³ç‚¹äº® */
 };
 
-/** \brief MiniPort-LED Éè±¸ÊµÀı */
+/** \brief MiniPort-LED è®¾å¤‡å®ä¾‹ */
 am_local am_led_gpio_dev_t __g_miniport_led_gpio_dev;
 
 /**
- * \brief MiniPort-LED ÊµÀı³õÊ¼»¯£¨µ¥¶ÀÊ¹ÓÃ£©
+ * \brief MiniPort-LED å®ä¾‹åˆå§‹åŒ–ï¼ˆå•ç‹¬ä½¿ç”¨ï¼‰
  */
 int am_miniport_led_inst_init (void)
 {
@@ -80,28 +80,28 @@ int am_miniport_led_inst_init (void)
 }
 
 /*******************************************************************************
-  MiniPort-LED ºÍ MiniPort-595 ÁªºÏÊ¹ÓÃ
+  MiniPort-LED å’Œ MiniPort-595 è”åˆä½¿ç”¨
 *******************************************************************************/
 
-/** \brief Êı¾İ»º´æ£¬´óĞ¡Óë HC595 µÄ¼¶Á¬¸öÊıÏàÍ¬ */
+/** \brief æ•°æ®ç¼“å­˜ï¼Œå¤§å°ä¸ HC595 çš„çº§è¿ä¸ªæ•°ç›¸åŒ */
 am_local uint8_t __g_miniport_led_595_buf[1];
 
-/** \brief MiniPort-595 + MiniPort-LED Éè±¸ĞÅÏ¢ */
+/** \brief MiniPort-595 + MiniPort-LED è®¾å¤‡ä¿¡æ¯ */
 am_local am_const am_led_hc595_info_t __g_miniport_led_595_devinfo = {
     {
-        2,                       /* ÆğÊ¼±àºÅ 2 */
-        9                        /* ½áÊø±àºÅ 9£¬¹²¼Æ 8 ¸ö LED */
+        2,                       /* èµ·å§‹ç¼–å· 2 */
+        9                        /* ç»“æŸç¼–å· 9ï¼Œå…±è®¡ 8 ä¸ª LED */
     },
-    1,                           /* HC595 µÄ¼¶Á¬¸öÊı  */
-    __g_miniport_led_595_buf,    /* Êı¾İ»º´æ£¬´óĞ¡Óë HC595 µÄ¼¶Á¬¸öÊıÏàÍ¬ */
-    AM_TRUE                      /* µÍµçÆ½µãÁÁ */
+    1,                           /* HC595 çš„çº§è¿ä¸ªæ•°  */
+    __g_miniport_led_595_buf,    /* æ•°æ®ç¼“å­˜ï¼Œå¤§å°ä¸ HC595 çš„çº§è¿ä¸ªæ•°ç›¸åŒ */
+    AM_TRUE                      /* ä½ç”µå¹³ç‚¹äº® */
 };
 
-/** \brief MiniPort-595 + MiniPort-LED Éè±¸ÊµÀı */
+/** \brief MiniPort-595 + MiniPort-LED è®¾å¤‡å®ä¾‹ */
 am_local am_led_hc595_dev_t __g_miniport_led_595_dev;
 
 /**
- * \brief MiniPort-595 + MiniPort-LED ÊµÀı³õÊ¼»¯
+ * \brief MiniPort-595 + MiniPort-LED å®ä¾‹åˆå§‹åŒ–
  */
 int am_miniport_led_595_inst_init (void)
 {

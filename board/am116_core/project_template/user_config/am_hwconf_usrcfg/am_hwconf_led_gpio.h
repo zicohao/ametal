@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief LED ÅäÖÃÎÄ¼ş£¨GPIOÖ±½ÓÇı¶¯£©
+ * \brief LED é…ç½®æ–‡ä»¶ï¼ˆGPIOç›´æ¥é©±åŠ¨ï¼‰
  *
  * \internal
  * \par Modification history
@@ -29,10 +29,10 @@ extern "C" {
 #endif
 
 /**
- * \brief LED ÊµÀı³õÊ¼»¯£¨GPIOÖ±½ÓÇı¶¯£©
+ * \brief LED å®ä¾‹åˆå§‹åŒ–ï¼ˆGPIOç›´æ¥é©±åŠ¨ï¼‰
  *
- * \retval  AW_OK  ³õÊ¼»¯³É¹¦
- * \retval   < 0   ³õÊ¼»¯Ê§°Ü£¬Çë¼ì²éCÎÄ¼şÖĞ¸÷ÅäÖÃÏîÊÇ·ñºÏ·¨
+ * \retval  AW_OK  åˆå§‹åŒ–æˆåŠŸ
+ * \retval   < 0   åˆå§‹åŒ–å¤±è´¥ï¼Œè¯·æ£€æŸ¥Cæ–‡ä»¶ä¸­å„é…ç½®é¡¹æ˜¯å¦åˆæ³•
  */
 int am_led_gpio_inst_init (void);
 

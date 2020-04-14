@@ -29,7 +29,7 @@ static am_zlg116_boot_dev_t *__gp_boot_dev = NULL;
 static int __boot_source_release(void);
 static int __boot_update_flag_get_and_dispose (void);
 /**
- * \brief ÅĞ¶ÏÓ¦ÓÃ´úÂëÊÇ·ñ¿ÉÖ´ĞĞ
+ * \brief åˆ¤æ–­åº”ç”¨ä»£ç æ˜¯å¦å¯æ‰§è¡Œ
  */
 am_bool_t am_boot_app_is_ready(void)
 {
@@ -63,7 +63,7 @@ am_bool_t am_boot_app_is_ready(void)
     return AM_TRUE;
 }
 /**
- * \brief Ìø×ªµ½Ó¦ÓÃ´úÂë
+ * \brief è·³è½¬åˆ°åº”ç”¨ä»£ç 
  */
 int am_boot_go_application(void)
 {
@@ -80,18 +80,18 @@ int am_boot_go_application(void)
 
    __boot_source_release();
 
-    /* ÉèÖÃÕ»Ö¸Õë */
+    /* è®¾ç½®æ ˆæŒ‡é’ˆ */
     __set_MSP(stack_pointer);
     __set_PSP(stack_pointer);
 
-    /* Ìø×ªµ½Ó¦ÓÃ´úÂë */
+    /* è·³è½¬åˆ°åº”ç”¨ä»£ç  */
     farewell_bootloader();
-    /*Èç¹ûÕı³£Ìø×ª£¬´úÂë²»»áÖ´ĞĞµ½ÕâÀï*/
+    /*å¦‚æœæ­£å¸¸è·³è½¬ï¼Œä»£ç ä¸ä¼šæ‰§è¡Œåˆ°è¿™é‡Œ*/
     return -AM_ERROR;
 }
 
 /**
- * \brief ÏµÍ³ÖØÆô
+ * \brief ç³»ç»Ÿé‡å¯
  */
 void am_boot_reset(void)
 {
@@ -102,14 +102,14 @@ void am_boot_reset(void)
 }
 
 /**
- * \brief Ë«Çøbootloader±êÖ¾ÉèÖÃ
+ * \brief åŒåŒºbootloaderæ ‡å¿—è®¾ç½®
  *
- * \param[in] flags ±êÖ¾
- * AM_BOOTLOADER_FLAG_APP    Ë«ÇøÓÃ»§³ÌĞòÓĞĞ§
- * AM_BOOTLOADER_FLAG_UPDATE Ë«ÇøÉı¼¶³ÌĞòÓĞĞ§
- * AM_BOOTLOADER_FLAG_NO     Ë«ÇøÎŞ´úÂë
+ * \param[in] flags æ ‡å¿—
+ * AM_BOOTLOADER_FLAG_APP    åŒåŒºç”¨æˆ·ç¨‹åºæœ‰æ•ˆ
+ * AM_BOOTLOADER_FLAG_UPDATE åŒåŒºå‡çº§ç¨‹åºæœ‰æ•ˆ
+ * AM_BOOTLOADER_FLAG_NO     åŒåŒºæ— ä»£ç 
  *
- * \retval AM_OK ³É¹¦
+ * \retval AM_OK æˆåŠŸ
  */
 int am_boot_update_flag_set(uint32_t flag)
 {
@@ -137,7 +137,7 @@ int am_boot_update_flag_set(uint32_t flag)
 }
 
 /**
- * \brief Ë«Çøbootloader±êÖ¾»ñÈ¡²¢×öÏàÓ¦´¦Àí
+ * \brief åŒåŒºbootloaderæ ‡å¿—è·å–å¹¶åšç›¸åº”å¤„ç†
  *
  */
 static int __boot_update_flag_get_and_dispose ()
@@ -184,12 +184,12 @@ static int __boot_update_flag_get_and_dispose ()
 }
 
 /**
- * \brief ÊÍ·ÅÏµÍ³×ÊÔ´
+ * \brief é‡Šæ”¾ç³»ç»Ÿèµ„æº
  *
- * \note bootloaderÔÚÌø×ªµ½Ó¦ÓÃ´úÂëÇ°£¬±ØĞëµ÷ÓÃ´Ë½Ó¿Ú£¬
- *       ÔÚbootloaderÖĞÉêÇëµÄ×ÊÔ´»òÕß³õÊ¼»¯µÄÄ³Ğ©ÍâÉè¶¼Ó¦Ö÷¶¯ÊÍ·ÅºÍ½â³õÊ¼»¯£¬±ÜÃâ¶ÔÓ¦ÓÃ³ÌĞòÔì³ÉÓ°Ïì¡£
+ * \note bootloaderåœ¨è·³è½¬åˆ°åº”ç”¨ä»£ç å‰ï¼Œå¿…é¡»è°ƒç”¨æ­¤æ¥å£ï¼Œ
+ *       åœ¨bootloaderä¸­ç”³è¯·çš„èµ„æºæˆ–è€…åˆå§‹åŒ–çš„æŸäº›å¤–è®¾éƒ½åº”ä¸»åŠ¨é‡Šæ”¾å’Œè§£åˆå§‹åŒ–ï¼Œé¿å…å¯¹åº”ç”¨ç¨‹åºé€ æˆå½±å“ã€‚
 
- * \retval AM_OK : ³É¹¦
+ * \retval AM_OK : æˆåŠŸ
  */
 static int __boot_source_release(void)
 {
@@ -199,7 +199,7 @@ static int __boot_source_release(void)
 }
 
 /**
- * \brief BootLoader³õÊ¼»¯º¯Êı
+ * \brief BootLoaderåˆå§‹åŒ–å‡½æ•°
  */
 int am_zlg116_boot_init(am_zlg116_boot_dev_t     *p_dev,
                         am_zlg116_boot_devinfo_t *p_devinfo,

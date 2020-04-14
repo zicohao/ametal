@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief SPI Çý¶¯²ãÊµÏÖº¯Êý
+ * \brief SPI é©±åŠ¨å±‚å®žçŽ°å‡½æ•°
  * 
  * \internal
  * \par Modification history
@@ -33,42 +33,42 @@ includes
 #include "hw/amhw_lpc_spi.h"
 
 /*******************************************************************************
-  SPI ×´Ì¬ºÍÊÂ¼þ¶¨Òå
+  SPI çŠ¶æ€å’Œäº‹ä»¶å®šä¹‰
 *******************************************************************************/
 
 /**
- * SPI ¿ØÖÆÆ÷×´Ì¬
+ * SPI æŽ§åˆ¶å™¨çŠ¶æ€
  */
 
-#define __SPI_ST_IDLE               0                   /* ¿ÕÏÐ×´Ì¬ */
-#define __SPI_ST_MSG_START          1                   /* ÏûÏ¢¿ªÊ¼ */
-#define __SPI_ST_TRANS_START        2                   /* ´«Êä¿ªÊ¼ */
-#define __SPI_ST_DMA_TRANS_DATA     3                   /* DMA ´«Êä */
+#define __SPI_ST_IDLE               0                   /* ç©ºé—²çŠ¶æ€ */
+#define __SPI_ST_MSG_START          1                   /* æ¶ˆæ¯å¼€å§‹ */
+#define __SPI_ST_TRANS_START        2                   /* ä¼ è¾“å¼€å§‹ */
+#define __SPI_ST_DMA_TRANS_DATA     3                   /* DMA ä¼ è¾“ */
 
 /**
- * SPI ¿ØÖÆÆ÷ÊÂ¼þ
+ * SPI æŽ§åˆ¶å™¨äº‹ä»¶
  *
- * ¹²32Î»£¬µÍ16Î»ÊÇÊÂ¼þ±àºÅ£¬¸ß16Î»ÊÇÊÂ¼þ²ÎÊý
+ * å…±32ä½ï¼Œä½Ž16ä½æ˜¯äº‹ä»¶ç¼–å·ï¼Œé«˜16ä½æ˜¯äº‹ä»¶å‚æ•°
  */
 
 #define __SPI_EVT_NUM_GET(event)    ((event) & 0xFFFF)
 #define __SPI_EVT_PAR_GET(event)    ((event >> 16) & 0xFFFF)
 #define __SPI_EVT(evt_num, evt_par) (((evt_num) & 0xFFFF) | ((evt_par) << 16))
 
-#define __SPI_EVT_NONE              __SPI_EVT(0, 0)     /* ÎÞÊÂ¼þ */
-#define __SPI_EVT_TRANS_LAUNCH      __SPI_EVT(1, 0)     /* ´«Êä¾ÍÐ÷ */
-#define __SPI_EVT_DMA_TRANS_DATA    __SPI_EVT(2, 0)     /* DMA´«ÊäÊý¾Ý */
+#define __SPI_EVT_NONE              __SPI_EVT(0, 0)     /* æ— äº‹ä»¶ */
+#define __SPI_EVT_TRANS_LAUNCH      __SPI_EVT(1, 0)     /* ä¼ è¾“å°±ç»ª */
+#define __SPI_EVT_DMA_TRANS_DATA    __SPI_EVT(2, 0)     /* DMAä¼ è¾“æ•°æ® */
 
 /*******************************************************************************
-  Ä£¿éÄÚ±äÁ¿ÉùÃ÷
+  æ¨¡å—å†…å˜é‡å£°æ˜Ž
 *******************************************************************************/
 
-static const uint16_t  __const_high = 0xFFFF;     /* SPI½ÓÊÕÊ±MOSIÎª¸ßµçÆ½ */
-static const uint16_t  __const_low  = 0x0000;     /* SPI½ÓÊÕÊ±MOSIÎªµÍµçÆ½ */
+static const uint16_t  __const_high = 0xFFFF;     /* SPIæŽ¥æ”¶æ—¶MOSIä¸ºé«˜ç”µå¹³ */
+static const uint16_t  __const_low  = 0x0000;     /* SPIæŽ¥æ”¶æ—¶MOSIä¸ºä½Žç”µå¹³ */
 
 
 /*******************************************************************************
-  Ä£¿éÄÚº¯ÊýÉùÃ÷
+  æ¨¡å—å†…å‡½æ•°å£°æ˜Ž
 *******************************************************************************/
 am_local void __spi_default_cs_ha    (am_spi_device_t *p_dev, int state);
 am_local void __spi_default_cs_la    (am_spi_device_t *p_dev, int state);
@@ -85,7 +85,7 @@ am_local void __spi_dma_isr (void *p_arg, int stat);
 
 am_local int  __spi_mst_sm_event (am_lpc82x_spi_dma_dev_t *p_dev, uint32_t event);
 /*******************************************************************************
-  SPIÇý¶¯º¯ÊýÉùÃ÷
+  SPIé©±åŠ¨å‡½æ•°å£°æ˜Ž
 *******************************************************************************/
 am_local int __spi_info_get (void *p_arg, am_spi_info_t   *p_info);
 am_local int __spi_setup    (void *p_arg, am_spi_device_t *p_dev );
@@ -94,7 +94,7 @@ am_local int __spi_msg_start (void              *p_drv,
                               am_spi_message_t  *p_msg);
 
 /**
- * \brief SPI Çý¶¯º¯Êý
+ * \brief SPI é©±åŠ¨å‡½æ•°
  */
 am_local am_const struct am_spi_drv_funcs __g_spi_drv_funcs = {
     __spi_info_get,
@@ -105,7 +105,7 @@ am_local am_const struct am_spi_drv_funcs __g_spi_drv_funcs = {
 /******************************************************************************/
 
 /**
- * \brief Ä¬ÈÏCS½Å¿ØÖÆº¯Êý£¬¸ßµçÆ½ÓÐÐ§
+ * \brief é»˜è®¤CSè„šæŽ§åˆ¶å‡½æ•°ï¼Œé«˜ç”µå¹³æœ‰æ•ˆ
  */
 am_local
 void __spi_default_cs_ha (am_spi_device_t *p_dev, int state)
@@ -114,7 +114,7 @@ void __spi_default_cs_ha (am_spi_device_t *p_dev, int state)
 }
 
 /**
- * \brief Ä¬ÈÏCS½Å¿ØÖÆº¯Êý£¬µÍµçÆ½ÓÐÐ§
+ * \brief é»˜è®¤CSè„šæŽ§åˆ¶å‡½æ•°ï¼Œä½Žç”µå¹³æœ‰æ•ˆ
  */
 am_local
 void __spi_default_cs_la (am_spi_device_t *p_dev, int state)
@@ -123,7 +123,7 @@ void __spi_default_cs_la (am_spi_device_t *p_dev, int state)
 }
 
 /**
- * \brief Ä¬ÈÏCS½Å¿ØÖÆº¯Êý£¬ÓÉÓ²¼þ×ÔÐÐ¿ØÖÆ
+ * \brief é»˜è®¤CSè„šæŽ§åˆ¶å‡½æ•°ï¼Œç”±ç¡¬ä»¶è‡ªè¡ŒæŽ§åˆ¶
  */
 am_local
 void __spi_default_cs_dummy (am_spi_device_t *p_dev, int state)
@@ -132,7 +132,7 @@ void __spi_default_cs_dummy (am_spi_device_t *p_dev, int state)
 }
 
 /**
- * \brief CSÒý½Å¼¤»î
+ * \brief CSå¼•è„šæ¿€æ´»
  */
 am_local
 void __spi_cs_on (am_lpc82x_spi_dma_dev_t *p_this, am_spi_device_t *p_dev)
@@ -151,7 +151,7 @@ void __spi_cs_on (am_lpc82x_spi_dma_dev_t *p_this, am_spi_device_t *p_dev)
 }
 
 /**
- * \brief CSÒý½ÅÈ¥»î
+ * \brief CSå¼•è„šåŽ»æ´»
  */
 am_local
 void __spi_cs_off (am_lpc82x_spi_dma_dev_t   *p_this,
@@ -167,7 +167,7 @@ void __spi_cs_off (am_lpc82x_spi_dma_dev_t   *p_this,
 /******************************************************************************/
 
 /**
- * \brief SPI Ó²¼þ³õÊ¼»¯
+ * \brief SPI ç¡¬ä»¶åˆå§‹åŒ–
  */
 am_local
 int __spi_hard_init (am_lpc82x_spi_dma_dev_t *p_this)
@@ -178,13 +178,13 @@ int __spi_hard_init (am_lpc82x_spi_dma_dev_t *p_this)
         return -AM_EINVAL;
     }
 
-    /* µÈ´ýSPI¿ÕÏÐ£¬·½¿ÉÉèÖÃÅäÖÃ¼Ä´æÆ÷ */
+    /* ç­‰å¾…SPIç©ºé—²ï¼Œæ–¹å¯è®¾ç½®é…ç½®å¯„å­˜å™¨ */
     while ((amhw_lpc_spi_stat_get(p_hw_spi) & AMHW_LPC_SPI_STAT_IDLE) == 0);
     amhw_lpc_spi_cfg_set(p_hw_spi,
                          (AMHW_LPC_SPI_CFG_ENABLE |
                          AMHW_LPC_SPI_CFG_MASTER));
 
-    /* ³õÊ¼»¯ÅäÖÃSPI */
+    /* åˆå§‹åŒ–é…ç½®SPI */
     return AM_OK;
 }
 
@@ -200,14 +200,14 @@ int __spi_setup (void *p_arg, am_spi_device_t *p_dev)
         return -AM_EINVAL;
     }
 
-    /* Ä¬ÈÏÊý¾ÝÎª8Î»£¬×î´ó²»³¬¹ý16Î» */
+    /* é»˜è®¤æ•°æ®ä¸º8ä½ï¼Œæœ€å¤§ä¸è¶…è¿‡16ä½ */
     if (p_dev->bits_per_word == 0) {
         p_dev->bits_per_word = 8;
     } else if (p_dev->bits_per_word > 16) {
         return -AM_ENOTSUP;
     }
 
-    /* ×î´óSPIËÙÂÊ²»ÄÜ³¬¹ýÖ÷Ê±ÖÓ£¬×îÐ¡²»ÄÜÐ¡ÓÚÖ÷Ê±ÖÓ65536·ÖÆµ */
+    /* æœ€å¤§SPIé€ŸçŽ‡ä¸èƒ½è¶…è¿‡ä¸»æ—¶é’Ÿï¼Œæœ€å°ä¸èƒ½å°äºŽä¸»æ—¶é’Ÿ65536åˆ†é¢‘ */
     max_speed = am_clk_rate_get(p_this->p_devinfo->clk_id);
     min_speed = max_speed / 65536;
 
@@ -217,22 +217,22 @@ int __spi_setup (void *p_arg, am_spi_device_t *p_dev)
         return -AM_ENOTSUP;
     }
 
-    /* ÎÞÆ¬Ñ¡º¯Êý */
+    /* æ— ç‰‡é€‰å‡½æ•° */
     if (p_dev->mode & AM_SPI_NO_CS) {
         p_dev->pfunc_cs = __spi_default_cs_dummy;
 
-    /* ÓÐÆ¬Ñ¡º¯Êý */
+    /* æœ‰ç‰‡é€‰å‡½æ•° */
     }  else {
 
-        /* ²»Ìá¹©ÔòÄ¬ÈÏÆ¬Ñ¡º¯Êý */
+        /* ä¸æä¾›åˆ™é»˜è®¤ç‰‡é€‰å‡½æ•° */
         if (p_dev->pfunc_cs == NULL) {
 
-            /* Æ¬Ñ¡¸ßµçÆ½ÓÐÐ§ */
+            /* ç‰‡é€‰é«˜ç”µå¹³æœ‰æ•ˆ */
             if (p_dev->mode & AM_SPI_CS_HIGH) {
                 am_gpio_pin_cfg(p_dev->cs_pin, AM_GPIO_OUTPUT_INIT_LOW);
                 p_dev->pfunc_cs = __spi_default_cs_ha;
 
-            /* Æ¬Ñ¡µÍµçÆ½ÓÐÐ§ */
+            /* ç‰‡é€‰ä½Žç”µå¹³æœ‰æ•ˆ */
             } else {
                 am_gpio_pin_cfg(p_dev->cs_pin, AM_GPIO_OUTPUT_INIT_HIGH);
                 p_dev->pfunc_cs = __spi_default_cs_la;
@@ -240,7 +240,7 @@ int __spi_setup (void *p_arg, am_spi_device_t *p_dev)
         }
     }
 
-    /* ½â³ýÆ¬Ñ¡ÐÅºÅ */
+    /* è§£é™¤ç‰‡é€‰ä¿¡å· */
     __spi_cs_off(p_this, p_dev);
 
     return AM_OK;
@@ -256,7 +256,7 @@ int __spi_info_get (void *p_arg, am_spi_info_t *p_info)
         return -AM_EINVAL;
     }
 
-    /* ×î´óËÙÂÊµÈÓÚ PCLK */
+    /* æœ€å¤§é€ŸçŽ‡ç­‰äºŽ PCLK */
     p_info->max_speed = am_clk_rate_get(p_this->p_devinfo->clk_id);
     p_info->min_speed = p_info->max_speed / 65536;
     p_info->features  = AM_SPI_CPHA  |
@@ -277,7 +277,7 @@ int __spi_config (am_lpc82x_spi_dma_dev_t *p_this)
     uint32_t                       mode_flag = 0;
     uint32_t                       div_val;
 
-    /* Èç¹ûÎª0£¬Ê¹ÓÃÄ¬ÈÏ²ÎÊýÖµ */
+    /* å¦‚æžœä¸º0ï¼Œä½¿ç”¨é»˜è®¤å‚æ•°å€¼ */
     if (p_trans->bits_per_word == 0) {
         p_trans->bits_per_word = p_this->p_cur_spi_dev->bits_per_word;
     }
@@ -286,29 +286,29 @@ int __spi_config (am_lpc82x_spi_dma_dev_t *p_this)
         p_trans->speed_hz = p_this->p_cur_spi_dev->max_speed_hz;
     }
 
-    /* ÉèÖÃ×Ö½ÚÊýÓÐÐ§ÐÔ¼ì²é */
+    /* è®¾ç½®å­—èŠ‚æ•°æœ‰æ•ˆæ€§æ£€æŸ¥ */
     if (p_trans->bits_per_word > 16 || p_trans->bits_per_word < 1) {
         return -AM_EINVAL;
     }
 
-    /* ÉèÖÃ·ÖÆµÖµÓÐÐ§ÐÔ¼ì²é */
+    /* è®¾ç½®åˆ†é¢‘å€¼æœ‰æ•ˆæ€§æ£€æŸ¥ */
     if (p_trans->speed_hz >  am_clk_rate_get(p_this->p_devinfo->clk_id) ||
         p_trans->speed_hz < (am_clk_rate_get(p_this->p_devinfo->clk_id) / 65536)) {
         return -AM_EINVAL;
     }
 
-    /* ·¢ËÍºÍ½ÓÊÕ»º³åÇøÓÐÐ§ÐÔ¼ì²é */
+    /* å‘é€å’ŒæŽ¥æ”¶ç¼“å†²åŒºæœ‰æ•ˆæ€§æ£€æŸ¥ */
     if ((p_trans->p_txbuf == NULL) && (p_trans->p_rxbuf == NULL)) {
         return -AM_EINVAL;
     }
 
-    /* ·¢ËÍ×Ö½ÚÊý¼ì²é */
+    /* å‘é€å­—èŠ‚æ•°æ£€æŸ¥ */
     if (p_trans->nbytes == 0) {
         return -AM_ELOW;
     }
 
     /**
-     * ÅäÖÃµ±Ç°Éè±¸Ä£Ê½
+     * é…ç½®å½“å‰è®¾å¤‡æ¨¡å¼
      */
     mode_flag = 0;
 
@@ -332,27 +332,27 @@ int __spi_config (am_lpc82x_spi_dma_dev_t *p_this)
         mode_flag |= AMHW_LPC_SPI_CFG_LOOP;
     }
 
-    /* ÉèÖÃÄ£Ê½(¿ÉÔÚÕâÀïÉèÖÃÖ÷´Ó»úÄ£Ê½) */
+    /* è®¾ç½®æ¨¡å¼(å¯åœ¨è¿™é‡Œè®¾ç½®ä¸»ä»Žæœºæ¨¡å¼) */
     amhw_lpc_spi_cfg_set(p_hw_spi,
                      (mode_flag              |
                          AMHW_LPC_SPI_CFG_ENABLE |
                          AMHW_LPC_SPI_CFG_MASTER));
 
-    /* ÉèÖÃµ¥Ö¡Êý¾ÝÎ»Êý */
+    /* è®¾ç½®å•å¸§æ•°æ®ä½æ•° */
     amhw_lpc_spi_data_flen_set(p_hw_spi, p_trans->bits_per_word);
 
-    /* ÉèÖÃ·ÖÆµÖµ£¬¼´SPIËÙÂÊ */
+    /* è®¾ç½®åˆ†é¢‘å€¼ï¼Œå³SPIé€ŸçŽ‡ */
     div_val = (am_clk_rate_get(p_this->p_devinfo->clk_id) / p_trans->speed_hz);
     amhw_lpc_spi_div_set(p_hw_spi, div_val);
 
-    /* Çå³ý×´Ì¬Î» */
+    /* æ¸…é™¤çŠ¶æ€ä½ */
   amhw_lpc_spi_stat_clear(p_hw_spi,
                       AMHW_LPC_SPI_STAT_RXOVERRUN   |
               AMHW_LPC_SPI_STAT_TXUNDERRUN  |
               AMHW_LPC_SPI_STAT_SELNASSERT  |
               AMHW_LPC_SPI_STAT_SELNDEASSERT);
 
-  /* Ê¹ÄÜSPI½ÓÊÕ·¢ËÍÒç³öÖÐ¶Ï,ÔÚ´Ó»úÄ£Ê½ÏÂ²Å»áÆð×÷ÓÃ  */
+  /* ä½¿èƒ½SPIæŽ¥æ”¶å‘é€æº¢å‡ºä¸­æ–­,åœ¨ä»Žæœºæ¨¡å¼ä¸‹æ‰ä¼šèµ·ä½œç”¨  */
   amhw_lpc_spi_int_enable(p_hw_spi,
                 AMHW_LPC_SPI_INTENSET_RXOVERRUN |
                 AMHW_LPC_SPI_INTENSET_TXUNDERRUN);
@@ -368,40 +368,40 @@ void __spi_dma_isr (void *p_arg, int stat)
     am_lpc82x_spi_dma_dev_t  *p_this   = (am_lpc82x_spi_dma_dev_t *)p_arg;
     amhw_lpc_spi_t           *p_hw_spi = (amhw_lpc_spi_t *)(p_this->p_devinfo->spi_regbase);
 
-    /* Èç¹ûÊÇÖÐ¶ÏA·¢Éú */
+    /* å¦‚æžœæ˜¯ä¸­æ–­Aå‘ç”Ÿ */
     if (stat == AM_LPC82X_DMA_STAT_INTA) {
 
         if (p_this->dma_trans_flg == 1) {
             p_this->dma_trans_num -= 1024;
             p_this->dma_trans_count++;
 
-            /* ½Ó×Å´«Êäµ±Ç°trans */
+            /* æŽ¥ç€ä¼ è¾“å½“å‰trans */
             __spi_mst_sm_event(p_this, __SPI_EVT_DMA_TRANS_DATA);
 
-        /* ±íÃ÷µ±Ç°´«ÊäÒÑ¾­Ð¡ÓÚ1024¸ö³¤¶È£¬ÕâÒ»´ÎÖÐ¶Ï²úÉúÊ±£¬µ±Ç°µÄTran¿Ï¶¨´«ÊäÍê³É */
+        /* è¡¨æ˜Žå½“å‰ä¼ è¾“å·²ç»å°äºŽ1024ä¸ªé•¿åº¦ï¼Œè¿™ä¸€æ¬¡ä¸­æ–­äº§ç”Ÿæ—¶ï¼Œå½“å‰çš„Tranè‚¯å®šä¼ è¾“å®Œæˆ */
         } else {
 
-            /* ¼ÇÂ¼³É¹¦´«ËÍ×Ö½ÚÊý */
+            /* è®°å½•æˆåŠŸä¼ é€å­—èŠ‚æ•° */
             if (p_this->p_cur_trans->p_txbuf != NULL) {
                 p_this->p_cur_msg->actual_length += (p_this->p_cur_trans->nbytes)
                                 *(p_this->p_cur_spi_dev->bits_per_word < 9 ? 1 : 2);
             }
 
-            /* ÏÂÒ»¸ötrans´«Êä¾ÍÐ÷ */
+            /* ä¸‹ä¸€ä¸ªtransä¼ è¾“å°±ç»ª */
             __spi_mst_sm_event(p_this, __SPI_EVT_TRANS_LAUNCH);
 
-            /* µÈ´ýSPIÊý¾Ý³¹µ×·¢ËÍ½áÊø */
+            /* ç­‰å¾…SPIæ•°æ®å½»åº•å‘é€ç»“æŸ */
              while(!(amhw_lpc_spi_stat_get(p_hw_spi) & AMHW_LPC_SPI_STAT_IDLE));
         }
 
     } else {
-        /* ÖÐ¶ÏÔ´²»Æ¥Åä */
+        /* ä¸­æ–­æºä¸åŒ¹é… */
     }
 }
 
 /**
- * \brief Ìí¼ÓÒ»Ìõ message µ½¿ØÖÆÆ÷´«ÊäÁÐ±íÄ©Î²
- * \attention µ÷ÓÃ´Ëº¯Êý±ØÐëËø¶¨¿ØÖÆÆ÷
+ * \brief æ·»åŠ ä¸€æ¡ message åˆ°æŽ§åˆ¶å™¨ä¼ è¾“åˆ—è¡¨æœ«å°¾
+ * \attention è°ƒç”¨æ­¤å‡½æ•°å¿…é¡»é”å®šæŽ§åˆ¶å™¨
  */
 am_static_inline
 void __spi_msg_in (am_lpc82x_spi_dma_dev_t *p_dev, struct am_spi_message *p_msg)
@@ -411,8 +411,8 @@ void __spi_msg_in (am_lpc82x_spi_dma_dev_t *p_dev, struct am_spi_message *p_msg)
 }
 
 /**
- * \brief ´Ó¿ØÖÆÆ÷´«ÊäÁÐ±í±íÍ·È¡³öÒ»Ìõ message
- * \attention µ÷ÓÃ´Ëº¯Êý±ØÐëËø¶¨¿ØÖÆÆ÷
+ * \brief ä»ŽæŽ§åˆ¶å™¨ä¼ è¾“åˆ—è¡¨è¡¨å¤´å–å‡ºä¸€æ¡ message
+ * \attention è°ƒç”¨æ­¤å‡½æ•°å¿…é¡»é”å®šæŽ§åˆ¶å™¨
  */
 am_static_inline
 struct am_spi_message *__spi_msg_out (am_lpc82x_spi_dma_dev_t *p_dev)
@@ -427,8 +427,8 @@ struct am_spi_message *__spi_msg_out (am_lpc82x_spi_dma_dev_t *p_dev)
 }
 
 /**
- * \brief ´ÓmessageÁÐ±í±íÍ·È¡³öÒ»Ìõ transfer
- * \attention µ÷ÓÃ´Ëº¯Êý±ØÐëËø¶¨¿ØÖÆÆ÷
+ * \brief ä»Žmessageåˆ—è¡¨è¡¨å¤´å–å‡ºä¸€æ¡ transfer
+ * \attention è°ƒç”¨æ­¤å‡½æ•°å¿…é¡»é”å®šæŽ§åˆ¶å™¨
  */
 am_static_inline
 struct am_spi_transfer *__spi_trans_out (am_spi_message_t *msg)
@@ -443,7 +443,7 @@ struct am_spi_transfer *__spi_trans_out (am_spi_message_t *msg)
 }
 
 /**
- * \brief SPI ´«ÊäÊý¾Ýº¯Êý
+ * \brief SPI ä¼ è¾“æ•°æ®å‡½æ•°
  */
 am_local
 int __spi_msg_start (void              *p_drv,
@@ -455,22 +455,22 @@ int __spi_msg_start (void              *p_drv,
 
     int key;
 
-    p_this->p_cur_spi_dev  = p_dev;                         /* ½«µ±Ç°Éè±¸²ÎÊýÐÅÏ¢´æÈë */
-    p_this->p_cur_msg      = p_msg;                         /* ½«µ±Ç°Éè±¸´«ÊäÏûÏ¢´æÈë */
+    p_this->p_cur_spi_dev  = p_dev;                         /* å°†å½“å‰è®¾å¤‡å‚æ•°ä¿¡æ¯å­˜å…¥ */
+    p_this->p_cur_msg      = p_msg;                         /* å°†å½“å‰è®¾å¤‡ä¼ è¾“æ¶ˆæ¯å­˜å…¥ */
 
-    /* Éè±¸ÓÐÐ§ÐÔ¼ì²é */
+    /* è®¾å¤‡æœ‰æ•ˆæ€§æ£€æŸ¥ */
     if ((p_drv              == NULL) ||
         (p_dev              == NULL) ||
         (p_msg              == NULL) ){
         return -AM_EINVAL;
     }
 
-    /* Çå³ý´«ÊäÍê³É½áÊøÎ» */
+    /* æ¸…é™¤ä¼ è¾“å®Œæˆç»“æŸä½ */
     amhw_lpc_spi_txctl_clear(p_hw_spi, AMHW_LPC_SPI_TXDATCTL_EOT);
 
     key = am_int_cpu_lock();
 
-    /* µ±Ç°ÕýÔÚ´¦ÀíÏûÏ¢£¬Ö»ÐèÒª½«ÐÂµÄÏûÏ¢¼ÓÈëÁ´±í¼´¿É */
+    /* å½“å‰æ­£åœ¨å¤„ç†æ¶ˆæ¯ï¼Œåªéœ€è¦å°†æ–°çš„æ¶ˆæ¯åŠ å…¥é“¾è¡¨å³å¯ */
     if (p_this->busy) {
         __spi_msg_in(p_this, p_msg);
         am_int_cpu_unlock(key);
@@ -478,17 +478,17 @@ int __spi_msg_start (void              *p_drv,
     } else {
         p_this->busy = AM_TRUE;
         __spi_msg_in(p_this, p_msg);
-        p_msg->status = -AM_EISCONN; /* ÕýÔÚÅÅ¶ÓÖÐ */
+        p_msg->status = -AM_EISCONN; /* æ­£åœ¨æŽ’é˜Ÿä¸­ */
         am_int_cpu_unlock(key);
 
-        /* Æô¶¯×´Ì¬»ú */
+        /* å¯åŠ¨çŠ¶æ€æœº */
         return __spi_mst_sm_event(p_this, __SPI_EVT_TRANS_LAUNCH);
     }
 }
 
 
 /**
- * \brief  SPI Ê¹ÓÃDMA´«Êä
+ * \brief  SPI ä½¿ç”¨DMAä¼ è¾“
  */
 am_local
 int __spi_dma_trans (am_lpc82x_spi_dma_dev_t *p_dev)
@@ -500,36 +500,36 @@ int __spi_dma_trans (am_lpc82x_spi_dma_dev_t *p_dev)
     am_lpc82x_dma_controller_t          *p_ctr_tx    = p_this->p_ctr_tx;
     am_lpc82x_dma_controller_t          *p_ctr_rx    = p_this->p_ctr_rx;
 
-    const uint16_t                      *p_tx_buf    = NULL; /* Ö¸ÏòÓÃ»§·¢ËÍ»º³åÇøÖ¸Õë */
-          uint16_t                      *p_rx_buf    = NULL; /* Ö¸ÏòÓÃ»§½ÓÊÕ»º³åÇøÖ¸Õë */
+    const uint16_t                      *p_tx_buf    = NULL; /* æŒ‡å‘ç”¨æˆ·å‘é€ç¼“å†²åŒºæŒ‡é’ˆ */
+          uint16_t                      *p_rx_buf    = NULL; /* æŒ‡å‘ç”¨æˆ·æŽ¥æ”¶ç¼“å†²åŒºæŒ‡é’ˆ */
 
-          p_this->rx_trash      = 0;                         /* ¶ªÆúÊý¾ÝµÄÁÙÊ±½ÓÊÕ±äÁ¿ */
+          p_this->rx_trash      = 0;                         /* ä¸¢å¼ƒæ•°æ®çš„ä¸´æ—¶æŽ¥æ”¶å˜é‡ */
 
-          p_this->p_tx_buf_eot = 0;                          /* Ò»Ö¡ÖÐµÄ×îºóÒ»¸öÊý¾Ý */
+          p_this->p_tx_buf_eot = 0;                          /* ä¸€å¸§ä¸­çš„æœ€åŽä¸€ä¸ªæ•°æ® */
 
 
 
-    uint8_t    eot_nbyte    = 0;    /* ·¢ËÍ½áÊø×ÖµÄÊý¾Ý×Ö½ÚÊý */
-    uint32_t   dma_flags[3] = {0};  /* DMA·¢ËÍÍ¨µÀÃèÊö·û */
+    uint8_t    eot_nbyte    = 0;    /* å‘é€ç»“æŸå­—çš„æ•°æ®å­—èŠ‚æ•° */
+    uint32_t   dma_flags[3] = {0};  /* DMAå‘é€é€šé“æè¿°ç¬¦ */
 
-    /* Ö»½ÓÊÕ²»·¢ËÍÊý¾Ý */
+    /* åªæŽ¥æ”¶ä¸å‘é€æ•°æ® */
     if (p_cur_trans->p_txbuf == NULL) {
         if (p_cur_trans->flags & AM_SPI_READ_MOSI_HIGH) {
-            p_tx_buf = &__const_high;                       /* MOSI½ÓÊÕÊ±¸ßµçÆ½ */
+            p_tx_buf = &__const_high;                       /* MOSIæŽ¥æ”¶æ—¶é«˜ç”µå¹³ */
         } else {
-            p_tx_buf = &__const_low;                        /* MOSI½ÓÊÕÊ±µÍµçÆ½ */
+            p_tx_buf = &__const_low;                        /* MOSIæŽ¥æ”¶æ—¶ä½Žç”µå¹³ */
         }
         p_this->p_tx_buf_eot = AM_SBF(p_cur_trans->bits_per_word - 1, 24) |
                        *((uint16_t *)p_tx_buf);
 
-    /* ´æÔÚ·¢ËÍÊý¾Ý */
+    /* å­˜åœ¨å‘é€æ•°æ® */
     } else {
-        p_tx_buf = (const uint16_t *)p_cur_trans->p_txbuf; /* MOSI·¢ËÍÓÃ»§Êý¾Ý */
+        p_tx_buf = (const uint16_t *)p_cur_trans->p_txbuf; /* MOSIå‘é€ç”¨æˆ·æ•°æ® */
         if (p_cur_trans->bits_per_word > 8) {
 
             /*
-             * Õâ¸öÊÇÓÃÓÚÉèÖÃSPIµÄÊý¾Ý¿ØÖÆ¼Ä´æÆ÷TXDATCTL£¬µÍ16Î»ÊÇÉèÖÃ·¢ËÍÊý¾ÝµÄ»º³åÇø£¬
-             * ¸ß24 ~ 27Î»ÊÇÉèÖÃ´«ÊäµÄÊý¾Ý¿í¶È, µÚ20Î»ÊÇÉèÖÃ´«ÊäµÄ½áÊø(½öÓÃÓÚ×îºóÒ»´Î´«Êäºó½áÊøSPI²¢ÊÍ·ÅÆ¬Ñ¡ÐÅºÅ)
+             * è¿™ä¸ªæ˜¯ç”¨äºŽè®¾ç½®SPIçš„æ•°æ®æŽ§åˆ¶å¯„å­˜å™¨TXDATCTLï¼Œä½Ž16ä½æ˜¯è®¾ç½®å‘é€æ•°æ®çš„ç¼“å†²åŒºï¼Œ
+             * é«˜24 ~ 27ä½æ˜¯è®¾ç½®ä¼ è¾“çš„æ•°æ®å®½åº¦, ç¬¬20ä½æ˜¯è®¾ç½®ä¼ è¾“çš„ç»“æŸ(ä»…ç”¨äºŽæœ€åŽä¸€æ¬¡ä¼ è¾“åŽç»“æŸSPIå¹¶é‡Šæ”¾ç‰‡é€‰ä¿¡å·)
              *
              */
             p_this->p_tx_buf_eot = AM_SBF(p_cur_trans->bits_per_word - 1, 24) |
@@ -540,41 +540,41 @@ int __spi_dma_trans (am_lpc82x_spi_dma_dev_t *p_dev)
         }
     }
 
-    /* ÅäÖÃÖ¡½áÊøµÄ×îºóÒ»¸ö×Ö·ûÊÇ·ñ½áÊøÆ¬Ñ¡ÐÅºÅ£¨Ó²¼þÆ¬Ñ¡£© */
+    /* é…ç½®å¸§ç»“æŸçš„æœ€åŽä¸€ä¸ªå­—ç¬¦æ˜¯å¦ç»“æŸç‰‡é€‰ä¿¡å·ï¼ˆç¡¬ä»¶ç‰‡é€‰ï¼‰ */
     p_this->p_tx_buf_eot |= AMHW_LPC_SPI_TXDATCTL_EOT;
 
-    /* Ö»·¢ËÍ²»½ÓÊÕÊý¾Ý */
+    /* åªå‘é€ä¸æŽ¥æ”¶æ•°æ® */
     if (p_cur_trans->p_rxbuf == NULL) {
-        p_rx_buf = &p_this->rx_trash ;                           /* Ö¸Ïò±äÁ¿£¬¶ªÆúÊý¾Ý */
+        p_rx_buf = &p_this->rx_trash ;                           /* æŒ‡å‘å˜é‡ï¼Œä¸¢å¼ƒæ•°æ® */
 
-      /* ´æÔÚ½ÓÊÕÊý¾Ý */
+      /* å­˜åœ¨æŽ¥æ”¶æ•°æ® */
     } else {
-       p_rx_buf = p_cur_trans->p_rxbuf;                 /* Ö¸ÏòÓÃ»§½ÓÊÕ»º³åÇø */
+       p_rx_buf = p_cur_trans->p_rxbuf;                 /* æŒ‡å‘ç”¨æˆ·æŽ¥æ”¶ç¼“å†²åŒº */
     }
 
-    /* DMA·¢ËÍÍ¨µÀÅäÖÃ */
-    dma_flags[0] = AM_LPC82X_DMA_XFER_VALID        |    /* µ±Ç°Í¨µÀÃèÊö·ûÓÐÐ§ */
-                   AM_LPC82X_DMA_XFER_RELOAD       |    /* ÔÊÐíÖØÔØÍ¨µÀÃèÊö·û */
-                   AM_LPC82X_DMA_XFER_SWTRIG       |    /* Èí¼þ´¥·¢ */
-                   AM_LPC82X_DMA_XFER_DSTINC_NOINC;     /* ÉèÖÃÄ¿±êµØÖ·²»µÝÔö */
+    /* DMAå‘é€é€šé“é…ç½® */
+    dma_flags[0] = AM_LPC82X_DMA_XFER_VALID        |    /* å½“å‰é€šé“æè¿°ç¬¦æœ‰æ•ˆ */
+                   AM_LPC82X_DMA_XFER_RELOAD       |    /* å…è®¸é‡è½½é€šé“æè¿°ç¬¦ */
+                   AM_LPC82X_DMA_XFER_SWTRIG       |    /* è½¯ä»¶è§¦å‘ */
+                   AM_LPC82X_DMA_XFER_DSTINC_NOINC;     /* è®¾ç½®ç›®æ ‡åœ°å€ä¸é€’å¢ž */
 
-    /* DMA·¢ËÍ½áÊø×ÖÍ¨µÀÅäÖÃ */
-    dma_flags[1] = AM_LPC82X_DMA_XFER_VALID        |    /* µ±Ç°Í¨µÀÃèÊö·ûÓÐÐ§ */
-                   AM_LPC82X_DMA_XFER_SWTRIG       |    /* Èí¼þ´¥·¢ */
-                   AM_LPC82X_DMA_XFER_CLRTRIG      |    /* Çå³ý´¥·¢±êÖ¾ */
-                   AM_LPC82X_DMA_XFER_DSTINC_NOINC |    /* ÉèÖÃÄ¿±êµØÖ·²»Ôö¼Ó */
-                   AM_LPC82X_DMA_XFER_WIDTH_32BIT  |    /* Êý¾Ý¿í¶È32Î» */
-                   AM_LPC82X_DMA_XFER_SRCINC_NOINC;     /* Ô´µØÖ·²»µÝÔö */
+    /* DMAå‘é€ç»“æŸå­—é€šé“é…ç½® */
+    dma_flags[1] = AM_LPC82X_DMA_XFER_VALID        |    /* å½“å‰é€šé“æè¿°ç¬¦æœ‰æ•ˆ */
+                   AM_LPC82X_DMA_XFER_SWTRIG       |    /* è½¯ä»¶è§¦å‘ */
+                   AM_LPC82X_DMA_XFER_CLRTRIG      |    /* æ¸…é™¤è§¦å‘æ ‡å¿— */
+                   AM_LPC82X_DMA_XFER_DSTINC_NOINC |    /* è®¾ç½®ç›®æ ‡åœ°å€ä¸å¢žåŠ  */
+                   AM_LPC82X_DMA_XFER_WIDTH_32BIT  |    /* æ•°æ®å®½åº¦32ä½ */
+                   AM_LPC82X_DMA_XFER_SRCINC_NOINC;     /* æºåœ°å€ä¸é€’å¢ž */
 
 
-    /* DMA½ÓÊÕÍ¨µÀÅäÖÃ */
-    dma_flags[2] = AM_LPC82X_DMA_XFER_VALID        |      /* µ±Ç°ÅäÖÃÃèÊö·ûÓÐÐ§ */
-                   AM_LPC82X_DMA_XFER_SWTRIG       |      /* Èí¼þ´¥·¢ */
-                   AM_LPC82X_DMA_XFER_CLRTRIG      |      /* Çå³ý´¥·¢±êÖ¾ */
-                   AM_LPC82X_DMA_XFER_SRCINC_NOINC |      /* Ô´µØÖ·²»µÝÔö */
-                   AM_LPC82X_DMA_XFER_SETINTA;            /* Ê¹ÄÜÖÐ¶ÏA */
+    /* DMAæŽ¥æ”¶é€šé“é…ç½® */
+    dma_flags[2] = AM_LPC82X_DMA_XFER_VALID        |      /* å½“å‰é…ç½®æè¿°ç¬¦æœ‰æ•ˆ */
+                   AM_LPC82X_DMA_XFER_SWTRIG       |      /* è½¯ä»¶è§¦å‘ */
+                   AM_LPC82X_DMA_XFER_CLRTRIG      |      /* æ¸…é™¤è§¦å‘æ ‡å¿— */
+                   AM_LPC82X_DMA_XFER_SRCINC_NOINC |      /* æºåœ°å€ä¸é€’å¢ž */
+                   AM_LPC82X_DMA_XFER_SETINTA;            /* ä½¿èƒ½ä¸­æ–­A */
 
-    /* ÉèÖÃDMAÊý¾ÝÎ»¿í */
+    /* è®¾ç½®DMAæ•°æ®ä½å®½ */
     if (p_cur_trans->bits_per_word > 8) {
         dma_flags[0] |= AM_LPC82X_DMA_XFER_WIDTH_16BIT;
         dma_flags[2] |= AM_LPC82X_DMA_XFER_WIDTH_16BIT;
@@ -585,70 +585,70 @@ int __spi_dma_trans (am_lpc82x_spi_dma_dev_t *p_dev)
         eot_nbyte     = 1;
     }
 
-    /* ·¢ËÍ»º³åÇøÓÐÐ§ */
+    /* å‘é€ç¼“å†²åŒºæœ‰æ•ˆ */
     if (p_cur_trans->p_txbuf != NULL) {
-        dma_flags[0] |= AM_LPC82X_DMA_XFER_SRCINC_1X;      /* Ô´µØÖ·µÝÔö¿í¶È */
+        dma_flags[0] |= AM_LPC82X_DMA_XFER_SRCINC_1X;      /* æºåœ°å€é€’å¢žå®½åº¦ */
     } else {
-        dma_flags[0] |= AM_LPC82X_DMA_XFER_SRCINC_NOINC;   /* Ô´µØÖ·²»µÝÔö */
+        dma_flags[0] |= AM_LPC82X_DMA_XFER_SRCINC_NOINC;   /* æºåœ°å€ä¸é€’å¢ž */
     }
 
-    /* ½ÓÊÕ»º³åÇøÓÐÐ§ */
+    /* æŽ¥æ”¶ç¼“å†²åŒºæœ‰æ•ˆ */
     if (p_cur_trans->p_rxbuf != NULL) {
-        dma_flags[2] |= AM_LPC82X_DMA_XFER_DSTINC_1X;      /* Ä¿±êµØÖ·µÝÔö¿í¶È */
+        dma_flags[2] |= AM_LPC82X_DMA_XFER_DSTINC_1X;      /* ç›®æ ‡åœ°å€é€’å¢žå®½åº¦ */
     } else {
-        dma_flags[2] |= AM_LPC82X_DMA_XFER_DSTINC_NOINC ;            /* Ä¿±êµØÖ·²»µÝÔö   */
+        dma_flags[2] |= AM_LPC82X_DMA_XFER_DSTINC_NOINC ;            /* ç›®æ ‡åœ°å€ä¸é€’å¢ž   */
     }
 
-    /* µ±Ö»·¢ÉúÒ»´Î´«ÊäÊ± */
+    /* å½“åªå‘ç”Ÿä¸€æ¬¡ä¼ è¾“æ—¶ */
     if (p_this->dma_trans_num == 1) {
 
-        /* ½¨Á¢½áÊø×ÖÍ¨µÀÃèÊö·û */
-        am_lpc82x_dma_xfer_desc_build(&p_this->g_desc[0],                                  /* ÃèÊö·û */
-                                        (uint32_t)&p_this->p_tx_buf_eot,                             /* Ô´¶ËBUFF */
-                                        (uint32_t)&(p_hw_spi->txdatctl),                     /* Ä¿±êBUFF */
-                                         4,                                                  /* TX×Ö½ÚÊý */
-                                         dma_flags[1]);                                      /* ´«ÊäÅäÖÃ */
+        /* å»ºç«‹ç»“æŸå­—é€šé“æè¿°ç¬¦ */
+        am_lpc82x_dma_xfer_desc_build(&p_this->g_desc[0],                                  /* æè¿°ç¬¦ */
+                                        (uint32_t)&p_this->p_tx_buf_eot,                             /* æºç«¯BUFF */
+                                        (uint32_t)&(p_hw_spi->txdatctl),                     /* ç›®æ ‡BUFF */
+                                         4,                                                  /* TXå­—èŠ‚æ•° */
+                                         dma_flags[1]);                                      /* ä¼ è¾“é…ç½® */
         /* RX */
         if (p_cur_trans->p_rxbuf != NULL) {
-            /* ½¨Á¢RXÍ¨µÀÃèÊö·û */
-            am_lpc82x_dma_xfer_desc_build(&p_this->g_desc[2],                                  /* ÃèÊö·û */
-                                            (uint32_t)&(p_hw_spi->rxdat),                        /* Ô´¶ËBUFF */
-                                            (uint32_t)&p_rx_buf[p_this->dma_trans_count * 512 * eot_nbyte], /* Ä¿±êBUFF */
-                                            p_this->dma_trans_num * eot_nbyte,                   /* RX×Ö½ÚÊý */                                            dma_flags[2]);                                       /* ´«ÊäÅäÖÃ */
+            /* å»ºç«‹RXé€šé“æè¿°ç¬¦ */
+            am_lpc82x_dma_xfer_desc_build(&p_this->g_desc[2],                                  /* æè¿°ç¬¦ */
+                                            (uint32_t)&(p_hw_spi->rxdat),                        /* æºç«¯BUFF */
+                                            (uint32_t)&p_rx_buf[p_this->dma_trans_count * 512 * eot_nbyte], /* ç›®æ ‡BUFF */
+                                            p_this->dma_trans_num * eot_nbyte,                   /* RXå­—èŠ‚æ•° */                                            dma_flags[2]);                                       /* ä¼ è¾“é…ç½® */
         } else {
 
-            /* ½¨Á¢RXÍ¨µÀÃèÊö·û */
-            am_lpc82x_dma_xfer_desc_build(&p_this->g_desc[2],                                  /* ÃèÊö·û */
-                                            (uint32_t)&(p_hw_spi->rxdat),                        /* Ô´¶ËBUFF */
-                                            (uint32_t)p_rx_buf,                                  /* Ä¿±êBUFF */
-                                            p_this->dma_trans_num * eot_nbyte,                   /* TX×Ö½ÚÊý */
+            /* å»ºç«‹RXé€šé“æè¿°ç¬¦ */
+            am_lpc82x_dma_xfer_desc_build(&p_this->g_desc[2],                                  /* æè¿°ç¬¦ */
+                                            (uint32_t)&(p_hw_spi->rxdat),                        /* æºç«¯BUFF */
+                                            (uint32_t)p_rx_buf,                                  /* ç›®æ ‡BUFF */
+                                            p_this->dma_trans_num * eot_nbyte,                   /* TXå­—èŠ‚æ•° */
                                             dma_flags[2]);
 
         }
 
         p_this->dma_trans_flg = 0;
 
-    /* ·¢ËÍ¶à´Î´«ÊäÊ± */
+    /* å‘é€å¤šæ¬¡ä¼ è¾“æ—¶ */
     } else {
 
-         /* ´«Êä³¬¹ý1024¸ö³¤¶ÈÊ± */
+         /* ä¼ è¾“è¶…è¿‡1024ä¸ªé•¿åº¦æ—¶ */
          if (p_this->dma_trans_num > 1024) {
 
              /* TX */
              if (p_cur_trans->p_txbuf != NULL) {
-                 /* ½¨Á¢TXÍ¨µÀÃèÊö·û */
-                 am_lpc82x_dma_xfer_desc_build(&p_this->g_desc[0],                                    /* ÃèÊö·û.  */
-                                                  (uint32_t)&p_tx_buf[p_this->dma_trans_count * 512 * eot_nbyte],  /* Ô´¶ËBUFF */
-                                                  (uint32_t)&(p_hw_spi->txdat),                         /* Ä¿±êBUFF */
-                                                  1024 *  eot_nbyte,                                    /* TX×Ö½ÚÊý */
-                                                  dma_flags[0]);                                        /* ´«ÊäÅäÖÃ */
+                 /* å»ºç«‹TXé€šé“æè¿°ç¬¦ */
+                 am_lpc82x_dma_xfer_desc_build(&p_this->g_desc[0],                                    /* æè¿°ç¬¦.  */
+                                                  (uint32_t)&p_tx_buf[p_this->dma_trans_count * 512 * eot_nbyte],  /* æºç«¯BUFF */
+                                                  (uint32_t)&(p_hw_spi->txdat),                         /* ç›®æ ‡BUFF */
+                                                  1024 *  eot_nbyte,                                    /* TXå­—èŠ‚æ•° */
+                                                  dma_flags[0]);                                        /* ä¼ è¾“é…ç½® */
              } else {
 
-                 /* ½¨Á¢TXÍ¨µÀÃèÊö·û */
-                 am_lpc82x_dma_xfer_desc_build(&p_this->g_desc[0],                                    /* ÃèÊö·û.  */
-                                                  (uint32_t)p_tx_buf,                                   /* Ô´¶ËBUFF */
-                                                  (uint32_t)&(p_hw_spi->txdat),                         /* Ä¿±êBUFF */
-                                                  1024 *  eot_nbyte,                                    /* TX×Ö½ÚÊý */
+                 /* å»ºç«‹TXé€šé“æè¿°ç¬¦ */
+                 am_lpc82x_dma_xfer_desc_build(&p_this->g_desc[0],                                    /* æè¿°ç¬¦.  */
+                                                  (uint32_t)p_tx_buf,                                   /* æºç«¯BUFF */
+                                                  (uint32_t)&(p_hw_spi->txdat),                         /* ç›®æ ‡BUFF */
+                                                  1024 *  eot_nbyte,                                    /* TXå­—èŠ‚æ•° */
                                                   dma_flags[0]);
 
              }
@@ -656,71 +656,71 @@ int __spi_dma_trans (am_lpc82x_spi_dma_dev_t *p_dev)
              /* RX */
              if (p_cur_trans->p_rxbuf != NULL) {
 
-                 /* ½¨Á¢RXÍ¨µÀÃèÊö·û */
-                 am_lpc82x_dma_xfer_desc_build(&p_this->g_desc[2],                                    /* ÃèÊö·û */
-                                                 (uint32_t)&(p_hw_spi->rxdat),                          /* Ô´¶ËBUFF */
-                                                 (uint32_t)&p_rx_buf[p_this->dma_trans_count * 512 * eot_nbyte],   /* Ä¿±êBUFF */
-                                                  1024 *  eot_nbyte,                                    /* RX×Ö½ÚÊý */
-                                                  dma_flags[2]);                                        /* ´«ÊäÅäÖÃ */
+                 /* å»ºç«‹RXé€šé“æè¿°ç¬¦ */
+                 am_lpc82x_dma_xfer_desc_build(&p_this->g_desc[2],                                    /* æè¿°ç¬¦ */
+                                                 (uint32_t)&(p_hw_spi->rxdat),                          /* æºç«¯BUFF */
+                                                 (uint32_t)&p_rx_buf[p_this->dma_trans_count * 512 * eot_nbyte],   /* ç›®æ ‡BUFF */
+                                                  1024 *  eot_nbyte,                                    /* RXå­—èŠ‚æ•° */
+                                                  dma_flags[2]);                                        /* ä¼ è¾“é…ç½® */
              } else {
-                 /* ½¨Á¢RXÍ¨µÀÃèÊö·û */
-                 am_lpc82x_dma_xfer_desc_build(&p_this->g_desc[2],                                      /* ÃèÊö·û */
-                                                 (uint32_t)&(p_hw_spi->rxdat),                            /* Ô´¶ËBUFF */
-                                                 (uint32_t)p_rx_buf,                                      /* Ä¿±êBUFF */
-                                                  1024 *  eot_nbyte,                                      /* RX×Ö½ÚÊý */
-                                                  dma_flags[2]);                                          /* ´«ÊäÅäÖÃ */
+                 /* å»ºç«‹RXé€šé“æè¿°ç¬¦ */
+                 am_lpc82x_dma_xfer_desc_build(&p_this->g_desc[2],                                      /* æè¿°ç¬¦ */
+                                                 (uint32_t)&(p_hw_spi->rxdat),                            /* æºç«¯BUFF */
+                                                 (uint32_t)p_rx_buf,                                      /* ç›®æ ‡BUFF */
+                                                  1024 *  eot_nbyte,                                      /* RXå­—èŠ‚æ•° */
+                                                  dma_flags[2]);                                          /* ä¼ è¾“é…ç½® */
 
              }
 
-             /*¡¡±í¼Ç´«Êä³¤¶È´óÓÚ1024¸ö³¤¶È,´ËÊ±²»ÐèÒª·¢´«Êä½áÊøÃèÊö·û */
+             /*ã€€è¡¨è®°ä¼ è¾“é•¿åº¦å¤§äºŽ1024ä¸ªé•¿åº¦,æ­¤æ—¶ä¸éœ€è¦å‘ä¼ è¾“ç»“æŸæè¿°ç¬¦ */
              p_this->dma_trans_flg = 1;
 
-         } else { /* ´«ÊäÐ¡ÓÚ»òµÈÓÚ1024¸ö³¤¶ÈÊ±  */
+         } else { /* ä¼ è¾“å°äºŽæˆ–ç­‰äºŽ1024ä¸ªé•¿åº¦æ—¶  */
 
              /* TX */
              if (p_cur_trans->p_txbuf != NULL) {
-                 /* ½¨Á¢TXÍ¨µÀÃèÊö·û */
-                 am_lpc82x_dma_xfer_desc_build(&p_this->g_desc[0],                                    /* ÃèÊö·û */
-                                                  (uint32_t)&p_tx_buf[p_this->dma_trans_count * 512 * eot_nbyte],  /* Ô´¶ËBUFF */
-                                                  (uint32_t)&(p_hw_spi->txdat),                         /* Ä¿±êBUFF */
-                                                  p_this->dma_trans_num * eot_nbyte - eot_nbyte,        /* TX×Ö½ÚÊý */
-                                                  dma_flags[0]);                                        /* ´«ÊäÅäÖÃ */
+                 /* å»ºç«‹TXé€šé“æè¿°ç¬¦ */
+                 am_lpc82x_dma_xfer_desc_build(&p_this->g_desc[0],                                    /* æè¿°ç¬¦ */
+                                                  (uint32_t)&p_tx_buf[p_this->dma_trans_count * 512 * eot_nbyte],  /* æºç«¯BUFF */
+                                                  (uint32_t)&(p_hw_spi->txdat),                         /* ç›®æ ‡BUFF */
+                                                  p_this->dma_trans_num * eot_nbyte - eot_nbyte,        /* TXå­—èŠ‚æ•° */
+                                                  dma_flags[0]);                                        /* ä¼ è¾“é…ç½® */
              } else {
 
-                 /* ½¨Á¢TXÍ¨µÀÃèÊö·û */
-                 am_lpc82x_dma_xfer_desc_build(&p_this->g_desc[0],                                    /* ÃèÊö·û.  */
-                                                  (uint32_t)p_tx_buf,                                   /* Ô´¶ËBUFF */
-                                                  (uint32_t)&(p_hw_spi->txdat),                         /* Ä¿±êBUFF */
-                                                  p_this->dma_trans_num * eot_nbyte - eot_nbyte,        /* TX×Ö½ÚÊý */
+                 /* å»ºç«‹TXé€šé“æè¿°ç¬¦ */
+                 am_lpc82x_dma_xfer_desc_build(&p_this->g_desc[0],                                    /* æè¿°ç¬¦.  */
+                                                  (uint32_t)p_tx_buf,                                   /* æºç«¯BUFF */
+                                                  (uint32_t)&(p_hw_spi->txdat),                         /* ç›®æ ‡BUFF */
+                                                  p_this->dma_trans_num * eot_nbyte - eot_nbyte,        /* TXå­—èŠ‚æ•° */
                                                   dma_flags[0]);
 
              }
 
-             /* ½¨Á¢½áÊø×ÖÍ¨µÀÃèÊö·û */
-             am_lpc82x_dma_xfer_desc_build(&p_this->g_desc[1],              /* ÃèÊö·û */
-                                             (uint32_t)&p_this->p_tx_buf_eot,         /* Ô´¶ËBUFF */
-                                             (uint32_t)&(p_hw_spi->txdatctl), /* Ä¿±êBUFF */
-                                              4,                              /* TX×Ö½ÚÊý */
-                                              dma_flags[1]);                  /* ´«ÊäÅäÖÃ */
+             /* å»ºç«‹ç»“æŸå­—é€šé“æè¿°ç¬¦ */
+             am_lpc82x_dma_xfer_desc_build(&p_this->g_desc[1],              /* æè¿°ç¬¦ */
+                                             (uint32_t)&p_this->p_tx_buf_eot,         /* æºç«¯BUFF */
+                                             (uint32_t)&(p_hw_spi->txdatctl), /* ç›®æ ‡BUFF */
+                                              4,                              /* TXå­—èŠ‚æ•° */
+                                              dma_flags[1]);                  /* ä¼ è¾“é…ç½® */
 
              /* RX */
              if (p_cur_trans->p_rxbuf != NULL) {
 
 
-                 /* ½¨Á¢RXÍ¨µÀÃèÊö·û */
-                 am_lpc82x_dma_xfer_desc_build(&p_this->g_desc[2],                                    /* ÃèÊö·û */
-                                                 (uint32_t)&(p_hw_spi->rxdat),                          /* Ô´¶ËBUFF */
-                                                 (uint32_t)&p_rx_buf[p_this->dma_trans_count * 512 * eot_nbyte],   /* Ä¿±êBUFF */
-                                                 p_this->dma_trans_num * eot_nbyte,                     /* TX×Ö½ÚÊý */
+                 /* å»ºç«‹RXé€šé“æè¿°ç¬¦ */
+                 am_lpc82x_dma_xfer_desc_build(&p_this->g_desc[2],                                    /* æè¿°ç¬¦ */
+                                                 (uint32_t)&(p_hw_spi->rxdat),                          /* æºç«¯BUFF */
+                                                 (uint32_t)&p_rx_buf[p_this->dma_trans_count * 512 * eot_nbyte],   /* ç›®æ ‡BUFF */
+                                                 p_this->dma_trans_num * eot_nbyte,                     /* TXå­—èŠ‚æ•° */
                                                  dma_flags[2]);
 
              } else {
-                 /* ½¨Á¢RXÍ¨µÀÃèÊö·û */
-                 am_lpc82x_dma_xfer_desc_build(&p_this->g_desc[2],                                      /* ÃèÊö·û */
-                                                 (uint32_t)&(p_hw_spi->rxdat),                            /* Ô´¶ËBUFF */
-                                                 (uint32_t)p_rx_buf,                                      /* Ä¿±êBUFF */
-                                                 p_this->dma_trans_num * eot_nbyte,                       /* TX×Ö½ÚÊý */
-                                                 dma_flags[2]);                                           /* ´«ÊäÅäÖÃ */
+                 /* å»ºç«‹RXé€šé“æè¿°ç¬¦ */
+                 am_lpc82x_dma_xfer_desc_build(&p_this->g_desc[2],                                      /* æè¿°ç¬¦ */
+                                                 (uint32_t)&(p_hw_spi->rxdat),                            /* æºç«¯BUFF */
+                                                 (uint32_t)p_rx_buf,                                      /* ç›®æ ‡BUFF */
+                                                 p_this->dma_trans_num * eot_nbyte,                       /* TXå­—èŠ‚æ•° */
+                                                 dma_flags[2]);                                           /* ä¼ è¾“é…ç½® */
 
              }
 
@@ -731,7 +731,7 @@ int __spi_dma_trans (am_lpc82x_spi_dma_dev_t *p_dev)
 
 
          if (p_this->dma_trans_flg == 0) {
-             /* DMAÁ¬½Ó·¢ËÍÍ¨µÀ */
+             /* DMAè¿žæŽ¥å‘é€é€šé“ */
              am_lpc82x_dma_xfer_desc_link(&p_this->g_desc[0], &p_this->g_desc[1]);
          }
     }
@@ -739,16 +739,16 @@ int __spi_dma_trans (am_lpc82x_spi_dma_dev_t *p_dev)
 //    if (amhw_lpc82x_dma_chan_periph_is_enable(AMHW_LPC82X_DMA, p_ctr_tx->chan))
 
 
-    /* ÖÃÎ»Æ¬Ñ¡ÐÅºÅ */
+    /* ç½®ä½ç‰‡é€‰ä¿¡å· */
     __spi_cs_on(p_this, p_this->p_cur_spi_dev);
 
-    /* Æô¶¯DMA´«Êä£¬ÂíÉÏ¿ªÊ¼´«Êä */
+    /* å¯åŠ¨DMAä¼ è¾“ï¼Œé©¬ä¸Šå¼€å§‹ä¼ è¾“ */
     am_lpc82x_dma_xfer_desc_startup(p_ctr_rx,
                                     &p_this->g_desc[2],
                                     __spi_dma_isr,
                                     (void *)p_this);
 
-    /* Æô¶¯DMA´«Êä£¬ÂíÉÏ¿ªÊ¼´«Êä */
+    /* å¯åŠ¨DMAä¼ è¾“ï¼Œé©¬ä¸Šå¼€å§‹ä¼ è¾“ */
     am_lpc82x_dma_xfer_desc_startup(p_ctr_tx,
                                     &p_this->g_desc[0],
                   __spi_dma_isr,
@@ -759,7 +759,7 @@ int __spi_dma_trans (am_lpc82x_spi_dma_dev_t *p_dev)
 
 /******************************************************************************/
 
-/*  ×´Ì¬»úÄÚ²¿×´Ì¬ÇÐ»» */
+/*  çŠ¶æ€æœºå†…éƒ¨çŠ¶æ€åˆ‡æ¢ */
 #define __SPI_NEXT_STATE(s, e) \
     do { \
         p_dev->state = (s); \
@@ -767,7 +767,7 @@ int __spi_dma_trans (am_lpc82x_spi_dma_dev_t *p_dev)
     } while(0)
 
 /**
- * \brief  SPI Ê¹ÓÃ×´Ì¬»ú´«Êä
+ * \brief  SPI ä½¿ç”¨çŠ¶æ€æœºä¼ è¾“
  */
 am_local
 int __spi_mst_sm_event (am_lpc82x_spi_dma_dev_t *p_dev, uint32_t event)
@@ -782,30 +782,30 @@ int __spi_mst_sm_event (am_lpc82x_spi_dma_dev_t *p_dev, uint32_t event)
 
     while (1) {
 
-        if (new_event != __SPI_EVT_NONE) {     /* ¼ì²éÐÂÊÂ¼þÊÇ·ñÀ´×ÔÄÚ²¿ */
+        if (new_event != __SPI_EVT_NONE) {     /* æ£€æŸ¥æ–°äº‹ä»¶æ˜¯å¦æ¥è‡ªå†…éƒ¨ */
             event     = new_event;
             new_event = __SPI_EVT_NONE;
         }
 
         switch (p_dev->state) {
 
-        case __SPI_ST_IDLE:         /* ¿ØÖÆÆ÷´¦ÓÚ¿ÕÏÐ×´Ì¬ */
+        case __SPI_ST_IDLE:         /* æŽ§åˆ¶å™¨å¤„äºŽç©ºé—²çŠ¶æ€ */
         {
             if (event != __SPI_EVT_TRANS_LAUNCH) {
-                return -AM_EINVAL;  /* ¿ÕÏÐ×´Ì¬µÈ´ýµÄÏûÏ¢±ØÐëÊÇÆô¶¯´«Êä */
+                return -AM_EINVAL;  /* ç©ºé—²çŠ¶æ€ç­‰å¾…çš„æ¶ˆæ¯å¿…é¡»æ˜¯å¯åŠ¨ä¼ è¾“ */
             }
-            /* ÇÐ»»µ½ÏûÏ¢¿ªÊ¼×´Ì¬£¬²»ÓÃbreak */
+            /* åˆ‡æ¢åˆ°æ¶ˆæ¯å¼€å§‹çŠ¶æ€ï¼Œä¸ç”¨break */
         }
         /* No break */
 
-        case __SPI_ST_MSG_START:    /* ÏûÏ¢¿ªÊ¼ */
+        case __SPI_ST_MSG_START:    /* æ¶ˆæ¯å¼€å§‹ */
         {
             am_spi_message_t  *p_cur_msg   = NULL;
 
             int key;
 
             if (event != __SPI_EVT_TRANS_LAUNCH) {
-                return -AM_EINVAL;  /* ÏûÏ¢¿ªÊ¼×´Ì¬µÈ´ýµÄÏûÏ¢±ØÐëÊÇÆô¶¯´«Êä */
+                return -AM_EINVAL;  /* æ¶ˆæ¯å¼€å§‹çŠ¶æ€ç­‰å¾…çš„æ¶ˆæ¯å¿…é¡»æ˜¯å¯åŠ¨ä¼ è¾“ */
             }
 
             key = am_int_cpu_lock();
@@ -815,7 +815,7 @@ int __spi_mst_sm_event (am_lpc82x_spi_dma_dev_t *p_dev, uint32_t event)
             if (p_cur_msg) {
                 p_cur_msg->status = -AM_EINPROGRESS;
             } else {
-                /* ½ûÄÜËùÓÐÖÐ¶Ï */
+                /* ç¦èƒ½æ‰€æœ‰ä¸­æ–­ */
                 amhw_lpc_spi_int_disable(p_hw_spi,
                                          AMHW_LPC_SPI_INTENCLR_RXRDY      |
                                          AMHW_LPC_SPI_INTENCLR_TXRDY      |
@@ -827,13 +827,13 @@ int __spi_mst_sm_event (am_lpc82x_spi_dma_dev_t *p_dev, uint32_t event)
             }
             am_int_cpu_unlock(key);
 
-            /* ÎÞÐèÒª´¦ÀíµÄÏûÏ¢ */
+            /* æ— éœ€è¦å¤„ç†çš„æ¶ˆæ¯ */
             if (p_cur_msg == NULL) {
                 __SPI_NEXT_STATE(__SPI_ST_IDLE, __SPI_EVT_NONE);
                 break;
             } else {
 
-                /* Ö±½Ó½øÈëÏÂÒ»¸ö×´Ì¬£¬¿ªÊ¼Ò»¸ö´«Êä£¬´Ë´¦ÎÞÐèbreak */
+                /* ç›´æŽ¥è¿›å…¥ä¸‹ä¸€ä¸ªçŠ¶æ€ï¼Œå¼€å§‹ä¸€ä¸ªä¼ è¾“ï¼Œæ­¤å¤„æ— éœ€break */
                 __SPI_NEXT_STATE(__SPI_ST_TRANS_START, __SPI_EVT_TRANS_LAUNCH);
 
                 event     = new_event;
@@ -842,20 +842,20 @@ int __spi_mst_sm_event (am_lpc82x_spi_dma_dev_t *p_dev, uint32_t event)
         }
         /* No break */
 
-        case __SPI_ST_TRANS_START:  /* ´«Êä¿ªÊ¼ */
+        case __SPI_ST_TRANS_START:  /* ä¼ è¾“å¼€å§‹ */
         {
             am_spi_message_t  *p_cur_msg   = p_dev->p_cur_msg;
 
             if (event != __SPI_EVT_TRANS_LAUNCH) {
-                return -AM_EINVAL;  /* ´«Êä¿ªÊ¼×´Ì¬µÈ´ýµÄÏûÏ¢±ØÐëÊÇÆô¶¯´«Êä */
+                return -AM_EINVAL;  /* ä¼ è¾“å¼€å§‹çŠ¶æ€ç­‰å¾…çš„æ¶ˆæ¯å¿…é¡»æ˜¯å¯åŠ¨ä¼ è¾“ */
             }
 
-            /* µ±Ç°ÏûÏ¢´«ÊäÍê³É */
+            /* å½“å‰æ¶ˆæ¯ä¼ è¾“å®Œæˆ */
             if (am_list_empty(&(p_cur_msg->transfers))) {
 
                 p_cur_msg->actual_length = 0;
 
-                /* ÏûÏ¢ÕýÔÚ´¦ÀíÖÐ */
+                /* æ¶ˆæ¯æ­£åœ¨å¤„ç†ä¸­ */
                 if (p_cur_msg->status == -AM_EINPROGRESS) {
                     p_cur_msg->status = AM_OK;
                 }
@@ -865,20 +865,20 @@ int __spi_mst_sm_event (am_lpc82x_spi_dma_dev_t *p_dev, uint32_t event)
                     p_cur_msg->pfn_complete(p_cur_msg->p_arg);
                 }
 
-                /* Æ¬Ñ¡¹Ø±Õ */
+                /* ç‰‡é€‰å…³é—­ */
                 __spi_cs_off(p_dev, p_dev->p_cur_spi_dev);
 
                 __SPI_NEXT_STATE(__SPI_ST_MSG_START, __SPI_EVT_TRANS_LAUNCH);
 
             } else {
-                /* »ñÈ¡µ½Ò»¸ö´«Êä£¬ÕýÈ·´¦Àí¸Ã´«Êä¼´¿É */
+                /* èŽ·å–åˆ°ä¸€ä¸ªä¼ è¾“ï¼Œæ­£ç¡®å¤„ç†è¯¥ä¼ è¾“å³å¯ */
                 am_spi_transfer_t *p_cur_trans = __spi_trans_out(p_cur_msg);
                 p_dev->p_cur_trans             = p_cur_trans;
 
-                /* ÅäÖÃSPI´«Êä²ÎÊý */
+                /* é…ç½®SPIä¼ è¾“å‚æ•° */
                 __spi_config(p_dev);
 
-                /* ÉèÖÃDMA´«ÊäµÄÊý¾Ý³¤¶È */
+                /* è®¾ç½®DMAä¼ è¾“çš„æ•°æ®é•¿åº¦ */
                 if (p_cur_trans->bits_per_word > 8) {
                     p_dev->dma_trans_num = p_cur_trans->nbytes / 2;
                 } else {
@@ -888,41 +888,41 @@ int __spi_mst_sm_event (am_lpc82x_spi_dma_dev_t *p_dev, uint32_t event)
                 p_dev->dma_trans_flg = 0;
                 p_dev->dma_trans_count = 0;
 
-                /* ÏÂÒ»×´Ì¬ÊÇÊ¹ÓÃDMA·¢ËÍÊý¾Ý */
+                /* ä¸‹ä¸€çŠ¶æ€æ˜¯ä½¿ç”¨DMAå‘é€æ•°æ® */
                __SPI_NEXT_STATE(__SPI_ST_DMA_TRANS_DATA, __SPI_EVT_DMA_TRANS_DATA);
             }
             break;
         }
 
-        case __SPI_ST_DMA_TRANS_DATA:    /* DMA·¢ËÍÊý¾Ý */
+        case __SPI_ST_DMA_TRANS_DATA:    /* DMAå‘é€æ•°æ® */
         {
             if (event != __SPI_EVT_DMA_TRANS_DATA) {
-                return -AM_EINVAL;  /* Ö÷»ú·¢ËÍ×´Ì¬µÈ´ýµÄÏûÏ¢±ØÐëÊÇ·¢ËÍÊý¾Ý */
+                return -AM_EINVAL;  /* ä¸»æœºå‘é€çŠ¶æ€ç­‰å¾…çš„æ¶ˆæ¯å¿…é¡»æ˜¯å‘é€æ•°æ® */
             }
 
             if (p_dev->dma_trans_num > 1024) {
-                /* ÏÂÒ»×´Ì¬»¹ÊÇ·¢ËÍ×´Ì¬ */
+                /* ä¸‹ä¸€çŠ¶æ€è¿˜æ˜¯å‘é€çŠ¶æ€ */
                 __SPI_NEXT_STATE(__SPI_ST_DMA_TRANS_DATA, __SPI_EVT_NONE);
             } else {
-                 /* ÏÂÒ»×´Ì¬ÊÇÖØÐÂ»ñÈ¡ÏÂÒ»ÏÂtrans½øÐÐ´«Êä  */
+                 /* ä¸‹ä¸€çŠ¶æ€æ˜¯é‡æ–°èŽ·å–ä¸‹ä¸€ä¸‹transè¿›è¡Œä¼ è¾“  */
                 __SPI_NEXT_STATE(__SPI_ST_TRANS_START, __SPI_EVT_NONE);
             }
 
 
-            /* Ê¹ÓÃDMA´«Êä */
+            /* ä½¿ç”¨DMAä¼ è¾“ */
             __spi_dma_trans(p_dev);
 
             break;
         }
 
         /*
-         * ÓÀÔ¶Ò²²»¸ÃÔËÐÐµ½Õâ¶ù
+         * æ°¸è¿œä¹Ÿä¸è¯¥è¿è¡Œåˆ°è¿™å„¿
          */
         default:
             break;
         }
 
-        /* Ã»ÓÐÀ´×ÔÄÚ²¿µÄÐÅÏ¢, Ìø³ö */
+        /* æ²¡æœ‰æ¥è‡ªå†…éƒ¨çš„ä¿¡æ¯, è·³å‡º */
         if (new_event == __SPI_EVT_NONE) {
             break;
         }
@@ -933,7 +933,7 @@ int __spi_mst_sm_event (am_lpc82x_spi_dma_dev_t *p_dev, uint32_t event)
 /******************************************************************************/
 
 /**
- * \brief SPI ³õÊ¼»¯
+ * \brief SPI åˆå§‹åŒ–
  */
 am_spi_handle_t am_lpc82x_spi_dma_init (am_lpc82x_spi_dma_dev_t           *p_dev,
                                         const am_lpc82x_spi_dma_devinfo_t *p_devinfo)
@@ -961,7 +961,7 @@ am_spi_handle_t am_lpc82x_spi_dma_init (am_lpc82x_spi_dma_dev_t           *p_dev
     p_dev->dma_trans_flg   = 0;
     p_dev->dma_trans_num   = 0;
 
-    p_dev->state            = __SPI_ST_IDLE;     /* ³õÊ¼»¯Îª¿ÕÏÐ×´Ì¬ */
+    p_dev->state            = __SPI_ST_IDLE;     /* åˆå§‹åŒ–ä¸ºç©ºé—²çŠ¶æ€ */
 
     am_list_head_init(&(p_dev->msg_list));
 
@@ -970,11 +970,11 @@ am_spi_handle_t am_lpc82x_spi_dma_init (am_lpc82x_spi_dma_dev_t           *p_dev
     }
 
 
-    /* ÅäÖÃDMA·¢ËÍÍ¨µÀ */
+    /* é…ç½®DMAå‘é€é€šé“ */
     p_dev->p_ctr_tx = am_lpc82x_dma_controller_get(p_devinfo->dma_chan_tx,
                                                    p_devinfo->dma_chan_prio_tx |
                                                    DMA_CHAN_OPT_PERIPH_REQ_EN);
-    /* ÅäÖÃDMA½ÓÊÕÍ¨µÀ */
+    /* é…ç½®DMAæŽ¥æ”¶é€šé“ */
     p_dev->p_ctr_rx = am_lpc82x_dma_controller_get(p_devinfo->dma_chan_rx,
                                                    p_devinfo->dma_chan_prio_rx |
                                                    DMA_CHAN_OPT_PERIPH_REQ_EN);
@@ -983,7 +983,7 @@ am_spi_handle_t am_lpc82x_spi_dma_init (am_lpc82x_spi_dma_dev_t           *p_dev
 }
 
 /**
- * \brief SPI È¥³ý³õÊ¼»¯
+ * \brief SPI åŽ»é™¤åˆå§‹åŒ–
  */
 void am_lpc82x_spi_dma_deinit (am_spi_handle_t handle)
 {
@@ -997,10 +997,10 @@ void am_lpc82x_spi_dma_deinit (am_spi_handle_t handle)
     p_dev->spi_serve.p_funcs = NULL;
     p_dev->spi_serve.p_drv   = NULL;
 
-    /* ½ûÄÜ SPI */
+    /* ç¦èƒ½ SPI */
     amhw_lpc_spi_disable(p_hw_spi);
 
-    /* ÊÍ·ÅDMA¿ØÖÆÆ÷ */
+    /* é‡Šæ”¾DMAæŽ§åˆ¶å™¨ */
     am_lpc82x_dma_controller_release(p_dev->p_ctr_tx);
     am_lpc82x_dma_controller_release(p_dev->p_ctr_rx);
 

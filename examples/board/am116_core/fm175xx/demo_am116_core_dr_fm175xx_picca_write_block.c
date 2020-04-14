@@ -12,19 +12,19 @@
 
 /**
  * \file
- * \brief fm175xxд�����ݣ�ͨ�������ӿ�ʵ��
+ * \brief fm175xx写块数据，通过驱动接口实现
  *
- * - �������裺
- *   1. ��ȷ���Ӳ����úô��ڡ�
- *   2. ��ȷ���Ӻ����ߡ�
- *   3. ��A�࿨�������߸�Ӧ����
+ * - 操作步骤：
+ *   1. 正确连接并配置好串口。
+ *   2. 正确连接好天线。
+ *   3. 将A类卡置于天线感应区。
  *
- * - ʵ������
- *   1. ������ԿA�Կ�Ƭָ���Ŀ������֤�������֤��ͨ�����ӡkey A authent failed��
- *   2. �����֤�ɹ����򽫻�����������д��ָ���Ŀ����ջ��������ٽ����е����ݶ�ȡ�����������д�������
- *      һ�£�����д���ݳɹ���
+ * - 实验现象：
+ *   1. 先用密钥A对卡片指定的块进行验证，如果验证不通过则打印key A authent failed。
+ *   2. 如果验证成功，则将缓冲区的数据写入指定的块后清空缓冲区，再将块中的数据读取出来，如果与写入的数据
+ *      一致，表明写数据成功。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_am116_dr_fm175xx_picca_write_block.c src_am116_dr_fm175xx_picca_write_block
  *
  * \internal
@@ -47,7 +47,7 @@
 #include "demo_am116_core_entries.h"
 
 /**
- * \brief A�࿨д������
+ * \brief A类卡写块例程
  */
 void demo_am116_core_dr_fm175xx_picca_write_block (void)
 {

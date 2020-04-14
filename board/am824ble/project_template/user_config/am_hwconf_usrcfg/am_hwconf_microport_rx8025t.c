@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief MicroPort-RX8025T ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief MicroPort-RX8025T ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_microport_rx8025t.c
  *
  * \internal
@@ -35,21 +35,21 @@
  * @{
  */
 
-/** \brief MicroPort-RX8025T Éè±¸ĞÅÏ¢ */
+/** \brief MicroPort-RX8025T è®¾å¤‡ä¿¡æ¯ */
 am_local am_const am_rx8025t_devinfo_t __g_microport_rx8025t_devinfo = {
-    PIO0_1,    /* INT Òı½Å */
-    -1,        /* CLK_EN Òı½Å */
+    PIO0_1,    /* INT å¼•è„š */
+    -1,        /* CLK_EN å¼•è„š */
 };
 
 /*******************************************************************************
-  MicroPort-RX8025T ÊµÀı³õÊ¼»¯£¨Ê¹ÓÃĞ¾Æ¬ÌØÊâ¹¦ÄÜ£©
+  MicroPort-RX8025T å®ä¾‹åˆå§‹åŒ–ï¼ˆä½¿ç”¨èŠ¯ç‰‡ç‰¹æ®ŠåŠŸèƒ½ï¼‰
 *******************************************************************************/
 
-/** \brief MicroPort-RX8025T Éè±¸ÊµÀı */
+/** \brief MicroPort-RX8025T è®¾å¤‡å®ä¾‹ */
 am_local am_rx8025t_dev_t __g_microport_rx8025t_dev;
 
 /**
- * \brief MicroPort-RX8025T ÊµÀı³õÊ¼»¯£¨Ê¹ÓÃĞ¾Æ¬ÌØÊâ¹¦ÄÜ£©
+ * \brief MicroPort-RX8025T å®ä¾‹åˆå§‹åŒ–ï¼ˆä½¿ç”¨èŠ¯ç‰‡ç‰¹æ®ŠåŠŸèƒ½ï¼‰
  */
 am_rx8025t_handle_t am_microport_rx8025t_inst_init (void)
 {
@@ -61,14 +61,14 @@ am_rx8025t_handle_t am_microport_rx8025t_inst_init (void)
 }
 
 /*******************************************************************************
-  MicroPort-RX8025T ÊµÀı³õÊ¼»¯ £¨Ê¹ÓÃÍ¨ÓÃµÄ RTC ¹¦ÄÜ£©
+  MicroPort-RX8025T å®ä¾‹åˆå§‹åŒ– ï¼ˆä½¿ç”¨é€šç”¨çš„ RTC åŠŸèƒ½ï¼‰
 *******************************************************************************/
 
-/** \brief MicroPort-RX8025T (RTC ±ê×¼·şÎñ) Éè±¸ÊµÀı */
+/** \brief MicroPort-RX8025T (RTC æ ‡å‡†æœåŠ¡) è®¾å¤‡å®ä¾‹ */
 am_local am_rtc_serv_t __g_microport_rx8025t_rtc;
 
 /**
- * \brief MicroPort-RX8025T ÊµÀı³õÊ¼»¯£¨Ê¹ÓÃÍ¨ÓÃµÄ RTC ¹¦ÄÜ£©
+ * \brief MicroPort-RX8025T å®ä¾‹åˆå§‹åŒ–ï¼ˆä½¿ç”¨é€šç”¨çš„ RTC åŠŸèƒ½ï¼‰
  */
 am_rtc_handle_t am_microport_rx8025t_rtc_inst_init (void)
 {
@@ -79,14 +79,14 @@ am_rtc_handle_t am_microport_rx8025t_rtc_inst_init (void)
 }
 
 /*******************************************************************************
-  MicroPort-RX8025T ÊµÀı³õÊ¼»¯ £¨Ê¹ÓÃÍ¨ÓÃµÄÄÖÖÓ¹¦ÄÜ£©
+  MicroPort-RX8025T å®ä¾‹åˆå§‹åŒ– ï¼ˆä½¿ç”¨é€šç”¨çš„é—¹é’ŸåŠŸèƒ½ï¼‰
 *******************************************************************************/
 
-/** \brief MicroPort-RX8025T (ALARM_CLK ±ê×¼·şÎñ) Éè±¸ÊµÀı */
+/** \brief MicroPort-RX8025T (ALARM_CLK æ ‡å‡†æœåŠ¡) è®¾å¤‡å®ä¾‹ */
 am_local am_alarm_clk_serv_t __g_microport_rx8025t_alarm_clk;
 
 /**
- * \brief MicroPort-RX8025T ÊµÀı³õÊ¼»¯£¨Ê¹ÓÃÍ¨ÓÃµÄÄÖÖÓ¹¦ÄÜ£©
+ * \brief MicroPort-RX8025T å®ä¾‹åˆå§‹åŒ–ï¼ˆä½¿ç”¨é€šç”¨çš„é—¹é’ŸåŠŸèƒ½ï¼‰
  */
 am_alarm_clk_handle_t  am_microport_rx8025t_alarm_clk_inst_init (void)
 {
@@ -97,17 +97,17 @@ am_alarm_clk_handle_t  am_microport_rx8025t_alarm_clk_inst_init (void)
 }
 
 /*******************************************************************************
-  MicroPort-RX8025T ÊµÀı³õÊ¼»¯ £¨½« RX8025T ÓÃ×÷ÏµÍ³Ê±¼ä£©
+  MicroPort-RX8025T å®ä¾‹åˆå§‹åŒ– ï¼ˆå°† RX8025T ç”¨ä½œç³»ç»Ÿæ—¶é—´ï¼‰
 *******************************************************************************/
 
-/** \brief Ã¿ 1ms(1000000ns) ¸ù¾İÏµÍ³Ê±ÖÓ¸üĞÂÒ»´ÎÏµÍ³Ê±¼äÖµ */
+/** \brief æ¯ 1ms(1000000ns) æ ¹æ®ç³»ç»Ÿæ—¶é’Ÿæ›´æ–°ä¸€æ¬¡ç³»ç»Ÿæ—¶é—´å€¼ */
 #define __UPDATE_SYSCLK_NS   1000000
 
-/** \brief Ã¿ 10s ¸ù¾İ RTC ¸üĞÂÒ»´ÎÏµÍ³Ê±¼äÖµ */
+/** \brief æ¯ 10s æ ¹æ® RTC æ›´æ–°ä¸€æ¬¡ç³»ç»Ÿæ—¶é—´å€¼ */
 #define __UPDATE_RTC_S       10
 
 /**
- * \brief MicroPort-RX8025T ÊµÀı³õÊ¼»¯£¨½« RX8025T ÓÃ×÷ÏµÍ³Ê±¼ä£©
+ * \brief MicroPort-RX8025T å®ä¾‹åˆå§‹åŒ–ï¼ˆå°† RX8025T ç”¨ä½œç³»ç»Ÿæ—¶é—´ï¼‰
  */
 int am_microport_rx8025t_time_inst_init (void)
 {

@@ -11,7 +11,7 @@
 *******************************************************************************/
 /**
  * \file
- * \brief ѭ������У��(CRC) ����ʵ��
+ * \brief 循环冗余校验(CRC) 软件实现
  *
  * \internal
  * \par modification history
@@ -35,73 +35,73 @@ extern "C" {
 #include "am_crc.h"
 
 /**
- * \brief CRC TABLE��
+ * \brief CRC TABLE表
  *
- *     Ϊ�˼ӿ����� CRC ������ٶȣ�ʹ���˲�����������Ҫ�ڳ�ʼ��һ������CRC��
- * ����ʱ(\sa am_crc_soft_init())�ṩһ������CRC����ı����ñ��ľ���������CRCģ
- * ���У�width��poly �� refin ������Ա��ֵ��أ�ֻҪһ��ģ����������ֵ��ȣ���
- * �ǾͿ���ʹ��ͬһ�� table ����
+ *     为了加快软件 CRC 计算的速度，使用了查表法，因此需要在初始化一个软件CRC计
+ * 算器时(\sa am_crc_soft_init())提供一个用于CRC计算的表。该表的具体内容与CRC模
+ * 型中：width、poly 和 refin 三个成员的值相关，只要一个模型中这三个值相等，它
+ * 们就可以使用同一个 table 表。
  */
 typedef struct am_crc_table {
 
-    uint8_t     width;                     /**< \brief CRC����                */
-    uint32_t    poly;                      /**< \brief CRC���ɶ���ʽ          */
-    am_bool_t   refin;                     /**< \brief �����ֽ�bit����        */
+    uint8_t     width;                     /**< \brief CRC宽度                */
+    uint32_t    poly;                      /**< \brief CRC生成多项式          */
+    am_bool_t   refin;                     /**< \brief 输入字节bit反序        */
 
     /**
-     * \brief ָ��ʵ�� TABLE ������Ϣ ��ָ��
+     * \brief 指向实际 TABLE 数据信息 的指针
      *
-     * TBALE�ĳ��ȹ̶�Ϊ256����ʵ�������� width��ֵ���
-     *     - 8λ��8λ���£�p_data ָ���  TABLE ԭ��Ӧ��Ϊ�� uint8_t data[256]
-     *     - 9  ��16λ��    p_data ָ���  TABLE ԭ��Ӧ��Ϊ��uint16_t data[256]
-     *     - 17 ��32λ��   p_data ָ���  TABLE ԭ��Ӧ��Ϊ��uint32_t data[256]
+     * TBALE的长度固定为256，其实际类型与 width的值相关
+     *     - 8位及8位以下，p_data 指向的  TABLE 原型应该为： uint8_t data[256]
+     *     - 9  至16位，    p_data 指向的  TABLE 原型应该为：uint16_t data[256]
+     *     - 17 至32位，   p_data 指向的  TABLE 原型应该为：uint32_t data[256]
      */
     const void *p_data;
 
 } am_crc_table_t;
 
 /**
- * \brief ����CRC
+ * \brief 软件CRC
  */
 typedef struct am_crc_soft {
 
-    /** \brief ����CRC�ܹ��ṩ��׼��CRC�������    */
+    /** \brief 软件CRC能够提供标准的CRC计算服务    */
     am_crc_serv_t            serv;
 
-    /** \brief ����CRCʹ�õ�TABLE������ */
+    /** \brief 软件CRC使用的TABLE索引表 */
     const am_crc_table_t    *p_table;
 
-    /* ��ǰ�� CRC ����ģ��  */
+    /* 当前的 CRC 计算模型  */
     am_crc_pattern_t        *p_pattern;
 
-    /** \brief CRC����ֵ          */
+    /** \brief CRC计算值          */
     uint32_t                 value;
 
 } am_crc_soft_t;
 
 /**
- * \brief һ��ͨ�õ� CRC table ��������
+ * \brief 一个通用的 CRC table 创建函数
  *
- *   Ϊ�˼ӿ����� CRC ������������ʣ�ʹ���˲�����������Ҫ�ڳ�ʼ��һ������CRC
- * ������ʱ(\sa am_crc_soft_init())�ṩһ������CRC����ı����ñ��ľ���������CRC
- * ģ���У�width��poly �� refin ������Ա��ֵ��أ�ֻҪһ��ģ����������ֵ��ȣ���
- * ���ǾͿ���ʹ��ͬһ�� table ����
+ *   为了加快软件 CRC 计算的运算速率，使用了查表法，因此需要在初始化一个软件CRC
+ * 计算器时(\sa am_crc_soft_init())提供一个用于CRC计算的表。该表的具体内容与CRC
+ * 模型中：width、poly 和 refin 三个成员的值相关，只要一个模型中这三个值相等，则
+ * 它们就可以使用同一个 table 表。
  *
- * \param[in] p_table : TABLE��ʵ��
- * \param[in] width   : CRC����
- * \param[in] poly    : ���ɶ���ʽ
- * \param[in] refin   : �����ֽ�bit����
- * \param[in] p_data  : �洢���ݵ�����ռ䣬��ʵ�������� width��ֵ��ء�
- *                     - 8λ��8λ���£���ָ��� TABLE ԭ��Ϊ��uint8_t  data[256]
- *                     - 9  ��16λ��   ��ָ��� TABLE ԭ��Ϊ��uint16_t data[256]
- *                     - 17 ��32λ��   ��ָ��� TABLE ԭ��Ϊ��uint32_t data[256]
+ * \param[in] p_table : TABLE表实例
+ * \param[in] width   : CRC宽度
+ * \param[in] poly    : 生成多项式
+ * \param[in] refin   : 输入字节bit反序
+ * \param[in] p_data  : 存储数据的数组空间，其实际类型与 width的值相关。
+ *                     - 8位及8位以下，其指向的 TABLE 原型为：uint8_t  data[256]
+ *                     - 9  至16位，   其指向的 TABLE 原型为：uint16_t data[256]
+ *                     - 17 至32位，   其指向的 TABLE 原型为：uint32_t data[256]
  *
- * \retval AM_OK      : ���ɳɹ�
- * \retval -AM_EINVAL : ����ʧ�ܣ��������ڴ���
+ * \retval AM_OK      : 生成成功
+ * \retval -AM_EINVAL : 生成失败，参数存在错误
  *
- * \note Ϊ�˱����û�ʹ�ã��Ѿ��ṩ�˳����� table ������� \ref am_if_crc_table_def.
- * �û�����ֱ��ʹ����ЩTABLE����������Ϊ��ʼ������ p_table ��ֵ���������ṩ��table��
- * ����δ�ҵ���ʹ�õ�CRCģ�͡������ʹ�� �ú�������һ��table����
+ * \note 为了便于用户使用，已经提供了常见的 table 表，详见 \ref am_if_crc_table_def.
+ * 用户可以直接使用这些TABLE表的名字作为初始化函数 p_table 的值，若在已提供的table列
+ * 表中未找到待使用的CRC模型。则可以使用 该函数创建一个table表。
  */
 int am_crc_table_create (am_crc_table_t  *p_table,
                          uint8_t          width,
@@ -110,20 +110,20 @@ int am_crc_table_create (am_crc_table_t  *p_table,
                          void            *p_data);
 
 /**
- * \brief ��ʼ��һ������ CRC ������
+ * \brief 初始化一个软件 CRC 计算器
  *
- * \param[in] p_crc   : CRC ������ʵ��
- * \param[in] p_table : ������ CRC ʹ�õ� TABLE ����TABLE����ʹ�õ�CRCģ����أ�
- *                      ��� \ref am_if_crc_table_def. �������ṩ��table�б���δ
- *                      �ҵ���ʹ�õ�CRCģ�͡������ʹ�� \sa am_crc_table_create()
- *                      ��������һ��table����
+ * \param[in] p_crc   : CRC 计算器实例
+ * \param[in] p_table : 本软件 CRC 使用的 TABLE 表，TABLE表与使用的CRC模型相关，
+ *                      详见 \ref am_if_crc_table_def. 若在已提供的table列表中未
+ *                      找到待使用的CRC模型。则可以使用 \sa am_crc_table_create()
+ *                      函数创建一个table表。
  *
- * \return ��׼��CRC����������ΪNULL�� ���ʾ��ʼ��ʧ��
+ * \return 标准的CRC服务句柄，若为NULL， 则表示初始化失败
  *
- * \warning ���ﴫ���TABLE���������˸� CRC ������֧�ֵ�CRCģ�ͣ���֧�ֵ�CRCģ�� \n
- * �У�width��poly��refin ��ֵ������ TABLE ����������ֵһ�¡�
+ * \warning 这里传入的TABLE表，决定了该 CRC 计算器支持的CRC模型，即支持的CRC模型 \n
+ * 中，width、poly、refin 的值必须与 TABLE 表的这三个值一致。
  *
- * \note ����ʹ�øú�����ʼ�����CRC���������Ա�֧�ֶ��ֲ�ͬģ�͵�CRC��
+ * \note 可以使用该函数初始化多个CRC计算器，以便支持多种不同模型的CRC。
  */
 am_crc_handle_t am_crc_soft_init (am_crc_soft_t         *p_crc,
                                   const am_crc_table_t  *p_table);

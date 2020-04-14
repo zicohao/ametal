@@ -12,22 +12,22 @@
 
 /**
  * \file
- * \brief ·äÃùÆ÷Àý³Ì£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief èœ‚é¸£å™¨ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
  *
- * - ²Ù×÷²½Öè£º
- *   1. ¶Ì½ÓJ7ÌøÏßÃ±£¬PIOC_3¿ØÖÆ·äÃùÆ÷;
- *   2. ÐèÒªÔÚam_prj_config.hÍ·ÎÄ¼þÀïÊ¹ÄÜºêAM_CFG_BUZZER_ENABLE¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. çŸ­æŽ¥J7è·³çº¿å¸½ï¼ŒPIOC_3æŽ§åˆ¶èœ‚é¸£å™¨;
+ *   2. éœ€è¦åœ¨am_prj_config.hå¤´æ–‡ä»¶é‡Œä½¿èƒ½å®AM_CFG_BUZZER_ENABLEã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ·äÃùÆ÷ÒÔ0.5sµÄÊ±¼ä¼ä¸ôÃù½Ð¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. èœ‚é¸£å™¨ä»¥0.5sçš„æ—¶é—´é—´éš”é¸£å«ã€‚
  *
- * \warning ·äÃùÆ÷Õ¼ÓÃÁËTPM0_PWM2µÄPIOC_3Òý½Å£¬Èç¹ûÓÃÁË¸Ã·äÃùÆ÷£¬¾Í²»ÄÜ½«TPM0ÅäÖÃ
- *          ÎªÆäËû·ÇPWM¹¦ÄÜ¡£ÈçÐèÒªÔÚÓ¦ÓÃ³ÌÐòÖÐÊ¹ÓÃ·ÇPWM¹¦ÄÜ£¬¾Í²»ÄÜµ÷ÓÃ·äÃùÆ÷µÄAPI£¬
- *          ÐèÒªÔÚam_prj_config.hÍ·ÎÄ¼þÀï½ûÄÜºêAM_CFG_BUZZER_ENABLE¡£
+ * \warning èœ‚é¸£å™¨å ç”¨äº†TPM0_PWM2çš„PIOC_3å¼•è„šï¼Œå¦‚æžœç”¨äº†è¯¥èœ‚é¸£å™¨ï¼Œå°±ä¸èƒ½å°†TPM0é…ç½®
+ *          ä¸ºå…¶ä»–éžPWMåŠŸèƒ½ã€‚å¦‚éœ€è¦åœ¨åº”ç”¨ç¨‹åºä¸­ä½¿ç”¨éžPWMåŠŸèƒ½ï¼Œå°±ä¸èƒ½è°ƒç”¨èœ‚é¸£å™¨çš„APIï¼Œ
+ *          éœ€è¦åœ¨am_prj_config.hå¤´æ–‡ä»¶é‡Œç¦èƒ½å®AM_CFG_BUZZER_ENABLEã€‚
  *       
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_amks16z_core_std_buzzer.c src_amks16z_core_std_buzzer
  * 
  * \internal
@@ -50,7 +50,7 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_amks16z_core_std_buzzer_entry (void)
 {  

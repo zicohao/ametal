@@ -12,17 +12,17 @@
 
 /**
  * \file
- * \brief ¶¨Ê±Æ÷TIMÇý¶¯£¬·þÎñPWM±ê×¼½Ó¿Ú
+ * \brief å®šæ—¶å™¨TIMé©±åŠ¨ï¼ŒæœåŠ¡PWMæ ‡å‡†æŽ¥å£
  *
- * 1. TIMÖ§³ÖÌá¹©ÈçÏÂÈýÖÖ±ê×¼·þÎñ£¬±¾Çý¶¯Ìá¹©µÄÊÇ·þÎñPWM±ê×¼·þÎñµÄÇý¶¯
- *     - ¶¨Ê±
- *     - PWMÊä³ö
- *     - ²¶»ñ
- * 2. TIM1¡¢TIM2¡¢TIM3¿ÉÅäÖÃ4Â·PWMÍ¨µÀ£¨±ßÔµ»òÖÐ¼ä¶ÔÆëÄ£Ê½£©£¬
- *    TIM14¡¢TIM16¡¢TIM17¿ÉÅäÖÃ1Â·PWMÍ¨µÀ£¨±ßÔµ¶ÔÆëÄ£Ê½£©
+ * 1. TIMæ”¯æŒæä¾›å¦‚ä¸‹ä¸‰ç§æ ‡å‡†æœåŠ¡ï¼Œæœ¬é©±åŠ¨æä¾›çš„æ˜¯æœåŠ¡PWMæ ‡å‡†æœåŠ¡çš„é©±åŠ¨
+ *     - å®šæ—¶
+ *     - PWMè¾“å‡º
+ *     - æ•èŽ·
+ * 2. TIM1ã€TIM2ã€TIM3å¯é…ç½®4è·¯PWMé€šé“ï¼ˆè¾¹ç¼˜æˆ–ä¸­é—´å¯¹é½æ¨¡å¼ï¼‰ï¼Œ
+ *    TIM14ã€TIM16ã€TIM17å¯é…ç½®1è·¯PWMé€šé“ï¼ˆè¾¹ç¼˜å¯¹é½æ¨¡å¼ï¼‰
  *
- * \note Ò»¸öTIMÊä³öµÄËùÓÐPWM¹²ÏíÖÜÆÚÖµ£¬Ò²¾ÍÊÇËµ£¬¸ÃTIMÊä³öµÄ
- * ËùÓÐPWMÖÜÆÚÏàÍ¬£¬ÆµÂÊÏàÍ¬
+ * \note ä¸€ä¸ªTIMè¾“å‡ºçš„æ‰€æœ‰PWMå…±äº«å‘¨æœŸå€¼ï¼Œä¹Ÿå°±æ˜¯è¯´ï¼Œè¯¥TIMè¾“å‡ºçš„
+ * æ‰€æœ‰PWMå‘¨æœŸç›¸åŒï¼Œé¢‘çŽ‡ç›¸åŒ
  *
  * \internal
  * \par Modification history
@@ -47,86 +47,86 @@ extern "C" {
  */
 
 /**
- * \brief Í¨µÀ±êÊ¶·û£¨×î¸ßÎ»Îª¡®1¡¯´ú±í»¥²¹Í¨µÀ£¬ºó7Î»´ú±í¶ÔÓ¦Í¨µÀºÅ£©
+ * \brief é€šé“æ ‡è¯†ç¬¦ï¼ˆæœ€é«˜ä½ä¸ºâ€˜1â€™ä»£è¡¨äº’è¡¥é€šé“ï¼ŒåŽ7ä½ä»£è¡¨å¯¹åº”é€šé“å·ï¼‰
  */
-#define  AM_ZLG_TIM_PWM_CH1         0x00   /**< \brief PWMÍ¨µÀ1±êÊ¶·û*/
-#define  AM_ZLG_TIM_PWM_CH2         0x01   /**< \brief PWMÍ¨µÀ2±êÊ¶·û*/
-#define  AM_ZLG_TIM_PWM_CH3         0x02   /**< \brief PWMÍ¨µÀ3±êÊ¶·û*/
-#define  AM_ZLG_TIM_PWM_CH4         0x03   /**< \brief PWMÍ¨µÀ4±êÊ¶·û*/
+#define  AM_ZLG_TIM_PWM_CH1         0x00   /**< \brief PWMé€šé“1æ ‡è¯†ç¬¦*/
+#define  AM_ZLG_TIM_PWM_CH2         0x01   /**< \brief PWMé€šé“2æ ‡è¯†ç¬¦*/
+#define  AM_ZLG_TIM_PWM_CH3         0x02   /**< \brief PWMé€šé“3æ ‡è¯†ç¬¦*/
+#define  AM_ZLG_TIM_PWM_CH4         0x03   /**< \brief PWMé€šé“4æ ‡è¯†ç¬¦*/
 
-#define  AM_ZLG_TIM_PWM_CH1N        0x80   /**< \brief PWMÍ¨µÀ1»¥²¹±êÊ¶·û*/
-#define  AM_ZLG_TIM_PWM_CH2N        0x81   /**< \brief PWMÍ¨µÀ2»¥²¹±êÊ¶·û*/
-#define  AM_ZLG_TIM_PWM_CH3N        0x82   /**< \brief PWMÍ¨µÀ3»¥²¹±êÊ¶·û*/
-#define  AM_ZLG_TIM_PWM_CH4N        0x83   /**< \brief PWMÍ¨µÀ4»¥²¹±êÊ¶·û*/
+#define  AM_ZLG_TIM_PWM_CH1N        0x80   /**< \brief PWMé€šé“1äº’è¡¥æ ‡è¯†ç¬¦*/
+#define  AM_ZLG_TIM_PWM_CH2N        0x81   /**< \brief PWMé€šé“2äº’è¡¥æ ‡è¯†ç¬¦*/
+#define  AM_ZLG_TIM_PWM_CH3N        0x82   /**< \brief PWMé€šé“3äº’è¡¥æ ‡è¯†ç¬¦*/
+#define  AM_ZLG_TIM_PWM_CH4N        0x83   /**< \brief PWMé€šé“4äº’è¡¥æ ‡è¯†ç¬¦*/
 
 
 /**
- * \brief TIMPWMÊä³ö¹¦ÄÜÏà¹ØµÄGPIOÐÅÏ¢
+ * \brief TIMPWMè¾“å‡ºåŠŸèƒ½ç›¸å…³çš„GPIOä¿¡æ¯
  */
 typedef struct am_zlg_tim_pwm_chaninfo {
-    int8_t   channel;                  /**< \brief PWMËùÊ¹ÓÃµÄÍ¨µÀ±êÊ¶·û */
-    int8_t   gpio;                     /**< \brief PWMÊä³öËùÓÃµÄGPIOÒý½Å */
-    uint32_t func;                     /**< \brief PWM¹¦ÄÜµÄGPIO¹¦ÄÜÉèÖÃÖµ */
-    uint32_t dfunc;                    /**< \brief ½ûÄÜPWMÄ£Ê½ºó£¬Ä¬ÈÏGPIO¹¦ÄÜÉèÖÃÖµ */
+    int8_t   channel;                  /**< \brief PWMæ‰€ä½¿ç”¨çš„é€šé“æ ‡è¯†ç¬¦ */
+    int8_t   gpio;                     /**< \brief PWMè¾“å‡ºæ‰€ç”¨çš„GPIOå¼•è„š */
+    uint32_t func;                     /**< \brief PWMåŠŸèƒ½çš„GPIOåŠŸèƒ½è®¾ç½®å€¼ */
+    uint32_t dfunc;                    /**< \brief ç¦èƒ½PWMæ¨¡å¼åŽï¼Œé»˜è®¤GPIOåŠŸèƒ½è®¾ç½®å€¼ */
 } am_zlg_tim_pwm_chaninfo_t;
 
 /**
- * \brief TIMPWMÊä³ö¹¦ÄÜÏà¹ØµÄÉè±¸ÐÅÏ¢
+ * \brief TIMPWMè¾“å‡ºåŠŸèƒ½ç›¸å…³çš„è®¾å¤‡ä¿¡æ¯
  */
 typedef struct am_zlg_tim_pwm_devinfo {
-    uint32_t                    tim_regbase;    /**< \brief TIM¼Ä´æÆ÷¿é»ùÖ· */
+    uint32_t                    tim_regbase;    /**< \brief TIMå¯„å­˜å™¨å—åŸºå€ */
 
-    int                         clk_num;        /**< \brief Ê±ÖÓID */
+    int                         clk_num;        /**< \brief æ—¶é’ŸID */
 
-    uint8_t                     channels_num;   /**< \brief Ê¹ÓÃµÄÍ¨µÀÊý£¬×î´óÎª4 */
+    uint8_t                     channels_num;   /**< \brief ä½¿ç”¨çš„é€šé“æ•°ï¼Œæœ€å¤§ä¸º4 */
 
-    /** \brief PWMµÄÄ£Ê½£¬ AMHW_ZLG_TIM_PWM_MODE2 »ò AMHW_ZLG_TIM_PWM_MODE1 */
+    /** \brief PWMçš„æ¨¡å¼ï¼Œ AMHW_ZLG_TIM_PWM_MODE2 æˆ– AMHW_ZLG_TIM_PWM_MODE1 */
     uint8_t                     pwm_mode;
 
-    /** \brief PWMÊä³ö¼«ÐÔ,0Îª¸ßµçÆ½ÓÐÐ§, 1ÎªµÍµçÆ½ÓÐÐ§ */
+    /** \brief PWMè¾“å‡ºæžæ€§,0ä¸ºé«˜ç”µå¹³æœ‰æ•ˆ, 1ä¸ºä½Žç”µå¹³æœ‰æ•ˆ */
     uint8_t                     ocpolarity;
 
-    am_zlg_tim_pwm_chaninfo_t  *p_chaninfo;     /**< \brief Ö¸ÏòPWMÊä³öÍ¨µÀÐÅÏ¢½á¹¹Ìå */
+    am_zlg_tim_pwm_chaninfo_t  *p_chaninfo;     /**< \brief æŒ‡å‘PWMè¾“å‡ºé€šé“ä¿¡æ¯ç»“æž„ä½“ */
 
-    amhw_zlg_tim_type_t         tim_type;       /**< \brief ¶¨Ê±Æ÷ÀàÐÍ */
+    amhw_zlg_tim_type_t         tim_type;       /**< \brief å®šæ—¶å™¨ç±»åž‹ */
 
-    /** \brief Æ½Ì¨³õÊ¼»¯º¯Êý£¬Èç´ò¿ªÊ±ÖÓ£¬ÅäÖÃÒý½ÅµÈ¹¤×÷ */
+    /** \brief å¹³å°åˆå§‹åŒ–å‡½æ•°ï¼Œå¦‚æ‰“å¼€æ—¶é’Ÿï¼Œé…ç½®å¼•è„šç­‰å·¥ä½œ */
     void                      (*pfn_plfm_init)(void);
 
-    /** \brief Æ½Ì¨½â³õÊ¼»¯º¯Êý */
+    /** \brief å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
     void                      (*pfn_plfm_deinit)(void);
 
 } am_zlg_tim_pwm_devinfo_t;
 
 /**
- * \brief TIMPWMÊä³ö¹¦ÄÜÉè±¸½á¹¹Ìå
+ * \brief TIMPWMè¾“å‡ºåŠŸèƒ½è®¾å¤‡ç»“æž„ä½“
  */
 typedef struct am_zlg_tim_pwm_dev {
 
-    am_pwm_serv_t                      pwm_serv; /**< \brief ±ê×¼PWM·þÎñ */
+    am_pwm_serv_t                      pwm_serv; /**< \brief æ ‡å‡†PWMæœåŠ¡ */
 
-    /** \brief Ö¸ÏòTIM(PWMÊä³ö¹¦ÄÜ)Éè±¸ÐÅÏ¢³£Á¿µÄÖ¸Õë */
+    /** \brief æŒ‡å‘TIM(PWMè¾“å‡ºåŠŸèƒ½)è®¾å¤‡ä¿¡æ¯å¸¸é‡çš„æŒ‡é’ˆ */
     const am_zlg_tim_pwm_devinfo_t    *p_devinfo;
 
 } am_zlg_tim_pwm_dev_t;
 
 /**
- * \brief ³õÊ¼»¯TIMÎªPWMÊä³ö¹¦ÄÜ
+ * \brief åˆå§‹åŒ–TIMä¸ºPWMè¾“å‡ºåŠŸèƒ½
  *
- * \param[in] p_dev     : Ö¸ÏòTIM(PWMÊä³ö¹¦ÄÜ)Éè±¸µÄÖ¸Õë
- * \param[in] p_devinfo : Ö¸ÏòTIM(PWMÊä³ö¹¦ÄÜ)Éè±¸ÐÅÏ¢³£Á¿µÄÖ¸Õë
+ * \param[in] p_dev     : æŒ‡å‘TIM(PWMè¾“å‡ºåŠŸèƒ½)è®¾å¤‡çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo : æŒ‡å‘TIM(PWMè¾“å‡ºåŠŸèƒ½)è®¾å¤‡ä¿¡æ¯å¸¸é‡çš„æŒ‡é’ˆ
  *
- * \return PWM±ê×¼·þÎñ²Ù×÷¾ä±ú£¬ÖµÎªNULLÊ±±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return PWMæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„ï¼Œå€¼ä¸ºNULLæ—¶è¡¨æ˜Žåˆå§‹åŒ–å¤±è´¥
  */
 am_pwm_handle_t am_zlg_tim_pwm_init(am_zlg_tim_pwm_dev_t              *p_dev,
                                     const am_zlg_tim_pwm_devinfo_t    *p_devinfo);
 
 /**
- * \brief ²»Ê¹ÓÃTIMPWMÊä³ö¹¦ÄÜÊ±£¬½â³õÊ¼»¯TIMPWMÊä³ö¹¦ÄÜ£¬ÊÍ·ÅÏà¹Ø×ÊÔ´
+ * \brief ä¸ä½¿ç”¨TIMPWMè¾“å‡ºåŠŸèƒ½æ—¶ï¼Œè§£åˆå§‹åŒ–TIMPWMè¾“å‡ºåŠŸèƒ½ï¼Œé‡Šæ”¾ç›¸å…³èµ„æº
  *
- * \param[in] handle : am_zlg_tim_pwm_init() ³õÊ¼»¯º¯Êý»ñµÃµÄPWM·þÎñ¾ä±ú
+ * \param[in] handle : am_zlg_tim_pwm_init() åˆå§‹åŒ–å‡½æ•°èŽ·å¾—çš„PWMæœåŠ¡å¥æŸ„
  *
- * \return ÎÞ
+ * \return æ— 
  */
 void am_zlg_tim_pwm_deinit (am_pwm_handle_t handle);
 

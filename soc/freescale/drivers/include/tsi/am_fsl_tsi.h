@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief TSIÇı¶¯²ã
+ * \brief TSIé©±åŠ¨å±‚
  *
  * \internal
  * \par Modification history
@@ -39,104 +39,104 @@ extern "C" {
  */
 
 /**
- * \brief TSI Éè±¸ĞÅÏ¢½á¹¹Ìå
+ * \brief TSI è®¾å¤‡ä¿¡æ¯ç»“æ„ä½“
  */
 typedef struct am_fsl_tsi_devinfo {
 
-    amhw_fsl_tsi_t  *p_hw_tsi;  /**< \brief Ö¸ÏòTSI¼Ä´æÆ÷¿éµÄÖ¸Õë */
-    am_bool_t           lp_mode;    /**< \brief µÍ¹¦ºÄ»½ĞÑMCU¹¦ÄÜ */
+    amhw_fsl_tsi_t  *p_hw_tsi;  /**< \brief æŒ‡å‘TSIå¯„å­˜å™¨å—çš„æŒ‡é’ˆ */
+    am_bool_t           lp_mode;    /**< \brief ä½åŠŸè€—å”¤é†’MCUåŠŸèƒ½ */
 
-    /** \brief TSIÖĞ¶ÏºÅ */
+    /** \brief TSIä¸­æ–­å· */
     uint8_t    inum;
 
-    /** \brief Æ½Ì¨³õÊ¼»¯º¯Êı£¬Èç´ò¿ªÊ±ÖÓ£¬ÅäÖÃÒı½ÅµÈ¹¤×÷ */
+    /** \brief å¹³å°åˆå§‹åŒ–å‡½æ•°ï¼Œå¦‚æ‰“å¼€æ—¶é’Ÿï¼Œé…ç½®å¼•è„šç­‰å·¥ä½œ */
     void     (*pfn_plfm_init)(void);
 
-    /** \brief Æ½Ì¨½â³õÊ¼»¯º¯Êı */
+    /** \brief å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
     void     (*pfn_plfm_deinit)(void);
 
 } am_fsl_tsi_devinfo_t;
 
 /**
- * \brief TSIÉè±¸ÊµÀı
+ * \brief TSIè®¾å¤‡å®ä¾‹
  */
 typedef struct am_fsl_tsi_dev {
 
-    /** \brief Ö¸ÏòTSIÉè±¸ĞÅÏ¢µÄÖ¸Õë */
+    /** \brief æŒ‡å‘TSIè®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ */
     const am_fsl_tsi_devinfo_t *p_devinfo;
 
 } am_fsl_tsi_dev_t;
 
 /**
- * \brief TSI¹¦ÄÜÅäÖÃ
+ * \brief TSIåŠŸèƒ½é…ç½®
  *
- * \param[in] chan      : TSI Í¨µÀºÅ
- * \param[in] work_mode : TSI ¹¤×÷Ä£Ê½
- * \param[in] trig_mode : TSI É¨Ãè´¥·¢Ä£Ê½
+ * \param[in] chan      : TSI é€šé“å·
+ * \param[in] work_mode : TSI å·¥ä½œæ¨¡å¼
+ * \param[in] trig_mode : TSI æ‰«æè§¦å‘æ¨¡å¼
  *
- * \return ¹¦ÄÜÅäÖÃ²Ù×÷³É¹¦
+ * \return åŠŸèƒ½é…ç½®æ“ä½œæˆåŠŸ
  */
 int am_fsl_tsi_fun_cfg (amhw_fsl_tsi_channel_t    chan,
                          amhw_fsl_tsi_mode_t       work_mode,
                          amhw_fsl_tsi_trig_mode_t  trig_mode);
 
 /**
- * \brief TSIÖĞ¶Ï´¥·¢Ä£Ê½
+ * \brief TSIä¸­æ–­è§¦å‘æ¨¡å¼
  *
- * \param[in] flag  : ÖĞ¶Ï´¥·¢Ä£Ê½
+ * \param[in] flag  : ä¸­æ–­è§¦å‘æ¨¡å¼
  *
- * \return ¶ÁÈ¡µÄ×ª»»Öµ
+ * \return è¯»å–çš„è½¬æ¢å€¼
  */
 void am_fsl_tsi_trigger_cfg (amhw_fsl_tsi_irq_mode_t flag);
 
 /**
- * \brief TSIÖĞ¶ÏÊ¹ÄÜ
+ * \brief TSIä¸­æ–­ä½¿èƒ½
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_fsl_tsi_int_enable (void);
 
 /**
- * \brief TSIÖĞ¶Ï½ûÄÜ
+ * \brief TSIä¸­æ–­ç¦èƒ½
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_fsl_tsi_int_disable (void);
 
 /**
- * \brief TSIÖĞ¶Ï·şÎñº¯ÊıÁ¬½Ó
+ * \brief TSIä¸­æ–­æœåŠ¡å‡½æ•°è¿æ¥
  *
- * \param[in] pfn_callback  : ÖĞ¶Ï·şÎñº¯Êı½Ó¿Ú
+ * \param[in] pfn_callback  : ä¸­æ–­æœåŠ¡å‡½æ•°æ¥å£
  *
- * \return ÎŞ
+ * \return æ— 
  */
 int am_fsl_tsi_trigger_connect (am_pfnvoid_t pfn_callback);
 
  /**
- * \brief TSI ÁéÃô¶ÈÉèÖÃ
+ * \brief TSI çµæ•åº¦è®¾ç½®
  *
- * \param[in] val   : ÁéÃô¶ÈÖµ
+ * \param[in] val   : çµæ•åº¦å€¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_fsl_tsi_sens_set (uint16_t val);
 
 /**
- * \brief TSI³õÊ¼»¯
+ * \brief TSIåˆå§‹åŒ–
  *
- * \param[in] p_dev     : Ö¸ÏòTSIÉè±¸µÄÖ¸Õë
- * \param[in] p_devinfo : Ö¸ÏòTSIÉè±¸ĞÅÏ¢µÄÖ¸Õë
+ * \param[in] p_dev     : æŒ‡å‘TSIè®¾å¤‡çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo : æŒ‡å‘TSIè®¾å¤‡ä¿¡æ¯çš„æŒ‡é’ˆ
  *
- * \retval AM_OK : ²Ù×÷³É¹¦
+ * \retval AM_OK : æ“ä½œæˆåŠŸ
  */
 int am_fsl_tsi_init (am_fsl_tsi_dev_t *p_dev, const am_fsl_tsi_devinfo_t *p_devinfo);
 
 /**
- * \brief TSI ½â³õÊ¼»¯
+ * \brief TSI è§£åˆå§‹åŒ–
  *
- * \param[in] p_dev : Ö¸ÏòTSEÉè±¸µÄÖ¸Õë
+ * \param[in] p_dev : æŒ‡å‘TSEè®¾å¤‡çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_fsl_tsi_deinit (am_fsl_tsi_dev_t *p_dev);
 

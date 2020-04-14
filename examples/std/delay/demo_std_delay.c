@@ -12,12 +12,12 @@
 
 /**
  * \file
- * \brief ÑÓÊ±±ê×¼½Ó¿ÚÀı³Ì£¬Í¨¹ı±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief å»¶æ—¶æ ‡å‡†æ¥å£ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æ¥å£å®ç°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Ö¸¶¨µÄ LED ÒÔ 10Hz µÄÆµÂÊÉÁË¸¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. æŒ‡å®šçš„ LED ä»¥ 10Hz çš„é¢‘ç‡é—ªçƒã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_std_delay.c src_std_delay
  *
  * \internal
@@ -38,17 +38,17 @@
 #include "am_vdebug.h"
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_std_delay_entry (int led_id)
 {
-    /* ÑÓÊ± 1000us */
+    /* å»¶æ—¶ 1000us */
     am_udelay(1000);
 
     AM_FOREVER {
         am_led_toggle(led_id);
 
-        /* ÑÓÊ± 100ms */
+        /* å»¶æ—¶ 100ms */
         am_mdelay(100);
     }
 }

@@ -12,22 +12,22 @@
 
 /**
  * \file
- * \brief SCT 32 Î» PWM Àý³Ì£¬Í¨¹ý HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief SCT 32 ä½ PWM ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æŽ¥å£å®žçŽ°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. PIO0_23(SCT_OUT0) Êä³ö 4kHz µÄ PWM£¬Õ¼¿Õ±ÈÎª 50%£»
- *   2. PIO0_27(SCT_OUT4) Êä³ö 4kHz µÄ PWM£¬Õ¼¿Õ±ÈÎª 25%£»
- *   3. LED0 ÒÔ 0.2s µÄÊ±¼ä¼ä¸ôÉÁË¸¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. PIO0_23(SCT_OUT0) è¾“å‡º 4kHz çš„ PWMï¼Œå ç©ºæ¯”ä¸º 50%ï¼›
+ *   2. PIO0_27(SCT_OUT4) è¾“å‡º 4kHz çš„ PWMï¼Œå ç©ºæ¯”ä¸º 25%ï¼›
+ *   3. LED0 ä»¥ 0.2s çš„æ—¶é—´é—´éš”é—ªçƒã€‚
  *
  * \note
- *    1. SCT Ê¹ÓÃ 32 Î»¼ÆÊýÆ÷£¬Ö»ÄÜ²úÉúÒ»×é¶ÀÁ¢µÄ PWM£¬ËùÓÐ PWM Êä³öÊ¹ÓÃÍ¬Ò»ÆµÂÊ£¬
- *       ¼ÆÊýÆ÷ºÍ×î´óÆ¥ÅäÖµÎª 0xFFFFFFFF£»
- *    2. SCT Ê¹ÓÃ 16 Î»¼ÆÊýÆ÷£¬¿ÉÒÔ²úÉú 2 ×é¶ÀÁ¢µÄ PWM£¬Ã¿Ò»×é PWM µÄÊä³öÊ¹ÓÃÍ¬Ò»
- *       ÆµÂÊ£¬¼ÆÊýÆ÷ºÍ×î´óÆ¥ÅäÖµÎª 0xFFFF£»
- *    3. ÓÉÓÚ SCT Ä¬ÈÏ×÷ÎªÇý¶¯·äÃùÆ÷£¬Ê¹ÓÃ²âÊÔ±¾ Demo Ç°ÐèÒª½« am_prj_config.h ÖÐ
- *       µÄ AM_CFG_BUZZER_ENABLE ¶¨ÒåÎª 0£¬²»Ê¹ÓÃ·äÃùÆ÷¡£
+ *    1. SCT ä½¿ç”¨ 32 ä½è®¡æ•°å™¨ï¼Œåªèƒ½äº§ç”Ÿä¸€ç»„ç‹¬ç«‹çš„ PWMï¼Œæ‰€æœ‰ PWM è¾“å‡ºä½¿ç”¨åŒä¸€é¢‘çŽ‡ï¼Œ
+ *       è®¡æ•°å™¨å’Œæœ€å¤§åŒ¹é…å€¼ä¸º 0xFFFFFFFFï¼›
+ *    2. SCT ä½¿ç”¨ 16 ä½è®¡æ•°å™¨ï¼Œå¯ä»¥äº§ç”Ÿ 2 ç»„ç‹¬ç«‹çš„ PWMï¼Œæ¯ä¸€ç»„ PWM çš„è¾“å‡ºä½¿ç”¨åŒä¸€
+ *       é¢‘çŽ‡ï¼Œè®¡æ•°å™¨å’Œæœ€å¤§åŒ¹é…å€¼ä¸º 0xFFFFï¼›
+ *    3. ç”±äºŽ SCT é»˜è®¤ä½œä¸ºé©±åŠ¨èœ‚é¸£å™¨ï¼Œä½¿ç”¨æµ‹è¯•æœ¬ Demo å‰éœ€è¦å°† am_prj_config.h ä¸­
+ *       çš„ AM_CFG_BUZZER_ENABLE å®šä¹‰ä¸º 0ï¼Œä¸ä½¿ç”¨èœ‚é¸£å™¨ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am845_core_hw_sct_1_32bit_pwm.c src_am845_core_hw_sct_1_32bit_pwm
  *
  * \internal
@@ -49,7 +49,7 @@
 #include "demo_nxp_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am845_core_hw_sct_1_32bit_pwm_entry (void)
 {
@@ -60,7 +60,7 @@ void demo_am845_core_hw_sct_1_32bit_pwm_entry (void)
     amhw_lpc84x_clk_periph_enable(AMHW_LPC84X_CLK_SCT);
     amhw_lpc84x_syscon_periph_reset(AMHW_LPC84X_RESET_SCT);
 
-    /* PIO0_23 ¹ØÁªµ½ SCT µÄÊä³öÍ¨µÀ 0¡¢PIO0_27 ¹ØÁªµ½ SCT µÄÊä³öÍ¨µÀ 4 */
+    /* PIO0_23 å…³è”åˆ° SCT çš„è¾“å‡ºé€šé“ 0ã€PIO0_27 å…³è”åˆ° SCT çš„è¾“å‡ºé€šé“ 4 */
     am_gpio_pin_cfg(PIO0_23, PIO_FUNC_SCT_OUT0);
     am_gpio_pin_cfg(PIO0_27, PIO_FUNC_SCT_OUT4);
 

@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief LPTMR ¶¨Ê±¹¦ÄÜÇı¶¯²ãÊµÏÖ
+ * \brief LPTMR å®šæ—¶åŠŸèƒ½é©±åŠ¨å±‚å®ç°
  *
- * 1. LPTMRµÍ¹¦ºÄ¶¨Ê±Æ÷£¬±¾Çı¶¯ÊµÏÖÆä"¶¨Ê±"·şÎñ
+ * 1. LPTMRä½åŠŸè€—å®šæ—¶å™¨ï¼Œæœ¬é©±åŠ¨å®ç°å…¶"å®šæ—¶"æœåŠ¡
  *
  *
  * \internal
@@ -28,7 +28,7 @@
 #include "am_clk.h"
 
 /*******************************************************************************
-  ¶¨Ê±Æ÷Çı¶¯º¯ÊıÉùÃ÷
+  å®šæ—¶å™¨é©±åŠ¨å‡½æ•°å£°æ˜
 *******************************************************************************/
 
 static const am_timer_info_t *__lptmr_timing_info_get (void *p_drv);
@@ -65,19 +65,19 @@ static int __lptmr_timing_callback_set (void    *p_drv,
 static void __lptmr_irq_handler (void *p_arg);
 
 /*******************************************************************************
-  È«¾Ö±äÁ¿
+  å…¨å±€å˜é‡
 *******************************************************************************/
 
-/* ¶¨Ê±Æ÷ĞÅÏ¢ */
+/* å®šæ—¶å™¨ä¿¡æ¯ */
 static const am_timer_info_t __g_lptmr_timing_info = {
-    16,                                      /* 16Î»¶¨Ê±Æ÷               */
-    1,                                       /* µ¥Í¨µÀ                   */
-    AM_TIMER_CAN_INTERRUPT      |            /* ¿ÉÒÔ²úÉúÖĞ¶Ï */
-//    AM_TIMER_INTERMEDIATE_COUNT |            /* ¿ÉÒÔÊµÊ±¶Á³ö¼ÆÊıÖµ */
-    AM_TIMER_AUTO_RELOAD,                    /* ×Ô¶¯×°ÔØ */
-    65536                                    /* Ô¤·ÖÆµ×î´óÖµ£º65536      */
+    16,                                      /* 16ä½å®šæ—¶å™¨               */
+    1,                                       /* å•é€šé“                   */
+    AM_TIMER_CAN_INTERRUPT      |            /* å¯ä»¥äº§ç”Ÿä¸­æ–­ */
+//    AM_TIMER_INTERMEDIATE_COUNT |            /* å¯ä»¥å®æ—¶è¯»å‡ºè®¡æ•°å€¼ */
+    AM_TIMER_AUTO_RELOAD,                    /* è‡ªåŠ¨è£…è½½ */
+    65536                                    /* é¢„åˆ†é¢‘æœ€å¤§å€¼ï¼š65536      */
 };
-/** \brief LPTMR¶¨Ê±Æ÷Çı¶¯º¯Êı */
+/** \brief LPTMRå®šæ—¶å™¨é©±åŠ¨å‡½æ•° */
 static const struct am_timer_drv_funcs __g_lptmr_timing_drv_funcs = {
     __lptmr_timing_info_get,
     __lptmr_timing_clkin_freq_get,
@@ -103,18 +103,18 @@ void __lptmr_irq_handler (void *p_arg)
             p_dev->pfn_callback(p_dev->p_arg);
         }
 
-        /* Çå³ıÒç³ö±êÖ¾£¬Ğ´1ÇåÁã */
+        /* æ¸…é™¤æº¢å‡ºæ ‡å¿—ï¼Œå†™1æ¸…é›¶ */
         amhw_fsl_lptmr_ctl_set(p_hw_lptmr, AMHW_FSL_LPTMR_CSR_TCF);
     }
 }
 
-/** \brief »ñÈ¡LPTMRĞÅÏ¢ */
+/** \brief è·å–LPTMRä¿¡æ¯ */
 static const am_timer_info_t * __lptmr_timing_info_get (void *p_drv)
 {
     return &__g_lptmr_timing_info;
 }
 
-/** \brief »ñÈ¡LPTMRÊ±ÖÓÆµÂÊĞÅÏ¢ */
+/** \brief è·å–LPTMRæ—¶é’Ÿé¢‘ç‡ä¿¡æ¯ */
 static int __lptmr_timing_clkin_freq_get (void *p_drv, uint32_t *p_freq)
 {
     am_fsl_lptmr_timing_dev_t *p_dev      = (am_fsl_lptmr_timing_dev_t *)p_drv;
@@ -123,7 +123,7 @@ static int __lptmr_timing_clkin_freq_get (void *p_drv, uint32_t *p_freq)
         return -AM_EINVAL;
     }
 
-    /* »ñÈ¡µ±Ç°ÏµÍ³Ê±ÖÓÆµÂÊ£¬systick Ê¹ÓÃµÄÊÇÏµÍ³Ê±ÖÓ */
+    /* è·å–å½“å‰ç³»ç»Ÿæ—¶é’Ÿé¢‘ç‡ï¼Œsystick ä½¿ç”¨çš„æ˜¯ç³»ç»Ÿæ—¶é’Ÿ */
     *p_freq =  am_clk_rate_get(p_dev->p_devinfo->clk_id);
 
     return AM_OK;
@@ -146,7 +146,7 @@ static int __lptmr_timing_prescale_set (void    *p_drv,
 
     if ((prescale != 0) && (prescale <= 65536)) {
 
-        /* Ö»Ö§³Ö·ÖÆµ´óĞ¡1,2,4,8...65536£¬ÇóµÃ´óÓÚ·ÖÆµÊıÖĞ×îĞ¡µÄÊı2^n */
+        /* åªæ”¯æŒåˆ†é¢‘å¤§å°1,2,4,8...65536ï¼Œæ±‚å¾—å¤§äºåˆ†é¢‘æ•°ä¸­æœ€å°çš„æ•°2^n */
         for (pre_reg = 0; pre_reg < 0xf; pre_reg++) {
             if ((prescale >> pre_reg) == 1) {
                 break;
@@ -176,17 +176,17 @@ static int __lptmr_timing_prescale_get (void     *p_drv,
 
     p_hw_tim = (amhw_fsl_lptmr_t *)p_dev->p_devinfo->p_hw_lptmr;
 
-    /* »ñÈ¡·ÖÆµÖµ */
+    /* è·å–åˆ†é¢‘å€¼ */
     psr = amhw_fsl_lptmr_prescaler_get(p_hw_tim);
 
-    /* Êµ¼Ê·ÖÆµÖµ(pre)Óë¶Á³öÖµ(n)³É2µÄÖ¸Êı¹ØÏµ£ºpre = 2^n+1 */
+    /* å®é™…åˆ†é¢‘å€¼(pre)ä¸è¯»å‡ºå€¼(n)æˆ2çš„æŒ‡æ•°å…³ç³»ï¼špre = 2^n+1 */
     *p_prescale = 2 << psr;
 
     return AM_OK;
 }
 
 /**
- * \brief »ñÈ¡LPTMRµ±Ç°¼ÆÊıÖµ
+ * \brief è·å–LPTMRå½“å‰è®¡æ•°å€¼
  */
 static int __lptmr_timing_count_get (void     *p_drv,
                                      uint8_t   chan,
@@ -201,7 +201,7 @@ static int __lptmr_timing_count_get (void     *p_drv,
 }
 
 /**
- * \brief »ñÈ¡LPTMR·­¹öÖµ
+ * \brief è·å–LPTMRç¿»æ»šå€¼
  */
 static int __lptmr_timing_rollover_get (void     *p_drv,
                                         uint8_t   chan,
@@ -215,21 +215,21 @@ static int __lptmr_timing_rollover_get (void     *p_drv,
 }
 
 /**
- * \brief LPTMR½ûÄÜ
+ * \brief LPTMRç¦èƒ½
  */
 static int __lptmr_timing_disable (void *p_drv, uint8_t chan)
 {
     am_fsl_lptmr_timing_dev_t *p_dev    = (am_fsl_lptmr_timing_dev_t *)p_drv;
     amhw_fsl_lptmr_t        *p_hw_lptmr =  p_dev->p_devinfo->p_hw_lptmr;
 
-    /* ÇåÁãÊ¹ÄÜÎ»£¬½ûÄÜ */
+    /* æ¸…é›¶ä½¿èƒ½ä½ï¼Œç¦èƒ½ */
     amhw_fsl_lptmr_ctl_clear(p_hw_lptmr, AMHW_FSL_LPTMR_CSR_TEN);
 
     return AM_OK;
 }
 
 /**
- * \brief LPTMRÊ¹ÄÜ²¢ÉèÖÃ¼ÆÊıÖµ
+ * \brief LPTMRä½¿èƒ½å¹¶è®¾ç½®è®¡æ•°å€¼
  */
 static int __lptmr_timing_enable (void     *p_drv,
                                   uint8_t   chan,
@@ -246,39 +246,39 @@ static int __lptmr_timing_enable (void     *p_drv,
         return -AM_EINVAL;
     }
 
-    /* ²»ĞèÒª·ÖÆµ£¬½ûÄÜ·ÖÆµÆ÷ */
+    /* ä¸éœ€è¦åˆ†é¢‘ï¼Œç¦èƒ½åˆ†é¢‘å™¨ */
     if (lptmr_count < 0xFFFF) {
         pre_real = 1;
         amhw_fsl_lptmr_prescaler_filter_set(p_hw_lptmr, AM_TRUE);
     } else {
         temp = lptmr_count / 0xFFFFu + 1;
 
-        /* ¼ÆËã·ÖÆµÖµ 2^n */
+        /* è®¡ç®—åˆ†é¢‘å€¼ 2^n */
         for (pre_real = 2; pre_real < temp;) {
             pre_reg++;
             pre_real = pre_real << 1;
         }
 
-        /* ·ÖÆµÆ÷ÓĞĞ§ */
+        /* åˆ†é¢‘å™¨æœ‰æ•ˆ */
         amhw_fsl_lptmr_prescaler_filter_set(p_hw_lptmr, AM_FALSE);
 
-        /* ÉèÖÃÔ¤·ÖÆµÖµ */
+        /* è®¾ç½®é¢„åˆ†é¢‘å€¼ */
         amhw_fsl_lptmr_prescaler_set(p_hw_lptmr, (amhw_fsl_lptmr_ps_t)pre_reg);
     }
 
     lptmr_count = lptmr_count / pre_real;
 
-    /* ÉèÖÃ×°ÔØÖµ */
+    /* è®¾ç½®è£…è½½å€¼ */
     amhw_fsl_lptmr_compare_set(p_hw_lptmr, lptmr_count - 1);
 
-    /* Ê¹ÄÜLPTMR */
+    /* ä½¿èƒ½LPTMR */
     amhw_fsl_lptmr_ctl_set(p_hw_lptmr, AMHW_FSL_LPTMR_CSR_TEN);
 
     return AM_OK;
 }
 
 /**
- * \brief ÉèÖÃÖĞ¶Ï»Øµ÷º¯Êı
+ * \brief è®¾ç½®ä¸­æ–­å›è°ƒå‡½æ•°
  */
 static int __lptmr_timing_callback_set (void     *p_drv,
                                         uint8_t   chan,
@@ -289,9 +289,9 @@ static int __lptmr_timing_callback_set (void     *p_drv,
     amhw_fsl_lptmr_t          *p_hw_lptmr =  p_dev->p_devinfo->p_hw_lptmr;
 
 
-    if (pfn_callback == NULL) {                     /* ²»ĞèÒª¿ªÆôÖĞ¶Ï */
+    if (pfn_callback == NULL) {                     /* ä¸éœ€è¦å¼€å¯ä¸­æ–­ */
         amhw_fsl_lptmr_ctl_clear(p_hw_lptmr, AMHW_FSL_LPTMR_CSR_TIE);
-    } else {                                        /* ĞèÒª¿ªÆôÖĞ¶Ï */
+    } else {                                        /* éœ€è¦å¼€å¯ä¸­æ–­ */
         p_dev->pfn_callback = pfn_callback;
         p_dev->p_arg        = p_arg;
         amhw_fsl_lptmr_ctl_set(p_hw_lptmr, AMHW_FSL_LPTMR_CSR_TIE);
@@ -301,7 +301,7 @@ static int __lptmr_timing_callback_set (void     *p_drv,
 }
 
 /**
- * \brief LPTMR³õÊ¼»¯
+ * \brief LPTMRåˆå§‹åŒ–
  */
 am_timer_handle_t am_fsl_lptmr_timing_init (am_fsl_lptmr_timing_dev_t           *p_dev,
                                             const am_fsl_lptmr_timing_devinfo_t *p_devinfo)
@@ -323,7 +323,7 @@ am_timer_handle_t am_fsl_lptmr_timing_init (am_fsl_lptmr_timing_dev_t           
 
     p_dev->pfn_callback = NULL;
 
-    /* ¹Ø±ÕLPTMRÄ£¿é£¬LMTMRÔ¤·ÖÆµ¼Ä´æÆ÷Ö»ÓĞÔÚ¹Ø±Õ×´Ì¬ÏÂ²ÅÔÊĞíĞŞ¸Ä */
+    /* å…³é—­LPTMRæ¨¡å—ï¼ŒLMTMRé¢„åˆ†é¢‘å¯„å­˜å™¨åªæœ‰åœ¨å…³é—­çŠ¶æ€ä¸‹æ‰å…è®¸ä¿®æ”¹ */
     amhw_fsl_lptmr_ctl_clear(p_hw_lptmr, AMHW_FSL_LPTMR_CSR_MASK);
 
     am_int_connect(p_dev->p_devinfo->inum, __lptmr_irq_handler, (void *)p_dev);
@@ -333,7 +333,7 @@ am_timer_handle_t am_fsl_lptmr_timing_init (am_fsl_lptmr_timing_dev_t           
 }
 
 /**
- * \brief LPTMR½â³õÊ¼»¯
+ * \brief LPTMRè§£åˆå§‹åŒ–
  */
 void am_fsl_lptmr_timing_deinit (am_timer_handle_t handle)
 {
@@ -346,10 +346,10 @@ void am_fsl_lptmr_timing_deinit (am_timer_handle_t handle)
 
     p_hw_lptmr = p_dev->p_devinfo->p_hw_lptmr;
 
-    /* ¹Ø±ÕLPTMRÄ£¿é */
+    /* å…³é—­LPTMRæ¨¡å— */
     amhw_fsl_lptmr_ctl_clear(p_hw_lptmr, AMHW_FSL_LPTMR_CSR_TEN);
 
-    /* ¹Ø±ÕLPTMRÖĞ¶Ï */
+    /* å…³é—­LPTMRä¸­æ–­ */
     am_int_disable(p_dev->p_devinfo->inum);
 
     p_dev->timer_serv.p_drv = NULL;

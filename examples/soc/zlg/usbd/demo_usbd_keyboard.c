@@ -13,16 +13,16 @@
 
 /**
  * \file
- * \brief USB keyboard Àý³Ì
+ * \brief USB keyboard ä¾‹ç¨‹
  *
- * - ÊµÑéÏÖÏó£º
- * 1.ÓÉÓÚ°å×Ó×ÊÔ´ÓÐÏÞ£¬ºËÐÄ°åÉÏÖ»ÓÐÒ»¸ö°´¼ü¿ÉÓÃ£¬±ØÐë½«ºËÐÄ°åÉÏµÄres/keyÌøÏßÃ±Óëkey¶Ì½Ó£¬ÕâÑù°´¼ü²ÅÓÐÐ§¡£
- * 2.½«USBÒ»¶Ë½Ó°å×Ó£¬ÁíÒ»¶Ë½ÓPC»ú¡£
- * 3.Â¼³ÌÐòºó£¬µÈ´®¿Ú´òÓ¡"usb device init successful."ºó£¬°´¼ü°´ÏÂ£¬±íÊ¾´óÐ¡Ð´Ëø¶¨½¨°´ÏÂ£¬´ËÊ±°å×ÓÉÏLED0
- *   ÁÁ£¬Í¬Ê±¿ÉÒÔÇÃ»÷¼üÅÌÑéÖ¤¡£
- * 4.³ÌÐò¿É¸ü»»²»Í¬µÄ¼üÖµÀ´²âÊÔ£¬¼üÅÌµÄ¼üÖµ±íÔÚ"am_usbd_keyboard.h"ÖÐ»ñÈ¡¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ * 1.ç”±äºŽæ¿å­èµ„æºæœ‰é™ï¼Œæ ¸å¿ƒæ¿ä¸Šåªæœ‰ä¸€ä¸ªæŒ‰é”®å¯ç”¨ï¼Œå¿…é¡»å°†æ ¸å¿ƒæ¿ä¸Šçš„res/keyè·³çº¿å¸½ä¸ŽkeyçŸ­æŽ¥ï¼Œè¿™æ ·æŒ‰é”®æ‰æœ‰æ•ˆã€‚
+ * 2.å°†USBä¸€ç«¯æŽ¥æ¿å­ï¼Œå¦ä¸€ç«¯æŽ¥PCæœºã€‚
+ * 3.å½•ç¨‹åºåŽï¼Œç­‰ä¸²å£æ‰“å°"usb device init successful."åŽï¼ŒæŒ‰é”®æŒ‰ä¸‹ï¼Œè¡¨ç¤ºå¤§å°å†™é”å®šå»ºæŒ‰ä¸‹ï¼Œæ­¤æ—¶æ¿å­ä¸ŠLED0
+ *   äº®ï¼ŒåŒæ—¶å¯ä»¥æ•²å‡»é”®ç›˜éªŒè¯ã€‚
+ * 4.ç¨‹åºå¯æ›´æ¢ä¸åŒçš„é”®å€¼æ¥æµ‹è¯•ï¼Œé”®ç›˜çš„é”®å€¼è¡¨åœ¨"am_usbd_keyboard.h"ä¸­èŽ·å–ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_usbd_keyboard.c src_usbd_keyboard
  *
  * \internal
@@ -46,20 +46,20 @@
 #include "am_usbd_keyboard.h"
 #include "demo_zlg_entries.h"
 
-#define __KEY0_CODE 82         /*°´¼ü¼üÖµ£¬Çø±ðÓÚ¼üÅÌ¼üÖµ*/
+#define __KEY0_CODE 82         /*æŒ‰é”®é”®å€¼ï¼ŒåŒºåˆ«äºŽé”®ç›˜é”®å€¼*/
 
-// °´¼üÊÂ¼þ´¦Àíº¯Êý
+// æŒ‰é”®äº‹ä»¶å¤„ç†å‡½æ•°
 am_local void __input_key_proc (void *p_arg, int key_code, int key_state, int keep_time)
 {
     am_usbd_keyboard_handle handle = (am_usbd_keyboard_handle)p_arg;
-    uint8_t key_board_val[8] = {0};   // ¼üÖµÊý×é£¬´óÐ¡Ò»°ã¶¼Îª8
+    uint8_t key_board_val[8] = {0};   // é”®å€¼æ•°ç»„ï¼Œå¤§å°ä¸€èˆ¬éƒ½ä¸º8
 
     if (key_code == __KEY0_CODE) {
-        /* ÅÐ¶Ï°´¼ü°´ÏÂ×´Ì¬ÊÇ·ñ´¥·¢*/
+        /* åˆ¤æ–­æŒ‰é”®æŒ‰ä¸‹çŠ¶æ€æ˜¯å¦è§¦å‘*/
         if (key_state == AM_INPUT_KEY_STATE_PRESSED) {
             key_board_val[2] = AM_USBD_KEY_CAPS_LOCK;
 
-            /* ±ØÐë·¢Á½´Î£¬µÚÒ»´ÎÎª¼üÖµ£¬µÚ¶þ´ÎÇå¿Õ¼üÖµ£¬·ñÔòÆÁÄ»ÉÏÒ»Ö±ÓÐ×ÖÄ¸´òÓ¡*/
+            /* å¿…é¡»å‘ä¸¤æ¬¡ï¼Œç¬¬ä¸€æ¬¡ä¸ºé”®å€¼ï¼Œç¬¬äºŒæ¬¡æ¸…ç©ºé”®å€¼ï¼Œå¦åˆ™å±å¹•ä¸Šä¸€ç›´æœ‰å­—æ¯æ‰“å°*/
             am_usbd_keyboard_send(handle, key_board_val, 8);
             am_usbd_keyboard_send(handle, NULL, 8);
             key_board_val[2] = 0;
@@ -67,10 +67,10 @@ am_local void __input_key_proc (void *p_arg, int key_code, int key_state, int ke
     }
 }
 
-/* ½ÓÊÕ»Øµ÷º¯Êý  */
+/* æŽ¥æ”¶å›žè°ƒå‡½æ•°  */
 void __g_keybroad_rec_cb(void *p_arg, uint8_t *p_buffer, uint8_t len)
 {
-    if ((*p_buffer) & AM_USBD_CAP_LOCK_LIGHT) {   /* ´óÐ´Ëø¶¨ */
+    if ((*p_buffer) & AM_USBD_CAP_LOCK_LIGHT) {   /* å¤§å†™é”å®š */
         am_led_on(0);
     } else {
         am_led_off(0);
@@ -78,7 +78,7 @@ void __g_keybroad_rec_cb(void *p_arg, uint8_t *p_buffer, uint8_t len)
 }
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_usbd_keyboard_entry (void* p_handle)
 {
@@ -86,7 +86,7 @@ void demo_usbd_keyboard_entry (void* p_handle)
     am_input_key_handler_t  key_handler;
     am_usbd_keyboard_recv_cb_set(handle, __g_keybroad_rec_cb, NULL);
     am_input_key_handler_register(&key_handler, __input_key_proc, handle);
-    /* µÈ´ý¼üÅÌÃ¶¾Ù³É¹¦  */
+    /* ç­‰å¾…é”®ç›˜æžšä¸¾æˆåŠŸ  */
     while(handle->is_ready == AM_FALSE);
     am_mdelay(30);
 

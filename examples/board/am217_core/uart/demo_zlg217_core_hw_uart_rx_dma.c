@@ -12,22 +12,22 @@
 
 /**
  * \file
- * \brief UART DMA ½ÓÊÕÀý³Ì£¬Í¨¹ý HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief UART DMA æŽ¥æ”¶ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. Í¨¹ýÉÏÎ»»ú´®¿ÚÒ»´ÎÐÔÏò MCU ·¢ËÍ 5 ¸ö×Ö·û¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. é€šè¿‡ä¸Šä½æœºä¸²å£ä¸€æ¬¡æ€§å‘ MCU å‘é€ 5 ä¸ªå­—ç¬¦ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿Ú´òÓ¡³ö½ÓÊÕµ½µÄÊý¾Ý£»
- *   2. È»ºó´®¿Ú´òÓ¡³ö "DMA transfer done!"¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. ä¸²å£æ‰“å°å‡ºæŽ¥æ”¶åˆ°çš„æ•°æ®ï¼›
+ *   2. ç„¶åŽä¸²å£æ‰“å°å‡º "DMA transfer done!"ã€‚
  *
  * \note
- *    1. ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIOA_10 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *       PIOA_9 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD£»
- *    2. Èç¹ûµ÷ÊÔ´®¿ÚÊ¹ÓÃÓë±¾Àý³ÌÏàÍ¬£¬Ôò²»Ó¦ÔÚºóÐø¼ÌÐøÊ¹ÓÃµ÷ÊÔÐÅÏ¢Êä³öº¯Êý
- *      £¨Èç£ºAM_DBG_INFO()£©¡£
+ *    1. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIOA_10 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *       PIOA_9 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDï¼›
+ *    2. å¦‚æžœè°ƒè¯•ä¸²å£ä½¿ç”¨ä¸Žæœ¬ä¾‹ç¨‹ç›¸åŒï¼Œåˆ™ä¸åº”åœ¨åŽç»­ç»§ç»­ä½¿ç”¨è°ƒè¯•ä¿¡æ¯è¾“å‡ºå‡½æ•°
+ *      ï¼ˆå¦‚ï¼šAM_DBG_INFO()ï¼‰ã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_zlg217_hw_uart_rx_dma.c src_zlg217_hw_uart_rx_dma
  *
  *
@@ -50,13 +50,13 @@
 #include "demo_am217_core_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_zlg217_core_hw_uart_rx_dma_entry (void)
 {
     AM_DBG_INFO("demo am217_core hw uart rx dma!\r\n");
 
-    /* µÈ´ý·¢ËÍÊý¾ÝÍê³É */
+    /* ç­‰å¾…å‘é€æ•°æ®å®Œæˆ */
     am_mdelay(100);
 
     demo_zlg_hw_uart_rx_dma_entry(ZLG217_UART1,

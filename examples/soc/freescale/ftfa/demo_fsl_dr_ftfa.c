@@ -12,17 +12,17 @@
 
 /**
  * \file
- * \brief FTFAÀı³Ì,Í¨¹ıÇı¶¯²ãµÄ½Ó¿ÚÊµÏÖ
+ * \brief FTFAä¾‹ç¨‹,é€šè¿‡é©±åŠ¨å±‚çš„æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè£º
- *      - ´®¿Ú½Óµ÷ÊÔ´®¿Ú
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *      - ä¸²å£æ¥è°ƒè¯•ä¸²å£
  *
- * - ÊµÑéÏÖÏó£º
- *      - ²Á³ı³ö´í£º´®¿Ú´òÓ¡ ¡°erase error!¡±
- *      - Ğ´Èë³ö´í£º´®¿Ú´òÓ¡ "program error!"
- *      - Ğ´Èë³É¹¦£º´®¿Ú´òÓ¡ 55ÉÈÇøµÄ (1024/4) ¸ö32bitÊ®Áù½øÖÆÊı¾İ
+ * - å®éªŒç°è±¡ï¼š
+ *      - æ“¦é™¤å‡ºé”™ï¼šä¸²å£æ‰“å° â€œerase error!â€
+ *      - å†™å…¥å‡ºé”™ï¼šä¸²å£æ‰“å° "program error!"
+ *      - å†™å…¥æˆåŠŸï¼šä¸²å£æ‰“å° 55æ‰‡åŒºçš„ (1024/4) ä¸ª32bitåå…­è¿›åˆ¶æ•°æ®
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_fsl_dr_ftfa.c src_fsl_dr_ftfa
  *
  * \internal
@@ -48,26 +48,26 @@
 void demo_fsl_dr_ftfa_entry (amhw_fsl_ftfa_t *p_hw_ftfa)
 {
     int i;
-    uint32_t data[1024 / 4]; /** ÒªĞ´ÈëflashµÄÊı¾İ */
-    uint32_t status;         /** flashÃüÁîÖ´ĞĞ×´Ì¬ */
+    uint32_t data[1024 / 4]; /** è¦å†™å…¥flashçš„æ•°æ® */
+    uint32_t status;         /** flashå‘½ä»¤æ‰§è¡ŒçŠ¶æ€ */
     uint32_t key = 0;
 
-    /** Êı¾İ³õÊ¼»¯ */
+    /** æ•°æ®åˆå§‹åŒ– */
     for (i = 0; i < 1024 / 4; i++) {
         data[i] = i;
     }
 
     key = am_int_cpu_lock();
-    /** FTFA³õÊ¼»¯ */
+    /** FTFAåˆå§‹åŒ– */
     am_fsl_ftfa_init();
     am_int_cpu_unlock (key);
 
     key = am_int_cpu_lock();
-    /** ²Á³ıÉÈÇø 55 */
+    /** æ“¦é™¤æ‰‡åŒº 55 */
     status = am_fsl_ftfa_sector_erase(p_hw_ftfa, 55 * 1024);
     am_int_cpu_unlock (key);
 
-    /** ÉÈÇø²Á³ı³ö´í£¬ ³ÌĞòÍ£ÔÚ´Ë´¦ */
+    /** æ‰‡åŒºæ“¦é™¤å‡ºé”™ï¼Œ ç¨‹åºåœåœ¨æ­¤å¤„ */
     if (0 != status) {
         AM_DBG_INFO("erase error!\r\n");
 
@@ -77,27 +77,27 @@ void demo_fsl_dr_ftfa_entry (amhw_fsl_ftfa_t *p_hw_ftfa)
     }
 
     key = am_int_cpu_lock();
-    /** ÏòÉÈÇø 55ÖĞĞ´ÈëÊı¾İ */
+    /** å‘æ‰‡åŒº 55ä¸­å†™å…¥æ•°æ® */
     status = am_fsl_ftfa_flash_program(p_hw_ftfa,
                                        55 * 1024,
                                        data,
                                        1024 / 4);
     am_int_cpu_unlock (key);
 
-    /** ÉÈÇøĞ´Èë³ö´í£¬³ÌĞòÍ£ÔÚ´Ë´¦ */
+    /** æ‰‡åŒºå†™å…¥å‡ºé”™ï¼Œç¨‹åºåœåœ¨æ­¤å¤„ */
     if ((1024/4) != status) {
         AM_DBG_INFO("program error!\r\n");
 
         while (1);
     }
 
-    /** Ğ´Èë³É¹¦ºó½«Êı¾İ´ÓflashÖĞ¶Á³ö */
+    /** å†™å…¥æˆåŠŸåå°†æ•°æ®ä»flashä¸­è¯»å‡º */
     for (i = 0; i < 1024; i += 4) {
         AM_DBG_INFO("%8x ", *(uint32_t *)(1024 * 55 + i));
     }
 
     AM_DBG_INFO("flash test finished!\r\n");
-    /** ËÀÑ­»·£¬·ÀÖ¹ÖØÆô */
+    /** æ­»å¾ªç¯ï¼Œé˜²æ­¢é‡å¯ */
     while (1) {
         ;
     }

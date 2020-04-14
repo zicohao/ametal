@@ -11,7 +11,7 @@
 *******************************************************************************/
 /**
  * \file
- * \brief ÊäÈë²¶»ñ±ê×¼½Ó¿Ú
+ * \brief è¾“å…¥æ•è·æ ‡å‡†æ¥å£
  *
  * \internal
  * \par Modification History
@@ -34,40 +34,40 @@ extern "C" {
  * @{
  */
 
-/** \brief ÉÏÉıÑØ´¥·¢²¶»ñ */
+/** \brief ä¸Šå‡æ²¿è§¦å‘æ•è· */
 #define AM_CAP_TRIGGER_RISE          0x01
     
-/** \brief ÏÂ½µÑØ´¥·¢²¶»ñ */
+/** \brief ä¸‹é™æ²¿è§¦å‘æ•è· */
 #define AM_CAP_TRIGGER_FALL          0x02
 
-/** \brief Ë«±ßÑØ´¥·¢²¶»ñ */
+/** \brief åŒè¾¹æ²¿è§¦å‘æ•è· */
 #define AM_CAP_TRIGGER_BOTH_EDGES    0x04
 
-/** \brief ²¶»ñÊÂ¼şµÄ»Øµ÷º¯ÊıÀàĞÍ */
+/** \brief æ•è·äº‹ä»¶çš„å›è°ƒå‡½æ•°ç±»å‹ */
 typedef void (*am_cap_callback_t) (void *p_arg, unsigned int count); 
     
 /**
- * \brief ÊäÈë²¶»ñÇı¶¯º¯Êı½á¹¹Ìå
+ * \brief è¾“å…¥æ•è·é©±åŠ¨å‡½æ•°ç»“æ„ä½“
  */
 struct am_cap_drv_funcs {
 
-    /** \brief ÅäÖÃÒ»¸ö²¶»ñÍ¨µÀ               */
+    /** \brief é…ç½®ä¸€ä¸ªæ•è·é€šé“               */
     int (*pfn_cap_config) (void             *p_cookie,
                            int               chan,
                            unsigned int      options,
                            am_cap_callback_t pfn_callback,
                            void             *p_arg);
 
-    /** \brief Ê¹ÄÜ²¶»ñÍ¨µÀ                   */
+    /** \brief ä½¿èƒ½æ•è·é€šé“                   */
     int (*pfn_cap_enable) (void *p_cookie, int chan);
 
-    /** \brief ½ûÄÜ²¶»ñÍ¨µÀ                   */
+    /** \brief ç¦èƒ½æ•è·é€šé“                   */
     int (*pfn_cap_disable) (void *p_cookie, int chan);
                              
-    /** \brief ¸´Î»Ò»¸ö²¶»ñÍ¨µÀ£¬Ê¹¼ÆÊıÖµ¹éÁã         */
+    /** \brief å¤ä½ä¸€ä¸ªæ•è·é€šé“ï¼Œä½¿è®¡æ•°å€¼å½’é›¶         */
     int (*pfn_cap_reset) (void *p_cookie,int chan);
     
-    /** \brief ×ª»»Á½´Î²¶»ñÖµÎªÊ±¼äÖµ£¨Ê±¼äµ¥Î»£ºns£© */
+    /** \brief è½¬æ¢ä¸¤æ¬¡æ•è·å€¼ä¸ºæ—¶é—´å€¼ï¼ˆæ—¶é—´å•ä½ï¼šnsï¼‰ */
     int (*pfn_cap_count_to_time)(void         *p_cookie,
                                  int           chan,
                                  unsigned int  count1,
@@ -77,32 +77,32 @@ struct am_cap_drv_funcs {
 
 
 /** 
- * \brief ÊäÈë²¶»ñ·şÎñ
+ * \brief è¾“å…¥æ•è·æœåŠ¡
  */
 typedef struct am_cap_serv {
 
-    /** \brief ÊäÈë²¶»ñÇı¶¯º¯Êı½á¹¹ÌåÖ¸Õë    */
+    /** \brief è¾“å…¥æ•è·é©±åŠ¨å‡½æ•°ç»“æ„ä½“æŒ‡é’ˆ    */
     struct am_cap_drv_funcs   *p_funcs;   
     
-    /** \brief ÓÃÓÚÇı¶¯º¯ÊıµÄµÚÒ»¸ö²ÎÊı      */
+    /** \brief ç”¨äºé©±åŠ¨å‡½æ•°çš„ç¬¬ä¸€ä¸ªå‚æ•°      */
     void                      *p_drv;    
 } am_cap_serv_t;
 
-/** \brief ÊäÈë²¶»ñ±ê×¼·şÎñ²Ù×÷¾ä±úÀàĞÍ¶¨Òå  */
+/** \brief è¾“å…¥æ•è·æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„ç±»å‹å®šä¹‰  */
 typedef am_cap_serv_t *am_cap_handle_t;
 
 
 /** 
- * \brief ÅäÖÃÒ»¸öÊäÈë²¶»ñÍ¨µÀ
+ * \brief é…ç½®ä¸€ä¸ªè¾“å…¥æ•è·é€šé“
  * 
- * \param[in] handle       : ÊäÈë²¶»ñ±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \param[in] chan         : ÊäÈë²¶»ñÍ¨µÀ
- * \param[in] options      : AM_CAP_TRIGGER_*ºêÖµ£¬Èç£º  #AM_CAP_TRIGGER_RISE
- * \param[in] pfn_callback : »Øµ÷º¯Êı
- * \param[in] p_arg        : »Øµ÷º¯ÊıµÄÓÃ»§²ÎÊı
+ * \param[in] handle       : è¾“å…¥æ•è·æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] chan         : è¾“å…¥æ•è·é€šé“
+ * \param[in] options      : AM_CAP_TRIGGER_*å®å€¼ï¼Œå¦‚ï¼š  #AM_CAP_TRIGGER_RISE
+ * \param[in] pfn_callback : å›è°ƒå‡½æ•°
+ * \param[in] p_arg        : å›è°ƒå‡½æ•°çš„ç”¨æˆ·å‚æ•°
  *
- * \retval  AM_OK       : ÅäÖÃCAPÍ¨µÀ³É¹¦
- * \retval -AM_EINVAL   : ÅäÖÃÊ§°Ü£¬²ÎÊı´íÎó
+ * \retval  AM_OK       : é…ç½®CAPé€šé“æˆåŠŸ
+ * \retval -AM_EINVAL   : é…ç½®å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_cap_config (am_cap_handle_t   handle,
@@ -120,13 +120,13 @@ int am_cap_config (am_cap_handle_t   handle,
 }
 
 /** 
- * \brief Ê¹ÄÜ²¶»ñÍ¨µÀ
+ * \brief ä½¿èƒ½æ•è·é€šé“
  * 
- * \param[in] handle  : ÊäÈë²¶»ñ±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \param[in] chan    : ÊäÈë²¶»ñÍ¨µÀ
+ * \param[in] handle  : è¾“å…¥æ•è·æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] chan    : è¾“å…¥æ•è·é€šé“
  *
- * \retval  AM_OK     : Ê¹ÄÜ²¶»ñÍ¨µÀ³É¹¦
- * \retval -AM_EINVAL : Ê¹ÄÜ²¶»ñÍ¨µÀÊ§°Ü£¬²ÎÊı´íÎó
+ * \retval  AM_OK     : ä½¿èƒ½æ•è·é€šé“æˆåŠŸ
+ * \retval -AM_EINVAL : ä½¿èƒ½æ•è·é€šé“å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_cap_enable (am_cap_handle_t handle, int chan)
@@ -135,13 +135,13 @@ int am_cap_enable (am_cap_handle_t handle, int chan)
 }
 
 /** 
- * \brief ½ûÄÜ²¶»ñÍ¨µÀ
+ * \brief ç¦èƒ½æ•è·é€šé“
  * 
- * \param[in] handle  : ÊäÈë²¶»ñ±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \param[in] chan    : ÊäÈë²¶»ñÍ¨µÀ
+ * \param[in] handle  : è¾“å…¥æ•è·æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] chan    : è¾“å…¥æ•è·é€šé“
  *
- * \retval  AM_OK     : ½ûÄÜ²¶»ñÍ¨µÀ³É¹¦
- * \retval -AM_EINVAL : ½ûÄÜ²¶»ñÍ¨µÀÊ§°Ü£¬²ÎÊı´íÎó
+ * \retval  AM_OK     : ç¦èƒ½æ•è·é€šé“æˆåŠŸ
+ * \retval -AM_EINVAL : ç¦èƒ½æ•è·é€šé“å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_cap_disable(am_cap_handle_t handle, int chan)
@@ -151,13 +151,13 @@ int am_cap_disable(am_cap_handle_t handle, int chan)
 
 
 /** 
- * \brief ¸´Î»²¶»ñÍ¨µÀ¼ÆÊıÖµÎª0
+ * \brief å¤ä½æ•è·é€šé“è®¡æ•°å€¼ä¸º0
  *
- * \param[in] handle  : ÊäÈë²¶»ñ±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \param[in] chan    : ÊäÈë²¶»ñÍ¨µÀ
+ * \param[in] handle  : è¾“å…¥æ•è·æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] chan    : è¾“å…¥æ•è·é€šé“
  *
- * \retval  AM_OK     : ¸´Î»³É¹¦
- * \retval -AM_EINVAL : ¸´Î»Ê§°Ü, ²ÎÊı´íÎó
+ * \retval  AM_OK     : å¤ä½æˆåŠŸ
+ * \retval -AM_EINVAL : å¤ä½å¤±è´¥, å‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_cap_reset(am_cap_handle_t handle, int chan)
@@ -166,16 +166,16 @@ int am_cap_reset(am_cap_handle_t handle, int chan)
 }
 
 /** 
- * \brief ×ª»»Á½´Î²¶»ñÖµÎªÊ±¼äÖµ£¨Ê±¼äµ¥Î»£ºns£©
+ * \brief è½¬æ¢ä¸¤æ¬¡æ•è·å€¼ä¸ºæ—¶é—´å€¼ï¼ˆæ—¶é—´å•ä½ï¼šnsï¼‰
  *
- * \param[in]  handle    : ÊäÈë²¶»ñ±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \param[in]  chan      : ÊäÈë²¶»ñÍ¨µÀ
- * \param[in]  count1    : µÚÒ»´Î²¶»ñÖµ
- * \param[in]  count2    : µÚ¶ş´Î²¶»ñÖµ
- * \param[out] p_time_ns : ÓÃÓÚ»ñÈ¡×ª»»½á¹ûÊ±¼äÖµ
+ * \param[in]  handle    : è¾“å…¥æ•è·æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in]  chan      : è¾“å…¥æ•è·é€šé“
+ * \param[in]  count1    : ç¬¬ä¸€æ¬¡æ•è·å€¼
+ * \param[in]  count2    : ç¬¬äºŒæ¬¡æ•è·å€¼
+ * \param[out] p_time_ns : ç”¨äºè·å–è½¬æ¢ç»“æœæ—¶é—´å€¼
  *
- * \retval  AM_OK        : ×ª»»³É¹¦
- * \retval -AM_EINVAL    : ×ª»»Ê§°Ü£¬²ÎÊı´íÎó
+ * \retval  AM_OK        : è½¬æ¢æˆåŠŸ
+ * \retval -AM_EINVAL    : è½¬æ¢å¤±è´¥ï¼Œå‚æ•°é”™è¯¯
  */
 am_static_inline
 int am_cap_count_to_time(am_cap_handle_t handle,

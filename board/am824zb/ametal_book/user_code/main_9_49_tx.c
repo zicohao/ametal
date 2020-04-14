@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ³ÌÐòÇåµ¥ 9.49 tx
+ * \brief ç¨‹åºæ¸…å• 9.49 tx
  * 
  * \internal
  * \par Modification history
@@ -34,16 +34,16 @@ int am_main (void)
 		am_zm516x_cfg_info_t     zm516x_cfg_info;
 		am_zm516x_handle_t     	 zm516x_handle= am_zm516x_inst_init();
 	
-    //»ñÈ¡ZM516XÄ£¿éµÄÅäÖÃÐÅÏ¢
+    //èŽ·å–ZM516Xæ¨¡å—çš„é…ç½®ä¿¡æ¯
 		if (am_zm516x_cfg_info_get(zm516x_handle, &zm516x_cfg_info) != AM_OK) {
 			while (1);
 		}
 
-		//ÐÞ¸ÄZM516XÄ£¿éµÄÅäÖÃÐÅÏ¢
+		//ä¿®æ”¹ZM516Xæ¨¡å—çš„é…ç½®ä¿¡æ¯
 		zm516x_cfg_info.my_addr[0]  = 0x20;
-		zm516x_cfg_info.my_addr[1]  = 0x01;			//ÁíÒ»¸öÄ£¿éÉèÖÃÎª0x02
+		zm516x_cfg_info.my_addr[1]  = 0x01;			//å¦ä¸€ä¸ªæ¨¡å—è®¾ç½®ä¸º0x02
 		zm516x_cfg_info.dst_addr[0] = 0x20;
-		zm516x_cfg_info.dst_addr[1] = 0x02;			//ÁíÒ»¸öÄ£¿éÉèÖÃÎª0x01
+		zm516x_cfg_info.dst_addr[1] = 0x02;			//å¦ä¸€ä¸ªæ¨¡å—è®¾ç½®ä¸º0x01
 		if (am_zm516x_cfg_info_set(zm516x_handle, &zm516x_cfg_info) != AM_OK) {
 			while (1);
 		}
@@ -52,13 +52,13 @@ int am_main (void)
 		am_mdelay(10);
 		while (1) {
 
-			//¼ä¸ô1S·¢ËÍÒ»´ÎÊý¾Ý
+			//é—´éš”1Så‘é€ä¸€æ¬¡æ•°æ®
 			if (snd_tick++ > 100) {
 				snd_tick = 0;
 				am_zm516x_send(zm516x_handle, "zm516x running\r\n", strlen("zm516x running\r\n"));
 			}
 
-			//am_zm516x_receiveº¯ÊýµÄ¶Á³¬Ê±Îª10ms
+			//am_zm516x_receiveå‡½æ•°çš„è¯»è¶…æ—¶ä¸º10ms
 			if (am_zm516x_receive(zm516x_handle, buf, sizeof(buf))> 0) {
 				am_kprintf("%s", buf);
 			}

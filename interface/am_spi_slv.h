@@ -12,9 +12,9 @@
 
 /**
  * \file
- * \brief spi´Ó»ú±ê×¼½Ó¿Ú
+ * \brief spiä»æœºæ ‡å‡†æ¥å£
  *
- * \note ¿ÉÍ¨¹ı´Ë½Ó¿Ú¶¨ÒåÒ»¿îspi´Ó»úÉè±¸
+ * \note å¯é€šè¿‡æ­¤æ¥å£å®šä¹‰ä¸€æ¬¾spiä»æœºè®¾å¤‡
  *
  * \internal
  * \par Modification History
@@ -39,143 +39,143 @@ extern "C" {
  */
 
 /**
- * \name SPI´ÓÉè±¸Ä£Ê½±êÖ¾£¬ÓÃÓÚam_spi_slv_mkdev()º¯ÊıµÄmode²ÎÊı
+ * \name SPIä»è®¾å¤‡æ¨¡å¼æ ‡å¿—ï¼Œç”¨äºam_spi_slv_mkdev()å‡½æ•°çš„modeå‚æ•°
  * @{
  */
 
-#define AM_SPI_SLV_CPHA        0x01  /**< \brief Ê±ÖÓÏàÎ»¿ÉÉèÖÃ             */
-#define AM_SPI_SLV_CPOL        0x02  /**< \brief Ê±ÖÓ¼«ĞÔ¿ÉÉèÖÃ             */
-#define AM_SPI_SLV_CS_HIGH     0x04  /**< \brief Æ¬Ñ¡¸ßÓĞĞ§                 */
-#define AM_SPI_SLV_LSB_FIRST   0x08  /**< \brief °´µÍÎ»ÏÈ³öµÄ·½Ê½·¢ËÍÊı¾İÖ¡ */
-#define AM_SPI_SLV_3WIRE       0x10  /**< \brief 3ÏßÄ£Ê½£¬SI/SO ĞÅºÅÏß¹²Ïí  */
-#define AM_SPI_SLV_LOOP        0x20  /**< \brief »Ø»·Ä£Ê½                   */
-#define AM_SPI_SLV_NO_CS       0x40  /**< \brief µ¥Éè±¸×ÜÏß, ÎŞÆ¬Ñ¡         */
+#define AM_SPI_SLV_CPHA        0x01  /**< \brief æ—¶é’Ÿç›¸ä½å¯è®¾ç½®             */
+#define AM_SPI_SLV_CPOL        0x02  /**< \brief æ—¶é’Ÿææ€§å¯è®¾ç½®             */
+#define AM_SPI_SLV_CS_HIGH     0x04  /**< \brief ç‰‡é€‰é«˜æœ‰æ•ˆ                 */
+#define AM_SPI_SLV_LSB_FIRST   0x08  /**< \brief æŒ‰ä½ä½å…ˆå‡ºçš„æ–¹å¼å‘é€æ•°æ®å¸§ */
+#define AM_SPI_SLV_3WIRE       0x10  /**< \brief 3çº¿æ¨¡å¼ï¼ŒSI/SO ä¿¡å·çº¿å…±äº«  */
+#define AM_SPI_SLV_LOOP        0x20  /**< \brief å›ç¯æ¨¡å¼                   */
+#define AM_SPI_SLV_NO_CS       0x40  /**< \brief å•è®¾å¤‡æ€»çº¿, æ— ç‰‡é€‰         */
 
-#define AM_SPI_SLV_MODE_0      (0 | 0)                 /**< \brief SPI´Ó»úÄ£Ê½0 */
-#define AM_SPI_SLV_MODE_1      (0 | AM_SPI_SLV_CPHA) /**< \brief SPI´Ó»úÄ£Ê½1 */
-#define AM_SPI_SLV_MODE_2      (AM_SPI_SLV_CPOL | 0) /**< \brief SPI´Ó»úÄ£Ê½2 */
-#define AM_SPI_SLV_MODE_3      (AM_SPI_SLV_CPOL | AM_SPI_SLV_CPHA) /**< \brief SPI´Ó»úÄ£Ê½3 */
+#define AM_SPI_SLV_MODE_0      (0 | 0)                 /**< \brief SPIä»æœºæ¨¡å¼0 */
+#define AM_SPI_SLV_MODE_1      (0 | AM_SPI_SLV_CPHA) /**< \brief SPIä»æœºæ¨¡å¼1 */
+#define AM_SPI_SLV_MODE_2      (AM_SPI_SLV_CPOL | 0) /**< \brief SPIä»æœºæ¨¡å¼2 */
+#define AM_SPI_SLV_MODE_3      (AM_SPI_SLV_CPOL | AM_SPI_SLV_CPHA) /**< \brief SPIä»æœºæ¨¡å¼3 */
 
 /** @} */
 
-struct am_spi_slv_device;        /**< \brief ÉùÃ÷SPI´ÓÉè±¸µÄ½á¹¹ÌåÀàĞÍ */
+struct am_spi_slv_device;        /**< \brief å£°æ˜SPIä»è®¾å¤‡çš„ç»“æ„ä½“ç±»å‹ */
 
 /**
- * \brief SPI´ÓÉè±¸Çı¶¯º¯Êı½á¹¹Ìå
+ * \brief SPIä»è®¾å¤‡é©±åŠ¨å‡½æ•°ç»“æ„ä½“
  */
 struct am_spi_slv_drv_funcs {
 
-    /** \brief Æô¶¯´ÓÉè±¸  */
+    /** \brief å¯åŠ¨ä»è®¾å¤‡  */
     int (*pfn_spi_slv_setup) (void *p_drv, struct am_spi_slv_device *p_dev);
 
-    /** \brief ¹Ø±ÕSPI´ÓÉè±¸   */
+    /** \brief å…³é—­SPIä»è®¾å¤‡   */
     int (*pfn_spi_slv_shutdown) (void *p_drv, struct am_spi_slv_device *p_dev);
 
 };
 
 /**
- * \brief SPI´ÓÉè±¸ ±ê×¼·şÎñ½á¹¹Ìå
+ * \brief SPIä»è®¾å¤‡ æ ‡å‡†æœåŠ¡ç»“æ„ä½“
  */
 typedef struct am_spi_slv_serv {
-    struct am_spi_slv_drv_funcs   *p_funcs;    /**< \brief SPI´ÓÉè±¸Çı¶¯º¯Êı     */
-    void                          *p_drv;      /**< \brief SPI´ÓÉè±¸Çı¶¯º¯Êı²ÎÊı */
+    struct am_spi_slv_drv_funcs   *p_funcs;    /**< \brief SPIä»è®¾å¤‡é©±åŠ¨å‡½æ•°     */
+    void                          *p_drv;      /**< \brief SPIä»è®¾å¤‡é©±åŠ¨å‡½æ•°å‚æ•° */
 } am_spi_slv_serv_t;
 
 
-/** \brief SPI´ÓÉè±¸ ±ê×¼·şÎñ²Ù×÷¾ä±ú¶¨Òå */
+/** \brief SPIä»è®¾å¤‡ æ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„å®šä¹‰ */
 typedef am_spi_slv_serv_t *am_spi_slv_handle_t;
 
 
 /**
- * \brief SPI ´Ó»ú´«Êä
+ * \brief SPI ä»æœºä¼ è¾“
  *
- * - SPI ´Ó»ú´«ÊäĞ´µÄ¸öÊı×ÜÊÇµÈÓÚ¶ÁµÄ¸öÊı¡£Ğ­ÒéÇı¶¯Ó¦¸Ã×ÜÊÇÌá¹© \a rx_buf ºÍ/»ò
- * \a tx_buf ¡£ÔÚÄ³Ğ©Çé¿öÏÂ£¬ËüÃÇÍ¬Ñù¿ÉÄÜÏëÌá¹©Êı¾İ´«ÊäµÄDMAµØÖ·£¬ÕâÑùµÄ»°£¬µ×
- * ²ãÇı¶¯¿ÉÒÔÊ¹ÓÃDMA£¬ÒÔ½µµÍÊı¾İ´«ÊäµÄ´ú¼Û¡£
+ * - SPI ä»æœºä¼ è¾“å†™çš„ä¸ªæ•°æ€»æ˜¯ç­‰äºè¯»çš„ä¸ªæ•°ã€‚åè®®é©±åŠ¨åº”è¯¥æ€»æ˜¯æä¾› \a rx_buf å’Œ/æˆ–
+ * \a tx_buf ã€‚åœ¨æŸäº›æƒ…å†µä¸‹ï¼Œå®ƒä»¬åŒæ ·å¯èƒ½æƒ³æä¾›æ•°æ®ä¼ è¾“çš„DMAåœ°å€ï¼Œè¿™æ ·çš„è¯ï¼Œåº•
+ * å±‚é©±åŠ¨å¯ä»¥ä½¿ç”¨DMAï¼Œä»¥é™ä½æ•°æ®ä¼ è¾“çš„ä»£ä»·ã€‚
  *
- * Èç¹û´«Êä»º´æÇø tx_bufÎª NULL rx_buf²»ÎªNULL£¬ Ôò±íÊ¾´Ó»ú ½«0·¢ËÍµ½×ÜÏßÉÏ£¬½ÓÊÜµÄ´æµ½rx_bufÖĞ
- * Èç¹û´«Êä»º´æÇø tx_buf²»Îª NULL rx_bufÎªNULL£¬ Ôò±íÊ¾´Ó»ú ÉáÆú½ÓÊÜµÄÊı¾İ £¬Ö»µ¥´¿µÄ·¢ËÍÊı¾İ
+ * å¦‚æœä¼ è¾“ç¼“å­˜åŒº tx_bufä¸º NULL rx_bufä¸ä¸ºNULLï¼Œ åˆ™è¡¨ç¤ºä»æœº å°†0å‘é€åˆ°æ€»çº¿ä¸Šï¼Œæ¥å—çš„å­˜åˆ°rx_bufä¸­
+ * å¦‚æœä¼ è¾“ç¼“å­˜åŒº tx_bufä¸ä¸º NULL rx_bufä¸ºNULLï¼Œ åˆ™è¡¨ç¤ºä»æœº èˆå¼ƒæ¥å—çš„æ•°æ® ï¼Œåªå•çº¯çš„å‘é€æ•°æ®
  *
- * - ÔÚÄÚ´æÖĞ£¬Êı¾İ×ÜÊÇ°´CPUµÄµÄ±¾µØ×Ö½ÚË³Ğò´æ·Å£¬ÒÔÏß×Ö½ÚË³Ğò´«Êä (¼´´ó¶Ë£¬³ı·Ç
- * Éè±¸Ä£Ê½»ò´«Êä±êÖ¾ÖĞ±»ÉèÖÃÁË AM_SPI_LSB_FIRST)¡£ÀıÈç£¬µ±\a bits_per_word Îª
- * 16£¬»º³åÇøÎª 2N ×Ö½Ú³¤ (\a len = 2N) ²¢ÇÒÒÔCPU×Ö½ÚË³±ã±£´æN¸ö16-bit×Ö¡£
+ * - åœ¨å†…å­˜ä¸­ï¼Œæ•°æ®æ€»æ˜¯æŒ‰CPUçš„çš„æœ¬åœ°å­—èŠ‚é¡ºåºå­˜æ”¾ï¼Œä»¥çº¿å­—èŠ‚é¡ºåºä¼ è¾“ (å³å¤§ç«¯ï¼Œé™¤é
+ * è®¾å¤‡æ¨¡å¼æˆ–ä¼ è¾“æ ‡å¿—ä¸­è¢«è®¾ç½®äº† AM_SPI_LSB_FIRST)ã€‚ä¾‹å¦‚ï¼Œå½“\a bits_per_word ä¸º
+ * 16ï¼Œç¼“å†²åŒºä¸º 2N å­—èŠ‚é•¿ (\a len = 2N) å¹¶ä¸”ä»¥CPUå­—èŠ‚é¡ºä¾¿ä¿å­˜Nä¸ª16-bitå­—ã€‚
  *
- * - µ± SPI ´«ÊäµÄ×Ö´óĞ¡²»ÊÇ2µÄÃİ´Î±¶8-bitÊ±£¬ÕâĞ©ÄÚ´æÖĞµÄ×Ö½«°üº¬¶îÍâµÄbit¡£ÔÚ
- * ÄÚ´æÖĞ£¬×Ö×ÜÊÇÏòÓÒ¶ÔÆëµÄ£¬Òò´Ë£¬Î´¶¨Òå (rx) »òÎ´Ê¹ÓÃ (tx) µÄÎ»×ÜÊÇ×î¸ßÓĞĞ§Î»¡£
+ * - å½“ SPI ä¼ è¾“çš„å­—å¤§å°ä¸æ˜¯2çš„å¹‚æ¬¡å€8-bitæ—¶ï¼Œè¿™äº›å†…å­˜ä¸­çš„å­—å°†åŒ…å«é¢å¤–çš„bitã€‚åœ¨
+ * å†…å­˜ä¸­ï¼Œå­—æ€»æ˜¯å‘å³å¯¹é½çš„ï¼Œå› æ­¤ï¼Œæœªå®šä¹‰ (rx) æˆ–æœªä½¿ç”¨ (tx) çš„ä½æ€»æ˜¯æœ€é«˜æœ‰æ•ˆä½ã€‚
  *
  */
 typedef struct am_spi_slv_tansfer {
-    /** \brief Ö¸Ïò·¢ËÍ»º´æµÄÖ¸Õë */
+    /** \brief æŒ‡å‘å‘é€ç¼“å­˜çš„æŒ‡é’ˆ */
     const void *p_tx_buf;
 
-    /** \brief Ö¸Ïò½ÓÊÕ»º´æµÄÖ¸Õë */
+    /** \brief æŒ‡å‘æ¥æ”¶ç¼“å­˜çš„æŒ‡é’ˆ */
     void *p_rx_buf;
 
-    /** \brief Êı¾İ³¤¶È(×Ö½ÚÊı) */
+    /** \brief æ•°æ®é•¿åº¦(å­—èŠ‚æ•°) */
     size_t  nbytes;
 
-    /** \brief ×Ö´óĞ¡£¬ÈôÎª0£¬ÔòÊ¹ÓÃ am_spi_device_t ÖĞÉèÖÃµÄÖµ */
+    /** \brief å­—å¤§å°ï¼Œè‹¥ä¸º0ï¼Œåˆ™ä½¿ç”¨ am_spi_device_t ä¸­è®¾ç½®çš„å€¼ */
     uint8_t     bits_per_word;
 
 }am_spi_slv_transfer_t;
 
 /**
- * \brief SPI´ÓÉè±¸»Øµ÷º¯ÊıÀàĞÍ
+ * \brief SPIä»è®¾å¤‡å›è°ƒå‡½æ•°ç±»å‹
  */
 typedef struct am_spi_slv_cb_funs{
 
-    /** \brief Æ¬Ñ¡CSÓĞĞ§»Øµ÷ */
+    /** \brief ç‰‡é€‰CSæœ‰æ•ˆå›è°ƒ */
     int (*pfn_cs_active)(void *p_arg);
 
-    /** \brief Æ¬Ñ¡CSÎŞĞ§»Øµ÷  (nbytesÎª±¾´ÎÆ¬Ñ¡ÓĞĞ§ÖĞ´«ÊäµÄ×Ü×Ö½ÚÊı )*/
+    /** \brief ç‰‡é€‰CSæ— æ•ˆå›è°ƒ  (nbytesä¸ºæœ¬æ¬¡ç‰‡é€‰æœ‰æ•ˆä¸­ä¼ è¾“çš„æ€»å­—èŠ‚æ•° )*/
     int (*pfn_cs_inactive)(void *p_arg, size_t nbytes);
 
-    /** \brief »ñÈ¡ ´«ÊäµÄĞÅÏ¢  */
+    /** \brief è·å– ä¼ è¾“çš„ä¿¡æ¯  */
     int (*pfn_tansfer_get)(void *p_arg, am_spi_slv_transfer_t *p_trans);
 
 } am_spi_slv_cb_funs_t;
 
 
-/** \brief SPI´ÓÉè±¸ÃèÊö½á¹¹ */
+/** \brief SPIä»è®¾å¤‡æè¿°ç»“æ„ */
 typedef struct am_spi_slv_device {
 
-     /** \brief ¸ÃÉè±¸¹ØÁªµÄSPI±ê×¼·şÎñhandle */
+     /** \brief è¯¥è®¾å¤‡å…³è”çš„SPIæ ‡å‡†æœåŠ¡handle */
      am_spi_slv_handle_t  handle;
 
-     /** \brief ´ÓÉè Êı¾İ´«Êä°üº¬1¸ö»ò¶à¸ö×Ö£¬±È½Ï³£¼ûµÄ×Ö´óĞ¡Îª8-bit»ò12-bit£¬ÔÚÄÚ´æ
-      *   ÖĞ£¬×Ö´óĞ¡Ó¦¸ÃÊÇ2µÄÃİ´Î·½£¬ÀıÈç£¬20-bit×Ô´óĞ¡Ó¦Ê¹ÓÃ32-bitÄÚ´æ
-      *   Îª0Ê±£¬Ä¬ÈÏÑ¡ÔñÎª8bit
+     /** \brief ä»è®¾ æ•°æ®ä¼ è¾“åŒ…å«1ä¸ªæˆ–å¤šä¸ªå­—ï¼Œæ¯”è¾ƒå¸¸è§çš„å­—å¤§å°ä¸º8-bitæˆ–12-bitï¼Œåœ¨å†…å­˜
+      *   ä¸­ï¼Œå­—å¤§å°åº”è¯¥æ˜¯2çš„å¹‚æ¬¡æ–¹ï¼Œä¾‹å¦‚ï¼Œ20-bitè‡ªå¤§å°åº”ä½¿ç”¨32-bitå†…å­˜
+      *   ä¸º0æ—¶ï¼Œé»˜è®¤é€‰æ‹©ä¸º8bit
       */
      uint8_t                bits_per_word;
 
-     /** \brief ´ÓÉè±¸µÄSPIÄ£Ê½±êÖ¾£¬Çë²Î¿¼¡°SPI´Ó»úÄ£Ê½±êÖ¾¡±
+     /** \brief ä»è®¾å¤‡çš„SPIæ¨¡å¼æ ‡å¿—ï¼Œè¯·å‚è€ƒâ€œSPIä»æœºæ¨¡å¼æ ‡å¿—â€
       *
-      * ¸Ã²ÎÊıÓÃÓÚÉèÖÃSPI´ÓÉè±¸µÄÊ±ÖÓÏàÎ»ºÍ¼«ĞÔ£¬ĞèÒªÓëÖ÷»úÉèÖÃÏàÍ¬
+      * è¯¥å‚æ•°ç”¨äºè®¾ç½®SPIä»è®¾å¤‡çš„æ—¶é’Ÿç›¸ä½å’Œææ€§ï¼Œéœ€è¦ä¸ä¸»æœºè®¾ç½®ç›¸åŒ
       */
      uint16_t               mode;
 
-     /** \brief ´ÓÉè±¸»Øµ÷º¯Êı */
+     /** \brief ä»è®¾å¤‡å›è°ƒå‡½æ•° */
      am_spi_slv_cb_funs_t *p_slv_cb_funcs;
 
-     /** \brief »Øµ÷º¯Êı²ÎÊı */
+     /** \brief å›è°ƒå‡½æ•°å‚æ•° */
      void                   *p_arg;
 
 } am_spi_slv_device_t;
 
 /**
- * \brief ÉèÖÃSPIÉè±¸½á¹¹Ìå²ÎÊı
+ * \brief è®¾ç½®SPIè®¾å¤‡ç»“æ„ä½“å‚æ•°
  *
- * \param[in] p_dev         : SPI´Ó»úÉè±¸ÃèÊö·ûÖ¸Õë
- * \param[in] handle        : SPI±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \param[in] bits_per_word : ×Ö´óĞ¡£¬Îª0Ê±Ê¹ÓÃÄ¬ÈÏµÄ¡°8-bit×Ö´óĞ¡¡±
- * \param[in] mode          : Éè±¸Ä£Ê½±êÖ¾£¬¼û¡°SPIÄ£Ê½±êÖ¾¡±
- * \param[in] p_slv_cb_funcs : SPI´ÓÉè±¸»Øµ÷º¯Êı
- * \param[in] p_arg         : SPI´ÓÉè±¸»Øµ÷º¯ÊıµÄ²ÎÊı
+ * \param[in] p_dev         : SPIä»æœºè®¾å¤‡æè¿°ç¬¦æŒ‡é’ˆ
+ * \param[in] handle        : SPIæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[in] bits_per_word : å­—å¤§å°ï¼Œä¸º0æ—¶ä½¿ç”¨é»˜è®¤çš„â€œ8-bitå­—å¤§å°â€
+ * \param[in] mode          : è®¾å¤‡æ¨¡å¼æ ‡å¿—ï¼Œè§â€œSPIæ¨¡å¼æ ‡å¿—â€
+ * \param[in] p_slv_cb_funcs : SPIä»è®¾å¤‡å›è°ƒå‡½æ•°
+ * \param[in] p_arg         : SPIä»è®¾å¤‡å›è°ƒå‡½æ•°çš„å‚æ•°
  *
- * \return ÎŞ
+ * \return æ— 
  *
- * \par ·¶Àı
- * ¼û am_spi_slv_setup()
+ * \par èŒƒä¾‹
+ * è§ am_spi_slv_setup()
  */
 am_static_inline
 void am_spi_slv_mkdev (am_spi_slv_device_t  *p_dev,
@@ -195,29 +195,29 @@ void am_spi_slv_mkdev (am_spi_slv_device_t  *p_dev,
 
 
 /**
- * \brief ÉèÖÃSPI´Ó»úÉè±¸
+ * \brief è®¾ç½®SPIä»æœºè®¾å¤‡
  *
- * \attention ÔÚSPI´Ó»úÉè±¸±»Ê¹ÓÃÇ°£¬±ØĞëÏÈµ÷ÓÃ±¾º¯Êı½øĞĞÉèÖÃ£¬ÇÒÈç±¾º¯Êı·µ»Ø
- *            ´íÎó£¬ÔòÒ»¶¨²»ÄÜÔÙÊ¹ÓÃ´ËSPI´Ó»ú
+ * \attention åœ¨SPIä»æœºè®¾å¤‡è¢«ä½¿ç”¨å‰ï¼Œå¿…é¡»å…ˆè°ƒç”¨æœ¬å‡½æ•°è¿›è¡Œè®¾ç½®ï¼Œä¸”å¦‚æœ¬å‡½æ•°è¿”å›
+ *            é”™è¯¯ï¼Œåˆ™ä¸€å®šä¸èƒ½å†ä½¿ç”¨æ­¤SPIä»æœº
  *
- * \param[in] p_dev : SPI´Ó»úÉè±¸
+ * \param[in] p_dev : SPIä»æœºè®¾å¤‡
  *
- * \retval   AM_OK           : ÉèÖÃ³É¹¦
- * \retval  -AM_ENOTSUP      : ÅäÖÃÊ§°Ü£¬²»Ö§³ÖµÄÎ»¿í¡¢Ä£Ê½µÈ
+ * \retval   AM_OK           : è®¾ç½®æˆåŠŸ
+ * \retval  -AM_ENOTSUP      : é…ç½®å¤±è´¥ï¼Œä¸æ”¯æŒçš„ä½å®½ã€æ¨¡å¼ç­‰
  *
- * \par Ê¾Àı
+ * \par ç¤ºä¾‹
  * \code
- *  am_spi_slv_device_t spi_slv_dev;     // ´ÓÉè±¸ÃèÊö½á¹¹
+ *  am_spi_slv_device_t spi_slv_dev;     // ä»è®¾å¤‡æè¿°ç»“æ„
  *
- * // ³õÊ¼»¯Éè±¸ÃèÊö½á¹¹
+ * // åˆå§‹åŒ–è®¾å¤‡æè¿°ç»“æ„
  * am_spi_slv_mkdev(&spi_slv_dev,
- *                    handle,         // SPI´Ó»ú±ê×¼·şÎñhandle
- *                    8£¬                                 // ×Ö´óĞ¡Îª8-bit
- *                    AM_SPI_MODE_1,  // SPI Ä£Ê½1
- *                    __g_spi_slv_cb_funs,   // ´Ó»ú»Øµ÷º¯ÊıÎª__g_spi_slv_cb_funs
- *                    &spi_slv_dev);          // ´Ó»ú»Øµ÷º¯ÊıµÄÈë¿Ú²ÎÊı
+ *                    handle,         // SPIä»æœºæ ‡å‡†æœåŠ¡handle
+ *                    8ï¼Œ                                 // å­—å¤§å°ä¸º8-bit
+ *                    AM_SPI_MODE_1,  // SPI æ¨¡å¼1
+ *                    __g_spi_slv_cb_funs,   // ä»æœºå›è°ƒå‡½æ•°ä¸º__g_spi_slv_cb_funs
+ *                    &spi_slv_dev);          // ä»æœºå›è°ƒå‡½æ•°çš„å…¥å£å‚æ•°
  *
- * // ÉèÖÃÉè±¸
+ * // è®¾ç½®è®¾å¤‡
  * am_spi_slv_setup(&spi_slv_dev);
  *
  * \endcode
@@ -232,12 +232,12 @@ int am_spi_slv_setup (am_spi_slv_device_t *p_dev)
 
 
 /**
- * \brief ¹Ø±ÕSPI´Ó»ú
+ * \brief å…³é—­SPIä»æœº
  *
- * \param[in]  handle : SPI±ê×¼·şÎñ²Ù×÷¾ä±ú
- * \param[out] p_dev  : SPI´Ó»úÉè±¸
+ * \param[in]  handle : SPIæ ‡å‡†æœåŠ¡æ“ä½œå¥æŸ„
+ * \param[out] p_dev  : SPIä»æœºè®¾å¤‡
  *
- * \retval  AM_OK     : ÉèÖÃ³É¹¦
+ * \retval  AM_OK     : è®¾ç½®æˆåŠŸ
  */
 am_static_inline
 int am_spi_slv_shutdown (am_spi_slv_device_t *p_dev)

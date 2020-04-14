@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief I2C²Ù×÷½Ó¿Ú
+ * \brief I2Cæ“ä½œæ¥å£
  *
  * \internal
  * \par Modification history
@@ -30,7 +30,7 @@ extern "C" {
 #include "am_types.h"
 
 /*
- * \brief ÄäÃû½á¹¹Ìå¶ÎµÄ¿ªÊ¼
+ * \brief åŒ¿åç»“æ„ä½“æ®µçš„å¼€å§‹
  */
 #if defined(__CC_ARM)
   #pragma push
@@ -52,162 +52,162 @@ extern "C" {
  */
 
 /**
- * \brief I2C¼Ä´æÆ÷¿é½á¹¹Ìå
+ * \brief I2Cå¯„å­˜å™¨å—ç»“æ„ä½“
  */
 typedef struct amhw_zlg_i2c {
-    __IO uint16_t  ic_con;                /**< \brief I2C¿ØÖÆ¼Ä´æÆ÷ */
-         uint16_t  reserved0;             /**< \brief ±£Áô0 */
-    __IO uint16_t  ic_tar;                /**< \brief I2CÄ¿±êµØÖ·¼Ä´æÆ÷ */
-         uint16_t  reserved1;             /**< \brief ±£Áô1 */
-    __IO uint16_t  ic_sar;                /**< \brief I2C´Ó»úµØÖ·¼Ä´æÆ÷ */
-         uint16_t  reserved2;             /**< \brief ±£Áô2 */
-    __IO uint16_t  ic_hs_maddr;           /**< \brief ÔİÇÒ±£Áô */
-         uint16_t  reserved3;             /**< \brief ±£Áô3 */
-    __IO uint16_t  ic_data_cmd;           /**< \brief I2CÊı¾İÃüÁî¼Ä´æÆ÷ */
-         uint16_t  reserved4;             /**< \brief ±£Áô4 */
-    __IO uint16_t  ic_ss_scl_hcnt;        /**< \brief ±ê×¼Ä£Ê½ I2CÊ±ÖÓ¸ßµçÆ½¼ÆÊı¼Ä´æÆ÷ */
-         uint16_t  reserved5;             /**< \brief ±£Áô5 */
-    __IO uint16_t  ic_ss_scl_lcnt;        /**< \brief ±ê×¼Ä£Ê½ I2CÊ±ÖÓµÍµçÆ½¼ÆÊı¼Ä´æÆ÷ */
-         uint16_t  reserved6;             /**< \brief ±£Áô6 */
-    __IO uint16_t  ic_fs_scl_hcnt;        /**< \brief ¿ìËÙÄ£Ê½ I2CÊ±ÖÓ¸ßµçÆ½¼ÆÊı¼Ä´æÆ÷ */
-         uint16_t  reserved7;             /**< \brief ±£Áô7 */
-    __IO uint16_t  ic_fs_scl_lcnt;        /**< \brief ¿ìËÙÄ£Ê½ I2CÊ±ÖÓµÍµçÆ½¼ÆÊı¼Ä´æÆ÷ */
-         uint16_t  reserved8;             /**< \brief ±£Áô8 */
-    __IO uint16_t  ic_hs_scl_hcnt;        /**< \brief ÔİÇÒ±£Áô */
-         uint16_t  reserved9;             /**< \brief ±£Áô9 */
-    __IO uint16_t  ic_hs_scl_lcnt;        /**< \brief ÔİÇÒ±£Áô */
-         uint16_t  reserved10;            /**< \brief ±£Áô10 */
-    __IO uint16_t  ic_intr_stat;          /**< \brief I2CÖĞ¶Ï×´Ì¬¼Ä´æÆ÷ */
-         uint16_t  reserved11;            /**< \brief ±£Áô11 */
-    __IO uint16_t  ic_intr_mask;          /**< \brief I2CÖĞ¶ÏÆÁ±Î¼Ä´æÆ÷ */
-         uint16_t  reserved12;            /**< \brief ±£Áô12 */
-    __IO uint16_t  ic_raw_intr_stat;      /**< \brief I2C RAW ÖĞ¶Ï¼Ä´æÆ÷ */
-         uint16_t  reserved13;            /**< \brief ±£Áô13 */
-    __IO uint16_t  ic_rx_tl;              /**< \brief I2C½ÓÊÕãĞÖµ */
-         uint16_t  reserved14;            /**< \brief ±£Áô14 */
-    __IO uint16_t  ic_tx_tl;              /**< \brief I2C·¢ËÍãĞÖµ */
-         uint16_t  reserved15;            /**< \brief ±£Áô15 */
+    __IO uint16_t  ic_con;                /**< \brief I2Cæ§åˆ¶å¯„å­˜å™¨ */
+         uint16_t  reserved0;             /**< \brief ä¿ç•™0 */
+    __IO uint16_t  ic_tar;                /**< \brief I2Cç›®æ ‡åœ°å€å¯„å­˜å™¨ */
+         uint16_t  reserved1;             /**< \brief ä¿ç•™1 */
+    __IO uint16_t  ic_sar;                /**< \brief I2Cä»æœºåœ°å€å¯„å­˜å™¨ */
+         uint16_t  reserved2;             /**< \brief ä¿ç•™2 */
+    __IO uint16_t  ic_hs_maddr;           /**< \brief æš‚ä¸”ä¿ç•™ */
+         uint16_t  reserved3;             /**< \brief ä¿ç•™3 */
+    __IO uint16_t  ic_data_cmd;           /**< \brief I2Cæ•°æ®å‘½ä»¤å¯„å­˜å™¨ */
+         uint16_t  reserved4;             /**< \brief ä¿ç•™4 */
+    __IO uint16_t  ic_ss_scl_hcnt;        /**< \brief æ ‡å‡†æ¨¡å¼ I2Cæ—¶é’Ÿé«˜ç”µå¹³è®¡æ•°å¯„å­˜å™¨ */
+         uint16_t  reserved5;             /**< \brief ä¿ç•™5 */
+    __IO uint16_t  ic_ss_scl_lcnt;        /**< \brief æ ‡å‡†æ¨¡å¼ I2Cæ—¶é’Ÿä½ç”µå¹³è®¡æ•°å¯„å­˜å™¨ */
+         uint16_t  reserved6;             /**< \brief ä¿ç•™6 */
+    __IO uint16_t  ic_fs_scl_hcnt;        /**< \brief å¿«é€Ÿæ¨¡å¼ I2Cæ—¶é’Ÿé«˜ç”µå¹³è®¡æ•°å¯„å­˜å™¨ */
+         uint16_t  reserved7;             /**< \brief ä¿ç•™7 */
+    __IO uint16_t  ic_fs_scl_lcnt;        /**< \brief å¿«é€Ÿæ¨¡å¼ I2Cæ—¶é’Ÿä½ç”µå¹³è®¡æ•°å¯„å­˜å™¨ */
+         uint16_t  reserved8;             /**< \brief ä¿ç•™8 */
+    __IO uint16_t  ic_hs_scl_hcnt;        /**< \brief æš‚ä¸”ä¿ç•™ */
+         uint16_t  reserved9;             /**< \brief ä¿ç•™9 */
+    __IO uint16_t  ic_hs_scl_lcnt;        /**< \brief æš‚ä¸”ä¿ç•™ */
+         uint16_t  reserved10;            /**< \brief ä¿ç•™10 */
+    __IO uint16_t  ic_intr_stat;          /**< \brief I2Cä¸­æ–­çŠ¶æ€å¯„å­˜å™¨ */
+         uint16_t  reserved11;            /**< \brief ä¿ç•™11 */
+    __IO uint16_t  ic_intr_mask;          /**< \brief I2Cä¸­æ–­å±è”½å¯„å­˜å™¨ */
+         uint16_t  reserved12;            /**< \brief ä¿ç•™12 */
+    __IO uint16_t  ic_raw_intr_stat;      /**< \brief I2C RAW ä¸­æ–­å¯„å­˜å™¨ */
+         uint16_t  reserved13;            /**< \brief ä¿ç•™13 */
+    __IO uint16_t  ic_rx_tl;              /**< \brief I2Cæ¥æ”¶é˜ˆå€¼ */
+         uint16_t  reserved14;            /**< \brief ä¿ç•™14 */
+    __IO uint16_t  ic_tx_tl;              /**< \brief I2Cå‘é€é˜ˆå€¼ */
+         uint16_t  reserved15;            /**< \brief ä¿ç•™15 */
 
-    __IO uint16_t  ic_clr_intr;           /**< \brief I2C×éºÏºÍ¶ÀÁ¢ÖĞ¶ÏÇå³ı¼Ä´æÆ÷ */
-         uint16_t  reserved16;            /**< \brief ±£Áô16 */
-    __IO uint16_t  ic_clr_rx_under;       /**< \brief I2CÇå³ıRX_UNDERÖĞ¶Ï¼Ä´æÆ÷ */
-         uint16_t  reserved17;            /**< \brief ±£Áô17 */
-    __IO uint16_t  ic_clr_rx_over;        /**< \brief I2CÇå³ıRX_OVERÖĞ¶Ï¼Ä´æÆ÷ */
-         uint16_t  reserved18;            /**< \brief ±£Áô18 */
-    __IO uint16_t  ic_clr_tx_over;        /**< \brief I2CÇå³ıTX_OVERÖĞ¶Ï¼Ä´æÆ÷ */
-         uint16_t  reserved19;            /**< \brief ±£Áô19 */
-    __IO uint16_t  ic_clr_rd_req;         /**< \brief I2CÇå³ıRD_REQÖĞ¶Ï¼Ä´æÆ÷ */
-         uint16_t  reserved20;            /**< \brief ±£Áô20 */
-    __IO uint16_t  ic_clr_tx_abrt;        /**< \brief I2CÇå³ıTX_ABRTÖĞ¶Ï¼Ä´æÆ÷ */
-         uint16_t  reserved21;            /**< \brief ±£Áô21 */
-    __IO uint16_t  ic_clr_rx_done;        /**< \brief I2CÇå³ıRX_DONEÖĞ¶Ï¼Ä´æÆ÷ */
-         uint16_t  reserved22;            /**< \brief ±£Áô22 */
-    __IO uint16_t  ic_clr_activity;       /**< \brief I2CÇå³ı ACTIVITYÖĞ¶Ï¼Ä´æÆ÷ */
-         uint16_t  reserved23;            /**< \brief ±£Áô23 */
-    __IO uint16_t  ic_clr_stop_det;       /**< \brief I2CÇå³ıSTOP_DETÖĞ¶Ï¼Ä´æÆ÷ */
-         uint16_t  reserved24;            /**< \brief ±£Áô24 */
-    __IO uint16_t  ic_clr_start_det;      /**< \brief I2CÇå³ıSTART_DETÖĞ¶Ï¼Ä´æÆ÷ */
-         uint16_t  reserved25;            /**< \brief ±£Áô25 */
-    __IO uint16_t  ic_clr_gen_call;       /**< \brief I2CÇå³ı GEN_CALL ÖĞ¶Ï¼Ä´æÆ÷ */
-         uint16_t  reserved26;            /**< \brief ±£Áô26 */
-    __IO uint16_t  ic_enable;             /**< \brief I2CÊ¹ÄÜ¼Ä´æÆ÷ */
-         uint16_t  reserved27;            /**< \brief ±£Áô27 */
+    __IO uint16_t  ic_clr_intr;           /**< \brief I2Cç»„åˆå’Œç‹¬ç«‹ä¸­æ–­æ¸…é™¤å¯„å­˜å™¨ */
+         uint16_t  reserved16;            /**< \brief ä¿ç•™16 */
+    __IO uint16_t  ic_clr_rx_under;       /**< \brief I2Cæ¸…é™¤RX_UNDERä¸­æ–­å¯„å­˜å™¨ */
+         uint16_t  reserved17;            /**< \brief ä¿ç•™17 */
+    __IO uint16_t  ic_clr_rx_over;        /**< \brief I2Cæ¸…é™¤RX_OVERä¸­æ–­å¯„å­˜å™¨ */
+         uint16_t  reserved18;            /**< \brief ä¿ç•™18 */
+    __IO uint16_t  ic_clr_tx_over;        /**< \brief I2Cæ¸…é™¤TX_OVERä¸­æ–­å¯„å­˜å™¨ */
+         uint16_t  reserved19;            /**< \brief ä¿ç•™19 */
+    __IO uint16_t  ic_clr_rd_req;         /**< \brief I2Cæ¸…é™¤RD_REQä¸­æ–­å¯„å­˜å™¨ */
+         uint16_t  reserved20;            /**< \brief ä¿ç•™20 */
+    __IO uint16_t  ic_clr_tx_abrt;        /**< \brief I2Cæ¸…é™¤TX_ABRTä¸­æ–­å¯„å­˜å™¨ */
+         uint16_t  reserved21;            /**< \brief ä¿ç•™21 */
+    __IO uint16_t  ic_clr_rx_done;        /**< \brief I2Cæ¸…é™¤RX_DONEä¸­æ–­å¯„å­˜å™¨ */
+         uint16_t  reserved22;            /**< \brief ä¿ç•™22 */
+    __IO uint16_t  ic_clr_activity;       /**< \brief I2Cæ¸…é™¤ ACTIVITYä¸­æ–­å¯„å­˜å™¨ */
+         uint16_t  reserved23;            /**< \brief ä¿ç•™23 */
+    __IO uint16_t  ic_clr_stop_det;       /**< \brief I2Cæ¸…é™¤STOP_DETä¸­æ–­å¯„å­˜å™¨ */
+         uint16_t  reserved24;            /**< \brief ä¿ç•™24 */
+    __IO uint16_t  ic_clr_start_det;      /**< \brief I2Cæ¸…é™¤START_DETä¸­æ–­å¯„å­˜å™¨ */
+         uint16_t  reserved25;            /**< \brief ä¿ç•™25 */
+    __IO uint16_t  ic_clr_gen_call;       /**< \brief I2Cæ¸…é™¤ GEN_CALL ä¸­æ–­å¯„å­˜å™¨ */
+         uint16_t  reserved26;            /**< \brief ä¿ç•™26 */
+    __IO uint16_t  ic_enable;             /**< \brief I2Cä½¿èƒ½å¯„å­˜å™¨ */
+         uint16_t  reserved27;            /**< \brief ä¿ç•™27 */
 
-    __IO uint32_t  ic_status;             /**< \brief I2C×´Ì¬¼Ä´æÆ÷ */
-    __IO uint32_t  ic_txflr;              /**< \brief I2C·¢ËÍ»º³åË®Æ½¼Ä´æÆ÷ */
-    __IO uint32_t  ic_rxflr;              /**< \brief I2C½ÓÊÕ»º³åË®Æ½¼Ä´æÆ÷ */
-    __IO uint32_t  ic_sda_hold;           /**< \brief I2C SDA±£³ÖÊ±¼ä¼Ä´æÆ÷ */
-    __IO uint32_t  ic_tx_abrt_source;     /**< \brief ÔİÇÒ±£Áô */
-    __IO uint32_t  ic_slv_data_nack_only; /**< \brief ÔİÇÒ±£Áô */
-    __IO uint32_t  ic_dma_cr;             /**< \brief I2C DMA¿ØÖÆ¼Ä´æÆ÷ */
-    __IO uint32_t  ic_dma_tdlr;           /**< \brief ÔİÇÒ±£Áô */
-    __IO uint32_t  ic_dma_rdlr;           /**< \brief ÔİÇÒ±£Áô */
-    __IO uint32_t  ic_sda_setup;          /**< \brief I2C SDA½¨Á¢Ê±¼ä¼Ä´æÆ÷ */
-    __IO uint32_t  ic_ack_general_call;   /**< \brief I2C¹ã²¥ºô½Ğ ACK¼Ä´æÆ÷ */
-    __IO uint32_t  ic_enable_status;      /**< \brief ÔİÇÒ±£Áô */
+    __IO uint32_t  ic_status;             /**< \brief I2CçŠ¶æ€å¯„å­˜å™¨ */
+    __IO uint32_t  ic_txflr;              /**< \brief I2Cå‘é€ç¼“å†²æ°´å¹³å¯„å­˜å™¨ */
+    __IO uint32_t  ic_rxflr;              /**< \brief I2Cæ¥æ”¶ç¼“å†²æ°´å¹³å¯„å­˜å™¨ */
+    __IO uint32_t  ic_sda_hold;           /**< \brief I2C SDAä¿æŒæ—¶é—´å¯„å­˜å™¨ */
+    __IO uint32_t  ic_tx_abrt_source;     /**< \brief æš‚ä¸”ä¿ç•™ */
+    __IO uint32_t  ic_slv_data_nack_only; /**< \brief æš‚ä¸”ä¿ç•™ */
+    __IO uint32_t  ic_dma_cr;             /**< \brief I2C DMAæ§åˆ¶å¯„å­˜å™¨ */
+    __IO uint32_t  ic_dma_tdlr;           /**< \brief æš‚ä¸”ä¿ç•™ */
+    __IO uint32_t  ic_dma_rdlr;           /**< \brief æš‚ä¸”ä¿ç•™ */
+    __IO uint32_t  ic_sda_setup;          /**< \brief I2C SDAå»ºç«‹æ—¶é—´å¯„å­˜å™¨ */
+    __IO uint32_t  ic_ack_general_call;   /**< \brief I2Cå¹¿æ’­å‘¼å« ACKå¯„å­˜å™¨ */
+    __IO uint32_t  ic_enable_status;      /**< \brief æš‚ä¸”ä¿ç•™ */
 
-    __IO uint32_t  ic_fs_spklen;          /**< \brief ÔİÇÒ±£Áô */
-    __IO uint32_t  ic_hs_spklen;          /**< \brief ÔİÇÒ±£Áô */
+    __IO uint32_t  ic_fs_spklen;          /**< \brief æš‚ä¸”ä¿ç•™ */
+    __IO uint32_t  ic_hs_spklen;          /**< \brief æš‚ä¸”ä¿ç•™ */
 
-    __IO uint16_t  ic_clr_restart_det;    /**< \brief ÔİÇÒ±£Áô */
-         uint16_t  reserved28;            /**< \brief ±£Áô28 */
-    __IO uint32_t  ic_comp_param_1;       /**< \brief ÔİÇÒ±£Áô */
-    __IO uint32_t  ic_comp_version;       /**< \brief ÔİÇÒ±£Áô */
-    __IO uint32_t  ic_comp_type;          /**< \brief ÔİÇÒ±£Áô */
+    __IO uint16_t  ic_clr_restart_det;    /**< \brief æš‚ä¸”ä¿ç•™ */
+         uint16_t  reserved28;            /**< \brief ä¿ç•™28 */
+    __IO uint32_t  ic_comp_param_1;       /**< \brief æš‚ä¸”ä¿ç•™ */
+    __IO uint32_t  ic_comp_version;       /**< \brief æš‚ä¸”ä¿ç•™ */
+    __IO uint32_t  ic_comp_type;          /**< \brief æš‚ä¸”ä¿ç•™ */
 } amhw_zlg_i2c_t;
 
 /**
  * \brief
  */
 
-/** \brief Ö÷»úÄ£Ê½ */
+/** \brief ä¸»æœºæ¨¡å¼ */
 #define AMHW_ZLG_I2C_MASTER                  (1ul | (1ul << 6))
 
-/** \brief ´Ó»úÄ£Ê½ */
+/** \brief ä»æœºæ¨¡å¼ */
 #define AMHW_ZLG_I2C_SLAVE                   (0ul | (0ul << 6))
 
-/** \brief ±ê×¼Ä£Ê½(0 ~ 100Kbps),Ö÷»úÄ£Ê½ÏÂÓĞĞ§ */
+/** \brief æ ‡å‡†æ¨¡å¼(0 ~ 100Kbps),ä¸»æœºæ¨¡å¼ä¸‹æœ‰æ•ˆ */
 #define AMHW_ZLG_I2C_NORMAL_SPEED            (1ul << 1)
 
-/** \brief ¿ìËÙÄ£Ê½(<=400Kbps),Ö÷»úÄ£Ê½ÏÂÓĞĞ§ */
+/** \brief å¿«é€Ÿæ¨¡å¼(<=400Kbps),ä¸»æœºæ¨¡å¼ä¸‹æœ‰æ•ˆ */
 #define AMHW_ZLG_I2C_HIGH_SPEED              (2ul << 1)
 
-/** \brief 7 Î»µÄÑ°Ö·µØÖ·,´Ó»úÄ£Ê½ÏÂÓĞĞ§ */
+/** \brief 7 ä½çš„å¯»å€åœ°å€,ä»æœºæ¨¡å¼ä¸‹æœ‰æ•ˆ */
 #define AMHW_ZLG_I2C_7BITADDR_SLAVE          (0ul << 3)
 
-/** \brief 10 Î»µÄÑ°Ö·µØÖ·,´Ó»úÄ£Ê½ÏÂÓĞĞ§ */
+/** \brief 10 ä½çš„å¯»å€åœ°å€,ä»æœºæ¨¡å¼ä¸‹æœ‰æ•ˆ */
 #define AMHW_ZLG_I2C_10BITADDR_SLAVE         (1ul << 3)
 
-/** \brief 7 Î»µÄÑ°Ö·µØÖ·,Ö÷»úÄ£Ê½ÏÂÓĞĞ§ */
+/** \brief 7 ä½çš„å¯»å€åœ°å€,ä¸»æœºæ¨¡å¼ä¸‹æœ‰æ•ˆ */
 #define AMHW_ZLG_I2C_7BITADDR_MASTER         (0ul << 4)
 
-/** \brief 10 Î»µÄÑ°Ö·µØÖ·,Ö÷»úÄ£Ê½ÏÂÓĞĞ§ */
+/** \brief 10 ä½çš„å¯»å€åœ°å€,ä¸»æœºæ¨¡å¼ä¸‹æœ‰æ•ˆ */
 #define AMHW_ZLG_I2C_10BITADDR_MASTER        (1ul << 4)
 
-/** \brief Ö÷»úÄ£Ê½ÏÂÊ¹ÄÜ·¢ËÍRESTARTÌõ¼ş */
+/** \brief ä¸»æœºæ¨¡å¼ä¸‹ä½¿èƒ½å‘é€RESTARTæ¡ä»¶ */
 #define AMHW_ZLG_I2C_RESTART_ENABLE          (1ul << 5)
 
-/** \brief ´Ó»úÄ£Ê½ÏÂÊ¹ÄÜ²úÉúSTOP_DETÖĞ¶Ï */
+/** \brief ä»æœºæ¨¡å¼ä¸‹ä½¿èƒ½äº§ç”ŸSTOP_DETä¸­æ–­ */
 #define AMHW_ZLG_I2C_STOP_DET_IFADDRESSED    (1ul << 7)
 
 /**
- * \brief I2CÖĞ¶Ï±êÖ¾
+ * \brief I2Cä¸­æ–­æ ‡å¿—
  */
 typedef enum {
-   AMHW_ZLG_INT_FLAG_RX_UNDER = (1ul << 0),      /**< \brief ½ÓÊÕ»º³åÇ·ÔØ */
-   AMHW_ZLG_INT_FLAG_RX_OVER  = (1ul << 1),      /**< \brief ½ÓÊÜ»º³å¹ıÔØ */
-   AMHW_ZLG_INT_FLAG_RX_FULL  = (1ul << 2),      /**< \brief ½ÓÊÕ»º³å·Ç¿Õ */
-   AMHW_ZLG_INT_FLAG_TX_OVER  = (1ul << 3),      /**< \brief ·¢ËÍ»º³å¹ıÔØ */
-   AMHW_ZLG_INT_FLAG_TX_EMPTY = (1ul << 4),      /**< \brief ·¢ËÍ»º³å¿Õ */
-   AMHW_ZLG_INT_FLAG_RD_REQ   = (1ul << 5),      /**< \brief ¶ÁÇëÇó */
-   AMHW_ZLG_INT_FLAG_TX_ABRT  = (1ul << 6),      /**< \brief ·¢ËÍÖĞÖ¹ */
-   AMHW_ZLG_INT_FLAG_RX_DONE  = (1ul << 7),      /**< \brief ´Ó·¢ËÍ½áÊø */
-   AMHW_ZLG_INT_FLAG_ACTIVITY = (1ul << 8),      /**< \brief I2C½Ó¿Ú¼¤»î */
-   AMHW_ZLG_INT_FLAG_STOP_DET = (1ul << 9),      /**< \brief Í£Ö¹Ìõ¼ş¼ì²â */
-   AMHW_ZLG_INT_FLAG_START_DET= (1ul << 10),     /**< \brief ÆğÊ¼Ìõ¼ş¼ì²â */
-   AMHW_ZLG_INT_FLAG_GEN_CALL = (1ul << 11),     /**< \brief ¹ã²¥ºô½Ğ */
+   AMHW_ZLG_INT_FLAG_RX_UNDER = (1ul << 0),      /**< \brief æ¥æ”¶ç¼“å†²æ¬ è½½ */
+   AMHW_ZLG_INT_FLAG_RX_OVER  = (1ul << 1),      /**< \brief æ¥å—ç¼“å†²è¿‡è½½ */
+   AMHW_ZLG_INT_FLAG_RX_FULL  = (1ul << 2),      /**< \brief æ¥æ”¶ç¼“å†²éç©º */
+   AMHW_ZLG_INT_FLAG_TX_OVER  = (1ul << 3),      /**< \brief å‘é€ç¼“å†²è¿‡è½½ */
+   AMHW_ZLG_INT_FLAG_TX_EMPTY = (1ul << 4),      /**< \brief å‘é€ç¼“å†²ç©º */
+   AMHW_ZLG_INT_FLAG_RD_REQ   = (1ul << 5),      /**< \brief è¯»è¯·æ±‚ */
+   AMHW_ZLG_INT_FLAG_TX_ABRT  = (1ul << 6),      /**< \brief å‘é€ä¸­æ­¢ */
+   AMHW_ZLG_INT_FLAG_RX_DONE  = (1ul << 7),      /**< \brief ä»å‘é€ç»“æŸ */
+   AMHW_ZLG_INT_FLAG_ACTIVITY = (1ul << 8),      /**< \brief I2Cæ¥å£æ¿€æ´» */
+   AMHW_ZLG_INT_FLAG_STOP_DET = (1ul << 9),      /**< \brief åœæ­¢æ¡ä»¶æ£€æµ‹ */
+   AMHW_ZLG_INT_FLAG_START_DET= (1ul << 10),     /**< \brief èµ·å§‹æ¡ä»¶æ£€æµ‹ */
+   AMHW_ZLG_INT_FLAG_GEN_CALL = (1ul << 11),     /**< \brief å¹¿æ’­å‘¼å« */
 }amhw_zlg_int_flag_t;
 
 /**
- * \brief I2C×´Ì¬±êÖ¾
+ * \brief I2CçŠ¶æ€æ ‡å¿—
  */
 typedef enum {
-   AMHW_ZLG_STATUS_FLAG_ACTIVITY     = (1ul << 0),   /**< \brief I2CÎ»»î¶¯×´Ì¬ */
-   AMHW_ZLG_STATUS_FLAG_TFNF         = (1ul << 1),   /**< \brief ·¢ËÍ»º³åÎ´Âú */
-   AMHW_ZLG_STATUS_FLAG_TFE          = (1ul << 2),   /**< \brief ·¢ËÍ»º³å¿Õ */
-   AMHW_ZLG_STATUS_FLAG_RFNE         = (1ul << 3),   /**< \brief ½ÓÊÕ»º³å·Ç¿Õ */
-   AMHW_ZLG_STATUS_FLAG_RFF          = (1ul << 4),   /**< \brief ½ÓÊÕ»º³åÂú */
-   AMHW_ZLG_STATUS_FLAG_MST_ACTIVITY = (1ul << 5),   /**< \brief Ö÷»ú×´Ì¬»ú»î¶¯×´Ì¬Î» */
-   AMHW_ZLG_STATUS_FLAG_SLV_ACTIVITY = (1ul << 6),   /**< \brief ´Ó»ú×´Ì¬»ú»î¶¯×´Ì¬Î» */
+   AMHW_ZLG_STATUS_FLAG_ACTIVITY     = (1ul << 0),   /**< \brief I2Cä½æ´»åŠ¨çŠ¶æ€ */
+   AMHW_ZLG_STATUS_FLAG_TFNF         = (1ul << 1),   /**< \brief å‘é€ç¼“å†²æœªæ»¡ */
+   AMHW_ZLG_STATUS_FLAG_TFE          = (1ul << 2),   /**< \brief å‘é€ç¼“å†²ç©º */
+   AMHW_ZLG_STATUS_FLAG_RFNE         = (1ul << 3),   /**< \brief æ¥æ”¶ç¼“å†²éç©º */
+   AMHW_ZLG_STATUS_FLAG_RFF          = (1ul << 4),   /**< \brief æ¥æ”¶ç¼“å†²æ»¡ */
+   AMHW_ZLG_STATUS_FLAG_MST_ACTIVITY = (1ul << 5),   /**< \brief ä¸»æœºçŠ¶æ€æœºæ´»åŠ¨çŠ¶æ€ä½ */
+   AMHW_ZLG_STATUS_FLAG_SLV_ACTIVITY = (1ul << 6),   /**< \brief ä»æœºçŠ¶æ€æœºæ´»åŠ¨çŠ¶æ€ä½ */
 }amhw_zlg_status_flag_t;
 
 /**
- * \brief ÉèÖÃ¿ØÖÆ¼Ä´æÆ÷Öµ
+ * \brief è®¾ç½®æ§åˆ¶å¯„å­˜å™¨å€¼
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
- * \param[in]  flag      : ±êÖ¾
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in]  flag      : æ ‡å¿—
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_i2c_con_set (amhw_zlg_i2c_t    *p_hw_i2c,
@@ -217,12 +217,12 @@ void amhw_zlg_i2c_con_set (amhw_zlg_i2c_t    *p_hw_i2c,
 }
 
 /**
- * \brief Çå³ı¿ØÖÆ¼Ä´æÆ÷Öµ
+ * \brief æ¸…é™¤æ§åˆ¶å¯„å­˜å™¨å€¼
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
- * \param[in]  flag      : ±êÖ¾
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in]  flag      : æ ‡å¿—
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_i2c_con_clear (amhw_zlg_i2c_t    *p_hw_i2c,
@@ -232,12 +232,12 @@ void amhw_zlg_i2c_con_clear (amhw_zlg_i2c_t    *p_hw_i2c,
 }
 
 /**
- * \brief ÉèÖÃÖ÷²Ù×÷µÄÄ¿±êµØÖ·.
+ * \brief è®¾ç½®ä¸»æ“ä½œçš„ç›®æ ‡åœ°å€.
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
- * \param[in]  addr      : Ä¿±êµØÖ·
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in]  addr      : ç›®æ ‡åœ°å€
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_i2c_tar_set (amhw_zlg_i2c_t    *p_hw_i2c,
@@ -247,12 +247,12 @@ void amhw_zlg_i2c_tar_set (amhw_zlg_i2c_t    *p_hw_i2c,
 }
 
 /**
- * \brief ÉèÖÃ´Ó»úµØÖ·.
+ * \brief è®¾ç½®ä»æœºåœ°å€.
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
- * \param[in]  addr      : ´Ó»úµØÖ·
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in]  addr      : ä»æœºåœ°å€
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_i2c_slave_addr_set (amhw_zlg_i2c_t    *p_hw_i2c,
@@ -262,12 +262,12 @@ void amhw_zlg_i2c_slave_addr_set (amhw_zlg_i2c_t    *p_hw_i2c,
 }
 
 /**
- * \brief Ğ´Êı¾İ.
+ * \brief å†™æ•°æ®.
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
- * \param[in]  dat       : Êı¾İ
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in]  dat       : æ•°æ®
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_i2c_dat_write (amhw_zlg_i2c_t    *p_hw_i2c,
@@ -277,11 +277,11 @@ void amhw_zlg_i2c_dat_write (amhw_zlg_i2c_t    *p_hw_i2c,
 }
 
 /**
- * \brief ¶ÁÊı¾İ.
+ * \brief è¯»æ•°æ®.
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return Êı¾İ
+ * \return æ•°æ®
  */
 am_static_inline
 uint8_t amhw_zlg_i2c_dat_read (amhw_zlg_i2c_t *p_hw_i2c)
@@ -290,12 +290,12 @@ uint8_t amhw_zlg_i2c_dat_read (amhw_zlg_i2c_t *p_hw_i2c)
 }
 
 /**
- * \brief Ğ´I2C±ê×¼Ä£Ê½ÏÂÊ±ÖÓ¸ßµçÆ½¼ÆÊıÖµ
+ * \brief å†™I2Cæ ‡å‡†æ¨¡å¼ä¸‹æ—¶é’Ÿé«˜ç”µå¹³è®¡æ•°å€¼
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
- * \param[in]  val       : Êı¾İ(6 ~ 65525)
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in]  val       : æ•°æ®(6 ~ 65525)
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_i2c_ss_scl_high_set (amhw_zlg_i2c_t    *p_hw_i2c,
@@ -305,11 +305,11 @@ void amhw_zlg_i2c_ss_scl_high_set (amhw_zlg_i2c_t    *p_hw_i2c,
 }
 
 /**
- * \brief ¶ÁI2C±ê×¼Ä£Ê½ÏÂÊ±ÖÓ¸ßµçÆ½¼ÆÊıÖµ
+ * \brief è¯»I2Cæ ‡å‡†æ¨¡å¼ä¸‹æ—¶é’Ÿé«˜ç”µå¹³è®¡æ•°å€¼
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return I2C±ê×¼Ä£Ê½ÏÂÊ±ÖÓ¸ßµçÆ½¼ÆÊıÖµ(6 ~ 65525)
+ * \return I2Cæ ‡å‡†æ¨¡å¼ä¸‹æ—¶é’Ÿé«˜ç”µå¹³è®¡æ•°å€¼(6 ~ 65525)
  */
 am_static_inline
 uint16_t amhw_zlg_i2c_ss_scl_high_get (amhw_zlg_i2c_t *p_hw_i2c)
@@ -318,12 +318,12 @@ uint16_t amhw_zlg_i2c_ss_scl_high_get (amhw_zlg_i2c_t *p_hw_i2c)
 }
 
 /**
- * \brief Ğ´I2C±ê×¼Ä£Ê½ÏÂÊ±ÖÓµÍµçÆ½¼ÆÊıÖµ
+ * \brief å†™I2Cæ ‡å‡†æ¨¡å¼ä¸‹æ—¶é’Ÿä½ç”µå¹³è®¡æ•°å€¼
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
- * \param[in]  val       : Êı¾İ(8 ~ 65535)
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in]  val       : æ•°æ®(8 ~ 65535)
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_i2c_ss_scl_low_set (amhw_zlg_i2c_t    *p_hw_i2c,
@@ -333,11 +333,11 @@ void amhw_zlg_i2c_ss_scl_low_set (amhw_zlg_i2c_t    *p_hw_i2c,
 }
 
 /**
- * \brief ¶ÁI2C±ê×¼Ä£Ê½ÏÂÊ±ÖÓµÍµçÆ½¼ÆÊıÖµ
+ * \brief è¯»I2Cæ ‡å‡†æ¨¡å¼ä¸‹æ—¶é’Ÿä½ç”µå¹³è®¡æ•°å€¼
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return I2C±ê×¼Ä£Ê½ÏÂÊ±ÖÓµÍµçÆ½¼ÆÊıÖµ(8 ~ 65535)
+ * \return I2Cæ ‡å‡†æ¨¡å¼ä¸‹æ—¶é’Ÿä½ç”µå¹³è®¡æ•°å€¼(8 ~ 65535)
  */
 am_static_inline
 uint16_t amhw_zlg_i2c_ss_scl_low_get (amhw_zlg_i2c_t *p_hw_i2c)
@@ -346,12 +346,12 @@ uint16_t amhw_zlg_i2c_ss_scl_low_get (amhw_zlg_i2c_t *p_hw_i2c)
 }
 
 /**
- * \brief Ğ´I2C¿ìËÙÄ£Ê½ÏÂÊ±ÖÓ¸ßµçÆ½¼ÆÊıÖµ
+ * \brief å†™I2Cå¿«é€Ÿæ¨¡å¼ä¸‹æ—¶é’Ÿé«˜ç”µå¹³è®¡æ•°å€¼
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
- * \param[in]  val       : Êı¾İ(6 ~ 65535)
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in]  val       : æ•°æ®(6 ~ 65535)
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_i2c_fs_scl_high_set (amhw_zlg_i2c_t    *p_hw_i2c,
@@ -361,11 +361,11 @@ void amhw_zlg_i2c_fs_scl_high_set (amhw_zlg_i2c_t    *p_hw_i2c,
 }
 
 /**
- * \brief ¶ÁI2C¿ìËÙÄ£Ê½ÏÂÊ±ÖÓ¸ßµçÆ½¼ÆÊıÖµ
+ * \brief è¯»I2Cå¿«é€Ÿæ¨¡å¼ä¸‹æ—¶é’Ÿé«˜ç”µå¹³è®¡æ•°å€¼
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return I2CËÙÄ£Ê½ÏÂÊ±ÖÓ¸ßµçÆ½¼ÆÊıÖµ(6 ~ 65525)
+ * \return I2Cé€Ÿæ¨¡å¼ä¸‹æ—¶é’Ÿé«˜ç”µå¹³è®¡æ•°å€¼(6 ~ 65525)
  */
 am_static_inline
 uint16_t amhw_zlg_i2c_fs_scl_high_get (amhw_zlg_i2c_t *p_hw_i2c)
@@ -374,12 +374,12 @@ uint16_t amhw_zlg_i2c_fs_scl_high_get (amhw_zlg_i2c_t *p_hw_i2c)
 }
 
 /**
- * \brief Ğ´I2C¿ìËÙÄ£Ê½ÏÂÊ±ÖÓµÍµçÆ½¼ÆÊıÖµ
+ * \brief å†™I2Cå¿«é€Ÿæ¨¡å¼ä¸‹æ—¶é’Ÿä½ç”µå¹³è®¡æ•°å€¼
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
- * \param[in]  val       : Êı¾İ(8 ~ 65535)
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in]  val       : æ•°æ®(8 ~ 65535)
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_i2c_fs_scl_low_set (amhw_zlg_i2c_t    *p_hw_i2c,
@@ -389,11 +389,11 @@ void amhw_zlg_i2c_fs_scl_low_set (amhw_zlg_i2c_t    *p_hw_i2c,
 }
 
 /**
- * \brief ¶ÁI2C¿ìËÙÄ£Ê½ÏÂÊ±ÖÓµÍµçÆ½¼ÆÊıÖµ
+ * \brief è¯»I2Cå¿«é€Ÿæ¨¡å¼ä¸‹æ—¶é’Ÿä½ç”µå¹³è®¡æ•°å€¼
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return I2C¿ìËÙÄ£Ê½ÏÂÊ±ÖÓµÍµçÆ½¼ÆÊıÖµ(8 ~ 65535)
+ * \return I2Cå¿«é€Ÿæ¨¡å¼ä¸‹æ—¶é’Ÿä½ç”µå¹³è®¡æ•°å€¼(8 ~ 65535)
  */
 am_static_inline
 uint16_t amhw_zlg_i2c_fs_scl_low_get (amhw_zlg_i2c_t *p_hw_i2c)
@@ -402,11 +402,11 @@ uint16_t amhw_zlg_i2c_fs_scl_low_get (amhw_zlg_i2c_t *p_hw_i2c)
 }
 
 /**
- * \brief »ñÈ¡¿ÉÆÁ±ÎÖĞ¶Ï×´Ì¬¼Ä´æÆ÷Öµ
+ * \brief è·å–å¯å±è”½ä¸­æ–­çŠ¶æ€å¯„å­˜å™¨å€¼
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return ¿ÉÆÁ±ÎÖĞ¶Ï×´Ì¬¼Ä´æÆ÷Öµ(»ò¹ØÏµ)
+ * \return å¯å±è”½ä¸­æ–­çŠ¶æ€å¯„å­˜å™¨å€¼(æˆ–å…³ç³»)
  */
 am_static_inline
 amhw_zlg_int_flag_t amhw_zlg_i2c_intr_stat_get (amhw_zlg_i2c_t *p_hw_i2c)
@@ -415,12 +415,12 @@ amhw_zlg_int_flag_t amhw_zlg_i2c_intr_stat_get (amhw_zlg_i2c_t *p_hw_i2c)
 }
 
 /**
- * \brief ÉèÖÃÖĞ¶ÏÆÁ±Î¼Ä´æÆ÷Öµ
+ * \brief è®¾ç½®ä¸­æ–­å±è”½å¯„å­˜å™¨å€¼
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
- * \param[in]  flag      : ¾ßÌå±êÖ¾£¬»ò¹ØÏµ
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in]  flag      : å…·ä½“æ ‡å¿—ï¼Œæˆ–å…³ç³»
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_i2c_intr_mask_set (amhw_zlg_i2c_t    *p_hw_i2c,
@@ -430,12 +430,12 @@ void amhw_zlg_i2c_intr_mask_set (amhw_zlg_i2c_t    *p_hw_i2c,
 }
 
 /**
- * \brief ÉèÖÃÖĞ¶ÏÆÁ±Î¼Ä´æÆ÷Öµ
+ * \brief è®¾ç½®ä¸­æ–­å±è”½å¯„å­˜å™¨å€¼
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
- * \param[in]  flag      : ¾ßÌå±êÖ¾£¬»ò¹ØÏµ
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in]  flag      : å…·ä½“æ ‡å¿—ï¼Œæˆ–å…³ç³»
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_i2c_intr_mask_clear (amhw_zlg_i2c_t    *p_hw_i2c,
@@ -445,11 +445,11 @@ void amhw_zlg_i2c_intr_mask_clear (amhw_zlg_i2c_t    *p_hw_i2c,
 }
 
 /**
- * \brief »ñÈ¡ÖĞ¶ÏÆÁ±Î¼Ä´æÆ÷Öµ
+ * \brief è·å–ä¸­æ–­å±è”½å¯„å­˜å™¨å€¼
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return ÖĞ¶ÏÆÁ±Î¼Ä´æÆ÷Öµ(»ò¹ØÏµ)
+ * \return ä¸­æ–­å±è”½å¯„å­˜å™¨å€¼(æˆ–å…³ç³»)
  */
 am_static_inline
 amhw_zlg_int_flag_t amhw_zlg_i2c_intr_mask_get (amhw_zlg_i2c_t *p_hw_i2c)
@@ -458,11 +458,11 @@ amhw_zlg_int_flag_t amhw_zlg_i2c_intr_mask_get (amhw_zlg_i2c_t *p_hw_i2c)
 }
 
 /**
- * \brief »ñÈ¡²»¿ÉÆÁ±ÎÖĞ¶Ï×´Ì¬¼Ä´æÆ÷Öµ
+ * \brief è·å–ä¸å¯å±è”½ä¸­æ–­çŠ¶æ€å¯„å­˜å™¨å€¼
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return ²»¿ÉÆÁ±ÎÖĞ¶Ï×´Ì¬¼Ä´æÆ÷Öµ(»ò¹ØÏµ)
+ * \return ä¸å¯å±è”½ä¸­æ–­çŠ¶æ€å¯„å­˜å™¨å€¼(æˆ–å…³ç³»)
  */
 am_static_inline
 amhw_zlg_int_flag_t amhw_zlg_i2c_raw_intr_stat_get (
@@ -472,12 +472,12 @@ amhw_zlg_int_flag_t amhw_zlg_i2c_raw_intr_stat_get (
 }
 
 /**
- * \brief ÉèÖÃ½ÓÊÕãĞÖµ
+ * \brief è®¾ç½®æ¥æ”¶é˜ˆå€¼
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
- * \param[in]  val       : ãĞÖµ
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in]  val       : é˜ˆå€¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_i2c_rx_tl_set (amhw_zlg_i2c_t *p_hw_i2c, uint8_t val)
@@ -486,11 +486,11 @@ void amhw_zlg_i2c_rx_tl_set (amhw_zlg_i2c_t *p_hw_i2c, uint8_t val)
 }
 
 /**
- * \brief »ñÈ¡½ÓÊÕãĞÖµ
+ * \brief è·å–æ¥æ”¶é˜ˆå€¼
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return ½ÓÊÕãĞÖµ
+ * \return æ¥æ”¶é˜ˆå€¼
  */
 am_static_inline
 uint8_t amhw_zlg_i2c_rx_tl_get (amhw_zlg_i2c_t *p_hw_i2c)
@@ -499,12 +499,12 @@ uint8_t amhw_zlg_i2c_rx_tl_get (amhw_zlg_i2c_t *p_hw_i2c)
 }
 
 /**
- * \brief ÉèÖÃ·¢ËÍãĞÖµ
+ * \brief è®¾ç½®å‘é€é˜ˆå€¼
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
- * \param[in]  val       : ãĞÖµ
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in]  val       : é˜ˆå€¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_i2c_tx_tl_set (amhw_zlg_i2c_t *p_hw_i2c, uint8_t val)
@@ -513,11 +513,11 @@ void amhw_zlg_i2c_tx_tl_set (amhw_zlg_i2c_t *p_hw_i2c, uint8_t val)
 }
 
 /**
- * \brief »ñÈ¡·¢ËÍãĞÖµ
+ * \brief è·å–å‘é€é˜ˆå€¼
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return ·¢ËÍãĞÖµ
+ * \return å‘é€é˜ˆå€¼
  */
 am_static_inline
 uint8_t amhw_zlg_i2c_tx_tl_get (amhw_zlg_i2c_t *p_hw_i2c)
@@ -526,11 +526,11 @@ uint8_t amhw_zlg_i2c_tx_tl_get (amhw_zlg_i2c_t *p_hw_i2c)
 }
 
 /**
- * \brief ¶ÁÈ¡I2C×éºÏºÍ¶ÀÁ¢ÖĞ¶ÏÇå³ı¼Ä´æÆ÷Öµ£¬Çå³ıI2C×éºÏºÍ¶ÀÁ¢ÖĞ¶Ï
+ * \brief è¯»å–I2Cç»„åˆå’Œç‹¬ç«‹ä¸­æ–­æ¸…é™¤å¯„å­˜å™¨å€¼ï¼Œæ¸…é™¤I2Cç»„åˆå’Œç‹¬ç«‹ä¸­æ–­
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return I2C×éºÏºÍ¶ÀÁ¢ÖĞ¶ÏÇå³ı¼Ä´æÆ÷Öµ
+ * \return I2Cç»„åˆå’Œç‹¬ç«‹ä¸­æ–­æ¸…é™¤å¯„å­˜å™¨å€¼
  */
 am_static_inline
 uint8_t amhw_zlg_i2c_clr_intr_get (amhw_zlg_i2c_t *p_hw_i2c)
@@ -539,11 +539,11 @@ uint8_t amhw_zlg_i2c_clr_intr_get (amhw_zlg_i2c_t *p_hw_i2c)
 }
 
 /**
- * \brief I2CÇå³ıRX_UNDERÖĞ¶Ï¼Ä´æÆ÷
+ * \brief I2Cæ¸…é™¤RX_UNDERä¸­æ–­å¯„å­˜å™¨
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return ¶ÁÈ¡Öµ
+ * \return è¯»å–å€¼
  */
 am_static_inline
 uint8_t amhw_zlg_i2c_clr_rx_under_get (amhw_zlg_i2c_t *p_hw_i2c)
@@ -552,11 +552,11 @@ uint8_t amhw_zlg_i2c_clr_rx_under_get (amhw_zlg_i2c_t *p_hw_i2c)
 }
 
 /**
- * \brief I2CÇå³ıRX_OVERÖĞ¶Ï¼Ä´æÆ÷
+ * \brief I2Cæ¸…é™¤RX_OVERä¸­æ–­å¯„å­˜å™¨
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return ¶ÁÈ¡Öµ
+ * \return è¯»å–å€¼
  */
 am_static_inline
 uint8_t amhw_zlg_i2c_clr_rx_over_get (amhw_zlg_i2c_t *p_hw_i2c)
@@ -565,11 +565,11 @@ uint8_t amhw_zlg_i2c_clr_rx_over_get (amhw_zlg_i2c_t *p_hw_i2c)
 }
 
 /**
- * \brief I2CÇå³ıTX_OVERÖĞ¶Ï¼Ä´æÆ÷
+ * \brief I2Cæ¸…é™¤TX_OVERä¸­æ–­å¯„å­˜å™¨
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return ¶ÁÈ¡Öµ
+ * \return è¯»å–å€¼
  */
 am_static_inline
 uint8_t amhw_zlg_i2c_clr_tx_over_get (amhw_zlg_i2c_t *p_hw_i2c)
@@ -578,11 +578,11 @@ uint8_t amhw_zlg_i2c_clr_tx_over_get (amhw_zlg_i2c_t *p_hw_i2c)
 }
 
 /**
- * \brief I2CÇå³ıRD_REQÖĞ¶Ï¼Ä´æÆ÷
+ * \brief I2Cæ¸…é™¤RD_REQä¸­æ–­å¯„å­˜å™¨
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return ¶ÁÈ¡Öµ
+ * \return è¯»å–å€¼
  */
 am_static_inline
 uint8_t amhw_zlg_i2c_clr_rd_req_get (amhw_zlg_i2c_t *p_hw_i2c)
@@ -591,11 +591,11 @@ uint8_t amhw_zlg_i2c_clr_rd_req_get (amhw_zlg_i2c_t *p_hw_i2c)
 }
 
 /**
- * \brief I2CÇå³ıTX_ABRTÖĞ¶Ï¼Ä´æÆ÷
+ * \brief I2Cæ¸…é™¤TX_ABRTä¸­æ–­å¯„å­˜å™¨
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return ¶ÁÈ¡Öµ
+ * \return è¯»å–å€¼
  */
 am_static_inline
 uint8_t amhw_zlg_i2c_clr_tx_abrt_get (amhw_zlg_i2c_t *p_hw_i2c)
@@ -604,11 +604,11 @@ uint8_t amhw_zlg_i2c_clr_tx_abrt_get (amhw_zlg_i2c_t *p_hw_i2c)
 }
 
 /**
- * \brief I2CÇå³ıRX_DONEÖĞ¶Ï¼Ä´æÆ÷
+ * \brief I2Cæ¸…é™¤RX_DONEä¸­æ–­å¯„å­˜å™¨
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return ¶ÁÈ¡Öµ
+ * \return è¯»å–å€¼
  */
 am_static_inline
 uint8_t amhw_zlg_i2c_clr_rx_done_get (amhw_zlg_i2c_t *p_hw_i2c)
@@ -617,11 +617,11 @@ uint8_t amhw_zlg_i2c_clr_rx_done_get (amhw_zlg_i2c_t *p_hw_i2c)
 }
 
 /**
- * \brief I2CÇå³ı ACTIVITYÖĞ¶Ï¼Ä´æÆ÷
+ * \brief I2Cæ¸…é™¤ ACTIVITYä¸­æ–­å¯„å­˜å™¨
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return ¶ÁÈ¡Öµ
+ * \return è¯»å–å€¼
  */
 am_static_inline
 uint8_t amhw_zlg_i2c_clr_activity_get (amhw_zlg_i2c_t *p_hw_i2c)
@@ -630,11 +630,11 @@ uint8_t amhw_zlg_i2c_clr_activity_get (amhw_zlg_i2c_t *p_hw_i2c)
 }
 
 /**
- * \brief I2CÇå³ıSTOP_DETÖĞ¶Ï¼Ä´æÆ÷
+ * \brief I2Cæ¸…é™¤STOP_DETä¸­æ–­å¯„å­˜å™¨
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return ¶ÁÈ¡Öµ
+ * \return è¯»å–å€¼
  */
 am_static_inline
 uint8_t amhw_zlg_i2c_clr_stop_det_get (amhw_zlg_i2c_t *p_hw_i2c)
@@ -643,11 +643,11 @@ uint8_t amhw_zlg_i2c_clr_stop_det_get (amhw_zlg_i2c_t *p_hw_i2c)
 }
 
 /**
- * \brief I2CÇå³ıSTART_DETÖĞ¶Ï¼Ä´æÆ÷
+ * \brief I2Cæ¸…é™¤START_DETä¸­æ–­å¯„å­˜å™¨
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return ¶ÁÈ¡Öµ
+ * \return è¯»å–å€¼
  */
 am_static_inline
 uint8_t amhw_zlg_i2c_clr_start_det_get (amhw_zlg_i2c_t *p_hw_i2c)
@@ -656,11 +656,11 @@ uint8_t amhw_zlg_i2c_clr_start_det_get (amhw_zlg_i2c_t *p_hw_i2c)
 }
 
 /**
- * \brief I2CÇå³ı GEN_CALL ÖĞ¶Ï¼Ä´æÆ÷
+ * \brief I2Cæ¸…é™¤ GEN_CALL ä¸­æ–­å¯„å­˜å™¨
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return ¶ÁÈ¡Öµ
+ * \return è¯»å–å€¼
  */
 am_static_inline
 uint8_t amhw_zlg_i2c_clr_gen_call_get (amhw_zlg_i2c_t *p_hw_i2c)
@@ -669,11 +669,11 @@ uint8_t amhw_zlg_i2c_clr_gen_call_get (amhw_zlg_i2c_t *p_hw_i2c)
 }
 
 /**
- * \brief Ê¹ÄÜ I2C Ä£¿é
+ * \brief ä½¿èƒ½ I2C æ¨¡å—
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_i2c_enable (amhw_zlg_i2c_t *p_hw_i2c)
@@ -682,11 +682,11 @@ void amhw_zlg_i2c_enable (amhw_zlg_i2c_t *p_hw_i2c)
 }
 
 /**
- * \brief ½ûÖ¹ I2C Ä£¿é£¨·¢ËÍºÍ½ÓÊÕ»º³å±£³Ö²Á³ı×´Ì¬£©
+ * \brief ç¦æ­¢ I2C æ¨¡å—ï¼ˆå‘é€å’Œæ¥æ”¶ç¼“å†²ä¿æŒæ“¦é™¤çŠ¶æ€ï¼‰
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_i2c_disable (amhw_zlg_i2c_t *p_hw_i2c)
@@ -695,11 +695,11 @@ void amhw_zlg_i2c_disable (amhw_zlg_i2c_t *p_hw_i2c)
 }
 
 /**
- * \brief »ñÈ¡I2C×´Ì¬
+ * \brief è·å–I2CçŠ¶æ€
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return ×´Ì¬£¨»ò¹ØÏµ£©
+ * \return çŠ¶æ€ï¼ˆæˆ–å…³ç³»ï¼‰
  */
 am_static_inline
 amhw_zlg_status_flag_t amhw_zlg_i2c_status_get (amhw_zlg_i2c_t *p_hw_i2c)
@@ -708,11 +708,11 @@ amhw_zlg_status_flag_t amhw_zlg_i2c_status_get (amhw_zlg_i2c_t *p_hw_i2c)
 }
 
 /**
- * \brief »ñÈ¡·¢ËÍ»º³åÓĞĞ§Êı¾İ¸öÊı
+ * \brief è·å–å‘é€ç¼“å†²æœ‰æ•ˆæ•°æ®ä¸ªæ•°
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return ·¢ËÍ»º³åÓĞĞ§Êı¾İ¸öÊı
+ * \return å‘é€ç¼“å†²æœ‰æ•ˆæ•°æ®ä¸ªæ•°
  */
 am_static_inline
 uint8_t amhw_zlg_i2c_txflr_get (amhw_zlg_i2c_t *p_hw_i2c)
@@ -721,11 +721,11 @@ uint8_t amhw_zlg_i2c_txflr_get (amhw_zlg_i2c_t *p_hw_i2c)
 }
 
 /**
- * \brief »ñÈ¡½ÓÊÕ»º³åÓĞĞ§Êı¾İ¸öÊı
+ * \brief è·å–æ¥æ”¶ç¼“å†²æœ‰æ•ˆæ•°æ®ä¸ªæ•°
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return ½ÓÊÕ»º³åÓĞĞ§Êı¾İ¸öÊı
+ * \return æ¥æ”¶ç¼“å†²æœ‰æ•ˆæ•°æ®ä¸ªæ•°
  */
 am_static_inline
 uint8_t amhw_zlg_i2c_rxflr_get (amhw_zlg_i2c_t *p_hw_i2c)
@@ -734,11 +734,11 @@ uint8_t amhw_zlg_i2c_rxflr_get (amhw_zlg_i2c_t *p_hw_i2c)
 }
 
 /**
- * \brief Ê¹ÄÜ I2C ·¢ËÍDMA
+ * \brief ä½¿èƒ½ I2C å‘é€DMA
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_i2c_txdma_enable (amhw_zlg_i2c_t *p_hw_i2c)
@@ -747,11 +747,11 @@ void amhw_zlg_i2c_txdma_enable (amhw_zlg_i2c_t *p_hw_i2c)
 }
 
 /**
- * \brief ½ûÄÜI2C ·¢ËÍDMA
+ * \brief ç¦èƒ½I2C å‘é€DMA
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_i2c_txdma_disable (amhw_zlg_i2c_t *p_hw_i2c)
@@ -760,11 +760,11 @@ void amhw_zlg_i2c_txdma_disable (amhw_zlg_i2c_t *p_hw_i2c)
 }
 
 /**
- * \brief Ê¹ÄÜ I2C ÊÕDMA
+ * \brief ä½¿èƒ½ I2C æ”¶DMA
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_i2c_rxdma_enable (amhw_zlg_i2c_t *p_hw_i2c)
@@ -773,11 +773,11 @@ void amhw_zlg_i2c_rxdma_enable (amhw_zlg_i2c_t *p_hw_i2c)
 }
 
 /**
- * \brief ½ûÄÜI2C ½ÓÊÕDMA
+ * \brief ç¦èƒ½I2C æ¥æ”¶DMA
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_i2c_rxdma_disable (amhw_zlg_i2c_t *p_hw_i2c)
@@ -786,12 +786,12 @@ void amhw_zlg_i2c_rxdma_disable (amhw_zlg_i2c_t *p_hw_i2c)
 }
 
 /**
- * \brief I2C SDA ½¨Á¢Ê±¼äÉèÖÃ
+ * \brief I2C SDA å»ºç«‹æ—¶é—´è®¾ç½®
  *
- * \param[in]  p_hw_i2c  : Ö¸ÏòI2C¼Ä´æÆ÷½á¹¹ÌåµÄÖ¸Õë
- * \param[in]  val       : ½¨Á¢Ê±¼äÖµ
+ * \param[in]  p_hw_i2c  : æŒ‡å‘I2Cå¯„å­˜å™¨ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in]  val       : å»ºç«‹æ—¶é—´å€¼
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_static_inline
 void amhw_zlg_i2c_sda_setup_set (amhw_zlg_i2c_t *p_hw_i2c, uint8_t val)
@@ -800,7 +800,7 @@ void amhw_zlg_i2c_sda_setup_set (amhw_zlg_i2c_t *p_hw_i2c, uint8_t val)
 }
 
 /**
- * \brief I2C½ÓÊÜ¹ã²¥ºô½Ğ ÏìÓ¦ ACK
+ * \brief I2Cæ¥å—å¹¿æ’­å‘¼å« å“åº” ACK
  *
  */
 am_static_inline
@@ -810,7 +810,7 @@ void amhw_zlg_i2c_gen_call_ack (amhw_zlg_i2c_t *p_hw_i2c)
 }
 
 /**
- * \brief I2C½ÓÊÜ¹ã²¥ºô½Ğ ²»ÏìÓ¦
+ * \brief I2Cæ¥å—å¹¿æ’­å‘¼å« ä¸å“åº”
  *
  */
 am_static_inline
@@ -823,7 +823,7 @@ void amhw_zlg_i2c_gen_call_nack (amhw_zlg_i2c_t *p_hw_i2c)
  * @}
  */
 /*
- * \brief ÄäÃû½á¹¹Ìå¶ÎµÄ½áÊø
+ * \brief åŒ¿åç»“æ„ä½“æ®µçš„ç»“æŸ
  */
 
 #if defined(__CC_ARM)

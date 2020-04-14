@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ARM Systick ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief ARM Systick ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_arm_systick.c
  *
  * \internal
@@ -33,24 +33,24 @@
  */
 
 /**
- * \brief Systick Éè±¸ĞÅÏ¢
+ * \brief Systick è®¾å¤‡ä¿¡æ¯
  *
- * \note Ê±ÖÓÔ´·ÖÎªÏµÍ³Ê±ÖÓ (#AMHW_ARM_SYSTICK_CONFIG_CLKSRC_SYSTEM) ºÍÏµÍ³
- *       Ê±ÖÓµÄ 1/2 (#AMHW_ARM_SYSTICK_CONFIG_CLKSRC_SYSTEM_HALF)
+ * \note æ—¶é’Ÿæºåˆ†ä¸ºç³»ç»Ÿæ—¶é’Ÿ (#AMHW_ARM_SYSTICK_CONFIG_CLKSRC_SYSTEM) å’Œç³»ç»Ÿ
+ *       æ—¶é’Ÿçš„ 1/2 (#AMHW_ARM_SYSTICK_CONFIG_CLKSRC_SYSTEM_HALF)
  */
 am_local am_const am_arm_systick_devinfo_t __g_arm_systick_devinfo = {
-    LPC84X_SYSTICK_BASE,                      /* Ö¸Ïò Systick ¼Ä´æÆ÷¿éÖ¸Õë */
-    CLK_SYSTEM,                               /* Systick Ê±ÖÓºÅ£¬À´Ô´ÓÚÖ÷Ê±ÖÓ */
-    AMHW_ARM_SYSTICK_CONFIG_CLKSRC_SYSTEM,    /* Systick Ê±ÖÓÑ¡ÔñÏµÍ³Ê±ÖÓ */
-    NULL,                                     /* ÎŞĞèÆ½Ì¨³õÊ¼»¯º¯Êı */
-    NULL                                      /* ÎŞĞèÆ½Ì¨½â³õÊ¼»¯º¯Êı */
+    LPC84X_SYSTICK_BASE,                      /* æŒ‡å‘ Systick å¯„å­˜å™¨å—æŒ‡é’ˆ */
+    CLK_SYSTEM,                               /* Systick æ—¶é’Ÿå·ï¼Œæ¥æºäºä¸»æ—¶é’Ÿ */
+    AMHW_ARM_SYSTICK_CONFIG_CLKSRC_SYSTEM,    /* Systick æ—¶é’Ÿé€‰æ‹©ç³»ç»Ÿæ—¶é’Ÿ */
+    NULL,                                     /* æ— éœ€å¹³å°åˆå§‹åŒ–å‡½æ•° */
+    NULL                                      /* æ— éœ€å¹³å°è§£åˆå§‹åŒ–å‡½æ•° */
 };
 
-/** \brief Systick Éè±¸ÊµÀı */
+/** \brief Systick è®¾å¤‡å®ä¾‹ */
 am_local am_arm_systick_dev_t __g_arm_systick_dev;
 
 /**
- * \brief Systick ÊµÀı³õÊ¼»¯
+ * \brief Systick å®ä¾‹åˆå§‹åŒ–
  */
 am_timer_handle_t am_arm_systick_inst_init (void)
 
@@ -59,7 +59,7 @@ am_timer_handle_t am_arm_systick_inst_init (void)
 }
 
 /**
- * \brief Systick ÊµÀı½â³õÊ¼»¯
+ * \brief Systick å®ä¾‹è§£åˆå§‹åŒ–
  */
 void am_arm_systick_inst_deinit (am_timer_handle_t handle)
 {

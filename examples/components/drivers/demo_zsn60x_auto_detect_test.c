@@ -12,17 +12,17 @@
 
 /**
  * \file
- * \brief zsn60x ×Ô¶¯¼ì²âÄ£Ê½½øĞĞ²âÊÔ
+ * \brief zsn60x è‡ªåŠ¨æ£€æµ‹æ¨¡å¼è¿›è¡Œæµ‹è¯•
  *
- * - ²Ù×÷²½Öè£º
- *   1. ÕıÈ·Á¬½Ó²¢ÅäÖÃºÃ´®¿Ú£»
- *   2. ÕıÈ·Á¬½ÓºÃÌìÏß£»
- *   3. ½«¿¨Æ¬ÖÃÓÚ¸ĞÓ¦Çø
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. æ­£ç¡®è¿æ¥å¹¶é…ç½®å¥½ä¸²å£ï¼›
+ *   2. æ­£ç¡®è¿æ¥å¥½å¤©çº¿ï¼›
+ *   3. å°†å¡ç‰‡ç½®äºæ„Ÿåº”åŒº
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ½«¿¨Æ¬·ÅÖÃÌìÏß¸ĞÓ¦Çøºó´®¿Ú´òÓ¡ÏìÓ¦ĞÅÏ¢£»
+ * - å®éªŒç°è±¡ï¼š
+ *   1. å°†å¡ç‰‡æ”¾ç½®å¤©çº¿æ„Ÿåº”åŒºåä¸²å£æ‰“å°å“åº”ä¿¡æ¯ï¼›
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_zsn60x_auto_detect_test.c src_zsn60x_auto_detect_test
  *
  * \internal
@@ -42,21 +42,21 @@
 #include "am_vdebug.h"
 static int a = 0;
 
-/* ¼ì²âµ½¿¨Æ¬»Øµ÷º¯Êı */
+/* æ£€æµ‹åˆ°å¡ç‰‡å›è°ƒå‡½æ•° */
 void __card_input(void *p_arg){
     a = 1;
 }
 
-/* ZSN60x  ×Ô¶¯¼ì²â²âÊÔ³ÌĞò */
+/* ZSN60x  è‡ªåŠ¨æ£€æµ‹æµ‹è¯•ç¨‹åº */
 void demo_zsn60x_auto_detect_test_entry(zsn60x_handle_t handle)
 {
     uint8_t ret;
-    /* Ê¹ÓÃÄ¬ÈÏÃÜÔ¿ */
+    /* ä½¿ç”¨é»˜è®¤å¯†é’¥ */
     uint8_t data[6] = {0xff, 0xff, 0xff, 0xff, 0xff, 0xff};
     zsn60x_auto_detect_ctrl_t  auto_ctrl;
     zsn60x_auto_detect_data_t  auto_data;
 
-    //×Ô¶¯¼ì²âÄ£Ê½ÅäÖÃ
+    //è‡ªåŠ¨æ£€æµ‹æ¨¡å¼é…ç½®
     auto_ctrl.ad_mode        = ZSN60X_AUTO_DETECT_CONTINUE | ZSN60X_AUTO_DETECT_INTERRUPT |
                                ZSN60X_AUTO_DETECT_SEND;
     auto_ctrl.tx_mode        = ZSN60X_ANT_MODE_TX12;
@@ -77,7 +77,7 @@ void demo_zsn60x_auto_detect_test_entry(zsn60x_handle_t handle)
         return ;
     }
 
-    /* µÈ´ı»Øµ÷º¯Êı´¥·¢ */
+    /* ç­‰å¾…å›è°ƒå‡½æ•°è§¦å‘ */
     while(a == 0);
     ret = zsn60x_get_auto_detect(handle, 0, &auto_data);
     a = 0;

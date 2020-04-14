@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief zlg72128 AMetalÆ½Ì¨ÊÊÅäZLG72128Í¨ÓÃÇı¶¯°ü
+ * \brief zlg72128 AMetalå¹³å°é€‚é…ZLG72128é€šç”¨é©±åŠ¨åŒ…
  *
  * \internal
  * \par Modification history

@@ -12,12 +12,12 @@
 
 /**
  * \file
- * \brief TPM����������Timer������ʵ��
+ * \brief TPM驱动，服务Timer驱动层实现
  *
- * 1. TPM֧���ṩ�������ֱ�׼���񣬱������ṩ���Ƿ���Timer��׼�����������
- *     - ��ʱ
- *     - PWM���
- *     - ����
+ * 1. TPM支持提供如下三种标准服务，本驱动提供的是服务Timer标准服务的驱动。
+ *     - 定时
+ *     - PWM输出
+ *     - 捕获
  *
  * \internal
  * \par Modification history
@@ -42,52 +42,52 @@ extern "C" {
  */
 
 /**
- * \brief TPM��ʱ������ص��豸��Ϣ
+ * \brief TPM定时功能相关的设备信息
  */
 typedef struct am_fsl_tpm_timing_devinfo {
 
-    amhw_fsl_tpm_t   *p_hw_tpm;    /**< \brief ָ��TPM�Ĵ������ָ�� */
-    uint8_t           inum;        /**< \brief TPM�жϺ�  */
-    uint32_t          clk_id;      /**< \brief ʱ�Ӻ�  */
+    amhw_fsl_tpm_t   *p_hw_tpm;    /**< \brief 指向TPM寄存器块的指针 */
+    uint8_t           inum;        /**< \brief TPM中断号  */
+    uint32_t          clk_id;      /**< \brief 时钟号  */
 
-    /** \brief ƽ̨��ʼ�����������ʱ�ӣ��������ŵȹ��� */
+    /** \brief 平台初始化函数，如打开时钟，配置引脚等工作 */
     void     (*pfn_plfm_init)(void);
 
-    /** \brief ƽ̨���ʼ������ */
+    /** \brief 平台解初始化函数 */
     void     (*pfn_plfm_deinit)(void);
 
 } am_fsl_tpm_timing_devinfo_t;
     
 /**
- * \brief TPM��ʱ�����豸
+ * \brief TPM定时功能设备
  */
 typedef struct am_fsl_tpm_timing_dev {
 
-    am_timer_serv_t   timer_serv;       /**< \brief ��׼��ʱ(Timer)���� */
+    am_timer_serv_t   timer_serv;       /**< \brief 标准定时(Timer)服务 */
 
-    void (*pfn_callback)(void *);       /**< \brief �ص����� */
-    void *p_arg;                        /**< \brief �ص��������û����� */
+    void (*pfn_callback)(void *);       /**< \brief 回调函数 */
+    void *p_arg;                        /**< \brief 回调函数的用户参数 */
     
-    /** \brief ָ��TPM(��ʱ����)�豸��Ϣ������ָ�� */
+    /** \brief 指向TPM(定时功能)设备信息常量的指针 */
     const am_fsl_tpm_timing_devinfo_t  *p_devinfo;
 
 } am_fsl_tpm_timing_dev_t;
 
 /**
- * \brief ��ʼ��TPMΪ��ʱ����
+ * \brief 初始化TPM为定时功能
  *
- * \param[in] p_dev     : ָ��TPM(��ʱ����)�豸��ָ��
- * \param[in] p_devinfo : ָ��TPM(��ʱ����)�豸��Ϣ������ָ��
+ * \param[in] p_dev     : 指向TPM(定时功能)设备的指针
+ * \param[in] p_devinfo : 指向TPM(定时功能)设备信息常量的指针
  *
- * \return Timer��׼������������ֵΪNULLʱ������ʼ��ʧ��
+ * \return Timer标准服务操作句柄，值为NULL时表明初始化失败
  */
 am_timer_handle_t am_fsl_tpm_timing_init (am_fsl_tpm_timing_dev_t            *p_dev,
                                           const am_fsl_tpm_timing_devinfo_t  *p_devinfo);
 
 /**
- * \brief ��ʹ��TPM��ʱ����ʱ�����ʼ��TPM��ʱ���ܣ��ͷ������Դ
- * \param[in] handle : am_fsl_tpm_timing_init() ��ʼ��������õ�Timer������
- * \return ��
+ * \brief 不使用TPM定时功能时，解初始化TPM定时功能，释放相关资源
+ * \param[in] handle : am_fsl_tpm_timing_init() 初始化函数获得的Timer服务句柄
+ * \return 无
  */
 void am_fsl_tpm_timing_deinit (am_timer_handle_t handle);
 

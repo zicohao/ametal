@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ´¿GPIOÇý¶¯µÄ¶¯Ì¬É¨ÃèÊýÂë¹ÜÇý¶¯£¨Î»Ñ¡ºÍ¶ÎÂë¾ùÎªGPIOÇý¶¯£©
+ * \brief çº¯GPIOé©±åŠ¨çš„åŠ¨æ€æ‰«ææ•°ç ç®¡é©±åŠ¨ï¼ˆä½é€‰å’Œæ®µç å‡ä¸ºGPIOé©±åŠ¨ï¼‰
  *
  * \internal
  * \par modification history:
@@ -38,7 +38,7 @@ int am_digitron_scan_gpio_init (am_digitron_scan_gpio_dev_t        *p_dev,
     	return -AM_EINVAL;
     }
 
-    /* ¶ÎÂëºÍÎ»Âë¶ÀÁ¢·¢ËÍ  */
+    /* æ®µç å’Œä½ç ç‹¬ç«‹å‘é€  */
     p_dev->scan_ops.p_send_seg = am_digitron_seg_gpio_init(&p_dev->seg_dev,
 														   &p_info->base_info,
 														    p_info->p_seg_pins);
@@ -72,7 +72,7 @@ int am_digitron_scan_gpio_deinit (am_digitron_scan_gpio_dev_t *p_dev)
     	return -AM_EINVAL;
     }
 
-	/* É¾³ý±ê×¼µÄÊýÂë¹ÜÉè±¸  */
+	/* åˆ é™¤æ ‡å‡†çš„æ•°ç ç®¡è®¾å¤‡  */
 	return am_digitron_scan_deinit(&p_dev->scan_dev);
 }
 

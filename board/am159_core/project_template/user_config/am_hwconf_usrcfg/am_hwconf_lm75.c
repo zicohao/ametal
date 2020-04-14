@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief LM75 ÓÃ»§ÅäÖÃÎÄ¼ş
+ * \brief LM75 ç”¨æˆ·é…ç½®æ–‡ä»¶
  * \sa am_hwconf_lm75.c
  *
  * \internal
@@ -31,15 +31,15 @@
  * @{
  */
 
-/** \brief Éè±¸ÊµÀı */
+/** \brief è®¾å¤‡å®ä¾‹ */
 static am_temp_lm75_t  __g_temp_lm75;
 
-/** \brief Éè±¸ĞÅÏ¢ */
+/** \brief è®¾å¤‡ä¿¡æ¯ */
 static const am_temp_lm75_info_t __g_temp_lm75_info = {
     0x48
 };
 
-/** \brief ÊµÀı³õÊ¼»¯º¯Êı */
+/** \brief å®ä¾‹åˆå§‹åŒ–å‡½æ•° */
 am_temp_handle_t am_temp_lm75_inst_init (void)
 {
     return  am_temp_lm75_init(&__g_temp_lm75,

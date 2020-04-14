@@ -12,25 +12,25 @@
 
 /**
  * \file
- * \brief LED Àý³Ì£¬Í¨¹ý±ê×¼½Ó¿ÚÊµÏÖ
+ * \brief LED ä¾‹ç¨‹ï¼Œé€šè¿‡æ ‡å‡†æŽ¥å£å®žçŽ°
  *
- * - ÊµÑéÏÖÏó£º
- *   1. LED0 ºÍ LED1 ÒÔ 0.5s µÄÊ±¼ä¼ä¸ôÉÁË¸¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. LED0 å’Œ LED1 ä»¥ 0.5s çš„æ—¶é—´é—´éš”é—ªçƒã€‚
  *
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_am845_core_hw_capt.c src_am845_core_hw_capt
  *
- * - ²Ù×÷²½Öè£º
- *   1. PIO0_31  Á¬½ÓµçÈÝ´¥ÃþÒý½Å CAPTX0£»
- *   2. PIO1_0   Á¬½ÓµçÈÝ´¥ÃþÒý½Å CAPTX1£»
- *   3. PIO1_1   Á¬½ÓµçÈÝ´¥ÃþÒý½Å CAPTX2£»
- *   3. PIO0_30  Á¬½ÓÄ£Äâ±È½ÏACMP¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. PIO0_31  è¿žæŽ¥ç”µå®¹è§¦æ‘¸å¼•è„š CAPTX0ï¼›
+ *   2. PIO1_0   è¿žæŽ¥ç”µå®¹è§¦æ‘¸å¼•è„š CAPTX1ï¼›
+ *   3. PIO1_1   è¿žæŽ¥ç”µå®¹è§¦æ‘¸å¼•è„š CAPTX2ï¼›
+ *   3. PIO0_30  è¿žæŽ¥æ¨¡æ‹Ÿæ¯”è¾ƒACMPã€‚
  *
- * * - ÊµÑéÏÖÏó£º
- *   1. ÓÃÊÖ´¥ÃþACMPÓë ÓëCAPTX0Ê±£¬´òÓ¡X0µÄ´¥Ãþ¼ÆÊýÖµÎª4095£¬yestouch¿ªÊ¼¼ÆÊý£¬notouchÍ£Ö¹¼ÆÊý£»
- *   1. ÓÃÊÖ´¥ÃþACMPÓë ÓëCAPTX1Ê±£¬´òÓ¡X1µÄ´¥Ãþ¼ÆÊýÖµÎª4095£¬yestouch¿ªÊ¼¼ÆÊý£¬notouchÍ£Ö¹¼ÆÊý£»
- *   1. ÓÃÊÖ´¥ÃþACMPÓë ÓëCAPTX2Ê±£¬´òÓ¡X2µÄ´¥Ãþ¼ÆÊýÖµÎª4095£¬yestouch¿ªÊ¼¼ÆÊý£¬notouchÍ£Ö¹¼ÆÊý£»
+ * * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. ç”¨æ‰‹è§¦æ‘¸ACMPä¸Ž ä¸ŽCAPTX0æ—¶ï¼Œæ‰“å°X0çš„è§¦æ‘¸è®¡æ•°å€¼ä¸º4095ï¼Œyestouchå¼€å§‹è®¡æ•°ï¼Œnotouchåœæ­¢è®¡æ•°ï¼›
+ *   1. ç”¨æ‰‹è§¦æ‘¸ACMPä¸Ž ä¸ŽCAPTX1æ—¶ï¼Œæ‰“å°X1çš„è§¦æ‘¸è®¡æ•°å€¼ä¸º4095ï¼Œyestouchå¼€å§‹è®¡æ•°ï¼Œnotouchåœæ­¢è®¡æ•°ï¼›
+ *   1. ç”¨æ‰‹è§¦æ‘¸ACMPä¸Ž ä¸ŽCAPTX2æ—¶ï¼Œæ‰“å°X2çš„è§¦æ‘¸è®¡æ•°å€¼ä¸º4095ï¼Œyestouchå¼€å§‹è®¡æ•°ï¼Œnotouchåœæ­¢è®¡æ•°ï¼›
  *
  * \internal
  * \par Modification history
@@ -55,7 +55,7 @@ extern void demo_lpc84x_hw_capt_entry (amhw_lpc84x_capt_t *p_hw_capt,
                                        amhw_lpc84x_acmp_t *p_hw_acmp);
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_am845_core_hw_capt_entry (void)
 {

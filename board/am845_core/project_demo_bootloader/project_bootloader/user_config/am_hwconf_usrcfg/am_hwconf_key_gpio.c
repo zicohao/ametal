@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief °´¼üÓÃ»§ÅäÖÃÎÄ¼ş£¨GPIO Çı¶¯£©
+ * \brief æŒ‰é”®ç”¨æˆ·é…ç½®æ–‡ä»¶ï¼ˆGPIO é©±åŠ¨ï¼‰
  * \sa am_hwconf_key_gpio.c
  *
  * \internal
@@ -33,30 +33,30 @@
  * @{
  */
 
-/** \brief °´¼üÒı½ÅºÅ */
+/** \brief æŒ‰é”®å¼•è„šå· */
 am_local am_const int __g_key_pins[] = {
-    PIO0_4   /* KEY/RES °´¼üÒı½Å */
+    PIO0_4   /* KEY/RES æŒ‰é”®å¼•è„š */
 };
 
-/** \brief °´¼ü±àÂë */
+/** \brief æŒ‰é”®ç¼–ç  */
 am_local am_const int __g_key_codes[] = {
-    KEY_KP0    /* KEY/RES °´¼ü±àÂë */
+    KEY_KP0    /* KEY/RES æŒ‰é”®ç¼–ç  */
 };
 
-/** \brief °´¼üÉè±¸ĞÅÏ¢ */
+/** \brief æŒ‰é”®è®¾å¤‡ä¿¡æ¯ */
 am_local am_const am_key_gpio_info_t __g_key_gpio_devinfo = {
-    __g_key_pins,               /* °´¼üÒı½ÅºÅ */
-    __g_key_codes,              /* ¸÷¸ö°´¼ü¶ÔÓ¦µÄ±àÂë£¨ÉÏ±¨£© */
-    AM_NELEMENTS(__g_key_pins), /* °´¼üÊıÄ¿ */
-    AM_TRUE,                    /* ÊÇ·ñµÍµçÆ½¼¤»î£¨°´ÏÂÎªµÍµçÆ½£© */
-    10                          /* °´¼üÉ¨ÃèÊ±¼ä¼ä¸ô£¬Ò»°ãÎª 10ms */
+    __g_key_pins,               /* æŒ‰é”®å¼•è„šå· */
+    __g_key_codes,              /* å„ä¸ªæŒ‰é”®å¯¹åº”çš„ç¼–ç ï¼ˆä¸ŠæŠ¥ï¼‰ */
+    AM_NELEMENTS(__g_key_pins), /* æŒ‰é”®æ•°ç›® */
+    AM_TRUE,                    /* æ˜¯å¦ä½ç”µå¹³æ¿€æ´»ï¼ˆæŒ‰ä¸‹ä¸ºä½ç”µå¹³ï¼‰ */
+    10                          /* æŒ‰é”®æ‰«ææ—¶é—´é—´éš”ï¼Œä¸€èˆ¬ä¸º 10ms */
 };
 
-/** \brief °´¼üÉè±¸ÊµÀı */
+/** \brief æŒ‰é”®è®¾å¤‡å®ä¾‹ */
 am_local am_key_gpio_t __g_key_gpio_dev;
 
 /**
- * \brief °´¼üÊµÀı³õÊ¼»¯£¨GPIO Çı¶¯£©
+ * \brief æŒ‰é”®å®ä¾‹åˆå§‹åŒ–ï¼ˆGPIO é©±åŠ¨ï¼‰
  */
 int am_key_gpio_inst_init (void)
 {

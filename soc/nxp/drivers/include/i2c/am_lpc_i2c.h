@@ -54,10 +54,10 @@ typedef struct am_lpc_i2c_devinfo {
     uint32_t   clk_id;                 /**< \brief I2C clk id              */
 
     /**
-     * \brief ³¬Ê±Ê±¼äÖµ
+     * \brief è¶…æ—¶æ—¶é—´å€¼
      *
-     * I2C×ÜÏßÔÚÊý¾Ý´«ÊäÆÚ¼ä£¬Èô´Ë¶ÎÊ±¼äÄÚÊ±ÖÓÏßÎÞÈÎºÎÏìÓ¦,ÔòÊÓÎª³¬Ê±¡£
-     * ½áÊøµ±Ç°´«Êä²¢¸´Î»ÄÚ²¿Âß¼­
+     * I2Cæ€»çº¿åœ¨æ•°æ®ä¼ è¾“æœŸé—´ï¼Œè‹¥æ­¤æ®µæ—¶é—´å†…æ—¶é’Ÿçº¿æ— ä»»ä½•å“åº”,åˆ™è§†ä¸ºè¶…æ—¶ã€‚
+     * ç»“æŸå½“å‰ä¼ è¾“å¹¶å¤ä½å†…éƒ¨é€»è¾‘
      */
     uint32_t  timeout_ms;
 
@@ -78,25 +78,25 @@ typedef struct am_lpc_i2c_dev {
      /** \brief The standard serve functions for I2C */
     am_i2c_serv_t            i2c_serv;
 
-    /** \brief I2C ¿ØÖÆÆ÷ÏûÏ¢¶ÓÁÐ */
+    /** \brief I2C æŽ§åˆ¶å™¨æ¶ˆæ¯é˜Ÿåˆ— */
     struct am_list_head       msg_list;
 
-    /** \brief Ö¸ÏòI2C´«Êä½á¹¹ÌåµÄÖ¸Õë£¬Í¬Ò»Ê±¼äÖ»ÄÜ´¦ÀíÒ»¸ö´«Êä           */
+    /** \brief æŒ‡å‘I2Cä¼ è¾“ç»“æž„ä½“çš„æŒ‡é’ˆï¼ŒåŒä¸€æ—¶é—´åªèƒ½å¤„ç†ä¸€ä¸ªä¼ è¾“           */
     am_i2c_transfer_t        *p_cur_trans;
 
-    /** \brief µ±Ç°ÕýÔÚ´¦ÀíµÄÏûÏ¢   */
+    /** \brief å½“å‰æ­£åœ¨å¤„ç†çš„æ¶ˆæ¯   */
     am_i2c_message_t         *p_cur_msg;
 
-    /** \brief ÓÃÓÚÊý¾Ý½ÓÊÕ/·¢ËÍ¼ÆÊý   */
+    /** \brief ç”¨äºŽæ•°æ®æŽ¥æ”¶/å‘é€è®¡æ•°   */
     uint32_t                  data_ptr;
 
-    /** \brief I2CÊ±ÖÓ£¬Ê¹ÓÃDIV·ÖÆµºóµÄÊ±ÖÓÆµÂÊ */
+    /** \brief I2Cæ—¶é’Ÿï¼Œä½¿ç”¨DIVåˆ†é¢‘åŽçš„æ—¶é’Ÿé¢‘çŽ‡ */
     uint32_t                  i2c_clkrate;
 
-    /** \brief Ã¦±êÊ¶                 */
+    /** \brief å¿™æ ‡è¯†                 */
     am_bool_t                 busy;
 
-    /** \brief ×´Ì¬                   */
+    /** \brief çŠ¶æ€                   */
     uint8_t                   state;
     
     /** \brief I2C controller configure parameter */

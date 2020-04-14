@@ -31,27 +31,27 @@
 
 
 /**
- * \name ÆµÂÊÖµ¶¨Òå
+ * \name é¢‘ç‡å€¼å®šä¹‰
  * @{
  */
 
-#define __AM_KL26_CLK_RATE_LPO         1000UL    /**< \brief PMCÊä³öLPOÆµÂÊ        */
-#define __AM_KL26_CLK_RATE_IRC_SLOW    32768UL   /**< \brief ÄÚ²¿ÂıËÙIRCÆµÂÊ       */
-#define __AM_KL26_CLK_RATE_IRC_FAST    4000000UL /**< \brief ÄÚ²¿¿ìËÙIRCÆµÂÊ       */
-#define __AM_KL26_CLK_RATE_RTC_CLKIN   32768UL   /**< \brief RTCÍâ²¿Ê±ÖÓÊäÈë±ØĞëÊ¹ÓÃ32768UL */
+#define __AM_KL26_CLK_RATE_LPO         1000UL    /**< \brief PMCè¾“å‡ºLPOé¢‘ç‡        */
+#define __AM_KL26_CLK_RATE_IRC_SLOW    32768UL   /**< \brief å†…éƒ¨æ…¢é€ŸIRCé¢‘ç‡       */
+#define __AM_KL26_CLK_RATE_IRC_FAST    4000000UL /**< \brief å†…éƒ¨å¿«é€ŸIRCé¢‘ç‡       */
+#define __AM_KL26_CLK_RATE_RTC_CLKIN   32768UL   /**< \brief RTCå¤–éƒ¨æ—¶é’Ÿè¾“å…¥å¿…é¡»ä½¿ç”¨32768UL */
 /** @} */
 
 
 /******************************************************************************
-  È«¾Ö±äÁ¿
+  å…¨å±€å˜é‡
 ******************************************************************************/
 
-/** \brief Ö¸ÏòGPIOÉè±¸µÄÖ¸Õë */
+/** \brief æŒ‡å‘GPIOè®¾å¤‡çš„æŒ‡é’ˆ */
 am_kl26_clk_dev_t *__gp_clk_dev;
 
 /**
- * \brief µÃµ½MCGIRCLKÊ±ÖÓÆµÂÊ
- * \return MCGIRCLKÊ±ÖÓÆµÂÊ£¨µ¥Î»£ºHz£©
+ * \brief å¾—åˆ°MCGIRCLKæ—¶é’Ÿé¢‘ç‡
+ * \return MCGIRCLKæ—¶é’Ÿé¢‘ç‡ï¼ˆå•ä½ï¼šHzï¼‰
  */
 uint32_t am_kl26_clk_mcgirclk_rate_get (void)
 {
@@ -59,10 +59,10 @@ uint32_t am_kl26_clk_mcgirclk_rate_get (void)
     uint32_t clk = 0;
 
     if (amhw_kl26_mcg_irc_src_get() == KL26_TPM2_IRC_SRC_SLOW) {
-        /** \brief  ÄÚ²¿ÂıËÙÊ±ÖÓ */
+        /** \brief  å†…éƒ¨æ…¢é€Ÿæ—¶é’Ÿ */
         clk = __AM_KL26_CLK_RATE_IRC_SLOW;
     } else {
-        /** \brief  ÄÚ²¿¿ìËÙÊ±ÖÓ */
+        /** \brief  å†…éƒ¨å¿«é€Ÿæ—¶é’Ÿ */
         fcrdiv = amhw_kl26_mcg_irc_fast_div_get();
         clk = __AM_KL26_CLK_RATE_IRC_FAST / (1UL << fcrdiv);
     }
@@ -71,18 +71,18 @@ uint32_t am_kl26_clk_mcgirclk_rate_get (void)
 }
 
 /**
- * \brief µÃµ½OSCCLK/OSCERCLKÊ±ÖÓÆµÂÊ
- * \return OSCCLK/OSCERCLKÊ±ÖÓÆµÂÊ£¨µ¥Î»£ºHz£©
+ * \brief å¾—åˆ°OSCCLK/OSCERCLKæ—¶é’Ÿé¢‘ç‡
+ * \return OSCCLK/OSCERCLKæ—¶é’Ÿé¢‘ç‡ï¼ˆå•ä½ï¼šHzï¼‰
  */
 uint32_t am_kl26_clk_oscclk_rate_get (void)
 {
     uint32_t clk = 0;
 
     if (amhw_kl26_mcg_osc_src_get() == KL26_TPM2_OSC_SRC_OSC) {
-        /** \brief  ¾§ÕñÊ±ÖÓÊäÈë */
+        /** \brief  æ™¶æŒ¯æ—¶é’Ÿè¾“å…¥ */
         clk = __gp_clk_dev->p_devinfo->xtal_rate;
     } else {
-        /** \brief  Íâ²¿Ê±ÖÓÒı½ÅÊäÈë */
+        /** \brief  å¤–éƒ¨æ—¶é’Ÿå¼•è„šè¾“å…¥ */
         clk = __gp_clk_dev->p_devinfo->xtal_rate;
     }
 
@@ -90,8 +90,8 @@ uint32_t am_kl26_clk_oscclk_rate_get (void)
 }
 
 /**
- * \brief µÃµ½MCGFLLCLKÊ±ÖÓÆµÂÊ
- * \return MCGFLLCLKÊ±ÖÓÆµÂÊ£¨µ¥Î»£ºHz£©
+ * \brief å¾—åˆ°MCGFLLCLKæ—¶é’Ÿé¢‘ç‡
+ * \return MCGFLLCLKæ—¶é’Ÿé¢‘ç‡ï¼ˆå•ä½ï¼šHzï¼‰
  */
 uint32_t am_kl26_clk_mcgfllclk_rate_get (void)
 {
@@ -129,10 +129,10 @@ uint32_t am_kl26_clk_mcgfllclk_rate_get (void)
     }
 
     if (amhw_kl26_mcg_fll_src_get() == KL26_TPM2_FLL_SRC_IRC_SLOW) {
-        /** \brief  ÄÚ²¿ÂıËÙÊ±ÖÓ×öFLLÊ±ÖÓÔ´ */
+        /** \brief  å†…éƒ¨æ…¢é€Ÿæ—¶é’ŸåšFLLæ—¶é’Ÿæº */
         clk = __AM_KL26_CLK_RATE_IRC_SLOW * dcodiv;
     } else {
-        /** \brief  Íâ²¿Ê±ÖÓ×öFLLÊ±ÖÓÔ´ */
+        /** \brief  å¤–éƒ¨æ—¶é’ŸåšFLLæ—¶é’Ÿæº */
         frdiv = amhw_kl26_mcg_fll_erc_div_get();
 
         if (amhw_kl26_mcg_osc_range_get() == KL26_TPM2_OSC_RANGE_LOW) {
@@ -146,8 +146,8 @@ uint32_t am_kl26_clk_mcgfllclk_rate_get (void)
 }
 
 /**
- * \brief µÃµ½MCGPLLCLKÊ±ÖÓÆµÂÊ
- * \return MCGPLLCLKÊ±ÖÓÆµÂÊ£¨µ¥Î»£ºHz£©
+ * \brief å¾—åˆ°MCGPLLCLKæ—¶é’Ÿé¢‘ç‡
+ * \return MCGPLLCLKæ—¶é’Ÿé¢‘ç‡ï¼ˆå•ä½ï¼šHzï¼‰
  */
 uint32_t am_kl26_clk_mcgpllclk_rate_get (void)
 {
@@ -164,21 +164,21 @@ uint32_t am_kl26_clk_mcgpllclk_rate_get (void)
 }
 
 /**
- * \brief µÃµ½MCGOUTCLKÊ±ÖÓÆµÂÊ
- * \return MCGOUTCLKÊ±ÖÓÆµÂÊ£¨µ¥Î»£ºHz£©
+ * \brief å¾—åˆ°MCGOUTCLKæ—¶é’Ÿé¢‘ç‡
+ * \return MCGOUTCLKæ—¶é’Ÿé¢‘ç‡ï¼ˆå•ä½ï¼šHzï¼‰
  */
 uint32_t am_kl26_clk_mcgoutclk_rate_get (void)
 {
     uint32_t clk = 0;
 
     if (amhw_kl26_mcg_outclk_src_get() == KL26_TPM2_OUTCLK_SRC_IRC) {
-        /** \brief  ÄÚ²¿IRCÊ±ÖÓ×÷MCGOUTCLKÊ±ÖÓÔ´ */
+        /** \brief  å†…éƒ¨IRCæ—¶é’Ÿä½œMCGOUTCLKæ—¶é’Ÿæº */
         clk = am_kl26_clk_mcgirclk_rate_get();
     } else if (amhw_kl26_mcg_outclk_src_get() == KL26_TPM2_OUTCLK_SRC_ERC) {
-        /** \brief  Íâ²¿OSCÊ±ÖÓ×÷MCGOUTCLKÊ±ÖÓÔ´ */
+        /** \brief  å¤–éƒ¨OSCæ—¶é’Ÿä½œMCGOUTCLKæ—¶é’Ÿæº */
         clk = am_kl26_clk_oscclk_rate_get();
     } else {
-        /** \brief  MCGPLLCLK/MCGFLLCLK×÷MCGOUTCLKÊ±ÖÓÔ´ */
+        /** \brief  MCGPLLCLK/MCGFLLCLKä½œMCGOUTCLKæ—¶é’Ÿæº */
         if (amhw_kl26_mcg_plls_src_get() == KL26_TPM2_PLLS_SRC_FLL) {
             clk = am_kl26_clk_mcgfllclk_rate_get();
         } else {
@@ -190,24 +190,24 @@ uint32_t am_kl26_clk_mcgoutclk_rate_get (void)
 }
 
 /**
- * \brief µÃµ½ERCLK32KÊ±ÖÓÆµÂÊ
- * \return ERCLK32KÊ±ÖÓÆµÂÊ£¨µ¥Î»£ºHz£©
+ * \brief å¾—åˆ°ERCLK32Kæ—¶é’Ÿé¢‘ç‡
+ * \return ERCLK32Kæ—¶é’Ÿé¢‘ç‡ï¼ˆå•ä½ï¼šHzï¼‰
  */
 uint32_t am_kl26_clk_erclk32k_rate_get (void)
 {
     uint32_t clk = 0;
 
     if (amhw_kl26_sim_ercclk32k_src_get() == KL26_SIM_OSC32KSEL_CLKIN) {
-        /** \brief  Íâ²¿RTC_CLKINÊäÈë×÷ERCLK32KµÄÊ±ÖÓÔ´ */
+        /** \brief  å¤–éƒ¨RTC_CLKINè¾“å…¥ä½œERCLK32Kçš„æ—¶é’Ÿæº */
         clk = __AM_KL26_CLK_RATE_RTC_CLKIN;
     } else if (amhw_kl26_sim_ercclk32k_src_get() == KL26_SIM_OSC32KSEL_LPO) {
-        /** \brief  LPOÊä³öÊ±ÖÓ×÷ERCLK32KµÄÊ±ÖÓÔ´ */
+        /** \brief  LPOè¾“å‡ºæ—¶é’Ÿä½œERCLK32Kçš„æ—¶é’Ÿæº */
         clk = __AM_KL26_CLK_RATE_LPO;
     } else {
-        /** \brief  OSCCLK32KÊ±ÖÓ×÷ERCLK32KµÄÊ±ÖÓÔ´ */
+        /** \brief  OSCCLK32Kæ—¶é’Ÿä½œERCLK32Kçš„æ—¶é’Ÿæº */
         if (amhw_kl26_mcg_osc_range_get() == KL26_TPM2_OSC_RANGE_LOW &&
             amhw_kl26_mcg_osc_gain_get() == KL26_TPM2_OSC_GAIN_LOW) {
-            /** \brief  ½öµ±RANGE=0,HCG0 = 0Ê±£¬OSCCLK32KÓĞĞ§ */
+            /** \brief  ä»…å½“RANGE=0,HCG0 = 0æ—¶ï¼ŒOSCCLK32Kæœ‰æ•ˆ */
             clk = am_kl26_clk_oscclk_rate_get();
         }
     }
@@ -216,15 +216,15 @@ uint32_t am_kl26_clk_erclk32k_rate_get (void)
 }
 
 /**
- * \brief µÃµ½RTC_CLKOUTÊ±ÖÓÆµÂÊ
- * \return RTC_CLKOUTÊ±ÖÓÆµÂÊ£¨µ¥Î»£ºHz£©
+ * \brief å¾—åˆ°RTC_CLKOUTæ—¶é’Ÿé¢‘ç‡
+ * \return RTC_CLKOUTæ—¶é’Ÿé¢‘ç‡ï¼ˆå•ä½ï¼šHzï¼‰
  */
 uint32_t am_kl26_clk_rtc_clkout_rate_get (void)
 {
     uint32_t clk = 0;
 
     if (amhw_kl26_sim_rtc_clkout_get() == KL26_SIM_RTC_CLKOUT_OSCERCLK) {
-        /** \brief  OSCERCLK×÷RTC_OUTÊ±ÖÓÔ´ */
+        /** \brief  OSCERCLKä½œRTC_OUTæ—¶é’Ÿæº */
         clk = am_kl26_clk_oscclk_rate_get();
     } else {
         /** \brief  RTC OUT 1HZ */
@@ -236,8 +236,8 @@ uint32_t am_kl26_clk_rtc_clkout_rate_get (void)
 
 
 /**
- * \brief µÃµ½core/platform/systemÊ±ÖÓÆµÂÊ
- * \return core/platform/systemÊ±ÖÓÆµÂÊ
+ * \brief å¾—åˆ°core/platform/systemæ—¶é’Ÿé¢‘ç‡
+ * \return core/platform/systemæ—¶é’Ÿé¢‘ç‡
  */
 uint32_t am_kl26_clk_core_clkrate_get(void)
 {
@@ -251,8 +251,8 @@ uint32_t am_kl26_clk_core_clkrate_get(void)
 }
 
 /**
- * \brief µÃµ½bus/flashÊ±ÖÓÆµÂÊ
- * \return bus/flashÊ±ÖÓÆµÂÊ
+ * \brief å¾—åˆ°bus/flashæ—¶é’Ÿé¢‘ç‡
+ * \return bus/flashæ—¶é’Ÿé¢‘ç‡
  */
 uint32_t am_kl26_clk_bus_clkrate_get(void)
 {
@@ -270,23 +270,23 @@ uint32_t am_kl26_clk_bus_clkrate_get(void)
 }
 
 /**
- * \brief µÃµ½TPMµÄÊ±ÖÓÆµÂÊ
- * \return  TPMµÄÊ±ÖÓÆµÂÊ£¨µ¥Î»£ºHz£©
+ * \brief å¾—åˆ°TPMçš„æ—¶é’Ÿé¢‘ç‡
+ * \return  TPMçš„æ—¶é’Ÿé¢‘ç‡ï¼ˆå•ä½ï¼šHzï¼‰
  */
 uint32_t am_kl26_clk_tpm_rate_get (void)
 {
     uint32_t clk = 0;
 
     if (amhw_kl26_sim_tpm_src_get() == KL26_SIM_TPMSRC_DISABLED) {
-        /** \brief TPMÊ±ÖÓ½ûÄÜ */
+        /** \brief TPMæ—¶é’Ÿç¦èƒ½ */
     } else if (amhw_kl26_sim_tpm_src_get() == KL26_SIM_TPMSRC_MCGIRCLK) {
-        /** \brief  MCGIRCLK×÷TPMÊ±ÖÓÔ´ */
+        /** \brief  MCGIRCLKä½œTPMæ—¶é’Ÿæº */
         clk = am_kl26_clk_mcgirclk_rate_get();
     } else if (amhw_kl26_sim_tpm_src_get() == KL26_SIM_TPMSRC_OSCERCLK) {
-        /** \brief  OSCERCLK×÷TPMÊ±ÖÓÔ´ */
+        /** \brief  OSCERCLKä½œTPMæ—¶é’Ÿæº */
         clk = am_kl26_clk_oscclk_rate_get();
     } else {
-        /** \brief  MCGPLLCLK/MCGFLLCLK×÷TPMÊ±ÖÓÔ´ */
+        /** \brief  MCGPLLCLK/MCGFLLCLKä½œTPMæ—¶é’Ÿæº */
         if (amhw_kl26_sim_pllfll_sel_get() == KL26_SIM_PLLFLLSEL_FLL) {
             clk = am_kl26_clk_mcgfllclk_rate_get();
         } else {
@@ -298,8 +298,8 @@ uint32_t am_kl26_clk_tpm_rate_get (void)
 }
 
 /**
- * \brief µÃµ½RTCµÄÊ±ÖÓÆµÂÊ
- * \return  RTCµÄÊ±ÖÓÆµÂÊ£¨µ¥Î»£ºHz£©
+ * \brief å¾—åˆ°RTCçš„æ—¶é’Ÿé¢‘ç‡
+ * \return  RTCçš„æ—¶é’Ÿé¢‘ç‡ï¼ˆå•ä½ï¼šHzï¼‰
  */
 uint32_t am_kl26_clk_rtc_rate_get (void)
 {
@@ -307,23 +307,23 @@ uint32_t am_kl26_clk_rtc_rate_get (void)
 }
 
 /**
- * \brief µÃµ½UART0µÄÊ±ÖÓÆµÂÊ
- * \return  UART0µÄÊ±ÖÓÆµÂÊ£¨µ¥Î»£ºHz£©
+ * \brief å¾—åˆ°UART0çš„æ—¶é’Ÿé¢‘ç‡
+ * \return  UART0çš„æ—¶é’Ÿé¢‘ç‡ï¼ˆå•ä½ï¼šHzï¼‰
  */
 uint32_t am_kl26_clk_uart0_rate_get (void)
 {
     uint32_t clk = 0;
 
     if (amhw_kl26_sim_uart0_src_get() == KL26_SIM_UART0SRC_DISABLED) {
-        /** \brief TPMÊ±ÖÓ½ûÄÜ */
+        /** \brief TPMæ—¶é’Ÿç¦èƒ½ */
     } else if (amhw_kl26_sim_uart0_src_get() == KL26_SIM_UART0SRC_MCGIRCLK) {
-        /** \brief  MCGIRCLK×÷TPMÊ±ÖÓÔ´ */
+        /** \brief  MCGIRCLKä½œTPMæ—¶é’Ÿæº */
         clk = am_kl26_clk_mcgirclk_rate_get();
     } else if (amhw_kl26_sim_uart0_src_get() == KL26_SIM_UART0SRC_OSCERCLK) {
-        /** \brief  OSCERCLK×÷TPMÊ±ÖÓÔ´ */
+        /** \brief  OSCERCLKä½œTPMæ—¶é’Ÿæº */
         clk = am_kl26_clk_oscclk_rate_get();
     } else {
-        /** \brief  MCGPLLCLK/MCGFLLCLK×÷TPMÊ±ÖÓÔ´ */
+        /** \brief  MCGPLLCLK/MCGFLLCLKä½œTPMæ—¶é’Ÿæº */
         if (amhw_kl26_sim_pllfll_sel_get() == KL26_SIM_PLLFLLSEL_FLL) {
             clk = am_kl26_clk_mcgfllclk_rate_get();
         } else {
@@ -335,8 +335,8 @@ uint32_t am_kl26_clk_uart0_rate_get (void)
 }
 
 /**
- * \brief µÃµ½wdtµÄÊ±ÖÓÆµÂÊ
- * \return  wdtµÄÊ±ÖÓÆµÂÊ£¨µ¥Î»£ºHz£©
+ * \brief å¾—åˆ°wdtçš„æ—¶é’Ÿé¢‘ç‡
+ * \return  wdtçš„æ—¶é’Ÿé¢‘ç‡ï¼ˆå•ä½ï¼šHzï¼‰
  */
 uint32_t am_kl26_clk_wdt_rate_get (void)
 {
@@ -388,9 +388,9 @@ uint32_t __lptmr_periph_rate_get (void)
 }
 
 /**
- * \brief »ñÈ¡lptmrÊ±ÖÓÔ´´óĞ¡
- * \param[in] p_hw_lptmr : Ö¸ÏòLPTMR¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \return Ê±ÖÓÔ´´óĞ¡
+ * \brief è·å–lptmræ—¶é’Ÿæºå¤§å°
+ * \param[in] p_hw_lptmr : æŒ‡å‘LPTMRå¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \return æ—¶é’Ÿæºå¤§å°
  */
 uint32_t am_kl26_clk_lptmr_rate_get (void)
 {
@@ -422,7 +422,7 @@ uint32_t am_kl26_clk_lptmr_rate_get (void)
     return clk;
 }
 /**
- * \brief »ñÈ¡Ê±ÖÓÆµÂÊ
+ * \brief è·å–æ—¶é’Ÿé¢‘ç‡
  */
 int am_clk_rate_get (am_clk_id_t clk_id)
 {
@@ -548,7 +548,7 @@ int am_clk_rate_get (am_clk_id_t clk_id)
         break;
 
     case CLK_I2S:
-    /* I2S Ê±ÖÓÔÚI2SÄ£¿éÄÚ²¿·ÖÆµ */
+    /* I2S æ—¶é’Ÿåœ¨I2Sæ¨¡å—å†…éƒ¨åˆ†é¢‘ */
         clk = 0;
         break;
 
@@ -563,14 +563,14 @@ int am_clk_rate_get (am_clk_id_t clk_id)
 }
 
 /**
- * \brief Ê¹ÄÜÖ¸¶¨µÄÏµÍ³»òÍâÉèÊ±ÖÓ
+ * \brief ä½¿èƒ½æŒ‡å®šçš„ç³»ç»Ÿæˆ–å¤–è®¾æ—¶é’Ÿ
  */
 int am_clk_enable (am_clk_id_t clk_id)
 {
     if ((clk_id < CLK_PERIPH_ID_MIN) ||
         (clk_id > CLK_PERIPH_ID_MAX)) {
 
-        /* Ê±ÖÓID²»ÔÚ·¶Î§ÄÚ*/
+        /* æ—¶é’ŸIDä¸åœ¨èŒƒå›´å†…*/
         return -AM_ENXIO;
     }
     
@@ -580,14 +580,14 @@ int am_clk_enable (am_clk_id_t clk_id)
 }
 
 /**
- * \brief ½ûÄÜÖ¸¶¨µÄÏµÍ³»òÍâÉèÊ±ÖÓ
+ * \brief ç¦èƒ½æŒ‡å®šçš„ç³»ç»Ÿæˆ–å¤–è®¾æ—¶é’Ÿ
  */
 int am_clk_disable (am_clk_id_t clk_id)
 {
     if ((clk_id < CLK_PERIPH_ID_MIN) ||
         (clk_id > CLK_PERIPH_ID_MAX)) {
 
-        /* Ê±ÖÓID²»ÔÚ·¶Î§ÄÚ*/
+        /* æ—¶é’ŸIDä¸åœ¨èŒƒå›´å†…*/
         return -AM_ENXIO;
     }
         
@@ -615,28 +615,28 @@ uint32_t __fll_div_get (uint32_t clk)
 /** \brief clk fei mode init */
 uint32_t __clk_fei_init(void)
 {
-    /* Ä¬ÈÏ¹Ø±ÕATMÄÚ²¿²Î¿¼Ê±ÖÓĞŞÕı¹¦ÄÜ */
+    /* é»˜è®¤å…³é—­ATMå†…éƒ¨å‚è€ƒæ—¶é’Ÿä¿®æ­£åŠŸèƒ½ */
     amhw_kl26_mcg_atm_disable();
 
-    /* Ê¹ÓÃÄÚ²¿²Î¿¼Ê±ÖÓ ¹Ø±Õosc¼ì²â */
+    /* ä½¿ç”¨å†…éƒ¨å‚è€ƒæ—¶é’Ÿ å…³é—­oscæ£€æµ‹ */
     amhw_kl26_mcg_osc_monitor_disable();
 
     /* CLKDIV */
     amhw_kl26_sim_clkdiv1_outdiv1_set(__gp_clk_dev->outdiv1);
     amhw_kl26_sim_clkdiv1_outdiv4_set(__gp_clk_dev->outdiv4);
 
-    /* ÅäÖÃÍâÉèµÄMCGPLLCLK/MCGFLLCLKÊ±ÖÓÔ´  */
+    /* é…ç½®å¤–è®¾çš„MCGPLLCLK/MCGFLLCLKæ—¶é’Ÿæº  */
     amhw_kl26_sim_pllfll_sel_set(KL26_SIM_PLLFLLSEL_FLL);
 
-    /* ÉèÖÃFLLµÄÊ±ÖÓÔ´ÎªÄÚ²¿ÂıÔ´ */
+    /* è®¾ç½®FLLçš„æ—¶é’Ÿæºä¸ºå†…éƒ¨æ…¢æº */
     amhw_kl26_mcg_fll_src_set(KL26_TPM2_FLL_SRC_IRC_SLOW);
     
-    /* enable MCGIRCLKÊ±ÖÓ */
+    /* enable MCGIRCLKæ—¶é’Ÿ */
     amhw_kl26_mcg_irc_src_set(KL26_TPM2_IRC_SRC_SLOW);
 
     amhw_kl26_mcg_irc_enable();
 
-    /* ¼ì²éFLLÊ±ÖÓÔ´ */
+    /* æ£€æŸ¥FLLæ—¶é’Ÿæº */
     while (amhw_kl26_mcg_fll_stat_get() == 0x00U);
 
     /* fll mul */
@@ -644,7 +644,7 @@ uint32_t __clk_fei_init(void)
 
     amhw_kl26_mcg_outclk_src_set(KL26_TPM2_OUTCLK_SRC_PLLS);
     
-    /* Ä£Ê½¼ì²é */
+    /* æ¨¡å¼æ£€æŸ¥ */
     while (amhw_kl26_mcg_outclk_stat_get() != KL26_TPM2_OUTCLK_SATA_FLL);
 
     return AM_OK;
@@ -653,7 +653,7 @@ uint32_t __clk_fei_init(void)
 /** \brief clk pee mode init */
 uint32_t __clk_pee_init(void)
 {
-    /* Ä¬ÈÏ¹Ø±ÕATMÄÚ²¿²Î¿¼Ê±ÖÓĞŞÕı¹¦ÄÜ */
+    /* é»˜è®¤å…³é—­ATMå†…éƒ¨å‚è€ƒæ—¶é’Ÿä¿®æ­£åŠŸèƒ½ */
     amhw_kl26_mcg_atm_disable();
 
     /* CLKDIV */
@@ -663,39 +663,39 @@ uint32_t __clk_pee_init(void)
     /* OSC32KSEL */
     amhw_kl26_sim_ercclk32k_src_set(KL26_SIM_OSC32KSEL_LPO);
 
-    /* ÅäÖÃMCGPLLCLK/MCGFLLCLKÊ±ÖÓÔ´  */
+    /* é…ç½®MCGPLLCLK/MCGFLLCLKæ—¶é’Ÿæº  */
     amhw_kl26_sim_pllfll_sel_set(KL26_SIM_PLLFLLSEL_PLL);
 
-    /** \brief  ÉèÖÃFCRDIV */
+    /** \brief  è®¾ç½®FCRDIV */
     amhw_kl26_mcg_irc_fast_div_set(0);
 
-    /* OSCERCLKÊ±ÖÓÅäÖÃ */
+    /* OSCERCLKæ—¶é’Ÿé…ç½® */
     amhw_kl26_mcg_osc_monitor_disable();
     amhw_kl26_mcg_osc_range_set(KL26_TPM2_OSC_RANGE_VERYHIGH);
     amhw_kl26_mcg_osc_src_set(KL26_TPM2_OSC_SRC_OSC);
     amhw_kl26_mcg_erc_enable();
 
-    /* ÉèÖÃFLL */
+    /* è®¾ç½®FLL */
     amhw_kl26_mcg_fll_src_set(KL26_TPM2_FLL_SRC_ERC);
     amhw_kl26_mcg_fll_erc_div_set(__gp_clk_dev->fll_div);
 
-    /* enable MCGIRCLKÊ±ÖÓ */
+    /* enable MCGIRCLKæ—¶é’Ÿ */
     amhw_kl26_mcg_irc_src_set(KL26_TPM2_IRC_SRC_SLOW);
     amhw_kl26_mcg_irc_enable();
 
     /* mcgooutclk use erc*/
     amhw_kl26_mcg_outclk_src_set(KL26_TPM2_OUTCLK_SRC_ERC);
 
-    /* µÈ´ıÍâ²¿¾§ÕñÎÈ¶¨ */
+    /* ç­‰å¾…å¤–éƒ¨æ™¶æŒ¯ç¨³å®š */
     while (AM_FALSE == amhw_kl26_mcg_osc_stable_stat_get());
 
-    /** \brief  ¼ì²éFLLÊ±ÖÓÔ´ */
+    /** \brief  æ£€æŸ¥FLLæ—¶é’Ÿæº */
     while (amhw_kl26_mcg_fll_stat_get() != 0x00U);
 
     /* fll mul */
     amhw_kl26_mcg_fll_dco_div_set((amhw_kl26_mcg_dco_div_t)__gp_clk_dev->fll_rate);
 
-    /* PEEÄ£Ê½ÏÂ PLL */
+    /* PEEæ¨¡å¼ä¸‹ PLL */
     amhw_kl26_mcg_pll_disable();
     amhw_kl26_mcg_pll_erc_div_set(__gp_clk_dev->pll_div);
     amhw_kl26_mcg_pll_vco_div_set(__gp_clk_dev->pll_mul);
@@ -706,19 +706,19 @@ uint32_t __clk_pee_init(void)
     /** \brief  FBE-->PBE*/
     amhw_kl26_mcg_plls_src_set(KL26_TPM2_PLLS_SRC_PLL);
 
-    /** \brief  µÈ´ıPLLËø¶¨ */
+    /** \brief  ç­‰å¾…PLLé”å®š */
     while (AM_FALSE == amhw_kl26_mcg_pll_locked_stat_get());
 
     /** \brief  FBE-->PBE*/
     amhw_kl26_mcg_outclk_src_set(KL26_TPM2_OUTCLK_SRC_PLLS);
 
-    /** \brief  PEEÄ£Ê½¼ì²é */
+    /** \brief  PEEæ¨¡å¼æ£€æŸ¥ */
     while (amhw_kl26_mcg_outclk_stat_get() != KL26_TPM2_OUTCLK_SATA_PLL);
 
     return AM_OK;
 }
 
-/** \brief 32.768Íâ²¿¾§Õñ³õÊ¼»¯£¬µÍÔöÒæÄ£Ê½ */
+/** \brief 32.768å¤–éƒ¨æ™¶æŒ¯åˆå§‹åŒ–ï¼Œä½å¢ç›Šæ¨¡å¼ */
 void __clk_32k_osc_init(void)
 {
 	/* MCG config */
@@ -738,7 +738,7 @@ void __clk_32k_osc_init(void)
 }
 
 /**
- * \brief CLK ³õÊ¼»¯
+ * \brief CLK åˆå§‹åŒ–
  */
 int am_kl26_clk_init (am_kl26_clk_dev_t           *p_dev,
                       const am_kl26_clk_devinfo_t *p_devinfo)
@@ -747,13 +747,13 @@ int am_kl26_clk_init (am_kl26_clk_dev_t           *p_dev,
         return -AM_EINVAL;
     }
 
-    /* CLKÆ½Ì¨³õÊ¼»¯£¬ÅäÖÃÊ±ÖÓÒı½Å */
+    /* CLKå¹³å°åˆå§‹åŒ–ï¼Œé…ç½®æ—¶é’Ÿå¼•è„š */
     if (p_devinfo->pfn_plfm_init) {
         p_devinfo->pfn_plfm_init();
     }
 
     if (p_devinfo->clk_mode == AM_KL26_CLK_MODE_PEE) {
-        /* Íâ²¿Ê±ÖÓÆµÂÊ²»ÕıÈ·*/
+        /* å¤–éƒ¨æ—¶é’Ÿé¢‘ç‡ä¸æ­£ç¡®*/
         if ((p_devinfo->xtal_rate < 8000000) ||
             (p_devinfo->xtal_rate > 32000000)) {
             return -AM_EINVAL;
@@ -797,7 +797,7 @@ int am_kl26_clk_init (am_kl26_clk_dev_t           *p_dev,
 
 
 /**
- * \brief »ñÈ¡Ê±ÖÓ¹¤×÷Ä£Ê½
+ * \brief è·å–æ—¶é’Ÿå·¥ä½œæ¨¡å¼
  */
 am_kl26_clk_mode_t am_kl26_clk_mode_get (void)
 {
@@ -857,9 +857,9 @@ am_kl26_clk_mode_t am_kl26_clk_mode_get (void)
 }
 
 /**
- * \brief ÅäÖÃÊ±ÖÓ¹¤×÷Ä£Ê½PEEµ½BLPEÄ£Ê½£¨µÍ¹¦ºÄÄ£Ê½£©
- * \return ÎŞ
- * \note BLPEÄ£Ê½£¬CORE_CLK = 4MHZ
+ * \brief é…ç½®æ—¶é’Ÿå·¥ä½œæ¨¡å¼PEEåˆ°BLPEæ¨¡å¼ï¼ˆä½åŠŸè€—æ¨¡å¼ï¼‰
+ * \return æ— 
+ * \note BLPEæ¨¡å¼ï¼ŒCORE_CLK = 4MHZ
  *                 BUS_CLK = 1MHZ
  */
 int am_kl26_clk_mode_pee2blpe (void)
@@ -868,15 +868,15 @@ int am_kl26_clk_mode_pee2blpe (void)
 
     uint32_t xtal_rate = __gp_clk_dev->p_devinfo->xtal_rate;
 
-    /** \brief ¼ì²éµ±Ç°Ä£Ê½ÊÇ·ñÊÇPEEÄ£Ê½ */
+    /** \brief æ£€æŸ¥å½“å‰æ¨¡å¼æ˜¯å¦æ˜¯PEEæ¨¡å¼ */
     if (am_kl26_clk_mode_get() != AM_KL26_CLK_MODE_PEE) {
         return AM_ERROR;
     }
 
-    /** \brief  Ñ¡ÔñERC×öÎªMCGOUTCLKÊ±ÖÓÔ´ (PEE->PBE)*/
+    /** \brief  é€‰æ‹©ERCåšä¸ºMCGOUTCLKæ—¶é’Ÿæº (PEE->PBE)*/
     amhw_kl26_mcg_outclk_src_set(KL26_TPM2_OUTCLK_SRC_ERC);
 
-    /** \brief  µÈ´ı±äÎªPBEÄ£Ê½ */
+    /** \brief  ç­‰å¾…å˜ä¸ºPBEæ¨¡å¼ */
     for (i = 0; i < 2000; i++) {
         if (KL26_TPM2_OUTCLK_SATA_ERC == amhw_kl26_mcg_outclk_stat_get()) {
             break;
@@ -886,10 +886,10 @@ int am_kl26_clk_mode_pee2blpe (void)
         return AM_ERROR;
     }
 
-    /** \brief ¹Ø±ÕPLL/FLLÄ£¿é (PBE->BLPE) */
+    /** \brief å…³é—­PLL/FLLæ¨¡å— (PBE->BLPE) */
     amhw_kl26_mcg_lp_plls_disable();
 
-    /** \brief Íâ²¿²Î¿¼Ê±ÖÓÆµÂÊ·ÖÆµµ½sysyclk=4MHz,ÔÙ4·ÖÆµµ½flashclk=1MHz */
+    /** \brief å¤–éƒ¨å‚è€ƒæ—¶é’Ÿé¢‘ç‡åˆ†é¢‘åˆ°sysyclk=4MHz,å†4åˆ†é¢‘åˆ°flashclk=1MHz */
     amhw_kl26_sim_clkdiv1_outdiv1_set(xtal_rate /(4*1000*1000) - 1);
     amhw_kl26_sim_clkdiv1_outdiv4_set(3);
 
@@ -897,16 +897,16 @@ int am_kl26_clk_mode_pee2blpe (void)
 }
 
 /**
- * \brief ÅäÖÃÊ±ÖÓ¹¤×÷Ä£Ê½BLPEµ½PEEÄ£Ê½
- * \return ÎŞ
- * \note PEEÄ£Ê½,CORE_CLK = 48MHZ
+ * \brief é…ç½®æ—¶é’Ÿå·¥ä½œæ¨¡å¼BLPEåˆ°PEEæ¨¡å¼
+ * \return æ— 
+ * \note PEEæ¨¡å¼,CORE_CLK = 48MHZ
  *               BUS_CLK = 24MHZ
  */
 int am_kl26_clk_mode_blpe2pee (void)
 {
     volatile uint32_t i = 0;
 
-    /** \brief ¼ì²éµ±Ç°Ä£Ê½ÊÇ·ñÊÇBLPEÄ£Ê½ */
+    /** \brief æ£€æŸ¥å½“å‰æ¨¡å¼æ˜¯å¦æ˜¯BLPEæ¨¡å¼ */
     if (am_kl26_clk_mode_get() != AM_KL26_CLK_MODE_BLPE) {
         return AM_ERROR;
     }
@@ -914,10 +914,10 @@ int am_kl26_clk_mode_blpe2pee (void)
     amhw_kl26_mcg_pll_erc_div_set(__gp_clk_dev->pll_div);
     amhw_kl26_mcg_pll_vco_div_set(__gp_clk_dev->pll_mul);
 
-    /** \brief ´ò¿ªPLL/FLLÄ£¿é (BLPE-PBE) */
+    /** \brief æ‰“å¼€PLL/FLLæ¨¡å— (BLPE-PBE) */
     amhw_kl26_mcg_lp_plls_enable();
 
-    /** \brief µÈ´ıPLLSÊ±ÖÓÔ´ÎªPLLÊä³ö */
+    /** \brief ç­‰å¾…PLLSæ—¶é’Ÿæºä¸ºPLLè¾“å‡º */
     for (i = 0; i < 2000; i++) {
         if (AM_TRUE == amhw_kl26_mcg_plls_stat_get()) {
             break;
@@ -927,7 +927,7 @@ int am_kl26_clk_mode_blpe2pee (void)
         return AM_ERROR;
     }
 
-    /** \brief µÈ´ıPLLËø¶¨ */
+    /** \brief ç­‰å¾…PLLé”å®š */
     for (i = 0; i < 2000; i++) {
         if (AM_TRUE == amhw_kl26_mcg_pll_locked_stat_get()) {
             break;
@@ -937,10 +937,10 @@ int am_kl26_clk_mode_blpe2pee (void)
         return AM_ERROR;
     }
 
-    /** \brief  Ñ¡ÔñPLLS×öÎªMCGOUTCLKÊ±ÖÓÔ´ (PBE->PEE)*/
+    /** \brief  é€‰æ‹©PLLSåšä¸ºMCGOUTCLKæ—¶é’Ÿæº (PBE->PEE)*/
     amhw_kl26_mcg_outclk_src_set(KL26_TPM2_OUTCLK_SRC_PLLS);
 
-    /** \brief  µÈ´ı±äÎªPEEÄ£Ê½ */
+    /** \brief  ç­‰å¾…å˜ä¸ºPEEæ¨¡å¼ */
     for (i = 0; i < 2000; i++) {
         if (KL26_TPM2_OUTCLK_SATA_PLL == amhw_kl26_mcg_outclk_stat_get()) {
             break;
@@ -950,7 +950,7 @@ int am_kl26_clk_mode_blpe2pee (void)
         return AM_ERROR;
     }
 
-    /** \brief OUTCLKÊ±ÖÓÆµÂÊ96MHz,·ÖÆµµ½sysyclkºÍ·ÖÆµµ½flashclk */
+    /** \brief OUTCLKæ—¶é’Ÿé¢‘ç‡96MHz,åˆ†é¢‘åˆ°sysyclkå’Œåˆ†é¢‘åˆ°flashclk */
     amhw_kl26_sim_clkdiv1_outdiv1_set(__gp_clk_dev->outdiv1);
     amhw_kl26_sim_clkdiv1_outdiv4_set(__gp_clk_dev->outdiv4);
 
@@ -958,23 +958,23 @@ int am_kl26_clk_mode_blpe2pee (void)
 }
 
 /**
- * \brief ÅäÖÃÊ±ÖÓ¹¤×÷Ä£Ê½PBEµ½PEEÄ£Ê½
- * \return ÎŞ
- * \note PEEÄ£Ê½,CORE_CLK = 48MHZ
+ * \brief é…ç½®æ—¶é’Ÿå·¥ä½œæ¨¡å¼PBEåˆ°PEEæ¨¡å¼
+ * \return æ— 
+ * \note PEEæ¨¡å¼,CORE_CLK = 48MHZ
  *               BUS_CLK = 24MHZ
  */
 int am_kl26_clk_mode_pbe2pee(void)
 {
     volatile uint32_t i = 0;
 
-    /** \brief ¼ì²éµ±Ç°Ä£Ê½ÊÇ·ñÊÇPBEÄ£Ê½ */
+    /** \brief æ£€æŸ¥å½“å‰æ¨¡å¼æ˜¯å¦æ˜¯PBEæ¨¡å¼ */
     if (am_kl26_clk_mode_get() != AM_KL26_CLK_MODE_PBE) {
        return AM_ERROR;
     }
-    /** \brief  Ñ¡ÔñPLLS×öÎªMCGOUTCLKÊ±ÖÓÔ´ (PBE->PEE)*/
+    /** \brief  é€‰æ‹©PLLSåšä¸ºMCGOUTCLKæ—¶é’Ÿæº (PBE->PEE)*/
     amhw_kl26_mcg_outclk_src_set(KL26_TPM2_OUTCLK_SRC_PLLS);
 
-    /** \brief  µÈ´ı±äÎªPEEÄ£Ê½ */
+    /** \brief  ç­‰å¾…å˜ä¸ºPEEæ¨¡å¼ */
     for (i = 0; i < 2000; i++) {
        if (KL26_TPM2_OUTCLK_SATA_PLL == amhw_kl26_mcg_outclk_stat_get()) {
            break;
@@ -984,16 +984,16 @@ int am_kl26_clk_mode_pbe2pee(void)
        return AM_ERROR;
     }
 
-    /** \brief OUTCLKÊ±ÖÓÆµÂÊ96MHz,·ÖÆµµ½sysyclkºÍ·ÖÆµµ½flashclk */
+    /** \brief OUTCLKæ—¶é’Ÿé¢‘ç‡96MHz,åˆ†é¢‘åˆ°sysyclkå’Œåˆ†é¢‘åˆ°flashclk */
     amhw_kl26_sim_clkdiv1_outdiv1_set(__gp_clk_dev->outdiv1);
     amhw_kl26_sim_clkdiv1_outdiv4_set(__gp_clk_dev->outdiv4);
 
     return AM_OK;
 }
 /**
- * \brief ÅäÖÃÊ±ÖÓ¹¤×÷Ä£Ê½FEIµ½BLPIÄ£Ê½£¨µÍ¹¦ºÄÄ£Ê½£©
- * \return ÎŞ
- * \note BLPIÄ£Ê½,
+ * \brief é…ç½®æ—¶é’Ÿå·¥ä½œæ¨¡å¼FEIåˆ°BLPIæ¨¡å¼ï¼ˆä½åŠŸè€—æ¨¡å¼ï¼‰
+ * \return æ— 
+ * \note BLPIæ¨¡å¼,
  *       Core clock = 4MHz
  *       Bus clock  = 1MHz
  */
@@ -1001,18 +1001,18 @@ int am_kl26_clk_mode_fei2blpi (void)
 {
     volatile uint32_t i = 0;
 
-    /** \brief ¼ì²éµ±Ç°Ä£Ê½ÊÇ·ñÊÇPEIÄ£Ê½ */
+    /** \brief æ£€æŸ¥å½“å‰æ¨¡å¼æ˜¯å¦æ˜¯PEIæ¨¡å¼ */
     if (am_kl26_clk_mode_get() != AM_KL26_CLK_MODE_FEI) {
         return AM_ERROR;
     }
-    /**< \brief  ÉèÖÃIRCCLKÊ±ÖÓÔ´ÎªÄÚ²¿¿ìËÙ²Î¿¼Ê±ÖÓ */
+    /**< \brief  è®¾ç½®IRCCLKæ—¶é’Ÿæºä¸ºå†…éƒ¨å¿«é€Ÿå‚è€ƒæ—¶é’Ÿ */
     amhw_kl26_mcg_irc_fast_div_set(0);
     amhw_kl26_mcg_irc_src_set(KL26_TPM2_IRC_SRC_FAST);
 
-    /** \brief  Ñ¡ÔñIRC×öÎªMCGOUTCLKÊ±ÖÓÔ´ (FEI->FBI)*/
+    /** \brief  é€‰æ‹©IRCåšä¸ºMCGOUTCLKæ—¶é’Ÿæº (FEI->FBI)*/
     amhw_kl26_mcg_outclk_src_set(KL26_TPM2_OUTCLK_SRC_IRC);
 
-    /** \brief  µÈ´ı±äÎªFBIÄ£Ê½ */
+    /** \brief  ç­‰å¾…å˜ä¸ºFBIæ¨¡å¼ */
     for (i = 0; i < 2000; i++) {
         if (KL26_TPM2_OUTCLK_SATA_IRC == amhw_kl26_mcg_outclk_stat_get()) {
             break;
@@ -1023,10 +1023,10 @@ int am_kl26_clk_mode_fei2blpi (void)
         return AM_ERROR;
     }
 
-    /** \brief ¹Ø±ÕPLL/FLLÄ£¿é (FBI->BLPI) */
+    /** \brief å…³é—­PLL/FLLæ¨¡å— (FBI->BLPI) */
     amhw_kl26_mcg_lp_plls_disable();
 
-    /** \brief ÄÚ²¿²Î¿¼Ê±ÖÓÆµÂÊÊÇ4MHz,1·ÖÆµµ½sysyclkºÍ5·ÖÆµµ½bus/flashclk£¬²»ÄÜ³¬¹ı800KHz */
+    /** \brief å†…éƒ¨å‚è€ƒæ—¶é’Ÿé¢‘ç‡æ˜¯4MHz,1åˆ†é¢‘åˆ°sysyclkå’Œ5åˆ†é¢‘åˆ°bus/flashclkï¼Œä¸èƒ½è¶…è¿‡800KHz */
     amhw_kl26_sim_clkdiv1_outdiv1_set(0);
     amhw_kl26_sim_clkdiv1_outdiv4_set(4);
 
@@ -1034,9 +1034,9 @@ int am_kl26_clk_mode_fei2blpi (void)
 }
 
 /**
- * \brief ÅäÖÃÊ±ÖÓ¹¤×÷Ä£Ê½BLPIµ½FEIÄ£Ê½
- * \return ÎŞ
- * \note FBIÄ£Ê½
+ * \brief é…ç½®æ—¶é’Ÿå·¥ä½œæ¨¡å¼BLPIåˆ°FEIæ¨¡å¼
+ * \return æ— 
+ * \note FBIæ¨¡å¼
  *       Core clock = 20.97152MHz
  *       Bus clock  = 20.97152MHz
  */
@@ -1044,22 +1044,22 @@ int am_kl26_clk_mode_blpi2fei (void)
 {
     volatile uint32_t i = 0;
 
-    /** \brief ¼ì²éµ±Ç°Ä£Ê½ÊÇ·ñÊÇBLPIÄ£Ê½ */
+    /** \brief æ£€æŸ¥å½“å‰æ¨¡å¼æ˜¯å¦æ˜¯BLPIæ¨¡å¼ */
     if (am_kl26_clk_mode_get() != AM_KL26_CLK_MODE_BLPI) {
         return AM_ERROR;
     }
 
-    /** \brief  ÉèÖÃFLL */
+    /** \brief  è®¾ç½®FLL */
     amhw_kl26_mcg_fll_erc_div_set(0);
     amhw_kl26_mcg_fll_dco_div_set(KL26_TPM2_DOC_DIV_640);
 
-    /** \brief ´ò¿ªPLL/FLLÄ£¿é (BLPI->FBI) */
+    /** \brief æ‰“å¼€PLL/FLLæ¨¡å— (BLPI->FBI) */
     amhw_kl26_mcg_lp_plls_enable();
 
-    /** \brief  Ñ¡ÔñFLL×öÎªMCGOUTCLKÊ±ÖÓÔ´ (FBI->FEI)*/
+    /** \brief  é€‰æ‹©FLLåšä¸ºMCGOUTCLKæ—¶é’Ÿæº (FBI->FEI)*/
     amhw_kl26_mcg_outclk_src_set(KL26_TPM2_OUTCLK_SRC_PLLS);
 
-    /** \brief  µÈ´ı±äÎªFBIÄ£Ê½ */
+    /** \brief  ç­‰å¾…å˜ä¸ºFBIæ¨¡å¼ */
     for (i = 0; i < 2000; i++) {
         if (KL26_TPM2_OUTCLK_SATA_FLL == amhw_kl26_mcg_outclk_stat_get()) {
             break;
@@ -1068,16 +1068,16 @@ int am_kl26_clk_mode_blpi2fei (void)
     if (KL26_TPM2_OUTCLK_SATA_FLL != amhw_kl26_mcg_outclk_stat_get()) {
         return AM_ERROR;
     }
-    /** \brief MCGOUTÊ±ÖÓÆµÂÊÊÇ20.97152MHz,1·ÖÆµµ½sysyclkºÍ2·ÖÆµµ½busclk */
+    /** \brief MCGOUTæ—¶é’Ÿé¢‘ç‡æ˜¯20.97152MHz,1åˆ†é¢‘åˆ°sysyclkå’Œ2åˆ†é¢‘åˆ°busclk */
     amhw_kl26_sim_clkdiv1_outdiv1_set(__gp_clk_dev->outdiv1);
 
-    /* flashÊ±ÖÓ²»ÄÜ³¬¹ı24M*/
+    /* flashæ—¶é’Ÿä¸èƒ½è¶…è¿‡24M*/
     amhw_kl26_sim_clkdiv1_outdiv4_set(__gp_clk_dev->outdiv4);
 
     return AM_OK;
 }
 
-/** \brief µÃµ½ÍâÉèµÄÊäÈëÆµÂÊ */
+/** \brief å¾—åˆ°å¤–è®¾çš„è¾“å…¥é¢‘ç‡ */
 uint32_t am_kl26_clk_periph_rate_get(void *p_periph)
 {
     uint32_t base_addr = (uint32_t)(p_periph);

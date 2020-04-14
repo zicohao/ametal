@@ -11,21 +11,21 @@
 *******************************************************************************/
 /**
  * \file
- * \brief SPI Ö÷»ú·¢ËÍÊý¾ÝÀý³Ì£¬Í¨¹ý HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief SPI ä¸»æœºå‘é€æ•°æ®ä¾‹ç¨‹ï¼Œé€šè¿‡ HW å±‚æŽ¥å£å®žçŽ°
  *
- * - ²Ù×÷²½Öè£º
- *   1. ½« SPI Ö÷»úÓë SPI ´Ó»ú½øÐÐÎïÀíÁ¬½Ó¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. å°† SPI ä¸»æœºä¸Ž SPI ä»Žæœºè¿›è¡Œç‰©ç†è¿žæŽ¥ã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ±¾Àý³ÌÃ¿ 500 ºÁÃëÍ¨¹ý SPI£¬Ïò´Ó»ú·¢ËÍ "nihao" ×Ö·û´®£»
- *   2. ´Ó»ú½ÓÊÕµ½×Ö·û´®£¬Í¨¹ý´®¿Ú½«×Ö·û´®´òÓ¡³öÀ´£¬ÇÒ LED0 ÉÁË¸¡£
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. æœ¬ä¾‹ç¨‹æ¯ 500 æ¯«ç§’é€šè¿‡ SPIï¼Œå‘ä»Žæœºå‘é€ "nihao" å­—ç¬¦ä¸²ï¼›
+ *   2. ä»ŽæœºæŽ¥æ”¶åˆ°å­—ç¬¦ä¸²ï¼Œé€šè¿‡ä¸²å£å°†å­—ç¬¦ä¸²æ‰“å°å‡ºæ¥ï¼Œä¸” LED0 é—ªçƒã€‚
  *
  * \note
- *    1. ±¾Àý³ÌÐèÒªÓë demo_lpc_hw_spi_slave.c Ò»Í¬²âÊÔ£»
- *    2. ÈçÐè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔÐÅÏ¢£¬ÐèÒª½« PIO0_0 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *       PIO0_4 Òý½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
+ *    1. æœ¬ä¾‹ç¨‹éœ€è¦ä¸Ž demo_lpc_hw_spi_slave.c ä¸€åŒæµ‹è¯•ï¼›
+ *    2. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO0_0 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *       PIO0_4 å¼•è„šè¿žæŽ¥ PC ä¸²å£çš„ RXDã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_lpc_hw_spi_master.c src_lpc_hw_spi_master
  *
  * \internal
@@ -46,58 +46,58 @@
 #include "am_vdebug.h"
 #include "hw/amhw_lpc_spi.h"
 
-#define __SPI_SPEED        100000  /**< \brief SPI ËÙÂÊºê¶¨Òå */
-#define __SPI_PRE_DELAY    0       /**< \brief SSEL ÖÃÎ»ÓëÆðÊ¼Ö¡¼äÑÓÊ± */
-#define __SPI_POST_DELAY   0       /**< \brief Ö¡Ä©Î²Óë SSEL ½â³ýÖÃÎ»¼äÑÓÊ± */
-#define __SPI_FRAME_DELAY  0       /**< \brief SPI ÏàÁÚÊý¾ÝÖ¡¼äÑÓÊ± */
-#define __SPI_TRANS_DELAY  0       /**< \brief Á½´Î´«Êä SSEL ½â³ýÖÃÎ»¼äÑÓÊ± */
+#define __SPI_SPEED        100000  /**< \brief SPI é€ŸçŽ‡å®å®šä¹‰ */
+#define __SPI_PRE_DELAY    0       /**< \brief SSEL ç½®ä½ä¸Žèµ·å§‹å¸§é—´å»¶æ—¶ */
+#define __SPI_POST_DELAY   0       /**< \brief å¸§æœ«å°¾ä¸Ž SSEL è§£é™¤ç½®ä½é—´å»¶æ—¶ */
+#define __SPI_FRAME_DELAY  0       /**< \brief SPI ç›¸é‚»æ•°æ®å¸§é—´å»¶æ—¶ */
+#define __SPI_TRANS_DELAY  0       /**< \brief ä¸¤æ¬¡ä¼ è¾“ SSEL è§£é™¤ç½®ä½é—´å»¶æ—¶ */
 
 /**
- * \brief SPI0 Ó²¼þ³õÊ¼»¯
+ * \brief SPI0 ç¡¬ä»¶åˆå§‹åŒ–
  *
- * \param[in] p_hw_spi Ö¸Ïò SPI ¼Ä´æÆ÷¿éµÄÖ¸Õë
+ * \param[in] p_hw_spi æŒ‡å‘ SPI å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
  *
- * \return ÎÞ
+ * \return æ— 
  */
 am_local void __spi_master_hard_init (amhw_lpc_spi_t *p_hw_spi,
                                       uint32_t        clk)
 {
 
-    /* ÅäÖÃ SPI ·ÖÆµÖµ */
+    /* é…ç½® SPI åˆ†é¢‘å€¼ */
     amhw_lpc_spi_div_set(
         p_hw_spi,
         ((clk / __SPI_SPEED)));
 
-    /* ÅäÖÃ SPI ´«ÊäÑÓÊ± */
+    /* é…ç½® SPI ä¼ è¾“å»¶æ—¶ */
     amhw_lpc_spi_pre_delay(p_hw_spi, __SPI_PRE_DELAY);
     amhw_lpc_spi_post_delay(p_hw_spi, __SPI_POST_DELAY);
     amhw_lpc_spi_frame_delay(p_hw_spi, __SPI_FRAME_DELAY);
     amhw_lpc_spi_trans_delay(p_hw_spi, __SPI_TRANS_DELAY);
 
-    /* ÅäÖÃ SPI ´«Êä²ÎÊý */
+    /* é…ç½® SPI ä¼ è¾“å‚æ•° */
     amhw_lpc_spi_cfg_set(p_hw_spi,
                          AMHW_LPC_SPI_CFG_MASTER | AMHW_LPC_SPI_CFG_CHANGE);
     amhw_lpc_spi_enable(p_hw_spi);
 
-    /* ÉèÖÃ SPI Ò»¸öÊý¾Ý³¤¶ÈÎª 8 Î» */
+    /* è®¾ç½® SPI ä¸€ä¸ªæ•°æ®é•¿åº¦ä¸º 8 ä½ */
     amhw_lpc_spi_data_flen_set(p_hw_spi, 8);
 }
 
 /**
- * \brief SPI0 ·¢ËÍ×Ö½Ú
+ * \brief SPI0 å‘é€å­—èŠ‚
  *
- * \param[in] p_hw_spi Ö¸Ïò SPI ¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] dat      Òª·¢ËÍµÄ×Ö½ÚÊý¾Ý
+ * \param[in] p_hw_spi æŒ‡å‘ SPI å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] dat      è¦å‘é€çš„å­—èŠ‚æ•°æ®
  *
- * \return ÎÞ
+ * \return æ— 
  */
 am_local void __spi_sent_byte (amhw_lpc_spi_t *p_hw_spi, uint16_t dat)
 {
 
-    /* µÈ´ý·¢ËÍ¿ÕÏÐ¼Ä´æÆ÷ÖÃÎ» */
+    /* ç­‰å¾…å‘é€ç©ºé—²å¯„å­˜å™¨ç½®ä½ */
     while (!(amhw_lpc_spi_stat_get(p_hw_spi) & AMHW_LPC_SPI_STAT_IDLE));
 
-    /* ·¢ËÍÊý¾Ý */
+    /* å‘é€æ•°æ® */
     amhw_lpc_spi_txdatctl(p_hw_spi,
                           dat,
                           AMHW_LPC_SPI_TXDATCTL_EOT |
@@ -106,12 +106,12 @@ am_local void __spi_sent_byte (amhw_lpc_spi_t *p_hw_spi, uint16_t dat)
 }
 
 /**
- * \brief SPI0 ·¢ËÍ×Ö·û´®
+ * \brief SPI0 å‘é€å­—ç¬¦ä¸²
  *
- * \param[in] p_hw_spi Ö¸Ïò SPI ¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] p_str    Òª·¢ËÍ×Ö·û´®µØÖ·
+ * \param[in] p_hw_spi æŒ‡å‘ SPI å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] p_str    è¦å‘é€å­—ç¬¦ä¸²åœ°å€
  *
- * \return ÎÞ
+ * \return æ— 
  */
 am_local void __spi_sent_str(amhw_lpc_spi_t *p_hw_spi, am_const uint8_t *p_str)
 {
@@ -123,12 +123,12 @@ am_local void __spi_sent_str(amhw_lpc_spi_t *p_hw_spi, am_const uint8_t *p_str)
 void demo_lpc_hw_spi_master_entry(amhw_lpc_spi_t *p_hw_spi,
                                      uint32_t        clk)
 {
-    /* SPI0 Ó²¼þ³õÊ¼»¯ */
+    /* SPI0 ç¡¬ä»¶åˆå§‹åŒ– */
     __spi_master_hard_init(p_hw_spi, clk);
 
     AM_FOREVER {
 
-        /* SPI ·¢ËÍ×Ö·û´® */
+        /* SPI å‘é€å­—ç¬¦ä¸² */
         __spi_sent_str(p_hw_spi, (am_const uint8_t *)"nihao");
 
         am_mdelay(500);

@@ -31,7 +31,7 @@
 #include "hw/amhw_lpc82x_clk.h"
 #include "hw/amhw_lpc82x_adc.h"
 /*******************************************************************************
-* Ë½ÓĞ¶¨Òå
+* ç§æœ‰å®šä¹‰
 *******************************************************************************/
 
 #define __ADC_HW_DECL(p_hw_adc, p_drv)    \
@@ -43,15 +43,15 @@
 
 
 /*******************************************************************************
-* º¯ÊıÉùÃ÷
+* å‡½æ•°å£°æ˜
 *******************************************************************************/
 
-/** \brief ADCÊı¾İÒç³öÖĞ¶Ïº¯Êı */
+/** \brief ADCæ•°æ®æº¢å‡ºä¸­æ–­å‡½æ•° */
 static void __adc_ovr_int(void *p_arg);
 
 
 
-/** \brief Æô¶¯ADC×ª»»        */
+/** \brief å¯åŠ¨ADCè½¬æ¢        */
 static int __pfn_adc_start  (void                   *p_drv,
                              int                     chan,
                              am_adc_buf_desc_t      *p_desc,
@@ -61,29 +61,29 @@ static int __pfn_adc_start  (void                   *p_drv,
                              am_adc_seq_cb_t         pfn_callback,
                              void                   *p_arg);
  
-/** \brief Í£Ö¹×ª»»           */
+/** \brief åœæ­¢è½¬æ¢           */
 static int __pfn_adc_stop (void *p_drv, int chan);
                       
-/** \brief »ñÈ¡ADCµÄ²ÉÑùÂÊ    */
+/** \brief è·å–ADCçš„é‡‡æ ·ç‡    */
 static int __pfn_rate_get (void       *p_drv,
                            int         chan,
                            uint32_t   *p_rate);
 
-/** \brief ÉèÖÃADCµÄ²ÉÑùÂÊ£¬Êµ¼Ê²ÉÑùÂÊ¿ÉÄÜ´æÔÚ²îÒì */
+/** \brief è®¾ç½®ADCçš„é‡‡æ ·ç‡ï¼Œå®é™…é‡‡æ ·ç‡å¯èƒ½å­˜åœ¨å·®å¼‚ */
 static int __pfn_rate_set (void     *p_drv,
                            int       chan,
                            uint32_t  rate);
 
-/** \brief »ñÈ¡ADC×ª»»¾«¶È */
+/** \brief è·å–ADCè½¬æ¢ç²¾åº¦ */
 static uint32_t __pfn_bits_get(void *p_drv, int chan);
 
-/** \brief »ñÈ¡ADC²Î¿¼µçÑ¹ */
+/** \brief è·å–ADCå‚è€ƒç”µå‹ */
 static uint32_t __pfn_vref_get(void *p_drv, int chan);
 
 
 
 /**
- * \brief ADC·şÎñº¯Êı 
+ * \brief ADCæœåŠ¡å‡½æ•° 
  */
 static const struct am_adc_drv_funcs __g_adc_drvfuncs = {
     __pfn_adc_start,
@@ -97,7 +97,7 @@ static const struct am_adc_drv_funcs __g_adc_drvfuncs = {
 /******************************************************************************/
 
 /**
- * \brief ADCÊı¾İÒç³öÖĞ¶Ï
+ * \brief ADCæ•°æ®æº¢å‡ºä¸­æ–­
  */
 static void __adc_ovr_int(void *p_arg)
 {
@@ -106,19 +106,19 @@ static void __adc_ovr_int(void *p_arg)
 
     amhw_lpc82x_adc_chan_data_get(p_hw_adc, p_dev->chan);
 
-    /* ´ÓÈ«¾ÖÊı¾İ¼Ä´æÆ÷ÖĞ¶ÁÈ¡Êı¾İ£¬ÒÔÇå³ıÖĞ¶Ï±êÖ¾ */
+    /* ä»å…¨å±€æ•°æ®å¯„å­˜å™¨ä¸­è¯»å–æ•°æ®ï¼Œä»¥æ¸…é™¤ä¸­æ–­æ ‡å¿— */
     amhw_lpc82x_adc_glo_data_get (p_hw_adc, AMHW_LPC82X_ADC_SEQ_A);
 
     __pfn_adc_stop (p_dev, p_dev->chan);
 
-    /* Òç³ö·µ»Ø´íÎó                 */
+    /* æº¢å‡ºè¿”å›é”™è¯¯                 */
     if (NULL != p_dev->pfn_callback) {
         p_dev->pfn_callback(p_dev->p_arg, AM_ERROR);
     }
 }
 
 /**
- * \brief ADCÊı¾İ×ª»»Íê³ÉÖĞ¶Ï
+ * \brief ADCæ•°æ®è½¬æ¢å®Œæˆä¸­æ–­
  */
 
 void __adc_int(void *p_arg)
@@ -126,18 +126,18 @@ void __adc_int(void *p_arg)
     am_lpc82x_adc_int_dev_t    *p_dev      = (am_lpc82x_adc_int_dev_t *)p_arg;
     amhw_lpc82x_adc_t      *p_hw_adc   =  NULL;
 
-    /* µ±Ç°×ª»»µÄĞòÁĞÃèÊö·û */
+    /* å½“å‰è½¬æ¢çš„åºåˆ—æè¿°ç¬¦ */
     uint32_t           desc_index = p_dev->desc_index;
     am_adc_buf_desc_t *p_desc     = &(p_dev->p_desc[desc_index]);
     uint16_t           adc_dat    = 0;
 
     p_hw_adc =  (amhw_lpc82x_adc_t *)(p_dev->p_devinfo->adc_regbase);
 
-    /* ÅĞ¶ÏÊÇ·ñµ±Ç°Êı¾İÊÇÓĞĞ§µÄ */
+    /* åˆ¤æ–­æ˜¯å¦å½“å‰æ•°æ®æ˜¯æœ‰æ•ˆçš„ */
     if (p_dev->conv_cnt < p_desc->length) {
-        /* ´ÓÈ«¾ÖÊı¾İ¼Ä´æÆ÷ÖĞ¶ÁÈ¡Êı¾İ£¬ÒÔÇå³ıÖĞ¶Ï±êÖ¾ */
+        /* ä»å…¨å±€æ•°æ®å¯„å­˜å™¨ä¸­è¯»å–æ•°æ®ï¼Œä»¥æ¸…é™¤ä¸­æ–­æ ‡å¿— */
         adc_dat= amhw_lpc82x_adc_glo_data_get (p_hw_adc, AMHW_LPC82X_ADC_SEQ_A);
-        /* ±£´æÊı¾İ */
+        /* ä¿å­˜æ•°æ® */
         if (AM_ADC_DATA_ALIGN_RIGHT == p_dev->flags) {
             ((uint16_t *)p_desc->p_buf)[p_dev->conv_cnt] = (adc_dat &
                                                             0x0000FFF0) >> 4;
@@ -148,7 +148,7 @@ void __adc_int(void *p_arg)
 
         p_dev->conv_cnt++;
         /*
-         * ÅĞ¶Ïµ±Ç°ĞòÁĞÖĞÒ»¸öÃèÊö·ûÊÇ·ñÒÑ¾­Íê³É×ª»»¡£×¢Òâ£¬Ò»¸öÃèÊö·ûµÄ»º³åÇø¾ßÓĞºÜ¶à¸ö
+         * åˆ¤æ–­å½“å‰åºåˆ—ä¸­ä¸€ä¸ªæè¿°ç¬¦æ˜¯å¦å·²ç»å®Œæˆè½¬æ¢ã€‚æ³¨æ„ï¼Œä¸€ä¸ªæè¿°ç¬¦çš„ç¼“å†²åŒºå…·æœ‰å¾ˆå¤šä¸ª
          */
         if (p_dev->conv_cnt == p_desc->length) {
 
@@ -158,7 +158,7 @@ void __adc_int(void *p_arg)
             }
 
             p_dev->desc_index++;
-            /* ÅĞ¶ÏÕû¸öĞòÁĞÃèÊö·ûÊÇ·ñÍê³ÉÒ»ÂÖ×ª»» */
+            /* åˆ¤æ–­æ•´ä¸ªåºåˆ—æè¿°ç¬¦æ˜¯å¦å®Œæˆä¸€è½®è½¬æ¢ */
             if (p_dev->desc_index == p_dev->desc_num) {
 
                 p_dev->desc_index = 0;
@@ -167,7 +167,7 @@ void __adc_int(void *p_arg)
                 if (p_dev->count != 0 && p_dev->seq_cnt >= p_dev->count) {
 
                     p_dev->seq_cnt = 0;
-                    __pfn_adc_stop (p_dev, p_dev->chan);  /* ¹Ø±ÕÄ£¿é */
+                    __pfn_adc_stop (p_dev, p_dev->chan);  /* å…³é—­æ¨¡å— */
                 }
 
                 if (NULL != p_dev->pfn_callback) {
@@ -187,7 +187,7 @@ void __adc_int(void *p_arg)
 
 
 
-/** \brief Ö¸ÏòADCÖĞ¶ÏÁ¬½Óº¯Êı */
+/** \brief æŒ‡å‘ADCä¸­æ–­è¿æ¥å‡½æ•° */
 static int __pfn_adc_connect (void *p_drv)
 {
     am_lpc82x_adc_int_dev_t *p_dev = NULL;
@@ -199,14 +199,14 @@ static int __pfn_adc_connect (void *p_drv)
     p_dev = (am_lpc82x_adc_int_dev_t *)p_drv;
 
    {
-         /* Á¬½Ó×ª»»Íê³ÉÖĞ¶Ï */
+         /* è¿æ¥è½¬æ¢å®Œæˆä¸­æ–­ */
         am_int_connect(p_dev->p_devinfo->inum_seqa,
                         __adc_int,
                        (void *)p_dev);
         am_int_enable(p_dev->p_devinfo->inum_seqa);
     }
     
-    /* Á¬½ÓÒç³öÖĞ¶Ï */
+    /* è¿æ¥æº¢å‡ºä¸­æ–­ */
     am_int_connect(p_dev->p_devinfo->inum_ovr,
                    __adc_ovr_int,
                   (void *)p_dev);
@@ -216,7 +216,7 @@ static int __pfn_adc_connect (void *p_drv)
 }
 
 /**
- * \brief ADC Ê¹ÓÃÖĞ¶ÏÄ£Ê½Ê±Æô¶¯ÅäÖÃ
+ * \brief ADC ä½¿ç”¨ä¸­æ–­æ¨¡å¼æ—¶å¯åŠ¨é…ç½®
  */
 
 static void __adc_int_work_startup(am_lpc82x_adc_int_dev_t *p_dev)
@@ -226,22 +226,22 @@ static void __adc_int_work_startup(am_lpc82x_adc_int_dev_t *p_dev)
     
     p_hw_adc = (amhw_lpc82x_adc_t *)(p_dev->p_devinfo->adc_regbase);
 
-    seq_flags = AMHW_LPC82X_ADC_SEQ_CTRL_MODE_BURST   |  /* ²ÉÓÃÍ»·¢×ª»»Ä£Ê½   */
-                AMHW_LPC82X_ADC_SEQ_CTRL_TRIG_POL_POS |  /* Ê¹ÓÃÕı±ßÑØ´¥·¢·½Ê½ */
-                AMHW_LPC82X_ADC_SEQ_CTRL_TRIG_SW      |  /* Èí¼ş´¥·¢           */
-                AMHW_LPC82X_ADC_SEQ_CTRL_MODE_EOC     |  /* Í¨µÀ×ª»»ÍêºóÖĞ¶Ï   */
-                AMHW_LPC82X_ADC_SEQ_CTRL_ENA          |  /* ĞòÁĞAÊ¹ÄÜ          */
-                                                         /* Ê¹ÄÜADCÍ¨µÀ        */
+    seq_flags = AMHW_LPC82X_ADC_SEQ_CTRL_MODE_BURST   |  /* é‡‡ç”¨çªå‘è½¬æ¢æ¨¡å¼   */
+                AMHW_LPC82X_ADC_SEQ_CTRL_TRIG_POL_POS |  /* ä½¿ç”¨æ­£è¾¹æ²¿è§¦å‘æ–¹å¼ */
+                AMHW_LPC82X_ADC_SEQ_CTRL_TRIG_SW      |  /* è½¯ä»¶è§¦å‘           */
+                AMHW_LPC82X_ADC_SEQ_CTRL_MODE_EOC     |  /* é€šé“è½¬æ¢å®Œåä¸­æ–­   */
+                AMHW_LPC82X_ADC_SEQ_CTRL_ENA          |  /* åºåˆ—Aä½¿èƒ½          */
+                                                         /* ä½¿èƒ½ADCé€šé“        */
                 AMHW_LPC82X_ADC_SEQ_CTRL_ENABLE_CH(p_dev->chan);
 
 
-    /* ADCĞòÁĞAÅäÖÃ   */
+    /* ADCåºåˆ—Aé…ç½®   */
     amhw_lpc82x_adc_seq_config(p_hw_adc, AMHW_LPC82X_ADC_SEQ_A, seq_flags);
 }
 
 
 /**
- * \brief Æô¶¯ADC×ª»»
+ * \brief å¯åŠ¨ADCè½¬æ¢
  */
 static int __pfn_adc_start  (void                   *p_drv,
                              int                     chan,
@@ -281,11 +281,11 @@ static int __pfn_adc_start  (void                   *p_drv,
 
     {
 
-        /* Ê¹ÄÜĞòÁĞAÖĞ¶Ï */
+        /* ä½¿èƒ½åºåˆ—Aä¸­æ–­ */
         amhw_lpc82x_adc_int_enable(p_hw_adc,
                                    AMHW_LPC82X_ADC_INTEN_SEQA_ENABLE);
 
-        __adc_int_work_startup(p_dev);                /* ÖĞ¶Ï¹¤×÷Ä£Ê½Æô¶¯ÅäÖÃ */
+        __adc_int_work_startup(p_dev);                /* ä¸­æ–­å·¥ä½œæ¨¡å¼å¯åŠ¨é…ç½® */
 
     }
 
@@ -293,7 +293,7 @@ static int __pfn_adc_start  (void                   *p_drv,
 }
  
 /**
- * \brief Í£Ö¹×ª»»
+ * \brief åœæ­¢è½¬æ¢
  */
 static int __pfn_adc_stop (void *p_drv, int chan)
 {
@@ -307,11 +307,11 @@ static int __pfn_adc_stop (void *p_drv, int chan)
     p_dev    = (am_lpc82x_adc_int_dev_t *)p_drv;
     p_hw_adc = (amhw_lpc82x_adc_t *)(p_dev->p_devinfo->adc_regbase);
 
-    /* Í£Ö¹µ±Ç°´«Êä£¬²¢½ûÄÜĞòÁĞA */
+    /* åœæ­¢å½“å‰ä¼ è¾“ï¼Œå¹¶ç¦èƒ½åºåˆ—A */
     amhw_lpc82x_adc_seq_stop   (p_hw_adc, AMHW_LPC82X_ADC_SEQ_A);
     amhw_lpc82x_adc_seq_disable(p_hw_adc, AMHW_LPC82X_ADC_SEQ_A);
 
-    /* ½ûÄÜĞòÁĞAÖĞ¶Ï */
+    /* ç¦èƒ½åºåˆ—Aä¸­æ–­ */
     amhw_lpc82x_adc_int_disable(p_hw_adc,
                                AMHW_LPC82X_ADC_INTEN_SEQA_ENABLE);
 
@@ -321,7 +321,7 @@ static int __pfn_adc_stop (void *p_drv, int chan)
 }
 
 /**
- * \brief »ñÈ¡ADCµÄ²ÉÑùÂÊ
+ * \brief è·å–ADCçš„é‡‡æ ·ç‡
  */
 static int __pfn_rate_get (void       *p_drv,
                            int         chan,
@@ -341,20 +341,20 @@ static int __pfn_rate_get (void       *p_drv,
 
     sys_clk  = am_clk_rate_get(p_dev->p_devinfo->clk_id);
 
-    /* µÃµ½Ê±ÖÓ·ÖÆµÏµÊı */
+    /* å¾—åˆ°æ—¶é’Ÿåˆ†é¢‘ç³»æ•° */
     adc_clkdiv = amhw_lpc82x_adc_clkdiv_get(p_hw_adc);
 
-    /* µÃµ½·ÖÆµÖµ */
+    /* å¾—åˆ°åˆ†é¢‘å€¼ */
     adc_clkdiv = (adc_clkdiv == 255) ? 255 : (adc_clkdiv + 1);
 
-    /* LPC824ÖĞÆµÂÊÎª²ÉÑùÂÊµÄ25±¶ */
+    /* LPC824ä¸­é¢‘ç‡ä¸ºé‡‡æ ·ç‡çš„25å€ */
     *p_rate = sys_clk / adc_clkdiv / 25;
 
     return AM_OK;
 }
 
 /**
- * \brief ÉèÖÃADCµÄ²ÉÑùÂÊ£¬Êµ¼Ê²ÉÑùÂÊ¿ÉÄÜ´æÔÚ²îÒì
+ * \brief è®¾ç½®ADCçš„é‡‡æ ·ç‡ï¼Œå®é™…é‡‡æ ·ç‡å¯èƒ½å­˜åœ¨å·®å¼‚
  */
 static int __pfn_rate_set (void     *p_drv,
                            int       chan,
@@ -374,10 +374,10 @@ static int __pfn_rate_set (void     *p_drv,
 
     sys_clk = am_clk_rate_get(p_dev->p_devinfo->clk_id);
 
-    /* LPC824ÖĞÆµÂÊÎª²ÉÑùÂÊµÄ25±¶ */
+    /* LPC824ä¸­é¢‘ç‡ä¸ºé‡‡æ ·ç‡çš„25å€ */
     adc_clkdiv = sys_clk / rate / 25;
     
-    /* ²ÉÑùÂÊÌ«µÍ»òÌ«¸ßÊ±£¬ÉèÖÃµ½¼«ÏŞ */
+    /* é‡‡æ ·ç‡å¤ªä½æˆ–å¤ªé«˜æ—¶ï¼Œè®¾ç½®åˆ°æé™ */
     if (adc_clkdiv != 0) {
         adc_clkdiv = adc_clkdiv > 256 ? 255 : adc_clkdiv - 1; 
     }
@@ -389,7 +389,7 @@ static int __pfn_rate_set (void     *p_drv,
 }
 
 /**
- * \brief »ñÈ¡ADC×ª»»¾«¶È
+ * \brief è·å–ADCè½¬æ¢ç²¾åº¦
  */
 static uint32_t __pfn_bits_get (void *p_drv, int chan)
 {
@@ -397,19 +397,19 @@ static uint32_t __pfn_bits_get (void *p_drv, int chan)
 }
 
 /**
- * \brief »ñÈ¡ADC²Î¿¼µçÑ¹
+ * \brief è·å–ADCå‚è€ƒç”µå‹
  */
 static uint32_t __pfn_vref_get (void *p_drv, int chan)
 {
     if (NULL == p_drv) {
-        return 0;   /* ×ÊÔ´ÒÑ¾­ÊÍ·Å£¬²Î¿¼µçÑ¹Î´Öª */
+        return 0;   /* èµ„æºå·²ç»é‡Šæ”¾ï¼Œå‚è€ƒç”µå‹æœªçŸ¥ */
     }
 
     return (uint32_t)__ADC_VREF_GET(p_drv);
 }
 
 /**
- * \brief ADC³õÊ¼»¯
+ * \brief ADCåˆå§‹åŒ–
  */
 am_adc_handle_t am_lpc82x_adc_int_init (am_lpc82x_adc_int_dev_t     *p_dev,
                               const am_lpc82x_adc_int_devinfo_t *p_devinfo)
@@ -441,14 +441,14 @@ am_adc_handle_t am_lpc82x_adc_int_init (am_lpc82x_adc_int_dev_t     *p_dev,
     p_dev->conv_cnt          = 0;
     p_dev->is_idle           = AM_TRUE;
 
-    /* ×¢²áADCÏà¹ØÖĞ¶Ï */
+    /* æ³¨å†ŒADCç›¸å…³ä¸­æ–­ */
     __pfn_adc_connect(p_dev);
 
     return (am_adc_handle_t)(&(p_dev->adc_serve));
 }
 
 /**
- * \brief ADCÈ¥³õÊ¼»¯
+ * \brief ADCå»åˆå§‹åŒ–
  */
 void am_lpc82x_adc_int_deinit (am_adc_handle_t handle)
 {
@@ -466,7 +466,7 @@ void am_lpc82x_adc_int_deinit (am_adc_handle_t handle)
     amhw_lpc82x_adc_int_enable (p_hw_adc,
                                 AMHW_LPC82X_ADC_INTEN_ALL_DISABLE);
     
-    /* Í£Ö¹µ±Ç°ÕıÔÚ½øĞĞµÄ×ª»»£¬²¢½ûÖ¹ĞòÁĞ×ª»» */
+    /* åœæ­¢å½“å‰æ­£åœ¨è¿›è¡Œçš„è½¬æ¢ï¼Œå¹¶ç¦æ­¢åºåˆ—è½¬æ¢ */
     amhw_lpc82x_adc_seq_stop   (p_hw_adc, AMHW_LPC82X_ADC_SEQ_A);
     amhw_lpc82x_adc_seq_disable(p_hw_adc,
                                 AMHW_LPC82X_ADC_SEQ_A);

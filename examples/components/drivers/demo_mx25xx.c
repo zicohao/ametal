@@ -11,12 +11,12 @@
 *******************************************************************************/
 /**
  * \file
- * \brief MX25XX Àı³Ì
+ * \brief MX25XX ä¾‹ç¨‹
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿Ú´òÓ¡³ö²âÊÔ½á¹û¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. ä¸²å£æ‰“å°å‡ºæµ‹è¯•ç»“æœã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_mx25xx.c src_mx25xx
  *
  * \internal
@@ -36,31 +36,31 @@
 #include "am_mx25xx.h"
 #include "am_vdebug.h"
 
-#define __BUF_SIZE 16 /**< \brief »º³åÇø´óĞ¡ */
+#define __BUF_SIZE 16 /**< \brief ç¼“å†²åŒºå¤§å° */
 
 /**
- * \brief Àı³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_mx25xx_entry (am_mx25xx_handle_t mx25xx_handle, int32_t test_lenth)
 {
     int     ret;
     uint8_t i;
-    uint8_t wr_buf[__BUF_SIZE] = {0}; /* Ğ´Êı¾İ»º´æ¶¨Òå */
-    uint8_t rd_buf[__BUF_SIZE] = {0}; /* ¶ÁÊı¾İ»º´æ¶¨Òå */
+    uint8_t wr_buf[__BUF_SIZE] = {0}; /* å†™æ•°æ®ç¼“å­˜å®šä¹‰ */
+    uint8_t rd_buf[__BUF_SIZE] = {0}; /* è¯»æ•°æ®ç¼“å­˜å®šä¹‰ */
 
     if (__BUF_SIZE < test_lenth) {
         test_lenth = __BUF_SIZE;
     }
 
-    /* Ìî³ä·¢ËÍ»º³åÇø */
+    /* å¡«å……å‘é€ç¼“å†²åŒº */
     for (i = 0;i < test_lenth; i++) {
         wr_buf[i] = i;
     }
 
-    /* ²Á³ıÉÈÇø */
+    /* æ“¦é™¤æ‰‡åŒº */
     am_mx25xx_erase(mx25xx_handle, 0x001000, test_lenth);
 
-    /* Ğ´Êı¾İ */
+    /* å†™æ•°æ® */
     ret = am_mx25xx_write(mx25xx_handle, 0x001000, &wr_buf[0], test_lenth);
 
     if (ret != AM_OK) {
@@ -69,7 +69,7 @@ void demo_mx25xx_entry (am_mx25xx_handle_t mx25xx_handle, int32_t test_lenth)
     }
     am_mdelay(5);
 
-    /* ¶ÁÊı¾İ */
+    /* è¯»æ•°æ® */
     ret = am_mx25xx_read(mx25xx_handle, 0x001000, &rd_buf[0], test_lenth);
 
     if (ret != AM_OK) {
@@ -77,11 +77,11 @@ void demo_mx25xx_entry (am_mx25xx_handle_t mx25xx_handle, int32_t test_lenth)
         return;
     }
 
-    /* Ğ£ÑéĞ´ÈëºÍ¶ÁÈ¡µÄÊı¾İÊÇ·ñÒ»ÖÂ */
+    /* æ ¡éªŒå†™å…¥å’Œè¯»å–çš„æ•°æ®æ˜¯å¦ä¸€è‡´ */
     for (i = 0; i < test_lenth; i++) {
         AM_DBG_INFO("Read FLASH the %2dth data is %2x\r\n", i ,rd_buf[i]);
 
-        /* Ğ£ÑéÊ§°Ü */
+        /* æ ¡éªŒå¤±è´¥ */
         if(wr_buf[i] != rd_buf[i]) {
             AM_DBG_INFO("verify failed at index %d.\r\n", i);
             break;

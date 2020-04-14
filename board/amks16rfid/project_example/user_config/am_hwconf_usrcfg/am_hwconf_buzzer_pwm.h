@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ·äÃùÆ÷ÅäÖÃÎÄ¼þ£¨PWMÇý¶¯£©
+ * \brief èœ‚é¸£å™¨é…ç½®æ–‡ä»¶ï¼ˆPWMé©±åŠ¨ï¼‰
  *
  * \internal
  * \par Modification history
@@ -30,15 +30,15 @@ extern "C" {
 #endif
 
 /**
- * \brief ·äÃùÆ÷ÊµÀý³õÊ¼»¯
+ * \brief èœ‚é¸£å™¨å®žä¾‹åˆå§‹åŒ–
  *
- * µ±Ê¹ÓÃ·äÃùÆ÷Ê±£¬Ä¬ÈÏ½«Ê¹ÓÃ SCT µÄ OUT1 Êä³ö PWM ²¨ÐÎ£¬Òò´ËÒÑ¾­½« SCT ³õÊ¼»¯Îª PWM
- * ¹¦ÄÜ£¬ÓÉÓÚ SCT ¿ÉÒÔÊä³öÁùÂ· PWM£¬Òò´Ë¿ÉÒÔÊ¹ÓÃ±¾º¯Êý·µ»ØµÄ handle£¬ÒÔ±ãÊ¹ÓÃÆäËü 5
- * Â· PWM¡£
+ * å½“ä½¿ç”¨èœ‚é¸£å™¨æ—¶ï¼Œé»˜è®¤å°†ä½¿ç”¨ SCT çš„ OUT1 è¾“å‡º PWM æ³¢å½¢ï¼Œå› æ­¤å·²ç»å°† SCT åˆå§‹åŒ–ä¸º PWM
+ * åŠŸèƒ½ï¼Œç”±äºŽ SCT å¯ä»¥è¾“å‡ºå…­è·¯ PWMï¼Œå› æ­¤å¯ä»¥ä½¿ç”¨æœ¬å‡½æ•°è¿”å›žçš„ handleï¼Œä»¥ä¾¿ä½¿ç”¨å…¶å®ƒ 5
+ * è·¯ PWMã€‚
  *
- * \param ÎÞ
+ * \param æ— 
  *
- * \return PWM ±ê×¼·þÎñ¾ä±ú£¬ÈôÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return PWM æ ‡å‡†æœåŠ¡å¥æŸ„ï¼Œè‹¥ä¸º NULLï¼Œè¡¨æ˜Žåˆå§‹åŒ–å¤±è´¥
  */
 am_pwm_handle_t am_buzzer_pwm_inst_init (void);
 

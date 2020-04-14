@@ -13,7 +13,7 @@
 
 /**
  * \file
- * \brief RX8025T �����ļ�
+ * \brief RX8025T 配置文件
  *
  * \internal
  * \par Modification history
@@ -32,31 +32,31 @@ extern "C" {
 #endif
 
 /**
- * \brief RX8025T ʵ����ʼ����ʹ��оƬ���⹦�ܣ�
- * \return RX8025TоƬ�������ΪNULL��������ʼ��ʧ��
- * \note ��ʹ��оƬ���⹦��ʱ��ʹ�øú�����ȡоƬ�ľ��
+ * \brief RX8025T 实例初始化（使用芯片特殊功能）
+ * \return RX8025T芯片句柄，若为NULL，表明初始化失败
+ * \note 当使用芯片特殊功能时，使用该函数获取芯片的句柄
  */
 am_rx8025t_handle_t am_rx8025t_inst_init (void);
 
 /**
- * \brief RX8025T ʵ����ʼ�� ��ʹ��ͨ�õ�RTC���ܣ�
- * \return RTC��׼����������ΪNULL��������ʼ��ʧ��
- * \note ��ʹ��ͨ�õ�RTC����ʱ��ʹ�øú�����ȡRTC��׼������
+ * \brief RX8025T 实例初始化 （使用通用的RTC功能）
+ * \return RTC标准服务句柄，若为NULL，表明初始化失败
+ * \note 当使用通用的RTC功能时，使用该函数获取RTC标准服务句柄
  */
 am_rtc_handle_t am_rx8025t_rtc_inst_init(void);
 
 /**
- * \brief RX8025T ʵ����ʼ�� ��ʹ��ͨ�õ����ӹ��ܣ�
- * \return ���ӱ�׼����������ΪNULL��������ʼ��ʧ��
- * \note ��ʹ��ͨ�õ����ӹ���ʱ��ʹ�øú�����ȡ���ӱ�׼������
+ * \brief RX8025T 实例初始化 （使用通用的闹钟功能）
+ * \return 闹钟标准服务句柄，若为NULL，表明初始化失败
+ * \note 当使用通用的闹钟功能时，使用该函数获取闹钟标准服务句柄
  */
 am_alarm_clk_handle_t am_rx8025t_alarm_clk_inst_init(void);
 
 /**
- * \brief RX8025T ʵ����ʼ�� ����RX8025T����ϵͳʱ�䣩
+ * \brief RX8025T 实例初始化 （将RX8025T用作系统时间）
  *
- * \retval  AW_OK  ��ʼ���ɹ�
- * \retval   < 0   ��ʼ��ʧ�ܣ����C�ļ��и��������Ƿ�Ϸ�
+ * \retval  AW_OK  初始化成功
+ * \retval   < 0   初始化失败，请检C文件中各配置项是否合法
  */
 int am_rx8025t_time_inst_init(void);
 

@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief  CS1237 Ó¦ÓÃ½Ó¿ÚÎÄ¼ş
+ * \brief  CS1237 åº”ç”¨æ¥å£æ–‡ä»¶
  *
  * \internal
  * \par Modification History
@@ -36,315 +36,315 @@ extern "C" {
 #include "ametal.h"
 #include "am_adc.h"
 /**
- * \brief CS1237 Éè±¸ĞÅÏ¢½á¹¹Ìå
+ * \brief CS1237 è®¾å¤‡ä¿¡æ¯ç»“æ„ä½“
  */
 typedef struct am_cs1237_adc_devinfo{
 
-    /** \brief IOÄ£ÄâSPI SCLKÒı½ÅÑ¡Ôñ */
+    /** \brief IOæ¨¡æ‹ŸSPI SCLKå¼•è„šé€‰æ‹© */
     uint8_t      clk;
 
     /**
-     * \brief cs1237_outÒı½ÅÑ¡Ôñ
+     * \brief cs1237_outå¼•è„šé€‰æ‹©
      *
-     * \note Èç¹ûÓ²¼şÃ»ÓĞ¶ÔDRDY/DOUTÒı½Å·ÖÀë£¬¸ÃÒı½ÅÓ¦¸ÃºÍin_pinÏàÍ¬
+     * \note å¦‚æœç¡¬ä»¶æ²¡æœ‰å¯¹DRDY/DOUTå¼•è„šåˆ†ç¦»ï¼Œè¯¥å¼•è„šåº”è¯¥å’Œin_pinç›¸åŒ
      * */
     uint8_t      out_pin;
 
     /**
-     * \brief cs1237_inÒı½ÅÑ¡Ôñ
+     * \brief cs1237_inå¼•è„šé€‰æ‹©
      *
-     * \note Èç¹ûÓ²¼şÃ»ÓĞ¶ÔDRDY/DOUTÒı½Å·ÖÀë£¬¸ÃÒı½ÅÓ¦¸ÃºÍout_pinÏàÍ¬
+     * \note å¦‚æœç¡¬ä»¶æ²¡æœ‰å¯¹DRDY/DOUTå¼•è„šåˆ†ç¦»ï¼Œè¯¥å¼•è„šåº”è¯¥å’Œout_pinç›¸åŒ
      * */
     uint8_t      in_pin;
 
-    /** \brief REF»ù×¼Ô´×´Ì¬ÉèÖÃ,0Ê¹ÓÃÄÚ²¿»ù×¼Ô´£¬1Ê¹ÓÃÍâ²¿»ù×¼Ô´ */
+    /** \brief REFåŸºå‡†æºçŠ¶æ€è®¾ç½®,0ä½¿ç”¨å†…éƒ¨åŸºå‡†æºï¼Œ1ä½¿ç”¨å¤–éƒ¨åŸºå‡†æº */
     uint8_t      refo_off;
 
     /**
-     * \brief ADC²Î¿¼µçÑ¹£¬µ¥Î»£ºmV
+     * \brief ADCå‚è€ƒç”µå‹ï¼Œå•ä½ï¼šmV
      *
-     * \note ¸Ã²Î¿¼µçÑ¹ÓÉ¾ßÌåµÄµçÂ·¾ö¶¨
+     * \note è¯¥å‚è€ƒç”µå‹ç”±å…·ä½“çš„ç”µè·¯å†³å®š
      *
      */
     uint32_t     vref;
 
-    /** \brief CLKÊ±Ğò¸ßµçÆ½ÑÓÊ±Ê±¼ä £¬Î¢Ãî¼¶±ğ*/
+    /** \brief CLKæ—¶åºé«˜ç”µå¹³å»¶æ—¶æ—¶é—´ ï¼Œå¾®å¦™çº§åˆ«*/
     uint8_t      high_clk_delay;
 
-    /** \brief CLKÊ±ĞòµÍµçÆ½ÑÓÊ±Ê±¼ä £¬Î¢Ãî¼¶±ğ*/
+    /** \brief CLKæ—¶åºä½ç”µå¹³å»¶æ—¶æ—¶é—´ ï¼Œå¾®å¦™çº§åˆ«*/
     uint8_t      low_clk_delay;
 
-    /** \brief ½øÈëµÍ¹¦ºÄÄ£Ê½clk¸ßµçÆ½³ÖĞøÊ±¼ä £¬Î¢Ãî¼¶±ğ£¬ÀíÂÛÖµ100us*/
+    /** \brief è¿›å…¥ä½åŠŸè€—æ¨¡å¼clké«˜ç”µå¹³æŒç»­æ—¶é—´ ï¼Œå¾®å¦™çº§åˆ«ï¼Œç†è®ºå€¼100us*/
     uint8_t      powerdown_delay;
 
 }am_cs1237_adc_devinfo_t;
 
-/** \brief ´¥·¢»Øµ÷º¯Êı */
+/** \brief è§¦å‘å›è°ƒå‡½æ•° */
 typedef void (*am_cs1237_code_read_cb_t) (void *p_arg,uint32_t code);
 
 /**
- * \brief CS1237 Éè±¸½á¹¹Ìå
+ * \brief CS1237 è®¾å¤‡ç»“æ„ä½“
  */
 typedef struct am_cs1237_adc_dev{
 
-    /** \brief ·Å´ó±¶Êı */
+    /** \brief æ”¾å¤§å€æ•° */
     uint8_t                        pga;
-    /** \brief Êä³öËÙÂÊ */
+    /** \brief è¾“å‡ºé€Ÿç‡ */
     uint8_t                        out_speed;
-    /** \brief Í¨µÀ */
+    /** \brief é€šé“ */
     uint8_t                        ch;
-    /** \brief ÊÇ·ñ¿ªÆôÖĞ¶ÏÄ£Ê½ */
+    /** \brief æ˜¯å¦å¼€å¯ä¸­æ–­æ¨¡å¼ */
     am_bool_t                      is_int;
 
-    /** \brief INTÒı½ÅµÄ´¥·¢ĞÅÏ¢ÀàĞÍ */
+    /** \brief INTå¼•è„šçš„è§¦å‘ä¿¡æ¯ç±»å‹ */
     struct am_cs1237_trigger_info {
 
-        /** \brief ´¥·¢»Øµ÷º¯Êı */
+        /** \brief è§¦å‘å›è°ƒå‡½æ•° */
         am_cs1237_code_read_cb_t   pfn_callback;
-        /** \brief »Øµ÷º¯ÊıµÄ²ÎÊı */
+        /** \brief å›è°ƒå‡½æ•°çš„å‚æ•° */
         void                      *p_arg;
 
-    } triginfo;/**< \brief INTÒı½ÅµÄ´¥·¢ĞÅÏ¢ */
+    } triginfo;/**< \brief INTå¼•è„šçš„è§¦å‘ä¿¡æ¯ */
 
-    /** \brief Éè±¸ĞÅÏ¢ */
+    /** \brief è®¾å¤‡ä¿¡æ¯ */
     const am_cs1237_adc_devinfo_t *p_devinfo;
 
-    /** \brief ADC±ê×¼·şÎñ */
+    /** \brief ADCæ ‡å‡†æœåŠ¡ */
     am_adc_serv_t                  adc_serve;
 
-    /** \brief ´æ·ÅÓÃ»§Æô¶¯×ª»»ºóµÄ»Øµ÷º¯Êı */
+    /** \brief å­˜æ”¾ç”¨æˆ·å¯åŠ¨è½¬æ¢åçš„å›è°ƒå‡½æ•° */
     am_adc_seq_cb_t                pfn_callback;
 
-    /** \brief ÓÃ»§Æô¶¯»Øµ÷º¯ÊıµÄ»Øµ÷º¯Êı²ÎÊı */
+    /** \brief ç”¨æˆ·å¯åŠ¨å›è°ƒå‡½æ•°çš„å›è°ƒå‡½æ•°å‚æ•° */
     void                          *p_arg;
 
-    /** \brief µ±Ç°×ª»»µÄĞòÁĞÃèÊö·ûÊı×éÊ×µØÖ· */
+    /** \brief å½“å‰è½¬æ¢çš„åºåˆ—æè¿°ç¬¦æ•°ç»„é¦–åœ°å€ */
     am_adc_buf_desc_t             *p_desc;
 
-    /** \brief µ±Ç°×ª»»µÄĞòÁĞÃèÊö·ûÊıÁ¿ */
+    /** \brief å½“å‰è½¬æ¢çš„åºåˆ—æè¿°ç¬¦æ•°é‡ */
     uint32_t                       desc_num;
 
-    /** \brief ×ª»»µÄ´ÎÊı */
+    /** \brief è½¬æ¢çš„æ¬¡æ•° */
     uint32_t                       count;
 
-    /** \brief ×ª»»±êÖ¾ */
+    /** \brief è½¬æ¢æ ‡å¿— */
     uint32_t                       flags;
 
-    /** \brief ¶Ôµ±Ç°ĞòÁĞÃèÊö·ûÒÑ¾­²ÉÑùµÄ´ÎÊı */
+    /** \brief å¯¹å½“å‰åºåˆ—æè¿°ç¬¦å·²ç»é‡‡æ ·çš„æ¬¡æ•° */
     uint32_t                       conv_cnt;
 
-    /** \brief ÕıÔÚÖ´ĞĞµ±Ç°ĞòÁĞÃèÊö·ûµÄË÷Òı */
+    /** \brief æ­£åœ¨æ‰§è¡Œå½“å‰åºåˆ—æè¿°ç¬¦çš„ç´¢å¼• */
     uint32_t                       desc_index;
 
-    /** \brief ¶ÔÕû¸öĞòÁĞ×ª»»Íê³ÉµÄ´ÎÊı */
+    /** \brief å¯¹æ•´ä¸ªåºåˆ—è½¬æ¢å®Œæˆçš„æ¬¡æ•° */
     uint32_t                       seq_cnt;
 
 }am_cs1237_adc_dev_t;
 
-typedef am_cs1237_adc_dev_t * am_cs1237_adc_handle_t; /**< \brief ¾ä±ú¶¨Òå */
+typedef am_cs1237_adc_dev_t * am_cs1237_adc_handle_t; /**< \brief å¥æŸ„å®šä¹‰ */
 
 /**
- * \name CS1237Í¨µÀÑ¡Ôñ
+ * \name CS1237é€šé“é€‰æ‹©
  * @{
  */
 
-#define AM_CS1237_CHANNEL_A         0      /**< \brief Í¨µÀ A,Ä¬ÈÏ */
-#define AM_CS1237_CHANNEL_RESERVE   1      /**< \brief Ğ¾Æ¬±£ÁôÊ¹ÓÃÎ» */
-#define AM_CS1237_CHANNEL_TEMP      2      /**< \brief ÎÂ¶È */
-#define AM_CS1237_CHANNEL_SHORT     3      /**< \brief ÄÚ¶Ì */
+#define AM_CS1237_CHANNEL_A         0      /**< \brief é€šé“ A,é»˜è®¤ */
+#define AM_CS1237_CHANNEL_RESERVE   1      /**< \brief èŠ¯ç‰‡ä¿ç•™ä½¿ç”¨ä½ */
+#define AM_CS1237_CHANNEL_TEMP      2      /**< \brief æ¸©åº¦ */
+#define AM_CS1237_CHANNEL_SHORT     3      /**< \brief å†…çŸ­ */
 
 /** @} */
 
 /**
- * \name CS1237 PGAÑ¡Ôñ
+ * \name CS1237 PGAé€‰æ‹©
  * @{
  */
 
-#define AM_CS1237_PGA_1             0       /**< \brief ·Å´ó±¶Êı 1*/
-#define AM_CS1237_PGA_2             1       /**< \brief ·Å´ó±¶Êı 2*/
-#define AM_CS1237_PGA_64            2       /**< \brief ·Å´ó±¶Êı 64*/
-#define AM_CS1237_PGA_128           3       /**< \brief ·Å´ó±¶Êı 128£¬Ä¬ÈÏ*/
+#define AM_CS1237_PGA_1             0       /**< \brief æ”¾å¤§å€æ•° 1*/
+#define AM_CS1237_PGA_2             1       /**< \brief æ”¾å¤§å€æ•° 2*/
+#define AM_CS1237_PGA_64            2       /**< \brief æ”¾å¤§å€æ•° 64*/
+#define AM_CS1237_PGA_128           3       /**< \brief æ”¾å¤§å€æ•° 128ï¼Œé»˜è®¤*/
 
 /** @} */
 
 /**
- * \name CS1237 Êä³öËÙÂÊÑ¡Ôñ
+ * \name CS1237 è¾“å‡ºé€Ÿç‡é€‰æ‹©
  * @{
  */
 
-#define AM_CS1237_SPEED_10HZ        0       /**< \brief ADCÊä³öËÙÂÊ10HZ£¬Ä¬ÈÏ  */
-#define AM_CS1237_SPEED_40HZ        1       /**< \brief ADCÊä³öËÙÂÊ40HZ     */
-#define AM_CS1237_SPEED_640HZ       2       /**< \brief ADCÊä³öËÙÂÊ640HZ    */
-#define AM_CS1237_SPEED_1280HZ      3       /**< \brief ADCÊä³öËÙÂÊ1280HZ   */
+#define AM_CS1237_SPEED_10HZ        0       /**< \brief ADCè¾“å‡ºé€Ÿç‡10HZï¼Œé»˜è®¤  */
+#define AM_CS1237_SPEED_40HZ        1       /**< \brief ADCè¾“å‡ºé€Ÿç‡40HZ     */
+#define AM_CS1237_SPEED_640HZ       2       /**< \brief ADCè¾“å‡ºé€Ÿç‡640HZ    */
+#define AM_CS1237_SPEED_1280HZ      3       /**< \brief ADCè¾“å‡ºé€Ÿç‡1280HZ   */
 
 /** @} */
 
 /**
- * \brief CS1237 Éè±¸³õÊ¼»¯
+ * \brief CS1237 è®¾å¤‡åˆå§‹åŒ–
  *
- * \param[in] p_dev      :Ö¸ÏòCS1237Éè±¸½á¹¹ÌåµÄÖ¸Õë
- * \param[in] p_devinfo  :Ö¸ÏòCS1237Éè±¸ĞÅÏ¢½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] p_dev      :æŒ‡å‘CS1237è®¾å¤‡ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] p_devinfo  :æŒ‡å‘CS1237è®¾å¤‡ä¿¡æ¯ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return CS1237·şÎñ²Ù×÷¾ä±ú,Èç¹ûÎª NULL£¬±íÃ÷³õÊ¼»¯Ê§°Ü
+ * \return CS1237æœåŠ¡æ“ä½œå¥æŸ„,å¦‚æœä¸º NULLï¼Œè¡¨æ˜åˆå§‹åŒ–å¤±è´¥
  */
 am_cs1237_adc_handle_t am_cs1237_init(am_cs1237_adc_dev_t            *p_dev,
                                   const am_cs1237_adc_devinfo_t  *p_devinfo);
 
 /**
- * \brief CS1237 Éè±¸½â³õÊ¼»¯
+ * \brief CS1237 è®¾å¤‡è§£åˆå§‹åŒ–
  *
- * \param[in] handle : CS1237²Ù×÷¾ä±ú
+ * \param[in] handle : CS1237æ“ä½œå¥æŸ„
  *
- * \return ÎŞ
+ * \return æ— 
  */
 void am_cs1237_deinit (am_cs1237_adc_handle_t handle);
 
 /**
- * \brief CS1237 ÅäÖÃ¼Ä´æÆ÷¶Á
+ * \brief CS1237 é…ç½®å¯„å­˜å™¨è¯»
  *
- * \param[in] p_dev : CS1237²Ù×÷¾ä±ú
+ * \param[in] p_dev : CS1237æ“ä½œå¥æŸ„
  *
- * \return adcÅäÖÃ¼Ä´æÆ÷Öµ
+ * \return adcé…ç½®å¯„å­˜å™¨å€¼
  */
 uint8_t am_cs1237_config_reg_read(am_cs1237_adc_dev_t  *p_dev);
 
 /**
- * \brief CS1237 ÅäÖÃ¼Ä´æÆ÷pgaĞ´
+ * \brief CS1237 é…ç½®å¯„å­˜å™¨pgaå†™
  *
- * \param[in] p_dev : CS1237²Ù×÷¾ä±ú
- * \param[in] pga   : pgaÏà¹Øºê
+ * \param[in] p_dev : CS1237æ“ä½œå¥æŸ„
+ * \param[in] pga   : pgaç›¸å…³å®
  *
- * \retval  AM_OK     : ÉèÖÃ³É¹¦
- *          AM_ERROR  : ÉèÖÃÊ§°Ü£¬ADCÎ´×¼±¸ºÃ
+ * \retval  AM_OK     : è®¾ç½®æˆåŠŸ
+ *          AM_ERROR  : è®¾ç½®å¤±è´¥ï¼ŒADCæœªå‡†å¤‡å¥½
  */
 int am_cs1237_pga_set(am_cs1237_adc_dev_t  *p_dev, uint32_t pga);
 
 /**
- * \brief CS1237 ÅäÖÃ¼Ä´æÆ÷chĞ´
+ * \brief CS1237 é…ç½®å¯„å­˜å™¨chå†™
  *
- * \param[in] p_dev : CS1237²Ù×÷¾ä±ú
- * \param[in] ch    : chÏà¹Øºê
+ * \param[in] p_dev : CS1237æ“ä½œå¥æŸ„
+ * \param[in] ch    : chç›¸å…³å®
  *
- * \retval  AM_OK     : ÉèÖÃ³É¹¦
- *          AM_ERROR  : ÉèÖÃÊ§°Ü£¬ADCÎ´×¼±¸ºÃ
+ * \retval  AM_OK     : è®¾ç½®æˆåŠŸ
+ *          AM_ERROR  : è®¾ç½®å¤±è´¥ï¼ŒADCæœªå‡†å¤‡å¥½
  */
 int am_cs1237_ch_set(am_cs1237_adc_dev_t  *p_dev, uint32_t ch);
 
 /**
- * \brief CS1237 ÅäÖÃ¼Ä´æÆ÷speedĞ´
+ * \brief CS1237 é…ç½®å¯„å­˜å™¨speedå†™
  *
- * \param[in] p_dev : CS1237²Ù×÷¾ä±ú
- * \param[in] speed : speedÏà¹Øºê
+ * \param[in] p_dev : CS1237æ“ä½œå¥æŸ„
+ * \param[in] speed : speedç›¸å…³å®
  *
- * \retval  AM_OK     : ÉèÖÃ³É¹¦
- *          AM_ERROR  : ÉèÖÃÊ§°Ü£¬ADCÎ´×¼±¸ºÃ
+ * \retval  AM_OK     : è®¾ç½®æˆåŠŸ
+ *          AM_ERROR  : è®¾ç½®å¤±è´¥ï¼ŒADCæœªå‡†å¤‡å¥½
  */
 int am_cs1237_out_speed_set(am_cs1237_adc_dev_t  *p_dev, uint32_t speed);
 
 /**
- * \brief CS1237 pga·Å´ó±¶Êı¶Á
+ * \brief CS1237 pgaæ”¾å¤§å€æ•°è¯»
  *
- * \param[in] p_dev : CS1237²Ù×÷¾ä±ú
+ * \param[in] p_dev : CS1237æ“ä½œå¥æŸ„
  *
- * \return pga·Å´ó±¶Êı
+ * \return pgaæ”¾å¤§å€æ•°
  */
 uint32_t am_cs1237_pga_get(am_cs1237_adc_dev_t  *p_dev);
 
 /**
- * \brief CS1237 Í¨µÀºÅ¶Á
+ * \brief CS1237 é€šé“å·è¯»
  *
- * \param[in] p_dev : CS1237²Ù×÷¾ä±ú
+ * \param[in] p_dev : CS1237æ“ä½œå¥æŸ„
  *
- * \return chÍ¨µÀºÅ
+ * \return ché€šé“å·
  */
 uint8_t am_cs1237_ch_get(am_cs1237_adc_dev_t  *p_dev);
 
 /**
- * \brief CS1237 adcÊä³öËÙÂÊ¶Á
+ * \brief CS1237 adcè¾“å‡ºé€Ÿç‡è¯»
  *
- * \param[in] p_dev : CS1237²Ù×÷¾ä±ú
+ * \param[in] p_dev : CS1237æ“ä½œå¥æŸ„
  *
- * \return adcÊä³öËÙÂÊ
+ * \return adcè¾“å‡ºé€Ÿç‡
  */
 uint32_t am_cs1237_out_speed_get(am_cs1237_adc_dev_t  *p_dev);
 
 /**
- * \brief CS1237 ÔÊĞí¶Á
+ * \brief CS1237 å…è®¸è¯»
  *
- * \param[in] p_dev   : CS1237²Ù×÷¾ä±ú
+ * \param[in] p_dev   : CS1237æ“ä½œå¥æŸ„
  *
- * \retval  AM_OK     : ²Ù×÷³É¹¦
+ * \retval  AM_OK     : æ“ä½œæˆåŠŸ
  */
 int am_cs1237_read_int_enable(am_cs1237_adc_dev_t  *p_dev);
 
 /**
- * \brief CS1237 ½ûÖ¹¶Á
+ * \brief CS1237 ç¦æ­¢è¯»
  *
- * \param[in] p_dev   : CS1237²Ù×÷¾ä±ú
+ * \param[in] p_dev   : CS1237æ“ä½œå¥æŸ„
  *
- * \retval  AM_OK     : ²Ù×÷³É¹¦
+ * \retval  AM_OK     : æ“ä½œæˆåŠŸ
  */
 int am_cs1237_read_int_disable(am_cs1237_adc_dev_t  *p_dev);
 
 /**
- * \brief CS1237 ÂÖÑ­¶Áadc²É¼¯Öµ
+ * \brief CS1237 è½®å¾ªè¯»adcé‡‡é›†å€¼
  *
- * \param[in]  p_dev   : CS1237²Ù×÷¾ä±ú
- * \param[out] val     : ²ÉÑùÊı¾İ
+ * \param[in]  p_dev   : CS1237æ“ä½œå¥æŸ„
+ * \param[out] val     : é‡‡æ ·æ•°æ®
  *
- * \retval  AM_OK ²É¼¯³É¹¦
+ * \retval  AM_OK é‡‡é›†æˆåŠŸ
  */
 int am_cs1237_read_polling(am_cs1237_adc_dev_t *p_dev, uint32_t *val);
 
 /**
- * \brief CS1237 ½øÈëµÍ¹¦ºÄÄ£Ê½
+ * \brief CS1237 è¿›å…¥ä½åŠŸè€—æ¨¡å¼
  *
- * \param[in] p_dev   : CS1237²Ù×÷¾ä±ú
+ * \param[in] p_dev   : CS1237æ“ä½œå¥æŸ„
  *
- * \retval  ÎŞ
+ * \retval  æ— 
  */
 void am_cs1237_power_down_enter(am_cs1237_adc_dev_t  *p_dev);
 
 /**
- * \brief CS1237 ÍË³öµÍ¹¦ºÄÄ£Ê½
+ * \brief CS1237 é€€å‡ºä½åŠŸè€—æ¨¡å¼
  *
- * \param[in] p_dev   : CS1237²Ù×÷¾ä±ú
+ * \param[in] p_dev   : CS1237æ“ä½œå¥æŸ„
  *
- * \retval  ÎŞ
+ * \retval  æ— 
  */
 void am_cs1237_power_down_out(am_cs1237_adc_dev_t  *p_dev);
 
 /**
- * \brief CS1237 Á¬½ÓÖĞ¶Ï»Øµ÷º¯Êı
+ * \brief CS1237 è¿æ¥ä¸­æ–­å›è°ƒå‡½æ•°
  *
- * \param[in] p_dev   : CS1237²Ù×÷¾ä±ú
- * \param[in] p_fun   : CS1237ÖĞ¶Ï»Øµ÷º¯Êı
- * \param[in] p_arg   : CS1237ÖĞ¶Ï»Øµ÷º¯Êı²ÎÊı
+ * \param[in] p_dev   : CS1237æ“ä½œå¥æŸ„
+ * \param[in] p_fun   : CS1237ä¸­æ–­å›è°ƒå‡½æ•°
+ * \param[in] p_arg   : CS1237ä¸­æ–­å›è°ƒå‡½æ•°å‚æ•°
  *
- * \retval  ÎŞ
+ * \retval  æ— 
  */
 void am_cs1237_int_connect(am_cs1237_adc_dev_t      *p_dev ,
                            am_cs1237_code_read_cb_t  p_fun,
                            void                     *p_arg);
 
 /**
- * \brief CS1237 É¾³ıÖĞ¶Ï»Øµ÷º¯Êı
+ * \brief CS1237 åˆ é™¤ä¸­æ–­å›è°ƒå‡½æ•°
  *
- * \param[in] p_dev   : CS1237²Ù×÷¾ä±ú
- * \param[in] p_fun   : CS1237ÖĞ¶Ï»Øµ÷º¯Êı
- * \param[in] p_arg   : CS1237ÖĞ¶Ï»Øµ÷º¯Êı²ÎÊı
+ * \param[in] p_dev   : CS1237æ“ä½œå¥æŸ„
+ * \param[in] p_fun   : CS1237ä¸­æ–­å›è°ƒå‡½æ•°
+ * \param[in] p_arg   : CS1237ä¸­æ–­å›è°ƒå‡½æ•°å‚æ•°
  *
- * \retval  ÎŞ
+ * \retval  æ— 
  */
 void am_cs1237_int_disconnect(am_cs1237_adc_dev_t      *p_dev ,
                               am_cs1237_code_read_cb_t  p_fun,
                               void                     *p_arg);
 
 /**
- * \brief CS1237 »ñµÃ±ê×¼adc¾ä±ú
- * \param[in] p_dev : CS1237²Ù×÷¾ä±ú
+ * \brief CS1237 è·å¾—æ ‡å‡†adcå¥æŸ„
+ * \param[in] p_dev : CS1237æ“ä½œå¥æŸ„
  *
- * \retval ±ê×¼adc²Ù×÷¾ä±ú
+ * \retval æ ‡å‡†adcæ“ä½œå¥æŸ„
  */
 am_adc_handle_t am_cs1237_standard_adc_handle_get(am_cs1237_adc_dev_t *p_dev);
 /**

@@ -11,20 +11,20 @@
 *******************************************************************************/
 /**
  * \file
- * \brief GPIO �����ж����̣�ͨ�� HW ��ӿ�ʵ��
+ * \brief GPIO 引脚中断例程，通过 HW 层接口实现
  *
- * - �������裺
- *   1. �� J14 �� KEY �� PIOA_8 �̽���һ��
+ * - 操作步骤：
+ *   1. 将 J14 的 KEY 和 PIOA_8 短接在一起。
  *
- * - ʵ������
- *   1. ��һ�ΰ��� LED0 ��Ϩ���ٰ�һ�ΰ��� LED0 ��������˷�����
- *   2. ÿ�ΰ���ʱ���ڴ�ӡ "the gpio interrupt happen!"��
+ * - 实验现象：
+ *   1. 按一次按键 LED0 灯熄灭，再按一次按键 LED0 灯亮，如此反复；
+ *   2. 每次按键时串口打印 "the gpio interrupt happen!"。
  *
  * \note
- *    1. LED0 ��Ҫ�̽� J9 ����ñ�����ܱ� PIOB_1 ���ƣ�
- *    2. ����۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIOA_9 �������� PC ���ڵ� RXD��
+ *    1. LED0 需要短接 J9 跳线帽，才能被 PIOB_1 控制；
+ *    2. 如需观察串口打印的调试信息，需要将 PIOA_9 引脚连接 PC 串口的 RXD。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_aml166_core_hw_gpio_trigger.c src_aml166_core_hw_gpio_trigger
  *
  * \internal
@@ -49,13 +49,13 @@
 #include "demo_aml166_core_entries.h"
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_aml166_core_hw_gpio_trigger_entry (void)
 {
     AM_DBG_INFO("demo aml166_core hw gpio trigger!\r\n");
 
-    /* ʹ��ʱ�� */
+    /* 使能时钟 */
     am_clk_enable(CLK_GPIOA);
     am_clk_enable(CLK_SYSCFG);
 

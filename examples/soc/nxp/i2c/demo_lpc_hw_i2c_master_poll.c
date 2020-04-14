@@ -11,23 +11,23 @@
 *******************************************************************************/
 /**
  * \file
- * \brief I2C ¶ÁĞ´ EEPROM Àı³Ì£¨ÂÖÑ¯·½Ê½£©£¬Í¨¹ı HW ²ã½Ó¿ÚÊµÏÖ
+ * \brief I2C è¯»å†™ EEPROM ä¾‹ç¨‹ï¼ˆè½®è¯¢æ–¹å¼ï¼‰ï¼Œé€šè¿‡ HW å±‚æ¥å£å®ç°
  *
- * - ²Ù×÷²½Öè£º
- *   1. PIO0_10 Òı½ÅÁ¬½Ó EEPROM µÄ SCL Òı½Å£»
- *   2. PIO0_11 Òı½ÅÁ¬½Ó EEPROM µÄ SDA Òı½Å¡£
+ * - æ“ä½œæ­¥éª¤ï¼š
+ *   1. PIO0_10 å¼•è„šè¿æ¥ EEPROM çš„ SCL å¼•è„šï¼›
+ *   2. PIO0_11 å¼•è„šè¿æ¥ EEPROM çš„ SDA å¼•è„šã€‚
  *
- * - ÊµÑéÏÖÏó£º
- *   1. Ïò EEPROM Éè±¸Ğ´Èë __TEST_LENTH ×Ö½ÚÊı¾İ£»
- *   2. ¶ÁÈ¡ EEPROM ÖĞµÄÊı¾İÍ¨¹ı´®¿Ú´òÓ¡³öÀ´£»
- *   3. ÈôĞ´ÈëÊı¾İºÍ¶ÁÈ¡µÄÊı¾İÒ»ÖÂ£¬Ğ£ÑéÍ¨¹ı£¬LED0 ÒÔ 200ms ¼ä¸ôÉÁË¸¡£
+ * - å®éªŒç°è±¡ï¼š
+ *   1. å‘ EEPROM è®¾å¤‡å†™å…¥ __TEST_LENTH å­—èŠ‚æ•°æ®ï¼›
+ *   2. è¯»å– EEPROM ä¸­çš„æ•°æ®é€šè¿‡ä¸²å£æ‰“å°å‡ºæ¥ï¼›
+ *   3. è‹¥å†™å…¥æ•°æ®å’Œè¯»å–çš„æ•°æ®ä¸€è‡´ï¼Œæ ¡éªŒé€šè¿‡ï¼ŒLED0 ä»¥ 200ms é—´éš”é—ªçƒã€‚
  *
  * \note
- *    1. LED0 ĞèÒª¶Ì½Ó J9 ÌøÏßÃ±£¬²ÅÄÜ±» PIO0_20 ¿ØÖÆ£»
- *    2. ÈçĞè¹Û²ì´®¿Ú´òÓ¡µÄµ÷ÊÔĞÅÏ¢£¬ĞèÒª½« PIO0_0 Òı½ÅÁ¬½Ó PC ´®¿ÚµÄ TXD£¬
- *       PIO0_4 Òı½ÅÁ¬½Ó PC ´®¿ÚµÄ RXD¡£
+ *    1. LED0 éœ€è¦çŸ­æ¥ J9 è·³çº¿å¸½ï¼Œæ‰èƒ½è¢« PIO0_20 æ§åˆ¶ï¼›
+ *    2. å¦‚éœ€è§‚å¯Ÿä¸²å£æ‰“å°çš„è°ƒè¯•ä¿¡æ¯ï¼Œéœ€è¦å°† PIO0_0 å¼•è„šè¿æ¥ PC ä¸²å£çš„ TXDï¼Œ
+ *       PIO0_4 å¼•è„šè¿æ¥ PC ä¸²å£çš„ RXDã€‚
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_lpc_hw_i2c_master_poll.c src_lpc_hw_i2c_master_poll
  *
  * \internal
@@ -50,47 +50,47 @@
 //#include "hw/amhw_lpc82x_clk.h"
 
 /*******************************************************************************
-  ºê¶¨Òå
+  å®å®šä¹‰
 *******************************************************************************/
-#define __I2C_M_7BIT    0x0000u          /**< \brief 7-bits Éè±¸µØÖ· */
-#define __I2C_M_10BIT   0x0001u          /**< \brief 10-bit Éè±¸µØÖ· */
-#define __I2C_M_WR      0x0000u          /**< \brief Ğ´²Ù×÷ */
-#define __I2C_M_RD      0x0002u          /**< \brief ¶Á²Ù×÷ */
-#define __I2C_M_NOSTART 0x0010u          /**< \brief ÎŞĞèÖØĞÂÆô¶¯±êÊ¶ */
+#define __I2C_M_7BIT    0x0000u          /**< \brief 7-bits è®¾å¤‡åœ°å€ */
+#define __I2C_M_10BIT   0x0001u          /**< \brief 10-bit è®¾å¤‡åœ°å€ */
+#define __I2C_M_WR      0x0000u          /**< \brief å†™æ“ä½œ */
+#define __I2C_M_RD      0x0002u          /**< \brief è¯»æ“ä½œ */
+#define __I2C_M_NOSTART 0x0010u          /**< \brief æ— éœ€é‡æ–°å¯åŠ¨æ ‡è¯† */
 
-#define __TEST_LENTH    8                /**< \brief ²âÊÔ¶ÁĞ´µÄ×Ö½ÚÊı(²»ÄÜ´óÓÚÒ³´óĞ¡) */
+#define __TEST_LENTH    8                /**< \brief æµ‹è¯•è¯»å†™çš„å­—èŠ‚æ•°(ä¸èƒ½å¤§äºé¡µå¤§å°) */
 
 /**
- * \brief I2C ´«Êä½á¹¹Ìå¶¨Òå£¬Ö÷ÒªÓÃÓÚ I2C ÂÖÑ¯Ä£Ê½ÏÂ
+ * \brief I2C ä¼ è¾“ç»“æ„ä½“å®šä¹‰ï¼Œä¸»è¦ç”¨äº I2C è½®è¯¢æ¨¡å¼ä¸‹
  */
 typedef struct i2c_transfer {
 
-    /** \brief I2C Éè±¸µØÖ· */
+    /** \brief I2C è®¾å¤‡åœ°å€ */
     volatile uint16_t addr;
 
-    /** \brief I2C Éè±¸ÌØĞÔÒÔ¼° transfer ĞèÒªµÄÌØÊâ±êÊ¶ */
+    /** \brief I2C è®¾å¤‡ç‰¹æ€§ä»¥åŠ transfer éœ€è¦çš„ç‰¹æ®Šæ ‡è¯† */
     volatile uint16_t flags;
 
-    /** \brief I2C ´«ÊäÊı¾İ»º´æÖ¸Õë */
+    /** \brief I2C ä¼ è¾“æ•°æ®ç¼“å­˜æŒ‡é’ˆ */
     volatile void    *p_buf;
 
-    /** \brief I2C Êı¾İ»º´æ³¤¶È */
+    /** \brief I2C æ•°æ®ç¼“å­˜é•¿åº¦ */
     volatile uint16_t length;
 } i2c_transfer_t;
 
-/** \brief I2C ´«Êä½á¹¹Ìå */
+/** \brief I2C ä¼ è¾“ç»“æ„ä½“ */
 am_local i2c_transfer_t __g_i2c0_transfer;
 
 /**
- * \brief I2C ´«Êä½á¹¹Ìå²ÎÊıÉèÖÃº¯Êı
+ * \brief I2C ä¼ è¾“ç»“æ„ä½“å‚æ•°è®¾ç½®å‡½æ•°
  *
- * \param[in] p_trans Ö¸Ïò I2C ´«Êä½á¹¹ÌåµÄÖ¸Õë
- * \param[in] addr    Éè±¸µØÖ·²ÎÊı
- * \param[in] flags   ´«Êä¿ØÖÆ±êÊ¶Î»²ÎÊı
- * \param[in] p_buf   Ö¸Ïò·¢ËÍ»òÕß½ÓÊÕÊı¾İ»º´æµÄÖ¸Õë
- * \param[in] length  »º´æµÄ×Ö½Ú³¤¶È²ÎÊı
+ * \param[in] p_trans æŒ‡å‘ I2C ä¼ è¾“ç»“æ„ä½“çš„æŒ‡é’ˆ
+ * \param[in] addr    è®¾å¤‡åœ°å€å‚æ•°
+ * \param[in] flags   ä¼ è¾“æ§åˆ¶æ ‡è¯†ä½å‚æ•°
+ * \param[in] p_buf   æŒ‡å‘å‘é€æˆ–è€…æ¥æ”¶æ•°æ®ç¼“å­˜çš„æŒ‡é’ˆ
+ * \param[in] length  ç¼“å­˜çš„å­—èŠ‚é•¿åº¦å‚æ•°
  *
- * \retval AM_OK ´«Êä½á¹¹ÌåÉèÖÃÍê³É
+ * \retval AM_OK ä¼ è¾“ç»“æ„ä½“è®¾ç½®å®Œæˆ
  */
 am_local int __i2c_mktrans (i2c_transfer_t *p_trans,
                             uint16_t        addr,
@@ -111,12 +111,12 @@ am_local int __i2c_mktrans (i2c_transfer_t *p_trans,
 }
 
 /**
- * \brief I2C Ö÷»úÆô¶¯º¯Êı
+ * \brief I2C ä¸»æœºå¯åŠ¨å‡½æ•°
  *
- * \param[in] p_hw_i2c Ö¸Ïò I2C ¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] p_trans  Ö¸Ïò I2C ´«Êä½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] p_hw_i2c æŒ‡å‘ I2C å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] p_trans  æŒ‡å‘ I2C ä¼ è¾“ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \return ÎŞ
+ * \return æ— 
  */
 am_local void __i2c_mst_start (amhw_lpc_i2c_t *p_hw_i2c,
                                i2c_transfer_t *p_trans)
@@ -126,24 +126,24 @@ am_local void __i2c_mst_start (amhw_lpc_i2c_t *p_hw_i2c,
     if(!(p_trans->flags & __I2C_M_NOSTART)) {
 
         if (p_trans->flags & __I2C_M_RD) {
-            dev_addr |= 0x1;            /* ÉèÖÃ bit0 Îª 1£¬±íÃ÷µ±Ç°Îª¶Á²Ù×÷ */
+            dev_addr |= 0x1;            /* è®¾ç½® bit0 ä¸º 1ï¼Œè¡¨æ˜å½“å‰ä¸ºè¯»æ“ä½œ */
         } else {
-            dev_addr |= 0x0;            /* ÉèÖÃ bit0 Îª 0£¬±íÃ÷µ±Ç°ÎªĞ´²Ù×÷ */
+            dev_addr |= 0x0;            /* è®¾ç½® bit0 ä¸º 0ï¼Œè¡¨æ˜å½“å‰ä¸ºå†™æ“ä½œ */
         }
 
-        /* ·¢ËÍÉè±¸µØÖ· */
+        /* å‘é€è®¾å¤‡åœ°å€ */
         amhw_lpc_i2c_mstdat_write(p_hw_i2c, dev_addr);
-        amhw_lpc_i2c_mst_start(p_hw_i2c);       /* I2C ¿ØÖÆÆ÷·¢ËÍÆô¶¯ĞÅºÅ */
+        amhw_lpc_i2c_mst_start(p_hw_i2c);       /* I2C æ§åˆ¶å™¨å‘é€å¯åŠ¨ä¿¡å· */
     }
 }
 
 /**
- * \brief I2C Ö÷»ú·¢ËÍµØÖ·/Êı¾İ
+ * \brief I2C ä¸»æœºå‘é€åœ°å€/æ•°æ®
  *
- * \param[in] p_hw_i2c Ö¸Ïò I2C ¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] p_trans  Ö¸Ïò I2C ´«Êä½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] p_hw_i2c æŒ‡å‘ I2C å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] p_trans  æŒ‡å‘ I2C ä¼ è¾“ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \retval AM_OK ·¢ËÍÍê³É
+ * \retval AM_OK å‘é€å®Œæˆ
  */
 am_local int __i2c_mst_send (amhw_lpc_i2c_t *p_hw_i2c,
                              i2c_transfer_t *p_trans)
@@ -168,12 +168,12 @@ am_local int __i2c_mst_send (amhw_lpc_i2c_t *p_hw_i2c,
 }
 
 /**
- * \brief I2CÖ÷»ú½ÓÊÕµØÖ·/Êı¾İ
+ * \brief I2Cä¸»æœºæ¥æ”¶åœ°å€/æ•°æ®
  *
- * \param[in] p_hw_i2c Ö¸Ïò I2C ¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] p_trans  Ö¸Ïò I2C ´«Êä½á¹¹ÌåµÄÖ¸Õë
+ * \param[in] p_hw_i2c æŒ‡å‘ I2C å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] p_trans  æŒ‡å‘ I2C ä¼ è¾“ç»“æ„ä½“çš„æŒ‡é’ˆ
  *
- * \retval AM_OK ½ÓÊÕÍê³É
+ * \retval AM_OK æ¥æ”¶å®Œæˆ
  */
 am_local int __i2c_mst_recv (amhw_lpc_i2c_t *p_hw_i2c,
                              i2c_transfer_t *p_trans)
@@ -187,7 +187,7 @@ am_local int __i2c_mst_recv (amhw_lpc_i2c_t *p_hw_i2c,
         while ((p_hw_i2c->stat & AMHW_LPC_I2C_MASTER_STATE_MASK) !=
                     AMHW_LPC_I2C_STAT_MSTRX);
 
-        /* ½ÓÊÕÊı¾İ */
+        /* æ¥æ”¶æ•°æ® */
         ((uint8_t *)(p_trans->p_buf))[i] = amhw_lpc_i2c_mstdat_read(p_hw_i2c);
 
         if (i != (p_trans->length - 1)) {
@@ -199,14 +199,14 @@ am_local int __i2c_mst_recv (amhw_lpc_i2c_t *p_hw_i2c,
 
 
 /**
- * \brief I2C Ö÷»ú³õÊ¼»¯ÅäÖÃ
+ * \brief I2C ä¸»æœºåˆå§‹åŒ–é…ç½®
  *
- * \param[in] p_hw_i2c Ö¸Ïò I2C ¼Ä´æÆ÷¿éµÄÖ¸Õë
- * \param[in] speed    Ö÷»úËÙ¶È²ÎÊı
- * \param[in] clkdiv   I2C Ö÷»úÊ±ÖÓ·ÖÆµ²ÎÊı
+ * \param[in] p_hw_i2c æŒ‡å‘ I2C å¯„å­˜å™¨å—çš„æŒ‡é’ˆ
+ * \param[in] speed    ä¸»æœºé€Ÿåº¦å‚æ•°
+ * \param[in] clkdiv   I2C ä¸»æœºæ—¶é’Ÿåˆ†é¢‘å‚æ•°
  *
- * \retval  AM_OK     ÅäÖÃÍê³É
- * \retval -AM_EINVAL ²ÎÊıÎŞĞ§
+ * \retval  AM_OK     é…ç½®å®Œæˆ
+ * \retval -AM_EINVAL å‚æ•°æ— æ•ˆ
  */
 am_local int __i2c_mst_init (amhw_lpc_i2c_t *p_hw_i2c,
                              uint32_t        clkdiv)
@@ -215,13 +215,13 @@ am_local int __i2c_mst_init (amhw_lpc_i2c_t *p_hw_i2c,
         return -AM_EINVAL;
     }
 
-    /* ¹Ø±Õ I2C ¿ØÖÆÆ÷£¬ÅäÖÃ²ÎÊı */
+    /* å…³é—­ I2C æ§åˆ¶å™¨ï¼Œé…ç½®å‚æ•° */
     amhw_lpc_i2c_mode_disable(p_hw_i2c, AM_I2C_MASTER_MODE);
 
-    /* ÉèÖÃÊ±ÖÓ·ÖÆµ²ÎÊı */
+    /* è®¾ç½®æ—¶é’Ÿåˆ†é¢‘å‚æ•° */
     amhw_lpc_i2c_clkdiv_set(p_hw_i2c, clkdiv);
 
-    /* ²ÎÊıÅäÖÃÍê³É£¬Æô¶¯ I2C ¿ØÖÆÆ÷ */
+    /* å‚æ•°é…ç½®å®Œæˆï¼Œå¯åŠ¨ I2C æ§åˆ¶å™¨ */
     amhw_lpc_i2c_mode_enable(p_hw_i2c, AM_I2C_MASTER_MODE);
 
     return AM_OK;
@@ -236,10 +236,10 @@ void demo_lpc_hw_i2c_master_poll_entey(amhw_lpc_i2c_t *p_hw_i2c,
     uint8_t         test_addr[2]             = {0x00};
     i2c_transfer_t *p_trans                  = &__g_i2c0_transfer;
     
-    /* I2C Ö÷»ú³õÊ¼»¯ÅäÖÃ */
+    /* I2C ä¸»æœºåˆå§‹åŒ–é…ç½® */
     __i2c_mst_init(p_hw_i2c, clkdiv);
 
-     /* ÉèÖÃ transfer ½á¹¹Ìå²ÎÊı£¬Ğ´ÈëµØÖ· */
+     /* è®¾ç½® transfer ç»“æ„ä½“å‚æ•°ï¼Œå†™å…¥åœ°å€ */
     __i2c_mktrans(p_trans,
                   addr,
                   (__I2C_M_7BIT | __I2C_M_WR),
@@ -253,7 +253,7 @@ void demo_lpc_hw_i2c_master_poll_entey(amhw_lpc_i2c_t *p_hw_i2c,
         eeprom_buf[i] = i + 0xA;
     }
 
-     /* ÉèÖÃ transfer ½á¹¹Ìå²ÎÊı£¬Ğ´ÈëÊı¾İ */
+     /* è®¾ç½® transfer ç»“æ„ä½“å‚æ•°ï¼Œå†™å…¥æ•°æ® */
     __i2c_mktrans(p_trans,
                   addr,
                   (__I2C_M_7BIT | __I2C_M_NOSTART | __I2C_M_WR),
@@ -263,12 +263,12 @@ void demo_lpc_hw_i2c_master_poll_entey(amhw_lpc_i2c_t *p_hw_i2c,
     __i2c_mst_start(p_hw_i2c, p_trans);
     __i2c_mst_send(p_hw_i2c, p_trans);
 
-    /* ½áÊøµ±Ç°´«Êä */
+    /* ç»“æŸå½“å‰ä¼ è¾“ */
     amhw_lpc_i2c_mst_stop(p_hw_i2c);
 
     am_mdelay(10);
 
-    /* ÉèÖÃ transfer ½á¹¹Ìå²ÎÊı£¬Ğ´ÈëµØÖ· */
+    /* è®¾ç½® transfer ç»“æ„ä½“å‚æ•°ï¼Œå†™å…¥åœ°å€ */
     __i2c_mktrans(p_trans,
                   addr,
                   (__I2C_M_7BIT | __I2C_M_WR),
@@ -279,7 +279,7 @@ void demo_lpc_hw_i2c_master_poll_entey(amhw_lpc_i2c_t *p_hw_i2c,
     __i2c_mst_send(p_hw_i2c, p_trans);
 
 
-   /* ÉèÖÃ transfer ½á¹¹Ìå²ÎÊı£¬¶ÁÈ¡Êı¾İ */
+   /* è®¾ç½® transfer ç»“æ„ä½“å‚æ•°ï¼Œè¯»å–æ•°æ® */
     for (i = 0; i < __TEST_LENTH; i++) {
         eeprom_buf[i] = 0;
     }
@@ -292,18 +292,18 @@ void demo_lpc_hw_i2c_master_poll_entey(amhw_lpc_i2c_t *p_hw_i2c,
     __i2c_mst_start(p_hw_i2c, p_trans);
     __i2c_mst_recv(p_hw_i2c, p_trans);
 
-    /* ½áÊøµ±Ç°´«Êä */
+    /* ç»“æŸå½“å‰ä¼ è¾“ */
     amhw_lpc_i2c_mst_stop(p_hw_i2c);
 
     am_mdelay(10);
 
-    /* Ğ£ÑéĞ´ÈëºÍ¶ÁÈ¡µÄÊı¾İÊÇ·ñÒ»ÖÂ */
+    /* æ ¡éªŒå†™å…¥å’Œè¯»å–çš„æ•°æ®æ˜¯å¦ä¸€è‡´ */
     for (i = 0;i < __TEST_LENTH; i++) {
         AM_DBG_INFO("Read EEPROM the %2dth data is 0x%02x\r\n",
                     i,
                     eeprom_buf[i]);
 
-        /* Ğ£ÑéÊ§°Ü */
+        /* æ ¡éªŒå¤±è´¥ */
         if(eeprom_buf[i] != (i + 0xA)) {
             AM_DBG_INFO("verify failed!\r\n");
             break;
@@ -314,7 +314,7 @@ void demo_lpc_hw_i2c_master_poll_entey(amhw_lpc_i2c_t *p_hw_i2c,
         AM_DBG_INFO("verify success!\r\n");
     }
 
-    /* Ğ£Ñé³É¹¦£¬LED0 ÒÔ 200ms Ê±¼ä¼ä¸ôÉÁË¸ */
+    /* æ ¡éªŒæˆåŠŸï¼ŒLED0 ä»¥ 200ms æ—¶é—´é—´éš”é—ªçƒ */
     AM_FOREVER {
         am_led_on(LED0);
         am_mdelay(200);

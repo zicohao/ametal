@@ -12,22 +12,22 @@
 
 /**
  * \file
- * \brief ºóÃÅ°²È«·ÃÎÊflashÀý³Ì
+ * \brief åŽé—¨å®‰å…¨è®¿é—®flashä¾‹ç¨‹
  *
- * - ÊµÑéÏÖÏó£º
- *   1. ´®¿Ú´òÓ¡³öÌáÊ¾ÐÅÏ¢ Please input Verify BackdoorAccess Key!
- *   2. µ± Verify BackdoorAccess Key ²»Æ¥ÅäÊ±£¬´®¿ÚÊä³ö Verify BackdoorAccess Key Fail!
- *   3. ÃÜÔ¿Æ¥Åä¿ÉÒÔ¶Á³öflashµÄÄÚÈÝ£¬SWDµ÷ÊÔ¿Ú¿ª·Å£¬LEDÉÁË¸
+ * - å®žéªŒçŽ°è±¡ï¼š
+ *   1. ä¸²å£æ‰“å°å‡ºæç¤ºä¿¡æ¯ Please input Verify BackdoorAccess Key!
+ *   2. å½“ Verify BackdoorAccess Key ä¸åŒ¹é…æ—¶ï¼Œä¸²å£è¾“å‡º Verify BackdoorAccess Key Fail!
+ *   3. å¯†é’¥åŒ¹é…å¯ä»¥è¯»å‡ºflashçš„å†…å®¹ï¼ŒSWDè°ƒè¯•å£å¼€æ”¾ï¼ŒLEDé—ªçƒ
  *
- * - ²Ù×÷²½Öè
- *   1. Èç¹ûÊÇÔÚeclipseÏÂ±àÒëÔò½«am_kl26_gcc_vectorÖÐµÄºêAM_KL26_FLASH_SEC_BACKDOOR´ò¿ª£¬
- *      Èç¹ûÊÇÔÚkeilÏÂ±àÒëÔò½«am_kl26_armcc_startup.sÖÐFSECµÄÖµ¸ÄÎª0x82£¨´óÔ¼ÔÚµÚ225ÐÐ£©¡£
- *   2. µ±´®¿ÚÊä³öÌáÊ¾ÐÅÏ¢Ê±£¬ÔÚ×Ö·û´®Ä£Ê½ÏÂ·¢ËÍ43218765¡£
+ * - æ“ä½œæ­¥éª¤
+ *   1. å¦‚æžœæ˜¯åœ¨eclipseä¸‹ç¼–è¯‘åˆ™å°†am_kl26_gcc_vectorä¸­çš„å®AM_KL26_FLASH_SEC_BACKDOORæ‰“å¼€ï¼Œ
+ *      å¦‚æžœæ˜¯åœ¨keilä¸‹ç¼–è¯‘åˆ™å°†am_kl26_armcc_startup.sä¸­FSECçš„å€¼æ”¹ä¸º0x82ï¼ˆå¤§çº¦åœ¨ç¬¬225è¡Œï¼‰ã€‚
+ *   2. å½“ä¸²å£è¾“å‡ºæç¤ºä¿¡æ¯æ—¶ï¼Œåœ¨å­—ç¬¦ä¸²æ¨¡å¼ä¸‹å‘é€43218765ã€‚
  *
- * \note: ºóÃÅ°²È«ÃÜÔ¿ÊÇÍ¨¹ýflash configÅäÖÃ¶ÎµÄ gFlashConfig ÕâÒ»¸ö±äÁ¿Ç°8¸ö×Ö½ÚµÄÄÚÈÝ¾ö¶¨£¬Çë
- *        ÓÃ»§½÷É÷²Ù×÷Õâ¸ödemo£¬ÒÔÃâËøËÀÐ¾Æ¬
+ * \note: åŽé—¨å®‰å…¨å¯†é’¥æ˜¯é€šè¿‡flash configé…ç½®æ®µçš„ gFlashConfig è¿™ä¸€ä¸ªå˜é‡å‰8ä¸ªå­—èŠ‚çš„å†…å®¹å†³å®šï¼Œè¯·
+ *        ç”¨æˆ·è°¨æ…Žæ“ä½œè¿™ä¸ªdemoï¼Œä»¥å…é”æ­»èŠ¯ç‰‡
  *
- * \par Ô´´úÂë
+ * \par æºä»£ç 
  * \snippet demo_amks16z_core_hw_backdoor_sec.c src_amks16z_core_hw_backdoor_sec
  *
  * \internal
@@ -51,7 +51,7 @@
 #include "demo_amks16z_core_all_entries.h"
 
 /**
- * \brief Àý³ÌÈë¿Ú
+ * \brief ä¾‹ç¨‹å…¥å£
  */
 void demo_amks16z_core_hw_backdoor_sec_entry (void)
 {

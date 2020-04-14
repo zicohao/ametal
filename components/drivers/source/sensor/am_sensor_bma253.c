@@ -12,7 +12,7 @@
 
 /**
  * \file
- * \brief ¥´∏–∆˜ BMA253 «˝∂ØŒƒº˛
+ * \brief ‰º†ÊÑüÂô® BMA253 È©±Âä®Êñá‰ª∂
  *
  * \internal
  * \par Modification history
@@ -25,148 +25,148 @@
 #include "am_vdebug.h"
 
 /*******************************************************************************
- * ∫Í∂®“Â
+ * ÂÆèÂÆö‰πâ
  ******************************************************************************/
-#define  __BMA253_REG_BGW_CHIPID    0x00  /**< \brief IDºƒ¥Ê∆˜µÿ÷∑            */
-#define  __BMA253_REG_ACCD_X_LSB    0x02  /**< \brief X÷·µÕ◊÷Ω⁄ ˝æ›ºƒ¥Ê∆˜µÿ÷∑ */
-#define  __BMA253_REG_ACCD_X_MSB    0x03  /**< \brief X÷·∏ﬂ◊÷Ω⁄ ˝æ›ºƒ¥Ê∆˜µÿ÷∑ */
-#define  __BMA253_REG_ACCD_Y_LSB    0x04  /**< \brief Y÷·µÕ◊÷Ω⁄ ˝æ›ºƒ¥Ê∆˜µÿ÷∑ */
-#define  __BMA253_REG_ACCD_Y_MSB    0x05  /**< \brief Y÷·∏ﬂ◊÷Ω⁄ ˝æ›ºƒ¥Ê∆˜µÿ÷∑ */
-#define  __BMA253_REG_ACCD_Z_LSB    0x06  /**< \brief Z÷·µÕ◊÷Ω⁄ ˝æ›ºƒ¥Ê∆˜µÿ÷∑ */
-#define  __BMA253_REG_ACCD_Z_MSB    0x07  /**< \brief Z÷·∏ﬂ◊÷Ω⁄ ˝æ›ºƒ¥Ê∆˜µÿ÷∑ */
-#define  __BMA253_REG_ACCD_TEMP     0x08  /**< \brief Œ¬∂» ˝æ›ºƒ¥Ê∆˜µÿ÷∑      */
-#define  __BMA253_REG_INT_STATUS_0  0x09  /**< \brief ÷–∂œ◊¥Ã¨ºƒ¥Ê∆˜0µÿ÷∑     */
-#define  __BMA253_REG_INT_STATUS_1  0x0A  /**< \brief ÷–∂œ◊¥Ã¨ºƒ¥Ê∆˜1µÿ÷∑     */ 
-#define  __BMA253_REG_INT_STATUS_2  0x0B  /**< \brief ÷–∂œ◊¥Ã¨ºƒ¥Ê∆˜2µÿ÷∑     */ 
-#define  __BMA253_REG_INT_STATUS_3  0x0C  /**< \brief ÷–∂œ◊¥Ã¨ºƒ¥Ê∆˜3µÿ÷∑     */ 
-#define  __BMA253_REG_FIFO_STATUS   0x0E  /**< \brief FIFO◊¥Ã¨ºƒ¥Ê∆˜µÿ÷∑      */ 
-#define  __BMA253_REG_PMU_RANGE     0x0F  /**< \brief º”ÀŸ∂»∑∂Œßºƒ¥Ê∆˜µÿ÷∑    */ 
-#define  __BMA253_REG_PMU_BW        0x10  /**< \brief  ˝æ›¬À≤®¥¯øÌºƒ¥Ê∆˜µÿ÷∑  */
-#define  __BMA253_REG_PMU_LPW       0x11  /**< \brief µÕπ¶∫ƒ≈‰÷√ºƒ¥Ê∆˜µÿ÷∑    */ 
-#define  __BMA253_REG_PMU_LOW_POWER 0x12  /**< \brief µÕπ¶∫ƒƒ£ Ωºƒ¥Ê∆˜µÿ÷∑    */ 
-#define  __BMA253_REG_ACCD_HBW      0x13  /**< \brief  ˝æ› ‰≥ˆ∏Ò Ωºƒ¥Ê∆˜µÿ÷∑  */ 
-#define  __BMA253_REG_BGW_SOFTRESET 0x14  /**< \brief »Ìº˛∏¥Œªºƒ¥Ê∆˜µÿ÷∑      */
-#define  __BMA253_REG_INT_EN_0      0x16  /**< \brief ÷–∂œ πƒ‹ºƒ¥Ê∆˜0µÿ÷∑     */
-#define  __BMA253_REG_INT_EN_1      0x17  /**< \brief ÷–∂œ πƒ‹ºƒ¥Ê∆˜1µÿ÷∑     */
-#define  __BMA253_REG_INT_EN_2      0x18  /**< \brief ÷–∂œ πƒ‹ºƒ¥Ê∆˜2µÿ÷∑     */
-#define  __BMA253_REG_INT_MAP_0     0x19  /**< \brief ÷–∂œ–≈∫≈≈‰÷√ºƒ¥Ê∆˜0µÿ÷∑ */
-#define  __BMA253_REG_INT_MAP_1     0x1A  /**< \brief ÷–∂œ–≈∫≈≈‰÷√ºƒ¥Ê∆˜1µÿ÷∑ */
-#define  __BMA253_REG_INT_MAP_2     0x1B  /**< \brief ÷–∂œ–≈∫≈≈‰÷√ºƒ¥Ê∆˜2µÿ÷∑ */
-#define  __BMA253_REG_INT_SRC       0x1E  /**< \brief ÷–∂œ‘¥ºƒ¥Ê∆˜µÿ÷∑        */
-#define  __BMA253_REG_INT_OUT_CTRL  0x20  /**< \brief ÷–∂œ ‰≥ˆøÿ÷∆ºƒ¥Ê∆˜µÿ÷∑  */
-#define  __BMA253_REG_INT_RST_LATCH 0x21  /**< \brief ÷–∂œ∏¥Œªºƒ¥Ê∆˜µÿ÷∑      */
-#define  __BMA253_REG_INT_0         0x22  /**< \brief ÷–∂œ0ºƒ¥Ê∆˜µÿ÷∑         */
-#define  __BMA253_REG_INT_1         0x23  /**< \brief ÷–∂œ1ºƒ¥Ê∆˜µÿ÷∑         */
-#define  __BMA253_REG_INT_2         0x24  /**< \brief ÷–∂œ2ºƒ¥Ê∆˜µÿ÷∑         */
-#define  __BMA253_REG_INT_3         0x25  /**< \brief ÷–∂œ3ºƒ¥Ê∆˜µÿ÷∑         */
-#define  __BMA253_REG_INT_4         0x26  /**< \brief ÷–∂œ4ºƒ¥Ê∆˜µÿ÷∑         */
-#define  __BMA253_REG_INT_5         0x27  /**< \brief ÷–∂œ5ºƒ¥Ê∆˜µÿ÷∑         */
+#define  __BMA253_REG_BGW_CHIPID    0x00  /**< \brief IDÂØÑÂ≠òÂô®Âú∞ÂùÄ            */
+#define  __BMA253_REG_ACCD_X_LSB    0x02  /**< \brief XËΩ¥‰ΩéÂ≠óËäÇÊï∞ÊçÆÂØÑÂ≠òÂô®Âú∞ÂùÄ */
+#define  __BMA253_REG_ACCD_X_MSB    0x03  /**< \brief XËΩ¥È´òÂ≠óËäÇÊï∞ÊçÆÂØÑÂ≠òÂô®Âú∞ÂùÄ */
+#define  __BMA253_REG_ACCD_Y_LSB    0x04  /**< \brief YËΩ¥‰ΩéÂ≠óËäÇÊï∞ÊçÆÂØÑÂ≠òÂô®Âú∞ÂùÄ */
+#define  __BMA253_REG_ACCD_Y_MSB    0x05  /**< \brief YËΩ¥È´òÂ≠óËäÇÊï∞ÊçÆÂØÑÂ≠òÂô®Âú∞ÂùÄ */
+#define  __BMA253_REG_ACCD_Z_LSB    0x06  /**< \brief ZËΩ¥‰ΩéÂ≠óËäÇÊï∞ÊçÆÂØÑÂ≠òÂô®Âú∞ÂùÄ */
+#define  __BMA253_REG_ACCD_Z_MSB    0x07  /**< \brief ZËΩ¥È´òÂ≠óËäÇÊï∞ÊçÆÂØÑÂ≠òÂô®Âú∞ÂùÄ */
+#define  __BMA253_REG_ACCD_TEMP     0x08  /**< \brief Ê∏©Â∫¶Êï∞ÊçÆÂØÑÂ≠òÂô®Âú∞ÂùÄ      */
+#define  __BMA253_REG_INT_STATUS_0  0x09  /**< \brief ‰∏≠Êñ≠Áä∂ÊÄÅÂØÑÂ≠òÂô®0Âú∞ÂùÄ     */
+#define  __BMA253_REG_INT_STATUS_1  0x0A  /**< \brief ‰∏≠Êñ≠Áä∂ÊÄÅÂØÑÂ≠òÂô®1Âú∞ÂùÄ     */ 
+#define  __BMA253_REG_INT_STATUS_2  0x0B  /**< \brief ‰∏≠Êñ≠Áä∂ÊÄÅÂØÑÂ≠òÂô®2Âú∞ÂùÄ     */ 
+#define  __BMA253_REG_INT_STATUS_3  0x0C  /**< \brief ‰∏≠Êñ≠Áä∂ÊÄÅÂØÑÂ≠òÂô®3Âú∞ÂùÄ     */ 
+#define  __BMA253_REG_FIFO_STATUS   0x0E  /**< \brief FIFOÁä∂ÊÄÅÂØÑÂ≠òÂô®Âú∞ÂùÄ      */ 
+#define  __BMA253_REG_PMU_RANGE     0x0F  /**< \brief Âä†ÈÄüÂ∫¶ËåÉÂõ¥ÂØÑÂ≠òÂô®Âú∞ÂùÄ    */ 
+#define  __BMA253_REG_PMU_BW        0x10  /**< \brief Êï∞ÊçÆÊª§Ê≥¢Â∏¶ÂÆΩÂØÑÂ≠òÂô®Âú∞ÂùÄ  */
+#define  __BMA253_REG_PMU_LPW       0x11  /**< \brief ‰ΩéÂäüËÄóÈÖçÁΩÆÂØÑÂ≠òÂô®Âú∞ÂùÄ    */ 
+#define  __BMA253_REG_PMU_LOW_POWER 0x12  /**< \brief ‰ΩéÂäüËÄóÊ®°ÂºèÂØÑÂ≠òÂô®Âú∞ÂùÄ    */ 
+#define  __BMA253_REG_ACCD_HBW      0x13  /**< \brief Êï∞ÊçÆËæìÂá∫Ê†ºÂºèÂØÑÂ≠òÂô®Âú∞ÂùÄ  */ 
+#define  __BMA253_REG_BGW_SOFTRESET 0x14  /**< \brief ËΩØ‰ª∂Â§ç‰ΩçÂØÑÂ≠òÂô®Âú∞ÂùÄ      */
+#define  __BMA253_REG_INT_EN_0      0x16  /**< \brief ‰∏≠Êñ≠‰ΩøËÉΩÂØÑÂ≠òÂô®0Âú∞ÂùÄ     */
+#define  __BMA253_REG_INT_EN_1      0x17  /**< \brief ‰∏≠Êñ≠‰ΩøËÉΩÂØÑÂ≠òÂô®1Âú∞ÂùÄ     */
+#define  __BMA253_REG_INT_EN_2      0x18  /**< \brief ‰∏≠Êñ≠‰ΩøËÉΩÂØÑÂ≠òÂô®2Âú∞ÂùÄ     */
+#define  __BMA253_REG_INT_MAP_0     0x19  /**< \brief ‰∏≠Êñ≠‰ø°Âè∑ÈÖçÁΩÆÂØÑÂ≠òÂô®0Âú∞ÂùÄ */
+#define  __BMA253_REG_INT_MAP_1     0x1A  /**< \brief ‰∏≠Êñ≠‰ø°Âè∑ÈÖçÁΩÆÂØÑÂ≠òÂô®1Âú∞ÂùÄ */
+#define  __BMA253_REG_INT_MAP_2     0x1B  /**< \brief ‰∏≠Êñ≠‰ø°Âè∑ÈÖçÁΩÆÂØÑÂ≠òÂô®2Âú∞ÂùÄ */
+#define  __BMA253_REG_INT_SRC       0x1E  /**< \brief ‰∏≠Êñ≠Ê∫êÂØÑÂ≠òÂô®Âú∞ÂùÄ        */
+#define  __BMA253_REG_INT_OUT_CTRL  0x20  /**< \brief ‰∏≠Êñ≠ËæìÂá∫ÊéßÂà∂ÂØÑÂ≠òÂô®Âú∞ÂùÄ  */
+#define  __BMA253_REG_INT_RST_LATCH 0x21  /**< \brief ‰∏≠Êñ≠Â§ç‰ΩçÂØÑÂ≠òÂô®Âú∞ÂùÄ      */
+#define  __BMA253_REG_INT_0         0x22  /**< \brief ‰∏≠Êñ≠0ÂØÑÂ≠òÂô®Âú∞ÂùÄ         */
+#define  __BMA253_REG_INT_1         0x23  /**< \brief ‰∏≠Êñ≠1ÂØÑÂ≠òÂô®Âú∞ÂùÄ         */
+#define  __BMA253_REG_INT_2         0x24  /**< \brief ‰∏≠Êñ≠2ÂØÑÂ≠òÂô®Âú∞ÂùÄ         */
+#define  __BMA253_REG_INT_3         0x25  /**< \brief ‰∏≠Êñ≠3ÂØÑÂ≠òÂô®Âú∞ÂùÄ         */
+#define  __BMA253_REG_INT_4         0x26  /**< \brief ‰∏≠Êñ≠4ÂØÑÂ≠òÂô®Âú∞ÂùÄ         */
+#define  __BMA253_REG_INT_5         0x27  /**< \brief ‰∏≠Êñ≠5ÂØÑÂ≠òÂô®Âú∞ÂùÄ         */
 
-#define  __BMA253_REG_INT_6         0x28  /**< \brief ÷–∂œ6ºƒ¥Ê∆˜µÿ÷∑         */
-#define  __BMA253_REG_INT_7         0x29  /**< \brief ÷–∂œ7ºƒ¥Ê∆˜µÿ÷∑         */
-#define  __BMA253_REG_INT_8         0x2A  /**< \brief ÷–∂œ8ºƒ¥Ê∆˜µÿ÷∑         */
-#define  __BMA253_REG_INT_9         0x2B  /**< \brief ÷–∂œ9ºƒ¥Ê∆˜µÿ÷∑         */
-#define  __BMA253_REG_INT_A         0x2C  /**< \brief ÷–∂œAºƒ¥Ê∆˜µÿ÷∑         */
-#define  __BMA253_REG_INT_B         0x2D  /**< \brief ÷–∂œBºƒ¥Ê∆˜µÿ÷∑         */
-#define  __BMA253_REG_INT_C         0x2E  /**< \brief ÷–∂œCºƒ¥Ê∆˜µÿ÷∑         */
-#define  __BMA253_REG_INT_D         0x2F  /**< \brief ÷–∂œDºƒ¥Ê∆˜µÿ÷∑         */
-#define  __BMA253_REG_FIFO_CONFIG_0 0x30  /**< \brief FIFO≈‰÷√ºƒ¥Ê∆˜0µÿ÷∑     */
-#define  __BMA253_REG_PMU_SELF_TEST 0x32  /**< \brief ◊‘ºÏ≤‚ ‘ºƒ¥Ê∆˜µÿ÷∑      */
-#define  __BMA253_REG_TRIM_NVM_CTRL 0x33  /**< \brief ƒ⁄¥Êøÿ÷∆ºƒ¥Ê∆˜µÿ÷∑      */
-#define  __BMA253_REG_BGW_SPI3_WDT  0x34  /**< \brief  ˝◊÷Ω”ø⁄ºƒ¥Ê∆˜µÿ÷∑      */
-#define  __BMA253_REG_OFC_CTRL      0x36  /**< \brief OFCøÿ÷∆ºƒ¥Ê∆˜µÿ÷∑       */
-#define  __BMA253_REG_OFC_SETTING   0x37  /**< \brief OFC…Ë÷√ºƒ¥Ê∆˜µÿ÷∑       */
-#define  __BMA253_REG_OFC_OFFSET_X  0x38  /**< \brief X÷·∆´≤Óºƒ¥Ê∆˜µÿ÷∑       */
-#define  __BMA253_REG_OFC_OFFSET_Y  0x39  /**< \brief Y÷·∆´≤Óºƒ¥Ê∆˜µÿ÷∑       */
-#define  __BMA253_REG_OFC_OFFSET_Z  0x3A  /**< \brief Z÷·∆´≤Óºƒ¥Ê∆˜µÿ÷∑       */
-#define  __BMA253_REG_TRIM_GP0      0x3B  /**< \brief ±∏∑›Õ®”√ºƒ¥Ê∆˜0µÿ÷∑     */
-#define  __BMA253_REG_TRIM_GP1      0x3C  /**< \brief ±∏∑›Õ®”√ºƒ¥Ê∆˜1µÿ÷∑     */
-#define  __BMA253_REG_FIFO_CONFIG_1 0x3E  /**< \brief FIFO≈‰÷√ºƒ¥Ê∆˜1µÿ÷∑     */
-#define  __BMA253_REG_FIFO_DATA     0x3F  /**< \brief FIFO ˝æ›ºƒ¥Ê∆˜µÿ÷∑      */
+#define  __BMA253_REG_INT_6         0x28  /**< \brief ‰∏≠Êñ≠6ÂØÑÂ≠òÂô®Âú∞ÂùÄ         */
+#define  __BMA253_REG_INT_7         0x29  /**< \brief ‰∏≠Êñ≠7ÂØÑÂ≠òÂô®Âú∞ÂùÄ         */
+#define  __BMA253_REG_INT_8         0x2A  /**< \brief ‰∏≠Êñ≠8ÂØÑÂ≠òÂô®Âú∞ÂùÄ         */
+#define  __BMA253_REG_INT_9         0x2B  /**< \brief ‰∏≠Êñ≠9ÂØÑÂ≠òÂô®Âú∞ÂùÄ         */
+#define  __BMA253_REG_INT_A         0x2C  /**< \brief ‰∏≠Êñ≠AÂØÑÂ≠òÂô®Âú∞ÂùÄ         */
+#define  __BMA253_REG_INT_B         0x2D  /**< \brief ‰∏≠Êñ≠BÂØÑÂ≠òÂô®Âú∞ÂùÄ         */
+#define  __BMA253_REG_INT_C         0x2E  /**< \brief ‰∏≠Êñ≠CÂØÑÂ≠òÂô®Âú∞ÂùÄ         */
+#define  __BMA253_REG_INT_D         0x2F  /**< \brief ‰∏≠Êñ≠DÂØÑÂ≠òÂô®Âú∞ÂùÄ         */
+#define  __BMA253_REG_FIFO_CONFIG_0 0x30  /**< \brief FIFOÈÖçÁΩÆÂØÑÂ≠òÂô®0Âú∞ÂùÄ     */
+#define  __BMA253_REG_PMU_SELF_TEST 0x32  /**< \brief Ëá™Ê£ÄÊµãËØïÂØÑÂ≠òÂô®Âú∞ÂùÄ      */
+#define  __BMA253_REG_TRIM_NVM_CTRL 0x33  /**< \brief ÂÜÖÂ≠òÊéßÂà∂ÂØÑÂ≠òÂô®Âú∞ÂùÄ      */
+#define  __BMA253_REG_BGW_SPI3_WDT  0x34  /**< \brief Êï∞Â≠óÊé•Âè£ÂØÑÂ≠òÂô®Âú∞ÂùÄ      */
+#define  __BMA253_REG_OFC_CTRL      0x36  /**< \brief OFCÊéßÂà∂ÂØÑÂ≠òÂô®Âú∞ÂùÄ       */
+#define  __BMA253_REG_OFC_SETTING   0x37  /**< \brief OFCËÆæÁΩÆÂØÑÂ≠òÂô®Âú∞ÂùÄ       */
+#define  __BMA253_REG_OFC_OFFSET_X  0x38  /**< \brief XËΩ¥ÂÅèÂ∑ÆÂØÑÂ≠òÂô®Âú∞ÂùÄ       */
+#define  __BMA253_REG_OFC_OFFSET_Y  0x39  /**< \brief YËΩ¥ÂÅèÂ∑ÆÂØÑÂ≠òÂô®Âú∞ÂùÄ       */
+#define  __BMA253_REG_OFC_OFFSET_Z  0x3A  /**< \brief ZËΩ¥ÂÅèÂ∑ÆÂØÑÂ≠òÂô®Âú∞ÂùÄ       */
+#define  __BMA253_REG_TRIM_GP0      0x3B  /**< \brief Â§á‰ªΩÈÄöÁî®ÂØÑÂ≠òÂô®0Âú∞ÂùÄ     */
+#define  __BMA253_REG_TRIM_GP1      0x3C  /**< \brief Â§á‰ªΩÈÄöÁî®ÂØÑÂ≠òÂô®1Âú∞ÂùÄ     */
+#define  __BMA253_REG_FIFO_CONFIG_1 0x3E  /**< \brief FIFOÈÖçÁΩÆÂØÑÂ≠òÂô®1Âú∞ÂùÄ     */
+#define  __BMA253_REG_FIFO_DATA     0x3F  /**< \brief FIFOÊï∞ÊçÆÂØÑÂ≠òÂô®Âú∞ÂùÄ      */
 
-#define  __BMA253_MY_ID             0XFA  /**< \brief ID÷µ                    */
+#define  __BMA253_MY_ID             0XFA  /**< \brief IDÂÄº                    */
 
-/** \brief …Ë÷√≤…—˘∑∂Œß */
-#define  __BMA253_RANGE_SET_2G      0X03  /**< \brief …Ë÷√≤…—˘∑∂ŒßŒ™°¿2G      */
-#define  __BMA253_RANGE_SET_4G      0X05  /**< \brief …Ë÷√≤…—˘∑∂ŒßŒ™°¿4G      */
-#define  __BMA253_RANGE_SET_8G      0X08  /**< \brief …Ë÷√≤…—˘∑∂ŒßŒ™°¿8G      */
-#define  __BMA253_RANGE_SET_16G     0X0C  /**< \brief …Ë÷√≤…—˘∑∂ŒßŒ™°¿16G     */
+/** \brief ËÆæÁΩÆÈááÊ†∑ËåÉÂõ¥ */
+#define  __BMA253_RANGE_SET_2G      0X03  /**< \brief ËÆæÁΩÆÈááÊ†∑ËåÉÂõ¥‰∏∫¬±2G      */
+#define  __BMA253_RANGE_SET_4G      0X05  /**< \brief ËÆæÁΩÆÈááÊ†∑ËåÉÂõ¥‰∏∫¬±4G      */
+#define  __BMA253_RANGE_SET_8G      0X08  /**< \brief ËÆæÁΩÆÈááÊ†∑ËåÉÂõ¥‰∏∫¬±8G      */
+#define  __BMA253_RANGE_SET_16G     0X0C  /**< \brief ËÆæÁΩÆÈááÊ†∑ËåÉÂõ¥‰∏∫¬±16G     */
 
-/** \brief ÷–∂œ¥•∑¢≈‰÷√ */
-#define  __BMA253_TRIGGER_READ  (1 << 4)  /**< \brief  πƒ‹ ˝æ›ø…∂¡¥•∑¢        */
-#define  __BMA253_TRIGGER_CLOSE (0 << 4)  /**< \brief Ω˚ƒ‹ ˝æ›ø…∂¡¥•∑¢        */
-#define  __BMA253_EN_INT1_PIN   (1 << 0)  /**< \brief  πƒ‹÷–∂œ1“˝Ω≈           */
-#define  __BMA253_INT_CTRL      (1 << 0)  /**< \brief ≈‰÷√Œ™Õ∆ÕÏ ‰≥ˆ£¨∏ﬂµÁ∆Ω  */
-#define  __BMA253_INT_CLEAR     (1 << 7)  /**< \brief «Â≥˝÷–∂œ                */
+/** \brief ‰∏≠Êñ≠Ëß¶ÂèëÈÖçÁΩÆ */
+#define  __BMA253_TRIGGER_READ  (1 << 4)  /**< \brief ‰ΩøËÉΩÊï∞ÊçÆÂèØËØªËß¶Âèë        */
+#define  __BMA253_TRIGGER_CLOSE (0 << 4)  /**< \brief Á¶ÅËÉΩÊï∞ÊçÆÂèØËØªËß¶Âèë        */
+#define  __BMA253_EN_INT1_PIN   (1 << 0)  /**< \brief ‰ΩøËÉΩ‰∏≠Êñ≠1ÂºïËÑö           */
+#define  __BMA253_INT_CTRL      (1 << 0)  /**< \brief ÈÖçÁΩÆ‰∏∫Êé®ÊåΩËæìÂá∫ÔºåÈ´òÁîµÂπ≥  */
+#define  __BMA253_INT_CLEAR     (1 << 7)  /**< \brief Ê∏ÖÈô§‰∏≠Êñ≠                */
 
-/** \brief Ω´¡Ω∏ˆint8◊™ªªŒ™“ª∏ˆint16_t¿‡–Õ */
+/** \brief Â∞Ü‰∏§‰∏™int8ËΩ¨Êç¢‰∏∫‰∏Ä‰∏™int16_tÁ±ªÂûã */
 #define  __BMA253_UINT8_TO_UINT16(buff) \
                        (int16_t)(((int8_t)(buff[1]) << 4) \
                                | ((int8_t)(buff[0]) >> 4))
-/** \brief º∆À„Œ¬∂»,≤¢¿©¥Û10^6±∂ */
+/** \brief ËÆ°ÁÆóÊ∏©Â∫¶,Âπ∂Êâ©Â§ß10^6ÂÄç */
 #define  __BMA253_GET_TEMP_VALUE(data) ((int32_t)((23 + \
                                           ((int8_t)(data[0]) >> 1)) * 1000000))
 
-/** \brief º∆À„º”ÀŸ∂»,≤¢¿©¥Û10^6±∂ */
-/** \brief ≤…—˘∑∂ŒßŒ™°¿2G */
+/** \brief ËÆ°ÁÆóÂä†ÈÄüÂ∫¶,Âπ∂Êâ©Â§ß10^6ÂÄç */
+/** \brief ÈááÊ†∑ËåÉÂõ¥‰∏∫¬±2G */
 #define  __BMA253_GET_ACCEL_VALUE_2G(data)  ((int32_t)(data * 9800))
-/** \brief ≤…—˘∑∂ŒßŒ™°¿4G */
+/** \brief ÈááÊ†∑ËåÉÂõ¥‰∏∫¬±4G */
 #define  __BMA253_GET_ACCEL_VALUE_4G(data)  ((int32_t)(data * 19500))
-/** \brief ≤…—˘∑∂ŒßŒ™°¿8G */
+/** \brief ÈááÊ†∑ËåÉÂõ¥‰∏∫¬±8G */
 #define  __BMA253_GET_ACCEL_VALUE_8G(data)  ((int32_t)(data * 39100))
-/** \brief ≤…—˘∑∂ŒßŒ™°¿16G */
+/** \brief ÈááÊ†∑ËåÉÂõ¥‰∏∫¬±16G */
 #define  __BMA253_GET_ACCEL_VALUE_16G(data) ((int32_t)(data * 78100))
 
 /*******************************************************************************
- * ±æµÿ∫Ø ˝…˘√˜
+ * Êú¨Âú∞ÂáΩÊï∞Â£∞Êòé
  ******************************************************************************/
-/** \brief ªÒ»°∏√¥´∏–∆˜ƒ≥“ªÕ®µ¿µƒ¿‡–Õ */
+/** \brief Ëé∑ÂèñËØ•‰º†ÊÑüÂô®Êüê‰∏ÄÈÄöÈÅìÁöÑÁ±ªÂûã */
 am_local am_err_t __pfn_type_get (void *p_drv, int id);
 
-/** \brief ªÒ»°¥´∏–∆˜Õ®µ¿≤…—˘ ˝æ› */
+/** \brief Ëé∑Âèñ‰º†ÊÑüÂô®ÈÄöÈÅìÈááÊ†∑Êï∞ÊçÆ */
 am_local am_err_t __pfn_data_get (void            *p_drv,
                                   const int       *p_ids,
                                   int              num,
                                   am_sensor_val_t *p_buf);
 
-/** \brief  πƒ‹¥´∏–∆˜Õ®µ¿ */
+/** \brief ‰ΩøËÉΩ‰º†ÊÑüÂô®ÈÄöÈÅì */
 am_local am_err_t __pfn_enable (void            *p_drv,
                                 const int       *p_ids,
                                 int              num,
                                 am_sensor_val_t *p_result);
 
-/** \brief Ω˚ƒ‹¥´∏–∆˜Õ®µ¿ */
+/** \brief Á¶ÅËÉΩ‰º†ÊÑüÂô®ÈÄöÈÅì */
 am_local am_err_t __pfn_disable (void            *p_drv,
                                  const int       *p_ids,
                                  int              num,
                                  am_sensor_val_t *p_result);
 
-/** \brief ≈‰÷√¥´∏–∆˜Õ®µ¿ Ù–‘ */
+/** \brief ÈÖçÁΩÆ‰º†ÊÑüÂô®ÈÄöÈÅìÂ±ûÊÄß */
 am_local am_err_t __pfn_attr_set (void                  *p_drv,
                                   int                    id,
                                   int                    attr,
                                   const am_sensor_val_t *p_val);
 
-/** \brief ªÒ»°¥´∏–∆˜Õ®µ¿ Ù–‘ */
+/** \brief Ëé∑Âèñ‰º†ÊÑüÂô®ÈÄöÈÅìÂ±ûÊÄß */
 am_local am_err_t __pfn_attr_get (void            *p_drv,
                                   int              id,
                                   int              attr,
                                   am_sensor_val_t *p_val);
 
-/** \brief …Ë÷√¥•∑¢£¨“ª∏ˆÕ®µ¿Ωˆƒ‹…Ë÷√“ª∏ˆ¥•∑¢ªÿµ˜∫Ø ˝ */
+/** \brief ËÆæÁΩÆËß¶ÂèëÔºå‰∏Ä‰∏™ÈÄöÈÅì‰ªÖËÉΩËÆæÁΩÆ‰∏Ä‰∏™Ëß¶ÂèëÂõûË∞ÉÂáΩÊï∞ */
 am_local am_err_t __pfn_trigger_cfg (void                   *p_drv,
                                      int                     id,
                                      uint32_t                flags,
                                      am_sensor_trigger_cb_t  pfn_cb,
                                      void                   *p_arg);
 
-/** \brief ¥Úø™¥•∑¢ */
+/** \brief ÊâìÂºÄËß¶Âèë */
 am_local am_err_t __pfn_trigger_on (void *p_drv, int id);
 
-/** \brief πÿ±’¥•∑¢ */
+/** \brief ÂÖ≥Èó≠Ëß¶Âèë */
 am_local am_err_t __pfn_trigger_off (void *p_drv, int id);
                                   
-/** \brief ¥´∏–∆˜±Í◊º∑˛ŒÒ */
+/** \brief ‰º†ÊÑüÂô®Ê†áÂáÜÊúçÂä° */
 am_local am_const struct am_sensor_drv_funcs __g_sensor_bma253_funcs = {
         __pfn_type_get,
         __pfn_data_get,
@@ -182,7 +182,7 @@ am_local am_const struct am_sensor_drv_funcs __g_sensor_bma253_funcs = {
   Local functions
 *******************************************************************************/
 /**
- * \brief BMA253 –¥ ˝æ›
+ * \brief BMA253 ÂÜôÊï∞ÊçÆ
  */
 am_local am_err_t __bma253_write (am_sensor_bma253_dev_t *p_this,
                                   uint32_t                subaddr,
@@ -193,7 +193,7 @@ am_local am_err_t __bma253_write (am_sensor_bma253_dev_t *p_this,
 }
 
 /**
- * \brief BMA253 ∂¡ ˝æ›
+ * \brief BMA253 ËØªÊï∞ÊçÆ
  */
 am_local am_err_t __bma253_read (am_sensor_bma253_dev_t *p_this,
                                  uint32_t                subaddr,
@@ -204,7 +204,7 @@ am_local am_err_t __bma253_read (am_sensor_bma253_dev_t *p_this,
 }
 
 /**
- * \brief ∏˘æ›¡ø≥ÃΩ´Ω·π˚◊™ªª≥…º”ÀŸ∂» µº ÷µ
+ * \brief Ê†πÊçÆÈáèÁ®ãÂ∞ÜÁªìÊûúËΩ¨Êç¢ÊàêÂä†ÈÄüÂ∫¶ÂÆûÈôÖÂÄº
  */
 am_local int32_t __bma253_get_accel_value (am_sensor_bma253_dev_t* p_this,
                                            int32_t                data)
@@ -234,15 +234,15 @@ am_local int32_t __bma253_get_accel_value (am_sensor_bma253_dev_t* p_this,
     return real_data;
 }
 
-/** \breif ÷–∂œªÿµ˜∫Ø ˝ */
+/** \breif ‰∏≠Êñ≠ÂõûË∞ÉÂáΩÊï∞ */
 am_local void __bma253_alarm_callback (void *p_arg)
 {
     am_sensor_bma253_dev_t* p_this = (am_sensor_bma253_dev_t*)p_arg;
 
-    am_isr_defer_job_add(&p_this->g_myjob);   /*< \brief ÃÌº”÷–∂œ—”≥Ÿ¥¶¿Ì»ŒŒÒ */
+    am_isr_defer_job_add(&p_this->g_myjob);   /*< \brief Ê∑ªÂä†‰∏≠Êñ≠Âª∂ËøüÂ§ÑÁêÜ‰ªªÂä° */
 }
 
-/** \breif ÷–∂œ—”≥Ÿ∫Ø ˝ */
+/** \breif ‰∏≠Êñ≠Âª∂ËøüÂáΩÊï∞ */
 am_local void __am_pfnvoid_t (void *p_arg)
 {
     am_sensor_bma253_dev_t* p_this = (am_sensor_bma253_dev_t*)p_arg;
@@ -251,39 +251,39 @@ am_local void __am_pfnvoid_t (void *p_arg)
     int32_t tem_data   = 0;
     uint8_t i = 0;
     
-    /** \brief ªÒ»°X÷·º”ÀŸ∂» */
+    /** \brief Ëé∑ÂèñXËΩ¥Âä†ÈÄüÂ∫¶ */
     __bma253_read(p_this, __BMA253_REG_ACCD_X_LSB, reg_data, 2);
     
     tem_data = __BMA253_UINT8_TO_UINT16(reg_data);
     
-    /** \brief X÷·º”ÀŸ∂» */
+    /** \brief XËΩ¥Âä†ÈÄüÂ∫¶ */
     p_this->data[0].val = __bma253_get_accel_value(p_this,tem_data); 
-    p_this->data[0].unit = AM_SENSOR_UNIT_MICRO;/*< \brief µ•Œªƒ¨»œŒ™0:10^(-6)*/
+    p_this->data[0].unit = AM_SENSOR_UNIT_MICRO;/*< \brief Âçï‰ΩçÈªòËÆ§‰∏∫0:10^(-6)*/
 
-    /** \brief ªÒ»°Y÷·º”ÀŸ∂» */
+    /** \brief Ëé∑ÂèñYËΩ¥Âä†ÈÄüÂ∫¶ */
     __bma253_read(p_this, __BMA253_REG_ACCD_Y_LSB, reg_data, 2);
 
     tem_data = __BMA253_UINT8_TO_UINT16(reg_data);
    
-    /** \brief Y÷·º”ÀŸ∂» */
+    /** \brief YËΩ¥Âä†ÈÄüÂ∫¶ */
     p_this->data[1].val = __bma253_get_accel_value(p_this,tem_data);
-    p_this->data[1].unit = AM_SENSOR_UNIT_MICRO;/*< \brief µ•Œªƒ¨»œŒ™0:10^(-6)*/
+    p_this->data[1].unit = AM_SENSOR_UNIT_MICRO;/*< \brief Âçï‰ΩçÈªòËÆ§‰∏∫0:10^(-6)*/
 
-    /** \brief ªÒ»°Z÷·º”ÀŸ∂» */
+    /** \brief Ëé∑ÂèñZËΩ¥Âä†ÈÄüÂ∫¶ */
     __bma253_read(p_this, __BMA253_REG_ACCD_Z_LSB, reg_data, 2);
     
     tem_data = __BMA253_UINT8_TO_UINT16(reg_data);
    
-    /** \brief Z÷·º”ÀŸ∂» */
+    /** \brief ZËΩ¥Âä†ÈÄüÂ∫¶ */
     p_this->data[2].val = __bma253_get_accel_value(p_this,tem_data); 
-    p_this->data[2].unit = AM_SENSOR_UNIT_MICRO;/*< \brief µ•Œªƒ¨»œŒ™0:10^(-6)*/
+    p_this->data[2].unit = AM_SENSOR_UNIT_MICRO;/*< \brief Âçï‰ΩçÈªòËÆ§‰∏∫0:10^(-6)*/
 
-    /** \brief ªÒ»°Œ¬∂» */
+    /** \brief Ëé∑ÂèñÊ∏©Â∫¶ */
     __bma253_read(p_this, __BMA253_REG_ACCD_TEMP, reg_data, 1);
 
-    /** \brief Œ¬∂» */
+    /** \brief Ê∏©Â∫¶ */
     p_this->data[3].val = __BMA253_GET_TEMP_VALUE(reg_data); 
-    p_this->data[3].unit = AM_SENSOR_UNIT_MICRO;/*< \brief µ•Œªƒ¨»œŒ™0:10^(-6)*/    
+    p_this->data[3].unit = AM_SENSOR_UNIT_MICRO;/*< \brief Âçï‰ΩçÈªòËÆ§‰∏∫0:10^(-6)*/    
     
     for (i = 0; i < 4; i++) {
         if (p_this->pfn_trigger_cb[i] &&
@@ -294,7 +294,7 @@ am_local void __am_pfnvoid_t (void *p_arg)
     }
 }
 
-/** \brief ªÒ»°∏√¥´∏–∆˜ƒ≥“ªÕ®µ¿µƒ¿‡–Õ */
+/** \brief Ëé∑ÂèñËØ•‰º†ÊÑüÂô®Êüê‰∏ÄÈÄöÈÅìÁöÑÁ±ªÂûã */
 am_local am_err_t __pfn_type_get (void *p_drv, int id)
 {
     if (p_drv == NULL) {
@@ -311,7 +311,7 @@ am_local am_err_t __pfn_type_get (void *p_drv, int id)
     }
 }
 
-/** \brief ªÒ»°¥´∏–∆˜Õ®µ¿≤…—˘ ˝æ› */
+/** \brief Ëé∑Âèñ‰º†ÊÑüÂô®ÈÄöÈÅìÈááÊ†∑Êï∞ÊçÆ */
 am_local am_err_t __pfn_data_get (void            *p_drv,
                                   const int       *p_ids,
                                   int              num,
@@ -338,10 +338,10 @@ am_local am_err_t __pfn_data_get (void            *p_drv,
         p_buf[i].unit = AM_SENSOR_UNIT_INVALID;
     }
 
-    /* »ÙŒ™1£¨‘Úø…ƒ‹‘⁄ ˝æ›◊º±∏æÕ–˜¥•∑¢ªÿµ˜∫Ø ˝÷– π”√ */
+    /* Ëã•‰∏∫1ÔºåÂàôÂèØËÉΩÂú®Êï∞ÊçÆÂáÜÂ§áÂ∞±Áª™Ëß¶ÂèëÂõûË∞ÉÂáΩÊï∞‰∏≠‰ΩøÁî® */
     if (num == 1) {
         cur_id = p_ids[0];
-        /* »Ù¥Úø™ ˝æ›◊º±∏æÕ–˜¥•∑¢∑Ω Ω£¨‘Ú÷±Ω”∏≥÷µ */
+        /* Ëã•ÊâìÂºÄÊï∞ÊçÆÂáÜÂ§áÂ∞±Áª™Ëß¶ÂèëÊñπÂºèÔºåÂàôÁõ¥Êé•ËµãÂÄº */
         if ((AM_BIT_GET(p_this->trigger, 4)) &&
                 ((p_this->flags[0] & AM_SENSOR_TRIGGER_DATA_READY) ||
                  (p_this->flags[1] & AM_SENSOR_TRIGGER_DATA_READY) ||
@@ -360,7 +360,7 @@ am_local am_err_t __pfn_data_get (void            *p_drv,
         if (cur_id == 0) {
 
             do {
-                /** \brief ªÒ»°X÷·º”ÀŸ∂» */
+                /** \brief Ëé∑ÂèñXËΩ¥Âä†ÈÄüÂ∫¶ */
                 ret = __bma253_read(p_this, __BMA253_REG_ACCD_X_LSB, reg_data, 2);
                 if (ret != AM_OK) {
                     return ret;
@@ -369,14 +369,14 @@ am_local am_err_t __pfn_data_get (void            *p_drv,
             
             tem_data = __BMA253_UINT8_TO_UINT16(reg_data);
 
-            /** \brief X÷·º”ÀŸ∂» */
+            /** \brief XËΩ¥Âä†ÈÄüÂ∫¶ */
             p_buf[i].val = __bma253_get_accel_value(p_this,tem_data); 
-            p_buf[i].unit = AM_SENSOR_UNIT_MICRO;/*< \brief µ•Œªƒ¨»œŒ™0:10^(-6)*/
+            p_buf[i].unit = AM_SENSOR_UNIT_MICRO;/*< \brief Âçï‰ΩçÈªòËÆ§‰∏∫0:10^(-6)*/
 
         } else if (cur_id == 1) {
 
             do {
-                /** \brief ªÒ»°Y÷·º”ÀŸ∂» */
+                /** \brief Ëé∑ÂèñYËΩ¥Âä†ÈÄüÂ∫¶ */
                 ret = __bma253_read(p_this, __BMA253_REG_ACCD_Y_LSB, reg_data, 2);
                 if (ret != AM_OK) {
                     return ret;
@@ -385,14 +385,14 @@ am_local am_err_t __pfn_data_get (void            *p_drv,
             
             tem_data = __BMA253_UINT8_TO_UINT16(reg_data);
            
-            /** \brief Y÷·º”ÀŸ∂» */
+            /** \brief YËΩ¥Âä†ÈÄüÂ∫¶ */
             p_buf[i].val = __bma253_get_accel_value(p_this,tem_data);
-            p_buf[i].unit = AM_SENSOR_UNIT_MICRO;/*< \brief µ•Œªƒ¨»œŒ™0:10^(-6)*/
+            p_buf[i].unit = AM_SENSOR_UNIT_MICRO;/*< \brief Âçï‰ΩçÈªòËÆ§‰∏∫0:10^(-6)*/
 
         } else if (cur_id == 2) {
             
             do {
-                /** \brief ªÒ»°Z÷·º”ÀŸ∂» */
+                /** \brief Ëé∑ÂèñZËΩ¥Âä†ÈÄüÂ∫¶ */
                 ret = __bma253_read(p_this, __BMA253_REG_ACCD_Z_LSB, reg_data, 2);
                 if (ret != AM_OK) {
                     return ret;
@@ -401,31 +401,31 @@ am_local am_err_t __pfn_data_get (void            *p_drv,
             
             tem_data = __BMA253_UINT8_TO_UINT16(reg_data);
          
-            /** \brief Z÷·º”ÀŸ∂» */
+            /** \brief ZËΩ¥Âä†ÈÄüÂ∫¶ */
             p_buf[i].val = __bma253_get_accel_value(p_this,tem_data);
-            p_buf[i].unit = AM_SENSOR_UNIT_MICRO;/*< \brief µ•Œªƒ¨»œŒ™0:10^(-6)*/
+            p_buf[i].unit = AM_SENSOR_UNIT_MICRO;/*< \brief Âçï‰ΩçÈªòËÆ§‰∏∫0:10^(-6)*/
 
         } else if (cur_id == 3) {
 
-            /** \brief ªÒ»°Œ¬∂» */
+            /** \brief Ëé∑ÂèñÊ∏©Â∫¶ */
             ret = __bma253_read(p_this, __BMA253_REG_ACCD_TEMP, reg_data, 1);
             if (ret != AM_OK) {
                 return ret;
             }
             
-            /** \brief Œ¬∂» */
+            /** \brief Ê∏©Â∫¶ */
             p_buf[i].val = __BMA253_GET_TEMP_VALUE(reg_data); 
-            p_buf[i].unit = AM_SENSOR_UNIT_MICRO; /*< \brief µ•Œªƒ¨»œŒ™0:10^(-6)*/
+            p_buf[i].unit = AM_SENSOR_UNIT_MICRO; /*< \brief Âçï‰ΩçÈªòËÆ§‰∏∫0:10^(-6)*/
 
         } else {
-            return -AM_ENODEV;  /*< \brief »Ù¥À¥ŒÕ®µ¿≤ª Ù”⁄∏√¥´∏–∆˜£¨÷±Ω”∑µªÿ */
+            return -AM_ENODEV;  /*< \brief Ëã•Ê≠§Ê¨°ÈÄöÈÅì‰∏çÂ±û‰∫éËØ•‰º†ÊÑüÂô®ÔºåÁõ¥Êé•ËøîÂõû */
         }
     }
     
     return ret;
 }
 
-/** \brief  πƒ‹¥´∏–∆˜Õ®µ¿ */
+/** \brief ‰ΩøËÉΩ‰º†ÊÑüÂô®ÈÄöÈÅì */
 am_local am_err_t __pfn_enable (void            *p_drv,
                                 const int       *p_ids,
                                 int              num,
@@ -454,7 +454,7 @@ am_local am_err_t __pfn_enable (void            *p_drv,
                 p_result[i].val = AM_OK;
             }
             
-            /* …Ë÷√Õ®µ¿ πƒ‹±Í÷æŒª */
+            /* ËÆæÁΩÆÈÄöÈÅì‰ΩøËÉΩÊ†áÂøó‰Ωç */
             AM_BIT_SET(p_this->trigger, 14 - cur_id);
             ret = AM_OK;
             
@@ -466,7 +466,7 @@ am_local am_err_t __pfn_enable (void            *p_drv,
         }
     }
 
-    if (ret != AM_OK) {    /**< \breif »Áπ˚±æ¥Œ√ª”–∏√¥´∏–∆˜µƒÕ®µ¿¥´»Î£¨‘ÚÕÀ≥ˆ */
+    if (ret != AM_OK) {    /**< \breif Â¶ÇÊûúÊú¨Ê¨°Ê≤°ÊúâËØ•‰º†ÊÑüÂô®ÁöÑÈÄöÈÅì‰º†ÂÖ•ÔºåÂàôÈÄÄÂá∫ */
         return curent_ret;
     }
 
@@ -475,18 +475,18 @@ am_local am_err_t __pfn_enable (void            *p_drv,
     }  
 
     if (p_this->sam_range.val == 0) {
-        /* ƒ¨»œ¡ø≥ÃŒ™°¿2G */
+        /* ÈªòËÆ§ÈáèÁ®ã‰∏∫¬±2G */
         p_this->sam_range.val  = 2;    
         p_this->sam_range.unit = AM_SENSOR_UNIT_BASE;
     }
 
-    /* ≈‰÷√¬À≤®¥¯øÌ */
+    /* ÈÖçÁΩÆÊª§Ê≥¢Â∏¶ÂÆΩ */
     ret = __bma253_write(p_this, __BMA253_REG_PMU_BW, &pmu_bw, 1);
     if (ret != AM_OK) {
         curent_ret = ret;
     }
     
-    /* ≈‰÷√µÁ‘¥ƒ£ Ω°¢ÀØ√ﬂ÷‹∆⁄ */
+    /* ÈÖçÁΩÆÁîµÊ∫êÊ®°Âºè„ÄÅÁù°Áú†Âë®Êúü */
     ret = __bma253_write(p_this, __BMA253_REG_PMU_LPW, &pmu_lpw, 1);
     if (ret != AM_OK) {
         curent_ret = ret;
@@ -494,7 +494,7 @@ am_local am_err_t __pfn_enable (void            *p_drv,
     return curent_ret;
 }
 
-/** \brief Ω˚ƒ‹¥´∏–∆˜Õ®µ¿ */
+/** \brief Á¶ÅËÉΩ‰º†ÊÑüÂô®ÈÄöÈÅì */
 am_local am_err_t __pfn_disable (void            *p_drv,
                                  const int       *p_ids,
                                  int              num,
@@ -518,7 +518,7 @@ am_local am_err_t __pfn_disable (void            *p_drv,
 
         if (cur_id == 0 || cur_id == 1 || cur_id == 2 ||cur_id == 3) {
 
-            /* «Â≥˝ πƒ‹±Í÷æŒª */
+            /* Ê∏ÖÈô§‰ΩøËÉΩÊ†áÂøó‰Ωç */
             AM_BIT_CLR(p_this->trigger, 14 - cur_id);
             ret = AM_OK;
 
@@ -545,7 +545,7 @@ am_local am_err_t __pfn_disable (void            *p_drv,
 }
 
 /*
- * \brief ≈‰÷√—°‘Ò¡ø≥Ã
+ * \brief ÈÖçÁΩÆÈÄâÊã©ÈáèÁ®ã
  */
 am_local am_err_t  __reg_attr_range_set (am_sensor_bma253_dev_t *p_this, 
                                          uint8_t                 range)
@@ -571,7 +571,7 @@ am_local am_err_t  __reg_attr_range_set (am_sensor_bma253_dev_t *p_this,
      return __bma253_write(p_this, __BMA253_REG_PMU_RANGE, &range_cfg, 1);
 }
 
-/** \brief ≈‰÷√¥´∏–∆˜Õ®µ¿ Ù–‘ */
+/** \brief ÈÖçÁΩÆ‰º†ÊÑüÂô®ÈÄöÈÅìÂ±ûÊÄß */
 am_local am_err_t __pfn_attr_set (void                  *p_drv,
                                   int                    id,
                                   int                    attr,
@@ -599,7 +599,7 @@ am_local am_err_t __pfn_attr_set (void                  *p_drv,
 
     switch (attr) {
 
-    /* –ﬁ∏ƒ¡ø≥Ã */
+    /* ‰øÆÊîπÈáèÁ®ã */
     case AM_SENSOR_ATTR_FULL_SCALE:
 
         sensor_val.unit = p_val->unit;
@@ -643,7 +643,7 @@ am_local am_err_t __pfn_attr_set (void                  *p_drv,
     return cur_ret;
 }
 
-/** \brief ªÒ»°¥´∏–∆˜Õ®µ¿ Ù–‘ */
+/** \brief Ëé∑Âèñ‰º†ÊÑüÂô®ÈÄöÈÅìÂ±ûÊÄß */
 am_local am_err_t __pfn_attr_get (void            *p_drv,
                                   int              id,
                                   int              attr,
@@ -664,7 +664,7 @@ am_local am_err_t __pfn_attr_get (void            *p_drv,
 
     switch (attr) {
 
-    /* ªÒ»°¡ø≥Ã */
+    /* Ëé∑ÂèñÈáèÁ®ã */
     case AM_SENSOR_ATTR_FULL_SCALE:
 
         p_val->val  = p_this->sam_range.val;
@@ -680,7 +680,7 @@ am_local am_err_t __pfn_attr_get (void            *p_drv,
     return ret;
 }
 
-/** \brief …Ë÷√¥•∑¢£¨“ª∏ˆÕ®µ¿Ωˆƒ‹…Ë÷√“ª∏ˆ¥•∑¢ªÿµ˜∫Ø ˝ */
+/** \brief ËÆæÁΩÆËß¶ÂèëÔºå‰∏Ä‰∏™ÈÄöÈÅì‰ªÖËÉΩËÆæÁΩÆ‰∏Ä‰∏™Ëß¶ÂèëÂõûË∞ÉÂáΩÊï∞ */
 am_local am_err_t __pfn_trigger_cfg (void                   *p_drv,
                                      int                     id,
                                      uint32_t                flags,
@@ -711,7 +711,7 @@ am_local am_err_t __pfn_trigger_cfg (void                   *p_drv,
     return AM_OK;
 }
 
-/** \brief ¥Úø™¥•∑¢ */
+/** \brief ÊâìÂºÄËß¶Âèë */
 am_local am_err_t __pfn_trigger_on (void *p_drv, int id)
 {
     am_sensor_bma253_dev_t* p_this = (am_sensor_bma253_dev_t*)p_drv;
@@ -732,21 +732,21 @@ am_local am_err_t __pfn_trigger_on (void *p_drv, int id)
         return AM_OK;
     }
 
-    /** \brief  πƒ‹ ˝æ›ø…∂¡¥•∑¢ */
+    /** \brief ‰ΩøËÉΩÊï∞ÊçÆÂèØËØªËß¶Âèë */
     reg_data = __BMA253_TRIGGER_READ;
     ret = __bma253_write(p_this, __BMA253_REG_INT_EN_1, &reg_data, 1);
     if ( ret != AM_OK) {
         cur_ret = ret;
     }
     
-    /** \brief  πƒ‹¥•∑¢“˝Ω≈ */
+    /** \brief ‰ΩøËÉΩËß¶ÂèëÂºïËÑö */
     reg_data = __BMA253_EN_INT1_PIN;
     ret = __bma253_write(p_this, __BMA253_REG_INT_MAP_1, &reg_data, 1);
     if ( ret != AM_OK) {
         cur_ret = ret;
     }
     
-    /** \brief ≈‰÷√÷–∂œ“˝Ω≈ƒ£ Ω */
+    /** \brief ÈÖçÁΩÆ‰∏≠Êñ≠ÂºïËÑöÊ®°Âºè */
     reg_data = __BMA253_INT_CTRL;
     ret = __bma253_write(p_this, __BMA253_REG_INT_OUT_CTRL, &reg_data, 1);
     if ( ret != AM_OK) {
@@ -754,11 +754,11 @@ am_local am_err_t __pfn_trigger_on (void *p_drv, int id)
     }    
     
     if (p_this->dev_info->trigger_pin != -1) {
-        /* «Â≥˝÷–∂œ±Í÷æ */
+        /* Ê∏ÖÈô§‰∏≠Êñ≠Ê†áÂøó */
         reg_data = __BMA253_INT_CLEAR;
         __bma253_write(p_this, __BMA253_REG_INT_RST_LATCH, &reg_data, 1);
         
-        /* ¥Úø™¥•∑¢“˝Ω≈ */
+        /* ÊâìÂºÄËß¶ÂèëÂºïËÑö */
         ret = am_gpio_trigger_on(p_this->dev_info->trigger_pin);
         if (ret != AM_OK) {
             cur_ret = ret;
@@ -785,7 +785,7 @@ am_local am_err_t __pfn_trigger_on (void *p_drv, int id)
     return cur_ret;
 }
 
-/** \brief πÿ±’¥•∑¢ */
+/** \brief ÂÖ≥Èó≠Ëß¶Âèë */
 am_local am_err_t __pfn_trigger_off (void *p_drv, int id)
 {
     am_sensor_bma253_dev_t* p_this = (am_sensor_bma253_dev_t*)p_drv;
@@ -810,7 +810,7 @@ am_local am_err_t __pfn_trigger_off (void *p_drv, int id)
 
     if ((p_this->trigger & 0xF) == 0) {
 
-        /** \brief Ω˚ƒ‹ ˝æ›ø…∂¡¥•∑¢ */
+        /** \brief Á¶ÅËÉΩÊï∞ÊçÆÂèØËØªËß¶Âèë */
         reg_data = __BMA253_TRIGGER_CLOSE;
         ret = __bma253_write(p_this, __BMA253_REG_INT_EN_1, &reg_data, 1);
         if (ret != AM_OK) {
@@ -836,7 +836,7 @@ am_local am_err_t __pfn_trigger_off (void *p_drv, int id)
   Public functions
 *******************************************************************************/
 /**
- * \brief ¥´∏–∆˜ BMA253 ≥ı ºªØ
+ * \brief ‰º†ÊÑüÂô® BMA253 ÂàùÂßãÂåñ
  */
 am_sensor_handle_t am_sensor_bma253_init (
         am_sensor_bma253_dev_t           *p_dev,
@@ -884,7 +884,7 @@ am_sensor_handle_t am_sensor_bma253_init (
     p_dev->sam_range.val       = 0;
     p_dev->sam_range.unit      = AM_SENSOR_UNIT_INVALID;   
     
-    /* Õ‚≤ø÷–∂œ¡¨Ω” */
+    /* Â§ñÈÉ®‰∏≠Êñ≠ËøûÊé• */
     if (p_devinfo->trigger_pin != -1) {
         am_gpio_pin_cfg(p_devinfo->trigger_pin, AM_GPIO_INPUT);
         am_gpio_trigger_connect(p_devinfo->trigger_pin,
@@ -895,7 +895,7 @@ am_sensor_handle_t am_sensor_bma253_init (
 
     am_isr_defer_job_init(&p_dev->g_myjob, __am_pfnvoid_t, p_dev, 1);
    
-    /* ∂¡»°ID */
+    /* ËØªÂèñID */
     ret = __bma253_read(p_dev, __BMA253_REG_BGW_CHIPID, &bma253_id, 1);
     if (ret != AM_OK || bma253_id != __BMA253_MY_ID) {
         cur_ret = ret;
@@ -910,7 +910,7 @@ am_sensor_handle_t am_sensor_bma253_init (
 }
 
 /**
- * \brief ¥´∏–∆˜ BMA253 »•≥ı ºªØ
+ * \brief ‰º†ÊÑüÂô® BMA253 ÂéªÂàùÂßãÂåñ
  */
 am_err_t am_sensor_bma253_deinit (am_sensor_handle_t handle)
 {

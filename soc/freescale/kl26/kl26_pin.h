@@ -12,14 +12,14 @@
 
 /**
  * \file
- * \brief KL26 GPIO рЩ╫ееДжц╡нйЩ╤╗рЕ
+ * \brief KL26 GPIO Е╪∙Х└ И┘█Г╫╝Е▐┌Ф∙╟Е╝ Д╧┴
  *
  * \internal
  * \par Modification History
  *
  * \note: 
- *  1. сКKL16оЮ╠хё╛KL26╣дGPIO╧э╫еиыакPIOE_16║╒PIOE_17║╒PIOE_18║╒PIOE_19
- *  2. ╫Жсп╪╦╦ЖрЩ╫е╬ъспгЩ╤╞дэа╕еДжцё╛уБ╪╦╦ЖрЩ╫е╫╗рИй╧сц╦ъгЩ╤╞дэа╕ё╛ртцБGPIOдёй╫обIOгЩ╤╞дэа╕╡╩вЦ
+ *  1. Д╦▌KL16Г⌡╦Ф╞■О╪▄KL26Г └GPIOГ╝║Х└ Е╟▒Д╨├PIOE_16Ц─│PIOE_17Ц─│PIOE_18Ц─│PIOE_19
+ *  2. Д╩┘Ф°┴Е┤═Д╦╙Е╪∙Х└ Е┘╥Ф°┴И╘╠Е┼╗Х┐╫Е┼⌡И┘█Г╫╝О╪▄Х©≥Е┤═Д╦╙Е╪∙Х└ Е╩╨Х╝╝Д╫©Г■╗И╚≤И╘╠Е┼╗Х┐╫Е┼⌡О╪▄Д╩╔Е┘█GPIOФ╗║Е╪▐Д╦▀IOИ╘╠Е┼╗Х┐╫Е┼⌡Д╦█Х╤Ё
  *
  * - 1.00 17-04-07  nwt, adapt gpio difference kl16, kl26.
  * - 1.00 15-10-17  wxj, first implementation.
@@ -46,7 +46,7 @@ extern "C" {
  */
 
 /**
- * \name п╬ф╛пм╨ей╧сця║тЯ
+ * \name Х┼╞Г┴┤Е·▀Е▐╥Д╫©Г■╗И─┴Ф▀╘
  * @{
  */
 #if defined(KL16) || defined(KL26)
@@ -57,81 +57,81 @@ extern "C" {
 /** @} */
 
 /**
- * \name KL26 GPIO рЩ╫е╠Ю╨е
+ * \name KL26 GPIO Е╪∙Х└ Г╪√Е▐╥
  * @{
  */
 
-#define PIOA_0          0         /**< \brief PIOA_0 рЩ╫е╨е  */
-#define PIOA_1          1         /**< \brief PIOA_1 рЩ╫е╨е  */
-#define PIOA_2          2         /**< \brief PIOA_2 рЩ╫е╨е  */
-#define PIOA_3          3         /**< \brief PIOA_3 рЩ╫е╨е  */
-#define PIOA_4          4         /**< \brief PIOA_4 рЩ╫е╨е  */
-#define PIOA_5          5         /**< \brief PIOA_5 рЩ╫е╨е  */
+#define PIOA_0          0         /**< \brief PIOA_0 Е╪∙Х└ Е▐╥  */
+#define PIOA_1          1         /**< \brief PIOA_1 Е╪∙Х└ Е▐╥  */
+#define PIOA_2          2         /**< \brief PIOA_2 Е╪∙Х└ Е▐╥  */
+#define PIOA_3          3         /**< \brief PIOA_3 Е╪∙Х└ Е▐╥  */
+#define PIOA_4          4         /**< \brief PIOA_4 Е╪∙Х└ Е▐╥  */
+#define PIOA_5          5         /**< \brief PIOA_5 Е╪∙Х└ Е▐╥  */
 
-#define PIOA_12         12        /**< \brief PIOA_12рЩ╫е╨е  */
-#define PIOA_13         13        /**< \brief PIOA_13рЩ╫е╨е  */
+#define PIOA_12         12        /**< \brief PIOA_12Е╪∙Х└ Е▐╥  */
+#define PIOA_13         13        /**< \brief PIOA_13Е╪∙Х└ Е▐╥  */
 
-#define PIOA_18         18        /**< \brief PIOA_18рЩ╫е╨е  */
-#define PIOA_19         19        /**< \brief PIOA_19рЩ╫е╨е  */
-#define PIOA_20         20        /**< \brief PIOA_20рЩ╫е╨е */
+#define PIOA_18         18        /**< \brief PIOA_18Е╪∙Х└ Е▐╥  */
+#define PIOA_19         19        /**< \brief PIOA_19Е╪∙Х└ Е▐╥  */
+#define PIOA_20         20        /**< \brief PIOA_20Е╪∙Х└ Е▐╥ */
 
-#define PIOB_0          32       /**< \brief PIOB_0 рЩ╫е╨е */
-#define PIOB_1          33       /**< \brief PIOB_1 рЩ╫е╨е */
-#define PIOB_2          34       /**< \brief PIOB_2 рЩ╫е╨е */
-#define PIOB_3          35       /**< \brief PIOB_3 рЩ╫е╨е */
+#define PIOB_0          32       /**< \brief PIOB_0 Е╪∙Х└ Е▐╥ */
+#define PIOB_1          33       /**< \brief PIOB_1 Е╪∙Х└ Е▐╥ */
+#define PIOB_2          34       /**< \brief PIOB_2 Е╪∙Х└ Е▐╥ */
+#define PIOB_3          35       /**< \brief PIOB_3 Е╪∙Х└ Е▐╥ */
 
-#define PIOB_16         48       /**< \brief PIOB_16рЩ╫е╨е */
-#define PIOB_17         49       /**< \brief PIOB_17рЩ╫е╨е */
-#define PIOB_18         50       /**< \brief PIOB_18рЩ╫е╨е */
-#define PIOB_19         51       /**< \brief PIOB_19рЩ╫е╨е */
+#define PIOB_16         48       /**< \brief PIOB_16Е╪∙Х└ Е▐╥ */
+#define PIOB_17         49       /**< \brief PIOB_17Е╪∙Х└ Е▐╥ */
+#define PIOB_18         50       /**< \brief PIOB_18Е╪∙Х└ Е▐╥ */
+#define PIOB_19         51       /**< \brief PIOB_19Е╪∙Х└ Е▐╥ */
 
-#define PIOC_0          64       /**< \brief PIOC_0 рЩ╫е╨е */
-#define PIOC_1          65       /**< \brief PIOC_1 рЩ╫е╨е */
-#define PIOC_2          66       /**< \brief PIOC_2 рЩ╫е╨е */
-#define PIOC_3          67       /**< \brief PIOC_3 рЩ╫е╨е */
-#define PIOC_4          68       /**< \brief PIOC_4 рЩ╫е╨е */
-#define PIOC_5          69       /**< \brief PIOC_5 рЩ╫е╨е */
-#define PIOC_6          70       /**< \brief PIOC_6 рЩ╫е╨е */
-#define PIOC_7          71       /**< \brief PIOC_7 рЩ╫е╨е */
-#define PIOC_8          72       /**< \brief PIOC_8 рЩ╫е╨е */
-#define PIOC_9          73       /**< \brief PIOC_9 рЩ╫е╨е */
-#define PIOC_10         74       /**< \brief PIOC_10рЩ╫е╨е */
-#define PIOC_11         75       /**< \brief PIOC_11рЩ╫е╨е */
+#define PIOC_0          64       /**< \brief PIOC_0 Е╪∙Х└ Е▐╥ */
+#define PIOC_1          65       /**< \brief PIOC_1 Е╪∙Х└ Е▐╥ */
+#define PIOC_2          66       /**< \brief PIOC_2 Е╪∙Х└ Е▐╥ */
+#define PIOC_3          67       /**< \brief PIOC_3 Е╪∙Х└ Е▐╥ */
+#define PIOC_4          68       /**< \brief PIOC_4 Е╪∙Х└ Е▐╥ */
+#define PIOC_5          69       /**< \brief PIOC_5 Е╪∙Х└ Е▐╥ */
+#define PIOC_6          70       /**< \brief PIOC_6 Е╪∙Х└ Е▐╥ */
+#define PIOC_7          71       /**< \brief PIOC_7 Е╪∙Х└ Е▐╥ */
+#define PIOC_8          72       /**< \brief PIOC_8 Е╪∙Х└ Е▐╥ */
+#define PIOC_9          73       /**< \brief PIOC_9 Е╪∙Х└ Е▐╥ */
+#define PIOC_10         74       /**< \brief PIOC_10Е╪∙Х└ Е▐╥ */
+#define PIOC_11         75       /**< \brief PIOC_11Е╪∙Х└ Е▐╥ */
 
-#define PIOD_0          96       /**< \brief PIOD_0 рЩ╫е╨е */
-#define PIOD_1          97       /**< \brief PIOD_1 рЩ╫е╨е */
-#define PIOD_2          98       /**< \brief PIOD_2 рЩ╫е╨е */
-#define PIOD_3          99       /**< \brief PIOD_3 рЩ╫е╨е */
-#define PIOD_4          100       /**< \brief PIOD_4 рЩ╫е╨е */
-#define PIOD_5          101       /**< \brief PIOD_5 рЩ╫е╨е */
-#define PIOD_6          102       /**< \brief PIOD_6 рЩ╫е╨е */
-#define PIOD_7          103       /**< \brief PIOD_7 рЩ╫е╨е */
+#define PIOD_0          96       /**< \brief PIOD_0 Е╪∙Х└ Е▐╥ */
+#define PIOD_1          97       /**< \brief PIOD_1 Е╪∙Х└ Е▐╥ */
+#define PIOD_2          98       /**< \brief PIOD_2 Е╪∙Х└ Е▐╥ */
+#define PIOD_3          99       /**< \brief PIOD_3 Е╪∙Х└ Е▐╥ */
+#define PIOD_4          100       /**< \brief PIOD_4 Е╪∙Х└ Е▐╥ */
+#define PIOD_5          101       /**< \brief PIOD_5 Е╪∙Х└ Е▐╥ */
+#define PIOD_6          102       /**< \brief PIOD_6 Е╪∙Х└ Е▐╥ */
+#define PIOD_7          103       /**< \brief PIOD_7 Е╪∙Х└ Е▐╥ */
 
-#define PIOE_0          128       /**< \brief PIOE_0 рЩ╫е╨е */
-#define PIOE_1          129       /**< \brief PIOE_1 рЩ╫е╨е */
+#define PIOE_0          128       /**< \brief PIOE_0 Е╪∙Х└ Е▐╥ */
+#define PIOE_1          129       /**< \brief PIOE_1 Е╪∙Х└ Е▐╥ */
 
 #ifdef KL16
-#define PIOE_16         144       /**< \brief PIOE_16рЩ╫е╨е */
-#define PIOE_17         145       /**< \brief PIOE_17рЩ╫е╨е */
-#define PIOE_18         146       /**< \brief PIOE_18рЩ╫е╨е */
-#define PIOE_19         147       /**< \brief PIOE_19рЩ╫е╨е */
+#define PIOE_16         144       /**< \brief PIOE_16Е╪∙Х└ Е▐╥ */
+#define PIOE_17         145       /**< \brief PIOE_17Е╪∙Х└ Е▐╥ */
+#define PIOE_18         146       /**< \brief PIOE_18Е╪∙Х└ Е▐╥ */
+#define PIOE_19         147       /**< \brief PIOE_19Е╪∙Х└ Е▐╥ */
 #endif /* KL16 */
 
-#define PIOE_20         148       /**< \brief PIOE_20рЩ╫е╨е */
-#define PIOE_21         149       /**< \brief PIOE_21рЩ╫е╨е */
-#define PIOE_22         150       /**< \brief PIOE_22рЩ╫е╨е */
-#define PIOE_23         151       /**< \brief PIOE_23рЩ╫е╨е */
-#define PIOE_24         152       /**< \brief PIOE_24рЩ╫е╨е */
-#define PIOE_25         153       /**< \brief PIOE_25рЩ╫е╨е */
+#define PIOE_20         148       /**< \brief PIOE_20Е╪∙Х└ Е▐╥ */
+#define PIOE_21         149       /**< \brief PIOE_21Е╪∙Х└ Е▐╥ */
+#define PIOE_22         150       /**< \brief PIOE_22Е╪∙Х└ Е▐╥ */
+#define PIOE_23         151       /**< \brief PIOE_23Е╪∙Х└ Е▐╥ */
+#define PIOE_24         152       /**< \brief PIOE_24Е╪∙Х└ Е▐╥ */
+#define PIOE_25         153       /**< \brief PIOE_25Е╪∙Х└ Е▐╥ */
 
-#define PIOE_29         157       /**< \brief PIOE_29рЩ╫е╨е */
-#define PIOE_30         158       /**< \brief PIOE_30рЩ╫е╨е */
-#define PIOE_31         159       /**< \brief PIOE_31рЩ╫е╨е */
+#define PIOE_29         157       /**< \brief PIOE_29Е╪∙Х└ Е▐╥ */
+#define PIOE_30         158       /**< \brief PIOE_30Е╪∙Х└ Е▐╥ */
+#define PIOE_31         159       /**< \brief PIOE_31Е╪∙Х└ Е▐╥ */
 
 /** @} */
 
 /**
- * \brief рЩ╫ейЩд©, KL26рЩ╫ейЩд©н╙50ё╛╤ЬKL16╣дрЩ╫ейЩд©н╙54
+ * \brief Е╪∙Х└ Ф∙╟Г⌡╝, KL26Е╪∙Х└ Ф∙╟Г⌡╝Д╦╨50О╪▄Х─▄KL16Г └Е╪∙Х└ Ф∙╟Г⌡╝Д╦╨54
  */
 #ifdef KL26
 #define PIN_NUM         50
@@ -142,19 +142,19 @@ extern "C" {
 #endif
 
 /**
- * \brief ж╖ЁжвН╢СрЩ╫ежп╤ойЩйг96
+ * \brief Ф■╞Ф▄│Ф°─Е╓╖Е╪∙Х└ Д╦╜Ф√╜Ф∙╟Ф≤╞96
  */
 #define PIN_INT_MAX     96
 
 /**
- * \name KL26 ©ив╙рф╧╕дэ╤╗рЕ(ц©╦ЖрЩ╫е╤╪╬ъспртоб╤╗рЕ)
+ * \name KL26 Е▐╞Х╫╛Г╖╩Е┼÷Х┐╫Е╝ Д╧┴(Ф╞▐Д╦╙Е╪∙Х└ И┐╫Е┘╥Ф°┴Д╩╔Д╦▀Е╝ Д╧┴)
  * @{
  */
 
 /******************************************************************************/
 
 /**
- * \name PIOA_0рЩ╫е╧╕дэ
+ * \name PIOA_0Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -166,33 +166,33 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOA_0╧╕дэдёй╫
+ * \name PIOA_0Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOA_0_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief (нчиою╜/обю╜)*/
-#define PIOA_0_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOA_0_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOA_0_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief (Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴)*/
+#define PIOA_0_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOA_0_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOA_0 гЩ╤╞╩ьв╙кыбй
+ * \name PIOA_0 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOA_0_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOA_0_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOA_0_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOA_0_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ╦ц╧э╫ец╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 
 /******************************************************************************/
 
 /**
- * \name PIOA_1рЩ╫е╧╕дэ
+ * \name PIOA_1Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -204,33 +204,33 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOA_1╧╕дэдёй╫
+ * \name PIOA_1Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOA_1_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief (нчиою╜/обю╜)*/
-#define PIOA_1_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOA_1_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOA_1_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief (Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴)*/
+#define PIOA_1_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOA_1_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOA_1 гЩ╤╞╩ьв╙кыбй
+ * \name PIOA_1 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOA_1_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOA_1_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOA_1_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOA_1_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 
 /******************************************************************************/
 
 /**
- * \name PIOA_2рЩ╫е╧╕дэ
+ * \name PIOA_2Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -242,33 +242,33 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOA_2╧╕дэдёй╫
+ * \name PIOA_2Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOA_2_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief(нчиою╜/обю╜)*/
-#define PIOA_2_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOA_2_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOA_2_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief(Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴)*/
+#define PIOA_2_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOA_2_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOA_2 гЩ╤╞╩ьв╙кыбй
+ * \name PIOA_2 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOA_2_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOA_2_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOA_2_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOA_2_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 
 /******************************************************************************/
 
 /**
- * \name PIOA_3рЩ╫е╧╕дэ
+ * \name PIOA_3Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -281,33 +281,33 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOA_3╧╕дэдёй╫
+ * \name PIOA_3Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOA_3_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜)*/
-#define PIOA_3_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOA_3_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOA_3_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴)*/
+#define PIOA_3_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOA_3_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOA_3 гЩ╤╞╩ьв╙кыбй
+ * \name PIOA_3 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOA_3_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOA_3_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOA_3_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOA_3_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 
 /******************************************************************************/
 
 /**
- * \name PIOA_4рЩ╫е╧╕дэ
+ * \name PIOA_4Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -320,42 +320,42 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOA_4╧╕дэдёй╫
+ * \name PIOA_4Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOA_4_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOA_4_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOA_4_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOA_4_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOA_4_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOA_4_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOA_4 гЩ╤╞╩ьв╙кыбй
+ * \name PIOA_4 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOA_4_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOA_4_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOA_4_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOA_4_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOA_4 йДхК╦ихебк╡╗(нчт╢бк╡╗фВ)
+ * \name PIOA_4 Х╬⌠Е┘╔Е╧╡Ф┴╟Ф╩╓ФЁ╒(Ф≈═Ф╨░Ф╩╓ФЁ╒Е≥╗)
  * @{
  */
 
-#define PIOA_4_FILT_DIS     AM_KL26_GPIO_PFE_CODE(0x0)    /**< \brief бк╡╗╫Шдэ */
-#define PIOA_4_FILT_EN      AM_KL26_GPIO_PFE_CODE(0x1)    /**< \brief бк╡╗й╧дэ */
+#define PIOA_4_FILT_DIS     AM_KL26_GPIO_PFE_CODE(0x0)    /**< \brief Ф╩╓ФЁ╒Г╕│Х┐╫ */
+#define PIOA_4_FILT_EN      AM_KL26_GPIO_PFE_CODE(0x1)    /**< \brief Ф╩╓ФЁ╒Д╫©Х┐╫ */
 
 /** @} */
 
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 
 /******************************************************************************/
 
 /**
- * \name PIOA_5рЩ╫е╧╕дэ
+ * \name PIOA_5Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -367,33 +367,33 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOA_5╧╕дэдёй╫
+ * \name PIOA_5Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOA_5_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOA_5_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOA_5_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOA_5_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOA_5_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOA_5_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOA_5 гЩ╤╞╩ьв╙кыбй
+ * \name PIOA_5 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOA_5_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOA_5_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOA_5_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOA_5_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 
 /******************************************************************************/
 
 /**
- * \name PIOA_12рЩ╫е╧╕дэ
+ * \name PIOA_12Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -404,33 +404,33 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOA_12╧╕дэдёй╫
+ * \name PIOA_12Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOA_12_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOA_12_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOA_12_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOA_12_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOA_12_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOA_12_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOA_12 гЩ╤╞╩ьв╙кыбй
+ * \name PIOA_12 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOA_12_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOA_12_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOA_12_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOA_12_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 
 /******************************************************************************/
 
 /**
- * \name PIOA_13рЩ╫е╧╕дэ
+ * \name PIOA_13Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -441,33 +441,33 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOA_13╧╕дэдёй╫
+ * \name PIOA_13Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOA_13_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOA_13_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOA_13_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOA_13_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOA_13_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOA_13_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOA_13 гЩ╤╞╩ьв╙кыбй
+ * \name PIOA_13 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOA_13_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOA_13_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOA_13_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOA_13_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 
 /******************************************************************************/
 
 /**
- * \name PIOA_18рЩ╫е╧╕дэ
+ * \name PIOA_18Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -479,33 +479,33 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOA_18╧╕дэдёй╫
+ * \name PIOA_18Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOA_18_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOA_18_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOA_18_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOA_18_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOA_18_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOA_18_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOA_18 гЩ╤╞╩ьв╙кыбй
+ * \name PIOA_18 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOA_18_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOA_18_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOA_18_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOA_18_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 
 /******************************************************************************/
 
 /**
- * \name PIOA_19рЩ╫е╧╕дэ
+ * \name PIOA_19Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -517,33 +517,33 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOA_19╧╕дэдёй╫
+ * \name PIOA_19Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOA_19_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOA_19_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOA_19_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOA_19_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOA_19_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOA_19_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOA_19 гЩ╤╞╩ьв╙кыбй
+ * \name PIOA_19 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOA_19_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOA_19_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOA_19_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOA_19_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 
 /******************************************************************************/
 
 /**
- * \name PIOA_20рЩ╫е╧╕дэ
+ * \name PIOA_20Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -553,33 +553,33 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOA_20╧╕дэдёй╫
+ * \name PIOA_20Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOA_20_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOA_20_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOA_20_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOA_20_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOA_20_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOA_20_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOA_20 гЩ╤╞╩ьв╙кыбй
+ * \name PIOA_20 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOA_20_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOA_20_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOA_20_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOA_20_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 
 /******************************************************************************/
 
 /**
- * \name PIOB_0рЩ╫е╧╕дэ
+ * \name PIOB_0Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -593,40 +593,40 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOB_0╧╕дэдёй╫
+ * \name PIOB_0Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOB_0_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOB_0_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOB_0_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOB_0_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOB_0_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOB_0_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOB_0 гЩ╤╞╩ьв╙кыбй
+ * \name PIOB_0 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOB_0_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOB_0_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOB_0_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOB_0_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOB_0 ╧э╫егЩ╤╞дэа╕
+ * \name PIOB_0 Г╝║Х└ И╘╠Е┼╗Х┐╫Е┼⌡
  * @{
  */
 
-#define PIOB_0_DRIVE_NORMAL AM_KL26_GPIO_DSE_CODE(0x0)    /**< \brief фум╗гЩ╤╞а╕ */
-#define PIOB_0_DRIVE_HIGH   AM_KL26_GPIO_DSE_CODE(0x1)    /**< \brief г©гЩ╤╞а╕*/
+#define PIOB_0_DRIVE_NORMAL AM_KL26_GPIO_DSE_CODE(0x0)    /**< \brief Ф≥╝И─ И╘╠Е┼╗Е┼⌡ */
+#define PIOB_0_DRIVE_HIGH   AM_KL26_GPIO_DSE_CODE(0x1)    /**< \brief Е╪╨И╘╠Е┼╗Е┼⌡*/
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
 
 /******************************************************************************/
 
 /**
- * \name PIOB_1рЩ╫е╧╕дэ
+ * \name PIOB_1Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -639,40 +639,40 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOB_1╧╕дэдёй╫
+ * \name PIOB_1Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOB_1_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOB_1_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOB_1_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOB_1_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOB_1_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOB_1_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOB_1 гЩ╤╞╩ьв╙кыбй
+ * \name PIOB_1 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOB_1_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOB_1_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOB_1_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOB_1_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOB_1 ╧э╫егЩ╤╞дэа╕
+ * \name PIOB_1 Г╝║Х└ И╘╠Е┼╗Х┐╫Е┼⌡
  * @{
  */
 
-#define PIOB_1_DRIVE_NORMAL AM_KL26_GPIO_DSE_CODE(0x0)    /**< \brief фум╗гЩ╤╞а╕ */
-#define PIOB_1_DRIVE_HIGH   AM_KL26_GPIO_DSE_CODE(0x1)    /**< \brief г©гЩ╤╞а╕*/
+#define PIOB_1_DRIVE_NORMAL AM_KL26_GPIO_DSE_CODE(0x0)    /**< \brief Ф≥╝И─ И╘╠Е┼╗Е┼⌡ */
+#define PIOB_1_DRIVE_HIGH   AM_KL26_GPIO_DSE_CODE(0x1)    /**< \brief Е╪╨И╘╠Е┼╗Е┼⌡*/
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
 
 /******************************************************************************/
 
 /**
- * \name PIOB_2рЩ╫е╧╕дэ
+ * \name PIOB_2Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -685,32 +685,32 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOB_2╧╕дэдёй╫
+ * \name PIOB_2Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOB_2_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOB_2_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOB_2_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOB_2_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOB_2_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOB_2_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOB_2 гЩ╤╞╩ьв╙кыбй
+ * \name PIOB_2 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOB_2_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOB_2_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOB_2_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOB_2_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 /******************************************************************************/
 
 /**
- * \name PIOB_3рЩ╫е╧╕дэ
+ * \name PIOB_3Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -723,32 +723,32 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOB_3╧╕дэдёй╫
+ * \name PIOB_3Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOB_3_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOB_3_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOB_3_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOB_3_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOB_3_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOB_3_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOB_3 гЩ╤╞╩ьв╙кыбй
+ * \name PIOB_3 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOB_3_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOB_3_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOB_3_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOB_3_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 /******************************************************************************/
 
 /**
- * \name PIOB_16рЩ╫е╧╕дэ
+ * \name PIOB_16Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -762,32 +762,32 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOB_16╧╕дэдёй╫
+ * \name PIOB_16Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOB_16_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOB_16_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOB_16_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOB_16_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOB_16_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOB_16_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOB_16 гЩ╤╞╩ьв╙кыбй
+ * \name PIOB_16 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOB_16_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOB_16_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOB_16_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOB_16_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 /******************************************************************************/
 
 /**
- * \name PIOB_17рЩ╫е╧╕дэ
+ * \name PIOB_17Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -801,32 +801,32 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOB_17╧╕дэдёй╫
+ * \name PIOB_17Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOB_17_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOB_17_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOB_17_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOB_17_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOB_17_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOB_17_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOB_17 гЩ╤╞╩ьв╙кыбй
+ * \name PIOB_17 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOB_17_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOB_17_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOB_17_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOB_17_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 /******************************************************************************/
 
 /**
- * \name PIOB_18рЩ╫е╧╕дэ
+ * \name PIOB_18Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -838,32 +838,32 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOB_18╧╕дэдёй╫
+ * \name PIOB_18Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOB_18_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOB_18_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOB_18_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOB_18_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOB_18_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOB_18_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOB_18 гЩ╤╞╩ьв╙кыбй
+ * \name PIOB_18 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOB_18_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOB_18_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOB_18_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOB_18_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 /******************************************************************************/
 
 /**
- * \name PIOB_19рЩ╫е╧╕дэ
+ * \name PIOB_19Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -875,32 +875,32 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOB_19╧╕дэдёй╫
+ * \name PIOB_19Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOB_19_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOB_19_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOB_19_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOB_19_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOB_19_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOB_19_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOB_19 гЩ╤╞╩ьв╙кыбй
+ * \name PIOB_19 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOB_19_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOB_19_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOB_19_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOB_19_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 /******************************************************************************/
 
 /**
- * \name PIOC_0рЩ╫е╧╕дэ
+ * \name PIOC_0Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -915,32 +915,32 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOC_0╧╕дэдёй╫
+ * \name PIOC_0Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOC_0_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOC_0_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOC_0_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOC_0_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOC_0_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOC_0_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOC_0 гЩ╤╞╩ьв╙кыбй
+ * \name PIOC_0 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOC_0_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOC_0_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOC_0_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOC_0_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 /******************************************************************************/
 
 /**
- * \name PIOC_1рЩ╫е╧╕дэ
+ * \name PIOC_1Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -956,32 +956,32 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOC_1╧╕дэдёй╫
+ * \name PIOC_1Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOC_1_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOC_1_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOC_1_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOC_1_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOC_1_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOC_1_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOC_1 гЩ╤╞╩ьв╙кыбй
+ * \name PIOC_1 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOC_1_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOC_1_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOC_1_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOC_1_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 /******************************************************************************/
 
 /**
- * \name PIOC_2рЩ╫е╧╕дэ
+ * \name PIOC_2Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -995,32 +995,32 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOC_2╧╕дэдёй╫
+ * \name PIOC_2Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOC_2_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOC_2_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOC_2_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOC_2_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOC_2_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOC_2_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOC_2 гЩ╤╞╩ьв╙кыбй
+ * \name PIOC_2 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOC_2_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOC_2_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOC_2_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOC_2_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 /******************************************************************************/
 
 /**
- * \name PIOC_3рЩ╫е╧╕дэ
+ * \name PIOC_3Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -1034,32 +1034,32 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOC_3╧╕дэдёй╫
+ * \name PIOC_3Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOC_3_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOC_3_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOC_3_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOC_3_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOC_3_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOC_3_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOC_3 гЩ╤╞╩ьв╙кыбй
+ * \name PIOC_3 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOC_3_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOC_3_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOC_3_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOC_3_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 /******************************************************************************/
 
 /**
- * \name PIOC_4рЩ╫е╧╕дэ
+ * \name PIOC_4Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -1073,32 +1073,32 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOC_4╧╕дэдёй╫
+ * \name PIOC_4Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOC_4_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOC_4_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOC_4_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOC_4_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOC_4_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOC_4_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOC_4 гЩ╤╞╩ьв╙кыбй
+ * \name PIOC_4 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOC_4_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOC_4_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOC_4_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOC_4_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 /******************************************************************************/
 
 /**
- * \name PIOC_5рЩ╫е╧╕дэ
+ * \name PIOC_5Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -1112,32 +1112,32 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOC_5╧╕дэдёй╫
+ * \name PIOC_5Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOC_5_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOC_5_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOC_5_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOC_5_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOC_5_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOC_5_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOC_5 гЩ╤╞╩ьв╙кыбй
+ * \name PIOC_5 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOC_5_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOC_5_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOC_5_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOC_5_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 /******************************************************************************/
 
 /**
- * \name PIOC_6рЩ╫е╧╕дэ
+ * \name PIOC_6Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -1153,32 +1153,32 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOC_6╧╕дэдёй╫
+ * \name PIOC_6Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOC_6_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOC_6_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOC_6_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOC_6_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOC_6_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOC_6_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOC_6 гЩ╤╞╩ьв╙кыбй
+ * \name PIOC_6 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOC_6_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOC_6_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOC_6_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOC_6_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 /******************************************************************************/
 
 /**
- * \name PIOC_7рЩ╫е╧╕дэ
+ * \name PIOC_7Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -1192,32 +1192,32 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOC_7╧╕дэдёй╫
+ * \name PIOC_7Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOC_7_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOC_7_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOC_7_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOC_7_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOC_7_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOC_7_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOC_7 гЩ╤╞╩ьв╙кыбй
+ * \name PIOC_7 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOC_7_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOC_7_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOC_7_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOC_7_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 /******************************************************************************/
 
 /**
- * \name PIOC_8рЩ╫е╧╕дэ
+ * \name PIOC_8Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -1230,32 +1230,32 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOC_8╧╕дэдёй╫
+ * \name PIOC_8Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOC_8_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOC_8_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOC_8_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOC_8_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOC_8_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOC_8_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOC_8 гЩ╤╞╩ьв╙кыбй
+ * \name PIOC_8 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOC_8_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOC_8_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOC_8_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOC_8_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 /******************************************************************************/
 
 /**
- * \name PIOC_9рЩ╫е╧╕дэ
+ * \name PIOC_9Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -1268,32 +1268,32 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOC_9╧╕дэдёй╫
+ * \name PIOC_9Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOC_9_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOC_9_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOC_9_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOC_9_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOC_9_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOC_9_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOC_9 гЩ╤╞╩ьв╙кыбй
+ * \name PIOC_9 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOC_9_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOC_9_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOC_9_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOC_9_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 /******************************************************************************/
 
 /**
- * \name PIOC_10рЩ╫е╧╕дэ
+ * \name PIOC_10Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -1304,32 +1304,32 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOC_10╧╕дэдёй╫
+ * \name PIOC_10Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOC_10_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOC_10_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOC_10_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOC_10_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOC_10_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOC_10_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOC_10 гЩ╤╞╩ьв╙кыбй
+ * \name PIOC_10 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOC_10_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOC_10_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOC_10_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOC_10_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 /******************************************************************************/
 
 /**
- * \name PIOC_11рЩ╫е╧╕дэ
+ * \name PIOC_11Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -1340,32 +1340,32 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOC_11╧╕дэдёй╫
+ * \name PIOC_11Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOC_11_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOC_11_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOC_11_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOC_11_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOC_11_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOC_11_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOC_11 гЩ╤╞╩ьв╙кыбй
+ * \name PIOC_11 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOC_11_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOC_11_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOC_11_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOC_11_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 /******************************************************************************/
 
 /**
- * \name PIOD_0рЩ╫е╧╕дэ
+ * \name PIOD_0Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -1376,32 +1376,32 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOD_0╧╕дэдёй╫
+ * \name PIOD_0Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOD_0_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOD_0_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOD_0_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOD_0_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOD_0_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOD_0_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOD_0 гЩ╤╞╩ьв╙кыбй
+ * \name PIOD_0 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOD_0_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOD_0_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOD_0_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOD_0_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 /******************************************************************************/
 
 /**
- * \name PIOD_1рЩ╫е╧╕дэ
+ * \name PIOD_1Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -1413,32 +1413,32 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOD_1╧╕дэдёй╫
+ * \name PIOD_1Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOD_1_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOD_1_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOD_1_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOD_1_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOD_1_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOD_1_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOD_1 гЩ╤╞╩ьв╙кыбй
+ * \name PIOD_1 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOD_1_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOD_1_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOD_1_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOD_1_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 /******************************************************************************/
 
 /**
- * \name PIOD_2рЩ╫е╧╕дэ
+ * \name PIOD_2Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -1451,32 +1451,32 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOD_2╧╕дэдёй╫
+ * \name PIOD_2Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOD_2_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOD_2_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOD_2_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOD_2_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOD_2_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOD_2_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOD_2 гЩ╤╞╩ьв╙кыбй
+ * \name PIOD_2 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOD_2_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOD_2_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOD_2_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOD_2_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 /******************************************************************************/
 
 /**
- * \name PIOD_3рЩ╫е╧╕дэ
+ * \name PIOD_3Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -1489,32 +1489,32 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOD_3╧╕дэдёй╫
+ * \name PIOD_3Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOD_3_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOD_3_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOD_3_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOD_3_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOD_3_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOD_3_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOD_3 гЩ╤╞╩ьв╙кыбй
+ * \name PIOD_3 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOD_3_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOD_3_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOD_3_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOD_3_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 /******************************************************************************/
 
 /**
- * \name PIOD_4рЩ╫е╧╕дэ
+ * \name PIOD_4Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -1527,32 +1527,32 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOD_4╧╕дэдёй╫
+ * \name PIOD_4Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOD_4_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOD_4_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOD_4_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOD_4_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOD_4_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOD_4_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOD_4 гЩ╤╞╩ьв╙кыбй
+ * \name PIOD_4 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOD_4_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOD_4_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOD_4_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOD_4_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 /******************************************************************************/
 
 /**
- * \name PIOD_5рЩ╫е╧╕дэ
+ * \name PIOD_5Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -1565,32 +1565,32 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOD_5╧╕дэдёй╫
+ * \name PIOD_5Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOD_5_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOD_5_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOD_5_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOD_5_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOD_5_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOD_5_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOD_5 гЩ╤╞╩ьв╙кыбй
+ * \name PIOD_5 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOD_5_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOD_5_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOD_5_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOD_5_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 /******************************************************************************/
 
 /**
- * \name PIOD_6рЩ╫е╧╕дэ
+ * \name PIOD_6Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -1604,40 +1604,40 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOD_6╧╕дэдёй╫
+ * \name PIOD_6Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOD_6_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOD_6_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOD_6_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOD_6_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOD_6_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOD_6_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOD_6 гЩ╤╞╩ьв╙кыбй
+ * \name PIOD_6 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOD_6_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOD_6_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOD_6_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOD_6_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /**
- * \name PIOD_6 ╧э╫егЩ╤╞дэа╕
+ * \name PIOD_6 Г╝║Х└ И╘╠Е┼╗Х┐╫Е┼⌡
  * @{
  */
 
-#define PIOD_6_DRIVE_NORMAL  AM_KL26_GPIO_DSE_CODE(0x0)    /**< \brief фум╗гЩ╤╞а╕ */
-#define PIOD_6_DRIVE_HIGH    AM_KL26_GPIO_DSE_CODE(0x1)    /**< \brief г©гЩ╤╞а╕*/
+#define PIOD_6_DRIVE_NORMAL  AM_KL26_GPIO_DSE_CODE(0x0)    /**< \brief Ф≥╝И─ И╘╠Е┼╗Е┼⌡ */
+#define PIOD_6_DRIVE_HIGH    AM_KL26_GPIO_DSE_CODE(0x1)    /**< \brief Е╪╨И╘╠Е┼╗Е┼⌡*/
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
 
 /******************************************************************************/
 
 /**
- * \name PIOD_7рЩ╫е╧╕дэ
+ * \name PIOD_7Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -1649,40 +1649,40 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOD_7╧╕дэдёй╫
+ * \name PIOD_7Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOD_7_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOD_7_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOD_7_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOD_7_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOD_7_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOD_7_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOD_7 гЩ╤╞╩ьв╙кыбй
+ * \name PIOD_7 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOD_7_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOD_7_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOD_7_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOD_7_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /**
- * \name PIOD_7 ╧э╫егЩ╤╞дэа╕
+ * \name PIOD_7 Г╝║Х└ И╘╠Е┼╗Х┐╫Е┼⌡
  * @{
  */
 
-#define PIOD_7_DRIVE_NORMAL AM_KL26_GPIO_DSE_CODE(0x0)    /**< \brief фум╗гЩ╤╞а╕ */
-#define PIOD_7_DRIVE_HIGH   AM_KL26_GPIO_DSE_CODE(0x1)    /**< \brief г©гЩ╤╞а╕*/
+#define PIOD_7_DRIVE_NORMAL AM_KL26_GPIO_DSE_CODE(0x0)    /**< \brief Ф≥╝И─ И╘╠Е┼╗Е┼⌡ */
+#define PIOD_7_DRIVE_HIGH   AM_KL26_GPIO_DSE_CODE(0x1)    /**< \brief Е╪╨И╘╠Е┼╗Е┼⌡*/
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
 
 /******************************************************************************/
 
 /**
- * \name PIOE_0рЩ╫е╧╕дэ
+ * \name PIOE_0Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -1696,33 +1696,33 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOE_0╧╕дэдёй╫
+ * \name PIOE_0Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOE_0_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOE_0_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOE_0_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOE_0_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOE_0_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOE_0_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOE_0 гЩ╤╞╩ьв╙кыбй
+ * \name PIOE_0 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOE_0_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOE_0_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOE_0_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOE_0_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 
 /******************************************************************************/
 
 /**
- * \name PIOE_1рЩ╫е╧╕дэ
+ * \name PIOE_1Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -1735,33 +1735,33 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOE_1╧╕дэдёй╫
+ * \name PIOE_1Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOE_1_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOE_1_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOE_1_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOE_1_INACTIVE     AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOE_1_PULLDOWN     AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOE_1_PULLUP       AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOE_1 гЩ╤╞╩ьв╙кыбй
+ * \name PIOE_1 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOE_1_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOE_1_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOE_1_SLEW_FAST    AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOE_1_SLEW_SLOW    AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 
 /******************************************************************************/
 #ifdef KL16
 /**
- * \name PIOE_16рЩ╫е╧╕дэ
+ * \name PIOE_16Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 #define PIOE_16_ADC0_DP1    AM_KL26_GPIO_FUNC_CODE(0x0)   /**< \brief ADC0_DP1 */
@@ -1774,33 +1774,33 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOE_16╧╕дэдёй╫
+ * \name PIOE_16Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOE_16_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOE_16_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOE_16_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOE_16_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOE_16_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOE_16_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOE_16 гЩ╤╞╩ьв╙кыбй
+ * \name PIOE_16 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOE_16_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOE_16_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOE_16_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOE_16_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 
 /******************************************************************************/
 
 /**
- * \name PIOE_17рЩ╫е╧╕дэ
+ * \name PIOE_17Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 #define PIOE_17_ADC0_DM1    AM_KL26_GPIO_FUNC_CODE(0x0)   /**< \brief ADC0_DM1 */
@@ -1814,33 +1814,33 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOE_17╧╕дэдёй╫
+ * \name PIOE_17Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOE_17_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOE_17_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOE_17_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOE_17_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOE_17_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOE_17_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOE_17 гЩ╤╞╩ьв╙кыбй
+ * \name PIOE_17 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOE_17_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOE_17_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOE_17_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOE_17_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 
 /******************************************************************************/
 
 /**
- * \name PIOE_18рЩ╫е╧╕дэ
+ * \name PIOE_18Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 #define PIOE_18_ADC0_DP2    AM_KL26_GPIO_FUNC_CODE(0x0)   /**< \brief ADC0_DP2 */
@@ -1853,33 +1853,33 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOE_18╧╕дэдёй╫
+ * \name PIOE_18Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOE_18_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOE_18_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOE_18_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOE_18_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOE_18_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOE_18_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOE_18 гЩ╤╞╩ьв╙кыбй
+ * \name PIOE_18 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOE_18_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOE_18_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOE_18_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOE_18_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 
 /******************************************************************************/
 
 /**
- * \name PIOE_19рЩ╫е╧╕дэ
+ * \name PIOE_19Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 #define PIOE_19_ADC0_DM2    AM_KL26_GPIO_FUNC_CODE(0x0)   /**< \brief ADC0_DM2 */
@@ -1892,33 +1892,33 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOE_19╧╕дэдёй╫
+ * \name PIOE_19Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOE_19_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOE_19_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOE_19_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOE_19_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOE_19_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOE_19_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOE_19 гЩ╤╞╩ьв╙кыбй
+ * \name PIOE_19 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOE_19_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOE_19_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOE_19_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOE_19_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 #endif
 
 /******************************************************************************/
 
 /**
- * \name PIOE_20рЩ╫е╧╕дэ
+ * \name PIOE_20Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 #define PIOE_20_ADC0_DP0    AM_KL26_GPIO_FUNC_CODE(0x0)   /**< \brief ADC0_DP0 */
@@ -1930,33 +1930,33 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOE_20╧╕дэдёй╫
+ * \name PIOE_20Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOE_20_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOE_20_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOE_20_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOE_20_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOE_20_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOE_20_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOE_20 гЩ╤╞╩ьв╙кыбй
+ * \name PIOE_20 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOE_20_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOE_20_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOE_20_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOE_20_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 
 /******************************************************************************/
 
 /**
- * \name PIOE_21рЩ╫е╧╕дэ
+ * \name PIOE_21Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 #define PIOE_21_ADC0_DM0    AM_KL26_GPIO_FUNC_CODE(0x0)   /**< \brief ADC0_DM0  */
@@ -1968,33 +1968,33 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOE_21╧╕дэдёй╫
+ * \name PIOE_21Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOE_21_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOE_21_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOE_21_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOE_21_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOE_21_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOE_21_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOE_21 гЩ╤╞╩ьв╙кыбй
+ * \name PIOE_21 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOE_21_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOE_21_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOE_21_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOE_21_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 
 /******************************************************************************/
 
 /**
- * \name PIOE_22рЩ╫е╧╕дэ
+ * \name PIOE_22Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 #define PIOE_22_ADC0_DP3    AM_KL26_GPIO_FUNC_CODE(0x0)   /**< \brief ADC0_DP3 */
@@ -2006,33 +2006,33 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOE_22╧╕дэдёй╫
+ * \name PIOE_22Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOE_22_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief оШнчиою╜/обю╜ */
-#define PIOE_22_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOE_22_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOE_22_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф╤┬Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOE_22_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOE_22_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOE_22 гЩ╤╞╩ьв╙кыбй
+ * \name PIOE_22 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOE_22_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOE_22_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOE_22_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOE_22_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 
 /******************************************************************************/
 
 /**
- * \name PIOE_23рЩ╫е╧╕дэ
+ * \name PIOE_23Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 #define PIOE_23_ADC0_DM3    AM_KL26_GPIO_FUNC_CODE(0x0)   /**< \brief ADC0_DM3  */
@@ -2044,33 +2044,33 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOE_23╧╕дэдёй╫
+ * \name PIOE_23Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOE_23_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOE_23_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOE_23_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOE_23_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOE_23_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOE_23_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOE_23 гЩ╤╞╩ьв╙кыбй
+ * \name PIOE_23 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOE_23_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOE_23_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOE_23_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOE_23_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 
 /******************************************************************************/
 
 /**
- * \name PIOE_24рЩ╫е╧╕дэ
+ * \name PIOE_24Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -2081,33 +2081,33 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOE_24╧╕дэдёй╫
+ * \name PIOE_24Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOE_24_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOE_24_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOE_24_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOE_24_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOE_24_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOE_24_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOE_24 гЩ╤╞╩ьв╙кыбй
+ * \name PIOE_24 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOE_24_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOE_24_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOE_24_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOE_24_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 
 /******************************************************************************/
 
 /**
- * \name PIOE_25рЩ╫е╧╕дэ
+ * \name PIOE_25Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -2118,33 +2118,33 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOE_25╧╕дэдёй╫
+ * \name PIOE_25Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOE_25_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOE_25_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOE_25_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOE_25_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOE_25_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOE_25_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOE_25 гЩ╤╞╩ьв╙кыбй
+ * \name PIOE_25 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOE_25_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOE_25_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOE_25_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOE_25_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 
 /******************************************************************************/
 
 /**
- * \name PIOE_29рЩ╫е╧╕дэ
+ * \name PIOE_29Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 #define PIOE_29_CMP0_IN5    AM_KL26_GPIO_FUNC_CODE(0x0)   /**< \brief CMP0_IN5   */
@@ -2156,33 +2156,33 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOE_29╧╕дэдёй╫
+ * \name PIOE_29Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOE_29_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOE_29_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOE_29_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOE_29_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOE_29_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOE_29_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOE_29 гЩ╤╞╩ьв╙кыбй
+ * \name PIOE_29 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOE_29_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOE_29_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOE_29_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOE_29_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 
 /******************************************************************************/
 
 /**
- * \name PIOE_30рЩ╫е╧╕дэ
+ * \name PIOE_30Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 #define PIOE_30_DAC0_OUT    AM_KL26_GPIO_FUNC_CODE(0x0)   /**< \brief DAC0_OUT   */
@@ -2194,33 +2194,33 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOE_30╧╕дэдёй╫
+ * \name PIOE_30Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOE_30_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOE_30_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOE_30_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOE_30_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOE_30_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOE_30_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOE_30 гЩ╤╞╩ьв╙кыбй
+ * \name PIOE_30 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOE_30_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOE_30_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOE_30_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOE_30_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 
 /******************************************************************************/
 
 /**
- * \name PIOE_31рЩ╫е╧╕дэ
+ * \name PIOE_31Е╪∙Х└ Е┼÷Х┐╫
  * @{
  */
 
@@ -2230,28 +2230,28 @@ extern "C" {
 /** @} */
 
 /**
- * \name PIOE_31╧╕дэдёй╫
+ * \name PIOE_31Е┼÷Х┐╫Ф╗║Е╪▐
  * @{
  */
 
-#define PIOE_31_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief нчиою╜/обю╜ */
-#define PIOE_31_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief обю╜дёй╫ */
-#define PIOE_31_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief иою╜дёй╫ */
+#define PIOE_31_INACTIVE    AM_KL26_GPIO_PE_CODE(0x0)     /**< \brief Ф≈═Д╦┼Ф▀┴/Д╦▀Ф▀┴ */
+#define PIOE_31_PULLDOWN    AM_KL26_GPIO_PULL_CODE(0x0)   /**< \brief Д╦▀Ф▀┴Ф╗║Е╪▐ */
+#define PIOE_31_PULLUP      AM_KL26_GPIO_PULL_CODE(0x1)   /**< \brief Д╦┼Ф▀┴Ф╗║Е╪▐ */
 
 /** @} */
 
 /**
- * \name PIOE_31 гЩ╤╞╩ьв╙кыбй
+ * \name PIOE_31 И╘╠Е┼╗Е⌡·Х╫╛И─÷Г▌┤
  * @{
  */
 
-#define PIOE_31_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief ©Лкыдёй╫ */
-#define PIOE_31_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief бЩкыдёй╫ */
+#define PIOE_31_SLEW_FAST   AM_KL26_GPIO_SRE_CODE(0x0)    /**< \brief Е©╚И─÷Ф╗║Е╪▐ */
+#define PIOE_31_SLEW_SLOW   AM_KL26_GPIO_SRE_CODE(0x1)    /**< \brief Ф┘╒И─÷Ф╗║Е╪▐ */
 
 /** @} */
 
-/* ╦ц╧э╫ец╩спеДжц╧э╫ебк╡╗╧╕дэ */
-/* ц╩спеДжц╧э╫егЩ╤╞а╕╧╕дэ */
+/* Х╞╔Г╝║Х└ Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ Ф╩╓ФЁ╒Е┼÷Х┐╫ */
+/* Ф╡║Ф°┴И┘█Г╫╝Г╝║Х└ И╘╠Е┼╗Е┼⌡Е┼÷Х┐╫ */
 
 /******************************************************************************/
 

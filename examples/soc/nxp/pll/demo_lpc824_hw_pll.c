@@ -12,19 +12,19 @@
 
 /**
  * \file
- * \brief PLL ���̣�ͨ�� HW ��ӿ�ʵ��
+ * \brief PLL 例程，通过 HW 层接口实现
  *
- * - ʵ������
- *   1. ��ӡ PLL ����Ƶ�ʡ�ʵ�����Ƶ�ʺ� CLKOUT �������Ƶ�ʣ�
- *   2. CLKOUT ����(PIO0_27 ����)��� __CLKOUT_DIV ��Ƶ�����ʱ��Ƶ�ʣ�
- *   3. LED0 �� 0.5s ��ʱ������˸��
+ * - 实验现象：
+ *   1. 打印 PLL 期望频率、实际输出频率和 CLKOUT 引脚输出频率；
+ *   2. CLKOUT 引脚(PIO0_27 引脚)输出 __CLKOUT_DIV 分频后的主时钟频率；
+ *   3. LED0 以 0.5s 的时间间隔闪烁。
  *
  * \note
- *    1. LED0 ��Ҫ�̽� J9 ����ñ�����ܱ� PIO0_20 ���ƣ�
- *    2. ����۲촮�ڴ�ӡ�ĵ�����Ϣ����Ҫ�� PIO0_0 �������� PC ���ڵ� TXD��
- *       PIO0_4 �������� PC ���ڵ� RXD��
+ *    1. LED0 需要短接 J9 跳线帽，才能被 PIO0_20 控制；
+ *    2. 如需观察串口打印的调试信息，需要将 PIO0_0 引脚连接 PC 串口的 TXD，
+ *       PIO0_4 引脚连接 PC 串口的 RXD。
  *
- * \par Դ����
+ * \par 源代码
  * \snippet demo_lpc824_hw_pll.c src_lpc824_hw_pll
  *
  * \internal
@@ -49,14 +49,14 @@
 #include "am_lpc82x_inst_init.h"
 
 /**
- * \brief PLL ʱ��Դ��Ϊ����һ�֣�
+ * \brief PLL 时钟源，为以下一种：
  *            AMHW_LPC82X_CLK_PLLIN_SRC_IRC
  *            AMHW_LPC82X_CLK_PLLIN_SRC_SYSOSC
  *            AMHW_LPC82X_CLK_PLLIN_SRC_CLKIN
  */
 #define __PLL_CLKSRC                AMHW_LPC82X_CLK_PLLIN_SRC_IRC
 
-/** \name PLL Ƶ�ʿ���
+/** \name PLL 频率控制
  *
  * M = AM_CFG_SYSPLLCTRL_M + 1
  * P = 2^(AM_CFG_SYSPLLCTRL_P)
@@ -66,54 +66,54 @@
  * @{
  */
 
-/** \brief PLL ���ƼĴ��� PSEL ֵ */
+/** \brief PLL 控制寄存器 PSEL 值 */
 #define __PLL_CFG_PSEL               1
 
-/** \brief PLL ���ƼĴ��� MSEL ֵ */
+/** \brief PLL 控制寄存器 MSEL 值 */
 #define __PLL_CFG_MSEL               3
 
-/** \brief PLL ����Ƶ�� */
+/** \brief PLL 期望频率 */
 #define __PLL_DESIREDRATE            (48000000UL)
 
-/** \brief ѡ�����ʱ��Դ */
+/** \brief 选择输出时钟源 */
 #define __CLKOUT_SRC                 AMHW_LPC82X_CLK_CLKOUT_SRC_MAINCLK
 
-/** \brief ���ʱ��Դ��Ƶ */
+/** \brief 输出时钟源分频 */
 #define __CLKOUT_DIV                 48
 /**
  * @}
  */
 
 /**
- * \brief �������
+ * \brief 例程入口
  */
 void demo_lpc824_hw_pll_entry (void)
 {
     volatile uint32_t i = 0;
 
-    /* �����ڲ� IRC */
+    /* 开启内部 IRC */
     if (__CLKOUT_SRC == AMHW_LPC82X_CLK_CLKOUT_SRC_IRC) {
         amhw_lpc82x_syscon_powerup(AMHW_LPC82X_SYSCON_PD_IRC);
         amhw_lpc82x_syscon_powerup(AMHW_LPC82X_SYSCON_PD_IRC_OUT);
 
-    /* ���� WDT ʱ������ */
+    /* 开启 WDT 时钟振荡器 */
     } else if (__CLKOUT_SRC == AMHW_LPC82X_CLK_CLKOUT_SRC_WDTOSC) {
         amhw_lpc82x_syscon_powerup(AMHW_LPC82X_SYSCON_PD_WDT_OSC);
 
-    /* ����ϵͳ���� */
+    /* 开启系统振荡器 */
     } else if (__CLKOUT_SRC == AMHW_LPC82X_CLK_CLKOUT_SRC_SYSOSC) {
         amhw_lpc82x_syscon_powerup(AMHW_LPC82X_SYSCON_PD_SYS_OSC);
      }
 
-    /* ���� PLL ֮ǰ���ı���ʱ��ԴΪ IRC */
+    /* 配置 PLL 之前，改变主时钟源为 IRC */
     amhw_lpc82x_clk_main_src_set(AMHW_LPC82X_CLK_MAIN_SRC_IRC);
 
-    /* ���� PLL ʱ��Դǰ��׼�� */
+    /* 设置 PLL 时钟源前的准备 */
     if (__PLL_CLKSRC == AMHW_LPC82X_CLK_PLLIN_SRC_SYSOSC) {
 
-        /* ϵͳ������Ϊ PLL ʱ��Դ */
+        /* 系统振荡器作为 PLL 时钟源 */
 
-        /* �� PIO0_8,��PIO0_9 ����Ϊ����ģʽ���������������� */
+        /* 将 PIO0_8,、PIO0_9 配置为消极模式（无上拉和下拉） */
         amhw_lpc82x_iocon_mode_set(LPC82X_IOCON,
                                    PIO0_8,
                                    AMHW_LPC82X_IOCON_MODE_INACTIVE);
@@ -122,17 +122,17 @@ void demo_lpc824_hw_pll_entry (void)
                                    PIO0_9,
                                    AMHW_LPC82X_IOCON_MODE_INACTIVE);
 
-        /* ʹ�� PIO0_8_XTALIN��PIO0_9_XTALOUT ���ؾ���̶����Ź��� */
+        /* 使能 PIO0_8_XTALIN，PIO0_9_XTALOUT 开关矩阵固定引脚功能 */
         amhw_lpc82x_swm_fixed_func_enable(LPC82X_SWM,
                                           AMHW_LPC82X_SWM_PIO0_8_XTALIN);
 
         amhw_lpc82x_swm_fixed_func_enable(LPC82X_SWM,
                                           AMHW_LPC82X_SWM_PIO0_9_XTALOUT);
 
-        /* �ⲿ XTAL < 15MHz */
+        /* 外部 XTAL < 15MHz */
         amhw_lpc82x_clk_pll_bypass_set( AM_FALSE,  AM_FALSE);
 
-         /* ʹ��ϵͳ OSC */
+         /* 使能系统 OSC */
         amhw_lpc82x_syscon_powerup(AMHW_LPC82X_SYSCON_PD_SYS_OSC);
 
         for (i = 0; i < 200; i++);
@@ -140,38 +140,38 @@ void demo_lpc824_hw_pll_entry (void)
 
     if (__PLL_CLKSRC == AMHW_LPC82X_CLK_PLLIN_SRC_CLKIN) {
 
-        /* �ⲿ�ܽ�������Ϊʱ��Դ */
+        /* 外部管脚输入作为时钟源 */
 
-        /* �� PIO0_1 ����Ϊ����ģʽ���������������� */
+        /* 将 PIO0_1 配置为消极模式（无上拉和下拉） */
         amhw_lpc82x_iocon_mode_set(LPC82X_IOCON,
                                    PIO0_1,
                                    AMHW_LPC82X_IOCON_MODE_INACTIVE);
 
-        /* ʹ�� PIO0_1 ���ؾ���̶����Ź��� CLKIN */
+        /* 使能 PIO0_1 开关矩阵固定引脚功能 CLKIN */
         amhw_lpc82x_swm_fixed_func_enable(LPC82X_SWM,
                                           AMHW_LPC82X_SWM_PIO0_1_CLKIN);
         for (i = 0; i < 200; i++);
     }
 
-    /* ���� PLL ʱ��Դ */
+    /* 设置 PLL 时钟源 */
     amhw_lpc82x_clk_pll_src_set(__PLL_CLKSRC);
 
-    /* PLLOUT ʱ�� */
+    /* PLLOUT 时钟 */
     amhw_lpc82x_clk_pllctrl_set(__PLL_CFG_MSEL, __PLL_CFG_PSEL);
     amhw_lpc82x_syscon_powerup(AMHW_LPC82X_SYSCON_PD_SYS_PLL);
 
-    /* �ȴ� PLL ���� */
+    /* 等待 PLL 锁定 */
     while (!amhw_lpc82x_clk_pll_locked_chk());
 
-    /* ������ʱ��Ϊ PLL ��� */
+    /* 配置主时钟为 PLL 输出 */
     amhw_lpc82x_clk_main_src_set(AMHW_LPC82X_CLK_MAIN_SRC_PLLOUT);
 
-    /* ϵͳʱ�ӷ�ƵΪ 48 */
+    /* 系统时钟分频为 48 */
     amhw_lpc82x_clk_system_clkdiv_set(__CLKOUT_DIV);
 
     am_bsp_delay_timer_init(am_arm_systick_inst_init(), 0);
 
-    /* ��Ϊʱ�Ӹı��ˣ��������³�ʼ������ */
+    /* 因为时钟改变了，必须重新初始化串口 */
     am_debug_init(am_lpc82x_usart0_inst_init(), 115200);
 
     AM_DBG_INFO("PLL configure Success!\r\n");
@@ -179,10 +179,10 @@ void demo_lpc824_hw_pll_entry (void)
     AM_DBG_INFO("The Actual Desired rate is %8d Hz\r\n",
                 amhw_lpc82x_clk_pllout_rate_get());
 
-    /*  ��������Ϊʱ����� */
+    /*  配置引脚为时钟输出 */
     am_gpio_pin_cfg(PIO0_27, PIO_FUNC_CLKOUT);
 
-    /* �������ʱ��Դ��ʱ�ӷ�Ƶ���� */
+    /* 配置输出时钟源和时钟分频参数 */
     amhw_lpc82x_clk_clkout_config(__CLKOUT_SRC, __CLKOUT_DIV);
 
     AM_DBG_INFO("The CLKOUT  rate is  %8d Hz\r\n",
